@@ -4,66 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F3C7C77B61
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Apr 2023 21:04:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A5F8C77B61
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 May 2023 09:59:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jzOqJNFDMZDC51314yLjk36gUe2YKFz96vzmxCX551E=; b=A8r6+B8j3kcQxu
-	gagUlV6TPoQkkg8An0eDEX/uuo4DvarGSz/JvkG9OlE1SZ9/rj7fMheFVxf96Bx5SF9wO+Wl4Y1xH
-	gIceJFqGbf5ijO367RNkbMjjEpyjPPf4d9ifbvq3E1Y1RLGsIU90lkjInBTaeVA9JZ14bisk4UKsi
-	EUM/yiBCDvn//TWzi/Z1j5Uqzu+QEOwcXCih+WN2LmXQfxSJfQGiNAQLhWZdE7RV49N1K+KYvKq1Y
-	rjT+VpJzTsQJRqWVYr7HJuZ2oQrK9rTCJa1UWxsOgSSDAifmH10WlDeq+uN0G3Mrsh9q+/aVYVxgB
-	elQpp/KrKr/GPDgxF6Hw==;
+	List-Owner; bh=FQnSdTKGqpvK0yXEpwo4oFx1RWy8+K4dBLzNMgZadhg=; b=rhv2iJTsaVpJnu
+	oAsbijRoyiBwCjxoT3KOlNUmnOBiHM6MU+aS1K2loFCRlx60LwvEgq+S+JAeHg1bEd5l4/wOzDYfI
+	4Y7+9lHwe7mF0yLvQm9+UL4x0WwxhnLwpscttR0JgXzBlyKJK+6ELRr2VL1xrg2OWJceX1VvgKxxv
+	NQhAZxU5sUEvWNFMCyNmPwCGKEuRavBJpBrwRsOiBadcd9QvyvKAU+zHrtE+MLWQZNM4s+y0Dq/Qh
+	n869XjtKTswT+RSiBtoWcTSDLnSPAFbh0AGrsNP1+4UB1tH8MirpCGTqWQCLYuq8DjBqxEBLx0OcB
+	q2wDx8RNZtjfn4vzn94g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1ps8mx-007XQo-0X;
-	Thu, 27 Apr 2023 21:04:27 +0000
-Received: from mail-oa1-f53.google.com ([209.85.160.53])
+	id 1ptQJH-00FZ5o-06;
+	Mon, 01 May 2023 09:59:07 +0000
+Received: from mail-ej1-x62f.google.com ([2a00:1450:4864:20::62f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1ps8ms-007XOt-2C;
-	Thu, 27 Apr 2023 21:04:24 +0000
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-18f16a2c329so7056838fac.0;
-        Thu, 27 Apr 2023 14:04:19 -0700 (PDT)
+	id 1ptQJD-00FZ58-2r
+	for linux-amlogic@lists.infradead.org;
+	Mon, 01 May 2023 09:59:05 +0000
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-958bb7731a9so482706266b.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 01 May 2023 02:59:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682935141; x=1685527141;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1iC542I8sMMVaQ/GKCt5KrdijPnyOsGoeQvZFa5279s=;
+        b=FTD6ea9xiiKA9CmBhw8FW4LKyQUFRuC89lG4rnIisz/8N1dldoe8cPSsN6MLa1SYwr
+         gfhVVv/XY3zv2PTMgGAwn4219JxsRMUUboFHWzvlPp/1GDb6GWLfB1/MqA8nt07Q5ZsH
+         MLj27lA648g3YAnkS95kNomb2Px4hkVKw5X25rSLrVFuRfVner1KSLcm7q4OM+oeM8p8
+         J73jFRvf45UThva8feihLugrk5xVJLSBN/C6FBMh5I1CEMemSkN7uLtjYiWKcxkwA1An
+         1CjWGNGp9ivABvGTzo+bp/8Uepj1BIfduNN8ZwDwET0gAVDW7/RRJEU4SyD8ZOmFCl0A
+         cMWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682629459; x=1685221459;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D7iFliujUSkel6mL8gHDSSVDhGL8j5l+idukWslg6ZU=;
-        b=Vro+lcxmMKfON1Tvt0P5VIZv3k+yrry/JDdMm5RKTAY6V4Tbm/1WRraODEG5WNIG5D
-         fUr46zNF6CQK6KQp5uatSD9lxunqnz81vcbbwYbfAzQz9Q9l7OhvXl5kkMrrR27nCPef
-         Vq5Hn2O8sw2qas6hq8c1msnqQy9dC9f7eHOOPIjwLVqDLiOWhXLYunkXvJdYbLt7+0qD
-         xIN+DOO77Fmrgz/nbpbfn10C1radwBj36E+9WkuDQYDhl6yVrbqIuaR8yNlAOSpjf0V6
-         4UKHvAEzhm4Fv80tO/Jnu6vYTYaUWa+DofgoJyDWr7LkRmN3FMB10Oj8xN06r/R++b5m
-         kfOg==
-X-Gm-Message-State: AC+VfDxYyluM+zRKHhsFxa2qE0kyfaNH1mkdNItYQJV5A1sIUrYEiWQt
-	q1XKPVEbFBPpkRpPwqZxBEPHx0GEsA==
-X-Google-Smtp-Source: ACHHUZ4wTFSImmRssQrZ4PnbGSQf+qWZtCP0hXDPeYZT+0kKmU67xeci9GANGGKB7AUUIraxz9LhTQ==
-X-Received: by 2002:a05:6871:6b8a:b0:176:9fbe:fe02 with SMTP id zh10-20020a0568716b8a00b001769fbefe02mr1603936oab.8.1682629459102;
-        Thu, 27 Apr 2023 14:04:19 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id dy14-20020a056870c78e00b0017197629658sm8035605oab.56.2023.04.27.14.04.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Apr 2023 14:04:18 -0700 (PDT)
-Received: (nullmailer pid 3518678 invoked by uid 1000);
-	Thu, 27 Apr 2023 21:04:17 -0000
-Date: Thu, 27 Apr 2023 16:04:17 -0500
-From: Rob Herring <robh@kernel.org>
-To: Lucas Tanure <tanure@linux.com>
-Cc: linux-arm-kernel@lists.infradead.org, narmstrong@baylibre.com, devicetree@vger.kernel.org, Mike Rapoport <rppt@kernel.org>, martin.blumenstingl@googlemail.com, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, linux-amlogic@lists.infradead.org, Frank Rowand <frowand.list@gmail.com>, Rob Herring <robh+dt@kernel.org>, jbrunet@baylibre.com, stefan@agner.ch, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] of: fdt: Scan /memreserve/ last
-Message-ID: <168262872454.3491083.6407810340850053636.robh@kernel.org>
-References: <20230424113846.46382-1-tanure@linux.com>
+        d=1e100.net; s=20221208; t=1682935141; x=1685527141;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1iC542I8sMMVaQ/GKCt5KrdijPnyOsGoeQvZFa5279s=;
+        b=i8VopbxCv5/kAqk2qqW1jU9V13dZJCqy1y+WrIzi4n/9Wrt3WIsGkXyqQtpKhu8CsS
+         tdzAx9oEK5Y/9SAx5MDsUnRXEGb6mjDCqXuXrAm3kzAVWqKEoGKTSEPSfNDl+PZcaD+l
+         KAoJR9vlsPi7SKVqA8f1mOqahqoDTpsrWzRgCTHnaTkWTi/zvIOXV+jS54rwptob9Eyb
+         w3EjXzLwAvXEVIRp2/BUvZiszB9HcbN2VVZRYFZSzfaQ7RhshCVFiTmBWa+triTH2pfI
+         GTMHEH0ccVybZO9Wd9B7ldKDPDcbNulE3MOF5Mik+GcjfWQ09A0xK2dALcTXGs4TI9pw
+         ukXQ==
+X-Gm-Message-State: AC+VfDyVU+FtT2o0V7NupDU8SdU4a5smu5JXFYCkK0OXUx36N1OGtNdc
+	pmshi2/DtLK4EHF8XcdPENYLgA==
+X-Google-Smtp-Source: ACHHUZ5tqLgVByqmgtfFg0+IfGabRKnA3PjKgolnSWjhoxA7MZt9uWHkPm73ChEJKMLqaehLn0+ANA==
+X-Received: by 2002:a17:907:7245:b0:94e:b3a1:3ed9 with SMTP id ds5-20020a170907724500b0094eb3a13ed9mr12018150ejc.49.1682935140884;
+        Mon, 01 May 2023 02:59:00 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:637a:fd0c:58fd:9f00? ([2a02:810d:15c0:828:637a:fd0c:58fd:9f00])
+        by smtp.gmail.com with ESMTPSA id oz5-20020a170906cd0500b0094f58a85bc5sm14534591ejb.180.2023.05.01.02.58.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 May 2023 02:59:00 -0700 (PDT)
+Message-ID: <36e7a445-7d19-911a-1a94-ffc30172e1a3@linaro.org>
+Date: Mon, 1 May 2023 11:58:59 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230424113846.46382-1-tanure@linux.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH V2] arm64: dts: add support for C3 based Amlogic AW409
+Content-Language: en-US
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230427085859.793802-1-xianwei.zhao@amlogic.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230427085859.793802-1-xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230427_140422_717140_04F8051A 
-X-CRM114-Status: GOOD (  21.46  )
+X-CRM114-CacheID: sfid-20230501_025903_951133_BE610099 
+X-CRM114-Status: GOOD (  18.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,58 +98,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Mon, 24 Apr 2023 12:38:46 +0100, Lucas Tanure wrote:
-> Change the scanning /memreserve/ and /reserved-memory node order to fix
-> Kernel panic on Khadas Vim3 Board.
+On 27/04/2023 10:58, Xianwei Zhao wrote:
+> Amlogic C3 is an advanced edge AI processor designed for smart IP camera
+> applications.
 > 
-> If /memreserve/ goes first, the memory is reserved, but nomap can't be
-> applied to the region. So the memory won't be used by Linux, but it is
-> still present in the linear map as normal memory, which allows
-> speculation. Legitimate access to adjacent pages will cause the CPU
-> to end up prefetching into them leading to Kernel panic.
+> Add basic support for the C3 based Amlogic AW409 board, which describes
+> the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
+> booting up into the serial console.
 > 
-> So /reserved-memory node should go first, as it has a more updated
-> description of the memory regions and can apply flags, like nomap.
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> Signed-off-by: Lucas Tanure <tanure@linux.com>i
 > ---
-> Previous Threads:
-> #regzbot link: https://lore.kernel.org/linux-arm-kernel/40ca11f84b7cdbfb9ad2ddd480cb204a@agner.ch/#regzbot
-> #regzbot link: https://lore.kernel.org/all/CAJX_Q+1Tjc+-TjZ6JW9X0NxEdFe=82a9626yL63j7uVD4LpxEA@mail.gmail.com/
-
-Note that this should have been a 'Link:' entry in the commit message 
-for regzbot. I added it.
-
-> 
-> V1: https://lore.kernel.org/all/20230406151429.524591-1-tanure@linux.com/
-> v2: https://lore.kernel.org/all/20230410120017.41664-1-tanure@linux.com/
-> v3: https://lore.kernel.org/linux-mm/20230412224620.8909-1-tanure@linux.com/T/
-> 
-> Change from V3:
->  - Drop cover letter
->  - Add more information into the patch
-> 
-> Change from V2:
->  - Remove region overlap and reserved checks
-> 
-> Change from V1:
->  - Instead of allowing to mark nomap a region already reserved, give
-> precedence to /reserved-memory node scan.
+> V1 -> V2: Remove new arch, and use ARCH_MESON;
+>           Modify node name, and delete superfluous blank lines.
 > ---
->  drivers/of/fdt.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+>  .../amlogic/amlogic-c3-c302x-aw409-256m.dts   | 29 +++++++
+>  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi   | 86 +++++++++++++++++++
+>  3 files changed, 116 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
+>  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
 > 
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index cd1c5b04890a..bcec872c2444 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -74,3 +74,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409-256m.dtb
 
-Applied, thanks!
+Looks wrongly ordered. 'a' is before 'm'.
 
-Going to let this sit in linux-next for a bit. I also didn't tag for 
-stable kernels. I want it to get some exposure in mainline at least for 
-a few -rc releases rather than getting backported right away. Please 
-help ensure that happens if you see stable review emails. I'm going to 
-be offline most of the next month.
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
+> new file mode 100644
+> index 000000000000..edce8850b338
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
+> @@ -0,0 +1,29 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "amlogic-c3.dtsi"
+> +
+> +/ {
+> +	model = "Amlogic C302 aw409 Development Board";
+> +	compatible = "amlogic,aw409", "amlogic,c3";
 
-Rob
+Missing bindings.
+
+Please run scripts/checkpatch.pl and fix reported warnings.
+
+Best regards,
+Krzysztof
 
 
 _______________________________________________
