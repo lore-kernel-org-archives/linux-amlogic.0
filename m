@@ -4,85 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC14DC77B61
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 May 2023 14:03:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7940C77B73
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 May 2023 17:43:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=MjfFfOwqqpMOhvMVkLfM1dIjrAEGDDJOq0A3NCg1YzY=; b=wZ1p4LI6LyC9TB
-	5e3G14vedP9MyLfLkjpTPNfdEYrIaTCNexqqNC8OQRQP5MHLVmfSJxGcFUWA+JAAQdScFAlq1UYvj
-	pnf7kUACi/90OWPoFrVy6dtICCZSDAN82Ku5mf1AxqoDY+pyX4P8Jfx2C5CZVTzBphLq6vZmaSUht
-	yRbSD15JOnA6u5w5bh7V77n3gdQd8r0/iSQe01oXYNl8UHbymQyrdPF8t/RpPysCFPaLRaNGi83hT
-	dzdzadjBmLsONIErTVsGUVPZ90NcCSt4lUcsc9pgpwL++7OfVouZMpMXiLCEj5LHonBfpJIv6HlMm
-	YWEpqIHr2p/Jtks7+6sg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=8YFJUzOSe8NHr78EfviNiLg+1EAvZ8VgnTKZRF2LxGY=; b=aDmiax8iSzfWO4
+	1STkENeKsn8Qoo8vc0/v+jsORnViT1qBOqVrfg0DCLzpTznBqgvRueQNMCQ+Y7oCWTERhnzVf9P/V
+	gc4eD9NwZepsNY1sL8Hogx4yMJizzTAgxLtG6VoMgdAem4PffK+KJMWwUn/OXW638Yf8SWRiFfFZM
+	Wu8LIMcoMM+AAOTFpEAVUBUuKnVhUmPXyOzgha70oCEQN8ba3K7IZX87BgmPM1BfsqcQRtZDHd8az
+	0vwLt3x/XHplHBe7qu/bZmfAeAW7pkwfzy/FZEtyUnA+db/isSKhQW8S/B9kWeOcKR5FfwylhulnN
+	tWFaqe5S2l/BE3WNIw/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1ptU7j-00G6yW-1n;
-	Mon, 01 May 2023 14:03:27 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1ptXYk-00GQTn-31;
+	Mon, 01 May 2023 17:43:34 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1ptU7f-00G6xa-33;
-	Mon, 01 May 2023 14:03:25 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f196e8e2c6so24839285e9.1;
-        Mon, 01 May 2023 07:03:23 -0700 (PDT)
+	id 1ptXYg-00GQSI-0g
+	for linux-amlogic@lists.infradead.org;
+	Mon, 01 May 2023 17:43:32 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f09b4a156eso16591935e9.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 01 May 2023 10:43:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682949802; x=1685541802;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yPKLIXENJWwnp6qccK2W7S+dB0m6Orv/h3gsSqIcq0o=;
-        b=GBDrRMx/hWswUbeEHT9HXtvGsYYcp8hwfjkQw5wVAL7EknjfxsPOOlP/jCOr7rwLI5
-         87RFr+y0D5MPOagJjxH2CbvxX3Ga79NezmJdQUsTAkwdgnJK32mDHlgTFPTJRgDs/7w2
-         X+JLWhM4k214r0J5MbBZv/kLzKSb0XXiaoh4REGXWSgz56Q4Zqs8g6yZns5WgiCUjAlO
-         PaGzUyumtNwWqqZDFGFFs7NJbHAbmkIfen/y21DLDrCysc5KxhBkw02pY5qq7yKYvbbO
-         RVU+W0XjXoEq4zmB2BAkIeiLm7VAjhikGEieAxyRutBLAYKU8j3WVSBb10FJTk7e+EVb
-         R7hA==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1682963006; x=1685555006;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=KWAQxRppuZL76jxl312jAhqOoymrs7nJ8TG4C726RtE=;
+        b=CoydJabmyK6nsiu4/DyVcD32sGakdDP3vSNK7d7+Kj2YBWx8NuwQrs/vT4xv9RkZSy
+         fPt7ZVFP2loG2ZtXuw4JY2V4IVHt7r8xx0rPMAfQjoGnp3vBkzB/Bb/HUmeBCCJS6e7q
+         uL7bef3K1d2OKjFBLAAIr5JbAQLmfpzCBWzXUnxslBlEn0iLJqqtH6+FxGsbzxhD5ExI
+         Mc507jIwmHAHedxkatF7ptCgSJP3QX0szConssBMKmGJFYWtT8SZwkAHkXooO4jnPIai
+         ZmO7TPnLoppaXkt34OMamXzl67aPDR5MIG5qIZ42Dfox0SYfvCUWSPQOOZ4hbFyTcuKf
+         VXww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682949802; x=1685541802;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=yPKLIXENJWwnp6qccK2W7S+dB0m6Orv/h3gsSqIcq0o=;
-        b=BJZrQkyP0gkd8bCJP/0H7+V30eTSZ+zX5WhJX/qL2q2PWXhJ1W7RdKxbUmEuWSRz9E
-         wR/Gf63LsJFNF9SziDZ0zx4QHXnka8BchN4BqnH/IDpUCtkUQMMTPfErW2TqVlVNYp6p
-         zRae7308HAqSgbxuixwpMX/yhkP0htMDooAPSwJYn4roEhHIO8ibdYukB3Cd8TSrnzzr
-         AxUY5Ihj4CffcFYcgUMyM9SBJZmLHJwmwda79pbeY5OTVHJXB6GFertc4jBFlcQZpGFw
-         jgPkgsw7TxJPce3b/oGybC4zixtpmNqftwqdvb9OVe8bR5Yn1lcRfOv/j2nftUgmPk/j
-         WpTQ==
-X-Gm-Message-State: AC+VfDzSvgvcV31uP/MO5DsDNleIvDrHaEaW2EnXftyCY1ZgwIa57zpj
-	se684kKIBb2hMB1DLHxEveA=
-X-Google-Smtp-Source: ACHHUZ6MPj9x4HSQDZyR5H3TnuNnERkVGEPbo4DKVB09sdN5x23YMfIs/BN0HTeGtDYUPTomX9+JAw==
-X-Received: by 2002:a1c:7312:0:b0:3f3:2e4e:c738 with SMTP id d18-20020a1c7312000000b003f32e4ec738mr5839980wmb.3.1682949801869;
-        Mon, 01 May 2023 07:03:21 -0700 (PDT)
-Received: from ?IPV6:2a01:c23:b9bd:5800:60ec:422b:628c:6ca5? (dynamic-2a01-0c23-b9bd-5800-60ec-422b-628c-6ca5.c23.pool.telefonica.de. [2a01:c23:b9bd:5800:60ec:422b:628c:6ca5])
-        by smtp.googlemail.com with ESMTPSA id v9-20020a05600c444900b003f173be2ccfsm47610223wmn.2.2023.05.01.07.03.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 May 2023 07:03:21 -0700 (PDT)
-Message-ID: <f48f17a7-7f50-c5ef-cc8f-007d0cb302b0@gmail.com>
-Date: Mon, 1 May 2023 16:03:16 +0200
+        d=1e100.net; s=20221208; t=1682963006; x=1685555006;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KWAQxRppuZL76jxl312jAhqOoymrs7nJ8TG4C726RtE=;
+        b=WKntR6Vu04JgO4/zWCNRIf33cH2dgmbvZgrQa+SOCoZhqVmLs5FRL2DqxXgax4fE/w
+         RL0p0Nyk6SfBL+1LjSZT1LvLXDmDIS0ta1LV//zjuabzey80h8/6+S3AutgJ1QJnEsBt
+         DWI06oeacW3XrxwLRRRNrUrGBIbglLO07vGtyL7aqK6HUF4+znSezuj1uV1df6g7IGHH
+         HhTUHn8Qicw0Mw4um9Vyth/LF6IoXsD/UWbiD4ywtFg1qhtCUn/HRL6imy5bfn5BqF1a
+         ZxeOnFWa9vLoEA6uG+PSjAuPI/YrEsjcS0M/4En0HeD21A0TLZZFQMJJb4nb5culgxnT
+         2pUQ==
+X-Gm-Message-State: AC+VfDxQyO+auhXFvRoDWos7oNS7BJ+JOBEa+x+5hWZo7V5F83Xqi5jW
+	OryeUH8e9nHG6UJjm6ragyQ2xw==
+X-Google-Smtp-Source: ACHHUZ41tSRIwqt4t/r56GXoMbyRL5di4OgNoAeDZuDa65UkAb7PtSfmleaf6RGcDoS3+Ui3FnRZdg==
+X-Received: by 2002:adf:cc89:0:b0:304:a40c:43c3 with SMTP id p9-20020adfcc89000000b00304a40c43c3mr9973070wrj.45.1682963005887;
+        Mon, 01 May 2023 10:43:25 -0700 (PDT)
+Received: from localhost ([2a04:cec0:11b2:f613:c075:6ab:a69e:307d])
+        by smtp.gmail.com with ESMTPSA id j14-20020adfea4e000000b002fc3d8c134bsm28854132wrn.74.2023.05.01.10.43.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 May 2023 10:43:25 -0700 (PDT)
+References: <20230417065005.24967-1-yu.tu@amlogic.com>
+ <20230417065005.24967-5-yu.tu@amlogic.com>
+ <20230426110538.y2d4qhv2qffc62vj@CAB-WSD-L081021>
+ <6cc4c3f2-4df5-6456-fe65-71aa4a13c866@amlogic.com>
+User-agent: mu4e 1.8.13; emacs 28.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Yu Tu <yu.tu@amlogic.com>, Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+ <khilman@baylibre.com>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, kelvin.zhang@amlogic.com,
+ qi.duan@amlogic.com
+Subject: Re: [PATCH V7 4/4] clk: meson: s4: add support for Amlogic S4 SoC
+ peripheral clock controller
+Date: Mon, 01 May 2023 19:37:58 +0200
+In-reply-to: <6cc4c3f2-4df5-6456-fe65-71aa4a13c866@amlogic.com>
+Message-ID: <1jpm7kuev7.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?=
- <u.kleine-koenig@pengutronix.de>,
- "thierry.reding@gmail.com" <thierry.reding@gmail.com>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-pwm@vger.kernel.org, Dmitry Rokosov <ddrokosov@sberdevices.ru>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH v2] pwm: meson: modify and simplify calculation in
- meson_pwm_get_state
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230501_070323_980412_A55D4331 
-X-CRM114-Status: GOOD (  10.86  )
+X-CRM114-CacheID: sfid-20230501_104330_252329_0A0B71D1 
+X-CRM114-Status: GOOD (  22.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,49 +102,255 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-I don't see a reason why we should treat the case lo < hi differently
-and return 0 as period and duty_cycle. The current logic was added with
-c375bcbaabdb ("pwm: meson: Read the full hardware state in
-meson_pwm_get_state()"), Martin as original author doesn't remember why
-it was implemented this way back then.
-So let's handle it as normal use case and also remove the optimization
-for lo == 0. I think the improved readability is worth it.
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-v2:
-- improve commit description
----
- drivers/pwm/pwm-meson.c | 14 ++------------
- 1 file changed, 2 insertions(+), 12 deletions(-)
+On Thu 27 Apr 2023 at 16:15, Yu Tu <yu.tu@amlogic.com> wrote:
 
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 5732300eb..3865538dd 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -351,18 +351,8 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 	channel->lo = FIELD_GET(PWM_LOW_MASK, value);
- 	channel->hi = FIELD_GET(PWM_HIGH_MASK, value);
- 
--	if (channel->lo == 0) {
--		state->period = meson_pwm_cnt_to_ns(chip, pwm, channel->hi);
--		state->duty_cycle = state->period;
--	} else if (channel->lo >= channel->hi) {
--		state->period = meson_pwm_cnt_to_ns(chip, pwm,
--						    channel->lo + channel->hi);
--		state->duty_cycle = meson_pwm_cnt_to_ns(chip, pwm,
--							channel->hi);
--	} else {
--		state->period = 0;
--		state->duty_cycle = 0;
--	}
-+	state->period = meson_pwm_cnt_to_ns(chip, pwm, channel->lo + channel->hi);
-+	state->duty_cycle = meson_pwm_cnt_to_ns(chip, pwm, channel->hi);
- 
- 	state->polarity = PWM_POLARITY_NORMAL;
- 
--- 
-2.40.0
+> On 2023/4/26 19:05, Dmitry Rokosov wrote:
+>> [Some people who received this message don't often get email from
+>> ddrokosov@sberdevices.ru. Learn why this is important at
+>> https://aka.ms/LearnAboutSenderIdentification ]
+>> [ EXTERNAL EMAIL ]
+>> On Mon, Apr 17, 2023 at 02:50:05PM +0800, Yu Tu wrote:
+>>> Add the peripherals clock controller driver in the s4 SoC family.
+>>>
+>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>> ---
+>>>   drivers/clk/meson/Kconfig          |   12 +
+>>>   drivers/clk/meson/Makefile         |    1 +
+>>>   drivers/clk/meson/s4-peripherals.c | 3814 ++++++++++++++++++++++++++++
+>>>   drivers/clk/meson/s4-peripherals.h |  217 ++
+>>>   4 files changed, 4044 insertions(+)
+>>>   create mode 100644 drivers/clk/meson/s4-peripherals.c
+>>>   create mode 100644 drivers/clk/meson/s4-peripherals.h
+>>>
+>>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>>> index a663c90a3f3b..a6eb9fa15c74 100644
+>>> --- a/drivers/clk/meson/Kconfig
+>>> +++ b/drivers/clk/meson/Kconfig
+>>> @@ -128,4 +128,16 @@ config COMMON_CLK_S4_PLL
+>>>          aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
+>>>          Say Y if you want the board to work, because plls are the parent of most
+>>>          peripherals.
+>>> +
+>>> +config COMMON_CLK_S4
+>>> +     tristate "S4 SoC Peripherals clock controllers support"
+>>> +     depends on ARM64
+>>> +     default y
+>>> +     select COMMON_CLK_MESON_REGMAP
+>>> +     select COMMON_CLK_MESON_DUALDIV
+>>> +     select COMMON_CLK_MESON_VID_PLL_DIV
+>>> +     help
+>>> +       Support for the Peripherals clock controller on Amlogic S805X2 and S905Y4
+>>> +       devices, aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
+>>> +       Say Y if you want peripherals to work.
+>>>   endmenu
+>>> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+>>> index 376f49cc13f1..c9130afccb48 100644
+>>> --- a/drivers/clk/meson/Makefile
+>>> +++ b/drivers/clk/meson/Makefile
+>>> @@ -20,3 +20,4 @@ obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
+>>>   obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
+>>>   obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
+>>>   obj-$(CONFIG_COMMON_CLK_S4_PLL) += s4-pll.o
+>>> +obj-$(CONFIG_COMMON_CLK_S4) += s4-peripherals.o
+>> [...]
+>
+> ?
+>
+>> 
+>>> +static struct clk_regmap s4_ceca_32k_clkin = {
+>>> +     .data = &(struct clk_regmap_gate_data){
+>>> +             .offset = CLKCTRL_CECA_CTRL0,
+>>> +             .bit_idx = 31,
+>>> +     },
+>>> +     .hw.init = &(struct clk_init_data) {
+>>> +             .name = "ceca_32k_clkin",
+>>> +             .ops = &clk_regmap_gate_ops,
+>>> +             .parent_data = (const struct clk_parent_data []) {
+>>> +                     { .fw_name = "xtal", }
+>>> +             },
+>>> +             .num_parents = 1,
+>>> +     },
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_ceca_32k_div = {
+>>> +     .data = &(struct meson_clk_dualdiv_data){
+>>> +             .n1 = {
+>>> +                     .reg_off = CLKCTRL_CECA_CTRL0,
+>>> +                     .shift   = 0,
+>>> +                     .width   = 12,
+>>> +             },
+>>> +             .n2 = {
+>>> +                     .reg_off = CLKCTRL_CECA_CTRL0,
+>>> +                     .shift   = 12,
+>>> +                     .width   = 12,
+>>> +             },
+>>> +             .m1 = {
+>>> +                     .reg_off = CLKCTRL_CECA_CTRL1,
+>>> +                     .shift   = 0,
+>>> +                     .width   = 12,
+>>> +             },
+>>> +             .m2 = {
+>>> +                     .reg_off = CLKCTRL_CECA_CTRL1,
+>>> +                     .shift   = 12,
+>>> +                     .width   = 12,
+>>> +             },
+>>> +             .dual = {
+>>> +                     .reg_off = CLKCTRL_CECA_CTRL0,
+>>> +                     .shift   = 28,
+>>> +                     .width   = 1,
+>>> +             },
+>>> +             .table = s4_32k_div_table,
+>>> +     },
+>>> +     .hw.init = &(struct clk_init_data){
+>>> +             .name = "ceca_32k_div",
+>>> +             .ops = &meson_clk_dualdiv_ops,
+>>> +             .parent_hws = (const struct clk_hw *[]) {
+>>> +                     &s4_ceca_32k_clkin.hw
+>>> +             },
+>>> +             .num_parents = 1,
+>>> +     },
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_ceca_32k_sel_pre = {
+>>> +     .data = &(struct clk_regmap_mux_data) {
+>>> +             .offset = CLKCTRL_CECA_CTRL1,
+>>> +             .mask = 0x1,
+>>> +             .shift = 24,
+>>> +             .flags = CLK_MUX_ROUND_CLOSEST,
+>>> +     },
+>>> +     .hw.init = &(struct clk_init_data){
+>>> +             .name = "ceca_32k_sel_pre",
+>>> +             .ops = &clk_regmap_mux_ops,
+>>> +             .parent_hws = (const struct clk_hw *[]) {
+>>> +                     &s4_ceca_32k_div.hw,
+>>> +                     &s4_ceca_32k_clkin.hw
+>>> +             },
+>>> +             .num_parents = 2,
+>>> +             .flags = CLK_SET_RATE_PARENT,
+>>> +     },
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_ceca_32k_sel = {
+>>> +     .data = &(struct clk_regmap_mux_data) {
+>>> +             .offset = CLKCTRL_CECA_CTRL1,
+>>> +             .mask = 0x1,
+>>> +             .shift = 31,
+>>> +             .flags = CLK_MUX_ROUND_CLOSEST,
+>>> +     },
+>>> +     .hw.init = &(struct clk_init_data){
+>>> +             .name = "ceca_32k_sel",
+>>> +             .ops = &clk_regmap_mux_ops,
+>>> +             .parent_hws = (const struct clk_hw *[]) {
+>>> +                     &s4_ceca_32k_sel_pre.hw,
+>>> +                     &s4_rtc_clk.hw
+>>> +             },
+>>> +             .num_parents = 2,
+>>> +             .flags = CLK_SET_RATE_PARENT,
+>> In my opinion, all clocks that can inherit from a more accurate RTC clock
+>> should be marked with the CLK_SET_RATE_NO_REPARENT flag.
+>> This is necessary because in certain situations, it may be required to
+>> freeze their parent. The setup of these clocks' parent should be located
+>> on the device tree's side.
+>
+> We don't need to freeze parent,in a real project.
+
+"a real project" to whom ?
+
+Dmitry remark makes sense to me.
+
+>
+>> [...]
+>> 
+>>> +
+>>> +/*
+>>> + * gen clk is designed for debug/monitor some internal clock quality. Some of the
+>>> + * corresponding clock sources are not described in the clock tree and internal clock
+>>> + * for debug, so they are skipped.
+>>> + */
+>>> +static u32 s4_gen_clk_mux_table[] = { 0, 4, 5, 7, 19, 21, 22,
+>>> +                                   23, 24, 25, 26, 27, 28 };
+>>> +static const struct clk_parent_data s4_gen_clk_parent_data[] = {
+>>> +     { .fw_name = "xtal", },
+>>> +     { .hw = &s4_vid_pll.hw },
+>>> +     { .fw_name = "gp0_pll", },
+>>> +     { .fw_name = "hifi_pll", },
+>>> +     { .fw_name = "fclk_div2", },
+>>> +     { .fw_name = "fclk_div3", },
+>>> +     { .fw_name = "fclk_div4", },
+>>> +     { .fw_name = "fclk_div5", },
+>>> +     { .fw_name = "fclk_div7", },
+>>> +     { .fw_name = "mpll0", },
+>>> +     { .fw_name = "mpll1", },
+>>> +     { .fw_name = "mpll2", },
+>>> +     { .fw_name = "mpll3", },
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_gen_clk_sel = {
+>>> +     .data = &(struct clk_regmap_mux_data){
+>>> +             .offset = CLKCTRL_GEN_CLK_CTRL,
+>>> +             .mask = 0x1f,
+>>> +             .shift = 12,
+>>> +             .table = s4_gen_clk_mux_table,
+>>> +     },
+>>> +     .hw.init = &(struct clk_init_data){
+>>> +             .name = "gen_clk_sel",
+>>> +             .ops = &clk_regmap_mux_ops,
+>>> +             .parent_data = s4_gen_clk_parent_data,
+>>> +             .num_parents = ARRAY_SIZE(s4_gen_clk_parent_data),
+>> I think, the gen_clk selector should be marked with the
+>> CLK_SET_RATE_NO_REPARENT flag. This is because the GEN clock can be
+>> connected to an external pad and may be set up directly from the
+>> device tree.
+>
+> This is used by the debug table clock and is not connected externally.
+>
+
+Again, Dmitry remark is very interresting.
+This debug clock is typacally one you don't really want to automatically reparent
+
+>> 
+>>> +     },
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_gen_clk_div = {
+>>> +     .data = &(struct clk_regmap_div_data){
+>>> +             .offset = CLKCTRL_GEN_CLK_CTRL,
+>>> +             .shift = 0,
+>>> +             .width = 11,
+>>> +     },
+>>> +     .hw.init = &(struct clk_init_data){
+>>> +             .name = "gen_clk_div",
+>>> +             .ops = &clk_regmap_divider_ops,
+>>> +             .parent_hws = (const struct clk_hw *[]) {
+>>> +                     &s4_gen_clk_sel.hw
+>>> +             },
+>>> +             .num_parents = 1,
+>>> +             .flags = CLK_SET_RATE_PARENT,
+>>> +     },
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_gen_clk = {
+>>> +     .data = &(struct clk_regmap_gate_data){
+>>> +             .offset = CLKCTRL_GEN_CLK_CTRL,
+>>> +             .bit_idx = 11,
+>>> +     },
+>>> +     .hw.init = &(struct clk_init_data) {
+>>> +             .name = "gen_clk",
+>>> +             .ops = &clk_regmap_gate_ops,
+>>> +             .parent_hws = (const struct clk_hw *[]) {
+>>> +                     &s4_gen_clk_div.hw
+>>> +             },
+>>> +             .num_parents = 1,
+>>> +             .flags = CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE,
+>>> +     },
+>>> +};
+>>> +
+>> [...]
+>> --
+>> Thank you,
+>> Dmitry
+
 
 _______________________________________________
 linux-amlogic mailing list
