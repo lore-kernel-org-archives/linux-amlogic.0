@@ -4,88 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7940C77B73
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 May 2023 17:43:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22423C77B73
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 May 2023 18:08:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8YFJUzOSe8NHr78EfviNiLg+1EAvZ8VgnTKZRF2LxGY=; b=aDmiax8iSzfWO4
-	1STkENeKsn8Qoo8vc0/v+jsORnViT1qBOqVrfg0DCLzpTznBqgvRueQNMCQ+Y7oCWTERhnzVf9P/V
-	gc4eD9NwZepsNY1sL8Hogx4yMJizzTAgxLtG6VoMgdAem4PffK+KJMWwUn/OXW638Yf8SWRiFfFZM
-	Wu8LIMcoMM+AAOTFpEAVUBUuKnVhUmPXyOzgha70oCEQN8ba3K7IZX87BgmPM1BfsqcQRtZDHd8az
-	0vwLt3x/XHplHBe7qu/bZmfAeAW7pkwfzy/FZEtyUnA+db/isSKhQW8S/B9kWeOcKR5FfwylhulnN
-	tWFaqe5S2l/BE3WNIw/g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=lAqj5lx7gomzHmlQkgthiGNHnV67opmQYmb+K//KnZU=; b=qi/lDaj8Ku2uKr362RlYQi1CSF
+	NsGPdrIYIezuXmc5kuS8M0Cjp2nBIOvZ6rweN5r5chbctWWOjqVLH5CHo5GugzfUe2ULUGwPyXptK
+	55I53hdkhrLfs+3EGyhQVBcxZ2KfFVW2gD9xGNw+Pr7EmQjSr7ihYjca+LNHqSZDCLPJAP8q1TrVd
+	bB8hJ6uJ0fMEdfqT2V3Bb6UK+Lkjq2Kx/34/nKjFz2GGNeXjrzYGCTQF3S3E7QIejET3kuUpiFkAR
+	1C5xF3nAi0hSR+oaJjfpMD8gru64K6/bPmcsoWCfNFSK2dA10bLv3UK+2ViNXYX9ltkpwGK/De5s1
+	1Yr+8psw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1ptXYk-00GQTn-31;
-	Mon, 01 May 2023 17:43:34 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1ptXwb-00GWKa-2C;
+	Mon, 01 May 2023 18:08:13 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1ptXYg-00GQSI-0g
+	id 1ptXwW-00GWDf-1O
 	for linux-amlogic@lists.infradead.org;
-	Mon, 01 May 2023 17:43:32 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f09b4a156eso16591935e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 01 May 2023 10:43:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1682963006; x=1685555006;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=KWAQxRppuZL76jxl312jAhqOoymrs7nJ8TG4C726RtE=;
-        b=CoydJabmyK6nsiu4/DyVcD32sGakdDP3vSNK7d7+Kj2YBWx8NuwQrs/vT4xv9RkZSy
-         fPt7ZVFP2loG2ZtXuw4JY2V4IVHt7r8xx0rPMAfQjoGnp3vBkzB/Bb/HUmeBCCJS6e7q
-         uL7bef3K1d2OKjFBLAAIr5JbAQLmfpzCBWzXUnxslBlEn0iLJqqtH6+FxGsbzxhD5ExI
-         Mc507jIwmHAHedxkatF7ptCgSJP3QX0szConssBMKmGJFYWtT8SZwkAHkXooO4jnPIai
-         ZmO7TPnLoppaXkt34OMamXzl67aPDR5MIG5qIZ42Dfox0SYfvCUWSPQOOZ4hbFyTcuKf
-         VXww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682963006; x=1685555006;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KWAQxRppuZL76jxl312jAhqOoymrs7nJ8TG4C726RtE=;
-        b=WKntR6Vu04JgO4/zWCNRIf33cH2dgmbvZgrQa+SOCoZhqVmLs5FRL2DqxXgax4fE/w
-         RL0p0Nyk6SfBL+1LjSZT1LvLXDmDIS0ta1LV//zjuabzey80h8/6+S3AutgJ1QJnEsBt
-         DWI06oeacW3XrxwLRRRNrUrGBIbglLO07vGtyL7aqK6HUF4+znSezuj1uV1df6g7IGHH
-         HhTUHn8Qicw0Mw4um9Vyth/LF6IoXsD/UWbiD4ywtFg1qhtCUn/HRL6imy5bfn5BqF1a
-         ZxeOnFWa9vLoEA6uG+PSjAuPI/YrEsjcS0M/4En0HeD21A0TLZZFQMJJb4nb5culgxnT
-         2pUQ==
-X-Gm-Message-State: AC+VfDxQyO+auhXFvRoDWos7oNS7BJ+JOBEa+x+5hWZo7V5F83Xqi5jW
-	OryeUH8e9nHG6UJjm6ragyQ2xw==
-X-Google-Smtp-Source: ACHHUZ41tSRIwqt4t/r56GXoMbyRL5di4OgNoAeDZuDa65UkAb7PtSfmleaf6RGcDoS3+Ui3FnRZdg==
-X-Received: by 2002:adf:cc89:0:b0:304:a40c:43c3 with SMTP id p9-20020adfcc89000000b00304a40c43c3mr9973070wrj.45.1682963005887;
-        Mon, 01 May 2023 10:43:25 -0700 (PDT)
-Received: from localhost ([2a04:cec0:11b2:f613:c075:6ab:a69e:307d])
-        by smtp.gmail.com with ESMTPSA id j14-20020adfea4e000000b002fc3d8c134bsm28854132wrn.74.2023.05.01.10.43.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 May 2023 10:43:25 -0700 (PDT)
-References: <20230417065005.24967-1-yu.tu@amlogic.com>
- <20230417065005.24967-5-yu.tu@amlogic.com>
- <20230426110538.y2d4qhv2qffc62vj@CAB-WSD-L081021>
- <6cc4c3f2-4df5-6456-fe65-71aa4a13c866@amlogic.com>
-User-agent: mu4e 1.8.13; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Yu Tu <yu.tu@amlogic.com>, Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
- <khilman@baylibre.com>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, kelvin.zhang@amlogic.com,
- qi.duan@amlogic.com
-Subject: Re: [PATCH V7 4/4] clk: meson: s4: add support for Amlogic S4 SoC
- peripheral clock controller
-Date: Mon, 01 May 2023 19:37:58 +0200
-In-reply-to: <6cc4c3f2-4df5-6456-fe65-71aa4a13c866@amlogic.com>
-Message-ID: <1jpm7kuev7.fsf@starbuckisacylon.baylibre.com>
+	Mon, 01 May 2023 18:08:10 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1ptXwO-0000Hu-Nu; Mon, 01 May 2023 20:08:00 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1ptXwN-000Phh-HH; Mon, 01 May 2023 20:07:59 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1ptXwM-000Qpu-SH; Mon, 01 May 2023 20:07:58 +0200
+Date: Mon, 1 May 2023 20:07:55 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	"thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+	linux-pwm@vger.kernel.org,
+	Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Subject: Re: [PATCH v2] pwm: meson: modify and simplify calculation in
+ meson_pwm_get_state
+Message-ID: <20230501180755.mxua3owqyaa26jnq@pengutronix.de>
+References: <f48f17a7-7f50-c5ef-cc8f-007d0cb302b0@gmail.com>
 MIME-Version: 1.0
+In-Reply-To: <f48f17a7-7f50-c5ef-cc8f-007d0cb302b0@gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230501_104330_252329_0A0B71D1 
-X-CRM114-Status: GOOD (  22.67  )
+X-CRM114-CacheID: sfid-20230501_110808_473169_32ABC517 
+X-CRM114-Status: GOOD (  23.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,262 +75,129 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1333854446071534261=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Thu 27 Apr 2023 at 16:15, Yu Tu <yu.tu@amlogic.com> wrote:
+--===============1333854446071534261==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vvdvozl3dpnek3cg"
+Content-Disposition: inline
 
-> On 2023/4/26 19:05, Dmitry Rokosov wrote:
->> [Some people who received this message don't often get email from
->> ddrokosov@sberdevices.ru. Learn why this is important at
->> https://aka.ms/LearnAboutSenderIdentification ]
->> [ EXTERNAL EMAIL ]
->> On Mon, Apr 17, 2023 at 02:50:05PM +0800, Yu Tu wrote:
->>> Add the peripherals clock controller driver in the s4 SoC family.
->>>
->>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>> ---
->>>   drivers/clk/meson/Kconfig          |   12 +
->>>   drivers/clk/meson/Makefile         |    1 +
->>>   drivers/clk/meson/s4-peripherals.c | 3814 ++++++++++++++++++++++++++++
->>>   drivers/clk/meson/s4-peripherals.h |  217 ++
->>>   4 files changed, 4044 insertions(+)
->>>   create mode 100644 drivers/clk/meson/s4-peripherals.c
->>>   create mode 100644 drivers/clk/meson/s4-peripherals.h
->>>
->>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
->>> index a663c90a3f3b..a6eb9fa15c74 100644
->>> --- a/drivers/clk/meson/Kconfig
->>> +++ b/drivers/clk/meson/Kconfig
->>> @@ -128,4 +128,16 @@ config COMMON_CLK_S4_PLL
->>>          aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
->>>          Say Y if you want the board to work, because plls are the parent of most
->>>          peripherals.
->>> +
->>> +config COMMON_CLK_S4
->>> +     tristate "S4 SoC Peripherals clock controllers support"
->>> +     depends on ARM64
->>> +     default y
->>> +     select COMMON_CLK_MESON_REGMAP
->>> +     select COMMON_CLK_MESON_DUALDIV
->>> +     select COMMON_CLK_MESON_VID_PLL_DIV
->>> +     help
->>> +       Support for the Peripherals clock controller on Amlogic S805X2 and S905Y4
->>> +       devices, aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
->>> +       Say Y if you want peripherals to work.
->>>   endmenu
->>> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
->>> index 376f49cc13f1..c9130afccb48 100644
->>> --- a/drivers/clk/meson/Makefile
->>> +++ b/drivers/clk/meson/Makefile
->>> @@ -20,3 +20,4 @@ obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
->>>   obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
->>>   obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
->>>   obj-$(CONFIG_COMMON_CLK_S4_PLL) += s4-pll.o
->>> +obj-$(CONFIG_COMMON_CLK_S4) += s4-peripherals.o
->> [...]
->
-> ?
->
->> 
->>> +static struct clk_regmap s4_ceca_32k_clkin = {
->>> +     .data = &(struct clk_regmap_gate_data){
->>> +             .offset = CLKCTRL_CECA_CTRL0,
->>> +             .bit_idx = 31,
->>> +     },
->>> +     .hw.init = &(struct clk_init_data) {
->>> +             .name = "ceca_32k_clkin",
->>> +             .ops = &clk_regmap_gate_ops,
->>> +             .parent_data = (const struct clk_parent_data []) {
->>> +                     { .fw_name = "xtal", }
->>> +             },
->>> +             .num_parents = 1,
->>> +     },
->>> +};
->>> +
->>> +static struct clk_regmap s4_ceca_32k_div = {
->>> +     .data = &(struct meson_clk_dualdiv_data){
->>> +             .n1 = {
->>> +                     .reg_off = CLKCTRL_CECA_CTRL0,
->>> +                     .shift   = 0,
->>> +                     .width   = 12,
->>> +             },
->>> +             .n2 = {
->>> +                     .reg_off = CLKCTRL_CECA_CTRL0,
->>> +                     .shift   = 12,
->>> +                     .width   = 12,
->>> +             },
->>> +             .m1 = {
->>> +                     .reg_off = CLKCTRL_CECA_CTRL1,
->>> +                     .shift   = 0,
->>> +                     .width   = 12,
->>> +             },
->>> +             .m2 = {
->>> +                     .reg_off = CLKCTRL_CECA_CTRL1,
->>> +                     .shift   = 12,
->>> +                     .width   = 12,
->>> +             },
->>> +             .dual = {
->>> +                     .reg_off = CLKCTRL_CECA_CTRL0,
->>> +                     .shift   = 28,
->>> +                     .width   = 1,
->>> +             },
->>> +             .table = s4_32k_div_table,
->>> +     },
->>> +     .hw.init = &(struct clk_init_data){
->>> +             .name = "ceca_32k_div",
->>> +             .ops = &meson_clk_dualdiv_ops,
->>> +             .parent_hws = (const struct clk_hw *[]) {
->>> +                     &s4_ceca_32k_clkin.hw
->>> +             },
->>> +             .num_parents = 1,
->>> +     },
->>> +};
->>> +
->>> +static struct clk_regmap s4_ceca_32k_sel_pre = {
->>> +     .data = &(struct clk_regmap_mux_data) {
->>> +             .offset = CLKCTRL_CECA_CTRL1,
->>> +             .mask = 0x1,
->>> +             .shift = 24,
->>> +             .flags = CLK_MUX_ROUND_CLOSEST,
->>> +     },
->>> +     .hw.init = &(struct clk_init_data){
->>> +             .name = "ceca_32k_sel_pre",
->>> +             .ops = &clk_regmap_mux_ops,
->>> +             .parent_hws = (const struct clk_hw *[]) {
->>> +                     &s4_ceca_32k_div.hw,
->>> +                     &s4_ceca_32k_clkin.hw
->>> +             },
->>> +             .num_parents = 2,
->>> +             .flags = CLK_SET_RATE_PARENT,
->>> +     },
->>> +};
->>> +
->>> +static struct clk_regmap s4_ceca_32k_sel = {
->>> +     .data = &(struct clk_regmap_mux_data) {
->>> +             .offset = CLKCTRL_CECA_CTRL1,
->>> +             .mask = 0x1,
->>> +             .shift = 31,
->>> +             .flags = CLK_MUX_ROUND_CLOSEST,
->>> +     },
->>> +     .hw.init = &(struct clk_init_data){
->>> +             .name = "ceca_32k_sel",
->>> +             .ops = &clk_regmap_mux_ops,
->>> +             .parent_hws = (const struct clk_hw *[]) {
->>> +                     &s4_ceca_32k_sel_pre.hw,
->>> +                     &s4_rtc_clk.hw
->>> +             },
->>> +             .num_parents = 2,
->>> +             .flags = CLK_SET_RATE_PARENT,
->> In my opinion, all clocks that can inherit from a more accurate RTC clock
->> should be marked with the CLK_SET_RATE_NO_REPARENT flag.
->> This is necessary because in certain situations, it may be required to
->> freeze their parent. The setup of these clocks' parent should be located
->> on the device tree's side.
->
-> We don't need to freeze parent,in a real project.
 
-"a real project" to whom ?
+--vvdvozl3dpnek3cg
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Dmitry remark makes sense to me.
+On Mon, May 01, 2023 at 04:03:16PM +0200, Heiner Kallweit wrote:
+> I don't see a reason why we should treat the case lo < hi differently
+> and return 0 as period and duty_cycle. The current logic was added with
+> c375bcbaabdb ("pwm: meson: Read the full hardware state in
+> meson_pwm_get_state()"), Martin as original author doesn't remember why
+> it was implemented this way back then.
+> So let's handle it as normal use case and also remove the optimization
+> for lo =3D=3D 0. I think the improved readability is worth it.
+>=20
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> v2:
+> - improve commit description
+> ---
+>  drivers/pwm/pwm-meson.c | 14 ++------------
+>  1 file changed, 2 insertions(+), 12 deletions(-)
+>=20
+> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+> index 5732300eb..3865538dd 100644
+> --- a/drivers/pwm/pwm-meson.c
+> +++ b/drivers/pwm/pwm-meson.c
+> @@ -351,18 +351,8 @@ static int meson_pwm_get_state(struct pwm_chip *chip=
+, struct pwm_device *pwm,
+>  	channel->lo =3D FIELD_GET(PWM_LOW_MASK, value);
+>  	channel->hi =3D FIELD_GET(PWM_HIGH_MASK, value);
+> =20
+> -	if (channel->lo =3D=3D 0) {
+> -		state->period =3D meson_pwm_cnt_to_ns(chip, pwm, channel->hi);
+> -		state->duty_cycle =3D state->period;
+> -	} else if (channel->lo >=3D channel->hi) {
+> -		state->period =3D meson_pwm_cnt_to_ns(chip, pwm,
+> -						    channel->lo + channel->hi);
+> -		state->duty_cycle =3D meson_pwm_cnt_to_ns(chip, pwm,
+> -							channel->hi);
+> -	} else {
+> -		state->period =3D 0;
+> -		state->duty_cycle =3D 0;
+> -	}
 
->
->> [...]
->> 
->>> +
->>> +/*
->>> + * gen clk is designed for debug/monitor some internal clock quality. Some of the
->>> + * corresponding clock sources are not described in the clock tree and internal clock
->>> + * for debug, so they are skipped.
->>> + */
->>> +static u32 s4_gen_clk_mux_table[] = { 0, 4, 5, 7, 19, 21, 22,
->>> +                                   23, 24, 25, 26, 27, 28 };
->>> +static const struct clk_parent_data s4_gen_clk_parent_data[] = {
->>> +     { .fw_name = "xtal", },
->>> +     { .hw = &s4_vid_pll.hw },
->>> +     { .fw_name = "gp0_pll", },
->>> +     { .fw_name = "hifi_pll", },
->>> +     { .fw_name = "fclk_div2", },
->>> +     { .fw_name = "fclk_div3", },
->>> +     { .fw_name = "fclk_div4", },
->>> +     { .fw_name = "fclk_div5", },
->>> +     { .fw_name = "fclk_div7", },
->>> +     { .fw_name = "mpll0", },
->>> +     { .fw_name = "mpll1", },
->>> +     { .fw_name = "mpll2", },
->>> +     { .fw_name = "mpll3", },
->>> +};
->>> +
->>> +static struct clk_regmap s4_gen_clk_sel = {
->>> +     .data = &(struct clk_regmap_mux_data){
->>> +             .offset = CLKCTRL_GEN_CLK_CTRL,
->>> +             .mask = 0x1f,
->>> +             .shift = 12,
->>> +             .table = s4_gen_clk_mux_table,
->>> +     },
->>> +     .hw.init = &(struct clk_init_data){
->>> +             .name = "gen_clk_sel",
->>> +             .ops = &clk_regmap_mux_ops,
->>> +             .parent_data = s4_gen_clk_parent_data,
->>> +             .num_parents = ARRAY_SIZE(s4_gen_clk_parent_data),
->> I think, the gen_clk selector should be marked with the
->> CLK_SET_RATE_NO_REPARENT flag. This is because the GEN clock can be
->> connected to an external pad and may be set up directly from the
->> device tree.
->
-> This is used by the debug table clock and is not connected externally.
->
+The last else branch is even wrong, isn't it? .apply() can for a greater
+than 50% relative duty cycle well have lo < hi, right? So this is not a
+mere optimisation but a fix?!
 
-Again, Dmitry remark is very interresting.
-This debug clock is typacally one you don't really want to automatically reparent
+> +	state->period =3D meson_pwm_cnt_to_ns(chip, pwm, channel->lo + channel-=
+>hi);
+> +	state->duty_cycle =3D meson_pwm_cnt_to_ns(chip, pwm, channel->hi);
 
->> 
->>> +     },
->>> +};
->>> +
->>> +static struct clk_regmap s4_gen_clk_div = {
->>> +     .data = &(struct clk_regmap_div_data){
->>> +             .offset = CLKCTRL_GEN_CLK_CTRL,
->>> +             .shift = 0,
->>> +             .width = 11,
->>> +     },
->>> +     .hw.init = &(struct clk_init_data){
->>> +             .name = "gen_clk_div",
->>> +             .ops = &clk_regmap_divider_ops,
->>> +             .parent_hws = (const struct clk_hw *[]) {
->>> +                     &s4_gen_clk_sel.hw
->>> +             },
->>> +             .num_parents = 1,
->>> +             .flags = CLK_SET_RATE_PARENT,
->>> +     },
->>> +};
->>> +
->>> +static struct clk_regmap s4_gen_clk = {
->>> +     .data = &(struct clk_regmap_gate_data){
->>> +             .offset = CLKCTRL_GEN_CLK_CTRL,
->>> +             .bit_idx = 11,
->>> +     },
->>> +     .hw.init = &(struct clk_init_data) {
->>> +             .name = "gen_clk",
->>> +             .ops = &clk_regmap_gate_ops,
->>> +             .parent_hws = (const struct clk_hw *[]) {
->>> +                     &s4_gen_clk_div.hw
->>> +             },
->>> +             .num_parents = 1,
->>> +             .flags = CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE,
->>> +     },
->>> +};
->>> +
->> [...]
->> --
->> Thank you,
->> Dmitry
+Note that meson_pwm_calc() has a similar construct that can be
+simplified in a similar way. All three variants have
 
+	channel->pre_div =3D pre_div;
+
+and the last else branch is universal and can replace the others.
+
+Another issue I just spotted is that
+
+	duty =3D state->duty_cycle
+
+is wrong for state->duty_cycle > UINT_MAX. (Ditto the assignment to
+period.) Making both duty and period u64 shoudl fix that. After that
+duty_cnt > 0xffff cannot happen as the core ensures that duty_cycle <=3D
+period.
+
+Having said that, the proposed change here is an improvement, so:
+
+Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+
+I also suggest to add a Fixes line, i.e.
+
+Fixes: c375bcbaabdb ("pwm: meson: Read the full hardware state in meson_pwm=
+_get_state()")
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--vvdvozl3dpnek3cg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmRP//sACgkQj4D7WH0S
+/k5Rvwf+O4L+eigYOx0jJWJjNpwYBm2YwlrM0ehhHYdVivCyyhteAmv2I9PAhwCI
+KZSENuJxvdpFgef//bQcZCttZwL1f99N8fxZfXfhwgjtIILmGroU+pPTMf1tJndJ
+gz1ypolDq+YWeAAmjaXFTjfr+0JL0bhgLPk+CkFTg555YEz66HTlf2DOwFRRjsSz
+mz3fWodfpOFPT65NUEu6kySTiyElB+roFfcp4kwfrXNArCh9xlZdtJeEypeXmzom
+EKgXutkE8Ue1M4hfamvuYe8AY3XEGpnxPepE0Q/xgv78oL8+FzoPHOBDETS0YiDu
+WeiVfwwAo31NESJz01uqMDnNNKStTw==
+=aohK
+-----END PGP SIGNATURE-----
+
+--vvdvozl3dpnek3cg--
+
+
+--===============1333854446071534261==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============1333854446071534261==--
+
