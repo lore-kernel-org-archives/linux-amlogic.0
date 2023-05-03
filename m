@@ -4,65 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECDAAC77B78
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 May 2023 20:25:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EBE4C7EE21
+	for <linux-amlogic@archiver.kernel.org>; Wed,  3 May 2023 20:26:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=j0rG0HfEKb3nmrCNrRWj8QjdbKNe0USutEIB7CtuO1g=; b=RimgoN+tQHyvI4Adj92zeE+BAA
-	V6ows8gZBIXBoqB3sbK4me66E/MVB5m9BrRlqUrYWzgpLp5n8FMPtIwbJ1VpYUxGF2LGwKFJ0t4PU
-	D/aiJ5kaSzwCK3jd57KSwxR7YbvHndUFORmGrcJKf4x8Crn5Mfen/7/aCb6iW/t+WC6wKzLF5ferr
-	TQi9wS8l/nMEMX+N40oEx0EZsnsvGYgWKyEhyCR0Q1gICF/hMYjcVXuppcBRUlVuDdrmBfAphhaqF
-	Vjb5CyvRmZ/jF630BU9EbI0mb8D7rR8PFFWGRK0nRUqbnrNh3oNHt7gtWFypNZraVeGKY4vhBe5T7
-	Rv3RatTQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=00/5KILqkjSXLq7mYSoAeEx5kXm+UhxlABHQTiLVX3s=; b=WHK1izVjQcY5im
+	nV/EzN7N7TYExBiMkZNmtJy4siZuRvyKwoJaP7yINR/ESuF0UxzZHvc4NluPyDNoglEvtFNPPjdVF
+	o9B45zz33DcGkEMitxDDQPcXtJsFyzwUEqPrXEQvylDjdyXeWLI5uHlEX28pyx2USYindOHxxe/jA
+	lInA47fdk87unTWNNtOn+EIZeXM6TnOvLfsqcsos+FtiyQBRGaUDJPln0uYz69ZIovLhZNDOoisjk
+	lzi71LV49LbfsoGJLU7XgAwvbh6AUC6/GZtApcwgvdRhymTwDmnipZwwaW+g5yhQMUAzMNYuGvEdz
+	nh9wAGImtOCpuytzlsSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1puJ1r-005in5-1y;
-	Wed, 03 May 2023 20:24:47 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1puJ2z-005j3X-1n;
+	Wed, 03 May 2023 20:25:57 +0000
+Received: from mail-yb1-xb2d.google.com ([2607:f8b0:4864:20::b2d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1puJ1o-005im9-30
+	id 1puJ2u-005j06-3B
 	for linux-amlogic@lists.infradead.org;
-	Wed, 03 May 2023 20:24:46 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1puJ1i-0005fz-7Y; Wed, 03 May 2023 22:24:38 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1puJ1g-000uKP-NG; Wed, 03 May 2023 22:24:36 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1puJ1f-0013Mf-Rp; Wed, 03 May 2023 22:24:35 +0200
-Date: Wed, 3 May 2023 22:24:35 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	"thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH] pwm: pwm-meson: fix handling of period/duty if greater
- than UINT_MAX
-Message-ID: <20230503202435.qbifdbl5a7soj3kx@pengutronix.de>
-References: <1d1a8ede-e789-bc4d-2dcd-9d06d2df4061@gmail.com>
+	Wed, 03 May 2023 20:25:55 +0000
+Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-b9e2f227640so4848211276.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 03 May 2023 13:25:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683145552; x=1685737552;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1gEz7yCW0YNWEyofUMW+bM1YB2JKr4lLhGCi/13fTrc=;
+        b=Mzh0ZV1liVt0pO7T3ehH+wp5tHq2eHIvxMQvgVLhBNtjThUcDrX/+aDvPu0tBZ/9ee
+         EXtPp3wMLIa74YOBsQ0e08IZyzEb9z2PtCzmiGLSL5FFkcqFzSprSbu/p4OtMtm5Z8vg
+         QTb+851VnqyKufW9AlhGHuA8W1rOsuyTf/U1ngEssyK7U0XiMTLfkIYXQJ/3BWdZ/+nL
+         IlkiQndW7FfaXvB3Wtdi5hEfH46S40YPblPeGAPLxeQ85pZXExi718VSSliADLafDbtF
+         EIagwxP3z0ZUYRpd+UFfoZPqXzZHPfYekCM7c+V8IvPd0peQzIxx4yrWJn2aqzP6n/mT
+         v8JQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683145552; x=1685737552;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1gEz7yCW0YNWEyofUMW+bM1YB2JKr4lLhGCi/13fTrc=;
+        b=Jx045pFn4b2H9McgsIEl+OZhx104UrdWshFEy6uzdMJeVM+iHoErlZHZGl7BNqNZqA
+         j8TC7mmUCEWGAPmRWOOlH1vj3xkJAF5nziXq7INgIKyXnrgufZ23huAqUuT0B+nZjRev
+         UwxLvr7keM8ryeSfbp/B4zHukj25ZqX2k2fsm1HcdADDEf/ew+g5oQ+ouv8AJ2tLqCht
+         cGsnALFaL6CZhhXfVyzdGlF78BYedd+/kdMQREHTAapos8g5eQfuTWauwTmWPCGNi3ZD
+         VstxOSneHJdoQ72kGP96Sfu/V4KTXkanacUVkwprD4DXltcDYo8DinJhwZ06DKy6NDFM
+         A2Tg==
+X-Gm-Message-State: AC+VfDzC26k5xyw5//yIH+FWyYIgxdp897J115R5+fNfvKa0WvKp0VrW
+	EVX2M4sPCrWL1LR3MxL5+8Pc0v0ut1XztligDdGVs3Xb2ALJsg7c
+X-Google-Smtp-Source: ACHHUZ6bWBOMBfCcUnb1ZA+ngbZpzrLgmQlXt3j9zhiGPRBmWSduiRqy3n8tV6EAdgHxuWzjmwHy1P//RM78ldQ0LkU=
+X-Received: by 2002:a25:fc0c:0:b0:b9e:7ec8:5d41 with SMTP id
+ v12-20020a25fc0c000000b00b9e7ec85d41mr5902733ybd.55.1683145551966; Wed, 03
+ May 2023 13:25:51 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1d1a8ede-e789-bc4d-2dcd-9d06d2df4061@gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+References: <20220328000915.15041-1-ansuelsmth@gmail.com> <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
+ <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain> <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
+ <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
+ <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
+ <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com> <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
+ <99b49e6b-e963-415a-a2c9-72505087833c@app.fastmail.com>
+In-Reply-To: <99b49e6b-e963-415a-a2c9-72505087833c@app.fastmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 3 May 2023 22:25:39 +0200
+Message-ID: <CACRpkdaZdxNZ3amHxE44NZOZcVMpBa4Kx126+7WW3XHGM2NU=A@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Rob Herring <robh+dt@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>, 
+	Olof Johansson <olof@lixom.net>, Christian Marangi <ansuelsmth@gmail.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, Linux-OMAP <linux-omap@vger.kernel.org>, 
+	linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com, 
+	linux-aspeed@lists.ozlabs.org, linux-rpi-kernel@lists.infradead.org, 
+	chrome-platform@lists.linux.dev, 
+	Linux-Renesas <linux-renesas-soc@vger.kernel.org>, linux-samsung-soc@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, kernel@dh-electronics.com, 
+	linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org, 
+	linux-tegra@vger.kernel.org, "linux-oxnas@groups.io" <linux-oxnas@groups.io>, 
+	linux-arm-msm@vger.kernel.org, linux-unisoc@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-realtek-soc@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230503_132444_995942_0C8FAF10 
-X-CRM114-Status: GOOD (  12.03  )
+X-CRM114-CacheID: sfid-20230503_132553_191240_6DF035A7 
+X-CRM114-Status: GOOD (  12.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,72 +101,25 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0554674322069708392=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============0554674322069708392==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fluqfvpoezloyp5b"
-Content-Disposition: inline
-
-
---fluqfvpoezloyp5b
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-hello,
-
-On Wed, May 03, 2023 at 09:58:17PM +0200, Heiner Kallweit wrote:
-> state->period/duty are of type u64, and if their value is greater than
-> UINT_MAX, then the cast to uint will cause problems. Fix this by
-> changing the type of the respective local variables to u64.
->=20
-> Fixes: b79c3670e120 ("pwm: meson: Don't duplicate the polarity internally=
-")
-> Cc: stable@vger.kernel.org
-> Suggested-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-
-Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-
-Thanks!
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---fluqfvpoezloyp5b
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmRSwwIACgkQj4D7WH0S
-/k50Sgf9EUWXO3l8kCIMdkm7aFMBe7XeGeanIn6U09GFEX4nY/VIIuBmGBJgnPbY
-OYE/f2t2xq51gQqssP/XM/jpxYPEzay6xbvn6Yf4Y1+FGx6qMkmxP1c5MgBGz8ch
-kTqyxNuy7MMk1BmexxffUytJpRh/YIn0v+s+dXx6OJJWwmfhRhDm35hMDMrPI778
-qCBaoyRJBEdv/TulmkMdjQ+I9BFyio9C766hlfcOeD82CUYts1QYwdS48mpRFmu4
-ttDVQS+uC1ZhY9yf2S4T15jsaR5g5Df2EzzyN/8eJQrhP8FwCVHMd0ydyZxguBvN
-BXqyME/XiuY8NvvHQAor5xLRt1idQQ==
-=enU3
------END PGP SIGNATURE-----
-
---fluqfvpoezloyp5b--
-
-
---===============0554674322069708392==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============0554674322069708392==--
-
+T24gV2VkLCBNYXkgMywgMjAyMyBhdCAxOjAz4oCvUE0gQXJuZCBCZXJnbWFubiA8YXJuZEBhcm5k
+Yi5kZT4gd3JvdGU6Cgo+ID4gICAgICdnZW1pbmknIDogJ2dlbWluaScsCj4KPiBUaGlzIG9uZSBp
+cyBhbHNvIGEgcHJvZHVjdCBuYW1lLCBub3QgYSBjb21wYW55LiBBcHBhcmVudGx5LAo+IGdlbWlu
+aSB3YXMgb3JpZ2luYWxseSBtYWRlIGJ5IFN0b3JtIFNlbWljb25kdWN0b3IsIGFuZCB0aGVuCj4g
+YnkgQ29ydGluYSwgd2hpY2ggd2FzIHN1YnNlcXVlbnRseSBhY3F1aXJlZCBieSBJbnBoaSwgYW5k
+IHRoYXQgZW5kZWQKPiB1cCBpbiBNYXJ2ZWxsIGFmdGVyIHRoZSBwcm9kdWN0IHdhcyBhbHJlYWR5
+IGRpc2NvbnRpbnVlZC4KPgo+IE91dCBvZiB0aGUgZm91ciwgSSdkIHByb2JhYmx5IGdvIHdpdGgg
+J2NvcnRpbmEnIGFzIHRoZQo+IGRpcmVjdG9yeSBuYW1lLgo+CgpTdG9yTGluayB3YXMgdGhlIGlu
+aXRpYWwgY29tcGFueSwgdGh1cyBTTDM1MTYsIFNMMzUxMgp0aGUgbmFtZSBvZiB0aGUgY2hpcHMu
+CgpUaGVuIHRoYXQgY29tcGFueSBjaGFuZ2VkIG5hbWUgdG8gU3Rvcm0gU2VtaWNvbmR1Y3Rvci4K
+CkdpdCBhY3F1aXJlZCBieSBDb3J0aW5hLgoKVGhlbiBJbnBoaSBhY3F1aXJlZCBDb3J0aW5hLgoK
+VGhlbiBNYXJ2ZWxsIHNjb29wZWQgdXAgdGhlIElQLgoKSWYgd2UgKmhhdmUqIHRvIHVzZSBhIGNv
+bXBhbnkgbmFtZSBJIHdvdWxkIHVzZSBzdG9ybGluaywKYmVjYXVzZSB0aGUgY2hpcHMgYXJlIG5h
+bWVkIGFmdGVyIHRoYXQuCgpZb3VycywKTGludXMgV2FsbGVpagoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
+bGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
+b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
