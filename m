@@ -4,64 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D58BC77B7C
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 May 2023 06:47:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C31AC7EE23
+	for <linux-amlogic@archiver.kernel.org>; Thu,  4 May 2023 07:10:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=OnMKZIpF6gj31wyjVgeEOzHBSPhhnPU3dtE0wQXih5k=; b=T25dCRIGnb/14TERl1ZQhM5uEn
-	9Y1zJeZOo6qppdkuf50KnKgrsxp9jMSF8IGFn0eaTntRo8ZvL3jCEpESbN2+ibWmoVWYluo4mXEuk
-	rYxUlLUPhdWFTMXfz+CQhKKPnzbY6kqVBKhqggUsbuOYl+6AdO22137MvEZEX2acCpO8TJUVyF55S
-	tn8K8SqKETZpn8aNU0Fcdj7C2cX/N0nL6ptkt3YokxdCYyNg+WBoG/8DCGfVWMnncj7SFZ7aBAvTy
-	dE9CJFG9Zsr/mxpi1lKvnvIbgeNbBVT2VVWz8qcMtdsT6RAgNc/mC0W+j+byWhZsvlXEso/zJu4FW
-	qBo6bJZQ==;
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=zpMs2bgYACBNQpju0mh+zzL7+zycqGCH6xjst8oRloM=; b=Mf8M1zfe7e8iQh
+	GVaR6iuNp/UtHUXqD+1Fnre+x0lsqeQamUFZtsxPOVbeXT8wxSTOO5qDA3TBcCZ500cdzOeB1uqPp
+	7LEldXX/BCgTko2zozvAJbag/viO73P2Wu7FTZyAoyW+KUlZzDMwPa8uao2ajEfJ3jj+tRZdseEzQ
+	4Y/lUy03OktNWOKwS43HHek62vysCNV6ZccfPeWWaq7JrO2BuwHIi9BDR1oio6S01eJ8tWcT2/WQK
+	ySOc+9XGqv59EbY1ZGtCjfBqPIAucMQ+5c94cAAP7jOGBx6ncAOnyD0l+4bUYxNR68WC2YAfMarJu
+	O+/8PdotTn0u/ONn8XIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1puSkh-006o2i-1B;
-	Thu, 04 May 2023 06:47:43 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1puT6D-006qr5-0e;
+	Thu, 04 May 2023 07:09:57 +0000
+Received: from mx08-00178001.pphosted.com ([91.207.212.93] helo=mx07-00178001.pphosted.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1puSke-006o1r-0g
-	for linux-amlogic@lists.infradead.org;
-	Thu, 04 May 2023 06:47:42 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1puSkW-0004GN-Oj; Thu, 04 May 2023 08:47:32 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1puSkV-00107Q-Pp; Thu, 04 May 2023 08:47:31 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1puSkU-0019d4-Dc; Thu, 04 May 2023 08:47:30 +0200
-Date: Thu, 4 May 2023 08:47:30 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	"thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH] pwm: pwm-meson: remove not needed check in meson_pwm_calc
-Message-ID: <20230504064730.gaguyecx4q7duatk@pengutronix.de>
-References: <d2aa9fa6-4513-c3e8-493a-3a34d5a1143b@gmail.com>
+	id 1puT66-006qoq-2P;
+	Thu, 04 May 2023 07:09:52 +0000
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3445knZ4015912;
+	Thu, 4 May 2023 09:09:19 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=BdevYqMi76NwKC3zRXAgy5PN3WHuWUsGRFi5mAmNrPU=;
+ b=diBkdS5cAS1F6aGRwKb+ZnpjXcLvvpzZASwgoOP/4T8WkojTtCRd77G8y0wSpK265DFf
+ 5SRXoIc/CY5v7rG7eBolJXEjxs5ZNy928g9ffgPPkIG0/TUSRBSkZ69nPsngOZ/qKR6R
+ Dc+Duyu4G38L9DAJuDKUVJ6ZFi6zwRDwUa2XBGJ9YcUUsZ7jKuPAExnDi3F2gWKNlaiV
+ lGX9W7eGu6apovH/vVztA94SREXjCBuLXZ1Ef+IcSl/mQmGRz5U83sXo5yh+4sPvoItI
+ nXSuhuHXKRPRxWD3ghAGp+VdxBVGEfJFlyDZ2TPVqtOzUXuqFoZcaBR526anQtwoamsn 5g== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qc6uw8hjs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 May 2023 09:09:19 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DCD5210002A;
+	Thu,  4 May 2023 09:09:16 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id F0066210F61;
+	Thu,  4 May 2023 09:09:15 +0200 (CEST)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 4 May
+ 2023 09:09:15 +0200
+Message-ID: <95076d3b-5667-8cb3-c09a-e0b7dc2b03c3@foss.st.com>
+Date: Thu, 4 May 2023 09:09:14 +0200
 MIME-Version: 1.0
-In-Reply-To: <d2aa9fa6-4513-c3e8-493a-3a34d5a1143b@gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [Linux-stm32] [RFC PATCH 0/1] Categorize ARM dts directory
+Content-Language: en-US
+To: Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>
+CC: <linux-aspeed@lists.ozlabs.org>, <linux-realtek-soc@lists.infradead.org>,
+        <linux-arm-kernel@axis.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <chrome-platform@lists.linux.dev>, <linux-samsung-soc@vger.kernel.org>,
+        <openbmc@lists.ozlabs.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+        <linux-rockchip@lists.infradead.org>,
+        Geert Uytterhoeven
+	<geert@linux-m68k.org>,
+        <linux-sunxi@lists.linux.dev>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-actions@lists.infradead.org>,
+        <linux-unisoc@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-rpi-kernel@lists.infradead.org>, <linux-tegra@vger.kernel.org>,
+        <linux-amlogic@lists.infradead.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Linux-Renesas
+	<linux-renesas-soc@vger.kernel.org>,
+        <kernel@dh-electronics.com>, Olof
+ Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "linux-oxnas@groups.io" <linux-oxnas@groups.io>
+References: <20220328000915.15041-1-ansuelsmth@gmail.com>
+ <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
+ <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain>
+ <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
+ <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
+ <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
+ <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com>
+ <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
+ <99b49e6b-e963-415a-a2c9-72505087833c@app.fastmail.com>
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <99b49e6b-e963-415a-a2c9-72505087833c@app.fastmail.com>
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-04_04,2023-05-03_01,2023-02-09_01
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230503_234740_255742_1B12E758 
-X-CRM114-Status: GOOD (  11.33  )
+X-CRM114-CacheID: sfid-20230504_000951_290058_06B80A6D 
+X-CRM114-Status: GOOD (  12.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,76 +114,24 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============5499500156370384202=="
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============5499500156370384202==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="l27iljz5ce5hmtes"
-Content-Disposition: inline
-
-
---l27iljz5ce5hmtes
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Heiner,
-
-On Thu, May 04, 2023 at 07:35:55AM +0200, Heiner Kallweit wrote:
-> duty <=3D period implies that duty_cnt <=3D cnt. We verified before
-> that cnt <=3D 0xffff, therefore we can omit the check here.
->=20
-> Suggested-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
-> Note: Applies only after "pwm: pwm-meson: fix handling of period/duty if =
-greater than UINT_MAX"
-
-Do you know there is git magic to express this that (at least some of)
-the build bots understand? Look at git format-patch's --base option.
-
-Otherwise:
-
-Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-
-Thanks
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---l27iljz5ce5hmtes
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmRTVQEACgkQj4D7WH0S
-/k7Itwf/UZ6xOm61HvMKYT2c1czPL/YVbje2gB9Puc7t7yZ0YQN9h9ASOBj0/aY9
-gskUx0GfnV5QhN3ndbSF1HqArPXArPrnzscmdmgrxSPNOk6xy7ArGd91UyXDLJ9o
-Bh08dPiuPYKqdMMyCCFRfF14DLLti+MY/nLCmQdX250pgNnzXqM79oZ+1IQA+69U
-nrX/wH1qsXBsA+gnI3GLJsf7hMDaKxRrgcyghlN5kpewEdpQ/HUzTcrsyxG9e8fn
-ovuN/WBjN63WMpi2J+qImticMa3iwqBvGTOSlg6YbG5wdxeIHa1PbY08xUP52/Mj
-VdNyxG0WVz6/gFAdqxBYjQUey/Z8Zg==
-=4XkC
------END PGP SIGNATURE-----
-
---l27iljz5ce5hmtes--
-
-
---===============5499500156370384202==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============5499500156370384202==--
-
+T24gNS8zLzIzIDEzOjAyLCBBcm5kIEJlcmdtYW5uIHdyb3RlOgo+IE9uIFR1ZSwgTWF5IDIsIDIw
+MjMsIGF0IDIxOjQwLCBSb2IgSGVycmluZyB3cm90ZToKPj4gT24gVHVlLCBNYXkgMiwgMjAyMyBh
+dCAzOjE14oCvQU0gQXJuZCBCZXJnbWFubiA8YXJuZEBhcm5kYi5kZT4gd3JvdGU6Cj4gCgouLi4K
+Cj4gCj4+ICAgICAgJ3N0bScgOiAnc3RtMzInLAo+PiAgICAgICdzdGknIDogJ3N0aScsCj4+ICAg
+ICAgJ3N0LXBpbicgOiAnc3RpJywKPj4gICAgICAnc3RlJyA6ICdzdC1lcmljc3NvbicsCj4+ICAg
+ICAgJ3NwZWFyJyA6ICdzcGVhcicsCj4gCj4gSSB3b3VsZCBwdXQgYWxsIGZpdmUgb2YgdGhlc2Ug
+aW50byAnc3QnLiBUaGUgdXg1MDAgd2FzIGRldmVsb3BlZAo+IGluIHN0LWVyaWNzc29uLCBidXQg
+bGFzdCBzb2xkIGJ5IHN0LCBhbmQgdGhlIG90aGVyIG9uZXMgYXJlIGFsbAo+IG9yaWdpbmFsIHN0
+IHByb2R1Y3RzLgoKQWNrZWQtYnk6IEFsZXhhbmRyZSBUT1JHVUUgPGFsZXhhbmRyZS50b3JndWVA
+c3QuY29tPgoKdGhhbmtzCkFsZXgKCj4gCj4gICAgICAgIEFybmQKPiBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IExpbnV4LXN0bTMyIG1haWxpbmcgbGlz
+dAo+IExpbnV4LXN0bTMyQHN0LW1kLW1haWxtYW4uc3Rvcm1yZXBseS5jb20KPiBodHRwczovL3N0
+LW1kLW1haWxtYW4uc3Rvcm1yZXBseS5jb20vbWFpbG1hbi9saXN0aW5mby9saW51eC1zdG0zMgoK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFt
+bG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRw
+Oi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
