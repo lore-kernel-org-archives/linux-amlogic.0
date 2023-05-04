@@ -4,97 +4,115 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 462B9C7EE21
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 May 2023 11:45:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D600BC7EE21
+	for <linux-amlogic@archiver.kernel.org>; Thu,  4 May 2023 11:45:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:Date:References:
+	In-Reply-To:Message-Id:Mime-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LFAp1TAPMyOwYWwlcvsAtkqcIW6x5pgHkvwUKHqYnNs=; b=ldFOoxN8x3hzDq
-	JiQh/smVSrzyghREf5MyFi4v2dSeQdxUa5m4R+K555+0xabDxu/tWgdKMt50wCjhN8NlcDTk2ROeU
-	AS3fuw88zDgSkfqhIxpQUl5pBzXUBu3lhfBEaLVVobSC7APuGV1YXkEykymR53+QYBUYrGLAF7v13
-	qJBWiCcLojxMDKtNhOia4NocAONUOZufeXz8i/oJTFwWKg8h5zaIq+2nAZyH3uoL7Sb9QStxFpncV
-	2EOvyt1khBuo8cQ4FQECnIfjTZV90ujra96aUqWBJsmF/oxKMQtdXhaLPnCpd0e/FOWdIbiB9FFKi
-	Syn68mpxkjUP9yQXlnLA==;
+	List-Owner; bh=aVh8riAF+YOB3bLRFxyDoMxpphLrVHT2TWhzryT9VjE=; b=NwCD6563BEl10g
+	x6ddnHlQXWh95FOy9XHR7VYNY8HSPDizbeNTpwGy2TOCXTa47teNTByYxs/wf8OL95+hVsf1bB3fU
+	7MnMxiS0lU6KmSn6oLw37iQBcKJkxAjF8YTt/XNzQukshfV182KplxIXxXObmJK6zEg0pVYLUsQJq
+	TkCrZ38VDeyBBLNKkIaA6KN+Kz+yr0J3P+E8fgijX9vPEDl8WPf1ZZXZsOtrLndQuCJJTb4xddtgf
+	SHxfY57uArqhfAWZ+osWylnojcPX2X79KJxCM3fPMylepcroLWNIwlfSL6ME0VMDoatz6oN/l8cBx
+	lA2yMzijocGbpG60/5vw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1puXOS-007iEU-04;
-	Thu, 04 May 2023 11:45:04 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1puXOg-007iIo-1d;
+	Thu, 04 May 2023 11:45:18 +0000
+Received: from new3-smtp.messagingengine.com ([66.111.4.229])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1puXOP-007iDL-01;
-	Thu, 04 May 2023 11:45:02 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id C79E05FD07;
-	Thu,  4 May 2023 14:44:58 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1683200698;
-	bh=zlx3A3BVx/dl0hS9R9OXckSekBXp6h6Ujph1fV5k0tk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	b=jXx2fpdkhyn/mJuvKMaINlyC/LhvExZ4EM1l1dt+B6nLwzH5IsUEpGxMkjabWGTHv
-	 4cSxI5R4AKfBoEP4DUdqcw7fkUr4QLXF3RJhbyylmSo3KhiEskfQNgBZQjNURXFIUA
-	 BePFIBb+Na/3OWAL45/tY/nDqWRIDcgJieZCLAjMDubVzKlY58mcKdCT+cTg2l+pi/
-	 WmXkE++daVHyBt3Io/LaNrcdhXZoSP87MarXz+8zFEQdhcsFscKo1CUuI1J+dTkR7s
-	 +J06ls8zC8o2WJJj1MOdb1qvB9xICJnuT7PQn4GQWHJYSORrj5G/4vUb46+fAbLyeV
-	 YQxxhQ6KgvUIw==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Thu,  4 May 2023 14:44:58 +0300 (MSK)
-Message-ID: <213a4f8d-b660-8644-87ad-3791d95cafc2@sberdevices.ru>
-Date: Thu, 4 May 2023 14:40:30 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v1 4/5] mtd: rawnand: meson: clear OOB buffer before read
-Content-Language: en-US
-To: Richard Weinberger <richard.weinberger@gmail.com>, Miquel Raynal
-	<miquel.raynal@bootlin.com>
-CC: Liang Yang <liang.yang@amlogic.com>, Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
-	Yixun Lan <yixun.lan@amlogic.com>, <oxffffaa@gmail.com>,
-	<kernel@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, yonghui.yu <yonghui.yu@amlogic.com>
-References: <20230412061700.1492474-1-AVKrasnov@sberdevices.ru>
- <780c0cae-18b6-2652-1c2c-6d398ea60451@amlogic.com>
- <e7c49f2d-b3c1-8d9b-76fe-c8759b37c7c7@sberdevices.ru>
- <20230418152505.72fc16da@xps-13>
- <15a6e415-1489-a81f-fc8f-2372678ad2cb@sberdevices.ru>
- <ee10bdeb-416c-70f0-d323-7107fe0746e8@amlogic.com>
- <5e4b395e-bf9d-0123-a0f2-2b378d950b29@sberdevices.ru>
- <fda1ae91-4bf8-6945-bd0d-b6dabc9cb4bd@sberdevices.ru>
- <a5010dcf-a8ce-f144-949c-687548cefce7@amlogic.com>
- <cf27b6b4-a75b-c5a6-32ea-ac20a2984192@sberdevices.ru>
- <20230502115913.78012d98@xps-13>
- <2274b432-d1a9-b3cf-4f7b-08c4a4c580b5@sberdevices.ru>
- <20230502132745.14349770@xps-13>
- <2b2f5cb4-84f7-65f6-13b2-42f965503023@sberdevices.ru>
- <20230502141703.29f0bc30@xps-13>
- <91cb8e19-e782-b847-8d2b-22580c371c34@sberdevices.ru>
- <20230502150553.65fdeb7f@xps-13>
- <8996d53c-54ff-6a37-e08b-95cae0629703@sberdevices.ru>
- <20230503100342.63215058@xps-13>
- <CAFLxGvwfi2RH3y2M6n0vqUHarp6DwR-wT7oBto3raA7oC3nJvg@mail.gmail.com>
-From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-In-Reply-To: <CAFLxGvwfi2RH3y2M6n0vqUHarp6DwR-wT7oBto3raA7oC3nJvg@mail.gmail.com>
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/04 08:37:00 #21217417
-X-KSMG-AntiVirus-Status: Clean, skipped
+	id 1puXOd-007iG2-1G;
+	Thu, 04 May 2023 11:45:17 +0000
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+	by mailnew.nyi.internal (Postfix) with ESMTP id 7F8E7580E74;
+	Thu,  4 May 2023 07:45:09 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Thu, 04 May 2023 07:45:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:sender
+	:subject:subject:to:to; s=fm3; t=1683200709; x=1683207909; bh=rv
+	dn+vPe48KPGDs0leGYpaM1jtugXaszLFPftQ7tCmQ=; b=K3vb/txYtZKnDaX7av
+	yXDErCEtK8JWoojEYV/KOhr/Dv3+/xOdTNnlfPilF7nZ1vUsdDP7l+AgwDbRQSuE
+	5AUT6SPooYuy01IO6jURwU7twh1iCROPuF4Hz3zAUJdbJERGRcVw7wLAOdZON0f2
+	AhZwSiy8u7IYmN4dU7xIQbvrXShHBkCkYnYnC0IoMvFDdx6WQKJ4rLgfLXj0hCW/
+	ckDTGcWhommWigg7s6rAmkjQ1+FesSQJLbAeZIs8XTPkdZlzCBQmlaWbCOt46UI7
+	TaQrFKOEB7Nrxln82bVy1GZqe9KuSEr+WJIPa6wdhqmLquSGvkDqg3ABmaiUtN8f
+	/V6A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm3; t=1683200709; x=1683207909; bh=rvdn+vPe48KPG
+	Ds0leGYpaM1jtugXaszLFPftQ7tCmQ=; b=Pw6Rg+XVCkD8w3YHy7jGkIyjxzhiF
+	bN/nWbfwIR4ZK/F9LSR2lSdh5WuOB6Zd/S/dxjLYOJX2pQKrTV0T8idbkjcOcQF5
+	SwoSgg9l8jKzkx3OOYZXp9IzAPIUyKCbJYXfJ1Co1zpAhWXPmQXpDlG8hbdhXCqo
+	Ide3agAfwauTe+q41YGw5qJ2db95dqZn1JU+kHQVa7baSeKRpcpIB14hYe498UV1
+	qSbU08XfSJ51vZL4nbzqAVErhFeOyUkPmcXy3uA1E2ZHbZ12aj+TO8581K6JMOqx
+	WSKLMOUGfU3GMPJTvVpyvFa7UxM2y027LOl0hEHvk1DeHWVGhQTOePmWQ==
+X-ME-Sender: <xms:xJpTZBRFDKFjpUX2zSPaH_4Nc8R2Qpk2no6uSQvOfRDhdZKlcM2S1w>
+    <xme:xJpTZKx9r-aiclDw81Wu7rGAVEGjfn7b8plKzDI0Fm4sbn8ToKgyao_lHGOMzamjl
+    uNZIJ6W5xJhlsHwBQU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeeftddggedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:xJpTZG1ikd38RTtD1R071POfBXt5S1hFZ6Fml4H3RBTwbc4m3wVYQA>
+    <xmx:xJpTZJBCtHzUiKeZoBrJeZc8fH8Ed5ISfh9DPuxYIqK6axwqLg053Q>
+    <xmx:xJpTZKh7kYU5y_FppCdiasiBdQUPjv6lvIKqgolP6FEiBuWg49SF6g>
+    <xmx:xZpTZKDU9-4LKKK2Ti8y1N5SEny0C66Vm4BJmIaG1feFi_OTmPFchA>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 5DF60B60089; Thu,  4 May 2023 07:45:08 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-386-g2404815117-fm-20230425.001-g24048151
+Mime-Version: 1.0
+Message-Id: <6ece505b-1075-48e6-9ff9-1673014e5df1@app.fastmail.com>
+In-Reply-To: <ZFOE4wd31hpJh0ro@shell.armlinux.org.uk>
+References: <20220328000915.15041-1-ansuelsmth@gmail.com>
+ <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
+ <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain>
+ <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
+ <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
+ <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
+ <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com>
+ <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
+ <ZFOE4wd31hpJh0ro@shell.armlinux.org.uk>
+Date: Thu, 04 May 2023 13:44:37 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Russell King" <linux@armlinux.org.uk>, "Rob Herring" <robh+dt@kernel.org>
+Cc: "Geert Uytterhoeven" <geert@linux-m68k.org>,
+ "Olof Johansson" <olof@lixom.net>,
+ "Christian Marangi" <ansuelsmth@gmail.com>,
+ "Krzysztof Kozlowski" <krzk@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, Linux-OMAP <linux-omap@vger.kernel.org>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
+ linux-aspeed@lists.ozlabs.org, linux-rpi-kernel@lists.infradead.org,
+ chrome-platform@lists.linux.dev,
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+ linux-samsung-soc@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, kernel@dh-electronics.com,
+ linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org,
+ linux-tegra@vger.kernel.org,
+ "linux-oxnas@groups.io" <linux-oxnas@groups.io>,
+ linux-arm-msm@vger.kernel.org, linux-unisoc@lists.infradead.org,
+ linux-rockchip@lists.infradead.org,
+ linux-realtek-soc@lists.infradead.org
+Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230504_044501_398242_287CCFE2 
-X-CRM114-Status: GOOD (  15.01  )
+X-CRM114-CacheID: sfid-20230504_044516_075385_AA48FFCE 
+X-CRM114-Status: GOOD (  14.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,36 +124,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CgpPbiAwMy4wNS4yMDIzIDIyOjQ4LCBSaWNoYXJkIFdlaW5iZXJnZXIgd3JvdGU6Cj4gU29ycnkg
-Zm9yIGpvaW5pbmcgdGhlIHBhcnR5IGxhdGUuCj4gCj4gT24gV2VkLCBNYXkgMywgMjAyMyBhdCAx
-MDowN+KAr0FNIE1pcXVlbCBSYXluYWwgPG1pcXVlbC5yYXluYWxAYm9vdGxpbi5jb20+IHdyb3Rl
-Ogo+Pj4gU28gZm9yIG1lIG1haW4gcXVlc3Rpb24gaGVyZSBpczoKPj4+Cj4+PiBIb3cgSkZGUzIg
-c2hvdWxkIHdvcmsgd2l0aCBjb250cm9sbGVycyB3aGVyZSB3ZSBjYW4ndCB1cGRhdGUgZGF0YSBh
-bmQgT09CCj4+PiBpbmRlcGVuZGVudGx5PyBEcml2ZXIgb2YgdGhpcyBmaWxlc3lzdGVtIGtub3dz
-IG5vdGhpbmcgYWJvdXQgdGhpcyBmZWF0dXJlcyBvZgo+Pj4gdGhlIGNvbnRyb2xsZXIuCj4+Pgo+
-Pj4gT3IgSkZGUzIgd29ya3MgaW5jb3JyZWN0bHkgaW4gbXkgY2FzZSB3aGVuIGl0IHRyaWVzIHRv
-IGNhbGwgd3JpdGUgcGFnZSBjYWxsYmFjawo+Pj4gYWZ0ZXIgY2FsbGluZyB3cml0ZSBPT0IgY2Fs
-bGJhY2sgKElJVUMgaXQgaXMgYmV0dGVyIHRvIGFzayBSaWNoYXJkIGFzIFlvdSBtZW50aW9uZWQg
-YWJvdmUpLgo+Pj4KPj4+IE9yIG1heSBiZSBpdCBpcyBiZXR0ZXIgdG8gc3VwcHJlc3MgT09CIHdy
-aXRlIGNhbGxiYWNrIChvciBzZXQgaXQgdG8gTlVMTCkgaW4gdGhpcwo+Pj4gZHJpdmVyIGFzIGlu
-IHZlbmRvcidzIGRyaXZlcj8KPj4KPj4gSSB3b3VsZCBhc3N1bWUgdXNpbmcgdGhlIHVucHJvdGVj
-dGVkIGZyZWUgT09CIGJ5dGVzIHRvIHN0b3JlIHRoZQo+PiBjbGVhbm1hcmtlcnMgc2hvdWxkIHdv
-cmsuIEJ1dCB0aGF0J3MgYSBiaXQgZnJhZ2lsZSBhbmQgdmVyeSBmaWxlc3lzdGVtCj4+IG9yaWVu
-dGVkLiBJIGRvbid0IGxpa2UgdGhpcyBtdWNoLiBCdXQgb24gdGhlIG90aGVyIHNpZGUgSkZGUzIg
-aXMKPj4gbGVnYWN5LCB5b3Ugc2hvdWxkIHVzZSBVQkkgKHdoaWNoIGRvZXMgbm90IHBsYXkgd2l0
-aCBPT0IgYXJlYXMpIDotKQo+IAo+IFBsZWFzZSBub3RlIHRoYXQgSkZGUzIncyBtYWluIHVzZSBj
-YXNlIGlzIE5PUiBmbGFzaC4gU3VwcG9ydCBmb3IgTkFORAo+IGZsYXNoIHdhcyBuZXZlcgo+IGNv
-bnNpZGVyZWQgYXMgZnVsbHkgY29tcGxldGUvc3RhYmxlLiBUaGF0J3Mgd2h5IFVCSUZTIChKRkZT
-MyBpbiB0aGUKPiB2ZXJ5IGJlZ2lubmluZykKPiB3YXMgaW52ZW50ZWQuCgpIZWxsbyBSaWNoYXJk
-IQoKVGhhbmtzIGZvciB0aGlzIGRldGFpbHMhIEJ1dCBJIHRoaW5rIGl0IHdpbGwgYmUgdXNlZnVs
-IHRvIG1ha2UgSkZGUzIgd29yayBjb3JyZWN0bHkKb24gdGhpcyBjaGlwIDopIEFueXdheSBpIHRo
-aW5rIGl0IGlzIG5vdCByYXJlL2V4b3RpYyBjYXNlIHRvIHVzZSBKRkZTMiBvbiBOQU5ELgoKVGhh
-bmtzLCBBcnNlbml5Cgo+IAo+IFRoYW5rcywKPiAvL3JpY2hhcmQKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
-CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On Thu, May 4, 2023, at 12:11, Russell King (Oracle) wrote:
+> On Tue, May 02, 2023 at 02:40:19PM -0500, Rob Herring wrote:
+>> I think the only issue remaining is finalizing the mapping of
+>> platforms to subdirs. What I have currently is a mixture of SoC
+>> families and vendors. The most notable are all the Freescale/NXP
+>> platforms, pxa, socfpga, and stm32. It's not consistent with arm64
+>> either. Once that's finalized, I still need to go update MAINTAINERS.
+>
+> I haven't followed this discussion at all, so here's a question.
+>
+> What does this mean for the _installed_ dtb files? Do they move
+> location? If they do, lots is going to break, because there will
+> be u-boot configurations and other scripts that assume the flat
+> directory structure for the installed dtb files.
+>
+> I don't think changing the installed dtb structure is acceptable
+> at this point in time. It's something that _should_ have been
+> thought about when ARM was converted to dtb, it's too late to be
+> changing that now.
+
+Rob said earlier that his script does keep a flat directory
+for the output of 'make dtbs_install'.
+
+     Arnd
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
