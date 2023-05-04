@@ -4,66 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C9E9C77B7C
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 May 2023 09:43:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B550C7EE23
+	for <linux-amlogic@archiver.kernel.org>; Thu,  4 May 2023 10:12:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=8JIDz3/D+93NfrnNUB36Cb5SzVuA1/O/G5fdbzooQpc=; b=CaDBQtJZAfTbhLi9wZb6Ixnw1Q
-	LT4lyrxOTLUsVeWkqNxp0bmic2fyUZExO4v7dvNWTZmiWagVKXohgvJi7dMiDJyoLt92dbKyIqtNN
-	qnEHuBf1cofQ6JdsU1NbWMPeFnN3y+EQO8qqQ1N7dleVxO5vVf9ptElFpYLK7Uj6GVpucRVWQsv0a
-	6DMeu8j7twFeId7qeVlEkIRs9pj7leA1TZpyZM4vzinRS9QdhwYP+H97g9THVXZyNzO9sK6PNCInV
-	3SJVBJ17Z7EbBDI3uuHv4Tyj0dNnOqSXVXkrlEpU+YwV/ke3fVOZGCk+BznfnQXGLsqdPspH2idU4
-	uM2GMBOg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=qW0bail96DT3cEIQ8y/jQoVckBhpeXKGCu+uJLZWgOw=; b=cg5+HisIFPIE/y
+	wI5u/hlICKHNvuteI4TRAPv5Vr7YJLB5GYCafNeebq5JtRgMiE1nEb91LiVa4kXs/tnUbMeuDyWG8
+	dcjmErykORKgZtXtVR3AVl5Ar/Smt9OmBcWa5/tC1A5dV3w9vufoAuPwkhSP72+699pacLZ7AbIR8
+	pFpsM7kPqhILKzIOxMAKo4x3CnPUoCHj/IGO03A5VRoA0oM6cLR6HwtS7CHA95V7Io1imhymPug3B
+	faunqkT1NSifPS0/HYzAFX/IvHmJQhz8N4oie61CX46f5WF/JOqZfK2DYG5FJRrviCKpYpsWnD2hu
+	JZId+fIov06KEQNaKJ1Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1puVUF-007JJx-2q;
-	Thu, 04 May 2023 09:42:55 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1puVwV-007NgE-0V;
+	Thu, 04 May 2023 10:12:07 +0000
+Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1puVUD-007JIp-1g
-	for linux-amlogic@lists.infradead.org;
-	Thu, 04 May 2023 09:42:54 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1puVUA-0005MH-8V; Thu, 04 May 2023 11:42:50 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1puVU9-0011wz-7Z; Thu, 04 May 2023 11:42:49 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1puVU8-001Bl7-JV; Thu, 04 May 2023 11:42:48 +0200
-Date: Thu, 4 May 2023 11:42:48 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH] pwm: pwm-meson: remove not needed check in meson_pwm_calc
-Message-ID: <20230504094248.vz3z4ulvnvczsmwp@pengutronix.de>
-References: <d2aa9fa6-4513-c3e8-493a-3a34d5a1143b@gmail.com>
- <20230504064730.gaguyecx4q7duatk@pengutronix.de>
- <ZFN2yNr5GwVwwcHI@orome>
+	id 1puVwR-007NfI-0D;
+	Thu, 04 May 2023 10:12:04 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=f9IPUEpyBrx41XXxSrkiHV0HEd6PMWxGjklTbCAmGKM=; b=Q2NqYN/Fkihy43H/8u3aGt/ofV
+	0Y3XG6lm1CdWYvSiyatBQ0G5rRbPax1/SdmoCS8XzIq+LwlMiGRbgHOk4KJPHv71XsXkaJq2rJ5Aj
+	oxG9AvHjaWpZz4law9GcRvdMWb5N2Wifr9JYNfIetVLNCPLXypTpm6Is4LWo3d1NTmynlrimN4Eny
+	cZnL0m6aof24zIK6IikSgO1ZfVrw6maAcn74DcOlxGeJrmSHo3wewf0gylo8qjrdlLr+aqmrpi/tX
+	7yIxxbUSVIgoGy+PMVarbqsZ8KOUU+VZLp5gLcuM3Hi+fibA8zNzcOqtUa8fp+v1dquHPB76oUNO6
+	/bHPZLnw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:49876)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1puVwF-0004T3-Sb; Thu, 04 May 2023 11:11:51 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1puVwB-0002mb-S8; Thu, 04 May 2023 11:11:47 +0100
+Date: Thu, 4 May 2023 11:11:47 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Olof Johansson <olof@lixom.net>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	Linux-OMAP <linux-omap@vger.kernel.org>,
+	linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
+	linux-aspeed@lists.ozlabs.org, linux-rpi-kernel@lists.infradead.org,
+	chrome-platform@lists.linux.dev,
+	Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+	linux-samsung-soc@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com, kernel@dh-electronics.com,
+	linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org,
+	linux-tegra@vger.kernel.org,
+	"linux-oxnas@groups.io" <linux-oxnas@groups.io>,
+	linux-arm-msm@vger.kernel.org, linux-unisoc@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-realtek-soc@lists.infradead.org
+Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
+Message-ID: <ZFOE4wd31hpJh0ro@shell.armlinux.org.uk>
+References: <20220328000915.15041-1-ansuelsmth@gmail.com>
+ <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
+ <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain>
+ <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
+ <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
+ <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
+ <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com>
+ <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <ZFN2yNr5GwVwwcHI@orome>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230504_024253_556934_EA785B78 
-X-CRM114-Status: GOOD (  21.16  )
+X-CRM114-CacheID: sfid-20230504_031203_123805_5F8917D9 
+X-CRM114-Status: GOOD (  12.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,100 +98,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7732145323272853432=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Tue, May 02, 2023 at 02:40:19PM -0500, Rob Herring wrote:
+> I think the only issue remaining is finalizing the mapping of
+> platforms to subdirs. What I have currently is a mixture of SoC
+> families and vendors. The most notable are all the Freescale/NXP
+> platforms, pxa, socfpga, and stm32. It's not consistent with arm64
+> either. Once that's finalized, I still need to go update MAINTAINERS.
 
---===============7732145323272853432==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="vrenycmbqljfs5t5"
-Content-Disposition: inline
+I haven't followed this discussion at all, so here's a question.
 
+What does this mean for the _installed_ dtb files? Do they move
+location? If they do, lots is going to break, because there will
+be u-boot configurations and other scripts that assume the flat
+directory structure for the installed dtb files.
 
---vrenycmbqljfs5t5
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I don't think changing the installed dtb structure is acceptable
+at this point in time. It's something that _should_ have been
+thought about when ARM was converted to dtb, it's too late to be
+changing that now.
 
-Hello Thierry,
-
-On Thu, May 04, 2023 at 11:11:36AM +0200, Thierry Reding wrote:
-> On Thu, May 04, 2023 at 08:47:30AM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Thu, May 04, 2023 at 07:35:55AM +0200, Heiner Kallweit wrote:
-> > > duty <=3D period implies that duty_cnt <=3D cnt. We verified before
-> > > that cnt <=3D 0xffff, therefore we can omit the check here.
-> > >=20
-> > > Suggested-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-> > > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> > > ---
-> > > Note: Applies only after "pwm: pwm-meson: fix handling of period/duty=
- if greater than UINT_MAX"
-> >=20
-> > Do you know there is git magic to express this that (at least some of)
-> > the build bots understand? Look at git format-patch's --base option.
->=20
-> I think --base is really only applicable if the base patch is applied to
-> a well-known tree, otherwise the commit is unknown.
-
-Yes, "base" should be something like v6.3. On a tree that has the patch
-under discussion applied on top of "pwm: pwm-meson: fix handling of
-period/duty if greater than UINT_MAX" on top of v6.3,=20
-
-	git format-patch --base v6.3 -1
-
-results in the footers:
-
-	base-commit: 457391b0380335d5e9a5babdec90ac53928b23b4
-	prerequisite-patch-id: 76d61171becf4a80716637610b6f33d9617eb9b9
-
-Where 457391b0380335d5e9a5babdec90ac53928b23b4 is v6.3 and
-76d61171becf4a80716637610b6f33d9617eb9b9 is the patch-id[1] of the
-UINT_MAX patch. While this doesn't replace some human readable hints,
-this is the machine-parsable information that this patch is supposed to
-be applied on top of that UINT patch. This doesn't help finding that
-patch, but at least it stops reports about broken stuff in v6.3 + this
-patch without the prerequisite patch. So if used in the right way, this
-is helpful also in Heiner's case here.
-
-Best regards
-Uwe
-
-[1] git show @^{/"pwm: pwm-meson: fix handling of period/duty if greater th=
-an UINT_MAX"} | git patch-id
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---vrenycmbqljfs5t5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmRTfhcACgkQj4D7WH0S
-/k5aiggAkmQQATuPO7EMqNNPVG2uTiS1L/LjlSAUK9SjFiLVURryM0P5OT27B0R6
-B+UK5SInViexREumYbAiQLuCK0TNTcNhPxILB5Ow8Y3WlhwVlvXqFTd0d7iyuNkR
-6x2MAo8wuBXFar3XB058J4jI5wjbOVFm2xF9oHi4WZiPE0oHBgq75SZBAB5aCWnp
-AX7G+xQiPmau0SuiGafnlyuk0yX8baGhRUGx/JLXSoDdlaiar1KXQ9f7//5zs1JR
-LuKUIcTEY+wK/23OjarTiCLd8Do96GE/NlvUrs0wktmua3NdO2vNP/ODWZaprd2V
-ZxSl7kCt6V7usAN73dgre6gRm/Hy0w==
-=AljC
------END PGP SIGNATURE-----
-
---vrenycmbqljfs5t5--
-
-
---===============7732145323272853432==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7732145323272853432==--
-
