@@ -4,69 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A017C77B7F
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 May 2023 09:28:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21276C7EE22
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 May 2023 14:27:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zC30O4TeUO+dc/dQh+uFAZwaVcKap5KtcS5NfEqPDT0=; b=MeitnXYHZ4Rwyn
-	svKOrnF0P6V+Wk0mZ9tx7Z8deaCFgUOIy7aynCMoj3E244zioV/3KWyZ7y3ywLlDX6YCV+cMer3kF
-	h+8yVpZKcHEVhAvFZ06Ab5jZmuWT5xPIBkQbCNvA6O9FHWPqKPCs4tEtdeZaOf4DFTnvHI7zn5XkY
-	Rk7qRH+53WZfjBUbji83ZhwB59vEkf2vpOALiPhlCllPOZmqqu6esj5QKoRY1XCepQ7B5gTdcF03P
-	U9YJSpIZcH65nTO4zsVo5E9bfyhlseUxGAdCtJP80BLqMenAzFds4WhvMrojiztuCt646v9uV9OS6
-	0Mb6NNLbXQoJZxSgVXxw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=6aaNhGPfsWd7ztq0BqzTYIAXUju+C1/2mAON1FI4EFA=; b=P+32Qd4/fELO1T
+	1VX5L48iYQs0CoIccUBaRJcA1dea5mTNYSqylvcArqrrFXiqax8FEqoqjJ8o2bFuGt0QDk9bz/o82
+	n6Mt/e6RUVY6OuA06x1DQ89WfJ/JkEhdGcHhVhpTiPvXJsYRfwtVwtG4NBgNdj1gJeiHF8bq1lrRQ
+	MIFbWCZRHSIdNaua3jnZ8cg70ezV3my79901mxY0YjftOtdJ1YRr0oIveFhcGGrWJZRDFOJdrMKO1
+	/rgpEF0hmQIjdOwYxWJlDTiEDeQhnqOUvos3fe/LkkoB1Z1iRg4lRZxMVShdw4rXJF/5j9YZsO2/n
+	pVcfR43okPJ1f6dQhe1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pvxA0-0005MC-0d;
-	Mon, 08 May 2023 09:28:00 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1pw1pn-000jvF-2H;
+	Mon, 08 May 2023 14:27:27 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pvx9x-0005Lj-18;
-	Mon, 08 May 2023 09:27:58 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id B8F1360AF1;
-	Mon,  8 May 2023 09:27:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AF88C4339B;
-	Mon,  8 May 2023 09:27:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1683538076;
-	bh=xjtpkJFszM9BNKzTaTVwrSPwHtleGTIEPou2QwMYpds=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oLA3fa/0kDp64fOT1Hd+PK81rCvKxAgPJtioHFS6K6/gX3qgdlddUzap/83sEaE2o
-	 pUeWDbV6MiWa67vSJlTSUnPW6cbvIcplh96TUwg7nrfxfGnmHABJMelSr4E4EuoMr8
-	 h8IzaMoaIDwpwYIvFHta2sKD3Xi73Fj6CljsuVvJ3eGEGIQx/n3AzjnP9J6mkrNHIa
-	 CLBdAAIx1DMGQahTsrjfVzN8Q7rq/Ba603mX1kvd/FMj1XXyduxpirm7tlzHIqK8Um
-	 7LNIU4XXlRAguFtmYi/f0XpaxNeZP/WO/gDeTGvitzQzAW7vTVyO3Oeccj51pTUkLJ
-	 Lt9um+WzS+C4g==
-Date: Mon, 8 May 2023 14:57:52 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, neil.armstrong@linaro.org,
-	khilman@baylibre.com, jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com, mturquette@baylibre.com,
-	kishon@kernel.org, hminas@synopsys.com, Thinh.Nguyen@synopsys.com,
-	yue.wang@amlogic.com, hanjie.lin@amlogic.com, kernel@sberdevices.ru,
-	rockosov@gmail.com, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	id 1pw1pk-000jq3-05
+	for linux-amlogic@lists.infradead.org;
+	Mon, 08 May 2023 14:27:25 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pw1pB-0008Nm-Te; Mon, 08 May 2023 16:26:49 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pw1p2-0021Gd-S8; Mon, 08 May 2023 16:26:40 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pw1p2-002Sk4-6B; Mon, 08 May 2023 16:26:40 +0200
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Samin Guo <samin.guo@starfivetech.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>
+Cc: Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	netdev@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v3 1/5] phy: amlogic: enable/disable clkin during Amlogic
- USB PHY init/exit
-Message-ID: <ZFjAmCcc/35MhcuI@matsya>
-References: <20230426102922.19705-1-ddrokosov@sberdevices.ru>
- <20230426102922.19705-2-ddrokosov@sberdevices.ru>
+	kernel@pengutronix.de,
+	linux-amlogic@lists.infradead.org,
+	linux-oxnas@groups.io,
+	linux-sunxi@lists.linux.dev,
+	linux-mediatek@lists.infradead.org,
+	linux-tegra@vger.kernel.org
+Subject: [PATCH net-next v2 00/11] net: stmmac: Convert to platform remove callback returning void
+Date: Mon,  8 May 2023 16:26:26 +0200
+Message-Id: <20230508142637.1449363-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230426102922.19705-2-ddrokosov@sberdevices.ru>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2991; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=e18Kj38bK3tEm/hSzc46Mes9xzQDcw64Vnd25cb8omc=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBkWQaMhtXiVZEIsYdTMyD+fsTSBXFA2k+fVfb7W Z4wnuQlykSJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZFkGjAAKCRCPgPtYfRL+ TqeRCACo0+Gsv6LM1FIlu9KxZ+EkcpVDZXwiB+Le4QCe34u4Z/sJjN/PGWVm1DJGX3TZAiXg1R6 lE6OXvG4Kp8Ek78HiENVfQtqBMLAsxWlabhUC1S8i9iHY50JOkyM3AxazQOY8jKgllX+YCjNIsd 1ElRgtMImqflj1afHSmN5c0aXV8XRTvC05pHb0G7JHDup/b6z1YLYx4wChYq+u/GJJg/BzO24lo Am9+8bevKXSdcTpE48zAsNXTXHweMxlnojnuXv49mB6LJDhh+SrwSDLeFW4y4Q7RFgljVJ4JHt5 lYzHPUfU7TFnx4J9dEc6QUhnC8E6LC7crHmAiKw2JMXhPWtQ
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230508_022757_446757_F781E3EB 
-X-CRM114-Status: UNSURE (   9.47  )
+X-CRM114-CacheID: sfid-20230508_072724_071703_AA01B89C 
+X-CRM114-Status: UNSURE (   9.25  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -79,25 +104,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 26-04-23, 13:29, Dmitry Rokosov wrote:
-> Previously, all Amlogic boards used the XTAL clock as the default board
-> clock for the USB PHY input, so there was no need to enable it.
-> However, with the introduction of new Amlogic SoCs like the A1 family,
-> the USB PHY now uses a gated clock. Hence, it is necessary to enable
-> this gated clock during the PHY initialization sequence, or disable it
-> during the PHY exit, as appropriate.
-
-Applied to phy/next, thanks
-
--- 
-~Vinod
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGVsbG8sCgooaW1wbGljaXQpIHYxIG9mIHRoaXMgc2VyaWVzIGlzIGF2YWlsYWJsZSBhdApodHRw
+czovL2xvcmUua2VybmVsLm9yZy9uZXRkZXYvMjAyMzA0MDIxNDMwMjUuMjUyNDQ0My0xLXUua2xl
+aW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZQouCgpDaGFuZ2VzIHNpbmNlIHRoZW46CgogLSBBZGRl
+ZCB2YXJpb3VzIFJldmlld2VkLWJ5OiBhbmQgQWNrZWQtYnk6IHRhZ3MgcmVjZWl2ZWQgZm9yIHYx
+CiAtIFJlbW92ZWQgYSB2YXJpYWJsZSBpbiBhbiBlYXJsaWVyIHBhdGNoIHRvIG1ha2UgYWxsIGlu
+dGVybWVkaWF0ZSBzdGVwcwogICBjb21waWxhYmxlLCBzcG90dGVkIGJ5IFNpbW9uIEhvcm1hbgog
+LSBSZWJhc2VkIHRvIHY2LjQtcmMxICh3aGljaCBuZWVkZWQgYSBzbGlnaHQgYWRhcHRpb24gdG8g
+Y29wZSBmb3IKICAgNGJkM2JiN2I0NTI2ICgibmV0OiBzdG1tYWM6IEFkZCBnbHVlIGxheWVyIGZv
+ciBTdGFyRml2ZSBKSDcxMTAgU29DIikpCgpCZXN0IHJlZ2FyZHMKVXdlCgpVd2UgS2xlaW5lLUvD
+tm5pZyAoMTEpOgogIG5ldDogc3RtbWFjOiBNYWtlIHN0bW1hY19wbHRmcl9yZW1vdmUoKSByZXR1
+cm4gdm9pZAogIG5ldDogc3RtbWFjOiBkd21hYy12aXNjb250aTogTWFrZSB2aXNjb250aV9ldGhf
+Y2xvY2tfcmVtb3ZlKCkgcmV0dXJuCiAgICB2b2lkCiAgbmV0OiBzdG1tYWM6IGR3bWFjLXFjb20t
+ZXRocW9zOiBEcm9wIGFuIGlmIHdpdGggYW4gYWx3YXlzIGZhbHNlCiAgICBjb25kaXRpb24KICBu
+ZXQ6IHN0bW1hYzogZHdtYWMtdmlzY29udGk6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNh
+bGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIG5ldDogc3RtbWFjOiBkd21hYy1kd2MtcW9zLWV0
+aDogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lk
+CiAgbmV0OiBzdG1tYWM6IGR3bWFjLXFjb20tZXRocW9zOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJl
+bW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBuZXQ6IHN0bW1hYzogZHdtYWMtcms6
+IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZwogICAgdm9pZAog
+IG5ldDogc3RtbWFjOiBkd21hYy1zdGk6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxi
+YWNrIHJldHVybmluZwogICAgdm9pZAogIG5ldDogc3RtbWFjOiBkd21hYy1zdG0zMjogQ29udmVy
+dCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAgbmV0OiBz
+dG1tYWM6IGR3bWFjLXN1bjhpOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawog
+ICAgcmV0dXJuaW5nIHZvaWQKICBuZXQ6IHN0bW1hYzogZHdtYWMtdGVncmE6IENvbnZlcnQgdG8g
+cGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAoKIC4uLi9ldGhlcm5l
+dC9zdG1pY3JvL3N0bW1hYy9kd21hYy1hbmFyaW9uLmMgICB8ICAyICstCiAuLi4vc3RtaWNyby9z
+dG1tYWMvZHdtYWMtZHdjLXFvcy1ldGguYyAgICAgICAgfCAgNiArKy0tLS0KIC4uLi9ldGhlcm5l
+dC9zdG1pY3JvL3N0bW1hYy9kd21hYy1nZW5lcmljLmMgICB8ICAyICstCiAuLi4vbmV0L2V0aGVy
+bmV0L3N0bWljcm8vc3RtbWFjL2R3bWFjLWlteC5jICAgfCAgMiArLQogLi4uL2V0aGVybmV0L3N0
+bWljcm8vc3RtbWFjL2R3bWFjLWluZ2VuaWMuYyAgIHwgIDIgKy0KIC4uLi9zdG1pY3JvL3N0bW1h
+Yy9kd21hYy1pbnRlbC1wbGF0LmMgICAgICAgICB8ICA5ICsrKy0tLS0tLQogLi4uL2V0aGVybmV0
+L3N0bWljcm8vc3RtbWFjL2R3bWFjLWlwcTgwNnguYyAgIHwgIDIgKy0KIC4uLi9ldGhlcm5ldC9z
+dG1pY3JvL3N0bW1hYy9kd21hYy1scGMxOHh4LmMgICB8ICAyICstCiAuLi4vZXRoZXJuZXQvc3Rt
+aWNyby9zdG1tYWMvZHdtYWMtbWVkaWF0ZWsuYyAgfCAgOSArKystLS0tLS0KIC4uLi9uZXQvZXRo
+ZXJuZXQvc3RtaWNyby9zdG1tYWMvZHdtYWMtbWVzb24uYyB8ICAyICstCiAuLi4vZXRoZXJuZXQv
+c3RtaWNyby9zdG1tYWMvZHdtYWMtbWVzb244Yi5jICAgfCAgMiArLQogLi4uL25ldC9ldGhlcm5l
+dC9zdG1pY3JvL3N0bW1hYy9kd21hYy1veG5hcy5jIHwgIDIgKy0KIC4uLi9zdG1pY3JvL3N0bW1h
+Yy9kd21hYy1xY29tLWV0aHFvcy5jICAgICAgICB8IDE1ICsrKystLS0tLS0tLS0tLQogLi4uL25l
+dC9ldGhlcm5ldC9zdG1pY3JvL3N0bW1hYy9kd21hYy1yay5jICAgIHwgIDYgKystLS0tCiAuLi4v
+ZXRoZXJuZXQvc3RtaWNyby9zdG1tYWMvZHdtYWMtc29jZnBnYS5jICAgfCAgMiArLQogLi4uL2V0
+aGVybmV0L3N0bWljcm8vc3RtbWFjL2R3bWFjLXN0YXJmaXZlLmMgIHwgIDIgKy0KIC4uLi9uZXQv
+ZXRoZXJuZXQvc3RtaWNyby9zdG1tYWMvZHdtYWMtc3RpLmMgICB8ICA2ICsrLS0tLQogLi4uL25l
+dC9ldGhlcm5ldC9zdG1pY3JvL3N0bW1hYy9kd21hYy1zdG0zMi5jIHwgIDYgKystLS0tCiAuLi4v
+bmV0L2V0aGVybmV0L3N0bWljcm8vc3RtbWFjL2R3bWFjLXN1bjhpLmMgfCAgNiArKy0tLS0KIC4u
+Li9uZXQvZXRoZXJuZXQvc3RtaWNyby9zdG1tYWMvZHdtYWMtc3VueGkuYyB8ICAyICstCiAuLi4v
+bmV0L2V0aGVybmV0L3N0bWljcm8vc3RtbWFjL2R3bWFjLXRlZ3JhLmMgfCAgNiArKy0tLS0KIC4u
+Li9ldGhlcm5ldC9zdG1pY3JvL3N0bW1hYy9kd21hYy12aXNjb250aS5jICB8IDE5ICsrKysrLS0t
+LS0tLS0tLS0tLS0KIC4uLi9ldGhlcm5ldC9zdG1pY3JvL3N0bW1hYy9zdG1tYWNfcGxhdGZvcm0u
+YyB8ICA0ICstLS0KIC4uLi9ldGhlcm5ldC9zdG1pY3JvL3N0bW1hYy9zdG1tYWNfcGxhdGZvcm0u
+aCB8ICAyICstCiAyNCBmaWxlcyBjaGFuZ2VkLCA0MSBpbnNlcnRpb25zKCspLCA3NyBkZWxldGlv
+bnMoLSkKCmJhc2UtY29tbWl0OiBhYzlhNzg2ODFiOTIxODc3NTE4NzYzYmEwZTg5MjAyMjU0MzQ5
+ZDFiCi0tIAoyLjM5LjIKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmlu
+ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
+aW51eC1hbWxvZ2ljCg==
