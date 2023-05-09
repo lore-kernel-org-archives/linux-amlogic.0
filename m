@@ -4,69 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7F6AC77B7F
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 May 2023 20:54:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F022FC7EE22
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 May 2023 07:44:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tVZwyxLsMv59uKlU86962von+tZNWhn8aG+tltrsmjo=; b=rX8m99ngbrTkur
-	nsAcXQDdWlhVHPl5XWJEXf25l2+gUieLBRos42+SmVA7OO6VMPOD/0/hynkqbNGPqAjwqWEn28RBa
-	PCKc5HsBiGVJ61+ulSuvGHLyaXi8gy768irEP2+0hn9W3j2oL+W5YSbCoHiRtMiI7oGfyomx0bw6V
-	IpmHncOvAhlKqgvbkcwKdc/V7liaUh3TVsbtkM9cbUwRRZXl2bJT8AJtT2GJ6a3wMb0lB2ohe6xeZ
-	Oj12NGAzbH8mSusxPgA5Kvy4w47CeM9Uv35tAboS+pryMj6CusDhPdO1+NfW1VuJywOsHlqzBsxUf
-	9YROr/VudQEJpf0lWVHw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=7lDu73hWBynLh54XWrLalbi0rX0ltmTe2uy2qdwR8vg=; b=HUtcZPz3JnLqm+ufHFh73Qk2cs
+	4IBA/7E1BkBe+n5XHU1TLlvaOqCWTmDX/nwHonHdbjmI/cAHZm7x7/E+O294YSuN7+9SRSWK67FCU
+	dASfE8xQXr04Zv2hrHU7YIhcrym+5sZRsOkfl2G+ws+oBiTF//U1lomrO4NJkhJAi72iy65Y7V/Av
+	TwU+2+F42xikxD+cyKa9jWbKtvPDKOfqXNYwvlB+0noN2cXNV/4SHilRv2SVjklmVT1t+tXW9foMx
+	VdnlLDgpffYgo6yGoXVyPgPGxouwO/ok7Kn5DfzMqHgl3u2IHx6MjAAK1nKbgeSg9WRxksbiGmB3I
+	oAOlCkQA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pw7rl-001OFW-1i;
-	Mon, 08 May 2023 20:53:53 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1pwI1b-002Xpn-1d;
+	Tue, 09 May 2023 07:44:43 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pw7rO-001Nse-0z
+	id 1pwI1Y-002XoP-1X
 	for linux-amlogic@lists.infradead.org;
-	Mon, 08 May 2023 20:53:32 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1pw7rG-0003WK-32; Mon, 08 May 2023 22:53:22 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1pw7rE-0024rq-QS; Mon, 08 May 2023 22:53:20 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1pw7rD-002YX4-TW; Mon, 08 May 2023 22:53:19 +0200
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Julia Lawall <Julia.Lawall@inria.fr>,
-	Wolfram Sang <wsa@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-i2c@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	kernel@pengutronix.de
-Subject: [PATCH 36/89] i2c: meson: Convert to platform remove callback returning void
-Date: Mon,  8 May 2023 22:52:13 +0200
-Message-Id: <20230508205306.1474415-37-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230508205306.1474415-1-u.kleine-koenig@pengutronix.de>
-References: <20230508205306.1474415-1-u.kleine-koenig@pengutronix.de>
+	Tue, 09 May 2023 07:44:42 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3f315735514so195733565e9.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 09 May 2023 00:44:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683618275; x=1686210275;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=/tIWIjCU0WB4+s+0CLXZp3rE/hrVxQbRrR7hGm/i1t8=;
+        b=FS045pxekPIy3zvybkfVPHe6eMBCAkuvJgWnUdb31Avcc4yyadf8jCoDTyTn3dQp7X
+         nJeSCyxtCn23b8AEbg8AUd9eRaIq/xYZcwQAk2hEWCjBTHvAeajabpDyQNklwEMZ58DU
+         Kz4J2Htyn4dGPyzXyy70is1VHwsrsSzx8ia/px/eMY4UWpcUu9piuWERmxYqNasXIL08
+         N85eWBxxiQxVr0JUNGHr2szdrhhx7g8JzYJjvO4oMM9gngmxNqPElviZpictdF6A+3EF
+         4wMQzw2SyPMwAPsmI78QFBgadv2JzPwaFe0uk/mPPCK7LBGv3biIhaXQmUyVRtPRVu2Y
+         96eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683618275; x=1686210275;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/tIWIjCU0WB4+s+0CLXZp3rE/hrVxQbRrR7hGm/i1t8=;
+        b=dt8tobkOzUzgo+e8PUotCTrEdYod9OEicCMVXCJ0qpajES3n30/GVrx7ecVHreYNg5
+         Jye09gOqm/m8FC3lI+dhwwNmEhGAApHMyL68seWiRLVf6Bp/yHLk/Y7HU4lOcH2kU/xF
+         67b8HPHP7oaigtMdP3HSj0acc1sE+UDPAXeM+E8RdU6eQDDPVxt+h8tKMnq0FQBbbPTS
+         lYBpKcAzIF+Ro2F8XHtOmvb/7ZflVBV3F5j9EYBAibExVHYKn1Szm8Taj4uxALRejxQS
+         a9ZWvaebanzRBoBQZEtJbjEdW/XN/wqvuSsEDPZ1eDel65DLu4yDiI491QHjqhWw2HWG
+         8z+Q==
+X-Gm-Message-State: AC+VfDy96EWijW8aZAdfzfMAuoyCXZ7dL+NndlrR5Gtjz1scxIjTRRzx
+	Kfuw/WBUj2s30OBI5Mpa45xZrQ==
+X-Google-Smtp-Source: ACHHUZ5azk0AtvIKQkzwUK42XJg0J/YOW/KQyQjpBHJ5Rilppz/v+9dWNUtHMmojYs5nx4Y5u/mbwQ==
+X-Received: by 2002:adf:e483:0:b0:2ff:801b:dec6 with SMTP id i3-20020adfe483000000b002ff801bdec6mr8605708wrm.20.1683618275426;
+        Tue, 09 May 2023 00:44:35 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:79ab:8da0:d16d:9990? ([2a01:e0a:982:cbb0:79ab:8da0:d16d:9990])
+        by smtp.gmail.com with ESMTPSA id e15-20020a5d4e8f000000b0030629536e64sm13492065wru.30.2023.05.09.00.44.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 May 2023 00:44:35 -0700 (PDT)
+Message-ID: <acc5eb75-c6ed-98c7-6d69-f8b0f024c744@linaro.org>
+Date: Tue, 9 May 2023 09:44:33 +0200
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1669; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=8zGheaYogX/YE5kaz1sKpvMxHgBauI7XYhda0HCqFZ0=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBkWWDOmSwrvvS9XHHVxwppvK8tcbjWr6P6X2z/8 wxptK/usnmJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZFlgzgAKCRCPgPtYfRL+ ThpkB/41TZvGeJoA1z1M1+jaZLJi+W/ZehwAidLZQCQ1t7CnDTk0QfY/mlAM6A1ZnLpM4ck/c9Y mu72dpOjCCea0XgZ4Dk0uoOj6rLnkrm3Y6tBLohKF9fipcyPtsWnTglGqsJTrRnNnBaQegIWNJs 9BB2rn78T8POSQHwt01tHbvxM6bE881oEqylJG6hiPZFyR44sSRY2u68EzCqt4N3vJ1LKjQCdUS yKQg940f2l8Kc13ENVBE2l9yECnCLRKO32LN3PMCAkRCano3Wut1lAupo7K9dopA9XDTHdfisrA eQHAkoqa+c1FiVnY9pJc8QINRm/hWo8/POVr7IS3qpL4Ew/A
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 5/5] arm64: dts: meson: a1: support USB controller in
+ OTG mode
+Content-Language: en-US
+To: Dmitry Rokosov <ddrokosov@sberdevices.ru>, gregkh@linuxfoundation.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+ jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+ mturquette@baylibre.com, vkoul@kernel.org, kishon@kernel.org,
+ hminas@synopsys.com, Thinh.Nguyen@synopsys.com
+Cc: yue.wang@amlogic.com, hanjie.lin@amlogic.com, kernel@sberdevices.ru,
+ rockosov@gmail.com, linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-phy@lists.infradead.org
+References: <20230426102922.19705-1-ddrokosov@sberdevices.ru>
+ <20230426102922.19705-6-ddrokosov@sberdevices.ru>
+Organization: Linaro Developer Services
+In-Reply-To: <20230426102922.19705-6-ddrokosov@sberdevices.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230508_135330_367823_7D6A1D8E 
-X-CRM114-Status: GOOD (  15.83  )
+X-CRM114-CacheID: sfid-20230509_004440_538842_C52E51E8 
+X-CRM114-Status: GOOD (  15.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,40 +99,118 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: neil.armstrong@linaro.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhlIC5yZW1vdmUoKSBjYWxsYmFjayBmb3IgYSBwbGF0Zm9ybSBkcml2ZXIgcmV0dXJucyBhbiBp
-bnQgd2hpY2ggbWFrZXMKbWFueSBkcml2ZXIgYXV0aG9ycyB3cm9uZ2x5IGFzc3VtZSBpdCdzIHBv
-c3NpYmxlIHRvIGRvIGVycm9yIGhhbmRsaW5nIGJ5CnJldHVybmluZyBhbiBlcnJvciBjb2RlLiBI
-b3dldmVyIHRoZSB2YWx1ZSByZXR1cm5lZCBpcyAobW9zdGx5KSBpZ25vcmVkCmFuZCB0aGlzIHR5
-cGljYWxseSByZXN1bHRzIGluIHJlc291cmNlIGxlYWtzLiBUbyBpbXByb3ZlIGhlcmUgdGhlcmUg
-aXMgYQpxdWVzdCB0byBtYWtlIHRoZSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuIHZvaWQuIEluIHRo
-ZSBmaXJzdCBzdGVwIG9mIHRoaXMKcXVlc3QgYWxsIGRyaXZlcnMgYXJlIGNvbnZlcnRlZCB0byAu
-cmVtb3ZlX25ldygpIHdoaWNoIGFscmVhZHkgcmV0dXJucwp2b2lkLgoKVHJpdmlhbGx5IGNvbnZl
-cnQgdGhpcyBkcml2ZXIgZnJvbSBhbHdheXMgcmV0dXJuaW5nIHplcm8gaW4gdGhlIHJlbW92ZQpj
-YWxsYmFjayB0byB0aGUgdm9pZCByZXR1cm5pbmcgdmFyaWFudC4KClNpZ25lZC1vZmYtYnk6IFV3
-ZSBLbGVpbmUtS8O2bmlnIDx1LmtsZWluZS1rb2VuaWdAcGVuZ3V0cm9uaXguZGU+Ci0tLQogZHJp
-dmVycy9pMmMvYnVzc2VzL2kyYy1tZXNvbi5jIHwgNiArKy0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAy
-IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9pMmMv
-YnVzc2VzL2kyYy1tZXNvbi5jIGIvZHJpdmVycy9pMmMvYnVzc2VzL2kyYy1tZXNvbi5jCmluZGV4
-IDg4OWVmZjA2Yjc4Zi4uMTYwMjZjODk1YmI2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2kyYy9idXNz
-ZXMvaTJjLW1lc29uLmMKKysrIGIvZHJpdmVycy9pMmMvYnVzc2VzL2kyYy1tZXNvbi5jCkBAIC01
-MzUsMTQgKzUzNSwxMiBAQCBzdGF0aWMgaW50IG1lc29uX2kyY19wcm9iZShzdHJ1Y3QgcGxhdGZv
-cm1fZGV2aWNlICpwZGV2KQogCXJldHVybiAwOwogfQogCi1zdGF0aWMgaW50IG1lc29uX2kyY19y
-ZW1vdmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKK3N0YXRpYyB2b2lkIG1lc29uX2ky
-Y19yZW1vdmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKIHsKIAlzdHJ1Y3QgbWVzb25f
-aTJjICppMmMgPSBwbGF0Zm9ybV9nZXRfZHJ2ZGF0YShwZGV2KTsKIAogCWkyY19kZWxfYWRhcHRl
-cigmaTJjLT5hZGFwKTsKIAljbGtfZGlzYWJsZV91bnByZXBhcmUoaTJjLT5jbGspOwotCi0JcmV0
-dXJuIDA7CiB9CiAKIHN0YXRpYyBjb25zdCBzdHJ1Y3QgbWVzb25faTJjX2RhdGEgaTJjX21lc29u
-Nl9kYXRhID0gewpAQCAtNTY4LDcgKzU2Niw3IEBAIE1PRFVMRV9ERVZJQ0VfVEFCTEUob2YsIG1l
-c29uX2kyY19tYXRjaCk7CiAKIHN0YXRpYyBzdHJ1Y3QgcGxhdGZvcm1fZHJpdmVyIG1lc29uX2ky
-Y19kcml2ZXIgPSB7CiAJLnByb2JlICAgPSBtZXNvbl9pMmNfcHJvYmUsCi0JLnJlbW92ZSAgPSBt
-ZXNvbl9pMmNfcmVtb3ZlLAorCS5yZW1vdmVfbmV3ID0gbWVzb25faTJjX3JlbW92ZSwKIAkuZHJp
-dmVyICA9IHsKIAkJLm5hbWUgID0gIm1lc29uLWkyYyIsCiAJCS5vZl9tYXRjaF90YWJsZSA9IG1l
-c29uX2kyY19tYXRjaCwKLS0gCjIuMzkuMgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9n
-aWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Hi,
+
+On 26/04/2023 12:29, Dmitry Rokosov wrote:
+> Amlogic A1 SoC family has USB2.0 controller based on dwc2 and dwc3
+> heads. It supports otg/host/peripheral modes.
+> 
+> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
+> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 59 +++++++++++++++++++++++
+>   1 file changed, 59 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> index ae7d39cff07a..5588ee602161 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -8,6 +8,8 @@
+>   #include <dt-bindings/gpio/meson-a1-gpio.h>
+>   #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
+>   #include <dt-bindings/clock/amlogic,a1-clkc.h>
+> +#include <dt-bindings/power/meson-a1-power.h>
+> +#include <dt-bindings/reset/amlogic,meson-a1-reset.h>
+>   
+>   / {
+>   	compatible = "amlogic,a1";
+> @@ -169,6 +171,17 @@ gpio_intc: interrupt-controller@0440 {
+>   				amlogic,channel-interrupts =
+>   					<49 50 51 52 53 54 55 56>;
+>   			};
+> +
+> +			usb2_phy1: phy@4000 {
+> +				compatible = "amlogic,a1-usb2-phy";
+> +				clocks = <&clkc CLKID_USB_PHY_IN>;
+> +				clock-names = "xtal";
+> +				reg = <0x0 0x4000 0x0 0x60>;
+> +				resets = <&reset RESET_USBPHY>;
+> +				reset-names = "phy";
+> +				#phy-cells = <0>;
+> +				power-domains = <&pwrc PWRC_USB_ID>;
+> +			};
+>   		};
+>   
+>   		gic: interrupt-controller@ff901000 {
+> @@ -192,6 +205,52 @@ spifc: spi@fd000400 {
+>   			#size-cells = <0>;
+>   			status = "disabled";
+>   		};
+> +
+> +		usb: usb@fe004400 {
+> +			status = "disabled";
+> +			compatible = "amlogic,meson-a1-usb-ctrl";
+> +			reg = <0x0 0xfe004400 0x0 0xa0>;
+> +			interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +
+> +			clocks = <&clkc CLKID_USB_CTRL>,
+> +				 <&clkc CLKID_USB_BUS>,
+> +				 <&clkc CLKID_USB_CTRL_IN>;
+> +			clock-names = "usb_ctrl", "usb_bus", "xtal_usb_ctrl";
+> +			resets = <&reset RESET_USBCTRL>;
+> +			reset-name = "usb_ctrl";
+> +
+> +			dr_mode = "otg";
+> +
+> +			phys = <&usb2_phy1>;
+> +			phy-names = "usb2-phy1";
+> +
+> +			dwc2: usb@ff500000 {
+> +				compatible = "amlogic,meson-a1-usb", "snps,dwc2";
+> +				reg = <0x0 0xff500000 0x0 0x40000>;
+> +				interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+> +				phys = <&usb2_phy1>;
+> +				phy-names = "usb2-phy";
+> +				clocks = <&clkc CLKID_USB_PHY>;
+> +				clock-names = "otg";
+> +				dr_mode = "peripheral";
+> +				g-rx-fifo-size = <192>;
+> +				g-np-tx-fifo-size = <128>;
+> +				g-tx-fifo-size = <128 128 16 16 16>;
+> +			};
+> +
+> +			dwc3: usb@ff400000 {
+> +				compatible = "snps,dwc3";
+> +				reg = <0x0 0xff400000 0x0 0x100000>;
+> +				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+> +				dr_mode = "host";
+> +				snps,dis_u2_susphy_quirk;
+> +				snps,quirk-frame-length-adjustment = <0x20>;
+> +				snps,parkmode-disable-ss-quirk;
+> +			};
+> +		};
+>   	};
+>   
+>   	timer {
+
+This patcj is fine, but depends on clock bindings & dt, so now Vinod took the PHY
+patch, please resend this wiyhout patches 1 & 5, then resend the DT patch later when
+the clock bindings is merged.
+
+Thanks,
+Neil
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
