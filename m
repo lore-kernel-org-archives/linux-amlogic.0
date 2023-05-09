@@ -4,90 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F022FC7EE22
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 May 2023 07:44:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F052C77B7C
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 May 2023 07:46:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7lDu73hWBynLh54XWrLalbi0rX0ltmTe2uy2qdwR8vg=; b=HUtcZPz3JnLqm+ufHFh73Qk2cs
-	4IBA/7E1BkBe+n5XHU1TLlvaOqCWTmDX/nwHonHdbjmI/cAHZm7x7/E+O294YSuN7+9SRSWK67FCU
-	dASfE8xQXr04Zv2hrHU7YIhcrym+5sZRsOkfl2G+ws+oBiTF//U1lomrO4NJkhJAi72iy65Y7V/Av
-	TwU+2+F42xikxD+cyKa9jWbKtvPDKOfqXNYwvlB+0noN2cXNV/4SHilRv2SVjklmVT1t+tXW9foMx
-	VdnlLDgpffYgo6yGoXVyPgPGxouwO/ok7Kn5DfzMqHgl3u2IHx6MjAAK1nKbgeSg9WRxksbiGmB3I
-	oAOlCkQA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=fwVzUwAWB9JeL3hPrv+9pAMOu7QjGBvIZYvK13SlglI=; b=q71lS99R3xKJcf
+	41RqNd3LZ0ov8TTSqWZ3HJ/KixaNpko5KBgCZ6euu39GtOtVU71jZXeLS/AY+lj6OeCTDRHWuruDO
+	dRE4dMTt50TA3TehdNNOs5V9nREaGGToy/X8EhaQRX1TkeYnOr+t5KqJos4IN8H/O8LWOVDBLDykp
+	qmrk+sHi8+h66lR3ymY9yiBqLr4pbWDKsvuhWBeKy0117KPgEVPEiG4k87LILO3+ImF8ZelX8kT6w
+	xHesiSuuXgjgf3yHz1CjWSdsybUoQTbBa07ItH/iSmUtGG6m3jItw9F2yN7Q/taiGhqmI2pNxxzSn
+	jcqgJ+KTchwHG+BjhQFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pwI1b-002Xpn-1d;
-	Tue, 09 May 2023 07:44:43 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1pwI3b-002Y3A-0V;
+	Tue, 09 May 2023 07:46:47 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pwI1Y-002XoP-1X
+	id 1pwI3X-002Y0U-2h
 	for linux-amlogic@lists.infradead.org;
-	Tue, 09 May 2023 07:44:42 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3f315735514so195733565e9.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 09 May 2023 00:44:36 -0700 (PDT)
+	Tue, 09 May 2023 07:46:45 +0000
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-3062db220a3so3485053f8f.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 09 May 2023 00:46:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683618275; x=1686210275;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=/tIWIjCU0WB4+s+0CLXZp3rE/hrVxQbRrR7hGm/i1t8=;
-        b=FS045pxekPIy3zvybkfVPHe6eMBCAkuvJgWnUdb31Avcc4yyadf8jCoDTyTn3dQp7X
-         nJeSCyxtCn23b8AEbg8AUd9eRaIq/xYZcwQAk2hEWCjBTHvAeajabpDyQNklwEMZ58DU
-         Kz4J2Htyn4dGPyzXyy70is1VHwsrsSzx8ia/px/eMY4UWpcUu9piuWERmxYqNasXIL08
-         N85eWBxxiQxVr0JUNGHr2szdrhhx7g8JzYJjvO4oMM9gngmxNqPElviZpictdF6A+3EF
-         4wMQzw2SyPMwAPsmI78QFBgadv2JzPwaFe0uk/mPPCK7LBGv3biIhaXQmUyVRtPRVu2Y
-         96eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683618275; x=1686210275;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1683618398; x=1686210398;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/tIWIjCU0WB4+s+0CLXZp3rE/hrVxQbRrR7hGm/i1t8=;
-        b=dt8tobkOzUzgo+e8PUotCTrEdYod9OEicCMVXCJ0qpajES3n30/GVrx7ecVHreYNg5
-         Jye09gOqm/m8FC3lI+dhwwNmEhGAApHMyL68seWiRLVf6Bp/yHLk/Y7HU4lOcH2kU/xF
-         67b8HPHP7oaigtMdP3HSj0acc1sE+UDPAXeM+E8RdU6eQDDPVxt+h8tKMnq0FQBbbPTS
-         lYBpKcAzIF+Ro2F8XHtOmvb/7ZflVBV3F5j9EYBAibExVHYKn1Szm8Taj4uxALRejxQS
-         a9ZWvaebanzRBoBQZEtJbjEdW/XN/wqvuSsEDPZ1eDel65DLu4yDiI491QHjqhWw2HWG
-         8z+Q==
-X-Gm-Message-State: AC+VfDy96EWijW8aZAdfzfMAuoyCXZ7dL+NndlrR5Gtjz1scxIjTRRzx
-	Kfuw/WBUj2s30OBI5Mpa45xZrQ==
-X-Google-Smtp-Source: ACHHUZ5azk0AtvIKQkzwUK42XJg0J/YOW/KQyQjpBHJ5Rilppz/v+9dWNUtHMmojYs5nx4Y5u/mbwQ==
-X-Received: by 2002:adf:e483:0:b0:2ff:801b:dec6 with SMTP id i3-20020adfe483000000b002ff801bdec6mr8605708wrm.20.1683618275426;
-        Tue, 09 May 2023 00:44:35 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:79ab:8da0:d16d:9990? ([2a01:e0a:982:cbb0:79ab:8da0:d16d:9990])
-        by smtp.gmail.com with ESMTPSA id e15-20020a5d4e8f000000b0030629536e64sm13492065wru.30.2023.05.09.00.44.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 May 2023 00:44:35 -0700 (PDT)
-Message-ID: <acc5eb75-c6ed-98c7-6d69-f8b0f024c744@linaro.org>
-Date: Tue, 9 May 2023 09:44:33 +0200
+        bh=TO2dRWQUgsejGnEeiYjVEtc/c2PN3FQf9RX/Sai4Z0U=;
+        b=f0URIniH7B6XUsWL6muAGhjMQxBfGB4Uea4xGg5JShehqLBBmndI+Kicr6eiV2qT56
+         JpOL/knVUaEtLxp8IDvnEMsNrmIv+sGpG0D+2AUGva76gS5skgt3yX7es8jSCr8T0djn
+         x7TDpB8V6E0FzG7Fx3QQ2fR3tBCLWezRT5Qg59+Se1Vkg9skGICSop9WBhpowvnP93dF
+         rmyqdg32UjzMHoTyFqNs//5TFX81w7cYTK9yykm3AepUpTMB4kHtiX+d6JFgNdChx3g+
+         4t0H18JaT29josdXHu0MIPtbyWmUPHLCLI8JAdyYAyw63vW+3xfCepX+v0IKrWfYi+eZ
+         aIfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683618398; x=1686210398;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TO2dRWQUgsejGnEeiYjVEtc/c2PN3FQf9RX/Sai4Z0U=;
+        b=hy13MpCs5HfTfttU5bNmwG7wd25Nr4TANm1BCOspkfuttSna1aVu9FxcfNUY9wZH4u
+         5hT2i6B4WxtkCoM8Ixi0pNhQjElRtLHXe3Rk2Pg0DwrHwnefYez6pi8Oui9c5XvLVSBl
+         YiPdIL5XpyqzXE07rNdk2BSrorRkmXQulEKWKkIi0BB1VslBwBPz0LRdEAown0salm9e
+         tTRK2vT6f3BhQbCLUDxgXL3AdP3xAaInXqkmnZEpdzyRcFqK4Y5EF39th8Htwe4zR5Ln
+         yatKrhN3uY5IaEUm/i5OEecoCO/N6oHj4HXZwCNH+xuNcWm3RO0dOJHwDzmefhDKVLhB
+         vNig==
+X-Gm-Message-State: AC+VfDyzb3Eg2RseJuS3/UWLSi0QXbHiibUqhjabCrF8h1f+uuGU13Xp
+	0kh8JF9Tv2cprbRwG2qKRm6YyA1oWE/1eSyh1r3F0A==
+X-Google-Smtp-Source: ACHHUZ7aKsNY8fHHLZ6UNl48B49PuAWVAgcEjJqUMww88nPdrrdixglqG21tYw77OS4xPT7Nv/5fdQ==
+X-Received: by 2002:adf:fac9:0:b0:306:41d3:fca8 with SMTP id a9-20020adffac9000000b0030641d3fca8mr9133279wrs.69.1683618398463;
+        Tue, 09 May 2023 00:46:38 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id a15-20020adff7cf000000b002f6176cc6desm13505140wrq.110.2023.05.09.00.46.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 May 2023 00:46:38 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230421223211.115612-1-krzysztof.kozlowski@linaro.org>
+References: <20230421223211.115612-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: add missing cache properties
+Message-Id: <168361839771.3267036.7271499670705452140.b4-ty@linaro.org>
+Date: Tue, 09 May 2023 09:46:37 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 5/5] arm64: dts: meson: a1: support USB controller in
- OTG mode
-Content-Language: en-US
-To: Dmitry Rokosov <ddrokosov@sberdevices.ru>, gregkh@linuxfoundation.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
- mturquette@baylibre.com, vkoul@kernel.org, kishon@kernel.org,
- hminas@synopsys.com, Thinh.Nguyen@synopsys.com
-Cc: yue.wang@amlogic.com, hanjie.lin@amlogic.com, kernel@sberdevices.ru,
- rockosov@gmail.com, linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-phy@lists.infradead.org
-References: <20230426102922.19705-1-ddrokosov@sberdevices.ru>
- <20230426102922.19705-6-ddrokosov@sberdevices.ru>
-Organization: Linaro Developer Services
-In-Reply-To: <20230426102922.19705-6-ddrokosov@sberdevices.ru>
+X-Mailer: b4 0.12.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230509_004440_538842_C52E51E8 
-X-CRM114-Status: GOOD (  15.35  )
+X-CRM114-CacheID: sfid-20230509_004643_878104_1BDC6828 
+X-CRM114-Status: GOOD (  10.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,116 +91,50 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 Hi,
 
-On 26/04/2023 12:29, Dmitry Rokosov wrote:
-> Amlogic A1 SoC family has USB2.0 controller based on dwc2 and dwc3
-> heads. It supports otg/host/peripheral modes.
+On Sat, 22 Apr 2023 00:32:10 +0200, Krzysztof Kozlowski wrote:
+> As all level 2 and level 3 caches are unified, add required
+> cache-unified properties to fix warnings like:
 > 
-> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
-> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
-> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 59 +++++++++++++++++++++++
->   1 file changed, 59 insertions(+)
+>   meson-a1-ad401.dtb: l2-cache0: 'cache-unified' is a required property
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> index ae7d39cff07a..5588ee602161 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> @@ -8,6 +8,8 @@
->   #include <dt-bindings/gpio/meson-a1-gpio.h>
->   #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
->   #include <dt-bindings/clock/amlogic,a1-clkc.h>
-> +#include <dt-bindings/power/meson-a1-power.h>
-> +#include <dt-bindings/reset/amlogic,meson-a1-reset.h>
->   
->   / {
->   	compatible = "amlogic,a1";
-> @@ -169,6 +171,17 @@ gpio_intc: interrupt-controller@0440 {
->   				amlogic,channel-interrupts =
->   					<49 50 51 52 53 54 55 56>;
->   			};
-> +
-> +			usb2_phy1: phy@4000 {
-> +				compatible = "amlogic,a1-usb2-phy";
-> +				clocks = <&clkc CLKID_USB_PHY_IN>;
-> +				clock-names = "xtal";
-> +				reg = <0x0 0x4000 0x0 0x60>;
-> +				resets = <&reset RESET_USBPHY>;
-> +				reset-names = "phy";
-> +				#phy-cells = <0>;
-> +				power-domains = <&pwrc PWRC_USB_ID>;
-> +			};
->   		};
->   
->   		gic: interrupt-controller@ff901000 {
-> @@ -192,6 +205,52 @@ spifc: spi@fd000400 {
->   			#size-cells = <0>;
->   			status = "disabled";
->   		};
-> +
-> +		usb: usb@fe004400 {
-> +			status = "disabled";
-> +			compatible = "amlogic,meson-a1-usb-ctrl";
-> +			reg = <0x0 0xfe004400 0x0 0xa0>;
-> +			interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +
-> +			clocks = <&clkc CLKID_USB_CTRL>,
-> +				 <&clkc CLKID_USB_BUS>,
-> +				 <&clkc CLKID_USB_CTRL_IN>;
-> +			clock-names = "usb_ctrl", "usb_bus", "xtal_usb_ctrl";
-> +			resets = <&reset RESET_USBCTRL>;
-> +			reset-name = "usb_ctrl";
-> +
-> +			dr_mode = "otg";
-> +
-> +			phys = <&usb2_phy1>;
-> +			phy-names = "usb2-phy1";
-> +
-> +			dwc2: usb@ff500000 {
-> +				compatible = "amlogic,meson-a1-usb", "snps,dwc2";
-> +				reg = <0x0 0xff500000 0x0 0x40000>;
-> +				interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-> +				phys = <&usb2_phy1>;
-> +				phy-names = "usb2-phy";
-> +				clocks = <&clkc CLKID_USB_PHY>;
-> +				clock-names = "otg";
-> +				dr_mode = "peripheral";
-> +				g-rx-fifo-size = <192>;
-> +				g-np-tx-fifo-size = <128>;
-> +				g-tx-fifo-size = <128 128 16 16 16>;
-> +			};
-> +
-> +			dwc3: usb@ff400000 {
-> +				compatible = "snps,dwc3";
-> +				reg = <0x0 0xff400000 0x0 0x100000>;
-> +				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-> +				dr_mode = "host";
-> +				snps,dis_u2_susphy_quirk;
-> +				snps,quirk-frame-length-adjustment = <0x20>;
-> +				snps,parkmode-disable-ss-quirk;
-> +			};
-> +		};
->   	};
->   
->   	timer {
+> 
 
-This patcj is fine, but depends on clock bindings & dt, so now Vinod took the PHY
-patch, please resend this wiyhout patches 1 & 5, then resend the DT patch later when
-the clock bindings is merged.
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.5/arm64-dt)
 
-Thanks,
+[1/1] arm64: dts: amlogic: add missing cache properties
+      https://git.kernel.org/amlogic/c/c2258a94fae556797085b58c0b6839c41826bd3d
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.5/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
 Neil
+
 
 _______________________________________________
 linux-amlogic mailing list
