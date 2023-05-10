@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97DFAC7EE22
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 May 2023 11:14:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8513C7EE26
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 May 2023 11:14:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bzcwyQ1HgMtMmkUkjSQHdoU/NBWAVJBKpina50KRTls=; b=VL693mpLNhuUoE
-	VGJfz1qz6hOWGW1YMC7Bn+6u+zYfFxfZwYZN6Gg3HIXOPjZcsxHE7DWayV0XjF5qpH3yHwLNPcw09
-	uL+EE6lsQEl0Rzq9KWP5RPQ0an3dkr5h4o3p7xAEUJXUTx7/MEBSnlI1DGGzU1DRN0p3At+Dhj0rf
-	VE7jRwFxDfu4CtEv8Cd61s6ARX1MKK4zbfHiKcD/s1RDkmWNMYDTIwUxLcWL7KVPzTTcQAkGhcMx8
-	Pvqu9mBHd5VQgbFzITm9WZwFuEJf+7p82U1PF8BYk+cKzPWkWdN+8bM9J+m9dmSyEaJxDbocL/AXX
-	QN810vbBC5Qk1CrVLf+A==;
+	List-Owner; bh=24tXVTwOJUSHJhNfE+oY4LkaI0od0NrEIk1+b3qposA=; b=qEGD1FRMFlQSna
+	xCV4jn9Guhw8O2U6AZEzGXkPKmkHKUICK36J6N+hRTzy0CfbL2pvn2P41HUoCi0R39nn3Edm7pxfU
+	PS5wbwNqJrBQgVBr6yA/XhK9+dn/rWOUtQNpnUcIQbiH5hvAd3igPB6qSM3ZHUnryxDpFFN+be/bJ
+	IszXoG0xxlhxb0X/nSfROqNw0RaSYZGytxhO5lSqLeMrdPXZLvbIi2eKNFXd/1jkncZL89nb4c0hx
+	OI5TIdEataakx/Ovj7cMrDyap8bKo9IpXgSb4c6w5ZxXrwLO/cpqnd0NYv4hJrFersTltQCT5dvTC
+	gKzJ4tvn6MDODsRqBd3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pwhlS-005z7l-1Q;
-	Wed, 10 May 2023 11:13:46 +0000
+	id 1pwhlb-005zEI-0O;
+	Wed, 10 May 2023 11:13:55 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pwhlN-005z5t-1w;
-	Wed, 10 May 2023 11:13:44 +0000
+	id 1pwhlR-005z7M-2O;
+	Wed, 10 May 2023 11:13:47 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 6C56E5FD26;
-	Wed, 10 May 2023 14:13:36 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id 1BFD45FD28;
+	Wed, 10 May 2023 14:13:44 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1683717216;
-	bh=AKgGyePwTSC2PMY+vcuqE34oAHZ0o1H1luWChqqd7XU=;
+	s=mail; t=1683717224;
+	bh=pDgBDoAKjg6vj7ErjpVUqQO/7LJNM4Rbiw1rV81IA2I=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=KXH/APkFrMCa4OyfAPBZRGtAvgHRkSYFp/q1y/HNsTdMTROswJF2+p2JsKxh+V7tf
-	 xmZkKQaD52cZKZxbmolc1TBgkULk5lJjPPsfDb1qPoSVemz+pVlDKdBfL4dJ/LZAGD
-	 6FhmVF7RHb6MZgyMwQS+XYsE4oDH01ZgufUtctYK7Lga2IRYuLHkwxmU52UVRV1OdQ
-	 tbvgvP2s78/iJCwOd8y+kUVDZjTZ5BQT7U4CN23I+9Sz1MjUl2tBCgS5sUkQ7HHbhu
-	 hLJ9fqUgQlSrt35Xe0f4eQH/+T3RXjYDc0QsxVf3WD6BOsopvQRzvvAbX89ehBHzbi
-	 nFJuR/ybFP/zw==
+	b=D5IjbeTUTO5iE1NbyyeAPb7mEeEsZufkvCkVZxiZDqxefDo3L/a7zFiqkwqFkpRV3
+	 cFMsORQhsE2BaFLrYxLzEJQv7u5xhm4CIwKoPELxmLu0vrQtZPFcJSLgDAjO/VhMCB
+	 Yibr7IRFnECeoUw22G3xItZzhdfeBXASZPfWZOjAr0bmg2LSwtai95gUwRo4gp8QMW
+	 t2zDnEAVGXWytKjOZWmbia+dRm5H8x3MOLBHWEsd4s5LR7aRrPFLAcBcvIvWS+Rs9u
+	 8GxwlupMj0WosxGC37O3d/thbwvGqIOVS6MDv+eYzXUXbtSFsBMr1L9aMDa0SLFy+T
+	 pznDj5aQOmQfA==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Wed, 10 May 2023 14:13:36 +0300 (MSK)
+	Wed, 10 May 2023 14:13:43 +0300 (MSK)
 From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
 To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
 	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
  Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Yixun Lan
-	<yixun.lan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jianxin Pan
+	<jianxin.pan@amlogic.com>, Yixun Lan <yixun.lan@amlogic.com>
 CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
 	<AVKrasnov@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 1/6] mtd: rawnand: meson: fix command sequence for read/write
-Date: Wed, 10 May 2023 14:08:29 +0300
-Message-ID: <20230510110835.26115-2-AVKrasnov@sberdevices.ru>
+Subject: [PATCH v3 3/6] mtd: rawnand: meson: always read whole OOB bytes
+Date: Wed, 10 May 2023 14:08:31 +0300
+Message-ID: <20230510110835.26115-4-AVKrasnov@sberdevices.ru>
 X-Mailer: git-send-email 2.35.0
 In-Reply-To: <20230510110835.26115-1-AVKrasnov@sberdevices.ru>
 References: <20230510110835.26115-1-AVKrasnov@sberdevices.ru>
@@ -71,8 +71,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/10 09:03:00 #21252424
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230510_041342_353042_3466B186 
-X-CRM114-Status: GOOD (  15.50  )
+X-CRM114-CacheID: sfid-20230510_041345_958636_39345795 
+X-CRM114-Status: GOOD (  11.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,105 +89,49 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This fixes read/write functionality by:
-1) Changing NFC_CMD_RB_INT bit value.
-2) Adding extra NAND_CMD_STATUS command on each r/w request.
-3) Adding extra idle commands during r/w request.
-4) Adding extra NAND_CMD_READ0 on each read request.
+This changes size of read access to OOB area by reading all bytes of
+OOB (free bytes + ECC engine bytes).
 
-Without this patch driver works unstable, for example there are a lot
-of ECC errors.
-
-Fixes: 8fae856c5350 ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
-Suggested-by: Liang Yang <liang.yang@amlogic.com>
 Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
 ---
- drivers/mtd/nand/raw/meson_nand.c | 30 +++++++++++++++++++++---------
- 1 file changed, 21 insertions(+), 9 deletions(-)
+ drivers/mtd/nand/raw/meson_nand.c | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
 diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index 074e14225c06..08b3cf17c113 100644
+index d7c81408cfa2..331377a2c5dc 100644
 --- a/drivers/mtd/nand/raw/meson_nand.c
 +++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -37,7 +37,7 @@
- #define NFC_CMD_SCRAMBLER_ENABLE	BIT(19)
- #define NFC_CMD_SCRAMBLER_DISABLE	0
- #define NFC_CMD_SHORTMODE_DISABLE	0
--#define NFC_CMD_RB_INT		BIT(14)
-+#define NFC_CMD_RB_INT ((0xb << 10) | BIT(18) | BIT(16))
- 
- #define NFC_CMD_GET_SIZE(x)	(((x) >> 22) & GENMASK(4, 0))
- 
-@@ -392,7 +392,7 @@ static void meson_nfc_set_data_oob(struct nand_chip *nand,
- 	}
- }
- 
--static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
-+static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms, int cmd_read0)
- {
- 	u32 cmd, cfg;
- 	int ret = 0;
-@@ -407,17 +407,29 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
- 
- 	reinit_completion(&nfc->completion);
- 
-+	cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_STATUS;
-+	writel(cmd, nfc->reg_base + NFC_REG_CMD);
-+	meson_nfc_cmd_idle(nfc, 5);
+@@ -755,6 +755,30 @@ static int __meson_nfc_read_oob(struct nand_chip *nand, int page,
+ 	u32 oob_bytes;
+ 	u32 page_size;
+ 	int ret;
++	int i;
 +
- 	/* use the max erase time as the maximum clock for waiting R/B */
--	cmd = NFC_CMD_RB | NFC_CMD_RB_INT
--		| nfc->param.chip_select | nfc->timing.tbers_max;
-+	cmd = NFC_CMD_RB | NFC_CMD_RB_INT | nfc->timing.tbers_max;
- 	writel(cmd, nfc->reg_base + NFC_REG_CMD);
-+	meson_nfc_cmd_idle(nfc, 2);
- 
- 	ret = wait_for_completion_timeout(&nfc->completion,
- 					  msecs_to_jiffies(timeout_ms));
- 	if (ret == 0)
--		ret = -1;
-+		return -1;
- 
--	return ret;
-+	if (!cmd_read0)
-+		return 0;
++	/* Read ECC codes and user bytes. */
++	for (i = 0; i < nand->ecc.steps; i++) {
++		u32 ecc_offs = nand->ecc.size * (i + 1) +
++			       NFC_OOB_PER_ECC(nand) * i;
 +
-+	cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_READ0;
-+	writel(cmd, nfc->reg_base + NFC_REG_CMD);
-+	meson_nfc_drain_cmd(nfc);
-+	meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
++		ret = nand_read_page_op(nand, page, 0, NULL, 0);
++		if (ret)
++			return ret;
 +
-+	return 0;
- }
++		/* Use temporary buffer, because 'nand_change_read_column_op()'
++		 * seems work with some alignment, so we can't read data to
++		 * 'oob_buf' directly.
++		 */
++		ret = nand_change_read_column_op(nand, ecc_offs, meson_chip->oob_buf,
++						 NFC_OOB_PER_ECC(nand), false);
++		if (ret)
++			return ret;
++
++		memcpy(oob_buf + i * NFC_OOB_PER_ECC(nand),
++		       meson_chip->oob_buf,
++		       NFC_OOB_PER_ECC(nand));
++	}
  
- static void meson_nfc_set_user_byte(struct nand_chip *nand, u8 *oob_buf)
-@@ -623,7 +635,7 @@ static int meson_nfc_rw_cmd_prepare_and_execute(struct nand_chip *nand,
- 	if (in) {
- 		nfc->cmdfifo.rw.cmd1 = cs | NFC_CMD_CLE | NAND_CMD_READSTART;
- 		writel(nfc->cmdfifo.rw.cmd1, nfc->reg_base + NFC_REG_CMD);
--		meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tR_max));
-+		meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tR_max), 1);
- 	} else {
- 		meson_nfc_cmd_idle(nfc, nfc->timing.tadl);
- 	}
-@@ -669,7 +681,7 @@ static int meson_nfc_write_page_sub(struct nand_chip *nand,
+ 	oob_bytes = meson_nfc_get_oob_bytes(nand);
  
- 	cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_PAGEPROG;
- 	writel(cmd, nfc->reg_base + NFC_REG_CMD);
--	meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tPROG_max));
-+	meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tPROG_max), 0);
- 
- 	meson_nfc_dma_buffer_release(nand, data_len, info_len, DMA_TO_DEVICE);
- 
-@@ -952,7 +964,7 @@ static int meson_nfc_exec_op(struct nand_chip *nand,
- 			break;
- 
- 		case NAND_OP_WAITRDY_INSTR:
--			meson_nfc_queue_rb(nfc, instr->ctx.waitrdy.timeout_ms);
-+			meson_nfc_queue_rb(nfc, instr->ctx.waitrdy.timeout_ms, 0);
- 			if (instr->delay_ns)
- 				meson_nfc_cmd_idle(nfc, delay_idle);
- 			break;
 -- 
 2.35.0
 
