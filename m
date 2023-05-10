@@ -4,60 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 158B7C77B7D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 May 2023 14:29:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2181C77B7D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 May 2023 14:41:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=HmIIX+J2st1adEag+JCuatQx8zHlnmB8DMdnksePWI8=; b=AGacFE8A2RJrdc
-	oYHDlcUeoYUT8f/Y0SMFfgLGcu1D+jHnDK0PROqczAr11z2JKSrS2NdOS4XQvHXiVjksBiiCLMZYx
-	AY6Mm7Orqcz1Jd50VNXiNHE4qFJFopNKoUW46cK0tmQO60iMbv1kFGKmbGtgySW8ELkcbvh0SRvIJ
-	6PziEgIaIey5ewov4hdyiBYfdXYeeG+UrXVGlp4CKOLEDZevUKDa/GNQbP/c1cRH6O5RDw2j0BeVK
-	rCcJh/4SrwAs6dk0GaaSvaiSJ7H/+xaMExDR8hEDM6sIzwdBlJdWKd2zDjq6HU9URMUwRUBttIpSB
-	pPVsNuzBDzFRoOcjUqdg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=jzgRylG9+I56RTFSi2xF8zyZ2UoZoGd1oib97Vc5egI=; b=f8ZCZkqSD1wSKv
+	VqOgax3Iv9g7fXYSSIko999qGyGc2Z4/rvvmJlApD/zg7/lLz1ZYbGf+1qEio1plkIonQsZBcDG4C
+	80UDU/DocOPMjvdhWDrQrAbVEpWLVBHFwmQnuBJiFE3t/Qh7+kSEtTm4NiDIhBm2PKZfoelGUNh06
+	Q2Br5KUFW0wOsXzKGV78BGdqS75Ym6u8UEb6lMVCtXHVNA3ysavyaUvKaE4K9dH771lLnPetycpWJ
+	Kqk4xyzIpBO8N4j72sLMMRSWBUcSN2jEPJLmOknxsGXTVJqu2pTxot29js4UvP8t+7zLSDDRFIRJ/
+	rMojQNy+6WZZUZ4TzWHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pwkox-006MZM-0s;
-	Wed, 10 May 2023 14:29:35 +0000
-Received: from first.geanix.com ([116.203.34.67])
+	id 1pwkzv-006NyF-26;
+	Wed, 10 May 2023 14:40:55 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pwkov-006MYo-05
+	id 1pwkzs-006Nwx-35
 	for linux-amlogic@lists.infradead.org;
-	Wed, 10 May 2023 14:29:34 +0000
-Received: from xps.skovby (85.184.138.13.dynamic.dhcp.aura-net.dk [85.184.138.13])
-	by first.geanix.com (Postfix) with ESMTPSA id D82284E4F18;
-	Wed, 10 May 2023 14:19:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=geanix.com; s=first;
-	t=1683728394; bh=8mxoiILecU3Ef/apqxJ0ZHRd86eTwd5eBTBahvkg6RQ=;
-	h=From:To:Cc:Subject:Date;
-	b=gRIOlDsZxI36YuKyvMkpJOsJVc+zjmvj1f1p23b/uLDwB+bb3CFA0j7DmGulJ0Kao
-	 wm0/j1oefegyfbA5ybt9XBlIPP0Aw0XUFvv6kqBptTxSamPsXMvzAvuaQ2dCHE8kUj
-	 5+5J8Pz7TmrLaDv6atYQDDwueLFirJ5yAUyCb65zWm+H3uTaDXaRjCXom5UL086l/O
-	 VoaVcZYW8VjuwC4aRqT466PHgUoNhJRvEG5dIQbRZ4wqAXN5Z6xKWG7Tn4rEKbBqF8
-	 I0o68PLUkhcJ9XIhZpGIxAsaUwnS3ifJe1pIAUbt7GERVJ1WxnWClY0g3Mbqt+QF8i
-	 HanoIxoKtvcrg==
-From: =?UTF-8?q?Martin=20Hundeb=C3=B8ll?= <martin@geanix.com>
-To: linux-amlogic@lists.infradead.org
-Cc: stable@vger.kernel.org,
+	Wed, 10 May 2023 14:40:54 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 4318B64997;
+	Wed, 10 May 2023 14:40:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC0AEC433EF;
+	Wed, 10 May 2023 14:40:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1683729647;
+	bh=l0swc7JlU+7f4U4KKRw7MUsJgF6zUJmkTgBPzNMU+Xs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JOYpzRBgv2y1ULEluQn0ilTpwc/OAJb6Nj/l5UqvOQxb70CGdeF87O3fRRQ8thyWK
+	 R9QLbECwTkWN0tpw1maWliuGcEceQEG8JpyVeMUCKng4Fbwe/Q2jRakWmzfZr4vU4t
+	 70JS1PP5TGkwhNUA56YzEIuIsS4c6n4kHc3N9wsA=
+Date: Wed, 10 May 2023 23:40:41 +0900
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Martin =?iso-8859-1?Q?Hundeb=F8ll?= <martin@geanix.com>
+Cc: linux-amlogic@lists.infradead.org, stable@vger.kernel.org,
 	Xingyu Chen <xingyu.chen@amlogic.com>,
 	Yixun Lan <yixun.lan@amlogic.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	=?UTF-8?q?Martin=20Hundeb=C3=B8ll?= <martin@geanix.com>
-Subject: [PATCH] pinctrl: meson-axg: add missing GPIOA_18 gpio group
-Date: Wed, 10 May 2023 16:19:34 +0200
-Message-Id: <20230510141934.112994-1-martin@geanix.com>
-X-Mailer: git-send-email 2.40.1
+	Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH] pinctrl: meson-axg: add missing GPIOA_18 gpio group
+Message-ID: <2023051035-oink-wasp-c894@gregkh>
+References: <20230510141934.112994-1-martin@geanix.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20230510141934.112994-1-martin@geanix.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230510_072933_216470_5BA6473C 
-X-CRM114-Status: UNSURE (   7.09  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230510_074053_077260_B3E5FBF6 
+X-CRM114-Status: GOOD (  16.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,25 +71,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-V2l0aG91dCB0aGlzLCB0aGUgZ3BpbyBjYW5ub3QgYmUgZXhwbGljaXRseSBtdXgnZWQgdG8gaXRz
-IGdwaW8gZnVuY3Rpb24uCgpGaXhlczogODNjNTY2ODA2YTY4YSAoInBpbmN0cmw6IG1lc29uLWF4
-ZzogQWRkIG5ldyBwaW5jdHJsIGRyaXZlciBmb3IgTWVzb24gQVhHIFNvQyIpClNpZ25lZC1vZmYt
-Ynk6IE1hcnRpbiBIdW5kZWLDuGxsIDxtYXJ0aW5AZ2Vhbml4LmNvbT4KLS0tCiBkcml2ZXJzL3Bp
-bmN0cmwvbWVzb24vcGluY3RybC1tZXNvbi1heGcuYyB8IDEgKwogMSBmaWxlIGNoYW5nZWQsIDEg
-aW5zZXJ0aW9uKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9waW5jdHJsL21lc29uL3BpbmN0cmwt
-bWVzb24tYXhnLmMgYi9kcml2ZXJzL3BpbmN0cmwvbWVzb24vcGluY3RybC1tZXNvbi1heGcuYwpp
-bmRleCA3YmZlY2RmYmExNzcuLmQyNDlhMDM1YzJiOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9waW5j
-dHJsL21lc29uL3BpbmN0cmwtbWVzb24tYXhnLmMKKysrIGIvZHJpdmVycy9waW5jdHJsL21lc29u
-L3BpbmN0cmwtbWVzb24tYXhnLmMKQEAgLTQwMCw2ICs0MDAsNyBAQCBzdGF0aWMgc3RydWN0IG1l
-c29uX3BteF9ncm91cCBtZXNvbl9heGdfcGVyaXBoc19ncm91cHNbXSA9IHsKIAlHUElPX0dST1VQ
-KEdQSU9BXzE1KSwKIAlHUElPX0dST1VQKEdQSU9BXzE2KSwKIAlHUElPX0dST1VQKEdQSU9BXzE3
-KSwKKwlHUElPX0dST1VQKEdQSU9BXzE4KSwKIAlHUElPX0dST1VQKEdQSU9BXzE5KSwKIAlHUElP
-X0dST1VQKEdQSU9BXzIwKSwKIAotLSAKMi4zNC4xCgoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgt
-YW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
-aWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On Wed, May 10, 2023 at 04:19:34PM +0200, Martin Hundeb=F8ll wrote:
+> Without this, the gpio cannot be explicitly mux'ed to its gpio function.
+> =
+
+> Fixes: 83c566806a68a ("pinctrl: meson-axg: Add new pinctrl driver for Mes=
+on AXG SoC")
+> Signed-off-by: Martin Hundeb=F8ll <martin@geanix.com>
+> ---
+>  drivers/pinctrl/meson/pinctrl-meson-axg.c | 1 +
+>  1 file changed, 1 insertion(+)
+> =
+
+> diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg.c b/drivers/pinctrl/=
+meson/pinctrl-meson-axg.c
+> index 7bfecdfba177..d249a035c2b9 100644
+> --- a/drivers/pinctrl/meson/pinctrl-meson-axg.c
+> +++ b/drivers/pinctrl/meson/pinctrl-meson-axg.c
+> @@ -400,6 +400,7 @@ static struct meson_pmx_group meson_axg_periphs_group=
+s[] =3D {
+>  	GPIO_GROUP(GPIOA_15),
+>  	GPIO_GROUP(GPIOA_16),
+>  	GPIO_GROUP(GPIOA_17),
+> +	GPIO_GROUP(GPIOA_18),
+>  	GPIO_GROUP(GPIOA_19),
+>  	GPIO_GROUP(GPIOA_20),
+>  =
+
+> -- =
+
+> 2.34.1
+> =
+
+
+<formletter>
+
+This is not the correct way to submit patches for inclusion in the
+stable kernel tree.  Please read:
+    https://www.kernel.org/doc/html/latest/process/stable-kernel-rules.html
+for how to do this properly.
+
+</formletter>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
