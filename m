@@ -4,77 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F896C7EE22
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 May 2023 03:00:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C2D8C7EE22
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 May 2023 09:12:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
-	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9Su75tkwpV1kCLXUXYHdm136WgorR4fi0ioYGjiAc0U=; b=KoOF6udI3nVnwf
-	XtwGIiPjwaAL5IDwT08DgoOyZxNOL3XmCM3DVJoH+4q503HSpnTKmO05J0PAIQDxymx1PtsKza2pN
-	jUmBMRmPRaACO9EMDTr9kFiI695/9T4kF0vDtxGyPhAxRVOy0eW+AmDZGIqZ4BLl3OkqiCdY4nPlj
-	z1ECKBhHgTlFX0G0hJbEVTlyEXYCVF54xM0QE2fm1XaoT9vTe1dsz06kf1eg1MJfcUfUC+kUW6Fv0
-	vyfoPdd5buz/bCxq8EquGJFdnbIHPTLpSwFDOa5twu16Pwa/5qFyfBHtph218Ma8o8HdE74NphNf8
-	ey0wnghd+Ma/6n6gbzBw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=oudOLIpx7UAGo76HGsOgrH6P9m23grwqY9DoCRl7pMY=; b=HD3sqpd9PIFCHo
+	hESCgWxZ8asB357dx7VfL26gvjB0RtlappNtqfj+xizvOSPXJ8YMbwvfdCSs+pT/ttxX2l0qyB3kk
+	xvLFwk8UUt68UwQvHWJV/rMnlzICwUWwmHviIPy6WbVlXdhR+XCFlN8bqgj+9uoJKe8lq7jYBUYEt
+	NdSuA6ZV8sC24Mm2Vy28BBWMCGG5U/4Seq3DD6XdtmIZJl7Lc4XYnPATSzJYdjC/JqZRDdyLLSiE8
+	DAquFqRCwllZls7z1K53JxEKgfj7RErJ3UC1cFagGiEzP45tv2aEYwLbQddb66shSmc7E+R9mqNo7
+	W6yo1lT6t8FtvVdN7Xww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pwa45-004pAh-1e;
-	Wed, 10 May 2023 03:00:29 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1pwfrT-005cfZ-1J;
+	Wed, 10 May 2023 09:11:51 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pwa42-004pAB-1h;
-	Wed, 10 May 2023 03:00:28 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 808DC638FF;
-	Wed, 10 May 2023 03:00:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B5C7CC4339B;
-	Wed, 10 May 2023 03:00:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1683687624;
-	bh=7LO/nm+SvO2zUJm9O7tKkRrwmKO+jJgciV/tuTaQgEI=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=RTOVU+VB5lVL3KuGZFTpoKDpYjJRZaFEG2sQHTVRB003U8JjjD5mssizr5+LQvmxS
-	 FiRe09LS1LVd1YWnDEJh5qAL8JXede7MYdp/xXZvK/GdzrksCN2HWYx2Yl6T6VU0FJ
-	 9JyyJlSaOGUYos/Lyy9six7qob5Gkj21W/akStnMjymLUTb5PyAM8M1Wbf3N951mzV
-	 Eg6NfnYrqIYGWQtpMzg4W3Sk8GzvYYx+hlaSlCIHcLFyllWUB3ydom5VLPkfJdMfc6
-	 YNs6Y4Xid5qDf/PpW1q5ZniGiemNLv2Btm+78JH6TJxiVI7ORNqyekAAsAcCAtY5+p
-	 +unEdK3RS/REg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 8C0E5C39562;
-	Wed, 10 May 2023 03:00:24 +0000 (UTC)
+	id 1pwfrL-005cdm-1G;
+	Wed, 10 May 2023 09:11:45 +0000
+Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 10 May 2023
+ 17:11:25 +0800
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+To: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>
+CC: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+	<khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>
+Subject: [PATCH V4] arm64: dts: add support for C3 based Amlogic AW409
+Date: Wed, 10 May 2023 17:11:29 +0800
+Message-ID: <20230510091129.151669-1-xianwei.zhao@amlogic.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Subject: Re: [PATCH net-next v2 00/11] net: stmmac: Convert to platform remove
- callback returning void
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id:  <168368762456.27124.17176817660933091864.git-patchwork-notify@kernel.org>
-Date: Wed, 10 May 2023 03:00:24 +0000
-References: <20230508142637.1449363-1-u.kleine-koenig@pengutronix.de>
-In-Reply-To: <20230508142637.1449363-1-u.kleine-koenig@pengutronix.de>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig_=3Cu=2Ekleine-koenig=40pengutronix=2Ede=3E?=@ci.codeaurora.org
-Cc: peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
- joabreu@synopsys.com, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
- shawnguo@kernel.org, s.hauer@pengutronix.de, vz@mleia.com,
- neil.armstrong@linaro.org, khilman@baylibre.com, vkoul@kernel.org,
- kernel@esmil.dk, samin.guo@starfivetech.com, wens@csie.org,
- jernej.skrabec@gmail.com, samuel@sholland.org,
- nobuhiro1.iwamatsu@toshiba.co.jp, matthias.bgg@gmail.com,
- thierry.reding@gmail.com, jonathanh@nvidia.com, festevam@gmail.com,
- linux-imx@nxp.com, jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
- bhupesh.sharma@linaro.org, angelogioacchino.delregno@collabora.com,
- netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
- linux-amlogic@lists.infradead.org, linux-oxnas@groups.io,
- linux-sunxi@lists.linux.dev, linux-mediatek@lists.infradead.org,
- linux-tegra@vger.kernel.org
+X-Originating-IP: [10.98.11.200]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230509_200026_674613_A5B378B2 
-X-CRM114-Status: UNSURE (   9.57  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230510_021143_455743_4C94B088 
+X-CRM114-Status: GOOD (  13.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,51 +61,172 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello:
+Amlogic C3 is an advanced edge AI processor designed for smart IP camera
+applications.
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+Add basic support for the C3 based Amlogic AW409 board, which describes
+the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
+booting up into the serial console.
 
-On Mon,  8 May 2023 16:26:26 +0200 you wrote:
-> Hello,
-> 
-> (implicit) v1 of this series is available at
-> https://lore.kernel.org/netdev/20230402143025.2524443-1-u.kleine-koenig@pengutronix.de
-> .
-> 
-> Changes since then:
-> 
-> [...]
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Link: https://lore.kernel.org/all/20230407102704.1055152-1-kelvin.zhang@amlogic.com
+Link: https://lore.kernel.org/all/20230307222651.2106615-2-martin.blumenstingl@googlemail.com
 
-Here is the summary with links:
-  - [net-next,v2,01/11] net: stmmac: Make stmmac_pltfr_remove() return void
-    https://git.kernel.org/netdev/net-next/c/3246627f11c5
-  - [net-next,v2,02/11] net: stmmac: dwmac-visconti: Make visconti_eth_clock_remove() return void
-    https://git.kernel.org/netdev/net-next/c/b9bc44fe068d
-  - [net-next,v2,03/11] net: stmmac: dwmac-qcom-ethqos: Drop an if with an always false condition
-    https://git.kernel.org/netdev/net-next/c/c5f3ffe35cc9
-  - [net-next,v2,04/11] net: stmmac: dwmac-visconti: Convert to platform remove callback returning void
-    https://git.kernel.org/netdev/net-next/c/f4d05c419761
-  - [net-next,v2,05/11] net: stmmac: dwmac-dwc-qos-eth: Convert to platform remove callback returning void
-    https://git.kernel.org/netdev/net-next/c/360cd89064b6
-  - [net-next,v2,06/11] net: stmmac: dwmac-qcom-ethqos: Convert to platform remove callback returning void
-    https://git.kernel.org/netdev/net-next/c/5580b559a80a
-  - [net-next,v2,07/11] net: stmmac: dwmac-rk: Convert to platform remove callback returning void
-    https://git.kernel.org/netdev/net-next/c/903cc461c901
-  - [net-next,v2,08/11] net: stmmac: dwmac-sti: Convert to platform remove callback returning void
-    https://git.kernel.org/netdev/net-next/c/b394982a10d9
-  - [net-next,v2,09/11] net: stmmac: dwmac-stm32: Convert to platform remove callback returning void
-    https://git.kernel.org/netdev/net-next/c/fec3f552140e
-  - [net-next,v2,10/11] net: stmmac: dwmac-sun8i: Convert to platform remove callback returning void
-    https://git.kernel.org/netdev/net-next/c/cc708d4ed7b3
-  - [net-next,v2,11/11] net: stmmac: dwmac-tegra: Convert to platform remove callback returning void
-    https://git.kernel.org/netdev/net-next/c/a86f8601c8f0
+V3 -> V4: Move Link under the --- before the changelog.
+V2 -> V3: Remove '256m' from filename;
+          Keep alphabetical order of Makefile.
+V1 -> V2: Remove new arch, and use ARCH_MESON;
+          Modify node name, and delete superfluous blank line.
+---
+ arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+ .../dts/amlogic/amlogic-c3-c302x-aw409.dts    | 29 +++++++
+ arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi   | 86 +++++++++++++++++++
+ 3 files changed, 116 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
 
-You are awesome, thank you!
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index cd1c5b04890a..6f61798a109f 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -1,4 +1,5 @@
+ # SPDX-License-Identifier: GPL-2.0
++dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
+new file mode 100644
+index 000000000000..edce8850b338
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
+@@ -0,0 +1,29 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
++ */
++
++/dts-v1/;
++
++#include "amlogic-c3.dtsi"
++
++/ {
++	model = "Amlogic C302 aw409 Development Board";
++	compatible = "amlogic,aw409", "amlogic,c3";
++	interrupt-parent = <&gic>;
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	aliases {
++		serial0 = &uart_b;
++	};
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x10000000>;
++	};
++};
++
++&uart_b {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+new file mode 100644
+index 000000000000..93b335aef605
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+@@ -0,0 +1,86 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
++ */
++
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/gpio/gpio.h>
++
++/ {
++	cpus {
++		#address-cells = <2>;
++		#size-cells = <0>;
++
++		cpu0: cpu@0 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35";
++			reg = <0x0 0x0>;
++			enable-method = "psci";
++		};
++
++		cpu1: cpu@1 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35";
++			reg = <0x0 0x1>;
++			enable-method = "psci";
++		};
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
++	};
++
++	psci {
++		compatible = "arm,psci-1.0";
++		method = "smc";
++	};
++
++	xtal: xtal-clk {
++		compatible = "fixed-clock";
++		clock-frequency = <24000000>;
++		clock-output-names = "xtal";
++		#clock-cells = <0>;
++	};
++
++	soc {
++		compatible = "simple-bus";
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		gic: interrupt-controller@fff01000 {
++			compatible = "arm,gic-400";
++			#interrupt-cells = <3>;
++			#address-cells = <0>;
++			interrupt-controller;
++			reg = <0x0 0xfff01000 0 0x1000>,
++			      <0x0 0xfff02000 0 0x2000>,
++			      <0x0 0xfff04000 0 0x2000>,
++			      <0x0 0xfff06000 0 0x2000>;
++			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
++		};
++
++		apb4: bus@fe000000 {
++			compatible = "simple-bus";
++			reg = <0x0 0xfe000000 0x0 0x480000>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
++
++			uart_b: serial@7a000 {
++				compatible = "amlogic,meson-g12a-uart";
++				reg = <0x0 0x7a000 0x0 0x18>;
++				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
++				status = "disabled";
++				clocks = <&xtal>, <&xtal>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++			};
++
++		};
++	};
++};
+
+base-commit: ae68fb187b59bc8645974320808ab2d7c41b1833
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.37.1
 
 
 _______________________________________________
