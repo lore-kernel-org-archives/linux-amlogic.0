@@ -4,47 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C2D8C7EE22
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 May 2023 09:12:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAA4EC77B7C
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 May 2023 11:14:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=oudOLIpx7UAGo76HGsOgrH6P9m23grwqY9DoCRl7pMY=; b=HD3sqpd9PIFCHo
-	hESCgWxZ8asB357dx7VfL26gvjB0RtlappNtqfj+xizvOSPXJ8YMbwvfdCSs+pT/ttxX2l0qyB3kk
-	xvLFwk8UUt68UwQvHWJV/rMnlzICwUWwmHviIPy6WbVlXdhR+XCFlN8bqgj+9uoJKe8lq7jYBUYEt
-	NdSuA6ZV8sC24Mm2Vy28BBWMCGG5U/4Seq3DD6XdtmIZJl7Lc4XYnPATSzJYdjC/JqZRDdyLLSiE8
-	DAquFqRCwllZls7z1K53JxEKgfj7RErJ3UC1cFagGiEzP45tv2aEYwLbQddb66shSmc7E+R9mqNo7
-	W6yo1lT6t8FtvVdN7Xww==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=2B6n7oI2vYFw8r6ot7WR5GanZTvCizxpYWzSmyBhaUM=; b=h15Sq3oayW0/wf
+	y1jdmVK7awcZuXsFIhu9Lz7Sk3KQd0jWHg/5PGKEdSE22gOwnF8jikuFTuMY1bLCu+jpOMdACtlBq
+	GGpReveocLejFy4bbwt9wJzegng2fMu6Lxk5swH/8IjcHuikIvKjVjLK43OorwOE3X8MasJdFzBo2
+	qNufvJBtZzjIp4VMGqkZ3Vp+uGnOF356lcGkiv9DR5UjH/fKh3BSNmr95HzQ5KbJF3xZCBdYk1HYt
+	lAMMVJTJdHgU38IgQDMqsd7k4psi7IcGvl3XAqwNi+tgCdxWHvq8R9GAo0R5ANxganAEK2T3ZKR4Q
+	pV8U107uqNyzv8vLd12Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pwfrT-005cfZ-1J;
-	Wed, 10 May 2023 09:11:51 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1pwhlX-005zBV-0Z;
+	Wed, 10 May 2023 11:13:51 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pwfrL-005cdm-1G;
-	Wed, 10 May 2023 09:11:45 +0000
-Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 10 May 2023
- 17:11:25 +0800
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-To: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>
-CC: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
-	<khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: [PATCH V4] arm64: dts: add support for C3 based Amlogic AW409
-Date: Wed, 10 May 2023 17:11:29 +0800
-Message-ID: <20230510091129.151669-1-xianwei.zhao@amlogic.com>
-X-Mailer: git-send-email 2.37.1
+	id 1pwhlO-005z63-1S;
+	Wed, 10 May 2023 11:13:46 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 34B805FD27;
+	Wed, 10 May 2023 14:13:39 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1683717219;
+	bh=0WRp3nNpH931sfb3guxGB5qHBPIs8vaVNEjCSJ00Zkw=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+	b=jlSeiJQTsggMYlPuti5C4BFhFkt1Ul6PZQkYYm7KNgWwjQoJmKH+UnnJmSV3As/zl
+	 tlWcctpUTmlaxFzTt/qOiGsQsjaOxmkLMbZEs8fKVCqCxJ00qpDcYNkBqy1NNFl5+B
+	 8It02S0LzS6urFcrkBwrMqIVhXGe6/oxfHWs1kHIHCZytThWc7UjqOi95D8AzoLU17
+	 5dG/vOIEO6UHzzuG6JHNMeOVLjFZYbwOMl5Jq2beeBkXdEalEKM13xPnRILhvFkvH0
+	 EeWVyU9ve3y+vJPir4lVlYhcilInfjsu747mjnPRYFVG+z6Flx1+Vivjo7XTK0n791
+	 kLrIXfwcOybMQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Wed, 10 May 2023 14:13:39 +0300 (MSK)
+From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
+	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jianxin Pan
+	<jianxin.pan@amlogic.com>, Yixun Lan <yixun.lan@amlogic.com>
+CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
+	<AVKrasnov@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 2/6] mtd: rawnand: meson: move OOB to non-protected ECC area
+Date: Wed, 10 May 2023 14:08:30 +0300
+Message-ID: <20230510110835.26115-3-AVKrasnov@sberdevices.ru>
+X-Mailer: git-send-email 2.35.0
+In-Reply-To: <20230510110835.26115-1-AVKrasnov@sberdevices.ru>
+References: <20230510110835.26115-1-AVKrasnov@sberdevices.ru>
 MIME-Version: 1.0
-X-Originating-IP: [10.98.11.200]
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/10 09:03:00 #21252424
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230510_021143_455743_4C94B088 
-X-CRM114-Status: GOOD (  13.36  )
+X-CRM114-CacheID: sfid-20230510_041342_863606_0E8E5E09 
+X-CRM114-Status: GOOD (  26.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,172 +89,394 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic C3 is an advanced edge AI processor designed for smart IP camera
-applications.
+This moves free bytes of OOB to non-protected ECC area. It is needed to
+make JFFS2 works correctly with this NAND controller. Problem fires when
+JFFS2 driver writes cleanmarker to some page and later it tries to write
+to this page - write will be done successfully, but after that such page
+becomes unreadable due to invalid ECC codes. This happens because second
+write needs to update ECC codes, but it is impossible to do it correctly
+without block erase. So idea of this patch is to split accesses to OOB
+free bytes and data on each page - now both of them does not depends on
+each other.
 
-Add basic support for the C3 based Amlogic AW409 board, which describes
-the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
-booting up into the serial console.
-
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
 ---
-Link: https://lore.kernel.org/all/20230407102704.1055152-1-kelvin.zhang@amlogic.com
-Link: https://lore.kernel.org/all/20230307222651.2106615-2-martin.blumenstingl@googlemail.com
+ drivers/mtd/nand/raw/meson_nand.c | 192 ++++++++++++++++++++++++------
+ 1 file changed, 155 insertions(+), 37 deletions(-)
 
-V3 -> V4: Move Link under the --- before the changelog.
-V2 -> V3: Remove '256m' from filename;
-          Keep alphabetical order of Makefile.
-V1 -> V2: Remove new arch, and use ARCH_MESON;
-          Modify node name, and delete superfluous blank line.
----
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../dts/amlogic/amlogic-c3-c302x-aw409.dts    | 29 +++++++
- arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi   | 86 +++++++++++++++++++
- 3 files changed, 116 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index cd1c5b04890a..6f61798a109f 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
-+dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
-new file mode 100644
-index 000000000000..edce8850b338
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
-@@ -0,0 +1,29 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-+ */
+diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+index 08b3cf17c113..d7c81408cfa2 100644
+--- a/drivers/mtd/nand/raw/meson_nand.c
++++ b/drivers/mtd/nand/raw/meson_nand.c
+@@ -108,6 +108,9 @@
+ 
+ #define PER_INFO_BYTE		8
+ 
++#define NFC_USER_BYTES		2
++#define NFC_OOB_PER_ECC(nand)	((nand)->ecc.bytes + NFC_USER_BYTES)
 +
-+/dts-v1/;
+ struct meson_nfc_nand_chip {
+ 	struct list_head node;
+ 	struct nand_chip nand;
+@@ -122,6 +125,7 @@ struct meson_nfc_nand_chip {
+ 	u8 *data_buf;
+ 	__le64 *info_buf;
+ 	u32 nsels;
++	u8 *oob_buf;
+ 	u8 sels[];
+ };
+ 
+@@ -338,7 +342,7 @@ static u8 *meson_nfc_oob_ptr(struct nand_chip *nand, int i)
+ 	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
+ 	int len;
+ 
+-	len = nand->ecc.size * (i + 1) + (nand->ecc.bytes + 2) * i;
++	len = nand->ecc.size * (i + 1) + NFC_OOB_PER_ECC(nand) * i;
+ 
+ 	return meson_chip->data_buf + len;
+ }
+@@ -349,7 +353,7 @@ static u8 *meson_nfc_data_ptr(struct nand_chip *nand, int i)
+ 	int len, temp;
+ 
+ 	temp = nand->ecc.size + nand->ecc.bytes;
+-	len = (temp + 2) * i;
++	len = (temp + NFC_USER_BYTES) * i;
+ 
+ 	return meson_chip->data_buf + len;
+ }
+@@ -357,29 +361,47 @@ static u8 *meson_nfc_data_ptr(struct nand_chip *nand, int i)
+ static void meson_nfc_get_data_oob(struct nand_chip *nand,
+ 				   u8 *buf, u8 *oobbuf)
+ {
++	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
++	struct mtd_info *mtd = nand_to_mtd(nand);
+ 	int i, oob_len = 0;
+ 	u8 *dsrc, *osrc;
++	u8 *oobtail;
+ 
+-	oob_len = nand->ecc.bytes + 2;
++	oob_len = NFC_OOB_PER_ECC(nand);
+ 	for (i = 0; i < nand->ecc.steps; i++) {
+ 		if (buf) {
+ 			dsrc = meson_nfc_data_ptr(nand, i);
+ 			memcpy(buf, dsrc, nand->ecc.size);
+ 			buf += nand->ecc.size;
+ 		}
+-		osrc = meson_nfc_oob_ptr(nand, i);
+-		memcpy(oobbuf, osrc, oob_len);
+-		oobbuf += oob_len;
 +
-+#include "amlogic-c3.dtsi"
++		if (oobbuf) {
++			osrc = meson_nfc_oob_ptr(nand, i);
++			memcpy(oobbuf, osrc, oob_len);
++			oobbuf += oob_len;
++		}
+ 	}
 +
-+/ {
-+	model = "Amlogic C302 aw409 Development Board";
-+	compatible = "amlogic,aw409", "amlogic,c3";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
++	if (!oobbuf)
++		return;
 +
-+	aliases {
-+		serial0 = &uart_b;
-+	};
++	oobtail = meson_chip->data_buf + nand->ecc.steps *
++		  (nand->ecc.size + oob_len);
 +
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x10000000>;
-+	};
-+};
++	/* 'oobbuf' if already shifted to the start of unused area. */
++	memcpy(oobbuf, oobtail, mtd->oobsize - nand->ecc.steps * oob_len);
+ }
+ 
+ static void meson_nfc_set_data_oob(struct nand_chip *nand,
+ 				   const u8 *buf, u8 *oobbuf)
+ {
++	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
++	struct mtd_info *mtd = nand_to_mtd(nand);
+ 	int i, oob_len = 0;
+ 	u8 *dsrc, *osrc;
++	u8 *oobtail;
+ 
+-	oob_len = nand->ecc.bytes + 2;
++	oob_len = NFC_OOB_PER_ECC(nand);
+ 	for (i = 0; i < nand->ecc.steps; i++) {
+ 		if (buf) {
+ 			dsrc = meson_nfc_data_ptr(nand, i);
+@@ -390,6 +412,12 @@ static void meson_nfc_set_data_oob(struct nand_chip *nand,
+ 		memcpy(osrc, oobbuf, oob_len);
+ 		oobbuf += oob_len;
+ 	}
 +
-+&uart_b {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-new file mode 100644
-index 000000000000..93b335aef605
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-@@ -0,0 +1,86 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-+ */
++	oobtail = meson_chip->data_buf + nand->ecc.steps *
++		  (nand->ecc.size + oob_len);
 +
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/gpio/gpio.h>
++	/* 'oobbuf' if already shifted to the start of unused area. */
++	memcpy(oobtail, oobbuf, mtd->oobsize - nand->ecc.steps * oob_len);
+ }
+ 
+ static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms, int cmd_read0)
+@@ -436,25 +464,12 @@ static void meson_nfc_set_user_byte(struct nand_chip *nand, u8 *oob_buf)
+ {
+ 	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
+ 	__le64 *info;
+-	int i, count;
+-
+-	for (i = 0, count = 0; i < nand->ecc.steps; i++, count += 2) {
+-		info = &meson_chip->info_buf[i];
+-		*info |= oob_buf[count];
+-		*info |= oob_buf[count + 1] << 8;
+-	}
+-}
+-
+-static void meson_nfc_get_user_byte(struct nand_chip *nand, u8 *oob_buf)
+-{
+-	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
+-	__le64 *info;
+-	int i, count;
++	int i;
+ 
+-	for (i = 0, count = 0; i < nand->ecc.steps; i++, count += 2) {
++	for (i = 0; i < nand->ecc.steps; i++) {
+ 		info = &meson_chip->info_buf[i];
+-		oob_buf[count] = *info;
+-		oob_buf[count + 1] = *info >> 8;
++		/* Always ignore user bytes programming. */
++		*info |= 0xffff;
+ 	}
+ }
+ 
+@@ -698,18 +713,92 @@ static int meson_nfc_write_page_raw(struct nand_chip *nand, const u8 *buf,
+ 	return meson_nfc_write_page_sub(nand, page, 1);
+ }
+ 
++static u32 meson_nfc_get_oob_bytes(struct nand_chip *nand)
++{
++	struct mtd_info *mtd = nand_to_mtd(nand);
 +
-+/ {
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
++	return mtd->oobsize - nand->ecc.steps * NFC_OOB_PER_ECC(nand);
++}
 +
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a35";
-+			reg = <0x0 0x0>;
-+			enable-method = "psci";
-+		};
++static int __meson_nfc_write_oob(struct nand_chip *nand, int page, u8 *oob_buf)
++{
++	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
++	struct mtd_info *mtd = nand_to_mtd(nand);
++	u32 page_size = mtd->writesize + mtd->oobsize;
++	u32 oob_bytes = meson_nfc_get_oob_bytes(nand);
++	int ret;
 +
-+		cpu1: cpu@1 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a35";
-+			reg = <0x0 0x1>;
-+			enable-method = "psci";
-+		};
-+	};
++	if (!oob_bytes)
++		return 0;
 +
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
++	ret = nand_prog_page_begin_op(nand, page, 0, NULL, 0);
++	if (ret)
++		return ret;
 +
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
++	memcpy(meson_chip->oob_buf, oob_buf + (mtd->oobsize - oob_bytes),
++	       oob_bytes);
 +
-+	xtal: xtal-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "xtal";
-+		#clock-cells = <0>;
-+	};
++	ret = nand_change_write_column_op(nand, page_size - oob_bytes,
++					  meson_chip->oob_buf,
++					  oob_bytes, false);
++	if (ret)
++		return ret;
 +
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
++	return nand_prog_page_end_op(nand);
++}
 +
-+		gic: interrupt-controller@fff01000 {
-+			compatible = "arm,gic-400";
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			reg = <0x0 0xfff01000 0 0x1000>,
-+			      <0x0 0xfff02000 0 0x2000>,
-+			      <0x0 0xfff04000 0 0x2000>,
-+			      <0x0 0xfff06000 0 0x2000>;
-+			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-+		};
++static int __meson_nfc_read_oob(struct nand_chip *nand, int page,
++				u8 *oob_buf)
++{
++	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
++	struct mtd_info *mtd = nand_to_mtd(nand);
++	u32 oob_bytes;
++	u32 page_size;
++	int ret;
 +
-+		apb4: bus@fe000000 {
-+			compatible = "simple-bus";
-+			reg = <0x0 0xfe000000 0x0 0x480000>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
++	oob_bytes = meson_nfc_get_oob_bytes(nand);
 +
-+			uart_b: serial@7a000 {
-+				compatible = "amlogic,meson-g12a-uart";
-+				reg = <0x0 0x7a000 0x0 0x18>;
-+				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
-+				status = "disabled";
-+				clocks = <&xtal>, <&xtal>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+			};
++	if (!oob_bytes)
++		return 0;
 +
-+		};
-+	};
-+};
-
-base-commit: ae68fb187b59bc8645974320808ab2d7c41b1833
++	ret = nand_read_page_op(nand, page, 0, NULL, 0);
++	if (ret)
++		return ret;
++
++	page_size = mtd->writesize + mtd->oobsize;
++
++	ret = nand_change_read_column_op(nand, page_size - oob_bytes,
++					 meson_chip->oob_buf,
++					 oob_bytes, false);
++
++	if (!ret)
++		memcpy(oob_buf + (mtd->oobsize - oob_bytes),
++		       meson_chip->oob_buf,
++		       oob_bytes);
++
++	return ret;
++}
++
+ static int meson_nfc_write_page_hwecc(struct nand_chip *nand,
+ 				      const u8 *buf, int oob_required, int page)
+ {
+ 	struct mtd_info *mtd = nand_to_mtd(nand);
+ 	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
+ 	u8 *oob_buf = nand->oob_poi;
++	int ret;
+ 
+ 	memcpy(meson_chip->data_buf, buf, mtd->writesize);
+ 	memset(meson_chip->info_buf, 0, nand->ecc.steps * PER_INFO_BYTE);
+ 	meson_nfc_set_user_byte(nand, oob_buf);
+ 
+-	return meson_nfc_write_page_sub(nand, page, 0);
++	ret = meson_nfc_write_page_sub(nand, page, 0);
++	if (ret)
++		return ret;
++
++	if (oob_required)
++		ret = __meson_nfc_write_oob(nand, page, oob_buf);
++
++	return ret;
+ }
+ 
+ static void meson_nfc_check_ecc_pages_valid(struct meson_nfc *nfc,
+@@ -783,7 +872,7 @@ static int meson_nfc_read_page_raw(struct nand_chip *nand, u8 *buf,
+ 	if (ret)
+ 		return ret;
+ 
+-	meson_nfc_get_data_oob(nand, buf, oob_buf);
++	meson_nfc_get_data_oob(nand, buf, oob_required ? oob_buf : NULL);
+ 
+ 	return 0;
+ }
+@@ -803,12 +892,12 @@ static int meson_nfc_read_page_hwecc(struct nand_chip *nand, u8 *buf,
+ 	if (ret)
+ 		return ret;
+ 
+-	meson_nfc_get_user_byte(nand, oob_buf);
+ 	ret = meson_nfc_ecc_correct(nand, &bitflips, &correct_bitmap);
+ 	if (ret == ECC_CHECK_RETURN_FF) {
+ 		if (buf)
+ 			memset(buf, 0xff, mtd->writesize);
+ 		memset(oob_buf, 0xff, mtd->oobsize);
++		return bitflips;
+ 	} else if (ret < 0) {
+ 		if ((nand->options & NAND_NEED_SCRAMBLING) || !buf) {
+ 			mtd->ecc_stats.failed++;
+@@ -820,12 +909,14 @@ static int meson_nfc_read_page_hwecc(struct nand_chip *nand, u8 *buf,
+ 
+ 		for (i = 0; i < nand->ecc.steps ; i++) {
+ 			u8 *data = buf + i * ecc->size;
+-			u8 *oob = nand->oob_poi + i * (ecc->bytes + 2);
++			u8 *oob = nand->oob_poi + i * NFC_OOB_PER_ECC(nand);
+ 
+ 			if (correct_bitmap & BIT_ULL(i))
+ 				continue;
++
+ 			ret = nand_check_erased_ecc_chunk(data,	ecc->size,
+-							  oob, ecc->bytes + 2,
++							  oob,
++							  NFC_OOB_PER_ECC(nand),
+ 							  NULL, 0,
+ 							  ecc->strength);
+ 			if (ret < 0) {
+@@ -839,17 +930,30 @@ static int meson_nfc_read_page_hwecc(struct nand_chip *nand, u8 *buf,
+ 		memcpy(buf, meson_chip->data_buf, mtd->writesize);
+ 	}
+ 
++	if (oob_required)
++		__meson_nfc_read_oob(nand, page, oob_buf);
++
+ 	return bitflips;
+ }
+ 
+ static int meson_nfc_read_oob_raw(struct nand_chip *nand, int page)
+ {
+-	return meson_nfc_read_page_raw(nand, NULL, 1, page);
++	return __meson_nfc_read_oob(nand, page, nand->oob_poi);
+ }
+ 
+ static int meson_nfc_read_oob(struct nand_chip *nand, int page)
+ {
+-	return meson_nfc_read_page_hwecc(nand, NULL, 1, page);
++	return __meson_nfc_read_oob(nand, page, nand->oob_poi);
++}
++
++static int meson_nfc_write_oob_raw(struct nand_chip *nand, int page)
++{
++	return __meson_nfc_write_oob(nand, page, nand->oob_poi);
++}
++
++static int meson_nfc_write_oob(struct nand_chip *nand, int page)
++{
++	return __meson_nfc_write_oob(nand, page, nand->oob_poi);
+ }
+ 
+ static bool meson_nfc_is_buffer_dma_safe(const void *buffer)
+@@ -982,7 +1086,7 @@ static int meson_ooblayout_ecc(struct mtd_info *mtd, int section,
+ 	if (section >= nand->ecc.steps)
+ 		return -ERANGE;
+ 
+-	oobregion->offset =  2 + (section * (2 + nand->ecc.bytes));
++	oobregion->offset = NFC_USER_BYTES + section * NFC_OOB_PER_ECC(nand);
+ 	oobregion->length = nand->ecc.bytes;
+ 
+ 	return 0;
+@@ -992,12 +1096,16 @@ static int meson_ooblayout_free(struct mtd_info *mtd, int section,
+ 				struct mtd_oob_region *oobregion)
+ {
+ 	struct nand_chip *nand = mtd_to_nand(mtd);
++	u32 oob_bytes = meson_nfc_get_oob_bytes(nand);
+ 
+ 	if (section >= nand->ecc.steps)
+ 		return -ERANGE;
+ 
+-	oobregion->offset = section * (2 + nand->ecc.bytes);
+-	oobregion->length = 2;
++	/* Split rest of OOB area (not covered by ECC engine) per each
++	 * ECC section. This will be OOB data available to user.
++	 */
++	oobregion->offset = (section + nand->ecc.steps) * NFC_OOB_PER_ECC(nand);
++	oobregion->length = oob_bytes / nand->ecc.steps;
+ 
+ 	return 0;
+ }
+@@ -1184,6 +1292,9 @@ static int meson_nand_bch_mode(struct nand_chip *nand)
+ 
+ static void meson_nand_detach_chip(struct nand_chip *nand)
+ {
++	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
++
++	kfree(meson_chip->oob_buf);
+ 	meson_nfc_free_buffer(nand);
+ }
+ 
+@@ -1225,9 +1336,9 @@ static int meson_nand_attach_chip(struct nand_chip *nand)
+ 	nand->ecc.engine_type = NAND_ECC_ENGINE_TYPE_ON_HOST;
+ 	nand->ecc.write_page_raw = meson_nfc_write_page_raw;
+ 	nand->ecc.write_page = meson_nfc_write_page_hwecc;
+-	nand->ecc.write_oob_raw = nand_write_oob_std;
+-	nand->ecc.write_oob = nand_write_oob_std;
+ 
++	nand->ecc.write_oob_raw = meson_nfc_write_oob_raw;
++	nand->ecc.write_oob = meson_nfc_write_oob;
+ 	nand->ecc.read_page_raw = meson_nfc_read_page_raw;
+ 	nand->ecc.read_page = meson_nfc_read_page_hwecc;
+ 	nand->ecc.read_oob_raw = meson_nfc_read_oob_raw;
+@@ -1237,9 +1348,16 @@ static int meson_nand_attach_chip(struct nand_chip *nand)
+ 		dev_err(nfc->dev, "16bits bus width not supported");
+ 		return -EINVAL;
+ 	}
++
++	meson_chip->oob_buf = kmalloc(nand->ecc.bytes, GFP_KERNEL);
++	if (!meson_chip->oob_buf)
++		return -ENOMEM;
++
+ 	ret = meson_chip_buffer_init(nand);
+-	if (ret)
++	if (ret) {
++		kfree(meson_chip->oob_buf);
+ 		return -ENOMEM;
++	}
+ 
+ 	return ret;
+ }
 -- 
-2.37.1
+2.35.0
 
 
 _______________________________________________
