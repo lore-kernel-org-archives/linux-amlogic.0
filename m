@@ -4,85 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 607F3C7EE22
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 May 2023 08:39:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00545C77B7F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 May 2023 09:04:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=dpULmIrgs6tH1oDelWyHxGLGkQL2MB4HLx6gCNR+WY4=; b=RsqbpnSXzlw3wLFAQd1jTz19yQ
-	fHVqNyI9Jmx3IFGEjBSO1UrbaxXS0VpbBzoOICBfnRUtmSTMT887L+udppm+gjAK7pXw4QTNCAF6Z
-	HPIy2X8GbmV4ArJrcmuqLxsRfzr8qY8cRZ9aWC7koQglNkP9p6i4borRqjGpwGfchG0r8xiz83j+5
-	X9JKfK/SebeE8EDQjN1bRwumkkFKhXKIwgvfXgVe1/2TfwF/un0w7Dew9cALy8JqWlL2PPqogFrzF
-	xqB4HkOXH+si/0ZfVfcIP4eUhLAF8/jhMvm1Di0QoSQfke5B9oea8M6KnliNnairyu/ancuLZFD+g
-	P2oe/6FA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0DZao/ygYRyEvvDYxLU2i/taO3WeYO7yivdVvDtEF9M=; b=IQzIeUoIo8wlkG
+	Y61jGBmO+nihEqeidErb6teprhISyAEhG3RWC5fcPYG4yw/E/W61eWZqCyCu11g/xhXocgQLvIHEG
+	2MOTJjWuJ7wQ0KAQYe+g2DCPzTzod0uN1Jq5eJGDF1Bfvqy6gTJ8SN7hcW0I1GuHkrDbH6rnvAB53
+	g8KrohMpfglf9VtmE87UbJtCy8vSRnYQCfmrsAIIDW73kAA+GIejJ8BGfo3DOTaz/vEpnubXZg9zh
+	pDhq/esEDx61qrzJyycOPsLHQijBebIu39PSUzZcJ6Ah8Z2IDWOBBrvMBhY3gvMyRlnvZnCDt99h2
+	Sm2INUp36LprPDhweJVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1px1pb-008Fpc-2P;
-	Thu, 11 May 2023 08:39:23 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1px2DR-008IRH-33;
+	Thu, 11 May 2023 09:04:01 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1px1pY-008For-1v
-	for linux-amlogic@lists.infradead.org;
-	Thu, 11 May 2023 08:39:22 +0000
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-3078cc99232so5229943f8f.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 11 May 2023 01:39:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683794357; x=1686386357;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=TBlErrl7gnhIiZO37qzjtqIBcMLNUDzoJ4wQ0ZgBLGw=;
-        b=kTDgVm+zIAYKB5YYNqGxK+poZ+fA+0wO1SHPlF1X/qFkaxdX1AuAwOipB4S4e3M2MN
-         W7UAzSh1cmQUYrpmruLq4m5Kfxcc8AbVI8GaW5+9JKS7yIJ8IsAH+zX6oNzSn4TXM9ro
-         Yqjfo/68312Ekw7V5FNGbF7L9rjBIOMZp8sox89f5E6+IVhSflAANHoJ8L5Tq6DNPKr3
-         lnTGtkImYFCkpA9LcbFvQPElRFgthIvdtcGFcuaEyxn43OXF5h5bRm692gK2oW0jtYOw
-         woLbVMng6DYG+OuqOcVqDjLjmRepE7PdWU2EI/ZHB/mVaOHBLgqHsS4QczWwa3De7gcy
-         iwkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683794357; x=1686386357;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TBlErrl7gnhIiZO37qzjtqIBcMLNUDzoJ4wQ0ZgBLGw=;
-        b=gzNmoThnLr8Mu5CnfYuel8/bsZ+s9rI/7iNpURSclTSVuZ7NKuyyJwygcEMtkXJHL+
-         lGF9SIhgvte1mhl3zUwPTvvw9NdGMG1ssT4Z95xo84MrDQpwCjbV3KrpcndwM3S+MSHO
-         hICQnDutN2LtNOz0B6j3UG9/9WP8JLIf9og8ITIxEKdMvAhW8RXjQhYp1zFywq/j7EkZ
-         cbzpDCM+6K7rANa8l8526DwA/H4H0Ndbygj6p1OOpeIv/9Bc+CUjztHqQF2gHRo0uZdR
-         Bh+AOTTCHupHYtfiHIGPBS2n0aa6uY+yHJVClzCkF5ujWRWiAAUuA6C8NDvy+O5VdEUY
-         46ow==
-X-Gm-Message-State: AC+VfDzofxB/vXTwseOtedptr29lQ3rg4e3Rd6CMwGiw3yJ0btXEX1DV
-	arh5zf97xUfyVq2BfXnMzAmykA==
-X-Google-Smtp-Source: ACHHUZ4Zj10EOYnAvH4Gr3kJOCqNVm6j4etcsCQ8ktADUB/UwHDdmfdkqsRgFiHiREwVtFpbTlrEqA==
-X-Received: by 2002:adf:e943:0:b0:306:2cf5:79dc with SMTP id m3-20020adfe943000000b003062cf579dcmr16913427wrn.35.1683794357482;
-        Thu, 11 May 2023 01:39:17 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:182d:9e6c:b8ff:5a99? ([2a01:e0a:982:cbb0:182d:9e6c:b8ff:5a99])
-        by smtp.gmail.com with ESMTPSA id h5-20020a1ccc05000000b003ee5fa61f45sm24910493wmb.3.2023.05.11.01.39.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 May 2023 01:39:17 -0700 (PDT)
-Message-ID: <b2bdb00f-63de-40a9-ebe6-32f83607b5d8@linaro.org>
-Date: Thu, 11 May 2023 10:39:16 +0200
+	id 1px2DO-008IQI-19;
+	Thu, 11 May 2023 09:04:01 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id A2DC15FD41;
+	Thu, 11 May 2023 12:03:49 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1683795829;
+	bh=IQFZqqBVnssZ8mraoz9UtGPHU2IuOvSPVd1sfiL/zGQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	b=SbVIy8eXo7aO98UDsQHowxmgrAeIqhTwfSMp0toxfWJiMhgyMRUwuBlhUR99my2Ky
+	 DrYUIvtjWSf4IvFBSCg7ncNG1Z1aJ8I8JTW/Qu5fqODgX0TnOnMIos1LHJ42Uafk7h
+	 tJ7PFmNY26nBuzUBS3Dkr6IbgiTDkJiCUai0N/MfHtTs3JjSgtFKuCO/oW41bVZFgU
+	 aevKcDgmrksUZBt4rvkwGwO//YdPezaQgXM62lxsJ0IUNxW4zADhuyDICG5VFuRZaT
+	 +4s91aY1TjUudRqNSv59uSLB4CKZzPVfSWapx2ZnRmRkKLSe7NntkAEb+DU6OLGUoS
+	 67M1JsOpkp1pQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Thu, 11 May 2023 12:03:47 +0300 (MSK)
+Message-ID: <6918ed54-3929-4832-1e93-6eb55b75c82b@sberdevices.ru>
+Date: Thu, 11 May 2023 11:59:07 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH V4] arm64: dts: add support for C3 based Amlogic AW409
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 6/6] mtd: rawnand: meson: rename node for chip select
 Content-Language: en-US
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230510091129.151669-1-xianwei.zhao@amlogic.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230510091129.151669-1-xianwei.zhao@amlogic.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+CC: Liang Yang <liang.yang@amlogic.com>, Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Jianxin Pan <jianxin.pan@amlogic.com>, Yixun
+ Lan <yixun.lan@amlogic.com>, <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230510110835.26115-1-AVKrasnov@sberdevices.ru>
+ <20230510110835.26115-7-AVKrasnov@sberdevices.ru>
+ <CAFBinCAbTuNGEG13f71F8vhN3yGce+kkYJ7PHMpZbh8DzSapJg@mail.gmail.com>
+ <20230510225359.061c2df6@xps-13>
+From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <20230510225359.061c2df6@xps-13>
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/11 05:14:00 #21258391
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230511_013920_634928_2857ED10 
-X-CRM114-Status: GOOD (  19.91  )
+X-CRM114-CacheID: sfid-20230511_020359_090023_28E2E40E 
+X-CRM114-Status: GOOD (  21.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,196 +88,72 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 10/05/2023 11:11, Xianwei Zhao wrote:
-> Amlogic C3 is an advanced edge AI processor designed for smart IP camera
-> applications.
-> 
-> Add basic support for the C3 based Amlogic AW409 board, which describes
-> the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
-> booting up into the serial console.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
-> Link: https://lore.kernel.org/all/20230407102704.1055152-1-kelvin.zhang@amlogic.com
-> Link: https://lore.kernel.org/all/20230307222651.2106615-2-martin.blumenstingl@googlemail.com
-> 
-> V3 -> V4: Move Link under the --- before the changelog.
-> V2 -> V3: Remove '256m' from filename;
->            Keep alphabetical order of Makefile.
-> V1 -> V2: Remove new arch, and use ARCH_MESON;
->            Modify node name, and delete superfluous blank line.
-> ---
->   arch/arm64/boot/dts/amlogic/Makefile          |  1 +
->   .../dts/amlogic/amlogic-c3-c302x-aw409.dts    | 29 +++++++
->   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi   | 86 +++++++++++++++++++
->   3 files changed, 116 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
->   create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index cd1c5b04890a..6f61798a109f 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -1,4 +1,5 @@
->   # SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
-> new file mode 100644
-> index 000000000000..edce8850b338
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
-> @@ -0,0 +1,29 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "amlogic-c3.dtsi"
-> +
-> +/ {
-> +	model = "Amlogic C302 aw409 Development Board";
-> +	compatible = "amlogic,aw409", "amlogic,c3";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	aliases {
-> +		serial0 = &uart_b;
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x10000000>;
-> +	};
-> +};
-> +
-> +&uart_b {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> new file mode 100644
-> index 000000000000..93b335aef605
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> @@ -0,0 +1,86 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +/ {
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35";
-> +			reg = <0x0 0x0>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu1: cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35";
-> +			reg = <0x0 0x1>;
-> +			enable-method = "psci";
-> +		};
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	xtal: xtal-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <24000000>;
-> +		clock-output-names = "xtal";
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		gic: interrupt-controller@fff01000 {
-> +			compatible = "arm,gic-400";
-> +			#interrupt-cells = <3>;
-> +			#address-cells = <0>;
-> +			interrupt-controller;
-> +			reg = <0x0 0xfff01000 0 0x1000>,
-> +			      <0x0 0xfff02000 0 0x2000>,
-> +			      <0x0 0xfff04000 0 0x2000>,
-> +			      <0x0 0xfff06000 0 0x2000>;
-> +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-> +		};
-> +
-> +		apb4: bus@fe000000 {
-> +			compatible = "simple-bus";
-> +			reg = <0x0 0xfe000000 0x0 0x480000>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-> +
-> +			uart_b: serial@7a000 {
-> +				compatible = "amlogic,meson-g12a-uart";
-
-This should be:
-
-	compatible = "amlogic,meson-g12a-uart", "amlogic,meson-gx-uart"
-
-to match the amlogic,meson-uart.yaml bindings.
-
-Please run :
-make CHECK_DTBS=1 amlogic/amlogic-c3-c302x-aw409.dtb
-
-With that fixed, please add on v5:
-
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-> +				reg = <0x0 0x7a000 0x0 0x18>;
-> +				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
-> +				status = "disabled";
-> +				clocks = <&xtal>, <&xtal>, <&xtal>;
-> +				clock-names = "xtal", "pclk", "baud";
-> +			};
-> +
-> +		};
-> +	};
-> +};
-> 
-> base-commit: ae68fb187b59bc8645974320808ab2d7c41b1833
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgpPbiAxMC4wNS4yMDIzIDIzOjUzLCBNaXF1ZWwgUmF5bmFsIHdyb3RlOgoKSGVsbG8gTWFydGlu
+LCBNaXF1ZWwKCj4gSGkgTWFydGluICYgQXJzZW5peSwKPiAKPiBtYXJ0aW4uYmx1bWVuc3Rpbmds
+QGdvb2dsZW1haWwuY29tIHdyb3RlIG9uIFdlZCwgMTAgTWF5IDIwMjMgMjI6NDA6MzcKPiArMDIw
+MDoKPiAKPj4gSGVsbG8gQXJzZW5peSwKPj4KPj4gT24gV2VkLCBNYXkgMTAsIDIwMjMgYXQgMTox
+M+KAr1BNIEFyc2VuaXkgS3Jhc25vdgo+PiA8QVZLcmFzbm92QHNiZXJkZXZpY2VzLnJ1PiB3cm90
+ZToKPj4+Cj4+PiBUaGlzIHJlbmFtZXMgbm9kZSB3aXRoIHZhbHVlcyBmb3IgY2hpcCBzZWxlY3Qg
+ZnJvbSAicmVnIiB0byAiY3MiLiBJdCBpcwo+Pj4gbmVlZGVkIGJlY2F1c2Ugd2hlbiBPVFAgYWNj
+ZXNzIGlzIGVuYWJsZWQgb24gdGhlIGF0dGFjaGVkIHN0b3JhZ2UsIE1URAo+Pj4gc3Vic3lzdGVt
+IHJlZ2lzdGVycyB0aGlzIHN0b3JhZ2UgaW4gdGhlIE5WTUVNIHN1YnN5c3RlbS4gTlZNRU0gaW4g
+dHVybgo+Pj4gdHJpZXMgdG8gdXNlICJyZWciIG5vZGUgaW4gaXRzIG93biBtYW5uZXIsIHN1cHBv
+c2VzIHRoYXQgaXQgaGFzIGFub3RoZXIKPj4+IGxheW91dC4gQWxsIG9mIHRoaXMgbGVhZHMgdG8g
+ZGV2aWNlIGluaXRpYWxpemF0aW9uIGZhaWx1cmUuICAKPj4gSW4gZ2VuZXJhbDogaWYgd2UgY2hh
+bmdlIHRoZSBkZXZpY2UtdHJlZSBpbnRlcmZhY2UgKGluIHRoaXMgY2FzZToKPj4gcmVwbGFjaW5n
+IGEgInJlZyIgd2l0aCBhICJjcyIgcHJvcGVydHkpIHRoZSBkdC1iaW5kaW5ncyBoYXZlIHRvIGJl
+Cj4+IHVwZGF0ZWQgYXMgd2VsbC4KPiAKPiBUcnVlLCBhbmQgSSB3b3VsZCBhZGQsIGJpbmRpbmdz
+IHNob3VsZCBub3QgYmUgYnJva2VuLgoKSSBzZWUsIHRoYXQncyB0cnVlLiBUaGF0IGlzIGJhZCB3
+YXkgdG8gY2hhbmdlIGJpbmRpbmdzLgoKPiAKPj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL210ZC9uYW5kLWNvbnRyb2xsZXIueWFtbCBhbmQKPj4gRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL210ZC9hbWxvZ2ljLG1lc29uLW5hbmQueWFtbCBzaG93Cj4+IHRoYXQg
+dGhlIGNoaXAgc2VsZWN0IG9mIGEgTkFORCBjaGlwIGlzIHNwZWNpZmllZCB3aXRoIGEgInJlZyIK
+Pj4gcHJvcGVydHkuCj4gCj4gQWxsIE5BTkQgY29udHJvbGxlciBiaW5kaW5nIGV4cGVjdCB0aGUg
+Y2hpcC1zZWxlY3QgdG8gYmUgaW4gdGhlCj4gJ3JlZycgcHJvcGVydHksIHZlcnkgbXVjaCBsaWtl
+IGEgc3BpIGRldmljZSB3b3VsZCB1c2UgcmVnIHRvIHN0b3JlIHRoZQo+IGNzIGFzIHdlbGw6IHRo
+ZSByZWcgcHJvcGVydHkgdGVsbHMgeW91IGhvdyB5b3UgYWRkcmVzcyB0aGUgZGV2aWNlLgo+IAo+
+IEkgYWxzbyBmdWxseSBhZ3JlZSB3aXRoIE1hcnRpbidzIGNvbW1lbnRzIGJlbG93LiBDaGFuZ2lu
+ZyByZWcgaXMgbGlrZWx5Cj4gYSB3cm9uZyBhcHByb2FjaCA6KQo+IAo+PiBBbHNvIHRoZSBjb2Rl
+IGhhcyB0byBiZSBiYWNrd2FyZHMgY29tcGF0aWJsZSB3aXRoIG9sZCAuZHRicy4KPj4KPj4+IEV4
+YW1wbGU6Cj4+Pgo+Pj4gWy4uLl0gbnZtZW0gbXRkMC11c2VyLW90cDogbnZtZW06IGludmFsaWQg
+cmVnIG9uIC9zb2MvYnVzQGZmZTAwMDAwLy4uLgo+Pj4gWy4uLl0gbXRkIG10ZDA6IEZhaWxlZCB0
+byByZWdpc3RlciBPVFAgTlZNRU0gZGV2aWNlCj4+PiBbLi4uXSBtZXNvbi1uYW5kIGZmZTA3ODAw
+Lm5mYzogZmFpbGVkIHRvIHJlZ2lzdGVyIE1URCBkZXZpY2U6IC0yMgo+Pj4gWy4uLl0gbWVzb24t
+bmFuZCBmZmUwNzgwMC5uZmM6IGZhaWxlZCB0byBpbml0IE5BTkQgY2hpcHMKPj4+IFsuLi5dIG1l
+c29uLW5hbmQ6IHByb2JlIG9mIGZmZTA3ODAwLm5mYyBmYWlsZWQgd2l0aCBlcnJvciAtMjIgIAo+
+PiBUaGlzIGlzIG9kZCAtIGNhbiB5b3UgcGxlYXNlIHNoYXJlIHlvdXIgZGVmaW5pdGlvbiBvZiB0
+aGUgJm5mYyBub2RlPwoKU3VyZSwgaGVyZSBpdCBpczoKCm10ZF9uYW5kOiBuZmNANzgwMCB7ICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIAoJY29tcGF0aWJsZSA9ICJhbWxvZ2ljLG1lc29uLWF4
+Zy1uZmMiOwoJLi4uCgluYW5kQDAgeyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAg
+ICAgICAgCXJlZyA9IDwwPjsKICAgICAgICB9Owp9CgpJIGNoZWNrZWQsIHRoYXQgJ25hbmRfc2V0
+X2ZsYXNoX25vZGUoKScgaXMgY2FsbGVkIHdpdGggJ25hbmRAMCcgYW5kIGkgc3VwcG9zZQp0aGF0
+IGl0IGlzIGNvcnJlY3QgKGFzIFlvdSBtZW50aW9uZWQgYmVsb3cpLiBCdXQsICdudm1lbV9hZGRf
+Y2VsbHNfZnJvbV9vZigpJyBpcyBjYWxsZWQKd2l0aCBwYXJlbnQ6ICduZmNANzgwMCcsIHRoZW4g
+aXQgaXRlcmF0ZXMgb3ZlciBpdHMgY2hpbGRzLCBlLmcuICduYW5kQDAnIGFuZCB0aHVzIGkgZ2V0
+IHN1Y2gKc2l0dWF0aW9uLiBJIGd1ZXNzLCB0aGF0ICdudm1lbV9hZGRfY2VsbHNfZnJvbV9vZigp
+JyBtdXN0IGJlIGNhbGxlZCB3aXRoICduYW5kQDAnID8KCj4+Cj4+ICZuZmMgewo+PiAgICAgICBu
+YW5kX2NoaXAwOiBuYW5kQDAgewo+PiAgICAgICAgIHJlZyA9IDwwPjsKPj4gICAgICAgfTsKPj4g
+fTsKPj4KPj4gVGhpcyBzaG91bGQgcmVzdWx0IGluIG5hbmRfc2V0X2ZsYXNoX25vZGUoKSBiZWlu
+ZyBjYWxsZWQgd2l0aAo+PiAmbmFuZF9jaGlwMCAoaWYgaXQncyBjYWxsZWQgd2l0aCAmbmZjIHRo
+ZW4gc29tZXRoaW5nIGlzIGJ1Z2d5IGluIG91cgo+PiBkcml2ZXIpLgo+PiBJZiB0aGVyZSdzIG5v
+IGNoaWxkIG5vZGVzIHdpdGhpbiAmbmFuZF9jaGlwMCB0aGVuIHdoeSB3b3VsZCB0aGUKPj4gTVRE
+LXRvLU5WTUVNIGNvZGUgdGhpbmsgdGhhdCBpdCBoYXMgdG8gcGFyc2Ugc29tZXRoaW5nPwo+PiBJ
+ZiB5b3UgZG8gaGF2ZSBjaGlsZCBub2RlcyBhbmQgdGhvc2UgYXJlIHBhcnRpdGlvbnMsIHRoZW4g
+bWFrZSBzdXJlCj4+IHRoYXQgdGhlIHN0cnVjdHVyZSBpcyBjb3JyZWN0IChzZWUgdGhlIGV4dHJh
+ICJwYXJ0aXRpb25zIiBub2RlIGluc2lkZQo+PiB3aGljaCBhbGwgcGFydGl0aW9ucyBhcmUgbmVz
+dGVkKToKPj4gJm5hbmRfY2hpcDAgewo+PiAgICAgcGFydGl0aW9ucyB7Cj4+ICAgICAgICAgY29t
+cGF0aWJsZSA9ICJmaXhlZC1wYXJ0aXRpb25zIjsKPj4gICAgICAgICAjYWRkcmVzcy1jZWxscyA9
+IDwxPjsKPj4gICAgICAgICAjc2l6ZS1jZWxscyA9IDwxPjsKPj4KPj4gICAgICAgICBwYXJ0aXRp
+b25AMCB7Cj4+ICAgICAgICAgICAgIGxhYmVsID0gInUtYm9vdCI7Cj4+ICAgICAgICAgICAgIHJl
+ZyA9IDwweDAwMDAwMDAgMHg0MDAwPjsKPj4gICAgICAgICAgICAgcmVhZC1vbmx5Owo+PiAgICAg
+ICAgIH07Cj4+ICAgICB9Owo+PiB9OwoKTm8sIHBhcnRpdGlvbiBub2RlcyBhcmUgZGlzYWJsZWQg
+aW4gdGhpcyBjYXNlLgoKVGhhbmtzLCBBcnNlbml5Cgo+Pgo+Pgo+PiBCZXN0IHJlZ2FyZHMsLAo+
+PiBNYXJ0aW4KPiAKPiAKPiBUaGFua3MsCj4gTWlxdcOobAoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
+dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
+L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
