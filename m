@@ -4,87 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7143C77B75
-	for <linux-amlogic@archiver.kernel.org>; Fri, 12 May 2023 13:08:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9572CC7EE23
+	for <linux-amlogic@archiver.kernel.org>; Fri, 12 May 2023 13:12:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=O3MrD2NNeI75SvcEp4G42XGpOzB5qdDJHGsMPttXTbc=; b=WL/LMkz2QSNYjr
-	O8ifLG9igXaHz8dU/F3pQCP6MXQTU0GlVVyqusMMH/xWTbRxAikwjuIjHqvW5QCpOaEJgL5reAvGU
-	tG/1CspV9pElZ8gQW9Ume0qr2Vj+MqUt8txFlkvx9zyjBRBJ4zn6Eg/bTGEfVhQqB2jbdtnxKkyGK
-	MqGfBAtKg8xXH/43jN/viVoKK1CSfXymXDHuCf5fPxltk73xrM9QjbATEmyjhBcrePKZJ1DdsYT71
-	lB7qhzf5qPkrftJT2iGIcrm1XdZ0gHBARGOAX+/xnMbhN0MSJ4mwRpUqr8Iuzse/4GRKT7MIu5Vys
-	R3zzQDFrkug5m6w2CW8g==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ZxCAjDYpa7wdGK6yMPfShrIEuNugeBLLe/ZkiYqGpSY=; b=OE9ORAFl7cKBV6
+	XF//K6r41Nvxcxp5MdScpD6dD0BWJab+TrURyad6OTb0ND/mSZGI8qfyhmTTqfLIxv6WvHPaV0YLM
+	92VtOYZH7FiaWPjRQ0lBcy/WfnHXFE9UoCru9gpfR1LmUQASYOLD3IL0H7BwIRMSY/ELhtah7Hxpg
+	8ECWEFdzp2vnrpqlw6EhuQksULfPPClDZGwcDWcoQUeCCboSF5ALI9sruDrtDfB/OBmKea7ReX+Sx
+	PqiACYvsoKN1LIbtGu1RRz3RrzBn2WQjAnxYqE6XtZXy1QEkTvNr3z7JdaF1zLqPUVCnbbqOHbHjX
+	Go8EizvTisRFngO3cRlQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pxSVj-00Bz8p-07;
-	Fri, 12 May 2023 13:08:39 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1pxSYy-00BzcL-23;
+	Fri, 12 May 2023 13:12:00 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pxSVg-00Bz87-0X
+	id 1pxSYu-00BzXX-25
 	for linux-amlogic@lists.infradead.org;
-	Fri, 12 May 2023 13:08:38 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f41dceb9d4so70414895e9.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 12 May 2023 06:08:34 -0700 (PDT)
+	Fri, 12 May 2023 13:11:58 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3078aa0b152so4975436f8f.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 12 May 2023 06:11:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683896913; x=1686488913;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dmS/3zIbZVMhJuJsoKE7px+yK9u/iw8c9fdzMYkr+8g=;
-        b=MLKbyP7nMkzG3nUY1ZeuKoc6wro8yT0cWnze2hpkoVXUgwjOSJCZIV4fHbwTo0kS0Q
-         deKKJeNvxOQwIpMWcZ4/h7bTYR+HuqnSXsxmQRLJhREV9Do86sd2e1vvc089Q2d4LgJz
-         Uzu9SRoXrmVJ9Qy2FuZ6lCOALmLbPHuTJAdqmWM57pKy4pdVDNnkh7gL3GUZy3RSsxs4
-         jRBv0Hj7lZVqZItuFsjdkgZpPPPQn9w3OCg0W+4maSV8RPKYbHB/i4elDRTj0qnkV3jF
-         +XeeN7vcKXBPFZNH9JtRPCIMsK3elkqSudlOwjQKZnRHw8wwXqbocuZjByQ0el8+p3YV
-         qCIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683896913; x=1686488913;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1683897115; x=1686489115;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=dmS/3zIbZVMhJuJsoKE7px+yK9u/iw8c9fdzMYkr+8g=;
-        b=RS5ap7RR5aqY9XTODwlJRBDI/P8bWdU860/whnTmE0GXtL8oAuT0opusmt6nUCxAvE
-         f3ZyFNwG6iuZHDoxzrUe13VP9yD3hNhaUxcP+eo/TQ8I14gvJzYlA/wKrzsksIJZd8Le
-         OaiTs6kUBDDV4QiztjX9Bnlz2epO6ZLkWnaBc9+X2hh5hPrWtBn6S2/Q4+3/qU3+vAIY
-         hnlYtCY7kgDuTqo2Yuhv2bO//XwJLZrh3WlK2zzmHJZCpal4gExJW6CMF2gju4G7qGbj
-         TthhQsJj/ThmfhcNMknTpMp5qjSlkYrL2zXPyTmZLA729T0R/KwncJXasn3bo/4uJZYF
-         uWrg==
-X-Gm-Message-State: AC+VfDxc2nIBRMjms+V5OaPkfOe2Q77+6wnP0i5zssWshXdlOZyUi4Nr
-	bs8e8m4F+Z+zKigWudKR/bIFdw==
-X-Google-Smtp-Source: ACHHUZ6Ty/EFcV7z8y9aH06p7h7QzBThGCcA+olD617fUtbEQbwVFr1mUEWzkHBltQ1a4qInkrwN3g==
-X-Received: by 2002:a1c:7702:0:b0:3f1:72ec:4009 with SMTP id t2-20020a1c7702000000b003f172ec4009mr18280372wmi.9.1683896913396;
-        Fri, 12 May 2023 06:08:33 -0700 (PDT)
-Received: from localhost ([102.36.222.112])
-        by smtp.gmail.com with ESMTPSA id v22-20020a7bcb56000000b003f1751016desm28562809wmj.28.2023.05.12.06.08.30
+        bh=vxRcviaE6R0pdI5hk3Pe3Bt1xVG5YfiiMZ7npzY4iJE=;
+        b=j6hIGvp4NhHgeXLqQeXATQgzmYknWS9RVtQJWtj8vd3difrD/ry3UAOGwHHK55OgsJ
+         TqQzzfIBz7BwssDYJWX+KndkADVZvCBMc1bqTCq5u+eXqfQApKfTwsqeklvyd8RXAoeb
+         mOdEX6s3Z0FIksi6Ejl9+8gIgrkPQ2O+uTQmeMuNpdWrER3MJHbQtUyE7mrVsOTRcJVm
+         h4FOVOc6c+lwWTdTRjRVAHIWp7Z1hen53rNZLZgtIV/t80YPcJB/64rmd6u9ubj9dWCh
+         NUXK4mQZqUI9Jd1jIW71XxA6Z/A2DmTDLoFj0IhKUkfv95cGErCq1I6UQbiDEi/QMYCW
+         Aeow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683897115; x=1686489115;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vxRcviaE6R0pdI5hk3Pe3Bt1xVG5YfiiMZ7npzY4iJE=;
+        b=JfjnLMqIBAsOUogBbk76/cRaJAMkO+C+x0jCFh+S+M7fOr5iwoJvKHqZ36CX3Bxz6f
+         P+sme13FEt3NIUt/+2fxkdjdfaGR63xTrCoCocdUtVv8D2Espmu67TI+ja8k+FgRMa7F
+         +wHiDoacJ8YhS/sk+ZR5CVUVUDJXAs7mkJH1wxNYdgZ2dU79OHY+AdbLrFFqXE8kP7XQ
+         O1gjoavhnTA4+PgGcrlmG/CqAPsQnZvPvKmK45v5WeZx019+IPlsUVHGyL0vt5tTgekH
+         UGHy8nFAjTxeZGWmjQ2D/Yca5Wth6XitQ6rrn25ZWStGTK2iOcmt+6+m9yozBQ/sio+X
+         i/BA==
+X-Gm-Message-State: AC+VfDw6RdTChPReexeOK1RFYXffJhyDIJSIAKJeSiqSv0Wm1C0xG4n9
+	fVeKe0uzlbR4vW3+Iug2O5DbFQ==
+X-Google-Smtp-Source: ACHHUZ6LgnNd0fqFNErcnRuUz3xQIgjEAWegQmGYWTXd6VjmXWlYzs61ALh5Mk93lgxtvciGFeIfNw==
+X-Received: by 2002:adf:f142:0:b0:306:3435:f85c with SMTP id y2-20020adff142000000b003063435f85cmr16778628wro.30.1683897115079;
+        Fri, 12 May 2023 06:11:55 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id v10-20020a5d610a000000b0030647449730sm23461965wrt.74.2023.05.12.06.11.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 May 2023 06:08:31 -0700 (PDT)
-Date: Fri, 12 May 2023 16:08:14 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, zelong dong <zelong.dong@amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Sean Young <sean@mess.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	Qianggui.Song@amlogic.com, Yonghui.Yu@amlogic.com,
-	kelvin.zhang@amlogic.com, Zelong Dong <zelong.dong@amlogic.com>
-Subject: Re: [PATCH] media: rc: meson-ir: support MMIO regmaps to access
- registers
-Message-ID: <95860d11-8317-4082-a1b8-a1fdaba9f6aa@kili.mountain>
+        Fri, 12 May 2023 06:11:54 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Fri, 12 May 2023 15:11:33 +0200
+Subject: [PATCH v4 02/13] clk: meson: g12a: add CTS_ENCL & CTS_ENCL_SEL
+ clocks
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230511034333.26800-1-zelong.dong@amlogic.com>
+Message-Id: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-2-2592c29ea263@linaro.org>
+References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
+In-Reply-To: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
+To: Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
+ Daniel Vetter <daniel@ffwll.ch>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Sam Ravnborg <sam@ravnborg.org>
+Cc: Nicolas Belin <nbelin@baylibre.com>, linux-amlogic@lists.infradead.org, 
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linux-phy@lists.infradead.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4549;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=iIgA0y1H5o2Wto1ffhy2Nb88xLAE/N+ajqdymO+oQ0E=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkXjsSQvvJGGh9p5FgUTPEH4HM0GWsvsYdF3WiSmrt
+ iA0IBn+JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZF47EgAKCRB33NvayMhJ0c9QD/
+ 9uzic1mYXkBarHyol2JLplrtOEqXu6WpBbAClnA77sVvgCyh580OAcA5QQpptLYQ6xgjMeB8sqh/Nu
+ FstX2LxbCie3VDEBBav3RNuvf/LZDzw02BWa0lq8yEEcHZOEguXhqpzEp2KnToP5077ohB6Xq1qdQ4
+ jYZEetE3C8bGzcjNdyzw6TnjSOr5b2A/ySVp0PDJKdFERd8Lqmg066Pvk1nfk+iPQmqPiCuASf3ZOQ
+ 0KpXQXbE/WY5fdnAlDIsAMKT8gXwouR+Pd8HmionyOYk3oH4krHkdTi8L08NYm9qwxaCXji6OEsBrd
+ UWbAK3u7zr3dO6CfRvsbZCnvOfBarCysiIDeNV8gjvuZfM3Pry4LW/NrezFzgFwxHuDzsZhhWjBFpu
+ 7nyWY2A4EGelOVig2IwkDcVHJ9WifgBhqgsuPL/VK1rksAPxWBBZ++dER8YH0aHxx/6aWCqmrElNUC
+ ppklfS8TaS7DB3h3u1QLAjQfngZpD9ER32N+45ikmeOmu7NGaTop/v/lO0pIZM2t5XaruQWkCmmHZW
+ j49UpbxFSQzMgCso/UNZzzrT1lm3y0liQ3upkou1wa96UePlvAJpzEAEu+qVAgohpW6waJXdz1kTKO
+ Mc7oBUrcnBuDkz6X5Gh8LD5bNWY0CtvzYL1B7gk33wWCfwO1vFaZnElBO20g==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230512_060836_206742_42CCD277 
-X-CRM114-Status: UNSURE (   9.39  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230512_061156_721530_A19B9D59 
+X-CRM114-Status: GOOD (  13.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,144 +121,134 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi zelong,
+Add new CTS_ENCL & CTS_ENCL_SEL clocks for the G12A compatible
+SoCs, they are used to feed the VPU LCD Pixel encoder used for
+DSI display purposes.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ drivers/clk/meson/g12a.c | 40 ++++++++++++++++++++++++++++++++++++++++
+ drivers/clk/meson/g12a.h |  2 +-
+ 2 files changed, 41 insertions(+), 1 deletion(-)
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/zelong-dong/media-rc-meson-ir-support-MMIO-regmaps-to-access-registers/20230511-114604
-base:   457391b0380335d5e9a5babdec90ac53928b23b4
-patch link:    https://lore.kernel.org/r/20230511034333.26800-1-zelong.dong%40amlogic.com
-patch subject: [PATCH] media: rc: meson-ir: support MMIO regmaps to access registers
-config: parisc-randconfig-m041-20230509 (https://download.01.org/0day-ci/archive/20230512/202305122010.lGsFA089-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 12.1.0
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <error27@gmail.com>
-| Link: https://lore.kernel.org/r/202305122010.lGsFA089-lkp@intel.com/
-
-New smatch warnings:
-drivers/media/rc/meson-ir.c:111 meson_ir_probe() warn: passing zero to 'PTR_ERR'
-
-Old smatch warnings:
-drivers/media/rc/meson-ir.c:113 meson_ir_probe() warn: passing zero to 'PTR_ERR'
-
-vim +/PTR_ERR +111 drivers/media/rc/meson-ir.c
-
-12ddbadf383d55 Beniamino Galvani 2014-11-18   95  static int meson_ir_probe(struct platform_device *pdev)
-12ddbadf383d55 Beniamino Galvani 2014-11-18   96  {
-12ddbadf383d55 Beniamino Galvani 2014-11-18   97  	struct device *dev = &pdev->dev;
-12ddbadf383d55 Beniamino Galvani 2014-11-18   98  	struct device_node *node = dev->of_node;
-5a048b4c2c04b7 Zelong Dong       2023-05-11   99  	struct resource *res;
-5a048b4c2c04b7 Zelong Dong       2023-05-11  100  	void __iomem *res_start;
-12ddbadf383d55 Beniamino Galvani 2014-11-18  101  	const char *map_name;
-12ddbadf383d55 Beniamino Galvani 2014-11-18  102  	struct meson_ir *ir;
-1ffc931c320a8a Heiner Kallweit   2017-04-12  103  	int irq, ret;
-12ddbadf383d55 Beniamino Galvani 2014-11-18  104  
-12ddbadf383d55 Beniamino Galvani 2014-11-18  105  	ir = devm_kzalloc(dev, sizeof(struct meson_ir), GFP_KERNEL);
-12ddbadf383d55 Beniamino Galvani 2014-11-18  106  	if (!ir)
-12ddbadf383d55 Beniamino Galvani 2014-11-18  107  		return -ENOMEM;
-12ddbadf383d55 Beniamino Galvani 2014-11-18  108  
-5a048b4c2c04b7 Zelong Dong       2023-05-11  109  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-5a048b4c2c04b7 Zelong Dong       2023-05-11  110  	if (IS_ERR_OR_NULL(res)) {
-5a048b4c2c04b7 Zelong Dong       2023-05-11 @111  		dev_err(&pdev->dev, "get mem resource error, %ld\n",
-5a048b4c2c04b7 Zelong Dong       2023-05-11  112  			PTR_ERR(res));
-5a048b4c2c04b7 Zelong Dong       2023-05-11  113  		return PTR_ERR(res);
-
-The platform_get_resource() function returns NULL on failure.  It never
-returns error pointers.  This means that return PTR_ERR(res); returns
-0 (which means success).  Please read my blog for more information.
-https://staticthinking.wordpress.com/2022/08/01/mixing-error-pointers-and-null/
-
-This should be:
-
-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-	if (!res) {
-		dev_err(&pdev->dev, "get mem resource error\n");
-		return -EINVAL;
-	}
-
-5a048b4c2c04b7 Zelong Dong       2023-05-11  114  	}
-5a048b4c2c04b7 Zelong Dong       2023-05-11  115  
-5a048b4c2c04b7 Zelong Dong       2023-05-11  116  	res_start = devm_ioremap_resource(&pdev->dev, res);
-5a048b4c2c04b7 Zelong Dong       2023-05-11  117  	meson_ir_regmap_config.max_register = resource_size(res) - 4;
-5a048b4c2c04b7 Zelong Dong       2023-05-11  118  	ir->reg = devm_regmap_init_mmio(&pdev->dev, res_start,
-5a048b4c2c04b7 Zelong Dong       2023-05-11  119  					&meson_ir_regmap_config);
-9e2e4382ec72d9 Ding Xiang        2019-06-18  120  	if (IS_ERR(ir->reg))
-12ddbadf383d55 Beniamino Galvani 2014-11-18  121  		return PTR_ERR(ir->reg);
-12ddbadf383d55 Beniamino Galvani 2014-11-18  122  
-1ffc931c320a8a Heiner Kallweit   2017-04-12  123  	irq = platform_get_irq(pdev, 0);
-97299a3035328d Stephen Boyd      2019-07-30  124  	if (irq < 0)
-1ffc931c320a8a Heiner Kallweit   2017-04-12  125  		return irq;
-12ddbadf383d55 Beniamino Galvani 2014-11-18  126  
-705aa578d408f6 Heiner Kallweit   2017-04-12  127  	ir->rc = devm_rc_allocate_device(dev, RC_DRIVER_IR_RAW);
-12ddbadf383d55 Beniamino Galvani 2014-11-18  128  	if (!ir->rc) {
-12ddbadf383d55 Beniamino Galvani 2014-11-18  129  		dev_err(dev, "failed to allocate rc device\n");
-12ddbadf383d55 Beniamino Galvani 2014-11-18  130  		return -ENOMEM;
-12ddbadf383d55 Beniamino Galvani 2014-11-18  131  	}
-12ddbadf383d55 Beniamino Galvani 2014-11-18  132  
-12ddbadf383d55 Beniamino Galvani 2014-11-18  133  	ir->rc->priv = ir;
-518f4b26be1ebf Sean Young        2017-07-01  134  	ir->rc->device_name = DRIVER_NAME;
-12ddbadf383d55 Beniamino Galvani 2014-11-18  135  	ir->rc->input_phys = DRIVER_NAME "/input0";
-12ddbadf383d55 Beniamino Galvani 2014-11-18  136  	ir->rc->input_id.bustype = BUS_HOST;
-12ddbadf383d55 Beniamino Galvani 2014-11-18  137  	map_name = of_get_property(node, "linux,rc-map-name", NULL);
-12ddbadf383d55 Beniamino Galvani 2014-11-18  138  	ir->rc->map_name = map_name ? map_name : RC_MAP_EMPTY;
-6d741bfed5ed06 Sean Young        2017-08-07  139  	ir->rc->allowed_protocols = RC_PROTO_BIT_ALL_IR_DECODER;
-5a048b4c2c04b7 Zelong Dong       2023-05-11  140  	ir->rc->rx_resolution = MESON_RAW_TRATE;
-b358e747aebc4a Sean Young        2018-03-12  141  	ir->rc->min_timeout = 1;
-b358e747aebc4a Sean Young        2018-03-12  142  	ir->rc->timeout = IR_DEFAULT_TIMEOUT;
-b358e747aebc4a Sean Young        2018-03-12  143  	ir->rc->max_timeout = 10 * IR_DEFAULT_TIMEOUT;
-12ddbadf383d55 Beniamino Galvani 2014-11-18  144  	ir->rc->driver_name = DRIVER_NAME;
-12ddbadf383d55 Beniamino Galvani 2014-11-18  145  
-12ddbadf383d55 Beniamino Galvani 2014-11-18  146  	spin_lock_init(&ir->lock);
-12ddbadf383d55 Beniamino Galvani 2014-11-18  147  	platform_set_drvdata(pdev, ir);
-12ddbadf383d55 Beniamino Galvani 2014-11-18  148  
-705aa578d408f6 Heiner Kallweit   2017-04-12  149  	ret = devm_rc_register_device(dev, ir->rc);
-12ddbadf383d55 Beniamino Galvani 2014-11-18  150  	if (ret) {
-12ddbadf383d55 Beniamino Galvani 2014-11-18  151  		dev_err(dev, "failed to register rc device\n");
-705aa578d408f6 Heiner Kallweit   2017-04-12  152  		return ret;
-12ddbadf383d55 Beniamino Galvani 2014-11-18  153  	}
-12ddbadf383d55 Beniamino Galvani 2014-11-18  154  
-611ee552a538b0 Heiner Kallweit   2017-04-12  155  	ret = devm_request_irq(dev, irq, meson_ir_irq, 0, NULL, ir);
-12ddbadf383d55 Beniamino Galvani 2014-11-18  156  	if (ret) {
-12ddbadf383d55 Beniamino Galvani 2014-11-18  157  		dev_err(dev, "failed to request irq\n");
-705aa578d408f6 Heiner Kallweit   2017-04-12  158  		return ret;
-12ddbadf383d55 Beniamino Galvani 2014-11-18  159  	}
-12ddbadf383d55 Beniamino Galvani 2014-11-18  160  
-12ddbadf383d55 Beniamino Galvani 2014-11-18  161  	/* Reset the decoder */
-5a048b4c2c04b7 Zelong Dong       2023-05-11  162  	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_RESET,
-5a048b4c2c04b7 Zelong Dong       2023-05-11  163  			   IR_DEC_REG1_RESET);
-5a048b4c2c04b7 Zelong Dong       2023-05-11  164  	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_RESET, 0);
-6edf27ee258925 Neil Armstrong    2016-08-20  165  
-6edf27ee258925 Neil Armstrong    2016-08-20  166  	/* Set general operation mode (= raw/software decoding) */
-6edf27ee258925 Neil Armstrong    2016-08-20  167  	if (of_device_is_compatible(node, "amlogic,meson6-ir"))
-5a048b4c2c04b7 Zelong Dong       2023-05-11  168  		regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_MODE,
-5a048b4c2c04b7 Zelong Dong       2023-05-11  169  				   FIELD_PREP(IR_DEC_REG1_MODE, DEC_MODE_RAW));
-6edf27ee258925 Neil Armstrong    2016-08-20  170  	else
-5a048b4c2c04b7 Zelong Dong       2023-05-11  171  		regmap_update_bits(ir->reg, IR_DEC_REG2, IR_DEC_REG2_MODE,
-5a048b4c2c04b7 Zelong Dong       2023-05-11  172  				   FIELD_PREP(IR_DEC_REG2_MODE, DEC_MODE_RAW));
-6edf27ee258925 Neil Armstrong    2016-08-20  173  
-12ddbadf383d55 Beniamino Galvani 2014-11-18  174  	/* Set rate */
-5a048b4c2c04b7 Zelong Dong       2023-05-11  175  	regmap_update_bits(ir->reg, IR_DEC_REG0, IR_DEC_REG0_BASE_TIME,
-5a048b4c2c04b7 Zelong Dong       2023-05-11  176  			   FIELD_PREP(IR_DEC_REG0_BASE_TIME,
-5a048b4c2c04b7 Zelong Dong       2023-05-11  177  				      MESON_RAW_TRATE - 1));
-12ddbadf383d55 Beniamino Galvani 2014-11-18  178  	/* IRQ on rising and falling edges */
-5a048b4c2c04b7 Zelong Dong       2023-05-11  179  	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_IRQSEL,
-5a048b4c2c04b7 Zelong Dong       2023-05-11  180  			   FIELD_PREP(IR_DEC_REG1_IRQSEL, IRQSEL_RISE_FALL));
-12ddbadf383d55 Beniamino Galvani 2014-11-18  181  	/* Enable the decoder */
-5a048b4c2c04b7 Zelong Dong       2023-05-11  182  	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_ENABLE,
-5a048b4c2c04b7 Zelong Dong       2023-05-11  183  			   IR_DEC_REG1_ENABLE);
-12ddbadf383d55 Beniamino Galvani 2014-11-18  184  
-12ddbadf383d55 Beniamino Galvani 2014-11-18  185  	dev_info(dev, "receiver initialized\n");
-12ddbadf383d55 Beniamino Galvani 2014-11-18  186  
-12ddbadf383d55 Beniamino Galvani 2014-11-18  187  	return 0;
-12ddbadf383d55 Beniamino Galvani 2014-11-18  188  }
+diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+index 310accf94830..0b4fe88d3108 100644
+--- a/drivers/clk/meson/g12a.c
++++ b/drivers/clk/meson/g12a.c
+@@ -3547,6 +3547,22 @@ static struct clk_regmap g12a_cts_encp_sel = {
+ 	},
+ };
+ 
++static struct clk_regmap g12a_cts_encl_sel = {
++	.data = &(struct clk_regmap_mux_data){
++		.offset = HHI_VIID_CLK_DIV,
++		.mask = 0xf,
++		.shift = 12,
++		.table = mux_table_cts_sel,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "cts_encl_sel",
++		.ops = &clk_regmap_mux_ops,
++		.parent_hws = g12a_cts_parent_hws,
++		.num_parents = ARRAY_SIZE(g12a_cts_parent_hws),
++		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
++	},
++};
++
+ static struct clk_regmap g12a_cts_vdac_sel = {
+ 	.data = &(struct clk_regmap_mux_data){
+ 		.offset = HHI_VIID_CLK_DIV,
+@@ -3626,6 +3642,22 @@ static struct clk_regmap g12a_cts_encp = {
+ 	},
+ };
+ 
++static struct clk_regmap g12a_cts_encl = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_VID_CLK_CNTL2,
++		.bit_idx = 3,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "cts_encl",
++		.ops = &clk_regmap_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&g12a_cts_encl_sel.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
++	},
++};
++
+ static struct clk_regmap g12a_cts_vdac = {
+ 	.data = &(struct clk_regmap_gate_data){
+ 		.offset = HHI_VID_CLK_CNTL2,
+@@ -4406,10 +4438,12 @@ static struct clk_hw_onecell_data g12a_hw_onecell_data = {
+ 		[CLKID_VCLK2_DIV12]		= &g12a_vclk2_div12.hw,
+ 		[CLKID_CTS_ENCI_SEL]		= &g12a_cts_enci_sel.hw,
+ 		[CLKID_CTS_ENCP_SEL]		= &g12a_cts_encp_sel.hw,
++		[CLKID_CTS_ENCL_SEL]		= &g12a_cts_encl_sel.hw,
+ 		[CLKID_CTS_VDAC_SEL]		= &g12a_cts_vdac_sel.hw,
+ 		[CLKID_HDMI_TX_SEL]		= &g12a_hdmi_tx_sel.hw,
+ 		[CLKID_CTS_ENCI]		= &g12a_cts_enci.hw,
+ 		[CLKID_CTS_ENCP]		= &g12a_cts_encp.hw,
++		[CLKID_CTS_ENCL]		= &g12a_cts_encl.hw,
+ 		[CLKID_CTS_VDAC]		= &g12a_cts_vdac.hw,
+ 		[CLKID_HDMI_TX]			= &g12a_hdmi_tx.hw,
+ 		[CLKID_HDMI_SEL]		= &g12a_hdmi_sel.hw,
+@@ -4635,10 +4669,12 @@ static struct clk_hw_onecell_data g12b_hw_onecell_data = {
+ 		[CLKID_VCLK2_DIV12]		= &g12a_vclk2_div12.hw,
+ 		[CLKID_CTS_ENCI_SEL]		= &g12a_cts_enci_sel.hw,
+ 		[CLKID_CTS_ENCP_SEL]		= &g12a_cts_encp_sel.hw,
++		[CLKID_CTS_ENCL_SEL]		= &g12a_cts_encl_sel.hw,
+ 		[CLKID_CTS_VDAC_SEL]		= &g12a_cts_vdac_sel.hw,
+ 		[CLKID_HDMI_TX_SEL]		= &g12a_hdmi_tx_sel.hw,
+ 		[CLKID_CTS_ENCI]		= &g12a_cts_enci.hw,
+ 		[CLKID_CTS_ENCP]		= &g12a_cts_encp.hw,
++		[CLKID_CTS_ENCL]		= &g12a_cts_encl.hw,
+ 		[CLKID_CTS_VDAC]		= &g12a_cts_vdac.hw,
+ 		[CLKID_HDMI_TX]			= &g12a_hdmi_tx.hw,
+ 		[CLKID_HDMI_SEL]		= &g12a_hdmi_sel.hw,
+@@ -4899,10 +4935,12 @@ static struct clk_hw_onecell_data sm1_hw_onecell_data = {
+ 		[CLKID_VCLK2_DIV12]		= &g12a_vclk2_div12.hw,
+ 		[CLKID_CTS_ENCI_SEL]		= &g12a_cts_enci_sel.hw,
+ 		[CLKID_CTS_ENCP_SEL]		= &g12a_cts_encp_sel.hw,
++		[CLKID_CTS_ENCL_SEL]		= &g12a_cts_encl_sel.hw,
+ 		[CLKID_CTS_VDAC_SEL]		= &g12a_cts_vdac_sel.hw,
+ 		[CLKID_HDMI_TX_SEL]		= &g12a_hdmi_tx_sel.hw,
+ 		[CLKID_CTS_ENCI]		= &g12a_cts_enci.hw,
+ 		[CLKID_CTS_ENCP]		= &g12a_cts_encp.hw,
++		[CLKID_CTS_ENCL]		= &g12a_cts_encl.hw,
+ 		[CLKID_CTS_VDAC]		= &g12a_cts_vdac.hw,
+ 		[CLKID_HDMI_TX]			= &g12a_hdmi_tx.hw,
+ 		[CLKID_HDMI_SEL]		= &g12a_hdmi_sel.hw,
+@@ -5133,10 +5171,12 @@ static struct clk_regmap *const g12a_clk_regmaps[] = {
+ 	&g12a_vclk2_div12_en,
+ 	&g12a_cts_enci_sel,
+ 	&g12a_cts_encp_sel,
++	&g12a_cts_encl_sel,
+ 	&g12a_cts_vdac_sel,
+ 	&g12a_hdmi_tx_sel,
+ 	&g12a_cts_enci,
+ 	&g12a_cts_encp,
++	&g12a_cts_encl,
+ 	&g12a_cts_vdac,
+ 	&g12a_hdmi_tx,
+ 	&g12a_hdmi_sel,
+diff --git a/drivers/clk/meson/g12a.h b/drivers/clk/meson/g12a.h
+index 1a4a626c2c63..80fe5e4532a7 100644
+--- a/drivers/clk/meson/g12a.h
++++ b/drivers/clk/meson/g12a.h
+@@ -265,7 +265,7 @@
+ #define CLKID_NNA_CORE_CLK_DIV			266
+ #define CLKID_MIPI_DSI_PXCLK_DIV		268
+ 
+-#define NR_CLKS					271
++#define NR_CLKS					273
+ 
+ /* include the CLKIDs that have been made part of the DT binding */
+ #include <dt-bindings/clock/g12a-clkc.h>
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+2.34.1
 
 
 _______________________________________________
