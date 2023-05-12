@@ -4,108 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C591C77B7F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 12 May 2023 14:16:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE373C77B7C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 12 May 2023 14:49:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=15bYCt1Fy5GA3kPrnBGq65D5dP4GXhIbtXTOf9MN6zk=; b=Zx4+GEDAgM79B0
-	RxrHpdY7B4TnA4aU08DOhC+lOhWpAVXQM/u5L7SD18F0A6gsEF6udNn3cOFx5webtW9qzfPBRUt/q
-	u75ADZXTRC9QkeWqmA9BqYTXIBAVkROzVOzWA1SdysfmeMnGD9JFgY78cX/Cm0FXfjZuN9ZvA9UxL
-	KRSM0iuup5X4NkCjfqhavED9AFP3cXL7j1TokMWWXJIs11Xt+E4aQc72HkcpqqylDMvYp4O7gRWcq
-	tZdE6NjBdXCfR3RpQJI17qXBYVMChCg8Ql8tuIzcVJH7Yt3tsa5DFoWtBMylmGr12icLvSnQsuD5y
-	0qjNPl50smfd0saSMbxw==;
+	List-Owner; bh=PkFsM9Py8A9bTT9M7FTkmXKYWRM2xMm4D0i4isiR6GA=; b=cpBEc5KgFlOltT
+	guq9DwuNCRZr0Y6GwgDUob5WKQaNIkPAzCuqpUxJ+I7J1Md6SlcPDA37hyMIp+vaMtkinGvNGAfbG
+	Jblu7TRLYNWffQI6EYzHzpvDvzsk03yNEdDrQgt5MJBKHudV0qrEu9xaYMRLohi19+y6WfNoVyX3/
+	uNzrTOk3hfQuI57CxdRpk3DUMAzyHwRQ0mQnMe1AUXwgvhBMePRQFyDWhSQ1CavaUAjZY6TMT2EdG
+	5BuTnDrRd3UG8SatUcy5V226Xo8MYrLuDSIOUlzGJYljIhTImRl5f5ChLceS47sDvoVLQIOttjLmR
+	TY73GZjLUAUJVaDnpIMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pxTZJ-00C8kL-2G;
-	Fri, 12 May 2023 14:16:25 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1pxU5O-00CE7M-1b;
+	Fri, 12 May 2023 14:49:34 +0000
+Received: from relay2-d.mail.gandi.net ([217.70.183.194])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pxSZ0-00BzWj-2C
-	for linux-amlogic@lists.infradead.org;
-	Fri, 12 May 2023 13:12:04 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-3064099f9b6so6489168f8f.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 12 May 2023 06:12:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683897122; x=1686489122;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7b90wZD8kl4nSe3L54vqh3vzRZZbXkNospgY2qCejUs=;
-        b=yI2/VTaYsDKekDUxX3m1eXWkp2TR3ofEAIJSz6ah2AGopChpKZjFhupSCYLZF5SHZI
-         pof/haujLQyfMZa8CqzUpaLlqislbpvLX1Mxl3zxDzJZVPVDHiU+Wc4fPHb7ftfxlg/R
-         CUwqQnoinj/uFK8azdHs35qBgAsf8bPOIGR+l1u5erxpGuKspNAh5kQfZckWjQU7Nopw
-         xsXd9AUC8EUie0is0OQj54kemYrvRYdPytDSuiF5kUoN5IgBHw3mvF/GkK/wBRw+mSQH
-         CdD9Cp3LW2lAaJAvD4O7uqjbGYwjeOaea6xJ6GYBU4nrY2EFFOT00BFAJtTU1gVI5zzt
-         TMBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683897122; x=1686489122;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7b90wZD8kl4nSe3L54vqh3vzRZZbXkNospgY2qCejUs=;
-        b=Vt8IutzEkgLN/6d2KSkpCdUyryuqjQovIIqEYeZQEP1IaQK0hET2IVyhwCz3oHIlWo
-         YX1x3e1Gra5S7OjH+7EN/B0lQVWGCwsBiYRQQjrOIV4aJNcX05Njufv2X9rO5HW9huf2
-         85mlQUNIFjfYgT91/nvQAxdYdup+aMTEDporrIZroWj0OwmAQD8Gh1tV0m5dhUe4PASR
-         RyI/c34mSLXRJ/66Gz8ilN5+qRedujvfY6iDdXNIvRkD5bmVWeq/7ZNwePaeWLW35EnZ
-         WQ3nXBYsm64oRXJnef+78g6NxTDwYhXxWKXqTz24DLyYKFGP1v6wLBr8a4NOsP9iGy0/
-         nUxw==
-X-Gm-Message-State: AC+VfDxRNohcCVfmbk8IPmqkCW4AkiGyMRTKZ/pIHrON9HxTyGQKJmER
-	yD6P19Ymb71SzMigTcrzXeu9qg==
-X-Google-Smtp-Source: ACHHUZ6IulSV4BEpEuCbtSOSt/0uv03yfEvODajkoW21O50J9lsQFhIrlZhKcn5YX/szOGrxz+CRzw==
-X-Received: by 2002:a5d:4848:0:b0:306:3284:824f with SMTP id n8-20020a5d4848000000b003063284824fmr15495923wrs.8.1683897122067;
-        Fri, 12 May 2023 06:12:02 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id v10-20020a5d610a000000b0030647449730sm23461965wrt.74.2023.05.12.06.12.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 May 2023 06:12:01 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Fri, 12 May 2023 15:11:39 +0200
-Subject: [PATCH v4 08/13] drm/meson: add DSI encoder
+	id 1pxU5K-00CE5N-2u;
+	Fri, 12 May 2023 14:49:33 +0000
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id A7DD940004;
+	Fri, 12 May 2023 14:49:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1683902964;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=T11KFjvYkfD8qqoG3QDNCPlKzoJSbUbz1uBV/ZOWT+k=;
+	b=aFy09QW+nnEe9aRPOo6NtinLBEPbG4iJcAVG6iWMokefz04jlcVltyqKb0AMmmzOAUdhh2
+	YMYqaZLPMxBslRIfP6WGa94g9FAaTBxkTqJn0sB/m8rU2GC4do6xfWJImPHlYqbOX+YQr0
+	5ocIh8v7WTyhKC7QMy6g5i11LczTUu8sWl1RdxprwA07GVwDJpb3Q14mJLEaP/BL1p7PlB
+	JP8pCV9Cpxfz9XPE6t3zwrW2j4NvKpZTbZ06uOeRXD/d9LdKOdKjaLzeiEvdC68f8G9uCq
+	2/rxm4pQJC8ixiX0RhrBqfadS3ELEl3Wef6ZBhBqCKFhOMql3E+nKoxqSa59ig==
+Date: Fri, 12 May 2023 16:49:18 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Arseniy Krasnov <avkrasnov@sberdevices.ru>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Liang Yang
+ <liang.yang@amlogic.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Yixun Lan <yixun.lan@amlogic.com>,
+ <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+ <linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ Michael Walle <michael@walle.cc>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>
+Subject: Re: [PATCH v3 6/6] mtd: rawnand: meson: rename node for chip select
+Message-ID: <20230512164918.59f8965f@xps-13>
+In-Reply-To: <0b0bb315-8e5c-fb30-7786-34824b8d385d@sberdevices.ru>
+References: <20230510110835.26115-1-AVKrasnov@sberdevices.ru>
+	<20230510110835.26115-7-AVKrasnov@sberdevices.ru>
+	<CAFBinCAbTuNGEG13f71F8vhN3yGce+kkYJ7PHMpZbh8DzSapJg@mail.gmail.com>
+	<20230510225359.061c2df6@xps-13>
+	<6918ed54-3929-4832-1e93-6eb55b75c82b@sberdevices.ru>
+	<20230511111204.0b0b3d70@xps-13>
+	<dd25efa3-e46a-e857-d355-53330a8a4181@sberdevices.ru>
+	<4561f558-1d34-a7a9-2a05-f6453b0ed9a9@sberdevices.ru>
+	<20230511141114.04cbd9f1@xps-13>
+	<0b0bb315-8e5c-fb30-7786-34824b8d385d@sberdevices.ru>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Message-Id: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-8-2592c29ea263@linaro.org>
-References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
-In-Reply-To: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
- Daniel Vetter <daniel@ffwll.ch>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
- Sam Ravnborg <sam@ravnborg.org>
-Cc: Nicolas Belin <nbelin@baylibre.com>, linux-amlogic@lists.infradead.org, 
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, linux-phy@lists.infradead.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Jagan Teki <jagan@amarulasolutions.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9381;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=HX4/37GDlHAGNLHUHVTRUc93uf2l6U5h3hplLWCS/to=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkXjsVHcarE36UT+Ibqtz4ewrBGuSC/NaLtMhxaQN7
- 3iolF6WJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZF47FQAKCRB33NvayMhJ0ZJoEA
- CSoO1Zuzyw4XWR/XDxUtYBs9dF4ddRxOrmvz+VrpOKxM4+OfwCDuUoQPKaiZBVp3WQgoYVIvl+ZM3N
- iMhZy3DZFUE4e8izSnvvXjN/nb9FhoW3xyFCKzRsj/QLk4WdwMQJE/orLpQOSXYE2/oWuNkS57UxE6
- AVNqEcXZdsIr/3btlXh4BYtZBsSXYcMMz4pm+Y9HlcYU8lj2MyAVlkD/ApmGRbakBTrD4gAwHPNFZC
- jcorXEzD0V9dULFJJxMVfsiKAsNKdRIOLHDDGdNdv6CIN0WiPjJBPYidy/1C9opkRPjF/aWcI78o2Q
- f68bimy0bwY/DlO9reNBNIDxzn7OQ2r/O3eWqsq8SFQX8zISeJGMvSyvDYf7bfPCWAczSWsLw4DR1k
- gt54yU2rYeRLjSB5aKuRWR5FvTnqWX34G7KHQBTPsDsnljyei/kNrOMuEcGPkU1XPalNtJLml9vwIb
- IvHSAzrZSP8h+vJet3ofQeu8OzSGUlNSLzKI/EuVqHLdon0iQQ2W9v5XC7ps7TDlR/pzceZYBhti8n
- XA+yaA9fwnQPsHFuNWPF18znRzDDA/0qlfH/V0QsQFhhQfjYMmoiQgNEaydGHHUnLFRzs3+lMbBrnL
- +seQ3QyU77d8FfDzKSxkvNPhBYzaQ9SS6glpamCtcufDuQalm4LHZa4If1Bg==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230512_061202_766600_EFDB0069 
-X-CRM114-Status: GOOD (  21.28  )
+X-CRM114-CacheID: sfid-20230512_074931_216552_47B36A15 
+X-CRM114-Status: GOOD (  38.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,297 +84,119 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This adds an encoder bridge designed to drive a MIPI-DSI display
-by using the ENCL encoder through the internal MIPI DSI transceiver
-connected to the output of the ENCL pixel encoder.
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Jagan Teki <jagan@amarulasolutions.com>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- drivers/gpu/drm/meson/Makefile            |   2 +-
- drivers/gpu/drm/meson/meson_drv.c         |   9 ++
- drivers/gpu/drm/meson/meson_drv.h         |   1 +
- drivers/gpu/drm/meson/meson_encoder_dsi.c | 174 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/meson/meson_encoder_dsi.h |  13 +++
- 5 files changed, 198 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/meson/Makefile b/drivers/gpu/drm/meson/Makefile
-index 3afa31bdc950..833e18c20603 100644
---- a/drivers/gpu/drm/meson/Makefile
-+++ b/drivers/gpu/drm/meson/Makefile
-@@ -2,7 +2,7 @@
- meson-drm-y := meson_drv.o meson_plane.o meson_crtc.o meson_encoder_cvbs.o
- meson-drm-y += meson_viu.o meson_vpp.o meson_venc.o meson_vclk.o meson_overlay.o
- meson-drm-y += meson_rdma.o meson_osd_afbcd.o
--meson-drm-y += meson_encoder_hdmi.o
-+meson-drm-y += meson_encoder_hdmi.o meson_encoder_dsi.o
- 
- obj-$(CONFIG_DRM_MESON) += meson-drm.o
- obj-$(CONFIG_DRM_MESON_DW_HDMI) += meson_dw_hdmi.o
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index a30d61f1c817..7939f8a9ccb5 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -34,6 +34,7 @@
- #include "meson_registers.h"
- #include "meson_encoder_cvbs.h"
- #include "meson_encoder_hdmi.h"
-+#include "meson_encoder_dsi.h"
- #include "meson_viu.h"
- #include "meson_vpp.h"
- #include "meson_rdma.h"
-@@ -329,6 +330,12 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 	if (ret)
- 		goto exit_afbcd;
- 
-+	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
-+		ret = meson_encoder_dsi_init(priv);
-+		if (ret)
-+			goto exit_afbcd;
-+	}
-+
- 	ret = meson_plane_create(priv);
- 	if (ret)
- 		goto exit_afbcd;
-@@ -367,6 +374,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- free_drm:
- 	drm_dev_put(drm);
- 
-+	meson_encoder_dsi_remove(priv);
- 	meson_encoder_hdmi_remove(priv);
- 	meson_encoder_cvbs_remove(priv);
- 
-@@ -399,6 +407,7 @@ static void meson_drv_unbind(struct device *dev)
- 	free_irq(priv->vsync_irq, drm);
- 	drm_dev_put(drm);
- 
-+	meson_encoder_dsi_remove(priv);
- 	meson_encoder_hdmi_remove(priv);
- 	meson_encoder_cvbs_remove(priv);
- 
-diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
-index c62ee358456f..b23009a3380f 100644
---- a/drivers/gpu/drm/meson/meson_drv.h
-+++ b/drivers/gpu/drm/meson/meson_drv.h
-@@ -28,6 +28,7 @@ enum vpu_compatible {
- enum {
- 	MESON_ENC_CVBS = 0,
- 	MESON_ENC_HDMI,
-+	MESON_ENC_DSI,
- 	MESON_ENC_LAST,
- };
- 
-diff --git a/drivers/gpu/drm/meson/meson_encoder_dsi.c b/drivers/gpu/drm/meson/meson_encoder_dsi.c
-new file mode 100644
-index 000000000000..812e172dec63
---- /dev/null
-+++ b/drivers/gpu/drm/meson/meson_encoder_dsi.c
-@@ -0,0 +1,174 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) 2016 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ * Copyright (C) 2015 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/of_graph.h>
-+
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_simple_kms_helper.h>
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_bridge_connector.h>
-+#include <drm/drm_device.h>
-+#include <drm/drm_probe_helper.h>
-+
-+#include "meson_drv.h"
-+#include "meson_encoder_dsi.h"
-+#include "meson_registers.h"
-+#include "meson_venc.h"
-+#include "meson_vclk.h"
-+
-+struct meson_encoder_dsi {
-+	struct drm_encoder encoder;
-+	struct drm_bridge bridge;
-+	struct drm_bridge *next_bridge;
-+	struct meson_drm *priv;
-+};
-+
-+#define bridge_to_meson_encoder_dsi(x) \
-+	container_of(x, struct meson_encoder_dsi, bridge)
-+
-+static int meson_encoder_dsi_attach(struct drm_bridge *bridge,
-+				    enum drm_bridge_attach_flags flags)
-+{
-+	struct meson_encoder_dsi *encoder_dsi = bridge_to_meson_encoder_dsi(bridge);
-+
-+	return drm_bridge_attach(bridge->encoder, encoder_dsi->next_bridge,
-+				 &encoder_dsi->bridge, flags);
-+}
-+
-+static void meson_encoder_dsi_atomic_enable(struct drm_bridge *bridge,
-+					    struct drm_bridge_state *bridge_state)
-+{
-+	struct meson_encoder_dsi *encoder_dsi = bridge_to_meson_encoder_dsi(bridge);
-+	struct drm_atomic_state *state = bridge_state->base.state;
-+	struct meson_drm *priv = encoder_dsi->priv;
-+	struct drm_connector_state *conn_state;
-+	struct drm_crtc_state *crtc_state;
-+	struct drm_connector *connector;
-+
-+	connector = drm_atomic_get_new_connector_for_encoder(state, bridge->encoder);
-+	if (WARN_ON(!connector))
-+		return;
-+
-+	conn_state = drm_atomic_get_new_connector_state(state, connector);
-+	if (WARN_ON(!conn_state))
-+		return;
-+
-+	crtc_state = drm_atomic_get_new_crtc_state(state, conn_state->crtc);
-+	if (WARN_ON(!crtc_state))
-+		return;
-+
-+	/* ENCL clock setup is handled by CCF */
-+
-+	meson_venc_mipi_dsi_mode_set(priv, &crtc_state->adjusted_mode);
-+	meson_encl_load_gamma(priv);
-+
-+	writel_relaxed(0, priv->io_base + _REG(ENCL_VIDEO_EN));
-+
-+	writel_bits_relaxed(ENCL_VIDEO_MODE_ADV_VFIFO_EN, ENCL_VIDEO_MODE_ADV_VFIFO_EN,
-+			    priv->io_base + _REG(ENCL_VIDEO_MODE_ADV));
-+	writel_relaxed(0, priv->io_base + _REG(ENCL_TST_EN));
-+
-+	writel_bits_relaxed(BIT(0), 0, priv->io_base + _REG(VPP_WRAP_OSD1_MATRIX_EN_CTRL));
-+
-+	writel_relaxed(1, priv->io_base + _REG(ENCL_VIDEO_EN));
-+}
-+
-+static void meson_encoder_dsi_atomic_disable(struct drm_bridge *bridge,
-+					     struct drm_bridge_state *bridge_state)
-+{
-+	struct meson_encoder_dsi *meson_encoder_dsi =
-+					bridge_to_meson_encoder_dsi(bridge);
-+	struct meson_drm *priv = meson_encoder_dsi->priv;
-+
-+	writel_relaxed(0, priv->io_base + _REG(ENCL_VIDEO_EN));
-+
-+	writel_bits_relaxed(BIT(0), BIT(0), priv->io_base + _REG(VPP_WRAP_OSD1_MATRIX_EN_CTRL));
-+}
-+
-+static const struct drm_bridge_funcs meson_encoder_dsi_bridge_funcs = {
-+	.attach	= meson_encoder_dsi_attach,
-+	.atomic_enable = meson_encoder_dsi_atomic_enable,
-+	.atomic_disable	= meson_encoder_dsi_atomic_disable,
-+	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-+	.atomic_reset = drm_atomic_helper_bridge_reset,
-+};
-+
-+int meson_encoder_dsi_init(struct meson_drm *priv)
-+{
-+	struct meson_encoder_dsi *meson_encoder_dsi;
-+	struct device_node *remote;
-+	int ret;
-+
-+	meson_encoder_dsi = devm_kzalloc(priv->dev, sizeof(*meson_encoder_dsi), GFP_KERNEL);
-+	if (!meson_encoder_dsi)
-+		return -ENOMEM;
-+
-+	/* DSI Transceiver Bridge */
-+	remote = of_graph_get_remote_node(priv->dev->of_node, 2, 0);
-+	if (!remote) {
-+		dev_err(priv->dev, "DSI transceiver device is disabled");
-+		return 0;
-+	}
-+
-+	meson_encoder_dsi->next_bridge = of_drm_find_bridge(remote);
-+	if (!meson_encoder_dsi->next_bridge) {
-+		dev_dbg(priv->dev, "Failed to find DSI transceiver bridge\n");
-+		return -EPROBE_DEFER;
-+	}
-+
-+	/* DSI Encoder Bridge */
-+	meson_encoder_dsi->bridge.funcs = &meson_encoder_dsi_bridge_funcs;
-+	meson_encoder_dsi->bridge.of_node = priv->dev->of_node;
-+	meson_encoder_dsi->bridge.type = DRM_MODE_CONNECTOR_DSI;
-+
-+	drm_bridge_add(&meson_encoder_dsi->bridge);
-+
-+	meson_encoder_dsi->priv = priv;
-+
-+	/* Encoder */
-+	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_dsi->encoder,
-+				      DRM_MODE_ENCODER_DSI);
-+	if (ret) {
-+		dev_err(priv->dev, "Failed to init DSI encoder: %d\n", ret);
-+		return ret;
-+	}
-+
-+	meson_encoder_dsi->encoder.possible_crtcs = BIT(0);
-+
-+	/* Attach DSI Encoder Bridge to Encoder */
-+	ret = drm_bridge_attach(&meson_encoder_dsi->encoder, &meson_encoder_dsi->bridge, NULL, 0);
-+	if (ret) {
-+		dev_err(priv->dev, "Failed to attach bridge: %d\n", ret);
-+		return ret;
-+	}
-+
-+	/*
-+	 * We should have now in place:
-+	 * encoder->[dsi encoder bridge]->[dw-mipi-dsi bridge]->[panel bridge]->[panel]
-+	 */
-+
-+	priv->encoders[MESON_ENC_DSI] = meson_encoder_dsi;
-+
-+	dev_dbg(priv->dev, "DSI encoder initialized\n");
-+
-+	return 0;
-+}
-+
-+void meson_encoder_dsi_remove(struct meson_drm *priv)
-+{
-+	struct meson_encoder_dsi *meson_encoder_dsi;
-+
-+	if (priv->encoders[MESON_ENC_DSI]) {
-+		meson_encoder_dsi = priv->encoders[MESON_ENC_DSI];
-+		drm_bridge_remove(&meson_encoder_dsi->bridge);
-+		drm_bridge_remove(meson_encoder_dsi->next_bridge);
-+	}
-+}
-diff --git a/drivers/gpu/drm/meson/meson_encoder_dsi.h b/drivers/gpu/drm/meson/meson_encoder_dsi.h
-new file mode 100644
-index 000000000000..9277d7015193
---- /dev/null
-+++ b/drivers/gpu/drm/meson/meson_encoder_dsi.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+/*
-+ * Copyright (C) 2021 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+#ifndef __MESON_ENCODER_DSI_H
-+#define __MESON_ENCODER_DSI_H
-+
-+int meson_encoder_dsi_init(struct meson_drm *priv);
-+void meson_encoder_dsi_remove(struct meson_drm *priv);
-+
-+#endif /* __MESON_ENCODER_DSI_H */
-
--- 
-2.34.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgQXJzZW5peSwKCkknbSBhZGRpbmcgUmFmYcWCICYgTWljaGFlbDogYW55IGlkZWEgd2hhdCBj
+b3VsZCBiZSB3cm9uZz8gVGhlIGJlaGF2aW9yCmJlbG93IGRvZXMgbm90IGxvb2sgZXhwZWN0ZWQg
+YXQgYWxsLCBidXQgSSB0aG91Z2h0IHdlICg9IFJhZmHFgiwgbWFpbmx5KQphbHJlYWR5IHNvcnRl
+ZCB0aGlzIG91dD8KCj4gPj4+Pj4+PiBPbiBXZWQsIE1heSAxMCwgMjAyMyBhdCAxOjEz4oCvUE0g
+QXJzZW5peSBLcmFzbm92Cj4gPj4+Pj4+PiA8QVZLcmFzbm92QHNiZXJkZXZpY2VzLnJ1PiB3cm90
+ZTogICAgICAKPiA+Pj4+Pj4+Pgo+ID4+Pj4+Pj4+IFRoaXMgcmVuYW1lcyBub2RlIHdpdGggdmFs
+dWVzIGZvciBjaGlwIHNlbGVjdCBmcm9tICJyZWciIHRvICJjcyIuIEl0IGlzCj4gPj4+Pj4+Pj4g
+bmVlZGVkIGJlY2F1c2Ugd2hlbiBPVFAgYWNjZXNzIGlzIGVuYWJsZWQgb24gdGhlIGF0dGFjaGVk
+IHN0b3JhZ2UsIE1URAo+ID4+Pj4+Pj4+IHN1YnN5c3RlbSByZWdpc3RlcnMgdGhpcyBzdG9yYWdl
+IGluIHRoZSBOVk1FTSBzdWJzeXN0ZW0uIE5WTUVNIGluIHR1cm4KPiA+Pj4+Pj4+PiB0cmllcyB0
+byB1c2UgInJlZyIgbm9kZSBpbiBpdHMgb3duIG1hbm5lciwgc3VwcG9zZXMgdGhhdCBpdCBoYXMg
+YW5vdGhlcgo+ID4+Pj4+Pj4+IGxheW91dC4gQWxsIG9mIHRoaXMgbGVhZHMgdG8gZGV2aWNlIGlu
+aXRpYWxpemF0aW9uIGZhaWx1cmUuICAgICAgICAKPiA+Pj4+Pj4+IEluIGdlbmVyYWw6IGlmIHdl
+IGNoYW5nZSB0aGUgZGV2aWNlLXRyZWUgaW50ZXJmYWNlIChpbiB0aGlzIGNhc2U6Cj4gPj4+Pj4+
+PiByZXBsYWNpbmcgYSAicmVnIiB3aXRoIGEgImNzIiBwcm9wZXJ0eSkgdGhlIGR0LWJpbmRpbmdz
+IGhhdmUgdG8gYmUKPiA+Pj4+Pj4+IHVwZGF0ZWQgYXMgd2VsbC4gICAgICAKPiA+Pj4+Pj4KPiA+
+Pj4+Pj4gVHJ1ZSwgYW5kIEkgd291bGQgYWRkLCBiaW5kaW5ncyBzaG91bGQgbm90IGJlIGJyb2tl
+bi4gICAgICAKPiA+Pj4+Pgo+ID4+Pj4+IEkgc2VlLCB0aGF0J3MgdHJ1ZS4gVGhhdCBpcyBiYWQg
+d2F5IHRvIGNoYW5nZSBiaW5kaW5ncy4KPiA+Pj4+PiAgICAKPiA+Pj4+Pj4gICAgICAgCj4gPj4+
+Pj4+PiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbXRkL25hbmQtY29udHJvbGxl
+ci55YW1sIGFuZAo+ID4+Pj4+Pj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL210
+ZC9hbWxvZ2ljLG1lc29uLW5hbmQueWFtbCBzaG93Cj4gPj4+Pj4+PiB0aGF0IHRoZSBjaGlwIHNl
+bGVjdCBvZiBhIE5BTkQgY2hpcCBpcyBzcGVjaWZpZWQgd2l0aCBhICJyZWciCj4gPj4+Pj4+PiBw
+cm9wZXJ0eS4gICAgICAKPiA+Pj4+Pj4KPiA+Pj4+Pj4gQWxsIE5BTkQgY29udHJvbGxlciBiaW5k
+aW5nIGV4cGVjdCB0aGUgY2hpcC1zZWxlY3QgdG8gYmUgaW4gdGhlCj4gPj4+Pj4+ICdyZWcnIHBy
+b3BlcnR5LCB2ZXJ5IG11Y2ggbGlrZSBhIHNwaSBkZXZpY2Ugd291bGQgdXNlIHJlZyB0byBzdG9y
+ZSB0aGUKPiA+Pj4+Pj4gY3MgYXMgd2VsbDogdGhlIHJlZyBwcm9wZXJ0eSB0ZWxscyB5b3UgaG93
+IHlvdSBhZGRyZXNzIHRoZSBkZXZpY2UuCj4gPj4+Pj4+Cj4gPj4+Pj4+IEkgYWxzbyBmdWxseSBh
+Z3JlZSB3aXRoIE1hcnRpbidzIGNvbW1lbnRzIGJlbG93LiBDaGFuZ2luZyByZWcgaXMgbGlrZWx5
+Cj4gPj4+Pj4+IGEgd3JvbmcgYXBwcm9hY2ggOikKPiA+Pj4+Pj4gICAgICAgCj4gPj4+Pj4+PiBB
+bHNvIHRoZSBjb2RlIGhhcyB0byBiZSBiYWNrd2FyZHMgY29tcGF0aWJsZSB3aXRoIG9sZCAuZHRi
+cy4KPiA+Pj4+Pj4+ICAgICAgCj4gPj4+Pj4+Pj4gRXhhbXBsZToKPiA+Pj4+Pj4+Pgo+ID4+Pj4+
+Pj4+IFsuLi5dIG52bWVtIG10ZDAtdXNlci1vdHA6IG52bWVtOiBpbnZhbGlkIHJlZyBvbiAvc29j
+L2J1c0BmZmUwMDAwMC8uLi4KPiA+Pj4+Pj4+PiBbLi4uXSBtdGQgbXRkMDogRmFpbGVkIHRvIHJl
+Z2lzdGVyIE9UUCBOVk1FTSBkZXZpY2UKPiA+Pj4+Pj4+PiBbLi4uXSBtZXNvbi1uYW5kIGZmZTA3
+ODAwLm5mYzogZmFpbGVkIHRvIHJlZ2lzdGVyIE1URCBkZXZpY2U6IC0yMgo+ID4+Pj4+Pj4+IFsu
+Li5dIG1lc29uLW5hbmQgZmZlMDc4MDAubmZjOiBmYWlsZWQgdG8gaW5pdCBOQU5EIGNoaXBzCj4g
+Pj4+Pj4+Pj4gWy4uLl0gbWVzb24tbmFuZDogcHJvYmUgb2YgZmZlMDc4MDAubmZjIGZhaWxlZCB3
+aXRoIGVycm9yIC0yMiAgICAgICAgCj4gPj4+Pj4+PiBUaGlzIGlzIG9kZCAtIGNhbiB5b3UgcGxl
+YXNlIHNoYXJlIHlvdXIgZGVmaW5pdGlvbiBvZiB0aGUgJm5mYyBub2RlPyAgICAgIAo+ID4+Pj4+
+Cj4gPj4+Pj4gU3VyZSwgaGVyZSBpdCBpczoKPiA+Pj4+Pgo+ID4+Pj4+IG10ZF9uYW5kOiBuZmNA
+NzgwMCB7ICAgICAgICAgICAgICAgICAgICAgICAgICAgIAo+ID4+Pj4+IAljb21wYXRpYmxlID0g
+ImFtbG9naWMsbWVzb24tYXhnLW5mYyI7Cj4gPj4+Pj4gCS4uLgo+ID4+Pj4+IAluYW5kQDAgeyAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCj4gPj4+Pj4gICAgICAgICAJcmVnID0gPDA+
+Owo+ID4+Pj4+ICAgICAgICAgfTsKPiA+Pj4+PiB9Cj4gPj4+Pj4KPiA+Pj4+PiBJIGNoZWNrZWQs
+IHRoYXQgJ25hbmRfc2V0X2ZsYXNoX25vZGUoKScgaXMgY2FsbGVkIHdpdGggJ25hbmRAMCcgYW5k
+IGkgc3VwcG9zZQo+ID4+Pj4+IHRoYXQgaXQgaXMgY29ycmVjdCAoYXMgWW91IG1lbnRpb25lZCBi
+ZWxvdykuIEJ1dCwgJ252bWVtX2FkZF9jZWxsc19mcm9tX29mKCknIGlzIGNhbGxlZAo+ID4+Pj4+
+IHdpdGggcGFyZW50OiAnbmZjQDc4MDAnLCB0aGVuIGl0IGl0ZXJhdGVzIG92ZXIgaXRzIGNoaWxk
+cywgZS5nLiAnbmFuZEAwJyBhbmQgdGh1cyBpIGdldCBzdWNoCj4gPj4+Pj4gc2l0dWF0aW9uLiBJ
+IGd1ZXNzLCB0aGF0ICdudm1lbV9hZGRfY2VsbHNfZnJvbV9vZigpJyBtdXN0IGJlIGNhbGxlZCB3
+aXRoICduYW5kQDAnID8gICAgCj4gPj4+Pgo+ID4+Pj4gV2UgcmVjZW50bHkgaGFkIGlzc3VlcyB3
+aXRoIG52bWVtIHBhcnNpbmcsIGJ1dCBJIGJlbGlldmUgYSBtYWlubGluZQo+ID4+Pj4ga2VybmVs
+IHNob3VsZCBub3cgYmUgcGVyZmVjdGx5IHdvcmtpbmcgb24gdGhpcyByZWdhcmQuIFdoYXQgdmVy
+c2lvbiBvZgo+ID4+Pj4gdGhlIExpbnV4IGtlcm5lbCBhcmUgeW91IHVzaW5nPyAgICAKPiA+Pj4K
+PiA+Pj4gTXkgY3VycmVudCB2ZXJzaW9uIGlzOgo+ID4+Pgo+ID4+PiBWRVJTSU9OID0gNiAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAK
+PiA+Pj4gUEFUQ0hMRVZFTCA9IDIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgCj4gPj4+IFNVQkxFVkVMID0gMCAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAo+ID4+PiBFWFRSQVZF
+UlNJT04gPSAtcmM4IAo+ID4+Pgo+ID4+PiBGaXggd2FzIGluIGRyaXZlcnMvbnZtZW0vKiA/Cj4g
+Pj4+Cj4gPj4+IFRoYW5rcywgQXJzZW5peSAgICAKPiA+Pgo+ID4+IFVwZDogSSByZXNvbHZlZCBw
+cm9ibGVtIGluIHRoZSBmb2xsb3dpbmcgd2F5Ogo+ID4+Cj4gPj4gbmFuZEAwIHsgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIAo+ID4+IAlyZWcgPSA8MD47Ly9jaGlwIHNlbGVjdAo+ID4+
+ICAKPiA+IAlwYXJ0aXRpb25zIHsKPiA+IAkJY29tcGF0aWJsZSA9IC4uLgo+ID4gICAKPiA+PiAJ
+b3RwQDAgeyAgICAgICAgICAgICAgICAgICAgICAgICAKPiA+PiAJCSNhZGRyZXNzLWNlbGxzID0g
+PDI+OyAgIAo+ID4+IAkJI3NpemUtY2VsbHMgPSA8MD47ICAgICAgICAKPiA+IAo+ID4gI2FkZHJl
+c3Mvc2l6ZS1jZWxscyBpcyBub3QgbmVlZGVkIGhlcmUKPiA+ICAgCj4gPj4gCQljb21wYXRpYmxl
+ID0gInVzZXItb3RwIjsKPiA+PiAJCXJlZyA9IDxBIEI+OyAgICAgICAgICAgIAo+ID4+IAl9OyAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIAo+ID4+IAlvdHBAMSB7ICAgICAgICAgICAgICAg
+ICAgICAgICAgIAo+ID4+IAkJI2FkZHJlc3MtY2VsbHMgPSA8Mj47ICAgCj4gPj4gCQkjc2l6ZS1j
+ZWxscyA9IDwwPjsgICAgICAgIAo+ID4gCj4gPiBEaXR0bwo+ID4gICAKPiA+PiAJCWNvbXBhdGli
+bGUgPSAiZmFjdG9yeS1vdHAiOwo+ID4+IAkJcmVnID0gPEMgRD47ICAgICAgICAgICAgCj4gPj4g
+CX07ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKPiA+IAo+ID4gCX07Cj4gPiAgIAo+
+ID4+IH07Cj4gPj4KPiA+PiBOb3cgbnZtZW0gc3Vic3lzdGVtIHBhcnNlcyAnb3RwQDAnIGFuZCAn
+b3RwQDEnIGFuZCBlcnJvciBpcyBnb25lLiAnY29tcGF0aWJsZScgdmFsdWVzIGFyZQo+ID4+IHRo
+ZSBzYW1lIGFzIGluIGRyaXZlcnMvbXRkL210ZGNvcmUuYzptdGRfb3RwX252bWVtX2FkZCgpLiAn
+cmVnJyBpbiAnbmFuZEAwJyBpcyB1c2VkIGFzCj4gPj4gY2hpcCBzZWxlY3QgYXMgc3VwcG9zZWQu
+ICAKPiA+IAo+ID4gSSBkb24ndCBmdWxseSBnZXQgaXQuIFRoZSBwYXJzaW5nIG9uIHRoZSBudm1l
+bSBzaWRlIHNob3VsZCBub3QgZmFpbCBpZgo+ID4gdGhlcmUgaXMgbm8gc3VicGFydGl0aW9uL290
+cC1yZWdpb24gZGVmaW5lZC4gQ2FuIHlvdSBjb25maXJtIGFuIGVtcHR5Cj4gPiBOQU5EIGRldmlj
+ZSBub2RlIHdvcmtzPyBCZWNhdXNlIHlvdXIgbGFzdCBlLW1haWwgc3VnZ2VzdGVkIHRoZSBvcHBv
+c2l0ZS4gIAo+IAo+IE9rLCBzbyBpJ2xsIGRlc2NyaWJlIHdoYXQgaGFwcGVucyBpbiBteSBjYXNl
+LiBMZXQncyBOQU5EIG5vZGUgYmUgbGlrZSB0aGlzIChJSVVDIHRoaXMgaXMKPiBjb25zaWRlcmVk
+IGFzIGVtcHR5IE5BTkQgZGV2aWNlKToKPiAKPiBtdGRfbmFuZDogbmZjQDc4MDAgeyAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAKPiAJY29tcGF0aWJsZSA9ICJhbWxvZ2ljLG1lc29uLWF4Zy1u
+ZmMiOwo+IAkuLi4KPiAJbmFuZEAwIHsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAo+
+IAkgICAgICAgCXJlZyA9IDwwPjsKPiAJfTsKPiB9Cj4gCj4gSSBzZWUsIHRoYXQKPiAKPiAxKSAn
+bXRkX290cF9udm1lbV9hZGQoKScgY2FsbHMgJ210ZF9vdHBfbnZtZW1fcmVnaXN0ZXIoKScgdHdp
+Y2UgZm9yIHR3byB0eXBlcyBvZgo+ICAgIE9UUCBtZW1vcnkgInVzZXItb3RwIiBhbmQgImZhY3Rv
+cnktb3RwIi4gTGV0J3MgdGFrZSBhIGxvb2sgb25seSBvbiAidXNlci1vdHAiLgo+IDIpICdtdGRf
+b3RwX252bWVtX3JlZ2lzdGVyKCknIHRyaWVzIHRvIGxvb2t1cCBmb3Igbm9kZSBpbiAnbmFuZEAw
+JyB3aGljaCBpcyBjb21wYXRpYmxlIHdpdGgKPiAgICAidXNlci1vdHAiIGFuZCB0aGVuIHBhc3Nl
+cyBmb3VuZCAob3Igbm90IGZvdW5kLCBlLmcuIE5VTEwpIG5vZGUgdG8gICdudm1lbV9yZWdpc3Rl
+cigpJy4KPiAzKSAnbnZtZW1fcmVnaXN0ZXIoKScgdXNlcyB0aGlzIG5vZGUgaXRlcmF0aW5nIG92
+ZXIgaXRzIGNoaWxkcyBhbmQgc2VhcmNoaW5nIHZhbHVlICJyZWciIGluCj4gICAgZWFjaCBjaGls
+ZC4gSWYgInVzZXItb3RwIiBub2RlIGlzIG5vdCBmb3VuZCBpbiAyKSwgJ252bWVtX3JlZ2lzdGVy
+KCknIHVzZXMgbm9kZSAnbmZjQDc4MDAnCj4gICAgYWxzbyBsb29raW5nIGZvciAicmVnIiB2YWx1
+ZSBpbiBlYWNoIG9mIGl0cyBjaGlsZC4gSW4gdGhpcyBjYXNlIGl0IGZvdW5kICJyZWciIGluICdu
+YW5kQDAnCj4gICAgYW5kIGZhaWxzLgo+IAo+IE5vdywgaWYgaSBhZGQgImNvbXBhdGlibGUgPSAi
+dXNlci1vdHAiOyIgdG8gJ25hbmRAMCcsIGluIHN0ZXAgMikgc2VhcmNoIHdpbGwgYmUgc3VjY2Vz
+c2Z1bCwKPiBhbmQgInJlZyIgdmFsdWUgd2lsbCBiZSB1c2VkIGZyb20gdGhpcyBuZXcgbm9kZSAo
+b3Igd2UgcmVtb3ZlICJyZWciIGZyb20gaXQgLSBub3RoaW5nIGhhcHBlbnMKPiBhcyBZb3Ugd3Jv
+dGUpLiBTbywgcHJvYmxlbSBpcyB0aGF0IG52bWVtIHRyaWVzIHRvIHBhcnNlIG5vZGUgd2l0aCBp
+bnZhbGlkICJyZWciIHZhbHVlLgo+IAo+IEFsc28gSSBzZWUsIHRoYXQgJ252bWVtX3JlZ2lzdGVy
+KCknIGlzIGNhbGxlZCBlYXJsaWVyIGluICdtdGRfbnZtZW1fYWRkKCknLCBidXQgd2l0aCBubyBl
+ZmZlY3QuCj4gSSB0aGluaywgdGhhdCBpdCBpcyBub3QgcmVsYXRlZCB3aXRoIGVuYWJsZWQgT1RQ
+IGZlYXR1cmUuCj4gCj4gVGhhbmtzLCBBcnNlbml5CgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1h
+bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
