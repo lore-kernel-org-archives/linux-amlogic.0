@@ -4,85 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9AA8C7EE23
-	for <linux-amlogic@archiver.kernel.org>; Fri, 12 May 2023 13:40:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE54EC77B75
+	for <linux-amlogic@archiver.kernel.org>; Fri, 12 May 2023 13:40:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QQ3XCwkW+K7OTRcFfEo311k58dKNm2OLSIESfOQ7n8Q=; b=eOKAyPxsc8wnvq
-	eebiTmMBEJD0G4Amw+zzRu4WlWqbgZcre45kS59s77PA/a1Fi/Aq5tmiFQWQIRyQoDr8wChtg8ShG
-	XQV1JpHmCrpRMZdQoER15ZF7XfZiJgG0yTQeS44q/dLstB46vWFQTEN7KYDehRtzXDEVEGqI38eLF
-	/Ds72eYaWCI3SUinm7TnNVEzUAp1A5mpMt8vyAdlQvC/Z5f8u6VNkTZn4dkoAC15jeo82fCImCSfo
-	QFd5EagIz8XUe2nVxRSsykcWbjBVmWxTevXrqvJktFF9QzqPucvptjpA4/Tvt5Dx0zAf2sygBZClE
-	WWWgk4iGfkg69f5ycLqg==;
+	List-Owner; bh=NlwC50Y5UI5glvGgNRrxa+niEV11MO0mjlRrljT6qxc=; b=ad8jAUiMVw/3Mw
+	4fojZobGIsx2eJV9AiN+Zbm/PzN7smBZh+54ECxGCrB+rSyfqzb/bSFMOW/dKjq4kpEzAJOuv31nV
+	u8SM1MDyX5wGbtBOCvWMMjxf9xEdESfPz6V0uLipkfpbzkCzOoq+koX9mDY2SHeSWAV1zK2h0NjOK
+	gCHfHJbpWyvWJp2Pt1K2UJbzChcAPSd1Ji0L4+M9c88sjQDuEYzDr7QSBSkOgK+YQpq4N0cO2rvC1
+	s0uKwmsUi6lX6Wa1SmlHEfA+6N2qg3PMOCLG3VEAR0sj51nGo3+ou88vilZh1oawj8XSGYL0mnNpY
+	IQSWwDeQm4IvoSPjpmOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pxT0U-00C2xu-2O;
-	Fri, 12 May 2023 13:40:26 +0000
+	id 1pxT0V-00C2yh-1x;
+	Fri, 12 May 2023 13:40:27 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pxT0T-00C2w4-0A
+	id 1pxT0T-00C2w4-2d
 	for linux-amlogic@bombadil.infradead.org;
 	Fri, 12 May 2023 13:40:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
 	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=CQGfs0pp45pexiaktGuq63JuG2wKbIhsIc/sZm7UZq8=; b=mCP+ZMZcXnCWmyu3Yd4LZMQPUs
-	Sro8s9s2daRTgfXRmHC1IMoH2+zzwQ/YCgwstGJtHDojTjUZNlA9TGLGLPys0quFu8MAgRNOtvCyQ
-	V/dXQbz6j5ym+f3s9dP2u6ybYthGuMxM914pjOSzZ4snjKtnbfQQd5lJgLW22OK+kAp87y7VRuA0U
-	cJs32SQIBF9LRqi8RBIYTHKHn4Y15sI3qiuWlh1Y+8HscEzHRX9cJOfDqInMGgnRUUgxFb1uyrrx8
-	pO5P0qFz6P/V1JN4/62PPHCDjiFBSPpkvJpLn2iS7C8OEiM68yZu7VYWvydVBKUP/CxiiAfxzb4i8
-	/jpnBygg==;
+	bh=SLBWgiMNwkyCqNWdGx1K4+ygLk3VG9D6DZvu6fKUhDY=; b=gzy60N2ByC4y/7x1uSclqrmQ+j
+	rQGZf13qfk3hV8S50avx1GGBhjgOZi4N5NKd7j1ZTjw1lnYVqNxGfELgEhNyAO1PHdxKiJ1Bk/dD9
+	DCkprfxtarkbbFc3pgmoHY7ig1/y5xa1Rvv8qKEtpUTNbcC4F6xmJ2ej6FbRB1dXVWGamFd+OyqfW
+	aqkM9ItdAOsF539e3ccfwg2WEfbp+qrOJHce3vx0bCLITPtTaYy5kQIQ8//S/Y3te7NpfL05oa5nh
+	1qphgxCrZMzafpdFJQK4UenUcfxpTyi9HICETZa8imz0Ci8YiHt6S2KDg3zzAdL7RGbtUWv7fZWed
+	qle7A+Vw==;
 Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pxSZ8-0099Oi-0D
+	id 1pxSZ8-0099PO-0D
 	for linux-amlogic@lists.infradead.org;
-	Fri, 12 May 2023 13:12:14 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f42ba32e24so30994375e9.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 12 May 2023 06:12:02 -0700 (PDT)
+	Fri, 12 May 2023 13:12:12 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f41dceb9d1so71873845e9.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 12 May 2023 06:12:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683897121; x=1686489121;
+        d=linaro.org; s=google; t=1683897125; x=1686489125;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=CQGfs0pp45pexiaktGuq63JuG2wKbIhsIc/sZm7UZq8=;
-        b=kfv11LY8HvSV5ef6xGsTKAb+izNY8drmGYsW8br/KeVyTdRNxbtdUY5iD5wwZbYYdE
-         T5r/y67Wid+/jxxXI9/DfJ0wpiaF1CsW9sPWhceDRCRObQnMrGXK5cPvs8CeIYgVUE7K
-         xLTAdvsr7tarGuizvsRECF44Eo0akdYPkh4Lq1WXOfzjGjhXR0e/MxRcOKIkPaxbJPRS
-         PAAkHqCEX62Bbk3R2R2EiGkR0GCKMgLGTDFz15VXD7FCwRgUuYGUxlLPX665ZXmBMV7E
-         atXSOOcJAfiEd/uoLTlzdMkrnVgcuwIlTlE8NtY0zZr9objrcWpg8/SSiqRuJyJ/yxzu
-         0Tvw==
+        bh=SLBWgiMNwkyCqNWdGx1K4+ygLk3VG9D6DZvu6fKUhDY=;
+        b=kYz0ju11D6jUTa4HLXMUI85kDspC8Jjx1paZ1AgUvlNEARse9VXMp67EppR0eALwn+
+         rON/U5JQf1qFpk72jiCjxTvJ+mMPKvQLO84oXFvSd+f8Uf3sHhp8Aj0FT0EaiCJ2G9Ug
+         8u9OhYquKpxtVOHwm4MOEmS65MpzV7bRgKTlYHC7l0ss5eYzgP71CRacXDtsys6US5e3
+         ckFtgA8JfPVM06HtNNLE9cE41REzpGjbgtBDRzGubaWC7Dfu9UEx3Sb6dqXVXT7YzhDQ
+         wyh5BrdOZuANfwrWAvJY7RdWfXkNTeHZ2+kcDhoZxfGIapZv3iAmKzCAObbGks2C4asp
+         seKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683897121; x=1686489121;
+        d=1e100.net; s=20221208; t=1683897125; x=1686489125;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CQGfs0pp45pexiaktGuq63JuG2wKbIhsIc/sZm7UZq8=;
-        b=d5MSGNPTt7OT8rP6SOjyIJFfU4TNOgptGerRXZq8d0QvxnBthczEKE53PSzq+BbXY3
-         +ssMY5wdjV2Bw67F+ZOY4NzhxwTIlTPn6UYark99Sw7b+kiaTIEf7NTMfBbVCwHkgP1V
-         yaOGx/eTN2tzwA2bEZd8TZkydfO/vgPBApn/q96LOgUMSMfDMEIaJChUTYsL/ijaPOQn
-         kKbmoisLo7MECULfeEaTOqgzbTIZM1TLnlsv1evS6uteelJpsT8y197g/WoBQnzDppe0
-         54PexJCdVIjwbAtcvGY5cwWoBhsl9bWiHe2jFWU8tsnelqsClveZXFWPpevdLMihQkzQ
-         aybA==
-X-Gm-Message-State: AC+VfDwJC6XsG0GEEciTzuJ2y33jAX4SqNWp82vafvvTZVrdobymfLxu
-	4aSxLgCEXbuPkDNl4FsGw2MEUg==
-X-Google-Smtp-Source: ACHHUZ7Dmp6DHGvb0+somOxViWfjp1eiYgYIHIhbryEiyY4NNttj70533MuZOxKBQYWse6vXBTHa6A==
-X-Received: by 2002:a5d:4a01:0:b0:306:4943:2e18 with SMTP id m1-20020a5d4a01000000b0030649432e18mr16106164wrq.58.1683897120920;
-        Fri, 12 May 2023 06:12:00 -0700 (PDT)
+        bh=SLBWgiMNwkyCqNWdGx1K4+ygLk3VG9D6DZvu6fKUhDY=;
+        b=aFdPwQ7zxADMS56fbAvxBoNGcaLLyhCQjQPRHM/qu6p34ABf/00gewPOziwXfGXYkS
+         GGQoT6L9983ERhmTg92gzUPKf4YTKL0EZ3OqZGjhFzJtJwfRlycm9LRnPeWe3USyaOzx
+         ROkYcReamDT/FaNZvA/CvIdM5hNDMGcWi9vDF8Za/jrernV6sX6pUKzFbYWXW3yksLfI
+         cxtZBTB+agKpVp8PGWQOtFUgOK18m8uU4QhBFBWZ9oFvWnNHXqCNUPtK8Wqih8IeadHe
+         E3QYixjxczy0fOjhe2MX2tgAcX4uRQzdIlhtwqOeeXnmCXJ/cdS20BLb3YTiVFe4pF14
+         ZZcg==
+X-Gm-Message-State: AC+VfDxUG+QwDXHDUBtmRejRAjXgRhc5sTwUv4lJRRzLe5ZYl8LfBNZH
+	gDmJsZ0pMiK2/PoYGHkUUPm8Bw==
+X-Google-Smtp-Source: ACHHUZ5uobz/omWHn5suWrUkzrTkBzpmD/f63IcO56rfuCbjWofaJT0wtqRIazvDS1RzoQKBzvVilA==
+X-Received: by 2002:a05:600c:214f:b0:3f4:23cd:6dcf with SMTP id v15-20020a05600c214f00b003f423cd6dcfmr14235255wml.15.1683897125511;
+        Fri, 12 May 2023 06:12:05 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id v10-20020a5d610a000000b0030647449730sm23461965wrt.74.2023.05.12.06.11.59
+        by smtp.gmail.com with ESMTPSA id v10-20020a5d610a000000b0030647449730sm23461965wrt.74.2023.05.12.06.12.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 May 2023 06:12:00 -0700 (PDT)
+        Fri, 12 May 2023 06:12:05 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Fri, 12 May 2023 15:11:38 +0200
-Subject: [PATCH v4 07/13] drm/meson: venc: add ENCL encoder setup for
- MIPI-DSI output
+Date: Fri, 12 May 2023 15:11:42 +0200
+Subject: [PATCH v4 11/13] drm/panel: khadas-ts050: update timings to
+ achieve 60Hz refresh rate
 MIME-Version: 1.0
-Message-Id: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-7-2592c29ea263@linaro.org>
+Message-Id: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-11-2592c29ea263@linaro.org>
 References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
 In-Reply-To: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
 To: Jerome Brunet <jbrunet@baylibre.com>, 
@@ -99,28 +99,27 @@ Cc: Nicolas Belin <nbelin@baylibre.com>, linux-amlogic@lists.infradead.org,
  linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  dri-devel@lists.freedesktop.org, linux-phy@lists.infradead.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=15394;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1576;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=OmAVPSRaOV46sf4J3PycZufAGsc9m/S/xi0sUO1zLbs=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkXjsUlpuLabWYNOIhCUKrUKVe8GRfm+nUsyY0PUE1
- hHpWlISJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZF47FAAKCRB33NvayMhJ0afCD/
- 9fPmkTfZ7rKX6gGhLMp+Wuzbrw6MomYAhpnLoBxOmVwwtKz9dTu/rI8NR03zafY+L9fa2vSp4uHmFr
- v21RCzCs5jklxTVllEjQgXnMStP4TXIZzChXB04SPsdn7BIsRdWiSliNGREFdZZjApMLLps437eGwe
- 17+gNOIzMFS7b8UEVyLZ2wUPT5AJC03sK65LJ4bBynS631ogcvAaJCww1LC5DfKzi/uTWngR5/V6W5
- nQ3GqeywYRwPvFTWyAyBNaLImqTJYR4ioeBUjNKGlYGTrB4uGqYj2H+VaZKUi3xzQ1WtE4sqdhLos9
- Ndp+0pbqEqT5TZb9pJj/k6Q4IU15FJYeUgaROGkFdcscQOo68reHZ5RXhQcsi0p5LD42bJtlSOF2a/
- C1pwC44mlqgWMYBf003YqgG6gdCduViWo06lksQl3/dfG+aVb2t/DAyMq2bC7CJdA6mZ0UZVEP1ulp
- gJL+WLvJVqdMnpXK8jU35Xg+p3lG6HhXNVhrEVrJQGMEZgFIJnGww+QEvQkchOGacGD/wW0Z/fJgHI
- edqIR/WZJDzdz/RDHdE+TGCJBayVN0271UJhIbAIphEq0nenRCWYg7QbiyS6mue4t9yn86QkBaOHkw
- /7zmg+xYy0z9ctIX+fsUO/BHKVEX1UIUH4XM0vchVHsUpYwe6G4RMSHyb4IQ==
+ bh=PM1rVoTLiKdVLACMoQ2eP/3H3+GG4xHNSxcdM1deMu0=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkXjsWCqwAYpj12TIzbwlkf9rcKbazvmpNPhFYFGGi
+ 4wO5G1CJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZF47FgAKCRB33NvayMhJ0VpWD/
+ 9DOHdC5AgFrJ1Q9ndeQRh8i4b4H6g8HoCtu/gw1crViqRJUFlOcGhexl5J2mfmiB6r7lsT9+dO/n5b
+ rjMPRX/2S8rSw3L15zq+0Ru0idzsr3SCRWs9U0b6xd2EAu0/XKtJdnavjO/nSqVUXbnW0VDZGTW3Pd
+ vqcYT0xocfyBd+3kFjqsTRTq7zW9/0+0i7rYYJGfXedE6QIZc5P2NzcfecyBxtltL/o9IMVcDriJqV
+ Ox5v4fHagv2aC5O2OrqeqbUdl7i3MnB5W3eshagZwHdXPsWSFeiw8I7WqZ+r2zHe0uD0Ms/oQzgWC9
+ nzqUOwazrnR4UBkpkmAOinQDVXpOoviv7qB9TrvIUB37UMJbgmo/wGgPnvbX7aF1RgUQ9ywHDEwmmv
+ pvr7YIuF+sMUbDfQGeYfTnjVNYjXWaDRQbbqkZRuLrUaKhKhXOOxmzTfaaRVue4aMXMgNKB3pgwT/3
+ IJMg+o4O7TrsSIArWSik5wlsf+pFcT6oDxrKsVqoGzoK3EwAWZZgDcCwskZv/S/Bn8g/86Jh1NX0U0
+ uY33smO/L190yI4FYLJd917+c6M7PFebcRd7Lm3+zVYFuFcx9FHYNkhsMqU6d3ZoV4mXrQe0EkDUMs
+ F25zx1aZ+UIoKSCg/Ji5H8mByAcYHjH6hn5ziy2VenKxjpoZvIKultpyvFiw==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230512_141210_395889_18FF2BBF 
-X-CRM114-Status: GOOD (  15.75  )
+X-CRM114-CacheID: sfid-20230512_141210_357133_B252D5BF 
+X-CRM114-Status: GOOD (  10.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -137,375 +136,50 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This adds supports for the ENCL encoder connected to a MIPI-DSI transceiver on the
-Amlogic AXG, G12A, G12B & SM1 SoCs.
+This updates the panel timings to achieve a clean 60Hz refresh rate.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Link: https://lore.kernel.org/r/20221025-ts050-timings-v1-1-5c824bbb24d9@linaro.org
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/gpu/drm/meson/meson_registers.h |  25 ++++
- drivers/gpu/drm/meson/meson_venc.c      | 211 +++++++++++++++++++++++++++++++-
- drivers/gpu/drm/meson/meson_venc.h      |   6 +
- drivers/gpu/drm/meson/meson_vpp.h       |   2 +
- 4 files changed, 242 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/panel/panel-khadas-ts050.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/meson/meson_registers.h b/drivers/gpu/drm/meson/meson_registers.h
-index 0f3cafab8860..3d73d00a1f4c 100644
---- a/drivers/gpu/drm/meson/meson_registers.h
-+++ b/drivers/gpu/drm/meson/meson_registers.h
-@@ -812,6 +812,7 @@
- #define VENC_STATA 0x1b6d
- #define VENC_INTCTRL 0x1b6e
- #define		VENC_INTCTRL_ENCI_LNRST_INT_EN  BIT(1)
-+#define		VENC_INTCTRL_ENCP_LNRST_INT_EN  BIT(9)
- #define VENC_INTFLAG 0x1b6f
- #define VENC_VIDEO_TST_EN 0x1b70
- #define VENC_VIDEO_TST_MDSEL 0x1b71
-@@ -1192,7 +1193,11 @@
- #define ENCL_VIDEO_PB_OFFST 0x1ca5
- #define ENCL_VIDEO_PR_OFFST 0x1ca6
- #define ENCL_VIDEO_MODE 0x1ca7
-+#define		ENCL_PX_LN_CNT_SHADOW_EN	BIT(15)
- #define ENCL_VIDEO_MODE_ADV 0x1ca8
-+#define		ENCL_VIDEO_MODE_ADV_VFIFO_EN	BIT(3)
-+#define		ENCL_VIDEO_MODE_ADV_GAIN_HDTV	BIT(4)
-+#define		ENCL_SEL_GAMMA_RGB_IN		BIT(10)
- #define ENCL_DBG_PX_RST 0x1ca9
- #define ENCL_DBG_LN_RST 0x1caa
- #define ENCL_DBG_PX_INT 0x1cab
-@@ -1219,11 +1224,14 @@
- #define ENCL_VIDEO_VOFFST 0x1cc0
- #define ENCL_VIDEO_RGB_CTRL 0x1cc1
- #define ENCL_VIDEO_FILT_CTRL 0x1cc2
-+#define		ENCL_VIDEO_FILT_CTRL_BYPASS_FILTER	BIT(12)
- #define ENCL_VIDEO_OFLD_VPEQ_OFST 0x1cc3
- #define ENCL_VIDEO_OFLD_VOAV_OFST 0x1cc4
- #define ENCL_VIDEO_MATRIX_CB 0x1cc5
- #define ENCL_VIDEO_MATRIX_CR 0x1cc6
- #define ENCL_VIDEO_RGBIN_CTRL 0x1cc7
-+#define		ENCL_VIDEO_RGBIN_RGB	BIT(0)
-+#define		ENCL_VIDEO_RGBIN_ZBLK	BIT(1)
- #define ENCL_MAX_LINE_SWITCH_POINT 0x1cc8
- #define ENCL_DACSEL_0 0x1cc9
- #define ENCL_DACSEL_1 0x1cca
-@@ -1300,13 +1308,28 @@
- #define RDMA_STATUS2 0x1116
- #define RDMA_STATUS3 0x1117
- #define L_GAMMA_CNTL_PORT 0x1400
-+#define		L_GAMMA_CNTL_PORT_VCOM_POL	BIT(7)	/* RW */
-+#define		L_GAMMA_CNTL_PORT_RVS_OUT	BIT(6)	/* RW */
-+#define		L_GAMMA_CNTL_PORT_ADR_RDY	BIT(5)	/* Read Only */
-+#define		L_GAMMA_CNTL_PORT_WR_RDY	BIT(4)	/* Read Only */
-+#define		L_GAMMA_CNTL_PORT_RD_RDY	BIT(3)	/* Read Only */
-+#define		L_GAMMA_CNTL_PORT_TR		BIT(2)	/* RW */
-+#define		L_GAMMA_CNTL_PORT_SET		BIT(1)	/* RW */
-+#define		L_GAMMA_CNTL_PORT_EN		BIT(0)	/* RW */
- #define L_GAMMA_DATA_PORT 0x1401
- #define L_GAMMA_ADDR_PORT 0x1402
-+#define		L_GAMMA_ADDR_PORT_RD		BIT(12)
-+#define		L_GAMMA_ADDR_PORT_AUTO_INC	BIT(11)
-+#define		L_GAMMA_ADDR_PORT_SEL_R		BIT(10)
-+#define		L_GAMMA_ADDR_PORT_SEL_G		BIT(9)
-+#define		L_GAMMA_ADDR_PORT_SEL_B		BIT(8)
-+#define		L_GAMMA_ADDR_PORT_ADDR		GENMASK(7, 0)
- #define L_GAMMA_VCOM_HSWITCH_ADDR 0x1403
- #define L_RGB_BASE_ADDR 0x1405
- #define L_RGB_COEFF_ADDR 0x1406
- #define L_POL_CNTL_ADDR 0x1407
- #define L_DITH_CNTL_ADDR 0x1408
-+#define		L_DITH_CNTL_DITH10_EN	BIT(10)
- #define L_GAMMA_PROBE_CTRL 0x1409
- #define L_GAMMA_PROBE_COLOR_L 0x140a
- #define L_GAMMA_PROBE_COLOR_H 0x140b
-@@ -1363,6 +1386,8 @@
- #define L_LCD_PWM1_HI_ADDR 0x143f
- #define L_INV_CNT_ADDR 0x1440
- #define L_TCON_MISC_SEL_ADDR 0x1441
-+#define		L_TCON_MISC_SEL_STV1	BIT(4)
-+#define		L_TCON_MISC_SEL_STV2	BIT(5)
- #define L_DUAL_PORT_CNTL_ADDR 0x1442
- #define MLVDS_CLK_CTL1_HI 0x1443
- #define MLVDS_CLK_CTL1_LO 0x1444
-diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
-index fcd532db19c1..d2220171bfb6 100644
---- a/drivers/gpu/drm/meson/meson_venc.c
-+++ b/drivers/gpu/drm/meson/meson_venc.c
-@@ -6,6 +6,7 @@
-  */
- 
- #include <linux/export.h>
-+#include <linux/iopoll.h>
- 
- #include <drm/drm_modes.h>
- 
-@@ -1557,6 +1558,205 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- }
- EXPORT_SYMBOL_GPL(meson_venc_hdmi_mode_set);
- 
-+static unsigned short meson_encl_gamma_table[256] = {
-+	0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60,
-+	64, 68, 72, 76, 80, 84, 88, 92, 96, 100, 104, 108, 112, 116, 120, 124,
-+	128, 132, 136, 140, 144, 148, 152, 156, 160, 164, 168, 172, 176, 180, 184, 188,
-+	192, 196, 200, 204, 208, 212, 216, 220, 224, 228, 232, 236, 240, 244, 248, 252,
-+	256, 260, 264, 268, 272, 276, 280, 284, 288, 292, 296, 300, 304, 308, 312, 316,
-+	320, 324, 328, 332, 336, 340, 344, 348, 352, 356, 360, 364, 368, 372, 376, 380,
-+	384, 388, 392, 396, 400, 404, 408, 412, 416, 420, 424, 428, 432, 436, 440, 444,
-+	448, 452, 456, 460, 464, 468, 472, 476, 480, 484, 488, 492, 496, 500, 504, 508,
-+	512, 516, 520, 524, 528, 532, 536, 540, 544, 548, 552, 556, 560, 564, 568, 572,
-+	576, 580, 584, 588, 592, 596, 600, 604, 608, 612, 616, 620, 624, 628, 632, 636,
-+	640, 644, 648, 652, 656, 660, 664, 668, 672, 676, 680, 684, 688, 692, 696, 700,
-+	704, 708, 712, 716, 720, 724, 728, 732, 736, 740, 744, 748, 752, 756, 760, 764,
-+	768, 772, 776, 780, 784, 788, 792, 796, 800, 804, 808, 812, 816, 820, 824, 828,
-+	832, 836, 840, 844, 848, 852, 856, 860, 864, 868, 872, 876, 880, 884, 888, 892,
-+	896, 900, 904, 908, 912, 916, 920, 924, 928, 932, 936, 940, 944, 948, 952, 956,
-+	960, 964, 968, 972, 976, 980, 984, 988, 992, 996, 1000, 1004, 1008, 1012, 1016, 1020,
-+};
-+
-+static void meson_encl_set_gamma_table(struct meson_drm *priv, u16 *data,
-+				       u32 rgb_mask)
-+{
-+	int i, ret;
-+	u32 reg;
-+
-+	writel_bits_relaxed(L_GAMMA_CNTL_PORT_EN, 0,
-+			    priv->io_base + _REG(L_GAMMA_CNTL_PORT));
-+
-+	ret = readl_relaxed_poll_timeout(priv->io_base + _REG(L_GAMMA_CNTL_PORT),
-+					 reg, reg & L_GAMMA_CNTL_PORT_ADR_RDY, 10, 10000);
-+	if (ret)
-+		pr_warn("%s: GAMMA ADR_RDY timeout\n", __func__);
-+
-+	writel_relaxed(L_GAMMA_ADDR_PORT_AUTO_INC | rgb_mask |
-+		       FIELD_PREP(L_GAMMA_ADDR_PORT_ADDR, 0),
-+		       priv->io_base + _REG(L_GAMMA_ADDR_PORT));
-+
-+	for (i = 0; i < 256; i++) {
-+		ret = readl_relaxed_poll_timeout(priv->io_base + _REG(L_GAMMA_CNTL_PORT),
-+						 reg, reg & L_GAMMA_CNTL_PORT_WR_RDY,
-+						 10, 10000);
-+		if (ret)
-+			pr_warn_once("%s: GAMMA WR_RDY timeout\n", __func__);
-+
-+		writel_relaxed(data[i], priv->io_base + _REG(L_GAMMA_DATA_PORT));
-+	}
-+
-+	ret = readl_relaxed_poll_timeout(priv->io_base + _REG(L_GAMMA_CNTL_PORT),
-+					 reg, reg & L_GAMMA_CNTL_PORT_ADR_RDY, 10, 10000);
-+	if (ret)
-+		pr_warn("%s: GAMMA ADR_RDY timeout\n", __func__);
-+
-+	writel_relaxed(L_GAMMA_ADDR_PORT_AUTO_INC | rgb_mask |
-+		       FIELD_PREP(L_GAMMA_ADDR_PORT_ADDR, 0x23),
-+		       priv->io_base + _REG(L_GAMMA_ADDR_PORT));
-+}
-+
-+void meson_encl_load_gamma(struct meson_drm *priv)
-+{
-+	meson_encl_set_gamma_table(priv, meson_encl_gamma_table, L_GAMMA_ADDR_PORT_SEL_R);
-+	meson_encl_set_gamma_table(priv, meson_encl_gamma_table, L_GAMMA_ADDR_PORT_SEL_G);
-+	meson_encl_set_gamma_table(priv, meson_encl_gamma_table, L_GAMMA_ADDR_PORT_SEL_B);
-+
-+	writel_bits_relaxed(L_GAMMA_CNTL_PORT_EN, L_GAMMA_CNTL_PORT_EN,
-+			    priv->io_base + _REG(L_GAMMA_CNTL_PORT));
-+}
-+
-+void meson_venc_mipi_dsi_mode_set(struct meson_drm *priv,
-+				  const struct drm_display_mode *mode)
-+{
-+	unsigned int max_pxcnt;
-+	unsigned int max_lncnt;
-+	unsigned int havon_begin;
-+	unsigned int havon_end;
-+	unsigned int vavon_bline;
-+	unsigned int vavon_eline;
-+	unsigned int hso_begin;
-+	unsigned int hso_end;
-+	unsigned int vso_begin;
-+	unsigned int vso_end;
-+	unsigned int vso_bline;
-+	unsigned int vso_eline;
-+
-+	max_pxcnt = mode->htotal - 1;
-+	max_lncnt = mode->vtotal - 1;
-+	havon_begin = mode->htotal - mode->hsync_start;
-+	havon_end = havon_begin + mode->hdisplay - 1;
-+	vavon_bline = mode->vtotal - mode->vsync_start;
-+	vavon_eline = vavon_bline + mode->vdisplay - 1;
-+	hso_begin = 0;
-+	hso_end = mode->hsync_end - mode->hsync_start;
-+	vso_begin = 0;
-+	vso_end = 0;
-+	vso_bline = 0;
-+	vso_eline = mode->vsync_end - mode->vsync_start;
-+
-+	meson_vpp_setup_mux(priv, MESON_VIU_VPP_MUX_ENCL);
-+
-+	writel_relaxed(0, priv->io_base + _REG(ENCL_VIDEO_EN));
-+
-+	writel_relaxed(ENCL_PX_LN_CNT_SHADOW_EN, priv->io_base + _REG(ENCL_VIDEO_MODE));
-+	writel_relaxed(ENCL_VIDEO_MODE_ADV_VFIFO_EN |
-+		       ENCL_VIDEO_MODE_ADV_GAIN_HDTV |
-+		       ENCL_SEL_GAMMA_RGB_IN, priv->io_base + _REG(ENCL_VIDEO_MODE_ADV));
-+
-+	writel_relaxed(ENCL_VIDEO_FILT_CTRL_BYPASS_FILTER,
-+		       priv->io_base + _REG(ENCL_VIDEO_FILT_CTRL));
-+	writel_relaxed(max_pxcnt, priv->io_base + _REG(ENCL_VIDEO_MAX_PXCNT));
-+	writel_relaxed(max_lncnt, priv->io_base + _REG(ENCL_VIDEO_MAX_LNCNT));
-+	writel_relaxed(havon_begin, priv->io_base + _REG(ENCL_VIDEO_HAVON_BEGIN));
-+	writel_relaxed(havon_end, priv->io_base + _REG(ENCL_VIDEO_HAVON_END));
-+	writel_relaxed(vavon_bline, priv->io_base + _REG(ENCL_VIDEO_VAVON_BLINE));
-+	writel_relaxed(vavon_eline, priv->io_base + _REG(ENCL_VIDEO_VAVON_ELINE));
-+
-+	writel_relaxed(hso_begin, priv->io_base + _REG(ENCL_VIDEO_HSO_BEGIN));
-+	writel_relaxed(hso_end, priv->io_base + _REG(ENCL_VIDEO_HSO_END));
-+	writel_relaxed(vso_begin, priv->io_base + _REG(ENCL_VIDEO_VSO_BEGIN));
-+	writel_relaxed(vso_end, priv->io_base + _REG(ENCL_VIDEO_VSO_END));
-+	writel_relaxed(vso_bline, priv->io_base + _REG(ENCL_VIDEO_VSO_BLINE));
-+	writel_relaxed(vso_eline, priv->io_base + _REG(ENCL_VIDEO_VSO_ELINE));
-+	writel_relaxed(ENCL_VIDEO_RGBIN_RGB | ENCL_VIDEO_RGBIN_ZBLK,
-+		       priv->io_base + _REG(ENCL_VIDEO_RGBIN_CTRL));
-+
-+	/* default black pattern */
-+	writel_relaxed(0, priv->io_base + _REG(ENCL_TST_MDSEL));
-+	writel_relaxed(0, priv->io_base + _REG(ENCL_TST_Y));
-+	writel_relaxed(0, priv->io_base + _REG(ENCL_TST_CB));
-+	writel_relaxed(0, priv->io_base + _REG(ENCL_TST_CR));
-+	writel_relaxed(1, priv->io_base + _REG(ENCL_TST_EN));
-+	writel_bits_relaxed(ENCL_VIDEO_MODE_ADV_VFIFO_EN, 0,
-+			    priv->io_base + _REG(ENCL_VIDEO_MODE_ADV));
-+
-+	writel_relaxed(1, priv->io_base + _REG(ENCL_VIDEO_EN));
-+
-+	writel_relaxed(0, priv->io_base + _REG(L_RGB_BASE_ADDR));
-+	writel_relaxed(0x400, priv->io_base + _REG(L_RGB_COEFF_ADDR)); /* Magic value */
-+
-+	writel_relaxed(L_DITH_CNTL_DITH10_EN, priv->io_base + _REG(L_DITH_CNTL_ADDR));
-+
-+	/* DE signal for TTL */
-+	writel_relaxed(havon_begin, priv->io_base + _REG(L_OEH_HS_ADDR));
-+	writel_relaxed(havon_end + 1, priv->io_base + _REG(L_OEH_HE_ADDR));
-+	writel_relaxed(vavon_bline, priv->io_base + _REG(L_OEH_VS_ADDR));
-+	writel_relaxed(vavon_eline, priv->io_base + _REG(L_OEH_VE_ADDR));
-+
-+	/* DE signal for TTL */
-+	writel_relaxed(havon_begin, priv->io_base + _REG(L_OEV1_HS_ADDR));
-+	writel_relaxed(havon_end + 1, priv->io_base + _REG(L_OEV1_HE_ADDR));
-+	writel_relaxed(vavon_bline, priv->io_base + _REG(L_OEV1_VS_ADDR));
-+	writel_relaxed(vavon_eline, priv->io_base + _REG(L_OEV1_VE_ADDR));
-+
-+	/* Hsync signal for TTL */
-+	if (mode->flags & DRM_MODE_FLAG_NHSYNC) {
-+		writel_relaxed(hso_begin, priv->io_base + _REG(L_STH1_HS_ADDR));
-+		writel_relaxed(hso_end, priv->io_base + _REG(L_STH1_HE_ADDR));
-+	} else {
-+		writel_relaxed(hso_end, priv->io_base + _REG(L_STH1_HS_ADDR));
-+		writel_relaxed(hso_begin, priv->io_base + _REG(L_STH1_HE_ADDR));
-+	}
-+	writel_relaxed(0, priv->io_base + _REG(L_STH1_VS_ADDR));
-+	writel_relaxed(max_lncnt, priv->io_base + _REG(L_STH1_VE_ADDR));
-+
-+	/* Vsync signal for TTL */
-+	writel_relaxed(vso_begin, priv->io_base + _REG(L_STV1_HS_ADDR));
-+	writel_relaxed(vso_end, priv->io_base + _REG(L_STV1_HE_ADDR));
-+	if (mode->flags & DRM_MODE_FLAG_NVSYNC) {
-+		writel_relaxed(vso_bline, priv->io_base + _REG(L_STV1_VS_ADDR));
-+		writel_relaxed(vso_eline, priv->io_base + _REG(L_STV1_VE_ADDR));
-+	} else {
-+		writel_relaxed(vso_eline, priv->io_base + _REG(L_STV1_VS_ADDR));
-+		writel_relaxed(vso_bline, priv->io_base + _REG(L_STV1_VE_ADDR));
-+	}
-+
-+	/* DE signal */
-+	writel_relaxed(havon_begin, priv->io_base + _REG(L_DE_HS_ADDR));
-+	writel_relaxed(havon_end + 1, priv->io_base + _REG(L_DE_HE_ADDR));
-+	writel_relaxed(vavon_bline, priv->io_base + _REG(L_DE_VS_ADDR));
-+	writel_relaxed(vavon_eline, priv->io_base + _REG(L_DE_VE_ADDR));
-+
-+	/* Hsync signal */
-+	writel_relaxed(hso_begin, priv->io_base + _REG(L_HSYNC_HS_ADDR));
-+	writel_relaxed(hso_end, priv->io_base + _REG(L_HSYNC_HE_ADDR));
-+	writel_relaxed(0, priv->io_base + _REG(L_HSYNC_VS_ADDR));
-+	writel_relaxed(max_lncnt, priv->io_base + _REG(L_HSYNC_VE_ADDR));
-+
-+	/* Vsync signal */
-+	writel_relaxed(vso_begin, priv->io_base + _REG(L_VSYNC_HS_ADDR));
-+	writel_relaxed(vso_end, priv->io_base + _REG(L_VSYNC_HE_ADDR));
-+	writel_relaxed(vso_bline, priv->io_base + _REG(L_VSYNC_VS_ADDR));
-+	writel_relaxed(vso_eline, priv->io_base + _REG(L_VSYNC_VE_ADDR));
-+
-+	writel_relaxed(0, priv->io_base + _REG(L_INV_CNT_ADDR));
-+	writel_relaxed(L_TCON_MISC_SEL_STV1 | L_TCON_MISC_SEL_STV2,
-+		       priv->io_base + _REG(L_TCON_MISC_SEL_ADDR));
-+
-+	priv->venc.current_mode = MESON_VENC_MODE_MIPI_DSI;
-+}
-+EXPORT_SYMBOL_GPL(meson_venc_mipi_dsi_mode_set);
-+
- void meson_venci_cvbs_mode_set(struct meson_drm *priv,
- 			       struct meson_cvbs_enci_mode *mode)
- {
-@@ -1747,8 +1947,15 @@ unsigned int meson_venci_get_field(struct meson_drm *priv)
- 
- void meson_venc_enable_vsync(struct meson_drm *priv)
- {
--	writel_relaxed(VENC_INTCTRL_ENCI_LNRST_INT_EN,
--		       priv->io_base + _REG(VENC_INTCTRL));
-+	switch (priv->venc.current_mode) {
-+	case MESON_VENC_MODE_MIPI_DSI:
-+		writel_relaxed(VENC_INTCTRL_ENCP_LNRST_INT_EN,
-+			       priv->io_base + _REG(VENC_INTCTRL));
-+		break;
-+	default:
-+		writel_relaxed(VENC_INTCTRL_ENCI_LNRST_INT_EN,
-+			       priv->io_base + _REG(VENC_INTCTRL));
-+	}
- 	regmap_update_bits(priv->hhi, HHI_GCLK_MPEG2, BIT(25), BIT(25));
- }
- 
-diff --git a/drivers/gpu/drm/meson/meson_venc.h b/drivers/gpu/drm/meson/meson_venc.h
-index 9138255ffc9e..0f59adb1c6db 100644
---- a/drivers/gpu/drm/meson/meson_venc.h
-+++ b/drivers/gpu/drm/meson/meson_venc.h
-@@ -21,6 +21,7 @@ enum {
- 	MESON_VENC_MODE_CVBS_PAL,
- 	MESON_VENC_MODE_CVBS_NTSC,
- 	MESON_VENC_MODE_HDMI,
-+	MESON_VENC_MODE_MIPI_DSI,
+diff --git a/drivers/gpu/drm/panel/panel-khadas-ts050.c b/drivers/gpu/drm/panel/panel-khadas-ts050.c
+index 1ab1ebe30882..b942a0162274 100644
+--- a/drivers/gpu/drm/panel/panel-khadas-ts050.c
++++ b/drivers/gpu/drm/panel/panel-khadas-ts050.c
+@@ -568,7 +568,7 @@ static const struct khadas_ts050_panel_cmd init_code[] = {
+ 	{0xfb, 0x01},
+ 	/* Select CMD1 */
+ 	{0xff, 0x00},
+-	{0xd3, 0x05}, /* RGBMIPICTRL: VSYNC back porch = 5 */
++	{0xd3, 0x22}, /* RGBMIPICTRL: VSYNC back porch = 34 */
+ 	{0xd4, 0x04}, /* RGBMIPICTRL: VSYNC front porch = 4 */
  };
  
- struct meson_cvbs_enci_mode {
-@@ -47,6 +48,9 @@ struct meson_cvbs_enci_mode {
- 	unsigned int analog_sync_adj;
+@@ -717,15 +717,15 @@ static int khadas_ts050_panel_disable(struct drm_panel *panel)
+ }
+ 
+ static const struct drm_display_mode default_mode = {
+-	.clock = 120000,
+-	.hdisplay = 1088,
+-	.hsync_start = 1088 + 104,
+-	.hsync_end = 1088 + 104 + 4,
+-	.htotal = 1088 + 104 + 4 + 127,
++	.clock = 160000,
++	.hdisplay = 1080,
++	.hsync_start = 1080 + 117,
++	.hsync_end = 1080 + 117 + 5,
++	.htotal = 1080 + 117 + 5 + 160,
+ 	.vdisplay = 1920,
+ 	.vsync_start = 1920 + 4,
+-	.vsync_end = 1920 + 4 + 2,
+-	.vtotal = 1920 + 4 + 2 + 3,
++	.vsync_end = 1920 + 4 + 3,
++	.vtotal = 1920 + 4 + 3 + 31,
+ 	.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
  };
  
-+/* LCD Encoder gamma setup */
-+void meson_encl_load_gamma(struct meson_drm *priv);
-+
- /* HDMI Clock parameters */
- enum drm_mode_status
- meson_venc_hdmi_supported_mode(const struct drm_display_mode *mode);
-@@ -63,6 +67,8 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 			      unsigned int ycrcb_map,
- 			      bool yuv420_mode,
- 			      const struct drm_display_mode *mode);
-+void meson_venc_mipi_dsi_mode_set(struct meson_drm *priv,
-+				  const struct drm_display_mode *mode);
- unsigned int meson_venci_get_field(struct meson_drm *priv);
- 
- void meson_venc_enable_vsync(struct meson_drm *priv);
-diff --git a/drivers/gpu/drm/meson/meson_vpp.h b/drivers/gpu/drm/meson/meson_vpp.h
-index afc9553ed8d3..b790042a1650 100644
---- a/drivers/gpu/drm/meson/meson_vpp.h
-+++ b/drivers/gpu/drm/meson/meson_vpp.h
-@@ -12,6 +12,8 @@
- struct drm_rect;
- struct meson_drm;
- 
-+/* Mux VIU/VPP to ENCL */
-+#define MESON_VIU_VPP_MUX_ENCL	0x0
- /* Mux VIU/VPP to ENCI */
- #define MESON_VIU_VPP_MUX_ENCI	0x5
- /* Mux VIU/VPP to ENCP */
 
 -- 
 2.34.1
