@@ -4,75 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82ED3C77B7D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 May 2023 09:50:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F157C77B7D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 May 2023 10:05:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FXUhQ1SQ2IiCrNi4t01cYYdoCmiKkZnG39iE/STWM6A=; b=UoDFAVOJjVG/Hw
-	DHc7hV5VpEFCds7QNn4DUco8LXuHC4xJ9lA9C86hIAScZJE40HFVMfdAC6BinzX73SLx/pNu6G6bQ
-	gaaE1eBHA70c/eqLLPFUkgvCGsF23aeuX2LwGpaI3qRDl7lIW2Mdd8pBZjG4uHkFhoLFQBLVY597n
-	M9gN70e3i2O91Q62VfKYzdLEB2opWyajB/Co7G/hdgx0ouO/pwwSaN89Zuordihl8eK3Tiw8ot4IZ
-	4R1nKu321OPO8y+t6/M2NoXPvg6p72jrXB85TuIMLPMpJHL3htiMwR0MCqIRJ1+xU7co7vOXQg+j2
-	QqzFxK2UJ/wLI8L6gk5Q==;
+	List-Owner; bh=thp5NAY4FGrL363HerYPqoMdS3+9tGDJ+291ZT4r1xU=; b=J/9pLFVpZQ0ZUx
+	d+7CUbhSngWX8rm5AclMeYqC2MNgwjR5BwxYFgvSaf7P43kkfogdYiEJXLzrWRbkOAgvP2guF+Zwf
+	kYzScBkmQc6HsjGuFU7PpvmwjidBl1w5BXm4lBWRExACSYqOYavgBSXTgcD9/MHGBc4JO0O2VYmee
+	YubfnSREqfTuT4KqPpj/U6JpSwqUS4s+a45k2SOGx51Ka5BH4gZHVajaEmslVqtes7r7l1TMHvpBd
+	GKffMr1e/MKI3PG90KlOyY189xqlZoHmJnzmrNWIXAimz21r0OMwEHPY8lyaAaAvHooF7QDr9atet
+	VjucDXagEDP2MU56tCgQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pyUqK-001cwe-1w;
-	Mon, 15 May 2023 09:50:12 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1pyV4U-001gNi-1e;
+	Mon, 15 May 2023 10:04:50 +0000
+Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pyUq2-001ckN-1f;
-	Mon, 15 May 2023 09:49:55 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 7A8075FD21;
-	Mon, 15 May 2023 12:49:51 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1684144191;
-	bh=GYMVAyNcEuGbdTw4UQJwZVEs5ZVQ9VYLcOmrazaSGLg=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=J0S+OLmRrYNNCyVmjmzTzVShTLMYzM448WyH5DyT6ZKh7xsGVhIM+z2g9ErLxvTxY
-	 ieWStf5ksPqr9gUSQ8J/lajuyAjoFgArwKs5U5ZHZ5grTcvU6klZvqLWY1aJcms7WF
-	 HbXrBZnTqZxZRDdjtbRMg3yQNcYHqXbLwIssYcE89FwOU3j/jiblDshxuXCoUI8mWi
-	 kMd+ZLpXkh77cNSkV3FuZsG8/Lfoga/JLAcLdTN3DTXZqBslc5VODBGi9PZsEL2pnG
-	 YFVdBnvjbNwzPQPwu88u+UF8+PIWyCoSXeOpH1DknQneqNROuHD6hw9GVVv4AI9wCH
-	 zDBUkVVXg5r2w==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Mon, 15 May 2023 12:49:51 +0300 (MSK)
-From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
-	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Yixun Lan
-	<yixun.lan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>
-CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
-	<AVKrasnov@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 5/5] mtd: rawnand: meson: remove unneeded bitwise OR with zeroes
-Date: Mon, 15 May 2023 12:44:39 +0300
-Message-ID: <20230515094440.3552094-6-AVKrasnov@sberdevices.ru>
-X-Mailer: git-send-email 2.35.0
-In-Reply-To: <20230515094440.3552094-1-AVKrasnov@sberdevices.ru>
-References: <20230515094440.3552094-1-AVKrasnov@sberdevices.ru>
+	id 1pyV4R-001gMU-2y
+	for linux-amlogic@lists.infradead.org;
+	Mon, 15 May 2023 10:04:49 +0000
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-50db91640d3so11121653a12.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 15 May 2023 03:04:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684145084; x=1686737084;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XyEboodinoETFVIKDJ6MaTczEBVanL7D2yaqefiBb6w=;
+        b=agNiLDnOYfkL2mCqKdqZSIiw70w52wrUzYgCUEB9n9qAUNdE3IdkTCGecuhuqmqtw8
+         VbBnHMCmBZqIlWOujTG6Va8H4lYgd6yZCw8Hpsh1WMRMi6sWR9CV5Zz+PI9y7w66//fg
+         arIWFcrfvMNI6tXxJfu9CJuqzfVPCCJXSFfujf2SlRVkcOVZzEbpj9uL91ebQdwYdGGG
+         CbwgZp8Xda1ViZ6vvEebMUxYDF/F4JOxw/58B/jGCB4h0Cjhl291HV4z/BwINGd3eH5u
+         3xWWfX6QvTTqZC9ircJRO5wuJMvJNb1rKfZ4JR+EFQndEWL5x+zFeDnzajqWMyvorZ5x
+         c4jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684145084; x=1686737084;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XyEboodinoETFVIKDJ6MaTczEBVanL7D2yaqefiBb6w=;
+        b=khHJyZ0kNYVoBboHC8LFIOj2cAu0yW8EgfxB2gKmVJVNiSUvlTZRw8zEdJ57SFAXum
+         1llRr0L7Zn5GtiiFbDtxuw412zlwzCymxc7h3FuKtAIMXAMnFYIXcv/bFahMPiDvdUXX
+         lnr+28EvT0fN6GBhnlr/78kgjT1H5uNUvViAprUA7JvQPpN4DR5ZFSW10Pdi6hP7MwJ+
+         fPuzRS35WCgjCG1Jk6x8FxW60gr4xwd28/CR13jP//DtB+UlnBUzcaTWH/0W7JLPseU7
+         nO0wUdo1z/xq40xpuAiSIAKME24inUZveB1sSc9RgI+EfznFFa/yFCKYCXHDdDebLPNN
+         M8pA==
+X-Gm-Message-State: AC+VfDy4sRKcEOrunAfXOXnefkQoHjZVlomjdQz9LQjpx5mfxUfnHhms
+	E7SPB4sGEiQbmMeAej+jpw6WyQ==
+X-Google-Smtp-Source: ACHHUZ5HNnM1GF9ntlgBSWxnLUIuD7ee0ze5RiVw+zE9WMPn5mg3W9l+AOnJxUyQYhNRbGifB0Mx6Q==
+X-Received: by 2002:a50:ec8a:0:b0:50b:c275:6c56 with SMTP id e10-20020a50ec8a000000b0050bc2756c56mr26793165edr.16.1684145084277;
+        Mon, 15 May 2023 03:04:44 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
+        by smtp.gmail.com with ESMTPSA id s15-20020a056402164f00b0050d56dffc93sm7229454edx.12.2023.05.15.03.04.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 May 2023 03:04:43 -0700 (PDT)
+Message-ID: <0b0c8f9f-bbb0-16e9-1556-eb2ac8cf1981@linaro.org>
+Date: Mon, 15 May 2023 12:04:42 +0200
 MIME-Version: 1.0
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/15 04:03:00 #21308474
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V8 1/4] dt-bindings: clock: document Amlogic S4 SoC PLL
+ clock controller
+Content-Language: en-US
+To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: kelvin.zhang@amlogic.com, qi.duan@amlogic.com
+References: <20230515031557.31143-1-yu.tu@amlogic.com>
+ <20230515031557.31143-2-yu.tu@amlogic.com>
+ <590560c9-4da6-bbd4-6aac-de57ab5403ba@linaro.org>
+ <8c6ad0a9-7820-c7a2-bd3b-1eee87d96728@amlogic.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8c6ad0a9-7820-c7a2-bd3b-1eee87d96728@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230515_024954_739287_6088D271 
-X-CRM114-Status: GOOD (  10.57  )
+X-CRM114-CacheID: sfid-20230515_030447_985940_44FF9D0B 
+X-CRM114-Status: GOOD (  15.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,34 +106,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Both operations have no effect.
+On 15/05/2023 09:35, Yu Tu wrote:
+> Hi Krzysztof,
+> 	Thank you for your prompt reply.
+> 
+> On 2023/5/15 14:32, Krzysztof Kozlowski wrote:
+>> On 15/05/2023 05:15, Yu Tu wrote:
+>>> Add the S4 PLL clock controller dt-bindings in the s4 SoC family.
+>>>
+>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>
+>> This is a friendly reminder during the review process.
+>>
+>> It looks like you received a tag and forgot to add it.
+>>
+>> If you do not know the process, here is a short explanation:
+>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>> versions. However, there's no need to repost patches *only* to add the
+>> tags. The upstream maintainer will do that for acks received on the
+>> version they apply.
+>>
+>> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+>>
+>> If a tag was not added on purpose, please state why and what changed.
+> 
+> Yes. I don't know the process. So I need to add Reviewed-by: Rob Herring 
+> <robh@kernel.org>. And resend V8?
 
-Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
----
- drivers/mtd/nand/raw/meson_nand.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Yes. I cannot add it top your emails.
 
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index dc0d7160520b..0aac784075a5 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -630,12 +630,12 @@ static int meson_nfc_rw_cmd_prepare_and_execute(struct nand_chip *nand,
- 	cmd0 = in ? NAND_CMD_READ0 : NAND_CMD_SEQIN;
- 	nfc->cmdfifo.rw.cmd0 = cs | NFC_CMD_CLE | cmd0;
- 
--	addrs[0] = cs | NFC_CMD_ALE | 0;
-+	addrs[0] = cs | NFC_CMD_ALE;
- 	if (mtd->writesize <= 512) {
- 		cmd_num--;
- 		row_start = 1;
- 	} else {
--		addrs[1] = cs | NFC_CMD_ALE | 0;
-+		addrs[1] = cs | NFC_CMD_ALE;
- 		row_start = 2;
- 	}
- 
--- 
-2.35.0
+Best regards,
+Krzysztof
 
 
 _______________________________________________
