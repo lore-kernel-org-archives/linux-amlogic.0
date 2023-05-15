@@ -4,79 +4,173 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDE83C7EE2E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 May 2023 09:44:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CACD0C7EE24
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 May 2023 09:49:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bIBUc3Ta5VqHtKWCM9F+bjySOHNiMlwxIyPSSsaPFgo=; b=jQlHI+BoJ+Ttmf
-	Lkuwlzzg+CbH2/ytP5ZYmzrVMSLKG72iRJ0IbGJopiHP77Zt9/MTUYALKJk614IPUckaq5BOgRP1M
-	VyWz3q1sB1C33LrWUFKdQ1uC5B2NqaHoYxtYQd/QOTQh5ElJYAlAZM4z89xMsaq6g+cuUJydgdHER
-	cFgJFoGmzsj+xGQoICytOmn2VQxflSyR30hQo+3RCk7eqYG+4TqxP5vAOG2EcxEXwhXontqG2g30U
-	4TDZHFOnmxwhvMuyxIjn8lgHo6mD6qw/k//VS3keMyXA+bLYXORyiay4fdNQCSSfmI+rN0MsgSLw1
-	6H8BtkBbKgKAu6His8dQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=yTmV+m1HK5Pv7E3wqmCb7X2byvH6bv9f5F7bhabdoog=; b=aOe4wjZzB6/kdbeWGwwARVMw1c
+	kIQv+9ghAwP+8iLeecGSMDqrW8EmD0Pw1sWJfwPt/u1KIsVk10r3cSodJblmrmiYvlP3KXsKa6CyY
+	IHhUdVIQHWu0XZGgp8TlxY19TP4eAiQ7vsal8N+YScF5nfgXjEw4ihbxSYziAj7CigDIvbzu8n2Yy
+	ce3eXZyT8Yi7QrTlH1Tj5TSyvnd3lv+cSIu/8A5xvU5tXBnHZLtXyrUktluyXI490zaM302sDPyQf
+	oUthYuqTjvXBQ5c3tQdVaA2XaRiBWcZUfsRoS/O6MywpiTEN5iWpOcM/TfnZEAbGI4goY8HviNLYb
+	e73YIADQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pyUkk-001cBZ-2r;
-	Mon, 15 May 2023 09:44:26 +0000
-Received: from mail-yb1-xb2b.google.com ([2607:f8b0:4864:20::b2b])
+	id 1pyUpr-001cgs-2S;
+	Mon, 15 May 2023 09:49:43 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pyUkh-001cB6-2y
+	id 1pyUT8-001Xrv-33
 	for linux-amlogic@lists.infradead.org;
-	Mon, 15 May 2023 09:44:25 +0000
-Received: by mail-yb1-xb2b.google.com with SMTP id 3f1490d57ef6-ba1cde4ee59so10133626276.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 15 May 2023 02:44:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684143861; x=1686735861;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ld/YrdRTBdqdy0pycTOaYtPC+M6ZVb33T18X0mOr9Mg=;
-        b=cdlIzyrsvetkTBgU08Y1Zelpxa56GODDdbsv30gwuNa8JEHUikUeME5gj5LxzLdcnh
-         JhTkJZK0daAJTRkH2g6IGjb/OKRvMOI6GQ2lTBoQvER4C20TAim7bO+I1ewvZeZoiC+r
-         A2szzK6gbrCcQ+IirtzC+xqkMQkp6wdHOJNU/WRzKarJKQAfC7J2GhPKvowZxLYQt16x
-         by/DrsnkKSIq9swDO7fWi9lIUnZsSJIQp2YfOpev6cQa8uHVyQPZBGOaBhnUfeQDEmyR
-         I7DKwJ8AWwa3k9uU/GgUAMl4q+bGuA/lw9/++LmVHvc3Bwpig03INeOHTgc2NygNBx7L
-         Rvsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684143861; x=1686735861;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ld/YrdRTBdqdy0pycTOaYtPC+M6ZVb33T18X0mOr9Mg=;
-        b=evob5EkpexLSqWwOObkZNhDZ2yTobFXqxZbvNexIs+Es/W/2m1FQwDx8Nab9oEeoIe
-         ppplncU0G555YzCp/NCeAb+BaTv7Q58QZ5s0tvaJPCqDJLdKn/XnuXgg3nRL1DWkKzM2
-         Gyr4vtruoxK0eE0IBVwiKJ6AJPRZuNy+mgKwjNf2l3ITGHY7LHHnoqJPcpgL210jP9T9
-         cL21oGSAgGkC3oACF6dmrwcq1OSs0DMM7YbIJi3RJgKrOc0D5WPSJmy/FuosAIj0/Yr3
-         RTDcpKQuNtUZVyClRBJTK4rZbe3oZkFpWcZGvy9P6uPbtLlNWYh6PgL2ZyEo505KcBlr
-         lsoA==
-X-Gm-Message-State: AC+VfDxmW2Qqtth4Cv1R0omcmRSQbTKeg3NRC9yvBEmSa7HnSEHccGkG
-	NVLjGSgQE1LjdIk6BNyKTmm7XHYNPwYA34BiUNXGxA==
-X-Google-Smtp-Source: ACHHUZ57dks5NjzFar8XRoWSvpAHCu8E9cPpJwR08uZWn7Cc1zaJGCLurbzr8wy+whRxVo1xguA1MuYqy9fFb0+g7Cc=
-X-Received: by 2002:a81:6d04:0:b0:55a:abf7:636e with SMTP id
- i4-20020a816d04000000b0055aabf7636emr27580098ywc.24.1684143861270; Mon, 15
- May 2023 02:44:21 -0700 (PDT)
+	Mon, 15 May 2023 09:26:16 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pyUNq-0004G7-84; Mon, 15 May 2023 11:20:46 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pyUNQ-000KQl-8J; Mon, 15 May 2023 11:20:20 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1pyUNP-004cYH-B9; Mon, 15 May 2023 11:20:19 +0200
+Date: Mon, 15 May 2023 11:20:19 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Inki Dae <daeinki@gmail.com>
+Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+	Xinliang Liu <xinliang.liu@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	dri-devel@lists.freedesktop.org,
+	Russell King <linux@armlinux.org.uk>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Steven Price <steven.price@arm.com>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Robert Foss <rfoss@kernel.org>, Karol Herbst <kherbst@redhat.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	=?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	Kuogee Hsieh <quic_khsieh@quicinc.com>,
+	Akhil P Oommen <quic_akhilpo@quicinc.com>,
+	Danilo Krummrich <dakr@redhat.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Miaoqian Lin <linmq006@gmail.com>,
+	linux-rockchip@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	Rahul T R <r-ravikumar@ti.com>,
+	Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+	Jani Nikula <jani.nikula@intel.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	etnaviv@lists.freedesktop.org, Stephen Boyd <swboyd@chromium.org>,
+	Sean Paul <sean@poorly.run>, Johan Hovold <johan+linaro@kernel.org>,
+	Hyun Kwon <hyun.kwon@xilinx.com>, Andrew Jeffery <andrew@aj.id.au>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Seung-Woo Kim <sw0312.kim@samsung.com>,
+	Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+	kernel@pengutronix.de, Alex Deucher <alexander.deucher@amd.com>,
+	freedreno@lists.freedesktop.org,
+	Claudiu Beznea <claudiu.beznea@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-aspeed@lists.ozlabs.org,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Yongqin Liu <yongqin.liu@linaro.org>,
+	Mihail Atanassov <mihail.atanassov@arm.com>,
+	Liang He <windhl@126.com>,
+	Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+	lima@lists.freedesktop.org, Chunyan Zhang <zhang.lyra@gmail.com>,
+	Alexey Brodkin <abrodkin@synopsys.com>,
+	Minghao Chi <chi.minghao@zte.com.cn>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Ben Skeggs <bskeggs@redhat.com>,
+	Russell King <linux+etnaviv@armlinux.org.uk>,
+	Alain Volmat <alain.volmat@foss.st.com>, linux-mips@vger.kernel.org,
+	Liu Ying <victor.liu@nxp.com>, linux-arm-msm@vger.kernel.org,
+	Maxime Ripard <mripard@kernel.org>,
+	linux-samsung-soc@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Boris Brezillon <bbrezillon@kernel.org>,
+	Douglas Anderson <dianders@chromium.org>,
+	John Stultz <jstultz@google.com>,
+	Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Brian Starkey <brian.starkey@arm.com>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Yuan Can <yuancan@huawei.com>, Stefan Agner <stefan@agner.ch>,
+	Michal Simek <michal.simek@xilinx.com>, linux-tegra@vger.kernel.org,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Sam Ravnborg <sam@ravnborg.org>, Rob Herring <robh@kernel.org>,
+	Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Mali DP Maintainers <malidp@foss.arm.com>,
+	Joel Stanley <joel@jms.id.au>, nouveau@lists.freedesktop.org,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	Lyude Paul <lyude@redhat.com>, Arnd Bergmann <arnd@arndb.de>,
+	Guo Zhengkui <guozhengkui@vivo.com>,
+	Konrad Dybcio <konrad.dybcio@somainline.org>,
+	Alison Wang <alison.wang@nxp.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Christian Gmeiner <christian.gmeiner@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Maxime Ripard <maxime@cerno.tech>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Daniel Vetter <daniel@ffwll.ch>, Liu Shixin <liushixin2@huawei.com>,
+	Tomi Valkeinen <tomba@kernel.org>, Deepak R Varma <drv@mailo.com>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Ricardo Ribalda <ribalda@chromium.org>,
+	Tian Tao <tiantao6@hisilicon.com>, Shawn Guo <shawnguo@kernel.org>,
+	Yannick Fertre <yannick.fertre@foss.st.com>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Emma Anholt <emma@anholt.net>, Liviu Dudau <liviu.dudau@arm.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Sandy Huang <hjc@rock-chips.com>,
+	Paul Cercueil <paul@crapouillou.net>,
+	David Airlie <airlied@gmail.com>, Marek Vasut <marex@denx.de>,
+	linux-renesas-soc@vger.kernel.org,
+	Jayshri Pawar <jpawar@cadence.com>, Jonas Karlman <jonas@kwiboo.se>,
+	Rob Clark <robdclark@gmail.com>,
+	Philippe Cornu <philippe.cornu@foss.st.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Melissa Wen <mwen@igalia.com>, linux-mediatek@lists.infradead.org,
+	Fabio Estevam <festevam@gmail.com>,
+	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Qiang Yu <yuq825@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Jyri Sarha <jyri.sarha@iki.fi>,
+	Lucas Stach <l.stach@pengutronix.de>
+Subject: Re: [PATCH 00/53] drm: Convert to platform remove callback returning
+ void
+Message-ID: <20230515092019.a3uwmofkkujo772g@pengutronix.de>
+References: <20230507162616.1368908-1-u.kleine-koenig@pengutronix.de>
+ <CAAQKjZP5jhwFg9sNndpa6_7G6HoV76heQbt=knoOEZZskexrhg@mail.gmail.com>
 MIME-Version: 1.0
-References: <CAFBinCD0RT0p-jk86W0JuMT3ufohRh1RqWCcM35DKZJpuc10HQ@mail.gmail.com>
- <CAPDyKFqgYnBfm-NespEZF8AJ5Ou4Bya8jLfVEnfyZvfAZ05Q7Q@mail.gmail.com>
- <CAFBinCDjPJHEhN-Jx3DhhhHJ3yi8oEoW7u4-Ld6Rd1+W826ttA@mail.gmail.com>
- <CAPDyKFqKSWJkJwgCO89jgKQ6AB==P9BWkuX6XtKj=ASOH15y9g@mail.gmail.com> <CAFBinCDwgYw3v31hP4AtV3+Z1o+esDqMKugRwMMMLqSX0Acjzw@mail.gmail.com>
-In-Reply-To: <CAFBinCDwgYw3v31hP4AtV3+Z1o+esDqMKugRwMMMLqSX0Acjzw@mail.gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 15 May 2023 11:43:45 +0200
-Message-ID: <CAPDyKFr+hQo+N31r=3f58taf9sYW0UF0ApCJhwz9vRsyNizcvg@mail.gmail.com>
-Subject: Re: Odroid-C1 regression with commit 4bc31edebde5 ("mmc: core: Set HS
- clock speed before sending HS CMD13")
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org, 
-	Brian Norris <briannorris@chromium.org>, Shawn Lin <shawn.lin@rock-chips.com>, 
-	Luca Weiss <luca@z3ntu.xyz>
+In-Reply-To: <CAAQKjZP5jhwFg9sNndpa6_7G6HoV76heQbt=knoOEZZskexrhg@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230515_024423_979827_46C912A3 
-X-CRM114-Status: GOOD (  28.05  )
+X-CRM114-CacheID: sfid-20230515_022615_143641_330ED607 
+X-CRM114-Status: GOOD (  24.95  )
+X-Mailman-Approved-At: Mon, 15 May 2023 02:49:42 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,51 +182,100 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============4575685015321162911=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gU3VuLCAxNCBNYXkgMjAyMyBhdCAyMjo0MiwgTWFydGluIEJsdW1lbnN0aW5nbAo8bWFydGlu
-LmJsdW1lbnN0aW5nbEBnb29nbGVtYWlsLmNvbT4gd3JvdGU6Cj4KPiBIaSBVbGYsCj4KPiBPbiBU
-aHUsIE1heSAxMSwgMjAyMyBhdCAxMjo0M+KAr1BNIFVsZiBIYW5zc29uIDx1bGYuaGFuc3NvbkBs
-aW5hcm8ub3JnPiB3cm90ZToKPiBbLi4uXQo+ID4gPiBJbmRlZWQsIHJlbW92aW5nIG1tY19zZXRf
-Y2xvY2soKSBmcm9tIG1tY19zZWxlY3RfaHMyMDAoKSBhbHNvIG1ha2VzIG15Cj4gPiA+IGVNTUMg
-YXBwZWFyIGFnYWluIG9uIHRvcCBvZiBMaW51eCA2LjQtcmMxLgo+ID4gPiBTZWUgdGhlIGF0dGFj
-aGVkIGRpZmYgaW4gY2FzZSBpdCdzIG5vdCBmdWxseSBjbGVhciB3aGljaAo+ID4gPiBtbWNfc2V0
-X2Nsb2NrKCkgY2FsbCBJIHJlbW92ZWQuCj4gPgo+ID4gVGhhbmtzIGZvciB0aGUgdXBkYXRlISBS
-ZW1vdmluZyB0aGF0IGNhbGwgcmVzdG9yZXMgbW1jX3NlbGVjdF9oczIwMCgpCj4gPiB0byB0aGUg
-cHJldmlvdXMgYmVoYXZpb3VyIC0gc28gdGhhbmtzIGZvciBjb25maXJtaW5nIHRoYXQgdGhpcyBp
-cwo+ID4gd29ya2luZy4KPiA+Cj4gPiBIb3dldmVyLCB0byBmaW5kIHRoZSBwcm9wZXIgc29sdXRp
-b24sIEkgdGhpbmsgd2UgbmVlZCB0byB1bmRlcnN0YW5kCj4gPiB3aHkgd2UgYXJlIGhhbmdpbmcg
-aW4gdGhlIG1lc29uLW14LXNkaGMgZHJpdmVyIGZpcnN0LiBIZXJlJ3MgYSBjb3VwbGUKPiA+IG9m
-IGZvbGxvdyB1cCBxdWVzdGlvbnMgZnJvbSBtZToKPiA+Cj4gPiAxKSBCZWZvcmUgY2FsbGluZyBt
-bWNfc2V0X2Nsb2NrKCkgd2hhdCBpcyB0aGUgYWN0dWFsIGNsb2NrIHJhdGUgdGhhdAo+ID4gaGFz
-IGJlZW4gc2V0IGJ5IHRoZSBtZXNvbiBkcml2ZXI/Cj4gPgo+ID4gMikgRG9lcyB0aGUgY2FsbCB0
-byBtbWNfc2V0X2Nsb2NrKCkgcmV0dXJuIG9yIGhhbmc/IENhbiB3ZSB2ZXJpZnkgdGhhdAo+ID4g
-dGhlIGNsb2NrIGdldHMgc2V0IGNvcnJlY3RseT8KPiBJIHVzZWQgdGhlIGF0dGFjaGVkIGRpZmYg
-dG8gYW5zd2VyIHRoZXNlIHR3byBxdWVzdGlvbnMuIFNlZSB0aGUKPiBmb2xsb3dpbmcgbG9nIGV4
-dHJhY3QgKGZ1bGwgbG9nIGlzIGF0dGFjaGVkKToKPiBtZXNvbi1teC1zZGhjIGMxMTA4ZTAwLm1t
-YzogVHJ5aW5nIHRvIHNldCBNTUMgY2xvY2sgdG8gNDAwMDAwSHoKPiBtZXNvbi1teC1zZGhjIGMx
-MTA4ZTAwLm1tYzogQWN0dWFsIE1NQyBjbG9jayB0byAzOTk4MTJIego+IG1tYzE6IG1tY19zZWxl
-Y3RfaHMyMDAgc3dpdGNoaW5nIHRvIGNsb2NrIGZyb20gY2FyZC0+ZXh0X2NzZC5oc19tYXhfZHRy
-Li4uCj4gbWVzb24tbXgtc2RoYyBjMTEwOGUwMC5tbWM6IFRyeWluZyB0byBzZXQgTU1DIGNsb2Nr
-IHRvIDUyMDAwMDAwSHoKPiBtZXNvbi1teC1zZGhjIGMxMTA4ZTAwLm1tYzogQWN0dWFsIE1NQyBj
-bG9jayB0byA1MTAwMDAwMEh6Cj4gbW1jMTogbW1jX3NlbGVjdF9oczIwMCBtbWNfc2V0X2Nsb2Nr
-IHJldHVybmVkCj4KPiA+IDMpIElmIDIpIHNlZW1zIHRvIHdvcmsgYWJvdmUsIHdlIG5lZWQgdG8g
-ZmlndXJlIG91dCB3aHkKPiA+IG1tY19zd2l0Y2hfc3RhdHVzKCkgaXMgaGFuZ2luZy4gSWYgdGhl
-cmUgaXMgYSBwcm9ibGVtIHdpdGggdGhlIGVNTUMKPiA+IGNhcmQgcmVzcG9uZGluZyBpbi1jb3Jy
-ZWN0bHksIHRoZSBob3N0IGRyaXZlciBzaG91bGQgcmV0dXJuIHdpdGggYW4KPiA+IGVycm9yIGNv
-ZGUsIHJpZ2h0Pwo+IFlvdSdyZSByaWdodDogaXQncyBpbmRlZWQgaGFuZ2luZyBpbiBtbWNfc3dp
-dGNoX3N0YXR1cygpCj4gSSBkb24ndCBnZXQgYW55IGludGVycnVwdHMgKHRpbWVvdXQsIENSQyBl
-cnJvciwgLi4uKSBmb3IgaXQuCj4gRG8geW91IGhhdmUgYW55IHN1Z2dlc3Rpb25zIHdoYXQgdG8g
-Y2hlY2sgbmV4dD8KClNvIHRoZSBtbWNfc3dpdGNoX3N0YXR1cygpIGlzIHNlbmRpbmcgYSBDTUQx
-My4gRXZlbiBpZiB0aGUgY2FyZApkb2Vzbid0IHJlcGx5LCBJIHdvdWxkIGV4cGVjdCB0aGF0IHRo
-ZSBtZXNvbiBtbWMgY29udHJvbGxlciB3b3VsZApyYWlzZSBzb21lIGtpbmQgb2YgZXJyb3IgY29u
-ZGl0aW9uLCBwcm9iYWJseSB2aWEgYSB0aW1lb3V0LWlycS4KCkRpZCB5b3UgdmVyaWZ5IHRoYXQg
-dGhlIGRyaXZlciBpcyBhY3R1YWxseSB3YWl0aW5nIGZvciBhbiBJUlEgdG8KaGFwcGVuLCB3aGlj
-aCBhbHNvIG1lYW5zIHdhaXRpbmcgZm9yIGEgQ01EMTMgcmVzcG9uc2U/CgpLaW5kIHJlZ2FyZHMK
-VWZmZQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGlu
-dXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3Jn
-Cmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dp
-Ywo=
+
+--===============4575685015321162911==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="suzv37z45wvm64m4"
+Content-Disposition: inline
+
+
+--suzv37z45wvm64m4
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, May 15, 2023 at 04:50:57PM +0900, Inki Dae wrote:
+> Hi,
+>=20
+> 2023=EB=85=84 5=EC=9B=94 8=EC=9D=BC (=EC=9B=94) =EC=98=A4=EC=A0=84 1:32, =
+Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>=EB=8B=98=EC=9D=B4 =
+=EC=9E=91=EC=84=B1:
+> >
+> > Hello,
+> >
+> > this patch series adapts the platform drivers below drivers/gpu/drm
+> > to use the .remove_new() callback. Compared to the traditional .remove()
+> > callback .remove_new() returns no value. This is a good thing because
+>=20
+> First of all, I apologize for the delay in providing my review comments.
+>=20
+> Not related to this patch but seems that the "remove_new" callback
+> naming implicitly implies that there is no need to return anything
+> since its return type is void. To help users understand the intended
+> behavior based on the callback name, how about considering a modified
+> naming convention like "remove_no_return" or something similar?
+>=20
+> The relevant patch has already been merged as outlined below,
+> author Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> 2022-12-09
+> 16:09:14 +0100
+> committer Greg Kroah-Hartman <gregkh@linuxfoundation.org> 2023-01-17
+> 19:04:17 +0100
+> commit 5c5a7680e67ba6fbbb5f4d79fa41485450c1985c (patch)
+> tree 0b6dbc003a6bb4a3f7fb084d31326bbfa3ba3f7c
+> parent 7bbb89b420d9e290cb34864832de8fcdf2c140dc (diff)
+> download linux-5c5a7680e67ba6fbbb5f4d79fa41485450c1985c.tar.gz
+> platform: Provide a remove callback that returns no value
+>=20
+> Maybe a trivial thing but how about renaming it? I think the postfix,
+> 'new', is a very generic word. I think you could introduce another
+> patch for it if you think it's reasonable.
+
+=2Eremove_new is only a temporary name. Once all drivers are converted,
+=2Eremove is changed to return void and then all drivers are converted
+back. While "remove_new" might not be a brilliant name choice, touching
+all already converted drivers again just to improve the temporary
+measures doesn't sound right.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
+   |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--suzv37z45wvm64m4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmRh+VIACgkQj4D7WH0S
+/k7epggAlsMX1TbSjMAIV+LPNrZU/ErXl1QWJt2/nA/iQmxppFkkR19U334HeeZf
+VXsu0FwIvUZpfndnO3hCw3pvEa4gQiTo7reQsd28ECZaLwTVQYvp6o/LceTtaOJ2
+5+FeefPV0mHxQ6SiXZ7g7aA4gkkw2iJY9s7LaPHHXw0jpyOpcZHlNzJioLe4RHdT
+eFYzR99DVhYH81tw8szT4fpAS3Vw2Eqq5PyQHDRT12PrJdM0Ig+3ei53DU4adRWh
+w/kH6vGx2XBIbqNrXq5AcSjVnMvrKq7iKPRxMCz58JC4oCirfqT+7tGWbOgJLLEx
+BCbOuZXZE9d8Thjrbo3cXVRujnhsLg==
+=GMrP
+-----END PGP SIGNATURE-----
+
+--suzv37z45wvm64m4--
+
+
+--===============4575685015321162911==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4575685015321162911==--
+
