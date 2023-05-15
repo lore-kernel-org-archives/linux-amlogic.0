@@ -4,90 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A4F2C7EE22
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 May 2023 06:32:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46E60C77B75
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 May 2023 07:36:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fd1tArXWRFcOHjHHrLrz2SbnHXurxCW6CKoNuQs0v68=; b=s6enDiCj+Lpkpf
-	wVFf1IGZFYs1ClE/b7ItW4wZkFu75EE8V2I5lIC3tt4BIKEOp1QU8GfaV37RQkA9StfT3Wy1QUUCS
-	ieqZrZO0Mq/oD/HMMOXoF56tPVeGhRRgjIicpYn+7p/tz/Hh/GoPx7sGJ+N5aRRkgLXwzDSawlMYc
-	XPjgk9VrXbnpdFRdp2dvpK+qyzWydwLq4KxpL6BLzgW5IyN7xEN8Fk240R+nERiS0+uHa2ctrYRQM
-	r9T84PWUOrjR2CjzBxyjAivx0KrAd4RYy6nVw+5Di9J8+EWB7RFQXTbMSBQAOw0jUfbha5vi/eKXZ
-	8q1l4FUbytx3Oj85j81w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=bQPC8U0nvvLb2dta1/VXlxVeF1c9ADinfMBmN9nhxS8=; b=pR4x+zLJkznU9JYoxKSId5u3oe
+	hEYhkMwLFkHtnoUvNXfxVGXs7IzlzCsRlxTobBaQoyTINZzgcuiLP1DIYITQB228kRQQa8Le1ZOGU
+	dEZkDT932szvqwb0GhP2uJbBe5twTgBBRijN8Me7AKC8GyCsRKwqRdlt6xM6OfO4VmlKJ6cna+vzp
+	dPqMg3WXmPVW0N3u2NOkqFKZC6Q7JyEJQX6nmYTuIenkMqnsz+gqbXB/3udA0+98P7YsE9DncLdX/
+	lscvUvunrsAP3ro/Fou9hgjUF405CtZ7u2MC4wv2Y1SmxWQ5W3Q4ymru4JqpS5LOFM1m/ecl2iwUZ
+	jG12/MYQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pyRl6-0019ZR-2W;
-	Mon, 15 May 2023 06:32:36 +0000
-Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
+	id 1pySkf-001HZq-13;
+	Mon, 15 May 2023 07:36:13 +0000
+Received: from mail-psaapc01on2071f.outbound.protection.outlook.com ([2a01:111:f400:feae::71f] helo=APC01-PSA-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pyRl4-0019XI-0G
-	for linux-amlogic@lists.infradead.org;
-	Mon, 15 May 2023 06:32:35 +0000
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so108155836a12.1
-        for <linux-amlogic@lists.infradead.org>; Sun, 14 May 2023 23:32:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684132349; x=1686724349;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S/hYvCcBf6b2cvUWeK/Zz7sqw40AaKUPJTT2dMrut/Q=;
-        b=anAg46r3ItG7TxcWPmGuHeXhHGLKN+nwU5I/BaIYPU4UiOscHUTadRL+pNRbf/gYVb
-         8MREHFIQAa9kjGLnQykkQe9c5bLgg85EQVXWPsJzjJuPq3DoMcwDL4Z/Yk6Y4MCBqbMt
-         FiM0re6eTy6RayocX6uDWemmtmLxfNWKTItPkbHpmfnqULHK/EelaOr1KnkkS8J8zG4S
-         gHSAu4G6iBMwAxFc1Zn+tfOkxaFSXUkn3fYvPljK4aMNzLROLTTAMniixl1XB3p6+fg3
-         XrnDDUWkx4JnxaGcmA/1h3oC0bfflrFgXikACk6tTT6ReFWajycMuQaWkMi7r1A35Wui
-         qrBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684132349; x=1686724349;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S/hYvCcBf6b2cvUWeK/Zz7sqw40AaKUPJTT2dMrut/Q=;
-        b=bO2aj4NGpyQfMZ+cvvS4FQ/C/YXOsp72kQJAzJAIV8y9m+DuEbCWOiH6qpkWgwq4cK
-         2Zcl80TZHFco5IBRJAYYhEXbxoeGGX0bwN+ns1ET0PV7fOBiqLJ5QM0gm+veDArIE0hA
-         hjWB2FAkMnYCvcf8bfaNvVbIyHuGeTxcx0OGR++wbOLgBZISw7bT3m5D11c3ZCvBf/kN
-         dvmnF46w3oLe5o2PxnlpU+1p710yY8/q7YO1IVpOlXRmslcJ+RZNDsWgcZ3Cbk+jtzjl
-         6UY305QT/0m1HZjum1FE2cN40fn4AKZvBSdoJe7kwM30pNxno2F5UJdk+KZykhK9ivn4
-         lXJw==
-X-Gm-Message-State: AC+VfDzrrtr8CE104rMlf9Gvm4KvGgxdkgtvcThFqd1YnjMx1DQ1PCvx
-	Ix6FqrSX/6JYR73k1UyXfwzRnw==
-X-Google-Smtp-Source: ACHHUZ5G5Kk8YwVeXUzhpeXKMrTcjuQZ9G2Q+2fbGgBS0iUKQ7ma65pjl4f7B8m21PO/4Bg2keLvVg==
-X-Received: by 2002:a17:907:3d89:b0:94e:4285:390c with SMTP id he9-20020a1709073d8900b0094e4285390cmr31602369ejc.10.1684132349638;
-        Sun, 14 May 2023 23:32:29 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
-        by smtp.gmail.com with ESMTPSA id bu2-20020a170906a14200b0096654fdbe34sm9129015ejb.142.2023.05.14.23.32.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 May 2023 23:32:29 -0700 (PDT)
-Message-ID: <0ff4b9fb-c56d-b896-e2de-c2f189a5e6d0@linaro.org>
-Date: Mon, 15 May 2023 08:32:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V8 2/4] dt-bindings: clock: document Amlogic S4 SoC
- peripherals clock controller
+	id 1pySkb-001HXb-1k;
+	Mon, 15 May 2023 07:36:11 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=c7WSLBRX/NBuJlrt4J1LKt2tq72wJPJpq8nFj3OBeJZ8yflCjKJR9w/d0CyxbI/qdWNARsMsfPUKacoMvcJFBnPMrBYamUpPEh19k8p7rMBF6KJt4U0oVCBa2ZLyJgFJ3s3D80vvDMbxqyk1UXHYvaPrw7gFuVgIUX7goI+mhbJYbQxVZcB4Rw7uFNDVJELaIvty64j9JncFfN2jMF9qzig3F0iD9FbiPKvT2Tw6rtfUdnv3VWSkAqHB0xOBCZPdr7XKKbnUlA/ye7feXeOtrz9qxogDNPVf4P5YtgeGleMR3UK2FvZwgSX811wQ/2CaHvymWWP/6GJjKYHG04wwqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Dt3UrwbCB0DAHarbQDo/RTQ6ZERKgK55dWK8uvxS0d4=;
+ b=QgRpnjxkLSLoBeIKrGI4Hby27c0dCrXvkd7PokI/KZJHSZSr42ebF/8ZrGHNd5ql7IidXF9Ry8pUYEannq3qaArACg7bgvXlGKa0SYWWQ7YBMW2TdF8ZPKoG6y+w2AYxmoW5e8ZZRMPw+AFWsYp3TaZ+f4uIxGcWp24oR1HdMlqFUGkX0YQ6mPLUhoaCRWe/iqDsJ+ITcJykxIoO+tRg7Hc8gZm5UyIPgNdOF2+ZaPKKqsti3koOrNbbA9G4wUVZWOlHqFZ8FWOjT9m2Btth6RSXOx6tiMwFyXA9S5+jgpsEbHFQ49vDi/ueEJhotZriHoXKSw4s25gU0+0ApFdq/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Dt3UrwbCB0DAHarbQDo/RTQ6ZERKgK55dWK8uvxS0d4=;
+ b=XpvGj5joW4Yt6hU5+SxAkm/M7+mCODztbpRFhCUlNtvYVviiZMJOJ5wzh80QxSHeHG2RTE/IihSSpj6kUxnMRnFo1OScdqo2zGm4GnH94s0T5tayBmtTrkQ2k9ydgTIkMQau+TRiIH+VOqMjTpY77HOstmA1I2pUGH9y5uTT4QOegrWYPd03OPsfWhBB6lpcu8oI1OvlBYgzualddDqQ9SQwND39FYHRXY2i75kQMIzLxcB0WGNc8n8gj80uVzW3o4ZdmjGFTA7zf3gIKErl0LEuSIhpm7yVjohWXCTipwVWfPveqvfA+3Z9N3GgB2r/faTwFn6ZSWytsPPdej8YHw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from SG2PR03MB6730.apcprd03.prod.outlook.com (2603:1096:4:1d5::9) by
+ SEZPR03MB7514.apcprd03.prod.outlook.com (2603:1096:101:126::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.30; Mon, 15 May
+ 2023 07:35:50 +0000
+Received: from SG2PR03MB6730.apcprd03.prod.outlook.com
+ ([fe80::e116:7d2a:af78:fcf1]) by SG2PR03MB6730.apcprd03.prod.outlook.com
+ ([fe80::e116:7d2a:af78:fcf1%5]) with mapi id 15.20.6387.023; Mon, 15 May 2023
+ 07:35:50 +0000
+Message-ID: <8c6ad0a9-7820-c7a2-bd3b-1eee87d96728@amlogic.com>
+Date: Mon, 15 May 2023 15:35:02 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH V8 1/4] dt-bindings: clock: document Amlogic S4 SoC PLL
+ clock controller
 Content-Language: en-US
-To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
  <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: kelvin.zhang@amlogic.com, qi.duan@amlogic.com
 References: <20230515031557.31143-1-yu.tu@amlogic.com>
- <20230515031557.31143-3-yu.tu@amlogic.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230515031557.31143-3-yu.tu@amlogic.com>
+ <20230515031557.31143-2-yu.tu@amlogic.com>
+ <590560c9-4da6-bbd4-6aac-de57ab5403ba@linaro.org>
+From: Yu Tu <yu.tu@amlogic.com>
+In-Reply-To: <590560c9-4da6-bbd4-6aac-de57ab5403ba@linaro.org>
+X-ClientProxiedBy: TY2PR0101CA0038.apcprd01.prod.exchangelabs.com
+ (2603:1096:404:8000::24) To SG2PR03MB6730.apcprd03.prod.outlook.com
+ (2603:1096:4:1d5::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PR03MB6730:EE_|SEZPR03MB7514:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2efb6774-4c1a-4204-9cf8-08db5517005e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 	sIHxFlpiARR+f/P9UdHmYPRdWCOMSiprjbSn50yvafOCe3T/oM2hspYJxfjUM5N04C5G3gGKgLi/wD/Xy48nfkSALQpIZj3RngBee2VtOcsur64rVcHAb46Bezs4XYodS6sGosQdkUU5/DOJc/NDt6SqR2muBhv6lfv/W5JPWafqdO3ToWb9Do22R5YCfqf7sLWM/qhz+eRglEyjllMUrCbeRmV3bzkDM0k0a0v3lSTGTdeFvQ/pgpjkbpPP2V1UtKk8N5owFV8d44M7UnRq3j8rU7E7B/rb/7P9F/hriiJu/yaDVeN+PfNBkODuNxbiJ5JXk41B87uzBO/8MgL5Xhz5HQf7WC/JN3vi6B4A8mj/OW9iqXG6oMJxviIqg3eeRCO5HIce1ZGPMTOjEFQ7eoYQr5VxpdxmKRXtLODu9RpcIc9qipSf04RPRKZt5IJjUG4F1r4D1CJeohKK0ecMbL6K/TDcg5jyDzGq6/GpugVle+APq7xLApjoC3LrtjipCyYtvBxTF+TbmGrRo6P66SdHyDpkkFvK9/96N5R0zXPuWAk2Ek1Hp8LrywlauZj61BAGOAD1PmTlZ3QIpyHR+U1TsaothPyZFTxQvv4gWfwaAOj6l9uVOFSmpeTo94ytMSesl5fcO3wuli0/MWWK01CACne1ReZOY/rAaF8hFa+3Q2HANwc26pKnVgu2VQhbIk/MluxJO2uZEkBOa9x0Bw==
+X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR03MB6730.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(396003)(39850400004)(136003)(366004)(376002)(451199021)(2616005)(2906002)(107886003)(4744005)(83380400001)(6666004)(966005)(6486002)(66556008)(66476007)(66946007)(478600001)(110136005)(8936002)(8676002)(7416002)(44832011)(53546011)(6512007)(26005)(186003)(6506007)(5660300002)(4326008)(316002)(41300700001)(38100700002)(921005)(31696002)(86362001)(36756003)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 	=?utf-8?B?Nk9GblBvRlNPRzd6WExkRlJ2VHJDQURuOU0yaGVDMXhnTVcyaEY4MURCeW4y?=
+ =?utf-8?B?TTlpeS9vRElidUJuekJYMFhBZVJGeGErcXZGQ1d0QU5EazZac0h6SnFsaGRq?=
+ =?utf-8?B?cXRKcVpsbXlsenFiV3VvdStTRkZReDd2clQ3TjlTa21FVno0Qm1IVUVnQTVo?=
+ =?utf-8?B?RDA5dWg3ZzFjL01hNW1IMVBGLzhwZzZ0bEJtdkRMaUdVYnBkMk5zcFNXVWJr?=
+ =?utf-8?B?a2QrTVNyVGNFUm1wOExyTFpLMS9JcDhieStMSnhtZ2Z4S3VGUmFuTy83ekoy?=
+ =?utf-8?B?aTBLamhVR1V5WjdKZ0ZaQ1Z0SlU5MVVTbnAyVm05SzI5dE5vY1gxR2cwS3p2?=
+ =?utf-8?B?Tm9Oa0ZMS0hvaTVxc0xVVDlZejN0VmF0MWdlZWtwcnJNbmNnS25nOXN2YlUy?=
+ =?utf-8?B?YVdxUlVFeVIxQjhjckd0ZHJKTmdDVDJRdjNkOUJmNk1CRXNLaWU1NkFQWC8r?=
+ =?utf-8?B?Rlo0LzBtV0MzRVl0QWNUWGJWaERRd0ZRN0tLenZUNHJ1ZUp2cm9vV3l0bk45?=
+ =?utf-8?B?a3ZDdFdlUzR2a3QvUDkwYWF5RzBxK1pJNWpJeE1ZY1pJdTV3ZEpFcWdUc0c1?=
+ =?utf-8?B?U0tJRkk3Q01jb1BYK1lkbWlHeURqcUVHc0o3NVhRbXdidmlzSHJsM0Yrc0dx?=
+ =?utf-8?B?WlBQdjZKQ0dFeXA0UEIxSlduWTd4c1cyNWFGVWpMWXRpd1YyendmRzNnSnpT?=
+ =?utf-8?B?ajRENmZGMHIwajFQYWFhZWYxNmgzTCtxUkZ6WU5jdmE0TFNOQXIyMzdsY0Jy?=
+ =?utf-8?B?SUdWMmRhNVBVcU5LRnloT202My82Si9pajlVR0VRNWw2YkRqeWpCZ2hkOHpO?=
+ =?utf-8?B?ajBNREdKak9rZE8wTFdyNGI1SENWejYzcitWRGM5d2JkNlRLNVZoY2xjb3BG?=
+ =?utf-8?B?elgrZ3A4SjlLdjJSczdGejgrWVFHemVFZ3VTNDhhR3VTZ3lQSWN3bVB6ZVVR?=
+ =?utf-8?B?R28rRHdxUUF3bEswYkZhMGczUGZqU0hxcHkyN1BTUkNOME00bUhsU011eWRW?=
+ =?utf-8?B?eUlKcFlLMldISWlMWitvekNOREZSZFlwT3VDd0pQK2xyTzVsSS9qYWQ5TDQ3?=
+ =?utf-8?B?YUpyakh1alNxQTdqd0JvcmcwUDRNU0NzYmNJSExPQVQ5ckc3cGx4TFNUUkV5?=
+ =?utf-8?B?Q3RHcENZVDRPNVFtYjJjUEtTWVREWEM3TFdWWkI4QTYzVEhEbkpyWmZ3U2k0?=
+ =?utf-8?B?SThjQmRCOVdkVER3ZEZmS1pSYTRqVjA3eDJzLzlLMGpmS2lVeGYzT25vUlhI?=
+ =?utf-8?B?WldTdFlGL0swUkRGRGlQZTVoMHcrUnFzZGNaNldUVUVmaWZWb2wyRHlEZTVH?=
+ =?utf-8?B?cHBudzZ2ZXpUTWovNysrZmsyQTloMGtUQVRTN3RSUnN1cDFWK3JlQXpsRGdU?=
+ =?utf-8?B?eXN0ZHE5YWJKcGY5YWVDLzRmT0EvbWtiRkFSK29mdjkxRmd3RmEyQjg1MGJH?=
+ =?utf-8?B?c2JlTEIyUERtNS9HaXlkdUh3eExuSDRMZ1dEY0ZIOHVMUU5aUDhIR2lSenJq?=
+ =?utf-8?B?WVNwdG13THFRUWhKRGF4dVcrN1JoRGxsUlVVUlQ0K2FSZnloOW1lcE5tT01X?=
+ =?utf-8?B?dUcwYlIzSGMzSTFFUFBGNnM4ejhlK3dtWUVDMnN5T1pYTG5zUnUwSG9Nb1Vl?=
+ =?utf-8?B?Vi9yOXA2bmwxTHFUYWlHdUJ2Z0I1YWFkZ1ZtSlZBcVRxV2l6MGRnbEt5cnEz?=
+ =?utf-8?B?eUpodC9hNkpVZXZ0ZTFtY0tMQ0VvQnc5Rjk3d1hTRUFqU0E5dDBjejlTcXZh?=
+ =?utf-8?B?UWtRVzJRNmRXYWtrVlMyV0FJTHhzUEJoMzVEdUtuTXgyU1VWUlVkdEk2QjNJ?=
+ =?utf-8?B?bTVrdzNaeERVSVJPSzM0d2ZHUTJpdjdCRWR4TW8vQ2ZMNXlNVkVpOTU5N3ky?=
+ =?utf-8?B?VXJBQnc3UjVJSDk0NDhJT2R4b094MmcyaW9laTJsM3pPQlhCN1pEMDNsS1JG?=
+ =?utf-8?B?YnppM1pTZ2FxSU1jL2tmaHRXTFY1UDQ1WUFLSFJUK1YvVytGL1RGTmovT3lp?=
+ =?utf-8?B?enRjcnpZZnZHd1lPZm5qVXc0akpiSzRaN3F5Y3ZGb2JvMzh0K0RFSHAzTVdN?=
+ =?utf-8?B?VGoyUmZjTTd1L2piRUFYZENmWVVPQm5FRG83Lzh5TlY5SHpwVFhaL2F2RnRs?=
+ =?utf-8?Q?48yxX+DlCuI6aEbgqXzWDDzUD?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2efb6774-4c1a-4204-9cf8-08db5517005e
+X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB6730.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2023 07:35:48.8331
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8MBjAaznkQQj67/3uoiFQ6j4jyK59Nv5Ri1jWq8tstIVbQfBbJJKKPAbREzJ7D50/jxyS4KnJyceMnHHi/Z8kQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7514
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230514_233234_120261_370FC345 
-X-CRM114-Status: GOOD (  10.12  )
+X-CRM114-CacheID: sfid-20230515_003609_646740_9C2ABE90 
+X-CRM114-Status: GOOD (  15.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,35 +149,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/05/2023 05:15, Yu Tu wrote:
-> Add the S4 peripherals clock controller dt-bindings in the s4 SoC
-> family.
+Hi Krzysztof,
+	Thank you for your prompt reply.
+
+On 2023/5/15 14:32, Krzysztof Kozlowski wrote:
+> On 15/05/2023 05:15, Yu Tu wrote:
+>> Add the S4 PLL clock controller dt-bindings in the s4 SoC family.
+>>
+>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
 > 
-> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+> This is a friendly reminder during the review process.
+> 
+> It looks like you received a tag and forgot to add it.
+> 
+> If you do not know the process, here is a short explanation:
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+> versions. However, there's no need to repost patches *only* to add the
+> tags. The upstream maintainer will do that for acks received on the
+> version they apply.
+> 
+> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+> 
+> If a tag was not added on purpose, please state why and what changed.
 
-This is a friendly reminder during the review process.
+Yes. I don't know the process. So I need to add Reviewed-by: Rob Herring 
+<robh@kernel.org>. And resend V8?
 
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions. However, there's no need to repost patches *only* to add the
-tags. The upstream maintainer will do that for acks received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
-
-If a tag was not added on purpose, please state why and what changed.
-
-
-Best regards,
-Krzysztof
-
+> 
+> Best regards,
+> Krzysztof
+> 
 
 _______________________________________________
 linux-amlogic mailing list
