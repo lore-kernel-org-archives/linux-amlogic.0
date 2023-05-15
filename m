@@ -4,81 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89AC6C77B7D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 May 2023 16:41:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99469C77B7D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 May 2023 16:42:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JgK17nVGtFKqZaJyDwifS9VQkSPGh+7OF1bDgm4t79k=; b=Oryv7Dx3Ja2Zya
-	mMR/nCM1tB8NOg0ul8AYMttsv7HrqLj27c4qiGyKR1cU5TbLCkioU3dq7bNA8AdW9UheOUnqakE/9
-	edqkx6skIyNS53CdSzml3anp5e4UdX/rgXn/rgfYLImo8CBZ8TXf2asCKzL1fq69ZGD5/g1FwKvRo
-	vRIDrUzEipnBDhXsYDU7b7WUzlUnbMahkDqT3oIAMH8TdA1rdcZW30Fs1R3HRmtmxRYBqzJ2aGatt
-	IBj68Ji5Sn1NtRBR6/1QuF2J0Ii4iMY+ji0Bisyz5G7G99kXNWUj5Qyyz7DJfvq6xgigcqV1huvNS
-	NbPAkYNx7nTBcngmuUHA==;
+	List-Owner; bh=AxhSN5iMdr4SrAZlWk3g1ipNwKS27ALhuNiIK1qBzik=; b=kyPjm3NlLclLLI
+	voRVv8vpzA8sEYuoHrA2yn1gSdrGmzxH3g7SG5LvH0Tx/IdgVdKVntZHF7vYBw37RD4xUUInrb1bw
+	/INhg3X3MzI1IisIvXP9B0vrtRjS/BIDMZExVih+Py+Gc6Chte1tHcI/CAf5BiZjQfw+ZA6fAbD0W
+	RvH4FgrebbjKtlwd5tU5zRG7kQknqSL7X3RieJuXkzWHusGyBAekG7k6STP3Fd56KzMwCROPkGUHp
+	rfr62AhEguyylhQAL5aw5GGNeMHx1pbkkSzZ+OEgpz1D2leo1smwtaibQ+85SGyh4CEKksV6+sAnY
+	0mBmE6zKyhFcpiS/6tZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pybFl-002nJ9-2x;
-	Mon, 15 May 2023 16:40:53 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1pybH4-002nls-1V;
+	Mon, 15 May 2023 16:42:14 +0000
+Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pybFk-002nIl-23
-	for linux-amlogic@bombadil.infradead.org;
-	Mon, 15 May 2023 16:40:52 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=HqUKnr7IQo6kAfIcW46mPtLrFF4JcKeEB/JMB18Eu9o=; b=fXtwAoZUrEz++bMiVwY8nKNhHf
-	Miq9GUSSs6feLfjDdnfkczIxfGCBmzOPOtAinB8ddA+wMfMrkVb8uP2Sc1Bw1TF+zBhPnTeUPyzhc
-	9zugTO2ISzaga/NKEbP2yERiFiQ7k33CHPnd+qRykH1yYX3vYksD9MeOggBDJAIruQK012GlC+GoK
-	RQd4StEIQNKfKjhqIcp56k4W9wTdkdZQxfqBZ2Yl6US+b2mgN4pKxLFl/8jedSWLyahVFVjhc8Kky
-	QBrEZY+HVk064AkVFbCdddRIpoKmcX/zzmvszZ7cvYm+Jx3gwXs2zMXnBHj/Rq4LWAGx4UHZfwXru
-	I+dP1ZJA==;
-Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pyaxo-00BWQO-2N
+	id 1pybH1-002nj8-19
 	for linux-amlogic@lists.infradead.org;
-	Mon, 15 May 2023 16:22:23 +0000
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so113197183a12.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 15 May 2023 09:22:16 -0700 (PDT)
+	Mon, 15 May 2023 16:42:12 +0000
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-965e4be7541so2268182866b.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 15 May 2023 09:42:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684167735; x=1686759735;
+        d=linaro.org; s=google; t=1684168929; x=1686760929;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HqUKnr7IQo6kAfIcW46mPtLrFF4JcKeEB/JMB18Eu9o=;
-        b=IFOu69xMjQDkgS9weEDled/TdBHMLC8yBGornivzVwLbLX77xvDFLzkoUqW7hi9p1t
-         CKaI3h/mDs5Z3JBQ7MBKkh9y4mCkeCX/9i6zRH7s4LBA8ibeKmgux3dAFjRGbwEy+Z36
-         ApdQ3qPRZq5UXS2EtTjNC8uyb85BQCuYuGUK0hXmgkcbX7bT17ABTP5SS1jxo54Q0Ujy
-         sjdtshj3OT9BXTu3drUjNDncIEBpqNBRRZdoPTJ71PUWyi5VNtciC6D7wzTEJ4XUfXuC
-         F3vVSQyZ0Awq5Df63fkIJlHVjiGg/Xx2nrna0EMvpaA52kV2CS0e9KDA0wpEYhJfaeYp
-         7kNg==
+        bh=pGn8HAuIocxoHajMCSRRfoguprnK9ZSWlAhG7ClLNxU=;
+        b=ntSUivjlQsSveCo7qvqN4hvYLt8/4YSecdN3T8kf9zGq+Yc6ZGkxC3iSAbw7l0ol/J
+         p8Y3Fv1b/fXPs8S6bWHfgdBVHc+6f8dC3qXxlEjweK0Dr+BbPMgnTtPsoWsd+7sigaz6
+         P2tI2n8ChAvwCCsm8Ih3MzBzbdX8dufLrMLfasxGZCKS6GwB8edWSB3kMyPnEZvffz38
+         yZuSueXFekNmMyd606fbEUpjGYy/eIEPkIZQfBquwUJNOhU+qXiTycmEaIVG6xV0A25g
+         UhM09eopARPRGIzugkU1Rh6GCT6oy2f+VufN3WG0Ln7+XJHuZ5hlikXTl0kYRaS864d1
+         tuwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684167735; x=1686759735;
+        d=1e100.net; s=20221208; t=1684168929; x=1686760929;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HqUKnr7IQo6kAfIcW46mPtLrFF4JcKeEB/JMB18Eu9o=;
-        b=W0UBITy6+lIJdOskp1EmD0ZMBxHa6MqkvECF/mi2wfIupDPy/xpXa+H+1Mq/eiTx7G
-         vfCa0LX8ggDlGQ3f5fHrgcf22yaYaKwH0MFg5hij0QJf3owQC3udcwU/1g58oVZZs45Q
-         z3DDgLda4AD/8+3W2RkjYgk2mb64M47nkYgi1JfM6j1ie2LX/hSIV3qJv6bnWts8DxjO
-         Fv9EuaFItfM70V+7daI95PbIfFag7MgQK++kxMln3cK2Xj/1dlV1ncEBC24CF7NDYDj2
-         gxN4omNSSGM5aQxO4RjJK5V2IjeQdL467J9DEaMaMg5T4oJ5X/Nw3LmvInT8A9qMjDol
-         NURg==
-X-Gm-Message-State: AC+VfDwINtof6OzQDqNezmWyNc/OfwqVR1PrHI2IqcC4MEfAtzQ11CMj
-	DETZLnOcdi8xFIfM+5b6jTWF2Q==
-X-Google-Smtp-Source: ACHHUZ4LIljnAHBUrSfA9rndvPnsXVWvxuzuNDX+pSF5zFw9AsRvRtnw68XknYeYz635GIn79GF7dw==
-X-Received: by 2002:a17:907:3ea8:b0:953:37d9:282f with SMTP id hs40-20020a1709073ea800b0095337d9282fmr28963636ejc.38.1684167734983;
-        Mon, 15 May 2023 09:22:14 -0700 (PDT)
+        bh=pGn8HAuIocxoHajMCSRRfoguprnK9ZSWlAhG7ClLNxU=;
+        b=W3SCq5BVUC/tHjLbs2rnWeVqWBtAINx7XE6zjpE7vh8Vkmfu2TqqbaGj27rqPFbDny
+         hBaIHOTVFEniccFY822WQvoc/Nc26NzVYphkaQyLBN3N5QHtELRkcgjeedpBFVCdR4Gy
+         3FqXUQEcV7plEprGCdYQfVWGjDgWtgsgPqomnizGJctywYxAOgDNglS9WCCNf6bSnNyJ
+         5OebwNvLA5LnoAhvEBmqsd6qJNbHVJ4BGb5II1VEct2a5G9ES/+L7iHKKTRpJmdZb1+1
+         OaljLc4FllYszpmCWb4GoKDVpr7KgqlyalbKCFxZFYiOAVIGoeoGFGEcy8DrhCtWaEFI
+         VhNQ==
+X-Gm-Message-State: AC+VfDw3sL4Bx4zxTXPtdUDz8TTxkTmEg5ayCrkFFokf/DakJaqxhCOd
+	7NyUHodXS/QvjqSv7I0USedcMg==
+X-Google-Smtp-Source: ACHHUZ7QficGch3Sl9q7M8rHIXIEkBIuRgf/Sni/Jw1SxXmU9/+Vxw6610XGNRBN7zoz6cqyNfYj6A==
+X-Received: by 2002:a17:907:d86:b0:94a:9c4e:d2e9 with SMTP id go6-20020a1709070d8600b0094a9c4ed2e9mr31118316ejc.0.1684168928739;
+        Mon, 15 May 2023 09:42:08 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
-        by smtp.gmail.com with ESMTPSA id fy7-20020a1709069f0700b00965af4c7f07sm9645534ejc.20.2023.05.15.09.22.13
+        by smtp.gmail.com with ESMTPSA id n8-20020a056402514800b0050d8aac0a1esm7408463edd.19.2023.05.15.09.42.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 May 2023 09:22:14 -0700 (PDT)
-Message-ID: <80da6b9e-ba82-d2c9-2854-b444635150fd@linaro.org>
-Date: Mon, 15 May 2023 18:22:12 +0200
+        Mon, 15 May 2023 09:42:08 -0700 (PDT)
+Message-ID: <5f41d497-8b3c-42b4-22ba-b24772abb3a5@linaro.org>
+Date: Mon, 15 May 2023 18:42:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
@@ -103,11 +88,13 @@ References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linar
  <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-4-2592c29ea263@linaro.org>
  <fe2f22c7-8c39-faf3-bc65-a7c089200134@linaro.org>
  <eaa3ecd0-dcf0-01d8-b3ea-9dd900215839@linaro.org>
+ <80da6b9e-ba82-d2c9-2854-b444635150fd@linaro.org>
+ <14405799-9b56-6767-4a35-51ab8ae636a9@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <eaa3ecd0-dcf0-01d8-b3ea-9dd900215839@linaro.org>
+In-Reply-To: <14405799-9b56-6767-4a35-51ab8ae636a9@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230515_172220_954646_E3A1BA74 
-X-CRM114-Status: GOOD (  14.24  )
+X-CRM114-CacheID: sfid-20230515_094211_397006_13ED531E 
+X-CRM114-Status: GOOD (  12.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,44 +111,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/05/2023 18:15, Neil Armstrong wrote:
-> On 13/05/2023 20:32, Krzysztof Kozlowski wrote:
->> On 12/05/2023 15:11, Neil Armstrong wrote:
->>> The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
->>> with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI Glue
->>> on the same Amlogic SoCs.
+On 15/05/2023 18:28, neil.armstrong@linaro.org wrote:
+>> It's just a link stored in automated responses, what's here childish?
+>> It's still valid in current cycle! Look:
 >>
->> Please wrap commit message according to Linux coding style / submission
->> process (neither too early nor over the limit):
->> https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
+>> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+>>
+>> What's the difference? Srsly, I can point you to submitting patches
+>> without reference to specific line if you wish... Or you can check by
+>> yourself.
+>>
+>> I give the same reviews to so many people that have templates and Elixir
+>> happens to be the only place allowing bookmarking specific line. Which
+>> is helpful for beginners because the entire doc is huge.
+>>
+>> I can make an exception for you and never paste direct links.
 > 
-> This message may be automatic, but context is always important when reviewing,
-> this commit message is a re-spin on v3 that was reviewed by rob but I decided to remove the review
-> tags since I added a new clock and did some other cleanups.
-> 
-> While the process describes "how the patch itself *should* be formatted", it's a best effort
-> and not a blocker.
+> I value those kind of links for beginners and newcomers, really, it's a good
+> thing to do and we should all do the same.
 
-Other issues are blockers.
+Hm, if I understand correctly, you felt being patronized by my link? I
+apologize for that. It was not my intention and there is really no need
+to feel like that. Look, I have many, many templates so I can speed up
+review. This one I gave to many:
 
-> 
-> I'll fix the wrapping since you pointed out, but referring to the submitting-patches.rst
-> file (from a very old v5.18-rc4 version) is kind of childish.
+https://lore.kernel.org/all/?q=f%3Akrzysztof+%22Please+wrap+commit+message+according+to+Linux+coding+style%22
 
-It's just a link stored in automated responses, what's here childish?
-It's still valid in current cycle! Look:
+Writing same review every damn time is a boring, absolutely huge waste
+of time. People just make too many same mistakes. Better to hit key
+shortcut.
 
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-
-What's the difference? Srsly, I can point you to submitting patches
-without reference to specific line if you wish... Or you can check by
-yourself.
-
-I give the same reviews to so many people that have templates and Elixir
-happens to be the only place allowing bookmarking specific line. Which
-is helpful for beginners because the entire doc is huge.
-
-I can make an exception for you and never paste direct links.
+Over the time most of my templates grew a bit, because when I wrote
+"Please wrap to 75" submitter did not know what to wrap or why. To save
+myself work I extend the template to something more. The entire text and
+link is for the beginner, not for you.
 
 Best regards,
 Krzysztof
