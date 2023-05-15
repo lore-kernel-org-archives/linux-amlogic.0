@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5D5BC7EE24
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 May 2023 09:50:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B2C6C77B7D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 May 2023 09:50:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=nHVxCXg2Pp3MkF1Hr0gHudwIewDrsjBp1thzYZ2+uR0=; b=u+8v3MubqRN0dM
-	LCBRmyPgtGiwg1Yk/y803ocQj9lKhQe2bUBJcO3fpPNixkn7I1bL/2IxeyhBOjYdhE+moRzQ8xrPk
-	fIUlpdUKUAtnHV+ClIuZ/3UKA/BvEboVriiYUSoClkf5+XlaDwxLEIUOm1QBgAT1Q5utz3ENK38jy
-	unPOuETt9KZJpRJ0Cr5rozJS6eHj5Uw2zFE8EsibeouRJKGauxjMEBzAW4V3fTQXyT4KYKTjB8VEZ
-	DU+3qGadKk9msi8XMnI/2bgrnoMtUnI3E75hm8bkmBBa+8j54twBSYVvryQnHri2d0q1tu7rv3oHF
-	j7HMlXTvbBrqGsrokEyg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=iTKX627+SycihNtm1eDbssbC08LmSTcBT7rRe4GsQ1Y=; b=vMIferf8tc7Sd2
+	47dHhRvHZMK/YIs1kM51MNPxpCEbL4WqN5jo+y2Fq/iAZCEWwlnte9JGmaRAynK61UiEYrEtdMUQE
+	ZvL1Zd80JsJzn2NWfyDJu9Tjv9wzU0hbPEpa5CsbaVlRtXq7Zqdy5FNZXUOHln+NbkOn3XnR2WNMp
+	BKU6BxrgJ6WkX8XB5RA0EfVx1v8Cj+vJNJmI7z+dmXlcaJZPCu1rmPAmAKbwijga1EJdR0I6MCXHR
+	fllctn4xf2ELKgisMeCFlnS2gkD4RFALE+qxyXld5/7xiRs7uz+7csHXhmvBYTEglCZcpg9XWilZV
+	1arz/+TvspVYq/TcgiQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pyUq3-001cm9-21;
-	Mon, 15 May 2023 09:49:55 +0000
+	id 1pyUq9-001coW-06;
+	Mon, 15 May 2023 09:50:01 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pyUpy-001cgy-0x;
-	Mon, 15 May 2023 09:49:53 +0000
+	id 1pyUpy-001chp-1H;
+	Mon, 15 May 2023 09:49:54 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 728585FD10;
-	Mon, 15 May 2023 12:49:41 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id A1E125FD20;
+	Mon, 15 May 2023 12:49:46 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1684144181;
-	bh=crO87fja3srdbBWN5E0ueYfMVl+sPNYgo6E3Oq9IETA=;
+	s=mail; t=1684144186;
+	bh=Vz83jCy0spHA1ZRural7ddOQ1iT++4tUqhV7Ue23lk4=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=Zp2oZIaYA5JK+ZkScyeV9GIT1RaRkTlVdrBLeP8fVLMKiyQZk4mPiy/j9fWlaKO9Z
-	 3bMsG5IHlpi1rI2CsQXzVnH7WhRjdhQCumq+wQMVCJPql0N9ojSyGUeGVSJ0nYaetm
-	 ESwd3/18BfDVTEkmVKUpDmQpp2nf785RXo+NZJRWPTeS67TJBbrbtxQcNrsvYCAZPN
-	 v2611N6NsoqwOQTKtgZL+azEXJ5sBhPCrgGDxYwM6NuqgjHivnaAKWlpLf5Q5hh/m6
-	 eBM3YKbulHJRPNaT3UUk1g0b1SnEj9gfEyRT98g2S/l8ZDebciC/RPw3q57JEMjal9
-	 8AaiAxrpZ3/+w==
+	b=qcn0IQfHKcGxRJrBonclWUzFGa4XbN3UU6+FFP2AsksiDymQ6qNyJELtmB+wp36eq
+	 PGVeFzgUnZww1VpOhjHQc58e5YFXfAN5i8YvvR4CIUctnyZ1aY4dVrn4aGRuy0NQfd
+	 m12CbKfAW7nSCh8ufHe4Hct5q1juezSISYESH0Nbt8QI243gw1FewU8wrF5fZ+YVAi
+	 lTjuvjuIfvhtsNSDqqR8z+GT+Qb4/2WO/sIIfYliAHUQ9QPFWwmd5Dz09Bm1II3kbW
+	 nDBgUSxU1tD1iqMAjGKSpGg4GvssvSm0RyiHy2X3nvvkVeqZqUnoQSXqFXVO08SkuM
+	 +nqn2DBNfqqKQ==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Mon, 15 May 2023 12:49:39 +0300 (MSK)
+	Mon, 15 May 2023 12:49:46 +0300 (MSK)
 From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
 To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
 	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
@@ -53,10 +53,12 @@ CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
 	<AVKrasnov@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 0/5] refactoring and fix for Meson NAND
-Date: Mon, 15 May 2023 12:44:34 +0300
-Message-ID: <20230515094440.3552094-1-AVKrasnov@sberdevices.ru>
+Subject: [PATCH v4 3/5] mtd: rawnand: meson: always read whole OOB bytes
+Date: Mon, 15 May 2023 12:44:37 +0300
+Message-ID: <20230515094440.3552094-4-AVKrasnov@sberdevices.ru>
 X-Mailer: git-send-email 2.35.0
+In-Reply-To: <20230515094440.3552094-1-AVKrasnov@sberdevices.ru>
+References: <20230515094440.3552094-1-AVKrasnov@sberdevices.ru>
 MIME-Version: 1.0
 X-Originating-IP: [172.16.1.6]
 X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
@@ -69,8 +71,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/15 04:03:00 #21308474
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230515_024950_964299_4AF89558 
-X-CRM114-Status: GOOD (  14.19  )
+X-CRM114-CacheID: sfid-20230515_024950_964191_55254E9C 
+X-CRM114-Status: GOOD (  11.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,106 +89,49 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello,
+This changes size of read access to OOB area by reading all bytes of
+OOB (free bytes + ECC engine bytes).
 
-this patchset does several things:
+Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+---
+ drivers/mtd/nand/raw/meson_nand.c | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-1) It fixes unstable behaviour of Meson driver, for example random ECC
-   errors during reads. It is done by changing 'meson_nfc_queue_rb()'
-   implementation. Sequence of commands inside this function is updated.
-   This patch is suggested by Liang Yang <liang.yang@amlogic.com>.
-
-   Here is link to discussion:
-   https://lore.kernel.org/linux-mtd/a9f8307a-77d7-a69f-ce11-2629909172d2@sberdevices.ru/T/#ma8097bad0228f81a3d11a14389cdec44f45b86c8
-
-2) It moves OOB free bytes to non-protected by ECC area. Here are some
-   details:
-
-   Current OOB free bytes are 4 bytes (2 x 2 user bytes) under ECC engine.
-   Here is how it looks like in the current implementation:
-
-   [ 2B user bytes ][     14B ECC codes    ]
-   [ 2B user bytes ][     14B ECC codes    ]
-   [ 16B unused area, not protected by ECC ]
-   [ 16B unused area, not protected by ECC ]
-
-   All 4 user bytes are protected by ECC. This patch changes OOB free
-   bytes in this way:
-
-   [ 2B unused area ][     14B ECC codes     ]
-   [ 2B unused area ][     14B ECC codes     ]
-   [  16B user bytes, not protected by ECC   ]
-   [  16B user bytes, not protected by ECC   ]
-
-   Now OOB user bytes are 32 bytes instead of 4 bytes and not protected
-   by ECC.
-
-   Motivation of this layout comes from problem with JFFS2. It uses OOB
-   free bytes for cleanmarkers. Each cleanmarker is 4 bytes and written
-   by JFFS2 driver (small remark - cleanmarkers are always written in
-   case of NAND storage for JFFS2).
-   We have two ways to write this data to OOB (e.g. user bytes):
-
-   1) ECC mode. In this case it will be ECC covered user bytes, e.g.
-      writing this bytes will update ECC codes. Problem fires, when
-      JFFS2 tries to write this page later - this write makes controller
-      to update ECC codes again, but it is impossible to do it correctly,
-      because we can't update bits from 0 to 1 (only from 1 to 0).
-
-   2) Raw mode. In this case ECC codes won't be updated. But later, it
-      will be impossible to read this page in ECC mode, because we have
-      some user bytes, but ECC codes are missed.
-
-   So let's move OOB free bytes out of ECC area. In this case we can
-   read/write OOB separately in raw mode and at the same time work with
-   data in ECC mode. JFFS2 is happy now. User bytes are untouched - all
-   of them are ignored during non-OOB access.
-
-   I've tested this with mount/unmount/read/write cases for JFFS2 and
-   nanddump/nandwrite utlities on AXG family (A113X SoC).
-
-   Here is link to discussion:
-   https://lore.kernel.org/linux-mtd/a9f8307a-77d7-a69f-ce11-2629909172d2@sberdevices.ru/T/#m3087bd06386a7f430cd5e343e22b25d724d3e2d7
-
-3) Changes size of OOB read access - now, in both ECC and raw modes whole
-   OOB (e.g. 64 bytes) is returned to the caller.
-
-4) Checks buffer length on accesses to NAND controller.
-
-5) Removes useless bitwise OR with zeroes.
-
-Link to v1:
-https://lore.kernel.org/linux-mtd/20230412061700.1492474-1-AVKrasnov@sberdevices.ru/
-Link to v2:
-https://lore.kernel.org/linux-mtd/20230426073632.3905682-1-AVKrasnov@sberdevices.ru/
-Link to v3:
-https://lore.kernel.org/linux-mtd/20230510110835.26115-1-AVKrasnov@sberdevices.ru/
-
-Changelog:
-
-v1 -> v2:
- * Add patch which renames dts value for chip select.
- * Add patch which moves OOB to non-protected ECC area.
-v2 -> v3:
- * Change patch which fixes read/write access according discussion link
-   in 1) above.
-v3 -> v4:
- * Remove patch which renames dts value for chip select.
-   Here is link to discussion:
-   https://lore.kernel.org/linux-mtd/20230510110835.26115-7-AVKrasnov@sberdevices.ru/
- * Pass 1 to 'meson_nfc_queue_rb()' in case of NAND_OP_WAITRDY_INSTR.
-   This fixes ONFI page processing during NAND driver initialization.
-
-Arseniy Krasnov (5):
-  mtd: rawnand: meson: fix command sequence for read/write
-  mtd: rawnand: meson: move OOB to non-protected ECC area
-  mtd: rawnand: meson: always read whole OOB bytes
-  mtd: rawnand: meson: check buffer length
-  mtd: rawnand: meson: remove unneeded bitwise OR with zeroes
-
- drivers/mtd/nand/raw/meson_nand.c | 270 ++++++++++++++++++++++++------
- 1 file changed, 220 insertions(+), 50 deletions(-)
-
+diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+index 8526a6b87720..a31106c943d7 100644
+--- a/drivers/mtd/nand/raw/meson_nand.c
++++ b/drivers/mtd/nand/raw/meson_nand.c
+@@ -755,6 +755,30 @@ static int __meson_nfc_read_oob(struct nand_chip *nand, int page,
+ 	u32 oob_bytes;
+ 	u32 page_size;
+ 	int ret;
++	int i;
++
++	/* Read ECC codes and user bytes. */
++	for (i = 0; i < nand->ecc.steps; i++) {
++		u32 ecc_offs = nand->ecc.size * (i + 1) +
++			       NFC_OOB_PER_ECC(nand) * i;
++
++		ret = nand_read_page_op(nand, page, 0, NULL, 0);
++		if (ret)
++			return ret;
++
++		/* Use temporary buffer, because 'nand_change_read_column_op()'
++		 * seems work with some alignment, so we can't read data to
++		 * 'oob_buf' directly.
++		 */
++		ret = nand_change_read_column_op(nand, ecc_offs, meson_chip->oob_buf,
++						 NFC_OOB_PER_ECC(nand), false);
++		if (ret)
++			return ret;
++
++		memcpy(oob_buf + i * NFC_OOB_PER_ECC(nand),
++		       meson_chip->oob_buf,
++		       NFC_OOB_PER_ECC(nand));
++	}
+ 
+ 	oob_bytes = meson_nfc_get_oob_bytes(nand);
+ 
 -- 
 2.35.0
 
