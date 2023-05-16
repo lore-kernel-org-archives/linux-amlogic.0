@@ -4,91 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0077C77B7A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 May 2023 13:05:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91173C77B7F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 May 2023 19:09:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=a4NWPvUUJeiYnHn5C12W6InfPw76EBTllolXm6bjGZY=; b=gSRGmh8/9gn9Lz
-	o0+v7iLxedN1EuPOZpzuDzzDaF6nFr7ylkaUk6d331kbwCFju9AJzXOSyyvaK1NvJONdu2G0Z1FvR
-	uhHVTIhQHr+IUb5ZosXVA+IBbReCUsKOmogrMdfzjqz63NldbcNNs/8Pd3JNH9IchxzrvMEWBaP7I
-	6BLvpWgrShMXLSmJo8yl5ytBo7RTMbVND6Ula0rBnr52g7BTje6aYzaRBUxQv9dry5Zab5LRu1B/r
-	qaeJ699FTZf7Q5plbss0LnQ5xy/c9KfHaCKy1X2dt/aURLi6KhT2Mepe1RLqgI4FPe5PMn8O6vvYc
-	dXBa+7EXvTFQwmPMip2w==;
+	List-Owner; bh=fVXVCwoofqWaYSYb5uN8DCWCMvksG+S9dlSQK3dSPvM=; b=3x8eXAWZePCoKv
+	PdlsNHaCdjrhL3uaF8/2YTsBHu+fRhTPIZTezZDVokpotdztLzRsxIlhOcLkFUm9bfjrBnQDr7/fd
+	Iw9/28RN5ySumOXSSFy2YU3ZzhbqED8XbSKm3488QBPICttxqUXV5vX2+xVUZg8n2b4O0F0oF1y6x
+	s/8evjk+zv1XpVfpSNaxJWyLZ9iQq8NsxB96pNULCQDiYZ8lhWXvkRykFQzU34ecmBirSjO3rnQL4
+	P2tsOieEWAO7OK0xUC/SUAQfzz/faIZLSx1Sw3RjhLhdRdVqe48oG8wNGWMUP6aHiSrPSZlGTZwA4
+	zWuXzvp1KCSVC+qr0WIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pyuLu-005q5p-1x;
-	Tue, 16 May 2023 13:04:30 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1pz02N-006sAk-2C;
+	Tue, 16 May 2023 19:08:43 +0000
+Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pyuLt-005q5P-2g;
-	Tue, 16 May 2023 13:04:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=xN3bIRZT7nXvd+pIX2LfCtHkMpStFl4+Y6rEWrE9JDA=; b=odIi9hDj1a6RLiM9n86ihBZtz3
-	rzlfGANTJ8Sr6ga0RwLNrL1tWNJXc1pmlF4ghC+UIYiu1h5qDSj6iZVhpCjtavDBQRUrSMtgzBhOC
-	KZXx1OaLct9F+b1Akb7mYU1EOGM+0mYrCltAomcrESTadaJl3HSP+VOVg3OAi7Z8H3YBQATxyJqPQ
-	4OdTDlmu7jpB/tFveOA+A0te3PhyyikohLy8fRmd4n/eOYJAb22xqoC1C3K/hBuCpYbDspcrwYZzu
-	xteu6kMGQDE/9I9PryP3V7wSCHY7UlbJ+m9NmCvmrc9b+XSL5StdkiKP3ib6iUTrTcRfA2lqVcUsL
-	VIw6/dGQ==;
-Received: from dfw.source.kernel.org ([139.178.84.217])
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pyuLq-00C7Jw-1c;
-	Tue, 16 May 2023 13:04:28 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 8ECE4639D8;
-	Tue, 16 May 2023 13:04:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4797EC433EF;
-	Tue, 16 May 2023 13:04:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1684242244;
-	bh=VdqrGbdfxEFS/5J2JfzncnbQSVDrzAf7yrXeYtQkJDs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eU0fLyUF+iHfuBBjE6jPPhHzUuRLHz9TD24pWt4Mr65p2J1Bq7XiwpnidUWVY4Puj
-	 k3TfnR5y0qwVHujY/yCawxLKIBwqf5ovtUAE1BB/vSwk91jHa16v9S9FHa2NcgCI2l
-	 ZfOyqs6WQChh8WjrGWLQ1+uresXVQZbbmBn9XwC4PucQnXatCBBXm+VS2PELznSbWH
-	 0GtcfnmMdVxHOct08d5q/XniLBDkg75aRH09sBBe7V339A2O0b5BMoFuEH4gxVQXhe
-	 UsEnpjlcZ9Auiiw64UTq9zIzWyhsB7lX7UttAhq+DNOYMtLYnJxIU0qm8ZG1rlM82Z
-	 xMK/d3yBRYBAw==
-Date: Tue, 16 May 2023 18:34:00 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Nicolas Belin <nbelin@baylibre.com>,
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH v4 10/13] phy: amlogic: phy-meson-g12a-mipi-dphy-analog:
- fix CNTL2_DIF_TX_CTL0 value
-Message-ID: <ZGN/QA5ZeVS459Og@matsya>
-References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
- <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-10-2592c29ea263@linaro.org>
+	id 1pz02K-006s9A-1e;
+	Tue, 16 May 2023 19:08:41 +0000
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-50be17a1eceso26778342a12.2;
+        Tue, 16 May 2023 12:08:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20221208; t=1684264118; x=1686856118;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/WtzMLu63pIrTGFp+PcKVzZjdLbw2sc1wB016+LNuaU=;
+        b=UTDLK4JBXJdCSsteU249UG5b0kr62BoJEtt/hUKzhj09Rr78qyUa3slTquGZhGkZfM
+         RV3BAbyoQTatQUS66ycgD0Vgk/MwBEo/LrszGnPA9OWAD9FNg6v/JQa8WB1fssf6MB18
+         q1xJj4lraxXhLckehH06aljsrrPcycuHHoJTYu4gWc3t/pmegbfL2HpkvcnQClUNfO3m
+         ixnRtgW8ffIddpC9fdnetEZyCUk9yhhv7tPI5TCVK7/rEFglF9IfoQ3K0n5ekMpl29qC
+         r+KM2Dd4DuhPXWoHd4Ee3jO9SEfR6JF5FxTgLQx/pXso3EqL6ZYuRzWdvZelCYeL4oDa
+         Ge0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684264118; x=1686856118;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/WtzMLu63pIrTGFp+PcKVzZjdLbw2sc1wB016+LNuaU=;
+        b=HqR6a/cZTkTXsxLG13sUzeugGyeKtMOTm+BtYTsnhEyyT97L9741tVxKbp7sbpwgqc
+         2tbb3osJH0BHklrQO8gOrCXxpa4eQs3hoPXDegFZ6FKVjxxnTpJUwPb3urnXe+BRFPXA
+         74Gh/AnOOUap9Z7bKfvRix14hu7kcz8w9dZHi4MAEL1ZB6Xl7iP26LF9A7A1Igccxv6o
+         h59nflfb0KKkHBkF6anwzido41KDMSXOd9OH9KE73dovCVdoArps74GMMmrpASBjlxKH
+         DCWdvJQqdoe/pKcvzaXZERS/Oqi8bQu4rP31qqRxmB++JxKoTwBFDwzBjsleUDtT7tD+
+         prMw==
+X-Gm-Message-State: AC+VfDyCSJmHy5pEc92HbJ3p9XNOmT19M6R9zjkVkAL+YUmlEytCCwnm
+	/0N5y8BFCa1nvULy0F0JveoicmXtZN1gDZ6PdsE=
+X-Google-Smtp-Source: ACHHUZ4eC8eESbfjQaOZgv2ujRD9L5D7PpQo/8swdsxdY5pdDtBYJDm7UhynpXSDjE2x5IatL1oZ+1rsKe2dYgWqwRg=
+X-Received: by 2002:a17:907:c1e:b0:94f:250b:2536 with SMTP id
+ ga30-20020a1709070c1e00b0094f250b2536mr36485052ejc.28.1684264117702; Tue, 16
+ May 2023 12:08:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-10-2592c29ea263@linaro.org>
+References: <20230515210545.2100161-1-gnstark@sberdevices.ru>
+In-Reply-To: <20230515210545.2100161-1-gnstark@sberdevices.ru>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 16 May 2023 21:08:26 +0200
+Message-ID: <CAFBinCCc+t7Ks6fqz38cVrufPRFdxFgC9Qp+JhcM1KfD6pupTg@mail.gmail.com>
+Subject: Re: [PATCH v1] meson saradc: fix clock divider mask length
+To: George Stark <gnstark@sberdevices.ru>
+Cc: jic23@kernel.org, lars@metafoo.de, neil.armstrong@linaro.org, 
+	khilman@baylibre.com, jbrunet@baylibre.com, andy.shevchenko@gmail.com, 
+	nuno.sa@analog.com, linux-iio@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, kernel@sberdevices.ru
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230516_140426_739766_5F2D454C 
-X-CRM114-Status: UNSURE (   7.98  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230516_120840_546603_30A75606 
+X-CRM114-Status: GOOD (  10.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,21 +85,27 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 12-05-23, 15:11, Neil Armstrong wrote:
-> Use the same CNTL2_DIF_TX_CTL0 value used by the vendor, it was reported
-> fixing timings issues.
-
-Applied to phy/fixes, thanks
-
--- 
-~Vinod
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgR2VvcmdlLAoKdGhhbmsgeW91IGZvciB0aGlzIHBhdGNoIQoKT24gTW9uLCBNYXkgMTUsIDIw
+MjMgYXQgMTE6MDbigK9QTSBHZW9yZ2UgU3RhcmsgPGduc3RhcmtAc2JlcmRldmljZXMucnU+IHdy
+b3RlOgo+Cj4gRnJvbTogR2VvcmdlIFN0YXJrIDxHTlN0YXJrQHNiZXJkZXZpY2VzLnJ1Pgo+Cj4g
+QWNjb3JkaW5nIHRvIGRhdGFzaGVldHMgb2Ygc3VwcG9ydGVkIG1lc29uIFNPQ3MKPiBsZW5ndGgg
+b2YgQURDX0NMS19ESVYgZmllbGQgaXMgNiBiaXRzIGxvbmcKSSBoYXZlIGEgcXVlc3Rpb24gYWJv
+dXQgdGhpcyBzZW50ZW5jZSB3aGljaCBkb2Vzbid0IGFmZmVjdCB0aGlzIHBhdGNoCi0gaXQncyBv
+bmx5IGFib3V0IG1hbmFnaW5nIGV4cGVjdGF0aW9uczoKV2hpY2ggU29DIGFyZSB5b3UgcmVmZXJy
+aW5nIHRvPwpUaGlzIGRpdmlkZXIgaXMgb25seSByZWxldmFudCBvbiBvbGRlciBTb0NzIHRoYXQg
+cHJlZGF0ZSBHWEJCIChTOTA1KS4KVG8gbXkga25vd2xlZGdlIGFsbCBTb0NzIGZyb20gR1hCQiBv
+bndhcmRzIHBsYWNlIHRoZSBkaXZpZGVyIGluIHRoZQptYWluIG9yIEFPIGNsb2NrIGNvbnRyb2xs
+ZXIsIHNvIHRoaXMgYml0bWFzayBpcyBpcnJlbGV2YW50IHRoZXJlLgoKPiBGaXhlczogM2FkYmYz
+NDI3MzMwICgiaWlvOiBhZGM6IGFkZCBhIGRyaXZlciBmb3IgdGhlIFNBUiBBREMgZm91bmQgaW4g
+QW1sb2dpYyBNZXNvbiBTb0NzIikKPiBTaWduZWQtb2ZmLWJ5OiBHZW9yZ2UgU3RhcmsgPEdOU3Rh
+cmtAc2JlcmRldmljZXMucnU+ClNpbmNlIG15IHF1ZXN0aW9uIGFib3ZlIGRvZXNuJ3QgYWZmZWN0
+IHRoaXMgcGF0Y2g6ClJldmlld2VkLWJ5OiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1
+bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
+Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
+bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
