@@ -4,70 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA3AAC77B7D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 May 2023 21:06:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C98F2C77B7A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 May 2023 06:49:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ZWSPuuJTjwBBR5ZVy/PgRepbZerJD0Kp9v0x4cWwu58=; b=ij+8xVPppheTMx
-	LlNK3mH6HWbo2q0y9lyRSawrVZ9u66lmcedrcl1zCQB6s5eEL5DNGV3wZKpSMsurvpBt3aAC6No3n
-	D0PiMj83bwvAosqmhtrGSAxozjJadgPhqkGWpTzkynmGlWpDuQBDHoXM4mBgdK/UblGLMzlIhpsmO
-	V6rbMeb2CM7hUMvGJ0494B7QJotF3waXSaV1cnOqSPVXDMbnHAvmc3cTpVzrcZyEoa+vVlyFJrj+e
-	ezmhvExFkjW4DdDwkZVx13HAtdw+hgLzVwAxVkG9uM4ldduSTTgNYeKniwiknLJwASmIrxvxqwmda
-	fo7HmJ4QnEgqhmnTCNiQ==;
+	List-Owner; bh=ZMuKp7DH8GI9kuCvFqDmPnE8iOtLrLDVd55JLTUnk8U=; b=1mhzZ9VrJjbQJK
+	H6SmNE2c6KLmUIK0gYdoNWmXnCHp8qEQojAYjmzay2db0V733Z5/KzhYNemcRQVGe9bDVkDWHN0We
+	2is5ccCm1RWMsIbQvWH1Alu46AEp+wBBbNcVkz9QUNTjTgnI0EhGW+WsU7QAres2TyasbM5/Ena0j
+	dDYWA1oKnGVOGPL87Y59bltHHGlQxaQqxch5eXOvIV28t0nr6ddQoR3VO9sNAsBcCivRRFRgqBlT2
+	mH3pUjlhpwwJCA+OOsuv30Pf4c9+f1xwxboGtqQjs5H3Ezg2SeIVGedFl9dv0ruPxJfiB9PNj+UiU
+	7EsgfaiLIwc5MgsbhGLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pyfOh-003VSc-02;
-	Mon, 15 May 2023 21:06:23 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1pyoUP-004YZk-3C;
+	Tue, 16 May 2023 06:48:54 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pyfOd-003VQe-2n;
-	Mon, 15 May 2023 21:06:22 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 624C75FD1F;
-	Tue, 16 May 2023 00:06:08 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1684184768;
-	bh=qNExD4cQVfgTPKIe0gFBsDPUw9gYWD9Zk/g1cOXZaFk=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=I5ov/cXhqYiL1J8zNnOI/6TNi2wc/Nd7IKNzZTfbBDZkVIFgBPwqWrGWeXQ0wpuI/
-	 SoEpM3sYnGbE+oguu3pssXaN9y4J3JYwE8heN6pRLl6AmSJD48sHXugKvPk3AX7Uyx
-	 LvNsR0EXS8Ro9lMIlCi6CgJrA07AvNXMKm9d8DLzMTQdmm1PXsJLvc1Lx1C/h1MQSm
-	 vp3i/637DlXl5rvowVo0Oy2w5JK8g+2OvswRdJ0uPJOLwgunxySInidRMKzVzkhfg7
-	 W9VaCIq4vLk7Ke+hTfrlnyRgjaO9MqCHWjid+w+fmpPWThOZv0T5XPXco+jjq1HWCX
-	 U1D8ATr8iTL9Q==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Tue, 16 May 2023 00:06:06 +0300 (MSK)
-From: George Stark <gnstark@sberdevices.ru>
-To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <andy.shevchenko@gmail.com>,
-	<nuno.sa@analog.com>
-CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	id 1pyoUM-004YXw-1T;
+	Tue, 16 May 2023 06:48:51 +0000
+Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Tue, 16 May 2023
+ 14:48:34 +0800
+From: Yu Tu <yu.tu@amlogic.com>
+To: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@sberdevices.ru>, <GNStark@sberdevices.ru>
-Subject: [PATCH v1] meson saradc: fix clock divider mask length
-Date: Tue, 16 May 2023 00:05:45 +0300
-Message-ID: <20230515210545.2100161-1-gnstark@sberdevices.ru>
-X-Mailer: git-send-email 2.40.1
+	<devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, "Neil
+ Armstrong" <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>, Michael Turquette
+	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+CC: <kelvin.zhang@amlogic.com>, <qi.duan@amlogic.com>, Yu Tu
+	<yu.tu@amlogic.com>
+Subject: [PATCH V8 RESEND 0/4] Add S4 SoC PLL and Peripheral clock
+Date: Tue, 16 May 2023 14:47:32 +0800
+Message-ID: <20230516064736.10270-1-yu.tu@amlogic.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/15 16:03:00 #21311645
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-Originating-IP: [10.18.11.248]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230515_140620_445539_3533D7B1 
-X-CRM114-Status: GOOD (  10.16  )
+X-CRM114-CacheID: sfid-20230515_234850_514062_1DA17AA6 
+X-CRM114-Status: UNSURE (   6.94  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,32 +67,59 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: George Stark <GNStark@sberdevices.ru>
+1. Add S4 SoC PLL and Peripheral clock controller dt-bindings.
+2. Add PLL and Peripheral clock controller driver for S4 SOC.
 
-According to datasheets of supported meson SOCs
-length of ADC_CLK_DIV field is 6 bits long
+Yu Tu (4):
+  dt-bindings: clock: document Amlogic S4 SoC PLL clock controller
+  dt-bindings: clock: document Amlogic S4 SoC peripherals clock
+    controller
+  clk: meson: S4: add support for Amlogic S4 SoC PLL clock driver
+  clk: meson: s4: add support for Amlogic S4 SoC peripheral clock
+    controller
 
-Fixes: 3adbf3427330 ("iio: adc: add a driver for the SAR ADC found in Amlogic Meson SoCs")
-Signed-off-by: George Stark <GNStark@sberdevices.ru>
----
- drivers/iio/adc/meson_saradc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+V7 -> V8:
+1. Change patch 0001/0002 dt-bindings title description, remove "meson".
+Suggested by Dmitry, Neil.
+2. Change patch 0003/0004 clocks comment, format and clock flags suggested by
+Dmitry, Neil, Jerome.
 
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 85b6826cc10c..b93ff42b8c19 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -72,7 +72,7 @@
- 	#define MESON_SAR_ADC_REG3_PANEL_DETECT_COUNT_MASK	GENMASK(20, 18)
- 	#define MESON_SAR_ADC_REG3_PANEL_DETECT_FILTER_TB_MASK	GENMASK(17, 16)
- 	#define MESON_SAR_ADC_REG3_ADC_CLK_DIV_SHIFT		10
--	#define MESON_SAR_ADC_REG3_ADC_CLK_DIV_WIDTH		5
-+	#define MESON_SAR_ADC_REG3_ADC_CLK_DIV_WIDTH		6
- 	#define MESON_SAR_ADC_REG3_BLOCK_DLY_SEL_MASK		GENMASK(9, 8)
- 	#define MESON_SAR_ADC_REG3_BLOCK_DLY_MASK		GENMASK(7, 0)
- 
+V6 -> V7: Change send patch series as well change format and clock flags
+suggested by Jerome. Change dt-bindings suggested by Krzysztof.
+V5 -> V6: Change send patch series, as well change format and clock flags.
+V4 -> V5: change format and clock flags and adjust the patch series
+as suggested by Jerome.
+V3 -> V4: change format and clock flags.
+V2 -> V3: Use two clock controller.
+V1 -> V2: Change format as discussed in the email.
+
+Link:https://lore.kernel.org/all/20230417065005.24967-1-yu.tu@amlogic.com/
+
+ .../clock/amlogic,s4-peripherals-clkc.yaml    |   97 +
+ .../bindings/clock/amlogic,s4-pll-clkc.yaml   |   50 +
+ MAINTAINERS                                   |    1 +
+ drivers/clk/meson/Kconfig                     |   25 +
+ drivers/clk/meson/Makefile                    |    2 +
+ drivers/clk/meson/s4-peripherals.c            | 3830 +++++++++++++++++
+ drivers/clk/meson/s4-peripherals.h            |  217 +
+ drivers/clk/meson/s4-pll.c                    |  907 ++++
+ drivers/clk/meson/s4-pll.h                    |   87 +
+ .../clock/amlogic,s4-peripherals-clkc.h       |  131 +
+ .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |   30 +
+ 11 files changed, 5377 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+ create mode 100644 drivers/clk/meson/s4-peripherals.c
+ create mode 100644 drivers/clk/meson/s4-peripherals.h
+ create mode 100644 drivers/clk/meson/s4-pll.c
+ create mode 100644 drivers/clk/meson/s4-pll.h
+ create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+ create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
+
+
+base-commit: ac9a78681b921877518763ba0e89202254349d1b
 -- 
-2.38.4
+2.33.1
 
 
 _______________________________________________
