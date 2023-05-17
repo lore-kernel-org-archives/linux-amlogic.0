@@ -4,61 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7467CC77B7A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 May 2023 11:38:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9D82C77B75
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 May 2023 11:57:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hDGM7huGPVVZehOfLj8la6ZJdwgDFcnqUw4WnnOacTc=; b=HA6DhcRFphR1Ty
-	fmtPARkuODXmUlAUoZMKojSN3dPXNN0Oo8BWv0/zNLL/6SgYjN6MrYx2+nV2HnxpVuu88kLEZdzXd
-	izeVOhSOk7diETBnq4QbMeyjSIEeVd0gtROkSBXwcF55QNWmrLqCCTao2E911sRjGMWvR+HyUz3GI
-	EYYVEx3CN0Jaup192zhLwmNfk6DW/S5jFxqbsbD7/Wwl+ksp2GGU5ZStxyQecjK55kNJ2lzQcYqN4
-	GNIvFzvkAnGogJAn5SYC/Qz6KrAcPjwaIknSL+DnG0ucMnly99pm8agON2seBAfKBCOvNkOyQNzOR
-	7ubA4leI7mTGaYZsIPaw==;
+	List-Owner; bh=j8PobfavPLXqQ+230D/xePs9lJ9o+YN4TgVMNTirzkE=; b=gPBwT/YbtXlbU7
+	Numt+E0R0+Wh7PBHGOPp35p3HgOqsuCx/jMrcYJlx5xS6MIwcB5ywNTYkEPlJ2zGFP+/bu70MM3TX
+	3VrjK2SuVypL5us3lta3Q5mCyT8BFFA1rnJjSqUhuYn5JNTQLOsEaf3EsrnKEhhT0HFZSvxS0FXUv
+	pjmCVArzsTiu019C0Yhllfq8SPsohfiigNO7KGm1r/5r2s3R+wSaT0/vAxWZTsdVTTstN8daKGOsx
+	8zfyi7CB0hWbAVMc4KgASx1JTM9qJGAUJYBO+C1Cegna0erHlmOOeKT6xJ9UF5q6jPUWC4Oxmr10W
+	52qeYAhwO9aguuG7gQkQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pzFTf-009d8g-0T;
-	Wed, 17 May 2023 11:37:55 +0000
-Received: from mx.msync.work ([185.250.0.168])
+	id 1pzFm5-009hfA-32;
+	Wed, 17 May 2023 11:56:57 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pzFTb-009d6c-36;
-	Wed, 17 May 2023 11:37:54 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 378EF55706;
-	Wed, 17 May 2023 11:37:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
-	t=1684323464; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=nZdcMDZM53ILRxlH9g59ieKwhVNPywvAfYb6Qja4wac=;
-	b=DwlMOFGPGqaVRFP97Pvxw+TihOVYHCxLgopEWyALgUQ2pe0bSLNW1KVGBYza6rEo5I4aI9
-	nvGmxNzn8NsnuozBDiTeN4qhNZa87VkxcuhzegzKNzJG2gDsgOSNQ4uDDIyuv+SMs+VsPT
-	E+OcXyZ79qlqYcHqWNVk+RqC6p5jE+uFx73qFtyuJoP916Zg74GSSmOOKaprBoCqP+fOUu
-	H5ns5segL9BFppgvQ25yV6ojCEP/SFQB0qD/hatLQMf23LyAKwhnLtXytlrtgAp3SZZP57
-	FXmjjAM+hYjcKOqcD9wP/k8VM86aY4ugixmYsT25mLcx48x19h/e0Q056sLoDg==
-Message-ID: <a52335ea-6545-8ca6-d318-38b7ffc64368@lexina.in>
-Date: Wed, 17 May 2023 14:37:37 +0300
+	id 1pzFm3-009hag-0C
+	for linux-amlogic@lists.infradead.org;
+	Wed, 17 May 2023 11:56:56 +0000
+Received: from droid10-sz.amlogic.com (10.28.11.69) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 17 May 2023
+ 19:56:39 +0800
+From: zelong dong <zelong.dong@amlogic.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, Sean Young <sean@mess.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC: <linux-media@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<Qianggui.Song@amlogic.com>, <Yonghui.Yu@amlogic.com>,
+	<kelvin.zhang@amlogic.com>, Zelong Dong <zelong.dong@amlogic.com>
+Subject: [PATCH v2 1/3] media: rc: meson-ir: sort Meson IR Controller register macros
+Date: Wed, 17 May 2023 19:56:33 +0800
+Message-ID: <20230517115635.31565-2-zelong.dong@amlogic.com>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20230517115635.31565-1-zelong.dong@amlogic.com>
+References: <20230517115635.31565-1-zelong.dong@amlogic.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v1] meson saradc: fix clock divider mask length
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- George Stark <gnstark@sberdevices.ru>
-Cc: jic23@kernel.org, lars@metafoo.de, neil.armstrong@linaro.org,
- khilman@baylibre.com, jbrunet@baylibre.com, andy.shevchenko@gmail.com,
- nuno.sa@analog.com, linux-iio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, kernel@sberdevices.ru
-References: <20230515210545.2100161-1-gnstark@sberdevices.ru>
- <CAFBinCCc+t7Ks6fqz38cVrufPRFdxFgC9Qp+JhcM1KfD6pupTg@mail.gmail.com>
-Content-Language: en-US, ru, ru-RU
-From: Vyacheslav <adeep@lexina.in>
-In-Reply-To: <CAFBinCCc+t7Ks6fqz38cVrufPRFdxFgC9Qp+JhcM1KfD6pupTg@mail.gmail.com>
-X-Last-TLS-Session-Version: TLSv1.3
+X-Originating-IP: [10.28.11.69]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230517_043752_559741_F93FF5DF 
-X-CRM114-Status: GOOD (  16.41  )
+X-CRM114-CacheID: sfid-20230517_045655_095075_8380737A 
+X-CRM114-Status: UNSURE (   9.25  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,34 +61,93 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksIE1hcnRpbiwKCk9uIDE2LjA1LjIwMjMgMjI6MDgsIE1hcnRpbiBCbHVtZW5zdGluZ2wgd3Jv
-dGU6Cj4gSGkgR2VvcmdlLAo+IAo+IHRoYW5rIHlvdSBmb3IgdGhpcyBwYXRjaCEKPiAKPiBPbiBN
-b24sIE1heSAxNSwgMjAyMyBhdCAxMTowNuKAr1BNIEdlb3JnZSBTdGFyayA8Z25zdGFya0BzYmVy
-ZGV2aWNlcy5ydT4gd3JvdGU6Cj4+Cj4+IEZyb206IEdlb3JnZSBTdGFyayA8R05TdGFya0BzYmVy
-ZGV2aWNlcy5ydT4KPj4KPj4gQWNjb3JkaW5nIHRvIGRhdGFzaGVldHMgb2Ygc3VwcG9ydGVkIG1l
-c29uIFNPQ3MKPj4gbGVuZ3RoIG9mIEFEQ19DTEtfRElWIGZpZWxkIGlzIDYgYml0cyBsb25nCj4g
-SSBoYXZlIGEgcXVlc3Rpb24gYWJvdXQgdGhpcyBzZW50ZW5jZSB3aGljaCBkb2Vzbid0IGFmZmVj
-dCB0aGlzIHBhdGNoCj4gLSBpdCdzIG9ubHkgYWJvdXQgbWFuYWdpbmcgZXhwZWN0YXRpb25zOgo+
-IFdoaWNoIFNvQyBhcmUgeW91IHJlZmVycmluZyB0bz8KCkkgY2hlY2tlZCB0aGUgOTA1eCwgOTA1
-eDMsIGExMTN4IGRhdGFzaGVldHMgLSB0aGVyZSBpcyB0aGUgc2FtZSByZWdpc3RlciAKd2l0aCA2
-IGJpdHMgZm9yICBBRENfQ0xLX0RJVgoKPiBUaGlzIGRpdmlkZXIgaXMgb25seSByZWxldmFudCBv
-biBvbGRlciBTb0NzIHRoYXQgcHJlZGF0ZSBHWEJCIChTOTA1KS4KPiBUbyBteSBrbm93bGVkZ2Ug
-YWxsIFNvQ3MgZnJvbSBHWEJCIG9ud2FyZHMgcGxhY2UgdGhlIGRpdmlkZXIgaW4gdGhlCj4gbWFp
-biBvciBBTyBjbG9jayBjb250cm9sbGVyLCBzbyB0aGlzIGJpdG1hc2sgaXMgaXJyZWxldmFudCB0
-aGVyZS4KPiAKPj4gRml4ZXM6IDNhZGJmMzQyNzMzMCAoImlpbzogYWRjOiBhZGQgYSBkcml2ZXIg
-Zm9yIHRoZSBTQVIgQURDIGZvdW5kIGluIEFtbG9naWMgTWVzb24gU29DcyIpCj4+IFNpZ25lZC1v
-ZmYtYnk6IEdlb3JnZSBTdGFyayA8R05TdGFya0BzYmVyZGV2aWNlcy5ydT4KPiBTaW5jZSBteSBx
-dWVzdGlvbiBhYm92ZSBkb2Vzbid0IGFmZmVjdCB0aGlzIHBhdGNoOgo+IFJldmlld2VkLWJ5OiBN
-YXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgo+
-IAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gbGlu
-dXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKPiBsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5v
-cmcKPiBodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFt
-bG9naWMKCi0tIApWeWFjaGVzbGF2IEJvY2hhcm92CgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1h
-bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+From: Zelong Dong <zelong.dong@amlogic.com>
+
+There are more registers to come in the next Meson IR Controller.
+For defining clearly, sort register macros and let address and bit
+macros as a set.
+
+Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+---
+ drivers/media/rc/meson-ir.c | 35 +++++++++++++++++------------------
+ 1 file changed, 17 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
+index 4b769111f78e..a32d034b33aa 100644
+--- a/drivers/media/rc/meson-ir.c
++++ b/drivers/media/rc/meson-ir.c
+@@ -19,44 +19,43 @@
+ 
+ #define DRIVER_NAME		"meson-ir"
+ 
+-/* valid on all Meson platforms */
+ #define IR_DEC_LDR_ACTIVE	0x00
++
+ #define IR_DEC_LDR_IDLE		0x04
++
+ #define IR_DEC_LDR_REPEAT	0x08
++
+ #define IR_DEC_BIT_0		0x0c
+-#define IR_DEC_REG0		0x10
+-#define IR_DEC_FRAME		0x14
+-#define IR_DEC_STATUS		0x18
+-#define IR_DEC_REG1		0x1c
+-/* only available on Meson 8b and newer */
+-#define IR_DEC_REG2		0x20
+ 
++#define IR_DEC_REG0		0x10
+ #define REG0_RATE_MASK		GENMASK(11, 0)
+ 
+-#define DECODE_MODE_NEC		0x0
+-#define DECODE_MODE_RAW		0x2
++#define IR_DEC_FRAME		0x14
++
++#define IR_DEC_STATUS		0x18
++#define STATUS_IR_DEC_IN	BIT(8)
+ 
+-/* Meson 6b uses REG1 to configure the mode */
++#define IR_DEC_REG1		0x1c
++#define REG1_TIME_IV_MASK	GENMASK(28, 16)
++#define REG1_ENABLE		BIT(15)
+ #define REG1_MODE_MASK		GENMASK(8, 7)
+ #define REG1_MODE_SHIFT		7
++#define REG1_IRQSEL_MASK	GENMASK(3, 2)
++#define REG1_RESET		BIT(0)
+ 
+-/* Meson 8b / GXBB use REG2 to configure the mode */
++/* The following regs are only available on Meson 8b and newer */
++#define IR_DEC_REG2		0x20
+ #define REG2_MODE_MASK		GENMASK(3, 0)
+ #define REG2_MODE_SHIFT		0
+ 
+-#define REG1_TIME_IV_MASK	GENMASK(28, 16)
++#define DECODE_MODE_NEC		0x0
++#define DECODE_MODE_RAW		0x2
+ 
+-#define REG1_IRQSEL_MASK	GENMASK(3, 2)
+ #define REG1_IRQSEL_NEC_MODE	0
+ #define REG1_IRQSEL_RISE_FALL	1
+ #define REG1_IRQSEL_FALL	2
+ #define REG1_IRQSEL_RISE	3
+ 
+-#define REG1_RESET		BIT(0)
+-#define REG1_ENABLE		BIT(15)
+-
+-#define STATUS_IR_DEC_IN	BIT(8)
+-
+ #define MESON_TRATE		10	/* us */
+ 
+ struct meson_ir {
+-- 
+2.35.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
