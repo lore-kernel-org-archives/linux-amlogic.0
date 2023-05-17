@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E3C4C7EE23
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA423C7EE2A
 	for <linux-amlogic@archiver.kernel.org>; Wed, 17 May 2023 11:57:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=2gIhhMT83ROUZq8eN4P4kAEYMcOOLHc0f8XklDZLVSM=; b=WvGikwj20JQsy8
-	PbZi54+W+yMWO6F2V7qyuRhjbLBLOR1k85BdV/sBOUCsEMUElDbLy4Debsy72bNJ16sWpH6RXIQul
-	6h33/bfwzQ3KOZheSrNifY0yShCrWoQ058gSuDvYinUPVkV3IppGDjfGmLIfungqGlBohbtc0SWD4
-	M+S3X7BmStIqH4+e30R53vIvA4htHk6U4lVUGkRtfsYn/21ZvfEBgQxg4WgX0R6ORAfgMyJ4Kqo0f
-	L0e6XwOpYMZtfZaasEclx1z2mTmL/9lY27PagSNH8L/ntNW5EC4SNvo79EbFKAxqceHaPHOj3x9k4
-	yeaD7vCcXXdj/OsTVepQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=fmAG1FWNGlSfRE4MFxRVc1KK//wrgUuHV/RnWWs4UBc=; b=eLQSOkjo2l9KFQ
+	K7auPiHYl9GRrf6LTJucD9/k/7+itejC9ameg3K9tj+RilwgP0GGgb9dyD6yP2ZY2DfdLvMMSP4UN
+	JzyS/FduJgyk/QypR2LGRh/BBiA4EX23ZnOCjdVzpCpWhWvAtQcgbEw7ZPzy3V0H0GVmb6YNCKnKh
+	rJcQJPAl2GPoSHQXgqmE40pI3L5RvlkikGEVByQqzS/QNFShm3Af7GShgO5dww5zPgGRk3TpF8rXo
+	mpivFKJjdiFRsYXcyQZAMz+/izWPQ21IOBWHOO7kZoGHvuhBobXDX6uwIAFYylHFJzfW3lWaruE+m
+	C+KKpITMY8yPIsSsUvVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pzFm3-009hdQ-1h;
-	Wed, 17 May 2023 11:56:55 +0000
+	id 1pzFm7-009hg9-14;
+	Wed, 17 May 2023 11:56:59 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pzFm1-009hag-0Y
+	id 1pzFm4-009hag-2b
 	for linux-amlogic@lists.infradead.org;
-	Wed, 17 May 2023 11:56:54 +0000
+	Wed, 17 May 2023 11:56:58 +0000
 Received: from droid10-sz.amlogic.com (10.28.11.69) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 17 May 2023
- 19:56:32 +0800
+ 19:56:41 +0800
 From: zelong dong <zelong.dong@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, Sean Young <sean@mess.org>,
 	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -38,16 +38,17 @@ To: Neil Armstrong <neil.armstrong@linaro.org>, Sean Young <sean@mess.org>,
 CC: <linux-media@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<Qianggui.Song@amlogic.com>, <Yonghui.Yu@amlogic.com>,
 	<kelvin.zhang@amlogic.com>, Zelong Dong <zelong.dong@amlogic.com>
-Subject: [PATCH v2 0/3] media: rc: meson-ir: support MMIO regmaps to access registers
-Date: Wed, 17 May 2023 19:56:32 +0800
-Message-ID: <20230517115635.31565-1-zelong.dong@amlogic.com>
+Subject: [PATCH v2 2/3] media: rc: meson-ir: rename Meson IR Controller register macros
+Date: Wed, 17 May 2023 19:56:34 +0800
+Message-ID: <20230517115635.31565-3-zelong.dong@amlogic.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20230517115635.31565-1-zelong.dong@amlogic.com>
+References: <20230517115635.31565-1-zelong.dong@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.28.11.69]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230517_045653_228790_310C1EFB 
-X-CRM114-Status: UNSURE (   4.65  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230517_045656_846796_944D61B3 
+X-CRM114-Status: GOOD (  13.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -66,25 +67,170 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Zelong Dong <zelong.dong@amlogic.com>
 
-This patchset add MMIO regmaps to access register in Meson IR driver.
-For defining clearly, sort/rename IR Controller register macros.
+There are more registers to come in the next Meson IR Controller.
+For defining clearly, rename register macros.
 
-Changes since v1:
-- move the cleanup/rename to a separate patch.
-- use devm_platform_ioremap_resource() instead of platform_get_resource()
-  and devm_ioremap_resource().
-
+Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
 ---
-v1: https://lore.kernel.org/r/20230511034333.26800-1-zelong.dong@amlogic.com
+ drivers/media/rc/meson-ir.c | 80 ++++++++++++++++++-------------------
+ 1 file changed, 40 insertions(+), 40 deletions(-)
 
-Zelong Dong (3):
-  media: rc: meson-ir: sort Meson IR Controller register macros
-  media: rc: meson-ir: rename Meson IR Controller register macros
-  media: rc: meson-ir: support MMIO regmaps to access registers
-
- drivers/media/rc/meson-ir.c | 125 ++++++++++++++++++------------------
- 1 file changed, 64 insertions(+), 61 deletions(-)
-
+diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
+index a32d034b33aa..7ab6304f7184 100644
+--- a/drivers/media/rc/meson-ir.c
++++ b/drivers/media/rc/meson-ir.c
+@@ -20,43 +20,39 @@
+ #define DRIVER_NAME		"meson-ir"
+ 
+ #define IR_DEC_LDR_ACTIVE	0x00
+-
+ #define IR_DEC_LDR_IDLE		0x04
+-
+ #define IR_DEC_LDR_REPEAT	0x08
+-
+ #define IR_DEC_BIT_0		0x0c
+ 
+ #define IR_DEC_REG0		0x10
+-#define REG0_RATE_MASK		GENMASK(11, 0)
++#define IR_DEC_REG0_BASE_TIME	GENMASK(11, 0)
+ 
+ #define IR_DEC_FRAME		0x14
+ 
+ #define IR_DEC_STATUS		0x18
+-#define STATUS_IR_DEC_IN	BIT(8)
++#define IR_DEC_STATUS_PULSE	BIT(8)
+ 
+ #define IR_DEC_REG1		0x1c
+-#define REG1_TIME_IV_MASK	GENMASK(28, 16)
+-#define REG1_ENABLE		BIT(15)
+-#define REG1_MODE_MASK		GENMASK(8, 7)
+-#define REG1_MODE_SHIFT		7
+-#define REG1_IRQSEL_MASK	GENMASK(3, 2)
+-#define REG1_RESET		BIT(0)
++#define IR_DEC_REG1_TIME_IV	GENMASK(28, 16)
++#define IR_DEC_REG1_ENABLE	BIT(15)
++#define IR_DEC_REG1_MODE	GENMASK(8, 7)
++#define IR_DEC_REG1_IRQSEL	GENMASK(3, 2)
++#define IR_DEC_REG1_RESET	BIT(0)
+ 
+ /* The following regs are only available on Meson 8b and newer */
+ #define IR_DEC_REG2		0x20
+-#define REG2_MODE_MASK		GENMASK(3, 0)
+-#define REG2_MODE_SHIFT		0
++#define IR_DEC_REG2_MODE	GENMASK(3, 0)
+ 
+-#define DECODE_MODE_NEC		0x0
+-#define DECODE_MODE_RAW		0x2
++#define DEC_MODE_NEC		0x0
++#define DEC_MODE_RAW		0x2
+ 
+-#define REG1_IRQSEL_NEC_MODE	0
+-#define REG1_IRQSEL_RISE_FALL	1
+-#define REG1_IRQSEL_FALL	2
+-#define REG1_IRQSEL_RISE	3
++#define IRQSEL_NEC_MODE		0
++#define IRQSEL_RISE_FALL	1
++#define IRQSEL_FALL		2
++#define IRQSEL_RISE		3
+ 
+-#define MESON_TRATE		10	/* us */
++#define MESON_RAW_TRATE		10	/* us */
++#define MESON_HW_TRATE		20	/* us */
+ 
+ struct meson_ir {
+ 	void __iomem	*reg;
+@@ -84,11 +80,11 @@ static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
+ 	spin_lock(&ir->lock);
+ 
+ 	duration = readl_relaxed(ir->reg + IR_DEC_REG1);
+-	duration = FIELD_GET(REG1_TIME_IV_MASK, duration);
+-	rawir.duration = duration * MESON_TRATE;
++	duration = FIELD_GET(IR_DEC_REG1_TIME_IV, duration);
++	rawir.duration = duration * MESON_RAW_TRATE;
+ 
+ 	status = readl_relaxed(ir->reg + IR_DEC_STATUS);
+-	rawir.pulse = !!(status & STATUS_IR_DEC_IN);
++	rawir.pulse = !!(status & IR_DEC_STATUS_PULSE);
+ 
+ 	ir_raw_event_store_with_timeout(ir->rc, &rawir);
+ 
+@@ -130,7 +126,7 @@ static int meson_ir_probe(struct platform_device *pdev)
+ 	map_name = of_get_property(node, "linux,rc-map-name", NULL);
+ 	ir->rc->map_name = map_name ? map_name : RC_MAP_EMPTY;
+ 	ir->rc->allowed_protocols = RC_PROTO_BIT_ALL_IR_DECODER;
+-	ir->rc->rx_resolution = MESON_TRATE;
++	ir->rc->rx_resolution = MESON_RAW_TRATE;
+ 	ir->rc->min_timeout = 1;
+ 	ir->rc->timeout = IR_DEFAULT_TIMEOUT;
+ 	ir->rc->max_timeout = 10 * IR_DEFAULT_TIMEOUT;
+@@ -152,24 +148,27 @@ static int meson_ir_probe(struct platform_device *pdev)
+ 	}
+ 
+ 	/* Reset the decoder */
+-	meson_ir_set_mask(ir, IR_DEC_REG1, REG1_RESET, REG1_RESET);
+-	meson_ir_set_mask(ir, IR_DEC_REG1, REG1_RESET, 0);
++	meson_ir_set_mask(ir, IR_DEC_REG1, IR_DEC_REG1_RESET,
++			  IR_DEC_REG1_RESET);
++	meson_ir_set_mask(ir, IR_DEC_REG1, IR_DEC_REG1_RESET, 0);
+ 
+ 	/* Set general operation mode (= raw/software decoding) */
+ 	if (of_device_is_compatible(node, "amlogic,meson6-ir"))
+-		meson_ir_set_mask(ir, IR_DEC_REG1, REG1_MODE_MASK,
+-				  FIELD_PREP(REG1_MODE_MASK, DECODE_MODE_RAW));
++		meson_ir_set_mask(ir, IR_DEC_REG1, IR_DEC_REG1_MODE,
++				  FIELD_PREP(IR_DEC_REG1_MODE, DEC_MODE_RAW));
+ 	else
+-		meson_ir_set_mask(ir, IR_DEC_REG2, REG2_MODE_MASK,
+-				  FIELD_PREP(REG2_MODE_MASK, DECODE_MODE_RAW));
++		meson_ir_set_mask(ir, IR_DEC_REG2, IR_DEC_REG2_MODE,
++				  FIELD_PREP(IR_DEC_REG2_MODE, DEC_MODE_RAW));
+ 
+ 	/* Set rate */
+-	meson_ir_set_mask(ir, IR_DEC_REG0, REG0_RATE_MASK, MESON_TRATE - 1);
++	meson_ir_set_mask(ir, IR_DEC_REG0, IR_DEC_REG0_BASE_TIME,
++			  MESON_RAW_TRATE - 1);
+ 	/* IRQ on rising and falling edges */
+-	meson_ir_set_mask(ir, IR_DEC_REG1, REG1_IRQSEL_MASK,
+-			  FIELD_PREP(REG1_IRQSEL_MASK, REG1_IRQSEL_RISE_FALL));
++	meson_ir_set_mask(ir, IR_DEC_REG1, IR_DEC_REG1_IRQSEL,
++			  FIELD_PREP(IR_DEC_REG1_IRQSEL, IRQSEL_RISE_FALL));
+ 	/* Enable the decoder */
+-	meson_ir_set_mask(ir, IR_DEC_REG1, REG1_ENABLE, REG1_ENABLE);
++	meson_ir_set_mask(ir, IR_DEC_REG1, IR_DEC_REG1_ENABLE,
++			  IR_DEC_REG1_ENABLE);
+ 
+ 	dev_info(dev, "receiver initialized\n");
+ 
+@@ -183,7 +182,7 @@ static int meson_ir_remove(struct platform_device *pdev)
+ 
+ 	/* Disable the decoder */
+ 	spin_lock_irqsave(&ir->lock, flags);
+-	meson_ir_set_mask(ir, IR_DEC_REG1, REG1_ENABLE, 0);
++	meson_ir_set_mask(ir, IR_DEC_REG1, IR_DEC_REG1_ENABLE, 0);
+ 	spin_unlock_irqrestore(&ir->lock, flags);
+ 
+ 	return 0;
+@@ -203,14 +202,15 @@ static void meson_ir_shutdown(struct platform_device *pdev)
+ 	 * bootloader a chance to power the system back on
+ 	 */
+ 	if (of_device_is_compatible(node, "amlogic,meson6-ir"))
+-		meson_ir_set_mask(ir, IR_DEC_REG1, REG1_MODE_MASK,
+-				  DECODE_MODE_NEC << REG1_MODE_SHIFT);
++		meson_ir_set_mask(ir, IR_DEC_REG1, IR_DEC_REG1_MODE,
++				  FIELD_PREP(IR_DEC_REG1_MODE, DEC_MODE_NEC));
+ 	else
+-		meson_ir_set_mask(ir, IR_DEC_REG2, REG2_MODE_MASK,
+-				  DECODE_MODE_NEC << REG2_MODE_SHIFT);
++		meson_ir_set_mask(ir, IR_DEC_REG2, IR_DEC_REG2_MODE,
++				  FIELD_PREP(IR_DEC_REG2_MODE, DEC_MODE_NEC));
+ 
+ 	/* Set rate to default value */
+-	meson_ir_set_mask(ir, IR_DEC_REG0, REG0_RATE_MASK, 0x13);
++	meson_ir_set_mask(ir, IR_DEC_REG0, IR_DEC_REG0_BASE_TIME,
++			  MESON_HW_TRATE - 1);
+ 
+ 	spin_unlock_irqrestore(&ir->lock, flags);
+ }
 -- 
 2.35.1
 
