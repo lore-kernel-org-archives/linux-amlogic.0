@@ -4,82 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07533C77B7D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 May 2023 16:48:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB90EC77B7A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 May 2023 18:25:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
-	References:Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bDUIeVKdR00Lk+o+LuN0mUK8K+yWkGekr4CaszHrZ7A=; b=gnPoi4g+1Gdn14
-	y7rQpk88gUt3uAt12tku+aapHfoWuTx6PW1U1CPiOhrLn6IayNj0XIeBcMgX9ifJiUigkuBj5x7iJ
-	ick9C5/wK80vMwHnfTlZZVcJyWOBEU8VeK2VcvpVdjL6Kb7ZYiHeYMjheb5/Dc8NlR6DZfLsWJ8uk
-	RlaOXdD1XKM3XaxGP5Uit80kAFuBIKBvQP8u1FyFySy0TCM0zvYPrAEUdEQVxLNxzZyy/USdYLuVF
-	fxgY8WbC/ewhrGh0HnLiVSx8N0nGtRpwjwvOL2TX8UFutZRStwBYy1+6ZuwaVonZb1mDInj3Qr5jZ
-	AC4tmnaDpCKYlIgx1eqw==;
+	List-Owner; bh=l4faHBIE1rl/9uTKD1TOpGgIxXjSOvxc/CX+gNkXJCQ=; b=oc5HvJrAviz/dg
+	CClIL7onnBSTaNBfFbz1FhoqfHS6h7/wGIalyiiQ7re3Sp6r+tobkS1f2acaqQabMmhuELoZmduad
+	7Dp49VUhkGVSieCFBJDx/6TaNnixPNEP2xfhrqPwonq4jhAEYtOHIs3R7ln68OVXYI6NRXfo3OKC7
+	d4i9W0QQkwFPX8CKfnp8QYwcuOv+N4jumOim2Up1Eosbfb+hpovW5YwYIWUl5DTcdFWdpw9/gpOfy
+	kDPafUeCmZe7muKUOB+da8kpeJXgrEY8IYJxfIXVHQZ01NCUxBkGQHOwp5DlE4gboPhi5g963GloW
+	aZ+2iXACgNRJNZUe3kbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pzKK2-00AVbS-0L;
-	Wed, 17 May 2023 16:48:18 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1pzLpr-00AjQH-2h;
+	Wed, 17 May 2023 18:25:15 +0000
+Received: from mail-pg1-x529.google.com ([2607:f8b0:4864:20::529])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pzKJx-00AVYE-1Z;
-	Wed, 17 May 2023 16:48:16 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 33EFA5FD47;
-	Wed, 17 May 2023 19:48:02 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1684342082;
-	bh=lL5Ig/feq+5ZBoLLfuFLUuIyi3rpN3rrbk58Ou2ypQs=;
-	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
-	b=iB6dWI9mC38wGNkQQa0OMrr5hZpGh1A+syBAKrO1wrf+Vn54KpXRu0AavGGmGSz0P
-	 WueifkgZqcuB3Zl77MlMjnNNL8I7IBomzX/vN4WDlsbiKtkC/JqR2HZMwA+pjpasn1
-	 aYv6G0rs3r5tSX/XeGhSuQcDymgoGK3lzaWOzLzkuPm5aMc272stWuUwYK+nJ9wVvC
-	 OXLN2Tcuxppu0kZvOKF7PjA4eoiFeGPO2lNOes7FzEF52f+yvSPOtrhytApeqm6BJt
-	 aJslkSaVdJsaNtFg+ym0Xh52/ryczT0m7snAmEfzjRAS+VB/W9PSl6e9rSXqrhFA/U
-	 H2pK2RAkZu/ng==
-Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Wed, 17 May 2023 19:48:00 +0300 (MSK)
-From: =?utf-8?B?0KHRgtCw0YDQuiDQk9C10L7RgNCz0LjQuSDQndC40LrQvtC70LDQtdCy0Lg=?=
- =?utf-8?B?0Yc=?= <GNStark@sberdevices.ru>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: "jic23@kernel.org" <jic23@kernel.org>, "lars@metafoo.de"
-	<lars@metafoo.de>, "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"khilman@baylibre.com" <khilman@baylibre.com>, "jbrunet@baylibre.com"
-	<jbrunet@baylibre.com>, "andy.shevchenko@gmail.com"
-	<andy.shevchenko@gmail.com>, "nuno.sa@analog.com" <nuno.sa@analog.com>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-amlogic@lists.infradead.org"
-	<linux-amlogic@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, kernel <kernel@sberdevices.ru>
-Subject: Re: [PATCH v1] meson saradc: fix clock divider mask length
-Thread-Topic: [PATCH v1] meson saradc: fix clock divider mask length
-Thread-Index: AQHZh3EQTxw9IHKo50q7J9Xz6LtR8q9dEmgAgAFp8QA=
-Date: Wed, 17 May 2023 16:47:59 +0000
-Message-ID: <f0966e95-43c7-e6f6-8aeb-05f27691cec3@sberdevices.ru>
-References: <20230515210545.2100161-1-gnstark@sberdevices.ru>
- <CAFBinCCc+t7Ks6fqz38cVrufPRFdxFgC9Qp+JhcM1KfD6pupTg@mail.gmail.com>
-In-Reply-To: <CAFBinCCc+t7Ks6fqz38cVrufPRFdxFgC9Qp+JhcM1KfD6pupTg@mail.gmail.com>
-Accept-Language: en-US, ru-RU
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.13]
-Content-ID: <6D8EA23852B1CE4E84E905633DABAB39@sberdevices.ru>
+	id 1pzLpo-00AjOu-2R
+	for linux-amlogic@lists.infradead.org;
+	Wed, 17 May 2023 18:25:14 +0000
+Received: by mail-pg1-x529.google.com with SMTP id 41be03b00d2f7-52c30fa5271so583335a12.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 17 May 2023 11:25:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1684347909; x=1686939909;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=45x6aIah125jOfw5DAw6akq7zYqDXWAyHyu9qSo7fA0=;
+        b=H4099AwsRNj44sSGT6ogy8ufHfUuk1mCMpajqaFZm2RTsiOdTWnzN9o7fIL1fi+EN/
+         DpMuUzPEUrTkIZFJWr7HT+5pu/aGMFZ9bFyqkVh4QGn8PH6i3QHtZBcMqwbgsN1Q26F9
+         IaNgpyu3EyiCRbB+GFhmdhMe3m9A6KuTRo4ag=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684347909; x=1686939909;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=45x6aIah125jOfw5DAw6akq7zYqDXWAyHyu9qSo7fA0=;
+        b=jafre8Lfs/lEqvU0aJdLAbkGNuu/nft+ZEQSASfG/ssqelxaAGaNx9bm8CgH+d3PpW
+         9XM5mAysKLcU47+uG16YPJELx+RBBen8Gc27OsWLaOaAePBvs2Hd6iq/mzWvf0+NfqMr
+         SuZ6kiBrxBDCDst6/WAhy0UbZQ3JwoMBq5rGURpIgYmYNF1PulKVYbSHdENkLTo+RhT+
+         PpIofVI6zp2NZrKryg5WurCskIAScr58/ZBI1orZIhHLkIwgKbiwthxjpADa8BqtKepE
+         TGOcN/vZqcdwNfGo25b8lc4qUup/cDCIl3+LxIXeV3D1wgWk2PFlnMeAST+vL7xUlbxz
+         DgFA==
+X-Gm-Message-State: AC+VfDxU2ase6HsjgtxwAZr1+Fo2DH259+1CPUD5IDiBWiwJKHZD/lza
+	ur4TIWhYogau1xsZoGUQ1yM4vQ==
+X-Google-Smtp-Source: ACHHUZ7HRV57oX9mtBvMxH/rRkgfAocqgjQoyV0w1AqbEJxyB1hldkewGUNpqsBE+e10ortGtNQ0Lw==
+X-Received: by 2002:a05:6a20:1590:b0:105:5086:fd42 with SMTP id h16-20020a056a20159000b001055086fd42mr20303935pzj.45.1684347909705;
+        Wed, 17 May 2023 11:25:09 -0700 (PDT)
+Received: from www.outflux.net (198-0-35-241-static.hfc.comcastbusiness.net. [198.0.35.241])
+        by smtp.gmail.com with ESMTPSA id y24-20020aa78558000000b00634a96493f7sm13122932pfn.128.2023.05.17.11.25.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 May 2023 11:25:09 -0700 (PDT)
+Date: Wed, 17 May 2023 11:25:08 -0700
+From: Kees Cook <keescook@chromium.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-hardening@vger.kernel.org, linux-kernel@vger.kernel.org,
+	kernel test robot <lkp@intel.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-amlogic@lists.infradead.org,
+	Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH] firmware: meson_sm: Fix memcpy vs iomem type warnings
+Message-ID: <202305171124.4EB0D65@keescook>
+References: <20221012185234.never.936-kees@kernel.org>
+ <166602031304.3572695.12870664862275915316.b4-ty@linaro.org>
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/17 11:04:00 #21328336
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Disposition: inline
+In-Reply-To: <166602031304.3572695.12870664862275915316.b4-ty@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230517_094814_238071_12F39341 
-X-CRM114-Status: GOOD (  15.42  )
+X-CRM114-CacheID: sfid-20230517_112512_821829_900ACE7C 
+X-CRM114-Status: GOOD (  17.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,34 +89,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gNS8xNi8yMyAyMjowOCwgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90ZToNCj4gSGkgR2Vvcmdl
-LA0KPg0KPiB0aGFuayB5b3UgZm9yIHRoaXMgcGF0Y2ghDQo+DQo+IE9uIE1vbiwgTWF5IDE1LCAy
-MDIzIGF0IDExOjA24oCvUE0gR2VvcmdlIFN0YXJrIDxnbnN0YXJrQHNiZXJkZXZpY2VzLnJ1PiB3
-cm90ZToNCj4+IEZyb206IEdlb3JnZSBTdGFyayA8R05TdGFya0BzYmVyZGV2aWNlcy5ydT4NCj4+
-DQo+PiBBY2NvcmRpbmcgdG8gZGF0YXNoZWV0cyBvZiBzdXBwb3J0ZWQgbWVzb24gU09Dcw0KPj4g
-bGVuZ3RoIG9mIEFEQ19DTEtfRElWIGZpZWxkIGlzIDYgYml0cyBsb25nDQo+IEkgaGF2ZSBhIHF1
-ZXN0aW9uIGFib3V0IHRoaXMgc2VudGVuY2Ugd2hpY2ggZG9lc24ndCBhZmZlY3QgdGhpcyBwYXRj
-aA0KPiAtIGl0J3Mgb25seSBhYm91dCBtYW5hZ2luZyBleHBlY3RhdGlvbnM6DQo+IFdoaWNoIFNv
-QyBhcmUgeW91IHJlZmVycmluZyB0bz8NCj4gVGhpcyBkaXZpZGVyIGlzIG9ubHkgcmVsZXZhbnQg
-b24gb2xkZXIgU29DcyB0aGF0IHByZWRhdGUgR1hCQiAoUzkwNSkuDQo+IFRvIG15IGtub3dsZWRn
-ZSBhbGwgU29DcyBmcm9tIEdYQkIgb253YXJkcyBwbGFjZSB0aGUgZGl2aWRlciBpbiB0aGUNCj4g
-bWFpbiBvciBBTyBjbG9jayBjb250cm9sbGVyLCBzbyB0aGlzIGJpdG1hc2sgaXMgaXJyZWxldmFu
-dCB0aGVyZS4NCg0KSGVsbG8gTWFydGluDQoNCkkndmUgY2hlY2tlZCBkYXRhc2hlZXRzIG9mIGFs
-bCBjaGlwcyBsaXN0ZWQgaW4gbWVzb25fc2FyX2FkY19vZl9tYXRjaCBhcnJheSBpbiBtZXNvbl9z
-YXJhZGMuYyBhbmQgZXZlcnl3aGVyZSB0aGlzIGZpZWxkIGlzIDYgYml0cyBsb25nLiBBY2NvcmRp
-bmcgdG8gZHJpdmVyIGNvZGUgYW5kIGV4aXN0aW5nIGR0cyBmaWxlcyB0aGlzIHBhdGNoIGFmZmVj
-dHMgYWxsIHN1cHBvcnRlZCBjaGlwcyBleGNlcHQgbWVzb244Lg0KDQpCZXN0IHJlZ2FyZHMNCkdl
-b3JnZQ0KDQoNCj4+IEZpeGVzOiAzYWRiZjM0MjczMzAgKCJpaW86IGFkYzogYWRkIGEgZHJpdmVy
-IGZvciB0aGUgU0FSIEFEQyBmb3VuZCBpbiBBbWxvZ2ljIE1lc29uIFNvQ3MiKQ0KPj4gU2lnbmVk
-LW9mZi1ieTogR2VvcmdlIFN0YXJrIDxHTlN0YXJrQHNiZXJkZXZpY2VzLnJ1Pg0KPiBTaW5jZSBt
-eSBxdWVzdGlvbiBhYm92ZSBkb2Vzbid0IGFmZmVjdCB0aGlzIHBhdGNoOg0KPiBSZXZpZXdlZC1i
-eTogTWFydGluIEJsdW1lbnN0aW5nbCA8bWFydGluLmJsdW1lbnN0aW5nbEBnb29nbGVtYWlsLmNv
-bT4NCj4NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-bGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQu
-b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1s
-b2dpYwo=
+*thread necromancy*
+
+On Mon, Oct 17, 2022 at 05:25:13PM +0200, Neil Armstrong wrote:
+> Hi,
+> 
+> On Wed, 12 Oct 2022 11:53:16 -0700, Kees Cook wrote:
+> > Use memcpy_{toio,fromio}() instead of memcpy(). Silences warnings from
+> > Sparse:
+> > 
+> > drivers/firmware/meson/meson_sm.c:170:17: warning: incorrect type in argument 1 (different address spaces)
+> > drivers/firmware/meson/meson_sm.c:170:17:    expected void const *
+> > drivers/firmware/meson/meson_sm.c:170:17:    got void [noderef] __iomem *sm_shmem_out_base
+> > drivers/firmware/meson/meson_sm.c:170:17: warning: incorrect type in argument 2 (different address spaces)
+> > drivers/firmware/meson/meson_sm.c:170:17:    expected void const *
+> > drivers/firmware/meson/meson_sm.c:170:17:    got void [noderef] __iomem *sm_shmem_out_base
+> > drivers/firmware/meson/meson_sm.c:206:9: warning: incorrect type in argument 1 (different address spaces)
+> > drivers/firmware/meson/meson_sm.c:206:9:    expected void const *
+> > drivers/firmware/meson/meson_sm.c:206:9:    got void [noderef] __iomem *sm_shmem_in_base
+> > drivers/firmware/meson/meson_sm.c:206:9: warning: incorrect type in argument 1 (different address spaces)
+> > drivers/firmware/meson/meson_sm.c:206:9:    expected void const *
+> > drivers/firmware/meson/meson_sm.c:206:9:    got void [noderef] __iomem *sm_shmem_in_base
+> > drivers/firmware/meson/meson_sm.c:206:9: warning: incorrect type in argument 1 (different address spaces)
+> > drivers/firmware/meson/meson_sm.c:206:9:    expected void const *
+> > drivers/firmware/meson/meson_sm.c:206:9:    got void [noderef] __iomem *sm_shmem_in_base
+> > drivers/firmware/meson/meson_sm.c:206:9: warning: incorrect type in argument 1 (different address spaces)
+> > drivers/firmware/meson/meson_sm.c:206:9:    expected void *
+> > drivers/firmware/meson/meson_sm.c:206:9:    got void [noderef] __iomem *sm_shmem_in_base
+> > 
+> > [...]
+> 
+> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.2/drivers)
+> 
+> [1/1] firmware: meson_sm: Fix memcpy vs iomem type warnings
+>       https://git.kernel.org/amlogic/c/7dc69c7d073e6004a281db8f7f15cf6ebf702ea0
+> 
+> These changes has been applied on the intermediate git tree [1].
+> 
+> The v6.2/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+> for inclusion in their intermediate git branches in order to be sent to Linus during
+> the next merge window, or sooner if it's a set of fixes.
+> 
+> In the cases of fixes, those will be merged in the current release candidate
+> kernel and as soon they appear on the Linux master branch they will be
+> backported to the previous Stable and Long-Stable kernels [2].
+> 
+> The intermediate git branches are merged daily in the linux-next tree [3],
+> people are encouraged testing these pre-release kernels and report issues on the
+> relevant mailing-lists.
+> 
+> If problems are discovered on those changes, please submit a signed-off-by revert
+> patch followed by a corrective changeset.
+> 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+> [2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+> [3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+Hi! This change seems to have never been mainlined and seems to have
+disappeared from linux-next.
+
+-- 
+Kees Cook
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
