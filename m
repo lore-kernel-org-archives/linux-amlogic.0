@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD3F1C77B7D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 May 2023 07:02:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 306B6C77B7A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 May 2023 07:02:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nvTi1wo/9ZlCNAbIHD51viNRdoLV5qjvR11vsdFwA68=; b=Mn6+0Zzs9UbmWz
-	9AAlpRKWNxwg/yIQCyrzr/N2T+lgZs5IPTQihNxGqc2bkR7qByvtwPmIAM0quPGUadxY6Wt7GbLmq
-	9pyBqIwwGUu/Wg1Y/EjladzpJ6nR5EQtc2C7eME1oE4OzdxlqKKqTIvO40+Hg7zM7I8VpZUPZe1J2
-	l6omFEGIe6O91dWRFyZbUWxh7NDC2ni1uurgobrmTyKZw+bwSjcKF1epLIbHSodknuCpog/2KQdFf
-	p3hAefJRYzvcSGuNnClxr4Aw1MgrEO/aygjy/hUho3O5K6eOzsOUPgkeNMGARoWHgHhItYLr6ncMf
-	UjvsLIlNk//HAx8E2OVw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=hzAjmP9B3KxKBTxaAMvkpgrMb4QDC0Nn+Jqgetjdkks=; b=HZKn+IEslTgSMz
+	UYUv7nknX+fQqGur025I9/2P3IHSguEEBFo7LT74ypCOD/8S0q3ISkQoqEwbM/k5pDhDBQzMEhtO/
+	HKDIHyWaHh31IuzffFs+q4OtWVbOPECd2sP0+vQsKhwbZ6gQ2bC0BBjeN3zN76fjE07/S6qomDLJj
+	WyDFuhGdVRUzM++/ZnXPan+tV2ISa9p+ZyEpQ1Xcp4ApkOite2ryhsKLIqvL/9w1pBNVodGFyrEwd
+	YZgK/Zhg+SGcpzMgRLvWRz4rtDSpEXpvcMs7wm4bFxECF0AiPEmcsI7HwxWuor9AbvCQq9ST3GZIC
+	Wu0NYyS5Y3uacfoATJXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pzBBL-008Zw9-0z;
-	Wed, 17 May 2023 07:02:43 +0000
+	id 1pzBBF-008ZsF-0I;
+	Wed, 17 May 2023 07:02:37 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pzBBE-008Zoz-0C;
-	Wed, 17 May 2023 07:02:37 +0000
+	id 1pzBBC-008Zoz-0G;
+	Wed, 17 May 2023 07:02:35 +0000
 Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 17 May 2023
- 15:02:16 +0800
+ 15:02:12 +0800
 From: Yu Tu <yu.tu@amlogic.com>
 To: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
@@ -40,18 +40,17 @@ To: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<conor+dt@kernel.org>, Martin Blumenstingl
 	<martin.blumenstingl@googlemail.com>
 CC: <kelvin.zhang@amlogic.com>, <qi.duan@amlogic.com>, Yu Tu
-	<yu.tu@amlogic.com>, Rob Herring <robh@kernel.org>
-Subject: [PATCH V9 1/4] dt-bindings: clock: document Amlogic S4 SoC PLL clock controller
-Date: Wed, 17 May 2023 15:02:12 +0800
-Message-ID: <20230517070215.28463-2-yu.tu@amlogic.com>
+	<yu.tu@amlogic.com>
+Subject: [PATCH V9 0/4] Add S4 SoC PLL and Peripheral clock
+Date: Wed, 17 May 2023 15:02:11 +0800
+Message-ID: <20230517070215.28463-1-yu.tu@amlogic.com>
 X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20230517070215.28463-1-yu.tu@amlogic.com>
-References: <20230517070215.28463-1-yu.tu@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.18.11.248]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230517_000236_100146_5B0853E7 
-X-CRM114-Status: GOOD (  12.10  )
+X-CRM114-CacheID: sfid-20230517_000234_144705_65C1CDCA 
+X-CRM114-Status: UNSURE (   6.99  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,122 +67,59 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the S4 PLL clock controller dt-bindings in the s4 SoC family.
+1. Add S4 SoC PLL and Peripheral clock controller dt-bindings.
+2. Add PLL and Peripheral clock controller driver for S4 SOC.
 
-Signed-off-by: Yu Tu <yu.tu@amlogic.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/clock/amlogic,s4-pll-clkc.yaml   | 50 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- .../dt-bindings/clock/amlogic,s4-pll-clkc.h   | 30 +++++++++++
- 3 files changed, 81 insertions(+)
+Yu Tu (4):
+  dt-bindings: clock: document Amlogic S4 SoC PLL clock controller
+  dt-bindings: clock: document Amlogic S4 SoC peripherals clock
+    controller
+  clk: meson: S4: add support for Amlogic S4 SoC PLL clock driver
+  clk: meson: s4: add support for Amlogic S4 SoC peripheral clock
+    controller
+
+V8 -> V9: Add patch 0001/0002 dt-bindings tag. Suggested by Krzysztof.
+
+V7 -> V8:
+1. Change patch 0001/0002 dt-bindings title description, remove "meson".
+Suggested by Dmitry, Neil.
+2. Change patch 0003/0004 clocks comment, format and clock flags suggested by
+Dmitry, Neil, Jerome.
+
+V6 -> V7: Change send patch series as well change format and clock flags
+suggested by Jerome. Change dt-bindings suggested by Krzysztof.
+V5 -> V6: Change send patch series, as well change format and clock flags.
+V4 -> V5: change format and clock flags and adjust the patch series
+as suggested by Jerome.
+V3 -> V4: change format and clock flags.
+V2 -> V3: Use two clock controller.
+V1 -> V2: Change format as discussed in the email.
+
+Link:https://lore.kernel.org/linux-amlogic/20230516064736.10270-1-yu.tu@amlogic.com/
+
+ .../clock/amlogic,s4-peripherals-clkc.yaml    |   97 +
+ .../bindings/clock/amlogic,s4-pll-clkc.yaml   |   50 +
+ MAINTAINERS                                   |    1 +
+ drivers/clk/meson/Kconfig                     |   25 +
+ drivers/clk/meson/Makefile                    |    2 +
+ drivers/clk/meson/s4-peripherals.c            | 3830 +++++++++++++++++
+ drivers/clk/meson/s4-peripherals.h            |  217 +
+ drivers/clk/meson/s4-pll.c                    |  907 ++++
+ drivers/clk/meson/s4-pll.h                    |   87 +
+ .../clock/amlogic,s4-peripherals-clkc.h       |  131 +
+ .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |   30 +
+ 11 files changed, 5377 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+ create mode 100644 drivers/clk/meson/s4-peripherals.c
+ create mode 100644 drivers/clk/meson/s4-peripherals.h
+ create mode 100644 drivers/clk/meson/s4-pll.c
+ create mode 100644 drivers/clk/meson/s4-pll.h
+ create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
  create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
 
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
-new file mode 100644
-index 000000000000..242cceb5033a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/amlogic,s4-pll-clkc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic S serials PLL Clock Controller
-+
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-+  - Jerome Brunet <jbrunet@baylibre.com>
-+  - Yu Tu <yu.tu@amlogic.com>
-+
-+properties:
-+  compatible:
-+    const: amlogic,s4-pll-clkc
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: xtal
-+
-+  "#clock-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - "#clock-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clkc_pll: clock-controller@fe008000 {
-+      compatible = "amlogic,s4-pll-clkc";
-+      reg = <0xfe008000 0x1e8>;
-+      clocks = <&xtal>;
-+      clock-names = "xtal";
-+      #clock-cells = <1>;
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7e0b87d5aa2e..09422aa49f61 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1888,6 +1888,7 @@ L:	linux-amlogic@lists.infradead.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/clock/amlogic*
- F:	drivers/clk/meson/
-+F:	include/dt-bindings/clock/amlogic*
- F:	include/dt-bindings/clock/gxbb*
- F:	include/dt-bindings/clock/meson*
- 
-diff --git a/include/dt-bindings/clock/amlogic,s4-pll-clkc.h b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
-new file mode 100644
-index 000000000000..1dcdedb1a6dd
---- /dev/null
-+++ b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
-@@ -0,0 +1,30 @@
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-+/*
-+ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-+ * Author: Yu Tu <yu.tu@amlogic.com>
-+ */
-+
-+#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
-+#define _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
-+
-+/*
-+ * CLKID index values
-+ */
-+
-+#define CLKID_FIXED_PLL			1
-+#define CLKID_FCLK_DIV2			3
-+#define CLKID_FCLK_DIV3			5
-+#define CLKID_FCLK_DIV4			7
-+#define CLKID_FCLK_DIV5			9
-+#define CLKID_FCLK_DIV7			11
-+#define CLKID_FCLK_DIV2P5		13
-+#define CLKID_GP0_PLL			15
-+#define CLKID_HIFI_PLL			17
-+#define CLKID_HDMI_PLL			20
-+#define CLKID_MPLL_50M			22
-+#define CLKID_MPLL0			25
-+#define CLKID_MPLL1			27
-+#define CLKID_MPLL2			29
-+#define CLKID_MPLL3			31
-+
-+#endif /* _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H */
+
+base-commit: ac9a78681b921877518763ba0e89202254349d1b
 -- 
 2.33.1
 
