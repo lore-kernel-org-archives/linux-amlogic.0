@@ -4,81 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81E56C77B7A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 19 May 2023 15:08:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A6A2C77B75
+	for <linux-amlogic@archiver.kernel.org>; Fri, 19 May 2023 15:30:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
 	References:Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=SYPIuoT10mIp+k3QhUDB6FLWQZZW8LY3YQlQrUoVBCs=; b=KCSql7T1mfYzxI
-	rFmgT8Bwq7N64uan9pv8NOk1MvuQB6Lktlnu6Aa7Ggf3F9xIiSNepeOxF0bx4Bd56JPSyuMxS6E3E
-	880UzpCd7UawSUTeWsgHUB6lwX6X0OItKEy8rEMkB2ptYuIaqnqLgmUTzuRyjTKFxfmr72fVKbaMF
-	aKr7ThnL76P4D/NxqjpA4acap32tVAyAlbnEaXahLCSr1glAKvgsAZCBWgOJ7QBHsbRWGSLOX08Y1
-	8S2MeFeNK5eQRoUmhbrAuylqkBN74O5JhryOZKDBnV/K6HM3giGoQuk1Lcvr6fDmoWxwMcMObM6AG
-	dkVNTUsXEX1c+Dw8IxNQ==;
+	List-Owner; bh=COfod1R4ex6KV/7ZVn50IuN92D3/bBuDHlmsg8bts3A=; b=dDEDjlKdInFfVk
+	or33oeofWI5OfgiFwo1sWa51Xfii6ORaOPB3pkTQBXvogWA6u7qGYiytxTKG4wL+Lnvjukds0DTur
+	wAh3Cy+ABjdJrQTMNBRuDbtjS3cMhov70TAmXeS4f88DhI2yy3RRTqKcw5LkyDRYawzWzKRjpjNkV
+	YXNkxRrnkJrrd1A86fvbcwjvtiyi6RooIOZjzRYJeOqseQf3jhNpm/0EX3p0FBCiQof2V4ttQF6j1
+	gjRBQsoojKuyRR/dnm4v49Ovr4KcMJGNJidolVDSIIduDp1Dlxsaw0keUhPyWLtjdWbpW3GZNc6us
+	9XYJA5XvQ9x8OrkDdlBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q01iM-00GZ1r-0t;
-	Fri, 19 May 2023 15:08:18 +0000
+	id 1q023o-00GbQC-0x;
+	Fri, 19 May 2023 15:30:28 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q01iH-00GYyX-08;
-	Fri, 19 May 2023 15:08:16 +0000
+	id 1q023k-00GbPW-0v;
+	Fri, 19 May 2023 15:30:26 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 5CCB760AF3;
-	Fri, 19 May 2023 18:07:48 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id 5841160C02;
+	Fri, 19 May 2023 18:30:20 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1684508868;
-	bh=uymjaxQi5VeZztsXUBTn6EcRZCUVcX2E5J/SCRmgpgo=;
+	s=mail; t=1684510220;
+	bh=FM3XQHIvBazKOyaGIdvJJG1Xxh1oXLVwed2SJetAZxw=;
 	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
-	b=j5n13jaJgq+L6TgXu+POcZhRg2GHXbNYotL5e2EFzibd+lgxwbbO1pmPTxZ5k0ZdB
-	 oXULVZ0Ua0CekGkSEKyyYdb/86YFlrhRw1RS+JDpqpW3Dyvhoi/y30VQXJDEkkQUZL
-	 UPHqgsIKmC6eSlDjzGJG/t/Pa5kIr9fQM2WXVQUbF4g9zLw4yB0kksFEROCP2t1jPt
-	 +NSQutq8I9geOOw3TrOysEQ6ml+2vtCa0iUwI8ePVrovqWIvqJRnAlbwprSkujsA2t
-	 5TIA6Ht5qkXZmRhmY3tQMO5/uQ36GASeGpEGDM6Tc5zk4HGPw6/f1yLgdGkYEXcS3T
-	 UIY/pdBXWPNBA==
-Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
+	b=pEaO+8yICfGZmQX/lwpykshREOEuufR8DVfW0SBCUDgTAF6+85lk5jIaLZw/U4y6M
+	 Br+q8AqWpOJi+wftmaXAlks/81gExyaIOLTEb0OZkV2QsgcBw0DNQ26lj1N9BFy6JO
+	 KHy4AaWIfPxJM1AqTkq7IfarKLANFn4WPYtgOMofcB8TZJNBSJm5Fa338I4ygN++mD
+	 E712LcV8XxKZ8LhEemqd8UOJ+fvtxAqnK5/0ERV4stJ04S8CzAeNy7icGZ/sgkPAQd
+	 KbUp8M2baTeSe5sXq4wLE89CeJpDf59mNO3839x3yxQe2lcds/OB7oG3Y4kL97B4ni
+	 pcNbfggQ/2WUQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Fri, 19 May 2023 18:07:45 +0300 (MSK)
+	Fri, 19 May 2023 18:30:19 +0300 (MSK)
 From: Dmitry Rokosov <DDRokosov@sberdevices.ru>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"jbrunet@baylibre.com" <jbrunet@baylibre.com>, "mturquette@baylibre.com"
-	<mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"khilman@baylibre.com" <khilman@baylibre.com>, "jian.hu@amlogic.com"
-	<jian.hu@amlogic.com>, kernel <kernel@sberdevices.ru>, "rockosov@gmail.com"
-	<rockosov@gmail.com>, "linux-amlogic@lists.infradead.org"
-	<linux-amlogic@lists.infradead.org>, "linux-clk@vger.kernel.org"
-	<linux-clk@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, Heiner Kallweit
-	<hkallweit1@gmail.com>
-Subject: Re: [PATCH v14 6/6] clk: meson: a1: add Amlogic A1 Peripherals clock
- controller driver
-Thread-Topic: [PATCH v14 6/6] clk: meson: a1: add Amlogic A1 Peripherals clock
- controller driver
-Thread-Index: AQHZeCWg/AAS9M+Srk+pE/iZ7FHnpq9FnXUAgBD12wCABr+9gIAA4M8AgAIxhICAAT9cgA==
-Date: Fri, 19 May 2023 15:07:44 +0000
-Message-ID: <h4gjb3yr554cgpc7pye2z4pj3xhjtm3lwqlvdcad6ce2crb6dp@vwqnjezydodr>
-References: <20230426095805.15338-1-ddrokosov@sberdevices.ru>
- <20230426095805.15338-7-ddrokosov@sberdevices.ru>
- <CAFBinCA2OhtVaCJDi8ZfAFLSE4oUgxYBDScaP_WW63curEK8Mg@mail.gmail.com>
- <20230512140630.qd33rwzaalmadpmk@CAB-WSD-L081021>
- <CAFBinCA8e9evk+9hTEgoNOD_+3DBst6vYDcradmr2c996jdUmw@mail.gmail.com>
- <20230517103456.p3sjxzbepvg7cr2r@CAB-WSD-L081021>
- <CAFBinCCPf+asVakAxeBqV-jhsZp=i2zbShByTCXfYYAQ6cCnHg@mail.gmail.com>
-In-Reply-To: <CAFBinCCPf+asVakAxeBqV-jhsZp=i2zbShByTCXfYYAQ6cCnHg@mail.gmail.com>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+CC: Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Neil Armstrong
+	<narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+	=?iso-8859-1?Q?Uwe_Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	"thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "open list:ARM/Amlogic Meson..."
+	<linux-amlogic@lists.infradead.org>, "linux-pwm@vger.kernel.org"
+	<linux-pwm@vger.kernel.org>, "rockosov@gmail.com" <rockosov@gmail.com>,
+	kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v4 4/4] pwm: meson: make full use of common clock
+ framework
+Thread-Topic: [PATCH v4 4/4] pwm: meson: make full use of common clock
+ framework
+Thread-Index: AQHZimbR5zQfWI/tB0mpsvpAczxBaA==
+Date: Fri, 19 May 2023 15:30:19 +0000
+Message-ID: <tyuyderm7i6otsgrntw2wj4k4ii5xwp2vngfa76eaguki7yuqa@322cjuotnr6q>
+References: <9faca2e6-b7a1-4748-7eb0-48f8064e323e@gmail.com>
+ <cb79d313-c7a2-42e9-639a-63cb5366521a@gmail.com>
+In-Reply-To: <cb79d313-c7a2-42e9-639a-63cb5366521a@gmail.com>
 Accept-Language: ru-RU, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.0.25]
-Content-ID: <EA792FC9E9DA8940A0034190D5E10BA5@sberdevices.ru>
+x-originating-ip: [172.16.0.24]
+Content-ID: <1463AB5D3BAB0D44817600A52E19179A@sberdevices.ru>
 MIME-Version: 1.0
 X-KSMG-Rule-ID: 4
 X-KSMG-Message-Action: clean
@@ -88,8 +79,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/19 11:16:00 #21342682
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230519_080813_458616_EFA7F8D0 
-X-CRM114-Status: GOOD (  40.57  )
+X-CRM114-CacheID: sfid-20230519_083024_695000_D8CA48C0 
+X-CRM114-Status: GOOD (  30.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,89 +92,114 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVGh1LCBNYXkgMTgsIDIwMjMgYXQgMTA6MDQ6NDFQTSArMDIwMCwgTWFydGluIEJsdW1lbnN0
-aW5nbCB3cm90ZToNCj4gSGkgRG1pdHJ5LA0KPiANCj4gT24gV2VkLCBNYXkgMTcsIDIwMjMgYXQg
-MTI6MzTigK9QTSBEbWl0cnkgUm9rb3Nvdg0KPiA8ZGRyb2tvc292QHNiZXJkZXZpY2VzLnJ1PiB3
-cm90ZToNCj4gWy4uLl0NCj4gPiA+ID4gQWRkaXRpb25hbGx5LCB0aGUgQ0NGIGRldGVybWluZXMg
-dGhlIGJlc3QgYW5jZXN0b3IgYmFzZWQgb24gaG93IGNsb3NlDQo+ID4gPiA+IGl0cyByYXRlIGlz
-IHRvIHRoZSBnaXZlbiBvbmUsIGJhc2VkIG9uIGFyaXRobWV0aWMgY2FsY3VsYXRpb25zLiBIb3dl
-dmVyLA0KPiA+ID4gPiB3ZSBoYXZlIGluZGVwZW5kZW50IGtub3dsZWRnZSB0aGF0IGEgY2VydGFp
-biBjbG9jayB3b3VsZCBiZSBiZXR0ZXIsIHdpdGgNCj4gPiA+ID4gbGVzcyBqaXR0ZXIgYW5kIGZl
-d2VyIGludGVybWVkaWFyaWVzLCB3aGljaCB3aWxsIGxpa2VseSBpbXByb3ZlIGVuZXJneQ0KPiA+
-ID4gPiBlZmZpY2llbmN5LiBTYWRseSwgdGhlIENDRiBjYW5ub3QgdGFrZSB0aGlzIGludG8gYWNj
-b3VudC4NCj4gPiA+IEkgYWdyZWUgdGhhdCB0aGUgaW1wbGVtZW50YXRpb24gaW4gQ0NGIGlzIGZh
-aXJseSBzaW1wbGUuIFRoZXJlJ3Mgd2F5cw0KPiA+ID4gdG8gdHJpY2sgaXQgdGhvdWdoOiBJSVJD
-IGlmIHRoZXJlIGFyZSBtdWx0aXBsZSBlcXVhbGx5IHN1aXRhYmxlIGNsb2Nrcw0KPiA+ID4gaXQg
-cGlja3MgdGhlIGZpcnN0IG9uZS4gRm9yIG1lIGFsbCBvZiB0aGlzIGhhcyB3b3JrZWQgc28gZmFy
-IHdoaWNoIGlzDQo+ID4gPiB3aGF0IG1ha2VzIG1lIGN1cmlvdXMgaW4gdGhpcyBjYXNlIChub3Qg
-c2F5aW5nIHRoYXQgYW55dGhpbmcgaXMgd3JvbmcNCj4gPiA+IHdpdGggeW91ciBhcHByb2FjaCku
-DQo+ID4gPg0KPiA+ID4gRG8geW91IGhhdmUgYSAocmVhbCB3b3JsZCkgZXhhbXBsZSB3aGVyZSB0
-aGUgUlRDIGNsb2NrIHNob3VsZCBiZQ0KPiA+ID4gcHJlZmVycmVkIG92ZXIgYW5vdGhlciBjbG9j
-az8NCj4gPiA+DQo+ID4NCj4gPiBZZXMsIGEgcmVhbC1saWZlIGV4YW1wbGUgaXMgdGhlIG5lZWQg
-Zm9yIGEgMzJLaHogY2xvY2sgZm9yIGFuIGV4dGVybmFsDQo+ID4gd2lmaSBjaGlwLiBUaGVyZSBp
-cyBvbmUgb3B0aW9uIHRvIHByb3ZpZGUgdGhpcyBjbG9jayB3aXRoIGhpZ2gNCj4gPiBwcmVjaXNp
-b24sIHdoaWNoIGlzIFJUQyArIEdFTkNMSy4NCj4gPg0KPiA+ID4gSSdtIHRoaW5raW5nIGFib3V0
-IHRoZSBmb2xsb3dpbmcgc2NlbmFyaW8uDQo+ID4gPiBQV00gcGFyZW50czoNCj4gPiA+IC0gWFRB
-TDogMjRNSHoNCj4gPiA+IC0gc3lzOiBub3Qgc3VyZSAtIGxldCdzIHNheSAxNjYuNjdNSHoNCj4g
-PiA+IC0gUlRDOiAzMmtIeg0KPiA+ID4NCj4gPiA+IFRoZW4gYWZ0ZXIgdGhhdCB0aGVyZSdzIGEg
-ZGl2aWRlciBhbmQgYSBnYXRlLg0KPiA+ID4NCj4gPiA+IExldCdzIHNheSB0aGUgUFdNIGNvbnRy
-b2xsZXIgbmVlZHMgYSAxTUh6IGNsb2NrOiBpdCBjYW4gdGFrZSB0aGF0IGZyb20NCj4gPiA+IFhU
-QUwgb3Igc3lzLiBTaW5jZSBYVEFMIGlzIGV2ZW5seSBkaXZpc2libGUgdG8gMU1IeiBDQ0Ygd2ls
-bCBwaWNrIHRoYXQNCj4gPiA+IGFuZCB1c2UgdGhlIGRpdmlkZXIuDQo+ID4gPiBCdXQgbGV0J3Mg
-c2F5IHRoZSBQV00gY29udHJvbGxlciBuZWVkcyBhIDMya0h6IGNsb2NrOiBDQ0Ygd291bGQNCj4g
-PiA+IGF1dG9tYXRpY2FsbHkgcGljayB0aGUgUlRDIGNsb2NrLg0KPiA+ID4gU28gaXMgeW91ciBp
-bXBsZW1lbnRhdGlvbiB0aGVyZSB0byBjb3ZlciBsZXQncyBzYXkgMWtIeiB3aGVyZQ0KPiA+ID4g
-bWF0aGVtYXRpY2FsbHkgMjRNSHogY2FuIGJlIGRpdmlkZWQgZXZlbmx5IHRvIDFrSHogKGFuZCB0
-aHVzIHNob3VsZA0KPiA+ID4gbm90IHJlc3VsdCBpbiBhbnkgaml0dGVyKSBidXQgUlRDIGdpdmVz
-IGJldHRlciBwcmVjaXNpb24gaW4gdGhlIHJlYWwNCj4gPiA+IHdvcmxkIChldmVuIHRob3VnaCBp
-dCdzIG9mZiBieSAyNEh6KT8NCj4gPiA+DQo+ID4NCj4gPiBJIGRvbid0IHRoaW5rIHNvLiBUaGUg
-aGlnaGVzdCBwcmVjaXNpb24gdGhhdCBSVEMgY2FuIHByb3ZpZGUgaXMgZnJvbSBhDQo+ID4gMzJL
-SHogcmF0ZSBvbmx5LiBIb3dldmVyLCBJIGJlbGlldmUgdGhhdCBhIDFrSHogZnJlcXVlbmN5IGNh
-biBhbHNvIGJlDQo+ID4gYWNoaWV2ZWQgYnkgdXNpbmcgeHRhbCAyNE1IeiB3aXRoIGEgZGl2aWRl
-ciwgd2hpY2ggY2FuIHByb3ZpZGUgaGlnaA0KPiA+IHByZWNpc2lvbiBhcyB3ZWxsLg0KPiBUaGFu
-ayB5b3UgYWdhaW4gZm9yIHRoZSBncmVhdCBkaXNjdXNzaW9uIG9uIElSQyB0b2RheS4NCj4gSGVy
-ZSdzIG15IHNob3J0IHN1bW1hcnkgc28gSSBkb24ndCBmb3JnZXQgYmVmb3JlIHlvdSdsbCBmb2xs
-b3cgdXAgb24gdGhpcy4NCj4gDQo+IEluIGdlbmVyYWwgdGhlcmUncyB0d28ga25vd24gY2FzZXMg
-d2hlcmUgdGhlIFJUQyBjbG9jayBuZWVkcyB0byBiZSB1c2VkOg0KPiBhKSBXaGVuIHVzaW5nIHRo
-ZSBHRU5DTEsgb3V0cHV0IG9mIHRoZSBTb0MgdG8gb3V0cHV0IHRoZSAzMmtIeiBSVEMNCj4gY2xv
-Y2sgYW5kIGNvbm5lY3QgdGhhdCB0byBhbiBTRElPIFdpRmkgY2hpcCBjbG9jayBpbnB1dCAodGhp
-cyBzZWVtcw0KPiB1c2VmdWwgaW4gbXkgdW5kZXJzdGFuZGluZyBiZWNhdXNlIHRoZSBSVEMgY2xv
-Y2sgcHJvdmlkZXMgaGlnaA0KPiBwcmVjaXNpb24pDQo+IGIpIFdoZW4gdXNpbmcgdGhlIFBXTSBj
-b250cm9sbGVyIHRvIG91dHB1dCBhIDMya0h6IGNsb2NrIHNpZ25hbC4gSW4NCj4gdGhpcyBjYXNl
-IG15IHVuZGVyc3RhbmRpbmcgaXMgdGhhdCB1c2luZyB0aGUgUlRDIGNsb2NrIGFzIGlucHV0IHRv
-IHRoZQ0KPiBQV00gY29udHJvbGxlciByZXN1bHRzIGluIHRoZSBiZXN0IHBvc3NpYmxlIHNpZ25h
-bA0KPiANCj4gVGhlIHNlY29uZCBjYXNlIHdvbid0IGJlIHN1cHBvcnRlZCB3aXRoIEhlaW5lcidz
-IHBhdGNoZXMgWzBdIHRoYXQgdXNlDQo+IENDRiAoY29tbW9uIGNsb2NrIGZyYW1ld29yaykgaW4g
-dGhlIFBXTSBjb250cm9sbGVyIGRyaXZlci4NCj4gSW4gdGhpcyBzZXJpZXMgdGhlIHBhcmVudCBj
-bG9jayBpcyBjYWxjdWxhdGVkIHVzaW5nOg0KPiAgIGZyZXEgPSBkaXY2NF91NjQoTlNFQ19QRVJf
-U0VDICogKHU2NCkweGZmZmYsIHBlcmlvZCk7DQo+IA0KPiBBIDMya0h6IGNsb2NrIG1lYW5zIGEg
-UFdNIHBlcmlvZCBvZiAzMDUxOG5zLiBTbyB3aXRoIHRoZSBhYm92ZQ0KPiBjYWxjdWxhdGlvbiB0
-aGUgUFdNIGRyaXZlciBpcyBhc2tpbmcgZm9yIGEgY2xvY2sgcmF0ZSBvZiA+PTJHSHouDQo+IFdl
-IGNvbmNsdWRlZCB0aGF0IGxldHRpbmcgdGhlIGNvbW1vbiBjbG9jayBmcmFtZXdvcmsgY2hvb3Nl
-IHRoZSBiZXN0DQo+IHBvc3NpYmxlIHBhcmVudCAobWVhbmluZzogcmVtb3ZpbmcgQ0xLX1NFVF9S
-QVRFX05PX1JFUEFSRU5UIGhlcmUpIGNhbg0KPiBiZSBhIHdheSBmb3J3YXJkLg0KPiBCdXQgdGhp
-cyBtZWFucyB0aGF0IHRoZSBQV00gY29udHJvbGxlciBkcml2ZXIgbXVzdCB0cnkgdG8gZmluZCB0
-aGUNCj4gYmVzdCBwb3NzaWJsZSBwYXJlbnQgc29tZWhvdy4gVGhlIGVhc2llc3Qgd2F5IHdlIGNh
-bWUgdXAgd2l0aA0KPiAocHNldWRvLWNvZGUpOg0KPiAgIGZyZXEgPSBOU0VDX1BFUl9TRUMgLyBw
-ZXJpb2Q7DQo+ICAgZmluX2ZyZXEgPSBjbGtfcm91bmRfcmF0ZShjaGFubmVsLT5jbGssIGZyZXEp
-Ow0KPiAgIGlmIChmaW5fZnJlcSAhPSBmcmVxKSB7DQo+ICAgICBmcmVxID0gZGl2NjRfdTY0KE5T
-RUNfUEVSX1NFQyAqICh1NjQpMHhmZmZmLCBwZXJpb2QpOw0KPiAgICAgZmluX2ZyZXEgPSBjbGtf
-cm91bmRfcmF0ZShjaGFubmVsLT5jbGssIGZyZXEpOw0KPiAgIH0NCj4gDQo+IFRoZSBpZGVhIGlz
-OiBmb3IgYSByZXF1ZXN0ZWQgMzJrSHogc2lnbmFsIHRoZSBQV00gcGVyaW9kIGlzIDMwNTE4bnMu
-DQo+IFRoZSB1cGRhdGVkIGxvZ2ljIHdvdWxkIGZpbmQgdGhhdCB0aGVyZSdzIGEgbWF0Y2hpbmcg
-Y2xvY2sgaW5wdXQgYW5kDQo+IHVzZSB0aGF0IGRpcmVjdGx5LiBJZiBub3Q6IHVzZSB0aGUgb3Jp
-Z2luYWwgbG9naWMgYXMgc3VnZ2VzdGVkIGJ5DQo+IEhlaW5lci4NCj4gDQo+IA0KPiBCZXN0IHJl
-Z2FyZHMsDQo+IE1hcnRpbg0KPiANCj4gDQo+IFswXSBodHRwczovL2xvcmUua2VybmVsLm9yZy9s
-aW51eC1hbWxvZ2ljLzlmYWNhMmU2LWI3YTEtNDc0OC03ZWIwLTQ4ZjgwNjRlMzIzZUBnbWFpbC5j
-b20vDQoNClRoYW5rIHlvdSBmb3IgdGhlIGV4Y2VsbGVudCBmb2xsb3ctdXAhIEkgd2lsbCByZXBs
-eSB0byBIZWluZXIncyB0aHJlYWQNCndpdGggdGhlc2UgY29tbWVudHMuIExldCdzIGNvbnRpbnVl
-IHRoaXMgZGlzY3Vzc2lvbiBmdXJ0aGVyIGluIHRoZQ0KSGVpbmVyIHBhdGNoIHNlcmllcy4NCg0K
-LS0gDQpUaGFuayB5b3UsDQpEbWl0cnkKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
-aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
-dGluZm8vbGludXgtYW1sb2dpYwo=
+Hello Heiner,
+
+Thank you for the patch series!
+
+I am currently working on the Amlogic A1 clock driver and other
+peripheral devices, including PWM. During a discussion about the clock
+driver with Martin Blumenstingl, we found an intersection between the
+clock driver and your PWM CCF support patch series. Please see my
+comments below.
+
+On Thu, Apr 13, 2023 at 07:54:46AM +0200, Heiner Kallweit wrote:
+> Newer versions of the PWM block use a core clock with external mux,
+> divider, and gate. These components either don't exist any longer in
+> the PWM block, or they are bypassed.
+> To minimize needed changes for supporting the new version, the internal
+> divider and gate should be handled by CCF too.
+> 
+> I didn't see a good way to split the patch, therefore it's somewhat
+> bigger. What it does:
+> 
+> - The internal mux is handled by CCF already. Register also internal
+>   divider and gate with CCF, so that we have one representation of the
+>   input clock: [mux] parent of [divider] parent of [gate]
+>   
+> - Now that CCF selects an appropriate mux parent, we don't need the
+>   DT-provided default parent any longer. Accordingly we can also omit
+>   setting the mux parent directly in the driver.
+>   
+> - Instead of manually handling the pre-div divider value, let CCF
+>   set the input clock. Targeted input clock frequency is
+>   0xffff * 1/period for best precision.
+>   
+> - For the "inverted pwm disabled" scenario target an input clock
+>   frequency of 1GHz. This ensures that the remaining low pulses
+>   have minimum length.
+> 
+> I don't have hw with the old PWM block, therefore I couldn't test this
+> patch. With the not yet included extension for the new PWM block
+> (channel->clk coming directly from get_clk(external_clk)) I didn't
+> notice any problem. My system uses PWM for the CPU voltage regulator
+> and for the SDIO 32kHz clock.
+> 
+> Note: The clock gate in the old PWM block is permanently disabled.
+> This seems to indicate that it's not used by the new PWM block.
+> 
+> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> Changes to RFT/RFC version:
+> - use parent_hws instead of parent_names for div/gate clock
+> - use devm_clk_hw_register where the struct clk * returned by
+>   devm_clk_register isn't needed
+> 
+> v2:
+> - add patch 1
+> - add patch 3
+> - switch to using clk_parent_data in all relevant places
+> v3:
+> - add flag CLK_IGNORE_UNUSED
+> v4:
+> - remove variable tmp in meson_pwm_get_state
+> - don't use deprecated function devm_clk_register
+
+[...]
+
+> @@ -166,7 +158,11 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
+>  	if (state->polarity == PWM_POLARITY_INVERSED)
+>  		duty = period - duty;
+>  
+> -	fin_freq = clk_get_rate(channel->clk);
+> +	freq = div64_u64(NSEC_PER_SEC * (u64)0xffff, period);
+> +	if (freq > ULONG_MAX)
+> +		freq = ULONG_MAX;
+> +
+> +	fin_freq = clk_round_rate(channel->clk, freq);
+>  	if (fin_freq == 0) {
+>  		dev_err(meson->chip.dev, "invalid source clock frequency\n");
+>  		return -EINVAL;
+
+As mentioned previously, we have discussed one optimization for PWM
+parent clock calculation. Many modern Amlogic SoCs include an RTC clock
+within the clock tree. This clock provides a stable and efficient 32kHz
+input for several clock objects that can be inherited through the muxes
+from the RTC clock.
+
+In short, we aim to use the RTC clock parent directly for PWM to
+generate a 32kHz clock on the PWM lines. Martin has suggested one way to
+do so, which is described in [0]. You can also refer to our IRC
+discussion in [1].
+
+I would appreciate your thoughts on this. Please let me know what you
+think.
+
+[...]
+
+Links:
+    [0] https://lore.kernel.org/all/CAFBinCCPf+asVakAxeBqV-jhsZp=i2zbShByTCXfYYAQ6cCnHg@mail.gmail.com/
+    [1] https://libera.irclog.whitequark.org/linux-amlogic/2023-05-18
+
+-- 
+Thank you,
+Dmitry
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
