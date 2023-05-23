@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D17A5C77B75
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 May 2023 13:54:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E362C7EE2E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 May 2023 13:54:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xxRv3+yScP9T4KeJ327yy02wwlvGXLf1AiHcKCJsPHg=; b=BdWlWmNWYmIVlh
-	ITJ6q93LcnjmdZoBFoUy0NmzxnnKwCEygk4npLACebn0Qk9uQvL0g9GvBK4XVtHKCKjdzaOP7NHD1
-	3CNOQO+zI2QUhy9lDefFWr5qiO00wQUwxeA31T7PaaSEilqLWDm9ge7IjMlusZwZeCUpqTnSBVme3
-	0U50+hEGiXmTkZm1SmObzoAqqoxXJSlajGwsBazab4eB/Mbwq4H0EssawVcnvH8N7s9k0ryFbe4cb
-	/OvKvqUtSc0wcK6pmEz/vp57UdMF4u3Q41WbeNlPd/OkzruGvREzX22UKT0LvQf1O4fUeL6PSncRg
-	GOIvW2v0oohnVO3lLGxA==;
+	List-Owner; bh=3woxTpJWHCZMKRfjSM7Sw7mD3QT5dVFFgnB2PUNViZ8=; b=WNSn2/0RZ3c18O
+	Yyn1O1O3pU88bz8epRxMPgGhUyTcHLokiz3E6M+kDmWjO8Ed779HrUHleLltO+q64ngS9QswGP3fI
+	HrYe/EhSbx1anH9pfe0TmSk4/WyUOm3hyPgZEUl7dqZC5HGWL9AjnsBBVb2OJhyFBxCcoKxzctbi3
+	PgJvJmFjYcqPwkn6oOOnRVQpWvdQX+CJH/Aud7i28iyhagasVHJpqvuox8l60ALnPCDx6yt+J6HVS
+	NMrt0r6zQFZ/3ITNa6NkP+bzc1p7wWk8nEjHwsheVjTKWRLPNHhbiUfaggX0FznWeYdYMmv2nbZjB
+	7JhmeWdDKClJigCdODPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q1SSq-00AQFs-0u;
+	id 1q1SSq-00AQG2-27;
 	Tue, 23 May 2023 13:54:12 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q1SSm-00AQCk-0W;
+	id 1q1SSm-00AQCp-0V;
 	Tue, 23 May 2023 13:54:10 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 479715FD65;
-	Tue, 23 May 2023 16:54:02 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id 2CD4F5FD68;
+	Tue, 23 May 2023 16:54:03 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1684850042;
-	bh=qcIGKcZIb5cUrNAdB7ZZAIiITgzMPRGFSQuzjV413Y4=;
+	s=mail; t=1684850043;
+	bh=QACcL2z5H0WiVPZBqWtG1qVoEZA/+FwC6rxiZKbXGhQ=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=GISDTv73zFtfRebTlG8zJm4c59zAOD5oaTHD9ca4uNEBiloa8vF+IeBEj+ZKT1D/a
-	 lZJW/8IK8SR0MU4u+6IOkC18fRqKM/GiQFU7rbuJyvcf8KJ4SZd7F8wG/RM2kwIb15
-	 D9BpF468uDRmwH4RDnYguT4ogBwe+cWhXXjlgRhIFRarlA8xMp7jauUxwyRvUYGZyY
-	 r5bOGaxHN1hSnCqOITVqExIHHml2aVgFmuNF9f1Z0qmSjXc1gy8z/fkMDVGFGxC6+Y
-	 /+9Hq1+VZ5Kn6azQX1sJwnJI1YV1fwh9jHBHACKPBKNIBzmB/O9LGC896M+CLq0JhO
-	 3hS73RAkPCoHw==
+	b=d7cjZgy6FmwELYdiPA/MahxZUvDN4IL/6S6Sq6CN7KFg1OqB1O7fjfOezdXdi/og9
+	 dqr4k9yNlx1UAJSQgBx4F7+DjoxAgRQl0CTzYMrm6EuPFA+gAHXWHNylRoQ5ufjT3v
+	 vRxtb5+1KzzIXcbyGJkNLyYTNfX6dFkt1z9cxyVTdQrQ7ph0i/qX3I107yONEBFTy3
+	 FYb/lU59ijivs/2T5Q9f9A0kDvgmRDwmyO0G3cCg9B9CynqCRdfadaaoRHEUBLL4+/
+	 OhTaOkTNuJMZD+9gZpGPb2EIBKb4zwKsNVWpMYgSwjSkOMpS4v5BnNDLlMkihOSCmM
+	 a9OWH9aXhvRCA==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Tue, 23 May 2023 16:54:02 +0300 (MSK)
+	Tue, 23 May 2023 16:54:03 +0300 (MSK)
 From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
 	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
@@ -52,9 +52,9 @@ CC: <jian.hu@amlogic.com>, <kernel@sberdevices.ru>, <rockosov@gmail.com>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
 	<ddrokosov@sberdevices.ru>
-Subject: [PATCH v16 1/6] clk: meson: make pll rst bit as optional
-Date: Tue, 23 May 2023 16:53:46 +0300
-Message-ID: <20230523135351.19133-2-ddrokosov@sberdevices.ru>
+Subject: [PATCH v16 2/6] clk: meson: introduce new pll power-on sequence for A1 SoC family
+Date: Tue, 23 May 2023 16:53:47 +0300
+Message-ID: <20230523135351.19133-3-ddrokosov@sberdevices.ru>
 X-Mailer: git-send-email 2.36.0
 In-Reply-To: <20230523135351.19133-1-ddrokosov@sberdevices.ru>
 References: <20230523135351.19133-1-ddrokosov@sberdevices.ru>
@@ -70,8 +70,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/23 12:15:00 #21372692
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230523_065408_936769_F19B0171 
-X-CRM114-Status: GOOD (  13.32  )
+X-CRM114-CacheID: sfid-20230523_065408_900859_327FFA47 
+X-CRM114-Status: GOOD (  14.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,81 +88,78 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Compared with the previous SoCs, self-adaption current module
-is newly added for A1, and there is no reset parameter except the
-fixed pll. Since we use clk-pll generic driver for A1 pll
-implementation, rst bit should be optional to support new behavior.
+Modern meson PLL IPs are a little bit different from early known PLLs.
+The main difference is located in the init/enable/disable sequences; the
+rate logic is the same.
+
+In A1 PLL, the PLL enable sequence is different, so add new optional pll
+reg bits and use the new power-on sequence to enable the PLL:
+    1. enable the pll, delay for 10us
+    2. enable the pll self-adaption current module, delay for 40us
+    3. enable the lock detect module
 
 Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 ---
- drivers/clk/meson/clk-pll.c | 24 +++++++++++++++++-------
- 1 file changed, 17 insertions(+), 7 deletions(-)
+ drivers/clk/meson/clk-pll.c | 23 +++++++++++++++++++++++
+ drivers/clk/meson/clk-pll.h |  2 ++
+ 2 files changed, 25 insertions(+)
 
 diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index afefeba6e458..314ca945a4d0 100644
+index 314ca945a4d0..56ec2210f1ad 100644
 --- a/drivers/clk/meson/clk-pll.c
 +++ b/drivers/clk/meson/clk-pll.c
-@@ -295,10 +295,14 @@ static int meson_clk_pll_init(struct clk_hw *hw)
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+@@ -358,6 +358,25 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
+ 	if (MESON_PARM_APPLICABLE(&pll->rst))
+ 		meson_parm_write(clk->map, &pll->rst, 0);
  
- 	if (pll->init_count) {
--		meson_parm_write(clk->map, &pll->rst, 1);
-+		if (MESON_PARM_APPLICABLE(&pll->rst))
-+			meson_parm_write(clk->map, &pll->rst, 1);
++	/*
++	 * Compared with the previous SoCs, self-adaption current module
++	 * is newly added for A1, keep the new power-on sequence to enable the
++	 * PLL. The sequence is:
++	 * 1. enable the pll, delay for 10us
++	 * 2. enable the pll self-adaption current module, delay for 40us
++	 * 3. enable the lock detect module
++	 */
++	if (MESON_PARM_APPLICABLE(&pll->current_en)) {
++		usleep_range(10, 20);
++		meson_parm_write(clk->map, &pll->current_en, 1);
++		usleep_range(40, 50);
++	};
 +
- 		regmap_multi_reg_write(clk->map, pll->init_regs,
- 				       pll->init_count);
--		meson_parm_write(clk->map, &pll->rst, 0);
++	if (MESON_PARM_APPLICABLE(&pll->l_detect)) {
++		meson_parm_write(clk->map, &pll->l_detect, 1);
++		meson_parm_write(clk->map, &pll->l_detect, 0);
++	}
 +
-+		if (MESON_PARM_APPLICABLE(&pll->rst))
-+			meson_parm_write(clk->map, &pll->rst, 0);
- 	}
- 
- 	return 0;
-@@ -309,8 +313,11 @@ static int meson_clk_pll_is_enabled(struct clk_hw *hw)
- 	struct clk_regmap *clk = to_clk_regmap(hw);
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
- 
--	if (meson_parm_read(clk->map, &pll->rst) ||
--	    !meson_parm_read(clk->map, &pll->en) ||
-+	if (MESON_PARM_APPLICABLE(&pll->rst) &&
-+	    meson_parm_read(clk->map, &pll->rst))
-+		return 0;
-+
-+	if (!meson_parm_read(clk->map, &pll->en) ||
- 	    !meson_parm_read(clk->map, &pll->l))
- 		return 0;
- 
-@@ -341,13 +348,15 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
- 		return 0;
- 
- 	/* Make sure the pll is in reset */
--	meson_parm_write(clk->map, &pll->rst, 1);
-+	if (MESON_PARM_APPLICABLE(&pll->rst))
-+		meson_parm_write(clk->map, &pll->rst, 1);
- 
- 	/* Enable the pll */
- 	meson_parm_write(clk->map, &pll->en, 1);
- 
- 	/* Take the pll out reset */
--	meson_parm_write(clk->map, &pll->rst, 0);
-+	if (MESON_PARM_APPLICABLE(&pll->rst))
-+		meson_parm_write(clk->map, &pll->rst, 0);
- 
  	if (meson_clk_pll_wait_lock(hw))
  		return -EIO;
-@@ -361,7 +370,8 @@ static void meson_clk_pll_disable(struct clk_hw *hw)
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
  
- 	/* Put the pll is in reset */
--	meson_parm_write(clk->map, &pll->rst, 1);
-+	if (MESON_PARM_APPLICABLE(&pll->rst))
-+		meson_parm_write(clk->map, &pll->rst, 1);
+@@ -375,6 +394,10 @@ static void meson_clk_pll_disable(struct clk_hw *hw)
  
  	/* Disable the pll */
  	meson_parm_write(clk->map, &pll->en, 0);
++
++	/* Disable PLL internal self-adaption current module */
++	if (MESON_PARM_APPLICABLE(&pll->current_en))
++		meson_parm_write(clk->map, &pll->current_en, 0);
+ }
+ 
+ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
+index 367efd0f6410..a2228c0fdce5 100644
+--- a/drivers/clk/meson/clk-pll.h
++++ b/drivers/clk/meson/clk-pll.h
+@@ -36,6 +36,8 @@ struct meson_clk_pll_data {
+ 	struct parm frac;
+ 	struct parm l;
+ 	struct parm rst;
++	struct parm current_en;
++	struct parm l_detect;
+ 	const struct reg_sequence *init_regs;
+ 	unsigned int init_count;
+ 	const struct pll_params_table *table;
 -- 
 2.36.0
 
