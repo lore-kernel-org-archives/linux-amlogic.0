@@ -4,61 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5207BC7EE23
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 May 2023 13:54:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 288C7C7EE26
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 May 2023 17:22:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=05ASmEbfY4bPdZsLzdOsClcnzj120CXAOJdiXMdENQo=; b=XuTOoZbXoQ6ZXp
-	93W+ga9QLjq5bQIgsCeuURiF3TZvEhshXs66JIZm+knD3TygkXPi9Up5nY7MHFcHhvUz4b9lgq4vB
-	3f2FWoY6adsFDrEoQ1jcQYDuvZRl6b4sBQ+lAZN4kMlOM8hlV7ZwWNHEdUFj6LZhPGUz0eb65KUWh
-	u5QFWC24GF1NYs+/pGMoHen4cmeytlBroG8VJuQghiwbSYFG6k37FH17cKn3cHBXFE7oXa81tw2AB
-	b2TA0B9VsJ4sqoTJDmyXizFx398qFK2jNbP3wBJBVBdxa4Kia3hvXZsSEMY0fDTOPR+kv/w1x5ecD
-	QWVPdx6EwRCrepxIB3uw==;
+	List-Owner; bh=4Lc+P6eE0jKKrdyqW9YAKw3Iv0xSxODh2FBAJ0gjC9g=; b=p/j4jhEbzXBhzy
+	YkxHdVw63m0PDg96/52if65i9Gq2/CnfiSkHxtRVq6o5tUoXlEElMDgGNfji1QR1hMfLOyXsfFbX2
+	+2meLrrgmuA3J5nx/ejn8XAyqGCwjhvmibQzDg7TYsgIRhtz2ke/sp4ckKK6jYdxKU2kY5s3Gbo8c
+	iz8mPgs4TarM10k4oL9i28zuHf0fSd4JE7l89GLXs4RTXrduWV9TMOGgT12eetON1uytCE+Z6O+8b
+	QXx+S4lt+cCUhdLYk9rVGVc+IqcHvKMdhwu9mzKeZ0q52BuAx+1upqrCALUEvlSM7uhcxCeUhm4vd
+	cplEcx1G39loOdfGbsEg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q1STC-00AQRP-2p;
-	Tue, 23 May 2023 13:54:34 +0000
+	id 1q1Vhm-00AwY3-0v;
+	Tue, 23 May 2023 17:21:50 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q1SSq-00AQFq-11;
-	Tue, 23 May 2023 13:54:18 +0000
+	id 1q1Vhh-00AwUf-0N;
+	Tue, 23 May 2023 17:21:48 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 659985FD64;
-	Tue, 23 May 2023 16:54:07 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id 015CF5FD1D;
+	Tue, 23 May 2023 20:21:38 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1684850047;
-	bh=JTXLSfOfMPWexmiuFxtk4kxPaMKBebNuJHldS002HmI=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=MZGaFOKnyMpKtVogIjRwOfbG02Fh9cZxhSKoulEasmkWEuXMVgwQZzJu6iceh883M
-	 6VfTTqxJQw0sfM+A+/HvaWcQqsZ2m5yMjMcK+Hq8kqrkS0JPZAp/Xox0EDBIS9/NNW
-	 RRZzpi6FH7OtsEBzb3i8Q+1+sSTZIcgiSp370J4YgYsDNr5oNfcHtMcjfQnizgfhHF
-	 FqbbKO5QegHCKkg3NFCcm0NvBZcsCrltcqm/J3mU8QxoQrcs8RxUAg0A860EkT4sSm
-	 HMGGZfMzHT2tMwsmGXwkGivTPfS1gQNdi6fENvBBrThFTU6THA1BuE7XX6yLgPBF5c
-	 7vZnxkNg/EIHQ==
+	s=mail; t=1684862498;
+	bh=mzLt5EJCdpfxSrQ1d30MhCajOUon/3fTlDAmZQS6bbQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	b=ZQ0X0K9iA3a4or2mJPCWQ+WeSWKI4TfYB307mHBnp0PjJHQ1iwVakF8DyWpHTYCIm
+	 ZLV0CIVew2F6/gUZKS4vZVDqSIlCyvr2oDyEHZskzZTuoe5/K8I7ubc0qO/wNhbByJ
+	 gbS4AMOEwFPOks4xyh9BmimadVXOium9/V6Wi5udKQD4hMF6/WU21w5nXvNRuo+j+z
+	 SD4OPh2xUgX142plg+lfjtmvp4ZfNDwOQr5qkbODZREvD2nXh06Zyu5RNULtGtr2aK
+	 ZEFghCd6uqo5gj79EOoBgrsT7DnDffQTGbFAJgaalQhMcCmtlwcagxg/Ar+IYC2hrN
+	 7bckuB8+ZS0Lw==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Tue, 23 May 2023 16:54:07 +0300 (MSK)
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>
-CC: <jian.hu@amlogic.com>, <kernel@sberdevices.ru>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
-	<ddrokosov@sberdevices.ru>
-Subject: [PATCH v16 6/6] clk: meson: a1: add Amlogic A1 Peripherals clock controller driver
-Date: Tue, 23 May 2023 16:53:51 +0300
-Message-ID: <20230523135351.19133-7-ddrokosov@sberdevices.ru>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20230523135351.19133-1-ddrokosov@sberdevices.ru>
-References: <20230523135351.19133-1-ddrokosov@sberdevices.ru>
+	Tue, 23 May 2023 20:21:36 +0300 (MSK)
+Message-ID: <ebbc26e3-6a1c-eead-051c-8f93beba41f3@sberdevices.ru>
+Date: Tue, 23 May 2023 20:17:14 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v4 2/5] mtd: rawnand: meson: move OOB to non-protected ECC
+ area
+Content-Language: en-US
+To: Miquel Raynal <miquel.raynal@bootlin.com>, Liang Yang
+	<liang.yang@amlogic.com>
+CC: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
+	<vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+	<khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Yixun Lan
+	<yixun.lan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+	<oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230515094440.3552094-1-AVKrasnov@sberdevices.ru>
+ <20230515094440.3552094-3-AVKrasnov@sberdevices.ru>
+ <20230522173334.7aa6f917@xps-13>
+From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <20230522173334.7aa6f917@xps-13>
 X-Originating-IP: [172.16.1.6]
 X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
  S-MS-EXCH01.sberdevices.ru (172.16.1.4)
@@ -70,8 +76,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/23 12:15:00 #21372692
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230523_065412_902575_F75C9DD2 
-X-CRM114-Status: GOOD (  21.80  )
+X-CRM114-CacheID: sfid-20230523_102146_014224_B0D2097E 
+X-CRM114-Status: GOOD (  44.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,2435 +89,307 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Introduce Peripherals clock controller for Amlogic A1 SoC family.
-
-A1 SoC has four clock controllers on the board: PLL, Peripherals, CPU,
-and Audio.
-This patchset adds support for Amlogic A1 Peripherals clock driver and
-allows to generate clocks for all A1 SoC peripheral IPs.
-
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
----
- drivers/clk/meson/Kconfig          |   10 +
- drivers/clk/meson/Makefile         |    1 +
- drivers/clk/meson/a1-peripherals.c | 2243 ++++++++++++++++++++++++++++
- drivers/clk/meson/a1-peripherals.h |  113 ++
- 4 files changed, 2367 insertions(+)
- create mode 100644 drivers/clk/meson/a1-peripherals.c
- create mode 100644 drivers/clk/meson/a1-peripherals.h
-
-diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-index 693c4cf60f27..8ce846fdbe43 100644
---- a/drivers/clk/meson/Kconfig
-+++ b/drivers/clk/meson/Kconfig
-@@ -109,6 +109,16 @@ config COMMON_CLK_A1_PLL
- 	  device, A1 SoC Family. Say Y if you want A1 PLL clock controller
- 	  to work.
- 
-+config COMMON_CLK_A1_PERIPHERALS
-+	tristate "Amlogic A1 SoC Peripherals clock controller support"
-+	depends on ARM64
-+	select COMMON_CLK_MESON_DUALDIV
-+	select COMMON_CLK_MESON_REGMAP
-+	help
-+	  Support for the Peripherals clock controller on Amlogic A113L based
-+	  device, A1 SoC Family. Say Y if you want A1 Peripherals clock
-+	  controller to work.
-+
- config COMMON_CLK_G12A
- 	tristate "G12 and SM1 SoC clock controllers support"
- 	depends on ARM64
-diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-index 2f17f475a48f..d5288662881d 100644
---- a/drivers/clk/meson/Makefile
-+++ b/drivers/clk/meson/Makefile
-@@ -17,6 +17,7 @@ obj-$(CONFIG_COMMON_CLK_MESON_VID_PLL_DIV) += vid-pll-div.o
- obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
- obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
- obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
-+obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
- obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
- obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
- obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
-diff --git a/drivers/clk/meson/a1-peripherals.c b/drivers/clk/meson/a1-peripherals.c
-new file mode 100644
-index 000000000000..b320134fefeb
---- /dev/null
-+++ b/drivers/clk/meson/a1-peripherals.c
-@@ -0,0 +1,2243 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-+ * Author: Jian Hu <jian.hu@amlogic.com>
-+ *
-+ * Copyright (c) 2023, SberDevices. All Rights Reserved.
-+ * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include "a1-peripherals.h"
-+#include "clk-dualdiv.h"
-+#include "clk-regmap.h"
-+
-+static struct clk_regmap xtal_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = SYS_OSCIN_CTRL,
-+		.bit_idx = 0,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "xtal_in",
-+		.ops = &clk_regmap_gate_ro_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "xtal",
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap fixpll_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = SYS_OSCIN_CTRL,
-+		.bit_idx = 1,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "fixpll_in",
-+		.ops = &clk_regmap_gate_ro_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "xtal",
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap usb_phy_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = SYS_OSCIN_CTRL,
-+		.bit_idx = 2,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "usb_phy_in",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "xtal",
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap usb_ctrl_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = SYS_OSCIN_CTRL,
-+		.bit_idx = 3,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "usb_ctrl_in",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "xtal",
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap hifipll_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = SYS_OSCIN_CTRL,
-+		.bit_idx = 4,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "hifipll_in",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "xtal",
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap syspll_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = SYS_OSCIN_CTRL,
-+		.bit_idx = 5,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "syspll_in",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "xtal",
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap dds_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = SYS_OSCIN_CTRL,
-+		.bit_idx = 6,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "dds_in",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "xtal",
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap rtc_32k_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = RTC_BY_OSCIN_CTRL0,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "rtc_32k_in",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "xtal",
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static const struct meson_clk_dualdiv_param clk_32k_div_table[] = {
-+	{
-+		.dual		= 1,
-+		.n1		= 733,
-+		.m1		= 8,
-+		.n2		= 732,
-+		.m2		= 11,
-+	},
-+	{}
-+};
-+
-+static struct clk_regmap rtc_32k_div = {
-+	.data = &(struct meson_clk_dualdiv_data){
-+		.n1 = {
-+			.reg_off = RTC_BY_OSCIN_CTRL0,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.n2 = {
-+			.reg_off = RTC_BY_OSCIN_CTRL0,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.m1 = {
-+			.reg_off = RTC_BY_OSCIN_CTRL1,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.m2 = {
-+			.reg_off = RTC_BY_OSCIN_CTRL1,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.dual = {
-+			.reg_off = RTC_BY_OSCIN_CTRL0,
-+			.shift   = 28,
-+			.width   = 1,
-+		},
-+		.table = clk_32k_div_table,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "rtc_32k_div",
-+		.ops = &meson_clk_dualdiv_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&rtc_32k_in.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap rtc_32k_xtal = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = RTC_BY_OSCIN_CTRL1,
-+		.bit_idx = 24,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "rtc_32k_xtal",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&rtc_32k_in.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap rtc_32k_sel = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = RTC_CTRL,
-+		.mask = 0x3,
-+		.shift = 0,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "rtc_32k_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&rtc_32k_xtal.hw,
-+			&rtc_32k_div.hw,
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+struct clk_regmap rtc = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = RTC_BY_OSCIN_CTRL0,
-+		.bit_idx = 30,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "rtc",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&rtc_32k_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static u32 mux_table_sys[] = { 0, 1, 2, 3, 7 };
-+static const struct clk_parent_data sys_parents[] = {
-+	{ .fw_name = "xtal" },
-+	{ .fw_name = "fclk_div2" },
-+	{ .fw_name = "fclk_div3" },
-+	{ .fw_name = "fclk_div5" },
-+	{ .hw = &rtc.hw },
-+};
-+
-+static struct clk_regmap sys_b_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = SYS_CLK_CTRL0,
-+		.mask = 0x7,
-+		.shift = 26,
-+		.table = mux_table_sys,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "sys_b_sel",
-+		.ops = &clk_regmap_mux_ro_ops,
-+		.parent_data = sys_parents,
-+		.num_parents = ARRAY_SIZE(sys_parents),
-+	},
-+};
-+
-+static struct clk_regmap sys_b_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = SYS_CLK_CTRL0,
-+		.shift = 16,
-+		.width = 10,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "sys_b_div",
-+		.ops = &clk_regmap_divider_ro_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&sys_b_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap sys_b = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = SYS_CLK_CTRL0,
-+		.bit_idx = 29,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "sys_b",
-+		.ops = &clk_regmap_gate_ro_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&sys_b_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap sys_a_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = SYS_CLK_CTRL0,
-+		.mask = 0x7,
-+		.shift = 10,
-+		.table = mux_table_sys,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "sys_a_sel",
-+		.ops = &clk_regmap_mux_ro_ops,
-+		.parent_data = sys_parents,
-+		.num_parents = ARRAY_SIZE(sys_parents),
-+	},
-+};
-+
-+static struct clk_regmap sys_a_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = SYS_CLK_CTRL0,
-+		.shift = 0,
-+		.width = 10,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "sys_a_div",
-+		.ops = &clk_regmap_divider_ro_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&sys_a_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap sys_a = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = SYS_CLK_CTRL0,
-+		.bit_idx = 13,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "sys_a",
-+		.ops = &clk_regmap_gate_ro_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&sys_a_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap sys = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = SYS_CLK_CTRL0,
-+		.mask = 0x1,
-+		.shift = 31,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "sys",
-+		.ops = &clk_regmap_mux_ro_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&sys_a.hw,
-+			&sys_b.hw,
-+		},
-+		.num_parents = 2,
-+		/*
-+		 * This clock is used by APB bus which is set in boot ROM code
-+		 * and is required by the platform to operate correctly.
-+		 * Until the following condition are met, we need this clock to
-+		 * be marked as critical:
-+		 * a) Mark the clock used by a firmware resource, if possible
-+		 * b) CCF has a clock hand-off mechanism to make the sure the
-+		 *    clock stays on until the proper driver comes along
-+		 */
-+		.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
-+	},
-+};
-+
-+static u32 mux_table_dsp_ab[] = { 0, 1, 2, 3, 4, 7 };
-+static const struct clk_parent_data dsp_ab_parent_data[] = {
-+	{ .fw_name = "xtal", },
-+	{ .fw_name = "fclk_div2", },
-+	{ .fw_name = "fclk_div3", },
-+	{ .fw_name = "fclk_div5", },
-+	{ .fw_name = "hifi_pll", },
-+	{ .hw = &rtc.hw },
-+};
-+
-+static struct clk_regmap dspa_a_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = DSPA_CLK_CTRL0,
-+		.mask = 0x7,
-+		.shift = 10,
-+		.table = mux_table_dsp_ab,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "dspa_a_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = dsp_ab_parent_data,
-+		.num_parents = ARRAY_SIZE(dsp_ab_parent_data),
-+	},
-+};
-+
-+static struct clk_regmap dspa_a_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = DSPA_CLK_CTRL0,
-+		.shift = 0,
-+		.width = 10,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "dspa_a_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dspa_a_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dspa_a = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = DSPA_CLK_CTRL0,
-+		.bit_idx = 13,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "dspa_a",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dspa_a_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dspa_b_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = DSPA_CLK_CTRL0,
-+		.mask = 0x7,
-+		.shift = 26,
-+		.table = mux_table_dsp_ab,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "dspa_b_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = dsp_ab_parent_data,
-+		.num_parents = ARRAY_SIZE(dsp_ab_parent_data),
-+	},
-+};
-+
-+static struct clk_regmap dspa_b_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = DSPA_CLK_CTRL0,
-+		.shift = 16,
-+		.width = 10,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "dspa_b_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dspa_b_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dspa_b = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = DSPA_CLK_CTRL0,
-+		.bit_idx = 29,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "dspa_b",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dspa_b_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dspa_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = DSPA_CLK_CTRL0,
-+		.mask = 0x1,
-+		.shift = 15,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "dspa_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dspa_a.hw,
-+			&dspa_b.hw,
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dspa_en = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = DSPA_CLK_EN,
-+		.bit_idx = 1,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "dspa_en",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dspa_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dspa_en_nic = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = DSPA_CLK_EN,
-+		.bit_idx = 0,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "dspa_en_nic",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dspa_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dspb_a_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = DSPB_CLK_CTRL0,
-+		.mask = 0x7,
-+		.shift = 10,
-+		.table = mux_table_dsp_ab,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "dspb_a_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = dsp_ab_parent_data,
-+		.num_parents = ARRAY_SIZE(dsp_ab_parent_data),
-+	},
-+};
-+
-+static struct clk_regmap dspb_a_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = DSPB_CLK_CTRL0,
-+		.shift = 0,
-+		.width = 10,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "dspb_a_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dspb_a_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dspb_a = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = DSPB_CLK_CTRL0,
-+		.bit_idx = 13,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "dspb_a",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dspb_a_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dspb_b_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = DSPB_CLK_CTRL0,
-+		.mask = 0x7,
-+		.shift = 26,
-+		.table = mux_table_dsp_ab,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "dspb_b_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = dsp_ab_parent_data,
-+		.num_parents = ARRAY_SIZE(dsp_ab_parent_data),
-+	},
-+};
-+
-+static struct clk_regmap dspb_b_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = DSPB_CLK_CTRL0,
-+		.shift = 16,
-+		.width = 10,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "dspb_b_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dspb_b_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dspb_b = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = DSPB_CLK_CTRL0,
-+		.bit_idx = 29,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "dspb_b",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dspb_b_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dspb_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = DSPB_CLK_CTRL0,
-+		.mask = 0x1,
-+		.shift = 15,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "dspb_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dspb_a.hw,
-+			&dspb_b.hw,
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dspb_en = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = DSPB_CLK_EN,
-+		.bit_idx = 1,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "dspb_en",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dspb_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dspb_en_nic = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = DSPB_CLK_EN,
-+		.bit_idx = 0,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "dspb_en_nic",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dspb_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap clk_24m = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = CLK12_24_CTRL,
-+		.bit_idx = 11,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "24m",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "xtal",
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor clk_24m_div2 = {
-+	.mult = 1,
-+	.div = 2,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "24m_div2",
-+		.ops = &clk_fixed_factor_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&clk_24m.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap clk_12m = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = CLK12_24_CTRL,
-+		.bit_idx = 10,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "12m",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&clk_24m_div2.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap fclk_div2_divn_pre = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = CLK12_24_CTRL,
-+		.shift = 0,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div2_divn_pre",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "fclk_div2",
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap fclk_div2_divn = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = CLK12_24_CTRL,
-+		.bit_idx = 12,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div2_divn",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&fclk_div2_divn_pre.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+/*
-+ * the index 2 is sys_pll_div16, it will be implemented in the CPU clock driver,
-+ * the index 4 is the clock measurement source, it's not supported yet
-+ */
-+static u32 gen_table[] = { 0, 1, 3, 5, 6, 7, 8 };
-+static const struct clk_parent_data gen_parent_data[] = {
-+	{ .fw_name = "xtal", },
-+	{ .hw = &rtc.hw },
-+	{ .fw_name = "hifi_pll", },
-+	{ .fw_name = "fclk_div2", },
-+	{ .fw_name = "fclk_div3", },
-+	{ .fw_name = "fclk_div5", },
-+	{ .fw_name = "fclk_div7", },
-+};
-+
-+static struct clk_regmap gen_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = GEN_CLK_CTRL,
-+		.mask = 0xf,
-+		.shift = 12,
-+		.table = gen_table,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "gen_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = gen_parent_data,
-+		.num_parents = ARRAY_SIZE(gen_parent_data),
-+		/*
-+		 * The GEN clock can be connected to an external pad, so it
-+		 * may be set up directly from the device tree. Additionally,
-+		 * the GEN clock can be inherited from a more accurate RTC
-+		 * clock, so in certain situations, it may be necessary
-+		 * to freeze its parent.
-+		 */
-+		.flags = CLK_SET_RATE_NO_REPARENT,
-+	},
-+};
-+
-+static struct clk_regmap gen_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = GEN_CLK_CTRL,
-+		.shift = 0,
-+		.width = 11,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "gen_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&gen_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap gen = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = GEN_CLK_CTRL,
-+		.bit_idx = 11,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "gen",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&gen_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap saradc_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = SAR_ADC_CLK_CTRL,
-+		.mask = 0x1,
-+		.shift = 9,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "saradc_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = (const struct clk_parent_data []) {
-+			{ .fw_name = "xtal", },
-+			{ .hw = &sys.hw, },
-+		},
-+		.num_parents = 2,
-+	},
-+};
-+
-+static struct clk_regmap saradc_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = SAR_ADC_CLK_CTRL,
-+		.shift = 0,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "saradc_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&saradc_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap saradc = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = SAR_ADC_CLK_CTRL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "saradc",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&saradc_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static const struct clk_parent_data pwm_abcd_parents[] = {
-+	{ .fw_name = "xtal", },
-+	{ .hw = &sys.hw },
-+	{ .hw = &rtc.hw },
-+};
-+
-+static struct clk_regmap pwm_a_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = PWM_CLK_AB_CTRL,
-+		.mask = 0x1,
-+		.shift = 9,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "pwm_a_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = pwm_abcd_parents,
-+		.num_parents = ARRAY_SIZE(pwm_abcd_parents),
-+	},
-+};
-+
-+static struct clk_regmap pwm_a_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = PWM_CLK_AB_CTRL,
-+		.shift = 0,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "pwm_a_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&pwm_a_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap pwm_a = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = PWM_CLK_AB_CTRL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "pwm_a",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&pwm_a_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap pwm_b_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = PWM_CLK_AB_CTRL,
-+		.mask = 0x1,
-+		.shift = 25,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "pwm_b_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = pwm_abcd_parents,
-+		.num_parents = ARRAY_SIZE(pwm_abcd_parents),
-+	},
-+};
-+
-+static struct clk_regmap pwm_b_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = PWM_CLK_AB_CTRL,
-+		.shift = 16,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "pwm_b_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&pwm_b_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap pwm_b = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = PWM_CLK_AB_CTRL,
-+		.bit_idx = 24,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "pwm_b",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&pwm_b_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap pwm_c_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = PWM_CLK_CD_CTRL,
-+		.mask = 0x1,
-+		.shift = 9,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "pwm_c_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = pwm_abcd_parents,
-+		.num_parents = ARRAY_SIZE(pwm_abcd_parents),
-+	},
-+};
-+
-+static struct clk_regmap pwm_c_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = PWM_CLK_CD_CTRL,
-+		.shift = 0,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "pwm_c_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&pwm_c_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap pwm_c = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = PWM_CLK_CD_CTRL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "pwm_c",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&pwm_c_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap pwm_d_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = PWM_CLK_CD_CTRL,
-+		.mask = 0x1,
-+		.shift = 25,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "pwm_d_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = pwm_abcd_parents,
-+		.num_parents = ARRAY_SIZE(pwm_abcd_parents),
-+	},
-+};
-+
-+static struct clk_regmap pwm_d_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = PWM_CLK_CD_CTRL,
-+		.shift = 16,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "pwm_d_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&pwm_d_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap pwm_d = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = PWM_CLK_CD_CTRL,
-+		.bit_idx = 24,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "pwm_d",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&pwm_d_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static const struct clk_parent_data pwm_ef_parents[] = {
-+	{ .fw_name = "xtal", },
-+	{ .hw = &sys.hw },
-+	{ .fw_name = "fclk_div5", },
-+	{ .hw = &rtc.hw },
-+};
-+
-+static struct clk_regmap pwm_e_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = PWM_CLK_EF_CTRL,
-+		.mask = 0x3,
-+		.shift = 9,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "pwm_e_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = pwm_ef_parents,
-+		.num_parents = ARRAY_SIZE(pwm_ef_parents),
-+	},
-+};
-+
-+static struct clk_regmap pwm_e_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = PWM_CLK_EF_CTRL,
-+		.shift = 0,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "pwm_e_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&pwm_e_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap pwm_e = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = PWM_CLK_EF_CTRL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "pwm_e",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&pwm_e_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap pwm_f_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = PWM_CLK_EF_CTRL,
-+		.mask = 0x3,
-+		.shift = 25,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "pwm_f_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = pwm_ef_parents,
-+		.num_parents = ARRAY_SIZE(pwm_ef_parents),
-+	},
-+};
-+
-+static struct clk_regmap pwm_f_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = PWM_CLK_EF_CTRL,
-+		.shift = 16,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "pwm_f_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&pwm_f_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap pwm_f = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = PWM_CLK_EF_CTRL,
-+		.bit_idx = 24,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "pwm_f",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&pwm_f_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+/*
-+ * spicc clk
-+ *   fdiv2   |\         |\       _____
-+ *  ---------| |---DIV--| |     |     |    spicc out
-+ *  ---------| |        | |-----|GATE |---------
-+ *     ..... |/         | /     |_____|
-+ *  --------------------|/
-+ *                 24M
-+ */
-+static const struct clk_parent_data spicc_spifc_parents[] = {
-+	{ .fw_name = "fclk_div2"},
-+	{ .fw_name = "fclk_div3"},
-+	{ .fw_name = "fclk_div5"},
-+	{ .fw_name = "hifi_pll" },
-+};
-+
-+static struct clk_regmap spicc_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = SPICC_CLK_CTRL,
-+		.mask = 0x3,
-+		.shift = 9,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "spicc_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = spicc_spifc_parents,
-+		.num_parents = ARRAY_SIZE(spicc_spifc_parents),
-+	},
-+};
-+
-+static struct clk_regmap spicc_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = SPICC_CLK_CTRL,
-+		.shift = 0,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "spicc_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&spicc_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap spicc_sel2 = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = SPICC_CLK_CTRL,
-+		.mask = 0x1,
-+		.shift = 15,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "spicc_sel2",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = (const struct clk_parent_data []) {
-+			{ .hw = &spicc_div.hw },
-+			{ .fw_name = "xtal", },
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap spicc = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = SPICC_CLK_CTRL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "spicc",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&spicc_sel2.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap ts_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = TS_CLK_CTRL,
-+		.shift = 0,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ts_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "xtal",
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap ts = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = TS_CLK_CTRL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "ts",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&ts_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap spifc_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = SPIFC_CLK_CTRL,
-+		.mask = 0x3,
-+		.shift = 9,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "spifc_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = spicc_spifc_parents,
-+		.num_parents = ARRAY_SIZE(spicc_spifc_parents),
-+	},
-+};
-+
-+static struct clk_regmap spifc_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = SPIFC_CLK_CTRL,
-+		.shift = 0,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "spifc_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&spifc_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap spifc_sel2 = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = SPIFC_CLK_CTRL,
-+		.mask = 0x1,
-+		.shift = 15,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "spifc_sel2",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = (const struct clk_parent_data []) {
-+			{ .hw = &spifc_div.hw },
-+			{ .fw_name = "xtal", },
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap spifc = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = SPIFC_CLK_CTRL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "spifc",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&spifc_sel2.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static const struct clk_parent_data usb_bus_parents[] = {
-+	{ .fw_name = "xtal", },
-+	{ .hw = &sys.hw },
-+	{ .fw_name = "fclk_div3", },
-+	{ .fw_name = "fclk_div5", },
-+};
-+
-+static struct clk_regmap usb_bus_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = USB_BUSCLK_CTRL,
-+		.mask = 0x3,
-+		.shift = 9,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "usb_bus_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = usb_bus_parents,
-+		.num_parents = ARRAY_SIZE(usb_bus_parents),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap usb_bus_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = USB_BUSCLK_CTRL,
-+		.shift = 0,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "usb_bus_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&usb_bus_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap usb_bus = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = USB_BUSCLK_CTRL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "usb_bus",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&usb_bus_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static const struct clk_parent_data sd_emmc_psram_dmc_parents[] = {
-+	{ .fw_name = "fclk_div2", },
-+	{ .fw_name = "fclk_div3", },
-+	{ .fw_name = "fclk_div5", },
-+	{ .fw_name = "hifi_pll", },
-+};
-+
-+static struct clk_regmap sd_emmc_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = SD_EMMC_CLK_CTRL,
-+		.mask = 0x3,
-+		.shift = 9,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "sd_emmc_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = sd_emmc_psram_dmc_parents,
-+		.num_parents = ARRAY_SIZE(sd_emmc_psram_dmc_parents),
-+	},
-+};
-+
-+static struct clk_regmap sd_emmc_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = SD_EMMC_CLK_CTRL,
-+		.shift = 0,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "sd_emmc_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&sd_emmc_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap sd_emmc_sel2 = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = SD_EMMC_CLK_CTRL,
-+		.mask = 0x1,
-+		.shift = 15,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "sd_emmc_sel2",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = (const struct clk_parent_data []) {
-+			{ .hw = &sd_emmc_div.hw },
-+			{ .fw_name = "xtal", },
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap sd_emmc = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = SD_EMMC_CLK_CTRL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "sd_emmc",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&sd_emmc_sel2.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap psram_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = PSRAM_CLK_CTRL,
-+		.mask = 0x3,
-+		.shift = 9,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "psram_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = sd_emmc_psram_dmc_parents,
-+		.num_parents = ARRAY_SIZE(sd_emmc_psram_dmc_parents),
-+	},
-+};
-+
-+static struct clk_regmap psram_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = PSRAM_CLK_CTRL,
-+		.shift = 0,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "psram_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&psram_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap psram_sel2 = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = PSRAM_CLK_CTRL,
-+		.mask = 0x1,
-+		.shift = 15,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "psram_sel2",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = (const struct clk_parent_data []) {
-+			{ .hw = &psram_div.hw },
-+			{ .fw_name = "xtal", },
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap psram = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = PSRAM_CLK_CTRL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "psram",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&psram_sel2.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dmc_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = DMC_CLK_CTRL,
-+		.mask = 0x3,
-+		.shift = 9,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "dmc_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = sd_emmc_psram_dmc_parents,
-+		.num_parents = ARRAY_SIZE(sd_emmc_psram_dmc_parents),
-+	},
-+};
-+
-+static struct clk_regmap dmc_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = DMC_CLK_CTRL,
-+		.shift = 0,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "dmc_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dmc_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dmc_sel2 = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = DMC_CLK_CTRL,
-+		.mask = 0x1,
-+		.shift = 15,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "dmc_sel2",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = (const struct clk_parent_data []) {
-+			{ .hw = &dmc_div.hw },
-+			{ .fw_name = "xtal", },
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap dmc = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = DMC_CLK_CTRL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "dmc",
-+		.ops = &clk_regmap_gate_ro_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&dmc_sel2.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap ceca_32k_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = CECA_CLK_CTRL0,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "ceca_32k_in",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "xtal",
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap ceca_32k_div = {
-+	.data = &(struct meson_clk_dualdiv_data){
-+		.n1 = {
-+			.reg_off = CECA_CLK_CTRL0,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.n2 = {
-+			.reg_off = CECA_CLK_CTRL0,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.m1 = {
-+			.reg_off = CECA_CLK_CTRL1,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.m2 = {
-+			.reg_off = CECA_CLK_CTRL1,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.dual = {
-+			.reg_off = CECA_CLK_CTRL0,
-+			.shift   = 28,
-+			.width   = 1,
-+		},
-+		.table = clk_32k_div_table,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ceca_32k_div",
-+		.ops = &meson_clk_dualdiv_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&ceca_32k_in.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap ceca_32k_sel_pre = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = CECA_CLK_CTRL1,
-+		.mask = 0x1,
-+		.shift = 24,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ceca_32k_sel_pre",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&ceca_32k_div.hw,
-+			&ceca_32k_in.hw,
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap ceca_32k_sel = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = CECA_CLK_CTRL1,
-+		.mask = 0x1,
-+		.shift = 31,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ceca_32k_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&ceca_32k_sel_pre.hw,
-+			&rtc.hw,
-+		},
-+		.num_parents = 2,
-+	},
-+};
-+
-+static struct clk_regmap ceca_32k_out = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = CECA_CLK_CTRL0,
-+		.bit_idx = 30,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ceca_32k_out",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&ceca_32k_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap cecb_32k_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = CECB_CLK_CTRL0,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "cecb_32k_in",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "xtal",
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap cecb_32k_div = {
-+	.data = &(struct meson_clk_dualdiv_data){
-+		.n1 = {
-+			.reg_off = CECB_CLK_CTRL0,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.n2 = {
-+			.reg_off = CECB_CLK_CTRL0,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.m1 = {
-+			.reg_off = CECB_CLK_CTRL1,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.m2 = {
-+			.reg_off = CECB_CLK_CTRL1,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.dual = {
-+			.reg_off = CECB_CLK_CTRL0,
-+			.shift   = 28,
-+			.width   = 1,
-+		},
-+		.table = clk_32k_div_table,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "cecb_32k_div",
-+		.ops = &meson_clk_dualdiv_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&cecb_32k_in.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap cecb_32k_sel_pre = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = CECB_CLK_CTRL1,
-+		.mask = 0x1,
-+		.shift = 24,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "cecb_32k_sel_pre",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&cecb_32k_div.hw,
-+			&cecb_32k_in.hw,
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap cecb_32k_sel = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = CECB_CLK_CTRL1,
-+		.mask = 0x1,
-+		.shift = 31,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "cecb_32k_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&cecb_32k_sel_pre.hw,
-+			&rtc.hw,
-+		},
-+		.num_parents = 2,
-+	},
-+};
-+
-+static struct clk_regmap cecb_32k_out = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = CECB_CLK_CTRL0,
-+		.bit_idx = 30,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "cecb_32k_out",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&cecb_32k_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+#define MESON_GATE(_name, _reg, _bit) \
-+	MESON_PCLK(_name, _reg, _bit, &sys.hw)
-+
-+static MESON_GATE(clktree,	SYS_CLK_EN0,	0);
-+static MESON_GATE(reset_ctrl,	SYS_CLK_EN0,	1);
-+static MESON_GATE(analog_ctrl,	SYS_CLK_EN0,	2);
-+static MESON_GATE(pwr_ctrl,	SYS_CLK_EN0,	3);
-+static MESON_GATE(pad_ctrl,	SYS_CLK_EN0,	4);
-+static MESON_GATE(sys_ctrl,	SYS_CLK_EN0,	5);
-+static MESON_GATE(temp_sensor,	SYS_CLK_EN0,	6);
-+static MESON_GATE(am2axi_dev,	SYS_CLK_EN0,	7);
-+static MESON_GATE(spicc_b,	SYS_CLK_EN0,	8);
-+static MESON_GATE(spicc_a,	SYS_CLK_EN0,	9);
-+static MESON_GATE(msr,		SYS_CLK_EN0,	10);
-+static MESON_GATE(audio,	SYS_CLK_EN0,	11);
-+static MESON_GATE(jtag_ctrl,	SYS_CLK_EN0,	12);
-+static MESON_GATE(saradc_en,	SYS_CLK_EN0,	13);
-+static MESON_GATE(pwm_ef,	SYS_CLK_EN0,	14);
-+static MESON_GATE(pwm_cd,	SYS_CLK_EN0,	15);
-+static MESON_GATE(pwm_ab,	SYS_CLK_EN0,	16);
-+static MESON_GATE(cec,		SYS_CLK_EN0,	17);
-+static MESON_GATE(i2c_s,	SYS_CLK_EN0,	18);
-+static MESON_GATE(ir_ctrl,	SYS_CLK_EN0,	19);
-+static MESON_GATE(i2c_m_d,	SYS_CLK_EN0,	20);
-+static MESON_GATE(i2c_m_c,	SYS_CLK_EN0,	21);
-+static MESON_GATE(i2c_m_b,	SYS_CLK_EN0,	22);
-+static MESON_GATE(i2c_m_a,	SYS_CLK_EN0,	23);
-+static MESON_GATE(acodec,	SYS_CLK_EN0,	24);
-+static MESON_GATE(otp,		SYS_CLK_EN0,	25);
-+static MESON_GATE(sd_emmc_a,	SYS_CLK_EN0,	26);
-+static MESON_GATE(usb_phy,	SYS_CLK_EN0,	27);
-+static MESON_GATE(usb_ctrl,	SYS_CLK_EN0,	28);
-+static MESON_GATE(sys_dspb,	SYS_CLK_EN0,	29);
-+static MESON_GATE(sys_dspa,	SYS_CLK_EN0,	30);
-+static MESON_GATE(dma,		SYS_CLK_EN0,	31);
-+static MESON_GATE(irq_ctrl,	SYS_CLK_EN1,	0);
-+static MESON_GATE(nic,		SYS_CLK_EN1,	1);
-+static MESON_GATE(gic,		SYS_CLK_EN1,	2);
-+static MESON_GATE(uart_c,	SYS_CLK_EN1,	3);
-+static MESON_GATE(uart_b,	SYS_CLK_EN1,	4);
-+static MESON_GATE(uart_a,	SYS_CLK_EN1,	5);
-+static MESON_GATE(sys_psram,	SYS_CLK_EN1,	6);
-+static MESON_GATE(rsa,		SYS_CLK_EN1,	8);
-+static MESON_GATE(coresight,	SYS_CLK_EN1,	9);
-+static MESON_GATE(am2axi_vad,	AXI_CLK_EN,	0);
-+static MESON_GATE(audio_vad,	AXI_CLK_EN,	1);
-+static MESON_GATE(axi_dmc,	AXI_CLK_EN,	3);
-+static MESON_GATE(axi_psram,	AXI_CLK_EN,	4);
-+static MESON_GATE(ramb,		AXI_CLK_EN,	5);
-+static MESON_GATE(rama,		AXI_CLK_EN,	6);
-+static MESON_GATE(axi_spifc,	AXI_CLK_EN,	7);
-+static MESON_GATE(axi_nic,	AXI_CLK_EN,	8);
-+static MESON_GATE(axi_dma,	AXI_CLK_EN,	9);
-+static MESON_GATE(cpu_ctrl,	AXI_CLK_EN,	10);
-+static MESON_GATE(rom,		AXI_CLK_EN,	11);
-+static MESON_GATE(prod_i2c,	AXI_CLK_EN,	12);
-+
-+/* Array of all clocks registered by this provider */
-+static struct clk_hw_onecell_data a1_periphs_clks = {
-+	.hws = {
-+		[CLKID_XTAL_IN]			= &xtal_in.hw,
-+		[CLKID_FIXPLL_IN]		= &fixpll_in.hw,
-+		[CLKID_USB_PHY_IN]		= &usb_phy_in.hw,
-+		[CLKID_USB_CTRL_IN]		= &usb_ctrl_in.hw,
-+		[CLKID_HIFIPLL_IN]		= &hifipll_in.hw,
-+		[CLKID_SYSPLL_IN]		= &syspll_in.hw,
-+		[CLKID_DDS_IN]			= &dds_in.hw,
-+		[CLKID_SYS]			= &sys.hw,
-+		[CLKID_CLKTREE]			= &clktree.hw,
-+		[CLKID_RESET_CTRL]		= &reset_ctrl.hw,
-+		[CLKID_ANALOG_CTRL]		= &analog_ctrl.hw,
-+		[CLKID_PWR_CTRL]		= &pwr_ctrl.hw,
-+		[CLKID_PAD_CTRL]		= &pad_ctrl.hw,
-+		[CLKID_SYS_CTRL]		= &sys_ctrl.hw,
-+		[CLKID_TEMP_SENSOR]		= &temp_sensor.hw,
-+		[CLKID_AM2AXI_DIV]		= &am2axi_dev.hw,
-+		[CLKID_SPICC_B]			= &spicc_b.hw,
-+		[CLKID_SPICC_A]			= &spicc_a.hw,
-+		[CLKID_MSR]			= &msr.hw,
-+		[CLKID_AUDIO]			= &audio.hw,
-+		[CLKID_JTAG_CTRL]		= &jtag_ctrl.hw,
-+		[CLKID_SARADC_EN]		= &saradc_en.hw,
-+		[CLKID_PWM_EF]			= &pwm_ef.hw,
-+		[CLKID_PWM_CD]			= &pwm_cd.hw,
-+		[CLKID_PWM_AB]			= &pwm_ab.hw,
-+		[CLKID_CEC]			= &cec.hw,
-+		[CLKID_I2C_S]			= &i2c_s.hw,
-+		[CLKID_IR_CTRL]			= &ir_ctrl.hw,
-+		[CLKID_I2C_M_D]			= &i2c_m_d.hw,
-+		[CLKID_I2C_M_C]			= &i2c_m_c.hw,
-+		[CLKID_I2C_M_B]			= &i2c_m_b.hw,
-+		[CLKID_I2C_M_A]			= &i2c_m_a.hw,
-+		[CLKID_ACODEC]			= &acodec.hw,
-+		[CLKID_OTP]			= &otp.hw,
-+		[CLKID_SD_EMMC_A]		= &sd_emmc_a.hw,
-+		[CLKID_USB_PHY]			= &usb_phy.hw,
-+		[CLKID_USB_CTRL]		= &usb_ctrl.hw,
-+		[CLKID_SYS_DSPB]		= &sys_dspb.hw,
-+		[CLKID_SYS_DSPA]		= &sys_dspa.hw,
-+		[CLKID_DMA]			= &dma.hw,
-+		[CLKID_IRQ_CTRL]		= &irq_ctrl.hw,
-+		[CLKID_NIC]			= &nic.hw,
-+		[CLKID_GIC]			= &gic.hw,
-+		[CLKID_UART_C]			= &uart_c.hw,
-+		[CLKID_UART_B]			= &uart_b.hw,
-+		[CLKID_UART_A]			= &uart_a.hw,
-+		[CLKID_SYS_PSRAM]		= &sys_psram.hw,
-+		[CLKID_RSA]			= &rsa.hw,
-+		[CLKID_CORESIGHT]		= &coresight.hw,
-+		[CLKID_AM2AXI_VAD]		= &am2axi_vad.hw,
-+		[CLKID_AUDIO_VAD]		= &audio_vad.hw,
-+		[CLKID_AXI_DMC]			= &axi_dmc.hw,
-+		[CLKID_AXI_PSRAM]		= &axi_psram.hw,
-+		[CLKID_RAMB]			= &ramb.hw,
-+		[CLKID_RAMA]			= &rama.hw,
-+		[CLKID_AXI_SPIFC]		= &axi_spifc.hw,
-+		[CLKID_AXI_NIC]			= &axi_nic.hw,
-+		[CLKID_AXI_DMA]			= &axi_dma.hw,
-+		[CLKID_CPU_CTRL]		= &cpu_ctrl.hw,
-+		[CLKID_ROM]			= &rom.hw,
-+		[CLKID_PROC_I2C]		= &prod_i2c.hw,
-+		[CLKID_DSPA_SEL]		= &dspa_sel.hw,
-+		[CLKID_DSPB_SEL]		= &dspb_sel.hw,
-+		[CLKID_DSPA_EN]			= &dspa_en.hw,
-+		[CLKID_DSPA_EN_NIC]		= &dspa_en_nic.hw,
-+		[CLKID_DSPB_EN]			= &dspb_en.hw,
-+		[CLKID_DSPB_EN_NIC]		= &dspb_en_nic.hw,
-+		[CLKID_RTC]			= &rtc.hw,
-+		[CLKID_CECA_32K]		= &ceca_32k_out.hw,
-+		[CLKID_CECB_32K]		= &cecb_32k_out.hw,
-+		[CLKID_24M]			= &clk_24m.hw,
-+		[CLKID_12M]			= &clk_12m.hw,
-+		[CLKID_FCLK_DIV2_DIVN]		= &fclk_div2_divn.hw,
-+		[CLKID_GEN]			= &gen.hw,
-+		[CLKID_SARADC_SEL]		= &saradc_sel.hw,
-+		[CLKID_SARADC]			= &saradc.hw,
-+		[CLKID_PWM_A]			= &pwm_a.hw,
-+		[CLKID_PWM_B]			= &pwm_b.hw,
-+		[CLKID_PWM_C]			= &pwm_c.hw,
-+		[CLKID_PWM_D]			= &pwm_d.hw,
-+		[CLKID_PWM_E]			= &pwm_e.hw,
-+		[CLKID_PWM_F]			= &pwm_f.hw,
-+		[CLKID_SPICC]			= &spicc.hw,
-+		[CLKID_TS]			= &ts.hw,
-+		[CLKID_SPIFC]			= &spifc.hw,
-+		[CLKID_USB_BUS]			= &usb_bus.hw,
-+		[CLKID_SD_EMMC]			= &sd_emmc.hw,
-+		[CLKID_PSRAM]			= &psram.hw,
-+		[CLKID_DMC]			= &dmc.hw,
-+		[CLKID_SYS_A_SEL]		= &sys_a_sel.hw,
-+		[CLKID_SYS_A_DIV]		= &sys_a_div.hw,
-+		[CLKID_SYS_A]			= &sys_a.hw,
-+		[CLKID_SYS_B_SEL]		= &sys_b_sel.hw,
-+		[CLKID_SYS_B_DIV]		= &sys_b_div.hw,
-+		[CLKID_SYS_B]			= &sys_b.hw,
-+		[CLKID_DSPA_A_SEL]		= &dspa_a_sel.hw,
-+		[CLKID_DSPA_A_DIV]		= &dspa_a_div.hw,
-+		[CLKID_DSPA_A]			= &dspa_a.hw,
-+		[CLKID_DSPA_B_SEL]		= &dspa_b_sel.hw,
-+		[CLKID_DSPA_B_DIV]		= &dspa_b_div.hw,
-+		[CLKID_DSPA_B]			= &dspa_b.hw,
-+		[CLKID_DSPB_A_SEL]		= &dspb_a_sel.hw,
-+		[CLKID_DSPB_A_DIV]		= &dspb_a_div.hw,
-+		[CLKID_DSPB_A]			= &dspb_a.hw,
-+		[CLKID_DSPB_B_SEL]		= &dspb_b_sel.hw,
-+		[CLKID_DSPB_B_DIV]		= &dspb_b_div.hw,
-+		[CLKID_DSPB_B]			= &dspb_b.hw,
-+		[CLKID_RTC_32K_IN]		= &rtc_32k_in.hw,
-+		[CLKID_RTC_32K_DIV]		= &rtc_32k_div.hw,
-+		[CLKID_RTC_32K_XTAL]		= &rtc_32k_xtal.hw,
-+		[CLKID_RTC_32K_SEL]		= &rtc_32k_sel.hw,
-+		[CLKID_CECB_32K_IN]		= &cecb_32k_in.hw,
-+		[CLKID_CECB_32K_DIV]		= &cecb_32k_div.hw,
-+		[CLKID_CECB_32K_SEL_PRE]	= &cecb_32k_sel_pre.hw,
-+		[CLKID_CECB_32K_SEL]		= &cecb_32k_sel.hw,
-+		[CLKID_CECA_32K_IN]		= &ceca_32k_in.hw,
-+		[CLKID_CECA_32K_DIV]		= &ceca_32k_div.hw,
-+		[CLKID_CECA_32K_SEL_PRE]	= &ceca_32k_sel_pre.hw,
-+		[CLKID_CECA_32K_SEL]		= &ceca_32k_sel.hw,
-+		[CLKID_DIV2_PRE]		= &fclk_div2_divn_pre.hw,
-+		[CLKID_24M_DIV2]		= &clk_24m_div2.hw,
-+		[CLKID_GEN_SEL]			= &gen_sel.hw,
-+		[CLKID_GEN_DIV]			= &gen_div.hw,
-+		[CLKID_SARADC_DIV]		= &saradc_div.hw,
-+		[CLKID_PWM_A_SEL]		= &pwm_a_sel.hw,
-+		[CLKID_PWM_A_DIV]		= &pwm_a_div.hw,
-+		[CLKID_PWM_B_SEL]		= &pwm_b_sel.hw,
-+		[CLKID_PWM_B_DIV]		= &pwm_b_div.hw,
-+		[CLKID_PWM_C_SEL]		= &pwm_c_sel.hw,
-+		[CLKID_PWM_C_DIV]		= &pwm_c_div.hw,
-+		[CLKID_PWM_D_SEL]		= &pwm_d_sel.hw,
-+		[CLKID_PWM_D_DIV]		= &pwm_d_div.hw,
-+		[CLKID_PWM_E_SEL]		= &pwm_e_sel.hw,
-+		[CLKID_PWM_E_DIV]		= &pwm_e_div.hw,
-+		[CLKID_PWM_F_SEL]		= &pwm_f_sel.hw,
-+		[CLKID_PWM_F_DIV]		= &pwm_f_div.hw,
-+		[CLKID_SPICC_SEL]		= &spicc_sel.hw,
-+		[CLKID_SPICC_DIV]		= &spicc_div.hw,
-+		[CLKID_SPICC_SEL2]		= &spicc_sel2.hw,
-+		[CLKID_TS_DIV]			= &ts_div.hw,
-+		[CLKID_SPIFC_SEL]		= &spifc_sel.hw,
-+		[CLKID_SPIFC_DIV]		= &spifc_div.hw,
-+		[CLKID_SPIFC_SEL2]		= &spifc_sel2.hw,
-+		[CLKID_USB_BUS_SEL]		= &usb_bus_sel.hw,
-+		[CLKID_USB_BUS_DIV]		= &usb_bus_div.hw,
-+		[CLKID_SD_EMMC_SEL]		= &sd_emmc_sel.hw,
-+		[CLKID_SD_EMMC_DIV]		= &sd_emmc_div.hw,
-+		[CLKID_SD_EMMC_SEL2]		= &sd_emmc_sel2.hw,
-+		[CLKID_PSRAM_SEL]		= &psram_sel.hw,
-+		[CLKID_PSRAM_DIV]		= &psram_div.hw,
-+		[CLKID_PSRAM_SEL2]		= &psram_sel2.hw,
-+		[CLKID_DMC_SEL]			= &dmc_sel.hw,
-+		[CLKID_DMC_DIV]			= &dmc_div.hw,
-+		[CLKID_DMC_SEL2]		= &dmc_sel2.hw,
-+		[NR_CLKS]			= NULL,
-+	},
-+	.num = NR_CLKS,
-+};
-+
-+/* Convenience table to populate regmap in .probe */
-+static struct clk_regmap *const a1_periphs_regmaps[] = {
-+	&xtal_in,
-+	&fixpll_in,
-+	&usb_phy_in,
-+	&usb_ctrl_in,
-+	&hifipll_in,
-+	&syspll_in,
-+	&dds_in,
-+	&sys,
-+	&clktree,
-+	&reset_ctrl,
-+	&analog_ctrl,
-+	&pwr_ctrl,
-+	&pad_ctrl,
-+	&sys_ctrl,
-+	&temp_sensor,
-+	&am2axi_dev,
-+	&spicc_b,
-+	&spicc_a,
-+	&msr,
-+	&audio,
-+	&jtag_ctrl,
-+	&saradc_en,
-+	&pwm_ef,
-+	&pwm_cd,
-+	&pwm_ab,
-+	&cec,
-+	&i2c_s,
-+	&ir_ctrl,
-+	&i2c_m_d,
-+	&i2c_m_c,
-+	&i2c_m_b,
-+	&i2c_m_a,
-+	&acodec,
-+	&otp,
-+	&sd_emmc_a,
-+	&usb_phy,
-+	&usb_ctrl,
-+	&sys_dspb,
-+	&sys_dspa,
-+	&dma,
-+	&irq_ctrl,
-+	&nic,
-+	&gic,
-+	&uart_c,
-+	&uart_b,
-+	&uart_a,
-+	&sys_psram,
-+	&rsa,
-+	&coresight,
-+	&am2axi_vad,
-+	&audio_vad,
-+	&axi_dmc,
-+	&axi_psram,
-+	&ramb,
-+	&rama,
-+	&axi_spifc,
-+	&axi_nic,
-+	&axi_dma,
-+	&cpu_ctrl,
-+	&rom,
-+	&prod_i2c,
-+	&dspa_sel,
-+	&dspb_sel,
-+	&dspa_en,
-+	&dspa_en_nic,
-+	&dspb_en,
-+	&dspb_en_nic,
-+	&rtc,
-+	&ceca_32k_out,
-+	&cecb_32k_out,
-+	&clk_24m,
-+	&clk_12m,
-+	&fclk_div2_divn,
-+	&gen,
-+	&saradc_sel,
-+	&saradc,
-+	&pwm_a,
-+	&pwm_b,
-+	&pwm_c,
-+	&pwm_d,
-+	&pwm_e,
-+	&pwm_f,
-+	&spicc,
-+	&ts,
-+	&spifc,
-+	&usb_bus,
-+	&sd_emmc,
-+	&psram,
-+	&dmc,
-+	&sys_a_sel,
-+	&sys_a_div,
-+	&sys_a,
-+	&sys_b_sel,
-+	&sys_b_div,
-+	&sys_b,
-+	&dspa_a_sel,
-+	&dspa_a_div,
-+	&dspa_a,
-+	&dspa_b_sel,
-+	&dspa_b_div,
-+	&dspa_b,
-+	&dspb_a_sel,
-+	&dspb_a_div,
-+	&dspb_a,
-+	&dspb_b_sel,
-+	&dspb_b_div,
-+	&dspb_b,
-+	&rtc_32k_in,
-+	&rtc_32k_div,
-+	&rtc_32k_xtal,
-+	&rtc_32k_sel,
-+	&cecb_32k_in,
-+	&cecb_32k_div,
-+	&cecb_32k_sel_pre,
-+	&cecb_32k_sel,
-+	&ceca_32k_in,
-+	&ceca_32k_div,
-+	&ceca_32k_sel_pre,
-+	&ceca_32k_sel,
-+	&fclk_div2_divn_pre,
-+	&gen_sel,
-+	&gen_div,
-+	&saradc_div,
-+	&pwm_a_sel,
-+	&pwm_a_div,
-+	&pwm_b_sel,
-+	&pwm_b_div,
-+	&pwm_c_sel,
-+	&pwm_c_div,
-+	&pwm_d_sel,
-+	&pwm_d_div,
-+	&pwm_e_sel,
-+	&pwm_e_div,
-+	&pwm_f_sel,
-+	&pwm_f_div,
-+	&spicc_sel,
-+	&spicc_div,
-+	&spicc_sel2,
-+	&ts_div,
-+	&spifc_sel,
-+	&spifc_div,
-+	&spifc_sel2,
-+	&usb_bus_sel,
-+	&usb_bus_div,
-+	&sd_emmc_sel,
-+	&sd_emmc_div,
-+	&sd_emmc_sel2,
-+	&psram_sel,
-+	&psram_div,
-+	&psram_sel2,
-+	&dmc_sel,
-+	&dmc_div,
-+	&dmc_sel2,
-+};
-+
-+static struct regmap_config a1_periphs_regmap_cfg = {
-+	.reg_bits   = 32,
-+	.val_bits   = 32,
-+	.reg_stride = 4,
-+};
-+
-+static int meson_a1_periphs_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	void __iomem *base;
-+	struct regmap *map;
-+	int clkid, i, err;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return dev_err_probe(dev, PTR_ERR(base),
-+				     "can't ioremap resource\n");
-+
-+	map = devm_regmap_init_mmio(dev, base, &a1_periphs_regmap_cfg);
-+	if (IS_ERR(map))
-+		return dev_err_probe(dev, PTR_ERR(map),
-+				     "can't init regmap mmio region\n");
-+
-+	/* Populate regmap for the regmap backed clocks */
-+	for (i = 0; i < ARRAY_SIZE(a1_periphs_regmaps); i++)
-+		a1_periphs_regmaps[i]->map = map;
-+
-+	for (clkid = 0; clkid < a1_periphs_clks.num; clkid++) {
-+		err = devm_clk_hw_register(dev, a1_periphs_clks.hws[clkid]);
-+		if (err)
-+			return dev_err_probe(dev, err,
-+					     "clock[%d] registration failed\n",
-+					     clkid);
-+	}
-+
-+	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-+					   &a1_periphs_clks);
-+}
-+
-+static const struct of_device_id a1_periphs_clkc_match_table[] = {
-+	{ .compatible = "amlogic,a1-peripherals-clkc", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, a1_periphs_clkc_match_table);
-+
-+static struct platform_driver a1_periphs_clkc_driver = {
-+	.probe = meson_a1_periphs_probe,
-+	.driver = {
-+		.name = "a1-peripherals-clkc",
-+		.of_match_table = a1_periphs_clkc_match_table,
-+	},
-+};
-+
-+module_platform_driver(a1_periphs_clkc_driver);
-+MODULE_AUTHOR("Jian Hu <jian.hu@amlogic.com>");
-+MODULE_AUTHOR("Dmitry Rokosov <ddrokosov@sberdevices.ru>");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/clk/meson/a1-peripherals.h b/drivers/clk/meson/a1-peripherals.h
-new file mode 100644
-index 000000000000..526fc9ba5c9f
---- /dev/null
-+++ b/drivers/clk/meson/a1-peripherals.h
-@@ -0,0 +1,113 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+/*
-+ * Amlogic A1 Peripherals Clock Controller internals
-+ *
-+ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-+ * Author: Jian Hu <jian.hu@amlogic.com>
-+ *
-+ * Copyright (c) 2023, SberDevices. All Rights Reserved.
-+ * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-+ */
-+
-+#ifndef __A1_PERIPHERALS_H
-+#define __A1_PERIPHERALS_H
-+
-+/* peripherals clock controller register offset */
-+#define SYS_OSCIN_CTRL		0x0
-+#define RTC_BY_OSCIN_CTRL0	0x4
-+#define RTC_BY_OSCIN_CTRL1	0x8
-+#define RTC_CTRL		0xc
-+#define SYS_CLK_CTRL0		0x10
-+#define SYS_CLK_EN0		0x1c
-+#define SYS_CLK_EN1		0x20
-+#define AXI_CLK_EN		0x24
-+#define DSPA_CLK_EN		0x28
-+#define DSPB_CLK_EN		0x2c
-+#define DSPA_CLK_CTRL0		0x30
-+#define DSPB_CLK_CTRL0		0x34
-+#define CLK12_24_CTRL		0x38
-+#define GEN_CLK_CTRL		0x3c
-+#define SAR_ADC_CLK_CTRL	0xc0
-+#define PWM_CLK_AB_CTRL		0xc4
-+#define PWM_CLK_CD_CTRL		0xc8
-+#define PWM_CLK_EF_CTRL		0xcc
-+#define SPICC_CLK_CTRL		0xd0
-+#define TS_CLK_CTRL		0xd4
-+#define SPIFC_CLK_CTRL		0xd8
-+#define USB_BUSCLK_CTRL		0xdc
-+#define SD_EMMC_CLK_CTRL	0xe0
-+#define CECA_CLK_CTRL0		0xe4
-+#define CECA_CLK_CTRL1		0xe8
-+#define CECB_CLK_CTRL0		0xec
-+#define CECB_CLK_CTRL1		0xf0
-+#define PSRAM_CLK_CTRL		0xf4
-+#define DMC_CLK_CTRL		0xf8
-+
-+/* include the CLKIDs that have been made part of the DT binding */
-+#include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
-+
-+/*
-+ * CLKID index values for internal clocks
-+ *
-+ * These indices are entirely contrived and do not map onto the hardware.
-+ * It has now been decided to expose everything by default in the DT header:
-+ * include/dt-bindings/clock/a1-peripherals-clkc.h.
-+ * Only the clocks ids we don't want to expose, such as the internal muxes and
-+ * dividers of composite clocks, will remain defined here.
-+ */
-+#define CLKID_XTAL_IN		0
-+#define CLKID_DSPA_SEL		61
-+#define CLKID_DSPB_SEL		62
-+#define CLKID_SARADC_SEL	74
-+#define CLKID_SYS_A_SEL		89
-+#define CLKID_SYS_A_DIV		90
-+#define CLKID_SYS_A		91
-+#define CLKID_SYS_B_SEL		92
-+#define CLKID_SYS_B_DIV		93
-+#define CLKID_SYS_B		94
-+#define CLKID_DSPA_A_DIV	96
-+#define CLKID_DSPA_A		97
-+#define CLKID_DSPA_B_DIV	99
-+#define CLKID_DSPA_B		100
-+#define CLKID_DSPB_A_DIV	102
-+#define CLKID_DSPB_A		103
-+#define CLKID_DSPB_B_DIV	105
-+#define CLKID_DSPB_B		106
-+#define CLKID_RTC_32K_IN	107
-+#define CLKID_RTC_32K_DIV	108
-+#define CLKID_RTC_32K_XTAL	109
-+#define CLKID_RTC_32K_SEL	110
-+#define CLKID_CECB_32K_IN	111
-+#define CLKID_CECB_32K_DIV	112
-+#define CLKID_CECA_32K_IN	115
-+#define CLKID_CECA_32K_DIV	116
-+#define CLKID_DIV2_PRE		119
-+#define CLKID_24M_DIV2		120
-+#define CLKID_GEN_DIV		122
-+#define CLKID_SARADC_DIV	123
-+#define CLKID_PWM_A_DIV		125
-+#define CLKID_PWM_B_DIV		127
-+#define CLKID_PWM_C_DIV		129
-+#define CLKID_PWM_D_DIV		131
-+#define CLKID_PWM_E_DIV		133
-+#define CLKID_PWM_F_DIV		135
-+#define CLKID_SPICC_SEL		136
-+#define CLKID_SPICC_DIV		137
-+#define CLKID_SPICC_SEL2	138
-+#define CLKID_TS_DIV		139
-+#define CLKID_SPIFC_SEL		140
-+#define CLKID_SPIFC_DIV		141
-+#define CLKID_SPIFC_SEL2	142
-+#define CLKID_USB_BUS_SEL	143
-+#define CLKID_USB_BUS_DIV	144
-+#define CLKID_SD_EMMC_SEL	145
-+#define CLKID_SD_EMMC_DIV	146
-+#define CLKID_PSRAM_SEL		148
-+#define CLKID_PSRAM_DIV		149
-+#define CLKID_PSRAM_SEL2	150
-+#define CLKID_DMC_SEL		151
-+#define CLKID_DMC_DIV		152
-+#define CLKID_DMC_SEL2		153
-+#define NR_CLKS			154
-+
-+#endif /* __A1_PERIPHERALS_H */
--- 
-2.36.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGVsbG8gTWlxdWVsISBUaGFua3MgZm9yIGRldGFpbGVkIHJldmlldyEKCk9uIDIyLjA1LjIwMjMg
+MTg6MzMsIE1pcXVlbCBSYXluYWwgd3JvdGU6Cj4gSGkgQXJzZW5peSwKPiAKPiBBVktyYXNub3ZA
+c2JlcmRldmljZXMucnUgd3JvdGUgb24gTW9uLCAxNSBNYXkgMjAyMyAxMjo0NDozNiArMDMwMDoK
+PiAKPiBUaGUgdGl0bGUgc2hvdWxkIHBlcmhhcHMgYmUgIm9ubHkgZXhwb3NlIHVucHJvdGVjdGVk
+IHVzZXIgT09CIGJ5dGVzIi4KPiAKPj4gVGhpcyBtb3ZlcyBmcmVlIGJ5dGVzIG9mIE9PQiB0byBu
+b24tcHJvdGVjdGVkIEVDQyBhcmVhLiBJdCBpcyBuZWVkZWQgdG8KPj4gbWFrZSBKRkZTMiB3b3Jr
+cyBjb3JyZWN0bHkgd2l0aCB0aGlzIE5BTkQgY29udHJvbGxlci4gUHJvYmxlbSBmaXJlcyB3aGVu
+Cj4+IEpGRlMyIGRyaXZlciB3cml0ZXMgY2xlYW5tYXJrZXIgdG8gc29tZSBwYWdlIGFuZCBsYXRl
+ciBpdCB0cmllcyB0byB3cml0ZQo+PiB0byB0aGlzIHBhZ2UgLSB3cml0ZSB3aWxsIGJlIGRvbmUg
+c3VjY2Vzc2Z1bGx5LCBidXQgYWZ0ZXIgdGhhdCBzdWNoIHBhZ2UKPj4gYmVjb21lcyB1bnJlYWRh
+YmxlIGR1ZSB0byBpbnZhbGlkIEVDQyBjb2Rlcy4gVGhpcyBoYXBwZW5zIGJlY2F1c2Ugc2Vjb25k
+Cj4+IHdyaXRlIG5lZWRzIHRvIHVwZGF0ZSBFQ0MgY29kZXMsIGJ1dCBpdCBpcyBpbXBvc3NpYmxl
+IHRvIGRvIGl0IGNvcnJlY3RseQo+PiB3aXRob3V0IGJsb2NrIGVyYXNlLiBTbyBpZGVhIG9mIHRo
+aXMgcGF0Y2ggaXMgdG8KPiAKPiAiLi4uIGlzIHRvIHVzZSB0aGUgdW5wcm90ZWN0ZWQgT09CIGFy
+ZWEgdG8gc3RvcmUgdGhlIGNsZWFubWFya2Vycywgc28KPiB0aGF0IHRoZXkgY2FuIGJlIHdyaXR0
+ZW4gYnkgdGhlIGZpbGVzeXN0ZW0gd2l0aG91dCBjYXJpbmcgbXVjaCBhYm91dAo+IHRoZSBwYWdl
+IGJlaW5nIGVtcHR5IG9yIG5vdDogdGhlIEVDQyBjb2RlcyB3aWxsIG5vdCBiZSB3cml0dGVuIGFu
+eXdheS4iCj4gPwoKT2sKCj4gCj4gSkZGUzIgaXMgb25seSB1c2VmdWwgb24gdGlueSBOQU5EIGRl
+dmljZXMsIHdoZXJlIFVCSSBkb2VzIG5vdCBmaXQsCj4gd2hpY2ggYXJlIHVzdWFsbHkgdHJ1ZSBT
+TEMgZmxhc2hlcywgd2l0aCB0aGUgY2FwYWJpbGl0eSBvZiB3cml0aW5nCj4gYSBwYWdlIHdpdGgg
+ZW1wdHkgKDB4RkYpIGRhdGEsIGFuZCBzdGlsbCBiZSBhYmxlIHRvIHdyaXRlIGFjdHVhbCBkYXRh
+Cj4gdG8gaXQgbGF0ZXIgaW4gYSBzZWNvbmQgd3JpdGUuCgpZb3UgbWVhbiB0byBpbmNsdWRlIHRl
+eHQgYWJvdmUgdG8gY29tbWl0IG1lc3NhZ2UgYWxzbz8KCj4gCj4+IHNwbGl0IGFjY2Vzc2VzIHRv
+IE9PQgo+PiBmcmVlIGJ5dGVzIGFuZCBkYXRhIG9uIGVhY2ggcGFnZSAtIG5vdyBib3RoIG9mIHRo
+ZW0gZG9lcyBub3QgZGVwZW5kcyBvbgo+PiBlYWNoIG90aGVyLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5
+OiBBcnNlbml5IEtyYXNub3YgPEFWS3Jhc25vdkBzYmVyZGV2aWNlcy5ydT4KPj4gLS0tCj4+ICBk
+cml2ZXJzL210ZC9uYW5kL3Jhdy9tZXNvbl9uYW5kLmMgfCAxOTIgKysrKysrKysrKysrKysrKysr
+KysrKysrLS0tLS0tCj4+ICAxIGZpbGUgY2hhbmdlZCwgMTU1IGluc2VydGlvbnMoKyksIDM3IGRl
+bGV0aW9ucygtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVzb25f
+bmFuZC5jIGIvZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVzb25fbmFuZC5jCj4+IGluZGV4IDJmNGQ4
+Yzg0MTg2Yi4uODUyNmE2Yjg3NzIwIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL210ZC9uYW5kL3Jh
+dy9tZXNvbl9uYW5kLmMKPj4gKysrIGIvZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVzb25fbmFuZC5j
+Cj4+IEBAIC0xMDgsNiArMTA4LDkgQEAKPj4gIAo+PiAgI2RlZmluZSBQRVJfSU5GT19CWVRFCQk4
+Cj4+ICAKPj4gKyNkZWZpbmUgTkZDX1VTRVJfQllURVMJCTIKPj4gKyNkZWZpbmUgTkZDX09PQl9Q
+RVJfRUNDKG5hbmQpCSgobmFuZCktPmVjYy5ieXRlcyArIE5GQ19VU0VSX0JZVEVTKQo+PiArCj4+
+ICBzdHJ1Y3QgbWVzb25fbmZjX25hbmRfY2hpcCB7Cj4+ICAJc3RydWN0IGxpc3RfaGVhZCBub2Rl
+Owo+PiAgCXN0cnVjdCBuYW5kX2NoaXAgbmFuZDsKPj4gQEAgLTEyMiw2ICsxMjUsNyBAQCBzdHJ1
+Y3QgbWVzb25fbmZjX25hbmRfY2hpcCB7Cj4+ICAJdTggKmRhdGFfYnVmOwo+PiAgCV9fbGU2NCAq
+aW5mb19idWY7Cj4+ICAJdTMyIG5zZWxzOwo+PiArCXU4ICpvb2JfYnVmOwo+PiAgCXU4IHNlbHNb
+XTsKPj4gIH07Cj4+ICAKPj4gQEAgLTMzOCw3ICszNDIsNyBAQCBzdGF0aWMgdTggKm1lc29uX25m
+Y19vb2JfcHRyKHN0cnVjdCBuYW5kX2NoaXAgKm5hbmQsIGludCBpKQo+PiAgCXN0cnVjdCBtZXNv
+bl9uZmNfbmFuZF9jaGlwICptZXNvbl9jaGlwID0gdG9fbWVzb25fbmFuZChuYW5kKTsKPj4gIAlp
+bnQgbGVuOwo+PiAgCj4+IC0JbGVuID0gbmFuZC0+ZWNjLnNpemUgKiAoaSArIDEpICsgKG5hbmQt
+PmVjYy5ieXRlcyArIDIpICogaTsKPj4gKwlsZW4gPSBuYW5kLT5lY2Muc2l6ZSAqIChpICsgMSkg
+KyBORkNfT09CX1BFUl9FQ0MobmFuZCkgKiBpOwo+IAo+IFRoaXMuLi4KPiAKPj4gIAo+PiAgCXJl
+dHVybiBtZXNvbl9jaGlwLT5kYXRhX2J1ZiArIGxlbjsKPj4gIH0KPj4gQEAgLTM0OSw3ICszNTMs
+NyBAQCBzdGF0aWMgdTggKm1lc29uX25mY19kYXRhX3B0cihzdHJ1Y3QgbmFuZF9jaGlwICpuYW5k
+LCBpbnQgaSkKPj4gIAlpbnQgbGVuLCB0ZW1wOwo+PiAgCj4+ICAJdGVtcCA9IG5hbmQtPmVjYy5z
+aXplICsgbmFuZC0+ZWNjLmJ5dGVzOwo+PiAtCWxlbiA9ICh0ZW1wICsgMikgKiBpOwo+PiArCWxl
+biA9ICh0ZW1wICsgTkZDX1VTRVJfQllURVMpICogaTsKPiAKPiAuLi4gYW5kIHRoaXMgKHNhbWUg
+YmVsb3cpCj4gCj4gYXJlIHB1cmVseSBjb3NtZXRpYywgc2hvdWxkIGJlIGluIGEgcGF0Y2ggYXNp
+ZGUuCj4gCgpBY2ssIGknbGwgbW92ZSBjb3NtZXRpYyB1cGRhdGVzIHRvIHNlcGFyYXRlIHBhdGNo
+LgoKPj4gIAo+PiAgCXJldHVybiBtZXNvbl9jaGlwLT5kYXRhX2J1ZiArIGxlbjsKPj4gIH0KPj4g
+QEAgLTM1NywyOSArMzYxLDQ3IEBAIHN0YXRpYyB1OCAqbWVzb25fbmZjX2RhdGFfcHRyKHN0cnVj
+dCBuYW5kX2NoaXAgKm5hbmQsIGludCBpKQo+PiAgc3RhdGljIHZvaWQgbWVzb25fbmZjX2dldF9k
+YXRhX29vYihzdHJ1Y3QgbmFuZF9jaGlwICpuYW5kLAo+PiAgCQkJCSAgIHU4ICpidWYsIHU4ICpv
+b2JidWYpCj4+ICB7Cj4+ICsJc3RydWN0IG1lc29uX25mY19uYW5kX2NoaXAgKm1lc29uX2NoaXAg
+PSB0b19tZXNvbl9uYW5kKG5hbmQpOwo+PiArCXN0cnVjdCBtdGRfaW5mbyAqbXRkID0gbmFuZF90
+b19tdGQobmFuZCk7Cj4+ICAJaW50IGksIG9vYl9sZW4gPSAwOwo+PiAgCXU4ICpkc3JjLCAqb3Ny
+YzsKPj4gKwl1OCAqb29idGFpbDsKPj4gIAo+PiAtCW9vYl9sZW4gPSBuYW5kLT5lY2MuYnl0ZXMg
+KyAyOwo+PiArCW9vYl9sZW4gPSBORkNfT09CX1BFUl9FQ0MobmFuZCk7Cj4+ICAJZm9yIChpID0g
+MDsgaSA8IG5hbmQtPmVjYy5zdGVwczsgaSsrKSB7Cj4+ICAJCWlmIChidWYpIHsKPj4gIAkJCWRz
+cmMgPSBtZXNvbl9uZmNfZGF0YV9wdHIobmFuZCwgaSk7Cj4+ICAJCQltZW1jcHkoYnVmLCBkc3Jj
+LCBuYW5kLT5lY2Muc2l6ZSk7Cj4+ICAJCQlidWYgKz0gbmFuZC0+ZWNjLnNpemU7Cj4+ICAJCX0K
+Pj4gLQkJb3NyYyA9IG1lc29uX25mY19vb2JfcHRyKG5hbmQsIGkpOwo+PiAtCQltZW1jcHkob29i
+YnVmLCBvc3JjLCBvb2JfbGVuKTsKPj4gLQkJb29iYnVmICs9IG9vYl9sZW47Cj4+ICsKPj4gKwkJ
+aWYgKG9vYmJ1Zikgewo+PiArCQkJb3NyYyA9IG1lc29uX25mY19vb2JfcHRyKG5hbmQsIGkpOwo+
+PiArCQkJbWVtY3B5KG9vYmJ1Ziwgb3NyYywgb29iX2xlbik7Cj4+ICsJCQlvb2JidWYgKz0gb29i
+X2xlbjsKPj4gKwkJfQo+PiAgCX0KPj4gKwo+PiArCWlmICghb29iYnVmKQo+PiArCQlyZXR1cm47
+Cj4gCj4gVGhlIHdob2xlICJpZiAob29iYnVmKSIgbG9naWMgaXMgbmljZSB0byBoYXZlLCBidXQg
+c2hvdWxkIGFzIHdlbGwgYmUgaW4KPiBhIGRlZGljYXRlZCBwYXRjaC4KClNvcnJ5LCBZb3UgbWVh
+biB0aGF0IHRoaXMgbG9naWMgaW1wbGVtZW50cyByZWFkIG9mIEVDQyBjb2Rlcz8gQW5kIG5vdApy
+ZWxhdGVkIHRvIE9PQiBsYXlvdXQgdXBkYXRlIGluIHRoaXMgcGF0Y2g/Cgo+IAo+PiArCj4+ICsJ
+b29idGFpbCA9IG1lc29uX2NoaXAtPmRhdGFfYnVmICsgbmFuZC0+ZWNjLnN0ZXBzICoKPj4gKwkJ
+ICAobmFuZC0+ZWNjLnNpemUgKyBvb2JfbGVuKTsKPj4gKwo+PiArCS8qICdvb2JidWYnIGlmIGFs
+cmVhZHkgc2hpZnRlZCB0byB0aGUgc3RhcnQgb2YgdW51c2VkIGFyZWEuICovCj4gCj4gCQkgICAg
+aXM/Cj4gcy91bnVzZWQvdXNlci8/IEknbSBub3Qgc3VyZSBJIGdldCB0aGUgY29tbWVudC4KClll
+cywgbm90IGNsZWFyIGNvbW1lbnQuCgo+IAo+PiArCW1lbWNweShvb2JidWYsIG9vYnRhaWwsIG10
+ZC0+b29ic2l6ZSAtIG5hbmQtPmVjYy5zdGVwcyAqIG9vYl9sZW4pOwo+PiAgfQo+PiAgCj4+ICBz
+dGF0aWMgdm9pZCBtZXNvbl9uZmNfc2V0X2RhdGFfb29iKHN0cnVjdCBuYW5kX2NoaXAgKm5hbmQs
+Cj4+ICAJCQkJICAgY29uc3QgdTggKmJ1ZiwgdTggKm9vYmJ1ZikKPj4gIHsKPj4gKwlzdHJ1Y3Qg
+bWVzb25fbmZjX25hbmRfY2hpcCAqbWVzb25fY2hpcCA9IHRvX21lc29uX25hbmQobmFuZCk7Cj4+
+ICsJc3RydWN0IG10ZF9pbmZvICptdGQgPSBuYW5kX3RvX210ZChuYW5kKTsKPj4gIAlpbnQgaSwg
+b29iX2xlbiA9IDA7Cj4+ICAJdTggKmRzcmMsICpvc3JjOwo+PiArCXU4ICpvb2J0YWlsOwo+PiAg
+Cj4+IC0Jb29iX2xlbiA9IG5hbmQtPmVjYy5ieXRlcyArIDI7Cj4+ICsJb29iX2xlbiA9IE5GQ19P
+T0JfUEVSX0VDQyhuYW5kKTsKPj4gIAlmb3IgKGkgPSAwOyBpIDwgbmFuZC0+ZWNjLnN0ZXBzOyBp
+KyspIHsKPj4gIAkJaWYgKGJ1Zikgewo+PiAgCQkJZHNyYyA9IG1lc29uX25mY19kYXRhX3B0cihu
+YW5kLCBpKTsKPj4gQEAgLTM5MCw2ICs0MTIsMTIgQEAgc3RhdGljIHZvaWQgbWVzb25fbmZjX3Nl
+dF9kYXRhX29vYihzdHJ1Y3QgbmFuZF9jaGlwICpuYW5kLAo+PiAgCQltZW1jcHkob3NyYywgb29i
+YnVmLCBvb2JfbGVuKTsKPj4gIAkJb29iYnVmICs9IG9vYl9sZW47Cj4+ICAJfQo+PiArCj4+ICsJ
+b29idGFpbCA9IG1lc29uX2NoaXAtPmRhdGFfYnVmICsgbmFuZC0+ZWNjLnN0ZXBzICoKPj4gKwkJ
+ICAobmFuZC0+ZWNjLnNpemUgKyBvb2JfbGVuKTsKPj4gKwo+PiArCS8qICdvb2JidWYnIGlmIGFs
+cmVhZHkgc2hpZnRlZCB0byB0aGUgc3RhcnQgb2YgdW51c2VkIGFyZWEuICovCj4+ICsJbWVtY3B5
+KG9vYnRhaWwsIG9vYmJ1ZiwgbXRkLT5vb2JzaXplIC0gbmFuZC0+ZWNjLnN0ZXBzICogb29iX2xl
+bik7Cj4+ICB9Cj4+ICAKPj4gIHN0YXRpYyBpbnQgbWVzb25fbmZjX3F1ZXVlX3JiKHN0cnVjdCBt
+ZXNvbl9uZmMgKm5mYywgaW50IHRpbWVvdXRfbXMsIGludCBjbWRfcmVhZDApCj4+IEBAIC00MzYs
+MjUgKzQ2NCwxMiBAQCBzdGF0aWMgdm9pZCBtZXNvbl9uZmNfc2V0X3VzZXJfYnl0ZShzdHJ1Y3Qg
+bmFuZF9jaGlwICpuYW5kLCB1OCAqb29iX2J1ZikKPj4gIHsKPj4gIAlzdHJ1Y3QgbWVzb25fbmZj
+X25hbmRfY2hpcCAqbWVzb25fY2hpcCA9IHRvX21lc29uX25hbmQobmFuZCk7Cj4+ICAJX19sZTY0
+ICppbmZvOwo+PiAtCWludCBpLCBjb3VudDsKPj4gLQo+PiAtCWZvciAoaSA9IDAsIGNvdW50ID0g
+MDsgaSA8IG5hbmQtPmVjYy5zdGVwczsgaSsrLCBjb3VudCArPSAyKSB7Cj4+IC0JCWluZm8gPSAm
+bWVzb25fY2hpcC0+aW5mb19idWZbaV07Cj4+IC0JCSppbmZvIHw9IG9vYl9idWZbY291bnRdOwo+
+PiAtCQkqaW5mbyB8PSBvb2JfYnVmW2NvdW50ICsgMV0gPDwgODsKPj4gLQl9Cj4+IC19Cj4+IC0K
+Pj4gLXN0YXRpYyB2b2lkIG1lc29uX25mY19nZXRfdXNlcl9ieXRlKHN0cnVjdCBuYW5kX2NoaXAg
+Km5hbmQsIHU4ICpvb2JfYnVmKQo+PiAtewo+PiAtCXN0cnVjdCBtZXNvbl9uZmNfbmFuZF9jaGlw
+ICptZXNvbl9jaGlwID0gdG9fbWVzb25fbmFuZChuYW5kKTsKPj4gLQlfX2xlNjQgKmluZm87Cj4+
+IC0JaW50IGksIGNvdW50Owo+PiArCWludCBpOwo+PiAgCj4+IC0JZm9yIChpID0gMCwgY291bnQg
+PSAwOyBpIDwgbmFuZC0+ZWNjLnN0ZXBzOyBpKyssIGNvdW50ICs9IDIpIHsKPj4gKwlmb3IgKGkg
+PSAwOyBpIDwgbmFuZC0+ZWNjLnN0ZXBzOyBpKyspIHsKPj4gIAkJaW5mbyA9ICZtZXNvbl9jaGlw
+LT5pbmZvX2J1ZltpXTsKPj4gLQkJb29iX2J1Zltjb3VudF0gPSAqaW5mbzsKPj4gLQkJb29iX2J1
+Zltjb3VudCArIDFdID0gKmluZm8gPj4gODsKPj4gKwkJLyogQWx3YXlzIGlnbm9yZSB1c2VyIGJ5
+dGVzIHByb2dyYW1taW5nLiAqLwo+IAo+IFdoeT8KCkkgdGhpbmsgY29tbWVudCBtZXNzYWdlIGlz
+IHdyb25nIGEgbGl0dGxlIGJpdC4gSGVyZSAidXNlciBieXRlcyIgYXJlCnVzZXIgYnl0ZXMgcHJv
+dGVjdGVkIGJ5IEVDQyAoZS5nLiBsb2NhdGlvbiBvZiB0aGVzZSBieXRlcyBkaWZmZXJzIGZyb20g
+bmV3Ck9PQiBsYXlvdXQgaW50cm9kdWNlZCBieSB0aGlzIHBhdGNoKS4gRHVyaW5nIHBhZ2Ugd3Jp
+dGUgdGhpcyBoYXJkd2FyZQphbHdheXMgd3JpdGVzIHRoZXNlIGJ5dGVzIGFsb25nIHdpdGggZGF0
+YS4gQnV0LCBuZXcgT09CIGxheW91dCBhbHdheXMgaWdub3Jlcwp0aGVzZSA0IGJ5dGVzLCBzbyBz
+ZXQgdGhlbSB0byAweEZGIGFsd2F5cy4KCj4gCj4gQWxzbywgbWF5YmUgSSBzaG91bGQgbWVudGlv
+biB0aGUgaGVscGVyczoKPiBtdGRfb29ibGF5b3V0X2dldF9lY2NieXRlcyBhbmQgY28KPiBUaGV5
+IGFyZSB2ZXJ5IHVzZWZ1bCB0byBkZWFsIHdpdGggT09CIGJ5dGVzLiBFdmVyeXRoaW5nIHNlZW1z
+IGV4dHJlbWVseQo+IGhhcmRjb2RlZCBpbiB0aGlzIGRyaXZlciwgd2hpbGUgdGhlIHVzZXIgY2Fu
+IHR1bmUgcmVhZC93cml0ZSBPT0IKPiBvcGVyYXRpb25zLgoKVGhhbmtzIGZvciBkZXRhaWxzLCBJ
+SVVDIHRoZXNlIGhlbHBlcnMgd2lsbCB3b3JrIGNvcnJlY3RseSB3aXRoIHRoaXMgZHJpdmVyLgpX
+aGF0IG1lYW5zICJ0dW5lIiBoZXJlPwoKPiAKPj4gKwkJKmluZm8gfD0gMHhmZmZmOwo+PiAgCX0K
+Pj4gIH0KPj4gIAo+PiBAQCAtNjk4LDE4ICs3MTMsOTIgQEAgc3RhdGljIGludCBtZXNvbl9uZmNf
+d3JpdGVfcGFnZV9yYXcoc3RydWN0IG5hbmRfY2hpcCAqbmFuZCwgY29uc3QgdTggKmJ1ZiwKPj4g
+IAlyZXR1cm4gbWVzb25fbmZjX3dyaXRlX3BhZ2Vfc3ViKG5hbmQsIHBhZ2UsIDEpOwo+PiAgfQo+
+PiAgCj4+ICtzdGF0aWMgdTMyIG1lc29uX25mY19nZXRfb29iX2J5dGVzKHN0cnVjdCBuYW5kX2No
+aXAgKm5hbmQpCj4+ICt7Cj4+ICsJc3RydWN0IG10ZF9pbmZvICptdGQgPSBuYW5kX3RvX210ZChu
+YW5kKTsKPj4gKwo+PiArCXJldHVybiBtdGQtPm9vYnNpemUgLSBuYW5kLT5lY2Muc3RlcHMgKiBO
+RkNfT09CX1BFUl9FQ0MobmFuZCk7Cj4+ICt9Cj4+ICsKPj4gK3N0YXRpYyBpbnQgX19tZXNvbl9u
+ZmNfd3JpdGVfb29iKHN0cnVjdCBuYW5kX2NoaXAgKm5hbmQsIGludCBwYWdlLCB1OCAqb29iX2J1
+ZikKPj4gK3sKPj4gKwlzdHJ1Y3QgbWVzb25fbmZjX25hbmRfY2hpcCAqbWVzb25fY2hpcCA9IHRv
+X21lc29uX25hbmQobmFuZCk7Cj4+ICsJc3RydWN0IG10ZF9pbmZvICptdGQgPSBuYW5kX3RvX210
+ZChuYW5kKTsKPj4gKwl1MzIgcGFnZV9zaXplID0gbXRkLT53cml0ZXNpemUgKyBtdGQtPm9vYnNp
+emU7Cj4+ICsJdTMyIG9vYl9ieXRlcyA9IG1lc29uX25mY19nZXRfb29iX2J5dGVzKG5hbmQpOwo+
+PiArCWludCByZXQ7Cj4+ICsKPj4gKwlpZiAoIW9vYl9ieXRlcykKPj4gKwkJcmV0dXJuIDA7Cj4+
+ICsKPj4gKwlyZXQgPSBuYW5kX3Byb2dfcGFnZV9iZWdpbl9vcChuYW5kLCBwYWdlLCAwLCBOVUxM
+LCAwKTsKPj4gKwlpZiAocmV0KQo+PiArCQlyZXR1cm4gcmV0Owo+PiArCj4+ICsJbWVtY3B5KG1l
+c29uX2NoaXAtPm9vYl9idWYsIG9vYl9idWYgKyAobXRkLT5vb2JzaXplIC0gb29iX2J5dGVzKSwK
+Pj4gKwkgICAgICAgb29iX2J5dGVzKTsKPj4gKwo+PiArCXJldCA9IG5hbmRfY2hhbmdlX3dyaXRl
+X2NvbHVtbl9vcChuYW5kLCBwYWdlX3NpemUgLSBvb2JfYnl0ZXMsCj4+ICsJCQkJCSAgbWVzb25f
+Y2hpcC0+b29iX2J1ZiwKPj4gKwkJCQkJICBvb2JfYnl0ZXMsIGZhbHNlKTsKPj4gKwlpZiAocmV0
+KQo+PiArCQlyZXR1cm4gcmV0Owo+PiArCj4+ICsJcmV0dXJuIG5hbmRfcHJvZ19wYWdlX2VuZF9v
+cChuYW5kKTsKPj4gK30KPj4gKwo+PiArc3RhdGljIGludCBfX21lc29uX25mY19yZWFkX29vYihz
+dHJ1Y3QgbmFuZF9jaGlwICpuYW5kLCBpbnQgcGFnZSwKPj4gKwkJCQl1OCAqb29iX2J1ZikKPj4g
+K3sKPj4gKwlzdHJ1Y3QgbWVzb25fbmZjX25hbmRfY2hpcCAqbWVzb25fY2hpcCA9IHRvX21lc29u
+X25hbmQobmFuZCk7Cj4+ICsJc3RydWN0IG10ZF9pbmZvICptdGQgPSBuYW5kX3RvX210ZChuYW5k
+KTsKPj4gKwl1MzIgb29iX2J5dGVzOwo+PiArCXUzMiBwYWdlX3NpemU7Cj4+ICsJaW50IHJldDsK
+Pj4gKwo+PiArCW9vYl9ieXRlcyA9IG1lc29uX25mY19nZXRfb29iX2J5dGVzKG5hbmQpOwo+PiAr
+Cj4+ICsJaWYgKCFvb2JfYnl0ZXMpCj4+ICsJCXJldHVybiAwOwo+PiArCj4+ICsJcmV0ID0gbmFu
+ZF9yZWFkX3BhZ2Vfb3AobmFuZCwgcGFnZSwgMCwgTlVMTCwgMCk7Cj4+ICsJaWYgKHJldCkKPj4g
+KwkJcmV0dXJuIHJldDsKPj4gKwo+PiArCXBhZ2Vfc2l6ZSA9IG10ZC0+d3JpdGVzaXplICsgbXRk
+LT5vb2JzaXplOwo+PiArCj4+ICsJcmV0ID0gbmFuZF9jaGFuZ2VfcmVhZF9jb2x1bW5fb3AobmFu
+ZCwgcGFnZV9zaXplIC0gb29iX2J5dGVzLAo+PiArCQkJCQkgbWVzb25fY2hpcC0+b29iX2J1ZiwK
+Pj4gKwkJCQkJIG9vYl9ieXRlcywgZmFsc2UpOwo+PiArCj4+ICsJaWYgKCFyZXQpCj4+ICsJCW1l
+bWNweShvb2JfYnVmICsgKG10ZC0+b29ic2l6ZSAtIG9vYl9ieXRlcyksCj4+ICsJCSAgICAgICBt
+ZXNvbl9jaGlwLT5vb2JfYnVmLAo+PiArCQkgICAgICAgb29iX2J5dGVzKTsKPj4gKwo+PiArCXJl
+dHVybiByZXQ7Cj4+ICt9Cj4+ICsKPj4gIHN0YXRpYyBpbnQgbWVzb25fbmZjX3dyaXRlX3BhZ2Vf
+aHdlY2Moc3RydWN0IG5hbmRfY2hpcCAqbmFuZCwKPj4gIAkJCQkgICAgICBjb25zdCB1OCAqYnVm
+LCBpbnQgb29iX3JlcXVpcmVkLCBpbnQgcGFnZSkKPj4gIHsKPj4gIAlzdHJ1Y3QgbXRkX2luZm8g
+Km10ZCA9IG5hbmRfdG9fbXRkKG5hbmQpOwo+PiAgCXN0cnVjdCBtZXNvbl9uZmNfbmFuZF9jaGlw
+ICptZXNvbl9jaGlwID0gdG9fbWVzb25fbmFuZChuYW5kKTsKPj4gIAl1OCAqb29iX2J1ZiA9IG5h
+bmQtPm9vYl9wb2k7Cj4+ICsJaW50IHJldDsKPj4gIAo+PiAgCW1lbWNweShtZXNvbl9jaGlwLT5k
+YXRhX2J1ZiwgYnVmLCBtdGQtPndyaXRlc2l6ZSk7Cj4+ICAJbWVtc2V0KG1lc29uX2NoaXAtPmlu
+Zm9fYnVmLCAwLCBuYW5kLT5lY2Muc3RlcHMgKiBQRVJfSU5GT19CWVRFKTsKPj4gIAltZXNvbl9u
+ZmNfc2V0X3VzZXJfYnl0ZShuYW5kLCBvb2JfYnVmKTsKPj4gIAo+PiAtCXJldHVybiBtZXNvbl9u
+ZmNfd3JpdGVfcGFnZV9zdWIobmFuZCwgcGFnZSwgMCk7Cj4+ICsJcmV0ID0gbWVzb25fbmZjX3dy
+aXRlX3BhZ2Vfc3ViKG5hbmQsIHBhZ2UsIDApOwo+PiArCWlmIChyZXQpCj4+ICsJCXJldHVybiBy
+ZXQ7Cj4+ICsKPj4gKwlpZiAob29iX3JlcXVpcmVkKQo+PiArCQlyZXQgPSBfX21lc29uX25mY193
+cml0ZV9vb2IobmFuZCwgcGFnZSwgb29iX2J1Zik7Cj4gCj4gWW91IHNob3VsZCBwcm92aWRlIGFs
+bCB0aGUgZGF0YSBpbmNsdWRpbmcgT09CIGJ5dGVzIGluIGEgc2luZ2xlIHdyaXRlCj4gY2FsbCwg
+b3RoZXJ3aXNlIHlvdSBwZXJmb3JtIHR3byB3cml0ZXMgb24gdGhlIHNhbWUgcGFnZSwgdGhhdCdz
+IG5vdAo+IHdoYXQgdGhpcyBoZWxwZXIgaXMgZXhwZWN0ZWQgdG8gZG8uCgpJIHNlZSwgc28gSSBu
+ZWVkIHRvIGNoZWNrICdvb2JfcmVxdWlyZWQnIGhlcmUgYmVmb3JlIHByb2dyYW1taW5nIHBhZ2Ug
+ZGF0YT8KSWYgaXQgaXMgc2V0IC0+IHBsYWNlIE9PQiBkYXRhIHRvIERNQSBidWZmZXIgYW5kIHRo
+ZW4gY2FsbCBQQUdFUFJPRyBvbmNlPwoKPiAKPj4gKwo+PiArCXJldHVybiByZXQ7Cj4+ICB9Cj4+
+ICAKPj4gIHN0YXRpYyB2b2lkIG1lc29uX25mY19jaGVja19lY2NfcGFnZXNfdmFsaWQoc3RydWN0
+IG1lc29uX25mYyAqbmZjLAo+PiBAQCAtNzgzLDcgKzg3Miw3IEBAIHN0YXRpYyBpbnQgbWVzb25f
+bmZjX3JlYWRfcGFnZV9yYXcoc3RydWN0IG5hbmRfY2hpcCAqbmFuZCwgdTggKmJ1ZiwKPj4gIAlp
+ZiAocmV0KQo+PiAgCQlyZXR1cm4gcmV0Owo+PiAgCj4+IC0JbWVzb25fbmZjX2dldF9kYXRhX29v
+YihuYW5kLCBidWYsIG9vYl9idWYpOwo+PiArCW1lc29uX25mY19nZXRfZGF0YV9vb2IobmFuZCwg
+YnVmLCBvb2JfcmVxdWlyZWQgPyBvb2JfYnVmIDogTlVMTCk7Cj4+ICAKPj4gIAlyZXR1cm4gMDsK
+Pj4gIH0KPj4gQEAgLTgwMywxMiArODkyLDEyIEBAIHN0YXRpYyBpbnQgbWVzb25fbmZjX3JlYWRf
+cGFnZV9od2VjYyhzdHJ1Y3QgbmFuZF9jaGlwICpuYW5kLCB1OCAqYnVmLAo+PiAgCWlmIChyZXQp
+Cj4+ICAJCXJldHVybiByZXQ7Cj4+ICAKPj4gLQltZXNvbl9uZmNfZ2V0X3VzZXJfYnl0ZShuYW5k
+LCBvb2JfYnVmKTsKPj4gIAlyZXQgPSBtZXNvbl9uZmNfZWNjX2NvcnJlY3QobmFuZCwgJmJpdGZs
+aXBzLCAmY29ycmVjdF9iaXRtYXApOwo+PiAgCWlmIChyZXQgPT0gRUNDX0NIRUNLX1JFVFVSTl9G
+Rikgewo+PiAgCQlpZiAoYnVmKQo+PiAgCQkJbWVtc2V0KGJ1ZiwgMHhmZiwgbXRkLT53cml0ZXNp
+emUpOwo+PiAgCQltZW1zZXQob29iX2J1ZiwgMHhmZiwgbXRkLT5vb2JzaXplKTsKPj4gKwkJcmV0
+dXJuIGJpdGZsaXBzOwo+IAo+IFRoYXQgaXMgc29tZXRoaW5nIGVsc2UgPT4gb3RoZXIgZml4ID0+
+IG90aGVyIHBhdGNoPwoKSWRlYSBvZiB0aGlzICdyZXR1cm4nIGlzIHRoYXQgd2hlbiByZWFkIGZh
+aWxzLCB3ZSByZXR1cm4gZnJvbSB0aGlzIGZ1bmN0aW9uCndpdGhvdXQgcmVhZGluZyBPT0IgYmVs
+b3cuCgo+IAo+PiAgCX0gZWxzZSBpZiAocmV0IDwgMCkgewo+PiAgCQlpZiAoKG5hbmQtPm9wdGlv
+bnMgJiBOQU5EX05FRURfU0NSQU1CTElORykgfHwgIWJ1Zikgewo+PiAgCQkJbXRkLT5lY2Nfc3Rh
+dHMuZmFpbGVkKys7Cj4+IEBAIC04MjAsMTIgKzkwOSwxNCBAQCBzdGF0aWMgaW50IG1lc29uX25m
+Y19yZWFkX3BhZ2VfaHdlY2Moc3RydWN0IG5hbmRfY2hpcCAqbmFuZCwgdTggKmJ1ZiwKPj4gIAo+
+PiAgCQlmb3IgKGkgPSAwOyBpIDwgbmFuZC0+ZWNjLnN0ZXBzIDsgaSsrKSB7Cj4+ICAJCQl1OCAq
+ZGF0YSA9IGJ1ZiArIGkgKiBlY2MtPnNpemU7Cj4+IC0JCQl1OCAqb29iID0gbmFuZC0+b29iX3Bv
+aSArIGkgKiAoZWNjLT5ieXRlcyArIDIpOwo+PiArCQkJdTggKm9vYiA9IG5hbmQtPm9vYl9wb2kg
+KyBpICogTkZDX09PQl9QRVJfRUNDKG5hbmQpOwo+PiAgCj4+ICAJCQlpZiAoY29ycmVjdF9iaXRt
+YXAgJiBCSVRfVUxMKGkpKQo+PiAgCQkJCWNvbnRpbnVlOwo+PiArCj4+ICAJCQlyZXQgPSBuYW5k
+X2NoZWNrX2VyYXNlZF9lY2NfY2h1bmsoZGF0YSwJZWNjLT5zaXplLAo+PiAtCQkJCQkJCSAgb29i
+LCBlY2MtPmJ5dGVzICsgMiwKPj4gKwkJCQkJCQkgIG9vYiwKPj4gKwkJCQkJCQkgIE5GQ19PT0Jf
+UEVSX0VDQyhuYW5kKSwKPj4gIAkJCQkJCQkgIE5VTEwsIDAsCj4+ICAJCQkJCQkJICBlY2MtPnN0
+cmVuZ3RoKTsKPj4gIAkJCWlmIChyZXQgPCAwKSB7Cj4+IEBAIC04MzksMTcgKzkzMCwzMCBAQCBz
+dGF0aWMgaW50IG1lc29uX25mY19yZWFkX3BhZ2VfaHdlY2Moc3RydWN0IG5hbmRfY2hpcCAqbmFu
+ZCwgdTggKmJ1ZiwKPj4gIAkJbWVtY3B5KGJ1ZiwgbWVzb25fY2hpcC0+ZGF0YV9idWYsIG10ZC0+
+d3JpdGVzaXplKTsKPj4gIAl9Cj4+ICAKPj4gKwlpZiAob29iX3JlcXVpcmVkKQo+PiArCQlfX21l
+c29uX25mY19yZWFkX29vYihuYW5kLCBwYWdlLCBvb2JfYnVmKTsKPiAKPiBJbiB0aGUgc3RhbmRh
+bG9uZSAicmVhZF9vb2IiIGhvb2ssIHlvdSBoYXZlIHRvIHNlbmQgYSBSRUFEMCBjb21tYW5kLAo+
+IGJ1dCBub3Qgd2hlbiB5b3UgYXJlIGluIHRoZSByZWFkX3BhZ2UgaG9vay4gSXQgaXMgYSBiaWcg
+d2FzdGUgb2YgdGltZS4KCklJVUMgYXBwcm9hY2ggaGVyZSBtdXN0IGJlIGV4YWN0bHkgdGhlIHNh
+bWUgYXMgaW4gd3JpdGU/IEUuZy4gaSBuZWVkIHRvCnNlbmQgc2luZ2xlIFJFQUQwIGFuZCB0aGVu
+IGZpbGwgcHJvdmlkZWQgT09CIGJ1ZmZlciBpZiBuZWVkZWQ/Cgo+IAo+PiArCj4+ICAJcmV0dXJu
+IGJpdGZsaXBzOwo+PiAgfQo+PiAgCj4+ICBzdGF0aWMgaW50IG1lc29uX25mY19yZWFkX29vYl9y
+YXcoc3RydWN0IG5hbmRfY2hpcCAqbmFuZCwgaW50IHBhZ2UpCj4+ICB7Cj4+IC0JcmV0dXJuIG1l
+c29uX25mY19yZWFkX3BhZ2VfcmF3KG5hbmQsIE5VTEwsIDEsIHBhZ2UpOwo+PiArCXJldHVybiBf
+X21lc29uX25mY19yZWFkX29vYihuYW5kLCBwYWdlLCBuYW5kLT5vb2JfcG9pKTsKPj4gIH0KPj4g
+IAo+PiAgc3RhdGljIGludCBtZXNvbl9uZmNfcmVhZF9vb2Ioc3RydWN0IG5hbmRfY2hpcCAqbmFu
+ZCwgaW50IHBhZ2UpCj4+ICB7Cj4+IC0JcmV0dXJuIG1lc29uX25mY19yZWFkX3BhZ2VfaHdlY2Mo
+bmFuZCwgTlVMTCwgMSwgcGFnZSk7Cj4+ICsJcmV0dXJuIF9fbWVzb25fbmZjX3JlYWRfb29iKG5h
+bmQsIHBhZ2UsIG5hbmQtPm9vYl9wb2kpOwo+PiArfQo+PiArCj4+ICtzdGF0aWMgaW50IG1lc29u
+X25mY193cml0ZV9vb2JfcmF3KHN0cnVjdCBuYW5kX2NoaXAgKm5hbmQsIGludCBwYWdlKQo+PiAr
+ewo+PiArCXJldHVybiBfX21lc29uX25mY193cml0ZV9vb2IobmFuZCwgcGFnZSwgbmFuZC0+b29i
+X3BvaSk7Cj4+ICt9Cj4+ICsKPj4gK3N0YXRpYyBpbnQgbWVzb25fbmZjX3dyaXRlX29vYihzdHJ1
+Y3QgbmFuZF9jaGlwICpuYW5kLCBpbnQgcGFnZSkKPj4gK3sKPj4gKwlyZXR1cm4gX19tZXNvbl9u
+ZmNfd3JpdGVfb29iKG5hbmQsIHBhZ2UsIG5hbmQtPm9vYl9wb2kpOwo+IAo+IERvIHdlIHJlYWxs
+eSBuZWVkIHRoZXNlIGluZGlyZWN0aW9ucz8KClJpZ2h0LCBJIHRoaW5rIEkgY2FuIHVzZSBvbmx5
+IG9uZSBmdW5jdGlvbiBmb3IgT09CIHdyaXRlIGluIGJvdGggRUNDIGFuZCByYXcgbW9kZXMuCgo+
+IAo+PiAgfQo+PiAgCj4+ICBzdGF0aWMgYm9vbCBtZXNvbl9uZmNfaXNfYnVmZmVyX2RtYV9zYWZl
+KGNvbnN0IHZvaWQgKmJ1ZmZlcikKPj4gQEAgLTk4Miw3ICsxMDg2LDcgQEAgc3RhdGljIGludCBt
+ZXNvbl9vb2JsYXlvdXRfZWNjKHN0cnVjdCBtdGRfaW5mbyAqbXRkLCBpbnQgc2VjdGlvbiwKPj4g
+IAlpZiAoc2VjdGlvbiA+PSBuYW5kLT5lY2Muc3RlcHMpCj4+ICAJCXJldHVybiAtRVJBTkdFOwo+
+PiAgCj4+IC0Jb29icmVnaW9uLT5vZmZzZXQgPSAgMiArIChzZWN0aW9uICogKDIgKyBuYW5kLT5l
+Y2MuYnl0ZXMpKTsKPj4gKwlvb2JyZWdpb24tPm9mZnNldCA9IE5GQ19VU0VSX0JZVEVTICsgc2Vj
+dGlvbiAqIE5GQ19PT0JfUEVSX0VDQyhuYW5kKTsKPiAKPiBUaGUgKCkgYXJlIHN0aWxsIG5lZWRl
+ZCBhcm91bmQgdGhlICcqJwo+IAo+PiAgCW9vYnJlZ2lvbi0+bGVuZ3RoID0gbmFuZC0+ZWNjLmJ5
+dGVzOwo+PiAgCj4+ICAJcmV0dXJuIDA7Cj4+IEBAIC05OTIsMTIgKzEwOTYsMTYgQEAgc3RhdGlj
+IGludCBtZXNvbl9vb2JsYXlvdXRfZnJlZShzdHJ1Y3QgbXRkX2luZm8gKm10ZCwgaW50IHNlY3Rp
+b24sCj4+ICAJCQkJc3RydWN0IG10ZF9vb2JfcmVnaW9uICpvb2JyZWdpb24pCj4+ICB7Cj4+ICAJ
+c3RydWN0IG5hbmRfY2hpcCAqbmFuZCA9IG10ZF90b19uYW5kKG10ZCk7Cj4+ICsJdTMyIG9vYl9i
+eXRlcyA9IG1lc29uX25mY19nZXRfb29iX2J5dGVzKG5hbmQpOwo+PiAgCj4+ICAJaWYgKHNlY3Rp
+b24gPj0gbmFuZC0+ZWNjLnN0ZXBzKQo+PiAgCQlyZXR1cm4gLUVSQU5HRTsKPj4gIAo+PiAtCW9v
+YnJlZ2lvbi0+b2Zmc2V0ID0gc2VjdGlvbiAqICgyICsgbmFuZC0+ZWNjLmJ5dGVzKTsKPj4gLQlv
+b2JyZWdpb24tPmxlbmd0aCA9IDI7Cj4+ICsJLyogU3BsaXQgcmVzdCBvZiBPT0IgYXJlYSAobm90
+IGNvdmVyZWQgYnkgRUNDIGVuZ2luZSkgcGVyIGVhY2gKPj4gKwkgKiBFQ0Mgc2VjdGlvbi4gVGhp
+cyB3aWxsIGJlIE9PQiBkYXRhIGF2YWlsYWJsZSB0byB1c2VyLgo+PiArCSAqLwo+PiArCW9vYnJl
+Z2lvbi0+b2Zmc2V0ID0gKHNlY3Rpb24gKyBuYW5kLT5lY2Muc3RlcHMpICogTkZDX09PQl9QRVJf
+RUNDKG5hbmQpOwo+PiArCW9vYnJlZ2lvbi0+bGVuZ3RoID0gb29iX2J5dGVzIC8gbmFuZC0+ZWNj
+LnN0ZXBzOwo+PiAgCj4+ICAJcmV0dXJuIDA7Cj4+ICB9Cj4+IEBAIC0xMTg0LDYgKzEyOTIsOSBA
+QCBzdGF0aWMgaW50IG1lc29uX25hbmRfYmNoX21vZGUoc3RydWN0IG5hbmRfY2hpcCAqbmFuZCkK
+Pj4gIAo+PiAgc3RhdGljIHZvaWQgbWVzb25fbmFuZF9kZXRhY2hfY2hpcChzdHJ1Y3QgbmFuZF9j
+aGlwICpuYW5kKQo+PiAgewo+PiArCXN0cnVjdCBtZXNvbl9uZmNfbmFuZF9jaGlwICptZXNvbl9j
+aGlwID0gdG9fbWVzb25fbmFuZChuYW5kKTsKPj4gKwo+PiArCWtmcmVlKG1lc29uX2NoaXAtPm9v
+Yl9idWYpOwo+PiAgCW1lc29uX25mY19mcmVlX2J1ZmZlcihuYW5kKTsKPj4gIH0KPj4gIAo+PiBA
+QCAtMTIyNSw5ICsxMzM2LDkgQEAgc3RhdGljIGludCBtZXNvbl9uYW5kX2F0dGFjaF9jaGlwKHN0
+cnVjdCBuYW5kX2NoaXAgKm5hbmQpCj4+ICAJbmFuZC0+ZWNjLmVuZ2luZV90eXBlID0gTkFORF9F
+Q0NfRU5HSU5FX1RZUEVfT05fSE9TVDsKPj4gIAluYW5kLT5lY2Mud3JpdGVfcGFnZV9yYXcgPSBt
+ZXNvbl9uZmNfd3JpdGVfcGFnZV9yYXc7Cj4+ICAJbmFuZC0+ZWNjLndyaXRlX3BhZ2UgPSBtZXNv
+bl9uZmNfd3JpdGVfcGFnZV9od2VjYzsKPj4gLQluYW5kLT5lY2Mud3JpdGVfb29iX3JhdyA9IG5h
+bmRfd3JpdGVfb29iX3N0ZDsKPj4gLQluYW5kLT5lY2Mud3JpdGVfb29iID0gbmFuZF93cml0ZV9v
+b2Jfc3RkOwo+PiAgCj4+ICsJbmFuZC0+ZWNjLndyaXRlX29vYl9yYXcgPSBtZXNvbl9uZmNfd3Jp
+dGVfb29iX3JhdzsKPj4gKwluYW5kLT5lY2Mud3JpdGVfb29iID0gbWVzb25fbmZjX3dyaXRlX29v
+YjsKPiAKPiBBY3R1YWxseSBpZiB5b3UgZGVmaW5lIHRoZSByaWdodCBPT0IgbGF5b3V0cywgYXJl
+IHRoZXNlIHJlYWxseSBuZWVkZWQKPiA/PyBJIHdvdWxkIGV4cGVjdCB0aGUgcmlnaHQgYnl0ZXMg
+dG8gYmUgcGlja2VkIHVwIGJ5IHRoZSBkZWZhdWx0Cj4gaW1wbGVtZW50YXRpb24uIEkgc2VlIG5v
+dGhpbmcgc3BlY2lmaWMgaW4geW91ciBjdXJyZW50IGltcGxlbWVudGF0aW9uPwoKWW91IG1lYW4g
+dG8gdXNlICduYW5kX3dyaXRlX29vYl9zdGQoKSc/IElmIHNvLCBJIHRoaW5rIGl0IHdvbid0IHdv
+cmssCmJlY2F1c2UgaXQgdHJpZXMgdG8gd3JpdGUgT09CIGRhdGEgcmlnaHQgYWZ0ZXIgJ210ZC0+
+d3JpdGVzaXplJywgYnV0CnBhZ2UgbGF5b3V0IGZvciB0aGlzIGNvbnRyb2xsZXIgaXMgbGlrZSB0
+aGlzOgpbICAgICAgIDEwMjQgYnl0ZXMgb2YgZGF0YSAgICAgICAgXQpbIDE0IGJ5dGVzIEVDQyAr
+IDIgYnl0ZXMgZm9yIHVzZXIgXSA8LSB3aXRoIG5ldyBsYXlvdXQgd2UgZG9uJ3QgdG91Y2ggdGhl
+c2UgMiBieXRlcwpbICAgICAgIDEwMjQgYnl0ZXMgb2YgZGF0YSAgICAgICAgXQpbIDE0IGJ5dGVz
+IEVDQyArIDIgYnl0ZXMgZm9yIHVzZXIgXSA8LSB3aXRoIG5ldyBsYXlvdXQgd2UgZG9uJ3QgdG91
+Y2ggdGhlc2UgMiBieXRlcwpbICAgICAgMzIgYnl0ZXMgb2YgdXNlciBieXRlcyAgICAgXSA8LSB3
+ZSB1c2UgdGhlcmUgMzIgYnl0ZXMgYXMgZnJlZSh1c2VyKSBieXRlcyBpbiBPT0IKClNvIHdpdGgg
+J210ZC0+d3JpdGVzaXplJyBvZiAyMDQ4IHdlIHdvbid0IGdldCBpbnRvIGxhc3QgMzIgYnl0ZXMg
+aW4gdGhlIHBpY3R1cmUgYWJvdmUuCkknbSBub3QgZ29vdCBpbiBOQU5EL01URCBhcmVhLCBidXQg
+SSB0aGluayB0aGF0IHdoeSBpIG5lZWQgc3BlY2lhbCBPT0IgYWNjZXNzIGNhbGxiYWNrcy4KQWxz
+byBpbiBwcmV2aW91cyBwYXRjaGVzIEBMaWFuZyBzYWlkLCB0aGF0IGRlZmF1bHQgT09CIHJlYWQv
+d3JpdGUgZnVuY3Rpb25zIHdvbid0IHdvcmsKb24gdGhpcyBjb250cm9sbGVyIGFuZCBpdCBpcyB3
+cm9uZyB0byB1c2UgdGhlbSBpbiBjdXJyZW50bHkgbWVyZ2VkIGRyaXZlci4KCj4gCj4+ICAJbmFu
+ZC0+ZWNjLnJlYWRfcGFnZV9yYXcgPSBtZXNvbl9uZmNfcmVhZF9wYWdlX3JhdzsKPj4gIAluYW5k
+LT5lY2MucmVhZF9wYWdlID0gbWVzb25fbmZjX3JlYWRfcGFnZV9od2VjYzsKPj4gIAluYW5kLT5l
+Y2MucmVhZF9vb2JfcmF3ID0gbWVzb25fbmZjX3JlYWRfb29iX3JhdzsKPj4gQEAgLTEyMzcsOSAr
+MTM0OCwxNiBAQCBzdGF0aWMgaW50IG1lc29uX25hbmRfYXR0YWNoX2NoaXAoc3RydWN0IG5hbmRf
+Y2hpcCAqbmFuZCkKPj4gIAkJZGV2X2VycihuZmMtPmRldiwgIjE2Yml0cyBidXMgd2lkdGggbm90
+IHN1cHBvcnRlZCIpOwo+PiAgCQlyZXR1cm4gLUVJTlZBTDsKPj4gIAl9Cj4+ICsKPj4gKwltZXNv
+bl9jaGlwLT5vb2JfYnVmID0ga21hbGxvYyhuYW5kLT5lY2MuYnl0ZXMsIEdGUF9LRVJORUwpOwo+
+IAo+IGRldm1fa21hbGxvYz8KCkFjawoKPiAKPj4gKwlpZiAoIW1lc29uX2NoaXAtPm9vYl9idWYp
+Cj4+ICsJCXJldHVybiAtRU5PTUVNOwo+PiArCj4+ICAJcmV0ID0gbWVzb25fY2hpcF9idWZmZXJf
+aW5pdChuYW5kKTsKPj4gLQlpZiAocmV0KQo+PiArCWlmIChyZXQpIHsKPj4gKwkJa2ZyZWUobWVz
+b25fY2hpcC0+b29iX2J1Zik7Cj4+ICAJCXJldHVybiAtRU5PTUVNOwo+PiArCX0KPj4gIAo+PiAg
+CXJldHVybiByZXQ7Cj4+ICB9Cj4gCj4gCj4gVGhhbmtzLAo+IE1pcXXDqGwKClRoYW5rcywgQXJz
+ZW5peQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGlu
+dXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3Jn
+Cmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dp
+Ywo=
