@@ -4,78 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5873BC7EE23
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 May 2023 20:51:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5DA9C7EE23
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 May 2023 00:02:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IlkLG/iF9CG4gH7ILZ9g0kEonx0xXjRajYzxvr1GGqM=; b=qOxd1V6RYAZBxr
-	uaK9LLohHPDgFiGUgB9rgdPU9Y6U54oqJvB/HeM/2GaqReYC2LqsQMZk8DLruKNBtwYsAeiv2zYSd
-	RWxdqLX7OW0R5EqNcGHePxKRif3jne3BV+ETxBvh4WOk+f2r2qJGVpV63ud9o5Puv80eFe2dVpR52
-	MQubGmJNAMITxkYQZbBF45CilR/78xZhkj7CGs/zbQls3VF96pnwKm4FLSQD1E6A1+aZiUVL9CqJ0
-	MzI1doCzRynz0NWDLlL1xCFXFFbwPHk6eONFiJrgomcvN6Eu+1kcLs3p1LRWG/FdGMfM0WhIEJUHJ
-	2CFo63NXUADD0orao4NA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=o8W+SSsaHG0IhryQB6m29oqP4FqXV+iEq1oB52o0XRQ=; b=JwVuAXjS0BPaii
+	Pz8SRdehj9FY84w+3GSUB83WM1SGS16NaPIJFPyb8BVcsquhynkhwFRLCYzeraJK3sG5rpGgUkDtg
+	WnBDHmABxpkyhqb+5s++4ukyIzafuC+fpcXXtajr+iN59ubMo/bq1uz6mL9/dmILF2qpFvuvct0Qe
+	QmBqfd66b17Y8FFa459sgUQETm7UENv7N2NL7XWzg8LxqlaiElI8cbL0LvDHipF6GBy5vOIJ6xPSD
+	ipYqRp/Rg+CpSyFD1kgQ8UYodEaT44hg8ogvtYfZXB8Y6Vb/Mj+cFDpfAgWbr6xJ2+asnO7KY5a9e
+	n5OCMFBHe69ZDZaNRLgQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q1Yyw-00BQB7-0T;
-	Tue, 23 May 2023 20:51:46 +0000
-Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
+	id 1q1bwu-00BrPM-2v;
+	Wed, 24 May 2023 00:01:52 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q1Yyr-00BQ9d-0m;
-	Tue, 23 May 2023 20:51:42 +0000
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-969f90d71d4so7676566b.3;
-        Tue, 23 May 2023 13:51:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20221208; t=1684875095; x=1687467095;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yZundmrewKh0bipWQd+lfQPNPSXZ9mgJNRAPtylqIpw=;
-        b=Q3pRVYpapK/e7nkypEKxw7JxlSQP3eSbJ445xrlrZJGJ3w9bRAq3t1exfcZ5OR6YPZ
-         0ulvHLDuA2zQN3j5NET5X2a6ZsPORlKw2KCvHcNSAlV9OKKlrvBld2EkfgZvb1Mzwge7
-         fBx7DQcXayW2SJf3ckI8mZ2Jd7+TIKnR/iCmlKR2aNbQUNpyc0PnYgfirqyAYT6sbtPo
-         dCcLbe40SGEsfyEBjvwhZzBISyonGHDy4zSv6cSZ9lpm/dd325Fm1r8JNWgE6kFh0dek
-         ZeMCZB0ZCXlbTEsCiNR+DdLdZi7DtXKB0pDaUhHYUGNrZF/m/Dmuain7jaUBRLR024z1
-         jimw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684875095; x=1687467095;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yZundmrewKh0bipWQd+lfQPNPSXZ9mgJNRAPtylqIpw=;
-        b=ifZ+8MondZ96Xn19p3jq7wDvM5z6L9SDs3fgY8PyEraxxmNOKTBEbkJusgLizVQsyw
-         X6y/V2WXfs3nj3MBEYP4p/lEv2l5ZUWARb5uemGXIv9UWDuuB9O3BvhqVuZAlYq5htmK
-         ARvJzOISSN/tGtyDZbirIXahziRCLvt3V8oITVHCWN3Ao+UDYtjBFkN3hdFra520XnPb
-         HK9wnzxNq4Vq5xdyFJV8ZrFWGry01fBiwcC8w1G2Edud8FWA6zyRzBcnPMEC9a6uxcLg
-         swkmyl7ju9o3LrvCtMpFr10199X0c22j7DJcp+Xk1WLCV79/Jcl5sJzPFM0rX4oXPHKx
-         SmjQ==
-X-Gm-Message-State: AC+VfDwXfuryXlPhiZ8eIMpkpQfov1JWgHWZv7bPkvYL9mIBuYiVg5XW
-	Euq+DgoZqijoq0E3hsMo769ibqruMObAiZ7L7xQ=
-X-Google-Smtp-Source: ACHHUZ7MG7hcNaLhcgRMHzstW10kI2Qf9okU+o4Y5CQ8cOzkKjjiuZsIfJnrE0pqRbZjOE/7UMDBvJEQ4SeZfGeFzVc=
-X-Received: by 2002:a17:907:6288:b0:969:b2e2:4f3b with SMTP id
- nd8-20020a170907628800b00969b2e24f3bmr14435843ejc.51.1684875095098; Tue, 23
- May 2023 13:51:35 -0700 (PDT)
+	id 1q1bwp-00BrOF-1v;
+	Wed, 24 May 2023 00:01:50 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 6B18B5FD03;
+	Wed, 24 May 2023 03:01:39 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1684886499;
+	bh=axVJ7641uXabYayO/3wTwP3lkBTzWLtoTnUTKuJMnlU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+	b=N6Dn84VO8YczLUkTXu1/6KwcMcOKfsCHELP7x2SJ4mj8q9TdMGlZEIraS3Mi4DHzB
+	 2Zp4RAVgmCp/ZFW4MaBjMvD3k7PseFKJMtsJXxQdJUBkcutFURW64Fi3uxWqKQUWOS
+	 EGWjnerpyp2Od6HiiriocffF3q0chriYYjDKgIvwOLl//DaA+/JO+oB5D0noGvYUfy
+	 4xTT1V28WmZ6YIwo8GZ/K/W5EqOSUcj7z4PfHbiwrcEBDIYD2dIvMfYHiRD3ickzIt
+	 PvSobGwPaaxhEbKm8VBkV3CaAaAPpxo2FR/lYMdjxBg72sFgoCtWpaTyP8AgZhgFrH
+	 +EB2MFhAkG8eQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Wed, 24 May 2023 03:01:36 +0300 (MSK)
+From: George Stark <gnstark@sberdevices.ru>
+To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <andriy.shevchenko@linux.intel.com>,
+	<nuno.sa@analog.com>, <gnstark@sberdevices.ru>
+CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<kernel@sberdevices.ru>, George Stark <GNStark@sberdevices.ru>
+Subject: [PATCH v1] meson saradc: add iio device attrib to switch channel 7 mux
+Date: Wed, 24 May 2023 03:01:11 +0300
+Message-ID: <20230524000111.14370-1-gnstark@sberdevices.ru>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-References: <1d1a8ede-e789-bc4d-2dcd-9d06d2df4061@gmail.com>
- <CAFBinCCeh1eUo1=pfqmp4F7UsuKZ--cja-16mCqBhV-cgodzqw@mail.gmail.com> <f6b93fcc-ca5a-43ae-729d-38338ba411bc@gmail.com>
-In-Reply-To: <f6b93fcc-ca5a-43ae-729d-38338ba411bc@gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 23 May 2023 22:51:24 +0200
-Message-ID: <CAFBinCDdDcFaekrdC33_cO_TngRhMTgqgpFR2ELjEcavd-8SyA@mail.gmail.com>
-Subject: Re: [PATCH] pwm: pwm-meson: fix handling of period/duty if greater
- than UINT_MAX
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	"thierry.reding@gmail.com" <thierry.reding@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, linux-pwm@vger.kernel.org
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/23 21:43:00 #21378639
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230523_135141_282797_EC96B33E 
-X-CRM114-Status: GOOD (  15.90  )
+X-CRM114-CacheID: sfid-20230523_170148_351257_8AA70080 
+X-CRM114-Status: GOOD (  14.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,34 +79,126 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCBNYXkgMTUsIDIwMjMgYXQgMTA6MzLigK9QTSBIZWluZXIgS2FsbHdlaXQgPGhrYWxs
-d2VpdDFAZ21haWwuY29tPiB3cm90ZToKPgo+IE9uIDA4LjA1LjIwMjMgMjE6NDYsIE1hcnRpbiBC
-bHVtZW5zdGluZ2wgd3JvdGU6Cj4gPiBPbiBXZWQsIE1heSAzLCAyMDIzIGF0IDk6NTjigK9QTSBI
-ZWluZXIgS2FsbHdlaXQgPGhrYWxsd2VpdDFAZ21haWwuY29tPiB3cm90ZToKPiA+Pgo+ID4+IHN0
-YXRlLT5wZXJpb2QvZHV0eSBhcmUgb2YgdHlwZSB1NjQsIGFuZCBpZiB0aGVpciB2YWx1ZSBpcyBn
-cmVhdGVyIHRoYW4KPiA+PiBVSU5UX01BWCwgdGhlbiB0aGUgY2FzdCB0byB1aW50IHdpbGwgY2F1
-c2UgcHJvYmxlbXMuIEZpeCB0aGlzIGJ5Cj4gPj4gY2hhbmdpbmcgdGhlIHR5cGUgb2YgdGhlIHJl
-c3BlY3RpdmUgbG9jYWwgdmFyaWFibGVzIHRvIHU2NC4KPiA+Pgo+ID4+IEZpeGVzOiBiNzljMzY3
-MGUxMjAgKCJwd206IG1lc29uOiBEb24ndCBkdXBsaWNhdGUgdGhlIHBvbGFyaXR5IGludGVybmFs
-bHkiKQo+ID4+IENjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnCj4gPj4gU3VnZ2VzdGVkLWJ5OiBV
-d2UgS2xlaW5lLUvDtm5pZyA8dS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlPgo+ID4+IFNp
-Z25lZC1vZmYtYnk6IEhlaW5lciBLYWxsd2VpdCA8aGthbGx3ZWl0MUBnbWFpbC5jb20+Cj4gPiBS
-ZXZpZXdlZC1ieTogTWFydGluIEJsdW1lbnN0aW5nbCA8bWFydGluLmJsdW1lbnN0aW5nbEBnb29n
-bGVtYWlsLmNvbT4KPgo+IE5vdCBzdXJlIGFib3V0IHRoZSBwcm9jZXNzIGluIHB3bSBzdWJzeXN0
-ZW06IFdoZW4gd2lsbCB0aGVzZSBwYXRjaGVzIG1ha2UKPiBpdCB0byBsaW51eC1uZXh0PyBCZWNh
-dXNlIEknZCBsaWtlIHRvIHN1Ym1pdCBmb2xsb3ctdXBzIHdpdGggYSBkZXBlbmRlbmN5Cj4gb25s
-eSBhZnRlciBwZW5kaW5nIHBhdGNoZXMgaGF2ZSBiZWVuIGFwcGxpZWQuCkknbSBhbHNvIG5vdCBz
-dXJlLiBQZXJzb25hbGx5IEkgd291bGQgdGFrZSBhbGwgcGF0Y2hlcyB0aGF0IGZpeCB0aGUKZXhp
-c3RpbmcgZHJpdmVyIGNvZGUsIGJ1bmRsZSB0aGVtIGludG8gYSBzZXJpZXMgYW5kIHJlLXNlbmQg
-dGhhdAooY29sbGVjdGluZyBhbGwgUmV2aWV3ZWQtYnksIGV0Yy4gYWxvbmcgdGhlIHdheSkuIFRo
-ZSBpZGVhIGlzIHRvIG1ha2UKVGhpZXJyeSdzIGxpZmUgZWFzaWVyIGFzIGhlIGp1c3QgaGFzIHRv
-IGFwcGx5IHRoZSBzZXJpZXMgKG5vIG5lZWQgdG8Kd29ycnkgYWJvdXQgdGhlIHBhdGNoIG9yZGVy
-LCAuLi4pLgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-bGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQu
-b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1s
-b2dpYwo=
+Patch adds two sysfs nodes: chan7_mux to set mux state
+and chan7_mux_available to show available mux states.
+Mux can be used to debug and calibrate adc by
+switching and measuring well-known inputs like gnd, vdd etc.
+
+Signed-off-by: George Stark <GNStark@sberdevices.ru>
+---
+ drivers/iio/adc/meson_saradc.c | 66 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 66 insertions(+)
+
+diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+index e05e51900c35..77ef2b55f6f4 100644
+--- a/drivers/iio/adc/meson_saradc.c
++++ b/drivers/iio/adc/meson_saradc.c
+@@ -11,6 +11,7 @@
+ #include <linux/delay.h>
+ #include <linux/io.h>
+ #include <linux/iio/iio.h>
++#include <linux/iio/sysfs.h>
+ #include <linux/module.h>
+ #include <linux/mutex.h>
+ #include <linux/nvmem-consumer.h>
+@@ -320,6 +321,7 @@ struct meson_sar_adc_priv {
+ 	bool					temperature_sensor_calibrated;
+ 	u8					temperature_sensor_coefficient;
+ 	u16					temperature_sensor_adc_val;
++	u8					chan7_mux_sel;
+ };
+ 
+ static const struct regmap_config meson_sar_adc_regmap_config_gxbb = {
+@@ -483,6 +485,7 @@ static void meson_sar_adc_set_chan7_mux(struct iio_dev *indio_dev,
+ 	regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG3,
+ 			   MESON_SAR_ADC_REG3_CTRL_CHAN7_MUX_SEL_MASK, regval);
+ 
++	priv->chan7_mux_sel = sel;
+ 	usleep_range(10, 20);
+ }
+ 
+@@ -1130,8 +1133,71 @@ static int meson_sar_adc_calib(struct iio_dev *indio_dev)
+ 	return ret;
+ }
+ 
++static const char * const chan7_vol[] = {
++	"gnd",
++	"vdd/4",
++	"vdd/2",
++	"vdd*3/4",
++	"vdd",
++	"ch7_input",
++};
++
++static ssize_t chan7_mux_show(struct device *dev, struct device_attribute *attr,
++			      char *buf)
++{
++	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
++	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
++	unsigned int index = priv->chan7_mux_sel;
++
++	if (index >= ARRAY_SIZE(chan7_vol))
++		index = ARRAY_SIZE(chan7_vol) - 1;
++
++	return sysfs_emit(buf, "%s\n", chan7_vol[index]);
++}
++
++static ssize_t chan7_mux_store(struct device *dev,
++			       struct device_attribute *attr,
++			       const char *buf, size_t count)
++{
++	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(chan7_vol); i++)
++		if (!strcmp(chan7_vol[i], buf)) {
++			meson_sar_adc_set_chan7_mux(indio_dev, i);
++			return count;
++		}
++
++	return -EINVAL;
++}
++
++static ssize_t chan7_mux_available_show(struct device *dev, struct device_attribute *attr,
++			      char *buf)
++{
++	int i, len = 0;
++
++	for (i = 0; i < ARRAY_SIZE(chan7_vol); i++)
++		len += sysfs_emit_at(buf, len, "%s ", chan7_vol[i]);
++
++	return len;
++}
++
++static IIO_DEVICE_ATTR_RW(chan7_mux, -1);
++static IIO_DEVICE_ATTR_RO(chan7_mux_available, -1);
++
++static struct attribute *meson_sar_adc_attrs[] = {
++	&iio_dev_attr_chan7_mux_available.dev_attr.attr,
++	&iio_dev_attr_chan7_mux.dev_attr.attr,
++	NULL,
++};
++
++static const struct attribute_group meson_sar_adc_attr_group = {
++	.attrs = meson_sar_adc_attrs,
++};
++
+ static const struct iio_info meson_sar_adc_iio_info = {
+ 	.read_raw = meson_sar_adc_iio_info_read_raw,
++	.attrs = &meson_sar_adc_attr_group,
+ };
+ 
+ static const struct meson_sar_adc_param meson_sar_adc_meson8_param = {
+-- 
+2.38.4
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
