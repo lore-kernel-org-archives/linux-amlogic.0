@@ -4,90 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 861C6C77B7A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 May 2023 19:11:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D9E8C77B7C
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 May 2023 19:46:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cylRFTX2IvZryarub55ZWcUaAmV3+nzrDtw1D+zMGdU=; b=Dp8u5nizU2R9Ix
-	PQKg6cASpztm/FLSNbK7kXxvBDldq7W8NBFsaworAjVXnv+SMpoQ1mg1hzWRF6KQaPkHLpVPyU0h9
-	qs5AsilqmAs5/ERB+dzFF4/U0+l0Z20vnp1pkLKlI/Yf49g5KP9RgWwAX15G49iAe7EjpL15hmSml
-	gwGG7QAMTFlx5GzKk5j++LT3E+Tb5vkGR8C5R5DheloScMieXFs6UmLfxiSVQP9p4fMUguMNpqz/a
-	l92ROm5RcBJRjlClkBfbdYkZawQWPGx+aXH44xl6u8FiSfni2P7ra0dQ9DuAc3pEm4LwH0rRcAsLt
-	0OY8GlcjTqwDe6r4p+Hw==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=a9rUOtKf/CICxTffJI0lNMlp6UEpjS8RYP33j9CDcn8=; b=y2xnNObA+85aXo
+	QUmciv72yLuYVNqU2jEGiJCE5PxE1+EekX+gJlDnrOlKu4aQANU3sGeR/+VsRYXHbebrMcSOqVwTU
+	DNnc+2d9wtD00DPBGdQLy90GdpzlJWD36xe63eaaf5ojOlGAGdDIlW1hHOSEB5jqth94JIhVu03gL
+	oxlUxxvWdxJPdL8h8vNi2mIsY0DpCDAnQehqnGMWOFT0fm0ZVL0s7L0VjkHJI6nadtDh8XD92EkE7
+	0ewCfiSuVg93df3TnLCGz7P6IhZ6Ni1EXPCCE9lkGePy4A1bKsgoFQuBnzW6KpWtlzr0y8VYVOnPN
+	9wJzxk3akSr7UlMCnL9Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q1ttG-00ES74-0b;
-	Wed, 24 May 2023 19:11:18 +0000
-Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
+	id 1q1uQu-00EVcL-0Z;
+	Wed, 24 May 2023 19:46:04 +0000
+Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q1ttD-00ES4i-0b;
-	Wed, 24 May 2023 19:11:16 +0000
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-510e90d785fso2493516a12.2;
-        Wed, 24 May 2023 12:11:09 -0700 (PDT)
+	id 1q1uQq-00EVbU-1K;
+	Wed, 24 May 2023 19:46:01 +0000
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-513fd8cc029so2836926a12.3;
+        Wed, 24 May 2023 12:45:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684955468; x=1687547468;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=85PLd9OKU13wDsb8wLcpS9vIt9NW9f/X1/AhbPGEAG8=;
-        b=b9FeqMxd6ZIzpLr4Pfztjzy+++imXnaOWtMlQq7c8pOVU+gAH+3oSlNynHD5v+PDoe
-         CTe6TsNYuhuWALKHLrFAu3Wnr5CaAD76dHwjAWDVnkQjWwwZQJF4BiuxS8StJiLTXfNT
-         Ujk5Q4f+RnukFXvO+YAu1bTG3boBQc2rnSksX0bcEBExgciYRzN8VvqVZOACBpmRyF8v
-         xhfvIShOc2G0RXQDwy5GjFkOOMQ7PMJC1jbshW20bE8+jSisLBIyj8T6uaDRQcNsawod
-         xmLEPFZz2sloHWOCTUsLVoKoXF8c9JFK2E/PYmn/AIl2acsHC4m3B7FDuDvAfgjycxCo
-         VbOw==
+        d=gmail.com; s=20221208; t=1684957556; x=1687549556;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RJBMgKyzjGmRjIWUR1hzg57IJESWeFQzE9dVLEiDeng=;
+        b=si0GiXYBLkwKIaZ19ww1BFocAeWGSAlmhQuNnkfhcCztBNDce4daYDHvJVoVzwqCz0
+         CVKZREok/8pfiHAvlJb7oEOR9yLFqZbu2IEP5aAZ5D2skVd625L1lEM8BZqz6fTZ06rg
+         okro+Y1lO/dt+R06w3gUywvYvIXUtxOQ5lqpa1dzHdpjMMhtWsYYqY8SAyXgobRq7y0d
+         tDnLMTjE3vyTj4RWf34Dsb6owdWvDMKm0KDeCmwe+IaPBnqKlzi5FUuS8pLluapGdJ2C
+         wtEPt1nMV4F4fnz6OtG4TyicHMlOnEb/1YWXUTlWgIOY3mYLY2Oa+jSaL6QT4I3qqbOt
+         NHQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684955468; x=1687547468;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=85PLd9OKU13wDsb8wLcpS9vIt9NW9f/X1/AhbPGEAG8=;
-        b=ce1mK8u5BGXs0L/4NRfpbwN+wSsm1c2khPkXpaTV2w1oa3bbeGWyjvNlDP5M1zARTn
-         V8YbnN8fzG93gE0zF9lSWi9G3Sz0xKw4gdOF5PpRwi0A3AV6nEaOeiBTYxha3ZFuXr3U
-         agL59570Xrdn3rvBgQlCMwIScFddLDwiz1gC6NN/n9t50Cg6sdTVFeumgCUu+AVVDtyW
-         fVp1o5DopR9kjASA/JjqVlRxsa21jXA1ZKc2Pmflw59PLq63Zx4aTkuRzRSqpBLRtH+n
-         M7BtVdNqgerecG+uYG6aKEBgEas3h/2GfdHmzHrQtLt4Wdb5VXO+zRoo/TPSUkqxlMV9
-         p5jA==
-X-Gm-Message-State: AC+VfDya8iaoKGLlFeOQdULpMHwVu2VHrc1yeESxqBBJHIA8SCxhgKxF
-	olpPWw4+siOd1Vzff5lwwwM=
-X-Google-Smtp-Source: ACHHUZ7EupZuYIVvL1viWsa0karFPihZ6a8yEROlmm/o2ClM0XYp84OVrrKqrymy/4ewZsy+XCS3Sg==
-X-Received: by 2002:a17:907:6d81:b0:94d:69e0:6098 with SMTP id sb1-20020a1709076d8100b0094d69e06098mr19825586ejc.45.1684955468186;
-        Wed, 24 May 2023 12:11:08 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1684957556; x=1687549556;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=RJBMgKyzjGmRjIWUR1hzg57IJESWeFQzE9dVLEiDeng=;
+        b=fMyKpl9BX+LiJoxAMlS1M/kxYoG7wgMBNFJVStKA1p5MRDDnbq2jvYULPSFqAmhg+b
+         e/rQG0MT5fTGG+ryop659/utA9JXcOmaVu6rY8/YbFQl26vEEx9pzMk7rKeif7dizRRR
+         tOgqxkBopMNlRF0J6s6PhR+Tz0KkbmPjmxAaJz5a5/IbEJYEzzaIyHXS8OF/Gv1Qe9OP
+         2Ci4K0CgNmKhnl9L3Ujj1KT1BxBHWOx1ZCYdID013d45Bzwxky/zeHzqyd96S3VXEJAp
+         F7JLR7iNirbrO4iqKZAjgoXVgZ4eguYjbFD1/UjsNwJwVC8T44g7g1p0mDzvWLbMovSf
+         VHoQ==
+X-Gm-Message-State: AC+VfDwO2uF8pItOGuIbyhTfj/Ey6qSOXm5j30auTQq+dz4vq87fWdkT
+	bdjnx7QILuWUgT/OKjNoKvYjfSTlnaY=
+X-Google-Smtp-Source: ACHHUZ7oX/oqp2PFGuXWxjhOqnJ8ypydNeAzP+gQrCOTWEsB4a4ybcpktfvN6oAfVayKobEuOf+vOA==
+X-Received: by 2002:aa7:d8d0:0:b0:50b:c4f0:c200 with SMTP id k16-20020aa7d8d0000000b0050bc4f0c200mr3066855eds.41.1684957556452;
+        Wed, 24 May 2023 12:45:56 -0700 (PDT)
 Received: from ?IPV6:2a01:c23:c519:9c00:cd4b:d130:35c7:5e08? (dynamic-2a01-0c23-c519-9c00-cd4b-d130-35c7-5e08.c23.pool.telefonica.de. [2a01:c23:c519:9c00:cd4b:d130:35c7:5e08])
-        by smtp.googlemail.com with ESMTPSA id b2-20020aa7c6c2000000b005066cadcc54sm212302eds.43.2023.05.24.12.11.07
+        by smtp.googlemail.com with ESMTPSA id p20-20020aa7cc94000000b0050d56dffc93sm246444edt.12.2023.05.24.12.45.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 May 2023 12:11:07 -0700 (PDT)
-Message-ID: <8e4b2ebb-9dd9-5d30-673e-7794a50fd8b1@gmail.com>
-Date: Wed, 24 May 2023 21:11:06 +0200
+        Wed, 24 May 2023 12:45:56 -0700 (PDT)
+Message-ID: <aa498590-261c-4ada-63ff-8d7aaeec0932@gmail.com>
+Date: Wed, 24 May 2023 21:45:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH] pwm: pwm-meson: fix handling of period/duty if greater
- than UINT_MAX
 Content-Language: en-US
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
- "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>,
- "linux-arm-kernel@lists.infradead.org"
+ <khilman@baylibre.com>, =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?=
+ <u.kleine-koenig@pengutronix.de>,
+ "thierry.reding@gmail.com" <thierry.reding@gmail.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
  <linux-arm-kernel@lists.infradead.org>,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-pwm@vger.kernel.org
-References: <1d1a8ede-e789-bc4d-2dcd-9d06d2df4061@gmail.com>
- <CAFBinCCeh1eUo1=pfqmp4F7UsuKZ--cja-16mCqBhV-cgodzqw@mail.gmail.com>
- <f6b93fcc-ca5a-43ae-729d-38338ba411bc@gmail.com>
- <CAFBinCDdDcFaekrdC33_cO_TngRhMTgqgpFR2ELjEcavd-8SyA@mail.gmail.com>
+ linux-pwm@vger.kernel.org, Dmitry Rokosov <ddrokosov@sberdevices.ru>
 From: Heiner Kallweit <hkallweit1@gmail.com>
-In-Reply-To: <CAFBinCDdDcFaekrdC33_cO_TngRhMTgqgpFR2ELjEcavd-8SyA@mail.gmail.com>
+Subject: [PATCH v5 0/6] pwm: meson: make full use of common clock framework
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230524_121115_225988_25D97532 
-X-CRM114-Status: GOOD (  12.74  )
+X-CRM114-CacheID: sfid-20230524_124600_448903_EB19905C 
+X-CRM114-Status: GOOD (  15.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,36 +93,91 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjMuMDUuMjAyMyAyMjo1MSwgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90ZToKPiBPbiBNb24s
-IE1heSAxNSwgMjAyMyBhdCAxMDozMuKAr1BNIEhlaW5lciBLYWxsd2VpdCA8aGthbGx3ZWl0MUBn
-bWFpbC5jb20+IHdyb3RlOgo+Pgo+PiBPbiAwOC4wNS4yMDIzIDIxOjQ2LCBNYXJ0aW4gQmx1bWVu
-c3RpbmdsIHdyb3RlOgo+Pj4gT24gV2VkLCBNYXkgMywgMjAyMyBhdCA5OjU44oCvUE0gSGVpbmVy
-IEthbGx3ZWl0IDxoa2FsbHdlaXQxQGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pj4KPj4+PiBzdGF0ZS0+
-cGVyaW9kL2R1dHkgYXJlIG9mIHR5cGUgdTY0LCBhbmQgaWYgdGhlaXIgdmFsdWUgaXMgZ3JlYXRl
-ciB0aGFuCj4+Pj4gVUlOVF9NQVgsIHRoZW4gdGhlIGNhc3QgdG8gdWludCB3aWxsIGNhdXNlIHBy
-b2JsZW1zLiBGaXggdGhpcyBieQo+Pj4+IGNoYW5naW5nIHRoZSB0eXBlIG9mIHRoZSByZXNwZWN0
-aXZlIGxvY2FsIHZhcmlhYmxlcyB0byB1NjQuCj4+Pj4KPj4+PiBGaXhlczogYjc5YzM2NzBlMTIw
-ICgicHdtOiBtZXNvbjogRG9uJ3QgZHVwbGljYXRlIHRoZSBwb2xhcml0eSBpbnRlcm5hbGx5IikK
-Pj4+PiBDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZwo+Pj4+IFN1Z2dlc3RlZC1ieTogVXdlIEts
-ZWluZS1Lw7ZuaWcgPHUua2xlaW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZT4KPj4+PiBTaWduZWQt
-b2ZmLWJ5OiBIZWluZXIgS2FsbHdlaXQgPGhrYWxsd2VpdDFAZ21haWwuY29tPgo+Pj4gUmV2aWV3
-ZWQtYnk6IE1hcnRpbiBCbHVtZW5zdGluZ2wgPG1hcnRpbi5ibHVtZW5zdGluZ2xAZ29vZ2xlbWFp
-bC5jb20+Cj4+Cj4+IE5vdCBzdXJlIGFib3V0IHRoZSBwcm9jZXNzIGluIHB3bSBzdWJzeXN0ZW06
-IFdoZW4gd2lsbCB0aGVzZSBwYXRjaGVzIG1ha2UKPj4gaXQgdG8gbGludXgtbmV4dD8gQmVjYXVz
-ZSBJJ2QgbGlrZSB0byBzdWJtaXQgZm9sbG93LXVwcyB3aXRoIGEgZGVwZW5kZW5jeQo+PiBvbmx5
-IGFmdGVyIHBlbmRpbmcgcGF0Y2hlcyBoYXZlIGJlZW4gYXBwbGllZC4KPiBJJ20gYWxzbyBub3Qg
-c3VyZS4gUGVyc29uYWxseSBJIHdvdWxkIHRha2UgYWxsIHBhdGNoZXMgdGhhdCBmaXggdGhlCj4g
-ZXhpc3RpbmcgZHJpdmVyIGNvZGUsIGJ1bmRsZSB0aGVtIGludG8gYSBzZXJpZXMgYW5kIHJlLXNl
-bmQgdGhhdAo+IChjb2xsZWN0aW5nIGFsbCBSZXZpZXdlZC1ieSwgZXRjLiBhbG9uZyB0aGUgd2F5
-KS4gVGhlIGlkZWEgaXMgdG8gbWFrZQo+IFRoaWVycnkncyBsaWZlIGVhc2llciBhcyBoZSBqdXN0
-IGhhcyB0byBhcHBseSB0aGUgc2VyaWVzIChubyBuZWVkIHRvCj4gd29ycnkgYWJvdXQgdGhlIHBh
-dGNoIG9yZGVyLCAuLi4pLgoKU291bmRzIGxpa2UgYSBwbGFuLCBJIHRoaW5rIEknbGwgZm9sbG93
-IHRoaXMgc3VnZ2VzdGlvbi4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMu
-aW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2xpbnV4LWFtbG9naWMK
+Newer versions of the PWM block use a core clock with external mux,
+divider, and gate. These components either don't exist any longer in
+the PWM block, or they are bypassed.
+To minimize needed changes for supporting the new version, the internal
+divider and gate should be handled by CCF too.
+
+I didn't see a good way to split the patch, therefore it's somewhat
+bigger. What it does:
+
+- The internal mux is handled by CCF already. Register also internal
+  divider and gate with CCF, so that we have one representation of the
+  input clock: [mux] parent of [divider] parent of [gate]
+  
+- Now that CCF selects an appropriate mux parent, we don't need the
+  DT-provided default parent any longer. Accordingly we can also omit
+  setting the mux parent directly in the driver.
+  
+- Instead of manually handling the pre-div divider value, let CCF
+  set the input clock. Targeted input clock frequency is
+  0xffff * 1/period for best precision.
+  
+- For the "inverted pwm disabled" scenario target an input clock
+  frequency of ULONG_MAX. This ensures that the remaining low pulses
+  have minimum length.
+
+I don't have hw with the old PWM block, therefore I couldn't test this
+patch. With the not yet included extension for the new PWM block
+(channel->clock directly coming from get_clk(external_clk)) I didn't
+notice any problem. My system uses PWM for the CPU voltage regulator
+and for the SDIO 32kHz clock.
+
+Note: The clock gate in the old PWM block is permanently disabled.
+This seems to indicate that it's not used by the new PWM block.
+
+Changes to RFT/RFC version:
+- use parent_hws instead of parent_names for div/gate clock
+- use devm_clk_hw_register where the struct clk * returned by
+  devm_clk_register isn't needed
+
+v2:
+- add patch 1
+- add patch 3
+- switch to using clk_parent_data in all relevant places
+
+v3:
+- patch 1: move setting mux parent data out of the loop
+- patch 4: add flag CLK_IGNORE_UNUSED
+
+v4:
+- patch 2: improve commit message
+- patch 4: remove variable tmp in meson_pwm_get_state
+- patch 4: don't use deprecated function devm_clk_register
+
+v5:
+- add pending standalone patches 1-3 to the series
+- remove ex-patch 3
+- ex-patch 4 (now patch 6):
+  - add clk_en_shift
+  - use div_u64 when dividing by NSEC_PER_SEC
+  - use div64_ul in meson_pwm_cnt_to_ns
+  - remove check for __clk_is_enabled(channel->clk) from meson_pwm_get_state()
+    because this is always true once the PWM is requested
+
+Heiner Kallweit (6):
+  pwm: meson: modify and simplify calculation in meson_pwm_get_state
+  pwm: meson: fix handling of period/duty if greater than UINT_MAX
+  pwm: meson: remove not needed check in meson_pwm_calc
+  pwm: meson: switch to using struct clk_parent_data for mux parents
+  pwm: meson: don't use hdmi/video clock as mux parent
+  pwm: meson: make full use of common clock framework
+
+ drivers/pwm/pwm-meson.c | 212 ++++++++++++++++++++--------------------
+ 1 file changed, 104 insertions(+), 108 deletions(-)
+
+-- 
+2.40.1
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
