@@ -4,77 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1259DC77B7E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 May 2023 13:16:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BE11C7EE29
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 May 2023 13:17:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:CC:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=tHmg9Ebnwpc34Xpus2Wrq1YXZvcTo8CgLQvp2APxfg8=; b=NH2gioYcoXEvnsOv6H+D7sHmqj
-	TllowNin9hIS+T5ngQ+TreqbdUSg+QceZsDq3rnNbsz/zWfdpyt8xEWetQw7JvSTE1AxBj/K3Y1t5
-	9/DkVq6XMU+KtHZT0XjtqHafCiX0ghyQQ5NTL4EBStRW9TmX351WKFrKWCQkFOaXc0FM6sSKIu2YO
-	Zd9XqutSbXwyXlQasSgIzhDegsEoNAWuWMJULdEeDP5I/WD1PFtU9zc0TM5OKige7bsXqsYXj4JRt
-	3hrisw+izNladsKzf/sIG7tHwZqxXPFnJk77D/+H1ZLQXZ9xYJDwdpsdCH528NgORAFOKlQAg1rpT
-	dcqA/YnQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=SXAq3GbuiX78z2viUy8Y9dcSSgGyHmFo1LPbAbt71VM=; b=YJsMnDN6PRkzLC
+	AbdNGhKkIT46N3qQtvAeCJZ9x4GjUdclHXSdbBLDX185dQ479UzdnlCkJHufnMPIQTjMYhXGnxTRT
+	4yg/Dofr2xZ8Wsk9FytRLC7d7nvEOu0j3n7e3JwrCxWL7y7OOvP8fhRghcRlW3MNTTQNdJkVfM+xi
+	PH/vdq3BAc1laisT9K/GGII5gcLJa9dfKs9Okc8ndqSVWklxSvecL724sIRBUdT2tnkS1AjwQJBQX
+	afAL9+4pvGP83IkNrcKQbhkhLSX1dLs+CtpOVcuiHS1ZyTNx7rDtn35BkAUTDScB6U1ot7lHUO5xT
+	+6JW2zpAuwLZxiB/hd0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q2ApV-00Gi4o-2J;
-	Thu, 25 May 2023 13:16:33 +0000
-Received: from esa.microchip.iphmx.com ([68.232.153.233])
+	id 1q2Apx-00Gi98-2p;
+	Thu, 25 May 2023 13:17:01 +0000
+Received: from lahtoruutu.iki.fi ([2a0b:5c81:1c1::37])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q2ApR-00Gi49-2Z;
-	Thu, 25 May 2023 13:16:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1685020587; x=1716556587;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bji74CU8lVc3dQnwGVK8uYW1fWx2VIw8L4AKclmka2I=;
-  b=d9MjSRa1YqEiBchkjRbMyiG0dILBbf9QUrgrIeScCzNOXuANKHhTB7sO
-   0+kS3NNfNLi9Ot14YnhzioNppItJE/X3aGAU598h18b9SkI7d0BkqC4qf
-   hN8yK9pfPrDX/C4AjdbR0jfAowev/pyz76gcqwCH0o7kMB3R7puiBL+Mh
-   Q/sylqQ1LsEOXebxOJkrcuZA9+v5ReozPfA0CArp9Ss5TzLlyxBDVODtK
-   EbnXizVF6YJGEt0S6DBG540jdu+hYSN6G2dyX8l59FitWSxwoA0Vo1Dea
-   DMGYpOJX0HtQImmxNqrVuKguo3/3RsXse4dRqd7UyIgkOUo4wyEOq7UsX
-   A==;
-X-IronPort-AV: E=Sophos;i="6.00,191,1681196400"; 
-   d="asc'?scan'208";a="214869960"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 May 2023 06:16:26 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 25 May 2023 06:16:27 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 25 May 2023 06:16:24 -0700
-Date: Thu, 25 May 2023 14:16:02 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-CC: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor@kernel.org>, <jian.hu@amlogic.com>, <kernel@sberdevices.ru>,
-	<rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
-	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v16 5/6] dt-bindings: clock: meson: add A1 Peripherals
- clock controller bindings
-Message-ID: <20230525-connected-skipper-442c6d0b52c1@wendy>
-References: <20230523135351.19133-1-ddrokosov@sberdevices.ru>
- <20230523135351.19133-6-ddrokosov@sberdevices.ru>
- <20230525093736.naztwqlhvskujsoa@CAB-WSD-L081021>
+	id 1q2Apt-00Gi81-2n;
+	Thu, 25 May 2023 13:17:00 +0000
+Received: from hillosipuli.retiisi.eu (82-181-192-243.bb.dnainternet.fi [82.181.192.243])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4QRpVY2Z02z49Q1p;
+	Thu, 25 May 2023 16:16:53 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1685020615;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=QuDv2Ny6oiXp6mURnH5jCu7g32h4l4gFdh/PW9rVbWg=;
+	b=djdATiB+3N2aqZ9qfQ9DlY+GZgKf2aYffJo60RS0r2Z0LqWl/4ElwnD9qepe90C6WR9Byt
+	AmNI9/2vbbmOdoGEfPJ8fKTDyW3VJRxnt20TWlhIe84gizBj02l/HZjSVTnHCXftkPH21C
+	0ngSw2vfSkrZD7fDCKYYjORBDxZ1UtE+9DRHacj2yYAhl/2Y4SK50eenkcj4MB4gB1urc5
+	mtuPfZxad/7oft8rXo121X+ExqQMi1w6QEVpLUokt+4APZoup62uZsnURXwNiF/7HzX2SK
+	YROnnzkWN9Qhy1oOlDriGzXhw9hkdQZgq4QkluZbqTMWPHXsVNQMj7IugpO4yA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1685020615;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=QuDv2Ny6oiXp6mURnH5jCu7g32h4l4gFdh/PW9rVbWg=;
+	b=hL0zQlYJz7XX0zlvdcV7ikpLw5AwNX/RpOePcNkHvuJswg/6yw3VOxx+fB6o2FBF9UpWeQ
+	tLcCzWfaWdCwNWSD/zYLLWwwVyyRQsaYA7t/O0T6PRiWxvsGIZnz2cu6YtCDI6iCrkNDoo
+	ZoujwEahakAOmnl9timaBuuKGFT32vII/yhiXAFMQZLCKs1LOOLcvr8MMGLU03wjV5NOZb
+	fPCMyQTHc1Uf2dVTB3aqo5CFrLuNdHLiGE4b9HGEMJaFfMnUgaGo84wjg83ostJkuZRh37
+	rmQDjQ6sOsvpFuDT5Fj7fXp3sMffyYGksGc/1hKyiSU4nKziu1sEEzi1yxGMfg==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1685020615; a=rsa-sha256;
+	cv=none;
+	b=faHfmXhMomZ3Zfka9zPvHXkwv3PuqU1A2WCv/dGIN8H0qrVGPafjeaMQZ4oxGFecemUMK+
+	CteyIiEMmmbM9Et0XApNacDOhTOoOTA2zvO9EDkaSN2j1u1ka9q/L6SSH/1wwfhRgi2wGb
+	OQfuD01dN6NtmNjqhad/lpGSEi6pbnvl9KAytiTjy+sSHsWowPstWk1gNcjj6ixaL2g+sK
+	9ogwMgSLx3lFzAtOkTacAahWWks2XKhxctYOqCXLc8WSQK23YBLrjG2lldlkm7a2nG1BBc
+	rVyhTSmjCkZHl3t+NNEiaKolZcmBXqsofHMgmFnXSq5/SzqK27p9M7s4whjfdA==
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 9B802634C91;
+	Thu, 25 May 2023 16:16:52 +0300 (EEST)
+Date: Thu, 25 May 2023 16:16:52 +0300
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, Joe Tessler <jrt@google.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jon Hunter <jonathanh@nvidia.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Michael Tretter <m.tretter@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Jacopo Mondi <jacopo+renesas@jmondi.org>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Wenyou Yang <wenyou.yang@microchip.com>,
+	Bin Liu <bin.liu@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+	Houlong Wei <houlong.wei@mediatek.com>,
+	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+	Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	Yong Deng <yong.deng@magewell.com>,
+	Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Sean Young <sean@mess.org>,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-rockchip@lists.infradead.org,
+	oushixiong <oushixiong@kylinos.cn>
+Subject: Re: [PATCH 20/28] media: platform: jpeg: always reference OF data
+Message-ID: <ZG9fxF/JoVXXm/zy@valkosipuli.retiisi.eu>
+References: <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
+ <20230312131318.351173-20-krzysztof.kozlowski@linaro.org>
+ <86431868-488b-4a72-944b-231b6d0382b0@app.fastmail.com>
+ <8b7816b0-1daa-1c49-6f9d-40769d228a39@linaro.org>
+ <b9342459-efec-4e17-aee6-332ee17f44d2@app.fastmail.com>
+ <676cb6ac-84a3-025f-bb05-55dd27c365fe@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20230525093736.naztwqlhvskujsoa@CAB-WSD-L081021>
+Content-Disposition: inline
+In-Reply-To: <676cb6ac-84a3-025f-bb05-55dd27c365fe@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230525_061629_868614_1B9FE70B 
-X-CRM114-Status: GOOD (  10.74  )
+X-CRM114-CacheID: sfid-20230525_061658_068494_7F7E4400 
+X-CRM114-Status: GOOD (  25.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,64 +143,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7068094420530556880=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---===============7068094420530556880==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="68QoUxHiy/kLBBjz"
-Content-Disposition: inline
-
---68QoUxHiy/kLBBjz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, May 25, 2023 at 12:37:36PM +0300, Dmitry Rokosov wrote:
-> Hello Rob, Krzysztof and Conor,
->=20
-> Could you please take a look at this patch version? Before Rob marked
-> this patchset with RvB at v13 -
-> https://lore.kernel.org/linux-amlogic/168130720431.2218249.76710619649880=
-64525.robh@kernel.org/
->=20
-> However, due to several comments from other maintainers, unfortunately,
-> I had to rename the 'a1-clkc' controller to 'a1-peripherals-clkc' and
-> remove Rob's RvB.
-
-I dunno if the compatible change is worth dropping the tag for tbh.
-That seems to be the only change, so I guess you can have my R-b instead
-of Rob's...
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
---68QoUxHiy/kLBBjz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG9fkgAKCRB4tDGHoIJi
-0pRoAQDxk5nwMh6wGwdzyLznrxJI2Wbak7jHxQtaSq4C+2Zr7AEAt+xK055gIGNQ
-a6u9fKyHj5+k8LB9XmdcuS5cl3HwpwI=
-=HgEl
------END PGP SIGNATURE-----
-
---68QoUxHiy/kLBBjz--
-
-
---===============7068094420530556880==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7068094420530556880==--
-
+T24gVHVlLCBNYXIgMjEsIDIwMjMgYXQgMDk6MjY6MjlBTSArMDEwMCwgS3J6eXN6dG9mIEtvemxv
+d3NraSB3cm90ZToKPiBPbiAyMS8wMy8yMDIzIDA5OjI0LCBBcm5kIEJlcmdtYW5uIHdyb3RlOgo+
+ID4gT24gVHVlLCBNYXIgMjEsIDIwMjMsIGF0IDA5OjIxLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
+b3RlOgo+ID4+IE9uIDIxLzAzLzIwMjMgMDk6MTEsIEFybmQgQmVyZ21hbm4gd3JvdGU6Cj4gPj4+
+IE9uIFN1biwgTWFyIDEyLCAyMDIzLCBhdCAxNDoxMywgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90
+ZToKPiA+Pj4+IFRoZSBkcml2ZXIgY2FuIG1hdGNoIG9ubHkgdmlhIHRoZSBEVCB0YWJsZSBzbyB0
+aGUgdGFibGUgc2hvdWxkIGJlIGFsd2F5cwo+ID4+Pj4gdXNlZCBhbmQgdGhlIG9mX21hdGNoX3B0
+ciBkb2VzIG5vdCBoYXZlIGFueSBzZW5zZSAodGhpcyBhbHNvIGFsbG93cyBBQ1BJCj4gPj4+PiBt
+YXRjaGluZyB2aWEgUFJQMDAwMSwgZXZlbiB0aG91Z2ggaXQgbWlnaHQgbm90IGJlIHJlbGV2YW50
+IGhlcmUpLiAgVGhpcwo+ID4+Pj4gYWxzbyBmaXhlcyAhQ09ORklHX09GIGVycm9yOgo+ID4+Pj4K
+PiA+Pj4+ICAgZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tZWRpYXRlay9qcGVnL210a19qcGVnX2Nv
+cmUuYzoxODkwOjM4OiBlcnJvcjogCj4gPj4+PiDigJhtdGs4MTk1X2pwZWdkZWNfZHJ2ZGF0YeKA
+mSBkZWZpbmVkIGJ1dCBub3QgdXNlZCAKPiA+Pj4+IFstV2Vycm9yPXVudXNlZC1jb25zdC12YXJp
+YWJsZT1dCj4gPj4+Pgo+ID4+Pj4gU2lnbmVkLW9mZi1ieTogS3J6eXN6dG9mIEtvemxvd3NraSA8
+a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPgo+ID4+Pgo+ID4+PiBJIHNlZSBub3cgdGhh
+dCB3ZSBib3RoIHN1Ym1pdHRlZCB0aGUgc2FtZSBwYXRjaCwgYnV0IG5vdyBIYW5zCj4gPj4KPiA+
+PiBXZSBhcyB5b3UgYW5kIG1lPyBJIGNhbm5vdCBmaW5kIHlvdXIgcGF0Y2ggb24gbG9yZToKPiA+
+PiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvP3E9ZiUzQWFybmQlNDBhcm5kYi5kZQo+ID4g
+Cj4gPiBUaGlzIGlzIHRoZSBvbmUgdGhhdCBJIHNlbnQgYmFjayBpbiBKYW51YXJ5Ogo+ID4gCj4g
+PiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyMzAxMTcxNzI2NDQuMzA0NDI2NS0xLWFy
+bmRAa2VybmVsLm9yZwo+IAo+IFVoLCB0aGF0J3MgZnJvbSBKYW51YXJ5ISBJdCdzIHN0aWxsIHdh
+aXRpbmcgaW4gUGF0Y2h3b3JrOgo+IGh0dHBzOi8vcGF0Y2h3b3JrLmxpbnV4dHYub3JnL3Byb2pl
+Y3QvbGludXgtbWVkaWEvcGF0Y2gvMjAyMzAxMTcxNzI2NDQuMzA0NDI2NS0xLWFybmRAa2VybmVs
+Lm9yZy8KClllcy4uLiB0aGlzIHN0aWxsIG1ha2VzIHNlbnNlLCB0byByZW1vdmUgb2ZfbWF0Y2hf
+cHRyKCkuIEkgcmViYXNlZCB0aGlzLApyZXN1bHRpbmcgaW46CgpGcm9tIDIzMGNmYWFiY2QyZDVh
+NWYwYmM3NGUxMTNmZTg0Zjk1MDI4YmNkYzUgTW9uIFNlcCAxNyAwMDowMDowMCAyMDAxCkZyb206
+IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4KRGF0
+ZTogU3VuLCAxMiBNYXIgMjAyMyAxNDoxMzoxMCArMDEwMApTdWJqZWN0OiBbUEFUQ0ggdjIgMjAv
+MjhdIG1lZGlhOiBwbGF0Zm9ybToganBlZzogYWx3YXlzIHJlZmVyZW5jZSBPRiBkYXRhCgpUaGUg
+ZHJpdmVyIGNhbiBtYXRjaCBvbmx5IHZpYSB0aGUgRFQgdGFibGUgc28gdGhlIHRhYmxlIHNob3Vs
+ZCBiZSBhbHdheXMKdXNlZCBhbmQgdGhlIG9mX21hdGNoX3B0ciBkb2VzIG5vdCBoYXZlIGFueSBz
+ZW5zZSAodGhpcyBhbHNvIGFsbG93cyBBQ1BJCm1hdGNoaW5nIHZpYSBQUlAwMDAxLCBldmVuIHRo
+b3VnaCBpdCBtaWdodCBub3QgYmUgcmVsZXZhbnQgaGVyZSkuCgpTaWduZWQtb2ZmLWJ5OiBLcnp5
+c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+CltTYWthcmkg
+QWlsdXM6IFJlYmFzZWQgb24gbWVkaWEgdHJlZSBtYXN0ZXIsIHJld29yZCBjb21taXQgbWVzc2Fn
+ZS5dClNpZ25lZC1vZmYtYnk6IFNha2FyaSBBaWx1cyA8c2FrYXJpLmFpbHVzQGxpbnV4LmludGVs
+LmNvbT4KLS0tCiBkcml2ZXJzL21lZGlhL3BsYXRmb3JtL21lZGlhdGVrL2pwZWcvbXRrX2pwZWdf
+Y29yZS5jIHwgNCArLS0tCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDMgZGVsZXRp
+b25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tZWRpYXRlay9qcGVn
+L210a19qcGVnX2NvcmUuYyBiL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbWVkaWF0ZWsvanBlZy9t
+dGtfanBlZ19jb3JlLmMKaW5kZXggMDA1MWYzNzJhNjZjZi4uOGJjYmFhOTY1OGJhYyAxMDA2NDQK
+LS0tIGEvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tZWRpYXRlay9qcGVnL210a19qcGVnX2NvcmUu
+YworKysgYi9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL21lZGlhdGVrL2pwZWcvbXRrX2pwZWdfY29y
+ZS5jCkBAIC0xODY2LDcgKzE4NjYsNiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGRldl9wbV9vcHMg
+bXRrX2pwZWdfcG1fb3BzID0gewogCVNFVF9SVU5USU1FX1BNX09QUyhtdGtfanBlZ19wbV9zdXNw
+ZW5kLCBtdGtfanBlZ19wbV9yZXN1bWUsIE5VTEwpCiB9OwogCi0jaWYgZGVmaW5lZChDT05GSUdf
+T0YpCiBzdGF0aWMgY29uc3Qgc3RydWN0IG10a19qcGVnX3ZhcmlhbnQgbXQ4MTczX2pwZWdfZHJ2
+ZGF0YSA9IHsKIAkuY2xrcyA9IG10ODE3M19qcGVnX2RlY19jbG9ja3MsCiAJLm51bV9jbGtzID0g
+QVJSQVlfU0laRShtdDgxNzNfanBlZ19kZWNfY2xvY2tzKSwKQEAgLTE5NDksMTQgKzE5NDgsMTMg
+QEAgc3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgbXRrX2pwZWdfbWF0Y2hbXSA9IHsK
+IH07CiAKIE1PRFVMRV9ERVZJQ0VfVEFCTEUob2YsIG10a19qcGVnX21hdGNoKTsKLSNlbmRpZgog
+CiBzdGF0aWMgc3RydWN0IHBsYXRmb3JtX2RyaXZlciBtdGtfanBlZ19kcml2ZXIgPSB7CiAJLnBy
+b2JlID0gbXRrX2pwZWdfcHJvYmUsCiAJLnJlbW92ZV9uZXcgPSBtdGtfanBlZ19yZW1vdmUsCiAJ
+LmRyaXZlciA9IHsKIAkJLm5hbWUgICAgICAgICAgID0gTVRLX0pQRUdfTkFNRSwKLQkJLm9mX21h
+dGNoX3RhYmxlID0gb2ZfbWF0Y2hfcHRyKG10a19qcGVnX21hdGNoKSwKKwkJLm9mX21hdGNoX3Rh
+YmxlID0gbXRrX2pwZWdfbWF0Y2gsCiAJCS5wbSAgICAgICAgICAgICA9ICZtdGtfanBlZ19wbV9v
+cHMsCiAJfSwKIH07Ci0tIAoyLjMwLjIKCi0tIApTYWthcmkgQWlsdXMKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBs
+aXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFk
+ZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
