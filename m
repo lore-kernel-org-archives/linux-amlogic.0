@@ -4,86 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76092C77B7C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 May 2023 19:53:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DE4CC7EE2C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 May 2023 09:38:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CTfQkmOFUof4D7wLHZ5lye3Sm+8rhnQJYWxddDlCqZk=; b=jlU1obMU2FF6LK
-	hPL51T5NIioJAj+cXqaD4nMlXT54XtphJLti+g2XbcDtP/CGlOLBvgWBkpcZN2/gseZp4LmxE5maM
-	BmvCCWZ3D2sw6d/+PddSogKZrbQCxzAJmStXPOWjYypAmO0pGkVfYWS2fhLnAYpnIuiKdlFPINiiC
-	6hFb1l+oI8k0tPyHMaNkFxklywvDJtAnwyDpHbRBLo4TmsIyR1dt+rAcZk/YP832oRbycKKlTJi9j
-	rRr7jJHKjK4PpCwmNh6ZbdFjoSpsDecgWO3KfTXePSwK76lSrEREQBBoKmgOE5caDTSFpsTgy1oZj
-	UXzANlqVXanp7omedTgw==;
+	List-Owner; bh=i6ctSNXau25rgpwo9woF4VnekBANwkd//lSCvL3S7xI=; b=X+UGAf0GiEQo22
+	iEuGSg/4oK2VyFu0qa4j5R3GqGqZn7i2a3gtUR3QPA2E433Q5EW/8Uj9A1srbs85Y+k+WaB5nC7Dw
+	byrvR5nhARdiYAZzZw5IfMKbciYLmemm105rUPPwrDGVGdt1F5VpmOtR8gcdyyU49i2xPOOQ6afQ5
+	htigpIhEYcwTQPpM0x5DL5ZuebINrVuOeQRxhKk9d58rPykw4imjKq5jXVYgbFpOwiTpQ/Pjc6o7I
+	KBDAnLx7zzJ6WEEmKWAMeVuD8PodXLx4kgAR59f9QuMnXxkpt63nvat61nt3dDIGtpaWWS8C/9X5b
+	8kf8x2eeCjrpXiv7ipZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q1uXa-00EWPn-16;
-	Wed, 24 May 2023 19:52:58 +0000
-Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
+	id 1q27Pt-00GAbS-1j;
+	Thu, 25 May 2023 09:37:53 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q1uXR-00EWDN-0V;
-	Wed, 24 May 2023 19:52:51 +0000
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-510b6a24946so2717269a12.0;
-        Wed, 24 May 2023 12:52:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684957965; x=1687549965;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vibbdVSC64d7h0aZ4zXN81eGjJt2js9ztMIl2I7znr0=;
-        b=sHNiDeEsiB+i6Qy9bW4IQWAPrZYLRsMXHgaa1UBglt/EZ3bzXb5b1rSM6wFLdGLwmd
-         v0nZ/l8uO54gBYvWXbGqLyxH0uYFNFp2RiSdvxqmFUnA1BgsMHiFSC/wsm7fs0lxRZz7
-         zDjj1Js1MKGhYc4zmUT1j9iVWVOv7OlQIwg6dkgwuiuhoH9GjRqy/ZrZVv3VoZ+F+k6D
-         MsYiWjihqZmrgEsWs9358wBK+vVH8YuraSRGEm7PcQ1t6rbrS69EpHvxi+z+B7H55Cp0
-         7YROOMDRx3FGVHxJPVrWiMhZFoSjOhXWQWUPU6M9sUlk7ynkIC/TSS9klizcw8yVAmHP
-         Cubw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684957965; x=1687549965;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vibbdVSC64d7h0aZ4zXN81eGjJt2js9ztMIl2I7znr0=;
-        b=huletzmr3M/oIHmIoaI9Dr47WoChqvqCVtkGlvnePoM87W1Yt1o49X3Ebn1H2Wi7Fl
-         FrdbQFf/Z8bt9diRf89uvsoTZ7xwqdSu0vyZMg7MZ5CiRjqQzDAqsZLXPwd0iRtafZkT
-         zDH8gqVxyFPttlNXTZaOQuDjROCzmE/kJ1ZcjaSQJsP2vCUllR+5qkckaCxXZ0XMOswy
-         AFOwvBHOwWwPpf4E/N1/k5jZ8xSl70Gw3r9IRfVcv2otBK2vV4leR4gK6RntOiOrPTR9
-         EzXfjzGZInHfc3rwOUYcz0FpqlVSZgQE/Ocz92bNeO+OesDQY9unnSJTMRSZI4x8vxsO
-         xHhw==
-X-Gm-Message-State: AC+VfDy0GvDQ1Uxr2DafqkNWC/B10ZVpA14Sq5ok0StwAzIL2VdhIoHk
-	farydj/GMSiB3/n2t7W59QI=
-X-Google-Smtp-Source: ACHHUZ6WZWgjjLO4fmRZODK6B57Zb98c8JVVM8dsgjY437DZUOUIXbPUET+ZELL9pob+GvDjO4d06g==
-X-Received: by 2002:a05:6402:494:b0:50b:d5e5:519d with SMTP id k20-20020a056402049400b0050bd5e5519dmr2864310edv.4.1684957965267;
-        Wed, 24 May 2023 12:52:45 -0700 (PDT)
-Received: from ?IPV6:2a01:c23:c519:9c00:cd4b:d130:35c7:5e08? (dynamic-2a01-0c23-c519-9c00-cd4b-d130-35c7-5e08.c23.pool.telefonica.de. [2a01:c23:c519:9c00:cd4b:d130:35c7:5e08])
-        by smtp.googlemail.com with ESMTPSA id u24-20020a05640207d800b00504a356b149sm246313edy.25.2023.05.24.12.52.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 May 2023 12:52:44 -0700 (PDT)
-Message-ID: <8970e813-1fd8-edbd-afe0-7ebf94b31044@gmail.com>
-Date: Wed, 24 May 2023 21:52:21 +0200
+	id 1q27Po-00GAZh-0R;
+	Thu, 25 May 2023 09:37:51 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 78BBB5FD26;
+	Thu, 25 May 2023 12:37:39 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1685007459;
+	bh=qobywYVJnOUHz0WjaEufUy7pJlPh58rBIf/mWyapB+0=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+	b=AENyLL0j+KpGwEjQ+QN4FhtCnfmpVnRqackEWrrImh2HMKI+3EJgJ9YbzKCDpArvX
+	 1ubecqHpf+cgs5eMtoTj8UQY1eUlDxLG1jON6IF4aqoT1vEjxggCOphXp6x+CYeTeH
+	 ZpzMKCHUYnENITvHg5wyx2D3Kd0zfHRS/1xQE5KmI+m5h6BDDrnktxO6fRRFPbiWGg
+	 6P7wlkOrFPPJPdOAQYskJGa4JPxdcvd6qpCbk9FxrQwguTlLeAn0x2yL1aPnujQzA+
+	 0fdgUgU7z7g5yNv7qGgu0ihqdQ7szh4SYszTjyfRFc/Q4MwQ6amkZQx1dGQwW5CHM9
+	 QA5m0NMigP5uw==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Thu, 25 May 2023 12:37:37 +0300 (MSK)
+Date: Thu, 25 May 2023 12:37:36 +0300
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor@kernel.org>
+CC: <jian.hu@amlogic.com>, <kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <neil.armstrong@linaro.org>,
+	<jbrunet@baylibre.com>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+	<khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH v16 5/6] dt-bindings: clock: meson: add A1 Peripherals
+ clock controller bindings
+Message-ID: <20230525093736.naztwqlhvskujsoa@CAB-WSD-L081021>
+References: <20230523135351.19133-1-ddrokosov@sberdevices.ru>
+ <20230523135351.19133-6-ddrokosov@sberdevices.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: [PATCH v5 6/6] pwm: meson: make full use of common clock framework
-Content-Language: en-US
-From: Heiner Kallweit <hkallweit1@gmail.com>
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?=
- <u.kleine-koenig@pengutronix.de>,
- "thierry.reding@gmail.com" <thierry.reding@gmail.com>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-pwm@vger.kernel.org, Dmitry Rokosov <ddrokosov@sberdevices.ru>
-References: <aa498590-261c-4ada-63ff-8d7aaeec0932@gmail.com>
-In-Reply-To: <aa498590-261c-4ada-63ff-8d7aaeec0932@gmail.com>
+Content-Disposition: inline
+In-Reply-To: <20230523135351.19133-6-ddrokosov@sberdevices.ru>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/25 04:52:00 #21357441
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230524_125249_203723_96EAAB72 
-X-CRM114-Status: GOOD (  33.28  )
+X-CRM114-CacheID: sfid-20230525_023748_881996_5F9FB50F 
+X-CRM114-Status: GOOD (  20.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,391 +90,264 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Newer versions of the PWM block use a core clock with external mux,
-divider, and gate. These components either don't exist any longer in
-the PWM block, or they are bypassed.
-To minimize needed changes for supporting the new version, the internal
-divider and gate should be handled by CCF too.
+Hello Rob, Krzysztof and Conor,
 
-I didn't see a good way to split the patch, therefore it's somewhat
-bigger. What it does:
+Could you please take a look at this patch version? Before Rob marked
+this patchset with RvB at v13 -
+https://lore.kernel.org/linux-amlogic/168130720431.2218249.7671061964988064525.robh@kernel.org/
 
-- The internal mux is handled by CCF already. Register also internal
-  divider and gate with CCF, so that we have one representation of the
-  input clock: [mux] parent of [divider] parent of [gate]
-  
-- Now that CCF selects an appropriate mux parent, we don't need the
-  DT-provided default parent any longer. Accordingly we can also omit
-  setting the mux parent directly in the driver.
-  
-- Instead of manually handling the pre-div divider value, let CCF
-  set the input clock. Targeted input clock frequency is
-  0xffff * 1/period for best precision.
-  
-- For the "inverted pwm disabled" scenario target an input clock
-  frequency of ULONG_MAX. This ensures that the remaining low pulses
-  have minimum length.
+However, due to several comments from other maintainers, unfortunately,
+I had to rename the 'a1-clkc' controller to 'a1-peripherals-clkc' and
+remove Rob's RvB.
 
-I don't have hw with the old PWM block, therefore I couldn't test this
-patch. With the not yet included extension for the new PWM block
-(channel->clk coming directly from get_clk(external_clk)) I didn't
-notice any problem. My system uses PWM for the CPU voltage regulator
-and for the SDIO 32kHz clock.
+I would be grateful for your assistance!
 
-Note: The clock gate in the old PWM block is permanently disabled.
-This seems to indicate that it's not used by the new PWM block.
+On Tue, May 23, 2023 at 04:53:50PM +0300, Dmitry Rokosov wrote:
+> Add documentation and dt bindings for the Amlogic A1 Peripherals clock
+> controller.
+> A1 PLL clock controller has references to A1 Peripherals clock
+> controller objects, so reflect them in the schema.
+> 
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> ---
+>  .../clock/amlogic,a1-peripherals-clkc.yaml    |  73 +++++++++++
+>  .../bindings/clock/amlogic,a1-pll-clkc.yaml   |   5 +-
+>  .../clock/amlogic,a1-peripherals-clkc.h       | 115 ++++++++++++++++++
+>  3 files changed, 191 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
+> new file mode 100644
+> index 000000000000..6d84cee1bd75
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/amlogic,a1-peripherals-clkc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic A1 Peripherals Clock Control Unit
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +  - Jian Hu <jian.hu@jian.hu.com>
+> +  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,a1-peripherals-clkc
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: input fixed pll div2
+> +      - description: input fixed pll div3
+> +      - description: input fixed pll div5
+> +      - description: input fixed pll div7
+> +      - description: input hifi pll
+> +      - description: input oscillator (usually at 24MHz)
+> +
+> +  clock-names:
+> +    items:
+> +      - const: fclk_div2
+> +      - const: fclk_div3
+> +      - const: fclk_div5
+> +      - const: fclk_div7
+> +      - const: hifi_pll
+> +      - const: xtal
+> +
+> +required:
+> +  - compatible
+> +  - '#clock-cells'
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
+> +    apb {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        clock-controller@800 {
+> +            compatible = "amlogic,a1-peripherals-clkc";
+> +            reg = <0 0x800 0 0x104>;
+> +            #clock-cells = <1>;
+> +            clocks = <&clkc_pll CLKID_FCLK_DIV2>,
+> +                     <&clkc_pll CLKID_FCLK_DIV3>,
+> +                     <&clkc_pll CLKID_FCLK_DIV5>,
+> +                     <&clkc_pll CLKID_FCLK_DIV7>,
+> +                     <&clkc_pll CLKID_HIFI_PLL>,
+> +                     <&xtal>;
+> +            clock-names = "fclk_div2", "fclk_div3",
+> +                          "fclk_div5", "fclk_div7",
+> +                          "hifi_pll", "xtal";
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> index 5c6fa620a63c..a59b188a8bf5 100644
+> --- a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> @@ -43,6 +43,7 @@ additionalProperties: false
+>  
+>  examples:
+>    - |
+> +    #include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
+>      apb {
+>          #address-cells = <2>;
+>          #size-cells = <2>;
+> @@ -51,8 +52,8 @@ examples:
+>              compatible = "amlogic,a1-pll-clkc";
+>              reg = <0 0x7c80 0 0x18c>;
+>              #clock-cells = <1>;
+> -            clocks = <&clkc_periphs_fixpll_in>,
+> -                     <&clkc_periphs_hifipll_in>;
+> +            clocks = <&clkc_periphs CLKID_FIXPLL_IN>,
+> +                     <&clkc_periphs CLKID_HIFIPLL_IN>;
+>              clock-names = "fixpll_in", "hifipll_in";
+>          };
+>      };
+> diff --git a/include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h
+> new file mode 100644
+> index 000000000000..ff2730f398a6
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h
+> @@ -0,0 +1,115 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + * Author: Jian Hu <jian.hu@amlogic.com>
+> + *
+> + * Copyright (c) 2023, SberDevices. All Rights Reserved.
+> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> + */
+> +
+> +#ifndef __A1_PERIPHERALS_CLKC_H
+> +#define __A1_PERIPHERALS_CLKC_H
+> +
+> +#define CLKID_FIXPLL_IN		1
+> +#define CLKID_USB_PHY_IN	2
+> +#define CLKID_USB_CTRL_IN	3
+> +#define CLKID_HIFIPLL_IN	4
+> +#define CLKID_SYSPLL_IN		5
+> +#define CLKID_DDS_IN		6
+> +#define CLKID_SYS		7
+> +#define CLKID_CLKTREE		8
+> +#define CLKID_RESET_CTRL	9
+> +#define CLKID_ANALOG_CTRL	10
+> +#define CLKID_PWR_CTRL		11
+> +#define CLKID_PAD_CTRL		12
+> +#define CLKID_SYS_CTRL		13
+> +#define CLKID_TEMP_SENSOR	14
+> +#define CLKID_AM2AXI_DIV	15
+> +#define CLKID_SPICC_B		16
+> +#define CLKID_SPICC_A		17
+> +#define CLKID_MSR		18
+> +#define CLKID_AUDIO		19
+> +#define CLKID_JTAG_CTRL		20
+> +#define CLKID_SARADC_EN		21
+> +#define CLKID_PWM_EF		22
+> +#define CLKID_PWM_CD		23
+> +#define CLKID_PWM_AB		24
+> +#define CLKID_CEC		25
+> +#define CLKID_I2C_S		26
+> +#define CLKID_IR_CTRL		27
+> +#define CLKID_I2C_M_D		28
+> +#define CLKID_I2C_M_C		29
+> +#define CLKID_I2C_M_B		30
+> +#define CLKID_I2C_M_A		31
+> +#define CLKID_ACODEC		32
+> +#define CLKID_OTP		33
+> +#define CLKID_SD_EMMC_A		34
+> +#define CLKID_USB_PHY		35
+> +#define CLKID_USB_CTRL		36
+> +#define CLKID_SYS_DSPB		37
+> +#define CLKID_SYS_DSPA		38
+> +#define CLKID_DMA		39
+> +#define CLKID_IRQ_CTRL		40
+> +#define CLKID_NIC		41
+> +#define CLKID_GIC		42
+> +#define CLKID_UART_C		43
+> +#define CLKID_UART_B		44
+> +#define CLKID_UART_A		45
+> +#define CLKID_SYS_PSRAM		46
+> +#define CLKID_RSA		47
+> +#define CLKID_CORESIGHT		48
+> +#define CLKID_AM2AXI_VAD	49
+> +#define CLKID_AUDIO_VAD		50
+> +#define CLKID_AXI_DMC		51
+> +#define CLKID_AXI_PSRAM		52
+> +#define CLKID_RAMB		53
+> +#define CLKID_RAMA		54
+> +#define CLKID_AXI_SPIFC		55
+> +#define CLKID_AXI_NIC		56
+> +#define CLKID_AXI_DMA		57
+> +#define CLKID_CPU_CTRL		58
+> +#define CLKID_ROM		59
+> +#define CLKID_PROC_I2C		60
+> +#define CLKID_DSPA_EN		63
+> +#define CLKID_DSPA_EN_NIC	64
+> +#define CLKID_DSPB_EN		65
+> +#define CLKID_DSPB_EN_NIC	66
+> +#define CLKID_RTC		67
+> +#define CLKID_CECA_32K		68
+> +#define CLKID_CECB_32K		69
+> +#define CLKID_24M		70
+> +#define CLKID_12M		71
+> +#define CLKID_FCLK_DIV2_DIVN	72
+> +#define CLKID_GEN		73
+> +#define CLKID_SARADC		75
+> +#define CLKID_PWM_A		76
+> +#define CLKID_PWM_B		77
+> +#define CLKID_PWM_C		78
+> +#define CLKID_PWM_D		79
+> +#define CLKID_PWM_E		80
+> +#define CLKID_PWM_F		81
+> +#define CLKID_SPICC		82
+> +#define CLKID_TS		83
+> +#define CLKID_SPIFC		84
+> +#define CLKID_USB_BUS		85
+> +#define CLKID_SD_EMMC		86
+> +#define CLKID_PSRAM		87
+> +#define CLKID_DMC		88
+> +#define CLKID_DSPA_A_SEL	95
+> +#define CLKID_DSPA_B_SEL	98
+> +#define CLKID_DSPB_A_SEL	101
+> +#define CLKID_DSPB_B_SEL	104
+> +#define CLKID_CECB_32K_SEL_PRE	113
+> +#define CLKID_CECB_32K_SEL	114
+> +#define CLKID_CECA_32K_SEL_PRE	117
+> +#define CLKID_CECA_32K_SEL	118
+> +#define CLKID_GEN_SEL		121
+> +#define CLKID_PWM_A_SEL		124
+> +#define CLKID_PWM_B_SEL		126
+> +#define CLKID_PWM_C_SEL		128
+> +#define CLKID_PWM_D_SEL		130
+> +#define CLKID_PWM_E_SEL		132
+> +#define CLKID_PWM_F_SEL		134
+> +#define CLKID_SD_EMMC_SEL2	147
+> +
+> +#endif /* __A1_PERIPHERALS_CLKC_H */
+> -- 
+> 2.36.0
+> 
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-Changes to RFT/RFC version:
-- use parent_hws instead of parent_names for div/gate clock
-- use devm_clk_hw_register where the struct clk * returned by
-  devm_clk_register isn't needed
-
-v2:
-- add patch 1
-- add patch 3
-- switch to using clk_parent_data in all relevant places
-v3:
-- add flag CLK_IGNORE_UNUSED
-v4:
-- remove variable tmp in meson_pwm_get_state
-- don't use deprecated function devm_clk_register
-v5:
-- add clk_en_shift
-- use div_u64 when dividing by NSEC_PER_SEC
-- use div64_ul in meson_pwm_cnt_to_ns
-- remove check for __clk_is_enabled(channel->clk) from meson_pwm_get_state()
-  because this is always true once the PWM is requested
----
- drivers/pwm/pwm-meson.c | 158 +++++++++++++++++++++++-----------------
- 1 file changed, 90 insertions(+), 68 deletions(-)
-
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 48dcc44df..22f54db3a 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -49,9 +49,9 @@
- #define PWM_HIGH_MASK		GENMASK(31, 16)
- 
- #define REG_MISC_AB		0x8
--#define MISC_B_CLK_EN		BIT(23)
--#define MISC_A_CLK_EN		BIT(15)
--#define MISC_CLK_DIV_MASK	0x7f
-+#define MISC_B_CLK_EN_SHIFT	23
-+#define MISC_A_CLK_EN_SHIFT	15
-+#define MISC_CLK_DIV_WIDTH	7
- #define MISC_B_CLK_DIV_SHIFT	16
- #define MISC_A_CLK_DIV_SHIFT	8
- #define MISC_B_CLK_SEL_SHIFT	6
-@@ -67,32 +67,33 @@ static struct meson_pwm_channel_data {
- 	u8		reg_offset;
- 	u8		clk_sel_shift;
- 	u8		clk_div_shift;
--	u32		clk_en_mask;
-+	u8		clk_en_shift;
- 	u32		pwm_en_mask;
- } meson_pwm_per_channel_data[MESON_NUM_PWMS] = {
- 	{
- 		.reg_offset	= REG_PWM_A,
- 		.clk_sel_shift	= MISC_A_CLK_SEL_SHIFT,
- 		.clk_div_shift	= MISC_A_CLK_DIV_SHIFT,
--		.clk_en_mask	= MISC_A_CLK_EN,
-+		.clk_en_shift	= MISC_A_CLK_EN_SHIFT,
- 		.pwm_en_mask	= MISC_A_EN,
- 	},
- 	{
- 		.reg_offset	= REG_PWM_B,
- 		.clk_sel_shift	= MISC_B_CLK_SEL_SHIFT,
- 		.clk_div_shift	= MISC_B_CLK_DIV_SHIFT,
--		.clk_en_mask	= MISC_B_CLK_EN,
-+		.clk_en_shift	= MISC_B_CLK_EN_SHIFT,
- 		.pwm_en_mask	= MISC_B_EN,
- 	}
- };
- 
- struct meson_pwm_channel {
-+	unsigned long rate;
- 	unsigned int hi;
- 	unsigned int lo;
--	u8 pre_div;
- 
--	struct clk *clk_parent;
- 	struct clk_mux mux;
-+	struct clk_divider div;
-+	struct clk_gate gate;
- 	struct clk *clk;
- };
- 
-@@ -125,16 +126,6 @@ static int meson_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
- 	struct device *dev = chip->dev;
- 	int err;
- 
--	if (channel->clk_parent) {
--		err = clk_set_parent(channel->clk, channel->clk_parent);
--		if (err < 0) {
--			dev_err(dev, "failed to set parent %s for %s: %d\n",
--				__clk_get_name(channel->clk_parent),
--				__clk_get_name(channel->clk), err);
--			return err;
--		}
--	}
--
- 	err = clk_prepare_enable(channel->clk);
- 	if (err < 0) {
- 		dev_err(dev, "failed to enable clock %s: %d\n",
-@@ -157,9 +148,9 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
- 			  const struct pwm_state *state)
- {
- 	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
--	unsigned int pre_div, cnt, duty_cnt;
-+	unsigned int cnt, duty_cnt;
- 	unsigned long fin_freq;
--	u64 duty, period;
-+	u64 duty, period, freq;
- 
- 	duty = state->duty_cycle;
- 	period = state->period;
-@@ -173,7 +164,11 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
- 	if (state->polarity == PWM_POLARITY_INVERSED)
- 		duty = period - duty;
- 
--	fin_freq = clk_get_rate(channel->clk);
-+	freq = div64_u64(NSEC_PER_SEC * 0xffffULL, period);
-+	if (freq > ULONG_MAX)
-+		freq = ULONG_MAX;
-+
-+	fin_freq = clk_round_rate(channel->clk, freq);
- 	if (fin_freq == 0) {
- 		dev_err(meson->chip.dev, "invalid source clock frequency\n");
- 		return -EINVAL;
-@@ -181,40 +176,31 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
- 
- 	dev_dbg(meson->chip.dev, "fin_freq: %lu Hz\n", fin_freq);
- 
--	pre_div = div64_u64(fin_freq * period, NSEC_PER_SEC * 0xffffLL);
--	if (pre_div > MISC_CLK_DIV_MASK) {
--		dev_err(meson->chip.dev, "unable to get period pre_div\n");
--		return -EINVAL;
--	}
--
--	cnt = div64_u64(fin_freq * period, NSEC_PER_SEC * (pre_div + 1));
-+	cnt = div_u64(fin_freq * period, NSEC_PER_SEC);
- 	if (cnt > 0xffff) {
- 		dev_err(meson->chip.dev, "unable to get period cnt\n");
- 		return -EINVAL;
- 	}
- 
--	dev_dbg(meson->chip.dev, "period=%llu pre_div=%u cnt=%u\n", period,
--		pre_div, cnt);
-+	dev_dbg(meson->chip.dev, "period=%llu cnt=%u\n", period, cnt);
- 
- 	if (duty == period) {
--		channel->pre_div = pre_div;
- 		channel->hi = cnt;
- 		channel->lo = 0;
- 	} else if (duty == 0) {
--		channel->pre_div = pre_div;
- 		channel->hi = 0;
- 		channel->lo = cnt;
- 	} else {
--		duty_cnt = div64_u64(fin_freq * duty, NSEC_PER_SEC * (pre_div + 1));
-+		duty_cnt = div_u64(fin_freq * duty, NSEC_PER_SEC);
- 
--		dev_dbg(meson->chip.dev, "duty=%llu pre_div=%u duty_cnt=%u\n",
--			duty, pre_div, duty_cnt);
-+		dev_dbg(meson->chip.dev, "duty=%llu duty_cnt=%u\n", duty, duty_cnt);
- 
--		channel->pre_div = pre_div;
- 		channel->hi = duty_cnt;
- 		channel->lo = cnt - duty_cnt;
- 	}
- 
-+	channel->rate = fin_freq;
-+
- 	return 0;
- }
- 
-@@ -224,16 +210,15 @@ static void meson_pwm_enable(struct meson_pwm *meson, struct pwm_device *pwm)
- 	struct meson_pwm_channel_data *channel_data;
- 	unsigned long flags;
- 	u32 value;
-+	int err;
- 
- 	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
- 
--	spin_lock_irqsave(&meson->lock, flags);
-+	err = clk_set_rate(channel->clk, channel->rate);
-+	if (err)
-+		dev_err(meson->chip.dev, "setting clock rate failed\n");
- 
--	value = readl(meson->base + REG_MISC_AB);
--	value &= ~(MISC_CLK_DIV_MASK << channel_data->clk_div_shift);
--	value |= channel->pre_div << channel_data->clk_div_shift;
--	value |= channel_data->clk_en_mask;
--	writel(value, meson->base + REG_MISC_AB);
-+	spin_lock_irqsave(&meson->lock, flags);
- 
- 	value = FIELD_PREP(PWM_HIGH_MASK, channel->hi) |
- 		FIELD_PREP(PWM_LOW_MASK, channel->lo);
-@@ -272,16 +257,16 @@ static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 			/*
- 			 * This IP block revision doesn't have an "always high"
- 			 * setting which we can use for "inverted disabled".
--			 * Instead we achieve this using the same settings
--			 * that we use a pre_div of 0 (to get the shortest
--			 * possible duration for one "count") and
--			 * "period == duty_cycle". This results in a signal
-+			 * Instead we achieve this by setting mux parent with
-+			 * highest rate and minimum divider value, resulting
-+			 * in the shortest possible duration for one "count"
-+			 * and "period == duty_cycle". This results in a signal
- 			 * which is LOW for one "count", while being HIGH for
- 			 * the rest of the (so the signal is HIGH for slightly
- 			 * less than 100% of the period, but this is the best
- 			 * we can achieve).
- 			 */
--			channel->pre_div = 0;
-+			channel->rate = ULONG_MAX;
- 			channel->hi = ~0;
- 			channel->lo = 0;
- 
-@@ -300,13 +285,12 @@ static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 	return 0;
- }
- 
--static unsigned int meson_pwm_cnt_to_ns(struct pwm_chip *chip,
--					struct pwm_device *pwm, u32 cnt)
-+static u64 meson_pwm_cnt_to_ns(struct pwm_chip *chip, struct pwm_device *pwm,
-+			       u32 cnt)
- {
- 	struct meson_pwm *meson = to_meson_pwm(chip);
- 	struct meson_pwm_channel *channel;
- 	unsigned long fin_freq;
--	u32 fin_ns;
- 
- 	/* to_meson_pwm() can only be used after .get_state() is called */
- 	channel = &meson->channels[pwm->hwpwm];
-@@ -315,9 +299,7 @@ static unsigned int meson_pwm_cnt_to_ns(struct pwm_chip *chip,
- 	if (fin_freq == 0)
- 		return 0;
- 
--	fin_ns = div_u64(NSEC_PER_SEC, fin_freq);
--
--	return cnt * fin_ns * (channel->pre_div + 1);
-+	return div64_ul(NSEC_PER_SEC * (u64)cnt, fin_freq);
- }
- 
- static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-@@ -326,7 +308,7 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 	struct meson_pwm *meson = to_meson_pwm(chip);
- 	struct meson_pwm_channel_data *channel_data;
- 	struct meson_pwm_channel *channel;
--	u32 value, tmp;
-+	u32 value;
- 
- 	if (!state)
- 		return 0;
-@@ -335,15 +317,9 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
- 
- 	value = readl(meson->base + REG_MISC_AB);
--
--	tmp = channel_data->pwm_en_mask | channel_data->clk_en_mask;
--	state->enabled = (value & tmp) == tmp;
--
--	tmp = value >> channel_data->clk_div_shift;
--	channel->pre_div = FIELD_GET(MISC_CLK_DIV_MASK, tmp);
-+	state->enabled = value & channel_data->pwm_en_mask;
- 
- 	value = readl(meson->base + channel_data->reg_offset);
--
- 	channel->lo = FIELD_GET(PWM_LOW_MASK, value);
- 	channel->hi = FIELD_GET(PWM_HIGH_MASK, value);
- 
-@@ -473,6 +449,7 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
- 
- 	for (i = 0; i < meson->chip.npwm; i++) {
- 		struct meson_pwm_channel *channel = &meson->channels[i];
-+		struct clk_parent_data div_parent = {}, gate_parent = {};
- 		struct clk_init_data init = {};
- 
- 		snprintf(name, sizeof(name), "%s#mux%u", dev_name(dev), i);
-@@ -492,18 +469,63 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
- 		channel->mux.table = NULL;
- 		channel->mux.hw.init = &init;
- 
--		channel->clk = devm_clk_register(dev, &channel->mux.hw);
--		if (IS_ERR(channel->clk)) {
--			err = PTR_ERR(channel->clk);
-+		err = devm_clk_hw_register(dev, &channel->mux.hw);
-+		if (err) {
-+			dev_err(dev, "failed to register %s: %d\n", name, err);
-+			return err;
-+		}
-+
-+		snprintf(name, sizeof(name), "%s#div%u", dev_name(dev), i);
-+
-+		init.name = name;
-+		init.ops = &clk_divider_ops;
-+		init.flags = CLK_SET_RATE_PARENT;
-+		div_parent.index = -1;
-+		div_parent.hw = &channel->mux.hw;
-+		init.parent_data = &div_parent;
-+		init.num_parents = 1;
-+
-+		channel->div.reg = meson->base + REG_MISC_AB;
-+		channel->div.shift = meson_pwm_per_channel_data[i].clk_div_shift;
-+		channel->div.width = MISC_CLK_DIV_WIDTH;
-+		channel->div.hw.init = &init;
-+		channel->div.flags = 0;
-+		channel->div.lock = &meson->lock;
-+
-+		err = devm_clk_hw_register(dev, &channel->div.hw);
-+		if (err) {
- 			dev_err(dev, "failed to register %s: %d\n", name, err);
- 			return err;
- 		}
- 
--		snprintf(name, sizeof(name), "clkin%u", i);
-+		snprintf(name, sizeof(name), "%s#gate%u", dev_name(dev), i);
- 
--		channel->clk_parent = devm_clk_get_optional(dev, name);
--		if (IS_ERR(channel->clk_parent))
--			return PTR_ERR(channel->clk_parent);
-+		init.name = name;
-+		init.ops = &clk_gate_ops;
-+		init.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED;
-+		gate_parent.index = -1;
-+		gate_parent.hw = &channel->div.hw;
-+		init.parent_data = &gate_parent;
-+		init.num_parents = 1;
-+
-+		channel->gate.reg = meson->base + REG_MISC_AB;
-+		channel->gate.bit_idx = meson_pwm_per_channel_data[i].clk_en_shift;
-+		channel->gate.hw.init = &init;
-+		channel->gate.flags = 0;
-+		channel->gate.lock = &meson->lock;
-+
-+		err = devm_clk_hw_register(dev, &channel->gate.hw);
-+		if (err) {
-+			dev_err(dev, "failed to register %s: %d\n", name, err);
-+			return err;
-+		}
-+
-+		channel->clk = devm_clk_hw_get_clk(dev, &channel->gate.hw, NULL);
-+		if (IS_ERR(channel->clk)) {
-+			err = PTR_ERR(channel->clk);
-+			dev_err(dev, "failed to register %s: %d\n", name, err);
-+			return err;
-+		}
- 	}
- 
- 	return 0;
 -- 
-2.40.1
-
-
+Thank you,
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
