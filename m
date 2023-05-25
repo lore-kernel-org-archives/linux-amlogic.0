@@ -4,76 +4,130 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DE4CC7EE2C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 May 2023 09:38:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3821C77B7A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 May 2023 12:40:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=i6ctSNXau25rgpwo9woF4VnekBANwkd//lSCvL3S7xI=; b=X+UGAf0GiEQo22
-	iEuGSg/4oK2VyFu0qa4j5R3GqGqZn7i2a3gtUR3QPA2E433Q5EW/8Uj9A1srbs85Y+k+WaB5nC7Dw
-	byrvR5nhARdiYAZzZw5IfMKbciYLmemm105rUPPwrDGVGdt1F5VpmOtR8gcdyyU49i2xPOOQ6afQ5
-	htigpIhEYcwTQPpM0x5DL5ZuebINrVuOeQRxhKk9d58rPykw4imjKq5jXVYgbFpOwiTpQ/Pjc6o7I
-	KBDAnLx7zzJ6WEEmKWAMeVuD8PodXLx4kgAR59f9QuMnXxkpt63nvat61nt3dDIGtpaWWS8C/9X5b
-	8kf8x2eeCjrpXiv7ipZg==;
+	List-Owner; bh=tAaE5VRRvCFOeH841gUtjVJCkGY0x04Dbu6CyEgwyl0=; b=sYlEkZ04lj+7iC
+	MQwNi8uD6ru0mn8tvjfoPFJe07b7ta+7nmgjKFqm8xn26DNZQpZg6oOuOG0O455nF4zo2IbZbrgSP
+	O8G5tg3rlcMMHoOAJuVI9lxKBqWDMInqBRt7Rmw1ASxPxGyUyBRLxl6c4o0sRWMHs0rbMZl8d6B7a
+	V4duE6jQkxw8e5MmkzTekZN8ypYDfUulXBvBaG+1aNCYFJ89H508wM9VRikoyvmYm9hTV3Dm1XTB3
+	PiLjhLjesP6gZ4O4M6uCZxK0q5BBS3yz4Mlwb/GhkwFWbP+fh9bb8I0aCPXlS70gdiHvFLxi8u0Uk
+	k60KDPBxvpaI96Exm9Sw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q27Pt-00GAbS-1j;
-	Thu, 25 May 2023 09:37:53 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1q2AGW-00GdNg-1H;
+	Thu, 25 May 2023 12:40:24 +0000
+Received: from lahtoruutu.iki.fi ([2a0b:5c81:1c1::37])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q27Po-00GAZh-0R;
-	Thu, 25 May 2023 09:37:51 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 78BBB5FD26;
-	Thu, 25 May 2023 12:37:39 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1685007459;
-	bh=qobywYVJnOUHz0WjaEufUy7pJlPh58rBIf/mWyapB+0=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=AENyLL0j+KpGwEjQ+QN4FhtCnfmpVnRqackEWrrImh2HMKI+3EJgJ9YbzKCDpArvX
-	 1ubecqHpf+cgs5eMtoTj8UQY1eUlDxLG1jON6IF4aqoT1vEjxggCOphXp6x+CYeTeH
-	 ZpzMKCHUYnENITvHg5wyx2D3Kd0zfHRS/1xQE5KmI+m5h6BDDrnktxO6fRRFPbiWGg
-	 6P7wlkOrFPPJPdOAQYskJGa4JPxdcvd6qpCbk9FxrQwguTlLeAn0x2yL1aPnujQzA+
-	 0fdgUgU7z7g5yNv7qGgu0ihqdQ7szh4SYszTjyfRFc/Q4MwQ6amkZQx1dGQwW5CHM9
-	 QA5m0NMigP5uw==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Thu, 25 May 2023 12:37:37 +0300 (MSK)
-Date: Thu, 25 May 2023 12:37:36 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor@kernel.org>
-CC: <jian.hu@amlogic.com>, <kernel@sberdevices.ru>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <neil.armstrong@linaro.org>,
-	<jbrunet@baylibre.com>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-	<khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v16 5/6] dt-bindings: clock: meson: add A1 Peripherals
- clock controller bindings
-Message-ID: <20230525093736.naztwqlhvskujsoa@CAB-WSD-L081021>
-References: <20230523135351.19133-1-ddrokosov@sberdevices.ru>
- <20230523135351.19133-6-ddrokosov@sberdevices.ru>
+	id 1q2AGT-00GdMA-1C;
+	Thu, 25 May 2023 12:40:22 +0000
+Received: from hillosipuli.retiisi.eu (dkzdf0gkyyyyyyyyyyyyt-3.rev.dnainternet.fi [IPv6:2001:14ba:4506:4f15::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4QRnh50mylz49Q1p;
+	Thu, 25 May 2023 15:40:04 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1685018410;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ofi9rDKaOj5yyLfZwTQCQwt32Q4sEcICZNEgWEPwvYo=;
+	b=DKPXrx/FbnfaMLqgt/vzuwj7wLQ8AXTIVFKzL4YpEKJWfA0kJUKCttjkxWzzwsNd+9klEm
+	l/6ItAVlA2uD72MDBos9PRgOUMsxom8qH5LE5/U6YBrnqupwx7ZV8vnd+MiG//eeMrehbp
+	csZNtNYSH0/Loy/4M4YM0JIQhX1dz4Q2S5Y/xZQcHnYn1aothuv/tMstqLButi5FQq4AOl
+	oeV6l9/Ly1Ip9h42qJP5+BquyPkZZ7iuE0RyVRCKWCC3AXVCsyWxSUrEC0WKx0rLqlDejx
+	zbyGccAw9MLbvsS2RmzUansBRfUzc9AoOJ4t45Pf87+4+8zfQg3L68IRhGyJ6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1685018410;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ofi9rDKaOj5yyLfZwTQCQwt32Q4sEcICZNEgWEPwvYo=;
+	b=pgVmOaEtw4vdoOZ8eaPmA7QgR+wrMMywJgDD60w0UAC7RxyzllFL534IMqFDtenK3XAljS
+	m+vzDBMPa4uN11gUQVxXlmFoSIuc5cNzpwdIeRkcDwxfkOBmatYPGzOqQfC47v3uEYhwye
+	mriwF2jEfs62hAYYdpqyuh/cZvO07x9niovAMH7lbln2DZRqvbca+ouVSryZHvumuyKzJ1
+	b73+02DxuCtEpcT4KN53ZdZoYb4eF4s1N68JDvWQwCkEhSoH4O61Ix2pIgCw5baNCMnyqV
+	N+uZ2bNbmJY65VddBTUKx7/mGXqYu4tzyC3fY8AbER5oRBa4YCbIVxAwqTYWLQ==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1685018410; a=rsa-sha256;
+	cv=none;
+	b=EQXr1FrsCQ8foHNMEHA9eY6b/C+Vv6N83O8oWbK948jenc4D+4e7/9RX4f3Dg9YE7JzWBe
+	q9WEwFd9OheyWJNGkeIcGlZopb92MLZ2LRM09ycO/d64iCAR916Jst1hA9e6jUZeAcoMjj
+	cgobMxqIZ02lc1wO08QVCfrUFb3irmbtvOCTuz/6fH1sWQff0nqktBLnBwp5nLkLmXhaDh
+	E5FVqu/1dV//U4IGAsf17xs01k1YUL0VONCZoG2If4cFciNnNUEj0SEVkA6uv02jsGh4x1
+	7uLYzOJ5xGWxPQBmzG6nwiCHtmInsVvEIb4y+GNv+D0RsC892mwiMfJ/Yhg30A==
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 6AAE6634C91;
+	Thu, 25 May 2023 15:40:04 +0300 (EEST)
+Date: Thu, 25 May 2023 15:40:04 +0300
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Joe Tessler <jrt@google.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Michael Tretter <m.tretter@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Jacopo Mondi <jacopo+renesas@jmondi.org>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Wenyou Yang <wenyou.yang@microchip.com>,
+	Bin Liu <bin.liu@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+	Houlong Wei <houlong.wei@mediatek.com>,
+	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+	Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	Yong Deng <yong.deng@magewell.com>,
+	Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	"Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Sean Young <sean@mess.org>,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 01/28] media: cec: ch7322: drop of_match_ptr for ID table
+Message-ID: <ZG9XJCD98VWjGjTN@valkosipuli.retiisi.eu>
+References: <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
+ <98a77653-ec58-56c4-9893-3b424f67c87e@linaro.org>
+ <5afcec8b-b8f6-35b0-278a-5de185e4a7a2@xs4all.nl>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20230523135351.19133-6-ddrokosov@sberdevices.ru>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/25 04:52:00 #21357441
-X-KSMG-AntiVirus-Status: Clean, skipped
+In-Reply-To: <5afcec8b-b8f6-35b0-278a-5de185e4a7a2@xs4all.nl>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230525_023748_881996_5F9FB50F 
-X-CRM114-Status: GOOD (  20.05  )
+X-CRM114-CacheID: sfid-20230525_054021_597960_E9305535 
+X-CRM114-Status: GOOD (  19.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,271 +139,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Rob, Krzysztof and Conor,
-
-Could you please take a look at this patch version? Before Rob marked
-this patchset with RvB at v13 -
-https://lore.kernel.org/linux-amlogic/168130720431.2218249.7671061964988064525.robh@kernel.org/
-
-However, due to several comments from other maintainers, unfortunately,
-I had to rename the 'a1-clkc' controller to 'a1-peripherals-clkc' and
-remove Rob's RvB.
-
-I would be grateful for your assistance!
-
-On Tue, May 23, 2023 at 04:53:50PM +0300, Dmitry Rokosov wrote:
-> Add documentation and dt bindings for the Amlogic A1 Peripherals clock
-> controller.
-> A1 PLL clock controller has references to A1 Peripherals clock
-> controller objects, so reflect them in the schema.
-> 
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> ---
->  .../clock/amlogic,a1-peripherals-clkc.yaml    |  73 +++++++++++
->  .../bindings/clock/amlogic,a1-pll-clkc.yaml   |   5 +-
->  .../clock/amlogic,a1-peripherals-clkc.h       | 115 ++++++++++++++++++
->  3 files changed, 191 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
-> new file mode 100644
-> index 000000000000..6d84cee1bd75
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/amlogic,a1-peripherals-clkc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic A1 Peripherals Clock Control Unit
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +  - Jian Hu <jian.hu@jian.hu.com>
-> +  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,a1-peripherals-clkc
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: input fixed pll div2
-> +      - description: input fixed pll div3
-> +      - description: input fixed pll div5
-> +      - description: input fixed pll div7
-> +      - description: input hifi pll
-> +      - description: input oscillator (usually at 24MHz)
-> +
-> +  clock-names:
-> +    items:
-> +      - const: fclk_div2
-> +      - const: fclk_div3
-> +      - const: fclk_div5
-> +      - const: fclk_div7
-> +      - const: hifi_pll
-> +      - const: xtal
-> +
-> +required:
-> +  - compatible
-> +  - '#clock-cells'
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
-> +    apb {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        clock-controller@800 {
-> +            compatible = "amlogic,a1-peripherals-clkc";
-> +            reg = <0 0x800 0 0x104>;
-> +            #clock-cells = <1>;
-> +            clocks = <&clkc_pll CLKID_FCLK_DIV2>,
-> +                     <&clkc_pll CLKID_FCLK_DIV3>,
-> +                     <&clkc_pll CLKID_FCLK_DIV5>,
-> +                     <&clkc_pll CLKID_FCLK_DIV7>,
-> +                     <&clkc_pll CLKID_HIFI_PLL>,
-> +                     <&xtal>;
-> +            clock-names = "fclk_div2", "fclk_div3",
-> +                          "fclk_div5", "fclk_div7",
-> +                          "hifi_pll", "xtal";
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> index 5c6fa620a63c..a59b188a8bf5 100644
-> --- a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> @@ -43,6 +43,7 @@ additionalProperties: false
->  
->  examples:
->    - |
-> +    #include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
->      apb {
->          #address-cells = <2>;
->          #size-cells = <2>;
-> @@ -51,8 +52,8 @@ examples:
->              compatible = "amlogic,a1-pll-clkc";
->              reg = <0 0x7c80 0 0x18c>;
->              #clock-cells = <1>;
-> -            clocks = <&clkc_periphs_fixpll_in>,
-> -                     <&clkc_periphs_hifipll_in>;
-> +            clocks = <&clkc_periphs CLKID_FIXPLL_IN>,
-> +                     <&clkc_periphs CLKID_HIFIPLL_IN>;
->              clock-names = "fixpll_in", "hifipll_in";
->          };
->      };
-> diff --git a/include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h
-> new file mode 100644
-> index 000000000000..ff2730f398a6
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h
-> @@ -0,0 +1,115 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> +/*
-> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> + * Author: Jian Hu <jian.hu@amlogic.com>
-> + *
-> + * Copyright (c) 2023, SberDevices. All Rights Reserved.
-> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> + */
-> +
-> +#ifndef __A1_PERIPHERALS_CLKC_H
-> +#define __A1_PERIPHERALS_CLKC_H
-> +
-> +#define CLKID_FIXPLL_IN		1
-> +#define CLKID_USB_PHY_IN	2
-> +#define CLKID_USB_CTRL_IN	3
-> +#define CLKID_HIFIPLL_IN	4
-> +#define CLKID_SYSPLL_IN		5
-> +#define CLKID_DDS_IN		6
-> +#define CLKID_SYS		7
-> +#define CLKID_CLKTREE		8
-> +#define CLKID_RESET_CTRL	9
-> +#define CLKID_ANALOG_CTRL	10
-> +#define CLKID_PWR_CTRL		11
-> +#define CLKID_PAD_CTRL		12
-> +#define CLKID_SYS_CTRL		13
-> +#define CLKID_TEMP_SENSOR	14
-> +#define CLKID_AM2AXI_DIV	15
-> +#define CLKID_SPICC_B		16
-> +#define CLKID_SPICC_A		17
-> +#define CLKID_MSR		18
-> +#define CLKID_AUDIO		19
-> +#define CLKID_JTAG_CTRL		20
-> +#define CLKID_SARADC_EN		21
-> +#define CLKID_PWM_EF		22
-> +#define CLKID_PWM_CD		23
-> +#define CLKID_PWM_AB		24
-> +#define CLKID_CEC		25
-> +#define CLKID_I2C_S		26
-> +#define CLKID_IR_CTRL		27
-> +#define CLKID_I2C_M_D		28
-> +#define CLKID_I2C_M_C		29
-> +#define CLKID_I2C_M_B		30
-> +#define CLKID_I2C_M_A		31
-> +#define CLKID_ACODEC		32
-> +#define CLKID_OTP		33
-> +#define CLKID_SD_EMMC_A		34
-> +#define CLKID_USB_PHY		35
-> +#define CLKID_USB_CTRL		36
-> +#define CLKID_SYS_DSPB		37
-> +#define CLKID_SYS_DSPA		38
-> +#define CLKID_DMA		39
-> +#define CLKID_IRQ_CTRL		40
-> +#define CLKID_NIC		41
-> +#define CLKID_GIC		42
-> +#define CLKID_UART_C		43
-> +#define CLKID_UART_B		44
-> +#define CLKID_UART_A		45
-> +#define CLKID_SYS_PSRAM		46
-> +#define CLKID_RSA		47
-> +#define CLKID_CORESIGHT		48
-> +#define CLKID_AM2AXI_VAD	49
-> +#define CLKID_AUDIO_VAD		50
-> +#define CLKID_AXI_DMC		51
-> +#define CLKID_AXI_PSRAM		52
-> +#define CLKID_RAMB		53
-> +#define CLKID_RAMA		54
-> +#define CLKID_AXI_SPIFC		55
-> +#define CLKID_AXI_NIC		56
-> +#define CLKID_AXI_DMA		57
-> +#define CLKID_CPU_CTRL		58
-> +#define CLKID_ROM		59
-> +#define CLKID_PROC_I2C		60
-> +#define CLKID_DSPA_EN		63
-> +#define CLKID_DSPA_EN_NIC	64
-> +#define CLKID_DSPB_EN		65
-> +#define CLKID_DSPB_EN_NIC	66
-> +#define CLKID_RTC		67
-> +#define CLKID_CECA_32K		68
-> +#define CLKID_CECB_32K		69
-> +#define CLKID_24M		70
-> +#define CLKID_12M		71
-> +#define CLKID_FCLK_DIV2_DIVN	72
-> +#define CLKID_GEN		73
-> +#define CLKID_SARADC		75
-> +#define CLKID_PWM_A		76
-> +#define CLKID_PWM_B		77
-> +#define CLKID_PWM_C		78
-> +#define CLKID_PWM_D		79
-> +#define CLKID_PWM_E		80
-> +#define CLKID_PWM_F		81
-> +#define CLKID_SPICC		82
-> +#define CLKID_TS		83
-> +#define CLKID_SPIFC		84
-> +#define CLKID_USB_BUS		85
-> +#define CLKID_SD_EMMC		86
-> +#define CLKID_PSRAM		87
-> +#define CLKID_DMC		88
-> +#define CLKID_DSPA_A_SEL	95
-> +#define CLKID_DSPA_B_SEL	98
-> +#define CLKID_DSPB_A_SEL	101
-> +#define CLKID_DSPB_B_SEL	104
-> +#define CLKID_CECB_32K_SEL_PRE	113
-> +#define CLKID_CECB_32K_SEL	114
-> +#define CLKID_CECA_32K_SEL_PRE	117
-> +#define CLKID_CECA_32K_SEL	118
-> +#define CLKID_GEN_SEL		121
-> +#define CLKID_PWM_A_SEL		124
-> +#define CLKID_PWM_B_SEL		126
-> +#define CLKID_PWM_C_SEL		128
-> +#define CLKID_PWM_D_SEL		130
-> +#define CLKID_PWM_E_SEL		132
-> +#define CLKID_PWM_F_SEL		134
-> +#define CLKID_SD_EMMC_SEL2	147
-> +
-> +#endif /* __A1_PERIPHERALS_CLKC_H */
-> -- 
-> 2.36.0
-> 
-
--- 
-Thank you,
-Dmitry
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgSGFucywKCk9uIFNhdCwgTWF5IDEzLCAyMDIzIGF0IDExOjU3OjMzQU0gKzAyMDAsIEhhbnMg
+VmVya3VpbCB3cm90ZToKPiBPbiAxMi8wNS8yMDIzIDE4OjM1LCBLcnp5c3p0b2YgS296bG93c2tp
+IHdyb3RlOgo+ID4gT24gMTIvMDMvMjAyMyAxNDoxMiwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90
+ZToKPiA+PiBUaGUgZHJpdmVyIGNhbiBtYXRjaCBvbmx5IHZpYSB0aGUgRFQgdGFibGUgc28gdGhl
+IHRhYmxlIHNob3VsZCBiZSBhbHdheXMKPiA+PiB1c2VkIGFuZCB0aGUgb2ZfbWF0Y2hfcHRyIGRv
+ZXMgbm90IGhhdmUgYW55IHNlbnNlICh0aGlzIGFsc28gYWxsb3dzIEFDUEkKPiA+PiBtYXRjaGlu
+ZyB2aWEgUFJQMDAwMSwgZXZlbiB0aG91Z2ggaXQgbWlnaHQgbm90IGJlIHJlbGV2YW50IGhlcmUp
+Lgo+ID4+Cj4gPj4gICBkcml2ZXJzL21lZGlhL2NlYy9pMmMvY2g3MzIyLmM6NTgzOjM0OiBlcnJv
+cjog4oCYY2g3MzIyX29mX21hdGNo4oCZIGRlZmluZWQgYnV0IG5vdCB1c2VkIFstV2Vycm9yPXVu
+dXNlZC1jb25zdC12YXJpYWJsZT1dCj4gPj4KPiA+PiBTaWduZWQtb2ZmLWJ5OiBLcnp5c3p0b2Yg
+S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+Cj4gPj4gLS0tCj4gPiAK
+PiA+IEhhbnMsIFNha2FyaSwKPiA+IAo+ID4gQ2FuIHlvdSBwaWNrIHVwIHRoZSBwYXRjaHNldD8g
+VGhlcmUgd2FzIHBvc2l0aXZlIGZlZWRiYWNrOgo+ID4gaHR0cHM6Ly9wYXRjaHdvcmsubGludXh0
+di5vcmcvcHJvamVjdC9saW51eC1tZWRpYS9wYXRjaC8yMDIzMDMxMjEzMTMxOC4zNTExNzMtMS1r
+cnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmcvCj4gPiAKPiA+IGJ1dCBpdCBzZWVtcyBpdCB3
+YXMgbm90IGFwcGxpZWQuCj4gCj4gSSBzZWUgaXQgaXMgZGVsZWdhdGVkIHRvIFNha2FyaSBpbiBw
+YXRjaHdvcmsgYW5kIG1hcmtlZCBVbmRlciBSZXZpZXcsIGJ1dCBJIGRvbid0Cj4gc2VlIGEgY29y
+cmVzcG9uZGluZyBwdWxsIHJlcXVlc3QgZm9yIHRoaXMgc2VyaWVzLgo+IAo+IFNha2FyaSwgZGlk
+IHNvbWV0aGluZyBnbyB3cm9uZz8KCkkgc3BvdHRlZCB0aGlzIGFzIEhhbnMgbm90aWZpZWQgbWUg
+aW4gSVJDLCBJIHdhc24ndCBjYydkLiBBcG9sb2dpZXMgZm9yCnRoaXMgLS0tIEkgaW50ZW5kZWQg
+dG8gdGFrZSB0aGVzZSBidXQgSSB0aGluayBJIG11c3QgaGF2ZSBtaXNzZWQgc29tZXRoaW5nCmlt
+cG9ydGFudCBpbiB0aGUgcHJvY2Vzcy4gSSdsbCB0YWtlIHRoZW0gbm93LgoKVGhhbmtzLgoKLS0g
+CktpbmQgcmVnYXJkcywKClNha2FyaSBBaWx1cwoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1s
+b2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxt
+YW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
