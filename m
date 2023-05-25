@@ -4,47 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D88CC7EE29
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 May 2023 14:01:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E152C7EE2F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 May 2023 14:07:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MhPmd1OQCRfSwg1lUwGA5ImfbOsxXu374kro8GbgmZM=; b=op3gV2XqnBRGRR
-	imUB3b7dWAx/gxhLPsS8EUTvUOeFvF3ZrXjGHRV0DLKxkcMIHVtjhV4EMCVuAxh65F4G0QzllNBDs
-	zSg4STLtI1vrNpCFnzKQTjaHaFup8x0K0aiqAj3UGc2OLumNjkkAAmGcN9YzockTQu09AFbmMB1Fe
-	xdoplXHYGT2u/6rZNukoACSUjDbQHs8muKW/RnPsEFQf4Cmfwm1V/Fz8rjBWu8qmNGzxOn+bEBb09
-	MNNDJMjq7q/8lQLfffUj0YABuFXsp36hVqMMyrmFkNr+5HS0oj4aLga+naL/1ytC6kt8FGAmhf8vK
-	ofZR62GaLGeRxmw3odcg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:CC:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=/5XvqYdYWAbNV6oF0A3HEVJMLIz3QhDCieThuQyio5I=; b=FMoMfLftZ63ejwNquUj64QEfUd
+	wd/LMhWlTtI+ervvSZKf8n8I1bYgFDAMj4tS5c66SOZF7lH3/yHtXDUxBPZG6KCpNoh/SeTUE7gcW
+	JtE57vAJ++mxyStDRhLkyPkWppkOJTC0R4jUqAt/pMYhySevKpAD3Bdk2eTXmJXqC9mYFDzFGwV/q
+	jGljl1hHN6TnsKQpXxW/VSIHWO+HjkyP0HGkTPmaCQZCaiAGmi9vDrt985LGBx1co+c0ruJxrIL2A
+	B94DsksM77Ecek3fe8TI71EaiHtqYtS8t11LHFwWfyiaPceMHxCLz+yhT4ILWks9/dKBDAi1vvFZJ
+	J6Pi6TAg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q2BWk-00Gn8i-2D;
-	Thu, 25 May 2023 14:01:14 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1q2BcA-00GnxG-2t;
+	Thu, 25 May 2023 14:06:50 +0000
+Received: from esa.microchip.iphmx.com ([68.232.153.233])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q2BWg-00Gn7J-1G;
-	Thu, 25 May 2023 14:01:13 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 9CC4D5FD51;
-	Thu, 25 May 2023 17:01:02 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1685023262;
-	bh=bpPitjV95L3ioVshJeARXDTfhB1q4NXomIjqNtoVQq0=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=g542J5yIh9b82dadzQ8Wzl6DX57oGV8BuX0mh2ze4Lxm+6swAF021XvoO8GlwxhT6
-	 Pq7nf95oLmZnAL7nbuuLJrlbpPy+Ls62/SpbtMjJ1+zYrgZRm+mv6c9jEW7PG11L7K
-	 MWOZeU+48k2eWJJPd5jBSlocvi6aBbF883AvvL3TtR5N3LA9lLGt0Mgy6Vufx4y4v0
-	 UZeg7QdcWiUFvEEKDnq6/udXmN2PqmQeLhV2nI8+vkeOpEFcvawVE/FCbXyq4nxnEJ
-	 tTtWSfufJTfkg06kJ5qH2vEyV2UYNmOpwFKsXlspxbSAfqDIQtzzNyjs8AnRfB8Y2s
-	 AWQ3QJod3p4IA==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Thu, 25 May 2023 17:01:01 +0300 (MSK)
-Date: Thu, 25 May 2023 17:01:00 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: Conor Dooley <conor.dooley@microchip.com>
+	id 1q2Bc7-00GnwU-19;
+	Thu, 25 May 2023 14:06:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1685023607; x=1716559607;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=upPO4QUm0taAdlDSGlmbwceJ4JBD1WN4nd0/HmurPiU=;
+  b=AzJdFxHhDebZjBdwIyLCFQ5C+1/qT+g1s9XpYbOVbs2Yo8HABleQhGBn
+   Brj7r6vfoilwhNbPV5z/hzol3Fi3X184YRUAclbG6RSS5oddNsPYgRY03
+   x3FL8gH2kmq9+FxAj/PGnEKyZ+kS1b9N7RQPDdExqxCewgy97R8hJF5qJ
+   Tjz0kh8SbvtDt56+Jr9ls7MB54UMHgwMoqAxCBP/hJzOk2q1YDLcGt5vl
+   HRzWN7R1zFdH1Cnn9hJVI6QMgbFFEEcftWZWKJCKYkSapEcXd1oHkJTlf
+   BG9oyKBUuHA/ycgJT/71Nc9cJaJGCcf631Bg8cFf2kCbhhs2oj7Rrnx+w
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,191,1681196400"; 
+   d="asc'?scan'208";a="226989442"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 May 2023 07:06:42 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 25 May 2023 07:06:40 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 25 May 2023 07:06:37 -0700
+Date: Thu, 25 May 2023 15:06:15 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 CC: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
 	<conor@kernel.org>, <jian.hu@amlogic.com>, <kernel@sberdevices.ru>,
 	<rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
@@ -55,28 +66,18 @@ CC: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
 	<martin.blumenstingl@googlemail.com>
 Subject: Re: [PATCH v16 5/6] dt-bindings: clock: meson: add A1 Peripherals
  clock controller bindings
-Message-ID: <20230525140100.mdzuhyfhxxkf4mx7@CAB-WSD-L081021>
+Message-ID: <20230525-ranging-plow-e3f4427f44b3@wendy>
 References: <20230523135351.19133-1-ddrokosov@sberdevices.ru>
  <20230523135351.19133-6-ddrokosov@sberdevices.ru>
  <20230525093736.naztwqlhvskujsoa@CAB-WSD-L081021>
  <20230525-connected-skipper-442c6d0b52c1@wendy>
+ <20230525140100.mdzuhyfhxxkf4mx7@CAB-WSD-L081021>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230525-connected-skipper-442c6d0b52c1@wendy>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/25 11:25:00 #21349968
-X-KSMG-AntiVirus-Status: Clean, skipped
+In-Reply-To: <20230525140100.mdzuhyfhxxkf4mx7@CAB-WSD-L081021>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230525_070110_955054_B3A9D2BD 
-X-CRM114-Status: GOOD (  14.15  )
+X-CRM114-CacheID: sfid-20230525_070647_434741_B3E4032F 
+X-CRM114-Status: UNSURE (   7.21  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,43 +89,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============5013624710071791871=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Conor,
+--===============5013624710071791871==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="98dEgcHdS9y24H6f"
+Content-Disposition: inline
 
-Thank you for quick reply!
+--98dEgcHdS9y24H6f
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Thu, May 25, 2023 at 02:16:02PM +0100, Conor Dooley wrote:
-> On Thu, May 25, 2023 at 12:37:36PM +0300, Dmitry Rokosov wrote:
-> > Hello Rob, Krzysztof and Conor,
-> > 
-> > Could you please take a look at this patch version? Before Rob marked
-> > this patchset with RvB at v13 -
-> > https://lore.kernel.org/linux-amlogic/168130720431.2218249.7671061964988064525.robh@kernel.org/
-> > 
-> > However, due to several comments from other maintainers, unfortunately,
-> > I had to rename the 'a1-clkc' controller to 'a1-peripherals-clkc' and
-> > remove Rob's RvB.
-> 
-> I dunno if the compatible change is worth dropping the tag for tbh.
-> That seems to be the only change, so I guess you can have my R-b instead
-> of Rob's...
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Cheers,
-> Conor.
+On Thu, May 25, 2023 at 05:01:00PM +0300, Dmitry Rokosov wrote:
 
-I was unaware of the official policy regarding the removal of RvB during
-renaming changes. I took a cautious approach to the situation :)
+> I was unaware of the official policy regarding the removal of RvB during
+> renaming changes. I took a cautious approach to the situation :)
 
--- 
-Thank you,
-Dmitry
+Better safe than sorry!
+
+
+--98dEgcHdS9y24H6f
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG9rVwAKCRB4tDGHoIJi
+0qfyAQCEDt2Wmdd7sQ0AFn0qT0m1S6WB+FG53v9IrhD+R5MRiQEAlgl5pqnYxIZ5
+1D4vdPj2SIBYSAryBd9N2bDPGtAFTQ0=
+=cV7U
+-----END PGP SIGNATURE-----
+
+--98dEgcHdS9y24H6f--
+
+
+--===============5013624710071791871==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============5013624710071791871==--
+
