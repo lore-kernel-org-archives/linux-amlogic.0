@@ -4,73 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CFA9C7EE23
-	for <linux-amlogic@archiver.kernel.org>; Sun, 28 May 2023 21:52:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFA9BC77B7C
+	for <linux-amlogic@archiver.kernel.org>; Sun, 28 May 2023 22:36:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
-	References:Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hexHJMvNDo7sP97xnpFVVvyR1YsOEuGnU46sqSYgaBw=; b=07foCkVEj62HcN
-	KYh0lE2+D4Xf2U972ia6j77ts4AiL7jR/Kvd4jBCbIyncc9wk/eDuJRSKITvxMNAh692R4DehvcEH
-	oXqsnMo80zLwuApqoQU13KrBSANd33TGOyrcVRGmu3hWaInsvP8sS4/W+xtrYAEwMQGSN30BF5lbe
-	G4AcO4U8hvNwtVWKyKy00NiOmqfhjctbs4p9NR8mMseUzPvflcAxPvW3EP6YQ+n00ONv5cNI5uwcI
-	k4HHPiyndjBo4cCZfuvfDYYSt3BVQHlUqNWU5QJZVvMq+C/e5+3BDzDuInmdt53xOzab0ECISAO4b
-	N8sABuBj9XzleRkUCOAA==;
+	List-Owner; bh=O0kM1dZnZXguHFw6fahkdsMz+ZtoxQ9d0SNwuuPKls0=; b=lB9DY70BjZr2EI
+	roAHWdXfqwQ+RNUav01+wFXwCSrWd32NmsTXS23C7xptxhy9qfyYUbCyfrme4e0xZQFEzTvVsYPCK
+	bpn4mt18/qi9pvJ38jHh4OZq9jJk1bPMB73tzIZtGeLKLfCyXRRsr/AgbJo+/gxr/vTstSn/zEuaq
+	OBP2R2y/MsglpxQo6RtaUu1pKVTc5rr4lD2I9nDOHHua38NmfqOS8MQi3nWtthyuwVOwoYu4ra9+S
+	ZDp8vzfUV8IktbNMPWCbAwCRP0U8eomlSfbotI0tcudRp3rP23nD2PrI6vEnmmCeYtAzkt4f+SYNg
+	PU6U+7Y0Q1APtYHSWOVA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3OJG-008SEF-1B;
-	Sun, 28 May 2023 21:52:18 +0000
+	id 1q3OzZ-008ZB3-22;
+	Sun, 28 May 2023 22:36:01 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3OJC-008SDY-2N;
-	Sun, 28 May 2023 21:52:17 +0000
+	id 1q3OzW-008Z9m-1g;
+	Sun, 28 May 2023 22:36:00 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 9810D5FD05;
-	Mon, 29 May 2023 00:52:08 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id 26F795FD05;
+	Mon, 29 May 2023 01:35:55 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1685310728;
-	bh=Nghv6m8D7/4zP2PXOsESsldyieGQgyXv09d5y46DBk8=;
-	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
-	b=BKKa1QVQudsYb4AHa7wiar01zuXsdWCwJtipGAdaqqwHldenhGJdmZXjWDaASQy/s
-	 KJqjxsmW0Wv7GzOnffju2UnHjiWznfogJQRkf+EmSnmwrZCOHXzJDCHjHWjT0iHpsA
-	 i659nXdWC6QmX9RaT3znfu2wWtAZ6QmyM6sWPCk94yGVt/ZClp+vBlUY1LB9gfnhUI
-	 4KJ6ERzgDgy3FAbRRXdso3sJs7rQXgNVtestL+5OqvRApK/pcDEw5M4Eq84TcnOCVq
-	 bysdfdjhCgtCvxKIOT/pbK0XwcKylDSDNHOoAsQqxeMKZ/LG0k5yMU6Q+kSDT8WpLw
-	 d/+7L2/MyRwlg==
+	s=mail; t=1685313355;
+	bh=PDk2TqIX07e40FKKbuuGyZQC6PVJSh481bsLGg5lsrE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	b=huBcCseI7xOjEJMql0TsijO+TP6MUcW4Vt1Ex2qbtZVE9x11m91rlUe47KUyqNfdA
+	 Wts+ja+neWyjJst9rkjXq8dop63uJtMyCeBh3lApKP4hoXQVc56U+JGxdBpGHfvDKu
+	 h44vRWjAsH7mb4yg7j8XLJ6r+SvjRPJ0rBxyzU5UgwJh4gpia/Q7Shdjhf+h++L75+
+	 feiqOPlZBorqHAwoVlovgJjDFl9bDGGwrW9lRFYkLgPnh9+WoGiTANQz94xqoC18xM
+	 QmhhsMMAHULwZ7xcO5UVniage4u0T3IkFLLzXlck//bIGzuGe/Oi/7O0b8XDJgPCe9
+	 rv9BzQh88XYpQ==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Mon, 29 May 2023 00:52:05 +0300 (MSK)
-From: George Stark <GNStark@sberdevices.ru>
-To: Jonathan Cameron <jic23@kernel.org>
-CC: "lars@metafoo.de" <lars@metafoo.de>, "neil.armstrong@linaro.org"
-	<neil.armstrong@linaro.org>, "khilman@baylibre.com" <khilman@baylibre.com>,
-	"jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
-	"andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
-	"nuno.sa@analog.com" <nuno.sa@analog.com>, "linux-iio@vger.kernel.org"
+	Mon, 29 May 2023 01:35:52 +0300 (MSK)
+Message-ID: <9df82b13-7594-a8f0-f27e-87bce5a38b74@sberdevices.ru>
+Date: Mon, 29 May 2023 01:31:40 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2] meson saradc: add iio device attrib to switch channel
+ 7 mux
+Content-Language: en-US
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC: "jic23@kernel.org" <jic23@kernel.org>, "lars@metafoo.de"
+	<lars@metafoo.de>, "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"khilman@baylibre.com" <khilman@baylibre.com>, "jbrunet@baylibre.com"
+	<jbrunet@baylibre.com>, "martin.blumenstingl@googlemail.com"
+	<martin.blumenstingl@googlemail.com>, "nuno.sa@analog.com"
+	<nuno.sa@analog.com>, "linux-iio@vger.kernel.org"
 	<linux-iio@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
 	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
 	<linux-kernel@vger.kernel.org>, "linux-amlogic@lists.infradead.org"
 	<linux-amlogic@lists.infradead.org>, kernel <kernel@sberdevices.ru>
-Subject: Re: [PATCH v2] meson saradc: add iio device attrib to switch channel
- 7 mux
-Thread-Topic: [PATCH v2] meson saradc: add iio device attrib to switch channel
- 7 mux
-Thread-Index: AQHZkOUaOx1SJmc/HEOeHScMc8VAp69vmTiAgABuz4A=
-Date: Sun, 28 May 2023 21:52:05 +0000
-Message-ID: <4d5a7691-68ac-6626-5502-383fad3a9436@sberdevices.ru>
 References: <20230527214854.126517-1-gnstark@sberdevices.ru>
- <20230528161117.197f7e61@jic23-huawei>
-In-Reply-To: <20230528161117.197f7e61@jic23-huawei>
-Accept-Language: en-US, ru-RU
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.13]
-Content-ID: <A12E2CA0EA8F9449AF67FDB6431CE8D8@sberdevices.ru>
-MIME-Version: 1.0
+ <ZHMxDHPBWQOJSuaZ@smile.fi.intel.com>
+From: George Stark <gnstark@sberdevices.ru>
+In-Reply-To: <ZHMxDHPBWQOJSuaZ@smile.fi.intel.com>
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
 X-KSMG-Rule-ID: 4
 X-KSMG-Message-Action: clean
 X-KSMG-AntiSpam-Status: not scanned, disabled by settings
@@ -79,8 +76,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/28 19:12:00 #21364717
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230528_145215_490884_AF9D6D82 
-X-CRM114-Status: GOOD (  26.98  )
+X-CRM114-CacheID: sfid-20230528_153558_914949_6BC84B2D 
+X-CRM114-Status: GOOD (  22.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,163 +89,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 5/28/23 17:55, Jonathan Cameron wrote:
-> On Sun, 28 May 2023 00:48:54 +0300
-> George Stark <gnstark@sberdevices.ru> wrote:
->
->> Patch adds two sysfs nodes: chan7_mux to set mux state
->> and chan7_mux_available to show available mux states.
->> Mux can be used to debug and calibrate adc by
->> switching and measuring well-known inputs like GND, Vdd etc.
->>
->> Signed-off-by: George Stark <GNStark@sberdevices.ru>
-> A few key things here.
-> 1) ABI docs missing (Documentation/ABI/testing/sysfs-bus-iio-*
->     Without that it's hard to review new ABI.2
-> 2) We are very conservative when it comes to adopting new ABI as the
->     reality is that userspace has no idea what to do with it.
->     Designing interfaces that work for a wide range of devices is hard
->     but necessary to enable general purpose software.
->
-> Based on the limited description we have here, I'm not understanding why
-> you don't just express this as a set of channels. One channel per mux
-> setting, with the in_voltageX_label providing the information on what the
-> channel is connected to.
->
-> This is an interesting facility, so good to enable for high precision calibration
-> but we still want to map it to standards signals.  Userspace doesn't
-> care that these are all being measured via the same input 7 - which
-> is itself probably an input to a MUX.
->
-> Jonathan
-
-Hello Jonathan
-
-Thanks for the review.
-
-Your idea of exposing the mux setting as iio channels is very
-interesting and at least worth trying.
-The sysfs approach was chosen because of the code changes are simple and
-neat (compare to channels approach).
-Also calibration by using those mux inputs are already supported in the
-driver (performed at probe stage) so I expect very special usecases for
-those mux settings like debug or device production stage tests. In those
-usescases hardware specific knowledge is required anyway.
-
-Best regards
-George
-
->> ---
->>   drivers/iio/adc/meson_saradc.c | 65 ++++++++++++++++++++++++++++++++++
->>   1 file changed, 65 insertions(+)
->>
->> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
->> index e05e51900c35..6959a0064551 100644
->> --- a/drivers/iio/adc/meson_saradc.c
->> +++ b/drivers/iio/adc/meson_saradc.c
->> @@ -11,6 +11,7 @@
->>   #include <linux/delay.h>
->>   #include <linux/io.h>
->>   #include <linux/iio/iio.h>
->> +#include <linux/iio/sysfs.h>
->>   #include <linux/module.h>
->>   #include <linux/mutex.h>
->>   #include <linux/nvmem-consumer.h>
->> @@ -320,6 +321,7 @@ struct meson_sar_adc_priv {
->>   	bool					temperature_sensor_calibrated;
->>   	u8					temperature_sensor_coefficient;
->>   	u16					temperature_sensor_adc_val;
->> +	u8					chan7_mux_sel;
->>   };
->>   
->>   static const struct regmap_config meson_sar_adc_regmap_config_gxbb = {
->> @@ -483,6 +485,7 @@ static void meson_sar_adc_set_chan7_mux(struct iio_dev *indio_dev,
->>   	regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG3,
->>   			   MESON_SAR_ADC_REG3_CTRL_CHAN7_MUX_SEL_MASK, regval);
->>   
->> +	priv->chan7_mux_sel = sel;
->>   	usleep_range(10, 20);
->>   }
->>   
->> @@ -1130,8 +1133,70 @@ static int meson_sar_adc_calib(struct iio_dev *indio_dev)
->>   	return ret;
->>   }
->>   
->> +static const char * const chan7_vol[] = {
->> +	"gnd",
->> +	"vdd/4",
->> +	"vdd/2",
->> +	"vdd*3/4",
->> +	"vdd",
->> +	"ch7_input",
->> +};
->> +
->> +static ssize_t chan7_mux_show(struct device *dev, struct device_attribute *attr,
->> +			      char *buf)
->> +{
->> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
->> +	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
->> +	unsigned int index = priv->chan7_mux_sel;
->> +
->> +	if (index >= ARRAY_SIZE(chan7_vol))
->> +		index = ARRAY_SIZE(chan7_vol) - 1;
->> +
->> +	return sysfs_emit(buf, "%s\n", chan7_vol[index]);
->> +}
->> +
->> +static ssize_t chan7_mux_store(struct device *dev,
->> +			       struct device_attribute *attr,
->> +			       const char *buf, size_t count)
->> +{
->> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
->> +	int i;
->> +
->> +	i = sysfs_match_string(chan7_vol, buf);
->> +	if (i < 0)
->> +		return -EINVAL;
->> +	meson_sar_adc_set_chan7_mux(indio_dev, i);
->> +	return count;
->> +}
->> +
->> +static IIO_DEVICE_ATTR_RW(chan7_mux, -1);
->> +
->> +static ssize_t chan7_mux_available_show(struct device *dev, struct device_attribute *attr,
->> +			      char *buf)
->> +{
->> +	int i, len = 0;
->> +
->> +	for (i = 0; i < ARRAY_SIZE(chan7_vol); i++)
->> +		len += sysfs_emit_at(buf, len, "%s ", chan7_vol[i]);
->> +
->> +	return len;
->> +}
->> +
->> +static IIO_DEVICE_ATTR_RO(chan7_mux_available, -1);
->> +
->> +static struct attribute *meson_sar_adc_attrs[] = {
->> +	&iio_dev_attr_chan7_mux_available.dev_attr.attr,
->> +	&iio_dev_attr_chan7_mux.dev_attr.attr,
->> +	NULL
->> +};
->> +
->> +static const struct attribute_group meson_sar_adc_attr_group = {
->> +	.attrs = meson_sar_adc_attrs,
->> +};
->> +
->>   static const struct iio_info meson_sar_adc_iio_info = {
->>   	.read_raw = meson_sar_adc_iio_info_read_raw,
->> +	.attrs = &meson_sar_adc_attr_group,
->>   };
->>   
->>   static const struct meson_sar_adc_param meson_sar_adc_meson8_param = {
->
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gNS8yOC8yMyAxMzo0NiwgQW5keSBTaGV2Y2hlbmtvIHdyb3RlOgoKSGVsbG8gQW5keQo+IE9u
+IFN1biwgTWF5IDI4LCAyMDIzIGF0IDEyOjQ4OjU0QU0gKzAzMDAsIEdlb3JnZSBTdGFyayB3cm90
+ZToKPj4gUGF0Y2ggYWRkcyB0d28gc3lzZnMgbm9kZXM6IGNoYW43X211eCB0byBzZXQgbXV4IHN0
+YXRlCj4+IGFuZCBjaGFuN19tdXhfYXZhaWxhYmxlIHRvIHNob3cgYXZhaWxhYmxlIG11eCBzdGF0
+ZXMuCj4+IE11eCBjYW4gYmUgdXNlZCB0byBkZWJ1ZyBhbmQgY2FsaWJyYXRlIGFkYyBieQo+PiBz
+d2l0Y2hpbmcgYW5kIG1lYXN1cmluZyB3ZWxsLWtub3duIGlucHV0cyBsaWtlIEdORCwgVmRkIGV0
+Yy4KPiBUaGFuayB5b3UgZm9yIGFuIHVwZGF0ZSwgbXkgY29tbWVudHMgYmVsb3cuCj4KPiAuLi4K
+Pgo+PiAtLS0KPiBNaXNzaW5nIGNoYW5nZWxvZywgd2hhdCBoYXMgYmVlbiBkb25lIGluIHYyLCBo
+b3cgaXQncyBkaWZmZXJlbnQgdG8gdjEuCk9rIEknbGwga2VlcCBpdCBvbiBtaW5kCj4KPj4gICBk
+cml2ZXJzL2lpby9hZGMvbWVzb25fc2FyYWRjLmMgfCA2NSArKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKysrCj4+ICAgMSBmaWxlIGNoYW5nZWQsIDY1IGluc2VydGlvbnMoKykKPiAuLi4K
+Pgo+PiArc3RhdGljIGNvbnN0IGNoYXIgKiBjb25zdCBjaGFuN192b2xbXSA9IHsKPj4gKwkiZ25k
+IiwKPj4gKwkidmRkLzQiLAo+PiArCSJ2ZGQvMiIsCj4+ICsJInZkZCozLzQiLAo+PiArCSJ2ZGQi
+LAo+PiArCSJjaDdfaW5wdXQiLAo+PiArfTsKPj4gKwo+PiArc3RhdGljIHNzaXplX3QgY2hhbjdf
+bXV4X3Nob3coc3RydWN0IGRldmljZSAqZGV2LCBzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSAqYXR0
+ciwKPj4gKwkJCSAgICAgIGNoYXIgKmJ1ZikKPj4gK3sKPj4gKwlzdHJ1Y3QgaWlvX2RldiAqaW5k
+aW9fZGV2ID0gZGV2X3RvX2lpb19kZXYoZGV2KTsKPj4gKwlzdHJ1Y3QgbWVzb25fc2FyX2FkY19w
+cml2ICpwcml2ID0gaWlvX3ByaXYoaW5kaW9fZGV2KTsKPj4gKwl1bnNpZ25lZCBpbnQgaW5kZXgg
+PSBwcml2LT5jaGFuN19tdXhfc2VsOwo+PiArCj4+ICsJaWYgKGluZGV4ID49IEFSUkFZX1NJWkUo
+Y2hhbjdfdm9sKSkKPj4gKwkJaW5kZXggPSBBUlJBWV9TSVpFKGNoYW43X3ZvbCkgLSAxOwo+IEkg
+dGhpbmsgdGhpcyBpcyBpbmNvcnJlY3QgYW5kIHByb25lIHRvIGVycm9yIGluIHRoZSBmdXR1cmUg
+aW4gY2FzZSB0aGlzIGFycmF5Cj4gd2lsbCBiZSBleHRlbmRlZC4gV2hhdCBJIHdvdWxkIGV4cGVj
+dCBpcyB0byByZXR1cm4gc29tZXRoaW5nIGxpa2UgInVua25vd24iLgoKSSBhZ3JlZSB0aGlzIHBh
+cnQgaXMgdW5jbGVhbi4gQWN0dWFsbHkgdGhlIHJlZ2lzdGVyJ3MgbGFzdCAzIChvdXQgb2YgOCkg
+CnBvc3NpYmxlIHZhbHVlcwphcmUgc3RhbmQgZm9yIHRoZSBzYW1lIG11eCBpbnB1dCAiY2g3X2lu
+cHV0Ii4gU28gdGhlb3JldGljYWxseSB3ZSBjYW4gCnJlYWQgZnJvbSByZWdpc3RlcgphIHZhbHVl
+IG91dCBvZiBhcnJheSBib3VuZHMuIFRoZXJlIHNob3VsZCBiZSBhIGNvbW1lbnQgYXQgbGVhc3Qu
+CgpBYm91dCB0aGUgcXVlc3Rpb24gb2YgbmFtaW5nIG11eCBpbnB1dHMgZnJvbSB0aGUgb3RoZXIg
+bGV0dGVyICh2ZGQvMiB2cyAKMC41VmRkIGV0YykuCldoaWxlIEkgZnVsbHkgYWdyZWUgd2l0aCB5
+b3UgdGhhdCBwb2ludCBpcyBiZXR0ZXIgdGhhbiBzbGFzaCBidXQgbWl4aW5nIApsZXR0ZXIgY2Fz
+ZXMuLi4gc2hvdWxkIHdlPwoKZS5nLiB0aGlzIGlzIGhvdyBpaW9faW5mbyBvdXRwdXQgbG9va3Mg
+bGlrZSBub3c6Ci4uLgogwqDCoCDCoMKgwqDCoCDCoMKgwqAgdm9sdGFnZTc6wqAgKGlucHV0KQog
+wqDCoCDCoMKgwqDCoCDCoMKgwqAgMyBjaGFubmVsLXNwZWNpZmljIGF0dHJpYnV0ZXMgZm91bmQ6
+CiDCoMKgIMKgwqDCoMKgIMKgwqDCoCDCoMKgwqAgYXR0csKgIDA6IG1lYW5fcmF3IHZhbHVlOiAw
+CiDCoMKgIMKgwqDCoMKgIMKgwqDCoCDCoMKgwqAgYXR0csKgIDE6IHJhdyB2YWx1ZTogMQogwqDC
+oCDCoMKgwqDCoCDCoMKgwqAgwqDCoMKgIGF0dHLCoCAyOiBzY2FsZSB2YWx1ZTogMC40Mzk0NTMx
+MjUKIMKgwqAgwqDCoMKgwqAgNCBkZXZpY2Utc3BlY2lmaWMgYXR0cmlidXRlcyBmb3VuZDoKIMKg
+wqAgwqDCoMKgwqAgwqDCoMKgIMKgwqDCoCBhdHRywqAgMDogY2hhbjdfbXV4IHZhbHVlOiBnbmQK
+IMKgwqAgwqDCoMKgwqAgwqDCoMKgIMKgwqDCoCBhdHRywqAgMTogY2hhbjdfbXV4X2F2YWlsYWJs
+ZSB2YWx1ZTogZ25kIHZkZC80IHZkZC8yIAp2ZGQqMy80IHZkZCBjaDdfaW5wdXQKIMKgwqAgwqDC
+oMKgwqAgwqDCoMKgIMKgwqDCoCBhdHRywqAgMjogY3VycmVudF90aW1lc3RhbXBfY2xvY2sgdmFs
+dWU6IHJlYWx0aW1lCgogwqDCoCDCoMKgwqDCoCDCoMKgwqAgwqDCoMKgIGF0dHLCoCAzOiB3YWl0
+aW5nX2Zvcl9zdXBwbGllciB2YWx1ZTogMAoKb3IgbmFtaW5nIHdpdGggSm9uYXRoYW4ncyBhcHBy
+b2FjaAovc3lzL2RldmljZXMvcGxhdGZvcm0vc29jL2ZlMDAwMDAwLmJ1cy9mZTAwMmMwMC5hZGMv
+aWlvOmRldmljZTAvaW5fdm9sdGFnZV8wLjV2ZGRfcmF3CgpCZXN0IHJlZ2FyZHMKR2VvcmdlCgo+
+PiArCXJldHVybiBzeXNmc19lbWl0KGJ1ZiwgIiVzXG4iLCBjaGFuN192b2xbaW5kZXhdKTsKPj4g
+K30KPj4gKwo+PiArc3RhdGljIHNzaXplX3QgY2hhbjdfbXV4X3N0b3JlKHN0cnVjdCBkZXZpY2Ug
+KmRldiwKPj4gKwkJCSAgICAgICBzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSAqYXR0ciwKPj4gKwkJ
+CSAgICAgICBjb25zdCBjaGFyICpidWYsIHNpemVfdCBjb3VudCkKPj4gK3sKPj4gKwlzdHJ1Y3Qg
+aWlvX2RldiAqaW5kaW9fZGV2ID0gZGV2X3RvX2lpb19kZXYoZGV2KTsKPj4gKwlpbnQgaTsKPj4g
+Kwo+PiArCWkgPSBzeXNmc19tYXRjaF9zdHJpbmcoY2hhbjdfdm9sLCBidWYpOwo+PiArCWlmIChp
+IDwgMCkKPj4gKwkJcmV0dXJuIC1FSU5WQUw7Cj4gRG8gbm90IHNoYWRvdyB0aGUgZXJyb3IgY29k
+ZSBpZiBpdCdzIG5vdCBqdXN0aWZpZWQuCj4KPiAJCXJldHVybiBpOwo+Cj4+ICsJbWVzb25fc2Fy
+X2FkY19zZXRfY2hhbjdfbXV4KGluZGlvX2RldiwgaSk7Cj4+ICsJcmV0dXJuIGNvdW50Owo+PiAr
+fQo+PiArCj4gUmVkdW5kYW50IGJsYW5rIGxpbmUuCj4KPj4gK3N0YXRpYyBJSU9fREVWSUNFX0FU
+VFJfUlcoY2hhbjdfbXV4LCAtMSk7Cj4+ICsKPj4gK3N0YXRpYyBzc2l6ZV90IGNoYW43X211eF9h
+dmFpbGFibGVfc2hvdyhzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdCBkZXZpY2VfYXR0cmlidXRl
+ICphdHRyLAo+PiArCQkJICAgICAgY2hhciAqYnVmKQo+PiArewo+PiArCWludCBpLCBsZW4gPSAw
+Owo+PiArCj4+ICsJZm9yIChpID0gMDsgaSA8IEFSUkFZX1NJWkUoY2hhbjdfdm9sKTsgaSsrKQo+
+PiArCQlsZW4gKz0gc3lzZnNfZW1pdF9hdChidWYsIGxlbiwgIiVzICIsIGNoYW43X3ZvbFtpXSk7
+Cj4+ICsKPj4gKwlyZXR1cm4gbGVuOwo+PiArfQo+PiArCj4gRGl0dG8uCj4KPj4gK3N0YXRpYyBJ
+SU9fREVWSUNFX0FUVFJfUk8oY2hhbjdfbXV4X2F2YWlsYWJsZSwgLTEpOwoKCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxp
+bmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
+ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
