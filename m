@@ -4,66 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7B4DC77B7E
-	for <linux-amlogic@archiver.kernel.org>; Sun, 28 May 2023 14:00:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 287BDC7EE23
+	for <linux-amlogic@archiver.kernel.org>; Sun, 28 May 2023 14:55:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cmywRo/1AXVwIQ5TmZjeiBzuYx3ffVXSvdgHsDo7MNA=; b=mg896PJTUU2qHH
-	BEqcjXVqmQG9erSejPfo2ar8cCwYo3RKo+/etOXIqJb9Q0fQ/HuDaOUmCNOC+NXxuz190DtY/cyd2
-	3g7whB/yTfiAqAYnm01EKoSoJdZRsViOxKUQCw5hzUtdDKeNUESN142B4zTaBi5eFuXYBlRAuNRji
-	Zu34n7247zti2iURpvfcYbalnkZVeTXJNxDBzXPZrhWZ/Ftl9CgYw0UWW62w4T2PGzsczMBw54KgV
-	Hw0f1E8q9Jp4AaildF3IAfP2JMLoQUosw9uu6EwGeZzv0lDUP52d4WFDtasXq6cFtVq4Br9Gi6stI
-	X2u6h10O53Wy/z+Xjuwg==;
+	List-Owner; bh=ryZVV2JdZQ/df05fFlfQQIB/Gws6N/+6nxoHOZC/Eyw=; b=b6k6FH701mnNcS
+	vmsqnzo+erC1L8EEXl8Umc06at8qDPkVwYgnWAQQk3tFNaCFwBrLyhgbRdIfRsnli/2HV95IghvxF
+	m4LOcgvzFx/IXZPsclaiA9s0FMu1BfmkUMKdVlnYI3KKR7fgLERdRzQd1lde3QMmTNxRzrEYzFJrE
+	GjFrgOgzV8gFWeUIbI/7QUZHTvBMX7Q/DQtoeMJjEGT8UzaCUCxWFnRD3FE84ydPB5+YY2VoRzVGO
+	daDCT1c3MfwWF4VfuEzmzH10mzoHm6WiIttXkAcmP/nu4RErFuKzz9Oh+NejR5+EhefocVKiVnfdZ
+	82qwGrIJ9zgY6rCgiObg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3GwR-007krg-13;
-	Sun, 28 May 2023 14:00:15 +0000
-Received: from madras.collabora.co.uk ([46.235.227.172])
+	id 1q3Hnb-007rTd-0H;
+	Sun, 28 May 2023 14:55:11 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3GwO-007kqO-32
-	for linux-amlogic@lists.infradead.org;
-	Sun, 28 May 2023 14:00:14 +0000
-Received: from localhost.localdomain (unknown [IPv6:2a02:8010:65b5:0:1ac0:4dff:feee:236a])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	id 1q3HnX-007rQP-2P;
+	Sun, 28 May 2023 14:55:09 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	(Authenticated sender: alarumbe)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id CB0DE6605703;
-	Sun, 28 May 2023 15:00:09 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1685282409;
-	bh=WAUfQLx2Jieo3ZVT9QyOs1XdimqsQfzrhTGzzHuNnqE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=UsaflhS5AUD3IUDGG6mJOWvSWM0RdyCm9XK+eqwZkw9l/nH4lpxycPGbEg9/MeXXG
-	 ZhGm1aTOxrXsJmtyOqzR8ryyu9rm7Ffyg2ojaXsWTmW3S7+GIQhZd5aLZhhrYeSyup
-	 QbrL9PRvSt9mTXrPanRbAoMa/5mEpFqdZA7Rcz+iCu1RYZpMc4nkb4ye9olrJO9HQI
-	 TOWDh7RVXQCzrGf6+wGRfc2CNJQ69oSjCh4NLhTnHOocDLc1Wrtcd6Xn94AI4WZuQt
-	 vNdeTydpq+nBvYtasHTIYBf11AxAFFh3D9g2OMPjhTShg570rvsAKLDBsOvBPh+isy
-	 MiQWbMOR/KVow==
-From: =?UTF-8?q?Adri=C3=A1n=20Larumbe?= <adrian.larumbe@collabora.com>
-To: narmstrong@baylibre.com,
-	khilman@baylibre.com,
-	linux-amlogic@lists.infradead.org,
-	dri-devel@lists.freedesktop.org,
-	rfoss@kernel.org,
-	andrzej.hajda@intel.com
-Cc: adrian.larumbe@collabora.com,
-	kernel@collabora.com
-Subject: [PATCH 3/3] dw-hdmi: remove dead code and fix indentation
-Date: Sun, 28 May 2023 15:00:01 +0100
-Message-Id: <20230528140001.1057084-4-adrian.larumbe@collabora.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230528140001.1057084-1-adrian.larumbe@collabora.com>
-References: <20230528140001.1057084-1-adrian.larumbe@collabora.com>
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 6E0B660BA0;
+	Sun, 28 May 2023 14:54:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AE87C433D2;
+	Sun, 28 May 2023 14:54:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1685285698;
+	bh=uq9f6ruV2vZOvPBQvuKdz6houa9WJBhDMoGSJknIqsU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=AuPsfr6wO0V8bOVWHaZyLevoouOQZWMyk8bQncHpj3a3IivBdMXTl9rcCApr0Ivoq
+	 psmmejaAVLhKlRCpJwryTsO2oDcvJxyKdY181XmxrPLwgwvxlreG3txSbqMCV9xspL
+	 uG0NJo0bLOlGc9HI9GV7eyXqBCmPVW9pwta8acDqYNOvjYtvb54Y/599TWi4VkWzYY
+	 46f5jWVs06HM04bXyriBMEDEr5Js7/5GOEL3BA/hKNRe3Ye948t0CSwrJ+VZ0PVJd5
+	 oRHM+VkQwWSiwgLo7jJbVlbaL14ghpxG1WwiH8FYe0O4EhBpYALrhssWAEYK95BgMM
+	 cy/t56sgYZKnw==
+Date: Sun, 28 May 2023 16:11:17 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: George Stark <gnstark@sberdevices.ru>
+Cc: <lars@metafoo.de>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+ <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+ <andriy.shevchenko@linux.intel.com>, <nuno.sa@analog.com>,
+ <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+ <kernel@sberdevices.ru>
+Subject: Re: [PATCH v2] meson saradc: add iio device attrib to switch
+ channel 7 mux
+Message-ID: <20230528161117.197f7e61@jic23-huawei>
+In-Reply-To: <20230527214854.126517-1-gnstark@sberdevices.ru>
+References: <20230527214854.126517-1-gnstark@sberdevices.ru>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230528_070013_123187_AE3AFAB5 
-X-CRM114-Status: UNSURE (   8.41  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230528_075507_884294_6377F911 
+X-CRM114-Status: GOOD (  27.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,35 +73,147 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-U2lnbmVkLW9mZi1ieTogQWRyacOhbiBMYXJ1bWJlIDxhZHJpYW4ubGFydW1iZUBjb2xsYWJvcmEu
-Y29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9icmlkZ2Uvc3lub3BzeXMvZHctaGRtaS5jIHwgMjIg
-KysrKy0tLS0tLS0tLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwg
-MTggZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zeW5v
-cHN5cy9kdy1oZG1pLmMgYi9kcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL2R3LWhkbWku
-YwppbmRleCAxYWZiOGYyNjAzYTAuLjBhY2NmYjUxNTA5YyAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2JyaWRnZS9zeW5vcHN5cy9kdy1oZG1pLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2Jy
-aWRnZS9zeW5vcHN5cy9kdy1oZG1pLmMKQEAgLTQ5LDIwICs0OSw2IEBACiAKICNkZWZpbmUgSERN
-STE0X01BWF9UTURTQ0xLCTM0MDAwMDAwMAogCi1lbnVtIGhkbWlfZGF0YW1hcCB7Ci0JUkdCNDQ0
-XzhCID0gMHgwMSwKLQlSR0I0NDRfMTBCID0gMHgwMywKLQlSR0I0NDRfMTJCID0gMHgwNSwKLQlS
-R0I0NDRfMTZCID0gMHgwNywKLQlZQ2JDcjQ0NF84QiA9IDB4MDksCi0JWUNiQ3I0NDRfMTBCID0g
-MHgwQiwKLQlZQ2JDcjQ0NF8xMkIgPSAweDBELAotCVlDYkNyNDQ0XzE2QiA9IDB4MEYsCi0JWUNi
-Q3I0MjJfOEIgPSAweDE2LAotCVlDYkNyNDIyXzEwQiA9IDB4MTQsCi0JWUNiQ3I0MjJfMTJCID0g
-MHgxMiwKLX07Ci0KIHN0YXRpYyBjb25zdCB1MTYgY3NjX2NvZWZmX2RlZmF1bHRbM11bNF0gPSB7
-CiAJeyAweDIwMDAsIDB4MDAwMCwgMHgwMDAwLCAweDAwMDAgfSwKIAl7IDB4MDAwMCwgMHgyMDAw
-LCAweDAwMDAsIDB4MDAwMCB9LApAQCAtODU2LDEwICs4NDIsMTAgQEAgc3RhdGljIHZvaWQgZHdf
-aGRtaV9ncF9hdWRpb19lbmFibGUoc3RydWN0IGR3X2hkbWkgKmhkbWkpCiAKIAlpZiAocGRhdGEt
-PmVuYWJsZV9hdWRpbykKIAkJcGRhdGEtPmVuYWJsZV9hdWRpbyhoZG1pLAotCQkJCQkgICAgaGRt
-aS0+Y2hhbm5lbHMsCi0JCQkJCSAgICBoZG1pLT5zYW1wbGVfd2lkdGgsCi0JCQkJCSAgICBoZG1p
-LT5zYW1wbGVfcmF0ZSwKLQkJCQkJICAgIGhkbWktPnNhbXBsZV9ub25fcGNtKTsKKwkJCQkgICAg
-aGRtaS0+Y2hhbm5lbHMsCisJCQkJICAgIGhkbWktPnNhbXBsZV93aWR0aCwKKwkJCQkgICAgaGRt
-aS0+c2FtcGxlX3JhdGUsCisJCQkJICAgIGhkbWktPnNhbXBsZV9ub25fcGNtKTsKIH0KIAogc3Rh
-dGljIHZvaWQgZHdfaGRtaV9ncF9hdWRpb19kaXNhYmxlKHN0cnVjdCBkd19oZG1pICpoZG1pKQot
-LSAKMi40MC4wCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRl
-YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
-YW1sb2dpYwo=
+On Sun, 28 May 2023 00:48:54 +0300
+George Stark <gnstark@sberdevices.ru> wrote:
+
+> Patch adds two sysfs nodes: chan7_mux to set mux state
+> and chan7_mux_available to show available mux states.
+> Mux can be used to debug and calibrate adc by
+> switching and measuring well-known inputs like GND, Vdd etc.
+> 
+> Signed-off-by: George Stark <GNStark@sberdevices.ru>
+
+A few key things here.
+1) ABI docs missing (Documentation/ABI/testing/sysfs-bus-iio-*
+   Without that it's hard to review new ABI.2
+2) We are very conservative when it comes to adopting new ABI as the
+   reality is that userspace has no idea what to do with it.
+   Designing interfaces that work for a wide range of devices is hard
+   but necessary to enable general purpose software.
+
+Based on the limited description we have here, I'm not understanding why
+you don't just express this as a set of channels. One channel per mux
+setting, with the in_voltageX_label providing the information on what the
+channel is connected to.
+
+This is an interesting facility, so good to enable for high precision calibration
+but we still want to map it to standards signals.  Userspace doesn't
+care that these are all being measured via the same input 7 - which
+is itself probably an input to a MUX.
+
+Jonathan
+
+> ---
+>  drivers/iio/adc/meson_saradc.c | 65 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+> 
+> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+> index e05e51900c35..6959a0064551 100644
+> --- a/drivers/iio/adc/meson_saradc.c
+> +++ b/drivers/iio/adc/meson_saradc.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/delay.h>
+>  #include <linux/io.h>
+>  #include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+>  #include <linux/nvmem-consumer.h>
+> @@ -320,6 +321,7 @@ struct meson_sar_adc_priv {
+>  	bool					temperature_sensor_calibrated;
+>  	u8					temperature_sensor_coefficient;
+>  	u16					temperature_sensor_adc_val;
+> +	u8					chan7_mux_sel;
+>  };
+>  
+>  static const struct regmap_config meson_sar_adc_regmap_config_gxbb = {
+> @@ -483,6 +485,7 @@ static void meson_sar_adc_set_chan7_mux(struct iio_dev *indio_dev,
+>  	regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG3,
+>  			   MESON_SAR_ADC_REG3_CTRL_CHAN7_MUX_SEL_MASK, regval);
+>  
+> +	priv->chan7_mux_sel = sel;
+>  	usleep_range(10, 20);
+>  }
+>  
+> @@ -1130,8 +1133,70 @@ static int meson_sar_adc_calib(struct iio_dev *indio_dev)
+>  	return ret;
+>  }
+>  
+> +static const char * const chan7_vol[] = {
+> +	"gnd",
+> +	"vdd/4",
+> +	"vdd/2",
+> +	"vdd*3/4",
+> +	"vdd",
+> +	"ch7_input",
+> +};
+> +
+> +static ssize_t chan7_mux_show(struct device *dev, struct device_attribute *attr,
+> +			      char *buf)
+> +{
+> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> +	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
+> +	unsigned int index = priv->chan7_mux_sel;
+> +
+> +	if (index >= ARRAY_SIZE(chan7_vol))
+> +		index = ARRAY_SIZE(chan7_vol) - 1;
+> +
+> +	return sysfs_emit(buf, "%s\n", chan7_vol[index]);
+> +}
+> +
+> +static ssize_t chan7_mux_store(struct device *dev,
+> +			       struct device_attribute *attr,
+> +			       const char *buf, size_t count)
+> +{
+> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> +	int i;
+> +
+> +	i = sysfs_match_string(chan7_vol, buf);
+> +	if (i < 0)
+> +		return -EINVAL;
+> +	meson_sar_adc_set_chan7_mux(indio_dev, i);
+> +	return count;
+> +}
+> +
+> +static IIO_DEVICE_ATTR_RW(chan7_mux, -1);
+> +
+> +static ssize_t chan7_mux_available_show(struct device *dev, struct device_attribute *attr,
+> +			      char *buf)
+> +{
+> +	int i, len = 0;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(chan7_vol); i++)
+> +		len += sysfs_emit_at(buf, len, "%s ", chan7_vol[i]);
+> +
+> +	return len;
+> +}
+> +
+> +static IIO_DEVICE_ATTR_RO(chan7_mux_available, -1);
+> +
+> +static struct attribute *meson_sar_adc_attrs[] = {
+> +	&iio_dev_attr_chan7_mux_available.dev_attr.attr,
+> +	&iio_dev_attr_chan7_mux.dev_attr.attr,
+> +	NULL
+> +};
+> +
+> +static const struct attribute_group meson_sar_adc_attr_group = {
+> +	.attrs = meson_sar_adc_attrs,
+> +};
+> +
+>  static const struct iio_info meson_sar_adc_iio_info = {
+>  	.read_raw = meson_sar_adc_iio_info_read_raw,
+> +	.attrs = &meson_sar_adc_attr_group,
+>  };
+>  
+>  static const struct meson_sar_adc_param meson_sar_adc_meson8_param = {
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
