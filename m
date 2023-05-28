@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F889C7EE23
-	for <linux-amlogic@archiver.kernel.org>; Sun, 28 May 2023 10:55:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5560C77B7E
+	for <linux-amlogic@archiver.kernel.org>; Sun, 28 May 2023 11:00:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NGvSTwZzqLEleMb3MENJ83PAF8EHIIy5zjnW/L+2zz0=; b=Nz+iT0d6YZXl4j
-	ZJhHHS1shQO3f8uhxoC3p5VviPoO/zGJSZef3zOfwOXFRlLDlGpIFqUH+9KKv65ohHCDoEfLjHkTe
-	b/c6h1faNjfAImeIUA3FlkKk91wCehTosfs21UYJw53PR9orNEyW2b6VHK3h1X2UeWlcvO8YErna7
-	pLj1bAGMoGHSL4ajMeU8x1k/o/xr3Nb/Ge/cJcOPgQ3bpSAuwxBazLvg4uD+ltewqpJHQ/4KVJuhZ
-	O5fbBpl6DiyLtYnd4MBtRad7flNW/KgBsEJvFf09nCb+P1HIpmLwtQCL0WX77qWXuEOhf0U2bHZ3A
-	cZK7p4Kwt3qWcgY6dIqA==;
+	List-Owner; bh=gNKeNOaIL89pAq9JG3umecI0JeqjvLph8Qdt0xOjgj4=; b=D35h4027eY/4PB
+	/2h7LnJM9WAcmbpzBWQ/Lzu2gkpnHUuswVuVOzGaI2PvvypLXSi7JGI9ExwrQbcNQy+SODi5rRw2Z
+	6rV0AmiiQSE+9jdaO4paVCC7c7CrKU8kODw/+r8JWw6giOcwDvE/6tspp7Cwa7kHx8qLjQkTdjQCE
+	I4pZCkmzFDv8VJhqakmVErP5KQ7rMmogJa0gsVECzmc7JQdaTqMlebFQDeR3kD9fZwu8OP2r5NWQe
+	TsLFFGrK4iqOoubGv4DYxFHUqCHkLim34wLG80vx3uKTo7ts5VtLoMSOoixMIQyRKpFBbOypH6zrl
+	vwoP5ZZMOXxiMXVQbcXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3E3g-007UJ8-08;
-	Sun, 28 May 2023 10:55:32 +0000
+	id 1q3E8O-007UmK-23;
+	Sun, 28 May 2023 11:00:24 +0000
 Received: from mga12.intel.com ([192.55.52.136])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3E3b-007UII-39;
-	Sun, 28 May 2023 10:55:30 +0000
+	id 1q3E8L-007Ulj-0d;
+	Sun, 28 May 2023 11:00:22 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1685271327; x=1716807327;
+  t=1685271621; x=1716807621;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=7eBapmwuatu6STYCyR03YSp8av2m5gocW5nmyIw8UN4=;
-  b=MkLAA19tQguLWfm3OL8TULjst3lFcrhC1I/gIw96fHtx7iaacpvLrWMM
-   4KMwJYtq3d33+Aewzkzak3xSnOgZu2j0p9HkBQ8D2liZgxCbn0eJAiSLk
-   TeXFrBTo34ZnOSBUX/1MCWwVz9utqKqdzHq15Xz4MRtvPcVJbHg0SD+d2
-   dUuLXeQKGi7v/B1VU53GZ/PUroYU33GrENPfjgUzXxNdtqXyMP1z3U5lY
-   ZgsoPE1pLfE7T00ckHpYB/Jzkc6r6iKf9lWCV7YMtRlOdWTPbKUUMO/78
-   7G+Gm4KnuVv9ktWU3L+esL+gUKC9NO+h3RrNKDp4flbKZjddY+Wst1Aa0
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10723"; a="334128153"
+  bh=g6CoUCTMZtyvKD2xXLW4r5j8Ly+rx8jj6t/ryWbIQPc=;
+  b=Txn7sH3AA1NdqCXwd9xCanrHxLla6MXswlKQ1mgCjtr3Pkj/LzrE7u9/
+   FDh1qCkZq8qZDIpjanNr3mGSrYm1zkAYL27k3ZAdA4rvUOA8EicmxUOZQ
+   ltonAKzZO9cM0fbH5XuiZpcgUs2je3YvDoZ5UIHZ8r8MhiCwL/Vk2m2zu
+   0YO8BYn41KyvsB7dThaLnCKNA87yejpsx8xYD5DdZJ6NP72q8rrdRZVCw
+   oasvyl8Q5pqJv4H+IVy1pGrDrf/KfjsIYR0cmeAsuEBa9qeX1VUS/CQY7
+   nx2WmeKkR76671f78ut77oxH5vDHeW4832Amb5EmCiCFp4Gp84n/Mws2I
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10723"; a="334128584"
 X-IronPort-AV: E=Sophos;i="6.00,198,1681196400"; 
-   d="scan'208";a="334128153"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 May 2023 03:55:26 -0700
+   d="scan'208";a="334128584"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 May 2023 04:00:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10723"; a="656162961"
+X-IronPort-AV: E=McAfee;i="6600,9927,10723"; a="952402178"
 X-IronPort-AV: E=Sophos;i="6.00,198,1681196400"; 
-   d="scan'208";a="656162961"
+   d="scan'208";a="952402178"
 Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga003.jf.intel.com with ESMTP; 28 May 2023 03:55:22 -0700
+  by fmsmga006.fm.intel.com with ESMTP; 28 May 2023 04:00:16 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.96)
 	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1q3E3U-000Jjw-1S;
-	Sun, 28 May 2023 13:55:20 +0300
-Date: Sun, 28 May 2023 13:55:20 +0300
+	id 1q3E8E-000JkD-2R;
+	Sun, 28 May 2023 14:00:14 +0300
+Date: Sun, 28 May 2023 14:00:14 +0300
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: George Stark <gnstark@sberdevices.ru>
 Cc: jic23@kernel.org, lars@metafoo.de, neil.armstrong@linaro.org,
@@ -65,17 +65,17 @@ Cc: jic23@kernel.org, lars@metafoo.de, neil.armstrong@linaro.org,
 	kernel@sberdevices.ru
 Subject: Re: [PATCH v2] meson saradc: add iio device attrib to switch channel
  7 mux
-Message-ID: <ZHMzGHsGEylDdgg7@smile.fi.intel.com>
+Message-ID: <ZHM0Pheg047fYJXw@smile.fi.intel.com>
 References: <20230527214854.126517-1-gnstark@sberdevices.ru>
  <ZHMxDHPBWQOJSuaZ@smile.fi.intel.com>
+ <ZHMzGHsGEylDdgg7@smile.fi.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <ZHMxDHPBWQOJSuaZ@smile.fi.intel.com>
+In-Reply-To: <ZHMzGHsGEylDdgg7@smile.fi.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230528_035528_035124_BCBC5CB8 
-X-CRM114-Status: UNSURE (   9.77  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230528_040021_308685_29E5A489 
+X-CRM114-Status: GOOD (  11.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,43 +92,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, May 28, 2023 at 01:46:37PM +0300, Andy Shevchenko wrote:
-> On Sun, May 28, 2023 at 12:48:54AM +0300, George Stark wrote:
+On Sun, May 28, 2023 at 01:55:20PM +0300, Andy Shevchenko wrote:
+> On Sun, May 28, 2023 at 01:46:37PM +0300, Andy Shevchenko wrote:
+> > On Sun, May 28, 2023 at 12:48:54AM +0300, George Stark wrote:
 
 ...
 
-> > +static const char * const chan7_vol[] = {
-> > +	"gnd",
-> > +	"vdd/4",
-> > +	"vdd/2",
-> > +	"vdd*3/4",
-> > +	"vdd",
-> > +	"ch7_input",
-> > +};
+And last but not least (I just noticed how Cc and To is formed in your email),
+you may utilize my "smart" script [1] or ideas from it for sending patches to
+the Linux kernel related mailing lists. It will automatically provide Cc and
+To with a good approximation.
 
-One more thing to discuss (Jonathan, what's your opinion?) I think the
-following easier to understand and has less problematic characters in the names
-(in case of sysfs direct use from shelll):
+For v3 the command line can be (assuming your patch is on the top of the
+current branch and the script is in the one of the $PATH folders):
 
-static const char * const chan7_vol[] = {
-	"gnd", // alternatively GND
-	"0.25vdd", // alternatively 0.25_vdd, 0.25Vdd, 0.25_Vdd
-	"0.5vdd",
-	"0.75vdd",
-	"vdd", // Vdd
-	"ch7_input",
-};
+	ge2maintainer.sh -c 1 -v3 HEAD~0 --annotate
 
-That said, my personal preference:
+this will call for editor, so you would be able to add Changelog after cutter
+'---' line.
 
-static const char * const chan7_vol[] = {
-	"GND",
-	"0.25Vdd",
-	"0.5Vdd",
-	"0.75Vdd",
-	"Vdd",
-	"ch7_input",
-};
+[1]: https://github.com/andy-shev/home-bin-tools/blob/master/ge2maintainer.sh
 
 -- 
 With Best Regards,
