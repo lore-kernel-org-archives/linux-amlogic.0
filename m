@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 569E3C77B7E
-	for <linux-amlogic@archiver.kernel.org>; Sun, 28 May 2023 10:47:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F889C7EE23
+	for <linux-amlogic@archiver.kernel.org>; Sun, 28 May 2023 10:55:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=w5Mw8UDFVfUaBYHZE/no98SWSqA0NBC18PEy31x8No8=; b=SdNGwdg0TuQofb
-	4V4WOcUsuHrDdzuKo0mu0jlpUdsP+rAdgvyL4HaHhjGNF5qS8x32j1kMOIwZrFBfbeh4zCVHthvSk
-	wuiMLCNrK1/KESOYmzbSgg3rtATgIlVMyh2OlzAiwEF4UWsG2teCWcEJY/X69ODmYwitkdvG486MQ
-	RuirlEVL2aNcfkabkoZAVNwwr/8Iyp2f4eUkTC8cW1VSEGmVOHN/I3HN3r4wkYBf5uxU0mlWaF1yg
-	MEOtlz7Fy77cfUyJ+YeFjQwdybs8k8R3uZp9HlohSdq4j3qB1l6dVlv7LNL/ltDpvocIfgQi9On+a
-	AL2y0KCJ64q1z+OGilkQ==;
+	List-Owner; bh=NGvSTwZzqLEleMb3MENJ83PAF8EHIIy5zjnW/L+2zz0=; b=Nz+iT0d6YZXl4j
+	ZJhHHS1shQO3f8uhxoC3p5VviPoO/zGJSZef3zOfwOXFRlLDlGpIFqUH+9KKv65ohHCDoEfLjHkTe
+	b/c6h1faNjfAImeIUA3FlkKk91wCehTosfs21UYJw53PR9orNEyW2b6VHK3h1X2UeWlcvO8YErna7
+	pLj1bAGMoGHSL4ajMeU8x1k/o/xr3Nb/Ge/cJcOPgQ3bpSAuwxBazLvg4uD+ltewqpJHQ/4KVJuhZ
+	O5fbBpl6DiyLtYnd4MBtRad7flNW/KgBsEJvFf09nCb+P1HIpmLwtQCL0WX77qWXuEOhf0U2bHZ3A
+	cZK7p4Kwt3qWcgY6dIqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3DvC-007TXZ-0N;
-	Sun, 28 May 2023 10:46:46 +0000
-Received: from mga02.intel.com ([134.134.136.20])
+	id 1q3E3g-007UJ8-08;
+	Sun, 28 May 2023 10:55:32 +0000
+Received: from mga12.intel.com ([192.55.52.136])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3Dv9-007TWy-1E;
-	Sun, 28 May 2023 10:46:44 +0000
+	id 1q3E3b-007UII-39;
+	Sun, 28 May 2023 10:55:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1685270803; x=1716806803;
+  t=1685271327; x=1716807327;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=12XnZdCMLf2ECdKc7jgZMRFCTIoyk3JXcdiX3xQZb+Q=;
-  b=Rtc2vmzLffNGzYDcw+k2nXd9SdPoZjrThSLQs+i/js0knK61tQ3pw1Gc
-   e0SzxpF8+HEKyZg20dzMQdvJN4MbC4aMwRZ0rbGzvDyMgvLD9gT+3yO/D
-   TCovgJKM1igxy1rqBqr1OTyLoMHdofYdGNvc4rswXIBt4Vj7vgh1mzZvv
-   xblwsLK2P17NpZDHtizYNe/HJinKDtuwPHmEsvHdtZDwW61906ps94DJS
-   On07nU9jsfqoAhCfuHYNDG8gpF2sYtz8d1tHt2LzYzDUu/WTa88mMVwRh
-   hJilvkaThBRtH+PMSQXORBBcfvDMxZtv3cj6rFePqBZ/WFIjafs6ofJJg
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10723"; a="344006204"
+  bh=7eBapmwuatu6STYCyR03YSp8av2m5gocW5nmyIw8UN4=;
+  b=MkLAA19tQguLWfm3OL8TULjst3lFcrhC1I/gIw96fHtx7iaacpvLrWMM
+   4KMwJYtq3d33+Aewzkzak3xSnOgZu2j0p9HkBQ8D2liZgxCbn0eJAiSLk
+   TeXFrBTo34ZnOSBUX/1MCWwVz9utqKqdzHq15Xz4MRtvPcVJbHg0SD+d2
+   dUuLXeQKGi7v/B1VU53GZ/PUroYU33GrENPfjgUzXxNdtqXyMP1z3U5lY
+   ZgsoPE1pLfE7T00ckHpYB/Jzkc6r6iKf9lWCV7YMtRlOdWTPbKUUMO/78
+   7G+Gm4KnuVv9ktWU3L+esL+gUKC9NO+h3RrNKDp4flbKZjddY+Wst1Aa0
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10723"; a="334128153"
 X-IronPort-AV: E=Sophos;i="6.00,198,1681196400"; 
-   d="scan'208";a="344006204"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 May 2023 03:46:42 -0700
+   d="scan'208";a="334128153"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 May 2023 03:55:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10723"; a="850056935"
+X-IronPort-AV: E=McAfee;i="6600,9927,10723"; a="656162961"
 X-IronPort-AV: E=Sophos;i="6.00,198,1681196400"; 
-   d="scan'208";a="850056935"
+   d="scan'208";a="656162961"
 Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga001.fm.intel.com with ESMTP; 28 May 2023 03:46:39 -0700
+  by orsmga003.jf.intel.com with ESMTP; 28 May 2023 03:55:22 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.96)
 	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1q3Dv3-000Jjg-0a;
-	Sun, 28 May 2023 13:46:37 +0300
-Date: Sun, 28 May 2023 13:46:36 +0300
+	id 1q3E3U-000Jjw-1S;
+	Sun, 28 May 2023 13:55:20 +0300
+Date: Sun, 28 May 2023 13:55:20 +0300
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: George Stark <gnstark@sberdevices.ru>
 Cc: jic23@kernel.org, lars@metafoo.de, neil.armstrong@linaro.org,
@@ -65,15 +65,17 @@ Cc: jic23@kernel.org, lars@metafoo.de, neil.armstrong@linaro.org,
 	kernel@sberdevices.ru
 Subject: Re: [PATCH v2] meson saradc: add iio device attrib to switch channel
  7 mux
-Message-ID: <ZHMxDHPBWQOJSuaZ@smile.fi.intel.com>
+Message-ID: <ZHMzGHsGEylDdgg7@smile.fi.intel.com>
 References: <20230527214854.126517-1-gnstark@sberdevices.ru>
+ <ZHMxDHPBWQOJSuaZ@smile.fi.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20230527214854.126517-1-gnstark@sberdevices.ru>
+In-Reply-To: <ZHMxDHPBWQOJSuaZ@smile.fi.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230528_034643_508094_BA1CF1A0 
-X-CRM114-Status: GOOD (  21.45  )
+X-CRM114-CacheID: sfid-20230528_035528_035124_BCBC5CB8 
+X-CRM114-Status: UNSURE (   9.77  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,92 +92,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, May 28, 2023 at 12:48:54AM +0300, George Stark wrote:
-> Patch adds two sysfs nodes: chan7_mux to set mux state
-> and chan7_mux_available to show available mux states.
-> Mux can be used to debug and calibrate adc by
-> switching and measuring well-known inputs like GND, Vdd etc.
-
-Thank you for an update, my comments below.
+On Sun, May 28, 2023 at 01:46:37PM +0300, Andy Shevchenko wrote:
+> On Sun, May 28, 2023 at 12:48:54AM +0300, George Stark wrote:
 
 ...
 
-> ---
+> > +static const char * const chan7_vol[] = {
+> > +	"gnd",
+> > +	"vdd/4",
+> > +	"vdd/2",
+> > +	"vdd*3/4",
+> > +	"vdd",
+> > +	"ch7_input",
+> > +};
 
-Missing changelog, what has been done in v2, how it's different to v1.
+One more thing to discuss (Jonathan, what's your opinion?) I think the
+following easier to understand and has less problematic characters in the names
+(in case of sysfs direct use from shelll):
 
->  drivers/iio/adc/meson_saradc.c | 65 ++++++++++++++++++++++++++++++++++
->  1 file changed, 65 insertions(+)
+static const char * const chan7_vol[] = {
+	"gnd", // alternatively GND
+	"0.25vdd", // alternatively 0.25_vdd, 0.25Vdd, 0.25_Vdd
+	"0.5vdd",
+	"0.75vdd",
+	"vdd", // Vdd
+	"ch7_input",
+};
 
-...
+That said, my personal preference:
 
-> +static const char * const chan7_vol[] = {
-> +	"gnd",
-> +	"vdd/4",
-> +	"vdd/2",
-> +	"vdd*3/4",
-> +	"vdd",
-> +	"ch7_input",
-> +};
-> +
-> +static ssize_t chan7_mux_show(struct device *dev, struct device_attribute *attr,
-> +			      char *buf)
-> +{
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
-> +	unsigned int index = priv->chan7_mux_sel;
-> +
-> +	if (index >= ARRAY_SIZE(chan7_vol))
-> +		index = ARRAY_SIZE(chan7_vol) - 1;
-
-I think this is incorrect and prone to error in the future in case this array
-will be extended. What I would expect is to return something like "unknown".
-
-> +	return sysfs_emit(buf, "%s\n", chan7_vol[index]);
-> +}
-> +
-> +static ssize_t chan7_mux_store(struct device *dev,
-> +			       struct device_attribute *attr,
-> +			       const char *buf, size_t count)
-> +{
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	int i;
-> +
-> +	i = sysfs_match_string(chan7_vol, buf);
-> +	if (i < 0)
-
-> +		return -EINVAL;
-
-Do not shadow the error code if it's not justified.
-
-		return i;
-
-> +	meson_sar_adc_set_chan7_mux(indio_dev, i);
-> +	return count;
-> +}
-
-> +
-
-Redundant blank line.
-
-> +static IIO_DEVICE_ATTR_RW(chan7_mux, -1);
-> +
-> +static ssize_t chan7_mux_available_show(struct device *dev, struct device_attribute *attr,
-> +			      char *buf)
-> +{
-> +	int i, len = 0;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(chan7_vol); i++)
-> +		len += sysfs_emit_at(buf, len, "%s ", chan7_vol[i]);
-> +
-> +	return len;
-> +}
-
-> +
-
-Ditto.
-
-> +static IIO_DEVICE_ATTR_RO(chan7_mux_available, -1);
+static const char * const chan7_vol[] = {
+	"GND",
+	"0.25Vdd",
+	"0.5Vdd",
+	"0.75Vdd",
+	"Vdd",
+	"ch7_input",
+};
 
 -- 
 With Best Regards,
