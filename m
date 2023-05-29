@@ -4,79 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD380C77B7E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 May 2023 20:46:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E91BDC77B7E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 May 2023 23:33:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hM0X4Eeb2autRMxExrZYZbU85IuIDNvPW3IEJibsWrM=; b=LtlwjfuPpphVkr
-	u7G47+jmO6orX3XR9iqVBdFuUCrivNTHvnywWkbWANiBpXBgFRFctixihtT8surPg1gNOV1ybaoC8
-	VI8s+owGresVEsaZvLtI3QSJ32oXIvjyaXdnIOr83vJmO+qAwzicr84Gg229uhSfYLDg4vA4+6+Xs
-	wwP0hgszOL7nsUxX8CvVpauTUhTaqBd4Syn7s6ULmitPBxf559Kg+bu5RtHs+lqfFY/jVUPIwqkkr
-	37Zach6k8hY6POBrR4r1erX7NQ0mMlplyXUKWHN/CKqnin0u2IClt3FoQwqNGN/nnJbU7EEhuYxlu
-	jI6xOuKKZPrtDde+u+pQ==;
+	List-Owner; bh=mwoZtV81d5oZtrb11g18NVaqQx8JCG5RAZ663peGx/Y=; b=l3ISa21N06KmOe
+	+YS9UeKtawWCtY3DRAhRpseIHdx8vsiqyGUPRlBjHsR8EOA81gmoAJogadXc0DnrmmG8vZ7AmzBZv
+	7R9YsdGXNV8gCo/2DCOMF7eZI5gHSwD+5sz0GyF6bm3c8vvwZf9n/r3eNEFzb+R7VlGlPyOrOEnZD
+	7js+xVZaPGreJehPgwmZMjbcpJIjc+mYH3+3wwuUNwK9eKzSwuX18BjGa8+Y6Xr1XxZ8d5nh4g9nN
+	vcQ5pdTQT1LzSh0mrYX855mObNtSTq95SqACYEpn+7Sc7d3+xDQxOlBkvT2iTMROO7t3Gf9Ct0EPu
+	By5EcBiqh69/PN0MaZ3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3jkT-00Bfd9-1H;
-	Mon, 29 May 2023 20:45:49 +0000
-Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
+	id 1q3mMP-00BvQt-23;
+	Mon, 29 May 2023 23:33:09 +0000
+Received: from fgw23-7.mail.saunalahti.fi ([62.142.5.84])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3jkQ-00BfcX-2F
+	id 1q3mMM-00BvP1-0k
 	for linux-amlogic@lists.infradead.org;
-	Mon, 29 May 2023 20:45:48 +0000
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-95fde138693so945950766b.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 29 May 2023 13:45:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20221208; t=1685393145; x=1687985145;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7R3FPKbTWJLY+7i6BBPmrgd9L+dL7TFTDyT61Ll30oE=;
-        b=nj3zUNvkEFdZe5oaMlf0dKuc+PXsQ5ttMjDktar1yzmPig16fR9oWyTpF4mTftPooc
-         Sr7SLd8DtJkOgcMiGIK/zA6y22/FMiijXcepgahANShG5rELnJEtsRpgDCJj7AAtDKGa
-         XLwScgu/jrc8Ob4tAcFjEf6t1O45WX2QZAbK4gQAOXRiT38ncBuDGuODxA6TT/1KBZdf
-         JNg0coLhkjvQMTcyCMxZ/4pUFk7GS9aSm49woUFVcCf+QX6tRjO/YomEmiIFhvtnghJr
-         WZHyDu4qWMIaw+TbMx8PqDJuUoBuBGxYqx2hss+6uIcUwBztQuJxwBqkgAa5KOpAk/Kh
-         FZOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685393145; x=1687985145;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7R3FPKbTWJLY+7i6BBPmrgd9L+dL7TFTDyT61Ll30oE=;
-        b=clDXjImBCw6tOo9R1Ptqgon+kI2k9aQbX2m8wLVY8QSgbZZo4q/t3L6ZZKxtw6f+Ru
-         GECNYGhfVXmtA9xWhtjI/HAp3D8r/HlLlHt1zjtTGfvz0UHqAkqHOQRhmUgl4r+APTRB
-         6DDyTGQNPFbRH6NzbU5YjVqpdaO1EatP8k+XLWuyFkeBlbxwY4fJO5w510OdidHrSmTs
-         vC4ea0pLWAmF0GbRWuONiu+KVU8ykbhaLEzY3Jx250hACYC5HMzTJLmIqCuf2DVRLkUc
-         tMbss46q5nu9NeN7bRRvHfiVLV+X4dTyBFopXf+YWBug8/dcX5GKJXg8UHv29eNHkKzQ
-         kOTw==
-X-Gm-Message-State: AC+VfDxuIMFbV6Xpk84Quc1DuKQFNuWTIu4VdAUyOOGbkRP9KWcCPXpM
-	OlwbWbnhJXDdsbvuRnOOOzfIbKcphovqpNOm0IM=
-X-Google-Smtp-Source: ACHHUZ6dBQLVeTggS7BrQZIwH0USzlV+sl8utSAh2F33q38rxWXSjwkj09vNDIoE2Mf8GbkG0A/xUakYNm9lMIHvQis=
-X-Received: by 2002:a17:906:58d1:b0:94a:653b:ba41 with SMTP id
- e17-20020a17090658d100b0094a653bba41mr291658ejs.15.1685393145061; Mon, 29 May
- 2023 13:45:45 -0700 (PDT)
+	Mon, 29 May 2023 23:33:07 +0000
+Received: from localhost (88-113-26-95.elisa-laajakaista.fi [88.113.26.95])
+	by fgw23.mail.saunalahti.fi (Halon) with ESMTP
+	id 2552c16e-fe79-11ed-b972-005056bdfda7;
+	Tue, 30 May 2023 02:33:00 +0300 (EEST)
+From: andy.shevchenko@gmail.com
+Date: Tue, 30 May 2023 02:32:58 +0300
+To: George Stark <gnstark@sberdevices.ru>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	"jic23@kernel.org" <jic23@kernel.org>,
+	"lars@metafoo.de" <lars@metafoo.de>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"khilman@baylibre.com" <khilman@baylibre.com>,
+	"jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+	"nuno.sa@analog.com" <nuno.sa@analog.com>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v2] meson saradc: add iio device attrib to switch channel
+ 7 mux
+Message-ID: <ZHU2Khf84nbLW7Gg@surfacebook>
+References: <20230527214854.126517-1-gnstark@sberdevices.ru>
+ <ZHMxDHPBWQOJSuaZ@smile.fi.intel.com>
+ <9df82b13-7594-a8f0-f27e-87bce5a38b74@sberdevices.ru>
 MIME-Version: 1.0
-References: <20230517115635.31565-1-zelong.dong@amlogic.com> <20230517115635.31565-4-zelong.dong@amlogic.com>
-In-Reply-To: <20230517115635.31565-4-zelong.dong@amlogic.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 29 May 2023 22:45:34 +0200
-Message-ID: <CAFBinCCSGdKfgEpdF5FmAyjb-wOM2HtsriuBDnePokgyu4PkXw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] media: rc: meson-ir: support MMIO regmaps to
- access registers
-To: zelong dong <zelong.dong@amlogic.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Sean Young <sean@mess.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, linux-media@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, Qianggui.Song@amlogic.com, 
-	Yonghui.Yu@amlogic.com, kelvin.zhang@amlogic.com
+Content-Disposition: inline
+In-Reply-To: <9df82b13-7594-a8f0-f27e-87bce5a38b74@sberdevices.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230529_134546_740871_49ADABC1 
-X-CRM114-Status: UNSURE (   8.73  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230529_163306_436537_027F4CD7 
+X-CRM114-Status: GOOD (  16.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,23 +70,87 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8sCgpPbiBXZWQsIE1heSAxNywgMjAyMyBhdCAxOjU24oCvUE0gemVsb25nIGRvbmcgPHpl
-bG9uZy5kb25nQGFtbG9naWMuY29tPiB3cm90ZToKPgo+IEZyb206IFplbG9uZyBEb25nIDx6ZWxv
-bmcuZG9uZ0BhbWxvZ2ljLmNvbT4KPgo+IFN1cHBvcnRzIE1NSU8gcmVnbWFwcyB0byBhY2Nlc3Mg
-Y29udHJvbGxlciByZWdpc3RlcnMgaW4gTWVzb24gSVIgZHJpdmVyLgo+Cj4gU2lnbmVkLW9mZi1i
-eTogWmVsb25nIERvbmcgPHplbG9uZy5kb25nQGFtbG9naWMuY29tPgo+IC0tLQo+ICBkcml2ZXJz
-L21lZGlhL3JjL21lc29uLWlyLmMgfCA3MiArKysrKysrKysrKysrKysrKysrLS0tLS0tLS0tLS0t
-LS0tLS0tCktjb25maWcgYWxzbyBoYXMgdG8gYmUgdXBkYXRlZCB3aXRoOgogIHNlbGVjdCBSRUdN
-QVBfTU1JTwoKT3RoZXJ3aXNlIHlvdSBjYW4gZW5kIHVwIHdpdGggYSBjb21waWxlIGVycm9yOiB1
-bmRlZmluZWQgcmVmZXJlbmNlIHRvCmBfX2Rldm1fcmVnbWFwX2luaXRfbW1pb19jbGtgClNlZSBh
-IHJlY2VudCBwYXRjaCBvbiB0aGlzOiBbMF0KCgpCZXN0IHJlZ2FyZHMsCk1hcnRpbgoKClswXSBo
-dHRwczovL2xvcmUua2VybmVsLm9yZy9sa21sLzIwMjMwMjI4MDQzNDIzLjE5MzM1LTEteHJ5MTEx
-QHhyeTExMS5zaXRlLwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZy
-YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGlu
-dXgtYW1sb2dpYwo=
+Mon, May 29, 2023 at 01:31:40AM +0300, George Stark kirjoitti:
+> On 5/28/23 13:46, Andy Shevchenko wrote:
+> > On Sun, May 28, 2023 at 12:48:54AM +0300, George Stark wrote:
+
+...
+
+> > > +	if (index >=3D ARRAY_SIZE(chan7_vol))
+> > > +		index =3D ARRAY_SIZE(chan7_vol) - 1;
+> > I think this is incorrect and prone to error in the future in case this=
+ array
+> > will be extended. What I would expect is to return something like "unkn=
+own".
+> =
+
+> I agree this part is unclean. Actually the register's last 3 (out of 8)
+> possible values are stand for the same mux input "ch7_input". So
+> theoretically we can read from register a value out of array bounds. There
+> should be a comment at least.
+
+You can add there in the array to extend it up to 8 entries, so it will be
+clear. And for the rest you will return unknown / unsupported / etc.
+
+...
+
+> > > +static const char * const chan7_vol[] =3D {
+> > > +	"gnd",
+> > > +	"vdd/4",
+> > > +	"vdd/2",
+> > > +	"vdd*3/4",
+> > > +	"vdd",
+> > > +	"ch7_input",
+> > > +};
+
+> About the question of naming mux inputs from the other letter (vdd/2 vs
+> 0.5Vdd etc).
+> While I fully agree with you that point is better than slash but mixing
+> letter cases... should we?
+
+What's wrong with that?
+
+> e.g. this is how iio_info output looks like now:
+> ...
+> =A0=A0 =A0=A0=A0=A0 =A0=A0=A0 voltage7:=A0 (input)
+> =A0=A0 =A0=A0=A0=A0 =A0=A0=A0 3 channel-specific attributes found:
+> =A0=A0 =A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0 attr=A0 0: mean_raw value: 0
+> =A0=A0 =A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0 attr=A0 1: raw value: 1
+> =A0=A0 =A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0 attr=A0 2: scale value: 0.4394531=
+25
+> =A0=A0 =A0=A0=A0=A0 4 device-specific attributes found:
+> =A0=A0 =A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0 attr=A0 0: chan7_mux value: gnd
+> =A0=A0 =A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0 attr=A0 1: chan7_mux_available va=
+lue: gnd vdd/4 vdd/2 vdd*3/4
+> vdd ch7_input
+> =A0=A0 =A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0 attr=A0 2: current_timestamp_cloc=
+k value: realtime
+> =
+
+> =A0=A0 =A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0 attr=A0 3: waiting_for_supplier v=
+alue: 0
+> =
+
+> or naming with Jonathan's approach
+> /sys/devices/platform/soc/fe000000.bus/fe002c00.adc/iio:device0/in_voltag=
+e_0.5vdd_raw
+
+See the alternative I proposed is to have _ delimiter. But that might make
+parsing a bit harder in user space.
+
+-- =
+
+With Best Regards,
+Andy Shevchenko
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
