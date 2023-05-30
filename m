@@ -4,86 +4,121 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BBF2C77B73
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 May 2023 08:33:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03499C7EE2F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 May 2023 08:40:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vejLrWAVqRsri7zZ5H/3IwxFg1Ko5vaFEmcyRHAUgwQ=; b=QKc/PnC7KwU496
-	gPej66tPzLPh/nWjwwE6gDKc1NN/mNT1c65rnrwcNg6rADveYy+eVdIYHJ4shQww3rqq0m3/Txdhc
-	BFrkMrmZhYLbKrnNhPwgkZd0SGcHo8SebAS2A5K4BbFLBN0/0thmnHSvmvqjcDCh6T/IHWDEG/SdT
-	7cPBdfSNxDcJEfAO0gAY38X7Nb33D2VLMs0+zlJ8yt0Yt8azh+TxxkBLhNnZHZgPZDRPa6MXBDHwY
-	0OszE7+FJB2ua30ZWP+o3aZqCFW1aqeLLXG93vEs2tTY0S/VOjsYnMEjfJLh4S1oSY8pxKWM3vA4u
-	L1ZZ193doj87uMQq2ljQ==;
+	List-Owner; bh=1EMdpENlTHqku9u8oidw+6bfCLG6zTswhNgCyTr775M=; b=R7ScOPCAMr7gfW
+	PdXgdJY5dM7CBJL6whHu0C2h+AJUTB3R8mk7TGAgd83sHOS9BALYBWXHoq/5FbiG3Xp6hP/iLFjAX
+	/piZd97YiA3pV1jZQqBJaGKwRWvG4V+O5GPYnVlTa5hPTiHCPP44JpSEDf5FRkVqRnb8NAxM3FpVF
+	35WzNJly3kvGJnoX6CthFwUT7UIPxn0jTWs4e7Lqt759x3cobJmHDV+Z9vnK+UUjeEa3mXBprwSfD
+	AkGmfvQtIvzI74+HqMWVy2gP08j/30cWwMlMN8J3MAxq3hyO4VshzjBXTOJc0dwkV3I9JWPWC9/Ug
+	GcZCB+nA6VU/vRIbV8AQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3un7-00CwyB-0r;
-	Tue, 30 May 2023 08:33:17 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1q3utx-00Cyni-1s;
+	Tue, 30 May 2023 08:40:21 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3un4-00Cwwe-0x;
-	Tue, 30 May 2023 08:33:16 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 960E85FD1D;
-	Tue, 30 May 2023 11:33:11 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1685435591;
-	bh=iah+zrTqnTbZamRlmW+Ybmqp3PDHYuh1a0WRns1ny6g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	b=Q9sgChetLK6O5PUBi6o4WdrQycgjNOSOp0BUgs1dZVu6QrZcsrjfaZOlPDLfMLyBq
-	 cK3fw621aJrLpqH6/pGFZ8gkDrdAYgwjXDPpL/J2O57VkBmM+SJyP8T5QoGnPSjt1j
-	 lUtFFES5eCD1cG27GzVw9LUs8Ab6Qcqpjs+BfgpSG3NpqgAFcDAojwxn0PuDwn6qWL
-	 qlFLnFQWxZpjojWVjnoCpHogLAIxO7N59wOhnQEhjPyjXKADiRMuNpahU/zcrlg/2b
-	 iqSk7jAScBTXANKEdKO0D1mFgZXRrxY9gC9b977NjD/IvfEaOMjIzrlp+xBjF5/J3V
-	 IZSbUdDCgTfLg==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Tue, 30 May 2023 11:33:10 +0300 (MSK)
-Message-ID: <1d1cfd95-d0ee-e6de-d3d9-acf6defde661@sberdevices.ru>
-Date: Tue, 30 May 2023 11:28:33 +0300
+	id 1q3utq-00Cyi6-0B
+	for linux-amlogic@bombadil.infradead.org;
+	Tue, 30 May 2023 08:40:14 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=iahTtbvqWeLBpjX1+R6MOcvn8qRZV/bBO4iQlxKXPRc=; b=MgpW4QaP7wRkv7Z05pyqiS8Wux
+	2WXQbdbMP8OgsNCHF37QRnx76VGTv7J6qTivsq++927dSXLgunGjhWoWRPQGHrAHaO1tJF2ZcxQNe
+	rEopJUol10zbAg/VAFOw9teV8mcV/G5EVGnq3/7eFExkzJ2EtDDeYLPUHTODXlV4hMw2aBEOhyMEu
+	Oww2Ky0x4rLAABc8mBHeCBRCzz+9A8e0B3SC1MK1RrlFWmr+Ezv+Bwms+kgrsIJ7NaCznif7vk8vy
+	mh04PRn+x27GDfNimk72PnQYiUiBdo1tHhU6DYgderdeMrGZiet6L7f1eIagGc2P8u3TINB9fRDXz
+	WdYpJcSg==;
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1q3tw2-00DbtQ-1d
+	for linux-amlogic@lists.infradead.org;
+	Tue, 30 May 2023 07:38:38 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3f6d7abe934so27245415e9.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 30 May 2023 00:38:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685432303; x=1688024303;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iahTtbvqWeLBpjX1+R6MOcvn8qRZV/bBO4iQlxKXPRc=;
+        b=qKIJNodFI1eDSMKvOuX+HN31BbwkJxrLHUnP+3O5xRrglxzicL47QtkmEZyZPTZ+ED
+         xQ1T5DZbGNH5okD7A4EFrbGC8/vImRvcHlTUNzio/XYVnBEajm9idnuEKUPFQliKXaxl
+         DfmuD1Y59t/Snu0y7i6OGE6oZU9yeDJNBnp1g5HXnCNYjJ8ovgIbx8p+hib7niIK/eoX
+         2tE3z0UinH99WlDiFzmR917ZB2bai/NQvIgPxUj7r+A+e9GFwsrJesHiCWGuBi/vCu5M
+         K83y7juuBVpBYBxF6ZJIjaueFylPdy7kuB1dbJT2CHRIHMPlpd7B7chZEHxYbYcPvOM0
+         MEug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685432303; x=1688024303;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iahTtbvqWeLBpjX1+R6MOcvn8qRZV/bBO4iQlxKXPRc=;
+        b=BAON5dUheT5Uft929E+I1S5l2F0zAXCfiWePIzAGDkMd19VzDYRST8AxOavt0lJyv4
+         XKjYWfhWlxctZ+D23qEr8El6n+0GVK8ly9HBC2ESoU0iUAPc75OVBTw1VaTTL2pp0fXy
+         L9VrLXk6KzruSn76nUZ8mlSvcKbNO9kfHhWngYuvTYusdXLCltk+qrx93ZEIPYZoKHvM
+         WgkJ9tROCmOIjweQwdWtkNg1dLDrXBi+U+sQhetPx2ymx8f25FA2pZBFnCeVS3FsMJNP
+         dV5weo9D84qmrEefJ5rMeRQhc0lVbgWjA6qXo3EhvG/5Wqeqw0B+1utP/oG+qZxldHQI
+         Sy9w==
+X-Gm-Message-State: AC+VfDxdN6fUB3rV7ZoYhxzqwQP2kGkasRZXrTl3XR+1E/adj+1BOYxa
+	R31YTXDJeum+zYry1gv2DdwNNQ==
+X-Google-Smtp-Source: ACHHUZ7hEv+SRU+om5OwekpJritdJ/v9ZXDhPMZ+N2a+X/vXmaRr91zRHO9sgLtMSUvFH4uBhSUDtA==
+X-Received: by 2002:adf:e8c5:0:b0:30a:f2a5:83dd with SMTP id k5-20020adfe8c5000000b0030af2a583ddmr853668wrn.7.1685432302819;
+        Tue, 30 May 2023 00:38:22 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id m4-20020a5d4a04000000b003079c402762sm2312013wrq.19.2023.05.30.00.38.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 May 2023 00:38:22 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Tue, 30 May 2023 09:38:09 +0200
+Subject: [PATCH v5 08/17] drm/meson: fix unbind path if HDMI fails to bind
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v4 2/5] mtd: rawnand: meson: move OOB to non-protected ECC
- area
-Content-Language: en-US
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-CC: Liang Yang <liang.yang@amlogic.com>, Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Yixun Lan <yixun.lan@amlogic.com>,
-	Jianxin Pan <jianxin.pan@amlogic.com>, <oxffffaa@gmail.com>,
-	<kernel@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-References: <20230515094440.3552094-1-AVKrasnov@sberdevices.ru>
- <20230515094440.3552094-3-AVKrasnov@sberdevices.ru>
- <20230522173334.7aa6f917@xps-13>
- <ebbc26e3-6a1c-eead-051c-8f93beba41f3@sberdevices.ru>
- <20230526190347.6e34a2be@xps-13>
- <b9f0a38a-0d50-23f0-4509-c38362d05f12@sberdevices.ru>
- <20230530094420.06281ab5@xps-13>
- <1f4c90c4-e436-c53f-bb6f-416db374ae52@sberdevices.ru>
- <20230530102143.6b2a199a@xps-13>
-From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-In-Reply-To: <20230530102143.6b2a199a@xps-13>
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/30 04:52:00 #21374971
-X-KSMG-AntiVirus-Status: Clean, skipped
+Message-Id: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-8-56eb7a4d5b8e@linaro.org>
+References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org>
+In-Reply-To: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org>
+To: Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
+ Daniel Vetter <daniel@ffwll.ch>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Sam Ravnborg <sam@ravnborg.org>
+Cc: "Lukas F. Hartmann" <lukas@mntre.com>, 
+ Nicolas Belin <nbelin@baylibre.com>, linux-amlogic@lists.infradead.org, 
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linux-phy@lists.infradead.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2139;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=8CpWFO/23ohWXtlw9VlUvRSsoZjkvEPG4DEcAI5MYHo=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkdafgS67it5Xd/IPSiDYVRkKBdEU3k4dSZcRJg6IY
+ IKzsY56JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZHWn4AAKCRB33NvayMhJ0VUhEA
+ DBaG9ujzD1I8t4CF/PcaEnEZkX3oRDTeUQ2mqXuf8uqKMsWiwUq4ejxXcT3M9558+/alirvGZSMGJR
+ je5yXs+uY81A+lDAN/Kfki1r5nLbnqchdCedEoVmGvFwsnzV/kgppLF9dnxOflfOb2BS3BccuktlSL
+ I6v0HTTCGbUJaDDms7NEHyl55fK0+CB7BCXNf68MpylOUs548WCOy8fl2QcPeR05x1BRjOIDHQT66Q
+ XY0Kh1vJYWOe7xhxE1oCFrJqYdv0s+w9WIIF5QjNd54oUF1/jCVL26uYwy6QniOrq+quZU4vav2B8A
+ 9x3xioYs6uEAbKQo8WCDtg/7xMRg+6436OB/XKOSITB/1bCelI1aAYCOhaJ2uf4uGhESocQtsgfS+y
+ 1Sz6eUxltr2DVz6vtzP5PIjalX4CvEzPEbBZdRdnLWpoxVCbI5PJIUtLDNSTEwxsNMm2I4jM5VcjmD
+ gdhMqkdV2yk/e7tSqEafcitTrOsrcQoFgbWgwDLYvTTUCIsmpat11MkLYGrODn/SjzfM0m2yYz9dc4
+ PyUwkUPBoyGcjqdSadGHYXLggtZQ/8WOTu9EUQPxzU3Tv8nQdfdkbWp4JsglxXP+A2HOxZYYFzib8i
+ Kp0vzZvGcm36bLWM3Btf2WRSkwVaM/nsMwg2nO/4Uq5h5NhDaL067x7/sKOQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230530_013314_685312_5684EB20 
-X-CRM114-Status: GOOD (  20.85  )
+X-CRM114-CacheID: sfid-20230530_083829_432946_5BAC92E6 
+X-CRM114-Status: GOOD (  11.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,66 +130,96 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CgpPbiAzMC4wNS4yMDIzIDExOjIxLCBNaXF1ZWwgUmF5bmFsIHdyb3RlOgo+IEhpIEFyc2VuaXks
-Cj4gCj4gYXZrcmFzbm92QHNiZXJkZXZpY2VzLnJ1IHdyb3RlIG9uIFR1ZSwgMzAgTWF5IDIwMjMg
-MTE6MDk6MTAgKzAzMDA6Cj4gCj4+IEhpIE1pcXVlbCwKPj4KPj4gT24gMzAuMDUuMjAyMyAxMDo0
-NCwgTWlxdWVsIFJheW5hbCB3cm90ZToKPj4+IEhpIEFyc2VuaXksCj4+PiAgIAo+Pj4+Pj4+PiAt
-c3RhdGljIHZvaWQgbWVzb25fbmZjX2dldF91c2VyX2J5dGUoc3RydWN0IG5hbmRfY2hpcCAqbmFu
-ZCwgdTggKm9vYl9idWYpCj4+Pj4+Pj4+IC17Cj4+Pj4+Pj4+IC0Jc3RydWN0IG1lc29uX25mY19u
-YW5kX2NoaXAgKm1lc29uX2NoaXAgPSB0b19tZXNvbl9uYW5kKG5hbmQpOwo+Pj4+Pj4+PiAtCV9f
-bGU2NCAqaW5mbzsKPj4+Pj4+Pj4gLQlpbnQgaSwgY291bnQ7Cj4+Pj4+Pj4+ICsJaW50IGk7Cj4+
-Pj4+Pj4+ICAKPj4+Pj4+Pj4gLQlmb3IgKGkgPSAwLCBjb3VudCA9IDA7IGkgPCBuYW5kLT5lY2Mu
-c3RlcHM7IGkrKywgY291bnQgKz0gMikgewo+Pj4+Pj4+PiArCWZvciAoaSA9IDA7IGkgPCBuYW5k
-LT5lY2Muc3RlcHM7IGkrKykgewo+Pj4+Pj4+PiAgCQlpbmZvID0gJm1lc29uX2NoaXAtPmluZm9f
-YnVmW2ldOwo+Pj4+Pj4+PiAtCQlvb2JfYnVmW2NvdW50XSA9ICppbmZvOwo+Pj4+Pj4+PiAtCQlv
-b2JfYnVmW2NvdW50ICsgMV0gPSAqaW5mbyA+PiA4Owo+Pj4+Pj4+PiArCQkvKiBBbHdheXMgaWdu
-b3JlIHVzZXIgYnl0ZXMgcHJvZ3JhbW1pbmcuICovICAgICAgCj4+Pj4+Pj4KPj4+Pj4+PiBXaHk/
-ICAgICAgCj4+Pj4+Pgo+Pj4+Pj4gSSB0aGluayBjb21tZW50IG1lc3NhZ2UgaXMgd3JvbmcgYSBs
-aXR0bGUgYml0LiBIZXJlICJ1c2VyIGJ5dGVzIiBhcmUKPj4+Pj4+IHVzZXIgYnl0ZXMgcHJvdGVj
-dGVkIGJ5IEVDQyAoZS5nLiBsb2NhdGlvbiBvZiB0aGVzZSBieXRlcyBkaWZmZXJzIGZyb20gbmV3
-Cj4+Pj4+PiBPT0IgbGF5b3V0IGludHJvZHVjZWQgYnkgdGhpcyBwYXRjaCkuIER1cmluZyBwYWdl
-IHdyaXRlIHRoaXMgaGFyZHdhcmUKPj4+Pj4+IGFsd2F5cyB3cml0ZXMgdGhlc2UgYnl0ZXMgYWxv
-bmcgd2l0aCBkYXRhLiBCdXQsIG5ldyBPT0IgbGF5b3V0IGFsd2F5cyBpZ25vcmVzCj4+Pj4+PiB0
-aGVzZSA0IGJ5dGVzLCBzbyBzZXQgdGhlbSB0byAweEZGIGFsd2F5cy4gICAgCj4+Pj4+Cj4+Pj4+
-IFdoZW4gcGVyZm9ybWluZyBwYWdlIHJlYWRzL3dyaXRlcywgeW91IG5lZWQgdG8gdGFrZSB0aGUg
-ZGF0YSBhcyBpdCdzCj4+Pj4+IGJlZW4gcHJvdmlkZWQuIFlvdSBtYXkgbW92ZSB0aGUgZGF0YSBh
-cm91bmQgaW4gdGhlIGJ1ZmZlciBwcm92aWRlZCB0bwo+Pj4+PiB0aGUgY29udHJvbGxlciwgc28g
-dGhhdCBpdCBnZXQgdGhlIEVDQyBkYXRhIGF0IHRoZSByaWdodCBsb2NhdGlvbiwgYW5kCj4+Pj4+
-IHlvdSBuZWVkIG9mIGNvdXJzZSB0byByZW9yZ2FuaXplIHRoZSBkYXRhIHdoZW4gcmVhZGluZyBh
-cyB3ZWxsLCBzbyB0aGF0Cj4+Pj4+IHRoZSB1c2VyIHNlZXMgWGtpQiBvZiBkYXRhICsgWUIgb2Yg
-T09CLiBUaGF0J3MgYWxsIHlvdSBuZWVkIHRvIGRvIGluCj4+Pj4+IHRoZXNlIGhlbHBlcnMuCj4+
-Pj4+ICAgICAKPj4+Pgo+Pj4+IEkgdGhpbmsgdGhlcmUgaXMgc29tZSBtaXN1bmRlcnN0YW5kaW5n
-IGFib3V0IHRoZXNlICJ1c2VyIGJ5dGVzIiBhYm92ZTogdGhlcmUgYXJlIDQKPj4+PiBieXRlcyB3
-aGljaCB0aGlzIE5BTkQgY29udHJvbGxlciBhbHdheXMgd3JpdGVzIHRvIHBhZ2UgaW4gRUNDIG1v
-ZGUgLSBpdCB3YXMgZnJlZSBPT0IKPj4+PiBieXRlcyBjb3ZlcmVkIGJ5IEVDQy4gQ29udHJvbGxl
-ciBncmFicyB2YWx1ZXMgZnJvbSBETUEgYnVmZmVyIChzZWNvbmQgRE1BIGJ1ZmZlciB3aGljaAo+
-Pj4+IGRvZXNuJ3QgY29udGFpbnMgcGFnZSBkYXRhKSBhbmQgd3JpdGVzIGl0IGFsb25nIHdpdGgg
-ZGF0YSBhbmQgRUNDIGNvZGVzLiBJZGVhIG9mIHRoaXMKPj4+PiBjaGFuZ2UgaXMgdG8gYWx3YXlz
-IHN1cHByZXNzIHRoaXMgd3JpdGUgYnkgc2V0dGluZyB0aGVtIHRvIDB4RkYgKG1heSBiZSB0aGVy
-ZSBpcyBzb21lCj4+Pj4gY29tbWFuZCBvcHRpb24gdG8gbm90IHdyaXRlIGl0LCBidXQgSSBkb24n
-dCBoYXZlIGRvYyksIGJlY2F1c2UgYWxsIG9mIHRoZW0gKDQgYnl0ZXMpCj4+Pj4gYmVjb21lIHVu
-YXZhaWxhYmxlIHRvIHJlYWRlci93cml0ZXIuICAKPj4+Cj4+PiBBdCB0aGUgTkFORCBjb250cm9s
-bGVyIGxldmVsLCBJIHdvdWxkIHJhdGhlciBhdm9pZCBkb2luZyB0aGluZ3MgbGlrZQo+Pj4gdGhh
-dC4KPj4+Cj4+PiBJIGJlbGlldmUgeW91IGNhbiBqdXN0IHVwZGF0ZSB0aGUgb29ibGF5b3V0IHNv
-IHRoYXQgcHJvdGVjdGVkIE9PQiBieXRlcwo+Pj4gYXJlIG5vdCBleHBvc2VkIHRvIHRoZSB1c2Vy
-IGFzIGZyZWUgYnl0ZXMuIFRoZW4geW91ciBidWZmZXJzIHNob3VsZAo+Pj4gYWxyZWFkeSBjb250
-YWluIDB4ZmZmZmZmIGF0IHRoZSBwcm9ibGVtYXRpYyBsb2NhdGlvbi4gIAo+Pgo+PiBTbyBZb3Vy
-IGlkZWEgaXMgdG8gY29udGludWUgZmlsbCBETUEgYnVmZmVyIChmb3IgdGhlc2UgNCBieXRlcykg
-ZnJvbSBwcm92aWRlZCBPT0IgYnVmZmVyLAo+PiByZWx5aW5nIG9uIHRoYXQgYXMgdGhlc2UgYnl0
-ZXMgYXJlIHVudXNlZCwgdGhleSB3aWxsIGJlIDB4RkYgaW4gT09CIGJ1ZmZlciBzbyB3ZSBnZXQg
-dGhlIHNhbWUgcmVzdWx0Pwo+IAo+IFllcy4KPiAKPiBUaGUgcHJvYmxlbSB5b3UgZmFjZSBpcyBk
-dWUgdG8gamZmczIgdXNpbmcgZnJlZSBPT0IgYnl0ZXMgdG8gc3RvcmUgc29tZQo+IGRhdGEuIElm
-IHRoaXMgZGF0YSBpcyBpbiB0aGUgcHJvdGVjdGVkIGFyZWEgLT4gQk9PTS4KPiAKPiBJZiBhbm90
-aGVyIGFwcGxpY2F0aW9uIHdhbnRzIHRvIHVzZSBhbGwgdGhlIGJ5dGVzIGFuZCB3cml0ZXMgdGhl
-bSBhbGwKPiBpbiB0aGUgc2FtZSBQUk9HUkFNIG9wZXJhdGlvbiBpdCdzIGZpbmUuCj4gCj4gSmZm
-czIgYWNjZXNzZXMgdGhlIGZyZWUgYXJlYSB0aHJvdWdoIHRoZSBPT0IgbGF5b3V0cyBvbmx5LCBz
-byBqdXN0Cj4gdHdlYWtpbmcgdGhlIE9PQiBsYXlvdXRzIHNob3VsZCB3b3JrLgoKSSBzZWUsIEkn
-bGwgdHJ5IHRoaXMuCgpUaGFua3MsCkFyc2VuaXkKCj4gCj4gVGhhbmtzLAo+IE1pcXXDqGwKCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9n
-aWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8v
-bGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+If the case the HDMI controller fails to bind, we try to unbind
+all components before calling drm_dev_put() which makes drm_bridge_detach()
+crash because unbinding the HDMI controller frees the bridge memory.
+
+The solution is the unbind all components at the end like in the remove
+path.
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ drivers/gpu/drm/meson/meson_drv.c | 23 ++++++++++++++---------
+ 1 file changed, 14 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+index ca6d1e59e5d9..e060279dc80a 100644
+--- a/drivers/gpu/drm/meson/meson_drv.c
++++ b/drivers/gpu/drm/meson/meson_drv.c
+@@ -316,32 +316,34 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 		goto exit_afbcd;
+ 
+ 	if (has_components) {
+-		ret = component_bind_all(drm->dev, drm);
++		ret = component_bind_all(dev, drm);
+ 		if (ret) {
+ 			dev_err(drm->dev, "Couldn't bind all components\n");
++			/* Do not try to unbind */
++			has_components = false;
+ 			goto exit_afbcd;
+ 		}
+ 	}
+ 
+ 	ret = meson_encoder_hdmi_init(priv);
+ 	if (ret)
+-		goto unbind_all;
++		goto exit_afbcd;
+ 
+ 	ret = meson_plane_create(priv);
+ 	if (ret)
+-		goto unbind_all;
++		goto exit_afbcd;
+ 
+ 	ret = meson_overlay_create(priv);
+ 	if (ret)
+-		goto unbind_all;
++		goto exit_afbcd;
+ 
+ 	ret = meson_crtc_create(priv);
+ 	if (ret)
+-		goto unbind_all;
++		goto exit_afbcd;
+ 
+ 	ret = request_irq(priv->vsync_irq, meson_irq, 0, drm->driver->name, drm);
+ 	if (ret)
+-		goto unbind_all;
++		goto exit_afbcd;
+ 
+ 	drm_mode_config_reset(drm);
+ 
+@@ -359,15 +361,18 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 
+ uninstall_irq:
+ 	free_irq(priv->vsync_irq, drm);
+-unbind_all:
+-	if (has_components)
+-		component_unbind_all(drm->dev, drm);
+ exit_afbcd:
+ 	if (priv->afbcd.ops)
+ 		priv->afbcd.ops->exit(priv);
+ free_drm:
+ 	drm_dev_put(drm);
+ 
++	meson_encoder_hdmi_remove(priv);
++	meson_encoder_cvbs_remove(priv);
++
++	if (has_components)
++		component_unbind_all(dev, drm);
++
+ 	return ret;
+ }
+ 
+
+-- 
+2.34.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
