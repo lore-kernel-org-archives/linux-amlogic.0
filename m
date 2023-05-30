@@ -4,85 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A585C7EE23
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 May 2023 08:40:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F01CBC7EE23
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 May 2023 08:41:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kZFxvhW3MsSMz+W4OybDYQFroo1k5Qa5p/Lj7MMIhh0=; b=Sk074f8x1HM1p3
-	LezLqb8pMpohxmu7UJHEv6ECnt8cGOiClqEXseobgu9VpZqcU4KhCLfoESL8YMbRAN/3hsUmzE9Hg
-	2l81kU1YQz9zfkEGbkGC8OCoVk46rYi9NJlcp6tukPNdlygGpXtC4peCRexv/5Ous8zHUYWGdAK1N
-	pSY7huJRGXba9pG8SBx/JyYCOeQyGaCb1uayaddVLJ8dQQE7hRFBOnEY3jcOTTOh+fEoQt9VHqXCk
-	PdQRkFTcCtdSzMQ9omSon8MI+ypjpoBop2ddHp8z9LnbntdoRvsAfkO+hygSt3THY0Tl0TZkl7C8Y
-	SwvEaolmvAV1+nHf3oNg==;
+	List-Owner; bh=9YIuVXKSLCyvXvDCUEIhu9FBfJ4bL2nEE3fqSaJAOn0=; b=Uv9F4dW72eq5cf
+	rmv2rZN+k1ijQcXBrHKI3ivhrAHqF345xYMiWeDCfW21W6RWFVNxN3Wb23JBab3cJbSVA/aLIHj9N
+	0aYf1YzF2W8G4//0oR3l+MLfW5LI4S1GVxOC8Cd5grBY/9RvXthelF4exZ0xoLyuj+GPY8/VkWVNe
+	+lTvglfdJhLMbERLHRQh/g+iJ1/UWxQuX2tUY7sgTAF4SeG7IDeb5MrYIc2LIQgad2KWFAqi2xNI+
+	ebWDIt26dsNT7r7yhaRwnUVkDaKZlSm3GZOiLMsA0JbpkpvIgKCRE0D2ioNHkH5vfkuqbXconfUX7
+	yRlH7tBfA6pyZtzPW/7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3uty-00CyoQ-1i;
-	Tue, 30 May 2023 08:40:22 +0000
+	id 1q3uuo-00CzJp-0R;
+	Tue, 30 May 2023 08:41:14 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3uts-00CykB-0s
+	id 1q3uud-00CzCe-1p
 	for linux-amlogic@bombadil.infradead.org;
-	Tue, 30 May 2023 08:40:16 +0000
+	Tue, 30 May 2023 08:41:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
 	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=ILwpKSS26s6qYwQiA3AWhdCLAbEChopbtACgZFh2DVA=; b=bejhIB0aIbnNq1GxAn7SLGZyAR
-	FVssSX/P8CMCMpG4RlDSaCqTNsk083P9VlUaKU8iWuMeseDiOuu2zAkWyHG0Y9QswPW6LdRNPIRgt
-	3ZAok8zQniLvCH2FPp693r+cBhzTe3QN1ePxp2RETjLLVnmWV9z7BN02eANaPpBxAqkDkamSmKTYB
-	Zmek+J/XVspYy66DcOqMG6vKquzg5CjKH1B1ODMVxexpVGm6a4+uuzo5446h3aLVT3/c49v0fmlIY
-	e3kusLvjA7GbXxeq9Nhw8aH5vDJB5iQ5pyMiRzu3F0IGq/IhyEJ0OE7ofu4vBURBbkhZf3UWiXWJB
-	FTxavGbg==;
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	bh=jfEXvkrzeaqY3Zz/djBQFxvd7vEtcQQIyY+Jgs9PfMk=; b=eMYZQ2Ao5b7zbDE+VtV5p8dYLm
+	uU/ZEX9S7H4XtDAwTy0YyJMSUHfEu7xeslXYCki5/EAcDv68cedViqZFCwVrGjjKvRy7693wrIiDB
+	5/KgPH1s8z2ZpBjXSDhLRCn2hO4GeHplwnpavoPf/fGN2hWcS0siN930/1b+UQ7IKHc3tdJKvz7W7
+	za2GdRLx9zOszL55Q8onnEZ5CqOTa8qqfkQsEfqc9DidCf34MOOfTN9IH9sH3fXqEGoTOnwTg5fRz
+	TDsa76i3gYQBe2wlekj1O9xUmYKvBTZnC2wBh3DUZo9sY3xfU913u9vfSFyKvCfwDZ3XAHoErI9bX
+	8eH3kwwA==;
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
 	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3tvz-00Dbrx-1n
+	id 1q3tw1-00DbtU-0i
 	for linux-amlogic@lists.infradead.org;
 	Tue, 30 May 2023 07:38:37 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-3090d3e9c92so3969514f8f.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 30 May 2023 00:38:21 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-30abe551605so2928748f8f.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 30 May 2023 00:38:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685432300; x=1688024300;
+        d=linaro.org; s=google; t=1685432304; x=1688024304;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ILwpKSS26s6qYwQiA3AWhdCLAbEChopbtACgZFh2DVA=;
-        b=FPO26JeUMctWCe0KGGcKVKj+KIao1BZ/67tYsHHpowHi9fv+F4pUBWamQGILHF+nd7
-         m1YxLwzfR1E/efXHlnMvBhisfEgTjiAblOiWVgVDedzrL2ryifpZxZw8+qplOUocrJMJ
-         aypdeUkUgEhBFe6SJ8ctGnt1l7cu1L7WlHX2QqvVq7+72CrLtFJ+0B/sHwJiwJTC3fbr
-         sja6/t2+UHk+Jc/wLgezVoYGAhvpAflqCnXyWI09LjsZ+mhmI51maWlAetEtzJxJpRwH
-         7boHftn7ty0ZHShlsw/51eKbEVHh2rbpc/WGz126huaAOQyTX3lui+U/c9xcSkbvKtwX
-         NWyA==
+        bh=jfEXvkrzeaqY3Zz/djBQFxvd7vEtcQQIyY+Jgs9PfMk=;
+        b=krxbND8uKOMMZsMfjM4tgwX0/ik3KeKaeWX6435WFpJSGefc/k9tb6CEc6ELkHKQDX
+         gHm1rc7h1CPqB0W8opYJWRRwrkCSsrKUULYrkeLlnwjEo/fHheAG5HE3vUydEIJ8msGk
+         kvdNuyNnOrpIfR8dLNRjJA2daGNb+B9peXTRayFhm+mqrmfVDTWXdjzVJnv/uW/Hrt4K
+         fGd5TXk4puGWhtT2JIc8vrOm2pRyYBa8VWwZ+CcfC9lU13zGAJ5zQeuzeA9unmpZALvq
+         jerl1Ervf0exDkS9wig6JqxHOBALoaNIUDQaGXqRzzTG1cgQE2yEmem1zPnWnhcvymLd
+         Hxfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685432300; x=1688024300;
+        d=1e100.net; s=20221208; t=1685432304; x=1688024304;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ILwpKSS26s6qYwQiA3AWhdCLAbEChopbtACgZFh2DVA=;
-        b=Bd8KzOO5PfnGjh1DwhgR0qFbyKk5gbe3lYG2PLiCwk+MgRgkIEwRQ3S+nmiurK8TNd
-         ZroMhmUfoqEJsW5+8y1fQ6mwkux1+3uzurhvAqREHMYgv/F4pKtFx/Jn6U0Q8b6n1Cqd
-         LiEwY/nxVGGyULqRlehjwxO6okXGJWrQs6lRe4GqxrbOLCAoQaDnAjkwfl7k71N9OMGl
-         zXcoKmpBHuvlot797SR8o7IJM9kNvcuItfRAMK4W7f220Jm6PSM3kGm7wd20YIN6ddA3
-         4u73LC8uaM1qSpjl0cHFH8gbWXub88pmM1pCodYfosplXKRToX4cP+2IBCIy/AWy8u30
-         YcjQ==
-X-Gm-Message-State: AC+VfDylHKO3wXzIKWVNTtyZoZ4bUq7eltL8djEBF1SDq4689ngnCS8p
-	vAGwmGmRHq3R74dt/nDc9knzYQ==
-X-Google-Smtp-Source: ACHHUZ7oADz4DYgBBnbiJph7j9eViF2f4A9LlBRMt5hlgYXGjtHYYwBmrS6WhVWBm9Uj/beTsRQRHA==
-X-Received: by 2002:a05:6000:1003:b0:2fb:1d3a:93ff with SMTP id a3-20020a056000100300b002fb1d3a93ffmr736528wrx.61.1685432300469;
-        Tue, 30 May 2023 00:38:20 -0700 (PDT)
+        bh=jfEXvkrzeaqY3Zz/djBQFxvd7vEtcQQIyY+Jgs9PfMk=;
+        b=Y/qIOFSkh5QbkEOmdrc1B3Jwg9vCrUnnL/6hCHG41pxV/9eip7fN/h0vAm9KZP+Hy0
+         9CF15cNx88JDBqNk8b5Ej4HcFj4r7tvX5KCTuMSt70TgYXAg2LfdsWIqxCOqmxJjsapn
+         6TtqqxiW9EE/pZ9zKlzYUO6gIQ8X3vh/gFj4f+ozLyaNH8K4VjALvJIUH5RumzPmBXp4
+         l/5trXHjapDwTMCxwazBesKR1ce4wZobUFME5FAq5zZf6Gez2AStZpjpEgxdPH9NAj7W
+         YLTz7m8xhKzHholNLagpzXxJQrPDQPom2eOzXO7dU9rb1yhqWuehF+ON49H/ZDQ+nc2n
+         2l1Q==
+X-Gm-Message-State: AC+VfDzQ/OsPywz6uTZmsAJDTK7TeE762EqRockWdX60nJ5wh1A8Iben
+	nbT35FWkJz5rRHUm2ZAd2l+KeQ==
+X-Google-Smtp-Source: ACHHUZ6mZIDAxfv5le0pkcFkIO+8ARVgJXLbbQt8/vxlwETrhc1V1bFh5QTnMwv7dpsAPCXNUZOoFg==
+X-Received: by 2002:a5d:4044:0:b0:30a:8e6a:3d77 with SMTP id w4-20020a5d4044000000b0030a8e6a3d77mr1142304wrp.1.1685432304012;
+        Tue, 30 May 2023 00:38:24 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id m4-20020a5d4a04000000b003079c402762sm2312013wrq.19.2023.05.30.00.38.19
+        by smtp.gmail.com with ESMTPSA id m4-20020a5d4a04000000b003079c402762sm2312013wrq.19.2023.05.30.00.38.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 00:38:20 -0700 (PDT)
+        Tue, 30 May 2023 00:38:23 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Tue, 30 May 2023 09:38:07 +0200
-Subject: [PATCH v5 06/17] dt-bindings: display: add Amlogic MIPI DSI Host
- Controller bindings
+Date: Tue, 30 May 2023 09:38:10 +0200
+Subject: [PATCH v5 09/17] drm/meson: only use components with dw-hdmi
 MIME-Version: 1.0
-Message-Id: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-6-56eb7a4d5b8e@linaro.org>
+Message-Id: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-9-56eb7a4d5b8e@linaro.org>
 References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org>
 In-Reply-To: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org>
 To: Jerome Brunet <jbrunet@baylibre.com>, 
@@ -99,28 +98,27 @@ Cc: "Lukas F. Hartmann" <lukas@mntre.com>,
  linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  dri-devel@lists.freedesktop.org, linux-phy@lists.infradead.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3536;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2777;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=DcR1nE4ZMJpkpX2oEe3RQlDvB5okZPNaS9Js/yOJnic=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkdaffq+G+cxVoOQbtSrl/SEHGE6MG1300kjLhFz94
- et6gskiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZHWn3wAKCRB33NvayMhJ0d9GEA
- CkuB537HbJHqDkt4SUmKi6+cTkKmuRCZVQl4HXF66H6GNlELIUpDxzLFYKRZ57RzQ7eisjoen0kd67
- oIKnVvJZRpmJHPRlvzo+Zq8POWmuEjskvDVNwF5LOcYu1O2U6EN6Dk/VhSKJMPkRmy5m8z4H0REPdb
- 6BSj6AgKzG0CQIiGnQs2NcSY0lUwbfMntYbpe3CKDvmMVPjY2CTI+4Vydg9lo+/x0AFH22pP1s5fTp
- 6yq4XEPsF6l7Zy1ooGJt0LGuvPA1WN+dNBmzXYixyNI1ykkQQ2nxmtyngiHRUdauQe/KSN7FRJ6mWR
- aO7CLt6djQM0Fy5eOwefV9ES0Fl5W6xv/htXVF7UCTqxs5Yl6n2abXMeA2bEAleR2016wMgbKEpdK0
- 8GrtW4fL2lrXZR6dPvTtaYsLRIhwwLccVan5v64qXCiQdeq2WhQRhiyrhwAY832KRIF/NkJooskNfy
- IVAF+/HV3P7TrFFHCo2FzIilgfPfEfQNhL7wBeoZMH8MYV5JGi/xRVBUMs+C8rfYPAuWXUlz4U7n3B
- 5mK9qt2JiOR31nFMGW65MlRQDyZm4F9Cu346AzoDHWQ2mndld0G6q4NmfoU0nva/+8P1sasel2Eu3M
- PpDTuHBNwKCwTgqyQ1s3vC6hBIM20FKFUAIubZt5cde3q0ZVgNRAZvXUkyTw==
+ bh=nVXfezvQbKE5gC4JrB0CVduxieCr6UkdveYDXaG+sjI=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkdafgB8ChwHhm0E9pEZfTkphqOUzLZTgFYnPzxmOG
+ /S4wCUKJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZHWn4AAKCRB33NvayMhJ0UkyD/
+ 4nse+EzB7hATP8CQAMK3zfVTtmlq8CoWG5Fcwju9bfQsCYBVPvp9Zysjg6wxBX+W13gkaO96AOb2J7
+ foQf4doFXgEZJzBRjoX21BePaAK5dtyqI27XYUWL8zvYWQfZ/kDfhezwKt6FBKyalaeNCMgTwsvnbe
+ 60ycoHMPi4z56Gc08oDa4f5DcqQ6eWkAXe+SVypHwmoti6uEyl3icc6ca0D8APd+s/Jg4sHopL/Xr3
+ JiiGulF3tQXV6hF88aWtgMKQyLpKhbBu2Qcm1mhi+G5rnkdFFxB9spFkTYLuMsn6O/+EZjdC+qhCAI
+ rP6BhyvoAYUB+MHEvTbjIja5e9v7x874k5tXcxQ+CpCmIdrJxTAuNQgur1E0DZOMMisqTmeap/vHyZ
+ AH09CltXd1ZrSl5qlliTw0vrwplJb6cDK8L/nQka5f868acWitvPVcpUKeA32xF8X6WA7iQWBHBRO4
+ EMpnhPZH0+2/2rZZcOqqBgRWs4jL6/D4rXpZzkQZ+Q0l7k5VbNt8tjVG3v3giWr369aRlQNZs9SePj
+ vM68t+3W47ka0W7g5jJ3cFXafmjJme1FwBjc9PXiSEeYAjSaDVCE6iNfyQmLtruHqFev5ITlubRTBm
+ yIquMb+6j1mJXzhswTrD205PsdVr1BDSFRBvv4WUcoKNU8XCUv7Pfe1GWIUA==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230530_083829_274504_C36B33BB 
-X-CRM114-Status: GOOD (  12.93  )
+X-CRM114-CacheID: sfid-20230530_083828_698242_A8165ACC 
+X-CRM114-Status: GOOD (  13.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -137,141 +135,78 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI
-transceiver (ver 1.21a) with a custom glue managing the IP resets,
-clock and data inputs similar to the DW-HDMI Glue on the same
-Amlogic SoC families.
+Only DW-HDMI currently needs components since it reuses
+the drm-meson driver context to access HHI registers (sic).
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Once this is solved, we can get rid on components.
+
+Until now, limit the components matching to the dw-hdmi compatibles
+we know to require this hack, for other bridges simply use probe defer
+instead and get over this components sitation.
+
+The back story is that we simply cannot attach DSI adapters bridges
+if we use components, only DSI panels, this is because we bind/unbind
+the DSI controller at each drm-meson driver master bind tentative.
+With this the I2C DSI bridge is unable to find the DSI controller
+host and everything fails to probe.
+
+This will simplify a lot adding new or older HDMI bridges.
+
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../display/amlogic,meson-g12a-dw-mipi-dsi.yaml    | 118 +++++++++++++++++++++
- 1 file changed, 118 insertions(+)
+ drivers/gpu/drm/meson/meson_drv.c | 30 ++++++++++++++++--------------
+ 1 file changed, 16 insertions(+), 14 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-g12a-dw-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-g12a-dw-mipi-dsi.yaml
-new file mode 100644
-index 000000000000..a3428f012005
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/amlogic,meson-g12a-dw-mipi-dsi.yaml
-@@ -0,0 +1,118 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2020 BayLibre, SAS
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/amlogic,meson-g12a-dw-mipi-dsi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic specific extensions to the Synopsys Designware MIPI DSI Host Controller
-+
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-+
-+description: |
-+  The Amlogic Meson Synopsys Designware Integration is composed of
-+  - A Synopsys DesignWare MIPI DSI Host Controller IP
-+  - A TOP control block controlling the Clocks & Resets of the IP
-+
-+allOf:
-+  - $ref: dsi-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - amlogic,meson-g12a-dw-mipi-dsi
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 3
-+    maxItems: 4
-+
-+  clock-names:
-+    minItems: 3
-+    items:
-+      - const: pclk
-+      - const: bit
-+      - const: px
-+      - const: meas
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    items:
-+      - const: top
-+
-+  phys:
-+    maxItems: 1
-+
-+  phy-names:
-+    items:
-+      - const: dphy
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Input node to receive pixel data.
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: DSI output node to panel.
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+  - phys
-+  - phy-names
-+  - ports
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    dsi@6000 {
-+          compatible = "amlogic,meson-g12a-dw-mipi-dsi";
-+          reg = <0x6000 0x400>;
-+          resets = <&reset_top>;
-+          reset-names = "top";
-+          clocks = <&clk_pclk>, <&bit_clk>, <&clk_px>;
-+          clock-names = "pclk", "bit", "px";
-+          phys = <&mipi_dphy>;
-+          phy-names = "dphy";
-+
-+          ports {
-+              #address-cells = <1>;
-+              #size-cells = <0>;
-+
-+              /* VPU VENC Input */
-+              mipi_dsi_venc_port: port@0 {
-+                  reg = <0>;
-+
-+                  mipi_dsi_in: endpoint {
-+                       remote-endpoint = <&dpi_out>;
-+                  };
-+              };
-+
-+              /* DSI Output */
-+              mipi_dsi_panel_port: port@1 {
-+                  reg = <1>;
-+
-+                  mipi_out_panel: endpoint {
-+                      remote-endpoint = <&mipi_in_panel>;
-+                  };
-+              };
-+          };
-+    };
+diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+index e060279dc80a..e935c0286a20 100644
+--- a/drivers/gpu/drm/meson/meson_drv.c
++++ b/drivers/gpu/drm/meson/meson_drv.c
+@@ -451,10 +451,17 @@ static void meson_drv_shutdown(struct platform_device *pdev)
+ 	drm_atomic_helper_shutdown(priv->drm);
+ }
+ 
+-/* Possible connectors nodes to ignore */
+-static const struct of_device_id connectors_match[] = {
+-	{ .compatible = "composite-video-connector" },
+-	{ .compatible = "svideo-connector" },
++/*
++ * Only devices to use as components
++ * TOFIX: get rid of components when we can finally
++ * get meson_dx_hdmi to stop using the meson_drm
++ * private structure for HHI registers.
++ */
++static const struct of_device_id components_dev_match[] = {
++	{ .compatible = "amlogic,meson-gxbb-dw-hdmi" },
++	{ .compatible = "amlogic,meson-gxl-dw-hdmi" },
++	{ .compatible = "amlogic,meson-gxm-dw-hdmi" },
++	{ .compatible = "amlogic,meson-g12a-dw-hdmi" },
+ 	{}
+ };
+ 
+@@ -472,17 +479,12 @@ static int meson_drv_probe(struct platform_device *pdev)
+ 			continue;
+ 		}
+ 
+-		/* If an analog connector is detected, count it as an output */
+-		if (of_match_node(connectors_match, remote)) {
+-			++count;
+-			of_node_put(remote);
+-			continue;
+-		}
+-
+-		dev_dbg(&pdev->dev, "parent %pOF remote match add %pOF parent %s\n",
+-			np, remote, dev_name(&pdev->dev));
++		if (of_match_node(components_dev_match, remote)) {
++			component_match_add(&pdev->dev, &match, component_compare_of, remote);
+ 
+-		component_match_add(&pdev->dev, &match, component_compare_of, remote);
++			dev_dbg(&pdev->dev, "parent %pOF remote match add %pOF parent %s\n",
++				np, remote, dev_name(&pdev->dev));
++		}
+ 
+ 		of_node_put(remote);
+ 
 
 -- 
 2.34.1
