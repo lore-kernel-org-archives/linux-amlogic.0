@@ -4,79 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C6D1C7EE23
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 May 2023 09:35:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2297FC7EE31
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 May 2023 11:24:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:CC:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=rBuVG/vLrcjIluID27jFoNSuNjFnfVzZdM5R97Pe4Vo=; b=byUW2XBDGZ/a0gWcLcDhTUW7OR
-	ZRG/3JLYXEDy/toYk06YLyoQyU+NlmiiFxImDITcBTTbfr24Al99kF7lYcoIdSfrGHU45K54vvB+y
-	sePh8JqjUzWxOJeS73vCaNgp1q3/UlAbe6YzAvoHf9ZB1dJWL4jMeBC3R255K81/6lXznr8rqNStO
-	3ZKoQeB9NTyPurJ5X41EWBywK2+ws8e0fHEL5xAwGJaCwdQGk+qmAINBlCy+w1fABi/ratZgX3whE
-	WKqghXGrWr+T4zyqcxCVeEQVLC48bTLg09tyS5Lae6eukB/Ihczph9/4ceUZB3TDk7xue0M4lrSZT
-	DRi7k/ig==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=KhZ0vS5ECHIoKE6Y1CB01DNcPwivuXO4JZNMrsU0S7g=; b=Dq/weHUNAo7waz
+	yrghxtUuOcMJE7lqxj+z8lpZ/w5Y32OJ0mD14sUTXJA5lg/NpJgmJUf4yDx73iVW0fq6b4REVq9dd
+	t+i6+kMHaAhZQWuFa4xcgfTB6q6JDR1q44w+LW7XfSL6w4i2sWZgIzOMk0hAIVm+ZC5SJitsLOY7/
+	bMAAZ6rmTI+2byus5lpyhTdc3MTMpHZDYP7SSmTxeZTApHElVC9OXO531t2+w84GCK36hIFXvWoRR
+	aqdyOP5U8c5lwg58pEiI2fMwrSn0+JmE8XcLKKILT4XiyYhH5gAMDDM164JvaHxR4Gh2eBiZymm8H
+	sdPeWt3TkwPWQa30PjKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3vkT-00DBcU-20;
-	Tue, 30 May 2023 09:34:37 +0000
-Received: from esa.microchip.iphmx.com ([68.232.153.233])
+	id 1q3xSH-00DdWv-0K;
+	Tue, 30 May 2023 11:23:57 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q3vkP-00DBbg-2u;
-	Tue, 30 May 2023 09:34:35 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1685439275; x=1716975275;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wp2pAf3CqrBt5skpkT7zvWMDCqetgcUZchDB3RC0Ee0=;
-  b=Yd7foSjkOptFSgLAR6tq1EbWKEpO4qoYB7VfhU8KiEJge8Mk1jvzxPzI
-   epTa7i9ajSMBpQZ0K9m3XSarRTkOU2WeVbGWKcbdjM54RSBb0XlkhEDje
-   inxRzCdqRB6aVvspmqJePsxt3GqNcpl/41KW3h+CHBlOrmE6W7Fo6IhK6
-   HNnHJZpsofBTMIZhdlMutFa5S0MACDUBBi5EiHpw5Uw3yTVXgZFTjz26D
-   Eany0aOmUgSgcGrnfk5NG5nC/JED4YoQoexEKqiHZfKyGHqRZAxrTKYh4
-   2YY8YVtcH+UFflMq/KrabTVnWn1DrZSBJGCHbmKICOdIr+IJr51J+G4Y+
-   A==;
-X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; 
-   d="asc'?scan'208";a="216005891"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 May 2023 02:34:34 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 30 May 2023 02:34:32 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Tue, 30 May 2023 02:34:29 -0700
-Date: Tue, 30 May 2023 10:34:07 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-	<krzysztof.kozlowski+dt@linaro.org>, <neil.armstrong@linaro.org>,
-	<jbrunet@baylibre.com>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-	<robh+dt@kernel.org>, <khilman@baylibre.com>, <jian.hu@amlogic.com>,
-	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v15 5/6] dt-bindings: clock: meson: add A1 Peripherals
- clock controller bindings
-Message-ID: <20230530-illusive-pushpin-1e35d0a50e0d@wendy>
-References: <20230517133309.9874-1-ddrokosov@sberdevices.ru>
- <20230517133309.9874-6-ddrokosov@sberdevices.ru>
- <CAFBinCC3kQ9Nz3R2W-Qj9tbPJfS8JsB_4AkmPgS6xpQ96DBy2w@mail.gmail.com>
- <20230522130033.a47vlybocme66rev@CAB-WSD-L081021>
- <CAFBinCAk9+Km3BssA8d8nc_Z_GbhY87FD3qQRpZ2k7ChKt7TBg@mail.gmail.com>
+	id 1q3xSD-00DdV3-1O;
+	Tue, 30 May 2023 11:23:56 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 9B7155FD2C;
+	Tue, 30 May 2023 14:23:46 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1685445826;
+	bh=/2VvlUBuwK951x+75yuFgWs7gQ9TMyja2/uS8g7dZvs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	b=W3vlx6ZsnwPU8yTJla34qUgzxmWVw3GHjtFLYJeTmn1ZwWy6rqXivAOeD0YEsHzz0
+	 16kcIJqfHZD0n+HscQR7PMJ3d553RfRaY0m+ZZkRPWYf7nUjbM2rgKd6XYCRAkhES+
+	 c81/4FFLwFwg8P6QaWYgrXuMrh53sF/3u2FXi/QVWdxYH5t+JVQWPS+Hd68ieCZ4pa
+	 xgW9XTYBTJmviIJAsHwSNxKePg3r5IGCJUX+ef3BIkdYCjapZy3O1fotL5YzEBXH7C
+	 ymdNTq4Hug4Vl/Sc6CnRHw3DG9fp4NeHsZB6viaF+6riGJuzzmtbr33Q4mEaayeaJ/
+	 Bv7AwCH9RK6WQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Tue, 30 May 2023 14:23:45 +0300 (MSK)
+Message-ID: <6077c959-f566-d399-d2be-8460eb063415@sberdevices.ru>
+Date: Tue, 30 May 2023 14:19:08 +0300
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCAk9+Km3BssA8d8nc_Z_GbhY87FD3qQRpZ2k7ChKt7TBg@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v4 1/5] mtd: rawnand: meson: fix command sequence for
+ read/write
+Content-Language: en-US
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+CC: Liang Yang <liang.yang@amlogic.com>, Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Yixun Lan <yixun.lan@amlogic.com>,
+	Jianxin Pan <jianxin.pan@amlogic.com>, <oxffffaa@gmail.com>,
+	<kernel@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+References: <20230515094440.3552094-1-AVKrasnov@sberdevices.ru>
+ <20230515094440.3552094-2-AVKrasnov@sberdevices.ru>
+ <20230522170526.6486755a@xps-13>
+ <9013b0e2-c923-43f8-0bd6-979bf0c23ebc@sberdevices.ru>
+ <abeadc03-a69c-be1c-3c6a-6ce492a5e4f6@sberdevices.ru>
+ <20230526192205.4a69ca79@xps-13>
+From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <20230526192205.4a69ca79@xps-13>
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/30 07:59:00 #21376339
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230530_023434_120162_7B319C32 
-X-CRM114-Status: GOOD (  48.01  )
+X-CRM114-CacheID: sfid-20230530_042354_156727_D22A46E1 
+X-CRM114-Status: GOOD (  28.65  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,149 +92,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============9004324191264021458=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---===============9004324191264021458==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="36vkeFCCRp4Cr9uu"
-Content-Disposition: inline
-
---36vkeFCCRp4Cr9uu
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Yo,
-
-On Mon, May 29, 2023 at 10:38:33PM +0200, Martin Blumenstingl wrote:
-> On Mon, May 22, 2023 at 3:00=E2=80=AFPM Dmitry Rokosov <ddrokosov@sberdev=
-ices.ru> wrote:
-> [...]
-> > > This IP block has at least one additional input called "sys_pll_div16=
-".
-> > > My understanding is that the "sys_pll_div16" clock is generated by the
-> > > CPU clock controller. Support for the CPU clock controller
-> > > (dt-bindings and a driver) will be added at a later time by Dmitry.
-> > > How can we manage incrementally implementing the clock controllers?
-> > > From a hardware perspective the "sys_pll_div16" input is mandatory.
-> > > How to manage this in the .dts patches then (for example: does this
-> > > mean that Dmitry can only add the clock controller to the .dts when
-> > > all clock controller bindings have been implemented - or is there
-> > > another way)?
-> >
-> > You're absolutely right: currently, not all inputs are supported because
-> > the CPU clock controller isn't ready yet =E2=80=93 I'm working on it at=
- the
-> > moment.
-> >
-> > I understand your concerns about bindings and schema description, but
-> > there is an issue to be considered. I'm developing the entire clock
-> > controller A1 subsystem incrementally in three stages: peripherals and
-> > PLL, CPU, and Audio. This is because the CPU can operate at a static
-> > frequency and voltage, and the board boots normally without the CPU
-> > clock controller, thermal sensor, and OPP table. Audio is also
-> > important, but it's optional. On the other hand, without setting up the
-> > peripherals and PLL controllers, the board won't function because
-> > they're fundamental.
-> I understand your approach and I like it (without that incremental
-> approach you would probably be looking at a series with 15-20
-> patches).
->=20
-> Maybe the dt-binding maintainers have a suggestion for us here?
-> Let me try to summarize the issue in a few bullet points:
-> - There's (at least) four clock controllers on the Amlogic A1 SoC
-> - Some of these clock controllers take the outputs of another clock
-> controller as inputs
-> - In this series patch the peripheral clock controller has an input
-> called "sys_pll_div16"
-> - The clock controller which provides the "sys_pll_div16" clock is not
-> implemented yet (my understanding is that implementing it and adding
-> it to this series is not easy: it would add even more patches that
-> need to be reviewed and in general it's a tricky clock controller to
-> implement as it manages the CPU clocks)
-
-If I am understanding correctly, this series implements the child
-controller and a parent, which is unimplemented, provides the child with
-sys_pll_div16.
-The thing I am missing is whether the child controller has some outputs
-that depend on this sys_pll_div16 input & whether those are documented
-in this series. Regardless, you should be able to add more output clocks
-without compatibility issues.
-
-> > Right now, we're in the first stage of the plan. Unfortunately, I can't
-> > disclose the exact names and number of clock bindings for the CPU and
-> > Audio, as they're still in development and only exist in my head or
-> > draft versions.
-> >
-> > If possible, I'd prefer to provide the new bindings and connections once
-> > all the appropriate drivers are finalized.
-> Question to Conor and Krzysztof (assuming you read my summary above):
-> Is it fine that Dmitry adds additional inputs to the peripheral clock
-> controller binding in later patches?
-
-Perhaps Krzysztof will disagree with me, but my take on it would be that
-the binding should describe the individual clock controller in its
-totality, but the driver can choose to only implement a subset of it.
-
-If you define the binding as only needing N inputs, but then later
-expand it to having N+M inputs, the driver will have to support N & N+M
-input clocks to preserve compatibility.
-If you define it as needing N+M inputs from the beginning, but only use
-N, there is no issue with backwards compatibility when you later use
-them all.
-
-> If not: how can we proceed in case we need to add them now (the
-> dt-binding example is the easy part for me as we can just make up a
-> phandle like &sys_pll_div16_clk and use that - but this can't work
-> when Dmitry tries to add the clock controller to meson-a1.dtsi)
-
-I would be inclined to do the same thing in the dts as the example,
-and make up a fixed-frequency clock and use it to plug the hole.
-When you have bindings etc written for the clock controller providing
-that clock, the fixed-frequency clock could be swapped out for the real
-one.
-
-> PS: Dmitry is trying to get this series into Linux 6.5. As far as I
-> remember the common clock maintainers don't take pull requests with
-> new features after -rc6 (which is in less than two weeks).
-> So time is getting a bit short and for me this is the very last
-> outstanding question. If you say that it's fine to add clocks later on
-> this will immediately get my Reviewed-by.
-
-I *think* that what I've just said should not get in the way of such a
-timeline, as it would only involve a "small" change to the dt-binding,
-but not require additional bindings or driver.
-
-Cheers,
-Conor.
-
-
---36vkeFCCRp4Cr9uu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHXDDgAKCRB4tDGHoIJi
-0tPiAQDxJgM01v9LEi2iF1dr7RKotniwIpWYNsLXwvRueTh4JAEAz4CqON+2GW8z
-dmSUkX/YHEFtQPiocrOvOz8I74RHVg0=
-=ipL3
------END PGP SIGNATURE-----
-
---36vkeFCCRp4Cr9uu--
-
-
---===============9004324191264021458==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============9004324191264021458==--
-
+CgpPbiAyNi4wNS4yMDIzIDIwOjIyLCBNaXF1ZWwgUmF5bmFsIHdyb3RlOgo+IEhpIEFyc2VuaXks
+Cj4gCj4gYXZrcmFzbm92QHNiZXJkZXZpY2VzLnJ1IHdyb3RlIG9uIFdlZCwgMjQgTWF5IDIwMjMg
+MTI6MDU6NDcgKzAzMDA6Cj4gCj4+IE9uIDIzLjA1LjIwMjMgMTI6MTIsIEFyc2VuaXkgS3Jhc25v
+diB3cm90ZToKPj4+IEhlbGxvIE1pcXVlbCwgTGlhbmcKPj4+Cj4+PiBPbiAyMi4wNS4yMDIzIDE4
+OjA1LCBNaXF1ZWwgUmF5bmFsIHdyb3RlOiAgCj4+Pj4gSGkgQXJzZW5peSwKPj4+Pgo+Pj4+IEFW
+S3Jhc25vdkBzYmVyZGV2aWNlcy5ydSB3cm90ZSBvbiBNb24sIDE1IE1heSAyMDIzIDEyOjQ0OjM1
+ICswMzAwOgo+Pj4+ICAKPj4+Pj4gVGhpcyBmaXhlcyByZWFkL3dyaXRlIGZ1bmN0aW9uYWxpdHkg
+Ynk6Cj4+Pj4+IDEpIENoYW5naW5nIE5GQ19DTURfUkJfSU5UIGJpdCB2YWx1ZS4gIAo+Pj4+Cj4+
+Pj4gSSBndWVzcyB0aGlzIGlzIGEgc2VwYXJhdGUgZml4Cj4+Pj4gIAo+Pj4KPj4+IE9rLCBJJ2xs
+IG1vdmUgaXQgdG8gc2VwYXJhdGUgcGF0Y2gKPj4+ICAgCj4+Pj4+IDIpIEFkZGluZyBleHRyYSBO
+QU5EX0NNRF9TVEFUVVMgY29tbWFuZCBvbiBlYWNoIHIvdyByZXF1ZXN0LiAgCj4+Pj4KPj4+PiBJ
+cyB0aGlzIHJlYWxseSBuZWVkZWQ/IExvb2tzIGxpa2UgeW91J3JlIGRlbGF5aW5nIHRoZSBuZXh0
+IG9wIG9ubHkuIElzCj4+Pj4gdXNpbmcgYSBkZWxheSBlbm91Z2g/IElmIHllcywgdGhlbiBpdCdz
+IHByb2JhYmx5IHRoZSB3cm9uZyBhcHByb2FjaC4gIAo+Pgo+PiBIaSBNaXF1ZWwsIHNtYWxsIHVw
+ZGF0ZSwgSSBmb3VuZCBzb21lIGRldGFpbHMgZnJvbSBATGlhbmcncyBtZXNzYWdlIGluIHYxIHRh
+bGtzIGZyb20gdGhlIGxhc3QgbW9udGg6Cj4+Cj4+ICoKPj4gQWZ0ZXIgc2VuZGluZyBOQU5EX0NN
+RF9SRUFEMCwgYWRkcmVzcywgTkFORF9DTURfUkVBRFNUQVJUIGFuZCByZWFkIHN0YXR1cyhOQU5E
+X0NNRF9TVEFUVVMgPSAweDcwKSBjb21tYW5kcywgaXQgc2hvdWxkIHNlbmQKPj4gTkFORF9DTURf
+UkVBRDAgY29tbWFuZCBmb3IgZXhpdGluZyB0aGUgcmVhZCBzdGF0dXMgbW9kZSBmcm9tIHRoZSBk
+YXRhc2hlZXQgZnJvbSBOQU5EIGRldmljZS4KPiAKPiBUaGF0IGlzIHRydWUuCj4gCj4+IGJ1dCBw
+cmV2aW91cyBtZXNvbl9uZmNfcXVldWVfcmIoKQo+PiBvbmx5IGNoZWNrcyB0aGUgUmVhZHkvQnVz
+eSBwaW4gYW5kIGl0IGRvZXNuJ3Qgc2VuZCByZWFkIHN0YXR1cyhOQU5EX0NNRF9TVEFUVVMgPSAw
+eDcwKSBjb21tYW5kLgo+PiBpIHRoaW5rIHRoZXJlIGlzIHNvbWV0aGluZyB3cm9uZyB3aXRoIHRo
+ZSBSZWFkeS9CdXN5IHBpbihwbGVhc2UgY2hlY2sgdGhlIGhhcmR3YXJlIHdoZXRoZXIgdGhpcwo+
+PiBSZWFkeS9CdXN5IHBpbiBpcyBjb25uZWN0ZWQgd2l0aCBTT0MpIG9yIHRoZSBzb3VyY2UgY29k
+ZS4gaSBoYXZlIHRoZSBib2FyZCB3aXRob3V0IFJlYWR5L0J1c3kgcGluIGFuZCBwcmVmZXIgdG8g
+dXNlIHRoZQo+PiBuZmMgY29tbWFuZCBjYWxsZWQgUkJfSU82LiBpdCBzZW5kcyBOQU5EX0NNRF9T
+VEFUVVMgY29tbWFuZCBhbmQgY2hlY2tzIGJpdDYgb2YgdGhlIHN0YXR1cyByZWdpc3RlciBvZiBO
+QU5EIGRldmljZSBmcm9tIHRoZQo+PiBkYXRhIGJ1cyBhbmQgZ2VuZXJhdGUgSVJRIGlmIHJlYWR5
+Lgo+PiAqCj4+Cj4+IEkgZ3Vlc3MsIHRoYXQgc2VxdWVuY2Ugb2YgY29tbWFuZHMgZnJvbSB0aGlz
+IHBhdGNoIGlzIGRlc2NyaWJlZCBpbiBkYXRhc2hlZXQgKHVuZm9ydHVuYXRlbHkgSSBkb24ndCBo
+YXZlIGl0IGFuZCByZWxpZWQgb24gdGhlIG9sZCBkcml2ZXIpLgo+PiBZZXN0ZXJkYXkgSSB0cmll
+ZCB0byByZW1vdmUgc2VuZGluZyBvZiBOQU5EX0NNRF9TVEFUVVMgZnJvbSB0aGlzIHBhdGNoLCBi
+dXQgaXQgYnJva2UgY3VycmVudCBkcml2ZXIgLSBpIGhhZCBFQ0MgZXJyb3JzLCBzbyBpdCBsb29r
+cyBsaWtlCj4+ICJzaG90IGluIHRoZSBkYXJrIiBzaXR1YXRpb24sIHRvIHVuZGVyc3RhbmQgdGhp
+cyBsb2dpYy4KPiAKPiBXaGVuIGFuIG9wZXJhdGlvbiBvbiB0aGUgTkFORCBhcnJheSBoYXBwZW5z
+IChlZy4gcmVhZCwgcHJvZywgZXJhc2UpLAo+IHlvdSBuZWVkIHRvIHdhaXQgInNvbWUgdGltZSIg
+YmVmb3JlIGFjY2Vzc2luZyB0aGUgaW50ZXJuYWwgc3JhbSBvciBldmVuCj4gdGhlIGNoaXAgd2hp
+Y2ggaXMgImJ1c3kiIHVudGlsIGl0IGdldHMgInJlYWR5IiBhZ2Fpbi4gWW91IGNhbiBwcm9iZSB0
+aGUKPiByZWFkeS9idXN5IHBpbiAodGhhdCdzIHRoZSBoYXJkd2FyZSB3YXksIGZhc3QgYW5kIHJl
+bGlhYmxlKSBvciB5b3UgY2FuCj4gcG9sbCBhIHN0YXR1cyB3aXRoIE5BTkRfQ01EX1NUQVRVUy4g
+VGhlIGNoaXBzIGFyZSBkZXNpZ25lZCBzbyB0aGV5IGNhbgo+IGFjdHVhbGx5IHByb2Nlc3MgdGhh
+dCBjb21tYW5kIHdoaWxlIHRoZXkgYXJlIGRvaW5nIHRpbWUgY29uc3VtaW5nIHRhc2tzCj4gdG8g
+dXBkYXRlIHRoZSBob3N0LiBCdXQgSUlSQyBldmVyeSBieXRlIHJlYWQgd2lsbCByZXR1cm4gdGhl
+IHN0YXR1cwo+IHVudGlsIHlvdSBzZW5kIFJFQUQwIGFnYWluLCB3aGljaCBtZWFucyAiSSdtIGRv
+bmUgd2l0aCB0aGUgc3RhdHVzCj4gcmVhZCIgc29tZWhvdy4KPiAKPiBQbGVhc2Ugc2VlIG5hbmRf
+c29mdF93YWl0cmR5KCkgaW4gb3JkZXIgdG8gdW5kZXJzdGFuZCBob3cgdGhpcyBpcwo+IHN1cHBv
+c2VkIHRvIHdvcmsuIFlvdSBjYW4gZXZlbiB1c2UgdGhhdCBoZWxwZXIgKHdoaWNoIGlzIGV4cG9y
+dGVkKQo+IGluc3RlYWQgb2Ygb3Blbi1jb2RpbmcgaXQgaW4geW91ciBkcml2ZXIuIFNlZSBhdG1l
+bCBvciBzdW54aQo+IGltcGxlbWVudGF0aW9ucyBmb3IgaW5zdGFuY2UuCj4gCj4gQXMgdXNpbmcg
+dGhlIG5hdGl2ZSBSQiBwaW4gaXMgYmV0dGVyLCB5b3Ugd291bGQgbmVlZCB0byBpZGVudGlmeQo+
+IHdoZXRoZXIgeW91IGhhdmUgb25lIG9yIG5vdCBhdCBwcm9iZSB0aW1lIGFuZCB0aGVuIGVpdGhl
+ciBwb2xsIHRoZQo+IHJlbGV2YW50IGJpdCBvZiB5b3VyIGNvbnRyb2xsZXIgaWYgdGhlcmUgaXMg
+b25lLCBvciBmYWxsYmFjayB0byB0aGUKPiBzb2Z0IHJlYWQgKHdoaWNoIHNob3VsZCBmYWxsYmFj
+ayBvbiBleGVjX29wIGluIHRoZSBlbmQpLgoKVGhhbmtzIGZvciB0aGlzIGluZm9ybWF0aW9uISBJ
+J2xsIHVzZSAnbmFuZF9zb2Z0X3dhaXRyZHkoKScgYXQgbGVhc3QsIGJlY2F1c2UgaSBndWVzcyB0
+aGF0CnRoZXJlIGlzIG5vIFJCIHBpbiBvbiBteSBkZXZpY2UuCgpUaGFua3MsIEFyc2VuaXkKCj4g
+Cj4gVGhhbmtzLAo+IE1pcXXDqGwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlz
+dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2xpbnV4LWFtbG9naWMK
