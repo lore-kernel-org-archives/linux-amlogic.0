@@ -4,96 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 648B7C7EE2C
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 May 2023 15:58:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E54B7C77B73
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 May 2023 16:04:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7AK+4OOcVqQgYODX/sKUkh4qr0fSTVggk5JdskvRWRM=; b=JOHTC8ZtU93lQiWbti+bQ+RsVA
-	UjlifUEDiO3FusXrTn0P6aU4nO1eEB32rVnsaiM4yC/1DcYy/EQ/VqfC5WXCoWEeIIcbd/bkzryUr
-	JqIyEXUc1Q+4h5c6HE+s7OkwjBGlvgrbuTTCnrlBU8BRF2w9xV/Vti9SsbqvhBbrasGioa4qu/1P2
-	pgHo6Gb8N1qVZwD59YRrFLt3N18IvabxnK5CLyMKdYzVLTpOe9ufmATJdUuPlhVnLw/m/v6Y/3R+W
-	Vm8hJnYl+KFhx8is4NqneY7eE/Bs59QYpq+BO4kU63ZEJqFpbHq7uV9bn0YLyG7Xo/Tj5GT/IUcSv
-	LCRACQdg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ieMxmo1GCl2pNp4nBVolmOiu/+W7cPwBvaoXnTdvNB4=; b=Wcnw2Gy0aKV6ft
+	wpVqBIxG2kzTNpQMUjl9c8Ar+/ao3/gOmkXXyHfffIvkT0EGCG/UURc2QWCGrGdANmjShajf2Aa/v
+	aVoAVXYUiIWWXgrKPGv2XxbSv5YMo+dfp3cjC55ex9V4JKJCCct70LmgLHxgZS3MEIJ5wyeSRiJL7
+	1gL3LjfwyHEAyiBo/MVUkV2WknKFoq6kdxn4YdH9NbIxDsAdxxeCNTi5WFXgOfbNexTlucxLZrzOG
+	p1hBTfgHKYnUqO39CTnFU5FifZXOcojENyTj00BaYpt0A3pitmNfp318PBovQeA01sZKAl64RGFjt
+	d1O8RjKWKvD7Ub9m8HdQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q41jY-00EUFi-17;
-	Tue, 30 May 2023 15:58:04 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1q41p8-00EVbQ-1i;
+	Tue, 30 May 2023 16:03:50 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q41jU-00EUD9-1W
-	for linux-amlogic@lists.infradead.org;
-	Tue, 30 May 2023 15:58:02 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f6042d610fso47773665e9.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 30 May 2023 08:57:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685462276; x=1688054276;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=soD7KF236fVdv2fwYKiHqpw4d6B1nafnm4/p2DE5I88=;
-        b=MTcBKUpy4tR6lLTlD+Y89QSKhzPlk7dnG3Vy8L6fXEAoz64IMHhHdz6VGzsefppXhu
-         wmHmT7TJhOpKppFgf6kIyFlJjytexBGylAuRTWDVY8daJwftQYPNs3XkrDkQfNxlC/+u
-         Y6p6euSYceST9/gTaWJBg016jaCsSAdDxUeTrfzJHZNROYE1eL+IsMAaFJUQj/lxd15J
-         8DLEOuU729hex6HElXm4WGnYk8v93LI8BZNrERU3/aVgBfpIZ5EHntv1rymP3xRQMEi7
-         qco5f+9qOToPFLKQA0unDJbYcE/Cbm9iafuRjnXD+wBIpsJiVlJ6JyfHyhidjL9ruWmW
-         fLAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685462276; x=1688054276;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=soD7KF236fVdv2fwYKiHqpw4d6B1nafnm4/p2DE5I88=;
-        b=ik7fwqzmuzePwYrC5QbzTqOTDEt2Rt9Tuz7f6yuq0lcksw2TPMdqHrRKoQnPbkhs/d
-         T+y03dEpARj3ysFJ0SVU8eFafSAdNltdAmxtyj4tS9/B+rgR1I8iqR9zVfkzaM4VozBA
-         RZTQ01iLi572ulJ5egbVuEDQyf/qvvXVlOea5xIAyfE26rKG7hKZ7odTtdDUy7rVY1ky
-         OkNEsiIYio1eQFUuTZn9CrniGY8qqUl5hJtbgOBmenjtpbPXJg39f3DLWUWY+h1ZHDzE
-         g7Te02jpRlQZVsPuhuTKxv73Hhp7zJVGy5K/GoZ4I8TEJIZ3B481nDX63hNNG45t6ch0
-         oJTw==
-X-Gm-Message-State: AC+VfDynUV/CdX2tJxEVfc2StMEq6y2iMX3StisRowBEMqMHGBwUMjW3
-	1RkI89cCZ2GAObweQKIBd231LQ==
-X-Google-Smtp-Source: ACHHUZ4PI3+RU/VHtMz95ap8CicMr/pqwOn3JEnKSr6jW7kKz7iW5Xn12uDh1TwBu1EIbWNrHGU/Nw==
-X-Received: by 2002:a1c:7708:0:b0:3f6:1377:8b15 with SMTP id t8-20020a1c7708000000b003f613778b15mr1856995wmi.21.1685462275850;
-        Tue, 30 May 2023 08:57:55 -0700 (PDT)
-Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
-        by smtp.gmail.com with ESMTPSA id k5-20020a7bc405000000b003f31cb7a203sm17789085wmi.14.2023.05.30.08.57.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 08:57:55 -0700 (PDT)
-Message-ID: <c24502f9-f717-6ff9-211c-1d129ef02f24@linaro.org>
-Date: Tue, 30 May 2023 17:57:51 +0200
+	id 1q41p4-00EVYx-0p;
+	Tue, 30 May 2023 16:03:49 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 2F4F95FD3A;
+	Tue, 30 May 2023 19:03:36 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1685462616;
+	bh=rHLpWB2idDx6NUu9uDREPJ6CN0gKgc15y+Jr03H4B7w=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+	b=AjAmrRH9suMXhwS9xcW/H6stcTQmHozkPsHnFyr+6PSubFUTXZqpydgCgJ5UixBWB
+	 Z46yKsfJmCR0WUdFVkhLVk4fVXPDuM7Xx4XqyCldWzeECPUJjwDf4wJRXSF33Wl9gX
+	 aKrVxGMPrdJ6lhbvEPLaiZxn1gLz3/bN26CAc/GmmAriYxjsdDuJkuF+6mI4pI6cZq
+	 x7J+h3Z6id3sSCc/+CpolgrCLc5MJI6wRS4WFwY8lEYZxrp7YhxbbZtMRaGgNAjtx4
+	 zlTrS+ylpqDJWYCy+0g1ed3ztuTJTCQsp3HW9S9ujWoOFzvw/3l8Xna3Zfz0l+UXkN
+	 nemWqWE2fV9KQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Tue, 30 May 2023 19:03:35 +0300 (MSK)
+Date: Tue, 30 May 2023 19:03:34 +0300
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: Conor Dooley <conor.dooley@microchip.com>, Martin Blumenstingl<martin.blumenstingl@googlemail.com>, <jbrunet@baylibre.com>
+CC: <krzysztof.kozlowski+dt@linaro.org>, <neil.armstrong@linaro.org>,<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,<khilman@baylibre.com>, <jian.hu@amlogic.com>, <kernel@sberdevices.ru>,<rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v15 5/6] dt-bindings: clock: meson: add A1 Peripherals
+ clock controller bindings
+Message-ID: <20230530160334.z6sclbmqccs6ju4y@CAB-WSD-L081021>
+References: <20230517133309.9874-1-ddrokosov@sberdevices.ru><20230517133309.9874-6-ddrokosov@sberdevices.ru><CAFBinCC3kQ9Nz3R2W-Qj9tbPJfS8JsB_4AkmPgS6xpQ96DBy2w@mail.gmail.com><20230522130033.a47vlybocme66rev@CAB-WSD-L081021><CAFBinCAk9+Km3BssA8d8nc_Z_GbhY87FD3qQRpZ2k7ChKt7TBg@mail.gmail.com><20230530-illusive-pushpin-1e35d0a50e0d@wendy>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v5 05/17] clk: meson: g12a: make VCLK2 and ENCL clock path
- configurable by CCF
-Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Philipp Zabel <p.zabel@pengutronix.de>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Sam Ravnborg <sam@ravnborg.org>
-Cc: "Lukas F. Hartmann" <lukas@mntre.com>, Nicolas Belin
- <nbelin@baylibre.com>, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-phy@lists.infradead.org
-References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org>
- <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-5-56eb7a4d5b8e@linaro.org>
- <1jv8ga445j.fsf@starbuckisacylon.baylibre.com>
-Organization: Linaro Developer Services
-In-Reply-To: <1jv8ga445j.fsf@starbuckisacylon.baylibre.com>
+Content-Disposition: inline
+In-Reply-To: <20230530-illusive-pushpin-1e35d0a50e0d@wendy>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/30 11:20:00 #21377521
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230530_085800_514422_2D6AE0F5 
-X-CRM114-Status: GOOD (  33.46  )
+X-CRM114-CacheID: sfid-20230530_090346_993267_AEA8EB3B 
+X-CRM114-Status: GOOD (  65.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,365 +78,179 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 30/05/2023 10:14, Jerome Brunet wrote:
-> 
-> On Tue 30 May 2023 at 09:38, Neil Armstrong <neil.armstrong@linaro.org> wrote:
-> 
->> In order to setup the DSI clock, let's make the unused VCLK2 clock path
->> configuration via CCF.
->>
->> The nocache option is removed from following clocks:
->> - vclk2_sel
->> - vclk2_input
->> - vclk2_div
->> - vclk2
->> - vclk_div1
->> - vclk2_div2_en
->> - vclk2_div4_en
->> - vclk2_div6_en
->> - vclk2_div12_en
->> - vclk2_div2
->> - vclk2_div4
->> - vclk2_div6
->> - vclk2_div12
->> - cts_encl_sel
->>
->> The missing vclk2 reset sequence is handled via new clkc notifiers
->> in order to reset the vclk2 after each rate change as done by Amlogic
->> in the vendor implementation.
->>
->> In order to set a rate on cts_encl via the vclk2 clock path,
->> the NO_REPARENT flag is set on cts_encl_sel & vclk2_sel in order
->> to keep CCF from selection a parent.
->> The parents of cts_encl_sel & vclk2_sel are expected to be defined
->> in DT.
->>
->> The following clock scheme is to be used for DSI:
->>
->> xtal
->> \_ gp0_pll_dco
->>     \_ gp0_pll
->>        |- vclk2_sel
->>        |  \_ vclk2_input
->>        |     \_ vclk2_div
->>        |        \_ vclk2
->>        |           \_ vclk2_div1
->>        |              \_ cts_encl_sel
->>        |                 \_ cts_encl	-> to VPU LCD Encoder
->>        |- mipi_dsi_pxclk_sel
->>        \_ mipi_dsi_pxclk_div
->>           \_ mipi_dsi_pxclk		-> to DSI controller
->>
->> The mipi_dsi_pxclk_div is set as RO in order to use the same GP0
->> for mipi_dsi_pxclk and vclk2_input.
-> 
-> I don't think notifiers is the appropriate approach here.
-> Whenever there is clock change the motifiers would trigger an off/on of
-> the clock, regardless of the clock usage or state.
-> If you have several consummers on this vclk2, this would
-> cause glitches and maybe this is not desirable.
-> 
-> I think it would be better to handle the enable and reset with a
-> specific gate driver, in prepare() or enable(), and the give the clock
-> CLK_SET_RATE_GATE flag.
-> 
-> This would require the clock to be properly turn off before changing the
-> rate.
-
-Sure, will see how to switch to that, seem Martin did than on Meson8.
-
-Neil
-
-> 
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/clk/meson/g12a.c | 131 +++++++++++++++++++++++++++++++++++++++++++----
->>   1 file changed, 120 insertions(+), 11 deletions(-)
->>
->> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
->> index 461ebd79497c..e4053f4957d5 100644
->> --- a/drivers/clk/meson/g12a.c
->> +++ b/drivers/clk/meson/g12a.c
->> @@ -3163,7 +3163,7 @@ static struct clk_regmap g12a_vclk2_sel = {
->>   		.ops = &clk_regmap_mux_ops,
->>   		.parent_hws = g12a_vclk_parent_hws,
->>   		.num_parents = ARRAY_SIZE(g12a_vclk_parent_hws),
->> -		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
->> +		.flags = CLK_SET_RATE_NO_REPARENT,
->>   	},
->>   };
->>   
->> @@ -3191,7 +3191,6 @@ static struct clk_regmap g12a_vclk2_input = {
->>   		.ops = &clk_regmap_gate_ops,
->>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_sel.hw },
->>   		.num_parents = 1,
->> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
->>   	},
->>   };
->>   
->> @@ -3212,6 +3211,40 @@ static struct clk_regmap g12a_vclk_div = {
->>   	},
->>   };
->>   
->> +struct g12a_vclk_div_notifier {
->> +	struct clk_regmap *clk;
->> +	unsigned int offset;
->> +	u8 en_bit_idx;
->> +	u8 reset_bit_idx;
->> +	struct notifier_block nb;
->> +};
->> +
->> +static int g12a_vclk_div_notifier_cb(struct notifier_block *nb,
->> +				  unsigned long event, void *data)
->> +{
->> +	struct g12a_vclk_div_notifier *nb_data =
->> +		container_of(nb, struct g12a_vclk_div_notifier, nb);
->> +
->> +	switch (event) {
->> +	case PRE_RATE_CHANGE:
->> +		/* disable and reset vclk2 divider */
->> +		regmap_update_bits(nb_data->clk->map, nb_data->offset,
->> +				   BIT(nb_data->en_bit_idx) |
->> +				   BIT(nb_data->reset_bit_idx),
->> +				   BIT(nb_data->reset_bit_idx));
->> +		return NOTIFY_OK;
->> +	case POST_RATE_CHANGE:
->> +		/* enabled and release reset */
->> +		regmap_update_bits(nb_data->clk->map, nb_data->offset,
->> +				   BIT(nb_data->en_bit_idx) |
->> +				   BIT(nb_data->reset_bit_idx),
->> +				   BIT(nb_data->en_bit_idx));
->> +		return NOTIFY_OK;
->> +	default:
->> +		return NOTIFY_DONE;
->> +	};
->> +};
->> +
->>   static struct clk_regmap g12a_vclk2_div = {
->>   	.data = &(struct clk_regmap_div_data){
->>   		.offset = HHI_VIID_CLK_DIV,
->> @@ -3225,10 +3258,18 @@ static struct clk_regmap g12a_vclk2_div = {
->>   			&g12a_vclk2_input.hw
->>   		},
->>   		.num_parents = 1,
->> -		.flags = CLK_GET_RATE_NOCACHE,
->> +		.flags = CLK_DIVIDER_ROUND_CLOSEST,
->>   	},
->>   };
->>   
->> +static struct g12a_vclk_div_notifier g12a_vclk2_div_data = {
->> +	.clk = &g12a_vclk2_div,
->> +	.offset = HHI_VIID_CLK_DIV,
->> +	.en_bit_idx = 16,
->> +	.reset_bit_idx = 17,
->> +	.nb.notifier_call = g12a_vclk_div_notifier_cb,
->> +};
->> +
->>   static struct clk_regmap g12a_vclk = {
->>   	.data = &(struct clk_regmap_gate_data){
->>   		.offset = HHI_VID_CLK_CNTL,
->> @@ -3243,6 +3284,33 @@ static struct clk_regmap g12a_vclk = {
->>   	},
->>   };
->>   
->> +struct g12a_vclk_reset_notifier {
->> +	struct clk_regmap *clk;
->> +	unsigned int offset;
->> +	u8 bit_idx;
->> +	struct notifier_block nb;
->> +};
->> +
->> +static int g12a_vclk_notifier_cb(struct notifier_block *nb,
->> +				  unsigned long event, void *data)
->> +{
->> +	struct g12a_vclk_reset_notifier *nb_data =
->> +		container_of(nb, struct g12a_vclk_reset_notifier, nb);
->> +
->> +	switch (event) {
->> +	case POST_RATE_CHANGE:
->> +		/* reset vclk2 */
->> +		regmap_update_bits(nb_data->clk->map, nb_data->offset,
->> +				   BIT(nb_data->bit_idx), BIT(nb_data->bit_idx));
->> +		regmap_update_bits(nb_data->clk->map, nb_data->offset,
->> +				   BIT(nb_data->bit_idx), 0);
->> +
->> +		return NOTIFY_OK;
->> +	default:
->> +		return NOTIFY_DONE;
->> +	};
->> +}
->> +
->>   static struct clk_regmap g12a_vclk2 = {
->>   	.data = &(struct clk_regmap_gate_data){
->>   		.offset = HHI_VIID_CLK_CNTL,
->> @@ -3253,10 +3321,17 @@ static struct clk_regmap g12a_vclk2 = {
->>   		.ops = &clk_regmap_gate_ops,
->>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_div.hw },
->>   		.num_parents = 1,
->> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
->> +		.flags = CLK_SET_RATE_PARENT,
->>   	},
->>   };
->>   
->> +static struct g12a_vclk_reset_notifier g12a_vclk2_data = {
->> +	.clk = &g12a_vclk2,
->> +	.offset = HHI_VIID_CLK_CNTL,
->> +	.bit_idx = 15,
->> +	.nb.notifier_call = g12a_vclk_notifier_cb,
->> +};
->> +
->>   static struct clk_regmap g12a_vclk_div1 = {
->>   	.data = &(struct clk_regmap_gate_data){
->>   		.offset = HHI_VID_CLK_CNTL,
->> @@ -3337,7 +3412,7 @@ static struct clk_regmap g12a_vclk2_div1 = {
->>   		.ops = &clk_regmap_gate_ops,
->>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
->>   		.num_parents = 1,
->> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
->> +		.flags = CLK_SET_RATE_PARENT,
->>   	},
->>   };
->>   
->> @@ -3351,7 +3426,7 @@ static struct clk_regmap g12a_vclk2_div2_en = {
->>   		.ops = &clk_regmap_gate_ops,
->>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
->>   		.num_parents = 1,
->> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
->> +		.flags = CLK_SET_RATE_PARENT,
->>   	},
->>   };
->>   
->> @@ -3365,7 +3440,7 @@ static struct clk_regmap g12a_vclk2_div4_en = {
->>   		.ops = &clk_regmap_gate_ops,
->>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
->>   		.num_parents = 1,
->> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
->> +		.flags = CLK_SET_RATE_PARENT,
->>   	},
->>   };
->>   
->> @@ -3379,7 +3454,7 @@ static struct clk_regmap g12a_vclk2_div6_en = {
->>   		.ops = &clk_regmap_gate_ops,
->>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
->>   		.num_parents = 1,
->> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
->> +		.flags = CLK_SET_RATE_PARENT,
->>   	},
->>   };
->>   
->> @@ -3393,7 +3468,7 @@ static struct clk_regmap g12a_vclk2_div12_en = {
->>   		.ops = &clk_regmap_gate_ops,
->>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
->>   		.num_parents = 1,
->> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
->> +		.flags = CLK_SET_RATE_PARENT,
->>   	},
->>   };
->>   
->> @@ -3459,6 +3534,7 @@ static struct clk_fixed_factor g12a_vclk2_div2 = {
->>   			&g12a_vclk2_div2_en.hw
->>   		},
->>   		.num_parents = 1,
->> +		.flags = CLK_SET_RATE_PARENT,
->>   	},
->>   };
->>   
->> @@ -3472,6 +3548,7 @@ static struct clk_fixed_factor g12a_vclk2_div4 = {
->>   			&g12a_vclk2_div4_en.hw
->>   		},
->>   		.num_parents = 1,
->> +		.flags = CLK_SET_RATE_PARENT,
->>   	},
->>   };
->>   
->> @@ -3485,6 +3562,7 @@ static struct clk_fixed_factor g12a_vclk2_div6 = {
->>   			&g12a_vclk2_div6_en.hw
->>   		},
->>   		.num_parents = 1,
->> +		.flags = CLK_SET_RATE_PARENT,
->>   	},
->>   };
->>   
->> @@ -3498,6 +3576,7 @@ static struct clk_fixed_factor g12a_vclk2_div12 = {
->>   			&g12a_vclk2_div12_en.hw
->>   		},
->>   		.num_parents = 1,
->> +		.flags = CLK_SET_RATE_PARENT,
->>   	},
->>   };
->>   
->> @@ -3559,7 +3638,7 @@ static struct clk_regmap g12a_cts_encl_sel = {
->>   		.ops = &clk_regmap_mux_ops,
->>   		.parent_hws = g12a_cts_parent_hws,
->>   		.num_parents = ARRAY_SIZE(g12a_cts_parent_hws),
->> -		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
->> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
->>   	},
->>   };
->>   
->> @@ -3727,7 +3806,7 @@ static struct clk_regmap g12a_mipi_dsi_pxclk_div = {
->>   	},
->>   	.hw.init = &(struct clk_init_data){
->>   		.name = "mipi_dsi_pxclk_div",
->> -		.ops = &clk_regmap_divider_ops,
->> +		.ops = &clk_regmap_divider_ro_ops,
->>   		.parent_hws = (const struct clk_hw *[]) {
->>   			&g12a_mipi_dsi_pxclk_sel.hw
->>   		},
->> @@ -5421,6 +5500,32 @@ static int meson_g12a_dvfs_setup(struct platform_device *pdev)
->>   	return 0;
->>   }
->>   
->> +static int meson_g12a_vclk_setup(struct platform_device *pdev)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct clk *notifier_clk;
->> +	int ret;
->> +
->> +	/* Setup clock notifier for vclk2 */
->> +	notifier_clk = devm_clk_hw_get_clk(dev, &g12a_vclk2.hw, DVFS_CON_ID);
->> +	ret = devm_clk_notifier_register(dev, notifier_clk, &g12a_vclk2_data.nb);
->> +	if (ret) {
->> +		dev_err(dev, "failed to register the vlkc2 notifier\n");
->> +		return ret;
->> +	}
->> +
->> +	/* Setup clock notifier for vclk2_div */
->> +	notifier_clk = devm_clk_hw_get_clk(dev, &g12a_vclk2_div.hw, DVFS_CON_ID);
->> +	ret = devm_clk_notifier_register(dev, notifier_clk,
->> +					 &g12a_vclk2_div_data.nb);
->> +	if (ret) {
->> +		dev_err(dev, "failed to register the vclk2_div notifier\n");
->> +		return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->>   struct meson_g12a_data {
->>   	const struct meson_eeclkc_data eeclkc_data;
->>   	int (*dvfs_setup)(struct platform_device *pdev);
->> @@ -5443,6 +5548,10 @@ static int meson_g12a_probe(struct platform_device *pdev)
->>   	g12a_data = container_of(eeclkc_data, struct meson_g12a_data,
->>   				 eeclkc_data);
->>   
->> +	ret = meson_g12a_vclk_setup(pdev);
->> +	if (ret)
->> +		return ret;
->> +
->>   	if (g12a_data->dvfs_setup)
->>   		return g12a_data->dvfs_setup(pdev);
-> 
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGVsbG8gQ29ub3IsIE1hcnRpbiBhbmQgSmVyb21lLAoKVGhhbmsgeW91IHNvIG11Y2ggZm9yIHRo
+ZSBkZXRhaWxlZCBpbmZvcm1hdGlvbiBhbmQgdGhvdWdodHMgeW91IHNoYXJlZAphYm91dCB0aGUg
+aW1wb3J0YW50IHByb2Nlc3Mgb2YgY2hhbmdpbmcgRFQgYmluZGluZ3MuIFBsZWFzZSBmaW5kIG15
+CmNvbW1lbnRzIGJlbG93LgoKT24gVHVlLCBNYXkgMzAsIDIwMjMgYXQgMTA6MzQ6MDdBTSArMDEw
+MCwgQ29ub3IgRG9vbGV5IHdyb3RlOgo+IFlvLAo+IAo+IE9uIE1vbiwgTWF5IDI5LCAyMDIzIGF0
+IDEwOjM4OjMzUE0gKzAyMDAsIE1hcnRpbiBCbHVtZW5zdGluZ2wgd3JvdGU6Cj4gPiBPbiBNb24s
+IE1heSAyMiwgMjAyMyBhdCAzOjAw4oCvUE0gRG1pdHJ5IFJva29zb3YgPGRkcm9rb3NvdkBzYmVy
+ZGV2aWNlcy5ydT4gd3JvdGU6Cj4gPiBbLi4uXQo+ID4gPiA+IFRoaXMgSVAgYmxvY2sgaGFzIGF0
+IGxlYXN0IG9uZSBhZGRpdGlvbmFsIGlucHV0IGNhbGxlZCAic3lzX3BsbF9kaXYxNiIuCj4gPiA+
+ID4gTXkgdW5kZXJzdGFuZGluZyBpcyB0aGF0IHRoZSAic3lzX3BsbF9kaXYxNiIgY2xvY2sgaXMg
+Z2VuZXJhdGVkIGJ5IHRoZQo+ID4gPiA+IENQVSBjbG9jayBjb250cm9sbGVyLiBTdXBwb3J0IGZv
+ciB0aGUgQ1BVIGNsb2NrIGNvbnRyb2xsZXIKPiA+ID4gPiAoZHQtYmluZGluZ3MgYW5kIGEgZHJp
+dmVyKSB3aWxsIGJlIGFkZGVkIGF0IGEgbGF0ZXIgdGltZSBieSBEbWl0cnkuCj4gPiA+ID4gSG93
+IGNhbiB3ZSBtYW5hZ2UgaW5jcmVtZW50YWxseSBpbXBsZW1lbnRpbmcgdGhlIGNsb2NrIGNvbnRy
+b2xsZXJzPwo+ID4gPiA+IEZyb20gYSBoYXJkd2FyZSBwZXJzcGVjdGl2ZSB0aGUgInN5c19wbGxf
+ZGl2MTYiIGlucHV0IGlzIG1hbmRhdG9yeS4KPiA+ID4gPiBIb3cgdG8gbWFuYWdlIHRoaXMgaW4g
+dGhlIC5kdHMgcGF0Y2hlcyB0aGVuIChmb3IgZXhhbXBsZTogZG9lcyB0aGlzCj4gPiA+ID4gbWVh
+biB0aGF0IERtaXRyeSBjYW4gb25seSBhZGQgdGhlIGNsb2NrIGNvbnRyb2xsZXIgdG8gdGhlIC5k
+dHMgd2hlbgo+ID4gPiA+IGFsbCBjbG9jayBjb250cm9sbGVyIGJpbmRpbmdzIGhhdmUgYmVlbiBp
+bXBsZW1lbnRlZCAtIG9yIGlzIHRoZXJlCj4gPiA+ID4gYW5vdGhlciB3YXkpPwo+ID4gPgo+ID4g
+PiBZb3UncmUgYWJzb2x1dGVseSByaWdodDogY3VycmVudGx5LCBub3QgYWxsIGlucHV0cyBhcmUg
+c3VwcG9ydGVkIGJlY2F1c2UKPiA+ID4gdGhlIENQVSBjbG9jayBjb250cm9sbGVyIGlzbid0IHJl
+YWR5IHlldCDigJMgSSdtIHdvcmtpbmcgb24gaXQgYXQgdGhlCj4gPiA+IG1vbWVudC4KPiA+ID4K
+PiA+ID4gSSB1bmRlcnN0YW5kIHlvdXIgY29uY2VybnMgYWJvdXQgYmluZGluZ3MgYW5kIHNjaGVt
+YSBkZXNjcmlwdGlvbiwgYnV0Cj4gPiA+IHRoZXJlIGlzIGFuIGlzc3VlIHRvIGJlIGNvbnNpZGVy
+ZWQuIEknbSBkZXZlbG9waW5nIHRoZSBlbnRpcmUgY2xvY2sKPiA+ID4gY29udHJvbGxlciBBMSBz
+dWJzeXN0ZW0gaW5jcmVtZW50YWxseSBpbiB0aHJlZSBzdGFnZXM6IHBlcmlwaGVyYWxzIGFuZAo+
+ID4gPiBQTEwsIENQVSwgYW5kIEF1ZGlvLiBUaGlzIGlzIGJlY2F1c2UgdGhlIENQVSBjYW4gb3Bl
+cmF0ZSBhdCBhIHN0YXRpYwo+ID4gPiBmcmVxdWVuY3kgYW5kIHZvbHRhZ2UsIGFuZCB0aGUgYm9h
+cmQgYm9vdHMgbm9ybWFsbHkgd2l0aG91dCB0aGUgQ1BVCj4gPiA+IGNsb2NrIGNvbnRyb2xsZXIs
+IHRoZXJtYWwgc2Vuc29yLCBhbmQgT1BQIHRhYmxlLiBBdWRpbyBpcyBhbHNvCj4gPiA+IGltcG9y
+dGFudCwgYnV0IGl0J3Mgb3B0aW9uYWwuIE9uIHRoZSBvdGhlciBoYW5kLCB3aXRob3V0IHNldHRp
+bmcgdXAgdGhlCj4gPiA+IHBlcmlwaGVyYWxzIGFuZCBQTEwgY29udHJvbGxlcnMsIHRoZSBib2Fy
+ZCB3b24ndCBmdW5jdGlvbiBiZWNhdXNlCj4gPiA+IHRoZXkncmUgZnVuZGFtZW50YWwuCj4gPiBJ
+IHVuZGVyc3RhbmQgeW91ciBhcHByb2FjaCBhbmQgSSBsaWtlIGl0ICh3aXRob3V0IHRoYXQgaW5j
+cmVtZW50YWwKPiA+IGFwcHJvYWNoIHlvdSB3b3VsZCBwcm9iYWJseSBiZSBsb29raW5nIGF0IGEg
+c2VyaWVzIHdpdGggMTUtMjAKPiA+IHBhdGNoZXMpLgo+ID4gCj4gPiBNYXliZSB0aGUgZHQtYmlu
+ZGluZyBtYWludGFpbmVycyBoYXZlIGEgc3VnZ2VzdGlvbiBmb3IgdXMgaGVyZT8KPiA+IExldCBt
+ZSB0cnkgdG8gc3VtbWFyaXplIHRoZSBpc3N1ZSBpbiBhIGZldyBidWxsZXQgcG9pbnRzOgo+ID4g
+LSBUaGVyZSdzIChhdCBsZWFzdCkgZm91ciBjbG9jayBjb250cm9sbGVycyBvbiB0aGUgQW1sb2dp
+YyBBMSBTb0MKPiA+IC0gU29tZSBvZiB0aGVzZSBjbG9jayBjb250cm9sbGVycyB0YWtlIHRoZSBv
+dXRwdXRzIG9mIGFub3RoZXIgY2xvY2sKPiA+IGNvbnRyb2xsZXIgYXMgaW5wdXRzCj4gPiAtIElu
+IHRoaXMgc2VyaWVzIHBhdGNoIHRoZSBwZXJpcGhlcmFsIGNsb2NrIGNvbnRyb2xsZXIgaGFzIGFu
+IGlucHV0Cj4gPiBjYWxsZWQgInN5c19wbGxfZGl2MTYiCj4gPiAtIFRoZSBjbG9jayBjb250cm9s
+bGVyIHdoaWNoIHByb3ZpZGVzIHRoZSAic3lzX3BsbF9kaXYxNiIgY2xvY2sgaXMgbm90Cj4gPiBp
+bXBsZW1lbnRlZCB5ZXQgKG15IHVuZGVyc3RhbmRpbmcgaXMgdGhhdCBpbXBsZW1lbnRpbmcgaXQg
+YW5kIGFkZGluZwo+ID4gaXQgdG8gdGhpcyBzZXJpZXMgaXMgbm90IGVhc3k6IGl0IHdvdWxkIGFk
+ZCBldmVuIG1vcmUgcGF0Y2hlcyB0aGF0Cj4gPiBuZWVkIHRvIGJlIHJldmlld2VkIGFuZCBpbiBn
+ZW5lcmFsIGl0J3MgYSB0cmlja3kgY2xvY2sgY29udHJvbGxlciB0bwo+ID4gaW1wbGVtZW50IGFz
+IGl0IG1hbmFnZXMgdGhlIENQVSBjbG9ja3MpCj4gCj4gSWYgSSBhbSB1bmRlcnN0YW5kaW5nIGNv
+cnJlY3RseSwgdGhpcyBzZXJpZXMgaW1wbGVtZW50cyB0aGUgY2hpbGQKPiBjb250cm9sbGVyIGFu
+ZCBhIHBhcmVudCwgd2hpY2ggaXMgdW5pbXBsZW1lbnRlZCwgcHJvdmlkZXMgdGhlIGNoaWxkIHdp
+dGgKPiBzeXNfcGxsX2RpdjE2Lgo+IFRoZSB0aGluZyBJIGFtIG1pc3NpbmcgaXMgd2hldGhlciB0
+aGUgY2hpbGQgY29udHJvbGxlciBoYXMgc29tZSBvdXRwdXRzCj4gdGhhdCBkZXBlbmQgb24gdGhp
+cyBzeXNfcGxsX2RpdjE2IGlucHV0ICYgd2hldGhlciB0aG9zZSBhcmUgZG9jdW1lbnRlZAo+IGlu
+IHRoaXMgc2VyaWVzLiBSZWdhcmRsZXNzLCB5b3Ugc2hvdWxkIGJlIGFibGUgdG8gYWRkIG1vcmUg
+b3V0cHV0IGNsb2Nrcwo+IHdpdGhvdXQgY29tcGF0aWJpbGl0eSBpc3N1ZXMuCj4gCj4gPiA+IFJp
+Z2h0IG5vdywgd2UncmUgaW4gdGhlIGZpcnN0IHN0YWdlIG9mIHRoZSBwbGFuLiBVbmZvcnR1bmF0
+ZWx5LCBJIGNhbid0Cj4gPiA+IGRpc2Nsb3NlIHRoZSBleGFjdCBuYW1lcyBhbmQgbnVtYmVyIG9m
+IGNsb2NrIGJpbmRpbmdzIGZvciB0aGUgQ1BVIGFuZAo+ID4gPiBBdWRpbywgYXMgdGhleSdyZSBz
+dGlsbCBpbiBkZXZlbG9wbWVudCBhbmQgb25seSBleGlzdCBpbiBteSBoZWFkIG9yCj4gPiA+IGRy
+YWZ0IHZlcnNpb25zLgo+ID4gPgo+ID4gPiBJZiBwb3NzaWJsZSwgSSdkIHByZWZlciB0byBwcm92
+aWRlIHRoZSBuZXcgYmluZGluZ3MgYW5kIGNvbm5lY3Rpb25zIG9uY2UKPiA+ID4gYWxsIHRoZSBh
+cHByb3ByaWF0ZSBkcml2ZXJzIGFyZSBmaW5hbGl6ZWQuCj4gPiBRdWVzdGlvbiB0byBDb25vciBh
+bmQgS3J6eXN6dG9mIChhc3N1bWluZyB5b3UgcmVhZCBteSBzdW1tYXJ5IGFib3ZlKToKPiA+IElz
+IGl0IGZpbmUgdGhhdCBEbWl0cnkgYWRkcyBhZGRpdGlvbmFsIGlucHV0cyB0byB0aGUgcGVyaXBo
+ZXJhbCBjbG9jawo+ID4gY29udHJvbGxlciBiaW5kaW5nIGluIGxhdGVyIHBhdGNoZXM/Cj4gCj4g
+UGVyaGFwcyBLcnp5c3p0b2Ygd2lsbCBkaXNhZ3JlZSB3aXRoIG1lLCBidXQgbXkgdGFrZSBvbiBp
+dCB3b3VsZCBiZSB0aGF0Cj4gdGhlIGJpbmRpbmcgc2hvdWxkIGRlc2NyaWJlIHRoZSBpbmRpdmlk
+dWFsIGNsb2NrIGNvbnRyb2xsZXIgaW4gaXRzCj4gdG90YWxpdHksIGJ1dCB0aGUgZHJpdmVyIGNh
+biBjaG9vc2UgdG8gb25seSBpbXBsZW1lbnQgYSBzdWJzZXQgb2YgaXQuCj4gCj4gSWYgeW91IGRl
+ZmluZSB0aGUgYmluZGluZyBhcyBvbmx5IG5lZWRpbmcgTiBpbnB1dHMsIGJ1dCB0aGVuIGxhdGVy
+Cj4gZXhwYW5kIGl0IHRvIGhhdmluZyBOK00gaW5wdXRzLCB0aGUgZHJpdmVyIHdpbGwgaGF2ZSB0
+byBzdXBwb3J0IE4gJiBOK00KPiBpbnB1dCBjbG9ja3MgdG8gcHJlc2VydmUgY29tcGF0aWJpbGl0
+eS4KPiBJZiB5b3UgZGVmaW5lIGl0IGFzIG5lZWRpbmcgTitNIGlucHV0cyBmcm9tIHRoZSBiZWdp
+bm5pbmcsIGJ1dCBvbmx5IHVzZQo+IE4sIHRoZXJlIGlzIG5vIGlzc3VlIHdpdGggYmFja3dhcmRz
+IGNvbXBhdGliaWxpdHkgd2hlbiB5b3UgbGF0ZXIgdXNlCj4gdGhlbSBhbGwuCj4gCgpJbiBzaG9y
+dCwgSSBhZ3JlZSB3aXRoIEplcm9tZSdzIHBvc2l0aW9uLCB3aGljaCBoZSBzaGFyZWQgaW4gdGhl
+CnBhcmFsbGVsIGVtYWlsOgpodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMWptdDFtNDJtMS5m
+c2ZAc3RhcmJ1Y2tpc2FjeWxvbi5iYXlsaWJyZS5jb20vCgpCZWxvdyBJIHdpbGwgdHJ5IHRvIGV4
+cGxhaW4gbXkgcG9zaXRpb24uCgpQbGVhc2UgY29ycmVjdCBtZSBpZiBJIGFtIG1pc3Rha2VuLCBi
+dXQgaXQgYXBwZWFycyB3ZSBhcmUgY3VycmVudGx5CmRpc2N1c3NpbmcgYSBzY2VuYXJpbyB3aGVy
+ZSBhIG5ldyBrZXJuZWwgWCsxIGltYWdlIHZlcnNpb24gaXMgZmxhc2hlZApvbnRvIGEgZGV2aWNl
+IHdpdGggYSBkZXZpY2UgdHJlZSBmcm9tIGtlcm5lbCBYLTEgaW1hZ2UgdmVyc2lvbiwgYW5kCndo
+ZXRoZXIgYSBuZXcgZHJpdmVyIHdpdGggY2xvY2sgb2JqZWN0IGNvbm5lY3Rpb25zIGNhbiBmdW5j
+dGlvbiBvbiB0aGUKcHJldmlvdXMgRGV2aWNlIFRyZWUgdmVyc2lvbi4KCklmIEknbSBncmFzcGlu
+ZyB0aGUgaXNzdWUgY29ycmVjdGx5LCBpdCBzZWVtcyB0aGF0IHdlIGhhdmUgZm91cgpwb3RlbnRp
+YWwgc2NlbmFyaW9zIGF0IHBsYXkgaGVyZToKMSkgd2UgbWF5IGhhdmUgYWx0ZXJlZCB0aGUgcmVs
+YXRpb25zaGlwcyBiZXR3ZWVuIGludGVybmFsIGNsb2NrIG9iamVjdHM7CjIpIHdlIG1heSBoYXZl
+IGludHJvZHVjZWQgbmV3IG91dHB1dCBjbG9jayBjb25uZWN0aW9uczsKMykgd2UgbWF5IGhhdmUg
+aW50cm9kdWNlZCBuZXcgaW5wdXQgY2xvY2sgY29ubmVjdGlvbnM7CjQpIHdlIG1heSBoYXZlIHJl
+bW92ZWQgZXhpc3RpbmcgY29ubmVjdGlvbnMgZnJvbSB0aGUgZHJpdmVyLgoKSXQgc2VlbXMgdGhh
+dCBvcHRpb25zIDEgYW5kIDQgYXJlIHN0cmFpZ2h0Zm9yd2FyZCBhbmQgZWFzeSB0bwp1bmRlcnN0
+YW5kLgpUaGUgNCBjYXNlIGlzIGZ1bGx5IHByb2hpYml0ZWQuIFdlIGNhbm5vdCByZW1vdmUKYW55
+IG9iamVjdCBvciBjb25uZWN0aW9uIGZyb20gdGhlIGNsb2NrIGRyaXZlciBpZiBhbm90aGVyIGNv
+bnN1bWVyIHVzZXMKaXQgaW4gdGhlIHByZXZpb3VzIERldmljZSBUcmVlIHZlcnNpb25zLiBJdCBp
+cyBhbHNvIGltcG9ydGFudCB0byBub3RlCnRoYXQgYW55IGludGVybmFsIGNoYW5nZXMgd2l0aGlu
+IHRoZSBkcml2ZXIgZG8gbm90IGFmZmVjdCB0aGUgZGV2aWNlCnRyZWUgY29ubmVjdGlvbnMsIGFz
+IHRoaXMgaXMgYWxyZWFkeSBjbGVhci4KClRoZSBzZWNvbmQgYW5kIHRoaXJkIGNhc2VzIGFyZSBt
+b3JlIGNvbXBsZXguCgpGb3IgaW5zdGFuY2UsIGxldCdzIHNheSB3ZSBhcmUgcHJlcGFyaW5nIGEg
+bmV3IHBhdGNoc2V0IGZvciBhbiBleGlzdGluZwpjbG9jayBkcml2ZXIsIHN1Y2ggYXMgUGVyaXBo
+ZXJhbHMsIHdoZXJlIHdlIGFyZSBhZGRpbmcgYW4gQXVkaW8gY2xvY2sKdGhhdCBpcyBoYW5kbGVk
+IGJ5IGFuIE1NSU8gcmVnaXN0ZXIgaW5zaWRlIFBlcmlwaGVyYWxzIGNsb2NrIGRyaXZlci4gWC0x
+CmR0cyBkb2VzIG5vdCByZWNvZ25pemUgdGhpcyBuZXcgY2xvY2sgYW5kIGRvZXNuJ3QgaGF2ZSBh
+bnkgY29ubmVjdGlvbiB0bwphbnkgbm9kZSBvciB0byBhbnkgb3RoZXIgY2xvY2sgZHJpdmVyLCB0
+aGVyZWJ5IGVsaW1pbmF0aW5nIGFueSBiYWNrd2FyZHMKY29tcGF0aWJpbGl0eSBpc3N1ZXMuCgpB
+cyBmb3IgbmV3IGlucHV0IGNsb2NrIGNvbm5lY3Rpb25zLCBzdWNoIGFzIHRoZSBjcHVfY2xvY2sK
+KHN5c19wbGxfZGl2MTYpLCB0aGVzZSBhcmUgaGFuZGxlZCBieSBjbG9jayBtdXhpbmcgYWJzdHJh
+Y3Rpb24sIGFsbG93aW5nCkNDRiB0byBmaW5kIHRoZSBjbG9jayBvYmplY3QgYnkgZncubmFtZSBh
+bmQgcmV0dXJuaW5nIC1FTk9FTlQgaWYgdGhlCmNvbm5lY3Rpb24gaXMgbWlzc2luZyB3aXRob3V0
+IGJyZWFraW5nIGFueSBDQ0YgZmxvdy4gSXQgaGFwcGVucyBpbiB0aGUKa2VybmVsIGZ1bmN0aW9u
+IGNsa19jb3JlX2ZpbGxfcGFyZW50X2luZGV4KCkKaHR0cHM6Ly9lbGl4aXIuYm9vdGxpbi5jb20v
+bGludXgvbGF0ZXN0L3NvdXJjZS9kcml2ZXJzL2Nsay9jbGsuYyNMNDI0CkRlc3BpdGUgbm90IGhh
+dmluZyB0aGUgY29ubmVjdGlvbiBmb3IgdGhlIG5ldyBpbnB1dCBpbiB0aGUgb2xkIERldmljZQpU
+cmVlIHZlcnNpb24sIHRoaXMgd2lsbCBub3QgYnJlYWsga2VybmVsIGJvb3QgZmxvdyBhbmQgd29y
+a2Zsb3csIGFuZCB0aGUKbmV3IGNsb2NrIG9iamVjdCBqdXN0IHdvdWxkIG5vdCBiZSB1dGlsaXpl
+ZC4KCkJhc2VkIG9uIHRoZSBwcmVzZW50ZWQgYXJndW1lbnRzLCBJIGZ1bGx5IGFncmVlIHdpdGgg
+SmVyb21lJ3MgcG9zaXRpb24uCldlIGNhbiBhZGQgbmV3IGNvbm5lY3Rpb25zIGFuZCBvYmplY3Rz
+IGluIG5ldyBkcml2ZXIgdmVyc2lvbnMsIGJ1dCB0aGVpcgpyZW1vdmFsIGlzIHByb2hpYml0ZWQu
+CgpJZiBpdCdzIGFscmlnaHQgd2l0aCB5b3UsIEkgd291bGQgcHJlZmVyIHRvIGtlZXAgdGhlIFBl
+cmlwaGVyYWxzIGFuZCBQTEwKY2xvY2sgZHJpdmVyIGFuZCB0aGVpciBiaW5kaW5ncyBhcyB0aGV5
+IGFyZSwgYW5kIGNvbnRpbnVlIHdpdGggdGhlIENQVQphbmQgQXVkaW8gY2xvY2sgY29udHJvbGxl
+cnMgaW4gYSBzZXBhcmF0ZSBwYXRjaCBzZXJpZXMuIFdvdWxkIHRoYXQgYmUKZmVhc2libGUgZm9y
+IHlvdT8KCj4gPiBJZiBub3Q6IGhvdyBjYW4gd2UgcHJvY2VlZCBpbiBjYXNlIHdlIG5lZWQgdG8g
+YWRkIHRoZW0gbm93ICh0aGUKPiA+IGR0LWJpbmRpbmcgZXhhbXBsZSBpcyB0aGUgZWFzeSBwYXJ0
+IGZvciBtZSBhcyB3ZSBjYW4ganVzdCBtYWtlIHVwIGEKPiA+IHBoYW5kbGUgbGlrZSAmc3lzX3Bs
+bF9kaXYxNl9jbGsgYW5kIHVzZSB0aGF0IC0gYnV0IHRoaXMgY2FuJ3Qgd29yawo+ID4gd2hlbiBE
+bWl0cnkgdHJpZXMgdG8gYWRkIHRoZSBjbG9jayBjb250cm9sbGVyIHRvIG1lc29uLWExLmR0c2kp
+Cj4gCj4gSSB3b3VsZCBiZSBpbmNsaW5lZCB0byBkbyB0aGUgc2FtZSB0aGluZyBpbiB0aGUgZHRz
+IGFzIHRoZSBleGFtcGxlLAo+IGFuZCBtYWtlIHVwIGEgZml4ZWQtZnJlcXVlbmN5IGNsb2NrIGFu
+ZCB1c2UgaXQgdG8gcGx1ZyB0aGUgaG9sZS4KPiBXaGVuIHlvdSBoYXZlIGJpbmRpbmdzIGV0YyB3
+cml0dGVuIGZvciB0aGUgY2xvY2sgY29udHJvbGxlciBwcm92aWRpbmcKPiB0aGF0IGNsb2NrLCB0
+aGUgZml4ZWQtZnJlcXVlbmN5IGNsb2NrIGNvdWxkIGJlIHN3YXBwZWQgb3V0IGZvciB0aGUgcmVh
+bAo+IG9uZS4KPiAKPiA+IFBTOiBEbWl0cnkgaXMgdHJ5aW5nIHRvIGdldCB0aGlzIHNlcmllcyBp
+bnRvIExpbnV4IDYuNS4gQXMgZmFyIGFzIEkKPiA+IHJlbWVtYmVyIHRoZSBjb21tb24gY2xvY2sg
+bWFpbnRhaW5lcnMgZG9uJ3QgdGFrZSBwdWxsIHJlcXVlc3RzIHdpdGgKPiA+IG5ldyBmZWF0dXJl
+cyBhZnRlciAtcmM2ICh3aGljaCBpcyBpbiBsZXNzIHRoYW4gdHdvIHdlZWtzKS4KPiA+IFNvIHRp
+bWUgaXMgZ2V0dGluZyBhIGJpdCBzaG9ydCBhbmQgZm9yIG1lIHRoaXMgaXMgdGhlIHZlcnkgbGFz
+dAo+ID4gb3V0c3RhbmRpbmcgcXVlc3Rpb24uIElmIHlvdSBzYXkgdGhhdCBpdCdzIGZpbmUgdG8g
+YWRkIGNsb2NrcyBsYXRlciBvbgo+ID4gdGhpcyB3aWxsIGltbWVkaWF0ZWx5IGdldCBteSBSZXZp
+ZXdlZC1ieS4KPiAKPiBJICp0aGluayogdGhhdCB3aGF0IEkndmUganVzdCBzYWlkIHNob3VsZCBu
+b3QgZ2V0IGluIHRoZSB3YXkgb2Ygc3VjaCBhCj4gdGltZWxpbmUsIGFzIGl0IHdvdWxkIG9ubHkg
+aW52b2x2ZSBhICJzbWFsbCIgY2hhbmdlIHRvIHRoZSBkdC1iaW5kaW5nLAo+IGJ1dCBub3QgcmVx
+dWlyZSBhZGRpdGlvbmFsIGJpbmRpbmdzIG9yIGRyaXZlci4KPiAKPiBDaGVlcnMsCj4gQ29ub3Iu
+Cj4gCgotLSAKVGhhbmsgeW91LApEbWl0cnkKCtCj0JLQldCU0J7QnNCb0JXQndCY0JUg0J4g0JrQ
+ntCd0KTQmNCU0JXQndCm0JjQkNCb0KzQndCe0KHQotCYOiDQrdGC0L4g0Y3Qu9C10LrRgtGA0L7Q
+vdC90L7QtSDRgdC+0L7QsdGJ0LXQvdC40LUg0Lgg0LvRjtCx0YvQtSDQtNC+0LrRg9C80LXQvdGC
+0YssINC/0YDQuNC70L7QttC10L3QvdGL0LUg0Log0L3QtdC80YMsINGB0L7QtNC10YDQttCw0YIg
+0LrQvtC90YTQuNC00LXQvdGG0LjQsNC70YzQvdGD0Y4g0LjQvdGE0L7RgNC80LDRhtC40Y4uINCd
+0LDRgdGC0L7Rj9GJ0LjQvCDRg9Cy0LXQtNC+0LzQu9GP0LXQvCDQktCw0YEg0L4g0YLQvtC8LCDR
+h9GC0L4g0LXRgdC70Lgg0Y3RgtC+INGB0L7QvtCx0YnQtdC90LjQtSDQvdC1INC/0YDQtdC00L3Q
+sNC30L3QsNGH0LXQvdC+INCS0LDQvCwg0LjRgdC/0L7Qu9GM0LfQvtCy0LDQvdC40LUsINC60L7Q
+v9C40YDQvtCy0LDQvdC40LUsINGA0LDRgdC/0YDQvtGB0YLRgNCw0L3QtdC90LjQtSDQuNC90YTQ
+vtGA0LzQsNGG0LjQuCwg0YHQvtC00LXRgNC20LDRidC10LnRgdGPINCyINC90LDRgdGC0L7Rj9GJ
+0LXQvCDRgdC+0L7QsdGJ0LXQvdC40LgsINCwINGC0LDQutC20LUg0L7RgdGD0YnQtdGB0YLQstC7
+0LXQvdC40LUg0LvRjtCx0YvRhSDQtNC10LnRgdGC0LLQuNC5INC90LAg0L7RgdC90L7QstC1INGN
+0YLQvtC5INC40L3RhNC+0YDQvNCw0YbQuNC4LCDRgdGC0YDQvtCz0L4g0LfQsNC/0YDQtdGJ0LXQ
+vdC+LiDQldGB0LvQuCDQktGLINC/0L7Qu9GD0YfQuNC70Lgg0Y3RgtC+INGB0L7QvtCx0YnQtdC9
+0LjQtSDQv9C+INC+0YjQuNCx0LrQtSwg0L/QvtC20LDQu9GD0LnRgdGC0LAsINGB0L7QvtCx0YnQ
+uNGC0LUg0L7QsSDRjdGC0L7QvCDQvtGC0L/RgNCw0LLQuNGC0LXQu9GOINC/0L4g0Y3Qu9C10LrR
+gtGA0L7QvdC90L7QuSDQv9C+0YfRgtC1INC4INGD0LTQsNC70LjRgtC1INGN0YLQviDRgdC+0L7Q
+sdGJ0LXQvdC40LUuCkNPTkZJREVOVElBTElUWSBOT1RJQ0U6IFRoaXMgZW1haWwgYW5kIGFueSBm
+aWxlcyBhdHRhY2hlZCB0byBpdCBhcmUgY29uZmlkZW50aWFsLiBJZiB5b3UgYXJlIG5vdCB0aGUg
+aW50ZW5kZWQgcmVjaXBpZW50IHlvdSBhcmUgbm90aWZpZWQgdGhhdCB1c2luZywgY29weWluZywg
+ZGlzdHJpYnV0aW5nIG9yIHRha2luZyBhbnkgYWN0aW9uIGluIHJlbGlhbmNlIG9uIHRoZSBjb250
+ZW50cyBvZiB0aGlzIGluZm9ybWF0aW9uIGlzIHN0cmljdGx5IHByb2hpYml0ZWQuIElmIHlvdSBo
+YXZlIHJlY2VpdmVkIHRoaXMgZW1haWwgaW4gZXJyb3IgcGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVy
+IGFuZCBkZWxldGUgdGhpcyBlbWFpbC4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNA
+bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2xpbnV4LWFtbG9naWMK
