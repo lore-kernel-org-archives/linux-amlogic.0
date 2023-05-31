@@ -4,87 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69BECC77B7C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 May 2023 08:59:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09058C77B73
+	for <linux-amlogic@archiver.kernel.org>; Wed, 31 May 2023 09:20:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=jtcfouaVXAoxRFlw6PO1fBMS6PZwY2PEl5epoKydHuI=; b=m53hqx4F47fGsoMlras8njCvdH
-	KfNOUydRUFyLxpx55vzmTaMDDkMhejGAbUK2hgTZ9vUSFdHIuKpf7Eiv5gdTXvexztZn3Dc5NVG/g
-	OuJjlJqjlx0sTifIHpFreAzo8Rs7G9ucu9b5GNNACrnie3KJWQOJE8vbIChdnmRRWZcg5QcF0uUUE
-	9hkHxOwJ0HVT7O8zKUv33hyWNx3psgSIHK+3Q6myMaInLndvDE9K1NGqPqoiJDqileMH3zE+QJ0jn
-	b0GGNrMFW5hB95QO00iNCddtlZMZB1hnlQGIB9gwPNTRE8zN4he0JbQMDlANMA2gfWn2Oy5Vs3K6v
-	nOCvzhug==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=BECGSmgiQ/2d5McHZmZf/H/k9IwkfnRxcXW4ejHP8ls=; b=I0rTH2BBAbZVFZ
+	NvS95DfbMtbu0JCAuetZHTPG+eUzjhsF4hoFpABS1MLjG1+V3R66ak0iPR9lw1HomYPxpj5bYCEgk
+	DjhUdWrWuRJzebAdAFt83YVHBhIfbNiJky1A62sXYJ/suiCCud9kPxjFAPhXQDjaiq3e/s3WUwSa7
+	pH9rGIEwT01/ScOJy+AgJESClb+OPrcRVby34P9WWxerZb8bt2hENBk0bWGLR+jr0auMuGZ5/E5Cn
+	CNSHHPsLKtFWpr0oQ3/DCkyN4wA2QpAxAja3vdqfm6R176+itX6TSz/nVtsRHqhQGj+qrx4f8LJJ/
+	G5ZvHlinVXdG8l175n3w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q4Hft-00GnTX-35;
-	Wed, 31 May 2023 08:59:21 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1q4Hzh-00GqSp-34;
+	Wed, 31 May 2023 09:19:49 +0000
+Received: from mail-pl1-x629.google.com ([2607:f8b0:4864:20::629])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q4Hfq-00GnSN-2p
+	id 1q4Hze-00GqQc-18
 	for linux-amlogic@lists.infradead.org;
-	Wed, 31 May 2023 08:59:20 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f6094cb2d2so57435925e9.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 31 May 2023 01:59:17 -0700 (PDT)
+	Wed, 31 May 2023 09:19:48 +0000
+Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1b038064d97so5694925ad.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 31 May 2023 02:19:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685523556; x=1688115556;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=YBIQNd5CwMWOY24/Rr6Brie38sdaCVNySMcl3oJt0UY=;
-        b=lb1p6EnVRX+DTjwmsGXajDKG097RX6a3FHYa0py4zf7vRIItzJlmEJJdNvfPewp1gX
-         7+k3hzQmjLmlqSIBIWtywOM5/foA2so1Rkf24FhxAQ2SZPq2xkvjJBkvloKLrU76sV1s
-         dmqDXil/sJFyz5W1VVg/YzivVAyc/kjb0em6GtvR+MJJqkLdAr0qT9Biw3UTQan2RzQp
-         jhXAv9bq6EgjYcVoQCOHm+JSueQmuqUzf8qFZPEbjV1xLhMfVkHvDEgJVaGGQO4o0/D8
-         Znfjd3hvUgLCwL8rGGAevU8PxNxJ54jevizz+6yexbSHPwCZWh7EzmlMKXbDt3ReENQG
-         3/9g==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685524783; x=1688116783;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e/F8jIF8NqATxdAvMuHV954nGjADHoS+vIBQmhEkWOs=;
+        b=g2QKglMZH/mJ1PlHw0xaAb1Atu0wvBgVAqYnuu8mReQEONCqAC+kuvmXr1GOl2K8hi
+         PELXRr9/ZHFzDZ1y3TGPnhTkxyRxzi2WWpiULuLFvRre0MOUR2wmfXd4PYcyHYisgga9
+         vIxf3UCExwjWT2hL5wZhyPw1/THRLmg9F35utlvE2h3bHMSJOdGF1FVhqXM8zvkuKeiA
+         QDOmg7HzxXmpRYriQ+VggWvGgLlVCw55VPwJnR21xsMdQuKGIVaBL+9JKvxwHIb3unI0
+         dNbqyoJWOojJolHETOZRlnmey1S+0lkpPlrlK4bJKbtj2DG0b51oWPxTwnJeIwJ9apJ4
+         TZiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685523556; x=1688115556;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YBIQNd5CwMWOY24/Rr6Brie38sdaCVNySMcl3oJt0UY=;
-        b=YFOfPpkxj7gTXTZXS5JKm/KleN0GSbQfyL78lrpfz7SvmIep36M7fO7jzcfaWW6M0p
-         3iRfqqyZsr1KwRZR6eoHCrj+tDyY8CgoHn/U/GX5LvWDonp738etiLa15yexXzc8L4il
-         mYXMgW36pFmHARaRk71uqycCqOHAnjiZQ18IMXsgOnH/XGuW8o3EGKnuABX531rNpnvn
-         Cy0AESQDMu5Ynnp81Ym2iVMU3xsDM394JKUFvLC2F5SRDjgBJzjBWYCWXJkQrySJpJgw
-         18fV3R7zxLoQQOWLhuJReQOZvE/c5+RJQiv+9xdhzXDHxoCkBtc2gtBzpxw4uWR8Y9At
-         v2HA==
-X-Gm-Message-State: AC+VfDwW1Ab+1q8ZN6t4gxzvZizsRvBypRUvYF+Jxb/ZRNL2ADVDuKXd
-	YbbFVp1DjYPVslkQk5yJL+0iKQ==
-X-Google-Smtp-Source: ACHHUZ4CNyYShz0ULzlda84VWuoupYNh91jdzgJrDhnk3SyJ0FhBR4Gm/AqQagB0heDaO1DIzvnK1Q==
-X-Received: by 2002:a1c:f30e:0:b0:3f6:e42:8f85 with SMTP id q14-20020a1cf30e000000b003f60e428f85mr3669312wmq.37.1685523555830;
-        Wed, 31 May 2023 01:59:15 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5c28:3ad5:fcda:7779? ([2a01:e0a:982:cbb0:5c28:3ad5:fcda:7779])
-        by smtp.gmail.com with ESMTPSA id c21-20020a7bc855000000b003f1958eeadcsm23417092wml.17.2023.05.31.01.59.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 01:59:15 -0700 (PDT)
-Message-ID: <9158d9ca-fe00-760c-4c95-f2ee045038ee@linaro.org>
-Date: Wed, 31 May 2023 10:59:14 +0200
+        d=1e100.net; s=20221208; t=1685524783; x=1688116783;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=e/F8jIF8NqATxdAvMuHV954nGjADHoS+vIBQmhEkWOs=;
+        b=WqW+9E6ogdCf+T4nBpPyKplpW19j1cNzhGJYSI5U6pI5SCNsLlZqYszdxfgJQ45Isl
+         qKcf30cPO4N028L6G1xnG8kVzVXAsq/VzRnCskxFuwKy4VDPQz+adqWRXWxuxCKOhLI4
+         IpbSJvdH8Fu6l6Gmt4iOLWwRVWoZSo9kDLM3iRA5hXM1BzGQwmaQipmZTnBSduEsSWW0
+         A2inLhjERphvzGErQZQSB6o70GggeEY9jSHIxHtVQIEHSKSUKVH1LupQmi2coZgWqShU
+         23RuZRRCOIJc/VB1LZKgV3bzkTYHtf97qM9KS4DeZMGGyYamjMRSZtDF4Lx5e6/PlFSP
+         BhJA==
+X-Gm-Message-State: AC+VfDyZHvWQIB2zqeefi19Bj93IsPpV6SUPjYgdecn2DiVSjXWHVE1A
+	l5CiXnErqAjC5HKOUbCWLGlYOkabQViJRxWjZF6NpA==
+X-Google-Smtp-Source: ACHHUZ6Ofzg7tjk5fXnBtT7CKLOKxvtwCuBdh95OKJ7ZvI9XlppTjSg852EOtBKSeeNZAfFL9zCpUaqHc9KwNzmaA5U=
+X-Received: by 2002:a17:902:e744:b0:1ac:86b5:70d9 with SMTP id
+ p4-20020a170902e74400b001ac86b570d9mr14542055plf.32.1685524783362; Wed, 31
+ May 2023 02:19:43 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] firmware: meson_sm: Fix memcpy vs iomem type warnings
-Content-Language: en-US
-To: Kees Cook <keescook@chromium.org>
-Cc: linux-hardening@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel test robot <lkp@intel.com>, Jerome Brunet <jbrunet@baylibre.com>,
- linux-arm-kernel@lists.infradead.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>
-References: <20221012185234.never.936-kees@kernel.org>
- <166602031304.3572695.12870664862275915316.b4-ty@linaro.org>
- <202305171124.4EB0D65@keescook>
-Organization: Linaro Developer Services
-In-Reply-To: <202305171124.4EB0D65@keescook>
+References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org>
+ <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-8-56eb7a4d5b8e@linaro.org>
+In-Reply-To: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-8-56eb7a4d5b8e@linaro.org>
+From: Nicolas Belin <nbelin@baylibre.com>
+Date: Wed, 31 May 2023 11:19:32 +0200
+Message-ID: <CAJZgTGEQ3B5M9BtDfUdyMiH+VQkWcFHU2fOJgE_1=a4E1bxMTA@mail.gmail.com>
+Subject: Re: [PATCH v5 08/17] drm/meson: fix unbind path if HDMI fails to bind
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Sam Ravnborg <sam@ravnborg.org>, "Lukas F. Hartmann" <lukas@mntre.com>, linux-amlogic@lists.infradead.org, 
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-phy@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230531_015918_916959_F00F3A0A 
-X-CRM114-Status: GOOD (  17.31  )
+X-CRM114-CacheID: sfid-20230531_021946_406714_3C341128 
+X-CRM114-Status: GOOD (  17.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,81 +92,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 17/05/2023 20:25, Kees Cook wrote:
-> *thread necromancy*
-> 
-> On Mon, Oct 17, 2022 at 05:25:13PM +0200, Neil Armstrong wrote:
->> Hi,
->>
->> On Wed, 12 Oct 2022 11:53:16 -0700, Kees Cook wrote:
->>> Use memcpy_{toio,fromio}() instead of memcpy(). Silences warnings from
->>> Sparse:
->>>
->>> drivers/firmware/meson/meson_sm.c:170:17: warning: incorrect type in argument 1 (different address spaces)
->>> drivers/firmware/meson/meson_sm.c:170:17:    expected void const *
->>> drivers/firmware/meson/meson_sm.c:170:17:    got void [noderef] __iomem *sm_shmem_out_base
->>> drivers/firmware/meson/meson_sm.c:170:17: warning: incorrect type in argument 2 (different address spaces)
->>> drivers/firmware/meson/meson_sm.c:170:17:    expected void const *
->>> drivers/firmware/meson/meson_sm.c:170:17:    got void [noderef] __iomem *sm_shmem_out_base
->>> drivers/firmware/meson/meson_sm.c:206:9: warning: incorrect type in argument 1 (different address spaces)
->>> drivers/firmware/meson/meson_sm.c:206:9:    expected void const *
->>> drivers/firmware/meson/meson_sm.c:206:9:    got void [noderef] __iomem *sm_shmem_in_base
->>> drivers/firmware/meson/meson_sm.c:206:9: warning: incorrect type in argument 1 (different address spaces)
->>> drivers/firmware/meson/meson_sm.c:206:9:    expected void const *
->>> drivers/firmware/meson/meson_sm.c:206:9:    got void [noderef] __iomem *sm_shmem_in_base
->>> drivers/firmware/meson/meson_sm.c:206:9: warning: incorrect type in argument 1 (different address spaces)
->>> drivers/firmware/meson/meson_sm.c:206:9:    expected void const *
->>> drivers/firmware/meson/meson_sm.c:206:9:    got void [noderef] __iomem *sm_shmem_in_base
->>> drivers/firmware/meson/meson_sm.c:206:9: warning: incorrect type in argument 1 (different address spaces)
->>> drivers/firmware/meson/meson_sm.c:206:9:    expected void *
->>> drivers/firmware/meson/meson_sm.c:206:9:    got void [noderef] __iomem *sm_shmem_in_base
->>>
->>> [...]
->>
->> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.2/drivers)
->>
->> [1/1] firmware: meson_sm: Fix memcpy vs iomem type warnings
->>        https://git.kernel.org/amlogic/c/7dc69c7d073e6004a281db8f7f15cf6ebf702ea0
->>
->> These changes has been applied on the intermediate git tree [1].
->>
->> The v6.2/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
->> for inclusion in their intermediate git branches in order to be sent to Linus during
->> the next merge window, or sooner if it's a set of fixes.
->>
->> In the cases of fixes, those will be merged in the current release candidate
->> kernel and as soon they appear on the Linux master branch they will be
->> backported to the previous Stable and Long-Stable kernels [2].
->>
->> The intermediate git branches are merged daily in the linux-next tree [3],
->> people are encouraged testing these pre-release kernels and report issues on the
->> relevant mailing-lists.
->>
->> If problems are discovered on those changes, please submit a signed-off-by revert
->> patch followed by a corrective changeset.
->>
->> [1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
->> [2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
->> [3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-> 
-> Hi! This change seems to have never been mainlined and seems to have
-> disappeared from linux-next.
-> 
-Hi,
-
-Indeed it was rejected by Arnd, but I failed to find time to investigate how to fix it
-
-https://lore.kernel.org/all/4a6b34ef-f5d2-4e56-a7f6-6a7c9cdda416@app.fastmail.com/
-
-Neil
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+TGUgbWFyLiAzMCBtYWkgMjAyMyDDoCAwOTozOCwgTmVpbCBBcm1zdHJvbmcKPG5laWwuYXJtc3Ry
+b25nQGxpbmFyby5vcmc+IGEgw6ljcml0IDoKPgo+IElmIHRoZSBjYXNlIHRoZSBIRE1JIGNvbnRy
+b2xsZXIgZmFpbHMgdG8gYmluZCwgd2UgdHJ5IHRvIHVuYmluZAo+IGFsbCBjb21wb25lbnRzIGJl
+Zm9yZSBjYWxsaW5nIGRybV9kZXZfcHV0KCkgd2hpY2ggbWFrZXMgZHJtX2JyaWRnZV9kZXRhY2go
+KQo+IGNyYXNoIGJlY2F1c2UgdW5iaW5kaW5nIHRoZSBIRE1JIGNvbnRyb2xsZXIgZnJlZXMgdGhl
+IGJyaWRnZSBtZW1vcnkuCj4KPiBUaGUgc29sdXRpb24gaXMgdGhlIHVuYmluZCBhbGwgY29tcG9u
+ZW50cyBhdCB0aGUgZW5kIGxpa2UgaW4gdGhlIHJlbW92ZQo+IHBhdGguCj4KPiBTaWduZWQtb2Zm
+LWJ5OiBOZWlsIEFybXN0cm9uZyA8bmVpbC5hcm1zdHJvbmdAbGluYXJvLm9yZz4KPiAtLS0KPiAg
+ZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2Rydi5jIHwgMjMgKysrKysrKysrKysrKystLS0t
+LS0tLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDE0IGluc2VydGlvbnMoKyksIDkgZGVsZXRpb25zKC0p
+Cj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2Rydi5jIGIvZHJp
+dmVycy9ncHUvZHJtL21lc29uL21lc29uX2Rydi5jCj4gaW5kZXggY2E2ZDFlNTllNWQ5Li5lMDYw
+Mjc5ZGM4MGEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2Rydi5j
+Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2Rydi5jCj4gQEAgLTMxNiwzMiAr
+MzE2LDM0IEBAIHN0YXRpYyBpbnQgbWVzb25fZHJ2X2JpbmRfbWFzdGVyKHN0cnVjdCBkZXZpY2Ug
+KmRldiwgYm9vbCBoYXNfY29tcG9uZW50cykKPiAgICAgICAgICAgICAgICAgZ290byBleGl0X2Fm
+YmNkOwo+Cj4gICAgICAgICBpZiAoaGFzX2NvbXBvbmVudHMpIHsKPiAtICAgICAgICAgICAgICAg
+cmV0ID0gY29tcG9uZW50X2JpbmRfYWxsKGRybS0+ZGV2LCBkcm0pOwo+ICsgICAgICAgICAgICAg
+ICByZXQgPSBjb21wb25lbnRfYmluZF9hbGwoZGV2LCBkcm0pOwo+ICAgICAgICAgICAgICAgICBp
+ZiAocmV0KSB7Cj4gICAgICAgICAgICAgICAgICAgICAgICAgZGV2X2Vycihkcm0tPmRldiwgIkNv
+dWxkbid0IGJpbmQgYWxsIGNvbXBvbmVudHNcbiIpOwo+ICsgICAgICAgICAgICAgICAgICAgICAg
+IC8qIERvIG5vdCB0cnkgdG8gdW5iaW5kICovCj4gKyAgICAgICAgICAgICAgICAgICAgICAgaGFz
+X2NvbXBvbmVudHMgPSBmYWxzZTsKPiAgICAgICAgICAgICAgICAgICAgICAgICBnb3RvIGV4aXRf
+YWZiY2Q7Cj4gICAgICAgICAgICAgICAgIH0KPiAgICAgICAgIH0KPgo+ICAgICAgICAgcmV0ID0g
+bWVzb25fZW5jb2Rlcl9oZG1pX2luaXQocHJpdik7Cj4gICAgICAgICBpZiAocmV0KQo+IC0gICAg
+ICAgICAgICAgICBnb3RvIHVuYmluZF9hbGw7Cj4gKyAgICAgICAgICAgICAgIGdvdG8gZXhpdF9h
+ZmJjZDsKPgo+ICAgICAgICAgcmV0ID0gbWVzb25fcGxhbmVfY3JlYXRlKHByaXYpOwo+ICAgICAg
+ICAgaWYgKHJldCkKPiAtICAgICAgICAgICAgICAgZ290byB1bmJpbmRfYWxsOwo+ICsgICAgICAg
+ICAgICAgICBnb3RvIGV4aXRfYWZiY2Q7Cj4KPiAgICAgICAgIHJldCA9IG1lc29uX292ZXJsYXlf
+Y3JlYXRlKHByaXYpOwo+ICAgICAgICAgaWYgKHJldCkKPiAtICAgICAgICAgICAgICAgZ290byB1
+bmJpbmRfYWxsOwo+ICsgICAgICAgICAgICAgICBnb3RvIGV4aXRfYWZiY2Q7Cj4KPiAgICAgICAg
+IHJldCA9IG1lc29uX2NydGNfY3JlYXRlKHByaXYpOwo+ICAgICAgICAgaWYgKHJldCkKPiAtICAg
+ICAgICAgICAgICAgZ290byB1bmJpbmRfYWxsOwo+ICsgICAgICAgICAgICAgICBnb3RvIGV4aXRf
+YWZiY2Q7Cj4KPiAgICAgICAgIHJldCA9IHJlcXVlc3RfaXJxKHByaXYtPnZzeW5jX2lycSwgbWVz
+b25faXJxLCAwLCBkcm0tPmRyaXZlci0+bmFtZSwgZHJtKTsKPiAgICAgICAgIGlmIChyZXQpCj4g
+LSAgICAgICAgICAgICAgIGdvdG8gdW5iaW5kX2FsbDsKPiArICAgICAgICAgICAgICAgZ290byBl
+eGl0X2FmYmNkOwo+Cj4gICAgICAgICBkcm1fbW9kZV9jb25maWdfcmVzZXQoZHJtKTsKPgo+IEBA
+IC0zNTksMTUgKzM2MSwxOCBAQCBzdGF0aWMgaW50IG1lc29uX2Rydl9iaW5kX21hc3RlcihzdHJ1
+Y3QgZGV2aWNlICpkZXYsIGJvb2wgaGFzX2NvbXBvbmVudHMpCj4KPiAgdW5pbnN0YWxsX2lycToK
+PiAgICAgICAgIGZyZWVfaXJxKHByaXYtPnZzeW5jX2lycSwgZHJtKTsKPiAtdW5iaW5kX2FsbDoK
+PiAtICAgICAgIGlmIChoYXNfY29tcG9uZW50cykKPiAtICAgICAgICAgICAgICAgY29tcG9uZW50
+X3VuYmluZF9hbGwoZHJtLT5kZXYsIGRybSk7Cj4gIGV4aXRfYWZiY2Q6Cj4gICAgICAgICBpZiAo
+cHJpdi0+YWZiY2Qub3BzKQo+ICAgICAgICAgICAgICAgICBwcml2LT5hZmJjZC5vcHMtPmV4aXQo
+cHJpdik7Cj4gIGZyZWVfZHJtOgo+ICAgICAgICAgZHJtX2Rldl9wdXQoZHJtKTsKPgo+ICsgICAg
+ICAgbWVzb25fZW5jb2Rlcl9oZG1pX3JlbW92ZShwcml2KTsKPiArICAgICAgIG1lc29uX2VuY29k
+ZXJfY3Zic19yZW1vdmUocHJpdik7Cj4gKwo+ICsgICAgICAgaWYgKGhhc19jb21wb25lbnRzKQo+
+ICsgICAgICAgICAgICAgICBjb21wb25lbnRfdW5iaW5kX2FsbChkZXYsIGRybSk7Cj4gKwo+ICAg
+ICAgICAgcmV0dXJuIHJldDsKPiAgfQo+Cj4KPiAtLQo+IDIuMzQuMQo+CgpXb3JrcyBmaW5lIG9u
+IGEgS2hhZGFzIFZJTTMgdXNpbmcgYSBUUzA1MCBwYW5lbCwKVGhhbmtzCgpSZXZpZXdlZC1ieTog
+Tmljb2xhcyBCZWxpbiA8bmJlbGluQGJheWxpYnJlLmNvbT4KVGVzdGVkLWJ5OiBOaWNvbGFzIEJl
+bGluIDxuYmVsaW5AYmF5bGlicmUuY29tPgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
+Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
+bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
