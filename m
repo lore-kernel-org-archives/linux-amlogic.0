@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E660C7EE31
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 May 2023 13:41:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D33CBC7EE32
+	for <linux-amlogic@archiver.kernel.org>; Wed, 31 May 2023 13:42:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=atS3GHIBusgY/RYV5iaq4FhCirbEvx3js7epn01Esuk=; b=Mq6hVFJK2SaGQo
-	wboaRZ2f7KE06UODRN4BQxHjUOYWwhLuvhePzMAhsZ+5Kcbqd0XiCNOTTfs0w/wj6aarMbgbkMQVQ
-	6Tcl6sdlky7mFD/EzP1qoVmhRlNYjsg03IJmJFxJ8mfhZ6JdYfqAIZEHR6WhbODAjjKyKZJekML0U
-	4Zg6XbFFepTRRFLiNg9nO2Q8TzTqnh7y6yzcZfHAmBmP5wf63aqUPgdzlU0BnyPqP7VJq+yxm6+1I
-	Jbq34ozaWIkVSiUbwVXUv5yJfcBuBQEPOOtBAgQKY80F34YkgRkaRHnCrPu5R6NfBTeJHngpbfdGO
-	NCK4a1xDRy2Jb0wo9tWA==;
+	List-Owner; bh=atS3GHIBusgY/RYV5iaq4FhCirbEvx3js7epn01Esuk=; b=tTAwmwLFr2Y5cW
+	JbHJmsADUREKgudzpw8MoU4LVmBKTS2LI1pcHyFAUZvJPPKmN5iGKxDA8ysTFBKgfu7PTsAJWp5GI
+	KoKmLpGyQQPjJdrc6vu/+EOsjiisHfG1X1ZzEyDBPhXlF/l1Ch719yFu7are4TGE5KBl1lkmpcWUh
+	5poCTVyTTqHQaxT5JXl+M1sbaDVdmOv/E+AegJpnbEUszsRCp4IeZjyXJocVUyBTX+HNqSBPNdcZC
+	SvE+FTUkOuCw1vqf5HPc1o4qyyOYOGnK87k8qyoGt4VBP7njEU9KdoHUzh91nkUut3VNYiepVvEzs
+	5abEn/JqyEDvWigGZgbw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q4M4L-00HZqX-38;
-	Wed, 31 May 2023 13:40:53 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1q4M5u-00HaSE-0x;
+	Wed, 31 May 2023 13:42:30 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q4M4B-00HZlq-1U;
-	Wed, 31 May 2023 13:40:44 +0000
+	id 1q4M5o-00HaOt-1E;
+	Wed, 31 May 2023 13:42:25 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 0D12C63B12;
-	Wed, 31 May 2023 13:40:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 681F2C43446;
-	Wed, 31 May 2023 13:40:41 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id EBE8A63B52;
+	Wed, 31 May 2023 13:42:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53A18C4339B;
+	Wed, 31 May 2023 13:42:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1685540442;
+	s=k20201202; t=1685540543;
 	bh=+Uc/69FxdQG6Cx4lTgPkXnqoeB2Ro0Egv3BZI2vb6mg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Uetn8Pqca5VUX6gKBltUIG25c8qPIBcl2sHjBlqXv2A1jB9gHx7g8UnJCL8jSFQvd
-	 Ntyau8wA+N42Omn9nfYzsdfYI4G1hPCUUvKQKt/Mmu7HOkIB0gJW3V2LdMZJoFdZOq
-	 YaKKSidCXhwv982eHTfkh0JsNvPgSqI2h4KOOZkbK/qtidqaCdaeYHykY+K/zDnjJw
-	 VdUAS8ZtM4vqzDVjRP2x+oewQZn61roXA9PX8rAAQ60jLRLbWRsjzXraLXNvglWdUo
-	 fmGAg296P/oojNIbh+ANlEP18uu588RTzGmlbMUL5NfkFuJ63cegiGb+j4MN8bGSBp
-	 LzQqyjyRKGfgw==
+	b=DCqKfWztpH4ICXcMxNqcucFGDdmE0F7hSS7790Di26eL/zns9C+PHgYoSfpyQYVxC
+	 RKN5YobyHLLeBbsF+XYLQAQm/VuRgB/aY87XJJyLYRCrlYkjxeSRRMXVJ0rlI82c+S
+	 os42cZ4iCh8Jhe3/nz+A1nFBh81vHND+7Xq/Yi+hK3vqOWHbK5LfBJ7sIutiYeRBY+
+	 VSSqrr0SFvhuQHfPxEl8bpniS+FXRqRxEMUyZCQBuJtGJ5fJXmcyMY/QD59O5GB5oX
+	 Bhg5Esm2Z3vHJdeLxiJ1Q9Bvmxn2YwQ+ATWQ00ISe57FKpAzNYkaDe6kW8k4CCETaU
+	 spQarLTDv88hw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -55,17 +55,17 @@ Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	khilman@baylibre.com,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.3 13/37] irqchip/meson-gpio: Mark OF related data as maybe unused
-Date: Wed, 31 May 2023 09:39:55 -0400
-Message-Id: <20230531134020.3383253-13-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.1 12/33] irqchip/meson-gpio: Mark OF related data as maybe unused
+Date: Wed, 31 May 2023 09:41:38 -0400
+Message-Id: <20230531134159.3383703-12-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230531134020.3383253-1-sashal@kernel.org>
-References: <20230531134020.3383253-1-sashal@kernel.org>
+In-Reply-To: <20230531134159.3383703-1-sashal@kernel.org>
+References: <20230531134159.3383703-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230531_064043_544227_2A0607ED 
+X-CRM114-CacheID: sfid-20230531_064224_456753_FD9DF8BC 
 X-CRM114-Status: GOOD (  13.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
