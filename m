@@ -4,80 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEB41C77B7C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 May 2023 08:57:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69BECC77B7C
+	for <linux-amlogic@archiver.kernel.org>; Wed, 31 May 2023 08:59:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BG//aSUaHswe1KHHx2TID0RyYZMlm2/QGQuMeI9U5IM=; b=Kpn3KIUfvOiPd4
-	T00O1ozdCb19XJBMKPd/9llY5e+y21ROZTdsT2OtbpsMehjw+My5vLtw9DhBSzK2GjsVn3dQ1/Mu4
-	FoCJ2n3xUGL4OgRUT/ZPhF82PNDtsgcfL9/RYqM6wCllyUgPrpb11tf6zQIqi8PYIES+uld9mO74j
-	62FIQ82UCYWXSHGrNl64cVQWt8xg7Y8ntRq8Gpy/2HFYcT5ahd7Sr5HFBAuJCG5761cr3ldIt4fqc
-	/aXhNQkJ7i5jMoOAMeaOWMh0bI371a6GxhSgzxXXdZlbnJSKaTOehMQkRh5GxitOuJWWQCnO4VKIA
-	7to43j4OdUrRQ9bsa8+A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=jtcfouaVXAoxRFlw6PO1fBMS6PZwY2PEl5epoKydHuI=; b=m53hqx4F47fGsoMlras8njCvdH
+	KfNOUydRUFyLxpx55vzmTaMDDkMhejGAbUK2hgTZ9vUSFdHIuKpf7Eiv5gdTXvexztZn3Dc5NVG/g
+	OuJjlJqjlx0sTifIHpFreAzo8Rs7G9ucu9b5GNNACrnie3KJWQOJE8vbIChdnmRRWZcg5QcF0uUUE
+	9hkHxOwJ0HVT7O8zKUv33hyWNx3psgSIHK+3Q6myMaInLndvDE9K1NGqPqoiJDqileMH3zE+QJ0jn
+	b0GGNrMFW5hB95QO00iNCddtlZMZB1hnlQGIB9gwPNTRE8zN4he0JbQMDlANMA2gfWn2Oy5Vs3K6v
+	nOCvzhug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q4HdW-00Gmlz-1G;
-	Wed, 31 May 2023 08:56:54 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1q4Hft-00GnTX-35;
+	Wed, 31 May 2023 08:59:21 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q4HdU-00GmfD-1B
+	id 1q4Hfq-00GnSN-2p
 	for linux-amlogic@lists.infradead.org;
-	Wed, 31 May 2023 08:56:53 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-30aeee7c8a0so553882f8f.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 31 May 2023 01:56:45 -0700 (PDT)
+	Wed, 31 May 2023 08:59:20 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f6094cb2d2so57435925e9.2
+        for <linux-amlogic@lists.infradead.org>; Wed, 31 May 2023 01:59:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685523404; x=1688115404;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=exzz6pAeE8UvoElYgU8je4n0hY+uXNzHEMLEFlVL23o=;
-        b=fGhNTIeXBBRs2kumWzyzJepFEZ4JgIPKU7lkqJTxf4R5QFfcKfhMI/ujsekrCiPVWx
-         D9Pc9aD/Coo3KK4G0R1OK8phLndB7GD0B0zajNlxQBoFarKb2MYyu7jA4I0X462DtXGu
-         92Mg5Ig12pPOGY9u0NOF8l7A68EwfHxnxOra5j2/GRIAxXj15c2LzuGnQLqF9NAw9qaY
-         Y2KYmMHjV/KM8jMjeIE5sztS6ZObz+xJ6e9qBd4Wun9Johcg3rxOeEcKQiClAUCDWBe2
-         qzCTX/2on0n2AY/Pp8xyt5NKkLJ5na+ieaV2FJva8z/ygN6+s4WCn4e7vUL/CGJOuNT3
-         cRXg==
+        d=linaro.org; s=google; t=1685523556; x=1688115556;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=YBIQNd5CwMWOY24/Rr6Brie38sdaCVNySMcl3oJt0UY=;
+        b=lb1p6EnVRX+DTjwmsGXajDKG097RX6a3FHYa0py4zf7vRIItzJlmEJJdNvfPewp1gX
+         7+k3hzQmjLmlqSIBIWtywOM5/foA2so1Rkf24FhxAQ2SZPq2xkvjJBkvloKLrU76sV1s
+         dmqDXil/sJFyz5W1VVg/YzivVAyc/kjb0em6GtvR+MJJqkLdAr0qT9Biw3UTQan2RzQp
+         jhXAv9bq6EgjYcVoQCOHm+JSueQmuqUzf8qFZPEbjV1xLhMfVkHvDEgJVaGGQO4o0/D8
+         Znfjd3hvUgLCwL8rGGAevU8PxNxJ54jevizz+6yexbSHPwCZWh7EzmlMKXbDt3ReENQG
+         3/9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685523404; x=1688115404;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=exzz6pAeE8UvoElYgU8je4n0hY+uXNzHEMLEFlVL23o=;
-        b=GblKRbp/zS43INCIkSR7d/W9jIdwGVn8fPY430dSTAdN0pjUYCp9HAe0bWZKs5aX1l
-         l/kXAXlENju2+yWi0g+Kd50MWa6dSzt6MMclcLaMtUCuBTLdnaBqOtgTzgXFH2BiyTAz
-         7EzR9G9K0N4cEn5BcuWd5Gs5pVhE89u9qJgNS1oPOyDRSiT/ZfKuZIEdqJ4FcgFtzBI1
-         xeCY+us3sKUAxKDcq1WO0Ng4h34N1IiL75DPFK2R05x+X6kLBwtgZLMzWrfrBcJ+r9kI
-         QQagVVxtrt9o81GamQ5qAokV60RJy8N43WTZ3AGqWwaH0MuDxi8/Ji80kCeBAtY/T0vz
-         FUNg==
-X-Gm-Message-State: AC+VfDztSnrq0oERtB/FlCZ6A8pdjmj9obb7eUx5LfrAKl0J9FkxNf2s
-	FDuTjwbLMENB1aoFp2pxuJ/C0Q==
-X-Google-Smtp-Source: ACHHUZ6UuXtxDIm/fOFuqamiq5/YRQFeSq1dyqtPf0kIc9s9Of0DFxwhdnZ+zYh3NZx626Dfyp1H/A==
-X-Received: by 2002:a5d:6ac3:0:b0:30a:ebdb:908c with SMTP id u3-20020a5d6ac3000000b0030aebdb908cmr3755201wrw.16.1685523404537;
-        Wed, 31 May 2023 01:56:44 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id x2-20020adff0c2000000b0030af20aaa3fsm6050551wro.71.2023.05.31.01.56.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 May 2023 01:56:44 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: linux-amlogic@lists.infradead.org, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Hans-Frieder Vogt <hfdevel@gmx.net>
-In-Reply-To: <20230516203029.1031174-1-martin.blumenstingl@googlemail.com>
-References: <20230516203029.1031174-1-martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v3] ARM: dts: meson8: correct uart_B and uart_C clock
- references
-Message-Id: <168552340376.1980576.16108743746787991413.b4-ty@linaro.org>
-Date: Wed, 31 May 2023 10:56:43 +0200
+        d=1e100.net; s=20221208; t=1685523556; x=1688115556;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YBIQNd5CwMWOY24/Rr6Brie38sdaCVNySMcl3oJt0UY=;
+        b=YFOfPpkxj7gTXTZXS5JKm/KleN0GSbQfyL78lrpfz7SvmIep36M7fO7jzcfaWW6M0p
+         3iRfqqyZsr1KwRZR6eoHCrj+tDyY8CgoHn/U/GX5LvWDonp738etiLa15yexXzc8L4il
+         mYXMgW36pFmHARaRk71uqycCqOHAnjiZQ18IMXsgOnH/XGuW8o3EGKnuABX531rNpnvn
+         Cy0AESQDMu5Ynnp81Ym2iVMU3xsDM394JKUFvLC2F5SRDjgBJzjBWYCWXJkQrySJpJgw
+         18fV3R7zxLoQQOWLhuJReQOZvE/c5+RJQiv+9xdhzXDHxoCkBtc2gtBzpxw4uWR8Y9At
+         v2HA==
+X-Gm-Message-State: AC+VfDwW1Ab+1q8ZN6t4gxzvZizsRvBypRUvYF+Jxb/ZRNL2ADVDuKXd
+	YbbFVp1DjYPVslkQk5yJL+0iKQ==
+X-Google-Smtp-Source: ACHHUZ4CNyYShz0ULzlda84VWuoupYNh91jdzgJrDhnk3SyJ0FhBR4Gm/AqQagB0heDaO1DIzvnK1Q==
+X-Received: by 2002:a1c:f30e:0:b0:3f6:e42:8f85 with SMTP id q14-20020a1cf30e000000b003f60e428f85mr3669312wmq.37.1685523555830;
+        Wed, 31 May 2023 01:59:15 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5c28:3ad5:fcda:7779? ([2a01:e0a:982:cbb0:5c28:3ad5:fcda:7779])
+        by smtp.gmail.com with ESMTPSA id c21-20020a7bc855000000b003f1958eeadcsm23417092wml.17.2023.05.31.01.59.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 May 2023 01:59:15 -0700 (PDT)
+Message-ID: <9158d9ca-fe00-760c-4c95-f2ee045038ee@linaro.org>
+Date: Wed, 31 May 2023 10:59:14 +0200
 MIME-Version: 1.0
-X-Mailer: b4 0.12.2
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] firmware: meson_sm: Fix memcpy vs iomem type warnings
+Content-Language: en-US
+To: Kees Cook <keescook@chromium.org>
+Cc: linux-hardening@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel test robot <lkp@intel.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>
+References: <20221012185234.never.936-kees@kernel.org>
+ <166602031304.3572695.12870664862275915316.b4-ty@linaro.org>
+ <202305171124.4EB0D65@keescook>
+Organization: Linaro Developer Services
+In-Reply-To: <202305171124.4EB0D65@keescook>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230531_015652_414864_91FEFBEE 
-X-CRM114-Status: GOOD (  12.10  )
+X-CRM114-CacheID: sfid-20230531_015918_916959_F00F3A0A 
+X-CRM114-Status: GOOD (  17.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,52 +96,79 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On 17/05/2023 20:25, Kees Cook wrote:
+> *thread necromancy*
+> 
+> On Mon, Oct 17, 2022 at 05:25:13PM +0200, Neil Armstrong wrote:
+>> Hi,
+>>
+>> On Wed, 12 Oct 2022 11:53:16 -0700, Kees Cook wrote:
+>>> Use memcpy_{toio,fromio}() instead of memcpy(). Silences warnings from
+>>> Sparse:
+>>>
+>>> drivers/firmware/meson/meson_sm.c:170:17: warning: incorrect type in argument 1 (different address spaces)
+>>> drivers/firmware/meson/meson_sm.c:170:17:    expected void const *
+>>> drivers/firmware/meson/meson_sm.c:170:17:    got void [noderef] __iomem *sm_shmem_out_base
+>>> drivers/firmware/meson/meson_sm.c:170:17: warning: incorrect type in argument 2 (different address spaces)
+>>> drivers/firmware/meson/meson_sm.c:170:17:    expected void const *
+>>> drivers/firmware/meson/meson_sm.c:170:17:    got void [noderef] __iomem *sm_shmem_out_base
+>>> drivers/firmware/meson/meson_sm.c:206:9: warning: incorrect type in argument 1 (different address spaces)
+>>> drivers/firmware/meson/meson_sm.c:206:9:    expected void const *
+>>> drivers/firmware/meson/meson_sm.c:206:9:    got void [noderef] __iomem *sm_shmem_in_base
+>>> drivers/firmware/meson/meson_sm.c:206:9: warning: incorrect type in argument 1 (different address spaces)
+>>> drivers/firmware/meson/meson_sm.c:206:9:    expected void const *
+>>> drivers/firmware/meson/meson_sm.c:206:9:    got void [noderef] __iomem *sm_shmem_in_base
+>>> drivers/firmware/meson/meson_sm.c:206:9: warning: incorrect type in argument 1 (different address spaces)
+>>> drivers/firmware/meson/meson_sm.c:206:9:    expected void const *
+>>> drivers/firmware/meson/meson_sm.c:206:9:    got void [noderef] __iomem *sm_shmem_in_base
+>>> drivers/firmware/meson/meson_sm.c:206:9: warning: incorrect type in argument 1 (different address spaces)
+>>> drivers/firmware/meson/meson_sm.c:206:9:    expected void *
+>>> drivers/firmware/meson/meson_sm.c:206:9:    got void [noderef] __iomem *sm_shmem_in_base
+>>>
+>>> [...]
+>>
+>> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.2/drivers)
+>>
+>> [1/1] firmware: meson_sm: Fix memcpy vs iomem type warnings
+>>        https://git.kernel.org/amlogic/c/7dc69c7d073e6004a281db8f7f15cf6ebf702ea0
+>>
+>> These changes has been applied on the intermediate git tree [1].
+>>
+>> The v6.2/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+>> for inclusion in their intermediate git branches in order to be sent to Linus during
+>> the next merge window, or sooner if it's a set of fixes.
+>>
+>> In the cases of fixes, those will be merged in the current release candidate
+>> kernel and as soon they appear on the Linux master branch they will be
+>> backported to the previous Stable and Long-Stable kernels [2].
+>>
+>> The intermediate git branches are merged daily in the linux-next tree [3],
+>> people are encouraged testing these pre-release kernels and report issues on the
+>> relevant mailing-lists.
+>>
+>> If problems are discovered on those changes, please submit a signed-off-by revert
+>> patch followed by a corrective changeset.
+>>
+>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+>> [3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+> 
+> Hi! This change seems to have never been mainlined and seems to have
+> disappeared from linux-next.
+> 
 Hi,
 
-On Tue, 16 May 2023 22:30:29 +0200, Martin Blumenstingl wrote:
-> On Meson8 uart_B and uart_C do not work, because they are relying on
-> incorrect clocks. Change the references of pclk to the correct CLKID
-> (UART1 for uart_B and UART2 for uart_C), to allow use of the two uarts.
-> 
-> This was originally reported by Hans-Frieder Vogt for Meson8b [0], but
-> the same bug is also present in meson8.dtsi
-> 
-> [...]
+Indeed it was rejected by Arnd, but I failed to find time to investigate how to fix it
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.5/arm-dt)
+https://lore.kernel.org/all/4a6b34ef-f5d2-4e56-a7f6-6a7c9cdda416@app.fastmail.com/
 
-[1/1] ARM: dts: meson8: correct uart_B and uart_C clock references
-      https://git.kernel.org/amlogic/c/98b503c7fb13a17a47d8ebf15fa8f7c10118e75c
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.5/arm-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
 Neil
-
 
 _______________________________________________
 linux-amlogic mailing list
