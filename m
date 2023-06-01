@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 850FEC7EE29
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jun 2023 06:24:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EA9AC77B7E
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jun 2023 06:24:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=n37hYo0dOgFW460VOEjnLKs8pzAWVeiaWzoSTp8F/G8=; b=uzC5ETF9+bBshy
-	OASWdrBx8MQA1K67LzzZzCFwmBPvBrlbGIeN2ThS/gu3/Hc3RQo44ccOdEZt22K8wb+8wBv/yvhbD
-	uHz1cMXoXF+wB8hN2jBIyDX+rnUaUQd2woo7c9UvJoArkjMe6/K3a++Qcjr4m+4nqSCpj8R3OYm8s
-	gmKKSLKWPDL9jPeifDgRXmL1W7aiMK78lrvVocF04408FWVZXA2x/tNjHL0+8RNEBMIkL6ypoHgxS
-	y/H2KWo/BCtlG/GUpaTnJx70+s/M+qtPH7k2/LKA51joVcyyn+izI8czX/KfjB2z4u0KNDA4QMLWE
-	3oM+AZOrJojA11NYIb/Q==;
+	List-Owner; bh=0q91jUOKIiZIXM61xZP9t79PCEezTpwDxWyHWXmx5I8=; b=TsEl8il5Zp+u/E
+	h6y3fYBXE4xHkbczMc/o1lrkyVn2LEQiWCxCzEGzu0ZWNH6nKg83ZuEHGFdTbX6c/8RQJutgTNXEL
+	tXcpUWTZMdMERYZKBLPoRcRhaopTbPMiwrCkXov3NK3rEhZThp5w0c9xr6lA1kXGC25PfharZ9Lve
+	964FBHtZomfUAMvVZigaBFxjAUyzvzyuuMuJD6QPG0akVNzJdyPPqR/EhH8LUPcHpB9SlMKjEYm5V
+	ziYlNXQsJF8gwZJbe0+cYbrFu4ndhTzwlM4n2anp35YVlc3ZGgs3ET3N9bBbdLDh55H3usGqUnl6e
+	ljUtmqBhmDIJZEsEZwlw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q4bj5-002Ahw-2S;
-	Thu, 01 Jun 2023 06:23:59 +0000
+	id 1q4bjJ-002AvY-39;
+	Thu, 01 Jun 2023 06:24:13 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q4bj0-002Ad3-15;
-	Thu, 01 Jun 2023 06:23:56 +0000
+	id 1q4bj4-002Aft-0f;
+	Thu, 01 Jun 2023 06:23:59 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 975415FD70;
-	Thu,  1 Jun 2023 09:23:49 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id D00845FD74;
+	Thu,  1 Jun 2023 09:23:54 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1685600629;
-	bh=Q8CW0l91q7Th3XcNDlwzoNWNnWO9BZjhfFIJhYfFY5Y=;
+	s=mail; t=1685600634;
+	bh=6FX/oDhV3UArFeFozJZTELPsj5XEanV7an9T0MKnXa0=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=n6h/JboeFGivZeMmfptLF1Yojq836TdKOmTDWUGHvktQGtmoNpS46uAFA8lda+VXm
-	 M5k2YrIXjos5DVNRJZiVR40THbMQ3ndT5YZuxtlxcennsjGvCmFt/kF4b6SgC2fB4Y
-	 r6kS5nWRosna4QicZH2S02vxk+QkAvfFFUvdu0FmFZwXjljNfll3AmxN++GwcWFwrg
-	 scEETeunJ0nieXS+r0kHROmElgHP2GpK9AhrxcZueRl7G4mOJe0XqACJZsiu014NTA
-	 1Tw2Np1un1jNbgaPt4G0jdERNyD63dXF4fC56ev7GG2MdMjRl5sl3m5NlWpqq92u3z
-	 ftlY+PG0ucqGA==
+	b=j9W+l5s+BZrwcotRo28gMX6RXqEkq5D9k/kIRuYPog9sgetx5bJ+AWNQHDKK5Ui55
+	 OhxgVoHTIWtqz47Q4J0Vr0cMIt7g4YpeR2qxj0duCA4A0m/+aVukmeRD75nRmzphzL
+	 VztAbMb4blmdU1arX3QrHNrYYxKNGu57vCBjw5oGfqWMTDKGLxpN8xfkusf9X3be9s
+	 a8RMCLuZIMpD48OlnCSKxCHiNM9Ls89j+GsFSyZFtsHkCgkyezcp48gIerMtI1nEY4
+	 r13++/1CepWAi+isP5fV6T15I43mhIEylc9mOSbrogWFYYHp2wc3rF47DN2QQUd4CZ
+	 MLycIbZ9iCoww==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Thu,  1 Jun 2023 09:23:49 +0300 (MSK)
+	Thu,  1 Jun 2023 09:23:54 +0300 (MSK)
 From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
 To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
 	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
@@ -52,9 +52,9 @@ CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
 	<AVKrasnov@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>
-Subject: [RFC PATCH v5 2/6] mtd: rawnand: meson: wait for command in polling mode
-Date: Thu, 1 Jun 2023 09:18:45 +0300
-Message-ID: <20230601061850.3907800-3-AVKrasnov@sberdevices.ru>
+Subject: [RFC PATCH v5 6/6] mtd: rawnand: meson: remove unneeded bitwise OR with zeroes
+Date: Thu, 1 Jun 2023 09:18:49 +0300
+Message-ID: <20230601061850.3907800-7-AVKrasnov@sberdevices.ru>
 X-Mailer: git-send-email 2.35.0
 In-Reply-To: <20230601061850.3907800-1-AVKrasnov@sberdevices.ru>
 References: <20230601061850.3907800-1-AVKrasnov@sberdevices.ru>
@@ -70,8 +70,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/01 03:13:00 #21393813
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230531_232354_921870_155C5B1D 
-X-CRM114-Status: GOOD (  16.36  )
+X-CRM114-CacheID: sfid-20230531_232358_451305_4F7FA79D 
+X-CRM114-Status: GOOD (  11.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,120 +88,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This adds support of waiting for command completion in sofyware polling
-mode. It is needed when ready/busy pin is not implemented in hardware.
+Both operations have no effect.
 
 Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
 ---
- drivers/mtd/nand/raw/meson_nand.c | 53 ++++++++++++++++++-------------
- 1 file changed, 31 insertions(+), 22 deletions(-)
+ drivers/mtd/nand/raw/meson_nand.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index 9dd4a676497b..82a629025adc 100644
+index 2a91916566f4..e78912bd3b4d 100644
 --- a/drivers/mtd/nand/raw/meson_nand.c
 +++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -179,6 +179,7 @@ struct meson_nfc {
- 	u32 info_bytes;
+@@ -626,12 +626,12 @@ static int meson_nfc_rw_cmd_prepare_and_execute(struct nand_chip *nand,
+ 	cmd0 = in ? NAND_CMD_READ0 : NAND_CMD_SEQIN;
+ 	nfc->cmdfifo.rw.cmd0 = cs | NFC_CMD_CLE | cmd0;
  
- 	unsigned long assigned_cs;
-+	bool use_polling;
- };
- 
- enum {
-@@ -392,32 +393,38 @@ static void meson_nfc_set_data_oob(struct nand_chip *nand,
- 	}
- }
- 
--static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
-+static int meson_nfc_queue_rb(struct nand_chip *nand, int timeout_ms)
- {
--	u32 cmd, cfg;
--	int ret = 0;
-+	struct meson_nfc *nfc = nand_get_controller_data(nand);
- 
--	meson_nfc_cmd_idle(nfc, nfc->timing.twb);
--	meson_nfc_drain_cmd(nfc);
--	meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
-+	if (nfc->use_polling) {
-+		return nand_soft_waitrdy(nand, timeout_ms);
-+	} else {
-+		u32 cmd, cfg;
-+		int ret = 0;
- 
--	cfg = readl(nfc->reg_base + NFC_REG_CFG);
--	cfg |= NFC_RB_IRQ_EN;
--	writel(cfg, nfc->reg_base + NFC_REG_CFG);
-+		meson_nfc_cmd_idle(nfc, nfc->timing.twb);
-+		meson_nfc_drain_cmd(nfc);
-+		meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
- 
--	reinit_completion(&nfc->completion);
-+		cfg = readl(nfc->reg_base + NFC_REG_CFG);
-+		cfg |= NFC_RB_IRQ_EN;
-+		writel(cfg, nfc->reg_base + NFC_REG_CFG);
- 
--	/* use the max erase time as the maximum clock for waiting R/B */
--	cmd = NFC_CMD_RB | NFC_CMD_RB_INT
--		| nfc->param.chip_select | nfc->timing.tbers_max;
--	writel(cmd, nfc->reg_base + NFC_REG_CMD);
-+		reinit_completion(&nfc->completion);
- 
--	ret = wait_for_completion_timeout(&nfc->completion,
--					  msecs_to_jiffies(timeout_ms));
--	if (ret == 0)
--		ret = -1;
-+		/* use the max erase time as the maximum clock for waiting R/B */
-+		cmd = NFC_CMD_RB | NFC_CMD_RB_INT
-+			| nfc->param.chip_select | nfc->timing.tbers_max;
-+		writel(cmd, nfc->reg_base + NFC_REG_CMD);
- 
--	return ret;
-+		ret = wait_for_completion_timeout(&nfc->completion,
-+						  msecs_to_jiffies(timeout_ms));
-+		if (ret == 0)
-+			return -ETIMEDOUT;
-+
-+		return 0;
-+	}
- }
- 
- static void meson_nfc_set_user_byte(struct nand_chip *nand, u8 *oob_buf)
-@@ -623,7 +630,7 @@ static int meson_nfc_rw_cmd_prepare_and_execute(struct nand_chip *nand,
- 	if (in) {
- 		nfc->cmdfifo.rw.cmd1 = cs | NFC_CMD_CLE | NAND_CMD_READSTART;
- 		writel(nfc->cmdfifo.rw.cmd1, nfc->reg_base + NFC_REG_CMD);
--		meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tR_max));
-+		meson_nfc_queue_rb(nand, PSEC_TO_MSEC(sdr->tR_max));
+-	addrs[0] = cs | NFC_CMD_ALE | 0;
++	addrs[0] = cs | NFC_CMD_ALE;
+ 	if (mtd->writesize <= 512) {
+ 		cmd_num--;
+ 		row_start = 1;
  	} else {
- 		meson_nfc_cmd_idle(nfc, nfc->timing.tadl);
- 	}
-@@ -669,7 +676,7 @@ static int meson_nfc_write_page_sub(struct nand_chip *nand,
- 
- 	cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_PAGEPROG;
- 	writel(cmd, nfc->reg_base + NFC_REG_CMD);
--	meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tPROG_max));
-+	meson_nfc_queue_rb(nand, PSEC_TO_MSEC(sdr->tPROG_max));
- 
- 	meson_nfc_dma_buffer_release(nand, data_len, info_len, DMA_TO_DEVICE);
- 
-@@ -952,7 +959,7 @@ static int meson_nfc_exec_op(struct nand_chip *nand,
- 			break;
- 
- 		case NAND_OP_WAITRDY_INSTR:
--			meson_nfc_queue_rb(nfc, instr->ctx.waitrdy.timeout_ms);
-+			meson_nfc_queue_rb(nand, instr->ctx.waitrdy.timeout_ms);
- 			if (instr->delay_ns)
- 				meson_nfc_cmd_idle(nfc, delay_idle);
- 			break;
-@@ -1412,6 +1419,8 @@ static int meson_nfc_probe(struct platform_device *pdev)
- 		return ret;
+-		addrs[1] = cs | NFC_CMD_ALE | 0;
++		addrs[1] = cs | NFC_CMD_ALE;
+ 		row_start = 2;
  	}
  
-+	nfc->use_polling = of_property_read_bool(dev->of_node, "polling");
-+
- 	writel(0, nfc->reg_base + NFC_REG_CFG);
- 	ret = devm_request_irq(dev, irq, meson_nfc_irq, 0, dev_name(dev), nfc);
- 	if (ret) {
 -- 
 2.35.0
 
