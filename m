@@ -4,51 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D795C7EE23
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jun 2023 11:55:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F34E0C77B7A
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Jun 2023 14:13:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5ivSpnwPra8q2VuMqc2VbNux0fSNZVkipPpfYv5OR3w=; b=3uFBKvi4IsCq+v
-	/ai2cVVUrE4s/SKkSwjo7I8O3yNsYNQgcEYBOuTA7c6AA/LX272L4jIzgJHnaTm43e1HqLskToD7K
-	uwAQ6VB+PgxDkzmm23eUZNY9ZF5NkpO6syEN9uui8PV6mvnIoQpl3yMTCv0zSHAGQOq8O9QD9Bgfy
-	416NTsOw3M+D2mvTSOD7tJOOUGU4DK11tfDMobqcUW62mev5YPk/d99eXcoNCScGtL37YeOQRZtKr
-	gxzo9ly7DK/gw8GITfOopJ3HQSKlR+vhvzsWH4x/o3sduDqFp01IVajy5c/FM59xL0Ub6cx25pL+4
-	8pCvh17jIsWGQwresSCw==;
+	List-Owner; bh=E16KWoiMxPleWxA16cFxWLRSdf9fOGujWUFMhp1Wvw8=; b=xDONhSFjnPq6XA
+	hgD04FNpJ00TP3/9nwHQmNuuFAvgyMFgkZIWQn06ZVxvtx45aHHGeEO0m+eTBpO+1aX3cpESGfPtg
+	WZrlZ8HC9GzjVFZWtxIr7jtcof/1GFJCu6/ACXj14i8nFpwtBpR5OgXygmHEBfIpX5oxlR2sioeRm
+	+Ib5fdVbH7+GALAhgtQWXTcx9bZR8Hm+vIS2Na2HzSS+GteRwBX0RnNVPmhGvhYxwDoEfybhZeao9
+	mvPG/tDAKf8gOt/tqJqFWFHd1E8uLjbB1d9RLJXuxeZ6cSzyRrFgX2lT89wXsV0P9k8+KYgadP2ig
+	QK2uUhwKzNaD/HTUIlVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q4gtI-003J2P-2q;
-	Thu, 01 Jun 2023 11:54:52 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1q4j2q-003nSt-2Q;
+	Thu, 01 Jun 2023 14:12:52 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q4gtG-003Iyj-09
+	id 1q4j2n-003nRW-1a
 	for linux-amlogic@lists.infradead.org;
-	Thu, 01 Jun 2023 11:54:51 +0000
-Received: from droid10-sz.amlogic.com (10.28.11.69) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Thu, 1 Jun 2023
- 19:54:01 +0800
-From: zelong dong <zelong.dong@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Sean Young <sean@mess.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: <linux-media@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<Qianggui.Song@amlogic.com>, <Yonghui.Yu@amlogic.com>,
-	<kelvin.zhang@amlogic.com>, Zelong Dong <zelong.dong@amlogic.com>
-Subject: [PATCH v3 3/3] media: rc: meson-ir: support MMIO regmaps to access registers
-Date: Thu, 1 Jun 2023 19:54:33 +0800
-Message-ID: <20230601115433.21809-4-zelong.dong@amlogic.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20230601115433.21809-1-zelong.dong@amlogic.com>
-References: <20230601115433.21809-1-zelong.dong@amlogic.com>
+	Thu, 01 Jun 2023 14:12:51 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3f603d4bc5bso8780355e9.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 01 Jun 2023 07:12:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685628768; x=1688220768;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=blRDmP8zwUxnWYu3O2q7G8SVs+SLeK3eRrnyEq5ozP4=;
+        b=qdN3sFmE0bkWjRKWetOAT0HHLZIxe86o4BV9VjIYHiUK3XPu2S8gc0aoVmeWcrs4cy
+         agjoc2/Hh7uBRXSKUK6reJT3RUJmkZAEwpys5HDX5bJr6n6VJa7oPa+LItSY9540le1v
+         c5xeuCTZ1QVljMhR3nmnMXrrL0arqyhLw8IIxDSf/EhE6ILbEj1sEW03f3QystUPuj5Z
+         bDEUctCPLc84Ov0ke0ettWxLK3yjWZ3RCAHD2zRdmVaAybo0NiXe5TLVYrUVI645Qq06
+         9BbZlfyjNk5aeQp4Zj1+EaGkNAjjCWOgccsS3/JaCUwjXDNUT+G0TrhVnq5XV5ORs7dF
+         6+6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685628768; x=1688220768;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=blRDmP8zwUxnWYu3O2q7G8SVs+SLeK3eRrnyEq5ozP4=;
+        b=HRUwTJjsSJxwdW1m35V8eVtK7+wIe+CavUOs+kK8s6Q1I5k89gY4A5/cog5zAsCDv8
+         fcOGBudvMX3WWKceIoRZQNlsvDbtJLpqzOUSAvLChgSXbwBq+hf8YUHYmsMcUXK/0Hbc
+         +RFhVLhSuV7KxOqbPJNHTT623qYdxRZOAzb55/QAp/iTpA16uT/53WNeB3g6UEmQ1Ikm
+         v4xRQn8wf1b53L6Q5fmJCy3ny2bJ0tk4sfcRV1XD52qJ51E7jG9FjREfMq7I4l/5J9KO
+         xGkMa3VmWombRXxMc2xXqFpYg6V4ktcX4s9Yc9MOdw1cEU92hECmyg2uW8uBOB37htzT
+         f2nw==
+X-Gm-Message-State: AC+VfDyzn2BdFzuuMKIR9BGKlr6VC578yZRkVd38TD29m1XlntYP/bWQ
+	x1B40Yvd8zoF0a0dDRtaTS7Rbw==
+X-Google-Smtp-Source: ACHHUZ6/ivQPA2lY433i2n8DT8ybJaluMhJNQm/WfFkDzmtsk8A31ifylaUb4N2I4BWnvbWtYj/ztw==
+X-Received: by 2002:adf:f244:0:b0:2f6:bf04:c8cc with SMTP id b4-20020adff244000000b002f6bf04c8ccmr2034350wrp.55.1685628767960;
+        Thu, 01 Jun 2023 07:12:47 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id p12-20020adfcc8c000000b0030adfa48e1esm10629591wrj.29.2023.06.01.07.12.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Jun 2023 07:12:47 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
+ Daniel Vetter <daniel@ffwll.ch>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Sam Ravnborg <sam@ravnborg.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: "Lukas F. Hartmann" <lukas@mntre.com>, 
+ Nicolas Belin <nbelin@baylibre.com>, linux-amlogic@lists.infradead.org, 
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linux-phy@lists.infradead.org, 
+ Rob Herring <robh@kernel.org>, Jagan Teki <jagan@amarulasolutions.com>
+In-Reply-To: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org>
+References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org>
+Subject: Re: (subset) [PATCH v5 00/17] drm/meson: add support for MIPI DSI
+ Display
+Message-Id: <168562876692.86739.7052062833690353953.b4-ty@linaro.org>
+Date: Thu, 01 Jun 2023 16:12:46 +0200
 MIME-Version: 1.0
-X-Originating-IP: [10.28.11.69]
+X-Mailer: b4 0.12.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230601_045450_083341_4E468919 
-X-CRM114-Status: GOOD (  17.37  )
+X-CRM114-CacheID: sfid-20230601_071249_550179_255FD0A2 
+X-CRM114-Status: UNSURE (   9.82  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,180 +107,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Zelong Dong <zelong.dong@amlogic.com>
+Hi,
 
-Supports MMIO regmaps to access controller registers in Meson IR driver.
+On Tue, 30 May 2023 09:38:01 +0200, Neil Armstrong wrote:
+> The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
+> with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI
+> glue on the same Amlogic SoCs.
+> 
+> This adds support for the glue managing the transceiver, mimicing the init flow provided
+> by Amlogic to setup the ENCL encoder, the glue, the transceiver, the digital D-PHY and the
+> Analog PHY in the proper way.
+> 
+> [...]
 
-Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
----
- drivers/media/rc/Kconfig    |  1 +
- drivers/media/rc/meson-ir.c | 72 +++++++++++++++++++------------------
- 2 files changed, 39 insertions(+), 34 deletions(-)
+Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
 
-diff --git a/drivers/media/rc/Kconfig b/drivers/media/rc/Kconfig
-index ac4172feb6f9..24437ed64a27 100644
---- a/drivers/media/rc/Kconfig
-+++ b/drivers/media/rc/Kconfig
-@@ -271,6 +271,7 @@ config IR_MCEUSB
- config IR_MESON
- 	tristate "Amlogic Meson IR remote receiver"
- 	depends on ARCH_MESON || COMPILE_TEST
-+	select REGMAP_MMIO
- 	help
- 	   Say Y if you want to use the IR remote receiver available
- 	   on Amlogic Meson SoCs.
-diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
-index a0ccde02bc08..d22d2578ec39 100644
---- a/drivers/media/rc/meson-ir.c
-+++ b/drivers/media/rc/meson-ir.c
-@@ -14,6 +14,7 @@
- #include <linux/platform_device.h>
- #include <linux/spinlock.h>
- #include <linux/bitfield.h>
-+#include <linux/regmap.h>
- 
- #include <media/rc-core.h>
- 
-@@ -50,21 +51,16 @@
- #define MESON_HW_TRATE		20	/* us */
- 
- struct meson_ir {
--	void __iomem	*reg;
-+	struct regmap	*reg;
- 	struct rc_dev	*rc;
- 	spinlock_t	lock;
- };
- 
--static void meson_ir_set_mask(struct meson_ir *ir, unsigned int reg,
--			      u32 mask, u32 value)
--{
--	u32 data;
--
--	data = readl(ir->reg + reg);
--	data &= ~mask;
--	data |= (value & mask);
--	writel(data, ir->reg + reg);
--}
-+static struct regmap_config meson_ir_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+};
- 
- static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
- {
-@@ -74,11 +70,11 @@ static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
- 
- 	spin_lock(&ir->lock);
- 
--	duration = readl_relaxed(ir->reg + IR_DEC_REG1);
-+	regmap_read(ir->reg, IR_DEC_REG1, &duration);
- 	duration = FIELD_GET(IR_DEC_REG1_TIME_IV, duration);
- 	rawir.duration = duration * MESON_RAW_TRATE;
- 
--	status = readl_relaxed(ir->reg + IR_DEC_STATUS);
-+	regmap_read(ir->reg, IR_DEC_STATUS, &status);
- 	rawir.pulse = !!(status & IR_DEC_STATUS_PULSE);
- 
- 	ir_raw_event_store_with_timeout(ir->rc, &rawir);
-@@ -92,6 +88,7 @@ static int meson_ir_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct device_node *node = dev->of_node;
-+	void __iomem *res_start;
- 	const char *map_name;
- 	struct meson_ir *ir;
- 	int irq, ret;
-@@ -100,7 +97,12 @@ static int meson_ir_probe(struct platform_device *pdev)
- 	if (!ir)
- 		return -ENOMEM;
- 
--	ir->reg = devm_platform_ioremap_resource(pdev, 0);
-+	res_start = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(res_start))
-+		return PTR_ERR(res_start);
-+
-+	ir->reg = devm_regmap_init_mmio(&pdev->dev, res_start,
-+					&meson_ir_regmap_config);
- 	if (IS_ERR(ir->reg))
- 		return PTR_ERR(ir->reg);
- 
-@@ -143,27 +145,28 @@ static int meson_ir_probe(struct platform_device *pdev)
- 	}
- 
- 	/* Reset the decoder */
--	meson_ir_set_mask(ir, IR_DEC_REG1, IR_DEC_REG1_RESET,
--			  IR_DEC_REG1_RESET);
--	meson_ir_set_mask(ir, IR_DEC_REG1, IR_DEC_REG1_RESET, 0);
-+	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_RESET,
-+			   IR_DEC_REG1_RESET);
-+	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_RESET, 0);
- 
- 	/* Set general operation mode (= raw/software decoding) */
- 	if (of_device_is_compatible(node, "amlogic,meson6-ir"))
--		meson_ir_set_mask(ir, IR_DEC_REG1, IR_DEC_REG1_MODE,
--				  FIELD_PREP(IR_DEC_REG1_MODE, DEC_MODE_RAW));
-+		regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_MODE,
-+				   FIELD_PREP(IR_DEC_REG1_MODE, DEC_MODE_RAW));
- 	else
--		meson_ir_set_mask(ir, IR_DEC_REG2, IR_DEC_REG2_MODE,
--				  FIELD_PREP(IR_DEC_REG2_MODE, DEC_MODE_RAW));
-+		regmap_update_bits(ir->reg, IR_DEC_REG2, IR_DEC_REG2_MODE,
-+				   FIELD_PREP(IR_DEC_REG2_MODE, DEC_MODE_RAW));
- 
- 	/* Set rate */
--	meson_ir_set_mask(ir, IR_DEC_REG0, IR_DEC_REG0_BASE_TIME,
--			  MESON_RAW_TRATE - 1);
-+	regmap_update_bits(ir->reg, IR_DEC_REG0, IR_DEC_REG0_BASE_TIME,
-+			   FIELD_PREP(IR_DEC_REG0_BASE_TIME,
-+				      MESON_RAW_TRATE - 1));
- 	/* IRQ on rising and falling edges */
--	meson_ir_set_mask(ir, IR_DEC_REG1, IR_DEC_REG1_IRQSEL,
--			  FIELD_PREP(IR_DEC_REG1_IRQSEL, IRQSEL_RISE_FALL));
-+	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_IRQSEL,
-+			   FIELD_PREP(IR_DEC_REG1_IRQSEL, IRQSEL_RISE_FALL));
- 	/* Enable the decoder */
--	meson_ir_set_mask(ir, IR_DEC_REG1, IR_DEC_REG1_ENABLE,
--			  IR_DEC_REG1_ENABLE);
-+	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_ENABLE,
-+			   IR_DEC_REG1_ENABLE);
- 
- 	dev_info(dev, "receiver initialized\n");
- 
-@@ -177,7 +180,7 @@ static void meson_ir_remove(struct platform_device *pdev)
- 
- 	/* Disable the decoder */
- 	spin_lock_irqsave(&ir->lock, flags);
--	meson_ir_set_mask(ir, IR_DEC_REG1, IR_DEC_REG1_ENABLE, 0);
-+	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_ENABLE, 0);
- 	spin_unlock_irqrestore(&ir->lock, flags);
- }
- 
-@@ -195,15 +198,16 @@ static void meson_ir_shutdown(struct platform_device *pdev)
- 	 * bootloader a chance to power the system back on
- 	 */
- 	if (of_device_is_compatible(node, "amlogic,meson6-ir"))
--		meson_ir_set_mask(ir, IR_DEC_REG1, IR_DEC_REG1_MODE,
--				  FIELD_PREP(IR_DEC_REG1_MODE, DEC_MODE_NEC));
-+		regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_MODE,
-+				   FIELD_PREP(IR_DEC_REG1_MODE, DEC_MODE_NEC));
- 	else
--		meson_ir_set_mask(ir, IR_DEC_REG2, IR_DEC_REG2_MODE,
--				  FIELD_PREP(IR_DEC_REG2_MODE, DEC_MODE_NEC));
-+		regmap_update_bits(ir->reg, IR_DEC_REG2, IR_DEC_REG2_MODE,
-+				   FIELD_PREP(IR_DEC_REG2_MODE, DEC_MODE_NEC));
- 
- 	/* Set rate to default value */
--	meson_ir_set_mask(ir, IR_DEC_REG0, IR_DEC_REG0_BASE_TIME,
--			  MESON_HW_TRATE - 1);
-+	regmap_update_bits(ir->reg, IR_DEC_REG0, IR_DEC_REG0_BASE_TIME,
-+			   FIELD_PREP(IR_DEC_REG0_BASE_TIME,
-+				      MESON_HW_TRATE - 1));
- 
- 	spin_unlock_irqrestore(&ir->lock, flags);
- }
+[06/17] dt-bindings: display: add Amlogic MIPI DSI Host Controller bindings
+        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=0628f2341e96213c9f2d074853b255f65acd3795
+[07/17] dt-bindings: display: meson-vpu: add third DPI output port
+        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=25b3b35cd51ef0d98165666d250a51f39db6a1fc
+[08/17] drm/meson: fix unbind path if HDMI fails to bind
+        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=6a044642988b5f8285f3173b8e88784bef2bc306
+[09/17] drm/meson: only use components with dw-hdmi
+        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=44e16166e0e9b94d8bcdf55fc0e5fcceca1154f0
+[10/17] drm/meson: venc: add ENCL encoder setup for MIPI-DSI output
+        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=51fc01a03442cce5e4c21375a1ceb2e4ec93c833
+[11/17] drm/meson: add DSI encoder
+        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=42dcf15f901c8222352da31d622b4ee844068f42
+[12/17] drm/meson: add support for MIPI-DSI transceiver
+        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=77d9e1e6b8468f701ab024a060aa9c0339356870
+[13/17] drm/panel: khadas-ts050: update timings to achieve 60Hz refresh rate
+        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=29c6df0d942454cb43334cf0e36de068f4124b94
+
 -- 
-2.35.1
+Neil
 
 
 _______________________________________________
