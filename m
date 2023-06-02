@@ -4,71 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAC4EC7EE29
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Jun 2023 10:33:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB52EC7EE24
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Jun 2023 12:46:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=OxmZEELeXBx+gUU7kFf9N/yEMyQOI35ja0W+dTw7w/A=; b=qoo3da0T6l/wTW
-	ZfHQsptAHxbOc7y4UmUNpFt979xbXuZdaof51QI4zxQNWNuDRba+Yx9Vj+M+uXJ0MxpxAd3AaYdiJ
-	COkEhVONc4BSNgfZrACF98E0Udxfz7x9pfFsOuyamqq8wo4uBSnOQqSontauhTwyTtBO6MxDL5yuf
-	QbMVue0UNgZC3pyOSq/HIMbyccjSncpgh+Yv1+286LeVY3iBbdO1BRBLFABArkAKUCT0Tmcj+Jlmv
-	X6WXCzJ32EjLjtAKFKFbMlPoOcyJXh69cyhHeNe1Z5v5X5WI3RDjJGIk6pjTKimwgPAbV6u9bl9jP
-	6BdYjtf15FmTEdlluAUQ==;
+	List-Owner; bh=eLLBHbRiKfVMV7+Zsc3mpWB8eimvr0wqEM0HqoCLh/k=; b=kGsXfQKk2GEDEv
+	5LwaNzue04uiVa73bAx4VtKzAyncGeHjaNQkp0Uc/69EFXUrQwnjDqVuOQsFlYHtyfi0nd0v3R64b
+	ydVWWWEkCSU8TwOVlIOVZIGMpeUR4wFM0sTOEzX6k0N2B6ki5Q76Dr5uDhJZ74SaR4EJye3DDW1q/
+	b+BXQsL9EgopGx8b3zJLI6cCqqd1bFCU/sVPOUrGibeNuDzw8Jr9L0VLhRacs/cc+aiijqCs7FQJN
+	3PSu9ThD1ks5FB5wtLVgeWJpqtyedS9azs5K/1TReIQxGwr4CkH7QN0cN6FJJ1afPEtezee0yFGCa
+	0pQECtbLdFa2MICRiF+A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q525J-006XIs-2g;
-	Fri, 02 Jun 2023 10:32:41 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1q54AB-006vAV-0T;
+	Fri, 02 Jun 2023 12:45:51 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q525G-006XHp-0y;
-	Fri, 02 Jun 2023 10:32:40 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 2390C5FD03;
-	Fri,  2 Jun 2023 13:32:30 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1685701950;
-	bh=U2UnoUMYRs9m/BLycNQ2iLq6bQeVm56LTFKDcGw5E4A=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=dDpfb4nspYq2IX79ggRqGaSgsWFxQt9B9+ivAjCuKkPYK+q/bDLe82NvRXQUIoP+J
-	 1UgfCSEnRVAf5ne/aOauc+fEm69F8FQcHNj3jabszSu48HnRuxfrN2df70IxJudXUL
-	 EbvNvDia+9mnO4Yc2jgEksvdVUhgVqGchpdhHZ3m6PqX55BggvX0jUK6f9Y8poxFpZ
-	 cWQX7YPm52iN0PKBRwsknc5qKJgZX6pM4h4ofywpJyYrEW003YvZ8+H+HYySWIge0D
-	 wMaJq5LKgKm+TuCkbyW0xzWe44pGE7/VvS1mPdJvdQtxM6Wr43p6CZh8SGtVssXyPz
-	 w2WiIR79N/Yvg==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Fri,  2 Jun 2023 13:32:29 +0300 (MSK)
-From: George Stark <gnstark@sberdevices.ru>
-To: <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
-	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <hkallweit1@gmail.com>
-CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<kernel@sberdevices.ru>, George Stark <GNStark@sberdevices.ru>, Dmitry
- Rokosov <ddrokosov@sberdevices.ru>
-Subject: [PATCH] pwm: meson: compute cnt register value in proper way
-Date: Fri, 2 Jun 2023 13:32:11 +0300
-Message-ID: <20230602103211.2199283-1-gnstark@sberdevices.ru>
-X-Mailer: git-send-email 2.40.1
+	id 1q54A8-006v9k-0D;
+	Fri, 02 Jun 2023 12:45:49 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 700BA616D1;
+	Fri,  2 Jun 2023 12:45:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9ADDC433EF;
+	Fri,  2 Jun 2023 12:45:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1685709946;
+	bh=5tsFEnVqyWViniqebIjKt9Ya28HTseKy3clt1psmZfY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=O7//ivusxkzvhpdpQH02dhNTkRC0sOvOF+YB0GwZhXGeBCAxwHULuqQQ9EpYeA7Y7
+	 HqqWMyv7IKFQe3LBqy6LE7meK3hQOkXI2u0n7KqpER8SIEKY3OpcxsZ8JqXHVK/mFQ
+	 l4y9ojcLWGGvBnGtYeHIGYcZYjgBCydx/1IUBI6lJwHfCISxvWbVvGVOhMAR/nxe5l
+	 YOqXBfenMxlami2rOk0x2hxi6TmMy2uVKFH+VoupA6dmdZ72/6C/x2A+EFO4j98FZn
+	 dT1cOVWYEQtQms+qsyzg1s8YBmiRMoQUi97nkETQ7gauSh8kyFxpU1LCjBVDlMsnK1
+	 TukFu1vyjOKpA==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Nicolas Belin <nbelin@baylibre.com>
+Cc: Arnd Bergmann <arnd@arndb.de>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Tom Rix <trix@redhat.com>,
+	Carlo Caione <ccaione@baylibre.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/meson: venc: include linux/bitfield.h
+Date: Fri,  2 Jun 2023 14:45:24 +0200
+Message-Id: <20230602124539.894888-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/02 03:06:00 #21401484
-X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230602_033238_863198_729059D9 
-X-CRM114-Status: UNSURE (   8.04  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230602_054548_145568_DEEFDA4D 
+X-CRM114-Status: GOOD (  10.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,42 +82,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-According to the datasheet, the PWM high and low clock count values
-should be set to at least one. Therefore, setting the clock count
-register to 0 actually means 1 clock count.
+From: Arnd Bergmann <arnd@arndb.de>
 
-Signed-off-by: George Stark <GNStark@sberdevices.ru>
-Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Without this header, the use of FIELD_PREP() can cause a build failure:
+
+drivers/gpu/drm/meson/meson_venc.c: In function 'meson_encl_set_gamma_table':
+drivers/gpu/drm/meson/meson_venc.c:1595:24: error: implicit declaration of function 'FIELD_PREP' [-Werror=implicit-function-declaration]
+
+Fixes: 51fc01a03442c ("drm/meson: venc: add ENCL encoder setup for MIPI-DSI output")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
-This patch is based on currently unmerged patch by Heiner Kallweit
-https://lore.kernel.org/linux-amlogic/23fe625e-dc23-4db8-3dce-83167cd3b206@gmail.com
----
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 834acd7..57e7d9c 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -206,6 +206,11 @@
- 		channel->pre_div = pre_div;
- 		channel->hi = duty_cnt;
- 		channel->lo = cnt - duty_cnt;
-+
-+		if (channel->hi)
-+			channel->hi--;
-+		if (channel->lo)
-+			channel->lo--;
- 	}
+ drivers/gpu/drm/meson/meson_venc.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+index 2bdc2855e249b..3bf0d6e4fc30a 100644
+--- a/drivers/gpu/drm/meson/meson_venc.c
++++ b/drivers/gpu/drm/meson/meson_venc.c
+@@ -5,6 +5,7 @@
+  * Copyright (C) 2015 Amlogic, Inc. All rights reserved.
+  */
  
- 	return 0;
-@@ -340,7 +345,8 @@
- 	channel->lo = FIELD_GET(PWM_LOW_MASK, value);
- 	channel->hi = FIELD_GET(PWM_HIGH_MASK, value);
++#include <linux/bitfield.h>
+ #include <linux/export.h>
+ #include <linux/iopoll.h>
  
--	state->period = meson_pwm_cnt_to_ns(chip, pwm, channel->lo + channel->hi);
-+	state->period = meson_pwm_cnt_to_ns(chip, pwm,
-+					    channel->lo + 1 + channel->hi + 1);
- 	state->duty_cycle = meson_pwm_cnt_to_ns(chip, pwm, channel->hi);
- 
- 	return 0;
+-- 
+2.39.2
+
 
 _______________________________________________
 linux-amlogic mailing list
