@@ -4,76 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8D2BC7EE24
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Jun 2023 06:45:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBC7EC7EE2A
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Jun 2023 07:05:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vosjrW6XbzVBruEzTu06QWFXHvFYQx5lgmp2NWU+T9w=; b=Ew0XEBxL0WvvJo
-	pbLe+5Qe/jjCRLmA0LrOJtatkJMia4IlJiLxnnXcOmJuHwaDKZ7WFFos3dYN/9o0cYOG5/yYXRwOU
-	DCddJXnsHFvLG5KzILclbUDLkeqzG0ilGi9vprMEv9k4w7Hubb0hNnJSWaNg/Jpcd2erkcD2Qf4pa
-	79e3HMQqx5dIqxauCggaNJgJKGhrLuhKdV+mkVd+VZtpNWUh+TnlxjUFVJP/rkTa9AgpaFGjtsd8H
-	5xvb9UDXaUi9aCQModVRX7JajZlc0XZOxZ4aB1x9ASACSGDIRMzsL7TRu2bDxwBa6/CkwWbb6/brx
-	X9OS+Qv2qlJMlbsZjEjw==;
+	List-Owner; bh=GDG9QpHnHdLmn1J1BRC47veOG0IJVlCrfOHvunQqcyM=; b=LRGe7geOwXn7+4
+	2pzw7e1OWdiApPymSOPxheAcfDHM5yO/3FaKjz/hjP7shyjTOQFOzQXOH54vhJDcWK35aQnWnx17p
+	J5dVCPXA6Y3Otj9+fpOmdGLapKh4QY74HqvbTeglRyAPwEBYMNaL1orO/NDa2VBuuDzxNPZyHXvoZ
+	ITgC23H0WQI5kLXyuiu3/IKMStklmRh5DvnNgbKIkJZuJfFRwCItbO25LsZ9VukUsg3Sk7wl1W6PM
+	8At4abZZO25U5NEsqgyI67PvSl3owYefixratt04eB4MCKS41aMwFA8DzL9GpOaztPxmcKQ1MXRZ4
+	9XzWxAzQcuMP3GZrruMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q63xF-00EPrY-2h;
-	Mon, 05 Jun 2023 06:44:37 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1q64HP-00EUUR-2E;
+	Mon, 05 Jun 2023 07:05:27 +0000
+Received: from out1-smtp.messagingengine.com ([66.111.4.25])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q63xC-00EPpz-1D;
-	Mon, 05 Jun 2023 06:44:36 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id F39885FD15;
-	Mon,  5 Jun 2023 09:44:30 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1685947471;
-	bh=a3TTZqZescYVkmvQpRp/TvBnNAhNz1UEIZ0m5Ewqc2k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	b=Ag0KQMZn10/9B82BPaqBC2nMj8aP+RDgZh7DcUUb9XsCNl+0zeeSmLUgmi+aFBoPL
-	 XWXOM7SMGy+3CS68dAcXnQn9e9OtBoH04sYduBARpYXcjYqbAd29yKP55OoheNyivj
-	 9NpvQ08gngec9yh2Kj3U9F6gUaIsE7Y2qMEevMJW26ZR1GDvZNSRl2U980lsvC+WZx
-	 dgzHFZWfJBJlrEul/7Ezu47ZwfTCryxr7qYujJ9kvlwrlDew6gVMkoW/f9lbhBw0qk
-	 TRCU1BPq9gAeqjVxU3akP7IwdBXApNOywV7NyXQoavulDl0qcNsl2o4du37i4VHFBS
-	 gbqVYlycdBUiw==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Mon,  5 Jun 2023 09:44:30 +0300 (MSK)
-Message-ID: <19f809ab-218e-8da5-6d5e-ac47902fa706@sberdevices.ru>
-Date: Mon, 5 Jun 2023 09:39:40 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
+	id 1q64HN-00EUT3-0e;
+	Mon, 05 Jun 2023 07:05:26 +0000
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.nyi.internal (Postfix) with ESMTP id 2DCD45C0657;
+	Mon,  5 Jun 2023 03:05:22 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Mon, 05 Jun 2023 03:05:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:sender
+	:subject:subject:to:to; s=fm1; t=1685948722; x=1686035122; bh=gs
+	KN8dIcfggLrGiSRwQVvzTjCP6B3J5Ixb0bZBrlg+0=; b=MPaEU2cKz91/xCyCUT
+	sM+QSVlQJOSE7vBaGjzNvFGY3SJTsXotuLd/3MIKxfI5ORmaxlWwgJc7Trrj9Rtx
+	QM8bQguiUIt9K2yDhd8hxY8ult49MTYG2PfAEhtghBdFBdth3GFZHc70Lw5x9u9v
+	Eq5VLOfe9u0+lAaiVGAZwaOEN/4Hvum5OD+c0FfQfTbjVoOQoTCQCZ/kizUhjHl5
+	Y2ISX2zhbgPHwzIIgje8dLXxoV/EEz4jXpfsLhFq66Uhc2dMIVMpudVU/u/9RUnc
+	3OZWub2Gh45QTbUEOCRl49zPHRO0pArT0JnRI4C2eDhUHemKIAIyrtg8tkAGSmJW
+	ncXQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm1; t=1685948722; x=1686035122; bh=gsKN8dIcfggLr
+	GiSRwQVvzTjCP6B3J5Ixb0bZBrlg+0=; b=df1wPh9bY/YVM/75YiQ5JJFe8Cv1q
+	4bV/lL7S18+aIE1EAcx6FUCIOpsJGn1i0RxoyiWHJ5IEBi5o6qtq6rWVGxqiE9cS
+	AvrSyKp0bI3EsejQshoILUlmvckyt4oW6hCAa942fDGJtCH0mmTz5HXMRT7y9gjf
+	CBfAdB5SD1MZDeaEE7ganhcuq4d0+rD5RFpFf25AFbVZQAoc+w3NSa72D8Gd2bD4
+	wpvuAaVaFcFAyerX0XR46GnoBgA4/ZvojIZoQphsQdkmsv5UI5+0qMUw0mwclO5D
+	pXMjYR485Ey0BpX3zwEAhCdmoh0qG02mFQ1swkZuXubWZ/RkoRck5hXXA==
+X-ME-Sender: <xms:MYl9ZCmvmOyWiCUy3GIRxw167ZbhhM-ZjEBX_x4Oa0EfaVXAciVslw>
+    <xme:MYl9ZJ2GIzo7AzhqEuFkDSbt-IbBHqGM3ASk2erq6nGKQMKvYPoRuRfNLifmN7ML3
+    Yu2B7oPy_p1rQ>
+X-ME-Received: <xmr:MYl9ZAq3LeIyUWQUQQ0i5nW3ewvaZjvAHLrauVw_W4HGtctLjhrBdZw9q_6CEtZDTrfoAaIo2rjIYVrndugGdwAAD2ws609cbwvQTQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeelkedgudduhecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpefirhgv
+    ghcumffjuceoghhrvghgsehkrhhorghhrdgtohhmqeenucggtffrrghtthgvrhhnpeehge
+    dvvedvleejuefgtdduudfhkeeltdeihfevjeekjeeuhfdtueefhffgheekteenucevlhhu
+    shhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvgheskhhroh
+    grhhdrtghomh
+X-ME-Proxy: <xmx:MYl9ZGlXBQ4Q9kjJrSqzVVbwQe9a6LKIPjokpF_kQvG8pPNBcB4cNA>
+    <xmx:MYl9ZA1S3qPQJlGRD6557P9Jb7OMXGjMULi82Sj-ThB3w6EcWxXD3w>
+    <xmx:MYl9ZNs5Q-6OmrQEmHHoimNEKzmu34mnSHSYeBA45kQZCuwrhEmjTw>
+    <xmx:Mol9ZLU5Hl1MOQ2CsyFxFg6HF9_nTw-fpx4gTukmQzBIdMqiieANzw>
+Feedback-ID: i787e41f1:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 5 Jun 2023 03:05:20 -0400 (EDT)
+Date: Mon, 5 Jun 2023 09:05:18 +0200
+From: Greg KH <greg@kroah.com>
+To: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+Cc: Liang Yang <liang.yang@amlogic.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Yixun Lan <yixun.lan@amlogic.com>,
+	Jianxin Pan <jianxin.pan@amlogic.com>, oxffffaa@gmail.com,
+	kernel@sberdevices.ru, stable@vger.kernel.org,
+	linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v1] mtd: rawnand: meson: fix ready/busy command
-Content-Language: en-US
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, <stable@vger.kernel.org>,
-	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>, Liang
- Yang <liang.yang@amlogic.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
-	Jianxin Pan <jianxin.pan@amlogic.com>
+Message-ID: <2023060556-monetary-browsing-536b@gregkh>
 References: <20230605061048.485622-1-AVKrasnov@sberdevices.ru>
-From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
+MIME-Version: 1.0
+Content-Disposition: inline
 In-Reply-To: <20230605061048.485622-1-AVKrasnov@sberdevices.ru>
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/05 04:52:00 #21434197
-X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230604_234434_766264_5D50BA45 
-X-CRM114-Status: GOOD (  14.32  )
+X-CRM114-CacheID: sfid-20230605_000525_577783_DBE076AC 
+X-CRM114-Status: UNSURE (   5.28  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,44 +115,13 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Miquel!
-
-I exclude this patch from the recent Meson patchset, as it is fix and not related to another patches.
-Also I think that I can split Meson patchset (from links below) in the following way:
-1) Patch/patchset for OOB layout
-2) Patchset for "nand-rb" logic (meson_nand.c + DT bindings)
-These two can also go independently:
-3) https://lore.kernel.org/linux-mtd/20230601061850.3907800-6-AVKrasnov@sberdevices.ru/
-4) https://lore.kernel.org/linux-mtd/20230601061850.3907800-7-AVKrasnov@sberdevices.ru/
-
-What do You think?
-
-Thanks, Arseniy
-
-On 05.06.2023 09:10, Arseniy Krasnov wrote:
+On Mon, Jun 05, 2023 at 09:10:48AM +0300, Arseniy Krasnov wrote:
 > Fix the ready/busy command value.
-> 
-> Fixes: 8fae856c5350 ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
-> Cc: stable@vger.kernel.org
-> Suggested-by: Liang Yang <liang.yang@amlogic.com>
-> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-> ---
->  drivers/mtd/nand/raw/meson_nand.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-> index 074e14225c06..9dd4a676497b 100644
-> --- a/drivers/mtd/nand/raw/meson_nand.c
-> +++ b/drivers/mtd/nand/raw/meson_nand.c
-> @@ -37,7 +37,7 @@
->  #define NFC_CMD_SCRAMBLER_ENABLE	BIT(19)
->  #define NFC_CMD_SCRAMBLER_DISABLE	0
->  #define NFC_CMD_SHORTMODE_DISABLE	0
-> -#define NFC_CMD_RB_INT		BIT(14)
-> +#define NFC_CMD_RB_INT		((0xb << 10) | BIT(18) | BIT(16))
->  
->  #define NFC_CMD_GET_SIZE(x)	(((x) >> 22) & GENMASK(4, 0))
->  
+
+"Fix" it in what way?  Please provide more information, this does not
+explain what is happening here at all.
+
+greg k-h
 
 _______________________________________________
 linux-amlogic mailing list
