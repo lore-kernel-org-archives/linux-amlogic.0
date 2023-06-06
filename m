@@ -4,87 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E79C4C77B7A
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jun 2023 07:56:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C288C77B73
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jun 2023 08:14:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vDILltxCtX6VJ35MzqXVwknVu0ufYJeHDFPCitLRbRM=; b=0gkoTiwJ74SXQI
-	L3+wZ02GXy2PzGTEx/u0D9CAg+ekEM9bIM/IbDOjWBxW9QlMdnLgeRYhOHkVD2idBWdNUV2/hdKqJ
-	TIw4o82pL3xuzSw5l5ul4qjpKjC+flAsyQ+UMrckDM80nIz5uiKFub8Mx5eFB5Xw7CwpKnrE2VVvL
-	ZxDV/5SdxLqk/co+tfp9IsR9Lk5CYeIrfgeNDPai37XtJvB6GbOpNYHqazCd66Jq3OXbOfld6nUQC
-	P1p16TKkdb+ncAk6Ot5JU24yEQvQB2xBQPT8kN6XAEpO/k4T2KwFNnfDBfov1ck7k2zfhglbM9T1X
-	X3mXbJ81ZRRUv60U/W4Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=z2Zxb0bkg6dUwqf0YzzEtDzS6YS4agawT0iUGOvkY54=; b=YaawyXPv0E+OXh6QzhMdX/RzWI
+	NLmwoNz52fOKtNogleq0dXAfM711f80QMnt5nEXya+H/uAFkcnQ7pN3cWXUgLi3EEQv/ZOAjIIHth
+	LWlwrbdH38GyxR2bbj49nQ3/E6TLoVb3GdPUPh5DVArrYProjB7EM6hqQzyR1AuN8AaQjZdwNHPRd
+	sZcHKhGwXyevFnB2z+zb/sEJ60UaYQQ84iGqEdyP88gOF+lnk3cSjndPpzvItSymZpPiZ/Mr9hYmm
+	2Z7Wepoa0vI3vDFeWHBlBUTIKLlWRcEApKL5GBzlecc+uVX8uHtsXDVKGO0TXXZngfIOXVsNWtxV3
+	x/p5+qjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6RXs-000hTA-1h;
-	Tue, 06 Jun 2023 07:56:00 +0000
-Received: from relay6-d.mail.gandi.net ([217.70.183.198])
+	id 1q6Rpm-000kcA-1n;
+	Tue, 06 Jun 2023 08:14:30 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6RXp-000hQy-1t;
-	Tue, 06 Jun 2023 07:55:59 +0000
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1686038152;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hUxPIpvbFeVKFbvXsT93sPgr2hxk0tuN/r+2D9z+hgY=;
-	b=AZi1yqEmOO7yWD2SfDQF1XWxP6bA5kqUoPmcUIUcaDYS5cRVLDzw6bhralT+2uJ80VxdsW
-	ACkxqmFJACimzyvoR5syFfe3vTex/B0sCKDAvmDS/luHOZA2gJrDHwTQqPNGezAF+CK24q
-	3OSlmaYhAEGW0tV5L/v+t7qhuIusIwmju08CdVB5NbFZGQ/nP+U7W+FkXE7Y0G0o2tfZUV
-	TvyXWwxUOVEz0uPXLE84HO6dorN5sMbIR5SI5kHXsHCTFcdSs80sKB5oeRTArmf8TbReDg
-	fQrlEXY1PJwX7EWuT0LMR0EbSfYVPNEAtCxbGxNEZCnMeatm6fHTdfgreDzJig==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 99A97C0009;
-	Tue,  6 Jun 2023 07:55:49 +0000 (UTC)
-Date: Tue, 6 Jun 2023 09:55:48 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-Cc: Liang Yang <liang.yang@amlogic.com>, Richard Weinberger
- <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, <oxffffaa@gmail.com>,
- <kernel@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
- <linux-arm-kernel@lists.infradead.org>,
- <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH v5 2/6] mtd: rawnand: meson: wait for command in
- polling mode
-Message-ID: <20230606095548.6257b271@xps-13>
-In-Reply-To: <19eeb588-f909-8aad-b68c-bcfea8f2e926@sberdevices.ru>
-References: <20230601061850.3907800-1-AVKrasnov@sberdevices.ru>
-	<20230601061850.3907800-3-AVKrasnov@sberdevices.ru>
-	<20230601100751.41c3ff0b@xps-13>
-	<9e106d50-2524-c999-48b1-a20760238aaf@sberdevices.ru>
-	<20230605110546.6cb00a8d@xps-13>
-	<2a755783-1d56-9842-2eee-b5ab41152c81@amlogic.com>
-	<163e0684-caff-77d0-1eaf-9a58290c200d@amlogic.com>
-	<c316961d-6021-1cb4-9ff4-22fe9ca5a18a@sberdevices.ru>
-	<20230606090344.3aca96c8@xps-13>
-	<19eeb588-f909-8aad-b68c-bcfea8f2e926@sberdevices.ru>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	id 1q6Rpi-000kaF-16
+	for linux-amlogic@lists.infradead.org;
+	Tue, 06 Jun 2023 08:14:27 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1q6Rpc-0001v4-Fw; Tue, 06 Jun 2023 10:14:20 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1q6RpZ-005Sh2-68; Tue, 06 Jun 2023 10:14:17 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1q6RpY-00BeAc-Gc; Tue, 06 Jun 2023 10:14:16 +0200
+Date: Tue, 6 Jun 2023 10:14:16 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: George Stark <gnstark@sberdevices.ru>,
+	"thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	kernel <kernel@sberdevices.ru>,
+	Dmitry Rokosov <DDRokosov@sberdevices.ru>,
+	"jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"khilman@baylibre.com" <khilman@baylibre.com>
+Subject: Re: [PATCH] pwm: meson: compute cnt register value in proper way
+Message-ID: <20230606081416.j24ub2jjifbpv6ty@pengutronix.de>
+References: <20230602103211.2199283-1-gnstark@sberdevices.ru>
+ <bf2d2814-5881-0f42-8b62-89c043b66e22@gmail.com>
+ <ed8f95d2-ef62-d91a-618c-402ba1c9d09f@sberdevices.ru>
+ <bf7c71bf-4f04-0dd3-91e1-eb639b36e7d1@gmail.com>
 MIME-Version: 1.0
+In-Reply-To: <bf7c71bf-4f04-0dd3-91e1-eb639b36e7d1@gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230606_005557_896129_E42DC3CF 
-X-CRM114-Status: GOOD (  41.41  )
+X-CRM114-CacheID: sfid-20230606_011426_379097_B9A4D651 
+X-CRM114-Status: GOOD (  33.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,116 +80,147 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============3787717834437099565=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgQXJzZW5peSwKCmF2a3Jhc25vdkBzYmVyZGV2aWNlcy5ydSB3cm90ZSBvbiBUdWUsIDYgSnVu
-IDIwMjMgMTA6NDA6MjEgKzAzMDA6Cgo+IE9uIDA2LjA2LjIwMjMgMTA6MDMsIE1pcXVlbCBSYXlu
-YWwgd3JvdGU6Cj4gPiBIaSBBcnNlbml5LAo+ID4gCj4gPiBhdmtyYXNub3ZAc2JlcmRldmljZXMu
-cnUgd3JvdGUgb24gTW9uLCA1IEp1biAyMDIzIDE5OjU4OjAyICswMzAwOgo+ID4gICAKPiA+PiBP
-biAwNS4wNi4yMDIzIDE2OjMwLCBMaWFuZyBZYW5nIHdyb3RlOiAgCj4gPj4+Cj4gPj4+Cj4gPj4+
-IE9uIDIwMjMvNi81IDIxOjE5LCBMaWFuZyBZYW5nIHdyb3RlOiAgICAKPiA+Pj4+IEhpIE1pcXVl
-bCBhbmQgQXJzZW5peSwKPiA+Pj4+Cj4gPj4+Pgo+ID4+Pj4gT24gMjAyMy82LzUgMTc6MDUsIE1p
-cXVlbCBSYXluYWwgd3JvdGU6ICAgIAo+ID4+Pj4+IFsgRVhURVJOQUwgRU1BSUwgXQo+ID4+Pj4+
-Cj4gPj4+Pj4gSGkgQXJzZW5peSwKPiA+Pj4+PiAgICAKPiA+Pj4+Pj4+PiBAQCAtMTQxMiw2ICsx
-NDE5LDggQEAgc3RhdGljIGludCBtZXNvbl9uZmNfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2Rldmlj
-ZSAqcGRldikKPiA+Pj4+Pj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiByZXQ7Cj4g
-Pj4+Pj4+Pj4gwqDCoMKgIH0KPiA+Pj4+Pj4+Pgo+ID4+Pj4+Pj4+ICvCoCBuZmMtPnVzZV9wb2xs
-aW5nID0gb2ZfcHJvcGVydHlfcmVhZF9ib29sKGRldi0+b2Zfbm9kZSwgInBvbGxpbmciKTsgICAg
-Cj4gPj4+Pj4+Pgo+ID4+Pj4+Pj4gVGhpcyBpcyBhIHByb2JsZW0uIFlvdSBjYW5ub3QgYWRkIGEg
-cG9sbGluZyBwcm9wZXJ0eSBsaWtlIHRoYXQuCj4gPj4+Pj4+Pgo+ID4+Pj4+Pj4gVGhlcmUgaXMg
-YWxyZWFkeSBhIG5hbmQtcmIgcHJvcGVydHkgd2hpY2ggaXMgc3VwcG9zZWQgdG8gY2FycnkgaG93
-IGFyZQo+ID4+Pj4+Pj4gd2lyZWQgdGhlIFJCIGxpbmVzLiBJIGRvbid0IHNlZSBhbnkgaW4tdHJl
-ZSB1c2VycyBvZiB0aGUgY29tcGF0aWJsZXMsIEkKPiA+Pj4+Pj4+IGRvbid0IGtub3cgaG93IGFj
-Y2VwdGFibGUgaXQgaXMgdG8gY29uc2lkZXIgdXNpbmcgc29mdCBmYWxsYmFjayB3aGVuCj4gPj4+
-Pj4+PiB0aGlzIHByb3BlcnR5IGlzIG1pc3NpbmcsIG90aGVyd2lzZSB0YWtlIHRoZSB2YWx1ZXMg
-b2YgdGhlIHJiIGxpbmVzCj4gPj4+Pj4+PiBwcm92aWRlZCBpbiB0aGUgRFQgYW5kIHVzZXIgaGFy
-ZHdhcmUgY29udHJvbCwgYnV0IEkgd291bGQgZGVmaW5pdGVseQo+ID4+Pj4+Pj4gcHJlZmVyIHRo
-YXQuICAgIAo+ID4+Pj4+Pgo+ID4+Pj4+PiBJIHNlZS4gU28gaSBuZWVkIHRvIGltcGxlbWVudCBw
-cm9jZXNzaW5nIG9mIHRoaXMgcHJvcGVydHkgaGVyZT8gQW5kIGlmIGl0Cj4gPj4+Pj4+IGlzIG1p
-c3NlZCAtPiB1c2Ugc29mdHdhcmUgd2FpdGluZy4gSSB0aGluayBpbnRlcmVzdGluZyB0aGluZyB3
-aWxsIGJlIHRoYXQ6Cj4gPj4+Pj4+Cj4gPj4+Pj4+IDEpIEV2ZW4gd2l0aCBzdXBwb3J0IG9mIHRo
-aXMgcHJvcGVydHkgaGVyZSwgSSByZWFsbHkgZG9uJ3Qga25vdyBob3cgdG8gcGFzcwo+ID4+Pj4+
-PiDCoMKgwqAgUkIgdmFsdWVzIHRvIHRoaXMgY29udHJvbGxlciAtIEkganVzdCBoYXZlIGRlZmlu
-ZSBmb3IgUkIgY29tbWFuZCBhbmQgdGhhdCdzCj4gPj4+Pj4+IMKgwqDCoCBpdC4gSSBmb3VuZCB0
-aGF0IHRoaXMgcHJvcGVydHkgaXMgYW4gYXJyYXkgb2YgdTMyIC0gSUlVQyBlYWNoIGVsZW1lbnQg
-aXMKPiA+Pj4+Pj4gwqDCoMKgIFJCIHBpbiBwZXIgY2hpcC4gTWF5IGJlIGkgbmVlZCB0byBkaXZl
-IGludG8gdGhlIG9sZCB2ZW5kb3IncyBkcml2ZXIgdG8gZmluZAo+ID4+Pj4+PiDCoMKgwqAgaG93
-IHRvIHVzZSBSQiB2YWx1ZXMgKGFsdGhvdWdoIHRoaXMgZHJpdmVyIHVzZXMgc29mdHdhcmUgd2Fp
-dGluZyBzbyBJJ20gbm90Cj4gPj4+Pj4+IMKgwqDCoCBzdXJlIHRoYXQgSSdsbCBmaW5kIHNvbWV0
-aGluZyBpbiBpdCkuICAgIAo+ID4+Pj4+Cj4gPj4+Pj4gTGlhbmcsIGNhbiB5b3UgcGxlYXNlIGdp
-dmUgdXNlIHRoZSByZWxldmFudCBpbmZvcm1hdGlvbiBoZXJlPyBIb3cgZG8gd2UKPiA+Pj4+PiB0
-YXJnZXQgUkIwIGFuZCBSQjE/IEl0IHNlZW1zIGxpa2UgeW91IHVzZSB0aGUgQ1MgYXMgb25seSBp
-bmZvcm1hdGlvbgo+ID4+Pj4+IGxpa2UgaWYgdGhlIFJCIGxpbmVzIHdoZXJlIGhhcmR3aXJlZCBp
-bnRlcm5hbGx5IHRvIGEgQ1MuIENhbiB3ZSBpbnZlcnQKPiA+Pj4+PiB0aGUgbGluZXMgd2l0aCBh
-IHNwZWNpZmljIGNvbmZpZ3VyYXRpb24/ICAgIAo+ID4+Pj4KPiA+Pj4+IENvbnRyb2xsb3IgaGFz
-IG9ubHkgb25lIGV4dGVybmFsIFJCIHBpbm11eCAoTkFORF9SQjApLiBhbGwgdGhlIFJCIHBpbnMK
-PiA+Pj4+IG9mIGRpZmZlcmVudCBDRXMgbmVlZCB0byBiZSBib3VuZCBpbnRvIG9uZSB3aXJlIGFu
-ZCBjb25uZWN0IHdpdGgKPiA+Pj4+IE5BTkRfUkIwIGlmIHdhbnQgdG8gdXNlIGNvbnRyb2xsZXIg
-cG9sbGluZyByYi4gdGhlIGN1cnJlbnQgb3BlcmF0aW5nCj4gPj4+PiBDRSBvZiBOQU5EIGlzIGRl
-Y2lkZWQgdG8gImNoaXBfc2VsZWN0Iiwgb2YgY291cnNlIGNvbnRyb2xsZXIgaW50ZXJuYWxseSBo
-YXMgZGlmZmVyZW50IG5mYyBjb21tYW5kcyB0byByZWdjb25pemUgd2hpY2ggQ2UncyBSQiBzaWdu
-YWwgaXMgcG9sbGluZy4KPiA+Pj4+Cj4gPj4+PiA8Jm5hbmRfcGlucz4gaW4gZHRzL3lhbWwgc2hv
-dWxkIGluY2x1ZGUgdGhlIE5BTkRfUkIwIGlmIGhhcmR3YXJlIGNvbm5lY3RzLCBvciB1c2Ugc29m
-dHdhcmUgcG9sbGluZyBoZXJlLgo+ID4+Pj4KPiA+Pj4+IEBBcnNlbml5LCBzb3JyeSwgaSBkb24n
-dCB0cmF2ZWwgYWxsIHRoZSBpbmZvcm1hdGlvbnMgeWV0LiBidXQgd2h5IGRvbid0IHlvdSB1c2Ug
-dGhlIG5ldyBSQl9JTlQgY29tbWFuZCB3aXRoIGlycSB0aGF0IGkgcHJvdmlkZWQgaW4gYW5vdGhl
-ciB0aHJlYWQuIHRoZSBuZXcgUkJfSU5UIGNvbW1hbmQgZG9lc24ndCBkZXBlbmQgb24gdGhlIHBo
-eXNpY2FsIFJCIHdpcmVzLCBpdCBhbHNvIHNlbmQgdGhlIFJFQUQgc3RhdHVzIGNvbW1hbmQoMHg3
-MCkgYW5kIHdhaXQgZm9yIHRoZSBpcnEgd2FrZSB1cCBjb21wbGV0aW9uLiAgICAKPiA+Pgo+ID4+
-IFRlY2huaWNhbGx5IG5vIHByb2JsZW0hIEkgY2FuIHVzZSBuZXcgUkJfSU5UIGluc3RlYWQgb2Yg
-J25hbmRfc29mdF93YWl0cmR5KCknIGFzIHNvZnR3YXJlIGZhbGxiYWNrLCBhbmQgY3VycmVudGx5
-Cj4gPj4gaW1wbGVtZW50ZWQgUkJfSU5UIGFzIGludGVycnVwdCBkcml2ZW4gd2F5LiBXaGF0IGRv
-IFlvdSB0aGluayBNaXF1ZWwgPwo+ID4+ICAKPiA+Pj4KPiA+Pj4gVXNlICJuYW5kLXJiIiBpbiBk
-dHMgdG8gZGVjaWRlIG9sZCBSQl9JTlQocGh5c2ljYWwgUkIgd2lyZXMgaXMgbmVlZGVkKSBvciBu
-ZXcgUkJfSU5UKG5vIHBoeXNpY2FsIFJCIHdpcmVzKS4gdGhlIG5ldyBSQl9JTlQgY29tbWFuZCBk
-ZWNpZGVzIHRoZSBSQjAgb3IgUkIxIGJ5IHRoZSBwcmV2aW91cyBjb21tYW5kIHdpdGggY2UgYXJn
-cy4KPiA+Pj4gICAgIAo+ID4+Cj4gPj4gU28gSSBjYW4gaW1wbGVtZW50ICJuYW5kLXJiIiBpbiBk
-dHMgYXMgYm9vbGVhbiB2YWx1ZSAtICJmYWxzZSIgb3IgbWlzc2luZyBtZWFucyB1c2UgIm5vIHBo
-eXNpY2FsIFJCIHdpcmVzIiwgInRydWUiIC0gbWVhbnMgdXNlICJwaHlzaWNhbCBSQiB3aXJlcyIg
-PyAgCj4gPiAKPiA+IEFzIGxvbmcgYXMgaXQgd29ya3MgYW5kIGRvZXMgbm90IGNvbnRhaW4gYW55
-IGV4dHJlbWVseSBzdHJhbmdlIFJFQUQwIG9yCj4gPiBSRUFEX1NUQVRVUyBpbiB0aGUgbWlkZGxl
-IG9mIG5vdGhpbmcsIEknbSBmaW5lLCB0YWtlIHRoZSBzaW1wbGVzdAo+ID4gYXBwcm9hY2ggd2hp
-Y2ggd2lsbCB3b3JrIGZvciBhbGwuICAKPiAKPiAiZXh0cmVtZXRlbHkgc3RyYW5nZSBSRUFEMCIg
-aXMgbWV0aG9kIHdoaWNoIHVzZXMgU1RBVFVTLCBpbnRlcnJ1cHQsIFJFQUQwPyBUaGlzIG1ldGhv
-ZCB3YXMKPiBkZXNjcmliZWQgYnkgTGlhbmcuCgpJdCBuZWVkcyB0byBiZSB2ZXJ5IHdlbGwgY29u
-dGFpbmVkIGluIGRlZGljYXRlZCBoZWxwZXJzIGFuZCBkb2N1bWVudGVkLgpZb3UgY2hvb3NlIHdo
-YXQgaXMgZWFzaWVyIGZvciB5b3UgKExpYW5nJ3MgbWV0aG9kIG9yCm5hbmRfc29mdF93YWl0cmR5
-KCkpLCBidXQgSSBkb24ndCB3YW50IHRvIHNlZSBzcHVyaW91cyBSRUFEMCBvcgpSRUFEX1NUQVRV
-UyBjYWxscyBpbnNpZGUgcmVhZC93cml0ZV9wYWdlIGhlbHBlcnMgbGlrZSBiZWZvcmUuCgo+IEFu
-ZCBZb3UgbWVhbiB0byB1c2UgdGhlIGZvbGxvd2luZyBsb2dpYzoKPiBpZiAoIm5hbmQtcmIiID09
-IHRydWUpCj4gICAgIHVzZSBSQl9JTlQgd2hpY2ggcmVxdWlyZXMgd2lyZQo+IGVsc2UKPiAgICAg
-dXNlICduYW5kX3NvZnRfd2FpdHJkeSgpJwo+IAo+ID8KPiAKPiBUaGFua3MsIEFyc2VuaXkKPiAK
-PiA+ICAgCj4gPj4KPiA+PiBUaGFua3MsIEFyc2VuaXkKPiA+PiAgCj4gPj4+PiAgICAKPiA+Pj4+
-PiBBcnNlbml5LCBpZiB0aGUgYW5zd2VyIHRvIG15IGFib3ZlIHF1ZXN0aW9uIGlzIG5vLCB0aGVu
-IHlvdSBzaG91bGQKPiA+Pj4+PiBleHBlY3QgdGhlIG5hbmQtcmIgYW5kIHJlZyBhcnJheXMgdG8g
-YmUgaWRlbnRpY2FsLiBJZiB0aGV5IGFyZSBub3QsCj4gPj4+Pj4gdGhlbiB5b3UgY2FuIHJldHVy
-biAtRUlOVkFMLgo+ID4+Pj4+Cj4gPj4+Pj4gSWYgdGhlIG5hbmQtcmIgcHJvcGVydHkgaXMgbWlz
-c2luZywgdGhlbiBmYWxsYmFjayB0byBzb2Z0d2FyZSB3YWl0Lgo+ID4+Pj4+ICAgIAo+ID4+Pj4+
-PiAyKSBJIGNhbid0IHRlc3QgUkIgbW9kZSAtIEkgZG9uJ3QgaGF2ZSBzdWNoIGRldmljZSA6KAo+
-ID4+Pj4+Pgo+ID4+Pj4+PiBBbHNvIGZvciBleGFtcGxlIGluIGFyYXNhbi1uYW5kLWNvbnRyb2xs
-ZXIuYyBwYXJzZWQgJ25hbmQtcmInIHZhbHVlcyBhcmUgdXNlZAo+ID4+Pj4+PiBpbiBjb250cm9s
-bGVyIHNwZWNpZmljIHJlZ2lzdGVyIGZvciB3YWl0aW5nIChJIGd1ZXNzIE1lc29uIGNvbnRyb2xs
-ZXIgaGFzIHNvbWV0aGluZwo+ID4+Pj4+PiBsaWtlIHRoYXQsIGJ1dCBJIGRvbid0IGhhdmUgZG9j
-KS4gV2hpbGUgaW4gbWFydmVsbF9uYW5kLmMgaXQgbG9va3MgbGlrZSB0aGF0IHRoZXkgcGFyc2UK
-PiA+Pj4+Pj4gJ25hbmQtcmInIHByb3BlcnR5LCBidXQgbmV2ZXIgdXNlIGl0LiAgICAKPiA+Pj4+
-Pgo+ID4+Pj4+IFllcywgdGhlIGxvZ2ljIGFyb3VuZCB0aGUgc2Vjb25kIFJCIGxpbmUgKHRha2lu
-ZyBjYXJlIG9mIENTMS9DUzMpIGlzCj4gPj4+Pj4gc2xpZ2h0bHkgYnJva2VuIG9yIGF0IGxlYXN0
-IGJhZGx5IGRvY3VtZW50ZWQsIGFuZCB0aHVzIHNob3VsZCBub3QgYmUKPiA+Pj4+PiB1c2VkLgo+
-ID4+Pj4+ICAgIAo+ID4+Pj4+Pj4gSW4gYW55IGNhc2UgeW91J2xsIG5lZWQgYSBkdC1iaW5kaW5n
-IHVwZGF0ZSB3aGljaCBtdXN0IGJlIGFja2VkIGJ5Cj4gPj4+Pj4+PiBkdC1iaW5kaW5nIG1haW50
-YWluZXJzLiAgICAKPiA+Pj4+Pj4KPiA+Pj4+Pj4gWW91IG1lYW4gdG8gYWRkIHRoaXMgcHJvcGVy
-dHkgZGVzYyB0byBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbXRkL2FtbG9naWMs
-bWVzb24tbmFuZC55YW1sID8gICAgCj4gPj4+Pj4KPiA+Pj4+PiBZZXMuIEluIGEgZGVkaWNhdGVk
-IHBhdGNoLiBTb21ldGhpbmcgYWxvbmcgdGhlIGxpbmVzOgo+ID4+Pj4+Cj4gPj4+Pj4gwqDCoMKg
-wqDCoMKgwqDCoCBuYW5kLXJiOiB0cnVlCj4gPj4+Pj4KPiA+Pj4+PiBpbnNpZGUgdGhlIG5hbmQg
-Y2hpcCBvYmplY3Qgc2hvdWxkIGJlIGZpbmUuIEFuZCBmbGFnIHRoZSBjaGFuZ2UgYXMgYQo+ID4+
-Pj4+IGZpeCBiZWNhdXNlIHdlIHNob3VsZCBoYXZlIHVzZWQgYW5kIHBhcnNlZCB0aGlzIHByb3Bl
-cnR5IHNpbmNlIHRoZQo+ID4+Pj4+IGJlZ2lubmluZy4KPiA+Pj4+Pgo+ID4+Pj4+IFRoYW5rcywK
-PiA+Pj4+PiBNaXF1w6hsICAgIAo+ID4gCj4gPiAKPiA+IFRoYW5rcywKPiA+IE1pcXXDqGwgIAoK
-ClRoYW5rcywKTWlxdcOobAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5p
-bmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8v
-bGludXgtYW1sb2dpYwo=
+
+--===============3787717834437099565==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="n7xauynmripnisar"
+Content-Disposition: inline
+
+
+--n7xauynmripnisar
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Jun 05, 2023 at 11:01:40PM +0200, Heiner Kallweit wrote:
+> On 05.06.2023 09:11, George Stark wrote:
+> > On 6/2/23 23:52, Heiner Kallweit wrote:
+> >> On 02.06.2023 12:32, George Stark wrote:
+> >>> According to the datasheet, the PWM high and low clock count values
+> >>> should be set to at least one. Therefore, setting the clock count
+> >>> register to 0 actually means 1 clock count.
+> >>>
+> >>> Signed-off-by: George Stark <GNStark@sberdevices.ru>
+> >>> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> >>> ---
+> >>> This patch is based on currently unmerged patch by Heiner Kallweit
+> >>> https://lore.kernel.org/linux-amlogic/23fe625e-dc23-4db8-3dce-83167cd=
+3b206@gmail.com
+> >>> ---
+> >>> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+> >>> index 834acd7..57e7d9c 100644
+> >>> --- a/drivers/pwm/pwm-meson.c
+> >>> +++ b/drivers/pwm/pwm-meson.c
+> >>> @@ -206,6 +206,11 @@
+> >>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 channel->pre_div =3D pre_div;
+> >>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 channel->hi =3D duty_cnt;
+> >>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 channel->lo =3D cnt - duty_cnt;
+> >>> +
+> >>> +=A0=A0=A0=A0=A0=A0=A0 if (channel->hi)
+> >>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 channel->hi--;
+> >>> +=A0=A0=A0=A0=A0=A0=A0 if (channel->lo)
+> >>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 channel->lo--;
+> > Hello Heiner
+> >=20
+> > Thanks for review
+> >> I'm not sure whether we should do this. duty_cnt and cnt are results
+> >> of an integer division and therefore potentially rounded down.
+> >> The chip-internal increment may help to compensate such rounding
+> >> errors, so to say. With the proposed change we may end up with the
+> >> effective period being shorter than the requested one.
+> > Although chip-internal increment sometimes may help accidentally
+> > there are cases when the increment ruins precise calculation in unexpec=
+ted way.
+> >=20
+> > Here's our experience on meson a113l (meson-a1) with pwm driver based o=
+n ccf:
+> > we need to get pwm period as close as possible to 32768hz.
+> > config pwm to period 1/32768 =3D 30517ns, duty 15258n
+> > How driver calculates hi\lo regs:
+> > rate =3D NSEC_PER_SEC * 0xffff / 30517 =3D ~2147Mhz
+> > rate =3D clk_round_rate(rate) clk_round_rate selects fastest parent clo=
+ck which is 64Mhz in our case then calculating hi\lo at last: period=3D mul=
+_u64_u64_div_u64(rate, state->period, NSEC_PER_SEC); // 1953
+> > duty=3D mul_u64_u64_div_u64(rate, state->duty_cycle, NSEC_PER_SEC); // =
+976
+> > channel->hi=3D duty;
+> > channel->lo=3D period- duty;
+> > with the internal increment we'll have real output (1953-976 + 1 + 976 =
++ 1) * 1 / 64Mhz =3D 32736.57Hz but we should have (1953-976 + 976) * 1 / 6=
+4Mhz =3D 32770.09Hz
+>=20
+> Supposedly, depending on the prior rounding errors, something incrementin=
+g,
+> and sometimes not incrementing may provide the more precise result.
+> Another source of error is shown your example, the duty cycle isn't 50%
+> due to the rounding.
+> Not sure however where there's any use case where such small deviations
+> would cause problems. Therefore I don't have a strong opinion.
+
+My strong opinion here is: .apply should implement the the best
+round-down setting. That is it should pick the maximal period that isn't
+bigger than the requested one, and for that period pick the maximal
+duty_cycle that isn't bigger than the requested one.
+
+I have some implementation ideas to allow consumers to want different
+rounding, but for that to work the .apply functions should all round the
+same way.
+
+> > | And IIRC this should not happen.
+> > Could you please explain why or point out doc/description where it's st=
+ated?
+> > If so we can add explicit check to prevent such a case
+>=20
+> I think I got this wrong. When checking where I got this information from
+> I found the following in pwm_apply_state_debug():
+>=20
+> if (state->enabled && state->period < s2.period)
+>   dev_warn(chip->dev,
+>   ".apply is supposed to round down period (requested: %llu, applied: %ll=
+u)\n",
+>   state->period, s2.period);
+
+pwm_apply_state_debug() also checks the above sketched rule.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--n7xauynmripnisar
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmR+6tcACgkQj4D7WH0S
+/k7mhwf/T9iexvNCwFiWsFUIdv5CU+Pb47RnRD2iVycfrVrRKqOc93X7URcoHprb
+RDcRXa9gX+LGrAiAWQdaIslVho4X++oitiY2220a51s6/mSQv/uxyrmYIG8ZmIau
+5CGgBE82puDbDo8bxzElS5IVgnFMLuKAJOPvaNPSOnhzfyDe6cANJdmz88MqXAIP
+xFq/3BrcR65V8FTywCWubKZ3K5V5QmiHnq7rcdlbpfu7pWt3nfFAUyqm/W88q2PY
+xNemL3ygE+G4ecajByZis7j+Ik2l1DtXLKKul8c4WUC6BFL1oXV2spHt17EvOLJ8
++dr8Lo+8vAociJO1ywXV4OUBHkpCcQ==
+=/rRP
+-----END PGP SIGNATURE-----
+
+--n7xauynmripnisar--
+
+
+--===============3787717834437099565==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============3787717834437099565==--
+
