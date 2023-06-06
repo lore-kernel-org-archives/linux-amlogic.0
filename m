@@ -4,79 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5E6DC77B7A
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jun 2023 15:39:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA5AEC77B73
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jun 2023 16:34:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nJPe1ItnKqmm9LX2zm87rLMO5/3bJ/TpkWwgpNfQfGM=; b=ASqYoJyKiAWzfT
-	2giN7PtJQ+mZCjMRKl5a/hkruk84jlqrWSEM0C8h2DzuYBrt0LfU3YUUd9VnwHmdijn2Xtdeu8Rcf
-	/I9sgZrvFX9LVgqnXsL0PdqyIPElxFDS4VS6wQ/Vwd+yrD35/bWGvMRjITc6h1H6AG6G6V6NLnpkT
-	SkHLHN0XNTIYkj0jvyg8/0EhzvFQE/9UpJQMXwUK8znILbJEkwvD7o4xeO2k6bngkUoWzHIiec2sQ
-	kQ0AtKXKsBTDFwFL0CI6DBQ4MJfNmXWfqdYxbUtSmerFYGBjnr6jNMSkMzzrysAh8jUAIwifW/5l3
-	I2rL+UknuzzS3517UcgA==;
+	List-Owner; bh=YhyymPokzUm1gJLaIPTSxR6ohcmm1A3tjhKwPcgSYkQ=; b=SYb82JeQFeRPOn
+	krZZd3QfRUI3GBBXMlGCvHRrLJkopFub2Xkmn6ZtrdPxvn9LCZLePVLjJGJtWXP36dx8kj+JHmm+q
+	wT8xRiYC+TYtWr/z3LmtRVZ51+fba7T0YbNKM58fN/L+xKdZ1woxNFqJOq39wHE0i/ymInWl6FnzG
+	0mh62v1AbDrM3w5+ODYPI/a0ylcM7d0Ax2PlgqraF/9VkqfARk9p/n8oyLkgSKTpLXzZ5jqNVJPCv
+	sBQ11k+86jAW1jJ879F+15B9RVcRPbdLOJawzd0POgmpInlFpHozrLIquf+vyUSzthtY17hETy4c5
+	2Q1xZxp6GSTQjkeAQk2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6Yls-002H5P-11;
-	Tue, 06 Jun 2023 15:38:56 +0000
+	id 1q6Zdd-002S6G-0p;
+	Tue, 06 Jun 2023 16:34:29 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6Yll-002H28-35;
-	Tue, 06 Jun 2023 15:38:54 +0000
+	id 1q6ZdZ-002S4f-2l;
+	Tue, 06 Jun 2023 16:34:27 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id BDE8C5FD4D;
-	Tue,  6 Jun 2023 18:38:42 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id BE77C5FD4D;
+	Tue,  6 Jun 2023 19:34:22 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1686065922;
-	bh=Fb53Ze/gEd5ZbtU+koYVHdOb5F9vo2dFU1Jt2wM1uWw=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=MThwGBXaeuiX+mmzlXXmbP3fN5BFUU4DZdlCMp4zUXvUdSF1Zh0YziB8vhfBnq2pH
-	 T8E2ODyUTPswCDzybjRRHdShm8C1cV7n19u5E7XIJZgRYh/WRuTZdrgILoz2XbkEwI
-	 NZIUYccSXQlgy2m4hDR9QpjXv9MbMCEK+Ai7qvj0ZLeV6ro4rpwkXeV0+dNctBZTyJ
-	 5rmPe66EuZwnbijpnKcP2F0H7bsRee1u063dDkIlsMpYIDw0kw3ROc+/t94kn5oZYy
-	 4vHnQOR0kDba4jtX5kytMeKWbPbQM82p7L6BzGFjQ0sMMRMceO3JPdP1VtTUK6Kv+O
-	 FFV1P7YMgEnwQ==
+	s=mail; t=1686069262;
+	bh=KeCk+CRAEx23TImhdTYEGwdkCy7ggB8JZkD//dGVlCs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	b=Mdo2TX3tO67daG6Y7EPXaMQZhGF9M520wjm+1ZlYLAjzvtxRKk2pBFpStrcPu//P7
+	 bnEzuYqzjiZPaadF0DDlp+tFO6QkQ1SlrSu8GwGfQjFmcJdwIhFmhf4tUYOtncABm7
+	 IJE48T9FPZ648Gqb9Ti/FgSq2ZNXYo6U5p+JkxcoFa6VOeqjRPFzyLEa5dkhHYTrI5
+	 3Go/2n1zizfGM9i9OXU6xgbxU2H2wZWEy7xbt9y0nQdX9DU903Rod94T2Ei7RVXBif
+	 LUGUgwA9TY9cttM7PQG5PTpbYyjAzwoPSFeer7MxcKAuQR9tBcQAgLaSqPNpGMpBvQ
+	 zDcfLj/09TshA==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Tue,  6 Jun 2023 18:38:41 +0300 (MSK)
-Date: Tue, 6 Jun 2023 18:38:41 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: Yu Tu <yu.tu@amlogic.com>
-CC: Jerome Brunet <jbrunet@baylibre.com>, <linux-clk@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Rob Herring
-	<robh+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin
- Hilman <khilman@baylibre.com>, Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	<kelvin.zhang@amlogic.com>, <qi.duan@amlogic.com>
-Subject: Re: [PATCH V9 4/4] clk: meson: s4: add support for Amlogic S4 SoC
- peripheral clock controller
-Message-ID: <20230606153841.plf5uh6eyzpzsm2e@CAB-WSD-L081021>
-References: <20230517070215.28463-1-yu.tu@amlogic.com>
- <20230517070215.28463-5-yu.tu@amlogic.com>
- <1jwn0g39t2.fsf@starbuckisacylon.baylibre.com>
+	Tue,  6 Jun 2023 19:34:20 +0300 (MSK)
+Message-ID: <9adef6da-5930-dcaa-f148-e4a398d39f2d@sberdevices.ru>
+Date: Tue, 6 Jun 2023 19:29:27 +0300
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1jwn0g39t2.fsf@starbuckisacylon.baylibre.com>
-User-Agent: NeoMutt/20220415
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2] mtd: rawnand: meson: check buffer length
+Content-Language: en-US
+To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
+	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230606101644.3297859-1-AVKrasnov@sberdevices.ru>
+From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <20230606101644.3297859-1-AVKrasnov@sberdevices.ru>
 X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
  S-MS-EXCH01.sberdevices.ru (172.16.1.4)
 X-KSMG-Rule-ID: 4
 X-KSMG-Message-Action: clean
 X-KSMG-AntiSpam-Status: not scanned, disabled by settings
 X-KSMG-AntiSpam-Interceptor-Info: not scanned
 X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/06 11:10:00 #21443593
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/06 14:43:00 #21444531
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230606_083850_712680_DA30A814 
-X-CRM114-Status: GOOD (  33.31  )
+X-CRM114-CacheID: sfid-20230606_093426_237930_B26EFDF8 
+X-CRM114-Status: GOOD (  21.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,113 +89,130 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Yu,
+Sorry, here is changelog:
+v1 -> v2:
+* Move checks from 'switch/case' which executes commands in 'meson_nfc_exec_op()' to a special
+  separated function 'meson_nfc_check_op()' which is called before commands processing.
 
-On Tue, Jun 06, 2023 at 04:38:15PM +0200, Jerome Brunet wrote:
+On 06.06.2023 13:16, Arseniy Krasnov wrote:
+> Meson NAND controller has limited buffer length, so check it before
+> command execution to avoid length trim. Also check MTD write size on
+> chip attach.
 > 
-> On Wed 17 May 2023 at 15:02, Yu Tu <yu.tu@amlogic.com> wrote:
+> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+> ---
+>  drivers/mtd/nand/raw/meson_nand.c | 47 +++++++++++++++++++++++++++----
+>  1 file changed, 42 insertions(+), 5 deletions(-)
 > 
-> > Add the peripherals clock controller driver in the s4 SoC family.
-> >
-> > Signed-off-by: Yu Tu <yu.tu@amlogic.com>
-> > ---
-> >  drivers/clk/meson/Kconfig          |   12 +
-> >  drivers/clk/meson/Makefile         |    1 +
-> >  drivers/clk/meson/s4-peripherals.c | 3830 ++++++++++++++++++++++++++++
-> >  drivers/clk/meson/s4-peripherals.h |  217 ++
-> >  4 files changed, 4060 insertions(+)
-> >  create mode 100644 drivers/clk/meson/s4-peripherals.c
-> >  create mode 100644 drivers/clk/meson/s4-peripherals.h
-> >
-> > diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> > index a663c90a3f3b..a6eb9fa15c74 100644
-> > --- a/drivers/clk/meson/Kconfig
-> > +++ b/drivers/clk/meson/Kconfig
-> > @@ -128,4 +128,16 @@ config COMMON_CLK_S4_PLL
-> >  	  aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
-> >  	  Say Y if you want the board to work, because plls are the parent of most
-> >  	  peripherals.
-> > +
-> > +config COMMON_CLK_S4
-> > +	tristate "S4 SoC Peripherals clock controllers support"
-> > +	depends on ARM64
-> > +	default y
-> > +	select COMMON_CLK_MESON_REGMAP
-> > +	select COMMON_CLK_MESON_DUALDIV
-> > +	select COMMON_CLK_MESON_VID_PLL_DIV
-> > +	help
-> > +	  Support for the Peripherals clock controller on Amlogic S805X2 and S905Y4
-> > +	  devices, aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
-> > +	  Say Y if you want peripherals to work.
-> >  endmenu
-
-[...]
-
-> > +static struct clk_regmap s4_rtc_32k_by_oscin = {
-> > +	.data = &(struct clk_regmap_gate_data){
-> > +		.offset = CLKCTRL_RTC_BY_OSCIN_CTRL0,
-> > +		.bit_idx = 30,
-> > +	},
-> > +	.hw.init = &(struct clk_init_data) {
-> > +		.name = "rtc_32k_by_oscin",
-> > +		.ops = &clk_regmap_gate_ops,
-> > +		.parent_hws = (const struct clk_hw *[]) {
-> > +			&s4_rtc_32k_by_oscin_sel.hw
-> > +		},
-> > +		.num_parents = 1,
-> > +		.flags = CLK_SET_RATE_PARENT,
-> > +	},
-> > +};
-> > +
-> > +/*
-> > + * This RTC clock can be supplied by an external 32KHz crystal oscillator.
-> > + * If it is used, it should be documented in using fw_name and documented in the
-> > + * Bindings. Not currently in use on this board.
-> > + */
-> 
-> This is confusing and not really helpful
-> What you describe here is simply the purpose of fw_name ... so it does
-> not warrant a specific comment
-> 
-> > +static const struct clk_parent_data rtc_clk_sel_parent_data[] = {
-> > +	{ .hw = &s4_rtc_32k_by_oscin.hw },
-> > +	{ .hw = &s4_rtc_32k_by_oscin_div.hw },
-> > +	{ .fw_name = "ext_32k",  }
-> > +};
-> > +
-> > +/*
-> > + * All clocks that can be inherited from a more accurate RTC clock are marked
-> > + * with the CLK_SET_RATE_NO_REPARENT flag. This is because in certain
-> > + * situations, we may need to freeze their parent. The parent setup of these
-> > + * clocks should be located on the device tree side.
-> > + */
-> 
-> It looks like the consensus is that CLK_SET_RATE_NO_REPARENT is not
-> required. Please have at look at the discussion between Dmitry and
-> Martin for the a1 controller
-> 
-
-I hope below links will be helpful for you:
-
-CLK_SET_RATE_NO_REPARENT IRC discussion:
-https://libera.irclog.whitequark.org/linux-amlogic/2023-05-18
-
-Clock driver LKML discussion about CLK_SET_RATE_NO_REPARENT:
-https://lore.kernel.org/all/20230530120640.irugyrio3qa7czjy@CAB-WSD-L081021/
-https://lore.kernel.org/all/20230524092750.ldm362chnpkwkcj4@CAB-WSD-L081021/
-
-PWM discussion about special RTC case:
-https://lore.kernel.org/all/20230522133739.7tc35zr2npsysopd@CAB-WSD-L081021/
-
-And I apologize for any confusion I may have caused in our previous
-discussion. I want to clarify that I have updated the implementation
-of CLK_SET_RATE_NO_REPARENT after discussing it with Martin...
-
-[...]
-
--- 
-Thank you,
-Dmitry
+> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+> index 23a73268421b..db6b18753071 100644
+> --- a/drivers/mtd/nand/raw/meson_nand.c
+> +++ b/drivers/mtd/nand/raw/meson_nand.c
+> @@ -111,6 +111,8 @@
+>  
+>  #define PER_INFO_BYTE		8
+>  
+> +#define NFC_CMD_RAW_LEN	GENMASK(13, 0)
+> +
+>  struct meson_nfc_nand_chip {
+>  	struct list_head node;
+>  	struct nand_chip nand;
+> @@ -284,7 +286,7 @@ static void meson_nfc_cmd_access(struct nand_chip *nand, int raw, bool dir,
+>  
+>  	if (raw) {
+>  		len = mtd->writesize + mtd->oobsize;
+> -		cmd = (len & GENMASK(13, 0)) | scrambler | DMA_DIR(dir);
+> +		cmd = len | scrambler | DMA_DIR(dir);
+>  		writel(cmd, nfc->reg_base + NFC_REG_CMD);
+>  		return;
+>  	}
+> @@ -573,7 +575,7 @@ static int meson_nfc_read_buf(struct nand_chip *nand, u8 *buf, int len)
+>  	if (ret)
+>  		goto out;
+>  
+> -	cmd = NFC_CMD_N2M | (len & GENMASK(13, 0));
+> +	cmd = NFC_CMD_N2M | len;
+>  	writel(cmd, nfc->reg_base + NFC_REG_CMD);
+>  
+>  	meson_nfc_drain_cmd(nfc);
+> @@ -597,7 +599,7 @@ static int meson_nfc_write_buf(struct nand_chip *nand, u8 *buf, int len)
+>  	if (ret)
+>  		return ret;
+>  
+> -	cmd = NFC_CMD_M2N | (len & GENMASK(13, 0));
+> +	cmd = NFC_CMD_M2N | len;
+>  	writel(cmd, nfc->reg_base + NFC_REG_CMD);
+>  
+>  	meson_nfc_drain_cmd(nfc);
+> @@ -1007,6 +1009,31 @@ meson_nand_op_put_dma_safe_output_buf(const struct nand_op_instr *instr,
+>  		kfree(buf);
+>  }
+>  
+> +static int meson_nfc_check_op(struct nand_chip *chip,
+> +			      const struct nand_operation *op)
+> +{
+> +	int op_id;
+> +
+> +	for (op_id = 0; op_id < op->ninstrs; op_id++) {
+> +		const struct nand_op_instr *instr;
+> +
+> +		instr = &op->instrs[op_id];
+> +
+> +		switch (instr->type) {
+> +		case NAND_OP_DATA_IN_INSTR:
+> +		case NAND_OP_DATA_OUT_INSTR:
+> +			if (instr->ctx.data.len > NFC_CMD_RAW_LEN)
+> +				return -ENOTSUPP;
+> +
+> +			break;
+> +		default:
+> +			break;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int meson_nfc_exec_op(struct nand_chip *nand,
+>  			     const struct nand_operation *op, bool check_only)
+>  {
+> @@ -1015,10 +1042,12 @@ static int meson_nfc_exec_op(struct nand_chip *nand,
+>  	const struct nand_op_instr *instr = NULL;
+>  	void *buf;
+>  	u32 op_id, delay_idle, cmd;
+> +	int err;
+>  	int i;
+>  
+> -	if (check_only)
+> -		return 0;
+> +	err = meson_nfc_check_op(nand, op);
+> +	if (err || check_only)
+> +		return err;
+>  
+>  	meson_nfc_select_chip(nand, op->cs);
+>  	for (op_id = 0; op_id < op->ninstrs; op_id++) {
+> @@ -1293,6 +1322,7 @@ static int meson_nand_attach_chip(struct nand_chip *nand)
+>  	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
+>  	struct mtd_info *mtd = nand_to_mtd(nand);
+>  	int nsectors = mtd->writesize / 1024;
+> +	int raw_writesize;
+>  	int ret;
+>  
+>  	if (!mtd->name) {
+> @@ -1304,6 +1334,13 @@ static int meson_nand_attach_chip(struct nand_chip *nand)
+>  			return -ENOMEM;
+>  	}
+>  
+> +	raw_writesize = mtd->writesize + mtd->oobsize;
+> +	if (raw_writesize > NFC_CMD_RAW_LEN) {
+> +		dev_err(nfc->dev, "too big write size in raw mode: %d > %ld\n",
+> +			raw_writesize, NFC_CMD_RAW_LEN);
+> +		return -EINVAL;
+> +	}
+> +
+>  	if (nand->bbt_options & NAND_BBT_USE_FLASH)
+>  		nand->bbt_options |= NAND_BBT_NO_OOB;
+>  
 
 _______________________________________________
 linux-amlogic mailing list
