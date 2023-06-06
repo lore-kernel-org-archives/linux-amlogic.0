@@ -4,65 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 999C0C7EE43
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jun 2023 20:12:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB074C7EE2F
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jun 2023 22:53:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Subject:Message-Id:References:
-	In-Reply-To:Cc:To:From:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rQWM89SSu6/o7PI93gapK+AI/BuECS20RcGivZJlBxY=; b=COqokrvO7Kn5ux
-	qpXdPYMdwTnrRm+JiJqExnBB5f0Wo97KecrfNxVrVPE5UoTrjhN2RFazcksPLimqDu/+ESfHBve6/
-	CfoZp/BevYyFCrjwWMjhHF3cw37kO3u8UD2I2I/hTAbEu8c97X80ODj4jmwmb9dpj5NpdVarTRxnN
-	5jBuUbUI+SgQabnerRXkM04HkiqV5FvX29AJbRbrXHYhJDnAntpf58BhXs7mOWPVJ5crNOMyVHM3n
-	lBd7IaCs5Tlhkm+jh7Reb0iBBC+6gL4BN8P/7hBYke9m3KPraN55XNVWWuRL0hueIykGtlVlIEObq
-	RkMbj8+5aMYtf101nXFg==;
+	List-Owner; bh=i17uktJF0bAbrJ0lWRLpJsXs7EJzvGodanf3CzRgjA0=; b=LZeDZ1g29QuqgM
+	fdtWG4iT3tDuSYmwfk0EM9fY/mHD9hjLUocIPeULOmasA5tP6FyUHxOF5pGZbLKxolqwGnYeSbYPl
+	6eGs8Wt+J+V8E8SPTpS7uPSUSAHKOsVDDlKYkhyoz/7Sgenm3ynPA1ml6XmF6Q6o8g0/CakXA+dBA
+	3KlTNLJ5LRPfck1p78ShJvrfaNYyjtujdce9cNan+QBJZlskeH5wfpF8BDBkJFc8Z0QA/Ma5I7jD6
+	EDPT3rHN0waSNJSjN4uOdIxxT9uBsT9rwAYk+SqLQaIkyphljLnjDhr5hrwr9JXwLZfqrZ8L52JJ5
+	bEYlUJMl50YEo8KnMhqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6d2Y-0036DM-0Q;
-	Tue, 06 Jun 2023 20:12:26 +0000
-Received: from mail-il1-f174.google.com ([209.85.166.174])
+	id 1q6fXX-003Vw4-1Y;
+	Tue, 06 Jun 2023 22:52:35 +0000
+Received: from fgw20-7.mail.saunalahti.fi ([62.142.5.81])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6d2T-0036Bp-0A;
-	Tue, 06 Jun 2023 20:12:22 +0000
-Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-33b22221da6so483455ab.1;
-        Tue, 06 Jun 2023 13:12:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686082339; x=1688674339;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=oTi+J4/KlqfIRDKD6li2U1FfODcCfumrK5ycv6/faOA=;
-        b=POkR6UpG4PcGyWtHPjL+eIMOd2ucpVbBoo6aF9kQ7KsFfMuo5Fz8+7vGjoVAJfot4p
-         PlL9/p+wd3NfVI6Y5Ui/D8TlJInXITQCCCs6Mo5GjmPSeA4WOkanqkycGu9bkN7ei1Jk
-         jN/JfwS3sUcPaaeHn4Umiu/vyPPlx8BaRZzlJB5FvnvnJ39jblFfLgr1eN1wziwADX6a
-         NvRTJ/R6UsebYX1g+S48SojR0Yb6PC89sWVig4nX7Lt4y3t0ijYZpZ80eAWIF5Jzal+V
-         95rL++VVpIv0vZA8yEw/2vvtgfRFXu/ImkiG34htGjCxaoPRWyS/ku8fOHmxAPL9gfxX
-         mGkA==
-X-Gm-Message-State: AC+VfDz8KF2QJwLcIElWfgL4QJexfcJE2lNkYJo+OMs/varrFv1SxC1g
-	iAhkpscGn7jsCYYHGlrtbp9F3ZP6zw==
-X-Google-Smtp-Source: ACHHUZ4/dvwbcy01BSUtuPxen2FdLAX+HOYoKuxbwugA8+RyXNtv6V1MfDRHfuJMMh2dINX0gXQ+sQ==
-X-Received: by 2002:a92:dac5:0:b0:335:908b:8f5 with SMTP id o5-20020a92dac5000000b00335908b08f5mr4291681ilq.10.1686082338996;
-        Tue, 06 Jun 2023 13:12:18 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id m11-20020a924a0b000000b0033d2eba1800sm3283987ilf.15.2023.06.06.13.12.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jun 2023 13:12:18 -0700 (PDT)
-Received: (nullmailer pid 1540120 invoked by uid 1000);
-	Tue, 06 Jun 2023 20:12:16 -0000
+	id 1q6fXU-003VtS-0g
+	for linux-amlogic@lists.infradead.org;
+	Tue, 06 Jun 2023 22:52:33 +0000
+Received: from localhost (88-113-26-95.elisa-laajakaista.fi [88.113.26.95])
+	by fgw20.mail.saunalahti.fi (Halon) with ESMTP
+	id cebfce1e-04bc-11ee-b3cf-005056bd6ce9;
+	Wed, 07 Jun 2023 01:52:27 +0300 (EEST)
+From: andy.shevchenko@gmail.com
+Date: Wed, 7 Jun 2023 01:52:26 +0300
+To: George Stark <gnstark@sberdevices.ru>
+Cc: jic23@kernel.org, lars@metafoo.de, neil.armstrong@linaro.org,
+	khilman@baylibre.com, jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	andriy.shevchenko@linux.intel.com, nuno.sa@analog.com,
+	linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	kernel@sberdevices.ru
+Subject: Re: [PATCH v3] meson saradc: fix clock divider mask length
+Message-ID: <ZH-4qsNcLGiQFiSE@surfacebook>
+References: <20230606165357.42417-1-gnstark@sberdevices.ru>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-Cc: Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, linux-mtd@lists.infradead.org, linux-amlogic@lists.infradead.org, kernel@sberdevices.ru, Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Jerome Brunet <jbrunet@baylibre.com>, oxffffaa@gmail.com, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Vignesh Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Liang Yang <liang.yang@amlogic.com>
-In-Reply-To: <20230606193507.35024-1-AVKrasnov@sberdevices.ru>
-References: <20230606193507.35024-1-AVKrasnov@sberdevices.ru>
-Message-Id: <168608233614.1540103.8185199247808319074.robh@kernel.org>
-Subject: Re: [PATCH v1] dt-bindings: nand: meson: Fix 'nand-rb' property
-Date: Tue, 06 Jun 2023 14:12:16 -0600
+Content-Disposition: inline
+In-Reply-To: <20230606165357.42417-1-gnstark@sberdevices.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230606_131221_088283_6423BB0A 
-X-CRM114-Status: GOOD (  13.16  )
+X-CRM114-CacheID: sfid-20230606_155232_407270_DAA44A65 
+X-CRM114-Status: GOOD (  13.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,46 +66,60 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Tue, Jun 06, 2023 at 07:53:57PM +0300, George Stark kirjoitti:
+> According to datasheets of supported meson SOCs length of ADC_CLK_DIV
 
-On Tue, 06 Jun 2023 22:35:07 +0300, Arseniy Krasnov wrote:
-> Add description of 'nand-rb' property. Use "Fixes" because this property
-> must be supported since the beginning. For this controller 'nand-rb' is
-> stored in the controller node (not in chip), because it has only single
-> r/b wire for all chips.
-> 
-> Fixes: fbc00b5e746f ("dt-bindings: nand: meson: convert txt to yaml")
-> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+the datasheets
+
+> field is 6 bits long. Although all supported SOCs have the register
+
+6-bit
+
+> with that field documented later SOCs use external clock rather than
+> ADC internal clock so this patch affects only meson8 family (S8* SOCs)
+
+s/SOC/SoC/g, and mind the grammar period at the end.
+
+I believe Jonathan can fix when applying this, no need to resend unless
+he asks for it.
+
+FWIW,
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+
+> Fixes: 3adbf3427330 ("iio: adc: add a driver for the SAR ADC found in Amlogic Meson SoCs")
+> Signed-off-by: George Stark <GNStark@sberdevices.ru>
 > ---
->  Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+> Changelog:
+> 
+> v1 -> v2:
+>     * Update commit message
+> v2 -> v3:
+>     * Update commit message
+> ---
+>  drivers/iio/adc/meson_saradc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+> index 85b6826cc10c..b93ff42b8c19 100644
+> --- a/drivers/iio/adc/meson_saradc.c
+> +++ b/drivers/iio/adc/meson_saradc.c
+> @@ -72,7 +72,7 @@
+>  	#define MESON_SAR_ADC_REG3_PANEL_DETECT_COUNT_MASK	GENMASK(20, 18)
+>  	#define MESON_SAR_ADC_REG3_PANEL_DETECT_FILTER_TB_MASK	GENMASK(17, 16)
+>  	#define MESON_SAR_ADC_REG3_ADC_CLK_DIV_SHIFT		10
+> -	#define MESON_SAR_ADC_REG3_ADC_CLK_DIV_WIDTH		5
+> +	#define MESON_SAR_ADC_REG3_ADC_CLK_DIV_WIDTH		6
+>  	#define MESON_SAR_ADC_REG3_BLOCK_DLY_SEL_MASK		GENMASK(9, 8)
+>  	#define MESON_SAR_ADC_REG3_BLOCK_DLY_MASK		GENMASK(7, 0)
+>  
+> -- 
+> 2.38.4
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+-- 
+With Best Regards,
+Andy Shevchenko
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-nand-rb: size (5) error for type uint32-array
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.example.dtb: nand-controller@ffe07800: nand-rb: b'true\x00' is not of type 'object', 'array', 'boolean', 'null'
-	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230606193507.35024-1-AVKrasnov@sberdevices.ru
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
 _______________________________________________
