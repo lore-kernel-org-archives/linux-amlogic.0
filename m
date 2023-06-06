@@ -4,62 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA5AEC77B73
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jun 2023 16:34:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7467C77B7A
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jun 2023 16:55:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YhyymPokzUm1gJLaIPTSxR6ohcmm1A3tjhKwPcgSYkQ=; b=SYb82JeQFeRPOn
-	krZZd3QfRUI3GBBXMlGCvHRrLJkopFub2Xkmn6ZtrdPxvn9LCZLePVLjJGJtWXP36dx8kj+JHmm+q
-	wT8xRiYC+TYtWr/z3LmtRVZ51+fba7T0YbNKM58fN/L+xKdZ1woxNFqJOq39wHE0i/ymInWl6FnzG
-	0mh62v1AbDrM3w5+ODYPI/a0ylcM7d0Ax2PlgqraF/9VkqfARk9p/n8oyLkgSKTpLXzZ5jqNVJPCv
-	sBQ11k+86jAW1jJ879F+15B9RVcRPbdLOJawzd0POgmpInlFpHozrLIquf+vyUSzthtY17hETy4c5
-	2Q1xZxp6GSTQjkeAQk2A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=XGzZJdGuZh8o3fuMH+EoBd9qpdKtBF0DQK6yCHskkaU=; b=rzHhGzvLElUwbI
+	G98I5ejg5H2SkXbBccJOlXJbEaXvsgy0wX9x/FJ+sC6bAbC011GFKhDw8QqoxKVW8oZeYU/Nwmenq
+	0TW9Ngf/U9zzfmp4+Tzf7eNgag2WJUmj3f1qXIofe9CBgcw38RgRJxrI4fw4S9ZpqF6wNSYd9DBIK
+	u7Fxs5ETbr2/RfS+c9/lEH64AubZEFC9tqoGrK1x4h4kFee+ElNi5mzzEYMVQdtFfOdgMNyRSct9F
+	CJQQM8QmWu0pM/plp6FQlYUYhZ+WYZTkHwPGwQKdc72tsfQf9CyZpJdKQhKOYLvrZmw9rf2VAFuQZ
+	p0YK6ocJ03aroiVBvXjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6Zdd-002S6G-0p;
-	Tue, 06 Jun 2023 16:34:29 +0000
+	id 1q6ZxQ-002VGD-1g;
+	Tue, 06 Jun 2023 16:54:56 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6ZdZ-002S4f-2l;
-	Tue, 06 Jun 2023 16:34:27 +0000
+	id 1q6ZxJ-002VEr-2X;
+	Tue, 06 Jun 2023 16:54:54 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id BE77C5FD4D;
-	Tue,  6 Jun 2023 19:34:22 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id 896615FD54;
+	Tue,  6 Jun 2023 19:54:44 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1686069262;
-	bh=KeCk+CRAEx23TImhdTYEGwdkCy7ggB8JZkD//dGVlCs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	b=Mdo2TX3tO67daG6Y7EPXaMQZhGF9M520wjm+1ZlYLAjzvtxRKk2pBFpStrcPu//P7
-	 bnEzuYqzjiZPaadF0DDlp+tFO6QkQ1SlrSu8GwGfQjFmcJdwIhFmhf4tUYOtncABm7
-	 IJE48T9FPZ648Gqb9Ti/FgSq2ZNXYo6U5p+JkxcoFa6VOeqjRPFzyLEa5dkhHYTrI5
-	 3Go/2n1zizfGM9i9OXU6xgbxU2H2wZWEy7xbt9y0nQdX9DU903Rod94T2Ei7RVXBif
-	 LUGUgwA9TY9cttM7PQG5PTpbYyjAzwoPSFeer7MxcKAuQR9tBcQAgLaSqPNpGMpBvQ
-	 zDcfLj/09TshA==
+	s=mail; t=1686070484;
+	bh=Z3E+qqaUAGaWeT5IbR6dVGiBQMvs+bk43lDEXzhVAAM=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+	b=fgwjx5hWc0N6KD5F2kmUMsEI66q9ktsm4bEQsZ+iks1z7gfXBQG2tNEnz1Pq8KI78
+	 1Pn2/Q9VxsdRutm+UetCUiAHpBYdE8xOT2DdqzQncNCn+oIHBOvT+zPxuyMOMgrFKP
+	 5yEyxKWOLB3uC6ADDK8eW+atxanhPzx96iMfStYjJd5U64zQ7gADzrfEZSjNmiRhfm
+	 181PB9c3UsYX1wiIXYJ/E8iYowHM66h9QxyfpPpYK9zQaS/VBVumepUU9/nJrj5vGi
+	 zPtKSyUSHf3PvOKDfgGMHOVjivk67q1cWKg+ANHSbdMzdFvpfeVgYQQp4ueFKaM7Wr
+	 B/ZODUZrKU07g==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Tue,  6 Jun 2023 19:34:20 +0300 (MSK)
-Message-ID: <9adef6da-5930-dcaa-f148-e4a398d39f2d@sberdevices.ru>
-Date: Tue, 6 Jun 2023 19:29:27 +0300
+	Tue,  6 Jun 2023 19:54:42 +0300 (MSK)
+From: George Stark <gnstark@sberdevices.ru>
+To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <andriy.shevchenko@linux.intel.com>,
+	<nuno.sa@analog.com>, <gnstark@sberdevices.ru>
+CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<kernel@sberdevices.ru>, George Stark <GNStark@sberdevices.ru>
+Subject: [PATCH v3] meson saradc: fix clock divider mask length
+Date: Tue, 6 Jun 2023 19:53:57 +0300
+Message-ID: <20230606165357.42417-1-gnstark@sberdevices.ru>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2] mtd: rawnand: meson: check buffer length
-Content-Language: en-US
-To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
-	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20230606101644.3297859-1-AVKrasnov@sberdevices.ru>
-From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-In-Reply-To: <20230606101644.3297859-1-AVKrasnov@sberdevices.ru>
 X-Originating-IP: [172.16.1.6]
 X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
  S-MS-EXCH01.sberdevices.ru (172.16.1.4)
@@ -71,8 +66,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/06 14:43:00 #21444531
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230606_093426_237930_B26EFDF8 
-X-CRM114-Status: GOOD (  21.75  )
+X-CRM114-CacheID: sfid-20230606_095450_351323_2B807298 
+X-CRM114-Status: GOOD (  10.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,130 +84,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Sorry, here is changelog:
-v1 -> v2:
-* Move checks from 'switch/case' which executes commands in 'meson_nfc_exec_op()' to a special
-  separated function 'meson_nfc_check_op()' which is called before commands processing.
+According to datasheets of supported meson SOCs length of ADC_CLK_DIV
+field is 6 bits long. Although all supported SOCs have the register
+with that field documented later SOCs use external clock rather than
+ADC internal clock so this patch affects only meson8 family (S8* SOCs)
 
-On 06.06.2023 13:16, Arseniy Krasnov wrote:
-> Meson NAND controller has limited buffer length, so check it before
-> command execution to avoid length trim. Also check MTD write size on
-> chip attach.
-> 
-> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-> ---
->  drivers/mtd/nand/raw/meson_nand.c | 47 +++++++++++++++++++++++++++----
->  1 file changed, 42 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-> index 23a73268421b..db6b18753071 100644
-> --- a/drivers/mtd/nand/raw/meson_nand.c
-> +++ b/drivers/mtd/nand/raw/meson_nand.c
-> @@ -111,6 +111,8 @@
->  
->  #define PER_INFO_BYTE		8
->  
-> +#define NFC_CMD_RAW_LEN	GENMASK(13, 0)
-> +
->  struct meson_nfc_nand_chip {
->  	struct list_head node;
->  	struct nand_chip nand;
-> @@ -284,7 +286,7 @@ static void meson_nfc_cmd_access(struct nand_chip *nand, int raw, bool dir,
->  
->  	if (raw) {
->  		len = mtd->writesize + mtd->oobsize;
-> -		cmd = (len & GENMASK(13, 0)) | scrambler | DMA_DIR(dir);
-> +		cmd = len | scrambler | DMA_DIR(dir);
->  		writel(cmd, nfc->reg_base + NFC_REG_CMD);
->  		return;
->  	}
-> @@ -573,7 +575,7 @@ static int meson_nfc_read_buf(struct nand_chip *nand, u8 *buf, int len)
->  	if (ret)
->  		goto out;
->  
-> -	cmd = NFC_CMD_N2M | (len & GENMASK(13, 0));
-> +	cmd = NFC_CMD_N2M | len;
->  	writel(cmd, nfc->reg_base + NFC_REG_CMD);
->  
->  	meson_nfc_drain_cmd(nfc);
-> @@ -597,7 +599,7 @@ static int meson_nfc_write_buf(struct nand_chip *nand, u8 *buf, int len)
->  	if (ret)
->  		return ret;
->  
-> -	cmd = NFC_CMD_M2N | (len & GENMASK(13, 0));
-> +	cmd = NFC_CMD_M2N | len;
->  	writel(cmd, nfc->reg_base + NFC_REG_CMD);
->  
->  	meson_nfc_drain_cmd(nfc);
-> @@ -1007,6 +1009,31 @@ meson_nand_op_put_dma_safe_output_buf(const struct nand_op_instr *instr,
->  		kfree(buf);
->  }
->  
-> +static int meson_nfc_check_op(struct nand_chip *chip,
-> +			      const struct nand_operation *op)
-> +{
-> +	int op_id;
-> +
-> +	for (op_id = 0; op_id < op->ninstrs; op_id++) {
-> +		const struct nand_op_instr *instr;
-> +
-> +		instr = &op->instrs[op_id];
-> +
-> +		switch (instr->type) {
-> +		case NAND_OP_DATA_IN_INSTR:
-> +		case NAND_OP_DATA_OUT_INSTR:
-> +			if (instr->ctx.data.len > NFC_CMD_RAW_LEN)
-> +				return -ENOTSUPP;
-> +
-> +			break;
-> +		default:
-> +			break;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int meson_nfc_exec_op(struct nand_chip *nand,
->  			     const struct nand_operation *op, bool check_only)
->  {
-> @@ -1015,10 +1042,12 @@ static int meson_nfc_exec_op(struct nand_chip *nand,
->  	const struct nand_op_instr *instr = NULL;
->  	void *buf;
->  	u32 op_id, delay_idle, cmd;
-> +	int err;
->  	int i;
->  
-> -	if (check_only)
-> -		return 0;
-> +	err = meson_nfc_check_op(nand, op);
-> +	if (err || check_only)
-> +		return err;
->  
->  	meson_nfc_select_chip(nand, op->cs);
->  	for (op_id = 0; op_id < op->ninstrs; op_id++) {
-> @@ -1293,6 +1322,7 @@ static int meson_nand_attach_chip(struct nand_chip *nand)
->  	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
->  	struct mtd_info *mtd = nand_to_mtd(nand);
->  	int nsectors = mtd->writesize / 1024;
-> +	int raw_writesize;
->  	int ret;
->  
->  	if (!mtd->name) {
-> @@ -1304,6 +1334,13 @@ static int meson_nand_attach_chip(struct nand_chip *nand)
->  			return -ENOMEM;
->  	}
->  
-> +	raw_writesize = mtd->writesize + mtd->oobsize;
-> +	if (raw_writesize > NFC_CMD_RAW_LEN) {
-> +		dev_err(nfc->dev, "too big write size in raw mode: %d > %ld\n",
-> +			raw_writesize, NFC_CMD_RAW_LEN);
-> +		return -EINVAL;
-> +	}
-> +
->  	if (nand->bbt_options & NAND_BBT_USE_FLASH)
->  		nand->bbt_options |= NAND_BBT_NO_OOB;
->  
+Fixes: 3adbf3427330 ("iio: adc: add a driver for the SAR ADC found in Amlogic Meson SoCs")
+Signed-off-by: George Stark <GNStark@sberdevices.ru>
+---
+Changelog:
+
+v1 -> v2:
+    * Update commit message
+v2 -> v3:
+    * Update commit message
+---
+ drivers/iio/adc/meson_saradc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+index 85b6826cc10c..b93ff42b8c19 100644
+--- a/drivers/iio/adc/meson_saradc.c
++++ b/drivers/iio/adc/meson_saradc.c
+@@ -72,7 +72,7 @@
+ 	#define MESON_SAR_ADC_REG3_PANEL_DETECT_COUNT_MASK	GENMASK(20, 18)
+ 	#define MESON_SAR_ADC_REG3_PANEL_DETECT_FILTER_TB_MASK	GENMASK(17, 16)
+ 	#define MESON_SAR_ADC_REG3_ADC_CLK_DIV_SHIFT		10
+-	#define MESON_SAR_ADC_REG3_ADC_CLK_DIV_WIDTH		5
++	#define MESON_SAR_ADC_REG3_ADC_CLK_DIV_WIDTH		6
+ 	#define MESON_SAR_ADC_REG3_BLOCK_DLY_SEL_MASK		GENMASK(9, 8)
+ 	#define MESON_SAR_ADC_REG3_BLOCK_DLY_MASK		GENMASK(7, 0)
+ 
+-- 
+2.38.4
+
 
 _______________________________________________
 linux-amlogic mailing list
