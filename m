@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E7A4C77B73
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jun 2023 14:32:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 404CBC77B73
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jun 2023 14:36:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
 	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mSl2DUT5yEctcG9AKV9DN1f2uhUbqBVAeKfm0yEHgFI=; b=pIi6anCBwWlLu2
-	sFgP0RnEFwcGvWMUSfJhYCceXLG5sepkCwDJ5r26sp8ik5mBuFZOYk3QY1KwyrEhsu+n28wbqoqju
-	zr2CvE7NJhAMh8C/Kf8u3C8KnXww9pd/FjDMMWgLZydONh29M7eFY0uqtDRuM4tV+euS/zFeeLbdj
-	xT4sCdCjB0z3aHBp5+lGRRZNC+peIpbY/yJrXqxOkJipwbzvAu8GsPjHQYOOXCLZokPWt6tPhgqvd
-	6rJG1Zaozhdp+BkkziZCJSNzJYEyWBSgrAtfExCzsVgj0yvtWXBSlJ1p5yt6b2p1NVHSnpvvz3iZs
-	Fy+SBHmPfhWhLykuhhxA==;
+	List-Owner; bh=dTL6/Jxn+8AwrtX5kkEKdOcRlGzCwN/iVR3T66dXrA0=; b=MT3yWy94a5Zbt/
+	U4k26eOBcTHD21d4aQ9XbhC/98TRDK4CgYE278tIFtKG6MGtpr/IECIKMymXbRsYE7L7u1deeIz6b
+	20vcVrq/Asrax/3tn0g7Ty0EsX0tv3aY6QMbErQpF7BIRAySUHbz8NSewcGIFAnEog6V2bJ8q3KoP
+	T2lIqCJCcM+r3LDmw/CiUoFkv42KM9QEqnGCJLxnCluREP4fkKC6qwcqN5bKlYgsBEZ019zz+MB/Z
+	pK07XrAomriOMmKsTYzUwynSsVyVGXMdAt8tqvRF4ryQVtePaXB26ZnCjuFZRU+/UdfvU1tvlgfIm
+	+T4L0OWDDEMZQMrjBstg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6Xio-0021jc-2I;
-	Tue, 06 Jun 2023 14:31:42 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1q6XnX-0022w5-2G;
+	Tue, 06 Jun 2023 14:36:35 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6Xii-0021h9-2p
+	id 1q6XnT-0022tJ-0A
 	for linux-amlogic@lists.infradead.org;
-	Tue, 06 Jun 2023 14:31:40 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-30ae5f2ac94so6184226f8f.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 06 Jun 2023 07:31:35 -0700 (PDT)
+	Tue, 06 Jun 2023 14:36:34 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f6da07ff00so63009575e9.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 06 Jun 2023 07:36:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1686061894; x=1688653894;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1686062186; x=1688654186;
         h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
          :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=rk+ZKOcf79K1jM4Aaec5K6JmYfvQYCg54gyGrNQwV0Q=;
-        b=t6olKjf35q9qtf1AH7m3QECNqhjOYcxnWoMYb4IcC9Wdyo7sIwWNntD2yf8fB7hxOH
-         oHwOzk06IfIsDO5Oc8+/xUz/A8KSVImQq+qjQvZLNQy9thRruWZJhAOmCR+ZUqasXfbE
-         0eY5AdDiFRPq21WAusHDlBKr+5jD1EEWFi6jhsUnvV/iDzw5F1NbsUo5b/8F/TCMjsDI
-         BQ2Q9xyqUsh/WlqXVNcAhBS2YNIas+1x1UeFrTiu5Ul6q8GW/ehlAAb2bFwpnXOA18Vv
-         vNrewjfU8Pn0oVtCdrdcClieIYPLII/aKvou/qI2GQyfdyoPl+nH5ivr2RhpYmnjsvM7
-         T+bw==
+        bh=bAwQFxGP8Gu5McMu6H0HUkWlCXCqGtKq3VqK4BfVCTM=;
+        b=qEsDUMgmSopuCY07jQFOAXfSstoSLg3LrcKeyzz9UmMCZRpq0gpGFbhiRjD6yU1lmv
+         vWoA/wXX6tXfBuiePIbwHsfHISFYtL40V33u/DvnRKLMLlxcqLnP0AmgT80bqBefsKF8
+         rJmCzCdi7VFms1+l4sQZGe+LJeMYSuqZimWLvbRvlXPEJNIyEivxegM7tp657mQwyxWv
+         X++FNIjTI8POdnKe9NpUjWP0CPsQjR9S/CuKYQz1N87zqmGWi1Fvzto654CvVWJAPGFo
+         qxEdvI4bj1FNV1Wwtr+FUtpNKRiaO1uITwabz6XiVJmBFL4wz+C1LP+esguRLOlEs0p0
+         SBYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686061894; x=1688653894;
+        d=1e100.net; s=20221208; t=1686062186; x=1688654186;
         h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
          :user-agent:references:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rk+ZKOcf79K1jM4Aaec5K6JmYfvQYCg54gyGrNQwV0Q=;
-        b=l4McOSqOnNlpXMqiyekT/cPWfBN9Lb+nysansCJhMySB8MTCGUyp33hMyYsFuHdxFF
-         21/ns3oblPSPb72zLon9nc8CInmXL2jC4pr9BtZNqHNaCY5GaMtHjfjOUOMtGU+nj9gH
-         2cda/W9v9Zn3CtoNhEO0xd30em+v0CKK+C7sqcgF/oPoKBID4Fdqt2vD1Q4nLWPKbL3E
-         usC3uzz0HX+HHd/77Cg8s/j6wfpVIWVUP2LAuBLnCZuat/nM+drnDWl/T7i/Ic7zu3ec
-         wtfg5eCdd68RcHIpqXCKeXu/MRvm6uwwXNKcjxIs3nCqrfULHIYngPWjNjLGzZJkoe2l
-         6Ahg==
-X-Gm-Message-State: AC+VfDx7k4Fs/P/sxQDTBJKRY/DSxDR1KnTdxRUaySSmYecqSr74yGiM
-	3MDe+FYmnEuD1FNtTtWEaFioGg==
-X-Google-Smtp-Source: ACHHUZ4dkwM+srRtkFvdXO74zCmxj/Pd5bTApCEgxbMqVjNrJ9/9Z5Ml6M4N8R/ZvtWY1ENtB7RSOA==
-X-Received: by 2002:adf:e44e:0:b0:307:8651:258e with SMTP id t14-20020adfe44e000000b003078651258emr2358819wrm.21.1686061894502;
-        Tue, 06 Jun 2023 07:31:34 -0700 (PDT)
+        bh=bAwQFxGP8Gu5McMu6H0HUkWlCXCqGtKq3VqK4BfVCTM=;
+        b=AhWQhuJ8ZqN1zT/1FpXOyI2O70W8D9t0NDHquAHywJ+icCd+oDHsqYVS0b+ASXqZmE
+         RFRI/AMRny1kMnaZM5W+AVyQOUnh6VQcNCC41kB3LnLZ+p3TCRDibzLyF3oUUagn+/E6
+         ANhEsv1e17gA7gjIGLKcQmoayo3yIXoEOFMFgpQn1u04gsZCfweM1tK0Twwj/DCUKFm6
+         xjSqP/U45eSEVMjnSoyq6jlkGh4ds5xoPP7sl8ZCBWQSHqg93KDIl+Tuov7LpCDGSyyA
+         48kd6jdMlLsWSl9tawN7T47bBoqsmD84qj8DEXrsOK6wE8lddzR+El6oOPjurWOxbfAR
+         RmXg==
+X-Gm-Message-State: AC+VfDzIgJm/oTDW7EoFJfz8w1CzzX1CTt50ydv5XVctf+bEqQQe9eab
+	y2+QQNjVwhY+khiAujqF3fIgPg==
+X-Google-Smtp-Source: ACHHUZ6hA6vqWdbIfbhdsYAFhfn8BzJcsW9j6FErHaaWYROtwSzajLw1uEVHYuLOopv9fQwWaczxOg==
+X-Received: by 2002:a1c:750e:0:b0:3f7:a80a:c676 with SMTP id o14-20020a1c750e000000b003f7a80ac676mr2534192wmc.39.1686062186494;
+        Tue, 06 Jun 2023 07:36:26 -0700 (PDT)
 Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id e10-20020a5d500a000000b0030ae4350212sm12748876wrt.66.2023.06.06.07.31.33
+        by smtp.gmail.com with ESMTPSA id q25-20020a7bce99000000b003eddc6aa5fasm17747558wmj.39.2023.06.06.07.36.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jun 2023 07:31:34 -0700 (PDT)
+        Tue, 06 Jun 2023 07:36:26 -0700 (PDT)
 References: <20230517070215.28463-1-yu.tu@amlogic.com>
  <20230517070215.28463-4-yu.tu@amlogic.com>
 User-agent: mu4e 1.8.13; emacs 28.2
@@ -77,13 +77,13 @@ To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
 Cc: kelvin.zhang@amlogic.com, qi.duan@amlogic.com
 Subject: Re: [PATCH V9 3/4] clk: meson: S4: add support for Amlogic S4 SoC
  PLL clock driver
-Date: Tue, 06 Jun 2023 16:02:37 +0200
+Date: Tue, 06 Jun 2023 16:34:01 +0200
 In-reply-to: <20230517070215.28463-4-yu.tu@amlogic.com>
-Message-ID: <1j5y804q7u.fsf@starbuckisacylon.baylibre.com>
+Message-ID: <1j1qio4pzq.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230606_073136_920082_F7F949C2 
-X-CRM114-Status: GOOD (  28.05  )
+X-CRM114-CacheID: sfid-20230606_073631_091598_05155C50 
+X-CRM114-Status: GOOD (  25.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -134,6 +134,14 @@ On Wed 17 May 2023 at 15:02, Yu Tu <yu.tu@amlogic.com> wrote:
 > +	help
 > +	  Support for the pll clock controller on Amlogic S805X2 and S905Y4 devices,
 > +	  aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
+
+I'm confused, what are the AQ222 and AQ229 ? are those SoC or boards
+like your reference designs ?
+
+If those are boards, it should not be mentionned here
+
+Also, what about the S905X4 ? is it another SoC family ?
+
 > +	  Say Y if you want the board to work, because plls are the parent of most
 > +	  peripherals.
 >  endmenu
@@ -208,9 +216,6 @@ On Wed 17 May 2023 at 15:02, Yu Tu <yu.tu@amlogic.com> wrote:
 > +		.name = "fixed_pll_dco",
 > +		/*
 > +		 * This clock is a fixed value (4GHz) that is initialized by ROMcode.
-
-Really, isn't it the bl2 doing that ?
-
 > +		 * This clock won't ever change at runtime.
 > +		 * The chip design determines that this clock cannot be changed after
 > +		 * initialization. To prevent system crash caused by changing
@@ -218,14 +223,6 @@ Really, isn't it the bl2 doing that ?
 > +		 * writable in the kernel phase.
 > +		 * So we use ro_ops.
 > +		 */
-
-This explanation is good but we don't need mutliple copy/paste or
-"please refer" for the same thing. That is very verbose (I think I
-already commented on this previously)
-
-Just make one comment block, that clearly explain your intent and that
-it applies to the fixed_pll group
-
 > +		.ops = &meson_clk_pll_ro_ops,
 > +		.parent_data = (const struct clk_parent_data []) {
 > +			{ .fw_name = "xtal", }
@@ -339,15 +336,6 @@ it applies to the fixed_pll group
 > +		/*
 > +		 * For more information, please refer to s4_fixed_pll_dco.
 > +		 */
-
-While div2 and div3 got an explanation from previous SoCs, they others -
-like div4/div7/etc ... - have been able to cope with rw ops so far.
-
-Why is the S4 different for all these clocks ?
-
-Requiring RO ops (or fishy clock flags) is usually a sign that a clock
-is used without an appropriate driver.
-
 > +		.ops = &clk_regmap_gate_ro_ops,
 > +		.parent_hws = (const struct clk_hw *[]) {
 > +			&s4_fclk_div4_div.hw
