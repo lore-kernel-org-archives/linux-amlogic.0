@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B578C7EE2E
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jun 2023 20:17:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCE60C7EE23
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jun 2023 20:17:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=m7GFtSa6/sHkPMQCg6nEQQwWszx0eyuSV6oaN+gCGj0=; b=4Sjp4AUyJnZFgs
-	kRCHLUD0LvcxGrzP++sWVxOIy4Z57gygMtQIROc9i48tmdx+/5JbNkyGMDzYf1SUgI9MQ0PO+VSJe
-	Nv5gacKvimT3rwZ9foX759eGqhpKL2mVici46Omws2ARzjNdLlKnnVmmDC+ApcV4KxTwWMo9OCI7n
-	4aydP3ikogtQlRMs1epPvY4hn70xz0KiTfGScf05Sqosnngz1Wo4ljcU7gDWOj1OQ33pFm3tg82ho
-	EEItkBIv3anMt3+dCwzIlVDfSenEjw1mhUHMsFhO2PhzQamWPCDI9N1VoeAKIKG+aZz+J0e/3iNyj
-	YlpHeR3+kpvR2ddAKVYQ==;
+	List-Owner; bh=3p0ELQI+d/9JQZ3zgovPsn9JTuLl/RvEMh87lDA0CKs=; b=GCWtxrOwvryNAr
+	cpkhn0t/BOENc47lDkEB3qTSP/BKqOWYJh9VgzazKBYDKDqjbfavqNViakGgGwlsAM48rA4Xm5+Oi
+	HxZ0MnII1R/j9tB2jAbRMjLvKzg0o4FbdlqfWMHpJotfayFrwAsevxujTY8UEkyQTYvXFZ1f+blWH
+	Uhl/S3yDr7PicRyKlHMKjG3WsFNr16ug/i/dQ7+ROpdbUXB8jpuYNL73O9lZmditl/Yo17J4fsoPt
+	vZ0lEkKQ3tfZ71ZdkcACp+VtAD+m/S46K5cXbV7D2ccUm+78BCMyVhLQTqOXFhlDycTxDNJZS4A+Z
+	A2XdpucMQ8VDmSxY0oMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6zab-0074zI-2S;
-	Wed, 07 Jun 2023 20:17:05 +0000
+	id 1q6zak-00754y-1J;
+	Wed, 07 Jun 2023 20:17:14 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6zaW-0074vD-2y;
-	Wed, 07 Jun 2023 20:17:04 +0000
+	id 1q6zac-0074yp-21;
+	Wed, 07 Jun 2023 20:17:07 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 1B3FA5FD70;
-	Wed,  7 Jun 2023 23:16:53 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id 41FBB5FD72;
+	Wed,  7 Jun 2023 23:16:55 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1686169013;
-	bh=UTZcZ6SqBjR1YEd2msrtjkp6jUwOSc8GxBbCJ0Tz6Xk=;
+	s=mail; t=1686169015;
+	bh=VVBMghSaus7SwxMO0wG80S4bhkxc+XRBu1rkfi7iaek=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=f+vaPMXGOJFDqj1KS3+wyVqC1kzG+ieLA8Dm/owf1lIlUeXjJT7/ImErFX/5E4XsQ
-	 LfvCGkqX3tgmD7Qp1YUTe8X/+Ie1Y1olNBCheCisMt71yJxI10I+CDkOqhpG20Iwpb
-	 ANmZxAaCA8Fxi+nvnSxsSAo+MxzY9k3cJoCSe+CBaZ7nrcNIbKGdQvCC8lxItjSKtF
-	 ALQ1iu6+tdAyLmh0pYpx33O+S7bBEy4UEnlw/DOmM5mK6AQoO793+9QUde5FbYL7Cp
-	 DTSpgFenmMhjy5PLrE2VUdsJJvKQek+0S3f6f+Qb/6bgvLqihDMUP9QZdpBaUHCiow
-	 O/NhnXkdGZLKA==
+	b=JQWIpvSKAFcRo6IIvAjvdO8J7/Ya+0jKxIgsqQg9Uc/du+xHwEowEhFWpdQOD+HEo
+	 rSyLukb8CnrPavC81nW184oBvm31UDuIVyrNj3FBUtE7StbzXfsBBGurN5HAGfKYQn
+	 JWsSPEquJ6U80ZlBiHOn5QG05gatTbRwbMbCZIfOHYo61sdxlwcWlFoSJusfNNWjzS
+	 VFONoP7hQRFLNfTSNZTxLUReT3rvpyqSSRkLWj8FQyfCZYmFCOwP5bbOzrAkwQy48Y
+	 8tTSVaJuZS6Rk1/as5nUJS6biROPJJ5fkiHA2AAApHFmXn/abtbJb3+w5Hn/dAdnFP
+	 JQutt8zKfos3g==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Wed,  7 Jun 2023 23:16:53 +0300 (MSK)
+	Wed,  7 Jun 2023 23:16:55 +0300 (MSK)
 From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
 	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
@@ -50,12 +50,11 @@ To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
 CC: <kernel@sberdevices.ru>, <sdfw_system_team@sberdevices.ru>,
 	<rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
 	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	Alexey Romanov <avromanov@sberdevices.ru>, Dmitry Rokosov
-	<ddrokosov@sberdevices.ru>
-Subject: [PATCH v1 3/6] arm64: dts: meson: a1: enable efuse controller and setup its clk
-Date: Wed, 7 Jun 2023 23:16:38 +0300
-Message-ID: <20230607201641.20982-4-ddrokosov@sberdevices.ru>
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, Oleg
+ Lyovin <ovlevin@sberdevices.ru>, Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Subject: [PATCH v1 5/6] arm64: dts: meson: a1: introduce UART_AO mux definitions
+Date: Wed, 7 Jun 2023 23:16:40 +0300
+Message-ID: <20230607201641.20982-6-ddrokosov@sberdevices.ru>
 X-Mailer: git-send-email 2.36.0
 In-Reply-To: <20230607201641.20982-1-ddrokosov@sberdevices.ru>
 References: <20230607201641.20982-1-ddrokosov@sberdevices.ru>
@@ -71,9 +70,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/07 16:55:00 #21454472
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230607_131701_157387_177503A5 
-X-CRM114-Status: UNSURE (   8.66  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230607_131706_849894_3A22FA67 
+X-CRM114-Status: GOOD (  10.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,37 +88,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Alexey Romanov <avromanov@sberdevices.ru>
+From: Oleg Lyovin <ovlevin@sberdevices.ru>
 
-EFUSE A1 controller uses CLKID_OTP clock and PWRC_OTP_ID power domain.
+The Amlogic A1 has a UART_AO port, which can be used, for example, for
+BT HCI H4 connection.
 
-Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
+This patch adds mux definitions for it.
+
+Signed-off-by: Oleg Lyovin <ovlevin@sberdevices.ru>
 Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 ---
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index b2563c7d3842..63faccfc1134 100644
+index 0efd922ca7e1..3eb6aa9c00e0 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -44,6 +44,16 @@ l2: l2-cache0 {
- 		};
- 	};
+@@ -118,6 +118,22 @@ gpio: bank@400 {
+ 					gpio-ranges = <&periphs_pinctrl 0 0 62>;
+ 				};
  
-+	efuse: efuse {
-+		compatible = "amlogic,meson-gxbb-efuse";
-+		clocks = <&clkc_periphs CLKID_OTP>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		secure-monitor = <&sm>;
-+		power-domains = <&pwrc PWRC_OTP_ID>;
-+		status = "okay";
-+	};
++				uart_a_pins: uart_a {
++					mux {
++						groups = "uart_a_tx",
++							 "uart_a_rx";
++						function = "uart_a";
++					};
++				};
 +
- 	psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
++				uart_a_cts_rts_pins: uart_a_cts_rts {
++					mux {
++						groups = "uart_a_cts",
++							 "uart_a_rts";
++						function = "uart_a";
++						bias-pull-down;
++					};
++				};
+ 			};
+ 
+ 			uart_AO: serial@1c00 {
 -- 
 2.36.0
 
