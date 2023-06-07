@@ -4,90 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6156BC77B7A
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jun 2023 18:49:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3C2AC7EE23
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jun 2023 19:04:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3R/h3wsDxGvpe5gFlfcnpfxv3dWVbHhVU9itQAtFnjE=; b=Wq0gJxhvJtVjNb
-	GaO9bM+xdzQguv9xT4wyZ3sa4EPaHAuQt+hkWRE4CqTEzHY8vmPq5hH32auPLn3Ywl2FelPh1Fmnm
-	/hSrOZRMUYgIW6IAur4KAGkJIaUBHkeEzKGFr7a49lIAqtU7dBLqesviXwQv9NcWZaals9834BwXZ
-	Cuas9VZ8CYfl+CGw3KouPNfkBOOBfGzYXdaUrz0xidnJlngO3sUbTWiSQcXC/SiiNOuklTZXAy40e
-	Wdhs5YR9Dukkjjg3XvJQzGNPJCG+Vb5SPc/Ohf/5NRRzuvuWXDjJ76Atf5JYQ2PofS7/28tFX6/2y
-	cRS64AeTCS+ZBKfsB2ig==;
+	List-Owner; bh=ysRg0BbivTXnbF7n/YLAr9DtR+lk/nXCv6bzEaHkgi0=; b=HQXtDu1C1ccEPn
+	9JRBWwfLkkrOkUa/ahg27I9R8SorfFFFbaJ9KWpmA/uN2uPqQ2SadA73VM+Y2+BJD8bVq4uItJ1Yu
+	LJryx3RcfJohCVyf5c18Ml3L3qhjF1ophmcrfXkmsq/rqXF3ztKrk9ndEJhh6BaxaSl8+/+LpU45P
+	XwrRnI7nLQqatAizUYDTUvoJPaue5xXETlQlo+fN1Ds1HCAx8B9RvR5T3DU9SN6KK5/bhgmsPP3bp
+	/gBGU/pNf4KB6sMAhHQ2CYWSO5GpQd+zlP4fuop6Q9ieMtnXwq+MriOnQ04HZzQanZTx9VLVkGcqO
+	PTqCRak2yTAjdA3SEzIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6yDP-006tPF-2L;
-	Wed, 07 Jun 2023 18:49:03 +0000
-Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
+	id 1q6yRa-006vdK-1g;
+	Wed, 07 Jun 2023 19:03:42 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6yDL-006tNZ-1G
-	for linux-amlogic@lists.infradead.org;
-	Wed, 07 Jun 2023 18:49:02 +0000
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51458e3af68so2025990a12.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 07 Jun 2023 11:48:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686163738; x=1688755738;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Dcinz4Do6XCJqn5XwIXIMVUlGePC0aOBOdBvUi6kdLw=;
-        b=bfXcSg3kn+4GdMtsDqNEJZW4MJHFDMZ8aieK+DbyIay74cXxHQA7bZiqKq+FCPKxff
-         OvipYXRDl4A4+HcdhZT/W6U/Sr9sTW5sn2uc+bOA2NpFsD5oip4jooiXu5r8Z2aQ4Afz
-         V5Q9IKftt58iYfhRGtwAVNAhZ7me542bryZ0mFfxNKwRe1IC/R+ITAejnkesOHEqOoM9
-         k4dtUTUaf71wTe2GaDRhZLV7Qn+W3ho8K23kgA5O4bRKTuAMySmbVwR8c9vf2sTCajNK
-         yMc/tP6wd2kXDClqkM/BT2/RqObtXZ+oeoDXuSV7GbIpxJ1/KEXgvMqwxhqHUlQoydzY
-         kJDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686163738; x=1688755738;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dcinz4Do6XCJqn5XwIXIMVUlGePC0aOBOdBvUi6kdLw=;
-        b=Yi0qAdqa87mKTDBhS6AqkgadTbONLWlC4bokS+ZpiJAL9tX3lyhRQ0oAO9r/UVftUo
-         CzusgQVbZ0FPyaYYT2AMkveU15RJM/C9Z4PMeK2DuIOaExxMyvvrdzBb7SwTSNbEyDMJ
-         IQtuykhNLo21ytdIE21rAO2cj5orm4wN7aAHFPTIW4dB2hpEwl0pp50TwaJU8KSQV+jI
-         cFb6o1fSGmMwnvwxrFnkSmhtcRUhFm15sqqXSyEBHQK12GEo6Qmc3L902RYtSPFJjuq7
-         Ipi+gmDgjqwDixEwMer3Tfu7J0S6qgWkJ24GrcgDxllpl8WUhhS/8f83huxkPhfubG+f
-         k7nQ==
-X-Gm-Message-State: AC+VfDxUJnEpw16lOc6QpFeQz6FvD/VD8VRgbKP8Tk8nLLY33bvzrrs1
-	wnqMG9RK+UM7i1DWABky78eB+g==
-X-Google-Smtp-Source: ACHHUZ7T8jA0UZN8Cs+lehRF26n5FdGaiEIBvkEKcP1rFRIEg8fCpognrs6b98qjf+uh3D3/Yki6TQ==
-X-Received: by 2002:a17:907:2d08:b0:94e:116:8581 with SMTP id gs8-20020a1709072d0800b0094e01168581mr7665387ejc.5.1686163738005;
-        Wed, 07 Jun 2023 11:48:58 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id x22-20020a1709060a5600b0096f6a131b9fsm7193130ejf.23.2023.06.07.11.48.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jun 2023 11:48:57 -0700 (PDT)
-Message-ID: <758c36be-5240-44a1-bebb-93d608a336ba@linaro.org>
-Date: Wed, 7 Jun 2023 20:48:55 +0200
+	id 1q6yRT-006vb7-2q;
+	Wed, 07 Jun 2023 19:03:40 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id 60FB15FD05;
+	Wed,  7 Jun 2023 22:03:28 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1686164608;
+	bh=wt1HwINmc7U0q2LSsk2GPrtGj8yXHDwpkKdceOnG6Ao=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	b=FIy47jn+U+y0e9M9AW8GTjok9l0tt+7nIHy7lMrSPSp9TGaaWXUfB4RgF5HlvHdk7
+	 4AknVxtuGEWWUo78yxdctTIVBcQ+i/Qz43TBhw7QJg0/o6YkUtldpOn2nSOtf8/qak
+	 dcZ178suDSV4i5839U/WEXSut14reoOM4Qwm10tziH2vkSZ62GUz2Kp53nkPYX5dwV
+	 4Rk82+iW1cKFPaSrhcPUZs2wLd96ysoyWyNvqOX/WPwgIockh6Z0EO21SdB7oJOD/U
+	 TYrjKWCbvjgv0aHpXlDHlZA59Ns8DSjCiV2klkyit3UtYczH5YoFTiM8fsCrQ8Jnon
+	 2GIUFeLlkeogw==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Wed,  7 Jun 2023 22:03:26 +0300 (MSK)
+Message-ID: <cb316711-7792-a4f6-9491-2529cfd5cba6@sberdevices.ru>
+Date: Wed, 7 Jun 2023 21:58:31 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v1 1/2] dt-bindings: nand: meson: Fix 'nand-rb' property
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v1 0/2] Meson NAND: waiting w/o wired ready/busy pin
 Content-Language: en-US
-To: Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
- Liang Yang <liang.yang@amlogic.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: oxffffaa@gmail.com, kernel@sberdevices.ru, linux-mtd@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Liang Yang
+	<liang.yang@amlogic.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Richard
+ Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+	<linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
 References: <20230607145026.2899547-1-AVKrasnov@sberdevices.ru>
- <20230607145026.2899547-2-AVKrasnov@sberdevices.ru>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230607145026.2899547-2-AVKrasnov@sberdevices.ru>
+ <a1e048aa-ec64-bd0b-aa17-e3e9bdf18090@sberdevices.ru>
+ <bd2d1770-9856-d022-5e91-6a2cdc302b73@linaro.org>
+From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <bd2d1770-9856-d022-5e91-6a2cdc302b73@linaro.org>
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/07 13:30:00 #21453197
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230607_114859_433591_62842560 
-X-CRM114-Status: GOOD (  13.51  )
+X-CRM114-CacheID: sfid-20230607_120336_640072_EADD48E7 
+X-CRM114-Status: GOOD (  14.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,39 +95,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 07/06/2023 16:50, Arseniy Krasnov wrote:
-> Add description of 'nand-rb' property. Use "Fixes" because this property
-> must be supported since the beginning.
+
+
+On 07.06.2023 21:48, Krzysztof Kozlowski wrote:
+> On 07/06/2023 17:18, Arseniy Krasnov wrote:
+>>
+>>
+>> On 07.06.2023 17:50, Arseniy Krasnov wrote:
+>>> Main thing that this patchset adds is support for waiting for command
+>>> completion when there is no wired ready/busy pin. This is implemented
+>>> by using Meson specific command which operates without wired pin, but
+>>> supports interrupt driven waiting (default way for waiting without
+>>> hardware pin is 'nand_soft_waitrdy()' which uses software loop instead
+>>> of interrupt). To select which mode to use during driver initialization,
+>>> common NAND controller property is used - 'nand-rb'. It is described in
+>>> 'nand-controller.yaml'. But for Meson, its description was missed in
+>>> 'amlogic,meson-nand.yaml', so this patchset also adds support for it.
+>>>
+>>> Patch for bindings was tested with dt_binding_check and dtbs_check.
+>>>
+>>> Arseniy Krasnov (2):
+>>>   dt-bindings: nand: meson: Fix 'nand-rb' property
+>>>   mtd: rawnand: meson: waiting w/o wired ready/busy pin
+>>>
+>>>  .../bindings/mtd/amlogic,meson-nand.yaml      |  7 ++
+>>>  drivers/mtd/nand/raw/meson_nand.c             | 82 ++++++++++++++++++-
+>>>  2 files changed, 85 insertions(+), 4 deletions(-)
+>>>
+>>
+>> Changelog:
+>> * Two separate patches:
+>>   For bindings: https://lore.kernel.org/linux-mtd/20230606193507.35024-1-AVKrasnov@sberdevices.ru/
+>>   For driver: https://lore.kernel.org/linux-mtd/20230607073015.1280085-1-AVKrasnov@sberdevices.ru/
+>>   Now fixed/updated and combined to this patchset with v1 version.
+>>
+>> * In binding patch:
+>>   * Invalid type of 'nand-rb' is fixed, it was 'bool', now it is 'uint32 array' as required. Also
+>>     new declaration of 'nand-rb' contains several restrictions like number of elements and min/max
+>>     value of elements.
+>>   * Location of 'nand-rb' is moved from the controller object to the chip object as required.
 > 
-> Fixes: fbc00b5e746f ("dt-bindings: nand: meson: convert txt to yaml")
-> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-> ---
+> Version your patchsets. This is v2, not v1.
 
+Ack, next will be v3
 
->  .../devicetree/bindings/mtd/amlogic,meson-nand.yaml        | 7 +++++++
->  1 file changed, 7 insertions(+)
+Thanks, Arseniy
+
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> index 28fb9a7dd70f..54208a4191af 100644
-> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> @@ -58,6 +58,12 @@ patternProperties:
->              meson-gxl-nfc 8, 16, 24, 30, 40, 50, 60
->              meson-axg-nfc 8
->  
-> +      nand-rb:
-> +        maxItems: 1
-> +        items:
-> +          minimum: 0
-
-Drop minimum. It's uint.
-
-> +          maximum: 0
-> +
-
-Best regards,
-Krzysztof
-
+> Best regards,
+> Krzysztof
+> 
 
 _______________________________________________
 linux-amlogic mailing list
