@@ -4,62 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 489A3C77B7A
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jun 2023 15:01:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62613C7EE23
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jun 2023 15:08:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nyGNksNanU8AxvyFFa3rRTUvQggpNe6WR+LGOiyEkOs=; b=z9A4KtCce3pAL2
-	QY7AAnclg+9G6VgFgo2j8/8hRvR1VIMf1qbTfg2Ykubjyk/+hTG3FaE+3s3+HDqwX2NIQwih3wIkW
-	wRqj/+VSheOaSQIUQbI6jAH3s/0PIDFoG+/MFD8z7Fq1p0Rxu5cysAtM1e6DhrJ5G4i8ZbERMb4Uo
-	8Uno1evpDyZntHWHGq3wD3flJ/NZxG5Y4PpNb9moNUCsi6ajvh8Rw3dsjZKRNX5ES6NafEb3gejhN
-	xXOhpDqtL++tJFfpnYuiV2EZ0rW1mdS8i3lEm8S3VokLTYGc6vIGGs/th2EEdgE9lap+UZlsK+TPo
-	ABUbASUAorqU1xSQPwLw==;
+	List-Owner; bh=jO/ZImtFXTnvkNK2SlXNmF5f1A1QuD6T0bXbKQl8QNA=; b=dRljE9KbUB+sGa
+	JkClPTjQDCcbC4+cEWLzW4w0/UdaJWirdce9DYQRDih+Z6uEeES8v3POiPD08Om4gJ4xmUOQ/l5Uz
+	m3Ot17jaROdBHN4Kcm5bykogl7PoLFXlLNfV9/d9pFQlxJ97dODXpZEUbwbDnahFKU5atskrd9kZr
+	dTOOMhkvOYm4ALXoHruWHQYG8+LqbFMdha3odwAAgMSEF1JyE3/+oPeOjRnyiEH9K+bVtei4UKusF
+	AUJXs3GwyYnvz1nA+yozpr0PzA9/qQFK7soSIYq3t1QmaeDqV5Y4V+awuwM9T1nEYJbqFvnVNeKLd
+	Iy72d3RVbg/U9E+QTrBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6uec-006L8Q-2U;
-	Wed, 07 Jun 2023 15:00:54 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1q6ulL-006MKY-1A;
+	Wed, 07 Jun 2023 15:07:51 +0000
+Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6ueZ-006L79-16;
-	Wed, 07 Jun 2023 15:00:53 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id E2F4D5FD6C;
-	Wed,  7 Jun 2023 18:00:48 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1686150048;
-	bh=yZw7OBt/wiNYBcIeHQpsh+rQgqcW0pEIZQT5EamZdeA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	b=GTLnBO4GcM/5+3XBiS+Rz3HvXus4rlcOKXcCUw52CPge+vgRqQc2Pvlmoq/Wl5stg
-	 8JCEaYFOiMiNJ0Zo821HaecH+hkjm3AvF84e7Yd5CWRA3omx6Cfc4pCW/I0rlBaPxw
-	 nEEbDhEPFCLClETnVHhxOHFpIiZMX95TXRnlNkRKC+fOtWlhEIHgQr0DUIB6DGd2SX
-	 YgeLwo70TYNrN7a9DyHA7/Zi9O41buRZd4ZUD3hZmwdYiArGLkrdMqLplla7LNo+06
-	 ut2Y/dqr0lFEz0ulzoeD4RLVFxTByjccOwDrWgBHumfBE5cNbuo6wcpRT33Tvis8cr
-	 HMetNTzoQ2WMg==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Wed,  7 Jun 2023 18:00:48 +0300 (MSK)
-Message-ID: <57ccf7ac-7d94-8a66-7a0e-abfe14f7df2c@sberdevices.ru>
-Date: Wed, 7 Jun 2023 17:55:53 +0300
+	id 1q6ulI-006MJD-1V
+	for linux-amlogic@lists.infradead.org;
+	Wed, 07 Jun 2023 15:07:49 +0000
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-97668583210so816400066b.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 07 Jun 2023 08:07:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686150467; x=1688742467;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3pEWmF5LkerK8vtfqr7UM8riIZv0wnrEgKW36Y8tAnE=;
+        b=s/r+BIg8+uPRyororIUyKPf/P2dgCGgyWzqrSvh4HJRTsOQnt8ScwbYgXWWHRH7+kk
+         xGokX5VMhVdZG9fWurcsMyYnqB66VE+dtxM5Wx2Zi22yqrqOVCYoS5UP64Fm7GXm6Yw5
+         GxYE3/Z41SoVG5DZVRgSoot6lKgl5cpwBKT6HEYdhacqkf1PbDLiA4IFkdgRBcvk/OiG
+         toipGCgcGCY9LqkpAd+RnPsdHtFtbIyqhAYti0bZFMb7WTbPhXX4jAmHpOBIRvGMt+Rx
+         t39TfV0vfzY9/7JmsHu4HyeOEsUTlKWTbPmZFcEw6tOC5+PW7PTG1NN1/V0DQrUGubFL
+         JoQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686150467; x=1688742467;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3pEWmF5LkerK8vtfqr7UM8riIZv0wnrEgKW36Y8tAnE=;
+        b=Fiu9ym/nm43TJIqg4dhSt2yzKBejNLqaPPlhrfccEwI3rIPiKPyvE79X+qQrkjTn6v
+         ywc9opv0RNo2KXfqkruqYSf/MgNGgwWbtrHqp2IIB+7Z9jxPyiNIsbtE6m+mIpsJ5yGG
+         bcjgQXBSq2E9f4DJ7Cdw6toQCzdRD4MkVRjD5LSpa9eCVkwZGzEu3cBMcNmjwc7yjJuK
+         un4q2ZH46Lf6ajYI3sWeDPlvOlKiQlqdja0Dvc4eh/Q3hNsZPrWCOHeoxGJ6OB7GQCOt
+         z/C1Asqb0GZ4rjTNgunoA7jt2KZ7rUsqTl45LkiJxyfs6/pxODpXUOGTOkDPSZgM1+ZS
+         H/Xg==
+X-Gm-Message-State: AC+VfDwIWWOOohgAD7QkeIfJWIGEdGwQqhHIN8VQzgP1otC1Non7dllK
+	HhfW9ssIQO9HjI4cmxRi9GCcvQ==
+X-Google-Smtp-Source: ACHHUZ6jNU3FR44kx1P4nQzUDhzkZwXyb6WTXFN9fPcxgb3oW7TCYQPqoPFf6j/hfLL4ghktHSV8Kw==
+X-Received: by 2002:a17:907:7282:b0:96a:ee54:9f20 with SMTP id dt2-20020a170907728200b0096aee549f20mr6922708ejc.37.1686150466661;
+        Wed, 07 Jun 2023 08:07:46 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id lt3-20020a170906fa8300b009788d8389e9sm281874ejb.169.2023.06.07.08.07.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jun 2023 08:07:46 -0700 (PDT)
+Message-ID: <88740a95-d7b0-e5d0-62db-65b41c66c5bc@linaro.org>
+Date: Wed, 7 Jun 2023 17:07:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
+ Thunderbird/102.11.2
 Subject: Re: [PATCH v1] dt-bindings: nand: meson: Fix 'nand-rb' property
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Miquel Raynal
-	<miquel.raynal@bootlin.com>
-CC: Liang Yang <liang.yang@amlogic.com>, Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, <oxffffaa@gmail.com>,
-	<kernel@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+To: Arseniy Krasnov <avkrasnov@sberdevices.ru>,
+ Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Liang Yang <liang.yang@amlogic.com>, Richard Weinberger <richard@nod.at>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ oxffffaa@gmail.com, kernel@sberdevices.ru, linux-mtd@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20230606193507.35024-1-AVKrasnov@sberdevices.ru>
  <20230607095802.3adcd4f9@xps-13>
  <166bdc27-f77c-9076-f866-180cfa5bff76@sberdevices.ru>
@@ -70,21 +90,12 @@ References: <20230606193507.35024-1-AVKrasnov@sberdevices.ru>
  <20230607113605.50a992bb@xps-13>
  <6c1973d1-38c0-6048-90ad-da2f60df8238@sberdevices.ru>
  <9105207b-0dfb-346f-422f-984cf3454f90@linaro.org>
-From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-In-Reply-To: <9105207b-0dfb-346f-422f-984cf3454f90@linaro.org>
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/07 09:39:00 #21450961
-X-KSMG-AntiVirus-Status: Clean, skipped
+ <57ccf7ac-7d94-8a66-7a0e-abfe14f7df2c@sberdevices.ru>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <57ccf7ac-7d94-8a66-7a0e-abfe14f7df2c@sberdevices.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230607_080051_734016_B0E9AF47 
-X-CRM114-Status: GOOD (  15.35  )
+X-CRM114-CacheID: sfid-20230607_080748_503339_01994880 
+X-CRM114-Status: GOOD (  11.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,67 +112,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-On 07.06.2023 17:58, Krzysztof Kozlowski wrote:
-> On 07/06/2023 16:52, Arseniy Krasnov wrote:
->>
->>
->> On 07.06.2023 12:36, Miquel Raynal wrote:
->>> Hi Arseniy,
+On 07/06/2023 16:55, Arseniy Krasnov wrote:
+>>>> The bindings and your driver internal representation are two different
+>>>> things. Anyway, as mentioned above, wiring the RB line to one die and
+>>>> not the other would be valid hardware design and would require the rb
+>>>> property to be in the chip node. Please perform a per-chip property read
+>>>> in the driver as well.
 >>>
->>> avkrasnov@sberdevices.ru wrote on Wed, 7 Jun 2023 12:04:29 +0300:
->>>
->>>> On 07.06.2023 12:08, Krzysztof Kozlowski wrote:
->>>>> On 07/06/2023 10:57, Arseniy Krasnov wrote:  
->>>>>>
->>>>>>
->>>>>> On 07.06.2023 11:53, Krzysztof Kozlowski wrote:  
->>>>>>> On 07/06/2023 10:40, Arseniy Krasnov wrote:  
->>>>>>>> Hello Miquel, 
->>>>>>>>
->>>>>>>> On 07.06.2023 10:58, Miquel Raynal wrote:
->>>>>>>>  
->>>>>>>>> Hi Arseniy,
->>>>>>>>>
->>>>>>>>> AVKrasnov@sberdevices.ru wrote on Tue, 6 Jun 2023 22:35:07 +0300:
->>>>>>>>>  
->>>>>>>>>> Add description of 'nand-rb' property. Use "Fixes" because this property
->>>>>>>>>> must be supported since the beginning. For this controller 'nand-rb' is
->>>>>>>>>> stored in the controller node (not in chip), because it has only single
->>>>>>>>>> r/b wire for all chips.  
->>>>>>>>>
->>>>>>>>> Sorry if I mislead you in the first place, but you could definitely
->>>>>>>>> have two chips and only one with RB wired. It needs to be defined in
->>>>>>>>> the chips.  
->>>>>>>>
->>>>>>>> Ok, so to clarify: is it ok, that in bindings this property will be placed in the
->>>>>>>> chip, but in driver, i'm trying to read it from the controller node (thus  in
->>>>>>>> dts file it will be also in controller node)?  
->>>
->>> The bindings and your driver internal representation are two different
->>> things. Anyway, as mentioned above, wiring the RB line to one die and
->>> not the other would be valid hardware design and would require the rb
->>> property to be in the chip node. Please perform a per-chip property read
->>> in the driver as well.
+>>> Done, I resend both patches (bindings + driver update) as a single patchset. Your review comments
+>>> for driver code were also fixed.
 >>
->> Done, I resend both patches (bindings + driver update) as a single patchset. Your review comments
->> for driver code were also fixed.
+>> No, please send new version, not the same. New version means with fixed
+>> comments and with patch changelog.
 > 
-> No, please send new version, not the same. New version means with fixed
-> comments and with patch changelog.
-
-Sorry, Yes, I mean new version, here it is:
-https://lore.kernel.org/linux-mtd/20230607145026.2899547-1-AVKrasnov@sberdevices.ru/
-
-There I fixed bindings and tested it.
-
-Thanks, Arseniy
-
+> Sorry, Yes, I mean new version, here it is:
+> https://lore.kernel.org/linux-mtd/20230607145026.2899547-1-AVKrasnov@sberdevices.ru/
 > 
-> Best regards,
-> Krzysztof
-> 
+> There I fixed bindings and tested it.
+
+I still see v1 and there is no changelog. So it's the same?
+
+Best regards,
+Krzysztof
+
 
 _______________________________________________
 linux-amlogic mailing list
