@@ -4,68 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3C2AC7EE23
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jun 2023 19:04:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E03EC87FDC
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jun 2023 20:17:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ysRg0BbivTXnbF7n/YLAr9DtR+lk/nXCv6bzEaHkgi0=; b=HQXtDu1C1ccEPn
-	9JRBWwfLkkrOkUa/ahg27I9R8SorfFFFbaJ9KWpmA/uN2uPqQ2SadA73VM+Y2+BJD8bVq4uItJ1Yu
-	LJryx3RcfJohCVyf5c18Ml3L3qhjF1ophmcrfXkmsq/rqXF3ztKrk9ndEJhh6BaxaSl8+/+LpU45P
-	XwrRnI7nLQqatAizUYDTUvoJPaue5xXETlQlo+fN1Ds1HCAx8B9RvR5T3DU9SN6KK5/bhgmsPP3bp
-	/gBGU/pNf4KB6sMAhHQ2CYWSO5GpQd+zlP4fuop6Q9ieMtnXwq+MriOnQ04HZzQanZTx9VLVkGcqO
-	PTqCRak2yTAjdA3SEzIw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=9LXFGm8q52GUWsqhW9wFQ+HzpFUlVsurRaFIE/lp8xU=; b=ls7MMaoKmd/QX9
+	hFd/mvyq+jSwkFpVhzNdMv25DQENMnyV6dQpSm//mjbL6m+Hu4WU9k73RrNMvgsvdn/MD4AetIVFQ
+	tYh/k3KpxuPGLAIS8ZoVeLlV0GLbZ0zrrzS/O0dMVr4rcw177gtuEf6N/OrWt/MnLmfumrF9yuY68
+	r5UXlKffoE+q90sEhDZqDdqCwh9YSbErRNhHNvO0k16H663RLhjld7a/jxdcWc/siZPjZlnM/ZLmQ
+	52ReUB4Dagpmy2rRSUTNjOZrytDieEVGdC5lOqxe+5aanJ7OOjnKOkoqhJiW5e2Y2Yskf5CtmL8rt
+	t/6038LvlAM9dEEm1a8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6yRa-006vdK-1g;
-	Wed, 07 Jun 2023 19:03:42 +0000
+	id 1q6zac-0074zg-0d;
+	Wed, 07 Jun 2023 20:17:06 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6yRT-006vb7-2q;
-	Wed, 07 Jun 2023 19:03:40 +0000
+	id 1q6zaW-0074vC-32;
+	Wed, 07 Jun 2023 20:17:04 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 60FB15FD05;
-	Wed,  7 Jun 2023 22:03:28 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id 6A6CD5FD05;
+	Wed,  7 Jun 2023 23:16:50 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1686164608;
-	bh=wt1HwINmc7U0q2LSsk2GPrtGj8yXHDwpkKdceOnG6Ao=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	b=FIy47jn+U+y0e9M9AW8GTjok9l0tt+7nIHy7lMrSPSp9TGaaWXUfB4RgF5HlvHdk7
-	 4AknVxtuGEWWUo78yxdctTIVBcQ+i/Qz43TBhw7QJg0/o6YkUtldpOn2nSOtf8/qak
-	 dcZ178suDSV4i5839U/WEXSut14reoOM4Qwm10tziH2vkSZ62GUz2Kp53nkPYX5dwV
-	 4Rk82+iW1cKFPaSrhcPUZs2wLd96ysoyWyNvqOX/WPwgIockh6Z0EO21SdB7oJOD/U
-	 TYrjKWCbvjgv0aHpXlDHlZA59Ns8DSjCiV2klkyit3UtYczH5YoFTiM8fsCrQ8Jnon
-	 2GIUFeLlkeogw==
+	s=mail; t=1686169010;
+	bh=M/we8RgDjwgR++pTBbcueO2YO/PO3K31bJrDaIQUUdE=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+	b=C+kUCvyF7gc57sZzG2y48Vr72/2ceS66RatT0BvhZU4hmzAD35j+MeraX6XBUD0Gf
+	 FNhuU2RDsciP98n0kMvXG8BNzq+ZcrlZnGvWtvoK1xf2nYdGWGTcQQJJNNgu98NDOU
+	 9k5yP3AEg0+vB0BSMk6gkKZb7peorcZ/g+yFfljCcSve5s1wmLlK0RIEBKueW9JAPj
+	 7udk1RP0ceU0FUZGWouH2I4TGbss8cqFQSA3nOnqCW4vhBJZ1L0ZCqBE2IfocvBjeZ
+	 wly0shj1NQH1yjQXO/OxZ4yX6G8XYEwCjh8YEojqac1/aE923pUePjq15iopLt0NEK
+	 i4XPXXtViiiHQ==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Wed,  7 Jun 2023 22:03:26 +0300 (MSK)
-Message-ID: <cb316711-7792-a4f6-9491-2529cfd5cba6@sberdevices.ru>
-Date: Wed, 7 Jun 2023 21:58:31 +0300
+	Wed,  7 Jun 2023 23:16:50 +0300 (MSK)
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <conor+dt@kernel.org>
+CC: <kernel@sberdevices.ru>, <sdfw_system_team@sberdevices.ru>,
+	<rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Subject: [PATCH v1 0/6] arm64: dts: meson: a1: introduce several peripheral IPs
+Date: Wed, 7 Jun 2023 23:16:35 +0300
+Message-ID: <20230607201641.20982-1-ddrokosov@sberdevices.ru>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v1 0/2] Meson NAND: waiting w/o wired ready/busy pin
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Liang Yang
-	<liang.yang@amlogic.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Richard
- Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>
-CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-	<linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-References: <20230607145026.2899547-1-AVKrasnov@sberdevices.ru>
- <a1e048aa-ec64-bd0b-aa17-e3e9bdf18090@sberdevices.ru>
- <bd2d1770-9856-d022-5e91-6a2cdc302b73@linaro.org>
-From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-In-Reply-To: <bd2d1770-9856-d022-5e91-6a2cdc302b73@linaro.org>
 X-Originating-IP: [172.16.1.6]
 X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
  S-MS-EXCH01.sberdevices.ru (172.16.1.4)
@@ -74,11 +65,12 @@ X-KSMG-Message-Action: clean
 X-KSMG-AntiSpam-Status: not scanned, disabled by settings
 X-KSMG-AntiSpam-Interceptor-Info: not scanned
 X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/07 13:30:00 #21453197
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/07 16:55:00 #21454472
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230607_120336_640072_EADD48E7 
-X-CRM114-Status: GOOD (  14.86  )
+X-CRM114-CacheID: sfid-20230607_131701_172358_335865BB 
+X-CRM114-Status: UNSURE (   8.56  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,56 +87,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+This patch series introduces device tree declarations for various
+peripheral IPs of the A1 SoC family, including clock controllers, EFUSE,
+USB, SPI Flash Controller, SDIO, and UART_AO:
+    - CLK: A1 SoC has four types on the board, namely PLL, Peripherals,
+      CPU, and Audio, but only Amlogic A1 PLL and Peripherals clock
+      controllers are currently supported.
+    - EFUSE: consists of a 4k bit One Time Programmable (OTP) memory
+      divided into 32 128-bit blocks, and data is accessed using the APB
+      bus through software or the Key-ladder integrated with the EFUSE
+      block.
+    - USB: only one USB 2.0 high-speed port is available in the A1 SoC,
+      supporting both HOST and DEVICE modes for OTG.
+    - SPI Flash Controller: 4-bit QPI/SPI NOR Flash or NAND FLASH
+      controller.
+    - SDIO: for WiFi/IEEE802.11 connection.
+    - UART_AO: for Bluetooth connection.
 
+Alexey Romanov (1):
+  arm64: dts: meson: a1: enable efuse controller and setup its clk
 
-On 07.06.2023 21:48, Krzysztof Kozlowski wrote:
-> On 07/06/2023 17:18, Arseniy Krasnov wrote:
->>
->>
->> On 07.06.2023 17:50, Arseniy Krasnov wrote:
->>> Main thing that this patchset adds is support for waiting for command
->>> completion when there is no wired ready/busy pin. This is implemented
->>> by using Meson specific command which operates without wired pin, but
->>> supports interrupt driven waiting (default way for waiting without
->>> hardware pin is 'nand_soft_waitrdy()' which uses software loop instead
->>> of interrupt). To select which mode to use during driver initialization,
->>> common NAND controller property is used - 'nand-rb'. It is described in
->>> 'nand-controller.yaml'. But for Meson, its description was missed in
->>> 'amlogic,meson-nand.yaml', so this patchset also adds support for it.
->>>
->>> Patch for bindings was tested with dt_binding_check and dtbs_check.
->>>
->>> Arseniy Krasnov (2):
->>>   dt-bindings: nand: meson: Fix 'nand-rb' property
->>>   mtd: rawnand: meson: waiting w/o wired ready/busy pin
->>>
->>>  .../bindings/mtd/amlogic,meson-nand.yaml      |  7 ++
->>>  drivers/mtd/nand/raw/meson_nand.c             | 82 ++++++++++++++++++-
->>>  2 files changed, 85 insertions(+), 4 deletions(-)
->>>
->>
->> Changelog:
->> * Two separate patches:
->>   For bindings: https://lore.kernel.org/linux-mtd/20230606193507.35024-1-AVKrasnov@sberdevices.ru/
->>   For driver: https://lore.kernel.org/linux-mtd/20230607073015.1280085-1-AVKrasnov@sberdevices.ru/
->>   Now fixed/updated and combined to this patchset with v1 version.
->>
->> * In binding patch:
->>   * Invalid type of 'nand-rb' is fixed, it was 'bool', now it is 'uint32 array' as required. Also
->>     new declaration of 'nand-rb' contains several restrictions like number of elements and min/max
->>     value of elements.
->>   * Location of 'nand-rb' is moved from the controller object to the chip object as required.
-> 
-> Version your patchsets. This is v2, not v1.
+Dmitry Rokosov (2):
+  arm64: dts: meson: a1: introduce PLL and Peripherals clk controllers
+  arm64: dts: meson: a1: support USB controller in OTG mode
 
-Ack, next will be v3
+Jan Dakinevich (1):
+  arm64: dts: meson: a1: add eMMC controller and its pins
 
-Thanks, Arseniy
+Martin Kurbanov (1):
+  arm64: dts: meson: a1: introduce SPI Flash Controller
 
-> 
-> Best regards,
-> Krzysztof
-> 
+Oleg Lyovin (1):
+  arm64: dts: meson: a1: introduce UART_AO mux definitions
+
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 164 ++++++++++++++++++++++
+ 1 file changed, 164 insertions(+)
+
+-- 
+2.36.0
+
 
 _______________________________________________
 linux-amlogic mailing list
