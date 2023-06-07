@@ -4,83 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C599BC7EE29
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jun 2023 09:09:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2D3AC7EE29
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jun 2023 09:36:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tHYgC7y6HR68pI6CH9o5cuYbmQCqustdSNF9iMigQBI=; b=Y6w3SxyP5/9D2L
-	t/Qp7tuPkXEjQynBYnWkO9tmY4QSl4AbDn21X+mqIlCM3Tq6sC2Xrhdskyn9l5a2ICYtN84gEl5AN
-	f9SOCNi2Dic0aLFVTRlYI3mWl5wnchZQ+LTOfUl6p9Tc0AZa1QnMBfr+mb4X3qWDrNOw+qJm4ViyO
-	QmwtMbyu9QtmlN0kXcA7ujVRM7ICff2pxnh4yoZTIBJ1NFF8VLpbRpfD/T2koa3MCYZ+322BZLB8A
-	W0IY3T6iORjkpxdr1vbjKAuxFrPtJmdPVq9YX8l0Ztp4LXb7FjXgLJ04CUNJ9aZ2tgXRj64jgaDRx
-	rHdQhmyk3AdYXPbwLBKw==;
+	List-Owner; bh=A4QYakdtAa78ZnlpyAxekq7UFWNOxvvBNRxh6bFg7U8=; b=1BZY/jJcwSGji+
+	S8HB2wntpysUYCFxSuI+j31MKYhpSEymvCbVDzht/7eLP6psbdosO2YaGgKdrmphOoyitUKBAVQ/d
+	56+pxaXX2iNKhniNoK7f8cxneoy3nxZompKOjni4xTistPcKTEaPKVbMk1Z3xGEPcIWO2UpRv4KKZ
+	fnLiDyfEc0Q+F80rk4FkpQK6tTe2eQHuQrcMJ1EBYNkcMiTCn1XkuX2buTyaJvzxNz4DWpsj0+mFG
+	3vYsHARpK8byoOThv5Baijvu7Ae7foeMtF/niIhdBURkTlJzlBONQgsszJNLwd2nyluNnmxYkHvIE
+	VRzSdCWFDh/Lxv9uffOA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6pAY-005B6L-0q;
-	Wed, 07 Jun 2023 09:09:30 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1q6paW-005Gwq-0M;
+	Wed, 07 Jun 2023 09:36:20 +0000
+Received: from relay6-d.mail.gandi.net ([217.70.183.198])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6pAU-005B3l-1z;
-	Wed, 07 Jun 2023 09:09:29 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 1F11E5FD63;
-	Wed,  7 Jun 2023 12:09:24 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1686128964;
-	bh=CumwjAyNcOyROazwWORMZqL/SIkAMktzdgFYOvd0NSA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	b=IB7yP8h2qdh0bCixWjI5oZn9LGUy+PRnJS7dRyHwKW3sK/wVCDgbL4nhfYMJQpX3h
-	 mC6z2HwjdcEBikV+mwCJs8uRoT+wICXFLt7nhaVhh0RTi4tJA/1UpYw80kh62Uq/zM
-	 NX0o4F5zic0eU4W1hYSafCX2wNxIDSEfdcsXjPsa+M0IvBjcFeRewL4nqbbhdwdbZ9
-	 YQePE4I43do8UExk4IGbL5m8EzUXc1tybLUKD+K8rofQjy5cxlntWchp1juebuthG2
-	 PVwtr1fylnlCslB0pKiGTIF3Rfkzrqmcv1xhRZygsCphdt+knOkioMTPMWDA1PVrpF
-	 0s5GtRsO6zSZw==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Wed,  7 Jun 2023 12:09:23 +0300 (MSK)
-Message-ID: <5ca9eb2b-4bc8-5883-a029-3eeca905fe6e@sberdevices.ru>
-Date: Wed, 7 Jun 2023 12:04:29 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v1] dt-bindings: nand: meson: Fix 'nand-rb' property
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Miquel Raynal
-	<miquel.raynal@bootlin.com>
-CC: Liang Yang <liang.yang@amlogic.com>, Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
+	id 1q6paT-005GvU-1B;
+	Wed, 07 Jun 2023 09:36:19 +0000
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1686130568;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=XHbDoPntY8rQli1Ts2fRuiAoXXD0B+JipbbpnA9vAgs=;
+	b=eGQ0NF915O7i6T9mpLNfb9/1dCJ1f5hmxGuZY4UbmVa7sRZxXLsTZ0IY2OAb0Xya0sW4Bw
+	fdxadbzR4sNDPT+WXTwCV95HjAqA5pVZoKO/PbQiddvHIlype5TqN2Aeh0UKdgvG23l70A
+	SUOVHBz9fz+IDbyGPXPHiphK2KoTUbmUa4zBJA3Z1TWxlq2gjfTF24CsgU2yop6Ay0VBo2
+	KrD1jAJjv+2nlYkY86ds4muSAzHsSZ7AuCvGt+BlsPDFYoceJVSbrCzJmrqT2xlciThgQZ
+	1hmdVmsEJu+ab3BTfWsMVH8NLEwJSHoUP0ug9pP+tZ85SKqdqsRicafpRZaV7w==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id BBD1CC0011;
+	Wed,  7 Jun 2023 09:36:06 +0000 (UTC)
+Date: Wed, 7 Jun 2023 11:36:05 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Arseniy Krasnov <avkrasnov@sberdevices.ru>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Liang Yang
+ <liang.yang@amlogic.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
  Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, <oxffffaa@gmail.com>,
-	<kernel@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+ <martin.blumenstingl@googlemail.com>, <oxffffaa@gmail.com>,
+ <kernel@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1] dt-bindings: nand: meson: Fix 'nand-rb' property
+Message-ID: <20230607113605.50a992bb@xps-13>
+In-Reply-To: <5ca9eb2b-4bc8-5883-a029-3eeca905fe6e@sberdevices.ru>
 References: <20230606193507.35024-1-AVKrasnov@sberdevices.ru>
- <20230607095802.3adcd4f9@xps-13>
- <166bdc27-f77c-9076-f866-180cfa5bff76@sberdevices.ru>
- <08da4e86-433a-7d2e-25ff-ffa24221abdf@linaro.org>
- <835a3587-1e0f-64d7-1d1a-b639ae8b7307@sberdevices.ru>
- <2ca6e619-1d57-8fff-6176-9ee890e0d167@linaro.org>
-From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-In-Reply-To: <2ca6e619-1d57-8fff-6176-9ee890e0d167@linaro.org>
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/07 04:52:00 #21449589
-X-KSMG-AntiVirus-Status: Clean, skipped
+	<20230607095802.3adcd4f9@xps-13>
+	<166bdc27-f77c-9076-f866-180cfa5bff76@sberdevices.ru>
+	<08da4e86-433a-7d2e-25ff-ffa24221abdf@linaro.org>
+	<835a3587-1e0f-64d7-1d1a-b639ae8b7307@sberdevices.ru>
+	<2ca6e619-1d57-8fff-6176-9ee890e0d167@linaro.org>
+	<5ca9eb2b-4bc8-5883-a029-3eeca905fe6e@sberdevices.ru>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230607_020926_997032_5F8A9C29 
-X-CRM114-Status: GOOD (  12.85  )
+X-CRM114-CacheID: sfid-20230607_023617_667608_0CE56083 
+X-CRM114-Status: GOOD (  20.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,60 +98,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-On 07.06.2023 12:08, Krzysztof Kozlowski wrote:
-> On 07/06/2023 10:57, Arseniy Krasnov wrote:
->>
->>
->> On 07.06.2023 11:53, Krzysztof Kozlowski wrote:
->>> On 07/06/2023 10:40, Arseniy Krasnov wrote:
->>>> Hello Miquel, 
->>>>
->>>> On 07.06.2023 10:58, Miquel Raynal wrote:
->>>>
->>>>> Hi Arseniy,
->>>>>
->>>>> AVKrasnov@sberdevices.ru wrote on Tue, 6 Jun 2023 22:35:07 +0300:
->>>>>
->>>>>> Add description of 'nand-rb' property. Use "Fixes" because this property
->>>>>> must be supported since the beginning. For this controller 'nand-rb' is
->>>>>> stored in the controller node (not in chip), because it has only single
->>>>>> r/b wire for all chips.
->>>>>
->>>>> Sorry if I mislead you in the first place, but you could definitely
->>>>> have two chips and only one with RB wired. It needs to be defined in
->>>>> the chips.
->>>>
->>>> Ok, so to clarify: is it ok, that in bindings this property will be placed in the
->>>> chip, but in driver, i'm trying to read it from the controller node (thus  in
->>>> dts file it will be also in controller node)?
->>>
->>> No, because how would your DTS pass validation? I understand you did not
->>> test the bindings, but this will improve, right?
->>
->> Ok, i'll follow DTS layout in the driver, "test the bindings" You mean "make dt_binding_check"?
-> 
-> Yes. They were sent without testing.
-> 
-> But please also test your DTS with dtbs_check.
-
-Got it!
-
-Thanks, Arseniy
-
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgQXJzZW5peSwKCmF2a3Jhc25vdkBzYmVyZGV2aWNlcy5ydSB3cm90ZSBvbiBXZWQsIDcgSnVu
+IDIwMjMgMTI6MDQ6MjkgKzAzMDA6Cgo+IE9uIDA3LjA2LjIwMjMgMTI6MDgsIEtyenlzenRvZiBL
+b3psb3dza2kgd3JvdGU6Cj4gPiBPbiAwNy8wNi8yMDIzIDEwOjU3LCBBcnNlbml5IEtyYXNub3Yg
+d3JvdGU6ICAKPiA+Pgo+ID4+Cj4gPj4gT24gMDcuMDYuMjAyMyAxMTo1MywgS3J6eXN6dG9mIEtv
+emxvd3NraSB3cm90ZTogIAo+ID4+PiBPbiAwNy8wNi8yMDIzIDEwOjQwLCBBcnNlbml5IEtyYXNu
+b3Ygd3JvdGU6ICAKPiA+Pj4+IEhlbGxvIE1pcXVlbCwgCj4gPj4+Pgo+ID4+Pj4gT24gMDcuMDYu
+MjAyMyAxMDo1OCwgTWlxdWVsIFJheW5hbCB3cm90ZToKPiA+Pj4+ICAKPiA+Pj4+PiBIaSBBcnNl
+bml5LAo+ID4+Pj4+Cj4gPj4+Pj4gQVZLcmFzbm92QHNiZXJkZXZpY2VzLnJ1IHdyb3RlIG9uIFR1
+ZSwgNiBKdW4gMjAyMyAyMjozNTowNyArMDMwMDoKPiA+Pj4+PiAgCj4gPj4+Pj4+IEFkZCBkZXNj
+cmlwdGlvbiBvZiAnbmFuZC1yYicgcHJvcGVydHkuIFVzZSAiRml4ZXMiIGJlY2F1c2UgdGhpcyBw
+cm9wZXJ0eQo+ID4+Pj4+PiBtdXN0IGJlIHN1cHBvcnRlZCBzaW5jZSB0aGUgYmVnaW5uaW5nLiBG
+b3IgdGhpcyBjb250cm9sbGVyICduYW5kLXJiJyBpcwo+ID4+Pj4+PiBzdG9yZWQgaW4gdGhlIGNv
+bnRyb2xsZXIgbm9kZSAobm90IGluIGNoaXApLCBiZWNhdXNlIGl0IGhhcyBvbmx5IHNpbmdsZQo+
+ID4+Pj4+PiByL2Igd2lyZSBmb3IgYWxsIGNoaXBzLiAgCj4gPj4+Pj4KPiA+Pj4+PiBTb3JyeSBp
+ZiBJIG1pc2xlYWQgeW91IGluIHRoZSBmaXJzdCBwbGFjZSwgYnV0IHlvdSBjb3VsZCBkZWZpbml0
+ZWx5Cj4gPj4+Pj4gaGF2ZSB0d28gY2hpcHMgYW5kIG9ubHkgb25lIHdpdGggUkIgd2lyZWQuIEl0
+IG5lZWRzIHRvIGJlIGRlZmluZWQgaW4KPiA+Pj4+PiB0aGUgY2hpcHMuICAKPiA+Pj4+Cj4gPj4+
+PiBPaywgc28gdG8gY2xhcmlmeTogaXMgaXQgb2ssIHRoYXQgaW4gYmluZGluZ3MgdGhpcyBwcm9w
+ZXJ0eSB3aWxsIGJlIHBsYWNlZCBpbiB0aGUKPiA+Pj4+IGNoaXAsIGJ1dCBpbiBkcml2ZXIsIGkn
+bSB0cnlpbmcgdG8gcmVhZCBpdCBmcm9tIHRoZSBjb250cm9sbGVyIG5vZGUgKHRodXMgIGluCj4g
+Pj4+PiBkdHMgZmlsZSBpdCB3aWxsIGJlIGFsc28gaW4gY29udHJvbGxlciBub2RlKT8gIAoKVGhl
+IGJpbmRpbmdzIGFuZCB5b3VyIGRyaXZlciBpbnRlcm5hbCByZXByZXNlbnRhdGlvbiBhcmUgdHdv
+IGRpZmZlcmVudAp0aGluZ3MuIEFueXdheSwgYXMgbWVudGlvbmVkIGFib3ZlLCB3aXJpbmcgdGhl
+IFJCIGxpbmUgdG8gb25lIGRpZSBhbmQKbm90IHRoZSBvdGhlciB3b3VsZCBiZSB2YWxpZCBoYXJk
+d2FyZSBkZXNpZ24gYW5kIHdvdWxkIHJlcXVpcmUgdGhlIHJiCnByb3BlcnR5IHRvIGJlIGluIHRo
+ZSBjaGlwIG5vZGUuIFBsZWFzZSBwZXJmb3JtIGEgcGVyLWNoaXAgcHJvcGVydHkgcmVhZAppbiB0
+aGUgZHJpdmVyIGFzIHdlbGwuCgo+ID4+Pgo+ID4+PiBObywgYmVjYXVzZSBob3cgd291bGQgeW91
+ciBEVFMgcGFzcyB2YWxpZGF0aW9uPyBJIHVuZGVyc3RhbmQgeW91IGRpZCBub3QKPiA+Pj4gdGVz
+dCB0aGUgYmluZGluZ3MsIGJ1dCB0aGlzIHdpbGwgaW1wcm92ZSwgcmlnaHQ/ICAKPiA+Pgo+ID4+
+IE9rLCBpJ2xsIGZvbGxvdyBEVFMgbGF5b3V0IGluIHRoZSBkcml2ZXIsICJ0ZXN0IHRoZSBiaW5k
+aW5ncyIgWW91IG1lYW4gIm1ha2UgZHRfYmluZGluZ19jaGVjayI/ICAKPiA+IAo+ID4gWWVzLiBU
+aGV5IHdlcmUgc2VudCB3aXRob3V0IHRlc3RpbmcuCj4gPiAKPiA+IEJ1dCBwbGVhc2UgYWxzbyB0
+ZXN0IHlvdXIgRFRTIHdpdGggZHRic19jaGVjay4gIAo+IAo+IEdvdCBpdCEKPiAKPiBUaGFua3Ms
+IEFyc2VuaXkKPiAKPiA+IAo+ID4gCj4gPiBCZXN0IHJlZ2FyZHMsCj4gPiBLcnp5c3p0b2YKPiA+
+ICAgCgoKVGhhbmtzLApNaXF1w6hsCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxp
+c3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9saW51eC1hbWxvZ2ljCg==
