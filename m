@@ -4,69 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78FC1C7EE23
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jun 2023 12:01:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64748C77B7A
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jun 2023 12:01:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=SwYDqvIKq4UDP/r7I1PTmqS2ElnUWC8PDIfm8EeQhh0=; b=w7Y26qvlmaqSkL
-	0x4AMaq82dx7xMRTuOeA1RJRUEXv4FDM2qmACu1MKg5xybqp4ckn8+U03xTP3GuZ103z37jAePylb
-	fxMi7M6OUW7dcQ9qovVScMFaxouUc2oZEl1cxbeFH4A2B2+yaOdJBN+Ykws5hDbixdKegbPDbGrTb
-	O12PQSVIHWy9vPFVzoP1aYXtiDI1ydY/ZNkDktwBeldsC02DXHc8/xPXN58yPY4PpIHjp6E5utk7k
-	rknacHOqpeREo1ywumm1/D/mIuno1m1EIZgq7v6cghfPyNypzOP2ek8O6mEcEAcOzjZ0vpVgrS9Bs
-	V3S2NF4AQJp+vXgkx8sQ==;
+	List-Owner; bh=xDOpWf4cotEvauV5dRrfESWS9BdTT5vMrt/Z8AFi234=; b=hyMD7HV8HjYlay
+	zTT1TyBTQeg/hTDaXF/ZGA0rvQRehUBTLZ+xdi95dRQBqKFZRP5K6Lyt/OsYwKn4NiLEQWbuE/syr
+	MIJK9mdJj+PY/lkNHA4IJQMkae51fomijc1H/ZVQMSkrWURBN4tQUxVVBeyIv28Gw8VjeCsjsylrt
+	EVU933niLe82RIOJfzxwtS8XzJ1DLdIanQPTKl0xfNwoMPNjxsruttCpccAU96hBZi/Kk6IjFp2FX
+	ZcEnuvYMVFhgpssXboOhna8X8KPIx2Xbxta2dpRgPCXyhYloPBjq6muRN5+X3FGpJCx+Sb4TXrcT7
+	/CMCnBWtQ4aZRAUCyWKg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6rqM-005jOv-2P;
-	Wed, 07 Jun 2023 12:00:50 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1q6rqN-005jQ0-1z;
+	Wed, 07 Jun 2023 12:00:51 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6qqB-005ZNe-0F
+	id 1q6qqC-005ZJ0-0J
 	for linux-amlogic@lists.infradead.org;
 	Wed, 07 Jun 2023 10:56:42 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f6d3f83d0cso72528635e9.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 07 Jun 2023 03:56:32 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3f6da07ff00so72534215e9.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 07 Jun 2023 03:56:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686135391; x=1688727391;
+        d=linaro.org; s=google; t=1686135395; x=1688727395;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=7t9Ryqt58Qb+WlUAiS6O01za23Xe6nA9m+o2fGogTVs=;
-        b=EedDfEJBlHn+++dixRSFfvkKidiCLUzDx61Sb5806jrqkuYiAPdtbtU7q8s+XtJ5j4
-         Fx60g3gTVe3fZIcm96NrfXD/YiFmV1BwV9wACAyRZc2AAyigZcWKyqSgQe+4eiY6bzvF
-         bxzaQmwXq5FxfIxyvrMSCpyPwV3Zry0Al/g1KyJ0Q4PHryUzNoSCN9Whw758D3LBkBxY
-         WlJT74sCbIGA3HFkDNJjeNkwiThWPlZpN3hYcLH/V8dQVpfPPlJXISb8jbD32CHG6Sw4
-         h1fCeIaVaZx3vUpd58gYyJMD0mglysmOlVDpfWBk9ePwS2YWos4FXJARd3VUmyQOAWP1
-         1BvA==
+        bh=2pAwfeKXSlkwgQLhpYh+A0yvVyA03Idui3jD1HEtDOs=;
+        b=lUqUGcDbMLaE9D1D2cBhL6SNfzMKK4GCexRPnS3Es5f5H6nOdgl4ODW/lVNj+dUPLc
+         bXsCH6rhQR0bXLmtFYd3z1FhlWtZSWKOgXdE/hqfTtVrnZ1ZqdE4LoXFMGCwitY33mEk
+         qPWSrpDvz0u3UrFdC2Q5sjFY/4RqDbweDy4GwPaJQzCyGQQygcsEv3ntQhAxaCA4j2cz
+         KL39JdwmggcGR7ut0NtRCzL3J1SVD6z6OPELBHovwc6mSTUu9ulhPLBB7tlZ6XdObj6x
+         Af2aPavsFQbPvuSo8Es8p0RpI6jzKHgiE4r0JpRkiDOVp6YdF0HnEdkNt/iRv8ToRGxq
+         SS5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686135391; x=1688727391;
+        d=1e100.net; s=20221208; t=1686135395; x=1688727395;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=7t9Ryqt58Qb+WlUAiS6O01za23Xe6nA9m+o2fGogTVs=;
-        b=WKM9HjH/fg1VLsoibaJYNFGxyFdFXMNYQky6VtFSWUDFs5xVixx2/ihJ3yl5mwH+pA
-         M2ka0PS2yJyw46kPiX5SK1Ly79jCjICBy8g+5HDDPgCXL8AiPGH7NhWXqTH+vX1OdxYJ
-         5nHDXSVprnERts8+vYOlBzkL7UG+PJvkrjMxFvR38wjXfrwEx4Yi4jmKE2x9awNXmiLV
-         8oYceYzpWKx2USWtmVajagdFvOqWF6nY+IH3Z8VY4zllzanXCy9k2zvDew0ppDEf0loC
-         dCBokxLNiQoEuBJnCoodC9rJUwQV65KYV/6fr/CESG3Hgr+gRLdbQIAaSwzhfjYjPbyy
-         jnJA==
-X-Gm-Message-State: AC+VfDysHa8Hm4EY2UaVK2gg7PfnXrBAvNNXK2oGyZplNf9wBeYGgyuf
-	qMhXdjm9+8o4CwsI1r3fPqAt5Q==
-X-Google-Smtp-Source: ACHHUZ4U80f+d7DuCBpUwhg1wXmdCrVm8DyE/rQ2pIYPZ2L+PV/s9K84nX/Xn0GI3ugryIIufXSkCw==
-X-Received: by 2002:a7b:cbd2:0:b0:3f6:44e:9d8 with SMTP id n18-20020a7bcbd2000000b003f6044e09d8mr5145592wmi.22.1686135391233;
-        Wed, 07 Jun 2023 03:56:31 -0700 (PDT)
+        bh=2pAwfeKXSlkwgQLhpYh+A0yvVyA03Idui3jD1HEtDOs=;
+        b=EW2jYVhOBLtH0AtFCMS31eMqpZHVefwmLbkbItzlJZpCMQMX2urkEoMt2rEY/2jVYn
+         oBJkpLxDbZ5VPbLFDJ8clCq2wBrCODMjyOZcYbDHsno9GUxNFvcCSgyq074o7SCfPmdl
+         uBJhvEvdd7pYh8UziF05ct4cSjTq8B/9BlOMuF/VJsDwb7aXJOK7a4z4xyReyVfTpeXE
+         mXHQ3yIY95QtkOFf2rKngZ3r4oJ+735fx+y28hMYcEUj5BQtolhJ+vNBUOvdDeybbK2r
+         k8qu9eXEbSilyEgDip/eD1nlC5PsZEjzL3EhVGuhYZVAAUXS7Eb0y8TNDwtbO3ZZMhmP
+         Qe3g==
+X-Gm-Message-State: AC+VfDycUnOjTI6LWv5/jwMMjPtWLXYUq4Ta/8cS5fugjU5t9yXd3lvS
+	QZddK8FtgrapIzxmi98qOiF+7w==
+X-Google-Smtp-Source: ACHHUZ6YlCGfRXGvCOQE4Sq5TsdD+BsI2iyfjyZBsMGTfY6rOdgLhElu8GR6O3EcgPkLTW0iTg3EkA==
+X-Received: by 2002:a05:600c:2252:b0:3f6:962d:405c with SMTP id a18-20020a05600c225200b003f6962d405cmr5161920wmm.41.1686135395584;
+        Wed, 07 Jun 2023 03:56:35 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id i10-20020a05600c290a00b003f60faa4612sm1761879wmd.22.2023.06.07.03.56.30
+        by smtp.gmail.com with ESMTPSA id i10-20020a05600c290a00b003f60faa4612sm1761879wmd.22.2023.06.07.03.56.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jun 2023 03:56:30 -0700 (PDT)
+        Wed, 07 Jun 2023 03:56:35 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 07 Jun 2023 12:56:19 +0200
-Subject: [PATCH 08/18] dt-bindings: clk: g12a-clks: expose all clock ids
+Date: Wed, 07 Jun 2023 12:56:24 +0200
+Subject: [PATCH 13/18] dt-bindings: clk: axg-audio-clkc: expose all clock
+ ids
 MIME-Version: 1.0
-Message-Id: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-8-9676afa6b22c@linaro.org>
+Message-Id: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-13-9676afa6b22c@linaro.org>
 References: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-0-9676afa6b22c@linaro.org>
 In-Reply-To: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-0-9676afa6b22c@linaro.org>
 To: Jerome Brunet <jbrunet@baylibre.com>, 
@@ -80,25 +81,25 @@ Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  devicetree@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=13595;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7970;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=bGK7ac8n0MRh9LI/j05Rq3/xiORoaDua4Qu9ye4M/Pg=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkgGJRTTzeDHSnMRGSWsxRfPg9AbqNPi+qvyMYEGQK
- y1xLeO2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZIBiUQAKCRB33NvayMhJ0SbsEA
- Cv17JvjbnLrT5bUyghT8RMggTl8tgU9Zzxdc80sNmNRcq9v6+nyWTvmmt31FSDfGgMg/iGCJQiRd8M
- kaFcvTaninh/RuBsoB/MlQ6WPTe0MGOnIH3Upepq1L/D9sL/o7wKqPgsTJXx3oSWq5RV2dYLURRPUE
- YpmP20rrLirr+jlcPBC6h3vHqoGDA6xy6KED7UL1q/8RKWCF1IjU+xccGCXmXa1F/YnJ2fisLJWz9n
- 25HHj/N/AknlgV5uW1h0fID0c9+RVdHMoaD3LY1tCbxTExRGFM/JAHNJihsLNfCH1QsUVn1EPx6vHE
- aBjwuMNCByg03Vh39+FLZDmpNRUKjvp2PL2Vq7c2OgaVElfZKDHIoW9d4+23nFiuvlPpH8+oK2Il1E
- w6b8YN052gScfhlqqG2SDTpMJMI2TcGzGmmjY4OzvKwRl02vNLQzjtqURYYwMufNBMZrSs1YuZMTeQ
- wZPZFy2U+fwTI/h1X895v1vGJIMBaSteIvbRQv404Iwg+4etxFZVhuOovVZulGXJzCs5SZsrwG3vIJ
- weLDC8LFcGMLpH/ifUgNp+8FmMhn36zINz68/XHw9dJhXpgYrlR7HVwvImgGrXQF3/KgKvVoXyYbAw
- eBNbZi+rlGbM7w1EUclO/6jdCpQkXRp8Qx2DLagHXRgttCpMQorw4RXtVc1w==
+ bh=v0t4kMMmXofLxOXU+ArmTsNWvwsEg/1Z6HOjQR1R8W4=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkgGJTJMyxWNOiaA1l8FQOP8KMBfuTVHc8DTy8QOb5
+ Wg501USJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZIBiUwAKCRB33NvayMhJ0daND/
+ 4/ctpxdTow7lf0vT1U1esJZ/8sD8T/CpFPxq5O3siUS5j/YzYWxIzoXQjQPUqib9rWfY9qvkP51FhZ
+ s6PIbVjDUuzkd6Zy+TmtbxcKFx1h2ZWAUF1balY+4HLSXylPBUhGBk/LgkXbSFiuR2mnDTxhCWgY6F
+ Ncy7BW9vIC7hM7+pwi4lSBwMUt0BeyMo/ulIZieNYgKU4zHxA7Adr6xUVVEJ54I0M60DYmw9shwEmL
+ G2d/7f/+mm4TDyck7qAd58v++ebmE7GBrqrTdSG1i0IeQTpAJ6jUhJmb5sd+lU/uQ5fhfYm/6b9amv
+ rBf82DJjrS/xznJWxDSzk+m+5ZuDobx3F5XIao2qEgBi9DaakTG3mLMg01OnxsmxoCiplPksAB7ilz
+ 0vTfj3RBs1sxxE+mF56Y+ToSAtbUTd2ArCpZ59tOVzQR5EedjFFM5WJth9FiAIsGlQ451vxWHI3dDe
+ BVuGJYvZ1e6mfp6ceYFfG+l1JGf8OghWT9IKNyEyUKPpCuzHXJhfafplyjXAqp1Xigsq5CHF+5RoA6
+ buNkBbo5/X/vrFlF8+x/n4LYkXMPoRErtPC38oR2EzOLn/OqzchTLFBSqj8a6lb0JMr1HYKlL584NA
+ tT8uqFyK6cg7ghV60Upt6ahsKw4KZpJqhGebrq4aniKvchz/2OOPQlLGEZ6g==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230607_035635_115046_D7F75B98 
-X-CRM114-Status: GOOD (  12.41  )
+X-CRM114-CacheID: sfid-20230607_035636_171352_7037A58E 
+X-CRM114-Status: GOOD (  11.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,7 +123,7 @@ to move out of the previous maintenance scheme.
 This refers to a discussion at [1] & [2] with Krzysztof about
 the issue with the current maintenance.
 
-It was decided to move every g12a-clkc ID to the public clock
+It was decided to move every axg-audio-clkc ID to the public clock
 dt-bindings headers to be merged in a single tree so we
 can safely add new clocks without having merge issues.
 
@@ -131,371 +132,189 @@ can safely add new clocks without having merge issues.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/clk/meson/g12a.h              | 140 ----------------------------------
- include/dt-bindings/clock/g12a-clkc.h | 130 +++++++++++++++++++++++++++++++
- 2 files changed, 130 insertions(+), 140 deletions(-)
+ drivers/clk/meson/axg-audio.h              | 70 ------------------------------
+ include/dt-bindings/clock/axg-audio-clkc.h | 65 +++++++++++++++++++++++++++
+ 2 files changed, 65 insertions(+), 70 deletions(-)
 
-diff --git a/drivers/clk/meson/g12a.h b/drivers/clk/meson/g12a.h
-index a70a0cba892b..8e08af3c1476 100644
---- a/drivers/clk/meson/g12a.h
-+++ b/drivers/clk/meson/g12a.h
-@@ -126,146 +126,6 @@
- #define HHI_SYS1_PLL_CNTL5		0x394
- #define HHI_SYS1_PLL_CNTL6		0x398
- 
+diff --git a/drivers/clk/meson/axg-audio.h b/drivers/clk/meson/axg-audio.h
+index d6ed27c77729..faf08748b205 100644
+--- a/drivers/clk/meson/axg-audio.h
++++ b/drivers/clk/meson/axg-audio.h
+@@ -64,76 +64,6 @@
+ #define AUDIO_SM1_SW_RESET1	0x02C
+ #define AUDIO_CLK81_CTRL	0x030
+ #define AUDIO_CLK81_EN		0x034
 -/*
 - * CLKID index values
-- *
 - * These indices are entirely contrived and do not map onto the hardware.
-- * It has now been decided to expose everything by default in the DT header:
-- * include/dt-bindings/clock/g12a-clkc.h. Only the clocks ids we don't want
-- * to expose, such as the internal muxes and dividers of composite clocks,
-- * will remain defined here.
 - */
--#define CLKID_MPEG_SEL				8
--#define CLKID_MPEG_DIV				9
--#define CLKID_SD_EMMC_A_CLK0_SEL		63
--#define CLKID_SD_EMMC_A_CLK0_DIV		64
--#define CLKID_SD_EMMC_B_CLK0_SEL		65
--#define CLKID_SD_EMMC_B_CLK0_DIV		66
--#define CLKID_SD_EMMC_C_CLK0_SEL		67
--#define CLKID_SD_EMMC_C_CLK0_DIV		68
--#define CLKID_MPLL0_DIV				69
--#define CLKID_MPLL1_DIV				70
--#define CLKID_MPLL2_DIV				71
--#define CLKID_MPLL3_DIV				72
--#define CLKID_MPLL_PREDIV			73
--#define CLKID_FCLK_DIV2_DIV			75
--#define CLKID_FCLK_DIV3_DIV			76
--#define CLKID_FCLK_DIV4_DIV			77
--#define CLKID_FCLK_DIV5_DIV			78
--#define CLKID_FCLK_DIV7_DIV			79
--#define CLKID_FCLK_DIV2P5_DIV			100
--#define CLKID_FIXED_PLL_DCO			101
--#define CLKID_SYS_PLL_DCO			102
--#define CLKID_GP0_PLL_DCO			103
--#define CLKID_HIFI_PLL_DCO			104
--#define CLKID_VPU_0_DIV				111
--#define CLKID_VPU_1_DIV				114
--#define CLKID_VAPB_0_DIV			118
--#define CLKID_VAPB_1_DIV			121
--#define CLKID_HDMI_PLL_DCO			125
--#define CLKID_HDMI_PLL_OD			126
--#define CLKID_HDMI_PLL_OD2			127
--#define CLKID_VID_PLL_SEL			130
--#define CLKID_VID_PLL_DIV			131
--#define CLKID_VCLK_SEL				132
--#define CLKID_VCLK2_SEL				133
--#define CLKID_VCLK_INPUT			134
--#define CLKID_VCLK2_INPUT			135
--#define CLKID_VCLK_DIV				136
--#define CLKID_VCLK2_DIV				137
--#define CLKID_VCLK_DIV2_EN			140
--#define CLKID_VCLK_DIV4_EN			141
--#define CLKID_VCLK_DIV6_EN			142
--#define CLKID_VCLK_DIV12_EN			143
--#define CLKID_VCLK2_DIV2_EN			144
--#define CLKID_VCLK2_DIV4_EN			145
--#define CLKID_VCLK2_DIV6_EN			146
--#define CLKID_VCLK2_DIV12_EN			147
--#define CLKID_CTS_ENCI_SEL			158
--#define CLKID_CTS_ENCP_SEL			159
--#define CLKID_CTS_VDAC_SEL			160
--#define CLKID_HDMI_TX_SEL			161
--#define CLKID_HDMI_SEL				166
--#define CLKID_HDMI_DIV				167
--#define CLKID_MALI_0_DIV			170
--#define CLKID_MALI_1_DIV			173
--#define CLKID_MPLL_50M_DIV			176
--#define CLKID_SYS_PLL_DIV16_EN			178
--#define CLKID_SYS_PLL_DIV16			179
--#define CLKID_CPU_CLK_DYN0_SEL			180
--#define CLKID_CPU_CLK_DYN0_DIV			181
--#define CLKID_CPU_CLK_DYN0			182
--#define CLKID_CPU_CLK_DYN1_SEL			183
--#define CLKID_CPU_CLK_DYN1_DIV			184
--#define CLKID_CPU_CLK_DYN1			185
--#define CLKID_CPU_CLK_DYN			186
--#define CLKID_CPU_CLK_DIV16_EN			188
--#define CLKID_CPU_CLK_DIV16			189
--#define CLKID_CPU_CLK_APB_DIV			190
--#define CLKID_CPU_CLK_APB			191
--#define CLKID_CPU_CLK_ATB_DIV			192
--#define CLKID_CPU_CLK_ATB			193
--#define CLKID_CPU_CLK_AXI_DIV			194
--#define CLKID_CPU_CLK_AXI			195
--#define CLKID_CPU_CLK_TRACE_DIV			196
--#define CLKID_CPU_CLK_TRACE			197
--#define CLKID_PCIE_PLL_DCO			198
--#define CLKID_PCIE_PLL_DCO_DIV2			199
--#define CLKID_PCIE_PLL_OD			200
--#define CLKID_VDEC_1_SEL			202
--#define CLKID_VDEC_1_DIV			203
--#define CLKID_VDEC_HEVC_SEL			205
--#define CLKID_VDEC_HEVC_DIV			206
--#define CLKID_VDEC_HEVCF_SEL			208
--#define CLKID_VDEC_HEVCF_DIV			209
--#define CLKID_TS_DIV				211
--#define CLKID_SYS1_PLL_DCO			213
--#define CLKID_SYS1_PLL				214
--#define CLKID_SYS1_PLL_DIV16_EN			215
--#define CLKID_SYS1_PLL_DIV16			216
--#define CLKID_CPUB_CLK_DYN0_SEL			217
--#define CLKID_CPUB_CLK_DYN0_DIV			218
--#define CLKID_CPUB_CLK_DYN0			219
--#define CLKID_CPUB_CLK_DYN1_SEL			220
--#define CLKID_CPUB_CLK_DYN1_DIV			221
--#define CLKID_CPUB_CLK_DYN1			222
--#define CLKID_CPUB_CLK_DYN			223
--#define CLKID_CPUB_CLK_DIV16_EN			225
--#define CLKID_CPUB_CLK_DIV16			226
--#define CLKID_CPUB_CLK_DIV2			227
--#define CLKID_CPUB_CLK_DIV3			228
--#define CLKID_CPUB_CLK_DIV4			229
--#define CLKID_CPUB_CLK_DIV5			230
--#define CLKID_CPUB_CLK_DIV6			231
--#define CLKID_CPUB_CLK_DIV7			232
--#define CLKID_CPUB_CLK_DIV8			233
--#define CLKID_CPUB_CLK_APB_SEL			234
--#define CLKID_CPUB_CLK_APB			235
--#define CLKID_CPUB_CLK_ATB_SEL			236
--#define CLKID_CPUB_CLK_ATB			237
--#define CLKID_CPUB_CLK_AXI_SEL			238
--#define CLKID_CPUB_CLK_AXI			239
--#define CLKID_CPUB_CLK_TRACE_SEL		240
--#define CLKID_CPUB_CLK_TRACE			241
--#define CLKID_GP1_PLL_DCO			242
--#define CLKID_DSU_CLK_DYN0_SEL			244
--#define CLKID_DSU_CLK_DYN0_DIV			245
--#define CLKID_DSU_CLK_DYN0			246
--#define CLKID_DSU_CLK_DYN1_SEL			247
--#define CLKID_DSU_CLK_DYN1_DIV			248
--#define CLKID_DSU_CLK_DYN1			249
--#define CLKID_DSU_CLK_DYN			250
--#define CLKID_DSU_CLK_FINAL			251
--#define CLKID_SPICC0_SCLK_SEL			256
--#define CLKID_SPICC0_SCLK_DIV			257
--#define CLKID_SPICC1_SCLK_SEL			259
--#define CLKID_SPICC1_SCLK_DIV			260
--#define CLKID_NNA_AXI_CLK_SEL			262
--#define CLKID_NNA_AXI_CLK_DIV			263
--#define CLKID_NNA_CORE_CLK_SEL			265
--#define CLKID_NNA_CORE_CLK_DIV			266
--#define CLKID_MIPI_DSI_PXCLK_DIV		268
 -
- /* include the CLKIDs that have been made part of the DT binding */
- #include <dt-bindings/clock/g12a-clkc.h>
+-#define AUD_CLKID_MST_A_MCLK_SEL	59
+-#define AUD_CLKID_MST_B_MCLK_SEL	60
+-#define AUD_CLKID_MST_C_MCLK_SEL	61
+-#define AUD_CLKID_MST_D_MCLK_SEL	62
+-#define AUD_CLKID_MST_E_MCLK_SEL	63
+-#define AUD_CLKID_MST_F_MCLK_SEL	64
+-#define AUD_CLKID_MST_A_MCLK_DIV	65
+-#define AUD_CLKID_MST_B_MCLK_DIV	66
+-#define AUD_CLKID_MST_C_MCLK_DIV	67
+-#define AUD_CLKID_MST_D_MCLK_DIV	68
+-#define AUD_CLKID_MST_E_MCLK_DIV	69
+-#define AUD_CLKID_MST_F_MCLK_DIV	70
+-#define AUD_CLKID_SPDIFOUT_CLK_SEL	71
+-#define AUD_CLKID_SPDIFOUT_CLK_DIV	72
+-#define AUD_CLKID_SPDIFIN_CLK_SEL	73
+-#define AUD_CLKID_SPDIFIN_CLK_DIV	74
+-#define AUD_CLKID_PDM_DCLK_SEL		75
+-#define AUD_CLKID_PDM_DCLK_DIV		76
+-#define AUD_CLKID_PDM_SYSCLK_SEL	77
+-#define AUD_CLKID_PDM_SYSCLK_DIV	78
+-#define AUD_CLKID_MST_A_SCLK_PRE_EN	92
+-#define AUD_CLKID_MST_B_SCLK_PRE_EN	93
+-#define AUD_CLKID_MST_C_SCLK_PRE_EN	94
+-#define AUD_CLKID_MST_D_SCLK_PRE_EN	95
+-#define AUD_CLKID_MST_E_SCLK_PRE_EN	96
+-#define AUD_CLKID_MST_F_SCLK_PRE_EN	97
+-#define AUD_CLKID_MST_A_SCLK_DIV	98
+-#define AUD_CLKID_MST_B_SCLK_DIV	99
+-#define AUD_CLKID_MST_C_SCLK_DIV	100
+-#define AUD_CLKID_MST_D_SCLK_DIV	101
+-#define AUD_CLKID_MST_E_SCLK_DIV	102
+-#define AUD_CLKID_MST_F_SCLK_DIV	103
+-#define AUD_CLKID_MST_A_SCLK_POST_EN	104
+-#define AUD_CLKID_MST_B_SCLK_POST_EN	105
+-#define AUD_CLKID_MST_C_SCLK_POST_EN	106
+-#define AUD_CLKID_MST_D_SCLK_POST_EN	107
+-#define AUD_CLKID_MST_E_SCLK_POST_EN	108
+-#define AUD_CLKID_MST_F_SCLK_POST_EN	109
+-#define AUD_CLKID_MST_A_LRCLK_DIV	110
+-#define AUD_CLKID_MST_B_LRCLK_DIV	111
+-#define AUD_CLKID_MST_C_LRCLK_DIV	112
+-#define AUD_CLKID_MST_D_LRCLK_DIV	113
+-#define AUD_CLKID_MST_E_LRCLK_DIV	114
+-#define AUD_CLKID_MST_F_LRCLK_DIV	115
+-#define AUD_CLKID_TDMIN_A_SCLK_PRE_EN	137
+-#define AUD_CLKID_TDMIN_B_SCLK_PRE_EN	138
+-#define AUD_CLKID_TDMIN_C_SCLK_PRE_EN	139
+-#define AUD_CLKID_TDMIN_LB_SCLK_PRE_EN	140
+-#define AUD_CLKID_TDMOUT_A_SCLK_PRE_EN	141
+-#define AUD_CLKID_TDMOUT_B_SCLK_PRE_EN	142
+-#define AUD_CLKID_TDMOUT_C_SCLK_PRE_EN	143
+-#define AUD_CLKID_TDMIN_A_SCLK_POST_EN	144
+-#define AUD_CLKID_TDMIN_B_SCLK_POST_EN	145
+-#define AUD_CLKID_TDMIN_C_SCLK_POST_EN	146
+-#define AUD_CLKID_TDMIN_LB_SCLK_POST_EN	147
+-#define AUD_CLKID_TDMOUT_A_SCLK_POST_EN	148
+-#define AUD_CLKID_TDMOUT_B_SCLK_POST_EN	149
+-#define AUD_CLKID_TDMOUT_C_SCLK_POST_EN	150
+-#define AUD_CLKID_SPDIFOUT_B_CLK_SEL	153
+-#define AUD_CLKID_SPDIFOUT_B_CLK_DIV	154
+-#define AUD_CLKID_CLK81_EN		173
+-#define AUD_CLKID_SYSCLK_A_DIV		174
+-#define AUD_CLKID_SYSCLK_B_DIV		175
+-#define AUD_CLKID_SYSCLK_A_EN		176
+-#define AUD_CLKID_SYSCLK_B_EN		177
  
-diff --git a/include/dt-bindings/clock/g12a-clkc.h b/include/dt-bindings/clock/g12a-clkc.h
-index a93b58c5e18e..387767f4e298 100644
---- a/include/dt-bindings/clock/g12a-clkc.h
-+++ b/include/dt-bindings/clock/g12a-clkc.h
-@@ -16,6 +16,8 @@
- #define CLKID_FCLK_DIV5				5
- #define CLKID_FCLK_DIV7				6
- #define CLKID_GP0_PLL				7
-+#define CLKID_MPEG_SEL				8
-+#define CLKID_MPEG_DIV				9
- #define CLKID_CLK81				10
- #define CLKID_MPLL0				11
- #define CLKID_MPLL1				12
-@@ -69,7 +71,23 @@
- #define CLKID_SD_EMMC_A_CLK0			60
- #define CLKID_SD_EMMC_B_CLK0			61
- #define CLKID_SD_EMMC_C_CLK0			62
-+#define CLKID_SD_EMMC_A_CLK0_SEL		63
-+#define CLKID_SD_EMMC_A_CLK0_DIV		64
-+#define CLKID_SD_EMMC_B_CLK0_SEL		65
-+#define CLKID_SD_EMMC_B_CLK0_DIV		66
-+#define CLKID_SD_EMMC_C_CLK0_SEL		67
-+#define CLKID_SD_EMMC_C_CLK0_DIV		68
-+#define CLKID_MPLL0_DIV				69
-+#define CLKID_MPLL1_DIV				70
-+#define CLKID_MPLL2_DIV				71
-+#define CLKID_MPLL3_DIV				72
-+#define CLKID_MPLL_PREDIV			73
- #define CLKID_HIFI_PLL				74
-+#define CLKID_FCLK_DIV2_DIV			75
-+#define CLKID_FCLK_DIV3_DIV			76
-+#define CLKID_FCLK_DIV4_DIV			77
-+#define CLKID_FCLK_DIV5_DIV			78
-+#define CLKID_FCLK_DIV7_DIV			79
- #define CLKID_VCLK2_VENCI0			80
- #define CLKID_VCLK2_VENCI1			81
- #define CLKID_VCLK2_VENCP0			82
-@@ -90,26 +108,54 @@
- #define CLKID_VCLK2_VENCL			97
- #define CLKID_VCLK2_OTHER1			98
- #define CLKID_FCLK_DIV2P5			99
-+#define CLKID_FCLK_DIV2P5_DIV			100
-+#define CLKID_FIXED_PLL_DCO			101
-+#define CLKID_SYS_PLL_DCO			102
-+#define CLKID_GP0_PLL_DCO			103
-+#define CLKID_HIFI_PLL_DCO			104
- #define CLKID_DMA				105
- #define CLKID_EFUSE				106
- #define CLKID_ROM_BOOT				107
- #define CLKID_RESET_SEC				108
- #define CLKID_SEC_AHB_APB3			109
- #define CLKID_VPU_0_SEL				110
-+#define CLKID_VPU_0_DIV				111
- #define CLKID_VPU_0				112
- #define CLKID_VPU_1_SEL				113
-+#define CLKID_VPU_1_DIV				114
- #define CLKID_VPU_1				115
- #define CLKID_VPU				116
- #define CLKID_VAPB_0_SEL			117
-+#define CLKID_VAPB_0_DIV			118
- #define CLKID_VAPB_0				119
- #define CLKID_VAPB_1_SEL			120
-+#define CLKID_VAPB_1_DIV			121
- #define CLKID_VAPB_1				122
- #define CLKID_VAPB_SEL				123
- #define CLKID_VAPB				124
-+#define CLKID_HDMI_PLL_DCO			125
-+#define CLKID_HDMI_PLL_OD			126
-+#define CLKID_HDMI_PLL_OD2			127
- #define CLKID_HDMI_PLL				128
- #define CLKID_VID_PLL				129
-+#define CLKID_VID_PLL_SEL			130
-+#define CLKID_VID_PLL_DIV			131
-+#define CLKID_VCLK_SEL				132
-+#define CLKID_VCLK2_SEL				133
-+#define CLKID_VCLK_INPUT			134
-+#define CLKID_VCLK2_INPUT			135
-+#define CLKID_VCLK_DIV				136
-+#define CLKID_VCLK2_DIV				137
- #define CLKID_VCLK				138
- #define CLKID_VCLK2				139
-+#define CLKID_VCLK_DIV2_EN			140
-+#define CLKID_VCLK_DIV4_EN			141
-+#define CLKID_VCLK_DIV6_EN			142
-+#define CLKID_VCLK_DIV12_EN			143
-+#define CLKID_VCLK2_DIV2_EN			144
-+#define CLKID_VCLK2_DIV4_EN			145
-+#define CLKID_VCLK2_DIV6_EN			146
-+#define CLKID_VCLK2_DIV12_EN			147
- #define CLKID_VCLK_DIV1				148
- #define CLKID_VCLK_DIV2				149
- #define CLKID_VCLK_DIV4				150
-@@ -120,33 +166,117 @@
- #define CLKID_VCLK2_DIV4			155
- #define CLKID_VCLK2_DIV6			156
- #define CLKID_VCLK2_DIV12			157
-+#define CLKID_CTS_ENCI_SEL			158
-+#define CLKID_CTS_ENCP_SEL			159
-+#define CLKID_CTS_VDAC_SEL			160
-+#define CLKID_HDMI_TX_SEL			161
- #define CLKID_CTS_ENCI				162
- #define CLKID_CTS_ENCP				163
- #define CLKID_CTS_VDAC				164
- #define CLKID_HDMI_TX				165
-+#define CLKID_HDMI_SEL				166
-+#define CLKID_HDMI_DIV				167
- #define CLKID_HDMI				168
- #define CLKID_MALI_0_SEL			169
-+#define CLKID_MALI_0_DIV			170
- #define CLKID_MALI_0				171
- #define CLKID_MALI_1_SEL			172
-+#define CLKID_MALI_1_DIV			173
- #define CLKID_MALI_1				174
- #define CLKID_MALI				175
-+#define CLKID_MPLL_50M_DIV			176
- #define CLKID_MPLL_50M				177
-+#define CLKID_SYS_PLL_DIV16_EN			178
-+#define CLKID_SYS_PLL_DIV16			179
-+#define CLKID_CPU_CLK_DYN0_SEL			180
-+#define CLKID_CPU_CLK_DYN0_DIV			181
-+#define CLKID_CPU_CLK_DYN0			182
-+#define CLKID_CPU_CLK_DYN1_SEL			183
-+#define CLKID_CPU_CLK_DYN1_DIV			184
-+#define CLKID_CPU_CLK_DYN1			185
-+#define CLKID_CPU_CLK_DYN			186
- #define CLKID_CPU_CLK				187
-+#define CLKID_CPU_CLK_DIV16_EN			188
-+#define CLKID_CPU_CLK_DIV16			189
-+#define CLKID_CPU_CLK_APB_DIV			190
-+#define CLKID_CPU_CLK_APB			191
-+#define CLKID_CPU_CLK_ATB_DIV			192
-+#define CLKID_CPU_CLK_ATB			193
-+#define CLKID_CPU_CLK_AXI_DIV			194
-+#define CLKID_CPU_CLK_AXI			195
-+#define CLKID_CPU_CLK_TRACE_DIV			196
-+#define CLKID_CPU_CLK_TRACE			197
-+#define CLKID_PCIE_PLL_DCO			198
-+#define CLKID_PCIE_PLL_DCO_DIV2			199
-+#define CLKID_PCIE_PLL_OD			200
- #define CLKID_PCIE_PLL				201
-+#define CLKID_VDEC_1_SEL			202
-+#define CLKID_VDEC_1_DIV			203
- #define CLKID_VDEC_1				204
-+#define CLKID_VDEC_HEVC_SEL			205
-+#define CLKID_VDEC_HEVC_DIV			206
- #define CLKID_VDEC_HEVC				207
-+#define CLKID_VDEC_HEVCF_SEL			208
-+#define CLKID_VDEC_HEVCF_DIV			209
- #define CLKID_VDEC_HEVCF			210
-+#define CLKID_TS_DIV				211
- #define CLKID_TS				212
-+#define CLKID_SYS1_PLL_DCO			213
-+#define CLKID_SYS1_PLL				214
-+#define CLKID_SYS1_PLL_DIV16_EN			215
-+#define CLKID_SYS1_PLL_DIV16			216
-+#define CLKID_CPUB_CLK_DYN0_SEL			217
-+#define CLKID_CPUB_CLK_DYN0_DIV			218
-+#define CLKID_CPUB_CLK_DYN0			219
-+#define CLKID_CPUB_CLK_DYN1_SEL			220
-+#define CLKID_CPUB_CLK_DYN1_DIV			221
-+#define CLKID_CPUB_CLK_DYN1			222
-+#define CLKID_CPUB_CLK_DYN			223
- #define CLKID_CPUB_CLK				224
-+#define CLKID_CPUB_CLK_DIV16_EN			225
-+#define CLKID_CPUB_CLK_DIV16			226
-+#define CLKID_CPUB_CLK_DIV2			227
-+#define CLKID_CPUB_CLK_DIV3			228
-+#define CLKID_CPUB_CLK_DIV4			229
-+#define CLKID_CPUB_CLK_DIV5			230
-+#define CLKID_CPUB_CLK_DIV6			231
-+#define CLKID_CPUB_CLK_DIV7			232
-+#define CLKID_CPUB_CLK_DIV8			233
-+#define CLKID_CPUB_CLK_APB_SEL			234
-+#define CLKID_CPUB_CLK_APB			235
-+#define CLKID_CPUB_CLK_ATB_SEL			236
-+#define CLKID_CPUB_CLK_ATB			237
-+#define CLKID_CPUB_CLK_AXI_SEL			238
-+#define CLKID_CPUB_CLK_AXI			239
-+#define CLKID_CPUB_CLK_TRACE_SEL		240
-+#define CLKID_CPUB_CLK_TRACE			241
-+#define CLKID_GP1_PLL_DCO			242
- #define CLKID_GP1_PLL				243
-+#define CLKID_DSU_CLK_DYN0_SEL			244
-+#define CLKID_DSU_CLK_DYN0_DIV			245
-+#define CLKID_DSU_CLK_DYN0			246
-+#define CLKID_DSU_CLK_DYN1_SEL			247
-+#define CLKID_DSU_CLK_DYN1_DIV			248
-+#define CLKID_DSU_CLK_DYN1			249
-+#define CLKID_DSU_CLK_DYN			250
-+#define CLKID_DSU_CLK_FINAL			251
- #define CLKID_DSU_CLK				252
- #define CLKID_CPU1_CLK				253
- #define CLKID_CPU2_CLK				254
- #define CLKID_CPU3_CLK				255
-+#define CLKID_SPICC0_SCLK_SEL			256
-+#define CLKID_SPICC0_SCLK_DIV			257
- #define CLKID_SPICC0_SCLK			258
-+#define CLKID_SPICC1_SCLK_SEL			259
-+#define CLKID_SPICC1_SCLK_DIV			260
- #define CLKID_SPICC1_SCLK			261
-+#define CLKID_NNA_AXI_CLK_SEL			262
-+#define CLKID_NNA_AXI_CLK_DIV			263
- #define CLKID_NNA_AXI_CLK			264
-+#define CLKID_NNA_CORE_CLK_SEL			265
-+#define CLKID_NNA_CORE_CLK_DIV			266
- #define CLKID_NNA_CORE_CLK			267
-+#define CLKID_MIPI_DSI_PXCLK_DIV		268
- #define CLKID_MIPI_DSI_PXCLK_SEL		269
- #define CLKID_MIPI_DSI_PXCLK			270
+ /* include the CLKIDs which are part of the DT bindings */
+ #include <dt-bindings/clock/axg-audio-clkc.h>
+diff --git a/include/dt-bindings/clock/axg-audio-clkc.h b/include/dt-bindings/clock/axg-audio-clkc.h
+index f561f5c5ef8f..08c82c22fa5f 100644
+--- a/include/dt-bindings/clock/axg-audio-clkc.h
++++ b/include/dt-bindings/clock/axg-audio-clkc.h
+@@ -37,6 +37,26 @@
+ #define AUD_CLKID_SPDIFIN_CLK		56
+ #define AUD_CLKID_PDM_DCLK		57
+ #define AUD_CLKID_PDM_SYSCLK		58
++#define AUD_CLKID_MST_A_MCLK_SEL	59
++#define AUD_CLKID_MST_B_MCLK_SEL	60
++#define AUD_CLKID_MST_C_MCLK_SEL	61
++#define AUD_CLKID_MST_D_MCLK_SEL	62
++#define AUD_CLKID_MST_E_MCLK_SEL	63
++#define AUD_CLKID_MST_F_MCLK_SEL	64
++#define AUD_CLKID_MST_A_MCLK_DIV	65
++#define AUD_CLKID_MST_B_MCLK_DIV	66
++#define AUD_CLKID_MST_C_MCLK_DIV	67
++#define AUD_CLKID_MST_D_MCLK_DIV	68
++#define AUD_CLKID_MST_E_MCLK_DIV	69
++#define AUD_CLKID_MST_F_MCLK_DIV	70
++#define AUD_CLKID_SPDIFOUT_CLK_SEL	71
++#define AUD_CLKID_SPDIFOUT_CLK_DIV	72
++#define AUD_CLKID_SPDIFIN_CLK_SEL	73
++#define AUD_CLKID_SPDIFIN_CLK_DIV	74
++#define AUD_CLKID_PDM_DCLK_SEL		75
++#define AUD_CLKID_PDM_DCLK_DIV		76
++#define AUD_CLKID_PDM_SYSCLK_SEL	77
++#define AUD_CLKID_PDM_SYSCLK_DIV	78
+ #define AUD_CLKID_MST_A_SCLK		79
+ #define AUD_CLKID_MST_B_SCLK		80
+ #define AUD_CLKID_MST_C_SCLK		81
+@@ -49,6 +69,30 @@
+ #define AUD_CLKID_MST_D_LRCLK		89
+ #define AUD_CLKID_MST_E_LRCLK		90
+ #define AUD_CLKID_MST_F_LRCLK		91
++#define AUD_CLKID_MST_A_SCLK_PRE_EN	92
++#define AUD_CLKID_MST_B_SCLK_PRE_EN	93
++#define AUD_CLKID_MST_C_SCLK_PRE_EN	94
++#define AUD_CLKID_MST_D_SCLK_PRE_EN	95
++#define AUD_CLKID_MST_E_SCLK_PRE_EN	96
++#define AUD_CLKID_MST_F_SCLK_PRE_EN	97
++#define AUD_CLKID_MST_A_SCLK_DIV	98
++#define AUD_CLKID_MST_B_SCLK_DIV	99
++#define AUD_CLKID_MST_C_SCLK_DIV	100
++#define AUD_CLKID_MST_D_SCLK_DIV	101
++#define AUD_CLKID_MST_E_SCLK_DIV	102
++#define AUD_CLKID_MST_F_SCLK_DIV	103
++#define AUD_CLKID_MST_A_SCLK_POST_EN	104
++#define AUD_CLKID_MST_B_SCLK_POST_EN	105
++#define AUD_CLKID_MST_C_SCLK_POST_EN	106
++#define AUD_CLKID_MST_D_SCLK_POST_EN	107
++#define AUD_CLKID_MST_E_SCLK_POST_EN	108
++#define AUD_CLKID_MST_F_SCLK_POST_EN	109
++#define AUD_CLKID_MST_A_LRCLK_DIV	110
++#define AUD_CLKID_MST_B_LRCLK_DIV	111
++#define AUD_CLKID_MST_C_LRCLK_DIV	112
++#define AUD_CLKID_MST_D_LRCLK_DIV	113
++#define AUD_CLKID_MST_E_LRCLK_DIV	114
++#define AUD_CLKID_MST_F_LRCLK_DIV	115
+ #define AUD_CLKID_TDMIN_A_SCLK_SEL	116
+ #define AUD_CLKID_TDMIN_B_SCLK_SEL	117
+ #define AUD_CLKID_TDMIN_C_SCLK_SEL	118
+@@ -70,8 +114,24 @@
+ #define AUD_CLKID_TDMOUT_A_LRCLK	134
+ #define AUD_CLKID_TDMOUT_B_LRCLK	135
+ #define AUD_CLKID_TDMOUT_C_LRCLK	136
++#define AUD_CLKID_TDMIN_A_SCLK_PRE_EN	137
++#define AUD_CLKID_TDMIN_B_SCLK_PRE_EN	138
++#define AUD_CLKID_TDMIN_C_SCLK_PRE_EN	139
++#define AUD_CLKID_TDMIN_LB_SCLK_PRE_EN	140
++#define AUD_CLKID_TDMOUT_A_SCLK_PRE_EN	141
++#define AUD_CLKID_TDMOUT_B_SCLK_PRE_EN	142
++#define AUD_CLKID_TDMOUT_C_SCLK_PRE_EN	143
++#define AUD_CLKID_TDMIN_A_SCLK_POST_EN	144
++#define AUD_CLKID_TDMIN_B_SCLK_POST_EN	145
++#define AUD_CLKID_TDMIN_C_SCLK_POST_EN	146
++#define AUD_CLKID_TDMIN_LB_SCLK_POST_EN	147
++#define AUD_CLKID_TDMOUT_A_SCLK_POST_EN	148
++#define AUD_CLKID_TDMOUT_B_SCLK_POST_EN	149
++#define AUD_CLKID_TDMOUT_C_SCLK_POST_EN	150
+ #define AUD_CLKID_SPDIFOUT_B		151
+ #define AUD_CLKID_SPDIFOUT_B_CLK	152
++#define AUD_CLKID_SPDIFOUT_B_CLK_SEL	153
++#define AUD_CLKID_SPDIFOUT_B_CLK_DIV	154
+ #define AUD_CLKID_TDM_MCLK_PAD0		155
+ #define AUD_CLKID_TDM_MCLK_PAD1		156
+ #define AUD_CLKID_TDM_LRCLK_PAD0	157
+@@ -90,5 +150,10 @@
+ #define AUD_CLKID_FRDDR_D		170
+ #define AUD_CLKID_TODDR_D		171
+ #define AUD_CLKID_LOOPBACK_B		172
++#define AUD_CLKID_CLK81_EN		173
++#define AUD_CLKID_SYSCLK_A_DIV		174
++#define AUD_CLKID_SYSCLK_B_DIV		175
++#define AUD_CLKID_SYSCLK_A_EN		176
++#define AUD_CLKID_SYSCLK_B_EN		177
  
+ #endif /* __AXG_AUDIO_CLKC_BINDINGS_H */
 
 -- 
 2.34.1
