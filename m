@@ -4,89 +4,115 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2D3AC7EE29
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jun 2023 09:36:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1539C77B7A
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jun 2023 11:15:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=A4QYakdtAa78ZnlpyAxekq7UFWNOxvvBNRxh6bFg7U8=; b=1BZY/jJcwSGji+
-	S8HB2wntpysUYCFxSuI+j31MKYhpSEymvCbVDzht/7eLP6psbdosO2YaGgKdrmphOoyitUKBAVQ/d
-	56+pxaXX2iNKhniNoK7f8cxneoy3nxZompKOjni4xTistPcKTEaPKVbMk1Z3xGEPcIWO2UpRv4KKZ
-	fnLiDyfEc0Q+F80rk4FkpQK6tTe2eQHuQrcMJ1EBYNkcMiTCn1XkuX2buTyaJvzxNz4DWpsj0+mFG
-	3vYsHARpK8byoOThv5Baijvu7Ae7foeMtF/niIhdBURkTlJzlBONQgsszJNLwd2nyluNnmxYkHvIE
-	VRzSdCWFDh/Lxv9uffOA==;
+	List-Owner; bh=+6ksPH1qF9m7rhejqPVCmPKZXTIvlO5xHSmSk2Mln1U=; b=w8aFdIWV+P+iqc
+	GTfECjYrR9TiPdCdeiKZfNmsYAlebUQBSt6oL8icx7EITCxrrtRw8aEWhF8OK61qn7csNlNbAakwc
+	zJhZYFoVJOpPjPJuxK8bYx1TiGjuYW7+NsoESBMNsdnwIRxltIrj3JUpOkZsIdhT70JZzEJ81k2op
+	Qsz/sELBjrMpALXh7s50/3fZVaOeJncW8YD0lxblJtgtmaTzxkxj+8tGeTCZv1Hq0gJO9avK+4iMA
+	7xLUFKX3cS3SBnWCZPewr5knbspi9jDxgi5aaIRj2bvsEwt6eZc7kvdPSKdLN/i8MHglSIBDc6/k+
+	L0VGIu+0IfIrPrmJs/cw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6paW-005Gwq-0M;
-	Wed, 07 Jun 2023 09:36:20 +0000
-Received: from relay6-d.mail.gandi.net ([217.70.183.198])
+	id 1q6r7g-005cHL-0N;
+	Wed, 07 Jun 2023 11:14:40 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6paT-005GvU-1B;
-	Wed, 07 Jun 2023 09:36:19 +0000
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1686130568;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XHbDoPntY8rQli1Ts2fRuiAoXXD0B+JipbbpnA9vAgs=;
-	b=eGQ0NF915O7i6T9mpLNfb9/1dCJ1f5hmxGuZY4UbmVa7sRZxXLsTZ0IY2OAb0Xya0sW4Bw
-	fdxadbzR4sNDPT+WXTwCV95HjAqA5pVZoKO/PbQiddvHIlype5TqN2Aeh0UKdgvG23l70A
-	SUOVHBz9fz+IDbyGPXPHiphK2KoTUbmUa4zBJA3Z1TWxlq2gjfTF24CsgU2yop6Ay0VBo2
-	KrD1jAJjv+2nlYkY86ds4muSAzHsSZ7AuCvGt+BlsPDFYoceJVSbrCzJmrqT2xlciThgQZ
-	1hmdVmsEJu+ab3BTfWsMVH8NLEwJSHoUP0ug9pP+tZ85SKqdqsRicafpRZaV7w==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id BBD1CC0011;
-	Wed,  7 Jun 2023 09:36:06 +0000 (UTC)
-Date: Wed, 7 Jun 2023 11:36:05 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Liang Yang
- <liang.yang@amlogic.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, <oxffffaa@gmail.com>,
- <kernel@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1] dt-bindings: nand: meson: Fix 'nand-rb' property
-Message-ID: <20230607113605.50a992bb@xps-13>
-In-Reply-To: <5ca9eb2b-4bc8-5883-a029-3eeca905fe6e@sberdevices.ru>
-References: <20230606193507.35024-1-AVKrasnov@sberdevices.ru>
-	<20230607095802.3adcd4f9@xps-13>
-	<166bdc27-f77c-9076-f866-180cfa5bff76@sberdevices.ru>
-	<08da4e86-433a-7d2e-25ff-ffa24221abdf@linaro.org>
-	<835a3587-1e0f-64d7-1d1a-b639ae8b7307@sberdevices.ru>
-	<2ca6e619-1d57-8fff-6176-9ee890e0d167@linaro.org>
-	<5ca9eb2b-4bc8-5883-a029-3eeca905fe6e@sberdevices.ru>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	id 1q6r7e-005cFw-0v
+	for linux-amlogic@bombadil.infradead.org;
+	Wed, 07 Jun 2023 11:14:38 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
+	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
+	:Reply-To:Content-ID:Content-Description;
+	bh=A26FY2EOWGHMttoswYCrKkWs1qsnhgkNG3ne6FDcRAY=; b=hGSc7Rh+fyUjgdgGdLZsBGkDQY
+	dbL1QA86N8XulOXbDJh1W6UE7Kd77gXxlx6Xl9J2BEc+a1uKJVIqfxIxhlqZmXvpJADTFKL3jB8zX
+	bRiOKKH9WuKO+2zb/L8nqW8OA5VIZbxJY5t97OndfwmoAf2ycN/YYRqShBvRr7xjOdihZacOYuaKf
+	wFFIpRaNS6Cwga1dSu+25f2pWZg3aJpvioS4AhTuD/E37zt50JDIdNdRS0WhorEjuyDm9/xRbXe28
+	8DkILskPqM7hdt7nKogcYZYiYZNAGssqfbYOMv0bbxZTAMVKhsGP2piVqI7RX2N5OFOYAmFSVxYdX
+	8emWlGZQ==;
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	by casper.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1q6qqH-00EBXj-Qa
+	for linux-amlogic@lists.infradead.org; Wed, 07 Jun 2023 10:56:45 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f6da07feb2so70907205e9.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 07 Jun 2023 03:56:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686135398; x=1688727398;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A26FY2EOWGHMttoswYCrKkWs1qsnhgkNG3ne6FDcRAY=;
+        b=f56RxJaY8iD0G/krUqQOnU0Zg4nKsTPfvhCYAvkQryp6ijzM6zjS6vvl4yS0ZPqR+S
+         94pljyqD14G0wz9XEPyq2DHt7A/IiD2eLKR2gnq5/ZYbuTBAhWaWJEJ1ncffhqNJv1My
+         ztV1xsgMEo/744bayRVmZqrdr2rF9dGRnYbB2SAT/Y/brL9Pg0PExTLdzBqFz9HzDCpP
+         IfSrh8658s86/m+Knv4+WyUysrJExFN5k5pTfcRjlGGTdE5/GSFOUeDQhVZ0clVl9HB9
+         329Y+Kz6nPyB8LxK051nFlKFQBGLcuR5XWVP/prFYvYMM2j3DAcH5qFqYI0IStlujE8N
+         JXNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686135398; x=1688727398;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=A26FY2EOWGHMttoswYCrKkWs1qsnhgkNG3ne6FDcRAY=;
+        b=Rpi8bdv9D9vMaLKbpNb0Ez1eO5722mttlZSBcI4iY+p4mwUrasReNSZAZmn0U17hgU
+         udMcI6g9XDvsRlU7aeA0Ie+RLWbfkZ61oIUi80xke5DycFbZCxEkAQkAz43qtxl+FRw0
+         JfyJ/eKnZ7oEhTO3ZV4Rtg2hJGGosVDIXUVjBmQ3PIjwrdQWuI4MVVCWgLw5fve1Zl/w
+         JCI3rHHPh2kUr/RlDaST2lQRGf9UZE4D2TMyufIBYAUYAOQM0+3Yg+IWIiak24WtUUSL
+         NNZ8Y014o/Kz5tc0qVtyJn2oL9HnWwf8Yj2jRSKEEtt/E83JR+y6g3Nu56mdK2EKM2ks
+         kApg==
+X-Gm-Message-State: AC+VfDwBTBqBkBpTFmWqXEbwmLJRWmjiB4Wsn+8xzOyAuVr9rJADLzNd
+	NvI3QFTzxvUpkuQ9VmquIaJKLQ==
+X-Google-Smtp-Source: ACHHUZ7oGQhv6TBlxkdm8bfP4/QWswGA555Bc61XsXoDipcsadeEQhT/1eu2V6ruKae68LgSIcsB/w==
+X-Received: by 2002:a7b:cd98:0:b0:3f1:6fb3:ffcc with SMTP id y24-20020a7bcd98000000b003f16fb3ffccmr4535802wmj.22.1686135398362;
+        Wed, 07 Jun 2023 03:56:38 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id i10-20020a05600c290a00b003f60faa4612sm1761879wmd.22.2023.06.07.03.56.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jun 2023 03:56:38 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Wed, 07 Jun 2023 12:56:27 +0200
+Subject: [PATCH 16/18] clk: meson: a1: move bindings include to main driver
 MIME-Version: 1.0
+Message-Id: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-16-9676afa6b22c@linaro.org>
+References: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-0-9676afa6b22c@linaro.org>
+In-Reply-To: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-0-9676afa6b22c@linaro.org>
+To: Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2195;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=MiorzJT8BJ3U4Im9MU5+c0Np88TD4TVfN8gYXiV/42w=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkgGJUAVyrz2mTU4oIpoEcazaItKh5+V7OxNlXOYag
+ mLvLgq2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZIBiVAAKCRB33NvayMhJ0cN5D/
+ 4pAks67QJDuntqf61aBfWfAA1TyVWw/j9Y06kT3GiaWc5Ywdc9WwoInDtzgO98acEu6GPDFeQXEs1w
+ TPosYPMpHEuGgRQam+tKtxdZBi0JsbYUc1BHCUqkFsHlJaHMIyNKy7SmqUj0b6l/T84uSG99FCp26g
+ Ll65/4eVXTTwluQ8aK3RESWJtmV6h0SmsOOiFj9+p4A+hHarwTXbLXQj5nClqI8IF4gMmBTVcKtHcG
+ QgIKrlh3idqyZD13pl8uL3Z5Nf6aPjzELDT8rsatb6KwJIXRHq1+XdVboAS0mTtZLIckzE/06GnzBp
+ hAXiZEpv88EoGloOx5RV2eNLkuANdRdc9UPseOGsr4YytDyCEUKYRoo1HywptfE9ILLecKA61WEWEA
+ pqTf15L99qqmOM5kqZidfV+JeFM/h0Ejev11Dg+hM/TkT60XUPR5JfxJpBPFyfv24JHJTTEQJ36ZKU
+ JPFl69AiHFMxikHl7s6EL+ryQ48hvlZpYiZGdZ0GrpnyhrOBFW9IldJyJWKvUH7Yjt68EtEA0KZg3S
+ pNDvF4KXwPSv9nbZ/gqrbt9mkqktE41uQ+weC/81CA2ONmPAgM3pLlliNdnqkriaiCXYiwIyLZIf34
+ 64HQuI5B2TzQtSWK2DFPKRyGnjELLWvxzLDBozvbISGTUq6J0OLSzT8N+lcA==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230607_023617_667608_0CE56083 
-X-CRM114-Status: GOOD (  20.33  )
+X-CRM114-CacheID: sfid-20230607_115641_953269_DD4BF191 
+X-CRM114-Status: GOOD (  10.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,46 +124,79 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgQXJzZW5peSwKCmF2a3Jhc25vdkBzYmVyZGV2aWNlcy5ydSB3cm90ZSBvbiBXZWQsIDcgSnVu
-IDIwMjMgMTI6MDQ6MjkgKzAzMDA6Cgo+IE9uIDA3LjA2LjIwMjMgMTI6MDgsIEtyenlzenRvZiBL
-b3psb3dza2kgd3JvdGU6Cj4gPiBPbiAwNy8wNi8yMDIzIDEwOjU3LCBBcnNlbml5IEtyYXNub3Yg
-d3JvdGU6ICAKPiA+Pgo+ID4+Cj4gPj4gT24gMDcuMDYuMjAyMyAxMTo1MywgS3J6eXN6dG9mIEtv
-emxvd3NraSB3cm90ZTogIAo+ID4+PiBPbiAwNy8wNi8yMDIzIDEwOjQwLCBBcnNlbml5IEtyYXNu
-b3Ygd3JvdGU6ICAKPiA+Pj4+IEhlbGxvIE1pcXVlbCwgCj4gPj4+Pgo+ID4+Pj4gT24gMDcuMDYu
-MjAyMyAxMDo1OCwgTWlxdWVsIFJheW5hbCB3cm90ZToKPiA+Pj4+ICAKPiA+Pj4+PiBIaSBBcnNl
-bml5LAo+ID4+Pj4+Cj4gPj4+Pj4gQVZLcmFzbm92QHNiZXJkZXZpY2VzLnJ1IHdyb3RlIG9uIFR1
-ZSwgNiBKdW4gMjAyMyAyMjozNTowNyArMDMwMDoKPiA+Pj4+PiAgCj4gPj4+Pj4+IEFkZCBkZXNj
-cmlwdGlvbiBvZiAnbmFuZC1yYicgcHJvcGVydHkuIFVzZSAiRml4ZXMiIGJlY2F1c2UgdGhpcyBw
-cm9wZXJ0eQo+ID4+Pj4+PiBtdXN0IGJlIHN1cHBvcnRlZCBzaW5jZSB0aGUgYmVnaW5uaW5nLiBG
-b3IgdGhpcyBjb250cm9sbGVyICduYW5kLXJiJyBpcwo+ID4+Pj4+PiBzdG9yZWQgaW4gdGhlIGNv
-bnRyb2xsZXIgbm9kZSAobm90IGluIGNoaXApLCBiZWNhdXNlIGl0IGhhcyBvbmx5IHNpbmdsZQo+
-ID4+Pj4+PiByL2Igd2lyZSBmb3IgYWxsIGNoaXBzLiAgCj4gPj4+Pj4KPiA+Pj4+PiBTb3JyeSBp
-ZiBJIG1pc2xlYWQgeW91IGluIHRoZSBmaXJzdCBwbGFjZSwgYnV0IHlvdSBjb3VsZCBkZWZpbml0
-ZWx5Cj4gPj4+Pj4gaGF2ZSB0d28gY2hpcHMgYW5kIG9ubHkgb25lIHdpdGggUkIgd2lyZWQuIEl0
-IG5lZWRzIHRvIGJlIGRlZmluZWQgaW4KPiA+Pj4+PiB0aGUgY2hpcHMuICAKPiA+Pj4+Cj4gPj4+
-PiBPaywgc28gdG8gY2xhcmlmeTogaXMgaXQgb2ssIHRoYXQgaW4gYmluZGluZ3MgdGhpcyBwcm9w
-ZXJ0eSB3aWxsIGJlIHBsYWNlZCBpbiB0aGUKPiA+Pj4+IGNoaXAsIGJ1dCBpbiBkcml2ZXIsIGkn
-bSB0cnlpbmcgdG8gcmVhZCBpdCBmcm9tIHRoZSBjb250cm9sbGVyIG5vZGUgKHRodXMgIGluCj4g
-Pj4+PiBkdHMgZmlsZSBpdCB3aWxsIGJlIGFsc28gaW4gY29udHJvbGxlciBub2RlKT8gIAoKVGhl
-IGJpbmRpbmdzIGFuZCB5b3VyIGRyaXZlciBpbnRlcm5hbCByZXByZXNlbnRhdGlvbiBhcmUgdHdv
-IGRpZmZlcmVudAp0aGluZ3MuIEFueXdheSwgYXMgbWVudGlvbmVkIGFib3ZlLCB3aXJpbmcgdGhl
-IFJCIGxpbmUgdG8gb25lIGRpZSBhbmQKbm90IHRoZSBvdGhlciB3b3VsZCBiZSB2YWxpZCBoYXJk
-d2FyZSBkZXNpZ24gYW5kIHdvdWxkIHJlcXVpcmUgdGhlIHJiCnByb3BlcnR5IHRvIGJlIGluIHRo
-ZSBjaGlwIG5vZGUuIFBsZWFzZSBwZXJmb3JtIGEgcGVyLWNoaXAgcHJvcGVydHkgcmVhZAppbiB0
-aGUgZHJpdmVyIGFzIHdlbGwuCgo+ID4+Pgo+ID4+PiBObywgYmVjYXVzZSBob3cgd291bGQgeW91
-ciBEVFMgcGFzcyB2YWxpZGF0aW9uPyBJIHVuZGVyc3RhbmQgeW91IGRpZCBub3QKPiA+Pj4gdGVz
-dCB0aGUgYmluZGluZ3MsIGJ1dCB0aGlzIHdpbGwgaW1wcm92ZSwgcmlnaHQ/ICAKPiA+Pgo+ID4+
-IE9rLCBpJ2xsIGZvbGxvdyBEVFMgbGF5b3V0IGluIHRoZSBkcml2ZXIsICJ0ZXN0IHRoZSBiaW5k
-aW5ncyIgWW91IG1lYW4gIm1ha2UgZHRfYmluZGluZ19jaGVjayI/ICAKPiA+IAo+ID4gWWVzLiBU
-aGV5IHdlcmUgc2VudCB3aXRob3V0IHRlc3RpbmcuCj4gPiAKPiA+IEJ1dCBwbGVhc2UgYWxzbyB0
-ZXN0IHlvdXIgRFRTIHdpdGggZHRic19jaGVjay4gIAo+IAo+IEdvdCBpdCEKPiAKPiBUaGFua3Ms
-IEFyc2VuaXkKPiAKPiA+IAo+ID4gCj4gPiBCZXN0IHJlZ2FyZHMsCj4gPiBLcnp5c3p0b2YKPiA+
-ICAgCgoKVGhhbmtzLApNaXF1w6hsCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxp
-c3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9saW51eC1hbWxvZ2ljCg==
+Now the clock ids are no more defined in private headers,
+cleanup and include the dt-bindings headers from the main
+driver file.
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ drivers/clk/meson/a1-peripherals.c | 2 ++
+ drivers/clk/meson/a1-peripherals.h | 3 ---
+ drivers/clk/meson/a1-pll.c         | 2 ++
+ drivers/clk/meson/a1-pll.h         | 3 ---
+ 4 files changed, 4 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/clk/meson/a1-peripherals.c b/drivers/clk/meson/a1-peripherals.c
+index 094246cb5f6c..ef0881b8ee07 100644
+--- a/drivers/clk/meson/a1-peripherals.c
++++ b/drivers/clk/meson/a1-peripherals.c
+@@ -14,6 +14,8 @@
+ #include "clk-dualdiv.h"
+ #include "clk-regmap.h"
+ 
++#include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
++
+ static struct clk_regmap xtal_in = {
+ 	.data = &(struct clk_regmap_gate_data){
+ 		.offset = SYS_OSCIN_CTRL,
+diff --git a/drivers/clk/meson/a1-peripherals.h b/drivers/clk/meson/a1-peripherals.h
+index 842b52634ed0..26de8530184a 100644
+--- a/drivers/clk/meson/a1-peripherals.h
++++ b/drivers/clk/meson/a1-peripherals.h
+@@ -43,7 +43,4 @@
+ #define PSRAM_CLK_CTRL		0xf4
+ #define DMC_CLK_CTRL		0xf8
+ 
+-/* include the CLKIDs that have been made part of the DT binding */
+-#include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
+-
+ #endif /* __A1_PERIPHERALS_H */
+diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
+index 25d102dc8a5d..9a757862abab 100644
+--- a/drivers/clk/meson/a1-pll.c
++++ b/drivers/clk/meson/a1-pll.c
+@@ -13,6 +13,8 @@
+ #include "a1-pll.h"
+ #include "clk-regmap.h"
+ 
++#include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
++
+ static struct clk_regmap fixed_pll_dco = {
+ 	.data = &(struct meson_clk_pll_data){
+ 		.en = {
+diff --git a/drivers/clk/meson/a1-pll.h b/drivers/clk/meson/a1-pll.h
+index 0add1c7ea9f5..4be17b2bf383 100644
+--- a/drivers/clk/meson/a1-pll.h
++++ b/drivers/clk/meson/a1-pll.h
+@@ -25,7 +25,4 @@
+ #define ANACTRL_HIFIPLL_CTRL4	0xd0
+ #define ANACTRL_HIFIPLL_STS	0xd4
+ 
+-/* include the CLKIDs that have been made part of the DT binding */
+-#include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
+-
+ #endif /* __A1_PLL_H */
+
+-- 
+2.34.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
