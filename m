@@ -4,81 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 556A9C7EE29
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Jun 2023 11:33:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E922C7EE23
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Jun 2023 12:01:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vIMSaImXR3Lj1mRQPtLhxAquL2bq72v3W71DAYwrbcU=; b=ks0irOZ7I+N7gJ
-	Pm/s9uFTDK3VL5WHpoYjZxBHDBzgBFZzpYlPrnyXb4BH04EgJeZOiC0gyEUbihfekEZs/JU6uq30c
-	JXpRUYKwZt60nb3clEXty32/cJfT3vWc/LMwxMQ3X85mJyuMgQ4m4nZZAF/vYzwRCRcZY4lC4VbQN
-	6WA6Cfb0TwOK+lWuXJaYHRbvHu6DTpzqGUoBhDRnELOJ/o9LHnkxH7J9Gtfuevjcxvm9bbmYrguEb
-	4foy6rI15bv7pMRHE1bIqtTHdxGuWwR+KNDg0zyTTbdqdVA2myc4ICfXwtliOxyF/dZcAQWdQ56G3
-	PV7lvnP6TvZIsOpv4MrA==;
+	List-Owner; bh=gcQ09Mhn1ACusMG+6Cq4UoyHV5F69SDW68/IoBlIBh4=; b=CJEKRwBqUqGrJi
+	++bn9ddBT1n6F0g91g0IssAb2HIK28z4v4xWoMP1SFkS/qBJIKKESp8asWW6DyLhViOTqY5JdvcAC
+	XdFvW39x0aBJYbZoNxbAwUZWUwNMrCmPrkBRffwi3BhiFUvskUpsYUGIcYdcXQxIe2Y4Z6CimtQPi
+	h8t2cOEn0oIi5VZrQj6z9RNQIWHoAxhA+BE52JuXu5iWGL4lOFUr6MiZwhe4Qq1FkTYPn/PfCxiTe
+	Uk7xA1QF2hKaz943YIt9XB+UqY7qMaWP1jSJdithTxPSBMIpE4ExfVAFCCrn4bottb1fVdWuzTHQp
+	3HgXPugoRh45O7CyIhdg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7Dt0-009Aho-1B;
-	Thu, 08 Jun 2023 11:33:02 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1q7EKJ-009Fd2-1w;
+	Thu, 08 Jun 2023 12:01:15 +0000
+Received: from mail-ej1-x62f.google.com ([2a00:1450:4864:20::62f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7Dsv-009Afp-2s;
-	Thu, 08 Jun 2023 11:33:00 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 0B9655FD17;
-	Thu,  8 Jun 2023 14:32:48 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1686223968;
-	bh=ArxZiYt0qp/hxI5ZPD4sF0OBh5tn0afXnbxC4eDwIyU=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=bNFA395QIg2BsNA+rX3UafWQ9sOwa9yOQtgOmsdIl2UtMWN8utqHCarZsMceg9yum
-	 KO5qBWnXTDOGZ5d09RwLOdneTdZYl9ZTuOfvqgygCi6sfwggkdbHzBgXuhIX20l5sV
-	 s4U9VZqLgVMxUL01k51Hdt1XY2TusRAQMDEodZVEkdYMoamrXWKTus5+M8S1lPSh6V
-	 qTwKcegboO/TsdBUWvvRlc8reLOrBEP4+iW/J1pckPOIRxucnuR0daee7Gq+CAih68
-	 RaV64ihAmqTqzBvJKJ+A0ixZCbKMQkadopYAYDLjZxD/4b6WOKuxyquvRd9FmcglkR
-	 TGwxwbPprNI0A==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Thu,  8 Jun 2023 14:32:44 +0300 (MSK)
-Date: Thu, 8 Jun 2023 14:32:44 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: Jerome Brunet <jbrunet@baylibre.com>
-CC: Yu Tu <yu.tu@amlogic.com>, <linux-clk@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Rob Herring
-	<robh+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin
- Hilman <khilman@baylibre.com>, Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	<kelvin.zhang@amlogic.com>, <qi.duan@amlogic.com>
-Subject: Re: [PATCH V9 3/4] clk: meson: S4: add support for Amlogic S4 SoC
- PLL clock driver
-Message-ID: <20230608113244.jvf7w4flwjy5soud@CAB-WSD-L081021>
-References: <20230517070215.28463-1-yu.tu@amlogic.com>
- <20230517070215.28463-4-yu.tu@amlogic.com>
- <1j5y804q7u.fsf@starbuckisacylon.baylibre.com>
- <73acf297-3f60-1ce1-2f05-af048aa37199@amlogic.com>
- <1jttvi9vnq.fsf@starbuckisacylon.baylibre.com>
+	id 1q7EKF-009Fbk-2J
+	for linux-amlogic@lists.infradead.org;
+	Thu, 08 Jun 2023 12:01:12 +0000
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-97460240863so100854066b.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 08 Jun 2023 05:01:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686225669; x=1688817669;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZSfpWD4teVA0PB2ivylgMo2dut6dNPatdLRqxIkNQ+Q=;
+        b=WoTNi+ai6NsW8KPLL3LglJc2enfwxbm4PzanNJzUP2kSg8rIB+8VAY8VxVGA8oHiBd
+         aCpp7uniWV9tqmT9LxQoBX4diI+7/0VA1bGTXiIVMFDUryAz58F2dSqdQFRzIabkPtNF
+         VNDGsZdS4ps1dVEBvYR8lsGyNwWK8Cr5ApUpLqNehriyJel3kUoJJ4shO6wHVkQ+dqCR
+         5GmbTemDGR1vowPNxXZAKpRwY6gSO8OCu2T7G2gMkP5bSNHDgfEzSpfwaO2tfbHmy8p0
+         xl0hr55EF2E2bIm4H1u8jMtYiKhvJtQItiOUuEnIMdZDwtYP2m7Z6v2WJRZ/sjvFcGRV
+         hzXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686225669; x=1688817669;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZSfpWD4teVA0PB2ivylgMo2dut6dNPatdLRqxIkNQ+Q=;
+        b=WTbtq6tnFfqCkyceg/xqcTEod1RgwEeXTsccG69Doq7NU90JA9sD/9oA+1W+EDqEQn
+         O6vFtAT/nZaJcxIc87I5hJ3lNXunHypIO7OHpos+Rypz7Q/MCRVCk89+zGAMUf6lNBqv
+         7pz8Iu1kGiD5G13vm5p5brooa85KrCoVMTwmXq8x6NjtsK1iaXHoeYA09B71+UPyOX3i
+         4DtMyUbH85DG1LPhNh1vrG2v0ITVqp2QRuX2nbd4WJV5XyXuETf64/0DrsAcwEme+LD5
+         TAN60BF3s4xig/qiUvxnu5K+ANtzhYtZvnZ5LACEZFXClWYs2UiTiXmjD4edi6AhKW68
+         uezA==
+X-Gm-Message-State: AC+VfDwuSnBYNyj/jKqwplReK77NGwI+mhO0bMyAy5rEWvjJgyPTBg/O
+	/C+xycn5UXuYjfiFBG9SSLkMvw==
+X-Google-Smtp-Source: ACHHUZ64DPz/2YQ7ZsaUzDtgwN8iEGLtqsNJZpVuVaw6nlFGzaquFSCCNzMzj3L2VCS98bdm8s2DJA==
+X-Received: by 2002:a17:907:a413:b0:978:9011:5893 with SMTP id sg19-20020a170907a41300b0097890115893mr3107734ejc.37.1686225668903;
+        Thu, 08 Jun 2023 05:01:08 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id gg24-20020a170906e29800b00974638e4a98sm610936ejb.24.2023.06.08.05.01.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jun 2023 05:01:08 -0700 (PDT)
+Message-ID: <07c455ff-c44d-891b-e2ef-e5cc612975e6@linaro.org>
+Date: Thu, 8 Jun 2023 14:01:06 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1jttvi9vnq.fsf@starbuckisacylon.baylibre.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/08 06:55:00 #21458577
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v3 1/2] dt-bindings: nand: meson: Fix 'nand-rb' property
+Content-Language: en-US
+To: Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
+ Liang Yang <liang.yang@amlogic.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: oxffffaa@gmail.com, kernel@sberdevices.ru, linux-mtd@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230608044728.1328506-1-AVKrasnov@sberdevices.ru>
+ <20230608044728.1328506-2-AVKrasnov@sberdevices.ru>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230608044728.1328506-2-AVKrasnov@sberdevices.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230608_043258_653096_0ABAA455 
-X-CRM114-Status: GOOD (  19.37  )
+X-CRM114-CacheID: sfid-20230608_050111_787665_947325EF 
+X-CRM114-Status: UNSURE (   7.32  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,63 +105,18 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Jerome,
+On 08/06/2023 06:47, Arseniy Krasnov wrote:
+> Add description of 'nand-rb' property. Use "Fixes" because this property
+> must be supported since the beginning.
+> 
+> Fixes: fbc00b5e746f ("dt-bindings: nand: meson: convert txt to yaml")
+> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
 
-On Thu, Jun 08, 2023 at 10:53:31AM +0200, Jerome Brunet wrote:
-> 
-> >>> +
-> >>> +static struct clk_regmap s4_fclk_div4 = {
-> >>> +     .data = &(struct clk_regmap_gate_data){
-> >>> +             .offset = ANACTRL_FIXPLL_CTRL1,
-> >>> +             .bit_idx = 21,
-> >>> +     },
-> >>> +     .hw.init = &(struct clk_init_data){
-> >>> +             .name = "fclk_div4",
-> >>> +             /*
-> >>> +              * For more information, please refer to s4_fixed_pll_dco.
-> >>> +              */
-> >> While div2 and div3 got an explanation from previous SoCs, they others -
-> >> like div4/div7/etc ... - have been able to cope with rw ops so far.
-> >> Why is the S4 different for all these clocks ?
-> >
-> > The chip was changed fixed pll for security reasons.
-> >
-> > Fixed PLL registers are not writable in the kernel phase. Write of fixed
-> > PLL-related register will cause the system to crash.
-> >
-> 
-> That is definitely worth mentionning
-> 
-> >> Requiring RO ops (or fishy clock flags) is usually a sign that a clock
-> >> is used without an appropriate driver.
-> >>
-> 
-> Neil is currently dealing with the dt-bindings, please
-> * Adjust your patchset accordingly
-> * Wait for his v2 to land, you'll need it.
-> 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I saw Neil patch series with merging 'private' and 'public' clock
-bindings parts. Should I send the same patchset for a1 clocks after v6.5
-landed?
+Best regards,
+Krzysztof
 
-> >>> +             .ops = &clk_regmap_gate_ro_ops,
-> >>> +             .parent_hws = (const struct clk_hw *[]) {
-> >>> +                     &s4_fclk_div4_div.hw
-> >>> +             },
-> >>> +             .num_parents = 1,
-> >>> +     },
-> >>> +};
-> >>> +
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
--- 
-Thank you,
-Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
