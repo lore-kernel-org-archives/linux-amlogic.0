@@ -4,61 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54CB3C7EE25
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Jun 2023 04:42:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52864C7EE2E
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Jun 2023 04:42:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=7nsiHk9e0by93HHS9f3P63Cp0TJMokAd8T/wPNajZX8=; b=bovnu3aPQz0NAl
-	o8OwZGw8xEKgt5yNZuYD5ISVMpp4NuKWLYmm8MGzSgS6AMwiMtNiun6nC+2Di9Cr9AUW7hMzz7aYi
-	+wnbXWe/kEONIYwZYd0i5B+NsECRLtCslVG2jwI4JZ7mq+85nX7dMT8Ug/PoZK27OHd2/u4Leootk
-	y/MlOtF0ntYUpE5DPG+RYxnRPiEMZF6LTm6X4jJKuX9qkY1vbeb3yUqSODmTSXzXxgnKjwzvfS0dW
-	YIF5nRzemHvZ5jmtk/rHb+Z6kQP3p78ChMbj6bLEJ6vN8KBLgkwF6lZ574W2jZ7T7MFQrcresb8DL
-	dMGTPJwGvkBqap2dfAyw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=w+Jql2SKDFplKqP3UsWiydkN8eHeD2w4A/TebsXRYzo=; b=m4vJiWBJUOnoNr
+	ndrsdj6ZsdpjfnFWDWT/kJj0i67TvwaLz7MwCHRWlru1gp8UTdHq+SqergM3Pq37Slayd8U485Rvg
+	rudz1ER+V2rRqR26TA4IsTWN15JRBHoF1X/B1VnM+5I7pK85jvuNaocneH2cjoaXvtVBMQkXjMnzX
+	RNyigIsBWuxaI+KC/9iKD2SMvqxbg9eC2q9KY2871p+T4WpOlj9a0ZUHPWYaLgZHPYz6+tf/Vxwyk
+	1UVIN8m/Mc9gKVP9BQy/vXVXLKyyqCfHJWv0AdURgbj9W1cQpkqDsOeYhTMA7fmYSBlyuQD7rExCG
+	FYXNSg8qRHXYrB3fPv7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q77TH-0083uj-0V;
-	Thu, 08 Jun 2023 04:42:03 +0000
+	id 1q77Ti-00840Z-0E;
+	Thu, 08 Jun 2023 04:42:30 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q77TD-0083tk-0k;
-	Thu, 08 Jun 2023 04:42:01 +0000
+	id 1q77Tf-0083z1-1y;
+	Thu, 08 Jun 2023 04:42:29 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 468AC5FD71;
-	Thu,  8 Jun 2023 07:41:52 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id 776BE5FD71;
+	Thu,  8 Jun 2023 07:42:25 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1686199312;
-	bh=LpIzyCBJY6jE9pEgPEdaViRUSV3QsiKuyw4HBlkJGNg=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=K+vdAbFe62te0cvVfiaxQ/F8O3UQzpWgy3aFtkskuue+TN5L6Wpe1gmkhD/aDUJOR
-	 2CPi/5IXb0zfcB8UdnRjqQqyE8cJvOmW6NTKfCAOlZDv09BUox3frgMOFaklC3drOZ
-	 7a/gxiXcTaK7IdD8R3XlTDsPY5iNZe03FfPVVTnFluXZXZE+xKZOVcWiuEptqiMyh1
-	 jCNX5gcvaZWz6UZNJnF0OdhxRl76EqbEs8sI++4R8Svaqkmy668toXwB56AsIvDLeZ
-	 +HWSoTXNQ14a65XAp73+v25KUgTE5ABlBYSxXPyhh8U2RTvlqM89SOlHLKfXGPGGR8
-	 VV72eBcdllxGw==
+	s=mail; t=1686199345;
+	bh=IAnc+P5Gpmwrdbjcq4XWUi/tBUzXQwXd+sGwHhWawas=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	b=WHYQrPQ+dgjs+YVdjzC8s5JVHKusuiIVYP1bQoaSs/xFeWCL36GoeUL5hwN3q9Poa
+	 uD/4BBrglS4yKmIC39oKK4qW3vQvfu6vtGrAEWeiJeD6AHcK3XVbk4K+fG/qiop0fP
+	 6iDZktO8SG0gjU+eU2/2J7nYw3yFKrQXtm8/kP8ir9Wn/OGHWHqIqGfSzMlOa0SQIx
+	 q3EfDdcMvTT6zUwIMxmpjTog+AqNuUpYuz2fKWlRPxftai1uxDD+DhBafX2FH49Yfo
+	 GjcyEC3jwq17qy0R5nDRh8CvyiV+EBZ8U0G2u0SP5rbuN5CvOkOuC5QpjEipXHxYdk
+	 Ar7NrR/PbohXw==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Thu,  8 Jun 2023 07:41:50 +0300 (MSK)
-From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+	Thu,  8 Jun 2023 07:42:25 +0300 (MSK)
+Message-ID: <05cc07ce-f412-456f-74c0-57bfebe660da@sberdevices.ru>
+Date: Thu, 8 Jun 2023 07:37:29 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v1] mtd: rawnand: meson: remove unneeded bitwise OR with
+ zeroes
+Content-Language: en-US
 To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
 	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
  Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
-	<AVKrasnov@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v2] mtd: rawnand: meson: replace integer consts with proper defines
-Date: Thu, 8 Jun 2023 07:36:44 +0300
-Message-ID: <20230608043644.1271186-1-AVKrasnov@sberdevices.ru>
-X-Mailer: git-send-email 2.35.0
-MIME-Version: 1.0
+CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230605191508.1826853-1-AVKrasnov@sberdevices.ru>
+ <9319a8f6-3774-0dc8-2262-8033f8016a50@sberdevices.ru>
+ <429589f6-d946-9bc9-d54e-e892d513a91b@amlogic.com>
+From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <429589f6-d946-9bc9-d54e-e892d513a91b@amlogic.com>
 X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
  S-MS-EXCH01.sberdevices.ru (172.16.1.4)
 X-KSMG-Rule-ID: 4
 X-KSMG-Message-Action: clean
@@ -68,8 +74,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/08 00:23:00 #21457426
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230607_214159_816591_78849C2F 
-X-CRM114-Status: GOOD (  10.96  )
+X-CRM114-CacheID: sfid-20230607_214227_989403_4BB73870 
+X-CRM114-Status: GOOD (  13.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,59 +87,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add defines for column address. It makes driver more readable, because
-bitwise OR with 0 looks useless.
-
-Suggested-by: Liang Yang <liang.yang@amlogic.com>
-Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
----
- Changelog:
-  v1 -> v2:
-   * Use defines with zero values instead of dropping both operations in
-     v1.
-
- drivers/mtd/nand/raw/meson_nand.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index 0154131e1d54..9034b3ca9e5b 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -109,6 +109,9 @@
- 
- #define PER_INFO_BYTE		8
- 
-+#define NFC_COLUMN_ADDR_0	0
-+#define NFC_COLUMN_ADDR_1	0
-+
- struct meson_nfc_nand_chip {
- 	struct list_head node;
- 	struct nand_chip nand;
-@@ -672,12 +675,12 @@ static int meson_nfc_rw_cmd_prepare_and_execute(struct nand_chip *nand,
- 	cmd0 = in ? NAND_CMD_READ0 : NAND_CMD_SEQIN;
- 	nfc->cmdfifo.rw.cmd0 = cs | NFC_CMD_CLE | cmd0;
- 
--	addrs[0] = cs | NFC_CMD_ALE | 0;
-+	addrs[0] = cs | NFC_CMD_ALE | NFC_COLUMN_ADDR_0;
- 	if (mtd->writesize <= 512) {
- 		cmd_num--;
- 		row_start = 1;
- 	} else {
--		addrs[1] = cs | NFC_CMD_ALE | 0;
-+		addrs[1] = cs | NFC_CMD_ALE | NFC_COLUMN_ADDR_1;
- 		row_start = 2;
- 	}
- 
--- 
-2.35.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgpPbiAwOC4wNi4yMDIzIDA2OjIzLCBMaWFuZyBZYW5nIHdyb3RlOgo+IAo+IAo+IE9uIDIwMjMv
+Ni84IDU6MTgsIEFyc2VuaXkgS3Jhc25vdiB3cm90ZToKPj4gWyBFWFRFUk5BTCBFTUFJTCBdCj4+
+Cj4+IEhpIGFnYWluIE1pcXVlbCwgTGlhbmchCj4+Cj4+IFdoYXQgZG8gWW91IHRoaW5rIGFib3V0
+IHRoaXMgcGF0Y2g/Cj4+Cj4+IFRoYW5rcywgQXJzZW5peQo+Pgo+PiBPbiAwNS4wNi4yMDIzIDIy
+OjE1LCBBcnNlbml5IEtyYXNub3Ygd3JvdGU6Cj4+PiBCb3RoIG9wZXJhdGlvbnMgaGF2ZSBubyBl
+ZmZlY3QuCj4+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogQXJzZW5peSBLcmFzbm92IDxBVktyYXNub3ZA
+c2JlcmRldmljZXMucnU+Cj4+PiAtLS0KPj4+IMKgIGRyaXZlcnMvbXRkL25hbmQvcmF3L21lc29u
+X25hbmQuYyB8IDQgKystLQo+Pj4gwqAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwg
+MiBkZWxldGlvbnMoLSkKPj4+Cj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tdGQvbmFuZC9yYXcv
+bWVzb25fbmFuZC5jIGIvZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVzb25fbmFuZC5jCj4+PiBpbmRl
+eCAwNzRlMTQyMjVjMDYuLjUwZDMxMTBhZDMyMSAxMDA2NDQKPj4+IC0tLSBhL2RyaXZlcnMvbXRk
+L25hbmQvcmF3L21lc29uX25hbmQuYwo+Pj4gKysrIGIvZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVz
+b25fbmFuZC5jCj4+PiBAQCAtNTk1LDEyICs1OTUsMTIgQEAgc3RhdGljIGludCBtZXNvbl9uZmNf
+cndfY21kX3ByZXBhcmVfYW5kX2V4ZWN1dGUoc3RydWN0IG5hbmRfY2hpcCAqbmFuZCwKPj4+IMKg
+wqDCoMKgwqDCoCBjbWQwID0gaW4gPyBOQU5EX0NNRF9SRUFEMCA6IE5BTkRfQ01EX1NFUUlOOwo+
+Pj4gwqDCoMKgwqDCoMKgIG5mYy0+Y21kZmlmby5ydy5jbWQwID0gY3MgfCBORkNfQ01EX0NMRSB8
+IGNtZDA7Cj4+Pgo+Pj4gLcKgwqDCoMKgIGFkZHJzWzBdID0gY3MgfCBORkNfQ01EX0FMRSB8IDA7
+Cj4+PiArwqDCoMKgwqAgYWRkcnNbMF0gPSBjcyB8IE5GQ19DTURfQUxFOwo+Pj4gwqDCoMKgwqDC
+oMKgIGlmIChtdGQtPndyaXRlc2l6ZSA8PSA1MTIpIHsKPj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgY21kX251bS0tOwo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByb3df
+c3RhcnQgPSAxOwo+Pj4gwqDCoMKgwqDCoMKgIH0gZWxzZSB7Cj4+PiAtwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIGFkZHJzWzFdID0gY3MgfCBORkNfQ01EX0FMRSB8IDA7Cj4+PiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgIGFkZHJzWzFdID0gY3MgfCBORkNfQ01EX0FMRTsKPj4+IMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgcm93X3N0YXJ0ID0gMjsKPj4+IMKgwqDCoMKgwqDCoCB9Cj4g
+SGkgQXJzZW5peSBhbmQgTWlxdWVsLAo+IAo+IFRoZSB0d28gemVyb3MgaW5kY2F0ZXMgdHdvIGNv
+bHVtbiBhZGRyZXNzLiBtYXliZSB3ZSBjb3VsZCB1c2UgdGhlIG1pY3JvICJDT0xVTU5fQUREUl8w
+IiBhbmQgIkNPTFVNTl9BRERSXzEiIHRvIGtlZXAgdGhlIG5mYyBjb21tYW5kIGZvcm1hdCAiQ0Ug
+fCBBTEUgfCBhZGRyIiBjb25zaXN0ZW5jeSBhbmQgYWxzbyBsZXQgZnVuY3Rpb24gIm1lc29uX25m
+Y19yd19jbWRfcHJlcGFyZV9hbmRfZXhlY3V0ZSIgYmUgbW9yZSByZWFkYWJsZS4KCkxpYW5nLCBk
+b25lIGluIHYyOikKClRoYW5rcywgQXJzZW5peQoKPiAKPiBUaGFua3MsCj4gTGlhbmcKPiAKPj4+
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1h
+bWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0
+cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
