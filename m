@@ -4,65 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52864C7EE2E
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Jun 2023 04:42:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3918DC7EE25
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Jun 2023 04:53:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=w+Jql2SKDFplKqP3UsWiydkN8eHeD2w4A/TebsXRYzo=; b=m4vJiWBJUOnoNr
-	ndrsdj6ZsdpjfnFWDWT/kJj0i67TvwaLz7MwCHRWlru1gp8UTdHq+SqergM3Pq37Slayd8U485Rvg
-	rudz1ER+V2rRqR26TA4IsTWN15JRBHoF1X/B1VnM+5I7pK85jvuNaocneH2cjoaXvtVBMQkXjMnzX
-	RNyigIsBWuxaI+KC/9iKD2SMvqxbg9eC2q9KY2871p+T4WpOlj9a0ZUHPWYaLgZHPYz6+tf/Vxwyk
-	1UVIN8m/Mc9gKVP9BQy/vXVXLKyyqCfHJWv0AdURgbj9W1cQpkqDsOeYhTMA7fmYSBlyuQD7rExCG
-	FYXNSg8qRHXYrB3fPv7w==;
+	List-Owner; bh=Arvw/uZuff15mJpLH3k3L/ZZ3X75AIjDIfdM8JjMlPI=; b=sam1A/01YD0501
+	oZ/aq+9p7ZNMWIUcWTR8Ow8xtIBYyW8f2Qt8gu84C75Bk4dhZmXMchjpQOMCrn+3Fo6GSkcUFM4/+
+	8Vp3KswbS8uXLX9MWuzZsVV2u42U8ljkm1UdOLlS4Onwg8BHMx7YSs2nZoOMKnIDdBekBHwrHg4Wg
+	E7ZZL9Gipqpe7g315CjaTc9zB2ATv49zLsoMQ1gNyCPziiW4m55FfUxSVB395TM6Bi74CIklFr8ZB
+	szkYbqa6OqoHCXfPEOvLq5oe21npPfCEw//MQY7WuESlnuIFX/5k4bfGCZdKZ45LkimbvIogwuFZf
+	m6Qeo8yYySgCjVocKbLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q77Ti-00840Z-0E;
-	Thu, 08 Jun 2023 04:42:30 +0000
+	id 1q77dd-0085KW-3C;
+	Thu, 08 Jun 2023 04:52:45 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q77Tf-0083z1-1y;
-	Thu, 08 Jun 2023 04:42:29 +0000
+	id 1q77dX-0085Ha-2o;
+	Thu, 08 Jun 2023 04:52:42 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 776BE5FD71;
-	Thu,  8 Jun 2023 07:42:25 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id 6A8B05FD74;
+	Thu,  8 Jun 2023 07:52:38 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1686199345;
-	bh=IAnc+P5Gpmwrdbjcq4XWUi/tBUzXQwXd+sGwHhWawas=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	b=WHYQrPQ+dgjs+YVdjzC8s5JVHKusuiIVYP1bQoaSs/xFeWCL36GoeUL5hwN3q9Poa
-	 uD/4BBrglS4yKmIC39oKK4qW3vQvfu6vtGrAEWeiJeD6AHcK3XVbk4K+fG/qiop0fP
-	 6iDZktO8SG0gjU+eU2/2J7nYw3yFKrQXtm8/kP8ir9Wn/OGHWHqIqGfSzMlOa0SQIx
-	 q3EfDdcMvTT6zUwIMxmpjTog+AqNuUpYuz2fKWlRPxftai1uxDD+DhBafX2FH49Yfo
-	 GjcyEC3jwq17qy0R5nDRh8CvyiV+EBZ8U0G2u0SP5rbuN5CvOkOuC5QpjEipXHxYdk
-	 Ar7NrR/PbohXw==
+	s=mail; t=1686199958;
+	bh=GYtnAFGzVIKIFmc2XJJv/gZaWIiwjNzXEEwtgsJHPVg=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+	b=bhqbbLMNNXfKM0GKI0nW5ePmL7xzrBxXpJXzfSfxDLWB+wq1td2pYBum1VgUqVByT
+	 Sz5KwmDxtwVEcYDv709vzldv/gQ55kgruHxzk6qlVi6ZoVU2Mv7qRm+lOsf3PTnwPS
+	 nBz5qlv0KLHWxcJbhpy9Hj1Js5jsH/X/uviaNeAx6JSxyIlF+CG+s7Z99ggRlD5x2Y
+	 COONcirzEZ4B9OYQ2R2LAh3LXYBATbn+gRi+4MVTpFlDZUqdO/QqcYRq+kBMSpeCNt
+	 D46XH8LEzKF3z66LrJVRPEWE72kbf0/M3/oSj2cvsX98VA8CtN3TIZD4PwnF2O5Sfg
+	 iBAaVyr1A+OIw==
 Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Thu,  8 Jun 2023 07:42:25 +0300 (MSK)
-Message-ID: <05cc07ce-f412-456f-74c0-57bfebe660da@sberdevices.ru>
-Date: Thu, 8 Jun 2023 07:37:29 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v1] mtd: rawnand: meson: remove unneeded bitwise OR with
- zeroes
-Content-Language: en-US
+	Thu,  8 Jun 2023 07:52:38 +0300 (MSK)
+From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
 To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
 	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+ Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
+	<AVKrasnov@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20230605191508.1826853-1-AVKrasnov@sberdevices.ru>
- <9319a8f6-3774-0dc8-2262-8033f8016a50@sberdevices.ru>
- <429589f6-d946-9bc9-d54e-e892d513a91b@amlogic.com>
-From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-In-Reply-To: <429589f6-d946-9bc9-d54e-e892d513a91b@amlogic.com>
+Subject: [PATCH v3 2/2] mtd: rawnand: meson: waiting w/o wired ready/busy pin
+Date: Thu, 8 Jun 2023 07:47:28 +0300
+Message-ID: <20230608044728.1328506-3-AVKrasnov@sberdevices.ru>
+X-Mailer: git-send-email 2.35.0
+In-Reply-To: <20230608044728.1328506-1-AVKrasnov@sberdevices.ru>
+References: <20230608044728.1328506-1-AVKrasnov@sberdevices.ru>
+MIME-Version: 1.0
 X-Originating-IP: [172.16.1.6]
 X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
  S-MS-EXCH01.sberdevices.ru (172.16.1.4)
@@ -74,8 +72,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/08 00:23:00 #21457426
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230607_214227_989403_4BB73870 
-X-CRM114-Status: GOOD (  13.21  )
+X-CRM114-CacheID: sfid-20230607_215240_254267_E58078D5 
+X-CRM114-Status: GOOD (  19.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,41 +85,174 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CgpPbiAwOC4wNi4yMDIzIDA2OjIzLCBMaWFuZyBZYW5nIHdyb3RlOgo+IAo+IAo+IE9uIDIwMjMv
-Ni84IDU6MTgsIEFyc2VuaXkgS3Jhc25vdiB3cm90ZToKPj4gWyBFWFRFUk5BTCBFTUFJTCBdCj4+
-Cj4+IEhpIGFnYWluIE1pcXVlbCwgTGlhbmchCj4+Cj4+IFdoYXQgZG8gWW91IHRoaW5rIGFib3V0
-IHRoaXMgcGF0Y2g/Cj4+Cj4+IFRoYW5rcywgQXJzZW5peQo+Pgo+PiBPbiAwNS4wNi4yMDIzIDIy
-OjE1LCBBcnNlbml5IEtyYXNub3Ygd3JvdGU6Cj4+PiBCb3RoIG9wZXJhdGlvbnMgaGF2ZSBubyBl
-ZmZlY3QuCj4+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogQXJzZW5peSBLcmFzbm92IDxBVktyYXNub3ZA
-c2JlcmRldmljZXMucnU+Cj4+PiAtLS0KPj4+IMKgIGRyaXZlcnMvbXRkL25hbmQvcmF3L21lc29u
-X25hbmQuYyB8IDQgKystLQo+Pj4gwqAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwg
-MiBkZWxldGlvbnMoLSkKPj4+Cj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tdGQvbmFuZC9yYXcv
-bWVzb25fbmFuZC5jIGIvZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVzb25fbmFuZC5jCj4+PiBpbmRl
-eCAwNzRlMTQyMjVjMDYuLjUwZDMxMTBhZDMyMSAxMDA2NDQKPj4+IC0tLSBhL2RyaXZlcnMvbXRk
-L25hbmQvcmF3L21lc29uX25hbmQuYwo+Pj4gKysrIGIvZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVz
-b25fbmFuZC5jCj4+PiBAQCAtNTk1LDEyICs1OTUsMTIgQEAgc3RhdGljIGludCBtZXNvbl9uZmNf
-cndfY21kX3ByZXBhcmVfYW5kX2V4ZWN1dGUoc3RydWN0IG5hbmRfY2hpcCAqbmFuZCwKPj4+IMKg
-wqDCoMKgwqDCoCBjbWQwID0gaW4gPyBOQU5EX0NNRF9SRUFEMCA6IE5BTkRfQ01EX1NFUUlOOwo+
-Pj4gwqDCoMKgwqDCoMKgIG5mYy0+Y21kZmlmby5ydy5jbWQwID0gY3MgfCBORkNfQ01EX0NMRSB8
-IGNtZDA7Cj4+Pgo+Pj4gLcKgwqDCoMKgIGFkZHJzWzBdID0gY3MgfCBORkNfQ01EX0FMRSB8IDA7
-Cj4+PiArwqDCoMKgwqAgYWRkcnNbMF0gPSBjcyB8IE5GQ19DTURfQUxFOwo+Pj4gwqDCoMKgwqDC
-oMKgIGlmIChtdGQtPndyaXRlc2l6ZSA8PSA1MTIpIHsKPj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgY21kX251bS0tOwo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByb3df
-c3RhcnQgPSAxOwo+Pj4gwqDCoMKgwqDCoMKgIH0gZWxzZSB7Cj4+PiAtwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIGFkZHJzWzFdID0gY3MgfCBORkNfQ01EX0FMRSB8IDA7Cj4+PiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIGFkZHJzWzFdID0gY3MgfCBORkNfQ01EX0FMRTsKPj4+IMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgcm93X3N0YXJ0ID0gMjsKPj4+IMKgwqDCoMKgwqDCoCB9Cj4g
-SGkgQXJzZW5peSBhbmQgTWlxdWVsLAo+IAo+IFRoZSB0d28gemVyb3MgaW5kY2F0ZXMgdHdvIGNv
-bHVtbiBhZGRyZXNzLiBtYXliZSB3ZSBjb3VsZCB1c2UgdGhlIG1pY3JvICJDT0xVTU5fQUREUl8w
-IiBhbmQgIkNPTFVNTl9BRERSXzEiIHRvIGtlZXAgdGhlIG5mYyBjb21tYW5kIGZvcm1hdCAiQ0Ug
-fCBBTEUgfCBhZGRyIiBjb25zaXN0ZW5jeSBhbmQgYWxzbyBsZXQgZnVuY3Rpb24gIm1lc29uX25m
-Y19yd19jbWRfcHJlcGFyZV9hbmRfZXhlY3V0ZSIgYmUgbW9yZSByZWFkYWJsZS4KCkxpYW5nLCBk
-b25lIGluIHYyOikKClRoYW5rcywgQXJzZW5peQoKPiAKPiBUaGFua3MsCj4gTGlhbmcKPiAKPj4+
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1h
-bWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0
-cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+If there is no wired ready/busy pin, classic way to wait for command
+completion is to use function 'nand_soft_waitrdy()'. Meson NAND has
+special command which allows to wait for NAND_STATUS_READY bit without
+reading status in a software loop (as 'nand_soft_waitrdy()' does). To
+use it send this command along with NAND_CMD_STATUS, then wait for an
+interrupt, and after interrupt send NAND_CMD_READ0. So this feature
+allows to use interrupt driven waiting without wired ready/busy pin.
+
+Suggested-by: Liang Yang <liang.yang@amlogic.com>
+Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+---
+ drivers/mtd/nand/raw/meson_nand.c | 77 +++++++++++++++++++++++++++++--
+ 1 file changed, 73 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+index 074e14225c06..9f05e113b4ea 100644
+--- a/drivers/mtd/nand/raw/meson_nand.c
++++ b/drivers/mtd/nand/raw/meson_nand.c
+@@ -38,6 +38,7 @@
+ #define NFC_CMD_SCRAMBLER_DISABLE	0
+ #define NFC_CMD_SHORTMODE_DISABLE	0
+ #define NFC_CMD_RB_INT		BIT(14)
++#define NFC_CMD_RB_INT_NO_PIN	((0xb << 10) | BIT(18) | BIT(16))
+ 
+ #define NFC_CMD_GET_SIZE(x)	(((x) >> 22) & GENMASK(4, 0))
+ 
+@@ -179,6 +180,7 @@ struct meson_nfc {
+ 	u32 info_bytes;
+ 
+ 	unsigned long assigned_cs;
++	bool no_rb_pin;
+ };
+ 
+ enum {
+@@ -392,7 +394,42 @@ static void meson_nfc_set_data_oob(struct nand_chip *nand,
+ 	}
+ }
+ 
+-static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
++static int meson_nfc_wait_no_rb_pin(struct meson_nfc *nfc, int timeout_ms,
++				    bool need_cmd_read0)
++{
++	u32 cmd, cfg;
++
++	meson_nfc_cmd_idle(nfc, nfc->timing.twb);
++	meson_nfc_drain_cmd(nfc);
++	meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
++
++	cfg = readl(nfc->reg_base + NFC_REG_CFG);
++	cfg |= NFC_RB_IRQ_EN;
++	writel(cfg, nfc->reg_base + NFC_REG_CFG);
++
++	reinit_completion(&nfc->completion);
++	cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_STATUS;
++	writel(cmd, nfc->reg_base + NFC_REG_CMD);
++
++	/* use the max erase time as the maximum clock for waiting R/B */
++	cmd = NFC_CMD_RB | NFC_CMD_RB_INT_NO_PIN | nfc->timing.tbers_max;
++	writel(cmd, nfc->reg_base + NFC_REG_CMD);
++
++	if (!wait_for_completion_timeout(&nfc->completion,
++					 msecs_to_jiffies(timeout_ms)))
++		return -ETIMEDOUT;
++
++	if (need_cmd_read0) {
++		cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_READ0;
++		writel(cmd, nfc->reg_base + NFC_REG_CMD);
++		meson_nfc_drain_cmd(nfc);
++		meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
++	}
++
++	return 0;
++}
++
++static int meson_nfc_wait_rb_pin(struct meson_nfc *nfc, int timeout_ms)
+ {
+ 	u32 cmd, cfg;
+ 	int ret = 0;
+@@ -420,6 +457,27 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
+ 	return ret;
+ }
+ 
++static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms,
++			      bool need_cmd_read0)
++{
++	if (nfc->no_rb_pin) {
++		/* This mode is used when there is no wired R/B pin.
++		 * It works like 'nand_soft_waitrdy()', but instead of
++		 * polling NAND_CMD_STATUS bit in the software loop,
++		 * it will wait for interrupt - controllers checks IO
++		 * bus and when it detects NAND_CMD_STATUS on it, it
++		 * raises interrupt. After interrupt, NAND_CMD_READ0 is
++		 * sent as terminator of the ready waiting procedure if
++		 * needed (for all cases except page programming - this
++		 * is reason of 'need_cmd_read0' flag).
++		 */
++		return meson_nfc_wait_no_rb_pin(nfc, timeout_ms,
++						need_cmd_read0);
++	} else {
++		return meson_nfc_wait_rb_pin(nfc, timeout_ms);
++	}
++}
++
+ static void meson_nfc_set_user_byte(struct nand_chip *nand, u8 *oob_buf)
+ {
+ 	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
+@@ -623,7 +681,7 @@ static int meson_nfc_rw_cmd_prepare_and_execute(struct nand_chip *nand,
+ 	if (in) {
+ 		nfc->cmdfifo.rw.cmd1 = cs | NFC_CMD_CLE | NAND_CMD_READSTART;
+ 		writel(nfc->cmdfifo.rw.cmd1, nfc->reg_base + NFC_REG_CMD);
+-		meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tR_max));
++		meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tR_max), true);
+ 	} else {
+ 		meson_nfc_cmd_idle(nfc, nfc->timing.tadl);
+ 	}
+@@ -669,7 +727,7 @@ static int meson_nfc_write_page_sub(struct nand_chip *nand,
+ 
+ 	cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_PAGEPROG;
+ 	writel(cmd, nfc->reg_base + NFC_REG_CMD);
+-	meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tPROG_max));
++	meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tPROG_max), false);
+ 
+ 	meson_nfc_dma_buffer_release(nand, data_len, info_len, DMA_TO_DEVICE);
+ 
+@@ -952,7 +1010,8 @@ static int meson_nfc_exec_op(struct nand_chip *nand,
+ 			break;
+ 
+ 		case NAND_OP_WAITRDY_INSTR:
+-			meson_nfc_queue_rb(nfc, instr->ctx.waitrdy.timeout_ms);
++			meson_nfc_queue_rb(nfc, instr->ctx.waitrdy.timeout_ms,
++					   true);
+ 			if (instr->delay_ns)
+ 				meson_nfc_cmd_idle(nfc, delay_idle);
+ 			break;
+@@ -1248,6 +1307,7 @@ meson_nfc_nand_chip_init(struct device *dev,
+ 	struct mtd_info *mtd;
+ 	int ret, i;
+ 	u32 tmp, nsels;
++	u32 nand_rb_val = 0;
+ 
+ 	nsels = of_property_count_elems_of_size(np, "reg", sizeof(u32));
+ 	if (!nsels || nsels > MAX_CE_NUM) {
+@@ -1287,6 +1347,15 @@ meson_nfc_nand_chip_init(struct device *dev,
+ 	mtd->owner = THIS_MODULE;
+ 	mtd->dev.parent = dev;
+ 
++	ret = of_property_read_u32(np, "nand-rb", &nand_rb_val);
++	if (ret == -EINVAL)
++		nfc->no_rb_pin = true;
++	else if (ret)
++		return ret;
++
++	if (nand_rb_val)
++		return -EINVAL;
++
+ 	ret = nand_scan(nand, nsels);
+ 	if (ret)
+ 		return ret;
+-- 
+2.35.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
