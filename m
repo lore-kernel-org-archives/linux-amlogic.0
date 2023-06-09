@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3765CC7EE29
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Jun 2023 11:49:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83018C7EE29
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Jun 2023 12:05:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4fRk89gGYI9LSDnXjDbLrgJBNFxGspRi8ayKUGDbJgM=; b=Qh6Gzo1f2Yi7Ai
-	ScyMT6F54Nx+NshkGnAzG/ou+nPgbAJVb9+wq2FA+KquvVy1Iviwvpmomt8UOrE+AxV5tb0wnZBUO
-	yvnJeaIva0BplKwLcaA1TZcMinpLrMQaHEzRzX5t5vDr/VeapA6S9kjSKMvNWgDMu2SP3tqxkiU3+
-	DVUoRlsgUivrIIYl6wjWG7f8Ks5XBnZDhMej+X2q11KKcL0i5KHxN3NNlPvubznieI/fqvleoDom+
-	VmJuWB/wau8f3zID+h7RvXQmXUDfnHWkqiUONOxbUFpx81n11wKAKwyXTbRhA0Dvdtis5HeG12GQ1
-	9y8227oUBQNTXERzuS5w==;
+	List-Owner; bh=i/IEkrO6CoFA8YJbkRfe00AYbsm2fLAhw76DOweU/38=; b=Mh+5b3WbiN4Rz6
+	M5BlitWPW+3jYFgy6j4vZ1QYc94LKRN9PucLQxIpnp7PdNI501oCDcTfWand+lpLZN6Yk2qg/7zQv
+	sHtl07TgO6oBaURmIa8olBoIRrSLcQPcKcmwF4ON9barW72e0HPQABmx/8JABezAk/pUIDcm/pkuO
+	ycR3G99iTvxTZukCgTS1oes33barN1NMDMzsOLh8PMYB4web5tjWgKjGvXMi/BggYqYN8RwVBuO8c
+	/T0+nvpg9SFSisLIRdChSkYJBi8s+R5m9ixhWBVj7N8d828ImE72Xj/CqCyovZ6OloXj/BPkMHi8d
+	qz/B92qq+kvyb1IHh3Tw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7abv-00Covl-30;
-	Fri, 09 Jun 2023 11:48:55 +0000
+	id 1q7arJ-00CrXH-1m;
+	Fri, 09 Jun 2023 12:04:49 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7abr-00Cour-2f;
-	Fri, 09 Jun 2023 11:48:53 +0000
+	id 1q7arF-00CrT4-0G;
+	Fri, 09 Jun 2023 12:04:48 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 981665FD8E;
-	Fri,  9 Jun 2023 14:48:48 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id 2C7C95FD8E;
+	Fri,  9 Jun 2023 15:04:39 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1686311328;
-	bh=i8mNs2rF54Ol0kXxFcSbg3Rj4NqvtmjvBxJgpQRfSPo=;
+	s=mail; t=1686312279;
+	bh=PoZBn2oXWEbJPcRQYcnnU4ZFnn3DCCoCXhdS+GaFOf8=;
 	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=Q1l9oXPeAJIm6jGSa7PBxKhYShkKytHT8QEWYzUuWbL0hPQZe+Yb2+gd+DWbuRzCi
-	 ukswtpwIlfYtlogBMoLh0dN5S6QooTbhfVnq+Pzwx9tB4zaPUWAVrOywWB/7ttvRj3
-	 MqhqWtFav0ojgOn7ukSYBc9n82vclzjSgeLEFponi1wdJvw6+Snxi8iqm56F7qQaIq
-	 wLyu3Aok17REBop1qvsHizZf5+aFOW4+yRTvLGDQZCrYwk/VI1gvw7/1FNokj15gXq
-	 1ZeXEaahADg9F4vRxXpljKbt1QTF4qTG1jVcTWdsMSF3rR0dqpF9WJ8q3Jur6ifVv3
-	 2KDO+bqdWIWiA==
+	b=k17c/BFkgY9tJE2KtwrS4UwCNcPzeZI9BKnEQ3pzsCPOdispWOcN1X1O0qXdudHnJ
+	 moxswhJLs/2bWHN91Pd6buGUWEobQhL8Uug/z4y9Ai7/5rBm2xYmVumjEEe8LwsEk+
+	 qSHumeNbMOPyQD/N/BP5EWMGP9DneZVHyPyxo5tjMAPCHCCcHwtvOAwN6YudLz9MKh
+	 Yj6X0IBIjo11eY/KtzX7A0NkcO1FR8YcNb8xh7YZbe2IEvPiv2UlqZ1v0cHZgl573o
+	 4oAZLAhl9C+3jLLM1A0qiT/MODPVCR2lW19XRisejD3k3CJny7pgHYnb3/b67lYaS3
+	 TaBPfRCV3cBDQ==
 Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Fri,  9 Jun 2023 14:48:48 +0300 (MSK)
-Date: Fri, 9 Jun 2023 14:48:47 +0300
+	Fri,  9 Jun 2023 15:04:38 +0300 (MSK)
+Date: Fri, 9 Jun 2023 15:04:38 +0300
 From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 To: Neil Armstrong <neil.armstrong@linaro.org>
 CC: Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette
@@ -52,20 +52,19 @@ CC: Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
 	<conor+dt@kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 03/18] clk: meson: migrate a1 clock drivers out of
- hw_onecell_data to drop NR_CLKS
-Message-ID: <20230609114847.x24by2foebojbchq@CAB-WSD-L081021>
+	<linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH 11/18] dt-bindings: clk: amlogic,a1-peripherals-clkc:
+ expose all clock ids
+Message-ID: <20230609120438.n7wnrpiqusasbly4@CAB-WSD-L081021>
 References: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-0-9676afa6b22c@linaro.org>
- <20230607-topic-amlogic-upstream-clkid-public-migration-v1-3-9676afa6b22c@linaro.org>
- <1jlegu9l5d.fsf@starbuckisacylon.baylibre.com>
- <638206ba-e2da-bb8e-a2e4-138af84648b4@linaro.org>
+ <20230607-topic-amlogic-upstream-clkid-public-migration-v1-11-9676afa6b22c@linaro.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <638206ba-e2da-bb8e-a2e4-138af84648b4@linaro.org>
+In-Reply-To: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-11-9676afa6b22c@linaro.org>
 User-Agent: NeoMutt/20220415
 X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
 X-KSMG-Rule-ID: 4
 X-KSMG-Message-Action: clean
@@ -75,8 +74,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/09 07:08:00 #21465535
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230609_044852_238080_C63DA42F 
-X-CRM114-Status: GOOD (  22.71  )
+X-CRM114-CacheID: sfid-20230609_050445_811928_FFD52EBF 
+X-CRM114-Status: GOOD (  24.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,136 +94,253 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hello Neil,
 
-On Thu, Jun 08, 2023 at 02:53:50PM +0200, Neil Armstrong wrote:
-> On 08/06/2023 14:45, Jerome Brunet wrote:
-> > > +struct meson_a1_pll_clks {
-> > > +	struct clk_hw **hw_clks;
-> > > +	unsigned int hw_clk_num;
-> > > +};
-> > > +
-> > > +static struct meson_a1_pll_clks a1_pll_clks = {
-> > > +	.hw_clks = a1_pll_hw_clks,
-> > > +	.hw_clk_num = ARRAY_SIZE(a1_pll_hw_clks),
-> > > +};
-> > > +
-> > > +static struct clk_hw *meson_a1_pll_hw_get(struct of_phandle_args *clkspec, void *clk_data)
-> > > +{
-> > > +	const struct meson_a1_pll_clks *data = clk_data;
-> > > +	unsigned int idx = clkspec->args[0];
-> > > +
-> > > +	if (idx >= data->hw_clk_num) {
-> > > +		pr_err("%s: invalid index %u\n", __func__, idx);
-> > > +		return ERR_PTR(-EINVAL);
-> > > +	}
-> > > +
-> > > +	return data->hw_clks[idx];
-> > > +}
-> > 
-> > I'd prefer to have a single struct type and and single custom
-> > callback for the different SoC please.
+On Wed, Jun 07, 2023 at 12:56:22PM +0200, Neil Armstrong wrote:
+> Due to a policy change in clock ID bindings handling, expose
+> all the "private" clock IDs to the public clock dt-bindings
+> to move out of the previous maintenance scheme.
 > 
-> Sure, I've written a common code for that, but I have a hard time finding
-> a proper naming for it... so I choosed meson-clkc since it could have
-> more common helper code for duplicated code over the clk driver:
+> This refers to a discussion at [1] & [2] with Krzysztof about
+> the issue with the current maintenance.
 > 
-> ===================================><============================================================================
-> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> index 8ce846fdbe43..9070dcfd9e71 100644
-> --- a/drivers/clk/meson/Kconfig
-> +++ b/drivers/clk/meson/Kconfig
-> @@ -30,6 +30,9 @@ config COMMON_CLK_MESON_VID_PLL_DIV
->  	tristate
->  	select COMMON_CLK_MESON_REGMAP
+> It was decided to move every A1 peripherals ID to the public clock
+> dt-bindings headers to be merged in a single tree so we
+> can safely add new clocks without having merge issues.
 > 
-> +config COMMON_CLK_MESON_CLKC
-> +	tristate
-> +
->  config COMMON_CLK_MESON_AO_CLKC
->  	tristate
->  	select COMMON_CLK_MESON_REGMAP
-> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-> index d5288662881d..13c6db466986 100644
-> --- a/drivers/clk/meson/Makefile
-> +++ b/drivers/clk/meson/Makefile
-> @@ -1,6 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  # Amlogic clock drivers
+> [1] https://lore.kernel.org/all/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
+> [2] https://lore.kernel.org/all/2fabe721-7434-43e7-bae5-088a42ba128d@app.fastmail.com/
 > 
-> +obj-$(CONFIG_COMMON_CLK_MESON_CLKC) += meson-clkc.o
->  obj-$(CONFIG_COMMON_CLK_MESON_AO_CLKC) += meson-aoclk.o
->  obj-$(CONFIG_COMMON_CLK_MESON_CPU_DYNDIV) += clk-cpu-dyndiv.o
->  obj-$(CONFIG_COMMON_CLK_MESON_DUALDIV) += clk-dualdiv.o
-> diff --git a/drivers/clk/meson/meson-clkc.c b/drivers/clk/meson/meson-clkc.c
-> new file mode 100644
-> index 000000000000..fa98b9d09011
-> --- /dev/null
-> +++ b/drivers/clk/meson/meson-clkc.c
-> @@ -0,0 +1,25 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
-> + */
-> +
-> +#include <linux/of_device.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/module.h>
-> +#include "meson-clkc.h"
-> +
-> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data)
-> +{
-> +	const struct meson_clk_hw_data *data = clk_hw_data;
-> +	unsigned int idx = clkspec->args[0];
-> +
-> +	if (idx >= data->num) {
-> +		pr_err("%s: invalid index %u\n", __func__, idx);
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +
-> +	return data->hws[idx];
-> +}
-> +EXPORT_SYMBOL_GPL(meson_clk_hw_get);
-> +
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/clk/meson/meson-clkc.h b/drivers/clk/meson/meson-clkc.h
-> new file mode 100644
-> index 000000000000..e3bad2aa17eb
-> --- /dev/null
-> +++ b/drivers/clk/meson/meson-clkc.h
-> @@ -0,0 +1,19 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> +/*
-> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
-> + */
-> +
-> +#ifndef __MESON_HW_CLKC_H__
-> +#define __MESON_HW_CLKC_H__
-> +
-> +#include <linux/of_device.h>
-> +#include <linux/clk-provider.h>
-> +
-> +struct meson_clk_hw_data {
-> +	struct clk_hw	**hws;
-> +	unsigned int	num;
-> +};
-> +
-> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data);
-> +
-> +#endif
-> ===================================><============================================================================
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  drivers/clk/meson/a1-peripherals.h                 | 63 ----------------------
+>  .../clock/amlogic,a1-peripherals-clkc.h            | 53 ++++++++++++++++++
+>  2 files changed, 53 insertions(+), 63 deletions(-)
 > 
-> If it's ok I'll send a v2 using this.
+> diff --git a/drivers/clk/meson/a1-peripherals.h b/drivers/clk/meson/a1-peripherals.h
+> index 4d60456a95a9..842b52634ed0 100644
+> --- a/drivers/clk/meson/a1-peripherals.h
+> +++ b/drivers/clk/meson/a1-peripherals.h
+> @@ -46,67 +46,4 @@
+>  /* include the CLKIDs that have been made part of the DT binding */
+>  #include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
+>  
+> -/*
+> - * CLKID index values for internal clocks
+> - *
+> - * These indices are entirely contrived and do not map onto the hardware.
+> - * It has now been decided to expose everything by default in the DT header:
+> - * include/dt-bindings/clock/a1-peripherals-clkc.h.
+> - * Only the clocks ids we don't want to expose, such as the internal muxes and
+> - * dividers of composite clocks, will remain defined here.
+> - */
+> -#define CLKID_XTAL_IN		0
+> -#define CLKID_DSPA_SEL		61
+> -#define CLKID_DSPB_SEL		62
+> -#define CLKID_SARADC_SEL	74
+> -#define CLKID_SYS_A_SEL		89
+> -#define CLKID_SYS_A_DIV		90
+> -#define CLKID_SYS_A		91
+> -#define CLKID_SYS_B_SEL		92
+> -#define CLKID_SYS_B_DIV		93
+> -#define CLKID_SYS_B		94
+> -#define CLKID_DSPA_A_DIV	96
+> -#define CLKID_DSPA_A		97
+> -#define CLKID_DSPA_B_DIV	99
+> -#define CLKID_DSPA_B		100
+> -#define CLKID_DSPB_A_DIV	102
+> -#define CLKID_DSPB_A		103
+> -#define CLKID_DSPB_B_DIV	105
+> -#define CLKID_DSPB_B		106
+> -#define CLKID_RTC_32K_IN	107
+> -#define CLKID_RTC_32K_DIV	108
+> -#define CLKID_RTC_32K_XTAL	109
+> -#define CLKID_RTC_32K_SEL	110
+> -#define CLKID_CECB_32K_IN	111
+> -#define CLKID_CECB_32K_DIV	112
+> -#define CLKID_CECA_32K_IN	115
+> -#define CLKID_CECA_32K_DIV	116
+> -#define CLKID_DIV2_PRE		119
+> -#define CLKID_24M_DIV2		120
+> -#define CLKID_GEN_DIV		122
+> -#define CLKID_SARADC_DIV	123
+> -#define CLKID_PWM_A_DIV		125
+> -#define CLKID_PWM_B_DIV		127
+> -#define CLKID_PWM_C_DIV		129
+> -#define CLKID_PWM_D_DIV		131
+> -#define CLKID_PWM_E_DIV		133
+> -#define CLKID_PWM_F_DIV		135
+> -#define CLKID_SPICC_SEL		136
+> -#define CLKID_SPICC_DIV		137
+> -#define CLKID_SPICC_SEL2	138
+> -#define CLKID_TS_DIV		139
+> -#define CLKID_SPIFC_SEL		140
+> -#define CLKID_SPIFC_DIV		141
+> -#define CLKID_SPIFC_SEL2	142
+> -#define CLKID_USB_BUS_SEL	143
+> -#define CLKID_USB_BUS_DIV	144
+> -#define CLKID_SD_EMMC_SEL	145
+> -#define CLKID_SD_EMMC_DIV	146
+> -#define CLKID_PSRAM_SEL		148
+> -#define CLKID_PSRAM_DIV		149
+> -#define CLKID_PSRAM_SEL2	150
+> -#define CLKID_DMC_SEL		151
+> -#define CLKID_DMC_DIV		152
+> -#define CLKID_DMC_SEL2		153
+> -
+>  #endif /* __A1_PERIPHERALS_H */
+> diff --git a/include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h
+> index ff2730f398a6..06f198ee7623 100644
+> --- a/include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h
+> +++ b/include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h
+> @@ -10,6 +10,7 @@
+>  #ifndef __A1_PERIPHERALS_CLKC_H
+>  #define __A1_PERIPHERALS_CLKC_H
+>  
+> +#define CLKID_XTAL_IN		0
+>  #define CLKID_FIXPLL_IN		1
+>  #define CLKID_USB_PHY_IN	2
+>  #define CLKID_USB_CTRL_IN	3
+> @@ -70,6 +71,8 @@
+>  #define CLKID_CPU_CTRL		58
+>  #define CLKID_ROM		59
+>  #define CLKID_PROC_I2C		60
+> +#define CLKID_DSPA_SEL		61
+> +#define CLKID_DSPB_SEL		62
+>  #define CLKID_DSPA_EN		63
+>  #define CLKID_DSPA_EN_NIC	64
+>  #define CLKID_DSPB_EN		65
+> @@ -81,6 +84,7 @@
+>  #define CLKID_12M		71
+>  #define CLKID_FCLK_DIV2_DIVN	72
+>  #define CLKID_GEN		73
+> +#define CLKID_SARADC_SEL	74
+>  #define CLKID_SARADC		75
+>  #define CLKID_PWM_A		76
+>  #define CLKID_PWM_B		77
+> @@ -95,21 +99,70 @@
+>  #define CLKID_SD_EMMC		86
+>  #define CLKID_PSRAM		87
+>  #define CLKID_DMC		88
+> +#define CLKID_SYS_A_SEL		89
+> +#define CLKID_SYS_A_DIV		90
+> +#define CLKID_SYS_A		91
+> +#define CLKID_SYS_B_SEL		92
+> +#define CLKID_SYS_B_DIV		93
+> +#define CLKID_SYS_B		94
+>  #define CLKID_DSPA_A_SEL	95
+> +#define CLKID_DSPA_A_DIV	96
+> +#define CLKID_DSPA_A		97
+>  #define CLKID_DSPA_B_SEL	98
+> +#define CLKID_DSPA_B_DIV	99
+> +#define CLKID_DSPA_B		100
+>  #define CLKID_DSPB_A_SEL	101
+> +#define CLKID_DSPB_A_DIV	102
+> +#define CLKID_DSPB_A		103
+>  #define CLKID_DSPB_B_SEL	104
+> +#define CLKID_DSPB_B_DIV	105
+> +#define CLKID_DSPB_B		106
+> +#define CLKID_RTC_32K_IN	107
+> +#define CLKID_RTC_32K_DIV	108
+> +#define CLKID_RTC_32K_XTAL	109
+> +#define CLKID_RTC_32K_SEL	110
+> +#define CLKID_CECB_32K_IN	111
+> +#define CLKID_CECB_32K_DIV	112
+>  #define CLKID_CECB_32K_SEL_PRE	113
+>  #define CLKID_CECB_32K_SEL	114
+> +#define CLKID_CECA_32K_IN	115
+> +#define CLKID_CECA_32K_DIV	116
+>  #define CLKID_CECA_32K_SEL_PRE	117
+>  #define CLKID_CECA_32K_SEL	118
+> +#define CLKID_DIV2_PRE		119
+> +#define CLKID_24M_DIV2		120
+>  #define CLKID_GEN_SEL		121
+> +#define CLKID_GEN_DIV		122
+> +#define CLKID_SARADC_DIV	123
+>  #define CLKID_PWM_A_SEL		124
+> +#define CLKID_PWM_A_DIV		125
+>  #define CLKID_PWM_B_SEL		126
+> +#define CLKID_PWM_B_DIV		127
+>  #define CLKID_PWM_C_SEL		128
+> +#define CLKID_PWM_C_DIV		129
+>  #define CLKID_PWM_D_SEL		130
+> +#define CLKID_PWM_D_DIV		131
+>  #define CLKID_PWM_E_SEL		132
+> +#define CLKID_PWM_E_DIV		133
+>  #define CLKID_PWM_F_SEL		134
+> +#define CLKID_PWM_F_DIV		135
+> +#define CLKID_SPICC_SEL		136
+> +#define CLKID_SPICC_DIV		137
+> +#define CLKID_SPICC_SEL2	138
+> +#define CLKID_TS_DIV		139
+> +#define CLKID_SPIFC_SEL		140
+> +#define CLKID_SPIFC_DIV		141
+> +#define CLKID_SPIFC_SEL2	142
+> +#define CLKID_USB_BUS_SEL	143
+> +#define CLKID_USB_BUS_DIV	144
+> +#define CLKID_SD_EMMC_SEL	145
+> +#define CLKID_SD_EMMC_DIV	146
+>  #define CLKID_SD_EMMC_SEL2	147
+> +#define CLKID_PSRAM_SEL		148
+> +#define CLKID_PSRAM_DIV		149
+> +#define CLKID_PSRAM_SEL2	150
+> +#define CLKID_DMC_SEL		151
+> +#define CLKID_DMC_DIV		152
+> +#define CLKID_DMC_SEL2		153
+>  
+>  #endif /* __A1_PERIPHERALS_CLKC_H */
 > 
-> Thanks,
-> Neil
+> -- 
+> 2.34.1
+> 
 
-In addition, I propose consolidating the probe() routine of the a1
-clocks into a common part, which can be utilized for s4 and other
-similar clocks. This solution was presented in the early a1 review
-stages of this patch set.
+Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 
-https://lore.kernel.org/linux-amlogic/20221201225703.6507-7-ddrokosov@sberdevices.ru/
+By the way, I can share another approach for 'private' clock bindings.
+Instead of registering 'private' clock objects on the hw_provider side,
+they can be completely omitted and registered only as clock objects.
+The such approach restricts internal clock usage by public device tree
+at all.
+I've already introduced this approach in one of the versions for a1
+series (the approach was suggested by Krzysztof).
 
-Maybe, it can be generalized for the all meson clock controller drivers.
+https://lore.kernel.org/all/20230321193014.26349-6-ddrokosov@sberdevices.ru/
+
+---
++/* Array of all clocks provided by this provider */
++static struct clk_hw_onecell_data a1_periphs_public_clks = {
++	.hws = {
++		[CLKID_FIXPLL_IN]		= &fixpll_in.hw,
++		[CLKID_USB_PHY_IN]		= &usb_phy_in.hw,
++		[CLKID_USB_CTRL_IN]		= &usb_ctrl_in.hw,
++		[CLKID_HIFIPLL_IN]		= &hifipll_in.hw,
++		[CLKID_SYSPLL_IN]		= &syspll_in.hw,
++		[CLKID_DDS_IN]			= &dds_in.hw,
++		[CLKID_SYS]			= &sys.hw,
++		[CLKID_CLKTREE]			= &clktree.hw,
++		[CLKID_RESET_CTRL]		= &reset_ctrl.hw,
++		[CLKID_ANALOG_CTRL]		= &analog_ctrl.hw,
++		[CLKID_PWR_CTRL]		= &pwr_ctrl.hw,
+
+[...]
+
++/*
++ * These clocks are entirely contrived and do not map onto the hardware.
++ * It has now been decided to expose public clocks in the DT bindings.
++ * Only below clocks we don't want to expose, such as the internal muxes
++ * and dividers of composite clocks, will remain defined here.
++ */
++static struct clk_hw_onecell_data a1_periphs_private_clks = {
++	.hws = {
++		&xtal_in.hw,
++		&dspa_sel.hw,
++		&dspb_sel.hw,
++		&saradc_sel.hw,
++		&sys_a_sel.hw,
++		&sys_a_div.hw,
++		&sys_a.hw,
++		&sys_b_sel.hw,
++		&sys_b_div.hw,
+[...]
+---
 
 -- 
 Thank you,
