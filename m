@@ -4,77 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07874C7EE29
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Jun 2023 12:14:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0517FC7EE43
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Jun 2023 12:47:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=79hJrdVMsZMmH/A/z8a3z8RH9WLd11iGCkRHrvNQHTg=; b=mnYlHHcodmU0v1
-	e2qU+niK+SsjefhtAu2s2z1b2OulsH6hSgDutWFx3Dz5DAY2MnT9BD5GXOTO7XH3CSUwj8KmldqfY
-	PwgBy21rRfY99mj6z1v17exC5ZGueT8XrDkM3jYWoEbINw+KhVCF6eY0SdR3GsfP9Fig5TFFTVVR2
-	ZZcsq2eqedM/7qFngI9/kDyQjk/uqifRFmXa0VvPX9ChUD36TAwW3NRumAyCg5QjbVKyZVQas6WgP
-	7UzAJMj6Tc0X8U9eU8bsyoHoF8yJ5Gcd3iQkvWnCxqo8i7/tmVU15VoFi07cLlNZsAt0cQh6D0vIU
-	/uY18C7ArTuffss+xCVw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Qwi3cjmUiGvwis5k0kNBL4xmr/Mdqjajiorr3y5wn74=; b=rHmrohEVb9/9GB6kSPBA4lvRcG
+	TeIX86eGj5sBeJiXIknvIaX4QyU7TQI6rI9Wuc4ccWAVyDxc+Kia5CGLddOVXAHt5QSOg43UG+2Vb
+	gK3QiWur9Jjip7Cyhb8JfY+NxeVrVmUyYK6l66ZmYcKEaLjnuWYoubV8FLVQ6XUwZAzJBH8WKJoRC
+	VZN290Jp9moOUesDZDfM2YxfFAznuw85MDN7aFuJsOygBo7dRfTfZG5vSoRaUmpr3uEzo4vfBebaB
+	kAu0f2QTW6bZqxgTDwlR+wrRgvHCx6Mxrlm9sX0qJ7DwPzPYs8I57lc29uN/mIE6FADZnfZhlmBmm
+	1bnfL7vQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7b0c-00CxAc-2z;
-	Fri, 09 Jun 2023 12:14:26 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1q7bWL-00D1QQ-2W;
+	Fri, 09 Jun 2023 12:47:13 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7awd-00CuSm-1D;
-	Fri, 09 Jun 2023 12:10:21 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 0A17E5FD8E;
-	Fri,  9 Jun 2023 15:10:17 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1686312617;
-	bh=ub+fulo7iW/neBWoaW5ppJg+bJ5K5cJ0kpCRCQIV+58=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=bGf8obVJxAgMRZCiOz2F+Ze/a7xIAQF3UFRnjwDDzkegdLuRmDj9i7BPiStEukv9v
-	 EjmT3/dbeB7NT5Mnic80UM7CzAm//xD8CYGAnkiEgM4KY6knJGytArllmZWuK0Vudt
-	 EhMXXd2gV9w+nrKxV9eHQIXHlOmUt4hvlRtHSRvhgDT1dXVRGgxsV0bMgyQDYFzLbZ
-	 8f2onmR9vhHxoy1s7K5x2ftHf9UgoaTb97NbhlEDsbQu/WXRBkLl2VmmAe/7xbd5MJ
-	 gIfhd9KD7bsWOUklzGCKwnN9t9d0Kiud1J+aqtqJB6h3Frtg66GE+ef3RqiJvoTXYs
-	 UYwZPrH4VgJwA==
-Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Fri,  9 Jun 2023 15:10:16 +0300 (MSK)
-Date: Fri, 9 Jun 2023 15:10:16 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-CC: Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette
-	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Kevin Hilman
-	<khilman@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 12/18] dt-bindings: clk: amlogic,a1-pll-clkc: expose all
- clock ids
-Message-ID: <20230609121016.4njwpst3mu57fehv@CAB-WSD-L081021>
-References: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-0-9676afa6b22c@linaro.org>
- <20230607-topic-amlogic-upstream-clkid-public-migration-v1-12-9676afa6b22c@linaro.org>
+	id 1q7bWI-00D1Pi-2N
+	for linux-amlogic@lists.infradead.org;
+	Fri, 09 Jun 2023 12:47:12 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f735259fa0so16888485e9.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 09 Jun 2023 05:47:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686314826; x=1688906826;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=rOTekZ5T+8f+I9icACI6rQNlKGe8FwQ65t371dbDET4=;
+        b=N/BLDSdzR3Mi95f15LLB94rPtv/IiwH3XNsvqylwQAXuFvQkrx7+ciBBZou9DMMzpf
+         3mOXdEGQR/uth2xonAF4e548O70L4xp1xoyNhJllKYYWNpPGlXaM0fkWGJncEb7Gak2r
+         m+V3asGqBTr8HdARTIFmulyE3JGHleu4Z6YvSMciWoafFfg9yfVr5nMjmKNxTox1guGS
+         d0UaeJx/VpTONDm55AddEBBl+n2GNt47NtloB6xN6+Bir9MOYimtG3oBTNZr/oXgdgGp
+         CIa6tahuviftxnJiaXRCoCF2zjSkoj8ApKqTWGS6Jrd3voiCtCbrcNjfTfTNcY21sgFZ
+         1BSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686314826; x=1688906826;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rOTekZ5T+8f+I9icACI6rQNlKGe8FwQ65t371dbDET4=;
+        b=lIjaobWFGvB40UJ7RsW+JP2MtRnRDFt/jD6NW3d4FYI5MOqDfch3UOrmz9D8eqGMbV
+         ZnPQzx3w4n5HDjCtmWEnuZtqSll8A6YCR6J9US+LyODw3ha5iotZt4HHQMXNO19CmigT
+         QdI57WkiGZN+35rIWjcaie7NNEskSy7YYPXJ7INSP/N9cnQ93bDUGdPab7jOw5u3PbVG
+         26p4pT2PGdKnMCuV+Mxy6+l7ZhTCW8vHCq3M93CMobZ/LWQMUzO0IAvVkxxySw+Frw3l
+         qQPjIYpUwNewtWcYqiPvKivcSAU6GrY4k+M+2AqO7iWVM0riIkqaOxfLuZ0TVd9t3taO
+         a5/Q==
+X-Gm-Message-State: AC+VfDysTIuPAplesBLUgV84UZGSqk5iph/ioe+PI0WrbZiBvj3J44XW
+	2+3xD2xwfaV5hOJOpe0qU1+KUw==
+X-Google-Smtp-Source: ACHHUZ598KxTRlV0xO/wTz4SLv55tV+LKVZzKPfvFsog7VJcxvw6JHHgXGzacLuwgbHHids/gLcMmg==
+X-Received: by 2002:a05:600c:2116:b0:3f6:a44:73bb with SMTP id u22-20020a05600c211600b003f60a4473bbmr1196866wml.8.1686314825864;
+        Fri, 09 Jun 2023 05:47:05 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5c40:3a0f:b23:350f? ([2a01:e0a:982:cbb0:5c40:3a0f:b23:350f])
+        by smtp.gmail.com with ESMTPSA id t10-20020a1c770a000000b003f8009be6c0sm2628646wmi.3.2023.06.09.05.47.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jun 2023 05:47:05 -0700 (PDT)
+Message-ID: <04791890-56f3-e620-1660-e8ed80eb5752@linaro.org>
+Date: Fri, 9 Jun 2023 14:47:04 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-12-9676afa6b22c@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/09 07:08:00 #21465535
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 03/18] clk: meson: migrate a1 clock drivers out of
+ hw_onecell_data to drop NR_CLKS
+Content-Language: en-US
+To: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-0-9676afa6b22c@linaro.org>
+ <20230607-topic-amlogic-upstream-clkid-public-migration-v1-3-9676afa6b22c@linaro.org>
+ <1jlegu9l5d.fsf@starbuckisacylon.baylibre.com>
+ <638206ba-e2da-bb8e-a2e4-138af84648b4@linaro.org>
+ <20230609114847.x24by2foebojbchq@CAB-WSD-L081021>
+Organization: Linaro Developer Services
+In-Reply-To: <20230609114847.x24by2foebojbchq@CAB-WSD-L081021>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230609_051019_764223_7B1224A2 
-X-CRM114-Status: GOOD (  21.45  )
+X-CRM114-CacheID: sfid-20230609_054710_783685_77BADE0C 
+X-CRM114-Status: GOOD (  20.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,83 +103,154 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jun 07, 2023 at 12:56:23PM +0200, Neil Armstrong wrote:
-> Due to a policy change in clock ID bindings handling, expose
-> all the "private" clock IDs to the public clock dt-bindings
-> to move out of the previous maintenance scheme.
+Hi,
+
+On 09/06/2023 13:48, Dmitry Rokosov wrote:
+> Hello Neil,
 > 
-> This refers to a discussion at [1] & [2] with Krzysztof about
-> the issue with the current maintenance.
+> On Thu, Jun 08, 2023 at 02:53:50PM +0200, Neil Armstrong wrote:
+>> On 08/06/2023 14:45, Jerome Brunet wrote:
+>>>> +struct meson_a1_pll_clks {
+>>>> +	struct clk_hw **hw_clks;
+>>>> +	unsigned int hw_clk_num;
+>>>> +};
+>>>> +
+>>>> +static struct meson_a1_pll_clks a1_pll_clks = {
+>>>> +	.hw_clks = a1_pll_hw_clks,
+>>>> +	.hw_clk_num = ARRAY_SIZE(a1_pll_hw_clks),
+>>>> +};
+>>>> +
+>>>> +static struct clk_hw *meson_a1_pll_hw_get(struct of_phandle_args *clkspec, void *clk_data)
+>>>> +{
+>>>> +	const struct meson_a1_pll_clks *data = clk_data;
+>>>> +	unsigned int idx = clkspec->args[0];
+>>>> +
+>>>> +	if (idx >= data->hw_clk_num) {
+>>>> +		pr_err("%s: invalid index %u\n", __func__, idx);
+>>>> +		return ERR_PTR(-EINVAL);
+>>>> +	}
+>>>> +
+>>>> +	return data->hw_clks[idx];
+>>>> +}
+>>>
+>>> I'd prefer to have a single struct type and and single custom
+>>> callback for the different SoC please.
+>>
+>> Sure, I've written a common code for that, but I have a hard time finding
+>> a proper naming for it... so I choosed meson-clkc since it could have
+>> more common helper code for duplicated code over the clk driver:
+>>
+>> ===================================><============================================================================
+>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>> index 8ce846fdbe43..9070dcfd9e71 100644
+>> --- a/drivers/clk/meson/Kconfig
+>> +++ b/drivers/clk/meson/Kconfig
+>> @@ -30,6 +30,9 @@ config COMMON_CLK_MESON_VID_PLL_DIV
+>>   	tristate
+>>   	select COMMON_CLK_MESON_REGMAP
+>>
+>> +config COMMON_CLK_MESON_CLKC
+>> +	tristate
+>> +
+>>   config COMMON_CLK_MESON_AO_CLKC
+>>   	tristate
+>>   	select COMMON_CLK_MESON_REGMAP
+>> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+>> index d5288662881d..13c6db466986 100644
+>> --- a/drivers/clk/meson/Makefile
+>> +++ b/drivers/clk/meson/Makefile
+>> @@ -1,6 +1,7 @@
+>>   # SPDX-License-Identifier: GPL-2.0-only
+>>   # Amlogic clock drivers
+>>
+>> +obj-$(CONFIG_COMMON_CLK_MESON_CLKC) += meson-clkc.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_AO_CLKC) += meson-aoclk.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_CPU_DYNDIV) += clk-cpu-dyndiv.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_DUALDIV) += clk-dualdiv.o
+>> diff --git a/drivers/clk/meson/meson-clkc.c b/drivers/clk/meson/meson-clkc.c
+>> new file mode 100644
+>> index 000000000000..fa98b9d09011
+>> --- /dev/null
+>> +++ b/drivers/clk/meson/meson-clkc.c
+>> @@ -0,0 +1,25 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+>> + */
+>> +
+>> +#include <linux/of_device.h>
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/module.h>
+>> +#include "meson-clkc.h"
+>> +
+>> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data)
+>> +{
+>> +	const struct meson_clk_hw_data *data = clk_hw_data;
+>> +	unsigned int idx = clkspec->args[0];
+>> +
+>> +	if (idx >= data->num) {
+>> +		pr_err("%s: invalid index %u\n", __func__, idx);
+>> +		return ERR_PTR(-EINVAL);
+>> +	}
+>> +
+>> +	return data->hws[idx];
+>> +}
+>> +EXPORT_SYMBOL_GPL(meson_clk_hw_get);
+>> +
+>> +MODULE_LICENSE("GPL v2");
+>> diff --git a/drivers/clk/meson/meson-clkc.h b/drivers/clk/meson/meson-clkc.h
+>> new file mode 100644
+>> index 000000000000..e3bad2aa17eb
+>> --- /dev/null
+>> +++ b/drivers/clk/meson/meson-clkc.h
+>> @@ -0,0 +1,19 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>> +/*
+>> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+>> + */
+>> +
+>> +#ifndef __MESON_HW_CLKC_H__
+>> +#define __MESON_HW_CLKC_H__
+>> +
+>> +#include <linux/of_device.h>
+>> +#include <linux/clk-provider.h>
+>> +
+>> +struct meson_clk_hw_data {
+>> +	struct clk_hw	**hws;
+>> +	unsigned int	num;
+>> +};
+>> +
+>> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data);
+>> +
+>> +#endif
+>> ===================================><============================================================================
+>>
+>> If it's ok I'll send a v2 using this.
+>>
+>> Thanks,
+>> Neil
 > 
-> It was decided to move every A1 pll ID to the public clock
-> dt-bindings headers to be merged in a single tree so we
-> can safely add new clocks without having merge issues.
+> In addition, I propose consolidating the probe() routine of the a1
+> clocks into a common part, which can be utilized for s4 and other
+> similar clocks. This solution was presented in the early a1 review
+> stages of this patch set.
 > 
-> [1] https://lore.kernel.org/all/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
-> [2] https://lore.kernel.org/all/2fabe721-7434-43e7-bae5-088a42ba128d@app.fastmail.com/
+> https://lore.kernel.org/linux-amlogic/20221201225703.6507-7-ddrokosov@sberdevices.ru/
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/clk/meson/a1-pll.h                      | 15 ---------------
->  include/dt-bindings/clock/amlogic,a1-pll-clkc.h |  5 +++++
->  2 files changed, 5 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/clk/meson/a1-pll.h b/drivers/clk/meson/a1-pll.h
-> index 82570759e6a2..0add1c7ea9f5 100644
-> --- a/drivers/clk/meson/a1-pll.h
-> +++ b/drivers/clk/meson/a1-pll.h
-> @@ -28,19 +28,4 @@
->  /* include the CLKIDs that have been made part of the DT binding */
->  #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
->  
-> -/*
-> - * CLKID index values for internal clocks
-> - *
-> - * These indices are entirely contrived and do not map onto the hardware.
-> - * It has now been decided to expose everything by default in the DT header:
-> - * include/dt-bindings/clock/a1-pll-clkc.h. Only the clocks ids we don't want
-> - * to expose, such as the internal muxes and dividers of composite clocks,
-> - * will remain defined here.
-> - */
-> -#define CLKID_FIXED_PLL_DCO	0
-> -#define CLKID_FCLK_DIV2_DIV	2
-> -#define CLKID_FCLK_DIV3_DIV	3
-> -#define CLKID_FCLK_DIV5_DIV	4
-> -#define CLKID_FCLK_DIV7_DIV	5
-> -
->  #endif /* __A1_PLL_H */
-> diff --git a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> index 01fb8164ac29..2b660c0f2c9f 100644
-> --- a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> +++ b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> @@ -10,7 +10,12 @@
->  #ifndef __A1_PLL_CLKC_H
->  #define __A1_PLL_CLKC_H
->  
-> +#define CLKID_FIXED_PLL_DCO	0
->  #define CLKID_FIXED_PLL		1
-> +#define CLKID_FCLK_DIV2_DIV	2
-> +#define CLKID_FCLK_DIV3_DIV	3
-> +#define CLKID_FCLK_DIV5_DIV	4
-> +#define CLKID_FCLK_DIV7_DIV	5
->  #define CLKID_FCLK_DIV2		6
->  #define CLKID_FCLK_DIV3		7
->  #define CLKID_FCLK_DIV5		8
-> 
-> -- 
-> 2.34.1
+> Maybe, it can be generalized for the all meson clock controller drivers.
 > 
 
-Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Sure, the goal of that is to get rid of NR_CLKS & private IDS only,
+then yes afterwards any common clkc function will be welcome !
 
--- 
-Thank you,
-Dmitry
+Neil
+
 
 _______________________________________________
 linux-amlogic mailing list
