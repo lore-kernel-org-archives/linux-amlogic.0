@@ -4,83 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 592DDC7EE29
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Jun 2023 21:02:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8079C7EE37
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Jun 2023 07:21:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=d9dvwOWieC/RrGOndNL+9W1Qd5Kpopn5BbNnRgsBbWg=; b=q0Olb9MaiIkruF
-	ES3pdEOq/iNybj9IPV+sO33Dp0DK8dPrqmJ+Id0Hk8vNgKOZ8zhnNrgC7JqU9rMSfXDio+5L+6SHe
-	aE1AgbUjmIq3BYPg0UWqpfQ/ocuj0SBftg05kUx474AtEB+Gr9NVXRGlo6+i5GQ6xoIwdpvo0CnUV
-	KAMA3O8eUQQQqNbnmtSAIxRiYX91JYg0TQ5Hy3gzKS5IxDJs9qUUozrZZTE3Qcnnz6+7bdA2OPhyx
-	XVQEajg6+XRP3KDauTC12j/mord1ypZytRjtLJfZdDLfatMT1xi5YGZAxn4SzXMALlOmKQLkMiWhI
-	aNhB7Nme8OzhfjX15EaA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=vHuP07PHC44jPwV1c4gj+yLVi+AtCXKM47vtfgZxExk=; b=XV9SRBqpMXBbVwj5uBmGqQBNkc
+	xH2DccOySwfLPKOVVe637IToIwHKuEFKlpsfdZ80+Rmu5z4A4KkTJrMXgjQGA9TNt2FtwiqmLsGOE
+	iX7CZ8QUyVA/YFt4+CijZ/XcUJdqvFzEuQQu/zprKaxS4xSSYKunxvASf2I4RC0ZaR0ZUz5GNEXx7
+	HhJDExtK4fSqFCmo4wUUaE4DhwxXRUP1tfaookeu8tF0TdX529s+hFrxhrn1OaFfDUB2H8Ag6d8rg
+	t6roRaiERhPDcU2aQnlU+GUnYIpVT7acQ0gJZ3GmWKK6WhttxEJsLtTCfXfPnJBOlpfNuoFCFjhLx
+	SSdJertQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7Mlx-00AdNA-1d;
-	Thu, 08 Jun 2023 21:02:21 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1q7WQg-00C1Np-2U;
+	Fri, 09 Jun 2023 07:21:02 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7Mlr-00AdLF-34;
-	Thu, 08 Jun 2023 21:02:19 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 760265FD86;
-	Fri,  9 Jun 2023 00:02:07 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1686258127;
-	bh=vrZ3H0ukAoi+VYXR7MBptafkDYF/rLST6i3lyJzo2AI=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=IibROKZuitdC5NsKSmnXmx77ZgjUr0lEgo+syJpM7jlszcAazwwiCsNFLC25+tOIX
-	 r5IcZ2fjhnurB78RF/hbzob7Od6RPjQ6H44tztKGyOIA0Pduvs9sXdfJ7WOHpvYglm
-	 EvMhQUswG8wa7PR8A10u+H56zu1YYC9rYKCKBaH7MWPNaaYz26QzeAr6Sqvg9og93I
-	 8WT24Kkl05DgNj6kxAyy2intOaS/LExZzriDl6xi/EnuTpq/tOGM6vNX2A1XqckvI8
-	 FtggNcvAC+TTgEvPpO9Za9IvGWHeotYqDgr90vWA1XhJYtDFzsp5wGsAWtlAz87ci5
-	 cHxH3JWpLooWA==
-Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Fri,  9 Jun 2023 00:02:06 +0300 (MSK)
-Date: Fri, 9 Jun 2023 00:02:05 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: Jerome Brunet <jbrunet@baylibre.com>
-CC: Yu Tu <yu.tu@amlogic.com>, <linux-clk@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Rob Herring
-	<robh+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, "Kevin
- Hilman" <khilman@baylibre.com>, Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	<kelvin.zhang@amlogic.com>, <qi.duan@amlogic.com>
-Subject: Re: [PATCH V9 3/4] clk: meson: S4: add support for Amlogic S4 SoC
- PLL clock driver
-Message-ID: <20230608210205.hsmmhwngrbfydawp@CAB-WSD-L081021>
-References: <20230517070215.28463-1-yu.tu@amlogic.com>
- <20230517070215.28463-4-yu.tu@amlogic.com>
- <1j5y804q7u.fsf@starbuckisacylon.baylibre.com>
- <73acf297-3f60-1ce1-2f05-af048aa37199@amlogic.com>
- <1jttvi9vnq.fsf@starbuckisacylon.baylibre.com>
- <20230608113244.jvf7w4flwjy5soud@CAB-WSD-L081021>
- <1jh6ri9kwb.fsf@starbuckisacylon.baylibre.com>
+	id 1q7WQd-00C1MG-1e
+	for linux-amlogic@lists.infradead.org;
+	Fri, 09 Jun 2023 07:21:01 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-30e4eec95c8so1378012f8f.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 09 Jun 2023 00:20:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686295255; x=1688887255;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=qbECCQojym0tki1fcePemFQzOMvKm7eIXy1UhdmS0Os=;
+        b=Gq13LllHeyFxZyDi5RA7RqNbZzv4vO7xJUkHSwJazafpjxcY1xBqRcAi7a3bXIrDDy
+         ql5iibzEcb1G/pULT95qZFLLn6YU95/u6pqIyeoCDtmIrXc2V75btPpSVVmfcn36+EP3
+         U+rvCx/zT2Ww0Jo8sdJppPsU1DnIRANgA+XyjFvfRmkA72SAmHyyoyhzSAqDXT483T/9
+         r7Hlpnr6k/pBISeuNsK3OaQY2dKy9TvWSky42iWMYk6ds43CbNprKMX/RmYVDuP4VFr4
+         cave3t9HzMIN6YC6sfDPAhUQTWCz2UUrVKjXIMf1vKJNFg03wsH65mcjyeB2uz04BQPX
+         zk0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686295255; x=1688887255;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qbECCQojym0tki1fcePemFQzOMvKm7eIXy1UhdmS0Os=;
+        b=CfBP8Kys7VETHgL3V8qwRhVJw7Ewf1ja1d9EX5QSeCKhsFnHGi04fRPER+ah/f4k7X
+         kdzxMBtFLlN2SE4awyNxIiOKItuPoXEzRN+dSsGGun/kN6jpkDpLesJ8n+ru5oqnA9fH
+         KZ9DTujE65tkIePWPLNWzRPDeO7jXqQi8EOT0ugpzgXb4og7xopZy4nwwQNIkHAKcFT8
+         gvef54ArK9FGjNyo9m7RBKGdikhCkBMtm4UsGSxCUqUAz01ItrA3CtYEtqgfJDijA0WC
+         aEA2nPBe6Ka8u2+ypH4NOHtITarAXEt7SDALMle8bUk5LhSFHSJiK4jPc76sc+41xpoZ
+         y4AA==
+X-Gm-Message-State: AC+VfDzHNL5J8r/rIXCfRy19btvvynKABiuENpwgMxMjrMtsOistjdqe
+	VZ01ogdozIcd6OHnzKKSFO5www==
+X-Google-Smtp-Source: ACHHUZ595w+56xOgrh/zB+ULRVC2q70uomUS/Elf7KYJVvyLy9TBLa3xWhmNv03xAjXVV/KvFGCIfA==
+X-Received: by 2002:a05:6000:4cf:b0:30e:56d9:d7ad with SMTP id h15-20020a05600004cf00b0030e56d9d7admr363920wri.71.1686295255619;
+        Fri, 09 Jun 2023 00:20:55 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5c40:3a0f:b23:350f? ([2a01:e0a:982:cbb0:5c40:3a0f:b23:350f])
+        by smtp.gmail.com with ESMTPSA id q7-20020adff947000000b0030af72bca98sm3583142wrr.103.2023.06.09.00.20.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jun 2023 00:20:55 -0700 (PDT)
+Message-ID: <c0d6c95a-e96c-a258-666d-f81a05a86db8@linaro.org>
+Date: Fri, 9 Jun 2023 09:20:54 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1jh6ri9kwb.fsf@starbuckisacylon.baylibre.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/08 15:54:00 #21461059
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 02/12] mmc: meson-gx: fix deferred probing
+Content-Language: en-US
+To: Sergey Shtylyov <s.shtylyov@omp.ru>, Ulf Hansson
+ <ulf.hansson@linaro.org>, linux-mmc@vger.kernel.org
+Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
+ <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+References: <20230608194519.10665-1-s.shtylyov@omp.ru>
+ <20230608194519.10665-3-s.shtylyov@omp.ru>
+Organization: Linaro Developer Services
+In-Reply-To: <20230608194519.10665-3-s.shtylyov@omp.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230608_140216_530211_5F6DCEA6 
-X-CRM114-Status: GOOD (  13.95  )
+X-CRM114-CacheID: sfid-20230609_002059_609400_3686BB0A 
+X-CRM114-Status: GOOD (  18.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,36 +95,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jun 08, 2023 at 02:46:54PM +0200, Jerome Brunet wrote:
+On 08/06/2023 21:45, Sergey Shtylyov wrote:
+> The driver overrides the error codes and IRQ0 returned by platform_get_irq()
+> to -EINVAL, so if it returns -EPROBE_DEFER, the driver will fail the probe
+> permanently instead of the deferred probing. Switch to propagating the error
+> codes upstream.  IRQ0 is no longer returned by platform_get_irq(), so we now
+> can safely ignore it...
 > 
-> On Thu 08 Jun 2023 at 14:32, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
-> >> 
-> >> Neil is currently dealing with the dt-bindings, please
-> >> * Adjust your patchset accordingly
-> >> * Wait for his v2 to land, you'll need it.
-> >> 
-> >
-> > I saw Neil patch series with merging 'private' and 'public' clock
-> > bindings parts. Should I send the same patchset for a1 clocks after v6.5
-> > landed?
-> >
+> Fixes: cbcaac6d7dd2 ("mmc: meson-gx-mmc: Fix platform_get_irq's error checking")
+> Signed-off-by: Sergey Shtylyov <s.shtylyov@omp.ru>
+> ---
+> Changes in version 2:
+> - updated the fix due to the surrounding code change;
+> - refreshed the patch;
+> - removed stray newline in the Fixes: tag;
+> - slightly reformatted the patch description.
 > 
-> I think Neil's patchset is already dealing with the a1.
+>   drivers/mmc/host/meson-gx-mmc.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> We'll see if it can be part of this cycle PR. I don't want to rush
-> anything and rc6 is coming this monday. It may have to wait for the next cycle.
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index b8514d9d5e73..75f97dce7ef3 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -1192,8 +1192,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
+>   		return PTR_ERR(host->regs);
+>   
+>   	host->irq = platform_get_irq(pdev, 0);
+> -	if (host->irq <= 0)
+> -		return -EINVAL;
+> +	if (host->irq < 0)
+> +		return host->irq;
+>   
+>   	cd_irq = platform_get_irq_optional(pdev, 1);
+>   	mmc_gpio_set_cd_irq(mmc, cd_irq);
 
-Alright, I understand. Please let me know if and when you need
-assistance, as I am ready to help.
-
--- 
-Thank you,
-Dmitry
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
