@@ -4,87 +4,114 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B06FC7EE29
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Jun 2023 14:31:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0721C7EE2F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Jun 2023 15:16:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=b/1obvXVNngMjRBexw8YhWsjC+1P8qQGuk6eJVzmu5c=; b=WHlm/cs0a0McAa
-	cpBfByK+dlgJSOhKW7NfyN/NRoMua3j4lYOiXlc0rkSZdZkKK0oHfJLbrRc2ii7pQDIEv5J8hbLGF
-	RWCV9TdqS5dK6zG/85VbpFGdv9toOvZ77uhJx7vpWGJOxrGom2FxiVExFCrBkAn7BycOsSpl9FWV3
-	Y8kXVglAZ+9901S0upR1uHSyNO8wi1kL3aOrE4F+Ia8endcB5od2+zgQQyxN2gpqf2L54UNCessgn
-	4aNFDnTunIHeVHhKM87dCxDkhU2iSma7/uPOT8E2Gk9Y9lJ8oysO8LuQEF+PIMqVGQ5beGKCNh+9P
-	JlQAWszTlFaXJCqiwk0Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=rB+fO+YwLltPQKYyR5gEtBIc77inM+KQcC3AG4OeCq4=; b=jmzZQqD25Edb8u
+	M4ncQqAOKfnWlquTydQAyAGjXAa/1ZYaQF3EZH9aG8lUZMKtFDg2Qg2NqLdnaRL41Glpz2jfqWq7s
+	/2A7myh8n1S5Sg5E0bpKzuEGIyHYFbRDGNjFTmnRIP/C3Gs3ODYYsILRXFZ/7cNPFUgy8VbmRyBgb
+	GNKt8+VJ/wfZJInFm6RkfyWGrsca2LqSXXZ5FqMmYpPTQeKI4/AZfAd9bGf4wWClOen84Kz6m+HPW
+	expazgaDMCnnLo9En+r9kh4d85qst1dvZoYs+mtJtlLp41CkJixUHiurRYJAItBfKtxCUoTt25ozr
+	KkYmAgl37EfQYbvh0S9Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7d9G-00DGlq-0u;
-	Fri, 09 Jun 2023 14:31:30 +0000
-Received: from mail-lf1-x12e.google.com ([2a00:1450:4864:20::12e])
+	id 1q7dqK-00DOsN-0K;
+	Fri, 09 Jun 2023 15:16:00 +0000
+Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7d9C-00DGkX-0u
+	id 1q7clv-00DCWI-2v
 	for linux-amlogic@lists.infradead.org;
-	Fri, 09 Jun 2023 14:31:29 +0000
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4f4b2bc1565so2346647e87.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 09 Jun 2023 07:31:24 -0700 (PDT)
+	Fri, 09 Jun 2023 14:07:29 +0000
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-977c72b116fso276794966b.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 09 Jun 2023 07:07:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1686321083; x=1688913083;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=rvKldkKyOEzMjaVgJzIrDpQYw9hrf0Xh92le1NSdGEw=;
-        b=UktX5DCkzRF28DwzEH27lkzst5pNZ/sWkOflvK2OSTWWAk5rI1HApzsZN11Z1LMGre
-         faXb25K0qOHjWhPiTgjp7rSz+gv8fzdWbIvf4ho8ORPJZte7Hae4IQ2+JpChTfyMmoCy
-         mWV6VURFYsjJ9BbBX+kGktXOxS7BrUhaUWdykIlNe+h5mKEj2GLFNU8eqazymqSB2Tjs
-         XcxakgN8hetMGTNtwtKNdI6y7dEBblnTFIgok0/QLo6Ktz69zr/mPpxQJ77z+AR/alY+
-         f5fmxF7tRWhCnbluS9UWpjx8Q+wzKh/I+Pqj5Y/nCZP1F3VwOGWeiGYAEGu6K6msfJf0
-         ohYA==
+        d=linaro.org; s=google; t=1686319640; x=1688911640;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HtngxXUKNCQTVka0vpariN77on7n71XrWgw8hjIYsQ8=;
+        b=EQQ09IhLANk5OoNkPdErPJXECdIbDeH7UNst8EkmsOXalpdhN8F/cnL4Q+jvs92LA2
+         aPjioAFbECUdqD/5vQAt4t6seFI9W94Otds/ZrcJ58EJ/SW1VZHIn6rTNQrG5aWaXGrF
+         XU56NngGksiZRSyd5bwIT/IpsrCjrdsdbQW/lVket+UYK8Hq6rvsMyVbrJvi5A6ElYf2
+         tOoygJC/HL539cV6Xd82MytIHMbnWFz4VROnicBXDMooJCb51dPdFsJ1PiktGpsVP53d
+         /Mz9yWhoKt8AtWVDBXKQTFC9CoJt9V0Uyk4xfJcPUfxmTOJqb/7uxVXICwaRI8Gi30S/
+         Yo7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686321083; x=1688913083;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rvKldkKyOEzMjaVgJzIrDpQYw9hrf0Xh92le1NSdGEw=;
-        b=iMEcnPq5xBfFOX0uQFBP0vBG17KTTTExsNqHkgBdYCRvwiqBHf8mDryPblhaER73DD
-         SynrzbwxSJxlbXz+NUC6dSPYBH7neni8KXWCUeoXNc19+BoPKUjMNZzDcBTxH4Ot0R+G
-         kXTYKPu/aNr5heN/OCTlkIt8EsDlgfs33rd+zKX2EStBXrA/nl5cEhyNLYvMa0E17WtY
-         Z7lLYkM0lpb2KK3ONxUg5Jl2Y1sqSMmYfmaf3pV5j8p4VXu+ZbGLAAavD1VS6qt8WlkX
-         0x2rbtNiyETMHRcjC+3ZmfO7BXwP4wM3Yz7xHfOwjwnE7AT6AehomD4ko+z3KoRxZOCR
-         Sadw==
-X-Gm-Message-State: AC+VfDw3uk+mevNCpEvWM47UmTo0DmisKU1RSB4s/Qs7BvknfueuVZ9e
-	BrFGldntgbarBZ2mJnAa87N9Xg==
-X-Google-Smtp-Source: ACHHUZ65m5AMFmjxrMwWxpXLbpcZF2OPgnMHH0ovUIGyqONAblCOSsCEtrKUzsNS0WEh/UkxuTsNcg==
-X-Received: by 2002:ac2:5b11:0:b0:4f1:30cc:3dae with SMTP id v17-20020ac25b11000000b004f130cc3daemr1352875lfn.10.1686321083183;
-        Fri, 09 Jun 2023 07:31:23 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id e40-20020a5d5968000000b002fda1b12a0bsm4653096wri.2.2023.06.09.07.31.22
+        d=1e100.net; s=20221208; t=1686319640; x=1688911640;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HtngxXUKNCQTVka0vpariN77on7n71XrWgw8hjIYsQ8=;
+        b=joCbwITT4YW3Syp/r+xciuVScC2UFyW/PiDKBxjQomnmUSsYTkACzA3nbbkb+xU9Pe
+         Rc+7GUhM5V/UHGAwcBy1wfcr56U2Erw68qm295kulfMEJeWpOdlpvVM38OKiV1TuPDBD
+         Hu0ppOIStLQx4729P1zaVjcdhSRv2UnzaXg6rmC9IvAG+1npkbEG7CwELiZcshQuqkmd
+         yl5cC9CokiyNxkXOuDYk1orwIIMXZ+hSeeSACCy9LO39+auurSIQ4oisMWluWUEmcgMj
+         0PQ1PmQ8rPv7yCVBUhH1XHJMOe7wCjiN7BzcJ6GqUw5f9zfiNFEZeN4GSachFJYadhU2
+         7VIg==
+X-Gm-Message-State: AC+VfDwHojyoiD+6YaYPUxwbNFuWcCRl29gv/V3R4hbKgfPKOb7Tw4Yc
+	seKGL4hpe8bkT1Sn+M3I44waow==
+X-Google-Smtp-Source: ACHHUZ4jXnmPhct/g5TaCUX1W0J9YSQDJhMQstjVD+5gi5sMD/SmL4pOvf6Vz4t9h3tieEPh3BwQeQ==
+X-Received: by 2002:a17:907:7da9:b0:973:946d:96ba with SMTP id oz41-20020a1709077da900b00973946d96bamr1755276ejc.69.1686319640156;
+        Fri, 09 Jun 2023 07:07:20 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id u13-20020a1709064acd00b009787ad3157bsm1357032ejt.39.2023.06.09.07.07.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 07:31:22 -0700 (PDT)
-References: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-0-9676afa6b22c@linaro.org>
- <20230607-topic-amlogic-upstream-clkid-public-migration-v1-3-9676afa6b22c@linaro.org>
- <1jlegu9l5d.fsf@starbuckisacylon.baylibre.com>
- <638206ba-e2da-bb8e-a2e4-138af84648b4@linaro.org>
-User-agent: mu4e 1.8.13; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Kevin Hilman
- <khilman@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH 03/18] clk: meson: migrate a1 clock drivers out of
- hw_onecell_data to drop NR_CLKS
-Date: Fri, 09 Jun 2023 16:30:45 +0200
-In-reply-to: <638206ba-e2da-bb8e-a2e4-138af84648b4@linaro.org>
-Message-ID: <1jwn0c672d.fsf@starbuckisacylon.baylibre.com>
+        Fri, 09 Jun 2023 07:07:19 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Doug Berger <opendmb@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	"G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>,
+	Biao Huang <biao.huang@mediatek.com>,
+	Clark Wang <xiaoning.wang@nxp.com>,
+	David Wu <david.wu@rock-chips.com>,
+	Grygorii Strashko <grygorii.strashko@ti.com>,
+	Sekhar Nori <nsekhar@ti.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: net: drop unneeded quotes
+Date: Fri,  9 Jun 2023 16:07:12 +0200
+Message-Id: <20230609140713.64701-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230609_073126_325114_D88EF03A 
-X-CRM114-Status: GOOD (  19.65  )
+X-CRM114-CacheID: sfid-20230609_070723_956227_4795FB65 
+X-CRM114-Status: GOOD (  10.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,131 +128,163 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+checking for this can be enabled in yamllint.
 
-On Thu 08 Jun 2023 at 14:53, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/net/allwinner,sun7i-a20-gmac.yaml     | 2 +-
+ .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml    | 2 +-
+ .../devicetree/bindings/net/amlogic,meson-dwmac.yaml          | 2 +-
+ Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml      | 2 +-
+ Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml   | 2 +-
+ Documentation/devicetree/bindings/net/mediatek-dwmac.yaml     | 2 +-
+ Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml      | 2 +-
+ Documentation/devicetree/bindings/net/rockchip-dwmac.yaml     | 2 +-
+ .../devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml        | 4 ++--
+ .../devicetree/bindings/net/toshiba,visconti-dwmac.yaml       | 2 +-
+ 10 files changed, 11 insertions(+), 11 deletions(-)
 
-> On 08/06/2023 14:45, Jerome Brunet wrote:
->>>   +struct meson_a1_pll_clks {
->>> +	struct clk_hw **hw_clks;
->>> +	unsigned int hw_clk_num;
->>> +};
->>> +
->>> +static struct meson_a1_pll_clks a1_pll_clks = {
->>> +	.hw_clks = a1_pll_hw_clks,
->>> +	.hw_clk_num = ARRAY_SIZE(a1_pll_hw_clks),
->>> +};
->>> +
->>> +static struct clk_hw *meson_a1_pll_hw_get(struct of_phandle_args *clkspec, void *clk_data)
->>> +{
->>> +	const struct meson_a1_pll_clks *data = clk_data;
->>> +	unsigned int idx = clkspec->args[0];
->>> +
->>> +	if (idx >= data->hw_clk_num) {
->>> +		pr_err("%s: invalid index %u\n", __func__, idx);
->>> +		return ERR_PTR(-EINVAL);
->>> +	}
->>> +
->>> +	return data->hw_clks[idx];
->>> +}
->> I'd prefer to have a single struct type and and single custom
->> callback for the different SoC please.
->
-> Sure, I've written a common code for that, but I have a hard time finding
-> a proper naming for it... so I choosed meson-clkc since it could have
-> more common helper code for duplicated code over the clk driver:
-
-Agreed. meson-clkc-utils maybe ?
-
->
-> ===================================><============================================================================
-> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> index 8ce846fdbe43..9070dcfd9e71 100644
-> --- a/drivers/clk/meson/Kconfig
-> +++ b/drivers/clk/meson/Kconfig
-> @@ -30,6 +30,9 @@ config COMMON_CLK_MESON_VID_PLL_DIV
->  	tristate
->  	select COMMON_CLK_MESON_REGMAP
->
-> +config COMMON_CLK_MESON_CLKC
-> +	tristate
-> +
->  config COMMON_CLK_MESON_AO_CLKC
->  	tristate
->  	select COMMON_CLK_MESON_REGMAP
-> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-> index d5288662881d..13c6db466986 100644
-> --- a/drivers/clk/meson/Makefile
-> +++ b/drivers/clk/meson/Makefile
-> @@ -1,6 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  # Amlogic clock drivers
->
-> +obj-$(CONFIG_COMMON_CLK_MESON_CLKC) += meson-clkc.o
->  obj-$(CONFIG_COMMON_CLK_MESON_AO_CLKC) += meson-aoclk.o
->  obj-$(CONFIG_COMMON_CLK_MESON_CPU_DYNDIV) += clk-cpu-dyndiv.o
->  obj-$(CONFIG_COMMON_CLK_MESON_DUALDIV) += clk-dualdiv.o
-> diff --git a/drivers/clk/meson/meson-clkc.c b/drivers/clk/meson/meson-clkc.c
-> new file mode 100644
-> index 000000000000..fa98b9d09011
-> --- /dev/null
-> +++ b/drivers/clk/meson/meson-clkc.c
-> @@ -0,0 +1,25 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
-> + */
-> +
-> +#include <linux/of_device.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/module.h>
-> +#include "meson-clkc.h"
-> +
-> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data)
-> +{
-> +	const struct meson_clk_hw_data *data = clk_hw_data;
-> +	unsigned int idx = clkspec->args[0];
-> +
-> +	if (idx >= data->num) {
-> +		pr_err("%s: invalid index %u\n", __func__, idx);
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +
-> +	return data->hws[idx];
-> +}
-> +EXPORT_SYMBOL_GPL(meson_clk_hw_get);
-> +
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/clk/meson/meson-clkc.h b/drivers/clk/meson/meson-clkc.h
-> new file mode 100644
-> index 000000000000..e3bad2aa17eb
-> --- /dev/null
-> +++ b/drivers/clk/meson/meson-clkc.h
-> @@ -0,0 +1,19 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> +/*
-> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
-> + */
-> +
-> +#ifndef __MESON_HW_CLKC_H__
-> +#define __MESON_HW_CLKC_H__
-> +
-> +#include <linux/of_device.h>
-> +#include <linux/clk-provider.h>
-> +
-> +struct meson_clk_hw_data {
-> +	struct clk_hw	**hws;
-> +	unsigned int	num;
-> +};
-> +
-> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data);
-> +
-> +#endif
-> ===================================><============================================================================
->
-> If it's ok I'll send a v2 using this.
->
-> Thanks,
-> Neil
+diff --git a/Documentation/devicetree/bindings/net/allwinner,sun7i-a20-gmac.yaml b/Documentation/devicetree/bindings/net/allwinner,sun7i-a20-gmac.yaml
+index 3bd912ed7c7e..23e92be33ac8 100644
+--- a/Documentation/devicetree/bindings/net/allwinner,sun7i-a20-gmac.yaml
++++ b/Documentation/devicetree/bindings/net/allwinner,sun7i-a20-gmac.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Allwinner A20 GMAC
+ 
+ allOf:
+-  - $ref: "snps,dwmac.yaml#"
++  - $ref: snps,dwmac.yaml#
+ 
+ maintainers:
+   - Chen-Yu Tsai <wens@csie.org>
+diff --git a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+index 47bc2057e629..4bfac9186886 100644
+--- a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
++++ b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+@@ -63,7 +63,7 @@ required:
+   - syscon
+ 
+ allOf:
+-  - $ref: "snps,dwmac.yaml#"
++  - $ref: snps,dwmac.yaml#
+   - if:
+       properties:
+         compatible:
+diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+index a2c51a84efa5..ee7a65b528cd 100644
+--- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+@@ -27,7 +27,7 @@ select:
+     - compatible
+ 
+ allOf:
+-  - $ref: "snps,dwmac.yaml#"
++  - $ref: snps,dwmac.yaml#
+   - if:
+       properties:
+         compatible:
+diff --git a/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml b/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml
+index 0e5e5db32faf..7c90a4390531 100644
+--- a/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml
++++ b/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml
+@@ -55,7 +55,7 @@ properties:
+ patternProperties:
+   "^mdio@[0-9a-f]+$":
+     type: object
+-    $ref: "brcm,unimac-mdio.yaml"
++    $ref: brcm,unimac-mdio.yaml
+ 
+     description:
+       GENET internal UniMAC MDIO bus
+diff --git a/Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml b/Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml
+index d23fa3771210..42a0bc94312c 100644
+--- a/Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml
++++ b/Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml
+@@ -19,7 +19,7 @@ select:
+     - compatible
+ 
+ allOf:
+-  - $ref: "snps,dwmac.yaml#"
++  - $ref: snps,dwmac.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
+index 0fa2132fa4f4..08d74ca0769c 100644
+--- a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
+@@ -25,7 +25,7 @@ select:
+     - compatible
+ 
+ allOf:
+-  - $ref: "snps,dwmac.yaml#"
++  - $ref: snps,dwmac.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml b/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
+index 63409cbff5ad..4c01cae7c93a 100644
+--- a/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
++++ b/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
+@@ -24,7 +24,7 @@ select:
+     - compatible
+ 
+ allOf:
+-  - $ref: "snps,dwmac.yaml#"
++  - $ref: snps,dwmac.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+index 2a21bbe02892..176ea5f90251 100644
+--- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+@@ -32,7 +32,7 @@ select:
+     - compatible
+ 
+ allOf:
+-  - $ref: "snps,dwmac.yaml#"
++  - $ref: snps,dwmac.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+index 395a4650e285..c9c25132d154 100644
+--- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
++++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+@@ -168,14 +168,14 @@ properties:
+ patternProperties:
+   "^mdio@[0-9a-f]+$":
+     type: object
+-    $ref: "ti,davinci-mdio.yaml#"
++    $ref: ti,davinci-mdio.yaml#
+ 
+     description:
+       CPSW MDIO bus.
+ 
+   "^cpts@[0-9a-f]+":
+     type: object
+-    $ref: "ti,k3-am654-cpts.yaml#"
++    $ref: ti,k3-am654-cpts.yaml#
+     description:
+       CPSW Common Platform Time Sync (CPTS) module.
+ 
+diff --git a/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml b/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml
+index 474fa8bcf302..052f636158b3 100644
+--- a/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml
+@@ -19,7 +19,7 @@ select:
+     - compatible
+ 
+ allOf:
+-  - $ref: "snps,dwmac.yaml#"
++  - $ref: snps,dwmac.yaml#
+ 
+ properties:
+   compatible:
+-- 
+2.34.1
 
 
 _______________________________________________
