@@ -4,86 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DE0EC7EE29
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Jun 2023 15:25:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23F59C7EE25
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Jun 2023 15:32:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yfCZ/b5WGszO9HBqqSEDHeHpCnOsyBfr6A76Pxem9hY=; b=ZPEXpJjP85iSXS
-	JQevsu4KKiaQ0e7Akjq96UYnFdU89DY1LyMS0bY/vPfR2D1ZeCRIN0ul0sKO95JhczexnwOpfvkuR
-	Ayn/SqtOtQ4pqT5koFrs0VpSnpLxLxSVy0SQkJEP6p3HG8FDU3PR2nZyFPU/mfOYRnptVpvbqw5av
-	JJwhL2nEftKn1f8O8WExjJoeLisANvjeBKcP+qbsGUoezEDdvvBLe+iiru/wkhSWCgLzoQfen4cM3
-	O8Co6Pp2CZhWw+Ti6n9yrtPX6eCsgr2/agXA8RWiyBteYhGAFD76ALRmcHNSFrgma5KeSu8Rld/94
-	DmbdmQAumQRWyY5onzSQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=H7quwfYqvJELzoEIW5kKIKi4RpZ5SsP7ccP4HHNDWhM=; b=ttb+ZvYk8hGRPhs5LOoVKIY2i5
+	SuOaB84NeR9RAssL8suP8TH/n9k1u39eqmAVyrL0jEapbh9+s5aHdtGUkI+Eul3p/x71dCHe7GmPA
+	meJmIAgCjWukawX6fUWRObd5hZzfyS5qVFFFi0hq/mPbLV5pfGw4TQcIHvX71LbruvQnmJH+Ooiwz
+	DfbPP8pcvclBOXAxJnGAzAyWC7mUnWnzmR2RuPsI/b3J4DMwGxSxIXeEcfOog7VMLT5G+cQFCNesh
+	BZJdsywuvW3qFklW+whtRLz/7seOsSotPLKoih6XI9cPoEdnulrCySc/tfmYBsBl+TQsrsCKpAEUL
+	HXgHBIBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7dzO-00DQNR-2t;
-	Fri, 09 Jun 2023 15:25:22 +0000
-Received: from relay8-d.mail.gandi.net ([2001:4b98:dc4:8::228])
+	id 1q7e5z-00DSPl-23;
+	Fri, 09 Jun 2023 15:32:11 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7dzL-00DQGg-35;
-	Fri, 09 Jun 2023 15:25:21 +0000
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1686324313;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vxk2pYyBf/sCVtzjt4I4rozLT44scAgkgI8mNqrb5ms=;
-	b=C8YxCA3SmF51PinnYqw5XNEXMsesUX5OzJyssygzcTO4MqX5gOkMkxKBIhp3+4bHMyliU1
-	sGcajN9qwPKH0gdmgqZfzrwipqB2l1DtK9zpcpKgbOWxmi9J0ZonTjI2FgVJRqfNffPUYS
-	bt4QpTGzKu334CiohwdIGlH/SBq4sVwdpkmYUiE8i2efg8B1FiCGtEeqyiFsfxFplXP7Sg
-	3VfgAznsQ10nH7EM+LkAXcecjXYHeXc0d72yTO+stTrxVjT6nV5kXF/4YQbDuPMj2z6V6W
-	LZb3OoZeF+PQQGbPGiSbIpREJ8nnhQjqQjdhGNGghThIidpOaLiRnTkaa7kymQ==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7CF7D1BF20C;
-	Fri,  9 Jun 2023 15:25:11 +0000 (UTC)
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
-	Liang Yang <liang.yang@amlogic.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: oxffffaa@gmail.com,
-	kernel@sberdevices.ru,
-	linux-mtd@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] mtd: rawnand: meson: replace integer consts with proper defines
-Date: Fri,  9 Jun 2023 17:25:10 +0200
-Message-Id: <20230609152510.1187013-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230608043644.1271186-1-AVKrasnov@sberdevices.ru>
-References: 
+	id 1q7e5w-00DSNu-36
+	for linux-amlogic@lists.infradead.org;
+	Fri, 09 Jun 2023 15:32:10 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3f7f4819256so14796495e9.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 09 Jun 2023 08:32:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686324726; x=1688916726;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=G1mhn381wGPq9VsfFUBH75JUbhAKYMmZAsIxZ0NhEH8=;
+        b=fPfahtDhAJMzJoNJVTccQv7orfyS/dgzun65AdxRuRSsxcpbEkPL/IjmLNcrvhlODs
+         KV9h/VpBXaPTKq5BYEWG30cPWUto9/0w2ujcb0PPSP5LpHwAhb8WU7RTXiOnZKVKkYAF
+         JTUd/K+GHh+yOrbcEuJDZmgmK7qpYlbjIUSnoNFiGVgsU5UlL4D9zYTsUkKdHY9uyyZm
+         EIG23rSUT2IH1dLUIFQyiwc/zkjbMJyIzLK+T73PUY7rb3ItLp8XWvqa69a50zk4/tXy
+         RBWiSjsbRfLNUCsXXKlXj3f8Dc9FTTkUciCsfwtIOwT8UkSfhWTjz8mZ79XUfFsy6RoZ
+         nkPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686324726; x=1688916726;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G1mhn381wGPq9VsfFUBH75JUbhAKYMmZAsIxZ0NhEH8=;
+        b=PiVayJgQBrArnzBTYInKeTGYgmyodpFtrYfLKFitiESp3qlbeBVGLMcLhfOXo8nPFd
+         hM+Pw+/eIaSsQGskAmM//0rFP3A2mcKzSLHyIi3JuVhdD2wby1lvjTnfI6m6S/TUQRg4
+         Bw3LG9m3HpWtXBGP21b8Ssil9FeNOyZapVw9ChaC9cK7NWvsFCgoP/v8XhKeC9lc6Q2p
+         ToBF8+uaI2TgrKusCm1yqr1Mb4WUeChcne4dFsEDaIP1fLcwqPPaoTfuZVr47YQCRPA/
+         xN3zelHqvYmBgLfyCWBAuozrvO25CKhjYAxRKYKRwPKhyXQrLZ0edYOkKVTm/3NcAuW2
+         wCkg==
+X-Gm-Message-State: AC+VfDwIt6WLcJCei2aFNhIx+YRRFWntp/kaKrxwAMrP9gASv8BOjVH7
+	v9xHwqPCHi4dJEIuhCl/NSry1g==
+X-Google-Smtp-Source: ACHHUZ7Po/UKSSzifvbKjlrEYfqLwnw9C7rwIkJpErr95fAz+R4+DXk8WHplcmI40TSbk3pmILRgow==
+X-Received: by 2002:a1c:790f:0:b0:3f7:e629:9f3 with SMTP id l15-20020a1c790f000000b003f7e62909f3mr1145744wme.16.1686324725726;
+        Fri, 09 Jun 2023 08:32:05 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5c40:3a0f:b23:350f? ([2a01:e0a:982:cbb0:5c40:3a0f:b23:350f])
+        by smtp.gmail.com with ESMTPSA id l19-20020a7bc453000000b003f42328b5d9sm2960711wmi.39.2023.06.09.08.32.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jun 2023 08:32:05 -0700 (PDT)
+Message-ID: <c76c6611-9c8c-27e1-3b60-1ec677bd6ad3@linaro.org>
+Date: Fri, 9 Jun 2023 17:32:04 +0200
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'30540a0d05d85ef7e6f740e62c3b44c87396e56c'
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 03/18] clk: meson: migrate a1 clock drivers out of
+ hw_onecell_data to drop NR_CLKS
+Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-0-9676afa6b22c@linaro.org>
+ <20230607-topic-amlogic-upstream-clkid-public-migration-v1-3-9676afa6b22c@linaro.org>
+ <1jlegu9l5d.fsf@starbuckisacylon.baylibre.com>
+ <638206ba-e2da-bb8e-a2e4-138af84648b4@linaro.org>
+ <1jwn0c672d.fsf@starbuckisacylon.baylibre.com>
+Organization: Linaro Developer Services
+In-Reply-To: <1jwn0c672d.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230609_082520_143785_4E70A871 
-X-CRM114-Status: UNSURE (   5.15  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230609_083209_029119_05F596B2 
+X-CRM114-Status: GOOD (  15.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,21 +103,146 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 2023-06-08 at 04:36:44 UTC, Arseniy Krasnov wrote:
-> Add defines for column address. It makes driver more readable, because
-> bitwise OR with 0 looks useless.
+On 09/06/2023 16:30, Jerome Brunet wrote:
 > 
-> Suggested-by: Liang Yang <liang.yang@amlogic.com>
-> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+> On Thu 08 Jun 2023 at 14:53, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> 
+>> On 08/06/2023 14:45, Jerome Brunet wrote:
+>>>>    +struct meson_a1_pll_clks {
+>>>> +	struct clk_hw **hw_clks;
+>>>> +	unsigned int hw_clk_num;
+>>>> +};
+>>>> +
+>>>> +static struct meson_a1_pll_clks a1_pll_clks = {
+>>>> +	.hw_clks = a1_pll_hw_clks,
+>>>> +	.hw_clk_num = ARRAY_SIZE(a1_pll_hw_clks),
+>>>> +};
+>>>> +
+>>>> +static struct clk_hw *meson_a1_pll_hw_get(struct of_phandle_args *clkspec, void *clk_data)
+>>>> +{
+>>>> +	const struct meson_a1_pll_clks *data = clk_data;
+>>>> +	unsigned int idx = clkspec->args[0];
+>>>> +
+>>>> +	if (idx >= data->hw_clk_num) {
+>>>> +		pr_err("%s: invalid index %u\n", __func__, idx);
+>>>> +		return ERR_PTR(-EINVAL);
+>>>> +	}
+>>>> +
+>>>> +	return data->hw_clks[idx];
+>>>> +}
+>>> I'd prefer to have a single struct type and and single custom
+>>> callback for the different SoC please.
+>>
+>> Sure, I've written a common code for that, but I have a hard time finding
+>> a proper naming for it... so I choosed meson-clkc since it could have
+>> more common helper code for duplicated code over the clk driver:
+> 
+> Agreed. meson-clkc-utils maybe ?
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
+Ack seems better
 
-Miquel
+Thanks
+Neil
+
+> 
+>>
+>> ===================================><============================================================================
+>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>> index 8ce846fdbe43..9070dcfd9e71 100644
+>> --- a/drivers/clk/meson/Kconfig
+>> +++ b/drivers/clk/meson/Kconfig
+>> @@ -30,6 +30,9 @@ config COMMON_CLK_MESON_VID_PLL_DIV
+>>   	tristate
+>>   	select COMMON_CLK_MESON_REGMAP
+>>
+>> +config COMMON_CLK_MESON_CLKC
+>> +	tristate
+>> +
+>>   config COMMON_CLK_MESON_AO_CLKC
+>>   	tristate
+>>   	select COMMON_CLK_MESON_REGMAP
+>> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+>> index d5288662881d..13c6db466986 100644
+>> --- a/drivers/clk/meson/Makefile
+>> +++ b/drivers/clk/meson/Makefile
+>> @@ -1,6 +1,7 @@
+>>   # SPDX-License-Identifier: GPL-2.0-only
+>>   # Amlogic clock drivers
+>>
+>> +obj-$(CONFIG_COMMON_CLK_MESON_CLKC) += meson-clkc.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_AO_CLKC) += meson-aoclk.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_CPU_DYNDIV) += clk-cpu-dyndiv.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_DUALDIV) += clk-dualdiv.o
+>> diff --git a/drivers/clk/meson/meson-clkc.c b/drivers/clk/meson/meson-clkc.c
+>> new file mode 100644
+>> index 000000000000..fa98b9d09011
+>> --- /dev/null
+>> +++ b/drivers/clk/meson/meson-clkc.c
+>> @@ -0,0 +1,25 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+>> + */
+>> +
+>> +#include <linux/of_device.h>
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/module.h>
+>> +#include "meson-clkc.h"
+>> +
+>> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data)
+>> +{
+>> +	const struct meson_clk_hw_data *data = clk_hw_data;
+>> +	unsigned int idx = clkspec->args[0];
+>> +
+>> +	if (idx >= data->num) {
+>> +		pr_err("%s: invalid index %u\n", __func__, idx);
+>> +		return ERR_PTR(-EINVAL);
+>> +	}
+>> +
+>> +	return data->hws[idx];
+>> +}
+>> +EXPORT_SYMBOL_GPL(meson_clk_hw_get);
+>> +
+>> +MODULE_LICENSE("GPL v2");
+>> diff --git a/drivers/clk/meson/meson-clkc.h b/drivers/clk/meson/meson-clkc.h
+>> new file mode 100644
+>> index 000000000000..e3bad2aa17eb
+>> --- /dev/null
+>> +++ b/drivers/clk/meson/meson-clkc.h
+>> @@ -0,0 +1,19 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>> +/*
+>> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+>> + */
+>> +
+>> +#ifndef __MESON_HW_CLKC_H__
+>> +#define __MESON_HW_CLKC_H__
+>> +
+>> +#include <linux/of_device.h>
+>> +#include <linux/clk-provider.h>
+>> +
+>> +struct meson_clk_hw_data {
+>> +	struct clk_hw	**hws;
+>> +	unsigned int	num;
+>> +};
+>> +
+>> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data);
+>> +
+>> +#endif
+>> ===================================><============================================================================
+>>
+>> If it's ok I'll send a v2 using this.
+>>
+>> Thanks,
+>> Neil
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
