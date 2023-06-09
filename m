@@ -4,62 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0A66C7EE2E
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Jun 2023 11:34:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3765CC7EE29
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Jun 2023 11:49:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=N7vP4Xbz8Mh8W41+RFcLJLQ3URi5lTQXaga9HW/FT8g=; b=qdVED/ugmhqu25
-	nwxetfWCf6x8ZD3cbQnJjZtEaQhH1k1TymJy7HEvcdi9Sgbblt0yywichya5VtXKkhIXbWsu0GN+9
-	f4LZxhueKObG83sLsWYazeUfEXSisvxMHUK6qq1M5AmNSf9IoO1sFF4128Wp7NCRbVUsJ+FOvJHnO
-	U8yw3qsdxUygzHUWbHDisTiT5MRx0eqyBr/Rj6AcTHbJJYit4norP6kNPkaC6qYWMIytbzP4azl6J
-	K2qcbUkBwR9ji/h/3VOpvXLLQXxdzZpL3qS35+T7YYLXOKoRKIWFfSsbk7MLPmGuueQLXZ+PQk7vK
-	ATFHZuPxgAY0NznEvJ/A==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=4fRk89gGYI9LSDnXjDbLrgJBNFxGspRi8ayKUGDbJgM=; b=Qh6Gzo1f2Yi7Ai
+	ScyMT6F54Nx+NshkGnAzG/ou+nPgbAJVb9+wq2FA+KquvVy1Iviwvpmomt8UOrE+AxV5tb0wnZBUO
+	yvnJeaIva0BplKwLcaA1TZcMinpLrMQaHEzRzX5t5vDr/VeapA6S9kjSKMvNWgDMu2SP3tqxkiU3+
+	DVUoRlsgUivrIIYl6wjWG7f8Ks5XBnZDhMej+X2q11KKcL0i5KHxN3NNlPvubznieI/fqvleoDom+
+	VmJuWB/wau8f3zID+h7RvXQmXUDfnHWkqiUONOxbUFpx81n11wKAKwyXTbRhA0Dvdtis5HeG12GQ1
+	9y8227oUBQNTXERzuS5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7aNU-00CnEw-0q;
-	Fri, 09 Jun 2023 11:34:00 +0000
+	id 1q7abv-00Covl-30;
+	Fri, 09 Jun 2023 11:48:55 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7aNR-00CnEA-03;
-	Fri, 09 Jun 2023 11:33:58 +0000
+	id 1q7abr-00Cour-2f;
+	Fri, 09 Jun 2023 11:48:53 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 7367A5FD8E;
-	Fri,  9 Jun 2023 14:33:53 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id 981665FD8E;
+	Fri,  9 Jun 2023 14:48:48 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1686310433;
-	bh=qmsUUrKjh9rocfbKKmAgXks3LyDsbEzfMxmSKs8SSec=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=JNN0kYD2b7pB8HqD25tK7WRIPj/k8oy9ySUby84vB48sjGXvi9TWgh1aCNnKF+ssu
-	 rsYL78qY0DHIu4k4YgLErkoIIel47jiEb4KAlbRJwVeJY5E9cA57IieG/mPk1/y2BG
-	 5NL+Hr6eAOETPD5fhPQ9yDTZ58i3YQOGjzi2DpsQdFinres3zw8D+AP/U3vJzSUcda
-	 s66NowvQ5XsrRTV01DRJZS2v10EVtZaRW6pIlfdoiCi3TlrN3Wh9ALyW39LVyGt6wX
-	 2Dnas4zsFSxGGlxucpXPVxKdZwWIc8hnmrobvO6XBWZIjrEpqyLHjQ1713aF1QukE3
-	 hmpSGisy4vI2A==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+	s=mail; t=1686311328;
+	bh=i8mNs2rF54Ol0kXxFcSbg3Rj4NqvtmjvBxJgpQRfSPo=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+	b=Q1l9oXPeAJIm6jGSa7PBxKhYShkKytHT8QEWYzUuWbL0hPQZe+Yb2+gd+DWbuRzCi
+	 ukswtpwIlfYtlogBMoLh0dN5S6QooTbhfVnq+Pzwx9tB4zaPUWAVrOywWB/7ttvRj3
+	 MqhqWtFav0ojgOn7ukSYBc9n82vclzjSgeLEFponi1wdJvw6+Snxi8iqm56F7qQaIq
+	 wLyu3Aok17REBop1qvsHizZf5+aFOW4+yRTvLGDQZCrYwk/VI1gvw7/1FNokj15gXq
+	 1ZeXEaahADg9F4vRxXpljKbt1QTF4qTG1jVcTWdsMSF3rR0dqpF9WJ8q3Jur6ifVv3
+	 2KDO+bqdWIWiA==
+Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Fri,  9 Jun 2023 14:33:52 +0300 (MSK)
-From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
-	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
-	<AVKrasnov@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v3] mtd: rawnand: meson: check buffer length
-Date: Fri, 9 Jun 2023 14:28:39 +0300
-Message-ID: <20230609112840.2325455-1-AVKrasnov@sberdevices.ru>
-X-Mailer: git-send-email 2.35.0
+	Fri,  9 Jun 2023 14:48:48 +0300 (MSK)
+Date: Fri, 9 Jun 2023 14:48:47 +0300
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+CC: Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette
+	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Kevin Hilman
+	<khilman@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 03/18] clk: meson: migrate a1 clock drivers out of
+ hw_onecell_data to drop NR_CLKS
+Message-ID: <20230609114847.x24by2foebojbchq@CAB-WSD-L081021>
+References: <20230607-topic-amlogic-upstream-clkid-public-migration-v1-0-9676afa6b22c@linaro.org>
+ <20230607-topic-amlogic-upstream-clkid-public-migration-v1-3-9676afa6b22c@linaro.org>
+ <1jlegu9l5d.fsf@starbuckisacylon.baylibre.com>
+ <638206ba-e2da-bb8e-a2e4-138af84648b4@linaro.org>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <638206ba-e2da-bb8e-a2e4-138af84648b4@linaro.org>
+User-Agent: NeoMutt/20220415
 X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
 X-KSMG-Rule-ID: 4
 X-KSMG-Message-Action: clean
 X-KSMG-AntiSpam-Status: not scanned, disabled by settings
@@ -68,8 +75,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/09 07:08:00 #21465535
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230609_043357_439724_5721C9DC 
-X-CRM114-Status: GOOD (  14.99  )
+X-CRM114-CacheID: sfid-20230609_044852_238080_C63DA42F 
+X-CRM114-Status: GOOD (  22.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,136 +93,142 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Meson NAND controller has limited buffer length, so check it before
-command execution to avoid length trim. Also check MTD write size on
-chip attach.
+Hello Neil,
 
-Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
----
- Changelog:
+On Thu, Jun 08, 2023 at 02:53:50PM +0200, Neil Armstrong wrote:
+> On 08/06/2023 14:45, Jerome Brunet wrote:
+> > > +struct meson_a1_pll_clks {
+> > > +	struct clk_hw **hw_clks;
+> > > +	unsigned int hw_clk_num;
+> > > +};
+> > > +
+> > > +static struct meson_a1_pll_clks a1_pll_clks = {
+> > > +	.hw_clks = a1_pll_hw_clks,
+> > > +	.hw_clk_num = ARRAY_SIZE(a1_pll_hw_clks),
+> > > +};
+> > > +
+> > > +static struct clk_hw *meson_a1_pll_hw_get(struct of_phandle_args *clkspec, void *clk_data)
+> > > +{
+> > > +	const struct meson_a1_pll_clks *data = clk_data;
+> > > +	unsigned int idx = clkspec->args[0];
+> > > +
+> > > +	if (idx >= data->hw_clk_num) {
+> > > +		pr_err("%s: invalid index %u\n", __func__, idx);
+> > > +		return ERR_PTR(-EINVAL);
+> > > +	}
+> > > +
+> > > +	return data->hw_clks[idx];
+> > > +}
+> > 
+> > I'd prefer to have a single struct type and and single custom
+> > callback for the different SoC please.
+> 
+> Sure, I've written a common code for that, but I have a hard time finding
+> a proper naming for it... so I choosed meson-clkc since it could have
+> more common helper code for duplicated code over the clk driver:
+> 
+> ===================================><============================================================================
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index 8ce846fdbe43..9070dcfd9e71 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -30,6 +30,9 @@ config COMMON_CLK_MESON_VID_PLL_DIV
+>  	tristate
+>  	select COMMON_CLK_MESON_REGMAP
+> 
+> +config COMMON_CLK_MESON_CLKC
+> +	tristate
+> +
+>  config COMMON_CLK_MESON_AO_CLKC
+>  	tristate
+>  	select COMMON_CLK_MESON_REGMAP
+> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+> index d5288662881d..13c6db466986 100644
+> --- a/drivers/clk/meson/Makefile
+> +++ b/drivers/clk/meson/Makefile
+> @@ -1,6 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  # Amlogic clock drivers
+> 
+> +obj-$(CONFIG_COMMON_CLK_MESON_CLKC) += meson-clkc.o
+>  obj-$(CONFIG_COMMON_CLK_MESON_AO_CLKC) += meson-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_MESON_CPU_DYNDIV) += clk-cpu-dyndiv.o
+>  obj-$(CONFIG_COMMON_CLK_MESON_DUALDIV) += clk-dualdiv.o
+> diff --git a/drivers/clk/meson/meson-clkc.c b/drivers/clk/meson/meson-clkc.c
+> new file mode 100644
+> index 000000000000..fa98b9d09011
+> --- /dev/null
+> +++ b/drivers/clk/meson/meson-clkc.c
+> @@ -0,0 +1,25 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+> + */
+> +
+> +#include <linux/of_device.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/module.h>
+> +#include "meson-clkc.h"
+> +
+> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data)
+> +{
+> +	const struct meson_clk_hw_data *data = clk_hw_data;
+> +	unsigned int idx = clkspec->args[0];
+> +
+> +	if (idx >= data->num) {
+> +		pr_err("%s: invalid index %u\n", __func__, idx);
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	return data->hws[idx];
+> +}
+> +EXPORT_SYMBOL_GPL(meson_clk_hw_get);
+> +
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/clk/meson/meson-clkc.h b/drivers/clk/meson/meson-clkc.h
+> new file mode 100644
+> index 000000000000..e3bad2aa17eb
+> --- /dev/null
+> +++ b/drivers/clk/meson/meson-clkc.h
+> @@ -0,0 +1,19 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+> + */
+> +
+> +#ifndef __MESON_HW_CLKC_H__
+> +#define __MESON_HW_CLKC_H__
+> +
+> +#include <linux/of_device.h>
+> +#include <linux/clk-provider.h>
+> +
+> +struct meson_clk_hw_data {
+> +	struct clk_hw	**hws;
+> +	unsigned int	num;
+> +};
+> +
+> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data);
+> +
+> +#endif
+> ===================================><============================================================================
+> 
+> If it's ok I'll send a v2 using this.
+> 
+> Thanks,
+> Neil
 
- v1 -> v2:
- * Move checks from 'switch/case' which executes commands in 'meson_nfc_exec_op()'
-   to a special separated function 'meson_nfc_check_op()' which is called before
-   commands processing.
- v2 -> v3:
- * Check value returned from 'meson_nfc_check_op()' in separated 'if()', e.g.
-   without ORing it with 'check_only'.
+In addition, I propose consolidating the probe() routine of the a1
+clocks into a common part, which can be utilized for s4 and other
+similar clocks. This solution was presented in the early a1 review
+stages of this patch set.
 
- drivers/mtd/nand/raw/meson_nand.c | 46 +++++++++++++++++++++++++++++--
- 1 file changed, 43 insertions(+), 3 deletions(-)
+https://lore.kernel.org/linux-amlogic/20221201225703.6507-7-ddrokosov@sberdevices.ru/
 
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index 074e14225c06..5c034988cd13 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -108,6 +108,8 @@
- 
- #define PER_INFO_BYTE		8
- 
-+#define NFC_CMD_RAW_LEN	GENMASK(13, 0)
-+
- struct meson_nfc_nand_chip {
- 	struct list_head node;
- 	struct nand_chip nand;
-@@ -280,7 +282,7 @@ static void meson_nfc_cmd_access(struct nand_chip *nand, int raw, bool dir,
- 
- 	if (raw) {
- 		len = mtd->writesize + mtd->oobsize;
--		cmd = (len & GENMASK(13, 0)) | scrambler | DMA_DIR(dir);
-+		cmd = len | scrambler | DMA_DIR(dir);
- 		writel(cmd, nfc->reg_base + NFC_REG_CMD);
- 		return;
- 	}
-@@ -544,7 +546,7 @@ static int meson_nfc_read_buf(struct nand_chip *nand, u8 *buf, int len)
- 	if (ret)
- 		goto out;
- 
--	cmd = NFC_CMD_N2M | (len & GENMASK(13, 0));
-+	cmd = NFC_CMD_N2M | len;
- 	writel(cmd, nfc->reg_base + NFC_REG_CMD);
- 
- 	meson_nfc_drain_cmd(nfc);
-@@ -568,7 +570,7 @@ static int meson_nfc_write_buf(struct nand_chip *nand, u8 *buf, int len)
- 	if (ret)
- 		return ret;
- 
--	cmd = NFC_CMD_M2N | (len & GENMASK(13, 0));
-+	cmd = NFC_CMD_M2N | len;
- 	writel(cmd, nfc->reg_base + NFC_REG_CMD);
- 
- 	meson_nfc_drain_cmd(nfc);
-@@ -899,6 +901,31 @@ meson_nand_op_put_dma_safe_output_buf(const struct nand_op_instr *instr,
- 		kfree(buf);
- }
- 
-+static int meson_nfc_check_op(struct nand_chip *chip,
-+			      const struct nand_operation *op)
-+{
-+	int op_id;
-+
-+	for (op_id = 0; op_id < op->ninstrs; op_id++) {
-+		const struct nand_op_instr *instr;
-+
-+		instr = &op->instrs[op_id];
-+
-+		switch (instr->type) {
-+		case NAND_OP_DATA_IN_INSTR:
-+		case NAND_OP_DATA_OUT_INSTR:
-+			if (instr->ctx.data.len > NFC_CMD_RAW_LEN)
-+				return -ENOTSUPP;
-+
-+			break;
-+		default:
-+			break;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int meson_nfc_exec_op(struct nand_chip *nand,
- 			     const struct nand_operation *op, bool check_only)
- {
-@@ -907,8 +934,13 @@ static int meson_nfc_exec_op(struct nand_chip *nand,
- 	const struct nand_op_instr *instr = NULL;
- 	void *buf;
- 	u32 op_id, delay_idle, cmd;
-+	int err;
- 	int i;
- 
-+	err = meson_nfc_check_op(nand, op);
-+	if (err)
-+		return err;
-+
- 	if (check_only)
- 		return 0;
- 
-@@ -1181,6 +1213,7 @@ static int meson_nand_attach_chip(struct nand_chip *nand)
- 	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
- 	struct mtd_info *mtd = nand_to_mtd(nand);
- 	int nsectors = mtd->writesize / 1024;
-+	int raw_writesize;
- 	int ret;
- 
- 	if (!mtd->name) {
-@@ -1192,6 +1225,13 @@ static int meson_nand_attach_chip(struct nand_chip *nand)
- 			return -ENOMEM;
- 	}
- 
-+	raw_writesize = mtd->writesize + mtd->oobsize;
-+	if (raw_writesize > NFC_CMD_RAW_LEN) {
-+		dev_err(nfc->dev, "too big write size in raw mode: %d > %ld\n",
-+			raw_writesize, NFC_CMD_RAW_LEN);
-+		return -EINVAL;
-+	}
-+
- 	if (nand->bbt_options & NAND_BBT_USE_FLASH)
- 		nand->bbt_options |= NAND_BBT_NO_OOB;
- 
+Maybe, it can be generalized for the all meson clock controller drivers.
+
 -- 
-2.35.0
-
+Thank you,
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
