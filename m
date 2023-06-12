@@ -4,59 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C87A1C7EE2F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Jun 2023 18:23:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56EC0C7EE2E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Jun 2023 20:25:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
-	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QC0Xm77syqZoiec5YRQw3z7+hLW+zu2eBVOFEtyPCpg=; b=0prQZV3JD11NxE
-	AmQmr+0XUVwOQ2pz9q3QaRIx7IHLxA8VCHrcH92T2aBwrDDzZVKG8CQ8t0AkqnZMtImoi8IlneYD+
-	bzT2FBcVEMsR3I0Oe6aD+f6gEAzB+taeNmvCGAvlQbUPLXo7RHM+Sx2SIhhyWj2tM+FtmWYHSjns7
-	BmVj4qsbl74Id806fBg4FLwEgZ3n1BnJZ/L+V8zaB3OpVx6kW3RJoGTf0o3vftOjq1MQNb4fhXGof
-	G+8/3KgpceMYJUeA0hJHCdu2QzuKbngsXdWBLVk/Nzy38/RCSLTgIw6QGA11/rbc2/SD5MRYY9mKA
-	Y/JAV1tvLz69XWTbxQXA==;
+	List-Owner; bh=bt5t1mifgtb6uMhOq12OtqAZbuWmWZaFnjtelC1/pFc=; b=Y9MKo4Uwlr4e70
+	oLWCB7QtBK7PCmrNd8VrpuYj4FDGk80HEpcWKkv7mk2Hs4V01D1htRIp48LgK0qwfFstm0isM3DbX
+	j/+nXVaOk3894Sd1afhaGMMkziO5i3+lHCY1KPYtjzK+BFzh40/TP4jpRRto+3nfeFT9phMQxjLjs
+	uygJX5fdMsqwQAs+9dTH3UI6T3IR4BLg67Fe63/Oue7xGFIpT78epT+edq0JqtlB62pk9NPOn09Nv
+	edoRLhvqCJHDCsqxwUtju76R0aGXUEpdjEN10X+g+8M0r+q+7eFxQZCfGkUMvKjKFIPqPAflPVZ9m
+	EtxkAvN+Oo3SW43x3Khg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q8mC7-004vLv-2E;
-	Mon, 12 Jun 2023 18:23:11 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1q8o67-005GaW-0a;
+	Mon, 12 Jun 2023 20:25:07 +0000
+Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q8mC4-004vJr-1U
-	for linux-amlogic@lists.infradead.org;
-	Mon, 12 Jun 2023 18:23:09 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 0AE256232A;
-	Mon, 12 Jun 2023 18:23:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64005C4339E;
-	Mon, 12 Jun 2023 18:23:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1686594186;
-	bh=WyvhCdaTbuSl+hj8YxIif3NWK70yovwmlYcBoHz6jNc=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=ExeIaOqg7ko8a2XqHAudSRpTI1/nXrGu/iBGKg88j9AGEoNvuOIAUkPfc5y8sMlt1
-	 0h06+QuIY4nMmMBxtBXpkLRj4+gtVWoDTH7B56GWzUmbfJ6X34kfXoqxPjaKzPxSKH
-	 4io3wwz7oRen5Uuw1/2pZsEmaNtP0jz94hkZqBJRE2SfLh2ZZwo7ufxyqA2iIWm52s
-	 TOY5fldy9sMEYfRuUlVOJqDSGhZkYtSnXOk9o+dFS0m/NOwLc+U0OykdoWJL6VQcbN
-	 lLne28FCD4BBZ6p2/YT4dEm1oYR/V749xJ2A9LMPI1jDVMkwt5TNcjTjWgoQaXjeZI
-	 fg3szMZGxBw2A==
-Message-ID: <9a3239dc68473e8f7145e6036e3a4298.sboyd@kernel.org>
+	id 1q8o62-005GYe-2a;
+	Mon, 12 Jun 2023 20:25:04 +0000
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-977c89c47bdso861230266b.2;
+        Mon, 12 Jun 2023 13:24:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20221208; t=1686601498; x=1689193498;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P5rGJiRfcY9q4io21i6v5+UGLN2TIvQIc+ZeIBoHNMI=;
+        b=rsq5aBp+h543P3f1o3uOlrJ8+ZkTet7FJQe0k6hVEjPCXqE28A45C5qoCMSyUA6G5n
+         OqpttFi85EOTuvmrZ+ZfUgEtFjNl15FF1rsJknRqFK6XivcOL9BEdGsUZtp5j41IdKES
+         P1g5rhE3yY3mhyU+DeojvzCdFMoKrbu0n86CfXvZj5yWxGkNH2nRgHQjErj9oNsu8T+J
+         FFnA7Rlbg8DBc6b6I3qcwaWrSTwmMbG7JkxxecO9Xwe3TMs4QOEAIjTvvI72DmTqHGGS
+         /edOsT5igvHJ2n+Y7nzLroR1k5ywT5n+yfUwRVda0Kbx/fJVZZQiYD58mEMRbL9Iph1u
+         ZHLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686601498; x=1689193498;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=P5rGJiRfcY9q4io21i6v5+UGLN2TIvQIc+ZeIBoHNMI=;
+        b=fEJx7vvZsm3h6RhigmRB0aEKqXxtffmkRdogriHCygoDwsU3sgshsf4+Dh1Jgw7nKG
+         mYqnta/8iUmyKudRJR7g8uMrS9HNeyxc9vicOvjU14vQr0U68HT1+8+Jpvavqciy5fky
+         LMBzdsCo1hRf2e+KDaYh3mmkKWMIlgMSAxXjilk9TqhfoWkbIocbDUNDlLygKmpF1Ax9
+         RlEc7JJ7Fv9DAnpI+a3N4b4ECw0UVYcb7FrMPTMP1oE0W96Zng3CEIhJKgg1alLf42Gf
+         vprT/gTQxurwqPSnyOxO8Nja52rphMSsxpsgUHt8Kn/F4xs5/2/4pSP6MVF1bC6Jugzv
+         EhDg==
+X-Gm-Message-State: AC+VfDyuLF44lA7ix8m53NIwbYayIc3DpXy/iWV9FAIdbKPK01T91pP6
+	9659UIhSDUqx3h8Uu8oE7EhFYmvkwhbF/MdhafU=
+X-Google-Smtp-Source: ACHHUZ4E0TWnsoyvUR7I33Kr/9TqSPqf+D2KoUdwkY2FAuQN2/ySPcvpG1fooy3zg7oLEm0Lwr/W0Iinb3bBwvZut0o=
+X-Received: by 2002:a17:907:60cd:b0:982:26c4:e4b0 with SMTP id
+ hv13-20020a17090760cd00b0098226c4e4b0mr1806618ejc.6.1686601498264; Mon, 12
+ Jun 2023 13:24:58 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1j1qik7lrg.fsf@starbuckisacylon.baylibre.com>
-References: <1j1qik7lrg.fsf@starbuckisacylon.baylibre.com>
-Subject: Re: [GIT PULL]: clk: meson: amlogic updates for v6.5
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org, AML <linux-amlogic@lists.infradead.org>, Kevin Hilman <khilman@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Date: Mon, 12 Jun 2023 11:23:04 -0700
-User-Agent: alot/0.10
+References: <9d28466de1808ccc756b4cc25fc72c482d133d13.1686403934.git.christophe.jaillet@wanadoo.fr>
+In-Reply-To: <9d28466de1808ccc756b4cc25fc72c482d133d13.1686403934.git.christophe.jaillet@wanadoo.fr>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 12 Jun 2023 22:24:47 +0200
+Message-ID: <CAFBinCBC3Cg_1UaYTxqq21-1pQ+cnT6VfL7kmQn0+v+26hiv_w@mail.gmail.com>
+Subject: Re: [PATCH] usb: dwc3-meson-g12a: Fix an error handling path in dwc3_meson_g12a_probe()
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Felipe Balbi <balbi@kernel.org>, Yue Wang <yue.wang@amlogic.com>, 
+	Hanjie Lin <hanjie.lin@amlogic.com>, linux-kernel@vger.kernel.org, 
+	kernel-janitors@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230612_112308_569433_095C5834 
-X-CRM114-Status: UNSURE (   8.75  )
+X-CRM114-CacheID: sfid-20230612_132502_842910_D42FA4A0 
+X-CRM114-Status: UNSURE (   7.89  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -69,37 +88,22 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jerome Brunet (2023-06-09 07:25:30)
-> Hi Stephen,
-> 
-> Here are the amlogic clock updates for v6.5
-> Please pull
-> 
-> Cheers
-> Jerome
-> 
-> The following changes since commit ac9a78681b921877518763ba0e89202254349d1b:
-> 
->   Linux 6.4-rc1 (2023-05-07 13:34:35 -0700)
-> 
-> are available in the Git repository at:
-> 
->   https://github.com/BayLibre/clk-meson.git tags/clk-meson-v6.5-1
-> 
-> for you to fetch changes up to 84af914404dbc01f388c440cac72428784b8a161:
-> 
->   clk: meson: a1: add Amlogic A1 Peripherals clock controller driver (2023-05-30 17:53:09 +0200)
-> 
-> ----------------------------------------------------------------
-
-Thanks. Pulled into clk-next
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gU2F0LCBKdW4gMTAsIDIwMjMgYXQgMzozMuKAr1BNIENocmlzdG9waGUgSkFJTExFVAo8Y2hy
+aXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI+IHdyb3RlOgo+Cj4gSWYgZHdjM19tZXNvbl9nMTJh
+X290Z19pbml0KCkgZmFpbHMsIHJlc291cmNlcyBhbGxvY2F0ZWQgYnkgdGhlIHByZXZpb3VzCj4g
+b2ZfcGxhdGZvcm1fcG9wdWxhdGUoKSBjYWxsIHNob3VsZCBiZSByZWxlYXNlZCwgYXMgYWxyZWFk
+eSBkb25lIGluIHRoZQo+IGVycm9yIGhhbmRsaW5nIHBhdGguCj4KPiBGaXhlczogMWUzNTVmMjFk
+M2ZiICgidXNiOiBkd2MzOiBBZGQgQW1sb2dpYyBBMSBEV0MzIGdsdWUiKQo+IFNpZ25lZC1vZmYt
+Ynk6IENocmlzdG9waGUgSkFJTExFVCA8Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI+ClJl
+dmlld2VkLWJ5OiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2ds
+ZW1haWwuY29tPgoKV2Ugc2hvdWxkIG1vdmUgdG8gZGV2bV9vZl9wbGF0Zm9ybV9wb3B1bGF0ZSgp
+IG1pZCB0ZXJtLgpUaGF0IHNhaWQsIHRoaXMgZml4IGlzIGdvb2QgZm9yIG5vdyBiZWNhdXNlIGl0
+J3Mgc2ltcGxlIGFuZCBjYW4gYmUgYmFja3BvcnRlZC4KCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4
+LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
