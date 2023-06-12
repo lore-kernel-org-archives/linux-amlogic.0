@@ -4,102 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89C8FC87FDD
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Jun 2023 09:58:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D665C7EE25
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Jun 2023 10:00:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
+	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Kms05xWqlQEtrKZNGt8Ww6GCX7lqcxGHFKYMbfn+Jvo=; b=3E5rTs01uzGUFt
-	ETJIgZIdNGUUkebA+xxa8eqVmCqZMWHYai9XSbH26cQbRysmUNNfJCbOkVxs5QdCtcV3vxMoHhAnZ
-	/X2axMlXTb04EGe7EN6n+Lqm9GQsSSn61ZbWbMJ4zHyEqyo/8zMI6MKpUqJgeMcymzUF/Rp3UBi+E
-	9v+/GVfRzk3oZhbPb8xV4U3IXy0rubSAQmnk3NmcfkvgZ2XmC6PB9O+1TLrt++muxIqvwpA8SQziZ
-	oE6oxPyITH+vf75187SiLv31KXdhBGma5H/RibgD9tt7vF/hykegjoSnDoaHRvny+Ref55JifKUH1
-	gGymm61zQAkklg+WuCPA==;
+	List-Owner; bh=DEd8JeZLgY0nCtunHWiMlM4ay6cLvvatJZW1FUkCY0o=; b=hM6yxmFCBBw2u/
+	jfyVZUw/sK9VnD8spIy1zPLk7U7CduqSkwACAHyRc7H5u3PdPoXdBUpzCv0LTwwCYmXq1LSxiqXjs
+	zSkho7uj7LV2aCI8DQT4myj+02F1mCzBIGu0+8rtaJl+yrkjCqGm3Zoj4Mj8bakpnLuTLwjeXsiwl
+	C7Mm4XeG5ce3VyXrnryKE6wzFt6qudfT0DtpnBuDNAWsk/8E4sGQw+HmnzfrCDfil+Cyo0OV7mie6
+	SRStuI/+FivSsXB9SJhVWmAk4nU1vFR0XFqjrIibvpQc/2dP2FE3LNf7EtflAZi5/GEpWTeVjTESU
+	z5jPJZ8GkyyTHi9iCsLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q8eJX-003OkP-1W;
-	Mon, 12 Jun 2023 09:58:19 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1q8eLX-003P8b-1n;
+	Mon, 12 Jun 2023 10:00:23 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q8eJ8-003OeK-2N
-	for linux-amlogic@lists.infradead.org;
-	Mon, 12 Jun 2023 09:57:55 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3f78a32266bso41614315e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 12 Jun 2023 02:57:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686563873; x=1689155873;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZL7F676qnGuDggNTxNbDvWwuuEoE9PWaV3K3eMeu4cY=;
-        b=ZJhQLvTlBIAKPJI07OjUieRfKmCPgu3j55886ScyUilRznd0SKbmB9apDzwj3Tqj5x
-         T2mNQh5iowlGKVkiZ46Gd/gpv2Wy6NLFSgVR5fHOR2OuGf+FGpOSwjaTeQA6cqOkxqxi
-         3V5qKAnPRZbMKSHHM+vb8Kxx8AtKnoqyKmQXRg0feNx3KfiMPFFMNV+0SfCdOT8jkNRZ
-         hxzcfi2tjr8eNPpACRfFNfA+kkK8JCUMn/qdcbcCga6vs6ozs+iUw/6GOLo9cezpdzZH
-         ou4dcgqHkqSRY4t3WmZm2auawHu6R8i0b6yoUAHQ3P66jX6iLlBbnzngM/sO0aDlCDwx
-         s0DQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686563873; x=1689155873;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZL7F676qnGuDggNTxNbDvWwuuEoE9PWaV3K3eMeu4cY=;
-        b=lc5wVdDPX22h7FnVcqHHRMt4M/t+2Hm2fpCHQikO4ilgH1hQ+b8p99RGi0SvbQdLGI
-         cyqKJUQBN5wHMBx4XpBEi9CEI1f+i2yMNiADpR+7R6c+O/I/qO90Ss4puA4E0fkXLxiZ
-         Uzw6zOA4sTRlseoNXf3FTdPFFJ1cHxedaiblX4OTf3+b+sMnJJFuSDqoy0s8MDZTL/+N
-         XONaQn6YTkFSosiw2PmFXd2XdyW/pGehk38zQW3I4JMznZ2V5jNeW/oN5Q5W32e5MccB
-         EnD6RIrX/Gp5/7Z7Fz2C8s2xW1ibKlMIuJOHC1Hiii/jC3kbVAlXrNtsu9PcPRg03vpM
-         ZWmg==
-X-Gm-Message-State: AC+VfDyzolgTRp+Qfrs40QQ0d96XHwBcsAOQstFL1QWkzg+p4YEZEkfo
-	bDUvLVV+UuXj2Kc8T+tlkkzcjlz2Df7Oc0vD7ax04w==
-X-Google-Smtp-Source: ACHHUZ7BccJFx+y0enM2+1OFciMk5fgTOpRVaVbW0GIHvdntA/ixkQVmIzJGCm0Fz09GTpZ2HrWoiA==
-X-Received: by 2002:a05:600c:2310:b0:3f7:4961:52aa with SMTP id 16-20020a05600c231000b003f7496152aamr6850138wmo.15.1686563873362;
-        Mon, 12 Jun 2023 02:57:53 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id f25-20020a7bcd19000000b003f7ff520a14sm10829525wmj.22.2023.06.12.02.57.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jun 2023 02:57:52 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 12 Jun 2023 11:57:36 +0200
-Subject: [PATCH v2 19/19] clk: meson: axg-audio: move bindings include to
- main driver
+	id 1q8eLV-003P7S-1b;
+	Mon, 12 Jun 2023 10:00:22 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id A4B6B62348;
+	Mon, 12 Jun 2023 10:00:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0CB2FC4339E;
+	Mon, 12 Jun 2023 10:00:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1686564020;
+	bh=fd4cfXXX+PL9XfONOIfuuKx40StrUtxc6WwcSiy9Q0U=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=iySDKzKjo2ln1pXfyHGboc5hcwaLHVMvCWUke2VRF5bgeoX98N71gYZkCcHpHo/Zr
+	 KPXU4P/6SiL1aZdnNOy+dMEtBittCA7FO5pGdj4YH54c/HLZs7RlNgAyn1qc/qfzzt
+	 Cm8zkDen8zagaz1Nt2NgpioXY8ewXECKmWDnuYmI/EE2sGKXJH38KiRxJ0ZmCKRue9
+	 BU+uf24apUEiKt3nzSzAzVg/caXGfR3XPr3yGXH/Us6xx6O15PeasrAGDFBnCegy+r
+	 sYCMX8FiKWa/abOjyjfkAc5t3rLogATn0XxT3eF4PP6h2YEkHUMYKFU8aDuSfh0sRU
+	 knDZCcGbLYRJA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id D81D1C395EC;
+	Mon, 12 Jun 2023 10:00:19 +0000 (UTC)
 MIME-Version: 1.0
-Message-Id: <20230607-topic-amlogic-upstream-clkid-public-migration-v2-19-38172d17c27a@linaro.org>
-References: <20230607-topic-amlogic-upstream-clkid-public-migration-v2-0-38172d17c27a@linaro.org>
-In-Reply-To: <20230607-topic-amlogic-upstream-clkid-public-migration-v2-0-38172d17c27a@linaro.org>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1218;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=tdQh/9l9bbOO/xduw4X55YNw4CGdSuUcP4MCwJ672SM=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkhuwMajJn0JjAA6/q5/GCSSK8FW4zQ5lCG+SLMeYI
- Y9WBiP+JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZIbsDAAKCRB33NvayMhJ0W5aD/
- kB1Y6fa+guMuUVS04lb4q/w0zkGu6tny+ys/DakB1hd8KJvHhB9usTDp1i/zA0MFmddC8Ob0H+pazF
- NrBuq9fvnuctYR3Fbx7dq0ou+i1TUGxkq9/OZz9GSawxSWipZ2gnc0Ld2EZN/FByH8xgRqodTtqaXf
- Xxls79k/mr3sixj+ETzANRfhTOCb+42jJ6yFvhh8FQ4e4/aM1TZILftVB5B9XfwTFDFTxM/Mg84gO1
- OAC7DsrVGUzXd5OHjlAqm2xjeE0/IPMeRDbEe7TYd5rgUgDF+LJeKLPsssWjkNjFYG94A5UFz9enGq
- 988wLDobKgDxDnom/raCWlFACKPYZfmttUKqgTv9u93ZF1ZJ3IYUxy4VNINPiC5DoCbVRgHSogG2JU
- Qq2V7yadzzrscVwIbY/pa6HEWmIFqN7aIYYn9Aab58jRx8a5g0pg36RALx81l6tHizpY1LE3rFIF4Y
- UElNq1G9Ywd9vh5GW04HOUI70sNCViR45IvrqNa4Cmk/v1U9dBqdNxsNsr6qVL9//MtD4bK6g0P0bZ
- yxqmHK1awPTy51C99Ft8VDS5WXPDHKM1v4dCmppgUo2tfDDHCjhfoFSKp2NNtYl5AAmeLeegYeLwAs
- Q0skahEYpqSvPYcn7QDPs/QN6teL0TcS/qIQ4B+pFLs60SMFt9idTFCoOiBQ==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Subject: Re: [PATCH] dt-bindings: net: drop unneeded quotes
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <168656401987.30960.9087751436682057307.git-patchwork-notify@kernel.org>
+Date: Mon, 12 Jun 2023 10:00:19 +0000
+References: <20230609140713.64701-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230609140713.64701-1-krzysztof.kozlowski@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, wens@csie.org, jernej.skrabec@gmail.com,
+ samuel@sholland.org, neil.armstrong@linaro.org, khilman@baylibre.com,
+ jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, opendmb@gmail.com,
+ florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, linux-imx@nxp.com, heiko@sntech.de,
+ nobuhiro1.iwamatsu@toshiba.co.jp, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, mripard@kernel.org,
+ vineetha.g.jaya.kumaran@intel.com, biao.huang@mediatek.com,
+ xiaoning.wang@nxp.com, david.wu@rock-chips.com, grygorii.strashko@ti.com,
+ nsekhar@ti.com, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230612_025754_775220_BFB89B6E 
-X-CRM114-Status: GOOD (  11.58  )
+X-CRM114-CacheID: sfid-20230612_030021_616171_E335A5DD 
+X-CRM114-Status: GOOD (  10.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,44 +89,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Now the clock ids are no more defined in private headers,
-cleanup and include the dt-bindings headers from the main
-driver file.
+Hello:
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- drivers/clk/meson/axg-audio.c | 2 ++
- drivers/clk/meson/axg-audio.h | 3 ---
- 2 files changed, 2 insertions(+), 3 deletions(-)
+This patch was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
 
-diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
-index 6917e35232b6..6aca231b1d81 100644
---- a/drivers/clk/meson/axg-audio.c
-+++ b/drivers/clk/meson/axg-audio.c
-@@ -21,6 +21,8 @@
- #include "clk-phase.h"
- #include "sclk-div.h"
- 
-+#include <dt-bindings/clock/axg-audio-clkc.h>
-+
- #define AUD_GATE(_name, _reg, _bit, _pname, _iflags) {			\
- 	.data = &(struct clk_regmap_gate_data){				\
- 		.offset = (_reg),					\
-diff --git a/drivers/clk/meson/axg-audio.h b/drivers/clk/meson/axg-audio.h
-index faf08748b205..01a3da19933e 100644
---- a/drivers/clk/meson/axg-audio.h
-+++ b/drivers/clk/meson/axg-audio.h
-@@ -65,7 +65,4 @@
- #define AUDIO_CLK81_CTRL	0x030
- #define AUDIO_CLK81_EN		0x034
- 
--/* include the CLKIDs which are part of the DT bindings */
--#include <dt-bindings/clock/axg-audio-clkc.h>
--
- #endif /*__AXG_AUDIO_CLKC_H */
+On Fri,  9 Jun 2023 16:07:12 +0200 you wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/net/allwinner,sun7i-a20-gmac.yaml     | 2 +-
+>  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml    | 2 +-
+>  .../devicetree/bindings/net/amlogic,meson-dwmac.yaml          | 2 +-
+>  Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml      | 2 +-
+>  Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml   | 2 +-
+>  Documentation/devicetree/bindings/net/mediatek-dwmac.yaml     | 2 +-
+>  Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml      | 2 +-
+>  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml     | 2 +-
+>  .../devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml        | 4 ++--
+>  .../devicetree/bindings/net/toshiba,visconti-dwmac.yaml       | 2 +-
+>  10 files changed, 11 insertions(+), 11 deletions(-)
 
+Here is the summary with links:
+  - dt-bindings: net: drop unneeded quotes
+    https://git.kernel.org/netdev/net-next/c/61ab5a060a57
+
+You are awesome, thank you!
 -- 
-2.34.1
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
 _______________________________________________
