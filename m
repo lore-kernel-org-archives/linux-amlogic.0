@@ -4,75 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D665C7EE25
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Jun 2023 10:00:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BA98C7EE25
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Jun 2023 10:02:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
-	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DEd8JeZLgY0nCtunHWiMlM4ay6cLvvatJZW1FUkCY0o=; b=hM6yxmFCBBw2u/
-	jfyVZUw/sK9VnD8spIy1zPLk7U7CduqSkwACAHyRc7H5u3PdPoXdBUpzCv0LTwwCYmXq1LSxiqXjs
-	zSkho7uj7LV2aCI8DQT4myj+02F1mCzBIGu0+8rtaJl+yrkjCqGm3Zoj4Mj8bakpnLuTLwjeXsiwl
-	C7Mm4XeG5ce3VyXrnryKE6wzFt6qudfT0DtpnBuDNAWsk/8E4sGQw+HmnzfrCDfil+Cyo0OV7mie6
-	SRStuI/+FivSsXB9SJhVWmAk4nU1vFR0XFqjrIibvpQc/2dP2FE3LNf7EtflAZi5/GEpWTeVjTESU
-	z5jPJZ8GkyyTHi9iCsLA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=RVJMxWZnoX9+ySjPXfz2XTx7H+QvAzDQBa0h5e80Vmc=; b=oRFZiQxvWRHSlGU5qT7/EutZWh
+	VPDdiphSUSEczUj/57DV9eWl+Io5k4CzvfHoLabntFWvBxfQWepjrL+CkiRZaacYqk0MT9aPGhKWT
+	cQ4QnddeFrHXdyDexJ0UKm8pobpbnujg8wGBz9tm2TiJ1aNJzbchKQOlONLheFKgy83SdMOmJn0AH
+	ri0yUP95sidvXk7qzSkuV9dnjvnrThe5VpzfWMGPgZOfyMGi/JKz+ibmnIArtouTnbEGgCOe8yDn1
+	UDxfd5WDAazkLuaXKY5oq5kuXyMi6qtU8wr9uda32CrhYlshcOq/0C48UFjM378jvozz/RtoeVtRG
+	Nen8DMVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q8eLX-003P8b-1n;
-	Mon, 12 Jun 2023 10:00:23 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1q8eNE-003PlP-1w;
+	Mon, 12 Jun 2023 10:02:08 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q8eLV-003P7S-1b;
-	Mon, 12 Jun 2023 10:00:22 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id A4B6B62348;
-	Mon, 12 Jun 2023 10:00:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 0CB2FC4339E;
-	Mon, 12 Jun 2023 10:00:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1686564020;
-	bh=fd4cfXXX+PL9XfONOIfuuKx40StrUtxc6WwcSiy9Q0U=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=iySDKzKjo2ln1pXfyHGboc5hcwaLHVMvCWUke2VRF5bgeoX98N71gYZkCcHpHo/Zr
-	 KPXU4P/6SiL1aZdnNOy+dMEtBittCA7FO5pGdj4YH54c/HLZs7RlNgAyn1qc/qfzzt
-	 Cm8zkDen8zagaz1Nt2NgpioXY8ewXECKmWDnuYmI/EE2sGKXJH38KiRxJ0ZmCKRue9
-	 BU+uf24apUEiKt3nzSzAzVg/caXGfR3XPr3yGXH/Us6xx6O15PeasrAGDFBnCegy+r
-	 sYCMX8FiKWa/abOjyjfkAc5t3rLogATn0XxT3eF4PP6h2YEkHUMYKFU8aDuSfh0sRU
-	 knDZCcGbLYRJA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id D81D1C395EC;
-	Mon, 12 Jun 2023 10:00:19 +0000 (UTC)
+	id 1q8eNB-003Pk7-2D
+	for linux-amlogic@lists.infradead.org;
+	Mon, 12 Jun 2023 10:02:06 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3f7ff69824dso25954335e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 12 Jun 2023 03:02:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686564124; x=1689156124;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=UJOXI7NWxaGlAMXmYuetibwBgSH1F/dmnVvJT284BrM=;
+        b=zTPoQQWJD84HcoJrFCn9mkD1PeO1xl6IsF1iIgYGywYMn17RqI5LlBb327geclH/U9
+         ii4dKWruN8SDX5m1E4gw0L1YjfGKDrsWd3Tzq8Okhb3lYLkVTXjhtkFxtKcwFKWjIIv/
+         c5wLuBzTtWFgxQ1Qb6TCT562Y6zKfZr+ZdHVF6Gw3NAVjaR+uYe1UO3dm8AoZ1HxEGhF
+         eARSyilgLoEe8WMoTJwo9oOoBFLYXUhf8hsLn1315iyCU4kUmU5OtpGHQlgfOiUKCzCd
+         wAXZj2ii6c+2+8Ghh22YG7poWtKRvnM6q+pGfyrRiT5WeTkDUxn7Q+Q6s1+juQJBdRDj
+         d/rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686564124; x=1689156124;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UJOXI7NWxaGlAMXmYuetibwBgSH1F/dmnVvJT284BrM=;
+        b=gwWqzOfu2epL/XvctuyQqGlcaa1khNtbV2Ir0CCzWsG6JV8Q6oRr4dUZ13wPwPQaz3
+         P6zUDVaGYf9uY6jHylvIVyVXJWAYCrlG9GlodMgs2LGpKvEhwLUzMCvGlv9Zzv21SyAF
+         IXhnpUcRtBs3bYzEU0oAExmCdc7r90iTsdvVLTSP1Q+COoChTxwr/WPcaYuE7xE8Sd53
+         tfSadQkrYFBRysQLHaHaX+f/eRpjHBYV85lweGwJj0LEvPbRyoHNe/3Vm4Hoi2ngRsFz
+         IgjtVbj4eShgSEBPW3EwkEZYpgw0WX+nH4W5DKME1YY05++HkHMEtIVC69rCegZks2av
+         6rlw==
+X-Gm-Message-State: AC+VfDx9XQWLw51gPxHMV6t/jEAiK7e2gnyKp6aV1bjwBqAnmq1H7HKr
+	zcZCMUmp6k/CNMb+KHiilvFSpA==
+X-Google-Smtp-Source: ACHHUZ4uehM4jQ8rsUJZWcL5ncSWhd7m36oC/WdXiwDlPhdGAUTl4fXk3Aq4tkLkq9IE3ADNKvU8Jw==
+X-Received: by 2002:a5d:6b43:0:b0:307:f75:f581 with SMTP id x3-20020a5d6b43000000b003070f75f581mr4652304wrw.18.1686564124203;
+        Mon, 12 Jun 2023 03:02:04 -0700 (PDT)
+Received: from [192.168.7.189] (679773502.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id c2-20020a5d5282000000b002fae7408544sm12009223wrv.108.2023.06.12.03.02.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Jun 2023 03:02:03 -0700 (PDT)
+Message-ID: <5cb3a029-2452-dbeb-691f-1c29ab7019bc@linaro.org>
+Date: Mon, 12 Jun 2023 12:02:02 +0200
 MIME-Version: 1.0
-Subject: Re: [PATCH] dt-bindings: net: drop unneeded quotes
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <168656401987.30960.9087751436682057307.git-patchwork-notify@kernel.org>
-Date: Mon, 12 Jun 2023 10:00:19 +0000
-References: <20230609140713.64701-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230609140713.64701-1-krzysztof.kozlowski@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, wens@csie.org, jernej.skrabec@gmail.com,
- samuel@sholland.org, neil.armstrong@linaro.org, khilman@baylibre.com,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, opendmb@gmail.com,
- florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, linux-imx@nxp.com, heiko@sntech.de,
- nobuhiro1.iwamatsu@toshiba.co.jp, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, mripard@kernel.org,
- vineetha.g.jaya.kumaran@intel.com, biao.huang@mediatek.com,
- xiaoning.wang@nxp.com, david.wu@rock-chips.com, grygorii.strashko@ti.com,
- nsekhar@ti.com, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] usb: dwc3-meson-g12a: Fix an error handling path in
+ dwc3_meson_g12a_probe()
+Content-Language: en-US
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Felipe Balbi <balbi@kernel.org>, Yue Wang <yue.wang@amlogic.com>,
+ Hanjie Lin <hanjie.lin@amlogic.com>
+Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+References: <9d28466de1808ccc756b4cc25fc72c482d133d13.1686403934.git.christophe.jaillet@wanadoo.fr>
+Organization: Linaro Developer Services
+In-Reply-To: <9d28466de1808ccc756b4cc25fc72c482d133d13.1686403934.git.christophe.jaillet@wanadoo.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230612_030021_616171_E335A5DD 
-X-CRM114-Status: GOOD (  10.99  )
+X-CRM114-CacheID: sfid-20230612_030205_727349_01AE342E 
+X-CRM114-Status: GOOD (  15.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,44 +99,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello:
-
-This patch was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
-
-On Fri,  9 Jun 2023 16:07:12 +0200 you wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+On 10/06/2023 15:32, Christophe JAILLET wrote:
+> If dwc3_meson_g12a_otg_init() fails, resources allocated by the previous
+> of_platform_populate() call should be released, as already done in the
+> error handling path.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Fixes: 1e355f21d3fb ("usb: dwc3: Add Amlogic A1 DWC3 glue")
+> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 > ---
->  .../devicetree/bindings/net/allwinner,sun7i-a20-gmac.yaml     | 2 +-
->  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml    | 2 +-
->  .../devicetree/bindings/net/amlogic,meson-dwmac.yaml          | 2 +-
->  Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml      | 2 +-
->  Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml   | 2 +-
->  Documentation/devicetree/bindings/net/mediatek-dwmac.yaml     | 2 +-
->  Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml      | 2 +-
->  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml     | 2 +-
->  .../devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml        | 4 ++--
->  .../devicetree/bindings/net/toshiba,visconti-dwmac.yaml       | 2 +-
->  10 files changed, 11 insertions(+), 11 deletions(-)
+>   drivers/usb/dwc3/dwc3-meson-g12a.c | 5 ++++-
+>   1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+> index 365aec00d302..e99c7489dba0 100644
+> --- a/drivers/usb/dwc3/dwc3-meson-g12a.c
+> +++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+> @@ -796,7 +796,7 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+>   
+>   	ret = dwc3_meson_g12a_otg_init(pdev, priv);
+>   	if (ret)
+> -		goto err_phys_power;
+> +		goto err_plat_depopulate;
+>   
+>   	pm_runtime_set_active(dev);
+>   	pm_runtime_enable(dev);
+> @@ -804,6 +804,9 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+>   
+>   	return 0;
+>   
+> +err_plat_depopulate:
+> +	of_platform_depopulate(dev);
+> +
+>   err_phys_power:
+>   	for (i = 0 ; i < PHY_COUNT ; ++i)
+>   		phy_power_off(priv->phys[i]);
 
-Here is the summary with links:
-  - dt-bindings: net: drop unneeded quotes
-    https://git.kernel.org/netdev/net-next/c/61ab5a060a57
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
