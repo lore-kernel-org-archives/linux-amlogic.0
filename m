@@ -4,86 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 419ECC88CB7
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jun 2023 12:56:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B360FEB64D0
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Jun 2023 15:40:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KEVUASlJazQifginQ2i/HIDxh1QxnSY8uh53zKQR59o=; b=BdBe8IMmt9dIcH
-	xx/7aKGWdnuHSVeMlA/t1JrbGoWp8ZuRGOI4OI+KKUTmBQYeZ83UwPPxo9fbXywXeP26ETvByNK+u
-	CnwLutSkmEvhaeW2+mwtlYXOR/ngUhilpRFUwLE372WAjLdWaImE2udq9H/1e3fpGisbvF5yoTOEJ
-	28RXDlBmz23SGYJET+dKeYy7GKBeWe7J1/4RVLS2ebZah8HqTN6mV99Gln9N8BX5rzEPrhEVYdyOm
-	vGyfNlLCO3dy2eHFBU3ZMuPFoqZ+W+kkHF7ChHMA7EPtzAp3t3WnU2Auf7w1vg+9upvUzCLWsCJUH
-	6zm1H+T3aMyvaZ9nTnhw==;
+	List-Owner; bh=Nh09MV1SFc0m83m4xZg0rb8bJ5n/V/s3lbkxbN6cWsI=; b=BXCRnRE+6oGQTN
+	AvuA3HWtEZ0SKZZ0KVvM7OfFqqz5/PRY/GbldnAVQ2w88DeBKYxgjXQ2cSIhGD+9Ye1yJLfKXdsbo
+	/n9E/xv+VEPcTxgIOlXLwKXoctm3iBJp5K2XIVOxztT6QECncCRngYQRMGKxQ4rLOqTBI4oxhkJWN
+	7A59c8sNefQPxfvWkfRiHxj6wLPRERlZ0tP7KbDn38GBnS+p7aE85gQMZ/dB7VXJD7ZmKCoENGqyH
+	e5syRVqxz6jeEAss7WCnM5hG+WmkQ9GbUYhbLoo/gUtOHvxenlx2PyDn9xZ1koOstdOhEAktGoX36
+	lVn9u+FsaNa/P0NeBVKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q93ZC-0086se-35;
-	Tue, 13 Jun 2023 12:56:10 +0000
-Received: from lelv0142.ext.ti.com ([198.47.23.249])
+	id 1q967p-008V7o-2z;
+	Tue, 13 Jun 2023 15:40:05 +0000
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q93Z6-0086rH-2J;
-	Tue, 13 Jun 2023 12:56:08 +0000
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35DCtlqE086407;
-	Tue, 13 Jun 2023 07:55:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1686660947;
-	bh=m3aWRYVccVyv3TBm3CQBhQSLQ8Afh0rwU1mPnybKOSM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=YbXTTZrIY+UGenKDmM/cnVARAJ7p9b2bkDm1ar7gDhRT7bIkCvpkwibosjYvgjLae
-	 63bZObWKZFTzLmbfN45ZlZJrDJ8wPl/j5e2se5bX19Uned4epzQ4Vb8vWd/pz3VDRN
-	 bBdHMeZYl0QWiJWF/oAMLaC8k8N6YWMk5xGFlFcU=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35DCtlO3121434
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 13 Jun 2023 07:55:47 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 13
- Jun 2023 07:55:47 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 13 Jun 2023 07:55:47 -0500
-Received: from [10.250.64.104] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35DCtZPm112555;
-	Tue, 13 Jun 2023 07:55:36 -0500
-Message-ID: <4ee9c4dc-7dfc-3cb8-089d-c1535ab2531c@ti.com>
-Date: Tue, 13 Jun 2023 18:25:34 +0530
+	id 1q967g-008V4B-0v
+	for linux-amlogic@lists.infradead.org;
+	Tue, 13 Jun 2023 15:40:04 +0000
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 38D923F26D
+	for <linux-amlogic@lists.infradead.org>; Tue, 13 Jun 2023 15:39:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1686670786;
+	bh=h2VB2F1nqgPgNlWNC2nzeOkEx2tuyJu/3uifBQZUmKY=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version;
+	b=XCfQUOHTdZNwT5QFhWtQ1Sb2JLC5AUvLO1sfDEqmkH79uFytWAxbyL6Ke/JchgDPI
+	 D61iZJfMCAfpKBwBkjxlaoqAQLvaIskHDx6qDGtilRDHk8Dbzsuf6eVhFXDzuhH8Yz
+	 LlH/M/1tWGTXZF2iXK9I/siSIV9aHOIODMRHwHqqDXcPIIZd4x/OmxNllBaW2sRERw
+	 hfeB6Tk95b2OfzgKSKD/O8990+I9Ajgrsbf265KKTeFMZ+vfkj3bF3oNWqwuzxWRvI
+	 TqaoV+xeWjaYGdk8aD2uqJJxj9JJrjVk0StTILy8m73T9lZfAbhOarPZeQhSij+aPg
+	 w/WFA+j7wuY5w==
+Received: by mail-wr1-f70.google.com with SMTP id ffacd0b85a97d-30fc7ab9ff3so953885f8f.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 13 Jun 2023 08:39:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686670784; x=1689262784;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=h2VB2F1nqgPgNlWNC2nzeOkEx2tuyJu/3uifBQZUmKY=;
+        b=VNS+RNln6ae1kbgmebnJxekDSsZbYFj9GZbMglgfPztQ9vks+3NhBiPqzS1Wf2tCAC
+         93/OmNFmwC1DqAZhYSY7LmJvIpq1OeDeHLQxr0PgC6xgjMQ3p3jwc9QV5hvFuLcBYu6G
+         UTthXSY4vfwasDfm7Nj6YpYy0HAxq5NzoFmkcnstaA1RhJEDJCH1VnRmP9jTGV2bNpGR
+         5vjJY/gBH3a1G4ZfWgSGlSzFA5959jP4gJlk45hP90H+mUEhEXkL3X2BT5L4Rqrep+Sj
+         UJd6cOt3YmLCbJdiNDy6WbJMeefG/Pef9+JL6UpAGvW8tV5ez4FUhA8mJrM5D9NibRpT
+         Foew==
+X-Gm-Message-State: AC+VfDzw8bhRUUtYPqFZbWSTjT0RwHnbCTn91UqDoj+33+sso7JQeSwu
+	Wx3vO1dmYvpU75Klm3Mi6cgRibopLaOjYE3dmabJ7HCL38s59E6CDyHXiPI69LIMrDSIf1Nol3x
+	q0D1mc433mO3fDdHm8DYgv+oheq9UHU+xW87ADNkRFPWJZkwl
+X-Received: by 2002:a05:6000:1248:b0:2f8:3225:2bc2 with SMTP id j8-20020a056000124800b002f832252bc2mr6846732wrx.41.1686670783784;
+        Tue, 13 Jun 2023 08:39:43 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ7u6y5BjGv0z8bT/LB9RrsvWeO5qrDCAe7zl2OSeRDtbWoTqJ0KQBMBeO8sS2CFGRWa+dBvvw==
+X-Received: by 2002:a05:6000:1248:b0:2f8:3225:2bc2 with SMTP id j8-20020a056000124800b002f832252bc2mr6846717wrx.41.1686670783535;
+        Tue, 13 Jun 2023 08:39:43 -0700 (PDT)
+Received: from localhost ([194.191.244.86])
+        by smtp.gmail.com with ESMTPSA id b5-20020adff905000000b0030aedb8156esm15556257wrr.102.2023.06.13.08.39.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jun 2023 08:39:43 -0700 (PDT)
+From: Juerg Haefliger <juerg.haefliger@canonical.com>
+To: juerg.haefliger@canonical.com
+Cc: gregkh@linuxfoundation.org,
+	jbrunet@baylibre.com,
+	khilman@baylibre.com,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-staging@lists.linux.dev,
+	martin.blumenstingl@googlemail.com,
+	mchehab@kernel.org,
+	narmstrong@baylibre.com,
+	linux-media@vger.kernel.org
+Subject: [PATCH v2 resend 2] media: meson: vdec: Add MODULE_FIRMWARE macro
+Date: Tue, 13 Jun 2023 17:39:39 +0200
+Message-Id: <20230613153939.152457-1-juerg.haefliger@canonical.com>
+X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20230126153258.1558471-1-juerg.haefliger@canonical.com>
+References: <20230126153258.1558471-1-juerg.haefliger@canonical.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v3 08/12] thermal/drivers/ti-soc: remove redundant msg in
- ti_thermal_expose_sensor()
-To: Yangtao Li <frank.li@vivo.com>, <glaroque@baylibre.com>,
-        <rafael@kernel.org>, <daniel.lezcano@linaro.org>, <amitk@kernel.org>,
-        <rui.zhang@intel.com>, <shawnguo@kernel.org>, <s.hauer@pengutronix.de>,
-        <kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
-        <thara.gopinath@gmail.com>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <anarsoul@gmail.com>, <tiny.windzz@gmail.com>, <wens@csie.org>,
-        <jernej.skrabec@gmail.com>, <samuel@sholland.org>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <edubezval@gmail.com>, <matthias.bgg@gmail.com>,
-        <angelogioacchino.delregno@collabora.com>, <bchihi@baylibre.com>,
-        <niklas.soderlund+renesas@ragnatech.se>, <wenst@chromium.org>
-CC: <linux-pm@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-sunxi@lists.linux.dev>,
-        <linux-tegra@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>
-References: <20230613114904.15749-1-frank.li@vivo.com>
- <20230613114904.15749-8-frank.li@vivo.com>
-Content-Language: en-US
-From: "J, KEERTHY" <j-keerthy@ti.com>
-In-Reply-To: <20230613114904.15749-8-frank.li@vivo.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230613_055604_855593_C36AB76E 
-X-CRM114-Status: GOOD (  10.19  )
+X-CRM114-CacheID: sfid-20230613_083956_730270_D76F1BB8 
+X-CRM114-Status: UNSURE (   8.83  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,38 +105,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+The meson-vdec module loads firmware so add MODULE_FIRMWARE macros to
+provide that information via modinfo.
 
+Signed-off-by: Juerg Haefliger <juerg.haefliger@canonical.com>
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
-On 6/13/2023 5:19 PM, Yangtao Li wrote:
-> The upper-layer devm_thermal_add_hwmon_sysfs() function can directly
-> print error information.
+---
+v2 resend 2:
+  - cc linux-media@vger.kernel.org
+v2:
+  - Drop duplicates
+  - Add Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/staging/media/meson/vdec/vdec_platform.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Acked-by: Keerthy <j-keerthy@ti.com>
+diff --git a/drivers/staging/media/meson/vdec/vdec_platform.c b/drivers/staging/media/meson/vdec/vdec_platform.c
+index 88c9d72e1c83..70c9fd7c8bc5 100644
+--- a/drivers/staging/media/meson/vdec/vdec_platform.c
++++ b/drivers/staging/media/meson/vdec/vdec_platform.c
+@@ -280,3 +280,12 @@ const struct vdec_platform vdec_platform_sm1 = {
+ 	.num_formats = ARRAY_SIZE(vdec_formats_sm1),
+ 	.revision = VDEC_REVISION_SM1,
+ };
++
++MODULE_FIRMWARE("meson/vdec/g12a_h264.bin");
++MODULE_FIRMWARE("meson/vdec/g12a_vp9.bin");
++MODULE_FIRMWARE("meson/vdec/gxbb_h264.bin");
++MODULE_FIRMWARE("meson/vdec/gxl_h264.bin");
++MODULE_FIRMWARE("meson/vdec/gxl_mpeg12.bin");
++MODULE_FIRMWARE("meson/vdec/gxl_vp9.bin");
++MODULE_FIRMWARE("meson/vdec/gxm_h264.bin");
++MODULE_FIRMWARE("meson/vdec/sm1_vp9_mmu.bin");
+-- 
+2.37.2
 
-> 
-> Signed-off-by: Yangtao Li <frank.li@vivo.com>
-> ---
->   drivers/thermal/ti-soc-thermal/ti-thermal-common.c | 3 +--
->   1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/drivers/thermal/ti-soc-thermal/ti-thermal-common.c b/drivers/thermal/ti-soc-thermal/ti-thermal-common.c
-> index 6a5335931f4d..d414a4b7a94a 100644
-> --- a/drivers/thermal/ti-soc-thermal/ti-thermal-common.c
-> +++ b/drivers/thermal/ti-soc-thermal/ti-thermal-common.c
-> @@ -182,8 +182,7 @@ int ti_thermal_expose_sensor(struct ti_bandgap *bgp, int id,
->   	ti_bandgap_write_update_interval(bgp, data->sensor_id,
->   					 TI_BANDGAP_UPDATE_INTERVAL_MS);
->   
-> -	if (devm_thermal_add_hwmon_sysfs(bgp->dev, data->ti_thermal))
-> -		dev_warn(bgp->dev, "failed to add hwmon sysfs attributes\n");
-> +	devm_thermal_add_hwmon_sysfs(bgp->dev, data->ti_thermal); >
->   	return 0;
->   }
 
 _______________________________________________
 linux-amlogic mailing list
