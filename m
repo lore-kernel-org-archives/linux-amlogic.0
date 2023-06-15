@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D720BEB64DB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jun 2023 21:25:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00175EB64D9
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jun 2023 21:27:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=sxrWtw0KshPiBBPdkT5c3T8K6e/JVY7OWuugl4ze0Rw=; b=JwzE2y4Riol9LNiNoK/YosMtdP
-	CEwRzbgz8YGURh57lQmsdYZV6n5L658wL1OjB5GSt8c0E9iwIM/8SIzbcK8+Rlj2eOFWraSBTCwNq
-	U48DhvOEvHVp5GtIZafQEFqHLHtoX/2j5KFTc3MqkTfXPi0FPxP28Hs5+SnnpMqcAAfa4dXgBjrbv
-	l3YpSeWeM1eypqdw0gWRoIhikqx+DKHOY6eEDaiUh57dv72qxRjmcWS+g6gR45sh/AdTFEH1zRk9F
-	Sf12FeUIemGbmWU+DKVZxFxSOrthbK2A/puR+P7fLDOOO82MJyKM6kk1aZ+iIep6xD63wT1AyJQ2a
-	chDoOGBw==;
+	bh=siGiv5rXipfXMl5fLn4j385sKK5SsdbqTSp6WcH/vHU=; b=27tIeU6gJvqf/fuWKwb+rc/KK2
+	ng2ZI6nrllLJuuakMdJ0TZOhcMLnThXN+aKrA9ItRAPZmvfyBe7OYrI9P5jcBrvTU0FcnoHG8iN6x
+	DVDAPMCbg598FJ9p49BAIWKT2A/AFChzVml4I5aWMX7CS974nrBdvArhtURRSRGmnY1UA/G1sEnN6
+	IgDJZM/qOj0R4iIgUCC4poXR+vvrZ0KThXwzakFF2pILlS+M0uP4HGT4s9SovoSWNq3DXL9sIEG/j
+	/sHdNqs/o15AYXiSZJfDrSC0LseRVMmjXay5XikNum3Z8c8mKlnQsG0HN5e0IdbmyZseSC/qJI1NE
+	QUUitHKg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q9uT0-00G8bR-2w;
-	Thu, 15 Jun 2023 21:25:18 +0000
+	id 1q9uVB-00G8wg-1m;
+	Thu, 15 Jun 2023 21:27:33 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q9uSy-00G8ak-2e;
-	Thu, 15 Jun 2023 21:25:18 +0000
+	id 1q9uV8-00G8wC-1V;
+	Thu, 15 Jun 2023 21:27:31 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 28D66624FD;
-	Thu, 15 Jun 2023 21:25:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0E29C433C0;
-	Thu, 15 Jun 2023 21:25:11 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 004D26147E;
+	Thu, 15 Jun 2023 21:27:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD0EEC433C0;
+	Thu, 15 Jun 2023 21:27:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1686864315;
-	bh=K6X6+yGOr0u4jtpNY3QmWXJpnuR1wcGYkKplOkZdv6o=;
+	s=k20201202; t=1686864449;
+	bh=ALGANjzm6/J+O+DAq+1CLu+C6MVxXzveFqp/gcnBs/0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Cc+cTxEe5oICYytKicVq9pzda7yeU4KddYdS8fSb2Oi1XhZc2cGaXcscQEP4VA0jd
-	 jUUeNFXN21SnexMeqLy+oVfYCAwqfjSWM6nfq60VTvpl/FCjipcKBFc1+ZTP3neWbE
-	 fat+4QMusVTAJW9eBVn7NryEUHl+lZIU8YGybvWMjG44U1y5DD2aZyw7HRkh+5xA2w
-	 QNocs42p9GQ/4O3Ry3gIOg4lwC6A6ax4u7+rOhLBo0q/4hKYimcX7OQN4/n+J/4CFf
-	 f/sTAHSFmECPhs3KKsBjkIbsO3g5sPAV9/0erYlm4XphWBlpbWxS8a6+uogMjEqhVX
-	 NFAzMnHBWqTgQ==
-Date: Thu, 15 Jun 2023 22:25:09 +0100
+	b=shOWV/ZcIlSXzE3GxkELJnE1r3QTlb56qQvnvWK3GZJ3qLqZaCQpbRnPQvLV6tWgA
+	 V144WtpDzS7XV1Aj19kI2BV0p37sj54S4LGmGPNd3YBeGowkuAUVKDUAm4u2jnvVYz
+	 QWCTQQVC7IL4gq+7+Q/bKh5zU7PEnBVbN1t7UWQLwhDUFLANmi3pQ/fGoFWL4DEoNy
+	 D00iydhaofJWU+M9JqpmSMsp8FI+uCWnrGsyejxk1/oHardkMktIJjZyxBuBkneNMM
+	 XUdz5MrUUWwHGR4NrpaGGqX6UBMjGaqMJjV/IsoGY4QXqFMdTg9uXPeCkfW6erA7Me
+	 Y2tadsYFpJ67w==
+Date: Thu, 15 Jun 2023 22:27:23 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Lucas Tanure <tanure@linux.com>
 Cc: Rob Herring <robh+dt@kernel.org>,
@@ -60,15 +60,16 @@ Cc: Rob Herring <robh+dt@kernel.org>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH 4/6] dt-bindings: serial: amlogic, meson-uart: support T7
-Message-ID: <20230615-mushroom-numeric-3a4c03f2204b@spud>
+Subject: Re: [PATCH 1/6] dt-bindings: arm: amlogic: add Amlogic T7 based
+ Khadas VIM4 bindings
+Message-ID: <20230615-fog-curdle-9f65083bf566@spud>
 References: <20230615182938.18487-1-tanure@linux.com>
- <20230615182938.18487-5-tanure@linux.com>
+ <20230615182938.18487-2-tanure@linux.com>
 MIME-Version: 1.0
-In-Reply-To: <20230615182938.18487-5-tanure@linux.com>
+In-Reply-To: <20230615182938.18487-2-tanure@linux.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230615_142516_958262_F91F4A0D 
-X-CRM114-Status: GOOD (  17.91  )
+X-CRM114-CacheID: sfid-20230615_142730_545281_FEF67A78 
+X-CRM114-Status: GOOD (  15.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,89 +81,75 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7805210655319604105=="
+Content-Type: multipart/mixed; boundary="===============5962210223517734083=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============7805210655319604105==
+--===============5962210223517734083==
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="9PPwfx0Ri3V89v+e"
+	protocol="application/pgp-signature"; boundary="jXKfiALBf1VGTDyb"
 Content-Disposition: inline
 
 
---9PPwfx0Ri3V89v+e
+--jXKfiALBf1VGTDyb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 15, 2023 at 07:29:36PM +0100, Lucas Tanure wrote:
-> Add serial bindings support menson T7 SoC family.
+On Thu, Jun 15, 2023 at 07:29:33PM +0100, Lucas Tanure wrote:
+> Add bindings for the Khadas Vim4 board.
 >=20
 > Signed-off-by: Lucas Tanure <tanure@linux.com>
-> ---
->  Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.=
-yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> index 01ec45b3b406..01b01f8840ea 100644
-> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> @@ -46,6 +46,7 @@ properties:
->            - amlogic,meson8b-uart
->            - amlogic,meson-gx-uart
->            - amlogic,meson-s4-uart
-> +          - amlogic,meson-t7-uart
 
-| diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_u=
-art.c
-| index 2501db5a7aaf..0208f9a6ba7e 100644
-| --- a/drivers/tty/serial/meson_uart.c
-| +++ b/drivers/tty/serial/meson_uart.c
-| @@ -796,6 +796,10 @@ static const struct of_device_id meson_uart_dt_match=
-[] =3D {
-|                 .compatible =3D "amlogic,meson-s4-uart",
-|                 .data =3D (void *)&meson_g12a_uart_data,
-|         },
-| +       {
-| +               .compatible =3D "amlogic,meson-t7-uart",
-| +               .data =3D (void *)&meson_g12a_uart_data,
-| +       },
-|         { /* sentinel */ },
-|  };
-|  MODULE_DEVICE_TABLE(of, meson_uart_dt_match);
-
-You're adding another element to this enum, but the driver change
-implies compatibility with the s4 uart. Should you not set this up with
-fallback compatibles?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
 Conor.
 
->        - description: Everything-Else power domain UART controller on G12=
-A SoCs
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documen=
+tation/devicetree/bindings/arm/amlogic.yaml
+> index 274ee0890312..1091abbae6a2 100644
+> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
+> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> @@ -159,6 +159,13 @@ properties:
+>            - const: amlogic,a311d
+>            - const: amlogic,g12b
+>=20
+> +      - description: Boards with the Amlogic Meson t7 A311D2 SoC
+> +        items:
+> +          - enum:
+> +              - khadas,vim4
+> +          - const: amlogic,a311d2
+> +          - const: amlogic,t7
+> +
+>        - description: Boards using the BPI-CM4 module with Amlogic Meson =
+G12B A311D SoC
 >          items:
->            - const: amlogic,meson-g12a-uart
+>            - enum:
 > --
 > 2.41.0
 >=20
 
---9PPwfx0Ri3V89v+e
+--jXKfiALBf1VGTDyb
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIuBtQAKCRB4tDGHoIJi
-0sHiAQDxClAxWU17Rv+IGrk8hN8JM+3GVl4CnDAYfxMkZkygFwD+PxzMGG5D/hOb
-Zr3S3egxrhFO4FzDUeuZrAUorATL1wc=
-=B/NH
+iHQEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIuCOwAKCRB4tDGHoIJi
+0oe6APdQWustpL6f/fQEXNP9dbgFp0Q3nqdvycHAzuRC4hksAQDpX2HgkB20oGAq
+YkU3TZJpHvsHbqasoWfjpTuPk/ClDQ==
+=WcwD
 -----END PGP SIGNATURE-----
 
---9PPwfx0Ri3V89v+e--
+--jXKfiALBf1VGTDyb--
 
 
---===============7805210655319604105==
+--===============5962210223517734083==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -173,5 +160,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============7805210655319604105==--
+--===============5962210223517734083==--
 
