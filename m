@@ -4,82 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9C0FEB64DB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jun 2023 10:38:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FFF6EB64DA
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jun 2023 18:30:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Yhk+OVOrJvUcbcC0NAd294LDa2VXHjs/H0HbygSf2do=; b=sJmZ7pPLm0LSSq
-	vyYNTRDar+d2LZ+TgLo08USIYQgn9pPLAHMG+FI/Ja7+42bJUb/tB/9ZApC9A6V20dMnUJcUcUeY+
-	nm7Bpjoqljg0NkeKzLfCgZ62AD2uyC7QxkQXUIgNZmvY0qVCnYft8pgULHmNmISUKcQB7wqEGUuQf
-	sXMn1kZcW38/kUs6OgW8OkjYDeIpRNnY3iW2tZrbuvM8fkfhoxtshBo1jv88NG2joUaTkSdGe+uzD
-	L/B2j3+Z1et28F6l+QsW2MBZFhBJJg3rG3cjzqa/cPFxDvulnOJDeaNRiyyJ9yJUMALqjMx7UFlWk
-	+WQ+r2CoZ/zi+6x+8THg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=y2+2DxoMabEt7pty96rVeiWVq1m8NAuLpArBpTGf6v4=; b=dMWWNrNamX/9z1
+	KZGbzGUPQVYBQ+LlEizr87XS7JO/YCvFUSEL5YPCpDwwBsI05ojPFaFsraI2keY/ajSAgFvX/Rktp
+	L6GZyjUuL41W5gxwGRGkcCm3nTOCupnRmb3rYDYmKlvgkeKWwPsgcsG0YapP3OWWP30x4+lvfzAM7
+	mcXbY8hopPpvRFnVLJp9SmkgAGCU5cPFU8sr5krVRvUTge8J36wcsBuCiHjP7uxDxxPbtlsXbVNcl
+	L3CP4WXN7zePX6AUaKpY6mAqBvBJTJV6SoF+KmTSjqUDbyU6CyA6HRaE3BKYPfZKmOYuEKi5Wtf+F
+	y0Y1rIwQu32e9lG1MuTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q9kMx-00ETcW-1Q;
-	Thu, 15 Jun 2023 10:38:23 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1q9rj8-00FkZP-0i;
+	Thu, 15 Jun 2023 18:29:46 +0000
+Received: from mail-wr1-f41.google.com ([209.85.221.41])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q9kMu-00ETb2-0m
-	for linux-amlogic@lists.infradead.org;
-	Thu, 15 Jun 2023 10:38:21 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f8d2bfed53so4822125e9.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 15 Jun 2023 03:38:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1686825498; x=1689417498;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:cc:to:from:user-agent:references:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2HhDvY5NOJAhj9HpoAeApwW1Xx3nbYDTiIZwJoccQUI=;
-        b=SNg6Oeo5SgROXY7rp+MSqrTKj/Ab2XYTPYa7yeactT2L5VC2QhH1RD7NqyBIEZ6kCf
-         3iT+uwZPq+L3N3ARWPGthtf0dngxReaq4LDrcT3nhbAFF0nWSo1KkCzdAbkHBgxaD/lO
-         itFgK671PZW7Sdh0D9gFnoKDxeII4hQX3zqD2/YWrMB+ODE+/4yg6YxjSUUISuPlxmGd
-         9KCwHfcouBOtRHQJNB7/E01+xlZud4iFDXUar5y+2y9UGq63YRi+I9Ms1fiYuu7TW4SL
-         KhIwx4bM9WeT0YQwpaRgI8xrXJHt+y6WKK7V+0XdDKHrffly+IT/uyOEQw5pySCeGHVV
-         /IVA==
+	id 1q9rj5-00FkXw-14;
+	Thu, 15 Jun 2023 18:29:44 +0000
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-31119a33ea8so656322f8f.2;
+        Thu, 15 Jun 2023 11:29:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686825498; x=1689417498;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:cc:to:from:user-agent:references:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=2HhDvY5NOJAhj9HpoAeApwW1Xx3nbYDTiIZwJoccQUI=;
-        b=IPb7OpyC4bIecCsXXV97r48AokqJyV16hsj6tikF7tBua6JkpA6Uug1E1d9Wdd8KWE
-         L6mVmyhB2zK+EGSXrEpKy9AQZViI/qo+jhQ7HzHRnVmMgYhAgVwjEGSHwNi1enVB8BAe
-         2H0+QaEYCEAUp2oS1BzC9cdCspQ82KzAimHEi3M/YI6SEoeKDn1RsfodtuxZy2R0aE6R
-         RwPvhVgOwDpaN9q1vj5jwimS7zw/LR0MKs/upYxg8t2W6zSJjgdW8coZnXp7HXr96u2Z
-         p05TjSMR3g7aRdKe5b2Ov6BNMGTjb7RTzs+gjQUy7y270E9Isvhuz1In07aVqEhl+QnN
-         5L6Q==
-X-Gm-Message-State: AC+VfDxv9P4wXKITEsE7FF85LeuApSxNO/GCLKGBJEzBcBitYdvSwLey
-	yLHDufLJGcB5RLR5OyBr6YUChg==
-X-Google-Smtp-Source: ACHHUZ7aLxl6u8Xy8keJRrva8YV/gEx7RIIAOGjxj2M3OsUhXtIj8GbKGcAVpQ/yJBbdCRNp057N8w==
-X-Received: by 2002:a05:600c:5562:b0:3f7:ba55:d03e with SMTP id ja2-20020a05600c556200b003f7ba55d03emr3885162wmb.6.1686825497863;
-        Thu, 15 Jun 2023 03:38:17 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id c12-20020a05600c0acc00b003f195d540d9sm20041465wmr.14.2023.06.15.03.38.17
+        d=1e100.net; s=20221208; t=1686853781; x=1689445781;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=c8i3hO6Asw9z4pBJsjq1JNXvz4oP43/hziP/VGcJWDw=;
+        b=bJlqXJL2hFXqykxJhExzG22JoUgAdnLOlDQFzmKWbZ/VyxJ5eVqdCGKyvEzcroIOTc
+         kbAXTQ9eOgMbkC3frrG4TFT7ukBw/Ou83eHnk+yAJNYGa0uBzMNWjV5sq1vRi7FGBZ1+
+         Wcam4f0zrek1qnovpSlusmYK51+j7ixOBE7xB+9hrde4sFsXhDQtH97PNNjcAgwYEhHU
+         CCliHX6hJlP/IBN47MtWhsX6GRV110gRK5g6mzTaq2qdzWNH3mCDQc6kQc9TWD3xBEec
+         K0yRfD4GFWBTPA4WblIPQ+0oZzCgMq/sd6Xcw8boPr43bTnIiMEBZ6pypjxIL3nyhHzT
+         R38Q==
+X-Gm-Message-State: AC+VfDw3HMT5fktIxQwtwWIa+BFzh2efZ2zmUsN1/m2E+ywSXiD4oG74
+	+UfhPUQplWxpdH34L2rD0Kc=
+X-Google-Smtp-Source: ACHHUZ5bNKCVo0ONW/4FCdjDRxW3DorS7WwJat8TD6mIj0BzMMV2c0ZYkNZEQqcZAdMqee8pptpPRQ==
+X-Received: by 2002:adf:f810:0:b0:30f:d32c:ed8e with SMTP id s16-20020adff810000000b0030fd32ced8emr4950226wrp.45.1686853781021;
+        Thu, 15 Jun 2023 11:29:41 -0700 (PDT)
+Received: from ryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
+        by smtp.gmail.com with ESMTPSA id c3-20020adffb03000000b0030ab5ebefa8sm21525887wrr.46.2023.06.15.11.29.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jun 2023 03:38:17 -0700 (PDT)
-References: <20230614084808.98819-1-jiapeng.chong@linux.alibaba.com>
- <CAFBinCBZFxx55HQM4a99vVwvXFaQThn8_F5B4uNS5x1AYzOupw@mail.gmail.com>
-User-agent: mu4e 1.8.13; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jiapeng Chong
- <jiapeng.chong@linux.alibaba.com>
-Cc: neil.armstrong@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
- khilman@baylibre.com, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Abaci Robot <abaci@linux.alibaba.com>
-Subject: Re: [PATCH] clk: meson: pll: remove unneeded semicolon
-Date: Thu, 15 Jun 2023 12:36:19 +0200
-In-reply-to: <CAFBinCBZFxx55HQM4a99vVwvXFaQThn8_F5B4uNS5x1AYzOupw@mail.gmail.com>
-Message-ID: <1j7cs52ep4.fsf@starbuckisacylon.baylibre.com>
+        Thu, 15 Jun 2023 11:29:40 -0700 (PDT)
+From: Lucas Tanure <tanure@linux.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Nick <nick@khadas.com>,
+	Artem <art@khadas.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-serial@vger.kernel.org,
+	Lucas Tanure <tanure@linux.com>
+Subject: [PATCH 0/6] Add Amlogic A311D2 and Khadas Vim4 Board Support
+Date: Thu, 15 Jun 2023 19:29:32 +0100
+Message-ID: <20230615182938.18487-1-tanure@linux.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230615_033820_300046_B75F9130 
-X-CRM114-Status: UNSURE (   6.38  )
+X-CRM114-CacheID: sfid-20230615_112943_391179_61344F3C 
+X-CRM114-Status: UNSURE (   8.85  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -92,24 +88,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Ck9uIFdlZCAxNCBKdW4gMjAyMyBhdCAyMjowOSwgTWFydGluIEJsdW1lbnN0aW5nbCA8bWFydGlu
-LmJsdW1lbnN0aW5nbEBnb29nbGVtYWlsLmNvbT4gd3JvdGU6Cgo+IE9uIFdlZCwgSnVuIDE0LCAy
-MDIzIGF0IDEwOjQ44oCvQU0gSmlhcGVuZyBDaG9uZwo+IDxqaWFwZW5nLmNob25nQGxpbnV4LmFs
-aWJhYmEuY29tPiB3cm90ZToKPj4KPj4gTm8gZnVuY3Rpb25hbCBtb2RpZmljYXRpb24gaW52b2x2
-ZWQuCj4+Cj4+IC4vZHJpdmVycy9jbGsvbWVzb24vY2xrLXBsbC5jOjM3MzoyLTM6IFVubmVlZGVk
-IHNlbWljb2xvbi4KPj4KPj4gUmVwb3J0ZWQtYnk6IEFiYWNpIFJvYm90IDxhYmFjaUBsaW51eC5h
-bGliYWJhLmNvbT4KPj4gQ2xvc2VzOiBodHRwczovL2J1Z3ppbGxhLm9wZW5hbm9saXMuY24vc2hv
-d19idWcuY2dpP2lkPTU1MzMKClJlbW92ZWQgdGhpcyBidWd6aWxsYSB0YWcgYW5kIGFkZGVkIGEg
-Zml4ZXMgdGFnOgpGaXhlczogYjZlYzQwMGFhMTUzICgiY2xrOiBtZXNvbjogaW50cm9kdWNlIG5l
-dyBwbGwgcG93ZXItb24gc2VxdWVuY2UgZm9yIEExIFNvQyBmYW1pbHkiKQoKPj4gU2lnbmVkLW9m
-Zi1ieTogSmlhcGVuZyBDaG9uZyA8amlhcGVuZy5jaG9uZ0BsaW51eC5hbGliYWJhLmNvbT4KPiBS
-ZXZpZXdlZC1ieTogTWFydGluIEJsdW1lbnN0aW5nbCA8bWFydGluLmJsdW1lbnN0aW5nbEBnb29n
-bGVtYWlsLmNvbT4KCkFwcGxpZWQgdGhyb3VnaCB0aGUgYW1sb2dpYyBjbG9jayB0cmVlLgpUaHgK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFt
-bG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRw
-Oi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+The Khadas VIM4 uses the Amlogic A311D2 SoC, based on the Amlogic
+Meson T7 SoC family. This chip is not the same as A311D used in Vim3
+board.
+
+Work based on Khadas 5.4 branch:
+https://github.com/khadas/linux/tree/khadas-vims-5.4.y
+
+Board Features:
+- 8GB LPDDR4X 2016MHz
+- 32GB eMMC 5.1 storage
+- 32MB SPI flash
+- 10/100/1000 Base-T Ethernet
+- AP6275S Wireless (802.11 a/b/g/n/ac/ax, BT5.1)
+- HDMI 2.1 video
+- HDMI Input
+- 1x USB 2.0 + 1x USB 3.0 ports
+- 1x USB-C (power) with USB 2.0 OTG
+- 3x LED's (1x red, 1x blue, 1x white)
+- 3x buttons (power, function, reset)
+- M2 socket with PCIe, USB, ADC & I2C
+- 40pin GPIO Header
+- 1x micro SD card slot
+
+Lucas Tanure (6):
+  dt-bindings: arm: amlogic: add Amlogic T7 based Khadas VIM4 bindings
+  dt-bindings: clock: Bindings for Meson T7 clock controller
+  clk: meson: t7: add peripheral clock controller
+  dt-bindings: serial: amlogic, meson-uart: support T7
+  tty: serial: meson: Added T7 SOC compatibility
+  arm64: dts: meson-t7-a311d2-khadas-vim4: add initial device-tree
+
+ .../devicetree/bindings/arm/amlogic.yaml      |    7 +
+ .../bindings/clock/amlogic,mesont7.yaml       |   69 +
+ .../bindings/serial/amlogic,meson-uart.yaml   |    1 +
+ arch/arm64/boot/dts/amlogic/Makefile          |    1 +
+ .../amlogic/meson-t7-a311d2-khadas-vim4.dts   |  112 +
+ arch/arm64/boot/dts/amlogic/meson-t7.dtsi     |  202 +
+ drivers/clk/meson/Kconfig                     |   17 +
+ drivers/clk/meson/Makefile                    |    1 +
+ drivers/clk/meson/t7.c                        | 8014 +++++++++++++++++
+ drivers/clk/meson/t7.h                        |  235 +
+ drivers/tty/serial/meson_uart.c               |    4 +
+ include/dt-bindings/clock/mesont7-clkc.h      |  487 +
+ 12 files changed, 9150 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,mesont7.yaml
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-t7.dtsi
+ create mode 100644 drivers/clk/meson/t7.c
+ create mode 100644 drivers/clk/meson/t7.h
+ create mode 100644 include/dt-bindings/clock/mesont7-clkc.h
+
+--
+2.41.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
