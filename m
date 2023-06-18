@@ -4,86 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C24FEB64D9
-	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Jun 2023 20:37:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA0A7EB64D7
+	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Jun 2023 05:56:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=R5qm9Cyc2QbtuOi4D5GZaEheX5wRsbQsL0d/9FDaXDQ=; b=jm/yjPn1hbuO3Y
-	vsjoKel/1dcxilHhuJs6hHqsnXN49LtaQFp7LH/H1mZgW6GS58CaCP7lrEPLUh4mYDNCVV7YPVFYD
-	FeSbKwOpPmb5uxmjlkN/XXFWO+35u1CxA8AsbRwCHTYwsrkuiYVEAXhN1qtJaS3iBrclRvkKUuZv4
-	yujWzXbS9c+G9rSmbEvTgIFZjvEDEReSozGCKvrPuldGvKwKcYcY2DMKGUoosMNzdLxi2XsiCBqXL
-	M43aY24cgNmKAkqefgFZJ3Ki6Os+oT1HBw+xavR/lcJMVF2aaRdGSLxBWcs3f/erPM/i5axHm5LQY
-	hMm9TyK5ukMTnQhVnBRw==;
+	List-Owner; bh=6eQWiReySt2b8S+exCidOYqLWlDWj+1BTry+ufbwiF4=; b=epvjXuJK11AT3/
+	BZvmDa8+ISrFBqk++8E11HNfYDrYCk1w2dUXEdYlfG8jMVBQ/0ngVAbvMUQmX1Uwor/NfKiU0EUMJ
+	hNT/5YmCazdO1isSaL7cMuUMbI0j2CI7rqdYhCXPL/pfg586x6TxUwYLAewsKfDIiB2xBscxiV9aC
+	U40zoNuRgSa4Xza58N0Y+MgBjwwYc73oW5ulo7m2MZ5AK+H6o0VXwwkruDdViowxy7oQ3gIAZkX8i
+	B4mZHfAAbpWvcnGo1MXDTwHgWpLcKPx3VuemrjIZKBzjMcf/e3ALHrUuelu9LN1Cjelomw1/MUkvu
+	YYTfLMXHABC0hc2H1+MA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qAcfI-004JiM-2u;
-	Sat, 17 Jun 2023 20:36:56 +0000
-Received: from mx01.omp.ru ([90.154.21.10])
+	id 1qAlOT-005CkT-0k;
+	Sun, 18 Jun 2023 05:56:09 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qAcfD-004Jcz-20;
-	Sat, 17 Jun 2023 20:36:52 +0000
-Received: from localhost.localdomain (178.176.79.248) by msexch01.omp.ru
- (10.188.4.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.986.14; Sat, 17 Jun
- 2023 23:36:38 +0300
-From: Sergey Shtylyov <s.shtylyov@omp.ru>
-To: Ulf Hansson <ulf.hansson@linaro.org>, <linux-mmc@vger.kernel.org>
-CC: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
-	<khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<stable@vger.kernel.org>
-Subject: [PATCH v3 02/12] mmc: meson-gx: fix deferred probing
-Date: Sat, 17 Jun 2023 23:36:12 +0300
-Message-ID: <20230617203622.6812-3-s.shtylyov@omp.ru>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20230617203622.6812-1-s.shtylyov@omp.ru>
-References: <20230617203622.6812-1-s.shtylyov@omp.ru>
+	id 1qAlOP-005Cjm-2f;
+	Sun, 18 Jun 2023 05:56:07 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-31122c346f4so2121428f8f.3;
+        Sat, 17 Jun 2023 22:56:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1687067762; x=1689659762;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+NX5ZV664S/3sQaZAuC+xeosJghTMxUMI70alZxPa5Y=;
+        b=paCHA7pjmnWe/IxKblZOvVLJCQMFIcAb2uKzUfv6t5CZ3G1g9hXPWQ58MUXkuXmstv
+         O6R1T7qbyg22aeMnmfS9GKuJZkCptCgv8gl02U7bx3vOy2jTgX9WGMkbt+o0JvCUs+kW
+         bA+mts79t+1rkGlZnKT8v1xPOjTDI1mljmSht/lqTrAYza1MktBdvcCYHnJBJ3J90SAU
+         firfpBvpMPctU6fXBfPySyg6YIq2gUqqEkiphtZ3ZvVVDwpz2lqwWwcsITHzvTMXTJzj
+         W+8jF/PwHqlykUASb2AVCXVaYe1soMWghMN1QCjmmR0zFF3GU948sIjFP62ppXVd7WfZ
+         ffYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687067762; x=1689659762;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+NX5ZV664S/3sQaZAuC+xeosJghTMxUMI70alZxPa5Y=;
+        b=Rj3zjJcqupnbJ0UbDuO4WDTCDUbeWnmcO6kglyuk3aUptdpjMvemqvKm6g7LnqG530
+         pKj6Lt9YbbUsbOiALDOhtvPe6cvxCnp689OTaRKTeasaIQPsurxGdRTt4jmi6IOFUg1y
+         sMrLPq+mwjOGWzbIviKz5mxNN9OI8H7/OcRv+0HVcZFZtdK6Fu3hhUtIOEhR/2VpISib
+         Ta8Uyo83KHAbHmjthtWZblTtfjrP3qny7++2RdHalRgo6kvGW3KOZ4tH5ltWfvYPE0u3
+         Dm4B54oyvMklttnV3gC5Me2g/A+s9M9ocLufyFyrcVdmJA6IAQ11PysbvgRKRyTZ4G7D
+         Y71g==
+X-Gm-Message-State: AC+VfDyXZBTb5yw8K3Nlif+Td1biyCU0IYKZrm0aW4ekOwHSolzkSPTy
+	xnPgfedVEIALCyPxZ5brJAI=
+X-Google-Smtp-Source: ACHHUZ6BOZ2LQ6J+Y8YIuDzGK/TfPStSIUARP0Kxc41zdevAjVxrE87pnYjBbRb1udZcUfffG4tAww==
+X-Received: by 2002:adf:f5c8:0:b0:307:9473:fe26 with SMTP id k8-20020adff5c8000000b003079473fe26mr4901839wrp.26.1687067762314;
+        Sat, 17 Jun 2023 22:56:02 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
+        by smtp.gmail.com with ESMTPSA id s14-20020a170906354e00b009888b71c368sm154616eja.152.2023.06.17.22.56.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 17 Jun 2023 22:56:01 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: glaroque@baylibre.com, rafael@kernel.org, daniel.lezcano@linaro.org,
+ amitk@kernel.org, rui.zhang@intel.com, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ linux-imx@nxp.com, thara.gopinath@gmail.com, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, anarsoul@gmail.com,
+ tiny.windzz@gmail.com, wens@csie.org, samuel@sholland.org,
+ thierry.reding@gmail.com, jonathanh@nvidia.com, edubezval@gmail.com,
+ j-keerthy@ti.com, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, bchihi@baylibre.com,
+ niklas.soderlund+renesas@ragnatech.se, wenst@chromium.org,
+ Yangtao Li <frank.li@vivo.com>
+Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ linux-tegra@vger.kernel.org, linux-omap@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, Yangtao Li <frank.li@vivo.com>
+Subject: Re: [PATCH v3 02/12] thermal/drivers/sun8i: remove redundant msg in
+ sun8i_ths_register()
+Date: Sun, 18 Jun 2023 07:55:59 +0200
+Message-ID: <2684470.mvXUDI8C0e@jernej-laptop>
+In-Reply-To: <20230613114904.15749-2-frank.li@vivo.com>
+References: <20230613114904.15749-1-frank.li@vivo.com>
+ <20230613114904.15749-2-frank.li@vivo.com>
 MIME-Version: 1.0
-X-Originating-IP: [178.176.79.248]
-X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
- (10.188.4.12)
-X-KSE-ServerInfo: msexch01.omp.ru, 9
-X-KSE-AntiSpam-Interceptor-Info: scan successful
-X-KSE-AntiSpam-Version: 5.9.59, Database issued on: 06/17/2023 20:23:23
-X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
-X-KSE-AntiSpam-Method: none
-X-KSE-AntiSpam-Rate: 59
-X-KSE-AntiSpam-Info: Lua profiles 178086 [Jun 16 2023]
-X-KSE-AntiSpam-Info: Version: 5.9.59.0
-X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
-X-KSE-AntiSpam-Info: LuaCore: 517 517 b0056c19d8e10afbb16cb7aad7258dedb0179a79
-X-KSE-AntiSpam-Info: {rep_avail}
-X-KSE-AntiSpam-Info: {Tracking_no_received}
-X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
-X-KSE-AntiSpam-Info: {relay has no DNS name}
-X-KSE-AntiSpam-Info: {SMTP from is not routable}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 178.176.79.248 in (user)
- dbl.spamhaus.org}
-X-KSE-AntiSpam-Info: omp.ru:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2
-X-KSE-AntiSpam-Info: ApMailHostAddress: 178.176.79.248
-X-KSE-AntiSpam-Info: {DNS response errors}
-X-KSE-AntiSpam-Info: Rate: 59
-X-KSE-AntiSpam-Info: Status: not_detected
-X-KSE-AntiSpam-Info: Method: none
-X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
- smtp.mailfrom=omp.ru;dkim=none
-X-KSE-Antiphishing-Info: Clean
-X-KSE-Antiphishing-ScanningType: Heuristic
-X-KSE-Antiphishing-Method: None
-X-KSE-Antiphishing-Bases: 06/17/2023 20:29:00
-X-KSE-Antivirus-Interceptor-Info: scan successful
-X-KSE-Antivirus-Info: Clean, bases: 6/17/2023 5:34:00 PM
-X-KSE-Attachment-Filter-Triggered-Rules: Clean
-X-KSE-Attachment-Filter-Triggered-Filters: Clean
-X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230617_133651_659177_14138A0D 
-X-CRM114-Status: GOOD (  13.60  )
+X-CRM114-CacheID: sfid-20230617_225605_909117_210AB7D1 
+X-CRM114-Status: GOOD (  12.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,49 +105,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The driver overrides the error codes and IRQ0 returned by platform_get_irq()
-to -EINVAL, so if it returns -EPROBE_DEFER, the driver will fail the probe
-permanently instead of the deferred probing. Switch to propagating the error
-codes upstream.  Since commit ce753ad1549c ("platform: finally disallow IRQ0
-in platform_get_irq() and its ilk") IRQ0 is no longer returned by those APIs,
-so we now can safely ignore it...
+Dne torek, 13. junij 2023 ob 13:48:54 CEST je Yangtao Li napisal(a):
+> The upper-layer devm_thermal_add_hwmon_sysfs() function can directly
+> print error information.
+> 
+> Signed-off-by: Yangtao Li <frank.li@vivo.com>
 
-Fixes: cbcaac6d7dd2 ("mmc: meson-gx-mmc: Fix platform_get_irq's error checking")
-Cc: stable@vger.kernel.org # v5.19+
-Signed-off-by: Sergey Shtylyov <s.shtylyov@omp.ru>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
----
-Changes in version 3:
-- added the platform_get_irq() commit reference to the  patch description and
-  the Cc: tag marking the 1st kernel version containing it;
-- added Neil's tag .
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-Changes in version 2:
-- updated the fix due to the surrounding code change;
-- refreshed the patch;
-- removed stray newline in the Fixes: tag;
-- slightly reformatted the patch description.
+Best regards,
+Jernej
 
- drivers/mmc/host/meson-gx-mmc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> ---
+>  drivers/thermal/sun8i_thermal.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/drivers/thermal/sun8i_thermal.c b/drivers/thermal/sun8i_thermal.c
+> index 793ddce72132..066f9fed9b86 100644
+> --- a/drivers/thermal/sun8i_thermal.c
+> +++ b/drivers/thermal/sun8i_thermal.c
+> @@ -475,9 +475,7 @@ static int sun8i_ths_register(struct ths_device *tmdev)
+>  		if (IS_ERR(tmdev->sensor[i].tzd))
+>  			return PTR_ERR(tmdev->sensor[i].tzd);
+>  
+> -		if (devm_thermal_add_hwmon_sysfs(tmdev->dev, tmdev->sensor[i].tzd))
+> -			dev_warn(tmdev->dev,
+> -				 "Failed to add hwmon sysfs attributes\n");
+> +		devm_thermal_add_hwmon_sysfs(tmdev->dev, tmdev->sensor[i].tzd);
+>  	}
+>  
+>  	return 0;
+> 
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index b8514d9d5e73..75f97dce7ef3 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -1192,8 +1192,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 		return PTR_ERR(host->regs);
- 
- 	host->irq = platform_get_irq(pdev, 0);
--	if (host->irq <= 0)
--		return -EINVAL;
-+	if (host->irq < 0)
-+		return host->irq;
- 
- 	cd_irq = platform_get_irq_optional(pdev, 1);
- 	mmc_gpio_set_cd_irq(mmc, cd_irq);
--- 
-2.26.3
+
+
 
 
 _______________________________________________
