@@ -4,92 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EE9FEB64D9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Jun 2023 08:40:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A450DEB64D9
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Jun 2023 09:00:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LYQU8Vn+aVH4RrQ8XpOXVP0XsrKiJ7UICjuqC2bn2mU=; b=fVCiJZA4bBYEp0
-	IiK7CN6VVdgFoBY6KxMJ0QEk0b0g31RwvzxEfYZf6+sj7ifwthKmFHJ5WIyoSH+GGPFn+3VJBB7vw
-	DJckq7OBj1+Una4GERFoQeLsV30JcVHcitNgCE1I4OsDa29qAvpYRoJAEvvwQYbhqhDnFyj1El52P
-	oh56+1KY2DODX2ymFswVZL3YQwabAsZ9YPDdW8C7daOukxfzeo33uZnreJ/4IGr5IC6CeaF7XKqmG
-	wrXHBUcgD/XqdbTj+Ycas0fWI8GtCOVKSfrfc82Ni3D7+7gpkvIb/LYpsIDC025QD8YUOzLZ10l26
-	ZiWeSYkoYvGjYvYfdaQw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=yKnFQjEO0kUf+dhqpiYoX+levOQJ2TPsrweynRrb35E=; b=fnm4HYVOyyNkZCNDtq16QS13xj
+	VLNaR2hqgINF8A4QAiLBcwxVmM45KUw826IhHFvItFfWF8B2s+evRB9g4l9XkV79gdZyovLf75SBD
+	RJHL11fhPxukgs41CpNt+hcl/YINI4xZgbDlAaeauNvwUc1mXTRBy2p3mqz+Z+LWnoJZUgFYi6DcF
+	1fFpQmTYaUMytYQWwojKd0IF3YtTF8iYRgHjALZsx7L7mVNjL9P2m0+cFnlXAocgO7rFMsmT6ULn1
+	yIgBbI2QlkXX9Rdwrq3iKOQWZGDYkXh21RZ5d9XalpoNZNizNrtf42Bym6+G2kVEJVCDO7ncAHXwk
+	HUAgrHJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qBAQd-007r49-06;
-	Mon, 19 Jun 2023 08:40:03 +0000
-Received: from relay3-d.mail.gandi.net ([2001:4b98:dc4:8::223])
+	id 1qBAkI-007vUB-1E;
+	Mon, 19 Jun 2023 09:00:22 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qBAQa-007qys-0o;
-	Mon, 19 Jun 2023 08:40:02 +0000
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1687163993;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nv3/xuAVKSzt/+tarcsShtnLCZyTsdvcmajWRDjJsEE=;
-	b=fwhuxJgV6gTPYMdy6HPekjVKCaCdkhRw9P0iYnxA0xE2fmOZinHGAbGDHZZ9uq6RsooU71
-	T9u/5etMirGUEZiYjsytP4ZN4IqvvrzyNkP2EvklNFTqUlC015JTOQEvYHO2z0bF02d+t1
-	pbkyJAi1/w5wPEu1/R8KQ/+Db5eJbCfE7KJLXzaVE4hFzht/7kAel10GaCkJoT/Hl1aOIy
-	c2eLYf5okQifezH6VkoUwmeaEA+uCtLok2CJ/PLRdFiqh774VXiMaJyN16UYmMqUa6/+gz
-	8mHz7sgWVRZPmwLwDX/yOmmST8NBfSs2zpSQOddaDOgUjfM/d+bVF2kL9BHrrQ==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6A4756000C;
-	Mon, 19 Jun 2023 08:39:51 +0000 (UTC)
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
-	Liang Yang <liang.yang@amlogic.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Yixun Lan <yixun.lan@amlogic.com>,
-	Jianxin Pan <jianxin.pan@amlogic.com>
-Cc: oxffffaa@gmail.com,
-	kernel@sberdevices.ru,
-	Stable@vger.kernel.org,
-	linux-mtd@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] mtd: rawnand: meson: fix unaligned DMA buffers handling
-Date: Mon, 19 Jun 2023 10:39:50 +0200
-Message-Id: <20230619083951.2940531-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230615080815.3291006-1-AVKrasnov@sberdevices.ru>
-References: 
+	id 1qBAkG-007vSs-1O
+	for linux-amlogic@lists.infradead.org;
+	Mon, 19 Jun 2023 09:00:21 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f9b37cd58bso2600615e9.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 19 Jun 2023 02:00:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687165219; x=1689757219;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=bCBr4oTjiVPYqPEUo0CydkQP5zohM2Xp0GU5zTzP8rs=;
+        b=UJjm17SJlTP86cw43v7G8uuapaedwpHHlpiVfaCIAfpJDh9mcTbe6iVbg/gcMnysB+
+         87IpUyo+vWUqhB0dGOigtlbttsSDoJVO5gy37LfrXMIJ6yGfdFFcwaBnX6nNbYyKglc/
+         G3YyJJs/jlYA2I/lYMIolWZchurQImO9KY6Kt5BQQb18X6hvYeAVaCFnNp9kyUJ8bSQl
+         yfv2iv1zRUTlSbpmjibQBuwEmaDivJ55zRuFKLsmu7jPjf1qAwie/6mDZHwEWe8L5ai0
+         lduXdoSr/FLxjcHNEGwjR3WCUruJ2Ewdg4dFR1MPSC1Ngsl3SR0+oNXwTQ/0o8ZBHy5k
+         sCKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687165219; x=1689757219;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bCBr4oTjiVPYqPEUo0CydkQP5zohM2Xp0GU5zTzP8rs=;
+        b=J31hLS7/iKcgxWNruuMI+fn1wGfJ95+R62mJpzus4bW9/HRUidiL1MAi25WDE9TPQV
+         xt2aww40bHvj6kJQeUoF8gOe/VsrehZBO8eL2R7WGVIxfkYZl8z12fdDDFnHJdRkyjql
+         PXSV5Hx86YW4AYAzudOoh4ORHBpAraz7wqAIaR1g+Qj5gcSsIwcaeGOcJEYgAibun3Zc
+         2ECZtlsuMlzCuxx4LG9YeWIyNgmvIuTP+qmy0Mtbyu95ar6Kg1+jnuABMd7zh8y7YX1v
+         M5ssqJIHr3DOY8Fv3RDOYEHYX9pTaBGJ8Mkx1V991OU2fbVRs0lTQHCZzxtLii4cCbwM
+         VU2w==
+X-Gm-Message-State: AC+VfDxiKxsTPu4FPMdw5fyLnolOFMAX8kpJH2EwPrhd8Uj2OCabU5yA
+	taqEOIhKJ/ei7vEsxjo7ZJYIUA==
+X-Google-Smtp-Source: ACHHUZ4kTHBI7R/neEMBwF3PvF3KlSrrEUcjqpnITUG/q4ykuPe3Q7fTVaE+jrDwycnvmT9JU+o9uQ==
+X-Received: by 2002:a7b:c045:0:b0:3f8:dac6:58ee with SMTP id u5-20020a7bc045000000b003f8dac658eemr5842223wmc.5.1687165218801;
+        Mon, 19 Jun 2023 02:00:18 -0700 (PDT)
+Received: from [192.168.7.189] (679773502.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id f20-20020a7bcc14000000b003f8044b3436sm9970750wmh.23.2023.06.19.02.00.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Jun 2023 02:00:18 -0700 (PDT)
+Message-ID: <0d50047b-b30a-9c20-1754-2ee4fc4f7e18@linaro.org>
+Date: Mon, 19 Jun 2023 11:00:17 +0200
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'98480a181a08ceeede417e5b28f6d0429d8ae156'
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH v1] drivers: meson: secure-pwrc: always enable DMA domain
+Content-Language: en-US
+To: Alexey Romanov <avromanov@sberdevices.ru>, narmstrong@baylibre.com,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com
+Cc: linux-arm-kernel@lists.infradead.org, kernel@sberdevices.ru,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230610090414.90529-1-avromanov@sberdevices.ru>
+Organization: Linaro Developer Services
+In-Reply-To: <20230610090414.90529-1-avromanov@sberdevices.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230619_014000_439163_F1C0FB74 
-X-CRM114-Status: UNSURE (   6.62  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230619_020020_477188_C7F92621 
+X-CRM114-Status: GOOD (  17.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,24 +93,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 2023-06-15 at 08:08:15 UTC, Arseniy Krasnov wrote:
-> Meson NAND controller requires 8 bytes alignment for DMA addresses,
-> otherwise it "aligns" passed address by itself thus accessing invalid
-> location in the provided buffer. This patch makes unaligned buffers to
-> be reallocated to become valid.
+On 10/06/2023 11:04, Alexey Romanov wrote:
+> Starting from commit e45f243409db ("firmware: meson_sm:
+> populate platform devices from sm device tree data") pwrc
+> is probed successfully and disables unused pwr domains.
+> By A1 SoC family design, any TEE requires DMA pwr domain
+> always enabled.
 > 
-> Fixes: 8fae856c5350 ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
-> Cc: <Stable@vger.kernel.org>
-> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+> Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
+> ---
+> I'm not entirely sure if this domain should always be enabled on or it
+> should be separately enabled in dts file. Comments are welcome.
+> ---
+>   drivers/soc/amlogic/meson-secure-pwrc.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
+> index e93518763526..25b4b71df9b8 100644
+> --- a/drivers/soc/amlogic/meson-secure-pwrc.c
+> +++ b/drivers/soc/amlogic/meson-secure-pwrc.c
+> @@ -105,7 +105,7 @@ static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
+>   	SEC_PD(ACODEC,	0),
+>   	SEC_PD(AUDIO,	0),
+>   	SEC_PD(OTP,	0),
+> -	SEC_PD(DMA,	0),
+> +	SEC_PD(DMA,	GENPD_FLAG_ALWAYS_ON | GENPD_FLAG_IRQ_SAFE),
+>   	SEC_PD(SD_EMMC,	0),
+>   	SEC_PD(RAMA,	0),
+>   	/* SRAMB is used as ATF runtime memory, and should be always on */
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
+It's fine to keep it enabled.
 
-Miquel
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
