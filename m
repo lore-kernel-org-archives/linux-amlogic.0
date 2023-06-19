@@ -4,85 +4,115 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 999D6EB64D9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Jun 2023 15:34:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF5D8EB64DA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Jun 2023 17:36:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date
-	:From:In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sr6lqsYvZDgifeJ0qYtlQX4vTHKvRgGpVJ+H9KHP7Hc=; b=GZl/hWgD7PuH2S
-	6pOUUsvl/v7udOkjcGW81TRGC62Hzz5psuQSkl1MjdGpaF9VjgkTfNMdaZ6sN5gi4pOAwBVtfwqx5
-	CoJmAnesk0Ga1MZuxSSEcTZPVT0AwbARK8d52UBrzF1I6slMuz1Aqctez+CL0kpcnt7vSHPhdCaEV
-	AB4PQO6TOosyh2Ow4HGutBSJTyeGlNmAhDqVwy4u23StyAUF8xQgF6RAdwgB6Zy0VAF8WvgVrkO4d
-	CyjPVZ/rrO2gHUbXxC+2evGAEtIo5EjfpMsDIG9W9EusRJ4lqDZl7gE4KOCEc1P0SVmxuPwy5+QIp
-	9oEZtuTu0u/vvW2p/T6Q==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=SuR+peK32Rxt7h+7ayoktPImpNGZCZ7z03DbYwFKLqc=; b=IUO3UdOfHtw7NA
+	RQ0Y223RtU2afRcYkzG3rDCF/8Wo60m9KyZZO7EpXPWUs3nzsv4MlX772uL+POMcGr5wQhpG4JO5/
+	ZqQN9KcDciNXiXTAKcOsxcQ1g3QnxVpl4QNck/soiK97KkMZdvB7Y9i0ByIB4SCKtjQYbtAz0//uE
+	JLwV6mjql63ynsMVLcxAZiWxgRjgLcUzyiMx5RLujV7lb+7xZxoUBSA1kw6RcK5YMJfmvcpzDf+dz
+	EArog5QLox8aQx8lNgIzFKxM+PgmJX9p0iiWujAj8508wSxKTo8DT12JS7QTwFxpUg1hQKpYQRVie
+	fQx7LN/O5m0dv+qKlvpw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qBGsi-008n3p-0B;
-	Mon, 19 Jun 2023 15:33:28 +0000
-Received: from mail-oo1-f44.google.com ([209.85.161.44])
+	id 1qBInq-00977x-0z;
+	Mon, 19 Jun 2023 17:36:34 +0000
+Received: from mail-psaapc01olkn2081c.outbound.protection.outlook.com ([2a01:111:f400:feae::81c] helo=APC01-PSA-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qBGsf-008n37-2w;
-	Mon, 19 Jun 2023 15:33:27 +0000
-Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-55e299e1d02so1653085eaf.1;
-        Mon, 19 Jun 2023 08:33:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687188803; x=1689780803;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xPFXYlRHAa3U0GY2gSsZaKSWcpvM3hRa94CDc3700HE=;
-        b=X4biow4FLNHZ60+dGHK9KQKDNPBZadQx+H9vnbHarSkTtcGHPIokmXpNnxvKWgOCgL
-         OxZ7XJqnldGjmcFtCYnHDkzj2tfCWy1IRQ9T1iJwZgCK8iHAM7QeeaZKRjr6pftIK8R3
-         0gQTAmc4WZSzEZ5Br96QaFIYHzDnKeLUl+kXsFLiq+iVTVm46vdV7AIUkJGSnDR4mea1
-         ZBcGvimZy4sB8/aGaAkuhLYha0L1hG8NBN7Q4JjTewfEif/5Ja4CYE/kQcMOahYmEpoo
-         kLgCw5VQyfFD+cFjjFRcJL0089A9QA2ANjljSnQ98EjgZ4X9m6aVpFag5p/NhrwILrda
-         6pQw==
-X-Gm-Message-State: AC+VfDyYW4VVzyb7d50uj/TRQMRC929FtNXkafT95cBDo2Fh4QuWOBlW
-	5YQidACt6BBl/Ts6bH6UmvfldX2XfA1sNQ==
-X-Google-Smtp-Source: ACHHUZ4qw1AX0Ra0o/NKUQb+iBfCTh+seaQcigQSr35UCQIsJKuUjWj5CRG02G/2B5cwHkiHChTXAQ==
-X-Received: by 2002:a4a:b642:0:b0:560:809e:93ff with SMTP id f2-20020a4ab642000000b00560809e93ffmr674925ooo.2.1687188803609;
-        Mon, 19 Jun 2023 08:33:23 -0700 (PDT)
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com. [209.85.167.172])
-        by smtp.gmail.com with ESMTPSA id z9-20020a056830128900b006ad3ed04973sm10269657otp.8.2023.06.19.08.33.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 08:33:22 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-39ea511930eso2365236b6e.1;
-        Mon, 19 Jun 2023 08:33:22 -0700 (PDT)
-X-Received: by 2002:a05:6808:1a29:b0:39e:de09:8b96 with SMTP id
- bk41-20020a0568081a2900b0039ede098b96mr2946266oib.34.1687188801974; Mon, 19
- Jun 2023 08:33:21 -0700 (PDT)
+	id 1qBInn-00976d-0o;
+	Mon, 19 Jun 2023 17:36:32 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=c9vVHjjrWExmzwrYc+eZwILjdfCwzeFdB3SDPlWQ8sg0ekhEky3Rc12PXY14RiC0ly0f2l+rQfjw5yL1+5yuO8NNOfmdJHO4bBM7+MloqYGnGeB02pjuKPj8TtzS/0tPPWaqseJXnwLEEbXoNDywtQHrpocq919cqWJF3F3vVaRRwH/WBO0ziw2XQAk+i7c79USGcVzO2zIVPMD8eoHSatH0TFpEkMPHvoK8OmI12JDaFOhccv51ULPwg1MiJ7rsU/SURwBpqjMUruX8YsniOKfKXCp/mcU3IQwUaM+GV3SNZzLXwlbJJW0KMRwqBYBz6dTs6MGnPdAJo3k7uwzgvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+W5sGyE0FHgelKsdN3ABfS3WEGxsfjGO+o1QLaIGiEY=;
+ b=f4ijL40EGfPxva8UNUJb1mCRaXUr0XbqbQzik1htHiO9w+j9dgFzcrTiEA4AQXD3y5fCVsdGykWz+iXFAfPvM/tr09QlbRwg/KSHXPZqcYuVCBQyzWidyKSHsj3KG+uCrjmQAomTYPwh8Dc/YwWjHaudvqjylvoq16lh4ApmnYEvkViAPQz/bSsSjRdqIDrWw0x+GTDs4QVhkMQEvNkEkNZbgtp5bVnel8JzVWblNoHYe11Hbsm4yB5rWf0jN7Sa+Lqd1r1XF7p5yAyS1oRkQuKrfRMIckFAXf+MBlCbL2DF+NAMnZKp5fYT1R605Bmr+pK6xdTrM5P0DVP6wIZA1w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+W5sGyE0FHgelKsdN3ABfS3WEGxsfjGO+o1QLaIGiEY=;
+ b=Ud23W4olBQRyC15CAs1i2KheeJg5ANbTkchoV0/nx/EOwEhMKn+BrA6FKqXZmEOesnIQbfG37p2ODXveSkmwvy61U/tX32tzzflmSmynoLEOGlUl5FvkzvhbQN9iwi9nACy0Rk8G3OF4RCLpPniLZW8M0dNCEv3u08QvQ6YRCTstS7ZtLFhL41JrApgS61EsHjVXPi5Yh1ZvIy2FzrP1k+p/AEwlFX5WJ2hbTSln/PjLjCeB4vm/fWYjHcOuwArtSuhsu9Ev1pP6H8pOU9QF5zSk84RAqHbpq9XifGxCLEPqeFTtq1yRgsPmTLy8W2DtsjdtuG+kIr5GTqTNcjgCpw==
+Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ (2603:1096:400:363::9) by PSBPR01MB3736.apcprd01.prod.exchangelabs.com
+ (2603:1096:301:c::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.37; Mon, 19 Jun
+ 2023 17:36:04 +0000
+Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ ([fe80::5b31:f8db:585d:f204]) by TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ ([fe80::5b31:f8db:585d:f204%4]) with mapi id 15.20.6477.037; Mon, 19 Jun 2023
+ 17:36:04 +0000
+From: Ziyang Huang <hzyitc@outlook.com>
+To: ulf.hansson@linaro.org
+Cc: neil.armstrong@linaro.org,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	linux-mmc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Ziyang Huang <hzyitc@outlook.com>
+Subject: [PATCH] mmc: meson-mx-sdhc: Fix initialization frozen issue
+Date: Tue, 20 Jun 2023 01:34:59 +0800
+Message-ID: <TYZPR01MB5556B56D834E02F41C44D81DC95FA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+X-Mailer: git-send-email 2.34.1
+X-TMN: [Ha8s9ocL9A7hZ/kMk7SASICLp16GahifJ9ESr1XIBxsWh7/mnmausw==]
+X-ClientProxiedBy: TYCP286CA0138.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:31b::13) To TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ (2603:1096:400:363::9)
+X-Microsoft-Original-Message-ID: <20230619173459.3519226-1-hzyitc@outlook.com>
 MIME-Version: 1.0
-References: <20230613114904.15749-1-frank.li@vivo.com> <20230613114904.15749-11-frank.li@vivo.com>
- <91db8e7b-29fb-3c43-ac38-008ebc9b1f6b@gmail.com>
-In-Reply-To: <91db8e7b-29fb-3c43-ac38-008ebc9b1f6b@gmail.com>
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Mon, 19 Jun 2023 23:33:10 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65xzhzVp+pBsa_Z3aHtK4LOpiTbhA749doMpwSTwDtxCg@mail.gmail.com>
-Message-ID: <CAGb2v65xzhzVp+pBsa_Z3aHtK4LOpiTbhA749doMpwSTwDtxCg@mail.gmail.com>
-Subject: Re: [PATCH v3 11/12] thermal/drivers/generic-adc: Register thermal
- zones as hwmon sensors
-To: Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Yangtao Li <frank.li@vivo.com>, glaroque@baylibre.com, rafael@kernel.org, 
-	daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, linux-imx@nxp.com, thara.gopinath@gmail.com, 
-	agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
-	anarsoul@gmail.com, tiny.windzz@gmail.com, jernej.skrabec@gmail.com, 
-	samuel@sholland.org, thierry.reding@gmail.com, jonathanh@nvidia.com, 
-	edubezval@gmail.com, j-keerthy@ti.com, 
-	angelogioacchino.delregno@collabora.com, bchihi@baylibre.com, 
-	niklas.soderlund+renesas@ragnatech.se, wenst@chromium.org, 
-	linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-sunxi@lists.linux.dev, 
-	linux-tegra@vger.kernel.org, linux-omap@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR01MB5556:EE_|PSBPR01MB3736:EE_
+X-MS-Office365-Filtering-Correlation-Id: ef1a064f-37b8-46c2-eeec-08db70eba811
+X-MS-Exchange-SLBlob-MailProps: fNPDeqDZc0K6hVw23M7B2oWHpv2m4/wpDpVXMaMmZuPS0Tbxd+cNPQjtZulelqVySuZTgwbmAoOlMTNDn/dCX/w+wreOnRbqYF+hUF2RUoQE8ieT34bQSDJl3EsLutjD+PR7wLixaiWLv1wzh99Jt1hi3hdJjoBr2FFmFHj45ymZtCYF2Z40X3QNolBZXJtxdl6EacAFEYFD8emhPm+vVBOfLOPMw3goIwPeHz+CGsi6tFeQI+iJanoZOrLUk2HXVjPSVM75jtvTLXtw6iKaEuyFbSqs9pOg8l+Z/YGq6nQUcIzCZy3c2lbbKYZk9A3rWtvCGMm/HP2RiT1VMW4VW+x306SEY3XLVaU5U1qLrNhrnXrLnz8PhqTMaSBsc2FscLd+3u0JyldJyghEl58VitgXUr7UiR9lycOq1J+uyPGpkKKtn9KlaTIUVZdOqkMAHuOZEQYJ5itX5e0Zgm6dLgqwi1gYzqPp5SMTRRrzI+hBPB7BvFwPjZnGGvJo0Y/rZw8Ady7/rNNNdfgQjUXtgTIfpgh5Xzy9vCukx3SHAC8c/CG0N9DunSCaphdBA5RwymV7/wCxYh0Sr9w1Ansn6mZGrYs0T3M5knjvZTaSwdKnlRPpNq+63u5a/8bCd9a4chkiwJgsRtq9I3SrPUDi3XaJcPSNF0oX2pTlr/ke4tS2tJscvbmnn2yx6MYF52l6cZoYGpqKwGIoc3IkBSYNeZ2r+qt1CAmtuxxYMn6S+Vboe29/88bxxAO+cnQcKlGCIM5rUaCOHtMR0Ruuyg6j5A==
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: hd+lyzDkKxKrgdBGwGLRx/vYSIaUgehxZPA8MxUR6QWcPFrH3aoeoT5R69lukd3hl0pKrJ4BuMo7Tri3VI3WFCCDtCSYaySVHomu4F948639TabVk6grNqa6nL+Z3ctGHPlkn+XfhxlL6PWNhSh+tUGmWKb7r4PZKbAPiNNJ/iZRx3GQbCMdPelVFPKyyN85iEQrZPtVUqU7GGMuBwMXD12jbEuX0FOiSNuFniJuxD7PiXySsmdN2jA4b2Y+xpjF6iFPKwGgHxX/u7A2uJV38gIeIOdqXy2zD5CopqDyOu+8sPayGI1N2NFunVjcY4L/x0tMsmHOcTh4gLWaejA/PuBjKZ7chjIzN+ZTRgHScJ607fVOTvmskTFTnwuJ5uoYH87HmQRIsl5EZOORELsL6ZlozG5BxV7hkPfp0uRqPHTirm+IrxepcPzOw3KuASfbe6bebfLCFxyd66i0mlemFzBdN6kyUQ0xNWo/JQO9WNFaxMtOdPcz0/mtiqlJRwsoIzeSGyn5u8c11s7KVBbm4mRwjH+GOh2DRLNrVb9Zqs5YpIvMsKrckz1Ltue1HICZMdBSnyJLOyDjC67rK/GP+WMQzhH5pxs9LJkQFQUgU2djz2e4opr6chYBzWBZ+V+o
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?AUU1T81Vm6mP4MuaAY8eTyIErnbCwahEr4TA+hsTlJ3alGufGXNVBMFhJyw6?=
+ =?us-ascii?Q?1pIBh8Q/O+OC/s5tZ0pnGMcknTcGnn6aL0MtANUN3FvWrEuKyN8qeBR8vzJr?=
+ =?us-ascii?Q?2z6iOIDNfRrwO+X3ffhUbofjs3n8X8eN1aU6MK2EWt8M0gL963YsiLJ6x5qk?=
+ =?us-ascii?Q?QHUGtvCJSr7ByYMXImqsB8UODYrx+GjArzuyQJLwyx3wm70R3hxuLeUGXTPB?=
+ =?us-ascii?Q?cphy0Rt1mkhzuByEkQNuzJzu+tTkpLGZQsUwQ0lqE+Fu2cKzUVTaQgL35DrY?=
+ =?us-ascii?Q?4mzr13qI0OG02AoTFMeamVkpCtzeB60eO4ITXcTxehhlRo11gP9iaXeGANuL?=
+ =?us-ascii?Q?fm64omC0jbnnh7ZVlMzedFkArG/DRMG2UZra/9YgLLvrjddklJD9tqqbZFqg?=
+ =?us-ascii?Q?t8+o0BTuFbQCM8s4Yabjcidf27ACxIggABqqv8M9cmB6+Gexbno92maZe8P/?=
+ =?us-ascii?Q?GImKcFephUOv1uJrLJ69CbinllwIi2FrA/bxc11mw7bXdk/KJJVkIFexvVOb?=
+ =?us-ascii?Q?hCQ5SjqqPNFub0OnFb5x61KQaXt4DvJOFuYnVwW8eHX86Ipp33Sjxz22DjiJ?=
+ =?us-ascii?Q?rTFS90LZSJvruXHUCLsw9YTHsxXV/+Gb0yiNQnD6wMefQlPZ7jqIzfqSPKI9?=
+ =?us-ascii?Q?JN1KsiZpeyedOaJYwbY0DsupKfQxG7uYB8w+vEmZXdJgP17ep0kJ1s6H1YD2?=
+ =?us-ascii?Q?hR51paBoNjGzUOWuRCVWtBn/g188dp28o4aguufQpV0YHZikCqneA4d+Vhha?=
+ =?us-ascii?Q?4njfVegytxDYwwyB1sYzOUGSUdKvin7bwqXj4TO1GpHh9r1beTz+Ly2Z8Ctl?=
+ =?us-ascii?Q?8t8yjDiUxAWOt9tS+q1IKU5O/CmaG+CxJA2uiWsZ6+bi7lMi/A47Utr8joZq?=
+ =?us-ascii?Q?80fjT40aM+jGl59EE9qDU2G/u7lxQiUcaIrIqV/snHkl82Cmc6xgyaDJUqmN?=
+ =?us-ascii?Q?T7ejJJjhc4t8WT60I/s3Qzi0HgtRl4DJESRCQsLnEiggu4+OT8AOy+17E7+i?=
+ =?us-ascii?Q?Ei2wR8I85Wv2LbYQTMGk9nhIpG0BJd0m9rbjGG/ysRIfY8rskUlNfJP4Hynp?=
+ =?us-ascii?Q?hdG3HzGMKdD6Yx3UXfci/ACD1KMmpp3rtDURQHOHhxFOCEEtrInVsFb2vPzs?=
+ =?us-ascii?Q?qeSDSd+Z2Zm6wTur8SLzEJYNa0bAIdYiwWDY4Grm4iqOcYfNrdVnldAF3pft?=
+ =?us-ascii?Q?JuEnmgEWCi63aveKsUW7YXwH9qjqNIZ09ORziUL616n8o2uKy+hiLw1xYAM?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ef1a064f-37b8-46c2-eeec-08db70eba811
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2023 17:36:04.7951
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PSBPR01MB3736
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230619_083325_991076_E7021F71 
-X-CRM114-Status: GOOD (  17.94  )
+X-CRM114-CacheID: sfid-20230619_103631_316366_6E81B2B5 
+X-CRM114-Status: GOOD (  11.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,38 +124,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: wens@csie.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCBKdW4gMTksIDIwMjMgYXQgMTE6MTfigK9QTSBNYXR0aGlhcyBCcnVnZ2VyCjxtYXR0
-aGlhcy5iZ2dAZ21haWwuY29tPiB3cm90ZToKPgo+Cj4KPiBPbiAxMy8wNi8yMDIzIDEzOjQ5LCBZ
-YW5ndGFvIExpIHdyb3RlOgo+ID4gRnJvbTogQ2hlbi1ZdSBUc2FpIDx3ZW5zdEBjaHJvbWl1bS5v
-cmc+Cj4gPgo+ID4gUmVnaXN0ZXIgdGhlcm1hbCB6b25lcyBhcyBod21vbiBzZW5zb3JzIHRvIGxl
-dCB1c2Vyc3BhY2UgcmVhZAo+ID4gdGVtcGVyYXR1cmVzIHVzaW5nIHN0YW5kYXJkIGh3bW9uIGlu
-dGVyZmFjZS4KPiA+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBDaGVuLVl1IFRzYWkgPHdlbnN0QGNocm9t
-aXVtLm9yZz4KPiA+IFtZYW5ndGFvIGNoYW5nZSB0byB1c2UgZGV2X3dhcm4gYW5kIHJlbW92ZSBy
-ZXR1cm5dCj4gPiBTaWduZWQtb2ZmLWJ5OiBZYW5ndGFvIExpIDxmcmFuay5saUB2aXZvLmNvbT4K
-PiA+IC0tLQo+ID4gICBkcml2ZXJzL3RoZXJtYWwvdGhlcm1hbC1nZW5lcmljLWFkYy5jIHwgNSAr
-KysrKwo+ID4gICAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspCj4gPgo+ID4gZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvdGhlcm1hbC90aGVybWFsLWdlbmVyaWMtYWRjLmMgYi9kcml2ZXJzL3Ro
-ZXJtYWwvdGhlcm1hbC1nZW5lcmljLWFkYy5jCj4gPiBpbmRleCAwMTdiMGNlNTIxMjIuLjk1MzFi
-YzJmMmNlNyAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvdGhlcm1hbC90aGVybWFsLWdlbmVyaWMt
-YWRjLmMKPiA+ICsrKyBiL2RyaXZlcnMvdGhlcm1hbC90aGVybWFsLWdlbmVyaWMtYWRjLmMKPiA+
-IEBAIC0xMyw2ICsxMyw4IEBACj4gPiAgICNpbmNsdWRlIDxsaW51eC9zbGFiLmg+Cj4gPiAgICNp
-bmNsdWRlIDxsaW51eC90aGVybWFsLmg+Cj4gPgo+ID4gKyNpbmNsdWRlICJ0aGVybWFsX2h3bW9u
-LmgiCj4gPiArCj4gPiAgIHN0cnVjdCBnYWRjX3RoZXJtYWxfaW5mbyB7Cj4gPiAgICAgICBzdHJ1
-Y3QgZGV2aWNlICpkZXY7Cj4gPiAgICAgICBzdHJ1Y3QgdGhlcm1hbF96b25lX2RldmljZSAqdHpf
-ZGV2Owo+ID4gQEAgLTE1Myw2ICsxNTUsOSBAQCBzdGF0aWMgaW50IGdhZGNfdGhlcm1hbF9wcm9i
-ZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQo+ID4gICAgICAgICAgICAgICByZXR1cm4g
-cmV0Owo+ID4gICAgICAgfQo+ID4KPiA+ICsgICAgIGlmIChkZXZtX3RoZXJtYWxfYWRkX2h3bW9u
-X3N5c2ZzKCZwZGV2LT5kZXYsIGd0aS0+dHpfZGV2KSkKPiA+ICsgICAgICAgICAgICAgZGV2X3dh
-cm4oJnBkZXYtPmRldiwgIkZhaWxlZCB0byBhZGQgaHdtb24gc3lzZnMgYXR0cmlidXRlc1xuIik7
-Cj4KPiBJc24ndCB0aGF0IGFscmVhZHkgZG9uZSBieSBwYXRjaCAxLzEyPwoKSSB0aGluayBwYXRj
-aCAxMiBzaG91bGQganVzdCBiZSBzcXVhc2hlZCBpbj8KCj4gUmVnYXJkcywKPiBNYXR0aGlhcwo+
-Cj4gPiArCj4gPiAgICAgICByZXR1cm4gMDsKPiA+ICAgfQo+ID4KCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
-CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Commit 4bc31edebde5 ("mmc: core: Set HS clock speed before sending
+HS CMD13") set HS clock (52MHz) before switching to HS mode. For this
+freq, FCLK_DIV5 will be selected and div value is 10 (reg value is 9).
+Then we set rx_clk_phase to 11 or 15 which is out of range and make
+hardware frozen. After we send command request, no irq will be
+interrupted and the mmc driver will keep to wait for request finished,
+even durning rebooting.
+
+So let's set a common value - 1 just for initialization. Then let
+meson_mx_sdhc_execute_tuning() to find the accurate value for data
+transfer.
+
+Fixes: e4bf1b0970ef ("mmc: host: meson-mx-sdhc: new driver for the Amlogic Meson SDHC host")
+Signed-off-by: Ziyang Huang <hzyitc@outlook.com>
+---
+ drivers/mmc/host/meson-mx-sdhc-mmc.c | 26 +++-----------------------
+ 1 file changed, 3 insertions(+), 23 deletions(-)
+
+diff --git a/drivers/mmc/host/meson-mx-sdhc-mmc.c b/drivers/mmc/host/meson-mx-sdhc-mmc.c
+index da85c2f2..a01090a2 100644
+--- a/drivers/mmc/host/meson-mx-sdhc-mmc.c
++++ b/drivers/mmc/host/meson-mx-sdhc-mmc.c
+@@ -269,7 +269,6 @@ static int meson_mx_sdhc_enable_clks(struct mmc_host *mmc)
+ static int meson_mx_sdhc_set_clk(struct mmc_host *mmc, struct mmc_ios *ios)
+ {
+ 	struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+-	u32 rx_clk_phase;
+ 	int ret;
+ 
+ 	meson_mx_sdhc_disable_clks(mmc);
+@@ -290,31 +289,12 @@ static int meson_mx_sdhc_set_clk(struct mmc_host *mmc, struct mmc_ios *ios)
+ 		mmc->actual_clock = clk_get_rate(host->sd_clk);
+ 
+ 		/*
+-		 * according to Amlogic the following latching points are
+-		 * selected with empirical values, there is no (known) formula
+-		 * to calculate these.
++		 * This value is just for initialization. For data transmission,
++		 * meson_mx_sdhc_execute_tuning() will find a accurate value
+ 		 */
+-		if (mmc->actual_clock > 100000000) {
+-			rx_clk_phase = 1;
+-		} else if (mmc->actual_clock > 45000000) {
+-			if (ios->signal_voltage == MMC_SIGNAL_VOLTAGE_330)
+-				rx_clk_phase = 15;
+-			else
+-				rx_clk_phase = 11;
+-		} else if (mmc->actual_clock >= 25000000) {
+-			rx_clk_phase = 15;
+-		} else if (mmc->actual_clock > 5000000) {
+-			rx_clk_phase = 23;
+-		} else if (mmc->actual_clock > 1000000) {
+-			rx_clk_phase = 55;
+-		} else {
+-			rx_clk_phase = 1061;
+-		}
+-
+ 		regmap_update_bits(host->regmap, MESON_SDHC_CLK2,
+ 				   MESON_SDHC_CLK2_RX_CLK_PHASE,
+-				   FIELD_PREP(MESON_SDHC_CLK2_RX_CLK_PHASE,
+-					      rx_clk_phase));
++				   FIELD_PREP(MESON_SDHC_CLK2_RX_CLK_PHASE, 1));
+ 	} else {
+ 		mmc->actual_clock = 0;
+ 	}
+-- 
+2.34.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
