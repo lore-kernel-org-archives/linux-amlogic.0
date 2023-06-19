@@ -4,84 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A450DEB64D9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Jun 2023 09:00:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 644BBEB64DA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Jun 2023 09:04:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=yKnFQjEO0kUf+dhqpiYoX+levOQJ2TPsrweynRrb35E=; b=fnm4HYVOyyNkZCNDtq16QS13xj
-	VLNaR2hqgINF8A4QAiLBcwxVmM45KUw826IhHFvItFfWF8B2s+evRB9g4l9XkV79gdZyovLf75SBD
-	RJHL11fhPxukgs41CpNt+hcl/YINI4xZgbDlAaeauNvwUc1mXTRBy2p3mqz+Z+LWnoJZUgFYi6DcF
-	1fFpQmTYaUMytYQWwojKd0IF3YtTF8iYRgHjALZsx7L7mVNjL9P2m0+cFnlXAocgO7rFMsmT6ULn1
-	yIgBbI2QlkXX9Rdwrq3iKOQWZGDYkXh21RZ5d9XalpoNZNizNrtf42Bym6+G2kVEJVCDO7ncAHXwk
-	HUAgrHJA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=qMXYMdbAOcN4hz2ZXtCOathai64ZZAi9Q+57VjcxHHk=; b=WQvIyAccaI6nfd
+	yhL/q2R1878MARy40Q+Mmjpo3cfmxdnmpCY51jRFrYAAZZeVLNLkU4yvF0Sf20nOBmhPaJCC8MrBJ
+	cktbVE9gWWTLW9UgJePvWj/Kydltoe4iHOeCx2G9lsOZHQzZho4VlsQ/3DjLTNxAFC3a1Rja57dRk
+	Bzm/ffJk3hhgHJu86qQTzrRsQd3qOFNNsS/VaBbJ2AnyK72Y+eHEvKc8/9bmHc5CyCensx+YeiVAY
+	DLz2lqDCXU9CjocZ2XBZLE2R/thuyvZb3FJFA4kRgmbTfH4Hp9QFjA3TqJyuLJTm0Z4Cfz3nioCDI
+	hXns4ukaEPE2MMJGt1FQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qBAkI-007vUB-1E;
-	Mon, 19 Jun 2023 09:00:22 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1qBAnz-007wKE-3A;
+	Mon, 19 Jun 2023 09:04:12 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qBAkG-007vSs-1O
+	id 1qBAnw-007wII-37
 	for linux-amlogic@lists.infradead.org;
-	Mon, 19 Jun 2023 09:00:21 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f9b37cd58bso2600615e9.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 19 Jun 2023 02:00:20 -0700 (PDT)
+	Mon, 19 Jun 2023 09:04:10 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f900cd3f69so16798545e9.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 19 Jun 2023 02:04:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687165219; x=1689757219;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=bCBr4oTjiVPYqPEUo0CydkQP5zohM2Xp0GU5zTzP8rs=;
-        b=UJjm17SJlTP86cw43v7G8uuapaedwpHHlpiVfaCIAfpJDh9mcTbe6iVbg/gcMnysB+
-         87IpUyo+vWUqhB0dGOigtlbttsSDoJVO5gy37LfrXMIJ6yGfdFFcwaBnX6nNbYyKglc/
-         G3YyJJs/jlYA2I/lYMIolWZchurQImO9KY6Kt5BQQb18X6hvYeAVaCFnNp9kyUJ8bSQl
-         yfv2iv1zRUTlSbpmjibQBuwEmaDivJ55zRuFKLsmu7jPjf1qAwie/6mDZHwEWe8L5ai0
-         lduXdoSr/FLxjcHNEGwjR3WCUruJ2Ewdg4dFR1MPSC1Ngsl3SR0+oNXwTQ/0o8ZBHy5k
-         sCKg==
+        d=linaro.org; s=google; t=1687165447; x=1689757447;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8yGd3GSbLFhZ5atbejnGL2mGXHbrB6Og1PKpMLfAUrY=;
+        b=WOlUKyrsHN+PneEtfTf4PaBEyfLL65+KwXaNw5Dkon4zNvm7CGRnc/jtNmpM3UvOvS
+         1uvQm0wF+P0diAvmPDCO0zNETEwCtDclnRsONuk+SowkDZebLc4MAlfoE/SDi8Q0oGAJ
+         Ju7H/F34CnjzJaHwnuqvzgBEge/e7ZcNsv91dsFYE1a1BQi0BD2Hxr/PLjk2pXeSqoE7
+         jsIsoddCJLKPlN4dXu4FOGJh3q5wtR0KHhudgSmBKKXflbWqHN61HNSXcXFEnps2w1jy
+         E19Illjnx+qpLCB1onuQHngO/C3H9PSeB9XWt2NfekFmtzg2TgBGgmyuBAcfuB7cUDym
+         WsXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687165219; x=1689757219;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bCBr4oTjiVPYqPEUo0CydkQP5zohM2Xp0GU5zTzP8rs=;
-        b=J31hLS7/iKcgxWNruuMI+fn1wGfJ95+R62mJpzus4bW9/HRUidiL1MAi25WDE9TPQV
-         xt2aww40bHvj6kJQeUoF8gOe/VsrehZBO8eL2R7WGVIxfkYZl8z12fdDDFnHJdRkyjql
-         PXSV5Hx86YW4AYAzudOoh4ORHBpAraz7wqAIaR1g+Qj5gcSsIwcaeGOcJEYgAibun3Zc
-         2ECZtlsuMlzCuxx4LG9YeWIyNgmvIuTP+qmy0Mtbyu95ar6Kg1+jnuABMd7zh8y7YX1v
-         M5ssqJIHr3DOY8Fv3RDOYEHYX9pTaBGJ8Mkx1V991OU2fbVRs0lTQHCZzxtLii4cCbwM
-         VU2w==
-X-Gm-Message-State: AC+VfDxiKxsTPu4FPMdw5fyLnolOFMAX8kpJH2EwPrhd8Uj2OCabU5yA
-	taqEOIhKJ/ei7vEsxjo7ZJYIUA==
-X-Google-Smtp-Source: ACHHUZ4kTHBI7R/neEMBwF3PvF3KlSrrEUcjqpnITUG/q4ykuPe3Q7fTVaE+jrDwycnvmT9JU+o9uQ==
-X-Received: by 2002:a7b:c045:0:b0:3f8:dac6:58ee with SMTP id u5-20020a7bc045000000b003f8dac658eemr5842223wmc.5.1687165218801;
-        Mon, 19 Jun 2023 02:00:18 -0700 (PDT)
-Received: from [192.168.7.189] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id f20-20020a7bcc14000000b003f8044b3436sm9970750wmh.23.2023.06.19.02.00.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 02:00:18 -0700 (PDT)
-Message-ID: <0d50047b-b30a-9c20-1754-2ee4fc4f7e18@linaro.org>
-Date: Mon, 19 Jun 2023 11:00:17 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1] drivers: meson: secure-pwrc: always enable DMA domain
-Content-Language: en-US
-To: Alexey Romanov <avromanov@sberdevices.ru>, narmstrong@baylibre.com,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com
-Cc: linux-arm-kernel@lists.infradead.org, kernel@sberdevices.ru,
+        d=1e100.net; s=20221208; t=1687165447; x=1689757447;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8yGd3GSbLFhZ5atbejnGL2mGXHbrB6Og1PKpMLfAUrY=;
+        b=c6V+bbO8AfRVSy6TBt+gDcVcm5H/WPz5oCodeHwDL2VBddtKb95M3tapqwLpGnEP/x
+         09+4eEv933jwbr1P0yD+HObSFIual1IKYhIno0HY6ss4sQ4BLJ2IO0RsZm2oIbQ780Bw
+         tcOPdQeEuB6LqemInJ3TFfP/BmPrzfGVvzR+jeTO/GTYWwxC0AFPW6CAhzJtTSUgBQ0g
+         H3JwxPXwRkEDpw/IwypEfs2ZHXMnEG03npOzNHvNqVCpV/XoZJAT9aQJ86zEuqGqx8TP
+         cNYGoCUdHMDmFl3ODCbkDxaAtRXLhnT2IlT95/SXioMfUEd8NkCh7RO1JCUaw2RNcUcU
+         EZRQ==
+X-Gm-Message-State: AC+VfDxZz9+Ve/FoaRp1jfqokaS0cX7kZKQtARbe8bdFrb7glpK/3+0z
+	pGkHPxhk4VmQQjwkS/faYC1/pw==
+X-Google-Smtp-Source: ACHHUZ6Id4Zo9VfB9WYG29OMsmVG3Fwo8v35RDi9Sz8WnpwhfvScLCULE5Z4NMDRo39oZGxlqaxHCQ==
+X-Received: by 2002:a05:600c:ca:b0:3f9:163:35d5 with SMTP id u10-20020a05600c00ca00b003f9016335d5mr3859462wmm.2.1687165447362;
+        Mon, 19 Jun 2023 02:04:07 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id c6-20020a7bc846000000b003f8fb02c413sm8633213wml.8.2023.06.19.02.04.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jun 2023 02:04:06 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: khilman@baylibre.com, jbrunet@baylibre.com, 
+ martin.blumenstingl@googlemail.com, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Alexey Romanov <avromanov@sberdevices.ru>
+Cc: linux-arm-kernel@lists.infradead.org, kernel@sberdevices.ru, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230610090414.90529-1-avromanov@sberdevices.ru>
-Organization: Linaro Developer Services
 In-Reply-To: <20230610090414.90529-1-avromanov@sberdevices.ru>
+References: <20230610090414.90529-1-avromanov@sberdevices.ru>
+Subject: Re: [PATCH v1] drivers: meson: secure-pwrc: always enable DMA
+ domain
+Message-Id: <168716544629.1449314.9025193999820850128.b4-ty@linaro.org>
+Date: Mon, 19 Jun 2023 11:04:06 +0200
+MIME-Version: 1.0
+X-Mailer: b4 0.12.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230619_020020_477188_C7F92621 
-X-CRM114-Status: GOOD (  17.00  )
+X-CRM114-CacheID: sfid-20230619_020409_024092_06D26E6E 
+X-CRM114-Status: UNSURE (   9.14  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,46 +92,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/06/2023 11:04, Alexey Romanov wrote:
+Hi,
+
+On Sat, 10 Jun 2023 12:04:14 +0300, Alexey Romanov wrote:
 > Starting from commit e45f243409db ("firmware: meson_sm:
 > populate platform devices from sm device tree data") pwrc
 > is probed successfully and disables unused pwr domains.
 > By A1 SoC family design, any TEE requires DMA pwr domain
 > always enabled.
 > 
-> Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
-> ---
-> I'm not entirely sure if this domain should always be enabled on or it
-> should be separately enabled in dts file. Comments are welcome.
-> ---
->   drivers/soc/amlogic/meson-secure-pwrc.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
-> index e93518763526..25b4b71df9b8 100644
-> --- a/drivers/soc/amlogic/meson-secure-pwrc.c
-> +++ b/drivers/soc/amlogic/meson-secure-pwrc.c
-> @@ -105,7 +105,7 @@ static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
->   	SEC_PD(ACODEC,	0),
->   	SEC_PD(AUDIO,	0),
->   	SEC_PD(OTP,	0),
-> -	SEC_PD(DMA,	0),
-> +	SEC_PD(DMA,	GENPD_FLAG_ALWAYS_ON | GENPD_FLAG_IRQ_SAFE),
->   	SEC_PD(SD_EMMC,	0),
->   	SEC_PD(RAMA,	0),
->   	/* SRAMB is used as ATF runtime memory, and should be always on */
+> [...]
 
-It's fine to keep it enabled.
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.5/drivers)
 
-Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+[1/1] drivers: meson: secure-pwrc: always enable DMA domain
+      https://git.kernel.org/amlogic/c/0bb4644d583789c97e74d3e3047189f0c59c4742
 
+These changes has been applied on the intermediate git tree [1].
+
+The v6.5/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
 Neil
+
 
 _______________________________________________
 linux-amlogic mailing list
