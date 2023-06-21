@@ -4,76 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D305EEB64D7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Jun 2023 07:37:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 674C4EB64DC
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Jun 2023 08:02:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date
-	:From:In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=S7v4yAJLuDJVHG1QZ1eEJno/St95pmoMCDDzbIgjHgU=; b=uQMbqw77HUrFCm
-	8vzLq00hrtu5KCIsMKYcenJfqjdfsI2Q54FRW9/z3KSCl5JpyAddcPmEgt969KaXoNM4WrhQNlhtP
-	Swjdp1wmOWWOA2Io1nwUMGScRjEW38RG6TpbqF5wHe+AHkXPklm6rd4a/+tl/FEpWFYz9POU8ejly
-	7EYmPT9sbw+f0foWYKb2x0KQ6kNMfkgAFEs5LsmpC2VZcEoumVYd0ERH3I1dzZ0qEvBibxNo6SbTY
-	xcrLZUoWA/m8A9+TqZ/WyDZN1NryzmE92D7EKD7STFhLn/TlZsSiAf4pK7S18JaNY42UZB7U8dCQ2
-	zMuvwM8aXlrp60EHnqeQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:CC:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=NhGvD2oUY5R3pbE4VOxZvHHIp3SXhLwPXEglLXbLRwY=; b=0MY/d0tcB8Zgbna7m117pMpk8L
+	wGOGROqC6bui0uBg1o6fy60ftHMQUjw9njM3L8ezbLWgg2kpwef1f1fTKYD7+w37okkHQL4zPHJPq
+	ppVlD48Fvp0ljOu/K6e9oEXFHu9/1s9r06nyj/uLTzCaCO0AN6U9tyeTVpVT9omwyhwE9CWYVkyjt
+	jTAklRLhRlJLxEyf9HM76W3Q+J0CawmPILepXSFGaqMCB8y/oEH8Y03FbiprMG5ru1AxGYF31WwIm
+	mAPccDEPpnNHI5BgWEgp1PnY1r3db58STopZIMDIhEqGxIwY5luB/6iMzjpzYPp5YCPfYq4oJEkqx
+	mxLADm3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qBsP1-00DZEA-0c;
-	Wed, 21 Jun 2023 07:37:19 +0000
-Received: from mail-yb1-f182.google.com ([209.85.219.182])
+	id 1qBsnD-00DcnL-0k;
+	Wed, 21 Jun 2023 08:02:19 +0000
+Received: from esa.microchip.iphmx.com ([68.232.153.233])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qBsOz-00DZDV-09;
-	Wed, 21 Jun 2023 07:37:18 +0000
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-bff89873d34so204555276.2;
-        Wed, 21 Jun 2023 00:37:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687333035; x=1689925035;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RBbxlv9gnoM9pjw8kXntm7KKExMqeh457d11frY80Iw=;
-        b=kXQGGZjcIupoFLjSWcG6koCUM1oNMKrA6a3JNXEAvXCJZEaqZ7F4dnU9WA3/UgUDXp
-         nXrAPygM5lmdP05vDJ0QFKUAPd8OyL9VSOE8i5do597ifT6n7NPlKHj2UbTBd3QKRaA+
-         R3sgcYkWtjMg0Ls0faoxUzeLiXgF7cpVANgN9xvVESg9Joim3HLl/Cqq9ieQ4whXPV//
-         qUFXD1ha6kO2KmKiw/UHQWBn4/n2sfr5c07mu5rud/Pmoiya9sxS1G7TH7uuBugyl2P8
-         exuQhMm07oNmokL82iPUfIASMHCU6IIsUFE8lH0qKiYMgQ87Bw+WD+VsB8SdqDKq0Sdc
-         oKIA==
-X-Gm-Message-State: AC+VfDzwTazuGoa8ManJS0wGaJxQrqzbmsywAhThpVP3Iz46Rhm8Mkxc
-	rHQlowGG4ETLdNCq/tnNeYoXE7WLvh+7bYEd
-X-Google-Smtp-Source: ACHHUZ4+S5aKSEZNONhE3a6GKs/2K37Q3L6Fk+65IksFju01p3OGwTM3+ICxZ6hfrM5+jhOVe2Izig==
-X-Received: by 2002:a81:8201:0:b0:561:b5b4:ce58 with SMTP id s1-20020a818201000000b00561b5b4ce58mr13486439ywf.38.1687333035386;
-        Wed, 21 Jun 2023 00:37:15 -0700 (PDT)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
-        by smtp.gmail.com with ESMTPSA id x8-20020a817c08000000b005623ae13106sm968570ywc.100.2023.06.21.00.37.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jun 2023 00:37:14 -0700 (PDT)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-57015b368c3so49019607b3.3;
-        Wed, 21 Jun 2023 00:37:14 -0700 (PDT)
-X-Received: by 2002:a81:4992:0:b0:568:8e96:7008 with SMTP id
- w140-20020a814992000000b005688e967008mr11287000ywa.0.1687333034038; Wed, 21
- Jun 2023 00:37:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230620134857.238941-1-tanure@linux.com> <20230620134857.238941-3-tanure@linux.com>
- <ZJIjtphyKdC48JrN@ofant> <76a7f819-f3d2-d39d-1bc9-f1e7f837fd22@linaro.org>
-In-Reply-To: <76a7f819-f3d2-d39d-1bc9-f1e7f837fd22@linaro.org>
-From: Lucas Tanure <tanure@linux.com>
-Date: Wed, 21 Jun 2023 08:37:02 +0100
-X-Gmail-Original-Message-ID: <CAJX_Q+3im20qphOXzn-=58Kx4--ajbaF4P8BVvRcDcPXn1Qheg@mail.gmail.com>
-Message-ID: <CAJX_Q+3im20qphOXzn-=58Kx4--ajbaF4P8BVvRcDcPXn1Qheg@mail.gmail.com>
+	id 1qBsn9-00DcmN-1r;
+	Wed, 21 Jun 2023 08:02:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1687334535; x=1718870535;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2TQu/oPINqyAhXMvFfjq4krM1J8lJ1HeueobGZSxnsg=;
+  b=FhX3suz9bUq5bBwE/MKa8VdHP2yJylwzReGCNz8mskDvU0xAsF9wflcH
+   J3/LX5dAenwqacB8yai7TsB0VT+8F2F7o75m4K+o9TZBXJQOWySPZVyoa
+   RHtk/5zIrzbrjpdzcL5RQCfCfBXlE6iuvguBu2THAH3tnRMJUp6tCBnfJ
+   Q1D72d8AeMii3ll3hOkQunWXq/mE4Di3hSSuZ771ixVs+942TL8ScJFkJ
+   hshM+1R3hksb3UKqLH8PToRGae3n2JpGZMNEnf6fa/GnTmb0j3oGi049s
+   f+RWzrvcbzNLRcrUMkj7IBir7b1nOPp512j00jsC4AH5pOadDH25jl3H+
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; 
+   d="asc'?scan'208";a="219662347"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Jun 2023 01:02:14 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 21 Jun 2023 01:02:08 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Wed, 21 Jun 2023 01:02:06 -0700
+Date: Wed, 21 Jun 2023 09:01:39 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Lucas Tanure <tanure@linux.com>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Yixun Lan
+	<dlan@gentoo.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>, Artem
+	<art@khadas.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>
 Subject: Re: [PATCH v2 2/2] arm64: dts: meson-t7-a311d2-khadas-vim4: add
  initial device-tree
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Yixun Lan <dlan@gentoo.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>, Artem <art@khadas.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Message-ID: <20230621-barber-enjoyably-04806271daea@wendy>
+References: <20230620134857.238941-1-tanure@linux.com>
+ <20230620134857.238941-3-tanure@linux.com>
+ <ZJIjtphyKdC48JrN@ofant>
+ <76a7f819-f3d2-d39d-1bc9-f1e7f837fd22@linaro.org>
+ <CAJX_Q+3im20qphOXzn-=58Kx4--ajbaF4P8BVvRcDcPXn1Qheg@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CAJX_Q+3im20qphOXzn-=58Kx4--ajbaF4P8BVvRcDcPXn1Qheg@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230621_003717_081630_71261F8B 
-X-CRM114-Status: GOOD (  20.25  )
+X-CRM114-CacheID: sfid-20230621_010215_618893_8923EBAD 
+X-CRM114-Status: GOOD (  26.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,45 +88,112 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: tanure@linux.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0448895019547460952=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gV2VkLCBKdW4gMjEsIDIwMjMgYXQgNzowMuKAr0FNIEtyenlzenRvZiBLb3psb3dza2kKPGty
-enlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4gd3JvdGU6Cj4KPiBPbiAyMS8wNi8yMDIzIDAw
-OjA5LCBZaXh1biBMYW4gd3JvdGU6Cj4gPj4gKyAgICAgICAgICAgIGFwYjQ6IGJ1c0BmZTAwMDAw
-MCB7Cj4gPj4gKyAgICAgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJzaW1wbGUtYnVzIjsK
-PiA+PiArICAgICAgICAgICAgICAgICAgICByZWcgPSA8MHgwIDB4ZmUwMDAwMDAgMHgwIDB4NDgw
-MDAwPjsKPiA+PiArICAgICAgICAgICAgICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwyPjsKPiA+
-PiArICAgICAgICAgICAgICAgICAgICAjc2l6ZS1jZWxscyA9IDwyPjsKPiA+PiArICAgICAgICAg
-ICAgICAgICAgICByYW5nZXMgPSA8MHgwIDB4MCAweDAgMHhmZTAwMDAwMCAweDAgMHg0ODAwMDA+
-Owo+ID4+ICsKPiA+PiArICAgICAgICAgICAgICAgICAgICB1YXJ0X0E6IHNlcmlhbEA3ODAwMCB7
-Cj4gPj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gImFtbG9naWMs
-bWVzb24tdDctdWFydCIsCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgfn5+fn5+fn5+fn5+fn5+fn4KPiA+IGlmIHlvdSBpbnRyb2R1Y2UgbmV3IGNvbXBh
-dGlibGUgc3RyaW5nLCB0aGVuIGF0IGxlYXN0IHlvdSBuZWVkIHRvIGRvY3VtZW50IGl0Cj4gPiBz
-byBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc2VyaWFsL2FtbG9naWMsbWVzb24t
-dWFydC55YW1sIG5lZWQgdG8gYmUgdXBkYXRlZAo+ID4KPiA+IGJ1dCBteSBxZXVzdGlvbiBoZXJl
-LCB3aHkgYm90aGVyIGludHJvZHVjaW5nIG5ldyBjb21wYXRpYmxlIHN0cmluZyBpZiBub3RoaW5n
-Cj4gPiBjaGFuZ2VkIHdpdGggdGhlIGNvbXBhdGlibGUgZGF0YT8gZ2l2ZW4gdGhlIHVhcnQgaXMg
-c2FtZSBJUCB3aXRoIGcxMmEsIGNhbid0IHdlIGp1c3QKPiA+IHVzZSAiYW1sb2dpYyxtZXNvbi1n
-MTItdWFydCIgZm9yIHRoaXM/IG5vIG9ubHkgaXQgd2lsbCByZWR1Y2UgdGhlIHN0cnVjdHVyZSBs
-ZW5ndGggb2YKPiA+IG1lc29uX3VhcnRfZHRfbWF0Y2hbXSwgYnV0IGFsc28gcmVsaWV2ZSBtYWlu
-dGFpbmVyJ3MgcmV2aWV3IGJ1cmRlbj8KPgo+IGh0dHBzOi8vZWxpeGlyLmJvb3RsaW4uY29tL2xp
-bnV4L3Y2LjEtcmMxL3NvdXJjZS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvd3Jp
-dGluZy1iaW5kaW5ncy5yc3QjTDQyCj4KPiBCZXN0IHJlZ2FyZHMsCj4gS3J6eXN6dG9mCj4KSGks
-IEkgZGlkIG5vdCB1bmRlcnN0YW5kIHRoZSByZWNvbW1lbmRhdGlvbiBoZXJlLgpDYW4gSSBhZGQg
-ImFtbG9naWMsbWVzb24tdDctdWFydCIgd2l0aG91dCBEb2N1bWVudGF0aW9uIGNoYW5nZXM/Ckkg
-dGhpbmsgWWVzLCBhcyBJIGNhbiBzZWUgYSBmZXcgY29tcGF0aWJsZSBzdHJpbmdzIGluIGR0cyB0
-aGF0IGRvbid0CmV4aXN0IGFueXdoZXJlIGVsc2UuCgpNeSBpZGVhIGhlcmUgaXMgdG8gYWRkICJh
-bWxvZ2ljLG1lc29uLXQ3LXVhcnQiIGZvciBmdXR1cmUgdXNlIGlmIGV2ZXIKY3JlYXRlZCwgbGlr
-ZSBpZiB3ZSBmaW5kIGEgYnVnIGluIHRoZSBmdXR1cmUgdGhhdCBpcyBvbmx5IHJlbGV2YW50IHRv
-ClQ3IHNvYy4KQnV0IGZvciBub3csIGZhbGxiYWNrIHRvIHM0IHVhcnQsIGFzIGl0IHNlZW1zIHRv
-IGJlIHRoZSBzYW1lIGNvbnRyb2xsZXIuCgpGcm9tIEtyenlzenRvZiBzYWlkIGluIHRoZSB3cml0
-aW5nLWJpbmRpbmdzLnJzdCwgSSBhbSBmb2xsb3dpbmcgdGhlIHJ1bGVzLgoKU28sIHdoYXQncyB0
-aGUgcGF0aCBmb3J3YXJkIGhlcmU/CgpUaGFua3MKTHVjYXMKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
-bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+--===============0448895019547460952==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="5aSeY0QXlyq92qaE"
+Content-Disposition: inline
+
+--5aSeY0QXlyq92qaE
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jun 21, 2023 at 08:37:02AM +0100, Lucas Tanure wrote:
+> On Wed, Jun 21, 2023 at 7:02=E2=80=AFAM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 21/06/2023 00:09, Yixun Lan wrote:
+> > >> +            apb4: bus@fe000000 {
+> > >> +                    compatible =3D "simple-bus";
+> > >> +                    reg =3D <0x0 0xfe000000 0x0 0x480000>;
+> > >> +                    #address-cells =3D <2>;
+> > >> +                    #size-cells =3D <2>;
+> > >> +                    ranges =3D <0x0 0x0 0x0 0xfe000000 0x0 0x480000=
+>;
+> > >> +
+> > >> +                    uart_A: serial@78000 {
+> > >> +                            compatible =3D "amlogic,meson-t7-uart",
+> > >                                               ~~~~~~~~~~~~~~~~~
+> > > if you introduce new compatible string, then at least you need to doc=
+ument it
+> > > so Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml n=
+eed to be updated
+> > >
+> > > but my qeustion here, why bother introducing new compatible string if=
+ nothing
+> > > changed with the compatible data? given the uart is same IP with g12a=
+, can't we just
+> > > use "amlogic,meson-g12-uart" for this? no only it will reduce the str=
+ucture length of
+> > > meson_uart_dt_match[], but also relieve maintainer's review burden?
+> >
+> > https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetr=
+ee/bindings/writing-bindings.rst#L42
+> >
+> > Best regards,
+> > Krzysztof
+> >
+> Hi, I did not understand the recommendation here.
+> Can I add "amlogic,meson-t7-uart" without Documentation changes?
+
+No, you can't.
+
+> I think Yes, as I can see a few compatible strings in dts that don't
+> exist anywhere else.
+
+Aye, but we do not want to propagate that. New stuff should not be
+adding undocumented compatibles, and those that are undocumented should
+be documented.
+
+> My idea here is to add "amlogic,meson-t7-uart" for future use if ever
+> created, like if we find a bug in the future that is only relevant to
+> T7 soc.
+> But for now, fallback to s4 uart, as it seems to be the same controller.
+>=20
+> >From Krzysztof said in the writing-bindings.rst, I am following the rule=
+s.
+>=20
+> So, what's the path forward here?
+
+You are following the rules from the dts point of view, you just need a
+3rd patch in which you document the pattern you have added here in
+amlogic,meson-uart.yaml. It is probably something like:
++      - items:
++          - const: amlogic,meson-t7-uart
++          - const: amlogic,meson-s4-uart
+But I have not tested that, I just wrote that in my mail client.
+
+Cheers,
+Conor.
+
+--5aSeY0QXlyq92qaE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJKuWAAKCRB4tDGHoIJi
+0sz1AQDTbSImMPfj3eXZkkbJgedEV9mFN5eDBAD9G8HavB9hSwEAiOLWCw7Qt7yU
+nkxVT6Dtv3r2MiNA45lN8/HWxgTfZwk=
+=Xw6R
+-----END PGP SIGNATURE-----
+
+--5aSeY0QXlyq92qaE--
+
+
+--===============0448895019547460952==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============0448895019547460952==--
+
