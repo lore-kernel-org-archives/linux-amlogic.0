@@ -4,115 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7855EEB64D8
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Jun 2023 18:06:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD25CEB64D7
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Jun 2023 18:12:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xDJa84QtL6m7YUfFdome//CH2ZrvFOnpVMAZwu6x7UQ=; b=MWDtcC7pjUNOl+
-	bdXSDT4qC/Q8rjwINqW7Ccu9vx8HXWbcfqKVYqrdq7/hLHvre7L6bVWIhPRLMRZ1OLO+PpY+9kxGD
-	sr/dF0eQ5FtORoHXM1ngQWatwULojrcY1mj6d1a4q22vKzYBfE/L9tEURD/GvYKvPxmaI30rDePAD
-	mzOMk1TXvSRuBW5XvWeLbPoQi2WnQ4LBTL8Kal1vyAtjXtSGcFGFU5EkYQU3QjSJQLJEBC2+sT/F/
-	gR7IjFEXAFSh2v8S10vPB4NjKBfWaXjVduHXCgrh8Col1Wb6AtcCYptkqyz5AOOONRN/wMEYqVql8
-	S3xKzExqGc5PuTa2yMdQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=2iJ0lD6w3hbGQ3PMwtgT6hixJerYhefqSZFK1lLA6x8=; b=KBSomfpA8ML2qwgd/d0lQQVlkj
+	WQJs2/4x5aCujPNgLQQKEYkxpr7q9xptJmvSyNhRg7adpUSfvgW0ukqE94WXHmCkDzlXZEbFAEFm/
+	d7j5BTtqu1+LWCwPoR4lSM2XNFnXv4lMweI760wJSNoxUfpbGbqrIiwhKRrTb5QMaG/elwembm79x
+	+uu/h7U0Ta3ZOW/3PSzPU4jQ03zW86Y5myMGYUm6XL8ra3rabonnORb+bfba3+iJgN1ZS/STFlwen
+	feBa8ZsnmCUalKE62QHcnSPTkdHIbZMenAlHAScBaPJ6pzAxvi5/dE3EyHvCPd81Dd7LXfAwQpMds
+	9ERvu8sA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qC2Dx-00FL2y-1A;
-	Wed, 21 Jun 2023 18:06:33 +0000
-Received: from mail-pj1-x1035.google.com ([2607:f8b0:4864:20::1035])
+	id 1qC2JF-00FLnQ-2B;
+	Wed, 21 Jun 2023 18:12:01 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qC2Du-00FL1r-2x;
-	Wed, 21 Jun 2023 18:06:32 +0000
-Received: by mail-pj1-x1035.google.com with SMTP id 98e67ed59e1d1-25e89791877so2939252a91.2;
-        Wed, 21 Jun 2023 11:06:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687370789; x=1689962789;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Az2bQMNiNgvxrY9glBfDppHJtPk+FnOiirU3h5SFUmI=;
-        b=GBwqsylX82eyyI6jaGm8GsagHkfo1ldmyJdiuXnqzkqc4ixPDGmBndPn+m5n78gbEX
-         grQ43KpF9obw2HM0F+0Da2EX7FG1TM+0L9uhuv2VxtTTh4Shtd4OnCRuABGudvVq5VNz
-         iQaWR9MzmTbR4azKVOEb4dzjdFL4zISHzQ8Xai7eC0gVhiFfJ7tVYQ5E9AAcbFn9q22k
-         8Ov5oteaP4Ey9KJbsK4m7VfpYJ2OGGic9pmnWe9y4g9aXPHbx1psYi9x54FtmJyaOHTJ
-         If9gncUlG0NfkZN0/Ht0Eesf6ACs38AOXcM3/k8dkmspSHj3mSTLO0ygf69hIR5HeY/c
-         7xjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687370789; x=1689962789;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Az2bQMNiNgvxrY9glBfDppHJtPk+FnOiirU3h5SFUmI=;
-        b=Ib4/8UoWQGmeojTMMbXDIyA+6njgJu7Kx7uO2s0uEJVwHxyeFSSkpsQT+STX6c1I9n
-         xzOfrJXfgB5zGsvag+I9WRMTHWQalOYr566Dfuy+uJOBnNDwBi5YI5LRLxj5dkOzAWdG
-         fSXRm/xa5xJMPK4jiVw5cJYVI4945X6pnLD9DwWb+fR/PwDHNNqNJAxXD7D/rCKJrA5h
-         cmxo/+nYBWaTYuzr+94AIeJ3vQiTNai5RNBQ1y2xeFrvypZ5Tt4nKPg6cbaQYAW87IbJ
-         7pMNoenhG6MqNf+JsoyYAzAzsuoXQEjj0mlUP2rwGYjriExqILB4cPw1I40zJKe9Wgc9
-         UgwQ==
-X-Gm-Message-State: AC+VfDxG80aseObZv3+bYh+8n0njR1ulXFxDG2i9fiSn3W4wHNsc+vGk
-	zRBYMdcypbtCJL2K19uLRkM=
-X-Google-Smtp-Source: ACHHUZ4rfAeGFSguwikDDJBGuQb8NhqAfqZhPlTkMSahmVCwaEWtuwULvNAqRQTIu3CqkjuDrOxkMw==
-X-Received: by 2002:a17:90a:bb85:b0:24d:fbaf:e0b1 with SMTP id v5-20020a17090abb8500b0024dfbafe0b1mr9657024pjr.19.1687370788961;
-        Wed, 21 Jun 2023 11:06:28 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id gq17-20020a17090b105100b00260e7c2cedesm1762390pjb.57.2023.06.21.11.06.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jun 2023 11:06:27 -0700 (PDT)
-Date: Wed, 21 Jun 2023 11:06:26 -0700
-From: Guenter Roeck <linux@roeck-us.net>
+	id 1qC2JC-00FLmo-2s;
+	Wed, 21 Jun 2023 18:12:00 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 4359F6167D;
+	Wed, 21 Jun 2023 18:11:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0855C433C9;
+	Wed, 21 Jun 2023 18:11:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1687371117;
+	bh=9v9goyvtQUiL0Qdj2HtwIciXoTyai42W0bpnzYLHHkI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=H8nvt6561PKdO78SQ+P57VegX3c96Wp41o6Tq8Tk6RevjXUQWE8bfi3ctVIQFDAMK
+	 qc0IjZuN4cp1FKeRaQqXlK9YUnqNhI4XfVUIelqM9yZaem4eSns9Oi49tupElZQfhM
+	 BzhaHaF8O9evPM9SBODc072i/R58IDA2rimLsZsAPMv7RHmb5jDSvqN7zsFgdiNwiZ
+	 hMHrXaOgDEhBzEhJkgcQTHeOZ+xkQBY50is2I1serBNhBE9UjQg46sNuSlV+4eW0Ly
+	 wbXVIaxYS7CT8gVkmPm0IUF8qZ7t9+SQoG30EwdBFw4baw/UnedoyowohvBnfGfGFt
+	 xBHppij4HnNZQ==
+Date: Wed, 21 Jun 2023 19:11:52 +0100
+From: Conor Dooley <conor@kernel.org>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Joe Tessler <jrt@google.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+Cc: Lucas Tanure <tanure@linux.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Michael Tretter <m.tretter@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Jacopo Mondi <jacopo+renesas@jmondi.org>,
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Wenyou Yang <wenyou.yang@microchip.com>,
-	Bin Liu <bin.liu@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
-	Houlong Wei <houlong.wei@mediatek.com>,
-	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-	Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Patrice Chotard <patrice.chotard@foss.st.com>,
-	Yong Deng <yong.deng@magewell.com>,
-	Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	"Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Sean Young <sean@mess.org>,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
-	linux-mediatek@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 01/28] media: cec: ch7322: drop of_match_ptr for ID table
-Message-ID: <dba2090c-e6b2-4a54-a233-9e8f309a20af@roeck-us.net>
-References: <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
+	Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>,
+	Artem <art@khadas.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: serial: amlogic,meson-uart: Add
+ compatible string for T7
+Message-ID: <20230621-uncaring-impeding-15cfbe8e0e7c@spud>
+References: <20230621133215.109254-1-tanure@linux.com>
+ <20230621133215.109254-3-tanure@linux.com>
+ <20f25e98-d02e-f914-c4e7-72bb9ddb1ae5@linaro.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20f25e98-d02e-f914-c4e7-72bb9ddb1ae5@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230621_110630_955963_D27F5E4B 
-X-CRM114-Status: GOOD (  19.64  )
+X-CRM114-CacheID: sfid-20230621_111159_102675_ED4B7A81 
+X-CRM114-Status: GOOD (  19.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,34 +78,92 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2565375443658776405=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gU3VuLCBNYXIgMTIsIDIwMjMgYXQgMDI6MTI6NTFQTSArMDEwMCwgS3J6eXN6dG9mIEtvemxv
-d3NraSB3cm90ZToKPiBUaGUgZHJpdmVyIGNhbiBtYXRjaCBvbmx5IHZpYSB0aGUgRFQgdGFibGUg
-c28gdGhlIHRhYmxlIHNob3VsZCBiZSBhbHdheXMKPiB1c2VkIGFuZCB0aGUgb2ZfbWF0Y2hfcHRy
-IGRvZXMgbm90IGhhdmUgYW55IHNlbnNlICh0aGlzIGFsc28gYWxsb3dzIEFDUEkKPiBtYXRjaGlu
-ZyB2aWEgUFJQMDAwMSwgZXZlbiB0aG91Z2ggaXQgbWlnaHQgbm90IGJlIHJlbGV2YW50IGhlcmUp
-Lgo+IAo+ICAgZHJpdmVycy9tZWRpYS9jZWMvaTJjL2NoNzMyMi5jOjU4MzozNDogZXJyb3I6IOKA
-mGNoNzMyMl9vZl9tYXRjaOKAmSBkZWZpbmVkIGJ1dCBub3QgdXNlZCBbLVdlcnJvcj11bnVzZWQt
-Y29uc3QtdmFyaWFibGU9XQo+IAo+IFNpZ25lZC1vZmYtYnk6IEtyenlzenRvZiBLb3psb3dza2kg
-PGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4KCldoYXQgaGFwcGVuZWQgd2l0IGh0aGlz
-IHBhdGNoID8gSSBzdGlsbCBkb24ndCBzZWUgaXQgYXBwbGllZC4KCkZXSVc6CgpSZXZpZXdlZC1h
-bmQtdGVzdGVkLWJ5OiBHdWVudGVyIFJvZWNrIDxsaW51eEByb2Vjay11cy5uZXQ+CgpUaGFua3Ms
-Ckd1ZW50ZXIKCj4gLS0tCj4gIGRyaXZlcnMvbWVkaWEvY2VjL2kyYy9jaDczMjIuYyB8IDIgKy0K
-PiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvbWVkaWEvY2VjL2kyYy9jaDczMjIuYyBiL2RyaXZlcnMvbWVkaWEv
-Y2VjL2kyYy9jaDczMjIuYwo+IGluZGV4IDM0ZmFkNzEyMzcwNC4uM2M2ZTY0OTZhMDAxIDEwMDY0
-NAo+IC0tLSBhL2RyaXZlcnMvbWVkaWEvY2VjL2kyYy9jaDczMjIuYwo+ICsrKyBiL2RyaXZlcnMv
-bWVkaWEvY2VjL2kyYy9jaDczMjIuYwo+IEBAIC01ODksNyArNTg5LDcgQEAgTU9EVUxFX0RFVklD
-RV9UQUJMRShvZiwgY2g3MzIyX29mX21hdGNoKTsKPiAgc3RhdGljIHN0cnVjdCBpMmNfZHJpdmVy
-IGNoNzMyMl9pMmNfZHJpdmVyID0gewo+ICAJLmRyaXZlciA9IHsKPiAgCQkubmFtZSA9ICJjaDcz
-MjIiLAo+IC0JCS5vZl9tYXRjaF90YWJsZSA9IG9mX21hdGNoX3B0cihjaDczMjJfb2ZfbWF0Y2gp
-LAo+ICsJCS5vZl9tYXRjaF90YWJsZSA9IGNoNzMyMl9vZl9tYXRjaCwKPiAgCX0sCj4gIAkucHJv
-YmVfbmV3CT0gY2g3MzIyX3Byb2JlLAo+ICAJLnJlbW92ZQkJPSBjaDczMjJfcmVtb3ZlLAo+IC0t
-IAo+IDIuMzQuMQo+IAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZy
-YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGlu
-dXgtYW1sb2dpYwo=
+
+--===============2565375443658776405==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="r8ifSacFha/D1Rvk"
+Content-Disposition: inline
+
+
+--r8ifSacFha/D1Rvk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Lucas,
+
+On Wed, Jun 21, 2023 at 03:53:04PM +0200, Krzysztof Kozlowski wrote:
+> On 21/06/2023 15:32, Lucas Tanure wrote:
+> > Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
+> > There is no need for an extra compatible line in the driver, but
+> > add T7 compatible line for documentation.
+> >=20
+> > Signed-off-by: Lucas Tanure <tanure@linux.com>
+> > ---
+> >  .../devicetree/bindings/serial/amlogic,meson-uart.yaml          | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uar=
+t.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> > index 01ec45b3b406..860ab58d87b0 100644
+> > --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> > @@ -33,6 +33,7 @@ properties:
+> >                - amlogic,meson8b-uart
+> >                - amlogic,meson-gx-uart
+> >                - amlogic,meson-s4-uart
+> > +              - amlogic,meson-t7-uart
+> >            - const: amlogic,meson-ao-uart
+> >        - description: Always-on power domain UART controller on G12A So=
+Cs
+> >          items:
+> > @@ -46,6 +47,7 @@ properties:
+> >            - amlogic,meson8b-uart
+> >            - amlogic,meson-gx-uart
+> >            - amlogic,meson-s4-uart
+> > +          - amlogic,meson-t7-uart
+>=20
+> It does not look like you tested the DTS against bindings. Please run
+> `make dtbs_check` (see
+> Documentation/devicetree/bindings/writing-schema.rst or
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sou=
+rces-with-the-devicetree-schema/
+> for instructions).
+
+Check back on the previous version, I should've posted an untested
+version of what you need to add.
+
+Cheers,
+Conor.
+
+--r8ifSacFha/D1Rvk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJM9aAAKCRB4tDGHoIJi
+0iPmAQCB2/L7TXDqGzhLNnWtm2aGh/w/O0jkMMU06UwMv1mW7wD+IiKLI9x7+bbA
+i66ElkRSOzKYf154fLEAit0ALQC0cQY=
+=QmUG
+-----END PGP SIGNATURE-----
+
+--r8ifSacFha/D1Rvk--
+
+
+--===============2565375443658776405==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============2565375443658776405==--
+
