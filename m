@@ -4,84 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B21B2EB64DB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Jun 2023 07:58:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FE76EB64DA
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Jun 2023 07:58:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gYq+RmXfrJMUiDwiYwuPWl6sGsV4g263pjzuiMChkIw=; b=DraWnHZqCAfiFz
-	QFgYTG+EsQpH1hG2Y3IpeffBO2zugpGbvDYZX5htsItD7bdD+RHB2eC8ffaaM5Z2DqIdrCWslEE5X
-	zbYAywBpyVw12yMlVepJn2ObT+9K5yjtTZTmx81RtwMWD8A4QT0Q0wDah9/KUrXgVxL5F720xj0cm
-	rUgetUZx4klzTlLCLM68W4il9mzBBge9BPDI6D7EhCyqCzUi1kgO+G+Tk+DKi0GG8LMsIOcPcWBAB
-	mxTkxVgDsKVMvFfNZ5uz5Vkg6csjOtHG3zfVGFo8kO9Yv5NH6KuISX4bYe1QXvOn8/HVg2/YI462L
-	xZ9xXTYobs5/oOwVygAA==;
+	List-Owner; bh=yqtoSNGXwWXEqm9HukGJCFe8soVHTMmpp3/Bu6U6Zgw=; b=krFbHVmzI0Btk1
+	4fKKrrhfc+2SA88wJ4Ygh9TWr1fQjsu3DtTppIrKi+f0yzsY3BdoY0c1ZsgGELXMrVkWlTtsN3Y/Y
+	vVymM3DwDJeLvJaFF+3z4f058R9ozrdu/qGvFUeAzgGGrCXiop2iD+NqWtmWWDpw6ypTjmztLqGAE
+	Sx0ln3r0hvWtG/6kR/6dPLfUPjL6hEQn5Go147VP0UHUDD2BqmUSrnCsMFtup9xI66hGmJHVMWVaX
+	wJAdvhxyLaG6HlG5iPdkI/lXQqNIH4DEPP284ef0xKsf6+mNGe6soJ3NvPhRoVMQCJfLtLyFBLQUN
+	0+SdIIqT6io6eieurhMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qCFCl-00HL0b-2t;
-	Thu, 22 Jun 2023 07:58:11 +0000
-Received: from mail-wm1-f45.google.com ([209.85.128.45])
+	id 1qCFCm-00HL1W-2v;
+	Thu, 22 Jun 2023 07:58:12 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qCFCc-00HKv5-1d
+	id 1qCFCh-00HKyQ-09
+	for linux-amlogic@bombadil.infradead.org;
+	Thu, 22 Jun 2023 07:58:07 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=eoH4TBC0JXa4HF+16J32SMlFEUZb3HDAGDzfvr+ddQI=; b=NWBRIGI7CDs28yDfB0umIQWrP8
+	AmTEZHlKsr4HPDI959AfoP7lRgTw+S128OUUpzE7F32f8edPHnAKcpcarAzll/oR12bljtSse5Ayi
+	c9Qj1JthdLxu/+vurKMy6XInB3uP2lUPKpfne2x0FcK1zt/VLGQ3m3lltACJ1RNDfOTu3KjBstw9x
+	ik+ev0nGo5L69RsJ4md0tnXtvzwY2qz2omAW+wb5klCdhUUGNQKoTRLp5kwxuZ2oulY9YU5dFOJEY
+	kdZkqHKD+VtNuIwI8atkcr4/ZIzuWPDbKKzNK4Bv1BBj+HvFlip/GoCz1ZHW5WSErSO5T1SxMOf1z
+	JbTCoRdw==;
+Received: from mail-lj1-x22a.google.com ([2a00:1450:4864:20::22a])
+	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1qCFCc-00123S-1M
 	for linux-amlogic@lists.infradead.org;
-	Thu, 22 Jun 2023 07:58:04 +0000
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-3fa74d06d72so1790115e9.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 22 Jun 2023 00:58:01 -0700 (PDT)
+	Thu, 22 Jun 2023 07:58:05 +0000
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b47354c658so68589831fa.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 22 Jun 2023 00:58:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687420680; x=1690012680;
+        d=linaro.org; s=google; t=1687420679; x=1690012679;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=weePZo2zFiE1c/nJhnfk4JFnGH64Gz6Yvqf1fESw1ac=;
-        b=PLM8iwwESi07p0yZx5lFaNw4yGWTGoYM82f1gaojuXj/qwK5z+RK9XmyCs+mpAdrdp
-         5vWNDYJb4DHmsK2nfO35Cl7j5tIAvOLDKDBWVXNgwWTX6qYVZTg56rS4icALbipfq3NX
-         yKnUt1xuv53c/zAs7GpH9lzL4iSuqUJ/IMmEWlU3zVHUGxL3j/nJGdKj55wyB3TEHguA
-         vONsKLL3gpd8jjYYIAI7bYfWxNt5JGVyIMORSgfZqRHooB/gRy4A3LpP+4evw+1NoK+G
-         0kzzWn7sbsxf4MV8wBJjjob0CZXeS5aZ+x5iMKroIuW8h5+zqJVpS2N02tB2/ZMQkPeN
-         SGwg==
+        bh=eoH4TBC0JXa4HF+16J32SMlFEUZb3HDAGDzfvr+ddQI=;
+        b=Cqk7bC+rMdN6LWVm4P1WxZhVVsQ1i+A2OBJpHjrP0dcYZ9kttyL616l4E4STIgjc8X
+         sGq0F336C1y2Q0ixgy9e+Pk4UXNuUMEEaPURL6qo8R+6CuI/kbqVjfPq+/s0DG6xlktM
+         sWsNr5G9uC6tzDfjhpDHt3XWtQ8pIt0tlRnATo5VLg1OUdV02xxhdVulbzeXc9G95Gki
+         YI5kh4+wBKF2F36x0SASlSO6FGmHuRuz5UveUuuC8qL1c2DPGFkqaPX9DmPi40UYb+86
+         HOw0qIcMPNzf1h1eYf4E9Ie7rrjwe+1F/5PAS7+FAIQLG/Dt+VTGHsqEir1KbsHsvq/b
+         of3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687420680; x=1690012680;
+        d=1e100.net; s=20221208; t=1687420679; x=1690012679;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=weePZo2zFiE1c/nJhnfk4JFnGH64Gz6Yvqf1fESw1ac=;
-        b=Ahq3QA7OPemTpluiHCLWMghiNIE6qFWA4ive+opRsQ8ucMns3DRUObLTSQ03wPVfWn
-         4Iqy1lWLWvKspZh0HYHWUiyyJ17GzFdSlczx+kQujVMRs/QJ9S2HauBvyZHDV+W8sTXT
-         2r8vPpcZZ8pi6OCLxxc3y86rcUCvPw6ajywHDiBGQN+5kCaJ9cpCwnM/PvMDhzx/cwCH
-         pZiLqpDgIaethOJOjk7K5BBRienPB1IOXqiUXO3EDc9QNRtbL+Ui8+/w39OHa9EwgELU
-         oakcQpxh2MeyD+O5U+9bFeS/bp0UsVyNhZRERzAf1qV3UaMLJ1nbLcsEehNILFXTBiK2
-         b4Fg==
-X-Gm-Message-State: AC+VfDzBmGGSGST3uC6Qn0Yej/VtDIz4xFCySQTWCLZSOwWXxWReobJO
-	o/27YqPumTIDJAIoFumgeoKjNw==
-X-Google-Smtp-Source: ACHHUZ7TmMn+YQuTcEKH98tBPOxg4bhk+YwRYQAPrfkx54ogpouJkCuAeRIJ3oZpyLhmOi+R4GPJdQ==
-X-Received: by 2002:a7b:cb9a:0:b0:3f9:a6f2:8656 with SMTP id m26-20020a7bcb9a000000b003f9a6f28656mr8069188wmi.35.1687420680068;
-        Thu, 22 Jun 2023 00:58:00 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id u23-20020a05600c00d700b003f78fd2cf5esm7000683wmm.40.2023.06.22.00.57.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        bh=eoH4TBC0JXa4HF+16J32SMlFEUZb3HDAGDzfvr+ddQI=;
+        b=ICjkK92soE4OZJdFlmqbCbib3PmCkdDvOKRSf3QZInSpWZfQNZ09Nv5SNH7uq65EQI
+         GQ8GPvrEJEkzr5Z3cUSSmLjOElyVrKYV0zO6Wx13DQHfsd6gH3m6BE7mvFEhASl90i5K
+         Md8bteIwUTLc+vUj+4NrkdImiUhg5uZEltcMUpq6q9BQH3tqrPdUzLpJZEylV1c1wx28
+         /+gmhgRIVCqhUVMvl8uuEXZF1jkZYiEfYaiSk0uO+PugCbjDTzcZjg2mYTE1p66GSSTl
+         qiwKhH8cXEQoNTok1W5a7QWnpJ5GmErK+hHQypGh8tzmKs6mnLU/o5RH4O4akzLd76tg
+         wO2w==
+X-Gm-Message-State: AC+VfDydDObKJijwZT2gubRtowgP3oqui8Berr/z7JeFGTqPRlZAYzF0
+	Z4VZfbO1E3ed9xg72d8py3T6Dw==
+X-Google-Smtp-Source: ACHHUZ5UXqIo89zYUy4OGRb5+TvhvC+o+5R16dzg4IwyRN20Eiakd5XgdOMmN2DFgAkviZpRz1d8ug==
+X-Received: by 2002:a2e:90d2:0:b0:2b5:80c9:126d with SMTP id o18-20020a2e90d2000000b002b580c9126dmr4225985ljg.46.1687420679046;
         Thu, 22 Jun 2023 00:57:59 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id u23-20020a05600c00d700b003f78fd2cf5esm7000683wmm.40.2023.06.22.00.57.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Jun 2023 00:57:58 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Thomas Gleixner <tglx@linutronix.de>, Jerome Brunet <jbrunet@baylibre.com>, 
+To: Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Kevin Hilman <khilman@baylibre.com>, Marc Zyngier <maz@kernel.org>, 
  Heiner Kallweit <hkallweit1@gmail.com>
 Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-In-Reply-To: <e06e9f26-cf55-5596-c799-d698e9d7b409@gmail.com>
-References: <e06e9f26-cf55-5596-c799-d698e9d7b409@gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: Convert Amlogic
- Meson GPIO interrupt controller binding
-Message-Id: <168742067914.2178283.17483117281702993338.b4-ty@linaro.org>
-Date: Thu, 22 Jun 2023 09:57:59 +0200
+ linux-arm-kernel@lists.infradead.org, 
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+In-Reply-To: <38f87b22-d9a8-b8d8-ba7b-a2c2d7311b04@gmail.com>
+References: <38f87b22-d9a8-b8d8-ba7b-a2c2d7311b04@gmail.com>
+Subject: Re: [PATCH resend] MAINTAINERS: add PHY-related files to Amlogic
+ SoC file list
+Message-Id: <168742067824.2178283.2801774863315651148.b4-ty@linaro.org>
+Date: Thu, 22 Jun 2023 09:57:58 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.12.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230622_005802_561309_CF0D3A4A 
-X-CRM114-Status: UNSURE (   9.29  )
+X-CRM114-CacheID: sfid-20230622_085802_853862_232B8B59 
+X-CRM114-Status: UNSURE (   9.25  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,15 +115,15 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Sun, 12 Mar 2023 22:29:07 +0100, Heiner Kallweit wrote:
-> Convert Amlogic Meson GPIO interrupt controller binding to yaml.
+On Sun, 15 Jan 2023 15:26:05 +0100, Heiner Kallweit wrote:
+> Add PHY-related files to the Amlogic SoC file list.
 > 
 > 
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.5/drivers)
 
-[1/1] dt-bindings: interrupt-controller: Convert Amlogic Meson GPIO interrupt controller binding
-      https://git.kernel.org/amlogic/c/6b0139b372d40bd5dafc140b6618b57d13211168
+[1/1] MAINTAINERS: add PHY-related files to Amlogic SoC file list
+      https://git.kernel.org/amlogic/c/9e70e49474bb37ba8f43336d8a775d503b20aebc
 
 These changes has been applied on the intermediate git tree [1].
 
