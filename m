@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9878CEB64D8
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Jun 2023 13:07:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52D08EB64DD
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Jun 2023 14:00:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FsYHZKDPaBxLCtkcOZUFBpIePEzYbrmLk6IT9ssPmuA=; b=PUBwCIROcQjQYy
-	5xZxDljzZ53qgC7g8B+UfgGNCtL+FqXCuf+708th7IIIkW7pptfFJZxJBsCU1/yBa1MV5GiRw7bVW
-	Fmd3/N/Yy727+UIRTHPM92VQ8Okhi2CZ/SsGLw1kjBppK8uMJHWHeYQLKO4JfjERogKVQRpoa5nGf
-	biRvqS43/XRsb9chmn5BuxUDGL0t8obHGSxa2DiC5eR5ZwAQiLDRQsGXiJebDLR/IryVAOkZcqrbF
-	QUq6Mfq7DHDiegIzO/wpfaPbzu2JGmQUMnJ5QI+rPGbRC19vQ5I9iDMYofhut94UBXd617QFITdDL
-	e+ecjaEK7nwwNKhViY4g==;
+	List-Owner; bh=My4iJQbbQpQ5KdVqCHxIqsY3GiCUFaUc4hnjmpyhSIw=; b=WYHerX5PA2alXB
+	RUGmrlE5bY1IE7+d0/ojd/AxKyTwy7j+TjtIaH+NF/34hTgPvMEaL2F/r5a+V3Iq7gaiXjbbEmR58
+	nkcycgDvIPjCmLwekzNiiNpSshP+m30ayjz5zmsGS74gZUiyynddy5vc9eRcV5YCYgGFUAnCvmt+q
+	7pRaIOLI9buP6qaMhCCEOPlOn04A5dBX7YPNlKnJO7EX1+gDCg2tm9NK2C8LLfwptGcVXJjhshT8M
+	SA2mzq9sxO3mQjCL4zc3I/UCqiHcu3WJknvkmIBOpzrbR5d7b6eu+7CyrqgIqSURId1Sk+xrLrzTq
+	5u+9lG2LMXmdAwwEYc2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qCK1k-000hm1-0b;
-	Thu, 22 Jun 2023 13:07:08 +0000
+	id 1qCKr4-000sqg-2y;
+	Thu, 22 Jun 2023 14:00:10 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qCK1f-000hkx-0w;
-	Thu, 22 Jun 2023 13:07:06 +0000
+	id 1qCKr0-000so7-1R;
+	Thu, 22 Jun 2023 14:00:09 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 0A9465FDA9;
-	Thu, 22 Jun 2023 16:07:01 +0300 (MSK)
+	by mx.sberdevices.ru (Postfix) with ESMTP id 472875FD0F;
+	Thu, 22 Jun 2023 17:00:03 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1687439221;
-	bh=tbqnmvyCMy46X3ECZJNrxE/52bM9hZeHzRqzBrMsIso=;
+	s=mail; t=1687442403;
+	bh=eKa4rTnfwF98HJy9xMz2GqxxsZRxQxHD1jhJK3ZmGag=;
 	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=cEPnvDVJWuQIWZRzbswzi4B2Cz84+9c3/Tx8tv93a4Tyob1A02c+zGYR49nXtp5yB
-	 8RrZl3jOmekdAQXJKMMLZ5ITgHqoEVKU7j2j2bzRc0EoooOad3Gxl32sVq9YrB7XMX
-	 PM6FXQsv6M4c9WUb4cbwjL1IRhJZ3PJQ8JN2/FqHQ8kdgIhMKKrsNSc5F24E0KnVVC
-	 zNvShibv7DPyLZtpnmm4iflRRVnjnCPbzDt26z0XpyTwGa6ZSIioe3LknzWtW+dTpm
-	 WsTXH5mMCOhzwyk8Md/tsJ1zyA6tjK29fRKn/vvFW7TL2Puf/Nyb7W3of+dmfVIkbm
-	 4c4wtvQa9rDpg==
+	b=TpqNDkeM6DSevkhRsXA9uBCCfER0M1IfMbcxKTGMp8ZueswEO8pKBPNMJk3dBjYiG
+	 BzlklzNLD3aNSa3J7lGJBXOR/VDQKT5gUl04Ld4FCtY/SBmhSn9gaqE5rnYsnw7Yls
+	 MG5nyMM8hPH8RkbdsxvMySJ9qb6DR1+h8vytdBc+1QNcsAflp7S0jEJEuqlO666GOm
+	 /QzCpvqHo3s1r3BjtwHWIVzcc7Jbu8zj4wuNytb+UtmA+ZGQLS41P2W9q3ypL2u25j
+	 cLRy24dsPABH3dz9zS9xONHfOa7Y3PFpoZwoynEOBUtv5Io3Ob/CVMS3wZuRp3z7oK
+	 gVOT8NVmxjY0A==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Thu, 22 Jun 2023 16:07:00 +0300 (MSK)
-Date: Thu, 22 Jun 2023 16:07:00 +0300
+	Thu, 22 Jun 2023 17:00:02 +0300 (MSK)
+Date: Thu, 22 Jun 2023 17:00:02 +0300
 From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 To: Neil Armstrong <neil.armstrong@linaro.org>
 CC: Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette
@@ -56,7 +56,7 @@ CC: Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette
 	<kernel@sberdevices.ru>
 Subject: Re: [PATCH v2 04/19] clk: meson: migrate a1 clock drivers out of
  hw_onecell_data to drop NR_CLKS
-Message-ID: <20230622130700.d3jxv5hj7i22obgq@CAB-WSD-L081021>
+Message-ID: <20230622140002.e3ekm7joi4kxv53v@CAB-WSD-L081021>
 References: <20230607-topic-amlogic-upstream-clkid-public-migration-v2-0-38172d17c27a@linaro.org>
  <20230607-topic-amlogic-upstream-clkid-public-migration-v2-4-38172d17c27a@linaro.org>
 MIME-Version: 1.0
@@ -74,7 +74,7 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/22 09:26:00 #21554371
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230622_060703_867627_7D20D999 
+X-CRM114-CacheID: sfid-20230622_070007_022131_5405D787 
 X-CRM114-Status: GOOD (  20.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -581,6 +581,7 @@ On Mon, Jun 12, 2023 at 11:57:21AM +0200, Neil Armstrong wrote:
 > -#define NR_PLL_CLKS		11
 >  
 >  #endif /* __A1_PLL_H */
+> 
 
 Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 
