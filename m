@@ -4,95 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0204EB64D8
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Jun 2023 08:09:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EF8BEB64D8
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Jun 2023 08:11:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:CC:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=jqWU+ry2vwXsbH4gao7BckUtqVtEi5Qo6kQNj0rwwKg=; b=ArqbZSXjVnDHpVIz+UN2ENalDQ
-	tH0ScQ7FyAL8jSEp9MdJuN2jLbQZa8Y+BeUDITbBWBJySNoD5WcPUIA3DNdpuwuv34vZLYXf0YAlk
-	iTQvDDciSDi4LtTiKLehafDpjQj40sHUA0aEl8soV7bMGdTvmptsyJRWlMrT2qJpKUu2dzQj8XRR/
-	FEoeMUWHuAiAjCr4X98ZRayEWn9+ZvvFgxKsrZCEhJPantDDiFo4+LUG7uyHe4ga1huxuQJZ+sM0o
-	AdFUfzrST/biKBNB7sHD4XA0OhVmr2KhzU4DKuuqinJwl509D4LYh68zGkdl/Viglyc3J7Y+Pyb8K
-	N5HHu02A==;
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
+	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=KExIJjzNzpp2aEXKBWPpy8UR1BfwW24gdnHkZ4JxdtA=; b=Et5LV4vVyqcAvO
+	o8N6px+ZG/1JKz9Kg2UJz4Sgtu7xaWwWJpFHL3YI0c0phPNrTpHNSobKLrhzHZrLkP8uOBpGGyBNa
+	7QK6mu0d3ZmPrJjt1EMp4/OBMCKQzlmn3t+a88hlj5Vj555jldw1WOMpLFOTziXd5N23nrIYe4UXp
+	OW0stx5QIXnRv9Lqw0jStgCkty0aiKi4c5v2wYtGEkVgZoQc3cKkyAyrTTy+Rf8JXHaUsYUjg8gdE
+	a3hiPK6DciP0Mn95dI/oNCLaWAYGhx6/TfDyc13h0TSHTEjty4psdnqn095XE+tijlLW7Dj5kcXVN
+	r7UXlG/oxng5iuOLDEgQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qCFN7-00HN1t-2u;
-	Thu, 22 Jun 2023 08:08:53 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1qCFP9-00HNKq-1G;
+	Thu, 22 Jun 2023 08:10:59 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qCFN5-00HN1I-2o;
-	Thu, 22 Jun 2023 08:08:52 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:CC:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=eOMoYg8B7rD9505WWdAJV/sdeiub+JMwqnPF13z//dY=; b=jBWN/ql89xIvwVdklDb6yDST6S
-	LMCTxvFEY6Fkxxeh3o9aq3mb0VulnXv2sL9qAVasOTXg5skuYG6UmhGA269d2lFB96ElQO0cCQqiy
-	NDJ6Rkfs3emHJt6Ilaq0iViZjajL3V9vMn3BrLzboCGcaffLwGLe8eTnxJEfx5Cs9CG/u1HFgCTvk
-	eOsmpjF6Sk7vmQma31MgNVPBky1Sv1iTqw6bzXex/wMWaQxeCwh6tnQU1Vvb3FgkCn6Sle5mXMUgi
-	iCn/SyvN77giP1PZUfiRoSToUherYxL3izj5LBzfRH99xCr4vclqyg33a2v+N1ulbA8krUSqqAQCX
-	JS78/wZQ==;
-Received: from esa.microchip.iphmx.com ([68.232.153.233])
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qCEUt-000zC1-0I;
-	Thu, 22 Jun 2023 07:12:55 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1687417971; x=1718953971;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iiKG2Nc97I/QEfTHupxvuEuFIeC9zZ8TZ7uChT3UV6k=;
-  b=KgnWFkxuPhGHoOjHwvKn8Js2xSSAkjNb85SElkrORFhPLzWMagF+hiu6
-   EmEe1tSNniA6nYbyNf1rOCRRqPkdgb1kBRo5jvZD+dqw5RskSooMYybkl
-   0YjhLdJ/GRaAcK11eJcHt3zOnfiGsfaDavVUTIW8Mr3zujoNm30TlFAws
-   Nq4rkU6f+M3Ep3smF6Xnsk54cQbBtH1TY3nOtRu2MDVhptJQu8NsESxc1
-   we+RASAH/NIcKUi6MkjfHeMViSy845Y19qg5Mrm/Iy85bT/61x8b0Krvg
-   vz+kRuLlvOsQRl4vY3u3MvV3kmOosBFATUfCwbhtWUIU++6kcdMXczcA6
-   g==;
-X-IronPort-AV: E=Sophos;i="6.00,262,1681196400"; 
-   d="asc'?scan'208";a="231524607"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Jun 2023 00:12:29 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 22 Jun 2023 00:12:28 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 22 Jun 2023 00:12:26 -0700
-Date: Thu, 22 Jun 2023 08:11:59 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Lucas Tanure <tanure@linux.com>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Conor Dooley
-	<conor@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>, Artem
-	<art@khadas.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 2/3] dt-bindings: serial: amlogic,meson-uart: Add
- compatible string for T7
-Message-ID: <20230622-hardhat-elitism-26f0d0df204f@wendy>
-References: <20230621133215.109254-1-tanure@linux.com>
- <20230621133215.109254-3-tanure@linux.com>
- <20f25e98-d02e-f914-c4e7-72bb9ddb1ae5@linaro.org>
- <20230621-uncaring-impeding-15cfbe8e0e7c@spud>
- <CAJX_Q+342dx9S4C2C814uQgOj_QR3EBKhETH9eVZOm7PtzFAVQ@mail.gmail.com>
- <e4c993e1-8409-1ec0-c1b2-175603052e46@linaro.org>
- <CAJX_Q+09WLqmnWwOL7QESEuDzwZvVVzbtg9Upd5j2LOAYs=vmA@mail.gmail.com>
+	id 1qCFP6-00HNJ7-24
+	for linux-amlogic@lists.infradead.org;
+	Thu, 22 Jun 2023 08:10:58 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3fa71db41b6so4136795e9.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 22 Jun 2023 01:10:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687421454; x=1690013454;
+        h=content-transfer-encoding:organization:content-language:cc:to
+         :reply-to:subject:from:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=E6E/DKjP8bIO9nlNl0dJE1KVK22hxgPcNnONiA41pro=;
+        b=gznygwPGC1pXzExG36qSookApcXSWC8V8JkfWObvXUwxiWWqt83zwo63bOaBkQmMEq
+         UkL85J0FDWpWJE4VaZxBS+LqP/fEqSjnbMw34MpcF/hJlNUJnPkR7auMLJygD4y8QUw+
+         Ekj8PUSzan5R5f21XVWtQIIFB7GTtILqZAUEDkmpOhaeo26MAxhPgrzIYXFCpZSwKivF
+         xjbPbdAZgC9hoTAtFrTpxc3hBWditVZwxtRpnaKzkpfuTaOfSSZa2BEhu1CB7K/S4yuR
+         jkEdLfNO2iXMwYkJ7eQsUVjTRyoUql9+o+L/cLD7pPXS3rmz/InjXEHAUjEbZuupWx+3
+         nqvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687421454; x=1690013454;
+        h=content-transfer-encoding:organization:content-language:cc:to
+         :reply-to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=E6E/DKjP8bIO9nlNl0dJE1KVK22hxgPcNnONiA41pro=;
+        b=VurFaGqHpaLC4eEsfHykQ21HX7T6T6ikBq/eRMyRQTBMxjspI2Omb885nemIYi1iFR
+         ptbtDk21BpnDHwFtBh8vePlj3cSzvNnGb2SVxphRsTCaZaoWJTlUcmMvPhPA6SU8wAXL
+         li6Nvg52ah1L6aHIs/eLaPnlLghc9uAw5BlZgw8R0E+nL9lzJv3qvWI+CI4YAt/RaOLS
+         RXW7Yy73EHI0ITOVoD9CzLLwcejn4ELP3EO8W5pVLlObD5udyTpBFN+si+mivZ/itNMY
+         nNdMzCI7FRc/Atld6Beb0lC0pVwrDCsYioQ+q72t/z+KmsbS+moZvWV+yD1Cb9AJ5h+8
+         ouqg==
+X-Gm-Message-State: AC+VfDzLYRdN5CV00De9o+HhgTrcyZpg0LW4BO4hPlIrjkMq+dGARJWZ
+	8mXdvbVoCHD0TPwwfHBpHHYLZw==
+X-Google-Smtp-Source: ACHHUZ55OPiQl2bI3ECC95oo1SQkENMW+Ehw8FL52KPlnvb0Op00znXJhgk2lQtMgl1Nu26ZRi18cg==
+X-Received: by 2002:a05:600c:214d:b0:3f9:ad7:ae86 with SMTP id v13-20020a05600c214d00b003f90ad7ae86mr9011643wml.37.1687421453816;
+        Thu, 22 Jun 2023 01:10:53 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f692:a800:4794:385? ([2a01:e0a:982:cbb0:f692:a800:4794:385])
+        by smtp.gmail.com with ESMTPSA id z11-20020a7bc7cb000000b003f5ffba9ae1sm7023861wmk.24.2023.06.22.01.10.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Jun 2023 01:10:53 -0700 (PDT)
+Message-ID: <a10ea420-7599-3f41-dfd8-1742ef436ca0@linaro.org>
+Date: Thu, 22 Jun 2023 10:10:52 +0200
 MIME-Version: 1.0
-In-Reply-To: <CAJX_Q+09WLqmnWwOL7QESEuDzwZvVVzbtg9Upd5j2LOAYs=vmA@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [GIT PULL] amlogic late Drivers updates for v6.5
+To: soc@kernel.org, arm@kernel.org
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Content-Language: en-US
+Organization: Linaro Developer Services
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230622_081251_760626_A47A3FBA 
-X-CRM114-Status: GOOD (  34.74  )
+X-CRM114-CacheID: sfid-20230622_011056_697536_92A4AC32 
+X-CRM114-Status: UNSURE (   9.36  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,149 +88,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============4153142386570059516=="
+Reply-To: neil.armstrong@linaro.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---===============4153142386570059516==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7wAwkGZijd5j48sc"
-Content-Disposition: inline
+Hi,
 
---7wAwkGZijd5j48sc
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Here's a late Amlogic Drivers changeset for v6.5, with includes
+a low priority fix for secure-pwrc, a MAINTAINERS fix and a bindings yaml
+conversion patch that were lying on the lists for too long.
 
-On Thu, Jun 22, 2023 at 07:43:31AM +0100, Lucas Tanure wrote:
-> On Thu, Jun 22, 2023 at 7:05=E2=80=AFAM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
-> > On 22/06/2023 07:32, Lucas Tanure wrote:
-> > > On Wed, Jun 21, 2023 at 7:12=E2=80=AFPM Conor Dooley <conor@kernel.or=
-g> wrote:
-> > >> On Wed, Jun 21, 2023 at 03:53:04PM +0200, Krzysztof Kozlowski wrote:
-> > >>> On 21/06/2023 15:32, Lucas Tanure wrote:
-> > >>>> Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
-> > >>>> There is no need for an extra compatible line in the driver, but
-> > >>>> add T7 compatible line for documentation.
-> > >>>>
-> > >>>> Signed-off-by: Lucas Tanure <tanure@linux.com>
-> > >>>> ---
-> > >>>>  .../devicetree/bindings/serial/amlogic,meson-uart.yaml          |=
- 2 ++
-> > >>>>  1 file changed, 2 insertions(+)
-> > >>>>
-> > >>>> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meso=
-n-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.y=
-aml
-> > >>>> index 01ec45b3b406..860ab58d87b0 100644
-> > >>>> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.=
-yaml
-> > >>>> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.=
-yaml
-> > >>>> @@ -33,6 +33,7 @@ properties:
-> > >>>>                - amlogic,meson8b-uart
-> > >>>>                - amlogic,meson-gx-uart
-> > >>>>                - amlogic,meson-s4-uart
-> > >>>> +              - amlogic,meson-t7-uart
-> > >>>>            - const: amlogic,meson-ao-uart
-> > >>>>        - description: Always-on power domain UART controller on G1=
-2A SoCs
-> > >>>>          items:
-> > >>>> @@ -46,6 +47,7 @@ properties:
-> > >>>>            - amlogic,meson8b-uart
-> > >>>>            - amlogic,meson-gx-uart
-> > >>>>            - amlogic,meson-s4-uart
-> > >>>> +          - amlogic,meson-t7-uart
-> > >>>
-> > >>> It does not look like you tested the DTS against bindings. Please r=
-un
-> > >>> `make dtbs_check` (see
-> > >>> Documentation/devicetree/bindings/writing-schema.rst or
-> > >>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetr=
-ee-sources-with-the-devicetree-schema/
-> > >>> for instructions).
-> > >>
-> > >> Check back on the previous version, I should've posted an untested
-> > >> version of what you need to add.
-> > > I saw that, but adding a S4 doesn't make sense to me. And you didn't
-> > > show the entire change, so I can't understand what you want there.
-> >
-> > For sure you need something which does not trigger errors. If you claim
-> > adding S4 as fallback does not make sense, then why did you use it?
-> > Sending a code which is clearly incorrect does not make sense.
-> >
-> Sorry, I think we are talking about different things. It does not make
-> sense to me to add an S4 line in the documentation when it is already
-> there. So I could not understand or make sense of the patch Conor sent
-> in reply to my V2.
+Neil
 
-That is just how it works. You need to spell out exactly which
-combinations are permitted. The current entry for s4 says that s4 is
-only permitted in isolation.
-Since you are adding "amlogic,meson-t7-uart", "amlogic,meson-s4-uart"
-you need to explicitly allow that combination. You'll notice if you look
-at the file that the gx uart appears more than once.
+The following changes since commit ac9a78681b921877518763ba0e89202254349d1b:
 
-Given the g12a was the most recently added compatible, it might make
-sense to follow the pattern that it had set, given the thing your
-original patch copied the match data from was the g12a. That change to
-the dt-binding would look like:
-diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.ya=
-ml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-index 01ec45b3b406..eae11e87b88a 100644
---- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-@@ -50,6 +50,13 @@ properties:
-         items:
-           - const: amlogic,meson-g12a-uart
-           - const: amlogic,meson-gx-uart
-+      - description:
-+          Everything-Else power domain UART controller on G12A compatible =
-SoCs
-+        items:
-+          - enum:
-+              - amlogic,meson-t7-uart
-+          - const: amlogic,meson-g12a-uart
-+          - const: amlogic,meson-gx-uart
-=20
-   reg:
-     maxItems: 1
+   Linux 6.4-rc1 (2023-05-07 13:34:35 -0700)
 
-/I/ don't really care whether you do that, or do the s4 version of it,
-but following the most recent pattern might make more sense. When I
-suggested s4, it was because I only looked at the driver patch rather
-than the code itself.
+are available in the Git repository at:
 
-> Krzysztof, I will check again with dtbs_check and re-send.
+   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git amlogic-drivers-for-v6.5
 
-Cheers,
-Conor.
+for you to fetch changes up to 6b0139b372d40bd5dafc140b6618b57d13211168:
 
---7wAwkGZijd5j48sc
-Content-Type: application/pgp-signature; name="signature.asc"
+   dt-bindings: interrupt-controller: Convert Amlogic Meson GPIO interrupt controller binding (2023-06-20 09:41:07 +0200)
 
------BEGIN PGP SIGNATURE-----
+----------------------------------------------------------------
+Amlogic Drivers changes for v6.5:
+- tag some powers domains as always-on for secure-pwrc
+- fix MAINTAINERS entry for PHY drivers & bindings
+- Amlogic Meson GPIO interrupt controller binding to yaml conversion
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJP0OgAKCRB4tDGHoIJi
-0q6WAP9XGs4Pi8Gamw+GyApCv+GY203fgy/Z6D7WVqAyiPyfAgD9FcOdHANKxIe9
-0wdzlANzNI58TqJ+gy5bdFdmXmcuPAA=
-=Fm11
------END PGP SIGNATURE-----
+----------------------------------------------------------------
+Alexey Romanov (1):
+       drivers: meson: secure-pwrc: always enable DMA domain
 
---7wAwkGZijd5j48sc--
+Heiner Kallweit (2):
+       MAINTAINERS: add PHY-related files to Amlogic SoC file list
+       dt-bindings: interrupt-controller: Convert Amlogic Meson GPIO interrupt controller binding
 
-
---===============4153142386570059516==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+  .../amlogic,meson-gpio-intc.txt                    | 38 ------------
+  .../amlogic,meson-gpio-intc.yaml                   | 72 ++++++++++++++++++++++
+  MAINTAINERS                                        |  2 +
+  drivers/soc/amlogic/meson-secure-pwrc.c            |  2 +-
+  4 files changed, 75 insertions(+), 39 deletions(-)
+  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============4153142386570059516==--
-
