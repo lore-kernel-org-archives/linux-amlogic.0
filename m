@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E1D1EB64DA
-	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Jun 2023 02:24:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F200CEB64DC
+	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Jun 2023 02:24:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tVh1+ruCqLh5yFtEiF5dWI1UyoB8E7rzZpb79t1Qs4Q=; b=X1eX68JBYcIX8j
-	uWVvoGdOq2Gl/+3LXEzG/tsUoYOwMatZ4Qdm55QBDKUXJ0Vuc79x1O3qt4QrLlFQfZB+IrEJsIeel
-	3WI//74S1QOZqwDVTfM/THYLBeFEnf+f3SOaeNDyvOg8CM42t3GKfJRX9tujjIt4wi/vi03UIW8LV
-	mudVOlG4/2h2LJez2BkRQ6M2MPXtx4WMGbA16QHLXNL0t2QdJCkSi79Y4xJKW+QzGNXYEw24+dKYC
-	gxGWoqURyQUIJAmiBHFS2Gg2AOUdIOshuzfT8dw2veJKt8cFT7Ec0HTFctynfPNt/hZTjkXlJSGxt
-	VeJGfmBdc0gGYML+MNaw==;
+	List-Owner; bh=4L7NRXSM9LxS9Kx4VfeSIzuLAasnhiaHEqqVSPs7U9I=; b=IwwVcb7WTjuYuX
+	ub7k2SLbtdqCkvjafZPaJpNWuJ/rnJTr6q61YQOQzclFQLS0uFtX54TLO98FxTJZyLqOCYg4br+0T
+	Y+3zqR/mWgO4fTzy98G22+68910dIJyK+QEAqHth5tngnxjO+NpHyEczd9/aCw6XA/8LmZDkBKP0T
+	HG3hRK6btfuEbpd+UYsptgkiqaxgQbHP8imEg0W+WbjNt1K54pfuoAkxfIESH3WvC/0XyBuuQwYTb
+	Z6TrPNS9shVtn+UcEumeStzK+Wnc0NuQ56qankQBcTHakfS0gN0mbAL0P9WjwJmXzhPTvezXjrBVS
+	wOR+OPPRjg0r30ga5UKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qCWTE-002K3G-0E;
-	Fri, 23 Jun 2023 02:24:20 +0000
+	id 1qCWTG-002K5J-19;
+	Fri, 23 Jun 2023 02:24:22 +0000
 Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qCWSr-002Jqp-1I;
-	Fri, 23 Jun 2023 02:24:02 +0000
+	id 1qCWSw-002Jt3-1q;
+	Fri, 23 Jun 2023 02:24:04 +0000
 Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id 5F7A65FD27;
+	by mx.sberdevices.ru (Postfix) with ESMTP id CC5655FD8F;
 	Fri, 23 Jun 2023 05:23:54 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
 	s=mail; t=1687487034;
-	bh=xNSHkYYB8/LbeA0+r7XGd/32WotV9MdYNPXVJkH92yU=;
+	bh=kqNz9q85odOrDuiiTt1JEkfAd/EMGs7Y5SX22XNQeEE=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=lfi4idW2RP2iu9BEegqhGovm8etD0Wx6LaaRwxwsBbi63WHmdk/Hx21WZRpymJg/D
-	 sFtp/N1nu5ICdl/vMcPJcvYZwYMM7Z7oPwOp6IQcro2xUB0GioQNbTarpIUrViOsAa
-	 KFsLw2A2DxWadmVEPCaQbjDaNpUEUrmmF5LMsoDl6cyT6dZ+HazCUauzyGQ88XEFHD
-	 Q7GIzC/Z7Tjua3hPpoPMjv3LwPKm9sj3iEWI739VfIzBhPvFrH7OMRKo+yoVizZh98
-	 o9RwRPNr11i2iX0xxscxtCySVkj8eNhGE6cUtm9vVS+hpvITEKRKXO7v7jUsEpstLv
-	 u7Z6pqVSnB8UQ==
+	b=T39Jxks6azD91PZBhbkGc1NRepOEgTuS1Elqw6BHEExneu+lrGYZsXG2KIhgrdR1s
+	 qJU2/0uKFkHnCXw6cTC4aH7MzCltyBbjhl48/FJ0+SihFJlq1rMvuBu//8pzZjpUVe
+	 nvK7nQDr7ySW1ao5hJe8JkL0bW7cA3Wum7ENfunSXuL1fMJiEE5jEtS/5JEP6rvSPg
+	 fkCeOQ0htuogBhUDJZ5OhevrKV2zBmAUwc34R8DuNKDKPiTvyyWO9mrF5JBe+m3BBJ
+	 3q5NNsGZuOxmKlp4xX8jSHwcZPD1z8WMLE28i1oDMZbF3N9bYDZTajVxzkofbdmQZs
+	 dcc9GUDkPiYTw==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	by mx.sberdevices.ru (Postfix) with ESMTP;
 	Fri, 23 Jun 2023 05:23:54 +0300 (MSK)
@@ -50,9 +50,9 @@ To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
 CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<kernel@sberdevices.ru>, George Stark <GNStark@sberdevices.ru>
-Subject: [PATCH v2 3/6] meson saradc: unite iio channel array definitions
-Date: Fri, 23 Jun 2023 05:20:11 +0300
-Message-ID: <20230623022334.791026-4-gnstark@sberdevices.ru>
+Subject: [PATCH v2 6/6] meson saradc: support reading from channel7 mux inputs
+Date: Fri, 23 Jun 2023 05:20:14 +0300
+Message-ID: <20230623022334.791026-7-gnstark@sberdevices.ru>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230623022334.791026-1-gnstark@sberdevices.ru>
 References: <20230623022334.791026-1-gnstark@sberdevices.ru>
@@ -68,8 +68,8 @@ X-KSMG-AntiPhishing: not scanned, disabled by settings
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/22 21:10:00 #21557945
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230622_192357_809159_271AF3C8 
-X-CRM114-Status: GOOD (  12.45  )
+X-CRM114-CacheID: sfid-20230622_192402_978245_3516BCC0 
+X-CRM114-Status: GOOD (  14.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,71 +86,161 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Instead of having several similar channel arrays which are different
-only by one item unite the arrays and put the unique item in the end.
+Add iio channel for every channel 7 muxer input.
+Meson saradc channel 7 is connected to muxer that can switch channel
+input to well-known sources like Vdd, GND and several Vdd dividers.
 
 Signed-off-by: George Stark <GNStark@sberdevices.ru>
 ---
- drivers/iio/adc/meson_saradc.c | 31 +++++++------------------------
- 1 file changed, 7 insertions(+), 24 deletions(-)
+
+Changelog:
+v1->v2: update commit message from [1]
+
+[1] https://lore.kernel.org/lkml/20230621062715.455652-4-gnstark@sberdevices.ru/
+
+---
+ drivers/iio/adc/meson_saradc.c | 65 +++++++++++++++++++++++++++++++---
+ 1 file changed, 61 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 6e69b40b3309..ffd4de950a63 100644
+index e7eb154b151f..ecaebb569e8e 100644
 --- a/drivers/iio/adc/meson_saradc.c
 +++ b/drivers/iio/adc/meson_saradc.c
-@@ -189,9 +189,8 @@
- 	.datasheet_name = "SAR_ADC_CH"#_chan,				\
+@@ -163,6 +163,7 @@
+ #define MESON_SAR_ADC_MAX_FIFO_SIZE				32
+ #define MESON_SAR_ADC_TIMEOUT					100 /* ms */
+ #define MESON_SAR_ADC_VOLTAGE_AND_TEMP_CHANNEL			6
++#define MESON_SAR_ADC_VOLTAGE_AND_MUX_CHANNEL			7
+ #define MESON_SAR_ADC_TEMP_OFFSET				27
+ 
+ /* temperature sensor calibration information in eFuse */
+@@ -201,6 +202,19 @@
+ 	.datasheet_name = "TEMP_SENSOR",				\
  }
  
--#define MESON_SAR_ADC_TEMP_CHAN(_chan) {				\
-+#define MESON_SAR_ADC_TEMP_CHAN() {					\
- 	.type = IIO_TEMP,						\
--	.channel = _chan,						\
- 	.address = MESON_SAR_ADC_VOLTAGE_AND_TEMP_CHANNEL,		\
- 	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |			\
- 				BIT(IIO_CHAN_INFO_AVERAGE_RAW),		\
-@@ -234,19 +233,7 @@ static const struct iio_chan_spec meson_sar_adc_iio_channels[] = {
- 	MESON_SAR_ADC_CHAN(6),
- 	MESON_SAR_ADC_CHAN(7),
- 	IIO_CHAN_SOFT_TIMESTAMP(8),
--};
--
--static const struct iio_chan_spec meson_sar_adc_and_temp_iio_channels[] = {
--	MESON_SAR_ADC_CHAN(0),
--	MESON_SAR_ADC_CHAN(1),
--	MESON_SAR_ADC_CHAN(2),
--	MESON_SAR_ADC_CHAN(3),
--	MESON_SAR_ADC_CHAN(4),
--	MESON_SAR_ADC_CHAN(5),
--	MESON_SAR_ADC_CHAN(6),
--	MESON_SAR_ADC_CHAN(7),
--	MESON_SAR_ADC_TEMP_CHAN(8),
--	IIO_CHAN_SOFT_TIMESTAMP(9),
-+	MESON_SAR_ADC_TEMP_CHAN(), /* must be the last item */
++#define MESON_SAR_ADC_MUX(_chan, _sel) {				\
++	.type = IIO_VOLTAGE,						\
++	.channel = _chan,						\
++	.indexed = 1,							\
++	.address = MESON_SAR_ADC_VOLTAGE_AND_MUX_CHANNEL,		\
++	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |			\
++				BIT(IIO_CHAN_INFO_AVERAGE_RAW),		\
++	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),		\
++	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_CALIBBIAS) |	\
++				BIT(IIO_CHAN_INFO_CALIBSCALE),		\
++	.datasheet_name = "SAR_ADC_MUX_"#_sel,				\
++}
++
+ enum meson_sar_adc_avg_mode {
+ 	NO_AVERAGING = 0x0,
+ 	MEAN_AVERAGING = 0x1,
+@@ -233,6 +247,27 @@ enum meson_sar_adc_channel_index {
+ 	INDEX_CHAN_6,
+ 	INDEX_CHAN_7,
+ 	INDEX_CHAN_SOFT_TIMESTAMP,
++	INDEX_MUX_0_VSS,
++	INDEX_MUX_1_VDD_DIV4,
++	INDEX_MUX_2_VDD_DIV2,
++	INDEX_MUX_3_VDD_MUL3_DIV4,
++	INDEX_MUX_4_VDD,
++};
++
++static enum meson_sar_adc_chan7_mux_sel chan7_mux_values[] = {
++	CHAN7_MUX_VSS,
++	CHAN7_MUX_VDD_DIV4,
++	CHAN7_MUX_VDD_DIV2,
++	CHAN7_MUX_VDD_MUL3_DIV4,
++	CHAN7_MUX_VDD,
++};
++
++static const char * const chan7_mux_names[] = {
++	"gnd",
++	"0.25vdd",
++	"0.5vdd",
++	"0.75vdd",
++	"vdd",
  };
  
- struct meson_sar_adc_param {
-@@ -1242,15 +1229,11 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
- 			return ret;
+ static const struct iio_chan_spec meson_sar_adc_iio_channels[] = {
+@@ -245,6 +280,11 @@ static const struct iio_chan_spec meson_sar_adc_iio_channels[] = {
+ 	MESON_SAR_ADC_CHAN(INDEX_CHAN_6),
+ 	MESON_SAR_ADC_CHAN(INDEX_CHAN_7),
+ 	IIO_CHAN_SOFT_TIMESTAMP(INDEX_CHAN_SOFT_TIMESTAMP),
++	MESON_SAR_ADC_MUX(INDEX_MUX_0_VSS, 0),
++	MESON_SAR_ADC_MUX(INDEX_MUX_1_VDD_DIV4, 1),
++	MESON_SAR_ADC_MUX(INDEX_MUX_2_VDD_DIV2, 2),
++	MESON_SAR_ADC_MUX(INDEX_MUX_3_VDD_MUL3_DIV4, 3),
++	MESON_SAR_ADC_MUX(INDEX_MUX_4_VDD, 4),
+ 	MESON_SAR_ADC_TEMP_CHAN(), /* must be the last item */
+ };
+ 
+@@ -284,6 +324,7 @@ struct meson_sar_adc_priv {
+ 	bool					temperature_sensor_calibrated;
+ 	u8					temperature_sensor_coefficient;
+ 	u16					temperature_sensor_adc_val;
++	enum meson_sar_adc_chan7_mux_sel	chan7_mux_sel;
+ };
+ 
+ static const struct regmap_config meson_sar_adc_regmap_config_gxbb = {
+@@ -348,6 +389,8 @@ static void meson_sar_adc_set_chan7_mux(struct iio_dev *indio_dev,
+ 			   MESON_SAR_ADC_REG3_CTRL_CHAN7_MUX_SEL_MASK, regval);
+ 
+ 	usleep_range(10, 20);
++
++	priv->chan7_mux_sel = sel;
+ }
+ 
+ static int meson_sar_adc_read_raw_sample(struct iio_dev *indio_dev,
+@@ -443,6 +486,15 @@ static void meson_sar_adc_enable_channel(struct iio_dev *indio_dev,
+ 		regmap_update_bits(priv->regmap,
+ 				   MESON_SAR_ADC_DELTA_10,
+ 				   MESON_SAR_ADC_DELTA_10_TEMP_SEL, regval);
++	} else if (chan->address == MESON_SAR_ADC_VOLTAGE_AND_MUX_CHANNEL) {
++		enum meson_sar_adc_chan7_mux_sel sel;
++
++		if (chan->channel == INDEX_CHAN_7)
++			sel = CHAN7_MUX_CH7_INPUT;
++		else
++			sel = chan7_mux_values[chan->channel - INDEX_MUX_0_VSS];
++		if (sel != priv->chan7_mux_sel)
++			meson_sar_adc_set_chan7_mux(indio_dev, sel);
  	}
+ }
  
--	if (priv->temperature_sensor_calibrated) {
--		indio_dev->channels = meson_sar_adc_and_temp_iio_channels;
--		indio_dev->num_channels =
--			ARRAY_SIZE(meson_sar_adc_and_temp_iio_channels);
--	} else {
--		indio_dev->channels = meson_sar_adc_iio_channels;
--		indio_dev->num_channels =
--			ARRAY_SIZE(meson_sar_adc_iio_channels);
--	}
-+	indio_dev->channels = meson_sar_adc_iio_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(meson_sar_adc_iio_channels);
-+	/* last item is temp channel */
-+	if (!priv->temperature_sensor_calibrated)
-+		indio_dev->num_channels--;
+@@ -1015,7 +1067,7 @@ static int meson_sar_adc_calib(struct iio_dev *indio_dev)
+ 	meson_sar_adc_set_chan7_mux(indio_dev, CHAN7_MUX_VDD_DIV4);
+ 	usleep_range(10, 20);
+ 	ret = meson_sar_adc_get_sample(indio_dev,
+-				       &indio_dev->channels[INDEX_CHAN_7],
++				       &indio_dev->channels[INDEX_MUX_1_VDD_DIV4],
+ 				       MEAN_AVERAGING, EIGHT_SAMPLES, &value0);
+ 	if (ret < 0)
+ 		goto out;
+@@ -1023,7 +1075,7 @@ static int meson_sar_adc_calib(struct iio_dev *indio_dev)
+ 	meson_sar_adc_set_chan7_mux(indio_dev, CHAN7_MUX_VDD_MUL3_DIV4);
+ 	usleep_range(10, 20);
+ 	ret = meson_sar_adc_get_sample(indio_dev,
+-				       &indio_dev->channels[INDEX_CHAN_7],
++				       &indio_dev->channels[INDEX_MUX_3_VDD_MUL3_DIV4],
+ 				       MEAN_AVERAGING, EIGHT_SAMPLES, &value1);
+ 	if (ret < 0)
+ 		goto out;
+@@ -1050,8 +1102,13 @@ static int read_label(struct iio_dev *indio_dev,
+ {
+ 	if (chan->type == IIO_TEMP)
+ 		return sprintf(label, "%s\n", "temp-sensor");
+-	if (chan->type == IIO_VOLTAGE)
+-		return sprintf(label, "channel-%d\n", chan->channel);
++	if (chan->type == IIO_VOLTAGE) {
++		if (chan->channel <= INDEX_CHAN_7)
++			return sprintf(label, "channel-%d\n", chan->channel);
++		if (chan->channel >= INDEX_MUX_0_VSS)
++			return sprintf(label, "%s\n",
++				chan7_mux_names[chan->channel - INDEX_MUX_0_VSS]);
++	}
+ 	return 0;
+ }
  
- 	ret = meson_sar_adc_init(indio_dev);
- 	if (ret)
 -- 
 2.38.4
 
