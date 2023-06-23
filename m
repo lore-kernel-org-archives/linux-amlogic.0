@@ -4,75 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A99BEB64D7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Jun 2023 08:13:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11500EB64D7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Jun 2023 08:22:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hkfuhf0gh0qRKAKPb5y58qwYoGtfq9OuUNW8etgjycM=; b=eFC34meDv4lrty
-	f432wW8B7xXhIe+AIzaTLb/f7RLyGw/XWUaGRhyqHuCUyiUc/lQCo9blt9QoS33tJda7KMzdSNGEl
-	y6IpO5grk3M24aplRByFSSKGPzcwps5ullwVHdwRBXggCHjhP0mjrPChiHVly85coLhiqJ8JqT347
-	+FDjl+smxwdBY3WewkF2PKkqik90PjLjFW3fkN3AfYlhTHUpBTX/3cC7RbnVuN4OZT12ZRSq2FetF
-	7O2i9xGmkXKxBSlC538tZX6PylTiJBFm8u7fMn511SsLeVd14H4Bghv/686IJEB8JZv+8smpRCoJe
-	tA6tbu5ipTQyOYZ0m42g==;
+	List-Owner; bh=wyGXz2EuJzwwXhMEI5Ul0dDv4oxUVon5a6up8uuRLGU=; b=3WTRm2vmrpKOoQ
+	F8/6nrkmGB2IkzFRrmqAbjABWaPKFn0NN8EswmcZByO/su/IFu7p7kTVbKSv6az9gRXNOnLfZ+EIt
+	LFpNxU4UV6+yisUzkAtkrNZu9p0IUT6VYmJ6y9NAWia8jCstgA64KeU12mVKu8P2HCpopUsK6RLnQ
+	MEldIR4CbzcwEf1RJZ2S9CSc0crdYYuy3K032RUutnjkALvuoZYGWAwz1GBXSmENnk63sKxZ5Dd8c
+	JWBITPPWkQNLFsppG0b3PAxYVBf40QNN9rrzCu7Lt8+EmVuVU0LZl8I/4DoUnArmEtE9b7mRbm+Nq
+	JhYpXQ/WL00Y4MxdV4Fg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qCbus-002tHC-3B;
-	Fri, 23 Jun 2023 08:13:14 +0000
-Received: from mail-lj1-f181.google.com ([209.85.208.181])
+	id 1qCc3u-002uQl-2g;
+	Fri, 23 Jun 2023 08:22:34 +0000
+Received: from mx.sberdevices.ru ([45.89.227.171])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qCbuV-002t2t-20;
-	Fri, 23 Jun 2023 08:12:53 +0000
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2b45e6e1b73so6178261fa.0;
-        Fri, 23 Jun 2023 01:12:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687507968; x=1690099968;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=97BZTwL+XGk6txP1+XwORBw5PdtQcH3A6RHbZTtRDIw=;
-        b=E1tZKPhLdKRm2mW/58Po01J5hF1gtXS1eHSQSKNgzjXef1PhVh8kK9B7nARYmWSk9i
-         ufjwzUw1+tE/kslZ9L4zEZPh/yaKogRjwKxXrqMyqGvudAr0j/7YP9xYsZJN31IB/Zyx
-         jni5bZ74T4bn2nSZYFLhWQo/pRsbqMuSJ4wr6kpLvAGoPGjomeoyBOmyFhcxgWgv5UvK
-         wxVEH5w/aKX0ydhYhIrGlFGe0h0D8XMbvt8FW7tHZEGHYX2CgekEkYJWj3mwJ7yKkqum
-         uqQhgLV+nCcXoazUq9SQjWr8+oK4GJr7uK1wy4Leoauez1uBRMacOVeEIX23J9t2HXeX
-         mh4g==
-X-Gm-Message-State: AC+VfDyTFHeoWse6Ho53iAilu+hbDGQO5CQAYnHzpVL8qVlNvdaAHwQV
-	NF3x2lti30tKgBJQIb2+JKQ=
-X-Google-Smtp-Source: ACHHUZ5sGb5iPEk9nldmuWxdkt4tP7qCrccPRjBqMVhZl9UKXwW+kPXxdqFbAKfaPwPIcrkeclyAlw==
-X-Received: by 2002:a2e:9053:0:b0:2b5:8f85:bf71 with SMTP id n19-20020a2e9053000000b002b58f85bf71mr3402061ljg.18.1687507968155;
-        Fri, 23 Jun 2023 01:12:48 -0700 (PDT)
-Received: from ryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
-        by smtp.gmail.com with ESMTPSA id l21-20020a7bc455000000b003f9b29ba838sm1594141wmi.35.2023.06.23.01.12.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jun 2023 01:12:47 -0700 (PDT)
-From: Lucas Tanure <tanure@linux.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>
-Cc: Nick <nick@khadas.com>,
-	Artem <art@khadas.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Lucas Tanure <tanure@linux.com>
-Subject: [PATCH v5 4/4] arm64: dts: meson-t7-a311d2-khadas-vim4: add initial device-tree
-Date: Fri, 23 Jun 2023 09:12:42 +0100
-Message-ID: <20230623081242.109131-5-tanure@linux.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230623081242.109131-1-tanure@linux.com>
-References: <20230623081242.109131-1-tanure@linux.com>
+	id 1qCc3o-002uPd-2z;
+	Fri, 23 Jun 2023 08:22:34 +0000
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+	by mx.sberdevices.ru (Postfix) with ESMTP id BBA3E5FDB5;
+	Fri, 23 Jun 2023 11:22:22 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1687508542;
+	bh=eYRXuph28hO53cOyWayN9gnjJltJBlK1sbJmX9HywUE=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+	b=sRjdo2k/90AhOMjkhr6vGMWhqDr50acqCUZOd2R0Cc7TpJogdli0ZiwbWlzea8AsU
+	 pCNH7AJYcKZlYvBu3+iGnScJAxKzNc+hcE4Jv2jssDWDUYnKyj3+4RZfkjbKqzRo6E
+	 DTBboPpgDaaIqufRyRJk/Q17SbtQmNbWh6Y75HiAIdGlBvmZdskpWdcLzyZOpe3ck7
+	 ezUn4Z6jA4ot19g+OYmM6JI1V7/9MqdrsEzljUMUlIeTqkOs6o3p9z3WhWhXAmGNMo
+	 CqkRqoM37dx+IeqTuuxav+ghsJKrAFlF+AOKxqYz2unvi+JuCO9iX2jPFg9AmtnC8U
+	 MHnq2B6px79Sw==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	by mx.sberdevices.ru (Postfix) with ESMTP;
+	Fri, 23 Jun 2023 11:22:05 +0300 (MSK)
+Date: Fri, 23 Jun 2023 11:22:01 +0300
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <conor+dt@kernel.org>
+CC: <kernel@sberdevices.ru>, <sdfw_system_team@sberdevices.ru>,
+	<rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v1 0/6] arm64: dts: meson: a1: introduce several
+ peripheral IPs
+Message-ID: <20230623082201.7tfnpjvwi22omleq@CAB-WSD-L081021>
+References: <20230607201641.20982-1-ddrokosov@sberdevices.ru>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20230607201641.20982-1-ddrokosov@sberdevices.ru>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/23 05:01:00 #21560607
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230623_011251_659551_D2AAAF79 
-X-CRM114-Status: GOOD (  13.83  )
+X-CRM114-CacheID: sfid-20230623_012229_649652_FFEE4D99 
+X-CRM114-Status: GOOD (  14.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,267 +89,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Khadas VIM4 uses the Amlogic A311D2 SoC, based on the Amlogic T7 SoC
-family, on a board with the same form factor as the VIM3 models.
+Hello Neil, Krzysztof, Jerome, Martin, Rob and Conor,
 
-- 8GB LPDDR4X 2016MHz
-- 32GB eMMC 5.1 storage
-- 32MB SPI flash
-- 10/100/1000 Base-T Ethernet
-- AP6275S Wireless (802.11 a/b/g/n/ac/ax, BT5.1)
-- HDMI 2.1 video
-- HDMI Input
-- 1x USB 2.0 + 1x USB 3.0 ports
-- 1x USB-C (power) with USB 2.0 OTG
-- 3x LED's (1x red, 1x blue, 1x white)
-- 3x buttons (power, function, reset)
-- M2 socket with PCIe, USB, ADC & I2C
-- 40pin GPIO Header
-- 1x micro SD card slot
+Would you please review this patch? The latest modifications enable CLK,
+EFUSE, USB, SDIO (WiFi), and UART (BT) functionality on A1 boards.
 
-Signed-off-by: Lucas Tanure <tanure@linux.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../amlogic/meson-t7-a311d2-khadas-vim4.dts   |  52 ++++++
- arch/arm64/boot/dts/amlogic/meson-t7.dtsi     | 158 ++++++++++++++++++
- 3 files changed, 211 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-t7.dtsi
+On Wed, Jun 07, 2023 at 11:16:35PM +0300, Dmitry Rokosov wrote:
+> This patch series introduces device tree declarations for various
+> peripheral IPs of the A1 SoC family, including clock controllers, EFUSE,
+> USB, SPI Flash Controller, SDIO, and UART_AO:
+>     - CLK: A1 SoC has four types on the board, namely PLL, Peripherals,
+>       CPU, and Audio, but only Amlogic A1 PLL and Peripherals clock
+>       controllers are currently supported.
+>     - EFUSE: consists of a 4k bit One Time Programmable (OTP) memory
+>       divided into 32 128-bit blocks, and data is accessed using the APB
+>       bus through software or the Key-ladder integrated with the EFUSE
+>       block.
+>     - USB: only one USB 2.0 high-speed port is available in the A1 SoC,
+>       supporting both HOST and DEVICE modes for OTG.
+>     - SPI Flash Controller: 4-bit QPI/SPI NOR Flash or NAND FLASH
+>       controller.
+>     - SDIO: for WiFi/IEEE802.11 connection.
+>     - UART_AO: for Bluetooth connection.
+> 
+> Alexey Romanov (1):
+>   arm64: dts: meson: a1: enable efuse controller and setup its clk
+> 
+> Dmitry Rokosov (2):
+>   arm64: dts: meson: a1: introduce PLL and Peripherals clk controllers
+>   arm64: dts: meson: a1: support USB controller in OTG mode
+> 
+> Jan Dakinevich (1):
+>   arm64: dts: meson: a1: add eMMC controller and its pins
+> 
+> Martin Kurbanov (1):
+>   arm64: dts: meson: a1: introduce SPI Flash Controller
+> 
+> Oleg Lyovin (1):
+>   arm64: dts: meson: a1: introduce UART_AO mux definitions
+> 
+>  arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 164 ++++++++++++++++++++++
+>  1 file changed, 164 insertions(+)
+> 
+> -- 
+> 2.36.0
+> 
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index cd1c5b04890a..1c5846bd1ca0 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -74,3 +74,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-t7-a311d2-khadas-vim4.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts
-new file mode 100644
-index 000000000000..04cc8b0dfd8c
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts
-@@ -0,0 +1,52 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2022 Wesion, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-t7.dtsi"
-+
-+/ {
-+	model = "Khadas vim4";
-+	compatible = "khadas,vim4", "amlogic,a311d2", "amlogic,t7";
-+
-+	aliases {
-+		serial0 = &uart_A;
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x2 0x0>; /* 8 GB */
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		/* 3 MiB reserved for ARM Trusted Firmware (BL31) */
-+		secmon_reserved: secmon@5000000 {
-+			reg = <0x0 0x05000000 0x0 0x300000>;
-+			no-map;
-+		};
-+
-+		/* 32 MiB reserved for ARM Trusted Firmware (BL32) */
-+		secmon_reserved_bl32: secmon@5300000 {
-+			reg = <0x0 0x05300000 0x0 0x2000000>;
-+			no-map;
-+		};
-+	};
-+
-+	xtal: xtal-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "xtal";
-+		#clock-cells = <0>;
-+	};
-+
-+};
-+
-+&uart_A {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-t7.dtsi b/arch/arm64/boot/dts/amlogic/meson-t7.dtsi
-new file mode 100644
-index 000000000000..9b8c33708ecd
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-t7.dtsi
-@@ -0,0 +1,158 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	cpus {
-+		#address-cells = <0x2>;
-+		#size-cells = <0x0>;
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu100>;
-+				};
-+				core1 {
-+					cpu = <&cpu101>;
-+				};
-+				core2 {
-+					cpu = <&cpu102>;
-+				};
-+				core3 {
-+					cpu = <&cpu103>;
-+				};
-+			};
-+
-+			cluster1 {
-+				core0 {
-+					cpu = <&cpu0>;
-+				};
-+				core1 {
-+					cpu = <&cpu1>;
-+				};
-+				core2 {
-+					cpu = <&cpu2>;
-+				};
-+				core3 {
-+					cpu = <&cpu3>;
-+				};
-+			};
-+		};
-+
-+		cpu100: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a53";
-+			reg = <0x0 0x100>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu101: cpu@101{
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a53";
-+			reg = <0x0 0x101>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu102: cpu@102 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a53";
-+			reg = <0x0 0x102>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu103: cpu@103 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a53";
-+			reg = <0x0 0x103>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a73";
-+			reg = <0x0 0x0>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu1: cpu@1 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a73";
-+			reg = <0x0 0x1>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu2: cpu@2 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a73";
-+			reg = <0x0 0x2>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu3: cpu@3 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a73";
-+			reg = <0x0 0x3>;
-+			enable-method = "psci";
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	sm: secure-monitor {
-+		compatible = "amlogic,meson-gxbb-sm";
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		gic: interrupt-controller@fff01000 {
-+			compatible = "arm,gic-400";
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			reg = <0x0 0xfff01000 0 0x1000>,
-+			      <0x0 0xfff02000 0 0x0100>;
-+			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-+		};
-+
-+		apb4: bus@fe000000 {
-+			compatible = "simple-bus";
-+			reg = <0x0 0xfe000000 0x0 0x480000>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-+
-+			uart_A: serial@78000 {
-+				compatible = "amlogic,meson-t7-uart",
-+					     "amlogic,meson-s4-uart";
-+				reg = <0x0 0x78000 0x0 0x18>;
-+				interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
-+				status = "disabled";
-+				clocks = <&xtal>, <&xtal>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+			};
-+		};
-+
-+	};
-+};
 -- 
-2.41.0
-
+Thank you,
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
