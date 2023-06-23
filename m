@@ -4,72 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F200CEB64DC
-	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Jun 2023 02:24:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 194E3EB64DD
+	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Jun 2023 06:17:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4L7NRXSM9LxS9Kx4VfeSIzuLAasnhiaHEqqVSPs7U9I=; b=IwwVcb7WTjuYuX
-	ub7k2SLbtdqCkvjafZPaJpNWuJ/rnJTr6q61YQOQzclFQLS0uFtX54TLO98FxTJZyLqOCYg4br+0T
-	Y+3zqR/mWgO4fTzy98G22+68910dIJyK+QEAqHth5tngnxjO+NpHyEczd9/aCw6XA/8LmZDkBKP0T
-	HG3hRK6btfuEbpd+UYsptgkiqaxgQbHP8imEg0W+WbjNt1K54pfuoAkxfIESH3WvC/0XyBuuQwYTb
-	Z6TrPNS9shVtn+UcEumeStzK+Wnc0NuQ56qankQBcTHakfS0gN0mbAL0P9WjwJmXzhPTvezXjrBVS
-	wOR+OPPRjg0r30ga5UKA==;
+	List-Owner; bh=Ckkr4eMzXZZtnPEzfVlLdhQ+vzOWXzgMl+2XsT1fvak=; b=5AfWzBPW9YbSUq
+	Axe753M76jA4eyTi/FWYqt7UzQTS+qOh5UWUWzO4ssOFDjXvt+vQS84VzA7Tbv76Qo+aHvTPRiwMC
+	k1+gBHAE5PAliKyTKVg/9pUEMc7TmOJlrktHAsuGC8CUQiv8+2xleTLMOqzhNCpv8otTabx41o1G5
+	DO/9Hd+Jm0o86ArqrkRUSVLHedTlUhh12kkSiOgiFh9bivEz+pWNfh1P81+Oor8CwCH5merhYy9VY
+	BHOJ2lCiAsUR05G4x59ptu4QonQJjKux+gwTZx9AmA3KgT+5PcME9hdpBZQB59jUQFWyhHan1+dUh
+	Og9Noe5M3dOlHJbovT3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qCWTG-002K5J-19;
-	Fri, 23 Jun 2023 02:24:22 +0000
-Received: from mx.sberdevices.ru ([45.89.227.171])
+	id 1qCa6U-002fvP-2Z;
+	Fri, 23 Jun 2023 06:17:06 +0000
+Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qCWSw-002Jt3-1q;
-	Fri, 23 Jun 2023 02:24:04 +0000
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-	by mx.sberdevices.ru (Postfix) with ESMTP id CC5655FD8F;
-	Fri, 23 Jun 2023 05:23:54 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1687487034;
-	bh=kqNz9q85odOrDuiiTt1JEkfAd/EMGs7Y5SX22XNQeEE=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	b=T39Jxks6azD91PZBhbkGc1NRepOEgTuS1Elqw6BHEExneu+lrGYZsXG2KIhgrdR1s
-	 qJU2/0uKFkHnCXw6cTC4aH7MzCltyBbjhl48/FJ0+SihFJlq1rMvuBu//8pzZjpUVe
-	 nvK7nQDr7ySW1ao5hJe8JkL0bW7cA3Wum7ENfunSXuL1fMJiEE5jEtS/5JEP6rvSPg
-	 fkCeOQ0htuogBhUDJZ5OhevrKV2zBmAUwc34R8DuNKDKPiTvyyWO9mrF5JBe+m3BBJ
-	 3q5NNsGZuOxmKlp4xX8jSHwcZPD1z8WMLE28i1oDMZbF3N9bYDZTajVxzkofbdmQZs
-	 dcc9GUDkPiYTw==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	by mx.sberdevices.ru (Postfix) with ESMTP;
-	Fri, 23 Jun 2023 05:23:54 +0300 (MSK)
-From: George Stark <gnstark@sberdevices.ru>
-To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <andriy.shevchenko@linux.intel.com>,
-	<nuno.sa@analog.com>, <gnstark@sberdevices.ru>
-CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<kernel@sberdevices.ru>, George Stark <GNStark@sberdevices.ru>
-Subject: [PATCH v2 6/6] meson saradc: support reading from channel7 mux inputs
-Date: Fri, 23 Jun 2023 05:20:14 +0300
-Message-ID: <20230623022334.791026-7-gnstark@sberdevices.ru>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230623022334.791026-1-gnstark@sberdevices.ru>
-References: <20230623022334.791026-1-gnstark@sberdevices.ru>
+	id 1qCa6R-002fuW-1S;
+	Fri, 23 Jun 2023 06:17:04 +0000
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9881b9d8cbdso258431766b.1;
+        Thu, 22 Jun 2023 23:17:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20221208; t=1687501019; x=1690093019;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bTzRTBwuHpC7/hhWw9l446CStpPhNQn+H0m14KUu0h8=;
+        b=VhM2vnJgCLaRCOzs0kOlroNdVzfrTvRkeuZIBNxezHdrD5f8hVG2zJtCjk15wJDIu9
+         E3xJORLjKw5yGUvWyEnyfHARLXnT+RXT5MPD/hpvgYdNSlMXCzFv8ZPW6MiO+xY2hsF8
+         nP2ScAqRqHyyJDKZzc/ikUla4De9zOcOpGIC33KJEu9csebDnzuh2nenlz25Fqw+PDFU
+         xDLuzmYKVuZgGXKpj3lLeR3HW4Ob67rVKC2+2LRyAedaLqVXsA6DoqxxDdOw0l4Dn1sh
+         YyKOHTFzUwvur5wsCqj1P3sXGmMA9wYIUEitkcaS3RoZxhVvuxeEFCYdKJJJVL+ARIHS
+         t8fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687501019; x=1690093019;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bTzRTBwuHpC7/hhWw9l446CStpPhNQn+H0m14KUu0h8=;
+        b=CRvBRGQcGiGdI6ROnUPJykwRVbac1cYKUusUzwK0dzd4cqBFloSk3YbJSGH9jeets7
+         cjfMdu/p3tNsSMDBNPNtLGm1Ia0uHiwBS7sUeyzZ8tV1wMMiMT9/mKJfy1Ph5wVteVmU
+         aLqVntAuhl0qJNv2M9PNnYIB73hxkS5/+V853NKKz61lvE83To+W4o7h2U6kIx85ylRh
+         IlJn/MC+8ZGDKDpxpa5nMutyiJkzt03hQjhJV/7GKBoUqpf6NtD3GaiE6RtgKLctpoo0
+         8QYojy8X1QypfmfV/Clj4KyQ3cZbpSH5pejg1BfRD8pYvtY5thnQ+iW7dWmjXO6iEj1n
+         oV/g==
+X-Gm-Message-State: AC+VfDwwEr2eJdfo35LXdB7gxhcIlbO25vR69C7CJy607gh9yDTcUsbe
+	hKBPTeBx/M9WyFHkvqI2opCM8DsP3E9x8nINZ0I=
+X-Google-Smtp-Source: ACHHUZ7/k41yx67lWIal2QXf8cBmr9dIrsOBDzFQcnBkJqFbQY3pmpiYMLIDfCUFTJ2f2iU93/paSGzeBcAK9TsqaNg=
+X-Received: by 2002:a17:907:3e83:b0:987:fe18:1c58 with SMTP id
+ hs3-20020a1709073e8300b00987fe181c58mr15265725ejc.35.1687501018686; Thu, 22
+ Jun 2023 23:16:58 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/22 21:10:00 #21557945
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <20230623022334.791026-1-gnstark@sberdevices.ru> <20230623022334.791026-7-gnstark@sberdevices.ru>
+In-Reply-To: <20230623022334.791026-7-gnstark@sberdevices.ru>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Fri, 23 Jun 2023 08:16:47 +0200
+Message-ID: <CAFBinCBv993Xv_wk9fE-U0Tw2mzTB1z22Tj6x8Uy1rRw_dztng@mail.gmail.com>
+Subject: Re: [PATCH v2 6/6] meson saradc: support reading from channel7 mux inputs
+To: George Stark <gnstark@sberdevices.ru>
+Cc: jic23@kernel.org, lars@metafoo.de, neil.armstrong@linaro.org, 
+	khilman@baylibre.com, jbrunet@baylibre.com, andriy.shevchenko@linux.intel.com, 
+	nuno.sa@analog.com, linux-iio@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, kernel@sberdevices.ru
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230622_192402_978245_3516BCC0 
-X-CRM114-Status: GOOD (  14.56  )
+X-CRM114-CacheID: sfid-20230622_231703_534012_CD9C54A8 
+X-CRM114-Status: GOOD (  14.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,171 +85,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add iio channel for every channel 7 muxer input.
-Meson saradc channel 7 is connected to muxer that can switch channel
-input to well-known sources like Vdd, GND and several Vdd dividers.
-
-Signed-off-by: George Stark <GNStark@sberdevices.ru>
----
-
-Changelog:
-v1->v2: update commit message from [1]
-
-[1] https://lore.kernel.org/lkml/20230621062715.455652-4-gnstark@sberdevices.ru/
-
----
- drivers/iio/adc/meson_saradc.c | 65 +++++++++++++++++++++++++++++++---
- 1 file changed, 61 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index e7eb154b151f..ecaebb569e8e 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -163,6 +163,7 @@
- #define MESON_SAR_ADC_MAX_FIFO_SIZE				32
- #define MESON_SAR_ADC_TIMEOUT					100 /* ms */
- #define MESON_SAR_ADC_VOLTAGE_AND_TEMP_CHANNEL			6
-+#define MESON_SAR_ADC_VOLTAGE_AND_MUX_CHANNEL			7
- #define MESON_SAR_ADC_TEMP_OFFSET				27
- 
- /* temperature sensor calibration information in eFuse */
-@@ -201,6 +202,19 @@
- 	.datasheet_name = "TEMP_SENSOR",				\
- }
- 
-+#define MESON_SAR_ADC_MUX(_chan, _sel) {				\
-+	.type = IIO_VOLTAGE,						\
-+	.channel = _chan,						\
-+	.indexed = 1,							\
-+	.address = MESON_SAR_ADC_VOLTAGE_AND_MUX_CHANNEL,		\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |			\
-+				BIT(IIO_CHAN_INFO_AVERAGE_RAW),		\
-+	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),		\
-+	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_CALIBBIAS) |	\
-+				BIT(IIO_CHAN_INFO_CALIBSCALE),		\
-+	.datasheet_name = "SAR_ADC_MUX_"#_sel,				\
-+}
-+
- enum meson_sar_adc_avg_mode {
- 	NO_AVERAGING = 0x0,
- 	MEAN_AVERAGING = 0x1,
-@@ -233,6 +247,27 @@ enum meson_sar_adc_channel_index {
- 	INDEX_CHAN_6,
- 	INDEX_CHAN_7,
- 	INDEX_CHAN_SOFT_TIMESTAMP,
-+	INDEX_MUX_0_VSS,
-+	INDEX_MUX_1_VDD_DIV4,
-+	INDEX_MUX_2_VDD_DIV2,
-+	INDEX_MUX_3_VDD_MUL3_DIV4,
-+	INDEX_MUX_4_VDD,
-+};
-+
-+static enum meson_sar_adc_chan7_mux_sel chan7_mux_values[] = {
-+	CHAN7_MUX_VSS,
-+	CHAN7_MUX_VDD_DIV4,
-+	CHAN7_MUX_VDD_DIV2,
-+	CHAN7_MUX_VDD_MUL3_DIV4,
-+	CHAN7_MUX_VDD,
-+};
-+
-+static const char * const chan7_mux_names[] = {
-+	"gnd",
-+	"0.25vdd",
-+	"0.5vdd",
-+	"0.75vdd",
-+	"vdd",
- };
- 
- static const struct iio_chan_spec meson_sar_adc_iio_channels[] = {
-@@ -245,6 +280,11 @@ static const struct iio_chan_spec meson_sar_adc_iio_channels[] = {
- 	MESON_SAR_ADC_CHAN(INDEX_CHAN_6),
- 	MESON_SAR_ADC_CHAN(INDEX_CHAN_7),
- 	IIO_CHAN_SOFT_TIMESTAMP(INDEX_CHAN_SOFT_TIMESTAMP),
-+	MESON_SAR_ADC_MUX(INDEX_MUX_0_VSS, 0),
-+	MESON_SAR_ADC_MUX(INDEX_MUX_1_VDD_DIV4, 1),
-+	MESON_SAR_ADC_MUX(INDEX_MUX_2_VDD_DIV2, 2),
-+	MESON_SAR_ADC_MUX(INDEX_MUX_3_VDD_MUL3_DIV4, 3),
-+	MESON_SAR_ADC_MUX(INDEX_MUX_4_VDD, 4),
- 	MESON_SAR_ADC_TEMP_CHAN(), /* must be the last item */
- };
- 
-@@ -284,6 +324,7 @@ struct meson_sar_adc_priv {
- 	bool					temperature_sensor_calibrated;
- 	u8					temperature_sensor_coefficient;
- 	u16					temperature_sensor_adc_val;
-+	enum meson_sar_adc_chan7_mux_sel	chan7_mux_sel;
- };
- 
- static const struct regmap_config meson_sar_adc_regmap_config_gxbb = {
-@@ -348,6 +389,8 @@ static void meson_sar_adc_set_chan7_mux(struct iio_dev *indio_dev,
- 			   MESON_SAR_ADC_REG3_CTRL_CHAN7_MUX_SEL_MASK, regval);
- 
- 	usleep_range(10, 20);
-+
-+	priv->chan7_mux_sel = sel;
- }
- 
- static int meson_sar_adc_read_raw_sample(struct iio_dev *indio_dev,
-@@ -443,6 +486,15 @@ static void meson_sar_adc_enable_channel(struct iio_dev *indio_dev,
- 		regmap_update_bits(priv->regmap,
- 				   MESON_SAR_ADC_DELTA_10,
- 				   MESON_SAR_ADC_DELTA_10_TEMP_SEL, regval);
-+	} else if (chan->address == MESON_SAR_ADC_VOLTAGE_AND_MUX_CHANNEL) {
-+		enum meson_sar_adc_chan7_mux_sel sel;
-+
-+		if (chan->channel == INDEX_CHAN_7)
-+			sel = CHAN7_MUX_CH7_INPUT;
-+		else
-+			sel = chan7_mux_values[chan->channel - INDEX_MUX_0_VSS];
-+		if (sel != priv->chan7_mux_sel)
-+			meson_sar_adc_set_chan7_mux(indio_dev, sel);
- 	}
- }
- 
-@@ -1015,7 +1067,7 @@ static int meson_sar_adc_calib(struct iio_dev *indio_dev)
- 	meson_sar_adc_set_chan7_mux(indio_dev, CHAN7_MUX_VDD_DIV4);
- 	usleep_range(10, 20);
- 	ret = meson_sar_adc_get_sample(indio_dev,
--				       &indio_dev->channels[INDEX_CHAN_7],
-+				       &indio_dev->channels[INDEX_MUX_1_VDD_DIV4],
- 				       MEAN_AVERAGING, EIGHT_SAMPLES, &value0);
- 	if (ret < 0)
- 		goto out;
-@@ -1023,7 +1075,7 @@ static int meson_sar_adc_calib(struct iio_dev *indio_dev)
- 	meson_sar_adc_set_chan7_mux(indio_dev, CHAN7_MUX_VDD_MUL3_DIV4);
- 	usleep_range(10, 20);
- 	ret = meson_sar_adc_get_sample(indio_dev,
--				       &indio_dev->channels[INDEX_CHAN_7],
-+				       &indio_dev->channels[INDEX_MUX_3_VDD_MUL3_DIV4],
- 				       MEAN_AVERAGING, EIGHT_SAMPLES, &value1);
- 	if (ret < 0)
- 		goto out;
-@@ -1050,8 +1102,13 @@ static int read_label(struct iio_dev *indio_dev,
- {
- 	if (chan->type == IIO_TEMP)
- 		return sprintf(label, "%s\n", "temp-sensor");
--	if (chan->type == IIO_VOLTAGE)
--		return sprintf(label, "channel-%d\n", chan->channel);
-+	if (chan->type == IIO_VOLTAGE) {
-+		if (chan->channel <= INDEX_CHAN_7)
-+			return sprintf(label, "channel-%d\n", chan->channel);
-+		if (chan->channel >= INDEX_MUX_0_VSS)
-+			return sprintf(label, "%s\n",
-+				chan7_mux_names[chan->channel - INDEX_MUX_0_VSS]);
-+	}
- 	return 0;
- }
- 
--- 
-2.38.4
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgR2VvcmdlLAoKT24gRnJpLCBKdW4gMjMsIDIwMjMgYXQgNDoyM+KAr0FNIEdlb3JnZSBTdGFy
+ayA8Z25zdGFya0BzYmVyZGV2aWNlcy5ydT4gd3JvdGU6ClsuLi5dCj4gTWVzb24gc2FyYWRjIGNo
+YW5uZWwgNyBpcyBjb25uZWN0ZWQgdG8gbXV4ZXIgdGhhdCBjYW4gc3dpdGNoIGNoYW5uZWwKSSB0
+aGluayB0aGF0IHRoaXMgc2hvdWxkIHJlYWQ6IC4uLiBpcyBjb25uZWN0ZWQgdG8gYSBtdXggdGhh
+dCAuLi4KClsuLi5dCj4gIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaWlvX2NoYW5fc3BlYyBtZXNvbl9z
+YXJfYWRjX2lpb19jaGFubmVsc1tdID0gewo+IEBAIC0yNDUsNiArMjgwLDExIEBAIHN0YXRpYyBj
+b25zdCBzdHJ1Y3QgaWlvX2NoYW5fc3BlYyBtZXNvbl9zYXJfYWRjX2lpb19jaGFubmVsc1tdID0g
+ewo+ICAgICAgICAgTUVTT05fU0FSX0FEQ19DSEFOKElOREVYX0NIQU5fNiksCj4gICAgICAgICBN
+RVNPTl9TQVJfQURDX0NIQU4oSU5ERVhfQ0hBTl83KSwKPiAgICAgICAgIElJT19DSEFOX1NPRlRf
+VElNRVNUQU1QKElOREVYX0NIQU5fU09GVF9USU1FU1RBTVApLAo+ICsgICAgICAgTUVTT05fU0FS
+X0FEQ19NVVgoSU5ERVhfTVVYXzBfVlNTLCAwKSwKPiArICAgICAgIE1FU09OX1NBUl9BRENfTVVY
+KElOREVYX01VWF8xX1ZERF9ESVY0LCAxKSwKPiArICAgICAgIE1FU09OX1NBUl9BRENfTVVYKElO
+REVYX01VWF8yX1ZERF9ESVYyLCAyKSwKPiArICAgICAgIE1FU09OX1NBUl9BRENfTVVYKElOREVY
+X01VWF8zX1ZERF9NVUwzX0RJVjQsIDMpLAo+ICsgICAgICAgTUVTT05fU0FSX0FEQ19NVVgoSU5E
+RVhfTVVYXzRfVkRELCA0KSwKPiAgICAgICAgIE1FU09OX1NBUl9BRENfVEVNUF9DSEFOKCksIC8q
+IG11c3QgYmUgdGhlIGxhc3QgaXRlbSAqLwpJIGhhdmVuJ3QgaGFkIHRoZSBjaGFuY2UgdG8gcnVu
+IHRoZXNlIHBhdGNoZXMgeWV0IGJ1dDogSSB0aGluayB0aGV5CmFyZSBicmVha2luZyB0aGUgdGVt
+cGVyYXR1cmUgc2Vuc29yIHJlYWRpbmdzIG9uIE1lc29uOC84Yi84bTIgYm9hcmRzLgpTZWUgYXJj
+aC9hcm0vYm9vdC9kdHMvbWVzb24uZHRzaSB3aGVyZSB0aGUgdGVtcGVyYXR1cmUgY2hhbm5lbCBp
+cwpiZWluZyByZWZlcmVuY2VkOgogIGlvLWNoYW5uZWxzID0gPCZzYXJhZGMgOD4KCldpdGggdGhp
+cyBzZXJpZXMgKHRoaXMgcGF0Y2ggYW5kIEkgdGhpbmsgYWxzbyBwYXRjaCAzLzYgIm1lc29uIHNh
+cmFkYzoKdW5pdGUgaWlvIGNoYW5uZWwgYXJyYXkgZGVmaW5pdGlvbnMiKSB0aGUgbnVtYmVyaW5n
+IG9mIHRoZSB0ZW1wZXJhdHVyZQpzZW5zb3IgY2hhbm5lbCBjaGFuZ2VzLgoKVG8gbWFrZSB0aGlu
+Z3Mgd29yc2U6IGluIHRoZW9yeSB3ZSBjYW4gdXNlIG1lc29uX3NhcmFkYyB0byByZWFkIHRoZQpT
+b0MgdGVtcGVyYXR1cmUgc2Vuc29yIG9uIEdYQkIsIEdYTCBhbmQgR1hNIGJvYXJkcyAocG9zc2li
+bHkgb24gQVhHIGFzCndlbGwgYnV0IEkgY2FuJ3QgcmVjYWxsIGZyb20gdGhlIHRvcCBvZiBteSBo
+ZWFkKSBpbnN0ZWFkIG9mIGdvaW5nCnRocm91Z2ggU0NQSS4KSSBoYXZlIGV4cGVyaW1lbnRlZCB3
+aXRoIHRoaXMgaW4gdGhlIHBhc3QgYnV0IG5ldmVyIGdvdCBpdCB0byB3b3JrLgpEb2luZyBzbyBp
+biB0aGUgZnV0dXJlIGNvdWxkIGxlYWQgdG8gYW5vdGhlciBjaGFubmVsIGluZGV4IGNoYW5nZSwK
+ZGVwZW5kaW5nIG9uIGhvdyB3ZSBkZWNpZGUgdG8gZ28gZm9yd2FyZCBub3cuCgpUaGVyZSdzIHR3
+byB0aGF0IEkgY2FuIHRoaW5rIG9mOgotIHVwZGF0ZSBtZXNvbi5kdHNpIHRvIHVzZSB0aGUgbmV3
+IGNoYW5uZWwgbnVtYmVyaW5nIChJIGRvbid0IGV4cGVjdAptYW55IDMyLWJpdCBTb0MgdXNlcnMg
+b3V0IHRoZXJlIHVzaW5nIG5ldyBrZXJuZWwgKyBvbGQgLmR0YnMsIGJ1dCBpdCdzCmltcG9zc2li
+bGUgdG8gc2F5IGZvciBzdXJlKQotIG9yIGtlZXAgdGhlIGRyaXZlciBiYWNrd2FyZHMgY29tcGF0
+aWJsZSAodGhhdCBpbnZvbHZlcyByZS1hZGRpbmcgdGhlCmNoYW5uZWwgdGFibGVzKQoKV2hhdCBk
+byB5b3UgdGhpbms/CgoKQmVzdCByZWdhcmRzLApNYXJ0aW4KCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
+bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
