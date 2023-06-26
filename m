@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 575CEEB64D7
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jun 2023 09:53:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E99FEB64DA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jun 2023 09:53:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=xR91UzEtA+xiLiocRaEIdIz5K/8wzfXku9nM7hBcIWQ=; b=zBPfIcWsm0Eqde
-	xHyLMIWEKgsuUjuMMhTNWKk6deaq3+hPhNTBsur5WEYbmjG1FoTg5qzoQLKPMxU+Bbc7vzlaj46Jm
-	WLBVTwEw8fJFkFB4KwfDj9qyHTMQSnfiQtP5iOBVrFICI6Wtt1lrfRrSB0QnLMFBYTI/6V7Xd8E47
-	IDtmR3/v7haz8+w3HiACOOnDoQfYxoMhdsOOxFcrg7PYCDF0wstA1FLnIYV9deWHAGTOBQ74ALeBq
-	JcjpmxVfz/PuIGVryDOf9A9PEBLtbV6EZhQ5u0BDwW2XwxuCsxyHFxVTG1x38v8XQnTSHvIEceNrx
-	pEnSgz6Al+Yq6xwbODaQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0XP9eq4lCnKJHp73nRjjgoglthPnnA8sUKW+VLeOCVM=; b=hdxI3MimuHdUgu
+	0o66U32d/IEiO3jx27q3BifcEarv8G4uqQF3G1ugdUih5fBdhvhjihGDTXTpLOkr+bn/xqGf39dU6
+	jPV8xkJbTs3nl+NNt6cvEcdGfsQyDXYFuUueUOvGsg4UJX1c/xI89kTrLYzE9R6iiRy0Tx/KgYE0j
+	T41OKpXAEMUbTCHOs8+1FaEdipOmO1/8ZmYrTZmqKbytcMrIrmHJVSpsJV7aUwuzB2G3beQhiuJSH
+	ZG9TOrpFrtBy/tN/NYZvgHDXvNm+U7pEMwDb0dG5IBiQvoLDpiPUmY3xDKY6rNYoldzvfQA92ITTp
+	rjCrU312cXQUV4tSEByQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qDitw-009m3H-1J;
-	Mon, 26 Jun 2023 09:52:52 +0000
+	id 1qDiu4-009m5m-1m;
+	Mon, 26 Jun 2023 09:53:00 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qDits-009lzo-37;
-	Mon, 26 Jun 2023 09:52:50 +0000
+	id 1qDitw-009m2q-0x;
+	Mon, 26 Jun 2023 09:52:53 +0000
 Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Mon, 26 Jun 2023
- 17:52:26 +0800
+ 17:52:27 +0800
 From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 To: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
 	<linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>
@@ -37,15 +37,17 @@ CC: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
 	<khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
 	Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: [PATCH 0/2] Baisc devicetree support for Amlogic T7
-Date: Mon, 26 Jun 2023 17:52:21 +0800
-Message-ID: <20230626095223.721011-1-xianwei.zhao@amlogic.com>
+Subject: [PATCH 1/2] dt-bindings: arm: amlogic: add T7 based AN400 bindings
+Date: Mon, 26 Jun 2023 17:52:22 +0800
+Message-ID: <20230626095223.721011-2-xianwei.zhao@amlogic.com>
 X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20230626095223.721011-1-xianwei.zhao@amlogic.com>
+References: <20230626095223.721011-1-xianwei.zhao@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.98.11.200]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230626_025249_022006_63FF5B38 
-X-CRM114-Status: UNSURE (   7.38  )
+X-CRM114-CacheID: sfid-20230626_025252_328683_19095DBE 
+X-CRM114-Status: UNSURE (   7.12  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -63,28 +65,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Document the new T7 SoC/board device tree bindings.
+
 T7 is an advanced application processor designed for smart display.
+It integrates a powerful CPU/GPU subsystem, a secured 8K video
+CODEC engine with all major peripherals.
 
-Add the new T7 SoC/board device tree bindings.
+The main system CPU is based on Big.LITTLE architecture,
+with quad core Cortex-A73 cluster and quad core Cortex-A53 cluster.
 
-Add basic support for the T7 based Amlogic AN400 board, which describes
-the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
-booting up into the serial console.
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Xianwei Zhao (2):
-  dt-bindings: arm: amlogic: add T7 based AN400 bindings
-  arm64: dts: add support for T7 based Amlogic AN400
-
- .../devicetree/bindings/arm/amlogic.yaml      |   6 +
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../dts/amlogic/amlogic-t7-a311d2-an400.dts   |  30 ++++
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   | 156 ++++++++++++++++++
- 4 files changed, 193 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-
-
-base-commit: 057889cb4244096ea5abcbe76ffd4d311c3078fe
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 08d59842655c..79a8b44ffd03 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -218,6 +218,12 @@ properties:
+               - amlogic,aq222
+           - const: amlogic,s4
+ 
++      - description: Boards with the Amlogic T7 A311D2 SoC
++        items:
++          - enum:
++              - amlogic,an400
++          - const: amlogic,t7
++
+ additionalProperties: true
+ 
+ ...
 -- 
 2.37.1
 
