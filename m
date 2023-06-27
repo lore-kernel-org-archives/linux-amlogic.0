@@ -4,88 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70B97EB64D9
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Jun 2023 10:39:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D60FEB64D9
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Jun 2023 22:41:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=C5TUkfJp9d0xCQ7MS6Zn9nuVvaC609OGT33yN1tW2fY=; b=KH/POHA+u/XIan
-	umoiMOOyl/oWyGYyY/cVrN1yHtnCJun28fKY1Ue4Plyr5hZN69QDPJ41j+uylBcCmD7wru7Pf0uDD
-	KeDA+2CPsfTaJRppa1p2UOzDrHoMK6B2je+MWNZ+wAdRyVlZREJSygS/r67KJTpm3ujbifuLQdwyJ
-	jQyd36KLknn82PoGu42OCzxLkB6zvpgdblWSRpyaW0E8qgRQOdHPjBXA47O+WiJkKO0QepeDp8skL
-	VUKsIwjXAb/J0iHieYCYHCDRyDHR6ts63kVy/4YWI1wf6UcHICpsfuZWL4wVkNRuNoVokcuVOjjac
-	dk7uJCb800udTlKmVVqw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=K3YjGMTwWchyn1zqW975/Jx7mwm3ym7fGR/AgG5Z+w8=; b=IuapmroYYBoH1r
+	uFQa0/lH47VVjiSTQV3ii+oB4N9iyf1iFy4BV2o6NpVDFFVMtoHmpoPcYrLj+LM68D2pg4pMlwR7R
+	GM6PRiZPd4WdYdKtNRHSw92vxK58BkqLad1+2EzQDbAxJT6L/GL0nl3tDZNcb4GcG75epsGC7Bn3d
+	q9UyUaK/SGJsMY+d5N9Ix0oxBeW7kir21PBgrJsP+WfLp/sefhId2eaJIvetWn6eQxUfBXaF7Hptm
+	ww94DTHtGja4bO0wW1nLunX8VrprmAYyR5Vhg1Se1L9WEPqdGkQZYplgWgUGGdhq7HN8gHqNX9SyE
+	AoQzZTDOqen8Wqt/bSgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qE665-00Cul3-0W;
-	Tue, 27 Jun 2023 10:38:57 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1qEHMm-00EKDz-0u;
+	Tue, 27 Jun 2023 22:40:56 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qE661-00Cugw-38
-	for linux-amlogic@lists.infradead.org;
-	Tue, 27 Jun 2023 10:38:55 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-31114b46d62so5094386f8f.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 27 Jun 2023 03:38:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687862330; x=1690454330;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=L3/MOT3CxJP5aM43slBN/qL4mRnfKkA3+j6y3t3wdsI=;
-        b=SNVEZn4YAshZWJkE5Xn3Rts1zVDViGXdYvpg8JlQ1fRu31LeJb4zaWDgZZF6q4IDmC
-         MgZ4ZwCxNHqwxrTcyY1NEcE24HQWhSpcykJLgm6qGgmSW8YqdU90qGDYFUHv4Eouk5MB
-         LJb/Ouhut7rD152b5qs1RQahkPkz53NQ7p4YssaRYKxu6pVMqetZh0X8JFd5G9HvEFU0
-         VBuKdnQEOKamBLtrTvoO1Q/WjBO2YcFJUh6TMI9pXDkbRtrZG8RbIfS6YEBMSKzIkdEU
-         QdcMxTeHUQSuqmj4bbg9vHXmNpCXA5R+f/og/pE/tUbzmf4RbuSJO4+qyF8VzZMtfmtC
-         GePw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687862330; x=1690454330;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L3/MOT3CxJP5aM43slBN/qL4mRnfKkA3+j6y3t3wdsI=;
-        b=fQUiNJVL27P2dogaSLIERpUO1l+oNw8E40Y+OqG5Jtceiz8tOBSkEf3rvYt9sUfA1r
-         ARyXlOicKpuBrXLlgfNWvW6QWc5gkCHSzwnZKsuLmW2RSyGUdqtZlv0pea1QRtSUyF6c
-         X8hoeEn4KxdU8KPB68BQ3BRcELFPRyG+Ka0NSDikzuBvE1xe3/NBLZF8qTBUl8bpNQ9l
-         53lSC9UVGha2T46G6DztofcpM0ZzM0ft+eesfjLhVnsTTyesmTb0zG5s5AOXTjblkmvG
-         HJLqVQlW1QnHxhitEg4RCowMCIt3QXT+i8mvZ4J1UkvJ6c3Pl7nX7av1b7gM1PGIeuFf
-         k43Q==
-X-Gm-Message-State: AC+VfDx5c3OXshYVJRFtTVt8ze83MKpYYBPr8xUp1lz4MbCvufb4mUzB
-	h4R5yE8kHzRoCb6FIbaIelwoNQ==
-X-Google-Smtp-Source: ACHHUZ4e79OUOLu9PEPPro9WRy7ixp8c2KMi26jFGQRDOhcDgBTcT9WDuKo2QJW4bgA+8onCjmpIgQ==
-X-Received: by 2002:a5d:5752:0:b0:314:216:5797 with SMTP id q18-20020a5d5752000000b0031402165797mr691620wrw.15.1687862330016;
-        Tue, 27 Jun 2023 03:38:50 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id u8-20020adfdd48000000b0030ae6432504sm9932105wrm.38.2023.06.27.03.38.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jun 2023 03:38:49 -0700 (PDT)
-Message-ID: <6b001578-79b9-6bb6-4420-bae4a27d0fa8@linaro.org>
-Date: Tue, 27 Jun 2023 12:38:47 +0200
+	id 1qEHMh-00EKAs-0t;
+	Tue, 27 Jun 2023 22:40:54 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 9F9A3100002;
+	Wed, 28 Jun 2023 01:40:26 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 9F9A3100002
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1687905626;
+	bh=e1cUKFmZg0TXaiRU2tWtXncs27m+jCxjdlCXc/znU2A=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=hHjrbZftTb+sAPRvW49lU2m6Q22wjlLjFVYWuTRoWM0rAqaEX527ySUIM/O3Hf9FK
+	 7wLAISq4jEwdksx+p25tWkFZ8GXWa9chHdfceqc7/S7LGqGkaYD+rmYAp4+azoo3W/
+	 3AwyGT/ZSBTIMol6wtgRyAWfrbN2mHFdLy5UgLf0NWft2qGd/xvUMjgTLX64A2S9hj
+	 9u7VeF93CdsAAu2KAnyGUUgvCY1iR/mDTHTpdUutXsCpAw5OmiQTcepdcBuxYM+6sT
+	 1MaWay06ZswESyvsZfgSetuX2j111TA6TuARs8gilaNSO3RhMHhOEFpTBZsrM/sL0G
+	 9rtdduGZseI6Q==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 28 Jun 2023 01:40:26 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Wed, 28 Jun 2023 01:39:30 +0300
+From: George Stark <gnstark@sberdevices.ru>
+To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <andriy.shevchenko@linux.intel.com>,
+	<nuno.sa@analog.com>, <gnstark@sberdevices.ru>
+CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<kernel@sberdevices.ru>, George Stark <GNStark@sberdevices.ru>
+Subject: [PATCH v3 0/5] meson saradc: add iio channels to read channel 7 mux inputs
+Date: Wed, 28 Jun 2023 01:37:13 +0300
+Message-ID: <20230627224017.1724097-1-gnstark@sberdevices.ru>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v6 2/4] dt-bindings: serial: amlogic,meson-uart: Add
- compatible string for T7
-Content-Language: en-US
-To: Lucas Tanure <tanure@linux.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Nick <nick@khadas.com>, Artem <art@khadas.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20230627091007.190958-1-tanure@linux.com>
- <20230627091007.190958-3-tanure@linux.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230627091007.190958-3-tanure@linux.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178297 [Jun 27 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: GNStark@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 517 517 b0056c19d8e10afbb16cb7aad7258dedb0179a79, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;lore.kernel.org:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2023/06/27 21:22:00
+X-KSMG-LinksScanning: Clean, bases: 2023/06/27 21:22:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/06/27 18:27:00 #21588965
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230627_033854_043190_98A4A970 
-X-CRM114-Status: GOOD (  11.83  )
+X-CRM114-CacheID: sfid-20230627_154052_246467_473EBD8F 
+X-CRM114-Status: UNSURE (   9.34  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,33 +101,48 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 27/06/2023 11:10, Lucas Tanure wrote:
-> Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
-> There is no need for an extra compatible line in the driver, but
-> add T7 compatible line for documentation.
-> 
-> Signed-off-by: Lucas Tanure <tanure@linux.com>
+From: George Stark <GNStark@sberdevices.ru>
 
+Changelog:
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+v1->v2:
+split refactoring patch [1] into 4 smaller patches, fix comment style
 
+[1] https://lore.kernel.org/lkml/20230621062715.455652-2-gnstark@sberdevices.ru/
 
-This is a friendly reminder during the review process.
+v2->v3:
+remove patch 'meson saradc: unite iio channel array definitions' [1] after discussion
 
-It looks like you received a tag and forgot to add it.
+patch 'meson saradc: add enum for iio channel array indexes'
+  - change enum items prefix from INDEX_ to NUM_ since name 'channel index' is
+  more relevant to channel array index in iio world and with 2 tables our array index is
+  not always equal to channel number
+  - resolve conflicts after deleting [1]
+  - update commit message, previous patch [2]
+  - return channel number for temp channel. It wasn't used and isn't used currently
+  but may need later
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions. However, there's no need to repost patches *only* to add the
-tags. The upstream maintainer will do that for acks received on the
-version they apply.
+patch meson saradc: support reading from channel 7 mux inputs
+  - resolve conflicts after deleting [1]
+  - update commit message, previous patch [3]
+  - add routine find_channel_by_num to get channel by channel number
 
-https://elixir.bootlin.com/linux/v6.4/source/Documentation/process/submitting-patches.rst#L552
+[1] https://lore.kernel.org/lkml/20230623022334.791026-4-gnstark@sberdevices.ru/
+[2] https://lore.kernel.org/lkml/20230623022334.791026-5-gnstark@sberdevices.ru/
+[3] https://lore.kernel.org/lkml/20230623022334.791026-7-gnstark@sberdevices.ru/
 
-If a tag was not added on purpose, please state why and what changed.
+George Stark (5):
+  meson saradc: move enums declaration before variables declaration
+  meson saradc: move meson_sar_adc_set_chan7_mux routine upper
+  meson saradc: add enum for iio channel numbers
+  meson saradc: add channel labels
+  meson saradc: support reading from channel 7 mux inputs
 
-Best regards,
-Krzysztof
+ drivers/iio/adc/meson_saradc.c | 165 +++++++++++++++++++++++++--------
+ 1 file changed, 126 insertions(+), 39 deletions(-)
+
+-- 
+2.38.4
 
 
 _______________________________________________
