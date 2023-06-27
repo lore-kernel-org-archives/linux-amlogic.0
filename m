@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E63BBEB64D9
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Jun 2023 22:41:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29365EB64DC
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Jun 2023 22:41:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=E4QnEWKdacgvUPmszWFIX/QaI8vcXAZMQ7lKEFTc41o=; b=eYhRZi/CBAXtBS
-	0qpExlfSdx+O+4M/xDcRxj75GFCZAtJSLLCBH5oshURNx0WFvv7dwerVXgyfYGxSGm1xIL2YS/u6y
-	olfdbdnlusLMZh6tJduDtafjNjVPzYTZm/f+znZv4QZZqNA2H0z3WmGqKC9FBxwEhSGDl7qjUzwFV
-	bsZGbaJ6ceOzahenaANuqdrdgCXCC6M4T4XDf113d1yKalCqkr7k3dABwar+TYbtGo7SNlhoI5uM3
-	L09TZQCs8P1PRSvP6smyTz5CMxo3Li1fomhfmcrcbHxFEC2rikILzZkN4AnlnTeO5OmRzoqx01wm1
-	K2/0NogYv0MgBMs5Rp0g==;
+	List-Owner; bh=Si48g7cIjrBxylc2s6fqIMAnLcgKsssiI2EMHDt6to4=; b=HpaobU5LR4yp2s
+	S2JatM15SO0xndDvVBYmuqDk6+Dowrce1QNzqu6/G1H+UKL7rLODrSbZeA1aKr3bQZPILpDwiNJ6a
+	u6taE7HZ/0HaqMhNs4MYXFhvrxgcMk58LkSXzdcDVKZxoM6hCR7ylhyrzDF5EGyuSXYI6Yrxmdtl6
+	WYii820YneneEOySICXOSwmNVdTgX75/4sVYkher4Ot+y018cp47C7+tECXYgeN9yZJ5lkpkG6ita
+	D6mk7FLhxkdRBGQ1zthTe+zLz6NYzBlxeiQxogRIowjFpD8bOGjX7TV+hRtz13rxFOA450BvsoZpV
+	9GzIkqw48OqDcLf+aN0A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qEHN4-00EKHr-2I;
-	Tue, 27 Jun 2023 22:41:14 +0000
+	id 1qEHN7-00EKJZ-1w;
+	Tue, 27 Jun 2023 22:41:17 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qEHN1-00EKFw-1W;
-	Tue, 27 Jun 2023 22:41:13 +0000
+	id 1qEHN1-00EKFe-1W;
+	Tue, 27 Jun 2023 22:41:14 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 5CBE9120008;
-	Wed, 28 Jun 2023 01:40:34 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 5CBE9120008
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 14E9D120006;
+	Wed, 28 Jun 2023 01:40:32 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 14E9D120006
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1687905634;
-	bh=fGkHaSpBhZc/5j/U10QNDIDrMkJ0Fz7Q81mDkVTHDy8=;
+	s=mail; t=1687905632;
+	bh=rc3qX8KRQTMzSGALx1FQDUphrLTDt4aHKYVi/7eAovo=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=eTdBVcsYXOzcwKlEbqu8swR5qSIj+2HRsAJqr9FQwaOPIYw+OdTmaJvt4TQ1btO+0
-	 ncPlcW6U707TNlb5oqMJdgjljQZUjlGrHKMAbf1VZlr6bAVzscjS30ciZff2rGWmDE
-	 hgg0zSvHzi4qfVvP3YF9ZemOi75Yy9DpbdliP0nkWhj+LtnDVeEUzWK7jriU5UklFI
-	 PqB0GTYGHkCvF7DKL1/k1T95rgO0W5srSKWhg06rn/B/KMEdU816BDPaPWstncA9pz
-	 lZq1zpynJ+tbn8xpuFjT7hGGlkRydckkc7sHvuNvFOAudBbHjSmKvujmhJ0pUyf5JC
-	 PPw2TcxlFL8AQ==
+	b=RiCvJHIQcUHyD3+08SlE+wff9SKwWNrVUEcTebeiiBCKgiBImZhpVA8/z+rhDvDJB
+	 Omn712+V3UtH0zMfFMBNoXQSNROiKOEmLER0NG82SrchtYXfCIw2V8Q/MwVsKMDiNL
+	 C0HTeU/qkKUQQGJQGUHgOzyFoWfFbax4IYEQWEp2FAGtjwt5rQHqc/esznBU/m/qcT
+	 HB2QGgXAjETU+VitQD5mtV/amUcxZHrcjVERE8YKadPUpn4/lD8jqqoZr/8rpZIOD/
+	 qHaSytlb6W2iNxyaMW9TAlQEyyYtvfBLubOBZv/8H1u8IiUfjfHVwf2Qu9INe6M+ej
+	 tqiJ8slg47o4w==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 28 Jun 2023 01:40:33 +0300 (MSK)
+	Wed, 28 Jun 2023 01:40:30 +0300 (MSK)
 Received: from localhost.localdomain (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
@@ -57,9 +57,9 @@ To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
 CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<kernel@sberdevices.ru>, George Stark <GNStark@sberdevices.ru>
-Subject: [PATCH v3 4/5] meson saradc: add channel labels
-Date: Wed, 28 Jun 2023 01:37:17 +0300
-Message-ID: <20230627224017.1724097-5-gnstark@sberdevices.ru>
+Subject: [PATCH v3 2/5] meson saradc: move meson_sar_adc_set_chan7_mux routine upper
+Date: Wed, 28 Jun 2023 01:37:15 +0300
+Message-ID: <20230627224017.1724097-3-gnstark@sberdevices.ru>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230627224017.1724097-1-gnstark@sberdevices.ru>
 References: <20230627224017.1724097-1-gnstark@sberdevices.ru>
@@ -84,8 +84,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/06/27 18:27:00 #21588965
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230627_154111_874395_DCCFD89C 
-X-CRM114-Status: GOOD (  11.42  )
+X-CRM114-CacheID: sfid-20230627_154111_884945_0436CDA2 
+X-CRM114-Status: GOOD (  11.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,38 +102,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add attribute 'label' to all iio channels.
+Move meson_sar_adc_set_chan7_mux routine upper.
 
 Signed-off-by: George Stark <GNStark@sberdevices.ru>
 ---
- drivers/iio/adc/meson_saradc.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/iio/adc/meson_saradc.c | 26 +++++++++++++-------------
+ 1 file changed, 13 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index b87f05dfb322..85970fe852af 100644
+index af38d95bd504..6e69b40b3309 100644
 --- a/drivers/iio/adc/meson_saradc.c
 +++ b/drivers/iio/adc/meson_saradc.c
-@@ -1058,8 +1058,20 @@ static int meson_sar_adc_calib(struct iio_dev *indio_dev)
- 	return ret;
+@@ -338,6 +338,19 @@ static int meson_sar_adc_wait_busy_clear(struct iio_dev *indio_dev)
+ 					       1, 10000);
  }
  
-+static int read_label(struct iio_dev *indio_dev,
-+		      struct iio_chan_spec const *chan,
-+		      char *label)
++static void meson_sar_adc_set_chan7_mux(struct iio_dev *indio_dev,
++					enum meson_sar_adc_chan7_mux_sel sel)
 +{
-+	if (chan->type == IIO_TEMP)
-+		return sprintf(label, "%s\n", "temp-sensor");
-+	if (chan->type == IIO_VOLTAGE)
-+		return sprintf(label, "channel-%d\n", chan->channel);
-+	return 0;
++	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
++	u32 regval;
++
++	regval = FIELD_PREP(MESON_SAR_ADC_REG3_CTRL_CHAN7_MUX_SEL_MASK, sel);
++	regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG3,
++			   MESON_SAR_ADC_REG3_CTRL_CHAN7_MUX_SEL_MASK, regval);
++
++	usleep_range(10, 20);
 +}
 +
- static const struct iio_info meson_sar_adc_iio_info = {
- 	.read_raw = meson_sar_adc_iio_info_read_raw,
-+	.read_label = read_label,
- };
+ static int meson_sar_adc_read_raw_sample(struct iio_dev *indio_dev,
+ 					 const struct iio_chan_spec *chan,
+ 					 int *val)
+@@ -434,19 +447,6 @@ static void meson_sar_adc_enable_channel(struct iio_dev *indio_dev,
+ 	}
+ }
  
- static const struct meson_sar_adc_param meson_sar_adc_meson8_param = {
+-static void meson_sar_adc_set_chan7_mux(struct iio_dev *indio_dev,
+-					enum meson_sar_adc_chan7_mux_sel sel)
+-{
+-	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
+-	u32 regval;
+-
+-	regval = FIELD_PREP(MESON_SAR_ADC_REG3_CTRL_CHAN7_MUX_SEL_MASK, sel);
+-	regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG3,
+-			   MESON_SAR_ADC_REG3_CTRL_CHAN7_MUX_SEL_MASK, regval);
+-
+-	usleep_range(10, 20);
+-}
+-
+ static void meson_sar_adc_start_sample_engine(struct iio_dev *indio_dev)
+ {
+ 	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
 -- 
 2.38.4
 
