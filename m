@@ -4,66 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EB2EEB64D7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Jun 2023 17:28:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C31EEB64D7
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Jun 2023 20:52:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=G4x7yM+sdUeFhajWL/DF6n978K1s04jyB2QISLcuUug=; b=vb49GmwNqmwlajpjFJv51rQd7I
-	34Ie9hsJSEqkXrOn1awBXQLep1gwZLdoqs3b0OEDQUNmXFsvcz7wGWTFMomyLHC4jrJaGUtay/HV/
-	0YHnWwEzooJHs0/S5JfxBNSKxi75GkjmzJqdxzTbNDgQf7uK3sO18TOtHl4ywx2yhRGQvZWkhe7df
-	8Aii+ufI9RWOjB4s+HISmv0KdUf6CStcdRC+l0Nv0V6vhH9W6WceFHR1HQm2hHcAtAFT1lhZD6WwT
-	lh3E4vCFMT94P5lF7xpyjtWhaY8HsgR1jD+fqrC1nH3+Q5sjDNwnplGayJYgPkCPXv52W5gjfcIVU
-	r2pckTwQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=LzPx/2x/Il9VvcHwdNUzi7qbKrX2rlhasc+O1fa+Q4s=; b=q1eVTWVk0wsFoF
+	QNuLguIcjuIdNvTNtvuR0yT15sMmLqBfb5D9W3QgDowNeGLXtCfgHtGLWr3T5YmtHuTmXgF13VT06
+	faRuP4y8727jPqBP6uRRUfa+9TJ4Sr1TgymZiUSNeAlvKhj1yS0HhvxXFIF9JafIRX+1YcSAXD+Ii
+	7rI9wsgj/1fJ7s/k/ilt3G8+xD8IvioWoGLXNgOZWKclluu15X4o+APaggQS+GN+V5Rk2/LiPS+q9
+	B0hlED/1zlG2HD2mX62hdgEnglbouW5oJjy91Df2h33K2K/PI6JVxieo30nIyOPBg+nx5hbCZ0kaM
+	3DfgdVORhSVfRL46hvIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qEYx9-00GHk6-34;
-	Wed, 28 Jun 2023 17:27:39 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qEc8v-00Ggo4-2E;
+	Wed, 28 Jun 2023 20:52:01 +0000
+Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qEYx7-00GHjR-1W;
-	Wed, 28 Jun 2023 17:27:38 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id E77DC61408;
-	Wed, 28 Jun 2023 17:27:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A4E5C433C8;
-	Wed, 28 Jun 2023 17:27:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1687973256;
-	bh=F0PybSEQg3oGD0oV9xIryADKGMGVcc7224PKlDe1/K4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OsEgIy0JwjVpU/mf7fw0rJ7mr+bBZglsYTZdbf8Dn4JnhFnNOfIYLU+hA2LvICmyA
-	 lbjO6oUAEmzFzxKcnasoNxL9iOPO8Rh8t+dRQCrDckMUzPjN8mr/1y3eEffWaX7kqZ
-	 rLpVnZOl4+btvjWEsh1AyhVwI92R2NCuIeEsOEizLnzegfQNqOESqhsWn2E+q+AG6Y
-	 uRVh0DGL/D7Qa6n9QZPt8ZX41A47uykMP6noohpzhbSR3CJ2ebJ/qLnqkYWTZFugZw
-	 jfRmKQgENyts32K84EzGzLkPj1SKCzbYs9Ie75gtkpc3Tx9FwcKiBOZyEN2l/6N8/T
-	 5mb2O2878JRww==
-Date: Wed, 28 Jun 2023 18:27:30 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Huqiang Qin <huqiang.qin@amlogic.com>
-Cc: tglx@linutronix.de, maz@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	neil.armstrong@linaro.org, khilman@baylibre.com,
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-	hkallweit1@gmail.com, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH V2 1/2] dt-bindings: interrupt-controller: Add support
- for Amlogic-C3 SoCs
-Message-ID: <20230628-carat-dwarf-0b8e8c047c45@spud>
-References: <20230628091533.3884385-1-huqiang.qin@amlogic.com>
- <20230628091533.3884385-2-huqiang.qin@amlogic.com>
+	id 1qEc8s-00GgnG-1r;
+	Wed, 28 Jun 2023 20:51:59 +0000
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-977e0fbd742so28038966b.2;
+        Wed, 28 Jun 2023 13:51:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20221208; t=1687985515; x=1690577515;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=H09su0JFKNP1Fr2cMqvDj35F61R1G5GRKDatbkayncI=;
+        b=HhKl0a8N+ZKyZOg/yyWu2wih6yNx8S4yuWQkB7m/pi8Ms3UVGXqwsDDq/4qptTm4XC
+         0Gt3AhtG2RA86n76l7v7J+F2Mzif/vKYYlQS6xNQl2VX2Uyq8JK1MtzB97bXsy7nRH0/
+         4WVbQ4GN90ugYr/aWRQEyaugh/RBNdkGj5dvj/zrDTr5La8pf1mWzUyH5MbvcrNXMjGY
+         xPbk019pAtqGRKJ0H7SGKlPeXDYyt58gVsXvmNqMRyK1OP6DeUULsKKb/9A/a5nb8ovK
+         +ANHBtNdS4FRxFomULwxZKkHyeNXhE/S+SvQAcISQs036hJGYhQwy5d7zz2wGWKWDswx
+         Dk0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687985515; x=1690577515;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=H09su0JFKNP1Fr2cMqvDj35F61R1G5GRKDatbkayncI=;
+        b=XWXVqExkGKC4TdQX77pBdgZP2fupPvlJvoa6fFNXZM7gex1Q9tdyPvYL9RiI6+tHml
+         cBzz+8fkkoUyZ2cszz4M0DaD9TQ0kUWgI3vcAqxjuDGl+8AF7Ij2efubN20AUL94ncNi
+         mLU72AFHudukOiHAGpdlkbi8/O26wECIah9CKeBPBxkzj68E0z0s1KhhNt/CSBnJL2R/
+         bn1mte4HOHmieowD51wYS4IGFVBUzziw2r5/6Su8ezH8/m69Jac+arE2RdV0ldkBXXZQ
+         9PmkeO5AbkSScsTIqLT/a72ly/F/B1P2uUnIIiu/DJawMlP3DPWbGPJxt6lKZKz4roLg
+         bvFw==
+X-Gm-Message-State: AC+VfDzcTNmFwrS0LX/r2aDJK18w4zpl9Nn3HCvy95c02AnZMmxxIsoE
+	01uGRLAOpCe8wttqbo2Zm+7IaaltGYrXAtIy2TU=
+X-Google-Smtp-Source: ACHHUZ6ZHBQJxCh+FwiIqR9kqXjpG7Tcm/91+2ol36od0qJFABIuiBJMSCabSpWrShyknE0rzh7IBfR2eiQrWsFTbLE=
+X-Received: by 2002:a17:906:d542:b0:977:95f4:5cca with SMTP id
+ cr2-20020a170906d54200b0097795f45ccamr29993727ejc.54.1687985514876; Wed, 28
+ Jun 2023 13:51:54 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20230628091533.3884385-2-huqiang.qin@amlogic.com>
+References: <20230607201641.20982-1-ddrokosov@sberdevices.ru>
+ <20230607201641.20982-2-ddrokosov@sberdevices.ru> <CAFBinCAO14zcgY66UyJO9UxuCWf1N-Lsx=iYNTJL=cwXoJv__Q@mail.gmail.com>
+ <20230628141839.ea7qzotr5un6f2ij@CAB-WSD-L081021>
+In-Reply-To: <20230628141839.ea7qzotr5un6f2ij@CAB-WSD-L081021>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Wed, 28 Jun 2023 22:51:43 +0200
+Message-ID: <CAFBinCBzmYQu-+1A8MxZ+r551Jeym29fg9ErZJkftTEdL2b=-A@mail.gmail.com>
+Subject: Re: [PATCH v1 1/6] arm64: dts: meson: a1: introduce PLL and
+ Peripherals clk controllers
+To: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc: neil.armstrong@linaro.org, jbrunet@baylibre.com, mturquette@baylibre.com, 
+	sboyd@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	khilman@baylibre.com, conor+dt@kernel.org, kernel@sberdevices.ru, 
+	sdfw_system_team@sberdevices.ru, rockosov@gmail.com, 
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230628_102737_552278_B278A090 
-X-CRM114-Status: GOOD (  14.01  )
+X-CRM114-CacheID: sfid-20230628_135158_617342_B95117A0 
+X-CRM114-Status: GOOD (  12.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,81 +90,19 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7368473588661351680=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============7368473588661351680==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="XbbCx1QsHjc5jIJV"
-Content-Disposition: inline
-
-
---XbbCx1QsHjc5jIJV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Jun 28, 2023 at 05:15:32PM +0800, Huqiang Qin wrote:
-> Update dt-binding document for GPIO interrupt controller of Amlogic-C3 So=
-Cs
->=20
-> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
-> ---
->  .../bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml   | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlog=
-ic,meson-gpio-intc.yaml b/Documentation/devicetree/bindings/interrupt-contr=
-oller/amlogic,meson-gpio-intc.yaml
-> index e84e4f33b358..3d06db98e978 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meso=
-n-gpio-intc.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meso=
-n-gpio-intc.yaml
-> @@ -35,6 +35,7 @@ properties:
->                - amlogic,meson-sm1-gpio-intc
->                - amlogic,meson-a1-gpio-intc
->                - amlogic,meson-s4-gpio-intc
-> +              - amlogic,c3-gpio-intc
->            - const: amlogic,meson-gpio-intc
-> =20
->    reg:
-> --=20
-> 2.37.1
->=20
-
---XbbCx1QsHjc5jIJV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJxtggAKCRB4tDGHoIJi
-0hj7AQDpVNTHoWvTaJwjH4OGLihfyqwOGbkOpryPiMX1htjj6gEAkF5EUPPKWA4c
-QU+X8XLZU39rF0w7SHpuQNW2J1IAPgQ=
-=wqpH
------END PGP SIGNATURE-----
-
---XbbCx1QsHjc5jIJV--
-
-
---===============7368473588661351680==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7368473588661351680==--
-
+T24gV2VkLCBKdW4gMjgsIDIwMjMgYXQgNDoxOOKAr1BNIERtaXRyeSBSb2tvc292IDxkZHJva29z
+b3ZAc2JlcmRldmljZXMucnU+IHdyb3RlOgpbLi4uXQo+ID4KPiA+ID4gICAgICAgICAgICAgICAg
+ICAgICAgICAgZ3Bpb19pbnRjOiBpbnRlcnJ1cHQtY29udHJvbGxlckAwNDQwIHsKPiA+IG5vdGUg
+dG8gc2VsZjogYXQgc29tZSBwb2ludCB3ZSdsbCBoYXZlIHRvIHJlLW9yZGVyICZncGlvX2ludGMs
+IGJ1dAo+ID4gdGhhdCdzIG91dCBvZiBzY29wZSBmb3IgdGhpcyBwYXRjaAo+Cj4gSSBoYXZlIG5v
+dGljZWQgdGhhdCB0aGUgJ21lc29uLWExLmR0c2knIGZpbGUgY29udGFpbnMgdW5zb3J0ZWQgaXRl
+bXMuIEFzCj4gcGFydCBvZiB0aGUgY3VycmVudCBwYXRjaCBzZXJpZXMsIEkgY2FuIHJlLW9yZGVy
+IHRoZW0gdG8gaW1wcm92ZSB0aGUgZHQKPiBzdHJ1Y3R1cmUuClRoYXQgd291bGQgYmUgYXdlc29t
+ZSEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4
+LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
+dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
