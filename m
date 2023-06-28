@@ -4,51 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 999CFEB64DA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Jun 2023 09:17:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE2C4EB64D7
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Jun 2023 09:35:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7nBmKujQ5Ed4LtPZYbu8UKuVG6G6nY/iMXW75S2JQa4=; b=zrIaHIQMduLvq7
-	OhIgU6cBKoegMq7AakO0Ke2oWnD11xRaaklKs8GDjClUM/xTGBXBwL9tDOuuS1WesVcJABgN6wNUC
-	JZBMjNGRp7oWJkob9Ihcsr0m72oQVNUO3b03OSd+wqSphNcsYm8l721ZUIabYOnLF220eymjXHuAG
-	NdDQ0/U4BUZzoU+Rqzp8Dgks+xXTxbGy9wpZPx57J+5MGQ0gOTh6Mx5Q9mWPr9e9ORZnL0KnAyE3p
-	ujVTBojGcNHrLsc25+2exQD3bMXUv8osrIEYSUmVOeWHZd/tvWcJ4p98GXiBRfF4ATqboYJlReR0B
-	Xymnw2hbvyP8XPvxgKxQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=0E600hE4pyeXL1PIlfpfpCKs9SXP1oMnclC56vXjAyc=; b=b9zO3AFu8I+w1O
+	g9NrZZrMMvgf5u7XNHUJyj1CbWBDX+77scQu5N4mOA1RmFwGucCZRm6qUQrGMOZQDRBao6LCj5nD7
+	QqjIxlmNJoD7WkwFUA0NcBnliJFsDzwBCLEVo33tlBtH01z6cLsu2wAT5kJLS1MGA+Ma+tDeLgv8V
+	bIYueuQ0CcW3oL8+405FzP6HuLrDMsr5G6SHllRVcFMUb8dTOto/Y9zIWpZ+5DwN1Ni1fqpK0YLEa
+	uM+VVk6Q7N81thLuWrH94NJQsvMyDrDegf2pB+8HofFtIB6JomJaodW/8z3pxGPHIB2Pw221fC56C
+	28QtCiqyiM70wSz1MF6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qERI7-00FE7G-1e;
-	Wed, 28 Jun 2023 09:16:47 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1qERZy-00FG1e-2V;
+	Wed, 28 Jun 2023 09:35:14 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qERHq-00FE2v-0y;
-	Wed, 28 Jun 2023 09:16:31 +0000
-Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 28 Jun 2023
- 17:16:11 +0800
-From: Huqiang Qin <huqiang.qin@amlogic.com>
-To: <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <hkallweit1@gmail.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	Huqiang Qin <huqiang.qin@amlogic.com>
-Subject: [PATCH V2 2/2] irqchip: Add support for Amlogic-C3 SoCs
-Date: Wed, 28 Jun 2023 17:15:33 +0800
-Message-ID: <20230628091533.3884385-3-huqiang.qin@amlogic.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230628091533.3884385-1-huqiang.qin@amlogic.com>
-References: <20230628091533.3884385-1-huqiang.qin@amlogic.com>
+	id 1qERZs-00FG06-0l;
+	Wed, 28 Jun 2023 09:35:14 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id E1AFF100008;
+	Wed, 28 Jun 2023 12:34:55 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru E1AFF100008
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1687944895;
+	bh=YWpvOe2q1AMTE1sllGg/LNi9S+Br6dLjsxHqUIOTn8c=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=gpe9ie7Vz9TwKDqivSj8hCCJXesc8vTWwfL20YwI6ATxUYNLkg4sFLa1WGEVvByst
+	 VJ2l1UMQU4HlpRAk4I8T1IQtKqU/s94PRm/gOWaS9X45NIz+ltFv76jQACLIcYdHdT
+	 EnGgGlJEV+twVMSWFSViQg2IeyzCFhX6j9M3L1ippPT7BMtzXCu4JOv8rPjGL1wCDA
+	 pggxIQyBV1mGl1/ySBE6wektxgabal9ZtLLbZnqnKviU83cvKPlLBkzcjuMZbOigb3
+	 aYu/sQXaabW5szNot3VLN7ec5QlTzNr/SQNkW7Yhu6NDdE/AjsKyOMKftA78R4v1Xq
+	 e+E4mn6qJ9oEg==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 28 Jun 2023 12:34:55 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Wed, 28 Jun 2023 12:33:59 +0300
+From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
+	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin
+ Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>
+CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
+	<AVKrasnov@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [RFC PATCH v1 0/2] support 512B ECC step size for Meson NAND
+Date: Wed, 28 Jun 2023 12:29:34 +0300
+Message-ID: <20230628092937.538683-1-AVKrasnov@sberdevices.ru>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
-X-Originating-IP: [10.28.11.83]
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178300 [Jun 28 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 517 517 b0056c19d8e10afbb16cb7aad7258dedb0179a79, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/06/28 08:00:00 #21591748
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230628_021630_339775_5F863EC8 
-X-CRM114-Status: UNSURE (   8.51  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230628_023509_069056_B27196DE 
+X-CRM114-Status: GOOD (  10.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,48 +104,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Amlogic-C3 SoCs support 12 GPIO IRQ lines compared with previous
-serial chips and have something different, details are as below.
+Hello,
 
-IRQ Number:
-- 54     1 pins on bank TESTN
-- 53:40 14 pins on bank X
-- 39:33  7 pins on bank D
-- 32:27  6 pins on bank A
-- 26:22  5 pins on bank E
-- 21:15  7 pins on bank C
-- 14:0  15 pins on bank B
+this patchset adds support for 512B ECC step size for Meson NAND. Current
+implementation only supports 1024B. There are two patches:
 
-Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
----
- drivers/irqchip/irq-meson-gpio.c | 5 +++++
- 1 file changed, 5 insertions(+)
+1) Update for device tree bindings to replace 'const' type of field
+   'nand-ecc-step-size' with 'enum' which contains 512 and 1024. Example
+   is also updated.
 
-diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-index 7da18ef95211..f88df39f4129 100644
---- a/drivers/irqchip/irq-meson-gpio.c
-+++ b/drivers/irqchip/irq-meson-gpio.c
-@@ -150,6 +150,10 @@ static const struct meson_gpio_irq_params s4_params = {
- 	INIT_MESON_S4_COMMON_DATA(82)
- };
- 
-+static const struct meson_gpio_irq_params c3_params = {
-+	INIT_MESON_S4_COMMON_DATA(55)
-+};
-+
- static const struct of_device_id meson_irq_gpio_matches[] __maybe_unused = {
- 	{ .compatible = "amlogic,meson8-gpio-intc", .data = &meson8_params },
- 	{ .compatible = "amlogic,meson8b-gpio-intc", .data = &meson8b_params },
-@@ -160,6 +164,7 @@ static const struct of_device_id meson_irq_gpio_matches[] __maybe_unused = {
- 	{ .compatible = "amlogic,meson-sm1-gpio-intc", .data = &sm1_params },
- 	{ .compatible = "amlogic,meson-a1-gpio-intc", .data = &a1_params },
- 	{ .compatible = "amlogic,meson-s4-gpio-intc", .data = &s4_params },
-+	{ .compatible = "amlogic,c3-gpio-intc", .data = &c3_params },
- 	{ }
- };
- 
+2) Update for Meson driver - new enum value for 512B ECC and reworked
+   ECC capabilities structure to support both 512B and 1024B ECC. By
+   default this driver uses 1024B ECC, 512B could be enabled in device
+   tree.
+
+Arseniy Krasnov (2):
+  dt-bindings: nand: meson: support for 512B ECC step size
+  mtd: rawnand: meson: support for 512B ECC step size
+
+ .../bindings/mtd/amlogic,meson-nand.yaml      |  3 +-
+ drivers/mtd/nand/raw/meson_nand.c             | 47 ++++++++++++++-----
+ 2 files changed, 37 insertions(+), 13 deletions(-)
+
 -- 
-2.37.1
+2.35.0
 
 
 _______________________________________________
