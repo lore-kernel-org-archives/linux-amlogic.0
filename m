@@ -4,79 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DE9FEB64DA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Jun 2023 20:53:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C510EEB64D7
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jun 2023 01:43:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VQzmXqUqRD6b0GClMqeZen6SbDv8S+cxMTap+DE9j1E=; b=k8Jb7h80Ka1cwu
-	Fj6WOheTPtb4cvgu6u5Md/WHNq7slY0JplqmW/iH0Jnh/t/BJMRfusvGuqhpG2gJrkFVlxq9v+t2I
-	VXcCp7G9Jc0ejz6aJ8jJ/es30oIKT0GTylgnCAd39RI45oK13+eiyhWDtDg2v9Go7P0Oy1W6X9ezW
-	hgB8+beELWaHOh3+B0n/m5hmuSR9bBRRV+Oa6Rmx/MEP+2wWPPI3GOnAXKB2qb0GmUzUvFO0iBMYk
-	ccxkXRjkjbJumvyD+2Cog2FAWKjwe2opqS6Eiegma7QGYO9cZlia67ABYfVzywXrGJBv022dbbYuQ
-	zHNSgJBRAD3dACk4nvtw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=lO4kxfV7VfHQzsPhvzra5qYfY0URGnL6+Y3P/eJU2Cw=; b=1OsLwew1ZjhSJq
+	Memsypp5IsSuOVlJya2ThaycehyuaT+QHjSEB5ApeF1z1UYdw6AWn/KRNoZRoU1NYA6COIKCcwPgn
+	400jitvGjIQM8NvYlbHYqixfiHCoqeCnF/mjpionXtnovlShyVvLf3P4NY6GYtuseLOS1RX8DuUX5
+	IwnuQOvJHbmh8xUfgtO6agPbqsKN4Cejm3gz6o6kC8//AHC6YdfKUcWlOKDzCBO1uE6JgS+7cXMLB
+	20kOOQV8MNTiMXal6AARipzJB11/Lao6lDbMZOd9ADp+PMH4HP1w4zZEsbjJ0pDHIqtq9ufgMQKfw
+	RjwrfStR3aAjZRrasIjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qEc9u-00Gh03-1l;
-	Wed, 28 Jun 2023 20:53:02 +0000
-Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
+	id 1qEgga-00HGKD-1P;
+	Thu, 29 Jun 2023 01:43:04 +0000
+Received: from mail-qk1-x72c.google.com ([2607:f8b0:4864:20::72c])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qEc9s-00Ggxo-1A;
-	Wed, 28 Jun 2023 20:53:01 +0000
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99286af0260so29728966b.2;
-        Wed, 28 Jun 2023 13:52:56 -0700 (PDT)
+	id 1qEggX-00HGJP-1t;
+	Thu, 29 Jun 2023 01:43:02 +0000
+Received: by mail-qk1-x72c.google.com with SMTP id af79cd13be357-765942d497fso18287285a.1;
+        Wed, 28 Jun 2023 18:43:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20221208; t=1687985575; x=1690577575;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xgeY2wMTlgSvSCHlBTmqcDVwb3LQt8lStfqknJt83hc=;
-        b=Bk92WbZWXeWJgE7UYi3lAHkDWOXeYToZo6eT7612Xktiol6XwJRZ+vex9GjU/tylsm
-         HUhUO62zUSFp8YULcBzMFgC5QnPifRld0IRjnZThPy0XrWq+2nsOFEkyzg4/ls2Ol1Y7
-         aGUWxuTnOIbBsCCv6bTrPpzJdSfiSoKVOO9IIqpvDxSPMNVD5Y8dISywU0IuPitP1WJ2
-         q/5umI+RIpQsD/Wbnz18usohiQQIb7Bz5InXWi7ncR4KpnD1QmcP9k00HgjUDa8wE5t/
-         3sgjthC4HQ2X5dRooMbYpoNimVZWoL/4HMTriQIgy7PJRC0y6sIwobwdYFbDOZ8p/sjo
-         QTlg==
+        d=gmail.com; s=20221208; t=1688002979; x=1690594979;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tgxYvAPdy6cyYY8LJa7G8IIHJkOD0bja0wPM1W6sg8I=;
+        b=kYRdRF781JvgnGIHMt7HYd+5MaL1yKxgHkiBDnqeZFA6wF29CnpwbiUV3clBpaloO7
+         drEIGPBxQVuSJYm19tWtqVFQZ+VClwZuNrMBQeSR+R4OAiQTCQBIbHc9iQmV8D5Gzl8Q
+         kGPvDWcnzS5bByXw5pxflYLR4aEsZzAtX7MX06i3neVT/BwVd5SX9IFmwkSI1hvPR80j
+         ZZMLPPHVruwyb6mjIROG6FwMwQGzKnKGUO4DgenASJKjZQqDzrx6F5f020/gR8vkkquK
+         /URnBdpsP+opzzeHXKKyPYhkksRkTfDrUvoUtv1AQpQyt9LOWUsOMG4eYpkLfFvxOgDk
+         v9iA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687985575; x=1690577575;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xgeY2wMTlgSvSCHlBTmqcDVwb3LQt8lStfqknJt83hc=;
-        b=eHLfyss9ZQaOE6zxZ8Q/jg4vXVNruea6o4a2iHa68D+A4TSmWHmbEoouQA+aMD1TNj
-         x/++eIJiQjkjUMj5rnuiMfECqysETWdQQ5xIbZO7/WgXdF4cX+uw8LqPXD7M6x13w48i
-         oOrzg2RQZtxENIaVlkiZY2b72hsKXRzPd4bMgrN7bVzox/LMvXnMMtx1+ncSJFn1WoJv
-         t6VVj2Y51FIxxF4PnDMng6Cw5mAQNU7SSHw+M0TJyyuoi0NPACrCCiY6K3AIUnki2kPb
-         8FkEjnvl414o+JIMtbyUASj66zSq7mOa48aRSKkA7pZorO1uTDBzei/XWAd5TsRHWqIr
-         TdWg==
-X-Gm-Message-State: AC+VfDyBXPD65u83LIlL14MvFerCH9epAEmUyV/yPTkKuLPKQfC78SoU
-	kfLMfPW8KRS7L4YA0gfOjYBOLmdHj8VjBKiuEhw=
-X-Google-Smtp-Source: ACHHUZ4pX5s00tN7NpkfZtIaiOzk1W+h0xunJeYGl14FuxeQc1OTu2WFYSJu033zkhlooHSNZRWQYI8basMEmtDLOGw=
-X-Received: by 2002:a17:907:a058:b0:992:48b9:84ef with SMTP id
- gz24-20020a170907a05800b0099248b984efmr3718883ejc.29.1687985574952; Wed, 28
- Jun 2023 13:52:54 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1688002979; x=1690594979;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tgxYvAPdy6cyYY8LJa7G8IIHJkOD0bja0wPM1W6sg8I=;
+        b=UWAMTdpIn2VbzlTVfCLR7mTenF+bAu94esaLp6vkslTU0sSwALpYW9M+bfp9Ed4ygk
+         C12K1HxPfrtpED56SaSCx/CDY+q4fywYrcCe2KrvOdM3oqx/0fEl1aKeKeW9YInva/fu
+         8QWf96MLHydMaw4DMmEEch5UDQRBEcR7DM0tMDGgw92OTY46w/MW6a/FzYvKQrxk6uGM
+         tYvTQlGrT5FYIbtuD/0B7FpPaOxxgfy9Ko+Olk1byV5t+Yi+PmXgeGv+2hWEX9TWJDkA
+         R0V/ergoxc6mUON8xNDb5pBOotHxHQ3EqZiGryWN8QQn24V7XcF7R/p1uRAKWBzhyJwk
+         eQGA==
+X-Gm-Message-State: AC+VfDwcJU4pm3092aMVX+i3N41dJeCPjUML67sb9EbYEtAyk5lVkYfR
+	1Lq07NbYc80zj8nX8tzaK60=
+X-Google-Smtp-Source: ACHHUZ4IiaFAB5haGGNU3e6va9vsg0mwQnLalhUUzD8uL9LkFN+/FfZ/TFb9itQHpEDCNyYCXOF/Pw==
+X-Received: by 2002:a05:620a:2785:b0:765:9c07:18ea with SMTP id g5-20020a05620a278500b007659c0718eamr12515394qkp.64.1688002979313;
+        Wed, 28 Jun 2023 18:42:59 -0700 (PDT)
+Received: from anyang.. ([106.250.177.234])
+        by smtp.googlemail.com with ESMTPSA id m7-20020a17090a414700b00262d368b220sm7707123pjg.40.2023.06.28.18.42.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jun 2023 18:42:58 -0700 (PDT)
+From: Dongjin Kim <tobetter@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: meson-sm1: reorder device aliases
+Date: Thu, 29 Jun 2023 10:42:51 +0900
+Message-Id: <20230629014253.2007625-1-tobetter@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230628091533.3884385-1-huqiang.qin@amlogic.com> <20230628091533.3884385-2-huqiang.qin@amlogic.com>
-In-Reply-To: <20230628091533.3884385-2-huqiang.qin@amlogic.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Wed, 28 Jun 2023 22:52:44 +0200
-Message-ID: <CAFBinCDvtFXRDQoim=_b94cHmiQLBAZHmeK0GJBfB4nixyBgNw@mail.gmail.com>
-Subject: Re: [PATCH V2 1/2] dt-bindings: interrupt-controller: Add support for
- Amlogic-C3 SoCs
-To: Huqiang Qin <huqiang.qin@amlogic.com>
-Cc: tglx@linutronix.de, maz@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, 
-	hkallweit1@gmail.com, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230628_135300_401329_3ED3D00D 
-X-CRM114-Status: UNSURE (   7.31  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230628_184301_655946_A9BE57DA 
+X-CRM114-Status: GOOD (  10.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,16 +91,82 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gV2VkLCBKdW4gMjgsIDIwMjMgYXQgMTE6MTbigK9BTSBIdXFpYW5nIFFpbiA8aHVxaWFuZy5x
-aW5AYW1sb2dpYy5jb20+IHdyb3RlOgo+Cj4gVXBkYXRlIGR0LWJpbmRpbmcgZG9jdW1lbnQgZm9y
-IEdQSU8gaW50ZXJydXB0IGNvbnRyb2xsZXIgb2YgQW1sb2dpYy1DMyBTb0NzCj4KPiBTaWduZWQt
-b2ZmLWJ5OiBIdXFpYW5nIFFpbiA8aHVxaWFuZy5xaW5AYW1sb2dpYy5jb20+CkFja2VkLWJ5OiBN
-YXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1s
-b2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6
-Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+This patch is simply to reoder the device aliases.
+
+Signed-off-by: Dongjin Kim <tobetter@gmail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi    | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi   | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts    | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
+index 46a34731f7e2..c63edf3e43af 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
+@@ -15,8 +15,8 @@
+ 
+ / {
+ 	aliases {
+-		serial0 = &uart_AO;
+ 		ethernet0 = &ethmac;
++		serial0 = &uart_AO;
+ 	};
+ 
+ 	chosen {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi
+index 17045ff81c69..7c01e6995bfb 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi
+@@ -24,8 +24,8 @@ button-sw3 {
+ 	};
+ 
+ 	aliases {
+-		serial0 = &uart_AO;
+ 		ethernet0 = &ethmac;
++		serial0 = &uart_AO;
+ 	};
+ 
+ 	chosen {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+index 2fce44939f45..ddac04ac60ab 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+@@ -10,8 +10,8 @@
+ 
+ / {
+ 	aliases {
+-		serial0 = &uart_AO;
+ 		ethernet0 = &ethmac;
++		serial0 = &uart_AO;
+ 	};
+ 
+ 	chosen {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
+index 9068a334ea57..7d490e1b56f0 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
+@@ -16,8 +16,8 @@ / {
+ 	model = "SEI Robotics SEI610";
+ 
+ 	aliases {
+-		serial0 = &uart_AO;
+ 		ethernet0 = &ethmac;
++		serial0 = &uart_AO;
+ 	};
+ 
+ 	mono_dac: audio-codec-0 {
+-- 
+2.34.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
