@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DDD7C001E0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 30 Jun 2023 16:30:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 826C4EB64DD
+	for <linux-amlogic@archiver.kernel.org>; Fri, 30 Jun 2023 16:30:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JmZ2ydP2HO6Lq1zGAbsrQ1eDtMbDG5xr4DiBfC+AQHU=; b=R/YhybdpXeQFqM
-	+OynNFH2mKjeLnXbXnp8uDWp+EIz9Y9U6jHGPisAVfrC8grsCZDMsD9o0YEaZLXL+mAfwm6S7ALAT
-	Cpn84TK8DpT5nAZ9Liz+NhGA19x4CIe9PL/po5MB43Krid6DIQj1K2VpbeTxaI0azlOWlpWTjwPMy
-	mI5RUv/SBLzJpuGQm6spm2h9bAA4nQmVkeX72t3nwzSn/NorfYXvBmOyflOv3Ueb+Bl4FVGAvpEMB
-	OHtm5bIiODJ5WO9v/VXgJRG08UnrHTYL20DQ9wkSgLzyLbZvg98rI5+YTpnRPvgHcl+yr9Qa2PfCc
-	ktV9VOtJr3e0uw0sG/Lg==;
+	List-Owner; bh=0vTJp+0FtJoZ8J7pcZbmhDjWjuB2LElm+2+6vPPyEDo=; b=p8XZzeTcs8iaA2
+	5fwrOlER6vJBUcWws9OR/x2DU4lVXzR6A4ck/Ojn/pvMue3z4c25kOzYMzWeUBrpOlXExeVq6oUgR
+	0nKHBlwHd0Yy8dUERFdT6IsqOljnHhHHNj0T2Ee4VgdebWtB9gjnRUYF3b09uEdFP0AlJlOmj2B/N
+	RnwtqS7xx4wnqEbE1haKoC1gU0oJ4wK7HdhCFCvhf+ckt93DZeHDLHEhtkg/WPOarbVVXpgvkk03V
+	MoERh0q7mnCzrVe+uMO/T+5ORrK3+2EW6kbul2oxpC7HDS9S2t3wW4lSaypXU4vORLm5KhnC1AmMb
+	McAqHCTyHlNi5klGovVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qFH0E-0043Rc-2U;
-	Fri, 30 Jun 2023 16:29:46 +0000
-Received: from mail-lf1-x131.google.com ([2a00:1450:4864:20::131])
+	id 1qFH0H-0043VW-2z;
+	Fri, 30 Jun 2023 16:29:49 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qFGzy-0043C5-2W
+	id 1qFH01-0043EU-2V
 	for linux-amlogic@lists.infradead.org;
-	Fri, 30 Jun 2023 16:29:33 +0000
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f766777605so3337429e87.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 30 Jun 2023 09:29:29 -0700 (PDT)
+	Fri, 30 Jun 2023 16:29:35 +0000
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-313e34ab99fso2228273f8f.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 30 Jun 2023 09:29:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688142567; x=1690734567;
+        d=linaro.org; s=google; t=1688142570; x=1690734570;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=J1EX8zFqVSXgr77NNt22wgtrby3wVjCcq3AV7vqu9KU=;
-        b=wAwFQV2X9ECaKkoshte0FA6EwAdA+wThHG6n4mdsc59MsjglCJEkXxRlC94ukwVOBe
-         mRyOCZP4jEO8ViSqYR8FmvGLDRMIfHx9S//ap/Pm+VqxgjgJ/hVlJgpdanethZkmWfbD
-         7iIFWm4kNZCLPzOtcicIRLv+OWJRcqJFshzUG7F4kuLfWyi0m3GHE98Ba9QptpU/0avE
-         s1NojOtNCJb7q2ttzoJXYrhB94MWr7lacUz1/3TdbPybOGe0fB/Z+QAcUbeZDacx1bBu
-         HZxIccG04I3DKN+cNSsR2U22j8+swSG/G/9FNqdOVhoew1ZvM0MINy7Pj/VA2wNopxHe
-         xZ8A==
+        bh=/ROjA7hMnkAvdnfkhv7p7unINoiSUApyrJY4bU6BpUw=;
+        b=KQjVeUn/ZhL2TlwUPKibROGvTP74hHQ2uCTY0vuer/plA0lC0iHzJOsltaOshcEDgf
+         bh+d/3ltDeUV6MpYMRUfGAgjX8spXStRD+iciQSSspD33Kb+ovwMX7iujVMZzAeuaZva
+         mPU/6JHBf2Khd3BPYnTXPSgUQH9C84Vesyn9+7nMoO5FWjZNbin6kNIIRnbLO83ptWwG
+         bio42DYxek9f1p89jdrdQcPeygzQMFS8i35A4S+sOYaAHdaZzZZfCtCHa44UDwIFZq/G
+         CQMyFMs3+OzXDvx6041YzR0BA8SuZLw3SK5A0TiFsRemA7JvzHux+3aVPrTIQUgs/tqH
+         r9fQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688142567; x=1690734567;
+        d=1e100.net; s=20221208; t=1688142570; x=1690734570;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=J1EX8zFqVSXgr77NNt22wgtrby3wVjCcq3AV7vqu9KU=;
-        b=jxuPDFuf+q3WFsXGxrBvlwOJoZjpHrrrsR4s2wZmHeZFXDbJHdz6XMde13T9SNwzG8
-         IFReYGyDLLD2Azvu1p1cpWAPmsuFoybYCDSyFTH01j2YqTDbPnOHYX32MHTzdlir3kVY
-         J8HbsOsoxi5VHNqSPhGXqQapokQwWqCGrTkZH9Zm3g2MT3qrV90P9BNkiTsiDa6ieuV5
-         k/mlVQNXY8I85Td0A7jjzERqNhQCf3nHQAWMdKHWrkR/77ClyWZd8LpHuFaA0lWZWRWr
-         mCYnkpiLfFVNoFi/HoeM/js/fS7L0ZClLRjs7s6nUOEBK0fDso0QGNk9Xa17VZSZD6+O
-         hHLw==
-X-Gm-Message-State: ABy/qLb6mufKGt3blVXPuJsdSQcAyL7K0ywnZajB8c6KLRydaE3780k1
-	wjTs9yTuZEqsE+7hbhpP/MSCMXIJr19R2zv3hYpF+w==
-X-Google-Smtp-Source: APBJJlEB8ucPoXGV16yz56034eKMOn4SFzQlIaE1i/+P76o9qaw4cJOA5TmZjHYIL0OdCNFc7mdz5Q==
-X-Received: by 2002:a05:6512:328b:b0:4f8:7697:5207 with SMTP id p11-20020a056512328b00b004f876975207mr2421807lfe.23.1688142567477;
-        Fri, 30 Jun 2023 09:29:27 -0700 (PDT)
+        bh=/ROjA7hMnkAvdnfkhv7p7unINoiSUApyrJY4bU6BpUw=;
+        b=jqO571cWOr4nhIRLHcuiCUez4JuSaL5Y4k9Lmld9W6UXt7qFjktM0kFa9b8J263kS/
+         qaPoOzRRPjvbYYjiM3hJ16pHJKNTZQpThUy4XlDHIMUjZJHtzIqui4UxT/vZwL7pi9HD
+         9Piuyo3gd7kORLTCfFREWiJAPa6E2s0vYmr9+lAhfal2cg5MJKVHHwmiW8yeMSpAwFP5
+         zwiarThqP/tpB5ZkvkEk5A0fuYrsBj6euaYDwQm2XXjJ5VSrfWETLoKceUuxK9f8dqe+
+         V2IC6DoPp5dwn+eiKedl8QShcALeqMPOw83EI1se/IuPeGZV0DAecjyEpC9zxHN7GOVh
+         glGg==
+X-Gm-Message-State: ABy/qLZLusNkcdM1v6iRrwjhK5RtL1S8CYX+MjN33Q73xF5goKcrTzZ0
+	PdJjVIGB9lZ9PaEkdUwUIFX8ZA==
+X-Google-Smtp-Source: APBJJlGslNwlwGX/WAuyNhd8W8nFbh0BPdgYIqDLrb9DiTQSanGslwDgTLSSEgJ3OTcR9HPTCR+Tkg==
+X-Received: by 2002:a5d:6852:0:b0:314:415:cbf5 with SMTP id o18-20020a5d6852000000b003140415cbf5mr2143838wrw.51.1688142570018;
+        Fri, 30 Jun 2023 09:29:30 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id cx16-20020a056000093000b00301a351a8d6sm18835836wrb.84.2023.06.30.09.29.26
+        by smtp.gmail.com with ESMTPSA id cx16-20020a056000093000b00301a351a8d6sm18835836wrb.84.2023.06.30.09.29.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jun 2023 09:29:27 -0700 (PDT)
+        Fri, 30 Jun 2023 09:29:29 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Fri, 30 Jun 2023 18:29:14 +0200
-Subject: [PATCH v6 7/9] DONOTMERGE: arm64: meson: khadas-vim3l: add DSI
- panel
+Date: Fri, 30 Jun 2023 18:29:16 +0200
+Subject: [PATCH v6 9/9] arm64: dts: amlogic: meson-g12b-bananapi-cm4: add
+ support for MNT Reform2 with CM4 adaper
 MIME-Version: 1.0
-Message-Id: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v6-7-fd2ac9845472@linaro.org>
+Message-Id: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v6-9-fd2ac9845472@linaro.org>
 References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v6-0-fd2ac9845472@linaro.org>
 In-Reply-To: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v6-0-fd2ac9845472@linaro.org>
 To: Jerome Brunet <jbrunet@baylibre.com>, 
@@ -82,27 +82,28 @@ To: Jerome Brunet <jbrunet@baylibre.com>,
 Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ "Lukas F. Hartmann" <lukas@mntre.com>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3821;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9641;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=V+HaYnTuv4vcDBK+f0uefqR8qZNKRB03xg8yBzcvNP8=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBknwLcEQZ3ts9MJx1UlfFGAn5UARcUcUncyzD3K7SE
- EYPSpUeJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZJ8C3AAKCRB33NvayMhJ0Z5TD/
- 9sOOkJl0iyml3TJxxQ4hgNTw0eO+RWMM+6iHVcPJzqIxwDlJOEhURsefVMiAlnHaxPmajztLpiiwNz
- xdQhv9aqamZjhnIYnXWZ3qKEp47AL6QXTuBHokKhVCmp7i6LHtbID+gT486lVzcKGvufg+/oPy6hsC
- ikJ2kC2UTUDahdSuoz4XU547nEuXluEF1juQue6sFcTl1FfmlxbUghOsb0fvYuTsTE+qpFBrCqq3qq
- VCI+wgFJk+bVV8idvarZYMxBp04b/9k4MBMVOie1LNxcD+UXd2zgFOjq0kmIiCYLavueKjLkhmbekB
- YF02VFWGGPW/9nsxw/sV7TBNJDPZ0BOnAy67cAu3DkLved6ciadFovsH0C5/pFHAaZtM+pOWAnisN6
- ubViXFuNq+pLJHiHz0qQ+/I4bU5vFu4IlRgkv7IbxmIgN1y/1RUDcztNhsV9Z5UHiYpcGtzeyZWsAS
- 5OTUryRr7e1zKQAfV0k5xQwnCimN99H+Uo4suU6X4fbStPNP0mMyZoz0CRUgi+C8qVB9EX05nWibnq
- 6U/IYMFWMLQ9YX91KAaGnEE2xC+2m5Nzle4Fd3wt8Z9v0KyCq5UQp1CM7hs93rMe/tAhUIyUiffqV1
- jIyMIDwSQCCld71vTIo9taC+ySAcciFnrFhJOpV1XAzxBTQBwyFe64i6rjdA==
+ bh=tIpvKy3/zQUSKoo3au+mFW9qsGjNTajV3C/7kQ1qRIA=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBknwLdRc5GUFxotlCvYeZXzBo852XUbxAZJcqtWgoi
+ Fd0xHECJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZJ8C3QAKCRB33NvayMhJ0b0qD/
+ 44xr+5vn0a5qtsf29OeAv/lHS8sOP/VszuO3ecBuIzF5ludoxGLA4wExkjC7su7qzUQOsSRuGdgiRf
+ THfOmPmn1NpXBUnM+qV3RoPjb2u26GFqIPCX7Jt5stDkcKZt2uO+HVh/Mt4/z10Bx/aIcMgNTL+yr+
+ ioDp8uXiMsf/seR3ODFP+Tl5E9PLj3gj29mEIP3tulv99DjdobBGUhAVCAa832QG/NmQOtPsFrrkXM
+ ZF5WnznFpw063RhvP20qcGlH3aEMtu66ceSBtO6CQ2jMhk/T6iuNmepGGpMWa3NIzCQGRUtXCUFS/p
+ xtIR22syv2KzuPqC9mgVLauIOPSiI2sLbo7KmIdTdNjsq95/ZCABCz6um12D0IJVFA1sBLIl6/L4YC
+ mDN36E3yvwMNDpnxtFAU0nOJ2JrRD0C8InwQrrLHdQS0DJ0u3TgB6BOQvzxzJv+3laJxUq2n2wmiqA
+ OHtXRBo0D3zsJmM/jGYX/LbBfCug3f2jsWthUKaIaxg6ajpa7LtznmEpZir20oujHDDpO0LLrn8rsw
+ pdgwKnvtAuH6mFBXPoUKfvy9fFSCVzNbRAaaophPexPHKP+gZuTxiFkVFMwCFOLV7muZf3WJz6O7dH
+ 0w8SLun9fg9kC0m3heN0g0ipO//EyGr/7aULIUbGFvcFcXkyx2psSXBhQUVw==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230630_092930_858298_5663C01F 
-X-CRM114-Status: GOOD (  11.30  )
+X-CRM114-CacheID: sfid-20230630_092933_847013_01B8EFA6 
+X-CRM114-Status: GOOD (  12.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,76 +120,263 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This add nodes to support the Khadas TS050 panel on the
-Khadas VIM3 & VIM3L boards.
+This adds a basic devicetree for the MNT Reform2 DIY laptop when using a
+CM4 adapter and a BPI-CM4 module.
 
+Co-developed-by: Lukas F. Hartmann <lukas@mntre.com>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi   |  2 +-
- arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 76 ++++++++++++++++++++++
- .../boot/dts/amlogic/meson-sm1-khadas-vim3l.dts    |  2 +-
- 3 files changed, 78 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+ .../meson-g12b-bananapi-cm4-mnt-reform2.dts        | 388 +++++++++++++++++++++
+ 2 files changed, 389 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
-index 16dd409051b4..81c3057143b4 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
-@@ -98,7 +98,7 @@ &pwm_ab {
- };
- 
- &pwm_AO_cd {
--	pinctrl-0 = <&pwm_ao_d_e_pins>;
-+	pinctrl-0 = <&pwm_ao_c_6_pins>, <&pwm_ao_d_e_pins>;
- 	pinctrl-names = "default";
- 	clocks = <&xtal>;
- 	clock-names = "clkin1";
-diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-index c9705941e4ab..0c50a32bb0c0 100644
---- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-@@ -40,6 +40,14 @@ button-function {
- 		};
- 	};
- 
-+	panel_backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm_AO_cd 0 25000 0>;
-+		brightness-levels = <0 255>;
-+		num-interpolated-steps = <255>;
-+		default-brightness-level = <200>;
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 6f61798a109f..c94d9f514dc9 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-bananapi-m2s.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-bananapi-cm4-cm4io.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-g12b-bananapi-cm4-mnt-reform2.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gsking-x.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts
+new file mode 100644
+index 000000000000..12c4ff9c9372
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts
+@@ -0,0 +1,388 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
++ * Copyright 2023 MNT Research GmbH
++ */
++
++/dts-v1/;
++
++#include "meson-g12b-bananapi-cm4.dtsi"
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/leds/common.h>
++#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
++
++/ {
++	model = "MNT Reform 2 with BPI-CM4 Module";
++	compatible = "mntre,reform2-cm4", "bananapi,bpi-cm4", "amlogic,a311d", "amlogic,g12b";
++	chassis-type = "laptop";
++
++	aliases {
++		ethernet0 = &ethmac;
++		i2c0 = &i2c1;
++		i2c1 = &i2c3;
 +	};
 +
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -359,6 +367,23 @@ rtc: rtc@51 {
- 	};
- };
- 
-+&i2c3 {
-+	status = "okay";
-+	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-+	pinctrl-names = "default";
++	hdmi_connector: hdmi-connector {
++		compatible = "hdmi-connector";
++		type = "a";
 +
-+	touch-controller@38 {
-+		compatible = "edt,edt-ft5206";
-+		reg = <0x38>;
-+		interrupt-parent = <&gpio_intc>;
-+		interrupts = <66 IRQ_TYPE_EDGE_FALLING>; /* GPIOA_5 */
-+		reset-gpio = <&gpio_expander 6 GPIO_ACTIVE_LOW>;
-+		touchscreen-size-x = <1080>;
-+		touchscreen-size-y = <1920>;
++		port {
++			hdmi_connector_in: endpoint {
++				remote-endpoint = <&hdmi_tx_tmds_out>;
++			};
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		led-blue {
++			color = <LED_COLOR_ID_BLUE>;
++			function = LED_FUNCTION_STATUS;
++			gpios = <&gpio_ao GPIOAO_7 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "heartbeat";
++		};
++
++		led-green {
++			color = <LED_COLOR_ID_GREEN>;
++			function = LED_FUNCTION_STATUS;
++			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
++		};
++	};
++
++	sound {
++		compatible = "amlogic,axg-sound-card";
++		model = "MNT-REFORM2-BPI-CM4";
++		audio-widgets = "Headphone", "Headphone Jack",
++				"Speaker", "External Speaker",
++				"Microphone", "Mic Jack";
++		audio-aux-devs = <&tdmout_a>, <&tdmout_b>, <&tdmin_b>;
++		audio-routing =	"TDMOUT_A IN 0", "FRDDR_A OUT 0",
++				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
++				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
++				"TDM_A Playback", "TDMOUT_A OUT",
++				"TDMOUT_B IN 0", "FRDDR_A OUT 1",
++				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
++				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
++				"TDM_B Playback", "TDMOUT_B OUT",
++				"TDMIN_B IN 1", "TDM_B Capture",
++				"TDMIN_B IN 4", "TDM_B Loopback",
++				"TODDR_A IN 1", "TDMIN_B OUT",
++				"TODDR_B IN 1", "TDMIN_B OUT",
++				"TODDR_C IN 1", "TDMIN_B OUT",
++				"Headphone Jack", "HP_L",
++				"Headphone Jack", "HP_R",
++				"External Speaker", "SPK_LP",
++				"External Speaker", "SPK_LN",
++				"External Speaker", "SPK_RP",
++				"External Speaker", "SPK_RN",
++				"LINPUT1", "Mic Jack",
++				"Mic Jack", "MICB";
++
++		assigned-clocks = <&clkc CLKID_MPLL2>,
++					<&clkc CLKID_MPLL0>,
++					<&clkc CLKID_MPLL1>;
++		assigned-clock-parents = <0>, <0>, <0>;
++		assigned-clock-rates = <294912000>,
++				       <270950400>,
++				       <393216000>;
++
++		dai-link-0 {
++			sound-dai = <&frddr_a>;
++		};
++
++		dai-link-1 {
++			sound-dai = <&frddr_b>;
++		};
++
++		dai-link-2 {
++			sound-dai = <&frddr_c>;
++		};
++
++		dai-link-3 {
++			sound-dai = <&toddr_a>;
++		};
++
++		dai-link-4 {
++			sound-dai = <&toddr_b>;
++		};
++
++		dai-link-5 {
++			sound-dai = <&toddr_c>;
++		};
++
++		/* 8ch hdmi interface */
++		dai-link-6 {
++			sound-dai = <&tdmif_a>;
++			dai-format = "i2s";
++			dai-tdm-slot-tx-mask-0 = <1 1>;
++			dai-tdm-slot-tx-mask-1 = <1 1>;
++			dai-tdm-slot-tx-mask-2 = <1 1>;
++			dai-tdm-slot-tx-mask-3 = <1 1>;
++			mclk-fs = <256>;
++
++			codec {
++				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_A>;
++			};
++		};
++
++		/* Analog Audio */
++		dai-link-7 {
++			sound-dai = <&tdmif_b>;
++			dai-format = "i2s";
++			dai-tdm-slot-tx-mask-0 = <1 1>;
++			mclk-fs = <256>;
++
++			codec {
++				sound-dai = <&wm8960>;
++			};
++		};
++
++		/* hdmi glue */
++		dai-link-8 {
++			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
++
++			codec {
++				sound-dai = <&hdmi_tx>;
++			};
++		};
++	};
++
++	reg_main_1v8: regulator-main-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&reg_main_3v3>;
++	};
++
++	reg_main_1v2: regulator-main-1v2 {
++		compatible = "regulator-fixed";
++		regulator-name = "1V2";
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++		vin-supply = <&reg_main_5v>;
++	};
++
++	reg_main_3v3: regulator-main-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
++	reg_main_5v: regulator-main-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++	};
++
++	reg_main_usb: regulator-main-usb {
++		compatible = "regulator-fixed";
++		regulator-name = "USB_PWR";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&reg_main_5v>;
++	};
++
++	backlight: backlight {
++		compatible = "pwm-backlight";
++		pwms = <&pwm_AO_ab 0 10000 0>;
++		power-supply = <&reg_main_usb>;
++		enable-gpios = <&gpio 58 GPIO_ACTIVE_HIGH>;
++		brightness-levels = <0 32 64 128 160 200 255>;
++		default-brightness-level = <6>;
++
 +		status = "okay";
++	};
++
++	panel {
++		compatible = "innolux,n125hce-gn1", "simple-panel";
++		power-supply = <&reg_main_3v3>;
++		backlight = <&backlight>;
++		no-hpd;
++
++		status = "okay";
++
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&edp_bridge_out>;
++			};
++		};
++	};
++
++	clock_12288: clock_12288 {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <12288000>;
 +	};
 +};
 +
- &ir {
- 	status = "okay";
- 	pinctrl-0 = <&remote_input_ao_pins>;
-@@ -366,6 +391,57 @@ &ir {
- 	linux,rc-map-name = "rc-khadas";
- };
- 
++&mipi_analog_dphy {
++	status = "okay";
++};
++
++&mipi_dphy {
++	status = "okay";
++};
++
 +&mipi_dsi {
 +	status = "okay";
 +
@@ -202,60 +390,152 @@ index c9705941e4ab..0c50a32bb0c0 100644
 +				 <0>,
 +				 <&clkc CLKID_VCLK2_DIV1>,
 +				 <&clkc CLKID_GP0_PLL>;
-+	assigned-clock-rates = <960000000>,
++	assigned-clock-rates = <936000000>,
 +			       <0>,
-+			       <960000000>,
++			       <936000000>,
 +			       <0>,
 +			       <0>;
++};
 +
-+	panel@0 {
-+		compatible = "khadas,ts050";
-+		reset-gpios = <&gpio_expander 0 GPIO_ACTIVE_LOW>;
-+		enable-gpios = <&gpio_expander 1 GPIO_ACTIVE_HIGH>;
-+		power-supply = <&vcc_3v3>;
-+		backlight = <&panel_backlight>;
-+		width-mm = <64>;
-+		height-mm = <118>;
-+		reg = <0>;
++&mipi_dsi_panel_port {
++	mipi_dsi_out: endpoint {
++		remote-endpoint = <&edp_bridge_in>;
++	};
++};
 +
-+		port {
-+			mipi_in_panel: endpoint {
-+				remote-endpoint = <&mipi_out_panel>;
++&cecb_AO {
++	status = "okay";
++};
++
++&ethmac {
++	status = "okay";
++};
++
++&hdmi_tx {
++	status = "okay";
++};
++
++&hdmi_tx_tmds_port {
++	hdmi_tx_tmds_out: endpoint {
++		remote-endpoint = <&hdmi_connector_in>;
++	};
++};
++
++&pwm_AO_ab {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pwm_ao_a_pins>;
++	status = "okay";
++};
++
++&i2c0 {
++	status = "okay";
++};
++
++&i2c3 {
++	status = "okay";
++
++	edp_bridge: bridge@2c {
++		compatible = "ti,sn65dsi86";
++		reg = <0x2c>;
++		enable-gpios = <&gpio GPIOX_10 GPIO_ACTIVE_HIGH>; // PIN_24 / GPIO8
++		vccio-supply = <&reg_main_1v8>;
++		vpll-supply = <&reg_main_1v8>;
++		vcca-supply = <&reg_main_1v2>;
++		vcc-supply = <&reg_main_1v2>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				edp_bridge_in: endpoint {
++					remote-endpoint = <&mipi_dsi_out>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++
++				edp_bridge_out: endpoint {
++					remote-endpoint = <&panel_in>;
++				};
 +			};
 +		};
 +	};
 +};
 +
-+&mipi_analog_dphy {
++&i2c2 {
 +	status = "okay";
-+};
 +
-+&mipi_dphy {
-+	status = "okay";
-+};
++	wm8960: codec@1a {
++		compatible = "wlf,wm8960";
++		reg = <0x1a>;
++		clocks = <&clock_12288>;
++		clock-names = "mclk";
++		#sound-dai-cells = <0>;
++		wlf,shared-lrclk;
++	};
 +
-+&mipi_dsi_panel_port {
-+	mipi_out_panel: endpoint {
-+		remote-endpoint = <&mipi_in_panel>;
++	rtc@68 {
++		compatible = "nxp,pcf8523";
++		reg = <0x68>;
 +	};
 +};
 +
- &pcie {
- 	reset-gpios = <&gpio GPIOA_8 GPIO_ACTIVE_LOW>;
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-index 9c0b544e2209..cb52a55ab70a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-@@ -76,7 +76,7 @@ &cpu3 {
- };
- 
- &pwm_AO_cd {
--	pinctrl-0 = <&pwm_ao_d_e_pins>;
-+	pinctrl-0 = <&pwm_ao_c_6_pins>, <&pwm_ao_d_e_pins>;
- 	pinctrl-names = "default";
- 	clocks = <&xtal>;
- 	clock-names = "clkin1";
++&pcie {
++	status = "okay";
++};
++
++&sd_emmc_b {
++	status = "okay";
++};
++
++&tdmif_a {
++	status = "okay";
++};
++
++&tdmout_a {
++	status = "okay";
++};
++
++&tdmif_b {
++	pinctrl-0 = <&tdm_b_dout0_pins>, <&tdm_b_fs_pins>, <&tdm_b_sclk_pins>, <&tdm_b_din1_pins>;
++	pinctrl-names = "default";
++
++	assigned-clocks = <&clkc_audio AUD_CLKID_TDM_SCLK_PAD1>,
++			  <&clkc_audio AUD_CLKID_TDM_LRCLK_PAD1>;
++	assigned-clock-parents = <&clkc_audio AUD_CLKID_MST_B_SCLK>,
++				 <&clkc_audio AUD_CLKID_MST_B_LRCLK>;
++	assigned-clock-rates = <0>, <0>;
++};
++
++&tdmin_b {
++	status = "okay";
++};
++
++&toddr_a {
++	status = "okay";
++};
++
++&toddr_b {
++	status = "okay";
++};
++
++&toddr_c {
++	status = "okay";
++};
++
++&tohdmitx {
++	status = "okay";
++};
++
++&usb {
++	dr_mode = "host";
++
++	status = "okay";
++};
 
 -- 
 2.34.1
