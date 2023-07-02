@@ -4,60 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43147EB64D9
-	for <linux-amlogic@archiver.kernel.org>; Sun,  2 Jul 2023 09:21:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAF0FEB64D9
+	for <linux-amlogic@archiver.kernel.org>; Sun,  2 Jul 2023 09:34:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p5m5Zb+/iD8qdVktwPl78qFb3uvY11jfHwzHw5SYg9s=; b=1/6VErbhNbWSih
-	1m5lnHwHACEbdWNnLWoHtWx2p0bBsC2s8+kMpVo26iTK4kczMVlpH+/t172BRNwniMuLVUWrKn+mn
-	75SU9AgQRDNg8e5uJJNACA3dViB1EZNVVX4KKEPnOaMPt6dzhYNc2Fy4fhv4F00uJ1+Y0Vwj6vpMx
-	M5vaVI11rgCUnWtsYxBQswkbsLaWuW5teW4Kidiy+1D53Olw1AcFG0VJHaaw+UtepL7Dbe9Ed9ydR
-	dm/5Ihglvl6R15xh/RZgLTnQ6RJOpZB7cldqNyhN2s5Lixh9el5Cpk/ZYXtvVxCL0kQgyUWWwmeEP
-	QIzXVee7gCV1lzGWYRRA==;
+	List-Owner; bh=gWeKzAmJPj8NVzxcvta8JuOWZPaK5fFQejg1X/6rJYs=; b=dOy0AIbKa3f17B
+	Yt+BBOo1ymEjgd3xS1z10TkUyC4Z8dh4BNMkupmgi+Ny4F8WZ9aPyznGyJdtZlVjr8V5z2Fx/IBYe
+	gjkWvpHPsqWileK96h31PA+Mr6s/K7EGssiE4lOk9tjtcYxPzzGR3cJi4/ihxWAkL9q2XMqIQwh+J
+	r8Zum6ETBghSu0brnEPVrkR4kjGoKHyaFs8gxdsi8tGO1qd0PoMrBood6lGaRGY0DX2PrgVrpwm6Q
+	RQhXGh3ZLJAX2Xs35KxVr+g3FF3JLP3+n9XRkvpkYQkLjEEq3UXLj+b0khhtsjepVTcfcKF3Bu7eA
+	NsV+0vACcDBZ84GsMtlw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qFtGs-007TQ4-2l;
-	Sun, 02 Jul 2023 09:21:30 +0000
-Received: from frasgout.his.huawei.com ([185.176.79.56])
+	id 1qFtSi-007Uai-15;
+	Sun, 02 Jul 2023 09:33:44 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qFtGq-007TOy-08;
-	Sun, 02 Jul 2023 09:21:29 +0000
-Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.207])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Qv3Pz27jmz6D9CM;
-	Sun,  2 Jul 2023 17:18:31 +0800 (CST)
-Received: from localhost (10.48.51.211) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Sun, 2 Jul
- 2023 10:21:20 +0100
-Date: Sun, 2 Jul 2023 17:21:16 +0800
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: George Stark <gnstark@sberdevices.ru>
-CC: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <andriy.shevchenko@linux.intel.com>,
-	<nuno.sa@analog.com>, <linux-iio@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-amlogic@lists.infradead.org>, <kernel@sberdevices.ru>
-Subject: Re: [PATCH v3 5/5] meson saradc: support reading from channel 7 mux
- inputs
-Message-ID: <20230702172116.00006f33@Huawei.com>
-In-Reply-To: <20230627224017.1724097-6-gnstark@sberdevices.ru>
-References: <20230627224017.1724097-1-gnstark@sberdevices.ru>
-	<20230627224017.1724097-6-gnstark@sberdevices.ru>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	id 1qFtSf-007UZX-0x;
+	Sun, 02 Jul 2023 09:33:42 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id CDB0E60B42;
+	Sun,  2 Jul 2023 09:33:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4DC4C433C8;
+	Sun,  2 Jul 2023 09:33:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1688290420;
+	bh=UH1n2yTthj3B7p1yEhf0i44VbnEaiSmdNcGTKxmKXBU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uTdpnM2eJ5SHjIeMagktSTtN8dJrOcIgCvlR4Km4jkNuqP6r3TGNihxgv0kVR0Quq
+	 /er/ZPufRiDHyQhVjQ7iaE8ohRYXP763kkPiZu+SXoDCoZ1X4aZ50vLUIkJc3s4BfJ
+	 DC6JbT5Req2e+ySIX/L6zFbS3WIAo0/yApEvAy1LGqQeD2BNuPnclCPIeuwWWR3dTt
+	 l2zCXB426dzneu37ZoYHxcS6f8Tx62x4vy5Hf1rOJ2B08X6IG8uwEyd8V83gs9eNes
+	 7HIpA/x3OH/pQP4azqgTkNL3vkb1gq3NGr/sb3N/ux1uuIkEcSFxHMlxEMAWGQKb/V
+	 M469fc2Q+4LTA==
+Message-ID: <b907701b-8c5f-095d-0bce-919e1f6bb893@kernel.org>
+Date: Sun, 2 Jul 2023 11:33:33 +0200
 MIME-Version: 1.0
-X-Originating-IP: [10.48.51.211]
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 1/3] dt-bindings: reset: Add compatible and DT bindings
+ for Meson-C3 Reset Controller
+Content-Language: en-US
+To: zelong dong <zelong.dong@amlogic.com>, narmstrong@baylibre.com,
+ p.zabel@pengutronix.de, khilman@baylibre.com,
+ Rob Herring <robh+dt@kernel.org>, martin.blumenstingl@googlemail.com
+Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com,
+ devicetree@vger.kernel.org, kelvin.zhang@amlogic.com
+References: <20230630121059.28748-1-zelong.dong@amlogic.com>
+ <20230630121059.28748-2-zelong.dong@amlogic.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20230630121059.28748-2-zelong.dong@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230702_022128_369611_A6AB6280 
-X-CRM114-Status: GOOD (  14.59  )
+X-CRM114-CacheID: sfid-20230702_023341_420362_57C7CC9D 
+X-CRM114-Status: GOOD (  10.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,81 +81,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 28 Jun 2023 01:37:18 +0300
-George Stark <gnstark@sberdevices.ru> wrote:
-
-> Add iio channel for every channel 7 mux input.
-> Meson saradc channel 7 is connected to a mux that can switch channel
-> input to well-known sources like Vdd, GND and several Vdd dividers.
+On 30/06/2023 14:10, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
 > 
-> Signed-off-by: George Stark <GNStark@sberdevices.ru>
-> ---
->  drivers/iio/adc/meson_saradc.c | 83 ++++++++++++++++++++++++++++++++--
->  1 file changed, 79 insertions(+), 4 deletions(-)
+> Add new compatible and DT bindings for Amlogic's Meson-C3 Reset Controller
 > 
-> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-> index 4a9dacedb6c3..c99a55944ece 100644
-> --- a/drivers/iio/adc/meson_saradc.c
-> +++ b/drivers/iio/adc/meson_saradc.c
-> @@ -163,6 +163,7 @@
->  #define MESON_SAR_ADC_MAX_FIFO_SIZE				32
->  #define MESON_SAR_ADC_TIMEOUT					100 /* ms */
->  #define MESON_SAR_ADC_VOLTAGE_AND_TEMP_CHANNEL			6
-> +#define MESON_SAR_ADC_VOLTAGE_AND_MUX_CHANNEL			7
->  #define MESON_SAR_ADC_TEMP_OFFSET				27
->  
->  /* temperature sensor calibration information in eFuse */
-> @@ -202,6 +203,19 @@
->  	.datasheet_name = "TEMP_SENSOR",				\
->  }
->  
-> +#define MESON_SAR_ADC_MUX(_chan, _sel) {				\
-> +	.type = IIO_VOLTAGE,						\
-> +	.channel = _chan,						\
-> +	.indexed = 1,							\
-> +	.address = MESON_SAR_ADC_VOLTAGE_AND_MUX_CHANNEL,		\
-> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |			\
-> +				BIT(IIO_CHAN_INFO_AVERAGE_RAW),		\
-> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),		\
-> +	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_CALIBBIAS) |	\
-> +				BIT(IIO_CHAN_INFO_CALIBSCALE),		\
-> +	.datasheet_name = "SAR_ADC_MUX_"#_sel,				\
-> +}
-> +
->  enum meson_sar_adc_avg_mode {
->  	NO_AVERAGING = 0x0,
->  	MEAN_AVERAGING = 0x1,
-> @@ -235,6 +249,27 @@ enum meson_sar_adc_channel_index {
->  	NUM_CHAN_7,
->  	NUM_CHAN_TEMP,
->  	NUM_CHAN_SOFT_TIMESTAMP,
+> Change-Id: Ie8941818bde5b736689e43367f66827c5bc0449e
 
-Silly question... Why does this device have timestamp channels?
-It has no buffer support so they don't 'do anything'.
-If it had then putting other channels after that might have broken
-things if not done very carefully (hence I went looking)
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
 
-> +	NUM_MUX_0_VSS,
-> +	NUM_MUX_1_VDD_DIV4,
-> +	NUM_MUX_2_VDD_DIV2,
-> +	NUM_MUX_3_VDD_MUL3_DIV4,
-> +	NUM_MUX_4_VDD,
-> +};
-...
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
 
->  static const struct iio_chan_spec meson_sar_adc_iio_channels[] = {
-> @@ -247,6 +282,11 @@ static const struct iio_chan_spec meson_sar_adc_iio_channels[] = {
->  	MESON_SAR_ADC_CHAN(NUM_CHAN_6),
->  	MESON_SAR_ADC_CHAN(NUM_CHAN_7),
->  	IIO_CHAN_SOFT_TIMESTAMP(NUM_CHAN_SOFT_TIMESTAMP),
-> +	MESON_SAR_ADC_MUX(NUM_MUX_0_VSS, 0),
-> +	MESON_SAR_ADC_MUX(NUM_MUX_1_VDD_DIV4, 1),
-> +	MESON_SAR_ADC_MUX(NUM_MUX_2_VDD_DIV2, 2),
-> +	MESON_SAR_ADC_MUX(NUM_MUX_3_VDD_MUL3_DIV4, 3),
-> +	MESON_SAR_ADC_MUX(NUM_MUX_4_VDD, 4),
->  };
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
 
-Jonathan
+Best regards,
+Krzysztof
+
 
 _______________________________________________
 linux-amlogic mailing list
