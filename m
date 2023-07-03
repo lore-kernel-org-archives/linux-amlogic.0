@@ -4,86 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45C80EB64DC
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jul 2023 09:46:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4768EB64DC
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jul 2023 10:42:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ixAjOLVf0u/HOOOqjuTPM1m7ekqD0aWWJ0tuMjELCUI=; b=V9Duyq/4qZ3xLfIWUJClcXp7QN
-	lLqMJ6Hwp8XcH356IaKGca1m/UKN7cBWgUvKAzGS6PFe4indKEEwl6A4RUIeoi9L/YcHUV6nV9yxW
-	Fq4fXjusmQkbAfFmtbzhPaCt7cpGODVwXDpzyxkRWQChi1G6mwl0QeIw96qTD+0arRUIDuDv9cSpP
-	Q+t4soa+zA6WnhoefwB5afXDo7UeZE/o/2lRUk4pFoTW/LgckiLucrDpAYhEi9VzkUKnCeBcyvsrc
-	ItNYspRj7BPYOuhkFnZv9Ag+Qpt7YPcODbgYyBzC/PSWVpOiuRuJbF3GOKqUiHte4o1P4TlrwaPC0
-	JaBJFtuA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=LxgJKmrVdpzRxgPtgf/QZ8cY5a5VpS/DE8tNh5dE/8U=; b=RnU01jv16RWwVc
+	yuBU5cCMVP4x5Dxj6QUFApRqle0INQwNlxQExnd6Nio0WboagHobIyxdvbndUwARGgSY1htbvieq2
+	ntUuKfR+i8+0ctRMODw8btNPNFnhfDPQPuyoXR7hyBMInnMuca0+U2TILavdD4X8t8nK07GaGt7Zh
+	L8XiAi8Wg6ajy47/2Qr86bSbHtBybeVXoagQm+6CodLbGIBgWkejbHnrKtGspByWup7sxxns5oYgZ
+	/HGP5X7cEOxPPW3rIQ/Ht3bCg23y9J4xTO265IwjSNfkQWhIIv2jE4gOh9yCgPRkXsQ8scyafe7XM
+	hCaLlksg8It/cRAeW6sg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGG8Q-009zIF-29;
-	Mon, 03 Jul 2023 09:46:18 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1qGH0v-00AHYh-13;
+	Mon, 03 Jul 2023 10:42:37 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGG8O-009zFy-0R
+	id 1qGH0s-00AHXR-0n
 	for linux-amlogic@lists.infradead.org;
-	Mon, 03 Jul 2023 09:46:17 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3fbc54cab6fso33746555e9.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 03 Jul 2023 02:46:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688377574; x=1690969574;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=6YxmwD91c/+NBVGd4LTXYec9yyX92sVVNyvoTP8SC/o=;
-        b=rfe7q1paV04u4WMl2xsU7lXAnbdFMZx3b98Y7omL3Ya/ErjM/UypQeramJBzF7nK5A
-         r9FeN4Ppms24FWznaT7iptXS/rC8JuUsRurTKuUPy638lv4Zn/h1Pi/lFdPaXd+IW4aN
-         m54fPBVbptaX5O6nD5ujFMeeYzUvATviaE7zGOwnL2x9fUc1wLnQrNZ4tVG+ejSr9sKT
-         OR4RxYHsJXXXh/Jc1y/IsyRpzhWvpGO81S5CClAEEqWs3KwpvvJ/xmi6FqmJHU9EuAPm
-         LV2Dj1UD1zMawzkZQO4q0VQLAbyxJUvsFw8Xgvog73z6q5a+KPTCENFObGQOMRGnt2S1
-         K6KQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688377574; x=1690969574;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6YxmwD91c/+NBVGd4LTXYec9yyX92sVVNyvoTP8SC/o=;
-        b=irT+5R4Lkpj82xf3HxAhLE0RTJPuupcH5X6ICOtcbD2VHQXkKd/mXseBnX7QgfCcRX
-         HAQEfg1VOpIHrjKNETq7Kov/CbcVmbFA1xWa14ekNxXkAV4v/ZYpT34JXtQoqZeZvM2S
-         7Tmn1d43mem7GFSXHGCGcdKPHTmcwYcprUsn67FQzx/++aKbYvVgJSXuTm7W1JjlHX/B
-         jNoj73ePP9Y5hLx3TY5giV2Mi1o7C4Yr8iuQoRrC2z4i7WsPYCOKvETZNvO21ylC06xI
-         b2HTpmwRCvSp3ab0cRwZ7Q8lOQ/j0673jW1Fs+2NNjY287YuNcCJoxyyAKZtfN7ZxTSo
-         0rzg==
-X-Gm-Message-State: AC+VfDw4hwpqAMGXqLBVHaCiCexMY82KH7q2aw7HM18IfJI9y2o/BgNq
-	ZxRN1dXLYhjV+R6zPegjiSB3dw==
-X-Google-Smtp-Source: ACHHUZ62MFIGNzgH7SOGMy5RT90Dhl2wwmF8IgM0LWybqYaqf1zNtnma7n2jx1U7QDJVyjPicJrkFw==
-X-Received: by 2002:a05:600c:2114:b0:3fa:8874:fe69 with SMTP id u20-20020a05600c211400b003fa8874fe69mr7601791wml.29.1688377574572;
-        Mon, 03 Jul 2023 02:46:14 -0700 (PDT)
-Received: from [192.168.7.21] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id x19-20020a1c7c13000000b003fbb0c01d4bsm14432177wmc.16.2023.07.03.02.46.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jul 2023 02:46:14 -0700 (PDT)
-Message-ID: <296e4ed1-29ec-cfbc-1843-43c16b87e416@linaro.org>
-Date: Mon, 3 Jul 2023 11:46:10 +0200
+	Mon, 03 Jul 2023 10:42:36 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 98D0D12007C;
+	Mon,  3 Jul 2023 12:45:44 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 98D0D12007C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1688377544;
+	bh=3lcw8s3d3UvEPY8znRwUXKFvaGN7VtyRTZvrKJ6AFgc=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=QXxQ1Ex6M909KtJa9/KMc4+bRPWJrfISoCi8l4QIy2NmuwB61FhWcw2UK75NvToUD
+	 uvXqMscaHOuypYBDEEgPelgHyL7dg9sCBEybi2c3m7pFqFSTOVP5mYWaaZSmqq+6xz
+	 uXWgSfntx10jKeLdUZagwrOKIBKtbMGSLMgtDxCrowD0jhhzss5YYrvx2dfzVRzuV4
+	 fbnfQCvi4hh+w4HEvKjlAdukmk1N1s+jhI20URByccXdUvijFZBsffMQtslGHyXC2M
+	 uu36EV7gBBwwKjM6X+qGf2TwrYtxm6Wk3mFOe+QWJ23+mL+F1WodaxneTX6bjs5Mfj
+	 eR3LqzmkIDB0g==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon,  3 Jul 2023 12:45:43 +0300 (MSK)
+Received: from CAB-WSD-0004828.sigma.sbrf.ru (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Mon, 3 Jul 2023 12:45:42 +0300
+From: Martin Kurbanov <mmkurbanov@sberdevices.ru>
+To: Mark Brown <broonie@kernel.org>, Neil Armstrong
+	<neil.armstrong@linaro.org>
+CC: <linux-spi@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>, Martin Kurbanov
+	<mmkurbanov@sberdevices.ru>
+Subject: [PATCH v1 1/2] spi: amlogic-spifc-a1: implement adjust_op_size()
+Date: Mon, 3 Jul 2023 12:45:17 +0300
+Message-ID: <20230703094518.53755-2-mmkurbanov@sberdevices.ru>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230703094518.53755-1-mmkurbanov@sberdevices.ru>
+References: <20230703094518.53755-1-mmkurbanov@sberdevices.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v7 0/4] Add Amlogic A311D2 and Khadas Vim4 Board Support
-Content-Language: en-US
-To: Lucas Tanure <tanure@linux.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Nick <nick@khadas.com>, Artem <art@khadas.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20230629073419.207886-1-tanure@linux.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230629073419.207886-1-tanure@linux.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178391 [Jul 03 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: MMKurbanov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 517 517 b0056c19d8e10afbb16cb7aad7258dedb0179a79, {Tracking_from_domain_doesnt_match_to}, sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/03 07:50:00 #21557756
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230703_024616_174774_00ABD05E 
-X-CRM114-Status: GOOD (  21.23  )
+X-CRM114-CacheID: sfid-20230703_034234_629417_BB3DDDCB 
+X-CRM114-Status: GOOD (  15.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,101 +96,119 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Lucas,
+This enhancement eliminates the need for a loop in the
+amlogic_spifc_a1_exec_op() function and allows the SPI core to
+dynamically divide transactions into appropriately sized chunks.
 
-On 29/06/2023 09:34, Lucas Tanure wrote:
-> The Khadas VIM4 uses the Amlogic A311D2 SoC, based on the Amlogic T7 family.
-> This chip is not the same as A311D used in Vim3 board.
-> 
-> Work based on Khadas 5.4 branch:
-> https://github.com/khadas/linux/tree/khadas-vims-5.4.y
-> 
-> The current status is Vim4 board booting to emergency shell via uart.
-> 
-> Board Features:
-> - 8GB LPDDR4X 2016MHz
-> - 32GB eMMC 5.1 storage
-> - 32MB SPI flash
-> - 10/100/1000 Base-T Ethernet
-> - AP6275S Wireless (802.11 a/b/g/n/ac/ax, BT5.1)
-> - HDMI 2.1 video
-> - HDMI Input
-> - 1x USB 2.0 + 1x USB 3.0 ports
-> - 1x USB-C (power) with USB 2.0 OTG
-> - 3x LED's (1x red, 1x blue, 1x white)
-> - 3x buttons (power, function, reset)
-> - M2 socket with PCIe, USB, ADC & I2C
-> - 40pin GPIO Header
-> - 1x micro SD card slot
+Signed-off-by: Martin Kurbanov <mmkurbanov@sberdevices.ru>
+---
+ drivers/spi/spi-amlogic-spifc-a1.c | 64 +++++++++++-------------------
+ 1 file changed, 24 insertions(+), 40 deletions(-)
 
-I've applied patches 1 & 4, now you can send the serie with only uart changes,
-it will simplify Greg's life.
-
-Thanks,
-Neil
-
-> 
-> Changes Since v6:
->   - Move Uart clock to amlogic-t7-a311d2-khadas-vim4 dts
->   - Fix GIC_CPU_MASK_SIMPLE
->   - Lowercase uart label
-> 
-> Changes Since v5:
->   - Remove meson as T7 its not a meson chip
->   - Change Uart Document descript to S4 compatibles
-> 
-> Changes Since v4:
->   - Use S4 instead of G12a for uart fallback
->   - Add OF_EARLYCON_DECLARE for T7 uart
-> 
-> Changes Since v3:
->   - Fix issues with "amlogic,meson-t7-uart" documentation
-> 
-> Changes Since v2:
->   - Add "amlogic,meson-t7-uart" documentation
-> 
-> Changes Since v1:
->   - Drop the T7 clock driver as it is not needed for serial boot. It will
->   later use the S4 clock
->   driver as S4 and  T7 seems to be similar chips.
->   - Use "arm,gic-400" for interrupt controller to fix dtb_check
->   - Remove CPU node properties not needed for serial boot
->   - Move UART node to apb4 node
->   - Drop T7 UART compatible line and use S4 uart
->   - Use psci V1 instead of 0.2, it works, but I can't verify is correct
->   as the datasheet I have
->   doesn't contain that information.
->   - Remove compatible from meson-t7.dtsi, move it to vim4 board dts
->   - Add memory node with 8GB. Not sure about this one, works without,
->   but doesn't detect 8GB
->   - Use defines for GIC_CPU_MASK_SIMPLE, IRQ_TYPE_LEVEL_LOW,
->   IRQ_TYPE_LEVEL_HIGH instead of hardcoded values
-> 
-> Lucas Tanure (4):
->    dt-bindings: arm: amlogic: add Amlogic A311D2 bindings
->    dt-bindings: serial: amlogic,meson-uart: Add compatible string for T7
->    tty: serial: meson: Add a earlycon for the T7 SoC
->    arm64: dts: amlogic-t7-a311d2-khadas-vim4: add initial device-tree
-> 
->   .../devicetree/bindings/arm/amlogic.yaml      |   7 +
->   .../bindings/serial/amlogic,meson-uart.yaml   |   4 +
->   arch/arm64/boot/dts/amlogic/Makefile          |   1 +
->   .../amlogic/amlogic-t7-a311d2-khadas-vim4.dts |  54 ++++++
->   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   | 155 ++++++++++++++++++
->   drivers/tty/serial/meson_uart.c               |   2 +
->   6 files changed, 223 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
->   create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> 
-> --
-> 2.41.0
-> 
+diff --git a/drivers/spi/spi-amlogic-spifc-a1.c b/drivers/spi/spi-amlogic-spifc-a1.c
+index 3c4224c38399..0c21917e4caf 100644
+--- a/drivers/spi/spi-amlogic-spifc-a1.c
++++ b/drivers/spi/spi-amlogic-spifc-a1.c
+@@ -240,61 +240,44 @@ static int amlogic_spifc_a1_exec_op(struct spi_mem *mem,
+ {
+ 	struct amlogic_spifc_a1 *spifc =
+ 		spi_controller_get_devdata(mem->spi->controller);
+-	size_t off, nbytes = op->data.nbytes;
+-	u32 cmd_cfg, addr_cfg, dummy_cfg, dmode;
++	size_t data_size = op->data.nbytes;
+ 	int ret;
+ 
+ 	amlogic_spifc_a1_user_init(spifc);
++	amlogic_spifc_a1_set_cmd(spifc, SPIFC_A1_USER_CMD(op));
+ 
+-	cmd_cfg = SPIFC_A1_USER_CMD(op);
+-	amlogic_spifc_a1_set_cmd(spifc, cmd_cfg);
++	if (op->addr.nbytes)
++		amlogic_spifc_a1_set_addr(spifc, op->addr.val,
++					  SPIFC_A1_USER_ADDR(op));
+ 
+-	if (op->addr.nbytes) {
+-		addr_cfg = SPIFC_A1_USER_ADDR(op);
+-		amlogic_spifc_a1_set_addr(spifc, op->addr.val, addr_cfg);
+-	}
+-
+-	if (op->dummy.nbytes) {
+-		dummy_cfg = SPIFC_A1_USER_DUMMY(op);
+-		amlogic_spifc_a1_set_dummy(spifc, dummy_cfg);
+-	}
+-
+-	if (!op->data.nbytes)
+-		return amlogic_spifc_a1_request(spifc, false);
+-
+-	dmode = ilog2(op->data.buswidth);
+-	off = 0;
+-
+-	do {
+-		size_t block_size = min_t(size_t, nbytes, SPIFC_A1_BUFFER_SIZE);
+-
+-		amlogic_spifc_a1_set_cmd(spifc, cmd_cfg);
++	if (op->dummy.nbytes)
++		amlogic_spifc_a1_set_dummy(spifc, SPIFC_A1_USER_DUMMY(op));
+ 
+-		if (op->addr.nbytes)
+-			amlogic_spifc_a1_set_addr(spifc, op->addr.val + off,
+-						  addr_cfg);
+-
+-		if (op->dummy.nbytes)
+-			amlogic_spifc_a1_set_dummy(spifc, dummy_cfg);
++	if (!data_size) {
++		ret = amlogic_spifc_a1_request(spifc, false);
++	} else {
++		u32 mode = ilog2(op->data.buswidth);
+ 
+ 		writel(0, spifc->base + SPIFC_A1_USER_DBUF_ADDR_REG);
+ 
+ 		if (op->data.dir == SPI_MEM_DATA_IN)
+-			ret = amlogic_spifc_a1_read(spifc,
+-						    op->data.buf.in + off,
+-						    block_size, dmode);
++			ret = amlogic_spifc_a1_read(spifc, op->data.buf.in,
++						    data_size, mode);
+ 		else
+-			ret = amlogic_spifc_a1_write(spifc,
+-						     op->data.buf.out + off,
+-						     block_size, dmode);
+-
+-		nbytes -= block_size;
+-		off += block_size;
+-	} while (nbytes != 0 && !ret);
++			ret = amlogic_spifc_a1_write(spifc, op->data.buf.out,
++						     data_size, mode);
++	}
+ 
+ 	return ret;
+ }
+ 
++static int amlogic_spifc_a1_adjust_op_size(struct spi_mem *mem,
++					   struct spi_mem_op *op)
++{
++	op->data.nbytes = min_t(u32, op->data.nbytes, SPIFC_A1_BUFFER_SIZE);
++	return 0;
++}
++
+ static void amlogic_spifc_a1_hw_init(struct amlogic_spifc_a1 *spifc)
+ {
+ 	u32 regv;
+@@ -314,6 +297,7 @@ static void amlogic_spifc_a1_hw_init(struct amlogic_spifc_a1 *spifc)
+ 
+ static const struct spi_controller_mem_ops amlogic_spifc_a1_mem_ops = {
+ 	.exec_op = amlogic_spifc_a1_exec_op,
++	.adjust_op_size = amlogic_spifc_a1_adjust_op_size,
+ };
+ 
+ static int amlogic_spifc_a1_probe(struct platform_device *pdev)
+-- 
+2.40.0
 
 
 _______________________________________________
