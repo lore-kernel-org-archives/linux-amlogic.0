@@ -4,91 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CDE6C001B3
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jul 2023 19:38:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22F38C001B3
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jul 2023 19:40:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cFETJm328Y9F5u/xwIW7FjNSkFf2jDasx/SvdBOs+Uk=; b=HWyZdeB5RlOn0n
-	iasFBd1BHQ+Dwn7SadY+y7nMxpX8LpSjI/R2oSbugP9/f3GHTnTfDntsp83bKkEsmENtq/Xks1R8C
-	7Wx/c08eOxkUDcwJrjb9aQoCacjuBvykEWDf5zpExMtkXvNJPzOeytArKbp/AdaV1WvN6bcFdOdMA
-	wrGVXcFFyGPOu8CTaDsC8QH54OIe9Qjtdx3DcotsNIc70k4pHTRkOaPWOyEjBzK5mroureIE8pRkR
-	sbPqKqvvIToTlAyEPj7aSpgNQrW9RNy/yg9m/gCsE1B3v15qrQlAAKoc5dNjozy2gZiGnS/BMpeKW
-	Mj7+sNMG0aPvTs3hFY+w==;
+	List-Owner; bh=sxy6AVYDb0ONtrgFj6uBZJK07z6jcn3BYOo0qRAErZ4=; b=JE3sndRlAEMGpU
+	sMA9XHHqc73XPx4xCk5FY5yININ2V3D5cnt/oqAHPmG9qOx8RXMiTXhFLuOwD26zhdcwCJ9uUxjOh
+	ywbM+xu95ts3bpo6rtl7JWW7q3HGu+n41h/T1ZB5NQDEMMAE9FZ3CvEsFhnz5AGpE4lsZXV6aTYol
+	sm+fJ/MPO0mF7ZLsO4q0u9srrP9eVYM7Lp7d/F8/Fqm8omNitQaPK+bicrDgDR5IIqOFaYX+8zFzZ
+	DfIK5G+U8ZZj9Q3Zh/oq6fMvjz5Dr2vT14BmCZbt8bFVyohiMbtpL2oP4OFkwfLZuHp66/OjnWv6r
+	ZCVnS0SggGAfnJTw+Vsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGPMx-00BJ1x-2J;
-	Mon, 03 Jul 2023 19:37:55 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1qGPOf-00BJDg-26;
+	Mon, 03 Jul 2023 19:39:41 +0000
+Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGPMu-00BJ0i-1C;
-	Mon, 03 Jul 2023 19:37:54 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id C0950120029;
-	Mon,  3 Jul 2023 22:37:36 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru C0950120029
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1688413056;
-	bh=zfziv4Gt8zQ1NCScCv5V2gMF12e7nV9xy2Odg3hRLEI=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=Cm5PmCgRDHZm/jtio2BYObyt1f+YofEeO0AWmvdumQdIPEBGrxumw+nVEA2lV4WEB
-	 JOST9H6fAhU+ob5a5z4A1YwXmxyLU27dfJs4aZeG2xQewnfn+i30DstY03tL1/ACEc
-	 c3Uw85nwmCElwwQn2GOabnXFQAVjsuxxHX8fXtT7RSB0PaWLf+EIspt2nkcXmdQ3Bq
-	 SJuOfKIjtBX3sKKkYFU51c3Rg/YPjaWz6WjeqbXIxeEc6tQBXv6Sybw4kzVwyl4sMa
-	 4eK7iAn9GzApSu92yZt5aCTS43u1cSIkDFCLKeY6DD6wcRgsWXMh4Zm2K3u97aUJqV
-	 fAXgUSyXtf51Q==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon,  3 Jul 2023 22:37:36 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 3 Jul
- 2023 22:37:32 +0300
-Date: Mon, 3 Jul 2023 22:37:36 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: Neil Armstrong <neil.armstrong@linaro.org>, =Xianwei Zhao
-	<xianwei.zhao@amlogic.com>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH 2/3] soc: c3: Add support for power domains controller
-Message-ID: <20230703193736.7teaaovalia3g3ml@CAB-WSD-L081021>
-References: <20230703093142.2028500-1-xianwei.zhao@amlogic.com>
- <20230703093142.2028500-3-xianwei.zhao@amlogic.com>
- <e85f6dee-d62c-9f2f-b1de-8c38bb5aeb14@linaro.org>
+	id 1qGPOc-00BJBw-26;
+	Mon, 03 Jul 2023 19:39:39 +0000
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-98e39784a85so866548566b.1;
+        Mon, 03 Jul 2023 12:39:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20221208; t=1688413170; x=1691005170;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xdjkuxl/GUliSxC/S2QPSFDglKe6XiR3aOWV0ZWOlb4=;
+        b=g1kyzjevyoXXKeHjjlgynN3FOG9+O0T0TtBhpgTF1z6GxBZOUGwbfQOX2RFqHweX8B
+         aeY5lBPpLNLzKCAV100DRAted5wVzer8ri5wT9V32+tuEJbMjlZEZbuFGbf1cDB2oADB
+         d6vFoGhAOFQxVoTRBzvUAOZdtcTCyxkwN5neyVe0k/ufmse8ItCUPqs0f6dH71z/ZNQ4
+         OjaQFhoZ4YivRxGapsHn28mjnFVLqZ37JrvvSnvjrf9Szi2HC13o6Qm/zmjhMA627Hhv
+         ikGlFsDMEIlELhcKJ4SfVL4GDVp9jQ1FHjV492al4CtsssLMPPaIzgbwzkJQIUls0Naz
+         63JQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688413170; x=1691005170;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xdjkuxl/GUliSxC/S2QPSFDglKe6XiR3aOWV0ZWOlb4=;
+        b=WZPDLT/mXMUnl7lGNTZzK94+Sdv7XwoDjChHwLP0BYrdQezd6wHdqdgKJLz7ICGh07
+         BP4CAxSy3frDU350lHGcBaAhO3ZWxoRBJ72T//wa6sw/wPDEkv2h39xlKHnxB5u5GZhD
+         3nq+KKxUj6+TaSJiJ2WWkhDnzzuK0J4Mp5sjQp1cp+RdTxulWqUh0+cDLw7rAGzYfeVG
+         xNC5+MK0nfmd4GG77a0ESnheZAD/KlFEZbJVV6LtXPRodNfSwn+9Tty8Kxwjw1cUMgXU
+         7U5a2g2JFTIWQkxiWLJb3MNDXS5+dEgDZEgfj3F9mUC6TiM71hk/UAP/UpKijemGY8sN
+         kD/w==
+X-Gm-Message-State: AC+VfDzdZ6QNm3Rra4DMaXzfLnWpydoW56YZFa6C1Ac0/KV2RdJwiZrN
+	K3ZzvZHVZRUHSDMVJshYEiRXZlW/bEldPz7/5YRwmZ8Y
+X-Google-Smtp-Source: ACHHUZ5yJ1O+Nu4jbUOL3a//8AgofkNaJfks09G2X24TJviwMgiZA5A56CY6N6UMcOqyu+rzF+YhpQRf0wCFknZm2fs=
+X-Received: by 2002:a17:907:6e8a:b0:989:21e4:6c6d with SMTP id
+ sh10-20020a1709076e8a00b0098921e46c6dmr14474331ejc.28.1688413169631; Mon, 03
+ Jul 2023 12:39:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <e85f6dee-d62c-9f2f-b1de-8c38bb5aeb14@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178409 [Jul 03 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 517 517 b0056c19d8e10afbb16cb7aad7258dedb0179a79, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, sberdevices.ru:7.1.1,5.0.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/03 16:02:00 #21557037
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <20230627224017.1724097-1-gnstark@sberdevices.ru>
+ <20230627224017.1724097-6-gnstark@sberdevices.ru> <20230702172116.00006f33@Huawei.com>
+In-Reply-To: <20230702172116.00006f33@Huawei.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 3 Jul 2023 21:39:18 +0200
+Message-ID: <CAFBinCCLt-o_QX0izmtzs8MA=ETMAhEib3KDr-6Z66n__GVkyA@mail.gmail.com>
+Subject: Re: [PATCH v3 5/5] meson saradc: support reading from channel 7 mux inputs
+To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc: George Stark <gnstark@sberdevices.ru>, jic23@kernel.org, lars@metafoo.de, 
+	neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, 
+	andriy.shevchenko@linux.intel.com, nuno.sa@analog.com, 
+	linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	kernel@sberdevices.ru
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230703_123752_782954_E9832EF9 
-X-CRM114-Status: GOOD (  27.48  )
+X-CRM114-CacheID: sfid-20230703_123938_689320_515B9B2E 
+X-CRM114-Status: GOOD (  11.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,89 +87,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jul 03, 2023 at 03:29:31PM +0200, Neil Armstrong wrote:
-> Hi,
-> 
-> On 03/07/2023 11:31, =Xianwei Zhao wrote:
-> > From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> > 
-> > Add support for C3 Power controller. C3 power control
-> > registers are in secure domain, and should be accessed by SMC.
-> > 
-> > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> > ---
-> >   drivers/soc/amlogic/meson-secure-pwrc.c | 28 ++++++++++++++++++++++++-
-> >   1 file changed, 27 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
-> > index 25b4b71df9b8..39ccc8f2e630 100644
-> > --- a/drivers/soc/amlogic/meson-secure-pwrc.c
-> > +++ b/drivers/soc/amlogic/meson-secure-pwrc.c
-> > @@ -12,6 +12,7 @@
-> >   #include <linux/pm_domain.h>
-> >   #include <dt-bindings/power/meson-a1-power.h>
-> >   #include <dt-bindings/power/meson-s4-power.h>
-> > +#include <dt-bindings/power/amlogic-c3-power.h>
-> >   #include <linux/arm-smccc.h>
-> >   #include <linux/firmware/meson/meson_sm.h>
-> >   #include <linux/module.h>
-> > @@ -132,6 +133,22 @@ static struct meson_secure_pwrc_domain_desc s4_pwrc_domains[] = {
-> >   	SEC_PD(S4_AUDIO,	0),
-> >   };
-> > +static struct meson_secure_pwrc_domain_desc c3_pwrc_domains[] = {
-> > +	SEC_PD(C3_NNA,	0),
-> > +	SEC_PD(C3_AUDIO,	GENPD_FLAG_ALWAYS_ON),
-> > +	SEC_PD(C3_SDIOA,	GENPD_FLAG_ALWAYS_ON),
-> > +	SEC_PD(C3_EMMC,	GENPD_FLAG_ALWAYS_ON),
-> > +	SEC_PD(C3_USB_COMB, GENPD_FLAG_ALWAYS_ON),
-> > +	SEC_PD(C3_SDCARD,	GENPD_FLAG_ALWAYS_ON),
-> > +	SEC_PD(C3_ETH,	GENPD_FLAG_ALWAYS_ON),
-> > +	SEC_PD(C3_GE2D,	GENPD_FLAG_ALWAYS_ON),
-> > +	SEC_PD(C3_CVE,	GENPD_FLAG_ALWAYS_ON),
-> > +	SEC_PD(C3_GDC_WRAP,	GENPD_FLAG_ALWAYS_ON),
-> > +	SEC_PD(C3_ISP_TOP,		GENPD_FLAG_ALWAYS_ON),
-> > +	SEC_PD(C3_MIPI_ISP_WRAP, GENPD_FLAG_ALWAYS_ON),
-> > +	SEC_PD(C3_VCODEC,	0),
-> > +};
-> 
-> Please move this struct before _s4_
-> 
-> > +
-> >   static int meson_secure_pwrc_probe(struct platform_device *pdev)
-> >   {
-> >   	int i;
-> > @@ -179,7 +196,7 @@ static int meson_secure_pwrc_probe(struct platform_device *pdev)
-> >   	for (i = 0 ; i < match->count ; ++i) {
-> >   		struct meson_secure_pwrc_domain *dom = &pwrc->domains[i];
-> > -		if (!match->domains[i].index)
-> > +		if (!match->domains[i].name)
-> 
-> Is this change necessary ? If yes please move it to another patch
-> and explain it's purpose. If it fixes something, add a Fixes tag so
-> it can be backported.
-> 
-> Thanks,
-> Neil
-> 
-
-I suppose, this change fixes the situation with SEC_PD(C3_NNA, 0)
-domain, because it has index == 0.
-May be it's better to introduce the separate struct member for that? For
-example, 'present' (true or false).
-I think code would be more readable and clean.
-
-[...]
-
--- 
-Thank you,
-Dmitry
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgSm9uYXRoYW4sCgpPbiBTdW4sIEp1bCAyLCAyMDIzIGF0IDExOjIx4oCvQU0gSm9uYXRoYW4g
+Q2FtZXJvbgo8Sm9uYXRoYW4uQ2FtZXJvbkBodWF3ZWkuY29tPiB3cm90ZToKWy4uLl0KPiA+IEBA
+IC0yMzUsNiArMjQ5LDI3IEBAIGVudW0gbWVzb25fc2FyX2FkY19jaGFubmVsX2luZGV4IHsKPiA+
+ICAgICAgIE5VTV9DSEFOXzcsCj4gPiAgICAgICBOVU1fQ0hBTl9URU1QLAo+ID4gICAgICAgTlVN
+X0NIQU5fU09GVF9USU1FU1RBTVAsCj4KPiBTaWxseSBxdWVzdGlvbi4uLiBXaHkgZG9lcyB0aGlz
+IGRldmljZSBoYXZlIHRpbWVzdGFtcCBjaGFubmVscz8KPiBJdCBoYXMgbm8gYnVmZmVyIHN1cHBv
+cnQgc28gdGhleSBkb24ndCAnZG8gYW55dGhpbmcnLgo+IElmIGl0IGhhZCB0aGVuIHB1dHRpbmcg
+b3RoZXIgY2hhbm5lbHMgYWZ0ZXIgdGhhdCBtaWdodCBoYXZlIGJyb2tlbgo+IHRoaW5ncyBpZiBu
+b3QgZG9uZSB2ZXJ5IGNhcmVmdWxseSAoaGVuY2UgSSB3ZW50IGxvb2tpbmcpClRoaXMgcXVlc3Rp
+b24gaXMgcHJvYmFibHkgZm9yIG1lIChub3QgR2VvcmdlKS4KVGhlIGFuc3dlciBpcyBzaW1wbGU6
+IHdoZW4gSSB3cm90ZSB0aGUgTWVzb24gU0FSIEFEQyBkcml2ZXIgSSBsb29rZWQKYXQgdmFyaW91
+cyBvdGhlciBkcml2ZXJzIChidXQgY2FuJ3QgcmVjYWxsIHdoaWNoIG9uZXMgZXhhY3RseSkuIE9u
+ZSBvZgp0aGVtIHByb2JhYmx5IHVzZWQgYSBzb2Z0IHRpbWVzdGFtcCBjaGFubmVsIHNvIEkgYWxz
+byBhZGRlZCB0aGF0IHRvCm1lc29uX3NhcmFkYy4gU2luY2UgIml0IGRpZG4ndCBicmVhayBhbnl0
+aGluZyIgSSB0aG91Z2h0IGl0IHdvdWxkIGJlCmZpbmUuCgpOZXdlciBTQVIgQURDIElQIGJsb2Nr
+cyBoYXZlIGJ1ZmZlciBzdXBwb3J0LCBidXQgdGhhdCdzIG5vdAppbXBsZW1lbnRlZCBpbiB0aGUg
+ZHJpdmVyICh5ZXQpLgpTbyBpZiBJIHVuZGVyc3RhbmQgeW91IGNvcnJlY3RseSB3ZSBjYW4gZHJv
+cCB0aGUgc29mdCB0aW1lc3RhbXAKY2hhbm5lbCAod2l0aCBhIGRlZGljYXRlZCBwYXRjaCBpbiB0
+aGlzIHNlcmllcyk/CgoKQmVzdCByZWdhcmRzLApNYXJ0aW4KCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
+bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
