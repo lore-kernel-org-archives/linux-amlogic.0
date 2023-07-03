@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4768EB64DC
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jul 2023 10:42:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D5EFEB64DD
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jul 2023 10:43:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LxgJKmrVdpzRxgPtgf/QZ8cY5a5VpS/DE8tNh5dE/8U=; b=RnU01jv16RWwVc
-	yuBU5cCMVP4x5Dxj6QUFApRqle0INQwNlxQExnd6Nio0WboagHobIyxdvbndUwARGgSY1htbvieq2
-	ntUuKfR+i8+0ctRMODw8btNPNFnhfDPQPuyoXR7hyBMInnMuca0+U2TILavdD4X8t8nK07GaGt7Zh
-	L8XiAi8Wg6ajy47/2Qr86bSbHtBybeVXoagQm+6CodLbGIBgWkejbHnrKtGspByWup7sxxns5oYgZ
-	/HGP5X7cEOxPPW3rIQ/Ht3bCg23y9J4xTO265IwjSNfkQWhIIv2jE4gOh9yCgPRkXsQ8scyafe7XM
-	hCaLlksg8It/cRAeW6sg==;
+	List-Owner; bh=P5V0RzyyImPocNW7y/svd1L0mIupn6mRTh4ULip7hqw=; b=LFdTdiA/h/QpgJ
+	UaZD9GYqkFt4SCMgfmGP8uf1Zq6g5/mik2CcYSkBpoSbwC1ulP3ENoF2AysMoIJgqOXkR3U2Vdtvf
+	afF7s/JXkMDRbxsJXPY7zGeCEyINelJnxSLpFxceMKiNvf8dKHPCDnLX0McrES6K3gZiLlhvZIb/p
+	6dWXwd2UbPTBeILrcaEfOu9WYy0JfvWiYBTB7ZRo4+9u9IDMsBSh0LNbnddkdAoo+nIVHAKQI+g/J
+	+7MgoTpuzr7GhIQhdQKgnTyQ8HCorN0ahq4wiUEBk0qS+/daKZgSrpGsQtwmCvh3OOgOyV0eEve5M
+	EFES1FDYG9GA/j9QLUtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGH0v-00AHYh-13;
-	Mon, 03 Jul 2023 10:42:37 +0000
+	id 1qGH0z-00AHa6-2h;
+	Mon, 03 Jul 2023 10:42:41 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGH0s-00AHXR-0n
+	id 1qGH0w-00AHYi-15
 	for linux-amlogic@lists.infradead.org;
-	Mon, 03 Jul 2023 10:42:36 +0000
+	Mon, 03 Jul 2023 10:42:39 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 98D0D12007C;
-	Mon,  3 Jul 2023 12:45:44 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 98D0D12007C
+	by mx1.sberdevices.ru (Postfix) with ESMTP id BEC651204F9;
+	Mon,  3 Jul 2023 12:45:45 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru BEC651204F9
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1688377544;
-	bh=3lcw8s3d3UvEPY8znRwUXKFvaGN7VtyRTZvrKJ6AFgc=;
+	s=mail; t=1688377545;
+	bh=wRrn6iFZ9wvY6EzviQOv3A+7Kxncor6/Mip9AQNivGs=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=QXxQ1Ex6M909KtJa9/KMc4+bRPWJrfISoCi8l4QIy2NmuwB61FhWcw2UK75NvToUD
-	 uvXqMscaHOuypYBDEEgPelgHyL7dg9sCBEybi2c3m7pFqFSTOVP5mYWaaZSmqq+6xz
-	 uXWgSfntx10jKeLdUZagwrOKIBKtbMGSLMgtDxCrowD0jhhzss5YYrvx2dfzVRzuV4
-	 fbnfQCvi4hh+w4HEvKjlAdukmk1N1s+jhI20URByccXdUvijFZBsffMQtslGHyXC2M
-	 uu36EV7gBBwwKjM6X+qGf2TwrYtxm6Wk3mFOe+QWJ23+mL+F1WodaxneTX6bjs5Mfj
-	 eR3LqzmkIDB0g==
+	b=qlJ8LqLVZI7V75BuBRdc2Ts/lhLBHonx/zyV9YbrVjgIRpk6XNJR6KF7wrHocIqyA
+	 8Pl6yyBTZRalMxo6FvHdAFMQl2a+r7uksM+RPs4WSvxUJFJrl7QxfOzTbc3zNNviHQ
+	 TLcV6T/DqNrgtuiBqjTDxYudWtc+peqNfXWw8QQDzyey6LvRaEMou5JIk6YbjRtWVc
+	 /GFkv9pjb3CXhCiSkh9L64BhYhLfYE9cxyklR2gkUuaomQgvEZtH3kBffB+wuLLArE
+	 lvB14BhyOagI3489Sg/6Sbsec/BzgSY2QPDHxCWDrvM8mMZHHKBnkk4UsaY74RQ9MI
+	 m5lSJQdS2jYDg==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon,  3 Jul 2023 12:45:43 +0300 (MSK)
+	Mon,  3 Jul 2023 12:45:44 +0300 (MSK)
 Received: from CAB-WSD-0004828.sigma.sbrf.ru (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Mon, 3 Jul 2023 12:45:42 +0300
+ 15.2.1118.30; Mon, 3 Jul 2023 12:45:43 +0300
 From: Martin Kurbanov <mmkurbanov@sberdevices.ru>
 To: Mark Brown <broonie@kernel.org>, Neil Armstrong
 	<neil.armstrong@linaro.org>
 CC: <linux-spi@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>, Martin Kurbanov
 	<mmkurbanov@sberdevices.ru>
-Subject: [PATCH v1 1/2] spi: amlogic-spifc-a1: implement adjust_op_size()
-Date: Mon, 3 Jul 2023 12:45:17 +0300
-Message-ID: <20230703094518.53755-2-mmkurbanov@sberdevices.ru>
+Subject: [PATCH v1 2/2] spi: amlogic-spifc-a1: add support for max_speed_hz
+Date: Mon, 3 Jul 2023 12:45:18 +0300
+Message-ID: <20230703094518.53755-3-mmkurbanov@sberdevices.ru>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230703094518.53755-1-mmkurbanov@sberdevices.ru>
 References: <20230703094518.53755-1-mmkurbanov@sberdevices.ru>
@@ -83,8 +83,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/03 07:50:00 #21557756
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230703_034234_629417_BB3DDDCB 
-X-CRM114-Status: GOOD (  15.19  )
+X-CRM114-CacheID: sfid-20230703_034238_719695_95EB2EFB 
+X-CRM114-Status: GOOD (  13.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,112 +101,58 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This enhancement eliminates the need for a loop in the
-amlogic_spifc_a1_exec_op() function and allows the SPI core to
-dynamically divide transactions into appropriately sized chunks.
+This patch sets the clock rate (spi_transfer->max_speed_hz) from the
+amlogic_spifc_a1_exec_op().
 
 Signed-off-by: Martin Kurbanov <mmkurbanov@sberdevices.ru>
 ---
- drivers/spi/spi-amlogic-spifc-a1.c | 64 +++++++++++-------------------
- 1 file changed, 24 insertions(+), 40 deletions(-)
+ drivers/spi/spi-amlogic-spifc-a1.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
 diff --git a/drivers/spi/spi-amlogic-spifc-a1.c b/drivers/spi/spi-amlogic-spifc-a1.c
-index 3c4224c38399..0c21917e4caf 100644
+index 0c21917e4caf..7ef2a0448990 100644
 --- a/drivers/spi/spi-amlogic-spifc-a1.c
 +++ b/drivers/spi/spi-amlogic-spifc-a1.c
-@@ -240,61 +240,44 @@ static int amlogic_spifc_a1_exec_op(struct spi_mem *mem,
- {
- 	struct amlogic_spifc_a1 *spifc =
- 		spi_controller_get_devdata(mem->spi->controller);
--	size_t off, nbytes = op->data.nbytes;
--	u32 cmd_cfg, addr_cfg, dummy_cfg, dmode;
-+	size_t data_size = op->data.nbytes;
- 	int ret;
- 
- 	amlogic_spifc_a1_user_init(spifc);
-+	amlogic_spifc_a1_set_cmd(spifc, SPIFC_A1_USER_CMD(op));
- 
--	cmd_cfg = SPIFC_A1_USER_CMD(op);
--	amlogic_spifc_a1_set_cmd(spifc, cmd_cfg);
-+	if (op->addr.nbytes)
-+		amlogic_spifc_a1_set_addr(spifc, op->addr.val,
-+					  SPIFC_A1_USER_ADDR(op));
- 
--	if (op->addr.nbytes) {
--		addr_cfg = SPIFC_A1_USER_ADDR(op);
--		amlogic_spifc_a1_set_addr(spifc, op->addr.val, addr_cfg);
--	}
--
--	if (op->dummy.nbytes) {
--		dummy_cfg = SPIFC_A1_USER_DUMMY(op);
--		amlogic_spifc_a1_set_dummy(spifc, dummy_cfg);
--	}
--
--	if (!op->data.nbytes)
--		return amlogic_spifc_a1_request(spifc, false);
--
--	dmode = ilog2(op->data.buswidth);
--	off = 0;
--
--	do {
--		size_t block_size = min_t(size_t, nbytes, SPIFC_A1_BUFFER_SIZE);
--
--		amlogic_spifc_a1_set_cmd(spifc, cmd_cfg);
-+	if (op->dummy.nbytes)
-+		amlogic_spifc_a1_set_dummy(spifc, SPIFC_A1_USER_DUMMY(op));
- 
--		if (op->addr.nbytes)
--			amlogic_spifc_a1_set_addr(spifc, op->addr.val + off,
--						  addr_cfg);
--
--		if (op->dummy.nbytes)
--			amlogic_spifc_a1_set_dummy(spifc, dummy_cfg);
-+	if (!data_size) {
-+		ret = amlogic_spifc_a1_request(spifc, false);
-+	} else {
-+		u32 mode = ilog2(op->data.buswidth);
- 
- 		writel(0, spifc->base + SPIFC_A1_USER_DBUF_ADDR_REG);
- 
- 		if (op->data.dir == SPI_MEM_DATA_IN)
--			ret = amlogic_spifc_a1_read(spifc,
--						    op->data.buf.in + off,
--						    block_size, dmode);
-+			ret = amlogic_spifc_a1_read(spifc, op->data.buf.in,
-+						    data_size, mode);
- 		else
--			ret = amlogic_spifc_a1_write(spifc,
--						     op->data.buf.out + off,
--						     block_size, dmode);
--
--		nbytes -= block_size;
--		off += block_size;
--	} while (nbytes != 0 && !ret);
-+			ret = amlogic_spifc_a1_write(spifc, op->data.buf.out,
-+						     data_size, mode);
-+	}
- 
- 	return ret;
- }
- 
-+static int amlogic_spifc_a1_adjust_op_size(struct spi_mem *mem,
-+					   struct spi_mem_op *op)
-+{
-+	op->data.nbytes = min_t(u32, op->data.nbytes, SPIFC_A1_BUFFER_SIZE);
-+	return 0;
-+}
-+
- static void amlogic_spifc_a1_hw_init(struct amlogic_spifc_a1 *spifc)
- {
- 	u32 regv;
-@@ -314,6 +297,7 @@ static void amlogic_spifc_a1_hw_init(struct amlogic_spifc_a1 *spifc)
- 
- static const struct spi_controller_mem_ops amlogic_spifc_a1_mem_ops = {
- 	.exec_op = amlogic_spifc_a1_exec_op,
-+	.adjust_op_size = amlogic_spifc_a1_adjust_op_size,
+@@ -107,6 +107,7 @@ struct amlogic_spifc_a1 {
+ 	struct clk *clk;
+ 	struct device *dev;
+ 	void __iomem *base;
++	u32 curr_speed_hz;
  };
  
- static int amlogic_spifc_a1_probe(struct platform_device *pdev)
+ static int amlogic_spifc_a1_request(struct amlogic_spifc_a1 *spifc, bool read)
+@@ -235,6 +236,20 @@ static int amlogic_spifc_a1_write(struct amlogic_spifc_a1 *spifc,
+ 	return amlogic_spifc_a1_request(spifc, false);
+ }
+ 
++static int amlogic_spifc_a1_set_freq(struct amlogic_spifc_a1 *spifc, u32 freq)
++{
++	int ret;
++
++	if (freq == spifc->curr_speed_hz)
++		return 0;
++
++	ret = clk_set_rate(spifc->clk, freq);
++	if (!ret)
++		spifc->curr_speed_hz = freq;
++
++	return ret;
++}
++
+ static int amlogic_spifc_a1_exec_op(struct spi_mem *mem,
+ 				    const struct spi_mem_op *op)
+ {
+@@ -243,6 +258,10 @@ static int amlogic_spifc_a1_exec_op(struct spi_mem *mem,
+ 	size_t data_size = op->data.nbytes;
+ 	int ret;
+ 
++	ret = amlogic_spifc_a1_set_freq(spifc, mem->spi->max_speed_hz);
++	if (ret)
++		return ret;
++
+ 	amlogic_spifc_a1_user_init(spifc);
+ 	amlogic_spifc_a1_set_cmd(spifc, SPIFC_A1_USER_CMD(op));
+ 
 -- 
 2.40.0
 
