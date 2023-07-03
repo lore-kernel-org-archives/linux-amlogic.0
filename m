@@ -4,86 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B20BAEB64DC
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jul 2023 13:29:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 766EFEB64DC
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jul 2023 16:05:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=B98NHkEZZqsdSKjIBwyGVdm6+R5VYhwrPFsGx1OtEcw=; b=08ySajWGcbrMRS8YqaCzOV4GsG
-	fcWIKXrd43le1oukH7Hwl9sFffFL47XpNNbgZxugRhM91Ip9LcDAl0Yxj9Jp6VAai9JV+YEYP5aAb
-	Qr1k3eWN7AS0wlhQ6LoBfvURRLxWOwHiBBTXEUvm1WutMCs9cSJkon4ABFiJ0TPLltNpK34TF0/BG
-	V7DqpNyhLA4Hkx4deS3g9ntP1ciIbiJG80Id3EfEXfspdItD3ABqRGpUDpjchiOOqzWVriTSMFo7D
-	rnLCiK5ECZUgomfHZUpwuHwPwskKpEMYD3FHUSNlDityuYzb5dKiridExdw2URCzzfLWZJSLFa4Dd
-	J5Zhs0Hw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=wO7AJdxL6EHtjp2NMsH43k+dlOlKx5aPzJI7BROJIDI=; b=vPDBEl57nMIN83
+	jKRjjf/JunUQxApwpqH2ZYdoT4DG7+JqzF7bq2eYlI2vHBKD4V7OEr+BA7x8FG+vXXlQ7LiRggC50
+	0UdRDRHT/8REfPWbKwX4uZeVwEHKCCpHzLKW/9MGbXZKkZrtCzJiZlmG7Qu3IJ507dq0GELSAvuTV
+	xGYWnjgGsvkyXbQvw85Xg+Pq7Q3GG64+gu5Uq4Z1B7pdeAAojJuAge2UTueeUZv5ZZzK1LZbvX9hO
+	cMDAjIUSTrWg3P4E4gc+x9F2lFeyGd2d/Goz5/UI4A9gL70xVgPkfUpjkSPf4zostAFedmmZ8+nye
+	7hZcQdKnCRjsUEVaEoNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGJcY-00AdiA-0z;
-	Mon, 03 Jul 2023 13:29:38 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1qGM2z-00AvyJ-1m;
+	Mon, 03 Jul 2023 16:05:05 +0000
+Received: from mail-pl1-x62b.google.com ([2607:f8b0:4864:20::62b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGJcV-00Adgw-0u
+	id 1qGM2s-00Avtm-36
 	for linux-amlogic@lists.infradead.org;
-	Mon, 03 Jul 2023 13:29:36 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-314319c0d3eso1917009f8f.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 03 Jul 2023 06:29:34 -0700 (PDT)
+	Mon, 03 Jul 2023 16:05:02 +0000
+Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1b80ddce748so22825825ad.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 03 Jul 2023 09:04:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688390973; x=1690982973;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y/VhzLPQHUerf9yIXAHQ3k56ZyHp33w08cf8vUBWG7Y=;
-        b=njVWohKchlcMEssQAmIF1k9K45Bbsrd0GbQfEH6owssZIqpB91tbfaZvQBAe2y6d1N
-         pfYh+rKJvhufICIyrpnVitykosZoAVctBURaePVLlsfTfbkyTRZHEZHi3Cwb2R1Ef2Mb
-         zPNZyr0j7/n69lqkf1LcW1BVdC45GIbm429M52QLjFBtW+HPuNBK9Brwx6z1rtL6ervi
-         J18BdPRMVF+ob1T3MaG2ubOle4LHZ6bX6GWGxuqpzeXoMdxExxR5eztZ50719pVvVZXQ
-         mget4xvTOK6HJHHZRrIizrB/mjd6/JRYFiY+unzHfnSkh5xQ/AICSlgjz/c67zA4qYd2
-         wIpQ==
+        d=linaro.org; s=google; t=1688400296; x=1690992296;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=UBEn+DORUJ5ij2DLOyIr1+keFOgWZdq/wK0YAWYuj18=;
+        b=wF1J8mqRpZ/0eHecvY4A6d0+f61b+gLvgtgwZ8kNufHjfAFZDZBgnY8CBXJ8cpjeN4
+         n/iS1HnDgYMUwDvOXpGzd9N7cFJx2kstYDzXBhUgXLTa0hrWXCPclNWgUaMenCy1TDVg
+         nbxXRjQy8ML0HprfQFB/HnzTOWNTUf6f/UT80KdAhoFukugUsPKCwzFTWb8XVioL2rNj
+         sNI4jANkgEX3k7nRXfw6uy13PENUpRiQU3DjJrkCQoewutdEvrFvtj3d2tDhhy2lOds6
+         wxg1hCpW6ApALyDUyENW0BaznLAVqftyb6WSI/ypuMfGe9eCOGhhLfku/QPpQnq42KZp
+         2jcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688390973; x=1690982973;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Y/VhzLPQHUerf9yIXAHQ3k56ZyHp33w08cf8vUBWG7Y=;
-        b=RRjnPs8BhI38RJJO+bXsvYedAuswbIrG7SRLgkEJqfJu0Yjx3r2LAAg1QX3rGav62I
-         hftbNtOGK731lq0egAOTZsdZTEp4ueOEEYgcpguzLLL3ok90XKNBu49SseQaaXUJPFNU
-         jN9AT1u1I9ZKp3C3Aj9cnKBml3VBwwvb83CYsj6CBNWiFQpZtz6ENuURToCTvuOr5fEU
-         Hvvl6FbPDXfyV61y/6NiK2uCpbms9pqjqTi269fX0CTAhL2wxSAZNNzsFiBRkvJthkeU
-         whFpnMnGgOxaR80uQIu4Rvb1x5vviDj4yerh2zcnIL1MGC2rcsdS7kIp6cMPDihO0MHa
-         AaMw==
-X-Gm-Message-State: ABy/qLZO9yxZkHzAtnojvagr0Kui2XXEMZ+Zhw2v7Y7sqOrjuDEDkz87
-	DAgrFjsC2Ia/GxpIqDmU+1ylTQ==
-X-Google-Smtp-Source: APBJJlGMsazVkHFxwQldk7Ee64dl++ep07uZano3iNOZM0/SiZWu6RXho/B4b8i2C1OknUXd7j1Nag==
-X-Received: by 2002:a5d:6986:0:b0:314:37a9:f225 with SMTP id g6-20020a5d6986000000b0031437a9f225mr2684111wru.40.1688390973573;
-        Mon, 03 Jul 2023 06:29:33 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:cf0b:9dd4:190:b74f? ([2a01:e0a:982:cbb0:cf0b:9dd4:190:b74f])
-        by smtp.gmail.com with ESMTPSA id k5-20020a5d6e85000000b003063a92bbf5sm25802354wrz.70.2023.07.03.06.29.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jul 2023 06:29:33 -0700 (PDT)
-Message-ID: <e85f6dee-d62c-9f2f-b1de-8c38bb5aeb14@linaro.org>
-Date: Mon, 3 Jul 2023 15:29:31 +0200
+        d=1e100.net; s=20221208; t=1688400296; x=1690992296;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UBEn+DORUJ5ij2DLOyIr1+keFOgWZdq/wK0YAWYuj18=;
+        b=NBXA7zVTucQlmGFmn6cnXjl7gvn/uS93YjxCBqCfnXJudG5DODENaJf+Sr5houkCMy
+         PoPOnlwv3vwI8UdzCdVquxXp1/vN8pcz3aJRlxMtgj79K7+8c5bNz83swXf4VmC8bIT5
+         hnyb6iNFIFOOtHXKX1iPJKTPAw/O10Zv92NEIiC388EvOTeoOx3a+ZTqJBreUDk8SgiI
+         9ZoPwFzKSReZMOHLfknqf+iNYjnNUqKiNOeq57IQGUg3RPaeE04BCipqNc3iH1EvuBbS
+         Wa52TogS8DB8Tp8eUdZGpCu+aebjD+WKJzbcQS3H4mKLzXM0TZJYG25mqGKYBkpD/RYR
+         0DTA==
+X-Gm-Message-State: ABy/qLbVxiwjl42IdkvuJj7eg3C/h4Z0OmtolH8/b+xrheFGyYZ52Lgf
+	wiunvZwemXy+9fREeVi/DhHi9g==
+X-Google-Smtp-Source: APBJJlGjEgZXbJ/Z6L8I7MLh6q1bS6/iEJLDe5vdJOhJhJXD38MLY3FNvd2g70KJTdpLSSdLro04Kg==
+X-Received: by 2002:a17:903:496:b0:1b8:63c6:84ab with SMTP id jj22-20020a170903049600b001b863c684abmr6673059plb.61.1688400296152;
+        Mon, 03 Jul 2023 09:04:56 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:6f20:cb07:ed03:2be8])
+        by smtp.gmail.com with ESMTPSA id x3-20020a1709027c0300b001ab1b7bae5asm15454989pll.184.2023.07.03.09.04.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jul 2023 09:04:55 -0700 (PDT)
+Date: Mon, 3 Jul 2023 10:04:52 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Leo Yan <leo.yan@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, coresight@lists.linaro.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+	linux-rockchip@lists.infradead.org, linux-iio@vger.kernel.org,
+	linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-mtd@lists.infradead.org, linux-amlogic@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: cleanup DTS example whitespaces
+Message-ID: <ZKLxpAKTQ3P3KNYb@p14s>
+References: <20230702182308.7583-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/3] soc: c3: Add support for power domains controller
-Content-Language: en-US
-To: =Xianwei Zhao <xianwei.zhao@amlogic.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>
-References: <20230703093142.2028500-1-xianwei.zhao@amlogic.com>
- <20230703093142.2028500-3-xianwei.zhao@amlogic.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230703093142.2028500-3-xianwei.zhao@amlogic.com>
+Content-Disposition: inline
+In-Reply-To: <20230702182308.7583-1-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230703_062935_362776_91068FCB 
-X-CRM114-Status: GOOD (  21.68  )
+X-CRM114-CacheID: sfid-20230703_090459_003131_8B394810 
+X-CRM114-Status: GOOD (  14.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,113 +95,308 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 03/07/2023 11:31, =Xianwei Zhao wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Sun, Jul 02, 2023 at 08:23:08PM +0200, Krzysztof Kozlowski wrote:
+> The DTS code coding style expects spaces around '=' sign.
 > 
-> Add support for C3 Power controller. C3 power control
-> registers are in secure domain, and should be accessed by SMC.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->   drivers/soc/amlogic/meson-secure-pwrc.c | 28 ++++++++++++++++++++++++-
->   1 file changed, 27 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
-> index 25b4b71df9b8..39ccc8f2e630 100644
-> --- a/drivers/soc/amlogic/meson-secure-pwrc.c
-> +++ b/drivers/soc/amlogic/meson-secure-pwrc.c
-> @@ -12,6 +12,7 @@
->   #include <linux/pm_domain.h>
->   #include <dt-bindings/power/meson-a1-power.h>
->   #include <dt-bindings/power/meson-s4-power.h>
-> +#include <dt-bindings/power/amlogic-c3-power.h>
->   #include <linux/arm-smccc.h>
->   #include <linux/firmware/meson/meson_sm.h>
->   #include <linux/module.h>
-> @@ -132,6 +133,22 @@ static struct meson_secure_pwrc_domain_desc s4_pwrc_domains[] = {
->   	SEC_PD(S4_AUDIO,	0),
->   };
->   
-> +static struct meson_secure_pwrc_domain_desc c3_pwrc_domains[] = {
-> +	SEC_PD(C3_NNA,	0),
-> +	SEC_PD(C3_AUDIO,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_SDIOA,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_EMMC,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_USB_COMB, GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_SDCARD,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_ETH,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_GE2D,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_CVE,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_GDC_WRAP,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_ISP_TOP,		GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_MIPI_ISP_WRAP, GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_VCODEC,	0),
-> +};
+> Rob,
+> 
+> Maybe this could go via your tree? Rebased on your for-next:
+> v6.4-rc2-45-gf0ac35049606
+> ---
+>  .../bindings/arm/arm,coresight-cti.yaml        | 18 +++++++++---------
+>  .../bindings/arm/keystone/ti,sci.yaml          |  8 ++++----
+>  .../devicetree/bindings/display/msm/gmu.yaml   |  2 +-
+>  .../display/panel/samsung,s6e8aa0.yaml         |  2 +-
+>  .../display/rockchip/rockchip-vop.yaml         |  4 ++--
+>  .../bindings/iio/adc/ti,adc108s102.yaml        |  2 +-
+>  .../bindings/media/renesas,rzg2l-cru.yaml      |  4 ++--
+>  .../devicetree/bindings/media/renesas,vin.yaml |  4 ++--
+>  .../devicetree/bindings/mtd/mtd-physmap.yaml   |  2 +-
+>  .../bindings/net/mediatek-dwmac.yaml           |  2 +-
+>  .../bindings/perf/amlogic,g12-ddr-pmu.yaml     |  4 ++--
+>  .../bindings/phy/mediatek,dsi-phy.yaml         |  2 +-
+>  .../remoteproc/amlogic,meson-mx-ao-arc.yaml    |  2 +-
+>  .../devicetree/bindings/usb/mediatek,mtu3.yaml |  2 +-
+>  .../devicetree/bindings/usb/ti,am62-usb.yaml   |  2 +-
+>  15 files changed, 30 insertions(+), 30 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
+> index 0c5b875cb654..d6c84b6e7fe6 100644
+> --- a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
+> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
+> @@ -287,7 +287,7 @@ examples:
+>              arm,trig-in-sigs = <0 1>;
+>              arm,trig-in-types = <PE_DBGTRIGGER
+>                                   PE_PMUIRQ>;
+> -            arm,trig-out-sigs=<0 1 2 >;
+> +            arm,trig-out-sigs = <0 1 2 >;
+>              arm,trig-out-types = <PE_EDBGREQ
+>                                    PE_DBGRESTART
+>                                    PE_CTIIRQ>;
+> @@ -309,24 +309,24 @@ examples:
+>  
+>        trig-conns@0 {
+>          reg = <0>;
+> -        arm,trig-in-sigs=<0>;
+> -        arm,trig-in-types=<GEN_INTREQ>;
+> -        arm,trig-out-sigs=<0>;
+> -        arm,trig-out-types=<GEN_HALTREQ>;
+> +        arm,trig-in-sigs = <0>;
+> +        arm,trig-in-types = <GEN_INTREQ>;
+> +        arm,trig-out-sigs = <0>;
+> +        arm,trig-out-types = <GEN_HALTREQ>;
+>          arm,trig-conn-name = "sys_profiler";
+>        };
+>  
+>        trig-conns@1 {
+>          reg = <1>;
+> -        arm,trig-out-sigs=<2 3>;
+> -        arm,trig-out-types=<GEN_HALTREQ GEN_RESTARTREQ>;
+> +        arm,trig-out-sigs = <2 3>;
+> +        arm,trig-out-types = <GEN_HALTREQ GEN_RESTARTREQ>;
+>          arm,trig-conn-name = "watchdog";
+>        };
+>  
+>        trig-conns@2 {
+>          reg = <2>;
+> -        arm,trig-in-sigs=<1 6>;
+> -        arm,trig-in-types=<GEN_HALTREQ GEN_RESTARTREQ>;
+> +        arm,trig-in-sigs = <1 6>;
+> +        arm,trig-in-types = <GEN_HALTREQ GEN_RESTARTREQ>;
+>          arm,trig-conn-name = "g_counter";
+>        };
+>      };
+> diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+> index 91b96065f7df..86b59de7707e 100644
+> --- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+> +++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+> @@ -96,8 +96,8 @@ examples:
+>        compatible = "ti,k2g-sci";
+>        ti,system-reboot-controller;
+>        mbox-names = "rx", "tx";
+> -      mboxes= <&msgmgr 5 2>,
+> -              <&msgmgr 0 0>;
+> +      mboxes = <&msgmgr 5 2>,
+> +               <&msgmgr 0 0>;
+>        reg-names = "debug_messages";
+>        reg = <0x02921800 0x800>;
+>      };
+> @@ -107,8 +107,8 @@ examples:
+>        compatible = "ti,k2g-sci";
+>        ti,host-id = <12>;
+>        mbox-names = "rx", "tx";
+> -      mboxes= <&secure_proxy_main 11>,
+> -              <&secure_proxy_main 13>;
+> +      mboxes = <&secure_proxy_main 11>,
+> +               <&secure_proxy_main 13>;
+>        reg-names = "debug_messages";
+>        reg = <0x44083000 0x1000>;
+>  
+> diff --git a/Documentation/devicetree/bindings/display/msm/gmu.yaml b/Documentation/devicetree/bindings/display/msm/gmu.yaml
+> index 029d72822d8b..65b02c7a1211 100644
+> --- a/Documentation/devicetree/bindings/display/msm/gmu.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/gmu.yaml
+> @@ -225,7 +225,7 @@ examples:
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  
+>      gmu: gmu@506a000 {
+> -        compatible="qcom,adreno-gmu-630.2", "qcom,adreno-gmu";
+> +        compatible = "qcom,adreno-gmu-630.2", "qcom,adreno-gmu";
+>  
+>          reg = <0x506a000 0x30000>,
+>                <0xb280000 0x10000>,
+> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,s6e8aa0.yaml b/Documentation/devicetree/bindings/display/panel/samsung,s6e8aa0.yaml
+> index 1cdc91b3439f..200fbf1c74a0 100644
+> --- a/Documentation/devicetree/bindings/display/panel/samsung,s6e8aa0.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/samsung,s6e8aa0.yaml
+> @@ -74,7 +74,7 @@ examples:
+>              vdd3-supply = <&vcclcd_reg>;
+>              vci-supply = <&vlcd_reg>;
+>              reset-gpios = <&gpy4 5 0>;
+> -            power-on-delay= <50>;
+> +            power-on-delay = <50>;
+>              reset-delay = <100>;
+>              init-delay = <100>;
+>              panel-width-mm = <58>;
+> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.yaml
+> index 6f43d885c9b3..df61cb5f5c54 100644
+> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.yaml
+> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.yaml
+> @@ -121,11 +121,11 @@ examples:
+>          #size-cells = <0>;
+>          vopb_out_edp: endpoint@0 {
+>            reg = <0>;
+> -          remote-endpoint=<&edp_in_vopb>;
+> +          remote-endpoint = <&edp_in_vopb>;
+>          };
+>          vopb_out_hdmi: endpoint@1 {
+>            reg = <1>;
+> -          remote-endpoint=<&hdmi_in_vopb>;
+> +          remote-endpoint = <&hdmi_in_vopb>;
+>          };
+>        };
+>      };
+> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,adc108s102.yaml b/Documentation/devicetree/bindings/iio/adc/ti,adc108s102.yaml
+> index 9b072b057f16..a60b1e100ee4 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/ti,adc108s102.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/ti,adc108s102.yaml
+> @@ -35,7 +35,7 @@ unevaluatedProperties: false
+>  examples:
+>    - |
+>      spi {
+> -        #address-cells= <1>;
+> +        #address-cells = <1>;
+>          #size-cells = <0>;
+>  
+>          adc@0 {
+> diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> index 7dde7967c886..1e72b8808d24 100644
+> --- a/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> @@ -137,7 +137,7 @@ examples:
+>  
+>                  cru_parallel_in: endpoint@0 {
+>                      reg = <0>;
+> -                    remote-endpoint= <&ov5642>;
+> +                    remote-endpoint = <&ov5642>;
+>                      hsync-active = <1>;
+>                      vsync-active = <1>;
+>                  };
+> @@ -150,7 +150,7 @@ examples:
+>  
+>                  cru_csi_in: endpoint@0 {
+>                      reg = <0>;
+> -                    remote-endpoint= <&csi_cru_in>;
+> +                    remote-endpoint = <&csi_cru_in>;
+>                  };
+>              };
+>          };
+> diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> index 91e8f368fb52..324703bfb1bd 100644
+> --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> @@ -303,11 +303,11 @@ examples:
+>  
+>                              vin0csi20: endpoint@0 {
+>                                      reg = <0>;
+> -                                    remote-endpoint= <&csi20vin0>;
+> +                                    remote-endpoint = <&csi20vin0>;
+>                              };
+>                              vin0csi40: endpoint@2 {
+>                                      reg = <2>;
+> -                                    remote-endpoint= <&csi40vin0>;
+> +                                    remote-endpoint = <&csi40vin0>;
+>                              };
+>                      };
+>              };
+> diff --git a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
+> index f8c976898a95..18f6733408b4 100644
+> --- a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
+> @@ -164,7 +164,7 @@ examples:
+>              reg = <0 0xf80000>;
+>          };
+>          firmware@f80000 {
+> -            label ="firmware";
+> +            label = "firmware";
+>              reg = <0xf80000 0x80000>;
+>              read-only;
+>          };
+> diff --git a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
+> index 0fa2132fa4f4..400aedb58205 100644
+> --- a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
+> @@ -156,7 +156,7 @@ examples:
+>          reg = <0x1101c000 0x1300>;
+>          interrupts = <GIC_SPI 237 IRQ_TYPE_LEVEL_LOW>;
+>          interrupt-names = "macirq";
+> -        phy-mode ="rgmii-rxid";
+> +        phy-mode = "rgmii-rxid";
+>          mac-address = [00 55 7b b5 7d f7];
+>          clock-names = "axi",
+>                        "apb",
+> diff --git a/Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml b/Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
+> index 50f46a6898b1..4adab0149108 100644
+> --- a/Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
+> +++ b/Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
+> @@ -42,8 +42,8 @@ examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      pmu {
+> -        #address-cells=<2>;
+> -        #size-cells=<2>;
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+>  
+>          pmu@ff638000 {
+>              compatible = "amlogic,g12a-ddr-pmu";
+> diff --git a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
+> index 26f2b887cfc1..b8d77165c4a1 100644
+> --- a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
+> @@ -83,7 +83,7 @@ examples:
+>          clocks = <&clk26m>;
+>          clock-output-names = "mipi_tx0_pll";
+>          drive-strength-microamp = <4000>;
+> -        nvmem-cells= <&mipi_tx_calibration>;
+> +        nvmem-cells = <&mipi_tx_calibration>;
+>          nvmem-cell-names = "calibration-data";
+>          #clock-cells = <0>;
+>          #phy-cells = <0>;
+> diff --git a/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml b/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
+> index 3100cb870170..76e8ca44906a 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
+> @@ -75,7 +75,7 @@ additionalProperties: false
+>  examples:
+>    - |
+>      remoteproc@1c {
+> -      compatible= "amlogic,meson8-ao-arc", "amlogic,meson-mx-ao-arc";
+> +      compatible = "amlogic,meson8-ao-arc", "amlogic,meson-mx-ao-arc";
 
-Please move this struct before _s4_
+Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
 
-> +
->   static int meson_secure_pwrc_probe(struct platform_device *pdev)
->   {
->   	int i;
-> @@ -179,7 +196,7 @@ static int meson_secure_pwrc_probe(struct platform_device *pdev)
->   	for (i = 0 ; i < match->count ; ++i) {
->   		struct meson_secure_pwrc_domain *dom = &pwrc->domains[i];
->   
-> -		if (!match->domains[i].index)
-> +		if (!match->domains[i].name)
-
-Is this change necessary ? If yes please move it to another patch
-and explain it's purpose. If it fixes something, add a Fixes tag so
-it can be backported.
-
-Thanks,
-Neil
-
->   			continue;
->   
->   		dom->pwrc = pwrc;
-> @@ -207,6 +224,11 @@ static struct meson_secure_pwrc_domain_data meson_secure_s4_pwrc_data = {
->   	.count = ARRAY_SIZE(s4_pwrc_domains),
->   };
->   
-> +static struct meson_secure_pwrc_domain_data amlogic_secure_c3_pwrc_data = {
-> +	.domains = c3_pwrc_domains,
-> +	.count = ARRAY_SIZE(c3_pwrc_domains),
-> +};
-
-Please move this struct before _s4_
-
-> +
->   static const struct of_device_id meson_secure_pwrc_match_table[] = {
->   	{
->   		.compatible = "amlogic,meson-a1-pwrc",
-> @@ -216,6 +238,10 @@ static const struct of_device_id meson_secure_pwrc_match_table[] = {
->   		.compatible = "amlogic,meson-s4-pwrc",
->   		.data = &meson_secure_s4_pwrc_data,
->   	},
-> +	{
-> +		.compatible = "amlogic,c3-pwrc",
-> +		.data = &amlogic_secure_c3_pwrc_data,
-> +	},
-
-Please move this entry before _s4_
-
->   	{ /* sentinel */ }
->   };
->   MODULE_DEVICE_TABLE(of, meson_secure_pwrc_match_table);
-
-Thanks,
-Neil
-
+>        reg = <0x1c 0x8>, <0x38 0x8>;
+>        reg-names = "remap", "cpu";
+>        resets = <&media_cpu_reset>;
+> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+> index 478214ab045e..a59d91243ac8 100644
+> --- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+> @@ -304,7 +304,7 @@ examples:
+>    # Dual role switch with type-c
+>    - |
+>      usb@11201000 {
+> -        compatible ="mediatek,mt8183-mtu3", "mediatek,mtu3";
+> +        compatible = "mediatek,mt8183-mtu3", "mediatek,mtu3";
+>          reg = <0x11201000 0x2e00>, <0x11203e00 0x0100>;
+>          reg-names = "mac", "ippc";
+>          interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_LOW>;
+> diff --git a/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml b/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+> index d25fc708e32c..fec5651f5602 100644
+> --- a/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+> +++ b/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+> @@ -92,7 +92,7 @@ examples:
+>  
+>          usb@31100000 {
+>            compatible = "snps,dwc3";
+> -          reg =<0x00 0x31100000 0x00 0x50000>;
+> +          reg = <0x00 0x31100000 0x00 0x50000>;
+>            interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>, /* irq.0 */
+>                         <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>; /* irq.0 */
+>            interrupt-names = "host", "peripheral";
+> -- 
+> 2.34.1
+> 
 
 _______________________________________________
 linux-amlogic mailing list
