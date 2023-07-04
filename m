@@ -4,51 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CAF8EB64D9
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jul 2023 14:00:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37DF4EB64DD
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jul 2023 14:00:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0etCd1fOn8GJzXYDGbv4bR3X6yIzcRlOw3m2JBWMgGU=; b=WoydBLo1sFXfCZ
-	kSvFXq+s7iRP/GlhACaZ6pOJMkZpvOMCss1D7HARDjCLUsC75V9jq6+lM05e2ctaG2t4X9OQ+lJ6y
-	FTVO/HrVMeVAItXTfthN/H+fbOSHmRE4JRAju5pdtCaZtWp4oVB+6nHfRNo9aH1BGhJy6YQ36UBnK
-	6inMAqCg3KUYl4MZEjrdbze18Ons38ctQfDkCQgD2qFeeCfiCW9uUkVD+2IYhdgfVfDuykQGDI6Zd
-	q6r66RpBCGD/wcHTjFbLZTdnPBiH7vp/1WSk0q6XLJRTtqUysH09OmrjdvGDBAFMmxJpsKoGLAywA
-	WrgH7snFteQc6ds83mnA==;
+	List-Owner; bh=zSHZlxUyP3kpZFfm9KfImD0HkwY5DKsJ82gxJ9X473A=; b=vJsUXD5muZ9hel
+	FXCxtVtLGBB/IQotbGu1Lk5zP9anA7F2jon6UCHee9FXDSL8W6kCb0NisZlzqXkbNqnAq4BWe/iIE
+	OcUKY0dOzHmE8Zc75/Lo6zoXNqy1O4D3FHyvJCug+p32uiN/q4WylUNfTsnU0VtndcNuYbDiKYpaK
+	1JAkXj3dUmckcI3cQrP+mlY2lb20ot3vRtCkxro9nP3mz2Lq49XaOZKreU0UeNh62DvKrywInC2G2
+	c8wk70w7GoEVzlq5dJKHY37QvaodJKK+4ubPS3uZ9uy01B9Sol1omNRHAMRPdYZSoRBGhQjWP4PPP
+	4jCL+oAvbwA6wKxTAfyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGgZP-00DSMG-1M;
-	Tue, 04 Jul 2023 13:59:55 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1qGgZT-00DSPM-2E;
+	Tue, 04 Jul 2023 13:59:59 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGgZL-00DSJN-0c;
-	Tue, 04 Jul 2023 13:59:53 +0000
+	id 1qGgZP-00DSLi-1q;
+	Tue, 04 Jul 2023 13:59:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
+	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=SVqe3A4FxeAdixEi7Nd7L65hAuANY8HEBhEw2Kj2u+8=; b=hMNb882SJKvn59KIs7VVtEt1x9
+	v4+HoAFU7XkhfBs9aXIdPCeIT0M0dmby3PKpv7uiNCGWBnrz+ei1+5BAqQ0v4xWHhdR37+GUjWJnM
+	L7nQCLlxtLfo3hfRGHRjvQNSR2Qw57AD6aa2Q0CCiRuw+GP0+N4tL9BQ+VxtN43eawRack5J6YTzM
+	gmNC1JRCpbwh0fsUjhSn67o8YEywG5GblkFxKo2znXp71kgvEZ+50tThzwS5HwAM5XXL+fOOcfpPs
+	5zqTmXFNYmarhHt4gJ6oPzaQfBg4iS9dSUJI3356ayNXha4n1YMUuwoOk55FRYtpxqoi3vj66uxDB
+	hT+D72Hg==;
+Received: from mx1.sberdevices.ru ([37.18.73.165])
+	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1qGgZL-00AwZ1-31;
+	Tue, 04 Jul 2023 13:59:54 +0000
 Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 3F940100069;
-	Tue,  4 Jul 2023 16:59:45 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 3F940100069
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 603AF100074;
+	Tue,  4 Jul 2023 16:59:48 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 603AF100074
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1688479185;
-	bh=EtvSf+vqP9FOlSRxzL4nhak0b5LMcwi8O2nGQTCTz7k=;
+	s=mail; t=1688479188;
+	bh=SVqe3A4FxeAdixEi7Nd7L65hAuANY8HEBhEw2Kj2u+8=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=J4rBARU+YHzxAYxCtemsaSPS7Qar6wgSlFeS9x+sW9lzyNv+/gfusSvbh8iOIIBB7
-	 cp2zHKoeEa83SVYZvdZp62+eOZ04w5pWKhbja1VwV/o6yZC7aM/zA4tt5eDCjNIHWk
-	 A70LYMY8abl6YmXHZ1kc4q0Yo7fqep+l8fhlLnNKsUvyXOE9zTJ6ANR01/hUKqglb5
-	 yRKdvJReN2SAHui+ETNrl553nLXThajwBG++2nCRRN0sPNWOPOFKdFiJ6T+hahIToT
-	 XyxS0khkyAHENfhxVv6nPULaaSyQ3Y0wDzmkk/mCDom31bExyy60MwW707PjMUsT4u
-	 VbOVMOKeswFxw==
+	b=hdI4YxhiDCn0Fjei1lunh5UUBQXuv/PWPY2Kut7+DpZ0ni/LsAdxxFbNd/oRE5AZQ
+	 X4ewv+LTy1ULSMm+7vKncmJZtqDj7Vthlv2QOzLjJydEYDtRK/FbqsBbfGTELOQ7Eb
+	 d68zYkSrZaQFr/DdOTf1u4mSor/RTYvzcAWNrvKwrytLiUj2cEaetKmDP3ovRC7+P4
+	 WMjtgY7aD64RHo1YqoDaZ7ULCp7BDsMAHAK9AQvDEhq4AqB1sWf0/WE8TIe059STdv
+	 kzkwrRPf7LF69vzZih+ciEVZWBg7xTn9Cu+tx/QzQgndsqEnR5eOxhxVG2tnD6BXnC
+	 Ng+PnNHdji7rw==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue,  4 Jul 2023 16:59:45 +0300 (MSK)
+	Tue,  4 Jul 2023 16:59:48 +0300 (MSK)
 Received: from localhost.localdomain (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Tue, 4 Jul 2023 16:59:34 +0300
+ 15.2.1118.30; Tue, 4 Jul 2023 16:59:37 +0300
 From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 To: <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
 	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
@@ -60,9 +74,9 @@ CC: <kelvin.zhang@amlogic.com>, <xianwei.zhao@amlogic.com>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
 	<ddrokosov@sberdevices.ru>
-Subject: [PATCH v1 1/5] tty: serial: meson: use dev_err_probe
-Date: Tue, 4 Jul 2023 16:59:32 +0300
-Message-ID: <20230704135936.14697-2-ddrokosov@sberdevices.ru>
+Subject: [PATCH v1 5/5] arm64: dts: meson: a1: change uart compatible string
+Date: Tue, 4 Jul 2023 16:59:36 +0300
+Message-ID: <20230704135936.14697-6-ddrokosov@sberdevices.ru>
 X-Mailer: git-send-email 2.36.0
 In-Reply-To: <20230704135936.14697-1-ddrokosov@sberdevices.ru>
 References: <20230704135936.14697-1-ddrokosov@sberdevices.ru>
@@ -87,8 +101,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/04 05:54:00 #21559896
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230704_065951_944839_383BECE3 
-X-CRM114-Status: GOOD (  13.83  )
+X-CRM114-CacheID: sfid-20230704_145952_416997_EC208861 
+X-CRM114-Status: GOOD (  13.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,29 +119,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use dev_err_probe() helper for error checking and standard logging.
-It makes the driver's probe() function a little bit shorter.
+In the current implementation, the meson-a1 configuration incorporates a
+unique compatibility tag "amlogic,meson-a1-uart' within the meson-uart
+driver due to its usage of the new console device name "ttyS".
+Consequently, the previous compatibility tag designated for the
+'amlogic,meson-gx-uart' configuration has become obsolete and is no
+longer relevant to the current setup.
 
 Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 ---
- drivers/tty/serial/meson_uart.c | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-index 2501db5a7aaf..169f028956ae 100644
---- a/drivers/tty/serial/meson_uart.c
-+++ b/drivers/tty/serial/meson_uart.c
-@@ -726,8 +726,8 @@ static int meson_uart_probe(struct platform_device *pdev)
- 	of_property_read_u32(pdev->dev.of_node, "fifo-size", &fifosize);
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index c5567031ba12..6273b9c862b3 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -344,7 +344,7 @@ mux {
+ 			};
  
- 	if (meson_ports[pdev->id]) {
--		dev_err(&pdev->dev, "port %d already allocated\n", pdev->id);
--		return -EBUSY;
-+		return dev_err_probe(&pdev->dev, -EBUSY,
-+			      "port %d already allocated\n", pdev->id);
- 	}
+ 			uart_AO: serial@1c00 {
+-				compatible = "amlogic,meson-gx-uart",
++				compatible = "amlogic,meson-a1-uart",
+ 					     "amlogic,meson-ao-uart";
+ 				reg = <0x0 0x1c00 0x0 0x18>;
+ 				interrupts = <GIC_SPI 25 IRQ_TYPE_EDGE_RISING>;
+@@ -354,7 +354,7 @@ uart_AO: serial@1c00 {
+ 			};
  
- 	port = devm_kzalloc(&pdev->dev, sizeof(struct uart_port), GFP_KERNEL);
+ 			uart_AO_B: serial@2000 {
+-				compatible = "amlogic,meson-gx-uart",
++				compatible = "amlogic,meson-a1-uart",
+ 					     "amlogic,meson-ao-uart";
+ 				reg = <0x0 0x2000 0x0 0x18>;
+ 				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
 -- 
 2.36.0
 
