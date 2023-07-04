@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49A6AEB64DA
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jul 2023 16:57:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10BF3EB64DA
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jul 2023 17:03:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=HhrLdb+7+q4tvpxkofzx+4ap3GBaNFzmy3vdna3Rrmw=; b=GX1p+719z4So+STqqn2yzuYjc5
-	xpQzpRHA/P1oDGWaOu5fYSeV7lvTcjG1cS0oPUat+RVX4dY80uhKi/ABvJWJKc3bxoaJLbJwdWud0
-	kZ9D7d/P1Lw4Hj6eR7B57pmPALcZecwh6WGwATK6MU383adoo9ySw3q4zGgcALX2kMnXffkJ7wqE4
-	LIdA93kCvvlXPw/QqDJzw9wsiWV/KKfo+zhZwacgKqYcSCYgCMoR4yVVGqZ0mWYehl2IsaHjDOp+n
-	tKE7jATJjHYLPSzKQT8zOVen9OCZ5wk9qQlxSS5tXUJJEt4JzBfWYFHJEcFwZ7KpTx7cyB2JmLfQg
-	IJ0obgEA==;
+	bh=zGIR2RWwg88sd2xGc8WBv9m589dYV7c6NhUxIIO4j+g=; b=zADiUVBtq69G9lWi92n38ZBxI+
+	2DZ24drSzHGkxSBGZkZ9aw8ACc0/yA2lEwS910u9l9Mx8SPQURrP9s4p7fyOy71oweE7LUTfV2F27
+	To4oqnQAPuVUxm/zmtB5ieVfDUopCRlc/l1GjatO1nVgWzfoOb1Rg937Dqmp/WZywXWHWvRw6SlOY
+	9EqSnHFhYvQ+BNfV82NBXFoPkGA+7Z0aBkNm9zOSXnVnVyV/BRR7/2wLNwEpW/GHEpTVVfRj6yIoh
+	kLV5wP4gNzdOw8E9whrY3MbKE3zQAKwzi5rRjWpkNpM7GpNTs4Br8Nb65aDToNRtUdV/XxS3Xxs8h
+	+aqcq4zw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGjLC-00DsXc-0D;
-	Tue, 04 Jul 2023 16:57:26 +0000
+	id 1qGjQi-00Dt5T-05;
+	Tue, 04 Jul 2023 17:03:08 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGjL9-00DsX8-00;
-	Tue, 04 Jul 2023 16:57:24 +0000
+	id 1qGjQf-00Dt4q-2h;
+	Tue, 04 Jul 2023 17:03:07 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 8232F61316;
-	Tue,  4 Jul 2023 16:57:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B6F1C433C7;
-	Tue,  4 Jul 2023 16:57:18 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 9545A61316;
+	Tue,  4 Jul 2023 17:03:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 659C3C433C7;
+	Tue,  4 Jul 2023 17:03:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1688489841;
-	bh=MVK2bS+f6XohwJ0w4CtQX6uyCqJA+y7IuaOf1eEVzMY=;
+	s=k20201202; t=1688490184;
+	bh=y9AqRwh1On0/kat6LbvFNyQPBwODOA6fSWAazX4k2/w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZbKVjQMOI7tOQZ0qiLl39Yj+RCq0pT415EnZJAX39Pns8On/Yo8yX2ouWsBdWza6D
-	 WpRp6Yt/StzDscW5QhJbD+YnX8/m/NiWzf/Hj1mqYBozI2Luwyacdg2qo/Vh+7QJCA
-	 5o4cwhVHaLh5jIhngMo8peEvsW2yIk6JEvpBMZKOm3Dx+OSpoQ+En7lzK0iGgkKY45
-	 Uk3SiVvO+oLuOC1uSnO+f/nX6eLMRJ8nMZGfWcBzdcsWXcLmornN1VljMOyR4XRxGY
-	 C8+fNAgSf3VRPEEf+Q2Xta8a2s2uzfPNpJmztkio125pZazEIDRNmsQef9tyoTZV4C
-	 OnfqP7ysrKfuA==
-Date: Tue, 4 Jul 2023 17:57:15 +0100
+	b=PksoyIFvpPZRdzl45MPP+VGF5sO9LknMMYjedKXz+n0nj1gpF9Tj0G2vE9CmjZP+Y
+	 U7vOaUpIxZ5vIvOyk0uB7U30iSXFx/wAFd8+S+ieMIPHZ36+gPVIuvk6A62o1juUP+
+	 uqrEMxDtAI3GbEa1MQAs89z67oLkaclTZVxAgYACSDdjVqHT3HVmWT6zQfG1f4eHql
+	 mijQ7OQ3soPWIYx4EeUTZ5KGQeKSNBFatIfevjlF090tbWxQkufUSOhdOQowIHLWHg
+	 yTP88J1xHEPm3nLDTqo5ODVS+LQmlm5s4lrMtOfLt0M3DSOPtowB41ezU7yoai6P25
+	 DhHx9XoYifFbA==
+Date: Tue, 4 Jul 2023 18:02:58 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
@@ -56,16 +56,16 @@ Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
 	linux-amlogic@lists.infradead.org, linux-serial@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 3/5] tty: serial: meson: apply ttyS devname instead of
- ttyAML for new SoCs
-Message-ID: <20230704-pogo-zeppelin-5fa281f5c9e6@spud>
+Subject: Re: [PATCH v1 5/5] arm64: dts: meson: a1: change uart compatible
+ string
+Message-ID: <20230704-cannabis-cannon-19397cd806bc@spud>
 References: <20230704135936.14697-1-ddrokosov@sberdevices.ru>
- <20230704135936.14697-4-ddrokosov@sberdevices.ru>
+ <20230704135936.14697-6-ddrokosov@sberdevices.ru>
 MIME-Version: 1.0
-In-Reply-To: <20230704135936.14697-4-ddrokosov@sberdevices.ru>
+In-Reply-To: <20230704135936.14697-6-ddrokosov@sberdevices.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230704_095723_123336_05F4B15B 
-X-CRM114-Status: GOOD (  29.97  )
+X-CRM114-CacheID: sfid-20230704_100305_959278_E60AD55A 
+X-CRM114-Status: GOOD (  19.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,156 +77,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============5667808934635189447=="
+Content-Type: multipart/mixed; boundary="===============4672421974056635401=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============5667808934635189447==
+--===============4672421974056635401==
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="cFEFPb639xHq5Qr+"
+	protocol="application/pgp-signature"; boundary="EumZIp4agBc2nn9+"
 Content-Disposition: inline
 
 
---cFEFPb639xHq5Qr+
+--EumZIp4agBc2nn9+
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 04, 2023 at 04:59:34PM +0300, Dmitry Rokosov wrote:
-> It is worth noting that the devname ttyS is a widely recognized tty name
-> and is commonly used by many uart device drivers. Given the established
-> usage and compatibility concerns, it may not be feasible to change the
-> devname for older SoCs. However, for new definitions, it is acceptable
-> and even recommended to use a new devname to help ensure clarity and
-> avoid any potential conflicts on lower or upper software levels.
+On Tue, Jul 04, 2023 at 04:59:36PM +0300, Dmitry Rokosov wrote:
+> In the current implementation, the meson-a1 configuration incorporates a
+> unique compatibility tag "amlogic,meson-a1-uart' within the meson-uart
+> driver due to its usage of the new console device name "ttyS".
+> Consequently, the previous compatibility tag designated for the
+> 'amlogic,meson-gx-uart' configuration has become obsolete and is no
+> longer relevant to the current setup.
 
-> In
-> addition, modify the meson_uart_dt match data for g12a, a1, and s4 to
-> their appropriate values to ensure proper devname values and
-> functionality.
+I don't really see why you would remove the gx-uart to be honest, and
+not use it as a fallback. Neil's platform though, so his call :)
 
-IMO, this is a separate change that should be in another patch, had to
-go looking through a several of unrelated $subject patches to understand
-how the binding patch was going to work.
-
-Cheers,
-Conor.
-
-> For more information please refer to IRC discussion at [1].
->=20
-> Links:
->     [1]: https://libera.irclog.whitequark.org/linux-amlogic/2023-07-03
 >=20
 > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 > ---
->  drivers/tty/serial/meson_uart.c | 33 +++++++++++++++++++++++++++++++--
->  1 file changed, 31 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >=20
-> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_u=
-art.c
-> index 87c0eb5f2dba..361f9326b527 100644
-> --- a/drivers/tty/serial/meson_uart.c
-> +++ b/drivers/tty/serial/meson_uart.c
-> @@ -82,6 +82,7 @@ static struct uart_driver meson_uart_driver;
->  static struct uart_port *meson_ports[AML_UART_PORT_NUM];
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/=
+dts/amlogic/meson-a1.dtsi
+> index c5567031ba12..6273b9c862b3 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -344,7 +344,7 @@ mux {
+>  			};
 > =20
->  struct meson_uart_data {
-> +	const char *dev_name;
->  	bool has_xtal_div2;
->  };
+>  			uart_AO: serial@1c00 {
+> -				compatible =3D "amlogic,meson-gx-uart",
+> +				compatible =3D "amlogic,meson-a1-uart",
+>  					     "amlogic,meson-ao-uart";
+>  				reg =3D <0x0 0x1c00 0x0 0x18>;
+>  				interrupts =3D <GIC_SPI 25 IRQ_TYPE_EDGE_RISING>;
+> @@ -354,7 +354,7 @@ uart_AO: serial@1c00 {
+>  			};
 > =20
-> @@ -683,6 +684,7 @@ static int meson_uart_probe_clocks(struct platform_de=
-vice *pdev,
-> =20
->  static int meson_uart_probe(struct platform_device *pdev)
->  {
-> +	const struct meson_uart_data *priv_data;
->  	struct resource *res_mem;
->  	struct uart_port *port;
->  	u32 fifosize =3D 64; /* Default is 64, 128 for EE UART_0 */
-> @@ -729,6 +731,18 @@ static int meson_uart_probe(struct platform_device *=
-pdev)
->  	if (ret)
->  		return ret;
-> =20
-> +	priv_data =3D device_get_match_data(&pdev->dev);
-> +
-> +	if (priv_data) {
-> +		struct console *cons =3D meson_uart_driver.cons;
-> +
-> +		meson_uart_driver.dev_name =3D priv_data->dev_name;
-> +
-> +		if (cons)
-> +			strscpy(cons->name, priv_data->dev_name,
-> +				sizeof(cons->name));
-> +	}
-> +
->  	if (!meson_uart_driver.state) {
->  		ret =3D uart_register_driver(&meson_uart_driver);
->  		if (ret)
-> @@ -748,7 +762,7 @@ static int meson_uart_probe(struct platform_device *p=
-dev)
->  	port->x_char =3D 0;
->  	port->ops =3D &meson_uart_ops;
->  	port->fifosize =3D fifosize;
-> -	port->private_data =3D (void *)device_get_match_data(&pdev->dev);
-> +	port->private_data =3D (void *)priv_data;
-> =20
->  	meson_ports[pdev->id] =3D port;
->  	platform_set_drvdata(pdev, port);
-> @@ -780,6 +794,17 @@ static int meson_uart_remove(struct platform_device =
-*pdev)
->  }
-> =20
->  static struct meson_uart_data meson_g12a_uart_data =3D {
-> +	.dev_name =3D "ttyAML",
-> +	.has_xtal_div2 =3D true,
-> +};
-> +
-> +static struct meson_uart_data meson_a1_uart_data =3D {
-> +	.dev_name =3D "ttyS",
-> +	.has_xtal_div2 =3D false,
-> +};
-> +
-> +static struct meson_uart_data meson_s4_uart_data =3D {
-> +	.dev_name =3D "ttyS",
->  	.has_xtal_div2 =3D true,
->  };
-> =20
-> @@ -794,7 +819,11 @@ static const struct of_device_id meson_uart_dt_match=
-[] =3D {
->  	},
->  	{
->  		.compatible =3D "amlogic,meson-s4-uart",
-> -		.data =3D (void *)&meson_g12a_uart_data,
-> +		.data =3D (void *)&meson_s4_uart_data,
-> +	},
-> +	{
-> +		.compatible =3D "amlogic,meson-a1-uart",
-> +		.data =3D (void *)&meson_a1_uart_data,
->  	},
->  	{ /* sentinel */ },
->  };
+>  			uart_AO_B: serial@2000 {
+> -				compatible =3D "amlogic,meson-gx-uart",
+> +				compatible =3D "amlogic,meson-a1-uart",
+>  					     "amlogic,meson-ao-uart";
+>  				reg =3D <0x0 0x2000 0x0 0x18>;
+>  				interrupts =3D <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
 > --=20
 > 2.36.0
 >=20
 
---cFEFPb639xHq5Qr+
+--EumZIp4agBc2nn9+
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZKRPawAKCRB4tDGHoIJi
-0mZzAP47gQmIoHiEKtf6/SExpFCyadxEql+D7dStRjofvLIEgAD9F25QTpMwc7zH
-/3Dk88CYjPnAzUZCHEyVxiL5r2QW9Ak=
-=wvA0
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZKRQwQAKCRB4tDGHoIJi
+0ni8AP9/Huiz85MEd1lWfxM1nHhevdkGu63rvkUGrwObPKXQFQEA+lioxbMrhHvJ
+V5pJjDNClLTeb0b2t8nCYmO1W1jkzgA=
+=H4B/
 -----END PGP SIGNATURE-----
 
---cFEFPb639xHq5Qr+--
+--EumZIp4agBc2nn9+--
 
 
---===============5667808934635189447==
+--===============4672421974056635401==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -237,5 +162,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============5667808934635189447==--
+--===============4672421974056635401==--
 
