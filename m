@@ -4,93 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26542EB64D9
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jul 2023 15:12:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4C86EB64D9
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jul 2023 15:19:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rH9DdC7dw4YUL2FjvabmvXX+vTe6giSaUD7TgHp+POA=; b=3yLUwj0jWpH5Im
-	/8caQCsClMBgNjTMKDJ4Gyi4ZBkpYuI0x27Uzr9SAA1Vfx/WmuRxedFie0vCo66XxTzix24Rhk5sa
-	KoVewfWOkEtBcqrYiZQjgo65ypN1jsIZEb+R+g6slLsNDLtK9bulnszm9Twvt8unQh97y3DlKvm86
-	9vzyg7FUcWMdYBWLG73NVWoj1XeW/ENdt+igquDD08lHZWAyDzon2p5HbsDX7eBajyoZibn5uXurc
-	eFGUorMEXEiI0fRAuE11u+pd4dlOYA5CNY+Q492frnbEYy7Fann08IyoTGOM+7A4Zx1fGRX5Lbxf+
-	6qEWBc9Mi/QmlyfptVfA==;
+	List-Owner; bh=sXhLI99hmQgOFGapZyrg9mdX8sBxwYrJSGZG45bzWx0=; b=rwp0XWj2QtUA17
+	kRrgpH7ZWahmDWRSdKdoCTBnM2qA3iuthdQK9XVIUnWR442ftFZ9U7ycOp6Fxeco0lLb/PEnmTnR/
+	Sk7vRd/KfRaLZF9v869DkArdid6gBjuBb1rjVhp0PEPXs7ntSIuiQzdRMY7KvkyOOyiq0SSGB+hKt
+	C53SpZEFlOLo7YUZSTebl+KSxxm1ttxhkCEZLDkWkIiOHi/nbh4XgzFcCIqYgsW0vWbQ7qoyWplMM
+	fB+vyEnfrATfp9hWXje7B9Aoz9oXGbDNHDlwAU16ech77bjKy4Nvgd5IiTPq0czwnagbUGW5ZOplB
+	KdV6+7egyGo5EpO7bWag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGhhX-00DcTs-3D;
-	Tue, 04 Jul 2023 15:12:23 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1qGhoQ-00Ddjz-2v;
+	Tue, 04 Jul 2023 15:19:30 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGhhU-00DcSR-1t;
-	Tue, 04 Jul 2023 15:12:22 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 6C5A8120056;
-	Tue,  4 Jul 2023 18:12:14 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6C5A8120056
+	id 1qGhoN-00DdiI-1i;
+	Tue, 04 Jul 2023 15:19:29 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 31559100073;
+	Tue,  4 Jul 2023 18:19:22 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 31559100073
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1688483534;
-	bh=MA18R4ahtdeUwMRF3ebCu6zn0dDacp0s1VVqqmBwV7Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=ox8qOlaWTO8rk6r8RAc4KQBGMVACKzKeKwGKI6jM7Kv5RRfT17BTQ+1c9yBuy9W14
-	 IeLclQ8lh53wRx/JOx/BwldRfCUosLgN6qQEn7b5xXoYE7kshmUk6krtUbrVFgZGQO
-	 bi4KRSYGk/t1LU6nQuSTxdQVgfSdBK+evbkPGkfCjWOMz0URwIBa33UoVApW08J1ud
-	 kTkM/Vp0rleXvbS/Z2w4vdzKbtrLhNkzzIoJBn1ax+2vS02kAJZgcIsMeDkItiSofo
-	 qzCr3j+AiHAXV49Kui+LjuoqIYqRPGMQ4rYWudYnLkyZXlF0qcxXkqOYRLAoINe6Ty
-	 s3DkJQInq4KXQ==
+	s=mail; t=1688483962;
+	bh=Uyt8VRq138eJ4/a7wkqKfGms4nxRLNyIIZsH95EbPkU=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=EYgsSf9gx0p44q303AgDZlNH0+n19dmZ3FlDkIhMi2HZROynu/ru+2jxRnho+S/rP
+	 OCRl3XKS934GNwKasHD/v8vcI8/d4eNCQM/oXBoytq6F7BgIV2t8y9lzyK8j6Yi03p
+	 H4yJgn2gmcFSftpO/9HaRVQQQMOlg3Umjln0CXRlmweRkNdZpRxPaG1Z6JUnlHIPFr
+	 9t6r18lDgedv9KPc7gzcG6KPH+Hec/T327CaA0GyhvJviEmXGeqcYlno2OuXPDwiQp
+	 T8roDM6n91lbBOPudFiLZvWvi5F1dv72c5bE5kxdQXkZNNu6sGrsIFRcodF5ex+hDA
+	 wDY/xMnMt/ytw==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue,  4 Jul 2023 18:12:14 +0300 (MSK)
-Received: from [192.168.0.12] (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Tue, 4 Jul 2023 18:12:03 +0300
-Message-ID: <e45afb19-d77b-6ef3-08bf-68e8626371be@sberdevices.ru>
-Date: Tue, 4 Jul 2023 18:07:04 +0300
+	Tue,  4 Jul 2023 18:19:21 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 4 Jul
+ 2023 18:19:10 +0300
+Date: Tue, 4 Jul 2023 18:19:20 +0300
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: <neil.armstrong@linaro.org>
+CC: <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<jbrunet@baylibre.com>, <jirislaby@kernel.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <kelvin.zhang@amlogic.com>,
+	<xianwei.zhao@amlogic.com>, <kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-serial@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v1 2/5] tty: serial: meson: redesign the module to
+ platform_driver
+Message-ID: <20230704151920.ryjab2kcux5avwfi@CAB-WSD-L081021>
+References: <20230704135936.14697-1-ddrokosov@sberdevices.ru>
+ <20230704135936.14697-3-ddrokosov@sberdevices.ru>
+ <7b06b8cd-f4c9-7636-0f73-48b2f695d7ba@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [RFC PATCH v1 2/2] mtd: rawnand: meson: support for 512B ECC step
- size
-Content-Language: en-US
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-CC: Liang Yang <liang.yang@amlogic.com>, Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin
- Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, <oxffffaa@gmail.com>,
-	<kernel@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20230628092937.538683-1-AVKrasnov@sberdevices.ru>
- <20230628092937.538683-3-AVKrasnov@sberdevices.ru>
- <20230704103617.4affae8a@xps-13>
- <9e6eaa87-887c-f955-113a-43860c8ea00c@sberdevices.ru>
- <20230704114110.25ca9de4@xps-13>
- <aede4639-0e99-565a-c997-c414342c66af@sberdevices.ru>
- <20230704115628.55320428@xps-13>
- <ee2eb73a-fb25-58ae-cf7e-83d971b7b8b2@sberdevices.ru>
- <20230704154106.5c5aafd8@xps-13>
-From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-In-Reply-To: <20230704154106.5c5aafd8@xps-13>
+Content-Disposition: inline
+In-Reply-To: <7b06b8cd-f4c9-7636-0f73-48b2f695d7ba@linaro.org>
+User-Agent: NeoMutt/20220415
 X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
 X-KSMG-AntiSpam-Lua-Profiles: 178426 [Jul 04 2023]
 X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
+X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
 X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
 X-KSMG-AntiPhishing: Clean
@@ -98,8 +90,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/04 05:54:00 #21559896
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230704_081221_010431_5F3E964F 
-X-CRM114-Status: GOOD (  21.57  )
+X-CRM114-CacheID: sfid-20230704_081927_948783_96610729 
+X-CRM114-Status: GOOD (  35.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,55 +103,140 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CgpPbiAwNC4wNy4yMDIzIDE2OjQxLCBNaXF1ZWwgUmF5bmFsIHdyb3RlOgo+IEhpIEFyc2VuaXks
-Cj4gCj4+Pj4+PiBZZXMsIHRoaXMgY29kZSBsb29rcyBzdHJhbmdlLiAnbnNlY3RvcnMnIGlzIHVz
-ZWQgdG8gY2FsY3VsYXRlIHNwYWNlIGluIE9PQgo+Pj4+Pj4gdGhhdCBjb3VsZCBiZSB1c2VkIGJ5
-IEVDQyBlbmdpbmUgKHRoaXMgdmFsdWUgd2lsbCBiZSBwYXNzZWQgYXMgJ29vYmF2YWlsJwo+Pj4+
-Pj4gdG8gJ25hbmRfZWNjX2Nob29zZV9jb25mKCknKS4gSWRlYSBvZiA1MTIgaXMgdG8gY29uc2lk
-ZXIgIndvcnN0IiBjYXNlCj4+Pj4+PiBmb3IgRUNDLCBlLmcuIG1pbmltYWwgbnVtYmVyIG9mIGJ5
-dGVzIGZvciBFQ0MgZW5naW5lIChhbmQgYXQgdGhlIHNhbWUgdGltZQo+Pj4+Pj4gbWF4aW11bSBu
-dW1iZXIgb2YgZnJlZSBieXRlcykuIEZvciBNZXNvbiwgaWYgRUNDIHN0ZXAgc2l6ZSBpcyA1MTIs
-IHRoZW4gd2UKPj4+Pj4+IGhhdmUgNCB4IDIgZnJlZSBieXRlcyBpbiBPT0IgKGlmIHN0ZXAgc2l6
-ZSBpZiAxMDI0IHRoZW4gd2UgaGF2ZSAyIHggMiBmcmVlCj4+Pj4+PiBieXRlcyBpbiBPT0IpLgo+
-Pj4+Pj4KPj4+Pj4+IEkgdGhpbmsgdGhpcyBjb2RlIGNvdWxkIGJlIHJld29ya2VkIGluIHRoZSBm
-b2xsb3dpbmcgd2F5Ogo+Pj4+Pj4KPj4+Pj4+IGlmIEVDQyBzdGVwIHNpemUgaXMgYWxyZWFkeSBr
-bm93biBoZXJlIChmcm9tIERUUyksIGNhbGN1bGF0ZSAnbnNlY3RvcnMnIHVzaW5nCj4+Pj4+PiBn
-aXZlbiB2YWx1ZSAoZGl2IGJ5IDUxMiBmb3IgZXhhbXBsZSkuIE90aGVyd2lzZSBjYWxjdWxhdGUg
-J25zZWN0b3JzJyBpbiB0aGUKPj4+Pj4+IGN1cnJlbnQgbWFubmVyOiAgICAKPj4+Pj4KPj4+Pj4g
-SXQgd2lsbCBhbHdheXMgYmUga25vd24gd2hlbiB0aGVzZSBmdW5jdGlvbiBhcmUgcnVuLiBUaGVy
-ZSBpcyBubwo+Pj4+PiBndWVzc2luZyBoZXJlLiAgICAKPj4+Pgo+Pj4+IEhtIEkgY2hlY2tlZCwg
-dGhhdCBidXQgaWYgc3RlcCBzaXplIGlzIG5vdCBzZXQgaW4gRFRTLCBoZXJlIGl0IHdpbGwgYmUg
-MCwgCj4+Pj4gdGhlbiBpdCB3aWxsIGJlIHNlbGVjdGVkIGluICduYW5kX2VjY19jaG9vc2VfY29u
-ZigpJyBhY2NvcmRpbmcgcHJvdmlkZWQgJ2VjY19jYXBzJwo+Pj4+IGFuZCAnb29iYXZhaWwnLi4u
-Cj4+Pj4KPj4+PiBBbnl3YXksIEknbGwgZG8gdGhlIGZvbGxvd2luZyB0aGluZzoKPj4+Pgo+Pj4+
-IGludCBuc2VjdG9yczsKPj4+Pgo+Pj4+IGlmIChuYW5kLT5lY2Muc2l6ZSkKPj4+PiAgICAgbnNl
-Y3RvcnMgPSBtdGQtPndyaXRlc2l6ZSAvIG5hbmQtPmVjYy5zaXplOyA8LS0tIHRoaXMgaXMgZm9y
-IDUxMiBFQ0MgIAo+Pj4KPj4+IFlvdSBzaG91bGQgc2V0IG5hbmQtPmVjYy5zaXplIGluIC0+YXR0
-YWNoX2NoaXAoKSBpbnN0ZWFkLiAgCj4+Cj4+IFNvcnJ5LCBkaWRuJ3QgZ2V0IGl0Li4uIGlmIEVD
-QyBzdGVwIHNpemUgaXMgc2V0IGluIERUUywgdGhlbiBoZXJlLCBpbiBjaGlwIGF0dGFjaAo+PiBj
-YWxsYmFjayBpdCB3aWxsIGJlIGFscmVhZHkga25vd24gKERUIHBhcnQgd2FzIHByb2Nlc3NlZCBp
-biAncmF3bmFuZF9kdF9pbml0KCknKS4KPj4gSWYgRUNDIHN0ZXAgc2l6ZSBpcyB1bmtub3duIChl
-LmcuIDAgaGVyZSksICduYW5kX2VjY19jaG9vc2VfY29uZigpJyB3aWxsIHNldCBpdAo+PiBhY2Nv
-cmRpbmcgcHJvdmlkZWQgZWNjIGNhcHMuIFdoYXQgZG8gWW91IG1lYW4gZm9yICJZb3Ugc2hvdWxk
-IHNldCAuLi4iID8KPiAKPiBUaGUgY3VycmVudCBhcHByb2FjaCBpcyB3cm9uZywgaXQgZGVjaWRl
-cyB0aGUgbnVtYmVyIG9mIEVDQyBjaHVua3MKPiAoY2FsbGVkIG5zZWN0b3JzIGluIHRoZSBkcml2
-ZXIpIGFuZCB0aGVuIGFza3MgdGhlIGNvcmUgdG8gZGVjaWRlIHRoZQo+IG51bWJlciBvZiBFQ0Mg
-Y2h1bmtzIHRvIHVzZS4KClllcyEgSSB3YXMgYWxzbyBjb25mdXNlZCBhYm91dCB0aGF0LgoKPiAK
-PiBKdXN0IHByb3ZpZGUgbXRkLT5vb2JzaXplIC0gMiBhcyBsYXN0IHBhcmFtZXRlciBhbmQgdGhl
-biByZWx5IG9uIHRoZQo+IGNvcmUncyBsb2dpYyB0byBmaW5kIHRoZSByaWdodCBFQ0Mgc3RlcC1z
-aXplL3N0cmVuZ3RoPwo+IAo+IFRoZXJlIGlzIG5vIHBvaW50IGluIHJlcXVlc3RpbmcgYSBwYXJ0
-aWN1bGFyIHN0ZXAgc2l6ZSB3aXRob3V0IGEKPiBzcGVjaWZpYyBzdHJlbmd0aCwgb3I/IFNvIEkg
-YmVsaWV2ZSB5b3Ugc2hvdWxkIHByb3ZpZGUgYm90aCBpbiB0aGUgRFRTCj4gaWYgeW91IHdhbnQg
-cGFydGljdWxhciBwYXJhbWV0ZXJzIHRvIGJlIGFwcGxpZWQsIG90aGVyd2lzZSB5b3UgY2FuIGxl
-dAo+IHRoZSBjb3JlIGRlY2lkZSB3aGF0IGlzIGJlc3QuCgpTbyBJIHRoaW5rIHRoaXMgY291bGQg
-YmUgYSBzZXBhcmF0ZWQgcGF0Y2ggYXMgaXQgZG9lc24ndCByZWx5IG9uIDUxMiBzdGVwIHNpemUg
-RUNDCnN1cHBvcnQgZm9yIE1lc29uIGFuZCBtYXkgYmUgaXQgc2hvdWxkIGJlICJGaXgiIHRhZ2dl
-ZC4KClRoYW5rcywgQXJzZW5peQoKPiAKPiBUaGFua3MsCj4gTWlxdcOobAoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
-IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On Tue, Jul 04, 2023 at 04:46:40PM +0200, neil.armstrong@linaro.org wrote:
+> On 04/07/2023 15:59, Dmitry Rokosov wrote:
+> > Actually, the meson_uart module is already a platform_driver, but it is
+> > currently registered manually and the uart core registration is run
+> > outside the probe() scope, which results in some restrictions. For
+> > instance, it is not possible to communicate with the OF subsystem
+> > because it requires an initialized device object.
+> > 
+> > To address this issue, apply module_platform_driver() instead of direct
+> > module init/exit routines. Additionally, move uart_register_driver() to
+> > the driver probe(), and destroy manual console registration because it's
+> > already run in the uart_register_driver() flow.
+> > 
+> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> > ---
+> >   drivers/tty/serial/meson_uart.c | 46 +++++++--------------------------
+> >   1 file changed, 10 insertions(+), 36 deletions(-)
+> > 
+> > diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+> > index 169f028956ae..87c0eb5f2dba 100644
+> > --- a/drivers/tty/serial/meson_uart.c
+> > +++ b/drivers/tty/serial/meson_uart.c
+> > @@ -621,12 +621,6 @@ static struct console meson_serial_console = {
+> >   	.data		= &meson_uart_driver,
+> >   };
+> > -static int __init meson_serial_console_init(void)
+> > -{
+> > -	register_console(&meson_serial_console);
+> > -	return 0;
+> > -}
+> > -
+> >   static void meson_serial_early_console_write(struct console *co,
+> >   					     const char *s,
+> >   					     u_int count)
+> > @@ -652,9 +646,6 @@ OF_EARLYCON_DECLARE(meson, "amlogic,meson-ao-uart",
+> >   #define MESON_SERIAL_CONSOLE	(&meson_serial_console)
+> >   #else
+> > -static int __init meson_serial_console_init(void) {
+> > -	return 0;
+> > -}
+> >   #define MESON_SERIAL_CONSOLE	NULL
+> >   #endif
+> > @@ -738,6 +729,13 @@ static int meson_uart_probe(struct platform_device *pdev)
+> >   	if (ret)
+> >   		return ret;
+> > +	if (!meson_uart_driver.state) {
+> > +		ret = uart_register_driver(&meson_uart_driver);
+> > +		if (ret)
+> > +			return dev_err_probe(&pdev->dev, ret,
+> > +				      "failed to register meson-uart driver\n");
+> > +	}
+> 
+> PL010 protects this in a mutex, and I think you should do the same otherwise
+> if multiple uart probes at the same it will do weird stuff.
+> 
+
+Looks like that not all drivers protect this location with a specialized
+mutex object. Firstly, I think it's important to verify parallel probe()
+calling and implementing mutex protection at the platform core level.
+For example, I've faced with the same problem during regmap mutex based
+protection.
+
+> > +
+> >   	port->iotype = UPIO_MEM;
+> >   	port->mapbase = res_mem->start;
+> >   	port->mapsize = resource_size(res_mem);
+> > @@ -776,6 +774,8 @@ static int meson_uart_remove(struct platform_device *pdev)
+> >   	uart_remove_one_port(&meson_uart_driver, port);
+> >   	meson_ports[pdev->id] = NULL;
+> > +	uart_unregister_driver(&meson_uart_driver);
+> > +
+> 
+> This is dangerous, it will remove the driver even if some uart are still attached to it.
+> 
+> You should probably do like in pl010_remove() and remove only if the last one is removed.
+> 
+
+Indeed... multiple ports can be registered...
+
+> >   	return 0;
+> >   }
+> > @@ -809,33 +809,7 @@ static  struct platform_driver meson_uart_platform_driver = {
+> >   	},
+> >   };
+> > -static int __init meson_uart_init(void)
+> > -{
+> > -	int ret;
+> > -
+> > -	ret = meson_serial_console_init();
+> > -	if (ret)
+> > -		return ret;
+> > -	
+> > -	ret = uart_register_driver(&meson_uart_driver);
+> > -	if (ret)
+> > -		return ret;
+> > -
+> > -	ret = platform_driver_register(&meson_uart_platform_driver);
+> > -	if (ret)
+> > -		uart_unregister_driver(&meson_uart_driver);
+> > -
+> > -	return ret;
+> > -}
+> > -
+> > -static void __exit meson_uart_exit(void)
+> > -{
+> > -	platform_driver_unregister(&meson_uart_platform_driver);
+> > -	uart_unregister_driver(&meson_uart_driver);
+> > -}
+> > -
+> > -module_init(meson_uart_init);
+> > -module_exit(meson_uart_exit);
+> > +module_platform_driver(meson_uart_platform_driver);
+> 
+> Only pl010 uses this scheme, and I don't know why... if it works then it's ok for me.
+
+From my point of view, the "scheme" is using uart driver registration
+from the probe() routine. Many drivers are based on such approach:
+samsung-tty, timbuart, sprd, max3100, etc. Some of them are platform
+drivers as well.
+
+> >   MODULE_AUTHOR("Carlo Caione <carlo@caione.org>");
+> >   MODULE_DESCRIPTION("Amlogic Meson serial port driver");
+> 
+
+-- 
+Thank you,
+Dmitry
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
