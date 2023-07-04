@@ -4,105 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DFDAEB64DD
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jul 2023 14:00:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CAFFEB64D9
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jul 2023 14:43:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xac3171ts8JH6yMEiSRTe31Yo2EAvd7grt0eLzZOAkg=; b=KW3X/nJX1+YrO3
-	Xc3XJqtK1H5yuKkTv2Br2SnIyVkKAFDikcEiAB9meL+dAs3itJk/pKVEulTJOVZ+fGQ0BPtMFC1la
-	NBeOtlwCbruf1QaEuRYoZPzdyxC7DKMl+rU+e/DmpsiF6VeJ/CShPXuJEsyzP7a8aGfbeB2ZPvvc2
-	IjVqMKZDk3xTr15oR6V30ARGtCmtrudqz3lczCiCq1pSLM9HVsSRZRH/vdrGKVm0MrN42JqiwO8Hw
-	5UumE7qY8qvmNFHzzIwgmEQf2/6xt/BPkkaO3P6FtUdbtgXda8GzypReRr15CgMhhsEakUgzyJi+z
-	qJ8iu+3QIDv5Ysiaxx3g==;
+	List-Owner; bh=16vYB6g/cutLwmDHlr8nFzUBfLqYPGhTu7Mv6WchWJM=; b=MXIkXm8Kz0BtzI
+	EWDg9ssNtyd3vLcmJUrgo9hWejIDrPdmnreezfde9wi+4P5f2mxzXPPOFS1eDpJDNmgM8pwIKJSDe
+	sNUp4glzkwlwsZYzKq34BJADqBMvRDSF1ib72A1Q+coLtty9IKFk7zBb24QOU51ha1v/uiUC4Qpqq
+	no1UAw/AhzM2eI+JPEdgEsPpiFufo3SdR0zbKo16Mq3N0HIzI9Vd0S+u9iOJVQn1C67htKr69yHDR
+	dKQYXTp0wfZPtmssZPpb431U/k5DDnd7swfXj/weCRAwiHKwnbZfJGOunTozRWVRkupz+BHZIElQm
+	+ao/9Zk/6bdVKqNnnmTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGgZe-00DSVn-2P;
-	Tue, 04 Jul 2023 14:00:10 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1qGhEv-00DXXN-0J;
+	Tue, 04 Jul 2023 14:42:49 +0000
+Received: from mail-vs1-xe2e.google.com ([2607:f8b0:4864:20::e2e])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGgZd-00DSUK-0C;
-	Tue, 04 Jul 2023 14:00:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
-	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=dFRSuVZiYwDdVCYDf8lScbiLvLEgKBhX1VHxXBr3arc=; b=G2yGeZu+Tiev5g6B7+oHciNFMZ
-	aePlrq/LjWL36BlSZffR/0aFNtb/5tYI+GjyRH12awQYNu70Tz0a8ROIBYuxyu/hLnYi6+DZ+EDA7
-	4FJjTf1NtM+vT+DT70t+u7JKc17ocFPRw8iDzjr4fwT+KsQhMYCj8CTwg5tBvoUgxVnR6UNYch3hr
-	kKUoipGSHlWHkuRLZOraAcSUJj0p7+/fE+LisvCbZ+laRnOtCjvKUgy4oHNCIXLHc+KkNklTzs+LZ
-	guiNWcBV5lD5Un2ejRGb5QVFf2HrEpCOeskwK417HiZ0qTlsQk8jjfdjoSJn3MLoJfPfd9Mw3YmSj
-	GLCRaJSQ==;
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGgZY-00AwYw-1I;
-	Tue, 04 Jul 2023 14:00:07 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 8DB43120057;
-	Tue,  4 Jul 2023 16:59:47 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8DB43120057
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1688479187;
-	bh=dFRSuVZiYwDdVCYDf8lScbiLvLEgKBhX1VHxXBr3arc=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=ekq5lJlvAsHhy+CKVhKLRmP+q+WLr5QnM0MLp2XTsDK0tMMsATY+xaxnjZtjvxVAK
-	 f01ABm9qC1I5Mrnn4RVxuVkVg83vxviqTT47XQfLLa98u6oofFxxcPL7t0w3OvBz4u
-	 tVwQ3ngRpR+zCeZIiIgA9rHu3GBdpdYzP+sREWgaW+i8mciwOPVYylHiMRbrIXsu/x
-	 AYA2n8wgtYgWDADXS7ShFIMzzJggr3TiltkSiFKFvPI/SsiEF10HxE8RU7uKQXvw7l
-	 /c6/Xnoz9bOXXVCAUJBeKPw6DEfXk8oRVaWMdyTnaIYiXoLP79ohUgkzlgv9PTMqPQ
-	 nmt3eAslXWGqw==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue,  4 Jul 2023 16:59:47 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Tue, 4 Jul 2023 16:59:37 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<neil.armstrong@linaro.org>, <jbrunet@baylibre.com>, <jirislaby@kernel.org>,
-	<khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>
-CC: <kelvin.zhang@amlogic.com>, <xianwei.zhao@amlogic.com>,
-	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-serial@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
-	<ddrokosov@sberdevices.ru>
-Subject: [PATCH v1 4/5] dt-bindings: serial: amlogic,meson-uart: support Amlogic A1
-Date: Tue, 4 Jul 2023 16:59:35 +0300
-Message-ID: <20230704135936.14697-5-ddrokosov@sberdevices.ru>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20230704135936.14697-1-ddrokosov@sberdevices.ru>
-References: <20230704135936.14697-1-ddrokosov@sberdevices.ru>
+	id 1qGhEq-00DXUn-0r;
+	Tue, 04 Jul 2023 14:42:45 +0000
+Received: by mail-vs1-xe2e.google.com with SMTP id ada2fe7eead31-440954dc5fcso1918297137.2;
+        Tue, 04 Jul 2023 07:42:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688481762; x=1691073762;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=cxhjD7KY5JD674i+41mIILyrwvbeMopv+PbB7rT3+IE=;
+        b=qXoDuKf7tijC6nBenqA4HmNXCVz12f5ddVrWo/iBC08Xy5X/GCcU43sZ0mtpwstHzz
+         GGG4rED1L0Z3jHx0ObuuPnqTWgOV3lvgb0UgCTp0CeJLzQJEGAmTwNjVcNLWi2mplii/
+         gTzcErjfLOJvdkMr/rbh3rwy+y80EnZd7ymGi3sD7e4+hc0QpRfU1gEicpQvVZGtzAVf
+         6EUu76BBqp0jaLUX1ZJLF1j0K7hxvYq5PwkFk8Ccvmvlcutquq7I+RgTWyWu/YG1H3fa
+         w3VIu5zXhiZjEGvEfADAqF0uBRfL7T9poR368enlmGkLswEIk/idT17/IjIAC8boz7sh
+         McZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688481762; x=1691073762;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cxhjD7KY5JD674i+41mIILyrwvbeMopv+PbB7rT3+IE=;
+        b=a1K/oGQEWqjqGRabAAEl36gK8HcfEcioPq3srygP69oCdyzDmssVZQxeQ2nxu/DE0U
+         uJQEsstJSkTrcmX3PCd0SbDAmKwY8BLlu6v6NIzwELw5DxHSkUI9lSPrEEeUHn6yBoMG
+         vZgnV4CYMxvpydIQ5rPemDin04ogFnoN4aFykee1DaCtz7GtGnlgP1lK1tDxJCM3K+Yd
+         BLHLl7pSU6Kh662fOegpvmV1cgkM22rvIP4uihvvcF7C1eS7xsYASz7D8hug8gik2U9y
+         QLNoR+uFiPOAO0/7ctUzIdknyrLM/tBQ833ZZBBg64ljaU8MTGDrf/iTGovGjBj1YGBr
+         RLcw==
+X-Gm-Message-State: ABy/qLZGGYWhav9508TRM5nSrSf1J0YfYemejoQCXHr69bENTN//fOjm
+	i8StU/RfjnwV/ZA7B+VnQUwofLyZAmxuNejLYbY=
+X-Google-Smtp-Source: APBJJlEzBfrRFFxw3waM7f1ipL7WWKBgZ8jQmyUjVtnbM0TCNsn4+zGfKdFXtaZmMtcuMEXY1XjZXuAM/dQift4uNtI=
+X-Received: by 2002:a67:f3d5:0:b0:443:7170:b048 with SMTP id
+ j21-20020a67f3d5000000b004437170b048mr6639880vsn.27.1688481761915; Tue, 04
+ Jul 2023 07:42:41 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178421 [Jul 04 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2;sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/04 05:54:00 #21559896
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <20230702182308.7583-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230702182308.7583-1-krzysztof.kozlowski@linaro.org>
+From: Jonas Gorski <jonas.gorski@gmail.com>
+Date: Tue, 4 Jul 2023 16:42:30 +0200
+Message-ID: <CAOiHx=kreUEnqssO7y_+UqAxsnXaLPbwBz8h3JRkdEq+pkdW2A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: cleanup DTS example whitespaces
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Leo Yan <leo.yan@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, linux-rockchip@lists.infradead.org, 
+	linux-iio@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-mtd@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-phy@lists.infradead.org, linux-remoteproc@vger.kernel.org, 
+	linux-usb@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230704_150004_766515_EA17EE39 
-X-CRM114-Status: GOOD (  10.64  )
+X-CRM114-CacheID: sfid-20230704_074244_302940_CF9E67C7 
+X-CRM114-Status: GOOD (  13.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,36 +95,52 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Introduce meson uart serial bindings for A1 SoC family.
+On Sun, 2 Jul 2023 at 20:24, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> The DTS code coding style expects spaces around '=' sign.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> ---
+>
+> Rob,
+>
+> Maybe this could go via your tree? Rebased on your for-next:
+> v6.4-rc2-45-gf0ac35049606
+> ---
+>  .../bindings/arm/arm,coresight-cti.yaml        | 18 +++++++++---------
+>  .../bindings/arm/keystone/ti,sci.yaml          |  8 ++++----
+>  .../devicetree/bindings/display/msm/gmu.yaml   |  2 +-
+>  .../display/panel/samsung,s6e8aa0.yaml         |  2 +-
+>  .../display/rockchip/rockchip-vop.yaml         |  4 ++--
+>  .../bindings/iio/adc/ti,adc108s102.yaml        |  2 +-
+>  .../bindings/media/renesas,rzg2l-cru.yaml      |  4 ++--
+>  .../devicetree/bindings/media/renesas,vin.yaml |  4 ++--
+>  .../devicetree/bindings/mtd/mtd-physmap.yaml   |  2 +-
+>  .../bindings/net/mediatek-dwmac.yaml           |  2 +-
+>  .../bindings/perf/amlogic,g12-ddr-pmu.yaml     |  4 ++--
+>  .../bindings/phy/mediatek,dsi-phy.yaml         |  2 +-
+>  .../remoteproc/amlogic,meson-mx-ao-arc.yaml    |  2 +-
+>  .../devicetree/bindings/usb/mediatek,mtu3.yaml |  2 +-
+>  .../devicetree/bindings/usb/ti,am62-usb.yaml   |  2 +-
+>  15 files changed, 30 insertions(+), 30 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
+> index 0c5b875cb654..d6c84b6e7fe6 100644
+> --- a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
+> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
+> @@ -287,7 +287,7 @@ examples:
+>              arm,trig-in-sigs = <0 1>;
+>              arm,trig-in-types = <PE_DBGTRIGGER
+>                                   PE_PMUIRQ>;
+> -            arm,trig-out-sigs=<0 1 2 >;
+> +            arm,trig-out-sigs = <0 1 2 >;
 
-Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
----
- .../devicetree/bindings/serial/amlogic,meson-uart.yaml          | 2 ++
- 1 file changed, 2 insertions(+)
+There's a space before the closing > you could drop as well.
 
-diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-index 01ec45b3b406..f1ae8c4934d9 100644
---- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-@@ -33,6 +33,7 @@ properties:
-               - amlogic,meson8b-uart
-               - amlogic,meson-gx-uart
-               - amlogic,meson-s4-uart
-+              - amlogic,meson-a1-uart
-           - const: amlogic,meson-ao-uart
-       - description: Always-on power domain UART controller on G12A SoCs
-         items:
-@@ -46,6 +47,7 @@ properties:
-           - amlogic,meson8b-uart
-           - amlogic,meson-gx-uart
-           - amlogic,meson-s4-uart
-+          - amlogic,meson-a1-uart
-       - description: Everything-Else power domain UART controller on G12A SoCs
-         items:
-           - const: amlogic,meson-g12a-uart
--- 
-2.36.0
-
+Best Regards,
+Jonas
 
 _______________________________________________
 linux-amlogic mailing list
