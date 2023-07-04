@@ -4,94 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE18DEB64D9
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jul 2023 15:00:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26542EB64D9
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jul 2023 15:12:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uIPZXKzYZChNdX1+2sVuwm8ENc2IN6A4g/PFSTPH1L8=; b=ORPQ5BDaaeqTIn
-	esLtJlSS+1dNPVSEjZwnFmTcBGxXJmgQk198HkQiDp2ClKekJXoyexv+NNPXhdGBo0P+fnlTHmT65
-	DrkwRnrf5Xu8uuJWqQYC3Y7QXHCuXfuPQlJcIxLLg7DgNASjVpnhrcf08E641xBRKRarUJyUJhExa
-	pA68x2rcU7X+C/QmvnTe+Rgpv50EHePw3iKZ+20JwGemSUT08gfRkul3DqqVETPkDD05VuNqs3VQG
-	pHA+xEG/vt85IFDroukkfhNKfMVsFYjiODki38oW1moA2dlEubBBiZ9LXC9vxU1kDg8QvbTRQJMHr
-	/1vjxepzxCcpFdUIXHPA==;
+	List-Owner; bh=rH9DdC7dw4YUL2FjvabmvXX+vTe6giSaUD7TgHp+POA=; b=3yLUwj0jWpH5Im
+	/8caQCsClMBgNjTMKDJ4Gyi4ZBkpYuI0x27Uzr9SAA1Vfx/WmuRxedFie0vCo66XxTzix24Rhk5sa
+	KoVewfWOkEtBcqrYiZQjgo65ypN1jsIZEb+R+g6slLsNDLtK9bulnszm9Twvt8unQh97y3DlKvm86
+	9vzyg7FUcWMdYBWLG73NVWoj1XeW/ENdt+igquDD08lHZWAyDzon2p5HbsDX7eBajyoZibn5uXurc
+	eFGUorMEXEiI0fRAuE11u+pd4dlOYA5CNY+Q492frnbEYy7Fann08IyoTGOM+7A4Zx1fGRX5Lbxf+
+	6qEWBc9Mi/QmlyfptVfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGhVF-00Da04-0D;
-	Tue, 04 Jul 2023 14:59:41 +0000
+	id 1qGhhX-00DcTs-3D;
+	Tue, 04 Jul 2023 15:12:23 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGhVB-00DZzF-1b;
-	Tue, 04 Jul 2023 14:59:39 +0000
+	id 1qGhhU-00DcSR-1t;
+	Tue, 04 Jul 2023 15:12:22 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id D6D47120056;
-	Tue,  4 Jul 2023 17:59:33 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru D6D47120056
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 6C5A8120056;
+	Tue,  4 Jul 2023 18:12:14 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6C5A8120056
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1688482773;
-	bh=QqMgquqipSlP9zH8819FUOffDSsMIheYOnoKQYVcXkM=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=JZvTuS2Kb7/pyohFSDNxVUHzcD+VnVvrY1Kljk6fNWv704shSk0P+l8lctIyP/Gfj
-	 EE9A+fkkdpDUV0xLdFuYx/uVrY4iIALxutr/MAkjwRwHqL4dTUIlldeFWQzaITrt/3
-	 PmzNhnFcrgjf1NmLgjTBt+Ycl/Nk0zNS4HFHwuz6rcE/nQNv2HuGrKjhFqRnyH64eR
-	 Mrb2bU7+hfIuHGlXTBlM0LFPD3i1EIaFnJHAjrBI2/Z8AAwdPQ865GaUplU1w6IHqA
-	 nC2SgvIqEVRhDe647zoWE1uOmMnZPuJR50DMNKxglcfHyuEjW6H7HWSJiix4WZ3U4Y
-	 kl5rC5Z1Zg7Ew==
+	s=mail; t=1688483534;
+	bh=MA18R4ahtdeUwMRF3ebCu6zn0dDacp0s1VVqqmBwV7Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=ox8qOlaWTO8rk6r8RAc4KQBGMVACKzKeKwGKI6jM7Kv5RRfT17BTQ+1c9yBuy9W14
+	 IeLclQ8lh53wRx/JOx/BwldRfCUosLgN6qQEn7b5xXoYE7kshmUk6krtUbrVFgZGQO
+	 bi4KRSYGk/t1LU6nQuSTxdQVgfSdBK+evbkPGkfCjWOMz0URwIBa33UoVApW08J1ud
+	 kTkM/Vp0rleXvbS/Z2w4vdzKbtrLhNkzzIoJBn1ax+2vS02kAJZgcIsMeDkItiSofo
+	 qzCr3j+AiHAXV49Kui+LjuoqIYqRPGMQ4rYWudYnLkyZXlF0qcxXkqOYRLAoINe6Ty
+	 s3DkJQInq4KXQ==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue,  4 Jul 2023 17:59:33 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 4 Jul
- 2023 17:59:23 +0300
-Date: Tue, 4 Jul 2023 17:59:33 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: <neil.armstrong@linaro.org>
-CC: <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<jbrunet@baylibre.com>, <jirislaby@kernel.org>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <kelvin.zhang@amlogic.com>,
-	<xianwei.zhao@amlogic.com>, <kernel@sberdevices.ru>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-serial@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v1 3/5] tty: serial: meson: apply ttyS devname instead of
- ttyAML for new SoCs
-Message-ID: <20230704145933.y3o3fhjj6q7df44d@CAB-WSD-L081021>
-References: <20230704135936.14697-1-ddrokosov@sberdevices.ru>
- <20230704135936.14697-4-ddrokosov@sberdevices.ru>
- <eb0dab5b-2fc7-728c-c6e0-43d2db422ed5@linaro.org>
+	Tue,  4 Jul 2023 18:12:14 +0300 (MSK)
+Received: from [192.168.0.12] (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Tue, 4 Jul 2023 18:12:03 +0300
+Message-ID: <e45afb19-d77b-6ef3-08bf-68e8626371be@sberdevices.ru>
+Date: Tue, 4 Jul 2023 18:07:04 +0300
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <eb0dab5b-2fc7-728c-c6e0-43d2db422ed5@linaro.org>
-User-Agent: NeoMutt/20220415
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [RFC PATCH v1 2/2] mtd: rawnand: meson: support for 512B ECC step
+ size
+Content-Language: en-US
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+CC: Liang Yang <liang.yang@amlogic.com>, Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin
+ Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, <oxffffaa@gmail.com>,
+	<kernel@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230628092937.538683-1-AVKrasnov@sberdevices.ru>
+ <20230628092937.538683-3-AVKrasnov@sberdevices.ru>
+ <20230704103617.4affae8a@xps-13>
+ <9e6eaa87-887c-f955-113a-43860c8ea00c@sberdevices.ru>
+ <20230704114110.25ca9de4@xps-13>
+ <aede4639-0e99-565a-c997-c414342c66af@sberdevices.ru>
+ <20230704115628.55320428@xps-13>
+ <ee2eb73a-fb25-58ae-cf7e-83d971b7b8b2@sberdevices.ru>
+ <20230704154106.5c5aafd8@xps-13>
+From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <20230704154106.5c5aafd8@xps-13>
 X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
 X-KSMG-AntiSpam-Lua-Profiles: 178426 [Jul 04 2023]
 X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
+X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
 X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, sberdevices.ru:7.1.1,5.0.1;libera.irclog.whitequark.org:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2023/07/04 13:59:00
-X-KSMG-LinksScanning: Clean, bases: 2023/07/04 13:58:00
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/04 05:54:00 #21559896
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230704_075937_920456_18AE733C 
-X-CRM114-Status: GOOD (  33.31  )
+X-CRM114-CacheID: sfid-20230704_081221_010431_5F3E964F 
+X-CRM114-Status: GOOD (  21.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,133 +111,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Neil,
-
-Thank you for quick feedback!
-
-On Tue, Jul 04, 2023 at 04:42:39PM +0200, neil.armstrong@linaro.org wrote:
-> On 04/07/2023 15:59, Dmitry Rokosov wrote:
-> > It is worth noting that the devname ttyS is a widely recognized tty name
-> > and is commonly used by many uart device drivers. Given the established
-> > usage and compatibility concerns, it may not be feasible to change the
-> > devname for older SoCs. However, for new definitions, it is acceptable
-> > and even recommended to use a new devname to help ensure clarity and
-> > avoid any potential conflicts on lower or upper software levels. In
-> > addition, modify the meson_uart_dt match data for g12a, a1, and s4 to
-> > their appropriate values to ensure proper devname values and
-> > functionality.
-> 
-> I'm not confident about modifying a global struct from a probe,
-> I think you should add a separate meson_uart_driver/meson_serial_console couple
-> with ttyS instead of ttyAML, refer to the right uart_driver in meson_uart_data
-> and in probe() register it and pass it to uart_add_one_port().
-
-Could you provide some insight into why you believe this solution may
-not be acceptable? It appears that the meson_uart_driver and
-meson_serial_console are not labeled with __init, which means it stay in
-memory forever.
-
-To clarify, are you suggesting a solution that involves segregating the
-meson_uart_driver and meson_serial_console objects for each scenario and
-subsequently declaring pointers to both objects within the
-meson_uart_data? I want to make sure that I have accurately grasped the
-essence of your proposed approach.
-
-> > 
-> > For more information please refer to IRC discussion at [1].
-> > 
-> > Links:
-> >      [1]: https://libera.irclog.whitequark.org/linux-amlogic/2023-07-03
-> > 
-> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> > ---
-> >   drivers/tty/serial/meson_uart.c | 33 +++++++++++++++++++++++++++++++--
-> >   1 file changed, 31 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-> > index 87c0eb5f2dba..361f9326b527 100644
-> > --- a/drivers/tty/serial/meson_uart.c
-> > +++ b/drivers/tty/serial/meson_uart.c
-> > @@ -82,6 +82,7 @@ static struct uart_driver meson_uart_driver;
-> >   static struct uart_port *meson_ports[AML_UART_PORT_NUM];
-> >   struct meson_uart_data {
-> > +	const char *dev_name;
-> >   	bool has_xtal_div2;
-> >   };
-> > @@ -683,6 +684,7 @@ static int meson_uart_probe_clocks(struct platform_device *pdev,
-> >   static int meson_uart_probe(struct platform_device *pdev)
-> >   {
-> > +	const struct meson_uart_data *priv_data;
-> >   	struct resource *res_mem;
-> >   	struct uart_port *port;
-> >   	u32 fifosize = 64; /* Default is 64, 128 for EE UART_0 */
-> > @@ -729,6 +731,18 @@ static int meson_uart_probe(struct platform_device *pdev)
-> >   	if (ret)
-> >   		return ret;
-> > +	priv_data = device_get_match_data(&pdev->dev);
-> > +
-> > +	if (priv_data) {
-> > +		struct console *cons = meson_uart_driver.cons;
-> > +
-> > +		meson_uart_driver.dev_name = priv_data->dev_name;
-> > +
-> > +		if (cons)
-> > +			strscpy(cons->name, priv_data->dev_name,
-> > +				sizeof(cons->name));
-> > +	}
-> > +
-> >   	if (!meson_uart_driver.state) {
-> >   		ret = uart_register_driver(&meson_uart_driver);
-> >   		if (ret)
-> > @@ -748,7 +762,7 @@ static int meson_uart_probe(struct platform_device *pdev)
-> >   	port->x_char = 0;
-> >   	port->ops = &meson_uart_ops;
-> >   	port->fifosize = fifosize;
-> > -	port->private_data = (void *)device_get_match_data(&pdev->dev);
-> > +	port->private_data = (void *)priv_data;
-> >   	meson_ports[pdev->id] = port;
-> >   	platform_set_drvdata(pdev, port);
-> > @@ -780,6 +794,17 @@ static int meson_uart_remove(struct platform_device *pdev)
-> >   }
-> >   static struct meson_uart_data meson_g12a_uart_data = {
-> > +	.dev_name = "ttyAML",
-> > +	.has_xtal_div2 = true,
-> > +};
-> > +
-> > +static struct meson_uart_data meson_a1_uart_data = {
-> > +	.dev_name = "ttyS",
-> > +	.has_xtal_div2 = false,
-> > +};
-> > +
-> > +static struct meson_uart_data meson_s4_uart_data = {
-> > +	.dev_name = "ttyS",
-> >   	.has_xtal_div2 = true,
-> >   };
-> > @@ -794,7 +819,11 @@ static const struct of_device_id meson_uart_dt_match[] = {
-> >   	},
-> >   	{
-> >   		.compatible = "amlogic,meson-s4-uart",
-> > -		.data = (void *)&meson_g12a_uart_data,
-> > +		.data = (void *)&meson_s4_uart_data,
-> > +	},
-> > +	{
-> > +		.compatible = "amlogic,meson-a1-uart",
-> > +		.data = (void *)&meson_a1_uart_data,
-> >   	},
-> >   	{ /* sentinel */ },
-> >   };
-> 
-
--- 
-Thank you,
-Dmitry
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgpPbiAwNC4wNy4yMDIzIDE2OjQxLCBNaXF1ZWwgUmF5bmFsIHdyb3RlOgo+IEhpIEFyc2VuaXks
+Cj4gCj4+Pj4+PiBZZXMsIHRoaXMgY29kZSBsb29rcyBzdHJhbmdlLiAnbnNlY3RvcnMnIGlzIHVz
+ZWQgdG8gY2FsY3VsYXRlIHNwYWNlIGluIE9PQgo+Pj4+Pj4gdGhhdCBjb3VsZCBiZSB1c2VkIGJ5
+IEVDQyBlbmdpbmUgKHRoaXMgdmFsdWUgd2lsbCBiZSBwYXNzZWQgYXMgJ29vYmF2YWlsJwo+Pj4+
+Pj4gdG8gJ25hbmRfZWNjX2Nob29zZV9jb25mKCknKS4gSWRlYSBvZiA1MTIgaXMgdG8gY29uc2lk
+ZXIgIndvcnN0IiBjYXNlCj4+Pj4+PiBmb3IgRUNDLCBlLmcuIG1pbmltYWwgbnVtYmVyIG9mIGJ5
+dGVzIGZvciBFQ0MgZW5naW5lIChhbmQgYXQgdGhlIHNhbWUgdGltZQo+Pj4+Pj4gbWF4aW11bSBu
+dW1iZXIgb2YgZnJlZSBieXRlcykuIEZvciBNZXNvbiwgaWYgRUNDIHN0ZXAgc2l6ZSBpcyA1MTIs
+IHRoZW4gd2UKPj4+Pj4+IGhhdmUgNCB4IDIgZnJlZSBieXRlcyBpbiBPT0IgKGlmIHN0ZXAgc2l6
+ZSBpZiAxMDI0IHRoZW4gd2UgaGF2ZSAyIHggMiBmcmVlCj4+Pj4+PiBieXRlcyBpbiBPT0IpLgo+
+Pj4+Pj4KPj4+Pj4+IEkgdGhpbmsgdGhpcyBjb2RlIGNvdWxkIGJlIHJld29ya2VkIGluIHRoZSBm
+b2xsb3dpbmcgd2F5Ogo+Pj4+Pj4KPj4+Pj4+IGlmIEVDQyBzdGVwIHNpemUgaXMgYWxyZWFkeSBr
+bm93biBoZXJlIChmcm9tIERUUyksIGNhbGN1bGF0ZSAnbnNlY3RvcnMnIHVzaW5nCj4+Pj4+PiBn
+aXZlbiB2YWx1ZSAoZGl2IGJ5IDUxMiBmb3IgZXhhbXBsZSkuIE90aGVyd2lzZSBjYWxjdWxhdGUg
+J25zZWN0b3JzJyBpbiB0aGUKPj4+Pj4+IGN1cnJlbnQgbWFubmVyOiAgICAKPj4+Pj4KPj4+Pj4g
+SXQgd2lsbCBhbHdheXMgYmUga25vd24gd2hlbiB0aGVzZSBmdW5jdGlvbiBhcmUgcnVuLiBUaGVy
+ZSBpcyBubwo+Pj4+PiBndWVzc2luZyBoZXJlLiAgICAKPj4+Pgo+Pj4+IEhtIEkgY2hlY2tlZCwg
+dGhhdCBidXQgaWYgc3RlcCBzaXplIGlzIG5vdCBzZXQgaW4gRFRTLCBoZXJlIGl0IHdpbGwgYmUg
+MCwgCj4+Pj4gdGhlbiBpdCB3aWxsIGJlIHNlbGVjdGVkIGluICduYW5kX2VjY19jaG9vc2VfY29u
+ZigpJyBhY2NvcmRpbmcgcHJvdmlkZWQgJ2VjY19jYXBzJwo+Pj4+IGFuZCAnb29iYXZhaWwnLi4u
+Cj4+Pj4KPj4+PiBBbnl3YXksIEknbGwgZG8gdGhlIGZvbGxvd2luZyB0aGluZzoKPj4+Pgo+Pj4+
+IGludCBuc2VjdG9yczsKPj4+Pgo+Pj4+IGlmIChuYW5kLT5lY2Muc2l6ZSkKPj4+PiAgICAgbnNl
+Y3RvcnMgPSBtdGQtPndyaXRlc2l6ZSAvIG5hbmQtPmVjYy5zaXplOyA8LS0tIHRoaXMgaXMgZm9y
+IDUxMiBFQ0MgIAo+Pj4KPj4+IFlvdSBzaG91bGQgc2V0IG5hbmQtPmVjYy5zaXplIGluIC0+YXR0
+YWNoX2NoaXAoKSBpbnN0ZWFkLiAgCj4+Cj4+IFNvcnJ5LCBkaWRuJ3QgZ2V0IGl0Li4uIGlmIEVD
+QyBzdGVwIHNpemUgaXMgc2V0IGluIERUUywgdGhlbiBoZXJlLCBpbiBjaGlwIGF0dGFjaAo+PiBj
+YWxsYmFjayBpdCB3aWxsIGJlIGFscmVhZHkga25vd24gKERUIHBhcnQgd2FzIHByb2Nlc3NlZCBp
+biAncmF3bmFuZF9kdF9pbml0KCknKS4KPj4gSWYgRUNDIHN0ZXAgc2l6ZSBpcyB1bmtub3duIChl
+LmcuIDAgaGVyZSksICduYW5kX2VjY19jaG9vc2VfY29uZigpJyB3aWxsIHNldCBpdAo+PiBhY2Nv
+cmRpbmcgcHJvdmlkZWQgZWNjIGNhcHMuIFdoYXQgZG8gWW91IG1lYW4gZm9yICJZb3Ugc2hvdWxk
+IHNldCAuLi4iID8KPiAKPiBUaGUgY3VycmVudCBhcHByb2FjaCBpcyB3cm9uZywgaXQgZGVjaWRl
+cyB0aGUgbnVtYmVyIG9mIEVDQyBjaHVua3MKPiAoY2FsbGVkIG5zZWN0b3JzIGluIHRoZSBkcml2
+ZXIpIGFuZCB0aGVuIGFza3MgdGhlIGNvcmUgdG8gZGVjaWRlIHRoZQo+IG51bWJlciBvZiBFQ0Mg
+Y2h1bmtzIHRvIHVzZS4KClllcyEgSSB3YXMgYWxzbyBjb25mdXNlZCBhYm91dCB0aGF0LgoKPiAK
+PiBKdXN0IHByb3ZpZGUgbXRkLT5vb2JzaXplIC0gMiBhcyBsYXN0IHBhcmFtZXRlciBhbmQgdGhl
+biByZWx5IG9uIHRoZQo+IGNvcmUncyBsb2dpYyB0byBmaW5kIHRoZSByaWdodCBFQ0Mgc3RlcC1z
+aXplL3N0cmVuZ3RoPwo+IAo+IFRoZXJlIGlzIG5vIHBvaW50IGluIHJlcXVlc3RpbmcgYSBwYXJ0
+aWN1bGFyIHN0ZXAgc2l6ZSB3aXRob3V0IGEKPiBzcGVjaWZpYyBzdHJlbmd0aCwgb3I/IFNvIEkg
+YmVsaWV2ZSB5b3Ugc2hvdWxkIHByb3ZpZGUgYm90aCBpbiB0aGUgRFRTCj4gaWYgeW91IHdhbnQg
+cGFydGljdWxhciBwYXJhbWV0ZXJzIHRvIGJlIGFwcGxpZWQsIG90aGVyd2lzZSB5b3UgY2FuIGxl
+dAo+IHRoZSBjb3JlIGRlY2lkZSB3aGF0IGlzIGJlc3QuCgpTbyBJIHRoaW5rIHRoaXMgY291bGQg
+YmUgYSBzZXBhcmF0ZWQgcGF0Y2ggYXMgaXQgZG9lc24ndCByZWx5IG9uIDUxMiBzdGVwIHNpemUg
+RUNDCnN1cHBvcnQgZm9yIE1lc29uIGFuZCBtYXkgYmUgaXQgc2hvdWxkIGJlICJGaXgiIHRhZ2dl
+ZC4KClRoYW5rcywgQXJzZW5peQoKPiAKPiBUaGFua3MsCj4gTWlxdcOobAoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
+IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
+YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
