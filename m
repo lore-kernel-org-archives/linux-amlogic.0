@@ -4,68 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16077EB64DA
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jul 2023 16:03:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F2EFEB64DA
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jul 2023 18:19:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zT2pi11AEvNi1/DqNdFhHWzJgtgvfePWjLpraqgTnkc=; b=ngq6l8vFp2vbvE
-	ot2gY8b5BDAmZ/nEAR1r23ZBFMmTsz+hjHx2jSiPTx68/gX+h3HSIE8Op3/oEbz0D6a7LwdZ+7ZCz
-	0fdUgpuxFrJttsYo421X8VhXw09dd8bhn+TtcNnAIC79aVJ9dJEr1AXBrXxB5BQ9CDwclXBXv0fIK
-	6Sf8zoBvWHRQSc8MLhHNJpMJXcPO7IqA/Q+ttNOcOMjBh0JF3X9KHuA3OvYJvNpUB7TxNvmhb3xsL
-	864V8ZaTuuJyE6cQL/omlU0/gjK10D/M2Bb8LyReS1VI6uersOOWpT4/W6gnQAcpDhZ42KY86QVsr
-	M09u+FaV+tN/MBnzvyoQ==;
+	List-Owner; bh=gmPWdduWxGZA4qhLmwoascPUhqYBnD4Pawqg/31B5F4=; b=VGWw6eLtDz7T3d
+	lgF3SUw3/NfbWu1PZOrHX7Jm6CM6J35ARVqHEiivuLNNJduNvu+hDBF90lUZgeWbMmeCEchvvq53G
+	akrZyzDT7iQbNd4337H9NF64ARJ+JcQpvcKPYNPU7IhOQvViX52SC/QFS+l2yo7NQB1yXU04SZEg7
+	6Ga8re2gxIMo/wv3v9HpkJyeIxMl1jhXZjDMJGhf1I+5Ye+2NN5hG/kUUkbGcMnwvcyin9tLDNqnH
+	Vm2wxF5zts3KSusRscQx2WO2BbuWtUsxjZQDnU2/ZvC4mhj6NkytfJSisJi0d8/a7TXRdHN5DhtAX
+	6+DlSo3976JkKGbUpkEg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qH4yL-00GR2d-1c;
-	Wed, 05 Jul 2023 16:03:17 +0000
-Received: from mail-io1-f51.google.com ([209.85.166.51])
+	id 1qH75X-00GjFs-2b;
+	Wed, 05 Jul 2023 18:18:51 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qH4yH-00GR0I-1c;
-	Wed, 05 Jul 2023 16:03:14 +0000
-Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-7836272f36eso262134839f.1;
-        Wed, 05 Jul 2023 09:03:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688572985; x=1691164985;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8KBpOFJZyS5xM9abNo2nJ57ufwQERCZ3x55i0T0eDUY=;
-        b=lzOcFfZhH+1xwHyK0c/ZODQupBUr4hLBl9gO6+1X5y9TDKvMRMANjBU51+t8yIzix/
-         J6hU9OC7zBH6AVWHoXVXX76kdKZ5OeXHtXGHz3WN+WYMa8ddckOCaG/+vuaToa64RQC9
-         6PCRYOAaf0ueQiNUt03D3po0fiFU3EFYQ2P5bnoB3A+Rd1R7UMoSOzW05G3OYMQaTCsO
-         tSvpQvOfXVckS80vma2JCCTsTbQYNB1rtuMO7r3vul3zbOhuDSWZpXiblAtBr8AGi9yr
-         yx0d2bZ2qmqVgEriZViJKT9jrn4RQITjzhnCxjz/AXpa/gAh8dBIColiD5ffnK4HmAAf
-         fIsA==
-X-Gm-Message-State: AC+VfDzRWgwW7cu7ljcOt9fmV/p2Nuj7qnOMgkBqYpuyi5VQoD0Nmhfx
-	fV5QeV2ENR9B+8/cnuAYpg==
-X-Google-Smtp-Source: ACHHUZ5Z8VqWZ/v/LomwEhPw2FxxUKwe6Z2nAX7VtpW4YDpUCLHgztTIHZAFe8baQtOy8AZBd0mglg==
-X-Received: by 2002:a5e:c910:0:b0:783:58f4:2e2e with SMTP id z16-20020a5ec910000000b0078358f42e2emr16821097iol.0.1688572984946;
-        Wed, 05 Jul 2023 09:03:04 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id k9-20020a02c769000000b0042b449ac66dsm2108515jao.56.2023.07.05.09.03.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 09:03:04 -0700 (PDT)
-Received: (nullmailer pid 712513 invoked by uid 1000);
-	Wed, 05 Jul 2023 16:03:01 -0000
-Date: Wed, 5 Jul 2023 10:03:01 -0600
-From: Rob Herring <robh@kernel.org>
-To: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Vignesh Raghavendra <vigneshr@ti.com>, kernel@sberdevices.ru, Richard Weinberger <richard@nod.at>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-arm-kernel@lists.infradead.org, Liang Yang <liang.yang@amlogic.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>, oxffffaa@gmail.com, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 1/2] dt-bindings: nand: meson: support for 512B
- ECC step size
-Message-ID: <168857288612.706374.4421201197090184183.robh@kernel.org>
-References: <20230705065434.297040-1-AVKrasnov@sberdevices.ru>
- <20230705065434.297040-2-AVKrasnov@sberdevices.ru>
+	id 1qH75U-00GjDI-1W;
+	Wed, 05 Jul 2023 18:18:51 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 1B56B120071;
+	Wed,  5 Jul 2023 21:18:46 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 1B56B120071
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1688581126;
+	bh=OllYyhrUJ08P7wMySV5F6J3h9lBYzlt948FsMshI588=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=RRT2fsKX+4aBYJHk8wqotSPoX9ajwXxJA/z27vHSCg28qI07e4Q3QdC+DOQsO05aN
+	 hJWNJT7JyoITSJ4W8TewnamvRVio5cwFyBtd18QTd78qZ5fZhUBEEPsYgKhtXQg98R
+	 OZw41A7gm/a+8r4ZRMiv9smll3uwcpCj1Ie7W53Iw2TT61UHCyXv3r/TwcUnxVFy1q
+	 2Ph9Dk5ZSBXyn8IKTK+VrA0kzGN/DHf2PDOzX7PZgnh9ChFI3TM/XrqFDeXeteaBgG
+	 JRv1YXTsqR/howZcb0PHfXCf6xOMtL6UOi+pBpy7VFI7u/MnMz3eiCoUisXrcj0O8+
+	 OxJznG/mrlH+w==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed,  5 Jul 2023 21:18:45 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Wed, 5 Jul 2023 21:18:43 +0300
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<neil.armstrong@linaro.org>, <jbrunet@baylibre.com>, <jirislaby@kernel.org>,
+	<khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>
+CC: <kelvin.zhang@amlogic.com>, <xianwei.zhao@amlogic.com>,
+	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-serial@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
+	<ddrokosov@sberdevices.ru>
+Subject: [PATCH v2 4/7] tty: serial: meson: introduce separate uart_data for S4 SoC family
+Date: Wed, 5 Jul 2023 21:18:30 +0300
+Message-ID: <20230705181833.16137-5-ddrokosov@sberdevices.ru>
+X-Mailer: git-send-email 2.36.0
+In-Reply-To: <20230705181833.16137-1-ddrokosov@sberdevices.ru>
+References: <20230705181833.16137-1-ddrokosov@sberdevices.ru>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230705065434.297040-2-AVKrasnov@sberdevices.ru>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178461 [Jul 05 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/05 14:57:00 #21566867
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230705_090313_544638_9FAD2F48 
-X-CRM114-Status: GOOD (  12.58  )
+X-CRM114-CacheID: sfid-20230705_111849_241927_B4454DC9 
+X-CRM114-Status: GOOD (  14.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,29 +105,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+In order to use the correct devname value for the S4 SoC family, it
+is imperative that we implement separate uart_data. Unlike the legacy
+g12a architecture, the S4 architecture should employ the use of 'ttyS'
+devname.
 
-On Wed, 05 Jul 2023 09:54:33 +0300, Arseniy Krasnov wrote:
-> Meson NAND supports both 512B and 1024B ECC step size, so replace
-> 'const' for only 1024B step size with enum for both sizes.
-> 
-> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-> ---
->  Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+---
+ drivers/tty/serial/meson_uart.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
-
-If a tag was not added on purpose, please state why and what changed.
-
-Missing tags:
-
-Acked-by: Rob Herring <robh@kernel.org>
-
-
+diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+index ad0748a10db7..6a63184b8091 100644
+--- a/drivers/tty/serial/meson_uart.c
++++ b/drivers/tty/serial/meson_uart.c
+@@ -818,6 +818,11 @@ static struct meson_uart_data meson_g12a_uart_data = {
+ 	.has_xtal_div2 = true,
+ };
+ 
++static struct meson_uart_data meson_s4_uart_data = {
++	.uart_driver = &MESON_UART_DRIVER(ttyS),
++	.has_xtal_div2 = true,
++};
++
+ static const struct of_device_id meson_uart_dt_match[] = {
+ 	{ .compatible = "amlogic,meson6-uart" },
+ 	{ .compatible = "amlogic,meson8-uart" },
+@@ -829,7 +834,7 @@ static const struct of_device_id meson_uart_dt_match[] = {
+ 	},
+ 	{
+ 		.compatible = "amlogic,meson-s4-uart",
+-		.data = (void *)&meson_g12a_uart_data,
++		.data = (void *)&meson_s4_uart_data,
+ 	},
+ 	{ /* sentinel */ },
+ };
+-- 
+2.36.0
 
 
 _______________________________________________
