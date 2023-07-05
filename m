@@ -4,94 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 491A9EB64DA
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jul 2023 10:50:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1150EB64DD
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jul 2023 11:42:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=z7dcrymFPKBO1XIPORwLQu8YOtvrwYGsE9+Cpu6uz7g=; b=N7m9/ykJP8WfgV
-	qhVo/llcPyN1Vrzzd2+gaIoFSAnO52BCiqQ8sPkgjq9HmhyX/BV0Rca22lwh5HJtPh+24x5nyIZot
-	AT5xaMMQFKQreY/jPPD4nscg7vEPoSWIRmj28YMY6KC5PnBBvQWC4khrGgL1Zlyoj81VzmfpjDFao
-	IsaRNco3h1pr6lXKsr4rcnqSmFqXqY8Y1csKtZlS8JmL9kq6x8DQl8GLPCvj6vn3YdVwTW5y/hhGi
-	X3fgqQAZPNG2/HfHo9VH4VLtv8C7bptzxKkEu29jdcJjVkStZCKBt8dHqIl1H1U5XjWcmA37tqcFP
-	4a18+/zoL+KzMNsEyQ8Q==;
+	List-Owner; bh=i8GmTUSGfpC8Kr0alVpNzU4I5aVq/B4Gh1swfs+R/qI=; b=mGjZRE4+oyiVOU
+	eoYGpg8WtnCjNeqVbNKg0Og7XwqrH3UUsqlf+9rlk4h6blgpksE0l5JvT/mVEPkX/WKliw7BcbWvw
+	V8/GkWg8FwszPCR/ij5ZA4teu0olD1iAeNpRvM349xSk/YaWGamS9UDnQuFLs41RuD5wx/Bc4kZCU
+	jJDQyD8TFHZfch+2Q0doUP4Hmvo453+ZEHapzFjCyIUyrtkpvdHR7HOP25HZMzlDxZTxtuXw6aqHM
+	0RQQ9/EO5ViqdxJRQCE4ude3OhC1RgcY9rzi9JRyPFVaHQqDDeVwGRzbYD0pbymUNugzd68imRgEJ
+	uX569GKHL0OEdhU25jww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qH051-00FeFe-2L;
-	Wed, 05 Jul 2023 10:49:51 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1qH0tf-00FkR3-11;
+	Wed, 05 Jul 2023 11:42:11 +0000
+Received: from mail-lf1-x135.google.com ([2a00:1450:4864:20::135])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qH04x-00FeCI-0L;
-	Wed, 05 Jul 2023 10:49:48 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id B8A2A120062;
-	Wed,  5 Jul 2023 13:49:45 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru B8A2A120062
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1688554185;
-	bh=nKCAk3CURTbAaGdu/4XW28wHRq4gX1MBZxHD357NVK4=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=dYgNKbh73XfSAbYT+STUUYbXrlhI+czkt+r0nRDQnjC4LpWCi7gkA8DBTcOICGKoB
-	 lr0dh4RF2LqsyzlP/RgkWoQwoyr5POMmywpDwreerqXkFcH1BeLUEzt3sm23Pv3J87
-	 87dMMTsmzXqxXVgpZFMtGgAP094Lfht9wE3SAhHheWZ6w4LVoEU6GnRyUkDIthNMHl
-	 JTxEbBvPmkv9lO3zdS22P5FBpqHaWXbN7sUkiPurINyZ4mnQrd3rKOCtBcEZdHrHyu
-	 hvFUwj6T5qHlKSYn47/E1ioqNVQu6926XlAEFphcYNC/t5mrtARRNnN2X0kZN/zfIZ
-	 hIKXWg3LS1RaQ==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed,  5 Jul 2023 13:49:45 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Wed, 5 Jul 2023 13:49:42 +0300
-From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
-	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Adam Borowski
-	<kilobyte@angband.pl>, ChenXiaoSong <chenxiaosong2@huawei.com>, JaimeLiao
-	<jaimeliao.tw@gmail.com>, Andy Shevchenko
-	<andriy.shevchenko@linux.intel.com>,
-	=?UTF-8?q?Micha=C5=82=20K=C4=99pie=C5=84?= <kernel@kempniu.pl>
-CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
-	<AVKrasnov@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v1 2/2] mtd: rawnand: meson: use NAND core API to check status
-Date: Wed, 5 Jul 2023 13:43:58 +0300
-Message-ID: <20230705104403.696680-3-AVKrasnov@sberdevices.ru>
-X-Mailer: git-send-email 2.35.0
-In-Reply-To: <20230705104403.696680-1-AVKrasnov@sberdevices.ru>
-References: <20230705104403.696680-1-AVKrasnov@sberdevices.ru>
+	id 1qH0tc-00FkMq-27
+	for linux-amlogic@lists.infradead.org;
+	Wed, 05 Jul 2023 11:42:10 +0000
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f96d680399so10018385e87.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 05 Jul 2023 04:42:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688557319; x=1691149319;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CaNHukNnVjDsPaAH2UItJR4RWTnzSz8CQM5za4d01xc=;
+        b=eoGCbKtPXzvda15F0EFg+vTluEi6TZEBd+7pMT4pGkWtwQrRjqNWhEKo/FVA3KMbG0
+         dkaVNTuimNtL4VUMmRIOTCirIG6TfXDlU/o28TFeU4WvdK5p55xIsA/p6BnptPWtPQp2
+         FfxGBhI301mJkHqaLL++z2vQVn+47JZ4hrnH+eax+PTHgL9a7hVl2d54/kx/K5hVSeOc
+         SbYoAhKEydcYnE5/x3oLPJ+xDYfu47dlEOJBB++GKvxnLjYfPXKX4E6lnaYCSzj40mzK
+         6ocdqZTXkGQHfsws1AfbSQPr02sGs4lEIacNxoq2+mvtjasMQnfDfmEijIHi9qpCM/Yg
+         jRMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688557319; x=1691149319;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CaNHukNnVjDsPaAH2UItJR4RWTnzSz8CQM5za4d01xc=;
+        b=LMOCAmzusez4Ahq8KbaaD96j5lDEbHFvFpA8k5kbK+blhvz/DMQeJoxE5fVJjfH6yH
+         GKezGyeP/gDiuKRNQXhxJNCWN10y8/v+YQKiYOsGLurCpiRaVn/lOkoDjauaeZ6SeDnz
+         I7z7I85ZjE3Jo814VlJX53vxACAYnFoOLCRd5vIXV4kd3jBX6/23PUy1YiCX1Kz3I+nM
+         g5p+AcJls88EmIUC7oCEDATz9JwYXcTxjvaL4lTuWR++LmEn9efOCBmNzKgyrDu/nrGY
+         8TuslNQLeYO9gYvfvLkkw8LXLuWFvdnW5t77O890FlFrr7k2u0OFcFJoikla0/2K2yqn
+         4WPA==
+X-Gm-Message-State: ABy/qLamjocCgKrRRNnF+xqNutDK0PuLSlRpsCagxVzou10HfMXdJrsi
+	HeWWpwmzrgDoywz54cTt7e5JRw==
+X-Google-Smtp-Source: APBJJlFvQ35NSEFVi2NIkEQ1WNt56GRkE1nTH8Ny1kcUH3mWK3BNQT6Ii7cKXFgw3UkumO+kXtU5eg==
+X-Received: by 2002:a05:6512:3256:b0:4fb:9f93:365f with SMTP id c22-20020a056512325600b004fb9f93365fmr11125377lfr.38.1688557319123;
+        Wed, 05 Jul 2023 04:41:59 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 8-20020a05600c028800b003fb416d732csm1916808wmk.6.2023.07.05.04.41.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jul 2023 04:41:58 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Wed, 05 Jul 2023 13:41:51 +0200
+Subject: [PATCH v2 1/3] dt-bindings: clock: amlogic: convert
+ amlogic,gxbb-clkc.txt to dt-schema
 MIME-Version: 1.0
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178444 [Jul 05 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/05 05:28:00 #21565829
-X-KSMG-AntiVirus-Status: Clean, skipped
+Message-Id: <20230705-b4-amlogic-bindings-convert-take2-v2-1-22be915ddc3b@linaro.org>
+References: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
+In-Reply-To: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
+To: Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3423;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=6blIrzyVDZas5IcZi9A41vegPBQeeY36EiPBXllpWCM=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkpVcDIG9EJRq/VdZ54P4MlMspaLByJsDrCw/YRGwx
+ 4SNHHPOJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKVXAwAKCRB33NvayMhJ0c2fEA
+ DAnzgI58asWhl7TlJS6OIvn/cirsOIIi/YaI5uM2uvix525ka7MBOSs7U4ASlxEnSPzlntuVNZ4Zib
+ UtIfG5fKqlc6ru4wDUX9Yog9yegd7m3Smqatdw7fdxyNvWX+Z7j8j9roPCF3WRG46TryfAVcpA4rwy
+ x2nShrNgHcJg6j7h+SlJQqpfYKqz5n4+kNgfUjHMt5/KKvMn+XoTS2Mrae3zlgRq0v0shKH959T0QA
+ 9QcAPMwcsPrrF8gqYOzTFUJbgPlHIxRupUCXZqdiWFhmQW/k4kBxF3DVIbXSJ4gFMupbzpfUrlSm08
+ GbmHrhpzeWn7eUrt5ghPigCVVQdCqF8bu2BSqKcJq/KalvC8vN0aW7Yvo2+ic9L6IO6rerg6P2BPHN
+ xZernKG7WIgYFL/BqdaewH/9CMXfqPCtXh77LL096DBhuZo0RZbH1NDEreaN21tf8Lt39ofM1hliSq
+ Okrm9OCUCmnoFFiYqXd82KkJu3DH87zzJxBlVqVC6RFZEEO5ZmsLpZyBg6XNc+P9VHuI6G2UjNqVQU
+ 9CdBnQMTLYoPzcoNJDciiyKOx0x/mVwjzA5iT/FUiH2ay/AuKqJ6JmiofC+L4gBtZ8w2zAr1Qyioul
+ mj+E+h9jjFxXd6uWKyGp+r3sLEOcmvSis7LdqN2EimfU1wWOl3y+erBpB8Ew==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230705_034947_492101_2A91DDF1 
-X-CRM114-Status: GOOD (  15.62  )
+X-CRM114-CacheID: sfid-20230705_044208_694613_B7C7BFCE 
+X-CRM114-Status: GOOD (  14.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,107 +116,119 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-NAND core API already has functions to send NAND_CMD_STATUS and leave
-status checking mode by sending NAND_CMD_READ0, so use both of them
-instead of direct access to the controller registers.
+Convert the Amlogic Clock Controller bindings to dt-schema.
 
-Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/mtd/nand/raw/meson_nand.c | 26 ++++++++++++--------------
- 1 file changed, 12 insertions(+), 14 deletions(-)
+ .../bindings/clock/amlogic,gxbb-clkc.txt           | 53 ----------------------
+ .../bindings/clock/amlogic,gxbb-clkc.yaml          | 37 +++++++++++++++
+ 2 files changed, 37 insertions(+), 53 deletions(-)
 
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index c7213f03a773..54e7fdbf0706 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -422,9 +422,10 @@ static void meson_nfc_set_data_oob(struct nand_chip *nand,
- 	}
- }
- 
--static int meson_nfc_wait_no_rb_pin(struct meson_nfc *nfc, int timeout_ms,
-+static int meson_nfc_wait_no_rb_pin(struct nand_chip *nand, int timeout_ms,
- 				    bool need_cmd_read0)
- {
-+	struct meson_nfc *nfc = nand_get_controller_data(nand);
- 	u32 cmd, cfg;
- 
- 	meson_nfc_cmd_idle(nfc, nfc->timing.twb);
-@@ -436,8 +437,7 @@ static int meson_nfc_wait_no_rb_pin(struct meson_nfc *nfc, int timeout_ms,
- 	writel(cfg, nfc->reg_base + NFC_REG_CFG);
- 
- 	reinit_completion(&nfc->completion);
--	cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_STATUS;
--	writel(cmd, nfc->reg_base + NFC_REG_CMD);
-+	nand_status_op(nand, NULL);
- 
- 	/* use the max erase time as the maximum clock for waiting R/B */
- 	cmd = NFC_CMD_RB | NFC_CMD_RB_INT_NO_PIN | nfc->timing.tbers_max;
-@@ -447,12 +447,8 @@ static int meson_nfc_wait_no_rb_pin(struct meson_nfc *nfc, int timeout_ms,
- 					 msecs_to_jiffies(timeout_ms)))
- 		return -ETIMEDOUT;
- 
--	if (need_cmd_read0) {
--		cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_READ0;
--		writel(cmd, nfc->reg_base + NFC_REG_CMD);
--		meson_nfc_drain_cmd(nfc);
--		meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
--	}
-+	if (need_cmd_read0)
-+		nand_exit_status_op(nand);
- 
- 	return 0;
- }
-@@ -485,9 +481,11 @@ static int meson_nfc_wait_rb_pin(struct meson_nfc *nfc, int timeout_ms)
- 	return ret;
- }
- 
--static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms,
-+static int meson_nfc_queue_rb(struct nand_chip *nand, int timeout_ms,
- 			      bool need_cmd_read0)
- {
-+	struct meson_nfc *nfc = nand_get_controller_data(nand);
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+deleted file mode 100644
+index 7ccecd5c02c1..000000000000
+--- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
++++ /dev/null
+@@ -1,53 +0,0 @@
+-* Amlogic GXBB Clock and Reset Unit
+-
+-The Amlogic GXBB clock controller generates and supplies clock to various
+-controllers within the SoC.
+-
+-Required Properties:
+-
+-- compatible: should be:
+-		"amlogic,gxbb-clkc" for GXBB SoC,
+-		"amlogic,gxl-clkc" for GXL and GXM SoC,
+-		"amlogic,axg-clkc" for AXG SoC.
+-		"amlogic,g12a-clkc" for G12A SoC.
+-		"amlogic,g12b-clkc" for G12B SoC.
+-		"amlogic,sm1-clkc" for SM1 SoC.
+-- clocks : list of clock phandle, one for each entry clock-names.
+-- clock-names : should contain the following:
+-  * "xtal": the platform xtal
+-
+-- #clock-cells: should be 1.
+-
+-Each clock is assigned an identifier and client nodes can use this identifier
+-to specify the clock which they consume. All available clocks are defined as
+-preprocessor macros in the dt-bindings/clock/gxbb-clkc.h header and can be
+-used in device tree sources.
+-
+-Parent node should have the following properties :
+-- compatible: "syscon", "simple-mfd, and "amlogic,meson-gx-hhi-sysctrl" or
+-              "amlogic,meson-axg-hhi-sysctrl"
+-- reg: base address and size of the HHI system control register space.
+-
+-Example: Clock controller node:
+-
+-sysctrl: system-controller@0 {
+-	compatible = "amlogic,meson-gx-hhi-sysctrl", "syscon", "simple-mfd";
+-	reg = <0 0 0 0x400>;
+-
+-	clkc: clock-controller {
+-		#clock-cells = <1>;
+-		compatible = "amlogic,gxbb-clkc";
+-		clocks = <&xtal>;
+-		clock-names = "xtal";
+-	};
+-};
+-
+-Example: UART controller node that consumes the clock generated by the clock
+-  controller:
+-
+-	uart_AO: serial@c81004c0 {
+-		compatible = "amlogic,meson-uart";
+-		reg = <0xc81004c0 0x14>;
+-		interrupts = <0 90 1>;
+-		clocks = <&clkc CLKID_CLK81>;
+-	};
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.yaml
+new file mode 100644
+index 000000000000..63246f1cb539
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.yaml
+@@ -0,0 +1,37 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/amlogic,gxbb-clkc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 	if (nfc->no_rb_pin) {
- 		/* This mode is used when there is no wired R/B pin.
- 		 * It works like 'nand_soft_waitrdy()', but instead of
-@@ -499,7 +497,7 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms,
- 		 * needed (for all cases except page programming - this
- 		 * is reason of 'need_cmd_read0' flag).
- 		 */
--		return meson_nfc_wait_no_rb_pin(nfc, timeout_ms,
-+		return meson_nfc_wait_no_rb_pin(nand, timeout_ms,
- 						need_cmd_read0);
- 	} else {
- 		return meson_nfc_wait_rb_pin(nfc, timeout_ms);
-@@ -709,7 +707,7 @@ static int meson_nfc_rw_cmd_prepare_and_execute(struct nand_chip *nand,
- 	if (in) {
- 		nfc->cmdfifo.rw.cmd1 = cs | NFC_CMD_CLE | NAND_CMD_READSTART;
- 		writel(nfc->cmdfifo.rw.cmd1, nfc->reg_base + NFC_REG_CMD);
--		meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tR_max), true);
-+		meson_nfc_queue_rb(nand, PSEC_TO_MSEC(sdr->tR_max), true);
- 	} else {
- 		meson_nfc_cmd_idle(nfc, nfc->timing.tadl);
- 	}
-@@ -755,7 +753,7 @@ static int meson_nfc_write_page_sub(struct nand_chip *nand,
- 
- 	cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_PAGEPROG;
- 	writel(cmd, nfc->reg_base + NFC_REG_CMD);
--	meson_nfc_queue_rb(nfc, PSEC_TO_MSEC(sdr->tPROG_max), false);
-+	meson_nfc_queue_rb(nand, PSEC_TO_MSEC(sdr->tPROG_max), false);
- 
- 	meson_nfc_dma_buffer_release(nand, data_len, info_len, DMA_TO_DEVICE);
- 
-@@ -1071,7 +1069,7 @@ static int meson_nfc_exec_op(struct nand_chip *nand,
- 			break;
- 
- 		case NAND_OP_WAITRDY_INSTR:
--			meson_nfc_queue_rb(nfc, instr->ctx.waitrdy.timeout_ms,
-+			meson_nfc_queue_rb(nand, instr->ctx.waitrdy.timeout_ms,
- 					   true);
- 			if (instr->delay_ns)
- 				meson_nfc_cmd_idle(nfc, delay_idle);
++title: Amlogic Clock Controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++properties:
++  compatible:
++    enum:
++      - amlogic,gxbb-clkc
++      - amlogic,gxl-clkc
++      - amlogic,axg-clkc
++      - amlogic,g12a-clkc
++      - amlogic,g12b-clkc
++      - amlogic,sm1-clkc
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: xtal
++
++  '#clock-cells':
++    const: 1
++
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - '#clock-cells'
++
++additionalProperties: false
+
 -- 
-2.35.0
+2.34.1
 
 
 _______________________________________________
