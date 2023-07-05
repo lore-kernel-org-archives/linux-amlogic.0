@@ -4,82 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DFC1EB64DA
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jul 2023 10:50:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27A30C001B0
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jul 2023 10:50:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=MG5mRnif+4vGvTVOUQLvCQBYb2pI8j7MZjAMsKUEhoA=; b=yfpjwkJWkBxY9A
-	a5yuZBfbgcEP0T3zS1aQ4I4iqtmN6u1U/dGiSm8wyy27b8ZDJUPzECSqbfHKGjVuu8+7Z2pNMxIhG
-	vA33q7Dnlg0SWBTRWYk2hu6K61YuClyFbQVBIvUSIs8fx/a+XKXrE5aVuuKBExye+hlDt7ZusFfN9
-	ZcfK8rE5yJxrud0dD43NZt9IxB1jF9UkVtw9sWxCeSqZRRgxttNrS+mGyiZnQvXzdykG/uyNDxBDV
-	wcJITGv71lsTbMo1UsVpDvAbj+UJg31w79/2+tAXOH5DiUzApIDyWD48H/518WFM+YOmRzCwhYS2r
-	Jm608aWb0Nk8qeRJGG8Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=TOzqLzvpYZl6pnhfu8osyEQrAXEEhj1fDW6ovYuP+Hw=; b=NtmIMJmLtJ39ZZ
+	aoq9SbQ/YDOtNkeprXS0aOijU3CndVkTxMXbNJNye/2OLOVflLrIS9jzdG1yZ6/UK2rneHYhYxwvZ
+	M9P2vsLd7tG4SKU7aNaZJTKBZl07QwSlrtHjlyQ9NkrDWIleSHkvrFFY/9ptY9Li5YWnbXXCP9xsT
+	8XL2KAyIIbNqL1P4ICFKOvlgfFseVMO46npPwXQnCJdIAMcJ7z97F66x24Xntu64l42A9v73ya84S
+	7IWDqcWbCQJAT7Dtv7chNS7ac9b0u0VMfJx0v4LKg0H7kLnDSOpQUU8lNKQzXjfNoQq2Dct1Pyga0
+	Y1jP/k2HLOJy1i8KxF6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qH04x-00FeD9-1u;
-	Wed, 05 Jul 2023 10:49:47 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1qH04z-00FeE9-0t;
+	Wed, 05 Jul 2023 10:49:49 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qH04t-00Fe9X-26;
+	id 1qH04v-00FeAV-0p;
 	Wed, 05 Jul 2023 10:49:46 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id B484A120061;
-	Wed,  5 Jul 2023 13:49:35 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru B484A120061
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 4FB6510007C;
+	Wed,  5 Jul 2023 13:49:41 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4FB6510007C
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1688554175;
-	bh=R99U9ZeCFnUhxosYR742hW48fCGlup+4oiuVH5a34TU=;
+	s=mail; t=1688554181;
+	bh=hwuIkah7tdQ/ux/daGas/Or4t38i1CesFllcRMgtpB4=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=f/Kt7s0MLJ8wm5jz5SIu+fq0XAOa9AjzSUvxVJkht5Z+rPZCp1fsLoj11FH6+dAlI
-	 L3Y42u90dUGCW25q33urS2EmnaXe64mpMaBnoBaSx/AXbUDJB0KHunpXl47ScVaR0h
-	 Op2JbzSVIZs570B7Di5kkwhcM5iA2CXxPv/hCye7c78p6Ck+034u3JjalWocY3F6cD
-	 l/F7GN9Y4evyoW5Lq3Dlrm8YuwdzqstnBK+FV7WMN1QjC2I8LlIGXcPAxuMzf07JU5
-	 rCvC7i7DG/suhGZi1XbZHo4ffhrxtAikTJ9GGkvxbaVc8Xtpb1LWJqmXbkqIyT9jHx
-	 vk0AvTNFSOR9Q==
+	b=LCrgUoQkNEiOr6e6O1dwXK1JjmVaO0lqpozfIRWVjYdzZjuDFjwINjJOW7U4tSTxr
+	 5achdhqLr7WTN53PaZaRGSrURCLG+azXunoyo8/Ipjnqf0ijKu2/hV4vAU/VyRtS/Y
+	 n3ltxFK5DGvoyr8rr7tOK+gjsW7gIVUEbrBWnzyobUCNcO6N3lGrEfPdZm3I1kfzEr
+	 /RZ0yHEQmvcb8+1ogLDukXiniiR849nckVw48Aq9thifA5oV4K8jrNlhlTb3QZMvpo
+	 DAUNy0xZEq51KS97dyvKR0T3570mwlVs2GWoZlJN0ln5N6Y1rMMVjS7UVUjpsdjWVO
+	 VZwrJfRdovaAw==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed,  5 Jul 2023 13:49:35 +0300 (MSK)
+	Wed,  5 Jul 2023 13:49:41 +0300 (MSK)
 Received: from localhost.localdomain (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Wed, 5 Jul 2023 13:49:32 +0300
+ 15.2.1118.30; Wed, 5 Jul 2023 13:49:38 +0300
 From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
 To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
 	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
  Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	=?UTF-8?q?Micha=C5=82=20K=C4=99pie=C5=84?= <kernel@kempniu.pl>, Arseniy
- Krasnov <AVKrasnov@sberdevices.ru>, Adam Borowski <kilobyte@angband.pl>,
-	JaimeLiao <jaimeliao.tw@gmail.com>, ChenXiaoSong <chenxiaosong2@huawei.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, JaimeLiao
+	<jaimeliao.tw@gmail.com>, =?UTF-8?q?Micha=C5=82=20K=C4=99pie=C5=84?=
+	<kernel@kempniu.pl>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Arseniy Krasnov <AVKrasnov@sberdevices.ru>, ChenXiaoSong
+	<chenxiaosong2@huawei.com>, Adam Borowski <kilobyte@angband.pl>
 CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
 	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v1 0/2] use NAND core API for Meson controller
-Date: Wed, 5 Jul 2023 13:43:56 +0300
-Message-ID: <20230705104403.696680-1-AVKrasnov@sberdevices.ru>
+Subject: [PATCH v1 1/2] mtd: rawnand: export 'nand_exit_status_op()'
+Date: Wed, 5 Jul 2023 13:43:57 +0300
+Message-ID: <20230705104403.696680-2-AVKrasnov@sberdevices.ru>
 X-Mailer: git-send-email 2.35.0
+In-Reply-To: <20230705104403.696680-1-AVKrasnov@sberdevices.ru>
+References: <20230705104403.696680-1-AVKrasnov@sberdevices.ru>
 MIME-Version: 1.0
 X-Originating-IP: [100.64.160.123]
 X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178444 [Jul 05 2023]
+X-KSMG-AntiSpam-Lua-Profiles: 178443 [Jul 05 2023]
 X-KSMG-AntiSpam-Version: 5.9.59.0
 X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
 X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
 X-KSMG-AntiPhishing: Clean
@@ -87,8 +89,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/05 05:28:00 #21565829
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230705_034944_420098_C70189F2 
-X-CRM114-Status: GOOD (  11.25  )
+X-CRM114-CacheID: sfid-20230705_034945_643269_61E1F4E0 
+X-CRM114-Status: GOOD (  11.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,23 +107,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-During waiting for command completion this driver sends NAND_CMD_STATUS
-and then NAND_CMD_READ0 to leave status checking mode. Instead of direct
-accesses to the registers of the controller to send these commands, this
-patchset uses currently implemented and exported NAND API for the same
-purposes. First patch is preparation: we need to export function 
-'nand_exit_status_op()' for modules. Second patch uses these functions
-in the Meson driver.
+Export this function to work in pair with 'nand_status_op()' which is
+already exported.
 
-Arseniy Krasnov (2):
-  mtd: rawnand: export 'nand_exit_status_op()'
-  mtd: rawnand: meson: use NAND core API to check status
+Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+---
+ drivers/mtd/nand/raw/nand_base.c | 1 +
+ include/linux/mtd/rawnand.h      | 1 +
+ 2 files changed, 2 insertions(+)
 
- drivers/mtd/nand/raw/meson_nand.c | 26 ++++++++++++--------------
- drivers/mtd/nand/raw/nand_base.c  |  1 +
- include/linux/mtd/rawnand.h       |  1 +
- 3 files changed, 14 insertions(+), 14 deletions(-)
-
+diff --git a/drivers/mtd/nand/raw/nand_base.c b/drivers/mtd/nand/raw/nand_base.c
+index a6af521832aa..d4b55155aeae 100644
+--- a/drivers/mtd/nand/raw/nand_base.c
++++ b/drivers/mtd/nand/raw/nand_base.c
+@@ -1885,6 +1885,7 @@ int nand_exit_status_op(struct nand_chip *chip)
+ 
+ 	return 0;
+ }
++EXPORT_SYMBOL_GPL(nand_exit_status_op);
+ 
+ /**
+  * nand_erase_op - Do an erase operation
+diff --git a/include/linux/mtd/rawnand.h b/include/linux/mtd/rawnand.h
+index 5159d692f9ce..90a141ba2a5a 100644
+--- a/include/linux/mtd/rawnand.h
++++ b/include/linux/mtd/rawnand.h
+@@ -1540,6 +1540,7 @@ int nand_reset_op(struct nand_chip *chip);
+ int nand_readid_op(struct nand_chip *chip, u8 addr, void *buf,
+ 		   unsigned int len);
+ int nand_status_op(struct nand_chip *chip, u8 *status);
++int nand_exit_status_op(struct nand_chip *chip);
+ int nand_erase_op(struct nand_chip *chip, unsigned int eraseblock);
+ int nand_read_page_op(struct nand_chip *chip, unsigned int page,
+ 		      unsigned int offset_in_page, void *buf, unsigned int len);
 -- 
 2.35.0
 
