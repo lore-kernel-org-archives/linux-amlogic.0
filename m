@@ -4,87 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96D51C0015E
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jul 2023 08:23:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96A23EB64DA
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jul 2023 09:47:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qRcshQWo3I+Ph7inMgyepatAqHKTcYPSDtj6AsFe3C8=; b=X7WbtsS5AjCoUm
-	b/PQawzgJKqgRy2xJp5c+MF9d9utByU77Zvd/usiuazVVu6OlFf6Dc+fsVKo3YgHM+xnfAR6hrdjl
-	F8aB0d6MkdO7N1bnBwJ6E2ut1socJGVI3J5JguTH4ORUp7iATPOa9O5xvwWQp0pM3yYlYWHoBzpnP
-	Hr2eOVxQ3PTkKvxv3agc+f4bg3+MusTWj9iqogOno2oaCPrAgBJ1OzmWm83EnsorrZpILIwbPVG2G
-	61fjwmdWXXX6ZUesfcIPNt2OGlytPbthuGjNl5jlgtIdVFvoMAGmSD9Hf8D5pvJwv0xIzTap3PVI2
-	6/KpT0gP3tefoiDzZoEg==;
+	List-Owner; bh=FHas0B+f0/soZ/CJ4A0f+VvBH0HtJOwxYIzoO5m1DPo=; b=XyPWQSm9IKoq4D
+	O8a+hZmoMjigrvWXWVBD7ng/vbtLMnfnFGRNbqJYZZYX/yNepbqviMEDaQmdkkoff1qhFnvyovRFg
+	/RK1DSuRAtg56E/BWUW31RqRu7ihHRRgKfScUAuiko8PnnBVYI1OGMSMu07wHczg4BqjTsq0bcUi9
+	BowVIADvXDE1Fmw9Wj11w7OtyH+iHDC3cAOeNgY4t/ORFfxqUUoMDFV0EFEQu9PvPjkt+dVW9tSpD
+	s3oyQElwjGDDb2mnKmrxD4Qz8KRMY9fMdxDjZDG80rWydeC3owW+dlDoSBSm7/OTCyUKi1mny0iXz
+	HD6joW4RdMEFgX/f563w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGxnB-00FCAs-2f;
-	Wed, 05 Jul 2023 08:23:17 +0000
-Received: from relay2-d.mail.gandi.net ([217.70.183.194])
+	id 1qGz6F-00FOyl-1M;
+	Wed, 05 Jul 2023 09:47:03 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGxn8-00FC7T-1D;
-	Wed, 05 Jul 2023 08:23:16 +0000
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1688545378;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rydOgVNykw77d4FJDzENpk9IP9/IhrYgK2eGBj+DtDo=;
-	b=f7GkieLtVuK91DIemhGTaVzwZ65cQ3DEVfd/8UNvgdZ8qCyHjuqj9fwfYIVIRyCrozRBF4
-	g3NATy9M3Z27XB/jzpWAjFCjwvAyJIWV66A7TQl6pK79srxl7lU7NsQbVsbXNREj2wt3rA
-	g0FrNqsc+yg6ryTQ3qkalrjhezmZm+ydJH0l2BO56yVWQ48E6Hcp7Yzzwbv2JJeGNAcVLP
-	+tR776beHA4wQxRana4fVs8xujefzWiM4oKX6MmIHf6vDnS5yez9clfALcUsI2EhMNKmoD
-	mcw1FjIASORh7mw8SYkni/S35iWzuzu0DF1z/CDlFe9TnWZQu8AW+b6cWjbcNg==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8A6694000B;
-	Wed,  5 Jul 2023 08:22:55 +0000 (UTC)
-Date: Wed, 5 Jul 2023 10:22:54 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-Cc: Liang Yang <liang.yang@amlogic.com>, Richard Weinberger
- <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, <oxffffaa@gmail.com>,
- <kernel@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH v2 1/2] dt-bindings: nand: meson: support for 512B
- ECC step size
-Message-ID: <20230705102254.0aeb94ea@xps-13>
-In-Reply-To: <365898fb-3719-38e0-4383-e04ccc0b475b@sberdevices.ru>
-References: <20230705065434.297040-1-AVKrasnov@sberdevices.ru>
-	<20230705065434.297040-2-AVKrasnov@sberdevices.ru>
-	<20230705093702.6c0421d7@xps-13>
-	<365898fb-3719-38e0-4383-e04ccc0b475b@sberdevices.ru>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	id 1qGz6A-00FOvT-0f;
+	Wed, 05 Jul 2023 09:47:01 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id E1B8A12005A;
+	Wed,  5 Jul 2023 12:46:38 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru E1B8A12005A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1688550398;
+	bh=ruyM7/967PkR3Obij04ndcyWIoQTBHGsMkxNaYWC+H8=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=hvznwnH+YYIysXV3qrXto4v2qRPeYETSTSzrMHyOGWOCKJFMAX/mrax4QZbCcN1Bu
+	 /YlE8EjMnnsGSZhrJURP3J8nbe3/O1aVMnM9JWcC3aHEJ4JZgqAQFpFhfJrYljWhpj
+	 rFeB3CbdyoosyYwDVZ1pIv9IyYoahec68KEwN4t8l/ckPNE2uC2MfSMMUm7PTlMvMW
+	 o3TYbFObVrXMOwofIkAPk4P+j2vCelBmktG6wj+EiSWcB+jkvZ/zen7JMAuzOSVQIU
+	 P1m8Y+DlxhEPlWKqadgE18u9LRjVvvoVuNGIl6KqfxkkJVmWj3zVuyeHy9dVTUIcxK
+	 C2Ni5Op61thdA==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed,  5 Jul 2023 12:46:38 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 5 Jul
+ 2023 12:46:37 +0300
+Date: Wed, 5 Jul 2023 12:46:38 +0300
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: Conor Dooley <conor@kernel.org>
+CC: <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<neil.armstrong@linaro.org>, <jbrunet@baylibre.com>, <jirislaby@kernel.org>,
+	<khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+	<kelvin.zhang@amlogic.com>, <xianwei.zhao@amlogic.com>,
+	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-serial@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v1 5/5] arm64: dts: meson: a1: change uart compatible
+ string
+Message-ID: <20230705094638.mosz6wk76ztd5xf5@CAB-WSD-L081021>
+References: <20230704135936.14697-1-ddrokosov@sberdevices.ru>
+ <20230704135936.14697-6-ddrokosov@sberdevices.ru>
+ <20230704-cannabis-cannon-19397cd806bc@spud>
+ <20230704170843.wksxekltre2ob4en@CAB-WSD-L081021>
+ <20230704-staff-smilingly-401b99e28edd@spud>
+ <20230704171900.ulnnpkuzvtbbqa3d@CAB-WSD-L081021>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20230704171900.ulnnpkuzvtbbqa3d@CAB-WSD-L081021>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178440 [Jul 05 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:7.1.1,5.0.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/05 05:28:00 #21565829
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230705_012314_833561_7D06C6D8 
-X-CRM114-Status: GOOD (  28.80  )
+X-CRM114-CacheID: sfid-20230705_024658_587654_9B015FA2 
+X-CRM114-Status: GOOD (  23.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,65 +107,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgQXJzZW5peSwKCmF2a3Jhc25vdkBzYmVyZGV2aWNlcy5ydSB3cm90ZSBvbiBXZWQsIDUgSnVs
-IDIwMjMgMTE6MDM6MzAgKzAzMDA6Cgo+IE9uIDA1LjA3LjIwMjMgMTA6MzcsIE1pcXVlbCBSYXlu
-YWwgd3JvdGU6Cj4gPiBIaSBBcnNlbml5LAo+ID4gCj4gPiBBVktyYXNub3ZAc2JlcmRldmljZXMu
-cnUgd3JvdGUgb24gV2VkLCA1IEp1bCAyMDIzIDA5OjU0OjMzICswMzAwOgo+ID4gICAKPiA+PiBN
-ZXNvbiBOQU5EIHN1cHBvcnRzIGJvdGggNTEyQiBhbmQgMTAyNEIgRUNDIHN0ZXAgc2l6ZSwgc28g
-cmVwbGFjZQo+ID4+ICdjb25zdCcgZm9yIG9ubHkgMTAyNEIgc3RlcCBzaXplIHdpdGggZW51bSBm
-b3IgYm90aCBzaXplcy4KPiA+Pgo+ID4+IFNpZ25lZC1vZmYtYnk6IEFyc2VuaXkgS3Jhc25vdiA8
-QVZLcmFzbm92QHNiZXJkZXZpY2VzLnJ1Pgo+ID4+IC0tLQo+ID4+ICBEb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3MvbXRkL2FtbG9naWMsbWVzb24tbmFuZC55YW1sIHwgNCArKystCj4g
-Pj4gIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPiA+Pgo+
-ID4+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbXRkL2Ft
-bG9naWMsbWVzb24tbmFuZC55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
-L210ZC9hbWxvZ2ljLG1lc29uLW5hbmQueWFtbAo+ID4+IGluZGV4IDNiZWM4YWY5MWJiYi4uODFj
-YTg4Mjg3MzFhIDEwMDY0NAo+ID4+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9tdGQvYW1sb2dpYyxtZXNvbi1uYW5kLnlhbWwKPiA+PiArKysgYi9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvbXRkL2FtbG9naWMsbWVzb24tbmFuZC55YW1sCj4gPj4gQEAg
-LTQ5LDcgKzQ5LDggQEAgcGF0dGVyblByb3BlcnRpZXM6Cj4gPj4gICAgICAgICAgY29uc3Q6IGh3
-Cj4gPj4gIAo+ID4+ICAgICAgICBuYW5kLWVjYy1zdGVwLXNpemU6Cj4gPj4gLSAgICAgICAgY29u
-c3Q6IDEwMjQKPiA+PiArICAgICAgICBlbnVtOiBbNTEyLCAxMDI0XQo+ID4+ICsgICAgICAgIGRl
-ZmF1bHQ6IDEwMjQgIAo+ID4gCj4gPiBJIHdhcyBhY3R1YWxseSB3cm9uZyBpbiBteSBwcmV2aW91
-cyByZXZpZXcsIHRoZXJlIGlzIG5vIHN0cm9uZyBkZWZhdWx0Cj4gPiBoZXJlIGFzIHRoZSBleGlz
-dGluZyBiaW5kaW5nIChhbmQgY29kZSkgdHJ5IHRvIHVzZSB0aGUgY2xvc2VzdAo+ID4gcGFyYW1l
-dGVycyByZXF1aXJlZCBieSB0aGUgTkFORCBjaGlwOiB3ZSBwaWNrIHRoZSAib3B0aW1hbCIKPiA+
-IGNvbmZpZ3VyYXRpb24uIFNvIGlmIHlvdSBkb24ndCBwcm92aWRlIGFueSB2YWx1ZSBoZXJlLCB3
-ZSBleHBlY3QKPiA+IHRoZSBzdHJlbmd0aCBhbmQgc3RlcCBzaXplIGFkdmVydGl6ZWQgYnkgdGhl
-IGNoaXAgdG8gYmUgdXNlZC4gVGhpcyBpcyBhCj4gPiBjb21tb24gZGVmYXVsdCBpbiB0aGUgcmF3
-IE5BTkQgc3Vic3lzdGVtLgo+ID4gCj4gPiBQbGVhc2UgZHJvcCB0aGUgZGVmYXVsdCBsaW5lLCBy
-ZS1pbnRlZ3JhdGUgdGhlIG1pc3NpbmcgUi1ieSB0YWcgZnJvbQo+ID4gUm9iIGFuZCBpbiBhIHNl
-cGFyYXRlIHBhdGNoIHBsZWFzZSBtYXJrIG5hbmQtZWNjLXN0ZXAtc2l6ZSBhbmQKPiA+IG5hbmQt
-ZWNjLXN0cmVuZ3RoIG1hbmRhdG9yeSBpZiB0aGUgb3RoZXIgaXMgcHJvdmlkZS4gSU9XLCB3ZSBl
-eHBlY3QKPiA+IGVpdGhlciBib3RoLCBvciBub25lIG9mIHRoZW0sIGJ1dCBub3QgYSBzaW5nbGUg
-b25lLiAgCj4gCj4gSSBzZWUsIG5vIHByb2JsZW0hICJtYW5kYXRvcnkiIG1lYW5zIHVwZGF0ZSBk
-ZXNjcmlwdGlvbiBvZiBib3RoIGZpZWxkcyBsaWtlOgo+IAo+ICAgICBkZXNjcmlwdGlvbjogICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAo+ICAg
-ICAgIE1hbmRhdG9yeSBpZiBuYW5kLWVjYy1zdGVwLXNpemUgaXMgc2V0LgoKTm9wZSA6LSkKClNv
-bWV0aGluZyBhbG9uZzoKCmFsbE9mOgogIC0gaWY6CiAgICA8bmFuZC1jaGlwPjoKICAgICAgcHJv
-cGVydGllczoKICAgICAgICBjb250YWluczoKICAgICAgICAgIC0gbmFuZC1lY2Mtc3RlcC1zaXpl
-CiAgICB0aGVuOgogICAgICByZXF1aXJlZDoKICAgICAgICA8bmFuZC1jaGlwPjoKICAgICAgICAg
-IHByb3BlcnRpZXM6CiAgICAgICAgICAgIC0gbmFuZC1lY2Mtc3RyZW5ndGgKCkFuZCBzYW1lIHdp
-dGggdGhlIG9wcG9zaXRlIGxvZ2ljLgoKPiAKPiBldGMuCj4gCj4gPwo+IAo+ID4gICAKPiA+PiAg
-Cj4gPj4gICAgICAgIG5hbmQtZWNjLXN0cmVuZ3RoOgo+ID4+ICAgICAgICAgIGVudW06IFs4LCAx
-NiwgMjQsIDMwLCA0MCwgNTAsIDYwXQo+ID4+IEBAIC05Myw2ICs5NCw3IEBAIGV4YW1wbGVzOgo+
-ID4+ICAgICAgICBuYW5kQDAgewo+ID4+ICAgICAgICAgIHJlZyA9IDwwPjsKPiA+PiAgICAgICAg
-ICBuYW5kLXJiID0gPDA+Owo+ID4+ICsgICAgICAgIG5hbmQtZWNjLXN0ZXAtc2l6ZSA9IDwxMDI0
-PjsgIAo+ID4gCj4gPiBTbyBpbiB0aGUgZW5kIHRoaXMgbGluZSBpcyB3cm9uZyBhbmQgb25jZSB5
-b3UgZ2V0IHRoZSBkZXNjcmlwdGlvbiByaWdodAo+ID4gYXMgSSBtZW50aW9uZWQgaXQgYWJvdmUs
-IHRoaXMgd2lsbCBmYWlsIHRvIHBhc3MKPiA+IGBtYWtlIERUX1NDSEVNQV9GSUxFUz1Eb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbXRkLyBkdF9iaW5pZG5nX2NoZWNrYAo+ID4gUGxl
-YXNlIGRyb3AgaXQgZnJvbSB0aGUgZXhhbXBsZSwgZG9uJ3QgYWRkIHRoZSBzZWNvbmQgcHJvcGVy
-dHkgaGVyZSwKPiA+IGl0J3MgYmVzdCB0byBzaG93IGEgY2xlYW4gZXhhbXBsZSB3aGVyZSBwZW9w
-bGUgc3RvcCB0YW1wZXJpbmcgZm9yIG5vCj4gPiByZWFzb24gd2l0aCB0aGUgb3B0aW1hbCB2YWx1
-ZXMuICAKPiAKPiBPayEKPiAKPiBUaGFua3MsIEFyc2VuaXkKPiAKPiA+ICAgCj4gPj4gICAgICAg
-IH07Cj4gPj4gICAgICB9Owo+ID4+ICAgIAo+ID4gCj4gPiAKPiA+IFRoYW5rcywKPiA+IE1pcXXD
-qGwgIAoKClRoYW5rcywKTWlxdcOobAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
-aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
-dGluZm8vbGludXgtYW1sb2dpYwo=
+Conor,
+
+On Tue, Jul 04, 2023 at 08:19:00PM +0300, Dmitry Rokosov wrote:
+> On Tue, Jul 04, 2023 at 06:10:46PM +0100, Conor Dooley wrote:
+> > On Tue, Jul 04, 2023 at 08:08:43PM +0300, Dmitry Rokosov wrote:
+> > > On Tue, Jul 04, 2023 at 06:02:58PM +0100, Conor Dooley wrote:
+> > > > On Tue, Jul 04, 2023 at 04:59:36PM +0300, Dmitry Rokosov wrote:
+> > > > > In the current implementation, the meson-a1 configuration incorporates a
+> > > > > unique compatibility tag "amlogic,meson-a1-uart' within the meson-uart
+> > > > > driver due to its usage of the new console device name "ttyS".
+> > > > > Consequently, the previous compatibility tag designated for the
+> > > > > 'amlogic,meson-gx-uart' configuration has become obsolete and is no
+> > > > > longer relevant to the current setup.
+> > > > 
+> > > > I don't really see why you would remove the gx-uart to be honest, and
+> > > > not use it as a fallback. Neil's platform though, so his call :)
+> > > > 
+> > > 
+> > > Because of amlogic,meson-gx-uart has legacy devname, we do not want to
+> > > use it in the A1.
+> > 
+> > Which I did read in your commit message, fallback being the operative
+> > word here.
+> 
+> Although it is difficult for me to envision a situation where we would
+> require this fallback, but gx-uart fallback will function from a kernel
+> perspective (without taking into account bootloader setup or userspace
+> daemon script). I don't have any objections to stay gx-uart as a
+> fallback, will do it in the v2.
+
+Unfortunately, it's not possible based on schema rules. During dtbs check
+I've got the such error:
+
+arch/arm64/boot/dts/amlogic/meson-a1-ad401.dtb: serial@1c00: compatible: 'oneOf' conditional failed, one must be fixed:
+	['amlogic,meson-a1-uart', 'amlogic,meson-ao-uart', 'amlogic,meson-gx-uart'] is too long
+	'amlogic,meson-g12a-uart' was expected
+	'amlogic,meson-gx-uart' was expected
+	'amlogic,meson-ao-uart' was expected
+	From schema: Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+
+Of course, we can change dt bindings schema, but is it really needed? As
+I said before, it's difficult to imagine the situation, when gx-uart
+fallback will be helpful.
+
+-- 
+Thank you,
+Dmitry
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
