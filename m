@@ -4,72 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1150EB64DD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9865EEB64DA
 	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jul 2023 11:42:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=i8GmTUSGfpC8Kr0alVpNzU4I5aVq/B4Gh1swfs+R/qI=; b=mGjZRE4+oyiVOU
-	eoYGpg8WtnCjNeqVbNKg0Og7XwqrH3UUsqlf+9rlk4h6blgpksE0l5JvT/mVEPkX/WKliw7BcbWvw
-	V8/GkWg8FwszPCR/ij5ZA4teu0olD1iAeNpRvM349xSk/YaWGamS9UDnQuFLs41RuD5wx/Bc4kZCU
-	jJDQyD8TFHZfch+2Q0doUP4Hmvo453+ZEHapzFjCyIUyrtkpvdHR7HOP25HZMzlDxZTxtuXw6aqHM
-	0RQQ9/EO5ViqdxJRQCE4ude3OhC1RgcY9rzi9JRyPFVaHQqDDeVwGRzbYD0pbymUNugzd68imRgEJ
-	uX569GKHL0OEdhU25jww==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=wlmJaCQbQlS8aAtZ3c26SKSIl0OIwqsVwDy/f8z/2XQ=; b=VGTdqWpA4MSeSS
+	2OS39Pt1a35aO+PmcCXpnjV2y538YbGRQhbyQOwg7E+vrxL+xnzLZR3NeocD73uov5fOR/sPJ7NsX
+	Pl47Bao8cKUiNmFzW3cEszD67/gxkj7TKS/fULt9EoBccSpzcAPVWNucrXK770kRAldj7q/ZQmVlo
+	vAwqAs1BVyqjqxBmt6kw/w90nIwverWdzkbTT1OL8Irb9a1wKTbqt1/1x/0ASd0KOs9WKFcOFTD/n
+	7+Jtgx9hieFy/T+dmpE2JqoPulkwU1ODfqQ6qEUl88LJIE9bHrAkowYStzYdobxSnrm6Ax+OnTiqI
+	/bd98nanUwJihynbPvXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qH0tf-00FkR3-11;
-	Wed, 05 Jul 2023 11:42:11 +0000
-Received: from mail-lf1-x135.google.com ([2a00:1450:4864:20::135])
+	id 1qH0ti-00FkSw-05;
+	Wed, 05 Jul 2023 11:42:14 +0000
+Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qH0tc-00FkMq-27
+	id 1qH0td-00FkMc-0Y
 	for linux-amlogic@lists.infradead.org;
-	Wed, 05 Jul 2023 11:42:10 +0000
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f96d680399so10018385e87.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 05 Jul 2023 04:42:00 -0700 (PDT)
+	Wed, 05 Jul 2023 11:42:12 +0000
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b69dcf45faso107889171fa.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 05 Jul 2023 04:41:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688557319; x=1691149319;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CaNHukNnVjDsPaAH2UItJR4RWTnzSz8CQM5za4d01xc=;
-        b=eoGCbKtPXzvda15F0EFg+vTluEi6TZEBd+7pMT4pGkWtwQrRjqNWhEKo/FVA3KMbG0
-         dkaVNTuimNtL4VUMmRIOTCirIG6TfXDlU/o28TFeU4WvdK5p55xIsA/p6BnptPWtPQp2
-         FfxGBhI301mJkHqaLL++z2vQVn+47JZ4hrnH+eax+PTHgL9a7hVl2d54/kx/K5hVSeOc
-         SbYoAhKEydcYnE5/x3oLPJ+xDYfu47dlEOJBB++GKvxnLjYfPXKX4E6lnaYCSzj40mzK
-         6ocdqZTXkGQHfsws1AfbSQPr02sGs4lEIacNxoq2+mvtjasMQnfDfmEijIHi9qpCM/Yg
-         jRMQ==
+        d=linaro.org; s=google; t=1688557318; x=1691149318;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sMJ6FKAxt5aeLYEDLDIBzRmbAeHURPB2a+Jv2R6yB5o=;
+        b=Eum0AUAO4MzZIKlqJpbVv/iyrRnLHrjCVycK4SYdR+5ulihbU1FrybsJ9Url+WlO4X
+         XXxexF4uVC4bU5pfF7DpmKbBzJPifHUC99H5Qf6XV3KYh6NSz1qUgHp1JLlw+rO4rJrg
+         wOX2IRVRNt/SG7bNPHfY7bPABKAJwsPI71RBeNM0oR7rVySvuNDOCQyduW6iSLyy+nHt
+         R1SHuASGzWIO7xggzPX2JoO/dIBx09LYBVC43HqC/YUmmwyXWhzNxXaVJhhxxUmz/Ch+
+         KqTxrpKFpGZY7s/9KJDg/qnkWp5tg+0nl/bWUSK3h0ldmoCvakxlne6RXjVzqXsoYHw1
+         p94A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688557319; x=1691149319;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CaNHukNnVjDsPaAH2UItJR4RWTnzSz8CQM5za4d01xc=;
-        b=LMOCAmzusez4Ahq8KbaaD96j5lDEbHFvFpA8k5kbK+blhvz/DMQeJoxE5fVJjfH6yH
-         GKezGyeP/gDiuKRNQXhxJNCWN10y8/v+YQKiYOsGLurCpiRaVn/lOkoDjauaeZ6SeDnz
-         I7z7I85ZjE3Jo814VlJX53vxACAYnFoOLCRd5vIXV4kd3jBX6/23PUy1YiCX1Kz3I+nM
-         g5p+AcJls88EmIUC7oCEDATz9JwYXcTxjvaL4lTuWR++LmEn9efOCBmNzKgyrDu/nrGY
-         8TuslNQLeYO9gYvfvLkkw8LXLuWFvdnW5t77O890FlFrr7k2u0OFcFJoikla0/2K2yqn
-         4WPA==
-X-Gm-Message-State: ABy/qLamjocCgKrRRNnF+xqNutDK0PuLSlRpsCagxVzou10HfMXdJrsi
-	HeWWpwmzrgDoywz54cTt7e5JRw==
-X-Google-Smtp-Source: APBJJlFvQ35NSEFVi2NIkEQ1WNt56GRkE1nTH8Ny1kcUH3mWK3BNQT6Ii7cKXFgw3UkumO+kXtU5eg==
-X-Received: by 2002:a05:6512:3256:b0:4fb:9f93:365f with SMTP id c22-20020a056512325600b004fb9f93365fmr11125377lfr.38.1688557319123;
-        Wed, 05 Jul 2023 04:41:59 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1688557318; x=1691149318;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sMJ6FKAxt5aeLYEDLDIBzRmbAeHURPB2a+Jv2R6yB5o=;
+        b=kKXfwGKvosagF2oe3OVl0JXvBJ0+X/iP5ccWcTaBPKB+HZP3XgHKcltiqXdsPXmJ1W
+         GGZIzJg8cznDr1yiEPcJOf3VyoOgABeZyDwSvBAhHDSn1nSxjrfl19m1DrMYOOS+FQzJ
+         7jzx8Np65zOcg5PcgZ2z8HeT1zqZu08sz/bRmymIi97HSWCR1tc016iPqUKy4wmYSAv8
+         jYmCgtx+s+iQDxQygNb17FEidmhnCXi1IqHWB3fcpFhF6/KzY874TJVVw8HPjpJC5qId
+         gY6ubJmxsxuMSykjqP44vkhqPAqdyDXpIrFSg2z19fi06g9an3pcFhflBJL0TVWBWpuZ
+         T+pQ==
+X-Gm-Message-State: ABy/qLZHiDxQpBEjzXoCI6DLz8a+CZgy5KDe1dqJWCz5kFrc4Nmoh9OI
+	O7vHKnzPd/B8sU0gwoqQlpgoLA==
+X-Google-Smtp-Source: APBJJlHa+BfgKaDM7NfCIrIB8hb+SDF0DRd8E0ScKjkVKVN2VeH5zW7K9FHJQuF8NU3q3eW8tLoscQ==
+X-Received: by 2002:a05:6512:3d09:b0:4f8:6d54:72fb with SMTP id d9-20020a0565123d0900b004f86d5472fbmr13766644lfv.62.1688557317821;
+        Wed, 05 Jul 2023 04:41:57 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 8-20020a05600c028800b003fb416d732csm1916808wmk.6.2023.07.05.04.41.57
+        by smtp.gmail.com with ESMTPSA id 8-20020a05600c028800b003fb416d732csm1916808wmk.6.2023.07.05.04.41.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 04:41:58 -0700 (PDT)
+        Wed, 05 Jul 2023 04:41:57 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 05 Jul 2023 13:41:51 +0200
-Subject: [PATCH v2 1/3] dt-bindings: clock: amlogic: convert
- amlogic,gxbb-clkc.txt to dt-schema
+Subject: [PATCH v2 0/3] dt-bindings: second batch of dt-schema conversions
+ for Amlogic Meson bindings
+Date: Wed, 05 Jul 2023 13:41:50 +0200
+Message-Id: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
 MIME-Version: 1.0
-Message-Id: <20230705-b4-amlogic-bindings-convert-take2-v2-1-22be915ddc3b@linaro.org>
-References: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
-In-Reply-To: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAP5WpWQC/5WOQQ7CIBBFr2JYO4bSLsSV9zBdAB3oRAQzVKJpe
+ nexN3D53uK/v4qCTFjE5bAKxkqFcmqgjgfhZpMCAk2NhZKql0pqsAOYR8yBHFhKE6VQwOVUkRd
+ YzB0VoHLGn7FzXe9F27GmIFg2yc1tKb1ibPLJ6Om9h29j45nKkvmz/6jdz/6TrB1IcINHLQc9o
+ dfXSMlwPmUOYty27Qsa11jZ6AAAAA==
 To: Jerome Brunet <jbrunet@baylibre.com>, 
  Michael Turquette <mturquette@baylibre.com>, 
  Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
@@ -81,25 +82,26 @@ Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3423;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1879;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=6blIrzyVDZas5IcZi9A41vegPBQeeY36EiPBXllpWCM=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkpVcDIG9EJRq/VdZ54P4MlMspaLByJsDrCw/YRGwx
- 4SNHHPOJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKVXAwAKCRB33NvayMhJ0c2fEA
- DAnzgI58asWhl7TlJS6OIvn/cirsOIIi/YaI5uM2uvix525ka7MBOSs7U4ASlxEnSPzlntuVNZ4Zib
- UtIfG5fKqlc6ru4wDUX9Yog9yegd7m3Smqatdw7fdxyNvWX+Z7j8j9roPCF3WRG46TryfAVcpA4rwy
- x2nShrNgHcJg6j7h+SlJQqpfYKqz5n4+kNgfUjHMt5/KKvMn+XoTS2Mrae3zlgRq0v0shKH959T0QA
- 9QcAPMwcsPrrF8gqYOzTFUJbgPlHIxRupUCXZqdiWFhmQW/k4kBxF3DVIbXSJ4gFMupbzpfUrlSm08
- GbmHrhpzeWn7eUrt5ghPigCVVQdCqF8bu2BSqKcJq/KalvC8vN0aW7Yvo2+ic9L6IO6rerg6P2BPHN
- xZernKG7WIgYFL/BqdaewH/9CMXfqPCtXh77LL096DBhuZo0RZbH1NDEreaN21tf8Lt39ofM1hliSq
- Okrm9OCUCmnoFFiYqXd82KkJu3DH87zzJxBlVqVC6RFZEEO5ZmsLpZyBg6XNc+P9VHuI6G2UjNqVQU
- 9CdBnQMTLYoPzcoNJDciiyKOx0x/mVwjzA5iT/FUiH2ay/AuKqJ6JmiofC+L4gBtZ8w2zAr1Qyioul
- mj+E+h9jjFxXd6uWKyGp+r3sLEOcmvSis7LdqN2EimfU1wWOl3y+erBpB8Ew==
+ bh=ELXNXQ2lCoHuiuKKR6vdSI7dEdq5DYtEahIi1J2eLN4=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkpVcDjQWnGo3L1uu76syI1GtIv82Y4ql5xMKgg1RS
+ xN/ZWgGJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKVXAwAKCRB33NvayMhJ0SpvEA
+ CIfPQmKspuKclTFFdRIGB5QTmUJZm1bShKqV39aY4xWbA9WX3zwMQbV/GsurFMjpi38bo3FVrFhdqi
+ SLI+E/9rGbFNMkAVEMlIq5f+/y/Owy1yZ0zJvDrtQPhBsH0O/aQ72xVWP6BC1ombHLphpQyu7XI/Bj
+ /eh7gyDTNwLOWw1b+Qhkw/0UJ1x6qlwENPRaRh9GlDSjtVUl7mWpnuYM2QCzAHv7K0/cI+evOXX611
+ ZS3WOS+ZdK3zfNwFHov95QCT2lUfJ1h/tqMHlV6Gjg/Pn6s9N+gj2SiQmAmKh3xq1CKEGrsGh2fZT2
+ vXrhNcsHSypAInTTRBy/h1GQWJ0/FOFra3M4ITBnurQxCX777Eb8eLkcD7kVc9XOx0he/pkPf56gpx
+ GaDXwJx9YHTBA8dnrsjPr6xXRXIglAbf2J9f0eJ2zlvOXNNR9IpQlGgaqIotjC5Wm591atQrSDpz+z
+ K28FUGxpL9ChYtRdXwb/WC6VoFW9XSsvC+eI8uYd7hd/8WuMKA4LPKYaKglFNs/zYzci7dYaX0WjvX
+ 1aCQceL9EruzdD3/Qrezeq49AKUX9iwsP/3DTu99aFrIPL2fuwqP72Ky5T35qjbZVgbahrx+Z2xlWe
+ 5bGD9xZa/NcieJ3Bh07wDYfl7TofxACFzov/xdeKfakrud5udE1MEBOOSBiA==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230705_044208_694613_B7C7BFCE 
-X-CRM114-Status: GOOD (  14.46  )
+X-CRM114-CacheID: sfid-20230705_044209_258986_F1B33E61 
+X-CRM114-Status: UNSURE (   8.61  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,119 +118,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert the Amlogic Clock Controller bindings to dt-schema.
+Batch conversion of the following bindings:
+- amlogic,gxbb-clkc.txt
+- amlogic,gxbb-aoclkc.txt
+
+And in addition document the System Control registers top node.
+
+DT fixups will be posted once those conversion are fully reviewed.
+
+With this serie, the in-review and applied bindings documentation, the
+the following arm64 compatible are yet to be documented in dt-schema:
+ ['amlogic,axg-audio-clkc']
+ ['amlogic,g12a-audio-clkc']
+ ['amlogic,sm1-audio-clkc']
+ ['amlogic,g12a-tohdmitx']
+ ['amlogic,sm1-tohdmitx', 'amlogic,g12a-tohdmitx']
+ ['everest,es7154']
+ ['everest,es7241']
+ ['ti,tas5707']
+ ['linux,spdif-dir']
+ ['gpio-fan']
+ ['pwm-fan']
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../bindings/clock/amlogic,gxbb-clkc.txt           | 53 ----------------------
- .../bindings/clock/amlogic,gxbb-clkc.yaml          | 37 +++++++++++++++
- 2 files changed, 37 insertions(+), 53 deletions(-)
+Changes in v2:
+- rebased on next-20230705
+- dropped applied patches
+- dropped example in clk bindings
+- fixed clk bindings
+- fixed sysctrl bindings and moved patch to the end
+- Link to v1: https://lore.kernel.org/r/20230209-b4-amlogic-bindings-convert-take2-v1-0-c4fe9049def9@linaro.org
 
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
-deleted file mode 100644
-index 7ccecd5c02c1..000000000000
---- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
-+++ /dev/null
-@@ -1,53 +0,0 @@
--* Amlogic GXBB Clock and Reset Unit
--
--The Amlogic GXBB clock controller generates and supplies clock to various
--controllers within the SoC.
--
--Required Properties:
--
--- compatible: should be:
--		"amlogic,gxbb-clkc" for GXBB SoC,
--		"amlogic,gxl-clkc" for GXL and GXM SoC,
--		"amlogic,axg-clkc" for AXG SoC.
--		"amlogic,g12a-clkc" for G12A SoC.
--		"amlogic,g12b-clkc" for G12B SoC.
--		"amlogic,sm1-clkc" for SM1 SoC.
--- clocks : list of clock phandle, one for each entry clock-names.
--- clock-names : should contain the following:
--  * "xtal": the platform xtal
--
--- #clock-cells: should be 1.
--
--Each clock is assigned an identifier and client nodes can use this identifier
--to specify the clock which they consume. All available clocks are defined as
--preprocessor macros in the dt-bindings/clock/gxbb-clkc.h header and can be
--used in device tree sources.
--
--Parent node should have the following properties :
--- compatible: "syscon", "simple-mfd, and "amlogic,meson-gx-hhi-sysctrl" or
--              "amlogic,meson-axg-hhi-sysctrl"
--- reg: base address and size of the HHI system control register space.
--
--Example: Clock controller node:
--
--sysctrl: system-controller@0 {
--	compatible = "amlogic,meson-gx-hhi-sysctrl", "syscon", "simple-mfd";
--	reg = <0 0 0 0x400>;
--
--	clkc: clock-controller {
--		#clock-cells = <1>;
--		compatible = "amlogic,gxbb-clkc";
--		clocks = <&xtal>;
--		clock-names = "xtal";
--	};
--};
--
--Example: UART controller node that consumes the clock generated by the clock
--  controller:
--
--	uart_AO: serial@c81004c0 {
--		compatible = "amlogic,meson-uart";
--		reg = <0xc81004c0 0x14>;
--		interrupts = <0 90 1>;
--		clocks = <&clkc CLKID_CLK81>;
--	};
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.yaml
-new file mode 100644
-index 000000000000..63246f1cb539
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.yaml
-@@ -0,0 +1,37 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/amlogic,gxbb-clkc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic Clock Controller
-+
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - amlogic,gxbb-clkc
-+      - amlogic,gxl-clkc
-+      - amlogic,axg-clkc
-+      - amlogic,g12a-clkc
-+      - amlogic,g12b-clkc
-+      - amlogic,sm1-clkc
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: xtal
-+
-+  '#clock-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+
-+additionalProperties: false
+---
+Neil Armstrong (3):
+      dt-bindings: clock: amlogic: convert amlogic,gxbb-clkc.txt to dt-schema
+      dt-bindings: clock: amlogic: convert amlogic,gxbb-aoclkc.txt to dt-schema
+      dt-bindings: soc: amlogic: document System Control registers
 
+ .../bindings/clock/amlogic,gxbb-aoclkc.txt         |  64 ---------
+ .../bindings/clock/amlogic,gxbb-aoclkc.yaml        | 101 +++++++++++++
+ .../bindings/clock/amlogic,gxbb-clkc.txt           |  53 -------
+ .../bindings/clock/amlogic,gxbb-clkc.yaml          |  37 +++++
+ .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  | 160 +++++++++++++++++++++
+ 5 files changed, 298 insertions(+), 117 deletions(-)
+---
+base-commit: e1f6a8eaf1c271a0158114a03e3605f4fba059ad
+change-id: 20230209-b4-amlogic-bindings-convert-take2-e2caf8e1c13f
+
+Best regards,
 -- 
-2.34.1
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
 _______________________________________________
