@@ -4,52 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 662A9EB64DD
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jul 2023 10:19:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DFC1EB64DA
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jul 2023 10:50:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VOZLoh6F/kO5CR8Aa4AOvCa74do2u8mQJ/+42XwatYA=; b=e9AXBNT5aIi+0t
-	PH93HFolrVM/aPXdqGbCwmdlwUu9m/+ekQE9KO8EYpXWcWPcN63ZFU+hBmhQAIvDV79KtC6asRo5I
-	g2w9TgzntpQr0tsoBLgnD+3k7I0RWoW/CVJBAEYG7110YenSdTeoFlVQm6xwmYfh322YC8dKio1JK
-	K1XrqgogK01fY/anWV/XX1DWH84fjYxedf3ZCUsABmYsE6iB3SahqDJ6tzUD1b46Yc3IYrKtTrH+D
-	arp4vc7qz9z+D37SWLA4kmBVcz1fPje+4inTfabQwv94FkA8bzgIQNW4N/MKMaEcNL9I8p3n9cG4/
-	mv4CgEEtHzwOaguVwG+A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=MG5mRnif+4vGvTVOUQLvCQBYb2pI8j7MZjAMsKUEhoA=; b=yfpjwkJWkBxY9A
+	a5yuZBfbgcEP0T3zS1aQ4I4iqtmN6u1U/dGiSm8wyy27b8ZDJUPzECSqbfHKGjVuu8+7Z2pNMxIhG
+	vA33q7Dnlg0SWBTRWYk2hu6K61YuClyFbQVBIvUSIs8fx/a+XKXrE5aVuuKBExye+hlDt7ZusFfN9
+	ZcfK8rE5yJxrud0dD43NZt9IxB1jF9UkVtw9sWxCeSqZRRgxttNrS+mGyiZnQvXzdykG/uyNDxBDV
+	wcJITGv71lsTbMo1UsVpDvAbj+UJg31w79/2+tAXOH5DiUzApIDyWD48H/518WFM+YOmRzCwhYS2r
+	Jm608aWb0Nk8qeRJGG8Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGzb9-00FTsH-1O;
-	Wed, 05 Jul 2023 10:18:59 +0000
-Received: from fgw20-7.mail.saunalahti.fi ([62.142.5.81])
+	id 1qH04x-00FeD9-1u;
+	Wed, 05 Jul 2023 10:49:47 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qGzb7-00FTq1-1q
-	for linux-amlogic@lists.infradead.org;
-	Wed, 05 Jul 2023 10:18:58 +0000
-Received: from localhost (88-113-24-87.elisa-laajakaista.fi [88.113.24.87])
-	by fgw20.mail.saunalahti.fi (Halon) with ESMTP
-	id 57fcbf88-1b1d-11ee-b3cf-005056bd6ce9;
-	Wed, 05 Jul 2023 13:18:54 +0300 (EEST)
-From: andy.shevchenko@gmail.com
-Date: Wed, 5 Jul 2023 13:18:53 +0300
-To: Martin Kurbanov <mmkurbanov@sberdevices.ru>
-Cc: Mark Brown <broonie@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-spi@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org, kernel@sberdevices.ru
-Subject: Re: [PATCH v1 2/2] spi: amlogic-spifc-a1: add support for
- max_speed_hz
-Message-ID: <ZKVDjTCFAcJxO_Ci@surfacebook>
-References: <20230703094518.53755-1-mmkurbanov@sberdevices.ru>
- <20230703094518.53755-3-mmkurbanov@sberdevices.ru>
+	id 1qH04t-00Fe9X-26;
+	Wed, 05 Jul 2023 10:49:46 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id B484A120061;
+	Wed,  5 Jul 2023 13:49:35 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru B484A120061
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1688554175;
+	bh=R99U9ZeCFnUhxosYR742hW48fCGlup+4oiuVH5a34TU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=f/Kt7s0MLJ8wm5jz5SIu+fq0XAOa9AjzSUvxVJkht5Z+rPZCp1fsLoj11FH6+dAlI
+	 L3Y42u90dUGCW25q33urS2EmnaXe64mpMaBnoBaSx/AXbUDJB0KHunpXl47ScVaR0h
+	 Op2JbzSVIZs570B7Di5kkwhcM5iA2CXxPv/hCye7c78p6Ck+034u3JjalWocY3F6cD
+	 l/F7GN9Y4evyoW5Lq3Dlrm8YuwdzqstnBK+FV7WMN1QjC2I8LlIGXcPAxuMzf07JU5
+	 rCvC7i7DG/suhGZi1XbZHo4ffhrxtAikTJ9GGkvxbaVc8Xtpb1LWJqmXbkqIyT9jHx
+	 vk0AvTNFSOR9Q==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed,  5 Jul 2023 13:49:35 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Wed, 5 Jul 2023 13:49:32 +0300
+From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
+	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	=?UTF-8?q?Micha=C5=82=20K=C4=99pie=C5=84?= <kernel@kempniu.pl>, Arseniy
+ Krasnov <AVKrasnov@sberdevices.ru>, Adam Borowski <kilobyte@angband.pl>,
+	JaimeLiao <jaimeliao.tw@gmail.com>, ChenXiaoSong <chenxiaosong2@huawei.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1 0/2] use NAND core API for Meson controller
+Date: Wed, 5 Jul 2023 13:43:56 +0300
+Message-ID: <20230705104403.696680-1-AVKrasnov@sberdevices.ru>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230703094518.53755-3-mmkurbanov@sberdevices.ru>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178444 [Jul 05 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/05 05:28:00 #21565829
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230705_031857_785587_D92DDA2F 
-X-CRM114-Status: UNSURE (   9.89  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230705_034944_420098_C70189F2 
+X-CRM114-Status: GOOD (  11.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -66,42 +105,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Mon, Jul 03, 2023 at 12:45:18PM +0300, Martin Kurbanov kirjoitti:
-> This patch sets the clock rate (spi_transfer->max_speed_hz) from the
-> amlogic_spifc_a1_exec_op().
+During waiting for command completion this driver sends NAND_CMD_STATUS
+and then NAND_CMD_READ0 to leave status checking mode. Instead of direct
+accesses to the registers of the controller to send these commands, this
+patchset uses currently implemented and exported NAND API for the same
+purposes. First patch is preparation: we need to export function 
+'nand_exit_status_op()' for modules. Second patch uses these functions
+in the Meson driver.
 
-...
+Arseniy Krasnov (2):
+  mtd: rawnand: export 'nand_exit_status_op()'
+  mtd: rawnand: meson: use NAND core API to check status
 
-> +static int amlogic_spifc_a1_set_freq(struct amlogic_spifc_a1 *spifc, u32 freq)
-> +{
-> +	int ret;
-> +
-> +	if (freq == spifc->curr_speed_hz)
-> +		return 0;
-> +
-> +	ret = clk_set_rate(spifc->clk, freq);
-> +	if (!ret)
-> +		spifc->curr_speed_hz = freq;
-> +
-> +	return ret;
-
-The form 
-
-	ret = clk_set_rate(spifc->clk, freq);
-	if (ret)
-		return ret;
-
-	spifc->curr_speed_hz = freq;
-	return 0;
-
-less error prone in case some code is squeezed in between.
-
-> +}
+ drivers/mtd/nand/raw/meson_nand.c | 26 ++++++++++++--------------
+ drivers/mtd/nand/raw/nand_base.c  |  1 +
+ include/linux/mtd/rawnand.h       |  1 +
+ 3 files changed, 14 insertions(+), 14 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.35.0
 
 
 _______________________________________________
