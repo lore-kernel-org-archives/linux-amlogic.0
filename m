@@ -4,69 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F567EB64DA
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jul 2023 19:58:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D00EDEB64DD
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jul 2023 21:11:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lIGcLKZox9KP3L21eIw1ZBomiFyTz8wnd3mqDlINTys=; b=doyRD/jBobFwzV
-	GtuqDfE61jswn9kNQK97BNOrSlj209bQ+MOXZkZj3dDKqv3qwGMO1wpE9CYYgR739vg1g0H9TG5nq
-	MhyBfGmxruLdtfkfIzVIQpWkS2gke2dAvvVH67tKtluvCnT5KXuqPSd0LJEwtWY9ayfLL78YORtne
-	P+VF9WYl09bovWSMU4AY5DcD4AX4v9ijv2eDIBrUZwMEE7taO5tIvAAj31gMQ7UZ7FACd3cFe0f/I
-	HoxdPHktJJYb5vUtu7D7223Vvl400hAMyoq1Aq1IB13S809LyjSwrr0/GVwtJOgHLjOJ1966AUHSe
-	c5SW7qnKdq0DqTzpRk3w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=drbT6s6gfbkxGRLgD1V2k21oF1OZVptGar5nOFx2Emg=; b=t622Qf4hV0Foh6o5qCwuzZcayi
+	eq6I7n7MbSO9zQSt/uuiQ9dur2lmpI20uaPsXaDBZ8oOPivMiFvjIhS/PFcVdiPN0igArw+Q+qvQm
+	1GnlHW7AttIb+Wn5r635VyunsChTsHoOlZLbH9BuDeNsVDxJ154oOIL2Luz+YbGkeES/+PTjCgfdV
+	EqJffZfn4sdA/q+r43T3EWPTV/Df/OTXVHnZMWY4feUfsTyWA5Gv8VB0iC4ALYnY2Q0Xx/nmSTx68
+	zTXLv1LmGN/ipv3dG9xOg7XC94PxgHg8IriwOhg9C5NoLdfL6Lfy/a8UssR1z+B1ml/fw080ZNt87
+	bLRdbKNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qH8dr-00GyD0-3C;
-	Wed, 05 Jul 2023 19:58:23 +0000
-Received: from mail-io1-f49.google.com ([209.85.166.49])
+	id 1qH9lr-00H6Og-0E;
+	Wed, 05 Jul 2023 21:10:43 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qH8dp-00GyBw-1f;
-	Wed, 05 Jul 2023 19:58:22 +0000
-Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-78372b896d0so270741839f.2;
-        Wed, 05 Jul 2023 12:58:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688587100; x=1691179100;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dWR4rzgRzJqw8ZsrwBvfIC+5CsnJGVSJ/W7SY72QRJs=;
-        b=l3JVnGRQRbTq6bkxXudHQh+hhSUwhG/JG1ZbHiNmbF8DM6K/uke3id6DogQms1PdJA
-         lrpt8hw5tdhOUDrns1HzPcLHrtOdjff2JJ8xWpq5RdFqGRxyfuNvSZXUp/4CdXY1uCAJ
-         +gWr3V/MEZCpuqPbgjGgsjCOt41NSy/A91jom4w2q7+/LLJs9Qn1xMc9GGEusloFHepK
-         lsRP+WCN+Mwa4KrXMFvRszbYPz0LY9OaG1FTZLUj7A0yHQpHsFGp9mxW9JyNtsjVxSKO
-         2VA2yUQMR44pWuZ9q5E1N+JnAqZqwtJgZ63fIt2Yv755XQe5J/HJrVuvozwW69iVHKJ2
-         ZVjw==
-X-Gm-Message-State: ABy/qLaJgzovR3mid6BM70zH8tXq/lul3oIX8o9N5yhjBtW2DE4Lvawv
-	qzUost5yw9ruuSjTeJHhwQ==
-X-Google-Smtp-Source: APBJJlH+GhulCs77gC1uUiQFuq4jo9mjgirVmZ0inqvPVdAxFQcR+RjE/nzGuZy9qJVIo8aNC6PGXg==
-X-Received: by 2002:a92:4a0f:0:b0:345:6ce1:d24e with SMTP id m15-20020a924a0f000000b003456ce1d24emr124971ilf.22.1688587100082;
-        Wed, 05 Jul 2023 12:58:20 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id k16-20020a02c650000000b0042b3bb542aesm2613192jan.168.2023.07.05.12.58.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 12:58:19 -0700 (PDT)
-Received: (nullmailer pid 1739539 invoked by uid 1000);
-	Wed, 05 Jul 2023 19:58:16 -0000
-Date: Wed, 5 Jul 2023 13:58:16 -0600
-From: Rob Herring <robh@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Stephen Boyd <sboyd@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v2 3/3] dt-bindings: soc: amlogic: document System
- Control registers
-Message-ID: <168858709644.1739479.11332380287477883638.robh@kernel.org>
-References: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
- <20230705-b4-amlogic-bindings-convert-take2-v2-3-22be915ddc3b@linaro.org>
+	id 1qH9li-00H6O6-0T;
+	Wed, 05 Jul 2023 21:10:35 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 962B261750;
+	Wed,  5 Jul 2023 21:10:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CBA8C433C7;
+	Wed,  5 Jul 2023 21:10:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1688591433;
+	bh=n2jgw51oOqSn4DZGTFd2enJxejq0SGh6zPoLj4QBa2A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=r4YRd/P4b0xBGtl+HKyhU0UwFhwL1znKUu3F9E/nnPxXcYaDmYZo2z1Nee7kETmLx
+	 lGb4g3mmhsHL5MqjFkUdAPbHJx3Vu1KEL7DPyec0LVnxz1zWd0gjZ5J1S8Q17n3r+C
+	 zE9O2UqHY2qkWg1Tud8EzTY3sjFHZveAJE73dGQY7tug9JNpqnAeQ2bhK3ab7TZBKI
+	 8+QgfmFjLOjzsbMdrPvxU0Xd5i0hVTch+cCiezXQz87sYjjxA9jurKoJiBpj+M/vmx
+	 uAac8ugCdS/BiumCWdgDAvpq+AWbs+EmJMTUZXQQAvU5o8EDIaRETl9iMIuNLhm4wa
+	 0opmVGwVy9bYw==
+Date: Wed, 5 Jul 2023 22:10:27 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	neil.armstrong@linaro.org, jbrunet@baylibre.com,
+	jirislaby@kernel.org, khilman@baylibre.com,
+	martin.blumenstingl@googlemail.com, kelvin.zhang@amlogic.com,
+	xianwei.zhao@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
+	linux-amlogic@lists.infradead.org, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 6/7] dt-bindings: serial: amlogic,meson-uart: support
+ Amlogic A1
+Message-ID: <20230705-broadly-hyphen-de6a1eb0058b@spud>
+References: <20230705181833.16137-1-ddrokosov@sberdevices.ru>
+ <20230705181833.16137-7-ddrokosov@sberdevices.ru>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230705-b4-amlogic-bindings-convert-take2-v2-3-22be915ddc3b@linaro.org>
+In-Reply-To: <20230705181833.16137-7-ddrokosov@sberdevices.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230705_125821_576563_5F8107A1 
-X-CRM114-Status: UNSURE (   9.93  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230705_141034_306284_32B0792F 
+X-CRM114-Status: GOOD (  14.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,29 +77,88 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============8350861961415587044=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Wed, 05 Jul 2023 13:41:53 +0200, Neil Armstrong wrote:
-> Document the System Control registers regions found on all Amlogic
-> SoC families and it's clock, power, pinctrl and phy subnodes.
-> 
-> The regions has various independent registers tied to other
-> hardware devices, thus the syscon compatible.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+--===============8350861961415587044==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="NUg9anPJgPseBrgZ"
+Content-Disposition: inline
+
+
+--NUg9anPJgPseBrgZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jul 05, 2023 at 09:18:32PM +0300, Dmitry Rokosov wrote:
+> Introduce meson uart serial bindings for A1 SoC family.
+>=20
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+
+Looks like there's a missing Ack here from Rob:
+https://lore.kernel.org/all/168858360022.1592604.9922710628917242811.robh@k=
+ernel.org/
+
+Cheers,
+Conor.
+
 > ---
->  .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  | 160 +++++++++++++++++++++
->  1 file changed, 160 insertions(+)
-> 
+>  .../devicetree/bindings/serial/amlogic,meson-uart.yaml          | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.=
+yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> index 01ec45b3b406..f1ae8c4934d9 100644
+> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> @@ -33,6 +33,7 @@ properties:
+>                - amlogic,meson8b-uart
+>                - amlogic,meson-gx-uart
+>                - amlogic,meson-s4-uart
+> +              - amlogic,meson-a1-uart
+>            - const: amlogic,meson-ao-uart
+>        - description: Always-on power domain UART controller on G12A SoCs
+>          items:
+> @@ -46,6 +47,7 @@ properties:
+>            - amlogic,meson8b-uart
+>            - amlogic,meson-gx-uart
+>            - amlogic,meson-s4-uart
+> +          - amlogic,meson-a1-uart
+>        - description: Everything-Else power domain UART controller on G12=
+A SoCs
+>          items:
+>            - const: amlogic,meson-g12a-uart
+> --=20
+> 2.36.0
+>=20
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+--NUg9anPJgPseBrgZ
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZKXcQwAKCRB4tDGHoIJi
+0kUgAQDA95EfCnFuUU2bDSw86Ab1mLQG0Nbq74Hh2Ss1+NO5ZgD/Uk4aj8bCi0rC
+8PY85RrvoNH02RyBYPrxMpLdfi1bUgE=
+=igVN
+-----END PGP SIGNATURE-----
+
+--NUg9anPJgPseBrgZ--
+
+
+--===============8350861961415587044==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============8350861961415587044==--
+
