@@ -4,73 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34B38EB64D9
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jul 2023 07:09:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB96DEB64DD
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jul 2023 07:10:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Tl3uMK8nlwuZJ8tzXooxpei3F7vocHxRxw76XoyuKrc=; b=WtmGwI8rPWkQGU0K+UuxGol8cA
-	kRwKEMfQDzwO7qUbvHKswNhtTjUpiR9T4IT6E+eGLIFjk4+ByXAKCuC+yHaJRqVxFmCNS9PDLyZUC
-	b+WbQqv84qBMYwPc+3MVg7qqAK6ESHr4iaIZBwpbi9GSWrS10V/8nGTYK2AN4Tsk+UX5OBSGWeUEB
-	VRZE57NrE9BVy7LgT3X+EXvEit25oB8GB7Bbb6jATzAA/s4vB0mk6omar/Fhxhneh54DYznkXsjcr
-	3/1M77glSOlCNsqevZbP1D4hoVybOAVcbN4yEkPeYMJmfK2InWGxu1O8tswv13T72ZM4RqzryR6Yz
-	vgGGXxBg==;
+	bh=GwG9toKt+na7NMm0A0gS5SKtvLQYAW7APaJUBuUvPVs=; b=PfZj+B3GAHVPoU1HNvuPl+5ahq
+	2r/28+YxzhauEN3UPMxm/VVh2aPaG8Yvgaen8UEvOyLIVkVN8co8qmQLGd9rP7vPxnpyv7oH2U/kV
+	gmslLIpMz4VD+/N1Bc3RBCEC6TNJw+w/cK6EKqaQtduwMi7JSehHQtPbxhDNdzejSl4bVcIXg9hkj
+	tdT3fV4cwUHOVGtEbb+aww/VUGqTWWuewHKh3yTJO0uvJ2i1xGPzY8ZPSODy0zE4AgLW0Eaeb0sQx
+	gJ0VxBSpd/VbeO3AdKa2bV6U7jI2KZYfAPlaOLMGAqLvWdMSM6k0NZo8gYVdX6kcvpRQgPqvxylYz
+	xjdhTdCw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qHJ7H-000k4j-01;
-	Thu, 06 Jul 2023 07:09:27 +0000
-Received: from mail-lf1-x134.google.com ([2a00:1450:4864:20::134])
+	id 1qHJ85-000kK8-0r;
+	Thu, 06 Jul 2023 07:10:17 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qHJ7E-000k1u-0M
+	id 1qHJ82-000kIX-1J
 	for linux-amlogic@lists.infradead.org;
-	Thu, 06 Jul 2023 07:09:25 +0000
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fa48b5dc2eso383705e87.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jul 2023 00:09:22 -0700 (PDT)
+	Thu, 06 Jul 2023 07:10:15 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-31441dfbf97so302069f8f.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jul 2023 00:10:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688627361; x=1691219361;
+        d=linaro.org; s=google; t=1688627412; x=1691219412;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=e+3UxZtzHVgpN6AySbetYQrNrrAcbanGA/ITUARrZTA=;
-        b=joyw8U0qByKFtglxOZnIe4fsCxJKWScziH7T+kOstAb0UKThqasBr5CdPEY5B1i2wr
-         m8bJPFWK+EcfKKZXrttWGePda170qVCwdehzgiI/9cO1iau6sLuw+OokUf36N4AAc/ix
-         1emyeXwHLEDabZWynbCxNkxcohY1NXf7bY54Omq0JDF0RN0bNtAetf0qaSaBsiQIa5h2
-         G+GD6+cGPDTzmC3Lh/QGA7s/eYZ2VvVtoVZrIRx2Tv+rP1mJn1A3GX4qpIWc0M3y0tu1
-         pJq+4yNyTAfSYFXOGnL4z1ScNb6DNI7ypt70EIWSkceScCrzjY1pmvUL8bhvIg7GkleD
-         8ylw==
+        bh=moTzOrhP2jv4mEj0XJL18rLy1OehAna2H1R87VD2hYA=;
+        b=iqxf4K9V44dY2Z218o6zXfSMSWZr1TwwjgAgOVj7eo0o53YqM68rkRAP83eLvwqv6Z
+         5xGzxdOXvApMqU3NGkHHe+KP0aEcZyWVqfakhFTsy7+0FZ/gDbF5OpqIzYPcDwo8sjmr
+         9xSjv3G5/9IGlt1lEVhBXRYeD/60scayeO2TPy2tBmjsI71Cymwu9brNEbiS44VWXk/Y
+         Pwe22stFsb/n9OgNFXhX7CN3wX0xFq+hQyTD6Dg+OqeDmGgHod35X0OpH0IZpte1ulHL
+         GE4FyORKxU/ds/65xpagl6MnV50wtxweW2v6dWuvZLNrSeOVsUe12s5FXa6X1nR5UvQN
+         damA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688627361; x=1691219361;
+        d=1e100.net; s=20221208; t=1688627412; x=1691219412;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=e+3UxZtzHVgpN6AySbetYQrNrrAcbanGA/ITUARrZTA=;
-        b=JZ94Rj6UbWJVzyHZQckLbnhbT8EbIrLSxEtGgEyOMbpF1p4gOrV/9FLWl0OG2JEO8o
-         zGOpVxbK0MQOCl/qJHnqOxGCCBb2FBayf3/osPgETKeZY1zxDk3LPM5NBMTmSbNDwaku
-         QWs6uqQMmwD5QslcCx8pjzgSluQmal9oBqW1h1ql81ovcA+skG3FRn2obBErw31hRBbx
-         mfqFmPydIWwBP9U042l/I+/bsAt2t/Brj/mOeOHQ7mJLzl91aSffQNqZox+6B0nt7s6W
-         J24C0AtNpYJUHWmQaKD9wRa3KxxOAhyLA23cQgwVGhH4O+TJht4Z2bWZT+tPhGi9Pda1
-         +28w==
-X-Gm-Message-State: ABy/qLb7lauwNMrf9uzkOx3BNw8Dt36yg1zpFMEeIQPtIfp6oxafUEWF
-	ZDak4eUsY9nigilWvGbCC/Zufg==
-X-Google-Smtp-Source: APBJJlFON4bLuwxCrqhdPT27/apuffS9FmUkfshZ1Q98OKa5xztSFTpSlUmvsazqmjuaOs8p4DyYvA==
-X-Received: by 2002:a05:6512:1ca:b0:4f5:1418:e230 with SMTP id f10-20020a05651201ca00b004f51418e230mr734913lfp.52.1688627361586;
-        Thu, 06 Jul 2023 00:09:21 -0700 (PDT)
+        bh=moTzOrhP2jv4mEj0XJL18rLy1OehAna2H1R87VD2hYA=;
+        b=Nzzjg0o9O5R5Fh6IrIl1wPOW2TGIVxDWqIra0teabVZHTf+wl2mLV7xsV6GJVJC1NU
+         PYfhiLbz4M491st7okL7/eedcZoZoCpLHHbh6EY/Hz/BqY+heQ5nnCqWRPZ7zPVH+n8z
+         KNUQjRQi14tq/VIwnRhThda8p4EOK8/EGRbBBmFsCz8YSGg+vcRzY44whhny14eDYkhT
+         mWPFeIOO0RbEetdAmN2SLaNHCG2oDtsRSM1BHlRPmxC4lfKXGJLrzmZ4Njn9N/7Bga8S
+         E/Vu0mrZoK1z1+iIzWJxliz9oTHk5vUmYCWnPnUWWbyluIa8ql7yAX4Va9RjDi6y2Cv3
+         lWng==
+X-Gm-Message-State: ABy/qLYdoz1jiaFdR7jK2sE4VSMVoXpMVlKaVJti6RZBTyqvN4eM8aDV
+	Whj/DCgnQvp0aN9gDDGCtJISfw==
+X-Google-Smtp-Source: APBJJlFueubgKVYMHwOORI74wg8se3YQAVmG40XVt55GH1mYfZakJ47RYWKjZKADuk84VaQcbPAqfQ==
+X-Received: by 2002:a5d:6287:0:b0:313:fa0f:3a05 with SMTP id k7-20020a5d6287000000b00313fa0f3a05mr954991wru.14.1688627411939;
+        Thu, 06 Jul 2023 00:10:11 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:15d1:2748:ead4:bdff? ([2a01:e0a:982:cbb0:15d1:2748:ead4:bdff])
-        by smtp.gmail.com with ESMTPSA id v19-20020a1cf713000000b003fbb00599e4sm4227903wmh.2.2023.07.06.00.09.20
+        by smtp.gmail.com with ESMTPSA id z12-20020a056000110c00b0031423a8f4f7sm1027746wrw.56.2023.07.06.00.10.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jul 2023 00:09:21 -0700 (PDT)
-Message-ID: <80b3c16b-fbf0-4c52-af1f-b9965cdeab5a@linaro.org>
-Date: Thu, 6 Jul 2023 09:09:19 +0200
+        Thu, 06 Jul 2023 00:10:11 -0700 (PDT)
+Message-ID: <d78b2a8e-2e38-e52c-2a2c-308675409a1f@linaro.org>
+Date: Thu, 6 Jul 2023 09:10:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
 From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 5/7] tty: serial: meson: add independent uart_data for
- A1 SoC family
+Subject: Re: [PATCH v2 7/7] arm64: dts: meson: a1: change uart compatible
+ string
 Content-Language: en-US
 To: Dmitry Rokosov <ddrokosov@sberdevices.ru>, gregkh@linuxfoundation.org,
  robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
@@ -82,12 +82,12 @@ Cc: kelvin.zhang@amlogic.com, xianwei.zhao@amlogic.com,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 References: <20230705181833.16137-1-ddrokosov@sberdevices.ru>
- <20230705181833.16137-6-ddrokosov@sberdevices.ru>
+ <20230705181833.16137-8-ddrokosov@sberdevices.ru>
 Organization: Linaro Developer Services
-In-Reply-To: <20230705181833.16137-6-ddrokosov@sberdevices.ru>
+In-Reply-To: <20230705181833.16137-8-ddrokosov@sberdevices.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230706_000924_153252_F0AC7DF5 
-X-CRM114-Status: GOOD (  15.45  )
+X-CRM114-CacheID: sfid-20230706_001014_464708_47112BB2 
+X-CRM114-Status: GOOD (  14.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,44 +106,40 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 05/07/2023 20:18, Dmitry Rokosov wrote:
-> Implement separate uart_data to ensure proper devname value for the A1
-> SoC family. Use 'ttyS' devname, as required by the A1 architecture,
-> instead of the legacy gx architecture.
+> In the current implementation, the meson-a1 configuration incorporates a
+> unique compatibility tag "amlogic,meson-a1-uart' within the meson-uart
+> driver due to its usage of the new console device name "ttyS".
+> Consequently, the previous compatibility tag designated for the
+> 'amlogic,meson-gx-uart' configuration has become obsolete and is no
+> longer relevant to the current setup.
 > 
 > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 > ---
->   drivers/tty/serial/meson_uart.c | 9 +++++++++
->   1 file changed, 9 insertions(+)
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-> index 6a63184b8091..84cf10b0ca5c 100644
-> --- a/drivers/tty/serial/meson_uart.c
-> +++ b/drivers/tty/serial/meson_uart.c
-> @@ -818,6 +818,11 @@ static struct meson_uart_data meson_g12a_uart_data = {
->   	.has_xtal_div2 = true,
->   };
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> index c5567031ba12..6273b9c862b3 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -344,7 +344,7 @@ mux {
+>   			};
 >   
-> +static struct meson_uart_data meson_a1_uart_data = {
-> +	.uart_driver = &MESON_UART_DRIVER(ttyS),
-> +	.has_xtal_div2 = false,
-> +};
-> +
->   static struct meson_uart_data meson_s4_uart_data = {
->   	.uart_driver = &MESON_UART_DRIVER(ttyS),
->   	.has_xtal_div2 = true,
-> @@ -836,6 +841,10 @@ static const struct of_device_id meson_uart_dt_match[] = {
->   		.compatible = "amlogic,meson-s4-uart",
->   		.data = (void *)&meson_s4_uart_data,
->   	},
-> +	{
-> +		.compatible = "amlogic,meson-a1-uart",
-> +		.data = (void *)&meson_a1_uart_data,
-> +	},
->   	{ /* sentinel */ },
->   };
->   MODULE_DEVICE_TABLE(of, meson_uart_dt_match);
-
-With the real struct name:
+>   			uart_AO: serial@1c00 {
+> -				compatible = "amlogic,meson-gx-uart",
+> +				compatible = "amlogic,meson-a1-uart",
+>   					     "amlogic,meson-ao-uart";
+>   				reg = <0x0 0x1c00 0x0 0x18>;
+>   				interrupts = <GIC_SPI 25 IRQ_TYPE_EDGE_RISING>;
+> @@ -354,7 +354,7 @@ uart_AO: serial@1c00 {
+>   			};
+>   
+>   			uart_AO_B: serial@2000 {
+> -				compatible = "amlogic,meson-gx-uart",
+> +				compatible = "amlogic,meson-a1-uart",
+>   					     "amlogic,meson-ao-uart";
+>   				reg = <0x0 0x2000 0x0 0x18>;
+>   				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
