@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D893FEB64DD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7CFEC001B0
 	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jul 2023 08:00:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,62 +12,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cn8d+4B0uzo/DaYduHchz/mHA3BTLiPdLfsoVZIOPSA=; b=4lfpXLtLvZEp5+
-	6T4mRq630GU+tIeSjgNfyEIvATWPurjnY6zx7tOuaP3Dkr+rhMQdpZkdy8jNlT74n/WzQrfJC87ZZ
-	NKGNcLnTsmqfHs7mBHxaFkQoRP1gHqE47Ufq1b8SRX51te6gYmxzn6nCjsuP7QaudkoeAWS+07JmY
-	8r7cywkfAn4rwiDc6i7BfaC8D7HrZnNx1KyfBlxXCd3y3QAzkRqr8NVMZlXeA4B1ZucR8ePYhUczT
-	xvaS02nzZLk1bQTbu2/dRcvqjd8tZ5uk2Ij2qBHVARgj930GaBFEJHYk+Uumx4/obrJAhtR4+Qsjy
-	A0I6E1r17LJAoAxzODdA==;
+	List-Owner; bh=fcbe4zviBbYX0XlNapAWE/k9hBuOoamjnmXPa2wvq/c=; b=2d3nYJORZiYIGN
+	nM+/XlSA//u/vXwMTK8dzv7g9ZxkrhGI9dhyWM8v2gMxaiAtA0t4HSVNQOzQJsrHL61Zml4s95gi9
+	gylKToPBo+DOmjEoyzgLtqKB2zg6jjmRefwLQxbgveqaRvtzaVXPR6wf63ae/GD1JibTHKi41Z9Yv
+	YqTuOYDOfHGJ+38XM6UxA2nr+jAiylqBkDC/Gb8USFLFox8Qec+neHNiWLmlLmHD/wf19KL9HOe9O
+	HDv5OMOzvQq5PZs69dZ7R3EUS3mdYPNgeH6y56tgn4bPBUXBVLbMFfZ2BAI52hB99KEDubdZROlad
+	t4T/aFAGA4hN7mYiOeVA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qHJuj-000sTi-2F;
-	Thu, 06 Jul 2023 08:00:33 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
-	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qHJud-000sOd-1s
-	for linux-amlogic@lists.infradead.org;
+	id 1qHJug-000sRd-2P;
 	Thu, 06 Jul 2023 08:00:30 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3fbd33a573cso3771155e9.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jul 2023 01:00:25 -0700 (PDT)
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1qHJud-000sOz-1t
+	for linux-amlogic@lists.infradead.org;
+	Thu, 06 Jul 2023 08:00:29 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3fbc5d5742eso3960785e9.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jul 2023 01:00:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688630424; x=1691222424;
+        d=linaro.org; s=google; t=1688630425; x=1691222425;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=93L8BkPgEfdpngtMZOT+90bXoBGPqeAdqsv/Z4sCp6I=;
-        b=vU150XI9RDT22VBPIwT5mYMka69+Kv9fzSDZpO62LhYUTzg6WLSHtDoGe/gcfFQGR/
-         UhrYqb5fDziNFbOSypz2z78fKWyyjVV6hV20yMOVXczDmP1878TWgV9xq7atIZzXrteB
-         BOrjtLs/APd41gYW0q6Odz0YgZW4anlVDfY9rzq+hJu38UNCoeEahZQispC4MwreCLe1
-         rrn7KQT8G2knMYzx51bwSOxpZCibwWYfYtgtLkkgZ1aGfFYTa59BHl86Q88Hqs4zzqKz
-         YK3aJ5LcBctCXPdEhCpV/q7yxUr/TjOwZ1JuJNUsSHEfy+efMU5UfUkEue+fGsrnveax
-         RkzA==
+        bh=zWpH1FvGpiFFPL3Zk5MB4gar3abtPZq+nswg1l+SqSg=;
+        b=z8CF+23V8/iN9B9tos0KT/eKSlOJXhZaFRjqcobvmHkTtx8IIGPAXZqNO0Z9d5RUAe
+         I6VfUzkrptGnMATJX60aX79fNdHW7RtIOvR/Ktt5vyHPW0VL00Oo1REG76SAh9/Q29mZ
+         cVGp1op86QVIvT+UNPCJZ6U9N4SrHcVWr2boReW1ClXDHtVN0okuoYSl2zB5qt7eSTo7
+         glKl3IFrKPRHpy/fO4n8RGqkoKt1ZWQIOs5/FZ00nriX4a5K4whqhR0iIYny/vBKzb5l
+         KDURPEwtW6UiZzhAysSDh+dseroQYX3fi/P7BiGJ9kyP2l3J8D4XE5NG0XNBPhlHroTL
+         LcuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688630424; x=1691222424;
+        d=1e100.net; s=20221208; t=1688630425; x=1691222425;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=93L8BkPgEfdpngtMZOT+90bXoBGPqeAdqsv/Z4sCp6I=;
-        b=a1YilCJGxLUp1tIh9fqJZx1uvoGP7nl4xUNWMGYPBavCDmUQJpBVX7p4r4nZallxBv
-         8DxNvW1FB1uVryxFGB703gN7fR+PbKxC1BcpHKIXKZdRSGdkC3WTRwyMsWjIq4rkN6NQ
-         VW3lQ4NOIg441aKiLF+3y+5kz4Toy/bSvPP4REaGHXYvC8ikwAxxTZU8KDYgXV7nkMh9
-         6dYiAJnYX2+mXCRgTBApzbbe7B3d26XzSok4jwu0GW8nejzDncjjtiqRRA9vol+lSzTt
-         7FM9VKhuSG0boRFRD9pHDhJ6DEqquNJ6QvGsR5twGigIo9mQjOe34jKyGUkLXCHKmEsa
-         5VkQ==
-X-Gm-Message-State: ABy/qLZnukxFyVcP5O1YjuM3k5inPw0Lyx9i9huuYLIAZnoG1bUmrIfr
-	wJpBYGX9AKh1ACVHU8XsKUnmWA==
-X-Google-Smtp-Source: APBJJlH0UmwL97d4yl5LZFrPLIyAm9frS5cCiPHFs9ODvBbOTYDidw/cS4bYqCerJ4g5RTh7W0WAmQ==
-X-Received: by 2002:a1c:ed0d:0:b0:3fa:934c:8350 with SMTP id l13-20020a1ced0d000000b003fa934c8350mr712696wmh.27.1688630424030;
+        bh=zWpH1FvGpiFFPL3Zk5MB4gar3abtPZq+nswg1l+SqSg=;
+        b=Ix0Jb76R0RhHnZutM5ae2o/2qhC0WKxGJzeeWwelV3sDg40LQ7wsIwFhm3DrAE1zmb
+         EIZAekivlvvJhm8Ulj3LXjRNiKuvygOJ6nA+lu8LVfC4mxsmeU5gvDDULCXncuT5LyfN
+         CKgluoLVoOWFOKj450nsPz1qb4FZ8aMEs+VUT03VR65ozDDjzp0ulW/fbpnW5u9ni0mL
+         JafAPCxEpmZg0HqLhHRvzrvcxc/MuW4JK841dJh39MZMrP0WFW0ByEiBLMGRBiCrQxEF
+         rnaoCXBofH1mkGNsCQ1ok9pF+j1488snImWN3XJnZzpVNGISUtqhCVMwnxBQurb+bM7R
+         mWmQ==
+X-Gm-Message-State: ABy/qLbMo3Nc8xlDVtpKGlfspCUYHljuzYeWOFAdgI9cyYm96tbJxyoV
+	Xbs5mxvhv+w/lDfRTL+rqRAr9g==
+X-Google-Smtp-Source: APBJJlE4gWjcP7W0gh/5EZLG8ViE/6K0tZw10eioLU/v1QWdFBHHFFTEa7t0sYd/ac1rM8ha9/xDWQ==
+X-Received: by 2002:a05:600c:293:b0:3fb:e2af:49f6 with SMTP id 19-20020a05600c029300b003fbe2af49f6mr678506wmk.39.1688630424904;
         Thu, 06 Jul 2023 01:00:24 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id v6-20020a05600c444600b003fbb1ce274fsm5587375wmn.0.2023.07.06.01.00.23
+        by smtp.gmail.com with ESMTPSA id v6-20020a05600c444600b003fbb1ce274fsm5587375wmn.0.2023.07.06.01.00.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 01:00:23 -0700 (PDT)
+        Thu, 06 Jul 2023 01:00:24 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 06 Jul 2023 10:00:20 +0200
-Subject: [PATCH 2/3] arm64: dtb: amlogic: meson-g12-common: change
- aobus-pinctrl node name
+Date: Thu, 06 Jul 2023 10:00:21 +0200
+Subject: [PATCH 3/3] arm64: dts: amlogic: drop cooling-[min|max]-state from
+ pwm-fan
 MIME-Version: 1.0
-Message-Id: <20230706-topic-amlogic-upstream-dt-fixes-take3-v1-2-63ed070eeab2@linaro.org>
+Message-Id: <20230706-topic-amlogic-upstream-dt-fixes-take3-v1-3-63ed070eeab2@linaro.org>
 References: <20230706-topic-amlogic-upstream-dt-fixes-take3-v1-0-63ed070eeab2@linaro.org>
 In-Reply-To: <20230706-topic-amlogic-upstream-dt-fixes-take3-v1-0-63ed070eeab2@linaro.org>
 To: Rob Herring <robh+dt@kernel.org>, 
@@ -79,25 +79,26 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=783;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1423;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=j0QAC12CtwfrA2b91cLW5DK1eWrkH7AjxGLlYCOHUHQ=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkpnSUU9xjNbx3BwIiYJT5nPcv/ge5kWU6GfeJ0s8k
- hFc3PyeJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKZ0lAAKCRB33NvayMhJ0UHQD/
- 4xq6D1Guxs5dlH6ct0+eIOmFXYCUrg+J/IQlW6wT6+ghlC3C6MNL4cKteErw41khgrHPUGMTj7tEkc
- y0e7CELHvDwEZE+Geo0j74JxjrjVhCXLoEJkSff2jdR4cWCx9FTQKmjhLKOsgjP3rv/5cKoQd16luY
- alwYX41SnyHIzKjJsrxXHcERxx6cgoDzVsFz/FoIIpUzBOkVVjJ5nJ/L1ZhdmNQmGLKJMAhs3fwbqW
- 1pTCh1BQdfGBqWNFxY0eRgHwRWLo9qTGXnMlaNRX9tSaRLwxxR+9yRuccPgSChBnFqgMXRoRvZVduV
- ZeIVP+VxHUJ1nyOt1I/PCuRvMRjh7sARFMAxjJpnkarG5bKKe9G7yVVlJXNe88amcIgl0qo0IZ/Edr
- 4iqMfdKBuBmUJWD3wxZohrarpybgCuxvvOZczrF74ZaAHsR2B3GtkpOLY9RdZ2gKzrDhpTmY+ZOFSn
- JQqBJEIVzpV1fnrw4Ptz644zqrCh24KiujitJvDh2Mp9oQoSQJJC49fReigZq/EgpjQoR/+nHliXlF
- w3tFhI4ngmyUTHe+Vqw6tGGBmtBmHswKXfRfOzFsZsORERL7gn/6bEXsbWHpZdM6e9lQlOyVnNu+EX
- 8MytTF78aJJqmimWcjZtzbsbPkgdXZsgNDwlKjAt2etYgD1nqQoIpWFqQsiw==
+ bh=mTxrGBgcrLVvxfWXqT39OrtK8xzaQJmrQf3lTHsiMu8=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkpnSVVlcqsYAlsspnNSpabIPV0CUsiTF7uT/6cBbG
+ rIDdZdiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKZ0lQAKCRB33NvayMhJ0dwuD/
+ wPzwYHtKFu5wR0PYy9KwbUaetfp9VjtWrDRPP+zZV1/9ZYekIqbMITt+s7/+CILqWg+KgtIaoGieMl
+ Tw9ewazOmGsAnNiJUgs3z9Ft6NpR2tPNHb3wPG+TFvnnM+HqmaKNkeTle2RH0UeBuwlsCv3rIhcOpd
+ ZFesU/nPeW6vQW2EPtz4IjHH8gXplRzTPMUciWc9pNUEGm9lQOwThNFYXz2I08Ll1YFM+cRKF2tfaR
+ jmM6nuqMzn/a3Txe560cr8iRb5H9NHTzslFtvUae4zif0wTpFMXhi3Fai/G2jsHzXMeeOBDEXz5XrC
+ GMNRzEpl4zDrbXEmNihN7awahAGtKLL8gXgLqDwd1rKilzVnCjNvCI7Qe0VY2Mq0bQvA7/F9N0k1tF
+ cVH4Ntph2LWpLZiJclHPElVe3rE75bI3uC0vZLmIXL2CpoccQYJPxIQEPNChMQBnIVxOqIAicwzkab
+ QsX8O/w3sdZm0O0lhU/qW0VegQcfkgEEgtriSg+wG5hl3s+jjWQkmWC6DG95YEa/fKhdIa/FuqwZIQ
+ I2H7dq5h0rlQ/JjDehSYuW/4NDA1eLfx8NedH5F+4N5OKCg3qkruvgqLi0Z92OCG0lhb17iN1xSJa4
+ 1lbTZiTTRvOoCRWODT6E/JDpp0eoK4xzgGP3B6W4CkAKz+3YJsTTsMZJoCYg==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230706_010027_686614_5CA9A7B2 
-X-CRM114-Status: GOOD (  10.21  )
+X-CRM114-CacheID: sfid-20230706_010027_652578_22D25023 
+X-CRM114-Status: UNSURE (   9.14  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,26 +115,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Bindings expects name to be "pinctrl", fix it.
+Drop the invalid cooling-min-state & cooling-max-state from the
+pwm-fan node defined in the bananapi dtsi and odroid-hc4 DT.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi | 2 --
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 2 --
+ 2 files changed, 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 0c49655cc90c..6d39faba7c3f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -1733,7 +1733,7 @@ clkc_AO: clock-controller {
- 					clock-names = "xtal", "mpeg-clk";
- 				};
- 
--				ao_pinctrl: pinctrl@14 {
-+				ao_pinctrl: pinctrl {
- 					compatible = "amlogic,meson-g12a-aobus-pinctrl";
- 					#address-cells = <2>;
- 					#size-cells = <2>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
+index 83709787eb91..42f30112b56a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
+@@ -47,8 +47,6 @@ emmc_pwrseq: emmc-pwrseq {
+ 	fan0: pwm-fan {
+ 		compatible = "pwm-fan";
+ 		#cooling-cells = <2>;
+-		cooling-min-state = <0>;
+-		cooling-max-state = <3>;
+ 		cooling-levels = <0 120 170 220>;
+ 		pwms = <&pwm_cd 1 40000 0>;
+ 	};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+index 74088e7280fe..846a2d6c20e5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+@@ -19,8 +19,6 @@ aliases {
+ 	fan0: pwm-fan {
+ 		compatible = "pwm-fan";
+ 		#cooling-cells = <2>;
+-		cooling-min-state = <0>;
+-		cooling-max-state = <3>;
+ 		cooling-levels = <0 120 170 220>;
+ 		pwms = <&pwm_cd 1 40000 0>;
+ 	};
 
 -- 
 2.34.1
