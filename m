@@ -4,84 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76E89EB64DA
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jul 2023 07:52:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87187EB64DA
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jul 2023 08:21:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=d2p3aLXSI0qX86uCO1KzXBOxWdL0FZET0OtkFh2a1As=; b=ASig92ZvpGEmo69M9sRiZ3LGXZ
-	p60ySvIYtFo6TEznGqZhrVAeYwgVsFpq9ypNwPP4J9IXpyeJqve0fUQWRdooAv/mV1A4iREmsLYij
-	6I1apFPfYz4E4qTQNmrRvxXCggOyvuA+IoXrs6zGi2hCd+EvkTfCrSdZQqQLrsR/z8n/CpqW5Dj5N
-	0fM+zXnon/KUBDjlzjU7tONlKcwO4YPbbuhWZ7+WhwLinhCDxRdAsv9mwgKgyPNS9aia8hNdRGxrt
-	cttZxXp2OlQiV659bYJ3l9rzjFwqHj4hU9phaeWLjquA4WkHm4NAXOdTB6cLfhLqyXaI4YGPYDdlf
-	PFgJnnUw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ldi2MQ1qa9gU/a4982HbHTDSrgXontpeXX6JLTedPGo=; b=Gwdo/7N5bz/OiK
+	526VDaQScZJcyFI9TDeLKg1pKup3KLL7iXah9elLfPBnyrHy04s41HlvRCYyK/Njfd/B4gAU9J5BP
+	aEZzAOZkodd+H0+jTh+By53v2xGo5MloI4eEq77oEOocA6JJQ+HuIZ2SZgtUITBPilX2h+DNVOKAH
+	+eD/oubEPpss5z2YTwhwFPolC4R+9LOUPlF+EbfARKo9LSLR40qhDvrcvGWujUNskic+AKDMxRRX9
+	/c3hgrrxPO3wAm3gSpfyY+rkj4W5uqRq0xxGL/6KUGWmaT3eE8v4m/sPlAPZFLFI97SdBDrSqweXM
+	15PCVwPhLfvgGdMVrsEA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qHgG0-003uqq-21;
-	Fri, 07 Jul 2023 07:52:00 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1qHghz-003yFS-1f;
+	Fri, 07 Jul 2023 08:20:55 +0000
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qHgFx-003uoh-0P
+	id 1qHghv-003yCc-2n
 	for linux-amlogic@lists.infradead.org;
-	Fri, 07 Jul 2023 07:51:58 +0000
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-3143b72c5ffso1786750f8f.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 07 Jul 2023 00:51:52 -0700 (PDT)
+	Fri, 07 Jul 2023 08:20:53 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3143493728dso1617007f8f.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 07 Jul 2023 01:20:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688716311; x=1691308311;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=UC5F0FA71mhMEgXpkNWdObl4xUHsYLbWZcNLdSixP60=;
-        b=wZxj4FwJnEuUXQUynRvoqIwtLtG3qgMtWZ6/8COXXEN8Qhl3ctiOhEBl1ncuaOu8/G
-         la2v/U/9a0RqxDjSIv5VQD9RN+VzuHF1HICjL2ZPWdPDkmIcPN9KAYpMYNP7S2eIgA1I
-         4735860OkAZEY51MYcEfjICwmCON0rBlBs+itbxcWn+kc+kfoYD891WVYnlQmFTkZ26w
-         JwkD9/HjxhTkKqHoTMBG7UcTXF1iYMALia43F1ui75i7EcUXko1kho5xriFTKk8ym8Jd
-         qgaGQvcHVmB+0ZgbG+ACVF5aPoYnhqZrUV9vGo7tXc6ViIqcQKvGBNeGlTEkgR7J8gTd
-         I+tg==
+        d=linaro.org; s=google; t=1688718048; x=1691310048;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=P7nX8phUtgvJlXBdE7HbRkDLu02J23oMaWSNoummNpM=;
+        b=ZvRIDUsv9vIYR3vOfIKZHZ/QP+RFnql63YTQ2nv/Djpc5JuPK9rESNbVRWm4JJB6Hw
+         kcxszPOe05wTw7dGH+e55op5+Lr9kOqpXCsbic8MTApQWi5qmCy5fQDI/Xo2MRKTRByh
+         FOhDdF54NLDI8XZDEM0Co03nzublpIdqEbZhkFNvP9vIkM4dPSASny6nALE5HEU6jsLm
+         ksl64aDAdJG5c3N9TsdmZqKF5riLzoXId8iPug1/hJaIJdM9upbbnKUZiNfOK63FHvz7
+         /KH6Ss2y7OAGJ17mySEv4H1UoCYj9Wdgdq8ouvYEXgh7vdJ+dIxAsZYU/TDqUXryYE4U
+         u4PA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688716311; x=1691308311;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1688718048; x=1691310048;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UC5F0FA71mhMEgXpkNWdObl4xUHsYLbWZcNLdSixP60=;
-        b=GKMg9f8hDjr6VxQ576e4oJXFx+ibbWXZB0iQiHzNKIk94nVbZ3okUz27sNvtNcYTsa
-         +1tJIhV30V161C+R+6AD5+T7clkKMnNL4+Rtaosz7YGO7qU/D1db6PiLep22Fymk6QtN
-         t/OdV75UFEHSje57RKA0QeClTzTHJeJ6ZvlT28n0GH7A0BdjE6bpAJE0BFSCBDsS9JBo
-         dpKzmkw5I9FwIr92LBJKJQg20X3KhiV60eYOXsWYR5tLWQMqDFhxqu4QoTqOOpIofUg1
-         hjqSJxeSaQaeduMY8M5ubCJ7SpAbliYTHMkQmEcOy0uGYO0+/rWuLqUip4Tgt3v4xUuy
-         hwaA==
-X-Gm-Message-State: ABy/qLZzB9oYr/s0nqdqE2pVaXQuOYwvuMklDVBYLKt9UbwXJLXPyvFL
-	dq6kx0uIkWCRiQwiAfFuJxKipA==
-X-Google-Smtp-Source: APBJJlFs77aJEcKl47rs6zmBGWRedkrw2mAlemkoqQjXu7RZz1IOFErpMhKmP0OOEG2NyGaZi6PVeQ==
-X-Received: by 2002:a5d:6045:0:b0:314:52b4:cc38 with SMTP id j5-20020a5d6045000000b0031452b4cc38mr5275076wrt.52.1688716310914;
-        Fri, 07 Jul 2023 00:51:50 -0700 (PDT)
-Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
-        by smtp.gmail.com with ESMTPSA id f18-20020adff992000000b003143c532431sm3775318wrr.27.2023.07.07.00.51.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Jul 2023 00:51:50 -0700 (PDT)
-Message-ID: <1f962997-82f9-18e3-f95d-e1b723e636f8@linaro.org>
-Date: Fri, 7 Jul 2023 09:51:49 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
+        bh=P7nX8phUtgvJlXBdE7HbRkDLu02J23oMaWSNoummNpM=;
+        b=iBjTWO0eQD7O/WIKlBn6K5gJ4dJ6wb7SNREN4l7zkl7FqbbfNuihuFN8ZjNRMWk5vH
+         gVIvUrow3O5qW+Atv17+sw3rtykno4vcS0qS+WWHfmBfJ7GvcS8sjFCbx16Q4vivKhSO
+         jYZtX50p5/StRVX444w2N7wB7/vQKiD+iBfu0AQxlaMbGww6i4kUUoXY8r6RpsSxd4h3
+         wjOMpzN/TJU53ixwfwRKx60Z4vJRyPSRJetaFIRfingdcALrMgyymnIAM4vzH1SvdeQK
+         bterOZLEZooWa1i9THYQLssVIjQ+FM4yA8bzHVR79BYAzPbn0OXE89C3/yhkBNFAp9/k
+         pVIw==
+X-Gm-Message-State: ABy/qLYg+64fIu6CzbZ4e4gsjGgvOtPpFLomOlZjgbPbhlLITRfe9ryA
+	5pBMN3/z9/wgszmzUQkAOivUWw==
+X-Google-Smtp-Source: APBJJlHuX5vVM/UKRZ/aziETXd4ETuHeeEBeYfXppfJI2XzCYX/DyG4sM35yPGMIok5s9ak2Lm7IHQ==
+X-Received: by 2002:adf:f711:0:b0:30e:3da5:46e5 with SMTP id r17-20020adff711000000b0030e3da546e5mr3619353wrp.59.1688718048582;
+        Fri, 07 Jul 2023 01:20:48 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id a5-20020adffb85000000b00313e4d02be8sm3824395wrr.55.2023.07.07.01.20.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jul 2023 01:20:48 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 1/2] spi: amlogic-spifc-a1: implement adjust_op_size()
-Content-Language: en-US
-To: Martin Kurbanov <mmkurbanov@sberdevices.ru>,
- Mark Brown <broonie@kernel.org>, Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: linux-spi@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, kernel@sberdevices.ru
-References: <20230706110331.19794-1-mmkurbanov@sberdevices.ru>
- <20230706110331.19794-2-mmkurbanov@sberdevices.ru>
-Organization: Linaro Developer Services
-In-Reply-To: <20230706110331.19794-2-mmkurbanov@sberdevices.ru>
+Subject: [PATCH v2 0/2] dt-bindings: pinctrl: amlogic,meson-pinctrl-common:
+ add missing properties
+Date: Fri, 07 Jul 2023 10:20:43 +0200
+Message-Id: <20230707-topic-amlogic-upstream-pinctrl-fix-bindings-v2-0-2160060446d7@linaro.org>
+MIME-Version: 1.0
+X-B4-Tracking: v=1; b=H4sIANvKp2QC/52NQQ6DIBREr2JY9zeIVtqueo/GBSLiTxTIh5o2h
+ ruXeoSuJm8mmbezaAhNZPdqZ2Q2jOhdAXGqmJ6VswZwLMwEFw2XvIPkA2pQ6+JtyVeIiYxaIaD
+ TiRaY8A0DuhGdjaDFIFvdNfIqBSuPgUzZD9uzLzxjTJ4+h3yrf+1/nq0GDpNqWzFelDK3+rGgU
+ +TPnizrc85fDZYshucAAAA=
+To: Linus Walleij <linus.walleij@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1669;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=FyjsoTudixydC0nNMdjfVMOeLJOWeJk3gdhNn8W9tE4=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkp8revvGyh8h+u4H2kef4fC9pa+RedPwKKGzXjMPa
+ X3zF+TSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKfK3gAKCRB33NvayMhJ0SUdD/
+ 9MuupduiPkUIemehndLwaP/EAV+x1a1xZQnKh3dtyAmELloWg7peQif3zlirC5c1BdctZJNfUF7lWe
+ cSk3/9cFZdd+0FJ/ANgi2kadN+qJ6utMiOO9Na6SzHGnc/JHf68s9963iqzJ7wICkhMK88pz47r/ys
+ tMKZWoqiv/Fr47twhZH0fLTf7OMslDxgDrWqtCcX5o4aWE+sYwTzmQkhJbsEx03LzlVvgX6isPa1Zq
+ 4kA1WIRF1IqvMXZo/PSDWaADi3njfrRPUuEFU1a0cIYMell5xK46CGFrLaN82s9o9Gd8IwBaeK2kNt
+ xEHi4UwBMGP8IwuVca0nQG8UmWa4qbS+kQ9pDMI9nt0dlDslO840gQrh5MAmm/2udaBCsG+JdyUzLY
+ M/52rnAqJMrOPRj/xQkbeIyWOSn5BMpKFnErnU8cTXYWDbQ7bJrOqYrz+SgDIcsjfKk8iM94s3lA3E
+ N8SSJxhx63/GdkI7ztBpkmdPI0F0ouBjPJxf8C11QqDZIE/4Z+HyWdfOVxXn2D2FhU2Rf+QBaFrSOa
+ dUOB9VDTVVeyOamlUfOwIe66aErXGXFvLgsgVmM1cNmtTRMLVlGZQJPB3NICdlq56bRqk67syeG0OU
+ uLi17EtIDg+GERRxYKzcIuEJ77PFMa6hdwUzZDVTvK6IPkVBz21+lNeqIPRQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230707_005157_184251_363C89B2 
-X-CRM114-Status: GOOD (  20.93  )
+X-CRM114-CacheID: sfid-20230707_012051_900031_30C58FD9 
+X-CRM114-Status: UNSURE (   7.09  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,130 +114,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 06/07/2023 13:03, Martin Kurbanov wrote:
-> This enhancement eliminates the need for a loop in the
-> amlogic_spifc_a1_exec_op() function and allows the SPI core to
-> dynamically divide transactions into appropriately sized chunks.
-> 
-> Signed-off-by: Martin Kurbanov <mmkurbanov@sberdevices.ru>
-> ---
->   drivers/spi/spi-amlogic-spifc-a1.c | 66 +++++++++++-------------------
->   1 file changed, 25 insertions(+), 41 deletions(-)
-> 
-> diff --git a/drivers/spi/spi-amlogic-spifc-a1.c b/drivers/spi/spi-amlogic-spifc-a1.c
-> index 3c4224c38399..a92e4fc23396 100644
-> --- a/drivers/spi/spi-amlogic-spifc-a1.c
-> +++ b/drivers/spi/spi-amlogic-spifc-a1.c
-> @@ -72,7 +72,7 @@
->   
->   #define SPIFC_A1_USER_DBUF_ADDR_REG	0x248
->   
-> -#define SPIFC_A1_BUFFER_SIZE		512
-> +#define SPIFC_A1_BUFFER_SIZE		512U
->   
->   #define SPIFC_A1_MAX_HZ			200000000
->   #define SPIFC_A1_MIN_HZ			1000000
-> @@ -240,61 +240,44 @@ static int amlogic_spifc_a1_exec_op(struct spi_mem *mem,
->   {
->   	struct amlogic_spifc_a1 *spifc =
->   		spi_controller_get_devdata(mem->spi->controller);
-> -	size_t off, nbytes = op->data.nbytes;
-> -	u32 cmd_cfg, addr_cfg, dummy_cfg, dmode;
-> +	size_t data_size = op->data.nbytes;
->   	int ret;
->   
->   	amlogic_spifc_a1_user_init(spifc);
-> +	amlogic_spifc_a1_set_cmd(spifc, SPIFC_A1_USER_CMD(op));
->   
-> -	cmd_cfg = SPIFC_A1_USER_CMD(op);
-> -	amlogic_spifc_a1_set_cmd(spifc, cmd_cfg);
-> +	if (op->addr.nbytes)
-> +		amlogic_spifc_a1_set_addr(spifc, op->addr.val,
-> +					  SPIFC_A1_USER_ADDR(op));
->   
-> -	if (op->addr.nbytes) {
-> -		addr_cfg = SPIFC_A1_USER_ADDR(op);
-> -		amlogic_spifc_a1_set_addr(spifc, op->addr.val, addr_cfg);
-> -	}
-> -
-> -	if (op->dummy.nbytes) {
-> -		dummy_cfg = SPIFC_A1_USER_DUMMY(op);
-> -		amlogic_spifc_a1_set_dummy(spifc, dummy_cfg);
-> -	}
-> -
-> -	if (!op->data.nbytes)
-> -		return amlogic_spifc_a1_request(spifc, false);
-> -
-> -	dmode = ilog2(op->data.buswidth);
-> -	off = 0;
-> -
-> -	do {
-> -		size_t block_size = min_t(size_t, nbytes, SPIFC_A1_BUFFER_SIZE);
-> -
-> -		amlogic_spifc_a1_set_cmd(spifc, cmd_cfg);
-> +	if (op->dummy.nbytes)
-> +		amlogic_spifc_a1_set_dummy(spifc, SPIFC_A1_USER_DUMMY(op));
->   
-> -		if (op->addr.nbytes)
-> -			amlogic_spifc_a1_set_addr(spifc, op->addr.val + off,
-> -						  addr_cfg);
-> -
-> -		if (op->dummy.nbytes)
-> -			amlogic_spifc_a1_set_dummy(spifc, dummy_cfg);
-> +	if (data_size) {
-> +		u32 mode = ilog2(op->data.buswidth);
->   
->   		writel(0, spifc->base + SPIFC_A1_USER_DBUF_ADDR_REG);
->   
->   		if (op->data.dir == SPI_MEM_DATA_IN)
-> -			ret = amlogic_spifc_a1_read(spifc,
-> -						    op->data.buf.in + off,
-> -						    block_size, dmode);
-> +			ret = amlogic_spifc_a1_read(spifc, op->data.buf.in,
-> +						    data_size, mode);
->   		else
-> -			ret = amlogic_spifc_a1_write(spifc,
-> -						     op->data.buf.out + off,
-> -						     block_size, dmode);
-> -
-> -		nbytes -= block_size;
-> -		off += block_size;
-> -	} while (nbytes != 0 && !ret);
-> +			ret = amlogic_spifc_a1_write(spifc, op->data.buf.out,
-> +						     data_size, mode);
-> +	} else {
-> +		ret = amlogic_spifc_a1_request(spifc, false);
-> +	}
->   
->   	return ret;
->   }
->   
-> +static int amlogic_spifc_a1_adjust_op_size(struct spi_mem *mem,
-> +					   struct spi_mem_op *op)
-> +{
-> +	op->data.nbytes = min(op->data.nbytes, SPIFC_A1_BUFFER_SIZE);
-> +	return 0;
-> +}
-> +
->   static void amlogic_spifc_a1_hw_init(struct amlogic_spifc_a1 *spifc)
->   {
->   	u32 regv;
-> @@ -314,6 +297,7 @@ static void amlogic_spifc_a1_hw_init(struct amlogic_spifc_a1 *spifc)
->   
->   static const struct spi_controller_mem_ops amlogic_spifc_a1_mem_ops = {
->   	.exec_op = amlogic_spifc_a1_exec_op,
-> +	.adjust_op_size = amlogic_spifc_a1_adjust_op_size,
->   };
->   
->   static int amlogic_spifc_a1_probe(struct platform_device *pdev)
+The amlogic DT uses gpio-line-names and gpio-hog, add those
+to the yaml converted pinctrl bindings.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+This will fix the following dtschema check errors:
+arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dtb: pinctrl@40: bank@40: Unevaluated properties are not allowed ('gpio-line-names', 'usb-hub-hog' were unexpected)
+arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dtb: pinctrl@4b0: bank@4b0: Unevaluated properties are not allowed ('gpio-line-names' was unexpected)
+..
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- Added review tags
+- Moved line-names out of common and added min/max items for each bindings
+- Link to v1: https://lore.kernel.org/r/20230706-topic-amlogic-upstream-pinctrl-fix-bindings-v1-0-fa442d5aae91@linaro.org
+
+---
+Neil Armstrong (2):
+      dt-bindings: pinctrl: amlogic,meson-pinctrl: allow gpio-line-names
+      dt-bindings: pinctrl: amlogic,meson-pinctrl-common: allow gpio hogs
+
+ .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml      | 4 ++++
+ .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml  | 7 +++++++
+ .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml         | 3 +++
+ .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml       | 3 +++
+ .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml  | 4 ++++
+ .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml   | 4 ++++
+ 6 files changed, 25 insertions(+)
+---
+base-commit: e1f6a8eaf1c271a0158114a03e3605f4fba059ad
+change-id: 20230706-topic-amlogic-upstream-pinctrl-fix-bindings-c2b74c637872
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
 _______________________________________________
 linux-amlogic mailing list
