@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DCC1C001DE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6DB7C001E0
 	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jul 2023 15:34:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0YDfh2tsp5+qHuQc3ROJsSkcw6cpVodup2F4aJfkojM=; b=GGFmRe+Hp+dkry
-	OU+a31AwopK5SAfxB7PConTQPU3UNziVsp48BU1FcJ/EMNSL6wBArLhDFswWaFWJtsyBV9yEwBklO
-	OI8Ivf6PSlHe6EoqIMilC2fl84shIX/9TKmmM8QTTD99TTbeeBLkZqHL3EjaTRraxdh0A7AUfSINl
-	EBuLUsyWt1ptIrMACoiaN7J14P+HRfbu6t9cSRWhG1WMFsXNGVKRyN1NJItrP4WufNl6YhBfQ4CHC
-	57twhZfdvnULkPk5/gGQ5Dxja2kO+VzP/xj3VbbNp3zL5fepeRM8zHQzIdxSBk52DYMgCYAa8f5/v
-	3lUVXohxhirOXnp7YV1w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=38tjjfS88owPs92DrpncciQgI0mMmiMvUX4aoWrqanc=; b=2zQOsiUQp/ros/
+	OQy0iBP6VX/GXv7D/8o5oBh6P5aR9l4fJyMRpWhNLPDSRrR+MLhj2vxMPgmbMbwM4pC4xQd6Cu+IE
+	mggdXIXO0sdlemKdJxA5iyNE2cPNLg4o8I5695I4mSanYwlf/0HS70Q0tIOweOiGuw4bll11vCmvC
+	od7nMg+IVPR7gh4eDIMZs2/N0QjtIBTDZeeAR//CxLxYw6Hs2z+69ayINxr1o3Qdho9kMDxXjALto
+	Z2XljK7dEUdwqV6JZB5PDuNDeQUnM/suFH/X93G9b9vVTWx3rGVit/PczrzYDsCShdiVS7l0MAUHd
+	cGeNhSqIkzkNXjEjrMbA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qHnSs-0053gd-0z;
-	Fri, 07 Jul 2023 15:33:46 +0000
+	id 1qHnSu-0053ic-0J;
+	Fri, 07 Jul 2023 15:33:48 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qHnSl-0053bt-1r;
+	id 1qHnSl-0053br-1v;
 	Fri, 07 Jul 2023 15:33:43 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id C746A120013;
-	Fri,  7 Jul 2023 18:33:33 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru C746A120013
+	by mx1.sberdevices.ru (Postfix) with ESMTP id A0397120010;
+	Fri,  7 Jul 2023 18:33:32 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru A0397120010
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1688744013;
-	bh=JSydivd3FU78noI+uH9qQ/p74cncRISu8zSqHemHcXk=;
+	s=mail; t=1688744012;
+	bh=GKtM0bSwk3y4gBkptV+v8XDqcrZiJgzslOcrYoAtv4g=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=BJW6yjGM3mqSgeU+EEDM4eu0apnv5NXb2IHQQvPMus408rWdkN/KG8aiL+uIEeVqB
-	 S+uRkDcgZcaX4xDwgK9U3mRP1uBlzQfwk7di3vJF7oQuQsD7ag48h5p5fWvjy3YtGg
-	 pSxhrpH7n8qbrR7ap3cB/aLGjmkx832HdNoaKfqDMeoCkwz0FhPv2/hV5fNKaMrID6
-	 d1De3nF+IytfepSfrzxnHrzTbYwdXN3dff0SjX9IrLWpvWyfjedsh/9RQm6jBhPLyz
-	 Ifkep7RHgYdnbmgvZljd8erl1G64iijZ2yRb1BDCGhrQy6kl2v55Ufk+fpFMGCG9qy
-	 5Qc6MCDz2UmPA==
+	b=W/Cq9WaeaAXXAZoG/ni/YfrW58kcWRQRFU0JbkcrxG/FLtQe3jOm4CZnU1duCNeQ6
+	 AhC5Wg7fuMyWih0PBLFsi6a+RkDLN4i86dsV/HXhfQ4FQ0eIjBemzWVd8kgNRckn7D
+	 dYWUvQbv6a8VNl9FYL59Zkigb+GKZLnAy+UqdNusD9F8PvBnT68wB5wqX8QZWV7JDJ
+	 /BKCNdj2usNvEbDum2Up63ybTXKtcTkCMVTrL9yaENvcqOl3TPc3OcgPlO+cr9HIy8
+	 SjdqWeCoRlAiznHkcK1pANvgi/UDFq9MX9NvbN/rFs2jU3wUtzYFhx/OkjcH4UxTD/
+	 fFmFvTScKBSfA==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri,  7 Jul 2023 18:33:33 +0300 (MSK)
+	Fri,  7 Jul 2023 18:33:32 +0300 (MSK)
 Received: from localhost.localdomain (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Fri, 7 Jul 2023 18:33:16 +0300
+ 15.2.1118.30; Fri, 7 Jul 2023 18:33:15 +0300
 From: George Stark <gnstark@sberdevices.ru>
 To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
 	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
@@ -57,12 +57,10 @@ To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
 CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<kernel@sberdevices.ru>, George Stark <GNStark@sberdevices.ru>
-Subject: [PATCH v4 6/6] iio: adc: meson: support reading from channel 7 mux inputs
-Date: Fri, 7 Jul 2023 18:27:43 +0300
-Message-ID: <20230707153322.114302-7-gnstark@sberdevices.ru>
+Subject: [PATCH v4 0/6] iio: adc: meson: add iio channels to read channel 7 mux inputs
+Date: Fri, 7 Jul 2023 18:27:37 +0300
+Message-ID: <20230707153322.114302-1-gnstark@sberdevices.ru>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230707153322.114302-1-gnstark@sberdevices.ru>
-References: <20230707153322.114302-1-gnstark@sberdevices.ru>
 MIME-Version: 1.0
 X-Originating-IP: [100.64.160.123]
 X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
@@ -76,16 +74,17 @@ X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;sberdevices.ru:5.0.1,7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;sberdevices.ru:5.0.1,7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
+X-KSMG-AntiPhishing: Clean, bases: 2023/07/07 14:34:00
+X-KSMG-LinksScanning: Clean, bases: 2023/07/07 14:35:00
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/07 03:24:00 #21575635
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230707_083340_278488_61CE90A4 
-X-CRM114-Status: GOOD (  19.74  )
+X-CRM114-CacheID: sfid-20230707_083340_266148_10ED60D3 
+X-CRM114-Status: UNSURE (   9.38  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,180 +101,71 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add iio channel for every channel 7 mux input.
-Meson saradc channel 7 is connected to a mux that can switch channel
-input to well-known sources like Vdd, GND and several Vdd dividers.
+From: George Stark <GNStark@sberdevices.ru>
 
-Signed-off-by: George Stark <GNStark@sberdevices.ru>
----
- drivers/iio/adc/meson_saradc.c | 77 +++++++++++++++++++++++++++++++++-
- 1 file changed, 75 insertions(+), 2 deletions(-)
+Changelog:
 
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 918bd5da3605..2411cc864ccd 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -163,6 +163,7 @@
- #define MESON_SAR_ADC_MAX_FIFO_SIZE				32
- #define MESON_SAR_ADC_TIMEOUT					100 /* ms */
- #define MESON_SAR_ADC_VOLTAGE_AND_TEMP_CHANNEL			6
-+#define MESON_SAR_ADC_VOLTAGE_AND_MUX_CHANNEL			7
- #define MESON_SAR_ADC_TEMP_OFFSET				27
- 
- /* temperature sensor calibration information in eFuse */
-@@ -202,6 +203,19 @@
- 	.datasheet_name = "TEMP_SENSOR",				\
- }
- 
-+#define MESON_SAR_ADC_MUX(_chan, _sel) {				\
-+	.type = IIO_VOLTAGE,						\
-+	.channel = _chan,						\
-+	.indexed = 1,							\
-+	.address = MESON_SAR_ADC_VOLTAGE_AND_MUX_CHANNEL,		\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |			\
-+				BIT(IIO_CHAN_INFO_AVERAGE_RAW),		\
-+	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),		\
-+	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_CALIBBIAS) |	\
-+				BIT(IIO_CHAN_INFO_CALIBSCALE),		\
-+	.datasheet_name = "SAR_ADC_MUX_"#_sel,				\
-+}
-+
- enum meson_sar_adc_avg_mode {
- 	NO_AVERAGING = 0x0,
- 	MEAN_AVERAGING = 0x1,
-@@ -234,6 +248,27 @@ enum meson_sar_adc_channel_index {
- 	NUM_CHAN_6,
- 	NUM_CHAN_7,
- 	NUM_CHAN_TEMP,
-+	NUM_MUX_0_VSS,
-+	NUM_MUX_1_VDD_DIV4,
-+	NUM_MUX_2_VDD_DIV2,
-+	NUM_MUX_3_VDD_MUL3_DIV4,
-+	NUM_MUX_4_VDD,
-+};
-+
-+static enum meson_sar_adc_chan7_mux_sel chan7_mux_values[] = {
-+	CHAN7_MUX_VSS,
-+	CHAN7_MUX_VDD_DIV4,
-+	CHAN7_MUX_VDD_DIV2,
-+	CHAN7_MUX_VDD_MUL3_DIV4,
-+	CHAN7_MUX_VDD,
-+};
-+
-+static const char * const chan7_mux_names[] = {
-+	[CHAN7_MUX_VSS] = "gnd",
-+	[CHAN7_MUX_VDD_DIV4] = "0.25vdd",
-+	[CHAN7_MUX_VDD_DIV2] = "0.5vdd",
-+	[CHAN7_MUX_VDD_MUL3_DIV4] = "0.75vdd",
-+	[CHAN7_MUX_VDD] = "vdd",
- };
- 
- static const struct iio_chan_spec meson_sar_adc_iio_channels[] = {
-@@ -245,6 +280,11 @@ static const struct iio_chan_spec meson_sar_adc_iio_channels[] = {
- 	MESON_SAR_ADC_CHAN(NUM_CHAN_5),
- 	MESON_SAR_ADC_CHAN(NUM_CHAN_6),
- 	MESON_SAR_ADC_CHAN(NUM_CHAN_7),
-+	MESON_SAR_ADC_MUX(NUM_MUX_0_VSS, 0),
-+	MESON_SAR_ADC_MUX(NUM_MUX_1_VDD_DIV4, 1),
-+	MESON_SAR_ADC_MUX(NUM_MUX_2_VDD_DIV2, 2),
-+	MESON_SAR_ADC_MUX(NUM_MUX_3_VDD_MUL3_DIV4, 3),
-+	MESON_SAR_ADC_MUX(NUM_MUX_4_VDD, 4),
- };
- 
- static const struct iio_chan_spec meson_sar_adc_and_temp_iio_channels[] = {
-@@ -257,6 +297,11 @@ static const struct iio_chan_spec meson_sar_adc_and_temp_iio_channels[] = {
- 	MESON_SAR_ADC_CHAN(NUM_CHAN_6),
- 	MESON_SAR_ADC_CHAN(NUM_CHAN_7),
- 	MESON_SAR_ADC_TEMP_CHAN(NUM_CHAN_TEMP),
-+	MESON_SAR_ADC_MUX(NUM_MUX_0_VSS, 0),
-+	MESON_SAR_ADC_MUX(NUM_MUX_1_VDD_DIV4, 1),
-+	MESON_SAR_ADC_MUX(NUM_MUX_2_VDD_DIV2, 2),
-+	MESON_SAR_ADC_MUX(NUM_MUX_3_VDD_MUL3_DIV4, 3),
-+	MESON_SAR_ADC_MUX(NUM_MUX_4_VDD, 4),
- };
- 
- struct meson_sar_adc_param {
-@@ -295,6 +340,7 @@ struct meson_sar_adc_priv {
- 	bool					temperature_sensor_calibrated;
- 	u8					temperature_sensor_coefficient;
- 	u16					temperature_sensor_adc_val;
-+	enum meson_sar_adc_chan7_mux_sel	chan7_mux_sel;
- };
- 
- static const struct regmap_config meson_sar_adc_regmap_config_gxbb = {
-@@ -311,6 +357,17 @@ static const struct regmap_config meson_sar_adc_regmap_config_meson8 = {
- 	.max_register = MESON_SAR_ADC_DELTA_10,
- };
- 
-+static const struct iio_chan_spec *
-+find_channel_by_num(struct iio_dev *indio_dev, int num)
-+{
-+	int i;
-+
-+	for (i = 0; i < indio_dev->num_channels; i++)
-+		if (indio_dev->channels[i].channel == num)
-+			return &indio_dev->channels[i];
-+	return NULL;
-+}
-+
- static unsigned int meson_sar_adc_get_fifo_count(struct iio_dev *indio_dev)
- {
- 	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
-@@ -359,6 +416,8 @@ static void meson_sar_adc_set_chan7_mux(struct iio_dev *indio_dev,
- 			   MESON_SAR_ADC_REG3_CTRL_CHAN7_MUX_SEL_MASK, regval);
- 
- 	usleep_range(10, 20);
-+
-+	priv->chan7_mux_sel = sel;
- }
- 
- static int meson_sar_adc_read_raw_sample(struct iio_dev *indio_dev,
-@@ -454,6 +513,15 @@ static void meson_sar_adc_enable_channel(struct iio_dev *indio_dev,
- 		regmap_update_bits(priv->regmap,
- 				   MESON_SAR_ADC_DELTA_10,
- 				   MESON_SAR_ADC_DELTA_10_TEMP_SEL, regval);
-+	} else if (chan->address == MESON_SAR_ADC_VOLTAGE_AND_MUX_CHANNEL) {
-+		enum meson_sar_adc_chan7_mux_sel sel;
-+
-+		if (chan->channel == NUM_CHAN_7)
-+			sel = CHAN7_MUX_CH7_INPUT;
-+		else
-+			sel = chan7_mux_values[chan->channel - NUM_MUX_0_VSS];
-+		if (sel != priv->chan7_mux_sel)
-+			meson_sar_adc_set_chan7_mux(indio_dev, sel);
- 	}
- }
- 
-@@ -1026,7 +1094,8 @@ static int meson_sar_adc_calib(struct iio_dev *indio_dev)
- 	meson_sar_adc_set_chan7_mux(indio_dev, CHAN7_MUX_VDD_DIV4);
- 	usleep_range(10, 20);
- 	ret = meson_sar_adc_get_sample(indio_dev,
--				       &indio_dev->channels[7],
-+				       find_channel_by_num(indio_dev,
-+							   NUM_MUX_1_VDD_DIV4),
- 				       MEAN_AVERAGING, EIGHT_SAMPLES, &value0);
- 	if (ret < 0)
- 		goto out;
-@@ -1034,7 +1103,8 @@ static int meson_sar_adc_calib(struct iio_dev *indio_dev)
- 	meson_sar_adc_set_chan7_mux(indio_dev, CHAN7_MUX_VDD_MUL3_DIV4);
- 	usleep_range(10, 20);
- 	ret = meson_sar_adc_get_sample(indio_dev,
--				       &indio_dev->channels[7],
-+				       find_channel_by_num(indio_dev,
-+							   NUM_MUX_3_VDD_MUL3_DIV4),
- 				       MEAN_AVERAGING, EIGHT_SAMPLES, &value1);
- 	if (ret < 0)
- 		goto out;
-@@ -1061,6 +1131,9 @@ static int read_label(struct iio_dev *indio_dev,
- {
- 	if (chan->type == IIO_TEMP)
- 		return sprintf(label, "temp-sensor\n");
-+	if (chan->type == IIO_VOLTAGE && chan->channel >= NUM_MUX_0_VSS)
-+		return sprintf(label, "%s\n",
-+			       chan7_mux_names[chan->channel - NUM_MUX_0_VSS]);
- 	if (chan->type == IIO_VOLTAGE)
- 		return sprintf(label, "channel-%d\n", chan->channel);
- 	return 0;
+v1->v2:
+split refactoring patch [1] into 4 smaller patches, fix comment style
+
+[1] https://lore.kernel.org/lkml/20230621062715.455652-2-gnstark@sberdevices.ru/
+
+v2->v3:
+remove patch 'meson saradc: unite iio channel array definitions' [1] after discussion
+
+patch 'meson saradc: add enum for iio channel array indexes'
+  - change enum items prefix from INDEX_ to NUM_ since name 'channel index' is
+  more relevant to channel array index in iio world and with 2 tables our array index is
+  not always equal to channel number
+  - resolve conflicts after deleting [1]
+  - update commit message, previous patch [2]
+  - return channel number for temp channel. It wasn't used and isn't used currently
+  but may need later
+
+patch meson saradc: support reading from channel 7 mux inputs
+  - resolve conflicts after deleting [1]
+  - update commit message, previous patch [3]
+  - add routine find_channel_by_num to get channel by channel number
+
+[1] https://lore.kernel.org/lkml/20230623022334.791026-4-gnstark@sberdevices.ru/
+[2] https://lore.kernel.org/lkml/20230623022334.791026-5-gnstark@sberdevices.ru/
+[3] https://lore.kernel.org/lkml/20230623022334.791026-7-gnstark@sberdevices.ru/
+
+v3->v4:
+add new patch 'iio: adc: meson: remove unused timestamp channel' [1]
+
+patch 'iio: adc: meson: move enums declaration before'
+	update commit message, previous patch [2]
+patch 'iio: adc: meson: move meson_sar_adc_set_chan7_mux'
+	update commit message, previous patch [3]
+patch 'iio: adc: meson: add enum for iio channel numbers'
+	update commit message, previous patch [4]
+patch 'iio: adc: meson: add channel labels'
+	update commit message, previous patch [5]
+	change sprintf(label, "%s\n", "temp-sensor") to sprintf(label, "temp-sensor\n")
+patch 'iio: adc: meson: support reading from channel 7 mux'
+	rewrite enum meson_sar_adc_chan7_mux_sel definition and
+		read_label routine proposed by Andy [7], previous patch [6]
+
+[1] https://lore.kernel.org/lkml/20230705160413.000062e7@Huawei.com/
+[2] https://lore.kernel.org/lkml/20230627224017.1724097-2-gnstark@sberdevices.ru/
+[3] https://lore.kernel.org/lkml/20230627224017.1724097-3-gnstark@sberdevices.ru/
+[4] https://lore.kernel.org/lkml/20230627224017.1724097-4-gnstark@sberdevices.ru/
+[5] https://lore.kernel.org/lkml/20230627224017.1724097-5-gnstark@sberdevices.ru/
+[6] https://lore.kernel.org/lkml/20230627224017.1724097-6-gnstark@sberdevices.ru/
+[7] https://lore.kernel.org/lkml/ZJwGCNA+ZURri24i@smile.fi.intel.com/
+
+George Stark (6):
+  iio: adc: meson: remove unused timestamp channel
+  iio: adc: meson: move enums declaration before variables declaration
+  iio: adc: meson: move meson_sar_adc_set_chan7_mux routine upper
+  iio: adc: meson: add enum for iio channel numbers
+  iio: adc: meson: add channel labels
+  iio: adc: meson: support reading from channel 7 mux inputs
+
+ drivers/iio/adc/meson_saradc.c | 173 +++++++++++++++++++++++++--------
+ 1 file changed, 134 insertions(+), 39 deletions(-)
+
 -- 
 2.38.4
 
