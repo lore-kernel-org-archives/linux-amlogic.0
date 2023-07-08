@@ -4,97 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50500EB64DA
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jul 2023 19:05:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5855DEB64DC
+	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jul 2023 16:05:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:Date:References:
-	In-Reply-To:Message-Id:Mime-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5xmdBM7Ua9NSBqezd1PTIhgAbr86nsPKhfvwHxG+kA4=; b=ymSYMeJBCSsA+C
-	JZfij3H1S6kEJSYSFGyLT+gg5OwAtk6LUf67Y51W+5JBXOnzi90xSVcTfT/S2YNUgZhOlOKkeeXV4
-	o0R3NzM7cjzL7QbY0OejxLuhffRzr/Jws7vUn/nk6TI4oiPyaB918za8ExBB5IOTzHE5dUcXMTYBB
-	CAt2zfEf8jsvBXjDA0MCHGaRnKgHW/fpVIcE1R9rwg3LjaP6jUviQSqpUyumTondKBOCPJ/DNyatd
-	sraDw8jvUmxflnqDDjyNRDkHvJh7EQ3PIxkApJU4uBNxGeNI73i29j9Rr51LKpL+e/USrXgE9tqRA
-	rGGRMDlPeSG2POkhEMBg==;
+	List-Owner; bh=LGby8eZ49htEvovrUNzl4Kkr86Mvm3cPzya3kuPpz/I=; b=hjWZYdaSsTz0HV
+	rTA6YC1TpYTwOy8wrFFxOKexCbagdTlC1743nZEUUmAEdKCp/sPrvyqilUENck2s71aKqzkXXNnWW
+	9Zc4eX8Ri2SfyK9NHwtyFYyt3xxEm2mIV399kvqpbFGn8xCZTIzw1X3NW16CoZrczcUp3uVqz1nD0
+	C96MA+CwRFPZoalNk/hJbW7FhAbEdRQrD2qPWYh2H07jJxiq9p0l1mfg9/nxhXtgUOF3OddOlxG5A
+	/W+BwzZlT/YHPwANs1yA3AX2KOGwmmge0cpER3ZfAmgRSF/zN2W+MAmnRLkhmvvai5Wrh5eX+NSlC
+	m6NaItk3EzJY0pGD2piQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qHqlc-005UEG-22;
-	Fri, 07 Jul 2023 19:05:20 +0000
-Received: from out1-smtp.messagingengine.com ([66.111.4.25])
+	id 1qIAQ4-007WJO-0k;
+	Sat, 08 Jul 2023 16:04:24 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qHqlY-005UD8-1J;
-	Fri, 07 Jul 2023 19:05:18 +0000
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-	by mailout.nyi.internal (Postfix) with ESMTP id A795E5C00D6;
-	Fri,  7 Jul 2023 15:05:11 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Fri, 07 Jul 2023 15:05:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:sender
-	:subject:subject:to:to; s=fm2; t=1688756711; x=1688843111; bh=S/
-	sKC+j2TRg2RQQy0ZV7Lc1gET+LltLUonVflsJid7o=; b=XTjGP7IVmi6yN46O7T
-	Ci0BcMSjK9Yl6Dg2Zk7MChMgoUHr/K+qhSkiY3sVhTmkintjM8rYAfWSFaEUaQym
-	YyO6w1vcddODF6YxT47uEcJytirJE5F/fF85WomWpg6Cfzs7KQBpJSQxheMMVZ+H
-	mZNoS0wcVu8cV5o85EcarTlsr/5Vqf9AY3sN6UcjP5h1DNcXXS2BGynAH6jWW8zy
-	1B/fbQa60RxeeWnw5xnxnVJigIx94KNWqyAzXxrtgA16fHFn21wr+a7g91QlA8Fp
-	fsHpG4VoxM07qRYJB4oIZ7fg+wlgYux+1wAAnLchrNfue0NzyM7SSN516V6Uv0WK
-	LTLg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:sender:subject
-	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm2; t=1688756711; x=1688843111; bh=S/sKC+j2TRg2R
-	QQy0ZV7Lc1gET+LltLUonVflsJid7o=; b=hSforSkRer7o84ADH2YsHbx2ZAoPR
-	wzMqmFd+sBroTfYKoJ3IUojG+foqlNogRBvDU+qi8p0vgZgmpvb5GqAbkAHIyNBH
-	rtl6VhDDCGE0DBrddgzEmSCm0c508T5H5YdcLygSvuxdjS2ZZ6WZWF5R0fstlzbi
-	wJd4RG+zxa50xaVHf6rx30nCC1akuW/56sYSNshEyYbfLVpaIglT/MxrNIpoTHlD
-	3G/5FPp+TQihS2M12cV1SDdWFrXAQNmdui/hamqFoGXrS7Qv+cRoljNyXQ2XT0JJ
-	VFmxT4rQp+dlQ6N7vI8zmkvmINwnVG4PFIC5dw44wduKY1krcY8UAXHHQ==
-X-ME-Sender: <xms:5mGoZKwEcncMygIYkFErlDqR-j3pBWPufhGNzbVSgMnv-CuP0eVQmA>
-    <xme:5mGoZGShRApNxSrKZcVFeulHfLzTKltiPr8f65iIvY_JHjolBfWi2ZaMSXYaRHc0v
-    7VQSt5C6Ztau79D7KA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrvddugddufeduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:5mGoZMXnyH8QeZquYT8O7HkU-OGrPIisdsi1IoHPE5cdlceknXAcvQ>
-    <xmx:5mGoZAgZRa3xqgAgqD8BJS-S2srYocMIm-slw6Mght1ZIpcl7mAbMA>
-    <xmx:5mGoZMCcjBoh6pCBUEaCWuDueyZyMRF1iZ-cM3LISDTvv9JwCXCXNQ>
-    <xmx:52GoZKBMabj1UfKaCW41m2q7QGKftXrE7TEAp5dytvrK5JI_F3rFZw>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 8B6A7B60086; Fri,  7 Jul 2023 15:05:10 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-531-gfdfa13a06d-fm-20230703.001-gfdfa13a0
-Mime-Version: 1.0
-Message-Id: <653aafb6-ddf5-496f-a780-6d5214a3bd00@app.fastmail.com>
-In-Reply-To: <CAPDyKFrOye96GyHS0tiTQ02Ve5S6Crtk8=bMsRS9Ljj=h5-nWQ@mail.gmail.com>
-References: <20230707140434.723349-1-ulf.hansson@linaro.org>
- <20230707140434.723349-4-ulf.hansson@linaro.org>
- <0c8938a9-7a26-bf97-51ee-0c271901ec21@linaro.org>
- <CAPDyKFrOye96GyHS0tiTQ02Ve5S6Crtk8=bMsRS9Ljj=h5-nWQ@mail.gmail.com>
-Date: Fri, 07 Jul 2023 21:04:49 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Ulf Hansson" <ulf.hansson@linaro.org>,
- "Neil Armstrong" <neil.armstrong@linaro.org>
-Cc: "Olof Johansson" <olof@lixom.net>, linux-pm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- "Kevin Hilman" <khilman@baylibre.com>,
- "Jerome Brunet" <jbrunet@baylibre.com>,
- "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 03/18] soc: amlogic: Move power-domain drivers to the genpd dir
+	id 1qIAQ1-007WIM-05;
+	Sat, 08 Jul 2023 16:04:22 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 7385F60B72;
+	Sat,  8 Jul 2023 16:04:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7644C433C7;
+	Sat,  8 Jul 2023 16:04:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1688832258;
+	bh=MRhyEB9kNam7Mn6pjt39h7NCBpwSVZ2sV/31d3TWsT8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=WBaBCvfJ5SZxWZmS9gM8T+dgSVlm4vLE3uBMNDOqq2zASPQR+rY+l7MghHzeIGjdM
+	 z1VenmrZMJzOtg5TOYgvz2oB30fKJaTFIQhFxEgLxZtbUVf45bhw0c7faV4TYycqp1
+	 ySjMrO+8Pw3P5Pm6Koa6QssrkFH6HFQj6Bp2znW3WA/exIx2qKDOL8acWNXRpcXGGD
+	 I6ykfPYexuooDFVSOqNrMaTZ4MK62k9gQXH5hCCiyZ8tARRssjE41UPCu8CrrVx+aH
+	 ZvBHtVbSNFuloNmy5T55piakA71M8YhMc9elgzDTuYDoPS/OzKJcnc5Nz3PZaCOity
+	 HqVcUxQzkerPA==
+Date: Sat, 8 Jul 2023 17:04:10 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: George Stark <gnstark@sberdevices.ru>
+Cc: <lars@metafoo.de>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+ <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+ <andriy.shevchenko@linux.intel.com>, <nuno.sa@analog.com>,
+ <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+ <kernel@sberdevices.ru>
+Subject: Re: [PATCH v4 0/6] iio: adc: meson: add iio channels to read
+ channel 7 mux inputs
+Message-ID: <20230708170410.0885b8e4@jic23-huawei>
+In-Reply-To: <20230707153322.114302-1-gnstark@sberdevices.ru>
+References: <20230707153322.114302-1-gnstark@sberdevices.ru>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230707_120517_009352_FC53F247 
-X-CRM114-Status: GOOD (  10.29  )
+X-CRM114-CacheID: sfid-20230708_090421_152900_9704F919 
+X-CRM114-Status: GOOD (  14.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,28 +79,82 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Jul 7, 2023, at 16:54, Ulf Hansson wrote:
-> On Fri, 7 Jul 2023 at 16:42, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+On Fri, 7 Jul 2023 18:27:37 +0300
+George Stark <gnstark@sberdevices.ru> wrote:
 
->> > @@ -2,7 +2,4 @@
->> >   obj-$(CONFIG_MESON_CANVAS) += meson-canvas.o
->> >   obj-$(CONFIG_MESON_CLK_MEASURE) += meson-clk-measure.o
->> >   obj-$(CONFIG_MESON_GX_SOCINFO) += meson-gx-socinfo.o
->> > -obj-$(CONFIG_MESON_GX_PM_DOMAINS) += meson-gx-pwrc-vpu.o
->> >   obj-$(CONFIG_MESON_MX_SOCINFO) += meson-mx-socinfo.o
->> > -obj-$(CONFIG_MESON_EE_PM_DOMAINS) += meson-ee-pwrc.o
->> > -obj-$(CONFIG_MESON_SECURE_PM_DOMAINS) += meson-secure-pwrc.o
->>
->> I've a few changes for v6.6, how shall we handle that ?
->
-> I think we should continue to use the soc tree until v6.6-rc1 (or if
-> Arnd have some other ideas), there are some more thoughts around this
-> in the cover letter.
+> From: George Stark <GNStark@sberdevices.ru>
 
-Right, I think I can handle the merge conflicts as I add stuff
-to the soc tree.
 
-     Arnd
+All looks fine to me.  However, given earlier versions had various other reviewers
+I'd like to leave it on list a little longer.
+
+Jonathan
+
+> 
+> Changelog:
+> 
+> v1->v2:
+> split refactoring patch [1] into 4 smaller patches, fix comment style
+> 
+> [1] https://lore.kernel.org/lkml/20230621062715.455652-2-gnstark@sberdevices.ru/
+> 
+> v2->v3:
+> remove patch 'meson saradc: unite iio channel array definitions' [1] after discussion
+> 
+> patch 'meson saradc: add enum for iio channel array indexes'
+>   - change enum items prefix from INDEX_ to NUM_ since name 'channel index' is
+>   more relevant to channel array index in iio world and with 2 tables our array index is
+>   not always equal to channel number
+>   - resolve conflicts after deleting [1]
+>   - update commit message, previous patch [2]
+>   - return channel number for temp channel. It wasn't used and isn't used currently
+>   but may need later
+> 
+> patch meson saradc: support reading from channel 7 mux inputs
+>   - resolve conflicts after deleting [1]
+>   - update commit message, previous patch [3]
+>   - add routine find_channel_by_num to get channel by channel number
+> 
+> [1] https://lore.kernel.org/lkml/20230623022334.791026-4-gnstark@sberdevices.ru/
+> [2] https://lore.kernel.org/lkml/20230623022334.791026-5-gnstark@sberdevices.ru/
+> [3] https://lore.kernel.org/lkml/20230623022334.791026-7-gnstark@sberdevices.ru/
+> 
+> v3->v4:
+> add new patch 'iio: adc: meson: remove unused timestamp channel' [1]
+> 
+> patch 'iio: adc: meson: move enums declaration before'
+> 	update commit message, previous patch [2]
+> patch 'iio: adc: meson: move meson_sar_adc_set_chan7_mux'
+> 	update commit message, previous patch [3]
+> patch 'iio: adc: meson: add enum for iio channel numbers'
+> 	update commit message, previous patch [4]
+> patch 'iio: adc: meson: add channel labels'
+> 	update commit message, previous patch [5]
+> 	change sprintf(label, "%s\n", "temp-sensor") to sprintf(label, "temp-sensor\n")
+> patch 'iio: adc: meson: support reading from channel 7 mux'
+> 	rewrite enum meson_sar_adc_chan7_mux_sel definition and
+> 		read_label routine proposed by Andy [7], previous patch [6]
+> 
+> [1] https://lore.kernel.org/lkml/20230705160413.000062e7@Huawei.com/
+> [2] https://lore.kernel.org/lkml/20230627224017.1724097-2-gnstark@sberdevices.ru/
+> [3] https://lore.kernel.org/lkml/20230627224017.1724097-3-gnstark@sberdevices.ru/
+> [4] https://lore.kernel.org/lkml/20230627224017.1724097-4-gnstark@sberdevices.ru/
+> [5] https://lore.kernel.org/lkml/20230627224017.1724097-5-gnstark@sberdevices.ru/
+> [6] https://lore.kernel.org/lkml/20230627224017.1724097-6-gnstark@sberdevices.ru/
+> [7] https://lore.kernel.org/lkml/ZJwGCNA+ZURri24i@smile.fi.intel.com/
+> 
+> George Stark (6):
+>   iio: adc: meson: remove unused timestamp channel
+>   iio: adc: meson: move enums declaration before variables declaration
+>   iio: adc: meson: move meson_sar_adc_set_chan7_mux routine upper
+>   iio: adc: meson: add enum for iio channel numbers
+>   iio: adc: meson: add channel labels
+>   iio: adc: meson: support reading from channel 7 mux inputs
+> 
+>  drivers/iio/adc/meson_saradc.c | 173 +++++++++++++++++++++++++--------
+>  1 file changed, 134 insertions(+), 39 deletions(-)
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
