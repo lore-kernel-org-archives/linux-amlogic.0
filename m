@@ -4,65 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5855DEB64DC
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jul 2023 16:05:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A520CEB64DA
+	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Jul 2023 02:22:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LGby8eZ49htEvovrUNzl4Kkr86Mvm3cPzya3kuPpz/I=; b=hjWZYdaSsTz0HV
-	rTA6YC1TpYTwOy8wrFFxOKexCbagdTlC1743nZEUUmAEdKCp/sPrvyqilUENck2s71aKqzkXXNnWW
-	9Zc4eX8Ri2SfyK9NHwtyFYyt3xxEm2mIV399kvqpbFGn8xCZTIzw1X3NW16CoZrczcUp3uVqz1nD0
-	C96MA+CwRFPZoalNk/hJbW7FhAbEdRQrD2qPWYh2H07jJxiq9p0l1mfg9/nxhXtgUOF3OddOlxG5A
-	/W+BwzZlT/YHPwANs1yA3AX2KOGwmmge0cpER3ZfAmgRSF/zN2W+MAmnRLkhmvvai5Wrh5eX+NSlC
-	m6NaItk3EzJY0pGD2piQ==;
+	List-Owner; bh=u90pYJrHtlGO3JWBvVZswL/HgeNfLZTrqzOJVvhs5dI=; b=zzR/NEorEvr9oB
+	ulEAOa5kSQbXiYzth3tPjehyTNYeYoMCwYoCykIR8Mn8mnoWkyPleu6EdKHMlyG7owM6e06e8fDDR
+	58UdAIgRcaz5Jz56WtDorZtQKK8fD8zALo56H6Wvuhjr2a80IJeGaZfqPt7D3jlIArsCeAj+ZcObv
+	eAUX+tW/OOUGuMJkZG2DFlC7oE6lmuSXCnjqfJfPZEqdl30E77z6R7xe3wzbCcrUDPOVIGgcCK1R/
+	iO0vZ/08HSQN1WwbnkVfFs10ShOVEp1Y/u+/X6JJwsAdO1cJ+Sb8X039SvwYj6QYATh8xJPylc2Dp
+	5ogdEa41Pyaz9aaiDLMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIAQ4-007WJO-0k;
-	Sat, 08 Jul 2023 16:04:24 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qIK3e-008AXM-0v;
+	Sun, 09 Jul 2023 02:21:54 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIAQ1-007WIM-05;
-	Sat, 08 Jul 2023 16:04:22 +0000
+	id 1qIK3b-008AWu-0i;
+	Sun, 09 Jul 2023 02:21:53 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 7385F60B72;
-	Sat,  8 Jul 2023 16:04:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7644C433C7;
-	Sat,  8 Jul 2023 16:04:14 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 3871460AC4;
+	Sun,  9 Jul 2023 02:21:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC758C433C7;
+	Sun,  9 Jul 2023 02:21:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1688832258;
-	bh=MRhyEB9kNam7Mn6pjt39h7NCBpwSVZ2sV/31d3TWsT8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=WBaBCvfJ5SZxWZmS9gM8T+dgSVlm4vLE3uBMNDOqq2zASPQR+rY+l7MghHzeIGjdM
-	 z1VenmrZMJzOtg5TOYgvz2oB30fKJaTFIQhFxEgLxZtbUVf45bhw0c7faV4TYycqp1
-	 ySjMrO+8Pw3P5Pm6Koa6QssrkFH6HFQj6Bp2znW3WA/exIx2qKDOL8acWNXRpcXGGD
-	 I6ykfPYexuooDFVSOqNrMaTZ4MK62k9gQXH5hCCiyZ8tARRssjE41UPCu8CrrVx+aH
-	 ZvBHtVbSNFuloNmy5T55piakA71M8YhMc9elgzDTuYDoPS/OzKJcnc5Nz3PZaCOity
-	 HqVcUxQzkerPA==
-Date: Sat, 8 Jul 2023 17:04:10 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: George Stark <gnstark@sberdevices.ru>
-Cc: <lars@metafoo.de>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
- <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
- <andriy.shevchenko@linux.intel.com>, <nuno.sa@analog.com>,
- <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
- <kernel@sberdevices.ru>
-Subject: Re: [PATCH v4 0/6] iio: adc: meson: add iio channels to read
- channel 7 mux inputs
-Message-ID: <20230708170410.0885b8e4@jic23-huawei>
-In-Reply-To: <20230707153322.114302-1-gnstark@sberdevices.ru>
-References: <20230707153322.114302-1-gnstark@sberdevices.ru>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=k20201202; t=1688869308;
+	bh=UmrFF+XDF6SC1pFdHEgExTSMmKr5o6ffllbQ1WUEbj0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MTLmIcBa5l+iltAZ7P7YoQ/4lMJO8LNT1IMQ57sKDHmWwWl8t7yVBOgJzUPwUug1B
+	 YLElHbknzVX0D/MlIhZzykoeRyGOxRjkc1Bgq8QQnE8wD83OlNUROBIm1gBu2SWCAO
+	 bH44BjE9+zvPR05Sst5A3UbAcZAKptv6qf/slv0UDVsTvnY072BCL6BTtdzWvJWm1y
+	 f+cYbz/hAtBLDUy5CAv/kGeoKqHzNDBrc7xbF+o9XiE4FPrvwtLH2Fp50ruejqlMAB
+	 RLopefSRM4/hs+mb/E4iEmK74+0NirZkjIBdY6O99JAFj5zHSInEEDJ+ztz62LuiTe
+	 ZN2n3IS0qGQMQ==
+Date: Sat, 8 Jul 2023 19:25:25 -0700
+From: Bjorn Andersson <andersson@kernel.org>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: neil.armstrong@linaro.org, Arnd Bergmann <arnd@arndb.de>, 
+	Olof Johansson <olof@lixom.net>, linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 03/18] soc: amlogic: Move power-domain drivers to the
+ genpd dir
+Message-ID: <deyyt5r2wkxo7ily434gl3wudls2sbinkmnehssqshwnbzmlwf@lmqskj6zwfu2>
+References: <20230707140434.723349-1-ulf.hansson@linaro.org>
+ <20230707140434.723349-4-ulf.hansson@linaro.org>
+ <0c8938a9-7a26-bf97-51ee-0c271901ec21@linaro.org>
+ <CAPDyKFrOye96GyHS0tiTQ02Ve5S6Crtk8=bMsRS9Ljj=h5-nWQ@mail.gmail.com>
+ <1496b9c1-289a-c354-f0ae-e14fd4c9bcfa@linaro.org>
+ <CAPDyKFr7Mqy5bisLcxcA_iEGWqL8SFt2mDDng7zYEaTD1vNisA@mail.gmail.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFr7Mqy5bisLcxcA_iEGWqL8SFt2mDDng7zYEaTD1vNisA@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230708_090421_152900_9704F919 
-X-CRM114-Status: GOOD (  14.60  )
+X-CRM114-CacheID: sfid-20230708_192151_365812_954FFDEF 
+X-CRM114-Status: GOOD (  31.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,82 +83,138 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 7 Jul 2023 18:27:37 +0300
-George Stark <gnstark@sberdevices.ru> wrote:
+On Fri, Jul 07, 2023 at 05:27:39PM +0200, Ulf Hansson wrote:
+> On Fri, 7 Jul 2023 at 17:12, <neil.armstrong@linaro.org> wrote:
+> >
+> > On 07/07/2023 16:54, Ulf Hansson wrote:
+> > > On Fri, 7 Jul 2023 at 16:42, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> > >>
+> > >> Hi,
+> > >>
+> > >> On 07/07/2023 16:04, Ulf Hansson wrote:
+> > >>> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> > >>> Cc: Kevin Hilman <khilman@baylibre.com>
+> > >>> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> > >>> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > >>> Cc: <linux-amlogic@lists.infradead.org>
+> > >>> Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+> > >>> ---
+> > >>>    MAINTAINERS                                        | 1 +
+> > >>>    drivers/genpd/Makefile                             | 1 +
+> > >>>    drivers/genpd/amlogic/Makefile                     | 4 ++++
+> > >>>    drivers/{soc => genpd}/amlogic/meson-ee-pwrc.c     | 0
+> > >>>    drivers/{soc => genpd}/amlogic/meson-gx-pwrc-vpu.c | 0
+> > >>>    drivers/{soc => genpd}/amlogic/meson-secure-pwrc.c | 0
+> > >>>    drivers/soc/Makefile                               | 1 -
+> > >>>    drivers/soc/amlogic/Makefile                       | 3 ---
+> > >>>    8 files changed, 6 insertions(+), 4 deletions(-)
+> > >>>    create mode 100644 drivers/genpd/amlogic/Makefile
+> > >>>    rename drivers/{soc => genpd}/amlogic/meson-ee-pwrc.c (100%)
+> > >>>    rename drivers/{soc => genpd}/amlogic/meson-gx-pwrc-vpu.c (100%)
+> > >>>    rename drivers/{soc => genpd}/amlogic/meson-secure-pwrc.c (100%)
+> > >>>
+> > >>> diff --git a/MAINTAINERS b/MAINTAINERS
+> > >>> index 588769fab516..9b8c9ae2375d 100644
+> > >>> --- a/MAINTAINERS
+> > >>> +++ b/MAINTAINERS
+> > >>> @@ -1843,6 +1843,7 @@ F:      Documentation/devicetree/bindings/phy/amlogic*
+> > >>>    F:  arch/arm/boot/dts/amlogic/
+> > >>>    F:  arch/arm/mach-meson/
+> > >>>    F:  arch/arm64/boot/dts/amlogic/
+> > >>> +F:   drivers/genpd/amlogic/
+> > >>>    F:  drivers/mmc/host/meson*
+> > >>>    F:  drivers/phy/amlogic/
+> > >>>    F:  drivers/pinctrl/meson/
+> > >>> diff --git a/drivers/genpd/Makefile b/drivers/genpd/Makefile
+> > >>> index a2d5b2095915..cdba3b9f0c75 100644
+> > >>> --- a/drivers/genpd/Makefile
+> > >>> +++ b/drivers/genpd/Makefile
+> > >>> @@ -1,2 +1,3 @@
+> > >>>    # SPDX-License-Identifier: GPL-2.0-only
+> > >>>    obj-y                                       += actions/
+> > >>> +obj-y                                        += amlogic/
+> > >>> diff --git a/drivers/genpd/amlogic/Makefile b/drivers/genpd/amlogic/Makefile
+> > >>> new file mode 100644
+> > >>> index 000000000000..3d58abd574f9
+> > >>> --- /dev/null
+> > >>> +++ b/drivers/genpd/amlogic/Makefile
+> > >>> @@ -0,0 +1,4 @@
+> > >>> +# SPDX-License-Identifier: GPL-2.0-only
+> > >>> +obj-$(CONFIG_MESON_GX_PM_DOMAINS) += meson-gx-pwrc-vpu.o
+> > >>> +obj-$(CONFIG_MESON_EE_PM_DOMAINS) += meson-ee-pwrc.o
+> > >>> +obj-$(CONFIG_MESON_SECURE_PM_DOMAINS) += meson-secure-pwrc.o
+> > >>> diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/genpd/amlogic/meson-ee-pwrc.c
+> > >>> similarity index 100%
+> > >>> rename from drivers/soc/amlogic/meson-ee-pwrc.c
+> > >>> rename to drivers/genpd/amlogic/meson-ee-pwrc.c
+> > >>> diff --git a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c b/drivers/genpd/amlogic/meson-gx-pwrc-vpu.c
+> > >>> similarity index 100%
+> > >>> rename from drivers/soc/amlogic/meson-gx-pwrc-vpu.c
+> > >>> rename to drivers/genpd/amlogic/meson-gx-pwrc-vpu.c
+> > >>> diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/genpd/amlogic/meson-secure-pwrc.c
+> > >>> similarity index 100%
+> > >>> rename from drivers/soc/amlogic/meson-secure-pwrc.c
+> > >>> rename to drivers/genpd/amlogic/meson-secure-pwrc.c
+> > >>> diff --git a/drivers/soc/Makefile b/drivers/soc/Makefile
+> > >>> index 3b0f9fb3b5c8..dc93e1762ca7 100644
+> > >>> --- a/drivers/soc/Makefile
+> > >>> +++ b/drivers/soc/Makefile
+> > >>> @@ -23,7 +23,6 @@ obj-y                               += mediatek/
+> > >>>    obj-y                               += microchip/
+> > >>>    obj-y                               += nuvoton/
+> > >>>    obj-y                               += pxa/
+> > >>> -obj-y                                += amlogic/
+> > >>>    obj-y                               += qcom/
+> > >>>    obj-y                               += renesas/
+> > >>>    obj-y                               += rockchip/
+> > >>> diff --git a/drivers/soc/amlogic/Makefile b/drivers/soc/amlogic/Makefile
+> > >>> index 7b8c5d323f5c..c25f835e6a26 100644
+> > >>> --- a/drivers/soc/amlogic/Makefile
+> > >>> +++ b/drivers/soc/amlogic/Makefile
+> > >>> @@ -2,7 +2,4 @@
+> > >>>    obj-$(CONFIG_MESON_CANVAS) += meson-canvas.o
+> > >>>    obj-$(CONFIG_MESON_CLK_MEASURE) += meson-clk-measure.o
+> > >>>    obj-$(CONFIG_MESON_GX_SOCINFO) += meson-gx-socinfo.o
+> > >>> -obj-$(CONFIG_MESON_GX_PM_DOMAINS) += meson-gx-pwrc-vpu.o
+> > >>>    obj-$(CONFIG_MESON_MX_SOCINFO) += meson-mx-socinfo.o
+> > >>> -obj-$(CONFIG_MESON_EE_PM_DOMAINS) += meson-ee-pwrc.o
+> > >>> -obj-$(CONFIG_MESON_SECURE_PM_DOMAINS) += meson-secure-pwrc.o
+> > >>
+> > >> I've a few changes for v6.6, how shall we handle that ?
+> > >
+> > > I think we should continue to use the soc tree until v6.6-rc1 (or if
+> > > Arnd have some other ideas), there are some more thoughts around this
+> > > in the cover letter.
+> > >
+> > > Beyond v6.6-rc1 I plan to help with maintenance in practice  and run
+> > > my own separate git tree.
+> >
+> > If it helps I can send you a PR with only the pwrc changes you can merge
+> > before applying this serie.
+> 
+> Right, that could be a good idea, but let's defer to Arnd before we
+> agree on the way forward.
+> 
 
-> From: George Stark <GNStark@sberdevices.ru>
+How about sharing an immutable branch/tag with patch 1, then each one of
+us can merge that together with the soc-specific change, followed by any
+subsequent patches - leading up to the next merge window.
 
+Stephen will have a merge conflict in drivers/genpd/Makefile as each
+soc-specific addition comes in, and Arnd will see this conflict too. But
+this is going to be extremely trivial. But apart from this, there will
+not be any conflicts or additional branching constraints for us...
 
-All looks fine to me.  However, given earlier versions had various other reviewers
-I'd like to leave it on list a little longer.
+Regards,
+Bjorn
 
-Jonathan
-
+> Kind regards
+> Uffe
 > 
-> Changelog:
-> 
-> v1->v2:
-> split refactoring patch [1] into 4 smaller patches, fix comment style
-> 
-> [1] https://lore.kernel.org/lkml/20230621062715.455652-2-gnstark@sberdevices.ru/
-> 
-> v2->v3:
-> remove patch 'meson saradc: unite iio channel array definitions' [1] after discussion
-> 
-> patch 'meson saradc: add enum for iio channel array indexes'
->   - change enum items prefix from INDEX_ to NUM_ since name 'channel index' is
->   more relevant to channel array index in iio world and with 2 tables our array index is
->   not always equal to channel number
->   - resolve conflicts after deleting [1]
->   - update commit message, previous patch [2]
->   - return channel number for temp channel. It wasn't used and isn't used currently
->   but may need later
-> 
-> patch meson saradc: support reading from channel 7 mux inputs
->   - resolve conflicts after deleting [1]
->   - update commit message, previous patch [3]
->   - add routine find_channel_by_num to get channel by channel number
-> 
-> [1] https://lore.kernel.org/lkml/20230623022334.791026-4-gnstark@sberdevices.ru/
-> [2] https://lore.kernel.org/lkml/20230623022334.791026-5-gnstark@sberdevices.ru/
-> [3] https://lore.kernel.org/lkml/20230623022334.791026-7-gnstark@sberdevices.ru/
-> 
-> v3->v4:
-> add new patch 'iio: adc: meson: remove unused timestamp channel' [1]
-> 
-> patch 'iio: adc: meson: move enums declaration before'
-> 	update commit message, previous patch [2]
-> patch 'iio: adc: meson: move meson_sar_adc_set_chan7_mux'
-> 	update commit message, previous patch [3]
-> patch 'iio: adc: meson: add enum for iio channel numbers'
-> 	update commit message, previous patch [4]
-> patch 'iio: adc: meson: add channel labels'
-> 	update commit message, previous patch [5]
-> 	change sprintf(label, "%s\n", "temp-sensor") to sprintf(label, "temp-sensor\n")
-> patch 'iio: adc: meson: support reading from channel 7 mux'
-> 	rewrite enum meson_sar_adc_chan7_mux_sel definition and
-> 		read_label routine proposed by Andy [7], previous patch [6]
-> 
-> [1] https://lore.kernel.org/lkml/20230705160413.000062e7@Huawei.com/
-> [2] https://lore.kernel.org/lkml/20230627224017.1724097-2-gnstark@sberdevices.ru/
-> [3] https://lore.kernel.org/lkml/20230627224017.1724097-3-gnstark@sberdevices.ru/
-> [4] https://lore.kernel.org/lkml/20230627224017.1724097-4-gnstark@sberdevices.ru/
-> [5] https://lore.kernel.org/lkml/20230627224017.1724097-5-gnstark@sberdevices.ru/
-> [6] https://lore.kernel.org/lkml/20230627224017.1724097-6-gnstark@sberdevices.ru/
-> [7] https://lore.kernel.org/lkml/ZJwGCNA+ZURri24i@smile.fi.intel.com/
-> 
-> George Stark (6):
->   iio: adc: meson: remove unused timestamp channel
->   iio: adc: meson: move enums declaration before variables declaration
->   iio: adc: meson: move meson_sar_adc_set_chan7_mux routine upper
->   iio: adc: meson: add enum for iio channel numbers
->   iio: adc: meson: add channel labels
->   iio: adc: meson: support reading from channel 7 mux inputs
-> 
->  drivers/iio/adc/meson_saradc.c | 173 +++++++++++++++++++++++++--------
->  1 file changed, 134 insertions(+), 39 deletions(-)
-> 
-
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
 _______________________________________________
 linux-amlogic mailing list
