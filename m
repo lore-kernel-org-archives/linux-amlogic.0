@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 573D5EB64D9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 15:51:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41DFEEB64DC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 15:51:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=r/8KSKtFkP1KsyouNhv/diuMq9qKG/2E2eilBHA1m9g=; b=IqGaob69MTJwi0
-	qeJDyJvAMZet44gRAVuhL9rXS6ZFaqv428T1DP5oNV9KIGILiahkNEkjHh9AHforqwuXeaWGbRqjo
-	8x3J/uNrVU0ZqOLJxX+kSidT6ttOVrWanswkbAYirmssFT/yFdNksvbJZbwlvUyUEzxbLmiMhHSag
-	TJF6fUPzEILfGT5pvnef6IhmZ2dUwtn+GTiSyY/F7ZH00jqBy06+El/u0BRn9WbJHP+sTnxI1KrjV
-	AIb5V5Krzklty38z/fTqAqH3bpUtmtpkey02B6eyeH+Px/XylaUzxyFAwXSuwLmYc3Gi97Bn1un1u
-	KD8OXQxxUN5ifZD4Sdew==;
+	List-Owner; bh=4pXQU/y8MNG4aV1Wsy/jdDXHg3QY2wGn8jGfuzbt+YQ=; b=QCy5yMsU5+sp1t
+	a9stngIFoHBLL8s7rD8qZSfkEL63ULceCyqQZxPbLZTlvg4COhIKNYtRQy4pwRZr3v04E+GpX5qQV
+	2rYcnA2iThTrqPTwLXJlFQ+DzejJiYnhaLqW5A45gA0mdXdCBqnXba2uc3wTRv5sR+qkMlumiiKv9
+	bT351QUgYtXYE9fMYKfKuiuoX1KkYpdfmZ3rwJsP0EXhywMLI8vs+AJCVU5Fy0lhNx/rHmdJYStzo
+	7GPphSCWUm8rWqqmn7DZgeWfLmLWfNO8Xm7gGnE3mZMTKQ+rjbGVLF15nnrqi8slbxjeGLIjZdtaB
+	yoD8urPLsekQ60ygpWvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIt9u-00C4d2-1y;
-	Mon, 10 Jul 2023 15:50:42 +0000
-Received: from mga18.intel.com ([134.134.136.126])
+	id 1qItA0-00C4kr-0R;
+	Mon, 10 Jul 2023 15:50:48 +0000
+Received: from mga11.intel.com ([192.55.52.93])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIt95-00C3kJ-33;
-	Mon, 10 Jul 2023 15:49:53 +0000
+	id 1qIt9A-00C3mb-1u;
+	Mon, 10 Jul 2023 15:49:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1689004191; x=1720540191;
+  t=1689004196; x=1720540196;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=a4OeQXOY1tsroZV4NMFgyMSROfjvqRdZJUYq/GX8st8=;
-  b=LytWtWVaKsCVc/c/BPRb++9/KXEsF21R1LyQqOcCZrFyoe7iE3KF10+N
-   5o8oMgopgxR203apCyE6XMHhLz9ARGJbkKwJHh9X1mLy6CfoPPx8xwSO7
-   lju2AzfvdFGK11wNyHS5R/5A3nvx+5UWMKSk9T1XBzQ8NoQKfKImjOTk9
-   j5YFX4MvVy/e9a2ZoIXkurocRpajCa7CfgMABdXTNDTGvhxaMCtJlgbUq
-   +Jxuwv9dFpf1fPjRKmnb4SvHiERL1Gy0JFnOd3NKdGZtQm+zEJ1pC8mzc
-   SXo/5jfRaMayMcDjcq/sRggD2NRGgq3WT3jnHTemrtsKVyh7tWaWPq5aN
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="349185490"
+  bh=IeVSPWVD107VIF34v9BU3Oj6m3Q5DOG73amK5fjo1Vs=;
+  b=Dr08l6Ls+4+rrVzY5IgneMNutm44W9uzgTkxpBVYY7CKT1GCBDEdYv64
+   PWadzRaL6uRkmkTS7H32UOpy5DSFvA72KaBBfyfsLvTrPPLkmoUlIWijQ
+   hH3SrWHLNJiVeBLYth32q5zUt4CxRY7cEu78DQ9K4+eQi50E4yZc3rHlv
+   fJe6Wq1pZSBhnDJWAxs/cDOuwuXKM9hWXXyqrU3NS2PqM0FJV8rKC22m4
+   fe8pDDGHGhTF7cqcZ+kiUkRsxoE9MJ7evfnFu2I00Kk2FP6jGrZBOqmtF
+   1pNqAVe+erdSs5aCbITk6L02iIpU0jX9+jXUA8etuBcnDmQk7BFRHQ0/7
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="361842607"
 X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; 
-   d="scan'208";a="349185490"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 08:49:50 -0700
+   d="scan'208";a="361842607"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 08:49:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="844921907"
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="720743965"
 X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; 
-   d="scan'208";a="844921907"
+   d="scan'208";a="720743965"
 Received: from black.fi.intel.com ([10.237.72.28])
-  by orsmga004.jf.intel.com with ESMTP; 10 Jul 2023 08:49:39 -0700
+  by orsmga002.jf.intel.com with ESMTP; 10 Jul 2023 08:49:41 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
-	id C66AA748; Mon, 10 Jul 2023 18:49:34 +0300 (EEST)
+	id DE5C17AB; Mon, 10 Jul 2023 18:49:34 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Mark Brown <broonie@kernel.org>,
 	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
@@ -106,16 +106,16 @@ Cc: Sanjay R Mehta <sanju.mehta@amd.com>,
 	Steven Rostedt <rostedt@goodmis.org>,
 	Masami Hiramatsu <mhiramat@kernel.org>,
 	Richard Cochran <richardcochran@gmail.com>
-Subject: [PATCH v2 11/15] spi: Get rid of old SPI_MASTER_NO_TX & SPI_MASTER_NO_RX
-Date: Mon, 10 Jul 2023 18:49:28 +0300
-Message-Id: <20230710154932.68377-12-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v2 13/15] spi: Rename SPI_MASTER_GPIO_SS to SPI_CONTROLLER_GPIO_SS
+Date: Mon, 10 Jul 2023 18:49:30 +0300
+Message-Id: <20230710154932.68377-14-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.40.0.1.gaa8946217a0b
 In-Reply-To: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
 References: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230710_084952_056154_E17F8DC6 
-X-CRM114-Status: GOOD (  20.94  )
+X-CRM114-CacheID: sfid-20230710_084956_761847_1E94008D 
+X-CRM114-Status: GOOD (  24.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,210 +132,206 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert the users from SPI_MASTER_NO_TX and/or SPI_MASTER_NO_RX
-to SPI_CONTROLLER_NO_TX and/or SPI_CONTROLLER_NO_RX respectively
-and kill the not used anymore definitions.
+Rename SPI_MASTER_GPIO_SS to SPI_CONTROLLER_GPIO_SS and
+convert the users to SPI_CONTROLLER_GPIO_SS to follow
+the new naming shema.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/spi/spi-bitbang-txrx.h  | 16 ++++++++--------
- drivers/spi/spi-bitbang.c       |  2 +-
- drivers/spi/spi-gpio.c          |  8 ++++----
- drivers/spi/spi-lp8841-rtc.c    |  8 ++++----
- drivers/spi/spi-xtensa-xtfpga.c |  2 +-
- include/linux/spi/spi.h         |  2 --
- 6 files changed, 18 insertions(+), 20 deletions(-)
+ drivers/spi/spi-ath79.c    | 2 +-
+ drivers/spi/spi-atmel.c    | 2 +-
+ drivers/spi/spi-bitbang.c  | 6 +++---
+ drivers/spi/spi-davinci.c  | 2 +-
+ drivers/spi/spi-dw-core.c  | 2 +-
+ drivers/spi/spi-gpio.c     | 2 +-
+ drivers/spi/spi-imx.c      | 2 +-
+ drivers/spi/spi-orion.c    | 2 +-
+ drivers/spi/spi-rockchip.c | 2 +-
+ drivers/spi/spi-sifive.c   | 2 +-
+ drivers/spi/spi.c          | 4 ++--
+ include/linux/spi/spi.h    | 3 +--
+ 12 files changed, 15 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/spi/spi-bitbang-txrx.h b/drivers/spi/spi-bitbang-txrx.h
-index 2dcbe166df63..0cab48b7875b 100644
---- a/drivers/spi/spi-bitbang-txrx.h
-+++ b/drivers/spi/spi-bitbang-txrx.h
-@@ -57,7 +57,7 @@ bitbang_txrx_be_cpha0(struct spi_device *spi,
- 	for (word <<= (32 - bits); likely(bits); bits--) {
+diff --git a/drivers/spi/spi-ath79.c b/drivers/spi/spi-ath79.c
+index d3dd21386f12..1b6d977d111c 100644
+--- a/drivers/spi/spi-ath79.c
++++ b/drivers/spi/spi-ath79.c
+@@ -185,7 +185,7 @@ static int ath79_spi_probe(struct platform_device *pdev)
  
- 		/* setup MSB (to slave) on trailing edge */
--		if ((flags & SPI_MASTER_NO_TX) == 0) {
-+		if ((flags & SPI_CONTROLLER_NO_TX) == 0) {
- 			if ((word & (1 << 31)) != oldbit) {
- 				setmosi(spi, word & (1 << 31));
- 				oldbit = word & (1 << 31);
-@@ -70,7 +70,7 @@ bitbang_txrx_be_cpha0(struct spi_device *spi,
+ 	host->use_gpio_descriptors = true;
+ 	host->bits_per_word_mask = SPI_BPW_RANGE_MASK(1, 32);
+-	host->flags = SPI_MASTER_GPIO_SS;
++	host->flags = SPI_CONTROLLER_GPIO_SS;
+ 	host->num_chipselect = 3;
+ 	host->mem_ops = &ath79_mem_ops;
  
- 		/* sample MSB (from slave) on leading edge */
- 		word <<= 1;
--		if ((flags & SPI_MASTER_NO_RX) == 0)
-+		if ((flags & SPI_CONTROLLER_NO_RX) == 0)
- 			word |= getmiso(spi);
- 		setsck(spi, cpol);
- 	}
-@@ -90,7 +90,7 @@ bitbang_txrx_be_cpha1(struct spi_device *spi,
- 
- 		/* setup MSB (to slave) on leading edge */
- 		setsck(spi, !cpol);
--		if ((flags & SPI_MASTER_NO_TX) == 0) {
-+		if ((flags & SPI_CONTROLLER_NO_TX) == 0) {
- 			if ((word & (1 << 31)) != oldbit) {
- 				setmosi(spi, word & (1 << 31));
- 				oldbit = word & (1 << 31);
-@@ -103,7 +103,7 @@ bitbang_txrx_be_cpha1(struct spi_device *spi,
- 
- 		/* sample MSB (from slave) on trailing edge */
- 		word <<= 1;
--		if ((flags & SPI_MASTER_NO_RX) == 0)
-+		if ((flags & SPI_CONTROLLER_NO_RX) == 0)
- 			word |= getmiso(spi);
- 	}
- 	return word;
-@@ -122,7 +122,7 @@ bitbang_txrx_le_cpha0(struct spi_device *spi,
- 	for (; likely(bits); bits--) {
- 
- 		/* setup LSB (to slave) on trailing edge */
--		if ((flags & SPI_MASTER_NO_TX) == 0) {
-+		if ((flags & SPI_CONTROLLER_NO_TX) == 0) {
- 			if ((word & 1) != oldbit) {
- 				setmosi(spi, word & 1);
- 				oldbit = word & 1;
-@@ -135,7 +135,7 @@ bitbang_txrx_le_cpha0(struct spi_device *spi,
- 
- 		/* sample LSB (from slave) on leading edge */
- 		word >>= 1;
--		if ((flags & SPI_MASTER_NO_RX) == 0)
-+		if ((flags & SPI_CONTROLLER_NO_RX) == 0)
- 			word |= getmiso(spi) << rxbit;
- 		setsck(spi, cpol);
- 	}
-@@ -156,7 +156,7 @@ bitbang_txrx_le_cpha1(struct spi_device *spi,
- 
- 		/* setup LSB (to slave) on leading edge */
- 		setsck(spi, !cpol);
--		if ((flags & SPI_MASTER_NO_TX) == 0) {
-+		if ((flags & SPI_CONTROLLER_NO_TX) == 0) {
- 			if ((word & 1) != oldbit) {
- 				setmosi(spi, word & 1);
- 				oldbit = word & 1;
-@@ -169,7 +169,7 @@ bitbang_txrx_le_cpha1(struct spi_device *spi,
- 
- 		/* sample LSB (from slave) on trailing edge */
- 		word >>= 1;
--		if ((flags & SPI_MASTER_NO_RX) == 0)
-+		if ((flags & SPI_CONTROLLER_NO_RX) == 0)
- 			word |= getmiso(spi) << rxbit;
- 	}
- 	return word;
+diff --git a/drivers/spi/spi-atmel.c b/drivers/spi/spi-atmel.c
+index 0865993005b2..9674499ed0a6 100644
+--- a/drivers/spi/spi-atmel.c
++++ b/drivers/spi/spi-atmel.c
+@@ -1476,7 +1476,7 @@ static int atmel_spi_probe(struct platform_device *pdev)
+ 	host->num_chipselect = 4;
+ 	host->setup = atmel_spi_setup;
+ 	host->flags = (SPI_CONTROLLER_MUST_RX | SPI_CONTROLLER_MUST_TX |
+-			SPI_MASTER_GPIO_SS);
++			SPI_CONTROLLER_GPIO_SS);
+ 	host->transfer_one = atmel_spi_one_transfer;
+ 	host->set_cs = atmel_spi_set_cs;
+ 	host->cleanup = atmel_spi_cleanup;
 diff --git a/drivers/spi/spi-bitbang.c b/drivers/spi/spi-bitbang.c
-index 27d0087f8688..862f209cada1 100644
+index 862f209cada1..ecd44016c197 100644
 --- a/drivers/spi/spi-bitbang.c
 +++ b/drivers/spi/spi-bitbang.c
-@@ -248,7 +248,7 @@ static int spi_bitbang_bufs(struct spi_device *spi, struct spi_transfer *t)
- 	if (spi->mode & SPI_3WIRE) {
- 		unsigned flags;
+@@ -349,11 +349,11 @@ int spi_bitbang_init(struct spi_bitbang *bitbang)
+ 	/*
+ 	 * We only need the chipselect callback if we are actually using it.
+ 	 * If we just use GPIO descriptors, it is surplus. If the
+-	 * SPI_MASTER_GPIO_SS flag is set, we always need to call the
++	 * SPI_CONTROLLER_GPIO_SS flag is set, we always need to call the
+ 	 * driver-specific chipselect routine.
+ 	 */
+ 	custom_cs = (!master->use_gpio_descriptors ||
+-		     (master->flags & SPI_MASTER_GPIO_SS));
++		     (master->flags & SPI_CONTROLLER_GPIO_SS));
  
--		flags = t->tx_buf ? SPI_MASTER_NO_RX : SPI_MASTER_NO_TX;
-+		flags = t->tx_buf ? SPI_CONTROLLER_NO_RX : SPI_CONTROLLER_NO_TX;
- 		return cs->txrx_bufs(spi, cs->txrx_word, nsecs, t, flags);
- 	}
- 	return cs->txrx_bufs(spi, cs->txrx_word, nsecs, t, 0);
+ 	if (custom_cs && !bitbang->chipselect)
+ 		return -EINVAL;
+@@ -371,7 +371,7 @@ int spi_bitbang_init(struct spi_bitbang *bitbang)
+ 	master->transfer_one = spi_bitbang_transfer_one;
+ 	/*
+ 	 * When using GPIO descriptors, the ->set_cs() callback doesn't even
+-	 * get called unless SPI_MASTER_GPIO_SS is set.
++	 * get called unless SPI_CONTROLLER_GPIO_SS is set.
+ 	 */
+ 	if (custom_cs)
+ 		master->set_cs = spi_bitbang_set_cs;
+diff --git a/drivers/spi/spi-davinci.c b/drivers/spi/spi-davinci.c
+index 014392459d5e..7ea2ac053052 100644
+--- a/drivers/spi/spi-davinci.c
++++ b/drivers/spi/spi-davinci.c
+@@ -939,7 +939,7 @@ static int davinci_spi_probe(struct platform_device *pdev)
+ 	master->bus_num = pdev->id;
+ 	master->num_chipselect = pdata->num_chipselect;
+ 	master->bits_per_word_mask = SPI_BPW_RANGE_MASK(2, 16);
+-	master->flags = SPI_CONTROLLER_MUST_RX | SPI_MASTER_GPIO_SS;
++	master->flags = SPI_CONTROLLER_MUST_RX | SPI_CONTROLLER_GPIO_SS;
+ 	master->setup = davinci_spi_setup;
+ 	master->cleanup = davinci_spi_cleanup;
+ 	master->can_dma = davinci_spi_can_dma;
+diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
+index a8ba41ad4541..45f5acc26b1d 100644
+--- a/drivers/spi/spi-dw-core.c
++++ b/drivers/spi/spi-dw-core.c
+@@ -932,7 +932,7 @@ int dw_spi_add_host(struct device *dev, struct dw_spi *dws)
+ 	if (dws->mem_ops.exec_op)
+ 		master->mem_ops = &dws->mem_ops;
+ 	master->max_speed_hz = dws->max_freq;
+-	master->flags = SPI_MASTER_GPIO_SS;
++	master->flags = SPI_CONTROLLER_GPIO_SS;
+ 	master->auto_runtime_pm = true;
+ 
+ 	/* Get default rx sample delay */
 diff --git a/drivers/spi/spi-gpio.c b/drivers/spi/spi-gpio.c
-index 092afc7679d4..85e149ec2910 100644
+index 85e149ec2910..612db477ad12 100644
 --- a/drivers/spi/spi-gpio.c
 +++ b/drivers/spi/spi-gpio.c
-@@ -170,7 +170,7 @@ static u32 spi_gpio_txrx_word_mode3(struct spi_device *spi,
- 
- /*
-  * These functions do not call setmosi or getmiso if respective flag
-- * (SPI_MASTER_NO_RX or SPI_MASTER_NO_TX) is set, so they are safe to
-+ * (SPI_CONTROLLER_NO_RX or SPI_CONTROLLER_NO_TX) is set, so they are safe to
-  * call when such pin is not present or defined in the controller.
-  * A separate set of callbacks is defined to get highest possible
-  * speed in the generic case (when both MISO and MOSI lines are
-@@ -416,11 +416,11 @@ static int spi_gpio_probe(struct platform_device *pdev)
- 	if (!spi_gpio->mosi) {
- 		/* HW configuration without MOSI pin
- 		 *
--		 * No setting SPI_MASTER_NO_RX here - if there is only
-+		 * No setting SPI_CONTROLLER_NO_RX here - if there is only
- 		 * a MOSI pin connected the host can still do RX by
- 		 * changing the direction of the line.
- 		 */
--		master->flags = SPI_MASTER_NO_TX;
-+		master->flags = SPI_CONTROLLER_NO_TX;
- 	}
- 
- 	master->bus_num = pdev->id;
-@@ -438,7 +438,7 @@ static int spi_gpio_probe(struct platform_device *pdev)
+@@ -434,7 +434,7 @@ static int spi_gpio_probe(struct platform_device *pdev)
+ 	 * line, that we need to do on selection. This makes the local
+ 	 * callback for chipselect always get called.
+ 	 */
+-	master->flags |= SPI_MASTER_GPIO_SS;
++	master->flags |= SPI_CONTROLLER_GPIO_SS;
  	bb->chipselect = spi_gpio_chipselect;
  	bb->set_line_direction = spi_gpio_set_direction;
  
--	if (master->flags & SPI_MASTER_NO_TX) {
-+	if (master->flags & SPI_CONTROLLER_NO_TX) {
- 		bb->txrx_word[SPI_MODE_0] = spi_gpio_spec_txrx_word_mode0;
- 		bb->txrx_word[SPI_MODE_1] = spi_gpio_spec_txrx_word_mode1;
- 		bb->txrx_word[SPI_MODE_2] = spi_gpio_spec_txrx_word_mode2;
-diff --git a/drivers/spi/spi-lp8841-rtc.c b/drivers/spi/spi-lp8841-rtc.c
-index 2d436541d6c2..ccaa7a946359 100644
---- a/drivers/spi/spi-lp8841-rtc.c
-+++ b/drivers/spi/spi-lp8841-rtc.c
-@@ -75,14 +75,14 @@ bitbang_txrx_be_cpha0_lsb(struct spi_lp8841_rtc *data,
- 	for (; likely(bits); bits--) {
+diff --git a/drivers/spi/spi-imx.c b/drivers/spi/spi-imx.c
+index 528ae46c087f..8d97f2b32c2b 100644
+--- a/drivers/spi/spi-imx.c
++++ b/drivers/spi/spi-imx.c
+@@ -1779,7 +1779,7 @@ static int spi_imx_probe(struct platform_device *pdev)
  
- 		/* setup LSB (to slave) on leading edge */
--		if ((flags & SPI_MASTER_NO_TX) == 0)
-+		if ((flags & SPI_CONTROLLER_NO_TX) == 0)
- 			setmosi(data, (word & 1));
+ 	if (is_imx51_ecspi(spi_imx) || is_imx53_ecspi(spi_imx)) {
+ 		controller->max_native_cs = 4;
+-		controller->flags |= SPI_MASTER_GPIO_SS;
++		controller->flags |= SPI_CONTROLLER_GPIO_SS;
+ 	}
  
- 		usleep_range(usecs, usecs + 1);	/* T(setup) */
+ 	spi_imx->spi_drctl = spi_drctl;
+diff --git a/drivers/spi/spi-orion.c b/drivers/spi/spi-orion.c
+index ad9e83e34297..4882aafd0505 100644
+--- a/drivers/spi/spi-orion.c
++++ b/drivers/spi/spi-orion.c
+@@ -677,7 +677,7 @@ static int orion_spi_probe(struct platform_device *pdev)
+ 	master->bits_per_word_mask = SPI_BPW_MASK(8) | SPI_BPW_MASK(16);
+ 	master->auto_runtime_pm = true;
+ 	master->use_gpio_descriptors = true;
+-	master->flags = SPI_MASTER_GPIO_SS;
++	master->flags = SPI_CONTROLLER_GPIO_SS;
  
- 		/* sample LSB (from slave) on trailing edge */
- 		word >>= 1;
--		if ((flags & SPI_MASTER_NO_RX) == 0)
-+		if ((flags & SPI_CONTROLLER_NO_RX) == 0)
- 			word |= (getmiso(data) << 31);
+ 	platform_set_drvdata(pdev, master);
  
- 		setsck(data, !cpol);
-@@ -113,7 +113,7 @@ spi_lp8841_rtc_transfer_one(struct spi_master *master,
- 		while (likely(count > 0)) {
- 			word = *tx++;
- 			bitbang_txrx_be_cpha0_lsb(data, 1, 0,
--					SPI_MASTER_NO_RX, word, 8);
-+					SPI_CONTROLLER_NO_RX, word, 8);
- 			count--;
+diff --git a/drivers/spi/spi-rockchip.c b/drivers/spi/spi-rockchip.c
+index 143ede958ac1..a37943847e81 100644
+--- a/drivers/spi/spi-rockchip.c
++++ b/drivers/spi/spi-rockchip.c
+@@ -858,7 +858,7 @@ static int rockchip_spi_probe(struct platform_device *pdev)
+ 		ctlr->mode_bits |= SPI_NO_CS;
+ 		ctlr->slave_abort = rockchip_spi_slave_abort;
+ 	} else {
+-		ctlr->flags = SPI_MASTER_GPIO_SS;
++		ctlr->flags = SPI_CONTROLLER_GPIO_SS;
+ 		ctlr->max_native_cs = ROCKCHIP_SPI_MAX_CS_NUM;
+ 		/*
+ 		 * rk spi0 has two native cs, spi1..5 one cs only
+diff --git a/drivers/spi/spi-sifive.c b/drivers/spi/spi-sifive.c
+index dae9e097c333..2f77dae85386 100644
+--- a/drivers/spi/spi-sifive.c
++++ b/drivers/spi/spi-sifive.c
+@@ -379,7 +379,7 @@ static int sifive_spi_probe(struct platform_device *pdev)
+ 	 * we need to "left-align" the bits (unless SPI_LSB_FIRST)
+ 	 */
+ 	master->bits_per_word_mask = SPI_BPW_MASK(8);
+-	master->flags = SPI_CONTROLLER_MUST_TX | SPI_MASTER_GPIO_SS;
++	master->flags = SPI_CONTROLLER_MUST_TX | SPI_CONTROLLER_GPIO_SS;
+ 	master->prepare_message = sifive_spi_prepare_message;
+ 	master->set_cs = sifive_spi_set_cs;
+ 	master->transfer_one = sifive_spi_transfer_one;
+diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+index 06a92a3a5746..bcabae98cb7c 100644
+--- a/drivers/spi/spi.c
++++ b/drivers/spi/spi.c
+@@ -995,7 +995,7 @@ static void spi_set_cs(struct spi_device *spi, bool enable, bool force)
+ 				gpiod_set_value_cansleep(spi_get_csgpiod(spi, 0), activate);
  		}
- 	} else if (rx) {
-@@ -121,7 +121,7 @@ spi_lp8841_rtc_transfer_one(struct spi_master *master,
- 		writeb(data->state, data->iomem);
- 		while (likely(count > 0)) {
- 			word = bitbang_txrx_be_cpha0_lsb(data, 1, 0,
--					SPI_MASTER_NO_TX, word, 8);
-+					SPI_CONTROLLER_NO_TX, word, 8);
- 			*rx++ = word;
- 			count--;
- 		}
-diff --git a/drivers/spi/spi-xtensa-xtfpga.c b/drivers/spi/spi-xtensa-xtfpga.c
-index 24dc845b940e..dbd85d7a1526 100644
---- a/drivers/spi/spi-xtensa-xtfpga.c
-+++ b/drivers/spi/spi-xtensa-xtfpga.c
-@@ -87,7 +87,7 @@ static int xtfpga_spi_probe(struct platform_device *pdev)
- 	if (!master)
- 		return -ENOMEM;
+ 		/* Some SPI masters need both GPIO CS & slave_select */
+-		if ((spi->controller->flags & SPI_MASTER_GPIO_SS) &&
++		if ((spi->controller->flags & SPI_CONTROLLER_GPIO_SS) &&
+ 		    spi->controller->set_cs)
+ 			spi->controller->set_cs(spi, !enable);
+ 	} else if (spi->controller->set_cs) {
+@@ -3020,7 +3020,7 @@ static int spi_get_gpio_descs(struct spi_controller *ctlr)
  
--	master->flags = SPI_MASTER_NO_RX;
-+	master->flags = SPI_CONTROLLER_NO_RX;
- 	master->bits_per_word_mask = SPI_BPW_RANGE_MASK(1, 16);
- 	master->bus_num = pdev->dev.id;
- 	master->dev.of_node = pdev->dev.of_node;
+ 	ctlr->unused_native_cs = ffs(~native_cs_mask) - 1;
+ 
+-	if ((ctlr->flags & SPI_MASTER_GPIO_SS) && num_cs_gpios &&
++	if ((ctlr->flags & SPI_CONTROLLER_GPIO_SS) && num_cs_gpios &&
+ 	    ctlr->max_native_cs && ctlr->unused_native_cs >= ctlr->max_native_cs) {
+ 		dev_err(dev, "No unused native chip select available\n");
+ 		return -EINVAL;
 diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
-index 10265184ea02..ce77dcf47b96 100644
+index cdc3addfe117..43f6c3f71a76 100644
 --- a/include/linux/spi/spi.h
 +++ b/include/linux/spi/spi.h
-@@ -1645,8 +1645,6 @@ spi_transfer_is_last(struct spi_controller *ctlr, struct spi_transfer *xfer)
- #define spi_master			spi_controller
+@@ -578,8 +578,7 @@ struct spi_controller {
+ #define SPI_CONTROLLER_NO_TX		BIT(2)	/* Can't do buffer write */
+ #define SPI_CONTROLLER_MUST_RX		BIT(3)	/* Requires rx */
+ #define SPI_CONTROLLER_MUST_TX		BIT(4)	/* Requires tx */
+-
+-#define SPI_MASTER_GPIO_SS		BIT(5)	/* GPIO CS must select slave */
++#define SPI_CONTROLLER_GPIO_SS		BIT(5)	/* GPIO CS must select slave */
  
- #define SPI_MASTER_HALF_DUPLEX		SPI_CONTROLLER_HALF_DUPLEX
--#define SPI_MASTER_NO_RX		SPI_CONTROLLER_NO_RX
--#define SPI_MASTER_NO_TX		SPI_CONTROLLER_NO_TX
- #define SPI_MASTER_MUST_RX		SPI_CONTROLLER_MUST_RX
- #define SPI_MASTER_MUST_TX		SPI_CONTROLLER_MUST_TX
- 
+ 	/* Flag indicating if the allocation of this struct is devres-managed */
+ 	bool			devm_allocated;
 -- 
 2.40.0.1.gaa8946217a0b
 
