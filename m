@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 107B1C001DD
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 15:50:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0B35EB64DC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 15:50:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5Hz3D9DLAkVZ+TYWaH1ldaVW2jnnwrh/cuvrv4BVrn8=; b=1Sgb+qYxOm05i+
-	WBg6bgxNjHEKn6Nt0OCWe+390AiOv9kLBEaz81H50y0OceOVBaAtvSdaWmHlN5S1mkjpXHUsl1y1/
-	dHKts582kktroHerqGoEzQ+MrX3CQAnIMesGVPxhh4sPkZINrj1KnXJM/8kpuRIIfjKOhLdUz30Wj
-	sAmAxS//8teHIbPvTnFNBfi/48wOQyFMyQGp3KVJsrNYdGSR7FDKFyOoG4YEkTy+4hZHI5NbOh9Nw
-	xZnO6oyYyTRozDo7U2OoLvqHXLAwklU0uJV+M2SxHuci+RXy3/7+J7sOJz9iLR65kxwUC7YVC0NzL
-	U84StjjJB+H6y+LkvvoQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=6Ekcjl1hRysKs53Yqfw5yqMRvAcqNEdpD0DUw06TS5o=; b=Oe344OF3Q5OH+Z
+	1Dm2ISAl+zMvidgIJKRcFhVSEGf80GWzizzdxgjokuJzzLZbT+lL9ehtrPojE8QG5ABUoX2DbLAPe
+	NiizP6o5vuiCvvKjipDPNmbGEjRdke1TsEJ3onxQF/Su/+dSUhWhML0Dg+kH33MS14i189gjWfkjV
+	Omwx61WpkhGAueDaiNycBaFTfkk7Knib0gR6WXGxGZRXaAj4pX6aC9f2nfXT6kLofytp36AYNKZ5K
+	ynOiGCsBEoZG+VG12OReUoT72RPS16TmwQuQPCKd3zCD6bOMlqBzHE7ZFVkNunbHvq7HKcGOo7Y/c
+	BvxUX0shN8w0MLSxFE6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIt99-00C3oJ-2j;
-	Mon, 10 Jul 2023 15:49:55 +0000
-Received: from mga09.intel.com ([134.134.136.24])
+	id 1qIt9N-00C42r-2b;
+	Mon, 10 Jul 2023 15:50:09 +0000
+Received: from mga11.intel.com ([192.55.52.93])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIt8z-00C3dd-2E;
-	Mon, 10 Jul 2023 15:49:47 +0000
+	id 1qIt90-00C3cH-0E;
+	Mon, 10 Jul 2023 15:49:48 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1689004185; x=1720540185;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=1YMEKoH26Jvs8dKIC6vdH9uSV/g2LDeyMP+ZqFMU56I=;
-  b=lt7IsWmt2Djixak8dzrQ6XGsvB4JymgNhVMcdAEADJ3F+OhKPgi9RkUW
-   CuhCYbuZrzY3SOzY4BF54YmPfGwynMOa37TuKf5FBf+w/juZD8Nh65wKP
-   gjbD5e3iooATAtyiJbFrLI6qGccEeshmhyBTmR1XosI+UbbvuiUjbe9C9
-   U3MOf3+k60AajRs82gG5I3G4szVGC7BKu4Exbwi77wJdLYGPjzQT9Dn78
-   tmey34jfXU58QM8n6PEV5PBSSWbxmBpg8oaUeViYz69Hj4hbQMv4UI1ZK
-   FVaLYq854XUcsLuAsVCJELaWfrOtN9/Pfs4PrBy1p77rk9JuUzJ1sB1Ik
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="366955272"
+  t=1689004186; x=1720540186;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=qyXZ9l/eDXJvwNtej9Cq3pKS54WfQZS0AfJJYPgySOQ=;
+  b=GbdgI1Z9GZoY5mEls7A78yDMB1UOgwe9EuDSzYNsHjG/wu5p6JU4fsBI
+   huv2d4EfgqvpZPQ3v8WUYrPRly5cV0v3dQ6vwSRQVR0cXUSdznlywxHIf
+   FbBUfz5xm/sRENtjdQvgQoI7yMWZRS2HwSvytkl+1uUIpnSmmfUFFlLh5
+   lwUSnqo53j/s5Py0dxoyoH591/r3i5nnVGkMD/zoWWOLfPoKI5ZESAyP+
+   RkNja3Gti55XQAjaEc/Km8zTaNP2fC/XQafru2T+5LO9aKPppU8ujfY+u
+   Xj9oCa7J9z3wXVrTRiggO+HpJ8DrRLpFUcp2yobcfEQlIXr6siuM/92c6
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="361842457"
 X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; 
-   d="scan'208";a="366955272"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 08:49:40 -0700
+   d="scan'208";a="361842457"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 08:49:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="671015611"
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="720743951"
 X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; 
-   d="scan'208";a="671015611"
+   d="scan'208";a="720743951"
 Received: from black.fi.intel.com ([10.237.72.28])
-  by orsmga003.jf.intel.com with ESMTP; 10 Jul 2023 08:49:29 -0700
+  by orsmga002.jf.intel.com with ESMTP; 10 Jul 2023 08:49:29 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
-	id 1E05F1D9; Mon, 10 Jul 2023 18:49:34 +0300 (EEST)
+	id 115861FC; Mon, 10 Jul 2023 18:49:33 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Mark Brown <broonie@kernel.org>,
 	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
@@ -106,16 +106,14 @@ Cc: Sanjay R Mehta <sanju.mehta@amd.com>,
 	Steven Rostedt <rostedt@goodmis.org>,
 	Masami Hiramatsu <mhiramat@kernel.org>,
 	Richard Cochran <richardcochran@gmail.com>
-Subject: [PATCH v2 01/15] spi: Remove unneeded OF node NULL checks
-Date: Mon, 10 Jul 2023 18:49:18 +0300
-Message-Id: <20230710154932.68377-2-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v2 00/15] spi: Header and core clean up and refactoring
+Date: Mon, 10 Jul 2023 18:49:17 +0300
+Message-Id: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.40.0.1.gaa8946217a0b
-In-Reply-To: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
-References: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230710_084945_778775_72EE616C 
-X-CRM114-Status: GOOD (  14.33  )
+X-CRM114-CacheID: sfid-20230710_084946_131905_9CFACAB5 
+X-CRM114-Status: GOOD (  13.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,37 +130,75 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-In the couple of places the NULL check of OF node is implied by the call
-that takes it as a parameter. Drop the respective duplicate checks.
+Various cleanups and refactorings of the SPI header and core parts
+united in a single series. It also touches drivers under SPI subsystem
+folder on the pure renaming purposes of some constants.
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- drivers/spi/spi.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+No functional change intended.
 
-diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-index 9291b2a0e887..8f3282a71c63 100644
---- a/drivers/spi/spi.c
-+++ b/drivers/spi/spi.c
-@@ -2399,9 +2399,6 @@ static void of_register_spi_devices(struct spi_controller *ctlr)
- 	struct spi_device *spi;
- 	struct device_node *nc;
- 
--	if (!ctlr->dev.of_node)
--		return;
--
- 	for_each_available_child_of_node(ctlr->dev.of_node, nc) {
- 		if (of_node_test_and_set_flag(nc, OF_POPULATED))
- 			continue;
-@@ -3134,7 +3131,7 @@ int spi_register_controller(struct spi_controller *ctlr)
- 		if (WARN(id < 0, "couldn't get idr"))
- 			return id == -ENOSPC ? -EBUSY : id;
- 		ctlr->bus_num = id;
--	} else if (ctlr->dev.of_node) {
-+	} else {
- 		/* Allocate dynamic bus number using Linux idr */
- 		id = of_alias_get_id(ctlr->dev.of_node, "spi");
- 		if (id >= 0) {
+Changelog v2:
+- added new patches 3,4,5,10,13,14
+- massaged comment and kernel doc in patch 9
+- split used to be patch 4 to patches 11,12
+- covered a few things in SPI core in patch 15
+- amended commit message for above (Mark)
+- reshuffled patches in the series for better logical grouping
+
+Andy Shevchenko (15):
+  spi: Remove unneeded OF node NULL checks
+  spi: Drop duplicate IDR allocation code in spi_register_controller()
+  spi: Replace if-else-if by bitops and multiplications
+  spi: Replace open coded spi_controller_xfer_timeout()
+  spi: Remove code duplication in spi_add_device_locked()
+  spi: Use sysfs_emit() to instead of s*printf()
+  spi: Sort headers alphabetically
+  spi: Clean up headers
+  spi: Use struct_size() helper
+  spi: Use predefined constants from bits.h and units.h
+  spi: Get rid of old SPI_MASTER_NO_TX & SPI_MASTER_NO_RX
+  spi: Get rid of old SPI_MASTER_MUST_TX & SPI_MASTER_MUST_RX
+  spi: Rename SPI_MASTER_GPIO_SS to SPI_CONTROLLER_GPIO_SS
+  spi: Convert to SPI_CONTROLLER_HALF_DUPLEX
+  spi: Fix spelling typos and acronyms capitalization
+
+ drivers/spi/spi-amd.c             |   2 +-
+ drivers/spi/spi-at91-usart.c      |   2 +-
+ drivers/spi/spi-ath79.c           |   2 +-
+ drivers/spi/spi-atmel.c           |   4 +-
+ drivers/spi/spi-bitbang-txrx.h    |  16 +--
+ drivers/spi/spi-bitbang.c         |   8 +-
+ drivers/spi/spi-cavium-thunderx.c |   2 +-
+ drivers/spi/spi-davinci.c         |   2 +-
+ drivers/spi/spi-dw-core.c         |   2 +-
+ drivers/spi/spi-falcon.c          |   2 +-
+ drivers/spi/spi-fsl-lpspi.c       |   2 +-
+ drivers/spi/spi-gpio.c            |  10 +-
+ drivers/spi/spi-imx.c             |   2 +-
+ drivers/spi/spi-lp8841-rtc.c      |  10 +-
+ drivers/spi/spi-meson-spicc.c     |   2 +-
+ drivers/spi/spi-mt65xx.c          |   2 +-
+ drivers/spi/spi-mxs.c             |   2 +-
+ drivers/spi/spi-omap-uwire.c      |   2 +-
+ drivers/spi/spi-orion.c           |   2 +-
+ drivers/spi/spi-pci1xxxx.c        |   2 +-
+ drivers/spi/spi-pic32-sqi.c       |   2 +-
+ drivers/spi/spi-pic32.c           |   2 +-
+ drivers/spi/spi-qcom-qspi.c       |   2 +-
+ drivers/spi/spi-rb4xx.c           |   2 +-
+ drivers/spi/spi-rockchip-sfc.c    |   2 +-
+ drivers/spi/spi-rockchip.c        |   2 +-
+ drivers/spi/spi-sifive.c          |   2 +-
+ drivers/spi/spi-slave-mt27xx.c    |   2 +-
+ drivers/spi/spi-sprd-adi.c        |   2 +-
+ drivers/spi/spi-stm32.c           |   2 +-
+ drivers/spi/spi-ti-qspi.c         |   2 +-
+ drivers/spi/spi-xcomm.c           |   2 +-
+ drivers/spi/spi-xtensa-xtfpga.c   |   2 +-
+ drivers/spi/spi.c                 | 204 ++++++++++++------------------
+ include/linux/spi/spi.h           | 198 +++++++++++++++++------------
+ include/trace/events/spi.h        |   2 +-
+ 36 files changed, 247 insertions(+), 261 deletions(-)
+
 -- 
 2.40.0.1.gaa8946217a0b
 
