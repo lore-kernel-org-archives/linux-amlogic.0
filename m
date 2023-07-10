@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DB16EB64D9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 16:13:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 522F3EB64D9
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 16:13:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vpRz8gzTRV7SO8V2hYP/6mw1oFtLW+vt3PH62tx861Y=; b=UYhuf4xzkVMDji
-	4ybPU1RXj4zFqSxeCQrmRSz+p2/k3aFZj3+qvp1yvMoDAIKmCn404A+gt3LfEAAFU1iywBfEczpXY
-	xucuyxPLJsKhXLMmFpSoKksBcvVrgoQXa2Ehw8KG2bKP9WJSizySJA1fi4XYGYB3RD7zvGI26MYdI
-	/g3FaDNyJbS4aI2QYa3p2mqsSvFVeXDqasG0roGBRBkrUGhZoERRc4h4ulJmD0loM3ZwcCiLPGdyi
-	FE6Tu6v+am1s71BNQQJInEWAAH2OINFJtlaLZwCzsXJWOXXZEmhoE42uwtT50/xuNmrvOBGj4Kezg
-	LNt26I5LIcOQdeV8jsuA==;
+	List-Owner; bh=VUe5dgIDnpUCUyEDSG4y6KxzY1nljlRdUloqTS+fno0=; b=dqHPNQe+wR9vGZ
+	WEPb7fJtVdsUgfha/+M2bXUO00v6LfUHO6xMi/MF1LnYKejvquGKz27GCH+sDDG4LfLc66K3uEd7V
+	T58CRiFFAJ2WTHiI6MbPAYpUQkhcP/W8sfU8OAz+cHEbCtRt55jx8yGiaayoRxC1+puFGwJAoSFOe
+	mKNnGkyXbkjzNK9wXV66ulG657RKZTKDpZdKvA8pM+eIZzm9sFnNH6yiW3nQ5VSSL6V4YkvshU4/q
+	gbuLJNV/alVnFA8KZ0KE7byNW7yH/p2gqzHKX10BlEL4Q+Mm08WqeIF65HaMspQyBXDFrgRTFDBwG
+	GQzUZSMhgF/wvLLC09Jg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qItV9-00C9qe-1a;
-	Mon, 10 Jul 2023 16:12:39 +0000
-Received: from mga07.intel.com ([134.134.136.100])
+	id 1qItVw-00CA4b-2D;
+	Mon, 10 Jul 2023 16:13:28 +0000
+Received: from mga02.intel.com ([134.134.136.20])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qItV6-00C9q1-09;
-	Mon, 10 Jul 2023 16:12:37 +0000
+	id 1qItVt-00CA3O-14;
+	Mon, 10 Jul 2023 16:13:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1689005555; x=1720541555;
+  t=1689005605; x=1720541605;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=0SlN/itezSp5S5zjCF2SMzf5gnBS89SJ4xDj94AkcQw=;
-  b=M4UatrbStEW7CaUeyxxe6bKSd0ckHW65e3BegOoxu9Qv8HH7hB0YCb/l
-   6MJENllTnu10HSVZmPeKhVCBiWCYhVL+dpanY55xfcRz8DtfJGJl4SC55
-   Uwvz2UGZdWaZQu0pUYdthstOXorm57Q4h5fiWZfMlbCTuWHibs7MeRVtA
-   eX1Qk6OoO2dfgbHKxvN8MrXSPHWApZz5xozC2MVnwHPlLQr854YUPi3tt
-   PrUYit3gFkuUStJ1c5xqxJzNs3BsDn4W4oUGcWei8MQYFaQDRaIDpBZp2
-   h5HCfz5dYrF3HWDZAabHeuQw1B24PuOYALKzoMsocsvOAZZcjXruNepcB
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="430464648"
+  bh=hcRhvsNpzCZm3Sd7nNPgrDaCtucecy1QPHYWw64ui6o=;
+  b=Uo26fDc1STsoBFkrw6JA8Ubfb/Bw2dOnw5Cgkpt0cMeafWJmMBxToIjE
+   8Wb4qs959VPz8Td+zRFLOMyRR9zDLmCYRSjq8/VutOporF9lqKjkcGQeM
+   zpQ7YqOH+pShuON+9Rx9+FwpOhX8IU2v664HYihx6vxor6CsnuREGqO5w
+   dlRG8biHPMTZrzpEFuXKDu5KipJsjKMb0YeoCSTVMqmjW14ZecUpHFEEw
+   4fIEK4IK4Opi0O83rPaKqWfIms8+2rp6si0+n70IVOsC1guJnDIJFQz/H
+   9yTvxfea9JEso10YiDt8mKOr7k0WBs9N9pIZtf42eFIGWTZIfamq/mgwS
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="354244112"
 X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; 
-   d="scan'208";a="430464648"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 09:10:59 -0700
+   d="scan'208";a="354244112"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 09:12:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="750388713"
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="790844445"
 X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; 
-   d="scan'208";a="750388713"
+   d="scan'208";a="790844445"
 Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga008.jf.intel.com with ESMTP; 10 Jul 2023 09:10:47 -0700
+  by fmsmga004.fm.intel.com with ESMTP; 10 Jul 2023 09:12:26 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.96)
 	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1qItTH-001bF6-2N;
-	Mon, 10 Jul 2023 19:10:43 +0300
-Date: Mon, 10 Jul 2023 19:10:43 +0300
+	id 1qItUs-001bGm-39;
+	Mon, 10 Jul 2023 19:12:22 +0300
+Date: Mon, 10 Jul 2023 19:12:22 +0300
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Marc Kleine-Budde <mkl@pengutronix.de>
 Cc: Mark Brown <broonie@kernel.org>,
@@ -105,17 +105,18 @@ Cc: Mark Brown <broonie@kernel.org>,
 	Shawn Guo <shawnguo@kernel.org>,
 	Claudiu Beznea <claudiu.beznea@microchip.com>
 Subject: Re: [PATCH v2 09/15] spi: Use struct_size() helper
-Message-ID: <ZKwtgwZtUUHGC+S3@smile.fi.intel.com>
+Message-ID: <ZKwt5utuGaCf5nmT@smile.fi.intel.com>
 References: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
  <20230710154932.68377-10-andriy.shevchenko@linux.intel.com>
  <20230710-doze-scared-9f0a2e1a9125-mkl@pengutronix.de>
+ <ZKwtgwZtUUHGC+S3@smile.fi.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20230710-doze-scared-9f0a2e1a9125-mkl@pengutronix.de>
+In-Reply-To: <ZKwtgwZtUUHGC+S3@smile.fi.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230710_091236_179110_C08F5BAA 
-X-CRM114-Status: GOOD (  10.19  )
+X-CRM114-CacheID: sfid-20230710_091325_416826_F19BA3EB 
+X-CRM114-Status: GOOD (  14.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,19 +133,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jul 10, 2023 at 05:59:55PM +0200, Marc Kleine-Budde wrote:
-> On 10.07.2023 18:49:26, Andy Shevchenko wrote:
+On Mon, Jul 10, 2023 at 07:10:43PM +0300, Andy Shevchenko wrote:
+> On Mon, Jul 10, 2023 at 05:59:55PM +0200, Marc Kleine-Budde wrote:
+> > On 10.07.2023 18:49:26, Andy Shevchenko wrote:
 
 ...
 
-> > +	struct spi_transfer	t[];
+> > > +	struct spi_transfer	t[];
+> > 
+> > You might want to use the DECLARE_FLEX_ARRAY helper here.
 > 
-> You might want to use the DECLARE_FLEX_ARRAY helper here.
+> Technically, yes, semantically documentation [1] disagrees with
 
-Technically, yes, semantically documentation [1] disagrees with
-you, so I leave it as is.
+"and [2]"
 
-[1]: Documentation/process/deprecated.rst:269
+> you, so I leave it as is.
+> 
+> [1]: Documentation/process/deprecated.rst:269
+
+[2]: Documentation/process/deprecated.rst:350
 
 -- 
 With Best Regards,
