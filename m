@@ -4,102 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 984B2EB64D9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 12:46:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EC60EB64DC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 13:21:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:Date:References:
-	In-Reply-To:Message-Id:Mime-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=XN8onT+L+Ou08IczZbOA4ADPOH5WeNtcw+pgsZgbpkU=; b=KO3JrRPPsnUIWb
-	iUR4mRfUdhX4Iv8KTCrxmQXHtyTMWSUPLfiMFNLAu9xem8UiW6T1aMDb4vGyNIce81YQkSaHPcc+s
-	OOFVWtqGXd2gKZuyR5QyAyJpwqEo9DEu9WrQCV3Wkqz9cx1ABkWO5fDJr9JtZ0MBtzEAJiqQ1QGdy
-	ZlHj4lSJ6Pahtvu70Pq0/+pFLBOUyNvCQcaFZXwpMxhllOSFIejFz9aLVQRn4276c6Ww5t9SvxtOu
-	eQXZLxuby0iBNHd4DBEt7jNue+G4/fmpmodOpIUyg5zb5rhxPtLsV4zB12ofzKaA1i4bNvMihtoPc
-	NRBR7E0mfdYmisyYYsYw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=l7wXpGLSwC9+8M5aAPcUFYT2tvY6Vu8IxABaeHjvIfg=; b=YDVpAzAAl7wuYF4riqf0AVz1RM
+	3krWMHcRbJQI3KNdOn9AKfbRPndQE/FUP17MYQLiNUHVHEQ4PG6lmiwfIxLvpkqxXE2L3Pxhy9Vp9
+	1sku7j8IYeZb/lNLmZMQgCINsUIoJ5/3+oyE0dJgmfYepgYzQl0NdmDhCoi5WgVCXxh0hM3gBu02S
+	mCsC2OLgKg3PvjEiIO48nJg1ANlq7F0rXXw0SSdt/+hRszXgvZYz/jZuIVjIzekSRODmj4bPe1mfv
+	23lT6CDOm1/0ggY2IxINbENLTCw0CcTHcA4SAELSAL2BImNDOuhE00HavNgcnbnolty9hotm8Ex2C
+	YY48lBBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIqGt-00Be6c-0w;
-	Mon, 10 Jul 2023 12:45:43 +0000
-Received: from out2-smtp.messagingengine.com ([66.111.4.26])
+	id 1qIqpJ-00BjyL-0u;
+	Mon, 10 Jul 2023 13:21:17 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIqGn-00Be5Y-25;
-	Mon, 10 Jul 2023 12:45:41 +0000
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-	by mailout.nyi.internal (Postfix) with ESMTP id B2B8C5C0166;
-	Mon, 10 Jul 2023 08:45:33 -0400 (EDT)
-Received: from imap50 ([10.202.2.100])
-  by compute6.internal (MEProxy); Mon, 10 Jul 2023 08:45:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:sender
-	:subject:subject:to:to; s=fm2; t=1688993133; x=1689079533; bh=Wr
-	gvfSK/ZjUnMocbnypFGx2Xu2Tz3bZYi5KhzSIRavg=; b=HfW8C5wWvq2nAWizjJ
-	E4WtfRQ4petWcoSQ6q0lIWyXzXpmAu28ZnV+iEWxSjyiGp3QT/ansazGclbI1WPh
-	Su0zHiFw5m1xXNT37hK7v370U1VWB4SpIQrCR1U9EtSVMJIuIobaQBKg6QzWa8Vx
-	oDe0CizDplLYcnZ9A3QMibFpjS5yZxiBGMf6LiZcpMC2aZ9MKU1CURIuL8WtalT4
-	7kcAKuEEOzF0isQMeeMtzROFbi31vervfvhw82Oy2tqIDytrWIQls6FMR+A/G31u
-	kARY4iT5PTCKBwZn3KdWefT740SJkyf/1kZPGOj26rK0e8IiiW2I8loSlyyvdHjE
-	Ij0w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:sender:subject
-	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm2; t=1688993133; x=1689079533; bh=WrgvfSK/ZjUnM
-	ocbnypFGx2Xu2Tz3bZYi5KhzSIRavg=; b=XwySPgjShiTivcgcO87lJeu+tsCXi
-	46y9i6y8bzcsRCaUaVkoFhuL4ghB2S3GmwEK+ALBPlUpo9XuCxoHutJF/avr2N0R
-	QjcFzUWgK8SbagUmPHhI6585NY1lR1104mBpvV3p9HG8akg8bpRf3lgFkPJy+JtD
-	oB+c2K6UItXlfhud0cnZXi0g7gAOxT3L4r2U/h4oJ5iQiyi2akD6pR7MgJTf4Pvj
-	DERhrrGvwapHWW2rOL7KVwYTyNO39YH2VxwISU+4ZjbQuqjReIW5cGICQ46a7hHb
-	v7nUQpbFgK8v0fjmSztcgAh71TQ1MUzyYYqmqoSRWclYBmwO1wvkDHq9g==
-X-ME-Sender: <xms:bf2rZOmf60ZQDGJgw3s8P5MRfo7CShCcZZPAIuV5AKPOSwfkFjvNVw>
-    <xme:bf2rZF2IwKTaJzFicKJVcjZ-sEZ_HztTfq61gt2xvXzlhgQ6G7UxUSV039NsCkbou
-    fs5qPenfx6yLLyOUp8>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrvdekgdegiecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:bf2rZMr1mXNHciHOBChPaW6Kq9Lz5-zJSwYwMIvseSyLPD_2DnIl6g>
-    <xmx:bf2rZCmPfJL1nn0qaON3MrFyk0OVlEgZc-DMvaMTUu56DJMPW6CUMw>
-    <xmx:bf2rZM2Otwu3AneCWbaQ71VydAQ8Ozmrj9Idq0VTY67Sb3hjP36Jdg>
-    <xmx:bf2rZNLkOeVMZ5nvzl-PVhBKmJ7kMATU6iBPYONR472oQbo3nlvDdw>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 395001700089; Mon, 10 Jul 2023 08:45:33 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-531-gfdfa13a06d-fm-20230703.001-gfdfa13a0
-Mime-Version: 1.0
-Message-Id: <2ef84fb8-b5eb-4c9a-b8a1-0c5f33e7f572@app.fastmail.com>
-In-Reply-To: <CAPDyKFoRtEXTGQkNzGza-sS_j1ajGmjtCTaoPB7PXVDE2bS0tQ@mail.gmail.com>
-References: <20230707140434.723349-1-ulf.hansson@linaro.org>
- <20230707140434.723349-4-ulf.hansson@linaro.org>
- <0c8938a9-7a26-bf97-51ee-0c271901ec21@linaro.org>
- <CAPDyKFrOye96GyHS0tiTQ02Ve5S6Crtk8=bMsRS9Ljj=h5-nWQ@mail.gmail.com>
- <1496b9c1-289a-c354-f0ae-e14fd4c9bcfa@linaro.org>
- <CAPDyKFr7Mqy5bisLcxcA_iEGWqL8SFt2mDDng7zYEaTD1vNisA@mail.gmail.com>
- <deyyt5r2wkxo7ily434gl3wudls2sbinkmnehssqshwnbzmlwf@lmqskj6zwfu2>
- <CAPDyKFoRtEXTGQkNzGza-sS_j1ajGmjtCTaoPB7PXVDE2bS0tQ@mail.gmail.com>
-Date: Mon, 10 Jul 2023 14:45:12 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Ulf Hansson" <ulf.hansson@linaro.org>,
- "Bjorn Andersson" <andersson@kernel.org>
-Cc: "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Olof Johansson" <olof@lixom.net>, linux-pm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- "Kevin Hilman" <khilman@baylibre.com>,
- "Jerome Brunet" <jbrunet@baylibre.com>,
- "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 03/18] soc: amlogic: Move power-domain drivers to the genpd dir
+	id 1qIqpH-00BjxR-0v;
+	Mon, 10 Jul 2023 13:21:16 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id C621F60DED;
+	Mon, 10 Jul 2023 13:21:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94191C433C7;
+	Mon, 10 Jul 2023 13:21:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1688995274;
+	bh=ruJlO0wimIrsDY1JgPUqCqS7prBe1pSopi+dM4yYAWM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tCUvqCttiPcwuUH6oQaeDTVlt/jVMTKddukpB3Rq2NTAjbzgaXhOs+IbQKiqA2zFS
+	 A9RwOziobHTKo8xtAoLCbw9/G5XP7z93lwwcMiVxafq8PiTNYdyOWz2ZmNVbJqaRu3
+	 p+o7GErUG6dN3D+2vdmSUok/vpvLEP/d4e2/6uVM8lFbtbK1g1KhHRcJ+YzSNSc8aV
+	 vzC9RTasZiyt6DNQvmgXjaDeqvMTkrDbkZFHHHz5OJ3MwZifaBQsXsj96SFX7XFS5/
+	 2yl7VTCIzPWHRNx1uEfr8lQDSlw+D72llgC2cC8KCiu81fGygjzL2Umg2d4uKSVdv1
+	 5QaNEib99pP6w==
+Date: Mon, 10 Jul 2023 14:21:05 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Yang Yingliang <yangyingliang@huawei.com>,
+	Amit Kumar Mahapatra via Alsa-devel <alsa-devel@alsa-project.org>,
+	Kris Bahnsen <kris@embeddedts.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org,
+	Radu Pirea <radu_nicolae.pirea@upb.ro>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@microchip.com>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Max Filippov <jcmvbkbc@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>
+Subject: Re: [PATCH v1 4/8] spi: Get rid of old SPI_MASTER_NO_.X and
+ SPI_MASTER_MUST_.X
+Message-ID: <7aff8759-cfca-47b5-b995-5260e5082c45@sirena.org.uk>
+References: <20230710102751.83314-1-andriy.shevchenko@linux.intel.com>
+ <20230710102751.83314-5-andriy.shevchenko@linux.intel.com>
+ <1ffd5603-4140-4bf6-bfed-af70a6759bda@sirena.org.uk>
+ <ZKvmkAP5ZuT6lGLN@smile.fi.intel.com>
+ <ZKvnPXl9H+cQR8Ok@smile.fi.intel.com>
+ <353027bf-6d2a-40de-9e18-8553864b343c@sirena.org.uk>
+ <ZKv7p96D2B9vYd0J@smile.fi.intel.com>
+MIME-Version: 1.0
+In-Reply-To: <ZKv7p96D2B9vYd0J@smile.fi.intel.com>
+X-Cookie: Do you have lysdexia?
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230710_054540_107333_BB4B2E69 
-X-CRM114-Status: GOOD (  16.02  )
+X-CRM114-CacheID: sfid-20230710_062115_404397_E6C4074A 
+X-CRM114-Status: GOOD (  16.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,48 +99,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============7250249009365907334=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jul 10, 2023, at 14:37, Ulf Hansson wrote:
-> On Sun, 9 Jul 2023 at 04:21, Bjorn Andersson <andersson@kernel.org> wrote:
->> On Fri, Jul 07, 2023 at 05:27:39PM +0200, Ulf Hansson wrote:
->
-> If I understand correctly, you are suggesting that each platform
-> maintainer should merge the immutable branch with patch1 - and that I
-> should send the patches (based on the immutable branch) to each of the
-> platform maintainers to manage. Instead of one pull request with
-> everything directly to Arnd, right?
->
-> This still means that Arnd will have to resolve the conflicts as the
-> pull requests arrive in his inbox.
->
-> Although, I guess what you are looking for is less work for the soc/
-> maintainers, which seems reasonable. Although, in that case, I might
-> as well share an immutable branch with the complete series, rather
-> than just patch1. That should help Arnd too, I think.
->
-> Again, let's leave the call to Arnd on what to do.
 
-I think it's much easier for me to pick up a single branch with
-all of your patches. For platform maintainers, other changes can
-go one of two ways:
+--===============7250249009365907334==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Bc8mzeK4BJwaYeTa"
+Content-Disposition: inline
 
-- send a normal pull requests with changes against the same
-  files, and have me take care of any conflicts where they
-  arise. Since most of the changes are just simple file moves
-  rather than changing file contents, 'git mergetool' handles
-  these fine is most cases
 
-- If there is a non-obvious merge, the entire genpd branch
-  can be shared as an immutable branch, with patches for
-  a particular platform rebased on top of that branch.
+--Bc8mzeK4BJwaYeTa
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-     Arnd
+On Mon, Jul 10, 2023 at 03:37:59PM +0300, Andy Shevchenko wrote:
+> On Mon, Jul 10, 2023 at 12:22:59PM +0100, Mark Brown wrote:
+> > On Mon, Jul 10, 2023 at 02:10:53PM +0300, Andy Shevchenko wrote:
+
+> > > > > > Convert the users to SPI_CONTROLLER_NO_?X and SPI_CONTROLLER_MUST_.X
+> > > > > > and kill the not used anymore definitions.
+
+...
+
+> > > > > > -	controller->flags = SPI_MASTER_MUST_RX | SPI_MASTER_MUST_TX;
+> > > > > > +	controller->flags = SPI_CONTROLLER_MUST_RX | SPI_CONTROLLER_MUST_TX;
+
+> > What part of the above change is replacing _NO_ with _MUST_?
+
+> None, that's why assuming the split by name should be fine.
+
+That's what the above changelog sounds like it's trying to do (I'm not
+sure the change itself makes sense but the first thing I ran into when
+reviewing the patch), AFIACT you're missing a "from" in the changelog?
+
+--Bc8mzeK4BJwaYeTa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSsBcAACgkQJNaLcl1U
+h9BDYgf/Sarsl9t6SagewIDl2ctlFPl7f++zP6SLId0C0LErq2lPLxZKf8tzzV5x
+7mUMpK3rPcygDeYAqOKLncxnrZp/i7yix/98fZtls9IesvOQa29aRYKVSvhKnB6y
+dHoZoMBdYj1Rbo/olUcS1xjzzZ0o1VUHkLsp9rjoMW4lcz6Hu3o8GSOq1pbc9lRd
+qlCYAjMqjR9K3te5I6FICKKGnIrXm2uxuzSPZl1G7LaN0THUZGZJvcBHjhR2PcJs
+K9i9m0gJ9xsQXDOQgLTcXrm8hdSF7yQoRI3TBZ7RXzdWeO3mjNjeHGbVDRr3DMZy
+Oici+Ga3mBLzIlFlF51Tg71+BGqcoQ==
+=NWL6
+-----END PGP SIGNATURE-----
+
+--Bc8mzeK4BJwaYeTa--
+
+
+--===============7250249009365907334==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7250249009365907334==--
+
