@@ -4,88 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF425EB64D9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 11:23:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03D01EB64DA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 12:38:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=YbpMQn+qlrNsJLyaXS7Aj2LhTmEwPlPPloe6kZQsrX0=; b=ldhNmv5Ckc3i1h4hfXs5007C1J
-	Da9CLLiKO5w/Su/LJ8egmqKwH0Cdz5S6Yip3LsNWJicfozoMs0axcVRM3H7qMbtQ1hEseZc1FJKAi
-	yvW6OQf7FG3RlUeQjqmOTO08a9Pz/q0c/ZYIcjUUy2tQUDTUigvU0vBbmb4ff/bR+glmTxPqocUCJ
-	WKBcFUT20+m4GYYUOVk8eRCckBaeuLae6oirqaodKGMMhyUDkgjLBBiG0q0vWytleow52hXFG3wY+
-	WdUrwl/NPMCh0fyk+FJY76qRHeSkBlWpoNqmZByVimBAcRwlJapsBnz8txGVrcZat9I1jiwd6BH+R
-	DzzYyXFg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=/EgrEoZjZjvFF1QwWX/aM5UMfhR+Cc+FpcIG7ahjGCk=; b=jp01ORbpuETFU5
+	zfIuEtmJlJSDgZm8uoJJ1x+yErNpOkJWS503SQ+jGVIL7iD+Auep3a8cooiFzbufhKZCYPLkXprtu
+	ZTTQNJUiARxBejTh3Zl8prngh+KqK2WdtjGPIpF7mqczEDQ8MCG6edh/ZkajANRC6vG54kxD43l1U
+	dwt1ixMusJBclulty/lDAQEWe2ZD+1+FF2zTfkdhAin9ZaZSxy8ZeUbgHt7SkbqeA8lTovyNBWMRL
+	mVV33wOJWzmFf9+jRtQWdF/zZ/UT+VTp39lO9ji9RVDWIV6yVkYTRHP0+rdX2KF3chavpkYDoiAnC
+	5TSS4thXAkeCwtGLW6dA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIoz1-00BT7v-2Q;
-	Mon, 10 Jul 2023 11:23:11 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1qIq9G-00BcFr-0m;
+	Mon, 10 Jul 2023 12:37:50 +0000
+Received: from mail-yw1-x1129.google.com ([2607:f8b0:4864:20::1129])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIoyz-00BT79-26;
-	Mon, 10 Jul 2023 11:23:10 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 1FE3060D3E;
-	Mon, 10 Jul 2023 11:23:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9F29C433C7;
-	Mon, 10 Jul 2023 11:23:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1688988188;
-	bh=rVbOiKgyxND9mKZk3rAKjAS4exnyG60MuJg/qoml1Vw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NmQJc/tPCMy3i5v1VlHdRroye/CciPC/ZvFOKcppf3TZf0qRJ3dgdRYwmDVOMOmqP
-	 VHTHnUz3SjT2CkGo2po+jFLM51kzErpdYTDzbIh1ssyixtC39WoS5AEx1AHhOh2rUT
-	 oGH0Cj/eImkEiRwQY+a6G/4uTBojRaP1c3PpTvWdlPa8OmIjqYJiqIt27qBeoOyByD
-	 uIezS9sRdsa2l0+EXR9NmvWwdDucaVOT+HG9neus16SKNTI7aq5f6UxW++970eT5gb
-	 zfoX4LNe9GA9UuIFwotHUiqYP63tgZEO9J8trRSJc2+FmmGG2Hl/AKVEk1ykYfoY0k
-	 6E9c0qXH0JqVA==
-Date: Mon, 10 Jul 2023 12:22:59 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Yang Yingliang <yangyingliang@huawei.com>,
-	Amit Kumar Mahapatra via Alsa-devel <alsa-devel@alsa-project.org>,
-	Kris Bahnsen <kris@embeddedts.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org,
-	Radu Pirea <radu_nicolae.pirea@upb.ro>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@microchip.com>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Alain Volmat <alain.volmat@foss.st.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Max Filippov <jcmvbkbc@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>
-Subject: Re: [PATCH v1 4/8] spi: Get rid of old SPI_MASTER_NO_.X and
- SPI_MASTER_MUST_.X
-Message-ID: <353027bf-6d2a-40de-9e18-8553864b343c@sirena.org.uk>
-References: <20230710102751.83314-1-andriy.shevchenko@linux.intel.com>
- <20230710102751.83314-5-andriy.shevchenko@linux.intel.com>
- <1ffd5603-4140-4bf6-bfed-af70a6759bda@sirena.org.uk>
- <ZKvmkAP5ZuT6lGLN@smile.fi.intel.com>
- <ZKvnPXl9H+cQR8Ok@smile.fi.intel.com>
+	id 1qIq99-00BcED-0q
+	for linux-amlogic@lists.infradead.org;
+	Mon, 10 Jul 2023 12:37:47 +0000
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-5774335bb2aso50145307b3.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 10 Jul 2023 05:37:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688992656; x=1691584656;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=I+4ETNnXEEIrUabO7XSXb0/uWa2F8tZk9bAJbwXI7Gs=;
+        b=N2mrNEPdno1WGhAjOeQdYHWV2aGzQo7aOrodhjWo0rxhnrmcx7a7nwnNj3zKpYqw9r
+         5GZYtUefXvoW4DrRW2NI/sxU4t4sUkhhdBVFkadtBp+QupG0Y3rEixzDH39Qt+niLEMK
+         5QFtH/Y8rf5BS27nSdo8Dh8mXO+ts0/IU8iFW5+xmnfBfBGl8n8tnrJwzs77VWHTU6FV
+         Uj5OLyIjsIlDoYOav2Nh4X8YQP8bbXMWE8RItasPPgl01T0B8etEJEvTwxtQcS3gitrx
+         qSKSEtXrsPX+2hQJsLLLwB4qMVwod+R+tqHiCNTu6hEamdL/nzKzbYPFtHE4XIs/CSY2
+         LgEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688992656; x=1691584656;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=I+4ETNnXEEIrUabO7XSXb0/uWa2F8tZk9bAJbwXI7Gs=;
+        b=U6Sw9/8gAbZ5gnGZPI/2QIU4AQTBPQSUmmKgTWcSrbQ9ql3nxxeOiven739yQPSkzf
+         cWAWbrvocrX6gSW6lnGd1RoU4nKHzqMtPvz9CRtcVKwElDAyALX+CkqIOjC8eu7ZowpQ
+         YGbYI3yOvJmJJHmQEmWLtvsZPQEF5coZJRRZNrmyGl7fotWKEe6lU2um9HJm5waUc9QC
+         BmnywX2Qxx7M988joO6OPGPyoM55yS1qxT/HkPJzkQEHjmhpTFng36MjRObhxhBYzQV9
+         i4XQkgNcLBHLPSqLedJ0bz26B0c/JHppIkS8nbRfloYursZPyLq5//p36GgIsD3WRhvM
+         LcXQ==
+X-Gm-Message-State: ABy/qLaNWdH14Gg3LqjfPOGhu92XYWDMxd4M698zKieFiUiiN4G7JC3B
+	ExN0x4sV5Xji+JBA9iUPB9jRY8R4hcz8jTJAyqUNFw==
+X-Google-Smtp-Source: APBJJlFfNDnfTLuhBhNMxxs9meN/aT8dA4DyAJodczZG5et458C2HMSMxoay4jvpzvlnUJl0aE5Uoqspw+fvlsfQpD8=
+X-Received: by 2002:a0d:ea48:0:b0:577:60d4:a879 with SMTP id
+ t69-20020a0dea48000000b0057760d4a879mr11018410ywe.33.1688992656290; Mon, 10
+ Jul 2023 05:37:36 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <ZKvnPXl9H+cQR8Ok@smile.fi.intel.com>
-X-Cookie: Do you have lysdexia?
+References: <20230707140434.723349-1-ulf.hansson@linaro.org>
+ <20230707140434.723349-4-ulf.hansson@linaro.org> <0c8938a9-7a26-bf97-51ee-0c271901ec21@linaro.org>
+ <CAPDyKFrOye96GyHS0tiTQ02Ve5S6Crtk8=bMsRS9Ljj=h5-nWQ@mail.gmail.com>
+ <1496b9c1-289a-c354-f0ae-e14fd4c9bcfa@linaro.org> <CAPDyKFr7Mqy5bisLcxcA_iEGWqL8SFt2mDDng7zYEaTD1vNisA@mail.gmail.com>
+ <deyyt5r2wkxo7ily434gl3wudls2sbinkmnehssqshwnbzmlwf@lmqskj6zwfu2>
+In-Reply-To: <deyyt5r2wkxo7ily434gl3wudls2sbinkmnehssqshwnbzmlwf@lmqskj6zwfu2>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 10 Jul 2023 14:37:00 +0200
+Message-ID: <CAPDyKFoRtEXTGQkNzGza-sS_j1ajGmjtCTaoPB7PXVDE2bS0tQ@mail.gmail.com>
+Subject: Re: [PATCH 03/18] soc: amlogic: Move power-domain drivers to the
+ genpd dir
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: neil.armstrong@linaro.org, Arnd Bergmann <arnd@arndb.de>, 
+	Olof Johansson <olof@lixom.net>, linux-pm@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230710_042309_773736_00C2CF56 
-X-CRM114-Status: GOOD (  17.31  )
+X-CRM114-CacheID: sfid-20230710_053743_349604_D8071053 
+X-CRM114-Status: GOOD (  36.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,71 +90,156 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1859847786534981916=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Sun, 9 Jul 2023 at 04:21, Bjorn Andersson <andersson@kernel.org> wrote:
+>
+> On Fri, Jul 07, 2023 at 05:27:39PM +0200, Ulf Hansson wrote:
+> > On Fri, 7 Jul 2023 at 17:12, <neil.armstrong@linaro.org> wrote:
+> > >
+> > > On 07/07/2023 16:54, Ulf Hansson wrote:
+> > > > On Fri, 7 Jul 2023 at 16:42, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> > > >>
+> > > >> Hi,
+> > > >>
+> > > >> On 07/07/2023 16:04, Ulf Hansson wrote:
+> > > >>> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> > > >>> Cc: Kevin Hilman <khilman@baylibre.com>
+> > > >>> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> > > >>> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > > >>> Cc: <linux-amlogic@lists.infradead.org>
+> > > >>> Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+> > > >>> ---
+> > > >>>    MAINTAINERS                                        | 1 +
+> > > >>>    drivers/genpd/Makefile                             | 1 +
+> > > >>>    drivers/genpd/amlogic/Makefile                     | 4 ++++
+> > > >>>    drivers/{soc => genpd}/amlogic/meson-ee-pwrc.c     | 0
+> > > >>>    drivers/{soc => genpd}/amlogic/meson-gx-pwrc-vpu.c | 0
+> > > >>>    drivers/{soc => genpd}/amlogic/meson-secure-pwrc.c | 0
+> > > >>>    drivers/soc/Makefile                               | 1 -
+> > > >>>    drivers/soc/amlogic/Makefile                       | 3 ---
+> > > >>>    8 files changed, 6 insertions(+), 4 deletions(-)
+> > > >>>    create mode 100644 drivers/genpd/amlogic/Makefile
+> > > >>>    rename drivers/{soc => genpd}/amlogic/meson-ee-pwrc.c (100%)
+> > > >>>    rename drivers/{soc => genpd}/amlogic/meson-gx-pwrc-vpu.c (100%)
+> > > >>>    rename drivers/{soc => genpd}/amlogic/meson-secure-pwrc.c (100%)
+> > > >>>
+> > > >>> diff --git a/MAINTAINERS b/MAINTAINERS
+> > > >>> index 588769fab516..9b8c9ae2375d 100644
+> > > >>> --- a/MAINTAINERS
+> > > >>> +++ b/MAINTAINERS
+> > > >>> @@ -1843,6 +1843,7 @@ F:      Documentation/devicetree/bindings/phy/amlogic*
+> > > >>>    F:  arch/arm/boot/dts/amlogic/
+> > > >>>    F:  arch/arm/mach-meson/
+> > > >>>    F:  arch/arm64/boot/dts/amlogic/
+> > > >>> +F:   drivers/genpd/amlogic/
+> > > >>>    F:  drivers/mmc/host/meson*
+> > > >>>    F:  drivers/phy/amlogic/
+> > > >>>    F:  drivers/pinctrl/meson/
+> > > >>> diff --git a/drivers/genpd/Makefile b/drivers/genpd/Makefile
+> > > >>> index a2d5b2095915..cdba3b9f0c75 100644
+> > > >>> --- a/drivers/genpd/Makefile
+> > > >>> +++ b/drivers/genpd/Makefile
+> > > >>> @@ -1,2 +1,3 @@
+> > > >>>    # SPDX-License-Identifier: GPL-2.0-only
+> > > >>>    obj-y                                       += actions/
+> > > >>> +obj-y                                        += amlogic/
+> > > >>> diff --git a/drivers/genpd/amlogic/Makefile b/drivers/genpd/amlogic/Makefile
+> > > >>> new file mode 100644
+> > > >>> index 000000000000..3d58abd574f9
+> > > >>> --- /dev/null
+> > > >>> +++ b/drivers/genpd/amlogic/Makefile
+> > > >>> @@ -0,0 +1,4 @@
+> > > >>> +# SPDX-License-Identifier: GPL-2.0-only
+> > > >>> +obj-$(CONFIG_MESON_GX_PM_DOMAINS) += meson-gx-pwrc-vpu.o
+> > > >>> +obj-$(CONFIG_MESON_EE_PM_DOMAINS) += meson-ee-pwrc.o
+> > > >>> +obj-$(CONFIG_MESON_SECURE_PM_DOMAINS) += meson-secure-pwrc.o
+> > > >>> diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/genpd/amlogic/meson-ee-pwrc.c
+> > > >>> similarity index 100%
+> > > >>> rename from drivers/soc/amlogic/meson-ee-pwrc.c
+> > > >>> rename to drivers/genpd/amlogic/meson-ee-pwrc.c
+> > > >>> diff --git a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c b/drivers/genpd/amlogic/meson-gx-pwrc-vpu.c
+> > > >>> similarity index 100%
+> > > >>> rename from drivers/soc/amlogic/meson-gx-pwrc-vpu.c
+> > > >>> rename to drivers/genpd/amlogic/meson-gx-pwrc-vpu.c
+> > > >>> diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/genpd/amlogic/meson-secure-pwrc.c
+> > > >>> similarity index 100%
+> > > >>> rename from drivers/soc/amlogic/meson-secure-pwrc.c
+> > > >>> rename to drivers/genpd/amlogic/meson-secure-pwrc.c
+> > > >>> diff --git a/drivers/soc/Makefile b/drivers/soc/Makefile
+> > > >>> index 3b0f9fb3b5c8..dc93e1762ca7 100644
+> > > >>> --- a/drivers/soc/Makefile
+> > > >>> +++ b/drivers/soc/Makefile
+> > > >>> @@ -23,7 +23,6 @@ obj-y                               += mediatek/
+> > > >>>    obj-y                               += microchip/
+> > > >>>    obj-y                               += nuvoton/
+> > > >>>    obj-y                               += pxa/
+> > > >>> -obj-y                                += amlogic/
+> > > >>>    obj-y                               += qcom/
+> > > >>>    obj-y                               += renesas/
+> > > >>>    obj-y                               += rockchip/
+> > > >>> diff --git a/drivers/soc/amlogic/Makefile b/drivers/soc/amlogic/Makefile
+> > > >>> index 7b8c5d323f5c..c25f835e6a26 100644
+> > > >>> --- a/drivers/soc/amlogic/Makefile
+> > > >>> +++ b/drivers/soc/amlogic/Makefile
+> > > >>> @@ -2,7 +2,4 @@
+> > > >>>    obj-$(CONFIG_MESON_CANVAS) += meson-canvas.o
+> > > >>>    obj-$(CONFIG_MESON_CLK_MEASURE) += meson-clk-measure.o
+> > > >>>    obj-$(CONFIG_MESON_GX_SOCINFO) += meson-gx-socinfo.o
+> > > >>> -obj-$(CONFIG_MESON_GX_PM_DOMAINS) += meson-gx-pwrc-vpu.o
+> > > >>>    obj-$(CONFIG_MESON_MX_SOCINFO) += meson-mx-socinfo.o
+> > > >>> -obj-$(CONFIG_MESON_EE_PM_DOMAINS) += meson-ee-pwrc.o
+> > > >>> -obj-$(CONFIG_MESON_SECURE_PM_DOMAINS) += meson-secure-pwrc.o
+> > > >>
+> > > >> I've a few changes for v6.6, how shall we handle that ?
+> > > >
+> > > > I think we should continue to use the soc tree until v6.6-rc1 (or if
+> > > > Arnd have some other ideas), there are some more thoughts around this
+> > > > in the cover letter.
+> > > >
+> > > > Beyond v6.6-rc1 I plan to help with maintenance in practice  and run
+> > > > my own separate git tree.
+> > >
+> > > If it helps I can send you a PR with only the pwrc changes you can merge
+> > > before applying this serie.
+> >
+> > Right, that could be a good idea, but let's defer to Arnd before we
+> > agree on the way forward.
+> >
+>
+> How about sharing an immutable branch/tag with patch 1, then each one of
+> us can merge that together with the soc-specific change, followed by any
+> subsequent patches - leading up to the next merge window.
+>
+> Stephen will have a merge conflict in drivers/genpd/Makefile as each
+> soc-specific addition comes in, and Arnd will see this conflict too. But
+> this is going to be extremely trivial. But apart from this, there will
+> not be any conflicts or additional branching constraints for us...
+>
 
---===============1859847786534981916==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="SoPr26CyLWhD+5za"
-Content-Disposition: inline
+If I understand correctly, you are suggesting that each platform
+maintainer should merge the immutable branch with patch1 - and that I
+should send the patches (based on the immutable branch) to each of the
+platform maintainers to manage. Instead of one pull request with
+everything directly to Arnd, right?
 
+This still means that Arnd will have to resolve the conflicts as the
+pull requests arrive in his inbox.
 
---SoPr26CyLWhD+5za
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Although, I guess what you are looking for is less work for the soc/
+maintainers, which seems reasonable. Although, in that case, I might
+as well share an immutable branch with the complete series, rather
+than just patch1. That should help Arnd too, I think.
 
-On Mon, Jul 10, 2023 at 02:10:53PM +0300, Andy Shevchenko wrote:
-> On Mon, Jul 10, 2023 at 02:08:00PM +0300, Andy Shevchenko wrote:
-> > On Mon, Jul 10, 2023 at 12:04:35PM +0100, Mark Brown wrote:
-> > > On Mon, Jul 10, 2023 at 01:27:47PM +0300, Andy Shevchenko wrote:
+Again, let's leave the call to Arnd on what to do.
 
-> > > > Convert the users to SPI_CONTROLLER_NO_?X and SPI_CONTROLLER_MUST_.X
-> > > > and kill the not used anymore definitions.
-
-> > > The above is not what this change does:
-
-> > How to improve it? I was sure that the form of "converting to something and
-> > something" is clear...
-
-> A wild guess, maybe you meant to split to two changes, one per each macro group?
-
-No, doing TX and RX in one commit is fine.
-
-> > > > -	controller->flags = SPI_MASTER_MUST_RX | SPI_MASTER_MUST_TX;
-> > > > +	controller->flags = SPI_CONTROLLER_MUST_RX | SPI_CONTROLLER_MUST_TX;
-
-What part of the above change is replacing _NO_ with _MUST_?
-
---SoPr26CyLWhD+5za
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSr6hIACgkQJNaLcl1U
-h9AMOgf+KMPcMsJntwEWI8UJ7/re0uGZ3D9fX1qeb76OfxTqQ5bt1PsIzRULHkqL
-pEOuOVnEu3HTSuNnMgEyy0ms1PA7+yFFiMWSdYlZy02GpNeD8FY/VFwOM9dR4pte
-UWnlYD6vJK8wffaEnxtKF5F2gOah96lH3Yws15T1IN8/YbK5wzCnJ2R5XWgm5Ka6
-zIFhD0cZ077/Z1hO9SJrqAKPpTLLr1KtyC7ZHsvN2YE5+bzvELKFqPSyt3HPy61r
-v+QdG7vRj8/tNW2Hn4lpLR8g9tz5JSMFLhxcyg9TRz67jSiOxM/utfw2IY+Q8DB8
-YvmjuYpF+tbhIo7G3bYNULQS39HNSQ==
-=ZD6G
------END PGP SIGNATURE-----
-
---SoPr26CyLWhD+5za--
-
-
---===============1859847786534981916==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Kind regards
+Uffe
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============1859847786534981916==--
-
