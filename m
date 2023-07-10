@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64122C001DF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 10:28:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0686AC0015E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 10:28:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5Hz3D9DLAkVZ+TYWaH1ldaVW2jnnwrh/cuvrv4BVrn8=; b=YjCSS77owUdbr7
-	qBgB8sEzCFm28OJTee0qzuNJC6aSsEuc9DTO3/pqiKdLLG02Omett2m0847KpMe5v8c5UeKPPxyfn
-	sz+2FBkZNXHRI4GwVSPCS/f30TP45KZgQlFq0TdwtWa4K4Aik3hNxoF6W9ZdusE8+EKKLwCrD1319
-	4Cm/ZURSti0CIy5UDsrVC5MyMCznEb9sA3/4TiEkvqsxki0kTuC5G/G+N0A/IpRXvoQneKenI2SUA
-	1PIZWwqp10uNrDDZgDRWvOZwzHvQjwzLPESgDA+d0XFSIL70tcBIr/u5dmXagWtw9ljMRmU78GDRu
-	xvmdvtbnkXYiEms/ppUg==;
+	List-Owner; bh=faOOkg8PTOSPAlEGe0iEW0UTQpdeUh6TN97QqNsjrU0=; b=vhQXtuxOFG42nP
+	GwqibgiUY7KTriH7vALEA7kWegl7BfxyovD9hmltf2qJ8D0/f9ct7s9BocTKJWMCEUEQCY9uRFuHg
+	sASl97ZMO0G+qpmRXuKmgCr96YsGHxgvQo019Hu9LFif/98RDEsSuic5OwU1PpzKARghTJGpUxcD4
+	adXJSe8VE29Ue7/RpZ4LE6xxPPll5EUXzx3Yy9sdjz8N+TRhN6SNVSPPjHPgG/XSkThTGLQFgUPFa
+	R5XlJsZWKAfHOB3puMPHICRxh+Mu+nlLJlx4NXdy0S1T3tJ5xfvGCrSFapzHr+lmP33RwfLj87g8h
+	F5JUqedlgOW94N1z25/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIo7l-00BDzy-1m;
-	Mon, 10 Jul 2023 10:28:09 +0000
+	id 1qIo7o-00BE48-36;
+	Mon, 10 Jul 2023 10:28:12 +0000
 Received: from mga03.intel.com ([134.134.136.65])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIo7c-00BDpt-2c;
-	Mon, 10 Jul 2023 10:28:02 +0000
+	id 1qIo7f-00BDpt-2m;
+	Mon, 10 Jul 2023 10:28:05 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1688984880; x=1720520880;
+  t=1688984883; x=1720520883;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=1YMEKoH26Jvs8dKIC6vdH9uSV/g2LDeyMP+ZqFMU56I=;
-  b=gkXLNTx4XfKawJNILdMgC79+nNBedQE9CEjugHKWsHTsXtn3Osl9TdN6
-   FRO3xW/oDczMJpX+Dq9S00Y2ZSOj1ducalmKZNYT5+aorsl3WCuqGzxMJ
-   FBag8yLSl5MGiKDooDHRFsKqTrxTacvalFvslGXpFGhMDziEcJMGhA5wX
-   Bg/0lOtNxh29l5meh/wVswZgh61gv/LsIn6/QK18FsZLNlObIHZK9E66z
-   smcVABEWGOvIN/K/rFlLlIM44RydYrCNI5ccl7Pd3a9V5iMdhT/gdH5X+
-   J5XGoifsvBo64852b13cbGAhy6Ho4Ig1i9fR9Yy2Bcmc1X/bAda8SJXjA
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="367803742"
+  bh=8VTp2VvPftW0K82t/UQGFNBKatn1Y+wh44m0tYwuY/M=;
+  b=Nf0I1IIMR1HFHKszExi5nQov1OzQXaSb4oakD2wxGnU02fx5cG0fJbrR
+   xFlOynpUlFpci+vVXjYunebIXX4ratlccKe0QKBsvttCbQ5C9mjZk3H9O
+   bPMjFQ61d/+sDeX6jot2leXnxyxEfhJ6b3wUnAbpnt21scmkodFhkCiUj
+   kjr6QO7C5l4yO7s7YPTruxtQ34kqucx4UVb4xHDrGLFUpXnLXmjmPWv3Y
+   VlTiKNp9mV49UWacHdFzovZEpUUT1Wc8LcCNcTWx4PSXGBe1V1Q/IzDUR
+   IwsgmbRLV2A4r76caRtfRaEYQozRCTbhtZvBB1VNJG7hgn5PPSvm2MCU+
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="367803796"
 X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; 
-   d="scan'208";a="367803742"
+   d="scan'208";a="367803796"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 03:27:55 -0700
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 03:28:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="755956011"
+X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="755956019"
 X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; 
-   d="scan'208";a="755956011"
+   d="scan'208";a="755956019"
 Received: from black.fi.intel.com ([10.237.72.28])
-  by orsmga001.jf.intel.com with ESMTP; 10 Jul 2023 03:27:48 -0700
+  by orsmga001.jf.intel.com with ESMTP; 10 Jul 2023 03:27:55 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
-	id EDFD31D9; Mon, 10 Jul 2023 13:27:52 +0300 (EEST)
+	id 6D8A169F; Mon, 10 Jul 2023 13:27:53 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Mark Brown <broonie@kernel.org>,
 	Yang Yingliang <yangyingliang@huawei.com>,
@@ -83,16 +83,16 @@ Cc: Radu Pirea <radu_nicolae.pirea@upb.ro>,
 	Alexandre Torgue <alexandre.torgue@foss.st.com>,
 	Max Filippov <jcmvbkbc@gmail.com>,
 	Richard Cochran <richardcochran@gmail.com>
-Subject: [PATCH v1 1/8] spi: Remove unneeded OF node NULL checks
-Date: Mon, 10 Jul 2023 13:27:44 +0300
-Message-Id: <20230710102751.83314-2-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v1 8/8] spi: Use struct_size() helper
+Date: Mon, 10 Jul 2023 13:27:51 +0300
+Message-Id: <20230710102751.83314-9-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.40.0.1.gaa8946217a0b
 In-Reply-To: <20230710102751.83314-1-andriy.shevchenko@linux.intel.com>
 References: <20230710102751.83314-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230710_032800_901455_18B519AC 
-X-CRM114-Status: GOOD (  13.35  )
+X-CRM114-CacheID: sfid-20230710_032803_966840_8233BB97 
+X-CRM114-Status: GOOD (  17.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,37 +109,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-In the couple of places the NULL check of OF node is implied by the call
-that takes it as a parameter. Drop the respective duplicate checks.
+Prefer struct_size() over open-coded versions.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/spi/spi.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ include/linux/spi/spi.h | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-index 9291b2a0e887..8f3282a71c63 100644
---- a/drivers/spi/spi.c
-+++ b/drivers/spi/spi.c
-@@ -2399,9 +2399,6 @@ static void of_register_spi_devices(struct spi_controller *ctlr)
- 	struct spi_device *spi;
- 	struct device_node *nc;
+diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
+index e9fb96016dc1..d4d686af76bd 100644
+--- a/include/linux/spi/spi.h
++++ b/include/linux/spi/spi.h
+@@ -17,6 +17,7 @@
+ #include <linux/minmax.h>
+ #include <linux/mod_devicetable.h>
+ #include <linux/mutex.h>
++#include <linux/overflow.h>
+ #include <linux/scatterlist.h>
+ #include <linux/slab.h>
+ #include <linux/smp.h>
+@@ -1100,6 +1101,8 @@ struct spi_transfer {
+  * @state: for use by whichever driver currently owns the message
+  * @resources: for resource management when the SPI message is processed
+  * @prepared: spi_prepare_message was called for the this message
++ * @t: for use with spi_message_alloc() when memory has message and transfers
++ *	together
+  *
+  * A @spi_message is used to execute an atomic sequence of data transfers,
+  * each represented by a struct spi_transfer.  The sequence is "atomic"
+@@ -1154,6 +1157,9 @@ struct spi_message {
  
--	if (!ctlr->dev.of_node)
--		return;
--
- 	for_each_available_child_of_node(ctlr->dev.of_node, nc) {
- 		if (of_node_test_and_set_flag(nc, OF_POPULATED))
- 			continue;
-@@ -3134,7 +3131,7 @@ int spi_register_controller(struct spi_controller *ctlr)
- 		if (WARN(id < 0, "couldn't get idr"))
- 			return id == -ENOSPC ? -EBUSY : id;
- 		ctlr->bus_num = id;
--	} else if (ctlr->dev.of_node) {
-+	} else {
- 		/* Allocate dynamic bus number using Linux idr */
- 		id = of_alias_get_id(ctlr->dev.of_node, "spi");
- 		if (id >= 0) {
+ 	/* List of spi_res resources when the SPI message is processed */
+ 	struct list_head        resources;
++
++	/* For embedding transfers into the memory of the message */
++	struct spi_transfer	t[];
+ };
+ 
+ static inline void spi_message_init_no_memset(struct spi_message *m)
+@@ -1214,16 +1220,13 @@ static inline struct spi_message *spi_message_alloc(unsigned ntrans, gfp_t flags
+ {
+ 	struct spi_message *m;
+ 
+-	m = kzalloc(sizeof(struct spi_message)
+-			+ ntrans * sizeof(struct spi_transfer),
+-			flags);
++	m = kzalloc(struct_size(m, t, ntrans), flags);
+ 	if (m) {
+ 		unsigned i;
+-		struct spi_transfer *t = (struct spi_transfer *)(m + 1);
+ 
+ 		spi_message_init_no_memset(m);
+-		for (i = 0; i < ntrans; i++, t++)
+-			spi_message_add_tail(t, m);
++		for (i = 0; i < ntrans; i++)
++			spi_message_add_tail(&m->t[i], m);
+ 	}
+ 	return m;
+ }
 -- 
 2.40.0.1.gaa8946217a0b
 
