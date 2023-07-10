@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2371EB64DA
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 15:50:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E661EB64DC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 15:50:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ispaKlFa7po+DQmRBmfv0jQtWsXOepJJ7p6W0/SIJBY=; b=XGAzy9FG4RN3Xt
-	Sl0Jl2gd1sbMKy27SVkBPuWPJM2pi63b5U/EqzZB1wuEAuqDnehly6t0r0RhdDBtcFZFCeITSBa26
-	ZTgubVs1BQ5Y0Y3YsZxsJsXov1InzdBTYUkerMNMXKaoAyi6wdpXcVARHgE35z+3V+q7efgXBJIgF
-	W2CnPx1vmpb5+j1XJAaLWWqajN0gL86BbTxdDLVDsTRqHp9cROnMOHMA519bhVEnBd5CUy8bOO+4N
-	VKBg284Ovo43nD7n4lZ8V7k7ezS1jGKm+I7pY3vgtBR5LutFk+0Ta/H90OJCe5OYA0z4/kvjOqFsy
-	yz3Q1tLriq4yptZwddiw==;
+	List-Owner; bh=adUp/wfTNV53zPEqwdHEB1w0LUG07BMH6of53QxDLMk=; b=26a2RqxgNz5QT8
+	odvkmfKPyfDsKKSPMpbAG0YtQ/UcbSMVvxJ9WvI971Uc2+yAp9vPR3x0jzkRX2M0q3bncVQRqyXx4
+	4EPeJlDvV+k78OPa+O1V932QIY9oxf05ayfdOGzO65NZ7ICTLwTRmhDZ35xQE6ivQ+ByC6mKWsf35
+	J/g1BC3MRFfUSkP5bS21c7FAbc0/286yYPJ/P8gk2PJiCUWczDS/NHPIE2MT03Zuxk/yU9wOHoU1d
+	FPUcvJ2EIWbHJwFU6ymgoqArRXpyQqw5E56WnSPcafBaOwsN/UA+mBzuP7WqEULxkftdkjcC5daqq
+	7C4QKELN2UPWbISVxaLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIt9C-00C3rB-16;
-	Mon, 10 Jul 2023 15:49:58 +0000
+	id 1qIt97-00C3lX-0Q;
+	Mon, 10 Jul 2023 15:49:53 +0000
 Received: from mga18.intel.com ([134.134.136.126])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIt8z-00C3ck-1j;
+	id 1qIt8y-00C3dD-2s;
 	Mon, 10 Jul 2023 15:49:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1689004185; x=1720540185;
+  t=1689004184; x=1720540184;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=0v8XTkg22X4+SjZKJZYJseJJcu9T6jyLmPuYe7Mrmmg=;
-  b=m5EPXefyfEsitSnH+YeTKbD4Lke0xr1Cb3d/TSdcQNoUCn6q3kwCLsKI
-   SMO+ADxSIX2c0gv0N78lJSGs6HIIeYTniT1bsfU6IaNo8t/Nj6RVJvcNO
-   S9VBB/wH5Cn//zY1gU1zKKo82W5vsCv2ADv5JVmL3MRZiO9iezP08TGxU
-   pwwB+M+Cl0717nGdAVa5ICa1RmLGiTwBzH6L1N5bTB9pwA6CljPtVPJK4
-   W2H2WWzxyeukT4NWA16kWXSnhc2adzqRqob2Py+BfgKoXqwZwjK/G8nGg
-   bYX6T3NQ2NjPbgwLN39tUb8Ll09jOTFJYWORu4vNTG60oZxzrh6EldsZe
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="349185396"
+  bh=vBn0rQkEvhyNS8x5dx+OCo1BBkRa+6Quzvw7Xp2sQ+U=;
+  b=V33IaE2mXpiIpnQTcrmlzcAUutwU1uXSFTkWKsrjNX8sEsdkFJ2at3r0
+   gP97/z8BNwBd9r4I2maWR/aXDQiutwYk56V7va0rgbcshjivkirl9gxO5
+   z/Xm4Rdf0vpntZNpH10w7oZx3JgyNeG0xV7SMVYwHxcfQpBijwYg3oX0X
+   rRcmhkhGW+NJbHX6TLe+7NsrSrVfN6fSqbz7uhlmCe8hG6Znxm4GfbUMs
+   eSLspUfwYLfgzlWjdfNsenTg5/rbxdLKgu67LRng/d4zjsZuVATId9KE1
+   PJepFNRRwAKzvCn22PdQPDBMrGjq2oGjZe9rCtlyCcO76wtTKoJkNRef+
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="349185371"
 X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; 
-   d="scan'208";a="349185396"
+   d="scan'208";a="349185371"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 08:49:44 -0700
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 08:49:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="844921854"
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="844921835"
 X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; 
-   d="scan'208";a="844921854"
+   d="scan'208";a="844921835"
 Received: from black.fi.intel.com ([10.237.72.28])
-  by orsmga004.jf.intel.com with ESMTP; 10 Jul 2023 08:49:33 -0700
+  by orsmga004.jf.intel.com with ESMTP; 10 Jul 2023 08:49:31 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
-	id 6932A5FC; Mon, 10 Jul 2023 18:49:34 +0300 (EEST)
+	id 4B00D3E3; Mon, 10 Jul 2023 18:49:34 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Mark Brown <broonie@kernel.org>,
 	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
@@ -106,16 +106,16 @@ Cc: Sanjay R Mehta <sanju.mehta@amd.com>,
 	Steven Rostedt <rostedt@goodmis.org>,
 	Masami Hiramatsu <mhiramat@kernel.org>,
 	Richard Cochran <richardcochran@gmail.com>
-Subject: [PATCH v2 05/15] spi: Remove code duplication in spi_add_device_locked()
-Date: Mon, 10 Jul 2023 18:49:22 +0300
-Message-Id: <20230710154932.68377-6-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v2 03/15] spi: Replace if-else-if by bitops and multiplications
+Date: Mon, 10 Jul 2023 18:49:20 +0300
+Message-Id: <20230710154932.68377-4-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.40.0.1.gaa8946217a0b
 In-Reply-To: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
 References: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230710_084945_651464_8F5915EC 
-X-CRM114-Status: GOOD (  12.59  )
+X-CRM114-CacheID: sfid-20230710_084944_984489_FE94A55D 
+X-CRM114-Status: GOOD (  11.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,37 +132,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Seems by unknown reason, probably some kind of mis-rebase,
-the commit 0c79378c0199 ("spi: add ancillary device support")
-adds a dozen of duplicating lines of code. Drop them.
+Instead of if-else-if, simply call roundup_pow_of_two(BITS_PER_BYTES()).
+Note, there is no division assumed as compiler may optimize it away.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/spi/spi.c | 11 -----------
- 1 file changed, 11 deletions(-)
+ drivers/spi/spi.c | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
 
 diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-index c99ee4164f11..46cbda383228 100644
+index 6d74218cf38e..125dea8fae00 100644
 --- a/drivers/spi/spi.c
 +++ b/drivers/spi/spi.c
-@@ -712,17 +712,6 @@ EXPORT_SYMBOL_GPL(spi_add_device);
- static int spi_add_device_locked(struct spi_device *spi)
- {
- 	struct spi_controller *ctlr = spi->controller;
--	struct device *dev = ctlr->dev.parent;
--
--	/* Chipselects are numbered 0..max; validate. */
--	if (spi_get_chipselect(spi, 0) >= ctlr->num_chipselect) {
--		dev_err(dev, "cs%d >= max %d\n", spi_get_chipselect(spi, 0),
--			ctlr->num_chipselect);
--		return -EINVAL;
--	}
--
--	/* Set the bus ID string */
--	spi_dev_set_name(spi);
+@@ -3643,13 +3643,7 @@ int spi_split_transfers_maxwords(struct spi_controller *ctlr,
+ 		size_t maxsize;
+ 		int ret;
  
- 	WARN_ON(!mutex_is_locked(&ctlr->add_lock));
- 	return __spi_add_device(spi);
+-		if (xfer->bits_per_word <= 8)
+-			maxsize = maxwords;
+-		else if (xfer->bits_per_word <= 16)
+-			maxsize = 2 * maxwords;
+-		else
+-			maxsize = 4 * maxwords;
+-
++		maxsize = maxwords * roundup_pow_of_two(BITS_TO_BYTES(xfer->bits_per_word));
+ 		if (xfer->len > maxsize) {
+ 			ret = __spi_split_transfer_maxsize(ctlr, msg, &xfer,
+ 							   maxsize, gfp);
 -- 
 2.40.0.1.gaa8946217a0b
 
