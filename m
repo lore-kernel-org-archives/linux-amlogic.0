@@ -4,49 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3158AEB64DC
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 11:05:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07772EB64DC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 11:08:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=1Shiw9j3GPspKjKB7wHpqV4H0yywoJdV7l9qI9Y4T3c=; b=wG2P/kI4/qKMkR1HVOkEuUtogK
-	HifrIATwXMcXx0F+aBEzr7gqwegFXw2WSDRSjXz4HBdMfAuFnClFQ4VvB8BDaCbvDNsNLFa80V52a
-	MPi3BtRCT54yvdA+ZZEbccRN0lhP8poZxT/JDKcYvO5ULE41aqbmJPVycT7Jg9X2lFvKqZzeeLGDk
-	Oh2YnALIRvHZ3xFRGV6opXoeaU5JqPmhLmWHju5hbfTUpKJj1eyHk2In5Bd2dOjq+OCoR2c9DSnzP
-	TqYmpQ33yh6nS3xDMUtDZHVJhGT3uG5xBQiDf7SFfZJ2cfJ1jEsJ7kEBLg+A+4vUe0WY9YCRa4ELI
-	VZFtVt7w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Hn5c2G3uhUiTjyA47VllGUCYgWtzRuoOvCjDqfqXLbA=; b=0EcB8/fjv8T7RJ
+	LtR0d6T3tI5FDqYm0r+jmIDptbCOc/mnnW81uEtrSVA9a/jfmvHTqGXq5+MzfpaLhf2FIpsPrwtgR
+	d20YqCZMI0LjHF34Px13ElmiT+y/yWKxYbr+5+o48NMWpYpVbg0t6anH+wWAkLAfkQWqdHd7e+arY
+	5ACZzfieR6KAZLej084WQvR2/1yQQPYhrnLiewfidtGzKZiMfFn/ZDXgWVDB9q49objByvGWfB+hR
+	HlNpLo7lw8ZzsCPULmQjttby4zxddoiIMdWUERJgYKDdA7K6wgnL0NsVKP9VwK5IhXZKGEtfAsKeL
+	HP2OpGvsS1xYdUiBj3qw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIohF-00BQMi-0u;
-	Mon, 10 Jul 2023 11:04:49 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1qIokb-00BR2H-2n;
+	Mon, 10 Jul 2023 11:08:17 +0000
+Received: from mga18.intel.com ([134.134.136.126])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIohB-00BQLl-2t;
-	Mon, 10 Jul 2023 11:04:48 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 5E6AB60FD0;
-	Mon, 10 Jul 2023 11:04:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D578C433C7;
-	Mon, 10 Jul 2023 11:04:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1688987084;
-	bh=TwtuDKEbyYTJYwb5YfWy40545UzZJ3eX6HtXjCq2/DY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F1hoO4AmByvX1+/WmpbkKZwew5eudKc1FQfa/lRAOOwiXQ8zRshL+Oq9bFoJQeu7s
-	 LcEcu9oephfIQANzA4/3cifEEgUeal19PEixt2fvddV8g2XCmGK0fFh3Uc4W+J5uOn
-	 XEO983Rlb7MGqbsEKGjwJjCaRtJ44jxPCT5CF+Iau9ZSof+GY2neKJt0KjAvaY/9jd
-	 RBqd+kDX18tFNSlYceBbrvR3r37PvxSvj3S5DjVmlQqBMkOMXeP2JrMR5z6F5rg6jE
-	 qp2ogGv8JQb+t32ZmOV4oiKG0GwgxT5l0kEjeNVOqRmXVjkyf2EUtnmSnqitny5s3z
-	 HoqJaUtvZLO7w==
-Date: Mon, 10 Jul 2023 12:04:35 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+	id 1qIokY-00BR0e-1P;
+	Mon, 10 Jul 2023 11:08:16 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1688987294; x=1720523294;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VFbT1YSYy4BNeDq7qC0WXbC9ofiSs7SR6qU8CkE8Ddw=;
+  b=J8/3l5FQh9eXSIGZFCIgPwQcQjsO7bmOqfP4T8l0nPWzmKPzqITFQoR4
+   bQFSiUei2hrJqasHv8rRYvBBFckmtA09FCKjsDU/gpbxxXhzxIX2xBTu+
+   qvT5g6acBz7Y28lx73bYZMnsI+rs4Pq41kH33uBPRz0NdocFhpTKSDbkv
+   S4P7n5Mr2YjYGW9eInWffhNLugVF+Qgum9upfTWJqYj4h6L3r5g9/3YLl
+   V+CbkkMUPPg6G4YvCatrIjaAS13+P6hWsKYyNXi3o63AIxqQAo0AVtsF2
+   FrQ5MO7dxYJUvRETSpFaZOtFlSNP5bgMeuu6H1FuEirhtZ6Y1z4SMK5Bg
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="349117632"
+X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; 
+   d="scan'208";a="349117632"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 04:08:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="967393168"
+X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; 
+   d="scan'208";a="967393168"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga006.fm.intel.com with ESMTP; 10 Jul 2023 04:08:03 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1qIokK-001XII-18;
+	Mon, 10 Jul 2023 14:08:00 +0300
+Date: Mon, 10 Jul 2023 14:08:00 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Mark Brown <broonie@kernel.org>
 Cc: Yang Yingliang <yangyingliang@huawei.com>,
 	Amit Kumar Mahapatra via Alsa-devel <alsa-devel@alsa-project.org>,
 	Kris Bahnsen <kris@embeddedts.com>,
@@ -74,15 +84,17 @@ Cc: Yang Yingliang <yangyingliang@huawei.com>,
 	Richard Cochran <richardcochran@gmail.com>
 Subject: Re: [PATCH v1 4/8] spi: Get rid of old SPI_MASTER_NO_.X and
  SPI_MASTER_MUST_.X
-Message-ID: <1ffd5603-4140-4bf6-bfed-af70a6759bda@sirena.org.uk>
+Message-ID: <ZKvmkAP5ZuT6lGLN@smile.fi.intel.com>
 References: <20230710102751.83314-1-andriy.shevchenko@linux.intel.com>
  <20230710102751.83314-5-andriy.shevchenko@linux.intel.com>
+ <1ffd5603-4140-4bf6-bfed-af70a6759bda@sirena.org.uk>
 MIME-Version: 1.0
-In-Reply-To: <20230710102751.83314-5-andriy.shevchenko@linux.intel.com>
-X-Cookie: Do you have lysdexia?
+Content-Disposition: inline
+In-Reply-To: <1ffd5603-4140-4bf6-bfed-af70a6759bda@sirena.org.uk>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230710_040445_976167_15A629C0 
-X-CRM114-Status: GOOD (  11.89  )
+X-CRM114-CacheID: sfid-20230710_040814_914267_D6397B58 
+X-CRM114-Status: GOOD (  12.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,59 +106,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============4140227999410781919=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Mon, Jul 10, 2023 at 12:04:35PM +0100, Mark Brown wrote:
+> On Mon, Jul 10, 2023 at 01:27:47PM +0300, Andy Shevchenko wrote:
+> 
+> > Convert the users to SPI_CONTROLLER_NO_?X and SPI_CONTROLLER_MUST_.X
+> > and kill the not used anymore definitions.
+> 
+> The above is not what this change does:
 
---===============4140227999410781919==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="kWZTJCyyxQE+byGQ"
-Content-Disposition: inline
+How to improve it? I was sure that the form of "converting to something and
+something" is clear...
 
+> > -	controller->flags = SPI_MASTER_MUST_RX | SPI_MASTER_MUST_TX;
+> > +	controller->flags = SPI_CONTROLLER_MUST_RX | SPI_CONTROLLER_MUST_TX;
 
---kWZTJCyyxQE+byGQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Mon, Jul 10, 2023 at 01:27:47PM +0300, Andy Shevchenko wrote:
-
-> Convert the users to SPI_CONTROLLER_NO_?X and SPI_CONTROLLER_MUST_.X
-> and kill the not used anymore definitions.
-
-The above is not what this change does:
-
-> -	controller->flags = SPI_MASTER_MUST_RX | SPI_MASTER_MUST_TX;
-> +	controller->flags = SPI_CONTROLLER_MUST_RX | SPI_CONTROLLER_MUST_TX;
-
---kWZTJCyyxQE+byGQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSr5cIACgkQJNaLcl1U
-h9Ah2wf+KmkGI9qlUKgHUSNXh1DbqoLxbTpYFnFP5xpasapdwBa05UYP3eghOigF
-R9RLm+Z+cOhxpxkEijdYqYKOu94px87YE9vU9+e00ZWaz+X+R8C17kt4hk+9x5pI
-n6ln7unk1TDzZww8TWx81WkEqR6E4uMcYhMfsfjKKDcC6ZOxJu6+h3wWjhkj8q35
-k8NbtIo8bz2TzLqTuNjWsA64H1AxpRqwoT1fLLiZRPrng7Zc4wIP68cX17WSWwqj
-+Tn8sO3EBbpYl4vuJircRmezY6Roo1TuLU4M7iIGhGoUrt+jdmoqIDsjQVU4IKIv
-kRGC3WQT0+LuWsoU8vUp0PFt+ntu4w==
-=03Nv
------END PGP SIGNATURE-----
-
---kWZTJCyyxQE+byGQ--
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
---===============4140227999410781919==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============4140227999410781919==--
-
