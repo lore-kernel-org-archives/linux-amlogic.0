@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 019C7EB64D9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 15:50:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2371EB64DA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 15:50:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=93lOwXvUolXbv9hWBseiPs8sN/fZ9BYAIgRuFhIw3AQ=; b=BiU4KoGYAlF4Lc
-	H6azOY0MVJ/lYGBZ+YwsnNWk0qdz7eSrGP8EHm4bm/BMN8cQMJSR/LSsYxMVYFhBiIaagLPkwtI9/
-	Qr9r7tFPDB19rbAJ5FzToHhkyW/Wqc95FJWM8Uq32tZyyyztD4IUI5zoo5tup0L+cwkFsAIhhekGs
-	dhPnXkdcEDwkChcHVDRJE8IPX+8EoC4oI2J46vhrzIx4JXMCPF8njA/aoRhgQYkdt9uF3cufRtYlt
-	Jf6VKC0iHho7aj2aUXsNFal4CT4BYCRbq43ioZd0C4blF+D/aclwbcSyWvsuuvT6mUG3ATPQiJAiB
-	v28S1cZ87jJOAoLWQ7cg==;
+	List-Owner; bh=ispaKlFa7po+DQmRBmfv0jQtWsXOepJJ7p6W0/SIJBY=; b=XGAzy9FG4RN3Xt
+	Sl0Jl2gd1sbMKy27SVkBPuWPJM2pi63b5U/EqzZB1wuEAuqDnehly6t0r0RhdDBtcFZFCeITSBa26
+	ZTgubVs1BQ5Y0Y3YsZxsJsXov1InzdBTYUkerMNMXKaoAyi6wdpXcVARHgE35z+3V+q7efgXBJIgF
+	W2CnPx1vmpb5+j1XJAaLWWqajN0gL86BbTxdDLVDsTRqHp9cROnMOHMA519bhVEnBd5CUy8bOO+4N
+	VKBg284Ovo43nD7n4lZ8V7k7ezS1jGKm+I7pY3vgtBR5LutFk+0Ta/H90OJCe5OYA0z4/kvjOqFsy
+	yz3Q1tLriq4yptZwddiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIt91-00C3fl-0v;
-	Mon, 10 Jul 2023 15:49:47 +0000
+	id 1qIt9C-00C3rB-16;
+	Mon, 10 Jul 2023 15:49:58 +0000
 Received: from mga18.intel.com ([134.134.136.126])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIt8x-00C3ck-28;
-	Mon, 10 Jul 2023 15:49:45 +0000
+	id 1qIt8z-00C3ck-1j;
+	Mon, 10 Jul 2023 15:49:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1689004183; x=1720540183;
+  t=1689004185; x=1720540185;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=wJa3Jmu6iVXPZMGevJvu2fkKY/Gm2mVbHm4RgDFco0c=;
-  b=XFKCbzYpDZvlVcWG6i9Zr6Ielx1NCQREwLbasplwQtv/7XXfwEGVYBFi
-   m/A7VKhP1mhEgfksm3K8wDFOWVNSYPpS87ZDfT2rLxVQhZPYBBJ9Fiu9c
-   gXRIsBPlNYOF1hfdVlyHtca8U/fJvL8n7MPYjWZhVDZa0IRLueSNzuvki
-   X8GBP9eIQWW8ts+9OA428eb2TJa7P/fCw3y4AVMal1x03D14UZokamsii
-   Ojnjd1Q/LuBrAn8jboBTJRK5Z9KWF77a6rE/UrXi2Dc4WT2W5DdWu9kYO
-   VnE1MO8PEuWr/XofT/dz/7gdrw19fq3bCk99HGcHTsrI71ISJUlYFT18n
+  bh=0v8XTkg22X4+SjZKJZYJseJJcu9T6jyLmPuYe7Mrmmg=;
+  b=m5EPXefyfEsitSnH+YeTKbD4Lke0xr1Cb3d/TSdcQNoUCn6q3kwCLsKI
+   SMO+ADxSIX2c0gv0N78lJSGs6HIIeYTniT1bsfU6IaNo8t/Nj6RVJvcNO
+   S9VBB/wH5Cn//zY1gU1zKKo82W5vsCv2ADv5JVmL3MRZiO9iezP08TGxU
+   pwwB+M+Cl0717nGdAVa5ICa1RmLGiTwBzH6L1N5bTB9pwA6CljPtVPJK4
+   W2H2WWzxyeukT4NWA16kWXSnhc2adzqRqob2Py+BfgKoXqwZwjK/G8nGg
+   bYX6T3NQ2NjPbgwLN39tUb8Ll09jOTFJYWORu4vNTG60oZxzrh6EldsZe
    g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="349185343"
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="349185396"
 X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; 
-   d="scan'208";a="349185343"
+   d="scan'208";a="349185396"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 08:49:42 -0700
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 08:49:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="844921834"
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="844921854"
 X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; 
-   d="scan'208";a="844921834"
+   d="scan'208";a="844921854"
 Received: from black.fi.intel.com ([10.237.72.28])
-  by orsmga004.jf.intel.com with ESMTP; 10 Jul 2023 08:49:31 -0700
+  by orsmga004.jf.intel.com with ESMTP; 10 Jul 2023 08:49:33 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
-	id 5A18C4BD; Mon, 10 Jul 2023 18:49:34 +0300 (EEST)
+	id 6932A5FC; Mon, 10 Jul 2023 18:49:34 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Mark Brown <broonie@kernel.org>,
 	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
@@ -106,16 +106,16 @@ Cc: Sanjay R Mehta <sanju.mehta@amd.com>,
 	Steven Rostedt <rostedt@goodmis.org>,
 	Masami Hiramatsu <mhiramat@kernel.org>,
 	Richard Cochran <richardcochran@gmail.com>
-Subject: [PATCH v2 04/15] spi: Replace open coded spi_controller_xfer_timeout()
-Date: Mon, 10 Jul 2023 18:49:21 +0300
-Message-Id: <20230710154932.68377-5-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v2 05/15] spi: Remove code duplication in spi_add_device_locked()
+Date: Mon, 10 Jul 2023 18:49:22 +0300
+Message-Id: <20230710154932.68377-6-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.40.0.1.gaa8946217a0b
 In-Reply-To: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
 References: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230710_084943_801003_3609C880 
-X-CRM114-Status: GOOD (  18.52  )
+X-CRM114-CacheID: sfid-20230710_084945_651464_8F5915EC 
+X-CRM114-Status: GOOD (  12.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,82 +132,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Since the new spi_controller_xfer_timeout() helper appeared,
-we may replace open coded variant in spi_transfer_wait().
+Seems by unknown reason, probably some kind of mis-rebase,
+the commit 0c79378c0199 ("spi: add ancillary device support")
+adds a dozen of duplicating lines of code. Drop them.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/spi/spi.c       | 25 ++-----------------------
- include/linux/spi/spi.h |  6 +++++-
- 2 files changed, 7 insertions(+), 24 deletions(-)
+ drivers/spi/spi.c | 11 -----------
+ 1 file changed, 11 deletions(-)
 
 diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-index 125dea8fae00..c99ee4164f11 100644
+index c99ee4164f11..46cbda383228 100644
 --- a/drivers/spi/spi.c
 +++ b/drivers/spi/spi.c
-@@ -1342,8 +1342,7 @@ static int spi_transfer_wait(struct spi_controller *ctlr,
+@@ -712,17 +712,6 @@ EXPORT_SYMBOL_GPL(spi_add_device);
+ static int spi_add_device_locked(struct spi_device *spi)
  {
- 	struct spi_statistics __percpu *statm = ctlr->pcpu_statistics;
- 	struct spi_statistics __percpu *stats = msg->spi->pcpu_statistics;
--	u32 speed_hz = xfer->speed_hz;
--	unsigned long long ms;
-+	unsigned long ms;
+ 	struct spi_controller *ctlr = spi->controller;
+-	struct device *dev = ctlr->dev.parent;
+-
+-	/* Chipselects are numbered 0..max; validate. */
+-	if (spi_get_chipselect(spi, 0) >= ctlr->num_chipselect) {
+-		dev_err(dev, "cs%d >= max %d\n", spi_get_chipselect(spi, 0),
+-			ctlr->num_chipselect);
+-		return -EINVAL;
+-	}
+-
+-	/* Set the bus ID string */
+-	spi_dev_set_name(spi);
  
- 	if (spi_controller_is_slave(ctlr)) {
- 		if (wait_for_completion_interruptible(&ctlr->xfer_completion)) {
-@@ -1351,29 +1350,9 @@ static int spi_transfer_wait(struct spi_controller *ctlr,
- 			return -EINTR;
- 		}
- 	} else {
--		if (!speed_hz)
--			speed_hz = 100000;
--
--		/*
--		 * For each byte we wait for 8 cycles of the SPI clock.
--		 * Since speed is defined in Hz and we want milliseconds,
--		 * use respective multiplier, but before the division,
--		 * otherwise we may get 0 for short transfers.
--		 */
--		ms = 8LL * MSEC_PER_SEC * xfer->len;
--		do_div(ms, speed_hz);
--
--		/*
--		 * Increase it twice and add 200 ms tolerance, use
--		 * predefined maximum in case of overflow.
--		 */
--		ms += ms + 200;
--		if (ms > UINT_MAX)
--			ms = UINT_MAX;
--
-+		ms = spi_controller_xfer_timeout(ctlr, xfer);
- 		ms = wait_for_completion_timeout(&ctlr->xfer_completion,
- 						 msecs_to_jiffies(ms));
--
- 		if (ms == 0) {
- 			SPI_STATISTICS_INCREMENT_FIELD(statm, timedout);
- 			SPI_STATISTICS_INCREMENT_FIELD(stats, timedout);
-diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
-index 32c94eae8926..0ce1cb18a076 100644
---- a/include/linux/spi/spi.h
-+++ b/include/linux/spi/spi.h
-@@ -1270,12 +1270,16 @@ static inline bool spi_is_bpw_supported(struct spi_device *spi, u32 bpw)
-  * that it would take on a single data line and take twice this amount of time
-  * with a minimum of 500ms to avoid false positives on loaded systems.
-  *
-+ * Assume speed to be 100 kHz if it's not defined at the time of invocation.
-+ *
-  * Returns: Transfer timeout value in milliseconds.
-  */
- static inline unsigned int spi_controller_xfer_timeout(struct spi_controller *ctlr,
- 						       struct spi_transfer *xfer)
- {
--	return max(xfer->len * 8 * 2 / (xfer->speed_hz / 1000), 500U);
-+	u32 speed_hz = xfer->speed_hz ?: 100000;
-+
-+	return max(xfer->len * 8 * 2 / (speed_hz / 1000), 500U);
- }
- 
- /*---------------------------------------------------------------------------*/
+ 	WARN_ON(!mutex_is_locked(&ctlr->add_lock));
+ 	return __spi_add_device(spi);
 -- 
 2.40.0.1.gaa8946217a0b
 
