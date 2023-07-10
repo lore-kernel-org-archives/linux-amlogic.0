@@ -4,77 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E09BEEB64D9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 09:34:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4FB7C001DC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jul 2023 10:28:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ixFDKRye6KhGqxKBIdPoG69MptvtXNFO84FGhyONSIw=; b=Rsh07FqExRxQWi
-	KXPnyRW7/5YhoTk45Lrh+1uaSI7xU48XK/C1Ysh6ec46qF6R1A6GsrNtGHS/B09f8m9mGqf2/m6nE
-	CQWyQgabo0j29EtWuYd4w61WpzXMcO9yEFesraonL43mIJ0gJQkuqLzS6PcyKiZdwlh9DbMF0Wepz
-	QUMGo8M9bmGLKf+O1CscWyguXOEcu0y03P6by5HOJbYj3XjVAuY3m8nQ04xzeI+qSraOR5IgjyCwW
-	YlmmcQsO1lFblABrG86q36KjKPbFesO7N7eEViOyYq9FtSBbBx1oEJ3NclRX1Yu7AEjhCIDO41yYM
-	Q42gOGYy1YIV5hCi0sIg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=q02fmN/t6biGP7ebX8sh+42S3irvXBxk1mHZ4WM1gME=; b=rPSoq91NuIx2XE
+	+dqFOeJTUrSvjJCTY8SEAZGDytpOgyYPGfQcj0J6OJ06RiBb0Xcp4pQ1qSDaLHLVMR7jCg0Bf1aeQ
+	MenwJ+idBSi9UVuhrQ2MpoN9/ulBTP/R/YJ42rcTVR3HSbXrVLoKNkpVTmslkjzLlQTVbd06Fftc2
+	5jpmt248VZjOmqi9wLBh9Agtu+QH895GYoo1hsuMc3Pg7ib2LOgkRSA4reJQpl2KIkPME8bhBY+Nd
+	MjdO/ViqYzHqui1x3lgSzrmQLwq4gAQYuLiV2r38f9YiinwutPNgD+SkxuL5APVX7HNkIRf1BAg5d
+	Y/btqjZbSFLBx6jdrUrw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qInH2-00B1o4-0u;
-	Mon, 10 Jul 2023 09:33:40 +0000
-Received: from mga06b.intel.com ([134.134.136.31] helo=mga06.intel.com)
+	id 1qIo7d-00BDsC-0y;
+	Mon, 10 Jul 2023 10:28:01 +0000
+Received: from mga14.intel.com ([192.55.52.115])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qInGz-00B1lw-0f;
-	Mon, 10 Jul 2023 09:33:38 +0000
+	id 1qIo7a-00BDpZ-1Y;
+	Mon, 10 Jul 2023 10:27:59 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1688981617; x=1720517617;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GW+b4HfFoMEuN/QF1SrX4sd509xB7kt59hdOjhlP1FA=;
-  b=cKSCVWAyK3vTrYZQOBA/wGlKtpjKO5Z8u89r5z5yfvhI0Et9tPKxzTrb
-   Z+NiMHPy6UK/ajfHQp1XF9GI55c6dtjwLblKF/JfUxw29p+VSM08GODyz
-   cXkVLM4ll8jCAqVLxe/0WeXi/9SnpZyHUeY0k/3Fxk9JsJ6IDL/9ad/qO
-   srJm+JtftS80S/hBMe7uQR5w2BP7kpkfEVQM9tc2+DJk8YUgt9KdtZMCk
-   mSbrnD2qJ2lkbruKbO3+lwS9KkZKJLBMbJpXaM5KGo1VMT/N7rrNYXkXG
-   Bc1w5RdddXRvNJ2uWe4qu3NkP5RBUQpmmkNaA1DN/UxCBwF7VFdk8YE50
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="427991700"
+  t=1688984878; x=1720520878;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=v/jR6yG2S/os1yevMEAtUPc5WvkJ6D/EUS+UHJf/Log=;
+  b=ZKcAistVogpbIOLa1dZMzYzwFBBGNxPfHJyhC9XZs0x1OyHz9DEB2J1W
+   0N3rrhbL+LMMgZ1fBzxcA0IzMxVh32PRY3JIUQkg0HcymuKgnUeP70Ld4
+   NC4cbju2Lubb+8Fx+v58OvfkBRPM+TZomj6lo3nWkCGPg5bwvdVmqKcp4
+   zTY1jMVYIJRvc8SfjBCaEHAzOe3L0fGUJll6KrKP65nHpXkrdtIEPlaS1
+   cW5IDVsIYmJOos5LpCNTcMJu3AZ56EfglXMrcvu9OxvsgWiJluzq6Urqt
+   UY/l3ehHyYoBX0kc6LVxsHg1c6OZG1dgecfINDZ201ZRIXiy5CAd0qkQH
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="364345420"
 X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; 
-   d="scan'208";a="427991700"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 02:33:36 -0700
+   d="scan'208";a="364345420"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 03:27:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="810753577"
+X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="865297521"
 X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; 
-   d="scan'208";a="810753577"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by FMSMGA003.fm.intel.com with ESMTP; 10 Jul 2023 02:33:32 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1qInGt-001Vxx-0L;
-	Mon, 10 Jul 2023 12:33:31 +0300
-Date: Mon, 10 Jul 2023 12:33:30 +0300
+   d="scan'208";a="865297521"
+Received: from black.fi.intel.com ([10.237.72.28])
+  by fmsmga001.fm.intel.com with ESMTP; 10 Jul 2023 03:27:48 -0700
+Received: by black.fi.intel.com (Postfix, from userid 1003)
+	id DD3A91FC; Mon, 10 Jul 2023 13:27:52 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: George Stark <gnstark@sberdevices.ru>, lars@metafoo.de,
-	neil.armstrong@linaro.org, khilman@baylibre.com,
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-	nuno.sa@analog.com, linux-iio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, kernel@sberdevices.ru
-Subject: Re: [PATCH v4 0/6] iio: adc: meson: add iio channels to read channel
- 7 mux inputs
-Message-ID: <ZKvQaoFxO5gpAFdM@smile.fi.intel.com>
-References: <20230707153322.114302-1-gnstark@sberdevices.ru>
- <20230708170410.0885b8e4@jic23-huawei>
+To: Mark Brown <broonie@kernel.org>,
+	Yang Yingliang <yangyingliang@huawei.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Amit Kumar Mahapatra via Alsa-devel <alsa-devel@alsa-project.org>,
+	Kris Bahnsen <kris@embeddedTS.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	linux-spi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	netdev@vger.kernel.org
+Cc: Radu Pirea <radu_nicolae.pirea@upb.ro>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@microchip.com>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Max Filippov <jcmvbkbc@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>
+Subject: [PATCH v1 0/8] spi: Header and core clean up and refactoring
+Date: Mon, 10 Jul 2023 13:27:43 +0300
+Message-Id: <20230710102751.83314-1-andriy.shevchenko@linux.intel.com>
+X-Mailer: git-send-email 2.40.0.1.gaa8946217a0b
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230708170410.0885b8e4@jic23-huawei>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230710_023337_280509_A43A3A3B 
-X-CRM114-Status: GOOD (  10.72  )
+X-CRM114-CacheID: sfid-20230710_032758_534107_46B93E7F 
+X-CRM114-Status: UNSURE (   9.84  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,26 +108,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, Jul 08, 2023 at 05:04:10PM +0100, Jonathan Cameron wrote:
-> On Fri, 7 Jul 2023 18:27:37 +0300
-> George Stark <gnstark@sberdevices.ru> wrote:
-> 
-> > From: George Stark <GNStark@sberdevices.ru>
-> 
-> 
-> All looks fine to me.  However, given earlier versions had various other reviewers
-> I'd like to leave it on list a little longer.
+Various cleanups and refactorings of the SPI header and core parts
+united in a single series.
 
-Code wise
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Patches 1 & 2, 5 & 6 & 8 are dependent inside each group.
 
-The commit messages have to be improved, but hey, I'm not a native speaker, so
-I assume that Jonathan can help me with that and correct me if required :-)
+No functional change intended.
+
+Andy Shevchenko (8):
+  spi: Remove unneeded OF node NULL checks
+  spi: Drop duplicate IDR allocation code in spi_register_controller()
+  spi: Use sysfs_emit() to instead of s*printf()
+  spi: Get rid of old SPI_MASTER_NO_.X and SPI_MASTER_MUST_.X
+  spi: Sort headers alphabetically
+  spi: Clean up headers
+  spi: Fix spelling typos and acronyms capitalization
+  spi: Use struct_size() helper
+
+ drivers/spi/spi-at91-usart.c    |   2 +-
+ drivers/spi/spi-atmel.c         |   2 +-
+ drivers/spi/spi-bitbang-txrx.h  |  16 +--
+ drivers/spi/spi-bitbang.c       |   2 +-
+ drivers/spi/spi-davinci.c       |   2 +-
+ drivers/spi/spi-fsl-lpspi.c     |   2 +-
+ drivers/spi/spi-gpio.c          |   8 +-
+ drivers/spi/spi-lp8841-rtc.c    |   8 +-
+ drivers/spi/spi-meson-spicc.c   |   2 +-
+ drivers/spi/spi-mt65xx.c        |   2 +-
+ drivers/spi/spi-pci1xxxx.c      |   2 +-
+ drivers/spi/spi-pic32.c         |   2 +-
+ drivers/spi/spi-rb4xx.c         |   2 +-
+ drivers/spi/spi-slave-mt27xx.c  |   2 +-
+ drivers/spi/spi-stm32.c         |   2 +-
+ drivers/spi/spi-xtensa-xtfpga.c |   2 +-
+ drivers/spi/spi.c               | 102 ++++++++---------
+ include/linux/spi/spi.h         | 188 ++++++++++++++++++--------------
+ 18 files changed, 183 insertions(+), 165 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.40.0.1.gaa8946217a0b
 
 
 _______________________________________________
