@@ -4,70 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79849EB64DD
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 15:51:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FD9DEB64DC
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 17:18:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=oVHjGIlE+4kZjd62acESLZiE21zWsYQGcyIy4GySYQg=; b=vXyDp34dRSh15gqUi+BYqUhmHW
-	7clj/tVaq6i8PnSuIcVQ+DgeM2xZUpWf8U/WErAzN88aAUBmviiP5xOKnXIRq0MCYkWbqGUCHE5wA
-	XE1nekf22oOAeTOADDE7LzfrmzhU+2B6PG+U9D0arGHtxAzxsv/jeHP/uLngNbo/hweWIjBbBYYXV
-	/PBNtPFM0txTPXY3iTiT3GX7iCGy9SACjY+7kuZRHoMLJ2cycOdnq4dhjiTgkmbVQ6J2LqJcpIRZh
-	IPw2uw3XttEEnxVQ//hysXEdEOWUseEW9W5qkJYrsDu11Vnrw79A67KeXfaVhCRFzP92KzynjszUl
-	qoxulh3A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=GPu3WlPHh0feDPOsc1yTMUexWP84bHxMa2Kt0NUnpO4=; b=fFgd5utcLyeYfr
+	bZKiLbps7wI/NDDLu3ln7qPJ1I5Oz4S+czMDOzeQU3yLyDxarKhHu0iLL0EVFeWlTgv5L+sUEkRW5
+	htBR+dGRm2ZgYg1iQ+JkSckTJm6/a2ozPQv64hEomhYECccRrZRECpJtZfgpvpkcObxjm740Dp5f4
+	H9XHc3ytcwL0qIwkyBCtDUnoBnUITPLfpY1Hxn2cQFH+QHZfp6IXg4vj7fANObksFotLkjytIft5I
+	UrZ264P6ycAdutclDgRleiXU0hXFBoJD/ctWEIVr6Jq36S68CIsm283JItI1UxWCZn/gje3JwrIME
+	yJO83wxsiSmKdEoqjViw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJFdX-00FJ1x-2j;
-	Tue, 11 Jul 2023 15:50:47 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qJH0M-00FUnS-2B;
+	Tue, 11 Jul 2023 17:18:26 +0000
+Received: from mga04.intel.com ([192.55.52.120])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJFcu-00FIyL-1W;
-	Tue, 11 Jul 2023 15:50:17 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 046936155D;
-	Tue, 11 Jul 2023 15:50:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A565C433C8;
-	Tue, 11 Jul 2023 15:49:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1689090607;
-	bh=Rfrk1uyNxWMBBOGH5Jxn2umsc9+1UwzSvXH/XCQVTMk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tQcn8OvC6bRBN7WzpsoGdLVO3L4xuskzngmmfRCEj2SQ0jAC+8jd5iN20p9gHRbpg
-	 XUbhNgU9wAusI4gCQRZQWpSdosA5W/FQG4z1AWEgo24Qhpez1zvl8Qd08L+UQadjys
-	 qOLdKWVQ3JbXYchCASI4opWSvhez0uMrvZY11sAMGFC7hweCIW8F+sFtyDKkG13nS0
-	 BpkHBiCRn9aeI6z28Cfu2Vk50UunuJFeo1j1nrYJyD6L4Kr0GqQXWYq2XqyGdtwIe+
-	 r8LZOFGfyssDNKEB3zOQjK+1KK7aegmO8dmKUMp5no+2+L0MPlqIAyMOrhHo2iXkMt
-	 IC4BE92YJ2DdQ==
-Date: Tue, 11 Jul 2023 16:49:54 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	id 1qJH0J-00FUlw-2o;
+	Tue, 11 Jul 2023 17:18:25 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1689095903; x=1720631903;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=RLWyOf9cyhaU0D1jsbC/OzTSXA7cpjUrGSZFXoDODls=;
+  b=YdCPukQclSdZpVbFprtKi2oDSPWqCR1oVPYrKEk13RVUb4aFZ5kwTVuR
+   T2b8Q/W8kISChE3im9XgJSZNEn1d3tUvBmcjbZa2sqoPQhueDPTqKexx5
+   jKBRQ4lyVAP+UQaWxnp+phRoTVvwqqnf+9IOsfxQvggaPtG3tJ6eCrsxo
+   cl0+LemmPf8jv02VNGX/NxOyJnBQ8wSCHG80B+LsKiHeVF1/IUHyRGfmc
+   fBN07IWzhJXXYWbfoYYtT+yXJornVAE1ku4g/IrTcgNkPS800jUIPmmRy
+   gRLAvzUlOMLVnPTjeE5E0vjpKC+6tOJvcOHq6jpH2QxeA8ZrAxLkXWDjR
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="363545679"
+X-IronPort-AV: E=Sophos;i="6.01,197,1684825200"; 
+   d="scan'208";a="363545679"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jul 2023 10:18:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="756427035"
+X-IronPort-AV: E=Sophos;i="6.01,197,1684825200"; 
+   d="scan'208";a="756427035"
+Received: from black.fi.intel.com ([10.237.72.28])
+  by orsmga001.jf.intel.com with ESMTP; 11 Jul 2023 10:18:07 -0700
+Received: by black.fi.intel.com (Postfix, from userid 1003)
+	id CE41177B; Tue, 11 Jul 2023 20:17:59 +0300 (EEST)
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Mark Brown <broonie@kernel.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
 	Yang Yingliang <yangyingliang@huawei.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
 	Amit Kumar Mahapatra via Alsa-devel <alsa-devel@alsa-project.org>,
+	Serge Semin <fancer.lancer@gmail.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
 	Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-riscv@lists.infradead.org,
 	linux-stm32@st-md-mailman.stormreply.com,
-	linux-trace-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	Sanjay R Mehta <sanju.mehta@amd.com>,
+	linux-trace-kernel@vger.kernel.org,
+	netdev@vger.kernel.org
+Cc: Sanjay R Mehta <sanju.mehta@amd.com>,
 	Radu Pirea <radu_nicolae.pirea@upb.ro>,
 	Nicolas Ferre <nicolas.ferre@microchip.com>,
 	Alexandre Belloni <alexandre.belloni@bootlin.com>,
 	Claudiu Beznea <claudiu.beznea@microchip.com>,
 	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Serge Semin <fancer.lancer@gmail.com>,
 	Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
@@ -93,22 +105,18 @@ Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
 	Max Filippov <jcmvbkbc@gmail.com>,
 	Steven Rostedt <rostedt@goodmis.org>,
 	Masami Hiramatsu <mhiramat@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>
-Subject: Re: [PATCH v2 04/15] spi: Replace open coded
- spi_controller_xfer_timeout()
-Message-ID: <dafdb3d9-572f-49d3-82d7-f0d7667df5dd@sirena.org.uk>
-References: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
- <20230710154932.68377-5-andriy.shevchenko@linux.intel.com>
- <cfaffa00-4b61-4d81-8675-70295844513b@sirena.org.uk>
- <ZK02efTYxV3czigr@smile.fi.intel.com>
- <5959b123-09e3-474b-9ab0-68d71cfdd9a2@sirena.org.uk>
- <ZK11flZf/1grJ1Bd@smile.fi.intel.com>
+	Richard Cochran <richardcochran@gmail.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCH v3 12/14] spi: Rename SPI_MASTER_GPIO_SS to SPI_CONTROLLER_GPIO_SS
+Date: Tue, 11 Jul 2023 20:17:54 +0300
+Message-Id: <20230711171756.86736-13-andriy.shevchenko@linux.intel.com>
+X-Mailer: git-send-email 2.40.0.1.gaa8946217a0b
+In-Reply-To: <20230711171756.86736-1-andriy.shevchenko@linux.intel.com>
+References: <20230711171756.86736-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <ZK11flZf/1grJ1Bd@smile.fi.intel.com>
-X-Cookie: marriage, n.:
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230711_085015_317476_574E6DB0 
-X-CRM114-Status: GOOD (  20.01  )
+X-CRM114-CacheID: sfid-20230711_101823_921116_1B16F951 
+X-CRM114-Status: GOOD (  23.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,69 +128,217 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1630232930798293502=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Rename SPI_MASTER_GPIO_SS to SPI_CONTROLLER_GPIO_SS and
+convert the code to using SPI_CONTROLLER_GPIO_SS to follow
+the new naming schema.
 
---===============1630232930798293502==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="z/wyG6sqMhUk9SL4"
-Content-Disposition: inline
+Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com> # DW APB/AHB SSI
+---
+ drivers/spi/spi-ath79.c    | 2 +-
+ drivers/spi/spi-atmel.c    | 2 +-
+ drivers/spi/spi-bitbang.c  | 6 +++---
+ drivers/spi/spi-davinci.c  | 2 +-
+ drivers/spi/spi-dw-core.c  | 2 +-
+ drivers/spi/spi-gpio.c     | 2 +-
+ drivers/spi/spi-imx.c      | 2 +-
+ drivers/spi/spi-orion.c    | 2 +-
+ drivers/spi/spi-rockchip.c | 2 +-
+ drivers/spi/spi-sifive.c   | 2 +-
+ drivers/spi/spi.c          | 4 ++--
+ include/linux/spi/spi.h    | 3 +--
+ 12 files changed, 15 insertions(+), 16 deletions(-)
 
+diff --git a/drivers/spi/spi-ath79.c b/drivers/spi/spi-ath79.c
+index d3dd21386f12..1b6d977d111c 100644
+--- a/drivers/spi/spi-ath79.c
++++ b/drivers/spi/spi-ath79.c
+@@ -185,7 +185,7 @@ static int ath79_spi_probe(struct platform_device *pdev)
+ 
+ 	host->use_gpio_descriptors = true;
+ 	host->bits_per_word_mask = SPI_BPW_RANGE_MASK(1, 32);
+-	host->flags = SPI_MASTER_GPIO_SS;
++	host->flags = SPI_CONTROLLER_GPIO_SS;
+ 	host->num_chipselect = 3;
+ 	host->mem_ops = &ath79_mem_ops;
+ 
+diff --git a/drivers/spi/spi-atmel.c b/drivers/spi/spi-atmel.c
+index 0865993005b2..9674499ed0a6 100644
+--- a/drivers/spi/spi-atmel.c
++++ b/drivers/spi/spi-atmel.c
+@@ -1476,7 +1476,7 @@ static int atmel_spi_probe(struct platform_device *pdev)
+ 	host->num_chipselect = 4;
+ 	host->setup = atmel_spi_setup;
+ 	host->flags = (SPI_CONTROLLER_MUST_RX | SPI_CONTROLLER_MUST_TX |
+-			SPI_MASTER_GPIO_SS);
++			SPI_CONTROLLER_GPIO_SS);
+ 	host->transfer_one = atmel_spi_one_transfer;
+ 	host->set_cs = atmel_spi_set_cs;
+ 	host->cleanup = atmel_spi_cleanup;
+diff --git a/drivers/spi/spi-bitbang.c b/drivers/spi/spi-bitbang.c
+index 862f209cada1..ecd44016c197 100644
+--- a/drivers/spi/spi-bitbang.c
++++ b/drivers/spi/spi-bitbang.c
+@@ -349,11 +349,11 @@ int spi_bitbang_init(struct spi_bitbang *bitbang)
+ 	/*
+ 	 * We only need the chipselect callback if we are actually using it.
+ 	 * If we just use GPIO descriptors, it is surplus. If the
+-	 * SPI_MASTER_GPIO_SS flag is set, we always need to call the
++	 * SPI_CONTROLLER_GPIO_SS flag is set, we always need to call the
+ 	 * driver-specific chipselect routine.
+ 	 */
+ 	custom_cs = (!master->use_gpio_descriptors ||
+-		     (master->flags & SPI_MASTER_GPIO_SS));
++		     (master->flags & SPI_CONTROLLER_GPIO_SS));
+ 
+ 	if (custom_cs && !bitbang->chipselect)
+ 		return -EINVAL;
+@@ -371,7 +371,7 @@ int spi_bitbang_init(struct spi_bitbang *bitbang)
+ 	master->transfer_one = spi_bitbang_transfer_one;
+ 	/*
+ 	 * When using GPIO descriptors, the ->set_cs() callback doesn't even
+-	 * get called unless SPI_MASTER_GPIO_SS is set.
++	 * get called unless SPI_CONTROLLER_GPIO_SS is set.
+ 	 */
+ 	if (custom_cs)
+ 		master->set_cs = spi_bitbang_set_cs;
+diff --git a/drivers/spi/spi-davinci.c b/drivers/spi/spi-davinci.c
+index 014392459d5e..7ea2ac053052 100644
+--- a/drivers/spi/spi-davinci.c
++++ b/drivers/spi/spi-davinci.c
+@@ -939,7 +939,7 @@ static int davinci_spi_probe(struct platform_device *pdev)
+ 	master->bus_num = pdev->id;
+ 	master->num_chipselect = pdata->num_chipselect;
+ 	master->bits_per_word_mask = SPI_BPW_RANGE_MASK(2, 16);
+-	master->flags = SPI_CONTROLLER_MUST_RX | SPI_MASTER_GPIO_SS;
++	master->flags = SPI_CONTROLLER_MUST_RX | SPI_CONTROLLER_GPIO_SS;
+ 	master->setup = davinci_spi_setup;
+ 	master->cleanup = davinci_spi_cleanup;
+ 	master->can_dma = davinci_spi_can_dma;
+diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
+index a8ba41ad4541..45f5acc26b1d 100644
+--- a/drivers/spi/spi-dw-core.c
++++ b/drivers/spi/spi-dw-core.c
+@@ -932,7 +932,7 @@ int dw_spi_add_host(struct device *dev, struct dw_spi *dws)
+ 	if (dws->mem_ops.exec_op)
+ 		master->mem_ops = &dws->mem_ops;
+ 	master->max_speed_hz = dws->max_freq;
+-	master->flags = SPI_MASTER_GPIO_SS;
++	master->flags = SPI_CONTROLLER_GPIO_SS;
+ 	master->auto_runtime_pm = true;
+ 
+ 	/* Get default rx sample delay */
+diff --git a/drivers/spi/spi-gpio.c b/drivers/spi/spi-gpio.c
+index 85e149ec2910..612db477ad12 100644
+--- a/drivers/spi/spi-gpio.c
++++ b/drivers/spi/spi-gpio.c
+@@ -434,7 +434,7 @@ static int spi_gpio_probe(struct platform_device *pdev)
+ 	 * line, that we need to do on selection. This makes the local
+ 	 * callback for chipselect always get called.
+ 	 */
+-	master->flags |= SPI_MASTER_GPIO_SS;
++	master->flags |= SPI_CONTROLLER_GPIO_SS;
+ 	bb->chipselect = spi_gpio_chipselect;
+ 	bb->set_line_direction = spi_gpio_set_direction;
+ 
+diff --git a/drivers/spi/spi-imx.c b/drivers/spi/spi-imx.c
+index 528ae46c087f..8d97f2b32c2b 100644
+--- a/drivers/spi/spi-imx.c
++++ b/drivers/spi/spi-imx.c
+@@ -1779,7 +1779,7 @@ static int spi_imx_probe(struct platform_device *pdev)
+ 
+ 	if (is_imx51_ecspi(spi_imx) || is_imx53_ecspi(spi_imx)) {
+ 		controller->max_native_cs = 4;
+-		controller->flags |= SPI_MASTER_GPIO_SS;
++		controller->flags |= SPI_CONTROLLER_GPIO_SS;
+ 	}
+ 
+ 	spi_imx->spi_drctl = spi_drctl;
+diff --git a/drivers/spi/spi-orion.c b/drivers/spi/spi-orion.c
+index ad9e83e34297..4882aafd0505 100644
+--- a/drivers/spi/spi-orion.c
++++ b/drivers/spi/spi-orion.c
+@@ -677,7 +677,7 @@ static int orion_spi_probe(struct platform_device *pdev)
+ 	master->bits_per_word_mask = SPI_BPW_MASK(8) | SPI_BPW_MASK(16);
+ 	master->auto_runtime_pm = true;
+ 	master->use_gpio_descriptors = true;
+-	master->flags = SPI_MASTER_GPIO_SS;
++	master->flags = SPI_CONTROLLER_GPIO_SS;
+ 
+ 	platform_set_drvdata(pdev, master);
+ 
+diff --git a/drivers/spi/spi-rockchip.c b/drivers/spi/spi-rockchip.c
+index 143ede958ac1..a37943847e81 100644
+--- a/drivers/spi/spi-rockchip.c
++++ b/drivers/spi/spi-rockchip.c
+@@ -858,7 +858,7 @@ static int rockchip_spi_probe(struct platform_device *pdev)
+ 		ctlr->mode_bits |= SPI_NO_CS;
+ 		ctlr->slave_abort = rockchip_spi_slave_abort;
+ 	} else {
+-		ctlr->flags = SPI_MASTER_GPIO_SS;
++		ctlr->flags = SPI_CONTROLLER_GPIO_SS;
+ 		ctlr->max_native_cs = ROCKCHIP_SPI_MAX_CS_NUM;
+ 		/*
+ 		 * rk spi0 has two native cs, spi1..5 one cs only
+diff --git a/drivers/spi/spi-sifive.c b/drivers/spi/spi-sifive.c
+index dae9e097c333..2f77dae85386 100644
+--- a/drivers/spi/spi-sifive.c
++++ b/drivers/spi/spi-sifive.c
+@@ -379,7 +379,7 @@ static int sifive_spi_probe(struct platform_device *pdev)
+ 	 * we need to "left-align" the bits (unless SPI_LSB_FIRST)
+ 	 */
+ 	master->bits_per_word_mask = SPI_BPW_MASK(8);
+-	master->flags = SPI_CONTROLLER_MUST_TX | SPI_MASTER_GPIO_SS;
++	master->flags = SPI_CONTROLLER_MUST_TX | SPI_CONTROLLER_GPIO_SS;
+ 	master->prepare_message = sifive_spi_prepare_message;
+ 	master->set_cs = sifive_spi_set_cs;
+ 	master->transfer_one = sifive_spi_transfer_one;
+diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+index 9b096cbc9926..0612610a091a 100644
+--- a/drivers/spi/spi.c
++++ b/drivers/spi/spi.c
+@@ -986,7 +986,7 @@ static void spi_set_cs(struct spi_device *spi, bool enable, bool force)
+ 				gpiod_set_value_cansleep(spi_get_csgpiod(spi, 0), activate);
+ 		}
+ 		/* Some SPI masters need both GPIO CS & slave_select */
+-		if ((spi->controller->flags & SPI_MASTER_GPIO_SS) &&
++		if ((spi->controller->flags & SPI_CONTROLLER_GPIO_SS) &&
+ 		    spi->controller->set_cs)
+ 			spi->controller->set_cs(spi, !enable);
+ 	} else if (spi->controller->set_cs) {
+@@ -3035,7 +3035,7 @@ static int spi_get_gpio_descs(struct spi_controller *ctlr)
+ 
+ 	ctlr->unused_native_cs = ffs(~native_cs_mask) - 1;
+ 
+-	if ((ctlr->flags & SPI_MASTER_GPIO_SS) && num_cs_gpios &&
++	if ((ctlr->flags & SPI_CONTROLLER_GPIO_SS) && num_cs_gpios &&
+ 	    ctlr->max_native_cs && ctlr->unused_native_cs >= ctlr->max_native_cs) {
+ 		dev_err(dev, "No unused native chip select available\n");
+ 		return -EINVAL;
+diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
+index b90c53332909..458369939fa5 100644
+--- a/include/linux/spi/spi.h
++++ b/include/linux/spi/spi.h
+@@ -563,8 +563,7 @@ struct spi_controller {
+ #define SPI_CONTROLLER_NO_TX		BIT(2)	/* Can't do buffer write */
+ #define SPI_CONTROLLER_MUST_RX		BIT(3)	/* Requires rx */
+ #define SPI_CONTROLLER_MUST_TX		BIT(4)	/* Requires tx */
+-
+-#define SPI_MASTER_GPIO_SS		BIT(5)	/* GPIO CS must select slave */
++#define SPI_CONTROLLER_GPIO_SS		BIT(5)	/* GPIO CS must select slave */
+ 
+ 	/* Flag indicating if the allocation of this struct is devres-managed */
+ 	bool			devm_allocated;
+-- 
+2.40.0.1.gaa8946217a0b
 
---z/wyG6sqMhUk9SL4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Tue, Jul 11, 2023 at 06:30:06PM +0300, Andy Shevchenko wrote:
-> On Tue, Jul 11, 2023 at 03:14:54PM +0100, Mark Brown wrote:
-
-> > Like I say we *should* be fine with the refactoring without this, or at
-> > least if it's an issue we should improve the validation.
-
-> For the speeds < 1000 Hz, this change will lead to the div by 0 crash.
-> It seems that the current code which this one removes is better than
-> the spi_controller_xfer_timeout() provides.
-
-> If anything, the spi_controller_xfer_timeout() should be improved first.
-> So, for now I drop this for sure. Maybe in the future we can come back
-> to it.
-
-I don't think this is the only thing that might fall over without a
-speed, what we've generally been doing (and do try to do with speeds, we
-already need to default in the controller's speed and so on) is to
-sanitise input on the way into the subsystem rather than trying to
-ensure that all the users are handling everything.
-
---z/wyG6sqMhUk9SL4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSteiEACgkQJNaLcl1U
-h9DAYgf9GamF50fucbXVx/aZUwGY2hD+eGYGVpMwfSRhuUlWbnbam1vDqMkEllpk
-X95Rur4vRJQA8erYbUKnhyABsYUSGd8CKx8/mDgvePWDPlYZ3TkdMV8z/j59HZbA
-WhFO3yBSJzNOgDxpftw96yBP7l7eZZHabEpeUAOx+SZ04jtNfdnRHeHBIBKL+YUT
-eFnArWnhTo4dUwNTaAojL5Lfgos/MGY9ABY3b2E4ZkjSaHCUTOa2rxKo9zjc43tE
-gdVuQ8cvshKLUDx2CFZ4oux+stLEOfjcsmR0prxZp3q9t2ywp1CsOHBY1ndd/8Ds
-SnUGepjz95NgZBU7ewJoIuRhKJUQtA==
-=GGl+
------END PGP SIGNATURE-----
-
---z/wyG6sqMhUk9SL4--
-
-
---===============1630232930798293502==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============1630232930798293502==--
-
