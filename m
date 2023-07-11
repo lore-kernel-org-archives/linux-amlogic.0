@@ -4,90 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8CA5C001DD
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 12:27:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A43CFEB64DC
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 12:30:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=jrOT7CLA9FTZQjBQZ3JT0tHGDIDKukgTEiew1C55Vaw=; b=UCBhgrKRc9gYx9
-	TeKbrwsxyppk7r92xysM7o55gJH8ztWVAlySz/Gqe22sse05SEUAN130xGDOmnPA5Ywz69pbYzYyL
-	2WPuy9vIMgTD2zoV8rSAemxSNUAGHltDyyIQjdsQPbBL2Tswggo5ulDNFoI69EV/Ss0T1UyiYDFb/
-	W+bW/XijuFbz1YAalTAK930285zQqg1EO6H1TI4mSH46nEdgcTLXb/xivlTXQQ7T/vsEMEL+wf7Ij
-	wqCLKDf4EfbDwzkOLvvdMcM99sARlYIgFGz4yIbsftnbZvg45MJFTBMPWGLnR7x7fMpEaK0KvNEy2
-	TXiySxE3MR1gKaWYezOg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=YqrJOSXD6wZBRvM9WLtRzUBR7BVV4SVs5Epl0I34uIk=; b=RGfdMF6ivsgqbR
+	G4aNEqtNbHwsFBvS5/zHOmv3llxCoofSPzd27G7HPFU7FizDHevVx2bdDAYr1/+yr+ITmZ4dsDpwK
+	03n1dqW/icOv00T3rUJIzXhba26xBISXNOJZX516vsX1qvLa/Ym29EWwd5nHXR65lAbrjqhLiu8L2
+	RXh2NUITU/2vV19lRSUKZ6R5uJwMrrTQtfsk1JgCC35k6zLDVXRMhXug/JGtm1QRrMpTN6AgOL1kv
+	ekxtlM2T2anEBGCFI53nGRJTpy85nTpgJRyVXPb3zUamLvZw/lLJwBNDwebgMNxTZkynPvRb7r2iZ
+	juz6RHvKhF3km0ygbTyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJCSg-00EriG-32;
-	Tue, 11 Jul 2023 12:27:22 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1qJCVq-00EsZQ-1U;
+	Tue, 11 Jul 2023 12:30:38 +0000
+Received: from mail-lj1-x22c.google.com ([2a00:1450:4864:20::22c])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJCSX-00EreW-1p;
-	Tue, 11 Jul 2023 12:27:17 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 2C64712000D;
-	Tue, 11 Jul 2023 15:27:05 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2C64712000D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1689078425;
-	bh=0RlWKOR/GAk96AQ6p6TKSzddgB4PuxiFyJ9Yjhq0Qkw=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=i8NEFFhZkJDUwVrsjgArIMZ5Av0C2NRujF8jSr3gjAwMg3WSgGJBY8Jzgbi17LtyP
-	 8ZZ78CfeJ4PHzcffocaETgxR/xEH43HPYy7ND3XScELFCgdbWbusFj5abpXAZ+r4MU
-	 qt3Wlp3e7RnVwpp+x0NUbTNkhBQN0lU6O5WAiBozJ+wsctajoPSD1b2F+nDmCnZ3z2
-	 n/mZUzXr9YjAbThobX+F0GEZq0ChNp6gDfSe5o7gqWyhm1YKpH+py7xu3txBclJD86
-	 2Kbj9baxeuaNyINt/S5Z7oH1PHQhghvupnoI79bWCN7xrvs4yiIwuEwkHEY/sgwhVZ
-	 u5SMAv1CPyNmg==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 11 Jul 2023 15:27:05 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Tue, 11 Jul 2023 15:26:56 +0300
-From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
-	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin
- Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
-	<AVKrasnov@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [RFC PATCH v3 0/3] support 512B ECC step size for Meson NAND
-Date: Tue, 11 Jul 2023 15:21:26 +0300
-Message-ID: <20230711122129.2635558-1-AVKrasnov@sberdevices.ru>
-X-Mailer: git-send-email 2.35.0
+	id 1qJCVi-00EsXN-0X;
+	Tue, 11 Jul 2023 12:30:31 +0000
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b703cbfaf5so89531181fa.1;
+        Tue, 11 Jul 2023 05:30:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689078626; x=1691670626;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=PF44NEqyxP0uEPvVdBdUhZoOyhnmXaRRtdBTolupizs=;
+        b=SBnTfmlUAjKWCRn3fyds5WJnq/rFhCyNY0inIr58sbmQdnr0ekqm/rRHOpDPaGy/KO
+         B5+bnED3EocI70B/1Liqfviz84UQamIYXCfhBLJdAwpngn8GsImdPLHw3RB6cx2k3qLl
+         nSGU6gtvVw3/VsXZCkMPykBjpKDuKmimIVto3O71KEXoVSR8sXs9wWBC1yWjR9VJRV7y
+         Wiz8QKW407Y9wEjIJVzHwlxfi2RJhdAg86N/DwGw/jxMsF0gA+NEhyREeEq19FirWzm/
+         TqVILtBOKMHlbGVQP5ypx9ZxmExDySMPGPYIR/gAUwwQJjSdRAbKTqb1KbxEGl8qDyoh
+         Eb8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689078626; x=1691670626;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PF44NEqyxP0uEPvVdBdUhZoOyhnmXaRRtdBTolupizs=;
+        b=gfigeq7VBTv6yPt5Vorw543CrkFV0HNrsfI/2OJRlZFJA6ooWcVB5gcFMPwVmHm5Us
+         hF8oEwcBZLwEarXQdqVm9y5MMcm4BzTa8uOsPJgSXneAWXneka1gxdghl+Uxm1Ff2MdZ
+         gLxzUxIxNmQxg6b4Dom6D0iiZN4gUQt/JTWm76AO3zYCPABo2mVS5hyU2Ji9yrZcBWb+
+         J8n18p2wKGLzE2by87AboJVsZrrmJ5UDhtiwPsBIawaKu0Gjb/5NmecFCnrlp78gLzmI
+         AqexflZnXsHXNeO9Sxh81y8Ocp1NpoAsc1D42TUMinXF4lXaj+B06lRBuz0F4KVP928U
+         bcdg==
+X-Gm-Message-State: ABy/qLa0GYcxx8B34Q2/ld7YR+dISjiN1eFHOdkHGo4RWILLUD7jon28
+	ph0oywd12S6MB82Svjm36Lo=
+X-Google-Smtp-Source: APBJJlEGAsotaRV20l259BaTNO1He84gEShKxa1gOSyhZTOSrSYKw2njibp5AmXp10CkNfmdPINRWg==
+X-Received: by 2002:a2e:8eca:0:b0:2b6:dc50:19ac with SMTP id e10-20020a2e8eca000000b002b6dc5019acmr13901724ljl.31.1689078625694;
+        Tue, 11 Jul 2023 05:30:25 -0700 (PDT)
+Received: from mobilestation ([85.249.18.12])
+        by smtp.gmail.com with ESMTPSA id j17-20020a2e6e11000000b002b6ee75648fsm441355ljc.12.2023.07.11.05.30.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jul 2023 05:30:24 -0700 (PDT)
+Date: Tue, 11 Jul 2023 15:30:19 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Mark Brown <broonie@kernel.org>, 
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Yang Yingliang <yangyingliang@huawei.com>, 
+	Amit Kumar Mahapatra via Alsa-devel <alsa-devel@alsa-project.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>, Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>, 
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-trace-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+	Sanjay R Mehta <sanju.mehta@amd.com>, Radu Pirea <radu_nicolae.pirea@upb.ro>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Claudiu Beznea <claudiu.beznea@microchip.com>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Orson Zhai <orsonzhai@gmail.com>, 
+	Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
+	Alain Volmat <alain.volmat@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Max Filippov <jcmvbkbc@gmail.com>, 
+	Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu <mhiramat@kernel.org>, 
+	Richard Cochran <richardcochran@gmail.com>
+Subject: Re: [PATCH v2 13/15] spi: Rename SPI_MASTER_GPIO_SS to
+ SPI_CONTROLLER_GPIO_SS
+Message-ID: <tvm772o6uqndgyjvycv27qouqq76crpre5tyqcnanaautqjjwn@pydiwhjzhbgd>
+References: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
+ <20230710154932.68377-14-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178543 [Jul 11 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 521 521 0c3391dd6036774f2e1052158c81e48587b96e95, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;lore.kernel.org:7.1.1;sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2023/07/11 10:56:00
-X-KSMG-LinksScanning: Clean, bases: 2023/07/11 10:56:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/11 10:54:00 #21597245
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Disposition: inline
+In-Reply-To: <20230710154932.68377-14-andriy.shevchenko@linux.intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230711_052714_093003_0849BE82 
-X-CRM114-Status: GOOD (  13.74  )
+X-CRM114-CacheID: sfid-20230711_053030_204343_F222A691 
+X-CRM114-Status: GOOD (  20.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,57 +116,87 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello,
+On Mon, Jul 10, 2023 at 06:49:30PM +0300, Andy Shevchenko wrote:
+> Rename SPI_MASTER_GPIO_SS to SPI_CONTROLLER_GPIO_SS and
+> convert the users to SPI_CONTROLLER_GPIO_SS to follow
 
-this patchset adds support for 512B ECC step size for Meson NAND. Current
-implementation only supports 1024B. There are three patches:
+* I'm not an expert in English, but imo the next would look a
+* bit more readable:
+* convert s/the users to SPI_CONTROLLER_GPIO_SS/the code to using SPI_CONTROLLER_GPIO_SS
 
-1) Update for device tree bindings to replace 'const' type of field
-   'nand-ecc-step-size' with 'enum' which contains 512 and 1024.
+> the new naming shema.
 
-2) Update for device tree bindings to add dependency between properties
-   'nand-ecc-strength' and 'nand-ecc-step-size'.
+s/shema/schema
 
-3) Update for Meson driver - new enum value for 512B ECC and reworked
-   ECC capabilities structure to support both 512B and 1024B ECC. By
-   default this driver uses 1024B ECC, 512B could be enabled in device
-   tree.
+> 
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> ---
+[...]
 
-Changelog:
-v1 -> v2:
- * Add default value of 1024 to the bindings patch (0001).
- * Remove "Acked-by: Rob Herring <robh@kernel.org>" from the bindings
-   patch (0001) due to added default value.
- * Remove invalid calculation of OOB bytes, available for ECC engine
-   from patch 0002. This logic is incorrect from the origins, so I don't
-   touch it in this patchset. It will be fixed by another patch, as in
-   fact, it doesn't affect this patchset.
+>  drivers/spi/spi-dw-core.c  | 2 +-
 
-v2 -> v3:
- * Add new patch which adds dependency between 'nand-ecc-strength' and
-   'nand-ecc-step-size' (0002).
- * Return "Acked-by: Rob Herring <robh@kernel.org>" to 0001.
- * Remove "default" value from 0001, due to dependency patch.
- * Remove example value from 0001, due to dependency patch.
+[...]
 
-Links:
-v1:
-https://lore.kernel.org/linux-mtd/20230628092937.538683-1-AVKrasnov@sberdevices.ru/
-v2:
-https://lore.kernel.org/linux-mtd/20230705065434.297040-1-AVKrasnov@sberdevices.ru/
+> diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
+> index a8ba41ad4541..45f5acc26b1d 100644
+> --- a/drivers/spi/spi-dw-core.c
+> +++ b/drivers/spi/spi-dw-core.c
+> @@ -932,7 +932,7 @@ int dw_spi_add_host(struct device *dev, struct dw_spi *dws)
+>  	if (dws->mem_ops.exec_op)
+>  		master->mem_ops = &dws->mem_ops;
+>  	master->max_speed_hz = dws->max_freq;
+> -	master->flags = SPI_MASTER_GPIO_SS;
+> +	master->flags = SPI_CONTROLLER_GPIO_SS;
+>  	master->auto_runtime_pm = true;
+>  
+>  	/* Get default rx sample delay */
 
-Arseniy Krasnov (3):
-  dt-bindings: nand: meson: support for 512B ECC step size
-  dt-bindings: nand: meson: make ECC properties dependent
-  mtd: rawnand: meson: support for 512B ECC step size
+For the DW APB/AHB SSI driver:
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 
- .../bindings/mtd/amlogic,meson-nand.yaml      |  6 ++-
- drivers/mtd/nand/raw/meson_nand.c             | 45 ++++++++++++++-----
- 2 files changed, 39 insertions(+), 12 deletions(-)
+-Serge(y)
 
--- 
-2.35.0
+[...]
 
+> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+> index 06a92a3a5746..bcabae98cb7c 100644
+> --- a/drivers/spi/spi.c
+> +++ b/drivers/spi/spi.c
+> @@ -995,7 +995,7 @@ static void spi_set_cs(struct spi_device *spi, bool enable, bool force)
+>  				gpiod_set_value_cansleep(spi_get_csgpiod(spi, 0), activate);
+>  		}
+>  		/* Some SPI masters need both GPIO CS & slave_select */
+> -		if ((spi->controller->flags & SPI_MASTER_GPIO_SS) &&
+> +		if ((spi->controller->flags & SPI_CONTROLLER_GPIO_SS) &&
+>  		    spi->controller->set_cs)
+>  			spi->controller->set_cs(spi, !enable);
+>  	} else if (spi->controller->set_cs) {
+> @@ -3020,7 +3020,7 @@ static int spi_get_gpio_descs(struct spi_controller *ctlr)
+>  
+>  	ctlr->unused_native_cs = ffs(~native_cs_mask) - 1;
+>  
+> -	if ((ctlr->flags & SPI_MASTER_GPIO_SS) && num_cs_gpios &&
+> +	if ((ctlr->flags & SPI_CONTROLLER_GPIO_SS) && num_cs_gpios &&
+>  	    ctlr->max_native_cs && ctlr->unused_native_cs >= ctlr->max_native_cs) {
+>  		dev_err(dev, "No unused native chip select available\n");
+>  		return -EINVAL;
+> diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
+> index cdc3addfe117..43f6c3f71a76 100644
+> --- a/include/linux/spi/spi.h
+> +++ b/include/linux/spi/spi.h
+> @@ -578,8 +578,7 @@ struct spi_controller {
+>  #define SPI_CONTROLLER_NO_TX		BIT(2)	/* Can't do buffer write */
+>  #define SPI_CONTROLLER_MUST_RX		BIT(3)	/* Requires rx */
+>  #define SPI_CONTROLLER_MUST_TX		BIT(4)	/* Requires tx */
+> -
+> -#define SPI_MASTER_GPIO_SS		BIT(5)	/* GPIO CS must select slave */
+> +#define SPI_CONTROLLER_GPIO_SS		BIT(5)	/* GPIO CS must select slave */
+>  
+>  	/* Flag indicating if the allocation of this struct is devres-managed */
+>  	bool			devm_allocated;
+> -- 
+> 2.40.0.1.gaa8946217a0b
+> 
 
 _______________________________________________
 linux-amlogic mailing list
