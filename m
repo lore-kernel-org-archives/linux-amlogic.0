@@ -4,109 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B02A7EB64DC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 14:15:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 509EDEB64DC
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 14:25:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=axI/9zwBsm1lMUkPvwhvi/1he/G3Pk3JDXs3fNd7amU=; b=r75uad88pPaWiNutyt2y1SP2vt
-	JM4b3fFoDCFtEMbfpMq1gwU6FzYvsocuLgwQg2Iil+82rnBvhgZGy/iQGchSQHI1Hqhw7HoyKdbcc
-	rqz/zXLiIP2dK7RKnz50h/e7XpVdcWbbT64J0LU5wXoilMN0MBJdLT56juKYZNn89w1LFcUf70dVM
-	1UHnWyhm1uWERYB/nVKauNhVzPqrT+v98hssTWWLu9zdw8LjcGFk+rLCnFUx2Mlk/zHgIb4/cBX5T
-	4GfNpHZ35Tnwwbc043Ii+Ox4+WuWI50RpmqRXAye7jdMmJ6ht6c12JJB0/CY06Sd5nvgfCTbutktF
-	CAE9kM7w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=AYEVXHTg6OujakzcsP7+OuGeUPdFQ/q49y1mEbRsxGA=; b=HC1XnGlYzKaLqg
+	+olHZ5N03iGhqP3wbLs51jPp8s9LfHpH2c3FkWR1WR82P1CdG3DL+hUv+Mngokfnw3y/Qx5YuKHlh
+	4h6fIzpEpGgDTwTWqFruAC1QXf4wlP/laZmZPax+Mc1vu46WWq2psiDXn0fBjXl93845BmOa8RfPB
+	nOVw9Yq5FUnM7/0vsJbELmkzdJOExPTotCiCSFxjFkm+5NkcoyYs/dviLIudRq9a3dE3HHYtJgjIx
+	8iRwRp+8Uj/ilNQ4J7HCRSx9Hg065zqHJ45vQQzbw7rjIjUBDwglwDLDi3eA5IaJxkALQ5AHkgbZD
+	xaybu3XimpYG80keEhJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJE91-00F5a4-2w;
-	Tue, 11 Jul 2023 14:15:11 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qJEIB-00F7zv-1s;
+	Tue, 11 Jul 2023 14:24:39 +0000
+Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJE8z-00F5ZO-0c;
-	Tue, 11 Jul 2023 14:15:10 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 77C8D61360;
-	Tue, 11 Jul 2023 14:15:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 209CBC433C9;
-	Tue, 11 Jul 2023 14:14:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1689084907;
-	bh=A+lgFSqWg8vRgir1XqFzY9nIE1Cw0dwqFBu8P2BdZBc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KwXQpO0JwJwS2tync5AfGpO9HXb9u4mgZfpWRxyxjmWV7o23oHa66oSgLBUqWen2D
-	 ZlOHsSEyXpzrsEeWWEmLhLLitAzI15911I18ub63ARZldiwGDK6EeLi3B34Qy+IEG4
-	 waxyA6VmnpE80hBohYtayTpWfyRhiz5yBCu2xfPCie7wDB1OJGO5pfFeIe7TmhLaf6
-	 2F7TtEpspxDmIAOKWfQt4n5/QaTo60Dymh5zBKNq1hnkXPOMFNsHXFu721qfrAekf9
-	 KAql0ORVXuf2YxOmwhPq6tE1iNaCTZM61qgKsPoZvWs0hppRNFtMcBrTT4RcCr66z6
-	 VpMXSzxRgleHw==
-Date: Tue, 11 Jul 2023 15:14:54 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Yang Yingliang <yangyingliang@huawei.com>,
-	Amit Kumar Mahapatra via Alsa-devel <alsa-devel@alsa-project.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
-	Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	id 1qJEI8-00F7zE-1E
+	for linux-amlogic@lists.infradead.org;
+	Tue, 11 Jul 2023 14:24:37 +0000
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fba03becc6so8585214e87.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 11 Jul 2023 07:24:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689085475; x=1691677475;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4ETzJnyxb//1LYCRZgH6X5nK55znbdEdKT0t8qjhkAw=;
+        b=TpQjD365mxeGXkAjNS1Yg5OzWV5hWBmQFP1W5jq6C/AgtBmyVfUiBwjjdYXC8Eae1p
+         gzTVXLqA/LRNhkzEferJ0M3dGsZ8dYPRip9BB5MOCbevyG2N2xyIyS8V1PQ5paNd7W4S
+         MYQukgp4KFF3xls+tzfj7Gjv0b1HA9RRV5PmYg008NBqRV9o4zLoJ+RMcekCayb8I+XM
+         e1/HZ+1yH4cfLg3ulOsh1p53gr6Hm4neaIhMNFhBlZRV2NrRWRVzSouVSULYQwrSio1t
+         +7lZ7G99ooRXummOAXo3N2Yxu5iF+kBjbhyypd/bSwwiAnWmTQr1ososN+jB3VRANZJG
+         oMjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689085475; x=1691677475;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4ETzJnyxb//1LYCRZgH6X5nK55znbdEdKT0t8qjhkAw=;
+        b=ha/E63mOwBUIlGM315Qw1W3VT9/+hBKn/UszRinSdG2EiDc3Hv+JgNN6yP/iR4T46N
+         GbBVQUG7zmAEkNQq6xrYEMX1ZmR5ZkOtSfO/+FX/Etomrrb9u5Y/roUxESWH0M2VZfVN
+         vlwUTAZkijubBH8DM4zAJkWcCgYyR2/OvCPUojOXLoY3v6WCDySfXOKhN/6RtiEkWr45
+         Q/kVmhbFqXxB8st8LCmKP+PkRv8oRTxR55rmwn/SZqQH1V52PpHhoBRtWPu1kH+WLS5X
+         UcRPiNaD7G/tJEjNXbNimZX3HGZeRJDWwFKXeVIiAvkLijeguoC3kfvKoD2/n0qi3XFJ
+         PT4w==
+X-Gm-Message-State: ABy/qLbDEjSpI1LeHrVYiiwwWRgVLK9Tn46X7UBNGLpgBLriGDRGzM7N
+	24dGaZ3WoCNP++RSACacgkVr6g==
+X-Google-Smtp-Source: APBJJlH5vtnfD2VWOxoAWSTv1/4Sxwt9FRzf0RXakCeJHs85TPWrAyK4Co3SRyIcN0Rf1+grwX7y8w==
+X-Received: by 2002:a05:6512:4016:b0:4f6:56ca:36fc with SMTP id br22-20020a056512401600b004f656ca36fcmr7142871lfb.6.1689085474936;
+        Tue, 11 Jul 2023 07:24:34 -0700 (PDT)
+Received: from uffe-tuxpro14.. (h-94-254-63-18.NA.cust.bahnhof.se. [94.254.63.18])
+        by smtp.gmail.com with ESMTPSA id g12-20020ac2538c000000b004fb763b5171sm341888lfh.86.2023.07.11.07.24.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jul 2023 07:24:34 -0700 (PDT)
+From: Ulf Hansson <ulf.hansson@linaro.org>
+To: Arnd Bergmann <arnd@arndb.de>,
+	Olof Johansson <olof@lixom.net>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+	linux-pm@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-trace-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	Sanjay R Mehta <sanju.mehta@amd.com>,
-	Radu Pirea <radu_nicolae.pirea@upb.ro>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@microchip.com>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
+	linux-kernel@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Alain Volmat <alain.volmat@foss.st.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Max Filippov <jcmvbkbc@gmail.com>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>
-Subject: Re: [PATCH v2 04/15] spi: Replace open coded
- spi_controller_xfer_timeout()
-Message-ID: <5959b123-09e3-474b-9ab0-68d71cfdd9a2@sirena.org.uk>
-References: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
- <20230710154932.68377-5-andriy.shevchenko@linux.intel.com>
- <cfaffa00-4b61-4d81-8675-70295844513b@sirena.org.uk>
- <ZK02efTYxV3czigr@smile.fi.intel.com>
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH v2 03/18] soc: amlogic: Move power-domain drivers to the genpd dir
+Date: Tue, 11 Jul 2023 16:24:31 +0200
+Message-Id: <20230711142431.751888-1-ulf.hansson@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-In-Reply-To: <ZK02efTYxV3czigr@smile.fi.intel.com>
-X-Cookie: marriage, n.:
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230711_071509_312756_2EC12027 
-X-CRM114-Status: GOOD (  22.65  )
+X-CRM114-CacheID: sfid-20230711_072436_417932_331A2FB0 
+X-CRM114-Status: GOOD (  13.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,79 +92,95 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1827326329844726661=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+To simplify with maintenance let's move the amlogic power-domain drivers to
+the new genpd directory. Going forward, patches are intended to be managed
+through a separate git tree, according to MAINTAINERS.
 
---===============1827326329844726661==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="MZrPSMfLUzZVYlnE"
-Content-Disposition: inline
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: <linux-amlogic@lists.infradead.org>
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+---
+ MAINTAINERS                                        | 1 +
+ drivers/genpd/Makefile                             | 1 +
+ drivers/genpd/amlogic/Makefile                     | 4 ++++
+ drivers/{soc => genpd}/amlogic/meson-ee-pwrc.c     | 0
+ drivers/{soc => genpd}/amlogic/meson-gx-pwrc-vpu.c | 0
+ drivers/{soc => genpd}/amlogic/meson-secure-pwrc.c | 0
+ drivers/soc/amlogic/Makefile                       | 3 ---
+ 7 files changed, 6 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/genpd/amlogic/Makefile
+ rename drivers/{soc => genpd}/amlogic/meson-ee-pwrc.c (100%)
+ rename drivers/{soc => genpd}/amlogic/meson-gx-pwrc-vpu.c (100%)
+ rename drivers/{soc => genpd}/amlogic/meson-secure-pwrc.c (100%)
 
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 38eebcc97aa2..ab583b8c5b97 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1843,6 +1843,7 @@ F:	Documentation/devicetree/bindings/phy/amlogic*
+ F:	arch/arm/boot/dts/amlogic/
+ F:	arch/arm/mach-meson/
+ F:	arch/arm64/boot/dts/amlogic/
++F:	drivers/genpd/amlogic/
+ F:	drivers/mmc/host/meson*
+ F:	drivers/phy/amlogic/
+ F:	drivers/pinctrl/meson/
+diff --git a/drivers/genpd/Makefile b/drivers/genpd/Makefile
+index a2d5b2095915..cdba3b9f0c75 100644
+--- a/drivers/genpd/Makefile
++++ b/drivers/genpd/Makefile
+@@ -1,2 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ obj-y					+= actions/
++obj-y					+= amlogic/
+diff --git a/drivers/genpd/amlogic/Makefile b/drivers/genpd/amlogic/Makefile
+new file mode 100644
+index 000000000000..3d58abd574f9
+--- /dev/null
++++ b/drivers/genpd/amlogic/Makefile
+@@ -0,0 +1,4 @@
++# SPDX-License-Identifier: GPL-2.0-only
++obj-$(CONFIG_MESON_GX_PM_DOMAINS) += meson-gx-pwrc-vpu.o
++obj-$(CONFIG_MESON_EE_PM_DOMAINS) += meson-ee-pwrc.o
++obj-$(CONFIG_MESON_SECURE_PM_DOMAINS) += meson-secure-pwrc.o
+diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/genpd/amlogic/meson-ee-pwrc.c
+similarity index 100%
+rename from drivers/soc/amlogic/meson-ee-pwrc.c
+rename to drivers/genpd/amlogic/meson-ee-pwrc.c
+diff --git a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c b/drivers/genpd/amlogic/meson-gx-pwrc-vpu.c
+similarity index 100%
+rename from drivers/soc/amlogic/meson-gx-pwrc-vpu.c
+rename to drivers/genpd/amlogic/meson-gx-pwrc-vpu.c
+diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/genpd/amlogic/meson-secure-pwrc.c
+similarity index 100%
+rename from drivers/soc/amlogic/meson-secure-pwrc.c
+rename to drivers/genpd/amlogic/meson-secure-pwrc.c
+diff --git a/drivers/soc/amlogic/Makefile b/drivers/soc/amlogic/Makefile
+index 7b8c5d323f5c..c25f835e6a26 100644
+--- a/drivers/soc/amlogic/Makefile
++++ b/drivers/soc/amlogic/Makefile
+@@ -2,7 +2,4 @@
+ obj-$(CONFIG_MESON_CANVAS) += meson-canvas.o
+ obj-$(CONFIG_MESON_CLK_MEASURE) += meson-clk-measure.o
+ obj-$(CONFIG_MESON_GX_SOCINFO) += meson-gx-socinfo.o
+-obj-$(CONFIG_MESON_GX_PM_DOMAINS) += meson-gx-pwrc-vpu.o
+ obj-$(CONFIG_MESON_MX_SOCINFO) += meson-mx-socinfo.o
+-obj-$(CONFIG_MESON_EE_PM_DOMAINS) += meson-ee-pwrc.o
+-obj-$(CONFIG_MESON_SECURE_PM_DOMAINS) += meson-secure-pwrc.o
+-- 
+2.34.1
 
---MZrPSMfLUzZVYlnE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Tue, Jul 11, 2023 at 02:01:13PM +0300, Andy Shevchenko wrote:
-> On Mon, Jul 10, 2023 at 06:30:32PM +0100, Mark Brown wrote:
-> > On Mon, Jul 10, 2023 at 06:49:21PM +0300, Andy Shevchenko wrote:
-
-> > > + * Assume speed to be 100 kHz if it's not defined at the time of invocation.
-
-> > You didn't mention this bit in the changelog, and I'm not 100% convinced
-> > it was the best idea in the first place.  It's going to result in some
-> > very big timeouts if it goes off, and we really should be doing
-> > validation much earlier in the process.
-
-> Okay, let's drop this change.
-
-Like I say we *should* be fine with the refactoring without this, or at
-least if it's an issue we should improve the validation.
-
-> > > +	u32 speed_hz = xfer->speed_hz ?: 100000;
-
-> > Not only the ternery operator, but the version without the second
-> > argument for extra clarity!
-
-> Elvis can be interpreted as "A _or_ B (if A is false/0)".
-> Some pieces related to SPI use Elvis already IIRC.
-
-I understand what it means, I just don't find it's adding clarity most
-of the times it's used (there's a few places where it is useful like
-pasting in strings in formats).  There are some examples that I'd
-complain about in the code, most of them predating me working on SPI too
-much, but I'm not a fan.
-
---MZrPSMfLUzZVYlnE
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmStY90ACgkQJNaLcl1U
-h9DeQQf+MxpgOv6egcsQtreuAtaq7Ev7HPCaH6MbusHDNH2hElvH+GmEYjovkV6m
-h3LadU5OvktJBaXfjDQRjU71Cbf70/Nlo8I3WN5V4iRKzqWtfMV16ZStvy2+1Rx/
-jHek+Aib8L8SiwlzvD6WB163yHCsSn5KBv2Pqp95DjGWamTl918onxXzSS6g2j5A
-ib1Mz8aOXWBsiIdaFTQ3NoK7Uvnykzp1X2uGcfrRZuPWQNVvpJs/wt5iOuTpuEws
-6O2PEgJext+6CeKBCv8pCvpex2QsVtDKLnDVvmDX4Oa2impxsxSIjLyVbZfbJ480
-4XviYIQ2LNlTFidlbAAqqEafOQrvRg==
-=WM20
------END PGP SIGNATURE-----
-
---MZrPSMfLUzZVYlnE--
-
-
---===============1827326329844726661==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============1827326329844726661==--
-
