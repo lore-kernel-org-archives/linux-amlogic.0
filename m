@@ -4,99 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A54CEB64DC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 08:28:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D3E0EB64DC
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 10:58:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=joOZJpzIls+Tf1L3y16VWPMbNo3DaFSs62PWM2RhTvY=; b=ChhwbUFSQOIICt
-	TvaktW3OATgRHHyy1KoPeWPBEtM/cBP5VNMxlKPb3kbQxam7aoppKJAKRs26fqnOnWIy15WqlH522
-	UtQURSzUJlOYTKIBBA15G1FicIQoljHieOcFfawyuFGb1flK5wLPMhs9n6mFpgywm3UNGBeXy416g
-	c2iZSI9z4z+7w371t5D0mLDWo+4zRJT6hS7CcbjSV1/zhlbn9iz+NP5Mmpy8ObGltw1dNiM6FRZoc
-	VfrtXOVTsITKsGDg+gwmXujgvoqw9uDGvGejgz1sbC9DsSXcicmGq6lTkImSat0n9XjykbvHjVhZO
-	V2eayWyYBmEx2XBeHxnw==;
+	List-Owner; bh=me368RBS4iVf0V1UCVD1meLq+zmUYTXC4hRPUKe9nOY=; b=HEwoqXH4jFhlAn
+	ehhIC8hxm5xEt3h0gd9wFFXoLykfFHWI5U9eavu+JkMnWKqHSE4TcHckYaO/gA1uWKm8mFWYwUw31
+	wSNyv2KeyNSZJbuXpUYXagVNh7YkPFCOUZNDkAmbnv8Hzf6m5fFOkf694DGOSgf3JX3M9GuPnSEFV
+	uT+OmrPW8zabp9OpD5aQUAt9fsYvUtL7kLjN3v+PqXWdUxkMweJjb7HtTTO0jHLnfIwDBiVUl1KPQ
+	yL9AtZFvJVeWx4geeIvDtFrTFBSJLLc1YcnXJik389K6gXdPhhYApTGJBbn+OKDDiRRFo1GmvVXAa
+	fGkMWRao36rbgvFXPVNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJ8jQ-00E7Hb-0Z;
-	Tue, 11 Jul 2023 08:28:24 +0000
-Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
+	id 1qJB4k-00Ehed-1t;
+	Tue, 11 Jul 2023 10:58:34 +0000
+Received: from mga03.intel.com ([134.134.136.65])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJ8jM-00E7Gf-0m;
-	Tue, 11 Jul 2023 08:28:21 +0000
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 2532E660700A;
-	Tue, 11 Jul 2023 09:28:16 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1689064098;
-	bh=spdNLway67POM3vmFaXNGhDhQmXxhVIedWvVLp0PkEI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XSCTbFXk9e6Ms6w3dUD0gTaJbCLMJPnp6Us3KW28VZQ9hoaNYRdeO51FSibZH/fzR
-	 JKiOts4MP0vpXd7Sm62WRMiy18wm8cew197TIrGkrMstBRkn8EotGVMfdYCXfIPJSe
-	 daxKC2B2n9x1az4GZ5GnR8rcX8dTYTsyY730jAhseXuJoFP2RlZZLPbPOwRRmcg2DA
-	 AuU+HmpPB29i7vONs5CAXPnuO8/39XXDXiNgdv1iHqfSMOywBsFHXC35USEsn3iVGM
-	 sm/VWNEaupu1VVdE1Na6ph1PWVqdQwL0sL6NNEZHb+h9luZhHTnlJNLnVZ7IUaGKbA
-	 HdIZq6knmkqdQ==
-Message-ID: <83c4b75a-06d7-9fca-ffa0-f2e6a6ae7aed@collabora.com>
-Date: Tue, 11 Jul 2023 10:28:13 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 04/15] spi: Replace open coded
- spi_controller_xfer_timeout()
-Content-Language: en-US
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mark Brown <broonie@kernel.org>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Yang Yingliang <yangyingliang@huawei.com>,
- Amit Kumar Mahapatra via Alsa-devel <alsa-devel@alsa-project.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
- Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>,
- =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
- linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-trace-kernel@vger.kernel.org, netdev@vger.kernel.org
-Cc: Sanjay R Mehta <sanju.mehta@amd.com>,
- Radu Pirea <radu_nicolae.pirea@upb.ro>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@microchip.com>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Serge Semin <fancer.lancer@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Heiko Stuebner <heiko@sntech.de>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Alain Volmat
- <alain.volmat@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Max Filippov <jcmvbkbc@gmail.com>, Steven Rostedt <rostedt@goodmis.org>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Richard Cochran <richardcochran@gmail.com>
+	id 1qJB4h-00EhdM-1C;
+	Tue, 11 Jul 2023 10:58:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1689073111; x=1720609111;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=lIHyBeHEaNenp9Q/l2JAcaQuyI3ymSNUAckdiFell2M=;
+  b=FPvz+0fP8EpdjIn+3jtuJUg2KgBPPtwzw1ZPlL6XkXlh3HKZnhFldMNW
+   bWS+0srjAYGBbghWzOoFIoCA5Aaw72ydRUcYk+3naqwa15Iyk4R+HLPDg
+   3RjDb98/B0p2ZOHCFz1sFG5E6sD2d3e9Fw4XMYcpz07L+VRswfi4ACb6t
+   Q09C6LrcYVhpkOmQnDSBrp8riPVmBLAo3+bBIGzPFoRQHg3SH5wdzEr4A
+   nCI+/iiPho/ycLTzDLMTw62nrwroqhLfiWRgXMPcFvhHHJZ35axnTqjz4
+   386OOWks83exPsLXJ/IdbRVVEsEq/8XfEklMCleRANvLo5ZqZMjUH5Usa
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="368087266"
+X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; 
+   d="scan'208";a="368087266"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jul 2023 03:58:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="724404293"
+X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; 
+   d="scan'208";a="724404293"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga007.fm.intel.com with ESMTP; 11 Jul 2023 03:58:16 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1qJB4O-001p51-1q;
+	Tue, 11 Jul 2023 13:58:12 +0300
+Date: Tue, 11 Jul 2023 13:58:12 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Yang Yingliang <yangyingliang@huawei.com>,
+	Amit Kumar Mahapatra via Alsa-devel <alsa-devel@alsa-project.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
+	Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-trace-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	Sanjay R Mehta <sanju.mehta@amd.com>,
+	Radu Pirea <radu_nicolae.pirea@upb.ro>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@microchip.com>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Max Filippov <jcmvbkbc@gmail.com>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>
+Subject: Re: [PATCH v2 02/15] spi: Drop duplicate IDR allocation code in
+ spi_register_controller()
+Message-ID: <ZK01xAqLc8AGFDo/@smile.fi.intel.com>
 References: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
- <20230710154932.68377-5-andriy.shevchenko@linux.intel.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230710154932.68377-5-andriy.shevchenko@linux.intel.com>
+ <20230710154932.68377-3-andriy.shevchenko@linux.intel.com>
+ <97f3436a-78ca-4a94-a409-ef04bd3b593f@sirena.org.uk>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <97f3436a-78ca-4a94-a409-ef04bd3b593f@sirena.org.uk>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230711_012820_541887_62A2119D 
-X-CRM114-Status: GOOD (  31.16  )
+X-CRM114-CacheID: sfid-20230711_035831_503801_390C41E4 
+X-CRM114-Status: GOOD (  19.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,106 +128,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Il 10/07/23 17:49, Andy Shevchenko ha scritto:
-> Since the new spi_controller_xfer_timeout() helper appeared,
-> we may replace open coded variant in spi_transfer_wait().
+On Mon, Jul 10, 2023 at 06:09:00PM +0100, Mark Brown wrote:
+> On Mon, Jul 10, 2023 at 06:49:19PM +0300, Andy Shevchenko wrote:
 > 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
->   drivers/spi/spi.c       | 25 ++-----------------------
->   include/linux/spi/spi.h |  6 +++++-
->   2 files changed, 7 insertions(+), 24 deletions(-)
+> > Refactor spi_register_controller() to drop duplicate IDR allocation.
+> > Instead of if-else-if branching use two sequential if:s, which allows
+> > to re-use the logic of IDR allocation in all cases.
 > 
-> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-> index 125dea8fae00..c99ee4164f11 100644
-> --- a/drivers/spi/spi.c
-> +++ b/drivers/spi/spi.c
-> @@ -1342,8 +1342,7 @@ static int spi_transfer_wait(struct spi_controller *ctlr,
->   {
->   	struct spi_statistics __percpu *statm = ctlr->pcpu_statistics;
->   	struct spi_statistics __percpu *stats = msg->spi->pcpu_statistics;
-> -	u32 speed_hz = xfer->speed_hz;
-> -	unsigned long long ms;
-> +	unsigned long ms;
->   
->   	if (spi_controller_is_slave(ctlr)) {
->   		if (wait_for_completion_interruptible(&ctlr->xfer_completion)) {
-> @@ -1351,29 +1350,9 @@ static int spi_transfer_wait(struct spi_controller *ctlr,
->   			return -EINTR;
->   		}
->   	} else {
-> -		if (!speed_hz)
-> -			speed_hz = 100000;
-> -
-> -		/*
-> -		 * For each byte we wait for 8 cycles of the SPI clock.
-> -		 * Since speed is defined in Hz and we want milliseconds,
-> -		 * use respective multiplier, but before the division,
-> -		 * otherwise we may get 0 for short transfers.
-> -		 */
-> -		ms = 8LL * MSEC_PER_SEC * xfer->len;
-> -		do_div(ms, speed_hz);
-> -
-> -		/*
-> -		 * Increase it twice and add 200 ms tolerance, use
-> -		 * predefined maximum in case of overflow.
-> -		 */
-> -		ms += ms + 200;
-> -		if (ms > UINT_MAX)
-> -			ms = UINT_MAX;
-> -
-> +		ms = spi_controller_xfer_timeout(ctlr, xfer);
+> For legibility this should have been split into a separate factoring out
+> of the shared code and rewriting of the logic, that'd make it trivial to
+> review.
 
-I agree on using helpers, but the logic is slightly changing here: yes it is
-unlikely (and also probably useless) to get ms == UINT_MAX, but the helper is
-limiting the maximum timeout value to 500mS, which may not work for some slow
-controllers/devices.
+Should I do that for v3?
 
-This should get validated on more than a few platforms, and I'm not sure that
-this kind of validation would be "fast" to get... so, probably the best thing
-to do here is to add a warning in case the timeout exceeds 500mS, print the
-actual value, keep it like this for a kernel version or two and check reports:
-that would allow to understand what a safe maximum timeout value could be.
+> > -		mutex_lock(&board_lock);
+> > -		id = idr_alloc(&spi_master_idr, ctlr, first_dynamic,
+> > -			       0, GFP_KERNEL);
+> > -		mutex_unlock(&board_lock);
+> > -		if (WARN(id < 0, "couldn't get idr"))
+> > -			return id;
+> > -		ctlr->bus_num = id;
+> > +		status = spi_controller_id_alloc(ctlr, first_dynamic, 0);
+> > +		if (status)
+> > +			return status;
+> 
+> The original does not do the remapping of return codes that the previous
+> two copies do...
 
-Aside from that, I wouldn't drop those nice comments explaining how/why the
-timeout is calculated: I know how, but not everyone knows in advance.
+Yes, I had to mention this in the commit message that in my opinion this makes
+no difference. With the dynamically allocated aliases the absence of the slot
+has the same effect as in the other cases.
 
-Regards,
-Angelo
+-- 
+With Best Regards,
+Andy Shevchenko
 
->   		ms = wait_for_completion_timeout(&ctlr->xfer_completion,
->   						 msecs_to_jiffies(ms));
-> -
->   		if (ms == 0) {
->   			SPI_STATISTICS_INCREMENT_FIELD(statm, timedout);
->   			SPI_STATISTICS_INCREMENT_FIELD(stats, timedout);
-> diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
-> index 32c94eae8926..0ce1cb18a076 100644
-> --- a/include/linux/spi/spi.h
-> +++ b/include/linux/spi/spi.h
-> @@ -1270,12 +1270,16 @@ static inline bool spi_is_bpw_supported(struct spi_device *spi, u32 bpw)
->    * that it would take on a single data line and take twice this amount of time
->    * with a minimum of 500ms to avoid false positives on loaded systems.
->    *
-> + * Assume speed to be 100 kHz if it's not defined at the time of invocation.
-> + *
->    * Returns: Transfer timeout value in milliseconds.
->    */
->   static inline unsigned int spi_controller_xfer_timeout(struct spi_controller *ctlr,
->   						       struct spi_transfer *xfer)
->   {
-> -	return max(xfer->len * 8 * 2 / (xfer->speed_hz / 1000), 500U);
-> +	u32 speed_hz = xfer->speed_hz ?: 100000;
-> +
-> +	return max(xfer->len * 8 * 2 / (speed_hz / 1000), 500U);
->   }
->   
->   /*---------------------------------------------------------------------------*/
 
 
 _______________________________________________
