@@ -4,102 +4,125 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A43CFEB64DC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 12:30:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDD21C0015E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 12:46:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YqrJOSXD6wZBRvM9WLtRzUBR7BVV4SVs5Epl0I34uIk=; b=RGfdMF6ivsgqbR
-	G4aNEqtNbHwsFBvS5/zHOmv3llxCoofSPzd27G7HPFU7FizDHevVx2bdDAYr1/+yr+ITmZ4dsDpwK
-	03n1dqW/icOv00T3rUJIzXhba26xBISXNOJZX516vsX1qvLa/Ym29EWwd5nHXR65lAbrjqhLiu8L2
-	RXh2NUITU/2vV19lRSUKZ6R5uJwMrrTQtfsk1JgCC35k6zLDVXRMhXug/JGtm1QRrMpTN6AgOL1kv
-	ekxtlM2T2anEBGCFI53nGRJTpy85nTpgJRyVXPb3zUamLvZw/lLJwBNDwebgMNxTZkynPvRb7r2iZ
-	juz6RHvKhF3km0ygbTyg==;
+	List-Owner; bh=2S6qGg7wO7BsUsZzxyhJAslr3V+bdCUpx/1B7yB3vkY=; b=CjQbLzVuCS02ps
+	m2sI88Yu7/p+3MS+YM9KaKvR2UgFH6oKxtUYFcLcSc1ujUsFdpW8tFz8WdUa8bNsS+a5ab1bdwh2d
+	obH53IzyBFdmrgssllHBHesGbqDUEvRCJWqwBvN5zSgbL18lDGi5nhqRnRahVSS4tU8GmTtvQlQfk
+	SFWWhfvvMEomsoSmqTQASVhNtO3YG9pG3T3h2+36NQbVmBTVPYFy/qoBg4U8f034NdHJEQdLlW8as
+	eajALYPuZ4hEdTzcBtPbsh3c5PabynICd3XzGr/G097Aoy0UlUcLyn5aX7qRvjZpnh33/XkOXp5DP
+	udCsoFFkMS7HjO0syaBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJCVq-00EsZQ-1U;
-	Tue, 11 Jul 2023 12:30:38 +0000
-Received: from mail-lj1-x22c.google.com ([2a00:1450:4864:20::22c])
+	id 1qJCkR-00Eu0e-2V;
+	Tue, 11 Jul 2023 12:45:43 +0000
+Received: from mail-tyzapc01on20702.outbound.protection.outlook.com ([2a01:111:f403:704b::702] helo=APC01-TYZ-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJCVi-00EsXN-0X;
-	Tue, 11 Jul 2023 12:30:31 +0000
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b703cbfaf5so89531181fa.1;
-        Tue, 11 Jul 2023 05:30:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689078626; x=1691670626;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PF44NEqyxP0uEPvVdBdUhZoOyhnmXaRRtdBTolupizs=;
-        b=SBnTfmlUAjKWCRn3fyds5WJnq/rFhCyNY0inIr58sbmQdnr0ekqm/rRHOpDPaGy/KO
-         B5+bnED3EocI70B/1Liqfviz84UQamIYXCfhBLJdAwpngn8GsImdPLHw3RB6cx2k3qLl
-         nSGU6gtvVw3/VsXZCkMPykBjpKDuKmimIVto3O71KEXoVSR8sXs9wWBC1yWjR9VJRV7y
-         Wiz8QKW407Y9wEjIJVzHwlxfi2RJhdAg86N/DwGw/jxMsF0gA+NEhyREeEq19FirWzm/
-         TqVILtBOKMHlbGVQP5ypx9ZxmExDySMPGPYIR/gAUwwQJjSdRAbKTqb1KbxEGl8qDyoh
-         Eb8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689078626; x=1691670626;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PF44NEqyxP0uEPvVdBdUhZoOyhnmXaRRtdBTolupizs=;
-        b=gfigeq7VBTv6yPt5Vorw543CrkFV0HNrsfI/2OJRlZFJA6ooWcVB5gcFMPwVmHm5Us
-         hF8oEwcBZLwEarXQdqVm9y5MMcm4BzTa8uOsPJgSXneAWXneka1gxdghl+Uxm1Ff2MdZ
-         gLxzUxIxNmQxg6b4Dom6D0iiZN4gUQt/JTWm76AO3zYCPABo2mVS5hyU2Ji9yrZcBWb+
-         J8n18p2wKGLzE2by87AboJVsZrrmJ5UDhtiwPsBIawaKu0Gjb/5NmecFCnrlp78gLzmI
-         AqexflZnXsHXNeO9Sxh81y8Ocp1NpoAsc1D42TUMinXF4lXaj+B06lRBuz0F4KVP928U
-         bcdg==
-X-Gm-Message-State: ABy/qLa0GYcxx8B34Q2/ld7YR+dISjiN1eFHOdkHGo4RWILLUD7jon28
-	ph0oywd12S6MB82Svjm36Lo=
-X-Google-Smtp-Source: APBJJlEGAsotaRV20l259BaTNO1He84gEShKxa1gOSyhZTOSrSYKw2njibp5AmXp10CkNfmdPINRWg==
-X-Received: by 2002:a2e:8eca:0:b0:2b6:dc50:19ac with SMTP id e10-20020a2e8eca000000b002b6dc5019acmr13901724ljl.31.1689078625694;
-        Tue, 11 Jul 2023 05:30:25 -0700 (PDT)
-Received: from mobilestation ([85.249.18.12])
-        by smtp.gmail.com with ESMTPSA id j17-20020a2e6e11000000b002b6ee75648fsm441355ljc.12.2023.07.11.05.30.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jul 2023 05:30:24 -0700 (PDT)
-Date: Tue, 11 Jul 2023 15:30:19 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Mark Brown <broonie@kernel.org>, 
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Yang Yingliang <yangyingliang@huawei.com>, 
-	Amit Kumar Mahapatra via Alsa-devel <alsa-devel@alsa-project.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>, Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-trace-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	Sanjay R Mehta <sanju.mehta@amd.com>, Radu Pirea <radu_nicolae.pirea@upb.ro>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Claudiu Beznea <claudiu.beznea@microchip.com>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	NXP Linux Team <linux-imx@nxp.com>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Orson Zhai <orsonzhai@gmail.com>, 
-	Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
-	Alain Volmat <alain.volmat@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Max Filippov <jcmvbkbc@gmail.com>, 
-	Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu <mhiramat@kernel.org>, 
-	Richard Cochran <richardcochran@gmail.com>
-Subject: Re: [PATCH v2 13/15] spi: Rename SPI_MASTER_GPIO_SS to
- SPI_CONTROLLER_GPIO_SS
-Message-ID: <tvm772o6uqndgyjvycv27qouqq76crpre5tyqcnanaautqjjwn@pydiwhjzhbgd>
-References: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
- <20230710154932.68377-14-andriy.shevchenko@linux.intel.com>
+	id 1qJCkP-00Etzc-20
+	for linux-amlogic@lists.infradead.org;
+	Tue, 11 Jul 2023 12:45:42 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WR7yal/H/tyik2c7L1SlB7SPFPUw1AeZNO5NR9OoUnuRj5cArK9TozQ8OzfUV/sryeaWmhbcdLlsklh562a2ycw4mfPfy2JPJ4JydEepNrXryHNOi6C4wSkjCMrBLkT9vYKVac7dmKiBlaEXplC9SQdCupyxOwYjn8NR/HRy4hAa7kediygb4nqWgxNLhrCEB4Xi/zCn/HkQweBRk/c0wr8JS1pVblCSUHXGGm77i7OQm5tbvDKZumg0Cy/FAtrxDG9PtEFYJAgVTR57XyEguyTuWi+B4A377a7JwUByiJyyTj4zMGl0pu+BCADtOUGMMcaLTZxyRsv+1ym4diTmZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rG+zOn3YiN4uVlCNl8VaAKlaD/ghnlwmfM+LLbXpkzc=;
+ b=EP7Osvv7hBr6Wsd5ubB+Le+nPa1BUBbP7XRT1OsLRnfimqApsAp9/f5EDnYpAMtZPLDb5VJCxSQwrhEi2ACZz7Gh2IHUwMq93TZAF7lrj4oNjhPyZ8hkKVzE0uLePwf9d/yYSbZyqZZfTjoBJKsb5W8zZtlvvT2I0O2d+0NByOssyQSdO+uANqGMTKX4q03QQEO4alq5fPzGuIbEDkzVvcOclH4X0hDWRhBSmZy+/cclkJbTboEvlwiWR9RWkDYQciarb3WbkIa3XI9uGdKifETncWH3dnW8kBHQGSRNy5EqDv899RQu5DVN10r1byAXUInQV89xFWoSz/jWnYEARQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
+ dkim=pass header.d=vivo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rG+zOn3YiN4uVlCNl8VaAKlaD/ghnlwmfM+LLbXpkzc=;
+ b=WJBdUqvJe4/WiTeGZ28iI+++sQy+WqWOmpmATyToKyLUFVkYR0hRM0EkKSwi/s0kCbYOZasKJaNFZjYr4WTX0Y+23VAtKXERf6NN6m5+KmCkCKv8FIADo42B3GVuTE6H4liEItCFhEuf+lUJ3hgd6/TTrOESzdihkmnyOoY83D8hJZlUiE+SPYrjcvClnPtS5Bg3McnQ1/BySg1zNXJpnuihXqP56mTGO/s9jNDrVPFgc72GPysWjkbaTcGsN21SxFsykYdHL4RNObvDYb7OwYECuC0NcxYQN2+hZ6suCSy/u75Q119CdqU+APyKZQEwmyBi+PTmjC0QEMXfAeM5Xg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=vivo.com;
+Received: from SEZPR06MB5269.apcprd06.prod.outlook.com (2603:1096:101:78::6)
+ by SI2PR06MB4314.apcprd06.prod.outlook.com (2603:1096:4:158::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.30; Tue, 11 Jul
+ 2023 12:45:27 +0000
+Received: from SEZPR06MB5269.apcprd06.prod.outlook.com
+ ([fe80::fa0e:6c06:7474:285c]) by SEZPR06MB5269.apcprd06.prod.outlook.com
+ ([fe80::fa0e:6c06:7474:285c%5]) with mapi id 15.20.6565.028; Tue, 11 Jul 2023
+ 12:45:27 +0000
+From: Yangtao Li <frank.li@vivo.com>
+To: Guillaume La Roque <glaroque@baylibre.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Amit Kucheria <amitk@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>
+Cc: Yangtao Li <frank.li@vivo.com>,
+	linux-pm@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 2/2] thermal/drivers/amlogic: Remove redundant msg in amlogic_thermal_probe()
+Date: Tue, 11 Jul 2023 20:45:12 +0800
+Message-Id: <20230711124513.47771-2-frank.li@vivo.com>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230711124513.47771-1-frank.li@vivo.com>
+References: <20230711124513.47771-1-frank.li@vivo.com>
+X-ClientProxiedBy: SI2PR01CA0042.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::23) To SEZPR06MB5269.apcprd06.prod.outlook.com
+ (2603:1096:101:78::6)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230710154932.68377-14-andriy.shevchenko@linux.intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEZPR06MB5269:EE_|SI2PR06MB4314:EE_
+X-MS-Office365-Filtering-Correlation-Id: faa72e04-c658-43c7-23d8-08db820cb406
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vzZqJ31kacHZad/t7ssrc6ooeIWHJ2LZ7Vl/y064VwDLJ50Xb0vKtxUkAZBaGsfJZFyI9oYo0ZuHX0Tp8al2MVCOKzqUoWKYdQEkKPE2QkCs2IdTd1Zjjpd6q8GdtkHUpbEqQLHemgfkbSrfBnmS738xwKOzmlRXT96/7A+FWm/9PjknXQP56tQCAMkhrIEzWKoXDtQdmmum56GoCI+7dc5J3RAtG521ohAEY53QCw3ddiS0vXcFaHCun38JwYmyCa7Ng9liL1pogDCZxAybQKD5kXV55wzC+YvcDWWz3TGbcjWcLT3P8h3oi2IZff8weTVvFrui5XuzFttxQJUPgqVqearlwsQmEqck2/a95qL0wI/adTCrtXqhDvo/Ns3ctAKZXIvwRCUoBwPKh6sNcQIkPRZdL6i2yEQlQm3HTrtRKTe+wKNqPH2GKy+CO+fyUe0uE0izyze6mZXCnInxK0st9c6cvbUaOi/Mz7ku1pWaH6Kr5DPPG4glKQu7r6fmuhYbVqVh31H7E0WNyULLFLzyjbtTOytzVP+2l1/y2eAHwdOX9oobgkjI40P/gTfar/Ge0PdBnlEzsVN4F9mkBL7k1kNMG7Mio3i/ITraz19g2f4S4CCgM29xSEK2WqmP
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEZPR06MB5269.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(346002)(396003)(39860400002)(376002)(136003)(451199021)(38350700002)(86362001)(38100700002)(36756003)(6666004)(6486002)(52116002)(110136005)(6506007)(26005)(186003)(6512007)(1076003)(2616005)(5660300002)(66556008)(2906002)(316002)(66946007)(8936002)(66476007)(8676002)(83380400001)(4326008)(478600001)(4744005)(41300700001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vCZtVDOIwMivv9ZzJ5N8EsE8gWmBvLrps8yimg96MJqeVr1yTQwME/4/pw1r?=
+ =?us-ascii?Q?Uhysqtp3ddCCCyIrprzSG7DpO8pySlcpvpLIOci2UICP8c5N8gv3TvJeiNa4?=
+ =?us-ascii?Q?/C4Ur2fjmxT9nuAKmuj5WRJWIfEjTWnUPvCTnu+tw1gg3UeB85b78ynsMFfG?=
+ =?us-ascii?Q?CV6qG6SsbWgV7Mdtn6INoD0rLC32Hlhf4UijcHgc613N3Cpuaw7SjXE3A0Jt?=
+ =?us-ascii?Q?3e9NtNIUbOhsIKzSFnBhLwjkIwSm919Zjhj5FAx7OxUqUD5Q0roypAqIsI5b?=
+ =?us-ascii?Q?Pv1MoALzgc0jLsQuO5z1Od5PagriW/fzGlD7GUMFhuY2bCMV7X55SWN9+QC9?=
+ =?us-ascii?Q?7kkn9h/aJzSIYEZwZfxwCyYYBj7os440ODlyiuzMXL5lIh3Dbzj4TMS+e+pg?=
+ =?us-ascii?Q?bXhnW1uUlFg20kUxfpcCyf3TJ2AmwyTL9rE2egJoisznAk5myo+7d8+Nxy4d?=
+ =?us-ascii?Q?yP4/X+WmuAvbPEL6wtLl/UEYJUeFFhmM7VozSdNG1LVRDOzE5mnPNqkf5Rov?=
+ =?us-ascii?Q?M8KM86oTT4OgdnQKvA0dSlF6JqnU0zPY5GSyQS9k0X3Bf+s136umV+dR2xHd?=
+ =?us-ascii?Q?AwAUvna901um9/AetdBAlpgUj0E1cSRcCKmGTcbt45W41/lvAfKe0/45rzqY?=
+ =?us-ascii?Q?oVDdbQgzBTS3BYpBBnGbSpXIwUzZzu+piJcjzgK7kNzPiKgQ5RRUWe17jzE2?=
+ =?us-ascii?Q?PkiX2vC3kittuiu4oSRxkPYT0QeNeX5WqBSHmiLoyZW4Ch39KasE+kYsIYCI?=
+ =?us-ascii?Q?h5SCvCD1tiBkPI5E7K4WoszjwO02RMBmBMJplXM3ganUgRqA/MuEyS44cqyD?=
+ =?us-ascii?Q?BtY9bXFjyDY4cxoAxyTpHRQx3rdOPW0g8LoQUZtGMbc/gEkXwh7wvoPLtPhw?=
+ =?us-ascii?Q?gnU1Ezv+BnDIs8ao5Usm+E2y3GlMHBPBa3kIEG8F3N75S2dF3LkaHs8DpA7Y?=
+ =?us-ascii?Q?ROu9bNpVb4InH/Esm9ux5MNGOuq9gJ6zG1nvdNCNx3f7uYplJeFNJZ4ebpvx?=
+ =?us-ascii?Q?FWWHVuhOJS96J3SYa/oPd1+e14HXeSja+wY7mYRU4Pn3h7VQ1n/OK/1IPvOD?=
+ =?us-ascii?Q?eYc512osLDsgbGpIp8W0GyBBpqHf4cE4Hj+owOqZUgepcgYdSixBQTPvac0N?=
+ =?us-ascii?Q?C6ly1etwbGl0Bb8gnIY0l3zk1ZU7tske0qR9zKgBKZGsjyQzvFKbOwgLBBS1?=
+ =?us-ascii?Q?gki/0u6gVIZpXk5/utg1SR/8TMhli+T+NKXLI3j8ol/pchXzPCdxdwH+y2cq?=
+ =?us-ascii?Q?7r66XmMTEn3lFG39+5ZSSQ0hbzC4q1zS/JVZE2syloP1f52ivQOmp5ZAbAap?=
+ =?us-ascii?Q?tRdT++TrymGIOKVjlTJTv2/ugTB97kXJGauDMLGHDkUZa3kb169Sk7I2j/m2?=
+ =?us-ascii?Q?kvD74C7gMjTNPF5Fr2VdcZgyZGwwx3VlRGMKm1b0JBZGH07jC30VeytCYhBW?=
+ =?us-ascii?Q?Oh/sm2/PHeX1N0iaSD2xZaHHSuneeXVZ+w0kcbupTZbWjRxCWaO6vjIWXERr?=
+ =?us-ascii?Q?b8ftIC0BxMTq7CAoOaICPzaMYgXzQcgdrfWW8y2DZKNkc78yarZsZNIWy29S?=
+ =?us-ascii?Q?zpSflKef6tCiqKVf02qVEl4QOlx7ntER4UZ5rFuZ?=
+X-OriginatorOrg: vivo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: faa72e04-c658-43c7-23d8-08db820cb406
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB5269.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2023 12:45:27.6736
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zCU2jiP4SYWdQWEiPDjXwBWVMQWIGGC4jYIyMvLxqbhjE/2+GLM67MeSRKZC2P1zMtPMvbHxZ4NNbGqNApaRvA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR06MB4314
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230711_053030_204343_F222A691 
-X-CRM114-Status: GOOD (  20.58  )
+X-CRM114-CacheID: sfid-20230711_054541_664253_94F61F54 
+X-CRM114-Status: UNSURE (   9.26  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,87 +139,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jul 10, 2023 at 06:49:30PM +0300, Andy Shevchenko wrote:
-> Rename SPI_MASTER_GPIO_SS to SPI_CONTROLLER_GPIO_SS and
-> convert the users to SPI_CONTROLLER_GPIO_SS to follow
+The upper-layer devm_thermal_of_zone_register() function can directly
+print error information.
 
-* I'm not an expert in English, but imo the next would look a
-* bit more readable:
-* convert s/the users to SPI_CONTROLLER_GPIO_SS/the code to using SPI_CONTROLLER_GPIO_SS
+Signed-off-by: Yangtao Li <frank.li@vivo.com>
+---
+ drivers/thermal/amlogic_thermal.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
 
-> the new naming shema.
+diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
+index 756b218880a7..134f5a8d1019 100644
+--- a/drivers/thermal/amlogic_thermal.c
++++ b/drivers/thermal/amlogic_thermal.c
+@@ -276,11 +276,8 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
+ 						   0,
+ 						   pdata,
+ 						   &amlogic_thermal_ops);
+-	if (IS_ERR(pdata->tzd)) {
+-		ret = PTR_ERR(pdata->tzd);
+-		dev_err(dev, "Failed to register tsensor: %d\n", ret);
+-		return ret;
+-	}
++	if (IS_ERR(pdata->tzd))
++		return PTR_ERR(pdata->tzd);
+ 
+ 	devm_thermal_add_hwmon_sysfs(&pdev->dev, pdata->tzd);
+ 
+-- 
+2.39.0
 
-s/shema/schema
-
-> 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
-[...]
-
->  drivers/spi/spi-dw-core.c  | 2 +-
-
-[...]
-
-> diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
-> index a8ba41ad4541..45f5acc26b1d 100644
-> --- a/drivers/spi/spi-dw-core.c
-> +++ b/drivers/spi/spi-dw-core.c
-> @@ -932,7 +932,7 @@ int dw_spi_add_host(struct device *dev, struct dw_spi *dws)
->  	if (dws->mem_ops.exec_op)
->  		master->mem_ops = &dws->mem_ops;
->  	master->max_speed_hz = dws->max_freq;
-> -	master->flags = SPI_MASTER_GPIO_SS;
-> +	master->flags = SPI_CONTROLLER_GPIO_SS;
->  	master->auto_runtime_pm = true;
->  
->  	/* Get default rx sample delay */
-
-For the DW APB/AHB SSI driver:
-Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-
--Serge(y)
-
-[...]
-
-> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-> index 06a92a3a5746..bcabae98cb7c 100644
-> --- a/drivers/spi/spi.c
-> +++ b/drivers/spi/spi.c
-> @@ -995,7 +995,7 @@ static void spi_set_cs(struct spi_device *spi, bool enable, bool force)
->  				gpiod_set_value_cansleep(spi_get_csgpiod(spi, 0), activate);
->  		}
->  		/* Some SPI masters need both GPIO CS & slave_select */
-> -		if ((spi->controller->flags & SPI_MASTER_GPIO_SS) &&
-> +		if ((spi->controller->flags & SPI_CONTROLLER_GPIO_SS) &&
->  		    spi->controller->set_cs)
->  			spi->controller->set_cs(spi, !enable);
->  	} else if (spi->controller->set_cs) {
-> @@ -3020,7 +3020,7 @@ static int spi_get_gpio_descs(struct spi_controller *ctlr)
->  
->  	ctlr->unused_native_cs = ffs(~native_cs_mask) - 1;
->  
-> -	if ((ctlr->flags & SPI_MASTER_GPIO_SS) && num_cs_gpios &&
-> +	if ((ctlr->flags & SPI_CONTROLLER_GPIO_SS) && num_cs_gpios &&
->  	    ctlr->max_native_cs && ctlr->unused_native_cs >= ctlr->max_native_cs) {
->  		dev_err(dev, "No unused native chip select available\n");
->  		return -EINVAL;
-> diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
-> index cdc3addfe117..43f6c3f71a76 100644
-> --- a/include/linux/spi/spi.h
-> +++ b/include/linux/spi/spi.h
-> @@ -578,8 +578,7 @@ struct spi_controller {
->  #define SPI_CONTROLLER_NO_TX		BIT(2)	/* Can't do buffer write */
->  #define SPI_CONTROLLER_MUST_RX		BIT(3)	/* Requires rx */
->  #define SPI_CONTROLLER_MUST_TX		BIT(4)	/* Requires tx */
-> -
-> -#define SPI_MASTER_GPIO_SS		BIT(5)	/* GPIO CS must select slave */
-> +#define SPI_CONTROLLER_GPIO_SS		BIT(5)	/* GPIO CS must select slave */
->  
->  	/* Flag indicating if the allocation of this struct is devres-managed */
->  	bool			devm_allocated;
-> -- 
-> 2.40.0.1.gaa8946217a0b
-> 
 
 _______________________________________________
 linux-amlogic mailing list
