@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2380FC001DC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 17:19:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D39BDC001E0
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 17:20:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=d5dmWSk6cUzQwZY1W0aRb0rK1qLPyrLIT9bvcfw0B/g=; b=41pONBuzXTG/4b
-	voPbvJDuSiM0y/zYMCvk5m9VV03RdqL3HpE8tZ0kO20oFCvh9/rp24IsG6kDE5aAv4UKjej7lZMXM
-	nYp5fgcU1wcjH5uzZHjdI23J8gFarktqykLlqdSP6WGij6zTq1ynrKApJ8hjb0KIXRFmZal+7xsqA
-	zEDcHRVuRiiJghJoOkAfw+tSUWszIocCLbCWMvl7esKNSDiQVAT+9EyZBlL05tLM97sSpOVRSCZ6C
-	Vl7g0JpBYjPIzjKGSPP16QD/zV4DyzeGglX3PxL66HfoDuprH+SGgGbLI7RxWoa+4kcbIQ6bqwLd8
-	wD7+erokg7KnPQfO1pnA==;
+	List-Owner; bh=kOSDBDkvYXrn8geFQ6RuG0E1McK5KbN4YIqd8P8HtEo=; b=Zf075uNSXFG9Ga
+	LfBAR/f1Xdc+jX516QS+99BvgV5BLud2prGCXrmg+4AoPQOlUn5Oi3A1+u4+Q5ilPpENMfs0kAzYQ
+	ZzA5qR/6ZrrbP0nZogijn6+wwAsET6W7Z+MubGiQa2YBy/rXkzOQ1HKMziv1ktMmyHMo+x1TFACMo
+	ne2ss3lh6IsqpqFcQBjOkPsecD6YBUhnI4FgqwPsLvYiPeeEW4RCfSYVw9E1pCDc5ARD+lXI29xAg
+	wAE01hkGodi2I0xm9VJZPXeS2Axkg3ayEr2YRbAV+9JrNJYAHp4xMsU1WaLE/vHqrjsMOgFE9p88V
+	2u9aMj0UT5IUjHzHvRVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJH1U-00FVXP-0d;
-	Tue, 11 Jul 2023 17:19:36 +0000
+	id 1qJH1Z-00FVcH-0c;
+	Tue, 11 Jul 2023 17:19:41 +0000
 Received: from mga11.intel.com ([192.55.52.93])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJH1I-00FVM4-0N;
-	Tue, 11 Jul 2023 17:19:26 +0000
+	id 1qJH1K-00FVM4-1t;
+	Tue, 11 Jul 2023 17:19:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1689095964; x=1720631964;
+  t=1689095966; x=1720631966;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=OBpaMXqlKhCkVOJrLtrCAoKDX6xSv6wtt6ulz1eFwn0=;
-  b=ACtm5VBKxu5HoK4HU+Snp4mxNg9cNYLppMH8fmVe5Y5qIS4XSAwQiXrx
-   gdNqkuElYXsLBOD6P0DX4prT0vYTJWEoShw4ckF19eZsN3OGQ6U+78oYx
-   rHhhP4cM7ccuNsmLWCm0IKzo12k0Vn+bZSanl8ShlykcXiPjD92Td8ZUx
-   GRByoyECjT2/YbCkxj4DNKDDGDWpvZ7mQSLlpiRqChSR3HmycdCoC3xEw
-   F68+S0jiJF8k4IhE2ntWvJb67SZ8BtdKh9yJzT9fuyvCht4MVKA8I9Ity
-   FmKFCDce3hJNxqGUtI3dqRjsSYuIEo4emYnMjJSf2fQEKWzEheWmyT3tP
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="362148832"
+  bh=i6xTQM/M83VGl5L40MPme6/MD9lIrLsXxW1pfo9MYv4=;
+  b=e98vUJaVQbTbBVtNW0bqme2FFpaS2Fb8bVu4DkK8qVcVEuR+5Dph51zE
+   1dEMLyvrR+ZcnkYqbmozL90YVeeK3vAtjVwyRQ0D/BUnpWhzWEhG3jFjk
+   cY1Rb5A7aBo1yD7ugtxEakqHWIX1lmI6d/Y1fRPF2U7aQk7ax920nvwXd
+   YIKft6W48RV3k+qaIElbysMeWPiJ3frVKa+2SgF/0dmjE4uzeWQ9Sp/Cj
+   iwhzsltuBzj4pF2MX5ABFkx0QVPKOJpGbmFU9qppEmJxA/VWDCwrFHxJG
+   noCg607v159B/Y581ELZnObLwMDHI7Jix+KaAsn4weVMd2Jhq837AWsPs
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="362148886"
 X-IronPort-AV: E=Sophos;i="6.01,197,1684825200"; 
-   d="scan'208";a="362148832"
+   d="scan'208";a="362148886"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jul 2023 10:19:19 -0700
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jul 2023 10:19:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="715240817"
+X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="715240862"
 X-IronPort-AV: E=Sophos;i="6.01,197,1684825200"; 
-   d="scan'208";a="715240817"
+   d="scan'208";a="715240862"
 Received: from black.fi.intel.com ([10.237.72.28])
-  by orsmga007.jf.intel.com with ESMTP; 11 Jul 2023 10:17:53 -0700
+  by orsmga007.jf.intel.com with ESMTP; 11 Jul 2023 10:17:58 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
-	id 22CCB385; Tue, 11 Jul 2023 20:17:59 +0300 (EEST)
+	id 5C3475FC; Tue, 11 Jul 2023 20:17:59 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Mark Brown <broonie@kernel.org>,
 	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
@@ -107,16 +107,16 @@ Cc: Sanjay R Mehta <sanju.mehta@amd.com>,
 	Masami Hiramatsu <mhiramat@kernel.org>,
 	Richard Cochran <richardcochran@gmail.com>,
 	Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: [PATCH v3 02/14] spi: Deduplicate IDR allocation code in spi_register_controller()
-Date: Tue, 11 Jul 2023 20:17:44 +0300
-Message-Id: <20230711171756.86736-3-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v3 05/14] spi: Kill spi_add_device_locked()
+Date: Tue, 11 Jul 2023 20:17:47 +0300
+Message-Id: <20230711171756.86736-6-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.40.0.1.gaa8946217a0b
 In-Reply-To: <20230711171756.86736-1-andriy.shevchenko@linux.intel.com>
 References: <20230711171756.86736-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230711_101924_208002_03BAF182 
-X-CRM114-Status: GOOD (  17.02  )
+X-CRM114-CacheID: sfid-20230711_101926_696552_BF7186E2 
+X-CRM114-Status: GOOD (  15.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -133,92 +133,60 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Refactor spi_register_controller() to deduplicate IDR allocation
-by introducing a new spi_controller_id_alloc() helper and using it.
-
-For the dynamic ID allocation for the highest OF aliases, this will
-shadow the ENOSPC error code as it's done for the other two cases.
-It shouldn't be a problem as the result will be the same, we may
-not get device ID allocated and flow will fail.
+Now, spi_add_device_locked() has just a line on top of __spi_add_device().
+Besides that, it has a single caller. So, just kill it and embed its parts
+into the caller.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/spi/spi.c | 44 +++++++++++++++++++++++---------------------
- 1 file changed, 23 insertions(+), 21 deletions(-)
+ drivers/spi/spi.c | 15 +++++----------
+ 1 file changed, 5 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-index 8f3282a71c63..d8064998aa27 100644
+index 876d40d2c708..57b5e4488416 100644
 --- a/drivers/spi/spi.c
 +++ b/drivers/spi/spi.c
-@@ -3081,6 +3081,20 @@ static int spi_controller_check_ops(struct spi_controller *ctlr)
- 	return 0;
+@@ -708,14 +708,6 @@ int spi_add_device(struct spi_device *spi)
  }
+ EXPORT_SYMBOL_GPL(spi_add_device);
  
-+/* Allocate dynamic bus number using Linux idr */
-+static int spi_controller_id_alloc(struct spi_controller *ctlr, int start, int end)
-+{
-+	int id;
-+
-+	mutex_lock(&board_lock);
-+	id = idr_alloc(&spi_master_idr, ctlr, start, end, GFP_KERNEL);
-+	mutex_unlock(&board_lock);
-+	if (WARN(id < 0, "couldn't get idr"))
-+		return id == -ENOSPC ? -EBUSY : id;
-+	ctlr->bus_num = id;
-+	return 0;
-+}
-+
+-static int spi_add_device_locked(struct spi_device *spi)
+-{
+-	struct spi_controller *ctlr = spi->controller;
+-
+-	WARN_ON(!mutex_is_locked(&ctlr->add_lock));
+-	return __spi_add_device(spi);
+-}
+-
  /**
-  * spi_register_controller - register SPI master or slave controller
-  * @ctlr: initialized master, originally from spi_alloc_master() or
-@@ -3124,24 +3138,16 @@ int spi_register_controller(struct spi_controller *ctlr)
+  * spi_new_device - instantiate one new SPI device
+  * @ctlr: Controller to which device is connected
+@@ -2417,11 +2409,12 @@ static void of_register_spi_devices(struct spi_controller *ctlr) { }
+ struct spi_device *spi_new_ancillary_device(struct spi_device *spi,
+ 					     u8 chip_select)
+ {
++	struct spi_controller *ctlr = spi->controller;
+ 	struct spi_device *ancillary;
+ 	int rc = 0;
  
- 	if (ctlr->bus_num >= 0) {
- 		/* Devices with a fixed bus num must check-in with the num */
--		mutex_lock(&board_lock);
--		id = idr_alloc(&spi_master_idr, ctlr, ctlr->bus_num,
--			ctlr->bus_num + 1, GFP_KERNEL);
--		mutex_unlock(&board_lock);
--		if (WARN(id < 0, "couldn't get idr"))
--			return id == -ENOSPC ? -EBUSY : id;
--		ctlr->bus_num = id;
-+		status = spi_controller_id_alloc(ctlr, ctlr->bus_num, ctlr->bus_num + 1);
-+		if (status)
-+			return status;
- 	} else {
- 		/* Allocate dynamic bus number using Linux idr */
- 		id = of_alias_get_id(ctlr->dev.of_node, "spi");
- 		if (id >= 0) {
--			ctlr->bus_num = id;
--			mutex_lock(&board_lock);
--			id = idr_alloc(&spi_master_idr, ctlr, ctlr->bus_num,
--				       ctlr->bus_num + 1, GFP_KERNEL);
--			mutex_unlock(&board_lock);
--			if (WARN(id < 0, "couldn't get idr"))
--				return id == -ENOSPC ? -EBUSY : id;
-+			status = spi_controller_id_alloc(ctlr, id, id + 1);
-+			if (status)
-+				return status;
- 		}
- 	}
- 	if (ctlr->bus_num < 0) {
-@@ -3151,13 +3157,9 @@ int spi_register_controller(struct spi_controller *ctlr)
- 		else
- 			first_dynamic++;
+ 	/* Alloc an spi_device */
+-	ancillary = spi_alloc_device(spi->controller);
++	ancillary = spi_alloc_device(ctlr);
+ 	if (!ancillary) {
+ 		rc = -ENOMEM;
+ 		goto err_out;
+@@ -2436,8 +2429,10 @@ struct spi_device *spi_new_ancillary_device(struct spi_device *spi,
+ 	ancillary->max_speed_hz = spi->max_speed_hz;
+ 	ancillary->mode = spi->mode;
  
--		mutex_lock(&board_lock);
--		id = idr_alloc(&spi_master_idr, ctlr, first_dynamic,
--			       0, GFP_KERNEL);
--		mutex_unlock(&board_lock);
--		if (WARN(id < 0, "couldn't get idr"))
--			return id;
--		ctlr->bus_num = id;
-+		status = spi_controller_id_alloc(ctlr, first_dynamic, 0);
-+		if (status)
-+			return status;
- 	}
- 	ctlr->bus_lock_flag = 0;
- 	init_completion(&ctlr->xfer_completion);
++	WARN_ON(!mutex_is_locked(&ctlr->add_lock));
++
+ 	/* Register the new device */
+-	rc = spi_add_device_locked(ancillary);
++	rc = __spi_add_device(ancillary);
+ 	if (rc) {
+ 		dev_err(&spi->dev, "failed to register ancillary device\n");
+ 		goto err_out;
 -- 
 2.40.0.1.gaa8946217a0b
 
