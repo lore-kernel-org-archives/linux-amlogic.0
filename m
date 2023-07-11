@@ -4,78 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E97AEB64DC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 06:39:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C276DC001B0
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 07:27:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AZhj6Boitskc0331SW5MKL6IHFBweLkNqwjuvr6TiGk=; b=PqHV333pjT1ytv
-	VA+h+aLxSDaUNiiEgWYfp6lPhdaTZvuwJSMJ0Seo2khzFSVACAb5yzpa8M7qRRAFT5RUj6PW69dE5
-	pXWosQNeDWxWjCtZ06q5KyvGmMvRRR5RGxjqjKh//qui/56lD3OJmdxsbQxRfMnz+l5hLv/M6LHCP
-	CiUhs7xbWu7uS+ndGlW7oUcEf/Aqt4V6FpYrTEQkmYshkVTHEh4ibsqNpKmgxGIQXjAjELZwICIhM
-	dQKSP6NpdTpdCzz0E1t1S7f25lmNuHbLTv60QTpg7qduxwMTrK0xYTTohkxkSenkJFGCkcaMwhXT9
-	Cb3OY9STM4UjNEx9jOaw==;
+	List-Owner; bh=kUFW8hN9cLblTz0jmGJpcSx442NWJyJogCT8SuAHAsk=; b=tcXpK4XxFEtSAJ
+	4Fn9EbXX5GuOpGE2cIy9oLFzoe0L/YGlsSGm45dFGzyUiKzvUqWUi8/8aoH1uRokBJDw/QERlEbzX
+	PDqaz0QuuZMTUpo0kE85s2p0Xp1Q+PuTNz2BjA3+eswc+gTFIvmjlZefyrTZRiJYW7Ol3Jcg0JXht
+	YWJE4ZOB/XM5zDClv/enSSP3LcHRT8YeUgOY0HQn6mVUCEO8PXfSQHksDXiUmsnWNYD3ZLxxP18Uv
+	XBRo6BKlMH50MgeHb6UueJCGcQGevn9iqYEbmaFUNQa8qz7r0k0fzhlEZvNfNO2WgIZ4Rgz8L8YvK
+	D2d2ja4naB03QP+PTQPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJ71h-00Dtgb-1J;
-	Tue, 11 Jul 2023 06:39:09 +0000
-Received: from mail-lj1-x230.google.com ([2a00:1450:4864:20::230])
+	id 1qJ7mI-00Dyxi-22;
+	Tue, 11 Jul 2023 07:27:18 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJ71e-00Dtg6-2T
+	id 1qJ7mE-00DywX-25
 	for linux-amlogic@lists.infradead.org;
-	Tue, 11 Jul 2023 06:39:07 +0000
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b703caf344so80363871fa.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 10 Jul 2023 23:39:06 -0700 (PDT)
+	Tue, 11 Jul 2023 07:27:17 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3fbca8935bfso55082735e9.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 11 Jul 2023 00:26:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689057545; x=1691649545;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=elXCUTOCMTi1ImRqzrKtVg2T8j1H8DoAExvbCuJEHck=;
-        b=bV+lIDNS9l71GtmTn/MBxlZNwGgvjaf398QyPfvN3943weO14tRLQ04OSKDq4E8j45
-         RoxlS9CnUz9ggFbi9kCa+zwZFEzsv5tl+/fDTgeblNku1WOt7ntHM0syKcT34GGJ1A4D
-         fKd92zMD+hxHC9neqX2mzTTJ9PBNhPahgjJpRiJSWawwyLtBu3HuzYVsFGwh4PyiLbjC
-         Zv05i8/8Hs3jI7pLMaUK8xniRgzPs38Sgi+dOVJY/i3fSN9iBHtBHBNM0UAa7jsoFnqR
-         8OGXQkZSiKVtnRDHFz8mbQtba9uKQCkjzGTjDI2IMai+4qbyrguuvdi4KlQ6LZvM8YUI
-         riDg==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689060417; x=1691652417;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=ADbPO0cfR4g593jKsVT2jVxZ9Mioa2lxar2bSYbOLIE=;
+        b=hZOL2w6YahG6Oe+83BmyGnw9dh81Wixl9VF7GhIF0jxj3Bcms+ln/raIc2BJvS0VPy
+         dWS2vCx2ld7gGyQKSJDzUthbMh+S9cQz9wS8hQB3xaigGaz6W1daCt6ey6YlIu7gBmML
+         RqQfHnCcK2WXuRENAO/uMiomthxYWM4/RdpIohbsQ5XDb6FM+JJja5hVn75cT7Ucvu7Y
+         lFcpSYhQdyGZKZ6LbVl1yWkR7DxBvVx0FAPOOIIdmpnyIyG3/Abft8SRpcoPoAZB9JIJ
+         MppOf/3AqdJZ+hA6jO0khxQFlj7j+fzEnaguDRVvpfeSbpxt1Lqajl4CmmeLzdP9sJ1Z
+         m7Zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689057545; x=1691649545;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=elXCUTOCMTi1ImRqzrKtVg2T8j1H8DoAExvbCuJEHck=;
-        b=B3gPFgysOuV+ybTGntUELOQLsOdNzStTv2s2C8Dx1HPPdwoPifNs2qjGEpQC4DCM9V
-         KWJ9IbFbl2XCxXSsL7dEFMILTQivQVdadrVNYbmUn6+IHv9oDljz9wwm8lCiLCkgdqll
-         gFURQiJ7go65Ig0sigGly5fWgrcwdctKsL0fEPyVOGv/1H+OmAWyfRHKIJpFKezzTY65
-         2WMxfnlyIl2iqvzhDZv62eAz+L0NVtOUBZOspQzpoAYbB3qW2eGuQuKERrIiXTnMuwwW
-         blImqyBGPx65vFia/eIc5+2rWLz85bMCsHXD8kvVuQJFT2nqgyeJK5EyOuxzid6AMc9h
-         HqHA==
-X-Gm-Message-State: ABy/qLaVeCX7K32d0Bi7XVUVQG2T4lN+U3Sy4f6zrfdRoq+VlgREQ3nS
-	XtlBag8i8PNwmeowC/kel26rP/Tx7fR0yICGvB8J4Q==
-X-Google-Smtp-Source: APBJJlGpNNoFpy6/AS5QCL+upCPP64TZ8gxYYmR/GUA8O1+pECLM0aRmgpRHxbBfuPrk1WuweREZc/K8x0DKkDZVuPE=
-X-Received: by 2002:a2e:98c7:0:b0:2b6:e2c1:9816 with SMTP id
- s7-20020a2e98c7000000b002b6e2c19816mr13629656ljj.20.1689057544922; Mon, 10
- Jul 2023 23:39:04 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689060417; x=1691652417;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ADbPO0cfR4g593jKsVT2jVxZ9Mioa2lxar2bSYbOLIE=;
+        b=RizmbDNXjCRYW3VUYJbN20qe2NgIu29oTwoZGtrqtdz4IvyrCjpdQv4e/9BYEzeqHY
+         31RWpQrliPcpVyRtSkseAxK+ocQGSueoJi5gqax7xCyUD9iCjlyuCodF/D1vrzxNadj6
+         tBVJx4pZCdMqWZVk8Zfjsm4QrbrlqDnI4m9x2UKy1YgD+afTKVV/Ye2o1xxy1tCpjus+
+         w//pYEcTu0dKGv9pe1APsaYgCz5xbjkwYdZd6h8N+7wlhYGiwLPTe1lgHrM+TggNcwoC
+         6mEoswz7kuPoX80cpKqEXAd1JjljK16c5tGKcMG3uaYHHD8uP6hEKpZCrDVOVbzYj3FX
+         V8kw==
+X-Gm-Message-State: ABy/qLZnXb9EUNek61YOotXAc6Am8oQuY+Xtfe/uqG+DjnfmbtuO+mPO
+	aHOzH96dWQUfY/4OcSkIW4BGYw==
+X-Google-Smtp-Source: APBJJlFG7xP3kWlIhAjztkagQDMNNRwQQCBCM6HY7T4sw6w4iXF2O6xSpJHcGRvKu0zLgI2eKeSszQ==
+X-Received: by 2002:a05:600c:244:b0:3fb:b1af:a455 with SMTP id 4-20020a05600c024400b003fbb1afa455mr12472486wmj.5.1689060416993;
+        Tue, 11 Jul 2023 00:26:56 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb0:4a33:b29e:11b3:752b])
+        by smtp.gmail.com with ESMTPSA id 13-20020a05600c228d00b003fbe4cecc3bsm12129242wmf.16.2023.07.11.00.26.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jul 2023 00:26:56 -0700 (PDT)
+References: <20230706110331.19794-1-mmkurbanov@sberdevices.ru>
+ <20230706110331.19794-3-mmkurbanov@sberdevices.ru>
+User-agent: mu4e 1.8.13; emacs 28.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Martin Kurbanov <mmkurbanov@sberdevices.ru>, Mark Brown
+ <broonie@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Andy
+ Shevchenko <andy.shevchenko@gmail.com>
+Cc: linux-spi@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, kernel@sberdevices.ru
+Subject: Re: [PATCH v2 2/2] spi: amlogic-spifc-a1: add support for max_speed_hz
+Date: Tue, 11 Jul 2023 09:25:31 +0200
+In-reply-to: <20230706110331.19794-3-mmkurbanov@sberdevices.ru>
+Message-ID: <1jlefm6h8g.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-References: <20230707140434.723349-1-ulf.hansson@linaro.org>
- <20230707140434.723349-4-ulf.hansson@linaro.org> <CAFBinCBT8yP5yZVOkQhkpQ0N83VO1Ctdm+npb91rLiv3KQz4ZQ@mail.gmail.com>
-In-Reply-To: <CAFBinCBT8yP5yZVOkQhkpQ0N83VO1Ctdm+npb91rLiv3KQz4ZQ@mail.gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 11 Jul 2023 08:38:28 +0200
-Message-ID: <CAPDyKFpTsCtkciaNmjm5ZXqDapHGip23FphHkd9+bqBviWT07g@mail.gmail.com>
-Subject: Re: [PATCH 03/18] soc: amlogic: Move power-domain drivers to the
- genpd dir
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>, linux-pm@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230710_233906_804688_E5094E78 
-X-CRM114-Status: GOOD (  11.98  )
+X-CRM114-CacheID: sfid-20230711_002714_900463_CD2E67DF 
+X-CRM114-Status: GOOD (  17.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,39 +89,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gRnJpLCA3IEp1bCAyMDIzIGF0IDIwOjI1LCBNYXJ0aW4gQmx1bWVuc3RpbmdsCjxtYXJ0aW4u
-Ymx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPiB3cm90ZToKPgo+IEhpIFVsZiwKPgo+IE9uIEZy
-aSwgSnVsIDcsIDIwMjMgYXQgNDowNOKAr1BNIFVsZiBIYW5zc29uIDx1bGYuaGFuc3NvbkBsaW5h
-cm8ub3JnPiB3cm90ZToKPiBbLi4uXQo+ID4gLS0tIGEvZHJpdmVycy9zb2MvTWFrZWZpbGUKPiA+
-ICsrKyBiL2RyaXZlcnMvc29jL01ha2VmaWxlCj4gPiBAQCAtMjMsNyArMjMsNiBAQCBvYmoteSAg
-ICAgICAgICAgICAgICAgICAgICAgICArPSBtZWRpYXRlay8KPiA+ICBvYmoteSAgICAgICAgICAg
-ICAgICAgICAgICAgICAgKz0gbWljcm9jaGlwLwo+ID4gIG9iai15ICAgICAgICAgICAgICAgICAg
-ICAgICAgICArPSBudXZvdG9uLwo+ID4gIG9iai15ICAgICAgICAgICAgICAgICAgICAgICAgICAr
-PSBweGEvCj4gPiAtb2JqLXkgICAgICAgICAgICAgICAgICAgICAgICAgICs9IGFtbG9naWMvCj4g
-SSB0aGluayB0aGlzIGNoYW5nZSBoYXMgdG8gYmUgZHJvcHBlZCAoc2VlIGJlbG93KS4uLgo+Cj4g
-PiAgb2JqLXkgICAgICAgICAgICAgICAgICAgICAgICAgICs9IHFjb20vCj4gPiAgb2JqLXkgICAg
-ICAgICAgICAgICAgICAgICAgICAgICs9IHJlbmVzYXMvCj4gPiAgb2JqLXkgICAgICAgICAgICAg
-ICAgICAgICAgICAgICs9IHJvY2tjaGlwLwo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvc29jL2Ft
-bG9naWMvTWFrZWZpbGUgYi9kcml2ZXJzL3NvYy9hbWxvZ2ljL01ha2VmaWxlCj4gPiBpbmRleCA3
-YjhjNWQzMjNmNWMuLmMyNWY4MzVlNmEyNiAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvc29jL2Ft
-bG9naWMvTWFrZWZpbGUKPiA+ICsrKyBiL2RyaXZlcnMvc29jL2FtbG9naWMvTWFrZWZpbGUKPiA+
-IEBAIC0yLDcgKzIsNCBAQAo+ID4gIG9iai0kKENPTkZJR19NRVNPTl9DQU5WQVMpICs9IG1lc29u
-LWNhbnZhcy5vCj4gPiAgb2JqLSQoQ09ORklHX01FU09OX0NMS19NRUFTVVJFKSArPSBtZXNvbi1j
-bGstbWVhc3VyZS5vCj4gPiAgb2JqLSQoQ09ORklHX01FU09OX0dYX1NPQ0lORk8pICs9IG1lc29u
-LWd4LXNvY2luZm8ubwo+ID4gLW9iai0kKENPTkZJR19NRVNPTl9HWF9QTV9ET01BSU5TKSArPSBt
-ZXNvbi1neC1wd3JjLXZwdS5vCj4gPiAgb2JqLSQoQ09ORklHX01FU09OX01YX1NPQ0lORk8pICs9
-IG1lc29uLW14LXNvY2luZm8ubwo+ID4gLW9iai0kKENPTkZJR19NRVNPTl9FRV9QTV9ET01BSU5T
-KSArPSBtZXNvbi1lZS1wd3JjLm8KPiA+IC1vYmotJChDT05GSUdfTUVTT05fU0VDVVJFX1BNX0RP
-TUFJTlMpICs9IG1lc29uLXNlY3VyZS1wd3JjLm8KPiAuLi5hcyBkcml2ZXJzL3NvYy9hbWxvZ2lj
-IGNvbnRhaW5zIGRyaXZlcnMgd2hpY2ggYXJlIG5vdCBtb3ZlZCAoaW4KPiBhZGRpdGlvbiB0byB0
-aGUgZ2VucGQgZHJpdmVycyB0aGVyZSdzIGFsc28gU29DIGluZm8gYW5kIGNhbnZhcwo+IGRyaXZl
-cnMpLgoKWWVzLCB5b3UgYXJlIGNlcnRhaW5seSBjb3JyZWN0LCB0aGFua3MgZm9yIHNwb3R0aW5n
-IHRoaXMhCgpLaW5kIHJlZ2FyZHMKVWZmZQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
-Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
-bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+
+On Thu 06 Jul 2023 at 14:03, Martin Kurbanov <mmkurbanov@sberdevices.ru> wrote:
+
+> This patch sets the clock rate (spi_transfer->max_speed_hz) from the
+> amlogic_spifc_a1_exec_op().
+>
+> Signed-off-by: Martin Kurbanov <mmkurbanov@sberdevices.ru>
+> ---
+>  drivers/spi/spi-amlogic-spifc-a1.c | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+>
+> diff --git a/drivers/spi/spi-amlogic-spifc-a1.c b/drivers/spi/spi-amlogic-spifc-a1.c
+> index a92e4fc23396..605e9e40455c 100644
+> --- a/drivers/spi/spi-amlogic-spifc-a1.c
+> +++ b/drivers/spi/spi-amlogic-spifc-a1.c
+> @@ -107,6 +107,7 @@ struct amlogic_spifc_a1 {
+>  	struct clk *clk;
+>  	struct device *dev;
+>  	void __iomem *base;
+> +	u32 curr_speed_hz;
+>  };
+>  
+>  static int amlogic_spifc_a1_request(struct amlogic_spifc_a1 *spifc, bool read)
+> @@ -235,6 +236,21 @@ static int amlogic_spifc_a1_write(struct amlogic_spifc_a1 *spifc,
+>  	return amlogic_spifc_a1_request(spifc, false);
+>  }
+>  
+> +static int amlogic_spifc_a1_set_freq(struct amlogic_spifc_a1 *spifc, u32 freq)
+> +{
+> +	int ret;
+> +
+> +	if (freq == spifc->curr_speed_hz)
+> +		return 0;
+> +
+> +	ret = clk_set_rate(spifc->clk, freq);
+> +	if (ret)
+> +		return ret;
+> +
+> +	spifc->curr_speed_hz = freq;
+
+There is no guarantee that clk_set_rate() has set the rate you have
+requested, at least not precisely. You should call clk_get_rate() here.
+
+> +	return 0;
+> +}
+> +
+>  static int amlogic_spifc_a1_exec_op(struct spi_mem *mem,
+>  				    const struct spi_mem_op *op)
+>  {
+> @@ -243,6 +259,10 @@ static int amlogic_spifc_a1_exec_op(struct spi_mem *mem,
+>  	size_t data_size = op->data.nbytes;
+>  	int ret;
+>  
+> +	ret = amlogic_spifc_a1_set_freq(spifc, mem->spi->max_speed_hz);
+> +	if (ret)
+> +		return ret;
+> +
+>  	amlogic_spifc_a1_user_init(spifc);
+>  	amlogic_spifc_a1_set_cmd(spifc, SPIFC_A1_USER_CMD(op));
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
