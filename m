@@ -4,110 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2135EB64DC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 12:02:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3E07EB64DC
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 12:27:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=9MqnyQ9fdhvKcvor1G/9mCUQoamkNzmd0rSjsERdsdI=; b=0idGoM9sJg+Vp678o+YczMWLlZ
-	ELPu43WXouqRyp1RJR+SpeF3mpiLcmu9VBdoIHMsAYJXQA3mNOcqw+lXdoeUoNYKaAGxYlR2oxeDg
-	zclow0G/xVr23YkK7dwjGEXDwxc1nPLnDYUR4Q1NLM9TyTEWbyh30TIL+U12/lZ78tuRXj8ukX6WR
-	uHcbFCE1edXQT0vVM00W0rCk1BZal5iOQvasU56f4TdCLMqO0eCRVz0UdeVy4uoLRaAb/TNqfxB4Q
-	iPsA3P5i3tjT2aDQwuQu2jU49HFIaCO+L3Iz4+4ROUoF1mRcdNQhgCVDv4LYM7GaAJ2R1lf7RcitW
-	dD2YvM1A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=crDlVqkaImS+c2y0lVH5Wc6hAOCVuj+xErUnc+jbyVM=; b=rYl9TtyJ9vdAD/
+	MZvfMgvV69rindY/3C862hKFDc4yKrHiIeWVTuoQBUCYbtGkcySAKmlVrT5y6EmpG28GvNtRxQlRH
+	VRgavPlLDTW+/7VAcNmiSBuS59pFxPE3ypXLNx749Dxzyq1038sjHGHU9FzehfLLMxhMGk31nzDe4
+	1if+lGdIGN2dRrmgikd4NxpCWudnjlCFi+YCD0Q05BiylQqQBpWcGkJhUxXFKMxIyDW1fzVQSCary
+	gng+SzLhNAf/DCXi+E4PFWZw+Rv48Os2glal3ByWe82mrNZ+IVRVK7Wt8AHA4126woGM2OF8AeR3d
+	SlsGqK2y8GROS1iW/Srw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJC3p-00Eohv-1p;
-	Tue, 11 Jul 2023 12:01:41 +0000
-Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
+	id 1qJCSg-00Eri1-1i;
+	Tue, 11 Jul 2023 12:27:22 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJC3n-00EohC-1f;
-	Tue, 11 Jul 2023 12:01:41 +0000
-Received: from mercury (dyndsl-091-248-213-212.ewe-ip-backbone.de [91.248.213.212])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	id 1qJCSY-00Erek-1W;
+	Tue, 11 Jul 2023 12:27:17 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 3D4C9100008;
+	Tue, 11 Jul 2023 15:27:11 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 3D4C9100008
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1689078431;
+	bh=Em0Nwj2RjzE3YgcQQ2O+XnCh35XtEE94lU9MJvN+QNE=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=GAYjgXpvNQyrBZw2emWEI2gvhlNMWWmJwCNT3hzy0OZTC8qV4cijs+vj0q3YaLF7O
+	 iVaK9lwKqVn6buRIoarxmnyyFzxzXvr6rEfQGzjxqo3LnWbYjY66jj2mTZQSmbxmKi
+	 epuBVjxqWF34wiJ9yFMAf6v36KYf/aQB3gBAmkxs39I4MXWg4Q0XPnnmVlh9KD/tXQ
+	 j4i2fu4Ic9UYAOB6qkgsIYAyg0LUMvX4hY+nhSLGnEUuDX2y029UAt58o4GtjEsYf5
+	 UUze35yp4kyp0eUcr2AwMfw+J6nH8aRcUX3q0RCriKWS5qO7qUkgGu7NUoGbeA/t7/
+	 /P1tkXpkaFnkQ==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 3BE4E6607007;
-	Tue, 11 Jul 2023 13:01:35 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1689076895;
-	bh=VpEG3ri1MmPk1vvBqKyVzFd1wmdbrZrML5Y0FqY4wUg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HQDJgxlTR8vo1RaEsB3D+nH2+IRG9QN4tbrCrAaA85UTPwMmgGSzMeLBmp8bq8Ej6
-	 pgwZP23sqCYBHYEmhmfwkK6ZwddZDGY5nvAyjCHRxCLhh+PU1kHLVi4qEYii04KpmG
-	 cZIBzK40pXQjgo62B5RaZ5YhAs3eAX9lyz/b27cO1rLw+fmbUEzB/bIkdWz6tNdnsD
-	 l37m5GS8joB/wsoJ81rU7USdQhqBwTSytws8Gf8fo6kkpx4AITWu33A+o3yUYXuRI2
-	 WpJS6erpP2P9LRQMv/o3BmpdZLgyRs0csbkK1sM9hkgaBX9fGW0SBkbzX/Ag+Cs0tn
-	 nvbJMMzvoOh0A==
-Received: by mercury (Postfix, from userid 1000)
-	id 34BCD106765E; Tue, 11 Jul 2023 14:01:33 +0200 (CEST)
-Date: Tue, 11 Jul 2023 14:01:33 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Mark Brown <broonie@kernel.org>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Yang Yingliang <yangyingliang@huawei.com>,
-	Amit Kumar Mahapatra via Alsa-devel <alsa-devel@alsa-project.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
-	Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-trace-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	Sanjay R Mehta <sanju.mehta@amd.com>,
-	Radu Pirea <radu_nicolae.pirea@upb.ro>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@microchip.com>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Alain Volmat <alain.volmat@foss.st.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Max Filippov <jcmvbkbc@gmail.com>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>
-Subject: Re: [PATCH v2 05/15] spi: Remove code duplication in
- spi_add_device_locked()
-Message-ID: <20230711120133.45drgk46y4cz7aut@mercury.elektranox.org>
-References: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
- <20230710154932.68377-6-andriy.shevchenko@linux.intel.com>
- <7557bada-3076-4d6e-a5c5-d368433706e2@sirena.org.uk>
- <ZK03rBqoQ0IZz617@smile.fi.intel.com>
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 11 Jul 2023 15:27:11 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Tue, 11 Jul 2023 15:27:02 +0300
+From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
+	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin
+ Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>
+CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
+	<AVKrasnov@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [RFC PATCH v3 3/3] mtd: rawnand: meson: support for 512B ECC step size
+Date: Tue, 11 Jul 2023 15:21:29 +0300
+Message-ID: <20230711122129.2635558-4-AVKrasnov@sberdevices.ru>
+X-Mailer: git-send-email 2.35.0
+In-Reply-To: <20230711122129.2635558-1-AVKrasnov@sberdevices.ru>
+References: <20230711122129.2635558-1-AVKrasnov@sberdevices.ru>
 MIME-Version: 1.0
-In-Reply-To: <ZK03rBqoQ0IZz617@smile.fi.intel.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178541 [Jul 11 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 521 521 0c3391dd6036774f2e1052158c81e48587b96e95, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/11 10:54:00 #21597245
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230711_050139_827047_8E83ED8C 
-X-CRM114-Status: GOOD (  33.35  )
+X-CRM114-CacheID: sfid-20230711_052714_892504_B835A73E 
+X-CRM114-Status: GOOD (  15.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,119 +101,109 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1075910521715442176=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Meson NAND supports both 512B and 1024B ECC step size.
 
---===============1075910521715442176==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fcthwhge3iyvg2gl"
-Content-Disposition: inline
+Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+---
+ drivers/mtd/nand/raw/meson_nand.c | 45 +++++++++++++++++++++++--------
+ 1 file changed, 34 insertions(+), 11 deletions(-)
 
+diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+index 345212e8c691..369e81356240 100644
+--- a/drivers/mtd/nand/raw/meson_nand.c
++++ b/drivers/mtd/nand/raw/meson_nand.c
+@@ -135,6 +135,7 @@ struct meson_nfc_nand_chip {
+ struct meson_nand_ecc {
+ 	u32 bch;
+ 	u32 strength;
++	u32 size;
+ };
+ 
+ struct meson_nfc_data {
+@@ -190,7 +191,8 @@ struct meson_nfc {
+ };
+ 
+ enum {
+-	NFC_ECC_BCH8_1K		= 2,
++	NFC_ECC_BCH8_512	= 1,
++	NFC_ECC_BCH8_1K,
+ 	NFC_ECC_BCH24_1K,
+ 	NFC_ECC_BCH30_1K,
+ 	NFC_ECC_BCH40_1K,
+@@ -198,15 +200,16 @@ enum {
+ 	NFC_ECC_BCH60_1K,
+ };
+ 
+-#define MESON_ECC_DATA(b, s)	{ .bch = (b),	.strength = (s)}
++#define MESON_ECC_DATA(b, s, sz)	{ .bch = (b), .strength = (s), .size = (sz) }
+ 
+ static struct meson_nand_ecc meson_ecc[] = {
+-	MESON_ECC_DATA(NFC_ECC_BCH8_1K, 8),
+-	MESON_ECC_DATA(NFC_ECC_BCH24_1K, 24),
+-	MESON_ECC_DATA(NFC_ECC_BCH30_1K, 30),
+-	MESON_ECC_DATA(NFC_ECC_BCH40_1K, 40),
+-	MESON_ECC_DATA(NFC_ECC_BCH50_1K, 50),
+-	MESON_ECC_DATA(NFC_ECC_BCH60_1K, 60),
++	MESON_ECC_DATA(NFC_ECC_BCH8_512, 8,  512),
++	MESON_ECC_DATA(NFC_ECC_BCH8_1K,  8,  1024),
++	MESON_ECC_DATA(NFC_ECC_BCH24_1K, 24, 1024),
++	MESON_ECC_DATA(NFC_ECC_BCH30_1K, 30, 1024),
++	MESON_ECC_DATA(NFC_ECC_BCH40_1K, 40, 1024),
++	MESON_ECC_DATA(NFC_ECC_BCH50_1K, 50, 1024),
++	MESON_ECC_DATA(NFC_ECC_BCH60_1K, 60, 1024),
+ };
+ 
+ static int meson_nand_calc_ecc_bytes(int step_size, int strength)
+@@ -224,8 +227,27 @@ static int meson_nand_calc_ecc_bytes(int step_size, int strength)
+ 
+ NAND_ECC_CAPS_SINGLE(meson_gxl_ecc_caps,
+ 		     meson_nand_calc_ecc_bytes, 1024, 8, 24, 30, 40, 50, 60);
+-NAND_ECC_CAPS_SINGLE(meson_axg_ecc_caps,
+-		     meson_nand_calc_ecc_bytes, 1024, 8);
++
++static const int axg_stepinfo_strengths[] = { 8 };
++static const struct nand_ecc_step_info axg_stepinfo_1024 = {
++	.stepsize = 1024,
++	.strengths = axg_stepinfo_strengths,
++	.nstrengths = ARRAY_SIZE(axg_stepinfo_strengths)
++};
++
++static const struct nand_ecc_step_info axg_stepinfo_512 = {
++	.stepsize = 512,
++	.strengths = axg_stepinfo_strengths,
++	.nstrengths = ARRAY_SIZE(axg_stepinfo_strengths)
++};
++
++static const struct nand_ecc_step_info axg_stepinfo[] = { axg_stepinfo_1024, axg_stepinfo_512 };
++
++static const struct nand_ecc_caps meson_axg_ecc_caps = {
++	.stepinfos = axg_stepinfo,
++	.nstepinfos = ARRAY_SIZE(axg_stepinfo),
++	.calc_ecc_bytes = meson_nand_calc_ecc_bytes,
++};
+ 
+ static struct meson_nfc_nand_chip *to_meson_nand(struct nand_chip *nand)
+ {
+@@ -1259,7 +1281,8 @@ static int meson_nand_bch_mode(struct nand_chip *nand)
+ 		return -EINVAL;
+ 
+ 	for (i = 0; i < ARRAY_SIZE(meson_ecc); i++) {
+-		if (meson_ecc[i].strength == nand->ecc.strength) {
++		if (meson_ecc[i].strength == nand->ecc.strength &&
++		    meson_ecc[i].size == nand->ecc.size) {
+ 			meson_chip->bch_mode = meson_ecc[i].bch;
+ 			return 0;
+ 		}
+-- 
+2.35.0
 
---fcthwhge3iyvg2gl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Tue, Jul 11, 2023 at 02:06:20PM +0300, Andy Shevchenko wrote:
-> On Mon, Jul 10, 2023 at 06:16:22PM +0100, Mark Brown wrote:
-> > On Mon, Jul 10, 2023 at 06:49:22PM +0300, Andy Shevchenko wrote:
-> > > Seems by unknown reason, probably some kind of mis-rebase,
-> > > the commit 0c79378c0199 ("spi: add ancillary device support")
-> > > adds a dozen of duplicating lines of code. Drop them.
-> > >=20
-> > > Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > > ---
-> > >  drivers/spi/spi.c | 11 -----------
-> > >  1 file changed, 11 deletions(-)
-> > >=20
-> > > diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-> > > index c99ee4164f11..46cbda383228 100644
-> > > --- a/drivers/spi/spi.c
-> > > +++ b/drivers/spi/spi.c
-> > > @@ -712,17 +712,6 @@ EXPORT_SYMBOL_GPL(spi_add_device);
-> > >  static int spi_add_device_locked(struct spi_device *spi)
-> > >  {
-> > >  	struct spi_controller *ctlr =3D spi->controller;
-> > > -	struct device *dev =3D ctlr->dev.parent;
-> > > -
-> > > -	/* Chipselects are numbered 0..max; validate. */
-> > > -	if (spi_get_chipselect(spi, 0) >=3D ctlr->num_chipselect) {
-> > > -		dev_err(dev, "cs%d >=3D max %d\n", spi_get_chipselect(spi, 0),
-> > > -			ctlr->num_chipselect);
-> > > -		return -EINVAL;
-> > > -	}
-> > > -
-> > > -	/* Set the bus ID string */
-> > > -	spi_dev_set_name(spi);
-> >=20
-> > I see that this is duplicating spi_add_device() (and we really could do
-> > better with code sharing there I think) but I can't immediately see
-> > where the duplication that's intended to be elimiated is here - where
-> > else in the one call path that spi_add_device_locked() has would we do
-> > the above?  Based on the changelog I was expecting to see some
-> > duplicated code in the function itself.
->=20
-> Oh, by some reason Sebastian wasn't in this rather long Cc list.
-> Added him.
->=20
-> Reading again I don't see any useful explanation why that piece of code h=
-as to
-> be duplicated among these two functions. It's 100% a copy.
->=20
-> Sebastian, can you shed some light here?
-
-The patch in this thread is obviously wrong. It results in the
-checks never beeing called for spi_add_device_locked(). The copy is
-in spi_add_device() and those two are not calling into each other.
-
-But it should be fine to move the code to the start of
-__spi_add_device(), which allows removing the duplication. In that
-case the code will be run with the add_lock held, which is probably
-what I was worried about two years ago. Looking at it again, the
-lock is held anyways in case of spi_add_device_locked().
-
-Greetings,
-
--- Sebastian
-
---fcthwhge3iyvg2gl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmStRJIACgkQ2O7X88g7
-+pp6dQ//QWqSMddfA8JIA4/cd4pYKRoojbIso2JQaAhIWBB48KjH/GX7xoNCH4Ig
-MRloAncuXxqH1quGGpphBRJL2bAKVRcinKKtYdwCyM6P422hjD5GqVDKOr2H1u2f
-4+wWcKeKNk5ect4iYj/kRZYYpdlJzxK1hsd7bCwBCz3I0k7rlxqIg5td7e/7Q7CC
-4bvNEtL0Ub1iB+vzDNoqNKN48Bp87xr+kM1wSDsDhPqf1TrTmxgOFIYNmy2x+XuV
-20ZRE4olEfUMFlPNNCaAurOPVZmclVstzBUwRhU7uVBH4/ZnbY02wsklP0D8SbV8
-inFOurRiLtWaRSQfkwMEF2DAp4l5a6eWVyuy5Rf0mdVmgq9bgeXFycbiYkOM6Gsz
-aQ0g5SV64PYZSwPljucB28GrWfLdDNlp693elljAeDElhbF1bqhbVozqhkyfH5Ih
-J4wpwr/DgZaW31B0V/sQVlJTIRtjAmIRgydid81aaSOzXmW0B+Pu74EU/cMNcy0f
-iSGRdSPX+eA5OPNHQWPz1RQvJOHMVrMBXTdSCeVzZdV4VSTZSv9/LL922e9qK2DB
-yGQTeUox+5d2hdcQlSmo+LQGhiZiiJ9qoVWPsWjhNwbb3fh3HCSP9X/BJHNNGzqr
-WU6SN8gRjCaL3/i5pT08DOL6WdKhn/qo8EzCnOBxloSjD2uF1Ic=
-=v6T3
------END PGP SIGNATURE-----
-
---fcthwhge3iyvg2gl--
-
-
---===============1075910521715442176==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============1075910521715442176==--
-
