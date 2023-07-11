@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E3A8C001DC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E8D7C001DE
 	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jul 2023 20:02:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,43 +12,43 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hbtbACdnksSswAgXy8nze6j08zVm5sBaloojkKy8/Ng=; b=BlzKQHVpvoccWF
-	2vbl9mbK2bwVRR1s+5R0Ko2qlWvwwsOB+qld1bj86vYjSGyuPvNPJiOCCCs2GvV8SI4VgV3s2pktR
-	ngPLcHHVSGpH3Ymy7qPyCevyXJu+8lmy3TGIcJZ9amyFiXoujZSPmnPEclD3/anY0Q1ks2GN6qBh9
-	JWCMm5o2yxietF4hSqBj67Ckvl8uj9Tfca/3nkFhVj7mL4YG6xEilHkrFY7gd6Ii+m9/WhwCCk4/3
-	QMhuIbgGyEMIVHeDyLEVfL9FOwugXltc7Qt5cIRl6aZPlRlREodx35hDyBI4Ysop8SWFWUI/O1THn
-	x+JJTLvU1eKmPgsbMRQQ==;
+	List-Owner; bh=nK3FRQOVa6CVPppioRcBKJIgt+dEtNc0AeZU/S5W9z4=; b=s2IBbEypqhf7Uw
+	csEygfE2H3Rw69+d2EPGnURVIgSiO57/FvORI8mjifvjQZlFFsEtbHfl+1n4mQhYQqcQYa+GkaaIF
+	CTp2G9+NFIgl14sayLE7ClT7T0/tNvCPe6Q8s3+idRHL/kS5SGgfFDeOYVk5piwmWWtCuTGJAfShs
+	qoskGPjhDfBMAdW1wswJNEwPJ1qfZX7Er9q+eHTREGdClI83Re0if27BA3N0djbxDEl+Y6Qg+NpUa
+	wdg86qFa1g1hYvA4TYpnxhJpKSPkT7uef3ox7UZWnwkTP3Q2zR38CEFw2GET81i326wUnOHmTsLcz
+	8vqT3LpfE/3yY5fifUpw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJJYn-00FnSi-31;
-	Tue, 11 Jul 2023 20:02:09 +0000
+	id 1qJJYm-00FnS0-2X;
+	Tue, 11 Jul 2023 20:02:08 +0000
 Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJJYh-00FnL7-0O;
-	Tue, 11 Jul 2023 20:02:07 +0000
+	id 1qJJYg-00FnLN-1C;
+	Tue, 11 Jul 2023 20:02:05 +0000
 Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 9688C100012;
-	Tue, 11 Jul 2023 23:01:50 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 9688C100012
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 9D200100016;
+	Tue, 11 Jul 2023 23:01:51 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 9D200100016
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1689105710;
-	bh=m3UMUUxQmGpFqfZrTXPJiSCifxETsKYb/UHHJV0Y7yo=;
+	s=mail; t=1689105711;
+	bh=8BKw71OeD52lP2HyAH4lqIfE/i2/ZjMijw07hUa9c9c=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=T5LT+5h1IzwH9bqtteGDSRbs3PfCFGeiwiGyYsAaM03N/ewvzeYphUknpY9yKkWqo
-	 jQhi2M4C87NHIiS7mWuh2n7t33x43nPcchUa2egGXmYAFSr/Z9b/MKQmI8+qB6uJdy
-	 cY9mPYRSgNiFPsIPqtDW1PMUxbbrZjbi32B9ue+uaXTbzakqoC5CCxFnziHvC7P3ar
-	 s/G+sdmIYBLNqUq1UiXj9CTcIqJQT/NPkGZoyT+pGCcnbfkQcxfivlsZ7/+VGEa8Dg
-	 C14xRoiXNVXd956OrwU/01ArCI8KEnG5GoKUMbpqtOeltjkIaTR2BgNyZJFdczf2tI
-	 GVOL1r1G48axg==
+	b=GAfwTWoPOOJfQBsZs6Q+3MROuawWY/ILpCe0SC9q6uwG1sQKoa4ow7t0qVIfQGPJf
+	 fThiKTForGiO9n6YUEAmS8xAn5rvjxZnjrwE946odU0pX3U3lU0dUVYRhgyXny8+Bu
+	 2kTz9848+e2CJ+K82A05tEluvL7i4nGJs79Y9FxzxeDBjkuZlNmAc+yMPniwIU9PO/
+	 1JtRIFloC2iwRt13IDu4ZUQ7BVYzlKp9jGe0EmQuQEqskKPA2kf73mxSvvsEUMx6zw
+	 YUWXHDRuUAUF5YCjgaRtyWcJvVUkVaFlXWmeZSukJr1qAehxOoZoJdxwH74XpSRreB
+	 9lUjXjl5xk6Fg==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 11 Jul 2023 23:01:50 +0300 (MSK)
+	Tue, 11 Jul 2023 23:01:51 +0300 (MSK)
 Received: from localhost.localdomain (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Tue, 11 Jul 2023 23:01:39 +0300
+ 15.2.1118.30; Tue, 11 Jul 2023 23:01:40 +0300
 From: George Stark <gnstark@sberdevices.ru>
 To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
 	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
@@ -57,9 +57,9 @@ To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
 CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<kernel@sberdevices.ru>, George Stark <GNStark@sberdevices.ru>
-Subject: [PATCH v5 1/6] iio: adc: meson: remove unused timestamp channel
-Date: Tue, 11 Jul 2023 23:00:17 +0300
-Message-ID: <20230711200141.239025-2-gnstark@sberdevices.ru>
+Subject: [PATCH v5 6/6] iio: adc: meson: support reading from channel 7 mux inputs
+Date: Tue, 11 Jul 2023 23:00:22 +0300
+Message-ID: <20230711200141.239025-7-gnstark@sberdevices.ru>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230711200141.239025-1-gnstark@sberdevices.ru>
 References: <20230711200141.239025-1-gnstark@sberdevices.ru>
@@ -84,8 +84,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/11 13:07:00 #21597915
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230711_130203_503839_8B7FACFC 
-X-CRM114-Status: GOOD (  11.20  )
+X-CRM114-CacheID: sfid-20230711_130202_787125_8A26924F 
+X-CRM114-Status: GOOD (  19.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,34 +102,180 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Remove IIO_CHAN_SOFT_TIMESTAMP channel because it's used only for
-buffering mode which is not implemented.
+Meson saradc channel 7 is connected to a mux that can switch input
+to well-known sources like Vdd, GND and several Vdd dividers.
+Add IIO channel for every channel 7 mux input.
 
 Signed-off-by: George Stark <GNStark@sberdevices.ru>
 ---
- drivers/iio/adc/meson_saradc.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/iio/adc/meson_saradc.c | 77 +++++++++++++++++++++++++++++++++-
+ 1 file changed, 75 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 18937a262af6..569ffc178935 100644
+index 918bd5da3605..2411cc864ccd 100644
 --- a/drivers/iio/adc/meson_saradc.c
 +++ b/drivers/iio/adc/meson_saradc.c
-@@ -211,7 +211,6 @@ static const struct iio_chan_spec meson_sar_adc_iio_channels[] = {
- 	MESON_SAR_ADC_CHAN(5),
- 	MESON_SAR_ADC_CHAN(6),
- 	MESON_SAR_ADC_CHAN(7),
--	IIO_CHAN_SOFT_TIMESTAMP(8),
+@@ -163,6 +163,7 @@
+ #define MESON_SAR_ADC_MAX_FIFO_SIZE				32
+ #define MESON_SAR_ADC_TIMEOUT					100 /* ms */
+ #define MESON_SAR_ADC_VOLTAGE_AND_TEMP_CHANNEL			6
++#define MESON_SAR_ADC_VOLTAGE_AND_MUX_CHANNEL			7
+ #define MESON_SAR_ADC_TEMP_OFFSET				27
+ 
+ /* temperature sensor calibration information in eFuse */
+@@ -202,6 +203,19 @@
+ 	.datasheet_name = "TEMP_SENSOR",				\
+ }
+ 
++#define MESON_SAR_ADC_MUX(_chan, _sel) {				\
++	.type = IIO_VOLTAGE,						\
++	.channel = _chan,						\
++	.indexed = 1,							\
++	.address = MESON_SAR_ADC_VOLTAGE_AND_MUX_CHANNEL,		\
++	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |			\
++				BIT(IIO_CHAN_INFO_AVERAGE_RAW),		\
++	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),		\
++	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_CALIBBIAS) |	\
++				BIT(IIO_CHAN_INFO_CALIBSCALE),		\
++	.datasheet_name = "SAR_ADC_MUX_"#_sel,				\
++}
++
+ enum meson_sar_adc_avg_mode {
+ 	NO_AVERAGING = 0x0,
+ 	MEAN_AVERAGING = 0x1,
+@@ -234,6 +248,27 @@ enum meson_sar_adc_channel_index {
+ 	NUM_CHAN_6,
+ 	NUM_CHAN_7,
+ 	NUM_CHAN_TEMP,
++	NUM_MUX_0_VSS,
++	NUM_MUX_1_VDD_DIV4,
++	NUM_MUX_2_VDD_DIV2,
++	NUM_MUX_3_VDD_MUL3_DIV4,
++	NUM_MUX_4_VDD,
++};
++
++static enum meson_sar_adc_chan7_mux_sel chan7_mux_values[] = {
++	CHAN7_MUX_VSS,
++	CHAN7_MUX_VDD_DIV4,
++	CHAN7_MUX_VDD_DIV2,
++	CHAN7_MUX_VDD_MUL3_DIV4,
++	CHAN7_MUX_VDD,
++};
++
++static const char * const chan7_mux_names[] = {
++	[CHAN7_MUX_VSS] = "gnd",
++	[CHAN7_MUX_VDD_DIV4] = "0.25vdd",
++	[CHAN7_MUX_VDD_DIV2] = "0.5vdd",
++	[CHAN7_MUX_VDD_MUL3_DIV4] = "0.75vdd",
++	[CHAN7_MUX_VDD] = "vdd",
+ };
+ 
+ static const struct iio_chan_spec meson_sar_adc_iio_channels[] = {
+@@ -245,6 +280,11 @@ static const struct iio_chan_spec meson_sar_adc_iio_channels[] = {
+ 	MESON_SAR_ADC_CHAN(NUM_CHAN_5),
+ 	MESON_SAR_ADC_CHAN(NUM_CHAN_6),
+ 	MESON_SAR_ADC_CHAN(NUM_CHAN_7),
++	MESON_SAR_ADC_MUX(NUM_MUX_0_VSS, 0),
++	MESON_SAR_ADC_MUX(NUM_MUX_1_VDD_DIV4, 1),
++	MESON_SAR_ADC_MUX(NUM_MUX_2_VDD_DIV2, 2),
++	MESON_SAR_ADC_MUX(NUM_MUX_3_VDD_MUL3_DIV4, 3),
++	MESON_SAR_ADC_MUX(NUM_MUX_4_VDD, 4),
  };
  
  static const struct iio_chan_spec meson_sar_adc_and_temp_iio_channels[] = {
-@@ -224,7 +223,6 @@ static const struct iio_chan_spec meson_sar_adc_and_temp_iio_channels[] = {
- 	MESON_SAR_ADC_CHAN(6),
- 	MESON_SAR_ADC_CHAN(7),
- 	MESON_SAR_ADC_TEMP_CHAN(8),
--	IIO_CHAN_SOFT_TIMESTAMP(9),
+@@ -257,6 +297,11 @@ static const struct iio_chan_spec meson_sar_adc_and_temp_iio_channels[] = {
+ 	MESON_SAR_ADC_CHAN(NUM_CHAN_6),
+ 	MESON_SAR_ADC_CHAN(NUM_CHAN_7),
+ 	MESON_SAR_ADC_TEMP_CHAN(NUM_CHAN_TEMP),
++	MESON_SAR_ADC_MUX(NUM_MUX_0_VSS, 0),
++	MESON_SAR_ADC_MUX(NUM_MUX_1_VDD_DIV4, 1),
++	MESON_SAR_ADC_MUX(NUM_MUX_2_VDD_DIV2, 2),
++	MESON_SAR_ADC_MUX(NUM_MUX_3_VDD_MUL3_DIV4, 3),
++	MESON_SAR_ADC_MUX(NUM_MUX_4_VDD, 4),
  };
  
- enum meson_sar_adc_avg_mode {
+ struct meson_sar_adc_param {
+@@ -295,6 +340,7 @@ struct meson_sar_adc_priv {
+ 	bool					temperature_sensor_calibrated;
+ 	u8					temperature_sensor_coefficient;
+ 	u16					temperature_sensor_adc_val;
++	enum meson_sar_adc_chan7_mux_sel	chan7_mux_sel;
+ };
+ 
+ static const struct regmap_config meson_sar_adc_regmap_config_gxbb = {
+@@ -311,6 +357,17 @@ static const struct regmap_config meson_sar_adc_regmap_config_meson8 = {
+ 	.max_register = MESON_SAR_ADC_DELTA_10,
+ };
+ 
++static const struct iio_chan_spec *
++find_channel_by_num(struct iio_dev *indio_dev, int num)
++{
++	int i;
++
++	for (i = 0; i < indio_dev->num_channels; i++)
++		if (indio_dev->channels[i].channel == num)
++			return &indio_dev->channels[i];
++	return NULL;
++}
++
+ static unsigned int meson_sar_adc_get_fifo_count(struct iio_dev *indio_dev)
+ {
+ 	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
+@@ -359,6 +416,8 @@ static void meson_sar_adc_set_chan7_mux(struct iio_dev *indio_dev,
+ 			   MESON_SAR_ADC_REG3_CTRL_CHAN7_MUX_SEL_MASK, regval);
+ 
+ 	usleep_range(10, 20);
++
++	priv->chan7_mux_sel = sel;
+ }
+ 
+ static int meson_sar_adc_read_raw_sample(struct iio_dev *indio_dev,
+@@ -454,6 +513,15 @@ static void meson_sar_adc_enable_channel(struct iio_dev *indio_dev,
+ 		regmap_update_bits(priv->regmap,
+ 				   MESON_SAR_ADC_DELTA_10,
+ 				   MESON_SAR_ADC_DELTA_10_TEMP_SEL, regval);
++	} else if (chan->address == MESON_SAR_ADC_VOLTAGE_AND_MUX_CHANNEL) {
++		enum meson_sar_adc_chan7_mux_sel sel;
++
++		if (chan->channel == NUM_CHAN_7)
++			sel = CHAN7_MUX_CH7_INPUT;
++		else
++			sel = chan7_mux_values[chan->channel - NUM_MUX_0_VSS];
++		if (sel != priv->chan7_mux_sel)
++			meson_sar_adc_set_chan7_mux(indio_dev, sel);
+ 	}
+ }
+ 
+@@ -1026,7 +1094,8 @@ static int meson_sar_adc_calib(struct iio_dev *indio_dev)
+ 	meson_sar_adc_set_chan7_mux(indio_dev, CHAN7_MUX_VDD_DIV4);
+ 	usleep_range(10, 20);
+ 	ret = meson_sar_adc_get_sample(indio_dev,
+-				       &indio_dev->channels[7],
++				       find_channel_by_num(indio_dev,
++							   NUM_MUX_1_VDD_DIV4),
+ 				       MEAN_AVERAGING, EIGHT_SAMPLES, &value0);
+ 	if (ret < 0)
+ 		goto out;
+@@ -1034,7 +1103,8 @@ static int meson_sar_adc_calib(struct iio_dev *indio_dev)
+ 	meson_sar_adc_set_chan7_mux(indio_dev, CHAN7_MUX_VDD_MUL3_DIV4);
+ 	usleep_range(10, 20);
+ 	ret = meson_sar_adc_get_sample(indio_dev,
+-				       &indio_dev->channels[7],
++				       find_channel_by_num(indio_dev,
++							   NUM_MUX_3_VDD_MUL3_DIV4),
+ 				       MEAN_AVERAGING, EIGHT_SAMPLES, &value1);
+ 	if (ret < 0)
+ 		goto out;
+@@ -1061,6 +1131,9 @@ static int read_label(struct iio_dev *indio_dev,
+ {
+ 	if (chan->type == IIO_TEMP)
+ 		return sprintf(label, "temp-sensor\n");
++	if (chan->type == IIO_VOLTAGE && chan->channel >= NUM_MUX_0_VSS)
++		return sprintf(label, "%s\n",
++			       chan7_mux_names[chan->channel - NUM_MUX_0_VSS]);
+ 	if (chan->type == IIO_VOLTAGE)
+ 		return sprintf(label, "channel-%d\n", chan->channel);
+ 	return 0;
 -- 
 2.38.4
 
