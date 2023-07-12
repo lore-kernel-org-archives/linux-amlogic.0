@@ -4,106 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FC9CEB64D9
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jul 2023 11:18:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E753C001DD
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jul 2023 11:48:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=o/4pcMs21rcE9HsO3HzF+T5NEpHkWhOBOxQn80/1Xs8=; b=EwdW+HkuaHNs43
-	OOaFKSRDhOEzNIhoFczUNeT5mTL2S/9BnqC/+HriIRSb2zRATzvFz7s3kwaPvyCNf6Zrt9eWaFMo2
-	81gmklX5THfd9pHszEdpgzZ4ZpxgbgUEo3LCHErqUV1SyLuOkH/16EDA+dQeRwlLZYo8VjooT+SzP
-	hQ0+dnzHxPokKbSrxhA3rlZZKZDmw6iY7fEUANaLpeqcR0pxFobUOxpySJSj25FP1J9K7VtJKnNAc
-	RO4MZPZlQ/zZ2EQ//l5WvTHY6W6AJs1S7ybx5IgRbgUfDToCIOhAK9jv3rUNAuTecvsCSIlNyVr+I
-	SGUFAOTGButm7lm1Kacw==;
+	List-Owner; bh=R4wr7b9+nUWBOPsHddCvNcQbauud3QyOGDi6B4+3+3Y=; b=nLPtal+Osiih7C
+	l5prpvah0ufRBSLT/CdSanSC2es8/Owwqkq0kw3TkTGW2VkVC2qFLeesdrrCUuGV26xaaGeGmeTG/
+	WvAxxTlWtVW55dDzpvFHb4bWE4vHNKIk3qcOMdVdRG5MQ5sGcaE9a7RBelB02kNphEQk5VC60Qb21
+	OIC8p4fUDYyGYB0mcLiTYr1All7uar2eZNXPT7j+DHgRG7ag3c/DtYqfeGpUVZN2oxstp2CYBAjcm
+	SvWKAdcki3wV3gyVmyXLMyiu+77/7F09z0SqZigRw1PbnBuCORqwVXornAGCw3ThNsoqtn9b909VH
+	4GFmZTahzFTsVqe9brKg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJXrW-00HNna-2X;
-	Wed, 12 Jul 2023 11:18:26 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1qJYK6-00HR3o-2A;
+	Wed, 12 Jul 2023 11:47:58 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJXrR-00HNmP-0k
-	for linux-amlogic@lists.infradead.org;
-	Wed, 12 Jul 2023 11:18:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1689160700;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sqF46ZIeTTxnF0x2v0q2HtXa3ZhclBx145UBtd0H60M=;
-	b=AgTcZUhcvNfphObgZtOVRpHm5lp7Kkm8uLOMW68udj7MnBkVAItrcQlzm1yrJ+uE5l/eYF
-	nTDTPcPQW4joroP0+vM+uSjctKjdec7PcdZgcWxWOpfc2N9z0mfpry0SSbgTsA/ZRrYewy
-	0jw1o3TJ3hznNBWeDYVp+PvJ4s7Y55E=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-464-Ih8zeOoJMYG7LinfcA5NNw-1; Wed, 12 Jul 2023 07:18:17 -0400
-X-MC-Unique: Ih8zeOoJMYG7LinfcA5NNw-1
-Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-3f41a04a297so39635955e9.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 12 Jul 2023 04:18:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689160696; x=1691752696;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mGmoSdcAtbAnvFmDIfmKNE01xrI5yfsr2LA1G6eD+Js=;
-        b=HV0aXLiiIhfpvlYGPYTbBPP0D4bAhuA9n0EHDoliU2nerYWrLag+5eNAKVcG/aooyQ
-         uUhlWVVsJ8TGG23mAvlRkqCaXGKpw0wY5jkCCPMJpZGeU+U7OHKL0CsCu6H2lwau6nzc
-         uGUBV/VIVTEfMQs73mNVPeKq+bJW4BnAMCfXGgxmgoveE6P09AuFynEvrmn6ls1v5311
-         50huFxKkrtQkIuwliylJ+n0TFoPngNTV+n6j68ado6Ro7nJYk5Ml2ytkKzI/ohmDsJ/K
-         fPWUxSnN7+4XNbHo3pnQzOVUp8QE4Lv/u1FOqQvjKh8ljwT36wAsT370bHnE3j7rRxvB
-         /mEg==
-X-Gm-Message-State: ABy/qLZvImx83QCNPb6UBC0qbZOvn300fmvmPFgkoye+yLCqp/D9ZOjb
-	ilSAvDnhDjDF8h8ABBGfy9OzAxP/P2BLXPM9e6dTrAJhUbui8hYIcXxtKIaFJL/ZS2J4G15612B
-	HsySX+BV08zVlU5HCErv+mO9MKMvcalM=
-X-Received: by 2002:a05:600c:3644:b0:3fc:627:ea31 with SMTP id y4-20020a05600c364400b003fc0627ea31mr12056766wmq.38.1689160695901;
-        Wed, 12 Jul 2023 04:18:15 -0700 (PDT)
-X-Google-Smtp-Source: APBJJlHe6rz0BytbzD5//h/wnxrk0jp/oOEOt3AbTKSXStRClYkvIUVNGHa0orOjttguAlZUCgSKTg==
-X-Received: by 2002:a05:600c:3644:b0:3fc:627:ea31 with SMTP id y4-20020a05600c364400b003fc0627ea31mr12056740wmq.38.1689160695625;
-        Wed, 12 Jul 2023 04:18:15 -0700 (PDT)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id k6-20020a05600c0b4600b003fc00702f65sm14151776wmr.46.2023.07.12.04.18.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jul 2023 04:18:15 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Thomas Zimmermann
- <tzimmermann@suse.de>
-Cc: linux-samsung-soc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-rockchip@lists.infradead.org, Xinwei Kong
- <kong.kongxinwei@hisilicon.com>, VMware Graphics Reviewers
- <linux-graphics-maintainer@vmware.com>, NXP Linux Team
- <linux-imx@nxp.com>, spice-devel@lists.freedesktop.org,
- linux-sunxi@lists.linux.dev, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- xen-devel@lists.xenproject.org, linux-tegra@vger.kernel.org,
- linux-amlogic@lists.infradead.org, Gurchetan Singh
- <gurchetansingh@chromium.org>, Sean Paul <sean@poorly.run>,
- linux-arm-kernel@lists.infradead.org, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Andrew Jeffery
- <andrew@aj.id.au>, linux-mips@vger.kernel.org, Chia-I Wu
- <olvaffe@gmail.com>, linux-renesas-soc@vger.kernel.org,
- kernel@pengutronix.de, John Stultz <jstultz@google.com>,
- freedreno@lists.freedesktop.org, Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [PATCH RFC v1 00/52] drm/crtc: Rename struct drm_crtc::dev to
- drm_dev
-In-Reply-To: <20230712105432.urgwb4zzwgsyfbwq@pengutronix.de>
-References: <20230712094702.1770121-1-u.kleine-koenig@pengutronix.de>
- <abf26a82-4f17-51f2-5753-785f8516a81a@suse.de>
- <20230712105432.urgwb4zzwgsyfbwq@pengutronix.de>
-Date: Wed, 12 Jul 2023 13:18:14 +0200
-Message-ID: <87r0pdgyyx.fsf@minerva.mail-host-address-is-not-set>
+	id 1qJYK4-00HR2A-0Z;
+	Wed, 12 Jul 2023 11:47:57 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id A2B01617A4;
+	Wed, 12 Jul 2023 11:47:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6827AC433C9;
+	Wed, 12 Jul 2023 11:47:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1689162475;
+	bh=BL+8Fo9QG0zNtj0y7Lgb/m7HMTTimtNx9krlJ8PROKk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=MBDgsatfZpWqdAMwV6qveeIfLQ6N7jrowK9LjuavtymGZJ2RZ2Oc1MpqiENhz3quE
+	 3C52w4yN+XHh2R9JtS9d5C82wdCYmJLOyIegf8gaLO9fnbUYfmxOmBAQgyocJctiAI
+	 6E59ipQJyxOm+qSbYi3HkSZBX2tCKWY1iP+GjHTkOSnvKhvbhkax3ZarfbH5wu0wKK
+	 qx68/+nBANjiNw+aQoV6C1vLW4EDygmSD4fpo+BTkFwtXsm5w2b39Kd49evlvRZIW7
+	 KcdjwPLLtdt+TqxuNclA8arYxR3eJ8wd/C5/2IO8CCIn4CiFbVXi916UJQXvZWbBYq
+	 HcHdiJ1RRWg+A==
+From: Mark Brown <broonie@kernel.org>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+ Yang Yingliang <yangyingliang@huawei.com>, 
+ Amit Kumar Mahapatra via Alsa-devel <alsa-devel@alsa-project.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>, 
+ Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+ linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+ linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-trace-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Sanjay R Mehta <sanju.mehta@amd.com>, 
+ Radu Pirea <radu_nicolae.pirea@upb.ro>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Claudiu Beznea <claudiu.beznea@microchip.com>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Serge Semin <fancer.lancer@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, Orson Zhai <orsonzhai@gmail.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, 
+ Chunyan Zhang <zhang.lyra@gmail.com>, 
+ Alain Volmat <alain.volmat@foss.st.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Max Filippov <jcmvbkbc@gmail.com>, Steven Rostedt <rostedt@goodmis.org>, 
+ Masami Hiramatsu <mhiramat@kernel.org>, 
+ Richard Cochran <richardcochran@gmail.com>
+In-Reply-To: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
+References: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
+Subject: Re: (subset) [PATCH v2 00/15] spi: Header and core clean up and
+ refactoring
+Message-Id: <168916246513.47003.10097115249886306259.b4-ty@kernel.org>
+Date: Wed, 12 Jul 2023 12:47:45 +0100
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
+X-Mailer: b4 0.13-dev-099c9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230712_041821_340636_68C2C510 
-X-CRM114-Status: GOOD (  17.22  )
+X-CRM114-CacheID: sfid-20230712_044756_298161_9F1AB3B9 
+X-CRM114-Status: GOOD (  16.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,48 +107,78 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VXdlIEtsZWluZS1Lw7ZuaWcgPHUua2xlaW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZT4gd3JpdGVz
-OgoKW2Ryb3BwaW5nIHNvbWUgcmVjaXBpZW50cyBzaW5jZSBteSBTTVRQIHNlcnZlciB3YXMgY29t
-cGxhaW5pbmcgYWJvdXQgdGhlIHNpemVdCgo+IEhlbGxvIFRob21hcywKPgo+IE9uIFdlZCwgSnVs
-IDEyLCAyMDIzIGF0IDEyOjE5OjM3UE0gKzAyMDAsIFRob21hcyBaaW1tZXJtYW5uIHdyb3RlOgo+
-PiBBbSAxMi4wNy4yMyB1bSAxMTo0NiBzY2hyaWViIFV3ZSBLbGVpbmUtS8O2bmlnOgo+PiA+IEhl
-bGxvLAo+PiA+IAo+PiA+IHdoaWxlIEkgZGVidWdnZWQgYW4gaXNzdWUgaW4gdGhlIGlteC1sY2Rj
-IGRyaXZlciBJIHdhcyBjb25zdGFudGx5Cj4+ID4gaXJyaXRhdGVkIGFib3V0IHN0cnVjdCBkcm1f
-ZGV2aWNlIHBvaW50ZXIgdmFyaWFibGVzIGJlaW5nIG5hbWVkICJkZXYiCj4+ID4gYmVjYXVzZSB3
-aXRoIHRoYXQgbmFtZSBJIHVzdWFsbHkgZXhwZWN0IGEgc3RydWN0IGRldmljZSBwb2ludGVyLgo+
-PiA+IAo+PiA+IEkgdGhpbmsgdGhlcmUgaXMgYSBiaWcgYmVuZWZpdCB3aGVuIHRoZXNlIGFyZSBh
-bGwgcmVuYW1lZCB0byAiZHJtX2RldiIuCj4+IAo+PiBJZiB5b3UgcmVuYW1lIGRybV9jcnRjLmRl
-diwgeW91IHNob3VsZCBhbHNvIGFkZHJlc3MgKmFsbCogb3RoZXIgZGF0YQo+PiBzdHJ1Y3R1cmVz
-Lgo+Cj4gWWVzLiBDaGFuZ2luZyBkcm1fY3J0Yzo6ZGV2IHdhcyBzb21lIGVmZm9ydCwgc28gSSB0
-aG91Z2h0IHRvIHNlbmQgdGhhdAo+IG9uZSBvdXQgYmVmb3JlIGRvaW5nIHRoZSBzYW1lIHRvCj4K
-PiAJZHJtX2RwX21zdF90b3BvbG9neV9tZ3IKPiAJZHJtX2F0b21pY19zdGF0ZQo+IAlkcm1fbWFz
-dGVyCj4gCWRybV9icmlkZ2UKPiAJZHJtX2NsaWVudF9kZXYKPiAJZHJtX2Nvbm5lY3Rvcgo+IAlk
-cm1fZGVidWdmc19lbnRyeQo+IAlkcm1fZW5jb2Rlcgo+IAlkcm1fZmJfaGVscGVyCj4gCWRybV9t
-aW5vcgo+IAlkcm1fZnJhbWVidWZmZXIKPiAJZHJtX2dlbV9vYmplY3QKPiAJZHJtX3BsYW5lCj4g
-CWRybV9wcm9wZXJ0eQo+IAlkcm1fcHJvcGVydHlfYmxvYgo+IAlkcm1fdmJsYW5rX2NydGMKPgo+
-IHdoZW4gaW4gdGhlIGVuZCB0aGUgaW50ZW50aW9uIGlzbid0IHdlbGNvbWUuCj4KPj4gPiBJIGhh
-dmUgbm8gc3Ryb25nIHByZWZlcmVuY2UgaGVyZSB0aG91Z2gsIHNvICJkcm1kZXYiIG9yICJkcm0i
-IGFyZSBmaW5lCj4+ID4gZm9yIG1lLCB0b28uIExldCB0aGUgYmlrZXNoZWRpbmcgYmVnaW4hCj4+
-IAo+PiBXZSd2ZSBkaXNjdXNzZWQgdGhpcyB0byBkZWF0aC4gSUlSQyAnZHJtJyB3b3VsZCBiZSB0
-aGUgcHJlZmVyZWQgY2hvaWNlLgo+Cj4gImRybSIgYXQgbGVhc3QgaGFzIHRoZSBhZHZhbnRhZ2Ug
-dG8gYmUgdGhlIDJuZCBtb3N0IGNvbW1vbiBuYW1lLiBXaXRoCj4gUGF1bCBLb2NpYWxrb3dza2kg
-cHJlZmVyaW5nICJkcm1fZGV2IiB0aGVyZSBpcyBubyBjbGVhciBmYXZvdXJpdGUgeWV0LgoKSSB0
-aGluayB0aGF0IGVpdGhlciAiZHJtIiBvciAiZHJtX2RldiIgd291bGQgYmUgbW9yZSBjbGVhciB0
-aGFuICJkZXYiLAp3aGljaCBJIGFsc28gZm91bmQgaXQgY29uZnVzaW5nIGFuZCB0aGlua2luZyBh
-Ym91dCBhICJzdHJ1Y3QgZGV2aWNlIi4KClByb2JhYmx5IGxlYW5pbmcgdG8gImRybSIsIHNpbmNl
-IGFzIHlvdSBzYWlkIGlzIHRoZSBzZWNvbmQgbW9zdCB1c2VkIG5hbWUKaW4gZHJpdmVycyB0aGF0
-IGFzc2lnbiBjcnRjLT5kZXYgdG8gYSBsb2NhbCB2YXJpYWJsZS4KCj4gTWF5YmUgYWxsIHRoZSBv
-dGhlciBwZW9wbGUgd2l0aCBzdHJvbmcgb3BpbmlvbnMgYXJlIGRlYWQgaWYgdGhpcyB3YXMKPiAi
-ZGlzY3Vzc2VkIHRvIGRlYXRoIiBiZWZvcmU/IDotKQo+Cj4gQmVzdCByZWdhcmRzCj4gVXdlCj4K
-PiAtLSAKPiBQZW5ndXRyb25peCBlLksuICAgICAgICAgICAgICAgICAgICAgICAgICAgfCBVd2Ug
-S2xlaW5lLUvDtm5pZyAgICAgICAgICAgIHwKPiBJbmR1c3RyaWFsIExpbnV4IFNvbHV0aW9ucyAg
-ICAgICAgICAgICAgICAgfCBodHRwczovL3d3dy5wZW5ndXRyb25peC5kZS8gfAoKLS0gCkJlc3Qg
-cmVnYXJkcywKCkphdmllciBNYXJ0aW5leiBDYW5pbGxhcwpDb3JlIFBsYXRmb3JtcwpSZWQgSGF0
-CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgt
-YW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0
-dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On Mon, 10 Jul 2023 18:49:17 +0300, Andy Shevchenko wrote:
+> Various cleanups and refactorings of the SPI header and core parts
+> united in a single series. It also touches drivers under SPI subsystem
+> folder on the pure renaming purposes of some constants.
+> 
+> No functional change intended.
+> 
+> Changelog v2:
+> - added new patches 3,4,5,10,13,14
+> - massaged comment and kernel doc in patch 9
+> - split used to be patch 4 to patches 11,12
+> - covered a few things in SPI core in patch 15
+> - amended commit message for above (Mark)
+> - reshuffled patches in the series for better logical grouping
+> 
+> [...]
+
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[01/15] spi: Remove unneeded OF node NULL checks
+        commit: fbab5b2c09060e8034fee6ec2df69a62594fb7db
+[02/15] spi: Drop duplicate IDR allocation code in spi_register_controller()
+        commit: 440c47331bdb889e24128c75387c695ca81d9b9b
+[03/15] spi: Replace if-else-if by bitops and multiplications
+        commit: 2b308e7176e366a52a07a49868e3b1a295e56785
+[06/15] spi: Use sysfs_emit() to instead of s*printf()
+        commit: f2daa4667fda1aa951b91da0ae9675a5da9d7716
+[07/15] spi: Sort headers alphabetically
+        commit: edf6a864c996f9a9f5299a3b3e574a37e64000c5
+[08/15] spi: Clean up headers
+        (no commit info)
+[11/15] spi: Get rid of old SPI_MASTER_NO_TX & SPI_MASTER_NO_RX
+        commit: c397f09e5498994790503a64486213ef85e58db9
+[12/15] spi: Get rid of old SPI_MASTER_MUST_TX & SPI_MASTER_MUST_RX
+        commit: 90366cd60133a9f5b6a2f31360367c658585e125
+[13/15] spi: Rename SPI_MASTER_GPIO_SS to SPI_CONTROLLER_GPIO_SS
+        commit: 82238d2cbd99ebd09dda48fb7c1c8802097da6a2
+[14/15] spi: Convert to SPI_CONTROLLER_HALF_DUPLEX
+        commit: 7a2b552c8e0e5bb280558f6c120140f5f06323bc
+[15/15] spi: Fix spelling typos and acronyms capitalization
+        commit: 702ca0269ed56e2d8dae7874a4d8af268e2a382e
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
