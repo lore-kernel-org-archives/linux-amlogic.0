@@ -4,98 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E753C001DD
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jul 2023 11:48:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB7BAEB64DA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jul 2023 12:05:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=R4wr7b9+nUWBOPsHddCvNcQbauud3QyOGDi6B4+3+3Y=; b=nLPtal+Osiih7C
-	l5prpvah0ufRBSLT/CdSanSC2es8/Owwqkq0kw3TkTGW2VkVC2qFLeesdrrCUuGV26xaaGeGmeTG/
-	WvAxxTlWtVW55dDzpvFHb4bWE4vHNKIk3qcOMdVdRG5MQ5sGcaE9a7RBelB02kNphEQk5VC60Qb21
-	OIC8p4fUDYyGYB0mcLiTYr1All7uar2eZNXPT7j+DHgRG7ag3c/DtYqfeGpUVZN2oxstp2CYBAjcm
-	SvWKAdcki3wV3gyVmyXLMyiu+77/7F09z0SqZigRw1PbnBuCORqwVXornAGCw3ThNsoqtn9b909VH
-	4GFmZTahzFTsVqe9brKg==;
+	List-Owner; bh=CcGoPueh/xv5jDAdjIYdrEQZxuFODWmaUM2r0Kau9TA=; b=2QTNPZ1txAdIpi
+	4ysPiA2De9OJVL83xhteMSSlJzS5P6Q6Twjc9ClxhDghMG4Vvnc/UkaNUYSnFE+ddP6wfABhlQnQN
+	nPJPIxxtpsbUO/tBaT8wSS4l86y4hYOgJjkf0J3URH0X9wRWSA/TeoAL+i1HzzXx/2lJd+O6EJEXq
+	pU1yklMowmpsWbMKcvC2tsDWP0cOkkAp8ewsnktHnhfvjRStsG9GSlTv/XvUr8bm/mp1HZpA7egpW
+	j1BZD5MK6gFObj0Bjt53LKBNG7Mjzc5ovsWVNT42nOy4Y/Vgp88hzOBnaZFNsOgJ6TQEoBBOvK2ML
+	GVv0LUFxcDDI12ZhgpIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJYK6-00HR3o-2A;
-	Wed, 12 Jul 2023 11:47:58 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qJYav-00HTtW-1K;
+	Wed, 12 Jul 2023 12:05:21 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJYK4-00HR2A-0Z;
-	Wed, 12 Jul 2023 11:47:57 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id A2B01617A4;
-	Wed, 12 Jul 2023 11:47:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6827AC433C9;
-	Wed, 12 Jul 2023 11:47:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1689162475;
-	bh=BL+8Fo9QG0zNtj0y7Lgb/m7HMTTimtNx9krlJ8PROKk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=MBDgsatfZpWqdAMwV6qveeIfLQ6N7jrowK9LjuavtymGZJ2RZ2Oc1MpqiENhz3quE
-	 3C52w4yN+XHh2R9JtS9d5C82wdCYmJLOyIegf8gaLO9fnbUYfmxOmBAQgyocJctiAI
-	 6E59ipQJyxOm+qSbYi3HkSZBX2tCKWY1iP+GjHTkOSnvKhvbhkax3ZarfbH5wu0wKK
-	 qx68/+nBANjiNw+aQoV6C1vLW4EDygmSD4fpo+BTkFwtXsm5w2b39Kd49evlvRZIW7
-	 KcdjwPLLtdt+TqxuNclA8arYxR3eJ8wd/C5/2IO8CCIn4CiFbVXi916UJQXvZWbBYq
-	 HcHdiJ1RRWg+A==
-From: Mark Brown <broonie@kernel.org>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
- Yang Yingliang <yangyingliang@huawei.com>, 
- Amit Kumar Mahapatra via Alsa-devel <alsa-devel@alsa-project.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>, 
- Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
- linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
- linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-trace-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Sanjay R Mehta <sanju.mehta@amd.com>, 
- Radu Pirea <radu_nicolae.pirea@upb.ro>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Claudiu Beznea <claudiu.beznea@microchip.com>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Serge Semin <fancer.lancer@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
- Palmer Dabbelt <palmer@dabbelt.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, Orson Zhai <orsonzhai@gmail.com>, 
- Baolin Wang <baolin.wang@linux.alibaba.com>, 
- Chunyan Zhang <zhang.lyra@gmail.com>, 
- Alain Volmat <alain.volmat@foss.st.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Max Filippov <jcmvbkbc@gmail.com>, Steven Rostedt <rostedt@goodmis.org>, 
- Masami Hiramatsu <mhiramat@kernel.org>, 
- Richard Cochran <richardcochran@gmail.com>
-In-Reply-To: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
-References: <20230710154932.68377-1-andriy.shevchenko@linux.intel.com>
-Subject: Re: (subset) [PATCH v2 00/15] spi: Header and core clean up and
- refactoring
-Message-Id: <168916246513.47003.10097115249886306259.b4-ty@kernel.org>
-Date: Wed, 12 Jul 2023 12:47:45 +0100
+	id 1qJYas-00HTs2-03
+	for linux-amlogic@lists.infradead.org;
+	Wed, 12 Jul 2023 12:05:20 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fbfcc6daa9so59126985e9.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 12 Jul 2023 05:05:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689163515; x=1691755515;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=gmxZeEshRvqM/BRR9ZXtUjCKxif2agi1dlESa2lsMoU=;
+        b=QzS2HCB0DYgtvqqOIbnCP2zRcRrP2JmzRZYa7Jqwvq2ugL+0C9wegPY9how926nslD
+         bLemtZE9wSrUh5EvjA35wCl03UpS0+pS8Ld9fBiyqGK4hFqfvgwCwDocDFrpBzwCah2i
+         S7nQL+n7S1Ho/Z/ozpT05ZPBlde7SWIdDqTZ3SVi5tRxiAqwJGdcqkxHTJNPGI/HVzW4
+         HPM79C3A2u7aVi7iNlpRXcM9drr3kKTIozROuVmp4QgiP6O1lw18RyPCJpK0bPGFXd/i
+         S+i/Jlf4UGzUWriqTlu/0/J5MwiN677MxXVP0PBiQuqelaqTY42psKsSo8GoxFxvxPka
+         Q4ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689163515; x=1691755515;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gmxZeEshRvqM/BRR9ZXtUjCKxif2agi1dlESa2lsMoU=;
+        b=T88o+6IAWbpJ3LbO4HsgvUy2TWHzMSe639a6s46FFSnJ0GcZxYK+AzBwiosMVRAesF
+         6GVS+j1ORXzd8paVpHEWurWU/BEvxVDFhFUduJiB5ELFEw5du0pQ/Dd5M02QJTRXpQxj
+         oFvcAvUNr58zE2LzR7z91rFF1uTsP0cI0GQH+6hc74NFg7BGfGrwLsrir9nJn5tIHdUs
+         9X1PjOJOAA0XM8i0T1z8gm5kBOkDSphuXl9ZoXkQnSjZ6W43fpKBFXLTgQSX+8ZxwDFW
+         t9+kSPfpP7U71eOL+7jLD+9FGH5g+5Gx/FDQo+jY+Oghg15zt2tuGSGCYJ/k/3KOiF0z
+         iGPQ==
+X-Gm-Message-State: ABy/qLb2UPXIrif0EdYxMH8w+loy16lapFkEbUEIZ+HM4Pb9yIyi+X86
+	LigX9AHxor2DCtOMCGG67SpR/g==
+X-Google-Smtp-Source: APBJJlEW07G2Z9vncF20Zns7VmBUWwFGEgahYbX5gKUkcou8mv0OBM7lDswlVa796IQGkz2649ACDQ==
+X-Received: by 2002:a05:600c:2116:b0:3fc:71:fe50 with SMTP id u22-20020a05600c211600b003fc0071fe50mr12927500wml.24.1689163515243;
+        Wed, 12 Jul 2023 05:05:15 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb0:33d7:37a9:5cb2:4942])
+        by smtp.gmail.com with ESMTPSA id hn32-20020a05600ca3a000b003fbdd5d0758sm4933880wmb.22.2023.07.12.05.05.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jul 2023 05:05:14 -0700 (PDT)
+References: <20230607-topic-amlogic-upstream-clkid-public-migration-v2-0-38172d17c27a@linaro.org>
+ <20230607-topic-amlogic-upstream-clkid-public-migration-v2-1-38172d17c27a@linaro.org>
+User-agent: mu4e 1.8.13; emacs 28.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Kevin Hilman
+ <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 01/19] clk: meson: introduce meson-clkc-utils
+Date: Wed, 12 Jul 2023 14:03:19 +0200
+In-reply-to: <20230607-topic-amlogic-upstream-clkid-public-migration-v2-1-38172d17c27a@linaro.org>
+Message-ID: <1ja5w1xrly.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-Mailer: b4 0.13-dev-099c9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230712_044756_298161_9F1AB3B9 
-X-CRM114-Status: GOOD (  16.42  )
+X-CRM114-CacheID: sfid-20230712_050518_266922_CCDFEEBB 
+X-CRM114-Status: GOOD (  21.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,70 +98,120 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 10 Jul 2023 18:49:17 +0300, Andy Shevchenko wrote:
-> Various cleanups and refactorings of the SPI header and core parts
-> united in a single series. It also touches drivers under SPI subsystem
-> folder on the pure renaming purposes of some constants.
-> 
-> No functional change intended.
-> 
-> Changelog v2:
-> - added new patches 3,4,5,10,13,14
-> - massaged comment and kernel doc in patch 9
-> - split used to be patch 4 to patches 11,12
-> - covered a few things in SPI core in patch 15
-> - amended commit message for above (Mark)
-> - reshuffled patches in the series for better logical grouping
-> 
-> [...]
 
-Applied to
+On Mon 12 Jun 2023 at 11:57, Neil Armstrong <neil.armstrong@linaro.org> wrote:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+> Let's introduce a new module called meson-clkc-utils that
+> will contain shared utility functions for all Amlogic clock
+> controller drivers.
+>
+> The first utility function is a replacement of of_clk_hw_onecell_get
+> in order to get rid of the NR_CLKS define in all Amlogic clock
+> drivers.
+>
+> The goal is to move all duplicate probe and init code in this module.
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Thanks!
+Hi Neil,
 
-[01/15] spi: Remove unneeded OF node NULL checks
-        commit: fbab5b2c09060e8034fee6ec2df69a62594fb7db
-[02/15] spi: Drop duplicate IDR allocation code in spi_register_controller()
-        commit: 440c47331bdb889e24128c75387c695ca81d9b9b
-[03/15] spi: Replace if-else-if by bitops and multiplications
-        commit: 2b308e7176e366a52a07a49868e3b1a295e56785
-[06/15] spi: Use sysfs_emit() to instead of s*printf()
-        commit: f2daa4667fda1aa951b91da0ae9675a5da9d7716
-[07/15] spi: Sort headers alphabetically
-        commit: edf6a864c996f9a9f5299a3b3e574a37e64000c5
-[08/15] spi: Clean up headers
-        (no commit info)
-[11/15] spi: Get rid of old SPI_MASTER_NO_TX & SPI_MASTER_NO_RX
-        commit: c397f09e5498994790503a64486213ef85e58db9
-[12/15] spi: Get rid of old SPI_MASTER_MUST_TX & SPI_MASTER_MUST_RX
-        commit: 90366cd60133a9f5b6a2f31360367c658585e125
-[13/15] spi: Rename SPI_MASTER_GPIO_SS to SPI_CONTROLLER_GPIO_SS
-        commit: 82238d2cbd99ebd09dda48fb7c1c8802097da6a2
-[14/15] spi: Convert to SPI_CONTROLLER_HALF_DUPLEX
-        commit: 7a2b552c8e0e5bb280558f6c120140f5f06323bc
-[15/15] spi: Fix spelling typos and acronyms capitalization
-        commit: 702ca0269ed56e2d8dae7874a4d8af268e2a382e
+checkpatch complains about the MODULE_LICENSE()
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+WARNING: Prefer "GPL" over "GPL v2" - see commit bf7fbeeae6db ("module: Cure the MODULE_LICENSE "GPL" vs. "GPL v2" bogosity")
+#185: FILE: drivers/clk/meson/meson-clkc-utils.c:25:
++MODULE_LICENSE("GPL v2");
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+I don't mind fixing this up while applying if it is Ok with you.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> ---
+>  drivers/clk/meson/Kconfig            |  3 +++
+>  drivers/clk/meson/Makefile           |  1 +
+>  drivers/clk/meson/meson-clkc-utils.c | 25 +++++++++++++++++++++++++
+>  drivers/clk/meson/meson-clkc-utils.h | 19 +++++++++++++++++++
+>  4 files changed, 48 insertions(+)
+>
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index 8ce846fdbe43..d03adad31318 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -30,6 +30,9 @@ config COMMON_CLK_MESON_VID_PLL_DIV
+>  	tristate
+>  	select COMMON_CLK_MESON_REGMAP
+>  
+> +config COMMON_CLK_MESON_CLKC_UTILS
+> +	tristate
+> +
+>  config COMMON_CLK_MESON_AO_CLKC
+>  	tristate
+>  	select COMMON_CLK_MESON_REGMAP
+> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+> index d5288662881d..cd961cc4f4db 100644
+> --- a/drivers/clk/meson/Makefile
+> +++ b/drivers/clk/meson/Makefile
+> @@ -1,6 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  # Amlogic clock drivers
+>  
+> +obj-$(CONFIG_COMMON_CLK_MESON_CLKC_UTILS) += meson-clkc-utils.o
+>  obj-$(CONFIG_COMMON_CLK_MESON_AO_CLKC) += meson-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_MESON_CPU_DYNDIV) += clk-cpu-dyndiv.o
+>  obj-$(CONFIG_COMMON_CLK_MESON_DUALDIV) += clk-dualdiv.o
+> diff --git a/drivers/clk/meson/meson-clkc-utils.c b/drivers/clk/meson/meson-clkc-utils.c
+> new file mode 100644
+> index 000000000000..9a0620bcc161
+> --- /dev/null
+> +++ b/drivers/clk/meson/meson-clkc-utils.c
+> @@ -0,0 +1,25 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+> + */
+> +
+> +#include <linux/of_device.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/module.h>
+> +#include "meson-clkc-utils.h"
+> +
+> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data)
+> +{
+> +	const struct meson_clk_hw_data *data = clk_hw_data;
+> +	unsigned int idx = clkspec->args[0];
+> +
+> +	if (idx >= data->num) {
+> +		pr_err("%s: invalid index %u\n", __func__, idx);
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	return data->hws[idx];
+> +}
+> +EXPORT_SYMBOL_GPL(meson_clk_hw_get);
+> +
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/clk/meson/meson-clkc-utils.h b/drivers/clk/meson/meson-clkc-utils.h
+> new file mode 100644
+> index 000000000000..fe6f40728949
+> --- /dev/null
+> +++ b/drivers/clk/meson/meson-clkc-utils.h
+> @@ -0,0 +1,19 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+> + */
+> +
+> +#ifndef __MESON_CLKC_UTILS_H__
+> +#define __MESON_CLKC_UTILS_H__
+> +
+> +#include <linux/of_device.h>
+> +#include <linux/clk-provider.h>
+> +
+> +struct meson_clk_hw_data {
+> +	struct clk_hw	**hws;
+> +	unsigned int	num;
+> +};
+> +
+> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data);
+> +
+> +#endif
 
 
 _______________________________________________
