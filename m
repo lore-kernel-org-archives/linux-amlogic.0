@@ -4,63 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA4D9EB64D9
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jul 2023 10:06:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FC9CEB64D9
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jul 2023 11:18:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=78IMltJIGANCGS5S7DduSZh8O1KRea0tGpmOtjuFnKs=; b=niGCCYCCtuBlxzuLxefGrofOo5
-	df543Jbo9+zXb20P2PDBpn4z81BCFhTzFyC2vL+/q6qTOUx9ZewjBaj/VbxMKZ3uBkbRKFRo/Ru2D
-	eC9GsCH10fgDPtl2kBZwFGHXlNR+/uLKwJW5eQ7UuMncKp/BxQkfyKeKGL1ZCrrJFWn/HQKw9Cim5
-	S3ZHenrA5FvLCq1ypk+eWjpO9bgSTaPho85H5FrSNPPVv5ltNCGlnLf5rxoPH5zxlD8DRONb9wUuo
-	Ywkz9pAM/hYGwKi4vPdSSQ1VqvwBdyU83AB9qN7Cv2b2tY1sbXtHa+0Zhi+XpIq9gvLOg15sW3dkD
-	jjU5B3aQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=o/4pcMs21rcE9HsO3HzF+T5NEpHkWhOBOxQn80/1Xs8=; b=EwdW+HkuaHNs43
+	OOaFKSRDhOEzNIhoFczUNeT5mTL2S/9BnqC/+HriIRSb2zRATzvFz7s3kwaPvyCNf6Zrt9eWaFMo2
+	81gmklX5THfd9pHszEdpgzZ4ZpxgbgUEo3LCHErqUV1SyLuOkH/16EDA+dQeRwlLZYo8VjooT+SzP
+	hQ0+dnzHxPokKbSrxhA3rlZZKZDmw6iY7fEUANaLpeqcR0pxFobUOxpySJSj25FP1J9K7VtJKnNAc
+	RO4MZPZlQ/zZ2EQ//l5WvTHY6W6AJs1S7ybx5IgRbgUfDToCIOhAK9jv3rUNAuTecvsCSIlNyVr+I
+	SGUFAOTGButm7lm1Kacw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJWj8-00H8HI-1r;
-	Wed, 12 Jul 2023 10:05:42 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1qJXrW-00HNna-2X;
+	Wed, 12 Jul 2023 11:18:26 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJWj5-00H8GA-2k
+	id 1qJXrR-00HNmP-0k
 	for linux-amlogic@lists.infradead.org;
-	Wed, 12 Jul 2023 10:05:41 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qJWix-0007B6-E8; Wed, 12 Jul 2023 12:05:31 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qJWiu-00DrBe-B9; Wed, 12 Jul 2023 12:05:28 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qJWit-004Gd7-DD; Wed, 12 Jul 2023 12:05:27 +0200
-Date: Wed, 12 Jul 2023 12:05:27 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Yangtao Li <frank.li@vivo.com>
-Cc: Guillaume La Roque <glaroque@baylibre.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
-	linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/27] thermal/drivers/amlogic: Convert to platform
- remove callback returning void
-Message-ID: <20230712100527.33gei4nyfvejhy2q@pengutronix.de>
-References: <20230712081258.29254-1-frank.li@vivo.com>
+	Wed, 12 Jul 2023 11:18:25 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1689160700;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sqF46ZIeTTxnF0x2v0q2HtXa3ZhclBx145UBtd0H60M=;
+	b=AgTcZUhcvNfphObgZtOVRpHm5lp7Kkm8uLOMW68udj7MnBkVAItrcQlzm1yrJ+uE5l/eYF
+	nTDTPcPQW4joroP0+vM+uSjctKjdec7PcdZgcWxWOpfc2N9z0mfpry0SSbgTsA/ZRrYewy
+	0jw1o3TJ3hznNBWeDYVp+PvJ4s7Y55E=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-464-Ih8zeOoJMYG7LinfcA5NNw-1; Wed, 12 Jul 2023 07:18:17 -0400
+X-MC-Unique: Ih8zeOoJMYG7LinfcA5NNw-1
+Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-3f41a04a297so39635955e9.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 12 Jul 2023 04:18:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689160696; x=1691752696;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mGmoSdcAtbAnvFmDIfmKNE01xrI5yfsr2LA1G6eD+Js=;
+        b=HV0aXLiiIhfpvlYGPYTbBPP0D4bAhuA9n0EHDoliU2nerYWrLag+5eNAKVcG/aooyQ
+         uUhlWVVsJ8TGG23mAvlRkqCaXGKpw0wY5jkCCPMJpZGeU+U7OHKL0CsCu6H2lwau6nzc
+         uGUBV/VIVTEfMQs73mNVPeKq+bJW4BnAMCfXGgxmgoveE6P09AuFynEvrmn6ls1v5311
+         50huFxKkrtQkIuwliylJ+n0TFoPngNTV+n6j68ado6Ro7nJYk5Ml2ytkKzI/ohmDsJ/K
+         fPWUxSnN7+4XNbHo3pnQzOVUp8QE4Lv/u1FOqQvjKh8ljwT36wAsT370bHnE3j7rRxvB
+         /mEg==
+X-Gm-Message-State: ABy/qLZvImx83QCNPb6UBC0qbZOvn300fmvmPFgkoye+yLCqp/D9ZOjb
+	ilSAvDnhDjDF8h8ABBGfy9OzAxP/P2BLXPM9e6dTrAJhUbui8hYIcXxtKIaFJL/ZS2J4G15612B
+	HsySX+BV08zVlU5HCErv+mO9MKMvcalM=
+X-Received: by 2002:a05:600c:3644:b0:3fc:627:ea31 with SMTP id y4-20020a05600c364400b003fc0627ea31mr12056766wmq.38.1689160695901;
+        Wed, 12 Jul 2023 04:18:15 -0700 (PDT)
+X-Google-Smtp-Source: APBJJlHe6rz0BytbzD5//h/wnxrk0jp/oOEOt3AbTKSXStRClYkvIUVNGHa0orOjttguAlZUCgSKTg==
+X-Received: by 2002:a05:600c:3644:b0:3fc:627:ea31 with SMTP id y4-20020a05600c364400b003fc0627ea31mr12056740wmq.38.1689160695625;
+        Wed, 12 Jul 2023 04:18:15 -0700 (PDT)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id k6-20020a05600c0b4600b003fc00702f65sm14151776wmr.46.2023.07.12.04.18.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jul 2023 04:18:15 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Thomas Zimmermann
+ <tzimmermann@suse.de>
+Cc: linux-samsung-soc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-rockchip@lists.infradead.org, Xinwei Kong
+ <kong.kongxinwei@hisilicon.com>, VMware Graphics Reviewers
+ <linux-graphics-maintainer@vmware.com>, NXP Linux Team
+ <linux-imx@nxp.com>, spice-devel@lists.freedesktop.org,
+ linux-sunxi@lists.linux.dev, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ xen-devel@lists.xenproject.org, linux-tegra@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, Gurchetan Singh
+ <gurchetansingh@chromium.org>, Sean Paul <sean@poorly.run>,
+ linux-arm-kernel@lists.infradead.org, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Andrew Jeffery
+ <andrew@aj.id.au>, linux-mips@vger.kernel.org, Chia-I Wu
+ <olvaffe@gmail.com>, linux-renesas-soc@vger.kernel.org,
+ kernel@pengutronix.de, John Stultz <jstultz@google.com>,
+ freedreno@lists.freedesktop.org, Lucas Stach <l.stach@pengutronix.de>
+Subject: Re: [PATCH RFC v1 00/52] drm/crtc: Rename struct drm_crtc::dev to
+ drm_dev
+In-Reply-To: <20230712105432.urgwb4zzwgsyfbwq@pengutronix.de>
+References: <20230712094702.1770121-1-u.kleine-koenig@pengutronix.de>
+ <abf26a82-4f17-51f2-5753-785f8516a81a@suse.de>
+ <20230712105432.urgwb4zzwgsyfbwq@pengutronix.de>
+Date: Wed, 12 Jul 2023 13:18:14 +0200
+Message-ID: <87r0pdgyyx.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
-In-Reply-To: <20230712081258.29254-1-frank.li@vivo.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230712_030539_926653_EC5F735A 
-X-CRM114-Status: GOOD (  22.78  )
+X-CRM114-CacheID: sfid-20230712_041821_340636_68C2C510 
+X-CRM114-Status: GOOD (  17.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,97 +115,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============4125997027405748985=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============4125997027405748985==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="st54h4lvkk4iirjp"
-Content-Disposition: inline
-
-
---st54h4lvkk4iirjp
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Jul 12, 2023 at 04:12:32PM +0800, Yangtao Li wrote:
-> The .remove() callback for a platform driver returns an int which makes
-> many driver authors wrongly assume it's possible to do error handling by
-> returning an error code. However the value returned is (mostly) ignored
-> and this typically results in resource leaks. To improve here there is a
-> quest to make the remove callback return void. In the first step of this
-> quest all drivers are converted to .remove_new() which already returns
-> void.
->=20
-> Trivially convert this driver from always returning zero in the remove
-> callback to the void returning variant.
->=20
-> Cc: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-> Signed-off-by: Yangtao Li <frank.li@vivo.com>
-> ---
->  drivers/thermal/amlogic_thermal.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_=
-thermal.c
-> index 756b218880a7..a95c8959e5af 100644
-> --- a/drivers/thermal/amlogic_thermal.c
-> +++ b/drivers/thermal/amlogic_thermal.c
-> @@ -293,11 +293,11 @@ static int amlogic_thermal_probe(struct platform_de=
-vice *pdev)
->  	return ret;
->  }
-> =20
-> -static int amlogic_thermal_remove(struct platform_device *pdev)
-> +static void amlogic_thermal_remove(struct platform_device *pdev)
->  {
->  	struct amlogic_thermal *data =3D platform_get_drvdata(pdev);
-> =20
-> -	return amlogic_thermal_disable(data);
-> +	amlogic_thermal_disable(data);
-
-I'd make amlogic_thermal_disable() return void, too.
-
-Otherwise looks ok.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---st54h4lvkk4iirjp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmSueuYACgkQj4D7WH0S
-/k6IaAf/Tc1hMZUjWFoPJ7YHR9dJiBEfDNwycNw/iawByqBJErgwBllns9wyhBHd
-Wiu2QAHKEZeJSvbwP0g8gAeKMLk3WKaooWUBGtcJiMG29HfcO/INO1BG+g08xJrB
-615/bLjUCoamEQeuJqBa7Fs06D1FOqDw4SZ9p0HUtIar2m6Ws3C6/0EJvbwFOguK
-UfsG8QnTXtjerJwHyBYViU9h3S41acOY2mpNXzgVwjk5xMwaUD2vdPQPklxBXuLN
-rhc7DG7PgJ8nKfTBw6xKmPv9d/Bnke6YuUnd4U2fAoWscznbEmRUl3EcFKhQA8vu
-qxycJcrx1/j2Gsv0fAkDaXP1lR9xdQ==
-=EaAv
------END PGP SIGNATURE-----
-
---st54h4lvkk4iirjp--
-
-
---===============4125997027405748985==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============4125997027405748985==--
-
+VXdlIEtsZWluZS1Lw7ZuaWcgPHUua2xlaW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZT4gd3JpdGVz
+OgoKW2Ryb3BwaW5nIHNvbWUgcmVjaXBpZW50cyBzaW5jZSBteSBTTVRQIHNlcnZlciB3YXMgY29t
+cGxhaW5pbmcgYWJvdXQgdGhlIHNpemVdCgo+IEhlbGxvIFRob21hcywKPgo+IE9uIFdlZCwgSnVs
+IDEyLCAyMDIzIGF0IDEyOjE5OjM3UE0gKzAyMDAsIFRob21hcyBaaW1tZXJtYW5uIHdyb3RlOgo+
+PiBBbSAxMi4wNy4yMyB1bSAxMTo0NiBzY2hyaWViIFV3ZSBLbGVpbmUtS8O2bmlnOgo+PiA+IEhl
+bGxvLAo+PiA+IAo+PiA+IHdoaWxlIEkgZGVidWdnZWQgYW4gaXNzdWUgaW4gdGhlIGlteC1sY2Rj
+IGRyaXZlciBJIHdhcyBjb25zdGFudGx5Cj4+ID4gaXJyaXRhdGVkIGFib3V0IHN0cnVjdCBkcm1f
+ZGV2aWNlIHBvaW50ZXIgdmFyaWFibGVzIGJlaW5nIG5hbWVkICJkZXYiCj4+ID4gYmVjYXVzZSB3
+aXRoIHRoYXQgbmFtZSBJIHVzdWFsbHkgZXhwZWN0IGEgc3RydWN0IGRldmljZSBwb2ludGVyLgo+
+PiA+IAo+PiA+IEkgdGhpbmsgdGhlcmUgaXMgYSBiaWcgYmVuZWZpdCB3aGVuIHRoZXNlIGFyZSBh
+bGwgcmVuYW1lZCB0byAiZHJtX2RldiIuCj4+IAo+PiBJZiB5b3UgcmVuYW1lIGRybV9jcnRjLmRl
+diwgeW91IHNob3VsZCBhbHNvIGFkZHJlc3MgKmFsbCogb3RoZXIgZGF0YQo+PiBzdHJ1Y3R1cmVz
+Lgo+Cj4gWWVzLiBDaGFuZ2luZyBkcm1fY3J0Yzo6ZGV2IHdhcyBzb21lIGVmZm9ydCwgc28gSSB0
+aG91Z2h0IHRvIHNlbmQgdGhhdAo+IG9uZSBvdXQgYmVmb3JlIGRvaW5nIHRoZSBzYW1lIHRvCj4K
+PiAJZHJtX2RwX21zdF90b3BvbG9neV9tZ3IKPiAJZHJtX2F0b21pY19zdGF0ZQo+IAlkcm1fbWFz
+dGVyCj4gCWRybV9icmlkZ2UKPiAJZHJtX2NsaWVudF9kZXYKPiAJZHJtX2Nvbm5lY3Rvcgo+IAlk
+cm1fZGVidWdmc19lbnRyeQo+IAlkcm1fZW5jb2Rlcgo+IAlkcm1fZmJfaGVscGVyCj4gCWRybV9t
+aW5vcgo+IAlkcm1fZnJhbWVidWZmZXIKPiAJZHJtX2dlbV9vYmplY3QKPiAJZHJtX3BsYW5lCj4g
+CWRybV9wcm9wZXJ0eQo+IAlkcm1fcHJvcGVydHlfYmxvYgo+IAlkcm1fdmJsYW5rX2NydGMKPgo+
+IHdoZW4gaW4gdGhlIGVuZCB0aGUgaW50ZW50aW9uIGlzbid0IHdlbGNvbWUuCj4KPj4gPiBJIGhh
+dmUgbm8gc3Ryb25nIHByZWZlcmVuY2UgaGVyZSB0aG91Z2gsIHNvICJkcm1kZXYiIG9yICJkcm0i
+IGFyZSBmaW5lCj4+ID4gZm9yIG1lLCB0b28uIExldCB0aGUgYmlrZXNoZWRpbmcgYmVnaW4hCj4+
+IAo+PiBXZSd2ZSBkaXNjdXNzZWQgdGhpcyB0byBkZWF0aC4gSUlSQyAnZHJtJyB3b3VsZCBiZSB0
+aGUgcHJlZmVyZWQgY2hvaWNlLgo+Cj4gImRybSIgYXQgbGVhc3QgaGFzIHRoZSBhZHZhbnRhZ2Ug
+dG8gYmUgdGhlIDJuZCBtb3N0IGNvbW1vbiBuYW1lLiBXaXRoCj4gUGF1bCBLb2NpYWxrb3dza2kg
+cHJlZmVyaW5nICJkcm1fZGV2IiB0aGVyZSBpcyBubyBjbGVhciBmYXZvdXJpdGUgeWV0LgoKSSB0
+aGluayB0aGF0IGVpdGhlciAiZHJtIiBvciAiZHJtX2RldiIgd291bGQgYmUgbW9yZSBjbGVhciB0
+aGFuICJkZXYiLAp3aGljaCBJIGFsc28gZm91bmQgaXQgY29uZnVzaW5nIGFuZCB0aGlua2luZyBh
+Ym91dCBhICJzdHJ1Y3QgZGV2aWNlIi4KClByb2JhYmx5IGxlYW5pbmcgdG8gImRybSIsIHNpbmNl
+IGFzIHlvdSBzYWlkIGlzIHRoZSBzZWNvbmQgbW9zdCB1c2VkIG5hbWUKaW4gZHJpdmVycyB0aGF0
+IGFzc2lnbiBjcnRjLT5kZXYgdG8gYSBsb2NhbCB2YXJpYWJsZS4KCj4gTWF5YmUgYWxsIHRoZSBv
+dGhlciBwZW9wbGUgd2l0aCBzdHJvbmcgb3BpbmlvbnMgYXJlIGRlYWQgaWYgdGhpcyB3YXMKPiAi
+ZGlzY3Vzc2VkIHRvIGRlYXRoIiBiZWZvcmU/IDotKQo+Cj4gQmVzdCByZWdhcmRzCj4gVXdlCj4K
+PiAtLSAKPiBQZW5ndXRyb25peCBlLksuICAgICAgICAgICAgICAgICAgICAgICAgICAgfCBVd2Ug
+S2xlaW5lLUvDtm5pZyAgICAgICAgICAgIHwKPiBJbmR1c3RyaWFsIExpbnV4IFNvbHV0aW9ucyAg
+ICAgICAgICAgICAgICAgfCBodHRwczovL3d3dy5wZW5ndXRyb25peC5kZS8gfAoKLS0gCkJlc3Qg
+cmVnYXJkcywKCkphdmllciBNYXJ0aW5leiBDYW5pbGxhcwpDb3JlIFBsYXRmb3JtcwpSZWQgSGF0
+CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgt
+YW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0
+dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
