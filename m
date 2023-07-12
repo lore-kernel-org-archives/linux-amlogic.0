@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E114EB64DA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jul 2023 23:12:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F24AEC001B0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jul 2023 23:12:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hbtbACdnksSswAgXy8nze6j08zVm5sBaloojkKy8/Ng=; b=YMPjsngYwYPdQw
-	pf9AU+WpjCUCFORRMl4Jp3hL3U0z2hjwb0NGYJEzUcpzewWCFO/0VTHnUgqEzwSpWFIzETSwPIWU6
-	GLr5VzfKuUH+jHOHRmv4Vmn6zG4/DpFOXLW8XtGs5ZJ7OlaGkYvF/TL3KeocY0E0A2C96SVxDkcPC
-	XZucfmgwZ5TLur+sacE0njkWZe8G54b9nLxw0EWGoSI8pxyJx/e8kiFrFTZ1h2DDZuMk/knaDCT5n
-	fWflodicpHXMlNZ0s2siTPe7abjttLGCQ4FBBZSQFs62s9V/Gm7fKNFOqjUG0wP1kEO4MxGo2LT+H
-	hQS2Rbxi3axnA0pSoaUw==;
+	List-Owner; bh=6Y/TVXD9DnxaDYGJ5qectZUzqW7q5pC1N2tzBhFTnGs=; b=dKF2D07k9sxW2H
+	V1AGdLRfhSgV2Hbd2HdoKtHMl0VaBHt/2UzDOh5vQpUI656aLBiorq3IbVwQaSlb3XXEEMN3Iu/iO
+	/8vTPbbt9V+R7EPezz10IXMa60oFjoh8l64Q6sZWrZru7W21QXs8QIj/VVx8+k9OGefe/NEIle+OP
+	5ZeaJMyQ/rj21ErKf4g3mTBci2vbsY1DNiw0UjPNgIsDsITUhEJ7U2pWHkV0xkUGB6/YGlUZSfHs5
+	4qOHQu6kQ5+KGWxT54wT9gEZCJA/FECzRKB3HhYko+cA8FAK2J1F+cz0QKHQGZ9mKdHrX7udrLwM8
+	nHMIdpX/hwAQmyBZ0rTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJj0K-001Sk3-1d;
+	id 1qJj0K-001Sjp-0M;
 	Wed, 12 Jul 2023 23:12:16 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJj0F-001Sfh-0u;
+	id 1qJj0F-001Sfg-0u;
 	Wed, 12 Jul 2023 23:12:13 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 7FEB1120025;
+	by mx1.sberdevices.ru (Postfix) with ESMTP id A7660120026;
 	Thu, 13 Jul 2023 02:12:07 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 7FEB1120025
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru A7660120026
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
 	s=mail; t=1689203527;
-	bh=m3UMUUxQmGpFqfZrTXPJiSCifxETsKYb/UHHJV0Y7yo=;
+	bh=M+xtk+lt8C3i50VVIxE/S0SLHHbSuZneXMLbh20nk3k=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=Ck87GP39hGj3h7T86NNXyrrjLcxNs6KmPSSRhmMvsb4mgY+v1zPJIWcSs901m/h9j
-	 RWEHiqcG56tv2vHzvZ2k9HOcXGb2DxT6JFssAoJVI6hj5qdquibdKK3wYsvcuTM47o
-	 DMwWeT6nojRHpGo8NO0eVRKEiNSX14AEM1jAseyeSnQ/E0O5GBthe01rxPwdj776wz
-	 g3Ff+ySIS5SeXHfdr/ofd+Q1kz7GeASUVwq8YQpdlIfucRHLHSiNoYWCoklsf3p4FY
-	 JbdBDsTjr8dD01qZAZ4EvMGEMeXzwmxNC7AfoLg0ZTt7pGMhGpWk6ZB0s0PGK/ZrXy
-	 HRIaAY6oDgDWg==
+	b=C5Z1CdMAQuQxfHSr6PUbYPeR/z7ZeA8VRGyCPuqvbyD1PRBVc/rifiEUOit4fSzbA
+	 2e+M1rptPpks33BkNyX6kpX7Ot+ydswfUuol71lVDqNrprvm86DqpYHorCdpR2X6AC
+	 FE3Pv7MJrwzvKAfDZ1Uy4p9WBHwQacxhwOvJkO0Hy1P9Jcje5JdtwqPFU23K3dxN5D
+	 nWFGN2oaxQLPRq4u8JhMqSrlHsuYcLX9KAx9gwI2eRiKZLsxVvzh+XbM7gboIsN0Fe
+	 ue/63njGaAefkNYftejeUGQoUz7QH+tjo2mchZDfMjgof7k96dD4jTW+S0PHKTlaXk
+	 KgTtge5+u0mPA==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
@@ -57,9 +57,9 @@ To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
 CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<kernel@sberdevices.ru>, George Stark <GNStark@sberdevices.ru>
-Subject: [PATCH v6 1/6] iio: adc: meson: remove unused timestamp channel
-Date: Thu, 13 Jul 2023 02:10:42 +0300
-Message-ID: <20230712231157.261245-2-gnstark@sberdevices.ru>
+Subject: [PATCH v6 2/6] iio: adc: meson: move enums declaration before variables declaration
+Date: Thu, 13 Jul 2023 02:10:43 +0300
+Message-ID: <20230712231157.261245-3-gnstark@sberdevices.ru>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230712231157.261245-1-gnstark@sberdevices.ru>
 References: <20230712231157.261245-1-gnstark@sberdevices.ru>
@@ -84,8 +84,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/12 10:49:00 #21602221
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230712_161211_680141_4ECF11D3 
-X-CRM114-Status: GOOD (  11.48  )
+X-CRM114-CacheID: sfid-20230712_161211_676413_265BAEEA 
+X-CRM114-Status: GOOD (  11.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,34 +102,76 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Remove IIO_CHAN_SOFT_TIMESTAMP channel because it's used only for
-buffering mode which is not implemented.
+Allow to use enum items for variables initialization.
+For this, move enums upper in the code.
 
 Signed-off-by: George Stark <GNStark@sberdevices.ru>
 ---
- drivers/iio/adc/meson_saradc.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/iio/adc/meson_saradc.c | 44 +++++++++++++++++-----------------
+ 1 file changed, 22 insertions(+), 22 deletions(-)
 
 diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 18937a262af6..569ffc178935 100644
+index 569ffc178935..98b6697a21f6 100644
 --- a/drivers/iio/adc/meson_saradc.c
 +++ b/drivers/iio/adc/meson_saradc.c
-@@ -211,7 +211,6 @@ static const struct iio_chan_spec meson_sar_adc_iio_channels[] = {
- 	MESON_SAR_ADC_CHAN(5),
- 	MESON_SAR_ADC_CHAN(6),
- 	MESON_SAR_ADC_CHAN(7),
--	IIO_CHAN_SOFT_TIMESTAMP(8),
- };
+@@ -202,6 +202,28 @@
+ 	.datasheet_name = "TEMP_SENSOR",				\
+ }
  
- static const struct iio_chan_spec meson_sar_adc_and_temp_iio_channels[] = {
-@@ -224,7 +223,6 @@ static const struct iio_chan_spec meson_sar_adc_and_temp_iio_channels[] = {
- 	MESON_SAR_ADC_CHAN(6),
- 	MESON_SAR_ADC_CHAN(7),
++enum meson_sar_adc_avg_mode {
++	NO_AVERAGING = 0x0,
++	MEAN_AVERAGING = 0x1,
++	MEDIAN_AVERAGING = 0x2,
++};
++
++enum meson_sar_adc_num_samples {
++	ONE_SAMPLE = 0x0,
++	TWO_SAMPLES = 0x1,
++	FOUR_SAMPLES = 0x2,
++	EIGHT_SAMPLES = 0x3,
++};
++
++enum meson_sar_adc_chan7_mux_sel {
++	CHAN7_MUX_VSS = 0x0,
++	CHAN7_MUX_VDD_DIV4 = 0x1,
++	CHAN7_MUX_VDD_DIV2 = 0x2,
++	CHAN7_MUX_VDD_MUL3_DIV4 = 0x3,
++	CHAN7_MUX_VDD = 0x4,
++	CHAN7_MUX_CH7_INPUT = 0x7,
++};
++
+ static const struct iio_chan_spec meson_sar_adc_iio_channels[] = {
+ 	MESON_SAR_ADC_CHAN(0),
+ 	MESON_SAR_ADC_CHAN(1),
+@@ -225,28 +247,6 @@ static const struct iio_chan_spec meson_sar_adc_and_temp_iio_channels[] = {
  	MESON_SAR_ADC_TEMP_CHAN(8),
--	IIO_CHAN_SOFT_TIMESTAMP(9),
  };
  
- enum meson_sar_adc_avg_mode {
+-enum meson_sar_adc_avg_mode {
+-	NO_AVERAGING = 0x0,
+-	MEAN_AVERAGING = 0x1,
+-	MEDIAN_AVERAGING = 0x2,
+-};
+-
+-enum meson_sar_adc_num_samples {
+-	ONE_SAMPLE = 0x0,
+-	TWO_SAMPLES = 0x1,
+-	FOUR_SAMPLES = 0x2,
+-	EIGHT_SAMPLES = 0x3,
+-};
+-
+-enum meson_sar_adc_chan7_mux_sel {
+-	CHAN7_MUX_VSS = 0x0,
+-	CHAN7_MUX_VDD_DIV4 = 0x1,
+-	CHAN7_MUX_VDD_DIV2 = 0x2,
+-	CHAN7_MUX_VDD_MUL3_DIV4 = 0x3,
+-	CHAN7_MUX_VDD = 0x4,
+-	CHAN7_MUX_CH7_INPUT = 0x7,
+-};
+-
+ struct meson_sar_adc_param {
+ 	bool					has_bl30_integration;
+ 	unsigned long				clock_rate;
 -- 
 2.38.4
 
