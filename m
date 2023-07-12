@@ -4,76 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17343EB64D9
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jul 2023 15:26:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96A25EB64DA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jul 2023 23:09:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YVGGkSKVrqSA5wBRo0Aabm2p3thmJXPPYEwGnnn7OtI=; b=z4LPf5IBG4sGJr
-	ArgpJUbqbj82gFYsQCey1Tb7bDMonl42T5xhPgUEUVImw2Z9Zsx1xTOjtEtJjDJXanm23DDZwJsV3
-	sbbidUBCOodHxPoc1G8tTUnmTxYqv57baEDBHRdpRBVJCGEST2Ju1EypcRFCKYFsr0jks41Fg7YEF
-	RdsDIhCwvCY8DE8X48y3rQGppiFqwadqOLDivoPwYsXDY4ezgL6B11RGy32e/hJLRVL4m+HsWokEn
-	iiypMBm2Q19YmuaVSAaRdWyye99Y4s0dpH4xPQSIuTqqCC0GH4I8oVTvj+jv5hHhV3crRgb/idyRj
-	IP2R6xnY4kUWtJT2+aQQ==;
+	List-Owner; bh=Qpqq2aIsbq9HTAeFjOBOIyOdkNNpLGZlkHXKl+/RatE=; b=yg3+nYJigN/xFT
+	pVbyE7k3XGXrnPxjlHCXEvPIlwN5YaYn1PU6uvoe4l4Z2DdCxtSxpNnS6bAlEbylRrIdRcLmXVA1U
+	0Aq1KMMhYYUPS5ifRGB3zT+RwfGxWrTsSkr4PzS5A3rUmrBKSk22xvNPS9Spq/rD62FAP3Yu/z1Ex
+	QqpQS6IihFnnSS5eptWz9Xm83VnaLHrqyjJqR8V/ULKrG+Ua8Y9mSp1cMeHW5k1N+qtVIx91qcQ4L
+	61xa91+qzCKmcQuIQZxSFwjN58jUPoXUGDELoW4bq291eUDPA7cjBB3PuYcY4Yss0PKOfjFwh4hDu
+	DccCXk8dufflH8/oHipw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJbjK-000Lce-2M;
-	Wed, 12 Jul 2023 15:26:14 +0000
-Received: from mga12.intel.com ([192.55.52.136])
+	id 1qJiwx-001SNA-0a;
+	Wed, 12 Jul 2023 23:08:47 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJbjH-000LbD-2U;
-	Wed, 12 Jul 2023 15:26:13 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1689175571; x=1720711571;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=opv4vWR11AnjxQzJ5kswyd24sS6ZcKGbyA2QSSHiKdI=;
-  b=P+CXItIcykdL+3BMBKgCiOUb0iq3xCag1S6g3Z5gJLdCZWJWOZlezF8/
-   0t6P9tDLHIetTZxGxDHUa1vQJVCjKoCzwC2zSdwz9UlzTVtNAOyZ/4jvy
-   Ih2/sreAmCcqIxQnu0YPrLFmhZr4k/OHer7bnt6Whl1Senl8nc+zI0VI6
-   lTgR1j/Au9KlsTO0mhnknXrmCznH80ggDe1hYCMXug01ElIsATOnsgSy8
-   xJmGQR8z0jOhMUbQCX2g/+Y3J036jZDxKmh7wN02NYD9r2xKsbGyRXycy
-   RQGaqH73TTdSAXhh/tuDAWnwtrMFaG3rgu6/PAaAP+yM26wiVcc3CnzEW
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="344519104"
-X-IronPort-AV: E=Sophos;i="6.01,200,1684825200"; 
-   d="scan'208";a="344519104"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jul 2023 08:26:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="791662575"
-X-IronPort-AV: E=Sophos;i="6.01,200,1684825200"; 
-   d="scan'208";a="791662575"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga004.fm.intel.com with ESMTP; 12 Jul 2023 08:26:02 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1qJbj6-002ADD-0r;
-	Wed, 12 Jul 2023 18:26:00 +0300
-Date: Wed, 12 Jul 2023 18:26:00 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: George Stark <gnstark@sberdevices.ru>
-Cc: jic23@kernel.org, lars@metafoo.de, neil.armstrong@linaro.org,
-	khilman@baylibre.com, jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com, nuno.sa@analog.com,
-	linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	kernel@sberdevices.ru
+	id 1qJiwt-001SMN-10;
+	Wed, 12 Jul 2023 23:08:45 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 53AB7100023;
+	Thu, 13 Jul 2023 02:08:33 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 53AB7100023
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1689203313;
+	bh=8YhIqzbp82hCTdWYj2xf4FxKf/T/SgzoaxwK8OPEkMA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=MnVPiufIABcxhMOHl6F36H5xZFGYaTdCoVm2rsz1dVy+yRA5KizuSbOMb6fUN4Kub
+	 PxPnnII9WEp0ECDNnI12nCsZR9YR0eBJj11dLJyuW5+nP2+QKBFvkZGDyfaqmga1IZ
+	 Xv1xko+NDi2Kv4uDc9oaEk5GvS+4T5HZi3jDhO148QS5Rqo3UKXf2LBQKPOBzqW8a0
+	 1zRxZlp5Y002AkvNZkpSKYO4NILsdGo3TaetsgBlTHLDCi8LnQqQi1Mwo6ooBj6Xc7
+	 l9qbXKl+LpRokcdk0buzmappunt4zaLGxZSbAYd0YRxjp2O7miz34JEBFMHOmFkIHs
+	 AmHw6KhT7Ac8Q==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu, 13 Jul 2023 02:08:33 +0300 (MSK)
+Received: from [192.168.1.127] (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Thu, 13 Jul 2023 02:08:13 +0300
+Message-ID: <fe1b4eb7-e137-fe43-44cb-8de597fe00e4@sberdevices.ru>
+Date: Thu, 13 Jul 2023 02:04:05 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
 Subject: Re: [PATCH v5 0/6] iio: adc: meson: add iio channels to read channel
  7 mux inputs
-Message-ID: <ZK7GCAgA1gljrxyl@smile.fi.intel.com>
+Content-Language: en-US
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <nuno.sa@analog.com>,
+	<linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<kernel@sberdevices.ru>
 References: <20230711200141.239025-1-gnstark@sberdevices.ru>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230711200141.239025-1-gnstark@sberdevices.ru>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+ <ZK7GCAgA1gljrxyl@smile.fi.intel.com>
+From: George Stark <gnstark@sberdevices.ru>
+In-Reply-To: <ZK7GCAgA1gljrxyl@smile.fi.intel.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178587 [Jul 12 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: GNStark@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 521 521 0c3391dd6036774f2e1052158c81e48587b96e95, {Tracking_arrow_text}, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/12 10:49:00 #21602221
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230712_082611_839720_CFDAADFD 
-X-CRM114-Status: UNSURE (   7.74  )
+X-CRM114-CacheID: sfid-20230712_160843_884177_5E6D5328 
+X-CRM114-Status: UNSURE (   9.43  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -86,21 +102,24 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Jul 11, 2023 at 11:00:16PM +0300, George Stark wrote:
-> Changelog:
+Hello Andy
 
-I gave you a tag, any reason why you haven't applied it to your patches?
+On 7/12/23 18:26, Andy Shevchenko wrote:
+> On Tue, Jul 11, 2023 at 11:00:16PM +0300, George Stark wrote:
+>> Changelog:
+> 
+> I gave you a tag, any reason why you haven't applied it to your patches?
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+if you're talking about patch 6 commit message - yes, I missed the last 
+line in your letter, I'll fix it.
+  --
+Best regards
+George
 
 _______________________________________________
 linux-amlogic mailing list
