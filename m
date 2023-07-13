@@ -4,72 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68CB6EB64DA
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jul 2023 00:45:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F637C001DE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jul 2023 06:47:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=45Z2Na+9Yt1OYMsM4USSKwFJwGF2f7tBQSXTuwMSrxI=; b=roK/oTee0cIoIA
-	GqrFvD+Fma3cdHa/EjOc3NyQ0NuP8twpsFAoUAbQNqL8h6BgaGSBdWC1v0dDgNiWBEwM353fC+qnO
-	/yPyOmjr8d8bTcrT/w+kmiWloF46w8gDGe4gqSRq8ytZk/zca8MY+IedbMVi2IfOtW2z3tBJIskDC
-	CxcU3/a6Mre//7a/vjPYhHMhnIArhwzB33k6sxs5kEfVRXh+cvw+J9JAp1yV5KJxlwGQzhy/8xqR4
-	ZxcP0vV9sG+DMfqrlkBmKg8kgiHtneW6N4/VJ+29A44HO/yPii2NHx46MyO9Ujo5BnK9PL/9YFxmH
-	FFbUoK19UO1EXDan5cwg==;
+	List-Owner; bh=5Xq+ksXjosXYZIRw5WZjMVUQzHZEfiJlE7SzOWb42QY=; b=zmQ0+0cbHdTjyf
+	i4XxPV8v6uCK5c/b/+rAoRsC/BY519CmHo4BN+pBF+wxDwVtDxqo8EiBCZ13fWX0BT/9mZCk5wjeb
+	TfwxTf1Nr21Tz6RpexBUgVZppNgZrot0qw4TyNrjtVTAI2QjckL5XHEovOt4VxokBvPZFMBYClPNQ
+	SZJoeK0WbkLEkxFUVSGCGZH1OND6K0BjanhFkPCffAIcQnwzEZEO45qeX0z/fIgKxQiVfHk0yGUHU
+	WSOA/VEX/deD2puaNhlt9R6hXo3K01IdcewKxAmsVvN1Q+ACFL/M+rigwHePrEDIZvJQm+EHgV3uS
+	rKEmAJQCBPWHvJd+Yj4g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJkSJ-001aai-1e;
-	Thu, 13 Jul 2023 00:45:15 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qJq6X-0028Za-2n;
+	Thu, 13 Jul 2023 06:47:09 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJkSG-001aaL-1k;
-	Thu, 13 Jul 2023 00:45:13 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 1682761804;
-	Thu, 13 Jul 2023 00:45:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B17CCC433C7;
-	Thu, 13 Jul 2023 00:45:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1689209110;
-	bh=yFR665h9HRQk4pzANvQ3qHMfUBBBNqtYA9IDmea3bl4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h6Mhpi+vhSR90aqCx0cW1C4/k+xrLy1DIqs9jKvP11Np+NlifitcfNmKVxrp9qYsX
-	 Nt2XBI02n6ugLfWwPQM3Jg5wsX9O/5rNAYmGx4y851kRmvhE2hp58kp0vUCaFG/2oi
-	 oa1ODPQ93bKz+pl8HlRWxcsrydbnoKcPVQw+C3P2GIe6iK33gaLO+SgDDe/Q82lXiS
-	 /gAZGF522pGGnPQMMMLEikQuWsLqbT5zZUyV7I1ApT4UziL6/gBr8U4FtBqyjvf+VF
-	 dvWOMGrnq3rYzcqMa1Dy3d/IP9sgn2pUoqY0dBGfGdpM4/FpshuYYwuzM8b5djfOEm
-	 m5IWUogCSIajw==
-Date: Wed, 12 Jul 2023 17:48:41 -0700
-From: Bjorn Andersson <andersson@kernel.org>
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Olof Johansson <olof@lixom.net>, linux-pm@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 03/18] soc: amlogic: Move power-domain drivers to the
- genpd dir
-Message-ID: <sxyavxzvezu5dorysn3nmwq7ew5xdclpm7rg474cifnnzy54mb@jljrhirrir2i>
-References: <20230707140434.723349-1-ulf.hansson@linaro.org>
- <20230707140434.723349-4-ulf.hansson@linaro.org>
- <0c8938a9-7a26-bf97-51ee-0c271901ec21@linaro.org>
- <CAPDyKFrOye96GyHS0tiTQ02Ve5S6Crtk8=bMsRS9Ljj=h5-nWQ@mail.gmail.com>
- <1496b9c1-289a-c354-f0ae-e14fd4c9bcfa@linaro.org>
- <CAPDyKFr7Mqy5bisLcxcA_iEGWqL8SFt2mDDng7zYEaTD1vNisA@mail.gmail.com>
- <deyyt5r2wkxo7ily434gl3wudls2sbinkmnehssqshwnbzmlwf@lmqskj6zwfu2>
- <CAPDyKFoRtEXTGQkNzGza-sS_j1ajGmjtCTaoPB7PXVDE2bS0tQ@mail.gmail.com>
- <2ef84fb8-b5eb-4c9a-b8a1-0c5f33e7f572@app.fastmail.com>
+	id 1qJq6T-0028X6-36
+	for linux-amlogic@lists.infradead.org;
+	Thu, 13 Jul 2023 06:47:07 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fbd33a57ddso2669095e9.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 12 Jul 2023 23:47:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689230822; x=1691822822;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZDXRZ/E9io/51ukbLFISpRHZSMAt3CAsusimpt3aOJ0=;
+        b=Y2TgwIcpW0GqU2VbKjQAsG2KFmUQpWcwvXEXNuJ6lsWeayFiZTSrj4IfIO8+EYOCnK
+         Gs4WcbzE1N9+9N+NWfSBBg6lXMqgPqM/ozQXThnRdqmJxeeSYBRR9ZOhCfXjK1/ghD/C
+         2jIVuUHEKaFCH/bOzsQ6UPnvI9+ulKSXqSts/H0HyXZVcw6Jp03vv3oryA2uheQmnjee
+         4Wc9UkRZRCyyu3j41EcLtEtdMBtli0zmlF3xeIm1GV+mOLW1zNQGSeayCsr74Zkckh1N
+         h1FueLXrFBmE0SxjRIR8ZeG2h86TnAHvk3hwcA+ZUSaULVRORUuPbVWTClnVbgHMxsnt
+         OOGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689230822; x=1691822822;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZDXRZ/E9io/51ukbLFISpRHZSMAt3CAsusimpt3aOJ0=;
+        b=TsGJb7FZJ11u8SXVbGVqudgMLYPzpq9W3c3Qnl41IGic+WsLOzIxnalUaV6YTmD7lR
+         o4PnBs6T2iEjgpWqI13gk0FrsiViRFdEvwMJtuwpBSHa28EsZatoiLuGwnjlUDKUh9Qo
+         LtXXeLP21UWKRY7RvzsmbKy+jx7d0K6lPetEHYJpULeO6JZaHNjgcKp+SNMQ2LGXP+5a
+         4xDeGacDAkgKiHW1sT8vsx5k0H+u0NDZ7mnsRgMhH2MYwhOr+9bYkPh2ARwqdWxfVFu/
+         PPF1YWVp2i6F2TxiOz/uK5CPFx+O5cBQ/vrw8tsom1Ii2ZMCzCeeFlrj7U6QiFm9H0aD
+         rCzA==
+X-Gm-Message-State: ABy/qLbgkf69oGxPIW3/QVPXr8g3GSQIiLJNWP1kXzxZ4gXdTLP5MRRf
+	WYRgyg/uCMwQeHZMSsP07GEIzQ==
+X-Google-Smtp-Source: APBJJlH81v8zuibmeCPcWRJ4UoBAP0+rpVBJJvKoujWGteihPBYQ8w1aAtLN/pbTLVkcmOj/G6M4mA==
+X-Received: by 2002:a5d:42cb:0:b0:311:142d:5d97 with SMTP id t11-20020a5d42cb000000b00311142d5d97mr604664wrr.31.1689230822204;
+        Wed, 12 Jul 2023 23:47:02 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id i16-20020adffdd0000000b0030fb4b55c13sm7005237wrs.96.2023.07.12.23.46.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Jul 2023 23:47:01 -0700 (PDT)
+Message-ID: <ce217ae6-6dd5-26ea-2ce7-95d97ef791c4@linaro.org>
+Date: Thu, 13 Jul 2023 08:46:58 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <2ef84fb8-b5eb-4c9a-b8a1-0c5f33e7f572@app.fastmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 01/28] media: cec: ch7322: drop of_match_ptr for ID table
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Sakari Ailus <sakari.ailus@iki.fi>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc: Joe Tessler <jrt@google.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Michael Tretter <m.tretter@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Jacopo Mondi <jacopo+renesas@jmondi.org>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+ Rui Miguel Silva <rmfrfs@gmail.com>, Wenyou Yang
+ <wenyou.yang@microchip.com>, Bin Liu <bin.liu@mediatek.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+ Houlong Wei <houlong.wei@mediatek.com>,
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Patrice Chotard <patrice.chotard@foss.st.com>,
+ Yong Deng <yong.deng@magewell.com>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Sean Young <sean@mess.org>,
+ linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-tegra@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org
+References: <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
+ <98a77653-ec58-56c4-9893-3b424f67c87e@linaro.org>
+ <5afcec8b-b8f6-35b0-278a-5de185e4a7a2@xs4all.nl>
+ <ZG9XJCD98VWjGjTN@valkosipuli.retiisi.eu>
+ <ZG9ger4WE2VWoVEF@valkosipuli.retiisi.eu>
+ <158425ec-86e8-ca3e-eed8-e14b37c42730@linaro.org>
+In-Reply-To: <158425ec-86e8-ca3e-eed8-e14b37c42730@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230712_174512_715033_192B5EEF 
-X-CRM114-Status: GOOD (  28.76  )
+X-CRM114-CacheID: sfid-20230712_234706_002360_9FF2FA49 
+X-CRM114-Status: GOOD (  19.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,69 +128,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jul 10, 2023 at 02:45:12PM +0200, Arnd Bergmann wrote:
-> On Mon, Jul 10, 2023, at 14:37, Ulf Hansson wrote:
-> > On Sun, 9 Jul 2023 at 04:21, Bjorn Andersson <andersson@kernel.org> wrote:
-> >> On Fri, Jul 07, 2023 at 05:27:39PM +0200, Ulf Hansson wrote:
-> >
-> > If I understand correctly, you are suggesting that each platform
-> > maintainer should merge the immutable branch with patch1 - and that I
-> > should send the patches (based on the immutable branch) to each of the
-> > platform maintainers to manage. Instead of one pull request with
-> > everything directly to Arnd, right?
-> >
-
-That's what I suggest, yes.
-
-> > This still means that Arnd will have to resolve the conflicts as the
-> > pull requests arrive in his inbox.
-> >
-
-Yes, we will have N maintainers modifying drivers/genpd/Makefile, all
-adding their single obj-y line. A quite trivial conflict to manage.
-
-> > Although, I guess what you are looking for is less work for the soc/
-> > maintainers, which seems reasonable. Although, in that case, I might
-> > as well share an immutable branch with the complete series, rather
-> > than just patch1. That should help Arnd too, I think.
-> >
-> > Again, let's leave the call to Arnd on what to do.
-> 
-> I think it's much easier for me to pick up a single branch with
-> all of your patches. For platform maintainers, other changes can
-> go one of two ways:
-> 
-> - send a normal pull requests with changes against the same
->   files, and have me take care of any conflicts where they
->   arise. Since most of the changes are just simple file moves
->   rather than changing file contents, 'git mergetool' handles
->   these fine is most cases
-> 
-> - If there is a non-obvious merge, the entire genpd branch
->   can be shared as an immutable branch, with patches for
->   a particular platform rebased on top of that branch.
-> 
-
-I already have a set of patches to these drivers in my tree for v6.6, in
-their current location.
-
-I'm afraid I am unable to see how we're going to handle the merge
-conflict you're going to create in linux-next. Perhaps you're proposing
-to just never publish Ulf's patches to linux-next?
-
-By me merging the immutable patch 1 and the qcom-patch, the conflicts
-would be minimal, and except for the genpd/Makefile entirely handled by
-me.
-
-Regards,
-Bjorn
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTkvMDYvMjAyMyAxNjoxMywgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToKPiBPbiAyNS8w
+NS8yMDIzIDE1OjE5LCBTYWthcmkgQWlsdXMgd3JvdGU6Cj4+IEhpIGZvbGtzLAo+Pgo+PiBPbiBU
+aHUsIE1heSAyNSwgMjAyMyBhdCAwMzo0MDowNFBNICswMzAwLCBTYWthcmkgQWlsdXMgd3JvdGU6
+Cj4+PiBIaSBIYW5zLAo+Pj4KPj4+IE9uIFNhdCwgTWF5IDEzLCAyMDIzIGF0IDExOjU3OjMzQU0g
+KzAyMDAsIEhhbnMgVmVya3VpbCB3cm90ZToKPj4+PiBPbiAxMi8wNS8yMDIzIDE4OjM1LCBLcnp5
+c3p0b2YgS296bG93c2tpIHdyb3RlOgo+Pj4+PiBPbiAxMi8wMy8yMDIzIDE0OjEyLCBLcnp5c3p0
+b2YgS296bG93c2tpIHdyb3RlOgo+Pj4+Pj4gVGhlIGRyaXZlciBjYW4gbWF0Y2ggb25seSB2aWEg
+dGhlIERUIHRhYmxlIHNvIHRoZSB0YWJsZSBzaG91bGQgYmUgYWx3YXlzCj4+Pj4+PiB1c2VkIGFu
+ZCB0aGUgb2ZfbWF0Y2hfcHRyIGRvZXMgbm90IGhhdmUgYW55IHNlbnNlICh0aGlzIGFsc28gYWxs
+b3dzIEFDUEkKPj4+Pj4+IG1hdGNoaW5nIHZpYSBQUlAwMDAxLCBldmVuIHRob3VnaCBpdCBtaWdo
+dCBub3QgYmUgcmVsZXZhbnQgaGVyZSkuCj4+Pj4+Pgo+Pj4+Pj4gICBkcml2ZXJzL21lZGlhL2Nl
+Yy9pMmMvY2g3MzIyLmM6NTgzOjM0OiBlcnJvcjog4oCYY2g3MzIyX29mX21hdGNo4oCZIGRlZmlu
+ZWQgYnV0IG5vdCB1c2VkIFstV2Vycm9yPXVudXNlZC1jb25zdC12YXJpYWJsZT1dCj4+Pj4+Pgo+
+Pj4+Pj4gU2lnbmVkLW9mZi1ieTogS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6eXN6dG9mLmtvemxv
+d3NraUBsaW5hcm8ub3JnPgo+Pj4+Pj4gLS0tCj4+Pj4+Cj4+Pj4+IEhhbnMsIFNha2FyaSwKPj4+
+Pj4KPj4+Pj4gQ2FuIHlvdSBwaWNrIHVwIHRoZSBwYXRjaHNldD8gVGhlcmUgd2FzIHBvc2l0aXZl
+IGZlZWRiYWNrOgo+Pj4+PiBodHRwczovL3BhdGNod29yay5saW51eHR2Lm9yZy9wcm9qZWN0L2xp
+bnV4LW1lZGlhL3BhdGNoLzIwMjMwMzEyMTMxMzE4LjM1MTE3My0xLWtyenlzenRvZi5rb3psb3dz
+a2lAbGluYXJvLm9yZy8KPj4+Pj4KPj4+Pj4gYnV0IGl0IHNlZW1zIGl0IHdhcyBub3QgYXBwbGll
+ZC4KPj4+Pgo+Pj4+IEkgc2VlIGl0IGlzIGRlbGVnYXRlZCB0byBTYWthcmkgaW4gcGF0Y2h3b3Jr
+IGFuZCBtYXJrZWQgVW5kZXIgUmV2aWV3LCBidXQgSSBkb24ndAo+Pj4+IHNlZSBhIGNvcnJlc3Bv
+bmRpbmcgcHVsbCByZXF1ZXN0IGZvciB0aGlzIHNlcmllcy4KPj4+Pgo+Pj4+IFNha2FyaSwgZGlk
+IHNvbWV0aGluZyBnbyB3cm9uZz8KPj4+Cj4+PiBJIHNwb3R0ZWQgdGhpcyBhcyBIYW5zIG5vdGlm
+aWVkIG1lIGluIElSQywgSSB3YXNuJ3QgY2MnZC4gQXBvbG9naWVzIGZvcgo+Pj4gdGhpcyAtLS0g
+SSBpbnRlbmRlZCB0byB0YWtlIHRoZXNlIGJ1dCBJIHRoaW5rIEkgbXVzdCBoYXZlIG1pc3NlZCBz
+b21ldGhpbmcKPj4+IGltcG9ydGFudCBpbiB0aGUgcHJvY2Vzcy4gSSdsbCB0YWtlIHRoZW0gbm93
+Lgo+Pj4KPj4+IFRoYW5rcy4KPj4KPj4gVGhpcyBubyBsb25nZXIgYXBwbGllZCBjbGVhbmx5LiBN
+b3N0bHkgdGhlcmUgd2FzIGZ1enogbmVhciAub2ZfbWF0Y2hfdGFibGUKPj4gY2hhbmdlcyBhcyBw
+cm9iZV9uZXcgKGFuZCByZW1vdmVfbmV3PykgY2hhbmdlcyBoYXZlIGJlZW4gcmVjZW50bHkgbWVy
+Z2VkLgo+PiBUaGVyZSB3ZXJlIG90aGVyIGlzc3VlcyBhcyB3ZWxsLCBJIG1hcmtlZCBhIGZldyBw
+YXRjaGVzIGluIHRoZSBzZXQgIm5vdAo+PiBhcHBsaWNhYmxlIiBhcyBvdGhlciBwYXRjaGVzIGhh
+ZCBhbHJlYWR5IGRvbmUgZXF1aXZhbGVudCBjaGFuZ2VzIGVhcmxpZXIuCj4+Cj4+IFRoZXJlIHdl
+cmUgc3Vic3RhbmNlLWNoYW5naW5nIGNoYW5nZXMgaW4gdGhlIDIwdGggcGF0Y2gsIHJlcGxpZWQg
+dG8gdGhlCj4+IGRpc3VjY3Npb24gdGhlcmUuCj4+Cj4+IEkndmUgcHVzaGVkIHRoZSByZXN1bHQg
+aGVyZSBhbmQgaW50ZW5kIHRvIHNlbmQgUFIgdG8gTWF1cm8gc29vbiBpZiB0aGVyZQo+PiBhcmUg
+bm8gaXNzdWVzOgo+Pgo+PiA8VVJMOmh0dHBzOi8vZ2l0LmxpbnV4dHYub3JnL3NhaWx1cy9tZWRp
+YV90cmVlLmdpdC9sb2cvP2g9b2YtbWF0Y2gtcHRyPgo+IAo+IE9uZSBtb250aCBsYXRlciwgSSBz
+dGlsbCBkb24ndCBzZWUgdGhpcyBzZXQgaW4gdGhlIGxpbnV4LW5leHQuICBXaGF0J3MKPiBoYXBw
+ZW5pbmcgaGVyZT8KPiAKCkkgZG9uJ3QgdGhpbmsgdGhpcyB3YXMgbWVyZ2VkIGluIHY2LjUtcmMx
+LiBJdCdzIG5vdCBpbiBsaW51eC1uZXh0LAplaXRoZXIuIEFub3RoZXIgbW9udGggcGFzc2VkLi4u
+CgpCZXN0IHJlZ2FyZHMsCktyenlzenRvZgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9n
+aWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
