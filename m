@@ -4,86 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF5A5C001DF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jul 2023 23:12:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68CB6EB64DA
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jul 2023 00:45:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=6VxEE1y3QiUiq/+Tq0rrF4KJwIOOyHRb4D54ym6ti1U=; b=VAvlpsjaUandm8
-	GrjMr2FXNg0e3e5a2XoZRw14ALQ1h/hGYgvqpwEyP05DaFsPRax7EK86OpeoxiLbjRQOTdNjvDdSX
-	b9aHcanFkT3Gw/jG2JUFHRZqPflgP+PZ/NlMeqzMnZm4dvh+0UjDlxcEx2rQq6/w/3sOwp9tfP1mV
-	vbnqoAVC3QVUxKleoKDVCgx2QNYTUHyqUxJKJ1h0N9uMGUmjAMkcefN+cwpoWqmQ94Rizs3zgDmrh
-	Wb/zKgctc1zpj146pIRqQ2x4ZVfx6PEfOhrd4d51XZ5/MhHC+SndpEWnQLXqopSRMNzjNQrxgm3aN
-	i737CxwfbgLTwt6+Ph/g==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=45Z2Na+9Yt1OYMsM4USSKwFJwGF2f7tBQSXTuwMSrxI=; b=roK/oTee0cIoIA
+	GqrFvD+Fma3cdHa/EjOc3NyQ0NuP8twpsFAoUAbQNqL8h6BgaGSBdWC1v0dDgNiWBEwM353fC+qnO
+	/yPyOmjr8d8bTcrT/w+kmiWloF46w8gDGe4gqSRq8ytZk/zca8MY+IedbMVi2IfOtW2z3tBJIskDC
+	CxcU3/a6Mre//7a/vjPYhHMhnIArhwzB33k6sxs5kEfVRXh+cvw+J9JAp1yV5KJxlwGQzhy/8xqR4
+	ZxcP0vV9sG+DMfqrlkBmKg8kgiHtneW6N4/VJ+29A44HO/yPii2NHx46MyO9Ujo5BnK9PL/9YFxmH
+	FFbUoK19UO1EXDan5cwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJj0R-001Son-2S;
-	Wed, 12 Jul 2023 23:12:23 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1qJkSJ-001aai-1e;
+	Thu, 13 Jul 2023 00:45:15 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJj0F-001Sff-0u;
-	Wed, 12 Jul 2023 23:12:14 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 598C5120024;
-	Thu, 13 Jul 2023 02:12:07 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 598C5120024
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1689203527;
-	bh=tkzvlUgbyspJS7/IueSbjXgYZDr8iyqjh7w6gb0meyY=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=aYc1mDh8PRtrUIEZIZAn34HIDLXjfJ9PwfZ85IU07vQ2iNtviLWOu0yHLUTLs6pWv
-	 dmwwQYMs5ythH9OEC5Fl1xsaM2saMoVCMJuFf6yFg/pprpTyoDJ3yfM+WWnp/2zORQ
-	 tPLbQaGdnl1Bp3ObsDvzGugWksFiO3tol0gH67ObSqdJK3OjngK/mySKgFhQuiXdOc
-	 VBpXhkunM1l1C7KIQnYtvEzrX1Tr0tU9jQUOpO2xcUN9WlcZV24wnJ14HFEC8tSH39
-	 cq/YCrBdnDw/vyW3Avhe8d8ULewaRvVunrZtEwbtQaKcTPcwN949L2eeSX4vKP1KG5
-	 f6O4RHMA+ChFw==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	id 1qJkSG-001aaL-1k;
+	Thu, 13 Jul 2023 00:45:13 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu, 13 Jul 2023 02:12:07 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Thu, 13 Jul 2023 02:11:47 +0300
-From: George Stark <gnstark@sberdevices.ru>
-To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <andriy.shevchenko@linux.intel.com>,
-	<nuno.sa@analog.com>, <gnstark@sberdevices.ru>
-CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<kernel@sberdevices.ru>
-Subject: [PATCH v6 0/6] meson saradc: add iio channels to read channel 7 mux inputs
-Date: Thu, 13 Jul 2023 02:10:41 +0300
-Message-ID: <20230712231157.261245-1-gnstark@sberdevices.ru>
-X-Mailer: git-send-email 2.41.0
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 1682761804;
+	Thu, 13 Jul 2023 00:45:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B17CCC433C7;
+	Thu, 13 Jul 2023 00:45:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1689209110;
+	bh=yFR665h9HRQk4pzANvQ3qHMfUBBBNqtYA9IDmea3bl4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=h6Mhpi+vhSR90aqCx0cW1C4/k+xrLy1DIqs9jKvP11Np+NlifitcfNmKVxrp9qYsX
+	 Nt2XBI02n6ugLfWwPQM3Jg5wsX9O/5rNAYmGx4y851kRmvhE2hp58kp0vUCaFG/2oi
+	 oa1ODPQ93bKz+pl8HlRWxcsrydbnoKcPVQw+C3P2GIe6iK33gaLO+SgDDe/Q82lXiS
+	 /gAZGF522pGGnPQMMMLEikQuWsLqbT5zZUyV7I1ApT4UziL6/gBr8U4FtBqyjvf+VF
+	 dvWOMGrnq3rYzcqMa1Dy3d/IP9sgn2pUoqY0dBGfGdpM4/FpshuYYwuzM8b5djfOEm
+	 m5IWUogCSIajw==
+Date: Wed, 12 Jul 2023 17:48:41 -0700
+From: Bjorn Andersson <andersson@kernel.org>
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Olof Johansson <olof@lixom.net>, linux-pm@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 03/18] soc: amlogic: Move power-domain drivers to the
+ genpd dir
+Message-ID: <sxyavxzvezu5dorysn3nmwq7ew5xdclpm7rg474cifnnzy54mb@jljrhirrir2i>
+References: <20230707140434.723349-1-ulf.hansson@linaro.org>
+ <20230707140434.723349-4-ulf.hansson@linaro.org>
+ <0c8938a9-7a26-bf97-51ee-0c271901ec21@linaro.org>
+ <CAPDyKFrOye96GyHS0tiTQ02Ve5S6Crtk8=bMsRS9Ljj=h5-nWQ@mail.gmail.com>
+ <1496b9c1-289a-c354-f0ae-e14fd4c9bcfa@linaro.org>
+ <CAPDyKFr7Mqy5bisLcxcA_iEGWqL8SFt2mDDng7zYEaTD1vNisA@mail.gmail.com>
+ <deyyt5r2wkxo7ily434gl3wudls2sbinkmnehssqshwnbzmlwf@lmqskj6zwfu2>
+ <CAPDyKFoRtEXTGQkNzGza-sS_j1ajGmjtCTaoPB7PXVDE2bS0tQ@mail.gmail.com>
+ <2ef84fb8-b5eb-4c9a-b8a1-0c5f33e7f572@app.fastmail.com>
 MIME-Version: 1.0
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178587 [Jul 12 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: GNStark@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 521 521 0c3391dd6036774f2e1052158c81e48587b96e95, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;sberdevices.ru:7.1.1,5.0.1;www.spinics.net:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2023/07/12 21:25:00
-X-KSMG-LinksScanning: Clean, bases: 2023/07/12 20:30:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/12 10:49:00 #21602221
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Disposition: inline
+In-Reply-To: <2ef84fb8-b5eb-4c9a-b8a1-0c5f33e7f572@app.fastmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230712_161211_674439_A75C2242 
-X-CRM114-Status: GOOD (  10.03  )
+X-CRM114-CacheID: sfid-20230712_174512_715033_192B5EEF 
+X-CRM114-Status: GOOD (  28.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,95 +86,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Changelog:
+On Mon, Jul 10, 2023 at 02:45:12PM +0200, Arnd Bergmann wrote:
+> On Mon, Jul 10, 2023, at 14:37, Ulf Hansson wrote:
+> > On Sun, 9 Jul 2023 at 04:21, Bjorn Andersson <andersson@kernel.org> wrote:
+> >> On Fri, Jul 07, 2023 at 05:27:39PM +0200, Ulf Hansson wrote:
+> >
+> > If I understand correctly, you are suggesting that each platform
+> > maintainer should merge the immutable branch with patch1 - and that I
+> > should send the patches (based on the immutable branch) to each of the
+> > platform maintainers to manage. Instead of one pull request with
+> > everything directly to Arnd, right?
+> >
 
-v1->v2:
-split refactoring patch [1] into 4 smaller patches, fix comment style
+That's what I suggest, yes.
 
-[1] https://lore.kernel.org/lkml/20230621062715.455652-2-gnstark@sberdevices.ru/
+> > This still means that Arnd will have to resolve the conflicts as the
+> > pull requests arrive in his inbox.
+> >
 
-v2->v3:
-remove patch 'meson saradc: unite iio channel array definitions' [1] after discussion
+Yes, we will have N maintainers modifying drivers/genpd/Makefile, all
+adding their single obj-y line. A quite trivial conflict to manage.
 
-patch 'meson saradc: add enum for iio channel array indexes'
-  - change enum items prefix from INDEX_ to NUM_ since name 'channel index' is
-  more relevant to channel array index in iio world and with 2 tables our array index is
-  not always equal to channel number
-  - resolve conflicts after deleting [1]
-  - update commit message, previous patch [2]
-  - return channel number for temp channel. It wasn't used and isn't used currently
-  but may need later
+> > Although, I guess what you are looking for is less work for the soc/
+> > maintainers, which seems reasonable. Although, in that case, I might
+> > as well share an immutable branch with the complete series, rather
+> > than just patch1. That should help Arnd too, I think.
+> >
+> > Again, let's leave the call to Arnd on what to do.
+> 
+> I think it's much easier for me to pick up a single branch with
+> all of your patches. For platform maintainers, other changes can
+> go one of two ways:
+> 
+> - send a normal pull requests with changes against the same
+>   files, and have me take care of any conflicts where they
+>   arise. Since most of the changes are just simple file moves
+>   rather than changing file contents, 'git mergetool' handles
+>   these fine is most cases
+> 
+> - If there is a non-obvious merge, the entire genpd branch
+>   can be shared as an immutable branch, with patches for
+>   a particular platform rebased on top of that branch.
+> 
 
-patch meson saradc: support reading from channel 7 mux inputs
-  - resolve conflicts after deleting [1]
-  - update commit message, previous patch [3]
-  - add routine find_channel_by_num to get channel by channel number
+I already have a set of patches to these drivers in my tree for v6.6, in
+their current location.
 
-[1] https://lore.kernel.org/lkml/20230623022334.791026-4-gnstark@sberdevices.ru/
-[2] https://lore.kernel.org/lkml/20230623022334.791026-5-gnstark@sberdevices.ru/
-[3] https://lore.kernel.org/lkml/20230623022334.791026-7-gnstark@sberdevices.ru/
+I'm afraid I am unable to see how we're going to handle the merge
+conflict you're going to create in linux-next. Perhaps you're proposing
+to just never publish Ulf's patches to linux-next?
 
-v3->v4:
-add new patch 'iio: adc: meson: remove unused timestamp channel' [1]
+By me merging the immutable patch 1 and the qcom-patch, the conflicts
+would be minimal, and except for the genpd/Makefile entirely handled by
+me.
 
-patch 'iio: adc: meson: move enums declaration before'
-	update commit message, previous patch [2]
-patch 'iio: adc: meson: move meson_sar_adc_set_chan7_mux'
-	update commit message, previous patch [3]
-patch 'iio: adc: meson: add enum for iio channel numbers'
-	update commit message, previous patch [4]
-patch 'iio: adc: meson: add channel labels'
-	update commit message, previous patch [5]
-	change sprintf(label, "%s\n", "temp-sensor") to sprintf(label, "temp-sensor\n")
-patch 'iio: adc: meson: support reading from channel 7 mux'
-	rewrite enum meson_sar_adc_chan7_mux_sel definition and
-		read_label routine proposed by Andy [7], previous patch [6]
-
-[1] https://lore.kernel.org/lkml/20230705160413.000062e7@Huawei.com/
-[2] https://lore.kernel.org/lkml/20230627224017.1724097-2-gnstark@sberdevices.ru/
-[3] https://lore.kernel.org/lkml/20230627224017.1724097-3-gnstark@sberdevices.ru/
-[4] https://lore.kernel.org/lkml/20230627224017.1724097-4-gnstark@sberdevices.ru/
-[5] https://lore.kernel.org/lkml/20230627224017.1724097-5-gnstark@sberdevices.ru/
-[6] https://lore.kernel.org/lkml/20230627224017.1724097-6-gnstark@sberdevices.ru/
-[7] https://lore.kernel.org/lkml/ZJwGCNA+ZURri24i@smile.fi.intel.com/
-
-v4->v5:
-patch 'iio: adc: meson: move enums declaration before variables declaration'
-	update commit message, previous patch [1]
-patch 'iio: adc: meson: move meson_sar_adc_set_chan7_mux routine upper'
-	update commit message, previous patch [2]
-patch 'iio: adc: meson: add channel labels'
-	update commit message, previous patch [3]
-patch 'iio: adc: meson: support reading from channel 7 mux inputs'
-	update commit message, previous patch [4]
-
-[1] https://lore.kernel.org/lkml/20230707153322.114302-3-gnstark@sberdevices.ru/
-[2] https://www.spinics.net/lists/linux-iio/msg80226.html
-[3] https://www.spinics.net/lists/linux-iio/msg80227.html
-[4] https://www.spinics.net/lists/linux-iio/msg80230.html
-
-v5->v6:
-patch 'iio: adc: meson: move enums declaration before variables declaration'
-	update commit message, previous patch [1]
-patch 'iio: adc: meson: support reading from channel 7 mux inputs'
-	update commit message, previous patch [2]
-[1] https://www.spinics.net/lists/linux-iio/msg80315.html
-[2] https://www.spinics.net/lists/linux-iio/msg80314.html
-
-George Stark (6):
-  iio: adc: meson: remove unused timestamp channel
-  iio: adc: meson: move enums declaration before variables declaration
-  iio: adc: meson: move meson_sar_adc_set_chan7_mux routine upper
-  iio: adc: meson: add enum for iio channel numbers
-  iio: adc: meson: add channel labels
-  iio: adc: meson: support reading from channel 7 mux inputs
-
- drivers/iio/adc/meson_saradc.c | 173 +++++++++++++++++++++++++--------
- 1 file changed, 134 insertions(+), 39 deletions(-)
-
--- 
-2.38.4
-
+Regards,
+Bjorn
 
 _______________________________________________
 linux-amlogic mailing list
