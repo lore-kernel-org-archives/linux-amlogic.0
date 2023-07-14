@@ -4,94 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96132C001B0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jul 2023 23:16:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B3A8EB64DD
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jul 2023 03:08:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:References:CC:To:Subject:From:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jjT5w+GxSy60Y15HdQfn5PfMAiyVjsp6BGYQ36sdNrg=; b=qL9RQ+tI8LHkzX
-	kz4PCGgkb6Z0yS1ytEIQoXI0B0uJ04m0rAbRlK4Uc7tqXW+Fwd0KbAQEp1imO2m4t9G5+205/ZUsO
-	DI+9tEDZjiEpCzF/tD7sjArcrumj706Rt+jSAtQsYjb/8R0T+P+D7kMZ+njwmnuOec4uB1+3sqY+i
-	g+APnyFYTaS1xAOenLIgLsvNf0zYZRx6GLfbHIoAc1SCRgT5ln4DJtqByOblbiHqWPHsxmdghNUWq
-	34FcUnbuke78u/jo0fc28mwKyzZDW3kVrsAEnE83n6Ov7GlckJXPboCUpz666+HLbfoNQyarjEW1J
-	vXerSrAvZ3Ss3hHx0Tiw==;
+	List-Owner; bh=crCZMTloPq27llxk26Bs/2qXs/Hg2Ft8px0cKxR9bwQ=; b=LkLOdlCeXTdNBl
+	ND6iI79sEK0XTjFRmpFvJY4zKRysMO/Pu+UmCQXcnxuc3DiQcYqyJxAlv4wZH1C9zHX0yZImc/RUi
+	ZlVR6P2+IBB8RRupCZmqXFNpw3WGvm8e0akV9wD4/duR74ybJMWUhhkPG79SS+vTs8opy0B8NvnYR
+	qZewlAxk5p3A47ZW1OHVR3lsD8BfXBdsWijT1yDoV7wvxv2bTGOGzl9THmcQFZkkF7kg7vKM+/Zkx
+	vrvP1+Rnoxxcu2v1FlZKijZIdfK90HRGGDYX6unzLqYcoUbqDr+Jf5WLNRi7GMwdpGfCB0dzmIGJv
+	9V/3Y0mKcByG47NM2MHQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qK5XW-004XVY-1A;
-	Thu, 13 Jul 2023 23:16:02 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1qK99Z-004rWx-2J;
+	Fri, 14 Jul 2023 03:07:33 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qK5XS-004XUW-2Q;
-	Thu, 13 Jul 2023 23:16:01 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 71A95100018;
-	Fri, 14 Jul 2023 02:15:48 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 71A95100018
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1689290148;
-	bh=DsGRfrpuDz+eoGX0DFT571i6HCLrEzqgMyuDpPgA6pI=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Content-Type:From;
-	b=VOQA/Ip3huHRjrWTxnjNaPozqRlraHFAN9b2yZGGAXr0GdGhVJTHK8gPpHqJM3cJi
-	 G6IB1fQAWSO5N8X+8HmPsHTvvVK57Nrwz4vrcBw3nfOdkRzsGRcIqft+sfk/KYA/M8
-	 vGY9gsseOK/gFqBxN0ZyRPFceUoE8w4sLxpI3X+WRvPpnDtkKRzzQastes/0ksHzZy
-	 rtnfwaVzhCAH/ZCB7X3rdJDMZdeTeMfDwyrM108D5MkRHyrMuc1dVQcNXSZV00k8HS
-	 x+0tFothzR+2kxX797Vge8/1/1ddceqEgQW5n7NzG6TSp7/ZWsA2MaFfcQGJJVBM4Q
-	 L/nZYl0IqPyqQ==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	id 1qK99W-004rVr-1W;
+	Fri, 14 Jul 2023 03:07:32 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 14 Jul 2023 02:15:48 +0300 (MSK)
-Received: from [192.168.1.127] (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Fri, 14 Jul 2023 02:15:20 +0300
-Message-ID: <df30fcca-8f7e-bfb2-be92-0eb76726d3e7@sberdevices.ru>
-Date: Fri, 14 Jul 2023 02:11:19 +0300
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 48DDE61BCB;
+	Fri, 14 Jul 2023 03:07:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC34DC433C7;
+	Fri, 14 Jul 2023 03:07:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1689304048;
+	bh=9rymoG9mEwirp8s4sG3jC+PHbKcwoVV/IgliH12Y/mo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VSS7AnRrCw3DpEIu9mal4etXSMaqgR7wmAwv/1mnP3z0I74I/+INnovtwUeEQCZ4U
+	 7UqEcxZgxO3N5l9g7krje+vwM0leY79VCsmrMDWYIdIDuOchJ9VnKUWP4le/QjFV80
+	 +F6MOLWZarAPF+zahW1Cmony2rRy9d/5bWpvkm3WC4Q5xYCbkCjDxUtVjQywrP1j2J
+	 oIewMPHc6Kcn4XuibRc1M0u7+7wH1pw5Dngsw4WFE64GIQJvH1VHMHdTZvg6JlX4fI
+	 kTRSFFRp+9uuF77OWYj/GpncQfFt2x7VSVSHiqF7JXOZF/uFEZyTyXWY2XE39eli/L
+	 uM0ORSclDT9zQ==
+Date: Thu, 13 Jul 2023 20:10:58 -0700
+From: Bjorn Andersson <andersson@kernel.org>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Olof Johansson <olof@lixom.net>, linux-pm@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 03/18] soc: amlogic: Move power-domain drivers to the
+ genpd dir
+Message-ID: <5oroxttb4cdza27mcms7zghlwxvvn47pxtjkxhrmkkyqpt2ho6@ucivd3kovqyd>
+References: <20230707140434.723349-4-ulf.hansson@linaro.org>
+ <0c8938a9-7a26-bf97-51ee-0c271901ec21@linaro.org>
+ <CAPDyKFrOye96GyHS0tiTQ02Ve5S6Crtk8=bMsRS9Ljj=h5-nWQ@mail.gmail.com>
+ <1496b9c1-289a-c354-f0ae-e14fd4c9bcfa@linaro.org>
+ <CAPDyKFr7Mqy5bisLcxcA_iEGWqL8SFt2mDDng7zYEaTD1vNisA@mail.gmail.com>
+ <deyyt5r2wkxo7ily434gl3wudls2sbinkmnehssqshwnbzmlwf@lmqskj6zwfu2>
+ <CAPDyKFoRtEXTGQkNzGza-sS_j1ajGmjtCTaoPB7PXVDE2bS0tQ@mail.gmail.com>
+ <2ef84fb8-b5eb-4c9a-b8a1-0c5f33e7f572@app.fastmail.com>
+ <sxyavxzvezu5dorysn3nmwq7ew5xdclpm7rg474cifnnzy54mb@jljrhirrir2i>
+ <CAPDyKFoQoKx1uEpFBNfsaCFEG_9TOzSdNW90h-+bVz+_3xYObA@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-From: George Stark <gnstark@sberdevices.ru>
-Subject: Re: [PATCH v5 0/6] iio: adc: meson: add iio channels to read channel
- 7 mux inputs
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <nuno.sa@analog.com>,
-	<linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<kernel@sberdevices.ru>
-References: <20230711200141.239025-1-gnstark@sberdevices.ru>
- <ZK7GCAgA1gljrxyl@smile.fi.intel.com>
- <fe1b4eb7-e137-fe43-44cb-8de597fe00e4@sberdevices.ru>
- <ZK/pNQcT6CrZWIzM@smile.fi.intel.com>
-Content-Language: en-US
-In-Reply-To: <ZK/pNQcT6CrZWIzM@smile.fi.intel.com>
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178613 [Jul 13 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: GNStark@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 523 523 523027ce26ed1d9067f7a52a4756a876e54db27c, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;sberdevices.ru:7.1.1,5.0.1;100.64.160.123:7.1.2;lore.kernel.org:7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2023/07/13 05:55:00
-X-KSMG-LinksScanning: Clean, bases: 2023/07/12 20:30:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/13 18:27:00 #21610128
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFoQoKx1uEpFBNfsaCFEG_9TOzSdNW90h-+bVz+_3xYObA@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230713_161559_173066_AD968051 
-X-CRM114-Status: GOOD (  12.45  )
+X-CRM114-CacheID: sfid-20230713_200730_609840_E622BF79 
+X-CRM114-Status: GOOD (  37.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,43 +82,87 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-On 7/13/23 15:08, Andy Shevchenko wrote:
-> On Thu, Jul 13, 2023 at 02:04:05AM +0300, George Stark wrote:
->> Hello Andy
->>
->> On 7/12/23 18:26, Andy Shevchenko wrote:
->>> On Tue, Jul 11, 2023 at 11:00:16PM +0300, George Stark wrote:
->>>
->>> I gave you a tag, any reason why you haven't applied it to your patches?
->>
->> if you're talking about patch 6 commit message - yes, I missed the last line
->> in your letter, I'll fix it.
+On Thu, Jul 13, 2023 at 11:50:29AM +0200, Ulf Hansson wrote:
+> On Thu, 13 Jul 2023 at 02:45, Bjorn Andersson <andersson@kernel.org> wrote:
+> >
+> > On Mon, Jul 10, 2023 at 02:45:12PM +0200, Arnd Bergmann wrote:
+> > > On Mon, Jul 10, 2023, at 14:37, Ulf Hansson wrote:
+> > > > On Sun, 9 Jul 2023 at 04:21, Bjorn Andersson <andersson@kernel.org> wrote:
+> > > >> On Fri, Jul 07, 2023 at 05:27:39PM +0200, Ulf Hansson wrote:
+> > > >
+> > > > If I understand correctly, you are suggesting that each platform
+> > > > maintainer should merge the immutable branch with patch1 - and that I
+> > > > should send the patches (based on the immutable branch) to each of the
+> > > > platform maintainers to manage. Instead of one pull request with
+> > > > everything directly to Arnd, right?
+> > > >
+> >
+> > That's what I suggest, yes.
+> >
+> > > > This still means that Arnd will have to resolve the conflicts as the
+> > > > pull requests arrive in his inbox.
+> > > >
+> >
+> > Yes, we will have N maintainers modifying drivers/genpd/Makefile, all
+> > adding their single obj-y line. A quite trivial conflict to manage.
+> >
+> > > > Although, I guess what you are looking for is less work for the soc/
+> > > > maintainers, which seems reasonable. Although, in that case, I might
+> > > > as well share an immutable branch with the complete series, rather
+> > > > than just patch1. That should help Arnd too, I think.
+> > > >
+> > > > Again, let's leave the call to Arnd on what to do.
+> > >
+> > > I think it's much easier for me to pick up a single branch with
+> > > all of your patches. For platform maintainers, other changes can
+> > > go one of two ways:
+> > >
+> > > - send a normal pull requests with changes against the same
+> > >   files, and have me take care of any conflicts where they
+> > >   arise. Since most of the changes are just simple file moves
+> > >   rather than changing file contents, 'git mergetool' handles
+> > >   these fine is most cases
+> > >
+> > > - If there is a non-obvious merge, the entire genpd branch
+> > >   can be shared as an immutable branch, with patches for
+> > >   a particular platform rebased on top of that branch.
+> > >
+> >
+> > I already have a set of patches to these drivers in my tree for v6.6, in
+> > their current location.
 > 
-> I believe I answered to the cover letter [1], which means that it applies to
-> the entire series. If you don't include tag of the reviewer(s) who spent time
-> on your code, you have to well justify WHY you did so.
+> Right.
 > 
-> [1]: https://lore.kernel.org/lkml/ZKvQaoFxO5gpAFdM@smile.fi.intel.com/
+> >
+> > I'm afraid I am unable to see how we're going to handle the merge
+> > conflict you're going to create in linux-next. Perhaps you're proposing
+> > to just never publish Ulf's patches to linux-next?
+> >
+> > By me merging the immutable patch 1 and the qcom-patch, the conflicts
+> > would be minimal, and except for the genpd/Makefile entirely handled by
+> > me.
+> 
+> If you would merge the immutable branch containing the complete
+> series, that should work too, rather than just patch1, right?
 > 
 
-Hello Andy
+I believe git should sort that out as well. If so I have no concerns
+with that option.
 
-I think I've understood at last what you meant by "not applied tag". I'm 
-not experienced kernel contributor yet and believed that RvBs and Acks 
-are added by one who merges patches or by some kind of magic :)
-Of course I'll add the tag, I missed it not on purpose.
-Thank you very much for help and your work for the common good.
+Regards,
+Bjorn
 
--- 
-Best regards
-George
+> As a heads up, I am planning to send the pull request with the v2
+> series tomorrow, allowing a few more acks to arrive. At that point I
+> will announce the immutable branch too.
+> 
+> Kind regards
+> Uffe
 
 _______________________________________________
 linux-amlogic mailing list
