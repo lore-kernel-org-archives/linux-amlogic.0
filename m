@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 568CAC001B0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jul 2023 12:25:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED48DEB64DA
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jul 2023 12:25:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wdyTxCWBzv0tvvMyYRR8Q8wd1+d/o7ATy7yJsInh4VU=; b=AWwmI3CauhTDBQ
-	Lt0C1kU1hQV2PVQqX3pKZFGs1NgXG0ULOV2BAxpK/Z4OtT6uylA98BZyHtf5MqwHUt0nIYeT9scRO
-	TK4N/xVt8omJuDd8YyyvgdThh8+Hv/C57YAFmpSx7AlAFqupWH4P/L26PJhNSph4KOPuA1HTJKzxR
-	kgyZI4Yz6RUsvcXhI73unQp9jj4UJY9h/h/ayFvHhC1CVxWEsWQ3KTC/5HaTZw5lTgOC6NaFztEsa
-	rJp6eTy710KUYSvkW19BvGROv4IBt+e2MCWDBalg+xD4xe8QAJI61U31JNTR/tFqz/XB70C8xy1EC
-	TymYop3j4IsNISCTYnyQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=N/mX5SFPB7pfgrzSP89BDa2tRIonhtxBpdS6RinvR0Q=; b=hQnYvWFr6yHy+U
+	Cr187rwoIULjQV2vJhJL2HAmI1qSQIjVil/6f+GXeAIKUZ/lcPQ/w/ixo01zcoaJG5J9sH/NzMI3c
+	bWXNWNGkNr0TlVAqJkZk3T3wq4r4AZacr/xs7vIG1B0FTXmkvNo46XYSzhJQsM33IeEka8alTfaNb
+	8AeUtx/ggArwWUnX0mDhgqyuMAKTz/XYkKuIKwW/4IMUHd09suPBPzS4mWV+IkpdWM2/ndY6KyYuA
+	a5TA4wGckpYKxxzEy2DvMj2WEbxuGugXSTCtd2rnMXmvCB3w/aXVyzuE7CsnI9oFDWrMifEEqB48G
+	JeXy8/cDYfDJh/Pm8pQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKHrM-006BYN-2Q;
-	Fri, 14 Jul 2023 12:25:20 +0000
+	id 1qKHrH-006BX4-2L;
+	Fri, 14 Jul 2023 12:25:15 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKHrG-006BVK-0K;
-	Fri, 14 Jul 2023 12:25:15 +0000
+	id 1qKHrE-006BVK-1X;
+	Fri, 14 Jul 2023 12:25:13 +0000
 Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Fri, 14 Jul 2023
- 20:24:45 +0800
+ 20:24:44 +0800
 From: Huqiang Qin <huqiang.qin@amlogic.com>
 To: <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
 	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
@@ -37,17 +37,16 @@ To: <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
 CC: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, Huqiang Qin <huqiang.qin@amlogic.com>
-Subject: [PATCH V3 1/2] dt-bindings: pinctrl: Add compatibles for Amlogic C3 SoCs
-Date: Fri, 14 Jul 2023 20:24:40 +0800
-Message-ID: <20230714122441.3098337-2-huqiang.qin@amlogic.com>
+Subject: [PATCH V3 0/2] Add pinctrl driver support for Amlogic C3 SoCs
+Date: Fri, 14 Jul 2023 20:24:39 +0800
+Message-ID: <20230714122441.3098337-1-huqiang.qin@amlogic.com>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230714122441.3098337-1-huqiang.qin@amlogic.com>
-References: <20230714122441.3098337-1-huqiang.qin@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.28.11.83]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230714_052514_140946_13649DED 
-X-CRM114-Status: GOOD (  10.44  )
+X-CRM114-CacheID: sfid-20230714_052512_539032_1C8CE3B9 
+X-CRM114-Status: UNSURE (   6.43  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,112 +63,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add a new compatible name for Amlogic C3 pin controller, and add
-a new dt-binding header file which document the detail pin names.
+This patch adds pinctrl driver support for Amloigc C3 SoC (C308L and C302X)
 
-Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
----
+[PATCH 1/2]: 
+  V1 -> V2:
+    Unchanged.
+  V2 -> V3:
+    Updated commit message, and compatible are sorted alphabetically.
 
-V1 -> V2:
-  Unchanged.
-V2 -> V3:
-  Updated commit message, and compatible are sorted alphabetically.
+[PATCH 2/2]:
+  V1 -> V2:
+    Added a comma to the last item of the array and a period to
+    the commit message.
+  V2 -> V3:
+    Ditto, and corrected license.
 
- .../pinctrl/amlogic,meson-pinctrl-a1.yaml     |  1 +
- include/dt-bindings/gpio/amlogic-c3-gpio.h    | 72 +++++++++++++++++++
- 2 files changed, 73 insertions(+)
+Huqiang Qin (2):
+  dt-bindings: pinctrl: Add compatibles for Amlogic C3 SoCs
+  pinctrl: Add driver support for Amlogic C3 SoCs
+
+ .../pinctrl/amlogic,meson-pinctrl-a1.yaml     |    1 +
+ drivers/pinctrl/meson/Kconfig                 |    6 +
+ drivers/pinctrl/meson/Makefile                |    1 +
+ drivers/pinctrl/meson/pinctrl-amlogic-c3.c    | 1108 +++++++++++++++++
+ include/dt-bindings/gpio/amlogic-c3-gpio.h    |   72 ++
+ 5 files changed, 1188 insertions(+)
+ create mode 100644 drivers/pinctrl/meson/pinctrl-amlogic-c3.c
  create mode 100644 include/dt-bindings/gpio/amlogic-c3-gpio.h
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-index 99080c9eaac3..f64efa7ade08 100644
---- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-@@ -15,6 +15,7 @@ allOf:
- properties:
-   compatible:
-     enum:
-+      - amlogic,c3-periphs-pinctrl
-       - amlogic,meson-a1-periphs-pinctrl
-       - amlogic,meson-s4-periphs-pinctrl
- 
-diff --git a/include/dt-bindings/gpio/amlogic-c3-gpio.h b/include/dt-bindings/gpio/amlogic-c3-gpio.h
-new file mode 100644
-index 000000000000..75c8da6f505f
---- /dev/null
-+++ b/include/dt-bindings/gpio/amlogic-c3-gpio.h
-@@ -0,0 +1,72 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-+/*
-+ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-+ * Author: Huqiang Qin <huqiang.qin@amlogic.com>
-+ */
-+
-+#ifndef _DT_BINDINGS_AMLOGIC_C3_GPIO_H
-+#define _DT_BINDINGS_AMLOGIC_C3_GPIO_H
-+
-+#define	GPIOE_0		0
-+#define	GPIOE_1		1
-+#define	GPIOE_2		2
-+#define	GPIOE_3		3
-+#define	GPIOE_4		4
-+
-+#define	GPIOB_0		5
-+#define	GPIOB_1		6
-+#define	GPIOB_2		7
-+#define	GPIOB_3		8
-+#define	GPIOB_4		9
-+#define	GPIOB_5		10
-+#define	GPIOB_6		11
-+#define	GPIOB_7		12
-+#define	GPIOB_8		13
-+#define	GPIOB_9		14
-+#define	GPIOB_10	15
-+#define	GPIOB_11	16
-+#define	GPIOB_12	17
-+#define	GPIOB_13	18
-+#define	GPIOB_14	19
-+
-+#define	GPIOC_0		20
-+#define	GPIOC_1		21
-+#define	GPIOC_2		22
-+#define	GPIOC_3		23
-+#define	GPIOC_4		24
-+#define	GPIOC_5		25
-+#define	GPIOC_6		26
-+
-+#define	GPIOX_0		27
-+#define	GPIOX_1		28
-+#define	GPIOX_2		29
-+#define	GPIOX_3		30
-+#define	GPIOX_4		31
-+#define	GPIOX_5		32
-+#define	GPIOX_6		33
-+#define	GPIOX_7		34
-+#define	GPIOX_8		35
-+#define	GPIOX_9		36
-+#define	GPIOX_10	37
-+#define	GPIOX_11	38
-+#define	GPIOX_12	39
-+#define	GPIOX_13	40
-+
-+#define	GPIOD_0		41
-+#define	GPIOD_1		42
-+#define	GPIOD_2		43
-+#define	GPIOD_3		44
-+#define	GPIOD_4		45
-+#define	GPIOD_5		46
-+#define	GPIOD_6		47
-+
-+#define	GPIOA_0		48
-+#define	GPIOA_1		49
-+#define	GPIOA_2		50
-+#define	GPIOA_3		51
-+#define	GPIOA_4		52
-+#define	GPIOA_5		53
-+
-+#define	GPIO_TEST_N	54
-+
-+#endif /* _DT_BINDINGS_AMLOGIC_C3_GPIO_H */
+
+base-commit: fe57d0d86f03a8b2afe2869a95477d0ed1824c96
 -- 
 2.37.1
 
