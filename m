@@ -4,87 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A50C9C0015E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jul 2023 11:41:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 568CAC001B0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jul 2023 12:25:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=9zw827yhwtswvwaeHlFhxZJy6QIlC3lZt+s44nW2uwo=; b=L7vzqAxUKNIihB
-	lq6Caw8K7NtsLGnEErkMS06Aw5n/cqFfTGBIeYoM60RZwt+Fl1dp4+6Qp5UR09zTFODogioIjPqo1
-	Hs15SvU3U7siZEyvYaaxw/hSXwizQcNJldCb0biSK/ry1kz3rPtmkbG0OrCth20RZ00DEdEvJWm+g
-	7cl5TPU5h6qKIZxYTKAjLBU/wWEIZmkeSz0xtHrRsy1MU7L/5Wp44bfwd7ErzSfr9zBdoIfFCaJpF
-	U3GGiQBooeYia6QZVjKO+KPsmcbopplLnNW5/jaWiGZscUgN1wIY2Hwx6ICR0+pfau31fzwrfeKFb
-	zvHO0dLZDaod5ONshP7g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=wdyTxCWBzv0tvvMyYRR8Q8wd1+d/o7ATy7yJsInh4VU=; b=AWwmI3CauhTDBQ
+	Lt0C1kU1hQV2PVQqX3pKZFGs1NgXG0ULOV2BAxpK/Z4OtT6uylA98BZyHtf5MqwHUt0nIYeT9scRO
+	TK4N/xVt8omJuDd8YyyvgdThh8+Hv/C57YAFmpSx7AlAFqupWH4P/L26PJhNSph4KOPuA1HTJKzxR
+	kgyZI4Yz6RUsvcXhI73unQp9jj4UJY9h/h/ayFvHhC1CVxWEsWQ3KTC/5HaTZw5lTgOC6NaFztEsa
+	rJp6eTy710KUYSvkW19BvGROv4IBt+e2MCWDBalg+xD4xe8QAJI61U31JNTR/tFqz/XB70C8xy1EC
+	TymYop3j4IsNISCTYnyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKHAN-0065jB-2a;
-	Fri, 14 Jul 2023 11:40:55 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1qKHrM-006BYN-2Q;
+	Fri, 14 Jul 2023 12:25:20 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKH9x-0065Rw-1w;
-	Fri, 14 Jul 2023 11:40:36 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 8A6C9100009;
-	Fri, 14 Jul 2023 14:40:19 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8A6C9100009
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1689334819;
-	bh=eu8/qlieVAdLMy2mRVFcsfWVK/cHJOdzyxcUfVIBZpw=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=rmNlqtFM4WPMziN4PntsI21alPkv/F61V2CRL9GplDicgKlc6i1yq0pVtDgRoQ/z7
-	 bT9+6VCEcb98Kz5+xsDYN7WzZiRDHSuJcKg5LpKdwxUYaaMd30P5mMD8+8Lkdyu305
-	 RZ3QSKn9nVz2WpxQQZy5JidNFmgLcs6Z9Q9MHPre6GCpYMKjnfQzMaxFTrAT5ShMqF
-	 bXj8onpsudfvEsRsMnB/D9vWVKUJ2g7QAGr5mGcqWYYllPV3tsGqS+Zn8pB42aHqjT
-	 zcDKvkMDKn5JmDKRKyaj93BmGAlblYFp+Wt9iI25S7fwzuyerOseSlo4iMVIAKiLDC
-	 TNIffb/zXSKmw==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 14 Jul 2023 14:40:19 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Fri, 14 Jul 2023 14:39:47 +0300
-From: George Stark <gnstark@sberdevices.ru>
-To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <andriy.shevchenko@linux.intel.com>,
-	<nuno.sa@analog.com>, <gnstark@sberdevices.ru>
-CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<kernel@sberdevices.ru>
-Subject: [PATCH v7 0/6] meson saradc: add iio channels to read channel 7 mux inputs
-Date: Fri, 14 Jul 2023 14:37:47 +0300
-Message-ID: <20230714114010.293440-1-gnstark@sberdevices.ru>
-X-Mailer: git-send-email 2.41.0
+	id 1qKHrG-006BVK-0K;
+	Fri, 14 Jul 2023 12:25:15 +0000
+Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Fri, 14 Jul 2023
+ 20:24:45 +0800
+From: Huqiang Qin <huqiang.qin@amlogic.com>
+To: <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <brgl@bgdev.pl>, <andy@kernel.org>
+CC: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Huqiang Qin <huqiang.qin@amlogic.com>
+Subject: [PATCH V3 1/2] dt-bindings: pinctrl: Add compatibles for Amlogic C3 SoCs
+Date: Fri, 14 Jul 2023 20:24:40 +0800
+Message-ID: <20230714122441.3098337-2-huqiang.qin@amlogic.com>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20230714122441.3098337-1-huqiang.qin@amlogic.com>
+References: <20230714122441.3098337-1-huqiang.qin@amlogic.com>
 MIME-Version: 1.0
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178622 [Jul 14 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: GNStark@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 523 523 523027ce26ed1d9067f7a52a4756a876e54db27c, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;www.spinics.net:7.1.1;127.0.0.199:7.1.2;lore.kernel.org:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2023/07/14 02:56:00
-X-KSMG-LinksScanning: Clean, bases: 2023/07/12 20:30:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/14 02:46:00 #21611850
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-Originating-IP: [10.28.11.83]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230714_044030_342053_658BA34A 
-X-CRM114-Status: UNSURE (   9.76  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230714_052514_140946_13649DED 
+X-CRM114-Status: GOOD (  10.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,98 +64,114 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Changelog:
+Add a new compatible name for Amlogic C3 pin controller, and add
+a new dt-binding header file which document the detail pin names.
 
-v1->v2:
-split refactoring patch [1] into 4 smaller patches, fix comment style
+Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+---
 
-[1] https://lore.kernel.org/lkml/20230621062715.455652-2-gnstark@sberdevices.ru/
+V1 -> V2:
+  Unchanged.
+V2 -> V3:
+  Updated commit message, and compatible are sorted alphabetically.
 
-v2->v3:
-remove patch 'meson saradc: unite iio channel array definitions' [1] after discussion
+ .../pinctrl/amlogic,meson-pinctrl-a1.yaml     |  1 +
+ include/dt-bindings/gpio/amlogic-c3-gpio.h    | 72 +++++++++++++++++++
+ 2 files changed, 73 insertions(+)
+ create mode 100644 include/dt-bindings/gpio/amlogic-c3-gpio.h
 
-patch 'meson saradc: add enum for iio channel array indexes'
-  - change enum items prefix from INDEX_ to NUM_ since name 'channel index' is
-  more relevant to channel array index in iio world and with 2 tables our array index is
-  not always equal to channel number
-  - resolve conflicts after deleting [1]
-  - update commit message, previous patch [2]
-  - return channel number for temp channel. It wasn't used and isn't used currently
-  but may need later
-
-patch meson saradc: support reading from channel 7 mux inputs
-  - resolve conflicts after deleting [1]
-  - update commit message, previous patch [3]
-  - add routine find_channel_by_num to get channel by channel number
-
-[1] https://lore.kernel.org/lkml/20230623022334.791026-4-gnstark@sberdevices.ru/
-[2] https://lore.kernel.org/lkml/20230623022334.791026-5-gnstark@sberdevices.ru/
-[3] https://lore.kernel.org/lkml/20230623022334.791026-7-gnstark@sberdevices.ru/
-
-v3->v4:
-add new patch 'iio: adc: meson: remove unused timestamp channel' [1]
-
-patch 'iio: adc: meson: move enums declaration before'
-	update commit message, previous patch [2]
-patch 'iio: adc: meson: move meson_sar_adc_set_chan7_mux'
-	update commit message, previous patch [3]
-patch 'iio: adc: meson: add enum for iio channel numbers'
-	update commit message, previous patch [4]
-patch 'iio: adc: meson: add channel labels'
-	update commit message, previous patch [5]
-	change sprintf(label, "%s\n", "temp-sensor") to sprintf(label, "temp-sensor\n")
-patch 'iio: adc: meson: support reading from channel 7 mux'
-	rewrite enum meson_sar_adc_chan7_mux_sel definition and
-		read_label routine proposed by Andy [7], previous patch [6]
-
-[1] https://lore.kernel.org/lkml/20230705160413.000062e7@Huawei.com/
-[2] https://lore.kernel.org/lkml/20230627224017.1724097-2-gnstark@sberdevices.ru/
-[3] https://lore.kernel.org/lkml/20230627224017.1724097-3-gnstark@sberdevices.ru/
-[4] https://lore.kernel.org/lkml/20230627224017.1724097-4-gnstark@sberdevices.ru/
-[5] https://lore.kernel.org/lkml/20230627224017.1724097-5-gnstark@sberdevices.ru/
-[6] https://lore.kernel.org/lkml/20230627224017.1724097-6-gnstark@sberdevices.ru/
-[7] https://lore.kernel.org/lkml/ZJwGCNA+ZURri24i@smile.fi.intel.com/
-
-v4->v5:
-patch 'iio: adc: meson: move enums declaration before variables declaration'
-	update commit message, previous patch [1]
-patch 'iio: adc: meson: move meson_sar_adc_set_chan7_mux routine upper'
-	update commit message, previous patch [2]
-patch 'iio: adc: meson: add channel labels'
-	update commit message, previous patch [3]
-patch 'iio: adc: meson: support reading from channel 7 mux inputs'
-	update commit message, previous patch [4]
-
-[1] https://lore.kernel.org/lkml/20230707153322.114302-3-gnstark@sberdevices.ru/
-[2] https://www.spinics.net/lists/linux-iio/msg80226.html
-[3] https://www.spinics.net/lists/linux-iio/msg80227.html
-[4] https://www.spinics.net/lists/linux-iio/msg80230.html
-
-v5->v6:
-patch 'iio: adc: meson: move enums declaration before variables declaration'
-	update commit message, previous patch [1]
-patch 'iio: adc: meson: support reading from channel 7 mux inputs'
-	update commit message, previous patch [2]
-[1] https://www.spinics.net/lists/linux-iio/msg80315.html
-[2] https://www.spinics.net/lists/linux-iio/msg80314.html
-
-v6->v7:
-all patches:
-	add tag Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-
-George Stark (6):
-  iio: adc: meson: remove unused timestamp channel
-  iio: adc: meson: move enums declaration before variables declaration
-  iio: adc: meson: move meson_sar_adc_set_chan7_mux routine upper
-  iio: adc: meson: add enum for iio channel numbers
-  iio: adc: meson: add channel labels
-  iio: adc: meson: support reading from channel 7 mux inputs
-
- drivers/iio/adc/meson_saradc.c | 173 +++++++++++++++++++++++++--------
- 1 file changed, 134 insertions(+), 39 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+index 99080c9eaac3..f64efa7ade08 100644
+--- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+@@ -15,6 +15,7 @@ allOf:
+ properties:
+   compatible:
+     enum:
++      - amlogic,c3-periphs-pinctrl
+       - amlogic,meson-a1-periphs-pinctrl
+       - amlogic,meson-s4-periphs-pinctrl
+ 
+diff --git a/include/dt-bindings/gpio/amlogic-c3-gpio.h b/include/dt-bindings/gpio/amlogic-c3-gpio.h
+new file mode 100644
+index 000000000000..75c8da6f505f
+--- /dev/null
++++ b/include/dt-bindings/gpio/amlogic-c3-gpio.h
+@@ -0,0 +1,72 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
++/*
++ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
++ * Author: Huqiang Qin <huqiang.qin@amlogic.com>
++ */
++
++#ifndef _DT_BINDINGS_AMLOGIC_C3_GPIO_H
++#define _DT_BINDINGS_AMLOGIC_C3_GPIO_H
++
++#define	GPIOE_0		0
++#define	GPIOE_1		1
++#define	GPIOE_2		2
++#define	GPIOE_3		3
++#define	GPIOE_4		4
++
++#define	GPIOB_0		5
++#define	GPIOB_1		6
++#define	GPIOB_2		7
++#define	GPIOB_3		8
++#define	GPIOB_4		9
++#define	GPIOB_5		10
++#define	GPIOB_6		11
++#define	GPIOB_7		12
++#define	GPIOB_8		13
++#define	GPIOB_9		14
++#define	GPIOB_10	15
++#define	GPIOB_11	16
++#define	GPIOB_12	17
++#define	GPIOB_13	18
++#define	GPIOB_14	19
++
++#define	GPIOC_0		20
++#define	GPIOC_1		21
++#define	GPIOC_2		22
++#define	GPIOC_3		23
++#define	GPIOC_4		24
++#define	GPIOC_5		25
++#define	GPIOC_6		26
++
++#define	GPIOX_0		27
++#define	GPIOX_1		28
++#define	GPIOX_2		29
++#define	GPIOX_3		30
++#define	GPIOX_4		31
++#define	GPIOX_5		32
++#define	GPIOX_6		33
++#define	GPIOX_7		34
++#define	GPIOX_8		35
++#define	GPIOX_9		36
++#define	GPIOX_10	37
++#define	GPIOX_11	38
++#define	GPIOX_12	39
++#define	GPIOX_13	40
++
++#define	GPIOD_0		41
++#define	GPIOD_1		42
++#define	GPIOD_2		43
++#define	GPIOD_3		44
++#define	GPIOD_4		45
++#define	GPIOD_5		46
++#define	GPIOD_6		47
++
++#define	GPIOA_0		48
++#define	GPIOA_1		49
++#define	GPIOA_2		50
++#define	GPIOA_3		51
++#define	GPIOA_4		52
++#define	GPIOA_5		53
++
++#define	GPIO_TEST_N	54
++
++#endif /* _DT_BINDINGS_AMLOGIC_C3_GPIO_H */
 -- 
-2.38.4
+2.37.1
 
 
 _______________________________________________
