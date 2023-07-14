@@ -4,86 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4451C001B0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jul 2023 19:04:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4717EB64DC
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jul 2023 19:28:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=qEqGalJ5sPgiELq0nQYt3bahXNcE7onVCddfQ8+6bu8=; b=hotHEP97zzGtEm
-	g99gWTE/4SCy0d5VFIofDuG4OXjKkSvhzqDl226DmeFZIKe8SvCheDFE1jAgEFIbMCHGpjfmGJM4/
-	Q7DOz7Mgd+4VbFTurZRt/LOxSGZa7JKnWdFyec/BAopwCrvOQPGhXnqG5k0uHbKsSDa9IZ8Ld2ICh
-	c0aTKi2UW37flH5U5N4A/2vof79BxxP2ClDuAU3n6cuzJs+1uHq2Nv+EpAIDr2RBibFTRWaZ5/6iv
-	8FXqCR8I/ItNYyBtUSDVl0mDkKt0sq1E2lweqyg30ZIsGptqevsLqZRsJ2uRkRtJh58Nur0tL3xVi
-	zzUnpvBV1+PyWR+k/geg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=OVH7MJYJyDSjMuTOyy73ncCyEywZcdfK+pB8zxtQVrM=; b=OtP3n2phRs1yOQ
+	RPQOAiKkK4MQXizlJAe2WzKYEGclK1kphX9M5CYQV08WUztAsIq+6UWhgZKQWB8iu/4NyF1JcGBgl
+	CoOyDg5584zL8Mtr/VK2sddX8zlXlS0uQjCE/qWwXW6+3AqNQQev/H7uClT2Tt9iGA6zSRSN2u2ES
+	QJtvzT8buni7BZ32X/60JdzBZsMjsxrTm1R+qMqE0DUI0GURKMX6EYy8OV2dfy7NhdZPC7RMR3lXP
+	2FrZgt8JhhrfbTl9RfgZv/MgyCfdX1fj1fRS8xsLX71CnWQtiR/tFc8YRg9/UZRCnHb4qHdUeJBZz
+	KV3MHuyhjs/fkOV4OwiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKO4u-0073HW-0c;
-	Fri, 14 Jul 2023 19:03:44 +0000
+	id 1qKOSk-0075Zq-24;
+	Fri, 14 Jul 2023 19:28:22 +0000
 Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKO4q-0073Ft-2k;
-	Fri, 14 Jul 2023 19:03:43 +0000
+	id 1qKOSh-0075Z1-0e;
+	Fri, 14 Jul 2023 19:28:21 +0000
 Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 9FC50100005;
-	Fri, 14 Jul 2023 22:03:32 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 9FC50100005
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 52498100005;
+	Fri, 14 Jul 2023 22:28:13 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 52498100005
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1689361412;
-	bh=UKToA8zywV8uXSaW87LKG0cPDy8zHjWEhriI54HK4g0=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=q/buLI26I/8SjpIeBae5BfI4vwuzW+zm5f/xBiuLAr/BXwspqTcgIFSjhQEDJyl+u
-	 Tb3rGB2IfPHKqs+uZgfCCPjIj3mD3q/J7YA5ZxjYX/yzgZg6fdfqjcZRsLh3puOchJ
-	 YkWLipxdnr5v7F40p2wPtgPyToPriSmE4cKbAmOn+BCLhrgpPWxmqelOSmyKcN4THs
-	 460b8K74xsy6ao2Kw/b9W0aYA8yECYy860CSzkQCWI8InNC2jBtO4pkc3OcVxoRqlB
-	 Hhm+bm9mQiurUfwNwMslT3Noz5d0Swk/7YNq+KVXyWCN33q60ezbhA/svzsSS+gO5G
-	 mpeMoly+bffAA==
+	s=mail; t=1689362893;
+	bh=Y+EKy5Ok08NhyZskIXQaHaX4WP3np3p1O2H4uO0MI3M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=J3nT8QVlHEw0rbCHKaR0Wxo0ubAaFwxu9KdT3g8pPyTfqGPZbKJHwqXgl1DBcDL4B
+	 sPm6DJr7iHU7xpU7Qp2+1WC7/h/UZHNDQynAH3+xqvOwNihNt3pmSSN8FhhgwjeewV
+	 k3r0RzNOUeGokT3WXIK2e8882vb5JS55vAMaxGvVPNNQJquLDsUuzoG6OHJW4bFMj9
+	 vw14id/UjsvZ+B9OHGHOQOqfg0b0CnnWa1APRb8FFUfL3Zm+cvYDY+3FYm5/oI0FVa
+	 rhAvnb9LlxEtuLLTwDdKwXKgLWlRvFs+rYieiJ6fol88Rkjl3MoAFeOrAhGROlK9XD
+	 Dz6yUrF21FfpQ==
 Received: from p-i-exch-sc-m02.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 14 Jul 2023 22:03:32 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
+	Fri, 14 Jul 2023 22:28:13 +0300 (MSK)
+Received: from [192.168.0.12] (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Fri, 14 Jul 2023 22:03:32 +0300
-From: George Stark <gnstark@sberdevices.ru>
-To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <andriy.shevchenko@linux.intel.com>,
-	<nuno.sa@analog.com>, <gnstark@sberdevices.ru>
-CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<kernel@sberdevices.ru>
-Subject: [PATCH v1 0/1] iio: adc: meson: fix core clock enable/disable moment
-Date: Fri, 14 Jul 2023 22:03:14 +0300
-Message-ID: <20230714190320.308320-1-gnstark@sberdevices.ru>
-X-Mailer: git-send-email 2.41.0
+ 15.2.1118.30; Fri, 14 Jul 2023 22:27:38 +0300
+Message-ID: <840a9364-352d-b79b-6e7a-c54912e2297a@sberdevices.ru>
+Date: Fri, 14 Jul 2023 22:22:53 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [RFC PATCH v3 2/3] dt-bindings: nand: meson: make ECC properties
+ dependent
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+CC: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
+	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, <oxffffaa@gmail.com>,
+	<kernel@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230711122129.2635558-1-AVKrasnov@sberdevices.ru>
+ <20230711122129.2635558-3-AVKrasnov@sberdevices.ru>
+ <20230714155553.GA3913802-robh@kernel.org>
+From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <20230714155553.GA3913802-robh@kernel.org>
 X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
 X-KSMG-AntiSpam-Lua-Profiles: 178634 [Jul 14 2023]
 X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: GNStark@sberdevices.ru
+X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
 X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 523 523 523027ce26ed1d9067f7a52a4756a876e54db27c, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m02.sberdevices.ru:5.0.1,7.1.1;sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 523 523 523027ce26ed1d9067f7a52a4756a876e54db27c, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;p-i-exch-sc-m02.sberdevices.ru:5.0.1,7.1.1;sberdevices.ru:5.0.1,7.1.1;lore.kernel.org:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
+X-KSMG-AntiPhishing: Clean, bases: 2023/07/14 17:22:00
+X-KSMG-LinksScanning: Clean, bases: 2023/07/14 17:22:00
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/14 14:48:00 #21614190
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230714_120341_633536_86F17365 
-X-CRM114-Status: GOOD (  10.20  )
+X-CRM114-CacheID: sfid-20230714_122819_616273_D71C5219 
+X-CRM114-Status: GOOD (  15.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,61 +111,50 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch is a part of effort to support meson a1 SoC and make meson saradc driver
-independent from vendor boot code initialization in common.
 
-Core clock (passed to adc module thru dts) is supposed to be responsible for entier module
-and should be on before accessing modules' regs.
 
-I've made experiments and here are the results:
+On 14.07.2023 18:55, Rob Herring wrote:
+> On Tue, Jul 11, 2023 at 03:21:28PM +0300, Arseniy Krasnov wrote:
+>> ECC properties 'nand-ecc-strength' and 'nand-ecc-step-size' depends on
+>> each other, so they must be both either set or not set. 
+> 
+> Is that true for all drivers or just meson?
 
-on odroid-c1 (meson8) adc regs became readonly with core clock off:
-# disable clock (HHI_GCLK_MPEG0 bit 10)
-devmem 0xc1104140 32 0xBFFA72FF
-devmem 0xc110868C
-0xE3A851FF
-devmem 0xc110868C 32 0xE3A85100
-devmem 0xc110868C
-0xE3A851FF
-# enable clock
-devmem 0xc1104140 32 0xBFFA76FF
- devmem 0xc110868C
-0xE3A851FF
-devmem 0xc110868C 32 0xE3A85100
-devmem 0xc110868C
-0xE3A85100
+As Miquel Raynal suggested, this will be implemented only for Meson driver at this moment.
+Here is link with reply:
+https://lore.kernel.org/linux-mtd/20230705065434.297040-1-AVKrasnov@sberdevices.ru/T/#m88705a0039fb30c18a9bb2b03a1add5f7e212a3b
 
-on vim3 (a311d) adc regs became readonly with core clock off:
-# disable adc core clock:
-devmem 0xff80004C 32 0xFFFFFEFF
-# the adc register become readonly:
-devmem 0xff80902c
-0x002C2002
-devmem 0xff80902c 32 0x002C2000
-devmem 0xff80902c
-0x002C2002
+Thanks, Arseniy
 
-on a1 adc registers are none-readable-writeable when adc core clock is off:
-devmem 0xfe002c2c
-0x00002003
-# disable clock
-devmem 0xfe00081c 32 0xFFFF9FFF
-devmem 0xfe002c2c
-0x00000000
-# enable clock
-devmem 0xfe00081c 32 0xFFFFFFFF
-devmem 0xfe002c2c
-0x00002003
-
-George Stark (1):
-  iio: adc: meson: fix core clock enable/disable moment
-
- drivers/iio/adc/meson_saradc.c | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
-
--- 
-2.38.4
-
+> 
+>> In first case
+>> ECC core will try to use these values if possible (by checking ECC caps
+>> provided by driver), in second case ECC core will select most optimal
+>> values for both properties.
+>>
+>> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+>> ---
+>>  Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>> index e81757c9e0ed..4f6e56542a7e 100644
+>> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>> @@ -58,6 +58,10 @@ patternProperties:
+>>              meson-gxl-nfc 8, 16, 24, 30, 40, 50, 60
+>>              meson-axg-nfc 8
+>>  
+>> +    dependencies:
+>> +      nand-ecc-strength: ['nand-ecc-step-size']
+>> +      nand-ecc-step-size: ['nand-ecc-strength']
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> -- 
+>> 2.35.0
+>>
 
 _______________________________________________
 linux-amlogic mailing list
