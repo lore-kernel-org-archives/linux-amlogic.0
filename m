@@ -4,97 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4717EB64DC
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jul 2023 19:28:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D7FDEB64DC
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jul 2023 19:38:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OVH7MJYJyDSjMuTOyy73ncCyEywZcdfK+pB8zxtQVrM=; b=OtP3n2phRs1yOQ
-	RPQOAiKkK4MQXizlJAe2WzKYEGclK1kphX9M5CYQV08WUztAsIq+6UWhgZKQWB8iu/4NyF1JcGBgl
-	CoOyDg5584zL8Mtr/VK2sddX8zlXlS0uQjCE/qWwXW6+3AqNQQev/H7uClT2Tt9iGA6zSRSN2u2ES
-	QJtvzT8buni7BZ32X/60JdzBZsMjsxrTm1R+qMqE0DUI0GURKMX6EYy8OV2dfy7NhdZPC7RMR3lXP
-	2FrZgt8JhhrfbTl9RfgZv/MgyCfdX1fj1fRS8xsLX71CnWQtiR/tFc8YRg9/UZRCnHb4qHdUeJBZz
-	KV3MHuyhjs/fkOV4OwiQ==;
+	List-Owner; bh=HdIL1WetBPObIMjlboZ2NxTCkk9WiG4rWAqDuowg4xA=; b=vNTh6bO1YFzlVx
+	3/cw5EPZAzWYWaTqc6/GIp6/mxnzSc4AowRwo/mX8dOPJNcWa39ntHvYwS2eqw/XyN/xTRhQZZt/0
+	2RUPzzo+qj2kqKt/U01nn2CKdUnTr4ItQa25v5sHMd/tN6IuyOeO7uAd8R+EiFgt37L6IFik+TbT4
+	X/03SKKBp7KTvKGxYJTgNwlKUlUcpe/TS71DRJSsRxxiSezHDSmK53JHpbY2miP88fHB7DcZRWXCV
+	pr+C/SCdV0L7jfGYkmN1iqzkZXdt2fm1HjGNBJhtjxZGU4gz5hUz34b+XNr0IkA9V8kJiGCqyIFMV
+	UQryAs7GlC6ioJq7h7xQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKOSk-0075Zq-24;
-	Fri, 14 Jul 2023 19:28:22 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1qKOcA-0076g8-1S;
+	Fri, 14 Jul 2023 19:38:06 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKOSh-0075Z1-0e;
-	Fri, 14 Jul 2023 19:28:21 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 52498100005;
-	Fri, 14 Jul 2023 22:28:13 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 52498100005
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1689362893;
-	bh=Y+EKy5Ok08NhyZskIXQaHaX4WP3np3p1O2H4uO0MI3M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=J3nT8QVlHEw0rbCHKaR0Wxo0ubAaFwxu9KdT3g8pPyTfqGPZbKJHwqXgl1DBcDL4B
-	 sPm6DJr7iHU7xpU7Qp2+1WC7/h/UZHNDQynAH3+xqvOwNihNt3pmSSN8FhhgwjeewV
-	 k3r0RzNOUeGokT3WXIK2e8882vb5JS55vAMaxGvVPNNQJquLDsUuzoG6OHJW4bFMj9
-	 vw14id/UjsvZ+B9OHGHOQOqfg0b0CnnWa1APRb8FFUfL3Zm+cvYDY+3FYm5/oI0FVa
-	 rhAvnb9LlxEtuLLTwDdKwXKgLWlRvFs+rYieiJ6fol88Rkjl3MoAFeOrAhGROlK9XD
-	 Dz6yUrF21FfpQ==
-Received: from p-i-exch-sc-m02.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	id 1qKOc7-0076f7-1V;
+	Fri, 14 Jul 2023 19:38:04 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 14 Jul 2023 22:28:13 +0300 (MSK)
-Received: from [192.168.0.12] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Fri, 14 Jul 2023 22:27:38 +0300
-Message-ID: <840a9364-352d-b79b-6e7a-c54912e2297a@sberdevices.ru>
-Date: Fri, 14 Jul 2023 22:22:53 +0300
+	by dfw.source.kernel.org (Postfix) with ESMTPS id F02D761D9C;
+	Fri, 14 Jul 2023 19:38:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A62D9C433C8;
+	Fri, 14 Jul 2023 19:37:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1689363482;
+	bh=fGJ6F5Ae/YFoT2UWCrLli9PCtviQD9Op8m1EXI3LXXU=;
+	h=Date:Subject:List-Id:To:Cc:References:From:In-Reply-To:From;
+	b=jYE5HJQE/PMLG3EMjSGfoDEwwkgTHcoohATsRj1fUayKeLvR07xfOCkIHjOGvykxm
+	 aip3QDRPq8Tte2DkfUmSHZYsHmLZJYvw4RHnWKjN7H2k5XufcmIyNXAFFJMVZrttGD
+	 RwkO5eJzf2pXSQ2UeEaJGCNH9HxiH5dE3rgoNoRCk/bpzPFDEAUAN4F2aWvXFzP6uF
+	 tvaRkjiJZkfD3yK3nyeb0QlgICDJAPAZxEupkfWlQU8Kq+ab2l8pDvgNxcFZ047/q1
+	 vlJYGOonIcEBT5Vbwjoja/4Hd8/U5hzQGy29Oq3Jn4cYJW1LHKlpFNKSD0YpAjZmSP
+	 Vh/AAsrUwaumg==
+Message-ID: <2d001d37-90f8-4a44-5573-ea1667f44108@kernel.org>
+Date: Fri, 14 Jul 2023 14:37:52 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [RFC PATCH v3 2/3] dt-bindings: nand: meson: make ECC properties
- dependent
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] clk: Explicitly include correct DT includes
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-CC: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
-	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, <oxffffaa@gmail.com>,
-	<kernel@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20230711122129.2635558-1-AVKrasnov@sberdevices.ru>
- <20230711122129.2635558-3-AVKrasnov@sberdevices.ru>
- <20230714155553.GA3913802-robh@kernel.org>
-From: Arseniy Krasnov <avkrasnov@sberdevices.ru>
-In-Reply-To: <20230714155553.GA3913802-robh@kernel.org>
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178634 [Jul 14 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 523 523 523027ce26ed1d9067f7a52a4756a876e54db27c, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;p-i-exch-sc-m02.sberdevices.ru:5.0.1,7.1.1;sberdevices.ru:5.0.1,7.1.1;lore.kernel.org:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2023/07/14 17:22:00
-X-KSMG-LinksScanning: Clean, bases: 2023/07/14 17:22:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/14 14:48:00 #21614190
-X-KSMG-AntiVirus-Status: Clean, skipped
+To: Rob Herring <robh@kernel.org>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@aj.id.au>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Sudeep Holla <sudeep.holla@arm.com>,
+ Cristian Marussi <cristian.marussi@arm.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Alex Helms <alexander.helms.jy@renesas.com>, Abel Vesa
+ <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Santosh Shilimkar <ssantosh@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Heiko Stuebner <heiko@sntech.de>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Tomasz Figa <tomasz.figa@gmail.com>, Chanwoo Choi <cw00.choi@samsung.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Viresh Kumar <vireshk@kernel.org>,
+ Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
+ Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
+ Emil Renner Berthing <kernel@esmil.dk>, Hal Feng
+ <hal.feng@starfivetech.com>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, =?UTF-8?Q?Emilio_L=c3=b3pez?=
+ <emilio@elopez.com.ar>, Peter De Schrijver <pdeschrijver@nvidia.com>,
+ Prashant Gaikwad <pgaikwad@nvidia.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>, Michal Simek <michal.simek@amd.com>
+Cc: devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-actions@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-oxnas@groups.io,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-tegra@vger.kernel.org
+References: <20230714174342.4052882-1-robh@kernel.org>
+From: Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20230714174342.4052882-1-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230714_122819_616273_D71C5219 
-X-CRM114-Status: GOOD (  15.47  )
+X-CRM114-CacheID: sfid-20230714_123803_607042_E1E679C3 
+X-CRM114-Status: GOOD (  12.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,55 +125,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
 
-On 14.07.2023 18:55, Rob Herring wrote:
-> On Tue, Jul 11, 2023 at 03:21:28PM +0300, Arseniy Krasnov wrote:
->> ECC properties 'nand-ecc-strength' and 'nand-ecc-step-size' depends on
->> each other, so they must be both either set or not set. 
+On 7/14/23 12:43, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
 > 
-> Is that true for all drivers or just meson?
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+...
+>   drivers/clk/sifive/sifive-prci.c                 | 2 +-
+>   drivers/clk/socfpga/clk-agilex.c                 | 3 +--
+>   drivers/clk/socfpga/clk-s10.c                    | 3 +--
 
-As Miquel Raynal suggested, this will be implemented only for Meson driver at this moment.
-Here is link with reply:
-https://lore.kernel.org/linux-mtd/20230705065434.297040-1-AVKrasnov@sberdevices.ru/T/#m88705a0039fb30c18a9bb2b03a1add5f7e212a3b
+For SoCFPGA
 
-Thanks, Arseniy
-
-> 
->> In first case
->> ECC core will try to use these values if possible (by checking ECC caps
->> provided by driver), in second case ECC core will select most optimal
->> values for both properties.
->>
->> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
->> ---
->>  Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 4 ++++
->>  1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
->> index e81757c9e0ed..4f6e56542a7e 100644
->> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
->> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
->> @@ -58,6 +58,10 @@ patternProperties:
->>              meson-gxl-nfc 8, 16, 24, 30, 40, 50, 60
->>              meson-axg-nfc 8
->>  
->> +    dependencies:
->> +      nand-ecc-strength: ['nand-ecc-step-size']
->> +      nand-ecc-step-size: ['nand-ecc-strength']
->> +
->>  required:
->>    - compatible
->>    - reg
->> -- 
->> 2.35.0
->>
+Acked-by: Dinh Nguyen <dinguyen@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
