@@ -4,68 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AD57C0015E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jul 2023 20:45:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C66B7C0015E
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jul 2023 22:32:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ExbpNgfBjEOQSEeEHp8DzZnlMSozMXQwCHEyld/GudI=; b=r0FANS4uFrq9j9
-	gPsenAX/DaetCzyXSPzAk38X3qKo+jcp4Ah4S1TouKh1mB9aMgua6q7dB2Svsr8JN3qLupKMllk3t
-	YOmHbHqs9brTr2KbCPruG7kG+5lUl2v48/ZGT+Qps21y/a+MeUPtqd6cyeavibtCTbi1ZtrDzUlNg
-	hQPJ76iwX4BYy5Nx8qFLlw9bFXfeFOisheExRFgqdaJF83o+gJBxcT0lAYzRBDCiWcQ21I9bAMuxu
-	r/DGOjmpGarysYxjw6gfW6oglEGwPtsX5wl8UGRy45dayzRbSE4ZZKs6Fhqxjmv+qoA6DTtlrfu8I
-	KaGIs65Nv+/Y1mCJMArg==;
+	List-Owner; bh=hYGZ0VP8ISiQXB0P06IEduQvUy5aq3t1RNECBzRPGnU=; b=PGeDc8sNoJiKP+
+	LMNXJTxPCp8Gc02FnSLAapaSG5SRLEbWFqA8WF09RzYluR7fdukewEf43hHtLlot3v5dKH/02tKap
+	ldGgPoNBAujzJWsFXgeYGzu3Bj6kLhkPkSj8HY/JP7Ccz8jT60xcNGGjo35sUf9IuGLWq00QQ6/lt
+	o3JpL5kdc0EHpD+dom/pY0LWVm/cH10MWuU2ZGdKOAXr49NwRf+TY2WwMqNJ8iYhvb2+VXzbmzj3D
+	hy5SZ3tMRCsUbN2wQfY6PtFSaDuLd2fmJ1H4UdoSCNq4nBZberyjjwjKNZW/8mC/q2cru+8zaaltf
+	6goHosTeuvNEK/t0NKgw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKPf3-007DNz-0W;
-	Fri, 14 Jul 2023 20:45:09 +0000
-Received: from mail-il1-f170.google.com ([209.85.166.170])
+	id 1qKRKF-007Mzv-0s;
+	Fri, 14 Jul 2023 22:31:47 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKPf1-007DNG-01;
-	Fri, 14 Jul 2023 20:45:08 +0000
-Received: by mail-il1-f170.google.com with SMTP id e9e14a558f8ab-345a76c3a2eso10023775ab.2;
-        Fri, 14 Jul 2023 13:45:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689367505; x=1691959505;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kjp2goDmU3eZUaBvWIsYt7Ff9ugaAud6phFHMfCuKPk=;
-        b=G8MtgOZm6VVzBMwRqT/lt65SxygGCmr9oVql9VC7maDTx/tf49oxr9POioM/zKPgG5
-         RRhN2wPKlLc+N4aCmn5xd8bGXEY9ATfI3IZIexrZi25vSXFqmSXL7Z7RyYWmPSD/CXgz
-         nFhnxyy0Qtmcxlj86UBKxHL/PVS2zuS5BB08MaECjhAhZa6HQGg7KGHAtQWQmlULcgWc
-         WlCV5m8ME2EZ6QJp57meirhgaO7dWJDRbvRF249GwG/Kzdtt5PgaQrO8xGkSLHHRO+F1
-         5dh+8jMi2H2IRtVuHCKgeIpTEF0WifZiSDTdp6FB4xYrgbFLu166UHkHOcdDj7cjru9W
-         TIIw==
-X-Gm-Message-State: ABy/qLbeOjaIQHU3rGqCjlag4jIHY/YNAg6IJcFWeQTwSA5pAcwErPRy
-	DGfV53eJtv6PC8RUYtu8iwtxtY2x5NyS
-X-Google-Smtp-Source: APBJJlHYIZYxjmYxxwO8SeGpPnHJlVlcG1xS21FJsirLDGT6wdMnGUi4wUo4SySMRd5VSiQAB3oyzg==
-X-Received: by 2002:a92:da8f:0:b0:345:c72d:33a5 with SMTP id u15-20020a92da8f000000b00345c72d33a5mr5385994iln.19.1689367505374;
-        Fri, 14 Jul 2023 13:45:05 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id g11-20020a0566380bcb00b0042b48e5da4bsm2729732jad.134.2023.07.14.13.45.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jul 2023 13:45:04 -0700 (PDT)
-Received: (nullmailer pid 189489 invoked by uid 1000);
-	Fri, 14 Jul 2023 20:44:50 -0000
-Date: Fri, 14 Jul 2023 14:44:50 -0600
-From: Rob Herring <robh@kernel.org>
-To: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-Cc: Liang Yang <liang.yang@amlogic.com>, Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, kernel@sberdevices.ru, linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>, oxffffaa@gmail.com, linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Miquel Raynal <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [RFC PATCH v3 2/3] dt-bindings: nand: meson: make ECC properties
- dependent
-Message-ID: <168936748954.189426.381778716587465848.robh@kernel.org>
-References: <20230711122129.2635558-1-AVKrasnov@sberdevices.ru>
- <20230711122129.2635558-3-AVKrasnov@sberdevices.ru>
+	id 1qKRKB-007Mz8-2D;
+	Fri, 14 Jul 2023 22:31:45 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id E682161E00;
+	Fri, 14 Jul 2023 22:31:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BE9BC433C7;
+	Fri, 14 Jul 2023 22:31:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1689373902;
+	bh=LNIw34qBX2V8Elz1G1PACLsCQHf7o2a3bkEmgF+nghQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=a5xPJKj8IlTbIOuPnQXt8GteRC9OLgnCno7Ijmn5WRzeYBKefbplVia9GSvy5KUgh
+	 gXP+k9+GA/G84FRziLIATN2Kv0TcpGUHYAfErQw1bi117SEVskaWLBFYte4V4iAxYd
+	 h7wdQcZ0H9102nfO4m9UJvGktHE55k4EfbKXYiE3VN/IG4jnDykYOWUydV0XwCumJA
+	 8wa9sv14ToVMeaQBpg1vEKyfsM0d+oHHj5txFXg82qc+QYvb8zsacMTaJG9wyGfGAs
+	 75lkK72oMdSBWtQS4mOpj3EeDlTkBJN0qUn2B2iSa9M0PR8l0DKL/zpS8B8qcS1xcX
+	 uNHp8zR0M9YLg==
+From: Mark Brown <broonie@kernel.org>
+To: Radu Pirea <radu_nicolae.pirea@upb.ro>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Claudiu Beznea <claudiu.beznea@microchip.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Vladimir Oltean <olteanv@gmail.com>, Han Xu <han.xu@nxp.com>, 
+ Jean-Marie Verdun <verdun@hpe.com>, Nick Hawkins <nick.hawkins@hpe.com>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>, 
+ Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>, 
+ Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>, 
+ Haibo Chen <haibo.chen@nxp.com>, Yogesh Gaur <yogeshgaur.83@gmail.com>, 
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Andi Shyti <andi.shyti@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Orson Zhai <orsonzhai@gmail.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, 
+ Chunyan Zhang <zhang.lyra@gmail.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Laxman Dewangan <ldewangan@nvidia.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Sowjanya Komatineni <skomatineni@nvidia.com>, 
+ =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
+ Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rpi-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org, 
+ linux-arm-msm@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev, 
+ linux-tegra@vger.kernel.org
+In-Reply-To: <20230714174955.4064174-1-robh@kernel.org>
+References: <20230714174955.4064174-1-robh@kernel.org>
+Subject: Re: [PATCH] spi: Explicitly include correct DT includes
+Message-Id: <168937389002.266788.5461737923596867983.b4-ty@kernel.org>
+Date: Fri, 14 Jul 2023 23:31:30 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230711122129.2635558-3-AVKrasnov@sberdevices.ru>
+X-Mailer: b4 0.13-dev-099c9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230714_134507_048102_812174BF 
-X-CRM114-Status: GOOD (  11.50  )
+X-CRM114-CacheID: sfid-20230714_153143_814166_88303CC5 
+X-CRM114-Status: GOOD (  13.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,21 +116,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Tue, 11 Jul 2023 15:21:28 +0300, Arseniy Krasnov wrote:
-> ECC properties 'nand-ecc-strength' and 'nand-ecc-step-size' depends on
-> each other, so they must be both either set or not set. In first case
-> ECC core will try to use these values if possible (by checking ECC caps
-> provided by driver), in second case ECC core will select most optimal
-> values for both properties.
+On Fri, 14 Jul 2023 11:49:52 -0600, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
 > 
-> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-> ---
->  Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+> [...]
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[1/1] spi: Explicitly include correct DT includes
+      commit: 749396cb29a7d82cb5e324bf61be3fc948d97141
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
 _______________________________________________
