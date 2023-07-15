@@ -4,102 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C66B7C0015E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jul 2023 22:32:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F055EEB64DA
+	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Jul 2023 02:47:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hYGZ0VP8ISiQXB0P06IEduQvUy5aq3t1RNECBzRPGnU=; b=PGeDc8sNoJiKP+
-	LMNXJTxPCp8Gc02FnSLAapaSG5SRLEbWFqA8WF09RzYluR7fdukewEf43hHtLlot3v5dKH/02tKap
-	ldGgPoNBAujzJWsFXgeYGzu3Bj6kLhkPkSj8HY/JP7Ccz8jT60xcNGGjo35sUf9IuGLWq00QQ6/lt
-	o3JpL5kdc0EHpD+dom/pY0LWVm/cH10MWuU2ZGdKOAXr49NwRf+TY2WwMqNJ8iYhvb2+VXzbmzj3D
-	hy5SZ3tMRCsUbN2wQfY6PtFSaDuLd2fmJ1H4UdoSCNq4nBZberyjjwjKNZW/8mC/q2cru+8zaaltf
-	6goHosTeuvNEK/t0NKgw==;
+	List-Owner; bh=lfquSakKXVe33OVnUPE2XC5Oh/j4IJU/Ia8GDsDjz8Y=; b=YMCrW2uVvjV51N
+	YvlxlN2+46C8/W+0+AN2lrMtFVOocugbK99AW2AXVW1LiYqjE4CnFzJMPaH1VbCLD37gMBkoRypcu
+	/B1b0WQJbvqWneTOLhOtYABX8y+iSJmdnarrPSLMYL/KTGVCuqHy0Vxe1JO7HE4jfKmHYvankiGog
+	l/6LMddeuZ4mu+JohHYoxrV9QR2jfTpoA5LnWzbSjncSmFLY8buVRXIwW7w5snRDb/BKTiVmyXTMm
+	pLGYM1AbHwr4LJ8UnIG4oJivj80YiRdbDFe0dLnuhZYoaR9VnKLFWmInYO5GiLK2eIc/nPkMWm9kQ
+	4wGn5cLSICpoSNPxuE5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKRKF-007Mzv-0s;
-	Fri, 14 Jul 2023 22:31:47 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qKVJl-007k2r-08;
+	Sat, 15 Jul 2023 02:47:33 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKRKB-007Mz8-2D;
-	Fri, 14 Jul 2023 22:31:45 +0000
+	id 1qKVJi-007k1t-13;
+	Sat, 15 Jul 2023 02:47:31 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id E682161E00;
-	Fri, 14 Jul 2023 22:31:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BE9BC433C7;
-	Fri, 14 Jul 2023 22:31:30 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id C906161E19;
+	Sat, 15 Jul 2023 02:47:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05EEFC433C7;
+	Sat, 15 Jul 2023 02:47:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1689373902;
-	bh=LNIw34qBX2V8Elz1G1PACLsCQHf7o2a3bkEmgF+nghQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=a5xPJKj8IlTbIOuPnQXt8GteRC9OLgnCno7Ijmn5WRzeYBKefbplVia9GSvy5KUgh
-	 gXP+k9+GA/G84FRziLIATN2Kv0TcpGUHYAfErQw1bi117SEVskaWLBFYte4V4iAxYd
-	 h7wdQcZ0H9102nfO4m9UJvGktHE55k4EfbKXYiE3VN/IG4jnDykYOWUydV0XwCumJA
-	 8wa9sv14ToVMeaQBpg1vEKyfsM0d+oHHj5txFXg82qc+QYvb8zsacMTaJG9wyGfGAs
-	 75lkK72oMdSBWtQS4mOpj3EeDlTkBJN0qUn2B2iSa9M0PR8l0DKL/zpS8B8qcS1xcX
-	 uNHp8zR0M9YLg==
-From: Mark Brown <broonie@kernel.org>
-To: Radu Pirea <radu_nicolae.pirea@upb.ro>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Claudiu Beznea <claudiu.beznea@microchip.com>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Vladimir Oltean <olteanv@gmail.com>, Han Xu <han.xu@nxp.com>, 
- Jean-Marie Verdun <verdun@hpe.com>, Nick Hawkins <nick.hawkins@hpe.com>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>, 
- Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>, 
- Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>, 
- Haibo Chen <haibo.chen@nxp.com>, Yogesh Gaur <yogeshgaur.83@gmail.com>, 
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Andi Shyti <andi.shyti@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Orson Zhai <orsonzhai@gmail.com>, 
- Baolin Wang <baolin.wang@linux.alibaba.com>, 
- Chunyan Zhang <zhang.lyra@gmail.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Laxman Dewangan <ldewangan@nvidia.com>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, 
- Sowjanya Komatineni <skomatineni@nvidia.com>, 
- =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
- Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rpi-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org, 
- linux-arm-msm@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev, 
- linux-tegra@vger.kernel.org
-In-Reply-To: <20230714174955.4064174-1-robh@kernel.org>
-References: <20230714174955.4064174-1-robh@kernel.org>
-Subject: Re: [PATCH] spi: Explicitly include correct DT includes
-Message-Id: <168937389002.266788.5461737923596867983.b4-ty@kernel.org>
-Date: Fri, 14 Jul 2023 23:31:30 +0100
+	s=k20201202; t=1689389249;
+	bh=u85/vf6ROEFLRTj+zJXTL4S/kz2IqkicsRjV13SwxbA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WeNH8yJolg21n1tVQQVHUeBZAnvLt6lrhqi08lI7fnAAQSpaWSlFUJQif62xNnTPj
+	 rrsDErxyeXnYu73dOKHYseuMrj8N9hG1qyJTIBsBvlX2/Im8veciZfCPtMLW4dALYI
+	 CAV1v1GrGepq0lVv87YbScJrHJrUesjWgTXaq8M7UkPSwXJ9TWu0HkVDz8EyTWNkBS
+	 0s7xU3JIn/rO+Qy5ARWQq8bYv8Bv5qwj0FvFnlrw3fAmblw9eAnkB5MISm2wOdylED
+	 7G7V484ng2piTFbUhovkSFl4wjOKHbjIL90Q40UCUFPW2SHaBzVIcDNlsXv67oilAC
+	 9XJRavlfgd6qw==
+Received: (nullmailer pid 876115 invoked by uid 1000);
+	Sat, 15 Jul 2023 02:47:27 -0000
+Date: Fri, 14 Jul 2023 20:47:27 -0600
+From: Rob Herring <robh@kernel.org>
+To: Huqiang Qin <huqiang.qin@amlogic.com>
+Cc: neil.armstrong@linaro.org, linux-gpio@vger.kernel.org, robh+dt@kernel.org, brgl@bgdev.pl, andy@kernel.org, linus.walleij@linaro.org, linux-amlogic@lists.infradead.org, khilman@baylibre.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org, martin.blumenstingl@googlemail.com, jbrunet@baylibre.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH V3 1/2] dt-bindings: pinctrl: Add compatibles for Amlogic
+ C3 SoCs
+Message-ID: <20230715024727.GC872287-robh@kernel.org>
+References: <20230714122441.3098337-1-huqiang.qin@amlogic.com>
+ <20230714122441.3098337-2-huqiang.qin@amlogic.com>
 MIME-Version: 1.0
-X-Mailer: b4 0.13-dev-099c9
+Content-Disposition: inline
+In-Reply-To: <20230714122441.3098337-2-huqiang.qin@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230714_153143_814166_88303CC5 
-X-CRM114-Status: GOOD (  13.82  )
+X-CRM114-CacheID: sfid-20230714_194730_405245_CF9509C7 
+X-CRM114-Status: GOOD (  10.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,45 +77,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 14 Jul 2023 11:49:52 -0600, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
+
+On Fri, 14 Jul 2023 20:24:40 +0800, Huqiang Qin wrote:
+> Add a new compatible name for Amlogic C3 pin controller, and add
+> a new dt-binding header file which document the detail pin names.
 > 
-> [...]
+> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+> ---
+> 
+> V1 -> V2:
+>   Unchanged.
+> V2 -> V3:
+>   Updated commit message, and compatible are sorted alphabetically.
+> 
+>  .../pinctrl/amlogic,meson-pinctrl-a1.yaml     |  1 +
+>  include/dt-bindings/gpio/amlogic-c3-gpio.h    | 72 +++++++++++++++++++
+>  2 files changed, 73 insertions(+)
+>  create mode 100644 include/dt-bindings/gpio/amlogic-c3-gpio.h
+> 
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/1] spi: Explicitly include correct DT includes
-      commit: 749396cb29a7d82cb5e324bf61be3fc948d97141
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 
 _______________________________________________
