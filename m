@@ -4,65 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6AABC001DF
-	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Jul 2023 21:43:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73185C0015E
+	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Jul 2023 21:46:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tfYaYEroIAEiM2Flep24wdYh0psUThwMoK4TU5tjAFk=; b=OKq1VEVBp0rpR/
-	K4S6M7q4M5NeTIHPYY9f7KcPlTVHqExrIiv5Ll8mqaPQwYVHzqj2DgPlpZEB77tfty5i0cTdtgOe7
-	bCk0M+5OtPt6nMRt4utjRa92hyOlW1bkjU8CpcRJDcInsPzOpadFUW7e4k1KtgI0SiESZufjLpYhk
-	QpPkqKJs98LRvHHkE0hUfBJOF4au2cu13MhBXrVE7pkRHv1ERRkCpMyhn8nX5i7uDWaT3d+PtMPBG
-	SHcNSZYewLsahm3+tEJDC7r8lr6xzx+96bisNZNWx5NIBFOVnYnLBEH9uMiloB492kVmIpCfUNqVA
-	vbydukI4EW9KVGVuigAQ==;
+	List-Owner; bh=xVEgTqsXoA5kDTpPDoRqI27LerNvzYjmjJPORjZvmB0=; b=4WH2BcfWA6Lsk6
+	5hzqpWy9YGXazM72JoZKnW0y+rW7OFeyg4teAy1U8DzAfn/HIXsR24bKcsiztobHTjOoEH4AwBiBa
+	pahHpPUK5A5G7nc/EBOPGbr/vTMj3OehyveEvl8Pi0aE7w8BSsq4xZW2iz4ac1FYj4kmXWqqaA9mL
+	4S9DGBzBs2qzIT5GSGNxe2JgfN+5DgpdXtlU87pHRHxujrMzEG+rVUDKnQWnVxtgnuKz+Wd6aRWnR
+	AKd+T6TIbYWQaUM+/6CTqib3OZj6htyk1sShzcG19R5rL8QAo45JqdQPkb7UXzz6/lOcpumfGaCAR
+	q3vYsyDi2tvMgrKQBttQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKn37-009Y0O-0H;
-	Sat, 15 Jul 2023 21:43:33 +0000
+	id 1qKn5K-009YMC-0l;
+	Sat, 15 Jul 2023 21:45:50 +0000
 Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKn33-009Xz2-1X;
-	Sat, 15 Jul 2023 21:43:30 +0000
+	id 1qKn5H-009YLE-07;
+	Sat, 15 Jul 2023 21:45:48 +0000
 Received: from i53875a6a.versanet.de ([83.135.90.106] helo=phil.localnet)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1qKn2i-00036H-7W; Sat, 15 Jul 2023 23:43:08 +0200
+	id 1qKn4z-00038e-5n; Sat, 15 Jul 2023 23:45:29 +0200
 From: Heiko Stuebner <heiko@sntech.de>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Kyungmin Park <kyungmin.park@samsung.com>, Han Xu <han.xu@nxp.com>,
- Harvey Hunt <harveyhuntnexus@gmail.com>,
- Paul Cercueil <paul@crapouillou.net>, Liang Yang <liang.yang@amlogic.com>,
+To: Michael Hennerich <michael.hennerich@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>,
+ Alexandru Tachici <alexandru.tachici@analog.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@microchip.com>,
  Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Michal Simek <michal.simek@amd.com>, Manivannan Sadhasivam <mani@kernel.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
  Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Vladimir Zapolskiy <vz@mleia.com>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <michael@walle.cc>,
+ Samuel Holland <samuel@sholland.org>, Crt Mori <cmo@melexis.com>,
  Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mips@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH] mtd: Explicitly include correct DT includes
-Date: Sat, 15 Jul 2023 23:43:06 +0200
-Message-ID: <5555840.MHq7AAxBmi@phil>
-In-Reply-To: <20230714174751.4060439-1-robh@kernel.org>
-References: <20230714174751.4060439-1-robh@kernel.org>
+ linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH] iio: adc: Explicitly include correct DT includes
+Date: Sat, 15 Jul 2023 23:45:27 +0200
+Message-ID: <3695486.atdPhlSkOF@phil>
+In-Reply-To: <20230714174628.4057920-1-robh@kernel.org>
+References: <20230714174628.4057920-1-robh@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230715_144329_513518_974F11E0 
-X-CRM114-Status: GOOD (  12.72  )
+X-CRM114-CacheID: sfid-20230715_144547_079979_6C3F8836 
+X-CRM114-Status: GOOD (  11.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,7 +80,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Am Freitag, 14. Juli 2023, 19:47:49 CEST schrieb Rob Herring:
+Am Freitag, 14. Juli 2023, 19:46:26 CEST schrieb Rob Herring:
 > The DT of_device.h and of_platform.h date back to the separate
 > of_platform_bus_type before it as merged into the regular platform bus.
 > As part of that merge prepping Arm DT support 13 years ago, they
@@ -92,7 +93,7 @@ Am Freitag, 14. Juli 2023, 19:47:49 CEST schrieb Rob Herring:
 > Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
 
->  drivers/mtd/nand/raw/rockchip-nand-controller.c | 1 -
+>  drivers/iio/adc/rockchip_saradc.c  | 1 -
 
 Acked-by: Heiko Stuebner <heiko@sntech.de>
 
