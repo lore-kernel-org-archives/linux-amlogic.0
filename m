@@ -4,66 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73185C0015E
-	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Jul 2023 21:46:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90915EB64DA
+	for <linux-amlogic@archiver.kernel.org>; Sun, 16 Jul 2023 13:25:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xVEgTqsXoA5kDTpPDoRqI27LerNvzYjmjJPORjZvmB0=; b=4WH2BcfWA6Lsk6
-	5hzqpWy9YGXazM72JoZKnW0y+rW7OFeyg4teAy1U8DzAfn/HIXsR24bKcsiztobHTjOoEH4AwBiBa
-	pahHpPUK5A5G7nc/EBOPGbr/vTMj3OehyveEvl8Pi0aE7w8BSsq4xZW2iz4ac1FYj4kmXWqqaA9mL
-	4S9DGBzBs2qzIT5GSGNxe2JgfN+5DgpdXtlU87pHRHxujrMzEG+rVUDKnQWnVxtgnuKz+Wd6aRWnR
-	AKd+T6TIbYWQaUM+/6CTqib3OZj6htyk1sShzcG19R5rL8QAo45JqdQPkb7UXzz6/lOcpumfGaCAR
-	q3vYsyDi2tvMgrKQBttQ==;
+	List-Owner; bh=JTr+PPZFaaE9rBVB7GLH3tT9W8eRzasmUochGBVblBI=; b=Xir5CW+PQZvq8m
+	jkXy87hdzXxo8YPlwegUPqDQSsrJzp9MMfLs3oMiOFG3wxE6I9SJ2ltqFOotOYE/BrgS8mo7XVWDE
+	r4yYVDq3y19NrFgUbDILIDwT502s+8RkkADN7RnVo32TpYQYDCnFyRBCc0gmCMNOFQ9ltw8wxtGUs
+	mtFTDMmxbM7XRr/4dK5K7AOpG8lG542Yd3tnGE2GW/5gH9vpOtSWp56caWK/c8EOTO5nDlvJnqq+S
+	O1U1/qulV3hIL9wijxixWuH2gCAgdGqNGcR05CJ77WSV5z70CfjFFuWfvjrq+CMrCwJ6P8FEIDXsR
+	AOjJOMLS0wT6gdwHHiQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKn5K-009YMC-0l;
-	Sat, 15 Jul 2023 21:45:50 +0000
-Received: from gloria.sntech.de ([185.11.138.130])
+	id 1qL1jf-00BS0d-2i;
+	Sun, 16 Jul 2023 13:24:27 +0000
+Received: from relay5-d.mail.gandi.net ([2001:4b98:dc4:8::225])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qKn5H-009YLE-07;
-	Sat, 15 Jul 2023 21:45:48 +0000
-Received: from i53875a6a.versanet.de ([83.135.90.106] helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1qKn4z-00038e-5n; Sat, 15 Jul 2023 23:45:29 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Michael Hennerich <michael.hennerich@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>,
- Alexandru Tachici <alexandru.tachici@analog.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@microchip.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Crt Mori <cmo@melexis.com>,
- Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH] iio: adc: Explicitly include correct DT includes
-Date: Sat, 15 Jul 2023 23:45:27 +0200
-Message-ID: <3695486.atdPhlSkOF@phil>
-In-Reply-To: <20230714174628.4057920-1-robh@kernel.org>
-References: <20230714174628.4057920-1-robh@kernel.org>
+	id 1qL1jX-00BRsp-0M;
+	Sun, 16 Jul 2023 13:24:24 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 395481C0005;
+	Sun, 16 Jul 2023 13:24:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1689513849;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ZlAJuoojWBheC8JWE/2d5ZWEyMAatM5WLPn8urq2pfs=;
+	b=pxlpXq30z8NQhVbblNWq1AJDPI30WimwJl1hF8f6qibGV5xcoD05V90VqdTf841xQE9pX8
+	navcvSLTkpk3oYJkRjoCJM697aaFOkRsFlge77hLR1gr8UkgdbdOlRvjHsKOBmrB6+C35h
+	tlT7+2v6o2Hwvw67jotDSktY0H5h/Gbtiv41Ld8T4fLjcZLtEqhtp9BiHFxNF6YjM3Qpsy
+	XgiK8+9sGlyZqfNJHXF+blxpC8obu9KL391CUHCfrgfiOVEh+0jNBvb8BCRQv7ZNz9wKBJ
+	79M+ecl7Bm03bS84Pkby9io5YgZ8ZMWa7htwxwwtha5AqeLQwKqbyJLGmNIOIw==
+Date: Sun, 16 Jul 2023 15:24:05 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Arseniy Krasnov <avkrasnov@sberdevices.ru>
+Cc: Liang Yang <liang.yang@amlogic.com>, Richard Weinberger
+ <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, <oxffffaa@gmail.com>,
+ <kernel@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH v3 0/3] support 512B ECC step size for Meson NAND
+Message-ID: <20230716152405.729e0922@xps-13>
+In-Reply-To: <672e6a2f-21b3-77cd-fe83-04d4aa79f68e@sberdevices.ru>
+References: <20230711122129.2635558-1-AVKrasnov@sberdevices.ru>
+	<20230715181553.1d2b5637@xps-13>
+	<672e6a2f-21b3-77cd-fe83-04d4aa79f68e@sberdevices.ru>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
+X-GND-Sasl: miquel.raynal@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230715_144547_079979_6C3F8836 
-X-CRM114-Status: GOOD (  11.67  )
+X-CRM114-CacheID: sfid-20230716_062419_333256_917C7B96 
+X-CRM114-Status: GOOD (  17.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,31 +77,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Am Freitag, 14. Juli 2023, 19:46:26 CEST schrieb Rob Herring:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-
->  drivers/iio/adc/rockchip_saradc.c  | 1 -
-
-Acked-by: Heiko Stuebner <heiko@sntech.de>
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgQXJzZW5peSwKCmF2a3Jhc25vdkBzYmVyZGV2aWNlcy5ydSB3cm90ZSBvbiBTYXQsIDE1IEp1
+bCAyMDIzIDIwOjQ4OjM0ICswMzAwOgoKPiBIZWxsbyBNaXF1ZWwhCj4gCj4gT24gMTUuMDcuMjAy
+MyAxOToxNSwgTWlxdWVsIFJheW5hbCB3cm90ZToKPiA+IEhpIEFyc2VuaXksCj4gPiAKPiA+IEFW
+S3Jhc25vdkBzYmVyZGV2aWNlcy5ydSB3cm90ZSBvbiBUdWUsIDExIEp1bCAyMDIzIDE1OjIxOjI2
+ICswMzAwOgo+ID4gICAKPiA+PiBIZWxsbywKPiA+Pgo+ID4+IHRoaXMgcGF0Y2hzZXQgYWRkcyBz
+dXBwb3J0IGZvciA1MTJCIEVDQyBzdGVwIHNpemUgZm9yIE1lc29uIE5BTkQuIEN1cnJlbnQKPiA+
+PiBpbXBsZW1lbnRhdGlvbiBvbmx5IHN1cHBvcnRzIDEwMjRCLiBUaGVyZSBhcmUgdGhyZWUgcGF0
+Y2hlczoKPiA+Pgo+ID4+IDEpIFVwZGF0ZSBmb3IgZGV2aWNlIHRyZWUgYmluZGluZ3MgdG8gcmVw
+bGFjZSAnY29uc3QnIHR5cGUgb2YgZmllbGQKPiA+PiAgICAnbmFuZC1lY2Mtc3RlcC1zaXplJyB3
+aXRoICdlbnVtJyB3aGljaCBjb250YWlucyA1MTIgYW5kIDEwMjQuCj4gPj4KPiA+PiAyKSBVcGRh
+dGUgZm9yIGRldmljZSB0cmVlIGJpbmRpbmdzIHRvIGFkZCBkZXBlbmRlbmN5IGJldHdlZW4gcHJv
+cGVydGllcwo+ID4+ICAgICduYW5kLWVjYy1zdHJlbmd0aCcgYW5kICduYW5kLWVjYy1zdGVwLXNp
+emUnLgo+ID4+Cj4gPj4gMykgVXBkYXRlIGZvciBNZXNvbiBkcml2ZXIgLSBuZXcgZW51bSB2YWx1
+ZSBmb3IgNTEyQiBFQ0MgYW5kIHJld29ya2VkCj4gPj4gICAgRUNDIGNhcGFiaWxpdGllcyBzdHJ1
+Y3R1cmUgdG8gc3VwcG9ydCBib3RoIDUxMkIgYW5kIDEwMjRCIEVDQy4gQnkKPiA+PiAgICBkZWZh
+dWx0IHRoaXMgZHJpdmVyIHVzZXMgMTAyNEIgRUNDLCA1MTJCIGNvdWxkIGJlIGVuYWJsZWQgaW4g
+ZGV2aWNlCj4gPj4gICAgdHJlZS4gIAo+ID4gCj4gPiBUaGlzIHNlcmllcyBkb2VzIG5vdCBhcHBs
+eSBjb3JyZWN0bHkgb24gbmFuZC9uZXh0LCB3b3VsZCB5b3UgbWluZAo+ID4gcmViYXNpbmcgKG5h
+bmQvbmV4dCBvbiBsaW51eC1tdGQpIGFuZCBzZW5kaW5nIGl0IGFnYWluPyAgCj4gCj4gU3VyZSwg
+YXMgSSBzZWUgMDAwMSB3YXMgYXBwbGllZCB0byBuYW5kL25leHQsIHNvIEkgY2FuIHJlc2VuZCBv
+bmx5IDAwMDIgYW5kIDAwMDMsCj4gYXMgMDAwMiBpcyB0aGUgZmlyc3QgcGF0Y2ggd2hpY2ggZmFp
+bHMgdG8gYXBwbHk/CgpZZXMgaW5kZWVkLgoKPiAKPiA+IAo+ID4gQlRXIHRoZSAicmZjIiBwcmVm
+aXggaXMgb25seSBuZWVkZWQgZm9yIHRoZSAiZmlyc3QiIHN1Ym1pc3Npb24sIHdoZW4KPiA+IHlv
+dSB0cnkgc29tZXRoaW5nICJuZXciLCBvdGhlcndpc2UgaXQgaXMgbm8gbG9uZ2VyIHJlcXVpcmVk
+LiAgCj4gCj4gT2ssIGdvdCBpdAo+IAo+ID4gCj4gPiBUaGFua3MsCj4gPiBNaXF1w6hsICAKPiAK
+PiBUaGFua3MsIEFyc2VuaXkKCgpUaGFua3MsCk1pcXXDqGwKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
+bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
