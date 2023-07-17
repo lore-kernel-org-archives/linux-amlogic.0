@@ -4,115 +4,117 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D7C5C001DE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jul 2023 07:52:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64C19EB64DC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jul 2023 09:01:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZtxiP1brmih/VLBv6U34GFfV9qOvIRPEiue9cSC2240=; b=FULqzsnkmvutbc
-	YVZufZadsOC56/W8cUONyVRskHGyGzg7jC3kH71T3TZ01I0G45J5dzR86boIxkrEGeA1jhsmQ6ztr
-	Z0MKFw4oS7101qI6w9cMogYxM/ySOssbQiQDx6t2Mdnz1+DxCrOgMQIZAkQ2J2+VlmFi36+n43Cjb
-	+3lPU+TytZSQUxRXfr83jnoAA+2ed/6SdLwKU0YAy3MFtxn8SbERBkxgjSp1ELlciP9iXjTXjc0th
-	/lhpKVIk1xAmemeSesCKSl9CYotFRONB/uzP7qW1SfSYSt4PfUGaGPWHpPhW+2Q3epkukXMBRrq4p
-	WxRlhIbLzMdCoSlKuSzQ==;
+	List-Owner; bh=gwktmAvT1UyIah0Ivxh+FeUEV9RN4XWgxycy/uEsVnc=; b=LtPQ9qhEAF02HO
+	u+blyb04pF2nlKSZTIOX0V5s2Ijp+re0w5SfyijdgpCy3nGXKXrn7yYzb9MSxSK//12TRnEBsFJI+
+	2fulQobZSlxjqIcKVsfgpcDaWpfZ4XbdIbj4dVIRYpqrPaG2U79fwH+wJ6TB7ol48I2J8oALPPNst
+	d57E9RdxrSHHYI25OdjyfuN4YuQ0flxB/6Sq9s5J3RW1tiucc9U4LpO003DC1yi0kiQHQJuaZMuEQ
+	UhxKDQuCDMeSIFRAzVPMYmGXU0Q6d54CtY1gHP3N0QkGqQ2ptK7cVN3eimHDgrruAJHBll5J8Ohp0
+	ER1bN+8mGgOhauPPXtpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qLJ1T-003MmP-0G;
-	Mon, 17 Jul 2023 07:51:59 +0000
-Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
+	id 1qLK65-003WzH-1m;
+	Mon, 17 Jul 2023 09:01:00 +0000
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qLJ1G-003Mhg-1t;
-	Mon, 17 Jul 2023 07:51:48 +0000
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	id 1qLK5q-003WtL-28
+	for linux-amlogic@lists.infradead.org;
+	Mon, 17 Jul 2023 09:00:45 +0000
+Received: from mail-oi1-f197.google.com (mail-oi1-f197.google.com [209.85.167.197])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 7C3486607008;
-	Mon, 17 Jul 2023 08:51:41 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1689580305;
-	bh=RUiiRCfy3iVrquDdB1nCxa7+nhTsVZi2TwPLLRWk7+k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Xkh/XfVOuPmhakdB5TixNssNK07j1XQnplGs/FJW5j5/zYKBx4oS7N5YsmbfftJJq
-	 5t85PTycD+cAMaLv4m0zExzB237qkYooGrp6it7EOjrgx1hGoXuJBZLHFQJSsbr2um
-	 HfP7PnDPSbB7LcUxYt7ckbG29biHfO2YJ38FjGU9p0g3QW6igojF6w+oz0/zExKbqD
-	 6eShHnawsHU5eH523alqjBNH+UewhtrkghtxR7SjACeQsg05gnet0AWCcDfx3WbIGa
-	 J2bCuIYnMk5n+OxcAEW8UsDTk9JUhba/ItvrqtOg2iqazy9jbECmXn39Jk5+HUz1Qo
-	 3qS9Lo4HR6IZw==
-Message-ID: <4aaef7c6-7b1d-d707-d38a-71f36f7d4aec@collabora.com>
-Date: Mon, 17 Jul 2023 09:51:39 +0200
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C98443F916
+	for <linux-amlogic@lists.infradead.org>; Mon, 17 Jul 2023 09:00:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1689584428;
+	bh=JHnHS0B61qcl/Td8/lm9RDjYsfSOyiiTTr5PsC3FWaA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=j0Odb0vkxyx7gdL6HQGcfVEgcpfs0SPkKfppmWbmJ/HHD4ABykTqM9t0CDwW60DtZ
+	 ZFTI6uDz+W9dto8cXoXcyswJ41OO9ZbHRTfn9/LqDNPaEaHkN3pNqBfhHthGKVt/b0
+	 ofK24nm7lwWLRp6XBEvoSJVaR7Y3ol8jPc1MmUP5Th1FrCNXFtBiy38Cs/DX+KVTuS
+	 AUUmoNr1rQORxFaFFzClYM205U9qEm65NADoxIIZzMU7sPVb7M+l3p8Wo9cxxcprbx
+	 58ZAo0VGqNGWTPnh/ZgF1FXtquKpctZOiu1VM/GI2rGp4HNMSlsSaP9dzlrUL3PLCZ
+	 sNwtENALY4ORg==
+Received: by mail-oi1-f197.google.com with SMTP id 5614622812f47-3a3df1e1f38so6749160b6e.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 17 Jul 2023 02:00:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689584422; x=1692176422;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JHnHS0B61qcl/Td8/lm9RDjYsfSOyiiTTr5PsC3FWaA=;
+        b=hW17bJPL/gxDEbW48he2sMO2hvmEIATE+8hf02yf013EkqvLHD9eDHtmrbgakl6NQd
+         ORLtPoUEPBfZlxNRrDgzCmZZ1RKexE8SRkN+AmBNKNrmwgrS5zf9o1EL8FGW/d/Qnnjw
+         fczIaG0/zGGt37c2JfrTbXTT59kJA51Z8TezjnmaHledlDJLWQyDI9quniesY+V0AYXo
+         8S2nlm1IwTRV6HPzJPBSqQPtd8JeYXAqqQ9P8eWcvEnULvqUeP84gSMFIQBSfAuf+FR0
+         jX0G8T4KSXMXCBJ9HIxmg9CNGgMHD4VsbJHGOvwrC6F++90Bd5iV1MlzXOFgDTVG/geD
+         uQ1A==
+X-Gm-Message-State: ABy/qLa0WI7Wcs2+n7hN5UIP9ibu0uZbB3V0kut5YvOu6yNtovQ6GSZH
+	eNAUGA4JnpwgXuttzOoTF50ooyCfMDK0GCq0PNb5yecIbWhcWxW/MO+eG53JiIqVuYo2vgEUovO
+	wqBb+aQ1mK1O5+q3c2Na4g8FZEO22V3N4q8yuaTcbqu1VLx9GjqOw6HZo0Vkv63j5
+X-Received: by 2002:ac8:7c48:0:b0:403:2dfd:1fdf with SMTP id o8-20020ac87c48000000b004032dfd1fdfmr15892602qtv.23.1689584401531;
+        Mon, 17 Jul 2023 02:00:01 -0700 (PDT)
+X-Google-Smtp-Source: APBJJlEMazgMYki8IR1CHHFS4st+/s+/y1hah0oj0+nBQlO+NhXDM06BTdCzgvWJM4HcjDSd4KVriXj5Pmlo8MNpIrE=
+X-Received: by 2002:ac8:7c48:0:b0:403:2dfd:1fdf with SMTP id
+ o8-20020ac87c48000000b004032dfd1fdfmr15892526qtv.23.1689584401259; Mon, 17
+ Jul 2023 02:00:01 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH] clk: Explicitly include correct DT includes
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@aj.id.au>, Neil Armstrong
- <neil.armstrong@linaro.org>, Sudeep Holla <sudeep.holla@arm.com>,
- Cristian Marussi <cristian.marussi@arm.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Alex Helms <alexander.helms.jy@renesas.com>, Abel Vesa
- <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
- Santosh Shilimkar <ssantosh@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Heiko Stuebner <heiko@sntech.de>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Tomasz Figa <tomasz.figa@gmail.com>, Chanwoo Choi <cw00.choi@samsung.com>,
- Alim Akhtar <alim.akhtar@samsung.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Dinh Nguyen <dinguyen@kernel.org>,
- Viresh Kumar <vireshk@kernel.org>,
- Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
- Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
- <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
- Emil Renner Berthing <kernel@esmil.dk>, Hal Feng
- <hal.feng@starfivetech.com>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, =?UTF-8?Q?Emilio_L=c3=b3pez?=
- <emilio@elopez.com.ar>, Peter De Schrijver <pdeschrijver@nvidia.com>,
- Prashant Gaikwad <pgaikwad@nvidia.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
- Masami Hiramatsu <mhiramat@kernel.org>, Michal Simek <michal.simek@amd.com>
-Cc: devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-actions@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-oxnas@groups.io,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-tegra@vger.kernel.org
-References: <20230714174342.4052882-1-robh@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230714174342.4052882-1-robh@kernel.org>
+References: <20230714174901.4062397-1-robh@kernel.org>
+In-Reply-To: <20230714174901.4062397-1-robh@kernel.org>
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date: Mon, 17 Jul 2023 10:59:45 +0200
+Message-ID: <CAJM55Z_Eba-LKxKAH0i0_vDM6JO_HvWgDLCLFQDave2+UFLMzA@mail.gmail.com>
+Subject: Re: [PATCH] pinctrl: Explicitly include correct DT includes
+To: Rob Herring <robh@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Dong Aisheng <aisheng.dong@nxp.com>, 
+	Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	NXP Linux Team <linux-imx@nxp.com>, Sean Wang <sean.wang@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Gregory Clement <gregory.clement@bootlin.com>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Chester Lin <clin@suse.com>, 
+	NXP S32 Linux Team <s32@nxp.com>, Chen-Yu Tsai <wens@csie.org>, Damien Le Moal <dlemoal@kernel.org>, 
+	Vladimir Zapolskiy <vz@mleia.com>, Heiko Stuebner <heiko@sntech.de>, Tony Lindgren <tony@atomide.com>, 
+	Haojian Zhuang <haojian.zhuang@linaro.org>, Daniel Mack <daniel@zonque.org>, 
+	Robert Jarzmik <robert.jarzmik@free.fr>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Tomasz Figa <tomasz.figa@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Sylwester Nawrocki <s.nawrocki@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Viresh Kumar <vireshk@kernel.org>, Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org, 
+	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
+	Chunyan Zhang <zhang.lyra@gmail.com>, Emil Renner Berthing <kernel@esmil.dk>, 
+	Jianlong Huang <jianlong.huang@starfivetech.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Dvorkin Dmitry <dvorkin@tibbo.com>, Wells Lu <wellslutw@gmail.com>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-riscv@lists.infradead.org, linux-oxnas@groups.io, 
+	linux-rockchip@lists.infradead.org, linux-omap@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230717_005146_848559_96E619ED 
-X-CRM114-Status: GOOD (  10.71  )
+X-CRM114-CacheID: sfid-20230717_020034_853230_12547EC0 
+X-CRM114-Status: GOOD (  13.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,12 +126,13 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Il 14/07/23 19:43, Rob Herring ha scritto:
+On Fri, 14 Jul 2023 at 19:52, Rob Herring <robh@kernel.org> wrote:
+>
 > The DT of_device.h and of_platform.h date back to the separate
 > of_platform_bus_type before it as merged into the regular platform bus.
 > As part of that merge prepping Arm DT support 13 years ago, they
@@ -138,14 +141,17 @@ Il 14/07/23 19:43, Rob Herring ha scritto:
 > files used throughout the tree. In order to detangle these headers and
 > replace the implicit includes with struct declarations, users need to
 > explicitly include the correct includes.
-> 
+>
 > Signed-off-by: Rob Herring <robh@kernel.org>
 
-For MediaTek clocks
+>  drivers/pinctrl/starfive/pinctrl-starfive-jh7110-aon.c | 5 +----
+>  drivers/pinctrl/starfive/pinctrl-starfive-jh7110-sys.c | 2 --
+>  drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c     | 1 -
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Acked-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
-
+Thanks,
+/Emil
 
 _______________________________________________
 linux-amlogic mailing list
