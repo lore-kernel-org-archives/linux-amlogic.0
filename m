@@ -4,90 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9D56C001DE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jul 2023 05:40:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E51ECEB64DC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jul 2023 06:24:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=EFOC5Yu6Gr6PV0vujQhDLdqVEmQCmLPLjIp/GLyMIvU=; b=2lPbm9u/qN1L7k
-	ijbRB/oVnrwIWca/rZSKT7gAPdiamMxnIbUImgfMjg7CFlaxahVM3qhLmt5vrj6L6X+VJe8wWN/2B
-	r6ryVjA5gUzJr689CioD0S3bQKLlY8IYaqgphdSTDfhLTvbfxinpF8yZwI2JZliYgyqEpvAMxbXR9
-	7XT+9+Inq5KAacJ1HbKBgxhrS+WR9aMjWdMLAnJDyI7wukgn28uIyiHhYkZ7yDnl0EqO4IEiHeVfq
-	fsnax/AkCvdm2wfC9QDQYVVmxNSuj4Upx5dJW1B5lt8XT3opiciGiidPEuwpVifCYMuI60asxiGyL
-	f84CauKDQ67nS5aXqBww==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=kJrREngObDiKU6FHQiJ+Cg7vEdaJme5cHegLhnxGyD0=; b=4dIqRxF/rnWwFf
+	tYvbNiMtQjutEtrC65M/IbuAlF87XfgyopZjeXLoKH55w92hwvqIaXFPhdLVlUl4o/Bw4MXPlglqq
+	mieExo8enR9GjxiWMH6e+1jPHhmmmK7r/m9RCzYcOssXRjFsolDePrwpI+6Vh0bcqJtgotxySU0i/
+	QKfnjyip1NXiudVXMK2iCI58r2VW0upQ1JwHC0d/NPHchnXn7nngo9pf61diYCKYyxC+fVygKivNO
+	HA7hIwvMiCfuUkoyfHRdgstoaROyxM63OtTG7G4YzckwEZobAPkKASVfs00o0n4BTpgjbUFGrDNaL
+	YnInx+jRF3XCgeG774qA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qLGxb-002fPh-0a;
-	Mon, 17 Jul 2023 05:39:52 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1qLHeY-0035xn-19;
+	Mon, 17 Jul 2023 06:24:14 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qLGxW-002fHZ-0Q;
-	Mon, 17 Jul 2023 05:39:49 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id DA32312000D;
-	Mon, 17 Jul 2023 08:39:37 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru DA32312000D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1689572377;
-	bh=Z8/Dn1ZkY27EKr5TCwnYUezGgwbXebtLvOyJ3K4NFsg=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=ByQY3Zq4kSThKfJSlHVlkV6hnt0FIap3hmsNHvPsHN/PIkzDVJDb3JbQJiv6MRDhY
-	 eOPMct2DQHLc/lyAyE85SsSjYdwZGpa78bOcuEJeKoNt1fKEmdF0NN8ZPty/rDRClV
-	 OvPNEcRfCHlnym128grKl6hSzdVUjn/JSRm5FJr9QosulSZKQNxTsymGz8zxDSG3Eg
-	 qtkjVInfslY0zmW3avmJPa/3Nwi/XBWKykebsBuYnGDdrbfMHKbNZwmfEjp/r0v3jF
-	 X0cipj9/aUTvCEctvRYShTFsveFpDMR2DbL8/AsnGI0kOtYwo9KdveUsVk2IT7W5yQ
-	 LTPOydw3a6aTg==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	id 1qLHeQ-0035tD-2w;
+	Mon, 17 Jul 2023 06:24:08 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon, 17 Jul 2023 08:39:37 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Mon, 17 Jul 2023 08:38:43 +0300
-From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
-	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin
- Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
-	<AVKrasnov@sberdevices.ru>, <linux-mtd@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 0/2] support 512B ECC step size for Meson NAND
-Date: Mon, 17 Jul 2023 08:33:59 +0300
-Message-ID: <20230717053402.1203724-1-AVKrasnov@sberdevices.ru>
-X-Mailer: git-send-email 2.35.0
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 200B460F35;
+	Mon, 17 Jul 2023 06:24:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A093FC433C7;
+	Mon, 17 Jul 2023 06:23:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1689575045;
+	bh=mzBDvBJqqLyJpJlXdHHc50ky7DqFeoJEZrmNjEwRYw4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=cSmXkQBMdVKYM2skEir1bV6wfmjtrQbqO1IJGKuBIhaVowNQUTrTgCxjHIGLjQxrf
+	 aC/Mqe8ThUtGNnjeclaKm5yYvx+1VkzQA8Mr9utTM3ZL+DpRjNnGms0i8Owh/zz47+
+	 h23rcDa+qzK1c9z1FR8QVJBepzxuuB2xEgqOuOIqx4jooERucg0rTondYvdBHeVIOz
+	 bL1wNk7h7Adc3SmCkPC256BY6lJOEvwXhhD9BG3119i3AtN9OvJn0PEErA3fywzUPz
+	 Uelr5Xmo7pEGEjZ7k3ZowAQcz2l0sAxbf5yJcE3PDjGEbPdkw3ro5etSrrJpG2MR4S
+	 U/6x9udfwh94A==
+From: Vinod Koul <vkoul@kernel.org>
+To: Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Justin Chen <justin.chen@broadcom.com>, Al Cooper <alcooperx@gmail.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+ Ioana Ciornei <ioana.ciornei@nxp.com>, Yu Chen <chenyu56@huawei.com>, 
+ Binghui Wang <wangbinghui@hisilicon.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, 
+ Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Wolfgang Grandegger <wg@grandegger.com>, 
+ Marc Kleine-Budde <mkl@pengutronix.de>, Alban Bedel <albeu@free.fr>, 
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Robert Marko <robert.marko@sartura.hr>, 
+ Luka Perkov <luka.perkov@sartura.hr>, 
+ Sergio Paracuellos <sergio.paracuellos@gmail.com>, 
+ Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
+ Heiko Stuebner <heiko@sntech.de>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, 
+ Masami Hiramatsu <mhiramat@kernel.org>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Vincent Shih <vincent.sunplus@gmail.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, JC Kuo <jckuo@nvidia.com>, 
+ Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-phy@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ netdev@vger.kernel.org, linux-usb@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+ linux-can@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-tegra@vger.kernel.org
+In-Reply-To: <20230714174841.4061919-1-robh@kernel.org>
+References: <20230714174841.4061919-1-robh@kernel.org>
+Subject: Re: [PATCH] phy: Explicitly include correct DT includes
+Message-Id: <168957502626.294691.2933301083453115851.b4-ty@kernel.org>
+Date: Mon, 17 Jul 2023 11:53:46 +0530
 MIME-Version: 1.0
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178635 [Jul 15 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 523 523 523027ce26ed1d9067f7a52a4756a876e54db27c, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;lore.kernel.org:7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2023/07/17 03:36:00
-X-KSMG-LinksScanning: Clean, bases: 2023/07/17 03:36:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/17 00:56:00 #21624503
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-Mailer: b4 0.12.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230716_223946_862357_720BAA11 
-X-CRM114-Status: GOOD (  15.14  )
+X-CRM114-CacheID: sfid-20230716_232407_037282_00FBFE73 
+X-CRM114-Status: UNSURE (   9.23  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,66 +121,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello,
 
-this patchset adds support for 512B ECC step size for Meson NAND. Current
-implementation only supports 1024B. There are three patches:
+On Fri, 14 Jul 2023 11:48:35 -0600, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+> 
+> [...]
 
-1) Update for device tree bindings to replace 'const' type of field
-   'nand-ecc-step-size' with 'enum' which contains 512 and 1024.
+Applied, thanks!
 
+[1/1] phy: Explicitly include correct DT includes
+      commit: 7559e7572c03e433efec7734af6a674fdd83dd68
 
-   ^^^ this is already merged to nand-next in v3 and removed from v4
-
-
-2) Update for device tree bindings to add dependency between properties
-   'nand-ecc-strength' and 'nand-ecc-step-size'.
-
-3) Update for Meson driver - new enum value for 512B ECC and reworked
-   ECC capabilities structure to support both 512B and 1024B ECC. By
-   default this driver uses 1024B ECC, 512B could be enabled in device
-   tree.
-
-Changelog:
-v1 -> v2:
- * Add default value of 1024 to the bindings patch (0001).
- * Remove "Acked-by: Rob Herring <robh@kernel.org>" from the bindings
-   patch (0001) due to added default value.
- * Remove invalid calculation of OOB bytes, available for ECC engine
-   from patch 0002. This logic is incorrect from the origins, so I don't
-   touch it in this patchset. It will be fixed by another patch, as in
-   fact, it doesn't affect this patchset.
-
-v2 -> v3:
- * Add new patch which adds dependency between 'nand-ecc-strength' and
-   'nand-ecc-step-size' (0002).
- * Return "Acked-by: Rob Herring <robh@kernel.org>" to 0001.
- * Remove "default" value from 0001, due to dependency patch.
- * Remove example value from 0001, due to dependency patch.
-
-v3 -> v4:
- * 0001 is removed from patchset because it was merged to nand-next.
- * 0002 is rebased on the latest nand-next.
- * RFC tag is removed.
-
-Links:
-v1:
-https://lore.kernel.org/linux-mtd/20230628092937.538683-1-AVKrasnov@sberdevices.ru/
-v2:
-https://lore.kernel.org/linux-mtd/20230705065434.297040-1-AVKrasnov@sberdevices.ru/
-v3:
-https://lore.kernel.org/linux-mtd/20230711122129.2635558-1-AVKrasnov@sberdevices.ru/
-
-Arseniy Krasnov (2):
-  dt-bindings: nand: meson: make ECC properties dependent
-  mtd: rawnand: meson: support for 512B ECC step size
-
- .../bindings/mtd/amlogic,meson-nand.yaml      |  4 ++
- drivers/mtd/nand/raw/meson_nand.c             | 45 ++++++++++++++-----
- 2 files changed, 38 insertions(+), 11 deletions(-)
-
+Best regards,
 -- 
-2.35.0
+~Vinod
+
 
 
 _______________________________________________
