@@ -4,107 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1D0FEB64DD
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jul 2023 00:26:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D427C001DC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jul 2023 04:02:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9S6re1XH3qP7LSc6yLJMedll9fRkivOulYfEGiOXDmI=; b=AjSikAOmFeYG0g
-	PiVPa4RYKolB+b3qttg5IQ+V85H4UD9Lsmx3RjWAoWF/mI8DRr5SdVR5UDNN9B7hH1wMj4c0+8Kn0
-	diyoT5JufBGKLlrHnhRWbzVaeN3fWlm/1My9P3OtcURwFTL5DRWzp8/f6L9VQ8NDlI0PgMamECGgl
-	3uWUjdYcc6TPKptr92bHrdg7bJt+6c5Pgrsj4rqP1F6rKVKh9DpgaljsNfIvO+7tzEH8Q6TbANlyU
-	ossQyMlf6r4Q1rTgf/ShBY/x17SU53hKuauy7UaxCAIT3utqobi4VMKDQkQS9/OBXzRf0H2XfJyF0
-	9sY/2w5+OmfN5mD43CTw==;
+	List-Owner; bh=wMNFdk5L9mEvzKgp1Hibr1aX+y7zCT1Qj2flC10CZmY=; b=iCS4UyORYklDHz
+	i4uF4C7XbyIGu4ALmNMtyckmTJi9gPwpK0ZwU78J8xB3pKwDHDFv8Y9wQ97k1drPJcN2Nqv3TWfhY
+	y7+EL+TPVLpzllics44nP1sKCfQVnpftJoVuNA+S8vrOmpludljq000qTFlcnS+sEar1Jf/ds6B5e
+	rS0Or8OsgABMeLAUND0+79sGewcfcOO5d/udNx8ZlnBKzCMfmcuZNBWs12XdgbDU/wEfBNfcHDzs0
+	nV6urpjP4n/jlOdoINr03x/4EZbzkyUAE9whENg99ILd4GAcQWc4WDYDK/DIN/23jW5JQ31Vgbc3n
+	hr+vybhTH3U1HoNmssNA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qLC3o-00HHSw-2K;
-	Mon, 17 Jul 2023 00:25:56 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qLFQX-001j8w-1a;
+	Mon, 17 Jul 2023 04:01:37 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qLC3l-00HHQc-2e;
-	Mon, 17 Jul 2023 00:25:55 +0000
+	id 1qLFQT-001j5u-14;
+	Mon, 17 Jul 2023 04:01:34 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id C102360C61;
-	Mon, 17 Jul 2023 00:25:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8013C433C8;
-	Mon, 17 Jul 2023 00:25:44 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 5A8C060EC2;
+	Mon, 17 Jul 2023 04:01:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 041D3C433C8;
+	Mon, 17 Jul 2023 04:01:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1689553552;
-	bh=90TC5627bOyxHw0LO02BTMl/GIPB2a7lX0ME9elAjjU=;
-	h=Date:Subject:List-Id:To:Cc:References:From:In-Reply-To:From;
-	b=DXXofU9fgbRHXnC3tDvYmWzBFazsUkKybqNULn/dYbx3OXQiyB6BF5pdEXuz3CqQ2
-	 arf7q41Klz1vEzjG2mqrds61EcwmGR9bzvQwCWLQoATQYB/WLQzLGnapMtUBTv6Eue
-	 +QCtGuPhJF0buuUGpLzBAbVWPEEE1r7nxamZxBmvjrddrSGHLfnk+HKxVXCi5AUtAg
-	 h6Y8Of7C9sbwuvIaI1R04j/K/PGW7/Ekmf3U1YGWCOkkMO7gme9EKUhDF8l3dJN4pP
-	 6AZfqhh7rj9E2IJziX5TuTjMauLBofPrO7aDKc9YaAEQpbAAN8l8z91YeL4IbIhIbX
-	 J3YYAZG0NK4ig==
-Message-ID: <28f63191-8882-2ba0-dc53-ed301d775417@kernel.org>
-Date: Mon, 17 Jul 2023 09:25:43 +0900
+	s=k20201202; t=1689566491;
+	bh=Q8HivdgN0OL6bq4ZKkophdSmpX3+e7PbxMGhWwxCixw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MujKx3gpE5F0rZ+QF6LHP/GxGfyKVj6s/STk9hmgJplxJlC2KXY41ikMHBwMeD2hd
+	 oX++frOrOtZJnkkuokutw+COM5rPP2wM0pGJDKL/ZB1KOTyHocXlzgnPopWcoGYRBw
+	 yYOBTHWyoZy3d1OQWiXPT3yZCDz7W2n+2TWgmZ83xEvS7HxIMzbnsqykDUAJI/jJ0L
+	 Dr+awOKq718H3u3A257V8fnE/X8/X83DGtaSoQsSPld/P/Wigxc1ez8gj+Iy201Sst
+	 bxwqR3N7fMgf6vMTpGlr0OvdWnr62wOfRFaE69idR7bcupDKEu/MaUNqmoDG8V5EYh
+	 RpaPsFQYnP4Gg==
+Date: Mon, 17 Jul 2023 12:01:22 +0800
+From: Tzung-Bi Shih <tzungbi@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Thierry Reding <thierry.reding@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@microchip.com>,
+	Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Paul Cercueil <paul@crapouillou.net>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Michael Walle <michael@walle.cc>, Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Hammer Hsieh <hammerh0314@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+	devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	chrome-platform@lists.linux.dev, linux-mips@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] pwm: Explicitly include correct DT includes
+Message-ID: <ZLS9EleWQlyY+jv3@google.com>
+References: <20230714174852.4062251-1-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] pinctrl: Explicitly include correct DT includes
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Dong Aisheng
- <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>,
- Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Sascha Hauer <s.hauer@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>,
- Sean Wang <sean.wang@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Chester Lin <clin@suse.com>, NXP S32 Linux Team <s32@nxp.com>,
- Chen-Yu Tsai <wens@csie.org>, Vladimir Zapolskiy <vz@mleia.com>,
- Heiko Stuebner <heiko@sntech.de>, Tony Lindgren <tony@atomide.com>,
- Haojian Zhuang <haojian.zhuang@linaro.org>, Daniel Mack <daniel@zonque.org>,
- Robert Jarzmik <robert.jarzmik@free.fr>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Tomasz Figa <tomasz.figa@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Alim Akhtar <alim.akhtar@samsung.com>, Viresh Kumar <vireshk@kernel.org>,
- Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
- Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
- <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
- Emil Renner Berthing <kernel@esmil.dk>,
- Jianlong Huang <jianlong.huang@starfivetech.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Dvorkin Dmitry <dvorkin@tibbo.com>, Wells Lu <wellslutw@gmail.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-riscv@lists.infradead.org, linux-oxnas@groups.io,
- linux-rockchip@lists.infradead.org, linux-omap@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org
-References: <20230714174901.4062397-1-robh@kernel.org>
-From: Damien Le Moal <dlemoal@kernel.org>
-Organization: Western Digital Research
-In-Reply-To: <20230714174901.4062397-1-robh@kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20230714174852.4062251-1-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230716_172553_967452_3DFE6694 
-X-CRM114-Status: GOOD (  12.19  )
+X-CRM114-CacheID: sfid-20230716_210133_496111_F3A6ED0B 
+X-CRM114-Status: GOOD (  10.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,7 +113,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 7/15/23 02:48, Rob Herring wrote:
+On Fri, Jul 14, 2023 at 11:48:50AM -0600, Rob Herring wrote:
 > The DT of_device.h and of_platform.h date back to the separate
 > of_platform_bus_type before it as merged into the regular platform bus.
 > As part of that merge prepping Arm DT support 13 years ago, they
@@ -133,14 +125,8 @@ On 7/15/23 02:48, Rob Herring wrote:
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
 
-Looks OK to me.
-
-Reviewed-by: Damien Le Moal <dlemoal@kernel.org>
-
--- 
-Damien Le Moal
-Western Digital Research
-
+For pwm-cros-ec.c:
+Reviewed-by: Tzung-Bi Shih <tzungbi@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
