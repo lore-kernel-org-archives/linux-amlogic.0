@@ -4,91 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 338EEEB64DC
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jul 2023 09:47:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1F91EB64DC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jul 2023 10:02:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oXErpiUrkDVuJ+5y5IPW8NZn+FQYF/uocHUE/q/uMLE=; b=35qRzutV9uZ1iI
-	O8nq5q+bSyofplx/cc5ytvjchd3UzvgEMeVpVG1PpSzbSofghh1f4aQY7GxGKn0OywTxQQ9GTBJV+
-	pFE9PExA9VjXj6fX4mr59hvs5q8A1VwIosRSaRQYJBOkqAlvrHvSR5KlxrCOEJp/KkFoEQ/YnunVn
-	wAdZmz1QXd9nDrvxUukermLgDBOzPwRb72rU6ZYBx6BejlQLwQ3uijqCVU/tN7v8iHhZeszwxoanq
-	X1oKAgSKpfjVv0ryiNqbiLv6xOOMK2siJT6SUkZCj7yPFHnEJUbZ+Q74DnS53RwzKHM0vTu5B42CX
-	1BiCw9gSK0zyovpJLNXg==;
+	List-Owner; bh=n/eQ1B9bPdtPrbU9mda6Mcob9AXSbzdRkG+cb0T4tzk=; b=L0tLsf67SgRTqN
+	xXLhmv330b3BG1Gcj5ESKr9zUGyk64hDJSJv6gjwaNmJT4COcnK1HsO4jhVX1ZgggNECn2W82L2K6
+	G0k0v4Rne2uB4iremRxNWqHih++mdoESZCoWI3hXEaC7uA1JlBLKQQHT4FWEjISlJ/zVXgF7pnRCz
+	/uBCRvoYV/bK0d1Px15NWlhlMXBrrJHPBLHLAYQm/MRuSoIiVc1D0lBhJryohFcPEoqxOrLaEjcVh
+	rXRcTgr0iVLuJhTfOxqj+4G2LlADwq6c8J9VTmnmNj1fKC9WhM3TQP4klIhoktMiKYasUpJZWNcw9
+	uIRm9UxeNBGWQKvlLFWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qLKoR-003fsR-2b;
-	Mon, 17 Jul 2023 09:46:39 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1qLL3Z-003iQS-2Z;
+	Mon, 17 Jul 2023 10:02:17 +0000
+Received: from mga04.intel.com ([192.55.52.120])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qLKnx-003flG-2U;
-	Mon, 17 Jul 2023 09:46:14 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 977BE100003;
-	Mon, 17 Jul 2023 12:45:59 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 977BE100003
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1689587159;
-	bh=bU4ekr04U5x03pjQxh0crwXxvJQ0XcicbfzN4q2fJjQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=k8j3Ui0s8yZsItpF/sogZjPznCQFEmlvgu/6qwMPk4MCDALrJ2tahdhvqIYxmhbFX
-	 X7tn//u3xIjRTENi1TuFuGNGbUnBYVolqkjfiM5r9aY8l36NXbmYNnYduT69HxkZz1
-	 sDicmnHap/P2t6+Dd2hss76uv8/USEqyRB4TNeIfXorhi4tC3+34BmywBLDkZ+uazH
-	 H+jUhdwYMKhhcDCC597UkJ+md7txDPrWpZZSEKRu7sZBnpXb+oGP2ksZuSb3hWjqe5
-	 YKoIWj4dL0PJaIBT8NroSSZD21W8X/tkSH/vEcYEqd/RRRN8cgfVaPC4MHAf2ribOQ
-	 1L8dP5iM26UVQ==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon, 17 Jul 2023 12:45:59 +0300 (MSK)
-Received: from [192.168.1.127] (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Mon, 17 Jul 2023 12:45:59 +0300
-Message-ID: <a172c764-1eef-835f-f237-8f78b4c6e877@sberdevices.ru>
-Date: Mon, 17 Jul 2023 12:41:29 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
+	id 1qLL2b-003iA3-0U;
+	Mon, 17 Jul 2023 10:01:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1689588077; x=1721124077;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JMM3xupH1hI/uzcIq/Bseq5hzkwtbNzgO0JZ+lTjb3Y=;
+  b=aEctZuzbR6wLF60QKi8irPWYBDvNCRpkHkoqd/zXnoinmh2yAOfjnOME
+   T/+5SMx5yUjuc2SthMfyJ9o/paahL24UWOih4gWLEb2geGRPnM4KjZwzD
+   enU3aKZgVJAtjT1GiesjKA5WnD6pRUNLRAyW2JN0eZjcTsZtFCOTNGc1B
+   wxB1uQsw3CzWEqyfIVaEQt1XjHKwc2yVABc5f85P1UpznpSYUVlNqxL5a
+   vMiFAo/Kh3/T3/6ysjNJBrvEYgZ1mKguUq5pALYAQ/WpV3G8oRg2kQ+Jn
+   0hSCvXgERjglu6XtDdDD6kHp/ZNiq1TkvzpMarWUe6d88Pu1FnQ2QzMAZ
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="364767203"
+X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; 
+   d="scan'208";a="364767203"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jul 2023 03:01:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="673491098"
+X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; 
+   d="scan'208";a="673491098"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga003.jf.intel.com with ESMTP; 17 Jul 2023 03:01:12 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1qLL2T-008WsP-2y;
+	Mon, 17 Jul 2023 13:01:09 +0300
+Date: Mon, 17 Jul 2023 13:01:09 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: George Stark <gnstark@sberdevices.ru>
+Cc: Jonathan Cameron <jic23@kernel.org>, lars@metafoo.de,
+	neil.armstrong@linaro.org, khilman@baylibre.com,
+	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+	nuno.sa@analog.com, linux-iio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, kernel@sberdevices.ru
 Subject: Re: [PATCH v1 0/3] iio: adc: meson: tune init sequence
-Content-Language: en-US
-To: Jonathan Cameron <jic23@kernel.org>
-CC: <lars@metafoo.de>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
-	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-	<andriy.shevchenko@linux.intel.com>, <nuno.sa@analog.com>,
-	<linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<kernel@sberdevices.ru>
+Message-ID: <ZLURZWPkmP6aKDOZ@smile.fi.intel.com>
 References: <20230715110654.6035-1-gnstark@sberdevices.ru>
  <20230716171134.43d05c45@jic23-huawei>
-From: George Stark <gnstark@sberdevices.ru>
-In-Reply-To: <20230716171134.43d05c45@jic23-huawei>
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178645 [Jul 17 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: GNStark@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 523 523 523027ce26ed1d9067f7a52a4756a876e54db27c, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/17 06:43:00 #21626526
-X-KSMG-AntiVirus-Status: Clean, skipped
+ <a172c764-1eef-835f-f237-8f78b4c6e877@sberdevices.ru>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <a172c764-1eef-835f-f237-8f78b4c6e877@sberdevices.ru>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230717_024610_717645_E5560B75 
-X-CRM114-Status: GOOD (  17.15  )
+X-CRM114-CacheID: sfid-20230717_030117_223771_5A8746E2 
+X-CRM114-Status: GOOD (  11.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,63 +86,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Mon, Jul 17, 2023 at 12:41:29PM +0300, George Stark wrote:
+> On 7/16/23 19:11, Jonathan Cameron wrote:
+> > On Sat, 15 Jul 2023 14:05:57 +0300
+> > George Stark <gnstark@sberdevices.ru> wrote:
 
-Hello Jonathan
+...
 
-Thanks for your review
-
-On 7/16/23 19:11, Jonathan Cameron wrote:
-> On Sat, 15 Jul 2023 14:05:57 +0300
-> George Stark <gnstark@sberdevices.ru> wrote:
+> > These look fine to me, but I'd like them to sit on list a little while
+> > on off chance anyone else has feedback on them.
 > 
->> This patch is a part of effort to support meson a1 SoC and make meson saradc driver
->> independent from vendor boot code initialization in common.
->>
->> Information was taken from vendor kernel 5.4, 4.19 and vendor uboot 2019.
->> Most of the bits are undocumented at all or it's not said how they affect measuring.
->>
->> All those bits are already initialized in bl* code and since kernel driver dosn't
->> rewrite or reset any registers but only changes some bits at init stage everything
->> works fine.
->>
->> Test procedure is rather simple - one can change those bits in runtime
->> (e.g. using devmem) and try to read channels (cat /sys/bus/platform/drivers/meson-saradc/.../iio:device0/*)
->> changing some of those bits leads to measure procedure errors or abnormal results.
->> Another test is build meson saradc as module, reset adc by reset bit, reload module
->> and compare measure results to those got before reset.
->>
->> George Stark (3):
->>    iio: adc: meson: init channels 0,1 input muxes
->>    iio: adc: meson: init internal continuous ring counter
->>    iio: adc: meson: init voltage control bits
->>
->>   drivers/iio/adc/meson_saradc.c | 73 ++++++++++++++++++++++++++++++++++
->>   1 file changed, 73 insertions(+)
->>
-> These look fine to me, but I'd like them to sit on list a little while
-> on off chance anyone else has feedback on them.
+> I understand. I'd resend the patches in a week or more if there's no
+> feedback.
 
-I understand. I'd resend the patches in a week or more if there's no 
-feedback.
-
-If someone suggests tests so the community could trust the results I'll 
-be happy to run them. I have odroid-c1, vim1, vim3 and a113l board.
-
-> 
-> Thanks,
-> 
-> Jonathan
-> 
-> 
+There is no need to resend as long as they are available via lore.kernel.org
+mail archives.
 
 -- 
-Best regards
-George
+With Best Regards,
+Andy Shevchenko
+
+
 
 _______________________________________________
 linux-amlogic mailing list
