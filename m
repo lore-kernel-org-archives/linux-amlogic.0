@@ -4,70 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3373CC0015E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Jul 2023 05:00:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBAD9EB64DA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Jul 2023 05:04:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=jmsdP2aW+PqTpA4wwFaVPl+TDy9Vo3y6wBIpSEfRkGQ=; b=CmEAJB85D1yZkZ
-	pwqrxBm87hSwH2OrBNoGFhrAWD7EOGh+RxxxBO8FvXt71x6ILXoNQHp4k+4NQKzTbnoOtiXme+ZFg
-	rYsYLUwHhTYxg5TfM9YiZk+r9MGXyJTbo5QuaD9MpwHk0+EIHoQUvSd7Pqa8Tu3JJnEi5hR2Rq6R1
-	4SQVQsyOgNrFUFXp4pcan6tCh6+Pd3p4MQjX0Av3DYmVqb/IC1N1yCUJ9cEL16hnKA5CCVTjHSUi+
-	xBv0kNVnX6b6DgpTdkXUqkBLV5CsUlsufG7j3YJCJO+c1SgymypZl9UPA14cJ2nfnhb4MiyBZaIfY
-	0AOPhlo6vHr8nbFtkf6Q==;
+	List-Owner; bh=uIpCFhBa4c/thJ1BCELcHsROTKkGb8LjKfoGEncUJQw=; b=UtAX2V2OBoPIrp
+	J3uIJFPS3yPOnSFvh/ZOptcH2/W9aeOwvdbMDUYD+9ANLglXfCUw0eOMgjLFN6++tEX+90LOpMWoQ
+	VXlYqsx2CtgacHBRcy7ATdwfJVEUHxUX+incdlFGdXvlzV8SGSV0f0q4CoSyaSM6cbXdTbNEhzznc
+	1wlzL17mQ6Wi7gDgJkjKYWkMGXM907uCEbp/PlCqKmAEx9dDJN/kAQZF1FWMtvVfPmHYw4kYphfXN
+	TraQ/SX/vepwmhENeHAKeKIZnfA6g5+vKVf4+Igc7cz1P9yMFF1e84bZZTHXko2YjZer/cUreJniw
+	q7eyxhxizcVSnzBVyaYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qLzIW-0056vu-2C;
-	Wed, 19 Jul 2023 05:00:24 +0000
+	id 1qLzLy-0058Pf-3B;
+	Wed, 19 Jul 2023 05:03:59 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qLzIV-0056vB-10;
-	Wed, 19 Jul 2023 05:00:23 +0000
+	id 1qLzLw-0058OY-2a;
+	Wed, 19 Jul 2023 05:03:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
+	:MIME-Version:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
 	Content-Description:In-Reply-To:References;
-	bh=ekLFtmXEMoC8k0OQiODEofz9GjmtN9os/zV/xDYll5c=; b=JqVPi6sO7nSBpaZCFaH/VKECCq
-	zVmpr5+e2oeapAhWLZjUJgYJajfWXsJUcAz/C80n1PGw/XFVTF/Wd8OEfNGIj79IvV8gz85R1nNiH
-	2BoYmZLovEUH51YW2jI8idbecaYNPiT9BUix3V4iqVmpUHCsRgTZFGvQZY9EvkldJ96igchMSg8Qt
-	N+KLmh55cgPFZ1SEIBhH61OPZX7xVi+c9+7vMowfXk1XI74u2ebptfUmlnbFpvL8sctcqMbSW+Nru
-	x5oAS/tFxH3MtuxI2L/LlRZtynue6XGHj8Yn13njCA0wkKThGpTnZLWf2SnpFeMrlIUZ1zXFT7zEK
-	G899eucg==;
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	bh=39mx1IJOhIwMv5GydHtbZ2UmUB1INMt8WGoE9jHCNZs=; b=l0iHebIqRwQb+b0uGPUFUYdsiR
+	iO+Jfck0Ph4HKO2MrZ36mtZv1xI7czS0U4FiHGg6qTRhQhAcsypYmimIgj3uCyp+nL8IRlp4hf+/I
+	osdBEofxtpT3a5hLxz5VX99ZLmqoJsJWxEUqWOBh595uk520HvUKfJ53pC1W8LsAeiSBOnkSYU8II
+	t+YWw3nATlySAF2UzQEL/F8roLCOCW3U0kVY/wI19AcwPeZygtsQ9au5W86dNP4CwqiBEDho4a3qs
+	sOqX7ZzOQtGNx6nL+So3LQIVl717DtLhcSl92vLvp/ylX6DIA5QFh0oneDJNOcf2KXDb5hJl8l2jK
+	xjERmY6Q==;
+Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qLXFJ-009REE-1P;
-	Mon, 17 Jul 2023 23:06:24 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 0EC9C6131A;
-	Mon, 17 Jul 2023 22:59:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 590B3C433C7;
-	Mon, 17 Jul 2023 22:59:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1689634774;
-	bh=enN5F2+0Je/0v6QMpoi/1qi66psAbjn2StPITSeJgBc=;
-	h=From:To:Cc:Subject:Date:From;
-	b=moozdmoa3scQHo00xU4ljARmocTwJJQoK+w9IiQPvov1X3YWaAaJ+cX/s1sopljXO
-	 fwwDPLkNUDFzt9/0d+u84j+j03jJVWjf6BRyJoiXwo7s/RgvpJeXjxwVRB+1pNrzMV
-	 fIOb55meeS0BQnUi4BxeOH+9L7JOaNZue7j3kW5j7ytqyoTFayKodFdhn5HwsGSYBA
-	 mmd61rEzfsUU2CVH0pESz4MfGVD8pNjZAr9dri/E/mZx2LmaNbpMz9yHfEaa3pEGs6
-	 xwecH9u4/RvzsmvTLJj+T9vKyXz7Mgt+/YgRj2YW9uayuE7tcjckAn9CyCStX5fTHQ
-	 ZE9xumLQH3QvA==
-Received: (nullmailer pid 3214522 invoked by uid 1000);
-	Mon, 17 Jul 2023 22:56:28 -0000
-From: Rob Herring <robh@kernel.org>
-To: Russell King <linux@armlinux.org.uk>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: meson: Drop unused includes
-Date: Mon, 17 Jul 2023 16:56:23 -0600
-Message-Id: <20230717225623.3214384-1-robh@kernel.org>
-X-Mailer: git-send-email 2.40.1
+	id 1qLjw2-00BWIw-2W;
+	Tue, 18 Jul 2023 12:36:12 +0000
+Received: from droid10-sz.amlogic.com (10.28.11.69) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Tue, 18 Jul 2023
+ 20:35:41 +0800
+From: zelong dong <zelong.dong@amlogic.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>, Rob Herring
+	<robh+dt@kernel.org>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Jerome Brunet <jbrunet@baylibre.com>
+CC: <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+	<kelvin.zhang@amlogic.com>, Zelong Dong <zelong.dong@amlogic.com>
+Subject: [PATCH v2 0/3] reset: meson-c3: add reset driver
+Date: Tue, 18 Jul 2023 20:35:47 +0800
+Message-ID: <20230718123550.13712-1-zelong.dong@amlogic.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
+X-Originating-IP: [10.28.11.69]
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20230718_133610_991523_2522865F 
+X-CRM114-Status: UNSURE (   7.61  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,27 +78,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-of_platform.h is not needed, so drop it.
+From: Zelong Dong <zelong.dong@amlogic.com>
 
-Signed-off-by: Rob Herring <robh@kernel.org>
+This patchset adds Reset controller driver support for Meson-C3 SoC.
+The RESET registers count and offset for C3 Soc are same as S4 Soc.
+
+Changes since v1:
+- remove Change-ID
+- run scripts/checkpatch.pl and fix reported warnings
+- sort dts node by base reg offset
+
 ---
- arch/arm/mach-meson/meson.c | 1 -
- 1 file changed, 1 deletion(-)
+v1:https://lore.kernel.org/all/20230630121059.28748-1-zelong.dong@amlogic.com/
 
-diff --git a/arch/arm/mach-meson/meson.c b/arch/arm/mach-meson/meson.c
-index de56e707c7aa..d3ae89dd84bb 100644
---- a/arch/arm/mach-meson/meson.c
-+++ b/arch/arm/mach-meson/meson.c
-@@ -3,7 +3,6 @@
-  * Copyright (C) 2014 Carlo Caione <carlo@caione.org>
-  */
- 
--#include <linux/of_platform.h>
- #include <asm/mach/arch.h>
- 
- static const char * const meson_common_board_compat[] = {
+Zelong Dong (3):
+  dt-bindings: reset: Add compatible and DT bindings for Meson-C3 Reset
+    Controller
+  reset: reset-meson: add support for the Meson-C3 SoC Reset Controller
+  arm64: dts: meson: add reset controller for Meson-C3 SoC
+
+ .../bindings/reset/amlogic,meson-reset.yaml   |   1 +
+ arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi   |   7 ++
+ drivers/reset/reset-meson.c                   |   1 +
+ .../reset/amlogic,meson-c3-reset.h            | 119 ++++++++++++++++++
+ 4 files changed, 128 insertions(+)
+ create mode 100644 include/dt-bindings/reset/amlogic,meson-c3-reset.h
+
 -- 
-2.40.1
+2.35.1
 
 
 _______________________________________________
