@@ -4,83 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 254D7EB64DA
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Jul 2023 09:33:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A2BBEB64DC
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Jul 2023 10:27:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=y5qudpNKywmk9zyeh129Run0EpuB5NK6H6tiqGGPPbE=; b=STsEpsBK7UBtko
-	M4ak6b5jyXSY4DQ27jiYnJBzJLa/SoTVA6JlHZKKCoCAlEeaZb4G0OXEP26X/RJHdAmbgm3cPcYXw
-	zvUty/oRzIdlIzCzLcs1xvl/X8kWNznnd42ZLeWb84N/Td4EHfQq9XL27ApnYVr0dc+ETuAomtkYX
-	IN337Cl0pu3N14faaFEaQ4jX6/1WAMCrSf2teAd80HkUYzhwLB+Wng6xn957BCpPdDM6mjzGwGcM3
-	WcOZl+uD72ziIyK5W9uMkWnOo5P4rg0ekTCkLm0s3FdzVhJupzsodDK94r5FSh91F/F/SI/2Y6m/D
-	mTHp58SamIpClHrVbcTw==;
+	List-Owner; bh=RfHhLu8ocLLeQl7LWZBSQK36hmWnh7P/j6sQMA9XO6U=; b=HjKsROX6DC5npg
+	SSl3V4zMU3xiViIkaJinZXiilaW5IzudIJ9q/a2yBzfxXpLzymsLlsQvO1nx5hYVpr7HBgEZUrMwI
+	jUqIKZqpHnmmYBlwnKDQC5kCNT7NSDI533SeNdi5DkWoPjN938HKmuX6fUPxsHjv8bOKESn65jwBV
+	RXzxs3gYSmDUazaFfsLDNqMmkf1xzp+F4F29OUKwODeweJBFZmmIf1xqLfjmCNZGAyEuywc50Rpwm
+	+69V03WQU64mrJQtcenlEehybYllX6yGmgMfOVEtUxS6Wl9FbVQpRG35HFLEuHfsF5Krg2stXpwYE
+	BtvwkGy3XOhqmu5ygDlw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qMQ20-00AXxH-1v;
-	Thu, 20 Jul 2023 09:33:08 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1qMQsb-00AnjR-2h;
+	Thu, 20 Jul 2023 10:27:29 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qMQ1x-00AXv1-39
-	for linux-amlogic@lists.infradead.org;
-	Thu, 20 Jul 2023 09:33:07 +0000
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3fbc12181b6so4795015e9.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 20 Jul 2023 02:33:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689845583; x=1692437583;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y0I/iaPEzUEhsk7qMRr53QBuJ7Bxl0Kbw3PT2/wYCuU=;
-        b=2X+zhDlo5wXDWQMt5yn9fl7RnbGUecReZNoJEiI57fLEAVM+LThrgRagS36eErFlL5
-         dug/3YWfk/G6c4LaPZBStvk4jMn2YlSukqK1IRNZ/dBQQPy1vsEKVHPeB9aHLEMnLyGS
-         vlrEyN7gLleaIm+ErmEJMsaE7ZWYvMT635uA2detnQtc5wQ8bkpjjBcHNAuC4RA0k894
-         u6LiO6aBNa3/Hqchkgm8uHN14D54G6Z7kg6bQPXa7HNJhVFbZmYIwYS+jC4dloMZLeb3
-         MfXAf72x0NuznNgLsuB7VKjvrEcP/aMgfHcee6ExGTpIwN782sjk1V1OdipRLRtBRvH7
-         gH+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689845584; x=1692437584;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y0I/iaPEzUEhsk7qMRr53QBuJ7Bxl0Kbw3PT2/wYCuU=;
-        b=kh1l9RE31dnldiSQCkl+2gJGjtuad0qcsS2INB88Dyo5LUyba3BLBXJwSK6CAGG+LH
-         CKpriMOAYARp7Togcg3QdyL/gJIbLak+hhg5KNDYW2dh/FQTNGLwrzCubqxW24gTrQE9
-         JNjLMUsvvaEQWFjcdqr3XwnUK4CH/PUGXSr85I/qo525iX2iWZ4B1zCV1JNIKtwX36TR
-         q1WRX1pA83gOu/1DKPEdi/0t9eIypiwVd06NtQRSAv0C+Xh1kT+z7+9i4RA9YBJVMK97
-         NrfpsJdpWVkKAN5BXgCZvBkyZHWNWo4SaiOIYinGyGnQpeZNa2pVkMZNRwwHANoubt+E
-         uMLg==
-X-Gm-Message-State: ABy/qLbi22LUEcyFk1LIbIK3d09391euEzhkeeo6OmaRxtnuyWexAW1S
-	zUO6mAV1iLGJgk0n8epeL+M/gA==
-X-Google-Smtp-Source: APBJJlGhEUTy8yPCE0oYTy5atycBVh9x5P2zg+Y+2dW9AT3Q1LxA7UePnVPV5JA6RXZ+MkhAmTBd8w==
-X-Received: by 2002:a7b:c850:0:b0:3fb:c990:3b2 with SMTP id c16-20020a7bc850000000b003fbc99003b2mr1349366wml.34.1689845583604;
-        Thu, 20 Jul 2023 02:33:03 -0700 (PDT)
-Received: from localhost ([82.67.6.57])
-        by smtp.gmail.com with ESMTPSA id m10-20020a7bca4a000000b003fc00702f65sm3428984wml.46.2023.07.20.02.33.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jul 2023 02:33:03 -0700 (PDT)
-References: <20230704215404.11533-1-ddrokosov@sberdevices.ru>
-User-agent: mu4e 1.8.13; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Dmitry Rokosov <ddrokosov@sberdevices.ru>, neil.armstrong@linaro.org,
- mturquette@baylibre.com, sboyd@kernel.org, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com
-Cc: jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Jan Dakinevich
- <yvdakinevich@sberdevices.ru>
-Subject: Re: [PATCH v2] clk: meson: change usleep_range() to udelay() for
- atomic context
-Date: Thu, 20 Jul 2023 11:32:44 +0200
-In-reply-to: <20230704215404.11533-1-ddrokosov@sberdevices.ru>
-Message-ID: <1jsf9jnd0x.fsf@starbuckisacylon.baylibre.com>
+	id 1qMQsX-00Anab-1T;
+	Thu, 20 Jul 2023 10:27:27 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 52067120077;
+	Thu, 20 Jul 2023 13:27:13 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 52067120077
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1689848833;
+	bh=k1AxALUOUAa6dGA6SXUccWu1sfcnyFNB59uw2qoEQLo=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=fLGEqU8omiYKy0q7fpxdwxOhy8foodW/nUolQKNwZqIV+V7r7siAvRDKKaBspWk9Y
+	 SWRWL6Biz3NK0O5j+G9AJJ3PFUKyTcKYvtes8znuAetkL/fWXWzAXwA5hpmM15C67m
+	 D53/rGKc/1+y4AYCEmEc/LgfN7T7gNhmduy4cPNwqOb2SjIxpD5e2sK4R7dewPFSzG
+	 myBUNk+3FVQ5SoYoO4hMDTZpFsqeGklPdgWer2yYqvsttrJSZPBTGLYuF1MyCKoUUM
+	 eukiwI7r1+SHgeHK3Iv32N9XSjekjLLcwMQ6OnekWp+SwNtIBWL79VYvQlicJ1hToF
+	 hSJsc1y7xg9tg==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu, 20 Jul 2023 13:27:13 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 20 Jul
+ 2023 13:27:12 +0300
+Date: Thu, 20 Jul 2023 13:27:12 +0300
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: Huqiang Qin <huqiang.qin@amlogic.com>
+CC: <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: Add gpio_intc node and pinctrl node for
+ Amlogic C3 SoCs
+Message-ID: <20230720102712.qrepf7nhj7wk474s@CAB-WSD-L081021>
+References: <20230720052054.3909902-1-huqiang.qin@amlogic.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20230720052054.3909902-1-huqiang.qin@amlogic.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178744 [Jul 20 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 524 524 9753033d6953787301affc41bead8ed49c47b39d, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, lists.infradead.org:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2023/07/20 09:21:00
+X-KSMG-LinksScanning: Clean, bases: 2023/07/20 08:06:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/20 06:46:00 #21646672
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230720_023306_021734_5545A707 
-X-CRM114-Status: GOOD (  17.84  )
+X-CRM114-CacheID: sfid-20230720_032725_861828_C801F7CF 
+X-CRM114-Status: GOOD (  18.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,72 +104,69 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hello Huqiang!
 
-On Wed 05 Jul 2023 at 00:54, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+Thank you for the patchset!
 
-> The function meson_clk_pll_enable() can be invoked under the enable_lock
-> spinlock from the clk core logic, which risks a kernel panic during the
-> usleep_range() call:
->
->    BUG: scheduling while atomic: kworker/u4:2/36/0x00000002
->    Modules linked in: g_ffs usb_f_fs libcomposite
->    CPU: 1 PID: 36 Comm: kworker/u4:2 Not tainted 6.4.0-rc5 #273
->    Workqueue: events_unbound async_run_entry_fn
->    Call trace:
->     dump_backtrace+0x9c/0x128
->     show_stack+0x20/0x38
->     dump_stack_lvl+0x48/0x60
->     dump_stack+0x18/0x28
->     __schedule_bug+0x58/0x78
->     __schedule+0x828/0xa88
->     schedule+0x64/0xd8
->     schedule_hrtimeout_range_clock+0xd0/0x208
->     schedule_hrtimeout_range+0x1c/0x30
->     usleep_range_state+0x6c/0xa8
->     meson_clk_pll_enable+0x1f4/0x310
->     clk_core_enable+0x78/0x200
->     clk_core_enable+0x58/0x200
->     clk_core_enable+0x58/0x200
->     clk_core_enable+0x58/0x200
->     clk_enable+0x34/0x60
->
-> So it is required to use the udelay() function instead of usleep_range()
-> for the atomic context safety.
->
-> Fixes: b6ec400aa153 ("clk: meson: introduce new pll power-on sequence for A1 SoC family")
-> Reported-by: Jan Dakinevich <yvdakinevich@sberdevices.ru>
-> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-
-Applied, Thx
-
+On Thu, Jul 20, 2023 at 01:20:54PM +0800, Huqiang Qin wrote:
+> Add gpio interrupt controller device and pinctrl device.
+> 
+> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
 > ---
-> Changes v2 since v1 at [1]:
->     - remove redundant SoB from commit msg
->     - drop unuseful reference to clk_core_enable() from commit msg 
->
-> Links:
->     [1] https://lore.kernel.org/all/20230703200404.20361-1-ddrokosov@sberdevices.ru/
-> ---
->  drivers/clk/meson/clk-pll.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-> index 56ec2210f1ad..eef6f37c8d8d 100644
-> --- a/drivers/clk/meson/clk-pll.c
-> +++ b/drivers/clk/meson/clk-pll.c
-> @@ -367,9 +367,9 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
->  	 * 3. enable the lock detect module
->  	 */
->  	if (MESON_PARM_APPLICABLE(&pll->current_en)) {
-> -		usleep_range(10, 20);
-> +		udelay(10);
->  		meson_parm_write(clk->map, &pll->current_en, 1);
-> -		usleep_range(40, 50);
-> +		udelay(40);
->  	};
+>  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 25 +++++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> index 60ad4f3eef9d..4ad9c042f85c 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> @@ -82,6 +82,31 @@ uart_b: serial@7a000 {
+>  				clock-names = "xtal", "pclk", "baud";
+>  			};
 >  
->  	if (MESON_PARM_APPLICABLE(&pll->l_detect)) {
+> +			gpio_intc: interrupt-controller@4080 {
+> +				compatible = "amlogic,meson-gpio-intc",
+> +					     "amlogic,c3-gpio-intc";
+> +				reg = <0x0 0x4080 0x0 0x0020>;
+> +				interrupt-controller;
+> +				#interrupt-cells = <2>;
+> +				amlogic,channel-interrupts =
+> +					<10 11 12 13 14 15 16 17 18 19 20 21>;
+> +			};
+> +
+> +			periphs_pinctrl: pinctrl@4000 {
 
+Please sort dts nodes by reg offset in the one bus declaration.
+
+> +				compatible = "amlogic,c3-periphs-pinctrl";
+> +				#address-cells = <2>;
+> +				#size-cells = <2>;
+> +				ranges;
+> +
+> +				gpio: bank@4000 {
+> +					reg = <0x0 0x4000 0x0 0x004c>,
+> +					      <0x0 0x4100 0x0 0x01de>;
+> +					reg-names = "mux", "gpio";
+> +					gpio-controller;
+> +					#gpio-cells = <2>;
+> +					gpio-ranges = <&periphs_pinctrl 0 0 55>;
+> +				};
+> +			};
+>  		};
+>  	};
+>  };
+> -- 
+> 2.37.1
+> 
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+-- 
+Thank you,
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
