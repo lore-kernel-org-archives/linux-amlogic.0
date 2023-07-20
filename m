@@ -4,49 +4,109 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78BA3EB64DA
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Jul 2023 11:47:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C442EB64DA
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Jul 2023 14:05:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=MrS391hrPeg4L93NctIk9yGiAGPGMjixJrSZpHP5ZD4=; b=RAel99LzF2gsfq
-	jd05xWhvnBTi14gQ6lR27s7fjdMgCzd17gfJYZxKT9UBm6KiyUuCSU9dDSLv3kWvG/ITjblojGreQ
-	TNQZY8FLYcC7tj8A4N8ApCfR/tAsFp4FJ4BpfGUkIJNuVAeHRYy+3haat+HfA/deBfPkTlxvQoUWo
-	7i39bTqx6f0K1iqvUAWC5LnwkXpxYIOkK2E2w3AhDiyumMe/fyts/PIxU0jqzkoC9KA1rwzqvhyHa
-	9vhWNKpeiKOwZlauv5NB1liDUzxTwXo2Zz+z5ovr8oopnI79UYIjyxrRcy6yILlanj8xpTKGCjEvG
-	4hBrdjSSM9s1yAnPK0WA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Z2/wG98xFCrGFmsyWNtWD2cWQ0kbu+UrTqMFgl2s0lY=; b=sbB/EDDokwgd+T
+	Q0cDI0O2oGuPqVjNh72sl3cIyzVIQdOyMCU+tsMBCVGv2gSRVk73L3VUp1G5613idLjWgV7+xirnC
+	G0B/uN/78E11ry0OAomOgND4ECQZG519CJbC7kRKFjVSzzEAfxEmD37YgntdZIB82nyCvzGhjrkeX
+	z7tlVuEFvqbzn7g/dXXoZV5rhANpRLdVGtzUpFpKJC2eb9jJw88SWp+AzmNXSTvUhMOxT3C6hTsdu
+	DA0mZBjXSBaQv1PRlo1Z+mQk+jbG9P2BieJA8sGdrZ5MOffHtJXXfx9QeacgXdZUCmwj26ungQkAd
+	lbJdMajxxSUcRUdbG0sQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qMS7t-00B1DG-15;
-	Thu, 20 Jul 2023 11:47:21 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1qMUH7-00BKqQ-1u;
+	Thu, 20 Jul 2023 14:05:01 +0000
+Received: from mga07.intel.com ([134.134.136.100])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qMS7p-00B1Af-29;
-	Thu, 20 Jul 2023 11:47:18 +0000
-Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Thu, 20 Jul 2023
- 19:46:45 +0800
-From: Huqiang Qin <huqiang.qin@amlogic.com>
-To: <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
-	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Huqiang Qin <huqiang.qin@amlogic.com>
-Subject: [PATCH V2] arm64: dts: Add gpio_intc node and pinctrl node for Amlogic C3 SoCs
-Date: Thu, 20 Jul 2023 19:46:39 +0800
-Message-ID: <20230720114639.833436-1-huqiang.qin@amlogic.com>
-X-Mailer: git-send-email 2.37.1
+	id 1qMUH4-00BKoV-2v;
+	Thu, 20 Jul 2023 14:05:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1689861898; x=1721397898;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=jRwJIEhFunnqSNUPRBTmhjVK4I+hmWG8Zif3HjmDR94=;
+  b=cR++fv3W+MCic1Jb1Y25qvCT/8VMMtT1Vk9rvc/nxXILa2pI+0/04msM
+   2OoPgNFNzcuqkxLLup//MlPnzPAHWk2HR9xSru2Il9KlShQTUFcbozakZ
+   K5TwqyziLhywf3lyaiJyT7RWlmsc1B8XWZ/7vhMrcULBP3n8KR+yOPcmw
+   JrrVwOcoOkyTtPlXHlF+ucijDf0UQUH0M+yankT+bQA0bEVU/I/vQ/SPC
+   N+Qz6sfFA//B2N2LHcz7P29jm/R4a8NBftVwBXn82szBpXRuRb+hzsWTo
+   bLsK4wJHLGV4g1NvLz4Y3VmTSlw8tBet5Awe9itbc5TvPMwtIcCeZ7Tvx
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="432951720"
+X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; 
+   d="scan'208";a="432951720"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jul 2023 06:31:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="971033124"
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; 
+   d="scan'208";a="971033124"
+Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.32.109])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jul 2023 06:31:21 -0700
+Message-ID: <9ecf44f2-7572-f3e6-9bd8-a54575588d0d@intel.com>
+Date: Thu, 20 Jul 2023 16:31:17 +0300
 MIME-Version: 1.0
-X-Originating-IP: [10.28.11.83]
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.13.0
+Subject: Re: [PATCH v2] mmc: Explicitly include correct DT includes
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@microchip.com>,
+ Robert Richter <rric@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Chaotian Jing <chaotian.jing@mediatek.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Florian Fainel li <florian.fainelli@broadcom.com>,
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Haibo Chen <haibo.chen@nxp.com>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Michal Simek
+ <michal.simek@amd.com>, Eugen Hristev <eugen.hristev@collabora.com>,
+ Lars Povlsen <lars.povlsen@microchip.com>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>,
+ Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
+ Vignesh Raghavendra <vigneshr@ti.com>, Ben Dooks <ben-linux@fluff.org>,
+ Jaehoon Chung <jh80.chung@samsung.com>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-actions@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20230718143054.1065288-1-robh@kernel.org>
+From: Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+In-Reply-To: <20230718143054.1065288-1-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230720_044717_705745_7BB404A2 
-X-CRM114-Status: UNSURE (   6.66  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230720_070459_006626_5A492C53 
+X-CRM114-Status: GOOD (  10.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,55 +123,19 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add gpio interrupt controller device and pinctrl device.
+On 18/07/23 17:30, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
----
-
-V1 -> V2: Nodes are sorted by address offset.
-
- arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 26 +++++++++++++++++++++
- 1 file changed, 26 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-index 60ad4f3eef9d..5a3725f6cf3d 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-@@ -72,6 +72,32 @@ apb4: bus@fe000000 {
- 			#size-cells = <2>;
- 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
- 
-+			periphs_pinctrl: pinctrl@4000 {
-+				compatible = "amlogic,c3-periphs-pinctrl";
-+				#address-cells = <2>;
-+				#size-cells = <2>;
-+				ranges;
-+
-+				gpio: bank@4000 {
-+					reg = <0x0 0x4000 0x0 0x004c>,
-+					      <0x0 0x4100 0x0 0x01de>;
-+					reg-names = "mux", "gpio";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 0 55>;
-+				};
-+			};
-+
-+			gpio_intc: interrupt-controller@4080 {
-+				compatible = "amlogic,meson-gpio-intc",
-+					     "amlogic,c3-gpio-intc";
-+				reg = <0x0 0x4080 0x0 0x0020>;
-+				interrupt-controller;
-+				#interrupt-cells = <2>;
-+				amlogic,channel-interrupts =
-+					<10 11 12 13 14 15 16 17 18 19 20 21>;
-+			};
-+
- 			uart_b: serial@7a000 {
- 				compatible = "amlogic,meson-s4-uart",
- 					   "amlogic,meson-ao-uart";
--- 
-2.37.1
+Acked-by: Adrian Hunter <adrian.hunter@intel.com>
 
 
 _______________________________________________
