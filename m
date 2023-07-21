@@ -4,50 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CD82C001DE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Jul 2023 07:35:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A403EB64DC
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Jul 2023 08:17:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uwHKiMMbwn7XGtMALqmP1Jr2ipxrcdl1UD3BBh5q6aI=; b=Na/KLdiNN3NlnY
-	k8u7dLHLk7RjSSHHUOTH3N3gog+idRUafP1JHM/gZdescZGiF/a2MTGVuT7CWZrfiXCgakfJNpIIk
-	o9FYdg6uZOiAVdJM5HoUVaFn5odFsF48HkwkVZa8ygbZuPQsaM7z2OWKR6HDbLhSqc/eVXEY3qtZ7
-	oY094pOEv7Re+Hf6N0YFpm5sKxl3RBerP3d0BlPtGy+yu0LEq+N/bKMePnYcsJwSk/A9wVx6F4OS5
-	EYEmhfOHUlDD4G/SHrQ9zRPqpXv75zLEo9gaUhSfhRN2G9be7+O85cHWl1jjZO5z/q0nSRnl/TJIq
-	vWYw9VCtLpqTLieNKVtw==;
+	List-Owner; bh=BFIYzK8/egUPDiNTKPGZq1Ms8PAE6E8WlrLyP1m73XI=; b=lXX/qhuAJ3SDLw
+	4DYDKCZaeg52zok/rCFVbh/GSQi1on/Phj/6ZSHiUviYZqwvN893l7iJqKJE+dNZaohf+bD2163uL
+	x32o97r+98vVSFeXBkCZRSFF5dDhdzTIa3vKVVFQ7ksLWAXdcCi0pJZQPS74+C5HMP+e+kaf2OLIj
+	lA2+U4jq5WcAg+GF3WielfsTYGNmsQ2ap8YGmNBPAuiA0Wq5BYP9/gjt2PqHpCgkX55JiSk5hDI28
+	lLBLO373wEGmgoJFJNLJ6c9yd02Y4PqirbSMxY2oc2FlFUaoKf/kqOZZpaMzzpGCIJWJ8JpLI8nEc
+	IGJiGr+rYI0Qy33DtJwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qMkfM-00DCHC-2O;
-	Fri, 21 Jul 2023 07:35:08 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1qMlK1-00DKVh-0Y;
+	Fri, 21 Jul 2023 08:17:09 +0000
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qMkfD-00DCC0-3B;
-	Fri, 21 Jul 2023 07:35:01 +0000
-Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Fri, 21 Jul 2023
- 15:34:31 +0800
-From: Huqiang Qin <huqiang.qin@amlogic.com>
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
-	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-	<linus.walleij@linaro.org>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-gpio@vger.kernel.org>, Huqiang Qin <huqiang.qin@amlogic.com>
-Subject: [PATCH 1/3] dt-bindings: interrupt-controller: Add header file for Amlogic Meson-G12A SoCs
-Date: Fri, 21 Jul 2023 15:32:12 +0800
-Message-ID: <20230721073214.1876417-2-huqiang.qin@amlogic.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230721073214.1876417-1-huqiang.qin@amlogic.com>
-References: <20230721073214.1876417-1-huqiang.qin@amlogic.com>
+	id 1qMlJz-00DKTf-0C
+	for linux-amlogic@lists.infradead.org;
+	Fri, 21 Jul 2023 08:17:08 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3159d5e409dso1779744f8f.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 21 Jul 2023 01:17:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689927421; x=1690532221;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o6B+rnfSM0xcXsymXoRy0hO01EbexjC2r2BJi7Oh4Tg=;
+        b=M3frvDxJ8Lx541wDYgYu/fFxid+iV9soVtPl2tef8QPqzhCKPM900nnmHqaOwD6yN4
+         hoK39FKywAALhTAoI/g1FmjHG1lF4pe74P4zkqCICu1cEuGPBBb25wqDxqfgMT28HzAt
+         4RbwizxZJBF865LH8V0OkV4jJWyQ3Dq7829KgzZ9+bIyYuxFZMIlcq1byFjsOzVrz6aa
+         H52Gu7xyX/sGF8sns3uYqy5w0WjFijHb0xfBfuX/fKPDOohxostJgvAvx6Lih34JMPXk
+         BFrn8GqdhHxK5b/E2EZmdr9wW4LqTldGxWCekV7WgksLAdQP1Z2ApBowwGHPDXp2D42j
+         XwPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689927421; x=1690532221;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o6B+rnfSM0xcXsymXoRy0hO01EbexjC2r2BJi7Oh4Tg=;
+        b=gEb9MgKR8C1i6B2kvMGXhAGLwCjokF0ChwycAVcFrEboWIXjejxJ0/K3pawf7D58/9
+         OMEQGglJ/wcuwQS2biRG/siY5Zf3ySZSpcQayDYWAhO/WBHiyM+1puc4ffxYMFkKM33l
+         odDoNzpJt8wrX5dAvNOaWxG9c322EPFOVJDSStoleqfEN+BvWtNDBxpunQowZbwnBMe1
+         i1geppsD8jQlYzv4/d0V7V3kIVZcVV4HcsDM2sfYCagC2olcPsHg2iLDqfkoicWcNU+h
+         avReBxFdGMFAwjnP55pN2jMilTd5NUZU73T5s3XpBUdFd4gBJZZowEw32qfgaDAio+Jg
+         i+Uw==
+X-Gm-Message-State: ABy/qLZFn6U3dQQ0+gPt2qL9dluvNUIP+O917psqJll+JFCMxKIZfmaL
+	9pbaQcOVIEaXaYT1Zxirz57R6w==
+X-Google-Smtp-Source: APBJJlFUlwJlGXYQN9cg7lAdMveKlgbhYYK0b7nlHGwn3FLbMm3zs3wgdWU1pRTS5MnsuBi0I68UXA==
+X-Received: by 2002:a5d:4eca:0:b0:314:2736:ba3e with SMTP id s10-20020a5d4eca000000b003142736ba3emr4614811wrv.3.1689927420908;
+        Fri, 21 Jul 2023 01:17:00 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id l8-20020a5d6748000000b003143cb109d5sm3495784wrw.14.2023.07.21.01.16.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Jul 2023 01:17:00 -0700 (PDT)
+Message-ID: <50b781c0-6800-84fc-1bfb-3f8831f728e0@linaro.org>
+Date: Fri, 21 Jul 2023 10:16:58 +0200
 MIME-Version: 1.0
-X-Originating-IP: [10.28.11.83]
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/3] dt-bindings: interrupt-controller: Add header file
+ for Amlogic Meson-G12A SoCs
+Content-Language: en-US
+To: Huqiang Qin <huqiang.qin@amlogic.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, linus.walleij@linaro.org
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+References: <20230721073214.1876417-1-huqiang.qin@amlogic.com>
+ <20230721073214.1876417-2-huqiang.qin@amlogic.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230721073214.1876417-2-huqiang.qin@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230721_003500_022559_CF534AF4 
-X-CRM114-Status: GOOD (  10.23  )
+X-CRM114-CacheID: sfid-20230721_011707_124610_EF345C15 
+X-CRM114-Status: UNSURE (   9.64  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,148 +101,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add a new dt-binding header that details the interrupt number of the GPIO.
+On 21/07/2023 09:32, Huqiang Qin wrote:
+> Add a new dt-binding header that details the interrupt number of the GPIO.
+> 
+> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+> ---
+>  .../irq-meson-g12a-gpio.h                     | 126 ++++++++++++++++++
+>  1 file changed, 126 insertions(+)
+>  create mode 100644 include/dt-bindings/interrupt-controller/irq-meson-g12a-gpio.h
 
-Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
----
- .../irq-meson-g12a-gpio.h                     | 126 ++++++++++++++++++
- 1 file changed, 126 insertions(+)
- create mode 100644 include/dt-bindings/interrupt-controller/irq-meson-g12a-gpio.h
+Use compatible style as filename, so amlogic,meson-g12a-something-something.
 
-diff --git a/include/dt-bindings/interrupt-controller/irq-meson-g12a-gpio.h b/include/dt-bindings/interrupt-controller/irq-meson-g12a-gpio.h
-new file mode 100644
-index 000000000000..bd415cb7b669
---- /dev/null
-+++ b/include/dt-bindings/interrupt-controller/irq-meson-g12a-gpio.h
-@@ -0,0 +1,126 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-+/*
-+ * Copyright (c) 2023 Amlogic, Inc. All rights reserved.
-+ * Author: Huqiang Qin <huqiang.qin@amlogic.com>
-+ */
-+
-+#ifndef _DT_BINDINGS_IRQ_MESON_G12A_GPIO_H
-+#define _DT_BINDINGS_IRQ_MESON_G12A_GPIO_H
-+
-+/* IRQID[11:0] - GPIOAO[11:0] */
-+#define IRQID_GPIOAO_0		0
-+#define IRQID_GPIOAO_1		1
-+#define IRQID_GPIOAO_2		2
-+#define IRQID_GPIOAO_3		3
-+#define IRQID_GPIOAO_4		4
-+#define IRQID_GPIOAO_5		5
-+#define IRQID_GPIOAO_6		6
-+#define IRQID_GPIOAO_7		7
-+#define IRQID_GPIOAO_8		8
-+#define IRQID_GPIOAO_9		9
-+#define IRQID_GPIOAO_10		10
-+#define IRQID_GPIOAO_11		11
-+
-+/* IRQID[27:12] - GPIOZ[15:0] */
-+#define IRQID_GPIOZ_0		12
-+#define IRQID_GPIOZ_1		13
-+#define IRQID_GPIOZ_2		14
-+#define IRQID_GPIOZ_3		15
-+#define IRQID_GPIOZ_4		16
-+#define IRQID_GPIOZ_5		17
-+#define IRQID_GPIOZ_6		18
-+#define IRQID_GPIOZ_7		19
-+#define IRQID_GPIOZ_8		20
-+#define IRQID_GPIOZ_9		21
-+#define IRQID_GPIOZ_10		22
-+#define IRQID_GPIOZ_11		23
-+#define IRQID_GPIOZ_12		24
-+#define IRQID_GPIOZ_13		25
-+#define IRQID_GPIOZ_14		26
-+#define IRQID_GPIOZ_15		27
-+
-+/* IRQID[36:28] - GPIOH[8:0] */
-+#define IRQID_GPIOH_0		28
-+#define IRQID_GPIOH_1		29
-+#define IRQID_GPIOH_2		30
-+#define IRQID_GPIOH_3		31
-+#define IRQID_GPIOH_4		32
-+#define IRQID_GPIOH_5		33
-+#define IRQID_GPIOH_6		34
-+#define IRQID_GPIOH_7		35
-+#define IRQID_GPIOH_8		36
-+
-+/* IRQID[52:37] - BOOT[15:0] */
-+#define IRQID_BOOT_0		37
-+#define IRQID_BOOT_1		38
-+#define IRQID_BOOT_2		39
-+#define IRQID_BOOT_3		40
-+#define IRQID_BOOT_4		41
-+#define IRQID_BOOT_5		42
-+#define IRQID_BOOT_6		43
-+#define IRQID_BOOT_7		44
-+#define IRQID_BOOT_8		45
-+#define IRQID_BOOT_9		46
-+#define IRQID_BOOT_10		47
-+#define IRQID_BOOT_11		48
-+#define IRQID_BOOT_12		49
-+#define IRQID_BOOT_13		50
-+#define IRQID_BOOT_14		51
-+#define IRQID_BOOT_15		52
-+
-+/* IRQID[60:53] - GPIOC[7:0] */
-+#define IRQID_GPIOC_0		53
-+#define IRQID_GPIOC_1		54
-+#define IRQID_GPIOC_2		55
-+#define IRQID_GPIOC_3		56
-+#define IRQID_GPIOC_4		57
-+#define IRQID_GPIOC_5		58
-+#define IRQID_GPIOC_6		59
-+#define IRQID_GPIOC_7		60
-+
-+/* IRQID[76:61] - GPIOA[15:0] */
-+#define IRQID_GPIOA_0		61
-+#define IRQID_GPIOA_1		62
-+#define IRQID_GPIOA_2		63
-+#define IRQID_GPIOA_3		64
-+#define IRQID_GPIOA_4		65
-+#define IRQID_GPIOA_5		66
-+#define IRQID_GPIOA_6		67
-+#define IRQID_GPIOA_7		68
-+#define IRQID_GPIOA_8		69
-+#define IRQID_GPIOA_9		70
-+#define IRQID_GPIOA_10		71
-+#define IRQID_GPIOA_11		72
-+#define IRQID_GPIOA_12		73
-+#define IRQID_GPIOA_13		74
-+#define IRQID_GPIOA_14		75
-+#define IRQID_GPIOA_15		76
-+
-+/* IRQID[96:77] - GPIOX[19:0] */
-+#define IRQID_GPIOX_0		77
-+#define IRQID_GPIOX_1		78
-+#define IRQID_GPIOX_2		79
-+#define IRQID_GPIOX_3		80
-+#define IRQID_GPIOX_4		81
-+#define IRQID_GPIOX_5		82
-+#define IRQID_GPIOX_6		83
-+#define IRQID_GPIOX_7		84
-+#define IRQID_GPIOX_8		85
-+#define IRQID_GPIOX_9		86
-+#define IRQID_GPIOX_10		87
-+#define IRQID_GPIOX_11		88
-+#define IRQID_GPIOX_12		89
-+#define IRQID_GPIOX_13		90
-+#define IRQID_GPIOX_14		91
-+#define IRQID_GPIOX_15		92
-+#define IRQID_GPIOX_16		93
-+#define IRQID_GPIOX_17		94
-+#define IRQID_GPIOX_18		95
-+#define IRQID_GPIOX_19		96
-+
-+/* IRQID[99:97] - GPIOE[2:0] */
-+#define IRQID_GPIOE_0		97
-+#define IRQID_GPIOE_1		98
-+#define IRQID_GPIOE_2		99
-+
-+#endif /* _DT_BINDINGS_IRQ_MESON_G12A_GPIO_H */
--- 
-2.37.1
+
+
+Best regards,
+Krzysztof
 
 
 _______________________________________________
