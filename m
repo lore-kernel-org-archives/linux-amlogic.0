@@ -4,87 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A403EB64DC
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Jul 2023 08:17:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CC60EB64DC
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Jul 2023 10:04:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BFIYzK8/egUPDiNTKPGZq1Ms8PAE6E8WlrLyP1m73XI=; b=lXX/qhuAJ3SDLw
-	4DYDKCZaeg52zok/rCFVbh/GSQi1on/Phj/6ZSHiUviYZqwvN893l7iJqKJE+dNZaohf+bD2163uL
-	x32o97r+98vVSFeXBkCZRSFF5dDhdzTIa3vKVVFQ7ksLWAXdcCi0pJZQPS74+C5HMP+e+kaf2OLIj
-	lA2+U4jq5WcAg+GF3WielfsTYGNmsQ2ap8YGmNBPAuiA0Wq5BYP9/gjt2PqHpCgkX55JiSk5hDI28
-	lLBLO373wEGmgoJFJNLJ6c9yd02Y4PqirbSMxY2oc2FlFUaoKf/kqOZZpaMzzpGCIJWJ8JpLI8nEc
-	IGJiGr+rYI0Qy33DtJwg==;
+	List-Owner; bh=nBCMGTNRi5nC+HlDDxjvPbgoQkRwaDWmLC5m++MPkfQ=; b=gMLrLgM5A9fiHp
+	bKZqtL8lBcNbWVrUq0uBaqPCmP1TxeVHpsyHLXa9tIUxloPr1TWUJaniDFU7lM163/cwG4Drqkyyq
+	gBtEW7JqaBx4e15qxBeL+2teSZNhWuHwRjHlAhAuenZHgHt8CMHKlBVOR5VRIYXcJSHOTR0sW0rbn
+	FzLgzB1ut/FlTe07vwf8rq6C7wSuEu75nlGjW+SGR2sky06U3hGGbFfEAMLpsx1peAymR5q/xPDHp
+	iIFdaxaIluOUveKCWkYOetPEB4niXntNp1usfBTYdb9HOkaT3LDSuPF+eYD1wwK65Z6hD5fxGZcwG
+	S+GOUFgXo5uKorYb32hg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qMlK1-00DKVh-0Y;
-	Fri, 21 Jul 2023 08:17:09 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1qMmzK-00DdUe-12;
+	Fri, 21 Jul 2023 10:03:54 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qMlJz-00DKTf-0C
-	for linux-amlogic@lists.infradead.org;
-	Fri, 21 Jul 2023 08:17:08 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3159d5e409dso1779744f8f.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 21 Jul 2023 01:17:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689927421; x=1690532221;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=o6B+rnfSM0xcXsymXoRy0hO01EbexjC2r2BJi7Oh4Tg=;
-        b=M3frvDxJ8Lx541wDYgYu/fFxid+iV9soVtPl2tef8QPqzhCKPM900nnmHqaOwD6yN4
-         hoK39FKywAALhTAoI/g1FmjHG1lF4pe74P4zkqCICu1cEuGPBBb25wqDxqfgMT28HzAt
-         4RbwizxZJBF865LH8V0OkV4jJWyQ3Dq7829KgzZ9+bIyYuxFZMIlcq1byFjsOzVrz6aa
-         H52Gu7xyX/sGF8sns3uYqy5w0WjFijHb0xfBfuX/fKPDOohxostJgvAvx6Lih34JMPXk
-         BFrn8GqdhHxK5b/E2EZmdr9wW4LqTldGxWCekV7WgksLAdQP1Z2ApBowwGHPDXp2D42j
-         XwPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689927421; x=1690532221;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o6B+rnfSM0xcXsymXoRy0hO01EbexjC2r2BJi7Oh4Tg=;
-        b=gEb9MgKR8C1i6B2kvMGXhAGLwCjokF0ChwycAVcFrEboWIXjejxJ0/K3pawf7D58/9
-         OMEQGglJ/wcuwQS2biRG/siY5Zf3ySZSpcQayDYWAhO/WBHiyM+1puc4ffxYMFkKM33l
-         odDoNzpJt8wrX5dAvNOaWxG9c322EPFOVJDSStoleqfEN+BvWtNDBxpunQowZbwnBMe1
-         i1geppsD8jQlYzv4/d0V7V3kIVZcVV4HcsDM2sfYCagC2olcPsHg2iLDqfkoicWcNU+h
-         avReBxFdGMFAwjnP55pN2jMilTd5NUZU73T5s3XpBUdFd4gBJZZowEw32qfgaDAio+Jg
-         i+Uw==
-X-Gm-Message-State: ABy/qLZFn6U3dQQ0+gPt2qL9dluvNUIP+O917psqJll+JFCMxKIZfmaL
-	9pbaQcOVIEaXaYT1Zxirz57R6w==
-X-Google-Smtp-Source: APBJJlFUlwJlGXYQN9cg7lAdMveKlgbhYYK0b7nlHGwn3FLbMm3zs3wgdWU1pRTS5MnsuBi0I68UXA==
-X-Received: by 2002:a5d:4eca:0:b0:314:2736:ba3e with SMTP id s10-20020a5d4eca000000b003142736ba3emr4614811wrv.3.1689927420908;
-        Fri, 21 Jul 2023 01:17:00 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id l8-20020a5d6748000000b003143cb109d5sm3495784wrw.14.2023.07.21.01.16.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jul 2023 01:17:00 -0700 (PDT)
-Message-ID: <50b781c0-6800-84fc-1bfb-3f8831f728e0@linaro.org>
-Date: Fri, 21 Jul 2023 10:16:58 +0200
+	id 1qMmzG-00DdRw-14;
+	Fri, 21 Jul 2023 10:03:53 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id E5D8F120007;
+	Fri, 21 Jul 2023 13:03:39 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru E5D8F120007
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1689933819;
+	bh=DqYbWBT8rrvZaiN/vfHY6TUpbGWQJDc5EEX0zSuH7m0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=nxAlNY4/bcTHXRBO9hlrmtGSP1C0YklMIovxWQHCrYON8w+2wxuoAQ/hINKM3D9es
+	 RNqPtZaPQ83y8TdWwnXr/t5V0OpBohbfw3nNukwIqdC6RovuapDF1RREtpjAsvD6uY
+	 +GdetcfFTDBdkoXVzPVm70otvIgjdyv5L5752oJNFRUpJUpt/wzmzELGzp1w/HzlXa
+	 wj4KfddynKN0rKPfKpWU4vyN+BgqF9V1rzB4/XJsP3D11Xuobkrs606o0ayUNSerd2
+	 Ws3eI85fQZCIWQHC65M2I4L0eU64IjiYd0NvUqg6cj42akkMaPmZqsLdL2PxBLkzeW
+	 GonQdkur6zcsw==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 21 Jul 2023 13:03:39 +0300 (MSK)
+Received: from [192.168.1.127] (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Fri, 21 Jul 2023 13:03:39 +0300
+Message-ID: <e028c2dc-07e3-71d3-422d-08c6e3a4a99f@sberdevices.ru>
+Date: Fri, 21 Jul 2023 12:58:49 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 1/3] dt-bindings: interrupt-controller: Add header file
- for Amlogic Meson-G12A SoCs
+Subject: Re: [PATCH v1 1/1] iio: adc: meson: fix core clock enable/disable
+ moment
 Content-Language: en-US
-To: Huqiang Qin <huqiang.qin@amlogic.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, linus.walleij@linaro.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <20230721073214.1876417-1-huqiang.qin@amlogic.com>
- <20230721073214.1876417-2-huqiang.qin@amlogic.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230721073214.1876417-2-huqiang.qin@amlogic.com>
+To: Jonathan Cameron <jic23@kernel.org>
+CC: <lars@metafoo.de>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+	<andriy.shevchenko@linux.intel.com>, <nuno.sa@analog.com>,
+	<linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<kernel@sberdevices.ru>
+References: <20230714190320.308320-1-gnstark@sberdevices.ru>
+ <20230714190320.308320-2-gnstark@sberdevices.ru>
+ <20230715182121.29f83d76@jic23-huawei>
+From: George Stark <gnstark@sberdevices.ru>
+In-Reply-To: <20230715182121.29f83d76@jic23-huawei>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178772 [Jul 21 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: GNStark@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 525 525 723604743bfbdb7e16728748c3fa45e9eba05f7d, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/21 05:36:00 #21651174
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230721_011707_124610_EF345C15 
-X-CRM114-Status: UNSURE (   9.64  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230721_030351_099454_BDD7DE3A 
+X-CRM114-Status: GOOD (  26.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,27 +102,130 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 21/07/2023 09:32, Huqiang Qin wrote:
-> Add a new dt-binding header that details the interrupt number of the GPIO.
+Hello Jonathan
+
+Thanks for the feedback.
+
+On 7/15/23 20:21, Jonathan Cameron wrote:
+> On Fri, 14 Jul 2023 22:03:15 +0300
+> George Stark <gnstark@sberdevices.ru> wrote:
 > 
-> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
-> ---
->  .../irq-meson-g12a-gpio.h                     | 126 ++++++++++++++++++
->  1 file changed, 126 insertions(+)
->  create mode 100644 include/dt-bindings/interrupt-controller/irq-meson-g12a-gpio.h
+>> Enable core clock at probe stage and disable it at remove stage.
+>> Core clock is responsible for turning on/off the entire SoC module so
+>> it should be on before the first module register is touched and be off
+>> at very last moment.
+>>
+>> Signed-off-by: George Stark <gnstark@sberdevices.ru>
+> 
+> This sounds to me like this should perhaps have a fixes tag?
+ack
+> 
+> Given where it is in the new sequence you can also use
+> devm_clk_get_enabled() though that makes a potential backport of
+> the fix trickier...
+> 
+> I'd go with it anyway as it will make this change quite a bit simpler.
+ack
+> 
+> More comments inline
+> 
+> Jonathan
+> 
+>> ---
+>>   drivers/iio/adc/meson_saradc.c | 20 ++++++++++----------
+>>   1 file changed, 10 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+>> index fe066c9fab83..5a5bb5cc1320 100644
+>> --- a/drivers/iio/adc/meson_saradc.c
+>> +++ b/drivers/iio/adc/meson_saradc.c
+>> @@ -1055,12 +1055,6 @@ static int meson_sar_adc_hw_enable(struct iio_dev *indio_dev)
+>>   		goto err_vref;
+>>   	}
+>>   
+>> -	ret = clk_prepare_enable(priv->core_clk);
+>> -	if (ret) {
+>> -		dev_err(dev, "failed to enable core clk\n");
+>> -		goto err_core_clk;
+>> -	}
+>> -
+>>   	regval = FIELD_PREP(MESON_SAR_ADC_REG0_FIFO_CNT_IRQ_MASK, 1);
+>>   	regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG0,
+>>   			   MESON_SAR_ADC_REG0_FIFO_CNT_IRQ_MASK, regval);
+>> @@ -1087,8 +1081,6 @@ static int meson_sar_adc_hw_enable(struct iio_dev *indio_dev)
+>>   	regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG3,
+>>   			   MESON_SAR_ADC_REG3_ADC_EN, 0);
+>>   	meson_sar_adc_set_bandgap(indio_dev, false);
+>> -	clk_disable_unprepare(priv->core_clk);
+>> -err_core_clk:
+>>   	regulator_disable(priv->vref);
+>>   err_vref:
+>>   	meson_sar_adc_unlock(indio_dev);
+>> @@ -1116,8 +1108,6 @@ static void meson_sar_adc_hw_disable(struct iio_dev *indio_dev)
+>>   
+>>   	meson_sar_adc_set_bandgap(indio_dev, false);
+>>   
+>> -	clk_disable_unprepare(priv->core_clk);
+>> -
+>>   	regulator_disable(priv->vref);
+>>   
+>>   	if (!ret)
+>> @@ -1420,6 +1410,12 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
+>>   			ARRAY_SIZE(meson_sar_adc_iio_channels);
+>>   	}
+>>   
+>> +	ret = clk_prepare_enable(priv->core_clk);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to enable core clk\n");
+>> +		goto err;
+> 
+> If clk_prepare_enable() failed, then you shoudl not call clk_disable_unprepare()
+yes, but with devm_clk_get_enabled we dont't need this line anymore
+> 
+>> +	}
+>> +
+>>   	ret = meson_sar_adc_init(indio_dev);
+>>   	if (ret)
+>>   		goto err;
+>> @@ -1445,17 +1441,21 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
+>>   err_hw:
+>>   	meson_sar_adc_hw_disable(indio_dev);
+>>   err:
+>> +	clk_disable_unprepare(priv->core_clk);
+> 
+> Nothing to do with your patch, but this driver previously did some odd mixing
+> of direct returns and going to an empty label which definitely doesn't help
+> make this clear to follow.
+I made additional patch adding log messages to all errors those can 
+break probe stage
+> 
+>>   	return ret;
+>>   }
+>>   
+>>   static int meson_sar_adc_remove(struct platform_device *pdev)
+>>   {
+>>   	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
+>> +	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
+>>   
+>>   	iio_device_unregister(indio_dev);
+>>   
+>>   	meson_sar_adc_hw_disable(indio_dev);
+>>   
+>> +	clk_disable_unprepare(priv->core_clk);
+>> +
+>>   	return 0;
+>>   }
+>>   
+> 
 
-Use compatible style as filename, so amlogic,meson-g12a-something-something.
-
-
-
-Best regards,
-Krzysztof
-
+-- 
+Best regards
+George
 
 _______________________________________________
 linux-amlogic mailing list
