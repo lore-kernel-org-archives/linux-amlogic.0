@@ -4,118 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 316FDEB64DA
-	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Jul 2023 10:00:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13188C0015E
+	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Jul 2023 16:59:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=z71D+QxDEPaWKkQDGWOWQd2+gPOm44YS6OxzTbGmsX8=; b=gaLNKBcZY0jLPz
-	veySSgqT4dW2b4Cug7+d9mMNx1D/zdPi5Jj7q6NL6y3c9YNg7HDopYOtR9u4Fk5gAKgxaR+N0iLsP
-	yD1felnsQjVMU0acqqOpow8bOBIzlaK22U1ofaV1Cm2I8bz/A/WE/hbja0Qj4iIO0aOaTvzZb2fv6
-	MZXGXR2bo8Q1LRY8l3SFfdvGERyBEcDYxQ3AaBcwrAAfJjW3oVe/liTnz96zQXm0yhHiwowx8HPoW
-	qAiSG4HFfEQXZKK/WWGthSwy19CsYG5FjGq7L5sZH6CUCMH6EUdPI5dN5BC/X+qgzHmNLwfu2oTEW
-	0iGvj/yL+k9FNCE353Vg==;
+	List-Owner; bh=8+u4LzuCCUtOSo4fFhJPb/GqCZrEXB7cDRPx7CKUpqE=; b=rfFkofwfzGf8IM
+	36gnjWaWvPpkvzKUf+F14h2vldolNqHCLpeWdC0Tn6t4O8kQAFm7KsjLReYXdcxxa/SmdidllPB5b
+	A6dLmDdt511+sT36HUP0kyUaGyp7Gd4U+YT1x8XXHc9evuZzqqs5NZ2N9sI46TdZQoPWaPa6FWHG3
+	ddiBoYQ8PFeW7B4iQ02/ETrrUAlJNrQp641xeKKcmFcDIkSRVI/mF1LFJ3iRCBuOi4MyJdqGD7ywf
+	CGrtTpnRC3IMtrKZi3yWynlha6EZRA7eMOBHMalrk6iERGAMAB7WEed/WdU/nsIYE2Dz4ioXYGzBy
+	UZT9zOMNs+mYs8Htx54w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qN9PQ-00GJoG-0o;
-	Sat, 22 Jul 2023 10:00:20 +0000
-Received: from gofer.mess.org ([88.97.38.141])
+	id 1qNFwm-00H1QR-1d;
+	Sat, 22 Jul 2023 16:59:12 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qN9PM-00GJmL-1T;
-	Sat, 22 Jul 2023 10:00:18 +0000
-Received: by gofer.mess.org (Postfix, from userid 1000)
-	id 1365910006C; Sat, 22 Jul 2023 11:00:08 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
-	t=1690020008; bh=YcBVF9OByPJWzCU45MSsTPERsEXi6qu8BVTu0NkN++c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RwUTEpJM3LXz5vvd/Y0UX8jlKMMGY5MBgH5ORtxvVA9epRgGRHV+EJ5bxsx5U1fQ6
-	 be1F7Q3RwRnOO5wlKAT0dYHSsoH4oFxvkbJDIwD8j47iVVLvWgdnaMVaH+O93y4uzm
-	 j3qDxiYJK6H8/rdrOpRd03QDT0xv1AjEWYkR9+0NsPhEsbWdUX1bQSfAM/Gx+soJCw
-	 ruhU+je4WXNX+nPIr793k7oHAUiPHpLY2zVhHHyJqGcJAQpdoBqqBU/02KtJcabL8p
-	 iq/Ie/NdHUd1BPLYxd1Z7aDweYfgxI67HdC317LlyUi4QUHxgrFjo0fCSxudDhfrPM
-	 X4oARS48J/LLA==
-Date: Sat, 22 Jul 2023 11:00:08 +0100
-From: Sean Young <sean@mess.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Steve Longerbeam <slongerbeam@gmail.com>,
-	Matt Ranostay <matt.ranostay@konsulko.com>,
-	Michael Tretter <m.tretter@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Ming Qian <ming.qian@nxp.com>, Shijie Qin <shijie.qin@nxp.com>,
-	Zhou Peng <eagle.zhou@nxp.com>, Eddie James <eajames@linux.ibm.com>,
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Bin Liu <bin.liu@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
-	Houlong Wei <houlong.wei@mediatek.com>,
-	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-	Tiffany Lin <tiffany.lin@mediatek.com>,
-	Yunfei Dong <yunfei.dong@mediatek.com>,
-	Dmitry Osipenko <digetx@gmail.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-	Vikash Garodia <quic_vgarodia@quicinc.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>,
-	Jacopo Mondi <jacopo@jmondi.org>,
-	Dafna Hirschfeld <dafna@fastmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Krz ysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Yong Deng <yong.deng@magewell.com>,
-	Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-	Benoit Parrot <bparrot@ti.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, openbmc@lists.ozlabs.org,
-	linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
-	linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-sunxi@lists.linux.dev,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v2] media: Explicitly include correct DT includes
-Message-ID: <ZLuoqDxYUAPHCPgo@gofer.mess.org>
-References: <20230718143118.1065743-1-robh@kernel.org>
+	id 1qNFwk-00H1Px-1o;
+	Sat, 22 Jul 2023 16:59:11 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 702EE60677;
+	Sat, 22 Jul 2023 16:59:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EC52C433C8;
+	Sat, 22 Jul 2023 16:59:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1690045147;
+	bh=Ij/rcsp5XlAxMerhVwPsIgVA3kkMS01caPTwvxw8uGQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Odo2jweh+cUBE0mbhrXwKnFNCjy3c5laBUNaawbmRe/fOxoaGoXTrNTse7XnCmddB
+	 Eatr7NAcPkXii/qd8Si1FFx+cNzdjTYYfbMDJKskbzOqar3KgOm3hRbfj8FmQsTCtL
+	 RRciAVIBqnMz9+1I6RifmFlbuw9/gwIqm2mcY8blmwbEbs9CNZbzKw1Uul2uMl0DU9
+	 7PaLy2kmjX/K00aOjhlsRBJD5iwbx93ny+6pu/Zn8HKCL2lwGKGTMZRWq1dEODbGU/
+	 uvLPLdeQTF8Dn9PNxrTg29fOYYWNqHP5Zxu7qnN/AVwIxS0z4/Udt0nFSvSaZGPgg6
+	 ku3OI5qa+vQzQ==
+Date: Sat, 22 Jul 2023 17:59:01 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, George Stark
+ <gnstark@sberdevices.ru>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
+ <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+ <martin.blumenstingl@googlemail.com>, <nuno.sa@analog.com>,
+ <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+ <kernel@sberdevices.ru>
+Subject: Re: [PATCH v1 0/3] iio: adc: meson: tune init sequence
+Message-ID: <20230722175901.16f47142@jic23-huawei>
+In-Reply-To: <20230718104100.00007c0c@Huawei.com>
+References: <20230715110654.6035-1-gnstark@sberdevices.ru>
+	<20230716171134.43d05c45@jic23-huawei>
+	<a172c764-1eef-835f-f237-8f78b4c6e877@sberdevices.ru>
+	<ZLURZWPkmP6aKDOZ@smile.fi.intel.com>
+	<20230718104100.00007c0c@Huawei.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230718143118.1065743-1-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230722_030016_661237_290EA8A8 
-X-CRM114-Status: GOOD (  10.73  )
+X-CRM114-CacheID: sfid-20230722_095910_664095_34F10B65 
+X-CRM114-Status: GOOD (  14.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,31 +83,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On Tue, 18 Jul 2023 10:41:00 +0100
+Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
 
-On Tue, Jul 18, 2023 at 08:31:14AM -0600, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
+> On Mon, 17 Jul 2023 13:01:09 +0300
+> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> > On Mon, Jul 17, 2023 at 12:41:29PM +0300, George Stark wrote:  
+> > > On 7/16/23 19:11, Jonathan Cameron wrote:    
+> > > > On Sat, 15 Jul 2023 14:05:57 +0300
+> > > > George Stark <gnstark@sberdevices.ru> wrote:    
+> > 
+> > ...
+> >   
+> > > > These look fine to me, but I'd like them to sit on list a little while
+> > > > on off chance anyone else has feedback on them.    
+> > > 
+> > > I understand. I'd resend the patches in a week or more if there's no
+> > > feedback.    
+> > 
+> > There is no need to resend as long as they are available via lore.kernel.org
+> > mail archives.
+> >   
+> 
+> FYI, I track using patchwork.kernel.org so rarely drop a patch set down the back of the
+> sofa any more...
+> 
+> Jonathan
 
-For:
-
->  drivers/media/rc/meson-ir.c                                   | 2 +-
->  drivers/media/rc/mtk-cir.c                                    | 3 ++-
->  drivers/media/rc/sunxi-cir.c                                  | 3 ++-
-
-Reviewed-by: Sean Young <sean@mess.org>
+Long enough.  Applied to the togreg branch of iio.git and pushed out as testing
+for 0-day to see if we missed anything.
 
 Thanks,
 
-Sean
+Jonathan
+
+
 
 _______________________________________________
 linux-amlogic mailing list
