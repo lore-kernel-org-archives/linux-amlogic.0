@@ -4,69 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13188C0015E
-	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Jul 2023 16:59:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4A45C0015E
+	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Jul 2023 17:14:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8+u4LzuCCUtOSo4fFhJPb/GqCZrEXB7cDRPx7CKUpqE=; b=rfFkofwfzGf8IM
-	36gnjWaWvPpkvzKUf+F14h2vldolNqHCLpeWdC0Tn6t4O8kQAFm7KsjLReYXdcxxa/SmdidllPB5b
-	A6dLmDdt511+sT36HUP0kyUaGyp7Gd4U+YT1x8XXHc9evuZzqqs5NZ2N9sI46TdZQoPWaPa6FWHG3
-	ddiBoYQ8PFeW7B4iQ02/ETrrUAlJNrQp641xeKKcmFcDIkSRVI/mF1LFJ3iRCBuOi4MyJdqGD7ywf
-	CGrtTpnRC3IMtrKZi3yWynlha6EZRA7eMOBHMalrk6iERGAMAB7WEed/WdU/nsIYE2Dz4ioXYGzBy
-	UZT9zOMNs+mYs8Htx54w==;
+	List-Owner; bh=BRF+hFG9HaM8KI8FQYYd5ryBkvxDjmSj9jLJWraWhlw=; b=ONzzpWsLz/IZTM
+	PvC4X199UbGaZUNJrP9tSobVUZWnsvjysCEcTnhRQF8j7d3S3EshQQYTvS8rQcbsrNAaNab9Uiru/
+	b/z4/PldBgDfv8yyVZOoxaGrY4Q180OTyklHVCg1UDldjf2ImOtTJarJJ4B+ruGlo84WOGo1PlVoJ
+	fIThuj+yjiYZg4PdhBLlQaYuN2oZ2gfE5wzxZSMxXhUTtvDbUshZwpp654laNDSMLdypf64hg4C31
+	xA1uFmyms4THfDjowrVu7LW7OoHLQxIvY7Qd0vo/2t8jELCr1Dkj4W3G9CXN8dcWrF6UNce062BCo
+	A1bs6O1tcDWYACXGB/Zw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qNFwm-00H1QR-1d;
-	Sat, 22 Jul 2023 16:59:12 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qNGB1-00H2TN-1V;
+	Sat, 22 Jul 2023 17:13:55 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qNFwk-00H1Px-1o;
-	Sat, 22 Jul 2023 16:59:11 +0000
+	id 1qNGAx-00H2Sn-2J;
+	Sat, 22 Jul 2023 17:13:53 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 702EE60677;
-	Sat, 22 Jul 2023 16:59:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EC52C433C8;
-	Sat, 22 Jul 2023 16:59:02 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 31E8960AF7;
+	Sat, 22 Jul 2023 17:13:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C996C433C8;
+	Sat, 22 Jul 2023 17:13:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1690045147;
-	bh=Ij/rcsp5XlAxMerhVwPsIgVA3kkMS01caPTwvxw8uGQ=;
+	s=k20201202; t=1690046030;
+	bh=WBUDQNvPcAAQ33CTwyobl5vG7ksUY6lE1tb9THb+/rw=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Odo2jweh+cUBE0mbhrXwKnFNCjy3c5laBUNaawbmRe/fOxoaGoXTrNTse7XnCmddB
-	 Eatr7NAcPkXii/qd8Si1FFx+cNzdjTYYfbMDJKskbzOqar3KgOm3hRbfj8FmQsTCtL
-	 RRciAVIBqnMz9+1I6RifmFlbuw9/gwIqm2mcY8blmwbEbs9CNZbzKw1Uul2uMl0DU9
-	 7PaLy2kmjX/K00aOjhlsRBJD5iwbx93ny+6pu/Zn8HKCL2lwGKGTMZRWq1dEODbGU/
-	 uvLPLdeQTF8Dn9PNxrTg29fOYYWNqHP5Zxu7qnN/AVwIxS0z4/Udt0nFSvSaZGPgg6
-	 ku3OI5qa+vQzQ==
-Date: Sat, 22 Jul 2023 17:59:01 +0100
+	b=RINvGBcssY7x7S//6mp28SyHWEuOMCmaftZ6UiNsNaFjjH4Qr9N/d9I7QxjBNgNMx
+	 rmHDtKJBSpGILR+eL4QTpv1bOCupqz5SObFkyMBK6uxYx/qgdW562WeaFXlhs6DRO+
+	 Kl8sXlmKDGtAUPzU5OB+MI6lsu34mpnyw42rQZOkQbeR5cZ1Ls3CaR+ide00vC9xPP
+	 tfSu8L4o5qEN1a3sEXPoSJp9w36gpu8nTdG/Pnfq0lAeV0omBibBMiSWgdjjiQr22w
+	 vdXAuk17aLFUeOZeV9sG2dHsMhZVIDPFhEx6myBXime4+OxI/fiF91emVY2hyI0rKL
+	 FrxIAjM3dSUFQ==
+Date: Sat, 22 Jul 2023 18:13:45 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, George Stark
- <gnstark@sberdevices.ru>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
- <khilman@baylibre.com>, <jbrunet@baylibre.com>,
- <martin.blumenstingl@googlemail.com>, <nuno.sa@analog.com>,
+To: George Stark <gnstark@sberdevices.ru>
+Cc: <lars@metafoo.de>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+ <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+ <andriy.shevchenko@linux.intel.com>, <nuno.sa@analog.com>,
  <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
  <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
  <kernel@sberdevices.ru>
-Subject: Re: [PATCH v1 0/3] iio: adc: meson: tune init sequence
-Message-ID: <20230722175901.16f47142@jic23-huawei>
-In-Reply-To: <20230718104100.00007c0c@Huawei.com>
-References: <20230715110654.6035-1-gnstark@sberdevices.ru>
-	<20230716171134.43d05c45@jic23-huawei>
-	<a172c764-1eef-835f-f237-8f78b4c6e877@sberdevices.ru>
-	<ZLURZWPkmP6aKDOZ@smile.fi.intel.com>
-	<20230718104100.00007c0c@Huawei.com>
+Subject: Re: [PATCH v2 1/2] iio: adc: meson: fix core clock enable/disable
+ moment
+Message-ID: <20230722181345.44a79b6d@jic23-huawei>
+In-Reply-To: <20230721102413.255726-2-gnstark@sberdevices.ru>
+References: <20230721102413.255726-1-gnstark@sberdevices.ru>
+	<20230721102413.255726-2-gnstark@sberdevices.ru>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230722_095910_664095_34F10B65 
-X-CRM114-Status: GOOD (  14.63  )
+X-CRM114-CacheID: sfid-20230722_101351_858760_97CCDECC 
+X-CRM114-Status: GOOD (  23.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,41 +80,98 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 18 Jul 2023 10:41:00 +0100
-Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
+On Fri, 21 Jul 2023 13:23:08 +0300
+George Stark <gnstark@sberdevices.ru> wrote:
 
-> On Mon, 17 Jul 2023 13:01:09 +0300
-> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> Enable core clock at probe stage and disable it at remove stage.
+> Core clock is responsible for turning on/off the entire SoC module so
+> it should be on before the first module register is touched and be off
+> at very last moment.
 > 
-> > On Mon, Jul 17, 2023 at 12:41:29PM +0300, George Stark wrote:  
-> > > On 7/16/23 19:11, Jonathan Cameron wrote:    
-> > > > On Sat, 15 Jul 2023 14:05:57 +0300
-> > > > George Stark <gnstark@sberdevices.ru> wrote:    
-> > 
-> > ...
-> >   
-> > > > These look fine to me, but I'd like them to sit on list a little while
-> > > > on off chance anyone else has feedback on them.    
-> > > 
-> > > I understand. I'd resend the patches in a week or more if there's no
-> > > feedback.    
-> > 
-> > There is no need to resend as long as they are available via lore.kernel.org
-> > mail archives.
-> >   
-> 
-> FYI, I track using patchwork.kernel.org so rarely drop a patch set down the back of the
-> sofa any more...
-> 
-> Jonathan
+> Fixes: 3adbf3427330 ("iio: adc: add a driver for the SAR ADC found in Amlogic Meson SoCs")
+> Signed-off-by: George Stark <gnstark@sberdevices.ru>
+Applied to the fixes-togreg branch of iio.git and marked for stable.
 
-Long enough.  Applied to the togreg branch of iio.git and pushed out as testing
-for 0-day to see if we missed anything.
+The 2nd patch will have to wait as it's not a fix.
 
 Thanks,
 
 Jonathan
-
+> ---
+>  drivers/iio/adc/meson_saradc.c | 23 ++++++++++++-----------
+>  1 file changed, 12 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+> index 2ee12f3ad312..8397a5347f32 100644
+> --- a/drivers/iio/adc/meson_saradc.c
+> +++ b/drivers/iio/adc/meson_saradc.c
+> @@ -1055,12 +1055,6 @@ static int meson_sar_adc_hw_enable(struct iio_dev *indio_dev)
+>  		goto err_vref;
+>  	}
+>  
+> -	ret = clk_prepare_enable(priv->core_clk);
+> -	if (ret) {
+> -		dev_err(dev, "failed to enable core clk\n");
+> -		goto err_core_clk;
+> -	}
+> -
+>  	regval = FIELD_PREP(MESON_SAR_ADC_REG0_FIFO_CNT_IRQ_MASK, 1);
+>  	regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG0,
+>  			   MESON_SAR_ADC_REG0_FIFO_CNT_IRQ_MASK, regval);
+> @@ -1087,8 +1081,6 @@ static int meson_sar_adc_hw_enable(struct iio_dev *indio_dev)
+>  	regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG3,
+>  			   MESON_SAR_ADC_REG3_ADC_EN, 0);
+>  	meson_sar_adc_set_bandgap(indio_dev, false);
+> -	clk_disable_unprepare(priv->core_clk);
+> -err_core_clk:
+>  	regulator_disable(priv->vref);
+>  err_vref:
+>  	meson_sar_adc_unlock(indio_dev);
+> @@ -1116,8 +1108,6 @@ static void meson_sar_adc_hw_disable(struct iio_dev *indio_dev)
+>  
+>  	meson_sar_adc_set_bandgap(indio_dev, false);
+>  
+> -	clk_disable_unprepare(priv->core_clk);
+> -
+>  	regulator_disable(priv->vref);
+>  
+>  	if (!ret)
+> @@ -1379,7 +1369,7 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
+>  	if (IS_ERR(priv->clkin))
+>  		return dev_err_probe(dev, PTR_ERR(priv->clkin), "failed to get clkin\n");
+>  
+> -	priv->core_clk = devm_clk_get(dev, "core");
+> +	priv->core_clk = devm_clk_get_enabled(dev, "core");
+>  	if (IS_ERR(priv->core_clk))
+>  		return dev_err_probe(dev, PTR_ERR(priv->core_clk), "failed to get core clk\n");
+>  
+> @@ -1462,15 +1452,26 @@ static int meson_sar_adc_remove(struct platform_device *pdev)
+>  static int meson_sar_adc_suspend(struct device *dev)
+>  {
+>  	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> +	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
+>  
+>  	meson_sar_adc_hw_disable(indio_dev);
+>  
+> +	clk_disable_unprepare(priv->core_clk);
+> +
+>  	return 0;
+>  }
+>  
+>  static int meson_sar_adc_resume(struct device *dev)
+>  {
+>  	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> +	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(priv->core_clk);
+> +	if (ret) {
+> +		dev_err(dev, "failed to enable core clk\n");
+> +		return ret;
+> +	}
+>  
+>  	return meson_sar_adc_hw_enable(indio_dev);
+>  }
 
 
 _______________________________________________
