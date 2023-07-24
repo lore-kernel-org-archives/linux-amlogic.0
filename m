@@ -4,50 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5035EEB64DD
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Jul 2023 06:03:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90D32C0015E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Jul 2023 07:26:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=C4ADVsbZuT+bSC8JTDWv+VkzESz0soY/YQIvZdfFIws=; b=rhobG+i6sC6g8x
-	ZGDU+i2L38m+w30+HfNItK819F7tWaBoPgHt4t9Mj6uSQptwGHeGAQzoSYwbywaW2G5OErXjxkUES
-	9TLkQRw4ErIcz7luhM6eq3ZOUOpIS9CyOWzL/aQk7M+s4hcPCCE2v+gtKlxrPK08q2aq4LMGZK+Dl
-	Mfy0kjIrqG31bo3QfhYVP630oLbZbcgvsRlgjwQ5IOg2+bUp2LlfZ6EL3dCrGbXZVq1BoR485vJLc
-	d5/zUXVc4O9H3LiazT5v2QDl52C2gd/0/2PMzI/mEkiEo56VaQ/Y4RL5sdp3V2AX3qn+x3tb8I9au
-	gtp69gbci1nJhuV2irZw==;
+	List-Owner; bh=MZ7oUIBNLVzsNoH5mbkb/hPrhqJulJEfsTgg3lD/QB0=; b=A3J9tyxoJNjsxU
+	iyl8Mm8ShYXCVWW9K2eUeH1k9DW70qBoVwPikuY+05P0xkxFmMm2PgObesvHsC0OXGWEPyVVPonSY
+	BIsHKg62ji4o7+ZjeUa8PppjwuJ79WMouJ1Za1V2/S7nlwL2l49NNqzK9JTt7OMDFSDBuj5YnbISQ
+	0a64R9qe5xC8WPQUV+npfEShLCN7/1OBNkq7R72mFfVGPAoKPr7Rm3W8nxpAUM6b6XcimiBH0EzuI
+	XhD3W2Ib/A0vHdASx7YwkSliRAMOtxKIvmnNHsS/Uw8KLwBuJOVykitgkAPI9TC52+44okhP++KbJ
+	EphYMS7SS12jczSLg3yA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qNoeV-002uO7-0t;
-	Mon, 24 Jul 2023 06:02:39 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1qNpx4-00360C-1i;
+	Mon, 24 Jul 2023 07:25:54 +0000
+Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qNoeO-002uHH-1L;
-	Mon, 24 Jul 2023 06:02:34 +0000
-Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Mon, 24 Jul 2023
- 14:01:55 +0800
-From: Huqiang Qin <huqiang.qin@amlogic.com>
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
-	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-	<linus.walleij@linaro.org>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-gpio@vger.kernel.org>, Huqiang Qin <huqiang.qin@amlogic.com>
-Subject: [PATCH V2 3/3] arm64: dts: Replace the IRQ number with the IRQID macro definition
-Date: Mon, 24 Jul 2023 14:01:08 +0800
-Message-ID: <20230724060108.1403662-4-huqiang.qin@amlogic.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230724060108.1403662-1-huqiang.qin@amlogic.com>
-References: <20230724060108.1403662-1-huqiang.qin@amlogic.com>
+	id 1qNpx2-0035zB-2M
+	for linux-amlogic@lists.infradead.org;
+	Mon, 24 Jul 2023 07:25:54 +0000
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-51e429e1eabso6025659a12.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 24 Jul 2023 00:25:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690183549; x=1690788349;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=W9l6Fr37LZFsRI9a0cNRKO3u2d4EkTsh5kDdAxFsIuI=;
+        b=t9vzLQ9R8JYoxSaw9dEkBOCBjCFmpSHYtUzBgPJ3pXOUgFiR4HbwH/weIkqYtWTnB/
+         ev8/SA2VV71ZCmED5AALV5FndUCgw1iqyxftbB5HJlQXoL+2WCQZ4ThWLdsCwvQ0fjpS
+         FYdxJh1TQPh/EEIz8LfAqJWjubGC0qTYBlzzR2W1t3ZbAZaQ/2ME2JZmA9P8+4PxbrX3
+         gINhauBulbi5+Tbf0M4T/8zSDM5G1J3donIDnbDT7rZEhx1c66nuTYwv2EDSBhaP+an4
+         My4BhRVpyZCbAD9l9iyDn9QvDx1mXt6xTENO7/T+5qhQGJHEenCO4NoIRR/UQJhjwrU2
+         m9nA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690183549; x=1690788349;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=W9l6Fr37LZFsRI9a0cNRKO3u2d4EkTsh5kDdAxFsIuI=;
+        b=G7YhnsiZw63KUkuj/YTcFGNNzUF0+QbPHmFjL7q/MufDgB1CnPmsrimnuAUNdZW3Sg
+         FyYLAntsFPQSaci+Cx8HdmpWIvb+wIxYEhudXZepApIU+41X00f/hKqzGyaJ2xeR/WmR
+         nc0dIxRxADag+8y6iN/7m4JOREWj4rKvV6SkYge29n2iStOxIoMAWFHWAoI4IW4ffqmw
+         s9m3WgRh1Pws0C/UNwUxq0XkyW1eRgFuKGsk7bYFFjPpajciyKmmtNiNRLhrH5GBIyUi
+         9AxNcShaydrTvc4/qGkrsBtVlC6Eal3QHlYmo5TZiG73VoAjBTyLeCQGcbmh9kGxso1y
+         Orvw==
+X-Gm-Message-State: ABy/qLZJqbpUz8cHCyVqk0RBL/17hGFcKONZWn4DsAYK999coLO/Ye44
+	1W4qXxq6d6L89K9afWxvih55Pw==
+X-Google-Smtp-Source: APBJJlF9IAG1RI4StyH32kjNgDCa1flUBleL5s+aVpEXrbFOAOpWmrTFckd4EbsDhL8JWoJKxTxFfg==
+X-Received: by 2002:a17:906:3185:b0:965:fb87:4215 with SMTP id 5-20020a170906318500b00965fb874215mr8662868ejy.15.1690183549124;
+        Mon, 24 Jul 2023 00:25:49 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id bt16-20020a170906b15000b00993159ce075sm6235250ejb.210.2023.07.24.00.25.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jul 2023 00:25:48 -0700 (PDT)
+Message-ID: <61409dfe-60b5-e124-a6ef-5437752f4d2e@linaro.org>
+Date: Mon, 24 Jul 2023 09:25:46 +0200
 MIME-Version: 1.0
-X-Originating-IP: [10.28.11.83]
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH V2 1/3] dt-bindings: interrupt-controller: Add header file
+ for Amlogic Meson-G12A SoCs
+Content-Language: en-US
+To: Huqiang Qin <huqiang.qin@amlogic.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, linus.walleij@linaro.org
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+References: <20230724060108.1403662-1-huqiang.qin@amlogic.com>
+ <20230724060108.1403662-2-huqiang.qin@amlogic.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230724060108.1403662-2-huqiang.qin@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230723_230232_456255_C7345279 
-X-CRM114-Status: GOOD (  10.59  )
+X-CRM114-CacheID: sfid-20230724_002552_769766_CC1FDE67 
+X-CRM114-Status: UNSURE (   7.22  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,267 +101,19 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Replacing IRQ numbers with IRQID macro definitions makes node properties
-easier to understand and also makes GPIO interrupts easier to use.
+On 24/07/2023 08:01, Huqiang Qin wrote:
+> Add a new dt-binding header that details the interrupt number of the GPIO.
+> 
+> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+> ---
+> 
+> V1 -> V2: Rename irq-meson-g12a-gpio.h to amlogic,meson-g12a-gpio-intc.h
 
-Associated platforms:
-- Amlogic Meson-G12A
-- Amlogic Meson-G12B
-- Amlogic Meson-SM1
 
-Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
----
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-V1 -> V2: Include header file changed to amlogic,meson-g12a-gpio-intc.h
-
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi    |  1 +
- arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts   |  2 +-
- .../boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi    |  2 +-
- arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi |  2 +-
- .../boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts  |  4 ++--
- .../arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi |  2 +-
- arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi     |  2 +-
- .../boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts   |  2 +-
- arch/arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi  |  4 ++--
- arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts    |  2 +-
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi    |  2 +-
- arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts     | 12 ++++++------
- .../boot/dts/amlogic/meson-sm1-x96-air-gbit.dts      |  2 +-
- 13 files changed, 20 insertions(+), 19 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 0c49655cc90c..d8b94a3167c3 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/clock/g12a-aoclkc.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interrupt-controller/amlogic,meson-g12a-gpio-intc.h>
- #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
- #include <dt-bindings/thermal/thermal.h>
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-index b2bb94981838..c79f3e8d26b7 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-@@ -344,7 +344,7 @@ external_phy: ethernet-phy@0 {
- 
- 		interrupt-parent = <&gpio_intc>;
- 		/* MAC_INTR on GPIOZ_14 */
--		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+		interrupts = <IRQID_GPIOZ_14 IRQ_TYPE_LEVEL_LOW>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-index 97e522921b06..428b35e1d79c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-@@ -201,7 +201,7 @@ external_phy: ethernet-phy@0 {
- 
- 		interrupt-parent = <&gpio_intc>;
- 		/* MAC_INTR on GPIOZ_14 */
--		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+		interrupts = <IRQID_GPIOZ_14 IRQ_TYPE_LEVEL_LOW>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
-index 83709787eb91..c69b0f803916 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
-@@ -327,7 +327,7 @@ external_phy: ethernet-phy@0 {
- 
- 		interrupt-parent = <&gpio_intc>;
- 		/* MAC_INTR on GPIOZ_14 */
--		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+		interrupts = <IRQID_GPIOZ_14 IRQ_TYPE_LEVEL_LOW>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
-index 276e95b34022..eed2a23047ca 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
-@@ -380,7 +380,7 @@ rk818: pmic@1c {
- 		compatible = "rockchip,rk818";
- 		reg = <0x1c>;
- 		interrupt-parent = <&gpio_intc>;
--		interrupts = <7 IRQ_TYPE_LEVEL_LOW>; /* GPIOAO_7 */
-+		interrupts = <IRQID_GPIOAO_7 IRQ_TYPE_LEVEL_LOW>; /* GPIOAO_7 */
- 		#clock-cells = <1>;
- 
- 		vcc1-supply = <&vdd_sys>;
-@@ -519,7 +519,7 @@ rk817: pmic@20 {
- 		reg = <0x20>;
- 		interrupt-parent = <&gpio_intc>;
- 
--		interrupts = <5 IRQ_TYPE_LEVEL_LOW>; /* GPIOAO_5 */
-+		interrupts = <IRQID_GPIOAO_5 IRQ_TYPE_LEVEL_LOW>; /* GPIOAO_5 */
- 
- 		vcc1-supply = <&vdd_sys>;
- 		vcc2-supply = <&vdd_sys>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-index 24d0442dffb2..01aa970b2f8c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-@@ -185,7 +185,7 @@ external_phy: ethernet-phy@0 {
- 
- 		interrupt-parent = <&gpio_intc>;
- 		/* MAC_INTR on GPIOZ_14 */
--		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+		interrupts = <IRQID_GPIOZ_14 IRQ_TYPE_LEVEL_LOW>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi
-index b40d2c1002c9..ac8b7178257e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi
-@@ -269,7 +269,7 @@ external_phy: ethernet-phy@0 {
- 
- 		interrupt-parent = <&gpio_intc>;
- 		/* MAC_INTR on GPIOZ_14 */
--		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+		interrupts = <IRQID_GPIOZ_14 IRQ_TYPE_LEVEL_LOW>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts
-index d1debccdc1c2..95e03bb02af2 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts
-@@ -100,7 +100,7 @@ external_phy: ethernet-phy@0 {
- 
- 		interrupt-parent = <&gpio_intc>;
- 		/* MAC_INTR on GPIOZ_14 */
--		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+		interrupts = <IRQID_GPIOZ_14 IRQ_TYPE_LEVEL_LOW>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi
-index 17045ff81c69..62404743e62d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi
-@@ -45,7 +45,7 @@ key {
- 			linux,code = <BTN_1>;
- 			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;
- 			interrupt-parent = <&gpio_intc>;
--			interrupts = <3 IRQ_TYPE_EDGE_BOTH>;
-+			interrupts = <IRQID_GPIOAO_3 IRQ_TYPE_EDGE_BOTH>;
- 		};
- 	};
- 
-@@ -217,7 +217,7 @@ external_phy: ethernet-phy@0 {
- 
- 		interrupt-parent = <&gpio_intc>;
- 		/* MAC_INTR on GPIOZ_14 */
--		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+		interrupts = <IRQID_GPIOZ_14 IRQ_TYPE_LEVEL_LOW>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
-index 0f6660e68e72..ebda1dd30fa6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
-@@ -100,7 +100,7 @@ external_phy: ethernet-phy@0 {
- 
- 		interrupt-parent = <&gpio_intc>;
- 		/* MAC_INTR on GPIOZ_14 */
--		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+		interrupts = <IRQID_GPIOZ_14 IRQ_TYPE_LEVEL_LOW>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-index 2fce44939f45..86b90f44a4b3 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-@@ -283,7 +283,7 @@ external_phy: ethernet-phy@0 {
- 
- 		interrupt-parent = <&gpio_intc>;
- 		/* MAC_INTR on GPIOZ_14 */
--		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+		interrupts = <IRQID_GPIOZ_14 IRQ_TYPE_LEVEL_LOW>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-index 9068a334ea57..4f07d6387bb1 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-@@ -53,7 +53,7 @@ key-1 {
- 			linux,code = <BTN_0>;
- 			gpios = <&gpio GPIOH_6 GPIO_ACTIVE_LOW>;
- 			interrupt-parent = <&gpio_intc>;
--			interrupts = <34 IRQ_TYPE_EDGE_BOTH>;
-+			interrupts = <IRQID_GPIOH_6 IRQ_TYPE_EDGE_BOTH>;
- 		};
- 
- 		key-2 {
-@@ -61,7 +61,7 @@ key-2 {
- 			linux,code = <BTN_1>;
- 			gpios = <&gpio GPIOH_7 GPIO_ACTIVE_LOW>;
- 			interrupt-parent = <&gpio_intc>;
--			interrupts = <35 IRQ_TYPE_EDGE_BOTH>;
-+			interrupts = <IRQID_GPIOH_7 IRQ_TYPE_EDGE_BOTH>;
- 		};
- 
- 		key-3 {
-@@ -69,7 +69,7 @@ key-3 {
- 			linux,code = <BTN_2>;
- 			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_LOW>;
- 			interrupt-parent = <&gpio_intc>;
--			interrupts = <2 IRQ_TYPE_EDGE_BOTH>;
-+			interrupts = <IRQID_GPIOAO_2 IRQ_TYPE_EDGE_BOTH>;
- 		};
- 
- 		key-mic-mute {
-@@ -78,7 +78,7 @@ key-mic-mute {
- 			linux,input-type = <EV_SW>;
- 			gpios = <&gpio_ao GPIOE_2 GPIO_ACTIVE_LOW>;
- 			interrupt-parent = <&gpio_intc>;
--			interrupts = <99 IRQ_TYPE_EDGE_BOTH>;
-+			interrupts = <IRQID_GPIOE_2 IRQ_TYPE_EDGE_BOTH>;
- 		};
- 
- 		key-power {
-@@ -86,7 +86,7 @@ key-power {
- 			linux,code = <KEY_POWER>;
- 			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;
- 			interrupt-parent = <&gpio_intc>;
--			interrupts = <3 IRQ_TYPE_EDGE_BOTH>;
-+			interrupts = <IRQID_GPIOAO_3 IRQ_TYPE_EDGE_BOTH>;
- 		};
- 	};
- 
-@@ -583,7 +583,7 @@ &uart_A {
- 	bluetooth {
- 		compatible = "brcm,bcm43438-bt";
- 		interrupt-parent = <&gpio_intc>;
--		interrupts = <95 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupts = <IRQID_GPIOX_18 IRQ_TYPE_LEVEL_HIGH>;
- 		interrupt-names = "host-wakeup";
- 		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
- 		max-speed = <2000000>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
-index 7e1a74046ba5..6ee406066ee0 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
-@@ -100,7 +100,7 @@ external_phy: ethernet-phy@0 {
- 
- 		interrupt-parent = <&gpio_intc>;
- 		/* MAC_INTR on GPIOZ_14 */
--		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+		interrupts = <IRQID_GPIOZ_14 IRQ_TYPE_LEVEL_LOW>;
- 	};
- };
- 
--- 
-2.37.1
+Best regards,
+Krzysztof
 
 
 _______________________________________________
