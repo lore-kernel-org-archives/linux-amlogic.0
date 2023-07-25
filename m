@@ -4,84 +4,200 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93577C001DF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jul 2023 14:27:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07CF4C0015E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jul 2023 17:19:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=knTYwvtV23pbsDCHGBtsrSDjcgalJPLlw8fX4UEa8wM=; b=tbWS05NvjIECOo
-	yX6/FR3tuFG0oPIz3SZRvF2fRQ6PRIO+tUCtT+oYjSzAHtuS393ny7k9NOsGWgidBq++0VtmEu44L
-	/dGqawH7h02p9lmyB9OX5w9rxd2UeNzMtOUn5c3gzJ2RYYtTYia3sC9YllwpDOn0KOxweZVMNneK7
-	V4Qh1A2Q+qpf1vNk2kV/zS0hT2rDinoSNdG3C0E+Do4mVVc9tbYngnMEK3Kl3Tg/L0El9TXUJ+Cw0
-	rx359oibAeGj9BnIXMlOAq0fyYPqwTUHpa84ZK4cHINu5QwLuB9VvVVLliYi6QJIZgKigoVG79LEm
-	iZKDgq55m4bBYiJj2zww==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=eY5yhK9XNs7VvgCVoD7maipiYVbw/Y/rchAtSYd8znM=; b=vgltrscQvcDzEj
+	Kq8orEy2Yt+Of4T927ty6Lgm+CNG41a7Fss/F1gc5VmCR7n8sU/+1ahaxMJgCc/1PoXv8C0Xcm+fo
+	9jTj5ZWiYjHxfkR5+KXcdF+vwley3HVOcsDCz5rb8rVI679vwQ+tcnqTv+dbcTkV3kjd3mmq/hTCe
+	JUwgOPuQ9RIwvhZhJK3IpVvovBaX48wQdAPbmy8fFPeZ+34rjxFmJgSMaLZ8/arHLBb8U61Zs0PAy
+	gFUu4pvZKQKCjgj4QbNxkiIGyuLSWKwr18dh7D5J0kZ5xV/RGBQuDlT8ev36Q0rSfVpCAMoCf2yIu
+	rT+62NLZ5QLcTwiG76Wg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOJ0H-007mAn-0J;
-	Tue, 25 Jul 2023 14:27:09 +0000
-Received: from mail-ej1-x62e.google.com ([2a00:1450:4864:20::62e])
+	id 1qOLgO-0088xH-2O;
+	Tue, 25 Jul 2023 17:18:48 +0000
+Received: from mail-co1nam11on20707.outbound.protection.outlook.com ([2a01:111:f400:7eab::707] helo=NAM11-CO1-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOJ0F-007m9l-10
-	for linux-amlogic@lists.infradead.org;
-	Tue, 25 Jul 2023 14:27:08 +0000
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-992f15c36fcso951928766b.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 25 Jul 2023 07:27:07 -0700 (PDT)
+	id 1qOLgL-0088wa-2x;
+	Tue, 25 Jul 2023 17:18:47 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LF7Nt6FB54q9wLFnqMh+KWU1gJu2w+VXEFT+Gm94jWu76pxreZZ42rFXlkaJb+GNCigmcyVQvmiuCO/YDeivI8ObDfEqE0S3SxV/rRC/8jtTrn2apAseZWp4ErUG8ViGJzltV0PSelcUrCXZIAJvV4Te4DXlqKNnKyZOLVs1XySvgghFn5PlFQqSnpZZJlhGB7PKxKqYQAiQTmX5jhRPDp51xn9oX/Axx6LJ3r9er5D1fqsXk8YHB/0yq85S0+90m7HSLGtI7kCTVONx5DIPQlIgBmmNMWWwRazUPAsQhGocwYcWGH214ck1IjO+xDNwFb5Zk/IHtI45wOyu29ybfw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DK9uHbsc3t+xogfPMg7kjIX+FMiUQnAapwvPyCJgoZE=;
+ b=eP1EQBOCMbwlXLnRG3kxplC03+6yeHSsUw+juRtBXR2VWTLrq1pCCBMBYzR1k5ap//eHMNw4tV42/4NctcgD1ikw+EnFdBake1vW4pGOi26cmrLsBxN9KAYmM9zMBmv11K0XSg+4RHOzf8DmQqnqpFJ37OIr+utEWdLQ8RB06ol0cCo2jfuQW5zmyNd/ELruim0F/HUO1oRFPcGg4Qoc3ST9u5GUPY3ycJfb08LjXJSVh9WUx9/bQI1exCbeYsm1NeKhI+5sKP140CsdY0GLY9wc+Jjp/nvqDMF37JRnH5sqhp/dUyT8bePQQIsoSk8theP7N+O8zS+qw7lZ3vFgcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
+ dkim=pass header.d=corigine.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690295226; x=1690900026;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hU8lSjQ6M9yd48ULuSbmUnhhWGLQGOdsfRMZvGDHUYg=;
-        b=qtCYt7lSSrdZZ8iQAVofiekLVvwLzUwagNxRSeFzg960F3nJujWU25uL4zNn/svJ43
-         KvBY7KqPvhZRA/Og/tInPY0nPEozrpR4/etavmBxkjejRJdO7HuxwMMOl9Mg4/4oJzRu
-         izdUVCpDnvIsmGGYfMao9YyEIJ3ftaz9NHcg8tr2zLAZr1inbVBx1QbVZJMQxlaDOwWB
-         hEnO4gJABuwF3kouzb8hIaNxEEkpRgcX6H6Gd+5XEVViB0J5ZYaa/hlMS7jEKJfj8tt+
-         VizO7MUsM7bAAWLtnFH90JrogdmuG5VoDogTrS4nRbTbWJvAA2tRoXzNxjMDE2aEI1sG
-         S/QA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690295226; x=1690900026;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hU8lSjQ6M9yd48ULuSbmUnhhWGLQGOdsfRMZvGDHUYg=;
-        b=gLSsAFYvMvrb8O7al6lsm2KO3gigpFj4M4F0c7QNxWyeOnduEYGPMu8MFchuzfb5s0
-         E9DfNwcHUz/6T+ca4MISl2/YqSwZx554H3VbiOnykXEGrp/ckYpRdMnDVdQSMdS6pD3S
-         OHTFrJBD5t0hovYl0AO7MYTHYlO2CFQLJVu4phl+6towlaZqKPrWbLNUh/l/pH9bzuN1
-         uPRboUGRaaz5DFy2qlWIEiI1ra1z5hzxN1Z7ZERLMh9YW0UdiNw52J0weq3Ab1LXPaNi
-         acVK92HHImayoaGFfR25hz2Cn8w+hcFQQJSyOmJmvrdVQKzZj46i1U+8b35Eli3TMI2c
-         6e5g==
-X-Gm-Message-State: ABy/qLYGYH0K2I4VViMLi3eRsA8KmxE/gvkz7N8zqWFNPWnaflm2g2cX
-	L7PGTB8vjoL9uVC8tUcA/v/qbg==
-X-Google-Smtp-Source: APBJJlHFnc3Sz1DBUjgwnuSooCSHfG5qz85DMBZy79oDPNK7BX03+ekkae7x1UZx4sl9fM+H2KxFXA==
-X-Received: by 2002:a17:907:760d:b0:993:e752:1a6a with SMTP id jx13-20020a170907760d00b00993e7521a6amr13195406ejc.21.1690295226116;
-        Tue, 25 Jul 2023 07:27:06 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id o22-20020a170906289600b00977c7566ccbsm8201027ejd.164.2023.07.25.07.27.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jul 2023 07:27:05 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+ d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DK9uHbsc3t+xogfPMg7kjIX+FMiUQnAapwvPyCJgoZE=;
+ b=iWLcOQAvTSLwBrWinNqq3nQPLzctyuRnuYCRVRCvK3cOJ6AQ3tgZhLdAKI4UbrjqqcnpOOG74Hg2P9faH4x+ZI6+tw6/QxRittc7DjZuA1/w/EPO2EBIOeyWnnDo8YwRtGHxKLataoAEul08W3ISPGzjmY4tYNw/KU6hCNMTd20=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=corigine.com;
+Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
+ by SN7PR13MB6065.namprd13.prod.outlook.com (2603:10b6:806:32f::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.33; Tue, 25 Jul
+ 2023 17:18:38 +0000
+Received: from PH0PR13MB4842.namprd13.prod.outlook.com
+ ([fe80::fde7:9821:f2d9:101d]) by PH0PR13MB4842.namprd13.prod.outlook.com
+ ([fe80::fde7:9821:f2d9:101d%7]) with mapi id 15.20.6609.032; Tue, 25 Jul 2023
+ 17:18:38 +0000
+Date: Tue, 25 Jul 2023 19:18:19 +0200
+From: Simon Horman <simon.horman@corigine.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Andreas Larsson <andreas@gaisler.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Iyappan Subramanian <iyappan@os.amperecomputing.com>,
+	Keyur Chudgar <keyur@os.amperecomputing.com>,
+	Chris Snook <chris.snook@gmail.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@microchip.com>,
+	Madalin Bucur <madalin.bucur@nxp.com>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Wei Fang <wei.fang@nxp.com>, Shenwei Wang <shenwei.wang@nxp.com>,
+	Clark Wang <xiaoning.wang@nxp.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Sean Anderson <sean.anderson@seco.com>,
+	Pantelis Antoniou <pantelis.antoniou@gmail.com>,
+	Li Yang <leoyang.li@nxp.com>,
+	Yisen Zhuang <yisen.zhuang@huawei.com>,
+	Salil Mehta <salil.mehta@huawei.com>,
+	Douglas Miller <dougmill@linux.ibm.com>,
+	Marcin Wojtas <mw@semihalf.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Taras Chorny i <taras.chornyi@plvision.eu>,
+	Mirko Lindner <mlindner@marvell.com>,
+	Stephen Hemminger <stephen@networkplumber.org>,
+	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Mark Lee <Mark-MC.Lee@mediatek.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Timur Tabi <timur@kernel.org>, Sergey Shtylyov <s.shtylyov@omp.ru>,
+	Steve Glendinning <steve.glendinning@shawell.net>,
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org,
+	Vinod Koul <vkoul@kernel.org>,
+	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Samin Guo <samin.guo@starfivetech.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+	Grygorii Strashko <grygorii.strashko@ti.com>,
+	Kevin Brace <kevinbrace@bracecomputerlab.com>,
+	Francois Romieu <romieu@fr.zoreil.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+	Alexander Aring <alex.aring@gmail.com>,
+	Stefan Schmidt <stefan@datenfreihafen.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Alex Elder <elder@kernel.org>, A ndrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Alex Elder <elder@linaro.org>, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: amlogic: meson-g12b-bananapi: switch to enable-gpios
-Date: Tue, 25 Jul 2023 16:27:03 +0200
-Message-Id: <20230725142703.157547-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+	linux-mediatek@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-amlogic@lists.infradead.org, linux-oxnas@groups.io,
+	linux-arm-msm@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	linux-tegra@vger.kernel.org, linux-omap@vger.kernel.org,
+	linux-wpan@vger.kernel.org
+Subject: Re: [PATCH v2] net: Explicitly include correct DT includes
+Message-ID: <ZMAD25Yp6gCNq+wH@corigine.com>
+References: <20230724212222.809909-1-robh@kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20230724212222.809909-1-robh@kernel.org>
+X-ClientProxiedBy: AM8P190CA0030.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:20b:219::35) To PH0PR13MB4842.namprd13.prod.outlook.com
+ (2603:10b6:510:78::6)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|SN7PR13MB6065:EE_
+X-MS-Office365-Filtering-Correlation-Id: bfcfba55-28cc-4df2-90e5-08db8d332f15
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: kVQINs0kkXBcwE8L5iyOtORfoG1Pd+xFjXPZ9LRODBMiMliUBEuEzEk3iVcrwXKJr8rAFVdqJgeYwWq3+TV/i2ltvCUcGsy44uTPpGg5JtJ7CMraHfl6jGw89N+GIsjdGq4JZQph/OOpvGT53zWj/oqmZs2uzXtxyilKNz2sCNftNLMJ4RV1Mi2crDarzhCjmPBkBf5nCS/Jd5kiSku0NYbM7aW3VWgo+9vPYlkKLvLKr7vcpQbCn0j767wjiVt23thNz4d1fnu/9/LPRR5CqYzqRvtGQCtMe7UIiztvNr9h5AMHeL2lt8Mv81bRppZSJp9rhsL/1lUQLPu+Sdvw+ripgZyplCZwKH09doFEnYxxRysQUMBtjmH4q2+BF/wJLxTrl7HbvqNiRVq4re5QsMYOtov0PLBOx9LZuRFtfAiccM82LIYKODAUhugvNIxxKWTGDstNffrm53GfCp0E1i2vK7Ko3fADdxq2o05WX3yw+l5hMzdytBW9aRHjrVmCuCauG88JwzTkLRp0X/pfjvk/HI5XJPKRtIKzqNmD3fSK/+JC7Im0wf9PyVOeNSgkCcCQUdxWrmpCEUyUTRHctqiBrREvZpt+9ce9mGQ9tp0VcTVfP5PIEWZi7iuxn7vnJFIUN9TouT6oWhL+TPvOUfhhKAml3+smPtF/DuFOglg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39840400004)(376002)(366004)(136003)(396003)(346002)(451199021)(36756003)(7416002)(86362001)(44832011)(2906002)(4744005)(7336002)(7366002)(7406005)(83380400001)(186003)(6506007)(6512007)(38100700002)(6486002)(54906003)(6666004)(8936002)(4326008)(66476007)(6916009)(66946007)(316002)(66556008)(41300700001)(5660300002)(478600001)(8676002)(2616005)(67856001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?SfivlBpK0iZL4CHmNzCFK8GVBuqJNnfG4tpEURiqDu2qUXtgl7nra0Hl3D+D?=
+ =?us-ascii?Q?TDl4OSMSGsMUhHcrQPQYgZmjub7iJvXyRmU0c6PMsUxeMubBTLInPEPVXSaZ?=
+ =?us-ascii?Q?46kYdQ81k5PiHsUNt1cuGOPLckPycvCVspi4dEE+GSwu2XoHLUoLn6Z8TxQM?=
+ =?us-ascii?Q?HUEihQTj9OP0wEP5xtFHjg3kfyrH/4b1/kvVWz3nQFcLVp+2x/dU4/zSByLY?=
+ =?us-ascii?Q?Ml+v0Om2OULiq5Jo78qdrpSvryOkq12+781HITllpTWk9PHXHCztg6ikUiCv?=
+ =?us-ascii?Q?45W3YrcmJ2Mb8W+jTO3TcthkrOS+GGeNfb2EErqLS3l8JW2MgTcF3hqhesbe?=
+ =?us-ascii?Q?YL1GaWZrMwMhTjoGN8wjsy+ea21hb/MeUv8Uhc84IJ2A7E7JMWqRZ4ZI5Gvf?=
+ =?us-ascii?Q?EwSYJOU64pTev1BBJc3MyPdhFHm0NCcI6+/9Llq/HQ2dxJco5pRucO8WU3Rx?=
+ =?us-ascii?Q?+enuinJ32jB0VCQC5wqDVjB8I1vDjjYFfIfddoCh6TZZqfRtzN4fzcw4uDvp?=
+ =?us-ascii?Q?wN/g0Hx3dGTLPKbhsemzhN+FSBEKiza8x9s3+wt5JMhkkswN8jrVPUuxnn/x?=
+ =?us-ascii?Q?uXqnVvbEi5s9UtXQRB/WsAPhlFwdAG6CvhJTe/xYe7bVvwXOaJAYZZF4d44x?=
+ =?us-ascii?Q?s200Q9lqq7JKWM0XdQNPBCtYSffBQaHT08jE0nIEMY7vbtdFmu1burl65/D/?=
+ =?us-ascii?Q?dtPHiddakpgiDlKp+zv1YdTboPlh5R5EgsDVS/BSO/PWWlsIT5FNpaOtoRhv?=
+ =?us-ascii?Q?jR+KQgaDDPT0WBA/IHTNuPL+45ik1WWeadVU7fKub1nCQeImkrQW819PJPC0?=
+ =?us-ascii?Q?Md2ORPW/WwbYip4HTGS/3F/nldVG6cetrnhtFtVGArjETFpW4KhlsgW9PF5N?=
+ =?us-ascii?Q?3R3M/WA7bxAtq5u1lVdf1twMXF17S/TFETgrgi17HbsHxi7nXpEZq8RNCt2j?=
+ =?us-ascii?Q?zpOfMfZV94NkGGwgngDvxRVOur4wRX00X4pJC/nAz0efGlmwcYaBH6crG7NH?=
+ =?us-ascii?Q?8K64RPHBI1BMYvWLDVHQuqk2izUM9QGQ9NMB0k6fF9yeaJaO5LeU3Bst1M+S?=
+ =?us-ascii?Q?aWmKs2heLOdTBf+q5Wvi3Nk6nrMs2EqkueXsT41hKbHbhSSA4nJm9yu1uAWX?=
+ =?us-ascii?Q?DIVXYTJBDPH1596HPDfvtoZ9mtlXKi9RAH7z0fDuFrrQOWNCNLVNSjupm1xy?=
+ =?us-ascii?Q?lxEuDpJJ6qu0sE8H/HfxiEaPhTjg2NdctqN4qs4mLiTXab6LZu0EQNaG+UgY?=
+ =?us-ascii?Q?lzkD2lfgG0+w0PQsHE+DJHBA9+5ELRG7JG1YQpZxp2sjbh4tSyYMp59tYIhD?=
+ =?us-ascii?Q?siBaFJMRClIq8mS6BGLguvZbj9kqz13UBvaJFJHcP7Ow2rilh0ZcLEqRebfE?=
+ =?us-ascii?Q?IHr67O0wg5qCkiBBSmfEmGU+xCJTBOhrzDI8qhvKaKRa/7qYHjjbpsB9PthE?=
+ =?us-ascii?Q?nug7ecTlHhsgIGSNAo3XloesemLot0X0ll3JQAvzY8Hd8HK0PCFfqppuS4tW?=
+ =?us-ascii?Q?6nfKKrkFu+eud8HUI1sTSX+HtrhKSDtIiC39S6S9OsMjDNGHuyeHJaAGFpMk?=
+ =?us-ascii?Q?siYEUNMlx5SSwJZBGNC3dq2ZnwNHg4M/BHkwRA7JxbOPQtd8CJZL+WSV4SHT?=
+ =?us-ascii?Q?bOaJpZYxTvRK6B4jYROZVzhxTWieF3ci+kudBTmhCkorYkQqvxK9aSUbBN0J?=
+ =?us-ascii?Q?8TI0IA=3D=3D?=
+X-OriginatorOrg: corigine.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bfcfba55-28cc-4df2-90e5-08db8d332f15
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2023 17:18:37.9129
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CmON8172SiVviYEIWeRrGW6MJ4deG0a05MA6FmZOqw9dmoxdn9FmRvCA/R2Xs9SiafbJX7u1l23Wdh8sbM72MM5p0IuZ+rHjJg9KTwW5wUk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR13MB6065
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230725_072707_354748_2F6D5B3D 
-X-CRM114-Status: GOOD (  10.41  )
+X-CRM114-CacheID: sfid-20230725_101845_954521_227604BD 
+X-CRM114-Status: UNSURE (   9.53  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,32 +214,22 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The recommended name for enable GPIOs property in regulator-gpio is
-enable-gpios.  This is also required by bindings:
+On Mon, Jul 24, 2023 at 03:22:16PM -0600, Rob Herring wrote:
 
-  meson-g12b-bananapi-cm4-cm4io.dtb: regulator-vddio-c: Unevaluated properties are not allowed ('enable-gpio' was unexpected)
+...
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+>  90 files changed, 88 insertions(+), 92 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-index 97e522921b06..86adc1423385 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-@@ -56,7 +56,7 @@ vddio_c: regulator-vddio-c {
- 		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <3300000>;
- 
--		enable-gpio = <&gpio_ao GPIOAO_3 GPIO_OPEN_DRAIN>;
-+		enable-gpios = <&gpio_ao GPIOAO_3 GPIO_OPEN_DRAIN>;
- 		enable-active-high;
- 		regulator-always-on;
- 
+Hi Rob,
+
+I suppose that it's reasonable to take this patch through netdev.
+But it does have a pretty wide surface, and netdev moves a lot.
+
+As it stands the patch doesn't apply due to a conflict
+in dwmac-qcom-ethqos.c
+
 -- 
-2.34.1
-
+pw-bot: changes-requested
 
 _______________________________________________
 linux-amlogic mailing list
