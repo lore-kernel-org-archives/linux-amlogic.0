@@ -4,91 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0354C001DE
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jul 2023 14:14:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93577C001DF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jul 2023 14:27:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hyTrOW6VuAXvfpSi9PSMFwW6Coz3X+gxfEjfHRocM00=; b=A6uNakGmENjrmP
-	wwqpDG+TbpRwhy1yo2M8ptidQV4x/vuuPCmg0seNw+9Rq6PbZLmZjK2svUMr4tQgObFoR2UMM1S7q
-	rYnCa8IgD9gX67awCRFZSo/DV25t4lmjjXCtG47gga4/qugbyv6Nd3MX8Ydridbtn2SXJf5eefAj2
-	z1sGr1gzGjrDXV4fQxLGEvracBT+OkjmYZNbnz9d7TD70FP63sORLtBXn/ZZCYpsFLsH+160LL9bA
-	G9MPiR1suxeSWKk86rgTdufi90wOX2fTBaJvM+NFfYJIIkhregX+HJHKt3ACHgm3WVBf0dN56XbhV
-	NFncBVEJVMSd/Jdl4d5A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=knTYwvtV23pbsDCHGBtsrSDjcgalJPLlw8fX4UEa8wM=; b=tbWS05NvjIECOo
+	yX6/FR3tuFG0oPIz3SZRvF2fRQ6PRIO+tUCtT+oYjSzAHtuS393ny7k9NOsGWgidBq++0VtmEu44L
+	/dGqawH7h02p9lmyB9OX5w9rxd2UeNzMtOUn5c3gzJ2RYYtTYia3sC9YllwpDOn0KOxweZVMNneK7
+	V4Qh1A2Q+qpf1vNk2kV/zS0hT2rDinoSNdG3C0E+Do4mVVc9tbYngnMEK3Kl3Tg/L0El9TXUJ+Cw0
+	rx359oibAeGj9BnIXMlOAq0fyYPqwTUHpa84ZK4cHINu5QwLuB9VvVVLliYi6QJIZgKigoVG79LEm
+	iZKDgq55m4bBYiJj2zww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOIn8-007kK3-1Y;
-	Tue, 25 Jul 2023 14:13:34 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1qOJ0H-007mAn-0J;
+	Tue, 25 Jul 2023 14:27:09 +0000
+Received: from mail-ej1-x62e.google.com ([2a00:1450:4864:20::62e])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOImu-007kDO-1w;
-	Tue, 25 Jul 2023 14:13:23 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 27C5110002A;
-	Tue, 25 Jul 2023 17:13:10 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 27C5110002A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1690294390;
-	bh=mawpPFaFDwTi16n2aaHJjeloGu7ded/mpqmM2zhRfcg=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=WWDcaoW/ck2ethiGWAsJOvPOfBp2HU57+a7LvmKR1ZwoQCPNZOD6uwnZfIjg2SwiI
-	 ZV4C9jOwV+3IxvWDeKPlZ2W2WMexwYN19IRsUIEb2f+oWebP+a5lg5TGeSGogn6TcL
-	 kDBclWGwiFXO8BfRc8d9/4ojpm4woPGwr0vZMTeorXYgFKNMCZhxsMresaFbO9oSZ+
-	 BwSZN5NpfwbhsK9DJ3nnM3fvM9jEhZ7AmGvkStQMIGIdtZmSY6AR4bXB7tJwxlaeSK
-	 XJCMxi76mBkbIKIkEbOaF6IPzw+ywLGLWWhnODsYACjY6QSaPIeYa7ChNgHXlM2pFr
-	 ReYCKeAgezT5A==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 25 Jul 2023 17:13:10 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Tue, 25 Jul 2023 17:13:08 +0300
-From: Alexey Romanov <avromanov@sberdevices.ru>
-To: <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
-	<olivia@selenic.com>, <herbert@gondor.apana.org.au>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <f.fainelli@gmail.com>,
-	<hkallweit1@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-	<kernel@sberdevices.ru>, Alexey Romanov <avromanov@sberdevices.ru>
-Subject: [PATCH v1 3/3] arch/arm64: dts: meson-s4: add hwrng node
-Date: Tue, 25 Jul 2023 17:12:52 +0300
-Message-ID: <20230725141252.98848-4-avromanov@sberdevices.ru>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20230725141252.98848-1-avromanov@sberdevices.ru>
-References: <20230725141252.98848-1-avromanov@sberdevices.ru>
+	id 1qOJ0F-007m9l-10
+	for linux-amlogic@lists.infradead.org;
+	Tue, 25 Jul 2023 14:27:08 +0000
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-992f15c36fcso951928766b.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 25 Jul 2023 07:27:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690295226; x=1690900026;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hU8lSjQ6M9yd48ULuSbmUnhhWGLQGOdsfRMZvGDHUYg=;
+        b=qtCYt7lSSrdZZ8iQAVofiekLVvwLzUwagNxRSeFzg960F3nJujWU25uL4zNn/svJ43
+         KvBY7KqPvhZRA/Og/tInPY0nPEozrpR4/etavmBxkjejRJdO7HuxwMMOl9Mg4/4oJzRu
+         izdUVCpDnvIsmGGYfMao9YyEIJ3ftaz9NHcg8tr2zLAZr1inbVBx1QbVZJMQxlaDOwWB
+         hEnO4gJABuwF3kouzb8hIaNxEEkpRgcX6H6Gd+5XEVViB0J5ZYaa/hlMS7jEKJfj8tt+
+         VizO7MUsM7bAAWLtnFH90JrogdmuG5VoDogTrS4nRbTbWJvAA2tRoXzNxjMDE2aEI1sG
+         S/QA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690295226; x=1690900026;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hU8lSjQ6M9yd48ULuSbmUnhhWGLQGOdsfRMZvGDHUYg=;
+        b=gLSsAFYvMvrb8O7al6lsm2KO3gigpFj4M4F0c7QNxWyeOnduEYGPMu8MFchuzfb5s0
+         E9DfNwcHUz/6T+ca4MISl2/YqSwZx554H3VbiOnykXEGrp/ckYpRdMnDVdQSMdS6pD3S
+         OHTFrJBD5t0hovYl0AO7MYTHYlO2CFQLJVu4phl+6towlaZqKPrWbLNUh/l/pH9bzuN1
+         uPRboUGRaaz5DFy2qlWIEiI1ra1z5hzxN1Z7ZERLMh9YW0UdiNw52J0weq3Ab1LXPaNi
+         acVK92HHImayoaGFfR25hz2Cn8w+hcFQQJSyOmJmvrdVQKzZj46i1U+8b35Eli3TMI2c
+         6e5g==
+X-Gm-Message-State: ABy/qLYGYH0K2I4VViMLi3eRsA8KmxE/gvkz7N8zqWFNPWnaflm2g2cX
+	L7PGTB8vjoL9uVC8tUcA/v/qbg==
+X-Google-Smtp-Source: APBJJlHFnc3Sz1DBUjgwnuSooCSHfG5qz85DMBZy79oDPNK7BX03+ekkae7x1UZx4sl9fM+H2KxFXA==
+X-Received: by 2002:a17:907:760d:b0:993:e752:1a6a with SMTP id jx13-20020a170907760d00b00993e7521a6amr13195406ejc.21.1690295226116;
+        Tue, 25 Jul 2023 07:27:06 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id o22-20020a170906289600b00977c7566ccbsm8201027ejd.164.2023.07.25.07.27.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jul 2023 07:27:05 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: amlogic: meson-g12b-bananapi: switch to enable-gpios
+Date: Tue, 25 Jul 2023 16:27:03 +0200
+Message-Id: <20230725142703.157547-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178796 [Jul 22 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: AVRomanov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 525 525 723604743bfbdb7e16728748c3fa45e9eba05f7d, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2;sberdevices.ru:5.0.1,7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/23 08:49:00 #21663637
-X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230725_071320_994170_FBF06DF7 
-X-CRM114-Status: GOOD (  10.65  )
+X-CRM114-CacheID: sfid-20230725_072707_354748_2F6D5B3D 
+X-CRM114-Status: GOOD (  10.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,32 +98,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Using this node, we can obtain random numbers via
-hardware random number generator.
+The recommended name for enable GPIOs property in regulator-gpio is
+enable-gpios.  This is also required by bindings:
 
-Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
+  meson-g12b-bananapi-cm4-cm4io.dtb: regulator-vddio-c: Unevaluated properties are not allowed ('enable-gpio' was unexpected)
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index f24460186d3d..3e3348cc6c06 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -133,6 +133,11 @@ reset: reset-controller@2000 {
- 				reg = <0x0 0x2000 0x0 0x98>;
- 				#reset-cells = <1>;
- 			};
-+
-+			hwrng: rng@440788 {
-+				compatible = "amlogic,meson-rng-s4";
-+				reg = <0x0 0x440788 0x0 0x0c>;
-+			};
- 		};
- 	};
- };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
+index 97e522921b06..86adc1423385 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
+@@ -56,7 +56,7 @@ vddio_c: regulator-vddio-c {
+ 		regulator-min-microvolt = <1800000>;
+ 		regulator-max-microvolt = <3300000>;
+ 
+-		enable-gpio = <&gpio_ao GPIOAO_3 GPIO_OPEN_DRAIN>;
++		enable-gpios = <&gpio_ao GPIOAO_3 GPIO_OPEN_DRAIN>;
+ 		enable-active-high;
+ 		regulator-always-on;
+ 
 -- 
-2.38.1
+2.34.1
 
 
 _______________________________________________
