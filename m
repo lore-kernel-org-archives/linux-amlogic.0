@@ -4,106 +4,122 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03F3EC00528
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jul 2023 07:53:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A11AC001DC
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jul 2023 08:21:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
-	References:Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=U7DNzx2EPxhrMWDYTU3lfvqauhqTM7s/LEGVjEdOJkg=; b=WsrXGmV2MRYscL
-	2Xs+epIn46LsMG/+ZGlTkFjoKSbZ2gVeGnyN/LpmWyV8B2bXcisoD/9qNUluXg2gUwRvBNRP6qz3l
-	15rvte1TFyBO4s68jprMq3WLIslZlpJj1HGsX+stSX4ITpFfFdHJQ3RHoCfZsw3r5TKFzy58zMxKM
-	wzmRrcPfPfA5QxEUmCO6zE9XvQngSIr0FCeygVHPJSJOYq3MPv634xwGNMhJjCPD4L+oABfl/DoHd
-	dALyNr1HnvK3Dt6uF5XXS8u83G+m3Dl24DXbXJbVGO9kVDEoXYiC7Z+6RoUGVzitp48XE74QuBuTp
-	rzGe67Yc1EP21E210aYw==;
+	List-Owner; bh=y8Ixu8iwfrA6Nm3rghriJgcd/BCPQtGsmiOb62Fwk4E=; b=k7LnRFP7JytPmq
+	GNnxOZqxKe911wVOyW8O/fVntRV393QSSjdCiO4gvuM3/v659qugsHmdua5RsXvZhdpkWb2GiEu04
+	iQWWnXQYMABBrfMqVMImcl87T/foMS3pJcabkApsB8uSHxACfpksFZ57vEG4uFQ1sXcb3nBkwQFmM
+	4+5f72j/c9iZzVL7hjXTEoY2CQ9vfMEtwh+rzWL3aUbKL9a+6J8Tr8/Mbmnog3/x6vghM1oBnyxtb
+	NmfbAP+OS1Vh4YRUY56mNJSfB6m5hIIdN4EZfQNSTZDS+SJ6FsMJdt/efkdbVmeDjJT195hUix0aL
+	vWvGPO+OFUcLRtoMVuxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOZKQ-009Uug-2n;
-	Wed, 26 Jul 2023 07:53:02 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1qOZlY-009ZCx-2I;
+	Wed, 26 Jul 2023 08:21:04 +0000
+Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOZKM-009UsY-2F;
-	Wed, 26 Jul 2023 07:53:01 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 800F6100006;
-	Wed, 26 Jul 2023 10:52:50 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 800F6100006
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1690357970;
-	bh=vTUqR02g7CyzGcKZgu+ckB967aCBxpLWQ1Cp4fR5GdI=;
-	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
-	b=pcG+Peusb9E7FOmULN3LDYHt7fYVVlcAsgLW8ggdEqWHTiBjoOaw2BO9n+Hf7uWSK
-	 5gavGbOwHqAv2oNew4cLJA7pTNW3hHANNoHySLymoHWmQfsGmj4xdz+jh6P++jTYXW
-	 cXxYFgov4JCOVGddTQc8PU4JinFOG0t/HiteN5SjU8pmUb4j+RwJunFnc5Q/GOwwSn
-	 GWxSXNsvDW/H5sTbQ7dvw9xeM6Xs+2QbnwHU2SJl49x2m1fhS9kTTkqavlfRhhLjUw
-	 xeDl0/bgLvLcjY+MdKFteQzfMpQ/60Uq7KF2jqnzq7ooq88frKaWQE0puMS7VfWNgD
-	 rlnRK89r5r17A==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 26 Jul 2023 10:52:50 +0300 (MSK)
-Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Wed, 26 Jul 2023 10:52:43 +0300
-Received: from p-i-exch-sc-m01.sberdevices.ru ([::1]) by
- p-i-exch-sc-m01.sberdevices.ru ([fe80::80e5:bab:4999:4480%7]) with mapi id
- 15.02.1118.030; Wed, 26 Jul 2023 10:52:43 +0300
-From: Alexey Romanov <AVRomanov@sberdevices.ru>
-To: Martin Kaiser <lists@kaiser.cx>
-CC: "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, "olivia@selenic.com"
-	<olivia@selenic.com>, "herbert@gondor.apana.org.au"
-	<herbert@gondor.apana.org.au>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
-	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
-	"f.fainelli@gmail.com" <f.fainelli@gmail.com>, "hkallweit1@gmail.com"
-	<hkallweit1@gmail.com>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-amlogic@lists.infradead.org"
-	<linux-amlogic@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-crypto@vger.kernel.org"
-	<linux-crypto@vger.kernel.org>, kernel <kernel@sberdevices.ru>
-Subject: Re: [PATCH v1 1/3] drivers: rng: add check status bit feature
-Thread-Topic: [PATCH v1 1/3] drivers: rng: add check status bit feature
-Thread-Index: AQHZvwIhgAdKkj3BKkSqydzslBnXI6/KtJqAgADHaIA=
-Date: Wed, 26 Jul 2023 07:52:43 +0000
-Message-ID: <20230726075243.f37sjcurmog3eunh@cab-wsm-0029881>
-References: <20230725141252.98848-1-avromanov@sberdevices.ru>
- <20230725141252.98848-2-avromanov@sberdevices.ru>
- <20230725195901.n2klvgz7outqaatk@viti.kaiser.cx>
-In-Reply-To: <20230725195901.n2klvgz7outqaatk@viti.kaiser.cx>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.18.93]
-Content-ID: <5A8C49A7B982AD4AA50B334FB89BE21D@sberdevices.ru>
+	id 1qOZlV-009ZBc-1k
+	for linux-amlogic@lists.infradead.org;
+	Wed, 26 Jul 2023 08:21:02 +0000
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99b78fda9a8so749826266b.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 26 Jul 2023 01:21:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690359660; x=1690964460;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JiHG1lqfKtIgSn5nDbZ/v9AonJn+0BEDVLcqcbo9VMw=;
+        b=eM07wKpFCUyvyGxNYzYTzgCpEijzkJf7hJHDQc+i/xA/jNEnvHA977kYSn0v/43e+H
+         175ADqTKdLFh5yltdkjKiAQquGfKNC7khbSd6pR+Xsx4eMx2/MN2VZeQmwXbsE+avszl
+         GhG4wA39gGhGrK9uymQluTkRgUAZDzHXgwPVmxCwfmXs210k8gYsiols3HHWcv9aT4Ds
+         B5Z2BDhHLmBoPo9mYXDsSY6eOvwzWjtb7mPc02HjZIqeRrsVSMGcDpKgRM69mg01yyna
+         m4onL4BptrTSDHkWGcFMJzCDBAurZ4qUl1eo6zPwT4oPh7wG6VIDUrbWXF86GIUFk+gH
+         ct3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690359660; x=1690964460;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JiHG1lqfKtIgSn5nDbZ/v9AonJn+0BEDVLcqcbo9VMw=;
+        b=F75vdUAVWUScJQRCdjbGWPI9wbi6gKrUo1Cxfv91b5imLGpqHMH6yyG0bfR9WMh7A6
+         c8p6nveQPYPIzm2jV2RulibY8yZTZoqOmFOfu/Wppd4xwUVugT/SBCztPP0/tRhW+eKv
+         /pr9pb/HuEUvkN8fQB1gA8K5+tglLehIfv+xN7AjxVFfZ1zwW7QHZR5iKKwTa8VPWZ1i
+         IsNdYTppaaUpwSfC4bUQ7dt81uW516mhf43iww/RkxhCAFCKCJEWS8AKSD5Q7krrzpIb
+         Fycg5JK1k3iVLhj7RarJP3yVx2O/AtGtiAQKgGvBSFteHAByICDAkAw0lniFKcSg3DWI
+         gwsQ==
+X-Gm-Message-State: ABy/qLZt35YxK3x+CNMt9bUn2MCpYqppPcW/cPUhTtgw/LjDziofQnEe
+	OdnjVe/aabZyMSM4wvt6DoEjbQ==
+X-Google-Smtp-Source: APBJJlFSv4sPrPVpORIAoXVWqnWYXffFs8Rj+rBO6g/J3M8WgKWJdW/mDG62LCvhpl6DqK28klacEQ==
+X-Received: by 2002:a17:907:7851:b0:982:21a1:c4e0 with SMTP id lb17-20020a170907785100b0098221a1c4e0mr1067754ejc.56.1690359660018;
+        Wed, 26 Jul 2023 01:21:00 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id x10-20020a170906804a00b009893b06e9e3sm9301463ejw.225.2023.07.26.01.20.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jul 2023 01:20:59 -0700 (PDT)
+Message-ID: <f24f29e9-ff06-5d96-df44-7632a933e4c5@linaro.org>
+Date: Wed, 26 Jul 2023 10:20:49 +0200
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178796 [Jul 22 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: AVRomanov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 525 525 723604743bfbdb7e16728748c3fa45e9eba05f7d, {Track_E25351}, {Tracking_internal2}, {Tracking_from_domain_doesnt_match_to}, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/23 08:49:00 #21663637
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 01/28] media: cec: ch7322: drop of_match_ptr for ID table
+Content-Language: en-US
+To: Sakari Ailus <sakari.ailus@iki.fi>
+Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Joe Tessler <jrt@google.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Michael Tretter <m.tretter@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Jacopo Mondi <jacopo+renesas@jmondi.org>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+ Rui Miguel Silva <rmfrfs@gmail.com>, Wenyou Yang
+ <wenyou.yang@microchip.com>, Bin Liu <bin.liu@mediatek.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+ Houlong Wei <houlong.wei@mediatek.com>,
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Patrice Chotard <patrice.chotard@foss.st.com>,
+ Yong Deng <yong.deng@magewell.com>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Sean Young <sean@mess.org>,
+ linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-tegra@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org
+References: <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
+ <98a77653-ec58-56c4-9893-3b424f67c87e@linaro.org>
+ <5afcec8b-b8f6-35b0-278a-5de185e4a7a2@xs4all.nl>
+ <ZG9XJCD98VWjGjTN@valkosipuli.retiisi.eu>
+ <ZG9ger4WE2VWoVEF@valkosipuli.retiisi.eu>
+ <158425ec-86e8-ca3e-eed8-e14b37c42730@linaro.org>
+ <ce217ae6-6dd5-26ea-2ce7-95d97ef791c4@linaro.org>
+ <ZL+pNUYymeXv5EoU@valkosipuli.retiisi.eu>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZL+pNUYymeXv5EoU@valkosipuli.retiisi.eu>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230726_005259_424393_AD4AB2C4 
-X-CRM114-Status: GOOD (  26.50  )
+X-CRM114-CacheID: sfid-20230726_012101_585687_DC9E9DD0 
+X-CRM114-Status: UNSURE (   9.09  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,159 +136,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+On 25/07/2023 12:51, Sakari Ailus wrote:
+>>
+>> I don't think this was merged in v6.5-rc1. It's not in linux-next,
+>> either. Another month passed...
+> 
+> These are now in the media-stage tree
+> <URL:https://git.linuxtv.org/media_stage.git/log/>. Assuming nothing goes
+> wrong, these should end up in Linus's tree for 6.6.
 
-On Tue, Jul 25, 2023 at 09:59:01PM +0200, Martin Kaiser wrote:
-> Alexey Romanov (avromanov@sberdevices.ru) wrote:
-> 
-> > For some Amlogic SOC's, mechanism to obtain random number
-> > has been changed. For example, S4 now uses status bit waiting algo.
-> 
-> > Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
-> > ---
-> >  drivers/char/hw_random/meson-rng.c | 77 ++++++++++++++++++++++++++++--
-> >  1 file changed, 74 insertions(+), 3 deletions(-)
-> 
-> > diff --git a/drivers/char/hw_random/meson-rng.c b/drivers/char/hw_random/meson-rng.c
-> > index a4eb8e35f13d..c6d7349630a1 100644
-> > --- a/drivers/char/hw_random/meson-rng.c
-> > +++ b/drivers/char/hw_random/meson-rng.c
-> > @@ -14,19 +14,65 @@
-> >  #include <linux/of.h>
-> >  #include <linux/clk.h>
-> 
-> > -#define RNG_DATA 0x00
-> > +struct meson_rng_priv {
-> > +	bool check_status_bit;
-> > +	unsigned int data_offset;
-> > +	unsigned int cfg_offset;
-> > +};
-> 
-> >  struct meson_rng_data {
-> >  	void __iomem *base;
-> >  	struct hwrng rng;
-> > +	struct device *dev;
-> > +	const struct meson_rng_priv *priv;
-> >  };
-> 
-> > +#define RUN_BIT			0
-> > +#define SEED_READY_STS_BIT	31
-> > +#define RETRY_CNT		100
-> > +
-> > +static int meson_rng_wait_status(void __iomem *cfg_addr, int bit)
-> > +{
-> > +	u32 status;
-> > +	u32 cnt = 0;
-> > +
-> > +	do {
-> > +		status = readl_relaxed(cfg_addr) & BIT(bit);
-> > +		cpu_relax();
-> > +	} while (status && (cnt++ < RETRY_CNT));
-> > +
-> 
-> Could you use readl_relaxed_poll_timeout here instead of open coding the
-> loop?
+Great, thank you!
 
-At first I also thought about this API. But later I came to the
-conclusion that it is inappropriate here:
+Best regards,
+Krzysztof
 
-1. We can't call rng_read from an atomic context.
-2. RNG for me looks like a very lightweight primitive to me that 
-should work quiclky.
 
-But, now I looked again at the API and realized that we can use 
-readl_relaxed_poll_timeout_atomic() instead of
-readl_relaxed_poll_timeout(). What do you think?
-
-> 
-> > +	if (status)
-> > +		return -EBUSY;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static int meson_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
-> >  {
-> >  	struct meson_rng_data *data =
-> >  			container_of(rng, struct meson_rng_data, rng);
-> > +	const struct meson_rng_priv *priv = data->priv;
-> > +
-> > +	if (priv->check_status_bit) {
-> > +		void __iomem *cfg_addr = data->base + priv->cfg_offset;
-> > +		int err;
-> > +
-> > +		writel_relaxed(readl_relaxed(cfg_addr) | BIT(SEED_READY_STS_BIT), cfg_addr);
-> 
-> > -	*(u32 *)buf = readl_relaxed(data->base + RNG_DATA);
-> > +		err = meson_rng_wait_status(cfg_addr, SEED_READY_STS_BIT);
-> > +		if (err) {
-> > +			dev_err(data->dev, "Seed isn't ready, try again\n");
-> > +			return err;
-> > +		}
-> > +
-> > +		err = meson_rng_wait_status(cfg_addr, RUN_BIT);
-> > +		if (err) {
-> > +			dev_err(data->dev, "Can't get random number, try again\n");
-> > +			return err;
-> > +		}
-> > +	}
-> > +
-> > +	*(u32 *)buf = readl_relaxed(data->base + priv->data_offset);
-> 
-> >  	return sizeof(u32);
-> >  }
-> > @@ -41,6 +87,10 @@ static int meson_rng_probe(struct platform_device *pdev)
-> >  	if (!data)
-> >  		return -ENOMEM;
-> 
-> > +	data->priv = device_get_match_data(&pdev->dev);
-> > +	if (!data->priv)
-> > +		return -ENODEV;
-> > +
-> >  	data->base = devm_platform_ioremap_resource(pdev, 0);
-> >  	if (IS_ERR(data->base))
-> >  		return PTR_ERR(data->base);
-> > @@ -53,11 +103,32 @@ static int meson_rng_probe(struct platform_device *pdev)
-> >  	data->rng.name = pdev->name;
-> >  	data->rng.read = meson_rng_read;
-> 
-> > +	data->dev = &pdev->dev;
-> > +
-> >  	return devm_hwrng_register(dev, &data->rng);
-> >  }
-> 
-> > +static const struct meson_rng_priv meson_rng_priv = {
-> > +	.check_status_bit = false,
-> > +	.data_offset = 0x0,
-> > +	.cfg_offset = 0x0,
-> > +};
-> > +
-> > +static const struct meson_rng_priv meson_rng_priv_s4 = {
-> > +	.check_status_bit = true,
-> > +	.data_offset = 0x8,
-> > +	.cfg_offset = 0x0,
-> > +};
-> > +
-> >  static const struct of_device_id meson_rng_of_match[] = {
-> > -	{ .compatible = "amlogic,meson-rng", },
-> > +	{
-> > +		.compatible = "amlogic,meson-rng",
-> > +		.data = (void *)&meson_rng_priv,
-> > +	},
-> > +	{
-> > +		.compatible = "amlogic,meson-rng-s4",
-> > +		.data = (void *)&meson_rng_priv_s4,
-> > +	},
-> >  	{},
-> >  };
-> >  MODULE_DEVICE_TABLE(of, meson_rng_of_match);
-> > -- 
-> > 2.38.1
-> 
-
--- 
-Thank you,
-Alexey
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
