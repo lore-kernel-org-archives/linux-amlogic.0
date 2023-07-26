@@ -4,122 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A11AC001DC
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jul 2023 08:21:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8032C001DC
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jul 2023 11:55:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=y8Ixu8iwfrA6Nm3rghriJgcd/BCPQtGsmiOb62Fwk4E=; b=k7LnRFP7JytPmq
-	GNnxOZqxKe911wVOyW8O/fVntRV393QSSjdCiO4gvuM3/v659qugsHmdua5RsXvZhdpkWb2GiEu04
-	iQWWnXQYMABBrfMqVMImcl87T/foMS3pJcabkApsB8uSHxACfpksFZ57vEG4uFQ1sXcb3nBkwQFmM
-	4+5f72j/c9iZzVL7hjXTEoY2CQ9vfMEtwh+rzWL3aUbKL9a+6J8Tr8/Mbmnog3/x6vghM1oBnyxtb
-	NmfbAP+OS1Vh4YRUY56mNJSfB6m5hIIdN4EZfQNSTZDS+SJ6FsMJdt/efkdbVmeDjJT195hUix0aL
-	vWvGPO+OFUcLRtoMVuxg==;
+	List-Owner; bh=D6sQd4Jb90W75ZUu73TC3boI1UsJus8S6bSjJU3JX2Y=; b=cpIhtLq7VmNO6o
+	ayurg+kITk1WHR07jbnsiGHoCROXQn27kwHXJa2TVe4piWE71Z+XC9hFGbRGYEy+MuE364Gwnxk4m
+	pbHugGEXcbzWTzGadg6lBbR9eM97Gp/qlHQBUFVzjcogs5Vc15rLNICZsPKPoljhfrtMmNf/vj5wZ
+	wAH6cew4/KUyEbkzRvVIvx0L44SMJmmcN2nx7MVNhL6iDUxD+TF1BTd2q4zwQI50snqEqOAKvjad6
+	rDcTjT73kmbgec26/TMDiB+QkKnXJbMoTqlEwpDNutY4xrWQ7f6BMaSHZL+eY6B+ZA+2TGLqph04Y
+	BTqGaGcpJ+t3Uoo050Og==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOZlY-009ZCx-2I;
-	Wed, 26 Jul 2023 08:21:04 +0000
-Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
+	id 1qOd6O-00AFXv-0N;
+	Wed, 26 Jul 2023 11:54:48 +0000
+Received: from viti.kaiser.cx ([2a01:238:43fe:e600:cd0c:bd4a:7a3:8e9f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOZlV-009ZBc-1k
-	for linux-amlogic@lists.infradead.org;
-	Wed, 26 Jul 2023 08:21:02 +0000
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99b78fda9a8so749826266b.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 26 Jul 2023 01:21:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690359660; x=1690964460;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JiHG1lqfKtIgSn5nDbZ/v9AonJn+0BEDVLcqcbo9VMw=;
-        b=eM07wKpFCUyvyGxNYzYTzgCpEijzkJf7hJHDQc+i/xA/jNEnvHA977kYSn0v/43e+H
-         175ADqTKdLFh5yltdkjKiAQquGfKNC7khbSd6pR+Xsx4eMx2/MN2VZeQmwXbsE+avszl
-         GhG4wA39gGhGrK9uymQluTkRgUAZDzHXgwPVmxCwfmXs210k8gYsiols3HHWcv9aT4Ds
-         B5Z2BDhHLmBoPo9mYXDsSY6eOvwzWjtb7mPc02HjZIqeRrsVSMGcDpKgRM69mg01yyna
-         m4onL4BptrTSDHkWGcFMJzCDBAurZ4qUl1eo6zPwT4oPh7wG6VIDUrbWXF86GIUFk+gH
-         ct3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690359660; x=1690964460;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JiHG1lqfKtIgSn5nDbZ/v9AonJn+0BEDVLcqcbo9VMw=;
-        b=F75vdUAVWUScJQRCdjbGWPI9wbi6gKrUo1Cxfv91b5imLGpqHMH6yyG0bfR9WMh7A6
-         c8p6nveQPYPIzm2jV2RulibY8yZTZoqOmFOfu/Wppd4xwUVugT/SBCztPP0/tRhW+eKv
-         /pr9pb/HuEUvkN8fQB1gA8K5+tglLehIfv+xN7AjxVFfZ1zwW7QHZR5iKKwTa8VPWZ1i
-         IsNdYTppaaUpwSfC4bUQ7dt81uW516mhf43iww/RkxhCAFCKCJEWS8AKSD5Q7krrzpIb
-         Fycg5JK1k3iVLhj7RarJP3yVx2O/AtGtiAQKgGvBSFteHAByICDAkAw0lniFKcSg3DWI
-         gwsQ==
-X-Gm-Message-State: ABy/qLZt35YxK3x+CNMt9bUn2MCpYqppPcW/cPUhTtgw/LjDziofQnEe
-	OdnjVe/aabZyMSM4wvt6DoEjbQ==
-X-Google-Smtp-Source: APBJJlFSv4sPrPVpORIAoXVWqnWYXffFs8Rj+rBO6g/J3M8WgKWJdW/mDG62LCvhpl6DqK28klacEQ==
-X-Received: by 2002:a17:907:7851:b0:982:21a1:c4e0 with SMTP id lb17-20020a170907785100b0098221a1c4e0mr1067754ejc.56.1690359660018;
-        Wed, 26 Jul 2023 01:21:00 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id x10-20020a170906804a00b009893b06e9e3sm9301463ejw.225.2023.07.26.01.20.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 01:20:59 -0700 (PDT)
-Message-ID: <f24f29e9-ff06-5d96-df44-7632a933e4c5@linaro.org>
-Date: Wed, 26 Jul 2023 10:20:49 +0200
+	id 1qOd6I-00AFUV-1o;
+	Wed, 26 Jul 2023 11:54:44 +0000
+Received: from martin by viti.kaiser.cx with local (Exim 4.89)
+	(envelope-from <martin@viti.kaiser.cx>)
+	id 1qOd63-0005Ck-Pc; Wed, 26 Jul 2023 13:54:27 +0200
+Date: Wed, 26 Jul 2023 13:54:27 +0200
+From: Martin Kaiser <lists@kaiser.cx>
+To: Alexey Romanov <AVRomanov@sberdevices.ru>
+Cc: "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"olivia@selenic.com" <olivia@selenic.com>,
+	"herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"khilman@baylibre.com" <khilman@baylibre.com>,
+	"jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+	"f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+	"hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+	kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v1 1/3] drivers: rng: add check status bit feature
+Message-ID: <20230726115427.aigzl2wjgc6ccyt6@viti.kaiser.cx>
+References: <20230725141252.98848-1-avromanov@sberdevices.ru>
+ <20230725141252.98848-2-avromanov@sberdevices.ru>
+ <20230725195901.n2klvgz7outqaatk@viti.kaiser.cx>
+ <20230726075243.f37sjcurmog3eunh@cab-wsm-0029881>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 01/28] media: cec: ch7322: drop of_match_ptr for ID table
-Content-Language: en-US
-To: Sakari Ailus <sakari.ailus@iki.fi>
-Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Joe Tessler <jrt@google.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Michael Tretter <m.tretter@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Jacopo Mondi <jacopo+renesas@jmondi.org>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
- Rui Miguel Silva <rmfrfs@gmail.com>, Wenyou Yang
- <wenyou.yang@microchip.com>, Bin Liu <bin.liu@mediatek.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
- Houlong Wei <houlong.wei@mediatek.com>,
- Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Patrice Chotard <patrice.chotard@foss.st.com>,
- Yong Deng <yong.deng@magewell.com>,
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Philipp Zabel <p.zabel@pengutronix.de>, Sean Young <sean@mess.org>,
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-tegra@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org
-References: <20230312131318.351173-1-krzysztof.kozlowski@linaro.org>
- <98a77653-ec58-56c4-9893-3b424f67c87e@linaro.org>
- <5afcec8b-b8f6-35b0-278a-5de185e4a7a2@xs4all.nl>
- <ZG9XJCD98VWjGjTN@valkosipuli.retiisi.eu>
- <ZG9ger4WE2VWoVEF@valkosipuli.retiisi.eu>
- <158425ec-86e8-ca3e-eed8-e14b37c42730@linaro.org>
- <ce217ae6-6dd5-26ea-2ce7-95d97ef791c4@linaro.org>
- <ZL+pNUYymeXv5EoU@valkosipuli.retiisi.eu>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZL+pNUYymeXv5EoU@valkosipuli.retiisi.eu>
+Content-Disposition: inline
+In-Reply-To: <20230726075243.f37sjcurmog3eunh@cab-wsm-0029881>
+User-Agent: NeoMutt/20170113 (1.7.2)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230726_012101_585687_DC9E9DD0 
-X-CRM114-Status: UNSURE (   9.09  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230726_045442_743801_569EEB5F 
+X-CRM114-Status: GOOD (  15.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -136,20 +79,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 25/07/2023 12:51, Sakari Ailus wrote:
->>
->> I don't think this was merged in v6.5-rc1. It's not in linux-next,
->> either. Another month passed...
-> 
-> These are now in the media-stage tree
-> <URL:https://git.linuxtv.org/media_stage.git/log/>. Assuming nothing goes
-> wrong, these should end up in Linus's tree for 6.6.
+Hi Alexey,
 
-Great, thank you!
+Alexey Romanov (AVRomanov@sberdevices.ru) wrote:
+
+> > > +static int meson_rng_wait_status(void __iomem *cfg_addr, int bit)
+> > > +{
+> > > +	u32 status;
+> > > +	u32 cnt = 0;
+> > > +
+> > > +	do {
+> > > +		status = readl_relaxed(cfg_addr) & BIT(bit);
+> > > +		cpu_relax();
+> > > +	} while (status && (cnt++ < RETRY_CNT));
+> > > +
+
+> > Could you use readl_relaxed_poll_timeout here instead of open coding the
+> > loop?
+
+> At first I also thought about this API. But later I came to the
+> conclusion that it is inappropriate here:
+
+> 1. We can't call rng_read from an atomic context.
+
+Agreed. A hwrng read function may sleep (an example for this is
+exynos_trng_do_read). But this doesn't prevent us from using
+readl_relaxed_poll_timeout.
+
+> 2. RNG for me looks like a very lightweight primitive to me that 
+> should work quiclky.
+
+> But, now I looked again at the API and realized that we can use
+> readl_relaxed_poll_timeout_atomic() instead of
+> readl_relaxed_poll_timeout(). What do you think?
+
+Ok, if you know that your rng hardware won't need much time to set the
+bit that you're checking, you may use readl_relaxed_poll_timeout_atomic.
+
+stm32_rtc_set_alarm does something similar.
 
 Best regards,
-Krzysztof
-
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
