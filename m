@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8032C001DC
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jul 2023 11:55:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C838BC0015E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jul 2023 11:55:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=D6sQd4Jb90W75ZUu73TC3boI1UsJus8S6bSjJU3JX2Y=; b=cpIhtLq7VmNO6o
-	ayurg+kITk1WHR07jbnsiGHoCROXQn27kwHXJa2TVe4piWE71Z+XC9hFGbRGYEy+MuE364Gwnxk4m
-	pbHugGEXcbzWTzGadg6lBbR9eM97Gp/qlHQBUFVzjcogs5Vc15rLNICZsPKPoljhfrtMmNf/vj5wZ
-	wAH6cew4/KUyEbkzRvVIvx0L44SMJmmcN2nx7MVNhL6iDUxD+TF1BTd2q4zwQI50snqEqOAKvjad6
-	rDcTjT73kmbgec26/TMDiB+QkKnXJbMoTqlEwpDNutY4xrWQ7f6BMaSHZL+eY6B+ZA+2TGLqph04Y
-	BTqGaGcpJ+t3Uoo050Og==;
+	List-Owner; bh=A4x0xLTUU2/nCDT5PbGxcQj5Xgx0AEgdLvswNTDgHU8=; b=TEw3v8+ezfnzSE
+	JucXhE8+meMbFMK6CaoW9xQT5u4ytY8Zj5piYIFNh5vri65D5alZsPPUBPfTs6efhPUYNnKohGmEq
+	Eu17MG2UHmEmN1QGH+griWV/T7252cjPFoYWtO0kzQVXRcrF5foJjcuw5Htqx++Hu2xI4mSgdJy0P
+	zqBkRKi+PGf7UiYQtzDGlZKXfsj5PknAgTtInNNf3pSm9rxHrZMc616nP/SzCvkGaBv08qvdGinaU
+	EfQsxElafOG2Yq/lH+rc44AsnctuPQxJOOx+s3lw0ZgHvieReTyhEJUN8QVegElaxrKLaiy2KWJ0u
+	nsR33bi5CPCibPM2UmJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOd6O-00AFXv-0N;
-	Wed, 26 Jul 2023 11:54:48 +0000
-Received: from viti.kaiser.cx ([2a01:238:43fe:e600:cd0c:bd4a:7a3:8e9f])
+	id 1qOd6h-00AFew-1x;
+	Wed, 26 Jul 2023 11:55:07 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOd6I-00AFUV-1o;
-	Wed, 26 Jul 2023 11:54:44 +0000
-Received: from martin by viti.kaiser.cx with local (Exim 4.89)
-	(envelope-from <martin@viti.kaiser.cx>)
-	id 1qOd63-0005Ck-Pc; Wed, 26 Jul 2023 13:54:27 +0200
-Date: Wed, 26 Jul 2023 13:54:27 +0200
-From: Martin Kaiser <lists@kaiser.cx>
-To: Alexey Romanov <AVRomanov@sberdevices.ru>
-Cc: "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"olivia@selenic.com" <olivia@selenic.com>,
-	"herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"khilman@baylibre.com" <khilman@baylibre.com>,
-	"jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
-	"f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-	"hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	kernel <kernel@sberdevices.ru>
-Subject: Re: [PATCH v1 1/3] drivers: rng: add check status bit feature
-Message-ID: <20230726115427.aigzl2wjgc6ccyt6@viti.kaiser.cx>
-References: <20230725141252.98848-1-avromanov@sberdevices.ru>
- <20230725141252.98848-2-avromanov@sberdevices.ru>
- <20230725195901.n2klvgz7outqaatk@viti.kaiser.cx>
- <20230726075243.f37sjcurmog3eunh@cab-wsm-0029881>
+	id 1qOd6g-00AFdj-0J;
+	Wed, 26 Jul 2023 11:55:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
+	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=K0ynCD+/JwB68gob6lOamTCJX1Gw9qJZSlEwIL0zPvo=; b=IUwJd8sUPG2D01GrUueOQcbjf3
+	+Z2+WYdql/pKYfDA7PRR4IF3Jcre34KNU0cjcFR3/Rc/ZcI1oOPn2ZSHBVAtbnSWJWB2iQwjhMFwN
+	3p95GuYJ/6CvkoVtYUm30Np50u2npiBoPAXCziICHuFsLFvy8aEeS4qtEUC4mM8mtj/9uDMkqIp63
+	8pMgKEqY+AmjKvQW1VLRTXzQ8ryUKCNyNjy/D5QMerdNKv3mZQAUrkN+m643VEn6JV/lC4Q7Bb9rw
+	1Hye/YGvCh+H9Ui4ka/efi2Dl3xNqovjabGzAz6XGmHioghJTq2bJ56p9w1qOcdD/0DuBoMNX6Wna
+	2M6V4Ieg==;
+Received: from mail-sh.amlogic.com ([58.32.228.43])
+	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1qOcbO-005pDe-2t;
+	Wed, 26 Jul 2023 11:22:48 +0000
+Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 26 Jul 2023
+ 19:22:07 +0800
+From: Huqiang Qin <huqiang.qin@amlogic.com>
+To: <wim@linux-watchdog.org>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>
+CC: <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Huqiang Qin <huqiang.qin@amlogic.com>
+Subject: [PATCH 1/4] dt-bindings: watchdog: Add support for Amlogic-T7 SoCs
+Date: Wed, 26 Jul 2023 19:21:43 +0800
+Message-ID: <20230726112146.1127145-2-huqiang.qin@amlogic.com>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20230726112146.1127145-1-huqiang.qin@amlogic.com>
+References: <20230726112146.1127145-1-huqiang.qin@amlogic.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230726075243.f37sjcurmog3eunh@cab-wsm-0029881>
-User-Agent: NeoMutt/20170113 (1.7.2)
+X-Originating-IP: [10.28.11.83]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230726_045442_743801_569EEB5F 
-X-CRM114-Status: GOOD (  15.56  )
+X-CRM114-CacheID: sfid-20230726_122247_245576_A8FA5771 
+X-CRM114-Status: UNSURE (   6.68  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,47 +79,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Alexey,
+Update dt-binding document for watchdog of Amlogic-T7 SoCs.
 
-Alexey Romanov (AVRomanov@sberdevices.ru) wrote:
+Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+---
+ .../devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml     | 1 +
+ 1 file changed, 1 insertion(+)
 
-> > > +static int meson_rng_wait_status(void __iomem *cfg_addr, int bit)
-> > > +{
-> > > +	u32 status;
-> > > +	u32 cnt = 0;
-> > > +
-> > > +	do {
-> > > +		status = readl_relaxed(cfg_addr) & BIT(bit);
-> > > +		cpu_relax();
-> > > +	} while (status && (cnt++ < RETRY_CNT));
-> > > +
+diff --git a/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
+index f5cc7aa1b93b..443e2e7ab467 100644
+--- a/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
+@@ -17,6 +17,7 @@ properties:
+   compatible:
+     enum:
+       - amlogic,meson-gxbb-wdt
++      - amlogic,t7-wdt
+ 
+   reg:
+     maxItems: 1
+-- 
+2.37.1
 
-> > Could you use readl_relaxed_poll_timeout here instead of open coding the
-> > loop?
-
-> At first I also thought about this API. But later I came to the
-> conclusion that it is inappropriate here:
-
-> 1. We can't call rng_read from an atomic context.
-
-Agreed. A hwrng read function may sleep (an example for this is
-exynos_trng_do_read). But this doesn't prevent us from using
-readl_relaxed_poll_timeout.
-
-> 2. RNG for me looks like a very lightweight primitive to me that 
-> should work quiclky.
-
-> But, now I looked again at the API and realized that we can use
-> readl_relaxed_poll_timeout_atomic() instead of
-> readl_relaxed_poll_timeout(). What do you think?
-
-Ok, if you know that your rng hardware won't need much time to set the
-bit that you're checking, you may use readl_relaxed_poll_timeout_atomic.
-
-stm32_rtc_set_alarm does something similar.
-
-Best regards,
-Martin
 
 _______________________________________________
 linux-amlogic mailing list
