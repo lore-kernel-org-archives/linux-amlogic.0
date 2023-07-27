@@ -4,139 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E00FC001E0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Jul 2023 08:46:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99CDFC04A6A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Jul 2023 12:24:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:
-	References:Cc:To:Subject:Date:Message-ID:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=l4ys9HBiTm5LFWUEPoY7e3dHH/s6QNwzCi6X3OMRzGc=; b=NNNLJcxHkoPAKnd7MBdTEONYY7
-	9BwxSiasWg0r19cyy+oZ+7vyB0bM6C3egPDC9HtdZG24xa82EcRUZR1LLI2kXWzrDqcXGhgQmELd9
-	OlNvL3HeryP0smKdjB72lAy9E/WHYARZ6kg2pZxQnbNuuZNPH04GfhPhszMqYR7OLmmZpC9Nv4WfZ
-	BA8HGU3+9R2NurEC1gQdGeLFfJAG8AfK8zUXDdLlqS2gFCjG1c7d6CjDk5hzhm4DK61IvFSye8Th6
-	2hQtuBuffOEFhKsCHdF15uKMLWnBK8JjslHrVkDSXsVTz3WYkfujoRXOf7OTMq5lavYLUb2NwvcOG
-	E5B1KwMQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=e/yQ7eiIzgMhjmHrhW28fFGhu/59FjHS7W/dr7gfOvc=; b=HlLrvAMGrFut2u
+	YmRxYioTt1TfLagiz0ixZRkZkw0EcpCfntheBUIXMpJcLW8Fn2mc4g97AnU+xTsBtqF4DBW0DvuAj
+	xCbaHwKqOtZLvvf1/kBSjzE94U6R1xBjqajgV6YujL9TMEt7NDTQEdjP4devdcCc0MH3hGfTupD3L
+	0mu+oyNnafeDVwDnDVWnALcVuKL6H36V/KiosUt4onn+vSYqaH3N7DNBnIwVjwIaOZPHTcK718A7E
+	jLaH2ylIUvFCOWdaYhLDZsza2FfDLYAJtF69sEAJK68FTE1Nm0sXf9b9jL0jcx7e3w0v/pzNEQd8t
+	A07x3jQPik1uD4kDqG9Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOwdX-00CiWH-1e;
-	Thu, 27 Jul 2023 08:46:19 +0000
-Received: from mail-sgaapc01on2071b.outbound.protection.outlook.com ([2a01:111:f400:feab::71b] helo=APC01-SG2-obe.outbound.protection.outlook.com)
+	id 1qP01o-00Dsbn-2q;
+	Thu, 27 Jul 2023 12:23:36 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOwdT-00CiUd-0r;
-	Thu, 27 Jul 2023 08:46:16 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=di5c7gdjfrkpj6mkVDpkN1YQu2s9aPfC51QRHG7gyZK64tsAl7OeNccCTnRTnrgd9NxXy+76lWqOPDugxjGtDt1ocH6pLRyMaC9WcZ04HW2H9972w4HSpgz82Doc8r/XI8KcyY39SDz+tjbBWJlc4U4LhqRccP3wkfPfezDFD0piybQSuOkmu0cLFefdVHkAzzajSHH+cKydifpvcvRoOvc3bDVTDyrM5555uK6YkkVarl4KE2swQDy+IOt1fbyLXmNbrMBVeyrpQ6o5RTUU4oHNyOFZdra4gtl6FIv3s+Wxlpv4wzHd85p6AnNPvD+1iTm1jj4E0MHoKud95x8x9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3l99f3CPhXJXZvIwSMdBMOV87DY1Xjeiei8xduWf1UU=;
- b=d3Udnq+sL8ri7qbY7AWIE6/7Q49BVDcMPhAn3v1DQHahF/HcTRbpNXTU8mGt+jJdbTZesFbMVqbH50Yr2vrSKit7b7tNm4AGJtTF8PQhReKYEIcwGMpHytcSbFiagh9q7GAyoE0oXnSivKmbrFAyfnBNc95OADeaT5h9ML7qvGo/iSYfEkKK2gjaHqcQRzfAxfseiQL5fi9vV9J0cTLnPDkYNfWJ2LJ1NQHn3G515jJq0oi9sy/M1hqWSDUtJ95ouoel8woWeOK5ACkgXLS9O09zCHViqC5TV9rx1FSQNsrFlGuNe5ECJRFLbp69KJUYnBeGIZJyPxoa+X4yGMoBkw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3l99f3CPhXJXZvIwSMdBMOV87DY1Xjeiei8xduWf1UU=;
- b=v8B9RQR2hs9jotOH2433+yydnJ/bLIiiLcfrEJrUCNbGOEa+pqLCeMLNjed3AN+XdSUTF80W2AT7uNke486bgAmyN6DQo588EYiWAi8kFR4/6HV0VIK3yjDTZSqhhn5kjL0ZBkexAt1Or0smXz6g1i3SjJ7/5Vaw7jvQ2lfNRwiT+1cMF1FjstWMzcywe++nCPtKCEHgeJbpk5PFOWo/nRC+Kfl9lwL0GLF5UiZX0FXEhK7q07AE/2IQ8Ejra8CckLk13yOK/mzD2VTFYvXupgKU17krHpPGR3IeBq+zkgUQbfwnczwkpoIp7RV8nQUmFjllzHurB4c8UYFMqiPuDg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB7221.apcprd03.prod.outlook.com (2603:1096:820:cb::11)
- by SEZPR03MB8232.apcprd03.prod.outlook.com (2603:1096:101:1a0::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.33; Thu, 27 Jul
- 2023 08:45:57 +0000
-Received: from KL1PR03MB7221.apcprd03.prod.outlook.com
- ([fe80::15ea:573f:2ff2:f723]) by KL1PR03MB7221.apcprd03.prod.outlook.com
- ([fe80::15ea:573f:2ff2:f723%5]) with mapi id 15.20.6631.026; Thu, 27 Jul 2023
- 08:45:57 +0000
-Message-ID: <9da24c47-341b-1581-0043-a6c1cdce462d@amlogic.com>
-Date: Thu, 27 Jul 2023 16:45:48 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 3/3] arm64: dts: Replace the IRQ number with the IRQID
- macro definition
-To: Kevin Hilman <khilman@baylibre.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- neil.armstrong@linaro.org, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, linus.walleij@linaro.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <20230721073214.1876417-1-huqiang.qin@amlogic.com>
- <20230721073214.1876417-4-huqiang.qin@amlogic.com>
- <7hcz0ei9r4.fsf@baylibre.com>
-Content-Language: en-US
-From: Huqiang Qin <huqiang.qin@amlogic.com>
-In-Reply-To: <7hcz0ei9r4.fsf@baylibre.com>
-X-ClientProxiedBy: TYCP286CA0271.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:3c9::16) To KL1PR03MB7221.apcprd03.prod.outlook.com
- (2603:1096:820:cb::11)
+	id 1qP01L-00DsEx-2M;
+	Thu, 27 Jul 2023 12:23:09 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 3741961E63;
+	Thu, 27 Jul 2023 12:23:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E578C433C9;
+	Thu, 27 Jul 2023 12:23:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1690460586;
+	bh=RY/e8xBfCt//GjUHvzWss+4Dt9ss+FsUcym4Dt+dFXQ=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=LXxxKpJ/MCkYdBdsV56K63jQh1TAR5lGGGyi3gWHHeAOquDRYOBlltWasLMX2232z
+	 jjGRJKHmzf6h6+9fcK8QTmGOrUXsjhdqmdAp7dGaNfjlUzDHbRtnudKAOyTEgq9pIJ
+	 LCp+G6qNXPPqNJPFVkbpQ4QARJbng9SkYH+DQcoFLmLpicMCA+QJNS8t14Gdq3pBjm
+	 l5vCrDCFY5JgLFRUs3bbCWUKVGSTfBUWf1XaZsQ42YsHsgSXBJj/7RlqlnNHo+C8cQ
+	 HHajxhS4RbKfyzsMvJThGrtiUpdGYzwTA39pkoe8/a0g/9/QmW8Ke+k/VbujPLeiST
+	 jxjaXv+IyiyYA==
+From: Will Deacon <will@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Frank Li <Frank.li@nxp.com>,
+	Jiucheng Xu <jiucheng.xu@amlogic.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Rob Herring <robh@kernel.org>
+Cc: catalin.marinas@arm.com,
+	kernel-team@android.com,
+	Will Deacon <will@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] drivers/perf: Explicitly include correct DT includes
+Date: Thu, 27 Jul 2023 13:22:35 +0100
+Message-Id: <169045934424.3249306.10595971010404706881.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20230714174832.4061752-1-robh@kernel.org>
+References: <20230714174832.4061752-1-robh@kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB7221:EE_|SEZPR03MB8232:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5b4f4a4b-f79e-42e5-0e7d-08db8e7de3fb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9/lXqHylDZ+EFWuOlteSV61yLFuENK9C5weQAA8cujRt9iePA//mmlezaTtM0TICoqnh8Gu4Lo/U0TxSF2hZCqHzeZUdcCcS3Vwfr+7nMsmUvqR+GWzZe64D9CqiYDcS6nQaOHueoHNUHHRICVi1/0McARp2+Dz4mhkJqbsDLHIzJkNv2gJqcn6naATBve8HQDCaLSHQ8zXg3yFJ53uJnhNRyBMUniVjWFdiIjn8XkXaHNbuoa1EGrePdA2nVEcxZUMhVlN9QwSTWrI2vmIfkdeU/7hCINKXizYSuqcUr8smjiPVRojY1pNcrNPNapb17P4OBAfnpsqTuBlXpNwpqVBZGX4wIDCC+wNy6CI2+LteoAAqFaXEr7lNDSdlD3yPkG4G4jI5Y7Zk93fhIHuIkfviVl5WkCEs8sjkMzAKyUge7RGkOkWa/fnqRV5Q5YbcjYVaqEwemu3X/TbvynkTCtukajJuLIno7hx863QWFz7rlBnU1gSP5t+6HnTAka4gpkdmqymi6QFWQPhnZAkZ2cE1i5zgTDGKFSjYUXWIe7LHR4Xd9aE51GQET09+m6mLRZzLQV5D1up+p+kazpcu7jWO3Cp6SNkcOdJFnd2CMAGreqJWeGKZ5IWxHjkpPBXoVdGEs0eqFSQGJdkm8aSLyVZPsV49sPKZAm0BdjFr1fRbupBVpYB2zj2dlpObq6cqWKCyYLjKNBkK49cC3YwmAw4ymr6aSkJ0BUSq6SAkTCs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7221.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(376002)(396003)(39850400004)(366004)(346002)(451199021)(86362001)(53546011)(26005)(6666004)(52116002)(6486002)(478600001)(66946007)(6506007)(31696002)(83380400001)(6512007)(186003)(4326008)(66556008)(66476007)(2616005)(31686004)(316002)(38100700002)(8676002)(41300700001)(7416002)(36756003)(5660300002)(44832011)(8936002)(38350700002)(2906002)(4744005)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WHJnWEFNZWdyOFE4aG52NTNmaW03ZGwyeHdYTXhrT2VJaFA4d3BsODNOVDlF?=
- =?utf-8?B?MmN6cnNkejhDTFRnR3E2YW4ycmxWdzZyNGYyWklkQjJseExISDB6ZHVCU0hJ?=
- =?utf-8?B?b3k1Rk83Z2FOSHVKWVRZK2dBR3FYZVNuUWRmU1NUWE1zV1lUaGxGNTVoMjJH?=
- =?utf-8?B?U29rTmdIWFlpTFVyVTlQbW15a2JqZ0JudlFQYXFTN0tYK3ZKNHdNazd6SURr?=
- =?utf-8?B?TlJkYklWUFp2WFMzdnVwYnJJKy9nS2tHSUdNRzFyVUhJZm5EMjZPUElRL05Y?=
- =?utf-8?B?VmxwK2UrMjdycXlsbWlYcGhZZnNPenpLUm9SekE0K0hMVjdaZWszc2FKYkh0?=
- =?utf-8?B?cVpnSU9CeWRrVU9kZlExeU5GSFBxdGRIbDFxejh0bTRHYi9LZXNzVE5XSTFa?=
- =?utf-8?B?d2JjN3dsd2EraTdZUW5OZkRsbnBnWHZSdVJCTlkyZUE4NGdLUmtpK0ViNkRh?=
- =?utf-8?B?dkc4UWw0NkE0MDkwWUtLZGU4eTEvaTZGd1EveGVzUnk4RVpEYnEyWUphbXRm?=
- =?utf-8?B?WkJDRGQ3YkpkQ3Z0SHlXQ01DeEVGSDh4MTJiK2NhMTVhVFRneFVqQ0I3MGRv?=
- =?utf-8?B?a1BRT1pSbTNMbENiK040V3BRQi9nZ3Q4dG1mZWhJWGJ0aG8xN3AvaldWblpK?=
- =?utf-8?B?dWNYdFlyalBxL0c5b2NGRCtINXZZQkFCT2JHY1hsYzJSdS90RE5RQ2VQV0pz?=
- =?utf-8?B?ZTdzSFh3M3JxbnJJOXNRaEY4UDVMOXF0dktieUYrWnQ1RFhCajZiRzRvMnVt?=
- =?utf-8?B?TGQ2TGJlcUVpTkdWeXdFTGs4Q3E0eEVEbDdIS3Y5VlJtSXBlV2gzOW51S0pK?=
- =?utf-8?B?bnBEVVVDNElvS2s3QTZCNFA0ZW9pYytwZ0UyeFFZc2FBMkx6ZEZ2aSs1SlR0?=
- =?utf-8?B?ZlV1bXFGdjZEWjIrdjNndEk5Y3YvQ0NnaGRRbGVyUytkb3hrcjMvUlhtNWsv?=
- =?utf-8?B?YUhOODJZK3ZxVVFxc3hSL2UwYUErUVZYc1Z4RTBVeDlIRXNJY1NEUEkxcVdp?=
- =?utf-8?B?T0Z0VEc5T0IxNjhsUWk3VzNIU3g5SWN5MDBZdVlMWUh4NEszTXU1SERlYU9Z?=
- =?utf-8?B?aVJ0Z2JLWHJwcWQrQ2hyUExkbGd0SDZrTHFSbENIaWhYNnRiWG1XNDI0ejhO?=
- =?utf-8?B?RmdId3dsU0xKcEdtd2VjbkQ1Ym5KcitteFhvMHRsRlV0aVBEai94blg0d0lZ?=
- =?utf-8?B?U2EvMWNTak04V2E3NDNJNWJEc0NpM0tZVmRoUXBucGxYczdoRTVWN3VkbkJz?=
- =?utf-8?B?eHlXVVppMEx0dENueE9WcEx0eWI3MGdsMjJUajJDMlA5WHIxMUFRQ25JZHp3?=
- =?utf-8?B?akxUeTNjK0JaNDFsV3pIVXFhcURqT2FYQXFjMWZpMzE5a29HbUtxQzRvcmdl?=
- =?utf-8?B?cjhFWE9FWDJJd3Z5VktCVlBrVkMyRWdmQ1lOQVZLclA1dGFqQ01pbUxXTGJE?=
- =?utf-8?B?SzhSWXdSMFl1emZxYmhXZzVvQ283dGFZVVVPRGpQa0JMbnBjNlAzZWRVT25p?=
- =?utf-8?B?Mkp3U21uQzloSlVLWC9KUHZNODczMC9yRTNYZmZKYU5XQ2FMY2lFc2F5OWFt?=
- =?utf-8?B?QmxBWExINnI3aFlpcGF3KzRiVUhsM1JsTUh5alEwQWpzc3ZqaElaM2Y5T3ly?=
- =?utf-8?B?WlhJdkEvY0VwUWphNVltRG5YQ3ZpZk84MDhpVThyMmQ3dGVsak9LK09UNDFo?=
- =?utf-8?B?R0x0K2E4LzFpSzJYRkRKTVlDWjhRcElCcmorUjRvK0FTYUNic2UycTlLNGs4?=
- =?utf-8?B?M3ZIY1haeVBJTXlDZGk0NWJyKzN1dWRKOGh3amJjWTBBMWxyK1VadGtHMkpU?=
- =?utf-8?B?eGxYVFF0bnQrZ0N4VGR6THVKRE5WNVV6OEtBM0lIYktyK2xra0E5TXpxTmdl?=
- =?utf-8?B?VEQ4RFZ0VFM2QlFEb01EZ3NsUVR2YnNlMzNjbzNvWllyaGpVb3VpM0FMZmwr?=
- =?utf-8?B?NnErUWpuL3FnQ0QySkRIQmlaNzRIUkM0a1dTT2VnWVZxdndFdDdFb1VHUThm?=
- =?utf-8?B?Um1JK3BPTzFybFg2VlJvQ21CMmhNVlNXelZvb3hZaWtkNWFtTElFMVAzU3lr?=
- =?utf-8?B?b25XZUtUaWhuTWNabjBkMytqWWplN2x3aUJWYi9zdzFvb2w4Ymd3Y1BoZkJZ?=
- =?utf-8?B?VlJkNnlqRkN0N3dNakFQaTkzOGNGUjFvc0I4ZkR6UzZta21XN00zMVBSYWZk?=
- =?utf-8?B?b3c9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b4f4a4b-f79e-42e5-0e7d-08db8e7de3fb
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7221.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jul 2023 08:45:56.5713
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: M2LuHYAdf46ssrpkI4HaBqy3FQF7W7Jfj0ry9pZYSSamEnLWdHLjcvOwU52jMoPoq3Zt4zpdpCtmsUHG89uPSg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB8232
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230727_014615_370268_0154D1F9 
-X-CRM114-Status: UNSURE (   7.63  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230727_052307_818072_EDE725E6 
+X-CRM114-Status: GOOD (  10.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,25 +91,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Kevin Hilman,
+On Fri, 14 Jul 2023 11:48:31 -0600, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+> 
+> [...]
 
-On 2023/7/27 6:33, Kevin Hilman wrote:
->> Replacing IRQ numbers with IRQID macro definitions makes node properties
->> easier to understand and also makes GPIO interrupts easier to use.
->>
->> Associated platforms:
->> - Amlogic Meson-G12A
->> - Amlogic Meson-G12B
->> - Amlogic Meson-SM1
-> Does this mean you tested/validated these changes on those platforms
-> also?
+Applied to will (for-next/perf), thanks!
 
-Amlogic's G12A/G12B/SM1 have the same GPIO, and the GPIO interrupt number
-is also the same, so I only tested on the SM1 platform, and the test results
-prove that these changes are good.
+[1/1] drivers/perf: Explicitly include correct DT includes
+      https://git.kernel.org/will/c/918dc87b746e
 
-Best Regards,
-Huqiang Qin
+Cheers,
+-- 
+Will
+
+https://fixes.arm64.dev
+https://next.arm64.dev
+https://will.arm64.dev
 
 _______________________________________________
 linux-amlogic mailing list
