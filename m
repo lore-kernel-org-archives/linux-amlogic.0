@@ -4,92 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA21AC0015E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Jul 2023 15:18:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E278CC001E0
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Jul 2023 15:18:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=quBmKNYPb3D+Dqg+GLnKLQ86moRub5+xzKp/MPMAEnk=; b=jLS/Pna0eNtY+3
-	RfqowFWTR+PPdtoqsK9T5U4/jcfBwKq8w/6ZHa5KU8uWwxdfKK0VrsD0MP4+pRpCVuNgndJrlkC31
-	u0Qypep7EJEA1rHexTLNY6bBTmmQGUWwE0HUIZazvLn48MFdJqhPDneN33+yzi8D2AB2fBBXxEAer
-	UvEpuDhHCR4DfJyFe7ONYlwoOiVIGhW+7ymulwSdlRrcY9d/B3eUhysTmVX42nr4AeP5XqmoIQoWD
-	IXPajzU8Kbc0IQdo6QJpkttmV/S42WPghgVSCH4ow7Xwx2KN9VIBRxVRHTmT93Lqu0lirgAfCkByE
-	T4jT7hJI6Rxa7XT7uQ+Q==;
+	List-Owner; bh=D4HmoHYe1B2QFYvPoHnC5Kde5RuOjEy1zLiA2HW9IAc=; b=b+aE3V1REKKCD2
+	8l2ZexvCsQ81ZmlkjIpFqJ3cNmDV9QzAtIf3+X0zd+EEsu/qAcapTNptMqD1HcWk3NOjDZnwzuXoI
+	ss5wwWrBiCTw6M/I7sKoqXVZdQp4YTqigTjNXhEarU73yRy8+bdoj7fwmLDmqwW5GbvDPoEebbyNs
+	VfbBxHuiI9TshPX1svO2IqPloBu/2+evG0l7reYDRj5GMrEdEZxwnvEV2J+cPol1LFsJlscXGWhhs
+	pLbHfrHjFkfqLlQ4yYsOqz9AhbXustC5BYGzfpstUE1uKg18tzPWdEAIPsfYeTBy+jmvv2nuu0EIu
+	ozC1KJWd5GxZpPQ6fvlw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qP2kn-00FliR-0r;
-	Thu, 27 Jul 2023 15:18:13 +0000
-Received: from relay6-d.mail.gandi.net ([2001:4b98:dc4:8::226])
+	id 1qP2kz-00Flx4-2X;
+	Thu, 27 Jul 2023 15:18:25 +0000
+Received: from relay5-d.mail.gandi.net ([217.70.183.197])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qP2kj-00FlaC-1x;
-	Thu, 27 Jul 2023 15:18:11 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 998C9C0006;
-	Thu, 27 Jul 2023 15:17:57 +0000 (UTC)
+	id 1qP2kv-00FlmT-2b;
+	Thu, 27 Jul 2023 15:18:24 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2694A1C0007;
+	Thu, 27 Jul 2023 15:18:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1690471084;
+	t=1690471096;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=9aqdGX9nA2iQX2zweZK++in7R/avXw9W2bX/HtVPsxU=;
-	b=RJKiI6QqwOneXyDOlHI7qbB9SyJiAEERWGqIsT0b0+gNi9GTgzZzaUkE+BE7gvc8+kuQdR
-	QWijR44Pcc8xVjqfnxBToFbBJ2wPbk4r6WOIoJtjY0E+StOeLVOD3syqjRgUoSxoFIJmRZ
-	xaK8qo0O240qPLXk0xh/K7Dd3pj9NDjtQ7v2369bc4LXLvt1R9iVO/oRVkKBb9PguVhtKC
-	4sa9pJls3QpfcVq2mav+OR2b6Qg6msajS+eN6b7WwzjlPV8w5ZavHal9WfWUZEGwH8GpM7
-	W0gkJHi4IN2im5i/LVAOqcTuq9ihYtVyFT5QUd8AzSelfeP5NCLRty5uapSXBA==
+	bh=7rDi/rWyrHY5kZcl5dVEL9LRJ9CfxxxjeIcAFDcIAjI=;
+	b=Uz8AhCmDYbzE6WW6+p9hhdi/bDCpkB2j9E7n2Adiu/QA+/MXEdvgNWe+lpmUH6bBFMplgH
+	yCXz5IUEb/xn46MwTnb3Ge7xDD6H0jvDVmFK3bE57PpEqCueRLYF7fifq8kND6JBcXRnLK
+	B/lc7dPHXvJ3Hv25yXtkWQCqciFRqfXYieq+ExahRspyScoTjUNx/i4XRPhlhaDeFxzXxF
+	dMoeHxMMttWSHZNepDQK1IECamvNbv8nxLLQR2fON199Qrlg16kI7tg4OstGLwjznZ8ZZv
+	y4BtTU3YFtddtVt01kR7b670NdqTg7Y21MyGnAYwnkyROqZznL86SWcc5l8+mA==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Rob Herring <robh@kernel.org>,
+To: Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
+	Liang Yang <liang.yang@amlogic.com>,
 	Miquel Raynal <miquel.raynal@bootlin.com>,
 	Richard Weinberger <richard@nod.at>,
 	Vignesh Raghavendra <vigneshr@ti.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	Han Xu <han.xu@nxp.com>,
-	Harvey Hunt <harveyhuntnexus@gmail.com>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Liang Yang <liang.yang@amlogic.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Pratyush Yadav <pratyush@kernel.org>,
-	Michael Walle <michael@walle.cc>
-Cc: devicetree@vger.kernel.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: oxffffaa@gmail.com,
+	kernel@sberdevices.ru,
 	linux-mtd@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mips@vger.kernel.org,
 	linux-amlogic@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH] mtd: Explicitly include correct DT includes
-Date: Thu, 27 Jul 2023 17:17:56 +0200
-Message-Id: <20230727151757.586430-1-miquel.raynal@bootlin.com>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] mtd: rawnand: meson: support for 512B ECC step size
+Date: Thu, 27 Jul 2023 17:18:11 +0200
+Message-Id: <20230727151811.586490-1-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230714174751.4060439-1-robh@kernel.org>
+In-Reply-To: <20230717053402.1203724-3-AVKrasnov@sberdevices.ru>
 References: 
 MIME-Version: 1.0
 X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'c2fc6b6947905eee832e9ef445df4803f0056cc6'
+X-linux-mtd-patch-commit: b'0e1db39336d8be4ddeb9f0d99720056f3ff41310'
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230727_081809_793951_321B48DD 
-X-CRM114-Status: GOOD (  10.38  )
+X-CRM114-CacheID: sfid-20230727_081822_704777_BE1B226D 
+X-CRM114-Status: UNSURE (   4.75  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,21 +90,12 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 2023-07-14 at 17:47:49 UTC, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
+On Mon, 2023-07-17 at 05:34:01 UTC, Arseniy Krasnov wrote:
+> Meson NAND supports both 512B and 1024B ECC step size.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Acked-by: Heiko Stuebner <heiko@sntech.de>
+> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
 
 Miquel
 
