@@ -4,84 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA66DC001DE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jul 2023 05:27:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E70DFEB64DD
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jul 2023 07:16:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YSn1CqsD5CE2mc4gJohLQ/wmwC5kbhNb61aVM+vr8PA=; b=rtOFxtfra7vY1B
-	WjiIeFgKAIpASvXvbG1RKG68dJMxbqDYabuV0xFR6Z6eeaadfW1PuHmCMPAD65KVLXHM8TPKuCA+B
-	kItnWJr53GDoinGIRqUI7WmNybPyuwk80qf0YmoSN1c8FqdOSgr0zip4PWA6sgJ6LMqzZ5bhii0P6
-	7RtrgVTEEXZ/GLV8cPtnEBqn3UNZ7lPB0HwLv/pQe+Pgs6hMAb6bj+xSV2LOm42S7neWOAYbKNlZH
-	nCCIsH/LK5RTQeYIV3WQPY8RXQZtct0N9N08673CNJ12uT/4g24rcqgmtRDgxKnHE2dYK9g4pOJsq
-	4W4R/kqoloetxo/9X+6w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=HXSZFcMQYA7gOSJdRbojdnchZHfzjFuHlz+YIwlFhyQ=; b=sxRRlqiPoaKwSt
+	eutiyoHtEof+fmIY4v9R53hgZwJDYkPSxc+kJlemKutMm6KqYJFkaUfGcZxNr8ke7oKOrxdCrB1Ro
+	DK150ZyZomYPPxJwvASWfs0l7/MsQj2kW2wiDH4PdURaoRnNxVot4DwoUnDh+iLEBXvhzmG6WEARN
+	LQy6F6nzq0Ea8ZmpKZInsv4AEOaT3Lo1IkTweqMB4dEHARkba6tNUrDUFQgYJU7EI92Y4oai+F0+p
+	eOlzPCgTRHEzgkHQXrJVqtX3LBJ2aW1Islnn1NMgFXk88FrtAz8WirEPQy4Q+lmgEqfJpUpI/NOpl
+	QftMQlCQikmdT04VEwwA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qPG0B-001jJU-0R;
-	Fri, 28 Jul 2023 05:26:59 +0000
-Received: from mail-qv1-xf2f.google.com ([2607:f8b0:4864:20::f2f])
+	id 1qPHhV-0024wK-28;
+	Fri, 28 Jul 2023 07:15:49 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qPG07-001jGz-0D
-	for linux-amlogic@lists.infradead.org;
-	Fri, 28 Jul 2023 05:26:57 +0000
-Received: by mail-qv1-xf2f.google.com with SMTP id 6a1803df08f44-63cf6b21035so11406886d6.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 27 Jul 2023 22:26:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fooishbar-org.20221208.gappssmtp.com; s=20221208; t=1690522010; x=1691126810;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cE7yzj/ShJctTo/cH8TMuQ/2VH0iD1G1+5KA9qirh/Y=;
-        b=trpErXEJEPDZtUwJrLhT56jOvw/TASEnxJqiim24u87Ey219zXjICSpgcrZjP+hIvC
-         YOisNcRp1EFcZBuqaw0v47KkdLVd0rFI+qxA+sXUlebSorcP7hGjMv3NkVKwxd1A+1fM
-         +cPBg+wk6aUxXSizYt9OOW8K2HwaRZylnOeA2baYNkYAkyTSt3uSNK4bqSBTUKRlrYKH
-         veSyepWn/C4JI0VyBkgwNf9ieJKzWg0hb3tCI/tmQqhFz8s1wdV5XOJi6PQyomubgQDL
-         AUwaUxnOfbqg6WW2SXOJHHuKT2fULl3OjCF9EdNHMtPrrV+gZMyo2wDTP0lf87ec5+Bk
-         zCEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690522010; x=1691126810;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cE7yzj/ShJctTo/cH8TMuQ/2VH0iD1G1+5KA9qirh/Y=;
-        b=R9K4arV05gLRUSi6RX8fi+8jgXBZ2KQjF1Mon3UY/ncuV0L0mMGIc3BDiL1bxU2gxc
-         2mxgMNP0XTMsQ5ev0Vcbu44oWFTJTAiCY7zU+aBvJ+Y6bSlRKTw0dCrAIknU4n1GXJjz
-         ILIdQrsbMVgGEdzl0mhefRhtaulwOIY50n1wvTREMPp1KcW9qdV2HnihYuTdf5EXOJA5
-         ULLKyEMVAmDnD7xa85ERhoxC9IglqOcFZs5t/5LQCIGtQrBFa5Q1dBfiRe9m/Y5z9Sm1
-         z1gG60FssQKdvC3pKtxWtNlkPBGHyqbv9Y4ikfrFAv5HD2lCaIaIbnMixl3/l9VGIGeW
-         qVqA==
-X-Gm-Message-State: ABy/qLYxr4xuvLrAygQC1PAqFyOwlf6im6qDniHw/rJ9C+WK6Tz3ucp3
-	ltUkpL6zkHt2bl13pkIW+meIHO5llci5TuHTc1gn1Q==
-X-Google-Smtp-Source: APBJJlGaHKu68l916QbJnESfurRQ8GLdxdUM6h1VlhU7qK1FfkFxQTpsfGqhPqGZxqp+5PbL922CfRISxETZ4hSkBS0=
-X-Received: by 2002:ad4:45a9:0:b0:63c:fc39:3c0d with SMTP id
- y9-20020ad445a9000000b0063cfc393c0dmr1353378qvu.62.1690522009771; Thu, 27 Jul
- 2023 22:26:49 -0700 (PDT)
+	id 1qPHhQ-0024sl-1f;
+	Fri, 28 Jul 2023 07:15:47 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 2A0A010000B;
+	Fri, 28 Jul 2023 10:15:29 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2A0A010000B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1690528529;
+	bh=tjFRdoC0YQTuiVRI/wa1w2TMkVFq1VJlUunzcx1UuUE=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=QDe6rbSryTd2Txc2wFEcj9aLUGsgPTiubY//kR4VfN7TcGqUGvHVvQTAVxz7LHI3W
+	 Lcn4w09u6SGRW8hpkQNLtaFcGGnHsyiYU0x5FGXQcmhFURAGF8uoppMHuTQSohuEb2
+	 ucq96lMC8/9TlByS0NHxD3q9FV5wIfbY4YlZoTWY29Mjepa+HZlOvch+4d2G5eRUgK
+	 X7DDpGQ7sJ0KS+lPU1SngcnmlXgaZtAC0ioOjT9DfpiusI3uBqY7jtOjE0+Kkhq9Ru
+	 ysjN2a1H0yz3fJlDO4eetMusvFJph19nOA7urB7FvDwoR8x3sOxLtzM1Mv6ttXfli0
+	 IoEafzOxtMNsw==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 28 Jul 2023 10:15:29 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Fri, 28 Jul 2023 10:15:05 +0300
+From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<neil.armstrong@linaro.org>, <jbrunet@baylibre.com>, <jirislaby@kernel.org>,
+	<khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>
+CC: <kelvin.zhang@amlogic.com>, <xianwei.zhao@amlogic.com>,
+	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-serial@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
+	<ddrokosov@sberdevices.ru>
+Subject: [PATCH v1] tty: serial: meson: refactor objects definition for different devnames
+Date: Fri, 28 Jul 2023 10:15:22 +0300
+Message-ID: <20230728071522.17503-1-ddrokosov@sberdevices.ru>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-References: <20230720152737.102382-1-helen.koike@collabora.com>
- <CAF6AEGtXL5vjp3Uup6Mk19MiY8E26-tpyXVmxXYhMd3fiadykQ@mail.gmail.com> <CAF6AEGsxLg4og1EkCdno6P8x31KK=rJfmerJa8uMeNR-n7RVRg@mail.gmail.com>
-In-Reply-To: <CAF6AEGsxLg4og1EkCdno6P8x31KK=rJfmerJa8uMeNR-n7RVRg@mail.gmail.com>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Fri, 28 Jul 2023 06:26:39 +0100
-Message-ID: <CAPj87rPNyJ=mX1Um6yaN_jTV2gH5MhMxr3mnSb7=nB7NEOf2Ag@mail.gmail.com>
-Subject: Re: [PATCH v10] drm: Add initial ci/ subdirectory
-To: Rob Clark <robdclark@gmail.com>
-Cc: Helen Koike <helen.koike@collabora.com>, emma@anholt.net, linux-doc@vger.kernel.org, 
-	david.heidelberg@collabora.com, dri-devel@lists.freedesktop.org, 
-	linux-amlogic@lists.infradead.org, jbrunet@baylibre.com, robdclark@google.com, 
-	corbet@lwn.net, khilman@baylibre.com, sergi.blanch.torne@collabora.com, 
-	gustavo.padovan@collabora.com, linux-rockchip@lists.infradead.org, 
-	daniels@collabora.com, martin.blumenstingl@googlemail.com, mripard@kernel.org, 
-	anholt@google.com, linux-mediatek@lists.infradead.org, 
-	robclark@freedesktop.org, matthias.bgg@gmail.com, 
-	linux-arm-kernel@lists.infradead.org, angelogioacchino.delregno@collabora.com, 
-	neil.armstrong@linaro.org, guilherme.gallo@collabora.com, 
-	linux-kernel@vger.kernel.org, tzimmermann@suse.de, 
-	Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178796 [Jul 22 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 525 525 723604743bfbdb7e16728748c3fa45e9eba05f7d, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2023/07/23 10:45:00
+X-KSMG-LinksScanning: Clean, bases: 2023/07/23 10:46:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/23 08:49:00 #21663637
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230727_222655_102581_AF133689 
-X-CRM114-Status: GOOD (  15.07  )
+X-CRM114-CacheID: sfid-20230728_001544_929145_99106226 
+X-CRM114-Status: GOOD (  17.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,33 +103,137 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 27 Jul 2023 at 22:47, Rob Clark <robdclark@gmail.com> wrote:
-> > I did run into a bit of a chicken vs. egg problem with testing the "in
-> > tree" version (compared to earlier versions which kept most of the yml
-> > and scripts in a separate tree), is that it actually requires this
-> > commit to exist in the branch you want to run CI on.  My earlier
-> > workaround of pulling the drm/ci commit in via
-> > ${branchname}-external-fixes no longer works.
->
-> After unwinding some more gitlab repo settings that were for the
-> previous out-of-tree yml setup, I have this working.
->
-> Tested-by: Rob Clark <robdclark@gmail.com>
-> Acked-by: Rob Clark <robdclark@gmail.com>
+Macroses for name generation are not useful. They hide the real place
+for object declaration. Instead, use direct names such as
+'meson_uart_driver_*' and 'meson_serial_console_*' for all objects.
 
-And it's also:
-Acked-by: Daniel Stone <daniels@collabora.com>
+Additionally, rename 'MESON_SERIAL_CONSOLE_DEFINE()' to
+'MESON_SERIAL_CONSOLE()', and 'MESON_UART_DRIVER_DEFINE()' to
+'MESON_UART_DRIVER()' to simplify the code.
 
-It's been back and forth a few times by now and reviewed pretty
-heavily by all the people who are across the CI details. I think the
-next step is to answer all the workflow questions by actually getting
-it into trees and using it in anger. There was some discussion about
-whether this should come in from drm-misc, or the core DRM tree, or a
-completely separate pull, but I'm not sure what the conclusion was ...
-maintainers, thoughts?
+Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Suggested-by: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
 
-Cheers,
-Daniel
+In the patch series located at [1], the standard tty devname 'ttyS0' was
+introduced for the A1 and S4 SoC families. Despite being merged into the
+tty-next branch, a few TODOs flagged by Neil remained unresolved.
+
+As a result, there is follow-up patchset to eliminate all the issues
+mentioned by Neil in one of the previous patchsets [2].
+
+Links:
+    [1] https://lore.kernel.org/lkml/20230705181833.16137-1-ddrokosov@sberdevices.ru
+    [2] https://lore.kernel.org/lkml/606ed182-14b8-4c8f-37d3-21971ec71f38@linaro.org
+
+---
+ drivers/tty/serial/meson_uart.c | 39 ++++++++++++++-------------------
+ 1 file changed, 16 insertions(+), 23 deletions(-)
+
+diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+index 84cf10b0ca5c..790d910dafa5 100644
+--- a/drivers/tty/serial/meson_uart.c
++++ b/drivers/tty/serial/meson_uart.c
+@@ -76,13 +76,8 @@
+ #define AML_UART_POLL_USEC		5
+ #define AML_UART_TIMEOUT_USEC		10000
+ 
+-#define MESON_UART_DRIVER(_devname) meson_uart_driver_##_devname
+-
+-#define MESON_UART_DRIVER_DECLARE(_devname) \
+-	static struct uart_driver MESON_UART_DRIVER(_devname)
+-
+-MESON_UART_DRIVER_DECLARE(ttyAML);
+-MESON_UART_DRIVER_DECLARE(ttyS);
++static struct uart_driver meson_uart_driver_ttyAML;
++static struct uart_driver meson_uart_driver_ttyS;
+ 
+ static struct uart_port *meson_ports[AML_UART_PORT_NUM];
+ 
+@@ -617,21 +612,19 @@ static int meson_serial_console_setup(struct console *co, char *options)
+ 	return uart_set_options(port, co, baud, parity, bits, flow);
+ }
+ 
+-#define MESON_SERIAL_CONSOLE(_devname) meson_serial_console_##_devname
+-
+-#define MESON_SERIAL_CONSOLE_DEFINE(_devname)				\
+-	static struct console MESON_SERIAL_CONSOLE(_devname) = {	\
++#define MESON_SERIAL_CONSOLE(_devname)					\
++	static struct console meson_serial_console_##_devname = {	\
+ 		.name		= __stringify(_devname),		\
+ 		.write		= meson_serial_console_write,		\
+ 		.device		= uart_console_device,			\
+ 		.setup		= meson_serial_console_setup,		\
+ 		.flags		= CON_PRINTBUFFER,			\
+ 		.index		= -1,					\
+-		.data		= &MESON_UART_DRIVER(_devname),		\
++		.data		= &meson_uart_driver_##_devname,	\
+ 	}
+ 
+-MESON_SERIAL_CONSOLE_DEFINE(ttyAML);
+-MESON_SERIAL_CONSOLE_DEFINE(ttyS);
++MESON_SERIAL_CONSOLE(ttyAML);
++MESON_SERIAL_CONSOLE(ttyS);
+ 
+ static void meson_serial_early_console_write(struct console *co,
+ 					     const char *s,
+@@ -656,13 +649,13 @@ meson_serial_early_console_setup(struct earlycon_device *device, const char *opt
+ OF_EARLYCON_DECLARE(meson, "amlogic,meson-ao-uart",
+ 		    meson_serial_early_console_setup);
+ 
+-#define MESON_SERIAL_CONSOLE_PTR(_devname) (&MESON_SERIAL_CONSOLE(_devname))
++#define MESON_SERIAL_CONSOLE_PTR(_devname) (&meson_serial_console_##_devname)
+ #else
+-#define MESON_SERIAL_CONSOLE_PTR(_devname)	(NULL)
++#define MESON_SERIAL_CONSOLE_PTR(_devname) (NULL)
+ #endif
+ 
+-#define MESON_UART_DRIVER_DEFINE(_devname)  \
+-	static struct uart_driver MESON_UART_DRIVER(_devname) = {	\
++#define MESON_UART_DRIVER(_devname)					\
++	static struct uart_driver meson_uart_driver_##_devname = {	\
+ 		.owner		= THIS_MODULE,				\
+ 		.driver_name	= "meson_uart",				\
+ 		.dev_name	= __stringify(_devname),		\
+@@ -670,8 +663,8 @@ OF_EARLYCON_DECLARE(meson, "amlogic,meson-ao-uart",
+ 		.cons		= MESON_SERIAL_CONSOLE_PTR(_devname),	\
+ 	}
+ 
+-MESON_UART_DRIVER_DEFINE(ttyAML);
+-MESON_UART_DRIVER_DEFINE(ttyS);
++MESON_UART_DRIVER(ttyAML);
++MESON_UART_DRIVER(ttyS);
+ 
+ static int meson_uart_probe_clocks(struct platform_device *pdev,
+ 				   struct uart_port *port)
+@@ -700,7 +693,7 @@ static int meson_uart_probe_clocks(struct platform_device *pdev,
+ static struct uart_driver *meson_uart_current(const struct meson_uart_data *pd)
+ {
+ 	return (pd && pd->uart_driver) ?
+-		pd->uart_driver : &MESON_UART_DRIVER(ttyAML);
++		pd->uart_driver : &meson_uart_driver_ttyAML;
+ }
+ 
+ static int meson_uart_probe(struct platform_device *pdev)
+@@ -819,12 +812,12 @@ static struct meson_uart_data meson_g12a_uart_data = {
+ };
+ 
+ static struct meson_uart_data meson_a1_uart_data = {
+-	.uart_driver = &MESON_UART_DRIVER(ttyS),
++	.uart_driver = &meson_uart_driver_ttyS,
+ 	.has_xtal_div2 = false,
+ };
+ 
+ static struct meson_uart_data meson_s4_uart_data = {
+-	.uart_driver = &MESON_UART_DRIVER(ttyS),
++	.uart_driver = &meson_uart_driver_ttyS,
+ 	.has_xtal_div2 = true,
+ };
+ 
+-- 
+2.36.0
+
 
 _______________________________________________
 linux-amlogic mailing list
