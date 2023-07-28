@@ -4,71 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDF42C00528
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jul 2023 08:48:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42802C001DE
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jul 2023 09:44:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=zgGtSE1TeMnd2dhnGcaL/cCIR1Oev1lJ7gcKzuMJuSY=; b=mox8aYlbFcvdGmwriwzDOit1sq
-	CgbEFfl/PpgU6JR0gPi3rjWwXksYhA1gl1fdpBMKY1vJqU6EnBEo3xrjeGzftl0wkPUoxTiIMo/3j
-	bdLOH8RBq+jlT36UU0k1z6A3Zup8Tj9Q14PCPJAHiN0VsRbKdUEXz57i+WG0YJdjwjFAumUoCgU2x
-	t18yBicnPrAPVXJZOmx2ZQsnhZA9hE0G7yP7mANB9qM6HNGfCHo+q4s5q4PkUGzV39RDJD81P6uG0
-	XVCMLz9l6Sv3q5oA8+K/DEqeJa3y0ScuWdBmcmXRmjWurvS9wmfhvhdchgElk4HQChTghjXp4ujeZ
-	kmMA/mWA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ahlU9YZjg4Jy0ZsMs4g0UooULKt3IYbWuyovOui6MJ4=; b=yLDIJWpxr+/4FP
+	8bHIIrbxocSZzjGLJyouJjS1zsAGvaQLe4kjDyoAEiB1HHh36LKtA4ZjF/VvJ41i2YLQZ5utTUJ0j
+	HVAWLckbNX2nBDUZbgfeYoVeoVXle941vJPFt6YgObbOpUh8rtBEBBPrfqFOcILSgQO/G3EBsFWRd
+	NqRVXZ9VLdjLpLVq3yqxTsHl0yFaCC7aoEHTXU0sfkIoIkeeQMf7AWenOfSRFXQjaWBo+9ZtjHWlg
+	Z/tfiFA/81KTyBOexlYPZoBTnMKypCUb3Fc/vEV96Lklzp8fqztRkwKL7N6CK9b4jCZt5O3NgJhwe
+	zUrHCsRp1xCj4WMO5THg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qPJ9F-002Sjk-00;
-	Fri, 28 Jul 2023 08:48:33 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1qPK17-002fLl-13;
+	Fri, 28 Jul 2023 09:44:13 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qPJ9A-002SgD-1h;
-	Fri, 28 Jul 2023 08:48:31 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	id 1qPK13-002fJa-0S;
+	Fri, 28 Jul 2023 09:44:11 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 4F07710000A;
+	Fri, 28 Jul 2023 12:43:59 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4F07710000A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1690537439;
+	bh=mmWbMSYEkF9c1GueptbbjSnMca6xFSgsbHmgMNQrKo0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=QUEv9IF58Zlk1wiA+EuPLQL6++PwN2EtVvBEVPNKvQtwi0s+x8grWRio9R5q6CiAp
+	 FFciygYvsKJ6wJTNhkPSSapiFfwDZRwI4VpBFgictyBZgJbFMKghxUQhs4+DFT7K/8
+	 SbdecHgZKDp+n75uq1R2cIMUXLSxN5+JuwJ/v1JY0I/ESegspbabqVc3u1TKLqwPje
+	 jLbIRKPgL0fgPV4gUzd260rUnqmc3V3vnyIRJ4zjmZLUHvX/zWci29bmpnDs2MIXgc
+	 PSJrhdtNng7udT+JdoXL3NNnCUn83C4HG/I0J+D4IPFyx9d/JVdticUDvlNEG0mRdQ
+	 E8egdGyJbEAxQ==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 96C4362044;
-	Fri, 28 Jul 2023 08:48:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80ED6C433CA;
-	Fri, 28 Jul 2023 08:48:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1690534107;
-	bh=MWYn0ZrD+F0fN2IJzgSEyyw2W5hXt/o/TWyWPk3BOWo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O3IxMP29Fvt2U/ljC8FoYM2aSfMb4zzVIXEdQ56M3YkhOqas3XdA+FVqC9ij+r478
-	 vxEtmxmGKwWE4IFHmr4Uzq+l/M9WJHOIBLMDFe2mDqHhugB9Gj9vXaiFFs8sMM9hIW
-	 7Ld4Gcoa2bCFQdEEDBw+W7sdJjmL7810LMK22AhHXbuTRGxB5NLu4w6KGzuygwVEmx
-	 fjg6U4EHCWsA76AvETNxQNs+48uOc0WOJxneAy5YalDknBkjnOZpQnBfbMS2ZKka3Y
-	 Wkohx2HEOkEQXXNN1yZrb3U6eBrT5HxiuoM6MNb6gIaA1geJWVU0AFY3aGDm4iex/2
-	 UHfcK7Opo0cGA==
-Date: Fri, 28 Jul 2023 10:48:24 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Daniel Stone <daniel@fooishbar.org>
-Cc: Rob Clark <robdclark@gmail.com>, 
-	Helen Koike <helen.koike@collabora.com>, emma@anholt.net, linux-doc@vger.kernel.org, 
-	david.heidelberg@collabora.com, dri-devel@lists.freedesktop.org, 
-	linux-amlogic@lists.infradead.org, jbrunet@baylibre.com, robdclark@google.com, corbet@lwn.net, 
-	khilman@baylibre.com, sergi.blanch.torne@collabora.com, gustavo.padovan@collabora.com, 
-	linux-rockchip@lists.infradead.org, daniels@collabora.com, martin.blumenstingl@googlemail.com, 
-	anholt@google.com, linux-mediatek@lists.infradead.org, robclark@freedesktop.org, 
-	matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org, 
-	angelogioacchino.delregno@collabora.com, neil.armstrong@linaro.org, guilherme.gallo@collabora.com, 
-	linux-kernel@vger.kernel.org, tzimmermann@suse.de, Dave Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v10] drm: Add initial ci/ subdirectory
-Message-ID: <5vmoxioppbrbw3tshfr37m3mvkfattkidhkhvqlyqsqh3tniwh@lhjbpdwl7bud>
-References: <20230720152737.102382-1-helen.koike@collabora.com>
- <CAF6AEGtXL5vjp3Uup6Mk19MiY8E26-tpyXVmxXYhMd3fiadykQ@mail.gmail.com>
- <CAF6AEGsxLg4og1EkCdno6P8x31KK=rJfmerJa8uMeNR-n7RVRg@mail.gmail.com>
- <CAPj87rPNyJ=mX1Um6yaN_jTV2gH5MhMxr3mnSb7=nB7NEOf2Ag@mail.gmail.com>
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 28 Jul 2023 12:43:59 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Fri, 28 Jul 2023 12:43:35 +0300
+From: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
+	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
+	<AVKrasnov@sberdevices.ru>, kernel test robot <lkp@intel.com>,
+	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1] mtd: rawnand: meson: fix build error
+Date: Fri, 28 Jul 2023 12:38:10 +0300
+Message-ID: <20230728093810.2985324-1-AVKrasnov@sberdevices.ru>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
-In-Reply-To: <CAPj87rPNyJ=mX1Um6yaN_jTV2gH5MhMxr3mnSb7=nB7NEOf2Ag@mail.gmail.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178796 [Jul 22 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 525 525 723604743bfbdb7e16728748c3fa45e9eba05f7d, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2023/07/23 10:45:00
+X-KSMG-LinksScanning: Clean, bases: 2023/07/23 10:46:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/23 08:49:00 #21663637
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230728_014828_652584_554B6F27 
-X-CRM114-Status: GOOD (  23.38  )
+X-CRM114-CacheID: sfid-20230728_024409_894278_855F8D53 
+X-CRM114-Status: GOOD (  13.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,78 +97,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============5143123428793543399=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Fixes the following build error:
 
---===============5143123428793543399==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="f2af24lhagcawgl4"
-Content-Disposition: inline
+drivers/mtd/nand/raw/meson_nand.c:244:59: error: initializer element is not a compile-time constant
+static const struct nand_ecc_step_info axg_stepinfo[] = { axg_stepinfo_1024, axg_stepinfo_512 };
+                                                          ^~~~~~~~~~~~~~~~~
 
+Fixes: 0e1db39336d8 ("mtd: rawnand: meson: support for 512B ECC step size")
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202307281007.MMuVjmJ9-lkp@intel.com/
+Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+---
+ drivers/mtd/nand/raw/meson_nand.c | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
---f2af24lhagcawgl4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+index ff673a9d52af..561d46d860b7 100644
+--- a/drivers/mtd/nand/raw/meson_nand.c
++++ b/drivers/mtd/nand/raw/meson_nand.c
+@@ -229,20 +229,20 @@ NAND_ECC_CAPS_SINGLE(meson_gxl_ecc_caps,
+ 		     meson_nand_calc_ecc_bytes, 1024, 8, 24, 30, 40, 50, 60);
+ 
+ static const int axg_stepinfo_strengths[] = { 8 };
+-static const struct nand_ecc_step_info axg_stepinfo_1024 = {
+-	.stepsize = 1024,
+-	.strengths = axg_stepinfo_strengths,
+-	.nstrengths = ARRAY_SIZE(axg_stepinfo_strengths)
+-};
+ 
+-static const struct nand_ecc_step_info axg_stepinfo_512 = {
+-	.stepsize = 512,
+-	.strengths = axg_stepinfo_strengths,
+-	.nstrengths = ARRAY_SIZE(axg_stepinfo_strengths)
++static const struct nand_ecc_step_info axg_stepinfo[] = {
++	{
++		.stepsize = 1024,
++		.strengths = axg_stepinfo_strengths,
++		.nstrengths = ARRAY_SIZE(axg_stepinfo_strengths)
++	},
++	{
++		.stepsize = 512,
++		.strengths = axg_stepinfo_strengths,
++		.nstrengths = ARRAY_SIZE(axg_stepinfo_strengths)
++	},
+ };
+ 
+-static const struct nand_ecc_step_info axg_stepinfo[] = { axg_stepinfo_1024, axg_stepinfo_512 };
+-
+ static const struct nand_ecc_caps meson_axg_ecc_caps = {
+ 	.stepinfos = axg_stepinfo,
+ 	.nstepinfos = ARRAY_SIZE(axg_stepinfo),
+-- 
+2.35.0
 
-Hi,
-
-On Fri, Jul 28, 2023 at 06:26:39AM +0100, Daniel Stone wrote:
-> On Thu, 27 Jul 2023 at 22:47, Rob Clark <robdclark@gmail.com> wrote:
-> > > I did run into a bit of a chicken vs. egg problem with testing the "in
-> > > tree" version (compared to earlier versions which kept most of the yml
-> > > and scripts in a separate tree), is that it actually requires this
-> > > commit to exist in the branch you want to run CI on.  My earlier
-> > > workaround of pulling the drm/ci commit in via
-> > > ${branchname}-external-fixes no longer works.
-> >
-> > After unwinding some more gitlab repo settings that were for the
-> > previous out-of-tree yml setup, I have this working.
-> >
-> > Tested-by: Rob Clark <robdclark@gmail.com>
-> > Acked-by: Rob Clark <robdclark@gmail.com>
->=20
-> And it's also:
-> Acked-by: Daniel Stone <daniels@collabora.com>
->=20
-> It's been back and forth a few times by now and reviewed pretty
-> heavily by all the people who are across the CI details. I think the
-> next step is to answer all the workflow questions by actually getting
-> it into trees and using it in anger. There was some discussion about
-> whether this should come in from drm-misc, or the core DRM tree, or a
-> completely separate pull, but I'm not sure what the conclusion was ...
-> maintainers, thoughts?
-
-I'd be ok with merging it through drm-misc
-
-Maxime
-
---f2af24lhagcawgl4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZMOA2AAKCRDj7w1vZxhR
-xVJwAQC7Egc+whFQ35hiIzHma3bPEJSg/s0UJDLuo9YxMSO3XgEAgjTU7f/m28jW
-62zzrvNx2pZMQInhGhPSzUgYMtiQ7Q4=
-=b4ll
------END PGP SIGNATURE-----
-
---f2af24lhagcawgl4--
-
-
---===============5143123428793543399==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============5143123428793543399==--
-
