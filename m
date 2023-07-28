@@ -4,90 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23562C001E0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jul 2023 16:41:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31D9EC0015E
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jul 2023 16:56:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FUjqI5sW8URWgLxA9Wl34fkKdaEgQBtf98u6DIPjen0=; b=EEYvbpdfPXgi58
-	QBr41P64/6Kntj1OBClSQ1paa4efrV6Do5RN9HWT2B4MzdXSlDU2noCBewA/FeZemzvlfPF7CoILh
-	iOCWCNdrm+jjZMIysXo/xMYKns+Lvw4BkoE+eu0L7oEbvbTPcWiYNBYRMh2cnt8Qp37XAD+3ncneZ
-	AW4Qs7ZMsvj28jNb1hfXvU5/NzpPs9pO7Ul0tKBIAU4z4NCMtSQfaTr0jKWAqmhRpb7xa2P34R/Tm
-	tFTgKt+UjwtxJD+kRcMnldXCP/PMU1Qp109gTKUneFKbvNMPWbRBbBE+6FH6Ms4IUy5ebBu2Bw4/4
-	f0o2qtXhnHt64TSb1FoA==;
+	List-Owner; bh=DVg6q6NIU1EtqIAKxySkYkLvz80K90UyYvyAzyjAsw4=; b=ZbdbTc7rOy7eud
+	VevIYijavUlB6ywakuzq7QFwQqYJtc00gpOPFd8xSH/nh+M9T5Jo3CA/aNYWdIvGnSWTzTsFnrs8r
+	X997megmFpoRqLd32qGqatZNvnLPZk5IIgUUUBNSF2NmFt69GQiwILDloO/5Z00F6rNQQEcAgns+e
+	9eteqCyP6peqz0S4NU3z2JPo6UNYjiZvd8qxxf/hsIG8cOjoHQWw42r9UYjBy0E0RJ1Aiwqn+hbf6
+	aG86YOM7cAr+FuXOd38Ep2ZAPXEyBP+oqs4CCPyMPA+RghjqbhWkdmKZ150B64+vs/rSyabDk7a3d
+	9o+b04kp0H2/VB6Ry9lA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qPQWF-0044EZ-0G;
-	Fri, 28 Jul 2023 16:40:47 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1qPQlU-0049Sx-0g;
+	Fri, 28 Jul 2023 16:56:32 +0000
+Received: from vps0.lunn.ch ([156.67.10.101])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qPQWC-0044DP-1a
-	for linux-amlogic@lists.infradead.org;
-	Fri, 28 Jul 2023 16:40:46 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3fbf1b82d9cso23360775e9.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 28 Jul 2023 09:40:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690562442; x=1691167242;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vHUNO/IrnfFN0MhhDh/0mFjdxBVg/OLd4PkUkNG7FnI=;
-        b=ZGdTtBipas8Fy5PIhI/L5R3iS9ZPXGscxN4xBXd6FBdKqKbV0JJJysUIYY4sFfVdOu
-         Mpw3cAvkDHFxP769McZZH2VRi3SQB7vCv7zE+PblnNc9Sat7NOp/agTaNpTEdNcihR+D
-         aaDdXIXpyWHSU2bamemLdDUMV6LN65U2QC1cp/mlPHs89xo7qEmRCj45XR/Qa+jD9bsG
-         u3oXvA+Rn3UUxA0rpB+zlsRxrsawNxdN3pvJCysyFlVeiuZ/MQ343VdrSWLc2TavimaX
-         Ynh+Ati5bMSuJ+rm1qVy7ZfEOYqaZXQ2+PxscO0AbdPkpFx+3eJiRZCQlBsfpoPmX+Y8
-         1TKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690562442; x=1691167242;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vHUNO/IrnfFN0MhhDh/0mFjdxBVg/OLd4PkUkNG7FnI=;
-        b=dK6mXBSWhJIAqdPTCJj3SKikOmnylxzrcQY11xZ/h1qIQSw+uw9VJGGPUwbxeDcrrj
-         yP4DY4BhrheMsqGigz24LCpBC0EhmtXdLTHyeHXV7xQ0HmNjK+wanyOc7Kvq1BH2TA+S
-         IKBss7d3Fq6LZz9Wmu6LzkLcC/Dq9MDoaUwzgUNMEcUy64j9xDnAvaPsJBgKqX0WlpUM
-         THQpgULBWMQyYsP/mUqew7mokbWOlokJmJvPPB17zERXfPt9Khc2WuUqcNTKu2qao8/V
-         dCrRfbpfCVjHLZ694CTWn4osK8dKLd7dMjBwnWcMqL3lFiE/J7rN1aP6pYdOPM0uYKQl
-         /nRA==
-X-Gm-Message-State: ABy/qLYn2IUJWR0IxBZfR8xKrG1KQ1gpA7PioTagwbLc45CX0IqchbYk
-	vO5VvwtA7PM0zLEowPyw19P6gA==
-X-Google-Smtp-Source: APBJJlGShlM1dO3+fMhExjYv6Dh8m7h06nmIvJBTl25b1p7ACzbItvuCgoGAcNo1XJsyv0g0/4Kb5Q==
-X-Received: by 2002:a05:600c:3789:b0:3f7:678c:74b0 with SMTP id o9-20020a05600c378900b003f7678c74b0mr2106898wmr.12.1690562442214;
-        Fri, 28 Jul 2023 09:40:42 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id n5-20020a1c7205000000b003fe11148055sm1185888wmc.27.2023.07.28.09.40.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jul 2023 09:40:41 -0700 (PDT)
-Message-ID: <68b7d772-8dc4-a781-031b-ea33dae41751@linaro.org>
-Date: Fri, 28 Jul 2023 18:40:39 +0200
+	id 1qPQlQ-00493x-2Y;
+	Fri, 28 Jul 2023 16:56:30 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=K70CKmBBT3LezttIHw7dBV6di1pK5wjt+ZfncAAM8eg=; b=J3bK/oJe/QpSNDl0GX966l3Us7
+	YkS8XKvV7D8VdgjitBaRQq2hKvL2FQwAkphg38AhqKsHoNdJVyfgQvCYpWdDfHY04x9cSUzJjbKBG
+	K5z8CYpU6oWOSnulwS1LYhlwNY6I0uGyM36CplcmklP4kLb3zMelQdHRUKPMq8x/+EFI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qPQkg-002Xp3-R6; Fri, 28 Jul 2023 18:55:42 +0200
+Date: Fri, 28 Jul 2023 18:55:42 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Fabio Estevam <festevam@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	dl-linux-imx <linux-imx@nxp.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+	Simon Horman <simon.horman@corigine.com>,
+	Andrew Halaney <ahalaney@redhat.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Wong Vee Khee <veekhee@apple.com>,
+	Revanth Kumar Uppala <ruppala@nvidia.com>,
+	Jochen Henneberg <jh@henneberg-systemdesign.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-stm32@st-md-mailman.stormreply.com" <linux-stm32@st-md-mailman.stormreply.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	Frank Li <frank.li@nxp.com>
+Subject: Re: [EXT] Re: [PATCH v2 net 2/2] net: stmmac: dwmac-imx: pause the
+ TXC clock in fixed-link
+Message-ID: <f6c78350-e668-455f-bae5-731dbef633de@lunn.ch>
+References: <20230727152503.2199550-1-shenwei.wang@nxp.com>
+ <20230727152503.2199550-3-shenwei.wang@nxp.com>
+ <CAOMZO5ANQmVbk_jy7qdVtzs3716FisT2c72W+3WZyu7FoAochw@mail.gmail.com>
+ <PAXPR04MB9185945F7E5B1A36ADF4F3E28906A@PAXPR04MB9185.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: reset: Add compatible and DT bindings
- for Amlogic C3 Reset Controller
-Content-Language: en-US
-To: Philipp Zabel <p.zabel@pengutronix.de>,
- zelong dong <zelong.dong@amlogic.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>
-Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, kelvin.zhang@amlogic.com
-References: <20230719060954.14864-1-zelong.dong@amlogic.com>
- <20230719060954.14864-2-zelong.dong@amlogic.com>
- <f7b72ee90009f6749700a7bd79a3a63786a82a32.camel@pengutronix.de>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f7b72ee90009f6749700a7bd79a3a63786a82a32.camel@pengutronix.de>
+Content-Disposition: inline
+In-Reply-To: <PAXPR04MB9185945F7E5B1A36ADF4F3E28906A@PAXPR04MB9185.eurprd04.prod.outlook.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230728_094044_539078_279E6EC8 
-X-CRM114-Status: GOOD (  10.73  )
+X-CRM114-CacheID: sfid-20230728_095628_829041_BE52B18C 
+X-CRM114-Status: GOOD (  13.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,24 +104,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 28/07/2023 17:49, Philipp Zabel wrote:
->>      maxItems: 1
->> diff --git a/include/dt-bindings/reset/amlogic,c3-reset.h b/include/dt-bindings/reset/amlogic,c3-reset.h
->> new file mode 100644
->> index 000000000000..d9127863f603
->> --- /dev/null
->> +++ b/include/dt-bindings/reset/amlogic,c3-reset.h
+> > Andrew Lunn gave the following feedback in v1:
+> > 
+> > "The SJA1105 has the problem, so i would expect it to be involved in the solution.
+> > Otherwise, how is this going to work for other MAC drivers?
+> > 
+> > Maybe you need to expose a common clock framework clock for the TXC clock
+> > line, which the SJA1105 can disable/enable? That then makes it clear what other
+> > MAC drivers need to do."
 > 
-> Given that this is only included by
-> arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi, should this header be
-> moved to arch/arm64/boot/dts/amlogic ?
+> I have been considering this plan for some time. The idea should be implemented 
+> across all i.mx8/9 platforms. I am going to start to work on it in the following month, 
+> and it will take some time to implement it.
 
-I think there is ongoing work or at least plan to use the IDs also in
-clock/reset drivers for all Amlogic platforms. Do I recall this correctly?
+So you don't think anybody will use anything else for driving this
+switch? Vybrid?
 
-Best regards,
-Krzysztof
+It does not really matter what you implement it for, so long is at is
+a clear example for others to follow who might be using the switch
+with other SoCs.
 
+	Andrew
 
 _______________________________________________
 linux-amlogic mailing list
