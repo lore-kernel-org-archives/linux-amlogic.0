@@ -4,95 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D2DAEB64DD
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jul 2023 07:30:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDF42C00528
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jul 2023 08:48:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZhqqRywZdiMeiKP4z3Y3XP5HZrD514gTElX7VU/ZbCA=; b=CCDDmYfklB8lZQ
-	jg6G6EE/9vx0kyERvdAIuNtf+wz4xM5hOoPHuk2D8JGRiw8LcYFDDutpdlsW5WIpKqJwnxECPDbvf
-	IKVnclkz5TzRWm0tSGm7RlptSiEvOOrvEAdJvx/U7ogcb0esfVQWpyEdZtMp7y8bPXo4jVFHwFpbH
-	ldKhjTrDeuXqfx+k2IY/10gBy3TNI+Sai/iR4ftL/BQj2NjJkQOJnKIMy2C2ygWmBGbdaKTADsvGc
-	o8zWxfu2nosI6H5STtVsPL8eX1/rB+45Xdlxjw1WkiYebt+czgy15QUhPAlGL4ozCFLixugwG9VsR
-	WYl7Qz39SeZEGJFiEIoA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=zgGtSE1TeMnd2dhnGcaL/cCIR1Oev1lJ7gcKzuMJuSY=; b=mox8aYlbFcvdGmwriwzDOit1sq
+	CgbEFfl/PpgU6JR0gPi3rjWwXksYhA1gl1fdpBMKY1vJqU6EnBEo3xrjeGzftl0wkPUoxTiIMo/3j
+	bdLOH8RBq+jlT36UU0k1z6A3Zup8Tj9Q14PCPJAHiN0VsRbKdUEXz57i+WG0YJdjwjFAumUoCgU2x
+	t18yBicnPrAPVXJZOmx2ZQsnhZA9hE0G7yP7mANB9qM6HNGfCHo+q4s5q4PkUGzV39RDJD81P6uG0
+	XVCMLz9l6Sv3q5oA8+K/DEqeJa3y0ScuWdBmcmXRmjWurvS9wmfhvhdchgElk4HQChTghjXp4ujeZ
+	kmMA/mWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qPHvn-00287W-0U;
-	Fri, 28 Jul 2023 07:30:35 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1qPJ9F-002Sjk-00;
+	Fri, 28 Jul 2023 08:48:33 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qPHvk-002841-0s
-	for linux-amlogic@lists.infradead.org;
-	Fri, 28 Jul 2023 07:30:33 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3fbd33a57b6so20430565e9.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 28 Jul 2023 00:30:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690529421; x=1691134221;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TuQnxh7MQh36hqhWZvA+gANo32GIzZNpZKmW5WUO/yA=;
-        b=C/1HiCTU+Mw+b3eoR6IdkYs/7otP+yYTwa6bk2vFBsbVXTxhoX/gVv2WD5gUWYMsLM
-         MHivd0SfexVStnz/IFab5nvIk/ZsO5nk1cH/Tk97Tdova/9aKS5Jf7jWd3r9X8TjgJJL
-         OpLxP+Z6TQb7XGQXvY5gGy11MROrouVDJDlj4HI6LuooGpQwgEaXN4KPa9l/7U9jVm98
-         lBQSsbN99Qd2tzmuAlrvS9EixejNQ7iD9OJShmho1xx3xhzADntx5Nkpb0ibhmNIB+VD
-         UFzXorGkVVGPc3HJBmUYPt1ME+0ZZlIftv/J2fhTe7fgxwlDDSxENQkru05grMLY7zyZ
-         NSqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690529421; x=1691134221;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TuQnxh7MQh36hqhWZvA+gANo32GIzZNpZKmW5WUO/yA=;
-        b=l3VCLxB1lWFh6HTMFeP7dhullMN1HhNYuK94lfOpIIFXGdWN3BgDzv1YSHIdQOkI9Z
-         9qqu6qfzhaFaTpFdK1Jj+8Ie1cOAQJ5qG7gRKkSt4C+tqhz5Ut5mE2mSYzuc7x9o/V+n
-         zTn5qtERvhr1Dd4OpC6cj2i8bfKmLECLIXAqaKlMBpDsAES5TEdjvyIn3giGz4kj5L6B
-         NLlvBzGbdFS3ZtAkR2AycClJrMcfu3TfTPU0LGkxw7Y/wFBjg77wAd8AzsKWdDmaC84C
-         7sUKWl0Ykfc3X6NkSXdtYBCNyAG9yrCWQyIcofsuLqvkzJLOPxQXOlXGEb4J4NSJl2hO
-         5dZA==
-X-Gm-Message-State: ABy/qLYdWu42UWhsUpccQgWq0bCbNInaBEy20SfgZDYlyFshwzNuS73h
-	nQoJfm6zYFpM+rBD44YSAVbI0Q==
-X-Google-Smtp-Source: APBJJlG3GwSdYyJ9ZD6wjq+xys2sTJGzxdr8OpaSe18YZrBjk762oIdLMk314un2krsQe8jIPFim+w==
-X-Received: by 2002:adf:db4a:0:b0:316:ef23:9276 with SMTP id f10-20020adfdb4a000000b00316ef239276mr1246966wrj.52.1690529421252;
-        Fri, 28 Jul 2023 00:30:21 -0700 (PDT)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id d15-20020adfe84f000000b003174f6dc947sm4086945wrn.32.2023.07.28.00.30.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jul 2023 00:30:20 -0700 (PDT)
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
- Vladimir Zapolskiy <vz@mleia.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Orson Zhai <orsonzhai@gmail.com>, 
- Baolin Wang <baolin.wang@linux.alibaba.com>, 
- Chunyan Zhang <zhang.lyra@gmail.com>, 
- Vincent Shih <vincent.sunplus@gmail.com>, Chen-Yu Tsai <wens@csie.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
- Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-arm-msm@vger.kernel.org, linux-sunxi@lists.linux.dev
-In-Reply-To: <20230714174820.4061387-1-robh@kernel.org>
-References: <20230714174820.4061387-1-robh@kernel.org>
-Subject: Re: [PATCH] nvmem: Explicitly include correct DT includes
-Message-Id: <169052941981.85384.18073685620993485850.b4-ty@linaro.org>
-Date: Fri, 28 Jul 2023 08:30:19 +0100
+	id 1qPJ9A-002SgD-1h;
+	Fri, 28 Jul 2023 08:48:31 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 96C4362044;
+	Fri, 28 Jul 2023 08:48:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80ED6C433CA;
+	Fri, 28 Jul 2023 08:48:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1690534107;
+	bh=MWYn0ZrD+F0fN2IJzgSEyyw2W5hXt/o/TWyWPk3BOWo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=O3IxMP29Fvt2U/ljC8FoYM2aSfMb4zzVIXEdQ56M3YkhOqas3XdA+FVqC9ij+r478
+	 vxEtmxmGKwWE4IFHmr4Uzq+l/M9WJHOIBLMDFe2mDqHhugB9Gj9vXaiFFs8sMM9hIW
+	 7Ld4Gcoa2bCFQdEEDBw+W7sdJjmL7810LMK22AhHXbuTRGxB5NLu4w6KGzuygwVEmx
+	 fjg6U4EHCWsA76AvETNxQNs+48uOc0WOJxneAy5YalDknBkjnOZpQnBfbMS2ZKka3Y
+	 Wkohx2HEOkEQXXNN1yZrb3U6eBrT5HxiuoM6MNb6gIaA1geJWVU0AFY3aGDm4iex/2
+	 UHfcK7Opo0cGA==
+Date: Fri, 28 Jul 2023 10:48:24 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Daniel Stone <daniel@fooishbar.org>
+Cc: Rob Clark <robdclark@gmail.com>, 
+	Helen Koike <helen.koike@collabora.com>, emma@anholt.net, linux-doc@vger.kernel.org, 
+	david.heidelberg@collabora.com, dri-devel@lists.freedesktop.org, 
+	linux-amlogic@lists.infradead.org, jbrunet@baylibre.com, robdclark@google.com, corbet@lwn.net, 
+	khilman@baylibre.com, sergi.blanch.torne@collabora.com, gustavo.padovan@collabora.com, 
+	linux-rockchip@lists.infradead.org, daniels@collabora.com, martin.blumenstingl@googlemail.com, 
+	anholt@google.com, linux-mediatek@lists.infradead.org, robclark@freedesktop.org, 
+	matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org, 
+	angelogioacchino.delregno@collabora.com, neil.armstrong@linaro.org, guilherme.gallo@collabora.com, 
+	linux-kernel@vger.kernel.org, tzimmermann@suse.de, Dave Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v10] drm: Add initial ci/ subdirectory
+Message-ID: <5vmoxioppbrbw3tshfr37m3mvkfattkidhkhvqlyqsqh3tniwh@lhjbpdwl7bud>
+References: <20230720152737.102382-1-helen.koike@collabora.com>
+ <CAF6AEGtXL5vjp3Uup6Mk19MiY8E26-tpyXVmxXYhMd3fiadykQ@mail.gmail.com>
+ <CAF6AEGsxLg4og1EkCdno6P8x31KK=rJfmerJa8uMeNR-n7RVRg@mail.gmail.com>
+ <CAPj87rPNyJ=mX1Um6yaN_jTV2gH5MhMxr3mnSb7=nB7NEOf2Ag@mail.gmail.com>
 MIME-Version: 1.0
-X-Mailer: b4 0.12.2
+In-Reply-To: <CAPj87rPNyJ=mX1Um6yaN_jTV2gH5MhMxr3mnSb7=nB7NEOf2Ag@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230728_003032_315771_4C9F849D 
-X-CRM114-Status: UNSURE (   8.10  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230728_014828_652584_554B6F27 
+X-CRM114-Status: GOOD (  23.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,35 +80,78 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============5143123428793543399=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Fri, 14 Jul 2023 11:48:19 -0600, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
-> 
-> [...]
+--===============5143123428793543399==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="f2af24lhagcawgl4"
+Content-Disposition: inline
 
-Applied, thanks!
 
-[1/1] nvmem: Explicitly include correct DT includes
-      commit: 3e0558db94dbe5e5030a87bfd9a153d519d61b65
+--f2af24lhagcawgl4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
--- 
-Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Hi,
 
+On Fri, Jul 28, 2023 at 06:26:39AM +0100, Daniel Stone wrote:
+> On Thu, 27 Jul 2023 at 22:47, Rob Clark <robdclark@gmail.com> wrote:
+> > > I did run into a bit of a chicken vs. egg problem with testing the "in
+> > > tree" version (compared to earlier versions which kept most of the yml
+> > > and scripts in a separate tree), is that it actually requires this
+> > > commit to exist in the branch you want to run CI on.  My earlier
+> > > workaround of pulling the drm/ci commit in via
+> > > ${branchname}-external-fixes no longer works.
+> >
+> > After unwinding some more gitlab repo settings that were for the
+> > previous out-of-tree yml setup, I have this working.
+> >
+> > Tested-by: Rob Clark <robdclark@gmail.com>
+> > Acked-by: Rob Clark <robdclark@gmail.com>
+>=20
+> And it's also:
+> Acked-by: Daniel Stone <daniels@collabora.com>
+>=20
+> It's been back and forth a few times by now and reviewed pretty
+> heavily by all the people who are across the CI details. I think the
+> next step is to answer all the workflow questions by actually getting
+> it into trees and using it in anger. There was some discussion about
+> whether this should come in from drm-misc, or the core DRM tree, or a
+> completely separate pull, but I'm not sure what the conclusion was ...
+> maintainers, thoughts?
+
+I'd be ok with merging it through drm-misc
+
+Maxime
+
+--f2af24lhagcawgl4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZMOA2AAKCRDj7w1vZxhR
+xVJwAQC7Egc+whFQ35hiIzHma3bPEJSg/s0UJDLuo9YxMSO3XgEAgjTU7f/m28jW
+62zzrvNx2pZMQInhGhPSzUgYMtiQ7Q4=
+=b4ll
+-----END PGP SIGNATURE-----
+
+--f2af24lhagcawgl4--
+
+
+--===============5143123428793543399==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============5143123428793543399==--
+
