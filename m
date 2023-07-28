@@ -4,90 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 229E8EB64DD
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jul 2023 07:17:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D2DAEB64DD
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jul 2023 07:30:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9p22v32Pasd+icrKkgf6LdhNzT1lmmdn8uXH5dvGJDY=; b=ov9p4trBm+La+B
-	ObKsx5k1OyiOHk0YVX+gdEOZwjQMSkJUyoI0RAExwVQXZImBZXDv9iZg608F0wdguRNCUXYAVMvJm
-	zu6v6GC4danYRvAqdCOnapfHce2YMNVI5OAiVIftIfwaq34xcPE31GduiiQnKAwMm1Loh7rj3GM72
-	2GnQYmK8WOfxEaiv0r3yg3rFjAKR3gRYgh7jrsjU+cKs8XHCGcU0DPcJm/GC6F8ypb/WVP/Rt4+g/
-	UUrzLOV7XKnZRFl/99ctSuQSagD9VPCEkDEaaULvx2F/zuX/9T29aLrWF8nLWsGVf3Ekx+ly4AN84
-	KfcWI/PwVRjbMmZHYrVA==;
+	List-Owner; bh=ZhqqRywZdiMeiKP4z3Y3XP5HZrD514gTElX7VU/ZbCA=; b=CCDDmYfklB8lZQ
+	jg6G6EE/9vx0kyERvdAIuNtf+wz4xM5hOoPHuk2D8JGRiw8LcYFDDutpdlsW5WIpKqJwnxECPDbvf
+	IKVnclkz5TzRWm0tSGm7RlptSiEvOOrvEAdJvx/U7ogcb0esfVQWpyEdZtMp7y8bPXo4jVFHwFpbH
+	ldKhjTrDeuXqfx+k2IY/10gBy3TNI+Sai/iR4ftL/BQj2NjJkQOJnKIMy2C2ygWmBGbdaKTADsvGc
+	o8zWxfu2nosI6H5STtVsPL8eX1/rB+45Xdlxjw1WkiYebt+czgy15QUhPAlGL4ozCFLixugwG9VsR
+	WYl7Qz39SeZEGJFiEIoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qPHj6-0025OL-16;
-	Fri, 28 Jul 2023 07:17:28 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1qPHvn-00287W-0U;
+	Fri, 28 Jul 2023 07:30:35 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qPHj3-0025Mv-1q;
-	Fri, 28 Jul 2023 07:17:27 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 8423910000B;
-	Fri, 28 Jul 2023 10:17:22 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8423910000B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1690528642;
-	bh=THLBRWDsl5iTK9u472zi5OUc76M58zPFkwRfjKmJhec=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=kqdd3nJVJhpGdhuCZrTZfWzI2s2RabtHQlb8otG6RJY97QX5bdQ2Q+jKgjiVNlFP1
-	 48JhFTI6TwMXPZ6sBnB1AuXHASXmYNkDtAdVpru68MxcIFVz6KRqZ3g4yLdbmQe24J
-	 86Ss7J4oQEgMTRaXQE99fEbVSDM6vnpADX4hgrL4SFFvIK0LeOIhoE74jA4zHXNvY0
-	 eHalq5fueMzU7c2UVgOKYPFgmrApiQUFlBPqoagNbg7qXH8oZVi/DYuvwYjIQegOLS
-	 4oH0yV9fSdyuqZAz8dS1HSU0tf4fcYj+DzHEgNEzdmfRAsdnUJpgUh8GY6lI5AUZoP
-	 46ZQU3FHOBkTw==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 28 Jul 2023 10:17:22 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 28 Jul
- 2023 10:16:59 +0300
-Date: Fri, 28 Jul 2023 10:17:22 +0300
-From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To: Huqiang Qin <huqiang.qin@amlogic.com>
-CC: <wim@linux-watchdog.org>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <linux-watchdog@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 4/4] arm64: dts: Add watchdog node for Amlogic-T7 SoCs
-Message-ID: <20230728071722.dpytlujrzosb7owa@CAB-WSD-L081021>
-References: <20230726112146.1127145-1-huqiang.qin@amlogic.com>
- <20230726112146.1127145-5-huqiang.qin@amlogic.com>
+	id 1qPHvk-002841-0s
+	for linux-amlogic@lists.infradead.org;
+	Fri, 28 Jul 2023 07:30:33 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3fbd33a57b6so20430565e9.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 28 Jul 2023 00:30:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690529421; x=1691134221;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TuQnxh7MQh36hqhWZvA+gANo32GIzZNpZKmW5WUO/yA=;
+        b=C/1HiCTU+Mw+b3eoR6IdkYs/7otP+yYTwa6bk2vFBsbVXTxhoX/gVv2WD5gUWYMsLM
+         MHivd0SfexVStnz/IFab5nvIk/ZsO5nk1cH/Tk97Tdova/9aKS5Jf7jWd3r9X8TjgJJL
+         OpLxP+Z6TQb7XGQXvY5gGy11MROrouVDJDlj4HI6LuooGpQwgEaXN4KPa9l/7U9jVm98
+         lBQSsbN99Qd2tzmuAlrvS9EixejNQ7iD9OJShmho1xx3xhzADntx5Nkpb0ibhmNIB+VD
+         UFzXorGkVVGPc3HJBmUYPt1ME+0ZZlIftv/J2fhTe7fgxwlDDSxENQkru05grMLY7zyZ
+         NSqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690529421; x=1691134221;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TuQnxh7MQh36hqhWZvA+gANo32GIzZNpZKmW5WUO/yA=;
+        b=l3VCLxB1lWFh6HTMFeP7dhullMN1HhNYuK94lfOpIIFXGdWN3BgDzv1YSHIdQOkI9Z
+         9qqu6qfzhaFaTpFdK1Jj+8Ie1cOAQJ5qG7gRKkSt4C+tqhz5Ut5mE2mSYzuc7x9o/V+n
+         zTn5qtERvhr1Dd4OpC6cj2i8bfKmLECLIXAqaKlMBpDsAES5TEdjvyIn3giGz4kj5L6B
+         NLlvBzGbdFS3ZtAkR2AycClJrMcfu3TfTPU0LGkxw7Y/wFBjg77wAd8AzsKWdDmaC84C
+         7sUKWl0Ykfc3X6NkSXdtYBCNyAG9yrCWQyIcofsuLqvkzJLOPxQXOlXGEb4J4NSJl2hO
+         5dZA==
+X-Gm-Message-State: ABy/qLYdWu42UWhsUpccQgWq0bCbNInaBEy20SfgZDYlyFshwzNuS73h
+	nQoJfm6zYFpM+rBD44YSAVbI0Q==
+X-Google-Smtp-Source: APBJJlG3GwSdYyJ9ZD6wjq+xys2sTJGzxdr8OpaSe18YZrBjk762oIdLMk314un2krsQe8jIPFim+w==
+X-Received: by 2002:adf:db4a:0:b0:316:ef23:9276 with SMTP id f10-20020adfdb4a000000b00316ef239276mr1246966wrj.52.1690529421252;
+        Fri, 28 Jul 2023 00:30:21 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.gmail.com with ESMTPSA id d15-20020adfe84f000000b003174f6dc947sm4086945wrn.32.2023.07.28.00.30.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jul 2023 00:30:20 -0700 (PDT)
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+ Vladimir Zapolskiy <vz@mleia.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Orson Zhai <orsonzhai@gmail.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, 
+ Chunyan Zhang <zhang.lyra@gmail.com>, 
+ Vincent Shih <vincent.sunplus@gmail.com>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-msm@vger.kernel.org, linux-sunxi@lists.linux.dev
+In-Reply-To: <20230714174820.4061387-1-robh@kernel.org>
+References: <20230714174820.4061387-1-robh@kernel.org>
+Subject: Re: [PATCH] nvmem: Explicitly include correct DT includes
+Message-Id: <169052941981.85384.18073685620993485850.b4-ty@linaro.org>
+Date: Fri, 28 Jul 2023 08:30:19 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230726112146.1127145-5-huqiang.qin@amlogic.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178796 [Jul 22 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 525 525 723604743bfbdb7e16728748c3fa45e9eba05f7d, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2023/07/23 10:45:00
-X-KSMG-LinksScanning: Clean, bases: 2023/07/23 10:46:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/23 08:49:00 #21663637
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-Mailer: b4 0.12.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230728_001725_954042_A541684B 
-X-CRM114-Status: GOOD (  16.45  )
+X-CRM114-CacheID: sfid-20230728_003032_315771_4C9F849D 
+X-CRM114-Status: UNSURE (   8.10  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,46 +109,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jul 26, 2023 at 07:21:46PM +0800, Huqiang Qin wrote:
-> Add watchdog device.
-> 
-> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
 
-Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+On Fri, 14 Jul 2023 11:48:19 -0600, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+> 
+> [...]
 
-> ---
->  arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> index 1423d4a79156..6e34d11214b7 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> @@ -143,6 +143,12 @@ apb4: bus@fe000000 {
->  			#size-cells = <2>;
->  			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
->  
-> +			watchdog@2100 {
-> +				compatible = "amlogic,t7-wdt";
-> +				reg = <0x0 0x2100 0x0 0x10>;
-> +				clocks = <&xtal>;
-> +			};
-> +
->  			uart_a: serial@78000 {
->  				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
->  				reg = <0x0 0x78000 0x0 0x18>;
-> -- 
-> 2.37.1
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Applied, thanks!
 
+[1/1] nvmem: Explicitly include correct DT includes
+      commit: 3e0558db94dbe5e5030a87bfd9a153d519d61b65
+
+Best regards,
 -- 
-Thank you,
-Dmitry
+Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+
 
 _______________________________________________
 linux-amlogic mailing list
