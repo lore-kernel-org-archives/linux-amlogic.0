@@ -4,88 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64AB2C001DE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Jul 2023 09:39:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C80FC001E0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Jul 2023 09:47:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
-	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ud+L8B6RMDAG6vPSNwBDgQf3UYSwTjP/rgAT6V9QqY0=; b=m94Mrurbbk3PZRzQdmjB/CF7oJ
-	24Z/W5QFuf3N2MrkfNSX57uaz3kXkhjiLRi57nvNovWuNijhDB1JwhhPri4ATRDNj442zscNmMXjR
-	Ekl5wbISbEdUIDizQ49lI8xX0+yTfFhlA34+0NjC+0fad2WQ3fSUTqdd5S60CNLkvz2IPIB528ams
-	TwJ14Tu2GoPdncBW9L9Wfw2IRGeGBpD1/qvNa8ujA2AtWBmvowW4MK2Vpd8Nsaxt69GYUwK+XiHi9
-	sR8cvPjnHZwOXXolrFLp5joMIxxNRGKVk4CDyUS4SxaLvhcA6sZYXaQirK9gJWKOOiFaYNujvOlVn
-	ymdpL70w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=mBmFh9wNA41d1L+wKhx7ZfF/4ibQKFtgr7LFRQyDKA4=; b=FdbyWviiFh+6o5
+	Us+IqnolpI5PMljaslzLi5cv7dUx86a/FGIDk6otiFG2lxwVNSRJ/lmXcundmeKyWCcCMVkt7OSPT
+	JA4r7emli1eHILk6gLDHh37ZvXcGNk549q04RXjmJ1I49yZBhdvpcx+oAav18yrWqWmUlOFwh5d3n
+	J7ES1W1/UpmMLW3QnEJsY7xnbnqYrBd9K/hw1Wtn9B+fODNJJDe8DJUWSJo8GoFdbNARpQWtko7p+
+	CKHO3exP90NtSLtsl4PgHYoVwMQlKKcKMOX6chTO7W7K1PwoyztappMg/idP8StchPk8hNvdm5yWu
+	HocCErhbZXZgxqY9izFQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qQPMn-00EnGk-33;
-	Mon, 31 Jul 2023 09:39:05 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1qQPUW-00EouJ-2C;
+	Mon, 31 Jul 2023 09:47:04 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qQPMk-00EnFz-0E
+	id 1qQPUT-00Eosj-1U
 	for linux-amlogic@lists.infradead.org;
-	Mon, 31 Jul 2023 09:39:04 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3174aac120aso3944807f8f.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 31 Jul 2023 02:39:01 -0700 (PDT)
+	Mon, 31 Jul 2023 09:47:02 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-31763b2c5a4so4473153f8f.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 31 Jul 2023 02:47:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690796340; x=1691401140;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=jGpQc80dek3Uur/xyZktNW1uiQd0f2PeDGW23WOsLnw=;
-        b=guzXXgM19K1YEca7H0aKjRSTYn37euy+P1EWp13z3X8AqeT+GT0u4r2JT3LS4I6S1C
-         Xk+Ny76FewluMmg8qz5IQZd9bJu+C13Udwfm9IawfxOBTCJaQ5u/wywaMq7mMFPYjm8j
-         G2/zZwlyrtuQv5yvCAvQQc8w/0NEnQnRHd5c4VKixnc0EeBvzTq2rPAMjmyGwHEA6u61
-         ntFYoOAYx2EYTl1LG93H61T+zuSrAG9jTy278y0fIU06nNVmXZYFVGPY7stafGeDyQ3l
-         s6LRw9D0PanhUslu1yY4wtu3hfAKgEKvLLu8HrLdU7FIbt3mGHYzAZ1HT37VxEX7efo8
-         YWpA==
+        d=linaro.org; s=google; t=1690796820; x=1691401620;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BRAAlSEqORL6Se6LTybe1yHsw0jhZLERYrRRtVClc94=;
+        b=k6EPxM3uLXMkqpzDJespFM5M355FTMELH0xEI+R8ZOTZAmxD+pqNtbLPQvAf20pjLA
+         8xn2e/hoPTesm4A+6OCgtpW98BVI3IEetcC3S6QV7wug7Z2HXS+cjAnHix2u4+wb0DdZ
+         tVo9pUMdZLRdHNxhNuBBqmPwQObIEz/1NlTdWmc926Qr0BmxPIt1wm3N1wLNY37fp7Ti
+         QB8Xai9Y3tGyHMSBPLHK/+N3eJ+sNMDc1YlJAP8rqlCheWgvBZZonG4C6DVaO6QXBlrI
+         8K7jHPbQXE7Xtuf5Qvp1QVqFmBibJNNiQw9wH/O317Q2uNIEjh2+8mtCxU7U6wt7AMOz
+         GspA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690796340; x=1691401140;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jGpQc80dek3Uur/xyZktNW1uiQd0f2PeDGW23WOsLnw=;
-        b=LOfVSWJczuwzWPxO8xLnodJyRLnhfechoYi81a/mBN9c3bu6yYB1OdRo6Fq7c9Kg0A
-         FCxKYYXdFtg6fKvUK6sSu5a2+2zBG+gGKv6FZTz/XXiJ2KxZJqwGbIpTJGHCq0qHpl29
-         D661ccE51/wMY6whzSvpxzeqiN3WGWmHzWcF2r8Nu94w60b9IWNf68zLdoM3B4Ao8Bz/
-         yaJWN4KGnwSOdawkRmhyS5VAUmOCZs+NYqP+mesnx+nYteq+2oiUY8JXvEXNHS7d2pCd
-         ZIZViWQ9OH787pgTPuOegHkRZYQBrj7/82yennCj6foW4lnB5eDM3OoPnGM4+rlVTNbp
-         BkHw==
-X-Gm-Message-State: ABy/qLaOLNMo9w4UCn57x0BqI0/hCFnP6W3nvksJm6SfbZs2CuzVw67D
-	pCL+GTYGfpO97IJljvWa1VCKt8ZDB3E2UiEURM8E4uWG
-X-Google-Smtp-Source: APBJJlGw2cEmRpNDE35HogM46Bc3860zpbNVH7VQGFui12vP5qjrWKPtJoHTuh2KMH+7VLzqSNDEBw==
-X-Received: by 2002:adf:f291:0:b0:317:636b:fcb1 with SMTP id k17-20020adff291000000b00317636bfcb1mr6026919wro.27.1690796340452;
-        Mon, 31 Jul 2023 02:39:00 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:14b8:9aa7:6bf0:256d? ([2a01:e0a:982:cbb0:14b8:9aa7:6bf0:256d])
-        by smtp.gmail.com with ESMTPSA id k8-20020a056000004800b003141a3c4353sm12603088wrx.30.2023.07.31.02.38.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Jul 2023 02:38:59 -0700 (PDT)
-Message-ID: <b42ca1c2-922a-1573-5d15-3a8d9d9a5efb@linaro.org>
-Date: Mon, 31 Jul 2023 11:38:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
+        d=1e100.net; s=20221208; t=1690796820; x=1691401620;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BRAAlSEqORL6Se6LTybe1yHsw0jhZLERYrRRtVClc94=;
+        b=Xrv1UUwwOUkw2Z7OmNFKpHLHVu8ndLXkbl/31/En5411nhG9KjvcLG0zSBRPZegBqt
+         Dv7rwEfk6t96PzFZMxz+PwzBBEiMUR9KMDJ7IBUJ4c8ikbrABfFUTht4ryW85oFViNzp
+         nn+AwzjVG+Q7yVCKRXhHO40/THBbMk1xmtnQRjZEkl9E9VfcDu+mrMgq+aFLkKkLzCWZ
+         chkWjUtYTMXnUSTcW4JfNEqRzqcVM/pMUDyoB1pUkK5lzgTtN14VN9qTMet4Y0igL0Nl
+         RdQzoLTz006BEL4lu9MGN4Wdrj2jT7egYGrRNvVbLfpDt54dpx4KMBGqiyPjCWx8mncr
+         zcmA==
+X-Gm-Message-State: ABy/qLZY/+kSpWCq2/g/cwW75vxXwxpey1qLsg3f8C/ZMV33/8279bTq
+	3eqdwLDFgEjbmHTPo9tquF2bZg==
+X-Google-Smtp-Source: APBJJlGLaqSOORf3q94JYqUiTa1G4BtmOVF6jOvRxVk2rdvsCMTJOJ+JF6gOj4flgXIWkHeKe7gEAA==
+X-Received: by 2002:a5d:4c43:0:b0:314:3740:7f69 with SMTP id n3-20020a5d4c43000000b0031437407f69mr8864082wrt.37.1690796819858;
+        Mon, 31 Jul 2023 02:46:59 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id p9-20020a5d48c9000000b0031433443265sm12556878wrs.53.2023.07.31.02.46.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Jul 2023 02:46:59 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2] arm64: dts: amlogic: drop redundant status=okay in
- sound nodes
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230731093615.148949-1-krzysztof.kozlowski@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230731093615.148949-1-krzysztof.kozlowski@linaro.org>
+To: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, 
+ Will Deacon <will@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20230704031636.3215838-1-xianwei.zhao@amlogic.com>
+References: <20230704031636.3215838-1-xianwei.zhao@amlogic.com>
+Subject: Re: [PATCH 0/2] Devicetree for board AN400 based Amlogic T7 SoC
+Message-Id: <169079681850.186625.7568524984807296520.b4-ty@linaro.org>
+Date: Mon, 31 Jul 2023 11:46:58 +0200
+MIME-Version: 1.0
+X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230731_023902_119596_E315FF8D 
-X-CRM114-Status: GOOD (  13.26  )
+X-CRM114-CacheID: sfid-20230731_024701_502249_20DB9591 
+X-CRM114-Status: GOOD (  10.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,474 +92,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 31/07/2023 11:36, Krzysztof Kozlowski wrote:
-> status=okay is by default.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Changes in v2:
-> 1. Fix all occurrences I could find.
-> ---
->   arch/arm64/boot/dts/amlogic/meson-axg-s400.dts                  | 1 -
->   arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts           | 1 -
->   arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts               | 1 -
->   arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts              | 1 -
->   arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts             | 1 -
->   arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts           | 1 -
->   arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts               | 1 -
->   arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi           | 1 -
->   arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2l.dts           | 1 -
->   arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts            | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi          | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi             | 2 --
->   arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts            | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts          | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts             | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi            | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts            | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts          | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts    | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts            | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts      | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts    | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts           | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts             | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts              | 1 -
->   arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi              | 1 -
->   arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts       | 1 -
->   arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts            | 1 -
->   arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts               | 1 -
->   arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi               | 1 -
->   arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts                | 1 -
->   arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts          | 1 -
->   arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts               | 1 -
->   34 files changed, 35 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> index 359589d1dfa9..df16eead2c80 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> @@ -280,7 +280,6 @@ sound {
->   		assigned-clock-rates = <589824000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-> index cf0a9be83fc4..fcd7e1d8e16f 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-> @@ -145,7 +145,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> index 4fb31c2ba31c..0ad0c2b7dfef 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> @@ -209,7 +209,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-> index b2bb94981838..8237aa1f05e9 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-> @@ -166,7 +166,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
-> index 1fa6e75abd21..bb73e10b5e74 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
-> @@ -55,7 +55,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
-> index afe375fa83ca..6eeedd54ab91 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
-> @@ -56,7 +56,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
-> index 5d96c1449050..3e826095e792 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
-> @@ -45,7 +45,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> index 24d0442dffb2..802b0256f1cb 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> @@ -78,7 +78,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2l.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2l.dts
-> index 70919f40d597..e26f3e3258e1 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2l.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2l.dts
-> @@ -46,7 +46,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
-> index 0c7892600d56..098a3af6d381 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
-> @@ -40,7 +40,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi
-> index 4e84ab87cc7d..5e7b9273b062 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi
-> @@ -201,7 +201,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-> index dafc841f7c16..18f7b730289e 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-> @@ -137,8 +137,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
-> -
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
->   		};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-> index 7d94160f5802..1fd2e56e6b08 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-> @@ -142,7 +142,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-> index 63137ce3cb9d..4aab1ab705b4 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-> @@ -149,7 +149,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> index 01356437a077..e6d2de7c45a9 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> @@ -184,7 +184,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-> index 66daf3af34c3..e8303089bff6 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-> @@ -116,7 +116,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts
-> index 58733017eda8..af9ea32a2876 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts
-> @@ -23,7 +23,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
-> index 505ffcd8eb76..e1b74b174915 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
-> @@ -56,7 +56,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts
-> index 213a0705ebdc..a29b49f051ae 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts
-> @@ -130,7 +130,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
-> index ff906becd2ab..c0d6eb55100a 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
-> @@ -135,7 +135,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-> index 02f81839d4e3..fea65f20523a 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-> @@ -74,7 +74,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
-> index 6c4e68e0e625..2825db91e462 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
-> @@ -167,7 +167,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-> index 82bfabfbd39c..27093e6ac9e2 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-> @@ -149,7 +149,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> index 74897a154891..860f307494c5 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> @@ -157,7 +157,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-> index 236c0a144142..7d525bdb0e06 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-> @@ -94,7 +94,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
-> index 50137aafab10..50d49aec41bd 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
-> @@ -109,7 +109,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> index c9705941e4ab..514a6dd4b124 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> @@ -189,7 +189,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts
-> index d1debccdc1c2..7991fafed05c 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts
-> @@ -29,7 +29,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts
-> index c94f2870b78b..6e34fd80ed71 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts
-> @@ -29,7 +29,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
-> index 0f6660e68e72..85d7e7110596 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
-> @@ -29,7 +29,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-> index 2fce44939f45..cdb80e0a7718 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-> @@ -181,7 +181,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> index 9068a334ea57..cf4f78e6bd21 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> @@ -247,7 +247,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
-> index 7e1a74046ba5..fda0630c235b 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
-> @@ -29,7 +29,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts
-> index cd93d798f2a3..9ea969255b4f 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts
-> @@ -29,7 +29,6 @@ sound {
->   		assigned-clock-rates = <294912000>,
->   				       <270950400>,
->   				       <393216000>;
-> -		status = "okay";
->   
->   		dai-link-0 {
->   			sound-dai = <&frddr_a>;
+Hi,
 
-I'll make this this won't happen again...
+On Tue, 04 Jul 2023 11:16:34 +0800, Xianwei Zhao wrote:
+> Add the board AN400 tree bindings based Amloigc T7 SoC.
+> 
+> Add devicetree support for Amlogic AN400  board based T7 SoC.
+> 
+> Xianwei Zhao (2):
+>   dt-bindings: arm: amlogic: add board AN400
+>   arm64: dts: add board AN400
+> 
+> [...]
 
-Thanks,
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.6/arm64-dt)
 
+[1/2] dt-bindings: arm: amlogic: add board AN400
+      https://git.kernel.org/amlogic/c/015623ec05f96b1614ec2753d25f36743c17c530
+[2/2] arm64: dts: add board AN400
+      https://git.kernel.org/amlogic/c/6f048cc7a635b8736b4c7ae0e5230a92e3e648eb
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+These changes has been applied on the intermediate git tree [1].
+
+The v6.6/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
+
 
 _______________________________________________
 linux-amlogic mailing list
