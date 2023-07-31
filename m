@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15AFDC001DF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Jul 2023 09:54:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E57EAC001DF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Jul 2023 09:57:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CuD1LTxrhmn7sDpydRwOzvvHIqjWwReyoQZbSNNDVsY=; b=p8cvR11haJXVOV
-	lhEJV0Uu9wdcuc88ITmNdLqDAMNp1gaJ3TUz+Gi3wLFrsCJS/ZkypE6XWmjjEPOxrccer3uQmRV6U
-	n8YJAXklTudHY2Pcq61who9cMFoMKwvkATFfx+juotwcVliD9kXZwOajbkY3uoEEhZoet3lRhlsuc
-	9itPkI4xhFn13QgVPetYJDOPrDGSOdtzaH94EWfaP8ZMN00nBo29+B9TF+U4N2fx8Xh21DhhJ1JOQ
-	SNE5EZb6FyqKzBAK/xVKk+qjNCiRJbQ8cbdJsNZOMo4knJdkzE8mxAhSzWcjaOCi0FVJbfoJbk7cI
-	7Gw4UcS4OhA4I4eUZ/OQ==;
+	List-Owner; bh=YeHLp43ULFBDfTtQ0EHuOJOC0xe/LMQhF7ifFNKSig4=; b=OlyJroR94s8Cxx
+	lkCMOebT4pNwpWd17l4SxqNCtDvf6OCqFYrAYWgqtaWfTcikT3awdUsu8kUc4U2M4314M2rH1AUoT
+	Ofyr7DBgyIDQlM3/0we4NsGSEOmPe5y7wKBUcIA1zoqffln0XILOc6knV1LB75JXzIraPl1668ECR
+	B+/28CYjk8OJM0DUQOIvT6e+safQj3X3YXF7v9tgfD69Mk917B6ieKnT4IsVRSIdIcp7B9cMMVh+7
+	e8iB74Mt48wLPRbi9Kp2ulRs5srbMeST6p1eH8qEROK6ochP1EC5RA7iex0njVXQmonLd7UyCgVM1
+	rntwbmcf2OS081Y6+EKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qQPbd-00EqEx-1m;
-	Mon, 31 Jul 2023 09:54:25 +0000
-Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
+	id 1qQPeP-00Etzp-2o;
+	Mon, 31 Jul 2023 09:57:17 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qQPbX-00EqDW-2y
+	id 1qQPeM-00EtnT-2g
 	for linux-amlogic@lists.infradead.org;
-	Mon, 31 Jul 2023 09:54:21 +0000
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b74fa5e7d7so62581511fa.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 31 Jul 2023 02:54:17 -0700 (PDT)
+	Mon, 31 Jul 2023 09:57:16 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-31751d7d96eso3575266f8f.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 31 Jul 2023 02:57:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690797256; x=1691402056;
+        d=linaro.org; s=google; t=1690797431; x=1691402231;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cxvMJvHLwBTrnKLZye8TDFSPJgpR7pa1aGrAgRySAk4=;
-        b=rtxydgC1gFkvb5mqPWXFSGiFQRPsbQ0ZaibVcnD1NSUYqfMl0IbHDE0rCfdx3TSuyc
-         4M1Z5QR+NtQATWMNhrJNKlnjdWRI4M7goXuhgKl+R00xg9rpExLyylcY8A7BSj3eoPHZ
-         POI7qCIIzpTRxbdyu4uJ/jxh/lwh9R7B47azI8gKpNUh5Kr5s3PRNCBNVVAxd/Q0Rpbs
-         tGnuL55lb6MdiLk8YfpzRgboQXBgiXSGCnE1WTB2nYGjyC81FTX8eqwAowB7h5FfJzKQ
-         Oer64uWIj27ehrTEWAOB0u8KMCF05uQXQGLfPAXY87TF38kdnSPB2iMH5A0+XBbklU8m
-         rZaA==
+        bh=NzAUT/ZDau86t8TFCapt9e4TK2GEcNG0/asajNbvhAY=;
+        b=erfQOYF/A3fjkJkXyUaO1epcPX2oVaro2+DPnPMOKL5pWklugRjasqvnVdZ+bCY/Xm
+         l9AnlBv/HYFrYMznWluqDH2YO7+2gGiyDQ2Om1NhlHwUqWF0za2bMMxyoX9JhCAc/mcN
+         AnqNrZcdA422DZR3rX66O8hAp/wbe7XIH2cDCyqSGElxWc4X+etS1dmJHjqbJF0Ylf4k
+         c0IjGLqtIojuimzukEi+Cnhz/2p6u6SDgH0VoP8i3NaEuCBEGTceY8DdMoObzhjC8CPF
+         grI6B0Kzo8bZQ1uLTx85urj8p72yAjXNIJwmYWM/0aUzct49w7Y5zdEMLwk43iPiRDLA
+         eFpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690797256; x=1691402056;
+        d=1e100.net; s=20221208; t=1690797431; x=1691402231;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=cxvMJvHLwBTrnKLZye8TDFSPJgpR7pa1aGrAgRySAk4=;
-        b=ZPszY3erj7nvgSgVguB4IX27MJLMdIfBU2L65FKzS/Xy3su5tZK0IytRotPKnzZHIM
-         1mQJlegajdkepHAJdBi0C10CN6SY8ccDMdphR1k13f/ktRB/0OJqH1OfEpECsy8OoQl9
-         sCDPi9hGbh/qqq73SPmnxLeD4Qi9GFkuYy1CVBhw9DXi9Svdc0crPAPy0qVfgxLTmw24
-         RapnCZhqFmgdpEY95JfOuV7zE1cO2t8vNnrrS3UWF6Yj3bESgKd1qM7jkr+aMNJySAjs
-         aNuTk4+tDSuYszHt8FmqshYPkIZ61aDHTf9VCa9gNa8WthI4FKLAQLvXcdyuHQBrj0kz
-         WwcA==
-X-Gm-Message-State: ABy/qLbGjHdmHu7hoz5DZ9zwYPqwURAqJKyeLwq/UJ+9mf7bMx9covWs
-	lJn33cyRIJba+1QWHYLgN8dxPg==
-X-Google-Smtp-Source: APBJJlE7wQhXoweE/t+BJZjOJ+eAu06Zax8HzFnpro0zdCZ7/Ym8zCBK2Y/a+Ib5XLFFPG0rO8fENw==
-X-Received: by 2002:a2e:9a82:0:b0:2b6:da88:a2d0 with SMTP id p2-20020a2e9a82000000b002b6da88a2d0mr6613063lji.47.1690797255881;
-        Mon, 31 Jul 2023 02:54:15 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id h17-20020adffd51000000b0031455482d1fsm12543726wrs.47.2023.07.31.02.54.15
+        bh=NzAUT/ZDau86t8TFCapt9e4TK2GEcNG0/asajNbvhAY=;
+        b=DcSLOISGBlfot6AtIGzoSHcmh+he3PKJqUwPNM0+vfZsJd0InElYqvX4ruHJ0Q/A5x
+         I55yKaiHIEYdRd0/wk/Vg2V8PTBtSwBwJi+z91ci1r/T0yHedJcnZr3SqmC2ThwzjCXD
+         XEw0nMpClwdrsxvQkAWW1GE3XlBohgT1sJx/XsJXDgkCbuxXWROy8DD3KOu6FMU3OHyu
+         CK4+txFEEDLE+UUyPWh9EX2Etbf1J2BHnyTQHeGrn7Atko8F5MolLfTtcqX/gJNCNUJq
+         Xd/AGax3x0wTOERY575+KombQh0tafmuSCkC67y7vs96Lvr7y/E65N+mB9BW7ceVHHKr
+         AQuQ==
+X-Gm-Message-State: ABy/qLaV60NbXuYjaaXr+Qftq/yK1bXCVB5GE5na9tjPGls1zceai3WI
+	nSq0YRvqG4nEkMtaE3bah0bTUdcMb4R7+M7YEVxFS0S+
+X-Google-Smtp-Source: APBJJlGZSmVvYv3ec6G3JAUBNm4NksXaZ+h1NntarAk2oAYLTlrujbke1RIMcvjHGtocXLeP8Hwjnw==
+X-Received: by 2002:a5d:5101:0:b0:317:5af3:caa4 with SMTP id s1-20020a5d5101000000b003175af3caa4mr6521173wrt.38.1690797431128;
+        Mon, 31 Jul 2023 02:57:11 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id s7-20020adff807000000b00313e2abfb8dsm12506312wrp.92.2023.07.31.02.57.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 02:54:15 -0700 (PDT)
+        Mon, 31 Jul 2023 02:57:10 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>
-In-Reply-To: <20230707003710.2667989-1-xianwei.zhao@amlogic.com>
-References: <20230707003710.2667989-1-xianwei.zhao@amlogic.com>
-Subject: Re: (subset) [PATCH V2 0/4] Power: C3: add power domain driver
-Message-Id: <169079725498.195351.12929338822608058749.b4-ty@linaro.org>
-Date: Mon, 31 Jul 2023 11:54:14 +0200
+To: Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20230714175124.4066972-1-robh@kernel.org>
+References: <20230714175124.4066972-1-robh@kernel.org>
+Subject: Re: [PATCH] soc: amlogic: Explicitly include correct DT includes
+Message-Id: <169079743023.199115.14539344901147605814.b4-ty@linaro.org>
+Date: Mon, 31 Jul 2023 11:57:10 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230731_025419_954915_DB1A1AB2 
-X-CRM114-Status: GOOD (  12.52  )
+X-CRM114-CacheID: sfid-20230731_025714_869956_E1250C97 
+X-CRM114-Status: GOOD (  11.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,28 +97,26 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Fri, 07 Jul 2023 08:37:06 +0800, Xianwei Zhao wrote:
-> First patch is that Use 'name' instead of 'index' as criterion.
-> The  variate 'index' could be equal to zero in some SoCs. Such as C3 SoC,
-> PWRC_C3_NNA_ID be defined zero.
-> 
-> Other patchs adds power controller driver support for Amlogic C3 SoC.
-> The power domains registers can be accessed in the secure world only.
+On Fri, 14 Jul 2023 11:51:23 -0600, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
 > 
 > [...]
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.6/drivers-genpd)
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.6/drivers)
 
-[1/4] soc: amlogic: use name instead of index as criterion
-      https://git.kernel.org/amlogic/c/fadf18180022743ff74b1f6ca4f3cff462ddaddb
-[2/4] dt-bindings: power: add Amlogic C3 power domains
-      https://git.kernel.org/amlogic/c/83b03d62939c46c118a8d722f07ae03a87967b00
-[3/4] soc: c3: Add support for power domains controller
-      https://git.kernel.org/amlogic/c/77e2f4e3cbd5cde442d05a7bdb6cd01565bead6d
+[1/1] soc: amlogic: Explicitly include correct DT includes
+      https://git.kernel.org/amlogic/c/83147971318a3adeb48e75a61722b0f2a60a4b9a
 
 These changes has been applied on the intermediate git tree [1].
 
-The v6.6/drivers-genpd branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+The v6.6/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
 for inclusion in their intermediate git branches in order to be sent to Linus during
 the next merge window, or sooner if it's a set of fixes.
 
