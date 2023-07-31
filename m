@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC2FAC04FE0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACED3C04A94
 	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Jul 2023 09:47:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,75 +12,75 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GuSef+frohzhX6VIWdsrDo2e7qwnbRm6iu+44ZIEf+A=; b=r3rClIuQYSmaKA
-	DtR7o5ov4UnSzl2hmjPR+nnCPkhn+wndCw9nAZ//HpHoLJOQ0SnvRfSDoft0cBwv0Nnnm71CQQoO7
-	9aheX6pIKuyH6+J4wELixqHW5zIyhcXhujNx7aJlBlTbEJ9evngVsWwIup7LXoQ/g8DkveoVg44ih
-	l8t2iflJ6GQNVUCxVKrwvlCE1UebNx4PyY6KonbgXUh5s7/f/dUf0PKmBhXAoZqShU/SVqbTX0u4K
-	0foiPoMnUPPIJtiCMdnNAflxCpoBGz2mJVbNkW+Tb4orV7tPEmi2hqUXakwECMi6lliYLDRPW7kRc
-	fUyDP0PzCIsZ3/JBmGgQ==;
+	List-Owner; bh=fOvWhh7/y4W3V2Wi3tLjPU7QW9dAGXUxMbtEDq5M/yA=; b=oMCtwHkbkt0yAZ
+	BidXTDnP9dSseLUPrqUk74ILRHUFkyr3VToOTSbZ38701dFcZmi6WKRpu1wbbxEsFhGA+dHOxMcZj
+	eVsSJPJJXmdXwHgEHls4kRgIqNPzxPaRvgKGwmIKm/s3SPk7gbZjqZ3+/km2c0wYDjstZMA30QjYg
+	2EEuZSVXcLz3B6i5nfMBS5BlmAepebSVyFhzbq7J2A8WmgN1WyGRbNl94hr6UYAnGJFfj6G8D4ovM
+	lYr4M/ONDKPmVPyQmWJWXNZoLcU4QghvoFTQSrXvcrPv/rcZ1mo9GpNpFDGW5xPRreoH2I0gBZN27
+	YI40UG5wDaCcL3ZaZdsg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qQPUZ-00EowO-2m;
-	Mon, 31 Jul 2023 09:47:07 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1qQPUa-00Eowg-0n;
+	Mon, 31 Jul 2023 09:47:08 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qQPUU-00Eosl-1L
+	id 1qQPUV-00Eotj-2N
 	for linux-amlogic@lists.infradead.org;
-	Mon, 31 Jul 2023 09:47:04 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3128fcd58f3so4532716f8f.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 31 Jul 2023 02:47:02 -0700 (PDT)
+	Mon, 31 Jul 2023 09:47:05 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-316feb137a7so4550201f8f.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 31 Jul 2023 02:47:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690796821; x=1691401621;
+        d=linaro.org; s=google; t=1690796822; x=1691401622;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zClCjZjOdixGCLkxsyJvj3NbPUjrYERXcvMYfwjLNfE=;
-        b=TilFRbTFqa4TuaX6WgCSre6+GR3T3GgCkO/0zcJ0BwEZiLsOO1AtT4uArKHRBiQadM
-         TQybXelE1vzPKw3YOUBUYc6QQm2O75tInpgLqiCOnJ9WZFa7jD1keWuBYGEMB2RJkaz5
-         fyJp+8t8V/MfyqbA2vAKKpHLoHg2ilPCGpv7I90w6h0AEzQAWEX1oIAhL7bM01dIWCxF
-         NlBCPGN9FYkGOxMVf92bWa1U2U5xuQ8XGUhU+vEpIkV8GVXzHlcNIVY72SsLrIoXh1d1
-         Z1vxty/Ycinf3Tef/hO/iwdwxekiw5pBge/LmCrfIyqcsgz0fYwhpyN1klMtZnXiKtzQ
-         TWPA==
+        bh=YxDsWVGn8/NwuT4OxCGgs3WFSadNfLfmBL1C6HxSVLg=;
+        b=jP8t+EmdY/W4O3SmujOD845Q+ns9HxWJCNeYGg0MI3+yjrJK+5A3PYQ+0hTBw/kKuP
+         6+je4MniZC0iq4binVCA6cfnBZ5+Odauwh1Z8UkXpqBUKDgouhXgBMK4ORM5egpPTLMP
+         6wp8Uv8EduZXsZM3yR+yOGFh4T3NosJHzS8ZJORXddie58lS92dD0KUCEzzo+ZBOacuq
+         FaCIU7G+GRR8BU9u2bMbzm5o6qstrsNPJKyICOQPCSX8DeeOdqRAbAeWaIjT1/XQod2y
+         rrmlnfKb0kmsRwzbIONoeq02MaSfkac6ogTJBXZYw5Wp8XS1THsJqIRwM3IWb9LL0qiK
+         u6XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690796821; x=1691401621;
+        d=1e100.net; s=20221208; t=1690796822; x=1691401622;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zClCjZjOdixGCLkxsyJvj3NbPUjrYERXcvMYfwjLNfE=;
-        b=Atd7uq5NhNJQ0ZcHiiGZ7AqO++hphR9QZd2mGfpajQNOo9WxtEC1G4sYmOqjwwH79F
-         QTnNkYrwvK2o2vMKmH07VkXlOH5NCj40J9LfLohFm2hBkZrtDpwhLoXnUYWhEUyQsAhK
-         tMZmkb9dVhHRyanKfT3HxNTkjgHoiuU53R93m8AwTVTRj+hW6EBvqbBYeB/aHb/3aBmB
-         O3dlPwDsokCebr0IyJN3PbiIoIR0MYaUJn6zIVX8qanvw70/BxhIXWLi63ygXr7kLEaQ
-         0JXEAOF0gE4DrO8TGH7khhQB1czCT4CKixb0Km4YHNk4+So55Qz/sSzCHfaqFWciWuep
-         jcyQ==
-X-Gm-Message-State: ABy/qLbA1Ldd4t5UYMGuw8ydvzFXUfFyNaui49gqsc56W+x+RtCOkva8
-	F6eO62KiZ54DIcUVyiO8sAGZ+Q==
-X-Google-Smtp-Source: APBJJlE+g5uUfGniF+8kFuxO1Nky2BcsSvbHb1jzL9PNTzoCO3wc1waETL2Y9ABFdvHQELPLFaSrNQ==
-X-Received: by 2002:adf:cd11:0:b0:317:759a:8ca6 with SMTP id w17-20020adfcd11000000b00317759a8ca6mr8047426wrm.62.1690796821004;
-        Mon, 31 Jul 2023 02:47:01 -0700 (PDT)
+        bh=YxDsWVGn8/NwuT4OxCGgs3WFSadNfLfmBL1C6HxSVLg=;
+        b=dEYwYv8SreCCsa1+Iuxbw1CuC/FoTV1Dv7MDEFoqhg1pDO9jqRgQ62VtBiGtCjzPyj
+         CHQFB42t6xfTtcb3r02uIfKarGRJaKLGmtsP+vQROUnWiMbUZ2zficoIML1mPG7XlctL
+         ufarz4YGFI3ubbGhKsRv+lohlrtCegv/4/BTb6+F+c0sM8hfuXl8yQ7rIqWuWkkuI6pT
+         A66nJHuXJSRqgmSEks1+vgH2EXUguwlL5ZzAYX27L1NLbADITmcmmg1snoxLMu/2Z6k5
+         Jm39+k5JySozIORTlq9IjSS6Pr8TkDH+zu1KpAeY+KnPZcNZhbCnFxegVz1diuIIXu0X
+         24Tw==
+X-Gm-Message-State: ABy/qLZWxJewez32VfV9j/OqSnIwQ7/ja44pUCJTgkAnFhabsXxJEFwn
+	/mqkKUyCp4ZNWh1ibL1dj7sav79FSRckj1Gm9/FFSEk2
+X-Google-Smtp-Source: APBJJlFuGlL1NmqvGsLXjELI7YezZ6XW63R0SDXpX2GfbbX/iyB7Bw3CNl7zqXYoOtUVkfT80ZwTgA==
+X-Received: by 2002:adf:f7d1:0:b0:317:61d8:3c7e with SMTP id a17-20020adff7d1000000b0031761d83c7emr8833827wrq.26.1690796822234;
+        Mon, 31 Jul 2023 02:47:02 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id p9-20020a5d48c9000000b0031433443265sm12556878wrs.53.2023.07.31.02.46.59
+        by smtp.gmail.com with ESMTPSA id p9-20020a5d48c9000000b0031433443265sm12556878wrs.53.2023.07.31.02.47.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 02:47:00 -0700 (PDT)
+        Mon, 31 Jul 2023 02:47:01 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, 
- Will Deacon <will@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20230706091954.3301224-1-xianwei.zhao@amlogic.com>
-References: <20230706091954.3301224-1-xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH V2 0/2] Devicetree for board AN400 based Amlogic T7 SoC
-Message-Id: <169079681994.186625.5295354786398700202.b4-ty@linaro.org>
-Date: Mon, 31 Jul 2023 11:46:59 +0200
+To: khilman@baylibre.com, jbrunet@baylibre.com, 
+ martin.blumenstingl@googlemail.com, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ Huqiang Qin <huqiang.qin@amlogic.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20230720114639.833436-1-huqiang.qin@amlogic.com>
+References: <20230720114639.833436-1-huqiang.qin@amlogic.com>
+Subject: Re: [PATCH V2] arm64: dts: Add gpio_intc node and pinctrl node for
+ Amlogic C3 SoCs
+Message-Id: <169079682106.186625.3975138620226263746.b4-ty@linaro.org>
+Date: Mon, 31 Jul 2023 11:47:01 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230731_024702_454619_33C3089B 
-X-CRM114-Status: GOOD (  10.59  )
+X-CRM114-CacheID: sfid-20230731_024703_773044_01593BF3 
+X-CRM114-Status: UNSURE (   9.39  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,22 +99,15 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Thu, 06 Jul 2023 17:19:51 +0800, Xianwei Zhao wrote:
-> Add the board AN400 tree bindings based Amloigc T7 SoC.
+On Thu, 20 Jul 2023 19:46:39 +0800, Huqiang Qin wrote:
+> Add gpio interrupt controller device and pinctrl device.
 > 
-> Add devicetree support for Amlogic AN400  board based T7 SoC.
 > 
-> Changes Since v1:
->  -in memory node use properties "reg" instead of "linux,usable-memory"
-> 
-> [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.6/arm64-dt)
 
-[1/1] dt-bindings: arm: amlogic: add board AN400
-      https://git.kernel.org/amlogic/c/015623ec05f96b1614ec2753d25f36743c17c530
-[2/2] arm64: dts: add board AN400
-      https://git.kernel.org/amlogic/c/6f048cc7a635b8736b4c7ae0e5230a92e3e648eb
+[1/1] arm64: dts: Add gpio_intc node and pinctrl node for Amlogic C3 SoCs
+      https://git.kernel.org/amlogic/c/cac34b2b3f5a9d4471a2660ec52599b6015bfc51
 
 These changes has been applied on the intermediate git tree [1].
 
