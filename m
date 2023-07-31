@@ -4,84 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E551C001DE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Jul 2023 08:54:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3C26C001DC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Jul 2023 09:05:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=mmmGbH2bdauKlwYzeFy5IJHhSpwVSHMp8ksQKVGwH4I=; b=e080NpzQ3zXkBuC2HOkAMsUtNU
-	xPHZwAPotBTTxlVJqRBchZ+h8+YgSGIGi+NoW23jvDMtG6jipR5hEfSfTBOiMorxkTz1ZmBeuE/vT
-	80uFSHX+7gRRMTNh4JelsrjbIU8OHgXnVJXjMMKYgpstFJ5wQhBBmQJf2IIA1ks7WDGQAcrwCk5zb
-	nH50rgqLV/QTRXtav6XFVn/j4y3ur/FepWairyIhkg2r0QO9dqB/1O0sbPCDdCFLd4EBzxIlnEdDp
-	1QSroyX+x8XOczL+Pq/rxwgewdPOvZVISPXrYE+QnmhxsNe0KD29IUuTVNA0JrCATMzPAqa73GyXU
-	UgSvwz1w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=pLdCF7iBs8FFT6f94o2G7Xw1njtG5IYMhzMyA7goiWs=; b=QVyBAyASQaZx05
+	NT44/9LOlEpQFZrTvcLASwKVO+E/5eUpg4LtCzdfCzMFQoK+9LVH8hN9U6Za2pP0f6jmzF6+MNfNa
+	9JIdjbyjjzS03TeyKmPFcN8eaWxdeiKr45lapJP00nJOcZkuQkOxnCs47v1/MwhXHPqbDrS9GpRfw
+	Izvi/9gBPUYXypu0UQhkTMDQDF3CXdR4J2OXZ+YrBOv8E2jBOOaE5OfLT3FkCOUut16iUjAvC6/NK
+	9bmuugVlc+RoafZ93KX8PLhVJQ22zaUGy/FA3L4LYI4Az2cD0cwimd+58JHeZJHNZx+MwlLuXu6AW
+	8pcyYa7EuemmK7ypkTMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qQOeq-00EbHE-0t;
-	Mon, 31 Jul 2023 08:53:40 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1qQOpe-00Ei1l-39;
+	Mon, 31 Jul 2023 09:04:51 +0000
+Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qQOen-00EbG2-1D
+	id 1qQOpb-00Ehzl-2f
 	for linux-amlogic@lists.infradead.org;
-	Mon, 31 Jul 2023 08:53:38 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3fbc77e76abso39196105e9.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 31 Jul 2023 01:53:37 -0700 (PDT)
+	Mon, 31 Jul 2023 09:04:49 +0000
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9891c73e0fbso892577366b.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 31 Jul 2023 02:04:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690793616; x=1691398416;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=k4Yh+f6GncnO7wF9Y2cPhaYuIy/Sv6tOpgODNCPb3Ok=;
-        b=s4kW1TUzdfGnCNk6aS3NmscVZPyongw/PYbcbe1brXNYm7+RhosdO8udnDygsiCii1
-         KKgF7nYJ0iTm2DsT30nC684d+5UhGCCewP4kSsq/XOkKaB3ooMbwes6Hh2M8Pd8Jfsei
-         1UIATRNWQz0nnzIU6v67FzCY1epmLYRLTFFDCXWfLOk9G/fG+n54i9nVsM1kDXIfs7ik
-         uD5f14OXNc9HxdyCwC4YnJjuD/FlH1mvgaPXor1rBA0fVfy27ue3UMnObTaICXQ8FVIQ
-         q57IzV2m8BZU6yg/3mDcCOa/Q91hEUoghnWP9E3/L3qhGIVh1kV61gzH6K/dZuGEqeDZ
-         Vp7A==
+        d=linaro.org; s=google; t=1690794285; x=1691399085;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nJO9NQ7vK7AJAcGCHk7QVU9AX/jwtIW+NQLwTCdqNqY=;
+        b=r0EqoIqywadaqctz91y78LQA8JglGD9rAv8WsyzPSKs1RjGZXSnFPgyDBPMk7ZjoBw
+         t1sYbzrLlTO7YAJdPkM2CTR/7ajs9eipcQxTWa9nvdk7IiyucaktyQKu6kbuBGcD+F9w
+         fYVN2+BuXxbq80PXxkUYHbXaN2IclbY+YpVKwoQjQLVOSTyRdXDVbxaSKpSUgvZjTcUp
+         NoFhc5frg+SAm/yTXJx5qphKgCmvg4wsS0pG1ZMbtLlMfKXPvh2+c07ee5wDiGRcA+IZ
+         CXWaTAMZE6pxaujQo5pMIJfszyEFdmEgB+12CRm/j7dvCqkgSSrEVdGzONr4qLb9iPLm
+         M+4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690793616; x=1691398416;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1690794285; x=1691399085;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=k4Yh+f6GncnO7wF9Y2cPhaYuIy/Sv6tOpgODNCPb3Ok=;
-        b=brx5lVF4fF0cX5uHkV3P5H1LooF3/KApBtpcQvNIyvxwDZs0/d/t5zPUXuCfGipeEo
-         HRJgO66ilPha7RPfGrAgvEjd8TQQUt3GfMIZTPaBKzNKAQDkRcL+wHQI7a5dcXmQEtCX
-         VskxQ5GOioTVYniHsp03hKcDDuuSVgznyFM5cwOaPnIaPCP8aHtZoMvI78gUcvT5gsWS
-         l22IF3UcdRcHR0aLWPyA5suK+caVioYNBl5aLQWnYiIPOz/iIFkRVjDu8uMlaitXXNGc
-         xXWFIxiqNcjlB/4v6706KGwUA0I+8qexd1ZPuXoF4dkDllVlw6ENiR6TeXqwyb601QZW
-         ItUg==
-X-Gm-Message-State: ABy/qLbt838NaQCq7NicLyki/5KT5rNRWN505PLX5ZoT+5ekQiibkpE2
-	0D0OudW9qx2LPX9NIWMB6WTVbg==
-X-Google-Smtp-Source: APBJJlFkdi6dFIFk3K8ltMzX+mCMt0AqSuU5XaQhLYuJYJ0ZiNsU1f7D54DBojjArL1sPd5fOxBC5Q==
-X-Received: by 2002:a7b:c019:0:b0:3f7:f584:579b with SMTP id c25-20020a7bc019000000b003f7f584579bmr6621217wmb.9.1690793615976;
-        Mon, 31 Jul 2023 01:53:35 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:14b8:9aa7:6bf0:256d? ([2a01:e0a:982:cbb0:14b8:9aa7:6bf0:256d])
-        by smtp.gmail.com with ESMTPSA id n6-20020a7bcbc6000000b003fe1e3937aesm3399576wmi.20.2023.07.31.01.53.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Jul 2023 01:53:35 -0700 (PDT)
-Message-ID: <8a8ea225-3730-20cf-9ad0-46fbd6e5f5bb@linaro.org>
-Date: Mon, 31 Jul 2023 10:53:34 +0200
+        bh=nJO9NQ7vK7AJAcGCHk7QVU9AX/jwtIW+NQLwTCdqNqY=;
+        b=cz+xydeaH5gaTqaMCCL67gwHwvPxjAVXtMEGqu6FOXZGPFcPgDODnRDHolW8hPLgRv
+         WKXQbMpgVWKKY1uWQdXLANuGEWLbvONH9kbkK15BtoKtVRL/dPDwWSoriO0cY9j4O150
+         vogvczy1GjQPERKoln5vHBqLKguHnKom8W1cMRjULL3JYfNvB46ePZ/9XPZnTmRyM9Ml
+         CHHbl+XDUb5M5aPeIAxUV7fVdFqM3zdfkkIXnjCQzd26bis7/AlcSaTFWpnAITxhkBRw
+         0ab+cHz00XvtaAhJ99Rukx3gNAEr550lVtDZNKWS9x8DAbT9DWXw+yAmNKarCAulUmq8
+         vdkA==
+X-Gm-Message-State: ABy/qLaQ+fqBqA2n62oHoy2HJHxZfPdc+G5VrF5MLFd6NOv4N0YbYqh/
+	dANCXHD6ePfCMiGC8yPeG3+7Hg==
+X-Google-Smtp-Source: APBJJlFkSpVPIStAe9Vl3YBvz9umydkAl6u8k+fmu5C4SIOfgsL/ZfGAkiz3E+homafZX+J1d2uqSw==
+X-Received: by 2002:a17:906:5a45:b0:99b:cb59:79b3 with SMTP id my5-20020a1709065a4500b0099bcb5979b3mr7071426ejc.1.1690794285532;
+        Mon, 31 Jul 2023 02:04:45 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.222.183])
+        by smtp.gmail.com with ESMTPSA id a11-20020a17090680cb00b009892cca8ae3sm5829049ejx.165.2023.07.31.02.04.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Jul 2023 02:04:45 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: amlogic: meson-sm1-odroid: drop redundant status=okay
+Date: Mon, 31 Jul 2023 11:04:42 +0200
+Message-Id: <20230731090442.100856-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] soc: amlogic: Explicitly include correct DT includes
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230714175124.4066972-1-robh@kernel.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230714175124.4066972-1-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230731_015337_422753_001E1424 
-X-CRM114-Status: GOOD (  15.12  )
+X-CRM114-CacheID: sfid-20230731_020447_858341_4A4D90E7 
+X-CRM114-Status: UNSURE (   8.53  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,95 +94,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 14/07/2023 19:51, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->   drivers/soc/amlogic/meson-canvas.c      | 1 +
->   drivers/soc/amlogic/meson-ee-pwrc.c     | 3 +--
->   drivers/soc/amlogic/meson-gx-pwrc-vpu.c | 3 +--
->   drivers/soc/amlogic/meson-secure-pwrc.c | 2 +-
->   4 files changed, 4 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/soc/amlogic/meson-canvas.c b/drivers/soc/amlogic/meson-canvas.c
-> index 383b0cfc584e..b6e06c4d2117 100644
-> --- a/drivers/soc/amlogic/meson-canvas.c
-> +++ b/drivers/soc/amlogic/meson-canvas.c
-> @@ -8,6 +8,7 @@
->   #include <linux/kernel.h>
->   #include <linux/mfd/syscon.h>
->   #include <linux/module.h>
-> +#include <linux/platform_device.h>
->   #include <linux/regmap.h>
->   #include <linux/soc/amlogic/meson-canvas.h>
->   #include <linux/of_address.h>
-> diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
-> index f54acffc83f9..cfb796d40d9d 100644
-> --- a/drivers/soc/amlogic/meson-ee-pwrc.c
-> +++ b/drivers/soc/amlogic/meson-ee-pwrc.c
-> @@ -4,13 +4,12 @@
->    * Author: Neil Armstrong <narmstrong@baylibre.com>
->    */
->   
-> -#include <linux/of_address.h>
->   #include <linux/platform_device.h>
->   #include <linux/pm_domain.h>
->   #include <linux/bitfield.h>
->   #include <linux/regmap.h>
->   #include <linux/mfd/syscon.h>
-> -#include <linux/of_device.h>
-> +#include <linux/of.h>
->   #include <linux/reset-controller.h>
->   #include <linux/reset.h>
->   #include <linux/clk.h>
-> diff --git a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-> index 5d4f12800d93..33df520eab95 100644
-> --- a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-> +++ b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-> @@ -5,13 +5,12 @@
->    * SPDX-License-Identifier: GPL-2.0+
->    */
->   
-> -#include <linux/of_address.h>
->   #include <linux/platform_device.h>
->   #include <linux/pm_domain.h>
->   #include <linux/bitfield.h>
->   #include <linux/regmap.h>
->   #include <linux/mfd/syscon.h>
-> -#include <linux/of_device.h>
-> +#include <linux/of.h>
->   #include <linux/reset.h>
->   #include <linux/clk.h>
->   #include <linux/module.h>
-> diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
-> index 25b4b71df9b8..b994f03380b0 100644
-> --- a/drivers/soc/amlogic/meson-secure-pwrc.c
-> +++ b/drivers/soc/amlogic/meson-secure-pwrc.c
-> @@ -7,7 +7,7 @@
->   #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
->   
->   #include <linux/io.h>
-> -#include <linux/of_device.h>
-> +#include <linux/of.h>
->   #include <linux/platform_device.h>
->   #include <linux/pm_domain.h>
->   #include <dt-bindings/power/meson-a1-power.h>
+status=okay is by default.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+index 2fce44939f45..cdb80e0a7718 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+@@ -181,7 +181,6 @@ sound {
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+-		status = "okay";
+ 
+ 		dai-link-0 {
+ 			sound-dai = <&frddr_a>;
+-- 
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
