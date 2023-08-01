@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C306EB64DD
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Aug 2023 06:38:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D88C7C001DF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Aug 2023 09:02:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=KGlZvcLlxAyH5/5h97IsXYTU5aijgrVMW/5Iul7w6pg=; b=U00cqrHPZGtViYWuv/zzJVEphf
-	V6FMAv2i8z3+ELhvpo6DRb4YV1TFiH24EmG8iCy6smsZUxHkg9fVlrncDV4iFTiSfC2MGtuixcoBo
-	jYMASboB2qw2wPiBpsL8uH/EL33Wn8uDkNg3p4Jh5wpZ20cKUNj8+PJ8ZLC2PBWkR3PlIJaIah0j/
-	eWI4mFi46/AvQOi6XEYA2Plxe0WNQSN6dttta8wizGa0HhorlRkdzuX6OB7qFYL6cMuQ/Lgf7frQq
-	yqJLU7iLt8Sjq/HQrDrdz/jXnwB+MraTrIZaCRFZh/8fTtltxMlUNJtBBVJ2xQ/NRqxvY4MxfjRV+
-	9NWAoorw==;
+	bh=xedc+6HlUUvSRhcZliObfS7vD00HJfNG750emo8Ct6M=; b=Q6bQ7T3oRmJsLC+DwlPRqa58i6
+	qA0r7AQRjC+9txlOlcJhp10YL4NS1oCebJ52CDOwfVWKdFm3vIrptxjw5SES5mpD1owkQoMVD/ICR
+	/6zZAff1dhKO7ZWPwDpOT2suWRv93xc8pNwcB7plJuzLh0p8CKh+uzZ5s8FjkrftQdN4o4R1CZo6W
+	ZfTxU22Lk1QPL7Gk0s1maNGZGLWk2PWMr7hGhjabAv80WEhomFiiGgKwh/zAlVTiOHbdU6uXQAtjy
+	V5JHL9V6Z+9RTFklTUDzcCOIwFrLCx8pz0ayH4RaY+fe4Vc+TlRvJ1eT0zlQf1vIzec9D1h2Yujn2
+	YwvwO/rw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qQj1X-000Ta0-28;
-	Tue, 01 Aug 2023 06:38:27 +0000
+	id 1qQlGE-000iXi-1H;
+	Tue, 01 Aug 2023 09:01:46 +0000
 Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qQj1U-000TXZ-0V
+	id 1qQlGB-000iW4-1A
 	for linux-amlogic@lists.infradead.org;
-	Tue, 01 Aug 2023 06:38:25 +0000
+	Tue, 01 Aug 2023 09:01:45 +0000
 Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
 	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <mkl@pengutronix.de>)
-	id 1qQj0d-00070v-4I; Tue, 01 Aug 2023 08:37:31 +0200
+	id 1qQlFi-0003XY-79; Tue, 01 Aug 2023 11:01:14 +0200
 Received: from pengutronix.de (unknown [172.20.34.65])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(Client did not present a certificate)
 	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 76E8C20035C;
-	Tue,  1 Aug 2023 06:37:21 +0000 (UTC)
-Date: Tue, 1 Aug 2023 08:37:21 +0200
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 5AC192004E9;
+	Tue,  1 Aug 2023 09:01:05 +0000 (UTC)
+Date: Tue, 1 Aug 2023 11:01:04 +0200
 From: Marc Kleine-Budde <mkl@pengutronix.de>
 To: Shenwei Wang <shenwei.wang@nxp.com>
 Cc: Russell King <linux@armlinux.org.uk>,
@@ -56,6 +56,7 @@ Cc: Russell King <linux@armlinux.org.uk>,
 	Samuel Holland <samuel@sholland.org>,
 	Jose Abreu <joabreu@synopsys.com>, imx@lists.linux.dev,
 	Simon Horman <simon.horman@corigine.com>,
+	Frank Li <frank.li@nxp.com>,
 	Alexandre Torgue <alexandre.torgue@foss.st.com>,
 	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
 	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
@@ -74,20 +75,20 @@ Cc: Russell King <linux@armlinux.org.uk>,
 	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH v3 net 1/2] net: stmmac: add new mode parameter for
- fix_mac_speed
-Message-ID: <20230801-portside-prepaid-513f1f39f245-mkl@pengutronix.de>
+Subject: Re: [PATCH v3 net 2/2] net: stmmac: dwmac-imx: pause the TXC clock
+ in fixed-link
+Message-ID: <20230801-casket-sterling-db0e49f154cf-mkl@pengutronix.de>
 References: <20230731161929.2341584-1-shenwei.wang@nxp.com>
- <20230731161929.2341584-2-shenwei.wang@nxp.com>
+ <20230731161929.2341584-3-shenwei.wang@nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <20230731161929.2341584-2-shenwei.wang@nxp.com>
+In-Reply-To: <20230731161929.2341584-3-shenwei.wang@nxp.com>
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
 X-SA-Exim-Mail-From: mkl@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230731_233824_191755_8ED49A8C 
-X-CRM114-Status: GOOD (  17.09  )
+X-CRM114-CacheID: sfid-20230801_020143_395498_5E838EDD 
+X-CRM114-Status: GOOD (  26.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,39 +100,113 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1467372946405368677=="
+Content-Type: multipart/mixed; boundary="===============4884953186058186738=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============1467372946405368677==
+--===============4884953186058186738==
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bosuzfm7oov47gw7"
+	protocol="application/pgp-signature"; boundary="o4t5srmxt4zkvbfp"
 Content-Disposition: inline
 
 
---bosuzfm7oov47gw7
+--o4t5srmxt4zkvbfp
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On 31.07.2023 11:19:28, Shenwei Wang wrote:
-> A mode parameter has been added to the callback function of fix_mac_speed
-> to indicate the physical layer type.
+On 31.07.2023 11:19:29, Shenwei Wang wrote:
+> When using a fixed-link setup, certain devices like the SJA1105 require a
+> small pause in the TXC clock line to enable their internal tunable
+> delay line (TDL).
 >=20
-> The mode can be one the following:
-> 	MLO_AN_PHY	- Conventional PHY
-> 	MLO_AN_FIXED	- Fixed-link mode
-> 	MLO_AN_INBAND	- In-band protocol
+> To satisfy this requirement, this patch temporarily disables the TX clock,
+> and restarts it after a required period. This provides the required
+> silent interval on the clock line for SJA1105 to complete the frequency
+> transition and enable the internal TDLs.
 >=20
-> Also use short version of 'uint' to replace the 'unsigned int' in the
-> function definitions.
+> So far we have only enabled this feature on the i.MX93 platform.
+>=20
+> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+> Reviewed-by: Frank Li <frank.li@nxp.com>
+> ---
+>  .../net/ethernet/stmicro/stmmac/dwmac-imx.c   | 42 +++++++++++++++++++
+>  1 file changed, 42 insertions(+)
+>=20
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c b/drivers/ne=
+t/ethernet/stmicro/stmmac/dwmac-imx.c
+> index 53ee5a42c071..2e4173d099f3 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+> @@ -32,6 +32,7 @@
+>  #define GPR_ENET_QOS_RGMII_EN		(0x1 << 21)
+> =20
+>  #define MX93_GPR_ENET_QOS_INTF_MODE_MASK	GENMASK(3, 0)
+> +#define MX93_GPR_ENET_QOS_INTF_MASK		GENMASK(3, 1)
+>  #define MX93_GPR_ENET_QOS_INTF_SEL_MII		(0x0 << 1)
+>  #define MX93_GPR_ENET_QOS_INTF_SEL_RMII		(0x4 << 1)
+>  #define MX93_GPR_ENET_QOS_INTF_SEL_RGMII	(0x1 << 1)
+> @@ -40,6 +41,7 @@
+>  #define DMA_BUS_MODE			0x00001000
+>  #define DMA_BUS_MODE_SFT_RESET		(0x1 << 0)
+>  #define RMII_RESET_SPEED		(0x3 << 14)
+> +#define CTRL_SPEED_MASK			GENMASK(15, 14)
+> =20
+>  struct imx_dwmac_ops {
+>  	u32 addr_width;
+> @@ -56,6 +58,7 @@ struct imx_priv_data {
+>  	struct regmap *intf_regmap;
+>  	u32 intf_reg_off;
+>  	bool rmii_refclk_ext;
+> +	void __iomem *base_addr;
+> =20
+>  	const struct imx_dwmac_ops *ops;
+>  	struct plat_stmmacenet_data *plat_dat;
+> @@ -212,6 +215,42 @@ static void imx_dwmac_fix_speed(void *priv, uint spe=
+ed, uint mode)
+>  		dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
+>  }
+> =20
+> +static void imx_dwmac_fix_speed_mx93(void *priv, uint speed, uint mode)
+> +{
+> +	struct imx_priv_data *dwmac =3D priv;
+> +	int ctrl, old_ctrl, iface;
 
-There are not many users of 'uint' in the kernel and it's not used in
-the stmmac driver so far. From my point of view I would not introduce
-it and stick to the standard 'unsigned int'.
+regmap_read() wants a pointer to an "unsigned int".
 
-Just my 2 cent,
+> +
+> +	imx_dwmac_fix_speed(priv, speed, mode);
+> +
+> +	if (!dwmac || mode !=3D MLO_AN_FIXED)
+> +		return;
+> +
+> +	if (regmap_read(dwmac->intf_regmap, dwmac->intf_reg_off, &iface))
+> +		return;
+> +
+> +	iface &=3D MX93_GPR_ENET_QOS_INTF_MASK;
+> +	if (iface !=3D MX93_GPR_ENET_QOS_INTF_SEL_RGMII)
+> +		return;
+> +
+> +	old_ctrl =3D readl(dwmac->base_addr + MAC_CTRL_REG);
+> +	ctrl =3D old_ctrl & ~CTRL_SPEED_MASK;
+> +	regmap_update_bits(dwmac->intf_regmap, dwmac->intf_reg_off,
+> +			   MX93_GPR_ENET_QOS_INTF_MODE_MASK, 0);
+> +	writel(ctrl, dwmac->base_addr + MAC_CTRL_REG);
+> +
+> +	/* Ensure the settings for CTRL are applied and avoid CPU/Compiler
+> +	 * reordering.
+> +	 */
+> +	wmb();
+> +
+> +	usleep_range(10, 20);
+> +	iface |=3D MX93_GPR_ENET_QOS_CLK_GEN_EN;
+> +	regmap_update_bits(dwmac->intf_regmap, dwmac->intf_reg_off,
+> +			   MX93_GPR_ENET_QOS_INTF_MODE_MASK, iface);
+> +
+> +	writel(old_ctrl, dwmac->base_addr + MAC_CTRL_REG);
+> +}
+
 Marc
 
 --=20
@@ -140,25 +215,25 @@ Embedded Linux                   | https://www.pengutronix.de |
 Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
 Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
---bosuzfm7oov47gw7
+--o4t5srmxt4zkvbfp
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmTIqBwACgkQvlAcSiqK
-BOi7Jgf/UaTFYSC4IuXT7k8VsP0wkBG1kcRP+yNZbLdHhdJNmRn2K0iTpv82c/8q
-ZYpLreaQqEKOb7TszFXyDCSS1Mssv66nj047Dc6LHrnW2VbY7P9LSCMsnSUaoh0a
-lkOknimCFo9HKbYqND+gh1y/o6Wz5PO36qbaBR1giHbUdB9+Ow0AlTR3V9KeMOb4
-OsXSR2ihf5LYXebKvn8StZSwICnzZ78eLFZJsxu0oEMJDnaxIM5VQb9MaCfPbZv8
-/Bco4yUWkcOqrMmHnL9TSVvgaNJLzxowhcbwA9rucxpS314AJAqil34OSnmnQeGW
-1+lihD2B9mQqxq0drsTeFh5UBcLxNA==
-=DXrv
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmTIyc4ACgkQvlAcSiqK
+BOhPxwf9HHFOUC0eUgsX05gNkklEhVe6d9mHGi+9XMQabv1kE7r0DR26UXTr1zJJ
+7QEgBjYhAsV2UUZrvVOrkdfOlJeHUjNYw1SoCWXwhL12XS53cpTT6NFJubHX6FAz
+qkyWpe9yJoplJv5iPw9ytKUnyfdv00/s1N3R0Xt6WPUsmvZBmdAKr+jAaIEhYNdS
+G8C5mw4vSxM+C02gPgE0n6IRnjiH+FWGAfLsUbDQ5RtySwHCitWh9SSlhtp1SR0a
+CYQMjQ/caR6IfLBhmdzTrRl3e7IfXQWoSYVERLNGIu3OnKKeqpe561OdnlxVOD6S
+bO8xpuS/V3HwwpAnE3MNcNI7+IMjlw==
+=3m5o
 -----END PGP SIGNATURE-----
 
---bosuzfm7oov47gw7--
+--o4t5srmxt4zkvbfp--
 
 
---===============1467372946405368677==
+--===============4884953186058186738==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -169,5 +244,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============1467372946405368677==--
+--===============4884953186058186738==--
 
