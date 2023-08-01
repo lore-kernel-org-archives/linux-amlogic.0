@@ -4,140 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 782B9C001DF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Aug 2023 13:26:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F203C04A94
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Aug 2023 17:10:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:
-	References:Cc:To:Subject:Date:Message-ID:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=/C0nWPHi/exPdy93Rube1KkVhglQvJEIdUUuvzeS+C4=; b=pcsur9hAwadLlhbZZh9SJmyFKu
-	eXein7ASTT+qDhzyLyvc8e2UAmS9zyVtKdIl+5Wa29tLDXgunRF0xWORlZ6Cm5yyXXMKvrMTYDQYL
-	Vq4PaN3cSOLkH5CM28bqGmxJknpiVQ6PxrYl2k0Mf8bQ6aFe+eoRP/ci1hN+kpcLgucsM5BbPWLvL
-	qLkiLUZG4FBG15QiszC7FGJu/rZjTxnRIQAFcE0aN3IX803gEWPexXR7hfTL3wknHJ9r+HO9ECTPu
-	AYLhsJ7QKWNqrCc4xle1YDZVNxYgLo56oiUYc6Z8bpq2cxxD8GdLK25dqXu1/nYxdeyDGP6b6WeP0
-	FIdKLgqg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=e/2C3TYInPGtHW0zxvOtXYeCdE3/+qLtUaa3sv3lxwY=; b=IbxpDEyv/tbAJc
+	tQaxmlKwCWuMsUie+BUXemkrq4XSFUOEGToM2YGppuAeQ1U9ONkiCAyqvSHf23lU7yU1KZwU9u1vz
+	YNL0+aXt4aOz+b+t8zi3ScWqrrcqHP/cx5j+4J+/x8+b1to9X6KM+rZuZ2WpMr9eJ2qmQfXQHZcQ3
+	UhM+1FLiNSXOR3w0FO+ZPwkGcA2u9N78HGI+A0u4eapR12WQ1P/c/lyqHeuKPX+Ma7dLtlTv3P4RQ
+	R047AoUwkLnrSODYiBI85SxOK/TrG5oNi531ww7ed8jo8qRPMQDnklvxThFSZjZqanoWNPGFGMpvP
+	gs2PYmpkJZ6MTTt1gKFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qQpNt-002RmH-0S;
-	Tue, 01 Aug 2023 13:25:57 +0000
-Received: from mail-psaapc01on2070e.outbound.protection.outlook.com ([2a01:111:f400:feae::70e] helo=APC01-PSA-obe.outbound.protection.outlook.com)
+	id 1qQst1-002tOv-2a;
+	Tue, 01 Aug 2023 17:10:19 +0000
+Received: from mail-am6eur05on2062d.outbound.protection.outlook.com ([2a01:111:f400:7e1b::62d] helo=EUR05-AM6-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qQpNp-002RlX-1c;
-	Tue, 01 Aug 2023 13:25:54 +0000
+	id 1qQssy-002tNT-0C;
+	Tue, 01 Aug 2023 17:10:18 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n09wXS3BT4LbdxIqxcz9rlGaxR9lpFpydvpLSb2wyvGrWv2KAp+MyiTxKy3zBYz+VBO/Ej5VA+5kYUtTfxcY3D5KGOxP3OTWA6nLE4BHtcHhltYYTa/oR86+GpVW9qt5Ieby/47xFgutClNCvO58JANpUj0FygaOavymEa4gFdFYYYmefgPIbp9P3YdKt+2AGbK2Vrj1ISaIaXFF34ZQj9dJEk12CiidGsGdemsLfsxjOHYbO+I+uvCLMVIinkd4AyEau795TjvLo1AEXC633O7VgqR2MqOpngUkesZm7b10vI2UEF6naUr/T1BMA1ZWGXR2iwbJUMgTg3ESyNjXVA==
+ b=IljHEqzM1m941FUnF33Q8dJpX6dO0fqQEiGa2RG3FC1YcgsnKzUZTj/NLWZnQRnwDPZlKi9jImlq/tdzdWqApxfG5lZPJSj1NCnt2kjIS0VhhcYVr8BAMmYHuujts3Xl0ghwo+LVKOAdAzDn8FFvN44ohlzumbWDm09N9jBOmmc2s38eljRiptR99kATc+tK4aAMov65qtwgztDkwkLZrk1SbMbaGZLelAO6ZtTjEyQrB8iYW3rjDDfKnENLM6NkInMOGHDA5lOeQnWNhFSJb3CtFsvO+JbJfiJ4tMs6u0A7LOeR6Ucwa5/RS/XoTmrefsEbwbghApP9Yt7JDM0gMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PTLrcXiZhqZPtT1FsY2O5wcL/eFsvg0I0V45GRLe5bI=;
- b=gk5pZ/FiRuJd4hVHQDEW9Y/1Adzp8qoRHLF0Ke8etpUzsUIMTfGZDL6zF1kpPtpLyjNwOKbRYP//pAIbHW3IRQJymKagV85vA9U1V8HHuKLrYtYZfkIf3439aqdtb8f0gm0gsuX1WzmzLdafzy2YXmCyj4ZDQwfsYdNKoz1thc7gxMb2ZQsUvPRPhveRFkPWmumAaF06LwZy1DnxVQuiND0MSk9c3TDceEOi3xRxBIJw9g1I7zGFTKL9aVe2sJHz4yVcd/9VPTfGHd1c6qgLli6Uptj0XBHV8enhOQQxwOi50cR1lNiZvtitp7rQ9KPrIW/pMWinU9dXAKin+b6tfg==
+ bh=n98rouop6UhW+bb2u1wEcn1y8x5ouUwyq2ao7OpYGTY=;
+ b=buNxMiITH9B9LRH0jSjTddgKbdU5utFpntSwL2OZRvZ8jEoIatXrVkg5CKlAKTo6/qsueW7mcqRI1Mewp3IEAZJ+DX+VPukbzBBGaRtHssBYKAIIi9zfwNzXW17HXqtEaHstl71lT2NOq82OFq2c01YDwA7c3wS/r7Exi/DNeNz1hz9rAiZGkETtMNVEnQbX/dS9DuehO6yoBPC/7om944lp9xTg15iF6gSlpaLVWuwJpO3zpS3BoLVLnsbaQHQisiG/cbLQgd6IzCJ4VBQjqWUlXADxX6UmvWuKXS7aRz/Izs94dg73bBJ6rWWJrGLCL9/5fN4VV3puIfrhYIb5kQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PTLrcXiZhqZPtT1FsY2O5wcL/eFsvg0I0V45GRLe5bI=;
- b=tbMJyVWF5bwaFcm2Yy3HFf5DH9c+3/f2bHxy81kbGIABn1DazGTkGf7HkG963i3pbnv7Liryc+mCneyHooGZAi9vQrwZ8bn60YgdIpu+RHKnwLXJKwyZSePhPK5l2bcizSz9f/NQB1V9ORqaD3e6LwmBU/uX0e12IToNR94kV4PJ29ZxquSHYhmsPIQV6jXipaxrUs+JGh73UDPRqyu6Vn/1asfncBNdKtnsCTJDSizMvsdnpEVyato2w/tuNGMvQbHKWnmrM85/p+VcJqV/El6UzWT0yMxUeraQHxUEZpjrOyNzgtATvL+ruyLmDDkfynRiWBYTn6emHO2GJUmScQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB7221.apcprd03.prod.outlook.com (2603:1096:820:cb::11)
- by KL1PR0302MB5203.apcprd03.prod.outlook.com (2603:1096:820:49::8) with
+ bh=n98rouop6UhW+bb2u1wEcn1y8x5ouUwyq2ao7OpYGTY=;
+ b=Y7pIe0S6TXTp3vciYa5iTCJ79YZLwYBH/OoUqRqxi/apf38MxSXXk64xomzW7tlHboFczyJom80SoA5x016M2U+FqvDA98UIZHipwH/YLM/sDw61RP+VNY/23l05lqlK4URQojZpMHh8YpWHxoXtY3BBaQNM7dNj6fIxG1Qb2Jw=
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
+ by VI1PR04MB7119.eurprd04.prod.outlook.com (2603:10a6:800:12e::24) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.44; Tue, 1 Aug
- 2023 13:25:43 +0000
-Received: from KL1PR03MB7221.apcprd03.prod.outlook.com
- ([fe80::15ea:573f:2ff2:f723]) by KL1PR03MB7221.apcprd03.prod.outlook.com
- ([fe80::15ea:573f:2ff2:f723%5]) with mapi id 15.20.6631.043; Tue, 1 Aug 2023
- 13:25:43 +0000
-Message-ID: <35713689-2b28-192c-5004-8a0ba6b9308b@amlogic.com>
-Date: Tue, 1 Aug 2023 21:25:37 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 3/3] arm64: dts: Replace the IRQ number with the IRQID
- macro definition
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.45; Tue, 1 Aug
+ 2023 17:10:07 +0000
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::d4ee:8daa:92f4:9671]) by PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::d4ee:8daa:92f4:9671%3]) with mapi id 15.20.6631.043; Tue, 1 Aug 2023
+ 17:10:07 +0000
+From: Shenwei Wang <shenwei.wang@nxp.com>
+To: Johannes Zink <j.zink@pengutronix.de>, Russell King
+	<linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Shawn Guo
+	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Vinod Koul
+	<vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
+CC: Giuseppe Cavallaro <peppe.cavallaro@st.com>, Alexandre Torgue
+	<alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+	<festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>, Jerome Brunet
+	<jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Bhupesh Sharma
+	<bhupesh.sharma@linaro.org>, Nobuhiro Iwamatsu
+	<nobuhiro1.iwamatsu@toshiba.co.jp>, Simon Horman <simon.horman@corigine.com>,
+	Andrew Halaney <ahalaney@redhat.com>, Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>, Wong Vee Khee <veekhee@apple.com>, Revanth
+ Kumar Uppala <ruppala@nvidia.com>, Jochen Henneberg
+	<jh@henneberg-systemdesign.com>, "netdev@vger.kernel.org"
+	<netdev@vger.kernel.org>, "linux-stm32@st-md-mailman.stormreply.com"
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-amlogic@lists.infradead.org"
+	<linux-amlogic@lists.infradead.org>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>, Frank Li <frank.li@nxp.com>
+Subject: RE: [EXT] Re: [PATCH v3 net 2/2] net: stmmac: dwmac-imx: pause the
+ TXC clock in fixed-link
+Thread-Topic: [EXT] Re: [PATCH v3 net 2/2] net: stmmac: dwmac-imx: pause the
+ TXC clock in fixed-link
+Thread-Index: AQHZw8rr+4AkxJNLt0GANB66N1LNC6/VZScAgABIh3A=
+Date: Tue, 1 Aug 2023 17:10:07 +0000
+Message-ID: <PAXPR04MB9185D7D3B088E4786A216044890AA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+References: <20230731161929.2341584-1-shenwei.wang@nxp.com>
+ <20230731161929.2341584-3-shenwei.wang@nxp.com>
+ <bf2979c4-0b63-be53-b530-3d7385796534@pengutronix.de>
+In-Reply-To: <bf2979c4-0b63-be53-b530-3d7385796534@pengutronix.de>
+Accept-Language: en-US
 Content-Language: en-US
-To: Kevin Hilman <khilman@baylibre.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- neil.armstrong@linaro.org, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, linus.walleij@linaro.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <20230721073214.1876417-1-huqiang.qin@amlogic.com>
- <20230721073214.1876417-4-huqiang.qin@amlogic.com>
- <7hcz0ei9r4.fsf@baylibre.com>
- <9da24c47-341b-1581-0043-a6c1cdce462d@amlogic.com>
- <7hh6pnhn45.fsf@baylibre.com>
-From: Huqiang Qin <huqiang.qin@amlogic.com>
-In-Reply-To: <7hh6pnhn45.fsf@baylibre.com>
-X-ClientProxiedBy: TYCPR01CA0159.jpnprd01.prod.outlook.com
- (2603:1096:400:2b1::15) To KL1PR03MB7221.apcprd03.prod.outlook.com
- (2603:1096:820:cb::11)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB9185:EE_|VI1PR04MB7119:EE_
+x-ms-office365-filtering-correlation-id: e85803bb-2f6e-461e-a164-08db92b227d8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: IZpfJpM7U4ZmSxubf0wv42RhSuyWDoPKt3uDnRWKjnuv370xLcLIQlHVd8MDsg6wMjyEEBsFDPEvm9T4xULxsjYejgAdUD+Kw0N+kQt4amo5H2ifBhXCC8LSZzZ4aE1K37+IcIF5eucXkbd1qZKTTzDp9HbAr8EPROwXlUJTehdXDznUUS5pMS7YzVpC/kKa6LKayAndB/p927fz/qQLnsVcvijypQ4HBAQs3MjTVsO5/Lf6lQEguHYfHgI3PzF25cY3rmRz7/yX+QRp8gmShkVNG2FsyD64SCIBFXt9E89BHYgaeGAvycrd5VKjec2zjx6sBrzdD5ZIpbN0v2ttXfzzudwrRDWpR3lBzZoGj4c6yZajZEb7KauOBnFrJeckiFqrE/OUmPxw4TVmnpQSVletwqeNXsGYZHvoFZQMu7L0Nw2RpTbkeoipgy/VhDE41wa2BrG6Lq0SUZh1xFZ7oZwmXZEiUQJXNlhmKt7uR259WiPkJH7s3/YbfnD0O8/1LCU8ufGG/adR0jLJYqIC/LcRMgkIHYIoE+LfBVKCiPqO51oJetQv/xJlrFGy3yTe6giW4PiTY0ZSuUeYwwVezqHgt75T2LU+j8Bi8tcslhonzSxUCfEaU7MllLRAgkpM
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(376002)(346002)(396003)(39860400002)(366004)(451199021)(66946007)(66476007)(66446008)(64756008)(66556008)(4326008)(316002)(966005)(9686003)(83380400001)(2906002)(86362001)(38070700005)(7416002)(7406005)(44832011)(186003)(26005)(52536014)(5660300002)(55236004)(53546011)(6506007)(33656002)(122000001)(921005)(38100700002)(55016003)(41300700001)(8936002)(8676002)(7696005)(45080400002)(71200400001)(478600001)(54906003)(110136005)(76116006);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ixxDJ2N+YLmD+UgTWq1zFdcM0FXW93PKIWsTjBVgKtvRuXPeduhv0AzuuRpR?=
+ =?us-ascii?Q?D1QHKS0MYH87cO5+qjCqOhJ2bhZecNyuPH3ImoU1cirZYoK9joJbkmqf6NK/?=
+ =?us-ascii?Q?rIYilWlGIpNRg7wPLHHBek92bW/oTtPHsz01uOiEB+R8poHMRSgbvJ/foIJt?=
+ =?us-ascii?Q?l64Vg4UzGXfuDWKAlFKgAZfg5u9U7OYsZjJZEyeE0lyylyXokPzbbbsBXaQs?=
+ =?us-ascii?Q?Xcvh1A4KP8FFiZLcoQEC7HCptGb7tAcFVihs751N2E0Ju3OMpcZuwoAXPi+x?=
+ =?us-ascii?Q?tcmdWqtfHhHERWwxPhJp8hfdfDrsRIlsdRXEsizilCVlJeYkSHZvfiQAixXh?=
+ =?us-ascii?Q?flSuR1tbwJ9qRFQpG1tz7OkuYU/VS+kypw9pDLcaJwrP1GoWo3c3oeWJ0UpG?=
+ =?us-ascii?Q?RE/uwNDm5Rn3O4gMmMKXRJ/VL9tW4ZvKHfkEQLe9EtZ3MTyWI1dlE9MckG+J?=
+ =?us-ascii?Q?/0gzUKUruX+rTV5V4LQGJuNlBCLFGtmDinQTJRiZR6mr536IgX0mlqFhsF3S?=
+ =?us-ascii?Q?Pw7pqLtvz5cLkRQvz7J6pG1iQXFqv88bV0W4x+ioIuQ83+yZAeIAC8VcTRoh?=
+ =?us-ascii?Q?JYbXyGj/LbReVJotXHcen8mIb0RXPn7ZLjJ5a3UfowYLH80USxFBpr8mbxSL?=
+ =?us-ascii?Q?D0FP/Ll6wq3OWb+WRKWWN4rifPHZeIMYbGL3MQvn7CgeAR76zyqE7o90QgOI?=
+ =?us-ascii?Q?gscOcvO2sarKQx73fULIjI6lOG8XCZqNFIgUmsU5R+UK63p/VIHdWVEU1gwb?=
+ =?us-ascii?Q?PSdfiGCRq150zqyiwQ+oB3if39FUMLBl4tiuRD5fWZeio7bwCrvCNjolz2K5?=
+ =?us-ascii?Q?xgFENqPiiWoljNeUrkT0agowMrunDDYj2F/KpWt3j3MNliOBFLOuCYMjLJBr?=
+ =?us-ascii?Q?4Ujey379js7kEPFEoJY/eY/ZfXJMGYNWyLwWUyLcUM5szoxG8v+YR8LggTta?=
+ =?us-ascii?Q?NpwqxW7FCrQ14v9aPWhRkPacqyElrZJQXOe2PHCEx+7VRn2Be99tyV/E5ZZG?=
+ =?us-ascii?Q?bojOpNj+tqYCdVd3brVNcw6zIk50svfFQnCJFSmKZzQKaBqgWAGBBJOnVznR?=
+ =?us-ascii?Q?ZMZr6SjATTKmsSJaMXlBeNxtho51GtrCuypsL2YmygsfD35LLJSY36wH0zMl?=
+ =?us-ascii?Q?U//GJK1xxpqySpviq/1hAYJa1XcY5mcqMC0td27dgR36+0wMxeUOx8A4aLWG?=
+ =?us-ascii?Q?l05GGzEzMWwk2j81WwVslhmNFcXVifsafdMeCqXCig8XL/fTbsole3nXtSQe?=
+ =?us-ascii?Q?Mdvg6LW3WEOWGQvLMskrWEFNT3gc0CBRc2APTYWX6hKrIeieKoYCmirfSQv4?=
+ =?us-ascii?Q?1sGtBgz8rw8WZpnpL3a61jZMkN7uIpXLigI6HZFqw7UAFnKbv3649hJwUVKq?=
+ =?us-ascii?Q?1+2BJoT66cisft2JhhP/Ex7Vfbca7dfSEYmVwf+XzIL9qE2z6oKy5YyOF854?=
+ =?us-ascii?Q?e+TEhBr84mtldktTD5rZoFV2IgsiPpqTBOzGRN1aE/OLockqU1xy0wfZyRHN?=
+ =?us-ascii?Q?KTh/H5FcxDpqALNzB3/Sb8per351zQIrai/hJZ4zHr0q6st7H0FWquBt6ZEG?=
+ =?us-ascii?Q?3qwW5hodlojhWy/UwXUdn3NMwMt1UnkAjPIqxbqE?=
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB7221:EE_|KL1PR0302MB5203:EE_
-X-MS-Office365-Filtering-Correlation-Id: ae568019-0d72-484c-7c3c-08db9292cdde
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uFQ7CbsFQFgSoK3yCOdRpbG2jbq6bpNcPMXr8ecd4B4F0CGZROxS65xB5/7KC/W4YvQQdj9SgSJeLt2YTvSeC7Iip91hMpHKH4C4wpvBm6Gno4bv1JIXVN5KTF/TmQrf9eQn/CVCDgXdgyW+faH00BDoVwg+4eWeNK5tKG4d4VjygcpyqsP3R4/G1Oz0/0xqlEsT1YHyi3qaP8yTtKJ1X+tcbU5kl0jOschT9GCdmr052d8p/V7a80ilHGBxMnXnTK6A782RKzkskU2l1vUIcGiTln96uz7SgDhqE211/jsLrQR7kH5pxRnqZCNoSmoOUqkMnMZZI86uA+V4krwkFjjjunPeB3OxhR+P9ub/bgTN1S/+DYUvMq49ALjcR7xOSU4UiYkVMRokHQwSkt3/GADDOI2KEnsAUF0vkPmn3231sCxJ6bzOtAe+rNZ6VNbawZE47eh9kKfbKamBJXI2Y2xUMTITH43jNmvWMQLNEnrhb2h1spXGLn+dReaJmB2bRNwdWIwFF1Krmn+GhrLcxEtb31FVGi4sjpTzkua0vr2fpv3kzbYeL8Ci7YQ1r4w7MpHpSV7PlOTB00/JfJ+keiZtT4fiN4WvwFD8G7EG1EuHrAt1Yp8yQJQ8iUDoow/qCBoCu9URx5vQx1h+E+uiNTMlXgXdldYLtbOnsW14Vqi3BdgR5JM07yGVnOQUFNFghbTO5+tucc6w/XJqKwnTI9h+E8gntaEHz5sqGNVGdqs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7221.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(396003)(136003)(366004)(39850400004)(376002)(346002)(451199021)(4326008)(66946007)(66476007)(478600001)(66556008)(6666004)(6486002)(5660300002)(38350700002)(38100700002)(52116002)(316002)(31696002)(6512007)(31686004)(41300700001)(8936002)(8676002)(86362001)(53546011)(26005)(7416002)(186003)(44832011)(6506007)(4744005)(83380400001)(2616005)(36756003)(2906002)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eUtWZ2dZS2VONXlsOWNsc3o0WFh3UzRoNzV5akw4TEN2VGtpVGE2d1VYUmg1?=
- =?utf-8?B?dWN0eFV6L0FPTTVid2JmaFhDOGR5QUlZWGlJMGZURXhndUQ3ZnRNa2JmbDc4?=
- =?utf-8?B?eVRGdm9xS05tdmVmYUZtTTJoeHpuenFPaE40SHhmWTlkejQycWhnQm82Qkwy?=
- =?utf-8?B?Y1RKcU80NkozaFJtc1VkeDBRTEJZYkhiTHVQQ3NPaFJsOEtwK1IzSHQxR0lk?=
- =?utf-8?B?S2Q2bHpwRmkxMVowWW1rM1J4NTB3QlJzT05xc0xudExlUjlub1ozVGdvcTdL?=
- =?utf-8?B?VjlReXdzangyOW93MkRaa1UvVXd2ZmNLL1VTRWxTSWJ2OUJ5TitXVGlPZjRp?=
- =?utf-8?B?OERYNUc1alMyQTFrU0Jrcm93cWRjaXN4RDBuS1BnL1BKTUhWS2ErQ3NBQUpM?=
- =?utf-8?B?YjV5TnYvTGtFMml2UXRvYkhIdjBRSEQyVWxkVzJBcDZSaGJUTFM5WHRsUUhE?=
- =?utf-8?B?NklaQ0dlR21jVnREcW15RHZoYUVxVDd3QmorejBEZXRjall5T3E0Lzdqd0t2?=
- =?utf-8?B?Z3U4cHl2NnU4RnhKYXMrZmM4dW9mbVJEVmI2U2d5ZG1KWTRidSt4azZzdzc5?=
- =?utf-8?B?NmRlNXVjZ21iSjFhcndEZmZPM2ErQmdDd2Vib0VrckJsdm5YazdManZYbTNr?=
- =?utf-8?B?c0ZzZVNadSttbVgxVDV2RjRKWlUxNStPZlRBZUliWEFkQXcvVGlUbnpuWnFM?=
- =?utf-8?B?ZFlpYUhMOEIzTE9lMFlIdkhuTnNMdTYxQXJ2eG9hTFQ0c3Nvem5rSGJnK0x1?=
- =?utf-8?B?SEYvay82aCtRbm5ic2xUL2JMRzl5eDBqdldyTU55WnVZM0QxT29rdHlyc1hr?=
- =?utf-8?B?YU1pQ3crKzlRUXRMNTVVYnd1MUpuQW56ZkFwUFEyd29nWmp6ZmZYYkxlVlpE?=
- =?utf-8?B?MzRPUnMrUVZORkx1R0VwckdNeW9MYlJkRDFCSHpkeHlpVy9VNGtuUkFFSnYx?=
- =?utf-8?B?N3M3L1c1ZFRrUVBNSks0elg5WHBWdm9NT0crWXdoNFo1bFBZcjdsNkJxMkFw?=
- =?utf-8?B?bkNKcS85bm5BOGdKZG5RS29VUGtnQzhvem15cDM4KzBna1ZtTU1WV0l6V2VE?=
- =?utf-8?B?ZUVOZjZBenVlZVVNRjZucHZjWVBGandIUkRsbWpSTmNDdFNwQjFMaXdkUHR4?=
- =?utf-8?B?UGpUKzBTRTZmWUtkcHBuN0VVYTAxM1BUR3lJemJKSzR1ODdoWEJ5MTdCbFM4?=
- =?utf-8?B?LzZ4RW11b243ZjZkL2Vvai9nWFplcktveHdKRU5UY2E1d3J0TnZHYlBsczR0?=
- =?utf-8?B?cUdCQTJHQ3pSZWVLTWRjRzFYS3A4OWZHdGpKMXBoSlJITjJFekVYS1gvTk1M?=
- =?utf-8?B?QysxMDJWQmpEU0tUMS81TkgvK29DcHprVHVPUVo5T01Ic0lmTGtwVU1KblZt?=
- =?utf-8?B?TWFwckp1ejFCeGFpY3JNL1NaQ3FOVmY4Qmk5VTBhZTYyMWxRZjJHN3NQZ25T?=
- =?utf-8?B?Z0dVUllYS0REVjhJQ1BETXhkcWV0anlRdXBSUTkzMHZDRWRrRkZxMGF0R0Zu?=
- =?utf-8?B?SEhlb1l1RGtORk9rUWtma1U1RndZTlhyanlGOElkZW0wcXBHMjZuQWV0Y1Fq?=
- =?utf-8?B?MkJYbW1RM3BZUHdtZjRUQmcxRDhzWTN1WU95cG9zRk1UYVhvYkt0UjZ3Risr?=
- =?utf-8?B?R3dpRkRJTU5sSHRTTlVNZWRQMWlmL0hHTHhpMkRsbVpIQVlJdy9SVHcrVTJs?=
- =?utf-8?B?Mm90MUlDaTlBVmlBMGZUcEtOSXVrVmZwUkYyK0dYSHB1RitTaC8wK3VNK1Bq?=
- =?utf-8?B?TzFFOG1SbkNqSUkxRzg3SjAwNG9neE9QNVdsS3pDM09qampiZ2FlM3lLREsy?=
- =?utf-8?B?d2c5RHV1a3N3SnF0NjlBYXpObXM2bS9FR1ZmRndQdVJOTm8wbFVCazdabmFM?=
- =?utf-8?B?MklOYytIdVM1K1hBL1EwSnhyK2lTL1N0MWpjeDNyNEQzUyswemtmeWRSOCtt?=
- =?utf-8?B?dG53SkVSeTlGanl2ai9lc05COEh4NlRSVVJOSHpLRXNYUEYzODNLY0dHN04v?=
- =?utf-8?B?QWErUXBqQ2FVajFrYjczSWxvU0djeHRwb0hIY0ZBUTNQeGFYcHRFUGg2djVo?=
- =?utf-8?B?VGI0L2xDQXRhQmRzTXlzNlNpMHpYQVAwZ1JRa3pjS1pDK2RJK29WWFQwSjd0?=
- =?utf-8?B?WjNPZ2Vkc0dHOHJlUFRpckFLYk1uTGF5SndiV3VJWXJuUXoyUTh3WVNLZnRs?=
- =?utf-8?B?c3c9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ae568019-0d72-484c-7c3c-08db9292cdde
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7221.apcprd03.prod.outlook.com
+X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2023 13:25:42.7418
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e85803bb-2f6e-461e-a164-08db92b227d8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Aug 2023 17:10:07.2747
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3MX6lTPnIdCwRXHL3OSjK+Hso1x2UaP/Hocx/qErLNlqpxsCSVXi+0nOcyuYLsjxSPEwfKNfiuRzQXB6yHJ7MQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0302MB5203
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: H7+dkH60P7Wy49w0auOljUgiMga9DHGDnEvJNAnc3tzTvTjCehSXkGM3EtsHDB690VtnoFn9Todi3JREvfHpcQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7119
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230801_062553_549880_E25F92B2 
-X-CRM114-Status: GOOD (  11.85  )
+X-CRM114-CacheID: sfid-20230801_101016_271464_6FF5908F 
+X-CRM114-Status: GOOD (  32.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -154,36 +161,176 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Kevin,
-
-On 2023/7/29 3:06, Kevin Hilman wrote:
->> On 2023/7/27 6:33, Kevin Hilman wrote:
->>>> Replacing IRQ numbers with IRQID macro definitions makes node properties
->>>> easier to understand and also makes GPIO interrupts easier to use.
->>>>
->>>> Associated platforms:
->>>> - Amlogic Meson-G12A
->>>> - Amlogic Meson-G12B
->>>> - Amlogic Meson-SM1
->>> Does this mean you tested/validated these changes on those platforms
->>> also?
->>
->> Amlogic's G12A/G12B/SM1 have the same GPIO, and the GPIO interrupt number
->> is also the same, so I only tested on the SM1 platform, and the test results
->> prove that these changes are good.
-> 
-> OK, thank you for the explanation.
-> 
-> For future reference, this kind of detail is helpful to describe in the
-> patch or cover letter so maintainers & reviewers better understand how
-> the changes were tested.
-
-Thanks for the suggestion, I'll add it to the cover letter for the patch v3.
-(patch v2 was sent before your reply)
 
 
-Best Regards,
-Huqiang Qin
+> -----Original Message-----
+> From: Johannes Zink <j.zink@pengutronix.de>
+> Sent: Tuesday, August 1, 2023 7:48 AM
+> To: Shenwei Wang <shenwei.wang@nxp.com>; Russell King
+> <linux@armlinux.org.uk>; David S. Miller <davem@davemloft.net>; Eric
+> Dumazet <edumazet@google.com>; Jakub Kicinski <kuba@kernel.org>; Paolo
+> Abeni <pabeni@redhat.com>; Maxime Coquelin
+> <mcoquelin.stm32@gmail.com>; Shawn Guo <shawnguo@kernel.org>; Sascha
+> Hauer <s.hauer@pengutronix.de>; Neil Armstrong <neil.armstrong@linaro.org>;
+> Kevin Hilman <khilman@baylibre.com>; Vinod Koul <vkoul@kernel.org>; Chen-
+> Yu Tsai <wens@csie.org>; Jernej Skrabec <jernej.skrabec@gmail.com>; Samuel
+> Holland <samuel@sholland.org>
+> Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>; Alexandre Torgue
+> <alexandre.torgue@foss.st.com>; Jose Abreu <joabreu@synopsys.com>;
+> Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> <festevam@gmail.com>; dl-linux-imx <linux-imx@nxp.com>; Jerome Brunet
+> <jbrunet@baylibre.com>; Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com>; Bhupesh Sharma
+> <bhupesh.sharma@linaro.org>; Nobuhiro Iwamatsu
+> <nobuhiro1.iwamatsu@toshiba.co.jp>; Simon Horman
+> <simon.horman@corigine.com>; Andrew Halaney <ahalaney@redhat.com>;
+> Bartosz Golaszewski <bartosz.golaszewski@linaro.org>; Wong Vee Khee
+> <veekhee@apple.com>; Revanth Kumar Uppala <ruppala@nvidia.com>; Jochen
+> Henneberg <jh@henneberg-systemdesign.com>; netdev@vger.kernel.org; linux-
+> stm32@st-md-mailman.stormreply.com; linux-arm-kernel@lists.infradead.org;
+> linux-kernel@vger.kernel.org; linux-amlogic@lists.infradead.org;
+> imx@lists.linux.dev; Frank Li <frank.li@nxp.com>
+> Subject: [EXT] Re: [PATCH v3 net 2/2] net: stmmac: dwmac-imx: pause the TXC
+> clock in fixed-link
+>
+> Caution: This is an external email. Please take care when clicking links or
+> opening attachments. When in doubt, report the message using the 'Report this
+> email' button
+>
+>
+> Hi Shenwei,
+>
+> thanks for your patch.
+>
+> On 7/31/23 18:19, Shenwei Wang wrote:
+> > When using a fixed-link setup, certain devices like the SJA1105
+> > require a small pause in the TXC clock line to enable their internal
+> > tunable delay line (TDL).
+>
+> If this is only required for some devices, is it safe to enforce this behaviour
+> unconditionally for any kind of fixed link devices connected to the MX93 EQOS
+> or could this possibly break for other devices?
+>
+
+It won't impact normal devices. The link layer hasn't built up yet.
+
+Thanks,
+Shenwei
+
+> Best regards
+> Johannes
+>
+> >
+> > To satisfy this requirement, this patch temporarily disables the TX
+> > clock, and restarts it after a required period. This provides the
+> > required silent interval on the clock line for SJA1105 to complete the
+> > frequency transition and enable the internal TDLs.
+> >
+> > So far we have only enabled this feature on the i.MX93 platform.
+> >
+> > Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+> > Reviewed-by: Frank Li <frank.li@nxp.com>
+> > ---
+> >   .../net/ethernet/stmicro/stmmac/dwmac-imx.c   | 42 +++++++++++++++++++
+> >   1 file changed, 42 insertions(+)
+> >
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+> > b/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+> > index 53ee5a42c071..2e4173d099f3 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+> > @@ -32,6 +32,7 @@
+> >   #define GPR_ENET_QOS_RGMII_EN               (0x1 << 21)
+> >
+> >   #define MX93_GPR_ENET_QOS_INTF_MODE_MASK    GENMASK(3, 0)
+> > +#define MX93_GPR_ENET_QOS_INTF_MASK          GENMASK(3, 1)
+> >   #define MX93_GPR_ENET_QOS_INTF_SEL_MII              (0x0 << 1)
+> >   #define MX93_GPR_ENET_QOS_INTF_SEL_RMII             (0x4 << 1)
+> >   #define MX93_GPR_ENET_QOS_INTF_SEL_RGMII    (0x1 << 1)
+> > @@ -40,6 +41,7 @@
+> >   #define DMA_BUS_MODE                        0x00001000
+> >   #define DMA_BUS_MODE_SFT_RESET              (0x1 << 0)
+> >   #define RMII_RESET_SPEED            (0x3 << 14)
+> > +#define CTRL_SPEED_MASK                      GENMASK(15, 14)
+> >
+> >   struct imx_dwmac_ops {
+> >       u32 addr_width;
+> > @@ -56,6 +58,7 @@ struct imx_priv_data {
+> >       struct regmap *intf_regmap;
+> >       u32 intf_reg_off;
+> >       bool rmii_refclk_ext;
+> > +     void __iomem *base_addr;
+> >
+> >       const struct imx_dwmac_ops *ops;
+> >       struct plat_stmmacenet_data *plat_dat; @@ -212,6 +215,42 @@
+> > static void imx_dwmac_fix_speed(void *priv, uint speed, uint mode)
+> >               dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
+> >   }
+> >
+> > +static void imx_dwmac_fix_speed_mx93(void *priv, uint speed, uint
+> > +mode) {
+> > +     struct imx_priv_data *dwmac = priv;
+> > +     int ctrl, old_ctrl, iface;
+> > +
+> > +     imx_dwmac_fix_speed(priv, speed, mode);
+> > +
+> > +     if (!dwmac || mode != MLO_AN_FIXED)
+> > +             return;
+> > +
+> > +     if (regmap_read(dwmac->intf_regmap, dwmac->intf_reg_off, &iface))
+> > +             return;
+> > +
+> > +     iface &= MX93_GPR_ENET_QOS_INTF_MASK;
+> > +     if (iface != MX93_GPR_ENET_QOS_INTF_SEL_RGMII)
+> > +             return;
+> > +
+> > +     old_ctrl = readl(dwmac->base_addr + MAC_CTRL_REG);
+> > +     ctrl = old_ctrl & ~CTRL_SPEED_MASK;
+> > +     regmap_update_bits(dwmac->intf_regmap, dwmac->intf_reg_off,
+> > +                        MX93_GPR_ENET_QOS_INTF_MODE_MASK, 0);
+> > +     writel(ctrl, dwmac->base_addr + MAC_CTRL_REG);
+> > +
+> > +     /* Ensure the settings for CTRL are applied and avoid CPU/Compiler
+> > +      * reordering.
+> > +      */
+> > +     wmb();
+> > +
+> > +     usleep_range(10, 20);
+> > +     iface |= MX93_GPR_ENET_QOS_CLK_GEN_EN;
+> > +     regmap_update_bits(dwmac->intf_regmap, dwmac->intf_reg_off,
+> > +                        MX93_GPR_ENET_QOS_INTF_MODE_MASK, iface);
+> > +
+> > +     writel(old_ctrl, dwmac->base_addr + MAC_CTRL_REG); }
+> > +
+> >   static int imx_dwmac_mx93_reset(void *priv, void __iomem *ioaddr)
+> >   {
+> >       struct plat_stmmacenet_data *plat_dat = priv; @@ -317,8 +356,11
+> > @@ static int imx_dwmac_probe(struct platform_device *pdev)
+> >       plat_dat->exit = imx_dwmac_exit;
+> >       plat_dat->clks_config = imx_dwmac_clks_config;
+> >       plat_dat->fix_mac_speed = imx_dwmac_fix_speed;
+> > +     if (of_machine_is_compatible("fsl,imx93"))
+> > +             plat_dat->fix_mac_speed = imx_dwmac_fix_speed_mx93;
+> >       plat_dat->bsp_priv = dwmac;
+> >       dwmac->plat_dat = plat_dat;
+> > +     dwmac->base_addr = stmmac_res.addr;
+> >
+> >       ret = imx_dwmac_clks_config(dwmac, true);
+> >       if (ret)
+>
+> --
+> Pengutronix e.K.                | Johannes Zink                  |
+> Steuerwalder Str. 21            |
+> https://www.pe/
+> ngutronix.de%2F&data=05%7C01%7Cshenwei.wang%40nxp.com%7C761fbb75c
+> 1c24cfe091508db928d8ade%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C
+> 0%7C638264908852977732%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjA
+> wMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%
+> 7C&sdata=2l2zNfIaNnRJENmERehNae8g%2F%2BQqlxD2YRx7ksY2X%2BE%3D&r
+> eserved=0    |
+> 31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+> Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+
 
 _______________________________________________
 linux-amlogic mailing list
