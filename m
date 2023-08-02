@@ -4,51 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACD8FC001DF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Aug 2023 03:33:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55936C001DE
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Aug 2023 06:27:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fTtFa8vU98sRxBPNKLXK2DQVt5IhcgIIDlvh3DdItUE=; b=L6h7ecN1XBnTuK
-	N/AL52SQMF62H+ghT/akKjkTXSoOF/6gezg7vvNASKYtcC+0YzE5oT8QHfDRt4woHE/SOT0t0PFXQ
-	4pHzfaJphxWy2SE3MlgcJ2m43izDmKMCwuYLrGbzz3mPbK6EnYBfRUgvsKEbrnVT7+Hs1c7IYBteD
-	Df/Dgb6prbcGfzHkDDNsXWSZMZmLm+GglzkAZ/nVbzb8vsHQTMa5SVUa9n9tO1zeTkKs8wFzU4RNo
-	/QrpTqgOQu5FqhYaJx3OOjUegqrecn1OB9WivcrMZLQcURFzF54lk4nkhgzSS1Zyg6ivYoAC3udZU
-	EgHAFfM+A2SHIkabQ/JQ==;
+	List-Owner; bh=FD1fwkMTFR1xs1MmiYrpGCuu+Gv3xQvocWKm3VVTQzI=; b=Xxsh5td/1lD/Gh
+	atK1ZyV+JB28Rn6i6CQ/gIztYpYOnRocle8a3PNzflF4+IKTw7zoU/dW5/axytM3DsGyORTROne1X
+	GZdoBHwrrlimNMFRsho5mV+2NI+eYuXTdoFDNep5JcPSE6F2Vc2FClUQT/J1VGyWm38fIjyX98jHl
+	16RkCDEHGkCJd4VJfM/sR0agVD0NpnQuW7ZIKnOtXF1b42FHCQlO1RudTOWiwZOcNs73vWdA/rBHN
+	ZmXOCMPIJDpnw3aBcaPI0QwKa9iPUGhOn1NCAeCXXUbaa82Ukdjv9LhYZd/VtVpujKBjNx51gSwtP
+	Xk4yDJI/AOYRbdVXYouw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qR2be-003sYg-1p;
-	Wed, 02 Aug 2023 03:33:02 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1qR5Ju-0048TP-0h;
+	Wed, 02 Aug 2023 06:26:54 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qR2bb-003sUl-10;
-	Wed, 02 Aug 2023 03:33:00 +0000
-Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 2 Aug 2023
- 11:32:30 +0800
-From: Huqiang Qin <huqiang.qin@amlogic.com>
-To: <wim@linux-watchdog.org>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>
-CC: <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Huqiang Qin <huqiang.qin@amlogic.com>
-Subject: [PATCH V2 3/4] watchdog: Add support for Amlogic-T7 SoCs
-Date: Wed, 2 Aug 2023 11:32:21 +0800
-Message-ID: <20230802033222.4024946-4-huqiang.qin@amlogic.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230802033222.4024946-1-huqiang.qin@amlogic.com>
-References: <20230802033222.4024946-1-huqiang.qin@amlogic.com>
+	id 1qR5Jq-0048Rn-1n
+	for linux-amlogic@lists.infradead.org;
+	Wed, 02 Aug 2023 06:26:52 +0000
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <j.zink@pengutronix.de>)
+	id 1qR5J2-0004uw-OL; Wed, 02 Aug 2023 08:26:00 +0200
+Message-ID: <e32c89e1-7385-105b-63c9-74f58c2253cb@pengutronix.de>
+Date: Wed, 2 Aug 2023 08:25:46 +0200
 MIME-Version: 1.0
-X-Originating-IP: [10.28.11.83]
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.1
+Subject: Re: [EXT] Re: [PATCH v3 net 2/2] net: stmmac: dwmac-imx: pause the
+ TXC clock in fixed-link
+To: Shenwei Wang <shenwei.wang@nxp.com>, Russell King
+ <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>
+Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+ Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+ Simon Horman <simon.horman@corigine.com>,
+ Andrew Halaney <ahalaney@redhat.com>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Wong Vee Khee <veekhee@apple.com>, Revanth Kumar Uppala
+ <ruppala@nvidia.com>, Jochen Henneberg <jh@henneberg-systemdesign.com>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-stm32@st-md-mailman.stormreply.com"
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>, Frank Li <frank.li@nxp.com>
+References: <20230731161929.2341584-1-shenwei.wang@nxp.com>
+ <20230731161929.2341584-3-shenwei.wang@nxp.com>
+ <bf2979c4-0b63-be53-b530-3d7385796534@pengutronix.de>
+ <PAXPR04MB9185D7D3B088E4786A216044890AA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+Content-Language: en-US, de-DE
+From: Johannes Zink <j.zink@pengutronix.de>
+In-Reply-To: <PAXPR04MB9185D7D3B088E4786A216044890AA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: j.zink@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230801_203259_348195_3804A79D 
-X-CRM114-Status: UNSURE (   8.27  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230801_232650_754357_9F1D0411 
+X-CRM114-Status: GOOD (  28.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -60,42 +95,206 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Compared with the previous Amlogic-GXBB, the watchdog of Amlogic-T7
-has a different reset enable bit.
+Hi Shenwei,
 
-Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
----
+On 8/1/23 19:10, Shenwei Wang wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Johannes Zink <j.zink@pengutronix.de>
+>> Sent: Tuesday, August 1, 2023 7:48 AM
+>> To: Shenwei Wang <shenwei.wang@nxp.com>; Russell King
+>> <linux@armlinux.org.uk>; David S. Miller <davem@davemloft.net>; Eric
+>> Dumazet <edumazet@google.com>; Jakub Kicinski <kuba@kernel.org>; Paolo
+>> Abeni <pabeni@redhat.com>; Maxime Coquelin
+>> <mcoquelin.stm32@gmail.com>; Shawn Guo <shawnguo@kernel.org>; Sascha
+>> Hauer <s.hauer@pengutronix.de>; Neil Armstrong <neil.armstrong@linaro.org>;
+>> Kevin Hilman <khilman@baylibre.com>; Vinod Koul <vkoul@kernel.org>; Chen-
+>> Yu Tsai <wens@csie.org>; Jernej Skrabec <jernej.skrabec@gmail.com>; Samuel
+>> Holland <samuel@sholland.org>
+>> Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>; Alexandre Torgue
+>> <alexandre.torgue@foss.st.com>; Jose Abreu <joabreu@synopsys.com>;
+>> Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+>> <festevam@gmail.com>; dl-linux-imx <linux-imx@nxp.com>; Jerome Brunet
+>> <jbrunet@baylibre.com>; Martin Blumenstingl
+>> <martin.blumenstingl@googlemail.com>; Bhupesh Sharma
+>> <bhupesh.sharma@linaro.org>; Nobuhiro Iwamatsu
+>> <nobuhiro1.iwamatsu@toshiba.co.jp>; Simon Horman
+>> <simon.horman@corigine.com>; Andrew Halaney <ahalaney@redhat.com>;
+>> Bartosz Golaszewski <bartosz.golaszewski@linaro.org>; Wong Vee Khee
+>> <veekhee@apple.com>; Revanth Kumar Uppala <ruppala@nvidia.com>; Jochen
+>> Henneberg <jh@henneberg-systemdesign.com>; netdev@vger.kernel.org; linux-
+>> stm32@st-md-mailman.stormreply.com; linux-arm-kernel@lists.infradead.org;
+>> linux-kernel@vger.kernel.org; linux-amlogic@lists.infradead.org;
+>> imx@lists.linux.dev; Frank Li <frank.li@nxp.com>
+>> Subject: [EXT] Re: [PATCH v3 net 2/2] net: stmmac: dwmac-imx: pause the TXC
+>> clock in fixed-link
+>>
+>> Caution: This is an external email. Please take care when clicking links or
+>> opening attachments. When in doubt, report the message using the 'Report this
+>> email' button
+>>
+>>
+>> Hi Shenwei,
+>>
+>> thanks for your patch.
+>>
+>> On 7/31/23 18:19, Shenwei Wang wrote:
+>>> When using a fixed-link setup, certain devices like the SJA1105
+>>> require a small pause in the TXC clock line to enable their internal
+>>> tunable delay line (TDL).
+>>
+>> If this is only required for some devices, is it safe to enforce this behaviour
+>> unconditionally for any kind of fixed link devices connected to the MX93 EQOS
+>> or could this possibly break for other devices?
+>>
+> 
+> It won't impact normal devices. The link layer hasn't built up yet.
+> 
 
-V1 -> V2: Use the BIT() macro to build rst initial value.
+As Russel suggested in [1] - maybe you could rephrase your commit message for 
+your v4 to point this out to future reviewers (apparently multiple people have 
+had questions about this...)  and have this fact also recorded in the git log 
+later on.
 
- drivers/watchdog/meson_gxbb_wdt.c | 5 +++++
- 1 file changed, 5 insertions(+)
+Also: does this only apply to i.MX93, or would we have to test and enable it on 
+e.g. i.MX8MP as well?
 
-diff --git a/drivers/watchdog/meson_gxbb_wdt.c b/drivers/watchdog/meson_gxbb_wdt.c
-index 18180d91543e..a48622d11ad7 100644
---- a/drivers/watchdog/meson_gxbb_wdt.c
-+++ b/drivers/watchdog/meson_gxbb_wdt.c
-@@ -147,8 +147,13 @@ static const struct wdt_params gxbb_params = {
- 	.rst = BIT(21),
- };
- 
-+static const struct wdt_params t7_params = {
-+	.rst = BIT(22),
-+};
-+
- static const struct of_device_id meson_gxbb_wdt_dt_ids[] = {
- 	 { .compatible = "amlogic,meson-gxbb-wdt", .data = &gxbb_params, },
-+	 { .compatible = "amlogic,t7-wdt", .data = &t7_params, },
- 	 { /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, meson_gxbb_wdt_dt_ids);
+Thanks
+Johannes
+
+[1] ZMk/xqRP67zXHNrf@shell.armlinux.org.uk
+
+
+> Thanks,
+> Shenwei
+> 
+>> Best regards
+>> Johannes
+>>
+>>>
+>>> To satisfy this requirement, this patch temporarily disables the TX
+>>> clock, and restarts it after a required period. This provides the
+>>> required silent interval on the clock line for SJA1105 to complete the
+>>> frequency transition and enable the internal TDLs.
+>>>
+>>> So far we have only enabled this feature on the i.MX93 platform.
+>>>
+>>> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+>>> Reviewed-by: Frank Li <frank.li@nxp.com>
+>>> ---
+>>>    .../net/ethernet/stmicro/stmmac/dwmac-imx.c   | 42 +++++++++++++++++++
+>>>    1 file changed, 42 insertions(+)
+>>>
+>>> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+>>> b/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+>>> index 53ee5a42c071..2e4173d099f3 100644
+>>> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+>>> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+>>> @@ -32,6 +32,7 @@
+>>>    #define GPR_ENET_QOS_RGMII_EN               (0x1 << 21)
+>>>
+>>>    #define MX93_GPR_ENET_QOS_INTF_MODE_MASK    GENMASK(3, 0)
+>>> +#define MX93_GPR_ENET_QOS_INTF_MASK          GENMASK(3, 1)
+>>>    #define MX93_GPR_ENET_QOS_INTF_SEL_MII              (0x0 << 1)
+>>>    #define MX93_GPR_ENET_QOS_INTF_SEL_RMII             (0x4 << 1)
+>>>    #define MX93_GPR_ENET_QOS_INTF_SEL_RGMII    (0x1 << 1)
+>>> @@ -40,6 +41,7 @@
+>>>    #define DMA_BUS_MODE                        0x00001000
+>>>    #define DMA_BUS_MODE_SFT_RESET              (0x1 << 0)
+>>>    #define RMII_RESET_SPEED            (0x3 << 14)
+>>> +#define CTRL_SPEED_MASK                      GENMASK(15, 14)
+>>>
+>>>    struct imx_dwmac_ops {
+>>>        u32 addr_width;
+>>> @@ -56,6 +58,7 @@ struct imx_priv_data {
+>>>        struct regmap *intf_regmap;
+>>>        u32 intf_reg_off;
+>>>        bool rmii_refclk_ext;
+>>> +     void __iomem *base_addr;
+>>>
+>>>        const struct imx_dwmac_ops *ops;
+>>>        struct plat_stmmacenet_data *plat_dat; @@ -212,6 +215,42 @@
+>>> static void imx_dwmac_fix_speed(void *priv, uint speed, uint mode)
+>>>                dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
+>>>    }
+>>>
+>>> +static void imx_dwmac_fix_speed_mx93(void *priv, uint speed, uint
+>>> +mode) {
+>>> +     struct imx_priv_data *dwmac = priv;
+>>> +     int ctrl, old_ctrl, iface;
+>>> +
+>>> +     imx_dwmac_fix_speed(priv, speed, mode);
+>>> +
+>>> +     if (!dwmac || mode != MLO_AN_FIXED)
+>>> +             return;
+>>> +
+>>> +     if (regmap_read(dwmac->intf_regmap, dwmac->intf_reg_off, &iface))
+>>> +             return;
+>>> +
+>>> +     iface &= MX93_GPR_ENET_QOS_INTF_MASK;
+>>> +     if (iface != MX93_GPR_ENET_QOS_INTF_SEL_RGMII)
+>>> +             return;
+>>> +
+>>> +     old_ctrl = readl(dwmac->base_addr + MAC_CTRL_REG);
+>>> +     ctrl = old_ctrl & ~CTRL_SPEED_MASK;
+>>> +     regmap_update_bits(dwmac->intf_regmap, dwmac->intf_reg_off,
+>>> +                        MX93_GPR_ENET_QOS_INTF_MODE_MASK, 0);
+>>> +     writel(ctrl, dwmac->base_addr + MAC_CTRL_REG);
+>>> +
+>>> +     /* Ensure the settings for CTRL are applied and avoid CPU/Compiler
+>>> +      * reordering.
+>>> +      */
+>>> +     wmb();
+>>> +
+>>> +     usleep_range(10, 20);
+>>> +     iface |= MX93_GPR_ENET_QOS_CLK_GEN_EN;
+>>> +     regmap_update_bits(dwmac->intf_regmap, dwmac->intf_reg_off,
+>>> +                        MX93_GPR_ENET_QOS_INTF_MODE_MASK, iface);
+>>> +
+>>> +     writel(old_ctrl, dwmac->base_addr + MAC_CTRL_REG); }
+>>> +
+>>>    static int imx_dwmac_mx93_reset(void *priv, void __iomem *ioaddr)
+>>>    {
+>>>        struct plat_stmmacenet_data *plat_dat = priv; @@ -317,8 +356,11
+>>> @@ static int imx_dwmac_probe(struct platform_device *pdev)
+>>>        plat_dat->exit = imx_dwmac_exit;
+>>>        plat_dat->clks_config = imx_dwmac_clks_config;
+>>>        plat_dat->fix_mac_speed = imx_dwmac_fix_speed;
+>>> +     if (of_machine_is_compatible("fsl,imx93"))
+>>> +             plat_dat->fix_mac_speed = imx_dwmac_fix_speed_mx93;
+>>>        plat_dat->bsp_priv = dwmac;
+>>>        dwmac->plat_dat = plat_dat;
+>>> +     dwmac->base_addr = stmmac_res.addr;
+>>>
+>>>        ret = imx_dwmac_clks_config(dwmac, true);
+>>>        if (ret)
+>>
+>> --
+>> Pengutronix e.K.                | Johannes Zink                  |
+>> Steuerwalder Str. 21            |
+>> https://www.pe/
+>> ngutronix.de%2F&data=05%7C01%7Cshenwei.wang%40nxp.com%7C761fbb75c
+>> 1c24cfe091508db928d8ade%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C
+>> 0%7C638264908852977732%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjA
+>> wMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%
+>> 7C&sdata=2l2zNfIaNnRJENmERehNae8g%2F%2BQqlxD2YRx7ksY2X%2BE%3D&r
+>> eserved=0    |
+>> 31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+>> Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+> 
+> 
+
 -- 
-2.37.1
+Pengutronix e.K.                | Johannes Zink                  |
+Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
 
 
 _______________________________________________
