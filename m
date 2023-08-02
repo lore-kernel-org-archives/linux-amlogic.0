@@ -4,79 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2FCDC001DE
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Aug 2023 07:44:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 397F9C00528
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Aug 2023 11:32:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EogNm0YPILC6STH4CbywSEOhV8r74nSGyNKrjKELWeU=; b=Cv8dN1Jl06i+xm
-	VvIk3WImyIoPcECN9lAhMK+3gpdzQrOK3JVrEGXGxwbXoC+fVk+veOiaEFfOYvMw+KYOla9J2zqDu
-	p/xk2YZduX76CkZnTVrucmZoSXsH1KXb0ztbEw3tpom7Ju+JAtDFvHp5LOD3JSJpNZ6u8TuyoAqQk
-	QH9DA9oZhL9l6xQr+WiuvAIUwUTGj4SPVEegLV5KoKaRd7iZDz5FvUit6LnJ24ajsmDDF5Uo8vQrY
-	gzTuT+jaRZ4Bs/oO1rp4GLrdgxpljEnCNT0ct1jgjrGtiJF2P0b1UprNvzNhOyDgXto3memXhunBH
-	xKCR8YB7cAoV8xNYrkSg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=MUez6SCSFj1Rs5HuEOejSYZ8PRhJPvigQLyd44NDGG8=; b=FEHf1+5jtJs3LYuo1r1jfIyVbk
+	LdpeTx4yE+00ksIsdJnFwuwS2iFP0Kpoh6udBG9dbZ0crza9+q6nS4GmR3pPHHw0opXtrSZtUf86E
+	d7GRdN2KYCPsaLnRRr3vrksaHqHAYAMDfGnkdyiynJpJor3BkDp7mFyE6tf1JsGKYf41XXdjHmkDx
+	Cw16YQUPzQYI6SoDBkcEMoIfZLIxw42blZczEb6vsMMu1S+siyPizbzKMofwAHwWOtQLEM/lRcNNT
+	gLZabksAepiUBYhKLxoBOQ4W0TvDe0Zua/qatVznP4pqjaNv7lqWuj+psg9qdbA8JCB17y3fas/kU
+	kp1LZCTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qR6Wd-004Hm9-2z;
-	Wed, 02 Aug 2023 07:44:07 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1qRA5Y-004o2H-20;
+	Wed, 02 Aug 2023 11:32:24 +0000
+Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qR6WZ-004HkN-2F
-	for linux-amlogic@lists.infradead.org;
-	Wed, 02 Aug 2023 07:44:05 +0000
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-31783d02093so5978276f8f.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 02 Aug 2023 00:44:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690962240; x=1691567040;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=zrfr8demoIbS0/fY7FGFGHUvwM9dqz7KGdFUzvSMnB4=;
-        b=SQ0Jmtsd6fDkK+VaTExixKraao2PdwInKoTajuVotP1pQ1FPyv409LVbP9v/bMIqEw
-         VoJcEqWxkG1QCm2ugsqmnlRX6nPvEdKEXEYtD4O4lRTI03300HRKUfQqgWvcGmOb5HyP
-         wXz1F3U/RzYBlZ6JpHDdtJtpxsDMOJrhp+UWTBI0FlWZMkt6AVF5KOHBJbv8yoNOjN4A
-         MIosrKok2qAQR/tvHmLn+Az/PLp2iGy8Kj/UweBlIeG48eMkxPlua3zHMNlJISEspHz1
-         AwAaE+DWWHdW8WNFbFZ0JcgVfRqxmUvR1fC1nF5mpJHwOLJeJ1GyaeaEod0UoJdFT6d9
-         N39w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690962240; x=1691567040;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zrfr8demoIbS0/fY7FGFGHUvwM9dqz7KGdFUzvSMnB4=;
-        b=W+Bxc9s9SnAioZNLrSgoScqSaK54eaym45bzri9FemYBPSBRu41gPDIUaiEZ4WB3Z7
-         qLAUSywPcIsE03j3dWVAkLF90CAzkxSkEZx7fQK3bGJ6IleT/1x9AkdXx7IEM5nq9F4K
-         SL3bbPUVUuVyzgvycyLJNudu9+7onzEjhH2o4PVPQIaKYrdUi6DTTtUEkgS3y490krJX
-         r/oDj9x2HpJJNqcRfcimTYhkmCyypfZ8mmHLDJJzQ2LJFPe09R1aX/+MGIYlzgXckKNC
-         kIMlapsLvOukg8N0gqlNOFFXfnNeUwiTAV/z+YL4CAtCgEmvwub2ll2T8HDrcXeqsDSd
-         pE/w==
-X-Gm-Message-State: ABy/qLZ4V9iPs8aQnv0sqjDMhrbtWhKtJFFGdDlTZ5tZyY7P6PDAHHTn
-	WBZj1EajiHiTi5wCWbXlaPty4w==
-X-Google-Smtp-Source: APBJJlHR+6nvvNO3+YmG+iuU8bYWQGf23hXA05GwI6Tl5IAu5Z/Y9z2rBt7aF/BbyZ8pIhHmTV1+5g==
-X-Received: by 2002:adf:e883:0:b0:317:6e08:ed35 with SMTP id d3-20020adfe883000000b003176e08ed35mr4518025wrm.1.1690962240440;
-        Wed, 02 Aug 2023 00:44:00 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:43ac:b106:31d5:42b7])
-        by smtp.gmail.com with ESMTPSA id y18-20020a5d6212000000b003143c6e09ccsm18306002wru.16.2023.08.02.00.43.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Aug 2023 00:44:00 -0700 (PDT)
-References: <CACqvRUZYH2NkOooE78SK6=Ow07y=YnE2QOSNzyb99rV4vSvxpQ@mail.gmail.com>
-User-agent: mu4e 1.8.13; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Da Xue <da@libre.computer>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net] net: mdio-mux-meson-gxl: set RESERVED0 bit in REG2
-Date: Wed, 02 Aug 2023 09:43:38 +0200
-In-reply-to: <CACqvRUZYH2NkOooE78SK6=Ow07y=YnE2QOSNzyb99rV4vSvxpQ@mail.gmail.com>
-Message-ID: <1ja5v9q474.fsf@starbuckisacylon.baylibre.com>
+	id 1qRA5V-004o0n-0g;
+	Wed, 02 Aug 2023 11:32:23 +0000
+Received: from [192.168.0.116] (unknown [109.229.201.16])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: david.heidelberg)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 6725366003B0;
+	Wed,  2 Aug 2023 12:32:15 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1690975936;
+	bh=7I9L6yyTsIG8sjyONcyZaSV0J5UVP4PnaTFoHvVwaw8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EGNPzrq4j26eIRJbvmeGBhm31XfGovIIgPJw2xvmM6zrw8y1Qt6xfgbPajhlQSjef
+	 f2qN4LTLkSrUgBC4tz3H5jPCtznpZiIYggK/TuueJC0lVvZ8lm/Wx+75YZpjNCVW9h
+	 1DBjoatZcBS2GHcPmOxZL5V3pzIQ9rqPWMw6oG0eyZaKZg8DIUye7pouNeUac157Go
+	 02QayArhkBzXe/FD5hW/uLAsby9t/uAfs+vuaz65nTaPxuZz7JCQDZcklkGxn0m5rb
+	 xqF21nW6WqgfV7Ct6MGllwH64Zxk9RYUhp2foSa4uVw4zQd+MqoiyaJkXfXYGrmYaB
+	 DVCnzIevz40VA==
+Message-ID: <338ed966-0337-16e0-3758-55ede0e2ea0d@collabora.com>
+Date: Wed, 2 Aug 2023 14:32:12 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10] drm: Add initial ci/ subdirectory
+To: =?UTF-8?B?SnVhbiBBLiBTdcOhcmV6?= <jasuarez@igalia.com>,
+ Maira Canal <mcanal@igalia.com>, Helen Koike <helen.koike@collabora.com>,
+ dri-devel@lists.freedesktop.org, eric@igalia.com
+Cc: emma@anholt.net, linux-doc@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, jbrunet@baylibre.com,
+ robdclark@google.com, corbet@lwn.net, khilman@baylibre.com,
+ sergi.blanch.torne@collabora.com, gustavo.padovan@collabora.com,
+ linux-rockchip@lists.infradead.org, daniels@collabora.com,
+ martin.blumenstingl@googlemail.com, robclark@freedesktop.org,
+ anholt@google.com, linux-mediatek@lists.infradead.org, mripard@kernel.org,
+ matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org,
+ angelogioacchino.delregno@collabora.com, neil.armstrong@linaro.org,
+ guilherme.gallo@collabora.com, linux-kernel@vger.kernel.org,
+ tzimmermann@suse.de
+References: <20230720152737.102382-1-helen.koike@collabora.com>
+ <52d1d9e5-00c8-2260-57fc-310cc2f712fd@igalia.com>
+ <ad029e1c-8f00-9f5e-e25a-957b3f70c385@collabora.com>
+ <ef84ccedbf880c8605688f26ebedc04046c1dd78.camel@igalia.com>
+Content-Language: en-US
+From: David Heidelberg <david.heidelberg@collabora.com>
+Autocrypt: addr=david.heidelberg@collabora.com; keydata=
+ xjMEYlvLOxYJKwYBBAHaRw8BAQdA5CoWEzz4igpwK4h6lK6ZformRk84+ymcfkGNPwqEeILN
+ MURhdmlkIEhlaWRlbGJlcmcgPGRhdmlkLmhlaWRlbGJlcmdAY29sbGFib3JhLmNvbT7ClgQT
+ FggAPhYhBEo7kSl22BK0F1Np/mn1Z4YcHsAUBQJiW8s7AhsDBQkFo5qABQsJCAcCBhUKCQgL
+ AgQWAgMBAh4BAheAAAoJEGn1Z4YcHsAU84kBAK5YqSWAOuIumAqgWvke6BEsaIGWGQzXSuKj
+ er/TXuFuAQCwc9ITSVXWWTSpdFt2+4z7Wch8tIGlbIFcS9dCFddwCc44BGJbyzsSCisGAQQB
+ l1UBBQEBB0AEk7jXEwDApGOwMH/X0UAPBH8Y3isjxhNMjpyRcnl2CwMBCAfCfgQYFggAJhYh
+ BEo7kSl22BK0F1Np/mn1Z4YcHsAUBQJiW8s7AhsMBQkFo5qAAAoJEGn1Z4YcHsAU0PEA/j0Y
+ uAOKJCnnwrkf3ozPP0sutA5bojoARwcIaZKO/zvIAP9PwTC9DGLg+8LJm7m2Lyf0LxLA8FXD
+ wueLHBdwHg6zAQ==
+In-Reply-To: <ef84ccedbf880c8605688f26ebedc04046c1dd78.camel@igalia.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230802_004403_940495_F92807EB 
-X-CRM114-Status: GOOD (  18.45  )
+X-CRM114-CacheID: sfid-20230802_043221_595967_643A026E 
+X-CRM114-Status: GOOD (  22.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,58 +93,141 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============8223337254126030997=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============8223337254126030997==
+Content-Language: en-US
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------gZ4q2nvi1ImwMXIXleAIN9mH"
 
-On Tue 01 Aug 2023 at 16:34, Da Xue <da@libre.computer> wrote:
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------gZ4q2nvi1ImwMXIXleAIN9mH
+Content-Type: multipart/mixed; boundary="------------FfDTAhzj7y6MRLROQfvQYWPK";
+ protected-headers="v1"
+From: David Heidelberg <david.heidelberg@collabora.com>
+To: =?UTF-8?B?SnVhbiBBLiBTdcOhcmV6?= <jasuarez@igalia.com>,
+ Maira Canal <mcanal@igalia.com>, Helen Koike <helen.koike@collabora.com>,
+ dri-devel@lists.freedesktop.org, eric@igalia.com
+Cc: emma@anholt.net, linux-doc@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, jbrunet@baylibre.com,
+ robdclark@google.com, corbet@lwn.net, khilman@baylibre.com,
+ sergi.blanch.torne@collabora.com, gustavo.padovan@collabora.com,
+ linux-rockchip@lists.infradead.org, daniels@collabora.com,
+ martin.blumenstingl@googlemail.com, robclark@freedesktop.org,
+ anholt@google.com, linux-mediatek@lists.infradead.org, mripard@kernel.org,
+ matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org,
+ angelogioacchino.delregno@collabora.com, neil.armstrong@linaro.org,
+ guilherme.gallo@collabora.com, linux-kernel@vger.kernel.org,
+ tzimmermann@suse.de
+Message-ID: <338ed966-0337-16e0-3758-55ede0e2ea0d@collabora.com>
+Subject: Re: [PATCH v10] drm: Add initial ci/ subdirectory
+References: <20230720152737.102382-1-helen.koike@collabora.com>
+ <52d1d9e5-00c8-2260-57fc-310cc2f712fd@igalia.com>
+ <ad029e1c-8f00-9f5e-e25a-957b3f70c385@collabora.com>
+ <ef84ccedbf880c8605688f26ebedc04046c1dd78.camel@igalia.com>
+In-Reply-To: <ef84ccedbf880c8605688f26ebedc04046c1dd78.camel@igalia.com>
 
-> The first RESERVED register bit needs to be set in order for the PHY
-> to come up. Otherwise the ethernet device stays in "No Carrier".
-> There's no associated documentation for this register bit in the
-> Amlogic datasheets, only the default value to set for the entire
-> register.
->
-> This register bit is normally set in u-boot so it is not noticed in
-> Linux. During my testing with u-boot net disabled, this problem crops
-> up.
->
-> Signed-off-by: Da Xue <da@libre.computer>
+--------------FfDTAhzj7y6MRLROQfvQYWPK
+Content-Type: multipart/mixed; boundary="------------Ehh4rGbkOREHlVohl5eVMsUV"
 
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+--------------Ehh4rGbkOREHlVohl5eVMsUV
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-> ---
->  drivers/net/mdio/mdio-mux-meson-gxl.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/net/mdio/mdio-mux-meson-gxl.c
-> b/drivers/net/mdio/mdio-mux-meson-gxl.c
-> index 76188575ca1f..210a52d98112 100644
-> --- a/drivers/net/mdio/mdio-mux-meson-gxl.c
-> +++ b/drivers/net/mdio/mdio-mux-meson-gxl.c
-> @@ -17,6 +17,7 @@
->  #define  REG2_LEDACT           GENMASK(23, 22)
->  #define  REG2_LEDLINK          GENMASK(25, 24)
->  #define  REG2_DIV4SEL          BIT(27)
-> +#define  REG2_RESERVED0                BIT(28)
->  #define  REG2_ADCBYPASS                BIT(30)
->  #define  REG2_CLKINSEL         BIT(31)
->  #define ETH_REG3               0x4
-> @@ -65,7 +66,7 @@ static void gxl_enable_internal_mdio(struct
-> gxl_mdio_mux *priv)
->          * The only constraint is that it must match the one in
->          * drivers/net/phy/meson-gxl.c to properly match the PHY.
->          */
-> -       writel(FIELD_PREP(REG2_PHYID, EPHY_GXL_ID),
-> +       writel(REG2_RESERVED0 | FIELD_PREP(REG2_PHYID, EPHY_GXL_ID),
->                priv->regs + ETH_REG2);
->
->         /* Enable the internal phy */
+T24gMzEvMDcvMjAyMyAxMDozOCwgSnVhbiBBLiBTdcOhcmV6IHdyb3RlOg0KPiBPbiBTYXQs
+IDIwMjMtMDctMjkgYXQgMTI6MDggKzAzMDAsIERhdmlkIEhlaWRlbGJlcmcgd3JvdGU6DQo+
+PiBIZWxsbyBNYWlyYSwNCj4+DQo+PiBSZWdhcmRpbmcgdGhlIHNlY29uZCBxdWVzdGlvbiBh
+Ym91dCBWM0QgYW5kIFYzRFY6IGluIHRoZSBNZXNhM0QgQ0ksIHdlDQo+PiBjdXJyZW50bHkg
+dXNlIGRvd25zdHJlYW0ga2VybmVscywgc28gd2UgZG9uJ3QgYnVpbGQgdGhlIGtlcm5lbCBm
+b3INCj4+IFJhc3BiZXJyeSBQaS4NCj4+DQo+Pg0KPj4NCj4NCj4gQk1fQk9PVEZTIG9wdGlv
+biBjYW4gcG9pbnQgdG8gYSBsaW5rIHRhcmJhbGwgY29udGFpbmluZyBhbiBhbHRlcm5hdGl2
+ZSANCj4ga2VybmVsIHRvIHVzZSBpbnN0ZWFkIG9mIGRvd25zdHJlYW0gb25lLg0KPg0KPiBU
+aGUgb25seSBkcmF3YmFjayBpcyB0aGF0IHRoaXMgdGFyYmFsbCBtdXN0IGJlIGFuIGFscmVh
+ZHkgY29tcGlsZWQgDQo+IGtlcm5lbDsgaXQgd29uJ3QgY29tcGlsZSBpdC4NCkl0IHdvdWxk
+IGJlIGdyZWF0IGlmIHlvdSBjb3VsZCBmaWxsIGluIG1pc3Npbmcga2VybmVsIGNvbmZpZyBv
+cHRpb25zIGZvciANCm1hY2hpbmVzIHlvdSB1c2UgZm9yIFYzRChWKSBpbg0KdGhlIGBrZXJu
+ZWwvY29uZmlncy9tZXNhKi5jb25maWdgIHdpdGhpbiB0aGUgYGdmeC1jaS9MaW51eCByZXBv
+c2l0b3J5IA0KKHRoZSBjb25maWcgZmlsZXMgaGVyZSBvcmlnaW4gZnJvbSB0aGVyZSkuDQoN
+CklmIHRoZSBjb21waWxlZCBrZXJuZWwgd2lsbCB3b3JrIG9uIFJQaXMsIHRoZW4gdGhlIG5l
+eHQgc3RlcCB3b3VsZCBiZSANCmFkZGluZyBrZXJuZWwgZm9ybWF0DQphbmQgRFRCIG5hbWVz
+IHRvIHRoZSBgc3JjL2Jyb2FkY29tL2NpL2dpdGxhYi1jaS55bWxgIGluIHRoZSBNZXNhIA0K
+cmVwb3NpdG9yeSBzbyB0aGF0IHlvdSBjYW4gdXNlIG15IE1lc2EgZHJhZnQgTVIgWzFdDQp0
+byBxdWlja2x5IHRlc3QgaWYgeW91ciBqb2JzIHdvdWxkIHdvcmsgd2l0aCB0aGUgbWFpbmxp
+bmUga2VybmVsIGFuZCBhbnkgDQpvdGhlciBib2FyZCB0aGF0IHdvbid0IGJyZWFrIGR1ZSB0
+byB5b3VyIGNoYW5nZXMuDQoNCldoZW4gdGhpcyBpbnRlZ3JhdGlvbiBpcyBkb25lIOKAkiBp
+dCdzIGVhc3kgdG8gcnVuIGRybS1jaSB0ZXN0aW5nIG9uIHRoZXNlIA0KbWFjaGluZXMuDQoN
+CkRhdmlkDQoNClsxXSBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvbWVzYS9tZXNh
+Ly0vbWVyZ2VfcmVxdWVzdHMvMjM1NjMNCg0KDQo+DQo+PiBIb3dldmVyLCBJJ3ZlIGJlZW4g
+dGhpbmtpbmcgYWJvdXQgdGhlIHBvc3NpYmlsaXR5IG9mIGFkZGluZyBhbiBvdmVycmlkZQ0K
+Pj4gZm9yIHRoZSBrZXJuZWwgZnJvbSBhbiBleHRlcm5hbCBzb3VyY2UgdG8gb3VyIENJLiBU
+aGlzIHdheSwgd2UgY2FuIGFsc28NCj4+IHRlc3Qgd2l0aCBhIHByb3ZpZGVkIGtlcm5lbCBh
+bmQgb3ZlcnJpZGUgdGhlIGRlZmF1bHQgb3B0aW9uIG9mIHVzaW5nIHRoZQ0KPj4gZG93bnN0
+cmVhbSBrZXJuZWwgb24gUmFzcGJlcnJ5IFBpLg0KPj4NCj4+IElmIHdlIHByb2NlZWQgd2l0
+aCB0aGlzLCBpdCB3b3VsZCBiZSBzZW5zaWJsZSB0byBpbmNsdWRlIFYzRCogb3B0aW9ucyBp
+bg0KPj4gb3VyIGtlcm5lbCBidWlsZHMuDQo+Pg0KPj4gSSdtIGluY2x1ZGluZyBKdWFuIGFu
+ZCBFcmljIGZvciB0aGVpciBpbnB1dCBvbiB0aGlzIHRvcGljLg0KPj4NCj4+DQo+DQo+IFRo
+ZSBpZGVhIHNvdW5kcyBncmVhdC4gQXJlbid0IHdlIGFscmVhZHkgY29tcGlsaW5nIGtlcm5l
+bHMgZm9yIG90aGVyIA0KPiBoYXJkd2FyZT8gTWF5YmUgd2UgY2FuIGluY2x1ZGUgc3BlY2lm
+aWMgdmVyc2lvbnMgZm9yIFJwaS4NCj4NCj4gSi5BLg0KPg0KLS0gDQpEYXZpZCBIZWlkZWxi
+ZXJnDQpDb25zdWx0YW50IFNvZnR3YXJlIEVuZ2luZWVyDQoNCkNvbGxhYm9yYSBMdGQuDQpQ
+bGF0aW51bSBCdWlsZGluZywgU3QgSm9obidzIElubm92YXRpb24gUGFyaywgQ2FtYnJpZGdl
+IENCNCAwRFMsIFVLDQpSZWdpc3RlcmVkIGluIEVuZ2xhbmQgJiBXYWxlcywgbm8uIDU1MTM3
+MTgNCg0K
+--------------Ehh4rGbkOREHlVohl5eVMsUV
+Content-Type: application/pgp-keys; name="OpenPGP_0x69F567861C1EC014.asc"
+Content-Disposition: attachment; filename="OpenPGP_0x69F567861C1EC014.asc"
+Content-Description: OpenPGP public key
+Content-Transfer-Encoding: quoted-printable
 
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xjMEYlvLOxYJKwYBBAHaRw8BAQdA5CoWEzz4igpwK4h6lK6ZformRk84+ymcfkGN
+PwqEeILNMURhdmlkIEhlaWRlbGJlcmcgPGRhdmlkLmhlaWRlbGJlcmdAY29sbGFi
+b3JhLmNvbT7ClgQTFggAPhYhBEo7kSl22BK0F1Np/mn1Z4YcHsAUBQJiW8s7AhsD
+BQkFo5qABQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEGn1Z4YcHsAU84kBAK5Y
+qSWAOuIumAqgWvke6BEsaIGWGQzXSuKjer/TXuFuAQCwc9ITSVXWWTSpdFt2+4z7
+Wch8tIGlbIFcS9dCFddwCc44BGJbyzsSCisGAQQBl1UBBQEBB0AEk7jXEwDApGOw
+MH/X0UAPBH8Y3isjxhNMjpyRcnl2CwMBCAfCfgQYFggAJhYhBEo7kSl22BK0F1Np
+/mn1Z4YcHsAUBQJiW8s7AhsMBQkFo5qAAAoJEGn1Z4YcHsAU0PEA/j0YuAOKJCnn
+wrkf3ozPP0sutA5bojoARwcIaZKO/zvIAP9PwTC9DGLg+8LJm7m2Lyf0LxLA8FXD
+wueLHBdwHg6zAQ=3D=3D
+=3DOQS+
+-----END PGP PUBLIC KEY BLOCK-----
+
+--------------Ehh4rGbkOREHlVohl5eVMsUV--
+
+--------------FfDTAhzj7y6MRLROQfvQYWPK--
+
+--------------gZ4q2nvi1ImwMXIXleAIN9mH
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYIAB0WIQRKO5EpdtgStBdTaf5p9WeGHB7AFAUCZMo+vAAKCRBp9WeGHB7A
+FNQcAP4oF5UtDxrYf/MIQwqiHByXB05UlH51Of8QA584U++zsAEA/jWhcpOj2YXI
+9hirWMneCsvShLQ3XdS9DufpQRQifgg=
+=Vn8P
+-----END PGP SIGNATURE-----
+
+--------------gZ4q2nvi1ImwMXIXleAIN9mH--
+
+
+--===============8223337254126030997==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============8223337254126030997==--
+
