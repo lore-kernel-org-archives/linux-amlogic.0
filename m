@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34BBAC00528
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Aug 2023 12:04:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9633CC04FDF
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Aug 2023 12:04:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sRUZvho0v5r1qqiFpSnSFdemFhnWHSOnrC/h9H316Y4=; b=o8pn2DLnk734eS
-	xJECTzf0L771Fwet4FOLRrmHPKKuvTqavyj3jZIQaPnJwnVYeqUclN7UGMQh3KO8JOxf7k4GmFIn1
-	dfRxOsaE8ydWMGiocpNjvYGdJZ6OQ3Yfy8UqYcVH4Qv2g0E1s77Yf5Uc9deI+/pIEhHxKxORjVY8v
-	iaUHsOwKKEmwX1tb+mxnRgg0cpK4byHevd78PRp1+usogpveR6MhpbpW+MQPiM26OmQxUHBTnw9tT
-	ZdJ9mF5+qcqK3YjN/GsmYFKmJel0uqJ7x8UflZZUgSjkgAUq8A6RyjkOJgxc5L8JfTte/kGDY9Cma
-	JpriBSJDiJ6yfpiZBs1w==;
+	List-Owner; bh=EioB5IzmlPwWRknCpeR17HfOO+UiRAcplY5DS0XBX/k=; b=3KKICb4bkkItTu
+	40uBrk+12+0xmG/Yt+wbd7WppIlzhMJsxizvk4wd15YR7jaqqU87e3NRC75jdI2g5uPqLnsgXzqro
+	rgzPsWZ/iPSWFE5IISqLAkhJewUxvf+4Tt3NxkN+2N6JoE7AGJdBfYr1msrS3VWPRY1KuZTEonSGe
+	0bbgS32OSEAJjKT4MXksvPdjsLBTtOMDljAUHEdSLQSPGPAucU7K0nwmMza9hG2BaxjskZuXzkFol
+	owDYh2SUSqHNAqrcSA0c6qJ5ei0zrm8wSKP/RH5RFIYv4E7aulSRR6zWIj+g4ubZQGA1A/fDplYgX
+	WNPNAgpXyeJItCit7NSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qRX40-008BIn-08;
-	Thu, 03 Aug 2023 12:04:20 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1qRX42-008BME-18;
+	Thu, 03 Aug 2023 12:04:22 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qRX3p-008B4W-2R
+	id 1qRX3q-008B7M-3D
 	for linux-amlogic@lists.infradead.org;
-	Thu, 03 Aug 2023 12:04:11 +0000
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-31427ddd3fbso784093f8f.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 03 Aug 2023 05:04:08 -0700 (PDT)
+	Thu, 03 Aug 2023 12:04:13 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3fc0aecf15bso9080115e9.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 03 Aug 2023 05:04:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691064247; x=1691669047;
+        d=linaro.org; s=google; t=1691064250; x=1691669050;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Gk5RmU5hOCjyXiNvKJrFNIn+ds+IQi4ixYNI1v40l1o=;
-        b=dmbvQXzU5YOxKr/5AHsZgK20/MbMO8YTcE+nnZyWIKTL5cNu+2gejW86Lgm3eQlvhO
-         XqebyzFF12aOnA4VtP1e8OwSo2A4b1oXq8VPQ7K9LY14L39vgScYUx9Q5Wsdqg8dQ74y
-         otS2vIdXwUX2XVwENmpbWOXJK3rSuAJsE9DN6U9nh5cb0qbBh/LMstTukseLc9Hjq23j
-         FITafRouiTvQF1pVlKNP/BUmkFUlGn0W5cS6fWhrWpQeIhfULOwWwhM+i3ynV6bfKis2
-         tJUgLqmVpQv5BrTCa9wwVqu5sAsbX9HwwKy9k6AY5mAF1zVAZLPDVfTOiyuV2XiuASkN
-         uenQ==
+        bh=qgsDtF5O/s9PBjYfSivHAHvjRzma3FocfhBcV/z81+E=;
+        b=kOJ2nefIv+DGc4gPDRUHqNpFurhW4YoFa+epkK7zyVprNuveUWD/2z38X4aegkm6pp
+         F2YvvzsGo3xybXOycZNcFLsPGDdudE5kFsye8Miamsf+j7W7Yo30LrV/ZQ4x8j7RgRPU
+         SZanU8YFg437GAkbVJvp++kTV4lakyeRltTjpXci3QoiBTNnnYFwNp1iC6qap6+LXVt4
+         d4PlxpeIgbRSK/C/BLs5ZoJ1I0WEKZRV6hC+9XhSbgPz++ba0IsJTM+lGZyD3lWjoBUR
+         yiMXsdUCfi/FOr/E4yrNtv+zSezRLKr/Ns92SFvjfPFkdcrf8v0fYqLgAkP4Yncl5zqs
+         1g/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691064247; x=1691669047;
+        d=1e100.net; s=20221208; t=1691064250; x=1691669050;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Gk5RmU5hOCjyXiNvKJrFNIn+ds+IQi4ixYNI1v40l1o=;
-        b=k0/fecjiIMGwpHO9Cv13ZZUU7W5+wbY/W6coTsfXAXbCrmh3N8Nt5wkwn2Gq/Dav1N
-         sYV3Tg7h5iitBbwlckZNuXBBjQfd/KqY0rJ5SZAtgBMZTvOacVRU0zHYomzjKy4neNrd
-         J4yL6cju53/VVEh0PK+nVKjdfWM2FVbzm4V+sYpqZP+uhhbyrLItS/YW9zIrgraqpi7c
-         WUrK1bk3FHF0GgRxwMxCFEaFDf9pJWtwQY6JjtIoEiLPbb6NWnyVofCYznK3ZieQq9e4
-         FtDQDZwvcqAkkQVKOqKRJmsjoRQx9z5PQwc+OzGQwXPOkzWxucqD+f9zTmi++0EEpbqa
-         rKWA==
-X-Gm-Message-State: ABy/qLYa31Ic/+QmW8hRT7yasKXPdxXwerkorVIbPmb0K7LjfPgaavoF
-	wPEU49lR5ntjJrUS25dmMSXR3Q==
-X-Google-Smtp-Source: APBJJlHAD8DUjoAlBJEb5XOFbsF/b80OtVlEc90hvF001d1wcQxVRGZIO0NkMAYWWpNGwprPfJbo3Q==
-X-Received: by 2002:a5d:514e:0:b0:315:998d:6d25 with SMTP id u14-20020a5d514e000000b00315998d6d25mr6619915wrt.1.1691064246783;
-        Thu, 03 Aug 2023 05:04:06 -0700 (PDT)
+        bh=qgsDtF5O/s9PBjYfSivHAHvjRzma3FocfhBcV/z81+E=;
+        b=ZbjdKIBhHxTSQHC+vKGdv1/zWwR/LB1QbGoLTjAjST6JKGBaD3mxLnnwVqt97TLAzq
+         bXf5yc1zjbxb73BHGwgLq+GiakefBv8Vs5BCnWweqHucJU7IMAVlojfBsju2x4vdV7py
+         9vVRsy1q/tOvnY96+hCW4d/lRU/FBu7nU0AgW1FU44F06G72d3SU2hZ9Q08+G7QnXBJ3
+         j4T/bXUQKYL1y9wG+lETofhJxBf7Kxw3r/rGODsEzRzKxM38c8xt8rZFworq0bJ1zwPd
+         IIEjxfr7TkZ7m+nTZwvXUSaD3bHxsCVgvdEd9xNAQr0YvZIUTTkOObooFPF7va435Tqh
+         biLA==
+X-Gm-Message-State: ABy/qLZjgpgJ5R9Ls4Wq1tx4iTNEnLmme4E+l2XbgcF14nMUmlyoSQmG
+	ge1ry1PTvLUnVWXzhDbYPXyW3g==
+X-Google-Smtp-Source: APBJJlEERylyCoIfpqbNZkNZa6qNLhicWfKwDO7/R1PxvRKbJ92p6jH0w0dl7JH0CozJjbU8xXdA5g==
+X-Received: by 2002:a5d:6905:0:b0:315:9fb7:bd9 with SMTP id t5-20020a5d6905000000b003159fb70bd9mr7179883wru.69.1691064249738;
+        Thu, 03 Aug 2023 05:04:09 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id d10-20020a056000114a00b00317046f21f9sm21487465wrx.114.2023.08.03.05.04.05
+        by smtp.gmail.com with ESMTPSA id d10-20020a056000114a00b00317046f21f9sm21487465wrx.114.2023.08.03.05.04.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Aug 2023 05:04:06 -0700 (PDT)
+        Thu, 03 Aug 2023 05:04:08 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 03 Aug 2023 14:03:56 +0200
-Subject: [PATCH v7 2/9] clk: meson: g12a: add CTS_ENCL & CTS_ENCL_SEL
- clocks
+Date: Thu, 03 Aug 2023 14:03:58 +0200
+Subject: [PATCH v7 4/9] clk: meson: g12a: make VCLK2 and ENCL clock path
+ configurable by CCF
 MIME-Version: 1.0
-Message-Id: <20230803-amlogic-v6-4-upstream-dsi-ccf-vim3-v7-2-762219fc5b28@linaro.org>
+Message-Id: <20230803-amlogic-v6-4-upstream-dsi-ccf-vim3-v7-4-762219fc5b28@linaro.org>
 References: <20230803-amlogic-v6-4-upstream-dsi-ccf-vim3-v7-0-762219fc5b28@linaro.org>
 In-Reply-To: <20230803-amlogic-v6-4-upstream-dsi-ccf-vim3-v7-0-762219fc5b28@linaro.org>
 To: Jerome Brunet <jbrunet@baylibre.com>, 
@@ -84,25 +84,25 @@ Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3966;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6934;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=CX3kI3o4J7x9FeIX92jRW57M0+FTSTiUyYKTnCWLyDM=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBky5evEYOkI2P6cFHvisFT2Xy456x7SQeR4MphAUBO
- lqYbTCiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZMuXrwAKCRB33NvayMhJ0UPvD/
- 9YlSRSI3mRy+zfpQwi9BxrviwLWLuOR8NfQGEXAqxY2hMO3UCRb0sDMroYLl42SMk/ms4a5fEdKEK5
- pHEMnwJI+XNpQa2uYQQTfikYepv8qa10ubCh0IxOPfBEHKxrxzajSQehAYLYO+yXYGfc9tCJs06QBA
- TcrSpcU/GPTDgoMgLkqzaL6m006sXYzjUUGjYqRM2zAMN8COfGwpeslM8KBq4+SfHT9FvA8yxGAqSc
- /C6CObtswB9micLgi/3q2fWzojlcLrpL5O0kvEtXc+ZR41P+MAagGy5s7cqtYVLaK1w8PrWAE2455s
- GCs2PhiZJvkgzTGxnLDQRBhlIQXouJ0soQ1wVaQOWbfqrDlivaFp02m2jckHJ6JN8QAplzEcmIW0qF
- Y42E6sewLTH/nz/R5U384neUgK3Hs0BNBbk6X9ClGtYmOlT8rL5Rng5WeAEpA13DXX8RgxmXtUPv9Y
- TRhYv5DWBp0BTMNg45Mt+22pm0DUXAQIfKxgS1mLmAzWvWLVwM8d6a9vfqsdjgsFjFCQS4LYAZ5hpg
- MTnPI1DBpaMj/i0TUOxhAOqh9GHz/AQ8W0vRE1AKi6+qwF8HO52spjIwAu/tk1QdE87kA04DhxzRwf
- L0bV+gj6WJHGOqTE9GSkdbcbhZQGUiKVlvq1SkjaxRaYHGeXX+t3nzVVmfbw==
+ bh=TK47wN9qNcDXKejya/LAaw6P47MGsBz5Ae0PgRcGuY8=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBky5ewuZM2zifQrlEtoIW8ZZxNdZEGYwJ6lyOyzsTi
+ HiLCwt2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZMuXsAAKCRB33NvayMhJ0SayEA
+ Chgi+PGEs5GmdgnQoadHuDLQC7YeGh41x+FQl41hdn65DMlZtofLDfSjr6NBdJfzpk8gSDvx+RFrd5
+ 0gSxXiRW0vUCVBha39CXLUUNla/kOF4DtVrhBqVdqBsk4CooHM1QEhrFdNwkc5DLBfz7tJYNPA/tIW
+ FhiJaFYPRGiD+bsTiyQsZWQ52YSqTRyJB3DBKO5yvYoTmomGQrgxnHYv+VHqDySYjvqERwTwFO+0KB
+ 5MlLhcWPxZnuIl8nCappm7hAMwE0EkpHMXoK09hGu/mJcKaApqL8tu6Bjv41NiY/Mj5XVaKG5c1a34
+ 0TYDQErcScOSVFMSlL7GFk/B6F/fTA/6C6VowM92V6rvJfU/LaCD2ISPNpvVISCduMaltfE9SkYIxf
+ lVUcgA9wc/iycftKhzC3qtbRTnblye312ZbhMOTdALCNrxSf2L1JvWt1eQbLFzBFYqJsFH5kyiswRU
+ 5kMHGuEIWunowQqtZ9sWI0Fjy2UiXRrgkwKsnbu5KNJstnUHfyXTk1wIhZcmVYC0kEemcRRTwqwfYP
+ x7U/EG+8LrM5CtEG3V2ZcnYwqHo37EBUccSb/8tZUKpHPdWtZdgi5xrTHU/yLiIueqTe8TuuK7S418
+ jUAJvOou8wwN+Tk4ztLdbjfp1oVkcwHn8Lxol9uQMlJu7fQaOlna5KJnzhNQ==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230803_050409_849501_60241CC5 
-X-CRM114-Status: GOOD (  10.95  )
+X-CRM114-CacheID: sfid-20230803_050411_069046_D47B2954 
+X-CRM114-Status: GOOD (  14.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,117 +119,240 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add new CTS_ENCL & CTS_ENCL_SEL clocks for the G12A compatible
-SoCs, they are used to feed the VPU LCD Pixel encoder used for
-DSI display purposes.
+In order to setup the DSI clock, let's make the unused VCLK2 clock path
+configuration via CCF.
+
+The nocache option is removed from following clocks:
+- vclk2_sel
+- vclk2_input
+- vclk2_div
+- vclk2
+- vclk_div1
+- vclk2_div2_en
+- vclk2_div4_en
+- vclk2_div6_en
+- vclk2_div12_en
+- vclk2_div2
+- vclk2_div4
+- vclk2_div6
+- vclk2_div12
+- cts_encl_sel
+
+vclk2 and vclk2_div uses the newly introduced vclk regmap driver
+to handle the enable and reset bits.
+
+In order to set a rate on cts_encl via the vclk2 clock path,
+the NO_REPARENT flag is set on cts_encl_sel & vclk2_sel in order
+to keep CCF from selection a parent.
+The parents of cts_encl_sel & vclk2_sel are expected to be defined
+in DT.
+
+The following clock scheme is to be used for DSI:
+
+xtal
+\_ gp0_pll_dco
+   \_ gp0_pll
+      |- vclk2_sel
+      |  \_ vclk2_input
+      |     \_ vclk2_div
+      |        \_ vclk2
+      |           \_ vclk2_div1
+      |              \_ cts_encl_sel
+      |                 \_ cts_encl	-> to VPU LCD Encoder
+      |- mipi_dsi_pxclk_sel
+      \_ mipi_dsi_pxclk_div
+         \_ mipi_dsi_pxclk		-> to DSI controller
+
+The mipi_dsi_pxclk_div is set as RO in order to use the same GP0
+for mipi_dsi_pxclk and vclk2_input.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/clk/meson/g12a.c | 40 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+ drivers/clk/meson/g12a.c | 43 ++++++++++++++++++++++++++-----------------
+ 1 file changed, 26 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-index ceabd5f4b2ac..5d62134335c1 100644
+index 5d62134335c1..552c8efb1ad8 100644
 --- a/drivers/clk/meson/g12a.c
 +++ b/drivers/clk/meson/g12a.c
-@@ -3549,6 +3549,22 @@ static struct clk_regmap g12a_cts_encp_sel = {
+@@ -22,6 +22,7 @@
+ #include "clk-regmap.h"
+ #include "clk-cpu-dyndiv.h"
+ #include "vid-pll-div.h"
++#include "vclk.h"
+ #include "meson-eeclk.h"
+ #include "g12a.h"
+ 
+@@ -3165,7 +3166,7 @@ static struct clk_regmap g12a_vclk2_sel = {
+ 		.ops = &clk_regmap_mux_ops,
+ 		.parent_hws = g12a_vclk_parent_hws,
+ 		.num_parents = ARRAY_SIZE(g12a_vclk_parent_hws),
+-		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
++		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
  	},
  };
  
-+static struct clk_regmap g12a_cts_encl_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_VIID_CLK_DIV,
-+		.mask = 0xf,
-+		.shift = 12,
-+		.table = mux_table_cts_sel,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "cts_encl_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = g12a_cts_parent_hws,
-+		.num_parents = ARRAY_SIZE(g12a_cts_parent_hws),
-+		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
-+	},
-+};
-+
- static struct clk_regmap g12a_cts_vdac_sel = {
- 	.data = &(struct clk_regmap_mux_data){
+@@ -3193,7 +3194,7 @@ static struct clk_regmap g12a_vclk2_input = {
+ 		.ops = &clk_regmap_gate_ops,
+ 		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_sel.hw },
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -3215,19 +3216,22 @@ static struct clk_regmap g12a_vclk_div = {
+ };
+ 
+ static struct clk_regmap g12a_vclk2_div = {
+-	.data = &(struct clk_regmap_div_data){
++	.data = &(struct clk_regmap_vclk_div_data){
  		.offset = HHI_VIID_CLK_DIV,
-@@ -3628,6 +3644,22 @@ static struct clk_regmap g12a_cts_encp = {
+ 		.shift = 0,
+ 		.width = 8,
++		.enable_bit_idx = 16,
++		.reset_bit_idx = 17,
++		.flags = CLK_DIVIDER_ROUND_CLOSEST,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "vclk2_div",
+-		.ops = &clk_regmap_divider_ops,
++		.ops = &clk_regmap_vclk_div_ops,
+ 		.parent_hws = (const struct clk_hw *[]) {
+ 			&g12a_vclk2_input.hw
+ 		},
+ 		.num_parents = 1,
+-		.flags = CLK_GET_RATE_NOCACHE,
++		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_GATE,
  	},
  };
  
-+static struct clk_regmap g12a_cts_encl = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_VID_CLK_CNTL2,
-+		.bit_idx = 3,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "cts_encl",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&g12a_cts_encl_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-+	},
-+};
-+
- static struct clk_regmap g12a_cts_vdac = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_VID_CLK_CNTL2,
-@@ -4407,10 +4439,12 @@ static struct clk_hw *g12a_hw_clks[] = {
- 	[CLKID_VCLK2_DIV12]		= &g12a_vclk2_div12.hw,
- 	[CLKID_CTS_ENCI_SEL]		= &g12a_cts_enci_sel.hw,
- 	[CLKID_CTS_ENCP_SEL]		= &g12a_cts_encp_sel.hw,
-+	[CLKID_CTS_ENCL_SEL]		= &g12a_cts_encl_sel.hw,
- 	[CLKID_CTS_VDAC_SEL]		= &g12a_cts_vdac_sel.hw,
- 	[CLKID_HDMI_TX_SEL]		= &g12a_hdmi_tx_sel.hw,
- 	[CLKID_CTS_ENCI]		= &g12a_cts_enci.hw,
- 	[CLKID_CTS_ENCP]		= &g12a_cts_encp.hw,
-+	[CLKID_CTS_ENCL]		= &g12a_cts_encl.hw,
- 	[CLKID_CTS_VDAC]		= &g12a_cts_vdac.hw,
- 	[CLKID_HDMI_TX]			= &g12a_hdmi_tx.hw,
- 	[CLKID_HDMI_SEL]		= &g12a_hdmi_sel.hw,
-@@ -4632,10 +4666,12 @@ static struct clk_hw *g12b_hw_clks[] = {
- 	[CLKID_VCLK2_DIV12]		= &g12a_vclk2_div12.hw,
- 	[CLKID_CTS_ENCI_SEL]		= &g12a_cts_enci_sel.hw,
- 	[CLKID_CTS_ENCP_SEL]		= &g12a_cts_encp_sel.hw,
-+	[CLKID_CTS_ENCL_SEL]		= &g12a_cts_encl_sel.hw,
- 	[CLKID_CTS_VDAC_SEL]		= &g12a_cts_vdac_sel.hw,
- 	[CLKID_HDMI_TX_SEL]		= &g12a_hdmi_tx_sel.hw,
- 	[CLKID_CTS_ENCI]		= &g12a_cts_enci.hw,
- 	[CLKID_CTS_ENCP]		= &g12a_cts_encp.hw,
-+	[CLKID_CTS_ENCL]		= &g12a_cts_encl.hw,
- 	[CLKID_CTS_VDAC]		= &g12a_cts_vdac.hw,
- 	[CLKID_HDMI_TX]			= &g12a_hdmi_tx.hw,
- 	[CLKID_HDMI_SEL]		= &g12a_hdmi_sel.hw,
-@@ -4892,10 +4928,12 @@ static struct clk_hw *sm1_hw_clks[] = {
- 	[CLKID_VCLK2_DIV12]		= &g12a_vclk2_div12.hw,
- 	[CLKID_CTS_ENCI_SEL]		= &g12a_cts_enci_sel.hw,
- 	[CLKID_CTS_ENCP_SEL]		= &g12a_cts_encp_sel.hw,
-+	[CLKID_CTS_ENCL_SEL]		= &g12a_cts_encl_sel.hw,
- 	[CLKID_CTS_VDAC_SEL]		= &g12a_cts_vdac_sel.hw,
- 	[CLKID_HDMI_TX_SEL]		= &g12a_hdmi_tx_sel.hw,
- 	[CLKID_CTS_ENCI]		= &g12a_cts_enci.hw,
- 	[CLKID_CTS_ENCP]		= &g12a_cts_encp.hw,
-+	[CLKID_CTS_ENCL]		= &g12a_cts_encl.hw,
- 	[CLKID_CTS_VDAC]		= &g12a_cts_vdac.hw,
- 	[CLKID_HDMI_TX]			= &g12a_hdmi_tx.hw,
- 	[CLKID_HDMI_SEL]		= &g12a_hdmi_sel.hw,
-@@ -5123,10 +5161,12 @@ static struct clk_regmap *const g12a_clk_regmaps[] = {
- 	&g12a_vclk2_div12_en,
- 	&g12a_cts_enci_sel,
- 	&g12a_cts_encp_sel,
-+	&g12a_cts_encl_sel,
- 	&g12a_cts_vdac_sel,
- 	&g12a_hdmi_tx_sel,
- 	&g12a_cts_enci,
- 	&g12a_cts_encp,
-+	&g12a_cts_encl,
- 	&g12a_cts_vdac,
- 	&g12a_hdmi_tx,
- 	&g12a_hdmi_sel,
+@@ -3246,16 +3250,17 @@ static struct clk_regmap g12a_vclk = {
+ };
+ 
+ static struct clk_regmap g12a_vclk2 = {
+-	.data = &(struct clk_regmap_gate_data){
++	.data = &(struct clk_regmap_vclk_data){
+ 		.offset = HHI_VIID_CLK_CNTL,
+-		.bit_idx = 19,
++		.enable_bit_idx = 19,
++		.reset_bit_idx = 15,
+ 	},
+ 	.hw.init = &(struct clk_init_data) {
+ 		.name = "vclk2",
+-		.ops = &clk_regmap_gate_ops,
++		.ops = &clk_regmap_vclk_ops,
+ 		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_div.hw },
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
++		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_GATE,
+ 	},
+ };
+ 
+@@ -3339,7 +3344,7 @@ static struct clk_regmap g12a_vclk2_div1 = {
+ 		.ops = &clk_regmap_gate_ops,
+ 		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -3353,7 +3358,7 @@ static struct clk_regmap g12a_vclk2_div2_en = {
+ 		.ops = &clk_regmap_gate_ops,
+ 		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -3367,7 +3372,7 @@ static struct clk_regmap g12a_vclk2_div4_en = {
+ 		.ops = &clk_regmap_gate_ops,
+ 		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -3381,7 +3386,7 @@ static struct clk_regmap g12a_vclk2_div6_en = {
+ 		.ops = &clk_regmap_gate_ops,
+ 		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -3395,7 +3400,7 @@ static struct clk_regmap g12a_vclk2_div12_en = {
+ 		.ops = &clk_regmap_gate_ops,
+ 		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -3461,6 +3466,7 @@ static struct clk_fixed_factor g12a_vclk2_div2 = {
+ 			&g12a_vclk2_div2_en.hw
+ 		},
+ 		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -3474,6 +3480,7 @@ static struct clk_fixed_factor g12a_vclk2_div4 = {
+ 			&g12a_vclk2_div4_en.hw
+ 		},
+ 		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -3487,6 +3494,7 @@ static struct clk_fixed_factor g12a_vclk2_div6 = {
+ 			&g12a_vclk2_div6_en.hw
+ 		},
+ 		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -3500,6 +3508,7 @@ static struct clk_fixed_factor g12a_vclk2_div12 = {
+ 			&g12a_vclk2_div12_en.hw
+ 		},
+ 		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -3561,7 +3570,7 @@ static struct clk_regmap g12a_cts_encl_sel = {
+ 		.ops = &clk_regmap_mux_ops,
+ 		.parent_hws = g12a_cts_parent_hws,
+ 		.num_parents = ARRAY_SIZE(g12a_cts_parent_hws),
+-		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
++		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+ 	},
+ };
+ 
+@@ -3717,7 +3726,7 @@ static struct clk_regmap g12a_mipi_dsi_pxclk_sel = {
+ 		.ops = &clk_regmap_mux_ops,
+ 		.parent_hws = g12a_mipi_dsi_pxclk_parent_hws,
+ 		.num_parents = ARRAY_SIZE(g12a_mipi_dsi_pxclk_parent_hws),
+-		.flags = CLK_SET_RATE_NO_REPARENT,
++		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+ 	},
+ };
+ 
+@@ -3729,7 +3738,7 @@ static struct clk_regmap g12a_mipi_dsi_pxclk_div = {
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mipi_dsi_pxclk_div",
+-		.ops = &clk_regmap_divider_ops,
++		.ops = &clk_regmap_divider_ro_ops,
+ 		.parent_hws = (const struct clk_hw *[]) {
+ 			&g12a_mipi_dsi_pxclk_sel.hw
+ 		},
 
 -- 
 2.34.1
