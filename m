@@ -4,106 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C76CAC001DF
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Aug 2023 12:05:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00A04C001DF
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Aug 2023 13:23:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0vTJp+0FtJoZ8J7pcZbmhDjWjuB2LElm+2+6vPPyEDo=; b=YT2etSo5lpdf1y
-	bHziDF7otP9vqvB/wVig18cHwymdwozJ8ocuDp/Ho+VoGLtZhi/EgBdu2+hyUnHMUMKQeyBmBMlYr
-	9ffy3CU0rt1x/QPnPc86pyIBvYxIehCisKKsXHRWTs3svBBBCM5Z2XnOdqXnvQlgIAvSI9XBcOsQV
-	cYQV3+pHJIQGZ43BQgIoyhJr0YfIi4XJ7kn7WLKpDIZLORnY8sSP4jnjFRcGmB1QWR58G3EvRc5re
-	C6OQXzE+ijwYZjstdxSht8rCFPkHf3j1TtrwPv27J13mdWldRZ2NxCjWPgDhYs/sYqkwkhrIUsyPK
-	Xq4e4jQG7BV2XNLwUv7A==;
+	List-Owner; bh=aU2EmjVcgQ7F7dheSoScKgWgvvAHuhvPPU/6TsArkRA=; b=1r1mBRKiiBEsMY
+	H52w93Q6dYCqbNwxLE63UU9D9Ny69FBONHCAJ0whyB3rMo1/ZbmJrxGVy7bgSbd6ekwrsNPlIlNNI
+	We+W9ku6V02e8GeHPyFwE1qluDs/+GzggB8Bo8xB9xD4EzV0RRDaEN7bB1/1OQ4ZKq3xwDf2Wm2GW
+	aYOP/zCNRCSi0xabw68xnAqFqdTf1vz2G2OKPrerq9OEUBRK0flOdvK+lh1H6L/mZilMMHRajhrQY
+	FpFhHeLOJkV7FJPAv0qfiswwYy4yT1Rf+i5D0qIhpefproXCMp+84zz3a5om6hYw+qIiKFiQrcDK+
+	v6r8Em9dN83rD0MZrTVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qRX4Q-008BsB-2D;
-	Thu, 03 Aug 2023 12:04:46 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1qRYIM-008wNm-25;
+	Thu, 03 Aug 2023 13:23:14 +0000
+Received: from mail-am6eur05on2060c.outbound.protection.outlook.com ([2a01:111:f400:7e1b::60c] helo=EUR05-AM6-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qRX40-008BEr-0c
-	for linux-amlogic@lists.infradead.org;
-	Thu, 03 Aug 2023 12:04:23 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3fbea14700bso8788775e9.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 03 Aug 2023 05:04:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691064256; x=1691669056;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/ROjA7hMnkAvdnfkhv7p7unINoiSUApyrJY4bU6BpUw=;
-        b=KGioKLl3B1By5UVD6HXIzAVMS0aJHUaHOmj24kTUSUGRDtV12cBMsnuN2NviPrGiFn
-         X+0S6TdR9FqrR3BebLXvMw5TS7VkP1OChMgWecypttOXJLOMNjrws8R9/Uae3tjUa36C
-         SxD7qA373cKIJ4cXNkhlXTKNplwDSUO4zRKz4gUbRLgEFuqd5r2TxAKKF1s+6kApW8Of
-         5t8IfR39DTqdzOyK8vQxuBRIGbY7J/LBWtzIzJuYjbPEQ7i/Gu6Ph0xxnR0li+h91xjm
-         xPbGhssTGy4nKGxNP6BNyQ2rZyVFwDJvfibdNv/Nwn6ifk8I8OfCtcJx3uDI12YPYb91
-         n08Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691064256; x=1691669056;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/ROjA7hMnkAvdnfkhv7p7unINoiSUApyrJY4bU6BpUw=;
-        b=QKKEND2RoJY+nUsZGnhGOEHrx7kbnnGbMqW69Hz/56iGUXVfJXP2OVNFMyn/PoKmDu
-         yAoYoLIFWNTGUN2ingsmIMP/U5/swGq5zFy8OFyHD6HFGnfBnmJ68ryOHmuRChVWdZbO
-         1y2EC2kKeifW8EfBlOIOScQfuPJRoxh3Y8iGJRlaIKbTlH8oUmx6Sztf03rPwXKf1Inw
-         rRfQR3exkuESVRx3IZjuhCtCqUSneWOdK/K9LEwHT6dnYhV6LEerQCLzV40HkbjW3lYv
-         bwyNUy9Rn5czO7dl0RJDDVRfKDIPj0PFY4k5Nts5f4WNXU+lMIT4hHqHvfLgCB81YN9S
-         57Og==
-X-Gm-Message-State: ABy/qLYVgNfLQ91zry7WbyP1j8UwLXN1Og4bF2MbgWum2RUEP3loUgkf
-	CByUtn3scFbxj0/W+AV6gJ+QnA==
-X-Google-Smtp-Source: APBJJlHZXk/XOEyoDVquCUZz1MldFv1pH3EjERK9ya4rwYLY73mbi5xtvDRycokunuKoALk9VU1NeQ==
-X-Received: by 2002:a05:600c:2253:b0:3fe:21a9:2feb with SMTP id a19-20020a05600c225300b003fe21a92febmr7374170wmm.33.1691064256163;
-        Thu, 03 Aug 2023 05:04:16 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id d10-20020a056000114a00b00317046f21f9sm21487465wrx.114.2023.08.03.05.04.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Aug 2023 05:04:15 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 03 Aug 2023 14:04:03 +0200
-Subject: [PATCH v7 9/9] arm64: dts: amlogic: meson-g12b-bananapi-cm4: add
- support for MNT Reform2 with CM4 adaper
+	id 1qRYII-008wIZ-1x;
+	Thu, 03 Aug 2023 13:23:12 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bozFGSxXbvJ/qW12EKCDuUhsddhBIbHnNlb0pflD3b/KbXjdmLiUpPX5X9ClrOWVW3QBKKg/UzX9fw+VTXm811SUUw0YhUod56EQKmz6zGeNP4tKg9IcAzsgodlYcQYcNwnB/90aetZN0Z52+1VG97ITYJ/kG9jUwkTja5A7nhOaUFwVdAEsJJ2++kkqxleG/a50G/Rpzl/AeeNhoQd0b+NVpKdGZJbtB0X3w9vmXCZTWcOKyAZdhRnc7UBmLwESBfsemGgczY0kgYe4P5WLxmphFoIbt8VpYSq+XiiUvc4MZP02SRxjCZzArmh1FUEX7GO9uVHCzk5PW4Fw6P1ovg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cP0QUPSl56zdo3LgBD2UOgk1OjiC7FnJ9jjEw9uR1aQ=;
+ b=BMmR2L3Wnr+OkckIqD0iwEH7Fw8Q2ooznSr8tNjOVH9PiG55eJMrqH++ZQSJ3EaYIfHTt1X7p8gOYgVNIx9ON4ngbxXxBhYHr5l5dLpVZn4tw32rGSNsfEwdVEyV5L1TBQaVeax8kj9Bhm1ILwiOmwPUHjmHy4q5PgXI0TNhI83lHlA4TB0gnOEV8tzdK9FWVfFJ2ruN4edPk+NdSVrP5i6Ugc0QJUrrlNNIJGpk1MEyq0o1mlUvQ7ZxNzwopbpRrU7uCFNIJqmxGWEfNpgNAZt9DacqVHf6MuIOkrzqPuwsCitGIxzabKMj1XHESJRLwUw0ubJeK9ucJTWMZZy6Kw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cP0QUPSl56zdo3LgBD2UOgk1OjiC7FnJ9jjEw9uR1aQ=;
+ b=FD2DHvcMAG1Y1Y4qSdbn4xjkEUp/7AqZ/L/3f8ztVj7QgDSOChShDzhMW8WukoJbKl3WBw2aT3EI7n6L+iLYoKwLA6aPjDzT0ivuZGwW4jZrvw3RX84RZR+rhK7Yf7yEdZOba2lMAgcEPmowyL2n5SGs/1vjUelQOpskUF3osbc=
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
+ by AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.47; Thu, 3 Aug
+ 2023 13:08:03 +0000
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::d4ee:8daa:92f4:9671]) by PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::d4ee:8daa:92f4:9671%3]) with mapi id 15.20.6631.046; Thu, 3 Aug 2023
+ 13:08:03 +0000
+From: Shenwei Wang <shenwei.wang@nxp.com>
+To: Johannes Zink <j.zink@pengutronix.de>, Russell King
+	<linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Shawn Guo
+	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Vinod Koul
+	<vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
+CC: Giuseppe Cavallaro <peppe.cavallaro@st.com>, Alexandre Torgue
+	<alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+	<festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>, Jerome Brunet
+	<jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Bhupesh Sharma
+	<bhupesh.sharma@linaro.org>, Nobuhiro Iwamatsu
+	<nobuhiro1.iwamatsu@toshiba.co.jp>, Simon Horman <simon.horman@corigine.com>,
+	Andrew Halaney <ahalaney@redhat.com>, Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>, Wong Vee Khee <veekhee@apple.com>, Revanth
+ Kumar Uppala <ruppala@nvidia.com>, Jochen Henneberg
+	<jh@henneberg-systemdesign.com>, "netdev@vger.kernel.org"
+	<netdev@vger.kernel.org>, "linux-stm32@st-md-mailman.stormreply.com"
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-amlogic@lists.infradead.org"
+	<linux-amlogic@lists.infradead.org>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>, Frank Li <frank.li@nxp.com>
+Subject: RE: [EXT] Re: [PATCH v3 net 2/2] net: stmmac: dwmac-imx: pause the
+ TXC clock in fixed-link
+Thread-Topic: [EXT] Re: [PATCH v3 net 2/2] net: stmmac: dwmac-imx: pause the
+ TXC clock in fixed-link
+Thread-Index: AQHZw8rr+4AkxJNLt0GANB66N1LNC6/VZScAgABIh3CAAN8TAIAAhezwgAAERICAABXLQIAA9VKAgABnjmA=
+Date: Thu, 3 Aug 2023 13:08:02 +0000
+Message-ID: <PAXPR04MB9185E6512A5220E83D17D6A58908A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+References: <20230731161929.2341584-1-shenwei.wang@nxp.com>
+ <20230731161929.2341584-3-shenwei.wang@nxp.com>
+ <bf2979c4-0b63-be53-b530-3d7385796534@pengutronix.de>
+ <PAXPR04MB9185D7D3B088E4786A216044890AA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <e32c89e1-7385-105b-63c9-74f58c2253cb@pengutronix.de>
+ <PAXPR04MB91851BB5D1375AF0EF3C51B7890BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <49d52a10-20cf-9c5b-ebe3-07292664fe11@pengutronix.de>
+ <PAXPR04MB9185C0C3B3E41534F555BC43890BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <22f979e8-7591-3393-f323-114da0131e7a@pengutronix.de>
+In-Reply-To: <22f979e8-7591-3393-f323-114da0131e7a@pengutronix.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB9185:EE_|AM9PR04MB8604:EE_
+x-ms-office365-filtering-correlation-id: b53b30fa-b95a-4ae8-dce8-08db9422ab81
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: TjxgsExC4/RAzJtyEBcjSNmTuhhzsrgiTM5OpWxuHPByo8V+1fmFqd4TsIkcAHOdtHa30/qrniMIMK2w+w6hL7nhN1yP/h+T4G7H0Z/h/aSK/7CffDBH7TCV7tDzqBCfdcHHqAUm9jqpdi68nibxvqjsVBxLL7Ca0/z46PGtff3fjp1XTvIc+rMWvEqBnXuPpO1RrR0TZ9g71Ks0aIQVvChMI1brQogX3XJcqifeNNNoVmlIvCx+P4iL728rPS0/bxwFAoh4EJZjCg5W0iOnrfWSSLxbfABYIeG3YI/+JgPQMBZqX6vlC0VqdFG0EhTrbuJcdjp4K2bw2jXjjg+oFDuqXqntznAjE6/XJqxE3riW6IjFNPFsK440Yf6NTcdzfj1zZ/1jULV8GuVoLdrTnDfmR7o/EM5q25DZql32//1O5CZUpmI9884pGqNl4iftEEawpouS9VuHdsBmxcUoP7MVTyOmZAxmF5r1VEz5bTve1GVc1SzcZ9sq4nYYwAxA+153mj88odeRlboTmgjk0cN94YwYZw7v2cy8YHRxFqgtzqkmpyNnXb/OisA946T0+k+T9IhlUKKI1zi/E92pHiidIRm8tFRlp5Ga13JEcOlxVJiVEAwo+QB36kziDBPk
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(376002)(136003)(39860400002)(396003)(346002)(451199021)(53546011)(55236004)(83380400001)(6506007)(26005)(186003)(41300700001)(52536014)(2906002)(66946007)(76116006)(4326008)(64756008)(66446008)(66476007)(66556008)(5660300002)(316002)(44832011)(7416002)(8676002)(8936002)(7696005)(71200400001)(966005)(7406005)(9686003)(45080400002)(478600001)(54906003)(110136005)(55016003)(38100700002)(921005)(122000001)(33656002)(86362001)(38070700005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?MkNqZII/6Odjt5OpNRfmakRxvPB+HY9Wbepal+5J0APGsHvoka/fLni+LpKN?=
+ =?us-ascii?Q?giY7/Rgl0fIfPQlCkxd+EfFdOJ4kjyGsDJUr/tmKzi7QtycKptiO6mcavY9N?=
+ =?us-ascii?Q?oXB4hKlJAuWwwBK40WCZOde068f94N7QhIcgyMeF/29yduqgPQG3FRTUtk/8?=
+ =?us-ascii?Q?E40qqIRCUJBlLplPBLuvU2aDeferZJAImm0xyMfVrmwzZdS3itMpRUTGtSPd?=
+ =?us-ascii?Q?1JGX5E5a0+2HT7JHjT2orz+1Kg9wyJKLMEXle1RoPqBfKvau2g0C/rvdhKKe?=
+ =?us-ascii?Q?PD/yNt2VB2bFjIxafS0pFI7Zu5Z0xRtrLbMcFKla4OiZm+clAQQ+BSpyosgY?=
+ =?us-ascii?Q?EqaGnkEUVf1NSZ0qwogCdOtaDQvr0OPsuu9sq11QDa/+wpU+QXRhmhqfqOhS?=
+ =?us-ascii?Q?QW0+Qiy/p30ZiIC4giLJnHqnl0tDWtjV9O6eva/cQfDvtP2DVFEXBimcDLuR?=
+ =?us-ascii?Q?1bVw0O2D+BdbkdPdmgSODNGRBjXPb8VsuZkVf1E1RYlvg6YCEp06VlCOyRKp?=
+ =?us-ascii?Q?ieCf/YIQM6BbLL/T6lDHEgfnI4f+qokFkf212+hQ3bOPl8rmJziJSd6rHhei?=
+ =?us-ascii?Q?04hEg1LiQXtSMlCxdbogf9BdOgKMV+y5nwnX36QfntwwjMkShlW06yIgCHV8?=
+ =?us-ascii?Q?hmaLlc9ii2qdTfAiPdAwEl/a31NjnM2yD+8rhZPA/7tFxSOPurVYNIWS81l5?=
+ =?us-ascii?Q?WVB+AVkxfj592ehKZ3ncXFgIk4yUztNUfUAvxNn/14luGdAKR5oEsMoBfL/y?=
+ =?us-ascii?Q?XNlFHc6aDyX++KzHk8D+2wIgDcy51SKMDUM0Vrc0S/arFnQbvjWQ1RJkw4Xg?=
+ =?us-ascii?Q?YxFH9zc+6P0st14xZHHJwp7+NyaaIMy7c1YvhGQfsg7nSLvBz5Q2kQCRa8g4?=
+ =?us-ascii?Q?8UzJAnsmq6o1CH/iRurNLiGYURIn6dP6H1VXc54/tHAaZr42EdCqUyJaPx4v?=
+ =?us-ascii?Q?++2pOwXmsgjJQx9bOIbauNVos8K3ws16L47hmnpGebaq5dtK3iuHLQVm9m0l?=
+ =?us-ascii?Q?dyVsEjZm88XADzPM/uQXy1zbqzVZMfLjPwCIVG/qRorfh1q4ZzgKoGaDVbyS?=
+ =?us-ascii?Q?xd6YJnS5EuW3h2QIYweKrNpe8g+5m90FcHyl2Q4peXrNtNoh7z3J/6gIhU8j?=
+ =?us-ascii?Q?B8+PDumVtHl8tOOXkQgFB0paj6jyzxPXqivUIVLcACRgB2kWMnsFLaTEetMc?=
+ =?us-ascii?Q?LmAJ4azkciA6TAJZgjyfIBgT+NNX/+6mYKKIc6OCYQ0xBVboIXERCmGR2FEV?=
+ =?us-ascii?Q?X7VLEN5lyRTuFCZl1eG50cZUBGu5lFBltKClVDNIVzfULtUq/SAmzm8hrZmh?=
+ =?us-ascii?Q?A5W0q8zGmia2ii6rtATRQIDjGep6GTopTBkwJwRrr+GQ+zjV9emBN3Joozk0?=
+ =?us-ascii?Q?R7+gqxdhvpFXVGPs9WTzW2EXmanXnZON1IeFC1CP0VdB7bWTdd7wcg829eKD?=
+ =?us-ascii?Q?eiy/zjbPEUyI9XhabvQWlYar+8ikPkUrp6jTu3BRG3e5R4879W+Is5DoPjLx?=
+ =?us-ascii?Q?7f18PYKKK7Fo1+FpzrAERp3ofPzlI7CoabcDMDLT+fsqvkS/Dqh5wQ7QBN8q?=
+ =?us-ascii?Q?YXUcGtxVfytGs7llJH37hxC1QHZnNHIj6o1lTqZw?=
 MIME-Version: 1.0
-Message-Id: <20230803-amlogic-v6-4-upstream-dsi-ccf-vim3-v7-9-762219fc5b28@linaro.org>
-References: <20230803-amlogic-v6-4-upstream-dsi-ccf-vim3-v7-0-762219fc5b28@linaro.org>
-In-Reply-To: <20230803-amlogic-v6-4-upstream-dsi-ccf-vim3-v7-0-762219fc5b28@linaro.org>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Jagan Teki <jagan@amarulasolutions.com>, 
- Nicolas Belin <nbelin@baylibre.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- "Lukas F. Hartmann" <lukas@mntre.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9641;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=tIpvKy3/zQUSKoo3au+mFW9qsGjNTajV3C/7kQ1qRIA=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBky5eyb3vJZIQceselneJrkt8e4qWFoxRAmktgTMB4
- aEWv6ziJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZMuXsgAKCRB33NvayMhJ0Rn9EA
- DOVZLrUMkbzg0DH3+ZlSpv/5A5GwTKx92gvbKNTpZBhnUEmTtaFWXAXMFN5plCcGXI0bhC21VGOi/K
- C19B5g5UJr5YMbYd7g7Hr+04/nelJM31nu2d8UYVMYxsYDn/uLfABFAy1jYEKUVyGsbDAjwYBkUgUd
- LgFL2irUSCBv6h66TBM+FzXPK8xy1MHrRSCNTz4NRj5hdI1Rs56hCNc1NqTZPikvH3b0qcKjdc/Mo4
- Stz1SmFoXM8WybE0cCN66HxfKwGGJjDbzMEUcLPUzWe33ueadDWykP8BuR4Wn2h2eZdqahXgnSeh6y
- o+ctFr0B2ldvMC5hDb78+gTLipaTIsHWoy0Tz27e6fBPN8986WVpu5sJ84XnNUFOsE4NZqKz/gnG6i
- IvnSVFV+fp+k2V6MM4DW7GUTbUqcycZwJNbOcoXQvAJXHSMrf7D0Di+W9Dqa3/ZS3gZ5gf611g+CeH
- vJo5LIVOb9zXEkIswoEpFGp2G4hx1NAi5Wm6LesiQiGC8dcC8ryIrg58xHjhBopYWz250TCWGDtHMw
- gyUx92bYhHwTH/XSschAmUwU30RGYK6wg6cePklAvZoCdW9HO3hDkRP34Xs3mD0QRyS1fmqmyWp0yg
- s7rEkfHrXA5KxH+peXGGFAjGMhv0KOOUY/Ew/8jSzXEa3FZmJv7/Muwzt0Iw==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b53b30fa-b95a-4ae8-dce8-08db9422ab81
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Aug 2023 13:08:03.0071
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ogRgzMKTTo0SiPD8un3W7cs7qjhAxCf0V11sVAOf1Ean/FNAPkAFfoLl850acAfGJQgEdfO8OlougQLN9U/CMQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8604
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230803_050420_286476_C18E3781 
-X-CRM114-Status: GOOD (  12.60  )
+X-CRM114-CacheID: sfid-20230803_062310_664853_74378BE3 
+X-CRM114-Status: GOOD (  25.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,425 +167,82 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This adds a basic devicetree for the MNT Reform2 DIY laptop when using a
-CM4 adapter and a BPI-CM4 module.
 
-Co-developed-by: Lukas F. Hartmann <lukas@mntre.com>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/amlogic/Makefile               |   1 +
- .../meson-g12b-bananapi-cm4-mnt-reform2.dts        | 388 +++++++++++++++++++++
- 2 files changed, 389 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 6f61798a109f..c94d9f514dc9 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-bananapi-m2s.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-bananapi-cm4-cm4io.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-bananapi-cm4-mnt-reform2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gsking-x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts
-new file mode 100644
-index 000000000000..12c4ff9c9372
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts
-@@ -0,0 +1,388 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
-+ * Copyright 2023 MNT Research GmbH
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-g12b-bananapi-cm4.dtsi"
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+/ {
-+	model = "MNT Reform 2 with BPI-CM4 Module";
-+	compatible = "mntre,reform2-cm4", "bananapi,bpi-cm4", "amlogic,a311d", "amlogic,g12b";
-+	chassis-type = "laptop";
-+
-+	aliases {
-+		ethernet0 = &ethmac;
-+		i2c0 = &i2c1;
-+		i2c1 = &i2c3;
-+	};
-+
-+	hdmi_connector: hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-blue {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio_ao GPIOAO_7 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+
-+		led-green {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "MNT-REFORM2-BPI-CM4";
-+		audio-widgets = "Headphone", "Headphone Jack",
-+				"Speaker", "External Speaker",
-+				"Microphone", "Mic Jack";
-+		audio-aux-devs = <&tdmout_a>, <&tdmout_b>, <&tdmin_b>;
-+		audio-routing =	"TDMOUT_A IN 0", "FRDDR_A OUT 0",
-+				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
-+				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
-+				"TDM_A Playback", "TDMOUT_A OUT",
-+				"TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT",
-+				"TDMIN_B IN 1", "TDM_B Capture",
-+				"TDMIN_B IN 4", "TDM_B Loopback",
-+				"TODDR_A IN 1", "TDMIN_B OUT",
-+				"TODDR_B IN 1", "TDMIN_B OUT",
-+				"TODDR_C IN 1", "TDMIN_B OUT",
-+				"Headphone Jack", "HP_L",
-+				"Headphone Jack", "HP_R",
-+				"External Speaker", "SPK_LP",
-+				"External Speaker", "SPK_LN",
-+				"External Speaker", "SPK_RP",
-+				"External Speaker", "SPK_RN",
-+				"LINPUT1", "Mic Jack",
-+				"Mic Jack", "MICB";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+					<&clkc CLKID_MPLL0>,
-+					<&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&toddr_a>;
-+		};
-+
-+		dai-link-4 {
-+			sound-dai = <&toddr_b>;
-+		};
-+
-+		dai-link-5 {
-+			sound-dai = <&toddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-6 {
-+			sound-dai = <&tdmif_a>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_A>;
-+			};
-+		};
-+
-+		/* Analog Audio */
-+		dai-link-7 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&wm8960>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-8 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+
-+	reg_main_1v8: regulator-main-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&reg_main_3v3>;
-+	};
-+
-+	reg_main_1v2: regulator-main-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1V2";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&reg_main_5v>;
-+	};
-+
-+	reg_main_3v3: regulator-main-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	reg_main_5v: regulator-main-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	reg_main_usb: regulator-main-usb {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_PWR";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&reg_main_5v>;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm_AO_ab 0 10000 0>;
-+		power-supply = <&reg_main_usb>;
-+		enable-gpios = <&gpio 58 GPIO_ACTIVE_HIGH>;
-+		brightness-levels = <0 32 64 128 160 200 255>;
-+		default-brightness-level = <6>;
-+
-+		status = "okay";
-+	};
-+
-+	panel {
-+		compatible = "innolux,n125hce-gn1", "simple-panel";
-+		power-supply = <&reg_main_3v3>;
-+		backlight = <&backlight>;
-+		no-hpd;
-+
-+		status = "okay";
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&edp_bridge_out>;
-+			};
-+		};
-+	};
-+
-+	clock_12288: clock_12288 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <12288000>;
-+	};
-+};
-+
-+&mipi_analog_dphy {
-+	status = "okay";
-+};
-+
-+&mipi_dphy {
-+	status = "okay";
-+};
-+
-+&mipi_dsi {
-+	status = "okay";
-+
-+	assigned-clocks = <&clkc CLKID_GP0_PLL>,
-+			  <&clkc CLKID_MIPI_DSI_PXCLK_SEL>,
-+			  <&clkc CLKID_MIPI_DSI_PXCLK>,
-+			  <&clkc CLKID_CTS_ENCL_SEL>,
-+			  <&clkc CLKID_VCLK2_SEL>;
-+	assigned-clock-parents = <0>,
-+				 <&clkc CLKID_GP0_PLL>,
-+				 <0>,
-+				 <&clkc CLKID_VCLK2_DIV1>,
-+				 <&clkc CLKID_GP0_PLL>;
-+	assigned-clock-rates = <936000000>,
-+			       <0>,
-+			       <936000000>,
-+			       <0>,
-+			       <0>;
-+};
-+
-+&mipi_dsi_panel_port {
-+	mipi_dsi_out: endpoint {
-+		remote-endpoint = <&edp_bridge_in>;
-+	};
-+};
-+
-+&cecb_AO {
-+	status = "okay";
-+};
-+
-+&ethmac {
-+	status = "okay";
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&pwm_AO_ab {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm_ao_a_pins>;
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+
-+	edp_bridge: bridge@2c {
-+		compatible = "ti,sn65dsi86";
-+		reg = <0x2c>;
-+		enable-gpios = <&gpio GPIOX_10 GPIO_ACTIVE_HIGH>; // PIN_24 / GPIO8
-+		vccio-supply = <&reg_main_1v8>;
-+		vpll-supply = <&reg_main_1v8>;
-+		vcca-supply = <&reg_main_1v2>;
-+		vcc-supply = <&reg_main_1v2>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				edp_bridge_in: endpoint {
-+					remote-endpoint = <&mipi_dsi_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				edp_bridge_out: endpoint {
-+					remote-endpoint = <&panel_in>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	wm8960: codec@1a {
-+		compatible = "wlf,wm8960";
-+		reg = <0x1a>;
-+		clocks = <&clock_12288>;
-+		clock-names = "mclk";
-+		#sound-dai-cells = <0>;
-+		wlf,shared-lrclk;
-+	};
-+
-+	rtc@68 {
-+		compatible = "nxp,pcf8523";
-+		reg = <0x68>;
-+	};
-+};
-+
-+&pcie {
-+	status = "okay";
-+};
-+
-+&sd_emmc_b {
-+	status = "okay";
-+};
-+
-+&tdmif_a {
-+	status = "okay";
-+};
-+
-+&tdmout_a {
-+	status = "okay";
-+};
-+
-+&tdmif_b {
-+	pinctrl-0 = <&tdm_b_dout0_pins>, <&tdm_b_fs_pins>, <&tdm_b_sclk_pins>, <&tdm_b_din1_pins>;
-+	pinctrl-names = "default";
-+
-+	assigned-clocks = <&clkc_audio AUD_CLKID_TDM_SCLK_PAD1>,
-+			  <&clkc_audio AUD_CLKID_TDM_LRCLK_PAD1>;
-+	assigned-clock-parents = <&clkc_audio AUD_CLKID_MST_B_SCLK>,
-+				 <&clkc_audio AUD_CLKID_MST_B_LRCLK>;
-+	assigned-clock-rates = <0>, <0>;
-+};
-+
-+&tdmin_b {
-+	status = "okay";
-+};
-+
-+&toddr_a {
-+	status = "okay";
-+};
-+
-+&toddr_b {
-+	status = "okay";
-+};
-+
-+&toddr_c {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
-+
-+&usb {
-+	dr_mode = "host";
-+
-+	status = "okay";
-+};
+> -----Original Message-----
+> From: Johannes Zink <j.zink@pengutronix.de>
+> Sent: Thursday, August 3, 2023 1:36 AM
+> To: Shenwei Wang <shenwei.wang@nxp.com>; Russell King
+> <linux@armlinux.org.uk>; David S. Miller <davem@davemloft.net>; Eric
+> Dumazet <edumazet@google.com>; Jakub Kicinski <kuba@kernel.org>; Paolo
+> Abeni <pabeni@redhat.com>; Maxime Coquelin
+> <mcoquelin.stm32@gmail.com>; Shawn Guo <shawnguo@kernel.org>; Sascha
+> Hauer <s.hauer@pengutronix.de>; Neil Armstrong <neil.armstrong@linaro.org>;
+> Kevin Hilman <khilman@baylibre.com>; Vinod Koul <vkoul@kernel.org>; Chen-
+> Yu Tsai <wens@csie.org>; Jernej Skrabec <jernej.skrabec@gmail.com>; Samuel
+> Holland <samuel@sholland.org>
+> Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>; Alexandre Torgue
+> <alexandre.torgue@foss.st.com>; Jose Abreu <joabreu@synopsys.com>;
+> Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> <festevam@gmail.com>; dl-linux-imx <linux-imx@nxp.com>; Jerome Brunet
+> <jbrunet@baylibre.com>; Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com>; Bhupesh Sharma
+> <bhupesh.sharma@linaro.org>; Nobuhiro Iwamatsu
+> <nobuhiro1.iwamatsu@toshiba.co.jp>; Simon Horman
+> > It has the general fix_speed function there named imx_dwmac_fix_speed.
+> > This one is the special for this mx93 fix.
+>
+> I think I might have misunderstood your last statement or I failed to express my
+> point. If you need to replace the dwmac_fix_speed() on mx93, because this SoC
+> implementation requires doing so (the usual reason for doing something like this
+> is something like reset quirks because of screwed up IP Core integration), then
+> your approach is imho valid.
+>
+> But if I got your last comment right, your changes should apply to EQOS MAC in
+> general (but you want to only enable it for mx93 at the moment). In this case
+> this quirk will later be as the fix_mac_speed function for other hardware as well,
+> in which case the name ..._mx93 is misleading, and imho rather a descriptive
+> name should be used (i.e. have the name describe what it does rather than for
+> what hardware it is implemented).
+>
 
--- 
-2.34.1
+The idea of supporting the SJA1105 is general, but the implementation depends on the
+specific SoC. This patch provides the implementation for the MX93 SoC. To support the
+MX8x SoCs, the implementation would need to be rewritten based on the current state
+of the dwmac-imx driver.
+
+I agree the function name is somewhat ugly. Maybe a better name could be:
+mx93_dwmac_fix_speed()
+
+The assumption is that the process of pausing the clock can still be considered part of fixing the speed.
+
+Thanks,
+Shenwei
+
+> Except if the maintainers have a strong opinion that the ..._mx93 suffix version
+> is exactly how you should proceed...
+>
+> Best regards
+> Johannes
+>
+> >
+> > Thanks,
+> > Shenwei
+> > [snip]
+>
+>
+> --
+> Pengutronix e.K.                | Johannes Zink                  |
+> Steuerwalder Str. 21            |
+> https://www.pe/
+> ngutronix.de%2F&data=05%7C01%7Cshenwei.wang%40nxp.com%7Cd328d89d
+> 14e847270d5a08db93ebff01%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7
+> C0%7C638266414027048795%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLj
+> AwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C
+> %7C&sdata=dkE9Es7kl3uNYx8zJYZt2r6933dSNtYDpQzCEagAV3M%3D&reserved
+> =0    |
+> 31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+> Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
 
 
 _______________________________________________
