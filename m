@@ -4,153 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00A04C001DF
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Aug 2023 13:23:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 901B9C04A6A
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Aug 2023 14:08:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aU2EmjVcgQ7F7dheSoScKgWgvvAHuhvPPU/6TsArkRA=; b=1r1mBRKiiBEsMY
-	H52w93Q6dYCqbNwxLE63UU9D9Ny69FBONHCAJ0whyB3rMo1/ZbmJrxGVy7bgSbd6ekwrsNPlIlNNI
-	We+W9ku6V02e8GeHPyFwE1qluDs/+GzggB8Bo8xB9xD4EzV0RRDaEN7bB1/1OQ4ZKq3xwDf2Wm2GW
-	aYOP/zCNRCSi0xabw68xnAqFqdTf1vz2G2OKPrerq9OEUBRK0flOdvK+lh1H6L/mZilMMHRajhrQY
-	FpFhHeLOJkV7FJPAv0qfiswwYy4yT1Rf+i5D0qIhpefproXCMp+84zz3a5om6hYw+qIiKFiQrcDK+
-	v6r8Em9dN83rD0MZrTVQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Kz/xkn9ZFKLvZOPQ5oXGCfn3KuESn77kfzOZrEVFABU=; b=tNbAK4atTGT9Pq
+	ZXWFF0t3d8rE6b+RwToLZAr1AD8+eb29vXBM/qAjhJCsitUIUWHT4I8WaeBqNAXDUIMLjfvk1Exqz
+	306H62JMCc6EXCLJvRRIC+MI1t2KVIvzb5mPtbKr9rOVoPaE8lBgyCslDiS/gj0AmEPCGIqIIbjKN
+	sxKpdqNj6bug5QobLtqyMqUwRd0CKtewj4CTckUib+ySgeVHwviybzy1lHUK4Umin4fcpmlP3HlUR
+	jL1YUz9BjoC20A2BBsJj9qKSfzyH1UQvJGWKnn/v1vdDdWaUaf6a6kdz/yV5OWLwhmjN5gE9nR8WU
+	HG/HoZjx/lztirCMWE3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qRYIM-008wNm-25;
-	Thu, 03 Aug 2023 13:23:14 +0000
-Received: from mail-am6eur05on2060c.outbound.protection.outlook.com ([2a01:111:f400:7e1b::60c] helo=EUR05-AM6-obe.outbound.protection.outlook.com)
+	id 1qRZ08-009Rla-2G;
+	Thu, 03 Aug 2023 14:08:28 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qRYII-008wIZ-1x;
-	Thu, 03 Aug 2023 13:23:12 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bozFGSxXbvJ/qW12EKCDuUhsddhBIbHnNlb0pflD3b/KbXjdmLiUpPX5X9ClrOWVW3QBKKg/UzX9fw+VTXm811SUUw0YhUod56EQKmz6zGeNP4tKg9IcAzsgodlYcQYcNwnB/90aetZN0Z52+1VG97ITYJ/kG9jUwkTja5A7nhOaUFwVdAEsJJ2++kkqxleG/a50G/Rpzl/AeeNhoQd0b+NVpKdGZJbtB0X3w9vmXCZTWcOKyAZdhRnc7UBmLwESBfsemGgczY0kgYe4P5WLxmphFoIbt8VpYSq+XiiUvc4MZP02SRxjCZzArmh1FUEX7GO9uVHCzk5PW4Fw6P1ovg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cP0QUPSl56zdo3LgBD2UOgk1OjiC7FnJ9jjEw9uR1aQ=;
- b=BMmR2L3Wnr+OkckIqD0iwEH7Fw8Q2ooznSr8tNjOVH9PiG55eJMrqH++ZQSJ3EaYIfHTt1X7p8gOYgVNIx9ON4ngbxXxBhYHr5l5dLpVZn4tw32rGSNsfEwdVEyV5L1TBQaVeax8kj9Bhm1ILwiOmwPUHjmHy4q5PgXI0TNhI83lHlA4TB0gnOEV8tzdK9FWVfFJ2ruN4edPk+NdSVrP5i6Ugc0QJUrrlNNIJGpk1MEyq0o1mlUvQ7ZxNzwopbpRrU7uCFNIJqmxGWEfNpgNAZt9DacqVHf6MuIOkrzqPuwsCitGIxzabKMj1XHESJRLwUw0ubJeK9ucJTWMZZy6Kw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cP0QUPSl56zdo3LgBD2UOgk1OjiC7FnJ9jjEw9uR1aQ=;
- b=FD2DHvcMAG1Y1Y4qSdbn4xjkEUp/7AqZ/L/3f8ztVj7QgDSOChShDzhMW8WukoJbKl3WBw2aT3EI7n6L+iLYoKwLA6aPjDzT0ivuZGwW4jZrvw3RX84RZR+rhK7Yf7yEdZOba2lMAgcEPmowyL2n5SGs/1vjUelQOpskUF3osbc=
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
- by AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.47; Thu, 3 Aug
- 2023 13:08:03 +0000
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::d4ee:8daa:92f4:9671]) by PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::d4ee:8daa:92f4:9671%3]) with mapi id 15.20.6631.046; Thu, 3 Aug 2023
- 13:08:03 +0000
-From: Shenwei Wang <shenwei.wang@nxp.com>
-To: Johannes Zink <j.zink@pengutronix.de>, Russell King
-	<linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Shawn Guo
-	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Vinod Koul
-	<vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
-	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
-CC: Giuseppe Cavallaro <peppe.cavallaro@st.com>, Alexandre Torgue
-	<alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
-	<festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>, Jerome Brunet
-	<jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Bhupesh Sharma
-	<bhupesh.sharma@linaro.org>, Nobuhiro Iwamatsu
-	<nobuhiro1.iwamatsu@toshiba.co.jp>, Simon Horman <simon.horman@corigine.com>,
-	Andrew Halaney <ahalaney@redhat.com>, Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>, Wong Vee Khee <veekhee@apple.com>, Revanth
- Kumar Uppala <ruppala@nvidia.com>, Jochen Henneberg
-	<jh@henneberg-systemdesign.com>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>, "linux-stm32@st-md-mailman.stormreply.com"
-	<linux-stm32@st-md-mailman.stormreply.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-amlogic@lists.infradead.org"
-	<linux-amlogic@lists.infradead.org>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>, Frank Li <frank.li@nxp.com>
-Subject: RE: [EXT] Re: [PATCH v3 net 2/2] net: stmmac: dwmac-imx: pause the
- TXC clock in fixed-link
-Thread-Topic: [EXT] Re: [PATCH v3 net 2/2] net: stmmac: dwmac-imx: pause the
- TXC clock in fixed-link
-Thread-Index: AQHZw8rr+4AkxJNLt0GANB66N1LNC6/VZScAgABIh3CAAN8TAIAAhezwgAAERICAABXLQIAA9VKAgABnjmA=
-Date: Thu, 3 Aug 2023 13:08:02 +0000
-Message-ID: <PAXPR04MB9185E6512A5220E83D17D6A58908A@PAXPR04MB9185.eurprd04.prod.outlook.com>
-References: <20230731161929.2341584-1-shenwei.wang@nxp.com>
- <20230731161929.2341584-3-shenwei.wang@nxp.com>
- <bf2979c4-0b63-be53-b530-3d7385796534@pengutronix.de>
- <PAXPR04MB9185D7D3B088E4786A216044890AA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <e32c89e1-7385-105b-63c9-74f58c2253cb@pengutronix.de>
- <PAXPR04MB91851BB5D1375AF0EF3C51B7890BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <49d52a10-20cf-9c5b-ebe3-07292664fe11@pengutronix.de>
- <PAXPR04MB9185C0C3B3E41534F555BC43890BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <22f979e8-7591-3393-f323-114da0131e7a@pengutronix.de>
-In-Reply-To: <22f979e8-7591-3393-f323-114da0131e7a@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB9185:EE_|AM9PR04MB8604:EE_
-x-ms-office365-filtering-correlation-id: b53b30fa-b95a-4ae8-dce8-08db9422ab81
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: TjxgsExC4/RAzJtyEBcjSNmTuhhzsrgiTM5OpWxuHPByo8V+1fmFqd4TsIkcAHOdtHa30/qrniMIMK2w+w6hL7nhN1yP/h+T4G7H0Z/h/aSK/7CffDBH7TCV7tDzqBCfdcHHqAUm9jqpdi68nibxvqjsVBxLL7Ca0/z46PGtff3fjp1XTvIc+rMWvEqBnXuPpO1RrR0TZ9g71Ks0aIQVvChMI1brQogX3XJcqifeNNNoVmlIvCx+P4iL728rPS0/bxwFAoh4EJZjCg5W0iOnrfWSSLxbfABYIeG3YI/+JgPQMBZqX6vlC0VqdFG0EhTrbuJcdjp4K2bw2jXjjg+oFDuqXqntznAjE6/XJqxE3riW6IjFNPFsK440Yf6NTcdzfj1zZ/1jULV8GuVoLdrTnDfmR7o/EM5q25DZql32//1O5CZUpmI9884pGqNl4iftEEawpouS9VuHdsBmxcUoP7MVTyOmZAxmF5r1VEz5bTve1GVc1SzcZ9sq4nYYwAxA+153mj88odeRlboTmgjk0cN94YwYZw7v2cy8YHRxFqgtzqkmpyNnXb/OisA946T0+k+T9IhlUKKI1zi/E92pHiidIRm8tFRlp5Ga13JEcOlxVJiVEAwo+QB36kziDBPk
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(376002)(136003)(39860400002)(396003)(346002)(451199021)(53546011)(55236004)(83380400001)(6506007)(26005)(186003)(41300700001)(52536014)(2906002)(66946007)(76116006)(4326008)(64756008)(66446008)(66476007)(66556008)(5660300002)(316002)(44832011)(7416002)(8676002)(8936002)(7696005)(71200400001)(966005)(7406005)(9686003)(45080400002)(478600001)(54906003)(110136005)(55016003)(38100700002)(921005)(122000001)(33656002)(86362001)(38070700005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?MkNqZII/6Odjt5OpNRfmakRxvPB+HY9Wbepal+5J0APGsHvoka/fLni+LpKN?=
- =?us-ascii?Q?giY7/Rgl0fIfPQlCkxd+EfFdOJ4kjyGsDJUr/tmKzi7QtycKptiO6mcavY9N?=
- =?us-ascii?Q?oXB4hKlJAuWwwBK40WCZOde068f94N7QhIcgyMeF/29yduqgPQG3FRTUtk/8?=
- =?us-ascii?Q?E40qqIRCUJBlLplPBLuvU2aDeferZJAImm0xyMfVrmwzZdS3itMpRUTGtSPd?=
- =?us-ascii?Q?1JGX5E5a0+2HT7JHjT2orz+1Kg9wyJKLMEXle1RoPqBfKvau2g0C/rvdhKKe?=
- =?us-ascii?Q?PD/yNt2VB2bFjIxafS0pFI7Zu5Z0xRtrLbMcFKla4OiZm+clAQQ+BSpyosgY?=
- =?us-ascii?Q?EqaGnkEUVf1NSZ0qwogCdOtaDQvr0OPsuu9sq11QDa/+wpU+QXRhmhqfqOhS?=
- =?us-ascii?Q?QW0+Qiy/p30ZiIC4giLJnHqnl0tDWtjV9O6eva/cQfDvtP2DVFEXBimcDLuR?=
- =?us-ascii?Q?1bVw0O2D+BdbkdPdmgSODNGRBjXPb8VsuZkVf1E1RYlvg6YCEp06VlCOyRKp?=
- =?us-ascii?Q?ieCf/YIQM6BbLL/T6lDHEgfnI4f+qokFkf212+hQ3bOPl8rmJziJSd6rHhei?=
- =?us-ascii?Q?04hEg1LiQXtSMlCxdbogf9BdOgKMV+y5nwnX36QfntwwjMkShlW06yIgCHV8?=
- =?us-ascii?Q?hmaLlc9ii2qdTfAiPdAwEl/a31NjnM2yD+8rhZPA/7tFxSOPurVYNIWS81l5?=
- =?us-ascii?Q?WVB+AVkxfj592ehKZ3ncXFgIk4yUztNUfUAvxNn/14luGdAKR5oEsMoBfL/y?=
- =?us-ascii?Q?XNlFHc6aDyX++KzHk8D+2wIgDcy51SKMDUM0Vrc0S/arFnQbvjWQ1RJkw4Xg?=
- =?us-ascii?Q?YxFH9zc+6P0st14xZHHJwp7+NyaaIMy7c1YvhGQfsg7nSLvBz5Q2kQCRa8g4?=
- =?us-ascii?Q?8UzJAnsmq6o1CH/iRurNLiGYURIn6dP6H1VXc54/tHAaZr42EdCqUyJaPx4v?=
- =?us-ascii?Q?++2pOwXmsgjJQx9bOIbauNVos8K3ws16L47hmnpGebaq5dtK3iuHLQVm9m0l?=
- =?us-ascii?Q?dyVsEjZm88XADzPM/uQXy1zbqzVZMfLjPwCIVG/qRorfh1q4ZzgKoGaDVbyS?=
- =?us-ascii?Q?xd6YJnS5EuW3h2QIYweKrNpe8g+5m90FcHyl2Q4peXrNtNoh7z3J/6gIhU8j?=
- =?us-ascii?Q?B8+PDumVtHl8tOOXkQgFB0paj6jyzxPXqivUIVLcACRgB2kWMnsFLaTEetMc?=
- =?us-ascii?Q?LmAJ4azkciA6TAJZgjyfIBgT+NNX/+6mYKKIc6OCYQ0xBVboIXERCmGR2FEV?=
- =?us-ascii?Q?X7VLEN5lyRTuFCZl1eG50cZUBGu5lFBltKClVDNIVzfULtUq/SAmzm8hrZmh?=
- =?us-ascii?Q?A5W0q8zGmia2ii6rtATRQIDjGep6GTopTBkwJwRrr+GQ+zjV9emBN3Joozk0?=
- =?us-ascii?Q?R7+gqxdhvpFXVGPs9WTzW2EXmanXnZON1IeFC1CP0VdB7bWTdd7wcg829eKD?=
- =?us-ascii?Q?eiy/zjbPEUyI9XhabvQWlYar+8ikPkUrp6jTu3BRG3e5R4879W+Is5DoPjLx?=
- =?us-ascii?Q?7f18PYKKK7Fo1+FpzrAERp3ofPzlI7CoabcDMDLT+fsqvkS/Dqh5wQ7QBN8q?=
- =?us-ascii?Q?YXUcGtxVfytGs7llJH37hxC1QHZnNHIj6o1lTqZw?=
+	id 1qRZ01-009ReK-16
+	for linux-amlogic@lists.infradead.org;
+	Thu, 03 Aug 2023 14:08:22 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qRYyZ-0006mV-Nr; Thu, 03 Aug 2023 16:06:51 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qRYyN-000rBF-In; Thu, 03 Aug 2023 16:06:39 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qRYyM-00A9kB-Jk; Thu, 03 Aug 2023 16:06:38 +0200
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Andy Shevchenko <andy@kernel.org>,
+	Douglas Anderson <dianders@chromium.org>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
+	Hector Martin <marcan@marcan.st>,
+	Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@microchip.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Alexander Shiyan <shc_work@mail.ru>,
+	Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Paul Cercueil <paul@crapouillou.net>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	=?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Michael Walle <michael@walle.cc>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Hammer Hsieh <hammerh0314@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+	Sean Anderson <sean.anderson@seco.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Johan Hovold <johan@kernel.org>,
+	Alex Elder <elder@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	linux-pwm@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	chrome-platform@lists.linux.dev,
+	linux-mips@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-riscv@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-sunxi@lists.linux.dev,
+	linux-tegra@vger.kernel.org,
+	greybus-dev@lists.linaro.org,
+	linux-staging@lists.linux.dev
+Subject: [PATCH 0/2] pwm: Manage owner assignment implicitly for drivers
+Date: Thu,  3 Aug 2023 16:06:30 +0200
+Message-Id: <20230803140633.138165-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b53b30fa-b95a-4ae8-dce8-08db9422ab81
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Aug 2023 13:08:03.0071
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ogRgzMKTTo0SiPD8un3W7cs7qjhAxCf0V11sVAOf1Ean/FNAPkAFfoLl850acAfGJQgEdfO8OlougQLN9U/CMQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8604
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4136; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=fUIfC654WxtfT7CEJ8mGT4DHYTt22edc6EeQOO0mgBU=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBky7RhOm8jkQTlEYB5GsZS8El0/H9apHFEdsZFO x8y+5Ja40OJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZMu0YQAKCRCPgPtYfRL+ TsJcB/90L6hN+ip+TjX3AzflYEmXfAvsD7DvqLlndSD4q7tLpczaexF3R7J6u81XciSqOUe2jgL ZFH92dwUdpov0xdqiWraRK+aZJ+b0W4jpGsrqqlhoMdolr0pAB7fIFytPguywOKD62dbKy1CvL1 Dhl29UAwsXqsIV7jcTR/3lRLsFUwN9/STI8/IVeD4JJHoLv16c1Q61uVC/I22L/ivskcK9F/YQX 7it5vFhz9lfLpr79GuNQ3+d+atoBJRDfjCnDak/HWaR9JRk7b7F8pb+oq6ih+R2INrvw1jlBxDW 1b3cg6OWSLaXTh/Y3/NSkgaZz/kG8/JbVRjAFD6tfDS0KfZO
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230803_062310_664853_74378BE3 
-X-CRM114-Status: GOOD (  25.63  )
+X-CRM114-CacheID: sfid-20230803_070821_547542_3AE83CA1 
+X-CRM114-Status: GOOD (  14.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -162,90 +149,82 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-> -----Original Message-----
-> From: Johannes Zink <j.zink@pengutronix.de>
-> Sent: Thursday, August 3, 2023 1:36 AM
-> To: Shenwei Wang <shenwei.wang@nxp.com>; Russell King
-> <linux@armlinux.org.uk>; David S. Miller <davem@davemloft.net>; Eric
-> Dumazet <edumazet@google.com>; Jakub Kicinski <kuba@kernel.org>; Paolo
-> Abeni <pabeni@redhat.com>; Maxime Coquelin
-> <mcoquelin.stm32@gmail.com>; Shawn Guo <shawnguo@kernel.org>; Sascha
-> Hauer <s.hauer@pengutronix.de>; Neil Armstrong <neil.armstrong@linaro.org>;
-> Kevin Hilman <khilman@baylibre.com>; Vinod Koul <vkoul@kernel.org>; Chen-
-> Yu Tsai <wens@csie.org>; Jernej Skrabec <jernej.skrabec@gmail.com>; Samuel
-> Holland <samuel@sholland.org>
-> Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>; Alexandre Torgue
-> <alexandre.torgue@foss.st.com>; Jose Abreu <joabreu@synopsys.com>;
-> Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
-> <festevam@gmail.com>; dl-linux-imx <linux-imx@nxp.com>; Jerome Brunet
-> <jbrunet@baylibre.com>; Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com>; Bhupesh Sharma
-> <bhupesh.sharma@linaro.org>; Nobuhiro Iwamatsu
-> <nobuhiro1.iwamatsu@toshiba.co.jp>; Simon Horman
-> > It has the general fix_speed function there named imx_dwmac_fix_speed.
-> > This one is the special for this mx93 fix.
->
-> I think I might have misunderstood your last statement or I failed to express my
-> point. If you need to replace the dwmac_fix_speed() on mx93, because this SoC
-> implementation requires doing so (the usual reason for doing something like this
-> is something like reset quirks because of screwed up IP Core integration), then
-> your approach is imho valid.
->
-> But if I got your last comment right, your changes should apply to EQOS MAC in
-> general (but you want to only enable it for mx93 at the moment). In this case
-> this quirk will later be as the fix_mac_speed function for other hardware as well,
-> in which case the name ..._mx93 is misleading, and imho rather a descriptive
-> name should be used (i.e. have the name describe what it does rather than for
-> what hardware it is implemented).
->
-
-The idea of supporting the SJA1105 is general, but the implementation depends on the
-specific SoC. This patch provides the implementation for the MX93 SoC. To support the
-MX8x SoCs, the implementation would need to be rewritten based on the current state
-of the dwmac-imx driver.
-
-I agree the function name is somewhat ugly. Maybe a better name could be:
-mx93_dwmac_fix_speed()
-
-The assumption is that the process of pausing the clock can still be considered part of fixing the speed.
-
-Thanks,
-Shenwei
-
-> Except if the maintainers have a strong opinion that the ..._mx93 suffix version
-> is exactly how you should proceed...
->
-> Best regards
-> Johannes
->
-> >
-> > Thanks,
-> > Shenwei
-> > [snip]
->
->
-> --
-> Pengutronix e.K.                | Johannes Zink                  |
-> Steuerwalder Str. 21            |
-> https://www.pe/
-> ngutronix.de%2F&data=05%7C01%7Cshenwei.wang%40nxp.com%7Cd328d89d
-> 14e847270d5a08db93ebff01%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7
-> C0%7C638266414027048795%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLj
-> AwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C
-> %7C&sdata=dkE9Es7kl3uNYx8zJYZt2r6933dSNtYDpQzCEagAV3M%3D&reserved
-> =0    |
-> 31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-> Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGVsbG8sCgp3aGlsZSB3b3JraW5nIG9uIHRoZSBwd20gY29yZSBJIG5vdGljZWQgdGhhdCBwd20t
+Y3JjIGRvZXNuJ3QgYXNzaWduCi5vd25lciBpbiBpdHMgcHdtX29wcyBzdHJ1Y3R1cmUuIFRoaXMg
+aXNuJ3QgYSBwcm9ibGVtIGluIHByYWN0aXNlIHRob3VnaAphcyB0aGlzIGRyaXZlciBjYW4gb25s
+eSBiZSBjb21waWxlZCBidWlsdC1pbiAodXAgdG8gbm93KS4KClN0aWxsIHByZXZlbnQgZnV0dXJl
+IHB3bSBkcml2ZXJzIG5vdCBhc3NpZ25pbmcgLm93bmVyIGJ5IHdyYXBwaW5nCnB3bWNoaXBfYWRk
+KCkgaW4gYSBtYWNybyB0aGF0IGF1dG9tYXRlcyBvd25lciBoYW5kbGluZyBzaW1wbGlmeWluZyBl
+YWNoCmRyaXZlciBhICh0aW55KSBiaXQuCgpJIGFsc28gZm91bmQgdGhhdCB0aGVyZSBpcyBubyBo
+YXJkIHJlYXNvbiB0byBvbmx5IGNvbXBpbGUgcHdtLWNyYyBhcyBhCmJ1aWx0LWluIG9uIHg4Niwg
+c28gdGhpcyBsaW1pdGF0aW9uIGlzIGxpZnRlZCBpbiB0aGUgc2Vjb25kIHBhdGNoLgoKQmVzdCBy
+ZWdhcmRzClV3ZQoKVXdlIEtsZWluZS1Lw7ZuaWcgKDIpOgogIHB3bTogTWFuYWdlIG93bmVyIGFz
+c2lnbm1lbnQgaW1wbGljaXRseSBmb3IgZHJpdmVycwogIHB3bTogY3JjOiBBbGxvdyBjb21waWxh
+dGlvbiBhcyBtb2R1bGUgYW5kIHdpdGggQ09NUElMRV9URVNUCgogZHJpdmVycy9ncGlvL2dwaW8t
+bXZlYnUuYyAgICAgICAgICAgICB8ICAxIC0KIGRyaXZlcnMvZ3B1L2RybS9icmlkZ2UvdGktc242
+NWRzaTg2LmMgfCAgMSAtCiBkcml2ZXJzL2xlZHMvcmdiL2xlZHMtcWNvbS1scGcuYyAgICAgIHwg
+IDEgLQogZHJpdmVycy9wd20vS2NvbmZpZyAgICAgICAgICAgICAgICAgICB8ICA0ICsrLS0KIGRy
+aXZlcnMvcHdtL2NvcmUuYyAgICAgICAgICAgICAgICAgICAgfCAyMCArKysrKysrKysrKy0tLS0t
+LS0tLQogZHJpdmVycy9wd20vcHdtLWFiODUwMC5jICAgICAgICAgICAgICB8ICAxIC0KIGRyaXZl
+cnMvcHdtL3B3bS1hcHBsZS5jICAgICAgICAgICAgICAgfCAgMSAtCiBkcml2ZXJzL3B3bS9wd20t
+YXRtZWwtaGxjZGMuYyAgICAgICAgIHwgIDEgLQogZHJpdmVycy9wd20vcHdtLWF0bWVsLXRjYi5j
+ICAgICAgICAgICB8ICAxIC0KIGRyaXZlcnMvcHdtL3B3bS1hdG1lbC5jICAgICAgICAgICAgICAg
+fCAgMSAtCiBkcml2ZXJzL3B3bS9wd20tYmNtLWlwcm9jLmMgICAgICAgICAgIHwgIDEgLQogZHJp
+dmVycy9wd20vcHdtLWJjbS1rb25hLmMgICAgICAgICAgICB8ICAxIC0KIGRyaXZlcnMvcHdtL3B3
+bS1iY20yODM1LmMgICAgICAgICAgICAgfCAgMSAtCiBkcml2ZXJzL3B3bS9wd20tYmVybGluLmMg
+ICAgICAgICAgICAgIHwgIDEgLQogZHJpdmVycy9wd20vcHdtLWJyY21zdGIuYyAgICAgICAgICAg
+ICB8ICAxIC0KIGRyaXZlcnMvcHdtL3B3bS1jbGsuYyAgICAgICAgICAgICAgICAgfCAgMSAtCiBk
+cml2ZXJzL3B3bS9wd20tY2xwczcxMXguYyAgICAgICAgICAgIHwgIDEgLQogZHJpdmVycy9wd20v
+cHdtLWNyYy5jICAgICAgICAgICAgICAgICB8ICA1ICsrKystCiBkcml2ZXJzL3B3bS9wd20tY3Jv
+cy1lYy5jICAgICAgICAgICAgIHwgIDEgLQogZHJpdmVycy9wd20vcHdtLWR3Yy5jICAgICAgICAg
+ICAgICAgICB8ICAxIC0KIGRyaXZlcnMvcHdtL3B3bS1lcDkzeHguYyAgICAgICAgICAgICAgfCAg
+MSAtCiBkcml2ZXJzL3B3bS9wd20tZnNsLWZ0bS5jICAgICAgICAgICAgIHwgIDEgLQogZHJpdmVy
+cy9wd20vcHdtLWhpYnZ0LmMgICAgICAgICAgICAgICB8ICAxIC0KIGRyaXZlcnMvcHdtL3B3bS1p
+bWcuYyAgICAgICAgICAgICAgICAgfCAgMSAtCiBkcml2ZXJzL3B3bS9wd20taW14LXRwbS5jICAg
+ICAgICAgICAgIHwgIDEgLQogZHJpdmVycy9wd20vcHdtLWlteDEuYyAgICAgICAgICAgICAgICB8
+ICAxIC0KIGRyaXZlcnMvcHdtL3B3bS1pbXgyNy5jICAgICAgICAgICAgICAgfCAgMSAtCiBkcml2
+ZXJzL3B3bS9wd20taW50ZWwtbGdtLmMgICAgICAgICAgIHwgIDEgLQogZHJpdmVycy9wd20vcHdt
+LWlxczYyMGEuYyAgICAgICAgICAgICB8ICAxIC0KIGRyaXZlcnMvcHdtL3B3bS1qejQ3NDAuYyAg
+ICAgICAgICAgICAgfCAgMSAtCiBkcml2ZXJzL3B3bS9wd20ta2VlbWJheS5jICAgICAgICAgICAg
+IHwgIDEgLQogZHJpdmVycy9wd20vcHdtLWxwMzk0My5jICAgICAgICAgICAgICB8ICAxIC0KIGRy
+aXZlcnMvcHdtL3B3bS1scGMxOHh4LXNjdC5jICAgICAgICAgfCAgMSAtCiBkcml2ZXJzL3B3bS9w
+d20tbHBjMzJ4eC5jICAgICAgICAgICAgIHwgIDEgLQogZHJpdmVycy9wd20vcHdtLWxwc3MuYyAg
+ICAgICAgICAgICAgICB8ICAxIC0KIGRyaXZlcnMvcHdtL3B3bS1tZWRpYXRlay5jICAgICAgICAg
+ICAgfCAgMSAtCiBkcml2ZXJzL3B3bS9wd20tbWVzb24uYyAgICAgICAgICAgICAgIHwgIDEgLQog
+ZHJpdmVycy9wd20vcHdtLW1pY3JvY2hpcC1jb3JlLmMgICAgICB8ICAxIC0KIGRyaXZlcnMvcHdt
+L3B3bS1tdGstZGlzcC5jICAgICAgICAgICAgfCAgMSAtCiBkcml2ZXJzL3B3bS9wd20tbXhzLmMg
+ICAgICAgICAgICAgICAgIHwgIDEgLQogZHJpdmVycy9wd20vcHdtLW50eGVjLmMgICAgICAgICAg
+ICAgICB8ICAxIC0KIGRyaXZlcnMvcHdtL3B3bS1vbWFwLWRtdGltZXIuYyAgICAgICAgfCAgMSAt
+CiBkcml2ZXJzL3B3bS9wd20tcGNhOTY4NS5jICAgICAgICAgICAgIHwgIDEgLQogZHJpdmVycy9w
+d20vcHdtLXB4YS5jICAgICAgICAgICAgICAgICB8ICAxIC0KIGRyaXZlcnMvcHdtL3B3bS1yYXNw
+YmVycnlwaS1wb2UuYyAgICAgfCAgMSAtCiBkcml2ZXJzL3B3bS9wd20tcmNhci5jICAgICAgICAg
+ICAgICAgIHwgIDEgLQogZHJpdmVycy9wd20vcHdtLXJlbmVzYXMtdHB1LmMgICAgICAgICB8ICAx
+IC0KIGRyaXZlcnMvcHdtL3B3bS1yb2NrY2hpcC5jICAgICAgICAgICAgfCAgMSAtCiBkcml2ZXJz
+L3B3bS9wd20tcnotbXR1My5jICAgICAgICAgICAgIHwgIDEgLQogZHJpdmVycy9wd20vcHdtLXNh
+bXN1bmcuYyAgICAgICAgICAgICB8ICAxIC0KIGRyaXZlcnMvcHdtL3B3bS1zaWZpdmUuYyAgICAg
+ICAgICAgICAgfCAgMSAtCiBkcml2ZXJzL3B3bS9wd20tc2wyOGNwbGQuYyAgICAgICAgICAgIHwg
+IDEgLQogZHJpdmVycy9wd20vcHdtLXNwZWFyLmMgICAgICAgICAgICAgICB8ICAxIC0KIGRyaXZl
+cnMvcHdtL3B3bS1zcHJkLmMgICAgICAgICAgICAgICAgfCAgMSAtCiBkcml2ZXJzL3B3bS9wd20t
+c3RpLmMgICAgICAgICAgICAgICAgIHwgIDEgLQogZHJpdmVycy9wd20vcHdtLXN0bTMyLWxwLmMg
+ICAgICAgICAgICB8ICAxIC0KIGRyaXZlcnMvcHdtL3B3bS1zdG0zMi5jICAgICAgICAgICAgICAg
+fCAgMSAtCiBkcml2ZXJzL3B3bS9wd20tc3RtcGUuYyAgICAgICAgICAgICAgIHwgIDEgLQogZHJp
+dmVycy9wd20vcHdtLXN1bjRpLmMgICAgICAgICAgICAgICB8ICAxIC0KIGRyaXZlcnMvcHdtL3B3
+bS1zdW5wbHVzLmMgICAgICAgICAgICAgfCAgMSAtCiBkcml2ZXJzL3B3bS9wd20tdGVncmEuYyAg
+ICAgICAgICAgICAgIHwgIDEgLQogZHJpdmVycy9wd20vcHdtLXRpZWNhcC5jICAgICAgICAgICAg
+ICB8ICAxIC0KIGRyaXZlcnMvcHdtL3B3bS10aWVocnB3bS5jICAgICAgICAgICAgfCAgMSAtCiBk
+cml2ZXJzL3B3bS9wd20tdHdsLWxlZC5jICAgICAgICAgICAgIHwgIDIgLS0KIGRyaXZlcnMvcHdt
+L3B3bS10d2wuYyAgICAgICAgICAgICAgICAgfCAgMiAtLQogZHJpdmVycy9wd20vcHdtLXZpc2Nv
+bnRpLmMgICAgICAgICAgICB8ICAxIC0KIGRyaXZlcnMvcHdtL3B3bS12dDg1MDAuYyAgICAgICAg
+ICAgICAgfCAgMSAtCiBkcml2ZXJzL3B3bS9wd20teGlsaW54LmMgICAgICAgICAgICAgIHwgIDEg
+LQogZHJpdmVycy9zdGFnaW5nL2dyZXlidXMvcHdtLmMgICAgICAgICB8ICAxIC0KIGluY2x1ZGUv
+bGludXgvcHdtLmggICAgICAgICAgICAgICAgICAgfCAgOCArKysrKy0tLQogNzAgZmlsZXMgY2hh
+bmdlZCwgMjIgaW5zZXJ0aW9ucygrKSwgODMgZGVsZXRpb25zKC0pCgoKYmFzZS1jb21taXQ6IDNj
+Y2IxNzlhYTQwZDkzMWViMDBlZjg5MTBkN2I4MTJhOTU2NTk1NjMKLS0gCjIuMzkuMgoKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMg
+bWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
+dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
