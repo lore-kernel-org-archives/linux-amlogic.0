@@ -4,87 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37563C04A94
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Aug 2023 21:07:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11EDBC0015E
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Aug 2023 06:37:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=I6QOwFVoE+71fM+MTgcCWtiYbfybYM2Hi6z2csuJpHw=; b=OjbQsFn++04B0z
-	TpBibC2Up/N6jb7xDFNFK+PoxpPAQn0DI1x8QY1Gu44Q3g1dtnNXKv4sMqukNJslbWph4USH0UpSS
-	3K9higgegRU1dU5lzyNHY6Zkb9Q6igpap01Nq5chA7xr3IS9xhZQir1CCN6Es7D2BjNiq98+LnM7g
-	6bqJwPuQSZpFOA4goNZa6O4cH7hWR94nho/AR7idBNT/qXg2RRJyhdDY5uwMYMtRV0Rzzkio8zGgh
-	wB61nJ9jW9te6OQSItZwbITFRAxF7osYciRtkdqEk04E/+c/IxqWs/Ge2XBxoS4cDAi/wDgQ1braG
-	GbPJk22hnXABMamjdA0Q==;
+	List-Owner; bh=tjT8lFO1zOlXAtSmEG2kENjPraq9QUetbo6ZdgMEmkc=; b=ZXiSBjQtoOjMhE
+	FLlUEm634sTnqWopN5Sj2a3ZA1/j5diPpG0nXbZXcJylM0ctu3pdNXbcciiSfFXUH8JWN1O6deS9N
+	C670Wik9dg7V9wzqcDBRLwNkbh4EF7iK7pVYtpvAvDfB/TEfLCFUn+5lZ87BaLlr8y0zsNc1dC5nY
+	11hp3uzi4LjxzXhjcacTfqf/vMVFuGFvxLM4gY49ZZMFXpE8vbF3eVXOlFEalf29PRmlC/TbJVLOK
+	nfenCAuGY1wAdxNGBSM4ghq2WyPNwCzoFCL3tPH4IECc0pOzBQYDYZ0o4rdLXz8Z67jwQFE530aaD
+	M2Cbf9tBHsxJy6SA3qCA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qRJ3h-005tuN-1q;
-	Wed, 02 Aug 2023 21:07:05 +0000
-Received: from mail-qk1-x731.google.com ([2607:f8b0:4864:20::731])
+	id 1qRRxj-006mjT-0b;
+	Thu, 03 Aug 2023 06:37:31 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qRJ3f-005ttg-0N;
-	Wed, 02 Aug 2023 21:07:04 +0000
-Received: by mail-qk1-x731.google.com with SMTP id af79cd13be357-7683cdabd8fso14841985a.3;
-        Wed, 02 Aug 2023 14:06:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691010418; x=1691615218;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=crZnLksKhXHygAFAt6KtbbotkkwISuLwd1MjzY9iUSY=;
-        b=Ez/qmwAEpI8zAgjFfoEc2jA+TVE0h8CbBD0jcdPZOcUAxdNhXhj9dfL61QWXF4SdOL
-         awrU41bM3y/pGxIoj5R80VFaHlU3JDeD+/UCYe/MjSXO1kSxTNYpdVyz/d0j8yBXQChD
-         gSc3dX5Z1MN1XESRxjk8tHKHnsDfG6VszQkMav6o/L4fmzroAQYLPcYIq/5Vw50/w/IW
-         jMmlVJJfbBqB2fIC3zS+/DSueXN9czpd3SMUXNf6DiYT+RPUqhG0RTYf00CCl2THyExR
-         rArKBmT8tI9SmxAJCL/Lr2H+BvzS2jNu2QcFg0w73rXZkQrU+eroTc/MBCh1Cfl43DtO
-         kgBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691010418; x=1691615218;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=crZnLksKhXHygAFAt6KtbbotkkwISuLwd1MjzY9iUSY=;
-        b=I8cWMneS4ERslj+IbOY4bnXIKjV1mwHgvQVckoi8T5Kbz5bsskkumuz/iZlREA9M3v
-         WnROx9d9v/YZSXjmX1jpXZMyTXWNMe7VQKnYn/OLuDrXWyClVXNuaSoz2rKt5ucHHeIf
-         3lIudaIyg1PmlrYkz98cd6fbFBeS9qUdp16jz8Py7cuD9FFR+YVBvFqoO7mCMYKy2ZI6
-         91mvVqKEjJSdXZHs5uiijAPqt5JPURcXHwndVrz2PkeVAl7R/cz1p/3dWd9S4vObF9TD
-         rMo/+Op0+oA6x9TVkpclalalldWnp3TCoTxMl3ZrsfJGhgH5s+8Juhd868QzVhsQ2L9H
-         rjdg==
-X-Gm-Message-State: ABy/qLbyS6ukPqRIaC7bUMLxwOAiJuHYBjZp9hiOVOqJ/EYSa2lnUcdI
-	94xbV1eeYRaor58+epChWZM=
-X-Google-Smtp-Source: APBJJlHoS5d3Ipe2H7XAm7BBbIZRwGBIiVdazN/gCWbw8Q7xM1OS6zSlh4WLA2gIzX6CTF3heoL2Wg==
-X-Received: by 2002:a05:6214:313:b0:63c:d6f1:7bcb with SMTP id i19-20020a056214031300b0063cd6f17bcbmr9115831qvu.41.1691010418587;
-        Wed, 02 Aug 2023 14:06:58 -0700 (PDT)
-Received: from Dell-Inspiron-15 ([2601:18c:8380:74b0:e8e5:f40c:d741:8f07])
-        by smtp.gmail.com with ESMTPSA id s18-20020a0cdc12000000b0063d3fef54c6sm5558313qvk.77.2023.08.02.14.06.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Aug 2023 14:06:58 -0700 (PDT)
-Date: Wed, 2 Aug 2023 17:06:55 -0400
-From: Ben Wolsieffer <benwolsieffer@gmail.com>
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org,
-	Matthias Kaehlcke <mka@chromium.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/9] arm64: dts: amlogic: Used onboard usb hub reset
- on odroid c2
-Message-ID: <ZMrFb7H1ynwwBSCA@Dell-Inspiron-15>
-References: <20230121175639.12818-1-linux.amoon@gmail.com>
- <20230121175639.12818-4-linux.amoon@gmail.com>
+	id 1qRRxg-006miR-0j
+	for linux-amlogic@lists.infradead.org;
+	Thu, 03 Aug 2023 06:37:29 +0000
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <j.zink@pengutronix.de>)
+	id 1qRRwt-0004xV-Ry; Thu, 03 Aug 2023 08:36:39 +0200
+Message-ID: <22f979e8-7591-3393-f323-114da0131e7a@pengutronix.de>
+Date: Thu, 3 Aug 2023 08:36:23 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230121175639.12818-4-linux.amoon@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.1
+Subject: Re: [EXT] Re: [PATCH v3 net 2/2] net: stmmac: dwmac-imx: pause the
+ TXC clock in fixed-link
+To: Shenwei Wang <shenwei.wang@nxp.com>, Russell King
+ <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>
+Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+ Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+ Simon Horman <simon.horman@corigine.com>,
+ Andrew Halaney <ahalaney@redhat.com>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Wong Vee Khee <veekhee@apple.com>, Revanth Kumar Uppala
+ <ruppala@nvidia.com>, Jochen Henneberg <jh@henneberg-systemdesign.com>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-stm32@st-md-mailman.stormreply.com"
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>, Frank Li <frank.li@nxp.com>
+References: <20230731161929.2341584-1-shenwei.wang@nxp.com>
+ <20230731161929.2341584-3-shenwei.wang@nxp.com>
+ <bf2979c4-0b63-be53-b530-3d7385796534@pengutronix.de>
+ <PAXPR04MB9185D7D3B088E4786A216044890AA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <e32c89e1-7385-105b-63c9-74f58c2253cb@pengutronix.de>
+ <PAXPR04MB91851BB5D1375AF0EF3C51B7890BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <49d52a10-20cf-9c5b-ebe3-07292664fe11@pengutronix.de>
+ <PAXPR04MB9185C0C3B3E41534F555BC43890BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+Content-Language: en-US, de-DE
+From: Johannes Zink <j.zink@pengutronix.de>
+In-Reply-To: <PAXPR04MB9185C0C3B3E41534F555BC43890BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: j.zink@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230802_140703_155548_DE85C431 
-X-CRM114-Status: GOOD (  27.39  )
+X-CRM114-CacheID: sfid-20230802_233728_262725_B379956D 
+X-CRM114-Status: GOOD (  19.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,90 +99,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, Jan 21, 2023 at 05:56:31PM +0000, Anand Moon wrote:
-> On Odroid c2 previously use gpio-hog to reset the usb hub,
-> switch to used on-board usb hub reset to enable the usb hub
-> and enable power to hub.
+Hi Shenwei,
+
+[snip]
+>>>
+>>>> Also: does this only apply to i.MX93, or would we have to test and
+>>>> enable it on e.g. i.MX8MP as well?
+>>>>
+>>>
+>>> Yes, it is required when the EQOS MAC is selected. However, this patch
+>>> just enables The feature on i.MX93.
+>>
+>> If this behaviour is required on all EQOS, I think the name
+>> imx_dwmac_fix_speed_mx93() is misleading. It should either be
+>> imx_dwmac_fix_speed() if applicable to all imx implementations, or
+>> dwmac_fix_speed() (and moved to a non-gluecode file) if applicable for all
+>> implementations in general.
+>>
 > 
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> v3 - Add rev by Neil.
->      droped dr_mode
-> v2 - drop the vendor name from compatible string.
->    - move the hub node to USB controller node.
->    - drop the usb_otg_pwr since it only liked to OTG port
->          and link p5v0 to the vdd-supply.
-> ---
->  .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 25 ++++++++-----------
->  1 file changed, 10 insertions(+), 15 deletions(-)
+> It has the general fix_speed function there named imx_dwmac_fix_speed.
+> This one is the special for this mx93 fix.
+
+I think I might have misunderstood your last statement or I failed to express 
+my point. If you need to replace the dwmac_fix_speed() on mx93, because this 
+SoC implementation requires doing so (the usual reason for doing something like 
+this is something like reset quirks because of screwed up IP Core integration), 
+then your approach is imho valid.
+
+But if I got your last comment right, your changes should apply to EQOS MAC in 
+general (but you want to only enable it for mx93 at the moment). In this case 
+this quirk will later be as the fix_mac_speed function for other hardware as 
+well, in which case the name ..._mx93 is misleading, and imho rather a 
+descriptive name should be used (i.e. have the name describe what it does 
+rather than for what hardware it is implemented).
+
+Except if the maintainers have a strong opinion that the ..._mx93 suffix 
+version is exactly how you should proceed...
+
+Best regards
+Johannes
+
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> index 201596247fd9..70b10934a811 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> @@ -250,21 +250,6 @@ eth_phy0: ethernet-phy@0 {
->  	};
->  };
->  
-> -&gpio_ao {
-> -	/*
-> -	 * WARNING: The USB Hub on the Odroid-C2 needs a reset signal
-> -	 * to be turned high in order to be detected by the USB Controller
-> -	 * This signal should be handled by a USB specific power sequence
-> -	 * in order to reset the Hub when USB bus is powered down.
-> -	 */
-> -	hog-0 {
-> -		gpio-hog;
-> -		gpios = <GPIOAO_4 GPIO_ACTIVE_HIGH>;
-> -		output-high;
-> -		line-name = "usb-hub-reset";
-> -	};
-> -};
-> -
->  &hdmi_tx {
->  	status = "okay";
->  	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-> @@ -414,5 +399,15 @@ &usb0 {
->  };
->  
->  &usb1 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
->  	status = "okay";
-> +
-> +	hub@1 {
-> +		/* Genesys Logic GL852G USB 2.0 hub */
-> +		compatible = "usb5e3,610";
-> +		reg = <1>;
-> +		vdd-supply = <&p5v0>;
-> +		reset-gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_LOW>;
-> +	};
->  };
-> -- 
-> 2.38.1
-> 
+> Thanks,
+> Shenwei
+> [snip]
 
-Hello,
 
-This patch breaks USB support on the ODROID-C2. As soon as the
-onboard_usb_hub module is loaded, all USB devices disconnect.
-Blacklisting onboard_usb_hub makes USB work as expected.
+-- 
+Pengutronix e.K.                | Johannes Zink                  |
+Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
 
-I tried to reproduce the problem by manually toggling the reset line,
-but the problem seems to be specific to this driver. When reset is
-asserted manually, the devices disconnect, but they all enumerate again
-as soon as reset is released.
-
-Also, I have been unable to make USB work again (until the next reboot)
-even after unloading onboard_usb_hub.
-
-Ben
 
 _______________________________________________
 linux-amlogic mailing list
