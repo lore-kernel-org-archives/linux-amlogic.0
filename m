@@ -4,133 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BACBC001DE
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Aug 2023 20:36:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9641BC04A6A
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Aug 2023 21:31:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BiXjB/fxcNuYA9/d1Wy8xBh9sFkpuM9G55YyDwJa4UI=; b=Qn8Ax6hQhQ4L3N
-	uVPptdG13FifOqxSZ6pgBVl2I9ZomZEIkCq36ZA5ms+vSbw6AqSHa2Amigj0n5oHeu1hWpMYWR1T5
-	KmQE7+YzJhSxMaJG+HFi0TlIC/ask5RsAtGpC82rMKkeg/2cesxobQuOGFJF4zlhiNE+nEOZqvbx5
-	GR9y/5r9rNaalOQzCNdWi4hGmzqgH8H15J6yZGq3LBaykY20sw38qZIRt9rWGAsnbYWi8vmvCimW9
-	e8m0K32TYtxELVqqieM85YyReldvq4PDZ3q9HoJXS14u1UsIGOCaYD7P6YjuVpZss+i033d+4VAwc
-	L77QnKI4jjovxdBQQEVg==;
+	List-Owner; bh=d1O8Ju6vj97s84q+uCtpF7TdYX2uHsMTrdeRqvGtb4k=; b=oaDO7xJ+inyv3Z
+	A/bmRLEDSDoGmdANCiSxVHmLvh8hN+ilGN16XLTyoIumKFMDPXR8pu3jzKGQkgyktOVzIhO7nZfpX
+	OAv7EcYaLnBFaeV8pUdktK7PoodPpNevopVjrga32lnuMcbWQ3Bn5qQ4Vk7fSt1hQArbOuJtfB0Kb
+	b+q3jUo1Nm+aU3A/9CAsaBlLppivh3Z9dXQNg0nZlTQCSuspDsIs2WANw8tEBZm1TiFiYdpaEIJTW
+	rIYl69odEhNmfpPoFqxO42N497b4C7I8aWv45u8AgHfd5hvfnpZ+HxzYXTPFyZVCPHq/fbEgKcVFU
+	r6eNj3AQophyoT4AK14w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qSO0a-00EXnO-2M;
-	Sat, 05 Aug 2023 20:36:20 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qSOr5-00EaaM-34;
+	Sat, 05 Aug 2023 21:30:35 +0000
+Received: from mail-lf1-x135.google.com ([2a00:1450:4864:20::135])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qSO0X-00EXmh-21;
-	Sat, 05 Aug 2023 20:36:18 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id AA75960ED2;
-	Sat,  5 Aug 2023 20:36:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8402EC433C7;
-	Sat,  5 Aug 2023 20:36:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1691267773;
-	bh=HV9N1662vFNg45/injmUeZzoXqqRaYKc6xS67ObhrCE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T8b37KpHrfdrHcPTjbp9eehNf/qy/zQ094uspwpe3knxbV/SAwFyOO+iL6poGeRt5
-	 mmN2THgQL8TANiBbUZTIqmUiv0S7zyq3SAoSc1CzwM7lN991SYLqic8rCimc7bWwRI
-	 Vu7ZXvkbMfRfxqG+wpJINgbL+2KpSYU+uMd2Pk44r5RPsQzRq94XsuoRFZfLcF3djQ
-	 F5MggUSz0nkmmAejuORlF5VcmTYFbpwgyjqW04dzJAO9QAMzfqz5myArTvUzYEHRfd
-	 0AdEI801aM4xbN8FAEhz4+QIYaCxO1e4lYxIngw3YRdHEiuSSaRBpD/K+KyiSmsD0z
-	 8QDHViYep2Zwg==
-Date: Sat, 5 Aug 2023 22:36:10 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Andy Shevchenko <andy@kernel.org>,
-	Douglas Anderson <dianders@chromium.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-	Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@microchip.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Alexander Shiyan <shc_work@mail.ru>,
-	Benson Leung <bleung@chromium.org>,
-	Guenter Roeck <groeck@chromium.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Michael Walle <michael@walle.cc>, Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
-	Hammer Hsieh <hammerh0314@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-	Sean Anderson <sean.anderson@seco.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Johan Hovold <johan@kernel.org>, Alex Elder <elder@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Anjelique Melendez <quic_amelende@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Luca Weiss <luca@z3ntu.xyz>,
-	Bjorn Andersson <quic_bjorande@quicinc.com>,
-	linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org,
-	chrome-platform@lists.linux.dev, linux-mips@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
-	greybus-dev@lists.linaro.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH v2 1/2] pwm: Manage owner assignment implicitly for
- drivers
-Message-ID: <20230805203610.jl7eea2lasmg2as2@intel.intel>
-References: <20230804142707.412137-1-u.kleine-koenig@pengutronix.de>
- <20230804142707.412137-2-u.kleine-koenig@pengutronix.de>
+	id 1qSOr2-00EaZC-0c
+	for linux-amlogic@lists.infradead.org;
+	Sat, 05 Aug 2023 21:30:33 +0000
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fe07f0636bso5458331e87.1
+        for <linux-amlogic@lists.infradead.org>; Sat, 05 Aug 2023 14:30:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691271024; x=1691875824;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Udedw+f7sx05Q6DqlAhOSPpIuk4HuNrRk0FviM5bJCg=;
+        b=Cu+OQzJCl9FU2+XLRN5mS+hfTTB/Cwtwf6ChMAsI4j4vULW5wnrmGo+IGNjXVTtElh
+         xQQbMf7r7JckgYGmn5sAA8+Q5CaMfq4bwSg0BOz2bUj3xpNceBbddVaFHkRW9xXprTUC
+         7+kPWAVEfXiX1kiItHQxc8Atx9BIgOPUP+ExAXASrHvwhFZuEXKAzVTGyZQ9/KFnWsW0
+         4HKR7Klaoiu8fkrDAsRkSh2pWQl9KoZiwyt5zJr9tcoTeZlbj0W83R2Hk+5OqJUiKDMX
+         prRj/BYVb7a8Bx/0QElXm+tLn3QzSZ8li4qERuI7qTN6fz25vt3veGpZe5O5/m+mFnay
+         7gDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691271024; x=1691875824;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Udedw+f7sx05Q6DqlAhOSPpIuk4HuNrRk0FviM5bJCg=;
+        b=Eb5rqE95UpW/Unx7PMdaKujzwolIRJhCUFmbtspgdBvENEog8KB/ROM3u3iqooJ7Dl
+         YvRJN95vvRPjJn9rVWLGUIZcp5aFfkH8E1thDxnYomtwHLKJjr0MqojLFKs3lq0InO6W
+         5t/xkpty1vpu07mIFe0eviuA6IYXZzqKQySYKeeQDX7k9InN85ZsSzyzJ+MPql9HB41V
+         NCparKE8HXim4SbRaBQ2Ja5bmi9wZNk25zY/LcHMexQews4fx6YbqmgsuHwAPkNP/88g
+         NECMj9Pw014jviNXWK60ueJmPl5vCdZOFKz0aIF33aEZta1glKv9OsVA0e5Lm6zEEIAR
+         k2yg==
+X-Gm-Message-State: AOJu0Yye8LB1yJNS9Y7mLR9N8Dbh0rtUWu/thQNeOQMZ0DQWyNDD3lD3
+	nBj17t+3HaiHB5ixZOu2iSVH1w==
+X-Google-Smtp-Source: AGHT+IEhTQgOjVXcX2K7FMOId42YhEmbOgLrWHIWvScZnVOdAcuePZAlBztMGO2G54UZgxWLjf8Udg==
+X-Received: by 2002:ac2:5f98:0:b0:4fd:d481:ff35 with SMTP id r24-20020ac25f98000000b004fdd481ff35mr3526879lfe.42.1691271023831;
+        Sat, 05 Aug 2023 14:30:23 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.245])
+        by smtp.gmail.com with ESMTPSA id g17-20020a056402115100b005230f2a12b9sm3073310edw.43.2023.08.05.14.30.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 05 Aug 2023 14:30:23 -0700 (PDT)
+Message-ID: <45d25fd5-465f-347b-448b-ce171626f34e@linaro.org>
+Date: Sat, 5 Aug 2023 23:30:21 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230804142707.412137-2-u.kleine-koenig@pengutronix.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 3/9] arm64: dts: amlogic: Used onboard usb hub reset on
+ odroid c2
+Content-Language: en-US
+To: Ben Wolsieffer <benwolsieffer@gmail.com>,
+ Anand Moon <linux.amoon@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, Matthias Kaehlcke <mka@chromium.org>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230121175639.12818-1-linux.amoon@gmail.com>
+ <20230121175639.12818-4-linux.amoon@gmail.com>
+ <ZMrFb7H1ynwwBSCA@Dell-Inspiron-15>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZMrFb7H1ynwwBSCA@Dell-Inspiron-15>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230805_133617_775269_7A2631D5 
-X-CRM114-Status: GOOD (  15.82  )
+X-CRM114-CacheID: sfid-20230805_143032_257834_F522768D 
+X-CRM114-Status: GOOD (  18.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -142,36 +100,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-15"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Uwe,
+On 02/08/2023 23:06, Ben Wolsieffer wrote:
+> On Sat, Jan 21, 2023 at 05:56:31PM +0000, Anand Moon wrote:
+>> On Odroid c2 previously use gpio-hog to reset the usb hub,
+>> switch to used on-board usb hub reset to enable the usb hub
+>> and enable power to hub.
+>>
 
-On Fri, Aug 04, 2023 at 04:27:06PM +0200, Uwe Kleine-K=F6nig wrote:
-> Instead of requiring each driver to care for assigning the owner member
-> of struct pwm_ops, handle that implicitly using a macro. Note that the
-> owner member has to be moved to struct pwm_chip, as the ops structure
-> usually lives in read-only memory and so cannot be modified.
-> =
+...
 
-> The upside is that new lowlevel drivers cannot forget the assignment and
-> save one line each. The pwm-crc driver didn't assign .owner, that's not
-> a problem in practise though as the driver cannot be compiled as a
+>> +	hub@1 {
+>> +		/* Genesys Logic GL852G USB 2.0 hub */
+>> +		compatible = "usb5e3,610";
+>> +		reg = <1>;
+>> +		vdd-supply = <&p5v0>;
+>> +		reset-gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_LOW>;
+>> +	};
+>>  };
+>> -- 
+>> 2.38.1
+>>
+> 
+> Hello,
+> 
+> This patch breaks USB support on the ODROID-C2. As soon as the
+> onboard_usb_hub module is loaded, all USB devices disconnect.
+> Blacklisting onboard_usb_hub makes USB work as expected.
+> 
+> I tried to reproduce the problem by manually toggling the reset line,
+> but the problem seems to be specific to this driver. When reset is
+> asserted manually, the devices disconnect, but they all enumerate again
+> as soon as reset is released.
+> 
+> Also, I have been unable to make USB work again (until the next reboot)
+> even after unloading onboard_usb_hub.
 
-/practise/practice/
+Wasn't this patch made exactly to fix USB support, not break it? I might
+be missing something but maybe this was not tested at all?
 
-> module.
-> =
+Best regards,
+Krzysztof
 
-> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-
-Acked-by: Andi Shyti <andi.shyti@kernel.org> =
-
-
-Thanks,
-Andi
 
 _______________________________________________
 linux-amlogic mailing list
