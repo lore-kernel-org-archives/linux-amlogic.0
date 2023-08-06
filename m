@@ -4,81 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D53EEC0015E
-	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Aug 2023 04:03:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A552C001DF
+	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Aug 2023 05:12:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nW3UMGGL3qSxSHncLIwicYndrMgZ9XALao/sH7d0wNg=; b=4Hxp98bMeOIVIH
-	OrLC9Sh80Me9HSvGLK1yfs5/aE6j1B0XV2byNvemUQD0SI+orLM1A/f+Lfub0R8mFCOm2QA28DXXV
-	AZzkdVV8am2i0IYPvt2tS2f3ReEZIBQfBcC2mceZc25hIFyNw0P0hPOSrqoftKtkp6Fz6F/uD/0kp
-	8yk7PKOocxtrQVB11I9xbqt3pLA4rT9bVdOHqJLRzpTX6i8IrQXUubnaxVOkAqndx2epDAnhSqMam
-	hABnxsiUserZOEu6lLzlagZT1/gixRrhEZd580TDklPIaWIMogFM9MxU+e/aspnXdEsC3jh1HyyRc
-	snxjw32o6h/0Yj2WRXYg==;
+	List-Owner; bh=lqs0n774s4Dxbvrxd5IDt142TsCh8sTCqBPD7DjXVRs=; b=4H4pdkoDBdLsbX
+	TzZDj8IENK5x2/Ntyfyy1F/9NklDGuBtjcmo0CdjrV1bGwrtRXAVpAiQkDm+vDypQEkNcPUtUZrVm
+	2EoezqUoJfwjF5npyyQKlqNNSuUPVf4HzQl8OlGJcAXASqPRSBfkDPddWIJ8g/Ry8D/E8L3y/6T67
+	Fj9Mx6ayiN/yslzQl1fbmtS+QeVDhzHzhdMpaDBLe/UeIbmTvhHvJNEvtYBo27PRXbD4FMmF+4KGA
+	C9zrVn+Z6MAwsBiUqR0KlVLk4pJjrQwb6HU9W3330jKrRx92WFg7op70NvWNg/K7X056zYgvo620e
+	T8/AXuOYrdnAMwcfBfng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qSUzO-00ErCg-1W;
-	Sun, 06 Aug 2023 04:03:34 +0000
-Received: from mail-oo1-xc36.google.com ([2607:f8b0:4864:20::c36])
+	id 1qSW3v-00EvFa-39;
+	Sun, 06 Aug 2023 05:12:20 +0000
+Received: from mgamail.intel.com ([192.55.52.43])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qSUzL-00ErCB-1H;
-	Sun, 06 Aug 2023 04:03:32 +0000
-Received: by mail-oo1-xc36.google.com with SMTP id 006d021491bc7-56ce936f7c0so2451391eaf.3;
-        Sat, 05 Aug 2023 21:03:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691294610; x=1691899410;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=g3j2Il2f+kymqampd6+H1xMyg5wmaHaMj6WUzsK3M24=;
-        b=JeHD3rbz6Oa3vJtggpCJGbPAUaa5WPbgNJSNa2QzindNcq3yrWxpqyTiFq0lrKKjHk
-         JXGqv4+k8OonkhPy7wV2/W84fNNEQELf5ISsQW+EayWrJcXT2ePvGNz/HQw/ZuaxeVxB
-         0hWD8Ml4fP5fBKGU2N1iBd3qB21YnvPHg1KVFFhyjNfeefReRb5UmnUMQOLxxY9i38iK
-         kl11E7pd6HUdF5dvgNxSi0mCIW54KFjzw2vnu5niD6kXyXNnMZs4M4q/9arrdMyp1uYP
-         6fCg2DHeHUJM65sIWR2bGOlWReVlIPCeAnCAeAZkYie9NzNLFlnOPyTuExsMqZS+NtvC
-         8kqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691294610; x=1691899410;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=g3j2Il2f+kymqampd6+H1xMyg5wmaHaMj6WUzsK3M24=;
-        b=Nv1dtlG2njbdzoKlzrw7TdyNncS1LufNwKRzZTI+0VPUhm0n9/JHzunfWC5s49H8AC
-         f4SOEDhqtawTLETMdJSy8uYTT4Pj/O7CN98Leqap6wnilOsAyZ5Ll6+FWob3qvIdBKdP
-         QKHS4EdXMXr+8Asf6+JBOdkO3O4Nl9KzrWXeyrBpgo/sk3r0xUbD9su78jd9oSj7fTrc
-         2DSpKW+JTsz7ZQQWq7v6Hj1b+GFwO6U2O9mXq5FOWHS9XTmGvBlaGV11I1+ClfQVokQI
-         gvt36LCJb2fcwdwyY4EJCCr8pCzN1cCpyMARILp04BQXCo6ILP3L3wgCmMh/wBVfhdwv
-         bBXg==
-X-Gm-Message-State: AOJu0YwcUPzK8hk6+r76r8QbPb0MZRXMNwNXaDGKkd1rq5uutL+KN42X
-	DN9bhekZB1N/NU1nYtVZC3kxNkpvf9cvBQtlfBcYApklYew=
-X-Google-Smtp-Source: AGHT+IGiHomALBXL4paQosZXpHIeqNpPWBixXgzTFr0eejKLBQRLuS2hAHGiVGp8UJuxnua+vIQV/H+JkQIcbIgmp28=
-X-Received: by 2002:a4a:2557:0:b0:565:9e41:85d8 with SMTP id
- v23-20020a4a2557000000b005659e4185d8mr5539528ooe.6.1691294609752; Sat, 05 Aug
- 2023 21:03:29 -0700 (PDT)
+	id 1qSW3r-00EvDJ-30;
+	Sun, 06 Aug 2023 05:12:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1691298735; x=1722834735;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=PyntLaLBLC94wFX1lFmqWsYNfnYmddus6IUHc4nSyaM=;
+  b=QJ0SSkmve3IkjeOTq2998IBna8WHj/gNcr+v5rzF2XeX+LdATLzrCcW3
+   6ngVlp4vpQFh9rDwhQ1WZfjPUq/h9QALhM1mjUBDiP1bJFHZEdNEwDTGi
+   TLOSlpj89/gQAG+jUxvAfRY6lHbKw1N/yhmjP2ZushimvdMY84lYUdDwm
+   CV3N7DY9T0u9BymJJcPnJX0oc1COaR4XscQDguKerKstaboisIuLPR9Dz
+   60S2tbq4ODGDukcuZnw+jDZgo/5vDX8oN2mbxzUGvJB0fcYvrP8pEo+bV
+   5412WxgbYZsCtZ2AksDi9ppHrd0xQThVppLLE1Nk/fAiugStzyR8PdZzy
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10793"; a="456735973"
+X-IronPort-AV: E=Sophos;i="6.01,259,1684825200"; 
+   d="scan'208";a="456735973"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Aug 2023 22:12:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10793"; a="730516340"
+X-IronPort-AV: E=Sophos;i="6.01,259,1684825200"; 
+   d="scan'208";a="730516340"
+Received: from lkp-server01.sh.intel.com (HELO d1ccc7e87e8f) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 05 Aug 2023 22:12:01 -0700
+Received: from kbuild by d1ccc7e87e8f with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qSW3c-00042R-1b;
+	Sun, 06 Aug 2023 05:12:00 +0000
+Date: Sun, 6 Aug 2023 13:11:53 +0800
+From: kernel test robot <lkp@intel.com>
+To: Da Xue <da@libre.computer>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	Da Xue <da@libre.computer>, Luke Lu <luke.lu@libre.computer>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] [PATCH v2] net: phy: meson-gxl: implement
+ meson_gxl_phy_resume()
+Message-ID: <202308061204.L4tEEJAa-lkp@intel.com>
+References: <20230804201903.1303713-1-da@libre.computer>
 MIME-Version: 1.0
-References: <20230121175639.12818-1-linux.amoon@gmail.com> <20230121175639.12818-4-linux.amoon@gmail.com>
- <ZMrFb7H1ynwwBSCA@Dell-Inspiron-15> <45d25fd5-465f-347b-448b-ce171626f34e@linaro.org>
- <ZM7jtD2rniWAexVZ@Dell-Inspiron-15>
-In-Reply-To: <ZM7jtD2rniWAexVZ@Dell-Inspiron-15>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Sun, 6 Aug 2023 09:33:14 +0530
-Message-ID: <CANAwSgTBmLKknkWDUyZ2Byr15Oy6jbNxEYYjKGNr=2cOn5Wowg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/9] arm64: dts: amlogic: Used onboard usb hub reset on
- odroid c2
-To: Ben Wolsieffer <benwolsieffer@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, 
-	Matthias Kaehlcke <mka@chromium.org>, Alexander Stein <alexander.stein@ew.tq-group.com>, 
-	Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Disposition: inline
+In-Reply-To: <20230804201903.1303713-1-da@libre.computer>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230805_210331_443031_BAA1D221 
-X-CRM114-Status: GOOD (  25.91  )
+X-CRM114-CacheID: sfid-20230805_221215_985775_1BE2B0CB 
+X-CRM114-Status: GOOD (  12.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,50 +96,60 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Ben,
+Hi Da,
 
-On Sun, 6 Aug 2023 at 05:35, Ben Wolsieffer <benwolsieffer@gmail.com> wrote:
->
-> On Sat, Aug 05, 2023 at 11:30:21PM +0200, Krzysztof Kozlowski wrote:
-> > On 02/08/2023 23:06, Ben Wolsieffer wrote:
-> > >
-> > > Hello,
-> > >
-> > > This patch breaks USB support on the ODROID-C2. As soon as the
-> > > onboard_usb_hub module is loaded, all USB devices disconnect.
-> > > Blacklisting onboard_usb_hub makes USB work as expected.
-> > >
-> > > I tried to reproduce the problem by manually toggling the reset line,
-> > > but the problem seems to be specific to this driver. When reset is
-> > > asserted manually, the devices disconnect, but they all enumerate again
-> > > as soon as reset is released.
-> > >
-> > > Also, I have been unable to make USB work again (until the next reboot)
-> > > even after unloading onboard_usb_hub.
-> >
-> > Wasn't this patch made exactly to fix USB support, not break it? I might
-> > be missing something but maybe this was not tested at all?
-> >
-> > Best regards,
-> > Krzysztof
-> >
->
-> I have been using USB on the ODROID-C2 for several years without issues.
-> It looks to me that this patch was designed to make reset control for
-> the hub more elegant, rather than fix a specific issue. The same change
-> was applied to several devices, so it seems plausible that it was not
-> tested on all of them.
->
+kernel test robot noticed the following build errors:
 
-We tried to fix quite a few issues in the past but still, we could not
-resolve core issues.
-Will try to resolve these issues in the future.
-I have tested these changes at my end on Odroid C1+, Odroid C2, and Odroid C4,
+[auto build test ERROR on net-next/main]
+[also build test ERROR on net/main linus/master v6.5-rc4 next-20230804]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> Thanks, Ben
+url:    https://github.com/intel-lab-lkp/linux/commits/Da-Xue/net-phy-meson-gxl-implement-meson_gxl_phy_resume/20230805-042033
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20230804201903.1303713-1-da%40libre.computer
+patch subject: [PATCH] [PATCH v2] net: phy: meson-gxl: implement meson_gxl_phy_resume()
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20230806/202308061204.L4tEEJAa-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20230806/202308061204.L4tEEJAa-lkp@intel.com/reproduce)
 
-Thanks
--Anand
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202308061204.L4tEEJAa-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/net/phy/meson-gxl.c: In function 'meson_gxl_phy_resume':
+>> drivers/net/phy/meson-gxl.c:139:9: error: too few arguments to function 'genphy_resume'
+     139 |         genphy_resume();
+         |         ^~~~~~~~~~~~~
+   In file included from drivers/net/phy/meson-gxl.c:13:
+   include/linux/phy.h:1794:5: note: declared here
+    1794 | int genphy_resume(struct phy_device *phydev);
+         |     ^~~~~~~~~~~~~
+
+
+vim +/genphy_resume +139 drivers/net/phy/meson-gxl.c
+
+   134	
+   135	static int meson_gxl_phy_resume(struct phy_device *phydev)
+   136	{
+   137		int ret;
+   138	
+ > 139		genphy_resume();
+   140		ret = meson_gxl_config_init(phydev);
+   141		if (ret)
+   142			return ret;
+   143	
+   144		return 0;
+   145	}
+   146	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
