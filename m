@@ -4,101 +4,151 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 211CBC00528
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Aug 2023 15:52:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E62AAC001DB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Aug 2023 16:08:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=j0ZmVUpsGYHBByH/onxSAPK0spBGxefHgKIVNrY8Qj4=; b=PRF79ogvv8ZkFS
-	8DR2NEOzrGlhWCNRHHLZEB4hyS54ia/tmPydyQJaNjK6ENP6IuItpLai7fa+zZyLB6g5gRTn3cZZN
-	bMYzPmRhxFrmFDaeLotZ+gfvkUnMM2sPdKSqS3AgjKTsRtLgMwP1Om+2zAEsCZrQJG+2TzmjuvCiu
-	7bzyTEoYM+23czicFONbS9B27t9tyFomGC9AkMjtey84dOwqku12VcJxc6pcpcizujdsMaQ3qolgk
-	uqeuTe8jatpFja5ENuiwr+zlmvR2Ef619LtC70GVgzIvNQIMEAKnRO/nWiZEOmXr19OfsRpZSuKgq
-	b7f+Lb8w1bRz+QvhaRkw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=cDe86Mzah3ikiId4vqdWIkfjRTF82XwS3RxnrdlBze4=; b=aAtQUk9jjX9z/v
+	35FLncXZOcpj4xUjYjwhyRgl9MlF0q2By9XAsr13j8bRNURmUmQyFa2IEZXZeMSFbnZUXJY5jX/dV
+	yc6HB/i4ok79N2RNLBmlbfwuI4ILiuik7CCW6H8CqsrtJXPYy/C8dp+6MXEi/qxkRM/x4fPiBA5We
+	XeMt2x2jREiLBt3IxbPbPTro1KOaEL7QMaZ4Bg3lB5i3TiScHS8PShW1VPZ8bTm/54dS5t271sW+l
+	+GZUyFuMpBnGAu+qw3tVa2QUndkt9QyYeukqXkjGhVC444OfVT/im/vaOwVrdOuD41Awq+1QovhxM
+	DKPsvxFZ2gSdv+MEHYvA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qT2WW-0006eA-1q;
-	Mon, 07 Aug 2023 15:52:00 +0000
-Received: from mail-yb1-xb30.google.com ([2607:f8b0:4864:20::b30])
+	id 1qT2m0-0008Rj-2K;
+	Mon, 07 Aug 2023 16:08:00 +0000
+Received: from mail-am6eur05on2060d.outbound.protection.outlook.com ([2a01:111:f400:7e1b::60d] helo=EUR05-AM6-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qT2WQ-0006az-2P
-	for linux-amlogic@lists.infradead.org;
-	Mon, 07 Aug 2023 15:51:58 +0000
-Received: by mail-yb1-xb30.google.com with SMTP id 3f1490d57ef6-d45caf42d73so3022428276.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 07 Aug 2023 08:51:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691423510; x=1692028310;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QV5Oxrwi2YBiB2PnbpfvilSiboZ88DL4vcOqWWFx7v8=;
-        b=RcEfoieb4TAZHin0Dt6b54nmdTuwmkWKiV4aShwDZWdujrFhzLaoWYabFG+z2usFzv
-         uIdIhFDp289WeddfAZAGgf62HctV0ytCu9PscpFBNdngkmYBRtv70TLT2rIOac1zqO8F
-         hneWm1S54pVmGfXqHZj7gtqrZjKIf5w5/wtC/iziBeGlanZY18JBJP/MoL+otTGR7XiC
-         sg/yCGppch2g6HLOaVBz0fooyYmSYvjaD2Pi3jc7/ayITUHzp4rjW91A4SRe7gPprlm/
-         EaqzaLjaGVcp78g7jB9LZEuBNUE4ZyYK79eVart+l2yhBttPveE+hTQ+HQIjEgXvawec
-         A24A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691423510; x=1692028310;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QV5Oxrwi2YBiB2PnbpfvilSiboZ88DL4vcOqWWFx7v8=;
-        b=jmqxgduXOY1WVA3QCN+0PSFlngnSe2xiY65PH/1b62qwzhh9m4YPE7JQv473rSY2fZ
-         uZ9FoZ47v2eDT+G/Ldk8tO2R1PlZmRMoyGGK3J9jiuHviIhPQbtLxDE57JDA+doJsWIz
-         yjB+7nmDnflzyskzEMt8Ac5L9P37viz+lmnIs4Ra8RraZ1jgdyMjkRwQx/3uEI460hIT
-         FwBeI0GNzolxuTIlMWeV0DocTQ+SUfxlNjpTpLbfeMO8Q5liKPouSUuOJD6HaAqtZRxj
-         CHqlPIkcG7RFHVjt+/CyoYNB/lRffHxXX7inKZpwUMxRu4zLlZ3cQ+YcZcrZAZ9KUxmg
-         xB9w==
-X-Gm-Message-State: AOJu0YzLL/LPu4Piy19uM2VgSjnT8d7jDiGdC4lme307NVxQcoisvD9g
-	QszTEgh/3SXwqwLGYwXU/QUiA2lXQfdUCDXc+2rezw==
-X-Google-Smtp-Source: AGHT+IFM8NMG1aM90qqfA7curuuhzGi4LQ+J3959I9PDp3MPl1NYbQCixPRGgKUxA+yOwJZVhkZ+Dq1zqCQEGLMFFs8=
-X-Received: by 2002:a25:83c1:0:b0:d3b:b36f:37b1 with SMTP id
- v1-20020a2583c1000000b00d3bb36f37b1mr9541743ybm.33.1691423509913; Mon, 07 Aug
- 2023 08:51:49 -0700 (PDT)
+	id 1qT2lx-0008PP-0i;
+	Mon, 07 Aug 2023 16:07:58 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PFDDIqDyY4dF8+17febcrvAM5Zn1/fsIwrMJ8gCTsjx6rMVNfIMfj6nVFPNxVUODuMI8bLXvNeg0GKXeXmzk/BbzS4afoIbAQXRVhfYF9BJ0rcnpWNwEqCnLdIkk1dcMKrxRJJqBF9qEmETXVorz9shNxj6sg56q6k1z9j7OfeztZ2eObnduE6L5dZ59N1rdYFKvhOYfBedzUypyYuUO+j25Ohl692jx85jT3Ezuqm3DUN0qTNpMVosb6ZBi+oISmYKzjIU2OgwYryGhB7f6rgCqa6rLnFEAAXAH7s9ShYZgPWxp2vr8URiLXAR0GON6gXkrx/zE0bH4SGbVYWcSwA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CNwscRqk0C84Eiv7FBgS2HeeMiXLLIpx31Vkbxie2PI=;
+ b=WThKdAtF2jXj8kr/eOoWuNZP37Y4R/Uk5E68irg4KCghig3gzDWZWJQBSR3DbBbypcsfaeXxxIW2oRvx1qIxeex2MsUImN1XDUw3ra4OOUNyiEKaHSZ07B0OH6Fxbd/in2Ii2lZbTBgxPr9Jn2rwen6NKHbmqrvxncmueAwn1sBogtEDpUcKaqYbRDaH/2/8P1iIBONmIgz96bIPc0UVsdHfgbPfRbkd6RRBVC76eCjK2UmFOSjtQdEX1PqB3C0Zg/ZjTRz3kSk7dPE+ebbrZGZU25/KDpgJsxN24ZHSYOG8S60R5pV15qi+LKPHwKA18OwbvY7oXFtgV8XxBQGOug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CNwscRqk0C84Eiv7FBgS2HeeMiXLLIpx31Vkbxie2PI=;
+ b=Aw7BDk4yUfuBcMseEHzFGYL5SJnu+f13MpX+kXOBwUlbSPGHbeyVkMfXs+k+HSViNjhGq//CKdpen7bfyiB9gTRydAYE+gmNjgeAwDpZdba1trQSmbmfykyCUDH17wFiZRyjYSLqKA7BB+NOPn+fT4tqbgLitzpBpL+Epzuc3Io=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
+ by AS1PR04MB9630.eurprd04.prod.outlook.com (2603:10a6:20b:475::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.26; Mon, 7 Aug
+ 2023 16:07:43 +0000
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::d4ee:8daa:92f4:9671]) by PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::d4ee:8daa:92f4:9671%3]) with mapi id 15.20.6652.026; Mon, 7 Aug 2023
+ 16:07:43 +0000
+From: Shenwei Wang <shenwei.wang@nxp.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+	Simon Horman <simon.horman@corigine.com>,
+	Andrew Halaney <ahalaney@redhat.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Shenwei Wang <shenwei.wang@nxp.com>,
+	Wong Vee Khee <veekhee@apple.com>,
+	Revanth Kumar Uppala <ruppala@nvidia.com>,
+	Jochen Henneberg <jh@henneberg-systemdesign.com>,
+	netdev@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	imx@lists.linux.dev
+Subject: [PATCH v5 net-next 0/2] update stmmac fix_mac_speed
+Date: Mon,  7 Aug 2023 11:07:14 -0500
+Message-Id: <20230807160716.259072-1-shenwei.wang@nxp.com>
+X-Mailer: git-send-email 2.34.1
+X-ClientProxiedBy: SJ0PR03CA0058.namprd03.prod.outlook.com
+ (2603:10b6:a03:33e::33) To PAXPR04MB9185.eurprd04.prod.outlook.com
+ (2603:10a6:102:231::11)
 MIME-Version: 1.0
-References: <20230718143054.1065288-1-robh@kernel.org>
-In-Reply-To: <20230718143054.1065288-1-robh@kernel.org>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 7 Aug 2023 17:51:13 +0200
-Message-ID: <CAPDyKFpbRzow4d4F5X5VbXxUjMdbWbaO5qqgCFL_Dxsg9szOBg@mail.gmail.com>
-Subject: Re: [PATCH v2] mmc: Explicitly include correct DT includes
-To: Rob Herring <robh@kernel.org>
-Cc: Ludovic Desroches <ludovic.desroches@microchip.com>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Claudiu Beznea <claudiu.beznea@microchip.com>, Robert Richter <rric@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Chaotian Jing <chaotian.jing@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
-	=?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Adrian Hunter <adrian.hunter@intel.com>, Florian Fainel li <florian.fainelli@broadcom.com>, 
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Haibo Chen <haibo.chen@nxp.com>, 
-	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Michal Simek <michal.simek@amd.com>, 
-	Eugen Hristev <eugen.hristev@collabora.com>, Lars Povlsen <lars.povlsen@microchip.com>, 
-	Steen Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon <daniel.machon@microchip.com>, 
-	UNGLinuxDriver@microchip.com, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Ben Dooks <ben-linux@fluff.org>, Jaehoon Chung <jh80.chung@samsung.com>, 
-	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
-	Chunyan Zhang <zhang.lyra@gmail.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, 
-	Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-actions@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9185:EE_|AS1PR04MB9630:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7fffd3e9-92ed-4c9f-56e7-08db97606e81
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: WryyscnmZE38H8ojy+yVRaKt9f8qHj1iha8X4ILfITVwIcw6tU4aKO4pLFU/OomvluN5hQo+4ZpMNMGNhdvHU390m259uvHS98dvodv6bZQmMSr6C1J1omtYVAtguMMu8eVWfJsqXOHKr6OBi6LumQmIAtJtpdk/3MET8ZIV20VTCX6CEcMv6w1q5qYWHviQ1AyVNc1e0kf1Pub8J8XAyGMQnXUAy4n5++rumoctKmQeauuv76XJMzShzuQ4Mg+T7S/6rgcjMjwg/X1P22DLDNTNHeezkKSOsw6RUPGSqBnI9ogwuiHrXuO91mHkQB2aScdSgZY4KECsZ5wW8h2tU/s6cuTBhb8vvg8bkBLQFmNd1YVDBLhyCkjNwUQqH9XIUuOSy7+KwH/VKxbklg1tEPS2wNfaXuaA8hyxrruQeN4+Y2EMxMeumpSZK80iPg/WwHW7v4zMVu8EXU9X2fHy/c34dQrdtEtnDafxVztdLctMcWThBxPvLw4VLgAev4SjKA5DSmFQJgDbOgoM44S7noZpAGpmHzpy//7bpu+dou7CzKNPIk3ZMWkHhp5gSbN7TZYNY6keZU7bE/p+eo+M+lwiP4BMR3/KqvnmeiuXg/6CEz5dDpTDHY6fcsFvcia/5hqNtB3Ix9h6russhqpS7w==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(136003)(376002)(346002)(396003)(366004)(1800799003)(186006)(451199021)(66556008)(4326008)(66946007)(66476007)(2906002)(52116002)(6486002)(6666004)(83380400001)(5660300002)(44832011)(7406005)(7416002)(41300700001)(8936002)(316002)(8676002)(38350700002)(38100700002)(921005)(2616005)(54906003)(110136005)(478600001)(36756003)(26005)(55236004)(6506007)(1076003)(86362001)(6512007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wtY5Yh7kNwyPPUulk1/hcxiNFSDDrjKaTnPch9hiHkyeGPf5VG/x0DKu9Guj?=
+ =?us-ascii?Q?LeOWNlRT29HMZOkjU+J51oiGXznV94c3cW9b2iOCCUd5d8XiyvbUX8AFn2oT?=
+ =?us-ascii?Q?9Jm8ddZRgxOdpeptdkU2TXWjSgAXDW6jiXyG4//RDX0Er0dXAz+EI900s/TL?=
+ =?us-ascii?Q?VP+ME6uv/Ebfn949hO59Dg4hqdC3XGVMePritFRyrXYCNixxMmbrXURw7wLR?=
+ =?us-ascii?Q?4PW7TGLGHojolytdtTjejYxehunz55sAHD0D0CG+lhxe972fIOb4y32bSx1Z?=
+ =?us-ascii?Q?qX/Y8F5o7BxDXHLfrYshWJzVwjTKaYN24pchZ9MNJ28y3qecc9XRdKmWreGC?=
+ =?us-ascii?Q?VeeotfqsJ7kwulVQ2/bhJ7b8If5e8jhkgJbfUmGkC4goeimw7pHLqVESPlIc?=
+ =?us-ascii?Q?OuLwmMiUR9jVfg7vA6AZn0DK5vA9pTYbYp6BoM+6o4mHXLgTLgIKZ44zr5YG?=
+ =?us-ascii?Q?akqDspcEaFz49Gscy9g/GfRVOWkdcDl0yyPXLMOh5jgPrUtuO2RHsxCkTFbi?=
+ =?us-ascii?Q?O7tExLCh6KS/PQAVOZK9r3v9qrV63il8dqN5Oide/nJ6AC4tzDetjjyci/v1?=
+ =?us-ascii?Q?tOqUG6avCAEpAXDweG4oeWrhBzb9Z3czfjuCjyYSyIUh1uO0kURM78sftPkm?=
+ =?us-ascii?Q?fASZUNJreZ6fJfS198bUDniVRyTaA2q5vE1DRxo6ln0pMzVuZsNMA2ciqRLO?=
+ =?us-ascii?Q?4cn6G8ECDdSzMPj8USZIcoJyKiqJEbiP4nrlvCc2RgxikeRu9jS10w4uQuc3?=
+ =?us-ascii?Q?jEl5DiyB1qhMrmeNvsispMm1lsJDu8hfFl7E5np0xlgcPviuSY8CDy41DZpg?=
+ =?us-ascii?Q?MsFSy7pOLLPOlU6SY7rJzwdkNGr+bWNliRw9G1LxnMf1yiBlMzYTt7thOcMN?=
+ =?us-ascii?Q?gpcgcy7KtVoM4NMJJW6fYo4/ACIBQGFm63EWx90q5RhaO0qjeafaXfQkBR1e?=
+ =?us-ascii?Q?NE86OqZVG2r8VrogyB5urZZ42c1MMkeuOBmJdkG4sVBL4Sj/Ov5UFHHlV5J7?=
+ =?us-ascii?Q?MULbMoppSb1ZuQUw5bEb6vr1+Q8Vpb4OfKsrwsI1liUmV047CjTHkpcLKtmF?=
+ =?us-ascii?Q?CO00309CfNy86ark1HUxmRIA7gmtCBzRdRR4vi1b6/nDDEQxZx0EU4Gylfxa?=
+ =?us-ascii?Q?QbKTbwMD9gEGa4NbMbiCaX/u5nIz5b5H+VZJVlcDUVCPU5Cm3fwENYht0Ib6?=
+ =?us-ascii?Q?fwlgWQWZMRYGdrW8V+F7Xl1lK4I1S406ahuDkbDHrsQcmBBl70YAFBjXJXba?=
+ =?us-ascii?Q?Vs8R13wCij2PSGE/RuMqIx4A/w9qxgWVPEVUxAXanncGiIzTIODHYzGU0JsS?=
+ =?us-ascii?Q?HK9ov3UtkFeMoGc6a5HT8PSON3EyzKelZTpHobSjwQhO8gfT56aB5RFRQXqb?=
+ =?us-ascii?Q?71SvvWy5CPPt33NzhVUNKdXTz2SyzoOVnOTR55tEEQGZjVTH9osA6rxCMi27?=
+ =?us-ascii?Q?ONJIaLSsIEVmiYnwmIPxZc4T0vUSFuJrkzqLD/fpFNsSlDZdHbDDmmqV1ixc?=
+ =?us-ascii?Q?7uPR0YddtBjcVYtcFvf4i9olgNDXGljetXI4vLQ3cQLOCtQDY2NVVYs15mkF?=
+ =?us-ascii?Q?Y+LgDFnSSHiSFLx7I63NsdpbpmlDRkPrH8i55Nvu?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7fffd3e9-92ed-4c9f-56e7-08db97606e81
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2023 16:07:43.1255
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fUcXCMDmIKiid7gI9KKTIz6L4hySXKGXBhswUYvMcj3q9RsiwbLQrc2+0FwPbOEF5k63aSkcfN9y41YNW95v7g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9630
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230807_085154_790975_92FF8185 
-X-CRM114-Status: GOOD (  18.01  )
+X-CRM114-CacheID: sfid-20230807_090757_335311_41289494 
+X-CRM114-Status: UNSURE (   9.73  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,446 +165,49 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 18 Jul 2023 at 16:31, Rob Herring <robh@kernel.org> wrote:
->
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Changes in V5:
+  - fixed the typo in if condition reported by Russell.
+  - fixed the build errors in dwmac-sti.c reported by 'kernel test robot'.
 
-Applied for next, thanks!
+Changes in V4:
+  - Keep the 'unsigned int' type specifier in the fix_mac_speed
+    function declarations.
+  - Move imx93_dwmac_fix_mac_speed into the SoC specific ops.
+  - Use a read back to replace the wmb() instruction.
+  - Correct the target to 'net-next'.
 
-Kind regards
-Uffe
+Changes in V3:
+  - fixed the build errors reported by 'kernel test robot'.
+  - Only perform clock pause in RGMII fixed-link usecase.
 
+Changes in V2:
+  - Call fix_mac_speed() with new mode parameter added.
+  - reorg the function of imx_dwmac_fix_speed_mx93 by using the
+    mode parameter.
 
-> ---
-> v2:
-> - Fix double include of of.h
-> ---
->  drivers/mmc/host/atmel-mci.c                  | 1 -
->  drivers/mmc/host/cavium-octeon.c              | 2 ++
->  drivers/mmc/host/cavium-thunderx.c            | 1 +
->  drivers/mmc/host/davinci_mmc.c                | 1 -
->  drivers/mmc/host/meson-gx-mmc.c               | 2 +-
->  drivers/mmc/host/mtk-sd.c                     | 4 +---
->  drivers/mmc/host/mxcmmc.c                     | 1 -
->  drivers/mmc/host/mxs-mmc.c                    | 1 -
->  drivers/mmc/host/owl-mmc.c                    | 3 ++-
->  drivers/mmc/host/pxamci.c                     | 1 -
->  drivers/mmc/host/renesas_sdhi_internal_dmac.c | 3 ++-
->  drivers/mmc/host/renesas_sdhi_sys_dmac.c      | 3 ++-
->  drivers/mmc/host/sdhci-bcm-kona.c             | 1 -
->  drivers/mmc/host/sdhci-cadence.c              | 2 +-
->  drivers/mmc/host/sdhci-esdhc-imx.c            | 2 +-
->  drivers/mmc/host/sdhci-iproc.c                | 2 +-
->  drivers/mmc/host/sdhci-msm.c                  | 2 +-
->  drivers/mmc/host/sdhci-of-arasan.c            | 4 ++--
->  drivers/mmc/host/sdhci-of-at91.c              | 2 +-
->  drivers/mmc/host/sdhci-of-dwcmshc.c           | 2 +-
->  drivers/mmc/host/sdhci-of-sparx5.c            | 2 +-
->  drivers/mmc/host/sdhci-omap.c                 | 1 -
->  drivers/mmc/host/sdhci-pxav2.c                | 1 -
->  drivers/mmc/host/sdhci-s3c.c                  | 1 -
->  drivers/mmc/host/sdhci-sprd.c                 | 1 -
->  drivers/mmc/host/sdhci-tegra.c                | 1 -
->  drivers/mmc/host/sh_mmcif.c                   | 1 -
->  drivers/mmc/host/uniphier-sd.c                | 1 -
->  drivers/mmc/host/wmt-sdmmc.c                  | 1 -
->  29 files changed, 20 insertions(+), 30 deletions(-)
->
-> diff --git a/drivers/mmc/host/atmel-mci.c b/drivers/mmc/host/atmel-mci.c
-> index dd18440a90c5..2fdf352b3d86 100644
-> --- a/drivers/mmc/host/atmel-mci.c
-> +++ b/drivers/mmc/host/atmel-mci.c
-> @@ -18,7 +18,6 @@
->  #include <linux/ioport.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
->  #include <linux/of_gpio.h>
->  #include <linux/platform_device.h>
->  #include <linux/scatterlist.h>
-> diff --git a/drivers/mmc/host/cavium-octeon.c b/drivers/mmc/host/cavium-octeon.c
-> index 12dca91a8ef6..02429f7afb42 100644
-> --- a/drivers/mmc/host/cavium-octeon.c
-> +++ b/drivers/mmc/host/cavium-octeon.c
-> @@ -13,7 +13,9 @@
->  #include <linux/mmc/mmc.h>
->  #include <linux/mmc/slot-gpio.h>
->  #include <linux/module.h>
-> +#include <linux/of.h>
->  #include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
->  #include <asm/octeon/octeon.h>
->  #include "cavium.h"
->
-> diff --git a/drivers/mmc/host/cavium-thunderx.c b/drivers/mmc/host/cavium-thunderx.c
-> index 202b1d6da678..2e2ff984f0b3 100644
-> --- a/drivers/mmc/host/cavium-thunderx.c
-> +++ b/drivers/mmc/host/cavium-thunderx.c
-> @@ -14,6 +14,7 @@
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
->  #include <linux/pci.h>
->  #include "cavium.h"
->
-> diff --git a/drivers/mmc/host/davinci_mmc.c b/drivers/mmc/host/davinci_mmc.c
-> index 7138dfa065bf..17a137f85cbe 100644
-> --- a/drivers/mmc/host/davinci_mmc.c
-> +++ b/drivers/mmc/host/davinci_mmc.c
-> @@ -21,7 +21,6 @@
->  #include <linux/dma-mapping.h>
->  #include <linux/mmc/mmc.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
->  #include <linux/mmc/slot-gpio.h>
->  #include <linux/interrupt.h>
->
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index ee9a25b900ae..0669993108ec 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -11,7 +11,7 @@
->  #include <linux/delay.h>
->  #include <linux/device.h>
->  #include <linux/iopoll.h>
-> -#include <linux/of_device.h>
-> +#include <linux/of.h>
->  #include <linux/platform_device.h>
->  #include <linux/ioport.h>
->  #include <linux/dma-mapping.h>
-> diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-> index 02403ff99e0d..6c68c642ef61 100644
-> --- a/drivers/mmc/host/mtk-sd.c
-> +++ b/drivers/mmc/host/mtk-sd.c
-> @@ -12,9 +12,7 @@
->  #include <linux/iopoll.h>
->  #include <linux/ioport.h>
->  #include <linux/irq.h>
-> -#include <linux/of_address.h>
-> -#include <linux/of_device.h>
-> -#include <linux/of_irq.h>
-> +#include <linux/of.h>
->  #include <linux/of_gpio.h>
->  #include <linux/pinctrl/consumer.h>
->  #include <linux/platform_device.h>
-> diff --git a/drivers/mmc/host/mxcmmc.c b/drivers/mmc/host/mxcmmc.c
-> index 668f865f3efb..226a10202d25 100644
-> --- a/drivers/mmc/host/mxcmmc.c
-> +++ b/drivers/mmc/host/mxcmmc.c
-> @@ -31,7 +31,6 @@
->  #include <linux/dmaengine.h>
->  #include <linux/types.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
->  #include <linux/of_dma.h>
->  #include <linux/mmc/slot-gpio.h>
->
-> diff --git a/drivers/mmc/host/mxs-mmc.c b/drivers/mmc/host/mxs-mmc.c
-> index 8c3655d3be96..951c6c48b4f7 100644
-> --- a/drivers/mmc/host/mxs-mmc.c
-> +++ b/drivers/mmc/host/mxs-mmc.c
-> @@ -11,7 +11,6 @@
->  #include <linux/init.h>
->  #include <linux/ioport.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
->  #include <linux/platform_device.h>
->  #include <linux/delay.h>
->  #include <linux/interrupt.h>
-> diff --git a/drivers/mmc/host/owl-mmc.c b/drivers/mmc/host/owl-mmc.c
-> index 1bf22b08b373..62d2993573d0 100644
-> --- a/drivers/mmc/host/owl-mmc.c
-> +++ b/drivers/mmc/host/owl-mmc.c
-> @@ -16,8 +16,9 @@
->  #include <linux/interrupt.h>
->  #include <linux/mmc/host.h>
->  #include <linux/mmc/slot-gpio.h>
-> +#include <linux/mod_devicetable.h>
->  #include <linux/module.h>
-> -#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
->  #include <linux/reset.h>
->  #include <linux/spinlock.h>
->
-> diff --git a/drivers/mmc/host/pxamci.c b/drivers/mmc/host/pxamci.c
-> index 2a988f942b6c..d274e4433fc1 100644
-> --- a/drivers/mmc/host/pxamci.c
-> +++ b/drivers/mmc/host/pxamci.c
-> @@ -30,7 +30,6 @@
->  #include <linux/gpio/consumer.h>
->  #include <linux/gfp.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
->  #include <linux/soc/pxa/cpu.h>
->
->  #include <linux/sizes.h>
-> diff --git a/drivers/mmc/host/renesas_sdhi_internal_dmac.c b/drivers/mmc/host/renesas_sdhi_internal_dmac.c
-> index 9ab813903b2c..4cc5bcb3213a 100644
-> --- a/drivers/mmc/host/renesas_sdhi_internal_dmac.c
-> +++ b/drivers/mmc/host/renesas_sdhi_internal_dmac.c
-> @@ -15,7 +15,8 @@
->  #include <linux/mmc/host.h>
->  #include <linux/mod_devicetable.h>
->  #include <linux/module.h>
-> -#include <linux/of_device.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
->  #include <linux/pagemap.h>
->  #include <linux/scatterlist.h>
->  #include <linux/sys_soc.h>
-> diff --git a/drivers/mmc/host/renesas_sdhi_sys_dmac.c b/drivers/mmc/host/renesas_sdhi_sys_dmac.c
-> index b559ad38b667..452982e670d2 100644
-> --- a/drivers/mmc/host/renesas_sdhi_sys_dmac.c
-> +++ b/drivers/mmc/host/renesas_sdhi_sys_dmac.c
-> @@ -15,7 +15,8 @@
->  #include <linux/mmc/host.h>
->  #include <linux/mod_devicetable.h>
->  #include <linux/module.h>
-> -#include <linux/of_device.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
->  #include <linux/pagemap.h>
->  #include <linux/scatterlist.h>
->  #include <linux/sys_soc.h>
-> diff --git a/drivers/mmc/host/sdhci-bcm-kona.c b/drivers/mmc/host/sdhci-bcm-kona.c
-> index 6a93a54fe067..ef1fb383e1e7 100644
-> --- a/drivers/mmc/host/sdhci-bcm-kona.c
-> +++ b/drivers/mmc/host/sdhci-bcm-kona.c
-> @@ -11,7 +11,6 @@
->  #include <linux/clk.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
->  #include <linux/mmc/slot-gpio.h>
->
->  #include "sdhci-pltfm.h"
-> diff --git a/drivers/mmc/host/sdhci-cadence.c b/drivers/mmc/host/sdhci-cadence.c
-> index d2f625054689..25d9849ef0d1 100644
-> --- a/drivers/mmc/host/sdhci-cadence.c
-> +++ b/drivers/mmc/host/sdhci-cadence.c
-> @@ -11,7 +11,7 @@
->  #include <linux/mmc/host.h>
->  #include <linux/mmc/mmc.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
->  #include <linux/reset.h>
->
->  #include "sdhci-pltfm.h"
-> diff --git a/drivers/mmc/host/sdhci-esdhc-imx.c b/drivers/mmc/host/sdhci-esdhc-imx.c
-> index eebf94604a7f..e767fe058023 100644
-> --- a/drivers/mmc/host/sdhci-esdhc-imx.c
-> +++ b/drivers/mmc/host/sdhci-esdhc-imx.c
-> @@ -22,7 +22,7 @@
->  #include <linux/mmc/sdio.h>
->  #include <linux/mmc/slot-gpio.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
->  #include <linux/pinctrl/consumer.h>
->  #include <linux/pm_runtime.h>
->  #include "sdhci-cqhci.h"
-> diff --git a/drivers/mmc/host/sdhci-iproc.c b/drivers/mmc/host/sdhci-iproc.c
-> index 86eb0045515e..6a93b1ee0b30 100644
-> --- a/drivers/mmc/host/sdhci-iproc.c
-> +++ b/drivers/mmc/host/sdhci-iproc.c
-> @@ -10,7 +10,7 @@
->  #include <linux/module.h>
->  #include <linux/mmc/host.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
->  #include "sdhci-pltfm.h"
->
->  struct sdhci_iproc_data {
-> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-> index 1c935b5bafe1..c0ce187e740a 100644
-> --- a/drivers/mmc/host/sdhci-msm.c
-> +++ b/drivers/mmc/host/sdhci-msm.c
-> @@ -6,7 +6,6 @@
->   */
->
->  #include <linux/module.h>
-> -#include <linux/of_device.h>
->  #include <linux/delay.h>
->  #include <linux/mmc/mmc.h>
->  #include <linux/pm_runtime.h>
-> @@ -15,6 +14,7 @@
->  #include <linux/iopoll.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/interconnect.h>
-> +#include <linux/of.h>
->  #include <linux/pinctrl/consumer.h>
->  #include <linux/reset.h>
->
-> diff --git a/drivers/mmc/host/sdhci-of-arasan.c b/drivers/mmc/host/sdhci-of-arasan.c
-> index 294dd605fd2b..2f9de2518942 100644
-> --- a/drivers/mmc/host/sdhci-of-arasan.c
-> +++ b/drivers/mmc/host/sdhci-of-arasan.c
-> @@ -18,11 +18,11 @@
->  #include <linux/clk-provider.h>
->  #include <linux/mfd/syscon.h>
->  #include <linux/module.h>
-> -#include <linux/of_device.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
->  #include <linux/phy/phy.h>
->  #include <linux/regmap.h>
->  #include <linux/reset.h>
-> -#include <linux/of.h>
->  #include <linux/firmware/xlnx-zynqmp.h>
->
->  #include "cqhci.h"
-> diff --git a/drivers/mmc/host/sdhci-of-at91.c b/drivers/mmc/host/sdhci-of-at91.c
-> index cd0134580a90..808307a211f2 100644
-> --- a/drivers/mmc/host/sdhci-of-at91.c
-> +++ b/drivers/mmc/host/sdhci-of-at91.c
-> @@ -17,7 +17,7 @@
->  #include <linux/mmc/slot-gpio.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
->  #include <linux/pm.h>
->  #include <linux/pm_runtime.h>
->
-> diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> index e68cd87998c8..55e1e2d0494d 100644
-> --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> @@ -14,7 +14,7 @@
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
->  #include <linux/reset.h>
->  #include <linux/sizes.h>
->
-> diff --git a/drivers/mmc/host/sdhci-of-sparx5.c b/drivers/mmc/host/sdhci-of-sparx5.c
-> index 28e4ee69e100..2e983cf49bc6 100644
-> --- a/drivers/mmc/host/sdhci-of-sparx5.c
-> +++ b/drivers/mmc/host/sdhci-of-sparx5.c
-> @@ -13,9 +13,9 @@
->  #include <linux/delay.h>
->  #include <linux/module.h>
->  #include <linux/regmap.h>
-> -#include <linux/of_device.h>
->  #include <linux/mfd/syscon.h>
->  #include <linux/dma-mapping.h>
-> +#include <linux/of.h>
->
->  #include "sdhci-pltfm.h"
->
-> diff --git a/drivers/mmc/host/sdhci-omap.c b/drivers/mmc/host/sdhci-omap.c
-> index 8ed9256b83da..2593e3fbd0d9 100644
-> --- a/drivers/mmc/host/sdhci-omap.c
-> +++ b/drivers/mmc/host/sdhci-omap.c
-> @@ -11,7 +11,6 @@
->  #include <linux/mmc/slot-gpio.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
->  #include <linux/of_irq.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm_runtime.h>
-> diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
-> index 91aca8f8d6ef..86b60b0447b3 100644
-> --- a/drivers/mmc/host/sdhci-pxav2.c
-> +++ b/drivers/mmc/host/sdhci-pxav2.c
-> @@ -19,7 +19,6 @@
->  #include <linux/platform_data/pxa_sdhci.h>
->  #include <linux/slab.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
->  #include <linux/mmc/sdio.h>
->  #include <linux/mmc/mmc.h>
->  #include <linux/pinctrl/consumer.h>
-> diff --git a/drivers/mmc/host/sdhci-s3c.c b/drivers/mmc/host/sdhci-s3c.c
-> index 504015e84308..6245fb4584fe 100644
-> --- a/drivers/mmc/host/sdhci-s3c.c
-> +++ b/drivers/mmc/host/sdhci-s3c.c
-> @@ -20,7 +20,6 @@
->  #include <linux/gpio.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
->  #include <linux/of_gpio.h>
->  #include <linux/pm.h>
->  #include <linux/pm_runtime.h>
-> diff --git a/drivers/mmc/host/sdhci-sprd.c b/drivers/mmc/host/sdhci-sprd.c
-> index 7f4ee2e12735..a21d6524d7ca 100644
-> --- a/drivers/mmc/host/sdhci-sprd.c
-> +++ b/drivers/mmc/host/sdhci-sprd.c
-> @@ -11,7 +11,6 @@
->  #include <linux/iopoll.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
->  #include <linux/of_gpio.h>
->  #include <linux/pinctrl/consumer.h>
->  #include <linux/platform_device.h>
-> diff --git a/drivers/mmc/host/sdhci-tegra.c b/drivers/mmc/host/sdhci-tegra.c
-> index bff084f178c9..1e1eac953691 100644
-> --- a/drivers/mmc/host/sdhci-tegra.c
-> +++ b/drivers/mmc/host/sdhci-tegra.c
-> @@ -19,7 +19,6 @@
->  #include <linux/mmc/mmc.h>
->  #include <linux/mmc/slot-gpio.h>
->  #include <linux/module.h>
-> -#include <linux/of_device.h>
->  #include <linux/of.h>
->  #include <linux/pinctrl/consumer.h>
->  #include <linux/platform_device.h>
-> diff --git a/drivers/mmc/host/sh_mmcif.c b/drivers/mmc/host/sh_mmcif.c
-> index 5cf53348372a..838dab179724 100644
-> --- a/drivers/mmc/host/sh_mmcif.c
-> +++ b/drivers/mmc/host/sh_mmcif.c
-> @@ -46,7 +46,6 @@
->  #include <linux/mmc/slot-gpio.h>
->  #include <linux/mod_devicetable.h>
->  #include <linux/mutex.h>
-> -#include <linux/of_device.h>
->  #include <linux/pagemap.h>
->  #include <linux/platform_data/sh_mmcif.h>
->  #include <linux/platform_device.h>
-> diff --git a/drivers/mmc/host/uniphier-sd.c b/drivers/mmc/host/uniphier-sd.c
-> index 61acd69fac0e..c1400d616fff 100644
-> --- a/drivers/mmc/host/uniphier-sd.c
-> +++ b/drivers/mmc/host/uniphier-sd.c
-> @@ -13,7 +13,6 @@
->  #include <linux/mmc/host.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
->  #include <linux/pinctrl/consumer.h>
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
-> diff --git a/drivers/mmc/host/wmt-sdmmc.c b/drivers/mmc/host/wmt-sdmmc.c
-> index 68525d900046..f860f363be56 100644
-> --- a/drivers/mmc/host/wmt-sdmmc.c
-> +++ b/drivers/mmc/host/wmt-sdmmc.c
-> @@ -21,7 +21,6 @@
->  #include <linux/of.h>
->  #include <linux/of_address.h>
->  #include <linux/of_irq.h>
-> -#include <linux/of_device.h>
->
->  #include <linux/mmc/host.h>
->  #include <linux/mmc/mmc.h>
-> --
-> 2.40.1
->
+Shenwei Wang (2):
+  net: stmmac: add new mode parameter for fix_mac_speed
+  net: stmmac: dwmac-imx: pause the TXC clock in fixed-link
+
+ .../stmicro/stmmac/dwmac-dwc-qos-eth.c        |  2 +-
+ .../net/ethernet/stmicro/stmmac/dwmac-imx.c   | 45 ++++++++++++++++++-
+ .../stmicro/stmmac/dwmac-intel-plat.c         |  4 +-
+ .../ethernet/stmicro/stmmac/dwmac-ipq806x.c   |  2 +-
+ .../net/ethernet/stmicro/stmmac/dwmac-meson.c |  2 +-
+ .../stmicro/stmmac/dwmac-qcom-ethqos.c        |  2 +-
+ .../net/ethernet/stmicro/stmmac/dwmac-rk.c    |  2 +-
+ .../ethernet/stmicro/stmmac/dwmac-socfpga.c   |  2 +-
+ .../ethernet/stmicro/stmmac/dwmac-starfive.c  |  2 +-
+ .../net/ethernet/stmicro/stmmac/dwmac-sti.c   |  8 ++--
+ .../net/ethernet/stmicro/stmmac/dwmac-sunxi.c |  2 +-
+ .../ethernet/stmicro/stmmac/dwmac-visconti.c  |  2 +-
+ .../net/ethernet/stmicro/stmmac/stmmac_main.c |  2 +-
+ include/linux/stmmac.h                        |  2 +-
+ 14 files changed, 61 insertions(+), 18 deletions(-)
+
+--
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
