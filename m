@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E62AAC001DB
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Aug 2023 16:08:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B0B8C001B0
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Aug 2023 16:08:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=cDe86Mzah3ikiId4vqdWIkfjRTF82XwS3RxnrdlBze4=; b=aAtQUk9jjX9z/v
-	35FLncXZOcpj4xUjYjwhyRgl9MlF0q2By9XAsr13j8bRNURmUmQyFa2IEZXZeMSFbnZUXJY5jX/dV
-	yc6HB/i4ok79N2RNLBmlbfwuI4ILiuik7CCW6H8CqsrtJXPYy/C8dp+6MXEi/qxkRM/x4fPiBA5We
-	XeMt2x2jREiLBt3IxbPbPTro1KOaEL7QMaZ4Bg3lB5i3TiScHS8PShW1VPZ8bTm/54dS5t271sW+l
-	+GZUyFuMpBnGAu+qw3tVa2QUndkt9QyYeukqXkjGhVC444OfVT/im/vaOwVrdOuD41Awq+1QovhxM
-	DKPsvxFZ2gSdv+MEHYvA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=RA4wNDiv8o37bYV16gnxB7S9WURXHgZkITsJgvV99z8=; b=S83VtHY4efDqgW
+	7IiRE7EHcp7C0bJxidc74pFNj595PygV4Sg//R6MFa/sETySB6qYPM53N8+lOwbMNwndHnKTSLF8I
+	KPoegNHItKiSkDFCSwu0qi5n7HUGV3ifZXGr6cmc1F7jAgigKwvgdKrr4B6Jk6Nfdg2HsDfNygpDT
+	T0/Hs/c1Z1uFKDvWq6ST0HwQ2srDIoHgg64G5uFhpLwDh1ibTFUeE/t5r+AG5nWxe4AoU0gPE9rso
+	pD1fszHTeZdMshhzRMjUo4tluzd5k0en7JOguzZv6pHo/egaOQ3pKjNBmRFONHNJEFTh73YOz7Q6Q
+	JWQoYPBGDSH/LCJOGIYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qT2m0-0008Rj-2K;
-	Mon, 07 Aug 2023 16:08:00 +0000
-Received: from mail-am6eur05on2060d.outbound.protection.outlook.com ([2a01:111:f400:7e1b::60d] helo=EUR05-AM6-obe.outbound.protection.outlook.com)
+	id 1qT2m5-0008U7-0x;
+	Mon, 07 Aug 2023 16:08:05 +0000
+Received: from mail-vi1eur05on2060c.outbound.protection.outlook.com ([2a01:111:f400:7d00::60c] helo=EUR05-VI1-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qT2lx-0008PP-0i;
-	Mon, 07 Aug 2023 16:07:58 +0000
+	id 1qT2lz-0008Pi-30;
+	Mon, 07 Aug 2023 16:08:01 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PFDDIqDyY4dF8+17febcrvAM5Zn1/fsIwrMJ8gCTsjx6rMVNfIMfj6nVFPNxVUODuMI8bLXvNeg0GKXeXmzk/BbzS4afoIbAQXRVhfYF9BJ0rcnpWNwEqCnLdIkk1dcMKrxRJJqBF9qEmETXVorz9shNxj6sg56q6k1z9j7OfeztZ2eObnduE6L5dZ59N1rdYFKvhOYfBedzUypyYuUO+j25Ohl692jx85jT3Ezuqm3DUN0qTNpMVosb6ZBi+oISmYKzjIU2OgwYryGhB7f6rgCqa6rLnFEAAXAH7s9ShYZgPWxp2vr8URiLXAR0GON6gXkrx/zE0bH4SGbVYWcSwA==
+ b=SfWIMHdGKVPVWgR6sTJinqpwlWoHEnCgETSkmINLfzE3ATXfjhckf8FK2q6RAdih3Ek3CzTCSOsMCQZFbNTdM6P5DXnk8SENwKzFY7CnLDlTN2GW2bmVCla6BhoHXPL7fbtd1oCbLVKpKkEP0qPKif8xeY3wvvupFYlkXeUdGe/6V7PIXd7mvt/7GLlAFEV4IPHnQQXbYIPtJCtZ4Ba94yvCKf2iikmiZDGy7gAlxEBIXu0AGIX8OqWELNx7Lhmraem1qwZNGxPVyXoEjFfTfuCp54J9iJ0oBybX8qy4eI/P6JZC0qrKtgn62jFcc7zQb9KSMsF3JSW1axN08Z9kgA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CNwscRqk0C84Eiv7FBgS2HeeMiXLLIpx31Vkbxie2PI=;
- b=WThKdAtF2jXj8kr/eOoWuNZP37Y4R/Uk5E68irg4KCghig3gzDWZWJQBSR3DbBbypcsfaeXxxIW2oRvx1qIxeex2MsUImN1XDUw3ra4OOUNyiEKaHSZ07B0OH6Fxbd/in2Ii2lZbTBgxPr9Jn2rwen6NKHbmqrvxncmueAwn1sBogtEDpUcKaqYbRDaH/2/8P1iIBONmIgz96bIPc0UVsdHfgbPfRbkd6RRBVC76eCjK2UmFOSjtQdEX1PqB3C0Zg/ZjTRz3kSk7dPE+ebbrZGZU25/KDpgJsxN24ZHSYOG8S60R5pV15qi+LKPHwKA18OwbvY7oXFtgV8XxBQGOug==
+ bh=qJnhaw4KNyuyfDYecq4DLlXtg+TIxjX+jy33NxMGBb8=;
+ b=hBkg6nD7rRMao3eE/YfAuS/egMfXaHEEw2ko7sgCADy7oPFalfd9087WrCzv7GXI/bQDvqBm+aGHe3Azcrj+pbICkxGfirHap/49FUd5Zpb0uPSBOgEbb+zGAsafo+Fq97aGZmBQTo05QUPn1BEvQMIbpxPkds7uAdkOKWrjFHxGPymq8yc0rfyftJY+aieFkCHGdRHGq5IGORWe82usLnFTZEYaOlrVgFjfNrfaSi94DRjYsad8IyWpY+/+Bqq+JRuXJen1XDy9IwdmPbp0WaL7kkgptHoGlnXnu17rDlkuOcprbBwbWwYq1b0SE2BjPvsTs+LcQW+rPfHG3AAd2Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CNwscRqk0C84Eiv7FBgS2HeeMiXLLIpx31Vkbxie2PI=;
- b=Aw7BDk4yUfuBcMseEHzFGYL5SJnu+f13MpX+kXOBwUlbSPGHbeyVkMfXs+k+HSViNjhGq//CKdpen7bfyiB9gTRydAYE+gmNjgeAwDpZdba1trQSmbmfykyCUDH17wFiZRyjYSLqKA7BB+NOPn+fT4tqbgLitzpBpL+Epzuc3Io=
+ bh=qJnhaw4KNyuyfDYecq4DLlXtg+TIxjX+jy33NxMGBb8=;
+ b=Rtl5noMuJMaB2aO4pxlmj9DIZQmffJ894q7ZinRyDnnkyeph5X/3/VZlJYTp6CCmP3Mb/5Hlj82r0EhEk41VZvcQxi99ynMYpU9qCFJuLNwp5sfAVc2KifjqsBTBMeHV6DIJaNT2i+95UAqzPOBWx7i1hzx/Fmj2GOcPhb2Wq0k=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
 Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
- by AS1PR04MB9630.eurprd04.prod.outlook.com (2603:10a6:20b:475::16) with
+ by AM9PR04MB8414.eurprd04.prod.outlook.com (2603:10a6:20b:3ef::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.26; Mon, 7 Aug
- 2023 16:07:43 +0000
+ 2023 16:07:57 +0000
 Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
  ([fe80::d4ee:8daa:92f4:9671]) by PAXPR04MB9185.eurprd04.prod.outlook.com
  ([fe80::d4ee:8daa:92f4:9671%3]) with mapi id 15.20.6652.026; Mon, 7 Aug 2023
- 16:07:43 +0000
+ 16:07:57 +0000
 From: Shenwei Wang <shenwei.wang@nxp.com>
 To: Marc Kleine-Budde <mkl@pengutronix.de>,
 	Russell King <linux@armlinux.org.uk>,
@@ -89,66 +89,68 @@ Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	linux-amlogic@lists.infradead.org,
-	imx@lists.linux.dev
-Subject: [PATCH v5 net-next 0/2] update stmmac fix_mac_speed
-Date: Mon,  7 Aug 2023 11:07:14 -0500
-Message-Id: <20230807160716.259072-1-shenwei.wang@nxp.com>
+	imx@lists.linux.dev,
+	Frank Li <frank.li@nxp.com>
+Subject: [PATCH v5 net-next 2/2] net: stmmac: dwmac-imx: pause the TXC clock in fixed-link
+Date: Mon,  7 Aug 2023 11:07:16 -0500
+Message-Id: <20230807160716.259072-3-shenwei.wang@nxp.com>
 X-Mailer: git-send-email 2.34.1
-X-ClientProxiedBy: SJ0PR03CA0058.namprd03.prod.outlook.com
- (2603:10b6:a03:33e::33) To PAXPR04MB9185.eurprd04.prod.outlook.com
+In-Reply-To: <20230807160716.259072-1-shenwei.wang@nxp.com>
+References: <20230807160716.259072-1-shenwei.wang@nxp.com>
+X-ClientProxiedBy: SJ0PR05CA0047.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::22) To PAXPR04MB9185.eurprd04.prod.outlook.com
  (2603:10a6:102:231::11)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9185:EE_|AS1PR04MB9630:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7fffd3e9-92ed-4c9f-56e7-08db97606e81
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9185:EE_|AM9PR04MB8414:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6eca23d8-fcbf-44e3-ee8b-08db976076fc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WryyscnmZE38H8ojy+yVRaKt9f8qHj1iha8X4ILfITVwIcw6tU4aKO4pLFU/OomvluN5hQo+4ZpMNMGNhdvHU390m259uvHS98dvodv6bZQmMSr6C1J1omtYVAtguMMu8eVWfJsqXOHKr6OBi6LumQmIAtJtpdk/3MET8ZIV20VTCX6CEcMv6w1q5qYWHviQ1AyVNc1e0kf1Pub8J8XAyGMQnXUAy4n5++rumoctKmQeauuv76XJMzShzuQ4Mg+T7S/6rgcjMjwg/X1P22DLDNTNHeezkKSOsw6RUPGSqBnI9ogwuiHrXuO91mHkQB2aScdSgZY4KECsZ5wW8h2tU/s6cuTBhb8vvg8bkBLQFmNd1YVDBLhyCkjNwUQqH9XIUuOSy7+KwH/VKxbklg1tEPS2wNfaXuaA8hyxrruQeN4+Y2EMxMeumpSZK80iPg/WwHW7v4zMVu8EXU9X2fHy/c34dQrdtEtnDafxVztdLctMcWThBxPvLw4VLgAev4SjKA5DSmFQJgDbOgoM44S7noZpAGpmHzpy//7bpu+dou7CzKNPIk3ZMWkHhp5gSbN7TZYNY6keZU7bE/p+eo+M+lwiP4BMR3/KqvnmeiuXg/6CEz5dDpTDHY6fcsFvcia/5hqNtB3Ix9h6russhqpS7w==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(136003)(376002)(346002)(396003)(366004)(1800799003)(186006)(451199021)(66556008)(4326008)(66946007)(66476007)(2906002)(52116002)(6486002)(6666004)(83380400001)(5660300002)(44832011)(7406005)(7416002)(41300700001)(8936002)(316002)(8676002)(38350700002)(38100700002)(921005)(2616005)(54906003)(110136005)(478600001)(36756003)(26005)(55236004)(6506007)(1076003)(86362001)(6512007);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: uwEIt4Sh3KYtQGJSA45rJgiK8JnRKtwZh7l1AYeWniNxM8Zirrgojtb6eyeXkgUvtQn0Pxj8hUXbN+f2RNwTm3HkS1ShQygodlYlGnrekTGL0ynU+cmxDZaiy2H5jnbbmBVtipwwsmySfsv200oXa82qEnBsKXKk9PJSQKnktrXYs45zqkQFaMiVRj6w5bO+QBDm8dtHeVKrY1dtqsDk/VTm9DmJQOax7ZpBHiq5+Ds6WHNXfi3jOboBgZYwF45suMeWHO+W2+zzBrLfr1KO/vivOFb7f0VS9H5GuKOvJOLgnqsgW7Mq2i2Mh6yKiPkZKf0eEomd/VhWVGsvJsRXvapjXoV2Dg5QEQJFQSUvCEd8RdktjtP0eaitOmQ4WPaDzcu1MAUKsbrScSxgb1QQOGLj/nwcliSfWweqYnvIIPDBt8eTrQxBDIT2Ea1C3NVAp4eNsnX7ozAk5yveV1VQEre5E/+dnSHgp/QDniSwHkfNQRWfdAX8fH9DVb5dMgNO4r3skIG3vUEzYn583pkE48j4vZI/f76xy5UVp7D59m4RIzUEJzcAleLDZfF9pZRvbW7wBLzLOXDUC54ZVhVqalXgH0QaBh4QOE8qiSwoDqEu5EcK9NmP0E8S8IV9Sva1y1NHg+iYhkaD2NGn6uw3sA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(376002)(366004)(346002)(39860400002)(396003)(186006)(1800799003)(451199021)(83380400001)(2616005)(921005)(54906003)(110136005)(2906002)(38350700002)(4326008)(316002)(5660300002)(8936002)(7406005)(44832011)(8676002)(7416002)(66946007)(66476007)(66556008)(38100700002)(86362001)(6512007)(478600001)(6666004)(6486002)(52116002)(41300700001)(36756003)(6506007)(26005)(1076003)(55236004);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wtY5Yh7kNwyPPUulk1/hcxiNFSDDrjKaTnPch9hiHkyeGPf5VG/x0DKu9Guj?=
- =?us-ascii?Q?LeOWNlRT29HMZOkjU+J51oiGXznV94c3cW9b2iOCCUd5d8XiyvbUX8AFn2oT?=
- =?us-ascii?Q?9Jm8ddZRgxOdpeptdkU2TXWjSgAXDW6jiXyG4//RDX0Er0dXAz+EI900s/TL?=
- =?us-ascii?Q?VP+ME6uv/Ebfn949hO59Dg4hqdC3XGVMePritFRyrXYCNixxMmbrXURw7wLR?=
- =?us-ascii?Q?4PW7TGLGHojolytdtTjejYxehunz55sAHD0D0CG+lhxe972fIOb4y32bSx1Z?=
- =?us-ascii?Q?qX/Y8F5o7BxDXHLfrYshWJzVwjTKaYN24pchZ9MNJ28y3qecc9XRdKmWreGC?=
- =?us-ascii?Q?VeeotfqsJ7kwulVQ2/bhJ7b8If5e8jhkgJbfUmGkC4goeimw7pHLqVESPlIc?=
- =?us-ascii?Q?OuLwmMiUR9jVfg7vA6AZn0DK5vA9pTYbYp6BoM+6o4mHXLgTLgIKZ44zr5YG?=
- =?us-ascii?Q?akqDspcEaFz49Gscy9g/GfRVOWkdcDl0yyPXLMOh5jgPrUtuO2RHsxCkTFbi?=
- =?us-ascii?Q?O7tExLCh6KS/PQAVOZK9r3v9qrV63il8dqN5Oide/nJ6AC4tzDetjjyci/v1?=
- =?us-ascii?Q?tOqUG6avCAEpAXDweG4oeWrhBzb9Z3czfjuCjyYSyIUh1uO0kURM78sftPkm?=
- =?us-ascii?Q?fASZUNJreZ6fJfS198bUDniVRyTaA2q5vE1DRxo6ln0pMzVuZsNMA2ciqRLO?=
- =?us-ascii?Q?4cn6G8ECDdSzMPj8USZIcoJyKiqJEbiP4nrlvCc2RgxikeRu9jS10w4uQuc3?=
- =?us-ascii?Q?jEl5DiyB1qhMrmeNvsispMm1lsJDu8hfFl7E5np0xlgcPviuSY8CDy41DZpg?=
- =?us-ascii?Q?MsFSy7pOLLPOlU6SY7rJzwdkNGr+bWNliRw9G1LxnMf1yiBlMzYTt7thOcMN?=
- =?us-ascii?Q?gpcgcy7KtVoM4NMJJW6fYo4/ACIBQGFm63EWx90q5RhaO0qjeafaXfQkBR1e?=
- =?us-ascii?Q?NE86OqZVG2r8VrogyB5urZZ42c1MMkeuOBmJdkG4sVBL4Sj/Ov5UFHHlV5J7?=
- =?us-ascii?Q?MULbMoppSb1ZuQUw5bEb6vr1+Q8Vpb4OfKsrwsI1liUmV047CjTHkpcLKtmF?=
- =?us-ascii?Q?CO00309CfNy86ark1HUxmRIA7gmtCBzRdRR4vi1b6/nDDEQxZx0EU4Gylfxa?=
- =?us-ascii?Q?QbKTbwMD9gEGa4NbMbiCaX/u5nIz5b5H+VZJVlcDUVCPU5Cm3fwENYht0Ib6?=
- =?us-ascii?Q?fwlgWQWZMRYGdrW8V+F7Xl1lK4I1S406ahuDkbDHrsQcmBBl70YAFBjXJXba?=
- =?us-ascii?Q?Vs8R13wCij2PSGE/RuMqIx4A/w9qxgWVPEVUxAXanncGiIzTIODHYzGU0JsS?=
- =?us-ascii?Q?HK9ov3UtkFeMoGc6a5HT8PSON3EyzKelZTpHobSjwQhO8gfT56aB5RFRQXqb?=
- =?us-ascii?Q?71SvvWy5CPPt33NzhVUNKdXTz2SyzoOVnOTR55tEEQGZjVTH9osA6rxCMi27?=
- =?us-ascii?Q?ONJIaLSsIEVmiYnwmIPxZc4T0vUSFuJrkzqLD/fpFNsSlDZdHbDDmmqV1ixc?=
- =?us-ascii?Q?7uPR0YddtBjcVYtcFvf4i9olgNDXGljetXI4vLQ3cQLOCtQDY2NVVYs15mkF?=
- =?us-ascii?Q?Y+LgDFnSSHiSFLx7I63NsdpbpmlDRkPrH8i55Nvu?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?jo5axwpVWmwem3lUm5ksMpgsrayOwdMs7z46d1r2C2pBynmJntO5XnBxedII?=
+ =?us-ascii?Q?qoncl0chMjNIzMOaciWK/vA5xGUR79T3Wu/sN6URxDLQB/9So/M86bK5ErA/?=
+ =?us-ascii?Q?7CsMpJiDd9D+WYQ3dIT0f3MbiWTCk/Seuf5EaI8ARsyquBaX+mFrZzzDnVwY?=
+ =?us-ascii?Q?gxG5c8QLpMvFM/WtEqtGheem5T8w+TaSMDDql9p719vS9yk85iBwfWhritrk?=
+ =?us-ascii?Q?sVsm2NiCkXHINonsXNUoPvdPkK/2jYS5L2d3aCHeoaQ4Xe7tOgeJMqheo42x?=
+ =?us-ascii?Q?P/is2vHIJDFOXx8jVRgM2j0eXYunVvS8yvv+W08lnqvOtJSGmhIcNgmztJvc?=
+ =?us-ascii?Q?uajbQz52IIW4KgAVHhIK7H3pPqUufzyPppN1hg6Tn5CfzkEkbjJk0jhdBQ6N?=
+ =?us-ascii?Q?3QjNuNbENzWl01zjHmmDp1qNrseHA7/vC3fhPS1b7547fub4RgB+vgzV2HrZ?=
+ =?us-ascii?Q?DC5v3CblS3+3PJz14WV7MQTKtTJu9/nCKw9X6bh5njdta2IkrCB3h7ri9jlV?=
+ =?us-ascii?Q?S8LpXhgA7/IzdNq7YUG2Y3VSAs42ZOIE/yxjXwdkylrFp8iQ3Gy0YAYRpDJG?=
+ =?us-ascii?Q?PeZrnAn8xU6olfpOjgiQqK+YKcCoisU0zMvD47z69Yac/LR9FZ8CR9AzZeAn?=
+ =?us-ascii?Q?mGvFjr55TYbEKZTrepD7TjXM8muu4lN0SNpUJ8Coi4nOpJOlO5ilU4k4lwng?=
+ =?us-ascii?Q?x7iDdu9q6zdB4gH+ejS+U4x2eQKLhUZnHEAsueSxFmoRokg4/VDNF97H39iG?=
+ =?us-ascii?Q?rE/EfXmkl+EpCzVfrUz6hZ+hTafzJibRI7BkSQVUnMknjghvAY9YDXXdSEI6?=
+ =?us-ascii?Q?F9lfYE87bymth37JeTczHoXwmllUdu/6B6F7iBN4vMn/uARCMSZrIHVOSFSf?=
+ =?us-ascii?Q?5Gy8gjvpQhb0gGqj5FiQ/b3ZJ/GRc8AqTIwimo+85hTQ0N3U8T3tKSNIZGp9?=
+ =?us-ascii?Q?JoWtuTr1mbP/uSUCPQPXA+bnBG0QrF/8w/7iDjFlL7aUZpeoXEWcWm9KTOI1?=
+ =?us-ascii?Q?YRcpsp4k+vz+DH9MFOuyGilCnLjudu+CXQ25uelUotgXy3Fy9heWMRNf7SVZ?=
+ =?us-ascii?Q?ndJ0DdfSZETn7sf6BYAr8ca+P4pn5qikJckqTqdymto1v+jIjbukkKPCJdZf?=
+ =?us-ascii?Q?Y3Jrw/7PBebEkinc0H3eI9DwUXHMP8me6oBNgko3oziRgStXuf7+b5eIuO74?=
+ =?us-ascii?Q?U244kWB5jwoqEwvoMSM7mLyrCLsIZwz5GCpc2GGBp1YdEW4nYGYJBMiPYF1G?=
+ =?us-ascii?Q?uBDHiF5/7Dr5Z3vtuO7uPjY+MOGxTfTL6j+tEJxW4EHPMdWuNjY5CZjmgK/A?=
+ =?us-ascii?Q?4NwI6rq1a3jgM2EreBcEJdraLqxy+qooWKUaFeFtTt8NXaGubPxxyzmfAQpS?=
+ =?us-ascii?Q?yQrmMYjrRx941uKx63PRXVD93EzRzBJqYrfGyKtv+cn4Er0Q60pcUuJRW0fM?=
+ =?us-ascii?Q?+gGuFuLPYb6hvItIFPmsrECTbRkBFdj0VjCuToBwCwkxK2F1roSVrRC3qDyE?=
+ =?us-ascii?Q?07FvYSyTIkaRFHd7Q1RizurUnr9qPN4Lx5lc5KJHkz4puawJ1E+bvGDz/4Hk?=
+ =?us-ascii?Q?kz4QzhGPD22kMkd+vvkNjjT8zZ4Oc/UCvY+wuVEg?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7fffd3e9-92ed-4c9f-56e7-08db97606e81
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6eca23d8-fcbf-44e3-ee8b-08db976076fc
 X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2023 16:07:43.1255
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2023 16:07:57.4833
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fUcXCMDmIKiid7gI9KKTIz6L4hySXKGXBhswUYvMcj3q9RsiwbLQrc2+0FwPbOEF5k63aSkcfN9y41YNW95v7g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9630
+X-MS-Exchange-CrossTenant-UserPrincipalName: JiRWqnlGtCwqsmIxXnxxjJzaLxpo70v+ZsAazU0DQqrMCJDBJungrqM+ognr4tsjTYMfRcfh9o6QMkPBIeLQTA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8414
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230807_090757_335311_41289494 
-X-CRM114-Status: UNSURE (   9.73  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230807_090759_972303_2406CE88 
+X-CRM114-Status: GOOD (  18.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -165,47 +167,130 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Changes in V5:
-  - fixed the typo in if condition reported by Russell.
-  - fixed the build errors in dwmac-sti.c reported by 'kernel test robot'.
+When using a fixed-link setup, certain devices like the SJA1105 require a
+small pause in the TXC clock line to enable their internal tunable
+delay line (TDL).
 
-Changes in V4:
-  - Keep the 'unsigned int' type specifier in the fix_mac_speed
-    function declarations.
-  - Move imx93_dwmac_fix_mac_speed into the SoC specific ops.
-  - Use a read back to replace the wmb() instruction.
-  - Correct the target to 'net-next'.
+To satisfy this requirement, this patch temporarily disables the TX clock,
+and restarts it after a required period. This provides the required
+silent interval on the clock line for SJA1105 to complete the frequency
+transition and enable the internal TDLs. This action occurs before the link
+is built up, so it does not impact a normal device too. There is no
+need to identify if the connected device is an SJA1105 alike or not during
+the implementation.
 
-Changes in V3:
-  - fixed the build errors reported by 'kernel test robot'.
-  - Only perform clock pause in RGMII fixed-link usecase.
+So far we have only enabled this feature on the i.MX93 platform.
 
-Changes in V2:
-  - Call fix_mac_speed() with new mode parameter added.
-  - reorg the function of imx_dwmac_fix_speed_mx93 by using the
-    mode parameter.
+Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+Reviewed-by: Frank Li <frank.li@nxp.com>
+---
+ .../net/ethernet/stmicro/stmmac/dwmac-imx.c   | 43 +++++++++++++++++++
+ 1 file changed, 43 insertions(+)
 
-Shenwei Wang (2):
-  net: stmmac: add new mode parameter for fix_mac_speed
-  net: stmmac: dwmac-imx: pause the TXC clock in fixed-link
-
- .../stmicro/stmmac/dwmac-dwc-qos-eth.c        |  2 +-
- .../net/ethernet/stmicro/stmmac/dwmac-imx.c   | 45 ++++++++++++++++++-
- .../stmicro/stmmac/dwmac-intel-plat.c         |  4 +-
- .../ethernet/stmicro/stmmac/dwmac-ipq806x.c   |  2 +-
- .../net/ethernet/stmicro/stmmac/dwmac-meson.c |  2 +-
- .../stmicro/stmmac/dwmac-qcom-ethqos.c        |  2 +-
- .../net/ethernet/stmicro/stmmac/dwmac-rk.c    |  2 +-
- .../ethernet/stmicro/stmmac/dwmac-socfpga.c   |  2 +-
- .../ethernet/stmicro/stmmac/dwmac-starfive.c  |  2 +-
- .../net/ethernet/stmicro/stmmac/dwmac-sti.c   |  8 ++--
- .../net/ethernet/stmicro/stmmac/dwmac-sunxi.c |  2 +-
- .../ethernet/stmicro/stmmac/dwmac-visconti.c  |  2 +-
- .../net/ethernet/stmicro/stmmac/stmmac_main.c |  2 +-
- include/linux/stmmac.h                        |  2 +-
- 14 files changed, 61 insertions(+), 18 deletions(-)
-
---
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+index 3eb6b4457494..43ff19b009d4 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+@@ -32,6 +32,7 @@
+ #define GPR_ENET_QOS_RGMII_EN		(0x1 << 21)
+ 
+ #define MX93_GPR_ENET_QOS_INTF_MODE_MASK	GENMASK(3, 0)
++#define MX93_GPR_ENET_QOS_INTF_MASK		GENMASK(3, 1)
+ #define MX93_GPR_ENET_QOS_INTF_SEL_MII		(0x0 << 1)
+ #define MX93_GPR_ENET_QOS_INTF_SEL_RMII		(0x4 << 1)
+ #define MX93_GPR_ENET_QOS_INTF_SEL_RGMII	(0x1 << 1)
+@@ -40,6 +41,7 @@
+ #define DMA_BUS_MODE			0x00001000
+ #define DMA_BUS_MODE_SFT_RESET		(0x1 << 0)
+ #define RMII_RESET_SPEED		(0x3 << 14)
++#define CTRL_SPEED_MASK			GENMASK(15, 14)
+ 
+ struct imx_dwmac_ops {
+ 	u32 addr_width;
+@@ -47,6 +49,7 @@ struct imx_dwmac_ops {
+ 
+ 	int (*fix_soc_reset)(void *priv, void __iomem *ioaddr);
+ 	int (*set_intf_mode)(struct plat_stmmacenet_data *plat_dat);
++	void (*fix_mac_speed)(void *priv, unsigned int speed, unsigned int mode);
+ };
+ 
+ struct imx_priv_data {
+@@ -56,6 +59,7 @@ struct imx_priv_data {
+ 	struct regmap *intf_regmap;
+ 	u32 intf_reg_off;
+ 	bool rmii_refclk_ext;
++	void __iomem *base_addr;
+ 
+ 	const struct imx_dwmac_ops *ops;
+ 	struct plat_stmmacenet_data *plat_dat;
+@@ -212,6 +216,41 @@ static void imx_dwmac_fix_speed(void *priv, unsigned int speed, unsigned int mod
+ 		dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
+ }
+ 
++static void imx93_dwmac_fix_speed(void *priv, unsigned int speed, unsigned int mode)
++{
++	struct imx_priv_data *dwmac = priv;
++	unsigned int iface;
++	int ctrl, old_ctrl;
++
++	imx_dwmac_fix_speed(priv, speed, mode);
++
++	if (!dwmac || mode != MLO_AN_FIXED)
++		return;
++
++	if (regmap_read(dwmac->intf_regmap, dwmac->intf_reg_off, &iface))
++		return;
++
++	iface &= MX93_GPR_ENET_QOS_INTF_MASK;
++	if (iface != MX93_GPR_ENET_QOS_INTF_SEL_RGMII)
++		return;
++
++	old_ctrl = readl(dwmac->base_addr + MAC_CTRL_REG);
++	ctrl = old_ctrl & ~CTRL_SPEED_MASK;
++	regmap_update_bits(dwmac->intf_regmap, dwmac->intf_reg_off,
++			   MX93_GPR_ENET_QOS_INTF_MODE_MASK, 0);
++	writel(ctrl, dwmac->base_addr + MAC_CTRL_REG);
++
++	 /* Ensure the settings for CTRL are applied. */
++	readl(dwmac->base_addr + MAC_CTRL_REG);
++
++	usleep_range(10, 20);
++	iface |= MX93_GPR_ENET_QOS_CLK_GEN_EN;
++	regmap_update_bits(dwmac->intf_regmap, dwmac->intf_reg_off,
++			   MX93_GPR_ENET_QOS_INTF_MODE_MASK, iface);
++
++	writel(old_ctrl, dwmac->base_addr + MAC_CTRL_REG);
++}
++
+ static int imx_dwmac_mx93_reset(void *priv, void __iomem *ioaddr)
+ {
+ 	struct plat_stmmacenet_data *plat_dat = priv;
+@@ -319,6 +358,7 @@ static int imx_dwmac_probe(struct platform_device *pdev)
+ 	plat_dat->fix_mac_speed = imx_dwmac_fix_speed;
+ 	plat_dat->bsp_priv = dwmac;
+ 	dwmac->plat_dat = plat_dat;
++	dwmac->base_addr = stmmac_res.addr;
+ 
+ 	ret = imx_dwmac_clks_config(dwmac, true);
+ 	if (ret)
+@@ -328,6 +368,8 @@ static int imx_dwmac_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto err_dwmac_init;
+ 
++	if (dwmac->ops->fix_mac_speed)
++		plat_dat->fix_mac_speed = dwmac->ops->fix_mac_speed;
+ 	dwmac->plat_dat->fix_soc_reset = dwmac->ops->fix_soc_reset;
+ 
+ 	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
+@@ -364,6 +406,7 @@ static struct imx_dwmac_ops imx93_dwmac_data = {
+ 	.mac_rgmii_txclk_auto_adj = true,
+ 	.set_intf_mode = imx93_set_intf_mode,
+ 	.fix_soc_reset = imx_dwmac_mx93_reset,
++	.fix_mac_speed = imx93_dwmac_fix_speed,
+ };
+ 
+ static const struct of_device_id imx_dwmac_match[] = {
+-- 
 2.34.1
 
 
