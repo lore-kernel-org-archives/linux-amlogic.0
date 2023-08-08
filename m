@@ -4,70 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A345C001B0
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Aug 2023 12:11:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E009C001B0
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Aug 2023 13:19:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=oWlhBKZfgkrgA1aI9BFSPvAHoMP2nfWJg6MjxgemwRo=; b=gL+/isL7UMM9PbdqL+gR+FjHmt
-	2WN2gi4Sb9dgxUCmxEo3Cb4zpi0v6SQaPS87NdPKEj6NaZpsaQOV+GSmjbbJun0a5a/wyINhrQOan
-	A4z0JfAvS62qfEehN/tzL14p2nDGlDyKfKtTpA+DK21El+c/756NRUHLAh9tm7H+vIEUNUPaWbtoQ
-	pnL9rbbN+IfMudoJuM+RWBj2/k8wTwlH6uOisjn1TT67bvQDZqnW/23ATrmn9NlUeMM1oznSqepYE
-	50nmQLib+Zhd0EfKOZz7hrN0RZ0wXfSbnGFjN/r9eT3Ar3kdQ9raBPKzbEeVlLWzYNcJ74D7oS1nY
-	ucG7sSrw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=4mXsJcdENBR9lPq0eCH9GLK74veYmFVBb8n7ieHVlRk=; b=03FJ5eexe5bQUC
+	Nppn1wVokPXYY7qsvHqRLSr6JpWKCA7vms+su7McYf4agADCUu70RZzVk6eDwI4uGUts5T6eOsNm9
+	WO/aw28r3X052d4Gi4b3Jj1nT4+DdMJ+AtPJrunbkHffDWTh91EEtXmH+t5n5AXWcniy85d6bFF3P
+	ia8zHgX4DcpHGtYpaXaOg4nWfxNYbEqvktXn5uYzbVn8E72OZbmPELGZSDiClBCOOxjufsUYDVJjN
+	MycPEEQHB09ulDHZFABPgQRbtwa0NPwcoq9ynfTZC6a87Bn+awMp6l/JBhbykCedafVepkRZtjBYx
+	Eo2xROa/u+sgCklUK5Jw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTLYj-002Xd4-1f;
-	Tue, 08 Aug 2023 12:11:33 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1qTMbm-002dBS-2N;
+	Tue, 08 Aug 2023 13:18:46 +0000
+Received: from mail-yw1-x112b.google.com ([2607:f8b0:4864:20::112b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTLYh-002Xci-0s;
-	Tue, 08 Aug 2023 12:11:32 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id BE48F62526;
-	Tue,  8 Aug 2023 12:11:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BA43C433C8;
-	Tue,  8 Aug 2023 12:11:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1691496690;
-	bh=96VTB/JKve/lcwcYA/LVnZ1+6F4oYEZrmgfcvmfSTM0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PGRUeMhvgx8j7ItBIo8IDG4iysdY+5QTLi8NJackenmM6S0mnqJu5JtIThopDGbS0
-	 r601kiz6J//C6Zi8CsMcMnJCbEavL+yZ5PBI9K4+xg15YJGdJavbEuCNXaYLZ7GdDX
-	 TBlUksujh06CbwXRUkCowZ1SQyOeMlYHh+SAdeQ3baLFpAsSAn9jw7kf5EpIHvPIME
-	 CBVgZxbLbKA36f+/wAn5DgbaSO5NL8oNQyz0RJ+XS0zuCK27qLKnv+JFAqJb2j8aOg
-	 F52ZqLau9HBXQH76LcOoZh/e8s/tL/8N8wEouLdPicbQ6toqSuOP/NauDtkoEvqR8d
-	 KZxwvJP8bsRqQ==
-Date: Tue, 8 Aug 2023 13:11:24 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Alexey Romanov <avromanov@sberdevices.ru>
-Cc: narmstrong@baylibre.com, neil.armstrong@linaro.org, olivia@selenic.com,
-	herbert@gondor.apana.org.au, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	khilman@baylibre.com, jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com, f.fainelli@gmail.com,
-	hkallweit1@gmail.com, lists@kaiser.cx,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-crypto@vger.kernel.org,
-	kernel@sberdevices.ru
-Subject: Re: [PATCH v2 2/3] dt-bindings: rng: meson: add meson-rng-s4
- compatible
-Message-ID: <20230808-diabetes-ultimate-f3f4afc53d6d@spud>
-References: <20230807130611.63914-1-avromanov@sberdevices.ru>
- <20230807130611.63914-3-avromanov@sberdevices.ru>
- <20230808-calcium-smasher-5f6c410fb226@spud>
+	id 1qTMbj-002d9d-1z
+	for linux-amlogic@lists.infradead.org;
+	Tue, 08 Aug 2023 13:18:45 +0000
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-5768a7e3adbso95604497b3.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 08 Aug 2023 06:18:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691500721; x=1692105521;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cCJVGIzRWp3n6+ocRSshdb4+bDJCLF8hHPywBz67DZU=;
+        b=iy7zswmtYx6ZYNzYmCG5rqHRjdv+HqB8GrEKYccjle/8dJ9x1OShHO9OgMow0zFYho
+         RJhCC40wkFuTTf25ecgjND4T7pSlTzynELSybpF4Tq9lm0vpF/1WhH9PVjPDo3D92r0t
+         vE0MwfGWmp5O6GeDRRPpN190ezwOTKyeDzoh+6spHPvGNcXvDC15NYX5Fh6AdODwNh9i
+         u+xgCMzltAjprgtTTXUMnRSMUGU88rU5hQybpWcAAj9weIpW1fiVIhA90pqCkvmL6npO
+         3XYinfPiJb8jbNTnaImLtOznhk/zT3v7clUSSq2VXwojFDvEIz4Ap+Wto2wlmlxEy3FT
+         jTzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691500721; x=1692105521;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cCJVGIzRWp3n6+ocRSshdb4+bDJCLF8hHPywBz67DZU=;
+        b=kSduSvwMoHAEFUo5OpRuamXzWlgamWGEcrct+J/d666knu7CA0qJpQw23L2JA/I+Iu
+         dw4Q9CYjmDjMYFanbml8WZosbWTKRVDEy8LsHI4kNvIDqyhRvUv73zguBrYcZ3/0gV1S
+         B/VnuPiI7yPxDr8o1xkfp54Ssc+1cgsB93Wda5VBicp73z+qI8h/3No0ElfRSLpR7Gon
+         ek+11y/Ft5s/g8NId1kKOMfwL6hmV8wCveYjT/qJlFXp8AI5hDfH7gBa786WIHpDrM8M
+         Lq0KTXlxfa5QOk4pJgYS00aqkOwu1en1glv9xa8Vky1cXPSSGJU6ca5FijXkLwRraXTJ
+         0KTQ==
+X-Gm-Message-State: AOJu0YzytkfuHhVlcPA2PdEW+wQ7DB09Ym/37/w51IK1VZL+U0E7h3v/
+	AFpTi/VMLRot4AcPQfkxqWAIW3zaMFTEd44d4t2puA==
+X-Google-Smtp-Source: AGHT+IGCQegfute4wq8vuctRCNyh2F9D25HtOrYRCxA1KPyHbK9gB5btAs+lYOVd+Us7kHls2/CFh6KxK9tgT70dyU8=
+X-Received: by 2002:a25:d14e:0:b0:cee:80e:23af with SMTP id
+ i75-20020a25d14e000000b00cee080e23afmr3349036ybg.11.1691500721596; Tue, 08
+ Aug 2023 06:18:41 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20230808-calcium-smasher-5f6c410fb226@spud>
+References: <20230804142707.412137-1-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20230804142707.412137-1-u.kleine-koenig@pengutronix.de>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 8 Aug 2023 15:18:30 +0200
+Message-ID: <CACRpkdZ4OqLywBhCkDmA6bEkf3rfHpCODba9Rhx36fuP8ywt6Q@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] pwm: Manage owner assignment implicitly for drivers
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: Thierry Reding <thierry.reding@gmail.com>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Andy Shevchenko <andy@kernel.org>, Douglas Anderson <dianders@chromium.org>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+	Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Claudiu Beznea <claudiu.beznea@microchip.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, Alexander Shiyan <shc_work@mail.ru>, 
+	Benson Leung <bleung@chromium.org>, Guenter Roeck <groeck@chromium.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, Paul Cercueil <paul@crapouillou.net>, 
+	Vladimir Zapolskiy <vz@mleia.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Conor Dooley <conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	=?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
+	Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Michael Walle <michael@walle.cc>, 
+	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
+	Chunyan Zhang <zhang.lyra@gmail.com>, Fabrice Gasnier <fabrice.gasnier@foss.st.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>, 
+	Hammer Hsieh <hammerh0314@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, Sean Anderson <sean.anderson@seco.com>, 
+	Michal Simek <michal.simek@amd.com>, Johan Hovold <johan@kernel.org>, Alex Elder <elder@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Anjelique Melendez <quic_amelende@quicinc.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Luca Weiss <luca@z3ntu.xyz>, 
+	Bjorn Andersson <quic_bjorande@quicinc.com>, linux-pwm@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-leds@vger.kernel.org, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org, 
+	chrome-platform@lists.linux.dev, linux-mips@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org, 
+	greybus-dev@lists.linaro.org, linux-staging@lists.linux.dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230808_051131_355737_42300D4B 
-X-CRM114-Status: GOOD (  12.60  )
+X-CRM114-CacheID: sfid-20230808_061843_745212_2FB77E87 
+X-CRM114-Status: GOOD (  13.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,58 +128,23 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7123003271842118646=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============7123003271842118646==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="0Io72FXexd1hCxZL"
-Content-Disposition: inline
-
-
---0Io72FXexd1hCxZL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Aug 08, 2023 at 01:09:45PM +0100, Conor Dooley wrote:
-> On Mon, Aug 07, 2023 at 04:06:10PM +0300, Alexey Romanov wrote:
-> > Now the driver has a separate algo for S4 SoC.
-> >=20
-> > Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
->=20
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Actually, one comment, please, for bindings, write commit messages that
-relate to the hardware rather than drivers. The bindings describe the
-hardware, after all.
-
---0Io72FXexd1hCxZL
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNIw6wAKCRB4tDGHoIJi
-0ufhAQDEwiUsmmmJ5vqZLwTZzcnnxminVSw73imTDPpTMWNkXwEAmLS4+h8XAIUR
-6XGM49WckQHg/4mRuvhymrjQWwbtgAQ=
-=X56w
------END PGP SIGNATURE-----
-
---0Io72FXexd1hCxZL--
-
-
---===============7123003271842118646==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7123003271842118646==--
-
+T24gRnJpLCBBdWcgNCwgMjAyMyBhdCA0OjI44oCvUE0gVXdlIEtsZWluZS1Lw7ZuaWcKPHUua2xl
+aW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZT4gd3JvdGU6Cgo+IChpbXBsaWNpdCkgdjEgb2YgdGhp
+cyBzZXJpZXMgY2FuIGJlIGZvdW5kIGF0Cj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgt
+cHdtLzIwMjMwODAzMTQwNjMzLjEzODE2NS0xLXUua2xlaW5lLWtvZW5pZ0BwZW5ndXRyb25peC5k
+ZSAuCj4KPiBDaGFuZ2VzIHNpbmNlIHRoZW4gb25seSBhZmZlY3QgZG9jdW1lbnRhdGlvbiB0aGF0
+IEkgbWlzc2VkIHRvIGFkYXB0IGJlZm9yZS4KPiBUaGFua3MgdG8gTGF1cmVudCBmb3IgY2F0Y2hp
+bmcgdGhhdAo+Cj4gQmVzdCByZWdhcmRzCj4gVXdlCj4KPiBVd2UgS2xlaW5lLUvDtm5pZyAoMik6
+Cj4gICBwd206IE1hbmFnZSBvd25lciBhc3NpZ25tZW50IGltcGxpY2l0bHkgZm9yIGRyaXZlcnMK
+PiAgIHB3bTogY3JjOiBBbGxvdyBjb21waWxhdGlvbiBhcyBtb2R1bGUgYW5kIHdpdGggQ09NUElM
+RV9URVNUCgpDbGVhcmx5IHRoZSByaWdodCB0aGluZyB0byBkbyEgTmljZSBwYXRjaGVzLgpSZXZp
+ZXdlZC1ieTogTGludXMgV2FsbGVpaiA8bGludXMud2FsbGVpakBsaW5hcm8ub3JnPgoKWW91cnMs
+CkxpbnVzIFdhbGxlaWoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
+cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
+bnV4LWFtbG9naWMK
