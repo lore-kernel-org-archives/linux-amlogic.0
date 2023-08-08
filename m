@@ -4,66 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1221C04A94
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Aug 2023 08:17:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD218C001DB
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Aug 2023 12:10:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CT5xUlYj5BoDECwk/86x9lR5w8Jybs+mBxsOTgrLigM=; b=TyiWTnBdOEcgVv
-	gCUFtDKolr4MBts8D6bqACjo4jcC+H0NVk8KUvmtYf2eVuVjBLlXHjrWvUBLt9uuk4ImCiW/hSR/i
-	kNBx4Iu2li6EZFa9kmN2nrrlycd789s726xLskfiQhtgBe4n5f9IhumhZ3HfU5GPBwzbnLoTQ/Svv
-	OA3PsTyz+0lu9bcT3f/S7vB/TIK73Of8xuJaenDYNs1fo+hEZMEkqsHzqnapCiUlbbCpoKszWEQ5d
-	EsCwG8PC6rCiF3pSbY7dfqAABVf4JgjMARK485bSMnM+mCBlJ/1ca0TgpTCQpE3XREvqib8HPO1Bx
-	NnvRTtmM+JRTURGnuDMQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=r5yHu5zvQtWGdo9pdo6PK3a5uchCKe490TgK2LM7UOI=; b=D/zXzx8oKlHTO8VpTfcHrdOo+O
+	YKJRr3guEbraUjUr17N2awiRwc2/7an5OIHVfV6ka0oEw5IewYc0pWVTxP8TsJr5i258A4ZOCLwkn
+	OczBhaaPcf5uQtV8P2XRzDRfcnFnsgwqiTf5kOKTJpf6pUfTbj4Tpl00Qa3W2r1iTvK7HRF0mMirE
+	M+LkOXzgnvExVlTK6yrBSn2J3Qug1SivJs0vSzQBYUoeDyHE7mWJC8FDL+nivIhKG1yQyf8Nr1XuR
+	w2MfA/30knOe8CguKuWSNLrZko8qyyOConru9wKoMfkj/yNoAOPRgtmKIYOCuhPwILj629+8CrSaW
+	+gsDFf4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTHtz-001zJ9-0Y;
-	Tue, 08 Aug 2023 08:17:15 +0000
+	id 1qTLX9-002XSu-0P;
+	Tue, 08 Aug 2023 12:09:55 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTHtw-001zHm-1i;
-	Tue, 08 Aug 2023 08:17:13 +0000
+	id 1qTLX6-002XSW-0k;
+	Tue, 08 Aug 2023 12:09:53 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id CE1A462239;
-	Tue,  8 Aug 2023 08:17:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC2BCC433CB;
-	Tue,  8 Aug 2023 08:17:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1691482631;
-	bh=K20OPC5mIbzsPiYWUHqX9jSEjf0CZwpl3w8OqWWhKfc=;
+	by dfw.source.kernel.org (Postfix) with ESMTPS id B3D5962526;
+	Tue,  8 Aug 2023 12:09:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B62AC433C8;
+	Tue,  8 Aug 2023 12:09:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1691496591;
+	bh=FzbOxvvcT3an8By+bOHp6cyHrQ87WItM2HAHMx6IoRw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XzyFfvsqOn2SmKgAq45rOvihS03doRh6QVDx0L+nurJuDyOhD0o9FSNMIPMledtLZ
-	 4yVhXcVtf+iv4AKdL45Nuk1EOLhr47xyrvoxYA4/EurbRJWZCJAme15gWcwnynYLIq
-	 X0wCYloPOy0wX9q0pAOQPvWCvzQXrZTizIRlG9mY=
-Date: Tue, 8 Aug 2023 10:17:08 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Luke Lu <luke.lu@libre.computer>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, linux-usb@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Da Xue <da@libre.computer>, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] usb: dwc3: meson-g12a: do post init to fix broken usb
- after resumption
-Message-ID: <2023080852-estranged-limpness-aafb@gregkh>
-References: <20230808032510.31754-1-luke.lu@libre.computer>
- <2023080851-duh-scroll-09bf@gregkh>
- <CAAzmgs5U=BNzNNeskUMe_YEken1-CmzssRFPDCmsmar9SQo+WQ@mail.gmail.com>
+	b=ehP1b2bkLNUXjEjaxc9cidCuqOTS3i+S6muIu9INtZkx1y6sVWTjl+QavfkjrEYVq
+	 HA6is88xBCIS1czwcdQ+k7n+w+COyEE9KFtUe+p6tQ9OlbvvyOIrpKF1Npq1iUW1oJ
+	 IHgeXhk2p9BCrmqZ3zE9bGlGaiZ+J03Fpuzg020HdHm5xiFJ+snsH1+9mibbag9LH/
+	 CpHIP06gSzr4sQe0q+NcdTRHhnr7IImA0JB0r5B3Q+ZsrqRGpdaRVl9vek6EKhKqk5
+	 VMEbDlcA+pd3x2ty5TfxfyTituVj7OChW4msMrBtf46iHAGvON4mgI96DdF9XWS2ed
+	 eH8f0o+EU3Jzg==
+Date: Tue, 8 Aug 2023 13:09:45 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Alexey Romanov <avromanov@sberdevices.ru>
+Cc: narmstrong@baylibre.com, neil.armstrong@linaro.org, olivia@selenic.com,
+	herbert@gondor.apana.org.au, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	khilman@baylibre.com, jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com, f.fainelli@gmail.com,
+	hkallweit1@gmail.com, lists@kaiser.cx,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-crypto@vger.kernel.org,
+	kernel@sberdevices.ru
+Subject: Re: [PATCH v2 2/3] dt-bindings: rng: meson: add meson-rng-s4
+ compatible
+Message-ID: <20230808-calcium-smasher-5f6c410fb226@spud>
+References: <20230807130611.63914-1-avromanov@sberdevices.ru>
+ <20230807130611.63914-3-avromanov@sberdevices.ru>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAAzmgs5U=BNzNNeskUMe_YEken1-CmzssRFPDCmsmar9SQo+WQ@mail.gmail.com>
+In-Reply-To: <20230807130611.63914-3-avromanov@sberdevices.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230808_011712_617482_FF5EB05C 
-X-CRM114-Status: GOOD (  22.99  )
+X-CRM114-CacheID: sfid-20230808_050952_310106_5527F72C 
+X-CRM114-Status: GOOD (  15.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,41 +78,77 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============6442597162437173299=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCBBdWcgMDgsIDIwMjMgYXQgMDY6MDk6NDVBTSArMDAwMCwgTHVrZSBMdSB3cm90ZToK
-PiBISSBHcmVnOgo+IAo+IE9uIFR1ZSwgQXVnIDgsIDIwMjMgYXQgNDo1NuKAr0FNIEdyZWcgS3Jv
-YWgtSGFydG1hbgo+IDxncmVna2hAbGludXhmb3VuZGF0aW9uLm9yZz4gd3JvdGU6Cj4gPgo+ID4g
-T24gVHVlLCBBdWcgMDgsIDIwMjMgYXQgMDM6MjU6MTBBTSArMDAwMCwgTHVrZSBMdSB3cm90ZToK
-PiA+ID4gRGV2aWNlIGNvbm5lY3RlZCB0byB1c2Igb3RnIHBvcnQgb2YgR1hMLWJhc2VkIGJvYXJk
-cyBjYW4gbm90IGJlCj4gPiA+IHJlY29nbmlzZWQgYWZ0ZXIgcmVzdW1wdGlvbiwgZG9lc24ndCBy
-ZWNvdmVyIGV2ZW4gaWYgZGlzY29ubmVjdCBhbmQKPiA+ID4gcmVjb25uZWN0IHRoZSBkZXZpY2Uu
-IGRtZXNnIHNob3dzIGl0IGRpc2Nvbm5lY3RzIGR1cmluZyByZXN1bXB0aW9uLgo+ID4gPgo+ID4g
-PiBbICAgNDEuNDkyOTExXSB1c2IgMS0yOiBVU0IgZGlzY29ubmVjdCwgZGV2aWNlIG51bWJlciAz
-Cj4gPiA+IFsgICA0MS40OTkzNDZdIHVzYiAxLTI6IHVucmVnaXN0ZXJpbmcgZGV2aWNlCj4gPiA+
-IFsgICA0MS41MTE5MzldIHVzYiAxLTI6IHVucmVnaXN0ZXJpbmcgaW50ZXJmYWNlIDEtMjoxLjAK
-PiA+ID4KPiA+ID4gQ2FsbGluZyB1c2JfcG9zdF9pbml0KCkgd2lsbCBmaXggdGhpcyBpc3N1ZSwg
-YW5kIGl0J3MgdGVzdGVkIGFuZAo+ID4gPiB2ZXJpZmllZCBvbiBsaWJyZXRlY2gncyBhbWwtczkw
-NXgtY2MgYm9hcmQuCj4gPiA+Cj4gPiA+IFNpZ25lZC1vZmYtYnk6IEx1a2UgTHUgPGx1a2UubHVA
-bGlicmUuY29tcHV0ZXI+Cj4gPgo+ID4gV2hhdCBjb21taXQgaWQgZG9lcyB0aGlzIGZpeD8KPiBV
-c2luZyAiZ2l0IGJsYW1lIiB0byBleHBsb3JlIHRoZSBoaXN0b3J5LCBmb3VuZCBkd2MzX21lc29u
-X2cxMmFfcmVzdW1lKCkgd2FzCj4gaW50cm9kdWNlZCBhbG9uZyB3aXRoIHRoZSBmaWxlIG9mIGRy
-aXZlcnMvdXNiL2R3YzMvZHdjMy1tZXNvbi1nMTJhLmMuCj4gYXMgRGEgWHVlIHBvaW50ZWQgb3V0
-LCB0aGUgc3VzcGVuZC9yZXN1bWUgd2FzIG5ldmVyIHRlc3RlZCBpbiBHWEwgYmFzZWQgU29DLAo+
-IHNvIGl0J3MgYnJva2VuIHNpbmNlIHRoZSBiZWdpbm5pbmcuLgo+IAo+IEZvciB0aGUgRml4ZXMg
-dGFnLCBJIHRoaW5rIGl0J3MgcHJvcGVyIHRvIHVzZSAiNWIwYmEwY2FhZjNhOiAodXNiOgo+IGR3
-YzM6IG1lc29uLWcxMmE6IHJlZmFjdG9yIHVzYiBpbml0KSIKPiBzaW5jZSB0aGUgdXNiX3Bvc3Rf
-aW5pdCgpIGZ1bmN0aW9uIHdhcyBpbnRyb2R1Y2VkIGluIHRoaXMgY29tbWl0IGFuZAo+IHRoaXMg
-cGF0Y2ggd2lsbCBkZXBlbmQgb24gaXQuCj4gCj4gPiBTaG91bGQgaXQgYWxzbyBnbyB0byBzdGFi
-bGUga2VybmVscz8KPiA+Cj4gWWVzLCBJdCB3b3VsZCBiZSBncmVhdCBpZiB0aGUgcGF0Y2ggY2Fu
-IGdvIHRvIHN0YWJsZSB0cmVlLCB0aGFua3MgZm9yCj4gc3VnZ2VzdGluZyB0aGlzCj4gSSBoYXZl
-IGl0IHRlc3RlZCBvbiA2LjEtbHRzIHRyZWUuCj4gCj4gQnR3LCBJIHdvdWxkIHdhaXQgZm9yIGEg
-ZmV3IGRheXMgZm9yIG1vcmUgY29tbWVudHMgYW5kIENDIHRvIHN0YWJsZSBpbgo+IG5leHQgdjIg
-aWYgbm8gb2JqZWN0aW9uLgoKTm8gd29ycmllcywgSSdsbCBkcm9wIHRoaXMgZnJvbSBteSByZXZp
-ZXcgcXVldWUgYW5kIHdhaXQgZm9yIGEgdjIuCgp0aGFua3MsCgpncmVnIGstaAoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWls
-aW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5p
-bmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+
+--===============6442597162437173299==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="1ZSDXZ0SsvgeKJ0O"
+Content-Disposition: inline
+
+
+--1ZSDXZ0SsvgeKJ0O
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Aug 07, 2023 at 04:06:10PM +0300, Alexey Romanov wrote:
+> Now the driver has a separate algo for S4 SoC.
+>=20
+> Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml=
+ b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
+> index 457a6e43d810..afa52af442a7 100644
+> --- a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
+> +++ b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
+> @@ -14,6 +14,7 @@ properties:
+>    compatible:
+>      enum:
+>        - amlogic,meson-rng
+> +      - amlogic,meson-s4-rng
+> =20
+>    reg:
+>      maxItems: 1
+> --=20
+> 2.38.1
+>=20
+
+--1ZSDXZ0SsvgeKJ0O
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNIwiAAKCRB4tDGHoIJi
+0pUgAP9HDWOZ1G7GCTkcQUybdiI2/jI/AvEAXJI563GCRiQ3ygEAooo5442ZSKKj
+zRJUywsZ62WcXhxLA1v+F2JzZdeAtAM=
+=yk/+
+-----END PGP SIGNATURE-----
+
+--1ZSDXZ0SsvgeKJ0O--
+
+
+--===============6442597162437173299==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============6442597162437173299==--
+
