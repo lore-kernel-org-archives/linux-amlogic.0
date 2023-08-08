@@ -4,85 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E2DCC001B0
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Aug 2023 15:06:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84B76C001B0
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Aug 2023 16:18:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5TkDbtpbPb1z49fZtB3w5msdg1MlCLRaaiefs53j26M=; b=X3R/MLAIz7283m
-	8lZqInWhXh0PDhvWqkmRls//dKAgspl5Ofha3x9pGWKlZAXQuIbY64v49Bn688Bwe0n3wO+md9cmV
-	C9SHxk/IW/r4ouOECkhh1AhCl6R4BSwpzvo6gT9eCqldaBUf7NqFUjO/TMdykcBfRIQxwNXei0B2I
-	7PREkNhrmzWXofsxDPKgSiyG547f2EJd6u0NOF0paX45+p+Vtel8gIqVSyLKCtgwQAK0SaVELvU7E
-	amVfQW0iJX4rOZSN9OLt3giE8OMQElyfe/Yhh0CfxxOUQpTyZcsRaLLO0mqXyeqpAzCGH/mIHfidR
-	re1Hz6IUZT97Yk+6VtCw==;
+	List-Owner; bh=+soItQp3I4XkmQI5CM6vaGTgXoUQs2TWz0JmhKyQUZw=; b=FCxW43Q7U7BR9E
+	dH+6WEqx7vcYgxk6cp3NkrdT60jWh9wDgSWiWQayZT+W8r7ozIqVmz0D+4x+9ylzc2ZuQd412bdBQ
+	oZ4xmSwcQg1PvKh4Pi97IM0NYUSqP058RIS2ki68RufTXc2yTnDAtayHdFjK6VO8udAcn9TxQhA+G
+	4f+DWaArDJ8FJNDBPmkmHdXjqQZQ148vRckZ1YBApl5F+OIWEiuAhitoJORWO+tNh2dOKaNdYft1v
+	e34uTCreVtG+UfmE4opDVjKLXu388ZrVM4t0yJ/RhauCLKbuOKs/RWOCxHiLaaYOzT3OjzZVHLhHb
+	kHNy/9i/UJfnVVk6+wVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTOHT-002nIt-2Y;
-	Tue, 08 Aug 2023 15:05:55 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1qTPPe-002wJ3-1z;
+	Tue, 08 Aug 2023 16:18:26 +0000
+Received: from mout-p-101.mailbox.org ([2001:67c:2050:0:465::101])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTOHS-002nHc-0F
-	for linux-amlogic@lists.infradead.org;
-	Tue, 08 Aug 2023 15:05:55 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-317b31203c7so5057257f8f.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 08 Aug 2023 08:05:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691507150; x=1692111950;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=WYDOE0uAfuvMMd7frP4lQPvrrdCPX7CA5G+ozoaawe4=;
-        b=yyfwrDmTHt47xQ1VIHTS2evUkJCD0CwodHL2gOERWuAFSTvIiGLsPTRPOfzzlOOzKs
-         jdNOrhurdPEeEGbrmpVSNiIbKgrsUYN3dBg67kGPv4AqqZUtT5l2hp05uFWHymXb9DcT
-         5dwmxjwt+n+JXOIjHqPtkfafl+5jJZt5VO+getBbe2tw1tkovtMPbpjkWRFTrU0pYabQ
-         AOzG5j7DYlE2ui3EGAlDAZXomFQ6ptxPBWjzcyllfH6ql2E8CTIHK2N2xu4tZz1loSwT
-         l9d+hyxTRRax/FYPUz/qpZ/dmtvXXKZEB2/Yl8q6fin2bEVr87cA4X4gt1hrO1XasBcY
-         CxMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691507150; x=1692111950;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WYDOE0uAfuvMMd7frP4lQPvrrdCPX7CA5G+ozoaawe4=;
-        b=lypLYR46v0FGZKOU6eoDdTpfmqci92wKewGanS9mcWVlFETbif1pAdeDe9MGHrsDRl
-         ufOn43zjtDJA9UuBB9568mLsADEBAQxMTV2oSWhL4Ii1n7p0SRPjFiqcdCbmwZlwyCLr
-         JFUlhn2ZaOmMXBLwQpYSGWYwWCgSbxHVBGN6VREa3l7KXNsuTRseuZddFO2AbnKAU2w7
-         hYWfLtWdLxJQE6xkF274K+7UTjG7ii8u2GGhKeHO44zdH2EoO+ntC8TIgxg4tadfUd5a
-         Ui4R6P+AI01kpMV3EtGIImB2y7cIHcLLBu4oIGhcRY0K0owouUA+bWgOuEqbDtPmLVnu
-         ZR1g==
-X-Gm-Message-State: AOJu0YwBl7bL72cxBdPkhKW5G12vr/b4+ZdbImprTmFcMTaPK7wOn2r1
-	leJDfB+BMGLUBA/wAvkb/qnZ3w==
-X-Google-Smtp-Source: AGHT+IF/sVg/Jhlijx/RE5QOgQaMgGYHCPyQMz8dSgQ4an0cId67kpg37dk0nwOSpbyiFJyhIGgAng==
-X-Received: by 2002:adf:fa4a:0:b0:315:9de4:92f0 with SMTP id y10-20020adffa4a000000b003159de492f0mr8496109wrr.5.1691507150251;
-        Tue, 08 Aug 2023 08:05:50 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:efd4:f3df:2c50:1776])
-        by smtp.gmail.com with ESMTPSA id y15-20020a5d4acf000000b003144b50034esm13863035wrs.110.2023.08.08.08.05.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Aug 2023 08:05:42 -0700 (PDT)
-References: <20230706-b4-amlogic-bindings-convert-take2-v3-0-f63de6f12dcc@linaro.org>
- <9adbbde6-a12c-2857-3103-1c012eed6f27@linaro.org>
-User-agent: mu4e 1.8.13; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 0/3] dt-bindings: second batch of dt-schema
- conversions for Amlogic Meson bindings
-Date: Tue, 08 Aug 2023 17:05:12 +0200
-In-reply-to: <9adbbde6-a12c-2857-3103-1c012eed6f27@linaro.org>
-Message-ID: <1jleelo9q4.fsf@starbuckisacylon.baylibre.com>
+	id 1qTPPb-002wFd-2O;
+	Tue, 08 Aug 2023 16:18:25 +0000
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4RKyzF6RRyz9tMn;
+	Tue,  8 Aug 2023 18:18:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1691511497;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=aGGUmP8Tng3VDvVivMqZI/5pDN809RPPjvmptF0sisg=;
+	b=bsTIBi12Pe64JIxoBnSalS1DT7RjeXs4s2VYNnHcpZcJg3xvWJz+NagR/HZIgRYEWRJuKa
+	BhD0eBFJ8RaCswhOVwKWl5zuHpAoIm6jHQgJZVtCf8wieR09LrczJNpIdesQifxEBvD6im
+	E9e1UlIh2Gn/ZJ09htJxFMG1STTZjwncUewKt2lsNB/OzlUVXIMXUcSloURfshw22Kgy7k
+	ezKLs0+40M1GvoSypeOVukBXPf2H35OzmspJYH/eLC+LQL5RCO4zoppesCVBISg7LVLNAD
+	LqNg+ok03E8eImLmjJ+EE8amCqBzLvKqdcMyUgt+SOJ5NUNlzVYJzH9KSm1hOw==
+From: Alexander Stein <alexander.stein@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1691511495;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=aGGUmP8Tng3VDvVivMqZI/5pDN809RPPjvmptF0sisg=;
+	b=U0gwFzhLSqiiHgzavg8A96lBqmiAWamAwodMhVepBYigWqUtnFjeRI+RFpMMUuTNHIfth4
+	+HV+KBMBxipaUDEMwjFynvcBLRxOI6Snuh2QDHVe89N/ZeVAX6yPXJXhlH+DjPEhJEAf5j
+	L5Stvge1VZL7ORa11JlL+2p8PjO9obJeeM2qQXG4YS5SBPWpQNxoHaebraNGdxOjFt/Fpf
+	21wzS01Wwb4e/7GobQZUnbkIoVbqg2dO6lf9yozNOU4YZAWLXpn8bSmK+VXItlvsytVi+O
+	5SVpP3sVQeYIDJcqRc4GEhMA+Sy+uZZhXUP8WvOZbyvxlKEe5YdXFO730QzPqA==
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Alexander Stein <alexander.stein@mailbox.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH 2/2] arm64: dts: meson-g12: Fix compatible for amlogic,g12a-tdmin
+Date: Tue,  8 Aug 2023 18:17:53 +0200
+Message-ID: <20230808161755.31594-2-alexander.stein@mailbox.org>
+In-Reply-To: <20230808161755.31594-1-alexander.stein@mailbox.org>
+References: <20230808161755.31594-1-alexander.stein@mailbox.org>
 MIME-Version: 1.0
+X-MBO-RS-META: k5isb4nfwbxr8ra4z48s7oyw57iabrgp
+X-MBO-RS-ID: bb2cb0716d7e664ae40
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230808_080554_114491_DAA1F7CD 
-X-CRM114-Status: GOOD (  14.54  )
+X-CRM114-CacheID: sfid-20230808_091823_930528_321BBF4A 
+X-CRM114-Status: UNSURE (   8.39  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,45 +96,68 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+amlogic,axg-tdmin is not listed as compatible to g12a-tdmin in bindings.
+Remove superfluous compatible. Fixes the dtbs_check warnings:
+arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller@300: compatible: ['amlogic,g12a-tdmin', 'amlogic,axg-tdmin'] is too long
+ from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller@340: compatible: ['amlogic,g12a-tdmin', 'amlogic,axg-tdmin'] is too long
+ from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller@380: compatible: ['amlogic,g12a-tdmin', 'amlogic,axg-tdmin'] is too long
+ from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller@3c0: compatible: ['amlogic,g12a-tdmin', 'amlogic,axg-tdmin'] is too long
+ from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
 
-On Fri 04 Aug 2023 at 15:35, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12.dtsi | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
 
-> Hi Jerome,
->
-> On 06/07/2023 16:52, Neil Armstrong wrote:
->> Batch conversion of the following bindings:
->> - amlogic,gxbb-clkc.txt
->> - amlogic,gxbb-aoclkc.txt
->> 
->
-> <snip>
->
->> ---
->> Neil Armstrong (3):
->>        dt-bindings: clock: amlogic: convert amlogic,gxbb-clkc.txt to dt-schema
->>        dt-bindings: clock: amlogic: convert amlogic,gxbb-aoclkc.txt to dt-schema
->
-> Do you plan to take patches 1 & 2 ?
->
-> If you can, it would be simpler if you could take patch 3 in the same batch.
->
-> Thanks,
-> Neil
-
-Applied all 3 - fixing the checkpatch on patch 2
-
->
->>        dt-bindings: soc: amlogic: document System Control registers
->>   .../bindings/clock/amlogic,gxbb-aoclkc.txt         |  64 ---------
->>   .../bindings/clock/amlogic,gxbb-aoclkc.yaml        |  85 +++++++++++
->>   .../bindings/clock/amlogic,gxbb-clkc.txt           |  53 -------
->>   .../bindings/clock/amlogic,gxbb-clkc.yaml          |  37 +++++
->>   .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  | 160 +++++++++++++++++++++
->>   5 files changed, 282 insertions(+), 117 deletions(-)
->> ---
->> base-commit: e1f6a8eaf1c271a0158114a03e3605f4fba059ad
->> change-id: 20230209-b4-amlogic-bindings-convert-take2-e2caf8e1c13f
->> Best regards,
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
+index 3ae6875707fb..eb442aaf57e4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
+@@ -195,8 +195,7 @@ arb: reset-controller@280 {
+ 		};
+ 
+ 		tdmin_a: audio-controller@300 {
+-			compatible = "amlogic,g12a-tdmin",
+-				     "amlogic,axg-tdmin";
++			compatible = "amlogic,g12a-tdmin";
+ 			reg = <0x0 0x300 0x0 0x40>;
+ 			sound-name-prefix = "TDMIN_A";
+ 			resets = <&clkc_audio AUD_RESET_TDMIN_A>;
+@@ -211,8 +210,7 @@ tdmin_a: audio-controller@300 {
+ 		};
+ 
+ 		tdmin_b: audio-controller@340 {
+-			compatible = "amlogic,g12a-tdmin",
+-				     "amlogic,axg-tdmin";
++			compatible = "amlogic,g12a-tdmin";
+ 			reg = <0x0 0x340 0x0 0x40>;
+ 			sound-name-prefix = "TDMIN_B";
+ 			resets = <&clkc_audio AUD_RESET_TDMIN_B>;
+@@ -227,8 +225,7 @@ tdmin_b: audio-controller@340 {
+ 		};
+ 
+ 		tdmin_c: audio-controller@380 {
+-			compatible = "amlogic,g12a-tdmin",
+-				     "amlogic,axg-tdmin";
++			compatible = "amlogic,g12a-tdmin";
+ 			reg = <0x0 0x380 0x0 0x40>;
+ 			sound-name-prefix = "TDMIN_C";
+ 			resets = <&clkc_audio AUD_RESET_TDMIN_C>;
+@@ -243,8 +240,7 @@ tdmin_c: audio-controller@380 {
+ 		};
+ 
+ 		tdmin_lb: audio-controller@3c0 {
+-			compatible = "amlogic,g12a-tdmin",
+-				     "amlogic,axg-tdmin";
++			compatible = "amlogic,g12a-tdmin";
+ 			reg = <0x0 0x3c0 0x0 0x40>;
+ 			sound-name-prefix = "TDMIN_LB";
+ 			resets = <&clkc_audio AUD_RESET_TDMIN_LB>;
+-- 
+2.41.0
 
 
 _______________________________________________
