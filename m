@@ -4,66 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61861C04A94
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Aug 2023 06:10:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E188C001B0
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Aug 2023 06:43:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nmhCgTzr0imn8mCQRCLldR/30qePqhO32e3SeuKqJwo=; b=3acu5pFx6JcVmy
-	HBlAYtX8MN1Gu+sweV8DHgwGBb0Uweu9d9tJtC753IIvxpf2qnL9wdhgxcHyvGcfaCIMqBDRyCzpq
-	adJRUWcW3gxkvgq+SW0OzeVVZ+Oif1dfHDULHjgHv8+efSXtxNqi1XuuqrhbvK2CGIYWy7izUcazh
-	iMk+dGZm+tQaHy0UeOqOPXGeVhBc7KlS/W5n+7jKmbpaqWIJEF9lfnA0jH7ZVdb74SLA4Gw0QfFhW
-	MHOQUIjfgQ6wetGGA2k+TkFKyslznxUgHVewDa4aESr79OokPC52CqAQcPeLVmWj6jJeYc9HcFq10
-	Hsu1bRk96hrR9nvGy1lA==;
+	List-Owner; bh=H7kZBwvuHTw/R5BevC6jNEB/iCbERTososmt4Pq/FZg=; b=rUPbShik01H5Sc
+	n2Fp/I7R55jg8/YbTIE0nCLyKX2Z1ntQwFXnf7E/A7ZUduVt2VqK7/PvGDoMUzeCZjnMGHJfJwGXd
+	R6lJ/4TPVWSGKgyV7vRhoU8XKQjtTketicgZvRhdUvrZmSljfqW8OzkpWWUpf78arQ7fUu7YvSfJp
+	5z74aKQpzxW5O0306oBSb9NI5qjVw9LpOQ1Ql7Vzuo4qUgLHPJ5qkbToZDNIUOTN+YhYzv+FPM64K
+	KHnuNjDLM3HpWctMxevxSyuOygTtKRvqWxtLJpWNm20kszd/XVD5daSalJu0ZCC45BcsS2YGuzIww
+	kYZm81QjPDyyu/fr6sYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTFvG-001nX4-2D;
-	Tue, 08 Aug 2023 06:10:26 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qTGQU-001q0G-16;
+	Tue, 08 Aug 2023 06:42:42 +0000
+Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTFvD-001nVg-3C;
-	Tue, 08 Aug 2023 06:10:25 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 568066238A;
-	Tue,  8 Aug 2023 06:10:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E904C433C8;
-	Tue,  8 Aug 2023 06:10:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1691475022;
-	bh=EOGAaHCEP1owoAYsDzjK3qET7oP6l2+V/Y0rh3FHdLY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l9VfyL5O+92X/TbxQmSC8SpxCmww997RuNiU5C7Xlk8BOK+qKNNmMCgZzQ1/b2Na6
-	 4DlzEkK0Fki41R73GZAHXoieTxnYzvPn28GaTIk/oznq158pibD88Isse9K2sVOo4K
-	 azpa9Jj9IboFC4ttS87DfGUbW6scQPkzXy3xBu0U=
-Date: Tue, 8 Aug 2023 08:10:14 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Da Xue <da@libre.computer>
-Cc: Luke Lu <luke.lu@libre.computer>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-usb@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] usb: dwc3: meson-g12a: do post init to fix broken usb
- after resumption
-Message-ID: <2023080832-plated-slackness-20e4@gregkh>
-References: <20230808032510.31754-1-luke.lu@libre.computer>
- <2023080851-duh-scroll-09bf@gregkh>
- <CACqvRUaK_Pj1DT4QY+YpKmvGeFqmM8KPcYWqTLNJoUJJaEbFAg@mail.gmail.com>
+	id 1qTGQQ-001pzn-2D;
+	Tue, 08 Aug 2023 06:42:40 +0000
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-52327d63d7cso3979263a12.1;
+        Mon, 07 Aug 2023 23:42:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691476954; x=1692081754;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tDyaLCkG9Gwg7DW4JRUummSbEo/7bXQ3Usvl8gTviOs=;
+        b=kCeppCUh1KY1UqWEdGsvJRFCOkRWKeiU7yx0rUxQQEWO3u2/OIsRVDkIczRgQ9rJOe
+         9dPPbSTi91LQd+Q7IBcDzal5c4KLPq0erwFc1l/nbdY7Ts8mDiVv8Ec6WP+9WfjYW370
+         Q3y+NdEE0X0gTju7sT6+fxOsys7wqhbRT2r3sdrXp8UtM8fDljLjaNcIrZugJqGxcFof
+         /RF4bzHHSKfbttUfz42SsBkIFytlvEZEjE66yA4nyPIVxTzfW/FVeFQCnYfKhBMta33r
+         HqZbfftZH3mrm1FZ0WKSZ5xeaooxMIUY8RPTF58qyfoHo163yRh/DN0aJTcg75b5AMmN
+         xzoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691476954; x=1692081754;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tDyaLCkG9Gwg7DW4JRUummSbEo/7bXQ3Usvl8gTviOs=;
+        b=JFPfrUfF/F7p4nzRQhKWMp5V21ceK6s1il5iIEq6f0yewzYiSbDhKbkzC7WjhhYBGF
+         hsBfCXz0fNuhoTnFDQQvwclI+ZacEnEz4Ej9PL0AvPUlRMv2rekFO6CNfOep7wlNutx+
+         0jBSD4ibKH/olA3d+X7FYeotub+ctspHp8kMb1Ek8fOahcc8bCajv2XQdwnNZ0DTU/oZ
+         XOuN7AaopulgSgxYURuEgQFeY+b51YYNPWPG8jUfe/iNmbXaNvN7HMVjMgwKLFykNlwG
+         VT0l5yJb2CgB3tWs8YM+yKFd2wqbCYF7WYH5hCCfZDe5RgQltCmPVLf7IAqYVLbuGoLw
+         GIEg==
+X-Gm-Message-State: AOJu0YymUsLojx5ZxrBnssvs6EnjiOjQdyqw2LcX7hJ6FaliEEaqDEfq
+	sGoyy0Sblqv5+UGB9CxLDgY=
+X-Google-Smtp-Source: AGHT+IGngRj3koc+G8bnqTzcS+/05+rLUdqPpBwdfyDQqjhLNRWeHlU8nfQEE0EYjdPBdEAVgf4UzQ==
+X-Received: by 2002:a17:906:31c7:b0:99b:55e3:bbd with SMTP id f7-20020a17090631c700b0099b55e30bbdmr9437027ejf.34.1691476953939;
+        Mon, 07 Aug 2023 23:42:33 -0700 (PDT)
+Received: from ?IPV6:2a02:3100:9102:d500:25c8:948:5db6:241c? (dynamic-2a02-3100-9102-d500-25c8-0948-5db6-241c.310.pool.telefonica.de. [2a02:3100:9102:d500:25c8:948:5db6:241c])
+        by smtp.googlemail.com with ESMTPSA id fx15-20020a170906b74f00b0099c157cba46sm6142048ejb.119.2023.08.07.23.42.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Aug 2023 23:42:33 -0700 (PDT)
+Message-ID: <b8931b6c-5b35-8477-d50f-b7a43b13615f@gmail.com>
+Date: Tue, 8 Aug 2023 08:42:31 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CACqvRUaK_Pj1DT4QY+YpKmvGeFqmM8KPcYWqTLNJoUJJaEbFAg@mail.gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3] net: phy: meson-gxl: implement meson_gxl_phy_resume()
+To: Da Xue <da@libre.computer>, Andrew Lunn <andrew@lunn.ch>,
+ Russell King <linux@armlinux.org.uk>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Luke Lu <luke.lu@libre.computer>, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20230808050016.1911447-1-da@libre.computer>
+Content-Language: en-US
+From: Heiner Kallweit <hkallweit1@gmail.com>
+In-Reply-To: <20230808050016.1911447-1-da@libre.computer>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230807_231024_078417_B32DB941 
-X-CRM114-Status: GOOD (  20.48  )
+X-CRM114-CacheID: sfid-20230807_234238_746966_B539D445 
+X-CRM114-Status: GOOD (  20.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,41 +95,82 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCBBdWcgMDgsIDIwMjMgYXQgMDE6MzM6NDVBTSAtMDQwMCwgRGEgWHVlIHdyb3RlOgo+
-IE9uIFR1ZSwgQXVnIDgsIDIwMjMgYXQgMTI6NTbigK9BTSBHcmVnIEtyb2FoLUhhcnRtYW4KPiA8
-Z3JlZ2toQGxpbnV4Zm91bmRhdGlvbi5vcmc+IHdyb3RlOgo+ID4KPiA+IE9uIFR1ZSwgQXVnIDA4
-LCAyMDIzIGF0IDAzOjI1OjEwQU0gKzAwMDAsIEx1a2UgTHUgd3JvdGU6Cj4gPiA+IERldmljZSBj
-b25uZWN0ZWQgdG8gdXNiIG90ZyBwb3J0IG9mIEdYTC1iYXNlZCBib2FyZHMgY2FuIG5vdCBiZQo+
-ID4gPiByZWNvZ25pc2VkIGFmdGVyIHJlc3VtcHRpb24sIGRvZXNuJ3QgcmVjb3ZlciBldmVuIGlm
-IGRpc2Nvbm5lY3QgYW5kCj4gPiA+IHJlY29ubmVjdCB0aGUgZGV2aWNlLiBkbWVzZyBzaG93cyBp
-dCBkaXNjb25uZWN0cyBkdXJpbmcgcmVzdW1wdGlvbi4KPiA+ID4KPiA+ID4gWyAgIDQxLjQ5Mjkx
-MV0gdXNiIDEtMjogVVNCIGRpc2Nvbm5lY3QsIGRldmljZSBudW1iZXIgMwo+ID4gPiBbICAgNDEu
-NDk5MzQ2XSB1c2IgMS0yOiB1bnJlZ2lzdGVyaW5nIGRldmljZQo+ID4gPiBbICAgNDEuNTExOTM5
-XSB1c2IgMS0yOiB1bnJlZ2lzdGVyaW5nIGludGVyZmFjZSAxLTI6MS4wCj4gPiA+Cj4gPiA+IENh
-bGxpbmcgdXNiX3Bvc3RfaW5pdCgpIHdpbGwgZml4IHRoaXMgaXNzdWUsIGFuZCBpdCdzIHRlc3Rl
-ZCBhbmQKPiA+ID4gdmVyaWZpZWQgb24gbGlicmV0ZWNoJ3MgYW1sLXM5MDV4LWNjIGJvYXJkLgo+
-ID4gPgo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBMdWtlIEx1IDxsdWtlLmx1QGxpYnJlLmNvbXB1dGVy
-Pgo+ID4KPiA+IFdoYXQgY29tbWl0IGlkIGRvZXMgdGhpcyBmaXg/ICBTaG91bGQgaXQgYWxzbyBn
-byB0byBzdGFibGUga2VybmVscz8KPiAKPiBIaSBHcmVnLAo+IAo+IFN1c3BlbmQgZGV2aWNlIHRy
-ZWUgZmxhZyBoYXMgbm90IGJlZW4gZW5hYmxlZCBpbi10cmVlIGZvciB0aGUgQW1sb2dpYwo+IEdY
-TCAoUzgwNVgvUzkwNVgvUzkwNUQpIHNlcmllcyBkdWUgaXQgaGF2aW5nIFBTQ0kgMC4yIGFuZCB0
-aHVzIG5ldmVyCj4gdW50ZXN0ZWQuIE1vc3Qgb2YgdGhlIHN1c3BlbmQgcmVzdW1lIGNvZGUgd2Fz
-IG9ubHkgdGVzdGVkIG9uIG5ld2VyCj4gRzEyQS9CIHNlcmllcy4KPiAKPiBUaGlzIGFuZCAiW1BB
-VENIIHYzXSBuZXQ6IHBoeTogbWVzb24tZ3hsOiBpbXBsZW1lbnQKPiBtZXNvbl9neGxfcGh5X3Jl
-c3VtZSgpIiBmaXhlcyBVU0IgYW5kIEV0aGVybmV0IGFmdGVyIHJlc3VtZS4gSERNSQo+IHJlcXVp
-cmVzIGFub3RoZXIgZml4Lgo+IAo+IEl0IHdvdWxkIGJlIGdyZWF0IGlmIHRoZXkgY291bGQgZ28g
-aW50byBzdGFibGUgc2luY2Ugd2UgYXJlIGNhcnJ5aW5nCj4gdGhlc2UgdHdvIHBhdGNoZXMgaW4g
-b3VyIHRyZWUgb24gNi4xIGFuZCB0aGV5J3JlIGFwcGxpY2FibGUgYmFjayB0bwo+IDUuNCBidXQg
-SSBhbSBub3Qgc3VyZSB3aGF0IHRoZSBjcml0ZXJpYSBpcy4KCmh0dHBzOi8vd3d3Lmtlcm5lbC5v
-cmcvZG9jL2h0bWwvbGF0ZXN0L3Byb2Nlc3Mvc3RhYmxlLWtlcm5lbC1ydWxlcy5odG1sCmhhcyB0
-aGUgY3JpdGVyaWEuICBJZiB5b3UgdGhpbmsgaXQgc2hvdWxkIGdvIHRoZXJlLCB0aGVuIHBsZWFz
-ZSByZXNlbmQKd2l0aCBhIGNjOiBzdGFibGUgdGFnIGluIHRoZSBzaWduZWQtb2ZmLWJ5IGFyZWEu
-Cgp0aGFua3MsCgpncmVnIGstaAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0
-cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbGludXgtYW1sb2dpYwo=
+On 08.08.2023 07:00, Da Xue wrote:
+> After suspend and resume, the meson GXL internal PHY config needs to
+
+To avoid misunderstandings:
+You mean suspend/resume just of the PHY, or of the system?
+
+Description sounds like this patch is a fix and should go to stable.
+So add a Fixes tag.
+
+And a formal remark: Your patch misses the net / net-next annotation.
+
+> be initialized again, otherwise the carrier cannot be found:
+> 
+> 	eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state
+> 		DOWN group default qlen 1000
+> 
+> After the patch, resume:
+> 
+> 	eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP
+> 		group default qlen 1000
+> 
+> Signed-off-by: Luke Lu <luke.lu@libre.computer>
+> Signed-off-by: Da Xue <da@libre.computer>
+> ---
+> Changes since v2:
+>  - fix missing parameter of genphy_resume()
+> 
+> Changes since v1:
+>  - call generic genphy_resume()
+> ---
+>  drivers/net/phy/meson-gxl.c | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
+> index bb9b33b6bce2..bbad26b7c5a1 100644
+> --- a/drivers/net/phy/meson-gxl.c
+> +++ b/drivers/net/phy/meson-gxl.c
+> @@ -132,6 +132,18 @@ static int meson_gxl_config_init(struct phy_device *phydev)
+>  	return 0;
+>  }
+>  
+> +static int meson_gxl_phy_resume(struct phy_device *phydev)
+> +{
+> +	int ret;
+> +
+> +	genphy_resume(phydev);
+
+Return value of this function should be checked.
+
+> +	ret = meson_gxl_config_init(phydev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+>  /* This function is provided to cope with the possible failures of this phy
+>   * during aneg process. When aneg fails, the PHY reports that aneg is done
+>   * but the value found in MII_LPA is wrong:
+> @@ -196,7 +208,7 @@ static struct phy_driver meson_gxl_phy[] = {
+>  		.config_intr	= smsc_phy_config_intr,
+>  		.handle_interrupt = smsc_phy_handle_interrupt,
+>  		.suspend        = genphy_suspend,
+> -		.resume         = genphy_resume,
+> +		.resume         = meson_gxl_phy_resume,
+>  		.read_mmd	= genphy_read_mmd_unsupported,
+>  		.write_mmd	= genphy_write_mmd_unsupported,
+>  	}, {
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
