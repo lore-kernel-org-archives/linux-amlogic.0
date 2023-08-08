@@ -4,90 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C1D3C001B0
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Aug 2023 05:01:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72EFCC001DB
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Aug 2023 05:34:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=WGSOSZHhGgvpAU++XsctPP/w6gogTNVcl2iOAzZQeak=; b=Lv7ZI69ZCIxR8q
-	SRq6xMkj9yIcdg9xGAqW4yDbwrMEK0RZSnZktf+joeI+bFAXqQckfW41ta+GysoWdx3+As6qNWfc2
-	QmI2Q8ZX3FqO/fbCkpnGueLzUha7HQuaOrUCgJYHpbRCzUHUTs0DnTbhRgWTVGyPCrjN1qfEf8WWF
-	hWUZI7w+GL40mJmlnLJF0hdbTv4lQw2iNaVqnw27Bg3auKfnOD08O/0mn64hL14DytPSlDcykkLfI
-	/gzSS2YyKIFSB3Ft1UFt9of20GO5I/WrUkMm0pX/W5UmAFGHBIaUq0x2jqoHwJTg3r/CuBeJ3ZeR/
-	EsFZjRPoFof5v953dMTA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=hRDPDEa79IAp5vLN7+3RHC+5v46mJ4EyntiBU9mBK5w=; b=18xMeT5BkSf0E0
+	i3FuEeZNlC+9/Us58+KgJM6alAnxME+oFh2PDT0FvC7DL5K/ZCFX8akhJ1fQ4xLxrEWb4BlLvsoBU
+	macX0GC7lHI1Qr34yUi7Acv2bV7aAdcPybFBtbIR4b0HZUYl5o92SJCiv7XQ2LaQ8rYKpxa8sjFXi
+	XROWpOViVkkYLyRNNjQqJcHuEEiq59rbn4mo9C5P6W3IQvNOv1KBTFZqTZA70IY5qj3UUtGGbkgoY
+	g5ntGOotI/tOiCgMmdRLc78CBDWHTbIrVS1IkZBY+3WhwZx3DjdKzSzb616+SGtuk79IdBLgWxMA8
+	n4JJvjjnil1cBm+T4N+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTEpr-001jwz-0k;
-	Tue, 08 Aug 2023 05:00:47 +0000
-Received: from mail-vk1-xa62.google.com ([2607:f8b0:4864:20::a62])
+	id 1qTFM5-001lQV-1C;
+	Tue, 08 Aug 2023 05:34:05 +0000
+Received: from mail-lj1-x22b.google.com ([2a00:1450:4864:20::22b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTEpo-001jw8-1R
+	id 1qTFM1-001lPu-1a
 	for linux-amlogic@lists.infradead.org;
-	Tue, 08 Aug 2023 05:00:45 +0000
-Received: by mail-vk1-xa62.google.com with SMTP id 71dfb90a1353d-4871f9928edso1291073e0c.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 07 Aug 2023 22:00:42 -0700 (PDT)
+	Tue, 08 Aug 2023 05:34:02 +0000
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b9c55e0fbeso81063081fa.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 07 Aug 2023 22:33:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=libre.computer; s=google; t=1691470842; x=1692075642;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MkyQ6QEBJ5R+A4KzXauS14DJOe2NQamik93pPPAJ9ek=;
-        b=DtCxRcMkLQ/R+ymX7FzAMJS99OZMN05pESUIfkD2jM0AzNyECi2mkyBe6/NfCcWa8l
-         5pas6dYbyCFUoUyTWelW+4XVIXuhWBZkoQgHo8yD65d12AeXBQQ6NgAp8MijmIHtpjvL
-         1lM9ZtmsLoArXN9CFEludqtQRCnS/t+3Mmj8MaKNtG/toPS6qisTODrSIB8v6iYwRgIC
-         8QRwq3TZlaIowc9Plptkrz81wU6rg83xuvehrR1lNBKCDQNkkQI3vOjSKabwhZn8TpCt
-         SnbX7bEIKbJibCHasId34cCC3Z0GltGB5t3ruwhgrgi3bpiitgAxDray52bHQBVomaf/
-         JbCA==
+        d=libre.computer; s=google; t=1691472836; x=1692077636;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RGhuIKV/L3bAbsUWL0BAHFtTykQxuprzMPnTwpvh1C8=;
+        b=ZzKJT5ZZVfhoToZLlswA83n7QV42qSdr2/+YuxTVRRqecaGBf7w/icg9odRNfqOXW5
+         IFtkVN8SDqvkxjglqZx9znqKgaP8UBfaFhASx7FLFf4ZW+vAnePQ9c1LuuWoX8E8HJ+4
+         F0Zp66tGuzPQXIdQimz9ZXkgXK07RLx4lxgS1HdJqhMi+B3SaiVVJYNUspyZGXowwflS
+         BPY6iBfFYFX5qAm7i+SSIPM1ysR5shqjso9RqvD9ZLe4+9h8gsQS3noxxqwG/8+mK7cp
+         Ciib5Q84GhHVVQ1PQ39oKlKZ/7CK9VaUjnjfNaR0nhfEAoWncTZCeZOpskL2DyWp4P3V
+         3RUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691470842; x=1692075642;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MkyQ6QEBJ5R+A4KzXauS14DJOe2NQamik93pPPAJ9ek=;
-        b=N+MYJzmotWz5cz7ouc8bpf9ufT9KEy/ExbzXzkNGGv/kZA2eg+Pj7QyhraDigwx+IP
-         +ad66j3i+TcYgaXpBU5oQvueq+pAfYqY2N/JoOzpPKDMyuQj9DB8T5qfn5etwU9EB8V1
-         tagz5SPkLoR5M+6VRP4E4fQl2azJ/dHtnJnLm7VKn5anqgPyOmNa9B3V6Epq/2SC8qd9
-         pp/B6Bp0rKh+wsimdViCygscHGo54dDtKuQbW+c12oisSkVfx84j2WJlcUTavv4vJgSP
-         gtaO5oO0ovrZMJwJkCzIQh3lSqulw2xPHzS+na0dZvzLkJnFh/NH0GT3XSax2CcwD7Hz
-         fDUQ==
-X-Gm-Message-State: AOJu0YyuPhNz8YXeXt8oB1ZnJskZ3onNiF2jAqg9Fe9pe9hYzZcWS4jJ
-	AjOLO+kKWt6dnMi6KjNTltCn/Va9p1eu79epdbxEoCghlaGZ
-X-Google-Smtp-Source: AGHT+IGOiebSl22GAJa1Vqszzuk5r+Le/tkscMQwKLAbyswQsnfaT24eZusPYQGYRv08JMU2SVc/f7X59f9M
-X-Received: by 2002:a1f:c1d8:0:b0:487:1962:7495 with SMTP id r207-20020a1fc1d8000000b0048719627495mr6886859vkf.1.1691470841920;
-        Mon, 07 Aug 2023 22:00:41 -0700 (PDT)
-Received: from dxue-amd-5700g.libretech.co ([72.76.64.93])
-        by smtp-relay.gmail.com with ESMTPS id c11-20020a02a40b000000b0042911ed0da5sm584619jal.11.2023.08.07.22.00.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Aug 2023 22:00:41 -0700 (PDT)
-X-Relaying-Domain: libre.computer
-From: Da Xue <da@libre.computer>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Da Xue <da@libre.computer>,
-	Luke Lu <luke.lu@libre.computer>,
-	netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] net: phy: meson-gxl: implement meson_gxl_phy_resume()
-Date: Tue,  8 Aug 2023 01:00:15 -0400
-Message-Id: <20230808050016.1911447-1-da@libre.computer>
-X-Mailer: git-send-email 2.39.2
+        d=1e100.net; s=20221208; t=1691472836; x=1692077636;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RGhuIKV/L3bAbsUWL0BAHFtTykQxuprzMPnTwpvh1C8=;
+        b=VnG1ykKKiSkuwq23hNkm5J5AUWHmW02n/63XZA0AMY11cf39ohC1Uo0DzumIQrL21/
+         XJk8cavo0dfE7tHIt5IxetC07Dm+dZy1tbXuSx5uZCrE0bxSsUDZAllXluaU9trBMzLV
+         qZMreefiz+ku82DXlAmKAzNqNbbybzOD0cLlB7YMBa7JPPO0UomlxtCHql9BiLOeiaVE
+         EVRLgqT1rDRiGQNaTWgO0RKu9Jlts6AMTKJ0JX9CUjdRlxptae41L00pYiIWvPfZ2Qa9
+         0YP9IRcYrdkqox9Gud0UAmT3/XxXOEFP3fHKqGnnEH3FhxYywRpbpxAXcEXD84u6SIDb
+         xcsw==
+X-Gm-Message-State: AOJu0YwT0V9Rk+PR9PDP3oyQOoGNItfKsT+k9VR2YJcomFxDTT06yZ0s
+	3FnUWlOnO44+e4Co+YSYjKhNevKAUdO3LZEqTGOc
+X-Google-Smtp-Source: AGHT+IH55JKIqgT6Ka9IEuC2AaX5V6W9W2P33HjRg8M3EvAK1ZRJKlSCDPgy0lTJ5+Q1iHi68i4Q9DYZvDifVThfZ2E=
+X-Received: by 2002:a19:ca09:0:b0:4fa:6d62:9219 with SMTP id
+ a9-20020a19ca09000000b004fa6d629219mr7169552lfg.62.1691472836351; Mon, 07 Aug
+ 2023 22:33:56 -0700 (PDT)
 MIME-Version: 1.0
+References: <20230808032510.31754-1-luke.lu@libre.computer> <2023080851-duh-scroll-09bf@gregkh>
+In-Reply-To: <2023080851-duh-scroll-09bf@gregkh>
+From: Da Xue <da@libre.computer>
+Date: Tue, 8 Aug 2023 01:33:45 -0400
+Message-ID: <CACqvRUaK_Pj1DT4QY+YpKmvGeFqmM8KPcYWqTLNJoUJJaEbFAg@mail.gmail.com>
+Subject: Re: [PATCH] usb: dwc3: meson-g12a: do post init to fix broken usb
+ after resumption
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Luke Lu <luke.lu@libre.computer>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	linux-usb@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Da Xue <da@libre.computer>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230807_220044_484398_F75A0B2B 
-X-CRM114-Status: GOOD (  12.81  )
+X-CRM114-CacheID: sfid-20230807_223401_604713_FF3CF1E8 
+X-CRM114-Status: GOOD (  13.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,71 +88,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-After suspend and resume, the meson GXL internal PHY config needs to
-be initialized again, otherwise the carrier cannot be found:
-
-	eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state
-		DOWN group default qlen 1000
-
-After the patch, resume:
-
-	eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP
-		group default qlen 1000
-
-Signed-off-by: Luke Lu <luke.lu@libre.computer>
-Signed-off-by: Da Xue <da@libre.computer>
----
-Changes since v2:
- - fix missing parameter of genphy_resume()
-
-Changes since v1:
- - call generic genphy_resume()
----
- drivers/net/phy/meson-gxl.c | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
-index bb9b33b6bce2..bbad26b7c5a1 100644
---- a/drivers/net/phy/meson-gxl.c
-+++ b/drivers/net/phy/meson-gxl.c
-@@ -132,6 +132,18 @@ static int meson_gxl_config_init(struct phy_device *phydev)
- 	return 0;
- }
- 
-+static int meson_gxl_phy_resume(struct phy_device *phydev)
-+{
-+	int ret;
-+
-+	genphy_resume(phydev);
-+	ret = meson_gxl_config_init(phydev);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
- /* This function is provided to cope with the possible failures of this phy
-  * during aneg process. When aneg fails, the PHY reports that aneg is done
-  * but the value found in MII_LPA is wrong:
-@@ -196,7 +208,7 @@ static struct phy_driver meson_gxl_phy[] = {
- 		.config_intr	= smsc_phy_config_intr,
- 		.handle_interrupt = smsc_phy_handle_interrupt,
- 		.suspend        = genphy_suspend,
--		.resume         = genphy_resume,
-+		.resume         = meson_gxl_phy_resume,
- 		.read_mmd	= genphy_read_mmd_unsupported,
- 		.write_mmd	= genphy_write_mmd_unsupported,
- 	}, {
--- 
-2.40.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVHVlLCBBdWcgOCwgMjAyMyBhdCAxMjo1NuKAr0FNIEdyZWcgS3JvYWgtSGFydG1hbgo8Z3Jl
+Z2toQGxpbnV4Zm91bmRhdGlvbi5vcmc+IHdyb3RlOgo+Cj4gT24gVHVlLCBBdWcgMDgsIDIwMjMg
+YXQgMDM6MjU6MTBBTSArMDAwMCwgTHVrZSBMdSB3cm90ZToKPiA+IERldmljZSBjb25uZWN0ZWQg
+dG8gdXNiIG90ZyBwb3J0IG9mIEdYTC1iYXNlZCBib2FyZHMgY2FuIG5vdCBiZQo+ID4gcmVjb2du
+aXNlZCBhZnRlciByZXN1bXB0aW9uLCBkb2Vzbid0IHJlY292ZXIgZXZlbiBpZiBkaXNjb25uZWN0
+IGFuZAo+ID4gcmVjb25uZWN0IHRoZSBkZXZpY2UuIGRtZXNnIHNob3dzIGl0IGRpc2Nvbm5lY3Rz
+IGR1cmluZyByZXN1bXB0aW9uLgo+ID4KPiA+IFsgICA0MS40OTI5MTFdIHVzYiAxLTI6IFVTQiBk
+aXNjb25uZWN0LCBkZXZpY2UgbnVtYmVyIDMKPiA+IFsgICA0MS40OTkzNDZdIHVzYiAxLTI6IHVu
+cmVnaXN0ZXJpbmcgZGV2aWNlCj4gPiBbICAgNDEuNTExOTM5XSB1c2IgMS0yOiB1bnJlZ2lzdGVy
+aW5nIGludGVyZmFjZSAxLTI6MS4wCj4gPgo+ID4gQ2FsbGluZyB1c2JfcG9zdF9pbml0KCkgd2ls
+bCBmaXggdGhpcyBpc3N1ZSwgYW5kIGl0J3MgdGVzdGVkIGFuZAo+ID4gdmVyaWZpZWQgb24gbGli
+cmV0ZWNoJ3MgYW1sLXM5MDV4LWNjIGJvYXJkLgo+ID4KPiA+IFNpZ25lZC1vZmYtYnk6IEx1a2Ug
+THUgPGx1a2UubHVAbGlicmUuY29tcHV0ZXI+Cj4KPiBXaGF0IGNvbW1pdCBpZCBkb2VzIHRoaXMg
+Zml4PyAgU2hvdWxkIGl0IGFsc28gZ28gdG8gc3RhYmxlIGtlcm5lbHM/CgpIaSBHcmVnLAoKU3Vz
+cGVuZCBkZXZpY2UgdHJlZSBmbGFnIGhhcyBub3QgYmVlbiBlbmFibGVkIGluLXRyZWUgZm9yIHRo
+ZSBBbWxvZ2ljCkdYTCAoUzgwNVgvUzkwNVgvUzkwNUQpIHNlcmllcyBkdWUgaXQgaGF2aW5nIFBT
+Q0kgMC4yIGFuZCB0aHVzIG5ldmVyCnVudGVzdGVkLiBNb3N0IG9mIHRoZSBzdXNwZW5kIHJlc3Vt
+ZSBjb2RlIHdhcyBvbmx5IHRlc3RlZCBvbiBuZXdlcgpHMTJBL0Igc2VyaWVzLgoKVGhpcyBhbmQg
+IltQQVRDSCB2M10gbmV0OiBwaHk6IG1lc29uLWd4bDogaW1wbGVtZW50Cm1lc29uX2d4bF9waHlf
+cmVzdW1lKCkiIGZpeGVzIFVTQiBhbmQgRXRoZXJuZXQgYWZ0ZXIgcmVzdW1lLiBIRE1JCnJlcXVp
+cmVzIGFub3RoZXIgZml4LgoKSXQgd291bGQgYmUgZ3JlYXQgaWYgdGhleSBjb3VsZCBnbyBpbnRv
+IHN0YWJsZSBzaW5jZSB3ZSBhcmUgY2FycnlpbmcKdGhlc2UgdHdvIHBhdGNoZXMgaW4gb3VyIHRy
+ZWUgb24gNi4xIGFuZCB0aGV5J3JlIGFwcGxpY2FibGUgYmFjayB0bwo1LjQgYnV0IEkgYW0gbm90
+IHN1cmUgd2hhdCB0aGUgY3JpdGVyaWEgaXMuCgpCZXN0LApEYQoKPgo+IHRoYW5rcywKPgo+IGdy
+ZWcgay1oCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwps
+aW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5v
+cmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxv
+Z2ljCg==
