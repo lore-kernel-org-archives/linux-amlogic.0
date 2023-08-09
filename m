@@ -4,70 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA470C001B0
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Aug 2023 18:38:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6C00C001E0
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Aug 2023 18:44:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jaKYCsseNE0PnZfoOszZ2UWbBn3XY3w5MHhD+U0LBQY=; b=feX/PfGlIJsHQ4
-	RerF5HprZKxVAOCoxfzb9haiCFfB/rG/80e2KIQWKHIzfhlLnCNpVTuEJK3rvhZ9XNRJ0lRmo3GRK
-	ndamnFqgEzu/YYIkFA89tkQn/vZDQL3GNXzic8FEjlnRR2N2tDM0Qc66a9j9mv3R5rMCtqOIzwlcB
-	zySn1k22zAWI1Qtb6jV7YqxVZCVNVdHD9EEq3TR6Dl0/fff9AqPBuUo7Jk2t1awg1sv4SmRvZ08SC
-	z5Ho9xgVSkbNGNn+WpC3GOQlwKP+/SUMOIlt9newmlt35YCJW+9ZZKmd4yKOxnYoPS/0Elo/i0dxD
-	2f52AXLHlRMB/kFqM9JQ==;
+	List-Owner; bh=VK9y19Dz5BMna5b6ukrUyUl/aBpH0hUT+aFF9F29K9s=; b=WpxmypReGW+fNN
+	nfe88doFymXVDbgWmOSRu4apV5mYuGvRsgmAczRNXZXdzZua6nsQtHnl0YMxbu6ptYLpXXioHItwB
+	mm+iHWh/aRdXPFIHoEgmF9oyqPBCvZVTi+DbPHWJvmMLoBnLvbnuZ8ruNRfdL42i0C1uG7fcmHmb6
+	V7d8FHKXn8gy/3Dy1oxDcvelZAfdeWR3ci+sNOuwnUQZlMaNS3Q7lUBbrJW+geYCu6BRElp57a0iP
+	SR/oV+KVOu0hfW39ZAjNTKI/jlRlEptFKqhf2xfZoMhxAV/JuNeDbFxHZEVmvDDFmZ3DNKQJ5PWOB
+	VK1Nvi7FP0nCw53wjqBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTo4W-005dJw-2s;
-	Wed, 09 Aug 2023 18:38:16 +0000
-Received: from mout-p-202.mailbox.org ([80.241.56.172])
+	id 1qToAE-005diO-2G;
+	Wed, 09 Aug 2023 18:44:10 +0000
+Received: from mout-p-101.mailbox.org ([80.241.56.151])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTo4S-005dIH-2e
+	id 1qToAB-005dhx-0s
 	for linux-amlogic@lists.infradead.org;
-	Wed, 09 Aug 2023 18:38:14 +0000
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	Wed, 09 Aug 2023 18:44:08 +0000
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4RLf1v31Xbz9tr8;
-	Wed,  9 Aug 2023 20:37:55 +0200 (CEST)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4RLf8y3x59z9ts9;
+	Wed,  9 Aug 2023 20:44:02 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1691606275;
+	t=1691606642;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=GVlnl5vCywcduhadxCJX6/m207bCcWSO8HuD6qpvZMM=;
-	b=OUmy2mpHXVSE3UhMMYN9BARg58QgwihSup5o0A1RrV8Z6v/WK65cS/PQ4nWNHLy2/A7L+0
-	m8CLIkMdeGG6cMI7qfN0asFlyCrTt+hl4CBSb4uMjST1OFqZUbX/kWmgU2YZix0KGAbMeY
-	i7VdXFBJ9gIZ6gvgordxa1nklORHnrPIttltTOOEvxH2rCgo8SWxLAiNf6tPtzjEyef6Ll
-	nlVdUszTAMddb6FdpqOhOujEUc1ivWq2xkaMSz8iTkuIZMK/hGOjIFhukTSa9P/DfTx4g1
-	6SWoVBb6Qekwrntbxdpv/QscL7wrhEEHyX5wWh847EMkjT2XGRx6GEN3gP6PDg==
+	bh=OHztLns/SEAN/eWS1xJ1M1QeZedq2Q0tPuXS7nMFpiU=;
+	b=SqBgB3qZoafG5hX/f1pj41bDcLd6yXlIByiI3kOZk6djecEosEMzBt1QsENNCIvCi7L/uC
+	kVxXtTJkBny9323/FS3T0aXZwZbSRSwS+isCLMv5+r3ophqVCG1/nPrnLjkce7q7wOIlA6
+	kTnkD41DMbuTT6Fngsv9QBjsMGMvU0LBKWcouUAurm2pEfoHnbdvIljVVRj3CIH9MrcQmf
+	8YP3mOncx1o0Ru3PHAYEFy2rDX1MDIWq1h1lGfQl6nhcolUcQnD69hSjSMiu7sBEhCWbWa
+	LzgkQBSZnQdarIQzSUB9eMXG1hM7djDB/cglwowgWrGWxSjDyWE3pfqki5wQTA==
 From: Alexander Stein <alexander.stein@mailbox.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
  Dmitry Rokosov <ddrokosov@sberdevices.ru>,
- Jerome Brunet <jbrunet@baylibre.com>
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org
 Subject: Re: [PATCH 1/1] dt-bindings: clock: meson: Convert axg-audio-clkc to YAML
  format
-Date: Wed, 09 Aug 2023 20:37:53 +0200
-Message-ID: <3176104.5fSG56mABF@kongar>
-In-Reply-To: <1ja5v0bts9.fsf@starbuckisacylon.baylibre.com>
+Date: Wed, 09 Aug 2023 20:44:00 +0200
+Message-ID: <8294548.NyiUUSuA9g@kongar>
+In-Reply-To: <a48b1a97-2286-d2f9-742e-d718adcf1eed@linaro.org>
 References: <20230808194811.113087-1-alexander.stein@mailbox.org>
- <1ja5v0bts9.fsf@starbuckisacylon.baylibre.com>
+ <1j5y5obt0u.fsf@starbuckisacylon.baylibre.com>
+ <a48b1a97-2286-d2f9-742e-d718adcf1eed@linaro.org>
 MIME-Version: 1.0
-X-MBO-RS-META: nwmrbu8n6uwnmkj4tk4axstuf1todq6s
-X-MBO-RS-ID: 0fd9dbf0d3f4ccfc077
+X-MBO-RS-META: o741jirs9h84kpbx6socy3zifu3qzbyf
+X-MBO-RS-ID: de6b6dc4972feb208bc
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230809_113813_019738_CB4DEB0D 
-X-CRM114-Status: GOOD (  33.33  )
+X-CRM114-CacheID: sfid-20230809_114407_452413_6F8BBEFC 
+X-CRM114-Status: GOOD (  12.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,267 +88,35 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-Am Mittwoch, 9. August 2023, 08:15:31 CEST schrieb Jerome Brunet:
+Am Mittwoch, 9. August 2023, 15:02:23 CEST schrieb Krzysztof Kozlowski:
+> On 09/08/2023 08:58, Jerome Brunet wrote:
+> >>> +      required:
+> >>> +        - '#reset-cells'
+> >>
+> >> else:
+> >>   properties:
+> >>     '#reset-cells': false
+> >> ???
+> >>
+> >>
+> >> You need to constrain the clocks per variant. Probably names are also
+> >> specific to each one, so the list of names can be moved here and you
+> >> keep just min/maxItems in the top level property.
+> >>
+> > 
+> > input clock names and constraints are the same for all 3 variants.
 > 
-> On Tue 08 Aug 2023 at 21:48, Alexander Stein <alexander.stein@mailbox.org> wrote:
-> 
-> > Convert Amlogic AXG Audio Clock Controller binding to yaml.
-> >
-> > Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
-> > ---
-> > As it is the same directory I picked the same maintainers as 
-> > Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml.
-> >
-> > I'm not 100% sure about the optional clocks constraints. As mentioned in
-> > the .txt version only pclk is mandatory, others are optional.
-> >
-> >  .../bindings/clock/amlogic,axg-audio-clkc.txt |  59 --------
-> >  .../clock/amlogic,axg-audio-clkc.yaml         | 136 ++++++++++++++++++
-> >  2 files changed, 136 insertions(+), 59 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
-> >  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
-> > deleted file mode 100644
-> > index 3a8948c04bc9..000000000000
-> > --- a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
-> > +++ /dev/null
-> > @@ -1,59 +0,0 @@
-> > -* Amlogic AXG Audio Clock Controllers
-> > -
-> > -The Amlogic AXG audio clock controller generates and supplies clock to the
-> > -other elements of the audio subsystem, such as fifos, i2s, spdif and pdm
-> > -devices.
-> > -
-> > -Required Properties:
-> > -
-> > -- compatible	: should be "amlogic,axg-audio-clkc" for the A113X and A113D,
-> > -		  "amlogic,g12a-audio-clkc" for G12A,
-> > -		  "amlogic,sm1-audio-clkc" for S905X3.
-> > -- reg		: physical base address of the clock controller and length of
-> > -		  memory mapped region.
-> > -- clocks	: a list of phandle + clock-specifier pairs for the clocks listed
-> > -		  in clock-names.
-> > -- clock-names	: must contain the following:
-> > -		  * "pclk" - Main peripheral bus clock
-> > -		  may contain the following:
-> > -		  * "mst_in[0-7]" - 8 input plls to generate clock signals
-> > -		  * "slv_sclk[0-9]" - 10 slave bit clocks provided by external
-> > -				      components.
-> > -		  * "slv_lrclk[0-9]" - 10 slave sample clocks provided by external
-> > -				       components.
-> > -- resets	: phandle of the internal reset line
-> > -- #clock-cells	: should be 1.
-> > -- #reset-cells  : should be 1 on the g12a (and following) soc family
-> > -
-> > -Each clock is assigned an identifier and client nodes can use this identifier
-> > -to specify the clock which they consume. All available clocks are defined as
-> > -preprocessor macros in the dt-bindings/clock/axg-audio-clkc.h header and can be
-> > -used in device tree sources.
-> > -
-> > -Example:
-> > -
-> > -clkc_audio: clock-controller@0 {
-> > -	compatible = "amlogic,axg-audio-clkc";
-> > -	reg = <0x0 0x0 0x0 0xb4>;
-> > -	#clock-cells = <1>;
-> > -
-> > -	clocks = <&clkc CLKID_AUDIO>,
-> > -		 <&clkc CLKID_MPLL0>,
-> > -		 <&clkc CLKID_MPLL1>,
-> > -		 <&clkc CLKID_MPLL2>,
-> > -		 <&clkc CLKID_MPLL3>,
-> > -		 <&clkc CLKID_HIFI_PLL>,
-> > -		 <&clkc CLKID_FCLK_DIV3>,
-> > -		 <&clkc CLKID_FCLK_DIV4>,
-> > -		 <&clkc CLKID_GP0_PLL>;
-> > -	clock-names = "pclk",
-> > -		      "mst_in0",
-> > -		      "mst_in1",
-> > -		      "mst_in2",
-> > -		      "mst_in3",
-> > -		      "mst_in4",
-> > -		      "mst_in5",
-> > -		      "mst_in6",
-> > -		      "mst_in7";
-> > -	resets = <&reset RESET_AUDIO>;
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
-> > new file mode 100644
-> > index 000000000000..629fa3a81cf7
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
-> > @@ -0,0 +1,136 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Amlogic AXG Audio Clock Controller
-> > +
-> > +maintainers:
-> > +  - Neil Armstrong <neil.armstrong@linaro.org>
-> > +  - Jerome Brunet <jbrunet@baylibre.com>
-> > +  - Jian Hu <jian.hu@jian.hu.com>
-> > +  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> > +
-> 
-> Jian and Dmitry do not maintain this.
+> Then why do you have this huge, apparently unnecessary, oneOf? If it's
+> the same, then drop the oneOf and make number of clocks fixed.
 
-Okay, I'll remove them.
-
-> > +description:
-> > +  The Amlogic AXG audio clock controller generates and supplies clock to the
-> > +  other elements of the audio subsystem, such as fifos, i2s, spdif and pdm
-> > +  devices.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - amlogic,axg-audio-clkc
-> > +      - amlogic,g12a-audio-clkc
-> > +      - amlogic,sm1-audio-clkc
-> > +
-> > +  '#clock-cells':
-> > +    const: 1
-> > +
-> > +  '#reset-cells':
-> > +    const: 1
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    minItems: 1
-> > +    maxItems: 11
-> > +
-> > +  clock-names:
-> > +    oneOf:
-> > +      - const: pclk
-> > +      - items:
-> > +          - const: pclk
-> > +          - const: mst_in0
-> > +          - const: mst_in1
-> > +          - const: mst_in2
-> > +          - const: mst_in3
-> > +          - const: mst_in4
-> > +          - const: mst_in5
-> > +          - const: mst_in6
-> > +          - const: mst_in7
-> > +      - items:
-> > +          - const: pclk
-> > +          - const: slv_sclk0
-> > +          - const: slv_sclk1
-> > +          - const: slv_sclk2
-> > +          - const: slv_sclk3
-> > +          - const: slv_sclk4
-> > +          - const: slv_sclk5
-> > +          - const: slv_sclk6
-> > +          - const: slv_sclk7
-> > +          - const: slv_sclk8
-> > +          - const: slv_sclk9
-> > +      - items:
-> > +          - const: pclk
-> > +          - const: slv_lrclk0
-> > +          - const: slv_lrclk1
-> > +          - const: slv_lrclk2
-> > +          - const: slv_lrclk3
-> > +          - const: slv_lrclk4
-> > +          - const: slv_lrclk5
-> > +          - const: slv_lrclk6
-> > +          - const: slv_lrclk7
-> > +          - const: slv_lrclk8
-> > +          - const: slv_lrclk9
-> > +
-> 
-> IIUC the above, it means
->  - pclk
->  - OR pclk with all the master clocks
->  - OR pclk with all the slave bit clocks
->  - OR pclk with all the slave sample clocks.
-> 
-> Correct ?
-
-Yes, that's how I understood the txt binding.
-
-> If that is what it means, it is wrong.
-> 
-> * pclk is required
-> * the master and slave clocks are all optional and independent.
-> 
-> Any combination of master and slave clocks is valid from the controller
-> perspective. For ex: it is perfectly OK to have master 2 and 4, slave 5
-> and 8, and not the others.
-
-Okay, this was not obvious to me from the textual description.
+But as far as I understand the number of clocks is not fixed. As Jerome pointed 
+out in the other post, it can have any combination of clocks and range from 1 
+up to 11, where 'pclk' is always 1st clock.
+I currently have no idea how to constraint that, despite limiting the number 
+of clock-names.
 
 Best regards,
 Alexander
-
-> > +  resets:
-> > +    description: internal reset line
-> > +
-> > +required:
-> > +  - compatible
-> > +  - '#clock-cells'
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - resets
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - amlogic,g12a-audio-clkc
-> > +              - amlogic,sm1-audio-clkc
-> > +    then:
-> > +      required:
-> > +        - '#reset-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/axg-clkc.h>
-> > +    #include <dt-bindings/reset/amlogic,meson-axg-reset.h>
-> > +    apb {
-> > +        #address-cells = <2>;
-> > +        #size-cells = <2>;
-> > +
-> > +        clkc_audio: clock-controller@0 {
-> > +        compatible = "amlogic,axg-audio-clkc";
-> > +        reg = <0x0 0x0 0x0 0xb4>;
-> > +        #clock-cells = <1>;
-> > +
-> > +        clocks = <&clkc CLKID_AUDIO>,
-> > +            <&clkc CLKID_MPLL0>,
-> > +            <&clkc CLKID_MPLL1>,
-> > +            <&clkc CLKID_MPLL2>,
-> > +            <&clkc CLKID_MPLL3>,
-> > +            <&clkc CLKID_HIFI_PLL>,
-> > +            <&clkc CLKID_FCLK_DIV3>,
-> > +            <&clkc CLKID_FCLK_DIV4>,
-> > +            <&clkc CLKID_GP0_PLL>;
-> > +        clock-names = "pclk",
-> > +            "mst_in0",
-> > +            "mst_in1",
-> > +            "mst_in2",
-> > +            "mst_in3",
-> > +            "mst_in4",
-> > +            "mst_in5",
-> > +            "mst_in6",
-> > +            "mst_in7";
-> > +        resets = <&reset RESET_AUDIO>;
-> > +      };
-> > +    };
-> 
-> 
-
-
 
 
 
