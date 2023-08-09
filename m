@@ -4,103 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DCBFC0015E
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Aug 2023 12:30:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB5D8EB64DD
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Aug 2023 13:02:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ApKom5/N3rSpdpJeTxtYHhZtLj29oVfdUl6mYxA/yDc=; b=LQ+jL87c2dC/Vb
-	M6nz7ZCPxQ1Y3OGVUfB1Kqy3wFdAsUEg8tjIM+t/i9EVYt8ri8zWXZ4EW45sA3RP75zEWXai4wbFj
-	hhtbHE71b0ov0bh5Y9jxh9ZJfTLKvYlRnjZxeV47tIW/aGV/tEm+YoaFdvKLZhvi1HTTeQPp+0MOn
-	OBo0ErLmqJzyes/KS63RgPBP8x0jbq/VXrEh5PIBpFwFiDTJy9lNAnBvTIEntWI9iWs2Y2ibksjki
-	BB8440mquxr3ZpZIULFZPl0wPABCBpQjrEM3CPfyvrhSyHAD0pvrxkmKEPhyq7duYeqJ1NOKuFcQs
-	mfD5DsDxTwKXDVmF9SmQ==;
+	List-Owner; bh=fSXK2pU8azUGZXlCm60NSTb4E3Whz6iOsS42Z+720n8=; b=cUPHt1TCcrNCuI
+	+YKtGFjm96Iy8uJZlfsXNzl0dNcnP3rjqUne6bHo3i35il40562joCeiu6fRMhVByp7M/fvVmw7Kw
+	n5SKUstiVPNv3PwKtluk++uf1i28k4c8TK2/lrm306ojwzhiVTYjcd76TnrT/Rbq5mVxPIM8Fpaih
+	L3yofN6j22rD16ZQDySyz6kQQFvbujLEszAxqOxH8r0Cn2qPynoP2hPI7l0hDFVnBKZPF2l0Da6Ic
+	uE8R0gtTBkB3ni6fHW9ikwGfq4cdigaTAPC3WKh3eYLq+eTukx51V1CNnjdP6aL0Oaj8Wh8AHuCG3
+	7bM5BP8iiOHyk6+CcVDQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTiKQ-004tak-2Y;
-	Wed, 09 Aug 2023 12:30:18 +0000
-Received: from gloria.sntech.de ([185.11.138.130])
+	id 1qTipa-004xO2-1y;
+	Wed, 09 Aug 2023 13:02:30 +0000
+Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTiKM-004tYp-1q;
-	Wed, 09 Aug 2023 12:30:15 +0000
-Received: from [194.95.143.137] (helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1qTiJH-00071M-LR; Wed, 09 Aug 2023 14:29:07 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Thierry Reding <thierry.reding@gmail.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>,
- Douglas Anderson <dianders@chromium.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
- Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@microchip.com>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Alexander Shiyan <shc_work@mail.ru>, Benson Leung <bleung@chromium.org>,
- Guenter Roeck <groeck@chromium.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Paul Cercueil <paul@crapouillou.net>, Vladimir Zapolskiy <vz@mleia.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Conor Dooley <conor.dooley@microchip.com>,
- Daire McNamara <daire.mcnamara@microchip.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Jonathan =?ISO-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Michael Walle <michael@walle.cc>,
- Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>,
- Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
- Hammer Hsieh <hammerh0314@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
- Sean Anderson <sean.anderson@seco.com>, Michal Simek <michal.simek@amd.com>,
- Johan Hovold <johan@kernel.org>, Alex Elder <elder@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Anjelique Melendez <quic_amelende@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Luca Weiss <luca@z3ntu.xyz>,
- Bjorn Andersson <quic_bjorande@quicinc.com>, linux-pwm@vger.kernel.org,
- linux-gpio@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-leds@vger.kernel.org, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
- chrome-platform@lists.linux.dev, linux-mips@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
- greybus-dev@lists.linaro.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH v2 1/2] pwm: Manage owner assignment implicitly for drivers
-Date: Wed, 09 Aug 2023 14:29:04 +0200
-Message-ID: <5316381.7s5MMGUR32@phil>
-In-Reply-To: <20230804142707.412137-2-u.kleine-koenig@pengutronix.de>
-References: <20230804142707.412137-1-u.kleine-koenig@pengutronix.de>
- <20230804142707.412137-2-u.kleine-koenig@pengutronix.de>
+	id 1qTipY-004xN4-1Q
+	for linux-amlogic@lists.infradead.org;
+	Wed, 09 Aug 2023 13:02:29 +0000
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-51bece5d935so9501928a12.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 09 Aug 2023 06:02:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691586146; x=1692190946;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2UTPDU0KQX0RK3PFL4VZ/siqN/71SBG93gUP3ty/AHI=;
+        b=EKV2vY9KxdA/16++Yq3IXCAwhFYNW/5vtkUpWcl5whiTseN/z5MKtc8AmdpfPuzjJn
+         do15Q+6YXXVpJ2l9jYsLvF4Gbo2jVJKXW04eOFUNr44WEK8QpdqT3SNb38JUeEjjkwon
+         XJiqolrtWOpu9oe7+P1ckdTrZnB49bf59/ahl+IgSCF1JXEQ8psJ8907a6WgNz6DZuqR
+         a5KWy2AulAyKrCMMZVaRCh2bpvzk/DyUXL6xxtB0d2bJVK2lmDGO6VCj1By649Pamc1v
+         bdCQDd/h+UpxdO5Hq1cWCgWl/auPMFCcXyIbUV1Zwmk3dTr3S6Feo+eaOZ+4Lq3f1vGy
+         iQog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691586146; x=1692190946;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2UTPDU0KQX0RK3PFL4VZ/siqN/71SBG93gUP3ty/AHI=;
+        b=WUPUAETrnwf51uyBW3/9XcH7ko99gvuhs0sQA8eICTioYKihJs32q8tQrZM52JZet9
+         BIMU+EIWiKXY92lW69PZ+DFneqSjZZcx03bbF34RM2zoeyh/6ec9KatxSTMwQKbxcZGO
+         MEUC1z9BYce33KwIQMNtDBFGwk4goYscFEkm85q1Xh7dFCF4F+LZeLqGkELK2hO9MnLo
+         mqEC8I9Jdl6wfadcAMTG/KINZWsx1+dbgEd1Hzf1lpx1fQHNvMipa4Ca/W57Gtl3UILT
+         8i/nR0yzsL7ekWgj/0wBy1kVJ771rOX08UIq0SHhMtvXOtvJJW057Cp3wBFx2PXNfdJM
+         XjHg==
+X-Gm-Message-State: AOJu0YzDyImGis0N/ky5AjQ2GvtQzWV6FdPJgmRdCJPZsfeGFU8RrlZe
+	0BUailLutCs3Ns7xZyq/2S8Ajg==
+X-Google-Smtp-Source: AGHT+IEidig6boVf6/NGmLXgeMbZejHvX6edJdvVWmAIRdrMFKINsNWdRvhNOytepsdCsN40c9Hz4A==
+X-Received: by 2002:a17:907:a041:b0:991:bf04:2047 with SMTP id gz1-20020a170907a04100b00991bf042047mr1986339ejc.14.1691586145679;
+        Wed, 09 Aug 2023 06:02:25 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.113])
+        by smtp.gmail.com with ESMTPSA id gl23-20020a170906e0d700b009894b476310sm7966706ejb.163.2023.08.09.06.02.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Aug 2023 06:02:25 -0700 (PDT)
+Message-ID: <a48b1a97-2286-d2f9-742e-d718adcf1eed@linaro.org>
+Date: Wed, 9 Aug 2023 15:02:23 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 1/1] dt-bindings: clock: meson: Convert axg-audio-clkc to
+ YAML format
+Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Alexander Stein <alexander.stein@mailbox.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20230808194811.113087-1-alexander.stein@mailbox.org>
+ <f4c57e4b-674b-f870-b215-8b2f80a7c9eb@linaro.org>
+ <1j5y5obt0u.fsf@starbuckisacylon.baylibre.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1j5y5obt0u.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230809_053014_616222_E23431C4 
-X-CRM114-Status: GOOD (  14.76  )
+X-CRM114-CacheID: sfid-20230809_060228_483789_48DA3264 
+X-CRM114-Status: UNSURE (   9.82  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,32 +99,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Am Freitag, 4. August 2023, 16:27:06 CEST schrieb Uwe Kleine-K=F6nig:
-> Instead of requiring each driver to care for assigning the owner member
-> of struct pwm_ops, handle that implicitly using a macro. Note that the
-> owner member has to be moved to struct pwm_chip, as the ops structure
-> usually lives in read-only memory and so cannot be modified.
-> =
+On 09/08/2023 08:58, Jerome Brunet wrote:
+>>> +      required:
+>>> +        - '#reset-cells'
+>>
+>> else:
+>>   properties:
+>>     '#reset-cells': false
+>> ???
+>>
+>>
+>> You need to constrain the clocks per variant. Probably names are also
+>> specific to each one, so the list of names can be moved here and you
+>> keep just min/maxItems in the top level property.
+>>
+> 
+> input clock names and constraints are the same for all 3 variants.
 
-> The upside is that new lowlevel drivers cannot forget the assignment and
-> save one line each. The pwm-crc driver didn't assign .owner, that's not
-> a problem in practise though as the driver cannot be compiled as a
-> module.
-> =
-
-> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-> ---
-
->  drivers/pwm/pwm-rockchip.c            |  1 -
-
-Acked-by: Heiko Stuebner <heiko@sntech.de> #pwm-rockchip
+Then why do you have this huge, apparently unnecessary, oneOf? If it's
+the same, then drop the oneOf and make number of clocks fixed.
 
 
+Best regards,
+Krzysztof
 
 
 _______________________________________________
