@@ -4,79 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25B7BC0015E
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Aug 2023 17:20:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA470C001B0
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Aug 2023 18:38:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=qiqYoz1oKwXRSlHe/WzORtrIv1QvxCi7YPOOgANDUgM=; b=0vJxF4GJxrwcba
-	46MWaqeq4OyDBntBG3IqpMVN841rcSEf/mGdJtDvAdmDT2zfQbp9vcL3q3TT8t6KpTqsAIpAcKvQK
-	R0S/cQy5bZf22O85kPWVCSDly4/CB6Jdnny3/00u7aIVmpQ74qScV60dNR8eeSYLT6oze+NJSc2XF
-	LtF8537jKIoQGqkNLHrbQ22EW4mSbym6p5A+AxgtBFZv4X3ablhZwOAp2oNL8zkgQyZ05rUMzGn9j
-	ZInPTomuk6JjAZdxeY4Y4ldDAjyt4MUS18NEL9kaan45uwWFd47ynDGYZKSOXb3Jp1l2U4Lv5mD9s
-	8q/q4ihUu28hZ9rZ/m5g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=jaKYCsseNE0PnZfoOszZ2UWbBn3XY3w5MHhD+U0LBQY=; b=feX/PfGlIJsHQ4
+	RerF5HprZKxVAOCoxfzb9haiCFfB/rG/80e2KIQWKHIzfhlLnCNpVTuEJK3rvhZ9XNRJ0lRmo3GRK
+	ndamnFqgEzu/YYIkFA89tkQn/vZDQL3GNXzic8FEjlnRR2N2tDM0Qc66a9j9mv3R5rMCtqOIzwlcB
+	zySn1k22zAWI1Qtb6jV7YqxVZCVNVdHD9EEq3TR6Dl0/fff9AqPBuUo7Jk2t1awg1sv4SmRvZ08SC
+	z5Ho9xgVSkbNGNn+WpC3GOQlwKP+/SUMOIlt9newmlt35YCJW+9ZZKmd4yKOxnYoPS/0Elo/i0dxD
+	2f52AXLHlRMB/kFqM9JQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTmqb-005WEl-28;
-	Wed, 09 Aug 2023 17:19:49 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1qTo4W-005dJw-2s;
+	Wed, 09 Aug 2023 18:38:16 +0000
+Received: from mout-p-202.mailbox.org ([80.241.56.172])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTmqY-005WEP-1L
+	id 1qTo4S-005dIH-2e
 	for linux-amlogic@lists.infradead.org;
-	Wed, 09 Aug 2023 17:19:48 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3fe167d4a18so66560645e9.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 09 Aug 2023 10:19:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691601584; x=1692206384;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3XaG/agcdHHHXeqbueYhHg4bGC+O2TjD70CPDhGyhxg=;
-        b=a5YViMUv3Kw4CcuwIt8Jg8uYH/DYqnPG3zt92oERud3qs7c2+bC0vDWvCZf6ZhN1q5
-         Ody4StkupWi7qwHwpBi+dpYzPRwdFbWp2nM1V/wyghaS2sXMQnK0nVrI0ehjx3ehx8YG
-         z4L0tw72OmXAPRyw4p0BNVolWl3gxakiswA4ujUwZWwpStU3c2All8lflbx3sxqipBZJ
-         5OiSedoYnvvYNVnJSIKhgKndI0Vpchf0UzFGRb0oLSRkMaUZr86fHwPnuvsm60Q8ViU1
-         2NlJnBGdZI0mrS7/LGaa/SgMpg4iBXOSNub2PkLk900WmSXLWsEv7XkAboKWpoOBVHNg
-         a1UQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691601584; x=1692206384;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3XaG/agcdHHHXeqbueYhHg4bGC+O2TjD70CPDhGyhxg=;
-        b=YR5nenJ4omi7mB0D2VzDO+IEE0Lon39FLQ9RN92pIHSK1qKr0uiHNi2zTU30yMPvi/
-         bgb38hVnXRo9xakxSB7rul2YAmd2mtHvL2fGUAsvgDqGx45lvcd0R43tU6OkD03i5ca8
-         P7/BrP+PIN5xEEKAuYN2PWiOC7HGrBzgj37ZCJo0FdSgwezToTspRf9a44KWzsG60mxW
-         KbWDTh2OFC84gfJ2CH+glR8CPvym3V2H/smBqkorn5ZS6jN+S6y3KkkMUcpEjZQHMVDG
-         H5RLFsN+x5GA+WvkknnZuXa0wTEbXPgVUGqdnmWbSyPxTu/qIAvOtbGB5StNjOx4vowj
-         UG6w==
-X-Gm-Message-State: AOJu0Yz765+7h9c3XRCnDh1pIYO9H88GW3ABoI9BT4+sE1TUo+8ohXdi
-	UzFWe/yGYvFPTcvt+lyB23r7Wg==
-X-Google-Smtp-Source: AGHT+IHKPGuXsPtyMe8JcF+q+kRG34gkrJFHOMtrzEff0nqGJEy7u7cLr+k+1gzH3mf8N1/atHsa1w==
-X-Received: by 2002:a5d:6903:0:b0:315:9676:c360 with SMTP id t3-20020a5d6903000000b003159676c360mr14061wru.25.1691601583375;
-        Wed, 09 Aug 2023 10:19:43 -0700 (PDT)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:2a0f:2daa:ffb5:cc02])
-        by smtp.googlemail.com with ESMTPSA id a18-20020adfeed2000000b00313f61889ecsm17335313wrp.66.2023.08.09.10.19.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Aug 2023 10:19:42 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	alsa-devel@alsa-project.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: meson: axg-tdm-formatter: fix channel slot allocation
-Date: Wed,  9 Aug 2023 19:19:31 +0200
-Message-Id: <20230809171931.1244502-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.40.1
+	Wed, 09 Aug 2023 18:38:14 +0000
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4RLf1v31Xbz9tr8;
+	Wed,  9 Aug 2023 20:37:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1691606275;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=GVlnl5vCywcduhadxCJX6/m207bCcWSO8HuD6qpvZMM=;
+	b=OUmy2mpHXVSE3UhMMYN9BARg58QgwihSup5o0A1RrV8Z6v/WK65cS/PQ4nWNHLy2/A7L+0
+	m8CLIkMdeGG6cMI7qfN0asFlyCrTt+hl4CBSb4uMjST1OFqZUbX/kWmgU2YZix0KGAbMeY
+	i7VdXFBJ9gIZ6gvgordxa1nklORHnrPIttltTOOEvxH2rCgo8SWxLAiNf6tPtzjEyef6Ll
+	nlVdUszTAMddb6FdpqOhOujEUc1ivWq2xkaMSz8iTkuIZMK/hGOjIFhukTSa9P/DfTx4g1
+	6SWoVBb6Qekwrntbxdpv/QscL7wrhEEHyX5wWh847EMkjT2XGRx6GEN3gP6PDg==
+From: Alexander Stein <alexander.stein@mailbox.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+ Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: clock: meson: Convert axg-audio-clkc to YAML
+ format
+Date: Wed, 09 Aug 2023 20:37:53 +0200
+Message-ID: <3176104.5fSG56mABF@kongar>
+In-Reply-To: <1ja5v0bts9.fsf@starbuckisacylon.baylibre.com>
+References: <20230808194811.113087-1-alexander.stein@mailbox.org>
+ <1ja5v0bts9.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+X-MBO-RS-META: nwmrbu8n6uwnmkj4tk4axstuf1todq6s
+X-MBO-RS-ID: 0fd9dbf0d3f4ccfc077
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230809_101946_639852_E70608C4 
-X-CRM114-Status: GOOD (  19.94  )
+X-CRM114-CacheID: sfid-20230809_113813_019738_CB4DEB0D 
+X-CRM114-Status: GOOD (  33.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,103 +84,270 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When the tdm lane mask is computed, the driver currently fills the 1st lane
-before moving on to the next. If the stream has less channels than the
-lanes can accommodate, slots will be disabled on the last lanes.
+Hi,
 
-Unfortunately, the HW distribute channels in a different way. It distribute
-channels in pair on each lanes before moving on the next slots.
+Am Mittwoch, 9. August 2023, 08:15:31 CEST schrieb Jerome Brunet:
+> 
+> On Tue 08 Aug 2023 at 21:48, Alexander Stein <alexander.stein@mailbox.org> wrote:
+> 
+> > Convert Amlogic AXG Audio Clock Controller binding to yaml.
+> >
+> > Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+> > ---
+> > As it is the same directory I picked the same maintainers as 
+> > Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml.
+> >
+> > I'm not 100% sure about the optional clocks constraints. As mentioned in
+> > the .txt version only pclk is mandatory, others are optional.
+> >
+> >  .../bindings/clock/amlogic,axg-audio-clkc.txt |  59 --------
+> >  .../clock/amlogic,axg-audio-clkc.yaml         | 136 ++++++++++++++++++
+> >  2 files changed, 136 insertions(+), 59 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+> >  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+> > deleted file mode 100644
+> > index 3a8948c04bc9..000000000000
+> > --- a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+> > +++ /dev/null
+> > @@ -1,59 +0,0 @@
+> > -* Amlogic AXG Audio Clock Controllers
+> > -
+> > -The Amlogic AXG audio clock controller generates and supplies clock to the
+> > -other elements of the audio subsystem, such as fifos, i2s, spdif and pdm
+> > -devices.
+> > -
+> > -Required Properties:
+> > -
+> > -- compatible	: should be "amlogic,axg-audio-clkc" for the A113X and A113D,
+> > -		  "amlogic,g12a-audio-clkc" for G12A,
+> > -		  "amlogic,sm1-audio-clkc" for S905X3.
+> > -- reg		: physical base address of the clock controller and length of
+> > -		  memory mapped region.
+> > -- clocks	: a list of phandle + clock-specifier pairs for the clocks listed
+> > -		  in clock-names.
+> > -- clock-names	: must contain the following:
+> > -		  * "pclk" - Main peripheral bus clock
+> > -		  may contain the following:
+> > -		  * "mst_in[0-7]" - 8 input plls to generate clock signals
+> > -		  * "slv_sclk[0-9]" - 10 slave bit clocks provided by external
+> > -				      components.
+> > -		  * "slv_lrclk[0-9]" - 10 slave sample clocks provided by external
+> > -				       components.
+> > -- resets	: phandle of the internal reset line
+> > -- #clock-cells	: should be 1.
+> > -- #reset-cells  : should be 1 on the g12a (and following) soc family
+> > -
+> > -Each clock is assigned an identifier and client nodes can use this identifier
+> > -to specify the clock which they consume. All available clocks are defined as
+> > -preprocessor macros in the dt-bindings/clock/axg-audio-clkc.h header and can be
+> > -used in device tree sources.
+> > -
+> > -Example:
+> > -
+> > -clkc_audio: clock-controller@0 {
+> > -	compatible = "amlogic,axg-audio-clkc";
+> > -	reg = <0x0 0x0 0x0 0xb4>;
+> > -	#clock-cells = <1>;
+> > -
+> > -	clocks = <&clkc CLKID_AUDIO>,
+> > -		 <&clkc CLKID_MPLL0>,
+> > -		 <&clkc CLKID_MPLL1>,
+> > -		 <&clkc CLKID_MPLL2>,
+> > -		 <&clkc CLKID_MPLL3>,
+> > -		 <&clkc CLKID_HIFI_PLL>,
+> > -		 <&clkc CLKID_FCLK_DIV3>,
+> > -		 <&clkc CLKID_FCLK_DIV4>,
+> > -		 <&clkc CLKID_GP0_PLL>;
+> > -	clock-names = "pclk",
+> > -		      "mst_in0",
+> > -		      "mst_in1",
+> > -		      "mst_in2",
+> > -		      "mst_in3",
+> > -		      "mst_in4",
+> > -		      "mst_in5",
+> > -		      "mst_in6",
+> > -		      "mst_in7";
+> > -	resets = <&reset RESET_AUDIO>;
+> > -};
+> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+> > new file mode 100644
+> > index 000000000000..629fa3a81cf7
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+> > @@ -0,0 +1,136 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Amlogic AXG Audio Clock Controller
+> > +
+> > +maintainers:
+> > +  - Neil Armstrong <neil.armstrong@linaro.org>
+> > +  - Jerome Brunet <jbrunet@baylibre.com>
+> > +  - Jian Hu <jian.hu@jian.hu.com>
+> > +  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> > +
+> 
+> Jian and Dmitry do not maintain this.
 
-This difference leads to problems if a device has an interface with more
-than 1 lane and with more than 2 slots per lane.
+Okay, I'll remove them.
 
-For example: a playback interface with 2 lanes and 4 slots each (total 8
-slots - zero based numbering)
-- Playing a 8ch stream:
-  - All slots activated by the driver
-  - channel #2 will be played on lane #1 - slot #0 following HW placement
-- Playing a 4ch stream:
-  - Lane #1 disabled by the driver
-  - channel #2 will be played on lane #0 - slot #2
+> > +description:
+> > +  The Amlogic AXG audio clock controller generates and supplies clock to the
+> > +  other elements of the audio subsystem, such as fifos, i2s, spdif and pdm
+> > +  devices.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - amlogic,axg-audio-clkc
+> > +      - amlogic,g12a-audio-clkc
+> > +      - amlogic,sm1-audio-clkc
+> > +
+> > +  '#clock-cells':
+> > +    const: 1
+> > +
+> > +  '#reset-cells':
+> > +    const: 1
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    minItems: 1
+> > +    maxItems: 11
+> > +
+> > +  clock-names:
+> > +    oneOf:
+> > +      - const: pclk
+> > +      - items:
+> > +          - const: pclk
+> > +          - const: mst_in0
+> > +          - const: mst_in1
+> > +          - const: mst_in2
+> > +          - const: mst_in3
+> > +          - const: mst_in4
+> > +          - const: mst_in5
+> > +          - const: mst_in6
+> > +          - const: mst_in7
+> > +      - items:
+> > +          - const: pclk
+> > +          - const: slv_sclk0
+> > +          - const: slv_sclk1
+> > +          - const: slv_sclk2
+> > +          - const: slv_sclk3
+> > +          - const: slv_sclk4
+> > +          - const: slv_sclk5
+> > +          - const: slv_sclk6
+> > +          - const: slv_sclk7
+> > +          - const: slv_sclk8
+> > +          - const: slv_sclk9
+> > +      - items:
+> > +          - const: pclk
+> > +          - const: slv_lrclk0
+> > +          - const: slv_lrclk1
+> > +          - const: slv_lrclk2
+> > +          - const: slv_lrclk3
+> > +          - const: slv_lrclk4
+> > +          - const: slv_lrclk5
+> > +          - const: slv_lrclk6
+> > +          - const: slv_lrclk7
+> > +          - const: slv_lrclk8
+> > +          - const: slv_lrclk9
+> > +
+> 
+> IIUC the above, it means
+>  - pclk
+>  - OR pclk with all the master clocks
+>  - OR pclk with all the slave bit clocks
+>  - OR pclk with all the slave sample clocks.
+> 
+> Correct ?
 
-This behaviour is obviously not desirable.
+Yes, that's how I understood the txt binding.
 
-Change the way slots are activated on the TDM lanes to follow what the HW
-does and make sure each channel always get mapped to the same slot/lane.
+> If that is what it means, it is wrong.
+> 
+> * pclk is required
+> * the master and slave clocks are all optional and independent.
+> 
+> Any combination of master and slave clocks is valid from the controller
+> perspective. For ex: it is perfectly OK to have master 2 and 4, slave 5
+> and 8, and not the others.
 
-Fixes: 1a11d88f499c ("ASoC: meson: add tdm formatter base driver")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- sound/soc/meson/axg-tdm-formatter.c | 42 ++++++++++++++++++-----------
- 1 file changed, 26 insertions(+), 16 deletions(-)
+Okay, this was not obvious to me from the textual description.
 
-diff --git a/sound/soc/meson/axg-tdm-formatter.c b/sound/soc/meson/axg-tdm-formatter.c
-index 9883dc777f63..63333a2b0a9c 100644
---- a/sound/soc/meson/axg-tdm-formatter.c
-+++ b/sound/soc/meson/axg-tdm-formatter.c
-@@ -30,27 +30,32 @@ int axg_tdm_formatter_set_channel_masks(struct regmap *map,
- 					struct axg_tdm_stream *ts,
- 					unsigned int offset)
- {
--	unsigned int val, ch = ts->channels;
--	unsigned long mask;
--	int i, j;
-+	unsigned int ch = ts->channels;
-+	u32 val[AXG_TDM_NUM_LANES];
-+	int i, j, k;
-+
-+	/*
-+	 * We need to mimick the slot distribution used by the HW to keep the
-+	 * channel placement consistent regardless of the number of channel
-+	 * in the stream. This is why the odd algorithm below is used.
-+	 */
-+	memset(val, 0, sizeof(*val) * AXG_TDM_NUM_LANES);
- 
- 	/*
- 	 * Distribute the channels of the stream over the available slots
--	 * of each TDM lane
-+	 * of each TDM lane. We need to go over the 32 slots ...
- 	 */
--	for (i = 0; i < AXG_TDM_NUM_LANES; i++) {
--		val = 0;
--		mask = ts->mask[i];
--
--		for (j = find_first_bit(&mask, 32);
--		     (j < 32) && ch;
--		     j = find_next_bit(&mask, 32, j + 1)) {
--			val |= 1 << j;
--			ch -= 1;
-+	for (i = 0; (i < 32) && ch; i += 2) {
-+		/* ... of all the lanes ... */
-+		for (j = 0; j < AXG_TDM_NUM_LANES; j++) {
-+			/* ... then distribute the channels in pairs */
-+			for (k = 0; k < 2; k++) {
-+				if ((BIT(i + k) & ts->mask[j]) && ch) {
-+					val[j] |= BIT(i + k);
-+					ch -= 1;
-+				}
-+			}
- 		}
--
--		regmap_write(map, offset, val);
--		offset += regmap_get_reg_stride(map);
- 	}
- 
- 	/*
-@@ -63,6 +68,11 @@ int axg_tdm_formatter_set_channel_masks(struct regmap *map,
- 		return -EINVAL;
- 	}
- 
-+	for (i = 0; i < AXG_TDM_NUM_LANES; i++) {
-+		regmap_write(map, offset, val[i]);
-+		offset += regmap_get_reg_stride(map);
-+	}
-+
- 	return 0;
- }
- EXPORT_SYMBOL_GPL(axg_tdm_formatter_set_channel_masks);
--- 
-2.40.1
+Best regards,
+Alexander
+
+> > +  resets:
+> > +    description: internal reset line
+> > +
+> > +required:
+> > +  - compatible
+> > +  - '#clock-cells'
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - resets
+> > +
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - amlogic,g12a-audio-clkc
+> > +              - amlogic,sm1-audio-clkc
+> > +    then:
+> > +      required:
+> > +        - '#reset-cells'
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/axg-clkc.h>
+> > +    #include <dt-bindings/reset/amlogic,meson-axg-reset.h>
+> > +    apb {
+> > +        #address-cells = <2>;
+> > +        #size-cells = <2>;
+> > +
+> > +        clkc_audio: clock-controller@0 {
+> > +        compatible = "amlogic,axg-audio-clkc";
+> > +        reg = <0x0 0x0 0x0 0xb4>;
+> > +        #clock-cells = <1>;
+> > +
+> > +        clocks = <&clkc CLKID_AUDIO>,
+> > +            <&clkc CLKID_MPLL0>,
+> > +            <&clkc CLKID_MPLL1>,
+> > +            <&clkc CLKID_MPLL2>,
+> > +            <&clkc CLKID_MPLL3>,
+> > +            <&clkc CLKID_HIFI_PLL>,
+> > +            <&clkc CLKID_FCLK_DIV3>,
+> > +            <&clkc CLKID_FCLK_DIV4>,
+> > +            <&clkc CLKID_GP0_PLL>;
+> > +        clock-names = "pclk",
+> > +            "mst_in0",
+> > +            "mst_in1",
+> > +            "mst_in2",
+> > +            "mst_in3",
+> > +            "mst_in4",
+> > +            "mst_in5",
+> > +            "mst_in6",
+> > +            "mst_in7";
+> > +        resets = <&reset RESET_AUDIO>;
+> > +      };
+> > +    };
+> 
+> 
+
+
+
 
 
 _______________________________________________
