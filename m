@@ -4,111 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A932C0015E
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Aug 2023 13:38:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2C66C0015E
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Aug 2023 13:47:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
-	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=+zqoCfDvKynTpboGrjuEmhtMgC0OiSzOCMZYbPXFbmE=; b=gt7JdUoreAvnhkDFm7kkzydtJV
-	/ILsYIDjYPMzLSmELfh7T7cwHgpheZ4yBr+s0iinI4tVuR9KpbDXMYzyrnvFJQrD3hKiD2gFe3XZ0
-	hOcKcJdwUHvFDfxhrOBNpcbmH1QTYo/PScI0V+hwzedeb8HTWNZPjdyuJ9X+oS5PPRiBhjjaktQWa
-	obL52Amtb4RyAVjacvMIrwCIKTr0/WUDAwcBFKly+C+xq0x0ulTEU5Xt9yf6Pqx0nV2Uvy33sqUDt
-	xx3poDFoH5VCJJpnSb9E6u8eewZhqjz0QiBqsaWAmnsHT/757joqGOIEDkNfN3HI2CCrZ0dXqX3Tk
-	jIfWmJvg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=QCKn206z57T0D29gqoeYEQ9meZ7N0KNtG2kqbbD/N7w=; b=LzOFr2TM36RnEI
+	M+RGjorF8xOMjudLHGL6aQI++ArcMtSUBW2B4gLzoQ/D2/6o8ueidtVX6J6udc0KWDyT1rEHO9h96
+	XvK/YyA7JqvVbc9+v762TKZaDrz8faMaQrDfFbVWqoIdx/YjKKJ7P3fgJ64p15pG6GqUAb6kSyg68
+	MIwAXpeNiULgsfiWBw1fDaBwoMylz7pCDxUGi4g+q2mS44SsKleEDw83M5KyDwuRp2LEdz1/xXSbJ
+	+68vAtp3tPeXFrvEYl68HVrBoPhSZB5gDLeIy+wGO1VG7yRt7gQf93aBF5lB+abfb0XNsPs0sLlX+
+	fpzSkk9JXQSaUw2N1Nyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTjOJ-0053R5-33;
-	Wed, 09 Aug 2023 13:38:23 +0000
-Received: from 0001.3ffe.de ([2a01:4f8:c0c:9d57::1] helo=mail.3ffe.de)
+	id 1qTjX6-0054TF-0X;
+	Wed, 09 Aug 2023 13:47:28 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTjOG-0053P4-38;
-	Wed, 09 Aug 2023 13:38:22 +0000
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.3ffe.de (Postfix) with ESMTPSA id 18516124F;
-	Wed,  9 Aug 2023 15:38:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-	t=1691588293;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8Btky6tTdvG25ZLsauzNmPRJKTtp0p2jrZzqQzvClL8=;
-	b=r4wKl3ihNbNJWLLG5hf4K10pWKB/qcqJZWT79pdX14Hwy6cFCNoDp523ysrGvSxR0hF0sV
-	S19UUVxjs0tcqcFDwaa/NkVjQnAj2+cyBE5RQNYWGpyiW44j/FWxQygtTL+wtS+237ZPBi
-	AtOsW9She/DFFxiMreuzoOh5io7RuXTgqIlbCCUn4LHHa90Z+A4PZo97sfdrSy4KQLmkYs
-	hhFi301ZV0pK+bOMSJlqwINPWSXFfHk08E4h61f4wk1UScNwCWh6iBthi3AlIm+EDBA4U6
-	GVakjg8rtPJGDbRJZnIXlKnvbOR8bknUPLybW2kI3kAAfIaJexJ1gSpJk2GYOw==
+	id 1qTjX2-0054Sf-0M
+	for linux-amlogic@lists.infradead.org;
+	Wed, 09 Aug 2023 13:47:27 +0000
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-3179ed1dfbbso5754745f8f.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 09 Aug 2023 06:47:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691588841; x=1692193641;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=PE5cJzvntX1qIl6Z53C3/b2JXH5RY4FZGtDgaWloFqA=;
+        b=fkx/JwZPfS0BAH2aVLs/mI7AhmfMoMPWUzRIZWS1Uri7+pwvP8BjWK7CEkOU/1ggKe
+         9N3uGSMwEPgkSsc4hOkYDgoiDvocZGt0KHArjCjknDPTd1+1Lu7nJWVuw6cvko/gCqQ8
+         xGn2deiABWf7HUPR+q1Rl77LtFJK1RONdiQfp6NBOCwyx2KVp8DGVBKZ5Ma/juCBAR7K
+         RKGYMcnjpyFGO8TRZxiw6tQxELTj8PPW0XUgEcsoZqszU841/7sOpjiVHTvnUH+GyLLO
+         C8B1p91Ohp62Hy27Rv1Kt95MMupD6kcpjX/MTKd8/rr9H4B/ENOokWfZeEdBcDGlYBYj
+         QoEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691588841; x=1692193641;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PE5cJzvntX1qIl6Z53C3/b2JXH5RY4FZGtDgaWloFqA=;
+        b=Wl474gp74aqHVRr0mw8tbkuNEsaA/5Dok1AHnbsrOodbnmqYwHOkqZAl31W+me7DnM
+         y6Xhdgg1SOX42PBjWVFdQuD1kbLRZ40M0D5wNfPNaV5zIg1QAXdyvdZk4Cur9UFmv062
+         hpoqn8OkmClz7+hlTCZDd08sw2aGWLF+pEG7mok7USWJbh30ha3gNAVI3ICsHh4IooBh
+         xajE0FLI3RCJf33u4g30vLog3rmKbMaHhtMYmVYo/ihMM4o/UfSIim3n3jfzSJrHj7gA
+         i8VpqngRJVZUXYjPIxQfcjhwdL/+VLKWD8jp5H4DAB98D7YS8eXkKvqm5euVTuexpPbX
+         acpQ==
+X-Gm-Message-State: AOJu0YybIiYYrwDlkvzYwmDE0atQu873jAObwPIh1QyWd8ZvgO7FnHEb
+	yqHc+Cwkc4ioQvzQe8Ad95DmzQ==
+X-Google-Smtp-Source: AGHT+IGDoLFaQy+WmBagoOTGH8xLuZ2hKnQLCQUA91JqHrtZq4wtyGXz7CjCYNJSikZpVukGoMVVqw==
+X-Received: by 2002:adf:f8cb:0:b0:317:9537:d741 with SMTP id f11-20020adff8cb000000b003179537d741mr1900502wrq.54.1691588841370;
+        Wed, 09 Aug 2023 06:47:21 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:2a0f:2daa:ffb5:cc02])
+        by smtp.gmail.com with ESMTPSA id i12-20020a5d55cc000000b00314427091a2sm16850870wrw.98.2023.08.09.06.47.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Aug 2023 06:47:20 -0700 (PDT)
+References: <20230808194811.113087-1-alexander.stein@mailbox.org>
+ <f4c57e4b-674b-f870-b215-8b2f80a7c9eb@linaro.org>
+ <1j5y5obt0u.fsf@starbuckisacylon.baylibre.com>
+ <a48b1a97-2286-d2f9-742e-d718adcf1eed@linaro.org>
+User-agent: mu4e 1.8.13; emacs 28.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alexander Stein
+ <alexander.stein@mailbox.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: clock: meson: Convert axg-audio-clkc
+ to YAML format
+Date: Wed, 09 Aug 2023 15:46:33 +0200
+In-reply-to: <a48b1a97-2286-d2f9-742e-d718adcf1eed@linaro.org>
+Message-ID: <1j1qgcba54.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Date: Wed, 09 Aug 2023 15:38:12 +0200
-From: Michael Walle <michael@walle.cc>
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Andy
- Shevchenko <andy@kernel.org>, Douglas Anderson <dianders@chromium.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Pavel Machek
- <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, Hector Martin
- <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig
- <alyssa@rosenzweig.io>, Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea
- <claudiu.beznea@microchip.com>, Ray Jui <rjui@broadcom.com>, Scott Branden
- <sbranden@broadcom.com>, Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Florian Fainelli
- <florian.fainelli@broadcom.com>, Alexander Shiyan <shc_work@mail.ru>, Benson
- Leung <bleung@chromium.org>, Guenter Roeck <groeck@chromium.org>, Shawn Guo
- <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP
- Linux Team <linux-imx@nxp.com>, Paul Cercueil <paul@crapouillou.net>,
- Vladimir Zapolskiy <vz@mleia.com>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Conor Dooley
- <conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, =?UTF-8?Q?Jonathan_Neusch?=
- =?UTF-8?Q?=C3=A4fer?= <j.neuschaefer@gmx.net>, Heiko Stuebner
- <heiko@sntech.de>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang
- <zhang.lyra@gmail.com>, Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>, Chen-Yu Tsai <wens@csie.org>, Samuel Holland
- <samuel@sholland.org>, Hammer Hsieh <hammerh0314@gmail.com>, Jonathan Hunter
- <jonathanh@nvidia.com>, Nobuhiro Iwamatsu
- <nobuhiro1.iwamatsu@toshiba.co.jp>, Sean Anderson <sean.anderson@seco.com>,
- Michal Simek <michal.simek@amd.com>, Johan Hovold <johan@kernel.org>, Alex
- Elder <elder@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Anjelique Melendez <quic_amelende@quicinc.com>, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>, Luca Weiss <luca@z3ntu.xyz>, Bjorn Andersson
- <quic_bjorande@quicinc.com>, linux-pwm@vger.kernel.org,
- linux-gpio@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-leds@vger.kernel.org, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
- chrome-platform@lists.linux.dev, linux-mips@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
- greybus-dev@lists.linaro.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH v2 1/2] pwm: Manage owner assignment implicitly for
- drivers
-In-Reply-To: <20230804142707.412137-2-u.kleine-koenig@pengutronix.de>
-References: <20230804142707.412137-1-u.kleine-koenig@pengutronix.de>
- <20230804142707.412137-2-u.kleine-koenig@pengutronix.de>
-Message-ID: <a6ba206a709b2f4f1c817df8c868a683@walle.cc>
-X-Sender: michael@walle.cc
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230809_063821_388137_39B370AA 
-X-CRM114-Status: GOOD (  14.14  )
+X-CRM114-CacheID: sfid-20230809_064724_382351_C4161AD4 
+X-CRM114-Status: UNSURE (   9.76  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,24 +96,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgo+IEluc3RlYWQgb2YgcmVxdWlyaW5nIGVhY2ggZHJpdmVyIHRvIGNhcmUgZm9yIGFzc2ln
-bmluZyB0aGUgb3duZXIgbWVtYmVyCj4gb2Ygc3RydWN0IHB3bV9vcHMsIGhhbmRsZSB0aGF0IGlt
-cGxpY2l0bHkgdXNpbmcgYSBtYWNyby4gTm90ZSB0aGF0IHRoZQo+IG93bmVyIG1lbWJlciBoYXMg
-dG8gYmUgbW92ZWQgdG8gc3RydWN0IHB3bV9jaGlwLCBhcyB0aGUgb3BzIHN0cnVjdHVyZQo+IHVz
-dWFsbHkgbGl2ZXMgaW4gcmVhZC1vbmx5IG1lbW9yeSBhbmQgc28gY2Fubm90IGJlIG1vZGlmaWVk
-Lgo+IAo+IFRoZSB1cHNpZGUgaXMgdGhhdCBuZXcgbG93bGV2ZWwgZHJpdmVycyBjYW5ub3QgZm9y
-Z2V0IHRoZSBhc3NpZ25tZW50IAo+IGFuZAo+IHNhdmUgb25lIGxpbmUgZWFjaC4gVGhlIHB3bS1j
-cmMgZHJpdmVyIGRpZG4ndCBhc3NpZ24gLm93bmVyLCB0aGF0J3Mgbm90Cj4gYSBwcm9ibGVtIGlu
-IHByYWN0aXNlIHRob3VnaCBhcyB0aGUgZHJpdmVyIGNhbm5vdCBiZSBjb21waWxlZCBhcyBhCj4g
-bW9kdWxlLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFV3ZSBLbGVpbmUtS8O2bmlnIDx1LmtsZWluZS1r
-b2VuaWdAcGVuZ3V0cm9uaXguZGU+CgouLi4KCj4gIGRyaXZlcnMvcHdtL3B3bS1zbDI4Y3BsZC5j
-ICAgICAgICAgICAgfCAgMSAtCgpBY2tlZC1ieTogTWljaGFlbCBXYWxsZSA8bWljaGFlbEB3YWxs
-ZS5jYz4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxp
-bnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9y
-ZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9n
-aWMK
+
+On Wed 09 Aug 2023 at 15:02, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+
+> On 09/08/2023 08:58, Jerome Brunet wrote:
+>>>> +      required:
+>>>> +        - '#reset-cells'
+>>>
+>>> else:
+>>>   properties:
+>>>     '#reset-cells': false
+>>> ???
+>>>
+>>>
+>>> You need to constrain the clocks per variant. Probably names are also
+>>> specific to each one, so the list of names can be moved here and you
+>>> keep just min/maxItems in the top level property.
+>>>
+>> 
+>> input clock names and constraints are the same for all 3 variants.
+>
+> Then why do you have this huge, apparently unnecessary, oneOf? If it's
+> the same, then drop the oneOf and make number of clocks fixed.
+>
+
+As I pointed out, this section is wrong.
+
+>
+> Best regards,
+> Krzysztof
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
