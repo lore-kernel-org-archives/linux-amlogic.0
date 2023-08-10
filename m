@@ -4,87 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2374BC001DE
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Aug 2023 07:41:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A73FC001DE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Aug 2023 07:46:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=e2Wy++i/6TyIJKQ/KvP4FcvJ9hWvwtmlDLFbKaI5XFM=; b=d634jSuPXisVmp
-	fwYASRCiFVh6bsDYA+Q/zLwLrSO4X9925tHZK3vAX+t/5epiIdV/1Efpj29Xo5nLTZ+HhR2KD0rx6
-	UJmfAr5pyikp4Fxkm62CQP7y72AG+W62ekb1ByOun04TDWG09x2CuWTDN0JFUXco0d9aE32v/ct4j
-	sqBvFxcObl1I3bPWpnMl7dYhoo6Rh7TprEOBedPKHDuXjSrz2wNd7SwYsc/u46Ton6SJR2Q+o6LvP
-	rEQhuje3wp/Lm9ksx/SdragEXpNH6cex3ZvKNIWyqRKK6ilGCVfmh4PoUjhVPEPtbrXHAxma6Plle
-	QLYgmVB+H19owO4dHcBg==;
+	List-Owner; bh=f35H3+F8SwwHMrSPrjMzBYRSDH9zw8PbWnztVPQwk/A=; b=CLKNxduiovr86O
+	bETx7TG6S4AtNj/C2DyM165fYR7mT/HcZBc3iqgpmS6SOpvM/XAZvXikoNjVn1RGeLU1km0szjwcR
+	Rjf7iAoZwG0xMjdkIpxKxIaiwyaAH6FF+HVy97yH6bfdOMIQ5TM3DRyS8J149RETnRjoxNdVLKavd
+	AFs5iDKSHhxHm6Ln9hTnMdaTW7gHz7z6chfBlntTLZBX6IvC73ZrtVp/9lfQ3uWjY0UA6h4KImqCR
+	/vJcE1zWpFY0zPQcl1tDqCnqI0YiCrw9DyTD4ya39jFFBuoiflQ/IjqqKszPhk9eKBBijoRJ2dqXy
+	6PVJ0sOIrOKcv0yxedLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qU0I1-006lp1-2O;
-	Thu, 10 Aug 2023 07:41:01 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1qU0N8-006mRH-1x;
+	Thu, 10 Aug 2023 07:46:18 +0000
+Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qU0Hy-006lnu-16
+	id 1qU0N5-006mQo-2u
 	for linux-amlogic@lists.infradead.org;
-	Thu, 10 Aug 2023 07:41:00 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3fe4a89e7efso4775505e9.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 10 Aug 2023 00:40:57 -0700 (PDT)
+	Thu, 10 Aug 2023 07:46:17 +0000
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-99cce6f7de2so93756966b.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 10 Aug 2023 00:46:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691653256; x=1692258056;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=gE2eDLacDaK6AX9g7TV9Vf/L1NM82eB/CdmYKIBQ0yA=;
-        b=4f49vXO7A6Gc22laJ+7VCPltLWc7kgewzD7rQNR7bZkqGKS/AOyyISRqmG1WU0Ohi2
-         wHSBViH7T91diiDguLUk/9Zx7Y7AREAjuWTOcvAuvCAxmoJcBVF5ot4Qo+8ppO3RHIVe
-         zPqkQ8gIus+gqvKLI3Ek+GR9jWUObFmaGYkVcDPYYaTahfmlhUNSPCe6K9wqvcUzlF0W
-         JIoTjqnupVjQaAysnR1UBUyNiW4aSnyisHit2TbeKjzYtkENez+gesZ7l/le0oBcujOc
-         70oHShCnOBXZFZal4b/l6CH/37WPgsEBkxQyUkgUR0MWDIf18Z6crIAp9bVmsnwaZkxK
-         Iqlg==
+        d=linaro.org; s=google; t=1691653573; x=1692258373;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=19pO42zYtVAjIJUNvAKR95B6FHPWJULLL//o6iFt8Lw=;
+        b=NT9iYuJadAEBUURMezxlAJABIJG7XHwHSsk4A4nByjjLXwTUWcI+/vhUd9ttXiLSUI
+         3skPu8zUdkHMr+RlsoNvNmlxvhlVszbPgmozoVkInrFQJz1T2nQdHPXfdQfStNX4W2zc
+         vEvkNPgd3BmmPvcbeyb7G/dV1djZsu33fa3QXMq3gcCUz8ywbp+wKuCXqAjPsaSXs65a
+         xEm0YfhCCulxzeNH1T6wDayhUGvIOvHh6qQKKPec+i3ncPhP1kpa5jl7TOIT2ub1sZSH
+         CWjC/r0ZnZY59BwkR4yjf9EDqQEN6HaiZNzRbdHueUBOHf21UeVmrtlY6OdP9HkPC2+l
+         IS8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691653256; x=1692258056;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gE2eDLacDaK6AX9g7TV9Vf/L1NM82eB/CdmYKIBQ0yA=;
-        b=Wz1++XsWCU6NDe2EvJeTfKhnkDJdMsMf3GsPYXhDDHP39yAPtHwgQMKYfVxM5JevQX
-         p6Wv/9dgzujqIhy6TpIlcX4aFMChJtDQ8koxVs31t1NG4GzOn5EYngieT74FwtSpsill
-         D34fqjKSDHAIMgrbeUU3sY5a1XNhVlbsZIvUP5PP9B1GqoRUpaqi9/pboxR544Ki77G2
-         i3GNPAYSQXeRjZPKrWT6AluosFvlGccSLc5KuT9k7uhLfyTheCrtIbnKWQF0XmmmPL4z
-         V44N4WxnBkEXZistx59ZLMTW5BmtTWiK03py5zWIB9ob3F1kwh3y5MedZ/Us6f6qoZHf
-         8PiA==
-X-Gm-Message-State: AOJu0YzhqbOnrjblGB1HgYyzDxYi97Sy65W2I9wz4Wx/Q4MhPqffZg/O
-	YUnHBF8pYFIf1qyhcnzdxf4t0Q==
-X-Google-Smtp-Source: AGHT+IE8Ia4n/NlmCa7gXROhXWJu+aGPVlwNFSbpVUlGZ2/Xb3DQjt4SzY+WI2mGYzsua3kBvb0uow==
-X-Received: by 2002:a7b:cd09:0:b0:3f9:c8b2:dfbd with SMTP id f9-20020a7bcd09000000b003f9c8b2dfbdmr1136560wmj.19.1691653256226;
-        Thu, 10 Aug 2023 00:40:56 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:6d73:1494:dad2:6a13])
-        by smtp.gmail.com with ESMTPSA id c14-20020a05600c0ace00b003fe4548188bsm4113626wmr.48.2023.08.10.00.40.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Aug 2023 00:40:55 -0700 (PDT)
-References: <20230808194811.113087-1-alexander.stein@mailbox.org>
- <1j5y5obt0u.fsf@starbuckisacylon.baylibre.com>
- <a48b1a97-2286-d2f9-742e-d718adcf1eed@linaro.org>
- <8294548.NyiUUSuA9g@kongar>
- <5c852193-9298-af2e-2b7d-dbba29768fec@linaro.org>
-User-agent: mu4e 1.8.13; emacs 28.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alexander Stein
- <alexander.stein@mailbox.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+        d=1e100.net; s=20221208; t=1691653573; x=1692258373;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=19pO42zYtVAjIJUNvAKR95B6FHPWJULLL//o6iFt8Lw=;
+        b=Yj9tp9B9SNKRjMYEsqnbjpdvG6r9LWoh7M+909bOG2aFtMSskuz7XmmmqcnUSdt1qo
+         53xSFN4M6HqAP0IwpoC4N7WXeX29IIFPDfNeNh6yv0qoUt6S9i8+Ji7g7PbiguWTGR9a
+         tlpgE7bKhlkMzuycuPe0BMwgklk2KOWMUWyOcrSmtm8REZ4peUbdW0JqzYYVvwLdnYKW
+         mhz9LnGuWHiOUzDX7po6tAFYenhafJvxXrmwLMVHwnohKAWtFwGLEOq0V2m6nQ5D6kwx
+         P8yYggvMWYKGM77wa4E+MS3dhXXf2dcOoT0WBXleuN9l1yNQ8DGGDlDgkFZvKPPr5yEw
+         xTjg==
+X-Gm-Message-State: AOJu0YyQo2SZswUOQJL+7e2VGmJ7wXl7IVzVJZ1tojh58a8J3tKpQchC
+	TBmUYIDFwbtKW5zvPllVE/Izng==
+X-Google-Smtp-Source: AGHT+IHxCguYXiIXhyg9LIXORLa+jUyQIhnuWBFeMuRAxNn6NP1VOhTge75PznDcNXFAiuucGcCHOg==
+X-Received: by 2002:a17:907:7709:b0:99b:c949:5ef8 with SMTP id kw9-20020a170907770900b0099bc9495ef8mr1294530ejc.54.1691653573089;
+        Thu, 10 Aug 2023 00:46:13 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.113])
+        by smtp.gmail.com with ESMTPSA id ke10-20020a17090798ea00b00982a352f078sm548321ejc.124.2023.08.10.00.46.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Aug 2023 00:46:12 -0700 (PDT)
+Message-ID: <d2225b8a-a622-3936-1e43-d5a9801c2cd7@linaro.org>
+Date: Thu, 10 Aug 2023 09:46:10 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 1/1] dt-bindings: clock: meson: Convert axg-audio-clkc to
+ YAML format
+Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Alexander Stein <alexander.stein@mailbox.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Dmitry Rokosov <ddrokosov@sberdevices.ru>
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Dmitry Rokosov <ddrokosov@sberdevices.ru>
 Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: clock: meson: Convert axg-audio-clkc
- to YAML format
-Date: Thu, 10 Aug 2023 09:32:09 +0200
-In-reply-to: <5c852193-9298-af2e-2b7d-dbba29768fec@linaro.org>
-Message-ID: <1jwmy39wfs.fsf@starbuckisacylon.baylibre.com>
-MIME-Version: 1.0
+References: <20230808194811.113087-1-alexander.stein@mailbox.org>
+ <1j5y5obt0u.fsf@starbuckisacylon.baylibre.com>
+ <a48b1a97-2286-d2f9-742e-d718adcf1eed@linaro.org> <8294548.NyiUUSuA9g@kongar>
+ <5c852193-9298-af2e-2b7d-dbba29768fec@linaro.org>
+ <1jwmy39wfs.fsf@starbuckisacylon.baylibre.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1jwmy39wfs.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230810_004058_566217_CA337582 
-X-CRM114-Status: GOOD (  17.59  )
+X-CRM114-CacheID: sfid-20230810_004615_939987_BE4603C3 
+X-CRM114-Status: GOOD (  18.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,57 +105,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Thu 10 Aug 2023 at 08:11, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 09/08/2023 20:44, Alexander Stein wrote:
->> Hi,
->> 
->> Am Mittwoch, 9. August 2023, 15:02:23 CEST schrieb Krzysztof Kozlowski:
->>> On 09/08/2023 08:58, Jerome Brunet wrote:
->>>>>> +      required:
->>>>>> +        - '#reset-cells'
->>>>>
->>>>> else:
->>>>>   properties:
->>>>>     '#reset-cells': false
->>>>> ???
->>>>>
->>>>>
->>>>> You need to constrain the clocks per variant. Probably names are also
->>>>> specific to each one, so the list of names can be moved here and you
->>>>> keep just min/maxItems in the top level property.
->>>>>
->>>>
->>>> input clock names and constraints are the same for all 3 variants.
+On 10/08/2023 09:32, Jerome Brunet wrote:
+>>>> Then why do you have this huge, apparently unnecessary, oneOf? If it's
+>>>> the same, then drop the oneOf and make number of clocks fixed.
 >>>
->>> Then why do you have this huge, apparently unnecessary, oneOf? If it's
->>> the same, then drop the oneOf and make number of clocks fixed.
->> 
->> But as far as I understand the number of clocks is not fixed. As Jerome pointed 
->> out in the other post, it can have any combination of clocks and range from 1 
->> up to 11, where 'pclk' is always 1st clock.
->> I currently have no idea how to constraint that, despite limiting the number 
->> of clock-names.
->
-> The same as in all other clock controllers (was also present on my list
-> of useful patterns - Variable length arrays (per variant)):
-> https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
+>>> But as far as I understand the number of clocks is not fixed. As Jerome pointed 
+>>> out in the other post, it can have any combination of clocks and range from 1 
+>>> up to 11, where 'pclk' is always 1st clock.
+>>> I currently have no idea how to constraint that, despite limiting the number 
+>>> of clock-names.
+>>
+>> The same as in all other clock controllers (was also present on my list
+>> of useful patterns - Variable length arrays (per variant)):
+>> https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
+> 
+> In the example provided, the number and list of clocks required by each
+> controller variant is fixed, if I'm reading it correctly
+> 
+> Here the controller (regardless of the variant) accepts a maximum 29
+> clock inputs. Only pclk is required. It is valid to have any of 28
+> optional clocks at index 2, 3, etc ...
 
-In the example provided, the number and list of clocks required by each
-controller variant is fixed, if I'm reading it correctly
+I actually doubt that it is optional. These are valid clock inputs. I
+could imagine they are optional depending on the use-case, like some
+block being turned off or on... but then still the clock is there, just
+not actively used.
 
-Here the controller (regardless of the variant) accepts a maximum 29
-clock inputs. Only pclk is required. It is valid to have any of 28
-optional clocks at index 2, 3, etc ...
+Aren't you now describing existing Linux driver?
 
-I guess the question is how do you recommend to model that ?
-I can think of 'Anyof' with all the optional clocks repeated 28 times
-but that would be fairly ugly.
+> I guess the question is how do you recommend to model that ?
+> I can think of 'Anyof' with all the optional clocks repeated 28 times
+> but that would be fairly ugly.
 
->
-> Best regards,
-> Krzysztof
+
+Best regards,
+Krzysztof
 
 
 _______________________________________________
