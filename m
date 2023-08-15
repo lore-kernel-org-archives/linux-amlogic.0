@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92A11C001B0
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Aug 2023 09:28:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90F83C001E0
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Aug 2023 09:28:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iRL18T4fxQpo0eNZnBl/xIBQf40JGzgcTx55MRo7UVc=; b=hU8cjvyvxrZf6X
-	6FBZgBbARQw4Y+aXuMu+Qw/IlY4aMhBiq3nDW3oZ0sYayFRMvx3r0/UIDCzfkRQlOWcrc6szXDIPO
-	8suNPtR1J1jSlXrt3vHth+C4BkePmteWCmie7kN7CNIvQGXveiPY9jo5HUBWZMnkvMQFem4VH/65m
-	BuN4bt+25ThjeJankJ2ptYUJxsOfB7NNC06o6+sRlDDSJP9SHs/VDtwSvMqdI8oKx9vLGzTJubJLo
-	ofoFDwnDo0ZnL7Q1ttEWjVXVNs5Q/g+bPGuA/0dkFNZxzYGjMLj+x1BgCR1Bwj99uYFCPUxoVczvp
-	Fln3kUEH59fntkdkVn1Q==;
+	List-Owner; bh=e5rJ5vEoM35Ul9aFLBQMkKXJWoPlD6v745LQ6R7YpgY=; b=Yr8ZrKOniC2fay
+	J8GrJ+Y1G3Q+rd2akonho92a5nJ1rebOq+SxdYYWcVZin21N6WEkV3MmjQ9KHLk4TuQc2mTZLXoLH
+	3HLSDtOSM0ceUp/TcthJn9fughM49qOXCiVRK5afhVaHuC0Gpe97jvbM+aiTFe6TxCYNbKs8KBZ80
+	JFLGpZCiLoErzqx6/afQS3arHgHk08pFl7lThOAuB8GdG1v4q9+gViHmnjeLLdQ7RIsbWlE2sRPkE
+	lcxRkdMidPfHX520tEV4rxck1t2qh4FBV393vJgXfzYPCDW7vGP2DFX9BF7dY2Jnxgi4OjRKwCb3w
+	ueeSX0tAQJ7UDBh3jbmA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qVqLR-001Cvi-27;
-	Tue, 15 Aug 2023 09:28:09 +0000
+	id 1qVqLS-001Cvw-07;
+	Tue, 15 Aug 2023 09:28:10 +0000
 Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qVqLL-001Ct8-0S;
+	id 1qVqLL-001CtN-0c;
 	Tue, 15 Aug 2023 09:28:04 +0000
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-317798b359aso4514572f8f.1;
-        Tue, 15 Aug 2023 02:28:00 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-31783d02093so4611771f8f.0;
+        Tue, 15 Aug 2023 02:28:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692091679; x=1692696479;
+        d=gmail.com; s=20221208; t=1692091682; x=1692696482;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IxLmACEq8DwvR1DlwOAwmK1lXNm1dEuNHjSmvA+D3D4=;
-        b=FX/o1rqpRFL5xfRi+6HUlHxU7IDdu2pvJrfL9KhKIugOtkau9zCJWta7/bgjIjy5gr
-         NJ6YmwtZoqg/38MW+rvT6YScskVPl9bXtRpQ2+aXIESLHWXzl1SXm9obfSGegZdp6BMV
-         ptGrowxXbEmPRW1lto1CEbCLkbkEFqeanwWjKuslJdJ00p2s9Pz/IcXqI7MCtN0PT428
-         L00qB8LpjOeYbBpG112XMcB42ZipYVB0PURgihWjmnqrd1WPUWzDk5y9RRTbmHpqFcuS
-         /8jKBvVkxCF4dkahYzeQKyJ5zxEXmbuxnoj77LDwdTiywJounhqHlbohX3VSOK+k3hc+
-         esTQ==
+        bh=EwfzrnXrzs3srhIJvT0mhp0xOGZ4O82IIuIkbmzCw5w=;
+        b=kpH0+vVgFu0XNZt2m6cDg7G6SmrMzwp/GgX+g0GuIL+CVr2BQx6zlBfyaBsb4MMzvb
+         KOsZiZP4/IFdWBEa5TIb+BZAcsuLmj4qxvYnlB79lzxR87zTqmxLJSDPANSTz4JoMwt3
+         x7vLY1SBDYle13X6Ev2o/8yx8RgQYsoiMOmTcEHr3FDbmKG2kFR2L6v3QAPvqqtNDW9V
+         c89HLh7yjtPJAKTI5nngLMvcIErkZYI/Eh/TbbuVqBUEfuv+eFQU7obb3utpFz6kVS0+
+         vs69o7QN2CJblnN9QWWEavsHBhJwn+7Um8NxQtYnNEY0WWUb+soe9YMFCpfZM/0WtZDf
+         JwSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692091679; x=1692696479;
+        d=1e100.net; s=20221208; t=1692091682; x=1692696482;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IxLmACEq8DwvR1DlwOAwmK1lXNm1dEuNHjSmvA+D3D4=;
-        b=XxpAn9UcQm+ql608uNASHHGoGOAi4/lqDGe9EX7tHCzE61zmx8zEqt2vfgrSNM6Ydg
-         b87nLtdkEF9F9g+mv3EmAk3F+wCG5KpSF1jFiDGlJsl5fZpf7EBRtDWVvlL06evmMyXi
-         s4lStbqoiJzpU4s2JFKytI3gEf8+XzoGUy2xfDYx80hgpShxuamN7x/5DfNGEj5nRZO/
-         FW9dWQ0anRJR+Y0zrHqLuHK1qFFJDoBbxWxyEMx2/050FVWuSwEr52wCPPcqaAWifwV0
-         4XG2NBNLKQri4RyPgqUYDD7XrPmNZjNUFYnwTQONh3zVL0A96OtetXPd2ftyFd5QONrB
-         Q4gg==
-X-Gm-Message-State: AOJu0YxGmco1a/pXozWyWinVV1w+LTJHj5t79cEmQtqWEbVCdjdX7e1k
-	s+Ivv8jW/oB/MdDIGgObU/8=
-X-Google-Smtp-Source: AGHT+IF3cQZNWTyrBIiA0J/8Z5kQ+jSt3gu7hM9b3t2zxfiduxi/iEYIwMYG2mEkwrEV480a99XxAA==
-X-Received: by 2002:a05:6000:110f:b0:317:6fff:c32b with SMTP id z15-20020a056000110f00b003176fffc32bmr8660548wrw.53.1692091679216;
-        Tue, 15 Aug 2023 02:27:59 -0700 (PDT)
+        bh=EwfzrnXrzs3srhIJvT0mhp0xOGZ4O82IIuIkbmzCw5w=;
+        b=l610pSKO3yHDlualeC6A+4cTGo7yQSuc8SPPzPMxLmJI+jhGZ469pKfL1gK0NYax+Q
+         wVTxb5YM72XICfhlY8PjA/aXisxmjAfjviij8JOTtzW5ytlpRuAD5Szp16jQR3sxAiCE
+         4KevEFlcgVLO2Xluv9rV937aG5K5BJAe30uAx5aZ7E/d1+hn4BJoeEqjEzaxyxr1pNzr
+         v+TzGytFh70+h2p4Kt2Hs8bKqwP9HM7oAWhiqRKulkZpnNxO+glbx7evHyVGvU/HpOmT
+         E9L0ETrN86MYUR/+cAKYwqJZXHrVvkuVGrq1W9gA174LeI1aIP6rOCiM2oMIDKUy9BjJ
+         dYeA==
+X-Gm-Message-State: AOJu0YxbaS4pxIiIGd21N8IvM/GtlnMxi7F7EplGS8XoB9sd1MUfteMA
+	t0Z1faOhyY9gUimRIb6h8CI=
+X-Google-Smtp-Source: AGHT+IF2AQqeJrtG/7WlxfiZa445yC5atouzCZjTj2PShhJzRkZSg2tTZD5WWUIvGr+e32sTlD7Xyg==
+X-Received: by 2002:adf:f281:0:b0:317:6a07:83a7 with SMTP id k1-20020adff281000000b003176a0783a7mr8573440wro.38.1692091681922;
+        Tue, 15 Aug 2023 02:28:01 -0700 (PDT)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id p1-20020adfcc81000000b003179b3fd837sm17230853wrj.33.2023.08.15.02.27.56
+        by smtp.gmail.com with ESMTPSA id p1-20020adfcc81000000b003179b3fd837sm17230853wrj.33.2023.08.15.02.27.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Aug 2023 02:27:58 -0700 (PDT)
+        Tue, 15 Aug 2023 02:28:01 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -72,16 +72,17 @@ To: Rob Herring <robh+dt@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] arm64: dts: meson: add audio playback to p200
-Date: Tue, 15 Aug 2023 09:27:49 +0000
-Message-Id: <20230815092751.1791195-2-christianshewitt@gmail.com>
+Subject: [PATCH 2/3] arm64: dts: meson: add audio playback to p201
+Date: Tue, 15 Aug 2023 09:27:50 +0000
+Message-Id: <20230815092751.1791195-3-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230815092751.1791195-1-christianshewitt@gmail.com>
 References: <20230815092751.1791195-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230815_022803_186213_DAE8457D 
-X-CRM114-Status: GOOD (  10.67  )
+X-CRM114-CacheID: sfid-20230815_022803_235380_2FC93D75 
+X-CRM114-Status: UNSURE (   9.41  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,45 +99,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add initial support limited to HDMI i2s and SPDIF (LPCM).
+Add initial audio support limited to HDMI i2s.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- .../boot/dts/amlogic/meson-gxbb-p200.dts      | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
+ .../boot/dts/amlogic/meson-gxbb-p201.dts      | 39 +++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
-index 3c93d1898b40..292c718ee19c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
-@@ -9,11 +9,19 @@
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts
+index 150a82f3b2d7..6f81eed83bec 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts
+@@ -8,10 +8,49 @@
+ /dts-v1/;
  
  #include "meson-gxbb-p20x.dtsi"
- #include <dt-bindings/input/input.h>
 +#include <dt-bindings/sound/meson-aiu.h>
  
  / {
- 	compatible = "amlogic,p200", "amlogic,meson-gxbb";
- 	model = "Amlogic Meson GXBB P200 Development Board";
- 
-+	spdif_dit: audio-codec-0 {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+		status = "okay";
-+		sound-name-prefix = "DIT";
-+	};
-+
- 	avdd18_usb_adc: regulator-avdd18_usb_adc {
- 		compatible = "regulator-fixed";
- 		regulator-name = "AVDD18_USB_ADC";
-@@ -57,6 +65,58 @@ button-menu {
- 			press-threshold-microvolt = <0>; /* 0% */
- 		};
- 	};
+ 	compatible = "amlogic,p201", "amlogic,meson-gxbb";
+ 	model = "Amlogic Meson GXBB P201 Development Board";
 +
 +	sound {
 +		compatible = "amlogic,gx-sound-card";
-+		model = "P200";
++		model = "P201";
 +		assigned-clocks = <&clkc CLKID_MPLL0>,
 +				  <&clkc CLKID_MPLL1>,
 +				  <&clkc CLKID_MPLL2>;
@@ -150,10 +136,6 @@ index 3c93d1898b40..292c718ee19c 100644
 +		};
 +
 +		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
-+		};
-+
-+		dai-link-2 {
 +			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
 +			dai-format = "i2s";
 +			mclk-fs = <256>;
@@ -163,15 +145,7 @@ index 3c93d1898b40..292c718ee19c 100644
 +			};
 +		};
 +
-+		dai-link-3 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
-+
-+			codec-0 {
-+				sound-dai = <&spdif_dit>;
-+			};
-+		};
-+
-+		dai-link-4 {
++		dai-link-2 {
 +			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
 +
 +			codec-0 {
@@ -183,8 +157,6 @@ index 3c93d1898b40..292c718ee19c 100644
 +
 +&aiu {
 +	status = "okay";
-+	pinctrl-0 = <&spdif_out_y_pins>;
-+	pinctrl-names = "default";
  };
  
  &ethmac {
