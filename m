@@ -4,83 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01DECEE4993
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Aug 2023 16:17:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E43A8EE4996
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Aug 2023 16:32:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KHNhFMvMaj5vidgPniOohydbVaGtvpup9NM7wGd2xWc=; b=lko7VbD33A7yl/
-	QUFPqKmSVPFf0BsjbkEsIENOrfRWTtmoMl2gL9Zc36qSM2RouQZSCATQ7ra71rzWsLUQyu66qyfWz
-	FfKw+yQwXCS28/Zw/zZK5jy2ay3J9guej8EL+Mi3WLjTS36xUEsPUMT0e43o3uxUURKlr5c3TqSXa
-	uoYZL0mxD2f6XyRLlY2KlennFSdALUtLkmCjY3ro2a/7u+MVgjk+1A0eTvi5w/BmL6NHnbDVMAmAJ
-	QyU6B6Jt16IRbGGwFlxx+ka8txBfXwXYCISt/Gv99VRuEHw5HF33FPSXvlvquVSplzYF3fwW9NfLa
-	VisjRYdA5n8YP9npWxeA==;
+	List-Owner; bh=bEy6g+PZqzolXiKnBMxXvb2g/oHnB24zb+miFveQwog=; b=pdJ9tzKbfXzb26
+	9/KxPctOMAbmH1MgatjA4EFI76SXO124jIdLXCa/iSH4o6U31Imb435hmAgWGdBx2DeUnTODQMSOa
+	ebZIjpBgA3Y7Sccnx8gUxigpf9GOVOomFcu+C+NMNhnMTJp5F3TUkkRkcZa6jjYuv0whIjWX3SAYf
+	bs0QuMDym+f0cSOQj969L06iReNlMRAYQdWluGmyvnRBUQX7CdiMXJborP8AovtaO2PjQzIRba+cN
+	UkbaYB9V3Pk8UwbKa6QzudhbY3z2IICl83jmv9uZz8wNq+hzkB/2x9Wl0lgS4ZjAyqFQ4MP7NNsV8
+	FKXH4AHMZs4r/ZZMp6TA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYU3u-00GSbP-2p;
-	Tue, 22 Aug 2023 16:16:58 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1qYUIe-00GUlv-1i;
+	Tue, 22 Aug 2023 16:32:12 +0000
+Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYU3d-00GSLP-01;
-	Tue, 22 Aug 2023 16:16:41 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:References:In-Reply-To:Message-ID:Subject:CC:To:From:Date:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=k7QVCshRu5lL7UTqUOwjV37PDs1L0Wntvb212mBWA6o=; b=bcoe3uHpmbAAlyhxPyVcxBosca
-	771wcx/KCM7kMTJkyNz55FbQ17Nv7mR+B9TerQyS6Uvb+ckY6xmxsc2QDlaKiPE+gmBRhd2UkNmDj
-	VbyL78fddJl8w0gHlsPbwQJFpat4wrfe+ml5Yx9BGlL1lX0h9CPo6zK7Qbrnknq4NS0rZLXzGi9Kz
-	TYkA4QK1s+hgYoy3/DBgGfo4WGL60C/gKFifXW29ToBqk4pvCrmBcp9+QCcagEu+l6p/DKLyIkyfP
-	8OZM6hghSlcZwu/CMELI/RfcuNW4gLmDcPwlUTmb662xQu2qZMCgZNVQdcKQq1LfKIRBEpZ6jse8T
-	pGT2GmqQ==;
-Received: from frasgout.his.huawei.com ([185.176.79.56])
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYU3W-002rmT-0j;
-	Tue, 22 Aug 2023 16:16:39 +0000
-Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.206])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4RVZ9f3gsrz6J6cZ;
-	Wed, 23 Aug 2023 00:12:06 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Tue, 22 Aug
- 2023 17:16:28 +0100
-Date: Tue, 22 Aug 2023 17:16:27 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Li Zetao <lizetao1@huawei.com>
-CC: <broonie@kernel.org>, <chin-ting_kuo@aspeedtech.com>, <clg@kaod.org>,
-	<joel@jms.id.au>, <andrew@aj.id.au>, <florian.fainelli@broadcom.com>,
-	<rjui@broadcom.com>, <sbranden@broadcom.com>,
-	<bcm-kernel-feedback-list@broadcom.com>, <fancer.lancer@gmail.com>,
-	<olteanv@gmail.com>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
-	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-	<conor.dooley@microchip.com>, <daire.mcnamara@microchip.com>,
-	<matthias.bgg@gmail.com>, <angelogioacchino.delregno@collabora.com>,
-	<avifishman70@gmail.com>, <tmaimon77@gmail.com>, <tali.perry1@gmail.com>,
-	<venture@google.com>, <yuenn@google.com>, <benjaminfair@google.com>,
-	<linus.walleij@linaro.org>, <heiko@sntech.de>, <linux-spi@vger.kernel.org>,
-	<linux-aspeed@lists.ozlabs.org>, <openbmc@lists.ozlabs.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<linux-rpi-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-riscv@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH -next 00/25] spi: Use devm_clk_get_*() helper function
- to simplify the drivers.
-Message-ID: <20230822171627.00007020@Huawei.com>
-In-Reply-To: <20230822131237.1022815-1-lizetao1@huawei.com>
-References: <20230822131237.1022815-1-lizetao1@huawei.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	id 1qYUIc-00GUjt-1W
+	for linux-amlogic@lists.infradead.org;
+	Tue, 22 Aug 2023 16:32:11 +0000
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-52a1132b685so2507716a12.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 22 Aug 2023 09:32:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692721926; x=1693326726;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3uQSylp0y7KOudR5yNt2H8UCOVpvtj04yDey4znHRLA=;
+        b=e5CZu2+RpDcrjPEl8gmUFILhTTitUimNfzkLuXEk57VQEAR2kqg4fzp0GPXAj6oabp
+         y/RseqyXDzppUaEiTL85pFDe1WvN3QJYyOeMFpclFRQ/AkswADsSbfon5WGJ33/DT18o
+         KtT5l2KhvnfzIeAdB76PQW/Ov67hq+hLXRfBGw6HvcvdHYAYUVzlXBFPQtE3tso33cjb
+         tsTACVCo49NMTag1NXI9lSVdEud/QGTchIkcgqlHbMsvvLlIAgDl/iLVO/BPrY8zjLfR
+         GwEBlkmoJEdJ9K7LE4qGL/ApbUeXqvu65DKCENt2U+QuaxoILHikD32g8j3t1mGm4Btz
+         eCCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692721926; x=1693326726;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3uQSylp0y7KOudR5yNt2H8UCOVpvtj04yDey4znHRLA=;
+        b=Q3/lS1qNrUZ0mzIYlgx3y7wnYHhZUrGTT+KlPMbS86O1ruhfCVWsR92Jh55HDpGW00
+         eB4Xr9n22iWavoENhoXeqU7hipEbo7IsVKeNUMc5cZQLilZmXJfE6uQJdmpNCP2DmXGS
+         1c1CBdyqTE2dFZHVJ82/eSXqdRL4hboTjjAiLtNr4VeuOxK2m62bVdGZSWvHKw4a75ht
+         wChsEzXIyFt5Nblnm/MV9QxY6ieC8zUmGPzw9Z+1Fj71eiXq379+41pJR3L1oemgWO4E
+         GClNlDFt+U8cgbaOdjX+EeG01NKE2f1i9p0zojsk/OIP+axDrs/9PFHNqztJSCZx+dTY
+         fyuQ==
+X-Gm-Message-State: AOJu0YzWSXVpDK3BB7rAmcIJvFkt0GPID38UZnXT+WQ01USdNGbGyl2z
+	EPwqGDTRleU5GoRRdUuundTWNw==
+X-Google-Smtp-Source: AGHT+IHY8roXOKlErN1u6cAk1xEiMD1JJ8eVAuVfBioslGRRaPmLvzi0W/JaIoSiX7eCI6hpEj0Ksg==
+X-Received: by 2002:a17:906:cc16:b0:9a1:870e:cc9d with SMTP id ml22-20020a170906cc1600b009a1870ecc9dmr6733431ejb.18.1692721926631;
+        Tue, 22 Aug 2023 09:32:06 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id x5-20020a170906148500b0098e42bef736sm8505501ejc.176.2023.08.22.09.32.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Aug 2023 09:32:06 -0700 (PDT)
+Message-ID: <d2a6060a-c8a0-51c7-f621-1bed2c3074b4@linaro.org>
+Date: Tue, 22 Aug 2023 18:32:04 +0200
 MIME-Version: 1.0
-X-Originating-IP: [10.202.227.76]
-X-ClientProxiedBy: lhrpeml500001.china.huawei.com (7.191.163.213) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH V10 1/4] dt-bindings: clock: document Amlogic S4 SoC PLL
+ clock controller
+Content-Language: en-US
+To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: kelvin.zhang@amlogic.com, qi.duan@amlogic.com
+References: <20230822082750.27633-1-yu.tu@amlogic.com>
+ <20230822082750.27633-2-yu.tu@amlogic.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230822082750.27633-2-yu.tu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230822_171634_421456_23063E91 
-X-CRM114-Status: GOOD (  12.54  )
+X-CRM114-CacheID: sfid-20230822_093210_508160_90D9A45B 
+X-CRM114-Status: UNSURE (   7.08  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,85 +105,16 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 22 Aug 2023 21:12:12 +0800
-Li Zetao <lizetao1@huawei.com> wrote:
-
-> Commit 7ef9651e9792 ("clk: Provide new devm_clk helpers for prepared
-> and enabled clocks") provides a new helper function for prepared and
-> enabled clocks when a driver keeps a clock prepared (or enabled) during
-> the whole lifetime of the driver. So where drivers get clocks and enable
-> them immediately, it can be combined into a single function
-> devm_clk_get_*(). Moreover, the unprepare and disable function
-> has been registered to devm_clk_state, and before devm_clk_state is
-> released, the clocks will be unprepareed and disable, so it is unnecessary
-> to unprepare and disable clocks explicitly when remove drivers or in the
-> error handling path.
-
-For all except 2, 12 and 24
-they look good to me and I don't think there are any other ordering issues
-of the sort we tend to see in devm conversions where things get turned off
-later than in pre devm version.
-
-So for those..
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-
-
-
+On 22/08/2023 10:27, Yu Tu wrote:
+> Add the S4 PLL clock controller dt-bindings in the S4 SoC family.
 > 
-> Li Zetao (25):
->   spi: ar934x: Use helper function devm_clk_get_enabled()
->   spi: armada-3700: Use helper function devm_clk_get_prepared()
->   spi: aspeed: Use helper function devm_clk_get_enabled()
->   spi: ath79: Use helper function devm_clk_get_enabled()
->   spi: spi-axi-spi-engine: Use helper function devm_clk_get_enabled()
->   spi: bcm2835: Use helper function devm_clk_get_enabled()
->   spi: bcm2835aux: Use helper function devm_clk_get_enabled()
->   spi: spi-cadence: Use helper function devm_clk_get_enabled()
->   spi: spi-cavium-thunderx: Use helper function devm_clk_get_enabled()
->   spi: davinci: Use helper function devm_clk_get_enabled()
->   spi: dw-bt1: Use helper function devm_clk_get_enabled()
->   spi: dw-mmio: Use helper function devm_clk_get_*()
->   spi: spi-fsl-dspi: Use helper function devm_clk_get_enabled()
->   spi: lantiq-ssc: Use helper function devm_clk_get_enabled()
->   spi: meson-spicc: Use helper function devm_clk_get_enabled()
->   spi: spi-meson-spifc: Use helper function devm_clk_get_enabled()
->   spi: microchip-core-qspi: Use helper function devm_clk_get_enabled()
->   spi: microchip-core: Use helper function devm_clk_get_enabled()
->   spi: mtk-snfi: Use helper function devm_clk_get_enabled()
->   spi: npcm-fiu: Use helper function devm_clk_get_enabled()
->   spi: orion: Use helper function devm_clk_get_enabled()
->   spi: pic32-sqi: Use helper function devm_clk_get_enabled()
->   spi: pic32: Use helper function devm_clk_get_enabled()
->   spi: spl022: Use helper function devm_clk_get_enabled()
->   spi: rockchip: Use helper function devm_clk_get_enabled()
-> 
->  drivers/spi/spi-ar934x.c              | 22 ++--------
->  drivers/spi/spi-armada-3700.c         | 18 ++------
->  drivers/spi/spi-aspeed-smc.c          | 16 +------
->  drivers/spi/spi-ath79.c               | 11 +----
->  drivers/spi/spi-axi-spi-engine.c      | 25 +++--------
->  drivers/spi/spi-bcm2835.c             | 11 +----
->  drivers/spi/spi-bcm2835aux.c          | 23 ++--------
->  drivers/spi/spi-cadence.c             | 23 ++--------
->  drivers/spi/spi-cavium-thunderx.c     |  8 +---
->  drivers/spi/spi-davinci.c             | 11 +----
->  drivers/spi/spi-dw-bt1.c              | 23 +++-------
->  drivers/spi/spi-dw-mmio.c             | 20 +++------
->  drivers/spi/spi-fsl-dspi.c            | 12 ++----
->  drivers/spi/spi-lantiq-ssc.c          | 10 +----
->  drivers/spi/spi-meson-spicc.c         | 33 +++------------
->  drivers/spi/spi-meson-spifc.c         | 17 ++------
->  drivers/spi/spi-microchip-core-qspi.c | 29 +++----------
->  drivers/spi/spi-microchip-core.c      |  9 +---
->  drivers/spi/spi-mtk-snfi.c            | 61 ++++-----------------------
->  drivers/spi/spi-npcm-fiu.c            | 14 ++----
->  drivers/spi/spi-orion.c               | 11 +----
->  drivers/spi/spi-pic32-sqi.c           | 27 ++----------
->  drivers/spi/spi-pic32.c               |  8 +---
->  drivers/spi/spi-pl022.c               | 21 +++------
->  drivers/spi/spi-rockchip.c            | 30 +++----------
->  25 files changed, 88 insertions(+), 405 deletions(-)
-> 
+> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+
+Lovely. I sent youa  friendly reminder at v8 which turns our you
+ignored. You keep ignoring, I will start ignoring as well from now on.
+
+Best regards,
+Krzysztof
 
 
 _______________________________________________
