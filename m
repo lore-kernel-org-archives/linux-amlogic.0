@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E943DEE49AA
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Aug 2023 13:13:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D049FEE4993
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Aug 2023 13:14:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FPQg8uMjCYAI9py/SvvbUVzCYP/2qxiqxL3OV6LAyoU=; b=3hBSTDqXAxpvGa
-	WeL/g7EYZlmQFEsBpHbsv3D5XH9N/u6BquaUDYIhppnG96e35/2B+28BoeBguG+oZfmM7uLXmdNew
-	tuVPkrhq/ssz4sxCQHym0qmEoJPnn5DXaGVuMkR0++xIK3HXWaoLucYcHW8T6kuuIOKQFFlPhLeQh
-	J+zDlYo+kGcgVw5t5olra82GxoGXRUp0gEr4cbngl7KnLfd109nl9e/7Hv54d6NTc29O0OjxAErYK
-	tbEyDUK+aKhFC1PAxk5Xf4+sTG56pi1EvAVFN+ph6DKBVnu6o2mtrZSnPFVOtaws1KUyvh5lvbq5c
-	qigsELk08mPdxGv/O1MA==;
+	List-Owner; bh=FIgIz69dshNFbNSGQoOhCj88xaadNWjA4mWoaiJyGus=; b=oeS6I9NntwDQhH
+	99fKo5Ygunx/D7WvnStrtEm4LAeP5AcsAi7zggy4XLX1jJ3fPMhmEj92GyuxZbGpRA/iNv8bRNqKy
+	WV7+PQYrEnS0+VzWkDNNYcIfOa8AOcjhOHvxURK22mKesKoY14lYkwtDoHtq/y1d0jEaaxsOVfphC
+	UaEZErnJLbMN60NSDm2gujJkRMLJoz/sQIsZlT2rDfjgeIFrevOPT5Hsp8TOjTOn0OYpHAB+y8CAO
+	kW+UzJ7ryqcloi+uTzDMAngz5bCnCa8H8/Q6YJ4O2PivAnyRrs6xDwg4LmZnlkh+VcI/TALCrp+SD
+	njYxofHipgZcsWRq+PvA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYRCR-00Fy5X-2a;
-	Tue, 22 Aug 2023 13:13:35 +0000
-Received: from szxga02-in.huawei.com ([45.249.212.188])
+	id 1qYRCd-00FyK8-12;
+	Tue, 22 Aug 2023 13:13:47 +0000
+Received: from szxga01-in.huawei.com ([45.249.212.187])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYRBu-00FxWF-2H;
-	Tue, 22 Aug 2023 13:13:06 +0000
-Received: from kwepemi500012.china.huawei.com (unknown [172.30.72.55])
-	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4RVV6s61w2zNnTg;
-	Tue, 22 Aug 2023 21:09:25 +0800 (CST)
+	id 1qYRBy-00FxZC-07;
+	Tue, 22 Aug 2023 13:13:07 +0000
+Received: from kwepemi500012.china.huawei.com (unknown [172.30.72.53])
+	by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4RVV6l6x4PztS7V;
+	Tue, 22 Aug 2023 21:09:19 +0800 (CST)
 Received: from huawei.com (10.90.53.73) by kwepemi500012.china.huawei.com
  (7.221.188.12) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Tue, 22 Aug
- 2023 21:12:58 +0800
+ 2023 21:13:02 +0800
 From: Li Zetao <lizetao1@huawei.com>
 To: <broonie@kernel.org>, <chin-ting_kuo@aspeedtech.com>, <clg@kaod.org>,
 	<joel@jms.id.au>, <andrew@aj.id.au>, <florian.fainelli@broadcom.com>,
@@ -51,9 +51,9 @@ CC: <lizetao1@huawei.com>, <linux-spi@vger.kernel.org>,
 	<linux-rpi-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-riscv@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
 	<linux-rockchip@lists.infradead.org>
-Subject: [PATCH -next 10/25] spi: davinci: Use helper function devm_clk_get_enabled()
-Date: Tue, 22 Aug 2023 21:12:22 +0800
-Message-ID: <20230822131237.1022815-11-lizetao1@huawei.com>
+Subject: [PATCH -next 13/25] spi: spi-fsl-dspi: Use helper function devm_clk_get_enabled()
+Date: Tue, 22 Aug 2023 21:12:25 +0800
+Message-ID: <20230822131237.1022815-14-lizetao1@huawei.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230822131237.1022815-1-lizetao1@huawei.com>
 References: <20230822131237.1022815-1-lizetao1@huawei.com>
@@ -63,9 +63,8 @@ X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
  kwepemi500012.china.huawei.com (7.221.188.12)
 X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230822_061303_790478_A3382E83 
-X-CRM114-Status: UNSURE (   9.73  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230822_061306_543966_A2412B9E 
+X-CRM114-Status: GOOD (  10.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,56 +89,61 @@ no longer necessary to unprepare and disable the clocks explicitly.
 
 Signed-off-by: Li Zetao <lizetao1@huawei.com>
 ---
- drivers/spi/spi-davinci.c | 11 ++---------
- 1 file changed, 2 insertions(+), 9 deletions(-)
+ drivers/spi/spi-fsl-dspi.c | 12 +++---------
+ 1 file changed, 3 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/spi/spi-davinci.c b/drivers/spi/spi-davinci.c
-index c457b550d3ad..5688be245c68 100644
---- a/drivers/spi/spi-davinci.c
-+++ b/drivers/spi/spi-davinci.c
-@@ -915,14 +915,11 @@ static int davinci_spi_probe(struct platform_device *pdev)
+diff --git a/drivers/spi/spi-fsl-dspi.c b/drivers/spi/spi-fsl-dspi.c
+index 8318249f8a1f..c9eae046f66c 100644
+--- a/drivers/spi/spi-fsl-dspi.c
++++ b/drivers/spi/spi-fsl-dspi.c
+@@ -1372,19 +1372,16 @@ static int dspi_probe(struct platform_device *pdev)
+ 		}
+ 	}
  
- 	dspi->bitbang.master = host;
- 
--	dspi->clk = devm_clk_get(&pdev->dev, NULL);
-+	dspi->clk = devm_clk_get_enabled(&pdev->dev, NULL);
+-	dspi->clk = devm_clk_get(&pdev->dev, "dspi");
++	dspi->clk = devm_clk_get_enabled(&pdev->dev, "dspi");
  	if (IS_ERR(dspi->clk)) {
- 		ret = -ENODEV;
- 		goto free_host;
+ 		ret = PTR_ERR(dspi->clk);
+ 		dev_err(&pdev->dev, "unable to get clock\n");
+ 		goto out_ctlr_put;
  	}
 -	ret = clk_prepare_enable(dspi->clk);
 -	if (ret)
--		goto free_host;
+-		goto out_ctlr_put;
  
- 	host->use_gpio_descriptors = true;
- 	host->dev.of_node = pdev->dev.of_node;
-@@ -947,7 +944,7 @@ static int davinci_spi_probe(struct platform_device *pdev)
+ 	ret = dspi_init(dspi);
+ 	if (ret)
+-		goto out_clk_put;
++		goto out_ctlr_put;
  
- 	ret = davinci_spi_request_dma(dspi);
- 	if (ret == -EPROBE_DEFER) {
--		goto free_clk;
-+		goto free_host;
- 	} else if (ret) {
- 		dev_info(&pdev->dev, "DMA is not supported (%d)\n", ret);
- 		dspi->dma_rx = NULL;
-@@ -991,8 +988,6 @@ static int davinci_spi_probe(struct platform_device *pdev)
- 		dma_release_channel(dspi->dma_rx);
- 		dma_release_channel(dspi->dma_tx);
+ 	dspi->irq = platform_get_irq(pdev, 0);
+ 	if (dspi->irq <= 0) {
+@@ -1400,7 +1397,7 @@ static int dspi_probe(struct platform_device *pdev)
+ 				   IRQF_SHARED, pdev->name, dspi);
+ 	if (ret < 0) {
+ 		dev_err(&pdev->dev, "Unable to attach DSPI interrupt\n");
+-		goto out_clk_put;
++		goto out_ctlr_put;
  	}
--free_clk:
--	clk_disable_unprepare(dspi->clk);
- free_host:
- 	spi_controller_put(host);
- err:
-@@ -1018,8 +1013,6 @@ static void davinci_spi_remove(struct platform_device *pdev)
  
- 	spi_bitbang_stop(&dspi->bitbang);
- 
+ poll_mode:
+@@ -1432,8 +1429,6 @@ static int dspi_probe(struct platform_device *pdev)
+ out_free_irq:
+ 	if (dspi->irq)
+ 		free_irq(dspi->irq, dspi);
+-out_clk_put:
 -	clk_disable_unprepare(dspi->clk);
--
- 	if (dspi->dma_rx) {
- 		dma_release_channel(dspi->dma_rx);
- 		dma_release_channel(dspi->dma_tx);
+ out_ctlr_put:
+ 	spi_controller_put(ctlr);
+ 
+@@ -1458,7 +1453,6 @@ static void dspi_remove(struct platform_device *pdev)
+ 	dspi_release_dma(dspi);
+ 	if (dspi->irq)
+ 		free_irq(dspi->irq, dspi);
+-	clk_disable_unprepare(dspi->clk);
+ }
+ 
+ static void dspi_shutdown(struct platform_device *pdev)
 -- 
 2.34.1
 
