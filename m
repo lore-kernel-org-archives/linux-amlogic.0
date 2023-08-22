@@ -4,91 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71053EE4996
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Aug 2023 16:33:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C3B7EE49AB
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Aug 2023 22:39:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nDt20x3R3P6gPkEK9spHy5ur6XpY8POwHtTv9wFL/UE=; b=XR/sUWweCLTRbr
-	OHUBnYNwJTtg5c6rI9hiliY4PLk/v4sNSZ5x7RMfP8zQzXBCdXSsroNLIlooRjr6eYdne85o9tQy9
-	+g8muro4speGLoIPrSn+emO/v/5nN5S8skZ6XEFWId5dEFihQlSXlCNbHM+PXlkXZd1dpHKqN6vIy
-	ZVyL8T1HTnIhSCEF4+sjtKcVd2px9taoMWxvLZ09/QgW0saPXn4amk15JOBe+F1NABc5BUBLXpiPU
-	2yrGAEsegnuOghz8YiAwxnmnJyjszC4kOzUJwm/lOy5BUu5LgtanS2RqcCg5BZzpnh9AexNfBjuH7
-	6yOS/GMiN/k7518hpz3A==;
+	List-Owner; bh=U9q6IoIj4vLqLe5pf19dGjSPiOudzeEOeuoAsRoShzQ=; b=MY26elJnJMxHqi
+	J73WmVXj8uKvlnd5eVZJ2fg7FASndSBZ5KZVLC+fv6ri39kzjzla1qZ9O1zSb9lbII9FxlDe56zvY
+	BYOQ3zDV/s9W0elkx3XSGkMb9eKJXpPz/mGxQ9Iuxw2A9HHbUEGtezp+krlX+WahW2ivG9xHptM1b
+	3AyW5X9rCy8N/E7ETIHkN69lnU9gYciOAtBHCpek3AbRjPPKbdbKkb0ob+cm8qt6dQdOyLwYRarxW
+	McsBAqQIfiLA2/rZLg67pOIwgDPkNQJn/xQJPSAAiqso+Y9aFnTc0JiP8YK25cMTHbyX1vVke1ZE2
+	AEwqy7AZGkgZBeAlIlZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYUJr-00GV8X-2z;
-	Tue, 22 Aug 2023 16:33:27 +0000
-Received: from mail-lf1-x135.google.com ([2a00:1450:4864:20::135])
+	id 1qYa1V-00Gspa-1Z;
+	Tue, 22 Aug 2023 22:38:53 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYUJp-00GV7E-09
-	for linux-amlogic@lists.infradead.org;
-	Tue, 22 Aug 2023 16:33:26 +0000
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fe1b00fce2so7129854e87.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 22 Aug 2023 09:33:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692722001; x=1693326801;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2xSrhz5Us97Qf9+7A783D7YhpLpwN4x1lqakquu3VGg=;
-        b=tiEBp3JL4YsbBo0QBtgI3BmQCPsYGmzCdpu19U5Nd41sv+ssgGLIFtY5a1xz0xtsP/
-         BKPV24/E5/rZr1hm9Q31b6qODcKiXkchKBWAx4wxEzP+sIwra+poInZczv74sJUEnrvW
-         suDXeUnVmclfMTBeErpwG3IQKd89egEpnhRv8CuJBKLaiW+YaczEgROWpPB8YPuczdGt
-         Cd1gB5TRwa48+WR33V341n6aJiGfIUhWkWOCEHwSlblbZkDmMzV4ork+r5tBySfvhwbY
-         kKuuBtulfExcTuvOKdTUoQgBewgcUPZUDiJ9ofZhY0gNyPk+XIYeRlet7T3VAfOD3z35
-         X/eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692722001; x=1693326801;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2xSrhz5Us97Qf9+7A783D7YhpLpwN4x1lqakquu3VGg=;
-        b=TlLJhvUf6jwJr9oSUxnyl/YOj1Gzt+umi9hgRy3eEBysUidglbAMyOqPtvRUQ/2jze
-         BhfudRW9527WxGjJquotXIkblq/GVjPUu1dUqQ7ZOoDbDz4hQWKwnDs7YVEYUND+uL8/
-         eWdsmO67KiZhWLrh1G07xLsJ7BUI1Uq2o+ffYuwQXojiK11FPKD6FiQP5FhwO2X12l7o
-         rObrgFzvpKZBH+0DaezSMl7fd1jgePqLbcbwo1TzF0Sjva3hZKQktXINmjdkR9SXcGog
-         R4yCFPWxRQ0YWeoBK8SgzO6bGFqDSJbHpd8wdFg5G5VeT7fFSy0ON4zBIrMdwDEKiTlh
-         0Alg==
-X-Gm-Message-State: AOJu0YwD9FFsKD+2jjUDDx2GEv2WisAGSyoAVmOtj72PQxwr6sGCzv6d
-	bfKnrlw55kzWZdXa8hfKjGMFAg==
-X-Google-Smtp-Source: AGHT+IFS5+pN89cVqDrLU2XMxBLLm1IgGNr/2RbOgFBpign6kDrEGDdwUp0uhR5vmCE6wdyEgQI7Kw==
-X-Received: by 2002:a05:6512:1584:b0:4f8:711b:18b0 with SMTP id bp4-20020a056512158400b004f8711b18b0mr8883753lfb.3.1692722000583;
-        Tue, 22 Aug 2023 09:33:20 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id w17-20020aa7d291000000b0050488d1d376sm7750157edq.0.2023.08.22.09.33.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 09:33:20 -0700 (PDT)
-Message-ID: <1c812715-731e-18fe-e431-311f18af1bb5@linaro.org>
-Date: Tue, 22 Aug 2023 18:33:18 +0200
+	id 1qYa1T-00Gsp0-1V;
+	Tue, 22 Aug 2023 22:38:52 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id EB030642C9;
+	Tue, 22 Aug 2023 22:38:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6C27C433AD;
+	Tue, 22 Aug 2023 22:38:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1692743929;
+	bh=U15eYY76gsnD/RHRrRp2WW4I4OCWvlLasJey1YPS3bA=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Jn4NXR0lfbWYS5Bph9NDsU+CUS6oKPixIBuJYm6y13c3Oey4zsZFxl5LEbilQxJik
+	 FeYi4hk81hW93Pito7BlDOIWLAaYnB0RhnPhbkxJtYjIwxdi5/i0pNyJyNN/nCccuI
+	 fmY+ssuFxpfa7I30gkLK8YDwU53i5SgxztwwtwOd89uEzAB/wmwwNcI4B7etE38nUX
+	 1KT94QzqmI87253Kc52MD6Y8fou1jBGiX1pJkpWJMnTdedMpWf+KZdUDC39Y5QFc9X
+	 pamJJqabcmOvoF7HZyud2tyJQOPli0tj7WP4SaXb0FkLx82tm9eotCxnMBwonE7SUu
+	 gzqa24AIGrPmA==
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2bcb89b4767so43873001fa.3;
+        Tue, 22 Aug 2023 15:38:49 -0700 (PDT)
+X-Gm-Message-State: AOJu0YxdKahgtp8t5Ng4AbjJvSH2sjgplqjR0LOIiXoohvKweTPZCt+F
+	n5ppaoW4HGz5UZeSeLa8/wbvfLzE9FmoJtcUIw==
+X-Google-Smtp-Source: AGHT+IF0JLsyZnXZQBcgCFuF2kEmLMhxys3SoS78ueuZDPswTtorzz1H8NCRQqi/aO+jact/25/WQ07MKCBccdqUsKI=
+X-Received: by 2002:a2e:9919:0:b0:2bb:8d96:6041 with SMTP id
+ v25-20020a2e9919000000b002bb8d966041mr7975933lji.45.1692743927592; Tue, 22
+ Aug 2023 15:38:47 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH V10 2/4] dt-bindings: clock: document Amlogic S4 SoC
- peripherals clock controller
-Content-Language: en-US
-To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: kelvin.zhang@amlogic.com, qi.duan@amlogic.com
-References: <20230822082750.27633-1-yu.tu@amlogic.com>
- <20230822082750.27633-3-yu.tu@amlogic.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230822082750.27633-3-yu.tu@amlogic.com>
+References: <20230714175008.4064592-1-robh@kernel.org> <CAJZ5v0i-OByOSjpxrj5d9S9QHRySK-MEUo+bK_J_4ihsCBmnSg@mail.gmail.com>
+ <CAL_JsqLy22S5bTFu-ZKXhSMtMPPq9z1Gdb5kJMVmhui55miDsQ@mail.gmail.com> <CAJZ5v0hM63nVphwkYK1bL4uf_dXSew2+LBuG9kuhvvLdrhLxAw@mail.gmail.com>
+In-Reply-To: <CAJZ5v0hM63nVphwkYK1bL4uf_dXSew2+LBuG9kuhvvLdrhLxAw@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 22 Aug 2023 17:38:32 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJGoDPLKgu8awJfuWpqzg8HOuruDa1z4s-Swb7Cm5OaJw@mail.gmail.com>
+Message-ID: <CAL_JsqJGoDPLKgu8awJfuWpqzg8HOuruDa1z4s-Swb7Cm5OaJw@mail.gmail.com>
+Subject: Re: [PATCH] thermal: Explicitly include correct DT includes
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Guillaume La Roque <glaroque@baylibre.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Markus Mayer <mmayer@broadcom.com>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Thara Gopinath <thara.gopinath@gmail.com>, 
+	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
+	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Orson Zhai <orsonzhai@gmail.com>, 
+	Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev, 
+	linux-tegra@vger.kernel.org, linux-mediatek@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230822_093325_090263_B4BC719D 
-X-CRM114-Status: UNSURE (   7.67  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230822_153851_586979_6203C708 
+X-CRM114-Status: GOOD (  17.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,25 +102,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 22/08/2023 10:27, Yu Tu wrote:
-> Add the S4 peripherals clock controller dt-bindings in the S4 SoC
-> family.
-> 
-> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
-> ---
-
-As well ignored email from v8 and v7 and earlier versions.
-
-Best regards,
-Krzysztof
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVGh1LCBKdWwgMjAsIDIwMjMgYXQgMTo1MOKAr1BNIFJhZmFlbCBKLiBXeXNvY2tpIDxyYWZh
+ZWxAa2VybmVsLm9yZz4gd3JvdGU6Cj4KPiBPbiBGcmksIEp1bCAxNCwgMjAyMyBhdCA5OjUz4oCv
+UE0gUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4gd3JvdGU6Cj4gPgo+ID4gT24gRnJpLCBK
+dWwgMTQsIDIwMjMgYXQgMTI6NTTigK9QTSBSYWZhZWwgSi4gV3lzb2NraSA8cmFmYWVsQGtlcm5l
+bC5vcmc+IHdyb3RlOgo+ID4gPgo+ID4gPiBPbiBGcmksIEp1bCAxNCwgMjAyMyBhdCA3OjUx4oCv
+UE0gUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4gd3JvdGU6Cj4gPiA+ID4KPiA+ID4gPiBU
+aGUgRFQgb2ZfZGV2aWNlLmggYW5kIG9mX3BsYXRmb3JtLmggZGF0ZSBiYWNrIHRvIHRoZSBzZXBh
+cmF0ZQo+ID4gPiA+IG9mX3BsYXRmb3JtX2J1c190eXBlIGJlZm9yZSBpdCBhcyBtZXJnZWQgaW50
+byB0aGUgcmVndWxhciBwbGF0Zm9ybSBidXMuCj4gPiA+ID4gQXMgcGFydCBvZiB0aGF0IG1lcmdl
+IHByZXBwaW5nIEFybSBEVCBzdXBwb3J0IDEzIHllYXJzIGFnbywgdGhleQo+ID4gPiA+ICJ0ZW1w
+b3JhcmlseSIgaW5jbHVkZSBlYWNoIG90aGVyLiBUaGV5IGFsc28gaW5jbHVkZSBwbGF0Zm9ybV9k
+ZXZpY2UuaAo+ID4gPiA+IGFuZCBvZi5oLiBBcyBhIHJlc3VsdCwgdGhlcmUncyBhIHByZXR0eSBt
+dWNoIHJhbmRvbSBtaXggb2YgdGhvc2UgaW5jbHVkZQo+ID4gPiA+IGZpbGVzIHVzZWQgdGhyb3Vn
+aG91dCB0aGUgdHJlZS4gSW4gb3JkZXIgdG8gZGV0YW5nbGUgdGhlc2UgaGVhZGVycyBhbmQKPiA+
+ID4gPiByZXBsYWNlIHRoZSBpbXBsaWNpdCBpbmNsdWRlcyB3aXRoIHN0cnVjdCBkZWNsYXJhdGlv
+bnMsIHVzZXJzIG5lZWQgdG8KPiA+ID4gPiBleHBsaWNpdGx5IGluY2x1ZGUgdGhlIGNvcnJlY3Qg
+aW5jbHVkZXMuCj4gPiA+ID4KPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBSb2IgSGVycmluZyA8cm9i
+aEBrZXJuZWwub3JnPgo+ID4gPgo+ID4gPiBBY2tlZC1ieTogUmFmYWVsIEouIFd5c29ja2kgPHJh
+ZmFlbEBrZXJuZWwub3JnPgo+ID4gPgo+ID4gPiBvciBwbGVhc2UgbGV0IG1lIGtub3cgaWYgeW91
+IHdhbnQgbWUgdG8gcGljayB0aGlzIHVwLgo+ID4KPiA+IFNpbmdsZSBwYXRjaCBpbiB5b3VyIHN1
+YnN5c3RlbSB3aXRoIG5vIGRlcGVuZGVuY2llcy4gUGxlYXNlIHBpY2sgaXQgdXAuCj4KPiBEb25l
+LCB0aGFua3MhCgpJJ20gbm90IHNlZWluZyB0aGlzIGluIGxpbnV4LW5leHQuCgpSb2IKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMg
+bWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
+dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
