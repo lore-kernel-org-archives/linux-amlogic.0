@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C34BCEE49A3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E943DEE49AA
 	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Aug 2023 13:13:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,27 +12,27 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WG974oHcBegSayqreAlFZ/63x6UaF6l9wDjKhYsC65g=; b=PX7Aro6OCu2XGk
-	wA6PPPvqr1qGFr9YHVuC7dYDO480UlSdg1OPaBJjFnQL2hVTE1eLftHlyv7r787LLIGzxa/ZpRHhX
-	SgzcjThFEGxLB1TPIydw0+x4cFYEC48U3vYi/BxhdUb2KYKdvMxxtHjZiIZxLk1N3zyULllpQXokN
-	T2Iv8PEFNByKfYmBntvVkuG+HIrseLVLvFPCr9Dqfn5afQWDZEjqiOvDOADsB9eUs2FtMaY07lHpU
-	6B7HfFkASLXEKmaVqLkutL36jt9nZH30l+DLDroy/vhg+LZBJ/3tT9InoBkfpXYEmB+zNaBuSwc2e
-	9zXF3S4KvQmJ7I4JU2Kg==;
+	List-Owner; bh=FPQg8uMjCYAI9py/SvvbUVzCYP/2qxiqxL3OV6LAyoU=; b=3hBSTDqXAxpvGa
+	WeL/g7EYZlmQFEsBpHbsv3D5XH9N/u6BquaUDYIhppnG96e35/2B+28BoeBguG+oZfmM7uLXmdNew
+	tuVPkrhq/ssz4sxCQHym0qmEoJPnn5DXaGVuMkR0++xIK3HXWaoLucYcHW8T6kuuIOKQFFlPhLeQh
+	J+zDlYo+kGcgVw5t5olra82GxoGXRUp0gEr4cbngl7KnLfd109nl9e/7Hv54d6NTc29O0OjxAErYK
+	tbEyDUK+aKhFC1PAxk5Xf4+sTG56pi1EvAVFN+ph6DKBVnu6o2mtrZSnPFVOtaws1KUyvh5lvbq5c
+	qigsELk08mPdxGv/O1MA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYRCU-00Fy8s-1g;
-	Tue, 22 Aug 2023 13:13:38 +0000
+	id 1qYRCR-00Fy5X-2a;
+	Tue, 22 Aug 2023 13:13:35 +0000
 Received: from szxga02-in.huawei.com ([45.249.212.188])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYRBw-00FxY0-2r;
+	id 1qYRBu-00FxWF-2H;
 	Tue, 22 Aug 2023 13:13:06 +0000
-Received: from kwepemi500012.china.huawei.com (unknown [172.30.72.54])
-	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4RVV8R3ZmjzTmN3;
-	Tue, 22 Aug 2023 21:10:47 +0800 (CST)
+Received: from kwepemi500012.china.huawei.com (unknown [172.30.72.55])
+	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4RVV6s61w2zNnTg;
+	Tue, 22 Aug 2023 21:09:25 +0800 (CST)
 Received: from huawei.com (10.90.53.73) by kwepemi500012.china.huawei.com
  (7.221.188.12) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Tue, 22 Aug
- 2023 21:13:01 +0800
+ 2023 21:12:58 +0800
 From: Li Zetao <lizetao1@huawei.com>
 To: <broonie@kernel.org>, <chin-ting_kuo@aspeedtech.com>, <clg@kaod.org>,
 	<joel@jms.id.au>, <andrew@aj.id.au>, <florian.fainelli@broadcom.com>,
@@ -51,9 +51,9 @@ CC: <lizetao1@huawei.com>, <linux-spi@vger.kernel.org>,
 	<linux-rpi-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-riscv@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
 	<linux-rockchip@lists.infradead.org>
-Subject: [PATCH -next 12/25] spi: dw-mmio: Use helper function devm_clk_get_*()
-Date: Tue, 22 Aug 2023 21:12:24 +0800
-Message-ID: <20230822131237.1022815-13-lizetao1@huawei.com>
+Subject: [PATCH -next 10/25] spi: davinci: Use helper function devm_clk_get_enabled()
+Date: Tue, 22 Aug 2023 21:12:22 +0800
+Message-ID: <20230822131237.1022815-11-lizetao1@huawei.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230822131237.1022815-1-lizetao1@huawei.com>
 References: <20230822131237.1022815-1-lizetao1@huawei.com>
@@ -63,8 +63,9 @@ X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
  kwepemi500012.china.huawei.com (7.221.188.12)
 X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230822_061305_450130_7C6632FF 
-X-CRM114-Status: GOOD (  10.54  )
+X-CRM114-CacheID: sfid-20230822_061303_790478_A3382E83 
+X-CRM114-Status: UNSURE (   9.73  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,73 +86,60 @@ Since commit 7ef9651e9792 ("clk: Provide new devm_clk helpers for prepared
 and enabled clocks"), devm_clk_get() and clk_prepare_enable() can now be
 replaced by devm_clk_get_enabled() when driver enables (and possibly
 prepares) the clocks for the whole lifetime of the device. Moreover, it is
-no longer necessary to unprepare and disable the clocks explicitly. Also,
-devm_clk_get_optional() and clk_prepare_enable() can now be replaced by
-devm_clk_get_optional_enabled(). Moreover, the lable "out_clk" no longer
-makes sense, rename it to "out_reset".
+no longer necessary to unprepare and disable the clocks explicitly.
 
 Signed-off-by: Li Zetao <lizetao1@huawei.com>
 ---
- drivers/spi/spi-dw-mmio.c | 20 +++++---------------
- 1 file changed, 5 insertions(+), 15 deletions(-)
+ drivers/spi/spi-davinci.c | 11 ++---------
+ 1 file changed, 2 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-index 805264c9c65c..6d9f64ecbfd6 100644
---- a/drivers/spi/spi-dw-mmio.c
-+++ b/drivers/spi/spi-dw-mmio.c
-@@ -340,28 +340,22 @@ static int dw_spi_mmio_probe(struct platform_device *pdev)
- 	if (dws->irq < 0)
- 		return dws->irq; /* -ENXIO */
+diff --git a/drivers/spi/spi-davinci.c b/drivers/spi/spi-davinci.c
+index c457b550d3ad..5688be245c68 100644
+--- a/drivers/spi/spi-davinci.c
++++ b/drivers/spi/spi-davinci.c
+@@ -915,14 +915,11 @@ static int davinci_spi_probe(struct platform_device *pdev)
  
--	dwsmmio->clk = devm_clk_get(&pdev->dev, NULL);
-+	dwsmmio->clk = devm_clk_get_enabled(&pdev->dev, NULL);
- 	if (IS_ERR(dwsmmio->clk))
- 		return PTR_ERR(dwsmmio->clk);
--	ret = clk_prepare_enable(dwsmmio->clk);
--	if (ret)
--		return ret;
+ 	dspi->bitbang.master = host;
  
- 	/* Optional clock needed to access the registers */
--	dwsmmio->pclk = devm_clk_get_optional(&pdev->dev, "pclk");
-+	dwsmmio->pclk = devm_clk_get_optional_enabled(&pdev->dev, "pclk");
- 	if (IS_ERR(dwsmmio->pclk)) {
- 		ret = PTR_ERR(dwsmmio->pclk);
--		goto out_clk;
-+		goto out_reset;
+-	dspi->clk = devm_clk_get(&pdev->dev, NULL);
++	dspi->clk = devm_clk_get_enabled(&pdev->dev, NULL);
+ 	if (IS_ERR(dspi->clk)) {
+ 		ret = -ENODEV;
+ 		goto free_host;
  	}
--	ret = clk_prepare_enable(dwsmmio->pclk);
+-	ret = clk_prepare_enable(dspi->clk);
 -	if (ret)
--		goto out_clk;
+-		goto free_host;
  
- 	/* find an optional reset controller */
- 	dwsmmio->rstc = devm_reset_control_get_optional_exclusive(&pdev->dev, "spi");
- 	if (IS_ERR(dwsmmio->rstc)) {
- 		ret = PTR_ERR(dwsmmio->rstc);
--		goto out_clk;
-+		goto out_reset;
+ 	host->use_gpio_descriptors = true;
+ 	host->dev.of_node = pdev->dev.of_node;
+@@ -947,7 +944,7 @@ static int davinci_spi_probe(struct platform_device *pdev)
+ 
+ 	ret = davinci_spi_request_dma(dspi);
+ 	if (ret == -EPROBE_DEFER) {
+-		goto free_clk;
++		goto free_host;
+ 	} else if (ret) {
+ 		dev_info(&pdev->dev, "DMA is not supported (%d)\n", ret);
+ 		dspi->dma_rx = NULL;
+@@ -991,8 +988,6 @@ static int davinci_spi_probe(struct platform_device *pdev)
+ 		dma_release_channel(dspi->dma_rx);
+ 		dma_release_channel(dspi->dma_tx);
  	}
- 	reset_control_deassert(dwsmmio->rstc);
+-free_clk:
+-	clk_disable_unprepare(dspi->clk);
+ free_host:
+ 	spi_controller_put(host);
+ err:
+@@ -1018,8 +1013,6 @@ static void davinci_spi_remove(struct platform_device *pdev)
  
-@@ -397,9 +391,7 @@ static int dw_spi_mmio_probe(struct platform_device *pdev)
+ 	spi_bitbang_stop(&dspi->bitbang);
  
- out:
- 	pm_runtime_disable(&pdev->dev);
--	clk_disable_unprepare(dwsmmio->pclk);
--out_clk:
--	clk_disable_unprepare(dwsmmio->clk);
-+out_reset:
- 	reset_control_assert(dwsmmio->rstc);
- 
- 	return ret;
-@@ -411,8 +403,6 @@ static void dw_spi_mmio_remove(struct platform_device *pdev)
- 
- 	dw_spi_remove_host(&dwsmmio->dws);
- 	pm_runtime_disable(&pdev->dev);
--	clk_disable_unprepare(dwsmmio->pclk);
--	clk_disable_unprepare(dwsmmio->clk);
- 	reset_control_assert(dwsmmio->rstc);
- }
- 
+-	clk_disable_unprepare(dspi->clk);
+-
+ 	if (dspi->dma_rx) {
+ 		dma_release_channel(dspi->dma_rx);
+ 		dma_release_channel(dspi->dma_tx);
 -- 
 2.34.1
 
