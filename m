@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FF0EEE4993
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Aug 2023 13:15:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84DEEEE49A4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Aug 2023 13:15:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p686yN/cd4g5XAM4hVEQenivxon7ok/TU1+te9cKSn0=; b=mLm8xhoUObEd/E
-	iBTtqaGfzgBtlFad4Aj6aITRHLDN9jQyxna+qxvRsK1rfcI/BxT7XwK59SwBbyLlcHmSps5hkVhW+
-	PTZx77MZeqcUyMBiuANRi5Kx2BpwWe8rGmoEACaOPpCDnAgo3SephXn6Ap0UUK8mGGAQPmUwlGDt+
-	m9I++39bo6NVTOhJiAF3TjotiApifctRmc4+FdRy13juiFrcM/UAb2DgBidaO/fYZNtEVKgJLql86
-	6nB+Zw5VPJE4k/06a1B+LSegOz6DKK5gENyaFBdZuTaa5g9afXzF9qq63pAHDxRGbGhyQLCHJtQRu
-	U3UELtU2cBA5g+ygRMWQ==;
+	List-Owner; bh=koT8tgZE6lkw6znFvB71vW7CrVs2jraAjtrSwWUGhbU=; b=nWe5v5+wf0P3i0
+	/VdszFHC/PYLeyZ0WErwQ5vkql8hnhQCmQDZsUeYi/IDzc19x4wywPIW03DeITkBiiY+z6JKXsERH
+	76W4I82MxTbKXrNtoBNtBJ3kWzmfwC6iGUIdZSNTLak2+WZkI+1dyH1udvL5RYDpDqs0cyQZ9CIhm
+	vq0ESr1HGVWFNSY9gZAVM32512IhF/drQITY7PEmwIvhdBNVuD2bTVdlvJmN84kwqNZFm+jMW9l++
+	gmHpXtwYdtCqTG0sHMlUKoejfAT1M90ksv+CKh+oa4b4oDq07yyC3LQcuDhF7STWpJbj+jI5VeNB5
+	0I5u1wKdpo2+TMxj1grg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYRDp-00Fzeq-06;
-	Tue, 22 Aug 2023 13:15:01 +0000
-Received: from szxga02-in.huawei.com ([45.249.212.188])
+	id 1qYRDv-00FzlV-0x;
+	Tue, 22 Aug 2023 13:15:07 +0000
+Received: from szxga03-in.huawei.com ([45.249.212.189])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYRC3-00FxeL-0q;
-	Tue, 22 Aug 2023 13:13:12 +0000
-Received: from kwepemi500012.china.huawei.com (unknown [172.30.72.53])
-	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4RVV8Y6tVLzTlqq;
-	Tue, 22 Aug 2023 21:10:53 +0800 (CST)
+	id 1qYRC3-00FxdR-0G;
+	Tue, 22 Aug 2023 13:13:13 +0000
+Received: from kwepemi500012.china.huawei.com (unknown [172.30.72.55])
+	by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4RVV7b3XwRzLpDZ;
+	Tue, 22 Aug 2023 21:10:03 +0800 (CST)
 Received: from huawei.com (10.90.53.73) by kwepemi500012.china.huawei.com
  (7.221.188.12) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Tue, 22 Aug
- 2023 21:13:07 +0800
+ 2023 21:13:06 +0800
 From: Li Zetao <lizetao1@huawei.com>
 To: <broonie@kernel.org>, <chin-ting_kuo@aspeedtech.com>, <clg@kaod.org>,
 	<joel@jms.id.au>, <andrew@aj.id.au>, <florian.fainelli@broadcom.com>,
@@ -51,9 +51,9 @@ CC: <lizetao1@huawei.com>, <linux-spi@vger.kernel.org>,
 	<linux-rpi-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-riscv@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
 	<linux-rockchip@lists.infradead.org>
-Subject: [PATCH -next 18/25] spi: microchip-core: Use helper function devm_clk_get_enabled()
-Date: Tue, 22 Aug 2023 21:12:30 +0800
-Message-ID: <20230822131237.1022815-19-lizetao1@huawei.com>
+Subject: [PATCH -next 17/25] spi: microchip-core-qspi: Use helper function devm_clk_get_enabled()
+Date: Tue, 22 Aug 2023 21:12:29 +0800
+Message-ID: <20230822131237.1022815-18-lizetao1@huawei.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230822131237.1022815-1-lizetao1@huawei.com>
 References: <20230822131237.1022815-1-lizetao1@huawei.com>
@@ -63,9 +63,8 @@ X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
  kwepemi500012.china.huawei.com (7.221.188.12)
 X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230822_061311_572595_B68FC624 
-X-CRM114-Status: UNSURE (   8.70  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230822_061311_635139_6A96BF9E 
+X-CRM114-Status: GOOD (  10.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,45 +89,78 @@ no longer necessary to unprepare and disable the clocks explicitly.
 
 Signed-off-by: Li Zetao <lizetao1@huawei.com>
 ---
- drivers/spi/spi-microchip-core.c | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
+ drivers/spi/spi-microchip-core-qspi.c | 29 +++++++--------------------
+ 1 file changed, 7 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/spi/spi-microchip-core.c b/drivers/spi/spi-microchip-core.c
-index b451cd4860ec..becdcdc9e6d1 100644
---- a/drivers/spi/spi-microchip-core.c
-+++ b/drivers/spi/spi-microchip-core.c
-@@ -539,22 +539,16 @@ static int mchp_corespi_probe(struct platform_device *pdev)
- 		return dev_err_probe(&pdev->dev, ret,
- 				     "could not request irq\n");
+diff --git a/drivers/spi/spi-microchip-core-qspi.c b/drivers/spi/spi-microchip-core-qspi.c
+index 4f76ddf97b10..396dfc0fa278 100644
+--- a/drivers/spi/spi-microchip-core-qspi.c
++++ b/drivers/spi/spi-microchip-core-qspi.c
+@@ -518,30 +518,23 @@ static int mchp_coreqspi_probe(struct platform_device *pdev)
+ 		return dev_err_probe(&pdev->dev, PTR_ERR(qspi->regs),
+ 				     "failed to map registers\n");
  
--	spi->clk = devm_clk_get(&pdev->dev, NULL);
-+	spi->clk = devm_clk_get_enabled(&pdev->dev, NULL);
- 	if (IS_ERR(spi->clk))
- 		return dev_err_probe(&pdev->dev, PTR_ERR(spi->clk),
- 				     "could not get clk\n");
+-	qspi->clk = devm_clk_get(&pdev->dev, NULL);
++	qspi->clk = devm_clk_get_enabled(&pdev->dev, NULL);
+ 	if (IS_ERR(qspi->clk))
+ 		return dev_err_probe(&pdev->dev, PTR_ERR(qspi->clk),
+ 				     "could not get clock\n");
  
--	ret = clk_prepare_enable(spi->clk);
+-	ret = clk_prepare_enable(qspi->clk);
 -	if (ret)
 -		return dev_err_probe(&pdev->dev, ret,
 -				     "failed to enable clock\n");
 -
- 	mchp_corespi_init(master, spi);
+ 	init_completion(&qspi->data_completion);
+ 	mutex_init(&qspi->op_lock);
  
- 	ret = devm_spi_register_master(&pdev->dev, master);
+ 	qspi->irq = platform_get_irq(pdev, 0);
+-	if (qspi->irq < 0) {
+-		ret = qspi->irq;
+-		goto out;
+-	}
++	if (qspi->irq < 0)
++		return qspi->irq;
+ 
+ 	ret = devm_request_irq(&pdev->dev, qspi->irq, mchp_coreqspi_isr,
+ 			       IRQF_SHARED, pdev->name, qspi);
  	if (ret) {
- 		mchp_corespi_disable(spi);
--		clk_disable_unprepare(spi->clk);
- 		return dev_err_probe(&pdev->dev, ret,
- 				     "unable to register master for SPI controller\n");
+ 		dev_err(&pdev->dev, "request_irq failed %d\n", ret);
+-		goto out;
++		return ret;
  	}
-@@ -570,7 +564,6 @@ static void mchp_corespi_remove(struct platform_device *pdev)
- 	struct mchp_corespi *spi = spi_master_get_devdata(master);
  
- 	mchp_corespi_disable_ints(spi);
--	clk_disable_unprepare(spi->clk);
- 	mchp_corespi_disable(spi);
+ 	ctlr->bits_per_word_mask = SPI_BPW_MASK(8);
+@@ -552,18 +545,11 @@ static int mchp_coreqspi_probe(struct platform_device *pdev)
+ 	ctlr->dev.of_node = np;
+ 
+ 	ret = devm_spi_register_controller(&pdev->dev, ctlr);
+-	if (ret) {
+-		dev_err_probe(&pdev->dev, ret,
+-			      "spi_register_controller failed\n");
+-		goto out;
+-	}
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret,
++				     "spi_register_controller failed\n");
+ 
+ 	return 0;
+-
+-out:
+-	clk_disable_unprepare(qspi->clk);
+-
+-	return ret;
  }
  
+ static void mchp_coreqspi_remove(struct platform_device *pdev)
+@@ -574,7 +560,6 @@ static void mchp_coreqspi_remove(struct platform_device *pdev)
+ 	mchp_coreqspi_disable_ints(qspi);
+ 	control &= ~CONTROL_ENABLE;
+ 	writel_relaxed(control, qspi->regs + REG_CONTROL);
+-	clk_disable_unprepare(qspi->clk);
+ }
+ 
+ static const struct of_device_id mchp_coreqspi_of_match[] = {
 -- 
 2.34.1
 
