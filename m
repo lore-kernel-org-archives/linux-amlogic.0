@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3212EE49B5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Aug 2023 13:41:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A5CEEE4993
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Aug 2023 13:41:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ob8K+SB0y/EmOaUWd8+ANYEghBeZQdh+zmHqLcmbYUc=; b=1SdSWVHSFUdgOD
-	IF71aN6zQANf2SRUlLhQhXfuYKyCI06tMrRzglefKrKYbjMyiuRF8fFyfsnXqW7PKw2EJKgweqxl6
-	B4bHxITLRV3i5zfd4ZeEOAlLU1CDfYY4Ck0QkO9r3FKTVVirAzMkyUtvz/NaLrZ1bAHOsT+p9eUWt
-	fwndx5QG1bP0QLYJaTsMsdgJxPzC/VSckvYWx0d4b8O7HTzJRA+PrzAWwZj79/hO9tyxsM9uwEFvL
-	IrSBqya9VB0eEwanpzJbZpmgs/GP24WstXc/nmWpKdYIOdX39dh/DMtIWQV89pdMDOh7RkS2QC3Wk
-	h96vLdZ4XwT1pWHsElxQ==;
+	List-Owner; bh=2cJd0JMjUW/fqDrMQjXXNwuMld+W7tooldQFhAtZtBM=; b=T6sQulM7FJkbGL
+	4n1zkzEDXiJM0Gm37DB4iF66Nw/eEUB0Iw1V2s/tbOlXyIb2/DZKZkZYLPJ6fIL8M1GeH2ONikkwd
+	F49bF+hMZvfdNAZShwdHL1e4CfNh/PHy7/DoU2EcYQt44NhLyeWwM11QX3sUqzzmV3mspkup/fs/0
+	E7puRYsx5P7IDOUWxuPIk57MwQjd3yNeVlRu8HpLeQ+rebAg10qNEpEvJqREYbEsQ6bzXxSYJTVu4
+	4iNfN0WJ16G6CytOPrkPGrt+bMHwoUdaI5nT6Pne0RtWal9+a1Zp3hFyzF247rk4O5HpjhRWKjPkf
+	77odfBYOVb2dHIRfzWPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYo6K-000i8F-0q;
-	Wed, 23 Aug 2023 13:40:48 +0000
-Received: from szxga08-in.huawei.com ([45.249.212.255])
+	id 1qYo6M-000i9z-1s;
+	Wed, 23 Aug 2023 13:40:50 +0000
+Received: from szxga02-in.huawei.com ([45.249.212.188])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYo5h-000hQJ-1S;
+	id 1qYo5g-000hQC-2z;
 	Wed, 23 Aug 2023 13:40:13 +0000
-Received: from kwepemi500012.china.huawei.com (unknown [172.30.72.55])
-	by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4RW6k51HDRz16NsJ;
-	Wed, 23 Aug 2023 21:38:37 +0800 (CST)
+Received: from kwepemi500012.china.huawei.com (unknown [172.30.72.54])
+	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4RW6j72BqtzTmKC;
+	Wed, 23 Aug 2023 21:37:47 +0800 (CST)
 Received: from huawei.com (10.90.53.73) by kwepemi500012.china.huawei.com
  (7.221.188.12) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Wed, 23 Aug
- 2023 21:40:05 +0800
+ 2023 21:40:02 +0800
 From: Li Zetao <lizetao1@huawei.com>
 To: <lizetao1@huawei.com>
 CC: <andrew@aj.id.au>, <angelogioacchino.delregno@collabora.com>,
@@ -51,9 +51,9 @@ CC: <andrew@aj.id.au>, <angelogioacchino.delregno@collabora.com>,
 	<rjui@broadcom.com>, <sbranden@broadcom.com>, <tali.perry1@gmail.com>,
 	<tmaimon77@gmail.com>, <venture@google.com>, <yuenn@google.com>, Jonathan
  Cameron <Jonathan.Cameron@huawei.com>
-Subject: [PATCH -next v2 14/25] spi: lantiq-ssc: Use helper function devm_clk_get_enabled()
-Date: Wed, 23 Aug 2023 21:39:27 +0800
-Message-ID: <20230823133938.1359106-15-lizetao1@huawei.com>
+Subject: [PATCH -next v2 11/25] spi: dw-bt1: Use helper function devm_clk_get_enabled()
+Date: Wed, 23 Aug 2023 21:39:24 +0800
+Message-ID: <20230823133938.1359106-12-lizetao1@huawei.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230823133938.1359106-1-lizetao1@huawei.com>
 References: <20230822131237.1022815-1-lizetao1@huawei.com>
@@ -64,8 +64,8 @@ X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
  kwepemi500012.china.huawei.com (7.221.188.12)
 X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230823_064010_037689_29D2565D 
-X-CRM114-Status: GOOD (  10.53  )
+X-CRM114-CacheID: sfid-20230823_064010_119792_925C3EA9 
+X-CRM114-Status: GOOD (  10.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,59 +89,76 @@ prepares) the clocks for the whole lifetime of the device. Moreover, it is
 no longer necessary to unprepare and disable the clocks explicitly.
 
 Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Acked-by: Serge Semin <fancer.lancer@gmail.com>
 Signed-off-by: Li Zetao <lizetao1@huawei.com>
 ---
 v1 -> v2: None
 
- drivers/spi/spi-lantiq-ssc.c | 10 ++--------
- 1 file changed, 2 insertions(+), 8 deletions(-)
+ drivers/spi/spi-dw-bt1.c | 23 +++++------------------
+ 1 file changed, 5 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/spi/spi-lantiq-ssc.c b/drivers/spi/spi-lantiq-ssc.c
-index 938e9e577e4f..18a46569ba46 100644
---- a/drivers/spi/spi-lantiq-ssc.c
-+++ b/drivers/spi/spi-lantiq-ssc.c
-@@ -932,14 +932,11 @@ static int lantiq_ssc_probe(struct platform_device *pdev)
- 	if (err)
- 		goto err_host_put;
+diff --git a/drivers/spi/spi-dw-bt1.c b/drivers/spi/spi-dw-bt1.c
+index 5e1c01822967..5391bcac305c 100644
+--- a/drivers/spi/spi-dw-bt1.c
++++ b/drivers/spi/spi-dw-bt1.c
+@@ -269,43 +269,32 @@ static int dw_spi_bt1_probe(struct platform_device *pdev)
  
--	spi->spi_clk = devm_clk_get(dev, "gate");
-+	spi->spi_clk = devm_clk_get_enabled(dev, "gate");
- 	if (IS_ERR(spi->spi_clk)) {
- 		err = PTR_ERR(spi->spi_clk);
- 		goto err_host_put;
+ 	dws->paddr = mem->start;
+ 
+-	dwsbt1->clk = devm_clk_get(&pdev->dev, NULL);
++	dwsbt1->clk = devm_clk_get_enabled(&pdev->dev, NULL);
+ 	if (IS_ERR(dwsbt1->clk))
+ 		return PTR_ERR(dwsbt1->clk);
+ 
+-	ret = clk_prepare_enable(dwsbt1->clk);
+-	if (ret)
+-		return ret;
+-
+ 	dws->bus_num = pdev->id;
+ 	dws->reg_io_width = 4;
+ 	dws->max_freq = clk_get_rate(dwsbt1->clk);
+-	if (!dws->max_freq) {
+-		ret = -EINVAL;
+-		goto err_disable_clk;
+-	}
++	if (!dws->max_freq)
++		return -EINVAL;
+ 
+ 	init_func = device_get_match_data(&pdev->dev);
+ 	ret = init_func(pdev, dwsbt1);
+ 	if (ret)
+-		goto err_disable_clk;
++		return ret;
+ 
+ 	pm_runtime_enable(&pdev->dev);
+ 
+ 	ret = dw_spi_add_host(&pdev->dev, dws);
+ 	if (ret) {
+ 		pm_runtime_disable(&pdev->dev);
+-		goto err_disable_clk;
++		return ret;
  	}
--	err = clk_prepare_enable(spi->spi_clk);
--	if (err)
--		goto err_host_put;
  
- 	/*
- 	 * Use the old clk_get_fpi() function on Lantiq platform, till it
-@@ -952,7 +949,7 @@ static int lantiq_ssc_probe(struct platform_device *pdev)
- #endif
- 	if (IS_ERR(spi->fpi_clk)) {
- 		err = PTR_ERR(spi->fpi_clk);
--		goto err_clk_disable;
-+		goto err_host_put;
- 	}
+ 	platform_set_drvdata(pdev, dwsbt1);
  
- 	num_cs = 8;
-@@ -1010,8 +1007,6 @@ static int lantiq_ssc_probe(struct platform_device *pdev)
- 	destroy_workqueue(spi->wq);
- err_clk_put:
- 	clk_put(spi->fpi_clk);
--err_clk_disable:
--	clk_disable_unprepare(spi->spi_clk);
- err_host_put:
- 	spi_controller_put(host);
- 
-@@ -1029,7 +1024,6 @@ static void lantiq_ssc_remove(struct platform_device *pdev)
- 	hw_enter_config_mode(spi);
- 
- 	destroy_workqueue(spi->wq);
--	clk_disable_unprepare(spi->spi_clk);
- 	clk_put(spi->fpi_clk);
+ 	return 0;
+-
+-err_disable_clk:
+-	clk_disable_unprepare(dwsbt1->clk);
+-
+-	return ret;
  }
  
+ static void dw_spi_bt1_remove(struct platform_device *pdev)
+@@ -315,8 +304,6 @@ static void dw_spi_bt1_remove(struct platform_device *pdev)
+ 	dw_spi_remove_host(&dwsbt1->dws);
+ 
+ 	pm_runtime_disable(&pdev->dev);
+-
+-	clk_disable_unprepare(dwsbt1->clk);
+ }
+ 
+ static const struct of_device_id dw_spi_bt1_of_match[] = {
 -- 
 2.34.1
 
