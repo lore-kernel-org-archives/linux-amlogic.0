@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3248EE4993
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Aug 2023 13:41:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CABA3EE49B0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Aug 2023 13:41:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=COBagAgRImYqpjT3oC5nkMLOHYB0moolut+knpwcf3c=; b=zrbuepNBvTM74b
-	w/NF3PgEMejgRSOQim4lXf70Wnc6ri27fyJMiaAbNJj6q594fbCDPQ+tAXBrYR1JZhXkOYKoZG+/X
-	Jxwt8tYSIyyix6gjMxBaPrAKr7WszjyPNSYdp0ympNAmcWYVHuEI3hxA3x71KSqHiMF1yKWqiQnWO
-	aoiEaRZa0BVVEl56wazHu2R0hG6oC0I9H7NI+wtqxuEHZyAOw4FlYJHJchcKhaaojpIRRvQLNEMOd
-	v/WCXXri1/OXkjfN9yhtuSm/pCmd7qoXS2AhsfzD1GzzajW33x17evM2Q9k8lnPyzIU5SaGL4D0Zt
-	jJeUDZtLoSHuab5oRg5Q==;
+	List-Owner; bh=dTez4PSaQqRZUNmqPQGmlf06uPaUPsxJQZLkVNoLblY=; b=VEEfSSUV74MzU9
+	E6zCMDdW/S56gsgq14r3DQVE69hMfHeiO0NWxNV5iZkaFAbKgjVW9K1Pex0kpCiqkY+EmYmyTswvY
+	VjsYNliBew2SYIbsSXteDzP4vNbKkq3Hai5I55WjfWisS9GTtRdl956R4DqerqDrgwS6xg4yodU5J
+	knM+JmSnJ/uHjY99wyLaUfvgvgSrGG473sD4KvY43RCfxBADCKUYPpVnhcz1B5cabFu9/TnBYOOU5
+	mKAXTykz/R9qxf5LFzeJCCUSOVAXXv209+z5cAOnR05W9MGi4jkt8lGQ1b1B10ozpkKMSAck7ajua
+	Gh9kExGMc4FMdHfazRpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYo6p-000ieQ-1D;
-	Wed, 23 Aug 2023 13:41:19 +0000
-Received: from szxga03-in.huawei.com ([45.249.212.189])
+	id 1qYo6x-000im1-3A;
+	Wed, 23 Aug 2023 13:41:27 +0000
+Received: from szxga02-in.huawei.com ([45.249.212.188])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYo5i-000hRw-2C;
-	Wed, 23 Aug 2023 13:40:16 +0000
-Received: from kwepemi500012.china.huawei.com (unknown [172.30.72.55])
-	by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4RW6hG4ZB9zLpCH;
-	Wed, 23 Aug 2023 21:37:02 +0800 (CST)
+	id 1qYo5k-000hUL-2j;
+	Wed, 23 Aug 2023 13:40:17 +0000
+Received: from kwepemi500012.china.huawei.com (unknown [172.30.72.57])
+	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4RW6jF5Hc2zTm8S;
+	Wed, 23 Aug 2023 21:37:53 +0800 (CST)
 Received: from huawei.com (10.90.53.73) by kwepemi500012.china.huawei.com
  (7.221.188.12) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Wed, 23 Aug
- 2023 21:40:06 +0800
+ 2023 21:40:08 +0800
 From: Li Zetao <lizetao1@huawei.com>
 To: <lizetao1@huawei.com>
 CC: <andrew@aj.id.au>, <angelogioacchino.delregno@collabora.com>,
@@ -51,9 +51,9 @@ CC: <andrew@aj.id.au>, <angelogioacchino.delregno@collabora.com>,
 	<rjui@broadcom.com>, <sbranden@broadcom.com>, <tali.perry1@gmail.com>,
 	<tmaimon77@gmail.com>, <venture@google.com>, <yuenn@google.com>, Jonathan
  Cameron <Jonathan.Cameron@huawei.com>
-Subject: [PATCH -next v2 15/25] spi: meson-spicc: Use helper function devm_clk_get_enabled()
-Date: Wed, 23 Aug 2023 21:39:28 +0800
-Message-ID: <20230823133938.1359106-16-lizetao1@huawei.com>
+Subject: [PATCH -next v2 17/25] spi: microchip-core-qspi: Use helper function devm_clk_get_enabled()
+Date: Wed, 23 Aug 2023 21:39:30 +0800
+Message-ID: <20230823133938.1359106-18-lizetao1@huawei.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230823133938.1359106-1-lizetao1@huawei.com>
 References: <20230822131237.1022815-1-lizetao1@huawei.com>
@@ -64,9 +64,8 @@ X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
  kwepemi500012.china.huawei.com (7.221.188.12)
 X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230823_064011_280573_2C28F504 
-X-CRM114-Status: UNSURE (   9.84  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230823_064015_367271_A7CF4EFA 
+X-CRM114-Status: GOOD (  11.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,100 +93,78 @@ Signed-off-by: Li Zetao <lizetao1@huawei.com>
 ---
 v1 -> v2: None
 
- drivers/spi/spi-meson-spicc.c | 33 ++++++---------------------------
- 1 file changed, 6 insertions(+), 27 deletions(-)
+ drivers/spi/spi-microchip-core-qspi.c | 29 +++++++--------------------
+ 1 file changed, 7 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-index 43d134f4b42b..1f2d26254e03 100644
---- a/drivers/spi/spi-meson-spicc.c
-+++ b/drivers/spi/spi-meson-spicc.c
-@@ -820,7 +820,7 @@ static int meson_spicc_probe(struct platform_device *pdev)
- 		goto out_master;
- 	}
+diff --git a/drivers/spi/spi-microchip-core-qspi.c b/drivers/spi/spi-microchip-core-qspi.c
+index 4f76ddf97b10..396dfc0fa278 100644
+--- a/drivers/spi/spi-microchip-core-qspi.c
++++ b/drivers/spi/spi-microchip-core-qspi.c
+@@ -518,30 +518,23 @@ static int mchp_coreqspi_probe(struct platform_device *pdev)
+ 		return dev_err_probe(&pdev->dev, PTR_ERR(qspi->regs),
+ 				     "failed to map registers\n");
  
--	spicc->core = devm_clk_get(&pdev->dev, "core");
-+	spicc->core = devm_clk_get_enabled(&pdev->dev, "core");
- 	if (IS_ERR(spicc->core)) {
- 		dev_err(&pdev->dev, "core clock request failed\n");
- 		ret = PTR_ERR(spicc->core);
-@@ -828,7 +828,7 @@ static int meson_spicc_probe(struct platform_device *pdev)
- 	}
+-	qspi->clk = devm_clk_get(&pdev->dev, NULL);
++	qspi->clk = devm_clk_get_enabled(&pdev->dev, NULL);
+ 	if (IS_ERR(qspi->clk))
+ 		return dev_err_probe(&pdev->dev, PTR_ERR(qspi->clk),
+ 				     "could not get clock\n");
  
- 	if (spicc->data->has_pclk) {
--		spicc->pclk = devm_clk_get(&pdev->dev, "pclk");
-+		spicc->pclk = devm_clk_get_enabled(&pdev->dev, "pclk");
- 		if (IS_ERR(spicc->pclk)) {
- 			dev_err(&pdev->dev, "pclk clock request failed\n");
- 			ret = PTR_ERR(spicc->pclk);
-@@ -836,22 +836,10 @@ static int meson_spicc_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	ret = clk_prepare_enable(spicc->core);
--	if (ret) {
--		dev_err(&pdev->dev, "core clock enable failed\n");
--		goto out_master;
--	}
+-	ret = clk_prepare_enable(qspi->clk);
+-	if (ret)
+-		return dev_err_probe(&pdev->dev, ret,
+-				     "failed to enable clock\n");
 -
--	ret = clk_prepare_enable(spicc->pclk);
--	if (ret) {
--		dev_err(&pdev->dev, "pclk clock enable failed\n");
--		goto out_core_clk;
+ 	init_completion(&qspi->data_completion);
+ 	mutex_init(&qspi->op_lock);
+ 
+ 	qspi->irq = platform_get_irq(pdev, 0);
+-	if (qspi->irq < 0) {
+-		ret = qspi->irq;
+-		goto out;
 -	}
--
- 	spicc->pinctrl = devm_pinctrl_get(&pdev->dev);
- 	if (IS_ERR(spicc->pinctrl)) {
- 		ret = PTR_ERR(spicc->pinctrl);
--		goto out_clk;
-+		goto out_master;
- 	}
++	if (qspi->irq < 0)
++		return qspi->irq;
  
- 	device_reset_optional(&pdev->dev);
-@@ -878,31 +866,25 @@ static int meson_spicc_probe(struct platform_device *pdev)
- 	ret = meson_spicc_pow2_clk_init(spicc);
+ 	ret = devm_request_irq(&pdev->dev, qspi->irq, mchp_coreqspi_isr,
+ 			       IRQF_SHARED, pdev->name, qspi);
  	if (ret) {
- 		dev_err(&pdev->dev, "pow2 clock registration failed\n");
--		goto out_clk;
-+		goto out_master;
+ 		dev_err(&pdev->dev, "request_irq failed %d\n", ret);
+-		goto out;
++		return ret;
  	}
  
- 	if (spicc->data->has_enhance_clk_div) {
- 		ret = meson_spicc_enh_clk_init(spicc);
- 		if (ret) {
- 			dev_err(&pdev->dev, "clock registration failed\n");
--			goto out_clk;
-+			goto out_master;
- 		}
- 	}
+ 	ctlr->bits_per_word_mask = SPI_BPW_MASK(8);
+@@ -552,18 +545,11 @@ static int mchp_coreqspi_probe(struct platform_device *pdev)
+ 	ctlr->dev.of_node = np;
  
- 	ret = devm_spi_register_master(&pdev->dev, master);
- 	if (ret) {
- 		dev_err(&pdev->dev, "spi master registration failed\n");
--		goto out_clk;
-+		goto out_master;
- 	}
+ 	ret = devm_spi_register_controller(&pdev->dev, ctlr);
+-	if (ret) {
+-		dev_err_probe(&pdev->dev, ret,
+-			      "spi_register_controller failed\n");
+-		goto out;
+-	}
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret,
++				     "spi_register_controller failed\n");
  
  	return 0;
- 
--out_clk:
--	clk_disable_unprepare(spicc->pclk);
 -
--out_core_clk:
--	clk_disable_unprepare(spicc->core);
+-out:
+-	clk_disable_unprepare(qspi->clk);
 -
- out_master:
- 	spi_master_put(master);
- 
-@@ -916,9 +898,6 @@ static void meson_spicc_remove(struct platform_device *pdev)
- 	/* Disable SPI */
- 	writel(0, spicc->base + SPICC_CONREG);
- 
--	clk_disable_unprepare(spicc->core);
--	clk_disable_unprepare(spicc->pclk);
--
- 	spi_master_put(spicc->master);
+-	return ret;
  }
  
+ static void mchp_coreqspi_remove(struct platform_device *pdev)
+@@ -574,7 +560,6 @@ static void mchp_coreqspi_remove(struct platform_device *pdev)
+ 	mchp_coreqspi_disable_ints(qspi);
+ 	control &= ~CONTROL_ENABLE;
+ 	writel_relaxed(control, qspi->regs + REG_CONTROL);
+-	clk_disable_unprepare(qspi->clk);
+ }
+ 
+ static const struct of_device_id mchp_coreqspi_of_match[] = {
 -- 
 2.34.1
 
