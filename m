@@ -4,154 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96715EE49AB
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Aug 2023 07:12:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7B6BEE49A0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Aug 2023 08:05:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=McBiYIFE7AyggF5Nt9FKER12V3MTSLczA4F6ytEKf4M=; b=GwiYt31/Il5tNU
-	wGkFTrkW0V6XItgXQgf+wAn6o0o4oe2t+RN8MsShmS0+16dgtK9Ojv5OS/Zfa/AINhVDFXwuX2ck6
-	JGwe37oDLri5DHBy9qkl6nrkyEvloUBpLno0Ze2XVyPtbOsMyXchFdkI3hpXrL8DNY0iZpgeDPQuO
-	2MS3Zo8GI21Guw9jOEJ6DtzCn/DauLhAU2eQaCpHIHnkEUekTxRLtqwZgowCrnrcZWDahwfStb2l9
-	MHeCJaphdaj4OLz1SFSeemjZfRSHqcOURbFjT04WA7K9WHqyswFLVGE1Lun6JOi5EFbbI7py/m9gh
-	Db61BscC0zha14w40jgA==;
+	List-Owner; bh=NhEcVzn8ayDL+E3WXCW3PeSFJTh8qAcaBoXvMtPsAKU=; b=aDj80OrqMwmJMw
+	KTyQb66wHlI7N3E/T7NiVTezrJuyc3WtyhQtUO5FCSjY6w61JvGHyWOOL8XncGCzg+ra95Ke0CzK0
+	0zIFP5aW9oqqBASuxK/SCJcnPW9m5s74YSRpu+A1W+ECc+FKOPwVK7Xpncur0TPHdluA4IlpTJvQy
+	83aVNVmHonbWSJpuzugTvRiEtAGVEiAfNH1SNqqmNu8bWor+5gPz6lZ1Yd5IlBUGFBZ+5xd1wZCtW
+	6jKVSF3WcMFzygkrpk4ULXvHxATu7L1Vo0Z2C1O/hWjiIEFtWeQiOjs9r/j2S+/EBZGud3RiFe+2u
+	fgJFNnP1FDtWGWaxAQFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYi1p-00HRNo-24;
-	Wed, 23 Aug 2023 07:11:45 +0000
-Received: from mail-psaapc01on20723.outbound.protection.outlook.com ([2a01:111:f400:feae::723] helo=APC01-PSA-obe.outbound.protection.outlook.com)
+	id 1qYirR-00HWmn-1q;
+	Wed, 23 Aug 2023 08:05:05 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYi1i-00HRMI-2f;
-	Wed, 23 Aug 2023 07:11:43 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C59nFZubldU+gDnkYX7TAIqx2/yAipuT2I39aPvHyUDuNxHAFFZKkAXaFqk0S9pvaogUxsk+V9oPpJZCaN0zDavJrgMLqbZEMrCVLVBrtadCRexa/Y4P9DmXuGfN2ptCTecN0SXjtT1IYYfb+zf0v1NxRS8KZ2JXNuyjAIEHWSC8DWNwkwrmNjIhuc3SqrbwrdcBUP8tGqkOi2RlJ5mZllfDPSev9l7jwyTD2YxD57SystpktTdQ9Fl8VKbDy9chby1QqBjj5Xfe3ZKJ/nJlsVHJHwauQwouQEAp8betcv6gHGRbweSdleZpQlQBjbaHcFiDvljx5TWMOd41AhVqPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+7xSverx84p1FkG7XUOE1Uhtjz9zbU2K14Uh7EYXy7M=;
- b=isdgJ9xih/6d2BtXRJYhZXfwoKYhh3ON7Sd2VtzZ2LP5bJ0YN+bLgFqryAQ5ldBtowD9A6nl+1AWHJCBZOxRYQg5YHcnJIh94QwL9ImVQzIRDPBi2SskiOnskIbcIDQpCi7Cu2+4N8f7xbLwb42KztSCBToE5Wsq9qRvYM1FVnzfVKMVivDsH4ZufIv98haZl4LTsjHbvDUwPiZrS9OdndWdDRdkYjw+SR9XG3Rm8I7CyToxrqYCt1bDycmhpihX0NWUlJCJDVOfRy/xhCV+UOLc3dt86AecfAmO+seM+TQ81mw5d+O5Xf8wVC4Z+OmkNcE5l0LCm2eoXI6rUUb2Ag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+7xSverx84p1FkG7XUOE1Uhtjz9zbU2K14Uh7EYXy7M=;
- b=ZUWlN3WSxMqN4xnMG4fHiVTnJQhqF3ORdVfciTJIjW+RSGD9o2yxI5Ro0cOKfTy0WIC14vUsXMgO8pmEPzK4xBd4p/YVP2V03tuize0EOc/AdotFSHuxbu1uoAX/7vMwKzsRg7/GOuApLoivV3R+GpjzDRZkB9zP7o8eoRwRVLQOHG+lBNHmEBFYnnWzDg9MoeF0mpuLmzI34v9nlqpY8aIA+11wQ/54e1oneb+b0fqNGYb/xTKjr9sYCQlsCxSGC4K5oPlQMTV1yEVFmohwy0nG/aZVGdjrcV/OuAKMIt/UvFL4sNp24huue5QmjXt9/vBbAg/PndN01t+X0teVmg==
-Received: from TYZPR06MB5203.apcprd06.prod.outlook.com (2603:1096:400:1f9::9)
- by SG2PR06MB5360.apcprd06.prod.outlook.com (2603:1096:4:1db::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.31; Wed, 23 Aug
- 2023 07:11:19 +0000
-Received: from TYZPR06MB5203.apcprd06.prod.outlook.com
- ([fe80::c404:538d:e090:f7b]) by TYZPR06MB5203.apcprd06.prod.outlook.com
- ([fe80::c404:538d:e090:f7b%5]) with mapi id 15.20.6699.020; Wed, 23 Aug 2023
- 07:11:19 +0000
-From: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-To: Li Zetao <lizetao1@huawei.com>, "broonie@kernel.org" <broonie@kernel.org>,
-	"clg@kaod.org" <clg@kaod.org>, "joel@jms.id.au" <joel@jms.id.au>,
-	"andrew@aj.id.au" <andrew@aj.id.au>, "florian.fainelli@broadcom.com"
-	<florian.fainelli@broadcom.com>, "rjui@broadcom.com" <rjui@broadcom.com>,
-	"sbranden@broadcom.com" <sbranden@broadcom.com>,
-	"bcm-kernel-feedback-list@broadcom.com"
-	<bcm-kernel-feedback-list@broadcom.com>, "fancer.lancer@gmail.com"
-	<fancer.lancer@gmail.com>, "olteanv@gmail.com" <olteanv@gmail.com>,
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"khilman@baylibre.com" <khilman@baylibre.com>, "jbrunet@baylibre.com"
-	<jbrunet@baylibre.com>, "martin.blumenstingl@googlemail.com"
-	<martin.blumenstingl@googlemail.com>, "conor.dooley@microchip.com"
-	<conor.dooley@microchip.com>, "daire.mcnamara@microchip.com"
-	<daire.mcnamara@microchip.com>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, "angelogioacchino.delregno@collabora.com"
-	<angelogioacchino.delregno@collabora.com>, "avifishman70@gmail.com"
-	<avifishman70@gmail.com>, "tmaimon77@gmail.com" <tmaimon77@gmail.com>,
-	"tali.perry1@gmail.com" <tali.perry1@gmail.com>, "venture@google.com"
-	<venture@google.com>, "yuenn@google.com" <yuenn@google.com>,
-	"benjaminfair@google.com" <benjaminfair@google.com>,
-	"linus.walleij@linaro.org" <linus.walleij@linaro.org>, "heiko@sntech.de"
-	<heiko@sntech.de>
-CC: "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-	"linux-rpi-kernel@lists.infradead.org"
-	<linux-rpi-kernel@lists.infradead.org>, "linux-amlogic@lists.infradead.org"
-	<linux-amlogic@lists.infradead.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>, "linux-rockchip@lists.infradead.org"
-	<linux-rockchip@lists.infradead.org>
-Subject: RE: [PATCH -next 03/25] spi: aspeed: Use helper function
- devm_clk_get_enabled()
-Thread-Topic: [PATCH -next 03/25] spi: aspeed: Use helper function
- devm_clk_get_enabled()
-Thread-Index: AQHZ1Ppmytx9atFtzEKmu2Zv4vvkIa/3d2Ew
-Date: Wed, 23 Aug 2023 07:11:19 +0000
-Message-ID: <TYZPR06MB520349C9A467FD2D43E6F345B21CA@TYZPR06MB5203.apcprd06.prod.outlook.com>
-References: <20230822131237.1022815-1-lizetao1@huawei.com>
- <20230822131237.1022815-4-lizetao1@huawei.com>
-In-Reply-To: <20230822131237.1022815-4-lizetao1@huawei.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR06MB5203:EE_|SG2PR06MB5360:EE_
-x-ms-office365-filtering-correlation-id: 2aec4954-4ee9-476e-46df-08dba3a82606
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: UksuVfA07KeYylAFTzYVwnR03vKUXPV1+C+/WfIt3E/yJeHHyOQFE0AeGU+psE8dqDZlvI1tamMx3ttkFGvLDhHcgmL8VglaiB1ltIoFJVi4hxrkM8ru+Z5jV/ouaL0dxD66i2Y3NAsZTWWlWM+HRYxBxVrtXPf14tVb/8UnXuPOKsBV9gCLErY5yOZO7Y3El6dXHLR/XbTdxskoZ/sRV4bGxfvFYiUXk0VSyF03P4d9Cps/7bMTBTO82ZkujaQ7n09q5Njs5miA83r7z/4o2TPp+N3rzRJa4zG1OXszJ3CKDE3wrkFZ+irkuITgfnYi+WjWvJIBN3R5YNXC8x2d4XmH/pubVrbsxLrFkDPG+L00B8G7L3sUWhDeQnEkOLYLvtn175xyla0vdVOqq13GX8Fr3k0PPi6E++fQcetMeyxNf+vzDfWasHp9PUvBiF8ODRVQT7G99x3t2TdFQ0TbGeHsfvD5iEsFWm+bJKOTZzEZYQ49ZUXaR39RGkIKDCmkKyKBJqUxXXYzvFbrYubb7GD8ZYnQXCnnjOKEapD6HUiRBWRfnyerEZ9QHfAU+8V5MtptVrOKS/SrUVI3UO9dOvbN9tkRcp/kX4I9sU14qxwbZtSbsWH0C+l3QIXB9bGH4RE3ErDJp422tnyP3to/aA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR06MB5203.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(39850400004)(366004)(396003)(346002)(136003)(451199024)(186009)(1800799009)(26005)(9686003)(38070700005)(122000001)(55016003)(33656002)(38100700002)(86362001)(921005)(83380400001)(8676002)(8936002)(110136005)(66556008)(41300700001)(316002)(76116006)(66446008)(64756008)(54906003)(2906002)(66946007)(52536014)(5660300002)(4326008)(66476007)(7416002)(7406005)(71200400001)(7696005)(6506007)(53546011)(478600001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?piirPloeETUiZDsm2mshr/STo7mKeHNoEE9xLsd6ZDB7EQqgDNl6jTOKUB8t?=
- =?us-ascii?Q?8pi8nE1YXuUlw/keJmT5XtJ0fb/8DoYSkzWYH04NUHpk5Ue1BkdGcB1vy0Mw?=
- =?us-ascii?Q?HedxUum+IlS8K0xCSjjKO/1WXarbwzwSB7Vvewxm9uv7vihVh9S2v+atSky2?=
- =?us-ascii?Q?l0ACvtpo19kPFM1otC1Jph+scqrUhkYdrjmehV1dbe/5mprIKPJD+ShVu1hM?=
- =?us-ascii?Q?tuUzs1FUe0WYsM3cwR5svoiVP1SoBYyIgHYzb1GDA4yzaINWBtzvgjXgn1fH?=
- =?us-ascii?Q?LUZj7MfRt2sbwe0kWIqptcv4WeQU/huC3ZRPoSoymrJ5e+V5+xxEpLTn94yf?=
- =?us-ascii?Q?NLjU9iuYUjA1JNkL3oc0bgL+SBd4txZwdAlsKe1ELdXeVCFPx4KDaKoZ4wu/?=
- =?us-ascii?Q?UGhyWHrUBfjiP86aErivfFdieJ57PEDkBOODwDXdipu8AD+8+r8E6DufsS1a?=
- =?us-ascii?Q?EfTv0N2jzeq99eXmcOjXiV0kq3wMXCkRur9MgNhOCFP4HQ5bLK8SG1nwbVGL?=
- =?us-ascii?Q?Dj1d1t5NuccVZluWMf+gevjbvLJhgioK9nsSQdkSXxGVpg/90wfFIam3mK66?=
- =?us-ascii?Q?D1Z3DmHijy87SKCFjpGGVOg+gWYZUV7YthrdqZHQYCozLyDS9CHW8EaH6qUx?=
- =?us-ascii?Q?1n3CA59XkoZPTDIM9ZF5o+e8qWXAiCVfE/9Mokb0Gzkj4udC+u/ro2jUVT3O?=
- =?us-ascii?Q?RzBioAS84FqwW73Ou1yaQI8MpV9lXLtYoIIZ2N1NXWcEnLGI1QFX5DbSzwBt?=
- =?us-ascii?Q?kJIhKZAWiqfs8tEF1io8zax5OXx2qcxwxesWzjil15MhIwJe/ugJk9gdKqcm?=
- =?us-ascii?Q?TqHPgbgefpjA21xfVDXz0+yZ9Z6yyS4peUyYvw49nb/2vVT6cgzouyhnZAjd?=
- =?us-ascii?Q?jE62xJyMWwqWoZeTInreNZvpjbc8TBSCa34POz1FYufU8C2vZoB56hIaWBC7?=
- =?us-ascii?Q?MnogW44ehRkhwnKAoL6YC0O+i6vcG/0Xt+/+FGa+YWNCjTATTzL0snIzW8DQ?=
- =?us-ascii?Q?zMnFUgZvqRNckWmtuu581+JOZnyoktvAcSMHsOpsRZKR5ok/azkQTOK6jaJg?=
- =?us-ascii?Q?V2N6W7EWkKrIDQU2a+Tmcr5/J2XxW9oIpBYvlkGTm2VqCBFL8lKMOxJ9ml3A?=
- =?us-ascii?Q?0U2X99qS0Zi6zleKkjkzyghJL8yPOqQNDGdk3Rrko4yvnOMAMPZD8cP+QrW3?=
- =?us-ascii?Q?DvG2Nzlm9w/Z2bnBCsp/keST7P+Ao3Yuy+/tnO6tzrWVhUuGBoWYxqv2bp32?=
- =?us-ascii?Q?XllweDmuSSg5S0J6muBUkC30bUG80AWOVGQSMrH+XfLCPx7PC31woAMQ4xYw?=
- =?us-ascii?Q?Kh/IgC4QCMi1NNQKrwQ1FQkhyijJY1FvK9Wl8Ki8neIhMgIAa2Hon0Hw6J2T?=
- =?us-ascii?Q?RXLuUPw+dRPY1bVmwVvRLRT/ruNkMzUatFAEj3gDDjHzFdQYZPV2ZKc6nu9X?=
- =?us-ascii?Q?7MDHEeLZmd7MWpzMEAcqQrSd83zZgkN9z4Bgx9trX8UVpE1YXfuwqzDg8na8?=
- =?us-ascii?Q?bTPay5h+xPebI/f2doPOZkpmZCKuqMEm9njUO7HxFhCMDv0hF4hk0I+oTEfF?=
- =?us-ascii?Q?wS7ktDs9JCaI2uRWtgnT92nLgtG6pqJGQUCz9Sy614YAw5ByWTlmOhuZq5Y8?=
- =?us-ascii?Q?Ug=3D=3D?=
+	id 1qYirJ-00HWlV-29
+	for linux-amlogic@lists.infradead.org;
+	Wed, 23 Aug 2023 08:05:00 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3fef34c33d6so23504965e9.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 23 Aug 2023 01:04:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1692777894; x=1693382694;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=sqLfjXwKIs0qnRsyMrOd7p9W6SVZeZZMJuGHy1Im3jQ=;
+        b=YwH2DRF2Z6K1JOkeac8qjLEmkwwo1oKHEob5F+U+SifRBeFaktHbLwPU/HNjnmOn3a
+         Nic+RHstXaqPzRW0fETxGVjH/6mlUq5I8t5FDnYfHZHUZUlfp4qaNUfRD+bH15b42Z5k
+         Ki6UdDg4agcIjk1/cTzOaGfiB2qexjjhkNRc5oHmlfXU7WcSsYTTQYu+KZowcqqVosuN
+         TIyhJCbUKMRQq1fk6jJP9QQh304QcaxMV/xP1dnJPs/ubfeCkK/3+zTM6fsAh3rFv5AQ
+         yR/RRndI7cbMELfFcsAo2l0Z2h5TEii0SnANXyDD45syccqrYYc8JK1x0RzkhAIQ8F5G
+         P/Mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692777894; x=1693382694;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sqLfjXwKIs0qnRsyMrOd7p9W6SVZeZZMJuGHy1Im3jQ=;
+        b=ZPMOuu12fCbokp8LwXegFOoDBjOtXTWmfcBq8gZSTtR7IZUbfkhByfz7jfgNx9/NX9
+         VORbLr/XeT8ez/e1MBovkGl5AGyuIe7HCzCcGXk3FfLVB8QJpkVOU4DTCrHzurAomMZg
+         L5vTLNWS139MJee06Wjm94CGyzrwrRqtDYjmdMFHmoIzAg8S/rjEOFOGgxpGu4Ln8ICI
+         1nh/z6y6yH9RmI0bpmy81gpaU+CJmzVc9sQnwIpESE8p73NEUFJq2/WD/0vN/So2Wqjq
+         CnYyTebYe64fOyfjSOc66NSNxnV7Pzd+fbLyzCXT0/SQ4gwz9W2hwYYMM6UmGrxNoJav
+         8Qjw==
+X-Gm-Message-State: AOJu0YwMP63ci1UoOxgO+HkZ6IktCRfMyNbxqYxRMwc+awQkLMe5DhsG
+	0+Q8Uj5IvMcc/Pi286jGFHmpdg==
+X-Google-Smtp-Source: AGHT+IGdnOEr7lWzHcx+caM2WgK8xvqtWENpLZtE2My5Y5tl5K1ZE8UKupOLdpX5dlPBmWDxE8VfxA==
+X-Received: by 2002:a1c:6a16:0:b0:3fe:4900:dba0 with SMTP id f22-20020a1c6a16000000b003fe4900dba0mr8862265wmc.16.1692777893950;
+        Wed, 23 Aug 2023 01:04:53 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:c128:6cb5:cc63:7cbe])
+        by smtp.gmail.com with ESMTPSA id f23-20020a7bcd17000000b003fef5e76f2csm608761wmj.0.2023.08.23.01.04.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Aug 2023 01:04:53 -0700 (PDT)
+References: <20230822082750.27633-1-yu.tu@amlogic.com>
+ <20230822082750.27633-3-yu.tu@amlogic.com>
+User-agent: mu4e 1.8.13; emacs 28.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Rob Herring
+ <robh+dt@kernel.org>, Neil  Armstrong <neil.armstrong@linaro.org>, Kevin
+ Hilman <khilman@baylibre.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof
+  Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Cc: kelvin.zhang@amlogic.com, qi.duan@amlogic.com
+Subject: Re: [PATCH V10 2/4] dt-bindings: clock: document Amlogic S4 SoC
+ peripherals clock controller
+Date: Wed, 23 Aug 2023 10:01:57 +0200
+In-reply-to: <20230822082750.27633-3-yu.tu@amlogic.com>
+Message-ID: <1jbkey9obf.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR06MB5203.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2aec4954-4ee9-476e-46df-08dba3a82606
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Aug 2023 07:11:19.0828
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1Kt7NHf6kT+F7gf3XSI4DaWUAkIdrym/uf/uEEoRCaqwOpuJ4oY3DscO6Y5ZbR0DTYVendSZh83KK2xtwyM7njgJu8rnFYDA5xszVViGpXI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR06MB5360
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230823_001140_969944_9D2A5230 
-X-CRM114-Status: GOOD (  18.94  )
+X-CRM114-CacheID: sfid-20230823_010457_707505_3E9033CE 
+X-CRM114-Status: GOOD (  15.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -169,80 +101,371 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-> -----Original Message-----
-> From: Li Zetao <lizetao1@huawei.com>
-> Sent: Tuesday, August 22, 2023 9:12 PM
-> Subject: [PATCH -next 03/25] spi: aspeed: Use helper function
-> devm_clk_get_enabled()
-> 
-> Since commit 7ef9651e9792 ("clk: Provide new devm_clk helpers for prepared
-> and enabled clocks"), devm_clk_get() and clk_prepare_enable() can now be
-> replaced by devm_clk_get_enabled() when driver enables (and possibly
-> prepares) the clocks for the whole lifetime of the device. Moreover, it is no
-> longer necessary to unprepare and disable the clocks explicitly.
-> 
-> Signed-off-by: Li Zetao <lizetao1@huawei.com>
-> ---
->  drivers/spi/spi-aspeed-smc.c | 16 ++--------------
->  1 file changed, 2 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/spi/spi-aspeed-smc.c b/drivers/spi/spi-aspeed-smc.c index
-> 21b0fa646c7d..bbd417c55e7f 100644
-> --- a/drivers/spi/spi-aspeed-smc.c
-> +++ b/drivers/spi/spi-aspeed-smc.c
-> @@ -748,7 +748,7 @@ static int aspeed_spi_probe(struct platform_device
-> *pdev)
->  	aspi->ahb_window_size = resource_size(res);
->  	aspi->ahb_base_phy = res->start;
-> 
-> -	aspi->clk = devm_clk_get(&pdev->dev, NULL);
-> +	aspi->clk = devm_clk_get_enabled(&pdev->dev, NULL);
->  	if (IS_ERR(aspi->clk)) {
->  		dev_err(dev, "missing clock\n");
->  		return PTR_ERR(aspi->clk);
-> @@ -760,12 +760,6 @@ static int aspeed_spi_probe(struct platform_device
-> *pdev)
->  		return -EINVAL;
->  	}
-> 
-> -	ret = clk_prepare_enable(aspi->clk);
-> -	if (ret) {
-> -		dev_err(dev, "can not enable the clock\n");
-> -		return ret;
-> -	}
-> -
->  	/* IRQ is for DMA, which the driver doesn't support yet */
-> 
->  	ctlr->mode_bits = SPI_RX_DUAL | SPI_TX_DUAL | data->mode_bits; @@
-> -777,14 +771,9 @@ static int aspeed_spi_probe(struct platform_device *pdev)
->  	ctlr->dev.of_node = dev->of_node;
-> 
->  	ret = devm_spi_register_controller(dev, ctlr);
-> -	if (ret) {
-> +	if (ret)
->  		dev_err(&pdev->dev, "spi_register_controller failed\n");
-> -		goto disable_clk;
-> -	}
-> -	return 0;
-> 
-> -disable_clk:
-> -	clk_disable_unprepare(aspi->clk);
->  	return ret;
->  }
-> 
-> @@ -793,7 +782,6 @@ static void aspeed_spi_remove(struct platform_device
-> *pdev)
->  	struct aspeed_spi *aspi = platform_get_drvdata(pdev);
-> 
->  	aspeed_spi_enable(aspi, false);
-> -	clk_disable_unprepare(aspi->clk);
->  }
-> 
->  /*
-> --
-> 2.34.1
+On Tue 22 Aug 2023 at 16:27, Yu Tu <yu.tu@amlogic.com> wrote:
 
-Reviewed-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+> Add the S4 peripherals clock controller dt-bindings in the S4 SoC
+> family.
+>
+> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+> ---
+>  .../clock/amlogic,s4-peripherals-clkc.yaml    |  96 +++++++
+>  .../clock/amlogic,s4-peripherals-clkc.h       | 236 ++++++++++++++++++
+>  2 files changed, 332 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+>
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+> new file mode 100644
+> index 000000000000..e166563e7b14
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+> @@ -0,0 +1,96 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022-2023 Amlogic, Inc. All rights reserved
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/amlogic,s4-peripherals-clkc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic S4 Peripherals Clock Controller
+> +
+> +maintainers:
+> +  - Yu Tu <yu.tu@amlogic.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,s4-peripherals-clkc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: input fixed pll div2
+> +      - description: input fixed pll div2p5
+> +      - description: input fixed pll div3
+> +      - description: input fixed pll div4
+> +      - description: input fixed pll div5
+> +      - description: input fixed pll div7
+> +      - description: input hifi pll
+> +      - description: input gp0 pll
+> +      - description: input mpll0
+> +      - description: input mpll1
+> +      - description: input mpll2
+> +      - description: input mpll3
+> +      - description: input hdmi pll
+> +      - description: input oscillator (usually at 24MHz)
+> +      - description: input external 32kHz reference (optional)
+
+The bindings described here does not make this last clock optional, but
+requires it. This is going to be a problem since most platforms won't
+have this clock.
+
+You are missing minItems.
+Same below
+
+> +
+> +  clock-names:
+> +    items:
+> +      - const: fclk_div2
+> +      - const: fclk_div2p5
+> +      - const: fclk_div3
+> +      - const: fclk_div4
+> +      - const: fclk_div5
+> +      - const: fclk_div7
+> +      - const: hifi_pll
+> +      - const: gp0_pll
+> +      - const: mpll0
+> +      - const: mpll1
+> +      - const: mpll2
+> +      - const: mpll3
+> +      - const: hdmi_pll
+> +      - const: xtal
+> +      - const: ext_32k
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - "#clock-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
+> +
+> +    clkc_periphs: clock-controller@fe000000 {
+> +      compatible = "amlogic,s4-peripherals-clkc";
+> +      reg = <0xfe000000 0x49c>;
+> +      clocks = <&clkc_pll 3>,
+> +              <&clkc_pll 13>,
+> +              <&clkc_pll 5>,
+> +              <&clkc_pll 7>,
+> +              <&clkc_pll 9>,
+> +              <&clkc_pll 11>,
+> +              <&clkc_pll 17>,
+> +              <&clkc_pll 15>,
+> +              <&clkc_pll 25>,
+> +              <&clkc_pll 27>,
+> +              <&clkc_pll 29>,
+> +              <&clkc_pll 31>,
+> +              <&clkc_pll 20>,
+> +              <&xtal>,
+> +              <&ext_32k>;
+> +      clock-names = "fclk_div2", "fclk_div2p5", "fclk_div3", "fclk_div4",
+> +                    "fclk_div5", "fclk_div7", "hifi_pll", "gp0_pll",
+> +                    "mpll0", "mpll1", "mpll2", "mpll3", "hdmi_pll", "xtal",
+> +                    "ext_32k";
+> +      #clock-cells = <1>;
+> +    };
+> +...
+> diff --git a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+> new file mode 100644
+> index 000000000000..861a331963ac
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+> @@ -0,0 +1,236 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (c) 2022-2023 Amlogic, Inc. All rights reserved.
+> + * Author: Yu Tu <yu.tu@amlogic.com>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S4_PERIPHERALS_CLKC_H
+> +#define _DT_BINDINGS_CLOCK_AMLOGIC_S4_PERIPHERALS_CLKC_H
+> +
+> +#define CLKID_RTC_32K_CLKIN		0
+> +#define CLKID_RTC_32K_DIV		1
+> +#define CLKID_RTC_32K_SEL		2
+> +#define CLKID_RTC_32K_XATL		3
+> +#define CLKID_RTC			4
+> +#define CLKID_SYS_CLK_B_SEL		5
+> +#define CLKID_SYS_CLK_B_DIV		6
+> +#define CLKID_SYS_CLK_B			7
+> +#define CLKID_SYS_CLK_A_SEL		8
+> +#define CLKID_SYS_CLK_A_DIV		9
+> +#define CLKID_SYS_CLK_A			10
+> +#define CLKID_SYS			11
+> +#define CLKID_CECA_32K_CLKIN		12
+> +#define CLKID_CECA_32K_DIV		13
+> +#define CLKID_CECA_32K_SEL_PRE		14
+> +#define CLKID_CECA_32K_SEL		15
+> +#define CLKID_CECA_32K_CLKOUT		16
+> +#define CLKID_CECB_32K_CLKIN		17
+> +#define CLKID_CECB_32K_DIV		18
+> +#define CLKID_CECB_32K_SEL_PRE		19
+> +#define CLKID_CECB_32K_SEL		20
+> +#define CLKID_CECB_32K_CLKOUT		21
+> +#define CLKID_SC_CLK_SEL		22
+> +#define CLKID_SC_CLK_DIV		23
+> +#define CLKID_SC			24
+> +#define CLKID_12_24M			25
+> +#define CLKID_12M_CLK_DIV		26
+> +#define CLKID_12_24M_CLK_SEL		27
+> +#define CLKID_VID_PLL_DIV		28
+> +#define CLKID_VID_PLL_SEL		29
+> +#define CLKID_VID_PLL			30
+> +#define CLKID_VCLK_SEL			31
+> +#define CLKID_VCLK2_SEL			32
+> +#define CLKID_VCLK_INPUT		33
+> +#define CLKID_VCLK2_INPUT		34
+> +#define CLKID_VCLK_DIV			35
+> +#define CLKID_VCLK2_DIV			36
+> +#define CLKID_VCLK			37
+> +#define CLKID_VCLK2			38
+> +#define CLKID_VCLK_DIV1			39
+> +#define CLKID_VCLK_DIV2_EN		40
+> +#define CLKID_VCLK_DIV4_EN		41
+> +#define CLKID_VCLK_DIV6_EN		42
+> +#define CLKID_VCLK_DIV12_EN		43
+> +#define CLKID_VCLK2_DIV1		44
+> +#define CLKID_VCLK2_DIV2_EN		45
+> +#define CLKID_VCLK2_DIV4_EN		46
+> +#define CLKID_VCLK2_DIV6_EN		47
+> +#define CLKID_VCLK2_DIV12_EN		48
+> +#define CLKID_VCLK_DIV2			49
+> +#define CLKID_VCLK_DIV4			50
+> +#define CLKID_VCLK_DIV6			51
+> +#define CLKID_VCLK_DIV12		52
+> +#define CLKID_VCLK2_DIV2		53
+> +#define CLKID_VCLK2_DIV4		54
+> +#define CLKID_VCLK2_DIV6		55
+> +#define CLKID_VCLK2_DIV12		56
+> +#define CLKID_CTS_ENCI_SEL		57
+> +#define CLKID_CTS_ENCP_SEL		58
+> +#define CLKID_CTS_VDAC_SEL		59
+> +#define CLKID_HDMI_TX_SEL		60
+> +#define CLKID_CTS_ENCI			61
+> +#define CLKID_CTS_ENCP			62
+> +#define CLKID_CTS_VDAC			63
+> +#define CLKID_HDMI_TX			64
+> +#define CLKID_HDMI_SEL			65
+> +#define CLKID_HDMI_DIV			66
+> +#define CLKID_HDMI			67
+> +#define CLKID_TS_CLK_DIV		68
+> +#define CLKID_TS			69
+> +#define CLKID_MALI_0_SEL		70
+> +#define CLKID_MALI_0_DIV		71
+> +#define CLKID_MALI_0			72
+> +#define CLKID_MALI_1_SEL		73
+> +#define CLKID_MALI_1_DIV		74
+> +#define CLKID_MALI_1			75
+> +#define CLKID_MALI_SEL			76
+> +#define CLKID_VDEC_P0_SEL		77
+> +#define CLKID_VDEC_P0_DIV		78
+> +#define CLKID_VDEC_P0			79
+> +#define CLKID_VDEC_P1_SEL		80
+> +#define CLKID_VDEC_P1_DIV		81
+> +#define CLKID_VDEC_P1			82
+> +#define CLKID_VDEC_SEL			83
+> +#define CLKID_HEVCF_P0_SEL		84
+> +#define CLKID_HEVCF_P0_DIV		85
+> +#define CLKID_HEVCF_P0			86
+> +#define CLKID_HEVCF_P1_SEL		87
+> +#define CLKID_HEVCF_P1_DIV		88
+> +#define CLKID_HEVCF_P1			89
+> +#define CLKID_HEVCF_SEL			90
+> +#define CLKID_VPU_0_SEL			91
+> +#define CLKID_VPU_0_DIV			92
+> +#define CLKID_VPU_0			93
+> +#define CLKID_VPU_1_SEL			94
+> +#define CLKID_VPU_1_DIV			95
+> +#define CLKID_VPU_1			96
+> +#define CLKID_VPU			97
+> +#define CLKID_VPU_CLKB_TMP_SEL		98
+> +#define CLKID_VPU_CLKB_TMP_DIV		99
+> +#define CLKID_VPU_CLKB_TMP		100
+> +#define CLKID_VPU_CLKB_DIV		101
+> +#define CLKID_VPU_CLKB			102
+> +#define CLKID_VPU_CLKC_P0_SEL		103
+> +#define CLKID_VPU_CLKC_P0_DIV		104
+> +#define CLKID_VPU_CLKC_P0		105
+> +#define CLKID_VPU_CLKC_P1_SEL		106
+> +#define CLKID_VPU_CLKC_P1_DIV		107
+> +#define CLKID_VPU_CLKC_P1		108
+> +#define CLKID_VPU_CLKC_SEL		109
+> +#define CLKID_VAPB_0_SEL		110
+> +#define CLKID_VAPB_0_DIV		111
+> +#define CLKID_VAPB_0			112
+> +#define CLKID_VAPB_1_SEL		113
+> +#define CLKID_VAPB_1_DIV		114
+> +#define CLKID_VAPB_1			115
+> +#define CLKID_VAPB			116
+> +#define CLKID_GE2D			117
+> +#define CLKID_VDIN_MEAS_SEL		118
+> +#define CLKID_VDIN_MEAS_DIV		119
+> +#define CLKID_VDIN_MEAS			120
+> +#define CLKID_SD_EMMC_C_CLK_SEL		121
+> +#define CLKID_SD_EMMC_C_CLK_DIV		122
+> +#define CLKID_SD_EMMC_C			123
+> +#define CLKID_SD_EMMC_A_CLK_SEL		124
+> +#define CLKID_SD_EMMC_A_CLK_DIV		125
+> +#define CLKID_SD_EMMC_A			126
+> +#define CLKID_SD_EMMC_B_CLK_SEL		127
+> +#define CLKID_SD_EMMC_B_CLK_DIV		128
+> +#define CLKID_SD_EMMC_B			129
+> +#define CLKID_SPICC0_SEL		130
+> +#define CLKID_SPICC0_DIV		131
+> +#define CLKID_SPICC0_EN			132
+> +#define CLKID_PWM_A_SEL			133
+> +#define CLKID_PWM_A_DIV			134
+> +#define CLKID_PWM_A			135
+> +#define CLKID_PWM_B_SEL			136
+> +#define CLKID_PWM_B_DIV			137
+> +#define CLKID_PWM_B			138
+> +#define CLKID_PWM_C_SEL			139
+> +#define CLKID_PWM_C_DIV			140
+> +#define CLKID_PWM_C			141
+> +#define CLKID_PWM_D_SEL			142
+> +#define CLKID_PWM_D_DIV			143
+> +#define CLKID_PWM_D			144
+> +#define CLKID_PWM_E_SEL			145
+> +#define CLKID_PWM_E_DIV			146
+> +#define CLKID_PWM_E			147
+> +#define CLKID_PWM_F_SEL			148
+> +#define CLKID_PWM_F_DIV			149
+> +#define CLKID_PWM_F			150
+> +#define CLKID_PWM_G_SEL			151
+> +#define CLKID_PWM_G_DIV			152
+> +#define CLKID_PWM_G			153
+> +#define CLKID_PWM_H_SEL			154
+> +#define CLKID_PWM_H_DIV			155
+> +#define CLKID_PWM_H			156
+> +#define CLKID_PWM_I_SEL			157
+> +#define CLKID_PWM_I_DIV			158
+> +#define CLKID_PWM_I			159
+> +#define CLKID_PWM_J_SEL			160
+> +#define CLKID_PWM_J_DIV			161
+> +#define CLKID_PWM_J			162
+> +#define CLKID_SARADC_SEL		163
+> +#define CLKID_SARADC_DIV		164
+> +#define CLKID_SARADC			165
+> +#define CLKID_GEN_SEL			166
+> +#define CLKID_GEN_DIV			167
+> +#define CLKID_GEN			168
+> +#define CLKID_DDR			169
+> +#define CLKID_DOS			170
+> +#define CLKID_ETHPHY			171
+> +#define CLKID_MALI			172
+> +#define CLKID_AOCPU			173
+> +#define CLKID_AUCPU			174
+> +#define CLKID_CEC			175
+> +#define CLKID_SDEMMC_A			176
+> +#define CLKID_SDEMMC_B			177
+> +#define CLKID_NAND			178
+> +#define CLKID_SMARTCARD			179
+> +#define CLKID_ACODEC			180
+> +#define CLKID_SPIFC			181
+> +#define CLKID_MSR			182
+> +#define CLKID_IR_CTRL			183
+> +#define CLKID_AUDIO			184
+> +#define CLKID_ETH			185
+> +#define CLKID_UART_A			186
+> +#define CLKID_UART_B			187
+> +#define CLKID_UART_C			188
+> +#define CLKID_UART_D			189
+> +#define CLKID_UART_E			190
+> +#define CLKID_AIFIFO			191
+> +#define CLKID_TS_DDR			192
+> +#define CLKID_TS_PLL			193
+> +#define CLKID_G2D			194
+> +#define CLKID_SPICC0			195
+> +#define CLKID_SPICC1			196
+> +#define CLKID_USB			197
+> +#define CLKID_I2C_M_A			198
+> +#define CLKID_I2C_M_B			199
+> +#define CLKID_I2C_M_C			200
+> +#define CLKID_I2C_M_D			201
+> +#define CLKID_I2C_M_E			202
+> +#define CLKID_HDMITX_APB		203
+> +#define CLKID_I2C_S_A			204
+> +#define CLKID_USB1_TO_DDR		205
+> +#define CLKID_HDCP22			206
+> +#define CLKID_MMC_APB			207
+> +#define CLKID_RSA			208
+> +#define CLKID_CPU_DEBUG			209
+> +#define CLKID_VPU_INTR			210
+> +#define CLKID_DEMOD			211
+> +#define CLKID_SAR_ADC			212
+> +#define CLKID_GIC			213
+> +#define CLKID_PWM_AB			214
+> +#define CLKID_PWM_CD			215
+> +#define CLKID_PWM_EF			216
+> +#define CLKID_PWM_GH			217
+> +#define CLKID_PWM_IJ			218
+> +#define CLKID_HDCP22_ESMCLK_SEL		219
+> +#define CLKID_HDCP22_ESMCLK_DIV		220
+> +#define CLKID_HDCP22_ESMCLK		221
+> +#define CLKID_HDCP22_SKPCLK_SEL		222
+> +#define CLKID_HDCP22_SKPCLK_DIV		223
+> +#define CLKID_HDCP22_SKPCLK		224
+> +
+> +#endif /* _DT_BINDINGS_CLOCK_AMLOGIC_S4_PERIPHERALS_CLKC_H */
 
 
 _______________________________________________
