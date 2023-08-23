@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1D43EE49B2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Aug 2023 21:37:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D60C4C727A4
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Aug 2023 21:37:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zuNNqm/az1j6asgZCxl3Kne+9x2V7XN5Bgy9MdaQbMg=; b=WdKx/KA978GZ21
-	jV8+jNwEsfx91S+0rqzPZCuTX0YBeob1vqTmoOBL1QNE57fIytAauLWaYxSemZOGSiJsSP14pgn57
-	svJg6fHmNf9Vsgk7Fo0AXZs2IuTCcO0dXuJk+ESlqiE9QOQ7OEJQXNtdNdMf15RCifFbWLjpoK9nW
-	fNvquqCYxrs0NKBwRjStgpscwyM8dZ/eSEzDR0oLIUx273cTHQ+0eQtim5rX+KCAHwhaIgwzAcycE
-	k2J5wPqsVIz1nj3pFjmW50SuMdHkFyAU3Vd/ATCHlnFzK+IMYWnbfwXFuzq5GFSRAsDaMSh90FteX
-	Q0eaYgxz2PdhI4NeiyXQ==;
+	List-Owner; bh=C3TGYt7PVUbPheajWYa3KTt+IwtOzDpZ2m0VdNF2tOE=; b=UvKShGWSTDuyfK
+	XVT7LexY9BKEo4CHyTsjTcpWaJ/goRrhPDj+6WI7u6ozuzoj7sCyCS3gmqsAgopitownJVW0Cd5mK
+	0Sl3lDpy3A4dt1C8Qjfga+DgqBPgHTYgyt6A3czOGjcJECALJXuq2zIM2a9BXfAOKyhtz+sYrZjB1
+	rKVBZXAkNIcY0kLXZ7Hhn7r9TgmWw0lz+qHSr83gUZgRdFICjdLV2tqj0xKWzMRtUALnqQasLRcx/
+	vv0n/ArjPIoWOSsIDXIGIV0AoyfX7hVu3wIIsK9CzlkXI8h3kMIB3LVXqKVrd2gXr24nr71VxbW65
+	wMhF76QC3XRBM1JdWvLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYvXH-001aGu-11;
+	id 1qYvXH-001aH9-2P;
 	Wed, 23 Aug 2023 21:37:07 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYvWv-001a6d-2x;
+	id 1qYvWv-001a6V-2x;
 	Wed, 23 Aug 2023 21:36:50 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id B69F4120010;
-	Thu, 24 Aug 2023 00:36:43 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru B69F4120010
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 3384612000F;
+	Thu, 24 Aug 2023 00:36:42 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 3384612000F
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1692826603;
-	bh=I6FSVuTU3VS3uJbm2xAcUWlOKNKHUW15q88lgiVvVIM=;
+	s=mail; t=1692826602;
+	bh=Vva4K8raNyfigWqjwYs30j/2FeM+p1/UqnnkmM2a/B8=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=NQL6OcKbNr5vgvEZlolppVN1tVTmKxJ47okwsi7FOF7NTESiHOA7U0Mp+p3ei6x2S
-	 XdLtqaeDJeOO75vUs/mxtWrNUgvmBkWf+37YEeBmg06CATgUkBhRFwQ9zEQqn3D+LQ
-	 irsD9UZmCFHuWAUSd8SpmJVShfAwsWvTFKdSCsHu/pzrmvivvrsK6JvKZ/mliMmGKe
-	 XOYyQ13ylALvVH9WoTwzZIVQOpONR3Lf6MASqz/f96KA5JAoVt63Q6WPyL+12CtSr8
-	 KU+8Z9UTUmvUiIwjuN2ME4DALX5aUzpC7D5KAE3XwLa72FTJ+ASu5yeLzvPAbY5k6y
-	 A2ZznAz4gzW1Q==
+	b=ZQOkWjMx5GFuxD1WcVHm3NoidxxX7iWOofQPelRm7L27S2omVQLM2mkfXfSmepNHc
+	 dMdqRRvsmfUEJ7QyiBI/7tkQiecCzYy4jh8F2wlYtC88jcjZ4qus7ZVZ2lXY3G1tiL
+	 Cmw46C6INtgxHS515yccDzb9dtHm3BgMbAHQaEdcfmluyA9JF1ugrbWisJTqYx+0WM
+	 tSma+TOtnoXLb3lkdQ3cLbFxR98vqcWMYJ55qeTr5uhovq9OFT6sOE6pI6HesjjlTS
+	 y2zbzifOc/SZM9/jYYOcYeynJqYQ04B9PgA6hSLXuqhGUB59w32//ZMCssbxyiaSus
+	 X4Ntzk2z5aaKQ==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu, 24 Aug 2023 00:36:43 +0300 (MSK)
+	Thu, 24 Aug 2023 00:36:42 +0300 (MSK)
 Received: from localhost.localdomain (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Thu, 24 Aug 2023 00:36:39 +0300
+ 15.2.1118.30; Thu, 24 Aug 2023 00:36:38 +0300
 From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
 	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
@@ -58,11 +58,10 @@ CC: <kernel@sberdevices.ru>, <sdfw_system_team@sberdevices.ru>,
 	<rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
 	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	Alexey Romanov <avromanov@sberdevices.ru>, Dmitry Rokosov
-	<ddrokosov@sberdevices.ru>
-Subject: [PATCH v2 07/15] arm64: dts: meson: a1: enable efuse controller and setup its clk
-Date: Thu, 24 Aug 2023 00:36:22 +0300
-Message-ID: <20230823213630.12936-8-ddrokosov@sberdevices.ru>
+	Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Subject: [PATCH v2 05/15] arm64: dts: meson: a1: introduce PLL and Peripherals clk controllers
+Date: Thu, 24 Aug 2023 00:36:20 +0300
+Message-ID: <20230823213630.12936-6-ddrokosov@sberdevices.ru>
 X-Mailer: git-send-email 2.36.0
 In-Reply-To: <20230823213630.12936-1-ddrokosov@sberdevices.ru>
 References: <20230823213630.12936-1-ddrokosov@sberdevices.ru>
@@ -87,8 +86,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/08/23 18:49:00 #21688451
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230823_143646_724158_906CA834 
-X-CRM114-Status: GOOD (  10.70  )
+X-CRM114-CacheID: sfid-20230823_143646_732994_BF9D5538 
+X-CRM114-Status: GOOD (  13.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,36 +104,67 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Alexey Romanov <avromanov@sberdevices.ru>
+This patch adds clkc and clkc_pll dts nodes to A1 SoC main dtsi. The
+first one is responsible for all SoC peripherals clocks excluding audio
+clocks. The second one is used by A1 SoC PLLs. Actually, there are two
+different APB heads, so we have two different drivers.
 
-EFUSE A1 controller uses CLKID_OTP clock and PWRC_OTP_ID power domain.
-
-Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
 Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 ---
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 26 +++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index 04df5a5b563e..d46275a25bfa 100644
+index f95f4daef02c..a8a39eeb2581 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -45,6 +45,15 @@ l2: l2-cache0 {
- 		};
- 	};
+@@ -3,6 +3,8 @@
+  * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+  */
  
-+	efuse: efuse {
-+		compatible = "amlogic,meson-gxbb-efuse";
-+		clocks = <&clkc_periphs CLKID_OTP>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		secure-monitor = <&sm>;
-+		power-domains = <&pwrc PWRC_OTP_ID>;
-+	};
++#include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
++#include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
+ #include <dt-bindings/gpio/meson-a1-gpio.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+@@ -115,6 +117,21 @@ gpio_intc: interrupt-controller@440 {
+ 					<49 50 51 52 53 54 55 56>;
+ 			};
+ 
++			clkc_periphs: clock-controller@800 {
++				compatible = "amlogic,a1-peripherals-clkc";
++				reg = <0 0x800 0 0x104>;
++				#clock-cells = <1>;
++				clocks = <&clkc_pll CLKID_FCLK_DIV2>,
++					 <&clkc_pll CLKID_FCLK_DIV3>,
++					 <&clkc_pll CLKID_FCLK_DIV5>,
++					 <&clkc_pll CLKID_FCLK_DIV7>,
++					 <&clkc_pll CLKID_HIFI_PLL>,
++					 <&xtal>;
++				clock-names = "fclk_div2", "fclk_div3",
++					      "fclk_div5", "fclk_div7",
++					      "hifi_pll", "xtal";
++			};
 +
- 	psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
+ 			uart_AO: serial@1c00 {
+ 				compatible = "amlogic,meson-gx-uart",
+ 					     "amlogic,meson-ao-uart";
+@@ -134,6 +151,15 @@ uart_AO_B: serial@2000 {
+ 				clock-names = "xtal", "pclk", "baud";
+ 				status = "disabled";
+ 			};
++
++			clkc_pll: pll-clock-controller@7c80 {
++				compatible = "amlogic,a1-pll-clkc";
++				reg = <0 0x7c80 0 0x18c>;
++				#clock-cells = <1>;
++				clocks = <&clkc_periphs CLKID_FIXPLL_IN>,
++					 <&clkc_periphs CLKID_HIFIPLL_IN>;
++				clock-names = "fixpll_in", "hifipll_in";
++			};
+ 		};
+ 
+ 		gic: interrupt-controller@ff901000 {
 -- 
 2.36.0
 
