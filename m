@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC7EAC3DA6F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Aug 2023 21:37:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 687C0C3DA6F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Aug 2023 21:37:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Esm8uw30BeAP844elCoqc+zSQJhQhd75OVT7hv8Jy0Q=; b=uvbNqOBNxhFTN+
-	xQIRBAuJn75TuRYrMT7mydQXA6DGdC8AalEZFNU5PunQmOGqsJulgtQ5R80hPJ95jYnnlQYjBw7Jl
-	xrbQBV9l4RTMVDyRl6QVybJw2grgU/0YAN4RhpvrMR6CLnVQngCvKL4u0g2gNrp1nZ1hzBdJ93ZFi
-	MBEA8ZWfP11BxngyF4Y54t2RKs7pFDESch2bBdyDAxth8xD2udb2DivxVwJThO1nMjSyWVWjxO2wJ
-	tBrkjOxAPoF6w8qwn7ixegjbXsxuAE+cvXonG4jlNImvXRPlFsLSvl7w4IZwdgyENsRAwcKdRsuw8
-	F7MRVSbbD4bTksNzmaYg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=NJhS32b7xGspkD1ZrPTZvnsIAbSqgLkjSde+V8A35hg=; b=QZsT4z37Bbto2N
+	GOWE62XVDPoCQdhDnhZIR8s7OzVa41VGwKfjS1sT0J1aWfBm86dxCKuC5P0NCcFaSLCS92tb5VVwp
+	j8c7ao9fWO7rtBjA/Q4l0pLh7dVZE5ixv5J2xZ4Uno3yUztaXD0iZdWeReGkMHVlRROZHA5dScUv5
+	83/0c9lBoVGDXuo6+C0Eqyhc47JhIFXHObBGzjEmitmA6ruKy11ock44Rk1gOH4TmhieZuR3+RLw/
+	uQaFZmvTUmk15y4MUk4uGKkJvQJINXsMtc0nyJv90Cq42ZCTyAkPfWnbgWduIg0/1DIdzDwaV1GTm
+	5Mnghba5Kx1c12jLrHzw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYvX2-001aBN-33;
-	Wed, 23 Aug 2023 21:36:52 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1qYvXA-001aEw-0c;
+	Wed, 23 Aug 2023 21:37:00 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYvWv-001a6M-2x;
-	Wed, 23 Aug 2023 21:36:49 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id CFFBD120006;
-	Thu, 24 Aug 2023 00:36:38 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru CFFBD120006
+	id 1qYvWv-001a6N-2x;
+	Wed, 23 Aug 2023 21:36:50 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id CAE58100004;
+	Thu, 24 Aug 2023 00:36:39 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru CAE58100004
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-	s=mail; t=1692826598;
-	bh=PAT92EhPD5gqLj2vJPE7hpvJyS3wZwt4qhOpe1SENNw=;
+	s=mail; t=1692826599;
+	bh=t29d7as5XZCTGHhzcSL0ro1yTIWIBd3Bj0XuhZfMOcc=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=IROrd0gIp7QVi2PhLJuJDQWns3py/l7uK5pfi1tt23gEzRZb8BBd4Rq5QdKF+X3Wq
-	 KWQTdFuvcojosmc3TYETSvKeYooOcf7VdGslSnJmD2yDTrczOy3ZPBPxWnlcox7gkv
-	 Rzjd7wjjB1g5cBtW8cKm9KDJALc1iDhC8Ne1TniWNmyVd9mtDjDEUnmPwwASC1JGnP
-	 LvEWR+9mSj3TujxFV6MEjd1NunCro0gTI8Qexs33HoG37J2v7ZmZYMWh0O0bNbACgx
-	 WucDESx69gQIzhWMyVqCisCi9yk/4WXagqT0TVPEyVJGUEYS/vNBQubN0bAnQT/9FK
-	 lX1xbXZSWQLug==
+	b=JqZsxjlzz1IGUZDHJagMNorulhfrwp+rc1yV0yICHDM7GmvGIEJo/olhcb7s3krCT
+	 E6oJsOZQFpEJdYTzaTUOKwFNwIfgK6ikV0hi2+trZRHZpoCqkx8+G5eVa64AgWqBd8
+	 YNBCjRvjWqb44PqnqUgvKrM2ScniIrBWfgEVRXBO3NmXNsaiGBOi13btRY8k8I7fvE
+	 jtmNyoTFd3/dGh2H1ijM8RRCNwG0omOBUlM2yi6fVUntCrVZVk/WCFo9oW5ppCbqiK
+	 xtbegPfTTZa9Met8vR08Kj7GOK9mX/G7boKNukptwdkC7xIIDAqftB+YKpEhJjp6Pb
+	 Lgac1rWETiqrQ==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu, 24 Aug 2023 00:36:37 +0300 (MSK)
+	Thu, 24 Aug 2023 00:36:39 +0300 (MSK)
 Received: from localhost.localdomain (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Thu, 24 Aug 2023 00:36:33 +0300
+ 15.2.1118.30; Thu, 24 Aug 2023 00:36:35 +0300
 From: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
 	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
@@ -59,10 +59,12 @@ CC: <kernel@sberdevices.ru>, <sdfw_system_team@sberdevices.ru>,
 	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Subject: [PATCH v2 00/15] arm64: dts: meson: a1: introduce several peripheral IPs
-Date: Thu, 24 Aug 2023 00:36:15 +0300
-Message-ID: <20230823213630.12936-1-ddrokosov@sberdevices.ru>
+Subject: [PATCH v2 02/15] arm64: dts: meson: a1: remove extra empty line before reset node
+Date: Thu, 24 Aug 2023 00:36:17 +0300
+Message-ID: <20230823213630.12936-3-ddrokosov@sberdevices.ru>
 X-Mailer: git-send-email 2.36.0
+In-Reply-To: <20230823213630.12936-1-ddrokosov@sberdevices.ru>
+References: <20230823213630.12936-1-ddrokosov@sberdevices.ru>
 MIME-Version: 1.0
 X-Originating-IP: [100.64.160.123]
 X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
@@ -76,16 +78,16 @@ X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 527 527 5bb611be2ca2baa31d984ccbf4ef4415504fc308, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;salutedevices.com:7.1.1, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 527 527 5bb611be2ca2baa31d984ccbf4ef4415504fc308, {Tracking_smtp_not_equal_from}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;100.64.160.123:7.1.2, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2023/08/23 19:51:00
-X-KSMG-LinksScanning: Clean, bases: 2023/08/23 21:14:00
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/08/23 18:49:00 #21688451
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230823_143646_681962_CEE26B99 
-X-CRM114-Status: GOOD (  14.45  )
+X-CRM114-CacheID: sfid-20230823_143646_706444_377C8E9A 
+X-CRM114-Status: GOOD (  11.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,76 +104,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch series introduces device tree declarations for various
-peripheral IPs of the A1 SoC family, including clock controllers, EFUSE,
-USB, SPI Flash Controller, SDIO, and UART_AO:
-    - CLK: A1 SoC has four types on the board, namely PLL, Peripherals,
-      CPU, and Audio, but only Amlogic A1 PLL and Peripherals clock
-      controllers are currently supported.
-    - EFUSE: consists of a 4k bit One Time Programmable (OTP) memory
-      divided into 32 128-bit blocks, and data is accessed using the APB
-      bus through software or the Key-ladder integrated with the EFUSE
-      block.
-    - USB: only one USB 2.0 high-speed port is available in the A1 SoC,
-      supporting both HOST and DEVICE modes for OTG.
-    - SPI Flash Controller: 4-bit QPI/SPI NOR Flash or NAND FLASH
-      controller.
-    - SDIO: for WiFi/IEEE802.11 connection.
-    - UART_AO: for Bluetooth connection.
-    - HWRNG: hardware random generator integrated into SoC.
-    - AO SECURE: board info registers.
+There should be only one empty line between device tree node
+definitions.
 
-The above peripherals are integrated to new AD402 board device tree.
+Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+---
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-Changes v2 since v1 at [1]:
-    - reorder meson-a1 dtsi includes to keep them sorted
-    - remove extra empty lines
-    - purge the unnecessary 'okay' status
-    - reorder all device tree nodes (existing and new) sorted by 'reg'
-      values
-    - introduce new saradc definition
-    - add hwrng dts node
-    - provide ao secure dts node with board info registers
-    - include all changes to new AD402 board device tree
-    - add AD402 board to bindings
-
-Links:
-    [1] https://lore.kernel.org/all/20230607201641.20982-1-ddrokosov@sberdevices.ru/
-
-Alexey Romanov (3):
-  arm64: dts: meson: a1: enable efuse controller and setup its clk
-  arm64: dts: meson: a1: add hw rng node
-  arm64: dts: meson: a1: add ao secure node
-
-Dmitry Rokosov (8):
-  arm64: dts: meson: a1: reorder includes to keep them sorted
-  arm64: dts: meson: a1: remove extra empty line before reset node
-  arm64: dts: meson: a1: remove the unnecessary 'okay' status pwrc value
-  arm64: dts: meson: a1: reorder gpio_intc node definition
-  arm64: dts: meson: a1: introduce PLL and Peripherals clk controllers
-  arm64: dts: meson: a1: support USB controller in OTG mode
-  arm64: dts: introduce Amlogic AD402 reference board based on A113L SoC
-  dt-bindings: arm: amlogic: add Amlogic AD402 bindings
-
-George Stark (1):
-  arm64: dts: meson: a1: add saradc definition
-
-Jan Dakinevich (1):
-  arm64: dts: meson: a1: add eMMC controller and its pins
-
-Martin Kurbanov (1):
-  arm64: dts: meson: a1: introduce SPI Flash Controller
-
-Oleg Lyovin (1):
-  arm64: dts: meson: a1: introduce UART_AO mux definitions
-
- .../devicetree/bindings/arm/amlogic.yaml      |   1 +
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../arm64/boot/dts/amlogic/meson-a1-ad402.dts | 145 ++++++++++++
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 213 +++++++++++++++++-
- 4 files changed, 348 insertions(+), 12 deletions(-)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index 5d0c8e3966ce..42083d1bc8ca 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -83,7 +83,6 @@ apb: bus@fe000000 {
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x1000000>;
+ 
+-
+ 			reset: reset-controller@0 {
+ 				compatible = "amlogic,meson-a1-reset";
+ 				reg = <0x0 0x0 0x0 0x8c>;
 -- 
 2.36.0
 
