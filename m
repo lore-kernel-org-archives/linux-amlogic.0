@@ -4,72 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68EA7C27C40
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Aug 2023 08:25:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E036C27C40
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Aug 2023 08:28:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xxiot1ehV1yQssz+LAhKUEqEf53Y0WQzoGB/YRQJZ6U=; b=rUTiQZ2xMqsNHLDB8mkv56yMPQ
-	XNKtAnqbnlcq9zMk1lT12wfpzCax2CV3q7/mPoX4KtiPVLwnKHYcuGj6hcpXbykGNY2luEH3T/+Dv
-	oJQoRjZrWnRLBbBMY/OO5KzIVksSlizeXAObpSKuDSjn2tiNFk9/XQAIB5o5TRWrO3AOumu6z899k
-	gaEgE5cO8JZses+ON1tqBmfmeaqTOL4MP5e5f/d2c/w48rcktXsFXy6gBBml0kEASpm2HWsT3IXei
-	fg7KTgqKYpbL9QO8oXJuLM/KbjS0vMdhEl1As9IKfYT6xYdytHeO+kgo+vr/56p7j/Bdw8HIHi0ko
-	IwC7va6w==;
+	bh=S6B4cHohLsRMcGXCCNMT9NzI0Pp8n3tYKYjTE4MNGUM=; b=EyxvxPREcsh8OnQArvNaksuneO
+	obwYA35suvGnn525fhFPHUCrUi5CGkXdnRDZc+g80/4Cbz5EPNp1dpHqzolSylO09PO3BGbZO3Sqo
+	Y48PQ631y1tmIGRS4Vbu8IZfJSyqlcdUcPjf+uys7Q89rol67+MAC+//bWfV5LVx0G1usW1V3ktq3
+	HgyKjSoGElN7A0n0Miy4CY1kSgN0sj+ZHeNIlbmmhuoZZohoRWl5vyqjPW87h/RP0D1Ku5T9anR46
+	3XD9mg2NMp9vu/GfesuVkyyw31E1S1yCiQqpI9H/VGvlCfKs3u2zNPjmoXsIZ6dR5OMIVL9DYrmbX
+	jZm/mUbg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZ5eA-002YPf-0k;
-	Thu, 24 Aug 2023 08:24:54 +0000
-Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
+	id 1qZ5hG-002Yr8-0n;
+	Thu, 24 Aug 2023 08:28:06 +0000
+Received: from mail-lj1-x22f.google.com ([2a00:1450:4864:20::22f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZ5e7-002YOb-1T
+	id 1qZ5hD-002YqL-2r
 	for linux-amlogic@lists.infradead.org;
-	Thu, 24 Aug 2023 08:24:52 +0000
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2bcc4347d2dso54657381fa.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 24 Aug 2023 01:24:47 -0700 (PDT)
+	Thu, 24 Aug 2023 08:28:05 +0000
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2bb8a12e819so100080381fa.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 24 Aug 2023 01:28:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692865486; x=1693470286;
+        d=linaro.org; s=google; t=1692865682; x=1693470482;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=MBWUe/welSTyLE0XN0FKQ2m/IGgsZK6nJo7F/yrgL6Y=;
-        b=LSoHKy21NykeUkVhVQdpbUKajkdlZpVqlx/6hxXKj4EHeM4spA3kYQ3Jz4WKK5yvAP
-         /SSCnwZ/8xpB0IgIQ5yz/VRfVdPDRBEnG2gI6ZdJVWhr6PRN6V9aBZIUP2ol5FMKNMMV
-         TeUuJ9Ko+aGEJMWnVmkfed73CcADeoi+9f3BbGOfIts/ia/WOJNpYI4Ko9/OH48lUTYF
-         5I2yaQ9ce+D4/EmDDMqDLcpPa6w8rblGqAaxCFKMyB9zLU9n9L96tUXIS6mAScAzHHnV
-         VYaVHPsnNZOAi0lXPljkPMwugt3EIeHvQffSPWNofB00ySMNIyHHvg07rfpDJQ9OVHmv
-         O7oQ==
+        bh=kjdwqQ0uWrlbkJWuo+U46KrH7QKTD79xul20PtUY7QA=;
+        b=WIqcdixLKmmLdnaQukswEXoSl09AoNij4ym3q4xq8v/0rg7k0HSPbaGDi+elDo4TyX
+         qzADCpfDmZFGa4mSzmKT0xEY4857ffkU5qoFWwVlYTf6HHFnOMJSb06jEaJY9yX/zRdi
+         JlRp/Sotqs86M7x5zBgkXPdMgpqiMcIiHdCLkbpqlvj1S/qDTj7N7zr/6PAJ3Okbgq3c
+         /pK27etNgdjCu4tJbovzfYH9tq/qy3qEAHb0AMiyqbav4bqDlJMKzxRfq/QC+Xi4nh1F
+         VPHz26bia1/ZRw/oz1XC1RapKAo84KrmrIgzOFbhm9SnvflaO3QBlr2xpHLPtlcHrDY1
+         TXgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692865486; x=1693470286;
+        d=1e100.net; s=20221208; t=1692865682; x=1693470482;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=MBWUe/welSTyLE0XN0FKQ2m/IGgsZK6nJo7F/yrgL6Y=;
-        b=ENr6ca8rzSGI5Mm8tocZhd4gyIPwb1QhDTYK/emrq1KoxxZSQDxPpIML0HWe2Lljf9
-         xXrlsV7kiasl7CHyCVeUkXUMGCaRe2WCaql9fYCVEE3ioMfz/QL2HXFEJ2jcB/1g3g3n
-         Ni/hiw+qi8PPJc0TZXrza7KgrndP/unL/8y6z1dORpOW0P04F2OKEFMMpuNxQsSSEB6B
-         WWEY7UvLNDAaXEnCRORmuV+ZA0A5dVFyp3SSNiK/7I87IXuIxJuFesAbpJ650RBZYmlQ
-         mBIzhSEmQGTO9uLWG60D4d50h5j3ItMT8T1WDKKcZA0MgLR+zwqr695B+88WM2uuIK0k
-         DAKw==
-X-Gm-Message-State: AOJu0YzQln1oLfgidY8GtZkTkHsRm7kauMJ4ZDQx8DLGsOMzgK1Va+WR
-	6QaqnJRseI+RmXJzpMq1mjuVQg==
-X-Google-Smtp-Source: AGHT+IHWcZB9lXJ+vBSQhndi+/YAyJ3D89wEBDbfn5fmHYq1DWowl+vWIotNA3tOjxfImtYPyoRRuQ==
-X-Received: by 2002:a2e:8349:0:b0:2b9:5eae:814f with SMTP id l9-20020a2e8349000000b002b95eae814fmr9589719ljh.50.1692865486158;
-        Thu, 24 Aug 2023 01:24:46 -0700 (PDT)
+        bh=kjdwqQ0uWrlbkJWuo+U46KrH7QKTD79xul20PtUY7QA=;
+        b=TlCQofmbBQCXeEAflo5ZxzX+2CLGC8JwRx1gcqHGfIGHm/tthb14+sePboLQaRXwRr
+         Qpd95IIbfu1sbeNkhizA5PB32APfbPPs/vvf2j9i749smwZmN6h7X/x/+F21MM3UfPyK
+         JclOdEGd9FWH6b95HhFjb0M4u4+lfIfBL1bd0ckC2f9bjrdBKEQA/mXNL9dV3mm6BnSG
+         WenATSamT85N1s0iFbAbfHe7WFbD40g+DxzxHJWKK+RiIKCT0i9WYO4VZ+wv6IUicWNn
+         7pFI/vmcrVytArLgD6L1hN3Esx8qxKh1WJbISICUAxIDeY/Wcfgez1zM40p4Xs+KLuKR
+         hOBw==
+X-Gm-Message-State: AOJu0Yw9WpRXk1e1qxt3AWsOGe9CoI3CibusWkHpb5wA/HLhGFHFSM0N
+	KiXrv1KRYA3xxzJHnZxI4ZDYlQ==
+X-Google-Smtp-Source: AGHT+IGH78Fy+8c6JwG7qxeJucEClM0wxXMWmDebYumzqcZd35hvZR5BLwgj8VKI43fxqmP4PIdX+w==
+X-Received: by 2002:a2e:8051:0:b0:2bc:e827:a4ff with SMTP id p17-20020a2e8051000000b002bce827a4ffmr896249ljg.9.1692865681962;
+        Thu, 24 Aug 2023 01:28:01 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:e6d5:d4d4:f3a1:e44b? ([2a01:e0a:982:cbb0:e6d5:d4d4:f3a1:e44b])
-        by smtp.gmail.com with ESMTPSA id 14-20020a05600c024e00b003fe2bea77ccsm12946wmj.5.2023.08.24.01.24.41
+        by smtp.gmail.com with ESMTPSA id x4-20020adff0c4000000b003180fdf5589sm21866081wro.6.2023.08.24.01.28.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 01:24:42 -0700 (PDT)
-Message-ID: <cdab27cb-fea4-4f09-8a66-ce1aa1090186@linaro.org>
-Date: Thu, 24 Aug 2023 10:24:40 +0200
+        Thu, 24 Aug 2023 01:28:01 -0700 (PDT)
+Message-ID: <741c1e35-648d-4c2f-a939-24bcbec93911@linaro.org>
+Date: Thu, 24 Aug 2023 10:27:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH V2 1/6] soc: amlogic: modify some power domains property
+Subject: Re: [PATCH V2 2/6] soc: amlogic: add driver to support power parent
+ node
 Content-Language: en-US, fr
 To: Xianwei Zhao <xianwei.zhao@amlogic.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
@@ -78,7 +79,7 @@ Cc: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>
 References: <20230824055930.2576849-1-xianwei.zhao@amlogic.com>
- <20230824055930.2576849-2-xianwei.zhao@amlogic.com>
+ <20230824055930.2576849-3-xianwei.zhao@amlogic.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -104,10 +105,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20230824055930.2576849-2-xianwei.zhao@amlogic.com>
+In-Reply-To: <20230824055930.2576849-3-xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230824_012451_543410_25B48CBB 
-X-CRM114-Status: GOOD (  13.69  )
+X-CRM114-CacheID: sfid-20230824_012803_952913_6DF5D70A 
+X-CRM114-Status: GOOD (  19.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,64 +131,90 @@ Hi,
 On 24/08/2023 07:59, Xianwei Zhao wrote:
 > From: "xianwei.zhao" <xianwei.zhao@amlogic.com>
 > 
-> Some power domains for C3 can be using runtime PM,
-> remove ALWAYS_ON property. And add some power domains
-> description when ALWAYS_ON property.
-
-The subject should now be:
-genpd: amlogic: ....
-
-same for patches 2 & 5.
-
+> Some power domains depends on other domains, Such as Amlogic T7 SoC.
+> Add parent node to support this case.
 > 
 > Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
 > ---
 > V1 -> V2: None
 > ---
->   drivers/genpd/amlogic/meson-secure-pwrc.c | 25 ++++++++++++-----------
->   1 file changed, 13 insertions(+), 12 deletions(-)
+>   drivers/genpd/amlogic/meson-secure-pwrc.c | 26 ++++++++++++++++++++++-
+>   1 file changed, 25 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/genpd/amlogic/meson-secure-pwrc.c b/drivers/genpd/amlogic/meson-secure-pwrc.c
-> index 89c881c56cd7..5ac2437ab8ad 100644
+> index 5ac2437ab8ad..76527f4946b4 100644
 > --- a/drivers/genpd/amlogic/meson-secure-pwrc.c
 > +++ b/drivers/genpd/amlogic/meson-secure-pwrc.c
-> @@ -122,18 +122,19 @@ static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
->   };
+> @@ -19,10 +19,12 @@
 >   
->   static struct meson_secure_pwrc_domain_desc c3_pwrc_domains[] = {
-> -	SEC_PD(C3_NNA,	0),
-> -	SEC_PD(C3_AUDIO,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_SDIOA,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_EMMC,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_USB_COMB, GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_SDCARD,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_ETH,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_GE2D,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_CVE,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_GDC_WRAP,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_ISP_TOP,		GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_MIPI_ISP_WRAP, GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_NNA,		0),
-> +	SEC_PD(C3_AUDIO,	0),
-> +	SEC_PD(C3_SDIOA,	0),
-> +	SEC_PD(C3_EMMC,		0),
-> +	SEC_PD(C3_USB_COMB,	0),
-> +	SEC_PD(C3_SDCARD,	0),
-> +	/* ETH is for ethernet online wakeup, and should be always on */
-> +	SEC_PD(C3_ETH,		GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_GE2D,		0),
-> +	SEC_PD(C3_CVE,		0),
-> +	SEC_PD(C3_GDC_WRAP,	0),
-> +	SEC_PD(C3_ISP_TOP,	0),
-> +	SEC_PD(C3_MIPI_ISP_WRAP, 0),
->   	SEC_PD(C3_VCODEC,	0),
->   };
->   
-> 
-> base-commit: 413f5c02929bb33042bbc4ee233166550a5fca70
+>   #define PWRC_ON		1
+>   #define PWRC_OFF	0
+> +#define PWRC_NO_PARENT  ((1UL << (sizeof(unsigned int) * 8)) - 1)
 
-With changed subject:
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+This is fishy, just use UINT_MAX
+
+>   
+>   struct meson_secure_pwrc_domain {
+>   	struct generic_pm_domain base;
+>   	unsigned int index;
+> +	unsigned int parent;
+>   	struct meson_secure_pwrc *pwrc;
+>   };
+>   
+> @@ -34,6 +36,7 @@ struct meson_secure_pwrc {
+>   
+>   struct meson_secure_pwrc_domain_desc {
+>   	unsigned int index;
+> +	unsigned int parent;
+>   	unsigned int flags;
+>   	char *name;
+>   	bool (*is_off)(struct meson_secure_pwrc_domain *pwrc_domain);
+> @@ -90,8 +93,19 @@ static int meson_secure_pwrc_on(struct generic_pm_domain *domain)
+>   {						\
+>   	.name = #__name,			\
+>   	.index = PWRC_##__name##_ID,		\
+> -	.is_off = pwrc_secure_is_off,	\
+> +	.is_off = pwrc_secure_is_off,		\
+>   	.flags = __flag,			\
+> +	.parent = PWRC_NO_PARENT,		\
+> +}
+> +
+> +#define TOP_PD(__name, __flag, __parent)	\
+> +[PWRC_##__name##_ID] =				\
+> +{						\
+> +	.name = #__name,			\
+> +	.index = PWRC_##__name##_ID,		\
+> +	.is_off = pwrc_secure_is_off,		\
+> +	.flags = __flag,			\
+> +	.parent = __parent,			\
+>   }
+>   
+>   static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
+> @@ -202,6 +216,7 @@ static int meson_secure_pwrc_probe(struct platform_device *pdev)
+>   
+>   		dom->pwrc = pwrc;
+>   		dom->index = match->domains[i].index;
+> +		dom->parent = match->domains[i].parent;
+>   		dom->base.name = match->domains[i].name;
+>   		dom->base.flags = match->domains[i].flags;
+>   		dom->base.power_on = meson_secure_pwrc_on;
+> @@ -212,6 +227,15 @@ static int meson_secure_pwrc_probe(struct platform_device *pdev)
+>   		pwrc->xlate.domains[i] = &dom->base;
+>   	}
+>   
+> +	for (i = 0; i < match->count; i++) {
+> +		struct meson_secure_pwrc_domain *dom = pwrc->domains;
+> +
+> +		if (!match->domains[i].name || match->domains[i].parent == PWRC_NO_PARENT)
+> +			continue;
+> +
+> +		pm_genpd_add_subdomain(&dom[dom[i].parent].base, &dom[i].base);
+> +	}
+> +
+>   	return of_genpd_add_provider_onecell(pdev->dev.of_node, &pwrc->xlate);
+>   }
+>   
+
 
 _______________________________________________
 linux-amlogic mailing list
