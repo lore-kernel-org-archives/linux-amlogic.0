@@ -4,73 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E036C27C40
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Aug 2023 08:28:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ACF7C7113B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Aug 2023 08:30:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=S6B4cHohLsRMcGXCCNMT9NzI0Pp8n3tYKYjTE4MNGUM=; b=EyxvxPREcsh8OnQArvNaksuneO
-	obwYA35suvGnn525fhFPHUCrUi5CGkXdnRDZc+g80/4Cbz5EPNp1dpHqzolSylO09PO3BGbZO3Sqo
-	Y48PQ631y1tmIGRS4Vbu8IZfJSyqlcdUcPjf+uys7Q89rol67+MAC+//bWfV5LVx0G1usW1V3ktq3
-	HgyKjSoGElN7A0n0Miy4CY1kSgN0sj+ZHeNIlbmmhuoZZohoRWl5vyqjPW87h/RP0D1Ku5T9anR46
-	3XD9mg2NMp9vu/GfesuVkyyw31E1S1yCiQqpI9H/VGvlCfKs3u2zNPjmoXsIZ6dR5OMIVL9DYrmbX
-	jZm/mUbg==;
+	bh=ulMur4T1CG3xxbNwasiE+hvwO2n1vK7lXHILPEX8Emc=; b=w9KNDzWgelp4JGXpDjPnuvisGH
+	uUZDK7rMyaTgQbc6QAcX/qjEsk7M0j0F5khTNfnKzSem2DVK20xrl3dfNjMQUItshNjF3r3nIy7F6
+	9tFJDB1s8HYU06Nn0fZF8NeDWFi7tSHVPgBm9+WBLB7eGdHkVrUW5AWkL786FqRDmR4dqTQkX1vBs
+	2mrhhRclWKfe7YTazDM9RjCco0E2Iy/n8jb1J/fuI/pdU04lRgLyXnYvH9XciI31tV4gd8Ihhjm6u
+	3yvIGhPXCD5ZgWnnkCRqfJmNo3iCXBVFoTzhnIxKoX8DITgFmJ92qBNllN+i15CFJmw/96vDQS1fE
+	z0TBAKrQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZ5hG-002Yr8-0n;
-	Thu, 24 Aug 2023 08:28:06 +0000
-Received: from mail-lj1-x22f.google.com ([2a00:1450:4864:20::22f])
+	id 1qZ5jL-002ZF3-09;
+	Thu, 24 Aug 2023 08:30:15 +0000
+Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZ5hD-002YqL-2r
+	id 1qZ5jI-002ZDv-33
 	for linux-amlogic@lists.infradead.org;
-	Thu, 24 Aug 2023 08:28:05 +0000
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2bb8a12e819so100080381fa.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 24 Aug 2023 01:28:03 -0700 (PDT)
+	Thu, 24 Aug 2023 08:30:14 +0000
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2bcbfb3705dso60240841fa.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 24 Aug 2023 01:30:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692865682; x=1693470482;
+        d=linaro.org; s=google; t=1692865811; x=1693470611;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=kjdwqQ0uWrlbkJWuo+U46KrH7QKTD79xul20PtUY7QA=;
-        b=WIqcdixLKmmLdnaQukswEXoSl09AoNij4ym3q4xq8v/0rg7k0HSPbaGDi+elDo4TyX
-         qzADCpfDmZFGa4mSzmKT0xEY4857ffkU5qoFWwVlYTf6HHFnOMJSb06jEaJY9yX/zRdi
-         JlRp/Sotqs86M7x5zBgkXPdMgpqiMcIiHdCLkbpqlvj1S/qDTj7N7zr/6PAJ3Okbgq3c
-         /pK27etNgdjCu4tJbovzfYH9tq/qy3qEAHb0AMiyqbav4bqDlJMKzxRfq/QC+Xi4nh1F
-         VPHz26bia1/ZRw/oz1XC1RapKAo84KrmrIgzOFbhm9SnvflaO3QBlr2xpHLPtlcHrDY1
-         TXgQ==
+        bh=Xg+6LU2qLbyDNeIWBYMZUpdqHpT0GomQwi8jpOi5ytg=;
+        b=fe3VF2AVkhDbqpW0ZGtyKbG0XrZ+YhEZnFsVuKuENQyhcAatjzyBUL1D4NhCTh0I9c
+         uFLwdUH3kj2LdhnJM0CMy7JEM3JmTMuIxuUIoTDe0BRtLz9AkoD034k+imMTBU5jRdlB
+         Qm5w8vQZdhgtPkrQXm5kJ+1wbDKTiFaqFhZbuYnqgF+mcKxk3VYggVeuW2ItRRIvcwZH
+         vtENLjzTjunqHph6zziQfw/s6MerFOeAr2kaUS+5Nz40L9d6yEE+f/rrc7fPclk9BBDs
+         gCVtpmzsIKq0E52HpRzOd2uWnZ1MV7YqPwd7exn1UQwt/zI1df6IzRzfByqZl5jLw9XK
+         85wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692865682; x=1693470482;
+        d=1e100.net; s=20221208; t=1692865811; x=1693470611;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=kjdwqQ0uWrlbkJWuo+U46KrH7QKTD79xul20PtUY7QA=;
-        b=TlCQofmbBQCXeEAflo5ZxzX+2CLGC8JwRx1gcqHGfIGHm/tthb14+sePboLQaRXwRr
-         Qpd95IIbfu1sbeNkhizA5PB32APfbPPs/vvf2j9i749smwZmN6h7X/x/+F21MM3UfPyK
-         JclOdEGd9FWH6b95HhFjb0M4u4+lfIfBL1bd0ckC2f9bjrdBKEQA/mXNL9dV3mm6BnSG
-         WenATSamT85N1s0iFbAbfHe7WFbD40g+DxzxHJWKK+RiIKCT0i9WYO4VZ+wv6IUicWNn
-         7pFI/vmcrVytArLgD6L1hN3Esx8qxKh1WJbISICUAxIDeY/Wcfgez1zM40p4Xs+KLuKR
-         hOBw==
-X-Gm-Message-State: AOJu0Yw9WpRXk1e1qxt3AWsOGe9CoI3CibusWkHpb5wA/HLhGFHFSM0N
-	KiXrv1KRYA3xxzJHnZxI4ZDYlQ==
-X-Google-Smtp-Source: AGHT+IGH78Fy+8c6JwG7qxeJucEClM0wxXMWmDebYumzqcZd35hvZR5BLwgj8VKI43fxqmP4PIdX+w==
-X-Received: by 2002:a2e:8051:0:b0:2bc:e827:a4ff with SMTP id p17-20020a2e8051000000b002bce827a4ffmr896249ljg.9.1692865681962;
-        Thu, 24 Aug 2023 01:28:01 -0700 (PDT)
+        bh=Xg+6LU2qLbyDNeIWBYMZUpdqHpT0GomQwi8jpOi5ytg=;
+        b=gFh9bkyPvzs7teHWyEJ5DFw56N2GwMF3x7v002qoqJHNGtjNHDx50+h/hQNub5BboF
+         Zpq07bGdHDpxTFaJJ7PiCmmU3rzumD3a6++y8hh2RTerGpkylOF+MKh9qMHx1kQ3zsQY
+         N7h9vbYZvOOFSo8IiXR6I4dE3UM/Krngc7sTqWhD9wsZjhwDFQmj5lUINq7OyVgMTIDq
+         39ncndCHNQvt60ObcFC3qa3pPTnGN764bj8Q6aRJfYCinY0dex4qboXQsT7ll/tjOciv
+         eInJgKNJYk8dR6PDRyaBejD4cJR2LUF9rlNaArKsIeDnqVTvbuOCTvBzTtoj+PPhptJg
+         LzRQ==
+X-Gm-Message-State: AOJu0YzETI4G3raHYaLNK+rM0kWjX93EJFw3j7wLzN0JwDF+wtc1u6Hk
+	5prEbYo6E8ugAxHXpG75ee7Piw==
+X-Google-Smtp-Source: AGHT+IFDCWnxfbeRf73G5R+6eO8t/eBJyXZxQHkqwUUV8xzI53EYnlXBAV2kZKRkg/QOEUjdWfS4fQ==
+X-Received: by 2002:a2e:9096:0:b0:2bc:d5f1:b9cf with SMTP id l22-20020a2e9096000000b002bcd5f1b9cfmr4753306ljg.27.1692865811211;
+        Thu, 24 Aug 2023 01:30:11 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:e6d5:d4d4:f3a1:e44b? ([2a01:e0a:982:cbb0:e6d5:d4d4:f3a1:e44b])
-        by smtp.gmail.com with ESMTPSA id x4-20020adff0c4000000b003180fdf5589sm21866081wro.6.2023.08.24.01.28.00
+        by smtp.gmail.com with ESMTPSA id 22-20020a05600c22d600b003fbd9e390e1sm1907393wmg.47.2023.08.24.01.30.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 01:28:01 -0700 (PDT)
-Message-ID: <741c1e35-648d-4c2f-a939-24bcbec93911@linaro.org>
-Date: Thu, 24 Aug 2023 10:27:59 +0200
+        Thu, 24 Aug 2023 01:30:10 -0700 (PDT)
+Message-ID: <91e4a3f1-84ed-4433-90fc-bdfb9b08e57a@linaro.org>
+Date: Thu, 24 Aug 2023 10:30:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH V2 2/6] soc: amlogic: add driver to support power parent
- node
+Subject: Re: [PATCH V2 3/6] soc: amlogic: init power domain state
 Content-Language: en-US, fr
 To: Xianwei Zhao <xianwei.zhao@amlogic.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
@@ -79,7 +78,7 @@ Cc: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>
 References: <20230824055930.2576849-1-xianwei.zhao@amlogic.com>
- <20230824055930.2576849-3-xianwei.zhao@amlogic.com>
+ <20230824055930.2576849-4-xianwei.zhao@amlogic.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -105,10 +104,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20230824055930.2576849-3-xianwei.zhao@amlogic.com>
+In-Reply-To: <20230824055930.2576849-4-xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230824_012803_952913_6DF5D70A 
-X-CRM114-Status: GOOD (  19.98  )
+X-CRM114-CacheID: sfid-20230824_013012_992085_EC4527F5 
+X-CRM114-Status: GOOD (  17.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -131,89 +130,43 @@ Hi,
 On 24/08/2023 07:59, Xianwei Zhao wrote:
 > From: "xianwei.zhao" <xianwei.zhao@amlogic.com>
 > 
-> Some power domains depends on other domains, Such as Amlogic T7 SoC.
-> Add parent node to support this case.
+> If initial power domain with 'AWAY_ON' property state is off,
+> turn on the power.
 > 
 > Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
 > ---
 > V1 -> V2: None
 > ---
->   drivers/genpd/amlogic/meson-secure-pwrc.c | 26 ++++++++++++++++++++++-
->   1 file changed, 25 insertions(+), 1 deletion(-)
+>   drivers/genpd/amlogic/meson-secure-pwrc.c | 5 ++++-
+>   1 file changed, 4 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/genpd/amlogic/meson-secure-pwrc.c b/drivers/genpd/amlogic/meson-secure-pwrc.c
-> index 5ac2437ab8ad..76527f4946b4 100644
+> index 76527f4946b4..3e7e3bd25d1f 100644
 > --- a/drivers/genpd/amlogic/meson-secure-pwrc.c
 > +++ b/drivers/genpd/amlogic/meson-secure-pwrc.c
-> @@ -19,10 +19,12 @@
+> @@ -55,7 +55,7 @@ static bool pwrc_secure_is_off(struct meson_secure_pwrc_domain *pwrc_domain)
+>   			  pwrc_domain->index, 0, 0, 0, 0) < 0)
+>   		pr_err("failed to get power domain status\n");
 >   
->   #define PWRC_ON		1
->   #define PWRC_OFF	0
-> +#define PWRC_NO_PARENT  ((1UL << (sizeof(unsigned int) * 8)) - 1)
+> -	return is_off;
+> +	return !!is_off;
 
-This is fishy, just use UINT_MAX
+Can you explain this ? the function returns bool, so if if_off is > 0, it would return true,
+so I don't see why you would need to transform is_off into 1 or 0 using !!.
 
->   
->   struct meson_secure_pwrc_domain {
->   	struct generic_pm_domain base;
->   	unsigned int index;
-> +	unsigned int parent;
->   	struct meson_secure_pwrc *pwrc;
->   };
->   
-> @@ -34,6 +36,7 @@ struct meson_secure_pwrc {
->   
->   struct meson_secure_pwrc_domain_desc {
->   	unsigned int index;
-> +	unsigned int parent;
->   	unsigned int flags;
->   	char *name;
->   	bool (*is_off)(struct meson_secure_pwrc_domain *pwrc_domain);
-> @@ -90,8 +93,19 @@ static int meson_secure_pwrc_on(struct generic_pm_domain *domain)
->   {						\
->   	.name = #__name,			\
->   	.index = PWRC_##__name##_ID,		\
-> -	.is_off = pwrc_secure_is_off,	\
-> +	.is_off = pwrc_secure_is_off,		\
->   	.flags = __flag,			\
-> +	.parent = PWRC_NO_PARENT,		\
-> +}
-> +
-> +#define TOP_PD(__name, __flag, __parent)	\
-> +[PWRC_##__name##_ID] =				\
-> +{						\
-> +	.name = #__name,			\
-> +	.index = PWRC_##__name##_ID,		\
-> +	.is_off = pwrc_secure_is_off,		\
-> +	.flags = __flag,			\
-> +	.parent = __parent,			\
 >   }
 >   
->   static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
-> @@ -202,6 +216,7 @@ static int meson_secure_pwrc_probe(struct platform_device *pdev)
->   
->   		dom->pwrc = pwrc;
->   		dom->index = match->domains[i].index;
-> +		dom->parent = match->domains[i].parent;
->   		dom->base.name = match->domains[i].name;
->   		dom->base.flags = match->domains[i].flags;
+>   static int meson_secure_pwrc_off(struct generic_pm_domain *domain)
+> @@ -222,6 +222,9 @@ static int meson_secure_pwrc_probe(struct platform_device *pdev)
 >   		dom->base.power_on = meson_secure_pwrc_on;
-> @@ -212,6 +227,15 @@ static int meson_secure_pwrc_probe(struct platform_device *pdev)
+>   		dom->base.power_off = meson_secure_pwrc_off;
+>   
+> +		if (match->domains[i].is_off(dom) && (dom->base.flags & GENPD_FLAG_ALWAYS_ON))
+> +			meson_secure_pwrc_on(&dom->base);
+> +
+>   		pm_genpd_init(&dom->base, NULL, match->domains[i].is_off(dom));
+>   
 >   		pwrc->xlate.domains[i] = &dom->base;
->   	}
->   
-> +	for (i = 0; i < match->count; i++) {
-> +		struct meson_secure_pwrc_domain *dom = pwrc->domains;
-> +
-> +		if (!match->domains[i].name || match->domains[i].parent == PWRC_NO_PARENT)
-> +			continue;
-> +
-> +		pm_genpd_add_subdomain(&dom[dom[i].parent].base, &dom[i].base);
-> +	}
-> +
->   	return of_genpd_add_provider_onecell(pdev->dev.of_node, &pwrc->xlate);
->   }
->   
 
 
 _______________________________________________
