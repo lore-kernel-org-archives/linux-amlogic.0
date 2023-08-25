@@ -4,72 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B109C71133
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Aug 2023 12:17:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BE9BC7EE2C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Aug 2023 12:20:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=GzVq3swDHekoursZQHss25ZiHFSDlXugR2fknBpS/6w=; b=akds4GdURwioBGjWIPi6CyKlOw
-	tCAwJZv5Wph+PxNQENEh24WGh00gykNSVzkARems7B9j5B/HorU4gFIcbjOc5qBdB6huI/CHXsZIJ
-	1MsnB+MQlq4aiuG1szB6KcIXPc+7XqD/x4kEi+iPku3jIXJuf3RTuggvDLjDWTIGrwXLTS5bJhvyy
-	+LdEvJF9x86R2AmyhRvr+7TRJg3vkJH8cFK4+Kygh0RynoVwA4n2PpX+CNBSl2ljXdFMAGb9Gd5rS
-	0FvURCeZKEPdVJv/XHlHcdzzl1tlQWa+4pE0Jgk39Hmh8KPsqpo7FOtdLMLvXdjgkqc2ccIV55bP3
-	5Pmifwcw==;
+	bh=dvGbzZtp+ElVoYxnF75IoVlByapzxIPaochNHcyOdFs=; b=nSIRru3vhtBM4iIIyXMi26ieQo
+	JlKMaNVi+urV1BUFDGumKROxG2/gjP7guJQsFcXn1Fa8GBLqZrVIyc9emuWBlYKSeHBEkZ8f/+zVp
+	g/MTayi6HDLteExj8J0oNqTsbv5YjdVn5ofG8SGZBWV3OntYdyTeodUji6U61jKRxJA9MgnpNTLUd
+	KSsFAbsCZzS6gGPX51pyaP/BMTGIc/+qAC0fSQ4htbYIDHWiWQjKEJCMPeCQ3vlS9vq9NM7I03nZo
+	G3kILSxd+82ymT6askO3DSTe8/tu4nUk8uIrFi0ue9SMqCz6lo4Ex9+JHbYeuamAJbfgWnKZDwkSl
+	xHAAt40Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZVk6-005MVx-15;
-	Fri, 25 Aug 2023 12:16:46 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1qZVnH-005Mwn-2c;
+	Fri, 25 Aug 2023 12:20:03 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZVk3-005MUR-0n
+	id 1qZVnD-005Mve-1j
 	for linux-amlogic@lists.infradead.org;
-	Fri, 25 Aug 2023 12:16:44 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3fea0640d7aso8052435e9.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 25 Aug 2023 05:16:41 -0700 (PDT)
+	Fri, 25 Aug 2023 12:20:00 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-31c5c06e8bbso685160f8f.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 25 Aug 2023 05:19:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692965801; x=1693570601;
+        d=linaro.org; s=google; t=1692965998; x=1693570798;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=o7W3K6QieOMlEGkELlxavl+PcEL/5xKZFRwCQWMzW5I=;
-        b=lGawyDxFUMgbdHeE2koQ5KcxJuXV/iJw3TTRgxmLIObGXulXUhEPJnx0xecUBKAJpA
-         Ca2dYbsYwIp9vv86H6MagZ6wXjHjswkjzgzLDeS3SixoIgzYXyrIdc/ulKk2rf652GVp
-         TIgSzL0crZ0qhhHXYUQbPPt/5xAKnOCHCtyFU/etBkFFkz5lk2BaWZe3W52Gi+oAdFx8
-         06Ws3MZra2x4CxbZSUqyfhCc+b22wJ09FXGpxZUXGBmhF8qJLTDEYUwuf7z0QJDQEMHd
-         cvCOVP09pbZXRK6HCJRDNaLg/miI8lvLEw0lxcRxe1HTyN1CHYDMpRaNNnVFEPCHGckQ
-         vPwg==
+        bh=nHMjHCi8nL3iHIgcbWKICMPh5N5wLAaAe8hnVrLWWts=;
+        b=stSpww4kF0HfI75b/eWOhExLhhjPevwnLfPVWe0HermHZAv8tXzhNecSqYc8XiE3X8
+         y+gRUNDTSriSSKp1j84eabEVaRwcXVfo9X2TH/Fo/oQ1wVGKvSAf0E6Pzv/JOcPlbd6M
+         XS1WgHhrc5XbSd61e4DYhdf4mulHv+qsmvZnjvOUlboMm24zPMFMKXQdkir77/TaA4tN
+         XLah1OSo9F8POQxkSIhMOUp+j3UwKw/Hmv77+8UGKRr9R/WBPi1mVG6B1/3iTUSdp1KK
+         eh97E7gdcVBzuYdRYK7+Le7w/+eCQHjwO5nTBTEtIx8chlzcbLl2vfwHwBVi24rUYr0j
+         wHww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692965801; x=1693570601;
+        d=1e100.net; s=20221208; t=1692965998; x=1693570798;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=o7W3K6QieOMlEGkELlxavl+PcEL/5xKZFRwCQWMzW5I=;
-        b=eh2rWburPSJkqWPXeq1ZSNrst+rAFU+WogIIUZVFRX7iujl98bCrvY1YubiOWRgJcP
-         XHS4gTKJAyc1mCxWe52x/f4ycBksxtB2M6/atMV3df7oSsQPlng1gU5iRYWCmciZzetR
-         bTovddeIn/vNuGmCXOJnAgllHYzzJTU4Ga8eg3/xNDQbAomcFxdo/eDR9mmsnW3CN31s
-         S7/Im+YQpQmKTV96kLvyCnwKZ4uN7PXe+BuQbswHk3RZQqul3KtBqaCgIqcNw0QLXS9W
-         ibOQ8k6Oxl8gmEKrQVuDX9dItutQos5JZqKuq3Fwc/S/dFobqLtpN8yiRqG2dISsr1Nj
-         A5ZQ==
-X-Gm-Message-State: AOJu0Ywv8HkIL7HDyNPN/mHgHwMrAvJOZr2NODoWMnI8Ny99mo1naZZv
-	EHfBDd49wEW/nvzUaPUgD6w5ag==
-X-Google-Smtp-Source: AGHT+IFatSYfdQ8wgd9jKCT40sM9oeeY/ZuR3qwKdKNIQTZvKeZ8tkb1COEsYjFTJOuKxzoqMamt/Q==
-X-Received: by 2002:a1c:7508:0:b0:3fb:a102:6d7a with SMTP id o8-20020a1c7508000000b003fba1026d7amr13978738wmc.28.1692965800627;
-        Fri, 25 Aug 2023 05:16:40 -0700 (PDT)
+        bh=nHMjHCi8nL3iHIgcbWKICMPh5N5wLAaAe8hnVrLWWts=;
+        b=GujOrympoLRI/xAOlEoD0FKuxf9+YhrVBe8Zt+zQXykwDsDereAopgbS3PxxREIECs
+         IjuQ1ixdWE+SsYaF7TJ6/9prEbO4DJQZ/HlAeHRXS1YbKCbvd+d29ZuXM8nX+ZAdidwE
+         gVBb/E0MRrog0Xa+J3CqGf0POIYvw8nxVZaY7aNWm0WW0Wjt8oqhqid1lyBRCrASeG1A
+         CdTxTsQyMAuJ0YbONYz//WW8JyqpxZedC4a2y2oVWAZKhVcS2VYrF5toYyMB7ZzmSB3Y
+         6SFOb6Cbe2vTpd2/X+OGnxQOcYRsXn42xuQrqsR2Cl0rzzONjRHdVcj7X/FGwodyVjhJ
+         7ZmA==
+X-Gm-Message-State: AOJu0Yw6DP5a8VL5a/HLx3OsRxdaNjMylC7kDTHQth3oM3d1mAdtoQAB
+	uyOr//XiAJ+LN3fH3M5VoUrW3+8jPDPH86ch/CdjoQ==
+X-Google-Smtp-Source: AGHT+IErkRB/kpj/09WspYrWIaceU32Ug6rXwPqFBa48iPDlFLCkFheTF9ANCrHi7SZ2AjSvH8UDuw==
+X-Received: by 2002:a5d:5963:0:b0:31a:ccc7:29ee with SMTP id e35-20020a5d5963000000b0031accc729eemr12307289wri.7.1692965997883;
+        Fri, 25 Aug 2023 05:19:57 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:4e1:71e1:b02b:811e? ([2a01:e0a:982:cbb0:4e1:71e1:b02b:811e])
-        by smtp.gmail.com with ESMTPSA id u2-20020a05600c00c200b003fe2a40d287sm2061684wmm.1.2023.08.25.05.16.39
+        by smtp.gmail.com with ESMTPSA id g13-20020a5d64ed000000b003177f57e79esm2095673wri.88.2023.08.25.05.19.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Aug 2023 05:16:40 -0700 (PDT)
-Message-ID: <32873c1f-6c8a-425e-8965-a6f727d1408a@linaro.org>
-Date: Fri, 25 Aug 2023 14:16:38 +0200
+        Fri, 25 Aug 2023 05:19:57 -0700 (PDT)
+Message-ID: <fcdb1fb2-784d-4235-aa47-9e489395c028@linaro.org>
+Date: Fri, 25 Aug 2023 14:19:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 3/3] arm64: dts: meson: add IR controller for Meson-S4 SoC
+Subject: Re: [PATCH 1/3] media: rc: meson-ir: support rc driver type
+ RC_DRIVER_SCANCODE
+Content-Language: en-US, fr
 To: zelong dong <zelong.dong@amlogic.com>, Sean Young <sean@mess.org>,
  Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
  <robh+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
@@ -80,8 +82,7 @@ Cc: linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Qianggui.Song@amlogic.com, Yonghui.Yu@amlogic.com, kelvin.zhang@amlogic.com
 References: <20230825115310.39993-1-zelong.dong@amlogic.com>
- <20230825115310.39993-4-zelong.dong@amlogic.com>
-Content-Language: en-US, fr
+ <20230825115310.39993-2-zelong.dong@amlogic.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -107,10 +108,11 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20230825115310.39993-4-zelong.dong@amlogic.com>
+In-Reply-To: <20230825115310.39993-2-zelong.dong@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230825_051643_291846_0FEE8A1C 
-X-CRM114-Status: GOOD (  12.79  )
+X-CRM114-CacheID: sfid-20230825_051959_576830_6DF1B6A1 
+X-CRM114-Status: UNSURE (   8.61  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -131,63 +133,25 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On 25/08/2023 13:53, zelong dong wrote:
 > From: Zelong Dong <zelong.dong@amlogic.com>
 > 
-> Add the IR controller device of Meson-S4 SoC family.
+> Meson IR Controller supports hardware decoder in Meson-S4 and later
+> SoC. So far, protocol NEC could be decoded by hardware decoder.
 > 
 > Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
 > ---
->   .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts    |  6 ++++++
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi         | 15 +++++++++++++++
->   2 files changed, 21 insertions(+)
+>   drivers/media/rc/meson-ir.c | 522 +++++++++++++++++++++++++++++++-----
+>   1 file changed, 451 insertions(+), 71 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> index 8ffbcb2b1ac5..c1f322c73982 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> @@ -28,3 +28,9 @@ memory@0 {
->   &uart_B {
->   	status = "okay";
->   };
-> +
-> +&ir {
-> +	status = "okay";
-> +	pinctrl-0 = <&remote_pins>;
-> +	pinctrl-names = "default";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> index f24460186d3d..5a3abcc08ee5 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -106,6 +106,14 @@ gpio: bank@4000 {
->   					#gpio-cells = <2>;
->   					gpio-ranges = <&periphs_pinctrl 0 0 82>;
->   				};
-> +
-> +				remote_pins: remote-pin {
-> +					mux {
-> +						groups = "remote_in";
-> +						function = "remote_in";
-> +						bias-disable;
-> +					};
-> +				};
->   			};
->   
->   			gpio_intc: interrupt-controller@4080 {
-> @@ -133,6 +141,13 @@ reset: reset-controller@2000 {
->   				reg = <0x0 0x2000 0x0 0x98>;
->   				#reset-cells = <1>;
->   			};
-> +
-> +			ir: ir@84040 {
-> +				compatible = "amlogic,meson-s4-ir";
-> +				reg = <0x0 0x84040 0x0 0x30>;
-> +				interrupts = <GIC_SPI 22 IRQ_TYPE_EDGE_RISING>;
-> +				status = "disabled";
-> +			};
->   		};
->   	};
->   };
+
+<snip>
+
+It looks pretty good now, so far I'm ok with it:
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+I think some test reports would be needed to be sure it doesn't regress existing HW.
+
+Thanks,
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
