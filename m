@@ -4,87 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7E0FC3DA6F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Aug 2023 12:26:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC71DC71133
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Aug 2023 13:56:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=g+iSHiYapcTbkluOTr0s/D4U99jLJZQNt4LaXi0c+cc=; b=RJr7qtbu7qlqMo
-	Gp5gT44G2ipRnR2a0hVexJv09u/7UNx4LXMSJT7uQYwTqdeJr1LP8G+4+yUzBHXnOr8Fv/KM8GhRb
-	Xhd205f747bchkCIWv7wYLdG0bGi0N/71oS5FE0x94twAR+m5aa6Mzn57BiiAEvaWSGICQyClbAoD
-	PDASzKaX2WmNKGqlcscpV7pc8rQfQVzYZrYOqOwWlncjc7eHXe5E0EzgOcGsjzOyimP5KfI5YNwgj
-	63rkBnpeWc9i6AryTigX8giut/yN99k9jzdewuZrfpvyqm/W6VfSewibBPi4k7qcIINb17U96Cvbq
-	uPUu9ZkScKM2h7+hMwgQ==;
+	List-Owner; bh=LBZrGJa+PvXRRjbcBU2L3NXJR1WOrhOi7p79qNg2DEg=; b=zzv6cVacTQntAA
+	sdMr3gWeBH1AaeSGW9y0FrysG+OlmeJ9n6ppQo7qeVtWtvFDE9vagQ2CpMV8BtskDzBB9qJHm0xSN
+	2AGn1+FhFmqIHd4lCESCSUPSFWF2cjgX61sCluOq6ijoaVEN0SDRLN61ti12CJpnlHczB7gdh6Or7
+	RwhFCwz44YWCfPco6c2SbdUhWowRvLnxHUEF9W1WC+g7yodv7pGwJMDoGLw2Bxupol4JhIuJToe0x
+	7jhidP/gcBcOJXBb3AJOJMOQQrSMceMr4HjpGVy8b9j7+c42bbGAJv/AEgkg5MdnUMH+3xnUpSk+s
+	bX8G48RuZ5jtATggoS3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZVt4-005Nsb-1o;
-	Fri, 25 Aug 2023 12:26:02 +0000
-Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
+	id 1qZXIb-005VLT-1Z;
+	Fri, 25 Aug 2023 13:56:29 +0000
+Received: from mgamail.intel.com ([192.55.52.120])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZVsk-005NfD-0R;
-	Fri, 25 Aug 2023 12:25:43 +0000
-Received: from localhost.localdomain (unknown [171.76.83.99])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: vignesh)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 45CC9660728F;
-	Fri, 25 Aug 2023 13:25:34 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1692966340;
-	bh=rgpvSeZGKF3SGFM/V9KInphj6CaJZryw7a6Wsi7NMHw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=YUsazqsdd7YYCLplGD/KDgVV9qU8B7rbCgTNMJwelCqQvmG/vZMNdJXYqZEECL/nL
-	 EOVV27wzXS6bnAmH2uFcQXqMxz+Dmmq1srKqTdUThEhbUieSsk4iR17OP1aPOn4l0+
-	 a5EflmDqvEa2IEboOYZ3DW1zpi9qiaY6mrO0BDCzsyuYe3gv+j0z5FLJtXhPKUOeQ7
-	 +bYxU8nK3WN/ucLD9QwgOKn2nMrdDM3qO5Xb5g+FNzQv78xls3x6jMwOttal7xKcOe
-	 kQAtjS5VksTlpXSkYKKQ08dDod9zl4c/GXZnUHqwxSYvaCcSAdecYRLqqlEUHutoWK
-	 uN3CmS1+MkWKg==
-From: Vignesh Raman <vignesh.raman@collabora.com>
-To: dri-devel@lists.freedesktop.org
-Cc: helen.koike@collabora.com,
-	guilherme.gallo@collabora.com,
-	sergi.blanch.torne@collabora.com,
-	david.heidelberg@collabora.com,
-	daniels@collabora.com,
-	emma@anholt.net,
-	robclark@freedesktop.org,
-	gustavo.padovan@collabora.com,
-	robdclark@google.com,
-	anholt@google.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	daniel@ffwll.ch,
-	corbet@lwn.net,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	neil.armstrong@linaro.org,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	heiko@sntech.de,
-	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH 6/6] drm: ci: Remove rules
-Date: Fri, 25 Aug 2023 17:54:35 +0530
-Message-Id: <20230825122435.316272-7-vignesh.raman@collabora.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230825122435.316272-1-vignesh.raman@collabora.com>
+	id 1qZXIY-005VJB-0d;
+	Fri, 25 Aug 2023 13:56:27 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1692971786; x=1724507786;
+  h=from:to:cc:subject:in-reply-to:references:date:
+   message-id:mime-version;
+  bh=rL8lwlEpWwyz5gytyannueKCuDWZ7o3Z7O2OXGq9D24=;
+  b=Q2qfLDhFNOwCVqRTTDjZjmBDgdHT2gPHYHaPn//cqEAw7uE+FfDk+e4f
+   zFHbZ99dPN4rGMrb4/mNyY9/smLrto8aaxr7ZwRAhm0YOrnCByt6re5G/
+   9y7gtyfziHkCsahgSh+XGmoLOm68TqKgDnqt75rdWeVT6kOSI66EGeVmR
+   Ammoy7+dikd9vgHhVRIi62ovBXQBe8HwgyuGJzR6yaISmP0ACSJ2ZlbGt
+   w97XBLktIigLIsVUcow+NFc+eCYFVn7Yg88YrYRZANDtgybaSZCEWlAaw
+   drPVeKrpJszDGhJ4mX6sLLvP7MJcN6tLioCiZWlKDSdmMdNF7DcKqWVcX
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="373586062"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; 
+   d="scan'208";a="373586062"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Aug 2023 06:56:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="731073145"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; 
+   d="scan'208";a="731073145"
+Received: from ogbrugge-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.56.56])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Aug 2023 06:56:16 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Vignesh Raman <vignesh.raman@collabora.com>,
+ dri-devel@lists.freedesktop.org
+Cc: emma@anholt.net, linux-doc@vger.kernel.org,
+ david.heidelberg@collabora.com, linux-amlogic@lists.infradead.org,
+ jbrunet@baylibre.com, robdclark@google.com, corbet@lwn.net,
+ khilman@baylibre.com, sergi.blanch.torne@collabora.com,
+ gustavo.padovan@collabora.com, linux-rockchip@lists.infradead.org,
+ daniels@collabora.com, martin.blumenstingl@googlemail.com,
+ robclark@freedesktop.org, helen.koike@collabora.com, anholt@google.com,
+ linux-mediatek@lists.infradead.org, mripard@kernel.org,
+ matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org,
+ angelogioacchino.delregno@collabora.com, neil.armstrong@linaro.org,
+ guilherme.gallo@collabora.com, linux-kernel@vger.kernel.org,
+ tzimmermann@suse.de
+Subject: Re: [PATCH 2/6] drm: ci: Force db410c to host mode
+In-Reply-To: <20230825122435.316272-3-vignesh.raman@collabora.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230825122435.316272-1-vignesh.raman@collabora.com>
+ <20230825122435.316272-3-vignesh.raman@collabora.com>
+Date: Fri, 25 Aug 2023 16:56:12 +0300
+Message-ID: <87pm3b2pkz.fsf@intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230825_052542_327796_A93EEAEB 
-X-CRM114-Status: UNSURE (   9.48  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230825_065626_246596_D2498D7D 
+X-CRM114-Status: GOOD (  18.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,71 +92,60 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Remove the rules from the following jobs, as the issues noted in the
-TODO comments have been resolved. This will ensure that these jobs
-are now included and executed as part of the CI/CD pipeline.
+On Fri, 25 Aug 2023, Vignesh Raman <vignesh.raman@collabora.com> wrote:
+> Force db410c to host mode to fix network issue which results in failure
+> to mount root fs via NFS.
+> See https://gitlab.freedesktop.org/gfx-ci/linux/-/commit/cb72a629b8c15c80a54dda510743cefd1c4b65b8
+>
+> Since this fix is not sent upstream, add it to build.sh script
+> before building the kernel and dts. Better approach would be
+> to use devicetree overlays.
+>
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> ---
+>  drivers/gpu/drm/ci/build.sh | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/ci/build.sh b/drivers/gpu/drm/ci/build.sh
+> index 7b014287a041..c39834bd6bd7 100644
+> --- a/drivers/gpu/drm/ci/build.sh
+> +++ b/drivers/gpu/drm/ci/build.sh
+> @@ -70,6 +70,10 @@ if [ -z "$CI_MERGE_REQUEST_PROJECT_PATH" ]; then
+>      fi
+>  fi
+>  
+> +# Force db410c to host mode to fix network issue which results in failure to mount root fs via NFS.
+> +# See https://gitlab.freedesktop.org/gfx-ci/linux/-/commit/cb72a629b8c15c80a54dda510743cefd1c4b65b8
+> +sed -i '/&usb {/,/status = "okay";/s/status = "okay";/&\n\tdr_mode = "host";/' arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+> +
 
-msm:apq8016:
-TODO: current issue: it is not fiding the NFS root. Fix and remove this rule.
+It seems like a really bad idea to me to have the CI build modify the
+source tree before building.
 
-mediatek:mt8173:
-TODO: current issue: device is hanging. Fix and remove this rule.
+The kernel being built will have a dirty git repo, and the localversion
+will have -dirty in it.
 
-virtio_gpu:none:
-TODO: current issue: malloc(): corrupted top size. Fix and remove this rule.
+I think it would be better to do out-of-tree builds and assume the
+source is read-only.
 
-Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
----
- drivers/gpu/drm/ci/gitlab-ci.yml | 2 +-
- drivers/gpu/drm/ci/test.yml      | 9 ---------
- 2 files changed, 1 insertion(+), 10 deletions(-)
+>  for opt in $ENABLE_KCONFIGS; do
+>    echo CONFIG_$opt=y >> drivers/gpu/drm/ci/${KERNEL_ARCH}.config
+>  done
 
-diff --git a/drivers/gpu/drm/ci/gitlab-ci.yml b/drivers/gpu/drm/ci/gitlab-ci.yml
-index 2c4df53f5dfe..d2aac4404914 100644
---- a/drivers/gpu/drm/ci/gitlab-ci.yml
-+++ b/drivers/gpu/drm/ci/gitlab-ci.yml
-@@ -248,4 +248,4 @@ sanity:
- 
- # Jobs that need to pass before spending hardware resources on further testing
- .required-for-hardware-jobs:
--  needs: []
-\ No newline at end of file
-+  needs: []
-diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
-index d85add39f425..1771af21e2d9 100644
---- a/drivers/gpu/drm/ci/test.yml
-+++ b/drivers/gpu/drm/ci/test.yml
-@@ -108,9 +108,6 @@ msm:apq8016:
-     RUNNER_TAG: google-freedreno-db410c
-   script:
-     - ./install/bare-metal/fastboot.sh
--  rules:
--    # TODO: current issue: it is not fiding the NFS root. Fix and remove this rule.
--    - when: never
- 
- msm:apq8096:
-   extends:
-@@ -273,9 +270,6 @@ mediatek:mt8173:
-     DEVICE_TYPE: mt8173-elm-hana
-     GPU_VERSION: mt8173
-     RUNNER_TAG: mesa-ci-x86-64-lava-mt8173-elm-hana
--  rules:
--    # TODO: current issue: device is hanging. Fix and remove this rule.
--    - when: never
- 
- mediatek:mt8183:
-   extends:
-@@ -333,6 +327,3 @@ virtio_gpu:none:
-     - debian/x86_64_test-gl
-     - testing:x86_64
-     - igt:x86_64
--  rules:
--    # TODO: current issue: malloc(): corrupted top size. Fix and remove this rule.
--    - when: never
-\ No newline at end of file
+Ditto for the config changes in the context here. Those are files in
+git, don't change them.
+
+Shouldn't this use something like 'scripts/config --enable' or
+'scripts/config --disable' on the .config file to be used for building
+instead?
+
+
+BR,
+Jani.
+
+
 -- 
-2.40.1
-
+Jani Nikula, Intel Open Source Graphics Center
 
 _______________________________________________
 linux-amlogic mailing list
