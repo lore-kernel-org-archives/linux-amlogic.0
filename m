@@ -4,72 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E1DCC83F01
-	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Aug 2023 09:43:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DBCAC83F15
+	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Aug 2023 18:00:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=PaQn9kTRehc1YHB01b6ssO7WG4W4Z8J7VzEXZOu5yTc=; b=OB1opb4RubzXpJHKz0l1ugOKib
-	nvEFSrbLBjO9SRJCzZ+d+jcWB94DgRf78Yi+9OHQwDUpxrarF4LrJqkpFEOOZUCcMWOZ+yx4RPfWC
-	0hwubDi5ncXGHqqjMOg9r+avqcKpXvuWIhyfrzcSAfNj2BvxCe1M3onuhVdHowmu0SuYLiJeaX4Zy
-	XsgwDVErOYGmOtcsq2UuDlCv4bRVYRRte7TCvBdjhRo6xG8i4EoIedRFDeMK18XBvQZryAxXZ/MFG
-	aW2fNoyk4a5J1XuEV2q/ScD/OUSjv/US/GqmBDhyGentOVCtK35jmCGjVJN2dAyYNmvthNUkbfrvo
-	d4k3Z+zQ==;
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Z3zoK7t5xLM8HOteOBYe0qtlYsZbZ1jX8EAltkrBr58=; b=jfkFaC66hyWRUG
+	QE5AT4WMFCt4jqCd+faFex08jYVLo1vzGFfKaHJemJqGepep34T8nQEeVDZrgDTWuiRjHq7Phe0id
+	4GTAbKvGj+703+upzZ0szeNplnqs+Kb8j5fziCs61zKrGmdeeVtkWXhYPOXaJq/N7ZvB+LHLjPfL3
+	iOroJrIINwXro4XiayitNRmKzdU8k0upssMhgmWcrGdX09YFd2thTBx3K8iPg5nPR5gW6cpk5XF8T
+	FYOb0R4QeaT+QAsaLUwCtwlX+bPzbRNMEvvKIcm8zFeGRoNpIDn5Di8IKdhm24FJF0mn24hsp/qUw
+	6HxoL/I9tWDHsykrGLBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZpp4-006dWh-1c;
-	Sat, 26 Aug 2023 09:43:14 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1qZxZU-0076g5-0N;
+	Sat, 26 Aug 2023 17:59:40 +0000
+Received: from mail-ej1-f41.google.com ([209.85.218.41])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZpp2-006dWE-11;
-	Sat, 26 Aug 2023 09:43:13 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 9974760FFB;
-	Sat, 26 Aug 2023 09:43:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA834C433C7;
-	Sat, 26 Aug 2023 09:43:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1693042991;
-	bh=w4am/4JAWICl0+CM2N3F7pWomtDuzhla+/3J5rQhiMY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ugs14BCGUAJYiqi35vosJIaFDHIaOTqD34R3p705yf5BbqxkZjr7MczjUlnsknhJe
-	 JA8S5lys6EJh8H4AFrH7cj/LSSmuyeKfLMCr10HlnPyMIVrL/OjukYC+dvr5J0NChR
-	 eeEYu16i0DP+H7cEMSZiBkMM8JIokjkY5h/vgtAZZyfURhKzuVQrT5BXYNgBCDiofP
-	 AYX3C5S8NrEv3JGUmLsC9VBC0yJSJyYL20HVcSmN8BKWpua7pAbZgsIWOMud0VGLF2
-	 7tpvU9/jThTvjGDP/l6+Fb4CFWNkHcNroMonL/TdgVQSEEDk6wy+sltiB6dFRSX31u
-	 WD26DX7li0EfA==
-Date: Sat, 26 Aug 2023 10:43:05 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Liang Yang <liang.yang@amlogic.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: amlogic,meson-nand: drop unneeded
- quotes
-Message-ID: <20230826-undercoat-unworldly-7f2dc4c29cce@spud>
-References: <20230826093852.9334-1-krzysztof.kozlowski@linaro.org>
+	id 1qZxZR-0076fb-0q;
+	Sat, 26 Aug 2023 17:59:38 +0000
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-99d937b83efso247348366b.3;
+        Sat, 26 Aug 2023 10:59:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693072775; x=1693677575;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hg3oMggEQHd+gc6q9L9POT/lEfSR5eoXULrpzdbLklk=;
+        b=dxkuY3sOUxE9Ggw0pCY7C5TIV/xvb+DFw0Aq+ieI+9CMGqIa7aqQQ+LuLKsRwI3G+E
+         AKtVSnSD/XT1WltkQ7ULXMxybQe6GRK3HZ/IMH2eTmXFCzgZUWpcVoV/yxsqNBzMFx0+
+         QEaaQAWj49Bu8XNNCJu86UNgKr0Dr8lgvKK9hTgiRyTeQCEqyDeEF/RGGPFQaH5H+Q3x
+         k9rLIrLgRFPwUkfhWNQq8+ON1v9vj0nXrZF14muHpLgNLXsm7gH7YBVUoqi9ZpmMUvS9
+         WHOy6DGC+0Fsq09e6jEKhPVO7+b7QbcU/Lpqw8kryo2HLw6fMbgWCqoGA5svKk9u4Xzo
+         10PA==
+X-Gm-Message-State: AOJu0Yyc5P/qWRre5HQAKqXcpXq+3NSPxuw1NhJnkXpoGwGyrAs2Wxfm
+	9KHhur/BpyY1hO8kZm+czlg=
+X-Google-Smtp-Source: AGHT+IGNOsWCDsUL5pZ0AiktNOZC7/JBxYAG4tbCmHfyMbugl7QB2wYm9fg1FEO7P/fQ6KOucMjekw==
+X-Received: by 2002:a17:907:7757:b0:9a1:aede:edfb with SMTP id kx23-20020a170907775700b009a1aedeedfbmr10817032ejc.12.1693072774840;
+        Sat, 26 Aug 2023 10:59:34 -0700 (PDT)
+Received: from [192.168.86.246] (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
+        by smtp.gmail.com with ESMTPSA id s6-20020a1709060c0600b0099d45ed589csm2434635ejf.125.2023.08.26.10.59.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 26 Aug 2023 10:59:34 -0700 (PDT)
+Message-ID: <099b2b17-b236-4fd5-89a7-8ecbfbc9c323@linux.com>
+Date: Sat, 26 Aug 2023 18:59:33 +0100
 MIME-Version: 1.0
-In-Reply-To: <20230826093852.9334-1-krzysztof.kozlowski@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 6/6] arm64: dts: add support for T7 power domain
+ controller
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>, neil.armstrong@linaro.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>
+References: <20230824055930.2576849-1-xianwei.zhao@amlogic.com>
+ <20230824055930.2576849-7-xianwei.zhao@amlogic.com>
+ <27e55b16-065b-4a16-ab05-dded04f2c705@linaro.org>
+ <56c0b78a-b9dd-de6d-7d7e-654fc5dd8e1b@amlogic.com>
+Content-Language: en-US
+From: Lucas Tanure <tanure@linux.com>
+In-Reply-To: <56c0b78a-b9dd-de6d-7d7e-654fc5dd8e1b@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230826_024312_420390_AB6EC23C 
-X-CRM114-Status: GOOD (  15.08  )
+X-CRM114-CacheID: sfid-20230826_105937_299506_9196B783 
+X-CRM114-Status: GOOD (  11.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,77 +82,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============3666130796610281996=="
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============3666130796610281996==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="3Pe3eE9k3gd9AmCP"
-Content-Disposition: inline
-
-
---3Pe3eE9k3gd9AmCP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sat, Aug 26, 2023 at 11:38:52AM +0200, Krzysztof Kozlowski wrote:
-> Drop unneeded quotes over simple string values to fix recently enabled
-> yamllint warning:
->=20
->   [error] string value is redundantly quoted with any quotes (quoted-stri=
-ngs)
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yam=
-l b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> index 1c79815e1f7f..57b6957c8415 100644
-> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> @@ -67,8 +67,8 @@ patternProperties:
->      unevaluatedProperties: false
-> =20
->      dependencies:
-> -      nand-ecc-strength: ['nand-ecc-step-size']
-> -      nand-ecc-step-size: ['nand-ecc-strength']
-> +      nand-ecc-strength: [nand-ecc-step-size]
-> +      nand-ecc-step-size: [nand-ecc-strength]
-
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
---3Pe3eE9k3gd9AmCP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZOnJKQAKCRB4tDGHoIJi
-0tmIAQCqkCDtBMSX2SeEUQNybarIOacjn8MxbYP0QEVx3FwFYwEA/pe8aKWZFXpT
-/0efo5eoP4xpSQJyVaXB3RvpgiPHmAc=
-=pOjg
------END PGP SIGNATURE-----
-
---3Pe3eE9k3gd9AmCP--
-
-
---===============3666130796610281996==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============3666130796610281996==--
-
+T24gMjQtMDgtMjAyMyAwOTo1MSwgWGlhbndlaSBaaGFvIHdyb3RlOgo+IEhpIE5laWwsCj4gwqDC
+oMKgIFRoYW5rcyBmb3IgeW91ciByZXBseS4KPgo+IE9uIDIwMjMvOC8yNCAxNjozMiwgTmVpbCBB
+cm1zdHJvbmcgd3JvdGU6Cj4+IFsgRVhURVJOQUwgRU1BSUwgXQo+Pgo+PiBPbiAyNC8wOC8yMDIz
+IDA3OjU5LCBYaWFud2VpIFpoYW8gd3JvdGU6Cj4+PiBGcm9tOiAieGlhbndlaS56aGFvIiA8eGlh
+bndlaS56aGFvQGFtbG9naWMuY29tPgo+Pj4KPj4+IEVuYWJsZSBwb3dlciBkb21haW4gY29udHJv
+bGxlciBmb3IgQW1sb2dpYyBUNyBTb0MKPj4+Cj4+PiBTaWduZWQtb2ZmLWJ5OiB4aWFud2VpLnpo
+YW8gPHhpYW53ZWkuemhhb0BhbWxvZ2ljLmNvbT4KPj4+IC0tLQo+Pj4gVjEgLT4gVjI6IE5vbmUK
+Pj4+IC0tLQo+Pj4gwqAgYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL2FtbG9naWMtdDcuZHRz
+aSB8IDYgKysrKysrCj4+PiDCoCAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspCj4+Pgo+
+Pj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9hbWxvZ2ljLXQ3LmR0
+c2kgCj4+PiBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9hbWxvZ2ljLXQ3LmR0c2kKPj4+
+IGluZGV4IDE0MjNkNGE3OTE1Ni4uMjNjZGFkMWI0MjViIDEwMDY0NAo+Pj4gLS0tIGEvYXJjaC9h
+cm02NC9ib290L2R0cy9hbWxvZ2ljL2FtbG9naWMtdDcuZHRzaQo+Pj4gKysrIGIvYXJjaC9hcm02
+NC9ib290L2R0cy9hbWxvZ2ljL2FtbG9naWMtdDcuZHRzaQo+Pj4gQEAgLTQsNiArNCw3IEBACj4+
+PiDCoMKgICovCj4+Pgo+Pj4gwqAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVycnVwdC1jb250
+cm9sbGVyL2FybS1naWMuaD4KPj4+ICsjaW5jbHVkZSA8ZHQtYmluZGluZ3MvcG93ZXIvYW1sb2dp
+Yyx0Ny1wd3JjLmg+Cj4+Pgo+Pj4gwqAgLyB7Cj4+PiDCoMKgwqDCoMKgIGludGVycnVwdC1wYXJl
+bnQgPSA8JmdpYz47Cj4+PiBAQCAtMTE4LDYgKzExOSwxMSBAQCBwc2NpIHsKPj4+Cj4+PiDCoMKg
+wqDCoMKgIHNtOiBzZWN1cmUtbW9uaXRvciB7Cj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCBjb21wYXRpYmxlID0gImFtbG9naWMsbWVzb24tZ3hiYi1zbSI7Cj4+PiArCj4+PiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIHB3cmM6IHBvd2VyLWNvbnRyb2xsZXIgewo+Pj4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJhbWxvZ2ljLHQ3
+LXB3cmMiOwo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgI3Bv
+d2VyLWRvbWFpbi1jZWxscyA9IDwxPjsKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfTsK
+Pj4+IMKgwqDCoMKgwqAgfTsKPj4+Cj4+PiDCoMKgwqDCoMKgIHNvYyB7Cj4+Cj4+IFBsZWFzZSBj
+aGFuZ2UgdGhlIHN1YmplY3QgdG86Cj4+IGFybTY0OiBkdHM6IGFtbG9naWM6IHQ3OiBhZGQgcG93
+ZXIgZG9tYWluIGNvbnRyb2xsZXIgbm9kZQo+Pgo+IFdpbGwgZG8uCj4+IFdpdGggdGhhdDoKPj4g
+UmV2aWV3ZWQtYnk6IE5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPgoK
+VGVzdGVkIHdpdGggVmltNCBhbmQgYWxsIHdvcmtzIGZpbmUuCgpUZXN0ZWQtYnk6IEx1Y2FzIFRh
+bnVyZSA8dGFudXJlQGxpbnV4LmNvbT4KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2lj
+QGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9saW51eC1hbWxvZ2ljCg==
