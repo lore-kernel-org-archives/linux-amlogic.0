@@ -4,65 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DE67C83F15
-	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Aug 2023 09:39:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E1DCC83F01
+	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Aug 2023 09:43:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=miJBnYkdAWTVidPjO2hFtOKTFQfe6J+nWIcx1SSEL8k=; b=cG3A7MYK3acOv9
-	o8sXB/sSSnrpFbHmHtSXrWBcwcngSUdJRQA7YTXvEkuBa1GAgOnBe1jI6CkUVRCbsV2dRuXbv3uvp
-	vUCjH+rqk0I0OitBUR0N5oQtSPPcqLPmaI+Y7tXxBmI9a/+mwMNLm3oq3IwY0fgEA1Ag02NSOF5rS
-	rR+KFa3wUhwEfmTtUJkO4jOqx0xSs7+1TtOo/PmlgEMndn+G+cS/OTkBqbjewdlgidC4EmwqMoYHC
-	SIpvbWQ8/W0H8+re9P0Va6/jnlAPItavv7RzIhofr0EvUDqoJXYXiKWCzDunstQKMaIJB4Y+XLIh1
-	SgnbZK378Iu/kHvoVVgw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=PaQn9kTRehc1YHB01b6ssO7WG4W4Z8J7VzEXZOu5yTc=; b=OB1opb4RubzXpJHKz0l1ugOKib
+	nvEFSrbLBjO9SRJCzZ+d+jcWB94DgRf78Yi+9OHQwDUpxrarF4LrJqkpFEOOZUCcMWOZ+yx4RPfWC
+	0hwubDi5ncXGHqqjMOg9r+avqcKpXvuWIhyfrzcSAfNj2BvxCe1M3onuhVdHowmu0SuYLiJeaX4Zy
+	XsgwDVErOYGmOtcsq2UuDlCv4bRVYRRte7TCvBdjhRo6xG8i4EoIedRFDeMK18XBvQZryAxXZ/MFG
+	aW2fNoyk4a5J1XuEV2q/ScD/OUSjv/US/GqmBDhyGentOVCtK35jmCGjVJN2dAyYNmvthNUkbfrvo
+	d4k3Z+zQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZpky-006dB9-1L;
-	Sat, 26 Aug 2023 09:39:00 +0000
-Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
+	id 1qZpp4-006dWh-1c;
+	Sat, 26 Aug 2023 09:43:14 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZpkv-006dAH-1n
-	for linux-amlogic@lists.infradead.org;
-	Sat, 26 Aug 2023 09:38:58 +0000
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99c136ee106so206604366b.1
-        for <linux-amlogic@lists.infradead.org>; Sat, 26 Aug 2023 02:38:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693042735; x=1693647535;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HrYqC/NgvPNZZPzsGiT/lg4ia/WmMQNaEEMcPhrqy+o=;
-        b=Ho2ZKHMnGtGNdGBuf86HZIZy5cvOfdsx/KMTyiDrlVTzJ2p9I4hJoHcb21XFxbq794
-         7kCprWerLTbqDDzakcT6GCYaPw6UVjpPRNQkBx16TJ7AIveo2Wg43tGSbUTle8ODEz2T
-         zaRfar9T1WSVgnz/0RN22bVhj77cLh5rAwiyqIdOfTx5D1l3ZpWu1pXuSIyFwvVPiHJf
-         9QcicRlmjb0M1cweqrnQlDcpUGb8N3+UZ5RA7T1xjy5XmfCqNIV6ojgJBPdB3RG5V3sd
-         Aatvm5O6xThcji9w6UH/PcTGMMbFTyh+BxEo+1Rnu8+tEbp1WJ/pV9LN6m9dwamLS9va
-         tkMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693042735; x=1693647535;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HrYqC/NgvPNZZPzsGiT/lg4ia/WmMQNaEEMcPhrqy+o=;
-        b=WSAUUcpfw5DCAK3BLSFvnbyb8P6DUiB2NngzBxlrAYu5S2hK1GX3ya9Af5e3qwccv0
-         hjvaPAS0EI20Eeatw9MVTKp8z0lbC97S4MLQRB9OIaRlOKUy4wRs1F+75C4XxOwiPhgd
-         6g6wA6iXZxYPRkgjXyicWX8nP7+p1oJqRq8TYNxo0qB8j7PK633i/6Ldl8GDYscnFG07
-         jk9g4MuAz0Fe3sp199zPrDHMHjImSQv1ExdGlRjiCbXRf4npL9sCDoDqzFyzh83RwO4O
-         FCJOlyt2aykSLgxY5Ph54yfdBMwcMEEqzuGdVPrX/QdWqMNArXR091eRe/hoEDPdGupx
-         xe/A==
-X-Gm-Message-State: AOJu0YzKZ6+48ZWCaDQ6KPfHEvtuhZEein+xsqMEXXXxnHf4wMP8VZ+i
-	C9MEMIy8cVTtLkObMXMLDyLDQg==
-X-Google-Smtp-Source: AGHT+IHjmbFg1H57TDNIZjkNJapebQSvKKTp1AGIcQS1jr/gn0VFF7slvzzVWFYNMDNRDpABgPxOqw==
-X-Received: by 2002:a17:906:2ca:b0:9a1:c352:b6a5 with SMTP id 10-20020a17090602ca00b009a1c352b6a5mr9915168ejk.69.1693042735263;
-        Sat, 26 Aug 2023 02:38:55 -0700 (PDT)
-Received: from krzk-bin.. ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id h7-20020a170906718700b0099bcf1c07c6sm1952970ejk.138.2023.08.26.02.38.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Aug 2023 02:38:54 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Liang Yang <liang.yang@amlogic.com>,
+	id 1qZpp2-006dWE-11;
+	Sat, 26 Aug 2023 09:43:13 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 9974760FFB;
+	Sat, 26 Aug 2023 09:43:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA834C433C7;
+	Sat, 26 Aug 2023 09:43:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1693042991;
+	bh=w4am/4JAWICl0+CM2N3F7pWomtDuzhla+/3J5rQhiMY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ugs14BCGUAJYiqi35vosJIaFDHIaOTqD34R3p705yf5BbqxkZjr7MczjUlnsknhJe
+	 JA8S5lys6EJh8H4AFrH7cj/LSSmuyeKfLMCr10HlnPyMIVrL/OjukYC+dvr5J0NChR
+	 eeEYu16i0DP+H7cEMSZiBkMM8JIokjkY5h/vgtAZZyfURhKzuVQrT5BXYNgBCDiofP
+	 AYX3C5S8NrEv3JGUmLsC9VBC0yJSJyYL20HVcSmN8BKWpua7pAbZgsIWOMud0VGLF2
+	 7tpvU9/jThTvjGDP/l6+Fb4CFWNkHcNroMonL/TdgVQSEEDk6wy+sltiB6dFRSX31u
+	 WD26DX7li0EfA==
+Date: Sat, 26 Aug 2023 10:43:05 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Liang Yang <liang.yang@amlogic.com>,
 	Miquel Raynal <miquel.raynal@bootlin.com>,
 	Richard Weinberger <richard@nod.at>,
 	Vignesh Raghavendra <vigneshr@ti.com>,
@@ -73,21 +58,18 @@ To: Liang Yang <liang.yang@amlogic.com>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org,
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: mtd: amlogic,meson-nand: drop unneeded quotes
-Date: Sat, 26 Aug 2023 11:38:52 +0200
-Message-Id: <20230826093852.9334-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mtd: amlogic,meson-nand: drop unneeded
+ quotes
+Message-ID: <20230826-undercoat-unworldly-7f2dc4c29cce@spud>
+References: <20230826093852.9334-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
+In-Reply-To: <20230826093852.9334-1-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230826_023857_604305_BEFA8FD8 
-X-CRM114-Status: UNSURE (   9.29  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230826_024312_420390_AB6EC23C 
+X-CRM114-Status: GOOD (  15.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,41 +81,77 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============3666130796610281996=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Drop unneeded quotes over simple string values to fix recently enabled
-yamllint warning:
 
-  [error] string value is redundantly quoted with any quotes (quoted-strings)
+--===============3666130796610281996==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="3Pe3eE9k3gd9AmCP"
+Content-Disposition: inline
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-index 1c79815e1f7f..57b6957c8415 100644
---- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-+++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-@@ -67,8 +67,8 @@ patternProperties:
-     unevaluatedProperties: false
- 
-     dependencies:
--      nand-ecc-strength: ['nand-ecc-step-size']
--      nand-ecc-step-size: ['nand-ecc-strength']
-+      nand-ecc-strength: [nand-ecc-step-size]
-+      nand-ecc-step-size: [nand-ecc-strength]
- 
- 
- required:
--- 
-2.34.1
+--3Pe3eE9k3gd9AmCP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Sat, Aug 26, 2023 at 11:38:52AM +0200, Krzysztof Kozlowski wrote:
+> Drop unneeded quotes over simple string values to fix recently enabled
+> yamllint warning:
+>=20
+>   [error] string value is redundantly quoted with any quotes (quoted-stri=
+ngs)
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yam=
+l b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> index 1c79815e1f7f..57b6957c8415 100644
+> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> @@ -67,8 +67,8 @@ patternProperties:
+>      unevaluatedProperties: false
+> =20
+>      dependencies:
+> -      nand-ecc-strength: ['nand-ecc-step-size']
+> -      nand-ecc-step-size: ['nand-ecc-strength']
+> +      nand-ecc-strength: [nand-ecc-step-size]
+> +      nand-ecc-step-size: [nand-ecc-strength]
+
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+--3Pe3eE9k3gd9AmCP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZOnJKQAKCRB4tDGHoIJi
+0tmIAQCqkCDtBMSX2SeEUQNybarIOacjn8MxbYP0QEVx3FwFYwEA/pe8aKWZFXpT
+/0efo5eoP4xpSQJyVaXB3RvpgiPHmAc=
+=pOjg
+-----END PGP SIGNATURE-----
+
+--3Pe3eE9k3gd9AmCP--
+
+
+--===============3666130796610281996==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============3666130796610281996==--
+
