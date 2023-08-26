@@ -4,73 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DBCAC83F15
-	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Aug 2023 18:00:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0093C83F15
+	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Aug 2023 18:00:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Z3zoK7t5xLM8HOteOBYe0qtlYsZbZ1jX8EAltkrBr58=; b=jfkFaC66hyWRUG
-	QE5AT4WMFCt4jqCd+faFex08jYVLo1vzGFfKaHJemJqGepep34T8nQEeVDZrgDTWuiRjHq7Phe0id
-	4GTAbKvGj+703+upzZ0szeNplnqs+Kb8j5fziCs61zKrGmdeeVtkWXhYPOXaJq/N7ZvB+LHLjPfL3
-	iOroJrIINwXro4XiayitNRmKzdU8k0upssMhgmWcrGdX09YFd2thTBx3K8iPg5nPR5gW6cpk5XF8T
-	FYOb0R4QeaT+QAsaLUwCtwlX+bPzbRNMEvvKIcm8zFeGRoNpIDn5Di8IKdhm24FJF0mn24hsp/qUw
-	6HxoL/I9tWDHsykrGLBw==;
+	List-Owner; bh=3xAJUmm8OeL2528YQI5OautEc2p6p/eq/GRL+Na6eUo=; b=JlIYHk1ooR7RzQ
+	tJlLrwcORusymQVq1H/DLfL4LORXswKFM1zAQ0vwu66Xries6RabGEQU147b7kCXNXd4d4V3mJNxb
+	ap4DtjMlqlpHnqSajnb2N0NCMzEqT4svUO6MYq+sxycTJSrC4gIL6o/WZfy3Uw+0Cnkx49E2hbbBE
+	SOKBnhpAvcsqZ70bBJjUo5hEU+mH4HseuXSBNRuIRht4QdqxT6qM1u09uD1jL56xRD7MLBUjGcpHW
+	zdXnrXHw7a5H4768I7Dj+gZL5KEcN4oOKiIXPqy5G+SIA4u+zRbcNLStJAmtnNIzw8+jc+6XvT0zV
+	zuOqXkxVep89z95ScZIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZxZU-0076g5-0N;
-	Sat, 26 Aug 2023 17:59:40 +0000
-Received: from mail-ej1-f41.google.com ([209.85.218.41])
+	id 1qZxaI-0076kb-1Z;
+	Sat, 26 Aug 2023 18:00:30 +0000
+Received: from mail-lf1-f45.google.com ([209.85.167.45])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZxZR-0076fb-0q;
-	Sat, 26 Aug 2023 17:59:38 +0000
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-99d937b83efso247348366b.3;
-        Sat, 26 Aug 2023 10:59:36 -0700 (PDT)
+	id 1qZxaF-0076jg-16;
+	Sat, 26 Aug 2023 18:00:28 +0000
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-500a398cda5so3090368e87.0;
+        Sat, 26 Aug 2023 11:00:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693072775; x=1693677575;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1693072825; x=1693677625;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hg3oMggEQHd+gc6q9L9POT/lEfSR5eoXULrpzdbLklk=;
-        b=dxkuY3sOUxE9Ggw0pCY7C5TIV/xvb+DFw0Aq+ieI+9CMGqIa7aqQQ+LuLKsRwI3G+E
-         AKtVSnSD/XT1WltkQ7ULXMxybQe6GRK3HZ/IMH2eTmXFCzgZUWpcVoV/yxsqNBzMFx0+
-         QEaaQAWj49Bu8XNNCJu86UNgKr0Dr8lgvKK9hTgiRyTeQCEqyDeEF/RGGPFQaH5H+Q3x
-         k9rLIrLgRFPwUkfhWNQq8+ON1v9vj0nXrZF14muHpLgNLXsm7gH7YBVUoqi9ZpmMUvS9
-         WHOy6DGC+0Fsq09e6jEKhPVO7+b7QbcU/Lpqw8kryo2HLw6fMbgWCqoGA5svKk9u4Xzo
-         10PA==
-X-Gm-Message-State: AOJu0Yyc5P/qWRre5HQAKqXcpXq+3NSPxuw1NhJnkXpoGwGyrAs2Wxfm
-	9KHhur/BpyY1hO8kZm+czlg=
-X-Google-Smtp-Source: AGHT+IGNOsWCDsUL5pZ0AiktNOZC7/JBxYAG4tbCmHfyMbugl7QB2wYm9fg1FEO7P/fQ6KOucMjekw==
-X-Received: by 2002:a17:907:7757:b0:9a1:aede:edfb with SMTP id kx23-20020a170907775700b009a1aedeedfbmr10817032ejc.12.1693072774840;
-        Sat, 26 Aug 2023 10:59:34 -0700 (PDT)
+        bh=MfldtvrAuJXHHb5YdlTT28beoBEStiZCLf3yLGm9mkM=;
+        b=RFluCIzdNAIC9Q7J2BIcIPENmLF9vGjmrvVCc/ToFbrkuOqspyl8usvzY5w7+oPDme
+         yzK61/rK6GRdyNRUzLOsnlNaHaxZOn1X4BVjHdXcQmJdHF4+tq5BgI92nGRJxoI0KGKf
+         FiuseEOUW+PE3CobNWx/1fOHJaw3ZPxvQBUCLJSjl41b8oDQpfCvaoRbLle+MThPAup9
+         pnIPTibVW6o4KLTgDYV+rxwPKi6K37b7v9gtzoe84KaC8Y21uoS4LceBgLahthAB5utO
+         tOOKNY51Vt6C18JCckzKM01B2ne1Whbxk5pVOukutJbVpnFHW6TNlX9I2C8M7NwUhXIZ
+         X25g==
+X-Gm-Message-State: AOJu0YwLJFzNW6DHaMD+k+UGLb3sNjgc7ErbYjFmbyo5fJdcPFXobDHE
+	XMQ+y5mLb2ZctPPU4Zy/p3s=
+X-Google-Smtp-Source: AGHT+IH1WOvT0NGceHmGAKCM7QAa3fhBuR37Tm/+KdIWvwvD6FLGCpXWO46SHSa1W672f1U0zEmHtw==
+X-Received: by 2002:a19:6d1b:0:b0:4fe:1e69:c37b with SMTP id i27-20020a196d1b000000b004fe1e69c37bmr14503959lfc.10.1693072825001;
+        Sat, 26 Aug 2023 11:00:25 -0700 (PDT)
 Received: from [192.168.86.246] (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
-        by smtp.gmail.com with ESMTPSA id s6-20020a1709060c0600b0099d45ed589csm2434635ejf.125.2023.08.26.10.59.33
+        by smtp.gmail.com with ESMTPSA id s6-20020a1709060c0600b0099d45ed589csm2434635ejf.125.2023.08.26.11.00.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 10:59:34 -0700 (PDT)
-Message-ID: <099b2b17-b236-4fd5-89a7-8ecbfbc9c323@linux.com>
-Date: Sat, 26 Aug 2023 18:59:33 +0100
+        Sat, 26 Aug 2023 11:00:24 -0700 (PDT)
+Message-ID: <3c286d68-b1be-41c0-ad72-544a1a60a3c1@linux.com>
+Date: Sat, 26 Aug 2023 19:00:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 6/6] arm64: dts: add support for T7 power domain
- controller
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>, neil.armstrong@linaro.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>
-References: <20230824055930.2576849-1-xianwei.zhao@amlogic.com>
- <20230824055930.2576849-7-xianwei.zhao@amlogic.com>
- <27e55b16-065b-4a16-ab05-dded04f2c705@linaro.org>
- <56c0b78a-b9dd-de6d-7d7e-654fc5dd8e1b@amlogic.com>
+Subject: Re: [PATCH V2 4/6] dt-bindings: power: add Amlogic T7 power domains
 Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>
+References: <20230824055930.2576849-1-xianwei.zhao@amlogic.com>
+ <20230824055930.2576849-5-xianwei.zhao@amlogic.com>
+ <20230824-easiest-donated-6c0fed4e88f0@spud>
 From: Lucas Tanure <tanure@linux.com>
-In-Reply-To: <56c0b78a-b9dd-de6d-7d7e-654fc5dd8e1b@amlogic.com>
+In-Reply-To: <20230824-easiest-donated-6c0fed4e88f0@spud>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230826_105937_299506_9196B783 
-X-CRM114-Status: GOOD (  11.50  )
+X-CRM114-CacheID: sfid-20230826_110027_376591_D09C7D1D 
+X-CRM114-Status: UNSURE (   9.04  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,41 +83,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjQtMDgtMjAyMyAwOTo1MSwgWGlhbndlaSBaaGFvIHdyb3RlOgo+IEhpIE5laWwsCj4gwqDC
-oMKgIFRoYW5rcyBmb3IgeW91ciByZXBseS4KPgo+IE9uIDIwMjMvOC8yNCAxNjozMiwgTmVpbCBB
-cm1zdHJvbmcgd3JvdGU6Cj4+IFsgRVhURVJOQUwgRU1BSUwgXQo+Pgo+PiBPbiAyNC8wOC8yMDIz
-IDA3OjU5LCBYaWFud2VpIFpoYW8gd3JvdGU6Cj4+PiBGcm9tOiAieGlhbndlaS56aGFvIiA8eGlh
-bndlaS56aGFvQGFtbG9naWMuY29tPgo+Pj4KPj4+IEVuYWJsZSBwb3dlciBkb21haW4gY29udHJv
-bGxlciBmb3IgQW1sb2dpYyBUNyBTb0MKPj4+Cj4+PiBTaWduZWQtb2ZmLWJ5OiB4aWFud2VpLnpo
-YW8gPHhpYW53ZWkuemhhb0BhbWxvZ2ljLmNvbT4KPj4+IC0tLQo+Pj4gVjEgLT4gVjI6IE5vbmUK
-Pj4+IC0tLQo+Pj4gwqAgYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL2FtbG9naWMtdDcuZHRz
-aSB8IDYgKysrKysrCj4+PiDCoCAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspCj4+Pgo+
-Pj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9hbWxvZ2ljLXQ3LmR0
-c2kgCj4+PiBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9hbWxvZ2ljLXQ3LmR0c2kKPj4+
-IGluZGV4IDE0MjNkNGE3OTE1Ni4uMjNjZGFkMWI0MjViIDEwMDY0NAo+Pj4gLS0tIGEvYXJjaC9h
-cm02NC9ib290L2R0cy9hbWxvZ2ljL2FtbG9naWMtdDcuZHRzaQo+Pj4gKysrIGIvYXJjaC9hcm02
-NC9ib290L2R0cy9hbWxvZ2ljL2FtbG9naWMtdDcuZHRzaQo+Pj4gQEAgLTQsNiArNCw3IEBACj4+
-PiDCoMKgICovCj4+Pgo+Pj4gwqAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVycnVwdC1jb250
-cm9sbGVyL2FybS1naWMuaD4KPj4+ICsjaW5jbHVkZSA8ZHQtYmluZGluZ3MvcG93ZXIvYW1sb2dp
-Yyx0Ny1wd3JjLmg+Cj4+Pgo+Pj4gwqAgLyB7Cj4+PiDCoMKgwqDCoMKgIGludGVycnVwdC1wYXJl
-bnQgPSA8JmdpYz47Cj4+PiBAQCAtMTE4LDYgKzExOSwxMSBAQCBwc2NpIHsKPj4+Cj4+PiDCoMKg
-wqDCoMKgIHNtOiBzZWN1cmUtbW9uaXRvciB7Cj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBjb21wYXRpYmxlID0gImFtbG9naWMsbWVzb24tZ3hiYi1zbSI7Cj4+PiArCj4+PiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIHB3cmM6IHBvd2VyLWNvbnRyb2xsZXIgewo+Pj4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJhbWxvZ2ljLHQ3
-LXB3cmMiOwo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgI3Bv
-d2VyLWRvbWFpbi1jZWxscyA9IDwxPjsKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfTsK
-Pj4+IMKgwqDCoMKgwqAgfTsKPj4+Cj4+PiDCoMKgwqDCoMKgIHNvYyB7Cj4+Cj4+IFBsZWFzZSBj
-aGFuZ2UgdGhlIHN1YmplY3QgdG86Cj4+IGFybTY0OiBkdHM6IGFtbG9naWM6IHQ3OiBhZGQgcG93
-ZXIgZG9tYWluIGNvbnRyb2xsZXIgbm9kZQo+Pgo+IFdpbGwgZG8uCj4+IFdpdGggdGhhdDoKPj4g
-UmV2aWV3ZWQtYnk6IE5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPgoK
-VGVzdGVkIHdpdGggVmltNCBhbmQgYWxsIHdvcmtzIGZpbmUuCgpUZXN0ZWQtYnk6IEx1Y2FzIFRh
-bnVyZSA8dGFudXJlQGxpbnV4LmNvbT4KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2lj
-QGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+
+On 24-08-2023 16:07, Conor Dooley wrote:
+> On Thu, Aug 24, 2023 at 01:59:28PM +0800, Xianwei Zhao wrote:
+>> From: "xianwei.zhao" <xianwei.zhao@amlogic.com>
+>>
+>> Add devicetree binding document and related header file for
+>> Amlogic T7 secure power domains.
+>>
+>> Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>
+> Thanks,
+> Conor.
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Tested with Vim4 and all works fine.
+
+Tested-by: Lucas Tanure <tanure@linux.com>
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
