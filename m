@@ -4,69 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F117C83F01
-	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Aug 2023 20:00:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E580C83F01
+	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Aug 2023 08:01:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tGCuBPgdatxi2r3EWrtwRX2fbiwfIA/IooU98o01W2o=; b=wjjAFSSPJCx6An
-	r4cJtyVfq4a/9ZQmnyQgycHsonGg35sYruE8fKdyV8A00tTNM24Lsm1EHw0c6bCJMs9MzC+RtBl3Z
-	ec9Yu3TQ8YGOXjQmDxwSkbJsc/urQyNwKaWIz7oxS3jJiTLLo9TBD6meo/HO7w67tZUkj3EiCWdZq
-	UkCA59358aCjrckTKprCi9C30hZIyoKiI7mXXVDZanKf+hYfppw7RNZtW+jVKS6XrdD++Dg393uRL
-	tZZrxnFbPQSR5BFC0Y92QQ1bT++1Q5fhnTgbFnF9Ycl5UbClSgOfKPYY1H9XwSoG2DhoJ9ojo/HUy
-	KqxMGCmRpCpA4h0o1GZA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=bY6O5HSvCL6dxSzzACtr1FR7rDbj8/0NnFPr1sTuH0Y=; b=Jm3CWJ/fMhw8ey
+	xEtQ7wcA1aVz5k1JhUFXS40IqQTvJyevpTJCD2P8/4zDzXiXa4bPrmLwSjh/Mu6EFCtRj057j/gtc
+	ebPTtCORn4awWUCEvj0Clvbah2k0FK76cgwArzr9Q2Ql14CLvxhKtA6zbExLr7z3iFGasJ1B//SLB
+	xW3Zjo4O4R7+3Xlxb1VLamyvEyhiGz9ITFpOLbXygB0hvaMga6JprAKyc12EA9WdK+A8kR5n+rKhS
+	Ku/hF0pl/J8BxpthpmamYlAmWo5hmExwidVevZhzZaHtR+Ng+9/HTptQJYdsxUvJE5nPXX/cCescC
+	WU/vTsAlg4vyrjEBcLGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZzRo-007BeS-2G;
-	Sat, 26 Aug 2023 19:59:52 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1qaAi9-007dTp-30;
+	Sun, 27 Aug 2023 08:01:29 +0000
+Received: from mail-ej1-f49.google.com ([209.85.218.49])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZzRl-007Bdu-2A;
-	Sat, 26 Aug 2023 19:59:51 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id B130860CF7;
-	Sat, 26 Aug 2023 19:59:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84168C433C8;
-	Sat, 26 Aug 2023 19:59:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1693079988;
-	bh=wk7TTw46I9VQ1vaqjL5oYSR1MWRvL3QqszPe1Ac3vEE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jUceMAv4p78ZNILkEQmopDvcIZ44XkSx8YyqCQzeVhrnFNDWN3wcMc8ZoERhQFETn
-	 c8e7ID/zkoi0nwVWXynboBvJsIvtCSXs4S3OcfJ2lr5Ac4GDBo5U/Nx3T1SLQfKXvo
-	 VPZa3kfJE565DVd7Jkrtr2glSNkantuwuRdZjw1A=
-Date: Sat, 26 Aug 2023 21:59:45 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Lucas Tanure <tanure@linux.com>
-Cc: Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	id 1qaAi7-007dTD-1V;
+	Sun, 27 Aug 2023 08:01:28 +0000
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-9a19bf6ab66so286881066b.3;
+        Sun, 27 Aug 2023 01:01:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693123284; x=1693728084;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UJQrxQq8+wggDdpWlS/QjLNuLOjuY19XSVAy4OQf8wA=;
+        b=V9XNdvvTgqiSjm+E4hDQNQwTsooVookbDuzOBSidX6+akV6jtgso2TNDP4PHGvVNQd
+         V6C57uiW/uz9rRZGiAsCyGqpokM2hU9+CubExGXxUyzaw1qXONmqyAuNsu+bR1YBNTxH
+         YkqVJA7NYrCgoafHox9YrQt5L3gf3sKlpJ4nAPUwuOlzq4FIgA4a80C0EjxmPzFOhtH6
+         ignbcdhyDlgk9HcnN/SOTD1fhrrqZIlW8tMOussoYMhNl4N/X/OSxOxOooyEEoVt7OBH
+         lYFyK+Kp4uk3pMKC1pHcj9LwjZe2sFqyiyFTfZBuzwxY/xbiA3beEDTjFSUf9NIxbsqr
+         r27A==
+X-Gm-Message-State: AOJu0Yzpv1akknX91rYxim0jK1FMDCLk3EC/1aE3mOGQmSjTDM1YHCmQ
+	/5mx5PtzpwMWxBE0IC8EIeI=
+X-Google-Smtp-Source: AGHT+IG+ttSdqT5Jha3JUwxZYiJJlJJCtQzdNAhIwuopeTVdVpuvYmkXZgtqvBH+M3EiZ6GbdP+yXg==
+X-Received: by 2002:a17:907:7714:b0:99d:fd27:b38d with SMTP id kw20-20020a170907771400b0099dfd27b38dmr16989810ejc.70.1693123283542;
+        Sun, 27 Aug 2023 01:01:23 -0700 (PDT)
+Received: from ryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
+        by smtp.gmail.com with ESMTPSA id pg23-20020a170907205700b0098e34446464sm3181883ejb.25.2023.08.27.01.01.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Aug 2023 01:01:23 -0700 (PDT)
+From: Lucas Tanure <tanure@linux.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>, Nick <nick@khadas.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Kevin Hilman <khilman@baylibre.com>
+Cc: linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v9 2/2] tty: serial: meson: Add a earlycon for the T7 SoC
-Message-ID: <2023082636-embolism-submitter-5e8c@gregkh>
-References: <20230814080128.143613-1-tanure@linux.com>
- <20230814080128.143613-2-tanure@linux.com>
- <20230823082940.t4xjgfzwpt2hsfst@CAB-WSD-L081021>
- <29cfd5ef-16ae-4960-a95e-13b58c090604@linux.com>
+	Lucas Tanure <tanure@linux.com>
+Subject: [PATCH] Revert "tty: serial: meson: Add a earlycon for the T7 SoC"
+Date: Sun, 27 Aug 2023 09:01:13 +0100
+Message-ID: <20230827080113.2790-1-tanure@linux.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <29cfd5ef-16ae-4960-a95e-13b58c090604@linux.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230826_125949_783035_B6E69A70 
-X-CRM114-Status: GOOD (  24.09  )
+X-CRM114-CacheID: sfid-20230827_010127_508303_8AD45615 
+X-CRM114-Status: UNSURE (   7.68  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,52 +84,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, Aug 26, 2023 at 07:07:18PM +0100, Lucas Tanure wrote:
-> On 23-08-2023 09:29, Dmitry Rokosov wrote:
-> > Hello Lucas,
-> > 
-> > Thank you for the patch! Please find my small comment below.
-> > 
-> > On Mon, Aug 14, 2023 at 09:01:28AM +0100, Lucas Tanure wrote:
-> > > The new Amlogic T7 SoC does not have a always-on uart,
-> > > so add OF_EARLYCON_DECLARE for it.
-> > > 
-> > > Signed-off-by: Lucas Tanure <tanure@linux.com>
-> > > Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > > ---
-> > > Since v8:
-> > >   - Fix issues with git send-mail command line
-> > > Since v7:
-> > >   - Send to the correct maintainers
-> > > 
-> > >   drivers/tty/serial/meson_uart.c | 2 ++
-> > >   1 file changed, 2 insertions(+)
-> > > 
-> > > diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-> > > index 790d910dafa5..c4f61d82fb72 100644
-> > > --- a/drivers/tty/serial/meson_uart.c
-> > > +++ b/drivers/tty/serial/meson_uart.c
-> > > @@ -648,6 +648,8 @@ meson_serial_early_console_setup(struct earlycon_device *device, const char *opt
-> > >   OF_EARLYCON_DECLARE(meson, "amlogic,meson-ao-uart",
-> > >   		    meson_serial_early_console_setup);
-> > > +OF_EARLYCON_DECLARE(meson, "amlogic,t7-uart",
-> > > +		    meson_serial_early_console_setup);
-> > >   #define MESON_SERIAL_CONSOLE_PTR(_devname) (&meson_serial_console_##_devname)
-> > >   #else
-> > 
-> > I suppose you need to add a separate meson_t7_uart_data to switch the T7
-> > UART to a regular TTY devname 'ttyS'. For the new Amlogic SoCs, we have
-> > agreed to use 'ttyS' instead of 'ttyAML'. Please refer to the already
-> > applied patch series at [1] and the IRC discussion at [2].
-> > 
-> > Links:
-> >      [1] https://lore.kernel.org/all/20230705181833.16137-1-ddrokosov@sberdevices.ru/
-> >      [2] https://libera.irclog.whitequark.org/linux-amlogic/2023-07-03
-> > 
-> I asked Greg to drop this patch as is not need anymore.
-> T7 will use S4 TTY/UART code.
+This reverts commit 6a4197f9763325043abf7690a21124a9facbf52e.
+New SoC will use ttyS0 instead of ttyAML, so T7 SoC doesn't need a OF_EARLYCON_DECLARE.
 
-I can't drop it, I need a revert :(
+---
+ drivers/tty/serial/meson_uart.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+index c4f61d82fb727..790d910dafa5d 100644
+--- a/drivers/tty/serial/meson_uart.c
++++ b/drivers/tty/serial/meson_uart.c
+@@ -648,8 +648,6 @@ meson_serial_early_console_setup(struct earlycon_device *device, const char *opt
+ 
+ OF_EARLYCON_DECLARE(meson, "amlogic,meson-ao-uart",
+ 		    meson_serial_early_console_setup);
+-OF_EARLYCON_DECLARE(meson, "amlogic,t7-uart",
+-		    meson_serial_early_console_setup);
+ 
+ #define MESON_SERIAL_CONSOLE_PTR(_devname) (&meson_serial_console_##_devname)
+ #else
+-- 
+2.42.0
+
 
 _______________________________________________
 linux-amlogic mailing list
