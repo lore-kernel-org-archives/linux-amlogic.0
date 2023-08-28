@@ -4,82 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCA41C83F11
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Aug 2023 12:30:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5379C71153
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Aug 2023 12:31:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=GMGI/Y+YkIpAlpLKm+MMO6lVI0fhOc6VLGX861PrmRA=; b=rXH3DnDkqrYamSA6RawsQTqf9r
-	mKTthxYz5e8Db/HnnatWHzyC3raVUiJ2YNaWvxQKNb5hJwt+OcIZ97g2OM9J29YyJ2A8kGuY9XBcF
-	5gjuyA5HtV/JgATCzLsHOipdelp7sZ5XUHaUXJNnxoDQOnVvtOrvUCx6gAstZtZo3FtDIedIyOf2y
-	wGBjxLwd65pm4uPtT/U+5Sx1dTro5uCUogm/JcU4MYUd4GrjZEA35qVTFFXfaIvjWLJ4MHmCHsXqW
-	ciA4rYKZlagKX+mYy6RJHQ1QVp1uSKexf70xoTmpDTY8esm7NxN2f7cjXK/a/7L4VBtgToH6lUEYH
-	Cbulf4qw==;
+	bh=k94zxf0zbPKG5cJcCasvuH3xajMuseC3SppAgJaw0H4=; b=1TrQfi2aD2GGM5JqQM9AdUWcck
+	s/lu5eCqaowLbYed60Ei0c/TnrRLO3AG7ClwjBPXUnmZKV6eGHKTpFMdjF+5gtLxo9kaAFoZO4t5t
+	kx4qa9//CztN57oDhwvqwo/Qi5hkdl3pK81kyFik+VBbtfRnlWbAgScR370P86/1FcYCPUNIsa4Le
+	6UqQAOYM49bSJRJLLShpzDOeTp7/+2G9gF/pi5Z2Edp1u+zP72IaK+YyceDLF06wV5QJWuDircXAe
+	S0bdBhG6eAxMGqGtdEEsW/LmCUIvGTgb+yfC2aBL1vjj7nPUNE6m/BDjzIucC334TAgrDH4kwaZFu
+	/JRJ4RkQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qabNy-009ZMh-0J;
-	Mon, 28 Aug 2023 12:30:26 +0000
+	id 1qabOh-009ZTD-0c;
+	Mon, 28 Aug 2023 12:31:11 +0000
 Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qabNu-009ZLs-1M
+	id 1qabOe-009ZSU-2G
 	for linux-amlogic@lists.infradead.org;
-	Mon, 28 Aug 2023 12:30:23 +0000
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-31aeef88a55so2566918f8f.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 28 Aug 2023 05:30:21 -0700 (PDT)
+	Mon, 28 Aug 2023 12:31:09 +0000
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-313e742a787so1947811f8f.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 28 Aug 2023 05:31:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693225821; x=1693830621;
+        d=linaro.org; s=google; t=1693225867; x=1693830667;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=kikC2GMZA3lKqRBwEa37aJsf6/FOFnk58xosIM1uppU=;
-        b=LOVmckN79tJf+dsYfdpFMqlyjgUFlbVTthUqp4Jlr4IWMUTLUOiHGu5CKu2yCs8G/7
-         9cm+58/7BUHNVnOlBboAuhwboP7D2nabsp+ZWsk2kCnm7tLBkSmA272roTrRDeOHgKK3
-         kut96HeZbJ+2e1kJsAv4+UJv9qUHBoOdZGCOAVvbl1tUDfvYvT0bJtqrOdEfMP0kU9od
-         AOdeMNwvo96VAIjFz+HpSxLfsakfRwc14H5xiMFu/2PJ5bZNhtiyTVmg23//C8kS5GhG
-         hErbs3Q4Zbm99CkTt1CXznhuWmdqjBdKfPfd2NmglW2C0hJXqw4HjdwUEJQ/RimdEopk
-         3Qyw==
+        bh=yfaTj97MUYR8oG5M2y22bu1/J5TfgewQ8yMLK5neTHw=;
+        b=ygfvbuvxOt9vhAlpXHsuyMAuOQZZpajrG+eY3DEputQO1QKfx6E5Tu6lxth/W6800R
+         aGpe8mdKSNBUFbtqxC2IuIEuA9McDu4V3hyHmKUNzztfS4/VSzW+n8TEk6ceaE6FA0A3
+         BDvfX8D+aUlmsRz340G4j9q6dUdCql8/53erPw76Sjr1Bfb+9fSuLI97a3lxwCVnGyit
+         beqjlSty4y43m83CS2wecHz0cNC0nAyZGhSN5RxzEa078DphjwQYYFjIwaioIonhWOxZ
+         dON38LLywtUG4Zw+a78RPhtIoxGwIoJRsqjTKaPo4phCsrgE0KzqUvqT5M1hdGyOeX+f
+         /Fmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693225821; x=1693830621;
+        d=1e100.net; s=20221208; t=1693225867; x=1693830667;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=kikC2GMZA3lKqRBwEa37aJsf6/FOFnk58xosIM1uppU=;
-        b=dgHc3eu/3WrFK1t8/T/rsl1sZQfqL+v0sJM4N52KDGNbZDTsnr2DtGseHgl4Aiqn4l
-         odXLjAC0eUzh9HisjEtl0zFINEN4wpC4SVSsltYsc8O9QxAL+d+5Ri1VvBxqpYVSQ/Zn
-         j+pNf5Xg70+U0tmU5+/+x/rkVbIjkzpRnTQzdioTPXTUpKQVPX2rid52Wq0FNxMYb+gY
-         2rJauxfhFKVoZVwcYakquzJaTRuT/4rxKzM4/F/scccy8nodtpwxv4OcPUehgyCLWn2W
-         K8UfhmNGCmTHUy/JxgB6xT7q0PS14JB+aRnfmrjGcll3jBJkSQRbdZEwvOLLDhgfFSff
-         zRag==
-X-Gm-Message-State: AOJu0Yx8MAXw9Gb6JgUxn2T55tf6VbwV1sV9RQy9/nADz8IbWYoDqUkF
-	kIJo1iQstFY1ArCKyoXAKP3D1RRFpynkEfH7Qv5Og5Qh
-X-Google-Smtp-Source: AGHT+IHHFmAz5oQdVaLNKoDebNOA4cP6Xfs7jD1J8pUPSk3dEDjD/HL1YdFzkfPYDfeMPrIptx4XPA==
-X-Received: by 2002:a5d:4a12:0:b0:317:49a2:1f89 with SMTP id m18-20020a5d4a12000000b0031749a21f89mr18915512wrq.1.1693225820676;
-        Mon, 28 Aug 2023 05:30:20 -0700 (PDT)
+        bh=yfaTj97MUYR8oG5M2y22bu1/J5TfgewQ8yMLK5neTHw=;
+        b=CTpLhNWJLpCfdc/ZacNdLGvMwmsgi7iVoFauv65grvoTlAbFkeJmog5OmkJWKf0CnN
+         k1BEkX5LpRg5Z2LQkbUxcozioESg5AfPcJQQ9cZyP2s/LRi3sMg8wF0IIjfwfAuUWBLQ
+         ZSBJaoHKMVT1JGuMtYKcZdbAABMO8qziSIlGTM3GY6unHizOOOlANLDCmT0C1qLxnmha
+         pJdoTgJkz6pTxrtfN8yH2FSbbpCv0q/qyJJYDHbIzI2jG1GyyN0fZDXWSpLAp4Nx2Y2E
+         bAQLaBVSG7rOSNYpUnISzJIXlKCDs+Qb+IBLRXQ0nAsJ1Hc27v5m2UlpFcgh0Dscje1h
+         hymg==
+X-Gm-Message-State: AOJu0YzjIFtkMZHoamLtf92Te6rkth/f25hHZlhnvnFtmRk00rzT8OLy
+	wol323gtHT2uHHE7JEqWXn+G88u0xHf7UYnepb3Prbch
+X-Google-Smtp-Source: AGHT+IHaegYoymwDZu6Vmtxc4Udd/lxAuy01xNIbVrljfxYLKBO+F6fZXcUPA1VTBVHMLeUFPen0TQ==
+X-Received: by 2002:a05:6000:147:b0:317:59a6:6f68 with SMTP id r7-20020a056000014700b0031759a66f68mr22064032wrx.0.1693225867417;
+        Mon, 28 Aug 2023 05:31:07 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:5e59:c27b:747a:3f52? ([2a01:e0a:982:cbb0:5e59:c27b:747a:3f52])
-        by smtp.gmail.com with ESMTPSA id k12-20020a5d518c000000b003143cb109d5sm10486910wrv.14.2023.08.28.05.30.19
+        by smtp.gmail.com with ESMTPSA id k12-20020a5d518c000000b003143cb109d5sm10486910wrv.14.2023.08.28.05.31.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 05:30:20 -0700 (PDT)
-Message-ID: <413d4c70-fcd4-479d-967b-59130c1a68eb@linaro.org>
-Date: Mon, 28 Aug 2023 14:30:19 +0200
+        Mon, 28 Aug 2023 05:31:06 -0700 (PDT)
+Message-ID: <944f1370-c092-484e-a13d-b7f8211c4835@linaro.org>
+Date: Mon, 28 Aug 2023 14:31:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH] tty: serial: meson: Add a earlycon for the S4 SoC
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2] Revert "tty: serial: meson: Add a earlycon for the T7
+ SoC"
 Content-Language: en-US, fr
-To: tanure@linux.com
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-References: <20230828121053.60838-1-tanure@linux.com>
- <7720b990-c9cf-4c3d-8bb2-928b3b17f089@linaro.org>
- <CAJX_Q+0AWcY7SySsdtVn=7xE8H0YtLBfN2XrKSOZMGB-60NRhg@mail.gmail.com>
+To: Lucas Tanure <tanure@linux.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Kevin Hilman <khilman@baylibre.com>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+References: <20230827082944.5100-1-tanure@linux.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -105,10 +103,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <CAJX_Q+0AWcY7SySsdtVn=7xE8H0YtLBfN2XrKSOZMGB-60NRhg@mail.gmail.com>
+In-Reply-To: <20230827082944.5100-1-tanure@linux.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230828_053022_461865_EA3419F7 
-X-CRM114-Status: GOOD (  13.26  )
+X-CRM114-CacheID: sfid-20230828_053108_748902_8A7AF51E 
+X-CRM114-Status: GOOD (  11.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,38 +119,44 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgpPbiAyOC8wOC8yMDIzIDE0OjI2LCBMdWNhcyBUYW51cmUgd3JvdGU6Cj4gT24gTW9uLCBB
-dWcgMjgsIDIwMjMgYXQgMToxNuKAr1BNIE5laWwgQXJtc3Ryb25nCj4gPG5laWwuYXJtc3Ryb25n
-QGxpbmFyby5vcmc+IHdyb3RlOgo+Pgo+PiBIaSwKPj4KPj4gT24gMjgvMDgvMjAyMyAxNDoxMCwg
-THVjYXMgVGFudXJlIHdyb3RlOgo+Pj4gVGhlIG5ldyBBbWxvZ2ljIFM0IFNvQyBkb2VzIG5vdCBo
-YXZlIGEgYWx3YXlzLW9uIHVhcnQsIHNvIGFkZAo+Pj4gT0ZfRUFSTFlDT05fREVDTEFSRSBmb3Ig
-aXQuCj4+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogTHVjYXMgVGFudXJlIDx0YW51cmVAbGludXguY29t
-Pgo+Pj4gLS0tCj4+PiAgICBkcml2ZXJzL3R0eS9zZXJpYWwvbWVzb25fdWFydC5jIHwgNCArKy0t
-Cj4+PiAgICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+
-Pj4KPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3R0eS9zZXJpYWwvbWVzb25fdWFydC5jIGIvZHJp
-dmVycy90dHkvc2VyaWFsL21lc29uX3VhcnQuYwo+Pj4gaW5kZXggNzkwZDkxMGRhZmE1Li44ZGZh
-YTI2MGU1NDUgMTAwNjQ0Cj4+PiAtLS0gYS9kcml2ZXJzL3R0eS9zZXJpYWwvbWVzb25fdWFydC5j
-Cj4+PiArKysgYi9kcml2ZXJzL3R0eS9zZXJpYWwvbWVzb25fdWFydC5jCj4+PiBAQCAtNjQ2LDgg
-KzY0Niw4IEBAIG1lc29uX3NlcmlhbF9lYXJseV9jb25zb2xlX3NldHVwKHN0cnVjdCBlYXJseWNv
-bl9kZXZpY2UgKmRldmljZSwgY29uc3QgY2hhciAqb3B0Cj4+PiAgICAgICAgcmV0dXJuIDA7Cj4+
-PiAgICB9Cj4+Pgo+Pj4gLU9GX0VBUkxZQ09OX0RFQ0xBUkUobWVzb24sICJhbWxvZ2ljLG1lc29u
-LWFvLXVhcnQiLAo+Pj4gLSAgICAgICAgICAgICAgICAgbWVzb25fc2VyaWFsX2Vhcmx5X2NvbnNv
-bGVfc2V0dXApOwo+Pj4gK09GX0VBUkxZQ09OX0RFQ0xBUkUobWVzb24sICJhbWxvZ2ljLG1lc29u
-LWFvLXVhcnQiLCBtZXNvbl9zZXJpYWxfZWFybHlfY29uc29sZV9zZXR1cCk7Cj4+PiArT0ZfRUFS
-TFlDT05fREVDTEFSRShtZXNvbiwgImFtbG9naWMsbWVzb24tczQtdWFydCIsIG1lc29uX3Nlcmlh
-bF9lYXJseV9jb25zb2xlX3NldHVwKTsKPj4KPj4gTm90IHN1cmUgd2h5IHlvdSB3b3VsZCBjaGFu
-Z2UgYm90aCBsaW5lcywgYW5kIHdoZXJlJ3MgdGhlIHQ3IGVudHJ5ID8KPiBvaywgYnV0IHdlIGRv
-bid0IG5lZWQgdDcsIHJpZ2h0PyBUNyB3aWxsIHVzZSBTNCBjb21wYXRpYmxlIGxpbmUuCgpJbmRl
-ZWQsIEkgZm9yZ2V0IHlvdSBmaW5hbGx5IHVzZWQgYW1sb2dpYyxtZXNvbi1zNC11YXJ0IGFzIGZh
-bGxiYWNrLgoKUGxlYXNlIGluZGljYXRlIHRoaXMgaW4gdGhlIGNvbW1pdCBtZXNzYWdlLgoKSSds
-bCBhY2sgdGhlIHJldmVydCB0aGVuLAoKVGhhbmtzLApOZWlsCgo+Pgo+PiBOZWlsCj4+Cj4+Pgo+
-Pj4gICAgI2RlZmluZSBNRVNPTl9TRVJJQUxfQ09OU09MRV9QVFIoX2Rldm5hbWUpICgmbWVzb25f
-c2VyaWFsX2NvbnNvbGVfIyNfZGV2bmFtZSkKPj4+ICAgICNlbHNlCj4+CgoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
-IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Hi Greg,
+
+On 27/08/2023 10:29, Lucas Tanure wrote:
+> This reverts commit 6a4197f9763325043abf7690a21124a9facbf52e.
+> New SoC will use ttyS0 instead of ttyAML, so T7 SoC doesn't need a OF_EARLYCON_DECLARE.
+> 
+> Signed-off-by: Lucas Tanure <tanure@linux.com>
+> ---
+> Since V1:
+> - add Signed-off-by:
+> 
+>   drivers/tty/serial/meson_uart.c | 2 --
+>   1 file changed, 2 deletions(-)
+> 
+> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+> index c4f61d82fb727..790d910dafa5d 100644
+> --- a/drivers/tty/serial/meson_uart.c
+> +++ b/drivers/tty/serial/meson_uart.c
+> @@ -648,8 +648,6 @@ meson_serial_early_console_setup(struct earlycon_device *device, const char *opt
+>   
+>   OF_EARLYCON_DECLARE(meson, "amlogic,meson-ao-uart",
+>   		    meson_serial_early_console_setup);
+> -OF_EARLYCON_DECLARE(meson, "amlogic,t7-uart",
+> -		    meson_serial_early_console_setup);
+>   
+>   #define MESON_SERIAL_CONSOLE_PTR(_devname) (&meson_serial_console_##_devname)
+>   #else
+
+After some clarifications, it's ok to merge the revert:
+
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
