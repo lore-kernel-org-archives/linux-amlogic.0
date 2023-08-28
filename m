@@ -4,117 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89B0EC83F12
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Aug 2023 08:51:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62F4BC83F1F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Aug 2023 10:30:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Hvj8mRM0e+RbWHh5DweE+l4avlxV34pfafJpAClul9I=; b=ujthBrwdtYiOqXxu0CTY0XQI3l
-	3bty2drZgwAwq3J90dGjp6qxK+K1IY/mD3h5YZjWQe3uVBAifIA5qAM61aFzggmrZdhioVOKodwSe
-	BKcef/w6VoNFIi5IbCfA0sKp78fOBKHwUTd9/siVBIwLVmzsfnLARf1J/HUQmnFYsgAVU04Th/dEa
-	ruAeOZMgC96dhD8iuhqOhpaflQ28eFM04erQS/Md466M2ccEzLU5OTYhvCSosIlikWBgo+BKVEwTh
-	+pla+EciYlxdc1t7oTKHblwc6Vd21FzH/M1pSQtksOdMlkeOhglgLw7B/plrIeM8DqGoQw7Ob5ESj
-	UXatIdNg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=+pxzZ2Ai+PpffNGPNeiRjkBJI7EX56WB/LlW/i7nFsY=; b=IoB2Fy4C2si1NV
+	aE4fsbF0kbCtVY4jvmDUM0Mi5/fMR4DxE4vfu6QATnbXXDSo7jKMzP8cn95pML2pEaxZj+iGFykef
+	jbIq4nGbqke5Q+ZgijBvIRqG69Zdee4gYEewGdHEZ4hfaOP3hJLHSpf7oH8lsyFzq4JInUj6OM0J8
+	Nrjw37uURoOnh7j5Tldq2BDChLVzHgRp36/3+Gt6oLIg0fcWDcPj1wEB/YHUbOW4asMQ5d7fGAHfH
+	mfPlMKoasMReS82pUni5L1iIZ7+54ayYhh74eIApmM1YRlGdVvbutSFtev8ydoetMjRW7yPJ+LNlB
+	ZRR4+dHY+XIBAmqFKiLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qaXxI-009Ac4-0J;
-	Mon, 28 Aug 2023 08:50:40 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1qaZVi-009RFK-0b;
+	Mon, 28 Aug 2023 10:30:18 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qaXxE-009AbE-1C
-	for linux-amlogic@lists.infradead.org;
-	Mon, 28 Aug 2023 08:50:38 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40078c4855fso27660595e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 28 Aug 2023 01:50:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693212635; x=1693817435;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WGPoX5APlzIB9ylI10o7qd7oHlAS1PpIgI7APqFVRWM=;
-        b=R8nZQvaGr8ltLMH+5JimkWXJDodtmVdSfxM6UsvA7X53PFEX23tGdCQ8c2CtFYvRie
-         i/VLzausU9IZagdCO4tAlEaanvbx+cXmD9DRytsKqLPBu64DJGteHqdeeTQcTv6orFyF
-         Pd43XUSJbl8dQ4l7uKOt7VhG8Tz8FeuXQQhgNq/m6JpqtZadTRtFAb/LlblBGD0dhOdQ
-         rUOSRtEYX0/phCZ4MAypfdWy32up+hdUgyo9NoDJ3hzvBB8I2OJ8qJyycYF70SyVbILQ
-         E1sUXGQG0d+9CGvpXMo0E5J573QOVegntR+EGCIbN7ZwczsbFURfP43efjiiDV3+Ej4R
-         9DPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693212635; x=1693817435;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=WGPoX5APlzIB9ylI10o7qd7oHlAS1PpIgI7APqFVRWM=;
-        b=NEGudfcoRPbqC+kllSq177oozUpySwF1AQFBvveQ6pvxSA1NcePNSHb5hYneYXARMf
-         zt4YkXIm4sxGbAK8xa4jEGQMq3rhJZ4ZSHc0WcX6X98ZyA+x9clFs10+WRbnChxWk9Hf
-         h52D1UsyR52Jc65eb2PW2+Z1YbCJX/dNCmpgGWm22c9CcG3TfYjo7ZjM5UiPYlTred1K
-         f68LOOBRckn4GW9DVsvcK2yLZ70mETZ5MKwKbWYUeorgzM9+jD07/LHcOSvZgpDafQHj
-         x+EYTI8Jl5ahiwTLLSAP3CA7N43fYNNVJdISzLJW/txRd7JaLh8wzjhuffiFpEEARQtw
-         oI9Q==
-X-Gm-Message-State: AOJu0YyoukU3/2rllkL4XLn891tcmd1Nff10J6yJ08vdBmviOtMrK9Nw
-	DnQwd+9VWYRtoK9M77F3c5WI91spi47tKpDpI7k6w+mF
-X-Google-Smtp-Source: AGHT+IEJwUe/1R7M1K8G0Ek/Vcp84qIH6fHSeKsCRwrJZEWTCru0Ra1VTzcLbEJWVaKkh08Zny6uHQ==
-X-Received: by 2002:a7b:ce91:0:b0:400:6b36:ee2a with SMTP id q17-20020a7bce91000000b004006b36ee2amr9951462wmj.26.1693212634766;
-        Mon, 28 Aug 2023 01:50:34 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5e59:c27b:747a:3f52? ([2a01:e0a:982:cbb0:5e59:c27b:747a:3f52])
-        by smtp.gmail.com with ESMTPSA id x16-20020a5d6510000000b003143c9beeaesm9877481wru.44.2023.08.28.01.50.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 01:50:34 -0700 (PDT)
-Message-ID: <23bfd7bc-98ea-42c4-b2d4-6060df5e7080@linaro.org>
-Date: Mon, 28 Aug 2023 10:50:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2] Revert "tty: serial: meson: Add a earlycon for the T7
- SoC"
-Content-Language: en-US, fr
-To: tanure@linux.com, Dmitry Rokosov <ddrokosov@sberdevices.ru>
+	id 1qaZVd-009RE3-2n;
+	Mon, 28 Aug 2023 10:30:16 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 4669D63C6F;
+	Mon, 28 Aug 2023 10:30:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31A0FC433C9;
+	Mon, 28 Aug 2023 10:30:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1693218612;
+	bh=mtWcpg4pPAjZMs1U3EqtlsEKvHdweVPU8plNwlTqWWc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=xviubvNfN4haFhNIF13ZY0TCFfK/W2sl/QUnVm+m3bW/JJKF8dg4hm8gqvQllkx9X
+	 aUlkICu2DUCIi4wsomidiKSPp76IlPe/Hfs8FgaDFmo7dobHtoxwf8ElUSWTH7CKU2
+	 XwJ7WRO2YLN13OH41lYT9PkAWhzjhYaI5207FRXI=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-References: <20230827082944.5100-1-tanure@linux.com>
- <7bf9e716-0ff2-56d5-07ab-db027901454e@linaro.org>
- <09735262-1bc0-40cf-b139-22cccf70bcab@linux.com>
- <e73260c9-04f8-eb1e-bb5b-c3bd2219625e@linaro.org>
- <8d2ba0d3-55eb-45cf-b88a-bafef35e96b9@linux.com>
- <20230828082009.kehgwi4fxtj3bfze@CAB-WSD-L081021>
- <e070f432-28bd-465f-ad66-53add8b61907@linaro.org>
- <20230828084632.sp73jppcrfvc7nv3@CAB-WSD-L081021>
- <CAJX_Q+3x0XtARZwf0_Dh-skAF9Qj3S3uUmLv2mFJO3ZWR2+3og@mail.gmail.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <CAJX_Q+3x0XtARZwf0_Dh-skAF9Qj3S3uUmLv2mFJO3ZWR2+3og@mail.gmail.com>
+	patches@lists.linux.dev,
+	Daniel Vetter <daniel.vetter@ffwll.ch>,
+	Daniel Vetter <daniel.vetter@intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Deepak Rawat <drawat.floss@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Emma Anholt <emma@anholt.net>,
+	Helge Deller <deller@gmx.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	linux-hyperv@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-tegra@vger.kernel.org,
+	linux-fbdev@vger.kernel.org,
+	Thierry Reding <treding@nvidia.com>,
+	Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 6.1 007/122] drm/aperture: Remove primary argument
+Date: Mon, 28 Aug 2023 12:12:02 +0200
+Message-ID: <20230828101156.720830036@linuxfoundation.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20230828101156.480754469@linuxfoundation.org>
+References: <20230828101156.480754469@linuxfoundation.org>
+User-Agent: quilt/0.67
+X-stable: review
+X-Patchwork-Hint: ignore
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230828_015036_412929_5C434009 
-X-CRM114-Status: GOOD (  19.50  )
+X-CRM114-CacheID: sfid-20230828_033013_996257_9394F1A3 
+X-CRM114-Status: GOOD (  21.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,124 +93,306 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjgvMDgvMjAyMyAxMDo0NywgTHVjYXMgVGFudXJlIHdyb3RlOgo+IE9uIE1vbiwgQXVnIDI4
-LCAyMDIzIGF0IDk6NDbigK9BTSBEbWl0cnkgUm9rb3NvdiA8ZGRyb2tvc292QHNiZXJkZXZpY2Vz
-LnJ1PiB3cm90ZToKPj4KPj4gT24gTW9uLCBBdWcgMjgsIDIwMjMgYXQgMTA6MjM6NDVBTSArMDIw
-MCwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4+PiBIaSwKPj4+Cj4+PiBPbiAyOC8wOC8yMDIzIDEw
-OjIwLCBEbWl0cnkgUm9rb3NvdiB3cm90ZToKPj4+PiBPbiBTdW4sIEF1ZyAyNywgMjAyMyBhdCAx
-MTozMTozNUFNICswMTAwLCBMdWNhcyBUYW51cmUgd3JvdGU6Cj4+Pj4+IE9uIDI3LTA4LTIwMjMg
-MTE6MjMsIE5laWwgQXJtc3Ryb25nIHdyb3RlOgo+Pj4+Pj4gSGkgTHVjYXMsCj4+Pj4+Pgo+Pj4+
-Pj4gTGUgMjcvMDgvMjAyMyDDoCAxMjowNCwgTHVjYXMgVGFudXJlIGEgw6ljcml0IDoKPj4+Pj4+
-PiBPbiAyNy0wOC0yMDIzIDEwOjQ4LCBOZWlsIEFybXN0cm9uZyB3cm90ZToKPj4+Pj4+Pj4gSGkg
-THVjYXMsCj4+Pj4+Pj4+Cj4+Pj4+Pj4+IExlIDI3LzA4LzIwMjMgw6AgMTA6MjksIEx1Y2FzIFRh
-bnVyZSBhIMOpY3JpdCA6Cj4+Pj4+Pj4+PiBUaGlzIHJldmVydHMgY29tbWl0IDZhNDE5N2Y5NzYz
-MzI1MDQzYWJmNzY5MGEyMTEyNGE5ZmFjYmY1MmUuCj4+Pj4+Pj4+PiBOZXcgU29DIHdpbGwgdXNl
-IHR0eVMwIGluc3RlYWQgb2YgdHR5QU1MLCBzbyBUNyBTb0MgZG9lc24ndAo+Pj4+Pj4+Pj4gbmVl
-ZCBhIE9GX0VBUkxZQ09OX0RFQ0xBUkUuCj4+Pj4+Pj4+Pgo+Pj4+Pj4+Pj4gU2lnbmVkLW9mZi1i
-eTogTHVjYXMgVGFudXJlIDx0YW51cmVAbGludXguY29tPgo+Pj4+Pj4+Pj4gLS0tCj4+Pj4+Pj4+
-PiBTaW5jZSBWMToKPj4+Pj4+Pj4+IC0gYWRkIFNpZ25lZC1vZmYtYnk6Cj4+Pj4+Pj4+Pgo+Pj4+
-Pj4+Pj4gICAgIGRyaXZlcnMvdHR5L3NlcmlhbC9tZXNvbl91YXJ0LmMgfCAyIC0tCj4+Pj4+Pj4+
-PiAgICAgMSBmaWxlIGNoYW5nZWQsIDIgZGVsZXRpb25zKC0pCj4+Pj4+Pj4+Pgo+Pj4+Pj4+Pj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvdHR5L3NlcmlhbC9tZXNvbl91YXJ0LmMKPj4+Pj4+Pj4+IGIv
-ZHJpdmVycy90dHkvc2VyaWFsL21lc29uX3VhcnQuYwo+Pj4+Pj4+Pj4gaW5kZXggYzRmNjFkODJm
-YjcyNy4uNzkwZDkxMGRhZmE1ZCAxMDA2NDQKPj4+Pj4+Pj4+IC0tLSBhL2RyaXZlcnMvdHR5L3Nl
-cmlhbC9tZXNvbl91YXJ0LmMKPj4+Pj4+Pj4+ICsrKyBiL2RyaXZlcnMvdHR5L3NlcmlhbC9tZXNv
-bl91YXJ0LmMKPj4+Pj4+Pj4+IEBAIC02NDgsOCArNjQ4LDYgQEAgbWVzb25fc2VyaWFsX2Vhcmx5
-X2NvbnNvbGVfc2V0dXAoc3RydWN0Cj4+Pj4+Pj4+PiBlYXJseWNvbl9kZXZpY2UgKmRldmljZSwg
-Y29uc3QgY2hhciAqb3B0Cj4+Pj4+Pj4+PiAgICAgT0ZfRUFSTFlDT05fREVDTEFSRShtZXNvbiwg
-ImFtbG9naWMsbWVzb24tYW8tdWFydCIsCj4+Pj4+Pj4+PiAgICAgICAgICAgICAgICAgbWVzb25f
-c2VyaWFsX2Vhcmx5X2NvbnNvbGVfc2V0dXApOwo+Pj4+Pj4+Pj4gLU9GX0VBUkxZQ09OX0RFQ0xB
-UkUobWVzb24sICJhbWxvZ2ljLHQ3LXVhcnQiLAo+Pj4+Pj4+Pj4gLSAgICAgICAgICAgIG1lc29u
-X3NlcmlhbF9lYXJseV9jb25zb2xlX3NldHVwKTsKPj4+Pj4+Pj4+ICAgICAjZGVmaW5lIE1FU09O
-X1NFUklBTF9DT05TT0xFX1BUUihfZGV2bmFtZSkKPj4+Pj4+Pj4+ICgmbWVzb25fc2VyaWFsX2Nv
-bnNvbGVfIyNfZGV2bmFtZSkKPj4+Pj4+Pj4+ICAgICAjZWxzZQo+Pj4+Pj4+Pgo+Pj4+Pj4+PiBI
-b3cgZG8geW91IHVzZSBlYXJseWNvbiB3aXRoIHRoaXMgcmVtb3ZlZCA/Cj4+Pj4+Pj4+Cj4+Pj4+
-Pj4+IE5laWwKPj4+Pj4+PiBUaGlzIGlzIG15IGtlcm5lbCBjbWRsaW5lOgo+Pj4+Pj4+IGNvbnNv
-bGU9dHR5UzAsOTIxNjAwIG5vX2NvbnNvbGVfc3VzcGVuZCBlYXJseWNvbj10dHlTMCwweGZlMDc4
-MDAwCj4+Pj4+Pj4KPj4+Pj4+PiBBbmQgSSBjYW4gc2VlIG15IGxvZzoKPj4+Pj4+PiBib290IDY0
-Yml0IGtlcm5lbAo+Pj4+Pj4+IFsgICAgMC4wMDAwMDBdIEJvb3RpbmcgTGludXggb24gcGh5c2lj
-YWwgQ1BVIDB4MDAwMDAwMDAwMCBbMHg0MTBmZDA5Ml0KPj4+Pj4+PiBbICAgIDAuMDAwMDAwXSBM
-aW51eCB2ZXJzaW9uIDYuNS4wLXJjNy1uZXh0LTIwMjMwODI1Kwo+Pj4+Pj4+ICh0YW51cmVhbEBy
-eXplbikgKGFhcmNoNjQtbm9uZS1saW51eC1nbnUtZ2NjIChHTlUgVG9vbGNoYWluIGZvciB0aGUK
-Pj4+Pj4+PiBBLXByb2ZpbGUgQXJjaGl0ZWN0dXJlIDEwLjMtMjAyMS4wNyAoYXJtLTEwLjI5KSkg
-MTAuMy4xIDIwMjEwNjIxLAo+Pj4+Pj4+IEdOVSBsZCAoR05VIFRvb2xjaGFpbiBmbzMKPj4+Pj4+
-PiBbICAgIDAuMDAwMDAwXSBLQVNMUiBkaXNhYmxlZCBkdWUgdG8gbGFjayBvZiBzZWVkCj4+Pj4+
-Pj4gWyAgICAwLjAwMDAwMF0gTWFjaGluZSBtb2RlbDogS2hhZGFzIHZpbTQKPj4+Pj4+PiBbICAg
-IDAuMDAwMDAwXSBPRjogcmVzZXJ2ZWQgbWVtOgo+Pj4+Pj4+IDB4MDAwMDAwMDAwNTAwMDAwMC4u
-MHgwMDAwMDAwMDA1MmZmZmZmICgzMDcyIEtpQikgbm9tYXAgbm9uLXJldXNhYmxlCj4+Pj4+Pj4g
-c2VjbW9uQDUwMDAwMDAKPj4+Pj4+PiBbICAgIDAuMDAwMDAwXSBPRjogcmVzZXJ2ZWQgbWVtOgo+
-Pj4+Pj4+IDB4MDAwMDAwMDAwNTMwMDAwMC4uMHgwMDAwMDAwMDA3MmZmZmZmICgzMjc2OCBLaUIp
-IG5vbWFwCj4+Pj4+Pj4gbm9uLXJldXNhYmxlIHNlY21vbkA1MzAwMDAwCj4+Pj4+Pj4gLi4uCj4+
-Pj4+Pj4gWyAgICAwLjA3OTM2OF0gaW8gc2NoZWR1bGVyIG1xLWRlYWRsaW5lIHJlZ2lzdGVyZWQK
-Pj4+Pj4+PiBbICAgIDAuMDc5Mzc0XSBpbyBzY2hlZHVsZXIga3liZXIgcmVnaXN0ZXJlZAo+Pj4+
-Pj4+IFsgICAgMC4wNzk1NDldIGlvIHNjaGVkdWxlciBiZnEgcmVnaXN0ZXJlZAo+Pj4+Pj4+IFsg
-ICAgMC4wODMzNzNdIGZlMDc4MDAwLnNlcmlhbDogdHR5UzAgYXQgTU1JTyAweGZlMDc4MDAwIChp
-cnEgPSAxNCwKPj4+Pj4+PiBiYXNlX2JhdWQgPSAxNTAwMDAwKSBpcyBhIG1lc29uX3VhcnQKPj4+
-Pj4+PiBbICAgIDAuMDgzNDAzXSBwcmludGs6IGNvbnNvbGUgW3R0eVMwXSBlbmFibGVkCj4+Pj4+
-Pj4KPj4+Pj4+PiBBcyB0aGUgbG9nIGlzIE9LLCBhbmQgVDcgZm9yIG5vdyBpcyBiaW5kaW5nIGFn
-YWluc3QgUzQgY29kZSB3ZQo+Pj4+Pj4+IHNob3VsZCBkcm9wIHRoaXMgcGF0Y2ggYW5kIGFkZCBh
-IFM0IG9uZSBpZiBuZWVkZWQuCj4+Pj4+Pj4KPj4+Pj4+PiBCdXQganVzdCBoYXZpbmcgdGhpcyBs
-b2cgaXMgbm90IGVub3VnaCBmb3IgdGVzdGluZyBlYXJseWNvbj8KPj4+Pj4+PiBJIGFtIGFzc3Vt
-aW5nIHRoYXQgYnkganVzdCBoYXZpbmcgdGhlIGxvZyBzaW5jZSAwLjAwMDAgaXMgYSBnb29kCj4+
-Pj4+Pj4gc2lnbiB0aGF0IGVhcmx5Y29uIGlzIHdvcmtpbmcuCj4+Pj4+Pj4gQ291bGQgeW91IGdp
-dmUgZnVydGhlciBndWlkYW5jZT8KPj4+Pj4+Cj4+Pj4+PiBGaXJzdCB0aGUga2VybmVsIGFyZ3Vt
-ZW50IGlzIHNpbXBseSAiZWFybHljb24iIHdpdGggbm8gb3RoZXIgb3B0aW9ucywKPj4+Pj4+IHRo
-ZSBlYXJseWNvbiBjb2RlIHdpbGwgZmV0Y2ggdGhlIGZpcnN0IHVhcnQgdXNpbmcgdGhlIERUCj4+
-Pj4+PiAvY2hvc2VuL3N0ZG91dC1wYXRoIHByb3BlcnR5Lgo+Pj4+Pj4KPj4+Pj4+IFRoZW4geW91
-IHNob3VsZCBzZWUgc29tZXRoaW5nIGxpa2UgcmlnaHQgYWZ0ZXIgIk1hY2hpbmUgbW9kZWwiOgo+
-Pj4+Pj4gWyAgICAwLjAwMDAwMF0gZWFybHljb246IG1lc29uMCBhdCBNTUlPIDB4MDAwMDAwMDBm
-ZjgwMzAwMCAob3B0aW9ucwo+Pj4+Pj4gJzExNTIwMG44JykKPj4+Pj4+Cj4+Pj4+PiBUaGUgYm9v
-dCBsb2cgeW91IHNoYXJlIGRvZXNuJ3QgdXNlIGVhcmx5Y29uLCBpdCB3YWl0cyB1bnRpbCBhbGwK
-Pj4+Pj4+IGRlcGVkZW5jeSBvZiB0aGUgVUFSVAo+Pj4+Pj4gaGFzIGJlZW4gcHJvYmVkIGJlZm9y
-ZSBwcm9iaW5nIHRoZSBVQVJUIGRyaXZlciBhbmQgcHJpbnRzIHRoZSB3aG9sZSBib290Cj4+Pj4+
-PiBsb2cuCj4+Pj4+Pgo+Pj4+Pj4gRWFybHljb24gaXMgYSBtZWNoYW5pc20gdG8gdXNlIHRoZSBV
-QVJUIEhXIGFzIGNvbmZpZ3VyZWQgYnkgdGhlCj4+Pj4+PiBib290bG9hZGVyIGluCj4+Pj4+PiBh
-IG1pbmltYWwgd2F5IHZlcnkgZWFybHkgaW4gdGhlIGJvb3QgaW4gb3JkZXIgdG8gZGV0ZWN0IHZl
-cnkgZWFybHkgbG9ja3Vwcy4KPj4+Pj4+Cj4+Pj4+PiBLZWVwaW5nIE9GX0VBUkxZQ09OX0RFQ0xB
-UkUgZm9yIHQ3IHdvdWxkIGVuYWJsZSB0aGlzLgo+Pj4+Pj4KPj4+Pj4+IE5laWwKPj4+Pj4+Cj4+
-Pj4+Pj4KPj4+Pj4+PiBMdWNhcyBUYW51cmUKPj4+Pj4+Pgo+Pj4+Pj4KPj4+Pj4gQnV0IHRoZW4g
-d2Ugd291bGQgbmVlZCB0byBhZGQgRWFybHljb24gZm9yIFM0IHRvby4KPj4+Pj4gSG93IGNhbiB3
-ZSBhZGQgb25lIEVhcmx5Y29uIGZvciBhbGwgZnV0dXJlIFNvQ3MsIGxpa2UgUzQgYW5kIFQ3Pwo+
-Pj4+Pgo+Pj4+Cj4+Pj4gUGVyIG15IHVuZGVyc3RhbmRpbmcsIHlvdSBqdXN0IG5lZWQgdG8gZGVj
-bGFyZSBVQVJUIGR0cyBub2RlIHdpdGggdGhlCj4+Pj4gZm9sbG93aW5nIGNvbXBhdGlibGUgc3Ry
-aW5nOiAiYW1sb2dpYyxtZXNvbi1hby11YXJ0Ii4gSXQgd2lsbCBlbmFibGVkCj4+Pj4gZWFybHlj
-b24uIFRoZXJlIGlzIG5vIG5lY2Nlc3NhcnkgdG8gZGVjbGFyZSBzZXBhcmF0ZQo+Pj4+IE9GX0VB
-UkxZQ09OX0RFQ0xBUkUoKS4gSXQncyB3b3JraW5nIG9rYXkgZm9yIEExIGR0czoKPj4+Cj4+PiBU
-aGlzIHdvcmtzIG9uIEExIGJlY2F1c2UgdWFydF9BT19CIGlzIGFuIEFsd2F5cy1PbiBVQVJULCBh
-bmQgdXNpbmcgYW1sb2dpYyxtZXNvbi1hby11YXJ0Cj4+PiBpcyBjb3JyZW50Lgo+Pj4gQnV0IGZv
-ciBTNCAmIFQ3LCBBbWxvZ2ljIGRyb3BwZWQgdGhlIEFsd2F5cy1PbiBwb3dlciBkb21haW4sIHNv
-IHRoZXJlJ3Mgbm8gbW9yZSBBTyB1YXJ0cywKPj4+IHNvIHVzaW5nIGFtbG9naWMsbWVzb24tYW8t
-dWFydCBvbiB0aG9zZSBpcyBhYnVzaW5nIHRoZSBEVCB0byBlbmFibGUgYSBkcml2ZXIgZnVuY3Rp
-b25hbGl0eS4KPj4+Cj4+PiBTbyB0aGUgc29sdXRpb24gaXMgdG8gYWRkIHRob3NlIE9GX0VBUkxZ
-Q09OX0RFQ0xBUkUgYW5kIG9ubHkgdXNlIHRoZSBjb3JyZWN0Cj4+PiAvY2hvc2VuL3N0ZG91dC1w
-YXRoIHByb3BlcnR5Lgo+Pgo+PiBPaCwgSSBkaWRuJ3Qga25vdyBhYm91dCBtaXNzaW5nIEFsd2F5
-cy1PbiBVQVJUIEFPIHBvd2VyIGRvbWFpbi4gSW4gdGhpcwo+PiBzaXR1YXRpb24gSSdtIGZ1bGx5
-IGFncmVlIHdpdGggc2VwYXJhdGUgT0ZfRUFSTFlDT05fREVDTEFSRSgpLiBUaGFuayB5b3UKPj4g
-Zm9yIGV4cGxhbmF0aW9uIQo+Pgo+Pj4+Cj4+Pj4gbWVzb24tYTEuZHRzaSB1YXJ0IGRlY2xhcmF0
-aW9uOgo+Pj4+ICAgICAgdWFydF9BT19COiBzZXJpYWxAMjAwMCB7Cj4+Pj4gICAgICAgICAgICAg
-IGNvbXBhdGlibGUgPSAiYW1sb2dpYyxtZXNvbi1hMS11YXJ0IiwKPj4+PiAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICJhbWxvZ2ljLG1lc29uLWFvLXVhcnQiOwo+Pj4+ICAgICAgICAgICAgICBy
-ZWcgPSA8MHgwIDB4MjAwMCAweDAgMHgxOD47Cj4+Pj4gICAgICAgICAgICAgIGludGVycnVwdHMg
-PSA8R0lDX1NQSSAyNiBJUlFfVFlQRV9FREdFX1JJU0lORz47Cj4+Pj4gICAgICAgICAgICAgIGNs
-b2NrcyA9IDwmeHRhbD4sIDwmeHRhbD4sIDwmeHRhbD47Cj4+Pj4gICAgICAgICAgICAgIGNsb2Nr
-LW5hbWVzID0gInh0YWwiLCAicGNsayIsICJiYXVkIjsKPj4+PiAgICAgICAgICAgICAgc3RhdHVz
-ID0gImRpc2FibGVkIjsKPj4+PiAgICAgIH07Cj4+Pj4KPj4+PiBlYXJseWNvbiBkZWNsYXJhdGlv
-biBmcm9tIGR0czoKPj4+PiAgICAgIGFsaWFzZXMgewo+Pj4+ICAgICAgICAgICAgICBzZXJpYWww
-ID0gJnVhcnRfQU9fQjsKPj4+PiAgICAgIH07Cj4+Pj4KPj4+PiAgICAgIGNob3NlbiB7Cj4+Pj4g
-ICAgICAgICAgICAgIHN0ZG91dC1wYXRoID0gInNlcmlhbDA6MTE1MjAwbjgiOwo+Pj4+ICAgICAg
-fTsKPj4+Pgo+Pj4+Pgo+Pj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwo+Pj4+PiBsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAo+Pj4+PiBsaW51eC1h
-bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKPj4+Pj4gaHR0cDovL2xpc3RzLmluZnJhZGVhZC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCj4+Pj4KPj4+Cj4+Cj4+IC0tCj4+IFRo
-YW5rIHlvdSwKPj4gRG1pdHJ5Cj4gU28gbGV0J3MgYWRkOgo+IAo+IE9GX0VBUkxZQ09OX0RFQ0xB
-UkUobWVzb24sICJhbWxvZ2ljLG1lc29uLXM0LXVhcnQiLAo+IG1lc29uX3NlcmlhbF9lYXJseV9j
-b25zb2xlX3NldHVwKTsKPiAKPiBvaz8KCgpZZXMKCk5laWwKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
-bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+6.1-stable review patch.  If anyone has any objections, please let me know.
+
+------------------
+
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+[ Upstream commit 62aeaeaa1b267c5149abee6b45967a5df3feed58 ]
+
+Only really pci devices have a business setting this - it's for
+figuring out whether the legacy vga stuff should be nuked too. And
+with the preceding two patches those are all using the pci version of
+this.
+
+Which means for all other callers primary == false and we can remove
+it now.
+
+v2:
+- Reorder to avoid compile fail (Thomas)
+- Include gma500, which retained it's called to the non-pci version.
+
+v4:
+- fix Daniel's S-o-b address
+
+v5:
+- add back an S-o-b tag with Daniel's Intel address
+
+Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Javier Martinez Canillas <javierm@redhat.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Deepak Rawat <drawat.floss@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: Jonathan Hunter <jonathanh@nvidia.com>
+Cc: Emma Anholt <emma@anholt.net>
+Cc: Helge Deller <deller@gmx.de>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: linux-hyperv@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-tegra@vger.kernel.org
+Cc: linux-fbdev@vger.kernel.org
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Acked-by: Thierry Reding <treding@nvidia.com>
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230406132109.32050-4-tzimmermann@suse.de
+Stable-dep-of: 5ae3716cfdcd ("video/aperture: Only remove sysfb on the default vga pci device")
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/arm/hdlcd_drv.c             |  2 +-
+ drivers/gpu/drm/armada/armada_drv.c         |  2 +-
+ drivers/gpu/drm/drm_aperture.c              | 11 +++--------
+ drivers/gpu/drm/gma500/psb_drv.c            |  2 +-
+ drivers/gpu/drm/hyperv/hyperv_drm_drv.c     |  1 -
+ drivers/gpu/drm/meson/meson_drv.c           |  2 +-
+ drivers/gpu/drm/msm/msm_fbdev.c             |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c |  2 +-
+ drivers/gpu/drm/stm/drv.c                   |  2 +-
+ drivers/gpu/drm/sun4i/sun4i_drv.c           |  2 +-
+ drivers/gpu/drm/tegra/drm.c                 |  2 +-
+ drivers/gpu/drm/vc4/vc4_drv.c               |  2 +-
+ include/drm/drm_aperture.h                  |  7 +++----
+ 13 files changed, 16 insertions(+), 23 deletions(-)
+
+diff --git a/drivers/gpu/drm/arm/hdlcd_drv.c b/drivers/gpu/drm/arm/hdlcd_drv.c
+index a032003c340cc..d6ea47873627f 100644
+--- a/drivers/gpu/drm/arm/hdlcd_drv.c
++++ b/drivers/gpu/drm/arm/hdlcd_drv.c
+@@ -290,7 +290,7 @@ static int hdlcd_drm_bind(struct device *dev)
+ 	 */
+ 	if (hdlcd_read(hdlcd, HDLCD_REG_COMMAND)) {
+ 		hdlcd_write(hdlcd, HDLCD_REG_COMMAND, 0);
+-		drm_aperture_remove_framebuffers(false, &hdlcd_driver);
++		drm_aperture_remove_framebuffers(&hdlcd_driver);
+ 	}
+ 
+ 	drm_mode_config_reset(drm);
+diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada/armada_drv.c
+index 142668cd6d7cd..688ba358f5319 100644
+--- a/drivers/gpu/drm/armada/armada_drv.c
++++ b/drivers/gpu/drm/armada/armada_drv.c
+@@ -95,7 +95,7 @@ static int armada_drm_bind(struct device *dev)
+ 	}
+ 
+ 	/* Remove early framebuffers */
+-	ret = drm_aperture_remove_framebuffers(false, &armada_drm_driver);
++	ret = drm_aperture_remove_framebuffers(&armada_drm_driver);
+ 	if (ret) {
+ 		dev_err(dev, "[" DRM_NAME ":%s] can't kick out simple-fb: %d\n",
+ 			__func__, ret);
+diff --git a/drivers/gpu/drm/drm_aperture.c b/drivers/gpu/drm/drm_aperture.c
+index 3b8fdeeafd53a..697cffbfd6037 100644
+--- a/drivers/gpu/drm/drm_aperture.c
++++ b/drivers/gpu/drm/drm_aperture.c
+@@ -32,17 +32,13 @@
+  *
+  *	static int remove_conflicting_framebuffers(struct pci_dev *pdev)
+  *	{
+- *		bool primary = false;
+  *		resource_size_t base, size;
+  *		int ret;
+  *
+  *		base = pci_resource_start(pdev, 0);
+  *		size = pci_resource_len(pdev, 0);
+- *	#ifdef CONFIG_X86
+- *		primary = pdev->resource[PCI_ROM_RESOURCE].flags & IORESOURCE_ROM_SHADOW;
+- *	#endif
+  *
+- *		return drm_aperture_remove_conflicting_framebuffers(base, size, primary,
++ *		return drm_aperture_remove_conflicting_framebuffers(base, size,
+  *		                                                    &example_driver);
+  *	}
+  *
+@@ -161,7 +157,6 @@ EXPORT_SYMBOL(devm_aperture_acquire_from_firmware);
+  * drm_aperture_remove_conflicting_framebuffers - remove existing framebuffers in the given range
+  * @base: the aperture's base address in physical memory
+  * @size: aperture size in bytes
+- * @primary: also kick vga16fb if present
+  * @req_driver: requesting DRM driver
+  *
+  * This function removes graphics device drivers which use the memory range described by
+@@ -171,9 +166,9 @@ EXPORT_SYMBOL(devm_aperture_acquire_from_firmware);
+  * 0 on success, or a negative errno code otherwise
+  */
+ int drm_aperture_remove_conflicting_framebuffers(resource_size_t base, resource_size_t size,
+-						 bool primary, const struct drm_driver *req_driver)
++						 const struct drm_driver *req_driver)
+ {
+-	return aperture_remove_conflicting_devices(base, size, primary, req_driver->name);
++	return aperture_remove_conflicting_devices(base, size, false, req_driver->name);
+ }
+ EXPORT_SYMBOL(drm_aperture_remove_conflicting_framebuffers);
+ 
+diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/psb_drv.c
+index 000e6704e3c75..738eb558a97e9 100644
+--- a/drivers/gpu/drm/gma500/psb_drv.c
++++ b/drivers/gpu/drm/gma500/psb_drv.c
+@@ -430,7 +430,7 @@ static int psb_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	 * TODO: Refactor psb_driver_load() to map vdc_reg earlier. Then we
+ 	 *       might be able to read the framebuffer range from the device.
+ 	 */
+-	ret = drm_aperture_remove_framebuffers(false, &driver);
++	ret = drm_aperture_remove_framebuffers(&driver);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/hyperv/hyperv_drm_drv.c b/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
+index ca127ff797f75..29ee0814bccc8 100644
+--- a/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
++++ b/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
+@@ -74,7 +74,6 @@ static int hyperv_setup_vram(struct hyperv_drm_device *hv,
+ 
+ 	drm_aperture_remove_conflicting_framebuffers(screen_info.lfb_base,
+ 						     screen_info.lfb_size,
+-						     false,
+ 						     &hyperv_driver);
+ 
+ 	hv->fb_size = (unsigned long)hv->mmio_megabytes * 1024 * 1024;
+diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+index eea433ade79d0..119544d88b586 100644
+--- a/drivers/gpu/drm/meson/meson_drv.c
++++ b/drivers/gpu/drm/meson/meson_drv.c
+@@ -285,7 +285,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 	 * Remove early framebuffers (ie. simplefb). The framebuffer can be
+ 	 * located anywhere in RAM
+ 	 */
+-	ret = drm_aperture_remove_framebuffers(false, &meson_driver);
++	ret = drm_aperture_remove_framebuffers(&meson_driver);
+ 	if (ret)
+ 		goto free_drm;
+ 
+diff --git a/drivers/gpu/drm/msm/msm_fbdev.c b/drivers/gpu/drm/msm/msm_fbdev.c
+index 46168eccfac4a..d4a9b501e1bcc 100644
+--- a/drivers/gpu/drm/msm/msm_fbdev.c
++++ b/drivers/gpu/drm/msm/msm_fbdev.c
+@@ -157,7 +157,7 @@ struct drm_fb_helper *msm_fbdev_init(struct drm_device *dev)
+ 	}
+ 
+ 	/* the fw fb could be anywhere in memory */
+-	ret = drm_aperture_remove_framebuffers(false, dev->driver);
++	ret = drm_aperture_remove_framebuffers(dev->driver);
+ 	if (ret)
+ 		goto fini;
+ 
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+index 813f9f8c86982..8e12053a220b0 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+@@ -140,7 +140,7 @@ static int rockchip_drm_bind(struct device *dev)
+ 	int ret;
+ 
+ 	/* Remove existing drivers that may own the framebuffer memory. */
+-	ret = drm_aperture_remove_framebuffers(false, &rockchip_drm_driver);
++	ret = drm_aperture_remove_framebuffers(&rockchip_drm_driver);
+ 	if (ret) {
+ 		DRM_DEV_ERROR(dev,
+ 			      "Failed to remove existing framebuffers - %d.\n",
+diff --git a/drivers/gpu/drm/stm/drv.c b/drivers/gpu/drm/stm/drv.c
+index d7914f5122dff..0a09a85ac9d69 100644
+--- a/drivers/gpu/drm/stm/drv.c
++++ b/drivers/gpu/drm/stm/drv.c
+@@ -185,7 +185,7 @@ static int stm_drm_platform_probe(struct platform_device *pdev)
+ 
+ 	DRM_DEBUG("%s\n", __func__);
+ 
+-	ret = drm_aperture_remove_framebuffers(false, &drv_driver);
++	ret = drm_aperture_remove_framebuffers(&drv_driver);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/sun4i/sun4i_drv.c b/drivers/gpu/drm/sun4i/sun4i_drv.c
+index 7910c5853f0a8..5c483bbccbbbc 100644
+--- a/drivers/gpu/drm/sun4i/sun4i_drv.c
++++ b/drivers/gpu/drm/sun4i/sun4i_drv.c
+@@ -98,7 +98,7 @@ static int sun4i_drv_bind(struct device *dev)
+ 		goto unbind_all;
+ 
+ 	/* Remove early framebuffers (ie. simplefb) */
+-	ret = drm_aperture_remove_framebuffers(false, &sun4i_drv_driver);
++	ret = drm_aperture_remove_framebuffers(&sun4i_drv_driver);
+ 	if (ret)
+ 		goto unbind_all;
+ 
+diff --git a/drivers/gpu/drm/tegra/drm.c b/drivers/gpu/drm/tegra/drm.c
+index a1f909dac89a7..5fc55b9777cbf 100644
+--- a/drivers/gpu/drm/tegra/drm.c
++++ b/drivers/gpu/drm/tegra/drm.c
+@@ -1252,7 +1252,7 @@ static int host1x_drm_probe(struct host1x_device *dev)
+ 
+ 	drm_mode_config_reset(drm);
+ 
+-	err = drm_aperture_remove_framebuffers(false, &tegra_drm_driver);
++	err = drm_aperture_remove_framebuffers(&tegra_drm_driver);
+ 	if (err < 0)
+ 		goto hub;
+ 
+diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
+index 8c329c071c62d..b6384a5dfdbc1 100644
+--- a/drivers/gpu/drm/vc4/vc4_drv.c
++++ b/drivers/gpu/drm/vc4/vc4_drv.c
+@@ -351,7 +351,7 @@ static int vc4_drm_bind(struct device *dev)
+ 			return -EPROBE_DEFER;
+ 	}
+ 
+-	ret = drm_aperture_remove_framebuffers(false, driver);
++	ret = drm_aperture_remove_framebuffers(driver);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/include/drm/drm_aperture.h b/include/drm/drm_aperture.h
+index 7096703c39493..cbe33b49fd5dc 100644
+--- a/include/drm/drm_aperture.h
++++ b/include/drm/drm_aperture.h
+@@ -13,14 +13,13 @@ int devm_aperture_acquire_from_firmware(struct drm_device *dev, resource_size_t
+ 					resource_size_t size);
+ 
+ int drm_aperture_remove_conflicting_framebuffers(resource_size_t base, resource_size_t size,
+-						 bool primary, const struct drm_driver *req_driver);
++						 const struct drm_driver *req_driver);
+ 
+ int drm_aperture_remove_conflicting_pci_framebuffers(struct pci_dev *pdev,
+ 						     const struct drm_driver *req_driver);
+ 
+ /**
+  * drm_aperture_remove_framebuffers - remove all existing framebuffers
+- * @primary: also kick vga16fb if present
+  * @req_driver: requesting DRM driver
+  *
+  * This function removes all graphics device drivers. Use this function on systems
+@@ -30,9 +29,9 @@ int drm_aperture_remove_conflicting_pci_framebuffers(struct pci_dev *pdev,
+  * 0 on success, or a negative errno code otherwise
+  */
+ static inline int
+-drm_aperture_remove_framebuffers(bool primary, const struct drm_driver *req_driver)
++drm_aperture_remove_framebuffers(const struct drm_driver *req_driver)
+ {
+-	return drm_aperture_remove_conflicting_framebuffers(0, (resource_size_t)-1, primary,
++	return drm_aperture_remove_conflicting_framebuffers(0, (resource_size_t)-1,
+ 							    req_driver);
+ }
+ 
+-- 
+2.40.1
+
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
