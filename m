@@ -4,74 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 699E4C83F13
-	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Aug 2023 17:04:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED3A3C83F10
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Aug 2023 02:25:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+/wk0PCERYTkNMJYClI5O9KQerI8VBBpiNq6MMh/Nfc=; b=XFQDuzF2S8yBWk
-	6j/xR2hrGcyE0rEl3AcwnyleYZnYGKSfZqwWA4irTzLnV9zaLSWt8FAu8j8BQpDfCqry0RQi30aTU
-	KCR3UhKw8S71cMDgdwhr4XJJkOoWaY0Nmhm2ySSO0KAZ5tK4U5U3E0tk5qoib40GDrjoYb7Wao20T
-	8UshrL+8xlYCub1Nu7T6Vzdbk01ZdJSZ1Nwda8grc45unHDtw+pxhBRw2+Hnxyin08eZVZPFla7pk
-	0RjNCln9StCRIs4ZRp2fSh9OcGM/cQtbB89+2zimjchtMom7At87aFanVme3ORIp7xZ0zSfqzXsdI
-	eoiZ3CBX0rCeuHm2wcDA==;
+	List-Owner; bh=kmHgbox0DaJs5BwPRRpYU6lrpQhWOcBp6PxqGJneTJg=; b=2WRHWTFgbs7MDq
+	EtuN2F4rHmPPcVn+rT0d217dbjxEkzZ+zPmkZfAt6v85fnwBlS9xYyP+qEnzkVYuMknlWYD2227Tw
+	dlOG67SwJCDwCJlIfJsXb42CslI3jlT8c/YE13fDq9VcliuVEectDnOhVxkbV66Bh0IJzN9Z1AxFN
+	w1oeDzzWzaH39Tc7eaDHVPrAfWvfuNj5X4t48Hyb2My/mdK6GvXSMf1jC9lkzuqsJWiCYCPeigQH3
+	PKpLtxo9wq9st+gay49TcEvvCpObu02ws192YG4Q8wHsznvbIfzFaH8arePu9kGec29wC2NKEcuR3
+	EaMCKaZj7eBHLFvfXgsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qaJBe-008HKW-0L;
-	Sun, 27 Aug 2023 17:04:30 +0000
-Received: from mail-lj1-f177.google.com ([209.85.208.177])
+	id 1qaRwW-008jvb-08;
+	Mon, 28 Aug 2023 02:25:28 +0000
+Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qaJBZ-008HJ6-1n;
-	Sun, 27 Aug 2023 17:04:27 +0000
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2bcc14ea414so37623481fa.0;
-        Sun, 27 Aug 2023 10:04:24 -0700 (PDT)
+	id 1qaRwT-008jud-1G;
+	Mon, 28 Aug 2023 02:25:26 +0000
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5298e43bb67so5695834a12.1;
+        Sun, 27 Aug 2023 19:25:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693189521; x=1693794321;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3uCqSe5BtqveCUXWZraiTGYO03+jzgwg7ae/wj5X+p4=;
+        b=Rs3o3lwnQlpCEgSLIhsuXQgDmYUY4nedQrR0H5FZ8oTW0MZRjTIwXBAPZ+XJu3G+TE
+         5KjGSKsVuufTscOJKZYMJ0KS9kzz7Xyep4wKl3+TVKixZzHm9nNNmppNSYgB6pYYp8wo
+         2RELcBP24h5WR7o6jlsDO44dmgK9Rx1V/rHeb5kqpg0aMZd+1c1fYnPO/kg2TIDgRiRO
+         F6FsxT3p+yiDRZpYEihMKhJw4/CBMdGfU1djfnZwE5niVYTe2vjJramAzelc7971T3gV
+         Ybsa3YcfCZr8kK6KmUBRZmdwfO/lSvmWuPcvibJK6pARqe0eHe8I8aasMcaQku+BGBpB
+         lOuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693155863; x=1693760663;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9ERbGcMk6gfakm9DN1/j10oG7dRsa1/HJVwOkOQiUYg=;
-        b=LRYEv+4B+ZUrY3Lym3JXHcFGb60uMz4HS58wfE7IZ/6dtIBbrUee0kQ6U5ED7f9Xhm
-         7+Wqz9ttn1Q3sCUj2WRNneWrAWZ7d8N/f0sFQzrtj0gFoeLhnfTFno4JE3eejp9C03R5
-         W9cH6PqqmpF13qDQn50n1xl0s0lYbFhZRagcC70hagK79To5qZgplz/mlf41JeTPGHZx
-         LHoL01zctnNBeRco0JjMYTE7MzCZhTTH4pZp4TbDGnCYXzWaQHkfCQanLr8kjzUzwZHj
-         JqfXjOcy6kyqTE9LVeZy+7YHHIjfvRSYdVlr6ADOUEZueZA0c7ZAs/F+Guhg24U4QbWE
-         PczQ==
-X-Gm-Message-State: AOJu0YxfPmpxcWuKUIAq1kzvS6t9XbYRixbn83dj0DLVs51Jb7ypL24n
-	WJZ7wOMo+i0rM64I8ZIQ2h4=
-X-Google-Smtp-Source: AGHT+IEF7d/5kTVF5MtR4cRbcAp149+5664NC2TYLcGNDPGf3jUEZ1dBbrgI5e/SqbeFgnAyHK3sug==
-X-Received: by 2002:a2e:9bd8:0:b0:2b1:c1ae:73e3 with SMTP id w24-20020a2e9bd8000000b002b1c1ae73e3mr17253046ljj.15.1693155862987;
-        Sun, 27 Aug 2023 10:04:22 -0700 (PDT)
-Received: from [192.168.86.246] (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
-        by smtp.gmail.com with ESMTPSA id a1-20020a17090640c100b0099bcf9c2ec6sm3589439ejk.75.2023.08.27.10.04.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Aug 2023 10:04:22 -0700 (PDT)
-Message-ID: <70b3ba82-0920-4613-9480-919a3df6833c@linux.com>
-Date: Sun, 27 Aug 2023 18:04:21 +0100
+        d=1e100.net; s=20221208; t=1693189521; x=1693794321;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3uCqSe5BtqveCUXWZraiTGYO03+jzgwg7ae/wj5X+p4=;
+        b=QhVpGkcLN4kUUMXjX4i5Bu1J4och6WjEm7FAwkEtUEU9VouNuO6q8o2L+fmXWtAFsu
+         JQbnFMwtjB6oX165Qd3WQu0EwUPd72Z6bEAfDf90uWO/sohOVdehXQLBTN17bj3V9YTE
+         tNYdAEQu7RP/QZ+4RBwOBKA8r5I3FYJrlUncoi5/G8dyelIlZ1GfUEG6+PW8+oouhbiv
+         UuTzKF3BpVRr2Z8g4YDFm/it1Hf/SPkKXQ2QDxnQZpYYFk0XFCJCtro+kNBXsw9maSiP
+         ySKz9ep/TGNaOD10pvW+2920Xt0dMoXTlsf27JLEykV2XDzzrr3Z6E5Wv2oT8BQhVxTy
+         REzw==
+X-Gm-Message-State: AOJu0YyV0iePOi1PuKQBUwyJFbNLQFHC/DxFtAl1Z55cYAN4ZFcplu6L
+	QTId5v0nNhdz9lFQ5CslkHlzmX0iQIpxFU4lFYQ=
+X-Google-Smtp-Source: AGHT+IFjV4c6iPT2oORQcm92nmX2L7ZxJD/Ip41JWUNWiITPNAyX6af0+kocn3phLX4sb40+kQJXCmdDRW8aRdq8dR4=
+X-Received: by 2002:a05:6402:d56:b0:525:4d74:be8c with SMTP id
+ ec22-20020a0564020d5600b005254d74be8cmr21355835edb.14.1693189521348; Sun, 27
+ Aug 2023 19:25:21 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+References: <20230822082750.27633-1-yu.tu@amlogic.com> <70b3ba82-0920-4613-9480-919a3df6833c@linux.com>
+In-Reply-To: <70b3ba82-0920-4613-9480-919a3df6833c@linux.com>
+From: Keguang Zhang <keguang.zhang@gmail.com>
+Date: Mon, 28 Aug 2023 10:24:45 +0800
+Message-ID: <CAJhJPsWASjw-QiTocaJZCF5HYHUnF7xVf-o7Ohj0Mgjq0OpsLA@mail.gmail.com>
 Subject: Re: [PATCH V10 0/4] Add S4 SoC PLLs and Peripheral clock
-To: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: kelvin.zhang@amlogic.com, qi.duan@amlogic.com
-References: <20230822082750.27633-1-yu.tu@amlogic.com>
-Content-Language: en-US
-From: Lucas Tanure <tanure@linux.com>
-In-Reply-To: <20230822082750.27633-1-yu.tu@amlogic.com>
+To: Lucas Tanure <tanure@linux.com>
+Cc: Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Rob Herring <robh+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, kelvin.zhang@amlogic.com, 
+	qi.duan@amlogic.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230827_100425_594733_23AAFFFE 
-X-CRM114-Status: GOOD (  12.19  )
+X-CRM114-CacheID: sfid-20230827_192525_455375_23B314CF 
+X-CRM114-Status: GOOD (  16.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,77 +89,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 22-08-2023 09:27, Yu Tu wrote:
-> 1. Add S4 SoC PLLs and Peripheral clock controller dt-bindings.
-> 2. Add PLLs and Peripheral clock controller driver for S4 SOC.
-> 
-> 
-> Yu Tu (4):
->    dt-bindings: clock: document Amlogic S4 SoC PLL clock controller
->    dt-bindings: clock: document Amlogic S4 SoC peripherals clock
->      controller
->    clk: meson: S4: add support for Amlogic S4 SoC PLL clock driver
->    clk: meson: S4: add support for Amlogic S4 SoC peripheral clock
->      controller
-> 
-> V9 -> V10:
-> 1. Change the relevant S4 CLK patch based on Neil's recently modified
-> patch.
-> 2. Change patch 0003/0004 clocks comment, format and clock flags suggested
-> by Jerome.
-> 
-> V8 -> V9: Add patch 0001/0002 dt-bindings tag. Suggested by Krzysztof.
-> V7 -> V8:
-> 1. Change patch 0001/0002 dt-bindings title description, remove "meson".
-> Suggested by Dmitry, Neil.
-> 2. Change patch 0003/0004 clocks comment, format and clock flags suggested by
-> Dmitry, Neil, Jerome.
-> 
-> V6 -> V7: Change send patch series as well change format and clock flags
-> suggested by Jerome. Change dt-bindings suggested by Krzysztof.
-> V5 -> V6: Change send patch series, as well change format and clock flags.
-> V4 -> V5: change format and clock flags and adjust the patch series
-> as suggested by Jerome.
-> V3 -> V4: change format and clock flags.
-> V2 -> V3: Use two clock controller.
-> V1 -> V2: Change format as discussed in the email.
-> 
-> Link:https://lore.kernel.org/linux-amlogic/20230517070215.28463-1-yu.tu@amlogic.com/
-> 
->   .../clock/amlogic,s4-peripherals-clkc.yaml    |   96 +
->   .../bindings/clock/amlogic,s4-pll-clkc.yaml   |   49 +
->   drivers/clk/meson/Kconfig                     |   23 +
->   drivers/clk/meson/Makefile                    |    2 +
->   drivers/clk/meson/s4-peripherals.c            | 3787 +++++++++++++++++
->   drivers/clk/meson/s4-peripherals.h            |   57 +
->   drivers/clk/meson/s4-pll.c                    |  867 ++++
->   drivers/clk/meson/s4-pll.h                    |   38 +
->   .../clock/amlogic,s4-peripherals-clkc.h       |  236 +
->   .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |   43 +
->   10 files changed, 5198 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
->   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->   create mode 100644 drivers/clk/meson/s4-peripherals.c
->   create mode 100644 drivers/clk/meson/s4-peripherals.h
->   create mode 100644 drivers/clk/meson/s4-pll.c
->   create mode 100644 drivers/clk/meson/s4-pll.h
->   create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->   create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
-> 
-> 
-> base-commit: bd0f6c57c2b324b6f92ccfe13a8005ff829287b8
-How similar is T7 and S4 regarding the clocks?
-Can S4 clock driver be used by T7 without modifications?
-
-Thanks
-Lucas
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gTW9uLCBBdWcgMjgsIDIwMjMgYXQgMTozNOKAr0FNIEx1Y2FzIFRhbnVyZSA8dGFudXJlQGxp
+bnV4LmNvbT4gd3JvdGU6Cj4KPiBPbiAyMi0wOC0yMDIzIDA5OjI3LCBZdSBUdSB3cm90ZToKPiA+
+IDEuIEFkZCBTNCBTb0MgUExMcyBhbmQgUGVyaXBoZXJhbCBjbG9jayBjb250cm9sbGVyIGR0LWJp
+bmRpbmdzLgo+ID4gMi4gQWRkIFBMTHMgYW5kIFBlcmlwaGVyYWwgY2xvY2sgY29udHJvbGxlciBk
+cml2ZXIgZm9yIFM0IFNPQy4KPiA+Cj4gPgo+ID4gWXUgVHUgKDQpOgo+ID4gICAgZHQtYmluZGlu
+Z3M6IGNsb2NrOiBkb2N1bWVudCBBbWxvZ2ljIFM0IFNvQyBQTEwgY2xvY2sgY29udHJvbGxlcgo+
+ID4gICAgZHQtYmluZGluZ3M6IGNsb2NrOiBkb2N1bWVudCBBbWxvZ2ljIFM0IFNvQyBwZXJpcGhl
+cmFscyBjbG9jawo+ID4gICAgICBjb250cm9sbGVyCj4gPiAgICBjbGs6IG1lc29uOiBTNDogYWRk
+IHN1cHBvcnQgZm9yIEFtbG9naWMgUzQgU29DIFBMTCBjbG9jayBkcml2ZXIKPiA+ICAgIGNsazog
+bWVzb246IFM0OiBhZGQgc3VwcG9ydCBmb3IgQW1sb2dpYyBTNCBTb0MgcGVyaXBoZXJhbCBjbG9j
+awo+ID4gICAgICBjb250cm9sbGVyCj4gPgo+ID4gVjkgLT4gVjEwOgo+ID4gMS4gQ2hhbmdlIHRo
+ZSByZWxldmFudCBTNCBDTEsgcGF0Y2ggYmFzZWQgb24gTmVpbCdzIHJlY2VudGx5IG1vZGlmaWVk
+Cj4gPiBwYXRjaC4KPiA+IDIuIENoYW5nZSBwYXRjaCAwMDAzLzAwMDQgY2xvY2tzIGNvbW1lbnQs
+IGZvcm1hdCBhbmQgY2xvY2sgZmxhZ3Mgc3VnZ2VzdGVkCj4gPiBieSBKZXJvbWUuCj4gPgo+ID4g
+VjggLT4gVjk6IEFkZCBwYXRjaCAwMDAxLzAwMDIgZHQtYmluZGluZ3MgdGFnLiBTdWdnZXN0ZWQg
+YnkgS3J6eXN6dG9mLgo+ID4gVjcgLT4gVjg6Cj4gPiAxLiBDaGFuZ2UgcGF0Y2ggMDAwMS8wMDAy
+IGR0LWJpbmRpbmdzIHRpdGxlIGRlc2NyaXB0aW9uLCByZW1vdmUgIm1lc29uIi4KPiA+IFN1Z2dl
+c3RlZCBieSBEbWl0cnksIE5laWwuCj4gPiAyLiBDaGFuZ2UgcGF0Y2ggMDAwMy8wMDA0IGNsb2Nr
+cyBjb21tZW50LCBmb3JtYXQgYW5kIGNsb2NrIGZsYWdzIHN1Z2dlc3RlZCBieQo+ID4gRG1pdHJ5
+LCBOZWlsLCBKZXJvbWUuCj4gPgo+ID4gVjYgLT4gVjc6IENoYW5nZSBzZW5kIHBhdGNoIHNlcmll
+cyBhcyB3ZWxsIGNoYW5nZSBmb3JtYXQgYW5kIGNsb2NrIGZsYWdzCj4gPiBzdWdnZXN0ZWQgYnkg
+SmVyb21lLiBDaGFuZ2UgZHQtYmluZGluZ3Mgc3VnZ2VzdGVkIGJ5IEtyenlzenRvZi4KPiA+IFY1
+IC0+IFY2OiBDaGFuZ2Ugc2VuZCBwYXRjaCBzZXJpZXMsIGFzIHdlbGwgY2hhbmdlIGZvcm1hdCBh
+bmQgY2xvY2sgZmxhZ3MuCj4gPiBWNCAtPiBWNTogY2hhbmdlIGZvcm1hdCBhbmQgY2xvY2sgZmxh
+Z3MgYW5kIGFkanVzdCB0aGUgcGF0Y2ggc2VyaWVzCj4gPiBhcyBzdWdnZXN0ZWQgYnkgSmVyb21l
+Lgo+ID4gVjMgLT4gVjQ6IGNoYW5nZSBmb3JtYXQgYW5kIGNsb2NrIGZsYWdzLgo+ID4gVjIgLT4g
+VjM6IFVzZSB0d28gY2xvY2sgY29udHJvbGxlci4KPiA+IFYxIC0+IFYyOiBDaGFuZ2UgZm9ybWF0
+IGFzIGRpc2N1c3NlZCBpbiB0aGUgZW1haWwuCj4gPgo+ID4gTGluazpodHRwczovL2xvcmUua2Vy
+bmVsLm9yZy9saW51eC1hbWxvZ2ljLzIwMjMwNTE3MDcwMjE1LjI4NDYzLTEteXUudHVAYW1sb2dp
+Yy5jb20vCj4gPgo+ID4gICAuLi4vY2xvY2svYW1sb2dpYyxzNC1wZXJpcGhlcmFscy1jbGtjLnlh
+bWwgICAgfCAgIDk2ICsKPiA+ICAgLi4uL2JpbmRpbmdzL2Nsb2NrL2FtbG9naWMsczQtcGxsLWNs
+a2MueWFtbCAgIHwgICA0OSArCj4gPiAgIGRyaXZlcnMvY2xrL21lc29uL0tjb25maWcgICAgICAg
+ICAgICAgICAgICAgICB8ICAgMjMgKwo+ID4gICBkcml2ZXJzL2Nsay9tZXNvbi9NYWtlZmlsZSAg
+ICAgICAgICAgICAgICAgICAgfCAgICAyICsKPiA+ICAgZHJpdmVycy9jbGsvbWVzb24vczQtcGVy
+aXBoZXJhbHMuYyAgICAgICAgICAgIHwgMzc4NyArKysrKysrKysrKysrKysrKwo+ID4gICBkcml2
+ZXJzL2Nsay9tZXNvbi9zNC1wZXJpcGhlcmFscy5oICAgICAgICAgICAgfCAgIDU3ICsKPiA+ICAg
+ZHJpdmVycy9jbGsvbWVzb24vczQtcGxsLmMgICAgICAgICAgICAgICAgICAgIHwgIDg2NyArKysr
+Cj4gPiAgIGRyaXZlcnMvY2xrL21lc29uL3M0LXBsbC5oICAgICAgICAgICAgICAgICAgICB8ICAg
+MzggKwo+ID4gICAuLi4vY2xvY2svYW1sb2dpYyxzNC1wZXJpcGhlcmFscy1jbGtjLmggICAgICAg
+fCAgMjM2ICsKPiA+ICAgLi4uL2R0LWJpbmRpbmdzL2Nsb2NrL2FtbG9naWMsczQtcGxsLWNsa2Mu
+aCAgIHwgICA0MyArCj4gPiAgIDEwIGZpbGVzIGNoYW5nZWQsIDUxOTggaW5zZXJ0aW9ucygrKQo+
+ID4gICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L2Nsb2NrL2FtbG9naWMsczQtcGVyaXBoZXJhbHMtY2xrYy55YW1sCj4gPiAgIGNyZWF0ZSBtb2Rl
+IDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvY2xvY2svYW1sb2dpYyxz
+NC1wbGwtY2xrYy55YW1sCj4gPiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2Nsay9tZXNv
+bi9zNC1wZXJpcGhlcmFscy5jCj4gPiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2Nsay9t
+ZXNvbi9zNC1wZXJpcGhlcmFscy5oCj4gPiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2Ns
+ay9tZXNvbi9zNC1wbGwuYwo+ID4gICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9jbGsvbWVz
+b24vczQtcGxsLmgKPiA+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGluY2x1ZGUvZHQtYmluZGluZ3Mv
+Y2xvY2svYW1sb2dpYyxzNC1wZXJpcGhlcmFscy1jbGtjLmgKPiA+ICAgY3JlYXRlIG1vZGUgMTAw
+NjQ0IGluY2x1ZGUvZHQtYmluZGluZ3MvY2xvY2svYW1sb2dpYyxzNC1wbGwtY2xrYy5oCj4gPgo+
+ID4KPiA+IGJhc2UtY29tbWl0OiBiZDBmNmM1N2MyYjMyNGI2ZjkyY2NmZTEzYTgwMDVmZjgyOTI4
+N2I4Cj4gSG93IHNpbWlsYXIgaXMgVDcgYW5kIFM0IHJlZ2FyZGluZyB0aGUgY2xvY2tzPwo+IENh
+biBTNCBjbG9jayBkcml2ZXIgYmUgdXNlZCBieSBUNyB3aXRob3V0IG1vZGlmaWNhdGlvbnM/Cj4K
+VW5mb3J0dW5hdGVseSBub3QuCkJ1dCBkb24ndCB3b3JyeSEgVGhlIFQ3IGNsb2NrIGRyaXZlciBp
+cyBjb21pbmcgc29vbi4KCj4gVGhhbmtzCj4gTHVjYXMKCgoKLS0gCkJlc3QgcmVnYXJkcywKCktl
+Z3VhbmcgWmhhbmcKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
+ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
+LWFtbG9naWMK
