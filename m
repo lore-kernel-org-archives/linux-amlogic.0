@@ -4,64 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42BDCC6FA8F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Aug 2023 09:59:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 105C4C6FA8F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Aug 2023 09:54:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:
-	Cc:To:Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hepq8XVScw5aU7BHm+DLX7Lnp5c9lCdnrgUgrMuHrL4=; b=Ab+15+MttFK4w4
-	2QSwtVKJB3J7XYeVY1yZIoWjS77gAJLHkA0EofdH2RkqOKSZW5c5GiksRAomHVE0Kp82NwphmTePa
-	LFS7sNCWY/PMKVLvtk6UbX5hVa1yssPQOmreHU0DYFBS9xD1IUYIy7273NG0O03bTh6kAc7RZDq/c
-	PXmnbPVSfFvKFKYfbmcghE3zVbxFblv/Mh03kTPyoBHX1Jxs5wo0Wig13x5UYeED4TJjPAd42uCjK
-	BaLnmow3pIS62ixVEv+EH1tLmY002PN2muJWsbH7Nl9LXH59uMWGABkJ5Paiv7N0oC6butS92Wnoj
-	/F6W8bMpEend2wrCmYMA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=F5n3JkzaXWJhKK+4Tkk7zfjj/zb3jQ9A6/HHXR3LIUM=; b=ZMSTy1Wjd2epMFBbi4EB6vQYj0
+	zyok9GSzYhrc/DHUI1g32suemVVe32P7c8uhPQELfpjh/tpEff24zshKkKS+B4xIG0egQ6ea8ZeTP
+	Vw/sCzHY8CLCznjyHWClvmlV4MKHukMuEg7zL7PgBwmUYsbnorBirXRFUFos1OfauSMT7JQokh8en
+	4G93EmC+QAdHgpbvEJpFZeZnzozqZ9MDs2JCGTI22lKRUBiFa3gTXC3Z7BuyWnLijl6+1skuEH57y
+	C4YX+Is0d56+TGBk3Kh/KVrYmrIaKezc+eVqBQs2nFLkZXduSKOP4mYOXEGwO3TMNs9NeocTghxuB
+	Svo1lQow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qavVQ-00BBg2-2M;
-	Tue, 29 Aug 2023 09:59:28 +0000
-Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
+	id 1qbHtW-00DB8D-1S;
+	Wed, 30 Aug 2023 09:53:50 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qavVN-00BBfa-1V
-	for linux-amlogic@lists.infradead.org;
-	Tue, 29 Aug 2023 09:59:27 +0000
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
-	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-	id 1qavVG-0006fc-3h; Tue, 29 Aug 2023 11:59:18 +0200
-Message-ID: <3a6f8d86-b369-bcf7-406b-4f7d0cd5cfa3@leemhuis.info>
-Date: Tue, 29 Aug 2023 11:59:17 +0200
+	id 1qbHtT-00DB7k-1B;
+	Wed, 30 Aug 2023 09:53:49 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 0218160201;
+	Wed, 30 Aug 2023 09:53:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E347BC433C7;
+	Wed, 30 Aug 2023 09:53:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1693389225;
+	bh=w+1a6zEPU4pcIGBrXOrm5TZPI0iO1MQnan2XAxPaS3w=;
+	h=Date:From:To:Subject:References:In-Reply-To:From;
+	b=JMQQ83SQXGwS1eP8V+91F0G/ErnzPmsPJtRN1ewG/o1NKiv/foNFWs1p3kl8eg0bK
+	 bEvzDr6PMJS/lzPJtHhjJMlrQTeJaBaQmzz78NM8La1bCzevfCfuo9/PZTc9DSo5kf
+	 mBxQDHr8Eo/blyauhxB8O1/RZyd0hemypcuuhNaxp3RiQdEF5iqtn8g34dN5W4zmTs
+	 BsvOmgbCNK9lIPpcpe4l0QJhARZoJ+Q7kSpyJL5/g2Ptu6lljgJlQujhTR10QQpEQJ
+	 AmQEkVFR2OCf+aef5wSKk8hsfLycF6idIPUz0wpney2H4dwZaw3z4beqr121Fp10TU
+	 ig+RC0unInN1A==
+Date: Wed, 30 Aug 2023 11:53:42 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Helen Koike <helen.koike@collabora.com>, 
+	dri-devel@lists.freedesktop.org, guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com, 
+	david.heidelberg@collabora.com, daniels@collabora.com, emma@anholt.net, robclark@freedesktop.org, 
+	gustavo.padovan@collabora.com, robdclark@google.com, anholt@google.com, 
+	maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, airlied@gmail.com, corbet@lwn.net, 
+	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+	neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, 
+	martin.blumenstingl@googlemail.com, heiko@sntech.de, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v11] drm: Add initial ci/ subdirectory
+Message-ID: <zorvxwffshrsqx5cy76pe3gn52qrqav7qusz5acav2un2ydvwr@fwjd56qg2xve>
+References: <20230811171953.176431-1-helen.koike@collabora.com>
+ <ZOTFfhtzzWkrQ23Y@phenom.ffwll.local>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Odroid-C1 regression with commit 4bc31edebde5 ("mmc: core: Set HS
- clock speed before sending HS CMD13")
-Content-Language: en-US, de-DE
-To: Ulf Hansson <ulf.hansson@linaro.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org,
- Brian Norris <briannorris@chromium.org>, Shawn Lin
- <shawn.lin@rock-chips.com>, Luca Weiss <luca@z3ntu.xyz>,
- Linux kernel regressions list <regressions@lists.linux.dev>,
- Ziyang Huang <hzyitc@outlook.com>
-References: <CAFBinCD0RT0p-jk86W0JuMT3ufohRh1RqWCcM35DKZJpuc10HQ@mail.gmail.com>
- <CAPDyKFqgYnBfm-NespEZF8AJ5Ou4Bya8jLfVEnfyZvfAZ05Q7Q@mail.gmail.com>
- <CAFBinCDjPJHEhN-Jx3DhhhHJ3yi8oEoW7u4-Ld6Rd1+W826ttA@mail.gmail.com>
- <CAPDyKFqKSWJkJwgCO89jgKQ6AB==P9BWkuX6XtKj=ASOH15y9g@mail.gmail.com>
- <CAFBinCDwgYw3v31hP4AtV3+Z1o+esDqMKugRwMMMLqSX0Acjzw@mail.gmail.com>
- <CAPDyKFr+hQo+N31r=3f58taf9sYW0UF0ApCJhwz9vRsyNizcvg@mail.gmail.com>
- <CAFBinCDSv_vdu5887vveotvaOGFrZvaSX4jM+7Q3QvDhTdazzw@mail.gmail.com>
- <CAPDyKFpS-UwiaRPMqSpX0mNPrS5p=yJzu3g0=pGyCkWHSYyqWg@mail.gmail.com>
- <CAFBinCCnB=po9x6tsxCzRM99ZqgV9=5jBxS9LaoJqLPGZYSH6g@mail.gmail.com>
- <CAPDyKFpAGUudAJKAmzMbcM=LrALU6ELpwaD-ijy18o7yrPgOqA@mail.gmail.com>
-From: "Linux regression tracking (Thorsten Leemhuis)"
- <regressions@leemhuis.info>
-In-Reply-To: <CAPDyKFpAGUudAJKAmzMbcM=LrALU6ELpwaD-ijy18o7yrPgOqA@mail.gmail.com>
-X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1693303165;56375ecb;
-X-HE-SMSGID: 1qavVG-0006fc-3h
+In-Reply-To: <ZOTFfhtzzWkrQ23Y@phenom.ffwll.local>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230829_025925_666851_B3BA4ABE 
-X-CRM114-Status: GOOD (  20.13  )
+X-CRM114-CacheID: sfid-20230830_025347_508800_881EB592 
+X-CRM114-Status: GOOD (  31.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,63 +77,116 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============6568029339111079945=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksIFRob3JzdGVuIGhlcmUsIHRoZSBMaW51eCBrZXJuZWwncyByZWdyZXNzaW9uIHRyYWNrZXIu
-IFRvcC1wb3N0aW5nCmZvciBvbmNlLCB0byBtYWtlIHRoaXMgZWFzaWx5IGFjY2Vzc2libGUgdG8g
-ZXZlcnlvbmUuCgpJIHN0aWxsIGhhdmUgdGhpcyByZWdyZXNzaW9uIChjYXVzZWQgYnkgYSBjb21t
-aXQgZnJvbSBCcmlhbiwgYXBwbGllZCBieQpVbGYpIG9uIG15IGxpc3Qgb2YgdHJhY2tlZCBpc3N1
-ZXMuIFdhcyB0aGVyZSBhbnkgcHJvZ3Jlc3MgdG8gZmluYWxseSBnZXQKdGhpcyBmaXhlZFsxXT8g
-RG9lc24ndCBsb29rIGxpa2UgaXQgZnJvbSBoZXJlLCBidXQgSSBtaWdodCBoYXZlIGVhc2lseQpt
-aXNzZWQgc29tZXRoaW5nLCB0aGF0J3Mgd2h5IEknbSBhc2tpbmcuCgpbMV0gdGhpcyBwYXRjaCBm
-cm9tIFppeWFuZyBIdWFuZyBhZmFpY3Mgd2FzIHN1cHBvc2VkIHRvIGhlbHAsIGJ1dCBpdAp3ZW50
-IG5vd2hlcmUgYWZhaWNzCmh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LWFtbG9naWMvVFla
-UFIwMU1CNTU1NkI1NkQ4MzRFMDJGNDFDNDREODFEQzk1RkFAVFlaUFIwMU1CNTU1Ni5hcGNwcmQw
-MS5wcm9kLmV4Y2hhbmdlbGFicy5jb20vCgpPciBkb2VzIGFueWJvZHkgc3RvcCBjYXJpbmc/CgpD
-aWFvLCBUaG9yc3RlbiAod2VhcmluZyBoaXMgJ3RoZSBMaW51eCBrZXJuZWwncyByZWdyZXNzaW9u
-IHRyYWNrZXInIGhhdCkKLS0KRXZlcnl0aGluZyB5b3Ugd2FubmEga25vdyBhYm91dCBMaW51eCBr
-ZXJuZWwgcmVncmVzc2lvbiB0cmFja2luZzoKaHR0cHM6Ly9saW51eC1yZWd0cmFja2luZy5sZWVt
-aHVpcy5pbmZvL2Fib3V0LyN0bGRyCklmIEkgZGlkIHNvbWV0aGluZyBzdHVwaWQsIHBsZWFzZSB0
-ZWxsIG1lLCBhcyBleHBsYWluZWQgb24gdGhhdCBwYWdlLgoKI3JlZ3pib3QgcG9rZQoKT24gMjAu
-MDYuMjMgMTE6NTMsIFVsZiBIYW5zc29uIHdyb3RlOgo+IE9uIE1vbiwgMTkgSnVuIDIwMjMgYXQg
-MjE6NTQsIE1hcnRpbiBCbHVtZW5zdGluZ2wKPiA8bWFydGluLmJsdW1lbnN0aW5nbEBnb29nbGVt
-YWlsLmNvbT4gd3JvdGU6Cj4+Cj4+IE9uIFdlZCwgSnVuIDE0LCAyMDIzIGF0IDU6NDnigK9QTSBV
-bGYgSGFuc3NvbiA8dWxmLmhhbnNzb25AbGluYXJvLm9yZz4gd3JvdGU6Cj4+IFsuLi5dCj4+Pj4g
-RnVsbCByZWdpc3RlciBkdW1wOgo+Pj4+ICMgY2F0IC9zeXMva2VybmVsL2RlYnVnL3JlZ21hcC9j
-MTEwOGUwMC5tbWMvcmVnaXN0ZXJzCj4+Pj4gMDA6IDAwMDAwOTAwCj4+Pj4gMDQ6IDAwMDAwMDRk
-Cj4+Pj4gMDg6IGU3ZmZlMDAyCj4+Pj4gMGM6IDAyZjAwMDNmCj4+Pj4gMTA6IDAwMDNmMDA5Cj4+
-Pj4gMTQ6IDAzYjgxYzAwCj4+Pj4gMTg6IDJjNDNiY2YwCj4+Pj4gMWM6IGUwMDAwMTUwCj4+Pj4g
-MjA6IDAwMDAwMDAwCj4+Pj4gMjQ6IDAwMDAzMDY3Cj4+Pj4gMjg6IDAwMDAwMDAwCj4+Pj4gMmM6
-IDAwMDAwMDAwCj4+Pj4gMzA6IDAwMDAwMDAwCj4+Pj4gMzQ6IDAwZmUwY2ZmCj4+Pj4gMzg6IDAw
-MDAxMDBiCj4+Pj4KPj4+PiBJbiBjYXNlIHlvdSBhcmUgY3VyaW91cywgdGhlIGRyaXZlciBpczog
-ZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1teC1zZGhjLW1tYy5jCj4+Pgo+Pj4gVGhhbmtzIGZvciBz
-aGFyaW5nIHRoaXMgZGF0YSEKPj4+Cj4+PiBJIGFzc3VtZSB0aGUgYWJvdmUgcmVnaXN0ZXJzIGlu
-ZGljYXRlIHRoYXQgd2UgaGF2ZSBzZW50IHRoZSBjb21tYW5kCj4+PiBhbmQgYXJlIG5vdyB3YWl0
-aW5nIGZvciBhbiBJUlEgZm9yIGEgcmVzcG9uc2UvZXJyb3IsIGJ1dCB3ZSBuZXZlcgo+Pj4gcmVj
-ZWl2ZSBvbmUuCj4+Pgo+Pj4gVG8gcmVhbGx5IGZpZ3VyZSBvdXQgd2hhdCBpcyBnb2luZyBvbiwg
-SSB0aGluayB3ZSBuZWVkIHRvIGRvIHNvbWUKPj4+IGFkZGl0aW9uYWwgbG93IGxldmVsIGRlYnVn
-Z2luZy90ZXN0aW5nLgo+Pj4KPj4+IEkgd2FzIGxvb2tpbmcgYXQgdGhlIGNvbW1pdCBtZXNzYWdl
-IGZyb20gZTRiZjFiMDk3MGVmICgibW1jOiBob3N0Ogo+Pj4gbWVzb24tbXgtc2RoYzogbmV3IGRy
-aXZlciBmb3IgdGhlIEFtbG9naWMgTWVzb24gU0RIQyBob3N0IiksIHdoaWNoCj4+PiBpbmRpY2F0
-ZXMgdGhhdCB0aGUgY2xvY2sgbWFuYWdlbWVudCBpcyBxdWl0ZSBsaW1pdGVkIGZvciB0aGlzIEhX
-LiBGb3IKPj4+IGV4YW1wbGUsIHRoZSA1MTAwMDAwMEh6IGlzbid0IG9uZSBvZiB0aGUgc3VwcG9y
-dGVkIGZyZXF1ZW5jaWVzLiBDb3VsZAo+Pj4gdGhhdCBiZSB0aGUgcmVhc29uIGZvciB0aGUgcHJv
-YmxlbT8gUGVyaGFwcyBpZiB3ZSBwbGF5IHdpdGggY2hhbmdpbmcKPj4+IHRoZSBmcmVxdWVuY3kg
-dG8gc29tZXRoaW5nIHRoYXQgaXMgY29uc2lkZXJlZCBzdXBwb3J0ZWQgLSB0aGVuIGNhbiB3ZQo+
-Pj4gbWFrZSB0aGlzIHdvcms/Cj4+IFlvdSBzZWVtIHRvIGJlIG1vcmUgZmFtaWxpYXIgd2l0aCB0
-aGlzIEFtbG9naWMgTU1DIGNvbnRyb2xsZXIgdGhhbiBJIGFtIDstKQo+IAo+IFNvbWV0aW1lcyBh
-IHdlbGwgd3JpdHRlbiBjb21taXQgbWVzc2FnZSBhY3R1YWxseSBoZWxwcy4gOi0pCj4gCj4+IFRv
-ZGF5IEkgZmluYWxseSBoYWQgc29tZSB0aW1lIGZvciB0ZXN0aW5nIGFuZCB3aGVuIEkgc3RhcnRl
-ZCBaaXlhbmcKPj4gSHVhbmcgcHJvdmlkZWQgYSBwYXRjaCBbMF0gKGFkbWl0dGVkbHk6IEkgdGhp
-bmsgaXQgbmVlZHMgdG8gYmUKPj4gaW1wcm92ZWQsIGJ1dCBmaW5hbGx5IHdlIGtub3cgdGhhdCBp
-dCdzIGEgTU1DIGNvbnRyb2xsZXIgZHJpdmVyCj4+IGxpbWl0YXRpb24gYW5kIG5vdCBhbiBNTUMg
-Y29yZSBidWcpCj4KPiBHcmVhdCBuZXdzIQo+IAo+IEkgd2lsbCBjb250aW51ZSB0byBtb25pdG9y
-IHRoZSB0aHJlYWQgYW5kIGRlZmVyIHRvIGFwcGx5IGFueXRoaW5nCj4gdW50aWwgeW91IGhhdmUg
-Z2l2ZW4gaXQgeW91ciBibGVzc2luZywgb2YgY291cnNlLgo+IAo+IEtpbmQgcmVnYXJkcwo+IFVm
-ZmUKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4
-LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
-dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+
+--===============6568029339111079945==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ahpuv6hd6ml66bjn"
+Content-Disposition: inline
+
+
+--ahpuv6hd6ml66bjn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Aug 22, 2023 at 04:26:06PM +0200, Daniel Vetter wrote:
+> On Fri, Aug 11, 2023 at 02:19:53PM -0300, Helen Koike wrote:
+> > From: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+> >=20
+> > Developers can easily execute several tests on different devices
+> > by just pushing their branch to their fork in a repository hosted
+> > on gitlab.freedesktop.org which has an infrastructure to run jobs
+> > in several runners and farms with different devices.
+> >=20
+> > There are also other automated tools that uprev dependencies,
+> > monitor the infra, and so on that are already used by the Mesa
+> > project, and we can reuse them too.
+> >=20
+> > Also, store expectations about what the DRM drivers are supposed
+> > to pass in the IGT test suite. By storing the test expectations
+> > along with the code, we can make sure both stay in sync with each
+> > other so we can know when a code change breaks those expectations.
+> >=20
+> > Also, include a configuration file that points to the out-of-tree
+> > CI scripts.
+> >=20
+> > This will allow all contributors to drm to reuse the infrastructure
+> > already in gitlab.freedesktop.org to test the driver on several
+> > generations of the hardware.
+> >=20
+> > Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+> > Signed-off-by: Helen Koike <helen.koike@collabora.com>
+> > Acked-by: Daniel Stone <daniels@collabora.com>
+> > Acked-by: Rob Clark <robdclark@gmail.com>
+> > Tested-by: Rob Clark <robdclark@gmail.com>
+>=20
+> Ok I pushed this into a topic/drm-ci branch in drm.git and asked sfr to
+> include that branch in linux-next.
+>=20
+> But also I'd like to see a lot more acks here, we should be able to at
+> least pile up a bunch of (driver) maintainers from drm-misc in support of
+> this. Also maybe media, at least I've heard noises that they're maybe
+> interested too? Plus anyone else, the more the better.
+
+I'm not really convinced by that approach at all, and most of the issues
+I see are shown by the follow-up series here:
+
+https://lore.kernel.org/dri-devel/20230825122435.316272-1-vignesh.raman@col=
+labora.com/
+
+  * We hardcode a CI farm setup into the kernel
+
+  * We cannot trust that the code being run is actually the one being
+    pushed into gitlab
+
+  * IMO, and I know we disagree here, any IGT test we enable for a given
+    platform should work, period. Allowing failures and flaky tests just
+    sweeps whatever issue is there under the rug. If the test is at
+    fault, we should fix the test, if the driver / kernel is at fault,
+    then I certainly want to know about it.
+
+  * This then leads to patches like this one:
+    https://lore.kernel.org/dri-devel/20230825122435.316272-6-vignesh.raman=
+@collabora.com/
+
+    Which (and it's definitely not the author's fault) are just plain
+    unreadable, reproducable or auditable by anyone not heavily involved
+    in the CI farm operations and the platforms being tested.
+
+That being said, I don't have anything better to suggest than what I
+already did, and it looks like I'm alone in thinking that those are
+problems, so feel free to add my ack if you want to.
+
+Maxime
+
+--ahpuv6hd6ml66bjn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZO8RpgAKCRDj7w1vZxhR
+xUrIAP9QRFVLlssVVu4MLlSOKUv+Pxp3R2Dpzn9Wuq/tBNYLjwD9Hb2bhr9MDmXJ
+KAfdcUBPisWAmKWsl9QlqxaqFbtvvQM=
+=RdhW
+-----END PGP SIGNATURE-----
+
+--ahpuv6hd6ml66bjn--
+
+
+--===============6568029339111079945==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============6568029339111079945==--
+
