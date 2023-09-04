@@ -4,84 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AB7EC83F33
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Sep 2023 07:55:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48CA8C83F3F
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Sep 2023 07:56:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DHjnIXuupRY4Gp3p04AdksYkvSRyxAl1Y+WT+/VNBDE=; b=FF6zzjm1aD9odA
-	clWjyeL98Snlb9rmkztu9EgODqtD/sA29mAGhLQQUr/KNRTrpbaiGQ0HakyBWkFk/yoXYWwYIELM1
-	ER8zvSMGNcc42yOuktAQRZhiOzCD8kDqI4rjLLgTDMgioJtlQcYzJUPIVY+knlb/IVYAJsKpTWZyU
-	5uzuNh8wRgwue57vEEyDPNCzfItr0WVwUhuVe+EE9u0nT02Uxq8+3WfPC3EKA1S3ZmxSKRFl46CKz
-	PPFHFvib1/UsVEoPNvoafNMJLdmkOf07ffNKohx8h6V5xlkiTkoAGqWsM+5MEnmM1qFN1laVZbXO3
-	633UM98zbNGElTl+Gv/A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=CNP7LiE6tGH6zbMMmilXae3FLo2vLUpdN4oZU1Xc6eM=; b=LQtTkg9c2QSM9i
+	wz3PNz2laxULzYthlb8wD/bZDrQ+jK0BH0WXi3+iKHRC71YeMuq0gGUoHVlfwdRDx57qh7IqE9JVo
+	JmcwlJh7QaFuUOXH92j8PDCBIVDHodMX/9Z1izxyuGFYyhyGn3ZcYD4m3TYANNEhEAT/iHwX1fnGB
+	oVJhjLyC04yk6QRQGIq7rHTICqqlkx1tR6JupwTllh63FgJe1yBcLxcyivySttf4mamhQiVFqFlC6
+	ZDoPxir52RwXpOmketCQd57gzSjaEbjhCUW9bnRfu0/v83vPqGwKlH+IDwrWKwKndXNFzAF+hQeg4
+	RJJ08egxQxrF239FKsqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qd4Pm-003Vzf-0u;
-	Mon, 04 Sep 2023 07:54:30 +0000
-Received: from mail-oo1-xc36.google.com ([2607:f8b0:4864:20::c36])
+	id 1qd4RX-003WNi-2j;
+	Mon, 04 Sep 2023 07:56:19 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qd4Pi-003VxU-12
-	for linux-amlogic@lists.infradead.org;
-	Mon, 04 Sep 2023 07:54:28 +0000
-Received: by mail-oo1-xc36.google.com with SMTP id 006d021491bc7-5738e113905so6267eaf.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 04 Sep 2023 00:54:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google; t=1693814064; x=1694418864; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KyKnaN7NpH4i3mR4K3pdjOI+p6X18zjem8CJPwQILZE=;
-        b=SvxZrnSMBXKcKn5urH9VYzbVZO90iv8OGweg3RaZN1RPSaLaE4ts8+VTd+G0vXMTJt
-         5mrfEo4qTs48PC416kMUCzcD3Riqyr9XnOe7Ns2MXkSrcmG2BLd87jsEBrQcHutQ4VRo
-         WSQ7hv6T9NZT3m0OOxRTz0KvFQhqdfCfxxCxM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693814064; x=1694418864;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KyKnaN7NpH4i3mR4K3pdjOI+p6X18zjem8CJPwQILZE=;
-        b=K7Bwg4EOyjkFf6Ro9JfLG0SI8FC1X265z7sUsxD1xqvL1In945bQwXxaYYkT35iW48
-         WQS2XAK2VAUDx/SEDyqnQpjQmBbsoXtN7sczvgjLPDHnl3cR51MKG0oHZgqQkLNFlF1d
-         xTmXuZ60seAIv1DUOAmgeD5e1OGoauMSAeugwm5CJyQmcMj9ZTOi1qACgHQ0mFe10YiT
-         20ORUOR6I+OEwzdYvoPuG/N4ijEy3zIjemBS+FYyNkoSM4pS4VpqTHEFfWwcoKxlXq67
-         veUhLDa9r9DOKhHiYyOEcu215SCY8DX8cNvlWJ5wTv1FuXr54RbyYedCitxgGEGvuy7s
-         Tvrg==
-X-Gm-Message-State: AOJu0YzI+yd8b07md98yxn6SCH4JLWz3ml2WMbIynoK5IbfiG0XIbbYn
-	bEea4MeqOwyw6Jtvhv184h/Dd6sRhOH7a5UfL+RPjA==
-X-Google-Smtp-Source: AGHT+IFOL4XWPpjdGAlQRxOMzzs4xfcl+Q7IrMAB38jiRI5gWOoAip6k0ty+kO45J/LnC6Jvtv1BrkYFac+rKV1dbm8=
-X-Received: by 2002:a4a:db8a:0:b0:573:4a72:6ec with SMTP id
- s10-20020a4adb8a000000b005734a7206ecmr7643777oou.1.1693814064509; Mon, 04 Sep
- 2023 00:54:24 -0700 (PDT)
+	id 1qd4RU-003WLk-2v;
+	Mon, 04 Sep 2023 07:56:18 +0000
+Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Mon, 4 Sep 2023
+ 15:56:07 +0800
+From: Yu Tu <yu.tu@amlogic.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, "Stephen
+ Boyd" <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, "Martin
+ Blumenstingl" <martin.blumenstingl@googlemail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+CC: <kelvin.zhang@amlogic.com>, <qi.duan@amlogic.com>, Yu Tu
+	<yu.tu@amlogic.com>
+Subject: [PATCH V11 0/4] Add S4 SoC PLLs and Peripheral clock
+Date: Mon, 4 Sep 2023 15:55:00 +0800
+Message-ID: <20230904075504.23263-1-yu.tu@amlogic.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-References: <20230811171953.176431-1-helen.koike@collabora.com>
- <ZOTFfhtzzWkrQ23Y@phenom.ffwll.local> <zorvxwffshrsqx5cy76pe3gn52qrqav7qusz5acav2un2ydvwr@fwjd56qg2xve>
- <87bkeo23vs.fsf@intel.com> <4rpsqk4tgrdcxtxtfoum6o4oyglwkirmkh3jj4y5tays2ivb5p@uwqdf3snshkv>
- <25df6189-7b0a-b13d-e93d-c2a388fd45e3@collabora.com> <zmq7pz7rtz6h765azg5kl2qgjd264yafctx4q474t5tqai57og@cajbcub4yuwr>
- <5fdf9d29-3f8d-0ee0-027f-57ff3a5cecb8@collabora.com>
-In-Reply-To: <5fdf9d29-3f8d-0ee0-027f-57ff3a5cecb8@collabora.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Mon, 4 Sep 2023 09:54:12 +0200
-Message-ID: <CAKMK7uGg6n322UugJwErqF_Dvsbqceqae6SVWV3ZWEOR7x36rQ@mail.gmail.com>
-Subject: Re: [PATCH v11] drm: Add initial ci/ subdirectory
-To: Helen Koike <helen.koike@collabora.com>
-Cc: Maxime Ripard <mripard@kernel.org>, emma@anholt.net, linux-doc@vger.kernel.org, 
-	vignesh.raman@collabora.com, dri-devel@lists.freedesktop.org, 
-	alyssa@rosenzweig.io, jbrunet@baylibre.com, robdclark@google.com, 
-	corbet@lwn.net, khilman@baylibre.com, sergi.blanch.torne@collabora.com, 
-	david.heidelberg@collabora.com, linux-rockchip@lists.infradead.org, 
-	daniels@collabora.com, martin.blumenstingl@googlemail.com, 
-	robclark@freedesktop.org, anholt@google.com, 
-	linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com, 
-	linux-amlogic@lists.infradead.org, gustavo.padovan@collabora.com, 
-	linux-arm-kernel@lists.infradead.org, angelogioacchino.delregno@collabora.com, 
-	neil.armstrong@linaro.org, guilherme.gallo@collabora.com, 
-	linux-kernel@vger.kernel.org, tzimmermann@suse.de
+X-Originating-IP: [10.18.11.248]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230904_005426_366218_0C2F9DD5 
-X-CRM114-Status: GOOD (  96.45  )
+X-CRM114-CacheID: sfid-20230904_005616_941735_B8102881 
+X-CRM114-Status: UNSURE (   8.00  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,261 +67,71 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 30 Aug 2023 at 17:14, Helen Koike <helen.koike@collabora.com> wrote:
->
->
->
-> On 30/08/2023 11:57, Maxime Ripard wrote:
-> > On Wed, Aug 30, 2023 at 10:24:49AM -0300, Helen Koike wrote:
-> >> Hi all,
-> >>
-> >> Thanks for you comments.
-> >>
-> >> On 30/08/2023 08:37, Maxime Ripard wrote:
-> >>> On Wed, Aug 30, 2023 at 01:58:31PM +0300, Jani Nikula wrote:
-> >>>> On Wed, 30 Aug 2023, Maxime Ripard <mripard@kernel.org> wrote:
-> >>>>> On Tue, Aug 22, 2023 at 04:26:06PM +0200, Daniel Vetter wrote:
-> >>>>>> On Fri, Aug 11, 2023 at 02:19:53PM -0300, Helen Koike wrote:
-> >>>>>>> From: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-> >>>>>>>
-> >>>>>>> Developers can easily execute several tests on different devices
-> >>>>>>> by just pushing their branch to their fork in a repository hosted
-> >>>>>>> on gitlab.freedesktop.org which has an infrastructure to run jobs
-> >>>>>>> in several runners and farms with different devices.
-> >>>>>>>
-> >>>>>>> There are also other automated tools that uprev dependencies,
-> >>>>>>> monitor the infra, and so on that are already used by the Mesa
-> >>>>>>> project, and we can reuse them too.
-> >>>>>>>
-> >>>>>>> Also, store expectations about what the DRM drivers are supposed
-> >>>>>>> to pass in the IGT test suite. By storing the test expectations
-> >>>>>>> along with the code, we can make sure both stay in sync with each
-> >>>>>>> other so we can know when a code change breaks those expectations.
-> >>>>>>>
-> >>>>>>> Also, include a configuration file that points to the out-of-tree
-> >>>>>>> CI scripts.
-> >>>>>>>
-> >>>>>>> This will allow all contributors to drm to reuse the infrastructure
-> >>>>>>> already in gitlab.freedesktop.org to test the driver on several
-> >>>>>>> generations of the hardware.
-> >>>>>>>
-> >>>>>>> Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-> >>>>>>> Signed-off-by: Helen Koike <helen.koike@collabora.com>
-> >>>>>>> Acked-by: Daniel Stone <daniels@collabora.com>
-> >>>>>>> Acked-by: Rob Clark <robdclark@gmail.com>
-> >>>>>>> Tested-by: Rob Clark <robdclark@gmail.com>
-> >>>>>>
-> >>>>>> Ok I pushed this into a topic/drm-ci branch in drm.git and asked sfr to
-> >>>>>> include that branch in linux-next.
-> >>>>>>
-> >>>>>> But also I'd like to see a lot more acks here, we should be able to at
-> >>>>>> least pile up a bunch of (driver) maintainers from drm-misc in support of
-> >>>>>> this. Also maybe media, at least I've heard noises that they're maybe
-> >>>>>> interested too? Plus anyone else, the more the better.
-> >>>>>
-> >>>>> I'm not really convinced by that approach at all, and most of the issues
-> >>>>> I see are shown by the follow-up series here:
-> >>>>
-> >>>> I'm not fully convinced either, more like "let's see". In that narrow
-> >>>> sense, ack. I don't see harm in trying, if you're also open to backing
-> >>>> off in case it does not pan out.
-> >>>>
-> >>>>> https://lore.kernel.org/dri-devel/20230825122435.316272-1-vignesh.raman@collabora.com/
-> >>>>>
-> >>>>>     * We hardcode a CI farm setup into the kernel
-> >>
-> >>
-> >> These could be out of tree.
-> >>
-> >> There is a version outside the kernel tree where you just point the CI
-> >> configuration to a url:
-> >> https://gitlab.freedesktop.org/gfx-ci/drm-ci/-/merge_requests/1
-> >>
-> >> We were discussing it here https://www.linuxtv.org/cgi-bin/mailman/private/linuxtv-ci/2023-August/000027.html
-> >
-> > It looks like it's private
-> >
-> >> (I guess Sima's reply didn't got into the mailing list) but the argument of
-> >> not having out of tree repo is due to historical bad experience of having to
-> >> sync the kernel with the code and it can become messy.
-> >
-> > My point is that even though the test strategy might be considered a
-> > "property" of the kernel, how you execute it is definitely not and you
-> > will have as many setups as you have CI farms. You can't put that into
-> > the kernel, just like we don't put the kernel command line in it for
-> > example. >
-> >>>>>
-> >>>>>     * We cannot trust that the code being run is actually the one being
-> >>>>>       pushed into gitlab
-> >>
-> >>
-> >> We can improve this if this is a requirement.
-> >> For DTS configuration we can work with overlays (which is the current
-> >> modification on that patchset). For other changes that are not suitable to
-> >> upstream (and should be rare) we can see if we work with the
-> >> `-external-fixes` approach or another approach, we can check it case by case
-> >> to understand why it is not suitable for upstream.
-> >
-> > The existence of that branch in itself is an issue to me. Again, it's a
-> > matter of trust. How can I trust a branch I barely know about, of which
-> > the development is not clear and isn't reviewed by any of the
-> > maintainers of the code that might affect the test outcomes.
-> >
-> > Or put another way, if I run the tests on my machine, it won't work. Why
-> > should it work on the CI farm? The branch itself is broken. It might not
-> > be due to any of the work I did, but it's broken still.
-> >
-> >>>>>
-> >>>>>     * IMO, and I know we disagree here, any IGT test we enable for a given
-> >>>>>       platform should work, period. Allowing failures and flaky tests just
-> >>>>>       sweeps whatever issue is there under the rug. If the test is at
-> >>>>>       fault, we should fix the test, if the driver / kernel is at fault,
-> >>>>>       then I certainly want to know about it.
-> >>
-> >> I believe we need a baseline and understand the current status of tests. If
-> >> you check the xfails folder in the patch you can see that I had to add a few
-> >> tests on *-skips.txt since those tests crashes the system and other on
-> >> *-fails.txt that are consistently not passing.
-> >
-> > I agree that we need a baseline, but that baseline should be defined by
-> > the tests own merits, not their outcome on a particular platform.
-> >
-> > In other words, I want all drivers to follow that baseline, and if they
-> > don't it's a bug we should fix, and we should be vocal about it. We
-> > shouldn't ignore the test because it's broken.
-> >
-> > Going back to the example I used previously, kms_hdmi_inject@inject-4k
-> > shouldn't fail on mt8173, ever. That's a bug. Ignoring it and reporting
-> > that "all tests are good" isn't ok. There's something wrong with that
-> > driver and we should fix it.
-> >
-> > Or at the very least, explain in much details what is the breakage, how
-> > we noticed it, why we can't fix it, and how to reproduce it.
-> >
-> > Because in its current state, there's no chance we'll ever go over that
-> > test list and remove some of them. Or even know if, if we ever fix a bug
-> > somewhere, we should remove a flaky or failing test.
-> >
-> >> Since the "any IGT test we enable for a given platform should work" is not a
-> >> reality atm,
-> >
-> > Thanks for the reality check, but it's very much doable: we're in
-> > control of the test suite.
-> >
-> >> we need to have a clear view about which tests are not corresponding
-> >> to it, so we can start fixing. First we need to be aware of the issues
-> >> so we can start fixing them, otherwise we will stay in the "no tests
-> >> no failures" ground :)
-> >
-> > I think we have somewhat contradicting goals. You want to make
-> > regression testing, so whatever test used to work in the past should
-> > keep working. That's fine, but it's different from "expectations about
-> > what the DRM drivers are supposed to pass in the IGT test suite" which
-> > is about validation, ie "all KMS drivers must behave this way".
->
-> I see. Indeed, for me it is more about regression testing.
->
-> We could have a configuration where developers could choose to run
-> regression tests or overall validation (but I understand this is not the
-> point, but just saying we could have both somehow).
->
-> We could have some policy: if you want to enable a certain device in the
-> CI, you need to make sure it passes all tests first to force people to
-> go fix the issues, but maybe it would be a big barrier.
->
-> I'm afraid that, if a test fail (and it is a clear bug), people would
-> just say "work for most of the cases, this is not a priority to fix" and
-> just start ignoring the CI, this is why I think regression tests is a
-> good way to start with.
->
-> Anyway, just brain storming :)
-> I really hope we can find a nice useful solution for the community.
+1. Add S4 SoC PLLs and Peripheral clock controller dt-bindings.
+2. Add PLLs and Peripheral clock controller driver for S4 SOC.
 
-I think eventually we need to get to both goals, but currently driver
-and test quality just isn't remotely there.
+Yu Tu (4):
+  dt-bindings: clock: document Amlogic S4 SoC PLL clock controller
+  dt-bindings: clock: document Amlogic S4 SoC peripherals clock
+    controller
+  clk: meson: S4: add support for Amlogic S4 SoC PLL clock driver
+  clk: meson: S4: add support for Amlogic S4 SoC peripheral clock
+    controller
 
-I think a good approach would be if CI work focuses on the pure sw
-tests first, so kunit and running igt against vgem/vkms. And then we
-could use that to polish a set of must-pass igt testcases, which also
-drivers in general are supposed to pass. Plus ideally weed out the bad
-igts that aren't reliable enough or have bad assumptions.
+V10 -> V11:
+1. Change patch 0001/0002 dt-bindings tag. Suggested by Krzysztof.
+2. Change patch 0002 dt-bindings added minItems. Suggested by Jerome.
+3. Change patch 0004 added clock ".flags = 0" and comment. Suggested by Jerome.
 
-For hardware I think it will take a very long time until we get to a
-point where CI can work without a test result list, we're nowhere
-close to that. But for virtual driver this really should be
-achievable, albeit with a huge amount of effort required to get there
-I think.
+V9 -> V10:
+1. Change the relevant S4 CLK patch based on Neil's recently modified
+patch.
+2. Change patch 0003/0004 clocks comment, format and clock flags suggested
+by Jerome.
 
-Cheers, Sima
+V8 -> V9: Add patch 0001/0002 dt-bindings tag. Suggested by Krzysztof.
+V7 -> V8:
+1. Change patch 0001/0002 dt-bindings title description, remove "meson".
+Suggested by Dmitry, Neil.
+2. Change patch 0003/0004 clocks comment, format and clock flags suggested by
+Dmitry, Neil, Jerome.
 
-> Regards,
-> Helen
->
-> >
-> > I guess for regression you very much would like that all-green
-> > dashboard, and it's understandable. For validation, we don't care and we
-> > should be as vocal as possible to report broken drivers.
-> >
-> > Eventually, we should have regression testing over the validation test
-> > suite.
-> >
-> > It's not about reality. We should be clear what we expect from those
-> > test suites, and not claim that it's something it's not.
-> >
-> >>>> At least for display, where this also depends on peripheral hardware,
-> >>>> it's not an easy problem, really.
-> >>>
-> >>> Aside from the Chamelium tests, which tests actually rely on peripheral
-> >>> hardware? On EDID and hotplug, sure, but that can easily be set up from
-> >>> the userspace, or something like
-> >>>
-> >>> https://www.lindy-international.com/HDMI-2-0-EDID-Emulator.htm?websale8=ld0101.ld021102&pi=32115
-> >>>
-> >>>> How reliable do you need it to be? How many nines? Who is going to
-> >>>> debug the issues that need hundreds or thousands of runs to reproduce?
-> >>>> If a commit makes some test less reliable, how long is it going to
-> >>>> take to even see that or pinpoint that?
-> >>>
-> >>> I mean, that's also true for failures or success then. How many times do
-> >>> you need a test to run properly to qualify it as a meaningful test? How
-> >>> do you know that it's not a flaky test?
-> >>>
-> >>> Ultimately, it's about trust. If, for a given test that just failed, I
-> >>> can't be certain that it's because of the branch I just submitted, I
-> >>> will just ignore the tests results after a while.
-> >>>
-> >>> This is already what plagues kernelci, and we should do better.
-> >>
-> >> This is something that is really nice on Mesa3D, a patch only gets merged if
-> >> tests passes, which forces people to not ignore it, which forces the code to
-> >> be fixed and the CI to be constantly maintained.
-> >>
-> >> Of course there are bad days there, but there is real value. Nice thread to
-> >> check: https://gitlab.freedesktop.org/mesa/mesa/-/issues/8635 (thanks Alyssa
-> >> for the feedback).
-> >
-> > I'm sure it works great for Mesa, but I'm also sure it doesn't ignore
-> > CTS reports that a particular device isn't a valid OpenGL or Vulkan
-> > implementation anymore.
-> >
-> >>> And I'm sorry, but if some part of the kernel or driver just isn't
-> >>> reliable, then we shouldn't claim it is (except for all the times it
-> >>> isn't). If no-one has the time to look into it, fine, but flagging it
-> >>> under a flaky test doesn't help anyone.
-> >>
-> >> At least we would know what is there that isn't reliable.
-> >
-> > We would too if the test was reported as failed. But our preferred
-> > approach to do so diverge.
-> >
-> > Maxime
+V6 -> V7: Change send patch series as well change format and clock flags
+suggested by Jerome. Change dt-bindings suggested by Krzysztof.
+V5 -> V6: Change send patch series, as well change format and clock flags.
+V4 -> V5: change format and clock flags and adjust the patch series
+as suggested by Jerome.
+V3 -> V4: change format and clock flags.
+V2 -> V3: Use two clock controller.
+V1 -> V2: Change format as discussed in the email.
+
+Link:https://lore.kernel.org/linux-amlogic/20230822082750.27633-1-yu.tu@amlogic.com/
+
+ .../clock/amlogic,s4-peripherals-clkc.yaml    |   96 +
+ .../bindings/clock/amlogic,s4-pll-clkc.yaml   |   49 +
+ drivers/clk/meson/Kconfig                     |   23 +
+ drivers/clk/meson/Makefile                    |    2 +
+ drivers/clk/meson/s4-peripherals.c            | 3813 +++++++++++++++++
+ drivers/clk/meson/s4-peripherals.h            |   57 +
+ drivers/clk/meson/s4-pll.c                    |  867 ++++
+ drivers/clk/meson/s4-pll.h                    |   38 +
+ .../clock/amlogic,s4-peripherals-clkc.h       |  236 +
+ .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |   43 +
+ 10 files changed, 5224 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+ create mode 100644 drivers/clk/meson/s4-peripherals.c
+ create mode 100644 drivers/clk/meson/s4-peripherals.h
+ create mode 100644 drivers/clk/meson/s4-pll.c
+ create mode 100644 drivers/clk/meson/s4-pll.h
+ create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+ create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
 
 
-
+base-commit: 41680df0975e04b959a28bf6ab85fd6a307ae0ea
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.33.1
+
 
 _______________________________________________
 linux-amlogic mailing list
