@@ -4,69 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EEDAEB8FAF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Sep 2023 12:58:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 655DDEE14D3
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Sep 2023 09:05:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=94fD59tCRxNJASSqdI5RuP0bLSSG9tHQx/ZxQfN5sEE=; b=TgTDY5yT7lvVts
-	/zUpl9FSDmAERyOQu7jtFZdLmylGhthUfTiV7jKcElC24g6WYSNZy/dg+7xa9/sMsb4oISJd2dPs8
-	hYIk76pDbMk+718XeMqPQY4dZ3iq0cEtqUv6ZtchOGI0SwOYhpd1tyIMzVCTfTKNvCqBuZs7fsa0M
-	rwHee7tqVa+Pwwjf/CHgDL0mLTxnEQO/dP1wjh13s7g06D3ilYpnhF+r/FW9PAT/8zZyGcmlurK4g
-	67QOEpkTKs/9zQph3gwnQdkeTniLV0I03mCSf3QAfQLPwrk926HIFfl38aZnZg9h8Aey4tIDel0Ju
-	lZrsIviE5J0fL9qbgM7A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=nAWZzwnXwrtufesVgs8sqBtksYW+pPraQspeBAXUtrU=; b=PbfcNPXPyY32Z0
+	Pc9BEPEHaLuXvBnrJfTW/8su2TzWPbXSHS4q1w5GAX1+fe/VnL3vQ/gk24X74CmjZq50EDDIUwRPm
+	hTJ1xh2JBLBXV27Sh9O8pAyhDXPyzUAA6/gTjWmWZ1qvakJbe79p3lFYNJrFLq1nlRr7MtjcfLlse
+	ramPokiVcC1c5Lkeelrodf4opP5FwsHm4hqA3/XZMNPOd2hOQ/DwEBloL2JDXdbsXdjRGaN0gxUc6
+	tBc4rZDUXrFjzcn63tyyBWyA2pC8AFxvFXYoUtGqhIRIF9b17Q9wV6UElWu1asUEW78nMO6g3+U8W
+	jjjMFg3DABu70lTheszw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qds6f-009kdb-0C;
-	Wed, 06 Sep 2023 12:58:05 +0000
-Received: from gofer.mess.org ([88.97.38.141])
+	id 1qeAwz-00BdhK-2C;
+	Thu, 07 Sep 2023 09:05:21 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qds6c-009kYw-0h;
-	Wed, 06 Sep 2023 12:58:03 +0000
-Received: by gofer.mess.org (Postfix, from userid 1000)
-	id 21513100091; Wed,  6 Sep 2023 13:57:57 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
-	t=1694005077; bh=EzwDXWT6RpEhAc2cQpSOJAWS31npZoM+FGVnLWWuX9A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d9dpcAeZ8pOOKfDQlDukibXcSb39g0CeRKcpIy35MfnsTxdyYiTEwIg8fjelsyAQW
-	 lH+0vHDb6epJkF5GocbsehtwH79cfzQa0H0NrezjfO0iMMhcOBTZ+JPuephisjoWCw
-	 L0fye1+e73KQxlYmasyYkYKACdEVl3HzwnpyCxQDbz+hAqy0pW/H8alirSDdhCW9G7
-	 sOftvW9N77Irr1nTP6+k5HNkA7Rs+MLn86MIK7lFmhXE3Ju1ILauWDMIikAs43VSQG
-	 Ya0qmAEXiMvlncVkYDq46rnpCYRDfd/nzc9fWA3a80EZoCpwCYw6o3nbNq7/roQglX
-	 htXrXNSv9bTdw==
-Date: Wed, 6 Sep 2023 13:57:57 +0100
-From: Sean Young <sean@mess.org>
-To: Zelong Dong <Zelong.Dong@amlogic.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Qianggui.Song@amlogic.com, Yonghui.Yu@amlogic.com,
-	kelvin.zhang@amlogic.com
-Subject: Re: [PATCH 1/3] media: rc: meson-ir: support rc driver type
- RC_DRIVER_SCANCODE
-Message-ID: <ZPh3VXPzosk3i3lS@gofer.mess.org>
-References: <20230825115310.39993-1-zelong.dong@amlogic.com>
- <20230825115310.39993-2-zelong.dong@amlogic.com>
- <ZO2gvMl2IS70ve3T@gofer.mess.org>
- <b6e9fc91-0c99-5635-235b-76bc6db55f75@amlogic.com>
- <ZPGahNKlq/31MXbh@gofer.mess.org>
- <448f6dab-4cfe-c840-8c70-adfa217cc7f3@amlogic.com>
+	id 1qeAww-00Bdgx-1C
+	for linux-amlogic@lists.infradead.org;
+	Thu, 07 Sep 2023 09:05:21 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-401bdff4cb4so7898475e9.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 07 Sep 2023 02:05:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1694077516; x=1694682316; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oJVDYEmcYMvyDAvrM+W+a0XTM8UX7gM4MKMeEwWok1U=;
+        b=Tbu6rizPNxOKkP78VLc5gTkKcGvX+wcgQA32suu7XB+AH/Sh7a7C7WGOs9nbmhStjl
+         7jwRdD6hBEmW4rmlbbOeXUhjsSi5MipXP0LlWjtDL5HLCTc8ZYzmbrI4Wbph0jRI3xGI
+         QYn890EN96lSV7xZnI1MvcclIVsU/gqevTKkJ5HJbaM5jy9atd4ZSQqrHdYJFh1OqjYh
+         Tu0GLMQidbt0xyyfm4Ven9u2loT4z1gYIfqOBU+EWSVt6DpdJ6nCyOHBKZPnfh06vhNS
+         TWjEbYvyW1d29Ee/Qwxw+9gaZ6SkwUhvHB7ezyyg6oS/Esps1p+rVHRVClLBcsHzgr6a
+         3Vdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1694077516; x=1694682316;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oJVDYEmcYMvyDAvrM+W+a0XTM8UX7gM4MKMeEwWok1U=;
+        b=AeI+8LOivw9SJLJhhEZ37IfOy7GSlG2Yni7kK+xrFqkgp1Rgbb1exAk7dPdBEjSlw7
+         fmKjFm/nHB4gc1qu9uNqdFsiH9/hdGtOm5l2MAVdShiViQfnkisahsXB6I50kp8pm1ET
+         oNjK8pBvx6IT4TwO886dmKQ3nDqeyI3v1fPSylvNhS/S/JSEvpqJfSLKsG1LlUyjTOZZ
+         iklIYQFzG0txErup8regoUfQoXoDSqQPCLcCNiuqaT3845Acl/+WxIPTzXbiu5Tl2dgt
+         Ry/VvDMCviuf66Z9eXGc/okKt3NygAY8/TinKBL2VCTXMPKqe5XZtVTVFL2WGpM3xAOW
+         Mrjw==
+X-Gm-Message-State: AOJu0YxVP7rAhQf0rGW88Re4FnjeyBV57NkjxgmuUVJ76cQD3InfovSQ
+	znHDo+rVSsNhsrg0DKBowoiBSQ==
+X-Google-Smtp-Source: AGHT+IEOvCH7hNTHOrZSew7AYc5GcTyZgtrMkRHjYNSp10f3yfgk8FqXZw9ThISAuSrWLWwP/dk53Q==
+X-Received: by 2002:a05:600c:2986:b0:401:73b2:f039 with SMTP id r6-20020a05600c298600b0040173b2f039mr4140033wmd.7.1694077516289;
+        Thu, 07 Sep 2023 02:05:16 -0700 (PDT)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:5be9:5575:c6f4:d478])
+        by smtp.googlemail.com with ESMTPSA id r5-20020adfe685000000b003143867d2ebsm22767439wrm.63.2023.09.07.02.05.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Sep 2023 02:05:15 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	alsa-devel@alsa-project.org,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH] ASoC: meson: spdifin: start hw on dai probe
+Date: Thu,  7 Sep 2023 11:05:04 +0200
+Message-Id: <20230907090504.12700-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <448f6dab-4cfe-c840-8c70-adfa217cc7f3@amlogic.com>
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230906_055802_398067_6AF31018 
-X-CRM114-Status: GOOD (  11.74  )
+X-CRM114-CacheID: sfid-20230907_020518_628919_EEEDAAA2 
+X-CRM114-Status: GOOD (  10.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,20 +88,109 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gV2VkLCBTZXAgMDYsIDIwMjMgYXQgMDY6Mzc6NDFQTSArMDgwMCwgWmVsb25nIERvbmcgd3Jv
-dGU6Cj4g5ZyoIDIwMjMvOS8xIDE2OjAyLCBTZWFuIFlvdW5nIOWGmemBkzoKPiA+IFRoZXJlIGFy
-ZSBvdGhlciBkcml2ZXJzIHRvbyB3aGljaCBjYW4gZG8gaGFyZHdhcmUgZGVjb2RpbmcgYW5kIHNv
-ZnR3YXJlCj4gPiBkZWNvZGluZy4gSWRlYWxseSB3ZSBzaG91bGQgaGF2ZSBhIG1lY2hhbmlzbSB0
-byBzd2l0Y2ggYmV0d2VlbiB0aGVtIGF0Cj4gPiBydW50aW1lLCBidXQgYXMtaXMgcmMtY29yZSBk
-b2VzIG5vdCBwcm92aWRlIGZvciB0aGlzLgo+IEFueXRoaW5nIGVsc2UgSSBzaG91bGQgdXBkYXRl
-IGZvciB0aGlzIHBhdGNoc2V0PwoKSSBkb24ndCB0aGluayBzby4KCkkgd2FzIGp1c3Qgc2F5aW5n
-IHRoYXQgaXQgd291bGQgYmUgZ3JlYXQgdG8gaGF2ZSBydW50aW1lIHN3aXRjaGluZyBpbiB0aGUK
-ZnV0dXJlLgoKVGhhbmtzLAoKU2VhbgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
-aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
-dGluZm8vbGludXgtYW1sb2dpYwo=
+For spdif input to report the locked rate correctly, even when no capture
+is running, the HW and reference clock must be started as soon as
+the dai is probed.
+
+Fixes: 5ce5658375e6 ("ASoC: meson: add axg spdif input")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ sound/soc/meson/axg-spdifin.c | 49 ++++++++++++-----------------------
+ 1 file changed, 17 insertions(+), 32 deletions(-)
+
+diff --git a/sound/soc/meson/axg-spdifin.c b/sound/soc/meson/axg-spdifin.c
+index d86880169075..bc2f2849ecfb 100644
+--- a/sound/soc/meson/axg-spdifin.c
++++ b/sound/soc/meson/axg-spdifin.c
+@@ -112,34 +112,6 @@ static int axg_spdifin_prepare(struct snd_pcm_substream *substream,
+ 	return 0;
+ }
+ 
+-static int axg_spdifin_startup(struct snd_pcm_substream *substream,
+-			       struct snd_soc_dai *dai)
+-{
+-	struct axg_spdifin *priv = snd_soc_dai_get_drvdata(dai);
+-	int ret;
+-
+-	ret = clk_prepare_enable(priv->refclk);
+-	if (ret) {
+-		dev_err(dai->dev,
+-			"failed to enable spdifin reference clock\n");
+-		return ret;
+-	}
+-
+-	regmap_update_bits(priv->map, SPDIFIN_CTRL0, SPDIFIN_CTRL0_EN,
+-			   SPDIFIN_CTRL0_EN);
+-
+-	return 0;
+-}
+-
+-static void axg_spdifin_shutdown(struct snd_pcm_substream *substream,
+-				 struct snd_soc_dai *dai)
+-{
+-	struct axg_spdifin *priv = snd_soc_dai_get_drvdata(dai);
+-
+-	regmap_update_bits(priv->map, SPDIFIN_CTRL0, SPDIFIN_CTRL0_EN, 0);
+-	clk_disable_unprepare(priv->refclk);
+-}
+-
+ static void axg_spdifin_write_mode_param(struct regmap *map, int mode,
+ 					 unsigned int val,
+ 					 unsigned int num_per_reg,
+@@ -251,17 +223,32 @@ static int axg_spdifin_dai_probe(struct snd_soc_dai *dai)
+ 	ret = axg_spdifin_sample_mode_config(dai, priv);
+ 	if (ret) {
+ 		dev_err(dai->dev, "mode configuration failed\n");
+-		clk_disable_unprepare(priv->pclk);
+-		return ret;
++		goto pclk_err;
+ 	}
+ 
++	ret = clk_prepare_enable(priv->refclk);
++	if (ret) {
++		dev_err(dai->dev,
++			"failed to enable spdifin reference clock\n");
++		goto pclk_err;
++	}
++
++	regmap_update_bits(priv->map, SPDIFIN_CTRL0, SPDIFIN_CTRL0_EN,
++			   SPDIFIN_CTRL0_EN);
++
+ 	return 0;
++
++pclk_err:
++	clk_disable_unprepare(priv->pclk);
++	return ret;
+ }
+ 
+ static int axg_spdifin_dai_remove(struct snd_soc_dai *dai)
+ {
+ 	struct axg_spdifin *priv = snd_soc_dai_get_drvdata(dai);
+ 
++	regmap_update_bits(priv->map, SPDIFIN_CTRL0, SPDIFIN_CTRL0_EN, 0);
++	clk_disable_unprepare(priv->refclk);
+ 	clk_disable_unprepare(priv->pclk);
+ 	return 0;
+ }
+@@ -270,8 +257,6 @@ static const struct snd_soc_dai_ops axg_spdifin_ops = {
+ 	.probe		= axg_spdifin_dai_probe,
+ 	.remove		= axg_spdifin_dai_remove,
+ 	.prepare	= axg_spdifin_prepare,
+-	.startup	= axg_spdifin_startup,
+-	.shutdown	= axg_spdifin_shutdown,
+ };
+ 
+ static int axg_spdifin_iec958_info(struct snd_kcontrol *kcontrol,
+-- 
+2.40.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
