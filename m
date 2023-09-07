@@ -4,79 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C905AEE14D3
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Sep 2023 09:10:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 926A2C83F17
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Sep 2023 10:47:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Cwzv+FSRJnXn+9LcdWJ1MXM87FuZvlePLRunijAKbYw=; b=pM7J7HFv1l2ZeE
-	gg8FsjNjThlMDSLF7AkZ6LcR2GWY7FeXdwm0o1hWA0umC5+dVAuMhSEgqKdyvj/95Kj+icvsoqZJ2
-	KSRAgi92NTVGKTJ7RrDopCIMTpJkLa+NT6vkBg1ST7QVaA+jKLBxzycFVNbHBJFRRadVDE/cjMWPI
-	+YbvKJwMLUV+Aybu6wViImelH3BH2IdzIaBfL9lyP0JMv3V6fJXFMdNA0/fNFKUzxcE1fAOu0QWkv
-	gkogwn2n8VWFScj+jxNbVXoqV7xCbIKVRj5Vg1CQ9GO1dv6///bUQce3/OioWU1hWqF0pEakaZf6h
-	AApxL8ez8fiINwxMvrVw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=uBVF1m37q4HdacDEIdkt3itfMYr+Svi9OnoU5heYhTg=; b=rXxO8knMAXLtLd
+	NT9svdSwCSzm5I4A8HNPEEPX8BBUd2YuaBRj7EAWPeNFE3b41OOgVNlC37roh5OV/dvnellevdlVd
+	FNseWuKXXxLx7mFh8xxtDo9bJpypceHI4vYjelEHwp/yeHvQ1+9n2Ol2v+qe5egCDEqXH9Sbecro8
+	eze8tKDdzFVrSr7BizcWUp1tpa8NIJCnYCsY6lP8Z85XOAneeRuEV3SyUdz4LJd3v3pU0+z+PWVTH
+	jTwifAtCvZZBX2U+VSJHS0BT9qdH2aekw4ivSYYC0XIIkyVMlG+5DAWBwd1y4TZpi4cR2xEg5ip0P
+	mThfJroY7pLYJIJRij5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeB18-00Be7K-1R;
-	Thu, 07 Sep 2023 09:09:38 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1qeCX7-00Bp9X-0U;
+	Thu, 07 Sep 2023 10:46:45 +0000
+Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeB15-00Be6u-2t
-	for linux-amlogic@lists.infradead.org;
-	Thu, 07 Sep 2023 09:09:37 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-402c1407139so8364495e9.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 07 Sep 2023 02:09:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1694077772; x=1694682572; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wBjuRLwnfixpgR2nFPgNkEIBBrq5rco4eC4mU+aZjZI=;
-        b=amOROXnlQIZWXECEVKCEu/zCzT8SxM1vRmnkoOAahv9JwUeHP+w3sL90KLghAkdIDE
-         Ape8Ow4MpN3MxNjFs8MFasrBiJS0FG4NEBBdIhx8RAN6cPNZ+VtRTv4Pb3P7I78wIg/t
-         ODZNdgz3Oyv57eFTOS9zCgZyPAlohvbPubuZSv8C9WJTBIpDFBjMEmQmYPPR+v5SyIFn
-         Wd/H4HYWKRpKBZXEFgNceUN4AuTNGmyj5CYh94qZzOAWBbS/8Olrh/sFJRTFyNYHgKx6
-         Nz7eG7y5yVIvbbEU1/DvyZnTzqsWARTKKEt3ZL5Xvg/9oxTRf1DfXh0jBMPz8VdmPxNS
-         W5oQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1694077772; x=1694682572;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wBjuRLwnfixpgR2nFPgNkEIBBrq5rco4eC4mU+aZjZI=;
-        b=kmUNX4Eh04LGaMmRLsqsjoy5lsQKGFZAv1UTbE2WGsx4MJKRqMDzZdYXeEHEgkwPgC
-         DY/neR+mrpXIWsPlUQM2LhjIWlA8xZ0w/ygmcP79lOSu7mWHKb+/Ln29wcBQrQUJsgVz
-         vs3eBG624P19jCU8fIBbyP8uhMekKa2IWeWe8Tf813sDwCGjztjytG4PZNidNmGCRKZR
-         z5ahvKTXTx+c2kECVIUoG4Ytuzg06DICavljrASras0ypAH9jX+fduPBLvNFTKZL43JI
-         dQRxvJleU6tLG/7K5JrfT5lx2TijzzQERA5nZr9+7hNiqxo3sV+Ca0/aa/jpS4c2Rb1H
-         Ypxw==
-X-Gm-Message-State: AOJu0Yx20gY+jNPqvdgwtH62MOlXjOU0tzpo00IJp1s1njtLbphy4SNG
-	Vsigd2Izlf9M0mHOCSdYO3uHpQ==
-X-Google-Smtp-Source: AGHT+IGV9XwlUajdhCdrx5f+9/paKpKd41H2FIS5FzrRu7+e/TPt8scscnliKKvl02o6tIwPYOkB8w==
-X-Received: by 2002:a05:600c:11c1:b0:401:b204:3b84 with SMTP id b1-20020a05600c11c100b00401b2043b84mr4240874wmi.40.1694077772184;
-        Thu, 07 Sep 2023 02:09:32 -0700 (PDT)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:5be9:5575:c6f4:d478])
-        by smtp.googlemail.com with ESMTPSA id k8-20020a5d4288000000b003176aa612b1sm22764763wrq.38.2023.09.07.02.09.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Sep 2023 02:09:31 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	alsa-devel@alsa-project.org,
-	linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH] ASoC: meson: axg: extend TDM maximum sample rate to 384kHz
-Date: Thu,  7 Sep 2023 11:09:10 +0200
-Message-Id: <20230907090910.13546-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.40.1
+	id 1qeCX4-00Bp6Q-2d;
+	Thu, 07 Sep 2023 10:46:44 +0000
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 143D166072F8;
+	Thu,  7 Sep 2023 11:46:40 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1694083601;
+	bh=2hPXnQEkAUOISA9uLrJm8cZfdkF/pQpShzz3sVJQr08=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XDbzvsjyiXngBH29KcKNLuh/kqUeM1vbRDtSOTKSb8Ajfk+NEDnHE2FEdK+RpCqkz
+	 zaaduzHlimmMz43g+AaZoJQrIvNr/marM4fQwLjCUNahOIrEZVt5rb372yO2//kPnE
+	 P85dh+CkEgQFsE+h8Ao8gq5s+Fg0gzV6P2ss6wOEFpuTVidEcXz6KAhuUkBhD9S438
+	 AyMxKvltsDGxrz9zHhg3MAWJaISGh+0U7NrqkDH5Qr4f21Oyd13CW8/vS8GLomA86/
+	 yAZq7D5ZPLyDvYSywyyUnGXga0Tv381OyDxBRiZt1iv4d5losFQBa+vpmPnJ0JYDar
+	 i1DnriQCy/jpA==
+Message-ID: <6da8136b-be1f-6867-b2af-c636877ef189@collabora.com>
+Date: Thu, 7 Sep 2023 12:46:37 +0200
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 4/6] drm: ci: Enable configs to fix mt8173 boot hang issue
+Content-Language: en-US
+To: Vignesh Raman <vignesh.raman@collabora.com>,
+ dri-devel@lists.freedesktop.org, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: helen.koike@collabora.com, guilherme.gallo@collabora.com,
+ sergi.blanch.torne@collabora.com, david.heidelberg@collabora.com,
+ daniels@collabora.com, emma@anholt.net, robclark@freedesktop.org,
+ gustavo.padovan@collabora.com, robdclark@google.com, anholt@google.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, daniel@ffwll.ch, corbet@lwn.net,
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, heiko@sntech.de,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org
+References: <20230825122435.316272-1-vignesh.raman@collabora.com>
+ <20230825122435.316272-5-vignesh.raman@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230825122435.316272-5-vignesh.raman@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230907_020935_952232_BBAC3255 
-X-CRM114-Status: GOOD (  11.34  )
+X-CRM114-CacheID: sfid-20230907_034642_986542_ECE6A744 
+X-CRM114-Status: GOOD (  12.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,64 +81,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The TDM HW on the axg SoC families and derivatives actually supports
-384kHz sampling rate.
+Il 25/08/23 14:24, Vignesh Raman ha scritto:
+> Enable regulator
+> Enable MT6397 RTC driver
+> 
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> ---
+>   drivers/gpu/drm/ci/arm64.config | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/ci/arm64.config b/drivers/gpu/drm/ci/arm64.config
+> index 817e18ddfd4f..ea7a6cceff40 100644
+> --- a/drivers/gpu/drm/ci/arm64.config
+> +++ b/drivers/gpu/drm/ci/arm64.config
+> @@ -184,6 +184,8 @@ CONFIG_HW_RANDOM_MTK=y
+>   CONFIG_MTK_DEVAPC=y
+>   CONFIG_PWM_MTK_DISP=y
+>   CONFIG_MTK_CMDQ=y
+> +CONFIG_REGULATOR_DA9211=y
+> +CONFIG_RTC_DRV_MT6397=y
 
-Update the fifo and tdm interface constraints accordingly.
+I wonder if it'd be a better idea to simply add those to the defconfig instead as
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- sound/soc/meson/axg-fifo.c | 2 +-
- sound/soc/meson/axg-fifo.h | 2 +-
- sound/soc/meson/axg-tdm.h  | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+CONFIG_REGULATOR_DA9211=m
+CONFIG_RTC_DRV_MT6397=m
 
-diff --git a/sound/soc/meson/axg-fifo.c b/sound/soc/meson/axg-fifo.c
-index bccfb770b339..2e3d0108179b 100644
---- a/sound/soc/meson/axg-fifo.c
-+++ b/sound/soc/meson/axg-fifo.c
-@@ -31,7 +31,7 @@ static struct snd_pcm_hardware axg_fifo_hw = {
- 		 SNDRV_PCM_INFO_NO_PERIOD_WAKEUP),
- 	.formats = AXG_FIFO_FORMATS,
- 	.rate_min = 5512,
--	.rate_max = 192000,
-+	.rate_max = 384000,
- 	.channels_min = 1,
- 	.channels_max = AXG_FIFO_CH_MAX,
- 	.period_bytes_min = AXG_FIFO_BURST,
-diff --git a/sound/soc/meson/axg-fifo.h b/sound/soc/meson/axg-fifo.h
-index b63acd723c87..df528e8cb7c9 100644
---- a/sound/soc/meson/axg-fifo.h
-+++ b/sound/soc/meson/axg-fifo.h
-@@ -22,7 +22,7 @@ struct snd_soc_pcm_runtime;
- 
- #define AXG_FIFO_CH_MAX			128
- #define AXG_FIFO_RATES			(SNDRV_PCM_RATE_5512 |		\
--					 SNDRV_PCM_RATE_8000_192000)
-+					 SNDRV_PCM_RATE_8000_384000)
- #define AXG_FIFO_FORMATS		(SNDRV_PCM_FMTBIT_S8 |		\
- 					 SNDRV_PCM_FMTBIT_S16_LE |	\
- 					 SNDRV_PCM_FMTBIT_S20_LE |	\
-diff --git a/sound/soc/meson/axg-tdm.h b/sound/soc/meson/axg-tdm.h
-index 5774ce0916d4..42f7470b9a7f 100644
---- a/sound/soc/meson/axg-tdm.h
-+++ b/sound/soc/meson/axg-tdm.h
-@@ -16,7 +16,7 @@
- #define AXG_TDM_NUM_LANES	4
- #define AXG_TDM_CHANNEL_MAX	128
- #define AXG_TDM_RATES		(SNDRV_PCM_RATE_5512 |		\
--				 SNDRV_PCM_RATE_8000_192000)
-+				 SNDRV_PCM_RATE_8000_384000)
- #define AXG_TDM_FORMATS		(SNDRV_PCM_FMTBIT_S8 |		\
- 				 SNDRV_PCM_FMTBIT_S16_LE |	\
- 				 SNDRV_PCM_FMTBIT_S20_LE |	\
--- 
-2.40.1
+Any opinion on this? Matthias? Anyone else?
+
+Cheers,
+Angelo
+
+>   
+>   # For nouveau.  Note that DRM must be a module so that it's loaded after NFS is up to provide the firmware.
+>   CONFIG_ARCH_TEGRA=y
+
 
 
 _______________________________________________
