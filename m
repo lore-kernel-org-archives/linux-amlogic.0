@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 655DDEE14D3
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Sep 2023 09:05:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C905AEE14D3
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Sep 2023 09:10:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=nAWZzwnXwrtufesVgs8sqBtksYW+pPraQspeBAXUtrU=; b=PbfcNPXPyY32Z0
-	Pc9BEPEHaLuXvBnrJfTW/8su2TzWPbXSHS4q1w5GAX1+fe/VnL3vQ/gk24X74CmjZq50EDDIUwRPm
-	hTJ1xh2JBLBXV27Sh9O8pAyhDXPyzUAA6/gTjWmWZ1qvakJbe79p3lFYNJrFLq1nlRr7MtjcfLlse
-	ramPokiVcC1c5Lkeelrodf4opP5FwsHm4hqA3/XZMNPOd2hOQ/DwEBloL2JDXdbsXdjRGaN0gxUc6
-	tBc4rZDUXrFjzcn63tyyBWyA2pC8AFxvFXYoUtGqhIRIF9b17Q9wV6UElWu1asUEW78nMO6g3+U8W
-	jjjMFg3DABu70lTheszw==;
+	List-Owner; bh=Cwzv+FSRJnXn+9LcdWJ1MXM87FuZvlePLRunijAKbYw=; b=pM7J7HFv1l2ZeE
+	gg8FsjNjThlMDSLF7AkZ6LcR2GWY7FeXdwm0o1hWA0umC5+dVAuMhSEgqKdyvj/95Kj+icvsoqZJ2
+	KSRAgi92NTVGKTJ7RrDopCIMTpJkLa+NT6vkBg1ST7QVaA+jKLBxzycFVNbHBJFRRadVDE/cjMWPI
+	+YbvKJwMLUV+Aybu6wViImelH3BH2IdzIaBfL9lyP0JMv3V6fJXFMdNA0/fNFKUzxcE1fAOu0QWkv
+	gkogwn2n8VWFScj+jxNbVXoqV7xCbIKVRj5Vg1CQ9GO1dv6///bUQce3/OioWU1hWqF0pEakaZf6h
+	AApxL8ez8fiINwxMvrVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeAwz-00BdhK-2C;
-	Thu, 07 Sep 2023 09:05:21 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1qeB18-00Be7K-1R;
+	Thu, 07 Sep 2023 09:09:38 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeAww-00Bdgx-1C
+	id 1qeB15-00Be6u-2t
 	for linux-amlogic@lists.infradead.org;
-	Thu, 07 Sep 2023 09:05:21 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-401bdff4cb4so7898475e9.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 07 Sep 2023 02:05:17 -0700 (PDT)
+	Thu, 07 Sep 2023 09:09:37 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-402c1407139so8364495e9.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 07 Sep 2023 02:09:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1694077516; x=1694682316; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1694077772; x=1694682572; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=oJVDYEmcYMvyDAvrM+W+a0XTM8UX7gM4MKMeEwWok1U=;
-        b=Tbu6rizPNxOKkP78VLc5gTkKcGvX+wcgQA32suu7XB+AH/Sh7a7C7WGOs9nbmhStjl
-         7jwRdD6hBEmW4rmlbbOeXUhjsSi5MipXP0LlWjtDL5HLCTc8ZYzmbrI4Wbph0jRI3xGI
-         QYn890EN96lSV7xZnI1MvcclIVsU/gqevTKkJ5HJbaM5jy9atd4ZSQqrHdYJFh1OqjYh
-         Tu0GLMQidbt0xyyfm4Ven9u2loT4z1gYIfqOBU+EWSVt6DpdJ6nCyOHBKZPnfh06vhNS
-         TWjEbYvyW1d29Ee/Qwxw+9gaZ6SkwUhvHB7ezyyg6oS/Esps1p+rVHRVClLBcsHzgr6a
-         3Vdg==
+        bh=wBjuRLwnfixpgR2nFPgNkEIBBrq5rco4eC4mU+aZjZI=;
+        b=amOROXnlQIZWXECEVKCEu/zCzT8SxM1vRmnkoOAahv9JwUeHP+w3sL90KLghAkdIDE
+         Ape8Ow4MpN3MxNjFs8MFasrBiJS0FG4NEBBdIhx8RAN6cPNZ+VtRTv4Pb3P7I78wIg/t
+         ODZNdgz3Oyv57eFTOS9zCgZyPAlohvbPubuZSv8C9WJTBIpDFBjMEmQmYPPR+v5SyIFn
+         Wd/H4HYWKRpKBZXEFgNceUN4AuTNGmyj5CYh94qZzOAWBbS/8Olrh/sFJRTFyNYHgKx6
+         Nz7eG7y5yVIvbbEU1/DvyZnTzqsWARTKKEt3ZL5Xvg/9oxTRf1DfXh0jBMPz8VdmPxNS
+         W5oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1694077516; x=1694682316;
+        d=1e100.net; s=20221208; t=1694077772; x=1694682572;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=oJVDYEmcYMvyDAvrM+W+a0XTM8UX7gM4MKMeEwWok1U=;
-        b=AeI+8LOivw9SJLJhhEZ37IfOy7GSlG2Yni7kK+xrFqkgp1Rgbb1exAk7dPdBEjSlw7
-         fmKjFm/nHB4gc1qu9uNqdFsiH9/hdGtOm5l2MAVdShiViQfnkisahsXB6I50kp8pm1ET
-         oNjK8pBvx6IT4TwO886dmKQ3nDqeyI3v1fPSylvNhS/S/JSEvpqJfSLKsG1LlUyjTOZZ
-         iklIYQFzG0txErup8regoUfQoXoDSqQPCLcCNiuqaT3845Acl/+WxIPTzXbiu5Tl2dgt
-         Ry/VvDMCviuf66Z9eXGc/okKt3NygAY8/TinKBL2VCTXMPKqe5XZtVTVFL2WGpM3xAOW
-         Mrjw==
-X-Gm-Message-State: AOJu0YxVP7rAhQf0rGW88Re4FnjeyBV57NkjxgmuUVJ76cQD3InfovSQ
-	znHDo+rVSsNhsrg0DKBowoiBSQ==
-X-Google-Smtp-Source: AGHT+IEOvCH7hNTHOrZSew7AYc5GcTyZgtrMkRHjYNSp10f3yfgk8FqXZw9ThISAuSrWLWwP/dk53Q==
-X-Received: by 2002:a05:600c:2986:b0:401:73b2:f039 with SMTP id r6-20020a05600c298600b0040173b2f039mr4140033wmd.7.1694077516289;
-        Thu, 07 Sep 2023 02:05:16 -0700 (PDT)
+        bh=wBjuRLwnfixpgR2nFPgNkEIBBrq5rco4eC4mU+aZjZI=;
+        b=kmUNX4Eh04LGaMmRLsqsjoy5lsQKGFZAv1UTbE2WGsx4MJKRqMDzZdYXeEHEgkwPgC
+         DY/neR+mrpXIWsPlUQM2LhjIWlA8xZ0w/ygmcP79lOSu7mWHKb+/Ln29wcBQrQUJsgVz
+         vs3eBG624P19jCU8fIBbyP8uhMekKa2IWeWe8Tf813sDwCGjztjytG4PZNidNmGCRKZR
+         z5ahvKTXTx+c2kECVIUoG4Ytuzg06DICavljrASras0ypAH9jX+fduPBLvNFTKZL43JI
+         dQRxvJleU6tLG/7K5JrfT5lx2TijzzQERA5nZr9+7hNiqxo3sV+Ca0/aa/jpS4c2Rb1H
+         Ypxw==
+X-Gm-Message-State: AOJu0Yx20gY+jNPqvdgwtH62MOlXjOU0tzpo00IJp1s1njtLbphy4SNG
+	Vsigd2Izlf9M0mHOCSdYO3uHpQ==
+X-Google-Smtp-Source: AGHT+IGV9XwlUajdhCdrx5f+9/paKpKd41H2FIS5FzrRu7+e/TPt8scscnliKKvl02o6tIwPYOkB8w==
+X-Received: by 2002:a05:600c:11c1:b0:401:b204:3b84 with SMTP id b1-20020a05600c11c100b00401b2043b84mr4240874wmi.40.1694077772184;
+        Thu, 07 Sep 2023 02:09:32 -0700 (PDT)
 Received: from toaster.lan ([2a01:e0a:3c5:5fb1:5be9:5575:c6f4:d478])
-        by smtp.googlemail.com with ESMTPSA id r5-20020adfe685000000b003143867d2ebsm22767439wrm.63.2023.09.07.02.05.15
+        by smtp.googlemail.com with ESMTPSA id k8-20020a5d4288000000b003176aa612b1sm22764763wrq.38.2023.09.07.02.09.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Sep 2023 02:05:15 -0700 (PDT)
+        Thu, 07 Sep 2023 02:09:31 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Mark Brown <broonie@kernel.org>,
 	Liam Girdwood <lgirdwood@gmail.com>
@@ -68,15 +68,15 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	alsa-devel@alsa-project.org,
 	linux-kernel@vger.kernel.org,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH] ASoC: meson: spdifin: start hw on dai probe
-Date: Thu,  7 Sep 2023 11:05:04 +0200
-Message-Id: <20230907090504.12700-1-jbrunet@baylibre.com>
+Subject: [PATCH] ASoC: meson: axg: extend TDM maximum sample rate to 384kHz
+Date: Thu,  7 Sep 2023 11:09:10 +0200
+Message-Id: <20230907090910.13546-1-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230907_020518_628919_EEEDAAA2 
-X-CRM114-Status: GOOD (  10.91  )
+X-CRM114-CacheID: sfid-20230907_020935_952232_BBAC3255 
+X-CRM114-Status: GOOD (  11.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,99 +93,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-For spdif input to report the locked rate correctly, even when no capture
-is running, the HW and reference clock must be started as soon as
-the dai is probed.
+The TDM HW on the axg SoC families and derivatives actually supports
+384kHz sampling rate.
 
-Fixes: 5ce5658375e6 ("ASoC: meson: add axg spdif input")
+Update the fifo and tdm interface constraints accordingly.
+
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- sound/soc/meson/axg-spdifin.c | 49 ++++++++++++-----------------------
- 1 file changed, 17 insertions(+), 32 deletions(-)
+ sound/soc/meson/axg-fifo.c | 2 +-
+ sound/soc/meson/axg-fifo.h | 2 +-
+ sound/soc/meson/axg-tdm.h  | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/sound/soc/meson/axg-spdifin.c b/sound/soc/meson/axg-spdifin.c
-index d86880169075..bc2f2849ecfb 100644
---- a/sound/soc/meson/axg-spdifin.c
-+++ b/sound/soc/meson/axg-spdifin.c
-@@ -112,34 +112,6 @@ static int axg_spdifin_prepare(struct snd_pcm_substream *substream,
- 	return 0;
- }
+diff --git a/sound/soc/meson/axg-fifo.c b/sound/soc/meson/axg-fifo.c
+index bccfb770b339..2e3d0108179b 100644
+--- a/sound/soc/meson/axg-fifo.c
++++ b/sound/soc/meson/axg-fifo.c
+@@ -31,7 +31,7 @@ static struct snd_pcm_hardware axg_fifo_hw = {
+ 		 SNDRV_PCM_INFO_NO_PERIOD_WAKEUP),
+ 	.formats = AXG_FIFO_FORMATS,
+ 	.rate_min = 5512,
+-	.rate_max = 192000,
++	.rate_max = 384000,
+ 	.channels_min = 1,
+ 	.channels_max = AXG_FIFO_CH_MAX,
+ 	.period_bytes_min = AXG_FIFO_BURST,
+diff --git a/sound/soc/meson/axg-fifo.h b/sound/soc/meson/axg-fifo.h
+index b63acd723c87..df528e8cb7c9 100644
+--- a/sound/soc/meson/axg-fifo.h
++++ b/sound/soc/meson/axg-fifo.h
+@@ -22,7 +22,7 @@ struct snd_soc_pcm_runtime;
  
--static int axg_spdifin_startup(struct snd_pcm_substream *substream,
--			       struct snd_soc_dai *dai)
--{
--	struct axg_spdifin *priv = snd_soc_dai_get_drvdata(dai);
--	int ret;
--
--	ret = clk_prepare_enable(priv->refclk);
--	if (ret) {
--		dev_err(dai->dev,
--			"failed to enable spdifin reference clock\n");
--		return ret;
--	}
--
--	regmap_update_bits(priv->map, SPDIFIN_CTRL0, SPDIFIN_CTRL0_EN,
--			   SPDIFIN_CTRL0_EN);
--
--	return 0;
--}
--
--static void axg_spdifin_shutdown(struct snd_pcm_substream *substream,
--				 struct snd_soc_dai *dai)
--{
--	struct axg_spdifin *priv = snd_soc_dai_get_drvdata(dai);
--
--	regmap_update_bits(priv->map, SPDIFIN_CTRL0, SPDIFIN_CTRL0_EN, 0);
--	clk_disable_unprepare(priv->refclk);
--}
--
- static void axg_spdifin_write_mode_param(struct regmap *map, int mode,
- 					 unsigned int val,
- 					 unsigned int num_per_reg,
-@@ -251,17 +223,32 @@ static int axg_spdifin_dai_probe(struct snd_soc_dai *dai)
- 	ret = axg_spdifin_sample_mode_config(dai, priv);
- 	if (ret) {
- 		dev_err(dai->dev, "mode configuration failed\n");
--		clk_disable_unprepare(priv->pclk);
--		return ret;
-+		goto pclk_err;
- 	}
- 
-+	ret = clk_prepare_enable(priv->refclk);
-+	if (ret) {
-+		dev_err(dai->dev,
-+			"failed to enable spdifin reference clock\n");
-+		goto pclk_err;
-+	}
-+
-+	regmap_update_bits(priv->map, SPDIFIN_CTRL0, SPDIFIN_CTRL0_EN,
-+			   SPDIFIN_CTRL0_EN);
-+
- 	return 0;
-+
-+pclk_err:
-+	clk_disable_unprepare(priv->pclk);
-+	return ret;
- }
- 
- static int axg_spdifin_dai_remove(struct snd_soc_dai *dai)
- {
- 	struct axg_spdifin *priv = snd_soc_dai_get_drvdata(dai);
- 
-+	regmap_update_bits(priv->map, SPDIFIN_CTRL0, SPDIFIN_CTRL0_EN, 0);
-+	clk_disable_unprepare(priv->refclk);
- 	clk_disable_unprepare(priv->pclk);
- 	return 0;
- }
-@@ -270,8 +257,6 @@ static const struct snd_soc_dai_ops axg_spdifin_ops = {
- 	.probe		= axg_spdifin_dai_probe,
- 	.remove		= axg_spdifin_dai_remove,
- 	.prepare	= axg_spdifin_prepare,
--	.startup	= axg_spdifin_startup,
--	.shutdown	= axg_spdifin_shutdown,
- };
- 
- static int axg_spdifin_iec958_info(struct snd_kcontrol *kcontrol,
+ #define AXG_FIFO_CH_MAX			128
+ #define AXG_FIFO_RATES			(SNDRV_PCM_RATE_5512 |		\
+-					 SNDRV_PCM_RATE_8000_192000)
++					 SNDRV_PCM_RATE_8000_384000)
+ #define AXG_FIFO_FORMATS		(SNDRV_PCM_FMTBIT_S8 |		\
+ 					 SNDRV_PCM_FMTBIT_S16_LE |	\
+ 					 SNDRV_PCM_FMTBIT_S20_LE |	\
+diff --git a/sound/soc/meson/axg-tdm.h b/sound/soc/meson/axg-tdm.h
+index 5774ce0916d4..42f7470b9a7f 100644
+--- a/sound/soc/meson/axg-tdm.h
++++ b/sound/soc/meson/axg-tdm.h
+@@ -16,7 +16,7 @@
+ #define AXG_TDM_NUM_LANES	4
+ #define AXG_TDM_CHANNEL_MAX	128
+ #define AXG_TDM_RATES		(SNDRV_PCM_RATE_5512 |		\
+-				 SNDRV_PCM_RATE_8000_192000)
++				 SNDRV_PCM_RATE_8000_384000)
+ #define AXG_TDM_FORMATS		(SNDRV_PCM_FMTBIT_S8 |		\
+ 				 SNDRV_PCM_FMTBIT_S16_LE |	\
+ 				 SNDRV_PCM_FMTBIT_S20_LE |	\
 -- 
 2.40.1
 
