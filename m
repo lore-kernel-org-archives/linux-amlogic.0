@@ -4,80 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E550EE7FEA
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Sep 2023 12:42:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DCE5EE7FED
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Sep 2023 12:46:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7m/UH6lPkbVP6Xcge6bBRD4cjNg9rjifALxqdEE4Uok=; b=MQv1Hxw26HloorEDQpvuQ+t+r7
-	G8uLoFbVfvK0gEQqiiNfgtnJpAqxmn7RSvvx2yyQ5S/kpel8p9oZvllF6w6BFJ4gfSrkkHjn0iRXW
-	EBKK4T6zi0gAJn45QgMACdy1m4SPVT9T7URYiDwO9T7/3W5RPV+v4L1gAnOXPCnPmoCAwOKj8n1Sq
-	zd/CHsLBGsk8FBHesCcXoc4mXIttbyHMFpC8jVcSMyA8mBNnSOj+dZLtxXdozkcbF7uWIau8ZItQ4
-	PA/zN+EJDRexcJISk8tnieXKXZM6UeOvwfqFfPj+vjQbcRlI4NJdqewENPGY+rcGBU33fbAIvYcxW
-	zWWY+ZPg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
+	Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=QztFPEWn5FZraiRaCbK+3G0nhN5Cs+OVnkiw/94fo68=; b=bAggRfKeuPqOAv
+	8NbHccHCBZyjMX54h3orArlFSpkoC4X3JP29D3EefuMU1uDLFxWYGcTnSQ1boXTSa8SVHh1U3Q0hE
+	0tXNjfzxOuYeGmFkI5amhJBp4uRxEPs9dtO3BhmNO1th+givN3xDZ9izk4Sx7UUfjgrN7bkXAvCwH
+	Lb0OSJZo+1AcL5rfLHn5BVE5Oqi/iV3ztWNEM7+xUs+p85qwDafcvMyz/zyNZUNHwCgU2eH0VKFEw
+	9pQNVhvYv/O28SzOxwnBbtZrMIAzu2HgcFTDsYeoHntRPnQ7/4XV8bTfHKQ/uqYHkdM18GEgMy1bg
+	6SDhX/qyc1PrIWai6PlQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeao6-00DmhS-2p;
-	Fri, 08 Sep 2023 12:41:54 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1qeas4-00DnGW-29;
+	Fri, 08 Sep 2023 12:46:00 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeao3-00Dmgf-1q
+	id 1qeas2-00DnFO-0O
 	for linux-amlogic@lists.infradead.org;
-	Fri, 08 Sep 2023 12:41:53 +0000
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-401d80f4ef8so21507115e9.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 08 Sep 2023 05:41:51 -0700 (PDT)
+	Fri, 08 Sep 2023 12:45:59 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-401d2e11dacso20805215e9.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 08 Sep 2023 05:45:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694176910; x=1694781710; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1694177154; x=1694781954; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :references:cc:to:from:content-language:subject:reply-to:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=SYbVbSjfXgkpf7yJkxmAIbzELrFKIsBKHyf6u4lRyms=;
-        b=BoVqAjONpB7glepTq9tm/qdfLEY3t4lCW1eb7stfFWt2AgjUS12XmgPEzAWDqOqQYM
-         eBXXLT4RyAZSeI9COzQDDWyRzMaMQiHRtY84eNCA5CsdEtQ0bdJHiskFH28pKlrI4CxV
-         aYb1Nd7t2mNOyWw94aIQwJNcsUG/ptOXMqfd5Ro95k/GhhrS2GpwtXVA9Jk5B/0JimFr
-         /16NtWN0+Da2XR50faIEZOYmJOW3LWs1FP8u/UeeNZdUCY3hFdbVVym4dOhEZMoB9tza
-         +k9iKW9thahCV7rjrRAvC8Ej/b/yYJ+xTEUPlopPmcCVPD1W4aYWIH07N/PJa/0CnfOQ
-         Lfqw==
+        bh=qYX11k0FRo9C71kWAlZsFSHlpklxSuOAfDFjS017gR4=;
+        b=SrwSRFhdK2VdDWvZmC01SJVMn9XUtIV0DlcqgkKbszuX4Sld3EhV5lwcupRiMZGtDZ
+         C46kSxQdzFR8IAE1w/JPQwXZ8Kr/Rx4HMnPy845BbpPx0LBGshRtfJ373WXS0IUlXHfA
+         +zHFfQZyJlj50z3w8URmvTV78fTuDnxqE96lGA+gjAFTkCpnFtx/aJwm3I58ATHzvJAj
+         u/T3G1yYdPcOAePCnllnUgfdRjAajTJIDFan1bQO/JoIm1B+9FkTaMIzujCyA+VHTOo3
+         SwbesJH0Wz05dhsi5zTJR63WZ8V2OBI4r+A7UfFT7SOvAeekUqHwGuAe+gWEZKQ5av7j
+         wUsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694176910; x=1694781710;
+        d=1e100.net; s=20230601; t=1694177154; x=1694781954;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :references:cc:to:from:content-language:subject:reply-to:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=SYbVbSjfXgkpf7yJkxmAIbzELrFKIsBKHyf6u4lRyms=;
-        b=ChTVxUeESG4p7QVetTJB1QjBlYeSuegJsYBYuwcK7dh6vd9f3mIt50tDE1wasgxqIe
-         5Lp83DWrBJOOyglCDqpZav0mF59ggmW3vt0zXuhKVRQfaqbKbp4qgGN3GO3bJ8TpSFZt
-         NcQpJAEheaSYbqYSDpfYeefIRU/QQEYinlDyJLuDUrGYiLx3ATREHyqr3P9VA/Ht3Uxh
-         tQO0dFloiEX2MmR2pRx7bKd7RLjVKeJZOYGdllQiV62wFez4rvYOji9Z0aSrpc5M/wFs
-         y4aiOWlhBGE+r2UrDuOtF0+9GHfyVhrY5TUKDuJ3pNDohuZ6wvJ5cqiQZpQS1RLvIlYw
-         hsxA==
-X-Gm-Message-State: AOJu0Yz+P7wZVR1J1iLj69nFt47LIrKZty85eMsKku4lFhqwGTJmbyse
-	06GuYkHRZb/YLwW6TApkQzVaTw==
-X-Google-Smtp-Source: AGHT+IFcD5sRcgndbFlYk7K0tikRKDSmEAuT4GWiMUf+A87UYfKZ5sw/KGPGYEo+I7WGou7kv2q9wQ==
-X-Received: by 2002:adf:efc7:0:b0:317:393f:6e6a with SMTP id i7-20020adfefc7000000b00317393f6e6amr1832671wrp.59.1694176909835;
-        Fri, 08 Sep 2023 05:41:49 -0700 (PDT)
+        bh=qYX11k0FRo9C71kWAlZsFSHlpklxSuOAfDFjS017gR4=;
+        b=mXzr2QK60UYVeL6KKzDDgEfpCpzF8aKMGvOIsTK+EK5BL/3hxhocb2J0oxONKeE94k
+         M8zP+GuIwAiUZTYVzJ5yOo4KzjKX2AflpmcN/5VavyxOEvodwg5OBwju56oadkssHCKH
+         8I4kxcmcr32gUTjbtAaHOD8DVNxfmZFffWT2y98j78dmjxbOUo9t0So4ka2YGlPirfGP
+         LIpvBrXI3e1NOmNYH28BJ22dyBUf/3oKTILAeOvCnyTBKRGdCPcO3si1q9ouidFm0vgR
+         TEy8XMSPZrncCrEUC2dmP2Bo2PEq9GaEjbmohJH+Q3ZzbrEyfc0H3fv8xW6M3qbfE4+l
+         oJcQ==
+X-Gm-Message-State: AOJu0Yz69q3DqCIomy5ll0rsT7ngJwWiwCBqTWmV0ditybr8n6UKUJJG
+	hyE1e6qbUl95p6fhoAZXaJfGGg==
+X-Google-Smtp-Source: AGHT+IGHePJhFFJiEaa1GGpoPTB7/fI52CufaQApdzeN8l1+CLj6k0KAU+tqTR8boxgF7HkxVuJzpQ==
+X-Received: by 2002:a05:600c:a386:b0:400:5962:6aa9 with SMTP id hn6-20020a05600ca38600b0040059626aa9mr4360296wmb.11.1694177154279;
+        Fri, 08 Sep 2023 05:45:54 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4? ([2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4])
-        by smtp.gmail.com with ESMTPSA id o3-20020a5d4083000000b0031c6581d55esm1988726wrp.91.2023.09.08.05.41.48
+        by smtp.gmail.com with ESMTPSA id t15-20020a7bc3cf000000b00402be2666bcsm5188357wmj.6.2023.09.08.05.45.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Sep 2023 05:41:49 -0700 (PDT)
-Message-ID: <a020e7a9-d91a-4a15-86ef-fdb05c78ae3f@linaro.org>
-Date: Fri, 8 Sep 2023 14:41:48 +0200
+        Fri, 08 Sep 2023 05:45:53 -0700 (PDT)
+Message-ID: <4303c141-30df-4a2b-aba7-f11a98db9941@linaro.org>
+Date: Fri, 8 Sep 2023 14:45:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1] drivers: meson: sm: correct meson_sm_* API retval
- handling
+Subject: Re: [PATCH V3 0/6] Power: T7: add power domain driver
 Content-Language: en-US, fr
-To: Alexey Romanov <avromanov@salutedevices.com>, khilman@baylibre.com,
- jbrunet@baylibre.com, miles.chen@mediatek.com,
- martin.blumenstingl@googlemail.com, narmstrong@baylibre.com
-Cc: kernel@sberdevices.ru, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230830140850.17130-1-avromanov@salutedevices.com>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ linux-pm@vger.kernel.org
+References: <20230829020404.4058677-1-xianwei.zhao@amlogic.com>
+ <82001107-3e72-4cc7-b7d4-8ca1a840b508@linaro.org>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -103,10 +105,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20230830140850.17130-1-avromanov@salutedevices.com>
+In-Reply-To: <82001107-3e72-4cc7-b7d4-8ca1a840b508@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230908_054151_641809_FFDB5B03 
-X-CRM114-Status: GOOD (  24.60  )
+X-CRM114-CacheID: sfid-20230908_054558_156484_F14FEC05 
+X-CRM114-Status: GOOD (  12.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,119 +121,46 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 30/08/2023 16:08, Alexey Romanov wrote:
-> 1. Following the ARM SMC32 calling convention, the return value
-> from secure monitor is a 32-bit signed integer. This patch changes
-> the type of the return value of the function meson_sm_call().
-> 
-> 2. Now, when meson_sm_call() returns a 32-bit signed integer, we need
-> to ensure that this value is not negative. It is important to check
-> that the return value is not negative in both the meson_sm_call_read()
-> and meson_sm_call_write() functions.
-> 
-> 3. Add a comment explaining why it is necessary to check if the SMC
-> return value is equal to 0 in the function meson_sm_call_read().
-> It is not obvious when reading this code.
-> 
-> Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
-> ---
->   drivers/firmware/meson/meson_sm.c       | 20 +++++++++++++-------
->   include/linux/firmware/meson/meson_sm.h |  2 +-
->   2 files changed, 14 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
-> index 798bcdb05d84..27a8cd4747f8 100644
-> --- a/drivers/firmware/meson/meson_sm.c
-> +++ b/drivers/firmware/meson/meson_sm.c
-> @@ -67,7 +67,7 @@ static u32 meson_sm_get_cmd(const struct meson_sm_chip *chip,
->   	return cmd->smc_id;
->   }
->   
-> -static u32 __meson_sm_call(u32 cmd, u32 arg0, u32 arg1, u32 arg2,
-> +static s32 __meson_sm_call(u32 cmd, u32 arg0, u32 arg1, u32 arg2,
->   			   u32 arg3, u32 arg4)
->   {
->   	struct arm_smccc_res res;
-> @@ -102,9 +102,10 @@ static void __iomem *meson_sm_map_shmem(u32 cmd_shmem, unsigned int size)
->    * Return:	0 on success, a negative value on error
->    */
->   int meson_sm_call(struct meson_sm_firmware *fw, unsigned int cmd_index,
-> -		  u32 *ret, u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4)
-> +		  s32 *ret, u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4)
->   {
-> -	u32 cmd, lret;
-> +	u32 cmd;
-> +	s32 lret;
->   
->   	if (!fw->chip)
->   		return -ENOENT;
-> @@ -143,7 +144,7 @@ int meson_sm_call_read(struct meson_sm_firmware *fw, void *buffer,
->   		       unsigned int bsize, unsigned int cmd_index, u32 arg0,
->   		       u32 arg1, u32 arg2, u32 arg3, u32 arg4)
->   {
-> -	u32 size;
-> +	s32 size;
->   	int ret;
->   
->   	if (!fw->chip)
-> @@ -158,11 +159,16 @@ int meson_sm_call_read(struct meson_sm_firmware *fw, void *buffer,
->   	if (meson_sm_call(fw, cmd_index, &size, arg0, arg1, arg2, arg3, arg4) < 0)
->   		return -EINVAL;
->   
-> -	if (size > bsize)
-> +	if (size < 0 || size > bsize)
->   		return -EINVAL;
->   
->   	ret = size;
->   
-> +	/* In some cases (for example GET_CHIP_ID command),
-> +	 * SMC doesn't return the number of bytes read, even
-> +	 * though the bytes were actually read into sm_shmem_out.
-> +	 * So this check is needed.
-> +	 */
->   	if (!size)
->   		size = bsize;
->   
-> @@ -192,7 +198,7 @@ int meson_sm_call_write(struct meson_sm_firmware *fw, void *buffer,
->   			unsigned int size, unsigned int cmd_index, u32 arg0,
->   			u32 arg1, u32 arg2, u32 arg3, u32 arg4)
->   {
-> -	u32 written;
-> +	s32 written;
->   
->   	if (!fw->chip)
->   		return -ENOENT;
-> @@ -208,7 +214,7 @@ int meson_sm_call_write(struct meson_sm_firmware *fw, void *buffer,
->   	if (meson_sm_call(fw, cmd_index, &written, arg0, arg1, arg2, arg3, arg4) < 0)
->   		return -EINVAL;
->   
-> -	if (!written)
-> +	if (written <= 0 || written > size)
->   		return -EINVAL;
->   
->   	return written;
-> diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
-> index 95b0da2326a9..8eaf8922ab02 100644
-> --- a/include/linux/firmware/meson/meson_sm.h
-> +++ b/include/linux/firmware/meson/meson_sm.h
-> @@ -19,7 +19,7 @@ enum {
->   struct meson_sm_firmware;
->   
->   int meson_sm_call(struct meson_sm_firmware *fw, unsigned int cmd_index,
-> -		  u32 *ret, u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4);
-> +		  s32 *ret, u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4);
->   int meson_sm_call_write(struct meson_sm_firmware *fw, void *buffer,
->   			unsigned int b_size, unsigned int cmd_index, u32 arg0,
->   			u32 arg1, u32 arg2, u32 arg3, u32 arg4);
-
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMDgvMDkvMjAyMyAxNDo0MCwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4gSGksCj4gCj4gT24g
+MjkvMDgvMjAyMyAwNDowMywgWGlhbndlaSBaaGFvIHdyb3RlOgo+PiBGaXJzdCBwYXRjaCBpcyB0
+aGF0IHJlbW92ZSBDMyBzb21lIHBvd2VyIGRvbWFpbiBBTFdBWVNfT04gcHJvcGVydHkuCj4+IFNl
+Y29uZCBwYXRjaCBpcyB0aGF0IGFkZCBkcml2ZXIgdG8gc3VwcG9ydCBwb3dlciBwYXJlbnQgbm9k
+ZS4KPj4gVGhpcmQgcGF0Y2ggaXMgdGhhdCB0dXJuIG9uIHBvd2VyIGlmIGluaXRpYWwgcG93ZXIg
+ZG9tYWluIHdpdGgKPj4gIkFXQVlfT04iIHByb3BlcnR5IHN0YXRlIGlzIG9mZi4KPj4KPj4gT3Ro
+ZXIgcGF0Y2hzIGFkZHMgcG93ZXIgY29udHJvbGxlciBkcml2ZXIgc3VwcG9ydCBmb3IgQW1sb2dp
+YyBUNyBTb0MuCj4gCj4gUGxlYXNlIHJlLXNlbmQgdG8gVWxmIEhhbnNzb24gPHVsZi5oYW5zc29u
+QGxpbmFyby5vcmc+IGFuZAo+IGxpbnV4LXBtQHZnZXIua2VybmVsLm9yZyBzaW5jZSB0aGlzIGRy
+aXZlciBoYXMgbW92ZWQgdG8gdGhlCj4gR0VORVJJQyBQTSBET01BSU4gUFJPVklERVJTIHN1YnN5
+c3RlbS4KPiAKPiBJJ2xsIHRha2UgdGhlIERUIHBhdGNoIHNpbmNlIGJpbmRpbmdzIHBhdGNoIHdh
+cyByZXZpZXdlZC4KCkluIGZhY3QgSSdsbCBuZWVkIFVsZiB0byBwcm92aWRlIG1lIGFuIGltbXV0
+YWJsZSBicmFuY2ggb3IgdGFnIHdpdGgKdGhlIGJpbmRpbmdzIGluIG9yZGVyIGZvciBtZSB0byBh
+cHBseSB0aGUgRFQgcGF0Y2guCgpOZWlsCgo+IAo+IFRoYW5rcywKPiBOZWlsCj4gCj4+Cj4+IENo
+YW5nZXMgU2luY2UgdjI6Cj4+IMKgIC1Nb2RpZnkgc3ViamVjdC4KPj4gwqAgLURlZmluZSBQV1JD
+X05PX1BBUkVOVCBVSU5UX01BWAo+PiDCoCAtUmVtb3ZlIG1vZGlmaWNhdGlvbiB0aGF0IHRyYW5z
+Zm9ybSBpc19vZmYgaW50byAxIG9yIDAgdXNpbmcgISEKPj4KPj4gQ2hhbmdlcyBTaW5jZSB2MToK
+Pj4gwqAgLUZpeCBsaWNlbnNlIGZyb20gIkdQTC0yLjAtb25seSBPUiAuKiIgdG8gIkdQTC0yLjAt
+b25seSBPUiBNSVQiLgo+PiDCoCAtTW9kaWZ5IFQ3X05JQyBmbGFnwqAgIkFMV0FZU19PTiIKPj4K
+Pj4geGlhbndlaS56aGFvICg2KToKPj4gwqDCoCBnZW5wZDogYW1sb2dpYzogbW9kaWZ5IHNvbWUg
+cG93ZXIgZG9tYWlucyBwcm9wZXJ0eQo+PiDCoMKgIGdlbnBkOiBhbWxvZ2ljOiBhZGQgZHJpdmVy
+IHRvIHN1cHBvcnQgcG93ZXIgcGFyZW50IG5vZGUKPj4gwqDCoCBnZW5wZDogYW1sb2dpYzogaW5p
+dCBwb3dlciBkb21haW4gc3RhdGUKPj4gwqDCoCBkdC1iaW5kaW5nczogcG93ZXI6IGFkZCBBbWxv
+Z2ljIFQ3IHBvd2VyIGRvbWFpbnMKPj4gwqDCoCBnZW5wZDogYW1sb2dpYzogQWRkIHN1cHBvcnQg
+Zm9yIFQ3IHBvd2VyIGRvbWFpbnMgY29udHJvbGxlcgo+PiDCoMKgIGFybTY0OiBkdHM6IGFtbG9n
+aWM6IHQ3OiBhZGQgcG93ZXIgZG9tYWluIGNvbnRyb2xsZXIgbm9kZQo+Pgo+PiDCoCAuLi4vcG93
+ZXIvYW1sb2dpYyxtZXNvbi1zZWMtcHdyYy55YW1swqDCoMKgwqDCoMKgwqDCoCB8wqDCoCAzICst
+Cj4+IMKgIGFyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9hbWxvZ2ljLXQ3LmR0c2nCoMKgIHzC
+oMKgIDYgKwo+PiDCoCBkcml2ZXJzL2dlbnBkL2FtbG9naWMvbWVzb24tc2VjdXJlLXB3cmMuY8Kg
+wqDCoMKgIHwgMTI3ICsrKysrKysrKysrKysrKystLQo+PiDCoCBpbmNsdWRlL2R0LWJpbmRpbmdz
+L3Bvd2VyL2FtbG9naWMsdDctcHdyYy5owqDCoCB8wqAgNjMgKysrKysrKysrCj4+IMKgIDQgZmls
+ZXMgY2hhbmdlZCwgMTg1IGluc2VydGlvbnMoKyksIDE0IGRlbGV0aW9ucygtKQo+PiDCoCBjcmVh
+dGUgbW9kZSAxMDA2NDQgaW5jbHVkZS9kdC1iaW5kaW5ncy9wb3dlci9hbWxvZ2ljLHQ3LXB3cmMu
+aAo+Pgo+Pgo+PiBiYXNlLWNvbW1pdDogNDEzZjVjMDI5MjliYjMzMDQyYmJjNGVlMjMzMTY2NTUw
+YTVmY2E3MAo+IAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
+ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
+LWFtbG9naWMK
