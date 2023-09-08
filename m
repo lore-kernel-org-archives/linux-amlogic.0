@@ -4,83 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 905DDEE7FE7
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Sep 2023 12:31:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CA5AEE7FE7
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Sep 2023 12:34:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
-	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=HG1uBqMoZg7NH01yTaiA5Cb108/XLCwyhWNP0rGzTvg=; b=qf+UoC1u2w92GpfoC0CtZ3Q2N3
-	xeRkmIqqCxm/Lc4qNvh9h1E6Fz9YhGXo1b6dFfYOiv+eI9Z7rb6mGbeMU9cLmo7zXvzT/EI0oB3r1
-	KS5QyHGbaPHFaHidMdZfSpx9drlSJrRGymgJS1UKBwMkRYgOSOKfwJZAVCssPIaoVHTgfjtNJOH27
-	fDwZ3WKj6Xwl6EjxlOspX45WzcKxWbljWGpmqJcHOWQFKW56njCbLtdHRr5+tqYqxyzTYUjAa1uKe
-	PJl1amom01b7zlRVeiXgz6x2GLmVLF0XIP5TjXA97Mi892yARn49pjoZESJLBD3WKFiL3seiBzm36
-	40bLuC9A==;
+	bh=x4AfeM2Dli96J4lkgD8iHBvf1w8pDm8jLC73JGIKbpY=; b=qwUSOp5jmvgegqhpgbxppU5Brt
+	dKzTNuIVPe9LT4jjgIKzWjcH/idrovOXY/broY4a/DlKHRHr3o/irBUztCK7qJfj1maflqCLPRaIb
+	35xsX0ldgQtADLSzjbE/LqAUNI+pvCpVNUvpk8GEKG7W13mn+hWAwyouimwGPKET4CDD5KGCP7PtT
+	DyLVzlzc4ri07gu3MbXbDILi0ERl8Pngkq8MRL0jwD/AG3+N8CI1TralexlqVJ65mzg7J+zspujzC
+	DKuo+HZDaPKPVVfcHdeUmx/6ufU5ZzRlKVwybUQ/pCYDC7TSf2eRg8Gfn1+gtdFaHOlRqTLRZiguM
+	hlyFDRZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeadG-00DlZL-0c;
-	Fri, 08 Sep 2023 12:30:42 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1qeagx-00Dltt-0Q;
+	Fri, 08 Sep 2023 12:34:31 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeadC-00DlYG-1e
+	id 1qeagt-00DlqH-0K
 	for linux-amlogic@lists.infradead.org;
-	Fri, 08 Sep 2023 12:30:39 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-31f7400cb74so1286924f8f.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 08 Sep 2023 05:30:36 -0700 (PDT)
+	Fri, 08 Sep 2023 12:34:28 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-401da71b83cso22415655e9.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 08 Sep 2023 05:34:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694176235; x=1694781035; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1694176465; x=1694781265; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:to:content-language:subject:reply-to:from:user-agent
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=PM2w2IzcLgzoOPeUzfKRLbjxESAa2w9XyRzVdDC8nNA=;
-        b=qJOrLyVqs4mke804/11o/sA2E18pU3mMbAEcvXhIlPCpyhEnfr4Tm/9viMAgGf7XhU
-         mSUXFeFPjU4RE27cV3gkKZdENix3A1LkxkoHiASFWIBU3muhU3Fypj76zYrweWREsjur
-         CCp8svdfaFCKWerYK8WXGjmOdF4zV8AQLW9DNI5ReFupzInKpFjORwXuu3fB3W8GTwbL
-         vQMpaeFY42uKDo8v2Ver0MBO5PfOg/AUggH7WFixpPxQsKJ0JZRE2ek2wl3UavQJGFKP
-         DhJGH3lyZpq3SRWsZSg/NyeKfGPl+gnYxX8ugepx+JXCNCfdxV9x1edUbfLn+5uT+gdq
-         Srqg==
+        bh=gwlYp2Ret+PHUOy/+lpD5lWplu3GLSy3wqa3Tr7W/eM=;
+        b=EK54Ek95Rxh0o7F2yqHEKuuUWz6NjpYT3tBWcX/1QiS9KvrUMMzWUnmE5lTGSrSB37
+         7Sm0ZymOZlAgfSlG1Dpe1sHM5UNJ7y+qDpq7CoSP3bK+idT0yGIT+NBdK2iisouycXLd
+         2HfqWc6taL00tVKoSLVUSeYboQcImBvfuUx+lj4NBJolHBtHa8KfYcCC0e1gKlaVLiuJ
+         BgWU2s4Y++GFaR60tBMA+R6UOb230kqYcPxXUeMjx3hBEa6UQ7OJrOsNRUWuNiWAppl+
+         ZeJfDQaaXfqGNCmXLpybnUuxdRD95ktmIi6sRjUut7uuOsOqpE32BnSlFceNePwHV5d/
+         vOjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694176235; x=1694781035;
+        d=1e100.net; s=20230601; t=1694176465; x=1694781265;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:to:content-language:subject:reply-to:from:user-agent
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=PM2w2IzcLgzoOPeUzfKRLbjxESAa2w9XyRzVdDC8nNA=;
-        b=lAijnnI0AS7dmBBnMxS8e11l3+RHkgPQJFbWq2oKlgP8KEc8+huNAFg4GmAyeRzmGy
-         cSXuoRD1JvBVryl+BET8LLv/D+DKxtikBLBrmdbexDu8Ty9b/zXIAtyV0vSil8eOTTOA
-         C916oEGW8g8ix5xKGH2q3elvpw2qw6AMZSf9qmDO22yRIgzeb0GodAyPOoB5msJb8WJf
-         yM5dSDeQ8xpd3Xrs1wGIXIDzeDZSpReAL2rVHNl6iZhDQM2KMh56kiqxtjIPWhWCoIF3
-         O8KHQN24ZbYblY8LaCm3E9PRhQjt/52gqa/PmFdDWDv+iE0cYxUL0xefEMsQkpfaOEFs
-         0qOQ==
-X-Gm-Message-State: AOJu0Yz2fxxASMzkOsOcFuPNiKQqiYgDmK0a991D00nloUCbI2hZfmgk
-	bifHf+DQfVclGR5z7PJwE5IkNg==
-X-Google-Smtp-Source: AGHT+IGfiprw2HlOSI7C7qrMQSp2u5C9t9PCNm2p6AHs9JBK00uKP0Ve+a8f9jOa1yEkdzsQTDLAIQ==
-X-Received: by 2002:adf:f8d2:0:b0:31c:81ef:f90a with SMTP id f18-20020adff8d2000000b0031c81eff90amr1715968wrq.47.1694176235144;
-        Fri, 08 Sep 2023 05:30:35 -0700 (PDT)
+        bh=gwlYp2Ret+PHUOy/+lpD5lWplu3GLSy3wqa3Tr7W/eM=;
+        b=u+20LXSLlJvxeMTxV+DvGcTa5Ym8e0lxzwVkYQly8dk5Gj3shTs0VphLZwyO1MzzZR
+         dC67EmTmSGeQ5T6cPxZFilK/2zGz5WZdREc/MOqjJ6/KcKR2IC9Mp/SQh1Ct4wejqei9
+         gE3z7MtgvFpqZAENiCUeSMaBw8FNwjJ+4Rq6RRSsiCpXnbQIAYZkOakySE+NyTGe60ur
+         l1jmY0lCDVgRLaLnaw6Piyua5IbjunoPHPetXxV4x/eD2viEujy3UVHeBwOzh/RUeBBR
+         h1FoUdFuOM1Y5R6f2sui00Jmzs54DScv7wRyXmCCKLb43hLQCJmDfaK+3QQKG+EOT1Cu
+         4BVQ==
+X-Gm-Message-State: AOJu0Yz5y8e+be9XjOb82w39N/zG4nroK8BSFzbpd1w0eiKl3gBeRLbU
+	E0eymj8ttTc2BwH3ANnPLgsiSg==
+X-Google-Smtp-Source: AGHT+IHAIoDqQVvm/1vJfqGAmJ4KhDdS1U6swBfoIErsJPNuBVgp4MAMC1y77kixIzj4YFLKwzkv+Q==
+X-Received: by 2002:a7b:ce14:0:b0:3ff:233f:2cfb with SMTP id m20-20020a7bce14000000b003ff233f2cfbmr1944897wmc.23.1694176464796;
+        Fri, 08 Sep 2023 05:34:24 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4? ([2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4])
-        by smtp.gmail.com with ESMTPSA id z7-20020adfe547000000b0031c71693449sm2031144wrm.1.2023.09.08.05.30.34
+        by smtp.gmail.com with ESMTPSA id n4-20020a05600c294400b003fbdbd0a7desm5097730wmd.27.2023.09.08.05.34.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Sep 2023 05:30:34 -0700 (PDT)
-Message-ID: <00436bd2-5f3c-4fd6-9db8-799c541c6a33@linaro.org>
-Date: Fri, 8 Sep 2023 14:30:33 +0200
+        Fri, 08 Sep 2023 05:34:24 -0700 (PDT)
+Message-ID: <83819915-d957-4c8f-927a-d32f7963c532@linaro.org>
+Date: Fri, 8 Sep 2023 14:34:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 0/3] arm64: dts: amlogic: add more basic audio support
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 00/15] arm64: dts: meson: a1: introduce several
+ peripheral IPs
 Content-Language: en-US, fr
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230815092751.1791195-1-christianshewitt@gmail.com>
- <1jh6p0vdyj.fsf@starbuckisacylon.baylibre.com>
+To: Dmitry Rokosov <ddrokosov@sberdevices.ru>, jbrunet@baylibre.com,
+ mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+ martin.blumenstingl@googlemail.com, conor+dt@kernel.org
+Cc: kernel@sberdevices.ru, sdfw_system_team@sberdevices.ru,
+ rockosov@gmail.com, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230823213630.12936-1-ddrokosov@sberdevices.ru>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -106,10 +106,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <1jh6p0vdyj.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <20230823213630.12936-1-ddrokosov@sberdevices.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230908_053038_548089_7B7BFE71 
-X-CRM114-Status: GOOD (  15.99  )
+X-CRM114-CacheID: sfid-20230908_053427_148976_22AA4183 
+X-CRM114-Status: GOOD (  16.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,52 +127,85 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On 23/08/2023 23:36, Dmitry Rokosov wrote:
+> This patch series introduces device tree declarations for various
+> peripheral IPs of the A1 SoC family, including clock controllers, EFUSE,
+> USB, SPI Flash Controller, SDIO, and UART_AO:
+>      - CLK: A1 SoC has four types on the board, namely PLL, Peripherals,
+>        CPU, and Audio, but only Amlogic A1 PLL and Peripherals clock
+>        controllers are currently supported.
+>      - EFUSE: consists of a 4k bit One Time Programmable (OTP) memory
+>        divided into 32 128-bit blocks, and data is accessed using the APB
+>        bus through software or the Key-ladder integrated with the EFUSE
+>        block.
+>      - USB: only one USB 2.0 high-speed port is available in the A1 SoC,
+>        supporting both HOST and DEVICE modes for OTG.
+>      - SPI Flash Controller: 4-bit QPI/SPI NOR Flash or NAND FLASH
+>        controller.
+>      - SDIO: for WiFi/IEEE802.11 connection.
+>      - UART_AO: for Bluetooth connection.
+>      - HWRNG: hardware random generator integrated into SoC.
+>      - AO SECURE: board info registers.
+> 
+> The above peripherals are integrated to new AD402 board device tree.
+> 
+> Changes v2 since v1 at [1]:
+>      - reorder meson-a1 dtsi includes to keep them sorted
+>      - remove extra empty lines
+>      - purge the unnecessary 'okay' status
+>      - reorder all device tree nodes (existing and new) sorted by 'reg'
+>        values
+>      - introduce new saradc definition
+>      - add hwrng dts node
+>      - provide ao secure dts node with board info registers
+>      - include all changes to new AD402 board device tree
+>      - add AD402 board to bindings
+> 
+> Links:
+>      [1] https://lore.kernel.org/all/20230607201641.20982-1-ddrokosov@sberdevices.ru/
+> 
+> Alexey Romanov (3):
+>    arm64: dts: meson: a1: enable efuse controller and setup its clk
+>    arm64: dts: meson: a1: add hw rng node
+>    arm64: dts: meson: a1: add ao secure node
+> 
+> Dmitry Rokosov (8):
+>    arm64: dts: meson: a1: reorder includes to keep them sorted
+>    arm64: dts: meson: a1: remove extra empty line before reset node
+>    arm64: dts: meson: a1: remove the unnecessary 'okay' status pwrc value
+>    arm64: dts: meson: a1: reorder gpio_intc node definition
+>    arm64: dts: meson: a1: introduce PLL and Peripherals clk controllers
+>    arm64: dts: meson: a1: support USB controller in OTG mode
+>    arm64: dts: introduce Amlogic AD402 reference board based on A113L SoC
+>    dt-bindings: arm: amlogic: add Amlogic AD402 bindings
+> 
+> George Stark (1):
+>    arm64: dts: meson: a1: add saradc definition
+> 
+> Jan Dakinevich (1):
+>    arm64: dts: meson: a1: add eMMC controller and its pins
+> 
+> Martin Kurbanov (1):
+>    arm64: dts: meson: a1: introduce SPI Flash Controller
+> 
+> Oleg Lyovin (1):
+>    arm64: dts: meson: a1: introduce UART_AO mux definitions
+> 
+>   .../devicetree/bindings/arm/amlogic.yaml      |   1 +
+>   arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+>   .../arm64/boot/dts/amlogic/meson-a1-ad402.dts | 145 ++++++++++++
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 213 +++++++++++++++++-
+>   4 files changed, 348 insertions(+), 12 deletions(-)
+>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
+> 
 
-On 15/08/2023 11:37, Jerome Brunet wrote:
-> 
-> On Tue 15 Aug 2023 at 09:27, Christian Hewitt <christianshewitt@gmail.com> wrote:
-> 
->> This mini-series adds basic audio support to the P200/P201 (GXBB) and U200 (G12A)
->> reference boards. Few people likely have the original reference boards which have
->> extra audio capabilities, but the device-trees are widely [ab]used by users with
->> Android set-top boxes whose hardware is copy/pasted from the reference designs to
->> get working installs. Adding basic audio support does no harm to the real boards
->> and helps the secondary cause.
-> 
-> Still, this is something you have not tested on the u200 reference
-> design. I believe this was already discussed in the past.
-> 
-> The u200 is far more complex when it comes to audio and certainly would
-> not work on this no-name android device. These device are heavily
-> "inspired" by the reference, but trimmed down in many aspect including
-> audio capabilities - NOT copied.
+For the whole serie:
 
-I understand you point, but those changes only adds "internal" audio & basic spdif
-capabilities so it won't affect the on-board audio electronics in any way.
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-> 
-> People abusing the u200 or p200 DT does make the patchset valid
-
-This is a reality, but still I think this patchset is valid and I'll
-pick those since they are used for years out-of-tree and probably works
-very fine in the reference design boards.
+Thanks !
 
 Neil
-
-> 
->>
->> Christian Hewitt (3):
->>    arm64: dts: meson: add audio playback to p200
->>    arm64: dts: meson: add audio playback to p201
->>    arm64: dts: meson: add audio playback to u200
->>
->>   .../boot/dts/amlogic/meson-g12a-u200.dts      | 129 ++++++++++++++++++
->>   .../boot/dts/amlogic/meson-gxbb-p200.dts      |  60 ++++++++
->>   .../boot/dts/amlogic/meson-gxbb-p201.dts      |  39 ++++++
->>   3 files changed, 228 insertions(+)
-> 
-
 
 _______________________________________________
 linux-amlogic mailing list
