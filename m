@@ -4,83 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CA5AEE7FE7
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Sep 2023 12:34:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DC86EE7FE7
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Sep 2023 12:37:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=x4AfeM2Dli96J4lkgD8iHBvf1w8pDm8jLC73JGIKbpY=; b=qwUSOp5jmvgegqhpgbxppU5Brt
-	dKzTNuIVPe9LT4jjgIKzWjcH/idrovOXY/broY4a/DlKHRHr3o/irBUztCK7qJfj1maflqCLPRaIb
-	35xsX0ldgQtADLSzjbE/LqAUNI+pvCpVNUvpk8GEKG7W13mn+hWAwyouimwGPKET4CDD5KGCP7PtT
-	DyLVzlzc4ri07gu3MbXbDILi0ERl8Pngkq8MRL0jwD/AG3+N8CI1TralexlqVJ65mzg7J+zspujzC
-	DKuo+HZDaPKPVVfcHdeUmx/6ufU5ZzRlKVwybUQ/pCYDC7TSf2eRg8Gfn1+gtdFaHOlRqTLRZiguM
-	hlyFDRZg==;
+	bh=jXlvGp/JL2X5P5VAMxbibwJooZfEKG5PTyFT2Cq6QL0=; b=h5jBFfTingVEhdsEQ64HIz6Mpi
+	br1VKgbp3h+sgsTjLDw4PoAWYk9aYPeBtd+TBcoldXkC5hN5i4BcHfk0rGO7yTMiiMen9bY1KgCR8
+	zEAO0sUSQX9cZCBZxTYPK6EXc0gQNg8ns8YVzQeln95DHHaV3ptYp5RQTQXxgMBcA/z9p403t/KNU
+	0MpcIGZ9bEz8c7AlnMduQcnEmknPcvv/QZbJQf6gWSL3U7hl7SWD4R0NwCzArsfls49BjAV8KOtGa
+	dds17G5hxUDz0nUEHu1P3Reb+oKMgBJK6SkPg5u9BXU6pOI1kmWsQpG+babufj/FcFMEIBgYXan04
+	L/VJMLAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeagx-00Dltt-0Q;
-	Fri, 08 Sep 2023 12:34:31 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1qeajR-00DmLE-2t;
+	Fri, 08 Sep 2023 12:37:05 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeagt-00DlqH-0K
+	id 1qeajP-00DmJQ-2W
 	for linux-amlogic@lists.infradead.org;
-	Fri, 08 Sep 2023 12:34:28 +0000
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-401da71b83cso22415655e9.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 08 Sep 2023 05:34:26 -0700 (PDT)
+	Fri, 08 Sep 2023 12:37:05 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-401b5516104so21745875e9.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 08 Sep 2023 05:36:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694176465; x=1694781265; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1694176614; x=1694781414; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gwlYp2Ret+PHUOy/+lpD5lWplu3GLSy3wqa3Tr7W/eM=;
-        b=EK54Ek95Rxh0o7F2yqHEKuuUWz6NjpYT3tBWcX/1QiS9KvrUMMzWUnmE5lTGSrSB37
-         7Sm0ZymOZlAgfSlG1Dpe1sHM5UNJ7y+qDpq7CoSP3bK+idT0yGIT+NBdK2iisouycXLd
-         2HfqWc6taL00tVKoSLVUSeYboQcImBvfuUx+lj4NBJolHBtHa8KfYcCC0e1gKlaVLiuJ
-         BgWU2s4Y++GFaR60tBMA+R6UOb230kqYcPxXUeMjx3hBEa6UQ7OJrOsNRUWuNiWAppl+
-         ZeJfDQaaXfqGNCmXLpybnUuxdRD95ktmIi6sRjUut7uuOsOqpE32BnSlFceNePwHV5d/
-         vOjw==
+        bh=Be2k1ZgrDZKG3iK8uhCg66l2zxTQVwhjYtA2BDkGIDQ=;
+        b=lfJyTStKljy8P/ksRXN+yJVzywIDuLi9+8KuVBGgKj1pDg6ks72If4CgU4c7QyjkpN
+         AIQ/wugaj/lJRINeQsCLikx7ZO5NhPTHV3h+AAHRAw56/c9Vapm4FdaZ3HHq8+abJ1pC
+         fLtadziONQ+J28cs8lgYBuU2cMLBPDUbPezYJsRKFkE6K9kHymlQUcdDNdPsooTkXE9r
+         w5hklf0xHl53imW4TVZ2XyjlpeOleoHvyRLg8WStNGKRPMDKG8qFWIX9r+3nQg961Vlq
+         Tk381N7grj6R4CE5r1o7Sb3EoZ25+s/wVj59mUFIPcPM4jKNrNvRa6GPZKYK0ssrKfa7
+         mryg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694176465; x=1694781265;
+        d=1e100.net; s=20230601; t=1694176614; x=1694781414;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=gwlYp2Ret+PHUOy/+lpD5lWplu3GLSy3wqa3Tr7W/eM=;
-        b=u+20LXSLlJvxeMTxV+DvGcTa5Ym8e0lxzwVkYQly8dk5Gj3shTs0VphLZwyO1MzzZR
-         dC67EmTmSGeQ5T6cPxZFilK/2zGz5WZdREc/MOqjJ6/KcKR2IC9Mp/SQh1Ct4wejqei9
-         gE3z7MtgvFpqZAENiCUeSMaBw8FNwjJ+4Rq6RRSsiCpXnbQIAYZkOakySE+NyTGe60ur
-         l1jmY0lCDVgRLaLnaw6Piyua5IbjunoPHPetXxV4x/eD2viEujy3UVHeBwOzh/RUeBBR
-         h1FoUdFuOM1Y5R6f2sui00Jmzs54DScv7wRyXmCCKLb43hLQCJmDfaK+3QQKG+EOT1Cu
-         4BVQ==
-X-Gm-Message-State: AOJu0Yz5y8e+be9XjOb82w39N/zG4nroK8BSFzbpd1w0eiKl3gBeRLbU
-	E0eymj8ttTc2BwH3ANnPLgsiSg==
-X-Google-Smtp-Source: AGHT+IHAIoDqQVvm/1vJfqGAmJ4KhDdS1U6swBfoIErsJPNuBVgp4MAMC1y77kixIzj4YFLKwzkv+Q==
-X-Received: by 2002:a7b:ce14:0:b0:3ff:233f:2cfb with SMTP id m20-20020a7bce14000000b003ff233f2cfbmr1944897wmc.23.1694176464796;
-        Fri, 08 Sep 2023 05:34:24 -0700 (PDT)
+        bh=Be2k1ZgrDZKG3iK8uhCg66l2zxTQVwhjYtA2BDkGIDQ=;
+        b=wRNW2DKalXTqSStrl+DgjDyadz6j1cdaJcP2gfH6FiZ5Hm7/6u02Ajyr4CurE+DX7G
+         89GtyQh1Ijqv+ErighFck99V93k6oMRjvqMtCCMGiqI7EK6cZlO2NI9bejk6bqRlTnuC
+         Wrc3MQB7zm+4HRFZGGygq4ELbBGkXXaxgKoQQ2Pl7vw5UQC5wvz76UIji80OJHXnqOhu
+         CsqF+XlVjZCepiEZWGoSXyd9RndYn5s/8Jay4pPfd58BfDISW/hb1JbX8yd0vX8q6isW
+         7yKtvjCjS1wYrTVPSY0f013WDKobzDAvF8cyMW+yX+DZWglNbst4b4+UZmQbKv7szrTN
+         gKsA==
+X-Gm-Message-State: AOJu0Yz3WdfTeu477oQPCeZPkerrmlInA33/1CHU+Byxi6q3uFRZv7E/
+	zwSm81vDChaSSW7SXbbdoJbOEg==
+X-Google-Smtp-Source: AGHT+IG9qMiw25Y/hia5vITBIkDc4lQt9y53sSYzYWNjS0uYR1XAAv0nZni37xL449zcerxOyCM/pA==
+X-Received: by 2002:a5d:560d:0:b0:31d:cd33:b30e with SMTP id l13-20020a5d560d000000b0031dcd33b30emr2058224wrv.4.1694176613583;
+        Fri, 08 Sep 2023 05:36:53 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4? ([2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4])
-        by smtp.gmail.com with ESMTPSA id n4-20020a05600c294400b003fbdbd0a7desm5097730wmd.27.2023.09.08.05.34.23
+        by smtp.gmail.com with ESMTPSA id v3-20020a5d6103000000b00316eb7770b8sm2023056wrt.5.2023.09.08.05.36.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Sep 2023 05:34:24 -0700 (PDT)
-Message-ID: <83819915-d957-4c8f-927a-d32f7963c532@linaro.org>
-Date: Fri, 8 Sep 2023 14:34:23 +0200
+        Fri, 08 Sep 2023 05:36:53 -0700 (PDT)
+Message-ID: <12521b44-edba-49af-9011-b7850c39b35e@linaro.org>
+Date: Fri, 8 Sep 2023 14:36:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 00/15] arm64: dts: meson: a1: introduce several
- peripheral IPs
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v1] arm64: dts: amlogic: meson-axg: Meson NAND node
 Content-Language: en-US, fr
-To: Dmitry Rokosov <ddrokosov@sberdevices.ru>, jbrunet@baylibre.com,
- mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com, conor+dt@kernel.org
-Cc: kernel@sberdevices.ru, sdfw_system_team@sberdevices.ru,
- rockosov@gmail.com, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230823213630.12936-1-ddrokosov@sberdevices.ru>
+To: Arseniy Krasnov <avkrasnov@salutedevices.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: oxffffaa@gmail.com, kernel@sberdevices.ru,
+ Liang Yang <liang.yang@amlogic.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20230828133647.3712644-1-avkrasnov@salutedevices.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -106,10 +107,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20230823213630.12936-1-ddrokosov@sberdevices.ru>
+In-Reply-To: <20230828133647.3712644-1-avkrasnov@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230908_053427_148976_22AA4183 
-X-CRM114-Status: GOOD (  16.55  )
+X-CRM114-CacheID: sfid-20230908_053703_822165_9720C820 
+X-CRM114-Status: GOOD (  10.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,85 +128,40 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 23/08/2023 23:36, Dmitry Rokosov wrote:
-> This patch series introduces device tree declarations for various
-> peripheral IPs of the A1 SoC family, including clock controllers, EFUSE,
-> USB, SPI Flash Controller, SDIO, and UART_AO:
->      - CLK: A1 SoC has four types on the board, namely PLL, Peripherals,
->        CPU, and Audio, but only Amlogic A1 PLL and Peripherals clock
->        controllers are currently supported.
->      - EFUSE: consists of a 4k bit One Time Programmable (OTP) memory
->        divided into 32 128-bit blocks, and data is accessed using the APB
->        bus through software or the Key-ladder integrated with the EFUSE
->        block.
->      - USB: only one USB 2.0 high-speed port is available in the A1 SoC,
->        supporting both HOST and DEVICE modes for OTG.
->      - SPI Flash Controller: 4-bit QPI/SPI NOR Flash or NAND FLASH
->        controller.
->      - SDIO: for WiFi/IEEE802.11 connection.
->      - UART_AO: for Bluetooth connection.
->      - HWRNG: hardware random generator integrated into SoC.
->      - AO SECURE: board info registers.
+On 28/08/2023 15:36, Arseniy Krasnov wrote:
+> Add description of the Meson NAND controller node.
 > 
-> The above peripherals are integrated to new AD402 board device tree.
+> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 13 +++++++++++++
+>   1 file changed, 13 insertions(+)
 > 
-> Changes v2 since v1 at [1]:
->      - reorder meson-a1 dtsi includes to keep them sorted
->      - remove extra empty lines
->      - purge the unnecessary 'okay' status
->      - reorder all device tree nodes (existing and new) sorted by 'reg'
->        values
->      - introduce new saradc definition
->      - add hwrng dts node
->      - provide ao secure dts node with board info registers
->      - include all changes to new AD402 board device tree
->      - add AD402 board to bindings
-> 
-> Links:
->      [1] https://lore.kernel.org/all/20230607201641.20982-1-ddrokosov@sberdevices.ru/
-> 
-> Alexey Romanov (3):
->    arm64: dts: meson: a1: enable efuse controller and setup its clk
->    arm64: dts: meson: a1: add hw rng node
->    arm64: dts: meson: a1: add ao secure node
-> 
-> Dmitry Rokosov (8):
->    arm64: dts: meson: a1: reorder includes to keep them sorted
->    arm64: dts: meson: a1: remove extra empty line before reset node
->    arm64: dts: meson: a1: remove the unnecessary 'okay' status pwrc value
->    arm64: dts: meson: a1: reorder gpio_intc node definition
->    arm64: dts: meson: a1: introduce PLL and Peripherals clk controllers
->    arm64: dts: meson: a1: support USB controller in OTG mode
->    arm64: dts: introduce Amlogic AD402 reference board based on A113L SoC
->    dt-bindings: arm: amlogic: add Amlogic AD402 bindings
-> 
-> George Stark (1):
->    arm64: dts: meson: a1: add saradc definition
-> 
-> Jan Dakinevich (1):
->    arm64: dts: meson: a1: add eMMC controller and its pins
-> 
-> Martin Kurbanov (1):
->    arm64: dts: meson: a1: introduce SPI Flash Controller
-> 
-> Oleg Lyovin (1):
->    arm64: dts: meson: a1: introduce UART_AO mux definitions
-> 
->   .../devicetree/bindings/arm/amlogic.yaml      |   1 +
->   arch/arm64/boot/dts/amlogic/Makefile          |   1 +
->   .../arm64/boot/dts/amlogic/meson-a1-ad402.dts | 145 ++++++++++++
->   arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 213 +++++++++++++++++-
->   4 files changed, 348 insertions(+), 12 deletions(-)
->   create mode 100644 arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
-> 
-
-For the whole serie:
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index 768d0ed78dbe..a49aa62e3f9f 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -1908,6 +1908,19 @@ sd_emmc_c: mmc@7000 {
+>   				resets = <&reset RESET_SD_EMMC_C>;
+>   			};
+>   
+> +			nfc: nand-controller@7800 {
+> +				compatible = "amlogic,meson-axg-nfc";
+> +				reg = <0x0 0x7800 0x0 0x100>,
+> +				      <0x0 0x7000 0x0 0x800>;
+> +				reg-names = "nfc", "emmc";
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
+> +				clocks = <&clkc CLKID_SD_EMMC_C>,
+> +					 <&clkc CLKID_FCLK_DIV2>;
+> +				clock-names = "core", "device";
+> +			};
+> +
+>   			usb2_phy1: phy@9020 {
+>   				compatible = "amlogic,meson-gxl-usb2-phy";
+>   				#phy-cells = <0>;
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-Thanks !
-
-Neil
 
 _______________________________________________
 linux-amlogic mailing list
