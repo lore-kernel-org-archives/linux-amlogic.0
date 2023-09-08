@@ -4,83 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9D0FEE7FE1
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Sep 2023 12:27:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 905DDEE7FE7
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Sep 2023 12:31:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=EpMl+kWXC/EPFDaJxfTTeNV+VVr6yTRyZy0lZf2bSdM=; b=YQgs7CaOVHXAXl5b+d+aNWYEQv
-	z6vFU6glz0o0Z+MjImFtBiHlgHRG4LNvk3clx5zAGyHnPYMsLLLtyi20y7vK3FWxa3ziCZl+WhP/N
-	8E1Q5E8+gI536cDdniIfBT3mrELvIUS7i1xSm90wwAHOYbQ6MaLg5xlGdU+E95pw5sCMMUXq/5nPQ
-	6L5zJ2g1JsjT2UCg8F+JWAFm2T0TxMaFxErN6Gdgj+XovOuhfK5hGg9sTLTRpXAx9JusJlqmO6REF
-	4MU1dFD/q6Zf+VWuDtK1ZLXN05/D7g4JPDe4FrMd0PqA9NL9YCuknSCnn/a+l2pOmivOYES8t/CHm
-	BSVxS9fA==;
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
+	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=HG1uBqMoZg7NH01yTaiA5Cb108/XLCwyhWNP0rGzTvg=; b=qf+UoC1u2w92GpfoC0CtZ3Q2N3
+	xeRkmIqqCxm/Lc4qNvh9h1E6Fz9YhGXo1b6dFfYOiv+eI9Z7rb6mGbeMU9cLmo7zXvzT/EI0oB3r1
+	KS5QyHGbaPHFaHidMdZfSpx9drlSJrRGymgJS1UKBwMkRYgOSOKfwJZAVCssPIaoVHTgfjtNJOH27
+	fDwZ3WKj6Xwl6EjxlOspX45WzcKxWbljWGpmqJcHOWQFKW56njCbLtdHRr5+tqYqxyzTYUjAa1uKe
+	PJl1amom01b7zlRVeiXgz6x2GLmVLF0XIP5TjXA97Mi892yARn49pjoZESJLBD3WKFiL3seiBzm36
+	40bLuC9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeaZs-00DlFR-29;
-	Fri, 08 Sep 2023 12:27:12 +0000
-Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
+	id 1qeadG-00DlZL-0c;
+	Fri, 08 Sep 2023 12:30:42 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeaZp-00DlCc-0e;
-	Fri, 08 Sep 2023 12:27:11 +0000
-Received: from [172.22.36.47] (unknown [115.110.84.132])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: david.heidelberg)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 3326E6607249;
-	Fri,  8 Sep 2023 13:26:56 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1694176022;
-	bh=kxmYxmERfaHjIcR3GX44H1XW83N5R1EvDpk8rarq7DM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RLbKzevVNzRpoYpSOUweFFqV1PRi95V1QP0aZkLHgy9FMlPUBdaTU1jiX2HrmCWKV
-	 HIPqb9JG1zqG/qvy5nmv36psPYBdSJrfXMr869574pyE9z/e0vG5wo/dbANcMFNOaQ
-	 h47VoJSADABNfqonov5ftn/5ZzHoyKsMnMsty/sSwZz5Rlfsv9y3+6MN5Dru9XtWzG
-	 JiQUFm3HXBGAlpgYF5EIgH1ktK2F+/vc96f+OxXYEirTsKYMuVA75QJrhe93UGzDfh
-	 ebjPpaCyo5tUE/0KcdRVpA5t0+fG0WvXj1p2ux3FHP5ZfjvGAMQ9B4VgFjs77B/EpE
-	 12/KaIjUQUF+Q==
-Message-ID: <2dc6f9fa-06fb-44d8-97cb-6b5a983b7539@collabora.com>
-Date: Fri, 8 Sep 2023 17:56:36 +0530
+	id 1qeadC-00DlYG-1e
+	for linux-amlogic@lists.infradead.org;
+	Fri, 08 Sep 2023 12:30:39 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-31f7400cb74so1286924f8f.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 08 Sep 2023 05:30:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694176235; x=1694781035; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PM2w2IzcLgzoOPeUzfKRLbjxESAa2w9XyRzVdDC8nNA=;
+        b=qJOrLyVqs4mke804/11o/sA2E18pU3mMbAEcvXhIlPCpyhEnfr4Tm/9viMAgGf7XhU
+         mSUXFeFPjU4RE27cV3gkKZdENix3A1LkxkoHiASFWIBU3muhU3Fypj76zYrweWREsjur
+         CCp8svdfaFCKWerYK8WXGjmOdF4zV8AQLW9DNI5ReFupzInKpFjORwXuu3fB3W8GTwbL
+         vQMpaeFY42uKDo8v2Ver0MBO5PfOg/AUggH7WFixpPxQsKJ0JZRE2ek2wl3UavQJGFKP
+         DhJGH3lyZpq3SRWsZSg/NyeKfGPl+gnYxX8ugepx+JXCNCfdxV9x1edUbfLn+5uT+gdq
+         Srqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694176235; x=1694781035;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=PM2w2IzcLgzoOPeUzfKRLbjxESAa2w9XyRzVdDC8nNA=;
+        b=lAijnnI0AS7dmBBnMxS8e11l3+RHkgPQJFbWq2oKlgP8KEc8+huNAFg4GmAyeRzmGy
+         cSXuoRD1JvBVryl+BET8LLv/D+DKxtikBLBrmdbexDu8Ty9b/zXIAtyV0vSil8eOTTOA
+         C916oEGW8g8ix5xKGH2q3elvpw2qw6AMZSf9qmDO22yRIgzeb0GodAyPOoB5msJb8WJf
+         yM5dSDeQ8xpd3Xrs1wGIXIDzeDZSpReAL2rVHNl6iZhDQM2KMh56kiqxtjIPWhWCoIF3
+         O8KHQN24ZbYblY8LaCm3E9PRhQjt/52gqa/PmFdDWDv+iE0cYxUL0xefEMsQkpfaOEFs
+         0qOQ==
+X-Gm-Message-State: AOJu0Yz2fxxASMzkOsOcFuPNiKQqiYgDmK0a991D00nloUCbI2hZfmgk
+	bifHf+DQfVclGR5z7PJwE5IkNg==
+X-Google-Smtp-Source: AGHT+IGfiprw2HlOSI7C7qrMQSp2u5C9t9PCNm2p6AHs9JBK00uKP0Ve+a8f9jOa1yEkdzsQTDLAIQ==
+X-Received: by 2002:adf:f8d2:0:b0:31c:81ef:f90a with SMTP id f18-20020adff8d2000000b0031c81eff90amr1715968wrq.47.1694176235144;
+        Fri, 08 Sep 2023 05:30:35 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4? ([2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4])
+        by smtp.gmail.com with ESMTPSA id z7-20020adfe547000000b0031c71693449sm2031144wrm.1.2023.09.08.05.30.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Sep 2023 05:30:34 -0700 (PDT)
+Message-ID: <00436bd2-5f3c-4fd6-9db8-799c541c6a33@linaro.org>
+Date: Fri, 8 Sep 2023 14:30:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/6] drm: ci: Enable configs to fix mt8173 boot hang issue
-To: Vignesh Raman <vignesh.raman@collabora.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- dri-devel@lists.freedesktop.org, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: helen.koike@collabora.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, daniels@collabora.com, emma@anholt.net,
- robclark@freedesktop.org, gustavo.padovan@collabora.com,
- robdclark@google.com, anholt@google.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
- corbet@lwn.net, neil.armstrong@linaro.org, khilman@baylibre.com,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, heiko@sntech.de,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org
-References: <20230825122435.316272-1-vignesh.raman@collabora.com>
- <20230825122435.316272-5-vignesh.raman@collabora.com>
- <6da8136b-be1f-6867-b2af-c636877ef189@collabora.com>
- <ff99380a-cb0d-dc6c-0442-7aa60d14cec2@collabora.com>
-Content-Language: en-US
-From: David Heidelberg <david.heidelberg@collabora.com>
-Autocrypt: addr=david.heidelberg@collabora.com; keydata=
- xjMEYlvLOxYJKwYBBAHaRw8BAQdA5CoWEzz4igpwK4h6lK6ZformRk84+ymcfkGNPwqEeILN
- MURhdmlkIEhlaWRlbGJlcmcgPGRhdmlkLmhlaWRlbGJlcmdAY29sbGFib3JhLmNvbT7ClgQT
- FggAPhYhBEo7kSl22BK0F1Np/mn1Z4YcHsAUBQJiW8s7AhsDBQkFo5qABQsJCAcCBhUKCQgL
- AgQWAgMBAh4BAheAAAoJEGn1Z4YcHsAU84kBAK5YqSWAOuIumAqgWvke6BEsaIGWGQzXSuKj
- er/TXuFuAQCwc9ITSVXWWTSpdFt2+4z7Wch8tIGlbIFcS9dCFddwCc44BGJbyzsSCisGAQQB
- l1UBBQEBB0AEk7jXEwDApGOwMH/X0UAPBH8Y3isjxhNMjpyRcnl2CwMBCAfCfgQYFggAJhYh
- BEo7kSl22BK0F1Np/mn1Z4YcHsAUBQJiW8s7AhsMBQkFo5qAAAoJEGn1Z4YcHsAU0PEA/j0Y
- uAOKJCnnwrkf3ozPP0sutA5bojoARwcIaZKO/zvIAP9PwTC9DGLg+8LJm7m2Lyf0LxLA8FXD
- wueLHBdwHg6zAQ==
-In-Reply-To: <ff99380a-cb0d-dc6c-0442-7aa60d14cec2@collabora.com>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 0/3] arm64: dts: amlogic: add more basic audio support
+Content-Language: en-US, fr
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Christian Hewitt <christianshewitt@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230815092751.1791195-1-christianshewitt@gmail.com>
+ <1jh6p0vdyj.fsf@starbuckisacylon.baylibre.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <1jh6p0vdyj.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230908_052709_519892_F6B8D397 
-X-CRM114-Status: GOOD (  16.08  )
+X-CRM114-CacheID: sfid-20230908_053038_548089_7B7BFE71 
+X-CRM114-Status: GOOD (  15.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,132 +121,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============5011444778646616536=="
+Reply-To: neil.armstrong@linaro.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============5011444778646616536==
-Content-Language: en-US
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------QVbyyDjtHt2Y2bqlRUbNjGy2"
+Hi,
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------QVbyyDjtHt2Y2bqlRUbNjGy2
-Content-Type: multipart/mixed; boundary="------------0SjgPXBdE0pfxmCy61iR0gjG";
- protected-headers="v1"
-From: David Heidelberg <david.heidelberg@collabora.com>
-To: Vignesh Raman <vignesh.raman@collabora.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- dri-devel@lists.freedesktop.org, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: helen.koike@collabora.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, daniels@collabora.com, emma@anholt.net,
- robclark@freedesktop.org, gustavo.padovan@collabora.com,
- robdclark@google.com, anholt@google.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
- corbet@lwn.net, neil.armstrong@linaro.org, khilman@baylibre.com,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, heiko@sntech.de,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org
-Message-ID: <2dc6f9fa-06fb-44d8-97cb-6b5a983b7539@collabora.com>
-Subject: Re: [PATCH 4/6] drm: ci: Enable configs to fix mt8173 boot hang issue
-References: <20230825122435.316272-1-vignesh.raman@collabora.com>
- <20230825122435.316272-5-vignesh.raman@collabora.com>
- <6da8136b-be1f-6867-b2af-c636877ef189@collabora.com>
- <ff99380a-cb0d-dc6c-0442-7aa60d14cec2@collabora.com>
-In-Reply-To: <ff99380a-cb0d-dc6c-0442-7aa60d14cec2@collabora.com>
+On 15/08/2023 11:37, Jerome Brunet wrote:
+> 
+> On Tue 15 Aug 2023 at 09:27, Christian Hewitt <christianshewitt@gmail.com> wrote:
+> 
+>> This mini-series adds basic audio support to the P200/P201 (GXBB) and U200 (G12A)
+>> reference boards. Few people likely have the original reference boards which have
+>> extra audio capabilities, but the device-trees are widely [ab]used by users with
+>> Android set-top boxes whose hardware is copy/pasted from the reference designs to
+>> get working installs. Adding basic audio support does no harm to the real boards
+>> and helps the secondary cause.
+> 
+> Still, this is something you have not tested on the u200 reference
+> design. I believe this was already discussed in the past.
+> 
+> The u200 is far more complex when it comes to audio and certainly would
+> not work on this no-name android device. These device are heavily
+> "inspired" by the reference, but trimmed down in many aspect including
+> audio capabilities - NOT copied.
 
---------------0SjgPXBdE0pfxmCy61iR0gjG
-Content-Type: multipart/mixed; boundary="------------yPjLj8M50Ol2VqN53k1e0e4X"
+I understand you point, but those changes only adds "internal" audio & basic spdif
+capabilities so it won't affect the on-board audio electronics in any way.
 
---------------yPjLj8M50Ol2VqN53k1e0e4X
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+> 
+> People abusing the u200 or p200 DT does make the patchset valid
 
-T24gMDgvMDkvMjAyMyAxMzoyMywgVmlnbmVzaCBSYW1hbiB3cm90ZToNCg0KPiBIaSBBbmdl
-bG8sDQo+DQo+IE9uIDA3LzA5LzIzIDE2OjE2LCBBbmdlbG9HaW9hY2NoaW5vIERlbCBSZWdu
-byB3cm90ZToNCj4+IElsIDI1LzA4LzIzIDE0OjI0LCBWaWduZXNoIFJhbWFuIGhhIHNjcml0
-dG86DQo+Pj4gRW5hYmxlIHJlZ3VsYXRvcg0KPj4+IEVuYWJsZSBNVDYzOTcgUlRDIGRyaXZl
-cg0KPj4+DQo+Pj4gU2lnbmVkLW9mZi1ieTogVmlnbmVzaCBSYW1hbiA8dmlnbmVzaC5yYW1h
-bkBjb2xsYWJvcmEuY29tPg0KPj4+IC0tLQ0KPj4+IMKgIGRyaXZlcnMvZ3B1L2RybS9jaS9h
-cm02NC5jb25maWcgfCAyICsrDQo+Pj4gwqAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9u
-cygrKQ0KPj4+DQo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9jaS9hcm02NC5j
-b25maWcgDQo+Pj4gYi9kcml2ZXJzL2dwdS9kcm0vY2kvYXJtNjQuY29uZmlnDQo+Pj4gaW5k
-ZXggODE3ZTE4ZGRmZDRmLi5lYTdhNmNjZWZmNDAgMTAwNjQ0DQo+Pj4gLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2NpL2FybTY0LmNvbmZpZw0KPj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9j
-aS9hcm02NC5jb25maWcNCj4+PiBAQCAtMTg0LDYgKzE4NCw4IEBAIENPTkZJR19IV19SQU5E
-T01fTVRLPXkNCj4+PiDCoCBDT05GSUdfTVRLX0RFVkFQQz15DQo+Pj4gwqAgQ09ORklHX1BX
-TV9NVEtfRElTUD15DQo+Pj4gwqAgQ09ORklHX01US19DTURRPXkNCj4+PiArQ09ORklHX1JF
-R1VMQVRPUl9EQTkyMTE9eQ0KPj4+ICtDT05GSUdfUlRDX0RSVl9NVDYzOTc9eQ0KPj4NCj4+
-IEkgd29uZGVyIGlmIGl0J2QgYmUgYSBiZXR0ZXIgaWRlYSB0byBzaW1wbHkgYWRkIHRob3Nl
-IHRvIHRoZSANCj4+IGRlZmNvbmZpZyBpbnN0ZWFkIGFzDQo+Pg0KPj4gQ09ORklHX1JFR1VM
-QVRPUl9EQTkyMTE9bQ0KPj4gQ09ORklHX1JUQ19EUlZfTVQ2Mzk3PW0NCj4+DQo+PiBBbnkg
-b3BpbmlvbiBvbiB0aGlzPyBNYXR0aGlhcz8gQW55b25lIGVsc2U/DQo+DQo+IENPTkZJR19S
-VENfRFJWX01UNjM5Nz1tIGlzIGFscmVhZHkgcHJlc2VudCBpbiBkZWZjb25maWcuDQo+IFdl
-IGNhbiBhbHNvIGFkZCBDT05GSUdfUkVHVUxBVE9SX0RBOTIxMT1tIHRvIGRlZmNvbmZpZy4N
-Cg0KV2UgbmVlZCBhZGQgY29uZmlnIHNuaXBwZXQgb3ZlcnJpZGUgZm9yIENPTkZJR19SRUdV
-TEFUT1JfREE5MjExPXkgDQpiZWNhdXNlIG91ciBDSSBkb24ndCBoYXZlIGFueSBpbml0cmQg
-d2l0aCBtb2R1bGVzLCB3ZSBqdXN0IGltbWVkaWF0ZWx5IA0KY29udGludWUgYm9vdCBmcm9t
-IE5GUywgd2hlcmUgd2UgbG9hZCByZXN0IG9mIHRoZSBib290IG5vbi1lc3NlbnRpYWwgDQpt
-b2R1bGVzLg0KDQpGb3IgZ2VuZXJpYyBrZXJuZWwsIEkgYXNzdW1lIENPTkZJR19SRUdVTEFU
-T1JfREE5MjExPW0gc2hvdWxkIGJlIGFkZGVkLg0KDQpEYXZpZA0KDQo+DQo+IFJlZ2FyZHMs
-DQo+IFZpZ25lc2gNCg0KLS0gDQpEYXZpZCBIZWlkZWxiZXJnDQpDb25zdWx0YW50IFNvZnR3
-YXJlIEVuZ2luZWVyDQoNCkNvbGxhYm9yYSBMdGQuDQpQbGF0aW51bSBCdWlsZGluZywgU3Qg
-Sm9obidzIElubm92YXRpb24gUGFyaywgQ2FtYnJpZGdlIENCNCAwRFMsIFVLDQpSZWdpc3Rl
-cmVkIGluIEVuZ2xhbmQgJiBXYWxlcywgbm8uIDU1MTM3MTgNCg0K
---------------yPjLj8M50Ol2VqN53k1e0e4X
-Content-Type: application/pgp-keys; name="OpenPGP_0x69F567861C1EC014.asc"
-Content-Disposition: attachment; filename="OpenPGP_0x69F567861C1EC014.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
+This is a reality, but still I think this patchset is valid and I'll
+pick those since they are used for years out-of-tree and probably works
+very fine in the reference design boards.
 
------BEGIN PGP PUBLIC KEY BLOCK-----
+Neil
 
-xjMEYlvLOxYJKwYBBAHaRw8BAQdA5CoWEzz4igpwK4h6lK6ZformRk84+ymcfkGN
-PwqEeILNMURhdmlkIEhlaWRlbGJlcmcgPGRhdmlkLmhlaWRlbGJlcmdAY29sbGFi
-b3JhLmNvbT7ClgQTFggAPhYhBEo7kSl22BK0F1Np/mn1Z4YcHsAUBQJiW8s7AhsD
-BQkFo5qABQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEGn1Z4YcHsAU84kBAK5Y
-qSWAOuIumAqgWvke6BEsaIGWGQzXSuKjer/TXuFuAQCwc9ITSVXWWTSpdFt2+4z7
-Wch8tIGlbIFcS9dCFddwCc44BGJbyzsSCisGAQQBl1UBBQEBB0AEk7jXEwDApGOw
-MH/X0UAPBH8Y3isjxhNMjpyRcnl2CwMBCAfCfgQYFggAJhYhBEo7kSl22BK0F1Np
-/mn1Z4YcHsAUBQJiW8s7AhsMBQkFo5qAAAoJEGn1Z4YcHsAU0PEA/j0YuAOKJCnn
-wrkf3ozPP0sutA5bojoARwcIaZKO/zvIAP9PwTC9DGLg+8LJm7m2Lyf0LxLA8FXD
-wueLHBdwHg6zAQ=3D=3D
-=3DOQS+
------END PGP PUBLIC KEY BLOCK-----
+> 
+>>
+>> Christian Hewitt (3):
+>>    arm64: dts: meson: add audio playback to p200
+>>    arm64: dts: meson: add audio playback to p201
+>>    arm64: dts: meson: add audio playback to u200
+>>
+>>   .../boot/dts/amlogic/meson-g12a-u200.dts      | 129 ++++++++++++++++++
+>>   .../boot/dts/amlogic/meson-gxbb-p200.dts      |  60 ++++++++
+>>   .../boot/dts/amlogic/meson-gxbb-p201.dts      |  39 ++++++
+>>   3 files changed, 228 insertions(+)
+> 
 
---------------yPjLj8M50Ol2VqN53k1e0e4X--
-
---------------0SjgPXBdE0pfxmCy61iR0gjG--
-
---------------QVbyyDjtHt2Y2bqlRUbNjGy2
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYIAB0WIQRKO5EpdtgStBdTaf5p9WeGHB7AFAUCZPsS/AAKCRBp9WeGHB7A
-FJMXAQDOC4fWl0gYmEvUPLQhSmJbWUme0uzP1yaP5MxtaDwvCwD7BgNQv9t8Yrp6
-kbFOXh1myrvVXSi5VYV9ry9kKAgaVQs=
-=LHU6
------END PGP SIGNATURE-----
-
---------------QVbyyDjtHt2Y2bqlRUbNjGy2--
-
-
---===============5011444778646616536==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============5011444778646616536==--
-
