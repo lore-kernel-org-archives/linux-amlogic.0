@@ -4,81 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA972EE7FE7
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Sep 2023 12:40:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E550EE7FEA
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Sep 2023 12:42:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=/pLflAW9K2P5S6DqID4LXRlce1Jp8uErMzOZHvCbFUY=; b=eij08LpsX7UQ6yvdy+4pQaG6ii
-	0c1xReksKJzwxGZr0XAPmxirGGLXsKGR+Ts8c2R7izj4ZYV2I4o+DiQyTyzijYhBCLzX+VNBlXeSF
-	ZergH8vhpA6ksLbRNFay2e8wXuQrpVA7i73pfLzYLPY9FpiNkRRr96W61m0ILP4twsRW5rz5vh1jQ
-	2oskIYKqzIPNlZCjBtW0NNrYmIRvKcJK95Y3BKQ2TB9GgW1KPPuRbV1jYBBGZCLpQHxAM7LwbZIHi
-	ZT/DlWn0W42GgsTe7S+uhpUvqvxNRN2bmU+RkDkG7Oql5svfCEYEj1ch9nI1iE6M4QN9MLNVllDGD
-	t3WV3Kzg==;
+	bh=7m/UH6lPkbVP6Xcge6bBRD4cjNg9rjifALxqdEE4Uok=; b=MQv1Hxw26HloorEDQpvuQ+t+r7
+	G8uLoFbVfvK0gEQqiiNfgtnJpAqxmn7RSvvx2yyQ5S/kpel8p9oZvllF6w6BFJ4gfSrkkHjn0iRXW
+	EBKK4T6zi0gAJn45QgMACdy1m4SPVT9T7URYiDwO9T7/3W5RPV+v4L1gAnOXPCnPmoCAwOKj8n1Sq
+	zd/CHsLBGsk8FBHesCcXoc4mXIttbyHMFpC8jVcSMyA8mBNnSOj+dZLtxXdozkcbF7uWIau8ZItQ4
+	PA/zN+EJDRexcJISk8tnieXKXZM6UeOvwfqFfPj+vjQbcRlI4NJdqewENPGY+rcGBU33fbAIvYcxW
+	zWWY+ZPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeamX-00DmXy-1X;
-	Fri, 08 Sep 2023 12:40:17 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1qeao6-00DmhS-2p;
+	Fri, 08 Sep 2023 12:41:54 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeamU-00DmXD-2S
+	id 1qeao3-00Dmgf-1q
 	for linux-amlogic@lists.infradead.org;
-	Fri, 08 Sep 2023 12:40:16 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-401d2e11dacso20766185e9.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 08 Sep 2023 05:40:13 -0700 (PDT)
+	Fri, 08 Sep 2023 12:41:53 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-401d80f4ef8so21507115e9.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 08 Sep 2023 05:41:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694176812; x=1694781612; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1694176910; x=1694781710; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=AU2+QV4aODXtVs7q5YHeaRMbqDNd55USgbN27DWq/do=;
-        b=U0ssriNpOcod/mgZKLCaXyzXxlH1CgIEMOaGFXvYYrBq8IIMn/Wyd+U4gvDFBjF6uz
-         ocwBmU+/YBWyb5QNjJQfVu7e+7vCNDIveWs2COOnrik/I/KSZqWV2ANHdDFN99UE8wKQ
-         oyssjZJvUvgRN5flwTNZbZlUb/5uMESomJ5O0krohnLBE7yjt/89UeLygBMlk5F1CwE9
-         ehCmrGHRSLg4xyvNHL2udF7JlAffOvcdjRUqD4TmtdnIHzM8G3nzNyyobd8c/h5SVB3x
-         kOM+o92iAsK/J6EKOln/AfTVD0LzBhRA3mwINUeRtXQW4wVfoufvz8G07CnIuafY5HHJ
-         AvlA==
+        bh=SYbVbSjfXgkpf7yJkxmAIbzELrFKIsBKHyf6u4lRyms=;
+        b=BoVqAjONpB7glepTq9tm/qdfLEY3t4lCW1eb7stfFWt2AgjUS12XmgPEzAWDqOqQYM
+         eBXXLT4RyAZSeI9COzQDDWyRzMaMQiHRtY84eNCA5CsdEtQ0bdJHiskFH28pKlrI4CxV
+         aYb1Nd7t2mNOyWw94aIQwJNcsUG/ptOXMqfd5Ro95k/GhhrS2GpwtXVA9Jk5B/0JimFr
+         /16NtWN0+Da2XR50faIEZOYmJOW3LWs1FP8u/UeeNZdUCY3hFdbVVym4dOhEZMoB9tza
+         +k9iKW9thahCV7rjrRAvC8Ej/b/yYJ+xTEUPlopPmcCVPD1W4aYWIH07N/PJa/0CnfOQ
+         Lfqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694176812; x=1694781612;
+        d=1e100.net; s=20230601; t=1694176910; x=1694781710;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=AU2+QV4aODXtVs7q5YHeaRMbqDNd55USgbN27DWq/do=;
-        b=uwHAH5DB3kzjXYejnzhTcLULhPxs41m4/EEBkeb/F8jhlnQvSkrHrDVnUckbmVL4S9
-         voZ9i669+q9d4simjkz72XEGr/i3ribd38FwFA1K2+Gy4OzRAH7A7kuBa1nKxQ6iHTD4
-         vWtZKylov6FNgZv4tmQuvYQEq5k94o+lo3hKf/nuO+OMZWKMRFcRQEGe8YYJ3blRfdhl
-         MRRQeVULO5K4ToRcOs+yy+18seasKhBrLsim9ggINXoA4S/Tgpmb5aSFZk3Bw9HD/Czs
-         nAZMT94VS+Dk5Q+84vtM577b8v94mYBRFHZmVU28OzqWf6g9OMfqZf9CZyH1FzMDqL2M
-         mhcA==
-X-Gm-Message-State: AOJu0YyZk4bITqnt21GJtj/WuXe/f4K0JbcCYAmmA2J3NX/Wq9QFos0Q
-	CGpIStTG1OyV7kVazH+vWEGLzA==
-X-Google-Smtp-Source: AGHT+IEn1A3t/Z31ElsOIiIsqnkGtN+Eg1q91yWkXBCHpOTFYwJBqaz03nsf2vXzeiEMpEAs1KYQ7A==
-X-Received: by 2002:adf:e54e:0:b0:31d:db2d:27c6 with SMTP id z14-20020adfe54e000000b0031ddb2d27c6mr4534802wrm.30.1694176811908;
-        Fri, 08 Sep 2023 05:40:11 -0700 (PDT)
+        bh=SYbVbSjfXgkpf7yJkxmAIbzELrFKIsBKHyf6u4lRyms=;
+        b=ChTVxUeESG4p7QVetTJB1QjBlYeSuegJsYBYuwcK7dh6vd9f3mIt50tDE1wasgxqIe
+         5Lp83DWrBJOOyglCDqpZav0mF59ggmW3vt0zXuhKVRQfaqbKbp4qgGN3GO3bJ8TpSFZt
+         NcQpJAEheaSYbqYSDpfYeefIRU/QQEYinlDyJLuDUrGYiLx3ATREHyqr3P9VA/Ht3Uxh
+         tQO0dFloiEX2MmR2pRx7bKd7RLjVKeJZOYGdllQiV62wFez4rvYOji9Z0aSrpc5M/wFs
+         y4aiOWlhBGE+r2UrDuOtF0+9GHfyVhrY5TUKDuJ3pNDohuZ6wvJ5cqiQZpQS1RLvIlYw
+         hsxA==
+X-Gm-Message-State: AOJu0Yz+P7wZVR1J1iLj69nFt47LIrKZty85eMsKku4lFhqwGTJmbyse
+	06GuYkHRZb/YLwW6TApkQzVaTw==
+X-Google-Smtp-Source: AGHT+IFcD5sRcgndbFlYk7K0tikRKDSmEAuT4GWiMUf+A87UYfKZ5sw/KGPGYEo+I7WGou7kv2q9wQ==
+X-Received: by 2002:adf:efc7:0:b0:317:393f:6e6a with SMTP id i7-20020adfefc7000000b00317393f6e6amr1832671wrp.59.1694176909835;
+        Fri, 08 Sep 2023 05:41:49 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4? ([2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4])
-        by smtp.gmail.com with ESMTPSA id o3-20020a5d4083000000b0031c6581d55esm1988726wrp.91.2023.09.08.05.40.10
+        by smtp.gmail.com with ESMTPSA id o3-20020a5d4083000000b0031c6581d55esm1988726wrp.91.2023.09.08.05.41.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Sep 2023 05:40:11 -0700 (PDT)
-Message-ID: <82001107-3e72-4cc7-b7d4-8ca1a840b508@linaro.org>
-Date: Fri, 8 Sep 2023 14:40:10 +0200
+        Fri, 08 Sep 2023 05:41:49 -0700 (PDT)
+Message-ID: <a020e7a9-d91a-4a15-86ef-fdb05c78ae3f@linaro.org>
+Date: Fri, 8 Sep 2023 14:41:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH V3 0/6] Power: T7: add power domain driver
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH v1] drivers: meson: sm: correct meson_sm_* API retval
+ handling
 Content-Language: en-US, fr
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- linux-pm@vger.kernel.org
-References: <20230829020404.4058677-1-xianwei.zhao@amlogic.com>
+To: Alexey Romanov <avromanov@salutedevices.com>, khilman@baylibre.com,
+ jbrunet@baylibre.com, miles.chen@mediatek.com,
+ martin.blumenstingl@googlemail.com, narmstrong@baylibre.com
+Cc: kernel@sberdevices.ru, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230830140850.17130-1-avromanov@salutedevices.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -104,10 +103,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20230829020404.4058677-1-xianwei.zhao@amlogic.com>
+In-Reply-To: <20230830140850.17130-1-avromanov@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230908_054014_829621_352D81A1 
-X-CRM114-Status: GOOD (  11.17  )
+X-CRM114-CacheID: sfid-20230908_054151_641809_FFDB5B03 
+X-CRM114-Status: GOOD (  24.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,53 +124,112 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On 30/08/2023 16:08, Alexey Romanov wrote:
+> 1. Following the ARM SMC32 calling convention, the return value
+> from secure monitor is a 32-bit signed integer. This patch changes
+> the type of the return value of the function meson_sm_call().
+> 
+> 2. Now, when meson_sm_call() returns a 32-bit signed integer, we need
+> to ensure that this value is not negative. It is important to check
+> that the return value is not negative in both the meson_sm_call_read()
+> and meson_sm_call_write() functions.
+> 
+> 3. Add a comment explaining why it is necessary to check if the SMC
+> return value is equal to 0 in the function meson_sm_call_read().
+> It is not obvious when reading this code.
+> 
+> Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> ---
+>   drivers/firmware/meson/meson_sm.c       | 20 +++++++++++++-------
+>   include/linux/firmware/meson/meson_sm.h |  2 +-
+>   2 files changed, 14 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
+> index 798bcdb05d84..27a8cd4747f8 100644
+> --- a/drivers/firmware/meson/meson_sm.c
+> +++ b/drivers/firmware/meson/meson_sm.c
+> @@ -67,7 +67,7 @@ static u32 meson_sm_get_cmd(const struct meson_sm_chip *chip,
+>   	return cmd->smc_id;
+>   }
+>   
+> -static u32 __meson_sm_call(u32 cmd, u32 arg0, u32 arg1, u32 arg2,
+> +static s32 __meson_sm_call(u32 cmd, u32 arg0, u32 arg1, u32 arg2,
+>   			   u32 arg3, u32 arg4)
+>   {
+>   	struct arm_smccc_res res;
+> @@ -102,9 +102,10 @@ static void __iomem *meson_sm_map_shmem(u32 cmd_shmem, unsigned int size)
+>    * Return:	0 on success, a negative value on error
+>    */
+>   int meson_sm_call(struct meson_sm_firmware *fw, unsigned int cmd_index,
+> -		  u32 *ret, u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4)
+> +		  s32 *ret, u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4)
+>   {
+> -	u32 cmd, lret;
+> +	u32 cmd;
+> +	s32 lret;
+>   
+>   	if (!fw->chip)
+>   		return -ENOENT;
+> @@ -143,7 +144,7 @@ int meson_sm_call_read(struct meson_sm_firmware *fw, void *buffer,
+>   		       unsigned int bsize, unsigned int cmd_index, u32 arg0,
+>   		       u32 arg1, u32 arg2, u32 arg3, u32 arg4)
+>   {
+> -	u32 size;
+> +	s32 size;
+>   	int ret;
+>   
+>   	if (!fw->chip)
+> @@ -158,11 +159,16 @@ int meson_sm_call_read(struct meson_sm_firmware *fw, void *buffer,
+>   	if (meson_sm_call(fw, cmd_index, &size, arg0, arg1, arg2, arg3, arg4) < 0)
+>   		return -EINVAL;
+>   
+> -	if (size > bsize)
+> +	if (size < 0 || size > bsize)
+>   		return -EINVAL;
+>   
+>   	ret = size;
+>   
+> +	/* In some cases (for example GET_CHIP_ID command),
+> +	 * SMC doesn't return the number of bytes read, even
+> +	 * though the bytes were actually read into sm_shmem_out.
+> +	 * So this check is needed.
+> +	 */
+>   	if (!size)
+>   		size = bsize;
+>   
+> @@ -192,7 +198,7 @@ int meson_sm_call_write(struct meson_sm_firmware *fw, void *buffer,
+>   			unsigned int size, unsigned int cmd_index, u32 arg0,
+>   			u32 arg1, u32 arg2, u32 arg3, u32 arg4)
+>   {
+> -	u32 written;
+> +	s32 written;
+>   
+>   	if (!fw->chip)
+>   		return -ENOENT;
+> @@ -208,7 +214,7 @@ int meson_sm_call_write(struct meson_sm_firmware *fw, void *buffer,
+>   	if (meson_sm_call(fw, cmd_index, &written, arg0, arg1, arg2, arg3, arg4) < 0)
+>   		return -EINVAL;
+>   
+> -	if (!written)
+> +	if (written <= 0 || written > size)
+>   		return -EINVAL;
+>   
+>   	return written;
+> diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
+> index 95b0da2326a9..8eaf8922ab02 100644
+> --- a/include/linux/firmware/meson/meson_sm.h
+> +++ b/include/linux/firmware/meson/meson_sm.h
+> @@ -19,7 +19,7 @@ enum {
+>   struct meson_sm_firmware;
+>   
+>   int meson_sm_call(struct meson_sm_firmware *fw, unsigned int cmd_index,
+> -		  u32 *ret, u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4);
+> +		  s32 *ret, u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4);
+>   int meson_sm_call_write(struct meson_sm_firmware *fw, void *buffer,
+>   			unsigned int b_size, unsigned int cmd_index, u32 arg0,
+>   			u32 arg1, u32 arg2, u32 arg3, u32 arg4);
 
-On 29/08/2023 04:03, Xianwei Zhao wrote:
-> First patch is that remove C3 some power domain ALWAYS_ON property.
-> Second patch is that add driver to support power parent node.
-> Third patch is that turn on power if initial power domain with
-> "AWAY_ON" property state is off.
-> 
-> Other patchs adds power controller driver support for Amlogic T7 SoC.
-
-Please re-send to Ulf Hansson <ulf.hansson@linaro.org> and
-linux-pm@vger.kernel.org since this driver has moved to the
-GENERIC PM DOMAIN PROVIDERS subsystem.
-
-I'll take the DT patch since bindings patch was reviewed.
-
-Thanks,
-Neil
-
-> 
-> Changes Since v2:
->   -Modify subject.
->   -Define PWRC_NO_PARENT UINT_MAX
->   -Remove modification that transform is_off into 1 or 0 using !!
-> 
-> Changes Since v1:
->   -Fix license from "GPL-2.0-only OR .*" to "GPL-2.0-only OR MIT".
->   -Modify T7_NIC flag  "ALWAYS_ON"
-> 
-> xianwei.zhao (6):
->    genpd: amlogic: modify some power domains property
->    genpd: amlogic: add driver to support power parent node
->    genpd: amlogic: init power domain state
->    dt-bindings: power: add Amlogic T7 power domains
->    genpd: amlogic: Add support for T7 power domains controller
->    arm64: dts: amlogic: t7: add power domain controller node
-> 
->   .../power/amlogic,meson-sec-pwrc.yaml         |   3 +-
->   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   |   6 +
->   drivers/genpd/amlogic/meson-secure-pwrc.c     | 127 ++++++++++++++++--
->   include/dt-bindings/power/amlogic,t7-pwrc.h   |  63 +++++++++
->   4 files changed, 185 insertions(+), 14 deletions(-)
->   create mode 100644 include/dt-bindings/power/amlogic,t7-pwrc.h
-> 
-> 
-> base-commit: 413f5c02929bb33042bbc4ee233166550a5fca70
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
