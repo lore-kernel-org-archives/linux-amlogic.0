@@ -4,81 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 903A4EE7FF4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Sep 2023 15:54:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48171EE7FF4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Sep 2023 15:56:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=f/Hnd+3hm7qgsZDAPEovI/g6u1rCbMjHyV436A6a7hA=; b=wMTa1DJTSQJfZp
-	K+itYq3wbQZ80qyKzwu6zpgPaVqsPsfwQ/KNTmo/0ye1xNtH4INK4da99sevbI/gELkaWrWhzZuXm
-	Xg4PK5dbKUjmXL+MHXxjwoUC826gR/kH+vk249rdZLCPOrTPYKgaTqe64o38R6myKOOVXEPR2PEzz
-	ndccxxIgEavdXN+dinsdCMY3HyOWQnhVbXJrdAyS0/afRi1qNW6Jsrwi9kaZzzPMf69BlxWoXVQ8Q
-	TogfLyi3gSkfwLx+N43iADK6VvhJNT737riBvWduMRVELjkMzJMfBGdARDH/h3DSVpXyLFKBjXJrP
-	5IwwDY0wBdKjKL2QDuAw==;
+	List-Owner; bh=9kTR4umuTbY+mZW6tm5H4/8tj/msAhVTCI+CZzMrNDY=; b=bZGZyooDCvUbya
+	+fINngOrWUksmA6EtdRqKNtG6SXf5RSfBmiQ8Jqgwo+itHeUpFCObfIIIQ/+5roD3en8YP57ASNR4
+	okOcbkiilsK9TV9tjLxj/mDsl47MTKEjqF4VmTWTNq5NU3w7CDaYSBEs2zK+C9CJtu3U8swIunVbY
+	cOFHlUToxxIgwXC8EVL9zVAWpYGYr7NvC0r+d14wp15k4exMmv+Gr13Ug5Xv10BWVmQOFgRn6HW7H
+	C+VW9IoJiBNlm7vjHgWxM3zKyMdGRytroR6/5T2OvEcRUax3bcMKBpej1BwjywWL+mWFVgikq6P2c
+	G6iWR1NmzclCjao5IT9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qfjEZ-000wYN-0x;
-	Mon, 11 Sep 2023 15:53:55 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1qfjGl-000x0R-35;
+	Mon, 11 Sep 2023 15:56:11 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qfjEW-000wX5-0q
+	id 1qfjGj-000wzl-2I
 	for linux-amlogic@lists.infradead.org;
-	Mon, 11 Sep 2023 15:53:53 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40078c4855fso49181535e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 11 Sep 2023 08:53:51 -0700 (PDT)
+	Mon, 11 Sep 2023 15:56:10 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-402cc6b8bedso52660865e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 11 Sep 2023 08:56:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694447631; x=1695052431; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p3zHV6iao/svbvabAHUWRziqjkkVulJ/SFHDJG1zdw8=;
-        b=fHWOyco0eTkkgWnHPcS310jbgoeVFwF+HpOFx8cFi0Xjadg74ZcxE4mGXAy1N6ssAJ
-         Fxu/HZJs/tI0AP+E2sKSDCudXAcabxy+I5cBOqNV8q3ar6GfCfb4sn9kuTZdfk702iM6
-         kMwQdX5C7VaaPK1rOGYUUDhCyoXumyY3BScTa5YRx7J0NzVUKNV6GzmCTAx4Iyts2mCa
-         4wLTskLU+B6kUwKur3ywte+PHPUcrorw2JIL8ZiMnxo0eLhEMfUDWC3bwBYyCQo5V29Y
-         1vKHy21zntkCWup7xokXk343iODv7u2vFfIvwt0mjr8EqarksYupox7lyHCjrzi5sJLv
-         IBiA==
+        d=linaro.org; s=google; t=1694447766; x=1695052566; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GP/eP8jDYXQ289unHUdgYKQAZk5IRHf3RfjCHo6X25s=;
+        b=sem7ozzqrPq0i0Z8L1uHvU602ZvMgqYT4f6W++SYkpfkU+0H6+NqmMSkywT3lgB+an
+         DLTnjNSq0wCT0mgntKOe90mQzEgHiwAqchY8Yx2zQ7iQi2q62VkhFDwXFP9jmB/kUPwt
+         /G3NRakXsjoXIqBRmkCrgg0f/lJdt5KL27Fll2B7C6Mc/Sr6xAm3Bpeq9843g+j4YDoj
+         wCFNCzpw2d43qe9khqh4bEnV6tkf6/uht3OWfluCwOZp0mj4f7trw7k5Y3roMKhVAknK
+         gSbsO4U5/l+Dy18o1On3xQZPdFpknPMr+gi2a+1fumuJhlFYP/si6ezCmKzdiELaf6nC
+         rRog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694447631; x=1695052431;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p3zHV6iao/svbvabAHUWRziqjkkVulJ/SFHDJG1zdw8=;
-        b=IsSuUL5ZhMJBlP2qlMZ94+EHKjQpnEPn/XaleXUhkTlcBHwBsf1Hl1IwaqU8tsM17j
-         QJ5dvI74a2UWY6A9Tu2V5MVPeKbjAjzl4Glui2ozAk3/Gpi47Zg3PjAsgIacqjBFl723
-         1vNr/JUrm0iTq+BxZp1vwwYOTA83LrBzUBX8kZU9zEZLBpjokg+FhpwAbKGiM/pswe9E
-         0xcNjSMxI91NnPJNFum8cypizRBQfSdyOu685AyhuPVCedQL6qM8C42C+REJOCqBFXAB
-         ey+VHrNkRs2J42guzidixTQ+aMlgUcQ0j1d+4TJnokRLG1S+5ptLue25DZObsdUljG7E
-         dqNg==
-X-Gm-Message-State: AOJu0Yze2NKrmHeWK16OWmyoREGsfkABRhNZy7m0cQLTfikvADNnmxId
-	qS650XMBiEP2EuE918jbsX7IXQ==
-X-Google-Smtp-Source: AGHT+IH9qzC3rYF8IeSOT1RPV7CsdG0ReQBfjcjNjLurVYgv7naSOiSTRp7oUKIY9gGW+TXEpd81cQ==
-X-Received: by 2002:adf:de8a:0:b0:306:46c4:d313 with SMTP id w10-20020adfde8a000000b0030646c4d313mr7882614wrl.28.1694447630648;
-        Mon, 11 Sep 2023 08:53:50 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id n16-20020a05600c3b9000b003fe407ca05bsm14047580wms.37.2023.09.11.08.53.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Sep 2023 08:53:50 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Jerome Brunet <jbrunet@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20230911154541.471484-1-jbrunet@baylibre.com>
-References: <20230911154541.471484-1-jbrunet@baylibre.com>
-Subject: Re: [PATCH 0/5] arm64: dts: meson: u200 audio clean up
-Message-Id: <169444762970.3994411.2239837675633536062.b4-ty@linaro.org>
-Date: Mon, 11 Sep 2023 17:53:49 +0200
+        d=1e100.net; s=20230601; t=1694447766; x=1695052566;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GP/eP8jDYXQ289unHUdgYKQAZk5IRHf3RfjCHo6X25s=;
+        b=oTVwDvcE1RUaPKqRHEFmYiWh6vR4uB/PNWNpADE6vK/UUbjV+yjlzaJfWQHR2l2Iy2
+         FTiS4Fz4sPu+9o8S/PqqLL9F1lijPxzcJz/j90sDHOVhLItnm3qhCHrkIL7rqMW7M/Nd
+         Jkxsdvhq6wjn+H7q2Pb5MqrlmKpH6t5mcjQG+Q5p1wfy3+QGPevU+bP8LNZPVFLibOmr
+         owe7gIKmW/I2By9piEh2mLNkYnpWvtpOR+MwlZpeOT1in/G+HGihPQftRACwUxuJhttK
+         XtSZjyqE/LVGcOsfqc+4OY3eXS86B3Bdd9oQnEXsyJ9dwL5opa4MoPpsf5zOAFAAY+Bz
+         Vwew==
+X-Gm-Message-State: AOJu0YxtRKlSUt25FcIGm0phdR+LknmAM+suydBojhom4DnWu3Fqpb2x
+	QyRhJa4TLAr2D7A1nlzK415B0g==
+X-Google-Smtp-Source: AGHT+IEkFcMfdK3cHPbfayqFmuBT7sJyfrGNzvvJusP8Zhs4Fgi4D1oLDfLEtlFjqtfNeGMrgNcMtQ==
+X-Received: by 2002:a05:600c:24c:b0:3fe:dcd0:2e32 with SMTP id 12-20020a05600c024c00b003fedcd02e32mr8331633wmj.19.1694447765769;
+        Mon, 11 Sep 2023 08:56:05 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id c25-20020a05600c0ad900b003fee567235bsm13713079wmr.1.2023.09.11.08.56.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Sep 2023 08:56:04 -0700 (PDT)
+Message-ID: <eedc9787-06b7-bac5-a1f5-ba07d23f4ac7@linaro.org>
+Date: Mon, 11 Sep 2023 17:56:03 +0200
 MIME-Version: 1.0
-X-Mailer: b4 0.12.3
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 5/5] arm64: dts: meson: u200: add onboard devices
+Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+References: <20230911154541.471484-1-jbrunet@baylibre.com>
+ <20230911154541.471484-6-jbrunet@baylibre.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230911154541.471484-6-jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230911_085352_322735_F3CA37F3 
-X-CRM114-Status: GOOD (  11.06  )
+X-CRM114-CacheID: sfid-20230911_085609_752009_087B3646 
+X-CRM114-Status: GOOD (  15.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,62 +92,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On Mon, 11 Sep 2023 17:45:36 +0200, Jerome Brunet wrote:
-> This patchset fixes the recently merged audio support for u200 and adds the
-> missing onboard audio devices
+On 11/09/2023 17:45, Jerome Brunet wrote:
+> Add missing audio devices found on the u200 PCB. This includes
+> * Lineout connected to the internal DAC
+> * SPDIF input connected to a coaxial socket
+> * TDM input decoders allowing output loopback
+> * TDM A and B output encoders and interfaces
 > 
-> Jerome Brunet (5):
->   arm64: dts: meson: u200: fix spdif output pin
->   arm64: dts: meson: u200: add missing audio clock controller
->   arm64: dts: meson: u200: add spdifout b routes
->   arm64: dts: meson: u200: use TDM C for HDMI
->   arm64: dts: meson: u200: add onboard devices
+> TDM A and B link format is set by the related external codec.
+> Internal audio DAC can hook to any TDM output.
 > 
-> [...]
+> This change does not include support necessary the optional the speaker and
+> PDM Mic headers
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  .../boot/dts/amlogic/meson-g12a-u200.dts      | 228 +++++++++++++++++-
+>  1 file changed, 218 insertions(+), 10 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+> index da66e2e1dffb..9abe37b5b227 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+> @@ -9,6 +9,7 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/gpio/meson-g12a-gpio.h>
+>  #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+> +#include <dt-bindings/sound/meson-g12a-toacodec.h>
+>  
+>  / {
+>  	compatible = "amlogic,u200", "amlogic,g12a";
+> @@ -19,6 +20,22 @@ aliases {
+>  		ethernet0 = &ethmac;
+>  	};
+>  
+> +	dioo2133: audio-amplifier-0 {
+> +		#sound-dai-cells = <0>;
+> +		compatible = "simple-audio-amplifier";
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
+compatible is by convention first property. Do you have different style
+in Amlogic/Meson?
 
-[1/5] arm64: dts: meson: u200: fix spdif output pin
-      https://git.kernel.org/amlogic/c/66561cb158d0a25054bbcf423d59dd782311f60d
-[2/5] arm64: dts: meson: u200: add missing audio clock controller
-      https://git.kernel.org/amlogic/c/f9dc2d96e1bfb33635df7edf0a1b8572bbb20954
-[3/5] arm64: dts: meson: u200: add spdifout b routes
-      https://git.kernel.org/amlogic/c/4e47ea869289dab588c0152ec90d6eb5bf7f7169
-[4/5] arm64: dts: meson: u200: use TDM C for HDMI
-      https://git.kernel.org/amlogic/c/956236a24aec8364a3ee5d287e23c0c01cfb9c7c
-[5/5] arm64: dts: meson: u200: add onboard devices
-      https://git.kernel.org/amlogic/c/f1decbd5629bf0dbd3af3b2f803f72a27eb01c7f
+> +		status = "okay";
 
-These changes has been applied on the intermediate git tree [1].
+status is by default.
 
-The v6.7/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
+Best regards,
+Krzysztof
 
 
 _______________________________________________
