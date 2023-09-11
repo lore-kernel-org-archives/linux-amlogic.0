@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 429B0EEB57D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Sep 2023 02:54:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ACBAEE49A4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Sep 2023 02:54:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VZeWXMVijZJEQas19BaWG0kFgIgUorKycEQWFCaY2mc=; b=cqJCt4ObFqUqCA
-	68RPGME/oQgk+JTRxkdWAT8cWsDpYcCAeTbacjdE3dSWIThAlO7qOoKoxV0SFrwKhiVjdSSH46yGC
-	wagw6EsN5sgayNdjWlc4GJDg1KAVonyAQ2gd/vhjIQZ+4aq8Gp91O1gs3cEZD2f7LswR/V66zSJ4m
-	k582GGM5znUOTY2fyRSkiMHd7xF4i/7or0CMs/PAnrPl0Mze741DhEt8w/eCOxT/U8o5tx744/+No
-	hLA1dRvwHS8e83pddy38q6JHo7BPbLbu1pypqWfilJ3jg34n82LXNL7WAVy/dF5t57IdrULiFAbwd
-	szljpCkSNLQkDieWVJIw==;
+	List-Owner; bh=vxFJ2skceD60ADL9Zu3ypJuUJTbB1Pbr2xZMfd8gI1E=; b=sSGdMF1SPuCp9Y
+	dTwL0Ym6d9GQDfd6RJ034wYmV1lM4DAruAp7Knrf9L0ozu3jYAbnLJ4wbUSgXxKtXN+qM744KBWTY
+	Io6XWbuqxejqwntfQ8LPFXdYvpY4wCCGgiwfx5r+my4dvM2ZLOLNPgqiGZMbBIZtRodnkruaGrpjL
+	8otMhMFdQ69FAFquMp4otzMzPm7tMxQDh64iXi5dZsF7T5Qpf/BngB+dSA1kOiYljBar44ssPqiiT
+	BHENrYR2PttMjo3WqVE4m0xIYfWfSHeMP8AQzuALVkcSvLAeRdLYFpt++5j2y9aH5LSJyzcoc8CxQ
+	aZG0fpFctEyNQUif5f6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qfX3l-00H86H-0T;
-	Mon, 11 Sep 2023 02:53:57 +0000
+	id 1qfX3p-00H87U-0U;
+	Mon, 11 Sep 2023 02:54:01 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qfX3h-00H84l-27;
-	Mon, 11 Sep 2023 02:53:55 +0000
+	id 1qfX3j-00H84l-1y;
+	Mon, 11 Sep 2023 02:53:56 +0000
 Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Mon, 11 Sep 2023
- 10:53:50 +0800
+ 10:53:52 +0800
 From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 To: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
@@ -37,18 +37,19 @@ CC: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
 	"Neil Armstrong" <neil.armstrong@linaro.org>, Kevin Hilman
 	<khilman@baylibre.com>, Ulf Hansson <ulf.hansson@linaro.org>, xianwei.zhao
-	<xianwei.zhao@amlogic.com>
-Subject: [PATCH V3 RESEND 5/6] genpd: amlogic: Add support for T7 power domains controller
-Date: Mon, 11 Sep 2023 10:52:22 +0800
-Message-ID: <20230911025223.3433776-6-xianwei.zhao@amlogic.com>
+	<xianwei.zhao@amlogic.com>, Lucas Tanure <tanure@linux.com>
+Subject: [PATCH V3 RESEND 6/6] arm64: dts: amlogic: t7: add power domain controller node
+Date: Mon, 11 Sep 2023 10:52:23 +0800
+Message-ID: <20230911025223.3433776-7-xianwei.zhao@amlogic.com>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20230911025223.3433776-1-xianwei.zhao@amlogic.com>
 References: <20230911025223.3433776-1-xianwei.zhao@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.98.11.200]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230910_195353_697556_916D0F0F 
-X-CRM114-Status: GOOD (  12.72  )
+X-CRM114-CacheID: sfid-20230910_195355_650222_7C90A8EA 
+X-CRM114-Status: UNSURE (   7.63  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,123 +68,42 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: "xianwei.zhao" <xianwei.zhao@amlogic.com>
 
-Add support for T7 power controller. T7 power control
-registers are in secure domain, and should be accessed by SMC.
+Add power domain controller node for Amlogic T7 SoC
 
 Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Tested-by: Lucas Tanure <tanure@linux.com>
 ---
-V2 -> V3: modify subject "genpd: amlogic: "
-V1 -> V2: Modify T7_NIC flag  "ALWAYS_ON"
+V2 -> V3: modify subject.
+V1 -> V2: None
 ---
- drivers/genpd/amlogic/meson-secure-pwrc.c | 73 +++++++++++++++++++++++
- 1 file changed, 73 insertions(+)
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/genpd/amlogic/meson-secure-pwrc.c b/drivers/genpd/amlogic/meson-secure-pwrc.c
-index d751c224048d..4d5bda0d60fc 100644
---- a/drivers/genpd/amlogic/meson-secure-pwrc.c
-+++ b/drivers/genpd/amlogic/meson-secure-pwrc.c
-@@ -13,6 +13,7 @@
- #include <dt-bindings/power/meson-a1-power.h>
- #include <dt-bindings/power/amlogic,c3-pwrc.h>
- #include <dt-bindings/power/meson-s4-power.h>
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+index 1423d4a79156..23cdad1b425b 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+@@ -4,6 +4,7 @@
+  */
+ 
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
 +#include <dt-bindings/power/amlogic,t7-pwrc.h>
- #include <linux/arm-smccc.h>
- #include <linux/firmware/meson/meson_sm.h>
- #include <linux/module.h>
-@@ -164,6 +165,69 @@ static struct meson_secure_pwrc_domain_desc s4_pwrc_domains[] = {
- 	SEC_PD(S4_AUDIO,	0),
- };
  
-+static struct meson_secure_pwrc_domain_desc t7_pwrc_domains[] = {
-+	SEC_PD(T7_DSPA,		0),
-+	SEC_PD(T7_DSPB,		0),
-+	TOP_PD(T7_DOS_HCODEC,	0, PWRC_T7_NIC3_ID),
-+	TOP_PD(T7_DOS_HEVC,	0, PWRC_T7_NIC3_ID),
-+	TOP_PD(T7_DOS_VDEC,	0, PWRC_T7_NIC3_ID),
-+	TOP_PD(T7_DOS_WAVE,	0, PWRC_T7_NIC3_ID),
-+	SEC_PD(T7_VPU_HDMI,	0),
-+	SEC_PD(T7_USB_COMB,	0),
-+	SEC_PD(T7_PCIE,		0),
-+	TOP_PD(T7_GE2D,		0, PWRC_T7_NIC3_ID),
-+	/* SRAMA is used as ATF runtime memory, and should be always on */
-+	SEC_PD(T7_SRAMA,	GENPD_FLAG_ALWAYS_ON),
-+	/* SRAMB is used as ATF runtime memory, and should be always on */
-+	SEC_PD(T7_SRAMB,	GENPD_FLAG_ALWAYS_ON),
-+	SEC_PD(T7_HDMIRX,	0),
-+	SEC_PD(T7_VI_CLK1,	0),
-+	SEC_PD(T7_VI_CLK2,	0),
-+	/* ETH is for ethernet online wakeup, and should be always on */
-+	SEC_PD(T7_ETH,		GENPD_FLAG_ALWAYS_ON),
-+	SEC_PD(T7_ISP,		0),
-+	SEC_PD(T7_MIPI_ISP,	0),
-+	TOP_PD(T7_GDC,		0, PWRC_T7_NIC3_ID),
-+	TOP_PD(T7_DEWARP,	0, PWRC_T7_NIC3_ID),
-+	SEC_PD(T7_SDIO_A,	0),
-+	SEC_PD(T7_SDIO_B,	0),
-+	SEC_PD(T7_EMMC,		0),
-+	TOP_PD(T7_MALI_SC0,	0, PWRC_T7_NNA_TOP_ID),
-+	TOP_PD(T7_MALI_SC1,	0, PWRC_T7_NNA_TOP_ID),
-+	TOP_PD(T7_MALI_SC2,	0, PWRC_T7_NNA_TOP_ID),
-+	TOP_PD(T7_MALI_SC3,	0, PWRC_T7_NNA_TOP_ID),
-+	SEC_PD(T7_MALI_TOP,	0),
-+	TOP_PD(T7_NNA_CORE0,	0, PWRC_T7_NNA_TOP_ID),
-+	TOP_PD(T7_NNA_CORE1,	0, PWRC_T7_NNA_TOP_ID),
-+	TOP_PD(T7_NNA_CORE2,	0, PWRC_T7_NNA_TOP_ID),
-+	TOP_PD(T7_NNA_CORE3,	0, PWRC_T7_NNA_TOP_ID),
-+	SEC_PD(T7_NNA_TOP,	0),
-+	SEC_PD(T7_DDR0,		GENPD_FLAG_ALWAYS_ON),
-+	SEC_PD(T7_DDR1,		GENPD_FLAG_ALWAYS_ON),
-+	/* DMC0 is for DDR PHY ana/dig and DMC, and should be always on */
-+	SEC_PD(T7_DMC0,		GENPD_FLAG_ALWAYS_ON),
-+	/* DMC1 is for DDR PHY ana/dig and DMC, and should be always on */
-+	SEC_PD(T7_DMC1,		GENPD_FLAG_ALWAYS_ON),
-+	/* NOC is related to clk bus, and should be always on */
-+	SEC_PD(T7_NOC,		GENPD_FLAG_ALWAYS_ON),
-+	/* NIC is for the Arm NIC-400 interconnect, and should be always on */
-+	SEC_PD(T7_NIC2,		GENPD_FLAG_ALWAYS_ON),
-+	SEC_PD(T7_NIC3,		0),
-+	/* CPU accesses the interleave data to the ddr need cci, and should be always on */
-+	SEC_PD(T7_CCI,		GENPD_FLAG_ALWAYS_ON),
-+	SEC_PD(T7_MIPI_DSI0,	0),
-+	SEC_PD(T7_SPICC0,	0),
-+	SEC_PD(T7_SPICC1,	0),
-+	SEC_PD(T7_SPICC2,	0),
-+	SEC_PD(T7_SPICC3,	0),
-+	SEC_PD(T7_SPICC4,	0),
-+	SEC_PD(T7_SPICC5,	0),
-+	SEC_PD(T7_EDP0,		0),
-+	SEC_PD(T7_EDP1,		0),
-+	SEC_PD(T7_MIPI_DSI1,	0),
-+	SEC_PD(T7_AUDIO,	0),
-+};
-+
- static int meson_secure_pwrc_probe(struct platform_device *pdev)
- {
- 	int i;
-@@ -257,6 +321,11 @@ static struct meson_secure_pwrc_domain_data meson_secure_s4_pwrc_data = {
- 	.count = ARRAY_SIZE(s4_pwrc_domains),
- };
+ / {
+ 	interrupt-parent = <&gic>;
+@@ -118,6 +119,11 @@ psci {
  
-+static struct meson_secure_pwrc_domain_data amlogic_secure_t7_pwrc_data = {
-+	.domains = t7_pwrc_domains,
-+	.count = ARRAY_SIZE(t7_pwrc_domains),
-+};
+ 	sm: secure-monitor {
+ 		compatible = "amlogic,meson-gxbb-sm";
 +
- static const struct of_device_id meson_secure_pwrc_match_table[] = {
- 	{
- 		.compatible = "amlogic,meson-a1-pwrc",
-@@ -270,6 +339,10 @@ static const struct of_device_id meson_secure_pwrc_match_table[] = {
- 		.compatible = "amlogic,meson-s4-pwrc",
- 		.data = &meson_secure_s4_pwrc_data,
- 	},
-+	{
-+		.compatible = "amlogic,t7-pwrc",
-+		.data = &amlogic_secure_t7_pwrc_data,
-+	},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, meson_secure_pwrc_match_table);
++		pwrc: power-controller {
++			compatible = "amlogic,t7-pwrc";
++			#power-domain-cells = <1>;
++		};
+ 	};
+ 
+ 	soc {
 -- 
 2.37.1
 
