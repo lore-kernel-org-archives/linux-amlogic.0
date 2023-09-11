@@ -4,83 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BF7FEEB580
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Sep 2023 09:47:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19DC5EEB58C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Sep 2023 09:47:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2dEgbwpSwDXX1K18JOyhklKt57eoPIO5C+5sDJF2Gjg=; b=NUnlsfdrEkb/fB
-	N1Is5lNuSgy3Orz63nj7JPzImWgwvs6gh3FSZDVjNSPicEbe9+1Sgjbmk/lFDKDeUCkTjL/1c1PGW
-	9ryO/Gb1vewOGembPzUE3bM10JFNKAxjBtHyzloZ02/FJREkvYipHWtYyFibidZ8foODEVMgb9RDi
-	k2EgqP4ofcdxKLCau+QdvUe3B/4Swrr95wZcz2v0ACa6zEUtKn4NxHQ1C9zG8mBWlI/HA3SfIs5Dr
-	QHPPjTZxVez0krmWp9ymO8BgDLUJPuZEKBhjBYqpfZws+syIW8zbiqh8J6KfOHvXYc4VM639frUtj
-	L2C7XqrOK6Vmjjj4E8Qg==;
+	List-Owner; bh=Gc6AYfwOKUkIuZNjdKajgY84rYtUtmriftdLpa5EFmA=; b=LSiG2qw35cSv5C
+	9nHF3JNHb8QNYpELh7zsrX6g1rcT35h5O3gunjTT7Zl1YLpkXDEYCQyqMICFCJT4RUwBifXDMcPC1
+	agcrQcte8FacU4j2gdOvBM6X53xPlN0yOs3ish+t+L4N0uIg2IRWJwJ4WEwYtcF3QvMHwXhkFWWu6
+	/F2D3VxI9tVixF/RtVVd/NT0jR5ahRjA1wWJ/ZtnNkzuOyZsdMWx69TxbL7UZce3bFhydOzNXotjI
+	t7IwZ9tz4Ja87S15/JXPnNCDbnYR0Ejpvnxl4NJY20Qvnb0P3OoUE1rt8Kd8DaLQInxkUflX3GvA0
+	mPLTCXqwKv+I7LQ2+wxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qfdVD-0002sh-2H;
-	Mon, 11 Sep 2023 09:46:43 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1qfdVF-0002v9-30;
+	Mon, 11 Sep 2023 09:46:45 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qfdV5-0002lO-2E
+	id 1qfdV8-0002n3-1g
 	for linux-amlogic@lists.infradead.org;
-	Mon, 11 Sep 2023 09:46:38 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-403061cdf2bso15611835e9.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 11 Sep 2023 02:46:34 -0700 (PDT)
+	Mon, 11 Sep 2023 09:46:41 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-402d0eda361so49339765e9.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 11 Sep 2023 02:46:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694425593; x=1695030393; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1694425596; x=1695030396; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gpfWGrPSBuBG7+U0dwFU/lJOZNNMxd815XPw6Rgs8Vs=;
-        b=rAXioFowB3LPFrhR24egHr8U2NLMO8WDCQz1dUdRH0VDutbaH6eNYs4AepQfnWpZMO
-         eJTWSo3XNoPiPTJk9f0CAxCCiQech3qSu6yJH527LacZ52SKhqBtOCROOlpyUpWpwUN8
-         ud7Y3gOC/XJxQsYHMey99wL8En1KTzV9F/J0sg+wFwylWS19yMbyfmDDxZi2V+MHy5zk
-         26i+mHFoJMil5KN/0BhMyn0hJUEjPcVTpr1TQXYfJ1AJsDGgY2ciZ/ZDwPoh0yKUO7jm
-         12FbLUxRLeSJ//lmFsA3crda0zWLPDAT9PSePhVeBDNj9DgBUXq9AG5sEeAYIIASuaC0
-         T+Yg==
+        bh=Vu69MSnmFMeVmA/ywqNkVmNnVb7iUthstBma+X2X8nw=;
+        b=v9gy9HFCKyK3TcUSf6pbD/2NSTa6UX9eqt/Mst2K1z6tbzM528wnKaFB8q91UTKOVO
+         n8Cryp5wrwKqXMtdpLAzFuBs8O6QeOLCPeQjRxz1gnktVleGDha1G+WHB+XBeI+gEPcb
+         XhsWIZ0FoHM2byZMVZTf2Y69fkBhoOZ/KgBaAlN4FlNKbY39WA9EjKCv2rObcTAeEviC
+         4LIXQ5XOkGW9uJLv5WSsvsc4oU3d+Az+sm2yrk9qz331z5CCRO8c/0O2/5pIEiOutxDm
+         QLKPKzfLNhoyna2AvFaLRmMOBJA26auSCVhiHoX5/Yey7Sh/J/BLRMU04q9N9r78caAq
+         gcEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694425593; x=1695030393;
+        d=1e100.net; s=20230601; t=1694425596; x=1695030396;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gpfWGrPSBuBG7+U0dwFU/lJOZNNMxd815XPw6Rgs8Vs=;
-        b=eE4Njn+UqJchZDPg79hpPvts8ilC5rHqvvAnzwp4PuMKCinUWrovQqggJshFuqK6dA
-         5BNofWTlVTaAEEwgSrQ6ZRlNJiqojBxG3wui7MCOYxZI+II48PYfAxTHsTY5NPy/vDn9
-         yqiNlzIxP3pp5TnV6+fPRRaRpc4+aszC9cSz1JrIm/nOyn0gnT5+Zb+68pI/XCAE9ApW
-         c0A1RytIRQPcQ0hJLehigYDaY46VcKZFY4XIFfssj4SWXaqk3wGMsggHiQfJKMxa5Bd4
-         6xUZe9ZIThxBLIfsSXXgMbXMYBKJwSCPf2HbBErdk3+Afcd5G1s7C8BzwiXkeX8hOjdR
-         CmCw==
-X-Gm-Message-State: AOJu0YxKilf7q+PZYAQyWGjll2qh/sPZju5gJtnMMh8FRGm2JJl1M+Q5
-	OYuZcrQuctAsyIKf/rhk6vl29g==
-X-Google-Smtp-Source: AGHT+IFB2NUgPRCR1E53L1RZWLMIv4pvvpcenAmQmhAg3oTkQvuSqfR80muGqdBVaRCoXOqcPSinSw==
-X-Received: by 2002:adf:b345:0:b0:31f:9838:dfc4 with SMTP id k5-20020adfb345000000b0031f9838dfc4mr3521960wrd.33.1694425592923;
-        Mon, 11 Sep 2023 02:46:32 -0700 (PDT)
+        bh=Vu69MSnmFMeVmA/ywqNkVmNnVb7iUthstBma+X2X8nw=;
+        b=tv0Z0c8Suv8D4UlSJ9ibuF/ppeDruxytHoi4frQHrjfV1/K2qTS/6SkMHd/cus6RYT
+         TJYIig4eVxcV5b48t+nDcMuaq6hVLmrQAfMHXrqy49NBo6x9d3tyWKCRFa6BlIiycNRK
+         zKVyvbDhX6UgmtZMhnrCxNi2wyRjWhrQExlV+47Eb4O9zNOGx6c21p7zdPZ63LMXK5PD
+         eZe+MHStWCNyeZG1Y29mJLkCNkcrbXPxcKwRnC55lDUg8DnLK5pprrfWtli1tpum4qBQ
+         K3nXgne8IF3aSLGaVYSlzXnWBJfLSMGe7wx9wCuZPL5a61iOxfG6K/5SEB6F+XVJYVWn
+         84/w==
+X-Gm-Message-State: AOJu0Yynd3WwB3PKw3jSOjLiwNLwbQCM5Il8DOk9whPRer2ncHu4mFSB
+	uBmGAbF7uDFtmVeaV9jmzdsFlg==
+X-Google-Smtp-Source: AGHT+IEdAMsjg/8Nxa3KFLooWk85wnZwMH58KM+GWT3T2xUcp1qWIO6JZ3+20GfglYdb4VvXAog3zQ==
+X-Received: by 2002:a5d:6504:0:b0:31a:d4a9:bdac with SMTP id x4-20020a5d6504000000b0031ad4a9bdacmr7348578wru.11.1694425595971;
+        Mon, 11 Sep 2023 02:46:35 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id d13-20020adff84d000000b00317909f9985sm9503496wrq.113.2023.09.11.02.46.31
+        by smtp.gmail.com with ESMTPSA id d13-20020adff84d000000b00317909f9985sm9503496wrq.113.2023.09.11.02.46.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Sep 2023 02:46:32 -0700 (PDT)
+        Mon, 11 Sep 2023 02:46:35 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
- khilman@baylibre.com, jbrunet@baylibre.com, 
- martin.blumenstingl@googlemail.com, Huqiang Qin <huqiang.qin@amlogic.com>
-Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20230802033222.4024946-1-huqiang.qin@amlogic.com>
-References: <20230802033222.4024946-1-huqiang.qin@amlogic.com>
-Subject: Re: (subset) [PATCH V2 0/4] Add watchdog support for Amlogic-T7
- SoCs
-Message-Id: <169442559190.3235506.16709679651395559880.b4-ty@linaro.org>
-Date: Mon, 11 Sep 2023 11:46:31 +0200
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Alexander Stein <alexander.stein@mailbox.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org
+In-Reply-To: <20230808161755.31594-1-alexander.stein@mailbox.org>
+References: <20230808161755.31594-1-alexander.stein@mailbox.org>
+Subject: Re: [PATCH 1/2] arm64: dts: meson-g12: Fix clock order for
+ amlogic,axg-tdm-iface devices
+Message-Id: <169442559509.3235506.11421514573376566938.b4-ty@linaro.org>
+Date: Mon, 11 Sep 2023 11:46:35 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230911_024635_752514_F96F65A1 
-X-CRM114-Status: GOOD (  11.26  )
+X-CRM114-CacheID: sfid-20230911_024638_559328_FB0DE80B 
+X-CRM114-Status: UNSURE (   9.42  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,23 +101,39 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Wed, 02 Aug 2023 11:32:18 +0800, Huqiang Qin wrote:
-> Based on the original Amlogic-GXBB watchdog driver, support
-> for Amlogic-T7 watchdog is added.
-> 
-> [PATCH 1/4]:
->   V1 -> V2: Unchanged.
-> 
-> [PATCH 2/4]:
->   V1 -> V2: Rename rst_shift to rst and use the BIT() macro
->             to build its initial value.
+On Tue, 08 Aug 2023 18:17:52 +0200, Alexander Stein wrote:
+> Binding specify order of clocks as:
+> 1. "sclk"
+> 2. "lrclk"
+> 3. "mclk"
+> Adjust clocks accordingly. Fixes warnings:
+> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-0: clock-names:0: 'sclk' was expected
+>         from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-0: clock-names:1: 'lrclk' was expected
+>         from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-0: clock-names:2: 'mclk' was expected
+>         from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-1: clock-names:0: 'sclk' was expected
+>         from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-1: clock-names:1: 'lrclk' was expected
+>         from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-1: clock-names:2: 'mclk' was expected
+>         from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-2: clock-names:0: 'sclk' was expected
+>         from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-2: clock-names:1: 'lrclk' was expected
+>         from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-2: clock-names:2: 'mclk' was expected
+>         from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
 > 
 > [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
 
-[4/4] arm64: dts: Add watchdog node for Amlogic-T7 SoCs
-      https://git.kernel.org/amlogic/c/8a63d22183d0d96d742e34730430cc1f286c7092
+[1/2] arm64: dts: meson-g12: Fix clock order for amlogic,axg-tdm-iface devices
+      https://git.kernel.org/amlogic/c/c92997482e70c67ce7b9b32344fe85c4b0cb701d
+[2/2] arm64: dts: meson-g12: Fix compatible for amlogic,g12a-tdmin
+      https://git.kernel.org/amlogic/c/a42b8f639298c57f119c6d5f55a0c0c87259096a
 
 These changes has been applied on the intermediate git tree [1].
 
