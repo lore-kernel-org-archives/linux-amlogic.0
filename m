@@ -4,82 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BD3BEE57DF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Sep 2023 09:46:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30F7AEE57DF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Sep 2023 09:47:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZNflzRqhnVFz+SKdwwbhQA2vthVcLGaz3q0k7GTwRLk=; b=FGs4AfJ8I4A04E
-	OrqQbnNtpEzgWHjvzgcQjZyyh1PCku0YntANc0cevrA9pS7pWZsH1XCWBYmRSOIp4DyuhO1Bf1GYA
-	5h8yjaSF2WA8nMAn6xU6nHIf2NvCsvBdmvwW05xyM+KgAHLd5B2dDAvDAciHGboMgYPhZ5JYdLBEA
-	Wb6/kC4z291orTOhnIf+WZ6UTaVCB//JlNBi7YMg0qobaFDsL0L6Ur+e72r1y7bkxC5wcbhL6kx2p
-	FAYZa7Y4x1790G8DnWPhdvInU92O2BNGc66Him2BOALoYu9Gnni3VTobm4JAWX46uyHy599hDOoi6
-	mXWSvXyuDxn/HXYwAc5Q==;
+	List-Owner; bh=HerWQUc0ETpKuCBuQ5iYOM1Qr+8qhs7oSBerYuYCXMQ=; b=fnP3SO/4GcdBw7
+	+OPSLfEySxD+6p6zMvlDIa/JuURKDX4Ql4Ijf+G5jEB24RDsM79MC5ndTTr6tGKbxFisMiA6I0TfT
+	L2lhF63aDtDlzfZp3eQohCOq453TODN8CeRHjTwBKDGmommMrrXwPq1o43XeLtV4dwAICvj1nHVcr
+	Mn94i5NIO1tSzBZ8eg1IVH5N14SiyTv/JtiSu3qvDxQE5/vi9spzh+H9cc8u6O9T3FWhFp5HjNBg3
+	fdCa6KXNq9zz08u/R7CiwwlLMzj825vrJudhXAcACKvZjwIgR5av9u+Xgp1cWOVepAcVOjufWruVT
+	m+KzHLplN1PImkPncPnQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qfdV0-0002js-0B;
-	Mon, 11 Sep 2023 09:46:30 +0000
-Received: from mail-lj1-x230.google.com ([2a00:1450:4864:20::230])
+	id 1qfdVA-0002qM-0R;
+	Mon, 11 Sep 2023 09:46:40 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qfdUv-0002iH-1f
+	id 1qfdV5-0002kt-2E
 	for linux-amlogic@lists.infradead.org;
-	Mon, 11 Sep 2023 09:46:27 +0000
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2bcfdadd149so73513571fa.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 11 Sep 2023 02:46:23 -0700 (PDT)
+	Mon, 11 Sep 2023 09:46:37 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4018af1038cso46242765e9.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 11 Sep 2023 02:46:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694425582; x=1695030382; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1694425592; x=1695030392; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ji7cbXQJKuEo0ewL5BwKdD6+HJSRYy2wv9gMLGPlepA=;
-        b=j7l33D/e7IP2/pjH38+3we+vVu7LyIJ6cXO1EtUZd/IAZQdwmBto/mCwQvx+ADpaPQ
-         vYPy1mnekL08tPGxyxiDxTMbRKjdSvEIRfwkHwpCf/BkKy2WIW6PqBrularV5tLwF9Mq
-         /Eg8oYMZ8VA9zy18HZmaIFEVuefpLMYiV+wsLEBa6VT4Q6fKRSIrN6MO5iqLZJO8LgMR
-         /NpHIFbdAN22enRIE8tVvKKNRnsmcMK8+11+h/Id+ZThLGuabHzTizrN0iFEVg25sngw
-         c4uWBURNsGTP37DX0AMPdP40W99d/qVWb2l3S+dYnOCBBYf5lN/6EiXjlY9NMMboNJ+s
-         kT3w==
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+cYuBqqKCr61kF+J0qE32P8LtYpg7LF8EeE5e0c2/vM=;
+        b=GQkVx68Y3Pnc9wL2fCaj1exCyC+46RlP/ojLLK5Bbg644MdZceddlNsQjjcEh0Wyaw
+         uVPQf6d/m3WDyz/yWw1fMA4aDyOMJYbVW7yO+D/hyKANUiKk8SX5G5YjaH2NEVx+58+E
+         nsysyrmNvtLD1ZNA5ub0tDVBcgauOS7zMpD1MvGpMa+mxXBvTemQg4xlUashWNQj49Ih
+         knaZx9MVCnC8vqSt2JkQfW/Dr+L5ALr2m71j33Hz1EgxS/kuWpHZwX6H0GR0qZz0Hg8L
+         BZEQIhjPUfUwBvGjdDJ9uqbxWAnyaFjq0+raJpxP+p0Ao94lwyWJPnnIm9FAySqtLAz5
+         ONkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694425582; x=1695030382;
+        d=1e100.net; s=20230601; t=1694425592; x=1695030392;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ji7cbXQJKuEo0ewL5BwKdD6+HJSRYy2wv9gMLGPlepA=;
-        b=EEKHTWJJiJuaXq7c6O3CG8Fl1NvUuiOaIesQZnxknlC7IhjLsMygJTyb2LPmCfMh3x
-         UJgEUN2E2YWxoFVNxllVSs+Od6oZEDDTpjgq04Vh3HRYsIDBKIx36DYK3oL2yuZ5d0io
-         vsQva4xR+qhiMMhHngRrYrU0f4+Na/9gXESFfSELvTpfGM5mET+GBk2GnU5ubQW87tqB
-         dsgZVDprzhw4fi3F41NzOpqN0MMyvtBwfdn8cykscGvIjxkQwxhDt3n9tVlCZXt12q+y
-         FIkZl2abR8K6fParSxXjFwAWoVmskH2NNZ3JjqGGCiCXCMff85goOeVd+amGDuGtUmH9
-         X/jw==
-X-Gm-Message-State: AOJu0Yx7RMHkvd0oydGWF/6sUw/IpsMQOXUEPc1AmwsEJaJkXvB0BjU2
-	3YgX99oJJnjGpr4GXbaVurGa+A==
-X-Google-Smtp-Source: AGHT+IGlNxjxG0h9WOgUYfP5hWmxCEiaQjt2o82oL1F/nht9wLOL5kF0/RgyR87mixTRPaq/opAWQw==
-X-Received: by 2002:a05:6512:ba9:b0:500:a3be:1ab6 with SMTP id b41-20020a0565120ba900b00500a3be1ab6mr9050406lfv.6.1694425581969;
-        Mon, 11 Sep 2023 02:46:21 -0700 (PDT)
+        bh=+cYuBqqKCr61kF+J0qE32P8LtYpg7LF8EeE5e0c2/vM=;
+        b=GJAfzcP58YqCctZAflxSVLsP00XGIYh8aBjNmj1PGpvc3B6LcLAsYXfqadeWptxaSj
+         2OhpnKkeXyk43w+Hk4W8fxvUOzUKf6Cc20DSmDqjJRBHVWXgreaPJBccGWxMm2RAQWUa
+         KZxFVe9KLxBuNIIupED4AVWKc9pFq2C6wgUMLWu+Z9ZZnQSiBeCI9bsIIlLfRES6CQ37
+         Llhqz/IfCnVW8QK/KzyM//cEin0ERMUW1nEmb5OIAjQHiBVtncrj/Y6sw8v8zb6FVJBT
+         HiOXiS3T8eLpaDWVzzaeTyM94pFSAjyLDCuj5Uemj+qdBbxSyYXqQBTl+HIH1PWT/8iD
+         050Q==
+X-Gm-Message-State: AOJu0YzzBjWFgJ9oIfwtlar3hz0Z8tfdm0cpDyCg3shnQIIQT5FsRQoj
+	tfsIbBocn/Ls4tXZu7tAMdXSGw==
+X-Google-Smtp-Source: AGHT+IF6Db7IOiAAxmcutp4cngm1dQLW31BDJ9vfe4xSUzSt9h7ay34mes/ebYDzWk0PZc1lOgJSnQ==
+X-Received: by 2002:a05:600c:2a50:b0:402:bda9:74d1 with SMTP id x16-20020a05600c2a5000b00402bda974d1mr7609095wme.8.1694425591809;
+        Mon, 11 Sep 2023 02:46:31 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id p23-20020a05600c205700b003fe1fe56202sm9439659wmg.33.2023.09.11.02.46.21
+        by smtp.gmail.com with ESMTPSA id d13-20020adff84d000000b00317909f9985sm9503496wrq.113.2023.09.11.02.46.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Sep 2023 02:46:21 -0700 (PDT)
+        Mon, 11 Sep 2023 02:46:31 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: khilman@baylibre.com, jbrunet@baylibre.com, miles.chen@mediatek.com, 
- martin.blumenstingl@googlemail.com, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Alexey Romanov <avromanov@salutedevices.com>
-Cc: kernel@sberdevices.ru, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230830140850.17130-1-avromanov@salutedevices.com>
-References: <20230830140850.17130-1-avromanov@salutedevices.com>
-Subject: Re: [PATCH v1] drivers: meson: sm: correct meson_sm_* API retval
- handling
-Message-Id: <169442558108.3235284.15250808268493542664.b4-ty@linaro.org>
-Date: Mon, 11 Sep 2023 11:46:21 +0200
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <20230815092751.1791195-1-christianshewitt@gmail.com>
+References: <20230815092751.1791195-1-christianshewitt@gmail.com>
+Subject: Re: [PATCH 0/3] arm64: dts: amlogic: add more basic audio support
+Message-Id: <169442559097.3235506.12459574457912854518.b4-ty@linaro.org>
+Date: Mon, 11 Sep 2023 11:46:30 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230911_024625_558614_B1E6383C 
-X-CRM114-Status: GOOD (  13.76  )
+X-CRM114-CacheID: sfid-20230911_024635_733521_6E64ED17 
+X-CRM114-Status: GOOD (  11.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,26 +98,28 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Wed, 30 Aug 2023 17:08:50 +0300, Alexey Romanov wrote:
-> 1. Following the ARM SMC32 calling convention, the return value
-> from secure monitor is a 32-bit signed integer. This patch changes
-> the type of the return value of the function meson_sm_call().
-> 
-> 2. Now, when meson_sm_call() returns a 32-bit signed integer, we need
-> to ensure that this value is not negative. It is important to check
-> that the return value is not negative in both the meson_sm_call_read()
-> and meson_sm_call_write() functions.
+On Tue, 15 Aug 2023 09:27:48 +0000, Christian Hewitt wrote:
+> This mini-series adds basic audio support to the P200/P201 (GXBB) and U200 (G12A)
+> reference boards. Few people likely have the original reference boards which have
+> extra audio capabilities, but the device-trees are widely [ab]used by users with
+> Android set-top boxes whose hardware is copy/pasted from the reference designs to
+> get working installs. Adding basic audio support does no harm to the real boards
+> and helps the secondary cause.
 > 
 > [...]
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/drivers)
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
 
-[1/1] drivers: meson: sm: correct meson_sm_* API retval handling
-      https://git.kernel.org/amlogic/c/0d423c4a78984dd02f6596d6fd9dd40446eec517
+[1/3] arm64: dts: meson: add audio playback to p200
+      https://git.kernel.org/amlogic/c/61373cc074128c40d53857803371c4a9384d4200
+[2/3] arm64: dts: meson: add audio playback to p201
+      https://git.kernel.org/amlogic/c/2b2827a19024abcf879c18053ae3f2fc23891ad4
+[3/3] arm64: dts: meson: add audio playback to u200
+      https://git.kernel.org/amlogic/c/cfae4eadb7cd44cb5f17285e18477bed4ae5f03c
 
 These changes has been applied on the intermediate git tree [1].
 
-The v6.7/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+The v6.7/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
 for inclusion in their intermediate git branches in order to be sent to Linus during
 the next merge window, or sooner if it's a set of fixes.
 
