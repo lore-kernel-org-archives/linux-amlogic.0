@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1F1FEE7FF4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF470EEB581
 	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Sep 2023 10:12:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,43 +12,43 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=INDNaaCwsnhspCB0sUjgy8A0wf6C05Xsr1l2WOxQlRI=; b=NsVuVB6hPyZ6Vg
-	ZfcfLTqYqdAtiF6+jViPtfuwsdfPt+8qlYCjC/8xa+7P1aEsocEeyyqlMf3+VCdbQwTt+xncBLo8B
-	/iafZYEytVsbxMSEUL3hqVvBTr8T4u3OT4xH1BUazgtAWLuzv+fQFp1bAHlJ4kIRCD59T2X4V2m3P
-	zaw9G0tSx6NaZzGLe+TVgCruKvKkvNtlmwONxMiIkZ8kXuq30jtWHXQzafdmn5BHNXJ79w+XVVV2P
-	TlXTrBN61CkXK+2mk+5Eje1rirEjcYSpjhvlncM3u2S/twRNUophDGrheA9js5RPwKoRy9YD8XXkl
-	x5wSlMQy93BvfIwTJqng==;
+	List-Owner; bh=mmf/kBw10u4pq2jrV2qCTOr6I+M5QfyuwDP33FY6Zl4=; b=Opp0qXIzDZ5t9C
+	bizvLYIhDYYVQMLGRaEcsW9tP+BhNMe/Kp9QfGvzjw1/XqdvrDC9A7uDqVjzXB5iGVwcRfQNvvT35
+	fJBFaeIGLWanU9IxzNnbWd0VHA7VJw/bebfmxcEwg3az1Lp3UlUPLe1ae0ksTegKrEcdidwF0FQDb
+	JceDFHBU6FtMOHYCKGjr3DIW4ydZzWwZFuzm+t/QCuQg9C9eFKiyNyT/qWRAM3U36hK8X5A3lPaoF
+	tf8qPx2dNX+rENwDc8d2iAvDkSbaJExJITp90Fc3RTqNox3Ww7WxbpfnqR3YRy4hrULNkK98rsOuA
+	XNbwMZR0zhTpfDmCeWcg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qfdtY-0006UV-1Z;
-	Mon, 11 Sep 2023 10:11:52 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
-	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qfdtU-0006Rt-1C;
+	id 1qfdtW-0006Tp-27;
 	Mon, 11 Sep 2023 10:11:50 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id D08AB12000B;
-	Mon, 11 Sep 2023 13:11:44 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru D08AB12000B
+Received: from mx1.sberdevices.ru ([37.18.73.165])
+	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1qfdtT-0006Ri-0I;
+	Mon, 11 Sep 2023 10:11:49 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 89432100011;
+	Mon, 11 Sep 2023 13:11:42 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 89432100011
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1694427104;
-	bh=HYf8McE/KgI584XKTUFEDPyTBWG+zEFIbhzlJzNcCy8=;
+	s=mail; t=1694427102;
+	bh=FgKxXDgE/uNx01ueWhXfT0y9HcY1omQL2iYWSfBMwSs=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=v0tywm2JIPy+EBcifQD3Y3fOPnMctuB/aWu0AxdYkxB4xbiCMf71+hkUYQgE3ZQZQ
-	 lKnlVI3tRmeVCqJ+qjfdIHvw/Dk1qa+CzCfZZ5ZgMWYMfMuwWgDGG2PmiE4rKJ7tN1
-	 cTI/mm2aebxherGFmqirEzpJ9VnE9kVBHIQEbUm3jb6Rv27HR+OSvsdXFdbkHoPMYo
-	 cslJFMnGGQToMHsq52TwBbqqtjfx5DFp4Pg4IVS1MDnvQqy8ZpT3oHA5TBgSDxX5vU
-	 l3yC2lGxtDqc7zzlKmIywFMH3TZxhtSj2se9HqrHO8yVJa8YdUmf7Z1tB7iKii46dK
-	 81Catdd4NF3Qg==
+	b=PMuEZYZ/R9REqqord3g0R8+qNfikzRB8HMWU2D717WSdTmHvfUwKgx3czLu+EUN/e
+	 SJcYTpsEvHVh6y07ZkKtiH8lyoNvqj38uDFhdOzK8mx/1PWQrkRAu7xSRULatCYstX
+	 suVMbdEvexjFVgHwo4JMtLqmvYscypMZVcvBgrwX86hTcNlgbRhnLvYYBlVx8GF/X3
+	 zFadnR4sOfFGVikC84soGSq567yAuXrNGXd/Kn1qjNW93EnHxdBngIyq0yqYIxqoO7
+	 URYDETIL7+MtGrFdx0DGmq77+RZ789h+JoXShr55qzT3RVmOmjJCxcZ7KV7bo9DxIc
+	 BXptNue08+zDg==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon, 11 Sep 2023 13:11:44 +0300 (MSK)
+	Mon, 11 Sep 2023 13:11:42 +0300 (MSK)
 Received: from localhost.localdomain (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Mon, 11 Sep 2023 13:11:43 +0300
+ 15.2.1118.30; Mon, 11 Sep 2023 13:11:41 +0300
 From: Alexey Romanov <avromanov@salutedevices.com>
 To: <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
 	<olivia@selenic.com>, <herbert@gondor.apana.org.au>, <robh+dt@kernel.org>,
@@ -59,10 +59,11 @@ To: <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
 CC: <linux-arm-kernel@lists.infradead.org>,
 	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
 	<devicetree@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-	<kernel@sberdevices.ru>, Alexey Romanov <avromanov@sberdevices.ru>
-Subject: [PATCH v3 3/3] arch/arm64: dts: meson-s4: add hwrng node
-Date: Mon, 11 Sep 2023 13:11:29 +0300
-Message-ID: <20230911101129.10604-4-avromanov@salutedevices.com>
+	<kernel@sberdevices.ru>, Alexey Romanov <avromanov@sberdevices.ru>, Conor
+ Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v3 2/3] dt-bindings: rng: meson: add meson-rng-s4 compatible
+Date: Mon, 11 Sep 2023 13:11:28 +0300
+Message-ID: <20230911101129.10604-3-avromanov@salutedevices.com>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20230911101129.10604-1-avromanov@salutedevices.com>
 References: <20230911101129.10604-1-avromanov@salutedevices.com>
@@ -72,14 +73,14 @@ X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 179766 [Sep 11 2023]
+X-KSMG-AntiSpam-Lua-Profiles: 179765 [Sep 11 2023]
 X-KSMG-AntiSpam-Version: 5.9.59.0
 X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
 X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 530 530 ecb1547b3f72d1df4c71c0b60e67ba6b4aea5432, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 530 530 ecb1547b3f72d1df4c71c0b60e67ba6b4aea5432, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
 X-KSMG-AntiPhishing: Clean
@@ -87,8 +88,9 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/09/11 06:02:00 #21866861
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230911_031148_775896_E6294556 
-X-CRM114-Status: GOOD (  10.49  )
+X-CRM114-CacheID: sfid-20230911_031147_803554_638B95CC 
+X-CRM114-Status: UNSURE (   9.82  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,30 +109,27 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Alexey Romanov <avromanov@sberdevices.ru>
 
-Using this node, we can obtain random numbers via
-hardware random number generator.
+Add compatible for hardware number generator node for
+Amlogic S4-series.
 
 Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index f24460186d3d..b3a1ecf36467 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -133,6 +133,11 @@ reset: reset-controller@2000 {
- 				reg = <0x0 0x2000 0x0 0x98>;
- 				#reset-cells = <1>;
- 			};
-+
-+			hwrng: rng@440788 {
-+				compatible = "amlogic,meson-s4-rng";
-+				reg = <0x0 0x440788 0x0 0x0c>;
-+			};
- 		};
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
+index 457a6e43d810..afa52af442a7 100644
+--- a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
++++ b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
+@@ -14,6 +14,7 @@ properties:
+   compatible:
+     enum:
+       - amlogic,meson-rng
++      - amlogic,meson-s4-rng
+ 
+   reg:
+     maxItems: 1
 -- 
 2.25.1
 
