@@ -4,77 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0B2BEE57DF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Sep 2023 09:34:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BD3BEE57DF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Sep 2023 09:46:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=pWZVIcWzPoZm4KKjgP2b7WOII+kWXdIc0SMO+P1JV3w=; b=1p7Xbkb6nrK3XVw9AsF5Bo1roG
-	0bD/dV5pEJdPuIJDcaGXvL8D6HVeVfRr55vHJDypkYqM6CO4pcRF/U8oD3yKjYt28zZYKkuFGgKVW
-	A9fwBR28G3mKWP5EVYLyOPixcCB52/G/7sj/vPzvNacbbeU6MvHMPR5DoDY7ihQezKzusQBfgBBQE
-	dD/tC63u3NZFSZ1KBvfIoZx4hvCbdctRQdsOvlFk1Nxda013cVoZiE6guBKQWqzdM9sT1a+UPdvOw
-	jD4gKrYVCvVC8SKUPHvJnycy2LqyjFA099uDtqwTzmFWPfGYtry5GL9gi1zFXZRj8NPjSSgrRC5tP
-	dfyWIYaA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ZNflzRqhnVFz+SKdwwbhQA2vthVcLGaz3q0k7GTwRLk=; b=FGs4AfJ8I4A04E
+	OrqQbnNtpEzgWHjvzgcQjZyyh1PCku0YntANc0cevrA9pS7pWZsH1XCWBYmRSOIp4DyuhO1Bf1GYA
+	5h8yjaSF2WA8nMAn6xU6nHIf2NvCsvBdmvwW05xyM+KgAHLd5B2dDAvDAciHGboMgYPhZ5JYdLBEA
+	Wb6/kC4z291orTOhnIf+WZ6UTaVCB//JlNBi7YMg0qobaFDsL0L6Ur+e72r1y7bkxC5wcbhL6kx2p
+	FAYZa7Y4x1790G8DnWPhdvInU92O2BNGc66Him2BOALoYu9Gnni3VTobm4JAWX46uyHy599hDOoi6
+	mXWSvXyuDxn/HXYwAc5Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qfdJF-0001Xs-2b;
-	Mon, 11 Sep 2023 09:34:21 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1qfdV0-0002js-0B;
+	Mon, 11 Sep 2023 09:46:30 +0000
+Received: from mail-lj1-x230.google.com ([2a00:1450:4864:20::230])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qfdJC-0001X3-2r;
-	Mon, 11 Sep 2023 09:34:20 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 558DFB80B97;
-	Mon, 11 Sep 2023 09:34:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F203C433C7;
-	Mon, 11 Sep 2023 09:34:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694424856;
-	bh=TvpWrAcaPvo6YwEqJ4wx8ac0H6SKtwYaj6N+B+IF3DI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pXXdv1gBYsBGMvX+RKb2cpVYYDqX/HK/auK9M52TcGOmA/wX2wdhgfKjgRAliM06R
-	 wHk+rxIK1WeGprHmyc/lgjgNxnVVA9/dmXazfrw/uH2qFuHyeMgp+ZFT6mcUhHehHk
-	 yACtBXmuFRXhfV66s4XHAqp9blvCNPFzjtzBjC8N675dkny+soTXDeCBQ3OAJ11hTb
-	 bSJJKzOTCxyBPiVQF8aZqbnhnmKAPKLsFs6rrdko3UK3ZvO1v9WcxqSW4Vy9JfoHeL
-	 r/00QyRcdVGCeWkGJXijfxkNroh/5ciA75w3kaCat81bHc7bAaM1k5Jv3sSgy73SND
-	 rryZSkWzFQHeQ==
-Date: Mon, 11 Sep 2023 11:34:13 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Daniel Stone <daniels@collabora.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>, 
-	Helen Koike <helen.koike@collabora.com>, emma@anholt.net, linux-doc@vger.kernel.org, 
-	vignesh.raman@collabora.com, dri-devel@lists.freedesktop.org, alyssa@rosenzweig.io, 
-	jbrunet@baylibre.com, robdclark@google.com, corbet@lwn.net, khilman@baylibre.com, 
-	sergi.blanch.torne@collabora.com, david.heidelberg@collabora.com, 
-	linux-rockchip@lists.infradead.org, martin.blumenstingl@googlemail.com, robclark@freedesktop.org, 
-	anholt@google.com, linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com, 
-	linux-amlogic@lists.infradead.org, gustavo.padovan@collabora.com, 
-	linux-arm-kernel@lists.infradead.org, angelogioacchino.delregno@collabora.com, 
-	neil.armstrong@linaro.org, guilherme.gallo@collabora.com, linux-kernel@vger.kernel.org, 
-	tzimmermann@suse.de
-Subject: Re: [PATCH v11] drm: Add initial ci/ subdirectory
-Message-ID: <mnjcsiqjqdnvbbkaaz5r4n42e56qsax667r7radzyagnmmfkip@dfi64z5deqzj>
-References: <20230811171953.176431-1-helen.koike@collabora.com>
- <ZOTFfhtzzWkrQ23Y@phenom.ffwll.local>
- <zorvxwffshrsqx5cy76pe3gn52qrqav7qusz5acav2un2ydvwr@fwjd56qg2xve>
- <87bkeo23vs.fsf@intel.com>
- <4rpsqk4tgrdcxtxtfoum6o4oyglwkirmkh3jj4y5tays2ivb5p@uwqdf3snshkv>
- <25df6189-7b0a-b13d-e93d-c2a388fd45e3@collabora.com>
- <zmq7pz7rtz6h765azg5kl2qgjd264yafctx4q474t5tqai57og@cajbcub4yuwr>
- <5fdf9d29-3f8d-0ee0-027f-57ff3a5cecb8@collabora.com>
- <CAKMK7uGg6n322UugJwErqF_Dvsbqceqae6SVWV3ZWEOR7x36rQ@mail.gmail.com>
- <9a2b1ad8-4359-4f12-b4f9-c1de477bc440@collabora.com>
+	id 1qfdUv-0002iH-1f
+	for linux-amlogic@lists.infradead.org;
+	Mon, 11 Sep 2023 09:46:27 +0000
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2bcfdadd149so73513571fa.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 11 Sep 2023 02:46:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694425582; x=1695030382; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ji7cbXQJKuEo0ewL5BwKdD6+HJSRYy2wv9gMLGPlepA=;
+        b=j7l33D/e7IP2/pjH38+3we+vVu7LyIJ6cXO1EtUZd/IAZQdwmBto/mCwQvx+ADpaPQ
+         vYPy1mnekL08tPGxyxiDxTMbRKjdSvEIRfwkHwpCf/BkKy2WIW6PqBrularV5tLwF9Mq
+         /Eg8oYMZ8VA9zy18HZmaIFEVuefpLMYiV+wsLEBa6VT4Q6fKRSIrN6MO5iqLZJO8LgMR
+         /NpHIFbdAN22enRIE8tVvKKNRnsmcMK8+11+h/Id+ZThLGuabHzTizrN0iFEVg25sngw
+         c4uWBURNsGTP37DX0AMPdP40W99d/qVWb2l3S+dYnOCBBYf5lN/6EiXjlY9NMMboNJ+s
+         kT3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694425582; x=1695030382;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ji7cbXQJKuEo0ewL5BwKdD6+HJSRYy2wv9gMLGPlepA=;
+        b=EEKHTWJJiJuaXq7c6O3CG8Fl1NvUuiOaIesQZnxknlC7IhjLsMygJTyb2LPmCfMh3x
+         UJgEUN2E2YWxoFVNxllVSs+Od6oZEDDTpjgq04Vh3HRYsIDBKIx36DYK3oL2yuZ5d0io
+         vsQva4xR+qhiMMhHngRrYrU0f4+Na/9gXESFfSELvTpfGM5mET+GBk2GnU5ubQW87tqB
+         dsgZVDprzhw4fi3F41NzOpqN0MMyvtBwfdn8cykscGvIjxkQwxhDt3n9tVlCZXt12q+y
+         FIkZl2abR8K6fParSxXjFwAWoVmskH2NNZ3JjqGGCiCXCMff85goOeVd+amGDuGtUmH9
+         X/jw==
+X-Gm-Message-State: AOJu0Yx7RMHkvd0oydGWF/6sUw/IpsMQOXUEPc1AmwsEJaJkXvB0BjU2
+	3YgX99oJJnjGpr4GXbaVurGa+A==
+X-Google-Smtp-Source: AGHT+IGlNxjxG0h9WOgUYfP5hWmxCEiaQjt2o82oL1F/nht9wLOL5kF0/RgyR87mixTRPaq/opAWQw==
+X-Received: by 2002:a05:6512:ba9:b0:500:a3be:1ab6 with SMTP id b41-20020a0565120ba900b00500a3be1ab6mr9050406lfv.6.1694425581969;
+        Mon, 11 Sep 2023 02:46:21 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id p23-20020a05600c205700b003fe1fe56202sm9439659wmg.33.2023.09.11.02.46.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Sep 2023 02:46:21 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: khilman@baylibre.com, jbrunet@baylibre.com, miles.chen@mediatek.com, 
+ martin.blumenstingl@googlemail.com, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Alexey Romanov <avromanov@salutedevices.com>
+Cc: kernel@sberdevices.ru, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20230830140850.17130-1-avromanov@salutedevices.com>
+References: <20230830140850.17130-1-avromanov@salutedevices.com>
+Subject: Re: [PATCH v1] drivers: meson: sm: correct meson_sm_* API retval
+ handling
+Message-Id: <169442558108.3235284.15250808268493542664.b4-ty@linaro.org>
+Date: Mon, 11 Sep 2023 11:46:21 +0200
 MIME-Version: 1.0
-In-Reply-To: <9a2b1ad8-4359-4f12-b4f9-c1de477bc440@collabora.com>
+X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230911_023419_211288_56F21731 
-X-CRM114-Status: GOOD (  48.61  )
+X-CRM114-CacheID: sfid-20230911_024625_558614_B1E6383C 
+X-CRM114-Status: GOOD (  13.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,191 +91,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7531728959632786270=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi,
 
---===============7531728959632786270==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sbcpezxsgpyrgvfn"
-Content-Disposition: inline
+On Wed, 30 Aug 2023 17:08:50 +0300, Alexey Romanov wrote:
+> 1. Following the ARM SMC32 calling convention, the return value
+> from secure monitor is a 32-bit signed integer. This patch changes
+> the type of the return value of the function meson_sm_call().
+> 
+> 2. Now, when meson_sm_call() returns a 32-bit signed integer, we need
+> to ensure that this value is not negative. It is important to check
+> that the return value is not negative in both the meson_sm_call_read()
+> and meson_sm_call_write() functions.
+> 
+> [...]
 
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/drivers)
 
---sbcpezxsgpyrgvfn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[1/1] drivers: meson: sm: correct meson_sm_* API retval handling
+      https://git.kernel.org/amlogic/c/0d423c4a78984dd02f6596d6fd9dd40446eec517
 
-Hi
+These changes has been applied on the intermediate git tree [1].
 
-(Removing most of the context that got scrambled)
+The v6.7/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
 
-On Thu, Sep 07, 2023 at 01:40:02PM +0200, Daniel Stone wrote:
-> Yeah, this is what our experience with Mesa (in particular) has taught us.
->=20
-> Having 100% of the tests pass 100% of the time on 100% of the platforms i=
-s a
-> great goal that everyone should aim for. But it will also never happen.
->=20
-> Firstly, we're just not there yet today. Every single GPU-side DRM driver
-> has userspace-triggerable faults which cause occasional errors in GL/Vulk=
-an
-> tests. Every single one. We deal with these in Mesa by retrying; if we
-> didn't retry, across the breadth of hardware we test, I'd expect 99% of
-> should-succeed merges to fail because of these intermittent bugs in the D=
-RM
-> drivers.
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
 
-So the plan is only to ever test rendering devices? It should have been
-made clearer then.
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
 
-> We don't have the same figure for KMS - because we don't test it - but
-> I'd be willing to bet no driver is 100% if you run tests often enough.
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
 
-And I would still consider that a bug that we ought to fix, and
-certainly not something we should sweep under the rug. If half the tests
-are not running on a driver, then fine, they aren't. I'm not really
-against having failing tests, I'm against not flagging unreliable tests
-on a given hardware as failing tests.
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
-> Secondly, we will never be there. If we could pause for five years and sit
-> down making all the current usecases for all the current hardware on the
-> current kernel run perfectly, we'd probably get there. But we can't: ther=
-e's
-> new hardware, new userspace, and hundreds of new kernel trees.
+-- 
+Neil
 
-Not with that attitude :)
-
-I'm not sure it's actually an argument, really. 10 years ago, we would
-never have been at "every GPU on the market has an open-source driver"
-here. 5 years ago, we would never have been at this-series-here. That
-didn't stop anyone making progress, everyone involved in that thread
-included.
-
-> Even without the first two, what happens when the Arm SMMU maintainers
-> (choosing a random target to pick on, sorry Robin) introduce subtle
-> breakage which makes a lot of tests fail some of the time? Do we
-> refuse to backmerge Linus into DRM until it's fixed, or do we disable
-> all testing on Arm until it's fixed? When we've done that, what
-> happens when we re-enable testing, and discover that a bunch of tests
-> get broken because we haven't been testing?
-
-I guess that's another thing that needs to be made clearer then. Do you
-want to test Mesa, or the kernel?
-
-For Mesa, I'd very much expect to rely on a stable kernel, and for the
-kernel on a stable Mesa.
-
-And if we're testing the kernel, then let's turn it the other way
-around. How are we even supposed to detect those failures in the first
-place if tests are flagged as unreliable?
-
-No matter what we do here, what you describe will always happen. Like,
-if we do flag those tests as unreliable, what exactly prevents another
-issue to come on top undetected, and what will happen when we re-enable
-testing?
-
-On top of that, you kind of hinted at that yourself, but what set of
-tests will pass is a property linked to a single commit. Having that
-list within the kernel already alters that: you'll need to merge a new
-branch, add a bunch of fixes and then change the test list state. You
-won't have the same tree you originally tested (and defined the test
-state list for).
-
-It might or might not be an issue for Linus' release, but I can
-definitely see the trouble already for stable releases where fixes will
-be backported, but the test state list certainly won't be updated.
-
-> Thirdly, hardware is capricious. 'This board doesn't make it to u-boot' i=
-s a
-> clear infrastructure error, but if you test at sufficient scale, cold sol=
-der
-> or failing caps surface way more often than you might think. And you can't
-> really pick those out by any other means than running at scale, dealing w=
-ith
-> non-binary results, and looking at the trends over time. (Again this is
-> something we do in Mesa - we graph test failures per DUT, look for outlie=
-rs,
-> and pull DUTs out of the rotation when they're clearly defective. But that
-> only works if you actually run enough tests on them in the first place to
-> discover trends - if you stop at the first failed test, it's impossible to
-> tell the difference between 'infuriatingly infrequent kernel/test bug?' a=
-nd
-> 'cracked main board maybe?'.)
->=20
-> What we do know is that we _can_ classify tests four ways in expectations.
-> Always-passing tests should always pass. Always-failing tests should alwa=
-ys
-> fail (and update the expectations if you make them pass). Flaking tests w=
-ork
-> often enough that they'll always pass if you run them a couple/few times,
-> but fail often enough that you can't rely on them. Then you just skip tes=
-ts
-> which exhibit catastrophic failure i.e. local DoS which affects the whole
-> test suite.
->=20
-> By keeping those sets of expectations, we've been able to keep Mesa pretty
-> clear of regressions, whilst having a very clear set of things that should
-> be fixed to point to. It would be great if those set of things were zero,
-> but it just isn't. Having that is far better than the two alternatives:
-> either not testing at all (obviously bad), or having the test always be r=
-ed
-> so it's always ignored (might as well just not test).
-
-Isn't that what happens with flaky tests anyway? Even more so since we
-have 0 context when updating that list.
-
-I've asked a couple of times, I'll ask again. In that other series, on
-the MT8173, kms_hdmi_inject@inject-4k is setup as flaky (which is a KMS
-test btw).
-
-I'm a maintainer for that part of the kernel, I'd like to look into it,
-because it's seriously something that shouldn't fail, ever, the hardware
-isn't involved.
-
-How can I figure out now (or worse, let's say in a year) how to
-reproduce it? What kernel version was affected? With what board? After
-how many occurences?
-
-Basically, how can I see that the bug is indeed there (or got fixed
-since), and how to start fixing it?
-
-And then repeat for any other test listed in there.
-
-I got no other reply before because I very well know the answer: nobody
-knows. And that's a serious issue to me, because that effectively means
-that the flaky test list will only ever increase (since we can't even
-check that it's fixed, and the CI infrastructure won't check that it got
-fixed either), and we won't be able to address any of the bugs listed
-there.
-
-Maxime
-
---sbcpezxsgpyrgvfn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZP7fFQAKCRDj7w1vZxhR
-xfmbAPsGFXkWn8teA+2byA7oDzD3ZNjvw+OEQL7K5iF0J77leQEA+UdATLwr99dy
-m3NfwxhPXgiA66FHzZlOxiB1N+f8WwU=
-=TOo0
------END PGP SIGNATURE-----
-
---sbcpezxsgpyrgvfn--
-
-
---===============7531728959632786270==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7531728959632786270==--
-
