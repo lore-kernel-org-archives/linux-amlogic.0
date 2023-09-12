@@ -4,117 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53699CA0ECA
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Sep 2023 08:37:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBC50CA0ED4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Sep 2023 11:38:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=2rfOVV/k9CbWGcqr0uhoHwVh0BntNNGjgp8bHBOJFs4=; b=wJmU7cVfBlTSoCAIsLn6cmCCfc
-	v62TnmdI3RLKX80lRFn4WY4XeV/IPhz0rYCZ0MhxdpwbMZ2bJgSSvyLa99M5y6T+n16UXVgl2UVOy
-	IqXC2ea1D6cbIQIoUHssAXjaa9AWneu6bYHnSPDy0yaeLWJfhCPfLWy+TyDkUO6dU6+PnEMeLR4tG
-	+Z0iKXH2dVu+K0hOphKeXAL3kXLWnNIxhBOxta9kXczPIYGATdCKhBrGyNDT0PKQIROEnENuFSw/u
-	Vv5+zHyLUVSnxrWRJclNsHoM+Da/U4UsImA4agRWUC9SrEVGRqdeITwm9jeWwI+loVl7a15qQ4vwR
-	0mcAFuLw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=bK7iCelRcg1TCEeC7AANF+Uum1+rBw0rlGk6kENsjL0=; b=QrHQF0VMM7BC36
+	cesLXjgpI4slQ+NmJ4LyxOWI7mylYaOObLzRHhaQaxvcy1zSHvwgSwUJOR8Nuy78zYyN2JnJBpKLF
+	dhBZeKp25wuSVehuBN6U1SoguvvswVGaeNptI4M9jvcRg4U7KmWwDYa7quu+YMEOlJKSpEPgpW4Ab
+	8NaLR+iC4Ij4RvTmI2xFVVOoX4MZFFjFds9Cdu9rmdq+TI0hw0MbGdvKPcUcmKjyCICjzAAQ6SOse
+	yJcMkqIzSUljpQ3FFqfKwPwUQp5NY7ZWRjw3kdGoSnDlwMUlyxE7/M4RhYf3Q7BFc+xoUGqT9m6ot
+	SDK9CZUjaHCY3XEBTi8Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qfyt6-002bAO-2o;
-	Tue, 12 Sep 2023 08:36:48 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1qg1ic-003EBW-28;
+	Tue, 12 Sep 2023 11:38:10 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qfyt4-002b8n-15
-	for linux-amlogic@lists.infradead.org;
-	Tue, 12 Sep 2023 08:36:47 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-401bdff4cb4so57207345e9.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 12 Sep 2023 01:36:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694507802; x=1695112602; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YDYOCa6xctYXF6LIcPiJ4hYpbG9p0QfDxLuxAJn4eSc=;
-        b=so0xYA/6BrB6CJKSM/CXl/YmFVnL0dOOitJa6A35IgzsmIga/1Iu/BBIF+fqLDeOjr
-         ZqycOdTNJMIh+PBI5puMCgcVONZqqxHNLKYbOU4wxE6wqo3sX0Ax0odXjsO2dyokyvF5
-         k3arS8yt7ikR6m66QhdsSaILlXymA6BwqwWPJeTWSmKF7uUFKQWDMKjAWl+nx9l+CDXm
-         zYmeSfakp9JqE9rLBjYonTtWNHKrwvxcURptYANADpHabQgCtt6jVR8GCdmxuWlfgWqe
-         otoP9SbCILbKBzEI4eHuk+Zj/oNbEx7hC5K6V1qP3NWRF66vBe5OwWJ2RgRg69xA6eDT
-         XHrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694507802; x=1695112602;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=YDYOCa6xctYXF6LIcPiJ4hYpbG9p0QfDxLuxAJn4eSc=;
-        b=u5+vyv7E2AmELelMA5tVX7mx+ivGrHicKpPupu6gj8gQbrBszK400nu8pAqRuZdw+Z
-         9PqcwGD0OOgwj6o2MxEJw1X/vPr713gYu+foEE9+y7btJ8f8+L8fn+CCJqVLZImcBwi4
-         b5KFOa/pEGQ4zAUKJ/gfkjqMb+btlksD1VXHF6JLbEtoFHzG42jIbSK5iJREd+yEU2C+
-         UvFfsKxEMoBfA2zlzg0p+QipU/8eStE9+mfwFWRu79PdpiDZDSUmhtmSdR1j7AnL/s1b
-         RT2Jp0YCbks1iUOsLDSIH9lQ+9/vjQ4jdDUAUnX5zUnicZexL3hTfdr0jkHSdGf9V1eT
-         tj7A==
-X-Gm-Message-State: AOJu0YxqfmaFNsPNVOAbHsbPqb5MHK041MJyyqo7nXbrFZHfW13+ZidY
-	CEPsb8GVWefjqUzZXoGDFlIDQw==
-X-Google-Smtp-Source: AGHT+IHFuzosoThYKD/AZNkdK3+DmtTy0iulfjfbmAF8jtEnRCTfTfP3MynNUGectudSMe3tSUQfmQ==
-X-Received: by 2002:a05:600c:4a11:b0:402:bcac:5773 with SMTP id c17-20020a05600c4a1100b00402bcac5773mr10099570wmp.38.1694507802214;
-        Tue, 12 Sep 2023 01:36:42 -0700 (PDT)
-Received: from [192.168.7.189] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id n10-20020a05600c294a00b003fefaf299b6sm12171135wmd.38.2023.09.12.01.36.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Sep 2023 01:36:41 -0700 (PDT)
-Message-ID: <5bb7dc93-66dd-4b7b-8c2f-89a9b249daae@linaro.org>
-Date: Tue, 12 Sep 2023 10:36:40 +0200
+	id 1qg1iY-003EAp-33;
+	Tue, 12 Sep 2023 11:38:08 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 85CC7B81CE1;
+	Tue, 12 Sep 2023 11:38:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 574B7C433C7;
+	Tue, 12 Sep 2023 11:37:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1694518684;
+	bh=eC1SKY1lRRQfbXqU3JXJ7zM40IsYGNqnW2q2A+2NZbo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Qp5d0DmQi1Kak77khGdhzJq0maxBWwA/APer/0UA/i+af64CXkQNjok7OvrRZ9pcS
+	 kLDVlQ9CQ9CEOAL0v0gqLz4173DCXaRgmA9icAo9JLUZO/I/OM2PgeyMCFJvDf1eZD
+	 k5S25O93pmDhRwjJ24pvhiTzRpYNqDdNPu73DeQUDJ14o//hEscNy2REYwIqxzndtH
+	 BJZMmaqspVvTJgo/RRlX2FfGUht2Q2L6/n7MsHLh+eZXKRqLQRKyKyW5a357qExokc
+	 eSy1WIRjW0fKa1p0D4h0fnCKDLEZ954EF+7CRGG32wEiHOepDGjSSO7v+8PyiCE0fX
+	 Z5pM2Z4weq6Fg==
+From: Mark Brown <broonie@kernel.org>
+To: Li Zetao <lizetao1@huawei.com>
+Cc: andrew@aj.id.au, angelogioacchino.delregno@collabora.com, 
+ avifishman70@gmail.com, bcm-kernel-feedback-list@broadcom.com, 
+ benjaminfair@google.com, chin-ting_kuo@aspeedtech.com, clg@kaod.org, 
+ conor.dooley@microchip.com, daire.mcnamara@microchip.com, 
+ fancer.lancer@gmail.com, florian.fainelli@broadcom.com, heiko@sntech.de, 
+ jbrunet@baylibre.com, joel@jms.id.au, khilman@baylibre.com, 
+ linus.walleij@linaro.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ linux-mediatek@lists.infradead.org, linux-riscv@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-rpi-kernel@lists.infradead.org, 
+ linux-spi@vger.kernel.org, martin.blumenstingl@googlemail.com, 
+ matthias.bgg@gmail.com, neil.armstrong@linaro.org, olteanv@gmail.com, 
+ openbmc@lists.ozlabs.org, rjui@broadcom.com, sbranden@broadcom.com, 
+ tali.perry1@gmail.com, tmaimon77@gmail.com, venture@google.com, 
+ yuenn@google.com
+In-Reply-To: <20230823133938.1359106-1-lizetao1@huawei.com>
+References: <20230822131237.1022815-1-lizetao1@huawei.com>
+ <20230823133938.1359106-1-lizetao1@huawei.com>
+Subject: Re: [PATCH -next v2 00/25] spi: Use devm_clk_get_*() helper
+ function to simplify the drivers.
+Message-Id: <169451867563.2398433.2879364442627175413.b4-ty@kernel.org>
+Date: Tue, 12 Sep 2023 12:37:55 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: reset: Add compatible and DT bindings
- for Amlogic C3 Reset Controller
-Content-Language: en-US, fr
-To: Zelong Dong <Zelong.Dong@amlogic.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
- Rob Herring <robh+dt@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>
-Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, kelvin.zhang@amlogic.com
-References: <20230719060954.14864-1-zelong.dong@amlogic.com>
- <20230719060954.14864-2-zelong.dong@amlogic.com>
- <f7b72ee90009f6749700a7bd79a3a63786a82a32.camel@pengutronix.de>
- <55cbdbba-39c6-7415-37db-97d2c35412cb@linaro.org>
- <076b59c0-7585-ea98-014c-cd70f92df002@amlogic.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <076b59c0-7585-ea98-014c-cd70f92df002@amlogic.com>
+X-Mailer: b4 0.13-dev-099c9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230912_013646_399050_6512CDE6 
-X-CRM114-Status: GOOD (  14.89  )
+X-CRM114-CacheID: sfid-20230912_043807_269508_5953A236 
+X-CRM114-Status: GOOD (  15.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,54 +84,103 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgpPbiAxMi8wOS8yMDIzIDA4OjM3LCBaZWxvbmcgRG9uZyB3cm90ZToKPiDlnKggMjAyMy83
-LzMxIDE3OjE3LCBOZWlsIEFybXN0cm9uZyDlhpnpgZM6Cj4+IE9uIDI4LzA3LzIwMjMgMTc6NDks
-IFBoaWxpcHAgWmFiZWwgd3JvdGU6Cj4+PiBPbiBNaSwgMjAyMy0wNy0xOSBhdCAxNDowOSArMDgw
-MCwgemVsb25nIGRvbmcgd3JvdGU6Cj4+Pj4gRnJvbTogWmVsb25nIERvbmcgPHplbG9uZy5kb25n
-QGFtbG9naWMuY29tPgo+Pj4+Cj4+Pj4gQWRkIG5ldyBjb21wYXRpYmxlIGFuZCBEVCBiaW5kaW5n
-cyBmb3IgQW1sb2dpYyBDMyBSZXNldCBDb250cm9sbGVyCj4+Pj4KPj4+PiBTaWduZWQtb2ZmLWJ5
-OiBaZWxvbmcgRG9uZyA8emVsb25nLmRvbmdAYW1sb2dpYy5jb20+Cj4+Pj4gLS0tCj4+Pj4gwqAg
-Li4uL2JpbmRpbmdzL3Jlc2V0L2FtbG9naWMsbWVzb24tcmVzZXQueWFtbMKgwqAgfMKgwqAgMSAr
-Cj4+Pj4gwqAgaW5jbHVkZS9kdC1iaW5kaW5ncy9yZXNldC9hbWxvZ2ljLGMzLXJlc2V0LmjCoCB8
-IDExOSArKysrKysrKysrKysrKysrKysKPj4+PiDCoCAyIGZpbGVzIGNoYW5nZWQsIDEyMCBpbnNl
-cnRpb25zKCspCj4+Pj4gwqAgY3JlYXRlIG1vZGUgMTAwNjQ0IGluY2x1ZGUvZHQtYmluZGluZ3Mv
-cmVzZXQvYW1sb2dpYyxjMy1yZXNldC5oCj4+Pj4KPj4+PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRh
-dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Jlc2V0L2FtbG9naWMsbWVzb24tcmVzZXQueWFtbCBi
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9yZXNldC9hbWxvZ2ljLG1lc29uLXJl
-c2V0LnlhbWwKPj4+PiBpbmRleCBkM2ZkZWU4OWQ0ZjguLmYwYzZjMGRmMGNlMyAxMDA2NDQKPj4+
-PiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcmVzZXQvYW1sb2dpYyxt
-ZXNvbi1yZXNldC55YW1sCj4+Pj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL3Jlc2V0L2FtbG9naWMsbWVzb24tcmVzZXQueWFtbAo+Pj4+IEBAIC0xOCw2ICsxOCw3IEBA
-IHByb3BlcnRpZXM6Cj4+Pj4gwqDCoMKgwqDCoMKgwqAgLSBhbWxvZ2ljLG1lc29uLWF4Zy1yZXNl
-dCAjIFJlc2V0IENvbnRyb2xsZXIgb24gQVhHIGFuZCBjb21wYXRpYmxlIFNvQ3MKPj4+PiDCoMKg
-wqDCoMKgwqDCoCAtIGFtbG9naWMsbWVzb24tYTEtcmVzZXQgIyBSZXNldCBDb250cm9sbGVyIG9u
-IEExIGFuZCBjb21wYXRpYmxlIFNvQ3MKPj4+PiDCoMKgwqDCoMKgwqDCoCAtIGFtbG9naWMsbWVz
-b24tczQtcmVzZXQgIyBSZXNldCBDb250cm9sbGVyIG9uIFM0IGFuZCBjb21wYXRpYmxlIFNvQ3MK
-Pj4+PiArwqDCoMKgwqDCoCAtIGFtbG9naWMsYzMtcmVzZXQgIyBSZXNldCBDb250cm9sbGVyIG9u
-IEMzIGFuZCBjb21wYXRpYmxlIFNvQ3MKPj4+Pgo+Pj4+IMKgwqDCoCByZWc6Cj4+Pj4gwqDCoMKg
-wqDCoCBtYXhJdGVtczogMQo+Pj4+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2R0LWJpbmRpbmdzL3Jl
-c2V0L2FtbG9naWMsYzMtcmVzZXQuaCBiL2luY2x1ZGUvZHQtYmluZGluZ3MvcmVzZXQvYW1sb2dp
-YyxjMy1yZXNldC5oCj4+Pj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQKPj4+PiBpbmRleCAwMDAwMDAw
-MDAwMDAuLmQ5MTI3ODYzZjYwMwo+Pj4+IC0tLSAvZGV2L251bGwKPj4+PiArKysgYi9pbmNsdWRl
-L2R0LWJpbmRpbmdzL3Jlc2V0L2FtbG9naWMsYzMtcmVzZXQuaAo+Pj4KPj4+IEdpdmVuIHRoYXQg
-dGhpcyBpcyBvbmx5IGluY2x1ZGVkIGJ5Cj4+PiBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMv
-YW1sb2dpYy1jMy5kdHNpLCBzaG91bGQgdGhpcyBoZWFkZXIgYmUKPj4+IG1vdmVkIHRvIGFyY2gv
-YXJtNjQvYm9vdC9kdHMvYW1sb2dpYyA/Cj4+Cj4+IE1heWJlIEkgbWlzc2VkIHNvbWV0aGluZywg
-YnV0IHNpbmNlIHdoZW4gc2hvdWxkIHdlIG1vdmUgYmluZGluZ3MgaGVhZGVycyB0byBhcmNoL3h4
-eC9ib290L2R0cy92ZW5kb3IgPwo+Pgo+PiBOZWlsCj4+Cj4+Pgo+Pj4gcmVnYXJkcwo+Pj4gUGhp
-bGlwcAo+Pgo+IEhpLAo+IEl0J3MgYmVlbiBhIHdoaWxlLCBob3cgd2lsbCB3ZSBkZWFsIHdpdGgg
-dGhpcyBwYXRjaCA/Cj4gU2hvdWxkIHdlIGxldCB0aGlzIHBhdGNoIGFwcGx5IGZpcnN0PyBJZiBB
-bWxvZ2ljIHJlc2V0IGJpbmRpbmdzIGhlYWRlcnMgbmVlZCB0byBiZSBtb3ZlZCB0byBhcmNoL3h4
-eC9ib290L2R0cy92ZW5kb3IsIGNvdWxkIHdlIGFwcGx5IGl0IGluIGEgc2VwYXJhdGUgY2hhbmdl
-PwoKUGxlYXNlIHJlYmFzZSBvbiB2Ni42LXJjMSBhbmQgcmVzZW5kIHdpdGggYWxsIHJldmlldy9h
-Y2sgdGFncyBjb2xsZWN0ZWQuCgpJIHN0aWxsIGRvbid0IHVuZGVyc3RhbmQgd2h5IHRoZSBiaW5k
-aW5ncyBoZWFkZXIgc2hvdWxkIGdvIGludG8gYXJjaC94eHgvYm9vdC9kdHMvdmVuZG9yLgoKTmVp
-bAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgt
-YW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0
-dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On Wed, 23 Aug 2023 21:39:13 +0800, Li Zetao wrote:
+> Commit 7ef9651e9792 ("clk: Provide new devm_clk helpers for prepared
+> and enabled clocks") provides a new helper function for prepared and
+> enabled clocks when a driver keeps a clock prepared (or enabled) during
+> the whole lifetime of the driver. So where drivers get clocks and enable
+> them immediately, it can be combined into a single function
+> devm_clk_get_*(). Moreover, the unprepare and disable function
+> has been registered to devm_clk_state, and before devm_clk_state is
+> released, the clocks will be unprepareed and disable, so it is unnecessary
+> to unprepare and disable clocks explicitly when remove drivers or in the
+> error handling path.
+> 
+> [...]
+
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[01/25] spi: ar934x: Use helper function devm_clk_get_enabled()
+        commit: 1d3ea34b7b69b2cbdcc82f1d399705c06ea5f748
+[02/25] spi: armada-3700: Use helper function devm_clk_get_prepared()
+        commit: f918b3a67ccbcf326a80100c17e107eece5df868
+[03/25] spi: aspeed: Use helper function devm_clk_get_enabled()
+        commit: 9ee8fbc05ef0b69e8cb4295b2663e044dd3868a3
+[04/25] spi: ath79: Use helper function devm_clk_get_enabled()
+        commit: b3422ea3913e27fd43a7a1883f358cb20599289e
+[05/25] spi: spi-axi-spi-engine: Use helper function devm_clk_get_enabled()
+        commit: a08199b309f833fd4221ab5ee2391c791fe26385
+[06/25] spi: bcm2835: Use helper function devm_clk_get_enabled()
+        commit: ba85f5fad849821bfce0ee154a72df7e2376c5eb
+[07/25] spi: bcm2835aux: Use helper function devm_clk_get_enabled()
+        commit: 0135a38436111366bc2fe6d3cd82a9c2cc92ce7f
+[08/25] spi: spi-cadence: Use helper function devm_clk_get_enabled()
+        commit: f64b1600f92e786e502cc30d31d9e3c5f2f6d682
+[09/25] spi: spi-cavium-thunderx: Use helper function devm_clk_get_enabled()
+        commit: c32cb76e8d5e487698f8eceb5b53df95a33fe388
+[10/25] spi: davinci: Use helper function devm_clk_get_enabled()
+        commit: 9dc2aa96a3533215fbed9cf1297f7aa70dae840b
+[11/25] spi: dw-bt1: Use helper function devm_clk_get_enabled()
+        commit: 10c3937890be2c53bfa4aaf3b22a46749857f86a
+[12/25] spi: dw-mmio: Use helper function devm_clk_get_*()
+        commit: 349112b6769ec0018404f87dd4632f8ea393fcaf
+[13/25] spi: spi-fsl-dspi: Use helper function devm_clk_get_enabled()
+        commit: 4812bc31af2b523d4da8386a524a2cd2f6f5919b
+[14/25] spi: lantiq-ssc: Use helper function devm_clk_get_enabled()
+        commit: e2b9622b2a3d058e7d06827b99487b27f777b9c2
+[15/25] spi: meson-spicc: Use helper function devm_clk_get_enabled()
+        commit: 7ef51102d32ddc4776b2cdd583fe84afb84c823f
+[16/25] spi: spi-meson-spifc: Use helper function devm_clk_get_enabled()
+        commit: c45fd1217b38048332c4f5bff8bfb7c1fe6ab6dd
+[17/25] spi: microchip-core-qspi: Use helper function devm_clk_get_enabled()
+        commit: e922f3fff21445117e9196bd8e940ad8e15ca8c7
+[18/25] spi: microchip-core: Use helper function devm_clk_get_enabled()
+        commit: 605204fcb9c49818a8a7e533147061a305ac39e3
+[19/25] spi: mtk-snfi: Use helper function devm_clk_get_enabled()
+        commit: a06b6935f10267a300be724dca11226d6d519156
+[20/25] spi: npcm-fiu: Use helper function devm_clk_get_enabled()
+        commit: 82c4fadb0b957c817b5a3fcc05dc774bf32a4d07
+[21/25] spi: orion: Use helper function devm_clk_get_enabled()
+        commit: bbd0a66b85fe860e8b6acfb1739d15b517a4f6fb
+[22/25] spi: pic32-sqi: Use helper function devm_clk_get_enabled()
+        commit: 909d4cd6bc316e6cd7958832f3efe9e2fd51dcbf
+[23/25] spi: pic32: Use helper function devm_clk_get_enabled()
+        commit: 6b6cc88c4e5b42d2ba6af43152af6d9d96872ee8
+[24/25] spi: spl022: Use helper function devm_clk_get_enabled()
+        commit: 9351339c1a99cca47e6fbeef88b1ef6438d36127
+[25/25] spi: rockchip: Use helper function devm_clk_get_enabled()
+        commit: d6c612a34740118855cd1c8acc4339adea686266
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
