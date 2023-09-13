@@ -4,28 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2F02CA550F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Sep 2023 08:10:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 502C6CA5506
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Sep 2023 08:10:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Cj63GTg7wfSv1rdkXk9E8sF4ytifkwDXOHZjo/EcPGc=; b=ZyR+tK5H/B5TsI
-	TrWI0YYdmxne7kGIGqUt44oPXTsiXBUE/8ptF+CyyVUCzU2Nj/yfoQR1Zqy7oCdviRTU9xqtJiVUn
-	MQf0UGNbWeDMYava49yysmwO094VRoLrPfRgXs7IXxBgeWK+jdmgooFwtWqoEVeGoEAqTH5UN7/s8
-	qv9m9M5EZ7iUkET5k7oDmtklu/p6JiAxemRIIPtDG+Qj+sTXf+suWLKhyunO7kOHjb+Lqwt2ZbjIs
-	QMHbfWXiOdVGcJev7dTBRZiprEGbTS+fiy7Zwj3epY7UbdBt90pwOgmlrGUwp1JBs1cmSQl0zk+Kh
-	gPSmqbi1lryceHZ3REKA==;
+	List-Owner; bh=n6ERS3p+9T0FmJVklDRweIbKFEXhioccZa6uiDQLEZ8=; b=dYjMMBSkTAfMU+
+	N7Q6tmJeUt03pEc4MRkd6c6KJXohNTitElwhcMyYgEyOjpY775h89JoruO/U6gp8Ooqn0VQI+BpE7
+	YmBufzKYtdTntmtd137EG2KSnyUQhEMgIabSxdki5xtnPvOoAq4I2PD1P1fTvBjE92Kg06tTYIQpU
+	0ZRu19N5N4z5Azhi9bA+/hHRBgYGnI+u3gUF+WYUJeRr7wTMevVnG+mWoQ+gMsrWhfvxl9cIXUcYK
+	fBnyOP0bLWTgeRFzJgS0wTN7+pfXC6rOyvwWVm3vpsYxPVXjSOd9tqPYLr2hmPhwaazP67sIa14OM
+	X7qiYhk2JxFrlRGQ5yww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qgKwx-0052fk-1B;
-	Wed, 13 Sep 2023 08:10:15 +0000
+	id 1qgKwy-0052gS-0w;
+	Wed, 13 Sep 2023 08:10:16 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qgKwq-0052b1-32;
-	Wed, 13 Sep 2023 08:10:10 +0000
+	id 1qgKws-0052b1-1x;
+	Wed, 13 Sep 2023 08:10:11 +0000
 Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 13 Sep 2023
  16:09:47 +0800
@@ -37,17 +37,17 @@ To: <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>,
 CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
 	Huqiang Qin <huqiang.qin@amlogic.com>
-Subject: [PATCH 2/3] irqchip: Add support for Amlogic-T7 SoCs
-Date: Wed, 13 Sep 2023 16:09:23 +0800
-Message-ID: <20230913080924.3336391-3-huqiang.qin@amlogic.com>
+Subject: [PATCH 3/3] arm64: dts: Add gpio_intc node for Amlogic-T7 SoCs
+Date: Wed, 13 Sep 2023 16:09:24 +0800
+Message-ID: <20230913080924.3336391-4-huqiang.qin@amlogic.com>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20230913080924.3336391-1-huqiang.qin@amlogic.com>
 References: <20230913080924.3336391-1-huqiang.qin@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.28.11.83]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230913_011008_977245_B34B538D 
-X-CRM114-Status: UNSURE (   8.58  )
+X-CRM114-CacheID: sfid-20230913_011010_644724_CAAC906C 
+X-CRM114-Status: UNSURE (   6.97  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -65,51 +65,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Amlogic-T7 SoCs support 12 GPIO IRQ lines compared with previous
-serial chips and have something different, details are as below.
-
-IRQ Number:
-- 156      1 pin  on bank TESTN
-- 155:148  8 pins on bank H
-- 147:129 19 pins on bank Y
-- 128:115 14 pins on bank M
-- 114:91  24 pins on bank T
-- 90:77   14 pins on bank Z
-- 76:70    7 pins on bank E
-- 69:57   13 pins on bank D
-- 56:40   17 pins on bank W
-- 39:20   20 pins on bank X
-- 19:13    7 pins on bank C
-- 12:0    13 pins on bank B
+Add GPIO interrupt controller device.
 
 Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
 ---
- drivers/irqchip/irq-meson-gpio.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-index f88df39f4129..9a1791908598 100644
---- a/drivers/irqchip/irq-meson-gpio.c
-+++ b/drivers/irqchip/irq-meson-gpio.c
-@@ -154,6 +154,10 @@ static const struct meson_gpio_irq_params c3_params = {
- 	INIT_MESON_S4_COMMON_DATA(55)
- };
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+index dae3465bd39b..21b2436c47e2 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+@@ -155,6 +155,16 @@ watchdog@2100 {
+ 				clocks = <&xtal>;
+ 			};
  
-+static const struct meson_gpio_irq_params t7_params = {
-+	INIT_MESON_S4_COMMON_DATA(157)
-+};
++			gpio_intc: interrupt-controller@4080 {
++				compatible = "amlogic,t7-gpio-intc",
++					     "amlogic,meson-gpio-intc";
++				reg = <0x0 0x4080 0x0 0x20>;
++				interrupt-controller;
++				#interrupt-cells = <2>;
++				amlogic,channel-interrupts =
++					<10 11 12 13 14 15 16 17 18 19 20 21>;
++			};
 +
- static const struct of_device_id meson_irq_gpio_matches[] __maybe_unused = {
- 	{ .compatible = "amlogic,meson8-gpio-intc", .data = &meson8_params },
- 	{ .compatible = "amlogic,meson8b-gpio-intc", .data = &meson8b_params },
-@@ -165,6 +169,7 @@ static const struct of_device_id meson_irq_gpio_matches[] __maybe_unused = {
- 	{ .compatible = "amlogic,meson-a1-gpio-intc", .data = &a1_params },
- 	{ .compatible = "amlogic,meson-s4-gpio-intc", .data = &s4_params },
- 	{ .compatible = "amlogic,c3-gpio-intc", .data = &c3_params },
-+	{ .compatible = "amlogic,t7-gpio-intc", .data = &t7_params },
- 	{ }
- };
- 
+ 			uart_a: serial@78000 {
+ 				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
+ 				reg = <0x0 0x78000 0x0 0x18>;
 -- 
 2.37.1
 
