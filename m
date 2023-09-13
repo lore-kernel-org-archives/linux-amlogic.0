@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD857CA5505
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Sep 2023 08:10:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4BE7CA5506
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Sep 2023 08:10:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GJw4ar+29hOEBYcktpyK0AeXV/JB2nad8hXzA+0aQsQ=; b=vZ2jlqfQqabYAX
-	6EuEYfNmcGKTjzAY+l1welu14Qhq2XaksYTYpVR2OVLbaXiQnnAWhk89Vio0yfMQbtsJVlCzz05Hi
-	6Qwepf6csrwziSv10gTtoAQxM1+0B7dobNwtMZACGjM45ePKqozIcEwZCN54npwV2Qn7LRosYTJCd
-	ur03tSXzgjs5MRtyXWiPxgOvCGQhfzhH/F2K53rW0cFS2oLH5OkxaizlNqMQDhSBPRBnAQxWdiLm+
-	dsWFwvpkTNPZm9in0yFH18nhbht1N5hEDW1CBr7L6ln/G2Lm4WwPSZ4VbWHS9HZy17vBXxUmyordz
-	O5aGLW0G8YlNWU1o4MbA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=pqkFwAqP6+HvJMPGBddFpmXbSU54OUQOpJXBx6I9UWc=; b=K6NZJPhUAy92kQ
+	zlJQS+rn20a7rS10V3QRo1X8j4dP0QNvrDUljs/ttAkF5bm2eTKu65NIik6qpooUNPE9zngIN7WfL
+	9xY8HucV71Dj7PDfOkZ0+62MrQNqcE8OK70IY/ZoIvzc+t/vT2z3qgVU+++H7GPTLWw2OU8EUC+0u
+	IsOVn9ApBYeeF4qyEjDVj9lW0EpUv1ejOethkDDqGjnjtwiMSWfXtCLeatx3gFeJuvbFGkqD4uLlQ
+	3QbX0smeZii84dbPYQP8sX+X8O0OPC1Rm0EtLQVADNOXPnKqmBE1oWu0QRxKCOAnuLQaX3JYMpkOT
+	WSIkvxDoz9CphhxNK4Ew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qgKwu-0052eU-0t;
-	Wed, 13 Sep 2023 08:10:12 +0000
+	id 1qgKwr-0052dM-0D;
+	Wed, 13 Sep 2023 08:10:09 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qgKwp-0052b1-17;
-	Wed, 13 Sep 2023 08:10:08 +0000
+	id 1qgKwn-0052b1-2M;
+	Wed, 13 Sep 2023 08:10:06 +0000
 Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 13 Sep 2023
- 16:09:46 +0800
+ 16:09:45 +0800
 From: Huqiang Qin <huqiang.qin@amlogic.com>
 To: <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>,
 	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
@@ -37,17 +37,15 @@ To: <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>,
 CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
 	Huqiang Qin <huqiang.qin@amlogic.com>
-Subject: [PATCH 1/3] dt-bindings: interrupt-controller: Add support for Amlogic-T7 SoCs
-Date: Wed, 13 Sep 2023 16:09:22 +0800
-Message-ID: <20230913080924.3336391-2-huqiang.qin@amlogic.com>
+Subject: [PATCH 0/3] Add GPIO interrupt support for Amlogic-T7 SoCs
+Date: Wed, 13 Sep 2023 16:09:21 +0800
+Message-ID: <20230913080924.3336391-1-huqiang.qin@amlogic.com>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230913080924.3336391-1-huqiang.qin@amlogic.com>
-References: <20230913080924.3336391-1-huqiang.qin@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.28.11.83]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230913_011007_383839_45674C9A 
-X-CRM114-Status: UNSURE (   6.85  )
+X-CRM114-CacheID: sfid-20230913_011005_771476_2C9B43E0 
+X-CRM114-Status: UNSURE (   5.54  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -65,26 +63,20 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Update dt-binding document for GPIO interrupt controller
-of Amlogic-T7 SoCs.
+This patch adds GPIO interrupt support for Amloigc-T7 SoC (A311D2)
 
-Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
----
- .../bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml   | 1 +
- 1 file changed, 1 insertion(+)
+Huqiang Qin (3):
+  dt-bindings: interrupt-controller: Add support for Amlogic-T7 SoCs
+  irqchip: Add support for Amlogic-T7 SoCs
+  arm64: dts: Add gpio_intc node for Amlogic-T7 SoCs
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
-index 3d06db98e978..a93744763787 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
-@@ -36,6 +36,7 @@ properties:
-               - amlogic,meson-a1-gpio-intc
-               - amlogic,meson-s4-gpio-intc
-               - amlogic,c3-gpio-intc
-+              - amlogic,t7-gpio-intc
-           - const: amlogic,meson-gpio-intc
- 
-   reg:
+ .../interrupt-controller/amlogic,meson-gpio-intc.yaml  |  1 +
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi            | 10 ++++++++++
+ drivers/irqchip/irq-meson-gpio.c                       |  5 +++++
+ 3 files changed, 16 insertions(+)
+
+
+base-commit: e143016b56ecb0fcda5bb6026b0a25fe55274f56
 -- 
 2.37.1
 
