@@ -4,116 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13DADEDE98F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Sep 2023 08:29:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06CD6EDE99E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Sep 2023 09:55:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=DGCeXS9tkbAeFfp+k+eNQoQHQR1373JZAGWDJaORe/c=; b=0VMGSAIyvi+KPrYaKMK5JxiDzj
-	6urZ7xCeDGybThIvvVO4PXU122V93buixYyuhgLkOffBafgqIpVc73LRfTRW5gKyxG1bj9VV+WctG
-	4tj+3FhoZQWKN6bucR2IM49LcRADyxOWkvwgxZRrJd2Yzc3g8s33JwGyuFKpDEx6umA32fQcQ9yQZ
-	wGkwmwdshwGaf5/f3Dpi4AryMPc7IfAT1a8TZvdvTjRlztqZhficIelzkwjNqbZUgZhJD1/JnhRxS
-	Z8u7Eojafd2VMRj1kXZ+iBgx7szfpdT9bKGI3I45kRR0dh0bE+xvK76LDFaiwtGB6GLBfLSsqFhYh
-	NgrAGCqA==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=HEAusu8J44VFAwFeOYYLM7HzrMuVyWjgpi3/7PPhKKo=; b=mATR1FyVDrCFrJzo2+tTjHAIL7
+	jp0+kBDXpwBD1RmcmFB+c6+RILKQVhpHVxcRfAV/L2kB3hvDQeKx1+0lfpbxhkwivCbF9uSJZ+a9z
+	+NUUc/kHvchS/EdOc5XoILYT7HIXQFwkSb6NKXR4RTtSn5Y0RimtIwNwf93s0CnvCkuC//Qgr3r5M
+	R8hFACw4ABZVJRzlGV0wRULT6i9MWKaN127a0kcvmp2zx/JR+mjAizRsF1Exd1SgD01NMNHlU/PEL
+	Pi5KaA8oR6j5Ak703lVdo7yqpW6H5X5vKzk4fbMjAZ2y5KXhT10oCWwCgKbBrnWi8R0/Pew1y4s+2
+	af6CLVKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qghiK-007hph-1V;
-	Thu, 14 Sep 2023 08:28:40 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1qgj3X-007tYh-2b;
+	Thu, 14 Sep 2023 09:54:39 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qghiC-007hkM-2U
-	for linux-amlogic@lists.infradead.org;
-	Thu, 14 Sep 2023 08:28:39 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3ff1c397405so7243025e9.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 14 Sep 2023 01:28:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694680109; x=1695284909; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9hJvi7Qukr4KTmm3HO3pBuqIIqV4p0lbOZT5NLNK++Y=;
-        b=nOIF32lFEPZDRpngvrjHBTv22OGRGV+wEpuEFfn/HKN3yYPyHrouLElzBPsQtm+lvI
-         kJtKevJpvvD5m7i1sDiW+MPhxACkCIgRedAKIZlATy2p8anpnlNsOP1AMhusEIT0NngW
-         9EqmEZQUgWA+uzJjttTFcU+AJ/h7Eq/aCNSoU/n8WMR5Rccsf6OWkD5oOZXEMF3UeTaA
-         pVVKlkgDKdrCQhiWXgqDOFc+kp+1tIh52z/2ov01iROJTwULN0AwZ2zpbSJx2j17EEYN
-         ishayi9pnvJDD/bFtIGZ4O4YYIERuKCTNQ3Zhz9MG5V1pW1qrhXVkD82tBW1jSTCJk/x
-         IauQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694680109; x=1695284909;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=9hJvi7Qukr4KTmm3HO3pBuqIIqV4p0lbOZT5NLNK++Y=;
-        b=XGfYPQ6ITLHxodXUjmmBuWctWwXQJdzpSoXDfpVetv0NzcEQIcqAaHuTmzpsq7IrSR
-         5kDvjq8sq23TveWaHU5M3iasIO8bARg02vqyYgHWt+chI92Rui8FUg9ykUJj/Kbcpwll
-         E1TY/htytlI20WCCqagQSBo1zSYoTcZfOLMUeqrvs5HsNhctP81W9ZXeyb3+Bo2mux87
-         v7ysAQnVE6beEGx9jC8v7KaYoSbggBaU9blwVzibgu5X73cDh6avkCHJjsMRI8u4fDz5
-         qVOygVUN7zgtRbpFLakA0gZYiwnTz/N8OQ9rC4YHIg8cpySMk4rgcrNbycmm6GDAgTii
-         SuoA==
-X-Gm-Message-State: AOJu0Yxlx8BOMlsWR1aWQTzczo6/5IAppMB3KtnJyGeHt2wdfgHpC5P5
-	58Zqyqye0OVAxKxvEHWyRHDbdw==
-X-Google-Smtp-Source: AGHT+IGzqPPfsCJ9P27YSwn8o4MzKsLD9Do+N7Gae6EQlc1D9zP+DatFOySiIeT5E3Ix3L182ClUzQ==
-X-Received: by 2002:a5d:6184:0:b0:319:7428:9caa with SMTP id j4-20020a5d6184000000b0031974289caamr4201788wru.38.1694680109062;
-        Thu, 14 Sep 2023 01:28:29 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:c61:ffb9:3ed9:c494? ([2a01:e0a:982:cbb0:c61:ffb9:3ed9:c494])
-        by smtp.gmail.com with ESMTPSA id w16-20020adfec50000000b003141a3c4353sm1091493wrn.30.2023.09.14.01.28.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Sep 2023 01:28:28 -0700 (PDT)
-Message-ID: <b0d234a5-62fc-45bb-98b3-bf55523a76cc@linaro.org>
-Date: Thu, 14 Sep 2023 10:28:27 +0200
+	id 1qgj3T-007tXH-2h;
+	Thu, 14 Sep 2023 09:54:38 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by sin.source.kernel.org (Postfix) with ESMTPS id 36094CE1FDD;
+	Thu, 14 Sep 2023 09:54:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2639C433C8;
+	Thu, 14 Sep 2023 09:54:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1694685271;
+	bh=lR+yRGJKoSTyQFNUNag0BMxUiV3pza9vdEDrK6nb8Zg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W0fdktTAB4gCjqO27jQmbg6pGkHa6Q4nAah6LWyGco6f6D0trAIOKtnfvvArkteZT
+	 SBVZ2GEG8+UBZaVOs4RLmiYX9BzCR9UaY4aM2OmTxjJKujpMZXMlayKUDdkZZ2utBb
+	 0jm1hUE/y/uX3coQYg6ppnoh3D1lbCWOcsY84xlKOOAYcBb8K59owvmn+Ksb3jXs8x
+	 lRAIrelmD8PptYdgfpSgDvw/6325fTERGOWuVeaXaAVXYn/kgsujdMorW77nZcnjGo
+	 79LRwOT6zafDQLNgY4qzPBF88cu6tA3hoyJZiIX8rjmpEosD+twAWgwy7l2NEQjxEu
+	 2qRt1YOP5TkyA==
+Date: Thu, 14 Sep 2023 11:54:28 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Daniel Stone <daniel@fooishbar.org>
+Cc: Michel =?utf-8?Q?D=C3=A4nzer?= <michel.daenzer@mailbox.org>, 
+	emma@anholt.net, linux-doc@vger.kernel.org, vignesh.raman@collabora.com, 
+	dri-devel@lists.freedesktop.org, alyssa@rosenzweig.io, jbrunet@baylibre.com, robdclark@google.com, 
+	corbet@lwn.net, khilman@baylibre.com, sergi.blanch.torne@collabora.com, 
+	david.heidelberg@collabora.com, linux-rockchip@lists.infradead.org, 
+	Daniel Stone <daniels@collabora.com>, martin.blumenstingl@googlemail.com, robclark@freedesktop.org, 
+	Helen Koike <helen.koike@collabora.com>, anholt@google.com, linux-mediatek@lists.infradead.org, 
+	matthias.bgg@gmail.com, linux-amlogic@lists.infradead.org, gustavo.padovan@collabora.com, 
+	linux-arm-kernel@lists.infradead.org, angelogioacchino.delregno@collabora.com, 
+	neil.armstrong@linaro.org, guilherme.gallo@collabora.com, linux-kernel@vger.kernel.org, 
+	tzimmermann@suse.de
+Subject: Re: [PATCH v11] drm: Add initial ci/ subdirectory
+Message-ID: <krhnfc4os5nqwi3iixgxwads3jbcgtdcvn7ygxpvd62uaejvsk@mx6tmser7jti>
+References: <zmq7pz7rtz6h765azg5kl2qgjd264yafctx4q474t5tqai57og@cajbcub4yuwr>
+ <5fdf9d29-3f8d-0ee0-027f-57ff3a5cecb8@collabora.com>
+ <CAKMK7uGg6n322UugJwErqF_Dvsbqceqae6SVWV3ZWEOR7x36rQ@mail.gmail.com>
+ <9a2b1ad8-4359-4f12-b4f9-c1de477bc440@collabora.com>
+ <mnjcsiqjqdnvbbkaaz5r4n42e56qsax667r7radzyagnmmfkip@dfi64z5deqzj>
+ <b7d96985-8489-efe2-db67-1f3108e26822@mailbox.org>
+ <5ejq3hjpoy3gxft2jbmoa5m656usetuxcs7g3ezyyiitj67rav@r5jhdz27foat>
+ <550454b8-2e2c-c947-92c5-37f0367661c2@mailbox.org>
+ <os2wvkangif2nwewfbzkuyjm7njp4g3sqj5td3ogbhhjwsrbbd@3jpf6g5hd3z4>
+ <CAPj87rP1sw49Z0HdPhUa-=kDp166RqiuhC9rL+Ef9hpwPD5+JA@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 1/3] dt-bindings: reset: Add compatible and DT bindings
- for Amlogic C3 Reset Controller
-Content-Language: en-US, fr
-To: zelong dong <zelong.dong@amlogic.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
- Rob Herring <robh+dt@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- yonghui.yu@amlogic.com, kelvin.zhang@amlogic.com,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Dmitry Rokosov <ddrokosov@sberdevices.ru>, Rob Herring <robh@kernel.org>
-References: <20230914064018.18790-1-zelong.dong@amlogic.com>
- <20230914064018.18790-2-zelong.dong@amlogic.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20230914064018.18790-2-zelong.dong@amlogic.com>
+In-Reply-To: <CAPj87rP1sw49Z0HdPhUa-=kDp166RqiuhC9rL+Ef9hpwPD5+JA@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230914_012832_809338_C927FED6 
-X-CRM114-Status: GOOD (  14.61  )
+X-CRM114-CacheID: sfid-20230914_025436_237339_1597A810 
+X-CRM114-Status: GOOD (  67.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,168 +86,263 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============9057983975095490646=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 14/09/2023 08:40, zelong dong wrote:
-> From: Zelong Dong <zelong.dong@amlogic.com>
-> 
-> Add new compatible and DT bindings for Amlogic C3 Reset Controller
-> 
-> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->   .../bindings/reset/amlogic,meson-reset.yaml   |   1 +
->   include/dt-bindings/reset/amlogic,c3-reset.h  | 119 ++++++++++++++++++
->   2 files changed, 120 insertions(+)
->   create mode 100644 include/dt-bindings/reset/amlogic,c3-reset.h
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> index d3fdee89d4f8..f0c6c0df0ce3 100644
-> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> @@ -18,6 +18,7 @@ properties:
->         - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
->         - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
->         - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
-> +      - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
->   
->     reg:
->       maxItems: 1
-> diff --git a/include/dt-bindings/reset/amlogic,c3-reset.h b/include/dt-bindings/reset/amlogic,c3-reset.h
-> new file mode 100644
-> index 000000000000..d9127863f603
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/amlogic,c3-reset.h
-> @@ -0,0 +1,119 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-> +/*
-> + * Copyright (c) 2023 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_AMLOGIC_C3_RESET_H
-> +#define _DT_BINDINGS_AMLOGIC_C3_RESET_H
-> +
-> +/* RESET0 */
-> +/*						0-3 */
-> +#define RESET_USBCTRL				4
-> +/*						5-7 */
-> +#define RESET_USBPHY20				8
-> +/*						9 */
-> +#define RESET_USB2DRD				10
-> +#define RESET_MIPI_DSI_HOST			11
-> +#define RESET_MIPI_DSI_PHY			12
-> +/*						13-20 */
-> +#define RESET_GE2D				21
-> +#define RESET_DWAP				22
-> +/*						23-31 */
-> +
-> +/* RESET1 */
-> +#define RESET_AUDIO				32
-> +/*						33-34 */
-> +#define RESET_DDRAPB				35
-> +#define RESET_DDR				36
-> +#define RESET_DOS_CAPB3				37
-> +#define RESET_DOS				38
-> +/*						39-46 */
-> +#define RESET_NNA				47
-> +#define RESET_ETHERNET				48
-> +#define RESET_ISP				49
-> +#define RESET_VC9000E_APB			50
-> +#define RESET_VC9000E_A				51
-> +/*						52 */
-> +#define RESET_VC9000E_CORE			53
-> +/*						54-63 */
-> +
-> +/* RESET2 */
-> +#define RESET_ABUS_ARB				64
-> +#define RESET_IRCTRL				65
-> +/*						66 */
-> +#define RESET_TEMP_PII				67
-> +/*						68-72 */
-> +#define RESET_SPICC_0				73
-> +#define RESET_SPICC_1				74
-> +#define RESET_RSA				75
-> +
-> +/*						76-79 */
-> +#define RESET_MSR_CLK				80
-> +#define RESET_SPIFC				81
-> +#define RESET_SAR_ADC				82
-> +/*						83-87 */
-> +#define RESET_ACODEC				88
-> +/*						89-90 */
-> +#define RESET_WATCHDOG				91
-> +/*						92-95 */
-> +
-> +/* RESET3 */
-> +#define RESET_ISP_NIC_GPV			96
-> +#define RESET_ISP_NIC_MAIN			97
-> +#define RESET_ISP_NIC_VCLK			98
-> +#define RESET_ISP_NIC_VOUT			99
-> +#define RESET_ISP_NIC_ALL			100
-> +#define RESET_VOUT				101
-> +#define RESET_VOUT_VENC				102
-> +/*						103 */
-> +#define RESET_CVE_NIC_GPV			104
-> +#define RESET_CVE_NIC_MAIN			105
-> +#define RESET_CVE_NIC_GE2D			106
-> +#define RESET_CVE_NIC_DW			106
-> +#define RESET_CVE_NIC_CVE			108
-> +#define RESET_CVE_NIC_ALL			109
-> +#define RESET_CVE				110
-> +/*						112-127 */
-> +
-> +/* RESET4 */
-> +#define RESET_RTC				128
-> +#define RESET_PWM_AB				129
-> +#define RESET_PWM_CD				130
-> +#define RESET_PWM_EF				131
-> +#define RESET_PWM_GH				132
-> +#define RESET_PWM_IJ				133
-> +#define RESET_PWM_KL				134
-> +#define RESET_PWM_MN				135
-> +/*						136-137 */
-> +#define RESET_UART_A				138
-> +#define RESET_UART_B				139
-> +#define RESET_UART_C				140
-> +#define RESET_UART_D				141
-> +#define RESET_UART_E				142
-> +#define RESET_UART_F				143
-> +#define RESET_I2C_S_A				144
-> +#define RESET_I2C_M_A				145
-> +#define RESET_I2C_M_B				146
-> +#define RESET_I2C_M_C				147
-> +#define RESET_I2C_M_D				148
-> +/*						149-151 */
-> +#define RESET_SD_EMMC_A				152
-> +#define RESET_SD_EMMC_B				153
-> +#define RESET_SD_EMMC_C				154
-> +
-> +/* RESET5 */
-> +/*						160-172 */
-> +#define RESET_BRG_NIC_NNA			173
-> +#define RESET_BRG_MUX_NIC_MAIN			174
-> +#define RESET_BRG_AO_NIC_ALL			175
-> +/*						176-183 */
-> +#define RESET_BRG_NIC_VAPB			184
-> +#define RESET_BRG_NIC_SDIO_B			185
-> +#define RESET_BRG_NIC_SDIO_A			186
-> +#define RESET_BRG_NIC_EMMC			187
-> +#define RESET_BRG_NIC_DSU			188
-> +#define RESET_BRG_NIC_SYSCLK			189
-> +#define RESET_BRG_NIC_MAIN			190
-> +#define RESET_BRG_NIC_ALL			191
-> +
-> +#endif
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+--===============9057983975095490646==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sweft2f6sgmxlij7"
+Content-Disposition: inline
+
+
+--sweft2f6sgmxlij7
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Tue, Sep 12, 2023 at 02:16:41PM +0100, Daniel Stone wrote:
+> Hopefully less mangled formatting this time: turns out Thunderbird +
+> plain text is utterly unreadable, so that's one less MUA that is
+> actually usable to send email to kernel lists without getting shouted
+> at.
+
+Sorry if it felt that way, it definitely wasn't my intention to shout at
+you. Email is indeed kind of a pain to deal with, and I wanted to keep
+the discussion going.
+
+> On Mon, 11 Sept 2023 at 15:46, Maxime Ripard <mripard@kernel.org> wrote:
+> > On Mon, Sep 11, 2023 at 03:30:55PM +0200, Michel D=E4nzer wrote:
+> > > > There's in 6.6-rc1 around 240 reported flaky tests. None of them ha=
+ve
+> > > > any context. That new series hads a few dozens too, without any con=
+text
+> > > > either. And there's no mention about that being a plan, or a patch
+> > > > adding a new policy for all tests going forward.
+> > >
+> > > That does sound bad, would need to be raised in review.
+> > >
+> > > > Any concern I raised were met with a giant "it worked on Mesa" hand=
+wave
+> > >
+> > > Lessons learned from years of experience with big real-world CI
+> > > systems like this are hardly "handwaving".
+> >
+> > Your (and others) experience certainly isn't. It is valuable, welcome,
+> > and very much appreciated.
+> >
+> > However, my questions and concerns being ignored time and time again
+> > about things like what is the process is going to be like, what is going
+> > to be tested, who is going to be maintaining that test list, how that
+> > interacts with stable, how we can possibly audit the flaky tests list,
+> > etc. have felt like they were being handwaived away.
+>=20
+> Sorry it ended up coming across like that. It wasn't the intent.
+>=20
+> > I'm not saying that because I disagree, I still do on some, but that's
+> > fine to some extent. However, most of these issues are not so much an
+> > infrastructure issue, but a community issue. And I don't even expect a
+> > perfect solution right now, unlike what you seem to think. But I do
+> > expect some kind of plan instead of just ignoring that problem.
+> >
+> > Like, I had to ask the MT8173 question 3 times in order to get an
+> > answer, and I'm still not sure what is going to be done to address that
+> > particular issue.
+> >
+> > So, I'm sorry, but I certainly feel like it here.
+>=20
+> I don't quite see the same picture from your side though. For example,
+> my reading of what you've said is that flaky tests are utterly
+> unacceptable, as are partial runs, and we shouldn't pretend otherwise.
+> With your concrete example (which is really helpful, so thanks), what
+> happens to the MT8173 hdmi-inject test? Do we skip all MT8173 testing
+> until it's perfect, or does MT8173 testing always fail because that
+> test does?
+
+It's not clear to me why that test is even running in the first place?
+There's been some confusion on my side here about what we're going to
+test with this. You've mentioned Mesa and GPUs before, but that's a KMS
+test so there must be more to it.
+
+Either way, it's a relevant test so I guess why not. It turns out that
+the test is indeed flaky, I guess we could add it to the flaky tests
+list.
+
+BUT
+
+I want to have every opportunity to fix whatever that failure is.
+
+So:
+
+  - Is the test broken? If so, we should report it to IGT dev and remove
+    it from the test suite.
+  - If not, is that test failure have been reported to the driver author?
+  - If no answer/fix, we can add it to the flaky tests list, but do we
+    have some way to reproduce the test failure?
+
+The last part is especially critical. Looking at the list itself, I have
+no idea what board, kernel version, configuration, or what the failure
+rate was. Assuming I spend some time looking at the infra to find the
+board and configuration, how many times do I have to run the tests to
+expect to reproduce the failure (and thus consider it fixed if it
+doesn't occur anymore).
+
+Like, with that board and test, if my first 100 runs of the test work
+fine, is it reasonable for me to consider it fixed, or is it only
+supposed to happen once every 1000 runs?
+
+So, ideally, having some (mandatory) metadata in the test lists with a
+link to the bug report, the board (DT name?) it happened with, the
+version and configuration it was first seen with, and an approximation
+of the failure rate for every flaky test list.
+
+I understand that it's probably difficult to get that after the fact on
+the tests that were already merged, but I'd really like to get that
+enforced for every new test going forward.
+
+That should hopefully get us in a much better position to fix some of
+those tests issues. And failing that, I can't see how that's
+sustainable.
+
+And Mesa does show what I'm talking about:
+
+$ find -name *-flakes.txt | xargs git diff --stat  e58a10af640ba58b6001f5c5=
+ad750b782547da76
+ src/amd/ci/deqp-radv-stoney-aco-flakes.txt                        |  18 ++=
++++
+ src/broadcom/ci/deqp-v3d-rpi4-flakes.txt                          |   2 +
+ src/broadcom/ci/deqp-v3dv-rpi4-flakes.txt                         |  15 ++=
+++
+ src/broadcom/ci/deqp-vc4-rpi3-flakes.txt                          |  30 ++=
+++++++
+ src/broadcom/ci/piglit-v3d-rpi4-flakes.txt                        |  14 ++=
+++
+ src/broadcom/ci/piglit-vc4-rpi3-flakes.txt                        |   5 ++
+ src/freedreno/ci/deqp-freedreno-a307-flakes.txt                   |   6 ++
+ src/freedreno/ci/deqp-freedreno-a530-flakes.txt                   |  31 ++=
++++++++
+ src/freedreno/ci/deqp-freedreno-a630-bypass-flakes.txt            |  11 +++
+ src/freedreno/ci/deqp-freedreno-a630-flakes.txt                   | 109 ++=
+++++++++++++++++++++++++++++
+ src/gallium/drivers/freedreno/ci/piglit-freedreno-a530-flakes.txt |  21 ++=
+++++
+ src/gallium/drivers/freedreno/ci/piglit-freedreno-a630-flakes.txt |  31 ++=
++++++++
+ src/gallium/drivers/llvmpipe/ci/deqp-llvmpipe-flakes.txt          |   4 ++
+ src/gallium/drivers/panfrost/ci/deqp-panfrost-g52-flakes.txt      |   6 ++
+ src/gallium/drivers/panfrost/ci/deqp-panfrost-t720-flakes.txt     |   4 ++
+ src/gallium/drivers/panfrost/ci/deqp-panfrost-t760-flakes.txt     |   1 +
+ src/gallium/drivers/panfrost/ci/deqp-panfrost-t860-flakes.txt     |   1 +
+ src/gallium/drivers/radeonsi/ci/piglit-radeonsi-stoney-flakes.txt |   1 +
+ src/gallium/drivers/softpipe/ci/deqp-softpipe-flakes.txt          |   2 +
+ src/gallium/drivers/virgl/ci/deqp-virgl-gl-flakes.txt             |   3 +
+ src/gallium/drivers/zink/ci/deqp-zink-lvp-flakes.txt              |   0
+ src/gallium/drivers/zink/ci/piglit-zink-lvp-flakes.txt            |   0
+ src/gallium/frontends/lavapipe/ci/deqp-lvp-flakes.txt             |   1 +
+ 23 files changed, 316 insertions(+)
+
+In the history of Mesa, there's never been a single test removed from a
+flaky test list.
+
+> Both have their downsides. Not doing any testing has the obvious
+> downside, and means that the driver can get worse until it gets
+> perfect. Always marking the test as failed means that the test results
+> are useless: if failure is expected, then red is good. I mean, say
+> you're contributing a patch to fix some documentation or add a helper
+> to common code which only v3d uses. The test results come back, and
+> your branch is failing tests on MT8173, specifically the
+> hdmi-inject@4k test. What then? Either as a senior contributor you
+> 'know' that's the case, or as a casual contributor you get told 'oh
+> yeah, don't worry about the test results, they always fail'. Both lead
+> to the same outcome, which is that no-one pays any attention to the
+> results, and they get worse.
+
+I believe the above would achieve a better result for us kernel folks,
+while still providing enough flexibility for you.
+
+> What we do agree on is that yes, those tests should absolutely be
+> fixed, and not just swept under the rug. Part of this is having
+> maintainers actually meaningfully own their test results. For example,
+> I'm looking at the expectation lists for the Intel gen in my laptop,
+> and I'm seeing a lot of breakage in blending tests, as well as
+> dual-display fails which include the resolution of my external
+> display.
+
+I just bought a 7900XT and I'm pretty much in the same situation, so I
+definitely feel what you're saying :)
+
+However...
+
+> I'd expect the Intel driver maintainers to look at them, get them
+> fixed, and gradually prune those xfails/flakes down towards zero.
+>=20
+> If the maintainers don't own it though, then it's not going to get
+> fixed. And we are exactly where we are today: broken plane blending
+> and 1440p on KBL, broken EDID injection on MT8173, and broken atomic
+> commits on stoney. Without stronger action from the maintainers (e.g.
+> throwing i915 out of the tree until it has 100% pass 100% of the
+> time), adding testing isn't making the situation better or worse in
+> and of itself. What it _is_ doing though, is giving really clear
+> documentation of the status of each driver, and backing that up by
+> verifying it.
+
+=2E.. I haven't reported any of the failures yet so I don't really expect
+them to be fixed by themselves. That's on me.
+
+> Only maintainers can actually fix the drivers (or the tests tbf). But
+> doing the testing does let us be really clear to everyone what the
+> actual state is, and that way people can make informed decisions too.
+> And the only way we're going to drive the test rate down is by the
+> subsystem maintainers enforcing it.
+
+Just FYI, I'm not on the other side of the fence there, I'd really like
+to have some kind of validation. I talked about it at XDC some years
+ago, and discussed it several people at length over the years. So I'm
+definitely not in the CI-is-bad camp.
+
+> Does that make sense on where I'm (and I think a lot of others are)
+> coming from?
+
+That makes sense from your perspective, but it's not clear to me how you
+can expect maintainers to own the tests if they were never involved in
+the process.
+
+They are not in Cc of the flaky tests patches, they are not reported
+that the bug is failing, how can they own that process if we never
+reached out and involved them?
+
+We're all overworked, you can't expect them to just look at the flaky
+test list every now and then and figure it out.
+
+Maxime
+
+--sweft2f6sgmxlij7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZQLYVAAKCRDj7w1vZxhR
+xcR/AQCjGVSTcMmlQRRKe7TUhLtmNBu++DrSH4M1M1QBgzTdCgEAtO8C8UIAzgQs
+MAoJyRzhO/NlNhWdl+hgIZZcIXzwWgA=
+=pFK3
+-----END PGP SIGNATURE-----
+
+--sweft2f6sgmxlij7--
+
+
+--===============9057983975095490646==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============9057983975095490646==--
+
