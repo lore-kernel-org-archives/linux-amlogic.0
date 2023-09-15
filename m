@@ -4,85 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 807DEEE6423
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Sep 2023 06:57:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB0F2EE6423
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Sep 2023 06:59:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=3Ztk3yQr7fJ7p/prsijdENsPLhTc3h9RVLykCyORnuY=; b=G+D/XxlK+cVJMBwCfPm2elhHWs
-	WaQgcvu3NcYh0aNlTjADEfUAKVy83gZXEkIFNvwJq/dsS32xiNp7Qxllgjfe2FUmUngYDbYhZlLoQ
-	viymz/E3xpvGJ3BRaO+vIX6mMtNa2aiCHuWii2Sh5JJvZHVickim+JseaUU8TqrALqaTVk4s+VXNV
-	b2a5a7NGlYubqP81Egb5XqWSk6cXtChIGBSDcrUzmOzwX6iYXf5Hh06N6yeKWC864b/EgCAKt4OX4
-	oyM+8cDmDSD7cJnH6ILmv7nHcT+OfVHZDzOZTicypbKHq9TvXc9sxHblN6m00tDHlGbwtxE5Owr1z
-	kE7jYoWQ==;
+	bh=AW4rOmXj5f13WdIElrgwNNrJJofpqS25D6AsEucj2wM=; b=HKPK4ziWB6k8ljYpQ/a5lhVByJ
+	eUbA6+X+vKSzrJtCwwXNhQKLMvN8Ks/Ce/QcZn19AHv31+65qZDsExB0/ek08o8z72IrAVLBEl9Ti
+	QiDPthKdvp7s76wjYLLK0iLdpWFPtqCC+v3mkAEZnbMimlwTwHhOob/PsTFAWj9AWM1h+cuczlNIm
+	rpHfzy9LQGndujU/mZL9+o0AmUkONMJM2cbaSmFbwS+IoNhfnMd2fYR17Z3DuY+v7kqJkz6JOT/tv
+	RgElhbprk6N+fp7RZYHbaV3mtCUtvPysPaeSZvL6UNe8pD2n1Fl4cdQrPT16oMiFXtxDq6IPE2Ye8
+	zX+j6THA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qh2l7-009xDk-1v;
-	Fri, 15 Sep 2023 06:56:57 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1qh2nE-009xh0-25;
+	Fri, 15 Sep 2023 06:59:08 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qh2l5-009xCv-19
+	id 1qh2nB-009xfR-2T
 	for linux-amlogic@lists.infradead.org;
-	Fri, 15 Sep 2023 06:56:57 +0000
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-31c7912416bso1612357f8f.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 14 Sep 2023 23:56:52 -0700 (PDT)
+	Fri, 15 Sep 2023 06:59:07 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3ff7d73a6feso20328855e9.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 14 Sep 2023 23:59:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694761011; x=1695365811; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1694761143; x=1695365943; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=j12oxEv4oQ9vPyiNgmw9xBXkHftj9B6rlt22/B5nTIU=;
-        b=Dh2xEfNj1IthRu58ELxVigCxAs7I5h/Ul5btB7ao46zCzvCSqdWOAqct64A9K3mZ3z
-         /hfrVFUy8TkpYvSAJo4ko91hdjOsiXzuBigVQfjHD4aYpVG+cNIHXzFg7WLfsSHFe+P8
-         7foZGUSZW57daYGgQYOYNV6QYiIDxPPQGI05FTiQDAIBU1gAdr3GZ+pFwawhMB3kjf3G
-         mc3I6zRp5Z9aL7or5ZDe6LfvWadESRSgMWzDJKu0OtKfNjWWF5b4+gkMNFVXvRR9gNDH
-         XuyVO8NQHdAfUCpHW5gwFmXh8mMyYqwQ4FDAg/kgKvfQ6Yc0OPPH55gstcDGy64GGM7b
-         oj5w==
+        bh=mt0/vU7tS/I4WdeJ1B6LJJREbXiomv2o0TbUICA5gLw=;
+        b=Y3pjyympOfIblkJbt6Da1XW7SVN9FcMVoRsZfoSp/nu2WmjIQTMlbSr6TmhVD+jVeN
+         IzqsTg/OPRa7sHJKoF6G7K1iKYBMZalrMYxcQUck3kUH40AZJEzrkfzXZ/vlICZTxvao
+         JHjDoxZNybe6RbT8Ti4Fabxofa/drvasxKL4QMCP7V2lJ49Rs62QUYRUmXB9pKkUZ5QM
+         14w8KiM4a4J0cAHnePVFFZqUHIeATidHlk0SILWxIeg6OjiNosoOr8ONp6I3NXp+MD3c
+         qIH85u7DFt2jH1xOC/vgy5L3eVFaCymwBuOEoBN7RvlNyKiv2P3dZBkaQBO6fjxX7AyA
+         WheQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694761011; x=1695365811;
+        d=1e100.net; s=20230601; t=1694761143; x=1695365943;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=j12oxEv4oQ9vPyiNgmw9xBXkHftj9B6rlt22/B5nTIU=;
-        b=m2ghX/X5YXQoTfNJBAkLzVByU6SAIgpcAJZRMAeuLZ78ndwrZKu31Z6YMZd7rsIRke
-         ITuCIdvL3YeMlnvqrLuV5nbjbdIEFTqZ7E5zLypoK3Wb1HHoKTSK0QRUuwygnnyoX6fP
-         M3ec4Vg/Si4Y1/djfXyUraLkg6AaZrJ1LR3PChSNu7chTyK9sjJFkQ3XeGZAL+mb9c4j
-         4u2zECxbyIJxsgAva2YEnnW6tv38q/AlQt2wLp8S1QQ7RRrdo9ayEGzW6CX+8It8929p
-         R3uO4sIgrGX7hTDZoUfcnv2qdTNkjP09636y3j+I62hCmySLB7crGfmpM2gFLsuzo4zQ
-         terw==
-X-Gm-Message-State: AOJu0YwcgE/HtbU7yvXzD5Pi0G4EUku+niOoXy1NcANAhn0FshWNcQtS
-	Va0xJxH0oz34jBZPudGkCvvjIQ==
-X-Google-Smtp-Source: AGHT+IF5bZDW17upZUyQuCXfWlfLN6eyzQLEiOGPo8/YwnqmLsw5emBhRDtJwlH6pFksTMU3pE88Yw==
-X-Received: by 2002:a05:6000:118d:b0:316:efb9:101d with SMTP id g13-20020a056000118d00b00316efb9101dmr712786wrx.25.1694761011484;
-        Thu, 14 Sep 2023 23:56:51 -0700 (PDT)
+        bh=mt0/vU7tS/I4WdeJ1B6LJJREbXiomv2o0TbUICA5gLw=;
+        b=KLMknY+gwGvB7ialpDDxC6Hq9gv7zOOcFfd1YJPWRupCWKUy4x2Mjhr1nS73JNrOdp
+         KByhgc5zxZnw3Z0qeYtnsHr/b93yfgFMiVcS8Jmyf7TllbzAytN0DYzKXBPzaQHXKvhq
+         tYdVAqguoYPKrLUYyuzDu0rDWitHZegHOI7sQowlaf5vn/LkzS5dOLKjQO/0T0u9H+CF
+         RR+lF38a//QHjofpu21LgboW5uzWwuZsKOw+0KMAASqgx5hWf5nnO7/x0nvm1TUBjtkI
+         u4csb3/dGx2Mq0KjU6He1N5abiVPL73HJYeIfAmdsmXJsbRkMTtWJrGqR2xp8Cj3oQN4
+         zG2A==
+X-Gm-Message-State: AOJu0YwBX4jUAg395/OqSO8fPA32ymKcwMu9V/ZJwDMSxLddmuubvkID
+	GG0BQZX1OtzUK0/JQHnRztTF+w==
+X-Google-Smtp-Source: AGHT+IE4jAQc/f0JC4LzXetxAe50ENFFr3PqEcIIEvx8Zg3C7YQLWDUFz7j8SYv1FN1qOLzLY1IAQQ==
+X-Received: by 2002:a7b:c8d0:0:b0:3fe:173e:4a34 with SMTP id f16-20020a7bc8d0000000b003fe173e4a34mr674179wml.40.1694761143262;
+        Thu, 14 Sep 2023 23:59:03 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:990a:74e6:266e:2294? ([2a01:e0a:982:cbb0:990a:74e6:266e:2294])
-        by smtp.gmail.com with ESMTPSA id t18-20020a5d5352000000b0031c3ee933b5sm3598140wrv.108.2023.09.14.23.56.50
+        by smtp.gmail.com with ESMTPSA id x13-20020a05600c21cd00b00402ff8d6086sm3779272wmj.18.2023.09.14.23.59.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Sep 2023 23:56:51 -0700 (PDT)
-Message-ID: <5cd2ed15-949d-40b4-93fd-b1480f557b14@linaro.org>
-Date: Fri, 15 Sep 2023 08:56:49 +0200
+        Thu, 14 Sep 2023 23:59:02 -0700 (PDT)
+Message-ID: <a4b4432b-fdde-4922-8d95-3697807eefdb@linaro.org>
+Date: Fri, 15 Sep 2023 08:59:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH tty v1 37/74] serial: meson: Use port lock wrappers
+Subject: Re: [PATCH] drm/meson: fix memory leak on ->hpd_notify callback
 Content-Language: en-US, fr
-To: John Ogness <john.ogness@linutronix.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Jiri Slaby <jirislaby@kernel.org>, linux-serial@vger.kernel.org,
- Petr Mladek <pmladek@suse.com>, Thomas Gleixner <tglx@linutronix.de>,
- linux-kernel@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Dmitry Rokosov <ddrokosov@sberdevices.ru>, Lucas Tanure <tanure@linux.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-References: <20230914183831.587273-1-john.ogness@linutronix.de>
- <20230914183831.587273-38-john.ogness@linutronix.de>
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Cc: Neil Armstrong <narmstrong@baylibre.com>, Sam Ravnborg
+ <sam@ravnborg.org>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org
+References: <20230914131015.2472029-1-jani.nikula@intel.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -108,10 +103,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20230914183831.587273-38-john.ogness@linutronix.de>
+In-Reply-To: <20230914131015.2472029-1-jani.nikula@intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230914_235655_416438_DFDCCA83 
-X-CRM114-Status: GOOD (  26.49  )
+X-CRM114-CacheID: sfid-20230914_235905_805485_E407CD31 
+X-CRM114-Status: GOOD (  11.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,171 +124,44 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 14/09/2023 20:37, John Ogness wrote:
-> From: Thomas Gleixner <tglx@linutronix.de>
+On 14/09/2023 15:10, Jani Nikula wrote:
+> The EDID returned by drm_bridge_get_edid() needs to be freed.
 > 
-> When a serial port is used for kernel console output, then all
-> modifications to the UART registers which are done from other contexts,
-> e.g. getty, termios, are interference points for the kernel console.
+> Fixes: 0af5e0b41110 ("drm/meson: encoder_hdmi: switch to bridge DRM_BRIDGE_ATTACH_NO_CONNECTOR")
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-amlogic@lists.infradead.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: <stable@vger.kernel.org> # v5.17+
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > 
-> So far this has been ignored and the printk output is based on the
-> principle of hope. The rework of the console infrastructure which aims to
-> support threaded and atomic consoles, requires to mark sections which
-> modify the UART registers as unsafe. This allows the atomic write function
-> to make informed decisions and eventually to restore operational state. It
-> also allows to prevent the regular UART code from modifying UART registers
-> while printk output is in progress.
-> 
-> All modifications of UART registers are guarded by the UART port lock,
-> which provides an obvious synchronization point with the console
-> infrastructure.
-> 
-> To avoid adding this functionality to all UART drivers, wrap the
-> spin_[un]lock*() invocations for uart_port::lock into helper functions
-> which just contain the spin_[un]lock*() invocations for now. In a
-> subsequent step these helpers will gain the console synchronization
-> mechanisms.
-> 
-> Converted with coccinelle. No functional change.
-> 
-> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 > ---
->   drivers/tty/serial/meson_uart.c | 30 +++++++++++++++---------------
->   1 file changed, 15 insertions(+), 15 deletions(-)
 > 
-> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-> index 790d910dafa5..45cc23e9e399 100644
-> --- a/drivers/tty/serial/meson_uart.c
-> +++ b/drivers/tty/serial/meson_uart.c
-> @@ -129,14 +129,14 @@ static void meson_uart_shutdown(struct uart_port *port)
+> UNTESTED
+> ---
+>   drivers/gpu/drm/meson/meson_encoder_hdmi.c | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> index 9913971fa5d2..25ea76558690 100644
+> --- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> +++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> @@ -334,6 +334,8 @@ static void meson_encoder_hdmi_hpd_notify(struct drm_bridge *bridge,
+>   			return;
 >   
->   	free_irq(port->irq, port);
->   
-> -	spin_lock_irqsave(&port->lock, flags);
-> +	uart_port_lock_irqsave(port, &flags);
->   
->   	val = readl(port->membase + AML_UART_CONTROL);
->   	val &= ~AML_UART_RX_EN;
->   	val &= ~(AML_UART_RX_INT_EN | AML_UART_TX_INT_EN);
->   	writel(val, port->membase + AML_UART_CONTROL);
->   
-> -	spin_unlock_irqrestore(&port->lock, flags);
-> +	uart_port_unlock_irqrestore(port, flags);
+>   		cec_notifier_set_phys_addr_from_edid(encoder_hdmi->cec_notifier, edid);
+> +
+> +		kfree(edid);
+>   	} else
+>   		cec_notifier_phys_addr_invalidate(encoder_hdmi->cec_notifier);
 >   }
->   
->   static void meson_uart_start_tx(struct uart_port *port)
-> @@ -238,7 +238,7 @@ static irqreturn_t meson_uart_interrupt(int irq, void *dev_id)
->   {
->   	struct uart_port *port = (struct uart_port *)dev_id;
->   
-> -	spin_lock(&port->lock);
-> +	uart_port_lock(port);
->   
->   	if (!(readl(port->membase + AML_UART_STATUS) & AML_UART_RX_EMPTY))
->   		meson_receive_chars(port);
-> @@ -248,7 +248,7 @@ static irqreturn_t meson_uart_interrupt(int irq, void *dev_id)
->   			meson_uart_start_tx(port);
->   	}
->   
-> -	spin_unlock(&port->lock);
-> +	uart_port_unlock(port);
->   
->   	return IRQ_HANDLED;
->   }
-> @@ -284,7 +284,7 @@ static int meson_uart_startup(struct uart_port *port)
->   	u32 val;
->   	int ret = 0;
->   
-> -	spin_lock_irqsave(&port->lock, flags);
-> +	uart_port_lock_irqsave(port, &flags);
->   
->   	val = readl(port->membase + AML_UART_CONTROL);
->   	val |= AML_UART_CLEAR_ERR;
-> @@ -301,7 +301,7 @@ static int meson_uart_startup(struct uart_port *port)
->   	val = (AML_UART_RECV_IRQ(1) | AML_UART_XMIT_IRQ(port->fifosize / 2));
->   	writel(val, port->membase + AML_UART_MISC);
->   
-> -	spin_unlock_irqrestore(&port->lock, flags);
-> +	uart_port_unlock_irqrestore(port, flags);
->   
->   	ret = request_irq(port->irq, meson_uart_interrupt, 0,
->   			  port->name, port);
-> @@ -341,7 +341,7 @@ static void meson_uart_set_termios(struct uart_port *port,
->   	unsigned long flags;
->   	u32 val;
->   
-> -	spin_lock_irqsave(&port->lock, flags);
-> +	uart_port_lock_irqsave(port, &flags);
->   
->   	cflags = termios->c_cflag;
->   	iflags = termios->c_iflag;
-> @@ -401,7 +401,7 @@ static void meson_uart_set_termios(struct uart_port *port,
->   					    AML_UART_FRAME_ERR;
->   
->   	uart_update_timeout(port, termios->c_cflag, baud);
-> -	spin_unlock_irqrestore(&port->lock, flags);
-> +	uart_port_unlock_irqrestore(port, flags);
->   }
->   
->   static int meson_uart_verify_port(struct uart_port *port,
-> @@ -460,14 +460,14 @@ static int meson_uart_poll_get_char(struct uart_port *port)
->   	u32 c;
->   	unsigned long flags;
->   
-> -	spin_lock_irqsave(&port->lock, flags);
-> +	uart_port_lock_irqsave(port, &flags);
->   
->   	if (readl(port->membase + AML_UART_STATUS) & AML_UART_RX_EMPTY)
->   		c = NO_POLL_CHAR;
->   	else
->   		c = readl(port->membase + AML_UART_RFIFO);
->   
-> -	spin_unlock_irqrestore(&port->lock, flags);
-> +	uart_port_unlock_irqrestore(port, flags);
->   
->   	return c;
->   }
-> @@ -478,7 +478,7 @@ static void meson_uart_poll_put_char(struct uart_port *port, unsigned char c)
->   	u32 reg;
->   	int ret;
->   
-> -	spin_lock_irqsave(&port->lock, flags);
-> +	uart_port_lock_irqsave(port, &flags);
->   
->   	/* Wait until FIFO is empty or timeout */
->   	ret = readl_poll_timeout_atomic(port->membase + AML_UART_STATUS, reg,
-> @@ -502,7 +502,7 @@ static void meson_uart_poll_put_char(struct uart_port *port, unsigned char c)
->   		dev_err(port->dev, "Timeout waiting for UART TX EMPTY\n");
->   
->   out:
-> -	spin_unlock_irqrestore(&port->lock, flags);
-> +	uart_port_unlock_irqrestore(port, flags);
->   }
->   
->   #endif /* CONFIG_CONSOLE_POLL */
-> @@ -559,9 +559,9 @@ static void meson_serial_port_write(struct uart_port *port, const char *s,
->   	if (port->sysrq) {
->   		locked = 0;
->   	} else if (oops_in_progress) {
-> -		locked = spin_trylock(&port->lock);
-> +		locked = uart_port_trylock(port);
->   	} else {
-> -		spin_lock(&port->lock);
-> +		uart_port_lock(port);
->   		locked = 1;
->   	}
->   
-> @@ -573,7 +573,7 @@ static void meson_serial_port_write(struct uart_port *port, const char *s,
->   	writel(val, port->membase + AML_UART_CONTROL);
->   
->   	if (locked)
-> -		spin_unlock(&port->lock);
-> +		uart_port_unlock(port);
->   	local_irq_restore(flags);
->   }
->   
 
-Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
