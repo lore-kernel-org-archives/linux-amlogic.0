@@ -4,102 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33D34CD37A9
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Sep 2023 20:13:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DE49CD37AA
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Sep 2023 20:49:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=tQQhgYJbXTEZ8lESZQhMB+mLg/J6eWRhakLICc5PtNw=; b=xocrFloxtIR7ag
-	Bb/BTZPPMFHw+5Pjj3Tu4AzzoGkNAXRQoZc6JvmgXmB+QH0RRcH4ZpusjkcUcnszPjqNCPB6ap+Vc
-	LIK4O+SYulNh3w3EWLilHtbOPp3kMxW0SrrCoK5l0QVRGmuXJYMiWM4UqfeAVNBGs9EtltwiIl3En
-	88/fI5l+e2K9R5OudJCWcZhkXgoWTH//NCZwNtHF4TxFBgqxdAE7pMn1QL0GLbUxLZLnJF/eeqj/S
-	a7ynzKT5kgQJBtZ30MNFpbYg0Y2lrxm7aqgMRp/3i2F5WqiMHDCsdVMR6boBf3KAtJ6P2F+aheA99
-	nQOpssL5SPJn24C3Baqw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=NQw7La0M/JfhTHA1vzMDCuRkfQy0H5ts3Xbx+ocgvqw=; b=1KBKkc2jqM5zeO
+	eASEZ1GTw/HWhf79fzuYlO2vPkuo4FROkjl7AbmX+jjoe6RWOMAF0qQ0MI8JaxtwCZxGHEECgdaZy
+	fRzPF3pwlqNbrZsRBSzOCLgoUGY5GNnd5ibIFPgWwl6w6+497xr3JZ2+uvhqZwdmxKhAIMcDgohAs
+	BZezTK39+619+k2/cuUXXm5hKQ/gBfDTeQSQsFUJef16fX91cnOjexoDFD8+t7hJCdH+DbNH7US54
+	INgi+tWmkXA5FhIKAP6k9fmhjY1iIkt76gFMRBMcREvhtwIDRn3IFWaAaaN7g3gwLvQ422oVFVlsG
+	OkD/eSko+nlb5ii0/4SQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qhFBS-00BItW-0t;
-	Fri, 15 Sep 2023 20:12:58 +0000
-Received: from mail-pl1-x62e.google.com ([2607:f8b0:4864:20::62e])
+	id 1qhFkN-00BMGY-0F;
+	Fri, 15 Sep 2023 20:49:03 +0000
+Received: from omta34.uswest2.a.cloudfilter.net ([35.89.44.33])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qhFBN-00BIot-1w
+	id 1qhFkA-00BM9I-2O
 	for linux-amlogic@lists.infradead.org;
-	Fri, 15 Sep 2023 20:12:55 +0000
-Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1bdf4752c3cso21254745ad.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 15 Sep 2023 13:12:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1694808771; x=1695413571; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0w8YyWBkyxxpFXFEsJXWeSdcXhaKX7qg2CNvqyy5fgg=;
-        b=UfZchBJHf7/EB1Pf42S4o+0Y/FwU4C18EJN8JXXEE085AcdDGqus7Rjjll3AZyqwLT
-         11cipSnn/rgLe+1gf/1+28cLwj/aK1cappX0E0CY1MoN4CihpqPcvluuEaw8dQY8bHn9
-         diJwO6Ryo7sPqqWoS3shi0zXK4W0/oeVEbbOY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694808771; x=1695413571;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0w8YyWBkyxxpFXFEsJXWeSdcXhaKX7qg2CNvqyy5fgg=;
-        b=QNHu2kg4eMOK+Jx+fZ4o39LCdQ1t3OBNCQOaX7EaTAi0GjMmevkHsQgSCnxfHaUsRT
-         2JQ0bHAmGLv5dLu1eDWW3z/oXwufcrwNp/ZRQb9g43LfKzoccjE+KP2J5jMpCZjycpvR
-         PV1G0E0/LQdJG8ivnZ8rGKc+/FNIUyuYYulvYfI0jqJuR8NtM8a5xTHi+4KD16pCPQsw
-         YjBHDvWm1JE8RmHx1woPyIHeKmJQgRHPtWF2BuY2Gxqv5+RqptwdXzpjNStqBcpyMl/K
-         adRGhkNlPJJ1KRpL9NK4BTElCx5nEqcA38y5CEZra2tqA9IVeYa2eZmYyC0eMN4PiJiT
-         oaWA==
-X-Gm-Message-State: AOJu0YyS3GjOuRH+vWnGnIndbQUgV4hm2hPmQhKKGUj6K9a/5wBsIYB7
-	qYxn7ihUZAzbDcEj1CuRUjgXWw==
-X-Google-Smtp-Source: AGHT+IGEP+XX4TcWFwL6riCxf7EV59zw6/4+xl/jX5TKVK+vuyzRqiTZSZ3ZHUIdArWZJdh1HlOnLQ==
-X-Received: by 2002:a17:902:ecc5:b0:1bf:13a7:d3ef with SMTP id a5-20020a170902ecc500b001bf13a7d3efmr3048022plh.66.1694808771246;
-        Fri, 15 Sep 2023 13:12:51 -0700 (PDT)
-Received: from www.outflux.net (198-0-35-241-static.hfc.comcastbusiness.net. [198.0.35.241])
-        by smtp.gmail.com with ESMTPSA id d9-20020a170902854900b001bd41b70b65sm3864242plo.49.2023.09.15.13.12.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Sep 2023 13:12:50 -0700 (PDT)
-From: Kees Cook <keescook@chromium.org>
-To: Liang Yang <liang.yang@amlogic.com>
-Cc: Kees Cook <keescook@chromium.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-mtd@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Tom Rix <trix@redhat.com>,
-	linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev,
-	linux-hardening@vger.kernel.org
-Subject: [PATCH] mtd: rawnand: meson: Annotate struct meson_nfc_nand_chip with __counted_by
-Date: Fri, 15 Sep 2023 13:12:49 -0700
-Message-Id: <20230915201249.never.509-kees@kernel.org>
-X-Mailer: git-send-email 2.34.1
+	Fri, 15 Sep 2023 20:48:54 +0000
+Received: from eig-obgw-5009a.ext.cloudfilter.net ([10.0.29.176])
+	by cmsmtp with ESMTP
+	id hCX4q9JcUOzKlhFkAqIHYZ; Fri, 15 Sep 2023 20:48:50 +0000
+Received: from gator4166.hostgator.com ([108.167.133.22])
+	by cmsmtp with ESMTPS
+	id hFk9qDIZWr4o2hFk9qiv0k; Fri, 15 Sep 2023 20:48:49 +0000
+X-Authority-Analysis: v=2.4 cv=KIpJsXJo c=1 sm=1 tr=0 ts=6504c331
+ a=1YbLdUo/zbTtOZ3uB5T3HA==:117 a=WzbPXH4gqzPVN0x6HrNMNA==:17
+ a=OWjo9vPv0XrRhIrVQ50Ab3nP57M=:19 a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19
+ a=IkcTkHD0fZMA:10 a=zNV7Rl7Rt7sA:10 a=wYkD_t78qR0A:10 a=NEAV23lmAAAA:8
+ a=BY5PBP3jAAAA:8 a=P-IC7800AAAA:8 a=sozttTNsAAAA:8 a=KKAkSRfTAAAA:8
+ a=IpJZQVW2AAAA:8 a=mK_AVkanAAAA:8 a=JfrnYn6hAAAA:8 a=cm27Pg_UAAAA:8
+ a=VwQbUJbxAAAA:8 a=HvF037n1xESchLcPDVoA:9 a=QEXdDO2ut3YA:10
+ a=gQW0MTutLl7eKD3OLfcZ:22 a=d3PnA9EDa4IxuAV0gXij:22 a=aeg5Gbbo78KNqacMgKqU:22
+ a=cvBusfyB2V15izCimMoJ:22 a=IawgGOuG5U0WyFbmm1f5:22 a=3gWm3jAn84ENXaBijsEo:22
+ a=1CNFftbPRP8L7MoqJWF3:22 a=xmb-EsYY8bH0VWELuYED:22 a=AjGcO6oz07-iQ99wixmX:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=ZgsrTB4ijVLhsjuka7LCf1vP3KJ69ueZYWGwWisaVKA=; b=IRvyZEZ58BWzjvA37uFDtVeDu0
+	SHv9y9Zi52SBnAa4kZgCra9Z/4HYBKrsMNBm7VLU2OyJEHU41Jiz2vVG2PPQ2nqsAh/tqH4viMF8C
+	Ec+u1ZOZ4aOY7EorR/njLUer57jGZnKtX9KxL6bPHFqdQp/EsZwBpcQ5IdfmkydkuvOB0SRNgBIDl
+	A4h0E1njPsuqwyVjtFYY8LzwymRIunN3p4U142i0dphwDdYEDWLCITWTi8BA2EuQ5qVvvuDJnjfKg
+	IWhsaXB6XxFjyuX5zPoUpkyxZS1QLkOKEEZhmSAHWCXYRh+2AC1SEwLZZvYkXLkB95YXZ4ARrRyVA
+	CSPDe6qw==;
+Received: from 187-162-21-192.static.axtel.net ([187.162.21.192]:50288 helo=[192.168.15.8])
+	by gator4166.hostgator.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96)
+	(envelope-from <gustavo@embeddedor.com>)
+	id 1qhFk6-002dt3-1t;
+	Fri, 15 Sep 2023 15:48:46 -0500
+Message-ID: <c14c5a6a-6e5e-54f6-bb73-c77eb93ed820@embeddedor.com>
+Date: Fri, 15 Sep 2023 14:49:41 -0600
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1519; i=keescook@chromium.org;
- h=from:subject:message-id; bh=viN3aFTUGlYqsHbJQcNa6oOS8nJqeFdRFpqtC0E5D+8=;
- b=owEBbQKS/ZANAwAKAYly9N/cbcAmAcsmYgBlBLrBAAO11BUsQ+oKxBzlepi1zMsCl8lRLHvB4
- qk/2KM3zKKJAjMEAAEKAB0WIQSlw/aPIp3WD3I+bhOJcvTf3G3AJgUCZQS6wQAKCRCJcvTf3G3A
- JtFUD/4hfU9qPge0NwGnOrmrFpYmEsF1rZXGB7tjkgsjW4R11jE9il/8UIN9g8stacwGCBzLUSS
- mH+V4qUpwjDF0Vgztzj5EOz7jL0SUK05t+kAfxhir1eu+TnBxzScuL5kBFOGrCgttmRtseZC1QI
- W+9JjUA8xzBc0eX1m4eYJ0HXcBky9b9mgpiVTgrh5ZL5aFlaEXos2XiL4dRwbR5e72Zb3wUCnDv
- yMj9FU25KEJUcfcKLFE5fwvgnTk4zYKoVa001Mc8YJgJAxBrKtX9htMtzaR4HmBK4KEEkMnMehB
- HVDtcTnjsrQ7AmRrkuLkAj1Bah6SCH5LQEhEg0xmyLSD4csxgBeBSJ4a6wbKdwMAzkIbm1o5ACt
- NqIVZYqLASf787XFgOE8PA+1FJHr9EnDESUCgjWz64KdBIhs4l2CJyA6id6v3XYLU5vzdkJrAqK
- HJfrvwTc7Bg2Vs1RoOyXRXGcdwYb4stM2Vp0f7BGUhvRDk5F+Vh6M80kPxS/rJwv+KWuAeCipEw
- RWcbhpHBVe4oPJ/HWaMDO+RcXNJscIUwz7fU3UMhLSggbkK/h4czEGJTOmpoOncxQK921laWWKB
- 59G8tSqmjF3lRjjxBh3wvyKvp8D/Fiu7/pHROejMOREf89AymCCZDQtmwn6ug7Eu9gcc3qEKHQm
- gzt6Re4 SCuWvuVA==
-X-Developer-Key: i=keescook@chromium.org; a=openpgp; fpr=A5C3F68F229DD60F723E6E138972F4DFDC6DC026
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] mtd: rawnand: meson: Annotate struct meson_nfc_nand_chip
+ with __counted_by
+Content-Language: en-US
+To: Kees Cook <keescook@chromium.org>, Liang Yang <liang.yang@amlogic.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, Nathan Chancellor <nathan@kernel.org>,
+ Nick Desaulniers <ndesaulniers@google.com>, Tom Rix <trix@redhat.com>,
+ linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
+ linux-hardening@vger.kernel.org
+References: <20230915201249.never.509-kees@kernel.org>
+From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+In-Reply-To: <20230915201249.never.509-kees@kernel.org>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
+X-AntiAbuse: Original Domain - lists.infradead.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - embeddedor.com
+X-BWhitelist: no
+X-Source-IP: 187.162.21.192
+X-Source-L: No
+X-Exim-ID: 1qhFk6-002dt3-1t
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 187-162-21-192.static.axtel.net ([192.168.15.8]) [187.162.21.192]:50288
+X-Source-Auth: gustavo@embeddedor.com
+X-Email-Count: 367
+X-Org: HG=hgshared;ORG=hostgator;
+X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfElvBvm16mM986qAi3VAGshmicuXrqJpoxCwsdjhdDAi/dOoZqvz/O0jlJwYJ/qd/5MeRy4GwrEDm6lo3elfGj7H/lQpNBkb89QZD87bqa/Ce5dXku+P
+ 6Ops0AvSx4VF8bcym8BU7d/lZqH+zE90WHezn9wb6T4EI0eV/QuYaYQtV4FdR4rCqZC68UkD3jWAwRUTZ/4pvy5HPu4R3ZQXVLuPCBC5l2lsWjlkuud6I8O8
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230915_131253_669522_B963D0C4 
-X-CRM114-Status: GOOD (  11.45  )
+X-CRM114-CacheID: sfid-20230915_134852_986273_9EF026C2 
+X-CRM114-Status: GOOD (  12.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,53 +117,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Prepare for the coming implementation by GCC and Clang of the __counted_by
-attribute. Flexible array members annotated with __counted_by can have
-their accesses bounds-checked at run-time checking via CONFIG_UBSAN_BOUNDS
-(for array indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family
-functions).
 
-As found with Coccinelle[1], add __counted_by for struct meson_nfc_nand_chip.
 
-[1] https://github.com/kees/kernel-tools/blob/trunk/coccinelle/examples/counted_by.cocci
+On 9/15/23 14:12, Kees Cook wrote:
+> Prepare for the coming implementation by GCC and Clang of the __counted_by
+> attribute. Flexible array members annotated with __counted_by can have
+> their accesses bounds-checked at run-time checking via CONFIG_UBSAN_BOUNDS
+> (for array indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family
+> functions).
+> 
+> As found with Coccinelle[1], add __counted_by for struct meson_nfc_nand_chip.
+> 
+> [1] https://github.com/kees/kernel-tools/blob/trunk/coccinelle/examples/counted_by.cocci
+> 
+> Cc: Liang Yang <liang.yang@amlogic.com>
+> Cc: Miquel Raynal <miquel.raynal@bootlin.com>
+> Cc: Richard Weinberger <richard@nod.at>
+> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Cc: linux-mtd@lists.infradead.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-amlogic@lists.infradead.org
+> Signed-off-by: Kees Cook <keescook@chromium.org>
 
-Cc: Liang Yang <liang.yang@amlogic.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Richard Weinberger <richard@nod.at>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-mtd@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-amlogic@lists.infradead.org
-Signed-off-by: Kees Cook <keescook@chromium.org>
----
- drivers/mtd/nand/raw/meson_nand.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Gustavo A. R. Silva <gustavoars@kernel.org>
 
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index 25e3c1cb605e..378f28ce6a74 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -128,7 +128,7 @@ struct meson_nfc_nand_chip {
- 	u8 *data_buf;
- 	__le64 *info_buf;
- 	u32 nsels;
--	u8 sels[];
-+	u8 sels[] __counted_by(nsels);
- };
- 
- struct meson_nand_ecc {
+Thanks
 -- 
-2.34.1
+Gustavo
 
+> ---
+>   drivers/mtd/nand/raw/meson_nand.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+> index 25e3c1cb605e..378f28ce6a74 100644
+> --- a/drivers/mtd/nand/raw/meson_nand.c
+> +++ b/drivers/mtd/nand/raw/meson_nand.c
+> @@ -128,7 +128,7 @@ struct meson_nfc_nand_chip {
+>   	u8 *data_buf;
+>   	__le64 *info_buf;
+>   	u32 nsels;
+> -	u8 sels[];
+> +	u8 sels[] __counted_by(nsels);
+>   };
+>   
+>   struct meson_nand_ecc {
 
 _______________________________________________
 linux-amlogic mailing list
