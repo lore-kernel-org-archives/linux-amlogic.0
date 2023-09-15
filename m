@@ -4,89 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 235B9EED600
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Sep 2023 15:09:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33D34CD37A9
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Sep 2023 20:13:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yoIy9IDJAlUj0FX255Pv9JYq595Q7on7zejh82SrbCY=; b=UOffgV0ELFJZDG
-	GjyWHx6EtixUa5sEdRfRMvhjkCz931cixCDsUf07ePhsVeJIt2IVx35rVL5Wjxf5SmE1OXxbiCpyb
-	1hdvEt34WUVWFEHCN7ffbyHV/krc6r8qf050xgNunsLWBrr9C51gUnak9v7XSMIYzBeP31E/i5DS4
-	WDknztiXAzK1OP7ITyt3LLm7WX8JgoYvF66lzKHw6ZuD3zE3eYRp7s4qv/xY0SIVPjs4S+QxFcZGP
-	D82mK9jLvFaWNjn87R2Oe37ECGsz3dzxV8L/0ovm8gdDQ8bkMIsFL+GGmpEtVHRNnUzc1ZiZS9fyZ
-	t8uMvFadBbGpvCRXlLJA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=tQQhgYJbXTEZ8lESZQhMB+mLg/J6eWRhakLICc5PtNw=; b=xocrFloxtIR7ag
+	Bb/BTZPPMFHw+5Pjj3Tu4AzzoGkNAXRQoZc6JvmgXmB+QH0RRcH4ZpusjkcUcnszPjqNCPB6ap+Vc
+	LIK4O+SYulNh3w3EWLilHtbOPp3kMxW0SrrCoK5l0QVRGmuXJYMiWM4UqfeAVNBGs9EtltwiIl3En
+	88/fI5l+e2K9R5OudJCWcZhkXgoWTH//NCZwNtHF4TxFBgqxdAE7pMn1QL0GLbUxLZLnJF/eeqj/S
+	a7ynzKT5kgQJBtZ30MNFpbYg0Y2lrxm7aqgMRp/3i2F5WqiMHDCsdVMR6boBf3KAtJ6P2F+aheA99
+	nQOpssL5SPJn24C3Baqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qhARM-00Awj7-2p;
-	Fri, 15 Sep 2023 15:09:04 +0000
-Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
+	id 1qhFBS-00BItW-0t;
+	Fri, 15 Sep 2023 20:12:58 +0000
+Received: from mail-pl1-x62e.google.com ([2607:f8b0:4864:20::62e])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qhARG-00AwgL-2h
+	id 1qhFBN-00BIot-1w
 	for linux-amlogic@lists.infradead.org;
-	Fri, 15 Sep 2023 15:09:03 +0000
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9adb9fa7200so418983066b.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 15 Sep 2023 08:08:56 -0700 (PDT)
+	Fri, 15 Sep 2023 20:12:55 +0000
+Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1bdf4752c3cso21254745ad.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 15 Sep 2023 13:12:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fooishbar-org.20230601.gappssmtp.com; s=20230601; t=1694790535; x=1695395335; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=VYR6ep7rDCBduLCC6ALZ438i46Wvlrmilzt/WzHCta4=;
-        b=h1/gZowTCMRaf+vW6XZYRFH6jvh+pDPGW+SbCCfvNsQp4YSdOK2/eXwP3P94aZ6qeJ
-         /ZOa6sxnrIJ8nBbrx0nVQz3I8CrqW5Emp0Gc/VhirI13gikgOAFeJ4GzyppTApyeiobX
-         EXwxrVfk1G9Bt6vLraLJc56+vrEv83Ilk02/9G+0WvyNoIrIncMCgvHcOA8ux9JsgFrr
-         68jmQM0+bAMndVd+UJlLHjGCO8gkuikUnL/vpiAeNRVbui38JDi3hUFsPZSo4m4Y834Y
-         4L3E8+S6Aiu0rvSOPOX5xqbQcuo8/4QgILzgTymD3EIY4rrEkAp0ftXlN2pMek5MLWyL
-         /bLA==
+        d=chromium.org; s=google; t=1694808771; x=1695413571; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0w8YyWBkyxxpFXFEsJXWeSdcXhaKX7qg2CNvqyy5fgg=;
+        b=UfZchBJHf7/EB1Pf42S4o+0Y/FwU4C18EJN8JXXEE085AcdDGqus7Rjjll3AZyqwLT
+         11cipSnn/rgLe+1gf/1+28cLwj/aK1cappX0E0CY1MoN4CihpqPcvluuEaw8dQY8bHn9
+         diJwO6Ryo7sPqqWoS3shi0zXK4W0/oeVEbbOY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694790535; x=1695395335;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1694808771; x=1695413571;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=VYR6ep7rDCBduLCC6ALZ438i46Wvlrmilzt/WzHCta4=;
-        b=lLf/0y1AIxOy7scDxSeiUt3dNW2Vvmom/DvANQSLFBOHiEQ4Hxp7y0WaWvp9xmfcJK
-         Rv+Tj2qMPCpEv0rpRiG2jsdINska5VEEiyVrJvWsJdL2F3wEfO9GeRwlCLJ3x31z4tlW
-         q/RFs1LYL02tSI+QMOAlT1JTkhrBcI37/yvoNJA1TIe7BSZ71nwfhZSJSv0ZNFHaOCDv
-         7mkPKsMjOu8kj+evdxc8rxURZcP3UoaD0lUYuaeH+WsicoYT6UnjHRANHMC/4F746kOq
-         zrBxwhZm5OgpD2v6o8t4ySJcPoIXhNRugNKiI8ZukHThuuV6AMfegb7luby/O9lXomsz
-         z7Zg==
-X-Gm-Message-State: AOJu0YzDzIszYrjWNW6GZzUHx8NzmBdBRpybW9XTnpfQEOXM2NXZfH+k
-	PkpbSPq5lHLC6SUeuCccFRWVrbZm9llGOzwEeZTdew==
-X-Google-Smtp-Source: AGHT+IEEHNihECXlS9m2KxMTthStG6cUD6LJ/Hd8lIz/DRYEz/AvRC/0+Anai8PcEGa/vlcPrsf7QjRzAeDT/NZHgLw=
-X-Received: by 2002:a17:907:1c8b:b0:9a9:f6e7:43fe with SMTP id
- nb11-20020a1709071c8b00b009a9f6e743femr7782839ejc.24.1694790534612; Fri, 15
- Sep 2023 08:08:54 -0700 (PDT)
+        bh=0w8YyWBkyxxpFXFEsJXWeSdcXhaKX7qg2CNvqyy5fgg=;
+        b=QNHu2kg4eMOK+Jx+fZ4o39LCdQ1t3OBNCQOaX7EaTAi0GjMmevkHsQgSCnxfHaUsRT
+         2JQ0bHAmGLv5dLu1eDWW3z/oXwufcrwNp/ZRQb9g43LfKzoccjE+KP2J5jMpCZjycpvR
+         PV1G0E0/LQdJG8ivnZ8rGKc+/FNIUyuYYulvYfI0jqJuR8NtM8a5xTHi+4KD16pCPQsw
+         YjBHDvWm1JE8RmHx1woPyIHeKmJQgRHPtWF2BuY2Gxqv5+RqptwdXzpjNStqBcpyMl/K
+         adRGhkNlPJJ1KRpL9NK4BTElCx5nEqcA38y5CEZra2tqA9IVeYa2eZmYyC0eMN4PiJiT
+         oaWA==
+X-Gm-Message-State: AOJu0YyS3GjOuRH+vWnGnIndbQUgV4hm2hPmQhKKGUj6K9a/5wBsIYB7
+	qYxn7ihUZAzbDcEj1CuRUjgXWw==
+X-Google-Smtp-Source: AGHT+IGEP+XX4TcWFwL6riCxf7EV59zw6/4+xl/jX5TKVK+vuyzRqiTZSZ3ZHUIdArWZJdh1HlOnLQ==
+X-Received: by 2002:a17:902:ecc5:b0:1bf:13a7:d3ef with SMTP id a5-20020a170902ecc500b001bf13a7d3efmr3048022plh.66.1694808771246;
+        Fri, 15 Sep 2023 13:12:51 -0700 (PDT)
+Received: from www.outflux.net (198-0-35-241-static.hfc.comcastbusiness.net. [198.0.35.241])
+        by smtp.gmail.com with ESMTPSA id d9-20020a170902854900b001bd41b70b65sm3864242plo.49.2023.09.15.13.12.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Sep 2023 13:12:50 -0700 (PDT)
+From: Kees Cook <keescook@chromium.org>
+To: Liang Yang <liang.yang@amlogic.com>
+Cc: Kees Cook <keescook@chromium.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-mtd@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Tom Rix <trix@redhat.com>,
+	linux-kernel@vger.kernel.org,
+	llvm@lists.linux.dev,
+	linux-hardening@vger.kernel.org
+Subject: [PATCH] mtd: rawnand: meson: Annotate struct meson_nfc_nand_chip with __counted_by
+Date: Fri, 15 Sep 2023 13:12:49 -0700
+Message-Id: <20230915201249.never.509-kees@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <zmq7pz7rtz6h765azg5kl2qgjd264yafctx4q474t5tqai57og@cajbcub4yuwr>
- <5fdf9d29-3f8d-0ee0-027f-57ff3a5cecb8@collabora.com> <CAKMK7uGg6n322UugJwErqF_Dvsbqceqae6SVWV3ZWEOR7x36rQ@mail.gmail.com>
- <9a2b1ad8-4359-4f12-b4f9-c1de477bc440@collabora.com> <mnjcsiqjqdnvbbkaaz5r4n42e56qsax667r7radzyagnmmfkip@dfi64z5deqzj>
- <b7d96985-8489-efe2-db67-1f3108e26822@mailbox.org> <5ejq3hjpoy3gxft2jbmoa5m656usetuxcs7g3ezyyiitj67rav@r5jhdz27foat>
- <550454b8-2e2c-c947-92c5-37f0367661c2@mailbox.org> <os2wvkangif2nwewfbzkuyjm7njp4g3sqj5td3ogbhhjwsrbbd@3jpf6g5hd3z4>
- <CAPj87rP1sw49Z0HdPhUa-=kDp166RqiuhC9rL+Ef9hpwPD5+JA@mail.gmail.com> <krhnfc4os5nqwi3iixgxwads3jbcgtdcvn7ygxpvd62uaejvsk@mx6tmser7jti>
-In-Reply-To: <krhnfc4os5nqwi3iixgxwads3jbcgtdcvn7ygxpvd62uaejvsk@mx6tmser7jti>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Fri, 15 Sep 2023 16:08:42 +0100
-Message-ID: <CAPj87rPbJ1V1-R7WMTHkDat2A4nwSd61Df9mdGH2PR=ZzxaU=Q@mail.gmail.com>
-Subject: Re: [PATCH v11] drm: Add initial ci/ subdirectory
-To: Maxime Ripard <mripard@kernel.org>
-Cc: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>, 
-	emma@anholt.net, linux-doc@vger.kernel.org, vignesh.raman@collabora.com, 
-	dri-devel@lists.freedesktop.org, alyssa@rosenzweig.io, jbrunet@baylibre.com, 
-	robdclark@google.com, corbet@lwn.net, khilman@baylibre.com, 
-	sergi.blanch.torne@collabora.com, david.heidelberg@collabora.com, 
-	linux-rockchip@lists.infradead.org, Daniel Stone <daniels@collabora.com>, 
-	martin.blumenstingl@googlemail.com, robclark@freedesktop.org, 
-	Helen Koike <helen.koike@collabora.com>, anholt@google.com, 
-	linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com, 
-	linux-amlogic@lists.infradead.org, gustavo.padovan@collabora.com, 
-	linux-arm-kernel@lists.infradead.org, angelogioacchino.delregno@collabora.com, 
-	neil.armstrong@linaro.org, guilherme.gallo@collabora.com, 
-	linux-kernel@vger.kernel.org, tzimmermann@suse.de
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1519; i=keescook@chromium.org;
+ h=from:subject:message-id; bh=viN3aFTUGlYqsHbJQcNa6oOS8nJqeFdRFpqtC0E5D+8=;
+ b=owEBbQKS/ZANAwAKAYly9N/cbcAmAcsmYgBlBLrBAAO11BUsQ+oKxBzlepi1zMsCl8lRLHvB4
+ qk/2KM3zKKJAjMEAAEKAB0WIQSlw/aPIp3WD3I+bhOJcvTf3G3AJgUCZQS6wQAKCRCJcvTf3G3A
+ JtFUD/4hfU9qPge0NwGnOrmrFpYmEsF1rZXGB7tjkgsjW4R11jE9il/8UIN9g8stacwGCBzLUSS
+ mH+V4qUpwjDF0Vgztzj5EOz7jL0SUK05t+kAfxhir1eu+TnBxzScuL5kBFOGrCgttmRtseZC1QI
+ W+9JjUA8xzBc0eX1m4eYJ0HXcBky9b9mgpiVTgrh5ZL5aFlaEXos2XiL4dRwbR5e72Zb3wUCnDv
+ yMj9FU25KEJUcfcKLFE5fwvgnTk4zYKoVa001Mc8YJgJAxBrKtX9htMtzaR4HmBK4KEEkMnMehB
+ HVDtcTnjsrQ7AmRrkuLkAj1Bah6SCH5LQEhEg0xmyLSD4csxgBeBSJ4a6wbKdwMAzkIbm1o5ACt
+ NqIVZYqLASf787XFgOE8PA+1FJHr9EnDESUCgjWz64KdBIhs4l2CJyA6id6v3XYLU5vzdkJrAqK
+ HJfrvwTc7Bg2Vs1RoOyXRXGcdwYb4stM2Vp0f7BGUhvRDk5F+Vh6M80kPxS/rJwv+KWuAeCipEw
+ RWcbhpHBVe4oPJ/HWaMDO+RcXNJscIUwz7fU3UMhLSggbkK/h4czEGJTOmpoOncxQK921laWWKB
+ 59G8tSqmjF3lRjjxBh3wvyKvp8D/Fiu7/pHROejMOREf89AymCCZDQtmwn6ug7Eu9gcc3qEKHQm
+ gzt6Re4 SCuWvuVA==
+X-Developer-Key: i=keescook@chromium.org; a=openpgp; fpr=A5C3F68F229DD60F723E6E138972F4DFDC6DC026
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230915_080858_882511_B79366E6 
-X-CRM114-Status: GOOD (  67.55  )
+X-CRM114-CacheID: sfid-20230915_131253_669522_B963D0C4 
+X-CRM114-Status: GOOD (  11.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,191 +116,48 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hey,
+Prepare for the coming implementation by GCC and Clang of the __counted_by
+attribute. Flexible array members annotated with __counted_by can have
+their accesses bounds-checked at run-time checking via CONFIG_UBSAN_BOUNDS
+(for array indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family
+functions).
 
-On Thu, 14 Sept 2023 at 10:54, Maxime Ripard <mripard@kernel.org> wrote:
-> On Tue, Sep 12, 2023 at 02:16:41PM +0100, Daniel Stone wrote:
-> > Hopefully less mangled formatting this time: turns out Thunderbird +
-> > plain text is utterly unreadable, so that's one less MUA that is
-> > actually usable to send email to kernel lists without getting shouted
-> > at.
->
-> Sorry if it felt that way, it definitely wasn't my intention to shout at
-> you. Email is indeed kind of a pain to deal with, and I wanted to keep
-> the discussion going.
+As found with Coccinelle[1], add __counted_by for struct meson_nfc_nand_chip.
 
-My bad - I didn't mean you _at all_. I was thinking of other, much
-less pleasant, kernel maintainers, and the ongoing struggle of
-attempting to actually send well-formatted email to kernel lists in
-2023.
+[1] https://github.com/kees/kernel-tools/blob/trunk/coccinelle/examples/counted_by.cocci
 
-> > I don't quite see the same picture from your side though. For example,
-> > my reading of what you've said is that flaky tests are utterly
-> > unacceptable, as are partial runs, and we shouldn't pretend otherwise.
-> > With your concrete example (which is really helpful, so thanks), what
-> > happens to the MT8173 hdmi-inject test? Do we skip all MT8173 testing
-> > until it's perfect, or does MT8173 testing always fail because that
-> > test does?
->
-> It's not clear to me why that test is even running in the first place?
-> There's been some confusion on my side here about what we're going to
-> test with this. You've mentioned Mesa and GPUs before, but that's a KMS
-> test so there must be more to it.
->
-> Either way, it's a relevant test so I guess why not. It turns out that
-> the test is indeed flaky, I guess we could add it to the flaky tests
-> list.
->
-> BUT
->
-> I want to have every opportunity to fix whatever that failure is.
+Cc: Liang Yang <liang.yang@amlogic.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Richard Weinberger <richard@nod.at>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-mtd@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org
+Signed-off-by: Kees Cook <keescook@chromium.org>
+---
+ drivers/mtd/nand/raw/meson_nand.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Agreed so far!
+diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+index 25e3c1cb605e..378f28ce6a74 100644
+--- a/drivers/mtd/nand/raw/meson_nand.c
++++ b/drivers/mtd/nand/raw/meson_nand.c
+@@ -128,7 +128,7 @@ struct meson_nfc_nand_chip {
+ 	u8 *data_buf;
+ 	__le64 *info_buf;
+ 	u32 nsels;
+-	u8 sels[];
++	u8 sels[] __counted_by(nsels);
+ };
+ 
+ struct meson_nand_ecc {
+-- 
+2.34.1
 
-> So:
->
->   - Is the test broken? If so, we should report it to IGT dev and remove
->     it from the test suite.
->   - If not, is that test failure have been reported to the driver author?
->   - If no answer/fix, we can add it to the flaky tests list, but do we
->     have some way to reproduce the test failure?
->
-> The last part is especially critical. Looking at the list itself, I have
-> no idea what board, kernel version, configuration, or what the failure
-> rate was. Assuming I spend some time looking at the infra to find the
-> board and configuration, how many times do I have to run the tests to
-> expect to reproduce the failure (and thus consider it fixed if it
-> doesn't occur anymore).
->
-> Like, with that board and test, if my first 100 runs of the test work
-> fine, is it reasonable for me to consider it fixed, or is it only
-> supposed to happen once every 1000 runs?
->
-> So, ideally, having some (mandatory) metadata in the test lists with a
-> link to the bug report, the board (DT name?) it happened with, the
-> version and configuration it was first seen with, and an approximation
-> of the failure rate for every flaky test list.
->
-> I understand that it's probably difficult to get that after the fact on
-> the tests that were already merged, but I'd really like to get that
-> enforced for every new test going forward.
->
-> That should hopefully get us in a much better position to fix some of
-> those tests issues. And failing that, I can't see how that's
-> sustainable.
-
-OK yeah, and we're still agreed here. That is definitely the standard
-we should be aiming for.  It is there for some - see
-drivers/gpu/drm/ci/xfails/rockchip-rk3288-skips.txt, but should be
-there for the rest, it's true. (The specific board/DT it was observed
-on can be easily retconned because we only run on one specific board
-type per driver, again to make things more predictable; we could go
-back and retrospectively add those in a header comment?)
-
-For flakes, it can be hard to pin them down, because, well, they're
-flaky. Usually when we add things in Mesa (sorry to keep coming back
-to Mesa - it's not to say that it's the objective best thing that
-everything should follow, only that it's the thing we have the most
-experience with that we know works well), we do a manual bisect and
-try to pin the blame on a specific merge request which looks like the
-most likely culprit. If nothing obvious jumps out, we just note when
-it was first observed and provide some sample job logs. But yeah, it
-should be more verbose.
-
-FWIW, the reason it wasn't done here - not to say that it shouldn't
-have been done better, but here we are - is that we just hammered a
-load of test runs, vacuumed up the results with a script, and that's
-what generated those files. Given the number of tests and devices, it
-was hard to narrow each down individually, but yeah, it is something
-which really wants further analysis and drilling into. It's a good
-to-do, and I agree it should be the standard going forward.
-
-> And Mesa does show what I'm talking about:
->
-> $ find -name *-flakes.txt | xargs git diff --stat  e58a10af640ba58b6001f5c5ad750b782547da76
-> [...]
->
-> In the history of Mesa, there's never been a single test removed from a
-> flaky test list.
-
-As Rob says, that's definitely wrong. But there is a good point in
-there: how do you know a test isn't flaky anymore? 100 runs is a
-reasonable benchmark, but 1000 is ideal. At a 1% failure rate, with 20
-devices, that's just too many spurious false-fails to have a usable
-workflow.
-
-We do have some tools to make stress testing easier, but those need to
-be better documented. We'll fix that. The tools we have which also
-pull out the metadata etc also need documenting - right now they
-aren't because they're under _extremely_ heavy development, but they
-can be further enhanced to e.g. pull out the igt results automatically
-and point very clearly to the cause. Also on the to-do.
-
-> > Only maintainers can actually fix the drivers (or the tests tbf). But
-> > doing the testing does let us be really clear to everyone what the
-> > actual state is, and that way people can make informed decisions too.
-> > And the only way we're going to drive the test rate down is by the
-> > subsystem maintainers enforcing it.
->
-> Just FYI, I'm not on the other side of the fence there, I'd really like
-> to have some kind of validation. I talked about it at XDC some years
-> ago, and discussed it several people at length over the years. So I'm
-> definitely not in the CI-is-bad camp.
->
-> > Does that make sense on where I'm (and I think a lot of others are)
-> > coming from?
->
-> That makes sense from your perspective, but it's not clear to me how you
-> can expect maintainers to own the tests if they were never involved in
-> the process.
->
-> They are not in Cc of the flaky tests patches, they are not reported
-> that the bug is failing, how can they own that process if we never
-> reached out and involved them?
->
-> We're all overworked, you can't expect them to just look at the flaky
-> test list every now and then and figure it out.
-
-Absolutely. We got acks (or at least not-nacks) from the driver
-developers, but yeah, they should absolutely be part of the loop for
-those updates. I don't think we can necessarily block on them though.
-Say we add vc4 KMS tests, then after a backmerge we start to see a
-bunch of flakes on it, but you're sitting on a beach for a couple of
-weeks. If we wait for you to get back, see it, and merge it, then
-that's two weeks of people submitting Rockchip driver changes and
-getting told that their changes failed CI. That's exactly what we want
-to avoid, because it erodes confidence and usefulness of CI when
-people expect failures and ignore them by default.
-
-So I would say that it's reasonable for expectations to be updated
-according to what actually happens in practice, but also to make sure
-that the maintainers are explicitly informed and kept in the loop, and
-not just surprised when they look at the lists and see a bunch of
-stuff happened without their knowledge.
-
-Again there's much more to be done on the tooling here. Part of it is
-CLI tools and automation, part of it is dashboards and
-easily-digestible reporting, and then there's integration with things
-like KernelCI. KCI(DB) is actually quite high up on the list, but
-we're mostly waiting until a lot of the KCI rework happens so we can
-actually properly integrate with the new system.
-
-Right now a lot of the tooling we have is pretty involved - for
-example, we do have ci-collate as a Python library which can inspect a
-number of pipelines, pull out detailed status and logs, etc, but it
-mostly needs to be used as a library with bespoke scripts, rather than
-a ready-made tool. Work on that is ongoing to make it way more clear
-and accessible though.
-
-So I think it sounds like we're on the same page and going exactly in
-the same direction, just that this is a starting point rather than the
-desired end state. And the main point is that having a set of
-xfails/flakes parachuted in with little to no context is trying to get
-an MVP bootstrapped, rather than how we expect things to go in future.
-Does that sound about right?
-
-Cheers,
-Daniel
 
 _______________________________________________
 linux-amlogic mailing list
