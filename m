@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DFF5CD37B7
-	for <linux-amlogic@archiver.kernel.org>; Sat, 16 Sep 2023 08:11:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DBBBCD37B6
+	for <linux-amlogic@archiver.kernel.org>; Sat, 16 Sep 2023 08:11:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JfR3v+5oxYFeyQipMLVVn/w5WZbLQasvjXztGKSTrds=; b=CVsdZi0Js0yQLI
-	/54T1OpcMUspfUzjk/LqzyTefG8lLIIRGP85m9AZkdLCy4Avj1V69AJuVzuxubTqu2UsQPZs3fjuZ
-	4zRLm9g7/iVjfmwa+s4bFQQH97KP+za/4GOUWstbmG3QO2Dovm94Ky2Ym4mysIOiEGhvsRefmac3K
-	cf2Uj7Sr+dIqdIQGbbFni3Srw65DN21GA2FHXQdjSalQHXNI8IJ/dN4BXQ0huS/edwNnMonzaWe3t
-	6HKClzLFILW8qogihkNzVWUFm1/suMcg2aND08+OUr3wLVaCzrnV2rcPH43bE1i4JB3vkeKD3yths
-	FLWnjol9J+98da0eoKDA==;
+	List-Owner; bh=3M1q004xrdkf2nfzqKHVITysXJN0kfwiEfTmiKkopH8=; b=fg8EtjkaY56qDo
+	nCTOol3p9Hb3Bbp0qU3gE7bqD+64Up4gXpD8BLIGSWfbJLi5bmEDXeG/ouiVBnS9O4M0O+R+GIXOo
+	hYru5J+Bq8surAKXFRQBGZgDGB8meZINq6ti/JsBEQGJWw/h/udQiwxiyTZgXbtTUofAP3Fa+KAoq
+	wkBbY24JdDzpLkOs6ntVAMlZZBIopZVFX3YgzEyOxnzfTfGQHkhhs2EZBOK7rIHnjvDdwxeUHuHwH
+	ZKPjWrIcNEEEHo0sKJky/MQufFKP4bGUEw5dUUGNVdfFoKV5fa3PxruPcctM+fhibvMoyWovE1uiZ
+	FC9QXsHYppQEvSG3zqmg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qhQOH-00C8iv-2Q;
-	Sat, 16 Sep 2023 08:10:57 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1qhQOX-00C8sd-1i;
+	Sat, 16 Sep 2023 08:11:13 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qhQOF-00C8hv-2h;
-	Sat, 16 Sep 2023 08:10:57 +0000
+	id 1qhQOU-00C8ps-09;
+	Sat, 16 Sep 2023 08:11:11 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 515F860AB9;
-	Sat, 16 Sep 2023 08:10:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A202C433C9;
-	Sat, 16 Sep 2023 08:10:45 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTPS id 3325DCE2C88;
+	Sat, 16 Sep 2023 08:11:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97D41C433CA;
+	Sat, 16 Sep 2023 08:10:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694851852;
-	bh=R5nkuuiNFkrWBoIZMqvZG0C7QkTrSVA812AJPM93YC4=;
+	s=k20201202; t=1694851866;
+	bh=UYdXIqiINCVLLQGfe9I1Rok64nchnoCUfDXrQIlFA9I=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=T/H1dwtuKgkjIYunzM9xo/2q+uyUSMCcCmfrGmFm0GqlpLd05n0eoiu37nqU9B14F
-	 ZDdwZp+HFLlYofBUYbFRlSmxg/Vi7yg3Fc0VnC7u0EF89aj8D8hRE2OU5yP6yQRQBv
-	 A90KjCUCDlyi+wbVJQRI/BPvgb0oRRv9lH4UGAT4wAW5UeZLqxrwzLkTUxZFrC6R0T
-	 6HEQ6WyCBGHJ+VBEiXNSCu651TrgKkzjevCH7ZUnCPm13PQVuWXWMb72h8bI4sbSxl
-	 eQ3Extw4R+KwnNGTEZ3NssrkTVnJ/jd7UPN8ph6gKMB9ygkBDdzyUC4QTHUqn5Mnki
-	 QAOXOCrf8hnpQ==
+	b=mcMw278vtPECEEuGf3HdKyPhRF6DSG87pwnP3vo4yG013oPC+Z6k3KLldIPmfTogU
+	 oGQcxeH66rohOXs72DQzon0BXUt9SFjGaplVK1PaypjmXseubOHBF3GvkOOT5TXxYm
+	 pzttMJW82kh6ZCOUxp2SYuOmb/X35fk5VfXjCzI6+cakHjmyn0gV+3pY/Kl1yBL9EB
+	 Vw9K8eWClAvTPC2hSAHQHYFEk7EESwzcCEiaCCy+ciiIoRzJoV7Xqj3L/1PsWRotq5
+	 sG9/eN7PD/NM5NUIu86z2SrfpeFob/kKzo49Nis6398+5DJLp9FbqHNr56jTCVSgIT
+	 Dp9IdTs35FlHA==
 From: Jisheng Zhang <jszhang@kernel.org>
 To: Giuseppe Cavallaro <peppe.cavallaro@st.com>,
 	Alexandre Torgue <alexandre.torgue@foss.st.com>,
@@ -80,16 +80,16 @@ Cc: netdev@vger.kernel.org,
 	linux-sunxi@lists.linux.dev,
 	linux-tegra@vger.kernel.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH net-next v2 03/23] net: stmmac: dwmac-generic: use devm_stmmac_probe_config_dt()
-Date: Sat, 16 Sep 2023 15:58:09 +0800
-Message-Id: <20230916075829.1560-4-jszhang@kernel.org>
+Subject: [PATCH net-next v2 05/23] net: stmmac: dwmac-imx: use devm_stmmac_probe_config_dt()
+Date: Sat, 16 Sep 2023 15:58:11 +0800
+Message-Id: <20230916075829.1560-6-jszhang@kernel.org>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230916075829.1560-1-jszhang@kernel.org>
 References: <20230916075829.1560-1-jszhang@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230916_011055_960125_72274825 
-X-CRM114-Status: GOOD (  14.33  )
+X-CRM114-CacheID: sfid-20230916_011110_439558_2680AB90 
+X-CRM114-Status: GOOD (  13.87  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,49 +114,68 @@ stmmac_pltfr_remove_no_dt().
 
 Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 ---
- .../net/ethernet/stmicro/stmmac/dwmac-generic.c  | 16 +++-------------
- 1 file changed, 3 insertions(+), 13 deletions(-)
+ drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c | 15 +++++----------
+ 1 file changed, 5 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-generic.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-generic.c
-index 20fc455b3337..84582fc04d2e 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-generic.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-generic.c
-@@ -27,7 +27,7 @@ static int dwmac_generic_probe(struct platform_device *pdev)
- 		return ret;
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+index df34e34cc14f..e5989424894b 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+@@ -331,15 +331,14 @@ static int imx_dwmac_probe(struct platform_device *pdev)
+ 	if (!dwmac)
+ 		return -ENOMEM;
  
- 	if (pdev->dev.of_node) {
--		plat_dat = stmmac_probe_config_dt(pdev, stmmac_res.mac);
-+		plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
- 		if (IS_ERR(plat_dat)) {
- 			dev_err(&pdev->dev, "dt configuration failed\n");
- 			return PTR_ERR(plat_dat);
-@@ -46,17 +46,7 @@ static int dwmac_generic_probe(struct platform_device *pdev)
- 		plat_dat->unicast_filter_entries = 1;
+-	plat_dat = stmmac_probe_config_dt(pdev, stmmac_res.mac);
++	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
+ 	if (IS_ERR(plat_dat))
+ 		return PTR_ERR(plat_dat);
+ 
+ 	data = of_device_get_match_data(&pdev->dev);
+ 	if (!data) {
+ 		dev_err(&pdev->dev, "failed to get match data\n");
+-		ret = -EINVAL;
+-		goto err_match_data;
++		return -EINVAL;
  	}
  
--	ret = stmmac_pltfr_probe(pdev, plat_dat, &stmmac_res);
--	if (ret)
--		goto err_remove_config_dt;
--
--	return 0;
--
--err_remove_config_dt:
--	if (pdev->dev.of_node)
--		stmmac_remove_config_dt(pdev, plat_dat);
--
--	return ret;
-+	return stmmac_pltfr_probe(pdev, plat_dat, &stmmac_res);
+ 	dwmac->ops = data;
+@@ -348,7 +347,7 @@ static int imx_dwmac_probe(struct platform_device *pdev)
+ 	ret = imx_dwmac_parse_dt(dwmac, &pdev->dev);
+ 	if (ret) {
+ 		dev_err(&pdev->dev, "failed to parse OF data\n");
+-		goto err_parse_dt;
++		return ret;
+ 	}
+ 
+ 	if (data->flags & STMMAC_FLAG_HWTSTAMP_CORRECT_LATENCY)
+@@ -365,7 +364,7 @@ static int imx_dwmac_probe(struct platform_device *pdev)
+ 
+ 	ret = imx_dwmac_clks_config(dwmac, true);
+ 	if (ret)
+-		goto err_clks_config;
++		return ret;
+ 
+ 	ret = imx_dwmac_init(pdev, dwmac);
+ 	if (ret)
+@@ -385,10 +384,6 @@ static int imx_dwmac_probe(struct platform_device *pdev)
+ 	imx_dwmac_exit(pdev, plat_dat->bsp_priv);
+ err_dwmac_init:
+ 	imx_dwmac_clks_config(dwmac, false);
+-err_clks_config:
+-err_parse_dt:
+-err_match_data:
+-	stmmac_remove_config_dt(pdev, plat_dat);
+ 	return ret;
  }
  
- static const struct of_device_id dwmac_generic_match[] = {
-@@ -77,7 +67,7 @@ MODULE_DEVICE_TABLE(of, dwmac_generic_match);
+@@ -423,7 +418,7 @@ MODULE_DEVICE_TABLE(of, imx_dwmac_match);
  
- static struct platform_driver dwmac_generic_driver = {
- 	.probe  = dwmac_generic_probe,
+ static struct platform_driver imx_dwmac_driver = {
+ 	.probe  = imx_dwmac_probe,
 -	.remove_new = stmmac_pltfr_remove,
 +	.remove_new = stmmac_pltfr_remove_no_dt,
  	.driver = {
- 		.name           = STMMAC_RESOURCE_NAME,
+ 		.name           = "imx-dwmac",
  		.pm		= &stmmac_pltfr_pm_ops,
 -- 
 2.40.1
