@@ -4,93 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82026CD37B0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Sep 2023 19:47:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD14CCD37B0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Sep 2023 19:51:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ho3/jgPz7a5ymBjmXkPcMKSLFxyX/dOxNNrvn7Wiuhs=; b=tVv05aB5W0P/Lh
-	JpApmNebVVp6W67uJQ+jhApjtRFmkQunr+4hhHk1jxKroZ0sAFi5J4dEo+XoLQXGY7ugF9EiQ3LaG
-	kf7bliq8+XNd9jMSe7m1rPzqQFa8D+vL++0cmYLw2ErOEUbodJ7zFIv4pFTQhY8Uns01JxnSL0J82
-	NgC8lK8G2SOBMAENJV/PbY6FTkZjX0TZUwpPL37kzTi+QlBxXQQc+EnVXNUUnj/ShdyTJfkp1e8UO
-	jLD0L/mIVQ0o8iMNtFhRJlGXg5M7t0rY7us3EUJfMAs6olwyPRAEJMfyR7zvB8Z8Y142IhVJLFYCa
-	fdKiVbiJhPnQcDhmC6RQ==;
+	List-Owner; bh=HY+y3nkFTF03nt5NI/B406Aq11P4Fe4P03yX+jgdcnc=; b=RGYt/4jYO5h4wF
+	cJm7oGBazfPaz5N6PqELq7jMy1DmW8No321QDKyCviJDnRCN0RQR6rHBasxbn5qGBh04RuajlcrEh
+	Hc5hmS4gKroUg0EsGVi7/11do+QwOGtx/B9x3VjvchyoxfO+N+DnswORO5OKZR+WU92CsreqlFEnz
+	yl5fk1KNlDhZJc3e83utpa+Vol45rKv4MAqQQj66Mse6+M3iHtSBLGrdY07Bt+F4vgzCB8JWzF+pz
+	keZ7flrXVYnFpWtRpqzk+P2mFoyVmrjNFJlnL6haFsCXRilDr2F5pqDShVPirWKpOFM+LJxcHMY9L
+	RfoCHWb6iUFeX7+F1p5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qiKDL-00GDG6-2g;
-	Mon, 18 Sep 2023 19:47:23 +0000
-Received: from mail-lf1-x134.google.com ([2a00:1450:4864:20::134])
+	id 1qiKHQ-00GDhb-16;
+	Mon, 18 Sep 2023 19:51:36 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qiKDF-00GDFQ-0j;
-	Mon, 18 Sep 2023 19:47:22 +0000
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-500bbe3ef0eso5792733e87.1;
-        Mon, 18 Sep 2023 12:47:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695066434; x=1695671234; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3GMjth0uk4svVwUdt3+lP+YAoEP9JG5oh8mw/tamzSY=;
-        b=ULtLdbxzNZp5Ig/xR+9kmt3hTGw/5I5ObMPIAuhIpGWAhtcs9wvfaujWYn+j0Di3L0
-         RwLCA2LK4KUgIQzXPv3Mhg78wpcJqNBKJUFns8K56vN9dL4FQaR4oRVc8bpMcxA/EXJK
-         m88iJlLNbPQEhNElqbZb4vLZlX0UnLyUbxl1oj9rRjvPFQtvevBk3IT15tcqzK8k5+3Z
-         mU7MvkbZQ2Ic15eEFz+Dd+pFYRr1YuihWpYM8pGRIoSE4ktGI/DBxA9AmVi8Q9fo+449
-         Eqmb99kW633nEdnyP67wTmdyyQ+Ztk/jLQCVKA/hMaNWHJW51Wmr/HsZgIulk9GpPp4k
-         YjRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695066434; x=1695671234;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3GMjth0uk4svVwUdt3+lP+YAoEP9JG5oh8mw/tamzSY=;
-        b=nlwaPJCZlsmCTLocjXaGhPPC0UEo9EzLG/ognZNnBA4hPtbyWVm1PaHmzBS5ww1Khl
-         g53iIfNUULrLcaa7ytuwAjIUPjEBFd6xQDVTOnK4akuqleMbnTggvbWovSkx8zQ8hx8i
-         YHzbFEiJ64bgah9Etm1NXSqyJ5JYpukwL2FfvsaOpFCn/IxHEw9SF8CLPheI1Ry/7hNN
-         UlGEH3Zq1gB3kZEj7mxNck7wlfYlMx6c9FS5XoCqYn4/r3jTr9+hg9ECewDkKaE+wx4G
-         iE8IldGoA+HQItQkCpcfqBIw0OlEpvViBPPW1JXhRRDwHgje7iPy8oq2kJQJr9mYK8DF
-         lFgA==
-X-Gm-Message-State: AOJu0YyHJRj1edvZMWWJSxUH+ncqMffVapT2OsbjHDIuelQqFu5xQ4fc
-	yrksT8WVwBxk+s203vP9R/s=
-X-Google-Smtp-Source: AGHT+IFU7njRlBwGSq66q3hzfwk/hZvM8S7fmF9CZN+KqPY2x8ju4hdMyo/0KMTFfnBSlUsJW2or3w==
-X-Received: by 2002:a05:6512:2256:b0:503:636:68e1 with SMTP id i22-20020a056512225600b00503063668e1mr275797lfu.20.1695066433864;
-        Mon, 18 Sep 2023 12:47:13 -0700 (PDT)
-Received: from mobilestation ([178.176.81.244])
-        by smtp.gmail.com with ESMTPSA id z3-20020a19f703000000b0050084e55bd8sm1926434lfe.138.2023.09.18.12.47.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Sep 2023 12:47:13 -0700 (PDT)
-Date: Mon, 18 Sep 2023 22:47:07 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Jisheng Zhang <jszhang@kernel.org>
-Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
-	Vladimir Zapolskiy <vz@mleia.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Emil Renner Berthing <kernel@esmil.dk>, 
-	Samin Guo <samin.guo@starfivetech.com>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, 
-	Russell King <linux@armlinux.org.uk>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-tegra@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next v2 07/23] net: stmmac: dwmac-intel-plat: use
- devm_stmmac_probe_config_dt()
-Message-ID: <5x3xddynxi4mcf5zpac5q3kjabpq7iui6kdynasvgwp3ekzkc6@va2bm4fnh4fo>
-References: <20230916075829.1560-1-jszhang@kernel.org>
- <20230916075829.1560-8-jszhang@kernel.org>
+	id 1qiKHJ-00GDdX-1f
+	for linux-amlogic@lists.infradead.org;
+	Mon, 18 Sep 2023 19:51:30 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qiKHA-0003tb-JB; Mon, 18 Sep 2023 21:51:20 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qiKHA-007I99-5V; Mon, 18 Sep 2023 21:51:20 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qiKH9-002mCo-SC; Mon, 18 Sep 2023 21:51:19 +0200
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	netdev@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH net-next 13/19] net: mdio: mux-meson-g12a: Convert to platform remove callback returning void
+Date: Mon, 18 Sep 2023 21:50:56 +0200
+Message-Id: <20230918195102.1302746-14-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230918195102.1302746-1-u.kleine-koenig@pengutronix.de>
+References: <20230918195102.1302746-1-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230916075829.1560-8-jszhang@kernel.org>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1826; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=EzJFBBjWak83XqZfwXAmsPeATMXEasxL4vEIaynihO4=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBlCKoPKfUwDQDhH8du0OvFGHGy/cy/8NHJo8l/V BExs0+U2kmJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZQiqDwAKCRCPgPtYfRL+ TnypCACUDyS5DHFzFzNuBt/1GnxBHxRj+FItq3pn9j1bAuTt0BtINBnJ2FVOxKZ+HWIeM5lgJXy G1MK3iGEBVHvLVu6TLS8UpA8aJ5rUdfFO3KyFKmViyoLkQpusyo4wqA9wj0QSdZ5wk/jDXrHivX cgIYGngVkHSzlzeMTA8nJNmdcDDQHc4g5iJ9fzVmJODorwn06JAs7ttSAbkRsqQU6kGicXkCcLU dN5nz/WyYw8xn3PgbaN9bGDo1kfVAwTDN3Tm6VW5zVS4ief9o7IcZ+66f5i9W5oxUIjQoC5Z+tJ Jk5GHCetMEO5hxLCA1MdOapxlaZcEa7htdOFyd+X5q7ze+ZL
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230918_124717_287058_0493D01C 
-X-CRM114-Status: GOOD (  23.64  )
+X-CRM114-CacheID: sfid-20230918_125129_548939_E757CEDE 
+X-CRM114-Status: GOOD (  15.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,120 +83,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, Sep 16, 2023 at 03:58:13PM +0800, Jisheng Zhang wrote:
-> Simplify the driver's probe() function by using the devres
-> variant of stmmac_probe_config_dt().
-> 
-> The calling of stmmac_pltfr_remove() now needs to be switched to
-> stmmac_pltfr_remove_no_dt().
-> 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->  .../stmicro/stmmac/dwmac-intel-plat.c         | 27 +++++++------------
->  1 file changed, 9 insertions(+), 18 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-intel-plat.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-intel-plat.c
-> index d352a14f9d48..d1aec2ca2b42 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-intel-plat.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-intel-plat.c
-> @@ -85,17 +85,15 @@ static int intel_eth_plat_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> -	plat_dat = stmmac_probe_config_dt(pdev, stmmac_res.mac);
-> +	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
->  	if (IS_ERR(plat_dat)) {
->  		dev_err(&pdev->dev, "dt configuration failed\n");
->  		return PTR_ERR(plat_dat);
->  	}
->  
->  	dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
-> -	if (!dwmac) {
-> -		ret = -ENOMEM;
-> -		goto err_remove_config_dt;
-> -	}
-> +	if (!dwmac)
-> +		return -ENOMEM;
->  
->  	dwmac->dev = &pdev->dev;
->  	dwmac->tx_clk = NULL;
-> @@ -110,10 +108,8 @@ static int intel_eth_plat_probe(struct platform_device *pdev)
->  		/* Enable TX clock */
->  		if (dwmac->data->tx_clk_en) {
->  			dwmac->tx_clk = devm_clk_get(&pdev->dev, "tx_clk");
-> -			if (IS_ERR(dwmac->tx_clk)) {
-> -				ret = PTR_ERR(dwmac->tx_clk);
-> -				goto err_remove_config_dt;
-> -			}
-> +			if (IS_ERR(dwmac->tx_clk))
-> +				return PTR_ERR(dwmac->tx_clk);
->  
->  			clk_prepare_enable(dwmac->tx_clk);
->  
-> @@ -126,7 +122,7 @@ static int intel_eth_plat_probe(struct platform_device *pdev)
->  				if (ret) {
->  					dev_err(&pdev->dev,
->  						"Failed to set tx_clk\n");
-> -					goto err_remove_config_dt;
-> +					return ret;
->  				}
->  			}
->  		}
-> @@ -140,7 +136,7 @@ static int intel_eth_plat_probe(struct platform_device *pdev)
->  			if (ret) {
->  				dev_err(&pdev->dev,
->  					"Failed to set clk_ptp_ref\n");
-> -				goto err_remove_config_dt;
-> +				return ret;
->  			}
->  		}
->  	}
-> @@ -158,22 +154,17 @@ static int intel_eth_plat_probe(struct platform_device *pdev)
->  	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
->  	if (ret) {
-
->  		clk_disable_unprepare(dwmac->tx_clk);
-> -		goto err_remove_config_dt;
-> +		return ret;
-
-Just a general note IMO it's better for maintainability to have the
-clean-up-on-error block than reverting the previous changes in the if
-body. Thus should you add new functions call before the block in
-subject you won't need to add duplicated cleanup functions calls, but
-just add new reverting method invocation to the cleanup-on-error path.
-
--Serge(y)
-
->  	}
->  
->  	return 0;
-> -
-> -err_remove_config_dt:
-> -	stmmac_remove_config_dt(pdev, plat_dat);
-> -
-> -	return ret;
->  }
->  
->  static void intel_eth_plat_remove(struct platform_device *pdev)
->  {
->  	struct intel_dwmac *dwmac = get_stmmac_bsp_priv(&pdev->dev);
->  
-> -	stmmac_pltfr_remove(pdev);
-> +	stmmac_pltfr_remove_no_dt(pdev);
->  	clk_disable_unprepare(dwmac->tx_clk);
->  }
->  
-> -- 
-> 2.40.1
-> 
-> 
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhlIC5yZW1vdmUoKSBjYWxsYmFjayBmb3IgYSBwbGF0Zm9ybSBkcml2ZXIgcmV0dXJucyBhbiBp
+bnQgd2hpY2ggbWFrZXMKbWFueSBkcml2ZXIgYXV0aG9ycyB3cm9uZ2x5IGFzc3VtZSBpdCdzIHBv
+c3NpYmxlIHRvIGRvIGVycm9yIGhhbmRsaW5nIGJ5CnJldHVybmluZyBhbiBlcnJvciBjb2RlLiBI
+b3dldmVyIHRoZSB2YWx1ZSByZXR1cm5lZCBpcyBpZ25vcmVkIChhcGFydApmcm9tIGVtaXR0aW5n
+IGEgd2FybmluZykgYW5kIHRoaXMgdHlwaWNhbGx5IHJlc3VsdHMgaW4gcmVzb3VyY2UgbGVha3Mu
+ClRvIGltcHJvdmUgaGVyZSB0aGVyZSBpcyBhIHF1ZXN0IHRvIG1ha2UgdGhlIHJlbW92ZSBjYWxs
+YmFjayByZXR1cm4Kdm9pZC4gSW4gdGhlIGZpcnN0IHN0ZXAgb2YgdGhpcyBxdWVzdCBhbGwgZHJp
+dmVycyBhcmUgY29udmVydGVkIHRvCi5yZW1vdmVfbmV3KCkgd2hpY2ggYWxyZWFkeSByZXR1cm5z
+IHZvaWQuIEV2ZW50dWFsbHkgYWZ0ZXIgYWxsIGRyaXZlcnMKYXJlIGNvbnZlcnRlZCwgLnJlbW92
+ZV9uZXcoKSBpcyByZW5hbWVkIHRvIC5yZW1vdmUoKS4KClRyaXZpYWxseSBjb252ZXJ0IHRoaXMg
+ZHJpdmVyIGZyb20gYWx3YXlzIHJldHVybmluZyB6ZXJvIGluIHRoZSByZW1vdmUKY2FsbGJhY2sg
+dG8gdGhlIHZvaWQgcmV0dXJuaW5nIHZhcmlhbnQuCgpTaWduZWQtb2ZmLWJ5OiBVd2UgS2xlaW5l
+LUvDtm5pZyA8dS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlPgotLS0KIGRyaXZlcnMvbmV0
+L21kaW8vbWRpby1tdXgtbWVzb24tZzEyYS5jIHwgNiArKy0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAy
+IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQv
+bWRpby9tZGlvLW11eC1tZXNvbi1nMTJhLmMgYi9kcml2ZXJzL25ldC9tZGlvL21kaW8tbXV4LW1l
+c29uLWcxMmEuYwppbmRleCA5MTBlNWNmNzRlODkuLjc1NGIwZjJjZjE1YiAxMDA2NDQKLS0tIGEv
+ZHJpdmVycy9uZXQvbWRpby9tZGlvLW11eC1tZXNvbi1nMTJhLmMKKysrIGIvZHJpdmVycy9uZXQv
+bWRpby9tZGlvLW11eC1tZXNvbi1nMTJhLmMKQEAgLTMzNiw3ICszMzYsNyBAQCBzdGF0aWMgaW50
+IGcxMmFfbWRpb19tdXhfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKIAlyZXR1
+cm4gcmV0OwogfQogCi1zdGF0aWMgaW50IGcxMmFfbWRpb19tdXhfcmVtb3ZlKHN0cnVjdCBwbGF0
+Zm9ybV9kZXZpY2UgKnBkZXYpCitzdGF0aWMgdm9pZCBnMTJhX21kaW9fbXV4X3JlbW92ZShzdHJ1
+Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQogewogCXN0cnVjdCBnMTJhX21kaW9fbXV4ICpwcml2
+ID0gcGxhdGZvcm1fZ2V0X2RydmRhdGEocGRldik7CiAKQEAgLTM0NCwxMyArMzQ0LDExIEBAIHN0
+YXRpYyBpbnQgZzEyYV9tZGlvX211eF9yZW1vdmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRl
+dikKIAogCWlmIChfX2Nsa19pc19lbmFibGVkKHByaXYtPnBsbCkpCiAJCWNsa19kaXNhYmxlX3Vu
+cHJlcGFyZShwcml2LT5wbGwpOwotCi0JcmV0dXJuIDA7CiB9CiAKIHN0YXRpYyBzdHJ1Y3QgcGxh
+dGZvcm1fZHJpdmVyIGcxMmFfbWRpb19tdXhfZHJpdmVyID0gewogCS5wcm9iZQkJPSBnMTJhX21k
+aW9fbXV4X3Byb2JlLAotCS5yZW1vdmUJCT0gZzEyYV9tZGlvX211eF9yZW1vdmUsCisJLnJlbW92
+ZV9uZXcJPSBnMTJhX21kaW9fbXV4X3JlbW92ZSwKIAkuZHJpdmVyCQk9IHsKIAkJLm5hbWUJPSAi
+ZzEyYS1tZGlvX211eCIsCiAJCS5vZl9tYXRjaF90YWJsZSA9IGcxMmFfbWRpb19tdXhfbWF0Y2gs
+Ci0tIAoyLjQwLjEKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJh
+ZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51
+eC1hbWxvZ2ljCg==
