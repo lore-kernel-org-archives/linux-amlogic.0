@@ -4,75 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6509EC46CA1
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Sep 2023 11:51:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B062C46CA1
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Sep 2023 19:13:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
-	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hexQUnap8pvmEuK3m6YtWW548lwDIyzl2+Lx6EIJkwg=; b=Xxzywv78sz9XoK
-	gBZTLHoTMrI+cZqC1Cf9dERTMRH5Grpy30fTQZOpzMQva7kOUt5d9GpnQGi7Wj4bshYaylFGDa5LA
-	pqQkSCk3kGcQxD38G8fFRwFx5DMNdzbvpt+IP7JrfEOHL6TMldUoJtds30xEmR63m0tJcspEvm1Wg
-	esDj1g1Qwi95hzXJ1rP3cyx4pE0PPljUH8sXsYAgd+AZBKdlxzoVaIgnOgLmTxug2f55xWfwIJPGA
-	cyrc+gcSaXU22t7GFsL8sS4/EvYKF5ZrAaFRl0562+x5rs7vUaBX14s0ovwMKv9CAZJT1ky+FRfk4
-	M8yRm+eAw3z4bY5iX2Tg==;
+	List-Owner; bh=f0ixxalFgdSOwHWN55P2n4LvM2c/ycFHH90pK8hR5Ys=; b=qGDkDXWi5bgPUr
+	c8i6T/LITeqNWTgcWbLTlA3be+aeYQxFo0/2Mtl7+L48mAVfE+V8P+VGxlCSiS0zkPu05eMRfcmOb
+	9RQ97pxG4KK8YZMfXA872FG+7Vck/uAByligNccwhz10h/lylHhga3nYv5Sbv3AM0roq+K09y47iB
+	irknI4CEojvQFeHPHO9vduurlf3wfPt0tZ66GeaaC9SaDOe/9eW2Q7uwAi+WadeTzBnI8QBLflKIC
+	dOEgQvhXPvd4IXx0eAjh0118LXVDQzhHs7Dr2vxgHnqr68rDiHBPrwLye6RPYUkuLQ3ZCS5xeYrO6
+	GZyh/ktLfX5m9Vw7Qncg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qiClz-00FLxQ-1O;
-	Mon, 18 Sep 2023 11:50:39 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1qiJfj-00G90u-2O;
+	Mon, 18 Sep 2023 19:12:39 +0000
+Received: from mail-lj1-x230.google.com ([2a00:1450:4864:20::230])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qiClt-00FLwX-16;
-	Mon, 18 Sep 2023 11:50:35 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 46CD0B80DE3;
-	Mon, 18 Sep 2023 11:50:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id CAD37C433C7;
-	Mon, 18 Sep 2023 11:50:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695037829;
-	bh=oT5snbuM6TfIDJhxJsWR/PSxNRbw+iiiuFc7Xp3a8+I=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=uZ7FGpqOOOW4QGMAG4E31OhORIcesAUkf7+AMd+dsPzh46DiEGuFjAIIhigCjpVJL
-	 DwbZLMUVDePIq6nrbjOfTbzXtettFFgIyY2rnnqxkUb/zAQgp+ndayV41JWxb1zLMo
-	 AbI3ombnz9obEikffx68Z0fVqGGNkZQKYCDV1P39O8JxfbAfmD/97IyEGrtWpqGfsP
-	 5sR9Uc4vWEZJBRM/S+0t5Q8N7s9KRKP6pCpKx6h60qwQV1CKH3ulLO4OQM8TnaNqdb
-	 K5zs590+yp6+YrY9ggF3Ph/91j0zolaKDFIYLi5JTOTbhB+mIXrp/jkzKzlYTTCB0Q
-	 EXB1uzYcbpgnw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id B4871E11F41;
-	Mon, 18 Sep 2023 11:50:29 +0000 (UTC)
-MIME-Version: 1.0
-Subject: Re: [PATCH net-next v2 00/22] convert to devm_stmmac_probe_config_dt
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <169503782973.2272.13506822186977436052.git-patchwork-notify@kernel.org>
-Date: Mon, 18 Sep 2023 11:50:29 +0000
-References: <20230916075829.1560-1-jszhang@kernel.org>
-In-Reply-To: <20230916075829.1560-1-jszhang@kernel.org>
+	id 1qiJfg-00G8yA-36;
+	Mon, 18 Sep 2023 19:12:38 +0000
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b9338e4695so77945691fa.2;
+        Mon, 18 Sep 2023 12:12:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695064341; x=1695669141; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ymg444KdzoYqbAJJDaXLrEYL/H+uXP42VM/AMIopDrc=;
+        b=DI+/XBlD/fsiiNX2OSHNi/qpkWPXWVTIdyxOS4jX5hLSnninMrNG3/cTB7LXTSSwQr
+         bq+e8conccy/8uxPD9OSY2pj6TA3NvJ9T90UbGHJ7veiuODGDt5Sze3EwRH3Awkndfub
+         fR9WutElesmFDHN1GHUpV4fux+Pf9830YKjiBpfUHHzcEK111yPHqT79DjqiCgqf4tOX
+         BkFjcjASCSbzdgPOeYvsUEUDSBQkjaAbMwAiSZuam7ctWv5qXlnX/8l9ZXc+e1HCUOky
+         fYsQAH7Vfr209fsqzVfVimzKFnEld7CZ6IeGFhvdP02aAPtfKXhB3O0AiSiLcpqn+9Pt
+         fjNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695064341; x=1695669141;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ymg444KdzoYqbAJJDaXLrEYL/H+uXP42VM/AMIopDrc=;
+        b=COclzMm8RssubckzEWno9J01ufuZLsH72oYRtCf5naZ8WXFZmBiooJyNgsmrIPxMN+
+         LjEKjH6FiVGb9reCcK6EyEp0GgXdHqzjhDZTaXZ3vostGZTjzqZUBJDeRW1nfIsCPV5P
+         36eUbi49q9NJeZbJktCdwHnDsFBJw85r5lwDOZU47xCHFK7zm/YrnW8FFDlO5vMzdb8Y
+         CNSX3TzjJY9da2EVTBfFMWtJXfcwVBETVD1h5JN0sOSAXnLzNQhTT/q8zKOicggFjhyJ
+         TXKUpZa/oNZS7mvDvaZ+0HvqtwhNUDbf6L3fl8RZz0v9XtdauKRr69DjVuWinDoIi/uV
+         q1mg==
+X-Gm-Message-State: AOJu0YyBTpwh8h8lP6lxzL1NUp8p94TqPDw50mj/OLaf7VTa3O7nUFaM
+	e/9Zd1A4ofVl2HtcRfw+cPw=
+X-Google-Smtp-Source: AGHT+IFjg/ob0U+8PEhUDzZxfqbyJQBZc1GsvUR1GE+uNr8GDm+7qXSDDyadXaGQKQJr0ryj693ksg==
+X-Received: by 2002:a2e:700d:0:b0:2bf:6852:9339 with SMTP id l13-20020a2e700d000000b002bf68529339mr8798200ljc.3.1695064340742;
+        Mon, 18 Sep 2023 12:12:20 -0700 (PDT)
+Received: from mobilestation ([85.140.3.118])
+        by smtp.gmail.com with ESMTPSA id y15-20020a2e978f000000b002bce38190a3sm2221659lji.34.2023.09.18.12.11.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Sep 2023 12:12:20 -0700 (PDT)
+Date: Mon, 18 Sep 2023 22:11:26 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
 To: Jisheng Zhang <jszhang@kernel.org>
-Cc: peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
- joabreu@synopsys.com, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, linux-imx@nxp.com, vz@mleia.com,
- neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, kernel@esmil.dk,
- samin.guo@starfivetech.com, wens@csie.org, jernej.skrabec@gmail.com,
- samuel@sholland.org, thierry.reding@gmail.com,
- nobuhiro1.iwamatsu@toshiba.co.jp, linux@armlinux.org.uk,
- matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
- netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
- linux-mediatek@lists.infradead.org
+Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+	Vladimir Zapolskiy <vz@mleia.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Emil Renner Berthing <kernel@esmil.dk>, 
+	Samin Guo <samin.guo@starfivetech.com>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, 
+	Russell King <linux@armlinux.org.uk>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-tegra@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH net-next v2 02/23] net: stmmac: dwmac-dwc-qos-eth: use
+ devm_stmmac_probe_config_dt()
+Message-ID: <d3vpg5jcgfoe5qpreh2hnworsa2ly3ufrgqi4mcxx2yzfs7eoy@w2hgimsg64hp>
+References: <20230916075829.1560-1-jszhang@kernel.org>
+ <20230916075829.1560-3-jszhang@kernel.org>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20230916075829.1560-3-jszhang@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230918_045033_688884_AF970329 
-X-CRM114-Status: GOOD (  10.42  )
+X-CRM114-CacheID: sfid-20230918_121237_000003_79C36F79 
+X-CRM114-Status: GOOD (  19.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,76 +107,76 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello:
+Hi Jisheng
 
-This series was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
-
-On Sat, 16 Sep 2023 15:58:06 +0800 you wrote:
-> Russell pointed out there's a new devm_stmmac_probe_config_dt()
-> helper now when reviewing my starfive gmac error handling patch[1].
-> After greping the code, this nice helper was introduced by Bartosz in
-> [2], I think it's time to convert all dwmac users to this helper and
-> finally complete the TODO in [2] "but once all users of the old
-> stmmac_pltfr_remove() are converted to the devres helper, it will be
-> renamed back to stmmac_pltfr_remove() and the no_dt function removed."
+On Sat, Sep 16, 2023 at 03:58:08PM +0800, Jisheng Zhang wrote:
+> Simplify the driver's probe() function by using the devres
+> variant of stmmac_probe_config_dt().
 > 
-> [...]
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>  .../ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c   | 15 +++------------
+>  1 file changed, 3 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
+> index 61ebf36da13d..ec924c6c76c6 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
+> @@ -435,15 +435,14 @@ static int dwc_eth_dwmac_probe(struct platform_device *pdev)
+>  	if (IS_ERR(stmmac_res.addr))
+>  		return PTR_ERR(stmmac_res.addr);
+>  
+> -	plat_dat = stmmac_probe_config_dt(pdev, stmmac_res.mac);
+> +	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
+>  	if (IS_ERR(plat_dat))
+>  		return PTR_ERR(plat_dat);
+>  
+>  	ret = data->probe(pdev, plat_dat, &stmmac_res);
+>  	if (ret < 0) {
 
-Here is the summary with links:
-  - [net-next,v2,01/23] net: stmmac: dwmac-anarion: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/6f799fd9dda7
-  - [net-next,v2,02/23] net: stmmac: dwmac-dwc-qos-eth: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/0485825dd6a8
-  - [net-next,v2,03/23] net: stmmac: dwmac-generic: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/d53b19d2a1a8
-  - [net-next,v2,04/23] net: stmmac: dwmac-generic: use devm_stmmac_pltfr_probe()
-    https://git.kernel.org/netdev/net-next/c/14ec0fc582c5
-  - [net-next,v2,05/23] net: stmmac: dwmac-imx: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/115c9248b19b
-  - [net-next,v2,06/23] net: stmmac: dwmac-ingenic: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/6bb53b2abf30
-  - [net-next,v2,07/23] net: stmmac: dwmac-intel-plat: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/abea8fd5e801
-  - [net-next,v2,08/23] net: stmmac: dwmac-ipq806x: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/72ab86c27d4e
-  - [net-next,v2,09/23] net: stmmac: dwmac-lpc18xx: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/d30c08a3b001
-  - [net-next,v2,10/23] net: stmmac: dwmac-mediatek: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/d7209c056a49
-  - [net-next,v2,11/23] net: stmmac: dwmac-meson: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/780b63ae208e
-  - [net-next,v2,12/23] net: stmmac: dwmac-meson8b: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/551022d680ec
-  - [net-next,v2,13/23] net: stmmac: dwmac-rk: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/8eee20e10d6f
-  - [net-next,v2,14/23] net: stmmac: dwmac-socfpga: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/9086d3f2b560
-  - [net-next,v2,15/23] net: stmmac: dwmac-starfive: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/6d6c11937359
-  - [net-next,v2,16/23] net: stmmac: dwmac-sti: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/c9445e0bd729
-  - [net-next,v2,17/23] net: stmmac: dwmac-stm32: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/373845154618
-  - [net-next,v2,18/23] net: stmmac: dwmac-sun8i: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/9bdf6909877c
-  - [net-next,v2,19/23] net: stmmac: dwmac-sunxi: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/291595337626
-  - [net-next,v2,20/23] net: stmmac: dwmac-tegra: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/acf73ccff08e
-  - [net-next,v2,21/23] net: stmmac: dwmac-visconti: use devm_stmmac_probe_config_dt()
-    https://git.kernel.org/netdev/net-next/c/d336a117b593
-  - [net-next,v2,22/23] net: stmmac: rename stmmac_pltfr_remove_no_dt to stmmac_pltfr_remove
-    https://git.kernel.org/netdev/net-next/c/2c9fc838067b
-  - [net-next,v2,23/23] net: stmmac: make stmmac_{probe|remove}_config_dt static
-    https://git.kernel.org/netdev/net-next/c/b2504f649bda
+>  		dev_err_probe(&pdev->dev, ret, "failed to probe subdriver\n");
+> -
+> -		goto remove_config;
+> +		return ret;
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+just "return dev_err_probe()".
 
+-Serge(y)
 
+>  	}
+>  
+>  	ret = dwc_eth_dwmac_config_dt(pdev, plat_dat);
+> @@ -458,25 +457,17 @@ static int dwc_eth_dwmac_probe(struct platform_device *pdev)
+>  
+>  remove:
+>  	data->remove(pdev);
+> -remove_config:
+> -	stmmac_remove_config_dt(pdev, plat_dat);
+>  
+>  	return ret;
+>  }
+>  
+>  static void dwc_eth_dwmac_remove(struct platform_device *pdev)
+>  {
+> -	struct net_device *ndev = platform_get_drvdata(pdev);
+> -	struct stmmac_priv *priv = netdev_priv(ndev);
+> -	const struct dwc_eth_dwmac_data *data;
+> -
+> -	data = device_get_match_data(&pdev->dev);
+> +	const struct dwc_eth_dwmac_data *data = device_get_match_data(&pdev->dev);
+>  
+>  	stmmac_dvr_remove(&pdev->dev);
+>  
+>  	data->remove(pdev);
+> -
+> -	stmmac_remove_config_dt(pdev, priv->plat);
+>  }
+>  
+>  static const struct of_device_id dwc_eth_dwmac_match[] = {
+> -- 
+> 2.40.1
+> 
+> 
 
 _______________________________________________
 linux-amlogic mailing list
