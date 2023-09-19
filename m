@@ -4,140 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2ED5CE79AA
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Sep 2023 17:51:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57706CE79A8
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Sep 2023 18:23:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Pi2tj+YQlj0pJnyYW2hmQe1ZKm/nyUijAq0XIU4WFP0=; b=QT6WKjPYwoKmr7
-	So1dIz701L4CaxT9BjZ1v0rWp44enKCZBTW3hNBS/XQhF0MtaRzP2NZJWJbSXKAv6lUhLoGhYzwe9
-	KB1HnTeFGwj8g2qjQzjQIvbCEFQJb7RY/z9oZOj9corOyckPJr0FJCPaY++NbM18RLkWFbOtI05Fh
-	AuikMxadueujKlp8Wr6QZlIEKyogifAsrfRm6xFJd1/4DLmLnuSf8UY7EOavcS8kFVmw6ci2Pq2Zf
-	HGRbQmdAl3jZBsBpMJVaEJIiJBfRF6CHPDKCAT2snseMLUzrqKm1vOw8tODnPVLoy4YpC0rgc7/3V
-	5yv2MB0dAGTYajLL89aQ==;
+	List-Owner; bh=KYQlC9qWfy3/gUhx7cQhEjpl+vYt/7I/zahiTMMARQQ=; b=0SGZd27G1c8yiA
+	GcXgzr2L2pSpA5N8Lfa/I8GEw4rHErTYj0mU6u1vnMaRIRW7dSp4EhMOZNwg4WxC/JgvmWyxWx5Xr
+	T3hMsSXYFIASUkQmT7WFiyrn114chh2nW0LjFDY/+t0pLJaKKOCtK/DA6eYQkqjfjHJFJDviX4ym3
+	k0T5CM8HPT1igEDViIb4fmBTTRh0s2eN+IMm1EV1pm2YexEMVzJXJoxo0Ta4fiUWgMQX0+vz8DO9P
+	SsR5fsuzNDssD/OE6QZ1cQqeFESfjQavHz3NMJ/PcywhzBqw9J7NvWvCQ12Wno8mD/Zv0+aBoJf7z
+	YFXIFDjXlNSzGSg+72Hg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qiesh-000zum-1b;
-	Tue, 19 Sep 2023 17:51:27 +0000
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
+	id 1qifNZ-0013zH-2Y;
+	Tue, 19 Sep 2023 18:23:21 +0000
+Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qierk-000zHx-16
-	for linux-amlogic@lists.infradead.org;
-	Tue, 19 Sep 2023 17:50:34 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qierE-0006Jj-CX; Tue, 19 Sep 2023 19:49:56 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qier4-007VVT-A1; Tue, 19 Sep 2023 19:49:46 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qier3-0034WI-Qd; Tue, 19 Sep 2023 19:49:45 +0200
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Jiri Kosina <jikos@kernel.org>,
-	Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	linux-input@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	kernel@pengutronix.de,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Eugen Hristev <eugen.hristev@collabora.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Jinjie Ruan <ruanjinjie@huawei.com>,
-	Rob Herring <robh@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Yang Yingliang <yangyingliang@huawei.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Hartley Sweeten <hsweeten@visionengravers.com>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-samsung-soc@vger.kernel.org,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Andreas Klinger <ak@it-klinger.de>,
-	Cai Huoqing <cai.huoqing@linux.dev>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	George Stark <gnstark@sberdevices.ru>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	=?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
-	linux-amlogic@lists.infradead.org,
-	Saravanan Sekar <sravanhome@gmail.com>,
-	Jiakai Luo <jkluo@hust.edu.cn>,
-	Dongliang Mu <dzm91@hust.edu.cn>,
-	Avi Fishman <avifishman70@gmail.com>,
-	Tomer Maimon <tmaimon77@gmail.com>,
-	Tali Perry <tali.perry1@gmail.com>,
-	Patrick Venture <venture@google.com>,
-	Nancy Yuen <yuenn@google.com>,
-	Benjamin Fair <benjaminfair@google.com>,
-	openbmc@lists.ozlabs.org,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	id 1qifNW-0013y9-32;
+	Tue, 19 Sep 2023 18:23:20 +0000
+Received: from ginger.. (unknown [191.33.115.175])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: koike)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id C75A5660319E;
+	Tue, 19 Sep 2023 19:23:09 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1695147794;
+	bh=MIhVHMuMS8iI5c/lxHJyWBy4zZOfp/8Z+Dcp2sjs9HE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=iuLqsyfB8fSIgvACmga4IETDB20ZBCSv6kG9g0vdiSY90VLIoO5vB+mCeuaQ797AG
+	 deeVUmA7lrgGv9vjb8L+n9ivv+BYXlQ97hOgJAcc8oUfPQUvVg0rqJy7YT2p0ropxM
+	 2B/0usnIHgzo7dCz5jDoNqOyNoRd5QY2SEUV0+MMsYIJjLCwuMy/JEwmEh8EMfcZfM
+	 bNg/j+rwyOlY8WCVavlnK0ME2MfX5iaG6KDEMfbzUN94thOpuwPGD2Fezw7ILuMv23
+	 b49RvWTo0OYFhrlHd/RwJEkbQuRt/xr2bn62owJXsXY4flp6K4/13XbOBBK0T9zRSM
+	 O2mMc1ScM99kw==
+From: Helen Koike <helen.koike@collabora.com>
+To: dri-devel@lists.freedesktop.org
+Cc: robdclark@gmail.com,
 	linux-arm-msm@vger.kernel.org,
-	Marek Vasut <marek.vasut@gmail.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-	Zhang Shurong <zhang_shurong@foxmail.com>,
-	Yangtao Li <frank.li@vivo.com>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Sean Nyekjaer <sean@geanix.com>,
-	Tom Rix <trix@redhat.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-	Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-	Mark Brown <broonie@kernel.org>,
-	Ido Schimmel <idosch@nvidia.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	linux-sunxi@lists.linux.dev,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Peter Rosin <peda@axentia.se>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	Kevin Tsai <ktsai@capellamicro.com>,
-	Benson Leung <bleung@chromium.org>,
-	Guenter Roeck <groeck@chromium.org>,
-	chrome-platform@lists.linux.dev
-Subject: [PATCH 00/49] iio: Convert to platform remove callback returning void
-Date: Tue, 19 Sep 2023 19:48:42 +0200
-Message-Id: <20230919174931.1417681-1-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.40.1
+	neil.armstrong@linaro.org,
+	linux-amlogic@lists.infradead.org,
+	p.zabel@pengutronix.de,
+	linux-mediatek@lists.infradead.org,
+	heiko@sntech.de,
+	jani.nikula@linux.intel.com,
+	intel-gfx@lists.freedesktop.org,
+	alexander.deucher@amd.com,
+	amd-gfx@lists.freedesktop.org,
+	airlied@redhat.com,
+	daniel@ffwll.ch,
+	mripard@kernel.org,
+	michel.daenzer@mailbox.org,
+	daniel@fooishbar.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] MAINTAINERS: drm/ci: add entries for xfail files
+Date: Tue, 19 Sep 2023 15:22:49 -0300
+Message-Id: <20230919182249.153499-1-helen.koike@collabora.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8269; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=cuk3jxOiXgIUBikmjG+zsljm9zaWYjBmeiLtAd8rO9k=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBlCd7vIlP2VeriuGG1jpId5rgS1c3dyBe3FAkva bOz+Cms2ZmJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZQne7wAKCRCPgPtYfRL+ TsaKCACYcNf6TucJIdrcTmQocW5rXVUHd8FGg6zjf77q9iaRUcrRyMgufZi9kHX8CoIc2VNzbsv Sde9oTXarxauVNSU2DTuCbLLiugw9ge4kE3wo0PdLHL9coUwmk305A07oPwBGaGcdefyG/pv0mS 7mgPmofLk6Td5oOSGwnSqH4xwnrUxuSzcFX4MpqRhtkP32Fzg+DnME4I4s2cGFXTFIqg/vAGlsa Uwoc2RCCeY71MmhjdOQIxaY3AhrFWMB+ykVE9omgDbWdXlwtJTMvje2RVVEzY+gNAnN8MTMBoE4 21HS4CQJwqcc/GDvaxBw4owlQCUlt+760qbqOvyBf33TGiQz
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230919_105028_545450_DD7DC5AE 
-X-CRM114-Status: GOOD (  12.24  )
+X-CRM114-CacheID: sfid-20230919_112319_162568_5AF19189 
+X-CRM114-Status: UNSURE (   8.58  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -149,154 +82,89 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-dGhpcyBzZXJpZXMgY29udmVydHMgYWxsIHBsYXRmb3JtIGRyaXZlcnMgYmVsb3cgZHJpdmVycy9p
-aW8gdG8gdXNlCi5yZW1vdmVfbmV3KCkuIFRoZSBtb3RpdmF0aW9uIGlzIHRvIGdldCByaWQgb2Yg
-YW4gaW50ZWdlciByZXR1cm4gY29kZQp0aGF0IGlzIChtb3N0bHkpIGlnbm9yZWQgYnkgdGhlIHBs
-YXRmb3JtIGRyaXZlciBjb3JlIGFuZCBlcnJvciBwcm9uZSBvbgp0aGUgZHJpdmVyIHNpZGUuIEFz
-IGFsbCBwbGF0Zm9ybSBkcml2ZXJzIHJldHVybiB6ZXJvIHVuY29uZGl0aW9uYWxseSBpbiB0aGVp
-cgpyZW1vdmUgY2FsbGJhY2sgdXAgdG8gbm93LCB0aGUgY29udmVyc2lvbnMgYXJlICJ0cml2aWFs
-Ii4KClNlZSBjb21taXQgNWM1YTc2ODBlNjdiICgicGxhdGZvcm06IFByb3ZpZGUgYSByZW1vdmUg
-Y2FsbGJhY2sgdGhhdApyZXR1cm5zIG5vIHZhbHVlIikgZm9yIGFuIGV4dGVuZGVkIGV4cGxhbmF0
-aW9uIGFuZCB0aGUgZXZlbnR1YWwgZ29hbC4KClRoZXJlIGFyZSBubyBpbnRlcmRlcGVuZGVuY2ll
-cyBiZXR3ZWVuIHRoZSBwYXRjaGVzLiBBcyB0aGVyZSBhcmUgc3RpbGwKcXVpdGUgYSBmZXcgZHJp
-dmVycyB0byBjb252ZXJ0LCBJJ20gaGFwcHkgYWJvdXQgZXZlcnkgcGF0Y2ggdGhhdCBtYWtlcwpp
-dCBpbi4gU28gZXZlbiBpZiB0aGVyZSBpcyBhIG1lcmdlIGNvbmZsaWN0IHdpdGggb25lIHBhdGNo
-IHVudGlsIHlvdQphcHBseSBvciBJIHBpY2tlZCBhIHdyb25nIHN1YmplY3QgcHJlZml4LCBwbGVh
-c2UgYXBwbHkgdGhlIHJlbWFpbmRlciBvZgp0aGlzIHNlcmllcyBhbnlob3cuCgpCZXN0IHJlZ2Fy
-ZHMKVXdlCgpVd2UgS2xlaW5lLUvDtm5pZyAoNDkpOgogIGlpbzogYWNjZWw6IGhpZC1zZW5zb3It
-YWNjZWwtM2Q6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5p
-bmcgdm9pZAogIGlpbzogYWRjOiBhYjg1MDAtZ3BhZGM6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVt
-b3ZlIGNhbGxiYWNrIHJldHVybmluZwogICAgdm9pZAogIGlpbzogYWRjOiBhdDkxLXNhbWE1ZDI6
-IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZwogICAgdm9pZAog
-IGlpbzogYWRjOiBhdDkxOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1
-cm5pbmcgdm9pZAogIGlpbzogYWRjOiBheHAyMHg6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3Zl
-IGNhbGxiYWNrIHJldHVybmluZyB2b2lkCiAgaWlvOiBhZGM6IGJjbV9pcHJvYzogQ29udmVydCB0
-byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgaWlvOiBhZGM6
-IGRsbjI6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZyB2b2lk
-CiAgaWlvOiBhZGM6IGVwOTN4eDogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sg
-cmV0dXJuaW5nIHZvaWQKICBpaW86IGFkYzogZXh5bm9zOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJl
-bW92ZSBjYWxsYmFjayByZXR1cm5pbmcgdm9pZAogIGlpbzogYWRjOiBmc2wtaW14MjUtZ2NxOiBD
-b252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcKICAgIHZvaWQKICBp
-aW86IGFkYzogaHg3MTE6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVy
-bmluZyB2b2lkCiAgaWlvOiBhZGM6IGlteDhxeHA6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3Zl
-IGNhbGxiYWNrIHJldHVybmluZyB2b2lkCiAgaWlvOiBhZGM6IGlteDkzOiBDb252ZXJ0IHRvIHBs
-YXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcgdm9pZAogIGlpbzogYWRjOiBtZXNvbl9z
-YXJhZGM6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZwogICAg
-dm9pZAogIGlpbzogYWRjOiBtcDI2Mjk6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxi
-YWNrIHJldHVybmluZyB2b2lkCiAgaWlvOiBhZGM6IG14cy1scmFkYzogQ29udmVydCB0byBwbGF0
-Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgaWlvOiBhZGM6IG5wY206
-IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZyB2b2lkCiAgaWlv
-OiBhZGM6IHFjb20tcG04eHh4LXhvYWRjOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxs
-YmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBpaW86IGFkYzogcmNhci1neXJvYWRjOiBDb252ZXJ0
-IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcKICAgIHZvaWQKICBpaW86IGFk
-Yzogc3RtMzItYWRjLWNvcmU6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAg
-ICByZXR1cm5pbmcgdm9pZAogIGlpbzogYWRjOiBzdG0zMi1hZGM6IENvbnZlcnQgdG8gcGxhdGZv
-cm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZwogICAgdm9pZAogIGlpbzogYWRjOiBzdG0zMi1k
-ZnNkbS1hZGM6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrCiAgICByZXR1cm5p
-bmcgdm9pZAogIGlpbzogYWRjOiBzdG0zMi1kZnNkbS1jb3JlOiBDb252ZXJ0IHRvIHBsYXRmb3Jt
-IHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZvaWQKICBpaW86IGFkYzogc3VuNGktZ3Bh
-ZGMtaWlvOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5n
-IHZvaWQKICBpaW86IGFkYzogdGlfYW0zMzV4X2FkYzogQ29udmVydCB0byBwbGF0Zm9ybSByZW1v
-dmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgaWlvOiBhZGM6IHR3bDQwMzAtbWFkYzog
-Q29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nCiAgICB2b2lkCiAg
-aWlvOiBhZGM6IHR3bDYwMzAtZ3BhZGM6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxi
-YWNrIHJldHVybmluZwogICAgdm9pZAogIGlpbzogYWRjOiB2ZjYxMF9hZGM6IENvbnZlcnQgdG8g
-cGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZwogICAgdm9pZAogIGlpbzogZGFjOiBk
-cG90LWRhYzogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nIHZv
-aWQKICBpaW86IGRhYzogbHBjMTh4eF9kYWM6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNh
-bGxiYWNrIHJldHVybmluZwogICAgdm9pZAogIGlpbzogZGFjOiBzdG0zMi1kYWMtY29yZTogQ29u
-dmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAgaWlv
-OiBkYWM6IHN0bTMyLWRhYzogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0
-dXJuaW5nCiAgICB2b2lkCiAgaWlvOiBkYWM6IHZmNjEwOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJl
-bW92ZSBjYWxsYmFjayByZXR1cm5pbmcgdm9pZAogIGlpbzogZ3lybzogaGlkLXNlbnNvci1neXJv
-LTNkOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJuaW5nIHZv
-aWQKICBpaW86IGh1bWlkaXR5OiBoaWQtc2Vuc29yLWh1bWlkaXR5OiBDb252ZXJ0IHRvIHBsYXRm
-b3JtIHJlbW92ZQogICAgY2FsbGJhY2sgcmV0dXJuaW5nIHZvaWQKICBpaW86IGxpZ2h0OiBjbTM2
-MDU6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZyB2b2lkCiAg
-aWlvOiBsaWdodDogaGlkLXNlbnNvci1hbHM6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNh
-bGxiYWNrCiAgICByZXR1cm5pbmcgdm9pZAogIGlpbzogbGlnaHQ6IGhpZC1zZW5zb3ItcHJveDog
-Q29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAg
-aWlvOiBsaWdodDogbG0zNTMzLWFsczogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJh
-Y2sgcmV0dXJuaW5nCiAgICB2b2lkCiAgaWlvOiBtYWduZXRvbWV0ZXI6IGhpZC1zZW5zb3ItbWFn
-bi0zZDogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUKICAgIGNhbGxiYWNrIHJldHVybmluZyB2
-b2lkCiAgaWlvOiBvcmllbnRhdGlvbjogaGlkLXNlbnNvci1pbmNsLTNkOiBDb252ZXJ0IHRvIHBs
-YXRmb3JtIHJlbW92ZQogICAgY2FsbGJhY2sgcmV0dXJuaW5nIHZvaWQKICBpaW86IG9yaWVudGF0
-aW9uOiBoaWQtc2Vuc29yLXJvdGF0aW9uOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZQogICAg
-Y2FsbGJhY2sgcmV0dXJuaW5nIHZvaWQKICBpaW86IHBvc2l0aW9uOiBoaWQtc2Vuc29yLWN1c3Rv
-bS1pbnRlbC1oaW5nZTogQ29udmVydCB0byBwbGF0Zm9ybQogICAgcmVtb3ZlIGNhbGxiYWNrIHJl
-dHVybmluZyB2b2lkCiAgaWlvOiBwcmVzc3VyZTogaGlkLXNlbnNvcjogQ29udmVydCB0byBwbGF0
-Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAgaWlvOiBwcm94aW1pdHk6
-IGNyb3NfZWNfbWticDogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJl
-dHVybmluZyB2b2lkCiAgaWlvOiBwcm94aW1pdHk6IHNyZjA0OiBDb252ZXJ0IHRvIHBsYXRmb3Jt
-IHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcKICAgIHZvaWQKICBpaW86IHRlbXBlcmF0dXJlOiBo
-aWQtc2Vuc29yOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjawogICAgcmV0dXJu
-aW5nIHZvaWQKICBpaW86IHRyaWdnZXI6IGlpby10cmlnLWludGVycnVwdDogQ29udmVydCB0byBw
-bGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJldHVybmluZyB2b2lkCiAgaWlvOiB0cmlnZ2Vy
-OiBzdG0zMi10aW1lcjogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sKICAgIHJl
-dHVybmluZyB2b2lkCgogZHJpdmVycy9paW8vYWNjZWwvaGlkLXNlbnNvci1hY2NlbC0zZC5jICAg
-ICAgICAgICAgICB8IDYgKystLS0tCiBkcml2ZXJzL2lpby9hZGMvYWI4NTAwLWdwYWRjLmMgICAg
-ICAgICAgICAgICAgICAgICAgIHwgNiArKy0tLS0KIGRyaXZlcnMvaWlvL2FkYy9hdDkxLXNhbWE1
-ZDJfYWRjLmMgICAgICAgICAgICAgICAgICAgfCA2ICsrLS0tLQogZHJpdmVycy9paW8vYWRjL2F0
-OTFfYWRjLmMgICAgICAgICAgICAgICAgICAgICAgICAgICB8IDYgKystLS0tCiBkcml2ZXJzL2lp
-by9hZGMvYXhwMjB4X2FkYy5jICAgICAgICAgICAgICAgICAgICAgICAgIHwgNiArKy0tLS0KIGRy
-aXZlcnMvaWlvL2FkYy9iY21faXByb2NfYWRjLmMgICAgICAgICAgICAgICAgICAgICAgfCA2ICsr
-LS0tLQogZHJpdmVycy9paW8vYWRjL2RsbjItYWRjLmMgICAgICAgICAgICAgICAgICAgICAgICAg
-ICB8IDUgKystLS0KIGRyaXZlcnMvaWlvL2FkYy9lcDkzeHhfYWRjLmMgICAgICAgICAgICAgICAg
-ICAgICAgICAgfCA2ICsrLS0tLQogZHJpdmVycy9paW8vYWRjL2V4eW5vc19hZGMuYyAgICAgICAg
-ICAgICAgICAgICAgICAgICB8IDYgKystLS0tCiBkcml2ZXJzL2lpby9hZGMvZnNsLWlteDI1LWdj
-cS5jICAgICAgICAgICAgICAgICAgICAgIHwgNiArKy0tLS0KIGRyaXZlcnMvaWlvL2FkYy9oeDcx
-MS5jICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCA2ICsrLS0tLQogZHJpdmVycy9paW8v
-YWRjL2lteDhxeHAtYWRjLmMgICAgICAgICAgICAgICAgICAgICAgICB8IDYgKystLS0tCiBkcml2
-ZXJzL2lpby9hZGMvaW14OTNfYWRjLmMgICAgICAgICAgICAgICAgICAgICAgICAgIHwgNiArKy0t
-LS0KIGRyaXZlcnMvaWlvL2FkYy9tZXNvbl9zYXJhZGMuYyAgICAgICAgICAgICAgICAgICAgICAg
-fCA2ICsrLS0tLQogZHJpdmVycy9paW8vYWRjL21wMjYyOV9hZGMuYyAgICAgICAgICAgICAgICAg
-ICAgICAgICB8IDYgKystLS0tCiBkcml2ZXJzL2lpby9hZGMvbXhzLWxyYWRjLWFkYy5jICAgICAg
-ICAgICAgICAgICAgICAgIHwgNiArKy0tLS0KIGRyaXZlcnMvaWlvL2FkYy9ucGNtX2FkYy5jICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgfCA2ICsrLS0tLQogZHJpdmVycy9paW8vYWRjL3Fjb20t
-cG04eHh4LXhvYWRjLmMgICAgICAgICAgICAgICAgICB8IDYgKystLS0tCiBkcml2ZXJzL2lpby9h
-ZGMvcmNhci1neXJvYWRjLmMgICAgICAgICAgICAgICAgICAgICAgIHwgNiArKy0tLS0KIGRyaXZl
-cnMvaWlvL2FkYy9zdG0zMi1hZGMtY29yZS5jICAgICAgICAgICAgICAgICAgICAgfCA2ICsrLS0t
-LQogZHJpdmVycy9paW8vYWRjL3N0bTMyLWFkYy5jICAgICAgICAgICAgICAgICAgICAgICAgICB8
-IDYgKystLS0tCiBkcml2ZXJzL2lpby9hZGMvc3RtMzItZGZzZG0tYWRjLmMgICAgICAgICAgICAg
-ICAgICAgIHwgNiArKy0tLS0KIGRyaXZlcnMvaWlvL2FkYy9zdG0zMi1kZnNkbS1jb3JlLmMgICAg
-ICAgICAgICAgICAgICAgfCA2ICsrLS0tLQogZHJpdmVycy9paW8vYWRjL3N1bjRpLWdwYWRjLWlp
-by5jICAgICAgICAgICAgICAgICAgICB8IDggKysrLS0tLS0KIGRyaXZlcnMvaWlvL2FkYy90aV9h
-bTMzNXhfYWRjLmMgICAgICAgICAgICAgICAgICAgICAgfCA2ICsrLS0tLQogZHJpdmVycy9paW8v
-YWRjL3R3bDQwMzAtbWFkYy5jICAgICAgICAgICAgICAgICAgICAgICB8IDYgKystLS0tCiBkcml2
-ZXJzL2lpby9hZGMvdHdsNjAzMC1ncGFkYy5jICAgICAgICAgICAgICAgICAgICAgIHwgNiArKy0t
-LS0KIGRyaXZlcnMvaWlvL2FkYy92ZjYxMF9hZGMuYyAgICAgICAgICAgICAgICAgICAgICAgICAg
-fCA2ICsrLS0tLQogZHJpdmVycy9paW8vZGFjL2Rwb3QtZGFjLmMgICAgICAgICAgICAgICAgICAg
-ICAgICAgICB8IDYgKystLS0tCiBkcml2ZXJzL2lpby9kYWMvbHBjMTh4eF9kYWMuYyAgICAgICAg
-ICAgICAgICAgICAgICAgIHwgNiArKy0tLS0KIGRyaXZlcnMvaWlvL2RhYy9zdG0zMi1kYWMtY29y
-ZS5jICAgICAgICAgICAgICAgICAgICAgfCA2ICsrLS0tLQogZHJpdmVycy9paW8vZGFjL3N0bTMy
-LWRhYy5jICAgICAgICAgICAgICAgICAgICAgICAgICB8IDYgKystLS0tCiBkcml2ZXJzL2lpby9k
-YWMvdmY2MTBfZGFjLmMgICAgICAgICAgICAgICAgICAgICAgICAgIHwgNiArKy0tLS0KIGRyaXZl
-cnMvaWlvL2d5cm8vaGlkLXNlbnNvci1neXJvLTNkLmMgICAgICAgICAgICAgICAgfCA2ICsrLS0t
-LQogZHJpdmVycy9paW8vaHVtaWRpdHkvaGlkLXNlbnNvci1odW1pZGl0eS5jICAgICAgICAgICB8
-IDYgKystLS0tCiBkcml2ZXJzL2lpby9saWdodC9jbTM2MDUuYyAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIHwgNiArKy0tLS0KIGRyaXZlcnMvaWlvL2xpZ2h0L2hpZC1zZW5zb3ItYWxzLmMgICAg
-ICAgICAgICAgICAgICAgfCA2ICsrLS0tLQogZHJpdmVycy9paW8vbGlnaHQvaGlkLXNlbnNvci1w
-cm94LmMgICAgICAgICAgICAgICAgICB8IDYgKystLS0tCiBkcml2ZXJzL2lpby9saWdodC9sbTM1
-MzMtYWxzLmMgICAgICAgICAgICAgICAgICAgICAgIHwgNiArKy0tLS0KIGRyaXZlcnMvaWlvL21h
-Z25ldG9tZXRlci9oaWQtc2Vuc29yLW1hZ24tM2QuYyAgICAgICAgfCA2ICsrLS0tLQogZHJpdmVy
-cy9paW8vb3JpZW50YXRpb24vaGlkLXNlbnNvci1pbmNsLTNkLmMgICAgICAgICB8IDYgKystLS0t
-CiBkcml2ZXJzL2lpby9vcmllbnRhdGlvbi9oaWQtc2Vuc29yLXJvdGF0aW9uLmMgICAgICAgIHwg
-NiArKy0tLS0KIGRyaXZlcnMvaWlvL3Bvc2l0aW9uL2hpZC1zZW5zb3ItY3VzdG9tLWludGVsLWhp
-bmdlLmMgfCA2ICsrLS0tLQogZHJpdmVycy9paW8vcHJlc3N1cmUvaGlkLXNlbnNvci1wcmVzcy5j
-ICAgICAgICAgICAgICB8IDYgKystLS0tCiBkcml2ZXJzL2lpby9wcm94aW1pdHkvY3Jvc19lY19t
-a2JwX3Byb3hpbWl0eS5jICAgICAgIHwgNiArKy0tLS0KIGRyaXZlcnMvaWlvL3Byb3hpbWl0eS9z
-cmYwNC5jICAgICAgICAgICAgICAgICAgICAgICAgfCA2ICsrLS0tLQogZHJpdmVycy9paW8vdGVt
-cGVyYXR1cmUvaGlkLXNlbnNvci10ZW1wZXJhdHVyZS5jICAgICB8IDYgKystLS0tCiBkcml2ZXJz
-L2lpby90cmlnZ2VyL2lpby10cmlnLWludGVycnVwdC5jICAgICAgICAgICAgIHwgNiArKy0tLS0K
-IGRyaXZlcnMvaWlvL3RyaWdnZXIvc3RtMzItdGltZXItdHJpZ2dlci5jICAgICAgICAgICAgfCA2
-ICsrLS0tLQogNDkgZmlsZXMgY2hhbmdlZCwgOTkgaW5zZXJ0aW9ucygrKSwgMTk2IGRlbGV0aW9u
-cygtKQoKCmJhc2UtY29tbWl0OiAyOWU0MDBlM2VhNDg2YmY5NDJiMjE0NzY5ZmM5Nzc4MDk4MTE0
-MTEzCi0tIAoyLjQwLjEKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmlu
-ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
-aW51eC1hbWxvZ2ljCg==
+DRM CI keeps track of which tests are failing, flaking or being skipped
+by the ci in the expectations files. Add entries for those files to the
+corresponding driver maintainer, so they can be notified when they
+change.
+
+Signed-off-by: Helen Koike <helen.koike@collabora.com>
+---
+
+For reference: https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg463165.html
+
+ MAINTAINERS | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 90f13281d297..740a2ce2689c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6614,6 +6614,7 @@ S:	Maintained
+ B:	https://gitlab.freedesktop.org/drm/msm/-/issues
+ T:	git https://gitlab.freedesktop.org/drm/msm.git
+ F:	Documentation/devicetree/bindings/display/msm/
++F:	drivers/gpu/drm/ci/xfails/msm*
+ F:	drivers/gpu/drm/msm/
+ F:	include/uapi/drm/msm_drm.h
+ 
+@@ -6886,6 +6887,7 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
+ F:	Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+ F:	Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+ F:	Documentation/gpu/meson.rst
++F:	drivers/gpu/drm/ci/xfails/meson*
+ F:	drivers/gpu/drm/meson/
+ 
+ DRM DRIVERS FOR ATMEL HLCDC
+@@ -6994,6 +6996,7 @@ L:	dri-devel@lists.freedesktop.org
+ L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
+ S:	Supported
+ F:	Documentation/devicetree/bindings/display/mediatek/
++F:	drivers/gpu/drm/ci/xfails/mediatek*
+ F:	drivers/gpu/drm/mediatek/
+ F:	drivers/phy/mediatek/phy-mtk-dp.c
+ F:	drivers/phy/mediatek/phy-mtk-hdmi*
+@@ -7034,6 +7037,7 @@ L:	dri-devel@lists.freedesktop.org
+ S:	Maintained
+ T:	git git://anongit.freedesktop.org/drm/drm-misc
+ F:	Documentation/devicetree/bindings/display/rockchip/
++F:	drivers/gpu/drm/ci/xfails/rockchip*
+ F:	drivers/gpu/drm/rockchip/
+ 
+ DRM DRIVERS FOR STI
+@@ -10476,6 +10480,7 @@ C:	irc://irc.oftc.net/intel-gfx
+ T:	git git://anongit.freedesktop.org/drm-intel
+ F:	Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+ F:	Documentation/gpu/i915.rst
++F:	drivers/gpu/drm/ci/xfails/i915*
+ F:	drivers/gpu/drm/i915/
+ F:	include/drm/i915*
+ F:	include/uapi/drm/i915_drm.h
+@@ -17862,6 +17867,7 @@ C:	irc://irc.oftc.net/radeon
+ T:	git https://gitlab.freedesktop.org/agd5f/linux.git
+ F:	Documentation/gpu/amdgpu/
+ F:	drivers/gpu/drm/amd/
++F:	drivers/gpu/drm/ci/xfails/amd*
+ F:	drivers/gpu/drm/radeon/
+ F:	include/uapi/drm/amdgpu_drm.h
+ F:	include/uapi/drm/radeon_drm.h
+@@ -22846,6 +22852,7 @@ L:	dri-devel@lists.freedesktop.org
+ L:	virtualization@lists.linux-foundation.org
+ S:	Maintained
+ T:	git git://anongit.freedesktop.org/drm/drm-misc
++F:	drivers/gpu/drm/ci/xfails/virtio*
+ F:	drivers/gpu/drm/virtio/
+ F:	include/uapi/linux/virtio_gpu.h
+ 
+-- 
+2.34.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
