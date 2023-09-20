@@ -4,82 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADB11CE79D1
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Sep 2023 13:47:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E830BCE79D2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Sep 2023 13:53:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=L/MKok1GaH1au9tyGvNmEH0po2oKnvxZrhTQOWwij/s=; b=WRnv2wDwnF7+dJ
-	NkQloUyDmMOTn2ITEqnE7PgqtGFdVldPm3+e5R+gnfkXXPDrsoPSNiU2N8y+P6t7JuK4ppobbrvKS
-	3ChoZkbKQTPBOt+QbW6eJMU61lXRButxaCMrZyTZPQxRtlzMBFQjnPUYHZeDC5VtWRDGOShCUffqY
-	IkLMSrfwh51tk8sxi63mlg5ry6zH6J8HijoLwfAA6cBhpVPjEAmFHLmTy5c1irBT07qHMTeUXl6RI
-	BF2XFIcGqjGC6gii3ShZWMzpx4PPW72dWZyUrTHflTxnuT83LJOF6Iejh9dY7SJjcbI3yzE3EUOhb
-	MNfgKxIE7OLcqyGXKYhg==;
+	List-Owner; bh=jSRLJ3rqGYfiO9PVoZitSukObcdoBcq6zn/+yzGml5c=; b=Gac++BiU03b+e4
+	KJ9Ry2/6eNo2dZG9x/M3l2lYejE4Ik/HIST1hEJl8fuO95//6AWa9BIGNbE7U/qeCRrG1sYeNQ81y
+	w2zi+oT5aVypNOj+npz2ULw8AbDKlHk8zobtwlap+f9oTMv7rgrLEqwNu0rykdSLq8ug9naGputcm
+	OuELOCdp7N3R1uLUWMU2xaO3Ba9NA8o+3rzZm4/obN29OZkio9CKdwEkSyLxUMFvn/qaG2mPfHDM8
+	w2u7cJJZdll/hOSIbZdRxFwUtPHcj6Bu99lQn9GOpB2annJrjO65Tu4U9HAduFy6gBs3tEOK9b5dK
+	Nq1vEAmD9RtvMSAG6/sg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qixXP-003Ddo-0l;
-	Wed, 20 Sep 2023 13:46:43 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1qixdP-003EiC-06;
+	Wed, 20 Sep 2023 13:52:55 +0000
+Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qixXM-003DcQ-0n
-	for linux-amlogic@lists.infradead.org;
-	Wed, 20 Sep 2023 13:46:41 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-405082a8c77so37020175e9.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 20 Sep 2023 06:46:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695217597; x=1695822397; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cAM1wadeSyIjp7q3Vm93wQl3fXT/7CxJyrjA05VxHHI=;
-        b=ZnhjL5mCybnzZ8Z2I3lussA+Rw8cJrukyibVeapecU91LSr76T9dkDs99PEk9ekaJj
-         CDMt1IzDd3SlEp44EEVX54c9CCw5VhtxcbC+zzP5b8N42KcoRmM0f/dhQSDJrcVzfSAG
-         a434J6RMXpY6QM4DTh3SDHEnE2CoxmiFNCHe12ac+FiJhj1vlJ4JK0LvmmbPiPyM+ybm
-         /Yby2Pu0VBjnmotwHQ6Op9CHEcCMi3Jz3PYF00zFxYZdG4xgjNbOAEhuokalsrEe/xbW
-         JgJD89nIR+aUYBMA/nvALPF2MNqYiT7n2A8LLxtwm0lf1OrdoGz8qZdHYrzVcu7AJX97
-         LFXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695217597; x=1695822397;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cAM1wadeSyIjp7q3Vm93wQl3fXT/7CxJyrjA05VxHHI=;
-        b=v8G8a1CrfKEJcNP+7SzwHM/8H/bMPnVoC10CNvJrBag7oBLHXiXkhe+FejVk+iduBF
-         rOp2FRTjy5mDICzb3j8EqQAUz2gSd0z/JROQiV7RE6AOlZCm9egh0rtnKwu04ZOwvfHs
-         FtxOWqUzxAZNHo278Dj6l2bY98+Rr8WuV7GIMX4NbjVb+ODJwG/AyLrSeVtIWw9+04S9
-         0Hfr0rYQ0TJGkGaQkSAL/lNN5KQMLqYmPLXodA0Of5DLKCY2Tt70ugd/xOTdbpAJ49YV
-         Fdjr9mt+gw+FjxDuTPcJxPLaQBh0QsRiaWot+9mB0+kcZnEcD64NXWL4h+Cf9/2+9GAP
-         0QQw==
-X-Gm-Message-State: AOJu0YyKrdwmjgGFmEIH8lgihaGsAf4Gl9UTxwMNtv3QSMceFyMx/FV5
-	Krp2B2U5RrpV8ax5kDxJILmAuA==
-X-Google-Smtp-Source: AGHT+IFbm0KhCiry33Vx93F5rLpq+lFcEYHKEkaTNlVhxvoLeU6XTDCsvfVSPISxoCiGd9wzuVCSWg==
-X-Received: by 2002:a05:600c:144:b0:405:1ba2:4fc9 with SMTP id w4-20020a05600c014400b004051ba24fc9mr2524735wmm.15.1695217597366;
-        Wed, 20 Sep 2023 06:46:37 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id u23-20020a05600c211700b004042dbb8925sm2010111wml.38.2023.09.20.06.46.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Sep 2023 06:46:36 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>
-Cc: Sam Ravnborg <sam@ravnborg.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- stable@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-In-Reply-To: <20230914131015.2472029-1-jani.nikula@intel.com>
-References: <20230914131015.2472029-1-jani.nikula@intel.com>
-Subject: Re: [PATCH] drm/meson: fix memory leak on ->hpd_notify callback
-Message-Id: <169521759637.2169873.6598076316992605754.b4-ty@linaro.org>
-Date: Wed, 20 Sep 2023 15:46:36 +0200
+	id 1qixdL-003Efv-1u;
+	Wed, 20 Sep 2023 13:52:53 +0000
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	id 1qixdE-0002e2-SC; Wed, 20 Sep 2023 15:52:44 +0200
+Message-ID: <e34d4c14-af07-b5a1-8341-d8658c1efb39@leemhuis.info>
+Date: Wed, 20 Sep 2023 15:52:44 +0200
 MIME-Version: 1.0
-X-Mailer: b4 0.12.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] mmc: meson-mx-sdhc: Fix initialization frozen issue
+Content-Language: en-US, de-DE
+To: Ulf Hansson <ulf.hansson@linaro.org>, Ziyang Huang <hzyitc@outlook.com>,
+ martin.blumenstingl@googlemail.com
+Cc: neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Brian Norris <briannorris@chromium.org>
+References: <TYZPR01MB5556B56D834E02F41C44D81DC95FA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+ <CAPDyKFqyi97kjdiNM60WYK+cs4pw5pW3AyfiWKnsCRXd5BXUww@mail.gmail.com>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+In-Reply-To: <CAPDyKFqyi97kjdiNM60WYK+cs4pw5pW3AyfiWKnsCRXd5BXUww@mail.gmail.com>
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1695217971;1e243373;
+X-HE-SMSGID: 1qixdE-0002e2-SC
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230920_064640_288268_5917484D 
-X-CRM114-Status: UNSURE (   5.82  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230920_065251_796619_ADAC27BA 
+X-CRM114-Status: GOOD (  20.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,21 +66,104 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On 14.09.23 16:45, Ulf Hansson wrote:
+> + Thorsten
 
-On Thu, 14 Sep 2023 16:10:15 +0300, Jani Nikula wrote:
-> The EDID returned by drm_bridge_get_edid() needs to be freed.
+I recently gave up on this, as it seems nobody cared anymore, but let's
+give this another try.
+
+> On Mon, 19 Jun 2023 at 19:36, Ziyang Huang <hzyitc@outlook.com> wrote:
+>>
+>> Commit 4bc31edebde5 ("mmc: core: Set HS clock speed before sending
+>> HS CMD13") set HS clock (52MHz) before switching to HS mode. For this
+>> freq, FCLK_DIV5 will be selected and div value is 10 (reg value is 9).
+>> Then we set rx_clk_phase to 11 or 15 which is out of range and make
+>> hardware frozen. After we send command request, no irq will be
+>> interrupted and the mmc driver will keep to wait for request finished,
+>> even durning rebooting.
+>>
+>> So let's set a common value - 1 just for initialization. Then let
+>> meson_mx_sdhc_execute_tuning() to find the accurate value for data
+>> transfer.
+>>
+>> Fixes: e4bf1b0970ef ("mmc: host: meson-mx-sdhc: new driver for the Amlogic Meson SDHC host")
+>> Signed-off-by: Ziyang Huang <hzyitc@outlook.com>
 > 
+> I don't quite understand if this patch is ok for everybody for me to apply?
 > 
+> It seems like it solves at least some part of the problems that
+> Martin/Thorsten were looking at too [1], right?
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-fixes)
+Martin, could you help clarifying the situation here? It seems Ziyang
+Huang is busy.
 
-[1/1] drm/meson: fix memory leak on ->hpd_notify callback
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=099f0af9d98231bb74956ce92508e87cbcb896be
+I briefly skimmed this thread again and to me it sounded like there was
+a plan for an improved patch that hasn't shown up yet.
 
--- 
-Neil
+Also CCing Brian Norris who according to the bisection from Martin in
+that "[1]" caused the regression (or am I missing/confusing something
+here?).
 
+> [1]
+> https://lore.kernel.org/all/CAFBinCD0RT0p-jk86W0JuMT3ufohRh1RqWCcM35DKZJpuc10HQ@mail.gmail.com/#r
+
+Ciao, Thorsten
+
+>> ---
+>>  drivers/mmc/host/meson-mx-sdhc-mmc.c | 26 +++-----------------------
+>>  1 file changed, 3 insertions(+), 23 deletions(-)
+>>
+>> diff --git a/drivers/mmc/host/meson-mx-sdhc-mmc.c b/drivers/mmc/host/meson-mx-sdhc-mmc.c
+>> index da85c2f2..a01090a2 100644
+>> --- a/drivers/mmc/host/meson-mx-sdhc-mmc.c
+>> +++ b/drivers/mmc/host/meson-mx-sdhc-mmc.c
+>> @@ -269,7 +269,6 @@ static int meson_mx_sdhc_enable_clks(struct mmc_host *mmc)
+>>  static int meson_mx_sdhc_set_clk(struct mmc_host *mmc, struct mmc_ios *ios)
+>>  {
+>>         struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+>> -       u32 rx_clk_phase;
+>>         int ret;
+>>
+>>         meson_mx_sdhc_disable_clks(mmc);
+>> @@ -290,31 +289,12 @@ static int meson_mx_sdhc_set_clk(struct mmc_host *mmc, struct mmc_ios *ios)
+>>                 mmc->actual_clock = clk_get_rate(host->sd_clk);
+>>
+>>                 /*
+>> -                * according to Amlogic the following latching points are
+>> -                * selected with empirical values, there is no (known) formula
+>> -                * to calculate these.
+>> +                * This value is just for initialization. For data transmission,
+>> +                * meson_mx_sdhc_execute_tuning() will find a accurate value
+>>                  */
+>> -               if (mmc->actual_clock > 100000000) {
+>> -                       rx_clk_phase = 1;
+>> -               } else if (mmc->actual_clock > 45000000) {
+>> -                       if (ios->signal_voltage == MMC_SIGNAL_VOLTAGE_330)
+>> -                               rx_clk_phase = 15;
+>> -                       else
+>> -                               rx_clk_phase = 11;
+>> -               } else if (mmc->actual_clock >= 25000000) {
+>> -                       rx_clk_phase = 15;
+>> -               } else if (mmc->actual_clock > 5000000) {
+>> -                       rx_clk_phase = 23;
+>> -               } else if (mmc->actual_clock > 1000000) {
+>> -                       rx_clk_phase = 55;
+>> -               } else {
+>> -                       rx_clk_phase = 1061;
+>> -               }
+>> -
+>>                 regmap_update_bits(host->regmap, MESON_SDHC_CLK2,
+>>                                    MESON_SDHC_CLK2_RX_CLK_PHASE,
+>> -                                  FIELD_PREP(MESON_SDHC_CLK2_RX_CLK_PHASE,
+>> -                                             rx_clk_phase));
+>> +                                  FIELD_PREP(MESON_SDHC_CLK2_RX_CLK_PHASE, 1));
+>>         } else {
+>>                 mmc->actual_clock = 0;
+>>         }
+>> --
+>> 2.34.1
+>>
+> 
 
 _______________________________________________
 linux-amlogic mailing list
