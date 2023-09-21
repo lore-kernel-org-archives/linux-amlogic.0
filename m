@@ -4,66 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B147E706FA
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Sep 2023 09:20:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 975CDE706FC
+	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Sep 2023 09:44:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=zHfgfmPdfGLpZbcdkfCLNKiu1gMDKin7zZb326jZzxI=; b=Rtpqm/U5f0I9FSwaWyYwUZa9EA
-	ymZqGQBjOnomiFvK/IKlzEb5j7VwhBB53OynIgvrbAoQALwc2y5NifL8AG2DH8HUb1WD8EvDsPAjU
-	YbF+zrpX6PUsQBl4ZrmvtYp0Vqk6oTKXweZFSSl9yaGNfm04fbIL23sXYoML9zr2cGkdQj1VFjH20
-	JeXtKwoOjpiKOfY4h/FYd+XRGAEXInAwQ8bUlqy50Lgpr0EIgBNx5XDbfRcEyhFkOFm9jwvwyfAi+
-	vEaAx1qiNCleSDq7TqjuL+WeLFVBKMBconvA9Nd8NvZ9dtaP0lhm+L+11hBbZDGA8sYO4oNAx8D78
-	StXuc34w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:
+	References:Cc:To:Subject:Date:Message-ID:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=MHczNIWakHde5DauQWPVm+u2kglcy26Zdpzd1sedSCM=; b=D7HJ2Bp047tWY13L5SXKULaHik
+	jEOcaWqX6aCXLvn9sBnbvxBPrhRLv9LlzaWSwMauj/y+mFfoANZIpECOe65xalNXEBVy3iWzbW+Rf
+	pF3G6R7jNv/daT/q87eMnN1N230EfdjeXT8dz/h5GtdUa9OKcBqeluf/sxvpvqqMkSahJ4xj7ca9w
+	Bb2F37h/t6d9hOQMgCtdmvxbJYy3BQkaXmLQKFuYIYICNXwROFHRU004yvH0oah8KCWUKt5873z25
+	NBMR88xxVRR/inZ0xEy4+A6EEwCd6rcioU8CAvFjse+h7ex3r0NZdNm9+mjCoUAdsQSR1DMZMHiAv
+	p9hbjp0A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qjFqg-005ZqR-1Y;
-	Thu, 21 Sep 2023 09:19:50 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1qjGEG-005cgW-2r;
+	Thu, 21 Sep 2023 09:44:12 +0000
+Received: from mail-psaapc01on2070a.outbound.protection.outlook.com ([2a01:111:f400:feae::70a] helo=APC01-PSA-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qjFqd-005Zov-0X;
-	Thu, 21 Sep 2023 09:19:49 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by sin.source.kernel.org (Postfix) with ESMTPS id 30E84CE2187;
-	Thu, 21 Sep 2023 09:19:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34F1AC32779;
-	Thu, 21 Sep 2023 09:19:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695287983;
-	bh=tRdODTYdCa3qwizncqDlOn0z0rZz4zzat0BX1MymMGk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qDNnUbEbN16PrijkO7YnenFiE+E80OdN+7S3pX7hNhhVrips+T+oSwT6lJJKKPALm
-	 news/Q8wmMCsH0XTnRNw7UzP6gl61utdby173cC+WyZsO+wI8Jg0pha5Dvk9gBmF7H
-	 8n96w6sWpHx1KZflnWtL6eCHf13PX10GDaALNZEL9WACvv9AT1cIx2ILBqcVXf83xX
-	 7z8UueVsTnQH35Qg847AUOcZThopRppTmMj8rm80qepaMr63gtitPjEtBn1DNyu4wA
-	 tbqi/cJ0EjAoir5RDKiZ28QUda7t6+o3STpdTNxy4ti7Z1w9hM7sd0VkX+ZEShFcbA
-	 yG6W1P4zcww7w==
-Date: Thu, 21 Sep 2023 10:19:37 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Huqiang Qin <huqiang.qin@amlogic.com>
-Cc: linus.walleij@linaro.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	neil.armstrong@linaro.org, khilman@baylibre.com,
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-	brgl@bgdev.pl, andy@kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+	id 1qjGED-005cdv-0l;
+	Thu, 21 Sep 2023 09:44:10 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Vb00p46Z2x8pVNHBI6Euk8TVW1uEDdeg9ahQvzg6J4Xts5yn1/rXTgJtdTNKkRvZ+s2RXG7kSld+PxaOj//tOQYvn9MUEjujJL3MHPD5jpxN3kv//UB9RwvhuypjA6rFnwiKajDxrHsEeqibuQcEcZshbJIAQF4cQEXfOhNMZj1Jmux+mHiGzhh5b3MJOFoh2EUWyvRbawhYvGhm9u0s5pIXOEEw8EMgxFPH5Yq77M5MBJU7EncQ+TDC5A1AOeb1ogRiAiV1Wns5T1be3Pls58I3TC4FXm05s2n/FkRBmd5aqWVRAwhOJ9NEJi62rro2VkLaw9gq6yfJ1y3zZ5+I7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=05gwwbnRgUzGJwLHhUnlnUTe18grLX0VdccRWcsJg6M=;
+ b=F5QZHQnY946OK4JHVm6unNfwRXAuxqdCmoX3RwEjE1Nv+1A+I3q0RV/aWMJUqlO0WnoigdU3Dgt57ypUNdR3tbB/n+rHcWmzhmNS8NZidCfsrJGvm8nFCj3u5Fl2tkLbJWME+F7w5QoUfSURormM0tiFvHSwxWXdN2s5ToN4zvLPxi1nr7qIswqc7y3VjW960fL/zS0KNJWx1C8hc4DW1gq3zziz+0/mEh9VCuYQ3v1tjdkNJAmFjUGZj1RvuVm6ub1lkwChdfPq89iU/lwE3bo3WnEf6OhPXWp+aE7bBk4DbA8mJjJBtRxn7sePwOTzzGNe8nwm7HUDmOSthp+XIQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=05gwwbnRgUzGJwLHhUnlnUTe18grLX0VdccRWcsJg6M=;
+ b=s6Im4IV2ygfc1Csu3Qm3A8RgWuI+nFe2WbBuSqEC+MyBCMTMZfbul1qAY1S67kP6rKWAZJcYrclZfAadGrSkl7ga/C5dzxGW/Ebu+JABlsKz3uxOB04ukjJke+hZkDKRNIf9TbUhkuDSlNT5pyooevsleJza+U1WDqtuGb1KMahSt7L2QuyAt6S+OhxR3t2o29WynpLy167rJUT/QBetLraD+JoLEIhtIsxMUSSyXubn6810Avfp30ROhSIXxjGjhr+bGcn7O50peRQCDcLZznOZ2h+HC0XJxYtAeLQIGBwvjPGXtpFekjvhF561xkjMcSx/sl1x23NN0x2zg2gsfQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from KL1PR03MB7221.apcprd03.prod.outlook.com (2603:1096:820:cb::11)
+ by PSAPR03MB5736.apcprd03.prod.outlook.com (2603:1096:301:8b::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.20; Thu, 21 Sep
+ 2023 09:43:53 +0000
+Received: from KL1PR03MB7221.apcprd03.prod.outlook.com
+ ([fe80::3f14:c67:12ac:af39]) by KL1PR03MB7221.apcprd03.prod.outlook.com
+ ([fe80::3f14:c67:12ac:af39%3]) with mapi id 15.20.6813.018; Thu, 21 Sep 2023
+ 09:43:52 +0000
+Message-ID: <a791aa4b-3b8e-22c8-5d0d-d7de3e5135df@amlogic.com>
+Date: Thu, 21 Sep 2023 17:43:43 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
 Subject: Re: [PATCH V2 1/3] dt-bindings: pinctrl: Add compatibles for Amlogic
  T7 SoCs
-Message-ID: <20230921-fa16f2f1f118091489708226@fedora>
+To: Conor Dooley <conor@kernel.org>
+Cc: linus.walleij@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, brgl@bgdev.pl, andy@kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
 References: <20230921083407.1167510-2-huqiang.qin@amlogic.com>
  <20230921083407.1167510-3-huqiang.qin@amlogic.com>
+ <20230921-fa16f2f1f118091489708226@fedora>
+Content-Language: en-US
+From: Huqiang Qin <huqiang.qin@amlogic.com>
+In-Reply-To: <20230921-fa16f2f1f118091489708226@fedora>
+X-ClientProxiedBy: TYCP286CA0181.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:382::19) To KL1PR03MB7221.apcprd03.prod.outlook.com
+ (2603:1096:820:cb::11)
 MIME-Version: 1.0
-In-Reply-To: <20230921083407.1167510-3-huqiang.qin@amlogic.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR03MB7221:EE_|PSAPR03MB5736:EE_
+X-MS-Office365-Filtering-Correlation-Id: a56a05d6-fb06-4b96-8458-08dbba8742cd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: fZ3u6oLVEnFrX4DfoE4n/JuoYieG6AdUS0sHZz5lGacHJK17S92rhk1343OCDhcqNyvLpXnIeOUr/8d/wKT5Hr8xl5BeknWUrI/zA/v7I8ndpDSqeFc+tI3cklWfJIU4yFrg0dOVgfqG1QDjDXS1O0K0C1E9jpCtPgOTneZZ7xvWPqYHRfsUuKXwvc0TVUq1GKqxdp3kmpFawReHWSFk2KmrOzFM3fvwmb3Ah92fkvOa50OscVe2k5y/T2/NU5fBScnX2CgetUYh+aOUiV82jWf6clzHkJ9aSe+DH/Vav/nd2lH1IqIBY1nVg7eTSjJrWE0fKzuikYgUYj5E6AA+tXGozwrG4NXVeolqfA20foSZBtj4RmfLXPkhIvFs2D/Mv/m1UubWdq8LxqxZzanRxqmb1QfmByBsxyOECkrtwDni9+sF5AZ0AhSmEF5blTjirMoSY8kncL93ibRYQmp2t3rUG1is3nsLUuH3BrxkyWs3eb6OlgGSFfdqOgLI4oFwyUbWNUi6YKBq/FVJeoJaY5QlS1tw7wxckj3IUoZQAdYLC+VMZYOBq/pZ4caSXaGRanL81IFwJwBfqe1X0Y4zLhmxsLXYHNpzg6srtYt0DlFQ6PGE2s9kF42GVkI5bUOf0yJn1XV8Yts8FSQJGzYaLIxzASP3mBygmx595r0NtjFpEtdDhkk04WV4FNpfloOAQQUiSJUjqJD+fv63DTHOZU+CtvBYGmWLsmyIay89xRQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7221.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(6029001)(39850400004)(376002)(136003)(346002)(366004)(396003)(186009)(451199024)(1800799009)(7416002)(2906002)(4744005)(38350700002)(38100700002)(316002)(2616005)(31696002)(41300700001)(478600001)(66476007)(66946007)(6916009)(36756003)(53546011)(31686004)(26005)(52116002)(6486002)(6512007)(6506007)(6666004)(66556008)(86362001)(44832011)(4326008)(8936002)(5660300002)(8676002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TW5NV2s1OVo0WEVrUnFXSTllMkZyRGxMcmFLVHI4aml0VTBzblhRWkNEVUdF?=
+ =?utf-8?B?UjFKN3YySG4xNXM5ZENqS1BKV2d4Z3JFUlY2TVYyTjJuUURZMzVKS2JoN0pM?=
+ =?utf-8?B?U1ZRM2V1LzlRMCtlOWhWOG5LS3RmYkpiQXQ2NDVYb2w1d0huZEtBRisrMVBZ?=
+ =?utf-8?B?V1ptblNjNGVyeWxVSWFlZmtBTGE4MHJKbEJTRzVkaDQ5SXZyQnRRbFd0Wm9Q?=
+ =?utf-8?B?U081dFJuajF4OFBFYmJDSDJwS21HR1c1bm84blpHdnN0ZHBDeFdDYjlRWS9F?=
+ =?utf-8?B?cEtHVTB6VHJRNnNtS3hYVW53SXkwY1Z5RGVBV1p2d2Q2Rk5YVEFHSE5DVVAv?=
+ =?utf-8?B?ajF5d0lNS05uRE1LN0FJaW5oM0lqNHVjTEJDeStwMHgzY1hKak1RQmNWdklT?=
+ =?utf-8?B?NWtGQ2lGdFhJOFA4K3VzSFZFOWU5K1FaUmlTa2dTNXAzYlVtZ3dCWjhVUTZh?=
+ =?utf-8?B?OXJRVFp5M2tlTWFQUHJvZG9aaC9BdzNXY3B6ZGg0TUMxUEkvR2FJeGhZSW4w?=
+ =?utf-8?B?SVNUSWJuRDlaOERYUE5zK2JMMml1SnNObEZ5UFZBQ2Q3dkVsNVYrOEo2MGp0?=
+ =?utf-8?B?SDNoSnJUSkc3OHp4WHNIVGQ4ei83Y0kyQlRTeEFKcXViMUh5QXVvMks5eVFK?=
+ =?utf-8?B?UU05dUlZZlFCZHRDRFNGZEVuQTkyeGdDUlRGanVFVTZEQ1djV2JQa0QvK0t1?=
+ =?utf-8?B?bUZ1REZENGtqcEVrbys2WWl5Zjh5aHFoMENVUkRpWmxSZHNCNC9wcHNhSm51?=
+ =?utf-8?B?QjE3UE1ORkhzREp2QjVtZ2tzNVdkRVVrWmtuSFJUQk4xK0JIWTV2cjlxdzUx?=
+ =?utf-8?B?RlVhakN3MVROYlFUMGk3MnpSdytQRnRNWVQ0NG1YaXg1M2xZdE1uMy9ZVmlu?=
+ =?utf-8?B?OTBXWE9TY1RmbDdrcWMwTTVSQW44bnBPaDVYaWViQURPRE5WR1RGQW5HRi9P?=
+ =?utf-8?B?THYra2xFR2JNa3ZjVFJlR3JnUmtDQUpTS2pRQmNJWGMwWFVUaHJVall1Tk9C?=
+ =?utf-8?B?VTR2Umd3bzNyRDE1am9ZbkU4UytGNDZSL0ovNXR5bnJqa1Z3cXBBLzJuZHBJ?=
+ =?utf-8?B?ZGFtUUJJQmJZRWJ1eGZnTisrQVJsMVN4U3Ixa1VDdElNRDFpaS9GV3ZwQXNR?=
+ =?utf-8?B?NUhIMnJQbkVwWTBCMDgzME9VcDUvVnVYL1lDMVVmd2I3VDZXM1JCcTFYOWEv?=
+ =?utf-8?B?UitieWFyVFBlalV6TUI2SzhqMms0NTFPL1lqTUFNNi9abVNWR0gzUVIwMHNN?=
+ =?utf-8?B?TU5aSmJLb29hRGVrM2t0QkRoUXkwSmlGM2RjRkozQ0FldnA3T1kzazdTM3Nh?=
+ =?utf-8?B?a2NqR0pjaXFWMHVSVFM4ck5kZ2JObUlFUitHOEhDdWdmWFRHSFJ0WHJsU0N2?=
+ =?utf-8?B?VkZFS0lCRm53SnFrSVFteUpaSFpTanhvTCtoN2JyY0tHS3pIaFliZjFrL2ZZ?=
+ =?utf-8?B?V2x1S3FPQ1lvbThoU1JXSmNJUzVMUGRQZlprRTlmR2dua2k0QUdSdEZYTmJW?=
+ =?utf-8?B?K0ZEaEplN29wTkNvaFBJcnBtalpqQ2s4dlpYSG5LSjVWb2JZRkRsYk1uajFJ?=
+ =?utf-8?B?U2hjL09SZkllNlZiL0Z5Sy9yQVJrNFh3Wk5oTFYzVWZBRTRYSXlBMGdaanNC?=
+ =?utf-8?B?ZWVTY2s4OFc4VjQyQnJ4YzJNcURsZ1RMeWFwVmU0TEtZWXlRdXpuVzBMQ0xQ?=
+ =?utf-8?B?YXlhNmdqUkYrSmxVNUt0WklFYml0NkhpQUJjSXBFTnVmb2dMUWNqLy9aMzdm?=
+ =?utf-8?B?aHNmUGJYWERia096QndaUGhrOGxLb0FaSGlFSUg0RkpGaUlZcHNNcmptaUov?=
+ =?utf-8?B?MUkyVktucU1kY1RtcS91N3lQQWNzYU4rektDZWUzNTZ6T0dhRlVMWlBGc3lJ?=
+ =?utf-8?B?dk1HNmUzYmFRYjNtekF0ZE1Ub0h6dmxWMWV6OG9lcjhNWlBIcmhNOURDSDZx?=
+ =?utf-8?B?U3MrRzNBZXBnR04xaXRkV2gwblU5SkF3R05nOXdzL2E3dDR0cnlqM0IwbmFw?=
+ =?utf-8?B?WTNOa2Zta3dZdFVabGluL0lOdE5YVHY1L3oyN0VXMWpKVmZzQURDM0w5aTUv?=
+ =?utf-8?B?VVBsMlkzN28xWkFZR0FBWUhJZmtlR0k5TjJua3dBcmlFRW1IUThmV0loS2ZN?=
+ =?utf-8?B?QlhLNGNXRFYySkNvQ0VhbGxUOXo5ZldzNy9pbVRnanNWOHVHZGFzdm5FcXM0?=
+ =?utf-8?B?aWc9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a56a05d6-fb06-4b96-8458-08dbba8742cd
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7221.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2023 09:43:50.9669
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 47vXpOo8Qv+AuxMY3cAAkMeFRHNWWieltQ7PcjslIKOMNZvTZAw4Otv3+XQZ3pqhC+XrDpCoOTMG36Cwmb6RcQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PSAPR03MB5736
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230921_021947_609120_506B720D 
-X-CRM114-Status: GOOD (  20.54  )
+X-CRM114-CacheID: sfid-20230921_024409_318828_11199826 
+X-CRM114-Status: UNSURE (   6.47  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,276 +149,24 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0486534228748911674=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Conor,
 
---===============0486534228748911674==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="EF4bGMNfXkk0lW1z"
-Content-Disposition: inline
+On 2023/9/21 17:19, Conor Dooley wrote:
+> I'd argue that "Add support for" would be a better $subject for the
+> changes here though given that there is only one compatible and you've
+> added a bunch of new definitions.
 
+Thank you for your suggestion, I will do this for future commits.
 
---EF4bGMNfXkk0lW1z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Sep 21, 2023 at 04:34:06PM +0800, Huqiang Qin wrote:
-> Add a new compatible name for Amlogic T7 pin controller, and add
-> a new dt-binding header file which document the detail pin names.
->=20
-> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-I'd argue that "Add support for" would be a better $subject for the
-changes here though given that there is only one compatible and you've
-added a bunch of new definitions.
-
-Thanks,
-Conor.
-
-> ---
->=20
-> V1 -> V2: Rename amlogic-t7-gpio.h to amlogic,t7-periphs-pinctrl.h
->=20
->  .../pinctrl/amlogic,meson-pinctrl-a1.yaml     |   1 +
->  .../gpio/amlogic,t7-periphs-pinctrl.h         | 179 ++++++++++++++++++
->  2 files changed, 180 insertions(+)
->  create mode 100644 include/dt-bindings/gpio/amlogic,t7-periphs-pinctrl.h
->=20
-> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinc=
-trl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinct=
-rl-a1.yaml
-> index 4e7a456ea4cc..c7df4cd34197 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.=
-yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.=
-yaml
-> @@ -16,6 +16,7 @@ properties:
->    compatible:
->      enum:
->        - amlogic,c3-periphs-pinctrl
-> +      - amlogic,t7-periphs-pinctrl
->        - amlogic,meson-a1-periphs-pinctrl
->        - amlogic,meson-s4-periphs-pinctrl
-> =20
-> diff --git a/include/dt-bindings/gpio/amlogic,t7-periphs-pinctrl.h b/incl=
-ude/dt-bindings/gpio/amlogic,t7-periphs-pinctrl.h
-> new file mode 100644
-> index 000000000000..4e16d31a71c9
-> --- /dev/null
-> +++ b/include/dt-bindings/gpio/amlogic,t7-periphs-pinctrl.h
-> @@ -0,0 +1,179 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-> +/*
-> + * Copyright (c) 2023 Amlogic, Inc. All rights reserved.
-> + * Author: Huqiang Qin <huqiang.qin@amlogic.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_AMLOGIC_T7_GPIO_H
-> +#define _DT_BINDINGS_AMLOGIC_T7_GPIO_H
-> +
-> +#define GPIOB_0		0
-> +#define GPIOB_1		1
-> +#define GPIOB_2		2
-> +#define GPIOB_3		3
-> +#define GPIOB_4		4
-> +#define GPIOB_5		5
-> +#define GPIOB_6		6
-> +#define GPIOB_7		7
-> +#define GPIOB_8		8
-> +#define GPIOB_9		9
-> +#define GPIOB_10	10
-> +#define GPIOB_11	11
-> +#define GPIOB_12	12
-> +
-> +#define GPIOC_0		13
-> +#define GPIOC_1		14
-> +#define GPIOC_2		15
-> +#define GPIOC_3		16
-> +#define GPIOC_4		17
-> +#define GPIOC_5		18
-> +#define GPIOC_6		19
-> +
-> +#define GPIOX_0		20
-> +#define GPIOX_1		21
-> +#define GPIOX_2		22
-> +#define GPIOX_3		23
-> +#define GPIOX_4		24
-> +#define GPIOX_5		25
-> +#define GPIOX_6		26
-> +#define GPIOX_7		27
-> +#define GPIOX_8		28
-> +#define GPIOX_9		29
-> +#define GPIOX_10	30
-> +#define GPIOX_11	31
-> +#define GPIOX_12	32
-> +#define GPIOX_13	33
-> +#define GPIOX_14	34
-> +#define GPIOX_15	35
-> +#define GPIOX_16	36
-> +#define GPIOX_17	37
-> +#define GPIOX_18	38
-> +#define GPIOX_19	39
-> +
-> +#define GPIOW_0		40
-> +#define GPIOW_1		41
-> +#define GPIOW_2		42
-> +#define GPIOW_3		43
-> +#define GPIOW_4		44
-> +#define GPIOW_5		45
-> +#define GPIOW_6		46
-> +#define GPIOW_7		47
-> +#define GPIOW_8		48
-> +#define GPIOW_9		49
-> +#define GPIOW_10	50
-> +#define GPIOW_11	51
-> +#define GPIOW_12	52
-> +#define GPIOW_13	53
-> +#define GPIOW_14	54
-> +#define GPIOW_15	55
-> +#define GPIOW_16	56
-> +
-> +#define GPIOD_0		57
-> +#define GPIOD_1		58
-> +#define GPIOD_2		59
-> +#define GPIOD_3		60
-> +#define GPIOD_4		61
-> +#define GPIOD_5		62
-> +#define GPIOD_6		63
-> +#define GPIOD_7		64
-> +#define GPIOD_8		65
-> +#define GPIOD_9		66
-> +#define GPIOD_10	67
-> +#define GPIOD_11	68
-> +#define GPIOD_12	69
-> +
-> +#define GPIOE_0		70
-> +#define GPIOE_1		71
-> +#define GPIOE_2		72
-> +#define GPIOE_3		73
-> +#define GPIOE_4		74
-> +#define GPIOE_5		75
-> +#define GPIOE_6		76
-> +
-> +#define GPIOZ_0		77
-> +#define GPIOZ_1		78
-> +#define GPIOZ_2		79
-> +#define GPIOZ_3		80
-> +#define GPIOZ_4		81
-> +#define GPIOZ_5		82
-> +#define GPIOZ_6		83
-> +#define GPIOZ_7		84
-> +#define GPIOZ_8		85
-> +#define GPIOZ_9		86
-> +#define GPIOZ_10	87
-> +#define GPIOZ_11	88
-> +#define GPIOZ_12	89
-> +#define GPIOZ_13	90
-> +
-> +#define GPIOT_0		91
-> +#define GPIOT_1		92
-> +#define GPIOT_2		93
-> +#define GPIOT_3		94
-> +#define GPIOT_4		95
-> +#define GPIOT_5		96
-> +#define GPIOT_6		97
-> +#define GPIOT_7		98
-> +#define GPIOT_8		99
-> +#define GPIOT_9		100
-> +#define GPIOT_10	101
-> +#define GPIOT_11	102
-> +#define GPIOT_12	103
-> +#define GPIOT_13	104
-> +#define GPIOT_14	105
-> +#define GPIOT_15	106
-> +#define GPIOT_16	107
-> +#define GPIOT_17	108
-> +#define GPIOT_18	109
-> +#define GPIOT_19	110
-> +#define GPIOT_20	111
-> +#define GPIOT_21	112
-> +#define GPIOT_22	113
-> +#define GPIOT_23	114
-> +
-> +#define GPIOM_0		115
-> +#define GPIOM_1		116
-> +#define GPIOM_2		117
-> +#define GPIOM_3		118
-> +#define GPIOM_4		119
-> +#define GPIOM_5		120
-> +#define GPIOM_6		121
-> +#define GPIOM_7		122
-> +#define GPIOM_8		123
-> +#define GPIOM_9		124
-> +#define GPIOM_10	125
-> +#define GPIOM_11	126
-> +#define GPIOM_12	127
-> +#define GPIOM_13	128
-> +
-> +#define GPIOY_0		129
-> +#define GPIOY_1		130
-> +#define GPIOY_2		131
-> +#define GPIOY_3		132
-> +#define GPIOY_4		133
-> +#define GPIOY_5		134
-> +#define GPIOY_6		135
-> +#define GPIOY_7		136
-> +#define GPIOY_8		137
-> +#define GPIOY_9		138
-> +#define GPIOY_10	139
-> +#define GPIOY_11	140
-> +#define GPIOY_12	141
-> +#define GPIOY_13	142
-> +#define GPIOY_14	143
-> +#define GPIOY_15	144
-> +#define GPIOY_16	145
-> +#define GPIOY_17	146
-> +#define GPIOY_18	147
-> +
-> +#define GPIOH_0		148
-> +#define GPIOH_1		149
-> +#define GPIOH_2		150
-> +#define GPIOH_3		151
-> +#define GPIOH_4		152
-> +#define GPIOH_5		153
-> +#define GPIOH_6		154
-> +#define GPIOH_7		155
-> +
-> +#define GPIO_TEST_N	156
-> +
-> +#endif /* _DT_BINDINGS_AMLOGIC_T7_GPIO_H */
-> --=20
-> 2.42.0
->=20
-
---EF4bGMNfXkk0lW1z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQwKpgAKCRB4tDGHoIJi
-0tUgAQC67+DeMiB7hDUnCGZxPcUXqM4TeI7a4KwUj8RjY4AmFwEAoDPWtsRmTaJe
-CmgEfijQJLEPKjx4nbqlOh8wqFyvbAM=
-=Wae3
------END PGP SIGNATURE-----
-
---EF4bGMNfXkk0lW1z--
-
-
---===============0486534228748911674==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Best regards,
+Huqiang Qin
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============0486534228748911674==--
-
