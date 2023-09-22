@@ -4,50 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EFFDCD4F46
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Sep 2023 09:44:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2628CE6FE42
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Sep 2023 14:52:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=H8eyTTRnj2YDm6hXWzpFP2dLF8J1ZlULghCTmYOG050=; b=JmSFfMi4YR7oxr
-	OYEqexquue30qtiJi0ruGGcUM4STzMSSt07alcS6cySqLmbBkzwRxZtiDLJ0w0KBR5ce7aNgluntW
-	+GyR5ILzBKGUadPxbeV+0N0fS/E8dQM66GZd7E2gF9P/alkngBCUzUWa+L3UM68qKUQKmJpNGIBJu
-	+8JtBAI8og4lz8hg7pKKbRQCqJ5kFa94kE4OWlNW6b47OxIhyTNDxFvtUsBFYyg+TA3ALCDb8sCFB
-	bouiiGWIcDenATjCmBOufRjBoG9fzyZ+iRyeljDAWG5uJQxdG76GFuj77ZtS7h5Px7myJE+NnObpM
-	F1djkOUzwMjuOWN86gbQ==;
+	List-Owner; bh=4B9Rye0vZG4NNLE/KLFsqhfEbZVwT44eic9PB0/6/dQ=; b=tDMMWXctywaDb+
+	L2oRMgt+IJUWVy7xoWqeX+5h9ul0Kt4OdOZES0nFLKFkYGPDvXMNQW6Z4HaFXwA+0DN+1TQMl7qWv
+	gi/dR2J72KgrY5DG/yReQf7mMCLeUoT3JUL2krCKLnFfc5+tg51YD8p5LCbpdEA7khIfLBIH8LCmF
+	O3T09inAQXYrjDX4yUHsVgQ9cRmUPuJX7dRVP32QSiqkKe+vEWHNl4h+KnWYdwAsyOQo0aa/GVLtu
+	4QBs+KAeqlGeGidAgvPfBcuqUSm9EoAE8WEyLn7DoW3mmf2lCK/A4fc169qFiqiv+T+LQcZVC2awP
+	PHHrgMxVJVG6Td94Dxgw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qjciA-008cS4-2I;
-	Fri, 22 Sep 2023 09:44:34 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1qjhVO-009FNq-04;
+	Fri, 22 Sep 2023 14:51:42 +0000
+Received: from relay4-d.mail.gandi.net ([2001:4b98:dc4:8::224])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qjchw-008cGc-2e;
-	Fri, 22 Sep 2023 09:44:21 +0000
-Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Fri, 22 Sep 2023
- 17:43:52 +0800
-From: Huqiang Qin <huqiang.qin@amlogic.com>
-To: <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <brgl@bgdev.pl>, <andy@kernel.org>
-CC: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Huqiang Qin <huqiang.qin@amlogic.com>
-Subject: [PATCH V3 3/3] arm64: dts: Add pinctrl node for Amlogic T7 SoCs
-Date: Fri, 22 Sep 2023 17:43:42 +0800
-Message-ID: <20230922094342.637251-4-huqiang.qin@amlogic.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230922094342.637251-1-huqiang.qin@amlogic.com>
-References: <20230922094342.637251-1-huqiang.qin@amlogic.com>
+	id 1qjhVL-009FLD-0x;
+	Fri, 22 Sep 2023 14:51:40 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 73958E0003;
+	Fri, 22 Sep 2023 14:51:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1695394297;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=t0yOw7b2spKa5t9IrnrfzUFQlWX9MBmdcTg1hf3e1bA=;
+	b=isDTluHU66uTjCD65J6nGcS2Gt6DbMBWEOs3n+ce5itUuLfwktGf/xR1m8WkOZGXOohZV0
+	mdFyAUogl7zHnHb5r7aAPAifJ9+xFNlNQzokRFDKlVgmaI13U3SJM0CgR4Q1p/b2jZULmf
+	2hOEcb44vWh6J6E1dEP9Xo/lIBN53+bgbN4dMd7bBoe9TXG30HYd0KTkdOJXcAOok6YWuV
+	M+PRw4O6FRiU8FQQ0z7P29sXZCgeenrHcCSXPwbkRZqGzXO3U3GAlrKB4mycvreJs5w+nF
+	F5K2f6AWmzVjWY7SxLxNpnTUNxPakc+8L40iFM8SBhrM7I3RSiS3vD8UFJzHGA==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Kees Cook <keescook@chromium.org>,
+	Liang Yang <liang.yang@amlogic.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-mtd@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Tom Rix <trix@redhat.com>,
+	linux-kernel@vger.kernel.org,
+	llvm@lists.linux.dev,
+	linux-hardening@vger.kernel.org
+Subject: Re: [PATCH] mtd: rawnand: meson: Annotate struct meson_nfc_nand_chip with __counted_by
+Date: Fri, 22 Sep 2023 16:51:35 +0200
+Message-Id: <20230922145135.578418-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230915201249.never.509-kees@kernel.org>
+References: 
 MIME-Version: 1.0
-X-Originating-IP: [10.28.11.83]
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'627e79b7cf1e1488ca772720026d9cbfa3f90730'
+X-GND-Sasl: miquel.raynal@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230922_024420_855843_31AFA143 
-X-CRM114-Status: UNSURE (   6.34  )
+X-CRM114-CacheID: sfid-20230922_075139_476974_CE5ABE7E 
+X-CRM114-Status: UNSURE (   7.56  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -65,48 +89,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add pinctrl device.
+On Fri, 2023-09-15 at 20:12:49 UTC, Kees Cook wrote:
+> Prepare for the coming implementation by GCC and Clang of the __counted_by
+> attribute. Flexible array members annotated with __counted_by can have
+> their accesses bounds-checked at run-time checking via CONFIG_UBSAN_BOUNDS
+> (for array indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family
+> functions).
+> 
+> As found with Coccinelle[1], add __counted_by for struct meson_nfc_nand_chip.
+> 
+> [1] https://github.com/kees/kernel-tools/blob/trunk/coccinelle/examples/counted_by.cocci
+> 
+> Cc: Liang Yang <liang.yang@amlogic.com>
+> Cc: Miquel Raynal <miquel.raynal@bootlin.com>
+> Cc: Richard Weinberger <richard@nod.at>
+> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Cc: linux-mtd@lists.infradead.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-amlogic@lists.infradead.org
+> Signed-off-by: Kees Cook <keescook@chromium.org>
+> Reviewed-by: Gustavo A. R. Silva <gustavoars@kernel.org>
 
-Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
----
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
 
-V1 -> V2: Unchanged.
-V2 -> V3: Unchanged.
-
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index dae3465bd39b..a03c7667d2b6 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -155,6 +155,22 @@ watchdog@2100 {
- 				clocks = <&xtal>;
- 			};
- 
-+			periphs_pinctrl: pinctrl@4000 {
-+				compatible = "amlogic,t7-periphs-pinctrl";
-+				#address-cells = <2>;
-+				#size-cells = <2>;
-+				ranges;
-+
-+				gpio: bank@4000 {
-+					reg = <0x0 0x4000 0x0 0x0064>,
-+					      <0x0 0x40c0 0x0 0x0220>;
-+					reg-names = "mux", "gpio";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 0 157>;
-+				};
-+			};
-+
- 			uart_a: serial@78000 {
- 				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
- 				reg = <0x0 0x78000 0x0 0x18>;
--- 
-2.42.0
-
+Miquel
 
 _______________________________________________
 linux-amlogic mailing list
