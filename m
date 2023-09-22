@@ -4,51 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 161CACD4F2B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Sep 2023 08:06:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51ECACD4F2B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Sep 2023 08:16:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=3QbAwfQB3ZiL1J2ZWNBeLji5+OGf3G2f9jC3Bweo4Ec=; b=HbT6iYdhQY6H70
-	2cAh2iwM8/Akd4Ps3Aq5mjNlaMcD2hTQfyfusQGd5Z2UST6hWuxysRFYq1aTrau5GGItBNS4iDZ0q
-	WXYLjBbiNqdOjaD+VOL4s4YC5Mjh8NFFSR2Z2QGaq895pPOQyJFiaDuLMpeaemfke1HWOsAQDr1kJ
-	kYqxXT093WDpwc0hYnBI1l3vl8Xx84+sh1xPru5NbCUlRuZxfY9qFswHhIS4ALHs/+j3PzAd0TrEH
-	GdQiwESpUJHXyBJ8/tnWobE44JNE2DLqIEYraZsaduPdYddS1REUaRFAwg8g5i5liIGyL09BNxE64
-	OyibZ0cmMXEcElLaapnA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
+	References:Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=kMe4KWvU0XT7D/4FFUYlE+QSXSSOoDg+J0B+KHt7dlM=; b=TipwMruQ+CpPGT
+	AZCghUXg8P/U2tzMWilzCJ4mS9e3gQnrvcFXSlDOc51TRrFjne/+qbaKvP3OY4F4eMpS0ixUski+9
+	3/qpvq1pqh2NZ6iy4Hex96ejVBJTf4OLunV6XQvfuNmlUjI8ruRzykZpJ45k+iMUPpRAu4ENGDNCv
+	3KagCUv3KhYCjZPLh4Yv0K+GHnninhFJG3oECiDFFvbKk+Rx1Vqz7xG3s9elz9TU03Mth9tz/mqiy
+	sstLUP9x7T07XV30/erq8iq72nORlXciOCrLv9jfmUsXWcSbZ47p+LyP1J/7sNnIhMunAFaaZaPif
+	WuVC1kWmExQm7Ccta/vg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qjbAx-008Kt7-1v;
-	Fri, 22 Sep 2023 08:06:11 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1qjbK9-008Nm0-0b;
+	Fri, 22 Sep 2023 08:15:41 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qjbAs-008Kqk-2j;
-	Fri, 22 Sep 2023 08:06:10 +0000
-Received: from droid10-sz.amlogic.com (10.28.11.69) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Fri, 22 Sep 2023
- 16:05:49 +0800
-From: zelong dong <zelong.dong@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Sean Young <sean@mess.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>
-CC: <linux-media@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<Qianggui.Song@amlogic.com>, <Yonghui.Yu@amlogic.com>,
-	<kelvin.zhang@amlogic.com>, Zelong Dong <zelong.dong@amlogic.com>
-Subject: [PATCH] arm64: dts: amlogic: Fix IR Controller register area for Meson-GX/AXG/G12 series SoCs
-Date: Fri, 22 Sep 2023 16:05:46 +0800
-Message-ID: <20230922080546.26442-1-zelong.dong@amlogic.com>
-X-Mailer: git-send-email 2.35.1
+	id 1qjbK4-008NjQ-2c;
+	Fri, 22 Sep 2023 08:15:40 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 8B185120008;
+	Fri, 22 Sep 2023 11:15:27 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8B185120008
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1695370527;
+	bh=K1IdM7b2w3Jp7BqUE1a2gm3KjIWU/wcpomoHzmDaVCg=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
+	b=NqChQCJB5VrtPsxCf4DXrKDDVhQ3xfSBgHj5B1TC+Pna+YdUQIsgNI+u3IWFFa6Zf
+	 qf3qHxEIFOX7hdQr3VLZeYJAnuk7YFeJ0oGmiVPQVrIwo4wG2lwPHu7hPAIJZXopL3
+	 Z5RPnOKylezELRtaTl7BPE1JBRKYxBwlHejCQ5dds/Il2RXjqJU3QPfPihdOHp0z67
+	 Mj4HEgAxudLMBxB+s/BLBEEqMGpMpR4Cx1p5DRDYDIiDS7hj24PN4i+MGzjf/Pn1yo
+	 le8AbSDCZVzKLw0rYXiX6i1x51YbNdj4AnMSqppCQXn7C89JnpIOuYzvBW+FvnZtH3
+	 aTdSJuX/p6ozA==
+Received: from p-i-exch-sc-m02.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 22 Sep 2023 11:15:27 +0300 (MSK)
+Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Fri, 22 Sep 2023 11:15:27 +0300
+Received: from p-i-exch-sc-m01.sberdevices.ru ([::1]) by
+ p-i-exch-sc-m01.sberdevices.ru ([fe80::80e5:bab:4999:4480%7]) with mapi id
+ 15.02.1118.030; Fri, 22 Sep 2023 11:15:27 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: Herbert Xu <herbert@gondor.apana.org.au>
+CC: Alexey Romanov <avromanov@salutedevices.com>, "narmstrong@baylibre.com"
+	<narmstrong@baylibre.com>, "neil.armstrong@linaro.org"
+	<neil.armstrong@linaro.org>, "olivia@selenic.com" <olivia@selenic.com>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "conor@kernel.org"
+	<conor@kernel.org>, "khilman@baylibre.com" <khilman@baylibre.com>,
+	"jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+	"f.fainelli@gmail.com" <f.fainelli@gmail.com>, "hkallweit1@gmail.com"
+	<hkallweit1@gmail.com>, "lists@kaiser.cx" <lists@kaiser.cx>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-amlogic@lists.infradead.org"
+	<linux-amlogic@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-crypto@vger.kernel.org"
+	<linux-crypto@vger.kernel.org>, kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v3 1/3] drivers: rng: meson: add support for S4
+Thread-Topic: [PATCH v3 1/3] drivers: rng: meson: add support for S4
+Thread-Index: AQHZ5JhbK/N+gymR9EW47MRKmDtTx7AjAeSAgANcfQA=
+Date: Fri, 22 Sep 2023 08:15:27 +0000
+Message-ID: <20230922081514.p7patdvkp4mujk6k@cab-wsm-0029881.sigma.sbrf.ru>
+References: <20230911101129.10604-1-avromanov@salutedevices.com>
+ <20230911101129.10604-2-avromanov@salutedevices.com>
+ <ZQp7Rf3qzoN6c2Le@gondor.apana.org.au>
+In-Reply-To: <ZQp7Rf3qzoN6c2Le@gondor.apana.org.au>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.18.92]
+Content-ID: <649DC8FD1411CD4C87B0DBDF3645D2E3@sberdevices.ru>
 MIME-Version: 1.0
-X-Originating-IP: [10.28.11.69]
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 180037 [Sep 22 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 534 534 808c2ea49f7195c68d40844e073217da4fa0d1e3, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;gondor.apana.org.au:7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m02.sberdevices.ru:5.0.1,7.1.1;cab-wsm-0029881.sigma.sbrf.ru:5.0.1,7.1.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2023/09/22 07:23:00
+X-KSMG-LinksScanning: Clean, bases: 2023/09/22 07:23:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/09/22 02:22:00 #21944311
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230922_010606_903526_76EF08F4 
-X-CRM114-Status: GOOD (  10.31  )
+X-CRM114-CacheID: sfid-20230922_011537_546872_1E111775 
+X-CRM114-Status: GOOD (  15.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,98 +122,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Zelong Dong <zelong.dong@amlogic.com>
+Hi Herbert,
 
-Amloic Meson-6 SoC only has one IR Controller, since then, there are 2 IR
-Controllers in every SoCs, one is Legacy IR Controller (same as Meson-6's one),
-the new one is Multi-Format IR Controller (abbreviated "MF-IR",
-which supports more than one IR Protocol). MF-IR was updated several times,
-so different SoCs could be got different register sizes.
+On Wed, Sep 20, 2023 at 12:55:33PM +0800, Herbert Xu wrote:
+> On Mon, Sep 11, 2023 at 01:11:27PM +0300, Alexey Romanov wrote:
+> >
+> > +struct meson_rng_priv {
+> > +	int (*read)(struct hwrng *rng, void *buf, size_t max, bool wait);
+> > +};
+> >  
+> >  struct meson_rng_data {
+> >  	void __iomem *base;
+> >  	struct hwrng rng;
+> > +	struct device *dev;
+> > +	const struct meson_rng_priv *priv;
+> >  };
+> 
+> Is data->priv really necessary? It doesn't seem to be used anywhere
+> after the probe.
+> 
 
-There are all IR Controller register areas from upstream's SoCs:
-                              Legacy IR             MF-IR
-Meson-6                  | <0xc8100480 0x20> |       NULL        |
-Meson-8/8B/8M2           | <0xc8100480 0x20> | <0xc8100580 0x30> |
-Meson-GXBB               | <0xc8100480 0x20> | <0xc8100580 0x44> |
-Meson-GXM/GXL  	         | <0xc8100480 0x20> | <0xc8100580 0x54> |
-Meson-AXG/G12A/G12B/SM1  | <0xff808000 0x20> | <0xff808040 0x58> |
+Are you suggesting remove meson_rng_priv and putting a pointer to read
+function in meson_rng_data?
 
-About Meson-IR driver, MF-IR was supported from Meson-8, which was distinguished
-by compatible string (of_device_is_compatible(node, "amlogic,meson6-ir")),
-and only one register (macro 'IR_DEC_REG2') was added because controller worked
-in raw decoder mode, later registers are unused, so we recommend that register
-size should be 0x24 if MF-IR is in use.
 
-There are 2 ways to fix.
+> Thanks,
+> -- 
+> Email: Herbert Xu <herbert@gondor.apana.org.au>
+> Home Page: http://gondor.apana.org.au/~herbert/
+> PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
-MF-IR is in use:
-  Meson-8/8B/8M2/GXBB/GXM/GXL: <0xc8100580 0x24>
-  Meson-AXG/G12A/G12B/SM1:     <0xff808040 0x24>
-
-Legacy IR is in use:
-  Meson-8/8B/8M2/GXBB/GXM/GXL: <0xc8100480 0x20>
-  Meson-AXG/G12A/G12B/SM1:     <0xff808000 0x20>
-
-Fixes: 2bfe8412c5388a ("arm64: dts: meson-g12a: Add IR nodes")
-Fixes: 7bd46a79aad549 ("ARM64: dts: meson-axg: enable IR controller")
-Fixes: c58d77855f0069 ("ARM64: dts: meson-gxbb: Add Infrared Remote Controller decoder")
-Link: https://lore.kernel.org/all/20160820095424.636-5-martin.blumenstingl@googlemail.com/
-Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 2 +-
- 3 files changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 768d0ed78dbe..dd8c58e74322 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -1705,9 +1705,9 @@ pwm_AO_ab: pwm@7000 {
- 				status = "disabled";
- 			};
- 
--			ir: ir@8000 {
-+			ir: ir@8040 {
- 				compatible = "amlogic,meson-gxbb-ir";
--				reg = <0x0 0x8000 0x0 0x20>;
-+				reg = <0x0 0x8040 0x0 0x24>;
- 				interrupts = <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>;
- 				status = "disabled";
- 			};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index ff68b911b729..e12cea5fa889 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2084,9 +2084,9 @@ pwm_AO_ab: pwm@7000 {
- 				status = "disabled";
- 			};
- 
--			ir: ir@8000 {
-+			ir: ir@8040 {
- 				compatible = "amlogic,meson-gxbb-ir";
--				reg = <0x0 0x8000 0x0 0x20>;
-+				reg = <0x0 0x8040 0x0 0x24>;
- 				interrupts = <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>;
- 				status = "disabled";
- 			};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 2673f0dbafe7..0c04e34a0923 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -506,7 +506,7 @@ pwm_AO_ab: pwm@550 {
- 
- 			ir: ir@580 {
- 				compatible = "amlogic,meson-gx-ir", "amlogic,meson-gxbb-ir";
--				reg = <0x0 0x00580 0x0 0x40>;
-+				reg = <0x0 0x00580 0x0 0x24>;
- 				interrupts = <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>;
- 				status = "disabled";
- 			};
 -- 
-2.35.1
-
-
+Thank you,
+Alexey
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
