@@ -4,70 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 863FACE7A95
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Sep 2023 10:46:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17A9BCE7A94
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Sep 2023 10:59:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tH0BNsGxTaT/L5ExmOwdG+BQ/+1Idgrbs+S0CcPeZq4=; b=zwB6ax+94n0XfH
-	bUWATBh1mLed9M4mFJ6J2w0FSWZU/t6fVj0lTxMb+KFNgkTh9L1OKzcRftulTFy5e1Q2YU/Xpk4JW
-	TQcb20bpyXhwVyAKCTcpQOphU7Jj5AmEkD/9h0g8HaIdpVkg8p682WPZhlBKWMA+83r6AcO6aX2zF
-	mAQRr/ps4bJ4K+GHBwz9xj5I7VVTIfjQRtjwqd2yLe1T5zRZB6YmnraH08A4nEGpFP1SEsDQ0Jw8R
-	Vd2IGMY7OzWSZoXBiOoz+PEKCO3noZC8P1rsPx644GP0iNzs/+DPm+0GdtLuxRTLLWKO7b8c9MBzk
-	MimnL/FdgC8k8KJn2LqQ==;
+	List-Owner; bh=V+M2l4CfV+/fAd7v2ZWywxui6nZqw6R3MFaDN9nqNwo=; b=ZtvjfwaITcvvs8
+	wjrr7FqYxwOkCuGtM5LveMnIDfNr94cp7EpInA0yyB+ItMk427u0TpjU6a/OUoC9dwuWykeqIXDMv
+	9dUyLuzOVr+SWCwUuaLUYjZ1hjfswWWBWU/8x7S8HClpGP/R16LJ62mS3RjVtmDHI8MONxWbrVFP5
+	pnJdBMa+KD6nNVqKtRmpR9wXFGbmELe12VXZxCFFphRzFzWiv4ow80IuWOtv3lzhbfwY6kNTj4t3R
+	TrsRwQ3hDFJEKD/2KWYjMG9OkXqkencKNOk0jCJTtUpZkvWHgmzuKaSO700BGnxSGWgQiLP1rFUP8
+	URUeEqxdcZn0iuUwyOfg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qkj63-00E06q-1Y;
-	Mon, 25 Sep 2023 10:45:47 +0000
-Received: from mail-lj1-x232.google.com ([2a00:1450:4864:20::232])
+	id 1qkjIZ-00E6NZ-1N;
+	Mon, 25 Sep 2023 10:58:43 +0000
+Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qkj61-00E05P-0x
+	id 1qkjIX-00E6Jy-02
 	for linux-amlogic@lists.infradead.org;
-	Mon, 25 Sep 2023 10:45:46 +0000
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2c108e106f0so99601551fa.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 25 Sep 2023 03:45:41 -0700 (PDT)
+	Mon, 25 Sep 2023 10:58:42 +0000
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9b0168a9e05so517536966b.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 25 Sep 2023 03:58:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695638740; x=1696243540; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JJhOEMH58LR2rpNX8DYGMcQ4ke1/Bz5TvHhYkfY7lio=;
-        b=NeCx3ieDW+cC04unXmu2/ovNeaXkjW+kly/uNqJPZSuI5IdL7xsywfl3SRwqqkfJH4
-         euWcFupL0HdjkWNpcEAVd1/PNGY4yimEqR7I+sqj0xs1bLqhMXhsyfHoK65Ol5VIvWpX
-         roQ4WSYv4jFmKq2ZExnuVL4knbdfqdzdybE1EhZ8LDgvjbSzRKxStsmDsNvcsJ88TDWI
-         xog7ouGcW+p74mq9m9FCgYVWWV/iy0wT2XqXD0s9mwtCX6nS9zq01+SA0ngOoWn0MbYm
-         4U2FrzUIDLz82BibUJDoltiJcIkTpBUSqrzqi88uL+KfYW788QLx+7S1SSAt++/xvYuG
-         YjjQ==
+        d=linaro.org; s=google; t=1695639517; x=1696244317; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=tiTROYF3AfFrBmjQFXrAqpJSodgoRsdidpAw5hshkTU=;
+        b=ZbQJ+r87YC7sQHI679j7wmLH8sbKXfax8Sx4C9wYahRbgcGVUYWcD7VbEEXUZkIoFG
+         EPe5bDMGbDXQR1Itc76OG2N0xiiv1MBqwsSC0Ae1kzARfj4Uu4BjwqGbf1lIs9i3aqrV
+         fZqU51Uyt0JfyGeR6HrRo+6p+zAOsORdFhjp6tTAWV8pfV7IWgzVZuIV8YpRxB49/QUb
+         QTVCXwc2IT54QA8sD2iGmr6qcngTsjn9UP8B/3K8esTrvSwvUmX7z/XZomKcxavjksi5
+         to4fXiBuba24qa5sUVhRQ9PZB3Z+ejpQrT+WE0zgY/zxzxnMJa0+EDRfjMFrLo/N63Yh
+         Y34Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695638740; x=1696243540;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JJhOEMH58LR2rpNX8DYGMcQ4ke1/Bz5TvHhYkfY7lio=;
-        b=I0Y7fTIjYf39gJat8xu+kTIhUNsZMMei5Q8mbCa4LTPlh9WOyz+xCTATU66bWu3Wwh
-         PmaYheG+VOlcTM/F2sZOIjgItTtc//UCpdaR7ap4lhfjOfLsYEhIYigBjxglkw41jJ8+
-         0KAyx/h8c3zLeHRmo/O6hBhmqNPHUd2k0js4pMjLE4xAyMSHwGhCGSBirC/8Bt4rZ6rF
-         i0+u5m050fi8QYIq2Z12OsV5In2X+SWnF/S+eoUyS64JYjJ/aeuopAUmNuqd6RGtN335
-         2rtOn/qOvljuXRoOa+jvQDcivmCkGC+ub99e4G5lpN7jFSC1tlAQTqnDcTPwYeUYU8CQ
-         bX5g==
-X-Gm-Message-State: AOJu0YxlMk9T9smoEVVzY/0O/gqFKpdKQEdPfRXCBVsVm6cjhoIa00Ed
-	OFC1X8RB7QZMUc4GJrAMc+e8ww==
-X-Google-Smtp-Source: AGHT+IHxXTOX1fE2hluK//tSOALu1qxLgRqiFbpmx5Fz+r+ZkRzp1HhBud9Gohn39L6hc9ZVwlHCwA==
-X-Received: by 2002:a05:6512:1596:b0:503:5d8:da2e with SMTP id bp22-20020a056512159600b0050305d8da2emr6292587lfb.13.1695638739673;
-        Mon, 25 Sep 2023 03:45:39 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695639517; x=1696244317;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tiTROYF3AfFrBmjQFXrAqpJSodgoRsdidpAw5hshkTU=;
+        b=sqF1Lv0SnXf4kV3/Xm1rSkkvjuc7EZLBxKPJO6COfOa551BCWfjs+lLhp1h7R6Kkf8
+         zmNIUyFGyUq2+iCyJT2wwTovVdFB1WpIgXMnsaShrJy4vz61VS53p99bLujpX0yem8zW
+         JvJ2yQq43rWw9lKtz7qqs4kJz89o2ZcvFHRdq/wHa5hSgOXe/WC3itTKiGwo21RjT8xY
+         j/SGRc4edy6yk+IgXtuuBOrGI9A1h8zmdT4LNorEXWpcWoAnaWPDdPaIfn22MCN47jTI
+         D6fgyJiGZEFCv2Ox2ELnkw+U72ImXg5UFxd12cIAM9JRaxfvO+ZQ4zcSm6c0br+PO3gn
+         7SRA==
+X-Gm-Message-State: AOJu0Yz8r+pD3+4o1qFYkw4r3f6Uihf6ybcOvlrbl+2FzK3FBmEbx6JV
+	m//ZcJSBFyoMvhul03seY98d5w==
+X-Google-Smtp-Source: AGHT+IF4gmtwCV/DJZX7wQ3igBMhnDs1k843Cr+1i4Its1jXiSjTaCKZiPsBP0dbK9WpkYc5jNaQqQ==
+X-Received: by 2002:a17:906:cc4e:b0:9ae:5a9f:6a9f with SMTP id mm14-20020a170906cc4e00b009ae5a9f6a9fmr4978421ejb.52.1695639517106;
+        Mon, 25 Sep 2023 03:58:37 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id l14-20020aa7cace000000b0053331f9094dsm5356947edt.52.2023.09.25.03.45.38
+        by smtp.gmail.com with ESMTPSA id s14-20020a170906bc4e00b009937dbabbd5sm6146381ejv.220.2023.09.25.03.58.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Sep 2023 03:45:39 -0700 (PDT)
-Message-ID: <235b17ef-b34c-4006-baa4-a1d4360dca16@linaro.org>
-Date: Mon, 25 Sep 2023 12:45:37 +0200
+        Mon, 25 Sep 2023 03:58:36 -0700 (PDT)
+Message-ID: <e9334edb-bf2e-4dca-9752-14b2924763a4@linaro.org>
+Date: Mon, 25 Sep 2023 12:58:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] arm64: dts: Add watchdog node for Amlogic-C3 SoCs
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Huqiang Qin <huqiang.qin@amlogic.com>, neil.armstrong@linaro.org,
  khilman@baylibre.com, jbrunet@baylibre.com,
  martin.blumenstingl@googlemail.com, robh+dt@kernel.org,
@@ -77,7 +79,7 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
 References: <20230925090641.1185942-1-huqiang.qin@amlogic.com>
  <51470d7a-65a7-44c7-856b-53ca4b065553@linaro.org>
  <bb20efd5-4f60-5ded-caa6-2c9c94a10a44@amlogic.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <235b17ef-b34c-4006-baa4-a1d4360dca16@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -122,11 +124,10 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <bb20efd5-4f60-5ded-caa6-2c9c94a10a44@amlogic.com>
+In-Reply-To: <235b17ef-b34c-4006-baa4-a1d4360dca16@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230925_034545_345557_484D061E 
-X-CRM114-Status: UNSURE (   8.30  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230925_035841_057235_75E18C11 
+X-CRM114-Status: GOOD (  10.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -143,19 +144,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 25/09/2023 12:42, Huqiang Qin wrote:
-> Hi Krzysztof,
+On 25/09/2023 12:45, Krzysztof Kozlowski wrote:
+> On 25/09/2023 12:42, Huqiang Qin wrote:
+>> Hi Krzysztof,
+>>
+>> On 2023/9/25 17:33, Krzysztof Kozlowski wrote:
+>>> This is c3, not t7. Why do you use t7 compatible alone?
+>>
+>> The C3 and T7 use the same watchdog controller, so they are compatible.
 > 
-> On 2023/9/25 17:33, Krzysztof Kozlowski wrote:
->> This is c3, not t7. Why do you use t7 compatible alone?
-> 
-> The C3 and T7 use the same watchdog controller, so they are compatible.
+> I am not saying that they are not compatible. I am saying that different
+> SoCs should use the same compatible. Just like for every other platform,
+
+Eh, missing "not", so "should not use":
 
 I am not saying that they are not compatible. I am saying that different
-SoCs should use the same compatible. Just like for every other platform,
-Amlogic is not special here.
+SoCs should not use the same compatible. Just like for every other
+platform, Amlogic is not special here.
 
-https://elixir.bootlin.com/linux/v6.6-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst
+> Amlogic is not special here.
+> 
+> https://elixir.bootlin.com/linux/v6.6-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst
+
+Please define compatibility list with t7 as fallback.
 
 Best regards,
 Krzysztof
