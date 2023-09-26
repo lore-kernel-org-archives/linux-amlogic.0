@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98C5FE7D268
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90745E7D267
 	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Sep 2023 08:50:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=uuLdkuF18I76fxLFx8x/IWXrP320XK4UOaD1ygAselA=; b=ttpoZ3NhkGKTq+
-	gI7YNMkqkkkTg4JwBzdQjcof7fYOw9YsVzO8n49kbuipWRxj8qHEM9PGx5VFEZx9we0g5H+99DBsK
-	HHDr/uZtwwVbZM8a+tv7a2ORDlm5oybNa4ojClY2KZoCv4NG2Fi0IdSlY1Peh0VPtuYmcaD8z+GP2
-	5tkwgzoioom2bMa2Z6OCNd3xSHNk/HsMycCsuqhPgM1U0/2duIITuuTm3UF/xC+tY0O3Gzq8lB9MJ
-	YcspMa1tD4k89sMuiTEDeDWtRxGyZVAL3yUxXkvTKTm1UiegkugTlXIP85DoT4s+nC+tWv4yHrDMV
-	rI2wSRMWyBl6qhLnF7VQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=mmf/kBw10u4pq2jrV2qCTOr6I+M5QfyuwDP33FY6Zl4=; b=O/NrrfE7juOYRa
+	MnXs/THTRQEr2RZCLevIUzE1BdZ4H1sjCs/2E39epzLQb8aehkh9addgwPyoFnQgKbXSd95rsqJxE
+	sdMa+oAuqUJUdQCzZnxv1eeqH1QbRDpA8jkPzgkIgtqMDEJq6bQxpZk9KxGtHbTfDbOGKSttAEIUn
+	d6xQ5AE86JM5tXM4b/jGX7/sPpg9zJa8rJFSA4awIfeQ4OHppC/5MyQ+dAabgazc1kyX9kred6V2w
+	4JOYpe6W7AZyaMre/q8Jqh94lOBvEjMsMPvx4QAgIOAJeYRJXDCZtIQh8R+W1/rd861gN30tfeyBT
+	pzvoh7OIrI1tieU42LCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1ql3lR-00Fu8l-0B;
+	id 1ql3lR-00Fu9K-1W;
 	Tue, 26 Sep 2023 08:49:53 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1ql3lN-00Fu6D-02;
+	id 1ql3lM-00Fu6H-35;
 	Tue, 26 Sep 2023 08:49:51 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 3E07C12000D;
-	Tue, 26 Sep 2023 11:49:40 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 3E07C12000D
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 4CB5A12000E;
+	Tue, 26 Sep 2023 11:49:43 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4CB5A12000E
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1695718180;
-	bh=57ZxTHjS9C6nv7uak2H/t7U0j7TNgZzPuexEpUZlLxQ=;
+	s=mail; t=1695718183;
+	bh=FgKxXDgE/uNx01ueWhXfT0y9HcY1omQL2iYWSfBMwSs=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=Sxb4y2NCy915ZpqAaHViZYDuKPIugAGMGF9lxawkjvKhxErH0j6aEBfGux01qxbTx
-	 3DjYe2ShImAo6MEc/RcJtQYvstZZBywJUTLZvI3VT1pKRxHfmMsTVarQWB55i68PEX
-	 x6q43dU4Ad2a0628B2FZsqxdz1KZXlDwDJHJkMtUWnRFmRy3Wa4+Eh1AedZkjb4Nxa
-	 HeIA86WE4RlbYtKzcdD3A3eD0HDr/2W/Gt+O7W9apwmYhlx5u/t3mm/HaC2nnZXXPX
-	 2hL+PjycJGjC4rK0xHI1o0TJz2pbrHWNAV9cOKhCkSJWTrg7sZ8w+JdX/+TLKsrG6/
-	 TpkPBnhu83PlQ==
+	b=CaxKAcPO/txolsXTD4DokZBBGVXELARDSdBMAyC6a3LbLOdXJhSbGgJ1LnzPeLmS8
+	 SGMumxzbD7Pydl6hc8L+Z+X6MyW77vyXTT8K77dHs+F+Pf2+YUkBrCRDXiPNQIXpTi
+	 kj5+YQi7Ga6YfxaZlZWItS+pqEiWcW25uXg5G1pK+D+W8V20YfqxLDyrqorH4M8gJR
+	 fRFITh0mU62ywiBt8DVo9AuhFuzQYH8tXg3Z+NuBZXdJFy5D4XJTb8mJ4T+dyC3DTt
+	 pOwBKAIwnl7eKKPAoLRvq9a+LcDB40JfUjzeJnfKtvTsA8/GGllD+SKq9HJ4kqMwQd
+	 WGxMj0tla0crQ==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 26 Sep 2023 11:49:40 +0300 (MSK)
+	Tue, 26 Sep 2023 11:49:43 +0300 (MSK)
 Received: from localhost.localdomain (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Tue, 26 Sep 2023 11:49:39 +0300
+ 15.2.1118.30; Tue, 26 Sep 2023 11:49:42 +0300
 From: Alexey Romanov <avromanov@salutedevices.com>
 To: <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
 	<olivia@selenic.com>, <herbert@gondor.apana.org.au>, <robh+dt@kernel.org>,
@@ -59,11 +59,14 @@ To: <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
 CC: <linux-arm-kernel@lists.infradead.org>,
 	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
 	<devicetree@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-	<kernel@sberdevices.ru>, Alexey Romanov <avromanov@sberdevices.ru>
-Subject: [PATCH v4 0/3] Meson S4 HW RNG Support
-Date: Tue, 26 Sep 2023 11:49:23 +0300
-Message-ID: <20230926084932.65126-1-avromanov@salutedevices.com>
+	<kernel@sberdevices.ru>, Alexey Romanov <avromanov@sberdevices.ru>, Conor
+ Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v4 2/3] dt-bindings: rng: meson: add meson-rng-s4 compatible
+Date: Tue, 26 Sep 2023 11:49:25 +0300
+Message-ID: <20230926084932.65126-3-avromanov@salutedevices.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230926084932.65126-1-avromanov@salutedevices.com>
+References: <20230926084932.65126-1-avromanov@salutedevices.com>
 MIME-Version: 1.0
 X-Originating-IP: [100.64.160.123]
 X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
@@ -85,8 +88,9 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/09/26 05:53:00 #21984147
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230926_014949_708695_671D2470 
-X-CRM114-Status: GOOD (  11.17  )
+X-CRM114-CacheID: sfid-20230926_014949_708665_F9A5FA15 
+X-CRM114-Status: UNSURE (   9.59  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,38 +109,27 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Alexey Romanov <avromanov@sberdevices.ru>
 
-Hello!
+Add compatible for hardware number generator node for
+Amlogic S4-series.
 
-This patch series adds hwrng support for Amlogic S4-series.
-Now, S4 uses a new random number generation algorithm.
-This changes implemnents new algo and also adds description
-to meson-s4.dtsi.
+Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-V2:
-
-- Use readl_relaxed_poll_timeout_atomic() function instead of loop.
-- Use two different functions: meson_rng_read() and meson_s4_rng_read().
-- Fix naming in DT schema (meson-s4-hwrng instead of meson-hwrng-s4).
-- A little code style fixes.
-
-V3:
-
-- Fix commit message in patch with dt-bindings schema changes.
-
-V4:
-
-- Drop struct meson_rng_priv field from struct meson_rng_data.
-
-Alexey Romanov (3):
-  drivers: rng: meson: add support for S4
-  dt-bindings: rng: meson: add meson-rng-s4 compatible
-  arch/arm64: dts: meson-s4: add hwrng node
-
- .../bindings/rng/amlogic,meson-rng.yaml       |  1 +
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |  5 ++
- drivers/char/hw_random/meson-rng.c            | 80 ++++++++++++++++++-
- 3 files changed, 83 insertions(+), 3 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
+index 457a6e43d810..afa52af442a7 100644
+--- a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
++++ b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
+@@ -14,6 +14,7 @@ properties:
+   compatible:
+     enum:
+       - amlogic,meson-rng
++      - amlogic,meson-s4-rng
+ 
+   reg:
+     maxItems: 1
 -- 
 2.25.1
 
