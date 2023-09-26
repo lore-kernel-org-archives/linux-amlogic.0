@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DBFBE7D268
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Sep 2023 08:50:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1BCCE7D267
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Sep 2023 08:50:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sK9wiQUbv2afNaMGf/6+RblQqU1jY9HXisB8YXO6DY4=; b=S4/2GESMc+YjGP
-	R7xz5NYjqLaqQtxGuwy6TBJY1TITuSS3kQS5YucAc/2DeOCdwFxinx5Y5EmbH1u90u/h0F5/VGJMc
-	Iv3i4S0Yblg375OQoS82/Qux8+NxuhaisiW5cKrGujju/DjenRWSiIny2I4tqPXaBFUUTRokI++dX
-	0MrU5mZE1dm5t7N3hgdX2kid1nWhIK/eyjij2vZp1kO/In3T4lS95JWfGcz61V0IryLz9cgdc6vqx
-	7oQi4U2teL8JZeUKxkapIlvv8s36QpydcbL+gtkAZ/huw5OEHB5F2MvRp4fw60fBNVPqMToOQ/WH2
-	atshLSgrs0EwotNu8o0g==;
+	List-Owner; bh=lIwNsKg+Lv+WJHafkUA+x9bJuXFgapG8158KmTYrC20=; b=OhcOv0WwqepCCz
+	5mp4JEuluhSAcvqvpV4gZwt8H+flqqUvsEQEHb5BjuRZGFWnQ5Dmq6Ntz84yn5IDNaq3dyIA6srwS
+	bNf1P5LksTTFCK4FujHLPRhMCqAUpe8HhqVnz81SvEkRxAcO3Um0gpHVXvmpzhVcL1qBJj8KCaJss
+	Re3linSBYQSAWPB88DMaqS5304kXvZLLqjaHhxexGZMwBIDjUwxTxxuKwsmLgI2tatg9Zzwtp/qN/
+	h9jxubsTfTV5qa3O69AxsMmaezfsQ4h2pBSXUG4SNurX94NaO/LPeDGe9AQzevDHZn52EubXmJ77Z
+	XLluJ/ZM43j5NOK3oI3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1ql3lT-00FuAP-0d;
-	Tue, 26 Sep 2023 08:49:55 +0000
+	id 1ql3lf-00FuEu-1R;
+	Tue, 26 Sep 2023 08:50:07 +0000
 Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1ql3lM-00Fu6Y-3A;
-	Tue, 26 Sep 2023 08:49:52 +0000
+	id 1ql3lM-00Fu6E-3A;
+	Tue, 26 Sep 2023 08:49:53 +0000
 Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 38E3410000B;
-	Tue, 26 Sep 2023 11:49:44 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 38E3410000B
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 02CF2100007;
+	Tue, 26 Sep 2023 11:49:42 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 02CF2100007
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1695718184;
-	bh=6xKPdvdjqshlPBOqKnVx+Z2Kh5PDMTjriGUk+PNNmV4=;
+	s=mail; t=1695718182;
+	bh=02RgSRPHLOGMEHrDtoEfLEEz5FUki4ghJjru+SHAGro=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=bN4OdYvF3DEerElFn9ykx7eP8qCivIVgUvo2XuYxkG1NGDIPPIV5I9D89EpKeObNQ
-	 UONCreieHXbasB4P7YygQWl+UiKTQ4puIqCsvIFn54IGUh1A6/eCeGZ/vniyQc2usn
-	 8Ww6IGxgflL7iueK0AZhqrgldx0qhUCwEIEmAN8VInPrzy8FKTnjOolUW/cJtq5BNo
-	 nYzQgnkOuM4to8LuJh6A7xT3CG0xfYjcPz50h/uGN0RUJPfRYOLKE6fQGetwVYAIGf
-	 BoE/C1OS3I8CeE4jHiGrC8r4PyEHUV3a99fy9bl//gM9PZlbi2KPzgswnJSu6qq8Oc
-	 6F2UOlAt5f1pg==
+	b=bD6DNyTzZvRMGQe6Tz83rMNUDrs67ikkvYObXKKTHKwcJs8hnGFi4ijFRUvE53Ioz
+	 79/PSP+W8TmhMBSKBpYQt1c2RxfZEGY4ijSC2Gao8pMW1VrdFpfZ2cXqfqQrKnQ748
+	 IgqLL0AwVSEF3U1tONME4xtvxvgiHoFFXQnO8lramSoy6sw/kPtYMGz6Mrdgi5heZY
+	 aSjGFkYtv5S2pjHzRtEoP36bW7iw0d16yjda/ZvqtIDT3hv4qgzQ4HQE7YjHCXGkgz
+	 T3xhhjka1xRzj9lnOOQDMHRgI4QoxyDbcbE2NfHwwrq4gk6UGsU2AE9xRlsQFlstcp
+	 XK5JPdmisRsAg==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 26 Sep 2023 11:49:44 +0300 (MSK)
+	Tue, 26 Sep 2023 11:49:41 +0300 (MSK)
 Received: from localhost.localdomain (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Tue, 26 Sep 2023 11:49:43 +0300
+ 15.2.1118.30; Tue, 26 Sep 2023 11:49:41 +0300
 From: Alexey Romanov <avromanov@salutedevices.com>
 To: <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
 	<olivia@selenic.com>, <herbert@gondor.apana.org.au>, <robh+dt@kernel.org>,
@@ -60,9 +60,9 @@ CC: <linux-arm-kernel@lists.infradead.org>,
 	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
 	<devicetree@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
 	<kernel@sberdevices.ru>, Alexey Romanov <avromanov@sberdevices.ru>
-Subject: [PATCH v4 3/3] arch/arm64: dts: meson-s4: add hwrng node
-Date: Tue, 26 Sep 2023 11:49:26 +0300
-Message-ID: <20230926084932.65126-4-avromanov@salutedevices.com>
+Subject: [PATCH v4 1/3] drivers: rng: meson: add support for S4
+Date: Tue, 26 Sep 2023 11:49:24 +0300
+Message-ID: <20230926084932.65126-2-avromanov@salutedevices.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230926084932.65126-1-avromanov@salutedevices.com>
 References: <20230926084932.65126-1-avromanov@salutedevices.com>
@@ -87,8 +87,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/09/26 05:53:00 #21984147
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230926_014949_704030_55C2265F 
-X-CRM114-Status: GOOD (  10.17  )
+X-CRM114-CacheID: sfid-20230926_014949_707910_08CCAAA0 
+X-CRM114-Status: GOOD (  18.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,31 +107,139 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Alexey Romanov <avromanov@sberdevices.ru>
 
-Using this node, we can obtain random numbers via
-hardware random number generator.
+For some Amlogic SOC's, mechanism to obtain random number
+has been changed. For example, S4 now uses status bit waiting algo.
 
 Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/char/hw_random/meson-rng.c | 80 ++++++++++++++++++++++++++++--
+ 1 file changed, 77 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index f24460186d3d..b3a1ecf36467 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -133,6 +133,11 @@ reset: reset-controller@2000 {
- 				reg = <0x0 0x2000 0x0 0x98>;
- 				#reset-cells = <1>;
- 			};
+diff --git a/drivers/char/hw_random/meson-rng.c b/drivers/char/hw_random/meson-rng.c
+index a4eb8e35f13d..75225eb9fef6 100644
+--- a/drivers/char/hw_random/meson-rng.c
++++ b/drivers/char/hw_random/meson-rng.c
+@@ -13,12 +13,23 @@
+ #include <linux/types.h>
+ #include <linux/of.h>
+ #include <linux/clk.h>
++#include <linux/iopoll.h>
+ 
+-#define RNG_DATA 0x00
++#define RNG_DATA	0x00
++#define RNG_S4_DATA	0x08
++#define RNG_S4_CFG	0x00
 +
-+			hwrng: rng@440788 {
-+				compatible = "amlogic,meson-s4-rng";
-+				reg = <0x0 0x440788 0x0 0x0c>;
-+			};
- 		};
- 	};
++#define RUN_BIT		BIT(0)
++#define SEED_READY_STS_BIT	BIT(31)
++
++struct meson_rng_priv {
++	int (*read)(struct hwrng *rng, void *buf, size_t max, bool wait);
++};
+ 
+ struct meson_rng_data {
+ 	void __iomem *base;
+ 	struct hwrng rng;
++	struct device *dev;
  };
+ 
+ static int meson_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
+@@ -31,16 +42,62 @@ static int meson_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
+ 	return sizeof(u32);
+ }
+ 
++static int meson_rng_wait_status(void __iomem *cfg_addr, int bit)
++{
++	u32 status = 0;
++	int ret;
++
++	ret = readl_relaxed_poll_timeout_atomic(cfg_addr,
++						status, !(status & bit),
++						10, 10000);
++	if (ret)
++		return -EBUSY;
++
++	return 0;
++}
++
++static int meson_s4_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
++{
++	struct meson_rng_data *data =
++			container_of(rng, struct meson_rng_data, rng);
++
++	void __iomem *cfg_addr = data->base + RNG_S4_CFG;
++	int err;
++
++	writel_relaxed(readl_relaxed(cfg_addr) | SEED_READY_STS_BIT, cfg_addr);
++
++	err = meson_rng_wait_status(cfg_addr, SEED_READY_STS_BIT);
++	if (err) {
++		dev_err(data->dev, "Seed isn't ready, try again\n");
++		return err;
++	}
++
++	err = meson_rng_wait_status(cfg_addr, RUN_BIT);
++	if (err) {
++		dev_err(data->dev, "Can't get random number, try again\n");
++		return err;
++	}
++
++	*(u32 *)buf = readl_relaxed(data->base + RNG_S4_DATA);
++
++	return sizeof(u32);
++}
++
+ static int meson_rng_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+ 	struct meson_rng_data *data;
+ 	struct clk *core_clk;
++	const struct meson_rng_priv *priv;
+ 
+ 	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+ 	if (!data)
+ 		return -ENOMEM;
+ 
++	priv = device_get_match_data(&pdev->dev);
++	if (!priv)
++		return -ENODEV;
++
+ 	data->base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(data->base))
+ 		return PTR_ERR(data->base);
+@@ -51,13 +108,30 @@ static int meson_rng_probe(struct platform_device *pdev)
+ 				     "Failed to get core clock\n");
+ 
+ 	data->rng.name = pdev->name;
+-	data->rng.read = meson_rng_read;
++	data->rng.read = priv->read;
++
++	data->dev = &pdev->dev;
+ 
+ 	return devm_hwrng_register(dev, &data->rng);
+ }
+ 
++static const struct meson_rng_priv meson_rng_priv = {
++	.read = meson_rng_read,
++};
++
++static const struct meson_rng_priv meson_rng_priv_s4 = {
++	.read = meson_s4_rng_read,
++};
++
+ static const struct of_device_id meson_rng_of_match[] = {
+-	{ .compatible = "amlogic,meson-rng", },
++	{
++		.compatible = "amlogic,meson-rng",
++		.data = (void *)&meson_rng_priv,
++	},
++	{
++		.compatible = "amlogic,meson-s4-rng",
++		.data = (void *)&meson_rng_priv_s4,
++	},
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, meson_rng_of_match);
 -- 
 2.25.1
 
