@@ -4,91 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1BCCE7D267
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Sep 2023 08:50:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59335E80A92
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Sep 2023 06:01:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lIwNsKg+Lv+WJHafkUA+x9bJuXFgapG8158KmTYrC20=; b=OhcOv0WwqepCCz
-	5mp4JEuluhSAcvqvpV4gZwt8H+flqqUvsEQEHb5BjuRZGFWnQ5Dmq6Ntz84yn5IDNaq3dyIA6srwS
-	bNf1P5LksTTFCK4FujHLPRhMCqAUpe8HhqVnz81SvEkRxAcO3Um0gpHVXvmpzhVcL1qBJj8KCaJss
-	Re3linSBYQSAWPB88DMaqS5304kXvZLLqjaHhxexGZMwBIDjUwxTxxuKwsmLgI2tatg9Zzwtp/qN/
-	h9jxubsTfTV5qa3O69AxsMmaezfsQ4h2pBSXUG4SNurX94NaO/LPeDGe9AQzevDHZn52EubXmJ77Z
-	XLluJ/ZM43j5NOK3oI3g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:
+	References:Cc:To:Subject:Date:Message-ID:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=ypTUf30owM/+JXwr2g1YcemWTGQE/byYJmSUFQaeFzc=; b=irva1RvXmGuu14110wc5V+dhMH
+	zvAgW8n3uf3WUDnzODci5DJoPbfDPoDCqfytRlpf9ashZLTyD7tB+xYCtHWjEAmB/bJVPcwyZ66Qp
+	nGDGcPwgHEmOz54aK7TXFjM4xkWNbu1lEWAI0eTZJqukW+sH1CxpE8j5eGU8d1nf/ga0qm7zz/Mks
+	Vhm6jIifnRwocbRCJ/qXJYye7I1YtITrjSKIxzkOVSiKWIWgf50Kjp1UaNRwD+9h5vwDDeJEBsC68
+	ZVKr9xs1LeLKVu/UPDy+MCsA9obSpWOR3oVqKWS59zJ9BMfNgqq7uHvqPUXC64DlDMr3pD8RakENu
+	I9LmNtBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1ql3lf-00FuEu-1R;
-	Tue, 26 Sep 2023 08:50:07 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1qlNbJ-00032S-0Z;
+	Wed, 27 Sep 2023 06:00:45 +0000
+Received: from mail-sgaapc01on20717.outbound.protection.outlook.com ([2a01:111:f400:feab::717] helo=APC01-SG2-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1ql3lM-00Fu6E-3A;
-	Tue, 26 Sep 2023 08:49:53 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 02CF2100007;
-	Tue, 26 Sep 2023 11:49:42 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 02CF2100007
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1695718182;
-	bh=02RgSRPHLOGMEHrDtoEfLEEz5FUki4ghJjru+SHAGro=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=bD6DNyTzZvRMGQe6Tz83rMNUDrs67ikkvYObXKKTHKwcJs8hnGFi4ijFRUvE53Ioz
-	 79/PSP+W8TmhMBSKBpYQt1c2RxfZEGY4ijSC2Gao8pMW1VrdFpfZ2cXqfqQrKnQ748
-	 IgqLL0AwVSEF3U1tONME4xtvxvgiHoFFXQnO8lramSoy6sw/kPtYMGz6Mrdgi5heZY
-	 aSjGFkYtv5S2pjHzRtEoP36bW7iw0d16yjda/ZvqtIDT3hv4qgzQ4HQE7YjHCXGkgz
-	 T3xhhjka1xRzj9lnOOQDMHRgI4QoxyDbcbE2NfHwwrq4gk6UGsU2AE9xRlsQFlstcp
-	 XK5JPdmisRsAg==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 26 Sep 2023 11:49:41 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Tue, 26 Sep 2023 11:49:41 +0300
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
-	<olivia@selenic.com>, <herbert@gondor.apana.org.au>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<conor@kernel.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <f.fainelli@gmail.com>,
-	<hkallweit1@gmail.com>, <lists@kaiser.cx>
-CC: <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-	<kernel@sberdevices.ru>, Alexey Romanov <avromanov@sberdevices.ru>
-Subject: [PATCH v4 1/3] drivers: rng: meson: add support for S4
-Date: Tue, 26 Sep 2023 11:49:24 +0300
-Message-ID: <20230926084932.65126-2-avromanov@salutedevices.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230926084932.65126-1-avromanov@salutedevices.com>
-References: <20230926084932.65126-1-avromanov@salutedevices.com>
+	id 1qlNb6-0002uG-1l;
+	Wed, 27 Sep 2023 06:00:33 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=C7XPoSA/YIv8/1EE2EWEbF61nE9bmauPtAH1Aq2WZ+DgzrORi9nR38CWG8UtUXCCiR+2Td4MSq+2YUTTP2mbrTaD2MG6zkpqd5bOEWbgTx32Ng8iTlMdSz1rJGCtRwJTC7mWEIaQEdhxuGLnsws5BFivsAlhyfxfluIkK8m8HSZNoWIcqdFH7XFnri9/Y9EyjW/CPsgcQdGfXb+wvaIibSQ9j0yjSDiHmzAyFZjoU62eR8rahyIDd+aCyLvS5BnZVq2iMcgcg0d5iKD+DUIGsUSyA8d1bttEc9nfidpXysn+x6159NyZrZesdGTI5y+3jC0prkOKMqIL6ufQSjgdTw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=clz+ZILq1DBQP+Gl904P3WQM8/uYqSCpRBnRzZ5pahw=;
+ b=FGC4sBbXc7ckw2JNMwGXIdjm3a6KK9lxJ7TIQSHRwMAq4As/XlzE+4xkd61gA4Ud4tFfi/3bpcz25L/s3ukJBzu/2E9VG3LPeMCpEqqy0S2/VmbW2WY4dXwNiiqUCC9Polg+Oq6YhC9mwJnq6Ti0H1psJqhBuCRT3BW16nCW24P/s+p0BOKlLZZvxMv6DGEceaNB546zS/FbFdKKp0liOlRSLp4Vz2/JaaPH03Vs6kEMAijbU7+D+OU4v8wz1HYhJr427sKrDI8w5TL2hHHjWW36egdVUqeFNbEqGfulji2GQw4/tyBt9jjPEPNcyF4kdfV22t6bkGzsr11nJHkL6Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=clz+ZILq1DBQP+Gl904P3WQM8/uYqSCpRBnRzZ5pahw=;
+ b=Hmp23Gh8p9SyT/yC02FOT3F/qDUbAjQ6KaktiSl4r+sEdS8hVd3/aj3idWxVLYfjxLg6swzDp9VDB5EVv7+0HTBrVgQ72Q7tkUxg9M5V1mS57SaTLgCYih6w7RtNGJRjIvmkbeFU2ZXPMAuiij4i7BKgHEcx1OzHE42wYtT0o55kBGLlLJGAf6qygGwvyfe5sgjAAicA/vjrFxrrwoynfupjwtov8Q9Iwrnxyo3AppIPajWnIaEN1W+BnqdkIftIEfnoyCs0tVi/tFzK/EZLcu4fk1gRatxiF5ZjVpxliv/iLhdQTbZYVBdj4zIFkF7/pszBN3uozcxeaEu+4b7LOQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from SEZPR03MB7220.apcprd03.prod.outlook.com (2603:1096:101:ec::16)
+ by SI2PR03MB6637.apcprd03.prod.outlook.com (2603:1096:4:1e5::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.23; Wed, 27 Sep
+ 2023 06:00:11 +0000
+Received: from SEZPR03MB7220.apcprd03.prod.outlook.com
+ ([fe80::a6a7:387e:2f4:6e8c]) by SEZPR03MB7220.apcprd03.prod.outlook.com
+ ([fe80::a6a7:387e:2f4:6e8c%6]) with mapi id 15.20.6813.027; Wed, 27 Sep 2023
+ 06:00:11 +0000
+Message-ID: <c0d93be1-4343-b48f-3474-cd1f2f5cfe9a@amlogic.com>
+Date: Wed, 27 Sep 2023 13:59:27 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH V2 2/2] arm64: dts: Add watchdog node for Amlogic C3 SoCs
+To: Conor Dooley <conor@kernel.org>
+Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230926055512.2355390-1-huqiang.qin@amlogic.com>
+ <20230926055512.2355390-3-huqiang.qin@amlogic.com>
+ <20230926-output-musket-a43dd5abd0b5@spud>
+Content-Language: en-US
+From: Huqiang Qin <huqiang.qin@amlogic.com>
+In-Reply-To: <20230926-output-musket-a43dd5abd0b5@spud>
+X-ClientProxiedBy: TYCP286CA0013.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:26c::20) To SEZPR03MB7220.apcprd03.prod.outlook.com
+ (2603:1096:101:ec::16)
 MIME-Version: 1.0
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 180129 [Sep 26 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 534 534 808c2ea49f7195c68d40844e073217da4fa0d1e3, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;127.0.0.199:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/09/26 05:53:00 #21984147
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEZPR03MB7220:EE_|SI2PR03MB6637:EE_
+X-MS-Office365-Filtering-Correlation-Id: 81ec15e8-b558-4301-b9df-08dbbf1eeb90
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: q6GDmF2B0nLdCeuZx1Va0LqaFa8JBDprC1coZ71AXq3AmGQ3PHxL5DV1/QCn3brXHd72HU+xiwAECXg0l1ioBG/Id/VywkNQ3g8WIqEnIT024pBeYaneFUzMbsox8I9twKm/sFzXqn7Zq1CYiDprEVnSqRY44eDW5NnvO9MkbjC3RG+OPlFQXp99vgqKzwdrXjII24MJDlQcnN0fw/8HJgiO3I+UoSRVwJmBZo34fjvTzhSR+uFlmgDAuwGjjtfR8H5ry6Js9z1l7ITQfg54RY2ByBoXDRmb0A9xfOQSNUHKXcM8gz07dsOVre/3+XQkcuuag/L3lphR1KW+fCJV+Lr1YcmaZnL419wSHfFIniCxgrmH2KbJhIFQewAQicLrpmHbovIJjn/OSadD+Sxa5bOGWzi/Tf/jaHdvmTEIyFn188leAm6m6XBzM3CYsWA1SGPQFZxOEWYEJnWyjLAkJAwiyNd6riDHsFVipYvXkM5IGlKxb4fbDhdNGqT8wS78ndaZOvkl1qFU8Khz89LG/4lWVkNippF1wixM+3x+z5FrSvYUTkYegNBpB75dSvwo/oGfkzMQOyIKJx7TGhSBh+XWa0UH59atT0qWzfHeNA+ucWkCbNvd4xQ+FCUIAd2oomOsoiEZm8SiFHzXFqYfe6F9/zt1avr74xc8xDxKlM3W0Nz5oagDClBHy6BZkXgtuFmcX0/wbh9iBSa5626E7vO/4mYmP2antHrCJuCdF24=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEZPR03MB7220.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(6029001)(39850400004)(376002)(346002)(136003)(366004)(396003)(230922051799003)(1800799009)(186009)(451199024)(53546011)(41300700001)(7416002)(2616005)(38350700002)(38100700002)(6666004)(52116002)(2906002)(478600001)(4744005)(31696002)(86362001)(36756003)(6486002)(6506007)(6512007)(316002)(66556008)(26005)(66476007)(6916009)(66946007)(44832011)(8676002)(4326008)(8936002)(31686004)(5660300002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VEkrYlJ5VWRqVGk3SHM2M2ZIdXJzeXloUlFPRTdxQ21UQ1FaWFZ0cklZT25B?=
+ =?utf-8?B?c2F6SXp0VGFuZ01XUWhzUHFwNURhRStsU1p2bFFGRmE5aG1acXBpU1Z0MDJP?=
+ =?utf-8?B?dVl4SzdOOUo1ZGF3Rm4wZFJweDFpak5vcVNYMXM1cUFkK1VidXh5dWkzR1pT?=
+ =?utf-8?B?LzdVT3M2WDBMMzFONlRxQXhLUWFoQmxlVm9WeXlhbWNpYXA1QWpJOXpPQ1hW?=
+ =?utf-8?B?VUdOMmYwQlhKWnR6MlA4SnZLaXR4UVcwS1JMUjZ2a1QvQnpjWW10SW45OERq?=
+ =?utf-8?B?S0JZWHZHODF6MFlNeTFMc1J1NTh3d2dBUitRNkRnWi9iQlBIMEt4aG9HVXkr?=
+ =?utf-8?B?UDZmWnBqSy9OcGpxZXVqNGpkaVNjRmpsK29FVjFFeCswUnBVNkhFVGxWSzZo?=
+ =?utf-8?B?VHVNSExqYkZRSmY0VWp2aW9ZRTZvTFNEdERyWHBVR0kwSnRZQjFTRDdQdjUw?=
+ =?utf-8?B?VzNSVjNwUW5teGdBL1Znd2NJYUtnMUdYV1NMeForTDFLS3hyYXZJZzJ0OVFW?=
+ =?utf-8?B?SEczRUJTZGw2QWJzeS9NcHZYZDRvbDBuZFlNVUtRTVJka3JZUjFENyt4aUQ4?=
+ =?utf-8?B?VFhML0Z5OEdWbE1yeDZieEhhRDRQLzRoam9WUkErcnM3WDNHakhMV3FWWmtQ?=
+ =?utf-8?B?a0ZNQzFTcUdPbi9IdndmcGM1MGYrYURoV0hNVVdkOWwycUFjSGd5OXZsaTR5?=
+ =?utf-8?B?RTlxWitBWVZKQTY1enJnV2w2TitzNDZzMHdSQk9uOUg4cWQxZWU2eUVMV1pt?=
+ =?utf-8?B?dWh1SFUzYSt4K2JYOS9FckRFc3lzL1JLcDRIWDc5T1h2eFZoOXc0WEFRcWVo?=
+ =?utf-8?B?WktRTGxpSy8ySFV3b05pOUIrQkkvbFlSTzBUdnkreExBV3NCSTlTNmp1SXEv?=
+ =?utf-8?B?Vk85bW9mTEJRby80VFkxZ1dEa3lZMlJXMm1tcURXUmlZMFYzYlBzTVl5bGxj?=
+ =?utf-8?B?WFNkd2Vpc2YxV2hiNUJmYnBFL2lxRGNFUTdOMVVPMjArRE9TbDZjd1FnYWZs?=
+ =?utf-8?B?b3RFVkpIVE9GSlgrR1B0b0dNV2pwS2xvVnR2MlpGUUpBM1VZVVVUemZzd3pX?=
+ =?utf-8?B?NFdDVmxBQ1BPamh2SmZrS3k1YnFjS0R1TjR2dVcxV3FFbHZSMUt2NFdwemFS?=
+ =?utf-8?B?bU12S0U2Q3lYSHBUQUhNcXJRU3BJMzczL2daSTA3NmtOOFF1cDJRYnprTDhN?=
+ =?utf-8?B?WER6UEN2T2ZtSTIvMEp5cnNQNmNLbnJHS3Q2SGhXUmJWMCthekJ4c1RGSUs3?=
+ =?utf-8?B?U09yODBoUlBXS3h2NkxpcUduaURZc3JMaHpNS2tpU3ZZOHlTT0NuOFk3eXd2?=
+ =?utf-8?B?bGNXMk9xd3h0MWF1emZZSlF2TjN6TjhEN08ySzdyamVEcTJ2MENCdGduK01L?=
+ =?utf-8?B?QnhiRGZOazVKL09VdzZEdittQVVhR05GSmNFVWVubnlMSE5iaG56RW1SRW50?=
+ =?utf-8?B?cXZTb0w2OSt6TGFzMkp4N09KVmdvM1VJUzUxMXFFaGNDc3Z5MFRTWktvY3Ja?=
+ =?utf-8?B?b0R1RjlVMkdHRG85STdvck96dnJydW83Vnp0YWFGVzk4M1l4QWhBYi8rVjJP?=
+ =?utf-8?B?RWFpWjNOMHdQamFQdldzZGhzelJrVUo4Y1JsSndkNXQ1L3VwNWprTW9OaFZQ?=
+ =?utf-8?B?S0ZTd2NacklkUHRDeVlUbTRZWU41VURtM3VOc3ZrVnpmUmhJbXpWbXZyTTcx?=
+ =?utf-8?B?bUVMc3BVTXg1R2tsMzNTWGQ0ZkQ0UjBpZUhEd3JSblA3QkJpZE1jdkZhRG10?=
+ =?utf-8?B?eDNIVWdabFVBNGNDYkJ2a2pmQ0s3WEVrR0V3K25rbElxblNvbFYrbTl5MXRT?=
+ =?utf-8?B?Q0pQakcxOFYzVGZXNXFBZXRTOFpBak9SWGFzcVZKNm9BV0E1YVB6YUVpOURX?=
+ =?utf-8?B?YkplQjZXMEtHcU8xams0N0V0dlhYUXNFWDlKSTh3YlJ0YktZYUV6RWRiOXEr?=
+ =?utf-8?B?YkhxVTZHdHo2KzUzVnJuK1VHUk1IcWFHcitLelVBZ0p5UDJzaUxWS2FseXFO?=
+ =?utf-8?B?b3E0WFI5U2hHY05GVzVXamZkK3VIdWd3UG44ZEt4cUpZdE02TGorWFBEd1ph?=
+ =?utf-8?B?alpVeExocm9Kem9udkl3VENuSDhoOC9NTHE3UXJRSlFlMFViM2trR2J0ejNs?=
+ =?utf-8?B?M3BJOG1NcWZYM2NVNEZoWk1FNENTdVhKN3ZMZzZTSWtMMXl3M1Ewa0w1WG9W?=
+ =?utf-8?B?MEE9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 81ec15e8-b558-4301-b9df-08dbbf1eeb90
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR03MB7220.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2023 05:59:32.7329
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4lsHkssNyFcc3DqmNIBHqscVh6L35wYcmsqh29G95S0Ej+WiWFFZ6iTMrAdbpwCjbNEBfMEUtw2n3H03UWu9zQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR03MB6637
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230926_014949_707910_08CCAAA0 
-X-CRM114-Status: GOOD (  18.70  )
+X-CRM114-CacheID: sfid-20230926_230032_586156_C71FCFE7 
+X-CRM114-Status: UNSURE (   9.18  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,144 +152,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Alexey Romanov <avromanov@sberdevices.ru>
 
-For some Amlogic SOC's, mechanism to obtain random number
-has been changed. For example, S4 now uses status bit waiting algo.
+On 2023/9/26 16:03, Conor Dooley wrote:
+>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+>> @@ -81,6 +81,12 @@ apb4: bus@fe000000 {
+>>  			#size-cells = <2>;
+>>  			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+>>  
+>> +			watchdog@2100 {
+>> +				compatible = "amlogic,c3-wdt", "amlogic,t7-wdt";
+> Does this pass dtbs_check?
+> The binding patch doesn't seem to permit this combo..
+> 
 
-Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
----
- drivers/char/hw_random/meson-rng.c | 80 ++++++++++++++++++++++++++++--
- 1 file changed, 77 insertions(+), 3 deletions(-)
+Ah... I ran dtbs_check again, and there is indeed
+`watchdog@2100: compatible: ['amlogic,c3-wdt', 'amlogic,t7-wdt'] is too long`
+in the output.
 
-diff --git a/drivers/char/hw_random/meson-rng.c b/drivers/char/hw_random/meson-rng.c
-index a4eb8e35f13d..75225eb9fef6 100644
---- a/drivers/char/hw_random/meson-rng.c
-+++ b/drivers/char/hw_random/meson-rng.c
-@@ -13,12 +13,23 @@
- #include <linux/types.h>
- #include <linux/of.h>
- #include <linux/clk.h>
-+#include <linux/iopoll.h>
- 
--#define RNG_DATA 0x00
-+#define RNG_DATA	0x00
-+#define RNG_S4_DATA	0x08
-+#define RNG_S4_CFG	0x00
-+
-+#define RUN_BIT		BIT(0)
-+#define SEED_READY_STS_BIT	BIT(31)
-+
-+struct meson_rng_priv {
-+	int (*read)(struct hwrng *rng, void *buf, size_t max, bool wait);
-+};
- 
- struct meson_rng_data {
- 	void __iomem *base;
- 	struct hwrng rng;
-+	struct device *dev;
- };
- 
- static int meson_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
-@@ -31,16 +42,62 @@ static int meson_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
- 	return sizeof(u32);
- }
- 
-+static int meson_rng_wait_status(void __iomem *cfg_addr, int bit)
-+{
-+	u32 status = 0;
-+	int ret;
-+
-+	ret = readl_relaxed_poll_timeout_atomic(cfg_addr,
-+						status, !(status & bit),
-+						10, 10000);
-+	if (ret)
-+		return -EBUSY;
-+
-+	return 0;
-+}
-+
-+static int meson_s4_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
-+{
-+	struct meson_rng_data *data =
-+			container_of(rng, struct meson_rng_data, rng);
-+
-+	void __iomem *cfg_addr = data->base + RNG_S4_CFG;
-+	int err;
-+
-+	writel_relaxed(readl_relaxed(cfg_addr) | SEED_READY_STS_BIT, cfg_addr);
-+
-+	err = meson_rng_wait_status(cfg_addr, SEED_READY_STS_BIT);
-+	if (err) {
-+		dev_err(data->dev, "Seed isn't ready, try again\n");
-+		return err;
-+	}
-+
-+	err = meson_rng_wait_status(cfg_addr, RUN_BIT);
-+	if (err) {
-+		dev_err(data->dev, "Can't get random number, try again\n");
-+		return err;
-+	}
-+
-+	*(u32 *)buf = readl_relaxed(data->base + RNG_S4_DATA);
-+
-+	return sizeof(u32);
-+}
-+
- static int meson_rng_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct meson_rng_data *data;
- 	struct clk *core_clk;
-+	const struct meson_rng_priv *priv;
- 
- 	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
- 	if (!data)
- 		return -ENOMEM;
- 
-+	priv = device_get_match_data(&pdev->dev);
-+	if (!priv)
-+		return -ENODEV;
-+
- 	data->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(data->base))
- 		return PTR_ERR(data->base);
-@@ -51,13 +108,30 @@ static int meson_rng_probe(struct platform_device *pdev)
- 				     "Failed to get core clock\n");
- 
- 	data->rng.name = pdev->name;
--	data->rng.read = meson_rng_read;
-+	data->rng.read = priv->read;
-+
-+	data->dev = &pdev->dev;
- 
- 	return devm_hwrng_register(dev, &data->rng);
- }
- 
-+static const struct meson_rng_priv meson_rng_priv = {
-+	.read = meson_rng_read,
-+};
-+
-+static const struct meson_rng_priv meson_rng_priv_s4 = {
-+	.read = meson_s4_rng_read,
-+};
-+
- static const struct of_device_id meson_rng_of_match[] = {
--	{ .compatible = "amlogic,meson-rng", },
-+	{
-+		.compatible = "amlogic,meson-rng",
-+		.data = (void *)&meson_rng_priv,
-+	},
-+	{
-+		.compatible = "amlogic,meson-s4-rng",
-+		.data = (void *)&meson_rng_priv_s4,
-+	},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, meson_rng_of_match);
--- 
-2.25.1
+I'll correct it in the next version, thanks for pointing it out.
 
+
+Best regards,
+Huqiang Qin
 
 _______________________________________________
 linux-amlogic mailing list
