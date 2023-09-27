@@ -4,72 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95A44E80A93
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Sep 2023 06:06:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03B6DE80A93
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Sep 2023 06:07:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DUYRirRVCWqxXTuAEFCB3eLhtyyZf+XdLwbWVKVX2qo=; b=S3QtL8eZuSAF3l
-	aLl0JP06pePWedes59fphEfZE5OIOdpLx9fxCH81MXVTAZ5Sp5d+mgOZkB+hYITczr7vrX9adiXIa
-	2vhxhcx6sigVxsKmG/1n+6rD1rtfLorj6mcqPee9HRn/2C4bUQi/VwSrZTz9a/2m6PE+pyTuw0tC4
-	4cLIOpPsaxrfYh+U6/QitvV35FgkYHR9ctnnGQh41/foF1Fc0JBjZr7CHLA6pmzAmTcqirY+swumE
-	k/p8vMQLcFZPjuBfsBluCcWwLieo8nuoxcp5KnbIV3QNabWmDDo1jhKdGbcHYIxS9UF8ZvagvOPb1
-	WPL+XGaCi2lQioAgGqgA==;
+	List-Owner; bh=pEuN9XJpdCMKPu0xaOF2ksFQ0pGCoUgkEgtEy8WRjMQ=; b=ShQBEWFTxRYjei
+	2UU2jGJQpaO/SBs7gX8bsrrxo/yffBEsHkapvfP6iY8fDofBZN7lXRwyrHL3wDUZvNX3L9NFqBhep
+	nE3MCNxxkf4DipIawhLhHGNnTh97XMnYz6TIJkbk6G6PdhX+XMQzY7ZkBmL9L0ygOIYw/S2ypreKs
+	w2nEZBadLOpV7whvVFl1OXEhlv6pOsmH4yhqHBiQQt7LEEZSTnwWr5zfpV3zRK9LnQlpcmfeLIoPx
+	eGkoqVe5DvWtfpTcC9SVBHUQj8naCoGQuwq4D4lFxz3LXYPJejL5LnI3x8rJPoZ9LyZ+265PfwHW7
+	kE7vHHwuipwlk16rMQ9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qlNgL-0003ya-1s;
-	Wed, 27 Sep 2023 06:05:57 +0000
-Received: from mail-wm1-f42.google.com ([209.85.128.42])
+	id 1qlNhW-0004Dz-1p;
+	Wed, 27 Sep 2023 06:07:10 +0000
+Received: from mail-wm1-f47.google.com ([209.85.128.47])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qlNgH-0003xh-24;
-	Wed, 27 Sep 2023 06:05:55 +0000
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4053cf48670so92102765e9.0;
-        Tue, 26 Sep 2023 23:05:52 -0700 (PDT)
+	id 1qlNhT-0004D3-0v;
+	Wed, 27 Sep 2023 06:07:08 +0000
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4054f790190so91605865e9.2;
+        Tue, 26 Sep 2023 23:07:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695794751; x=1696399551;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1695794824; x=1696399624;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tzf3auFOPADoZEEKnwvAvKOmFmpAc1qrk78Z/GaSFMU=;
-        b=pBfgAGChuopW5L2pjMb3HXhxc2t2wqavHhPgzEn+Qymf77wP2eIDGkYg82Sj7c+1kX
-         zXpN/RJ+WMP+UsmY+lqW6kA8amUWfRC570WjICHy/kbNdhJ7bO+MU0lk+wGRupMuiPev
-         /VVBNNll/jIpkplgfqTUFo9d/dZTwdsPUbu2BYBY9cHLbozrUeLDz8DSaU5jhx/+sgGD
-         PWBArwfn7BbWcx++mFUWDv+7kFXjvnvTCb3mwZ3gkEIoPlmEagxtM77KCxw233CONxIG
-         RRWcmYJyfV3Z6F4wovU5/ia1xzC5I8HxqJkUCcZihIngb5fvRr+J0b72GTshwY4rXuYQ
-         pxOQ==
-X-Gm-Message-State: AOJu0YzIVbUgeRinBAk33v/RlQxV65tiInmVwqAUs6SzFc5OapXXrXJb
-	qNNpLobWqK86GpL9nBrFpqA=
-X-Google-Smtp-Source: AGHT+IGKJGFGn4GVwZfT4SGNCkuVFhljd71lZh3+GhQ08MjmPhwykQ7MgIPHOLR2ikiXWikY/ceP4A==
-X-Received: by 2002:a7b:c4cb:0:b0:405:a30:151e with SMTP id g11-20020a7bc4cb000000b004050a30151emr1008916wmk.12.1695794750977;
-        Tue, 26 Sep 2023 23:05:50 -0700 (PDT)
+        bh=5ilGbwZbw+r63tsdGtSB6Sstf8G+rcZU4Qn42BZBqRc=;
+        b=OpYGR3/jYBuxLRI7fIKLhyOBO7VDkwyvMj4mV2Yv/ax7wxSeg81nhknoiusoi4tfxK
+         q4iwDA1fBhyenDz9w2gXQDZv7MlGnGgE1yG8XwWs33DX8Srm4spAlzYw+PHjHkVsMeIl
+         uoGI5V75XERi/ahXT4xNll9IzB487EDuGIPsAkGjzwYPF3KDX7NvrODcWDIEYwv72fXn
+         nyB+PG3z6a0bw1vejqyMVycCm9CvIjZxTRdrLTkFQOxDxiSDorHiON/DSK7DlWY4iyN8
+         zHE2iiiJpKjMrHDUua+SA9eroAOVKEYFxIdM6m38gUvBbn30/n7XwCTiOusxlgxPqVDI
+         hIFw==
+X-Gm-Message-State: AOJu0YywDx9OIm8r57t/tdOnnaO7Cvnv8WQ+ume2kLMb6IZo2E16ry5Z
+	q19lQ9ICX9rSKJW3BnwvOA0=
+X-Google-Smtp-Source: AGHT+IExiuRhyetKklbMtnuZX3MinJL95Qxp7MaKxoC/O93bGilh4rCdS630ztVDycq2j5nYZI2SUg==
+X-Received: by 2002:a05:600c:1587:b0:406:44fe:7621 with SMTP id r7-20020a05600c158700b0040644fe7621mr672176wmf.25.1695794823700;
+        Tue, 26 Sep 2023 23:07:03 -0700 (PDT)
 Received: from [192.168.86.246] (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
-        by smtp.gmail.com with ESMTPSA id s9-20020a05600c45c900b0040550c20cbcsm12015055wmo.24.2023.09.26.23.05.49
+        by smtp.gmail.com with ESMTPSA id s9-20020a05600c45c900b0040550c20cbcsm12015055wmo.24.2023.09.26.23.07.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Sep 2023 23:05:50 -0700 (PDT)
-Message-ID: <916aea7d-50ba-45d8-9b3c-0f507c922601@linux.com>
-Date: Wed, 27 Sep 2023 07:05:49 +0100
+        Tue, 26 Sep 2023 23:07:03 -0700 (PDT)
+Message-ID: <bb37e3ec-d0b9-4b73-ac6e-183b55e8814f@linux.com>
+Date: Wed, 27 Sep 2023 07:07:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH V3 RESEND 0/6] Power: T7: add power domain driver
-To: Neil Armstrong <neil.armstrong@linaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Ulf Hansson <ulf.hansson@linaro.org>
-References: <20230911025223.3433776-1-xianwei.zhao@amlogic.com>
- <169444496123.3944766.3763051739383485051.b4-ty@linaro.org>
+Subject: Re: [PATCH 3/3] arm64: dts: Add gpio_intc node for Amlogic-T7 SoCs
 Content-Language: en-US
+To: neil.armstrong@linaro.org, Huqiang Qin <huqiang.qin@amlogic.com>,
+ tglx@linutronix.de, maz@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, hkallweit1@gmail.com
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+References: <20230913080924.3336391-1-huqiang.qin@amlogic.com>
+ <20230913080924.3336391-4-huqiang.qin@amlogic.com>
+ <4c1566e0-a502-4379-b360-9e6ef374af04@linaro.org>
 From: Lucas Tanure <tanure@linux.com>
-In-Reply-To: <169444496123.3944766.3763051739383485051.b4-ty@linaro.org>
+In-Reply-To: <4c1566e0-a502-4379-b360-9e6ef374af04@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230926_230553_676581_780C8EB3 
-X-CRM114-Status: GOOD (  18.46  )
+X-CRM114-CacheID: sfid-20230926_230707_327436_0FD2380B 
+X-CRM114-Status: GOOD (  10.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,63 +81,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 11-09-2023 16:09, Neil Armstrong wrote:
-> Hi,
-> 
-> On Mon, 11 Sep 2023 10:52:17 +0800, Xianwei Zhao wrote:
->> First patch is that remove C3 some power domain ALWAYS_ON property.
->> Second patch is that add driver to support power parent node.
->> Third patch is that turn on power if initial power domain with
->> "AWAY_ON" property state is off.
->>
->> Other patchs adds power controller driver support for Amlogic T7 SoC.
->>
->> [...]
-> 
-> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
-> 
-> [6/6] arm64: dts: amlogic: t7: add power domain controller node
->        https://git.kernel.org/amlogic/c/5355699dabac3c97492a30e6e01820fcaae11218
-> 
-> These changes has been applied on the intermediate git tree [1].
-> 
-> The v6.7/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-> for inclusion in their intermediate git branches in order to be sent to Linus during
-> the next merge window, or sooner if it's a set of fixes.
-> 
-> In the cases of fixes, those will be merged in the current release candidate
-> kernel and as soon they appear on the Linux master branch they will be
-> backported to the previous Stable and Long-Stable kernels [2].
-> 
-> The intermediate git branches are merged daily in the linux-next tree [3],
-> people are encouraged testing these pre-release kernels and report issues on the
-> relevant mailing-lists.
-> 
-> If problems are discovered on those changes, please submit a signed-off-by revert
-> patch followed by a corrective changeset.
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-> [3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-> 
-I re-tested this today with Vim4 and works fine.
-By works I mean, vim4 is able to boot without panics but drops to 
-emergency shell as expected.
-
-I was not able to find patches 1-3 and 5 at amlogic/for-next.
-Is there a reason why amlogic/for-next only have DTs changes?
-
-Tested-by: Lucas Tanure <tanure@linux.com>
-
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTQtMDktMjAyMyAwOToyNiwgbmVpbC5hcm1zdHJvbmdAbGluYXJvLm9yZyB3cm90ZToKPiBP
+biAxMy8wOS8yMDIzIDEwOjA5LCBIdXFpYW5nIFFpbiB3cm90ZToKPj4gQWRkIEdQSU8gaW50ZXJy
+dXB0IGNvbnRyb2xsZXIgZGV2aWNlLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBIdXFpYW5nIFFpbiA8
+aHVxaWFuZy5xaW5AYW1sb2dpYy5jb20+Cj4+IC0tLQo+PiDCoCBhcmNoL2FybTY0L2Jvb3QvZHRz
+L2FtbG9naWMvYW1sb2dpYy10Ny5kdHNpIHwgMTAgKysrKysrKysrKwo+PiDCoCAxIGZpbGUgY2hh
+bmdlZCwgMTAgaW5zZXJ0aW9ucygrKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290
+L2R0cy9hbWxvZ2ljL2FtbG9naWMtdDcuZHRzaSAKPj4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2Ft
+bG9naWMvYW1sb2dpYy10Ny5kdHNpCj4+IGluZGV4IGRhZTM0NjViZDM5Yi4uMjFiMjQzNmM0N2Uy
+IDEwMDY0NAo+PiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvYW1sb2dpYy10Ny5k
+dHNpCj4+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9hbWxvZ2ljLXQ3LmR0c2kK
+Pj4gQEAgLTE1NSw2ICsxNTUsMTYgQEAgd2F0Y2hkb2dAMjEwMCB7Cj4+IMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgY2xvY2tzID0gPCZ4dGFsPjsKPj4gwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgfTsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZ3Bpb19pbnRjOiBpbnRl
+cnJ1cHQtY29udHJvbGxlckA0MDgwIHsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCBjb21wYXRpYmxlID0gImFtbG9naWMsdDctZ3Bpby1pbnRjIiwKPj4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiYW1sb2dpYyxtZXNvbi1ncGlvLWlu
+dGMiOwo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJlZyA9IDwweDAgMHg0MDgw
+IDB4MCAweDIwPjsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpbnRlcnJ1cHQt
+Y29udHJvbGxlcjsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAjaW50ZXJydXB0
+LWNlbGxzID0gPDI+Owo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGFtbG9naWMs
+Y2hhbm5lbC1pbnRlcnJ1cHRzID0KPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIDwxMCAxMSAxMiAxMyAxNCAxNSAxNiAxNyAxOCAxOSAyMCAyMT47Cj4+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgIH07Cj4+ICsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdWFy
+dF9hOiBzZXJpYWxANzgwMDAgewo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IGNvbXBhdGlibGUgPSAiYW1sb2dpYyx0Ny11YXJ0IiwgCj4+ICJhbWxvZ2ljLG1lc29uLXM0LXVh
+cnQiOwo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJlZyA9IDwweDAgMHg3
+ODAwMCAweDAgMHgxOD47Cj4gCj4gUmV2aWV3ZWQtYnk6IE5laWwgQXJtc3Ryb25nIDxuZWlsLmFy
+bXN0cm9uZ0BsaW5hcm8ub3JnPgpJIHJlLXRlc3RlZCB0aGlzIHRvZGF5IHdpdGggVmltNCBhbmQg
+d29ya3MgZmluZS4KQnkgd29ya3MgSSBtZWFuLCB2aW00IGlzIGFibGUgdG8gYm9vdCB3aXRob3V0
+IHBhbmljcyBidXQgZHJvcHMgdG8gCmVtZXJnZW5jeSBzaGVsbCBhcyBleHBlY3RlZC4KClRlc3Rl
+ZC1ieTogTHVjYXMgVGFudXJlIDx0YW51cmVAbGludXguY29tPgoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
+bGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
+b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
