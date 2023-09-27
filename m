@@ -4,80 +4,132 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A532E80AA7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Sep 2023 07:47:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 505EFE810A0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Sep 2023 07:50:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KByYeS7Qc52t3RPD5WTYGwUom2YYANcF/9BDQr+FMeI=; b=m/srk7TM3IDNIj
-	p4joYIgl4oSVRYrYeIu9vVIIUbMa64tEimDmPcO1vQ3A1cCiGed0GRKori/LyPWYfO9R3aEQyIlCl
-	peMjE42AJb5zdtpENv22q4QQ1CAwmosmLP5BkKru91A4gOgYciSQU7/jdG49lJHLNTYlhUwe23eC4
-	uILYTy/WpCIaU6MWFYW5/gPp5//yulu+HBsYrFfIoEqvgt7RUt9HXv1DOPXgmhTC882lpXA+R9a1A
-	dyVZynQ/5OaVB01Oc2elLzEIFnsxqHRSfXWscmlH5xAUgjSBdOMXAbSki5kaIYRlGnvD5+xt1kaBV
-	0LqK+O++ogzFuJ7qKeBA==;
+	List-Owner; bh=JgIL5/PEoQCe+Hj/XTgDTo5KeahSI2FtnagcaJezwvY=; b=zfRCUxh29UJbJV
+	K7BSq8uUXFn/X+6dWCxQBBphcxey32bwOu/cpt5hEtUwfjfymNFzfPfORUH01GNjhrv+q+R/s3czy
+	BvM/dkBit83pyt7Kly/eAcmML9ztt35ly/KoaUdD4mgR+fr7pwOeexfekfwVhAr9JS1HLwcLU+aW4
+	n5By5K722kn6piA01Q0bZAomvBYEVnkxVs3Su31M6W44dvmowtepKcp5Mj/jvrjCoE5WO92UoMzzl
+	wQI2dLOKFsbStzeLppgYGDP4t0a+kmOaUOJbhskwX5JfRXypmyf3vfH4nPaaE/o/JldBzDhkfbhZE
+	Q9Eeo/yn2wFAyImgSR9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qlPGF-000DUx-1W;
-	Wed, 27 Sep 2023 07:47:07 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1qlPJ8-000Fn9-1x;
+	Wed, 27 Sep 2023 07:50:06 +0000
+Received: from mail-lj1-x22a.google.com ([2a00:1450:4864:20::22a])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qlPGB-000DU7-2K
+	id 1qlPHs-000Ec7-2U
 	for linux-amlogic@lists.infradead.org;
-	Wed, 27 Sep 2023 07:47:05 +0000
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-323ef9a8b59so1184743f8f.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 27 Sep 2023 00:47:02 -0700 (PDT)
+	Wed, 27 Sep 2023 07:48:50 +0000
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b962c226ceso177981961fa.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 27 Sep 2023 00:48:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695800821; x=1696405621; darn=lists.infradead.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=aKQmixWBkQbfwrPWW4Kcl6BhuNloeHKy7RaNCIpQr2w=;
-        b=quQbpl4acBsgtESdzPxFJOdbbMB3T6MmIE0VTX3VGHEZ0QYS/GotO2/WtjtBLZxPvn
-         4DG27Z47fLQiXvmDCxdzBier42UT4yBEcsKlhFFLyDFvUKLIW/n6BveG/TNYB89dkURc
-         aw2GNcjLuM0HYQH6NCZQuXsXBocdFmOom3FO0A49+cjuC2xZZLukzJFjOZd5tleuy85b
-         objjgrZGuKQnWSH+M1eYQI4iMYuH4gijrc8VMY56K3GTm7sbtZGaWWCQumckNJq95mP9
-         VIBrP7ikOvRONTe/gaYORKB5i1qouqplZxR2lnwOqotc6CHrwZdXzFGQfCWh9n+44n2E
-         y3vg==
+        d=linaro.org; s=google; t=1695800921; x=1696405721; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cjDOYF7T/FlNaBw6bgVsIRpbkeeR+8h756YrDe1mwTU=;
+        b=f61B7hsrLFnR7KqdG0ep4+I9B3XS3qGV7Y4tFacpPrrRMzrxkFsbyTVpoIl9qXv2SI
+         L8+ahVQsgqYKsvE/T5kfghntJKd95ypdI8KHAtzeipOcLHMs+c2/iSKD9aKewQMu6YR7
+         aEkL4TrR51ZTLnETpO55tchWADG1Nq0cnaGo2LhvUhoFGV42oZyfYHzvPxhuO/HrjI0+
+         A/IIUqsGHuLZhP9stzHuQJfAmK101qYVc5s3dwZarc32z8RyLL0tQlewwjHg3+UuENV4
+         76A5k9P+fI2Rs+I5J/ZMuKwUkFpaTFjXO4DT7z/7Fo3qtkho11qv0a6sa3MGNScSAcT4
+         2XVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695800821; x=1696405621;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aKQmixWBkQbfwrPWW4Kcl6BhuNloeHKy7RaNCIpQr2w=;
-        b=kZwJHm0GGqcXHxNmEsoM3t+cJ4zdFUOhjCLnquap8l9T6dFrUl83HREHL3XT61dbQk
-         JRThn3G/R43kXZNkz37oqUnq0bK9v1kZG/DKFNQfJWRt9h3zZo5Nq/itA4feRpHpkdF3
-         2ZyFcwh3QhOrdsng8nKqQioBRhLSyaSY0HFC24huiCd2X3/+uuy6gJa3ao7sUk/sLjZd
-         AFeeEyDfDwtYObcIbl1AXkTrq9ZvTjregEnBBZCu8i+V2pKwphuijxhAF68JgsfgWxfQ
-         sp2sd0A8iOBkHg8CtKWV5/xyUxV06CIy0Fh5oSFCPkEwDLRxI0w4su/w+IdT6QBcsCn+
-         VuqQ==
-X-Gm-Message-State: AOJu0YyOBMOnWwTxm32mxkIdYQwkO5MGi0TCk9B5/hUolstdO/H3Qv6K
-	Yhnmlro//3vjaihgHU2ohe3MYQ==
-X-Google-Smtp-Source: AGHT+IGGmLNmRtPyNVhH3suncTUw2D0Z9IxkXxlJ+RvD02DQWvi3FRSkVOacLNW/OVVCbN0M32WHeA==
-X-Received: by 2002:adf:f285:0:b0:323:1d06:38e5 with SMTP id k5-20020adff285000000b003231d0638e5mr936747wro.55.1695800820675;
-        Wed, 27 Sep 2023 00:47:00 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:99be:56aa:a730:ad2d])
-        by smtp.gmail.com with ESMTPSA id f4-20020a5d50c4000000b0031fa870d4b3sm16429083wrt.60.2023.09.27.00.46.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Sep 2023 00:47:00 -0700 (PDT)
-References: <20230927072544.764285-1-Rong.Chen@amlogic.com>
-User-agent: mu4e 1.8.13; emacs 29.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: "Rong.Chen" <Rong.Chen@amlogic.com>, Ulf Hansson
- <ulf.hansson@linaro.org>, Neil Armstrong <narmstrong@baylibre.com>, Kevin
- Hilman <khilman@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>
-Cc: linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] mmc: meson-gx: Remove setting of CMD_CFG_ERROR
-Date: Wed, 27 Sep 2023 09:43:57 +0200
-In-reply-to: <20230927072544.764285-1-Rong.Chen@amlogic.com>
-Message-ID: <1jr0mkkqh8.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20230601; t=1695800921; x=1696405721;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cjDOYF7T/FlNaBw6bgVsIRpbkeeR+8h756YrDe1mwTU=;
+        b=fS1azcDqdSJfiMkcqEHRuhlxNh2j//OzDMUV/HXJqN1KPmkpjKPjVgs1DsoXQ7uO22
+         nxk1FqOjmCjIPt0+jXPPYDupaO3JxRJf71Tr8NSaOc+AVc7dZbVJpMSoBzmZqF8esWyG
+         xWvVm1e+WIaok2keqCS27+/ClIZhSfNQJD0uz0B7GhvEQvG4pUc8PgDTUVewxZLZjJh4
+         FbgjY8aGpzTXAahOXUdsF7QkR/s46Akue4cK25KzEtK/rZfrbJ2NEnE4hiQJQylltDsH
+         DUBrXS0CN8KEpvdOHXoL+6kJCfurjSvHCdwg+NdDiW55qD8wN5W8mBylLuX3JRLaWBO4
+         EDgw==
+X-Gm-Message-State: AOJu0YwMS6OBwiDKf2422EpO56BiwzzEMkBRpMwGsPkH9adhtCKFz/EL
+	3m8eFGDfsam+IRO8naJvji/hUg==
+X-Google-Smtp-Source: AGHT+IEyfcxZXq2JD3kKUo5F/6BG1ZAgNVJbuPYFPpf0IaIJR+PXVWQoMudr1psd/L+lxT2RdDmeYw==
+X-Received: by 2002:a2e:9919:0:b0:2bc:e46d:f4ca with SMTP id v25-20020a2e9919000000b002bce46df4camr1211139lji.46.1695800921549;
+        Wed, 27 Sep 2023 00:48:41 -0700 (PDT)
+Received: from [192.168.1.160] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
+        by smtp.gmail.com with ESMTPSA id v5-20020a1709064e8500b00993470682e5sm8792520eju.32.2023.09.27.00.48.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Sep 2023 00:48:40 -0700 (PDT)
+Message-ID: <2d7eac30-480c-49a4-903c-d4f2b3cdfc8d@linaro.org>
+Date: Wed, 27 Sep 2023 09:48:39 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 1/3] dt-bindings: pinctrl: Add support for Amlogic T7
+ SoCs
+Content-Language: en-US
+To: Lucas Tanure <tanure@linux.com>, Huqiang Qin <huqiang.qin@amlogic.com>,
+ linus.walleij@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, brgl@bgdev.pl, andy@kernel.org
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+References: <20230922094342.637251-1-huqiang.qin@amlogic.com>
+ <20230922094342.637251-2-huqiang.qin@amlogic.com>
+ <ff2c6d41-7c9a-4633-8343-eb94404de6e8@linux.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <ff2c6d41-7c9a-4633-8343-eb94404de6e8@linux.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230927_004703_757728_C1C4F467 
-X-CRM114-Status: GOOD (  18.49  )
+X-CRM114-CacheID: sfid-20230927_004848_846139_FCD8E284 
+X-CRM114-Status: UNSURE (   7.68  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,44 +146,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-s
-On Wed 27 Sep 2023 at 15:25, "Rong.Chen" <Rong.Chen@amlogic.com> wrote:
+On 27/09/2023 08:08, Lucas Tanure wrote:
+> On 22-09-2023 10:43, Huqiang Qin wrote:
+>> Add a new compatible name for Amlogic T7 pin controller, and add
+>> a new dt-binding header file which document the detail pin names.
+>>
+>> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>> ---
+>>
+>> V1 -> V2: Rename amlogic-t7-gpio.h to amlogic,t7-periphs-pinctrl.h
+>>            Corrected indentation format.
+>> V2 -> V3: Updated subject.
+>>
+>>   .../pinctrl/amlogic,meson-pinctrl-a1.yaml     |   1 +
+>>   .../gpio/amlogic,t7-periphs-pinctrl.h         | 179 ++++++++++++++++++
 
-> From: Rong Chen <rong.chen@amlogic.com>
->
-> Setting bit CMD_CFG_ERROR has non effects on previous controllers.
+...
 
-Which previous controllers ? v2, v3 ? Can you list the SoCs please ?
+>> +#define GPIOH_0		148
+>> +#define GPIOH_1		149
+>> +#define GPIOH_2		150
+>> +#define GPIOH_3		151
+>> +#define GPIOH_4		152
+>> +#define GPIOH_5		153
+>> +#define GPIOH_6		154
+>> +#define GPIOH_7		155
+>> +
+>> +#define GPIO_TEST_N	156
+>> +
+>> +#endif /* _DT_BINDINGS_AMLOGIC_T7_GPIO_H */
+> Tested-by: Lucas Tanure <tanure@linux.com>
 
-> However, it will cause an IRQ and stop working on latest controllers,
+How can you test bindings?
 
-Isn't it desirable to stop on error ? seems like a sane thing to do.
-
-> This bit is used for selecting SG LINK of data address.
-> Don't set the bit CMD_CFG_ERROR anymore to resolve this issuse.
-
-I'm not sure I understand the actual issue being resolved.
-Could you provide more details please ?
-
->
-> Therefore, remove this setting.
->
-> Signed-off-by: Rong Chen <rong.chen@amlogic.com>
-> ---
->  drivers/mmc/host/meson-gx-mmc.c | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index 9837dab096e6..c7c067b9415a 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -801,7 +801,6 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
->  
->  	cmd_cfg |= FIELD_PREP(CMD_CFG_CMD_INDEX_MASK, cmd->opcode);
->  	cmd_cfg |= CMD_CFG_OWNER;  /* owned by CPU */
-> -	cmd_cfg |= CMD_CFG_ERROR; /* stop in case of error */
->  
->  	meson_mmc_set_response_bits(cmd, &cmd_cfg);
+Best regards,
+Krzysztof
 
 
 _______________________________________________
