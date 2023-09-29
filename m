@@ -4,85 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69939CE7B1F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Sep 2023 09:02:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 879E4E7F153
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Sep 2023 10:30:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4K2ocGf6aLDpmuTVD+McDtPPz9p/Cnyt8V218/hDytg=; b=MX0GiijtzjTiJy
-	3D7CRls6vpP3ZRuumk79SQ6puOLQWJreUjLntapMAYY4gKUA2ev8CV6TjGxKh2AR/6NmiiqQnEwZX
-	oz5jEFHFPg6ifmH64csqXhOGU8lPPdkt3LVI8HkFaXK520Gum+gnYkNpjxp8mp2Zs3HZg/0BQ3gYh
-	0I8iuTNUZx6IfA6ZcxOmVkQBIfZbH4dJ4+KpZg/PHb9Mr5XhYQzlg3d7YQxxBiaYjF4Q+3NNgiGCi
-	K0yo9Ty/AsQ1vKZi2/QWPmYZ3iFXAuaBm6A9Bsh9grGwwPXVxjow2nAYsGr8zHf/PyhE5GHcSiamN
-	te1ZjFQ4sX00gApyw4Rw==;
+	List-Owner; bh=+9fdiwVxoHb09VMvPmiD8iPdnStttq5h1su6gUcNBJU=; b=E6mHZR9MPgp78X
+	7yPoDXIw3EOIQ1DoOsVSD+ZbrbcCNGpYcsYoRCwYp9cDi2QNDGXlR3dSCaab79j1TG8QVyGrraGiN
+	S1QPlJxn0AgnDsbRRwhMxXpJDsOlKen9FqyflBMAidX+YKl0jRI9tXDbuKcIbDHQZOv8vfrOt0Hji
+	dnztHrhFSRTkebNMDK9/XuKKNeMHpcQDouHjRdbvH42wy0F9UQGK0a8KDFLgI7sQUA/0mQPMw/KQ7
+	zwiBPC52CfZXqV57zrYuq3jA0Z0K4OvJyob4O72vTUyMO78fcK9Z50nya74SM9QPw0+szATKKLwaW
+	Xp9QlqsYr88ynTMbiWhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qm9OD-007QoI-1z;
-	Fri, 29 Sep 2023 09:02:25 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1qmAl7-007Z3l-37;
+	Fri, 29 Sep 2023 10:30:10 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qm9OA-007QnE-2I
-	for linux-amlogic@lists.infradead.org;
-	Fri, 29 Sep 2023 09:02:24 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4056ce55e7eso107843525e9.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 29 Sep 2023 02:02:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695978138; x=1696582938; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TQw+ZAMqlftuckLRitJgjf++YRzCOpCpcgRGGPh5T6s=;
-        b=AZ185bHGokhECZUw7S10yfn0IHRKg2JD2tWYbpCFHBCHQuCyKV/HZs3tH2xjEF03vR
-         AbX6XK3NM0yYcas4rubdMMxnJSLbkt4m9k4fz826CqQy6CWfnhEyBa3A0/ykd7vJT9SA
-         0BF1RLT+6Lh5MVcU+LffbOz/US8u0JG9O4slH+xcuMzdpzLr6Gf1oM79iK5US23qBup/
-         nhQ8f7ju9dCZVDpuTg6MVZG48/lzVVmWc5Ds2zarrFDvMLEtFixnGtYSnaB+pXeG+ANM
-         lJi7WCpSkoZcvj0HOCX+fd8V2614ZOaMGmqb+zirnPy4399k+knjFRNjvRt5KDs4wGcf
-         lg3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695978138; x=1696582938;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TQw+ZAMqlftuckLRitJgjf++YRzCOpCpcgRGGPh5T6s=;
-        b=XjuBYUd1zF90ycPmQc9WrqQr1fCcknDBlvBpMW+R5VSS7Q1wUty+wLDRH3lNWcHG3h
-         K/9KHTgPYuZj4znX5wF2/dDKETh7szdGfx5juZgNTjB1UlLkVnRT4V30yx0wou1EBZaW
-         oYYtSn/Mzz8zniY69TYOX61go2oW320dOJFc8s5lsJByFTdmApUqaxt8f2tL3/sPoPyO
-         lEUYw5GjeWZewCQzLIlzDZhjAV7uz1iXmUXycpczaef3HbMoNC/+tsx1z3RLaLoOdpCf
-         sUiGBGWjN/x6kDiMbz7bbD783jwjRTweO0s0PHi6+DBhbf5fjqx02kRTRItMVOigiTDk
-         7UWg==
-X-Gm-Message-State: AOJu0YwnnX4Ou6mIe8Jo3t3TBl+jvuol3nzXlBKXHQHRLtqP3xqNk3il
-	EYoF7OHyEe1v7GmSHZpNAiYOOQ==
-X-Google-Smtp-Source: AGHT+IFPLKjQaIsyW64BO9dLilNP/IcoX4nLkuiTxU375hcJNp1GRtnx7HtOH6n/o4cuI1EpZJ5thQ==
-X-Received: by 2002:a7b:c448:0:b0:401:bd2e:49fc with SMTP id l8-20020a7bc448000000b00401bd2e49fcmr3482822wmi.24.1695978138163;
-        Fri, 29 Sep 2023 02:02:18 -0700 (PDT)
-Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
-        by smtp.gmail.com with ESMTPSA id p16-20020a1c7410000000b00402ff8d6086sm977137wmc.18.2023.09.29.02.02.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Sep 2023 02:02:17 -0700 (PDT)
-Message-ID: <0b31dee8-a3bc-50a2-a7bb-9183370b5dce@linaro.org>
-Date: Fri, 29 Sep 2023 11:02:08 +0200
+	id 1qmAl4-007Yzs-05;
+	Fri, 29 Sep 2023 10:30:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=Content-Type:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender
+	:Reply-To:Content-ID:Content-Description;
+	bh=1dTsc7UycRu0AzxWloIWtmkmCrMWxuzh8RJp/Vn8/ks=; b=AkLL99fwPQ7iwsJROhjrJ3pYxr
+	6og4/krlTSz9VVWWDEXTdrPgHCNmr1qEiWIDPGuCrDYt9XBIdNkh/+i8Hj/Mia8i59FwzKPJqIQV7
+	wUF4w9yMdSTaNrEdyEoj8ElQUoxaWBIdKlTEM8JRVJedwb+kc5gJ7MUqu0WHeQophxUBLbZrZAqGE
+	Jd6IRLYJnV9WujOnXBjJoS25ORZ7dS1+JEKVNiSiQj06ECS077iMvRXS5GI0/T2/t8qfor/6nuJCs
+	wbXygsTvQro2lbrlfTY9ZXZHvI6k2ZBfo6mi3XmDv1BslCxOSTxWxmqd3AABHhptdC3NdFd1tmfxr
+	IzZKcuuQ==;
+Received: from mx1.sberdevices.ru ([37.18.73.165])
+	by casper.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1qmAkw-008DCa-Kn; Fri, 29 Sep 2023 10:30:04 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id B3C79100009;
+	Fri, 29 Sep 2023 13:29:53 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru B3C79100009
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1695983393;
+	bh=1dTsc7UycRu0AzxWloIWtmkmCrMWxuzh8RJp/Vn8/ks=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=QiAZe+vSEhWTPNx++eMrI4/O1K0a6I6FE7Qwkmq8Affurjc5DuHPP9KoScmyeN+RF
+	 gOmg9ki96ywVqWE2RSPn6kgrXe3AEQfTtGtaKGiElnX38DOZx68UkQmphDJ0BgCQVn
+	 xUGXKWvWJ0qyx9SB0p0njRTU105krcZgF6ZR1L+lTHXu0RoNLRjLs2/oz4NymDAJ4l
+	 Fxpp6wvupVEVEaMaJrQ4DpKcWUwSwuRIGPVQP4i3RM0auUozX00hAUbG3XQKBwoMHP
+	 jF0Td/6t+gezONqOhXxANQtDGRQJpo06OBD6kyBQcn0stKHRB0LJ8JU/xl3pZS3/AA
+	 gonYS9RMNM7Kw==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 29 Sep 2023 13:29:53 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Fri, 29 Sep 2023 13:29:53 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
+	<olivia@selenic.com>, <herbert@gondor.apana.org.au>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<conor@kernel.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <f.fainelli@gmail.com>,
+	<hkallweit1@gmail.com>, <lists@kaiser.cx>
+CC: <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
+	<kernel@sberdevices.ru>, Alexey Romanov <avromanov@sberdevices.ru>
+Subject: [PATCH v5 3/3] arch/arm64: dts: meson-s4: add hwrng node
+Date: Fri, 29 Sep 2023 13:29:38 +0300
+Message-ID: <20230929102942.67985-4-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230929102942.67985-1-avromanov@salutedevices.com>
+References: <20230929102942.67985-1-avromanov@salutedevices.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.15.1
-Subject: Re: [PATCH] thermal: amlogic: Fix build failure after conversion to
- .remove_new()
-Content-Language: en-GB
-To: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>
-Cc: kernel@pengutronix.de, Daniel Lezcano <daniel.lezcano@linaro.org>,
- Guillaume La Roque <glaroque@baylibre.com>, Amit Kucheria
- <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
- kernel test robot <lkp@intel.com>
-References: <20230929061305.2351953-1-u.kleine-koenig@pengutronix.de>
-From: Neil Armstrong <neil.armstrong@linaro.org>
-In-Reply-To: <20230929061305.2351953-1-u.kleine-koenig@pengutronix.de>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 180231 [Sep 29 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 535 535 da804c0ea8918f802fc60e7a20ba49783d957ba2, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/09/29 07:52:00 #22006267
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230929_020222_796058_6DC1762A 
-X-CRM114-Status: GOOD (  21.10  )
+X-CRM114-CacheID: sfid-20230929_112959_057275_62C647F9 
+X-CRM114-Status: UNSURE (   8.69  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,43 +114,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-TGUgMjkvMDkvMjAyMyDDoCAwODoxMywgVXdlIEtsZWluZS1Lw7ZuaWcgYSDDqWNyaXTCoDoKPiBD
-b21taXQgODhhZjhiNjZmZmVkICgidGhlcm1hbDogYW1sb2dpYzogQ29udmVydCB0byBwbGF0Zm9y
-bSByZW1vdmUKPiBjYWxsYmFjayByZXR1cm5pbmcgdm9pZCIpIGNvbnZlcnRlZCBhbWxvZ2ljX3Ro
-ZXJtYWxfZGlzYWJsZSgpIHRvIHJldHVybgo+IG5vIHZhbHVlIGJ1dCBtaXNzZWQgdGhhdCBhbWxv
-Z2ljX3RoZXJtYWxfc3VzcGVuZCgpIG1ha2VzIHVzZSBvZiB0aGUgaW50Cj4gcmV0dXJuZWQgYnkg
-dGhpcyBmdW5jdGlvbi4gQXMgYW1sb2dpY190aGVybWFsX2Rpc2FibGUoKSByZXR1cm5lZCB6ZXJv
-Cj4gdW5jb25kaXRpb25hbGx5IGJlZm9yZSwgYWRkIGEgcmV0dXJuIDAgdG8gZ2V0IHRoZSBzYW1l
-IGJlaGF2aW91ciBhcwo+IGJlZm9yZSB0aGUgb2ZmZW5kaW5nIGNvbW1pdC4KPiAKPiBGaXhlczog
-ODhhZjhiNjZmZmVkICgidGhlcm1hbDogYW1sb2dpYzogQ29udmVydCB0byBwbGF0Zm9ybSByZW1v
-dmUgY2FsbGJhY2sgcmV0dXJuaW5nIHZvaWQiKQo+IFJlcG9ydGVkLWJ5OiBrZXJuZWwgdGVzdCBy
-b2JvdCA8bGtwQGludGVsLmNvbT4KPiBDbG9zZXM6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL29l
-LWtidWlsZC1hbGwvMjAyMzA5MjkxMjE0LkhqbjNnSjk0LWxrcEBpbnRlbC5jb20vCj4gU2lnbmVk
-LW9mZi1ieTogVXdlIEtsZWluZS1Lw7ZuaWcgPHUua2xlaW5lLWtvZW5pZ0BwZW5ndXRyb25peC5k
-ZT4KPiAtLS0KPiBIZWxsbywKPiAKPiBzb3JyeSBmb3Igbm90IGNhdGNoaW5nIHRoYXQgYmVmb3Jl
-IHNlbmRpbmcuIEkgZG9uJ3QgdW5kZXJzdGFuZCB5ZXQgd2hhdAo+IHdhcyB3cm9uZyB3aXRoIG15
-IHRlc3Rpbmc7IEkgd291bGQgaGF2ZSBiZXQgdGhlIHNlcmllcyB3YXMgdGVzdGVkIHdpdGgKPiBh
-biBBUkNIPWFybTY0IGFsbG1vZGNvbmZpZyBidWlsZC4gOi1cCj4gCj4gSWYgeW91IHByZWZlciBp
-dCwgZmVlbCBmcmVlIHRvIHNxdWFzaCB0aGlzIHBhdGNoIGludG8gdGhlIG9mZmVuZGluZwo+IGNv
-bW1pdC4KPiAKPiBCZXN0IHJlZ2FyZHMsIHNvcnJ5IGFuZCB0aGFua3MsCj4gVXdlCj4gCj4gICBk
-cml2ZXJzL3RoZXJtYWwvYW1sb2dpY190aGVybWFsLmMgfCA0ICsrKy0KPiAgIDEgZmlsZSBjaGFu
-Z2VkLCAzIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJp
-dmVycy90aGVybWFsL2FtbG9naWNfdGhlcm1hbC5jIGIvZHJpdmVycy90aGVybWFsL2FtbG9naWNf
-dGhlcm1hbC5jCj4gaW5kZXggMTQyNmYxZWI0YWM2Li41NjJmNjNiN2JmMjcgMTAwNjQ0Cj4gLS0t
-IGEvZHJpdmVycy90aGVybWFsL2FtbG9naWNfdGhlcm1hbC5jCj4gKysrIGIvZHJpdmVycy90aGVy
-bWFsL2FtbG9naWNfdGhlcm1hbC5jCj4gQEAgLTMwMCw3ICszMDAsOSBAQCBzdGF0aWMgaW50IF9f
-bWF5YmVfdW51c2VkIGFtbG9naWNfdGhlcm1hbF9zdXNwZW5kKHN0cnVjdCBkZXZpY2UgKmRldikK
-PiAgIHsKPiAgIAlzdHJ1Y3QgYW1sb2dpY190aGVybWFsICpkYXRhID0gZGV2X2dldF9kcnZkYXRh
-KGRldik7Cj4gICAKPiAtCXJldHVybiBhbWxvZ2ljX3RoZXJtYWxfZGlzYWJsZShkYXRhKTsKPiAr
-CWFtbG9naWNfdGhlcm1hbF9kaXNhYmxlKGRhdGEpOwo+ICsKPiArCXJldHVybiAwOwo+ICAgfQo+
-ICAgCj4gICBzdGF0aWMgaW50IF9fbWF5YmVfdW51c2VkIGFtbG9naWNfdGhlcm1hbF9yZXN1bWUo
-c3RydWN0IGRldmljZSAqZGV2KQoKQWNrZWQtYnk6IE5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0
-cm9uZ0BsaW5hcm8ub3JnPgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5p
-bmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8v
-bGludXgtYW1sb2dpYwo=
+From: Alexey Romanov <avromanov@sberdevices.ru>
+
+Using this node, we can obtain random numbers via
+hardware random number generator.
+
+Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+index 5a3abcc08ee5..e0cfc54ebccb 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+@@ -148,6 +148,11 @@ ir: ir@84040 {
+ 				interrupts = <GIC_SPI 22 IRQ_TYPE_EDGE_RISING>;
+ 				status = "disabled";
+ 			};
++
++			hwrng: rng@440788 {
++				compatible = "amlogic,meson-s4-rng";
++				reg = <0x0 0x440788 0x0 0x0c>;
++			};
+ 		};
+ 	};
+ };
+-- 
+2.25.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
