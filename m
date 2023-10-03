@@ -4,84 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6E16E75426
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Oct 2023 12:12:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBE16E75455
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Oct 2023 12:47:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ctEWgRxiOaDJJZkzOuLqW56pS/ib1LiKAF+CRP0tpik=; b=ZZxuxkmRsK41K8
-	MMSgh4IznBgZfAHHVfamKiIwL9aML3uKR8/cIM2J0NZuVmv/J9Aoq5/Oi8PuNiVo0kkgSM7Uw4S4W
-	apTn58U0DqaWqQ1XrXYJMnwmbrMm3G3PJ5Ayf1RTSPcTz0u3aIbKnqI0xJlJYaEgpgBqm+s3mqgBj
-	ychusiQoTIIzVdP+aCwUK9ID/Z82Rtqo8VOEK64DGR0McrY63B7/7plqEhP/oF8sTceH3T/iinAzM
-	crEY8+UJrGAAbDLwSE7rhoGiGysxTHpoMqYFNQYxNW2Pm6v5zXONezsVQoWautDybCqSwEms71Jlw
-	R31jWbzUYI+Pop7FnVoQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=cW8A/EvGE4BRtcM7JIWZLIPZtb/k70zBC46rSyywRLc=; b=K0oMh6vqmHQwBw
+	PwbSptnRWCizVoeh7wMGQNkzPM2Yk6afd8gXHVOSopwT72qi3mlOTs8MWalzwbFKGF26jq5EbmtwW
+	Uaog/egmuka7voqQ8MO0ysvAZ5bUfoj2Pw3ozknZtsE+1ctT7YvytzjK883FVabM2tYw+2T8dVXdp
+	q29XHBn3R6k0quBM8S9D5RNM4UaRm8xoyYP1o7czRO+NE+mu4HRyRitdE8zOeoN4tlPlLqTCqQwVU
+	50wFvXA52w50C+LYHDZrDqcUJ8OkiyohdAZDPo8X8KgFyubgGlVwsyhuUacbQu/zrGmD641LsJ65L
+	G1OiBKQYz6TiGFO+exZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qneGC-00Eavn-2j;
-	Tue, 03 Oct 2023 12:12:20 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1qneoG-00EdyY-1t;
+	Tue, 03 Oct 2023 12:47:32 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qneG9-00Eaug-20
-	for linux-amlogic@lists.infradead.org;
-	Tue, 03 Oct 2023 12:12:20 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3215f19a13aso885103f8f.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 03 Oct 2023 05:12:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1696335134; x=1696939934; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ndmM4JbR+kmn5XX/WNfIjfT5Y4Gu1IiD0B/toAwyHcg=;
-        b=YIuqqLJis6VsRBE8BOqT55wu+BKsL5tTwdw/KXclqr12HP+kf9igfz4Klt+qO5x+dp
-         U4s9FwrttCUm1FbNvoiZUhUavsb11rRJP9h4qJ9KTixdDK1WNdS62jx/PjVsf380cDB1
-         KKtff1KcyMETauSqI7KUGq/beSpXRZr94DmrNQRsUl0fE7xYkYOuJQrfVHNdTGseIMhC
-         aJ0zSnDx/D8GszRbR6LTc0J/T263BfvHjdR8lw4ybFb8FoRfdMEpkNuGqmZYTr2RvYdW
-         Pi5Lj+hVcxPtCIcQErMdtB+UAbfqL8yGx7olK6pcBrleyGb0+IHssZMLeDx94QbiUVtb
-         Z+zQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696335134; x=1696939934;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ndmM4JbR+kmn5XX/WNfIjfT5Y4Gu1IiD0B/toAwyHcg=;
-        b=c/T2qgXrHgm05LDeJexaxmb6bfhq/jt1k86jP/k6uFkXuRq1sscbNZ6qiccQTtDcTd
-         UdpgRVGuJCDPbrTtYEcCVcqBMR2MYbSnTlGyQ/vZ1crPfYP5Fg1i1xOQekeR5g/16Cun
-         3HsMOnPg2mp2GWziTokoJZt4S3+JTTmK/7xUNz5X9XBfe4P48P7wjIVS/i29Dp9RK1j+
-         3/zvIKQXprbxab80Gv/s0rFQdSZRGIUW4ZPNwZlvbCCDxJhhopBo5lsiZ9fqj6MGcMoE
-         isA6Cp79tewoygWRWqRfyNA93oQm+rC3vZSdbumfRi8vIgsIBE+RczFfkBf/9LeEO5u+
-         01cQ==
-X-Gm-Message-State: AOJu0YwT9Wig3jm0yhDF5XfrmKJLjaoD8aawYpkCXj0zipa+N/vyTglm
-	5VnjMtFyec28dZWWEVnEy9NSwg==
-X-Google-Smtp-Source: AGHT+IGxM9GQG5hZXhtn4gzyjVX9e5VJ9hbuqnhWi1ArsHR5MP/tYUrn4k11rz6jZV4/HWXFyPRcRA==
-X-Received: by 2002:a5d:4385:0:b0:321:677d:98b0 with SMTP id i5-20020a5d4385000000b00321677d98b0mr12588341wrq.11.1696335134390;
-        Tue, 03 Oct 2023 05:12:14 -0700 (PDT)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:15bf:5b59:3e24:71fe])
-        by smtp.googlemail.com with ESMTPSA id p3-20020a05600c204300b0040648217f4fsm9269649wmg.39.2023.10.03.05.12.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Oct 2023 05:12:13 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Da Xue <da.xue@libretech.co>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH] arm64: dts: amlogic: add spdifout on libretech potatoes
-Date: Tue,  3 Oct 2023 14:12:04 +0200
-Message-Id: <20231003121205.2870923-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.40.1
+	id 1qneoB-00Edwd-1H;
+	Tue, 03 Oct 2023 12:47:31 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id CFEBA100007;
+	Tue,  3 Oct 2023 15:47:10 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru CFEBA100007
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+	s=mail; t=1696337230;
+	bh=/WnGfwCh7HXbbHZcZiPkpNdYkHbP4G9AgWQIHB0A3+s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=UmO/eb65HGSvpvMFWZkoWnvqwcCh3Hvm4r47Lb6Nh47/fA7JSjHhbhA8t1AoGR7fM
+	 prWhv66oQDpC7UN2sxmlB2bWVlWVf3t3J1QUUjZNhR+vtsm9VT+eqSJchsOsqVdUAF
+	 bWXsjuxKNEMnxHpeW9y/QntlC+sFiGFJzOU9BCK+oJGsKaVmU5GSGPmc6XwzVofv7U
+	 qYNv6FGPOjBfEIpPJV8PPJRsvR5/F9lD7yNU270H48HlR/7Kjt86RVVLeGmTS5+hWo
+	 L6aqbgHQ0+LkordfcGAtqLX9/PYj7p0unplRElE7UJw6WUmIY61aU0tbXYslsd0pfH
+	 838Yf0epIxZ7A==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue,  3 Oct 2023 15:47:09 +0300 (MSK)
+Received: from [192.168.1.127] (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Tue, 3 Oct 2023 15:47:08 +0300
+Message-ID: <8ef7ff71-08e1-b0af-483d-e7cf3cc5efea@sberdevices.ru>
+Date: Tue, 3 Oct 2023 15:47:23 +0300
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v2 2/2] iio: adc: meson: improve error logging at probe
+ stage
+Content-Language: en-US
+To: Jonathan Cameron <jic23@kernel.org>
+CC: <lars@metafoo.de>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+	<nuno.sa@analog.com>, <linux-iio@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linux-amlogic@lists.infradead.org>, <kernel@sberdevices.ru>
+References: <20230721102413.255726-1-gnstark@sberdevices.ru>
+ <20230721102413.255726-3-gnstark@sberdevices.ru>
+ <ZLphZzO20QW+t1m/@smile.fi.intel.com> <20230722181559.02c8362c@jic23-huawei>
+From: George Stark <gnstark@sberdevices.ru>
+In-Reply-To: <20230722181559.02c8362c@jic23-huawei>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 180317 [Oct 03 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 535 535 da804c0ea8918f802fc60e7a20ba49783d957ba2, {Tracking_smtp_not_equal_from}, {Tracking_arrow_text}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/10/03 10:12:00 #22029534
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231003_051217_871097_BD4C7F50 
-X-CRM114-Status: UNSURE (   8.75  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231003_054728_497884_C7E92C08 
+X-CRM114-Status: GOOD (  17.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,105 +101,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SPDIF output is available libretech's Potato v1 and v2, on a dedicated
-header. Add the codec, pinmux and dai link to enable it on the sound card.
+Hello Jonathan
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- .../amlogic/meson-gxl-s905x-libretech-cc-v2.dts | 17 +++++++++++++++++
- .../amlogic/meson-gxl-s905x-libretech-cc.dts    | 17 +++++++++++++++++
- 2 files changed, 34 insertions(+)
+It seems like you haven't had time for this patch yet. Should I fix it 
+myself or just be more patient?
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
-index 2825db91e462..ca6f922d162d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
-@@ -23,6 +23,13 @@ aliases {
- 		spi0 = &spifc;
- 	};
- 
-+	spdif_dit: audio-codec {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+		status = "okay";
-+		sound-name-prefix = "9J2";
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-@@ -189,11 +196,21 @@ codec-0 {
- 				sound-dai = <&hdmi_tx>;
- 			};
- 		};
-+
-+		dai-link-3 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
-+
-+			codec-0 {
-+				sound-dai = <&spdif_dit>;
-+			};
-+		};
- 	};
- };
- 
- &aiu {
- 	status = "okay";
-+	pinctrl-0 = <&spdif_out_h_pins>;
-+	pinctrl-names = "default";
- };
- 
- &cec_AO {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index 27093e6ac9e2..8b3234a9cb45 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-@@ -29,6 +29,13 @@ dio2133: analog-amplifier {
- 		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
- 	};
- 
-+	spdif_dit: audio-codec {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+		status = "okay";
-+		sound-name-prefix = "9J1";
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-@@ -183,6 +190,14 @@ codec-0 {
- 				sound-dai = <&acodec>;
- 			};
- 		};
-+
-+		dai-link-4 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
-+
-+			codec-0 {
-+				sound-dai = <&spdif_dit>;
-+			};
-+		};
- 	};
- };
- 
-@@ -193,6 +208,8 @@ &acodec {
- 
- &aiu {
- 	status = "okay";
-+	pinctrl-0 = <&spdif_out_h_pins>;
-+	pinctrl-names = "default";
- };
- 
- &cec_AO {
+On 7/22/23 20:15, Jonathan Cameron wrote:
+> On Fri, 21 Jul 2023 13:43:51 +0300
+> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> 
+>> On Fri, Jul 21, 2023 at 01:23:09PM +0300, George Stark wrote:
+>>> Add log messages for errors that may occur at probe stage
+>>
+>> the probe
+> 
+> British English - excellent ! :) (I argue this one far too often in
+> specification committees :)
+> 
+> 
+>>
+>> stage.
+>>
+> 
+> I can tidy this up, but the patch will be a while anyway given the fix
+> needs to work it's way into the upstream for my togreg branch (and I need
+> to have send a pull request for togreg as well).
+> 
+> Jonathan
+> 
+
 -- 
-2.40.1
-
+Best regards
+George
 
 _______________________________________________
 linux-amlogic mailing list
