@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7E50E7C4E9
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Oct 2023 18:11:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D01FE7C4EC
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Oct 2023 18:23:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Dlc55TvXKlfXbehmr2MiRAWYS81TZ93Ih4+6JR2RZMA=; b=tuMiqqrVO3CjBy
-	IYJlyF1GBtjKsNgDGYYxeaGq08oA4F5R/Qgw7ibgsSfQyI550/JREwJSwvaABvfvorMPd1Hg2EftL
-	+EJjERdchb5prxSF7tXWxgvbFHgQpUmh+d8E8musWRKcRFE+xdNHxkCoczMJMORjUIOWmTq9QMVi/
-	dYNSX+vYecKBfItTQ/Q/DMBPOZd8+cvsQMRW2gPEsCkiyDYc69cMwxwBn+uUnm+f5/h5rCK0GAZ1G
-	0/1UJWBRSwTH84CJVbWluf/cvtcXGxQ2f/jFwvyhc63zeje+FQ5+5lmxSAjNUCYqfUCF/eUT0Rymm
-	h9ktX+3r/IF2IgBlhaVA==;
+	List-Owner; bh=/2MToNgEpH+DaaWZdc8yKpqvbz0Vy1rSEuAQP+aMP98=; b=EKHLl4/OgNeWWJ
+	gwe192anua8hmI+Ze1KtU4Vc4FdcH1CTKAkR4NevXfusL1mYXSrLFtrozn2nWtlbgpeDzZcc4AsYY
+	omEepbOiM6Gsmbe977uS5ZqSkWMGEBqUVYlc/x3GEWt5V/eQq7rw31fV+fv85hszsK4Cc3UBi5OL5
+	8zfU8rUT8AjZfQgpNixoDF1mctnftiFBNwf67i1MqSSDlnPD6OzV6JfnCWX4rbhKaIJF0Q9GH4zdb
+	x/bkclZa0JrqRE1REhf00gEgGgQ7PqkXO6HsQbEKYHMA3AfYPROho2CduD9F+yeCShPRVHPIB8pGF
+	yVuHn1jy4gcntalVMrfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qo6KE-000fQB-26;
-	Wed, 04 Oct 2023 18:10:22 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1qo6W2-000gVp-2T;
+	Wed, 04 Oct 2023 18:22:34 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qo6KA-000fPG-0s;
-	Wed, 04 Oct 2023 18:10:21 +0000
+	id 1qo6Vz-000gUi-1G;
+	Wed, 04 Oct 2023 18:22:32 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 43C9DCE1DD2;
-	Wed,  4 Oct 2023 18:10:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50434C433C8;
-	Wed,  4 Oct 2023 18:10:14 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTP id D5D91B81FDF;
+	Wed,  4 Oct 2023 18:22:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A72A0C433C8;
+	Wed,  4 Oct 2023 18:22:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1696443014;
-	bh=szF38sJ8ljkXEhACc1bIr1v2OqJ1kRgEa2xGx3RjokY=;
+	s=korg; t=1696443749;
+	bh=Wf/ufhpGaHrezQV2LoiBocU0Ydi40DMYm2oMi951d2o=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=R1klw3XgaVrlEegycUzRLR8HRr4HaRENNuVdjF8HRoQ1zwuXAJIrHFIRnnjMQ+mBE
-	 oot0x1HAfiRuBB6/8EkQHFCLM0JiN+6fS9f/uD2sGY+ipNV6yOYL+RHPWL2vvgh1nx
-	 l+BTQnb2p8E/tIGd8/pFA/MB+nb5oCS2/jIoZ0+c=
+	b=KB5V4ExZOOw7joaNN8A0fNd991yUq9kQswZxXZJqxlG6bzrLgJ7yFDnF7DTl0TlkD
+	 /xjVc8FshSfXv9FlJnv6arudT3dI8U3fV4WibkPO7F+dSZ2wiaDP9jl6nTODa3tsHp
+	 E206g0GK5MFf25cStMYLiZGhqyTOe5DY5JUmM++0=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -52,19 +52,19 @@ Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	linux-amlogic@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 5.15 182/183] drm/meson: fix memory leak on ->hpd_notify callback
-Date: Wed,  4 Oct 2023 19:56:53 +0200
-Message-ID: <20231004175211.713122603@linuxfoundation.org>
+Subject: [PATCH 6.1 256/259] drm/meson: fix memory leak on ->hpd_notify callback
+Date: Wed,  4 Oct 2023 19:57:09 +0200
+Message-ID: <20231004175229.171558646@linuxfoundation.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231004175203.943277832@linuxfoundation.org>
-References: <20231004175203.943277832@linuxfoundation.org>
+In-Reply-To: <20231004175217.404851126@linuxfoundation.org>
+References: <20231004175217.404851126@linuxfoundation.org>
 User-Agent: quilt/0.67
 X-stable: review
 X-Patchwork-Hint: ignore
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231004_111018_485119_59036FF9 
-X-CRM114-Status: UNSURE (   8.83  )
+X-CRM114-CacheID: sfid-20231004_112231_566517_E06E79AD 
+X-CRM114-Status: UNSURE (   8.98  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,7 +82,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-5.15-stable review patch.  If anyone has any objections, please let me know.
+6.1-stable review patch.  If anyone has any objections, please let me know.
 
 ------------------
 
@@ -114,7 +114,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
 +++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-@@ -326,6 +326,8 @@ static void meson_encoder_hdmi_hpd_notif
+@@ -332,6 +332,8 @@ static void meson_encoder_hdmi_hpd_notif
  			return;
  
  		cec_notifier_set_phys_addr_from_edid(encoder_hdmi->cec_notifier, edid);
