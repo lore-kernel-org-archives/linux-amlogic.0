@@ -4,53 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 134B7E8FDC8
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Oct 2023 10:28:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3464E92731
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Oct 2023 19:56:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ukjCJ2S+7k7Hcm0AhsKoD4zyJG6hsbxFDFZUV8mOy8M=; b=Ydu4TNfyNadEkM
-	El1BXLM4Dbil/Mq3x3KrVQuxPsDoGSZ7lXTj9bPmkg9CLV7/OqhQ86/M/lzlz3tgIiGGRdEkDr9ay
-	A3jZNfoT3NxK+W02pHeh0ZksaO8cAU/rrd/mwSq6G1se1JDJG7/HYgMPHwz1YLHkuFgEyEWWdukuT
-	7XQJ/M7PwZAo59S6JdiJ1iNIdCZ2E52ry6bE+CiH56WrddzIGaUgSjhuz5/icwPJegqi2nE6MBNuD
-	l7yz1Qqq+wrvD67QXvD3Yfy4scnv+Pga1QDCYP2wwJd9RBb0qbQtmiAI5iFkLx1zV+15U5kIfGooY
-	VEbc7NqTyJbbCwtD65Vg==;
+	List-Owner; bh=m1N2gZar2lM0HFFbQsEIgoOF3Af/sNlm1LaxgUci8no=; b=fGtgejJVFlSgiG
+	6DSejGsWmzZtPtDjCGMS9kR+EtLWJfseITq1Zx2KrIXYCOozghee6mnyoJ+rTBM8G1Tssc/mW9TaJ
+	h+jrP9wcgWPqa0d/+qAXNRlIU6Etc6N8CtxIj0e0eqn0LOoSn/Bk2kuffWL2pgkQPXpSfHt/LAMR6
+	j9DFC+HOExjrXC4AYzmoswjnXvRra6yuUHW/UicJSJeW6L5usO8DhXzkzMHiesRToFH6gnvgeO/Hi
+	8E+Ls6zupBaA0eKU3DomXtRe74UY3AxiNIw/DbzCe0pw1EzCIsp1XVdbxcUEKtbTJnJgjAv8SWF9I
+	RL7lSqunmkUEHgD7GVXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qoLaU-001tNn-28;
-	Thu, 05 Oct 2023 10:28:10 +0000
-Received: from abb.hmeau.com ([144.6.53.87])
+	id 1qoUS9-004PhG-1x;
+	Thu, 05 Oct 2023 19:56:09 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qoLaR-001tMF-13;
-	Thu, 05 Oct 2023 10:28:08 +0000
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-	id 1qoLZu-003lA3-Le; Thu, 05 Oct 2023 18:27:35 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Thu, 05 Oct 2023 18:27:38 +0800
-Date: Thu, 5 Oct 2023 18:27:38 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Alexey Romanov <avromanov@salutedevices.com>
-Cc: narmstrong@baylibre.com, neil.armstrong@linaro.org, olivia@selenic.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, conor@kernel.org, khilman@baylibre.com,
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-	f.fainelli@gmail.com, hkallweit1@gmail.com, lists@kaiser.cx,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-crypto@vger.kernel.org,
-	kernel@sberdevices.ru
-Subject: Re: [PATCH v5 0/3] Meson S4 HW RNG Support
-Message-ID: <ZR6PmiHLLVdKAROb@gondor.apana.org.au>
-References: <20230929102942.67985-1-avromanov@salutedevices.com>
+	id 1qoUS5-004PfR-19;
+	Thu, 05 Oct 2023 19:56:07 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id E38F6100004;
+	Thu,  5 Oct 2023 22:55:58 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru E38F6100004
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1696535758;
+	bh=zo/sNzc/dG5eUQxSK5eEp9sui2QCDHTpqSqmdqaMwdk=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=lQwgJXoeDwWqBOgHtcDSkH+oNP8R6+fiiErYDvJ5SSKgSMOPvsrU7cdCdNJP/aEqt
+	 5aSVrzBVpMpKnPlvouQiTen/xvqRtrXsB52G3qsjDPtxS1w3vUcHAPqtR/NFMncYwE
+	 SC7JynKnc4dEybpiHR2pQFkaM4FvLVrbZErlaWJTillnqvKpfq5OFM3ZDQsDWvlPnc
+	 EmoZwCK7eondFpt2zzbo7ejB6mwPFDg9R/3aF+fsf9p4NMlW38OlW0QwqzOC2bBrJd
+	 iBtLPozYqs/dS1PzH2dDiD1wH+pKgW/uLZtlWAW3GrVkd0zyf7dpilAIY8CZ9IhdhE
+	 XLshAZ39PY73A==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu,  5 Oct 2023 22:55:58 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Thu, 5 Oct 2023 22:55:58 +0300
+From: Igor Prusov <ivprusov@salutedevices.com>
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>
+CC: <prusovigor@gmail.com>, <kernel@sberdevices.ru>, Igor Prusov
+	<ivprusov@salutedevices.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1 1/2] arm64: dts: meson: a1: Add SPIFC mux pins
+Date: Thu, 5 Oct 2023 22:55:42 +0300
+Message-ID: <20231005195543.380273-2-ivprusov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231005195543.380273-1-ivprusov@salutedevices.com>
+References: <20231005195543.380273-1-ivprusov@salutedevices.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230929102942.67985-1-avromanov@salutedevices.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 180400 [Oct 05 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: ivprusov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 535 535 da804c0ea8918f802fc60e7a20ba49783d957ba2, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;127.0.0.199:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/10/05 18:34:00 #22065600
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231005_032807_382341_CCEE9CDA 
-X-CRM114-Status: GOOD (  13.34  )
+X-CRM114-CacheID: sfid-20231005_125605_972937_93BB68B9 
+X-CRM114-Status: GOOD (  11.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,51 +103,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Sep 29, 2023 at 01:29:35PM +0300, Alexey Romanov wrote:
-> Hello!
-> 
-> This patch series adds hwrng support for Amlogic S4-series.
-> Now, S4 uses a new random number generation algorithm.
-> This changes implemnents new algo and also adds description
-> to meson-s4.dtsi.
-> 
-> V2:
-> 
-> - Use readl_relaxed_poll_timeout_atomic() function instead of loop.
-> - Use two different functions: meson_rng_read() and meson_s4_rng_read().
-> - Fix naming in DT schema (meson-s4-hwrng instead of meson-hwrng-s4).
-> - A little code style fixes.
-> 
-> V3:
-> 
-> - Fix commit message in patch with dt-bindings schema changes.
-> 
-> V4:
-> 
-> - Drop struct meson_rng_priv field from struct meson_rng_data.
-> 
-> V5:
-> 
-> - Rebased over v6.7/arm64-dt (Amlogic repo).
-> 
-> Alexey Romanov (3):
->   drivers: rng: meson: add support for S4
->   dt-bindings: rng: meson: add meson-rng-s4 compatible
->   arch/arm64: dts: meson-s4: add hwrng node
-> 
->  .../bindings/rng/amlogic,meson-rng.yaml       |  1 +
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |  5 ++
->  drivers/char/hw_random/meson-rng.c            | 80 ++++++++++++++++++-
->  3 files changed, 83 insertions(+), 3 deletions(-)
-> 
-> -- 
-> 2.25.1
+SPI Flash Controller uses multi-function pins, so add missing mux
+definition.
 
-Patches 1-2 applied.  Thanks.
+Signed-off-by: Igor Prusov <ivprusov@salutedevices.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index 5c6f93ddf7b4..6cd50187896a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -168,6 +168,18 @@ mux {
+ 						bias-pull-down;
+ 					};
+ 				};
++
++				spifc_pins: spifc {
++					mux {
++						groups = "spif_mo",
++							 "spif_mi",
++							 "spif_clk",
++							 "spif_cs",
++							 "spif_hold_n",
++							 "spif_wp_n";
++						function = "spif";
++					};
++				};
+ 			};
+ 
+ 			gpio_intc: interrupt-controller@440 {
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
