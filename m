@@ -4,80 +4,114 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B89E1E82CDE
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Oct 2023 10:02:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88955E82CDE
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Oct 2023 10:04:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+9CeIPkmBGsU9IUbOVXuXBvkYZChWQg02hgDnyvVapU=; b=HJGT31Eaxol7Qx
-	vMe3jf5+2MR+t4hL4Ci+ypI42Bffzm3JAuL+uViKzntBdQZ+s81rFU7YhxZhJEHmKFWajdO5M/cJL
-	wUVSNFjxcCd0MkshKOHINEhJS0tTgL7pCxOaV3P0xmIRYJa5Z7fg68KanuDG6Agl2eSvTm9fbvOf6
-	E4+2ioVX66ZpCUaCl2XWCCtYS1Ijg3ek7RIb8qxSbTRcTYOiFd1Ys5Xa67scalGmY3xaCBLLTsPUk
-	ueVgCaggvQL+uFj3VnazEgnH1myU3mA+ohZ7P6gZocGvWTU2tQht/c2ZIn4YQDkc52m52cFrtyhGE
-	8XOKJw1ezYo/D/XDse8w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=O+4YuKPAijfs0oaKmtOGfDyzuL2l5ZjIK0QlEvrF1DU=; b=zechAaiI/xFc7CN8C+vgZVntb4
+	At9dTz+PBeVqd7GELOBj78wQUh6t2ZXYEBzr1CfDhmW7lLi3MdDryc0rvpb2gmqlgiOw4HK4dkw80
+	A8YWn6KbtQRMSEU9UA4rx/8vAztTou3Wj08BNpaibhuDKS0GmZB+qSuUJvJ58VBHZBKPreHxpA2sW
+	uGnzBaN89JG8Fwed2kEzHOyfVAteQEbUMcDz7vISXeqZP8tVyPcBQjMfIunUD4TVivDYCc2XVIpHC
+	WsoYzHqhKyu48UPQc/jvXRO+oHgfGTkUMT79ZiP6AnBO8SKmVGlH9ZM2yaexHyJVle84UMYQr4w9e
+	y3hERnrg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qoLBM-001qVx-3C;
-	Thu, 05 Oct 2023 10:02:12 +0000
-Received: from gloria.sntech.de ([185.11.138.130])
+	id 1qoLDM-001qp5-1Z;
+	Thu, 05 Oct 2023 10:04:16 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qoLBH-001qTb-2a;
-	Thu, 05 Oct 2023 10:02:09 +0000
-Received: from i53875a3c.versanet.de ([83.135.90.60] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1qoLAi-0004BA-Lx; Thu, 05 Oct 2023 12:01:32 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Vincent Shih <vincent.sunplus@gmail.com>,
- Alessandro Zummo <a.zummo@towertech.it>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Christian Marangi <ansuelsmth@gmail.com>, Anson Huang <Anson.Huang@nxp.com>,
- Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Lala Lin <lala.lin@mediatek.com>, Komal Bajaj <quic_kbajaj@quicinc.com>,
- Kumar Thella <sthella@codeaurora.org>,
- Keiji Hayashibara <hayashibara.keiji@socionext.com>,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, asahi@lists.linux.dev,
- linux-arm-msm@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-rtc@vger.kernel.org, linux-mediatek@lists.infradead.org,
- =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH V2] dt-bindings: nvmem: move deprecated cells binding to its own
- file
-Date: Thu, 05 Oct 2023 12:01:30 +0200
-Message-ID: <2829805.88bMQJbFj6@diego>
-In-Reply-To: <20231003064018.7502-1-zajec5@gmail.com>
-References: <20231003064018.7502-1-zajec5@gmail.com>
+	id 1qoLDK-001qo3-0x
+	for linux-amlogic@lists.infradead.org;
+	Thu, 05 Oct 2023 10:04:15 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-405524e6769so4660605e9.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 05 Oct 2023 03:04:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696500247; x=1697105047; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ht/26KcwXqbG8H0CaHUShIqCIIP7F7mFha6xJKTzams=;
+        b=C9J1zZ0VsJKQHnsG1wKgsvtA608M09/fOLYVoer0+KA9xW/Ge6eax3JVdPrdnscqjK
+         iaMQQv84bGDTqaKrJGWGODKHvs80Kn5trg2Dvq99DXaQny8eRzf9kCVa2H4TeA8pY3gT
+         V7kH99UaAnwsynWmMwSWlfVYL/yQJ6m7D+eBdqAMGEWAZ3MlOCJ2eSAsDa/OQp4jubYx
+         Cf6ktfEFaRopxMOjgpJaZShbAYjcle+3l2Z3Qf+HX0DrPEIMSxW/oHoTiXW0GbwVDA+3
+         sv3BZcdzFuOCjM+M+kaD8SIS44ML2QSNdTE7koYn3i9/AURhPjYfHrbqWeEOvtWcfsUA
+         M6nQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696500247; x=1697105047;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Ht/26KcwXqbG8H0CaHUShIqCIIP7F7mFha6xJKTzams=;
+        b=SM/HMiYu+iioTes3gyeOXFJntBfGy4E1z1WScQghBGZwJwuZO5aIKd/8Nzk6km455g
+         O3JUAZNextCvLmylydCd9gW0WVTEckGUC8fr2zT2HdeSe1fU3KhZc2XBD/f9JEeJgJ2h
+         s0Kgo7ymQKvSnfyneIj8o89VuNHugu/2Xds9dfIfRtmqcdRkf9vyjaImBWPO67Pl2Fr+
+         CY7TTPMnGOcjwzhR9Xl5Va67NZr1lQ1HtgFzmVz6pDyXAaoxhJ173VYsvUF1uJ/R0AOM
+         onHxmtINiRssoL044i1O3UNyL6b0faNp6QR9QwyOXMhoCsGVfsIZ15IicuVZIVNYC2kj
+         gYXA==
+X-Gm-Message-State: AOJu0YxmVnQoGVCRuGfuCIPBxEL5sHD+BIOf1dNFTDIIMeXnqDeecxo5
+	LJs0sFnK9pEyjcocnpBjQNqv7Q==
+X-Google-Smtp-Source: AGHT+IEQGYUZehdKXC0Mt2uWCamRcw59VAjQXSkW7yq4p+TakEOffIOlJyrgjaFU/WknCVAKGnfJAg==
+X-Received: by 2002:a05:600c:895:b0:405:3be0:c78d with SMTP id l21-20020a05600c089500b004053be0c78dmr877519wmp.3.1696500247638;
+        Thu, 05 Oct 2023 03:04:07 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:53f9:e5cc:ac8f:e0db? ([2a01:e0a:982:cbb0:53f9:e5cc:ac8f:e0db])
+        by smtp.gmail.com with ESMTPSA id s10-20020a05600c044a00b004063c9f68f2sm1145465wmb.26.2023.10.05.03.04.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Oct 2023 03:04:07 -0700 (PDT)
+Message-ID: <036a9fef-02fd-4bfd-afb5-50724f15176c@linaro.org>
+Date: Thu, 5 Oct 2023 12:04:06 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 2/2] arm64: dts: amlogic: add libretech cottonwood support
+Content-Language: en-US, fr
+To: Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Kevin Hilman <khilman@baylibre.com>, Da Xue <da.xue@libretech.co>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+References: <20231002141020.2403652-1-jbrunet@baylibre.com>
+ <20231002141020.2403652-3-jbrunet@baylibre.com>
+ <b81a296d-0640-4b2e-aab6-c9de37d10206@linaro.org>
+ <1j5y3ozvmk.fsf@starbuckisacylon.baylibre.com>
+ <3e69ae4b-5d9e-42ee-a21e-151de8fbb996@linaro.org>
+ <1j8r8hxutt.fsf@starbuckisacylon.baylibre.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <1j8r8hxutt.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231005_030207_846478_6114A84D 
-X-CRM114-Status: GOOD (  15.45  )
+X-CRM114-CacheID: sfid-20231005_030414_364765_9F4579E7 
+X-CRM114-Status: GOOD (  21.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,41 +123,126 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: neil.armstrong@linaro.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-QW0gRGllbnN0YWcsIDMuIE9rdG9iZXIgMjAyMywgMDg6NDA6MTggQ0VTVCBzY2hyaWViIFJhZmHF
-giBNacWCZWNraToKPiBGcm9tOiBSYWZhxYIgTWnFgmVja2kgPHJhZmFsQG1pbGVja2kucGw+Cj4g
-Cj4gU3VwcG9ydCBmb3Igb2xkIE5WTUVNIGZpeGVkIGNlbGxzIHdhcyBkZXByZWNhdGVkIGluIGZh
-dm91ciBvZgo+ICJmaXhlZC1sYXlvdXQiLiBJdCdzIHN0aWxsIHBhcnQgb2YgdGhlIG52bWVtLnlh
-bWwgdGhvdWdoIGFuZCBtYXkgYmUKPiB1bmtub3dpbmdseSB1c2VkIGJ5IG5ldyBiaW5kaW5ncyBh
-ZGRlZCB3aXRob3V0IG11Y2ggb2YgYW5hbHl6ZS4KPiAKPiBUbyBtYWtlIGl0IG1vcmUgZGlmZmlj
-dWx0IHRvIGFjY2lkZW50YWxseSBzdXBwb3J0IG9sZCBzeW50YXggbW92ZSBpdHMKPiBiaW5kaW5n
-IHRvIHNlcGFyYXRlZCBmaWxlIHdpdGggImRlcHJlY2F0ZWQiIGluIGl0cyBuYW1lLgo+IAo+IFNp
-Z25lZC1vZmYtYnk6IFJhZmHFgiBNacWCZWNraSA8cmFmYWxAbWlsZWNraS5wbD4KPiAtLS0KPiBW
-MjogRml4IHBhdGggdG8gbnZtZW0tZGVwcmVjYXRlZC1jZWxscy55YW1sIGluIGFtbG9naWMsbWVz
-b242LXJ0Yy55YW1sCj4gCgo+ICAuLi4vYmluZGluZ3MvbnZtZW0vcm9ja2NoaXAsb3RwLnlhbWwg
-ICAgICAgICAgfCAgMSArCj4gIC4uLi9iaW5kaW5ncy9udm1lbS9yb2NrY2hpcC1lZnVzZS55YW1s
-ICAgICAgICB8ICAxICsKCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy9udm1lbS9yb2NrY2hpcCxvdHAueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9udm1lbS9yb2NrY2hpcCxvdHAueWFtbAo+IGluZGV4IDljNmVmZjc4ODkyOC4u
-YTQ0ZDQ0YjMyODA5IDEwMDY0NAo+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9udm1lbS9yb2NrY2hpcCxvdHAueWFtbAo+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9udm1lbS9yb2NrY2hpcCxvdHAueWFtbAo+IEBAIC00OSw2ICs0OSw3IEBA
-IHJlcXVpcmVkOgo+ICAKPiAgYWxsT2Y6Cj4gICAgLSAkcmVmOiBudm1lbS55YW1sIwo+ICsgIC0g
-JHJlZjogbnZtZW0tZGVwcmVjYXRlZC1jZWxscy55YW1sIwo+ICAKPiAgICAtIGlmOgo+ICAgICAg
-ICBwcm9wZXJ0aWVzOgo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvbnZtZW0vcm9ja2NoaXAtZWZ1c2UueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9udm1lbS9yb2NrY2hpcC1lZnVzZS55YW1sCj4gaW5kZXggYzU0MDNlMTQ5MDgw
-Li5iODBmZDhkMWFlNWIgMTAwNjQ0Cj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL252bWVtL3JvY2tjaGlwLWVmdXNlLnlhbWwKPiArKysgYi9Eb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3MvbnZtZW0vcm9ja2NoaXAtZWZ1c2UueWFtbAo+IEBAIC0xMSw2ICsx
-MSw3IEBAIG1haW50YWluZXJzOgo+ICAKPiAgYWxsT2Y6Cj4gICAgLSAkcmVmOiBudm1lbS55YW1s
-Iwo+ICsgIC0gJHJlZjogbnZtZW0tZGVwcmVjYXRlZC1jZWxscy55YW1sIwo+ICAKPiAgcHJvcGVy
-dGllczoKPiAgICBjb21wYXRpYmxlOgoKRm9yIFJvY2tjaGlwIE9UUCBhbmQgRWZ1c2UgYmluZG5n
-czoKQWNrZWQtYnk6IEhlaWtvIFN0dWVibmVyIDxoZWlrb0BzbnRlY2guZGU+CgoKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFp
-bGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMu
-aW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On 05/10/2023 11:42, Jerome Brunet wrote:
+> 
+> On Tue 03 Oct 2023 at 09:35, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> 
+>> On 02/10/2023 20:57, Jerome Brunet wrote:
+>>> On Mon 02 Oct 2023 at 18:45, Neil Armstrong <neil.armstrong@linaro.org>
+>>> wrote:
+>>>
+>>
+>> <snip>
+>>
+>>>>> +&usb3_pcie_phy {
+>>>>> +	#address-cells = <1>;
+>>>>> +	#size-cells = <0>;
+>>>>> +	phy-supply = <&vcc_5v>;
+>>>>> +
+>>>>> +	hub: hub@1 {
+>>>>> +		compatible = "usb5e3,626";
+>>>>> +		reg = <1>;
+>>>>> +		reset-gpios = <&gpio GPIOC_7 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
+>>>>> +	};
+>>>>
+>>>> Not sure the PHY is the right place to put the USB HUB,
+>>>> and it's probable the HUB is connected to both the USB2 and USB3 lines
+>>> It is connected to the USB3.0 only
+>>>
+>>>> so you should have both USB IDs in DT like it'd done for the Odroid-C4:
+>>>>
+>>>> / {
+>>>> ...
+>>>>            /* USB hub supports both USB 2.0 and USB 3.0 root hub */
+>>>>            usb-hub {
+>>>>                    dr_mode = "host";
+>>>>                    #address-cells = <1>;
+>>>>                    #size-cells = <0>;
+>>>>
+>>>>                    /* 2.0 hub on port 1 */
+>>>>                    hub_2_0: hub@1 {
+>>>>                            compatible = "usb2109,2817";
+>>>>                            reg = <1>;
+>>>>                            peer-hub = <&hub_3_0>;
+>>>>                            reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+>>>>                            vdd-supply = <&vcc_5v>;
+>>>>                    };
+>>>>
+>>>>                    /* 3.1 hub on port 4 */
+>>>>                    hub_3_0: hub@2 {
+>>>>                            compatible = "usb2109,817";
+>>>>                            reg = <2>;
+>>>>                            peer-hub = <&hub_2_0>;
+>>>>                            reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+>>>>                            vdd-supply = <&vcc_5v>;
+>>>>                    };
+>>>>            };
+>>>> ...
+>>>> };
+>>>>
+>>>> if it only has a single USB ID, then it should go under the dwc3 node.
+>>> The usb controller is connected to the PHY and what's coming out of the
+>>> PHY
+>>> goes to the hub. It seems logical to hub the hub under it.
+>>> Why bypass the PHY ?
+>>
+>> The USB bindings the USB devices nodes should be under the controller's node,
+>> not the PHY, see:
+>>
+>> Documentation/devicetree/bindings/usb/usb-hcd.yaml
+>> ...
+>> patternProperties:
+>>    "^.*@[0-9a-f]{1,2}$":
+>>      description: The hard wired USB devices
+>>      type: object
+>>      $ref: /schemas/usb/usb-device.yaml
+>> ...
+>> and the example.
+>>
+>> Subnodes aren't allowed in the PHY node.
+> 
+> Ok, that is what schema says.
+> HW wise there is possible problem though.
+> 
+> The phy node has the power supply to the bus.
+> In that case it is a controllable one.
+> 
+> If fixed USB devices go under the controller instead of the PHY, isn't
+> it possible that the kernel may attempt to probe them before the bus is
+> powered ? For this particular board, it would make the reset we are
+> trying to apply useless.
+
+The usb core has a special handling for those usb hubs doing the power
+up at the right time during the USB setup, including the PHY powering up.
+So the power sequence should be fine.
+
+This has been done on Odroid-C2 and Odroid-N2 already.
+
+Neil
+
+> 
+>>
+>> Neil
+>>
+>>>
+>>>>
+>>>>> +};
+>>>>> +
+>>>>> +&usb {
+>>>>> +	status = "okay";
+>>>>> +};
+>>
+>> <snip>
+> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
