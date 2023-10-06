@@ -4,87 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A21CE92735
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Oct 2023 19:56:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDC9AE92FEC
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Oct 2023 06:39:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=i24UWifq0BAXARaJ7R1mzhgVvCzM4TqtJhiUm6EGfZ4=; b=Ec1fFUKCtd8KjH
-	nKcMdeXfqtH4ahxx8t5lHTXCStzFxbUf+IzggYyoMozw8KKAcoeCfGqZQUYOh07qWVttgcTDbpQAj
-	SctO3LccJMcIijyk9u0ris0NsxJsO8Rd//6kmsFEABFvnytP7j4sLJODuY0bNN0TMXHI0EhLn2he3
-	mUHeX8BQdcMuQ4lMj+UetgdufJ4R/eguqJZRV+GGOLQkKZyTYmf87ilj3PwjvrTgpHiEMzfi37xcM
-	gmOxjjaIRTlRz74Axl3CCXtGKp5E1d8OdNsiPDPpVpQvP/kecfXI7wV8s1mxJ1MLJh6n4w4cAa4X6
-	+LCasVqymdAdSs3OwQIg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=kozros3NWmGtYWUh/AxgAdzioMfdoRIlgIpuC+BcNEE=; b=cJkE5qBWyG3xi7w+d22fs7Icdc
+	KOMqasUK69wRqQzncQ8888CFQ6CK0SsSVzjf+dRqAwpP4LUBKerwZBZZIpGvwiZuCtdqkrpChh3q+
+	/3Ztin+Uuk2L7jhZjpzWRF9Rm0hLgndURGQOCKUutrJwW/H+zBmbIxXvSgszeh72hpTSPQgvWVfpQ
+	B3z//BCIkUzu+qxodYkSC2FOc2fEViaQxhu1xySqUDIq1z5UmhkG4SIfDGKwdEoeKndIzm4vJA383
+	XSsuvXjhK4c/litLTVd3j8vqVY7Fu3MBwvjC3BSfuwf08o5G0krQjdX2VQBYJ0iCBqFBr6CVbAxBI
+	t6Bu9o6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qoUSA-004Pi3-2a;
-	Thu, 05 Oct 2023 19:56:10 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1qoeUY-0055Qw-2W;
+	Fri, 06 Oct 2023 06:39:18 +0000
+Received: from mail-lf1-x130.google.com ([2a00:1450:4864:20::130])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qoUS5-004PfO-1F;
-	Thu, 05 Oct 2023 19:56:08 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 10071120002;
-	Thu,  5 Oct 2023 22:55:57 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 10071120002
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1696535757;
-	bh=GFVOVJuxSXMmj0iXYprQcoTAJINrQ+vTEeNVJ0+O/kM=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=IVyNesMWP2yA/afFXt/+smVB8oN19ETBVQs2XKvke2PhmMSCVCC0hmPJyN+2DrNIj
-	 IZneBZIeOAQ4do0PWg8W9+JW5iq81SXferNdtqmYjCt+nYRYCibDDXYQ8EWPPu/lys
-	 BeyTBhvDGeJg6SkergXIw3OS9ZZVNLDXJKfNudNAqgEL1E+kEaEmzxpJlNdT6N95WX
-	 0SKObIy1lGPzFeymtEFVWJZcLwapCazQSCn/3LmKeJP74SRCyLlgj/Y21s+foThaRi
-	 FsXE74rHs0B5YxoJE6o5AbiLNxVi0EUyoZ9qQwQagUdLnAYRlxD/5d6exxjxM25ejM
-	 bircYzUxXtS5Q==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu,  5 Oct 2023 22:55:56 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Thu, 5 Oct 2023 22:55:56 +0300
-From: Igor Prusov <ivprusov@salutedevices.com>
-To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>
-CC: <prusovigor@gmail.com>, <kernel@sberdevices.ru>, Igor Prusov
-	<ivprusov@salutedevices.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v1 0/2] arm64: dts: meson-a1-ad402: Add SPIFC pins
-Date: Thu, 5 Oct 2023 22:55:41 +0300
-Message-ID: <20231005195543.380273-1-ivprusov@salutedevices.com>
-X-Mailer: git-send-email 2.34.1
+	id 1qoeUW-0055Ps-1X
+	for linux-amlogic@lists.infradead.org;
+	Fri, 06 Oct 2023 06:39:17 +0000
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-5068692b0d9so293518e87.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 05 Oct 2023 23:39:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696574352; x=1697179152; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=W/Oe20eq5hm/+Em5p9d3iI+mb2ITB6meerwxw35smVY=;
+        b=nvbHuGqOViKIoVV0PeNx2fxy6LbEFLUf7ZGk+RqKCObxZnSGK2opbWvojKA1YJnvUs
+         y1OFTskR4T9CwybfR80Yt6xVDb45PK1TdHYgR0mtokOWQ2K+LPpZmpSPVEcYEZuuRZU5
+         ytQJja92UEa5wAioJ1+/Nd4mYGqrcDeCWZxQpxKzOgeHV7tAkMXzWeDicR+5INCoduDP
+         p+b+5VUGKHEpu1eg3jElVnsDhlOc1Z7RsUCfWl+orDTs7S2A3awlmptVn+SPfMVYofiI
+         seG99wRcgkWKzfzmRme+t1JrZSqM5HYMUNPTDFaMwyX3AzD9dktYQvuj65InI7DSxPQI
+         cMWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696574352; x=1697179152;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=W/Oe20eq5hm/+Em5p9d3iI+mb2ITB6meerwxw35smVY=;
+        b=HbqeHZbWhp0fdj+11o7SZjstNoKpoPg144uyP1gBm1bB8WJ2AjPQtsco5BIkykJ8Z8
+         ozkvE6T13UVJGmhZHtD/MLoBaqEBXsGFfA11Erg8nEaVal9YuZvZf09puUeulCNOROGs
+         MH1rWBc2UjF2yUNrxLocvFGX8RTqlLnO12fzAqC5mFPl0Wga542LTchYDoNU7mXyKuog
+         QSacZe/ek1mNQYNGB+jShhtTwr7LwK+HolZdaVQu3D//DbKlTcEo0ROFtMbYx0c/kKPT
+         VwHClhps2TPrQiMOEh5b3rT+8UCn+juc5GUmzWOKkC5hfwkzF1G4xMQWK6MLTcpUFRSx
+         vG4Q==
+X-Gm-Message-State: AOJu0Yzu+NASWgowcVwRz47+HBxIOu0JyssX5H/gfUdZo2RtnkZ4ssJ8
+	0pK3g/i2GsL7GZf4vhpqpZOW6A==
+X-Google-Smtp-Source: AGHT+IGDgHi+Dqi7dzq19URpX2w0CDyuB/8q2REgQRlKgwGayqgeuRpXDzX5nux46VGVeMRQQgdWjw==
+X-Received: by 2002:ac2:43cf:0:b0:503:655:12e0 with SMTP id u15-20020ac243cf000000b00503065512e0mr5995373lfl.50.1696574352377;
+        Thu, 05 Oct 2023 23:39:12 -0700 (PDT)
+Received: from [192.168.7.189] (679773502.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id u20-20020a05600c211400b0040642a1df1csm3042793wml.25.2023.10.05.23.39.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Oct 2023 23:39:11 -0700 (PDT)
+Message-ID: <bbca1c2f-2b7e-4132-a23e-12bd41abfec5@linaro.org>
+Date: Fri, 6 Oct 2023 08:39:11 +0200
 MIME-Version: 1.0
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 180400 [Oct 05 2023]
-X-KSMG-AntiSpam-Version: 6.0.0.2
-X-KSMG-AntiSpam-Envelope-From: ivprusov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 535 535 da804c0ea8918f802fc60e7a20ba49783d957ba2, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/10/05 18:34:00 #22065600
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v1 0/2] arm64: dts: meson-a1-ad402: Add SPIFC pins
+Content-Language: en-US, fr
+To: Igor Prusov <ivprusov@salutedevices.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>
+Cc: prusovigor@gmail.com, kernel@sberdevices.ru,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20231005195543.380273-1-ivprusov@salutedevices.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20231005195543.380273-1-ivprusov@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231005_125605_972804_EA19F260 
-X-CRM114-Status: UNSURE (   9.15  )
+X-CRM114-CacheID: sfid-20231005_233916_514540_8065CC9F 
+X-CRM114-Status: UNSURE (   7.16  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -97,26 +122,28 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This series adds SPIFC pins description to A1 pinctrl node and selects
-them in AD402's SPIFC node to make sure that muxed GPIO is properly
-configured.
+On 05/10/2023 21:55, Igor Prusov wrote:
+> This series adds SPIFC pins description to A1 pinctrl node and selects
+> them in AD402's SPIFC node to make sure that muxed GPIO is properly
+> configured.
+> 
+> Igor Prusov (2):
+>    arm64: dts: meson: a1: Add SPIFC mux pins
+>    arm64: dts: meson-a1-ad402: set SPIFC pins
+> 
+>   arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts |  2 ++
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi      | 12 ++++++++++++
+>   2 files changed, 14 insertions(+)
+> 
 
-Igor Prusov (2):
-  arm64: dts: meson: a1: Add SPIFC mux pins
-  arm64: dts: meson-a1-ad402: set SPIFC pins
-
- arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts |  2 ++
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi      | 12 ++++++++++++
- 2 files changed, 14 insertions(+)
-
--- 
-2.34.1
-
+For the 2 patches:
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
