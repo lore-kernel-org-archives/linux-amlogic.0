@@ -4,113 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDC9AE92FEC
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Oct 2023 06:39:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EE89E92FEC
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Oct 2023 06:43:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=kozros3NWmGtYWUh/AxgAdzioMfdoRIlgIpuC+BcNEE=; b=cJkE5qBWyG3xi7w+d22fs7Icdc
-	KOMqasUK69wRqQzncQ8888CFQ6CK0SsSVzjf+dRqAwpP4LUBKerwZBZZIpGvwiZuCtdqkrpChh3q+
-	/3Ztin+Uuk2L7jhZjpzWRF9Rm0hLgndURGQOCKUutrJwW/H+zBmbIxXvSgszeh72hpTSPQgvWVfpQ
-	B3z//BCIkUzu+qxodYkSC2FOc2fEViaQxhu1xySqUDIq1z5UmhkG4SIfDGKwdEoeKndIzm4vJA383
-	XSsuvXjhK4c/litLTVd3j8vqVY7Fu3MBwvjC3BSfuwf08o5G0krQjdX2VQBYJ0iCBqFBr6CVbAxBI
-	t6Bu9o6Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=m++CWJS8FpmTZD30Wi+AWRbZkBJ8vLY6U8jsOGiRzz0=; b=J7hPK7tbMcBkDh
+	HeWcpMyyKFUxniEr911Qtf9OWhTch2pG5svHd5LTabeHtR/8af6mj26VjUUJt7AqmrezBk6pvGCZC
+	69ZDI6HIq9edVi/NPgg4ElgAWuwi8Dgelk+x+T0Pz89D2yLar34/kRzhtp48a66DjlTdlOpNm17DL
+	I1l4VzU/ZzY5Zv23H/sI3mhPhth91W5m6SO/3lNXiuA6ReetOYXVD8kELn7mvUVcTc1HZsRY6R8E9
+	5cX2ijZiOSNtBU/zIclHgfZeVgOGoKnYSVkFxFp9AypwOXKYjR67hpO6WiCxjmoU26gTVG/W9fPcx
+	GUbxXVkb0pdtOe9t8ePw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qoeUY-0055Qw-2W;
-	Fri, 06 Oct 2023 06:39:18 +0000
-Received: from mail-lf1-x130.google.com ([2a00:1450:4864:20::130])
+	id 1qoeYa-0055lP-2G;
+	Fri, 06 Oct 2023 06:43:28 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qoeUW-0055Ps-1X
+	id 1qoeYW-0055jX-30
 	for linux-amlogic@lists.infradead.org;
-	Fri, 06 Oct 2023 06:39:17 +0000
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-5068692b0d9so293518e87.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 05 Oct 2023 23:39:13 -0700 (PDT)
+	Fri, 06 Oct 2023 06:43:26 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40684f53d11so17222355e9.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 05 Oct 2023 23:43:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696574352; x=1697179152; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=W/Oe20eq5hm/+Em5p9d3iI+mb2ITB6meerwxw35smVY=;
-        b=nvbHuGqOViKIoVV0PeNx2fxy6LbEFLUf7ZGk+RqKCObxZnSGK2opbWvojKA1YJnvUs
-         y1OFTskR4T9CwybfR80Yt6xVDb45PK1TdHYgR0mtokOWQ2K+LPpZmpSPVEcYEZuuRZU5
-         ytQJja92UEa5wAioJ1+/Nd4mYGqrcDeCWZxQpxKzOgeHV7tAkMXzWeDicR+5INCoduDP
-         p+b+5VUGKHEpu1eg3jElVnsDhlOc1Z7RsUCfWl+orDTs7S2A3awlmptVn+SPfMVYofiI
-         seG99wRcgkWKzfzmRme+t1JrZSqM5HYMUNPTDFaMwyX3AzD9dktYQvuj65InI7DSxPQI
-         cMWQ==
+        d=linaro.org; s=google; t=1696574603; x=1697179403; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CHU0p37PqytyDnl9AN/GlxDTVLGaz1pQ2WVuhuaUWKs=;
+        b=GbykYimjNeDPFGGbcOroOXWtZOeQ9/ciDlV5P/sBWJOFTNTMziClnc47TFgtEnnoHK
+         BvVzfuEsHn3jO4r+Z2jOKGIJeZrdyixKzgzvbaW7lP9YJX1zgI43tyIZibqhTNj+xMVz
+         sm5rSyAfOpreHxfgDXMAJ80fEp92uwn5cveq/103drM5OH6rvbNsVNPr3QSYwC6BZ0Dk
+         QO1KrXnuo7jZDK99jj7+gqds02mpyfjUz8DaAyXxdPBZPaUDwAcz8HqKWreSB2TKzj1h
+         0moLcyjhMFqqYpW4VvdogtHD7Cpb9JL7coRp18TEiA7QgzDBCll9bh/A3ncKXjfrVP0+
+         Q6pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696574352; x=1697179152;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=W/Oe20eq5hm/+Em5p9d3iI+mb2ITB6meerwxw35smVY=;
-        b=HbqeHZbWhp0fdj+11o7SZjstNoKpoPg144uyP1gBm1bB8WJ2AjPQtsco5BIkykJ8Z8
-         ozkvE6T13UVJGmhZHtD/MLoBaqEBXsGFfA11Erg8nEaVal9YuZvZf09puUeulCNOROGs
-         MH1rWBc2UjF2yUNrxLocvFGX8RTqlLnO12fzAqC5mFPl0Wga542LTchYDoNU7mXyKuog
-         QSacZe/ek1mNQYNGB+jShhtTwr7LwK+HolZdaVQu3D//DbKlTcEo0ROFtMbYx0c/kKPT
-         VwHClhps2TPrQiMOEh5b3rT+8UCn+juc5GUmzWOKkC5hfwkzF1G4xMQWK6MLTcpUFRSx
-         vG4Q==
-X-Gm-Message-State: AOJu0Yzu+NASWgowcVwRz47+HBxIOu0JyssX5H/gfUdZo2RtnkZ4ssJ8
-	0pK3g/i2GsL7GZf4vhpqpZOW6A==
-X-Google-Smtp-Source: AGHT+IGDgHi+Dqi7dzq19URpX2w0CDyuB/8q2REgQRlKgwGayqgeuRpXDzX5nux46VGVeMRQQgdWjw==
-X-Received: by 2002:ac2:43cf:0:b0:503:655:12e0 with SMTP id u15-20020ac243cf000000b00503065512e0mr5995373lfl.50.1696574352377;
-        Thu, 05 Oct 2023 23:39:12 -0700 (PDT)
-Received: from [192.168.7.189] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id u20-20020a05600c211400b0040642a1df1csm3042793wml.25.2023.10.05.23.39.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 23:39:11 -0700 (PDT)
-Message-ID: <bbca1c2f-2b7e-4132-a23e-12bd41abfec5@linaro.org>
-Date: Fri, 6 Oct 2023 08:39:11 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+        d=1e100.net; s=20230601; t=1696574603; x=1697179403;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CHU0p37PqytyDnl9AN/GlxDTVLGaz1pQ2WVuhuaUWKs=;
+        b=XoL07fwevon3jhGNjxkULwgGFPr+NqCHgS+JHeRdg4pz7UBhNPXffoWyXt/5mO+Ti5
+         WHUcMD8u6g3e2S6zyLizW0mDOHh6IBBUhTMCzY2ZnE255gEfYxDXj57qmOMNf8BlRt72
+         gcRMkBOZkZlApJzxFgG3q87hUm52QskXzzkglFB9X9w4Db4K7cqCuO3LCadNy9wcKXJz
+         uRl9NnxPZrWclfmyxUMoRSP5t3bydOGekfizlkxaqg4t3sCaAYLKE42WwKKEi7np0FSL
+         xl/NOPWTzDB2/Jz5lBJWqe//IdcN0TglykSqogEY8nINFFkWyV6jMXl51G/TKnyv4arU
+         KUEA==
+X-Gm-Message-State: AOJu0YzdhJmquDYct6QbyNqUGb5xuebrjLiefw+3vFp/Rq/TRfGY7lS2
+	gZm3IGxy4hJMyiVpGQvTbQv7sg==
+X-Google-Smtp-Source: AGHT+IGFjacFMG9oC4/CF6EjUVpWFzI0wzWd107RtpaewVuO/PTRmrBZuqIV61r7/hB5J8ky7lhDzQ==
+X-Received: by 2002:a1c:ed17:0:b0:406:7d74:a29e with SMTP id l23-20020a1ced17000000b004067d74a29emr6809182wmh.19.1696574602628;
+        Thu, 05 Oct 2023 23:43:22 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id y24-20020a7bcd98000000b004064741f855sm3002073wmj.47.2023.10.05.23.43.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Oct 2023 23:43:22 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v1 0/2] arm64: dts: meson-a1-ad402: Add SPIFC pins
-Content-Language: en-US, fr
-To: Igor Prusov <ivprusov@salutedevices.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>
-Cc: prusovigor@gmail.com, kernel@sberdevices.ru,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Igor Prusov <ivprusov@salutedevices.com>
+Cc: prusovigor@gmail.com, kernel@sberdevices.ru, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231005195543.380273-1-ivprusov@salutedevices.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
 In-Reply-To: <20231005195543.380273-1-ivprusov@salutedevices.com>
+References: <20231005195543.380273-1-ivprusov@salutedevices.com>
+Subject: Re: [PATCH v1 0/2] arm64: dts: meson-a1-ad402: Add SPIFC pins
+Message-Id: <169657460179.2128575.1714588194034072969.b4-ty@linaro.org>
+Date: Fri, 06 Oct 2023 08:43:21 +0200
+MIME-Version: 1.0
+X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231005_233916_514540_8065CC9F 
-X-CRM114-Status: UNSURE (   7.16  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231005_234324_969434_4FEE1D1B 
+X-CRM114-Status: GOOD (  10.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,28 +93,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 05/10/2023 21:55, Igor Prusov wrote:
+Hi,
+
+On Thu, 05 Oct 2023 22:55:41 +0300, Igor Prusov wrote:
 > This series adds SPIFC pins description to A1 pinctrl node and selects
 > them in AD402's SPIFC node to make sure that muxed GPIO is properly
 > configured.
 > 
 > Igor Prusov (2):
->    arm64: dts: meson: a1: Add SPIFC mux pins
->    arm64: dts: meson-a1-ad402: set SPIFC pins
+>   arm64: dts: meson: a1: Add SPIFC mux pins
+>   arm64: dts: meson-a1-ad402: set SPIFC pins
 > 
->   arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts |  2 ++
->   arch/arm64/boot/dts/amlogic/meson-a1.dtsi      | 12 ++++++++++++
->   2 files changed, 14 insertions(+)
-> 
+> [...]
 
-For the 2 patches:
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
+
+[1/2] arm64: dts: meson: a1: Add SPIFC mux pins
+      https://git.kernel.org/amlogic/c/4985d0b308eeec44d2563d7c9d4884bc382d01de
+[2/2] arm64: dts: meson-a1-ad402: set SPIFC pins
+      https://git.kernel.org/amlogic/c/b50944fe2234a175ace253ed05dfae10caa49566
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.7/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
+
 
 _______________________________________________
 linux-amlogic mailing list
