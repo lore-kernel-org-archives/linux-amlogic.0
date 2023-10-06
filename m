@@ -4,81 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DFC0E81E02
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Oct 2023 14:46:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CAF0E81E03
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Oct 2023 14:47:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=LMLPGDA375lRWYFe457It5pt6DNOVDCHirpsjjyXSjY=; b=vGukqWfgCO2mPrrBZLeWcV/isz
-	t7aVqiW3PCnUyKTu15wh+BZs+HlsFL9naihISMiYI+hjFRiVN9Nzx9Xj5b119z5ECpIuJ4UbShSmD
-	08NxzAgkjGq7JurTiYIap4jmmgF4JpVeqCK/ztAKUWY0bWN9YudCgpAhn6RGaig9PYvhg6+ucovhX
-	XTqoQogNgI/W5YVbfs4/zxTFSYCdCVJGnNfx83BtyTmHOS9mfUKsjDITlRBFXDLN7cDW45I3QLWSv
-	XLWcpHDW0pnQ72LxU09X6Qc7XOhweebvH8FwdsRk5VcqhZY+U7tEeb2U+3Z8ndw6AAzZKZ1bxbQV5
-	GFna2PKg==;
+	bh=TAQXPPrlAxB7jU3b95UIf9XLLJWXm5Pza7m94J/vht0=; b=DLLI68NgVuHxg7pyzmjN5iFwXT
+	DPPSNjCtL14NRURwSI5SbsCIrYdYkP7GKYPwbQ6Nbh7BaRz9jqiE6YhmEgqNuLtWylf3ivHZuDqye
+	8Y1CcPqtL2EpQTA/hoENG98bfJTJPu84v6FGRgPwvci0Yh8O0f4CWGSxxQxcTyOqlFsTH0ukE0KPc
+	WrxFtbwhfo4HqWCt8z8lZUrmXwX/4+EEs8uOwqqqs0SRAScK2m5N9Z6Du8IqmT+lEo3kNMq2v5cbP
+	VuLOxZkhB+k1ehwQ0PmMAB2y4lbTkqCA2B0pQ6eyXgKJpWmXp6RMJLao1xmLWDAYXMxtilE9HElkW
+	731D7oFQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qom5l-0060ax-0b;
-	Fri, 06 Oct 2023 14:46:13 +0000
+	id 1qom6R-0060hK-2E;
+	Fri, 06 Oct 2023 14:46:55 +0000
 Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qom5h-0060aC-2P
+	id 1qom6N-0060gV-1Z
 	for linux-amlogic@lists.infradead.org;
-	Fri, 06 Oct 2023 14:46:11 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4066241289bso20072435e9.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 06 Oct 2023 07:46:07 -0700 (PDT)
+	Fri, 06 Oct 2023 14:46:54 +0000
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4054f790190so21189455e9.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 06 Oct 2023 07:46:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696603566; x=1697208366; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1696603610; x=1697208410; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=TsQDvBQyiI7S1j64qZjOzMp7n6CvTcSWgBEdZ94b3pE=;
-        b=rD24igdofJczc+E/QxFouOZymPfc1M1ECGTGLBvCOjQGj+kBmLui3rzJ2JLKSPvXaz
-         hndPflj5kY8ZwJnLwmtUBmihg45ono8lmqBj5g0vXzMV4gjO0mHiox/M+twqA9eXvTRK
-         dTPK9OvEkAkF1jFCMufJiC440BwWrpY0hgFjJTy82a7ezIMzLx1jxPnYbRdiy0ZPx2gd
-         gtsqpnIgKy818VYHkxBaVAUnNeBjsD1ZVZrpXM+PS+HxbBH90mCYk7vvVMyAx3VmCtvA
-         SdGC7vbvsJlBu0l7yl44sJb84TwS3S1ntJfWa6mc0D4GUfPfJ+GsjWpGFpdsX/TBAtnC
-         hmWA==
+        bh=zMY6Oywu9+xD9eu/3FX3tlRBq0A2AjLLPkWOIrzo07w=;
+        b=xI99P4CIobAl0Sy30mS5fEY+RQN79VrYjVY7hv9L87StGJwVl0GYKGaFSaojUzdWbm
+         wG0IZwAN317QAbc4BzLe56lpyY4PmchOnRaoBDjxbolHROXK2bI5OXTWR8wABqW1d1OZ
+         lsJQ3NGAq6oDvi/OviL0E3yjEdErJr5b6JIeK6bItaoNJQPk5JweSJcMIUyFQBRl/5MJ
+         C3vBrnvo4ys8xAMF9QiwYsrhBXEi+Rr25kMsNYvImb+Lp1r4RDJDHYlaO0VWuCtlBp5A
+         XkzVARjHIRvi00pnTDPfdFU9Da+49QIdu9ewUKGuJnuwUDI15c7OxthAkYWa6ZMEpaBJ
+         b/Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696603566; x=1697208366;
+        d=1e100.net; s=20230601; t=1696603610; x=1697208410;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=TsQDvBQyiI7S1j64qZjOzMp7n6CvTcSWgBEdZ94b3pE=;
-        b=HjMb52YyOcHq7VmGMAEyw9MB93IqyiJtqkNeHXhob5DEsO+NdLxpPysgU0DIx3h27C
-         RtiW83cjELkQXQLNVLg3aD0zfLktJ7W29RYNPmJYZ2dYXWI98e+y+3Eoe2TFSDedDLm6
-         V2LK8jOWeqPq0w2HATwhQvCxohG1yZHJTieNq7oOoikSMWNqaKQ/vnAztXaj37KaxFOr
-         7G/kwkbY4In3TyqP+SpfVgekQoGwQpe3VLWGV4SeeQuDhY+Bhb/BsV3zLHS2RpYNmJVT
-         kxAA/dnufpMUcq4z04+ypUUmvIl6m8Np7KVTn+JLFNZggmbiz6RJ4hgS0dZV4NNf9vh/
-         RHuA==
-X-Gm-Message-State: AOJu0YwavXvZwLkaRQmWmIX+S7DiycFb/7Xb1lnfz4EA1e0RH1K284Nu
-	gJONCoP9hMRkEcnIBImx5IGqCA==
-X-Google-Smtp-Source: AGHT+IHOEx8hnq/2d9DKkAgq6eUQMbDQ/kXB5aALk4KT7MHdLPXMvo4kgKcbMjARb2k4mqu/vhasFQ==
-X-Received: by 2002:a1c:720c:0:b0:3fe:5501:d293 with SMTP id n12-20020a1c720c000000b003fe5501d293mr7513137wmc.30.1696603566357;
-        Fri, 06 Oct 2023 07:46:06 -0700 (PDT)
+        bh=zMY6Oywu9+xD9eu/3FX3tlRBq0A2AjLLPkWOIrzo07w=;
+        b=LorEI57bULsAIFsOD4BgnAryR6lua2n1arXG77i2UXaWSOlf21TTzoTPmeNWwWagfp
+         xA2dKD2NgnO+EE1oHzobOHYX7X0iO8autcfODWeiyqOrHnTSa9dUr4PfMx0VOQItzOhg
+         hBHYeeBpPwmcuOrGIqnhD0Jkykk6rso6jBb6Y532kjHBOAC/M4SkRgFmxXH7iSaNqyJq
+         EZWt//XIxjr//tOuFR1AjGHAeD2Gx3m9/m3uCESrS/VuSwAPTFSmZJS+zoe7cDbiGAjY
+         7unjt6yzM1163RgFm4bB7N52RixEY4ArFap4rN0/1kQCoAH9pCqsMM7bpiHdYsSZyJPu
+         mBGQ==
+X-Gm-Message-State: AOJu0YyDcsD9KJrQ72UPkhAwbDj+YU44JlLrWuiczfQ08pcVNVAnS9d7
+	U6AWNEtLGmRk9UNK3Xuhe7pB8Q==
+X-Google-Smtp-Source: AGHT+IEs8p5YrMMkbRPAukUwPzYqqFBywIqnknUGZ1/mKgg5n7mfYi2FPs0LeWV2gUT14L7JIx8BSg==
+X-Received: by 2002:a05:600c:22d5:b0:406:52e4:cd23 with SMTP id 21-20020a05600c22d500b0040652e4cd23mr7724633wmg.0.1696603610039;
+        Fri, 06 Oct 2023 07:46:50 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:c8f7:4bc7:2e11:c133? ([2a01:e0a:982:cbb0:c8f7:4bc7:2e11:c133])
-        by smtp.gmail.com with ESMTPSA id m7-20020a7bce07000000b003fc16ee2864sm3896804wmc.48.2023.10.06.07.46.05
+        by smtp.gmail.com with ESMTPSA id m7-20020a7bce07000000b003fc16ee2864sm3896804wmc.48.2023.10.06.07.46.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Oct 2023 07:46:05 -0700 (PDT)
-Message-ID: <bf5e3789-8ca3-4347-95c3-278aa1e65be5@linaro.org>
-Date: Fri, 6 Oct 2023 16:46:04 +0200
+        Fri, 06 Oct 2023 07:46:49 -0700 (PDT)
+Message-ID: <00bb552d-be6f-464f-9ca9-03a6d4ea26b7@linaro.org>
+Date: Fri, 6 Oct 2023 16:46:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] arm64: dts: amlogic: cottonwood: fix blue/green led
- inversion
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH v1] arm64: dts: amlogic: a1: support all i2c masters and
+ their muxes
 Content-Language: en-US, fr
-To: Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Da Xue <da.xue@libretech.co>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-References: <20231006141915.3623097-1-jbrunet@baylibre.com>
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>, jbrunet@baylibre.com,
+ mturquette@baylibre.com, khilman@baylibre.com,
+ martin.blumenstingl@googlemail.com
+Cc: kernel@sberdevices.ru, rockosov@gmail.com,
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ George Stark <gnstark@salutedevices.com>
+References: <20231006114145.18718-1-ddrokosov@salutedevices.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -104,10 +105,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20231006141915.3623097-1-jbrunet@baylibre.com>
+In-Reply-To: <20231006114145.18718-1-ddrokosov@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231006_074609_847093_13B68BF2 
-X-CRM114-Status: GOOD (  12.20  )
+X-CRM114-CacheID: sfid-20231006_074651_523896_FEE4AB79 
+X-CRM114-Status: GOOD (  11.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,43 +126,187 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 06/10/2023 16:19, Jerome Brunet wrote:
-> While making the v2, blue and green LED pwms got inverted
-> This change fixes the problem
+On 06/10/2023 13:41, Dmitry Rokosov wrote:
+> A1 SoC family has four i2c masters: i2c0 (I2CM_A), i2c1 (I2CM_B), i2c2
+> (I2CM_C) and i2c3 (I2CM_D).
 > 
-> Fixes: 9f841514c9c2 ("arm64: dts: amlogic: add libretech cottonwood support")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: George Stark <gnstark@salutedevices.com>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
 > ---
->   arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 144 ++++++++++++++++++++++
+>   1 file changed, 144 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi b/arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi
-> index ed826f673349..35e8f5bae990 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi
-> @@ -70,7 +70,7 @@ led {
->   			function = LED_FUNCTION_ACTIVITY;
->   			linux,default-trigger = "heartbeat";
->   			max-brightness = <255>;
-> -			pwms = <&pwm_cd 1 1250 0>;
-> +			pwms = <&pwm_ab 1 1250 0>;
->   			active-low;
->   		};
->   	};
-> @@ -83,7 +83,7 @@ led {
->   			function = LED_FUNCTION_STATUS;
->   			linux,default-trigger = "default-on";
->   			max-brightness = <255>;
-> -			pwms = <&pwm_ab 1 1250 0>;
-> +			pwms = <&pwm_cd 1 1250 0>;
->   			active-low;
->   		};
->   	};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> index 823714bcb7a0..f53000a5d0cc 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -126,6 +126,106 @@ gpio: bank@400 {
+>   					gpio-ranges = <&periphs_pinctrl 0 0 62>;
+>   				};
+>   
+> +				i2c0_f11_pins: i2c0-f11 {
+> +					mux {
+> +						groups = "i2c0_sck_f11",
+> +							 "i2c0_sda_f12";
+> +						function = "i2c0";
+> +						bias-pull-up;
+> +						drive-strength-microamp = <3000>;
+> +					};
+> +				};
+> +
+> +				i2c0_f9_pins: i2c0-f9 {
+> +					mux {
+> +						groups = "i2c0_sck_f9",
+> +							 "i2c0_sda_f10";
+> +						function = "i2c0";
+> +						bias-pull-up;
+> +						drive-strength-microamp = <3000>;
+> +					};
+> +				};
+> +
+> +				i2c1_x_pins: i2c1-x {
+> +					mux {
+> +						groups = "i2c1_sck_x",
+> +							 "i2c1_sda_x";
+> +						function = "i2c1";
+> +						bias-pull-up;
+> +						drive-strength-microamp = <3000>;
+> +					};
+> +				};
+> +
+> +				i2c1_a_pins: i2c1-a {
+> +					mux {
+> +						groups = "i2c1_sck_a",
+> +							 "i2c1_sda_a";
+> +						function = "i2c1";
+> +						bias-pull-up;
+> +						drive-strength-microamp = <3000>;
+> +					};
+> +				};
+> +
+> +				i2c2_x0_pins: i2c2-x0 {
+> +					mux {
+> +						groups = "i2c2_sck_x0",
+> +							 "i2c2_sda_x1";
+> +						function = "i2c2";
+> +						bias-pull-up;
+> +						drive-strength-microamp = <3000>;
+> +					};
+> +				};
+> +
+> +				i2c2_x15_pins: i2c2-x15 {
+> +					mux {
+> +						groups = "i2c2_sck_x15",
+> +							 "i2c2_sda_x16";
+> +						function = "i2c2";
+> +						bias-pull-up;
+> +						drive-strength-microamp = <3000>;
+> +					};
+> +				};
+> +
+> +				i2c2_a4_pins: i2c2-a4 {
+> +					mux {
+> +						groups = "i2c2_sck_a4",
+> +							 "i2c2_sda_a5";
+> +						function = "i2c2";
+> +						bias-pull-up;
+> +						drive-strength-microamp = <3000>;
+> +					};
+> +				};
+> +
+> +				i2c2_a8_pins: i2c2-a8 {
+> +					mux {
+> +						groups = "i2c2_sck_a8",
+> +							 "i2c2_sda_a9";
+> +						function = "i2c2";
+> +						bias-pull-up;
+> +						drive-strength-microamp = <3000>;
+> +					};
+> +				};
+> +
+> +				i2c3_x_pins: i2c3-x {
+> +					mux {
+> +						groups = "i2c3_sck_x",
+> +							 "i2c3_sda_x";
+> +						function = "i2c3";
+> +						bias-pull-up;
+> +						drive-strength-microamp = <3000>;
+> +					};
+> +				};
+> +
+> +				i2c3_f_pins: i2c3-f {
+> +					mux {
+> +						groups = "i2c3_sck_f",
+> +							 "i2c3_sda_f";
+> +						function = "i2c3";
+> +						bias-pull-up;
+> +						drive-strength-microamp = <3000>;
+> +					};
+> +				};
+> +
+>   				uart_a_pins: uart-a {
+>   					mux {
+>   						groups = "uart_a_tx",
+> @@ -377,6 +477,17 @@ clkc_periphs: clock-controller@800 {
+>   					      "hifi_pll", "xtal";
+>   			};
+>   
+> +			i2c0: i2c@1400 {
+> +				compatible = "amlogic,meson-axg-i2c";
+> +				status = "disabled";
+> +				reg = <0x0 0x1400 0x0 0x20>;
+> +				interrupts = <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				clocks = <&clkc_periphs CLKID_I2C_M_A>;
+> +				power-domains = <&pwrc PWRC_I2C_ID>;
+> +			};
+> +
+>   			uart_AO: serial@1c00 {
+>   				compatible = "amlogic,meson-a1-uart",
+>   					     "amlogic,meson-ao-uart";
+> @@ -437,6 +548,39 @@ saradc: adc@2c00 {
+>   				status = "disabled";
+>   			};
+>   
+> +			i2c1: i2c@5c00 {
+> +				compatible = "amlogic,meson-axg-i2c";
+> +				status = "disabled";
+> +				reg = <0x0 0x5c00 0x0 0x20>;
+> +				interrupts = <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				clocks = <&clkc_periphs CLKID_I2C_M_B>;
+> +				power-domains = <&pwrc PWRC_I2C_ID>;
+> +			};
+> +
+> +			i2c2: i2c@6800 {
+> +				compatible = "amlogic,meson-axg-i2c";
+> +				status = "disabled";
+> +				reg = <0x0 0x6800 0x0 0x20>;
+> +				interrupts = <GIC_SPI 76 IRQ_TYPE_EDGE_RISING>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				clocks = <&clkc_periphs CLKID_I2C_M_C>;
+> +				power-domains = <&pwrc PWRC_I2C_ID>;
+> +			};
+> +
+> +			i2c3: i2c@6c00 {
+> +				compatible = "amlogic,meson-axg-i2c";
+> +				status = "disabled";
+> +				reg = <0x0 0x6c00 0x0 0x20>;
+> +				interrupts = <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				clocks = <&clkc_periphs CLKID_I2C_M_D>;
+> +				power-domains = <&pwrc PWRC_I2C_ID>;
+> +			};
+> +
+>   			usb2_phy1: phy@4000 {
+>   				compatible = "amlogic,a1-usb2-phy";
+>   				clocks = <&clkc_periphs CLKID_USB_PHY_IN>;
 
-Squashed into 9f841514c9c2 ("arm64: dts: amlogic: add libretech cottonwood support")
-
-Thanks,
-Neil
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
