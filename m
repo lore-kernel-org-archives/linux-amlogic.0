@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F806E81DE8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41163E81DEB
 	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Oct 2023 11:39:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,56 +12,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=P+mlGKPhx9mNf4ppNRMfm2rRzMq11O29UUQrEMKFZfM=; b=e4ScWR0PiBEBFF
-	Oxu/BsPd2ktNppbwEETVoAPcTUBBno2JJXX9W4Tm/xRdnnUokMS+nxnn8c5AN4a4nHAj3xehDMrDI
-	RiXWbpyEG5UV0WBQEPcGf6y1w0uzz1OfUApdENQIdHDfjQvzrVXj/h7Y5Wx9fF3qarWI6fpHMbpz/
-	Yy59D3seTv2W2ixqWaadoLg6caJBz8lrD4kc19KaVyW7+pNXkuscsGw1wwrj2XWKqEAopOiNbVbOW
-	+Qlza7IPoxBkLatMlMXkqDQQaThv9l1dTBwu0K/Jp0mkKPG7dsXjjBgqNydVYJbK7X8DCFQJzJSzR
-	t7K78O/9DwVNBa6OS+8Q==;
+	List-Owner; bh=RQAJzX6Wq/ypd9xY0dWyyBaYRqSfOItoFaq/urJ6pqE=; b=z+FFHcxePraGnY
+	ZL4egDIMYOQ7Cq3P/ennd/bW5fX9RodAtu9oycHPQARR9hakDg3ZwW1CBQ5TlxQtbCNrIlpZzW8Jr
+	e5itDZUC+hMawkZ+pyk72v9rGy6MJqxmgRHY/bqikUwKTlc6Wfy8F8b6Q1UJGMnniVLFwtaN47QnC
+	xjpO4kPbDDDyQRm45yMdbv6/thKwocTPDJmaRVHmNfkQOOalEW0tGZ8cecrl0JGgArKOf6T9tnVrd
+	ODQE5Lr0vqAUN1qyt+oCAWgfTNJPiR/Hh0XCi9fWJHJSDUxTII8W8tBGw0F2U64GpSkZFdVozR9fD
+	boye3RUUDF5fv6bJ1Vkg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qojAg-005hJZ-0W;
-	Fri, 06 Oct 2023 11:39:06 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
-	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qojAd-005hIl-2O
-	for linux-amlogic@lists.infradead.org;
+	id 1qojAf-005hJT-2S;
 	Fri, 06 Oct 2023 11:39:05 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4056ce55e7eso18017135e9.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 06 Oct 2023 04:39:02 -0700 (PDT)
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1qojAc-005hIg-2I
+	for linux-amlogic@lists.infradead.org;
+	Fri, 06 Oct 2023 11:39:04 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40684f53d11so19386905e9.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 06 Oct 2023 04:39:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696592341; x=1697197141; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1696592339; x=1697197139; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=V5BhJ9uSQO9qYOJdOfwm0O5npfsEid/Wd+Awk+KoQ5M=;
-        b=CT81mxakRurBmPHs0n1pnxWWdV6Ras68gLvNu/8gcRxxfCBhpelfJhcEK6gwUQL7vq
-         C/UxMIKvooS0Fuziq3XbHuUS4QMRkmjGN4mbSUpsiFx102yZWVH0C5ZxIr9iWwgWfIaS
-         E07awu5fSOAplyJERpoAjnsYbT8W0XiURGj+s7NjzxlrjqqQkOHq/olv7uWUIAjytI7e
-         p+JiqNQhNqcD+CL0Lu0VZIGLKhh566SJhCzudP6KEhYvjaSfakMgp+ENH9Tj5bUfffLr
-         2QjpIXfx6zwEIG2jNBA7f+iYGLmAVQC+xxkL+HQPCYjp0He+xZLppZOqGI9IucoGpDkn
-         8gcw==
+        bh=4lXCeX/nmRFaPa+W/SmSphBLmC5PqiBtH5lIkBBz74w=;
+        b=eBdVuD8I/P2ZhL0w+RibbsBtwNShdSWYxizqQuLjkZ6DywNy4OOUGLZwruPHjTSvjM
+         +Tt4UA98uvLsMheLontq9GlERiOMtgBpLNunuLRa6x1UvWvzFjRd93ZR1ND3G7dYISWv
+         IUQhfSfLIgXbK6h/kgGsUPtOZlW+l9mnEBFogQDJnIDzUy5aUW22SDCYRZUiz7haMrSG
+         xpCD5R+ywVMq4Y/d3VS/xMJndbZecg3MNcupzGJfRZqpgw+kKL15STwWKrhHUYt4zqLC
+         hrdNTjeQplH2efB/ZkGZf3qPJDqMxRlFjnT4eozLeARVyW+usWI69EkUqfa0xe5eXcy7
+         rAhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696592341; x=1697197141;
+        d=1e100.net; s=20230601; t=1696592339; x=1697197139;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=V5BhJ9uSQO9qYOJdOfwm0O5npfsEid/Wd+Awk+KoQ5M=;
-        b=qkw5XGZhRNFQS7qxn6ZicfmRSAXwHngrTo38Dd8byJy9vxZTq8OgfhBRIEZJvkJ0GW
-         tP1kpXuS+skk5VrrLp3KOff5JrZxdTyKiyDxStBk7FHfIUlPrCKhCJVRfF/Ri4advahw
-         kW+gm6oX74rdLVJhPoyqEssVNWeWBsCGNRx9AXVMZHZBIiq2pg5dpSdt/QP8DJl1/56v
-         198/We3Q+ImC2ogC8sAjMCZcPVwGGBckG612emuHHStYwoIksY5VuBfBHsFRnSMgdhHW
-         NvQYx3L7oU5YgVcIiRSwmOZbtOST8XQruC5fsV5yekf2+TbECCSNeOyYY9UyvD+sfSzN
-         0xiA==
-X-Gm-Message-State: AOJu0YxIBByB799pieVX51uhiaO3ozb5hywqd7OH65v0iMO0ebELW5mD
-	6uL4hNWWu3bz1KQ0DLZcMGCLfUNEf6Qiq4sXli0Z8ix1
-X-Google-Smtp-Source: AGHT+IH2Qyo4a1/R1ZQkB8R4QL65Ez3OTj2edR2TDGOMlROq5wX4NlwWJHo9NCXv1A98e8n9iiO9vQ==
-X-Received: by 2002:a5d:4a0b:0:b0:31a:b3aa:d19b with SMTP id m11-20020a5d4a0b000000b0031ab3aad19bmr6822802wrq.23.1696592340825;
-        Fri, 06 Oct 2023 04:39:00 -0700 (PDT)
+        bh=4lXCeX/nmRFaPa+W/SmSphBLmC5PqiBtH5lIkBBz74w=;
+        b=P3251+io89DvpB9OCQhY2Ud9hXU6GpZCDS+0SitxogWXoGZ9qf2NOkMiUgAitwtOdC
+         4gVcGbSEOv4/T8gVS9gVYcpIN/2v6Me3pQeOpLt70Uw3G0SqnDiEJ5HPc9onRFiPhx7C
+         fJhGVaq5Y/SobNDUFKC99aV3C7Fp89YLT+qtl/hK2JdBr8bvIpETyDy27tNDBYAVIcoC
+         zNcq/HI9HhUnLHtN0UL8JmQ2D9VoFmpX8XA9Vp374ohdsFifTJMA5EUSpcgSWN5cOm3V
+         vv4DUiGUU0ntWaGCD2MRrcpzv269pRcCw3mtJpMkrVtPjZ3nQHeSJRL/xJp7M52K77RP
+         rERQ==
+X-Gm-Message-State: AOJu0Yw8V17Y/0TVWkJ7JOHu7uQ6aczCSm+VP1nKz45LsDvfB9d9X/zn
+	lQmpLEe8EYD+lOgMyQRvsUKFbehpfZN0r0w2pvQFUMg+
+X-Google-Smtp-Source: AGHT+IGLqMrlBobTtK4ubGlWM7ey7sxhWNYax4656ew/AmwVJYYvVcHii1oOhmdar1qG9oSo3EgJ6g==
+X-Received: by 2002:a05:600c:294a:b0:3f5:fff8:d4f3 with SMTP id n10-20020a05600c294a00b003f5fff8d4f3mr7527680wmd.7.1696592338825;
+        Fri, 06 Oct 2023 04:38:58 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id p13-20020a5d68cd000000b0031ae8d86af4sm1442191wrw.103.2023.10.06.04.39.00
+        by smtp.gmail.com with ESMTPSA id p13-20020a5d68cd000000b0031ae8d86af4sm1442191wrw.103.2023.10.06.04.38.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Oct 2023 04:39:00 -0700 (PDT)
+        Fri, 06 Oct 2023 04:38:58 -0700 (PDT)
 From: neil.armstrong@linaro.org
 To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -73,16 +73,16 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-amlogic@lists.infradead.org
-Subject: Re: (subset) [PATCH v2 0/2] arm64: dts: amlogic: add libretech cottonwood support
-Date: Fri,  6 Oct 2023 13:38:56 +0200
-Message-Id: <169659226646.1467422.12919977001849409965.b4-ty@linaro.org>
+Subject: Re: (subset) [PATCH 0/2] arm64: dts: amlogic: add libretech cottonwood support
+Date: Fri,  6 Oct 2023 13:38:55 +0200
+Message-Id: <169659226645.1467422.5247587231855706519.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231006103500.2015183-1-jbrunet@baylibre.com>
-References: <20231006103500.2015183-1-jbrunet@baylibre.com>
+In-Reply-To: <20231002141020.2403652-1-jbrunet@baylibre.com>
+References: <20231002141020.2403652-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231006_043903_777965_995EFD14 
-X-CRM114-Status: GOOD (  13.89  )
+X-CRM114-CacheID: sfid-20231006_043902_758130_DA5243E9 
+X-CRM114-Status: GOOD (  13.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,21 +103,21 @@ From: Neil Armstrong <neil.armstrong@linaro.org>
 
 Hi,
 
-On Fri, 06 Oct 2023 12:34:58 +0200, Jerome Brunet wrote:
+On Mon, 02 Oct 2023 16:10:18 +0200, Jerome Brunet wrote:
 > This patchset adds support for the Libretech cottonwood board family.
 > The 2 boards are based on the same PCB, with an RPi B form factor.
 > 
 > The "Alta" board uses an a311d while the "Solitude" variant uses an s905d3.
 > 
-> This patchset depends on the usb support for the gl3510 [1] and [6]
+> This patchset depends on the usb support for the gl3510 [0]
 > Without it, there will be dt check warnings and usb may not come up properly.
 > 
 > [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
 
-[2/2] arm64: dts: amlogic: add libretech cottonwood support
-      https://git.kernel.org/amlogic/c/9f841514c9c238ffd1513ff3a49ba662a54aabb4
+[1/2] dt-bindings: arm: amlogic: add libretech cottonwood support
+      https://git.kernel.org/amlogic/c/7eb73b8abdae401ac70fd7d463df118a4a2404a9
 
 These changes has been applied on the intermediate git tree [1].
 
