@@ -4,85 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78C19E92FEF
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Oct 2023 06:43:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 518B7E92FF8
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Oct 2023 08:27:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xXy6E5f2gwZtH3Joq2jc9D/BMFGCl2ZwgQs26g8Pk8U=; b=xx9DY4EbBAwq9I
-	d+3FsyVwRn2/Rmne+0hurYOin74pDEBuVqobVBupVtHvXU/87OTsPGUSKV4MzIDntEs5MGNIziO+X
-	XkfNe3WoVYTMy5H4ys6JK5jBvvIPyz0mBb1vxYRzJFamh5RUK5dXeSiaOcMyFGf1xOw2zJWcR2+uZ
-	U0ZT//bgG/A500VtL+wEBm1OSsSCMU0s/RTuxEFeEW9zfv4CaAUcDj4d9IiHt7xWrFMCFbf6MLeRm
-	YBuZJip0hsOq640/xBQ6PlJBwWExm+IaWPN5OEEecROx6pkGNeL/AnQ5saSj742+AtBzvD9m/Dfp8
-	xDo7U5A+ZaoG6Tk5tjGw==;
+	List-Owner; bh=4ET9fO6rgVpVlg/ELyQ4LnwLFOd4k34OZCNr8aYyUco=; b=SXHZiViMHaSBCj
+	p11tpyxogC7hIkfNUjwvAwKN2jwkzSv8AcasfdR0t7uSj0yKRk+IKnUt1AeQCtntOUJqmLb7Y5lHt
+	IW+fvRwQ/T+DzkGxR2kyEmOzd9P+KToVZqmtSBLxcx/ctSVDZcHmvYNI8bJYb5zDSMkIS4jmICQZF
+	LbRO4EolfEREJf7vZAJo6qtkqwu3Dd1sTBkWse2VbIqeLvXE0wWC6SW/HMpXrSZnZfzVVbIdwGw/l
+	agzhIhcauzQkIjY7DheYMG98SzzKLWn9qY6lH3SmyqtR9MJSK1Aq0h/gkfj2pJnEuoaFNQOQtk5Ft
+	1AivLSHF6ua18tpnAeeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qoeYZ-0055l4-0s;
-	Fri, 06 Oct 2023 06:43:27 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1qogAl-005Hqr-00;
+	Fri, 06 Oct 2023 08:26:59 +0000
+Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qoeYW-0055jR-0g
+	id 1qogAg-005Hq0-2j
 	for linux-amlogic@lists.infradead.org;
-	Fri, 06 Oct 2023 06:43:25 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40566f8a093so16083555e9.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 05 Oct 2023 23:43:23 -0700 (PDT)
+	Fri, 06 Oct 2023 08:26:57 +0000
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-503056c8195so2449181e87.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 06 Oct 2023 01:26:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696574602; x=1697179402; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tHZrwWZAfNjVWk4/AUcfESVqIawgSpGdGoZyI+1qlJk=;
-        b=IRnv6wWhU7bljheTBCLMUzaq8jTMs1bG06l9UVF3d0d7B5NsjvO6070iQ289MpZ8/D
-         z1vNBpyBSaYccJRGNorGyLhjxE6zjKteQk21XqX943OigY7NhDrblUrm2+sXYEodpUpg
-         0Mhl5zjAXe0ZJm8DI4AzRgL8CaDcn1mnymrks1X7WPnVcO6NVVIpAJkNpn44ZVYmdlFF
-         4d0ZE2dICjx/w+Us89xNMni5LHabdYa10LbUieZ3t977ij9ZkGJJJ9P+++K67hZFCWma
-         Lj0yg/2LdXP/Qra3rkWggJ3OwEO7yEWtI0FY5PzlG9JMsE26khvwUEIVP9WlPO7etduv
-         qOKA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1696580811; x=1697185611; darn=lists.infradead.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=irhhZwIdAe5KxRCFQFXatPx/3iJGujcLsaX44Bn0VCQ=;
+        b=qSX3Sz/NtsW1ceYZdkfrEt4GzoA5hOdQg22dUgMnwVFWE61HefRTayp+bSg/kpQnmC
+         pxmEQzxEeLkOnD1e3ZUS+hdx2XPKHWPAXD8PdhTWfWiVSO5D2v4/qRe9G1KjR1ZMbj4K
+         OQWvtjzY/aTyCdWgh8Jay7DCHRempqr13kl3mh/YVkkMOmwCsQSCgIXAK3CBL5/FOb8K
+         /uCmcvhHvgGwX+PWz3AA+EifmUcSeC9lQwfpAPjaOnjIyU9liF2mKlWY3pry5/H/1KOS
+         aPttQSWRjNNOeu1dW/Hq7mKSkMe3d6fFPyB8RnBay5GKUtUSxoMo9u5QN+AwA2+ApSmu
+         GOHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696574602; x=1697179402;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tHZrwWZAfNjVWk4/AUcfESVqIawgSpGdGoZyI+1qlJk=;
-        b=KEkDrQIPOhLDecum9cU9ZPHqquCnkyyiTeWGUSEJiHIcobHdWOEQ5DhOxW+H88121k
-         CUm0zM3hyYuJ2SQWtp1+j+QvTA6/+2FkFrcqt686Q5qXm6ivl985p7W6UAkBzvUfE7sb
-         xEw8dXOpSuwZulJieblA50+mJbJiZw6zypUCgLS2UQjP+J3hbfIWBgm8er+WRU1xKfWR
-         XPWOA9PRJxAr7MPSI4p7v5HMoNF99uUYN89V3pZmMWAy8AspJgD6mgn8qz8/VfXsST2D
-         oFgnazWAtnwcdzQqEzatrm5+Dr7pwCq13EPTcgOJhTsTZrGAOAlwBWfndwH3gXfxBU5h
-         G1fg==
-X-Gm-Message-State: AOJu0YzenC2oU9lPbz1/pgXDyNnU1Jl6bAob8f4XxdqMKgbWZkZXgN9U
-	L5XQ2mmF34tcEft4bg/OSqyfiw==
-X-Google-Smtp-Source: AGHT+IEa9D6UEg8Kim6Z9RKpbqTF6yPxbwX33SKhKAYQuYTwCSxIBRvJ5CVQJEe4sosIQ6eGaegeiA==
-X-Received: by 2002:a05:600c:b41:b0:405:499a:7fc1 with SMTP id k1-20020a05600c0b4100b00405499a7fc1mr6767148wmr.40.1696574601638;
-        Thu, 05 Oct 2023 23:43:21 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id y24-20020a7bcd98000000b004064741f855sm3002073wmj.47.2023.10.05.23.43.20
+        d=1e100.net; s=20230601; t=1696580811; x=1697185611;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=irhhZwIdAe5KxRCFQFXatPx/3iJGujcLsaX44Bn0VCQ=;
+        b=CIE/cNiJwPS4X4WFU3sgINToYBcZ/g+LCcK5Q8GX3UarI2r5BieiEeFb06AoKC3z+Z
+         Fq56WcdlIoPypMnNOfqHG+Ew+zq/4oyhONS65F6yuQPnXvjkCPbPqjLMBm2yFWyIZ6+2
+         fpGZErFb1XKRj+q/Ytfy8aBFQ9XFcpHr0bqcLtReEWAHiTlIkZcXZacotsLJ+hoaLpId
+         cUi9cnzjk51nbCaAejAzHCfpY7JFyHq/K4Gp9d41N14X6hxOWqy+vkr11+k10glCKlao
+         21PkjjlYwX2ckcoolpje3s6kL/lujb5UbFc+YackeYLy74ORN+2TcX0cnMM+ziRUrJ4U
+         edqA==
+X-Gm-Message-State: AOJu0Yxetl6Zt9rFWCMcVt6Noo8Z1LxjX1nN167QDtvoisqm8Mzembbg
+	Kro7ZvR+Ma2racv7Lq7XQMIolA==
+X-Google-Smtp-Source: AGHT+IEs07KnxUzQMT9OTHiLPUW6Sir7ZaLP/Qo/d2BT3Mm/swsThBFetaxsHnCWggnr56Bb9k5xww==
+X-Received: by 2002:a05:6512:1390:b0:500:a2d3:3e65 with SMTP id fc16-20020a056512139000b00500a2d33e65mr7538741lfb.23.1696580810523;
+        Fri, 06 Oct 2023 01:26:50 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:8f44:72b3:5bcb:6c6b])
+        by smtp.gmail.com with ESMTPSA id n22-20020a7bcbd6000000b004060f0a0fdbsm5460836wmi.41.2023.10.06.01.26.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Oct 2023 23:43:21 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: olivia@selenic.com, herbert@gondor.apana.org.au, robh+dt@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, conor@kernel.org, 
- khilman@baylibre.com, jbrunet@baylibre.com, 
- martin.blumenstingl@googlemail.com, f.fainelli@gmail.com, 
- hkallweit1@gmail.com, lists@kaiser.cx, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Alexey Romanov <avromanov@salutedevices.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-crypto@vger.kernel.org, kernel@sberdevices.ru
-In-Reply-To: <20230929102942.67985-1-avromanov@salutedevices.com>
-References: <20230929102942.67985-1-avromanov@salutedevices.com>
-Subject: Re: [PATCH v5 0/3] Meson S4 HW RNG Support
-Message-Id: <169657460045.2128575.14990345978498318753.b4-ty@linaro.org>
-Date: Fri, 06 Oct 2023 08:43:20 +0200
+        Fri, 06 Oct 2023 01:26:50 -0700 (PDT)
+References: <20231002141020.2403652-1-jbrunet@baylibre.com>
+ <20231002141020.2403652-3-jbrunet@baylibre.com>
+ <b81a296d-0640-4b2e-aab6-c9de37d10206@linaro.org>
+ <1j5y3ozvmk.fsf@starbuckisacylon.baylibre.com>
+ <3e69ae4b-5d9e-42ee-a21e-151de8fbb996@linaro.org>
+ <1j8r8hxutt.fsf@starbuckisacylon.baylibre.com>
+ <036a9fef-02fd-4bfd-afb5-50724f15176c@linaro.org>
+User-agent: mu4e 1.8.13; emacs 29.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Kevin Hilman <khilman@baylibre.com>, Da Xue <da.xue@libretech.co>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 2/2] arm64: dts: amlogic: add libretech cottonwood support
+Date: Fri, 06 Oct 2023 10:21:37 +0200
+In-reply-to: <036a9fef-02fd-4bfd-afb5-50724f15176c@linaro.org>
+Message-ID: <1j4jj4xik6.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231005_234324_248901_E6DD1A3E 
-X-CRM114-Status: GOOD (  11.19  )
+X-CRM114-CacheID: sfid-20231006_012655_080382_CE971129 
+X-CRM114-Status: GOOD (  25.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,50 +100,148 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
 
-On Fri, 29 Sep 2023 13:29:35 +0300, Alexey Romanov wrote:
-> This patch series adds hwrng support for Amlogic S4-series.
-> Now, S4 uses a new random number generation algorithm.
-> This changes implemnents new algo and also adds description
-> to meson-s4.dtsi.
-> 
-> V2:
-> 
-> [...]
+On Thu 05 Oct 2023 at 12:04, Neil Armstrong <neil.armstrong@linaro.org> wrote:
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
+> On 05/10/2023 11:42, Jerome Brunet wrote:
+>> On Tue 03 Oct 2023 at 09:35, Neil Armstrong <neil.armstrong@linaro.org>
+>> wrote:
+>> 
+>>> On 02/10/2023 20:57, Jerome Brunet wrote:
+>>>> On Mon 02 Oct 2023 at 18:45, Neil Armstrong <neil.armstrong@linaro.org>
+>>>> wrote:
+>>>>
+>>>
+>>> <snip>
+>>>
+>>>>>> +&usb3_pcie_phy {
+>>>>>> +	#address-cells = <1>;
+>>>>>> +	#size-cells = <0>;
+>>>>>> +	phy-supply = <&vcc_5v>;
+>>>>>> +
+>>>>>> +	hub: hub@1 {
+>>>>>> +		compatible = "usb5e3,626";
+>>>>>> +		reg = <1>;
+>>>>>> +		reset-gpios = <&gpio GPIOC_7 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
+>>>>>> +	};
+>>>>>
+>>>>> Not sure the PHY is the right place to put the USB HUB,
+>>>>> and it's probable the HUB is connected to both the USB2 and USB3 lines
+>>>> It is connected to the USB3.0 only
+>>>>
+>>>>> so you should have both USB IDs in DT like it'd done for the Odroid-C4:
+>>>>>
+>>>>> / {
+>>>>> ...
+>>>>>            /* USB hub supports both USB 2.0 and USB 3.0 root hub */
+>>>>>            usb-hub {
+>>>>>                    dr_mode = "host";
+>>>>>                    #address-cells = <1>;
+>>>>>                    #size-cells = <0>;
+>>>>>
+>>>>>                    /* 2.0 hub on port 1 */
+>>>>>                    hub_2_0: hub@1 {
+>>>>>                            compatible = "usb2109,2817";
+>>>>>                            reg = <1>;
+>>>>>                            peer-hub = <&hub_3_0>;
+>>>>>                            reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+>>>>>                            vdd-supply = <&vcc_5v>;
+>>>>>                    };
+>>>>>
+>>>>>                    /* 3.1 hub on port 4 */
+>>>>>                    hub_3_0: hub@2 {
+>>>>>                            compatible = "usb2109,817";
+>>>>>                            reg = <2>;
+>>>>>                            peer-hub = <&hub_2_0>;
+>>>>>                            reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+>>>>>                            vdd-supply = <&vcc_5v>;
+>>>>>                    };
+>>>>>            };
+>>>>> ...
+>>>>> };
+>>>>>
+>>>>> if it only has a single USB ID, then it should go under the dwc3 node.
+>>>> The usb controller is connected to the PHY and what's coming out of the
+>>>> PHY
+>>>> goes to the hub. It seems logical to hub the hub under it.
+>>>> Why bypass the PHY ?
+>>>
+>>> The USB bindings the USB devices nodes should be under the controller's node,
+>>> not the PHY, see:
+>>>
+>>> Documentation/devicetree/bindings/usb/usb-hcd.yaml
+>>> ...
+>>> patternProperties:
+>>>    "^.*@[0-9a-f]{1,2}$":
+>>>      description: The hard wired USB devices
+>>>      type: object
+>>>      $ref: /schemas/usb/usb-device.yaml
+>>> ...
+>>> and the example.
+>>>
+>>> Subnodes aren't allowed in the PHY node.
+>> Ok, that is what schema says.
+>> HW wise there is possible problem though.
+>> The phy node has the power supply to the bus.
+>> In that case it is a controllable one.
+>> If fixed USB devices go under the controller instead of the PHY, isn't
+>> it possible that the kernel may attempt to probe them before the bus is
+>> powered ? For this particular board, it would make the reset we are
+>> trying to apply useless.
+>
+> The usb core has a special handling for those usb hubs doing the power
+> up at the right time during the USB setup, including the PHY powering up.
+> So the power sequence should be fine.
+>
+> This has been done on Odroid-C2 and Odroid-N2 already.
 
-[1/3] drivers: rng: meson: add support for S4
-      (no commit info)
-[2/3] dt-bindings: rng: meson: add meson-rng-s4 compatible
-      (no commit info)
-[3/3] arch/arm64: dts: meson-s4: add hwrng node
-      https://git.kernel.org/amlogic/c/1e3dbe8006247386592a2fdce3a52cca15625997
+Tried it. Unfortunately something is off with the hub under the dwc3 node
+I often get this error (like once in 3 boots):
 
-These changes has been applied on the intermediate git tree [1].
+[    0.419301] usbcore: registered new interface driver usbfs
+[    0.424434] usbcore: registered new interface driver hub
+[    0.429696] usbcore: registered new device driver usb
+[    0.921460] usbcore: registered new interface driver usb-storage
+[    0.968157] usbcore: registered new interface driver usbhid
+[    0.972114] usbhid: USB HID core driver
+[    1.132529] dwc3-meson-g12a ffe09000.usb: USB2 ports: 2
+[    1.134897] dwc3-meson-g12a ffe09000.usb: USB3 ports: 1
+[    1.144451] dwc2 ff400000.usb: supply vusb_d not found, using dummy regulator
+[    1.147231] dwc2 ff400000.usb: supply vusb_a not found, using dummy regulator
+[    1.154464] dwc2 ff400000.usb: EPs: 7, dedicated fifos, 712 entries in SPRAM
+[    1.219515] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+[    1.469260] usb 1-1: new high-speed USB device number 2 using xhci-hcd
+[    1.745395] usb 2-1: new SuperSpeed USB device number 2 using xhci-hcd
+[    9.794777] usbcore: registered new device driver onboard-usb-hub
+[   10.255484] onboard-usb-hub 1-1: Failed to suspend device, error -32
+[   10.261699] onboard-usb-hub 1-1: can't set config #1, error -71
+[   10.287500] onboard-usb-hub 1-1: Failed to suspend device, error -32
+[   10.287844] onboard-usb-hub 1-1: USB disconnect, device number 2
+[   10.573277] usb 1-1: new high-speed USB device number 3 using xhci-hcd
+[   10.921468] usb 2-1: reset SuperSpeed USB device number 2 using xhci-hcd
+[   11.193453] usb 2-1: reset SuperSpeed USB device number 2 using xhci-hcd
 
-The v6.7/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+While it works reliably when the onboard-usb-hub is under the phy node.
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+I added the 5v supply as vdd under the hub for good measure.
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
+>
+> Neil
+>
+>> 
+>>>
+>>> Neil
+>>>
+>>>>
+>>>>>
+>>>>>> +};
+>>>>>> +
+>>>>>> +&usb {
+>>>>>> +	status = "okay";
+>>>>>> +};
+>>>
+>>> <snip>
+>> 
 
 
 _______________________________________________
