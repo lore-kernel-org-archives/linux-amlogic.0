@@ -4,64 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D201FE92FFE
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Oct 2023 10:35:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E8B4E92FFE
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Oct 2023 10:35:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5zKX4xNrmYLTiEg5NplDlv4irc9irS4CSOUJbhig+WM=; b=3WzwDnjwXbzDnz
-	VR2d1gok/H+eVcq67+CdWP/3yKvvY0hJ4hoxEmPYHFwwqZJIeuxevZvJiOsR5JcXUJZe9HrfSi6pZ
-	p6UyEZ9ZqBQiC5Gh64CSiOV8fudoOynxrSQ7KrJbaBW36fshhzmDnLbVds0TtmOyfRk7HZ2HL9BgU
-	sy+PgKliUNXPvHl4hH8vy3gzK2GBB2x1Ngngn0U4Z+vBk8gh+dusRqcfaLvGTyYyXdSd0EpVfwk4N
-	36cK7JMvdXDvy+Ld/ESyzTPmWrM92I0ChYnDAbB1dwMQh1+Eg6mSk4a2IrWvi8U1m4EdJuBm6JoEo
-	pr2Mh5BfJk35555+9iUg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=viDTCY7tHE7YiWgl98kFHw955yIVe4z46IvZ57EvkI8=; b=P3MBwGYpK5+/we
+	IPduahsEkMQPw6MzxC3dV43hl25yOvruyvnefoFY7wDA5evevx9PMKM9CgWS4/09aOe8dvvVfP3Qx
+	PpzUwR1uv3yDqJ11zTxPA3/0PT7xylIbrDJoZGNa59hBkqm0eOYxN9wV48NNkzJGk45QK6eKgjUei
+	iRt0lm/NjXKrpGhULtunPN7yxGpij+9+CPW3g+N9ecmwrh6v7e/C644+HB40EBZSl9Hmdfs18olIP
+	0Z4s9YfYLz9civ4hNTGn/Sjb4rz1holxUc5IB4TbnW3TNj9iIDvxRUYjR/3EMxgGbQ+XPyS0/OKZM
+	XqMLSOXMgHX7p8t0qQTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qoiAr-005cuf-2X;
-	Fri, 06 Oct 2023 10:35:13 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
-	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qoiAo-005csH-0c
-	for linux-amlogic@lists.infradead.org;
+	id 1qoiAp-005ctl-0z;
 	Fri, 06 Oct 2023 10:35:11 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-405361bb9f7so17236035e9.2
+Received: from mail-lf1-x12a.google.com ([2a00:1450:4864:20::12a])
+	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1qoiAl-005cs8-2G
+	for linux-amlogic@lists.infradead.org;
+	Fri, 06 Oct 2023 10:35:10 +0000
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-50573e85ee0so2398173e87.3
         for <linux-amlogic@lists.infradead.org>; Fri, 06 Oct 2023 03:35:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1696588506; x=1697193306; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=V91cYRIt8yJYSOx2f4FKH7CFK9UttvFj+gUpHbgWKyw=;
-        b=qJ13XwKBDJJcX2kKdQSH0y5OVOZkRnfCR093cyQNEEoMr+voFPsrtf/75ne68T1mjM
-         qtMOw7S+GTVV3iSp7UyhS/PCFgqWEt5C9eCo2Jbznqr94dXCpU1hRbFsEv0dCf98KEaF
-         rkNMiR4lpsLc5PMkxrlkG2jwvYgPhULBOV2Tilrg1aC5H5OBmiNE4Sg9503qkp21G71l
-         9bIYCjypq2ZI4We94+GTfK7XDkGq4LyhogHd0lc+4Eb41tqUmVuT8cvwz5iKAH5kvkKr
-         E4Zc7kHGA3dckIXjnexZeWurWGly2HzYHU5bg86Fg9bZ+JpsbK/j37lXAaNlOTwzSk4/
-         +Vtg==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TDKNYOcEsBFqMrb3wRrzCP0mxdH1YRbc05OaBLwf4hI=;
+        b=MBO00RKxawfZ2p67E/CUubmoym+MkM1iz1y8eW1IZyQTmS7AqdJ0lWt9m5M3NYJus7
+         oUkje0hqR4O+6zZgjU/U+JDwMB1XBqK2CMS1IiZd9d/z+mgvsu3ZtjcScw2iLBHQF815
+         rqNfiOnFqQN//cRd0KfFL2AKnp0ItcgKig3VwYaNSe3EwIQnkS8oD74gbvYD7dVXMVuZ
+         393nKanYKUvnC01z6o52GnnVJUaXWjyqqOn1UbEFnGO9kZH3IBAPXKXOr95y35lEQGrq
+         o11x0quJSIZRhixOm7VJF44+WVUSwGo1YOK3iHUj6eroCoXy9BptTX3T5Lm+mFYh4f1S
+         bUYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1696588506; x=1697193306;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V91cYRIt8yJYSOx2f4FKH7CFK9UttvFj+gUpHbgWKyw=;
-        b=ELXhuGV95iiEknQ4Sd+DLn/ed+8CmYTAu4WFdmiJW7bNhbNSaQeZ9+/NllwRMQ1+de
-         EfnL/UStXLCckV8IVnYNUcsR3goemUJWpMlgw0aBqfTfNqC9XCApvOltDpXjJXGB/RCj
-         ON1JRTwITPtUFUJNUzZsKspzjjoALXYKBRj0DaF9EQ4EZW7UJsF+8vL3jbRftI1W/I31
-         L6Nga6HXMjeQebndQSg0FFXlCO7NLfCXAw6TPD9xoAfrDvms2gyMkIbEIOcdDH2VBuMj
-         768Vv8JQOmvR+XkvkhEa9sh1pG0uA3iaxGuy6A8PolwQDoXaBzO2e2//A0EfqCOUfQno
-         tOlg==
-X-Gm-Message-State: AOJu0YyUgA7c9g8Nq1yaL3QS7MOmcZPZ9MYjbUcyYK63OBNHTKtWTDmT
-	0d4v0PnGedOqULtM72TtOXpsJw==
-X-Google-Smtp-Source: AGHT+IEQKHQgyycikSC7e7mcqZlld91WP9kvs3yOFJCB+Q8m/eHcWr/vhaYkfmAAiW9jIkih+kTaaw==
-X-Received: by 2002:a05:600c:224a:b0:3fe:dcd0:2e32 with SMTP id a10-20020a05600c224a00b003fedcd02e32mr7104492wmm.19.1696588506308;
-        Fri, 06 Oct 2023 03:35:06 -0700 (PDT)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:8f44:72b3:5bcb:6c6b])
-        by smtp.googlemail.com with ESMTPSA id l9-20020a1c7909000000b00401b242e2e6sm5664963wme.47.2023.10.06.03.35.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TDKNYOcEsBFqMrb3wRrzCP0mxdH1YRbc05OaBLwf4hI=;
+        b=KfaSBMgzxLTv6+37eRMlBQPSqGQLcQV3Z/5R5reFDHlQfvn65NE3EeItEpXa4lO4av
+         o3+Ik8+hosIJGSOjOtOo+B+NMv08qF2oH6svtxF3/hgIT7vtwNGTr664zY59xzBcO+d2
+         HkF5+rgkZpl2hGTowXEB2zykfxRZELESX+Z/DY2ZcuN6LL/T1o7Klq4veypvodx0srMz
+         wfTPMAsjpPaRZXlj9vrOIPsmHG3j9W148RxuZ+Dzv+nE9ZHPLxZlP4SvgJDf3eUYgyct
+         6CoKHl47dRd+sEKKtVQtAtlUTSXslxJ+fqVOhSz19Dmq6fgen2/Y9SfsZKRfmgCXHxvI
+         4XFA==
+X-Gm-Message-State: AOJu0YzUz33etb4z7rsOBzwm0vaSIXn4PhH7Yq5KkTyrl+h05lVXxS0y
+	Ew+/02sK3Y2DKvfnep85zDSTwQ==
+X-Google-Smtp-Source: AGHT+IEd+1rkwzUT09GxzwWsq6l0mV4x0bcd9Nx7ouA0iriK2HD32CfqtgEjU0x0dQ08/XXlTE5nXw==
+X-Received: by 2002:a05:6512:2095:b0:503:5d8:da33 with SMTP id t21-20020a056512209500b0050305d8da33mr6525614lfr.20.1696588505433;
         Fri, 06 Oct 2023 03:35:05 -0700 (PDT)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:8f44:72b3:5bcb:6c6b])
+        by smtp.googlemail.com with ESMTPSA id l9-20020a1c7909000000b00401b242e2e6sm5664963wme.47.2023.10.06.03.35.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Oct 2023 03:35:04 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
@@ -73,18 +72,15 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH v2 1/2] dt-bindings: arm: amlogic: add libretech cottonwood support
-Date: Fri,  6 Oct 2023 12:34:59 +0200
-Message-Id: <20231006103500.2015183-2-jbrunet@baylibre.com>
+Subject: [PATCH v2 0/2] arm64: dts: amlogic: add libretech cottonwood support
+Date: Fri,  6 Oct 2023 12:34:58 +0200
+Message-Id: <20231006103500.2015183-1-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231006103500.2015183-1-jbrunet@baylibre.com>
-References: <20231006103500.2015183-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231006_033510_226118_82767D9F 
-X-CRM114-Status: UNSURE (   8.28  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231006_033507_746699_043E7E38 
+X-CRM114-Status: GOOD (  11.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,35 +97,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add compatibles for the Libretech cottonwood board family
+This patchset adds support for the Libretech cottonwood board family.
+The 2 boards are based on the same PCB, with an RPi B form factor.
 
-Co-developed-by: Da Xue <da.xue@libretech.co>
-Signed-off-by: Da Xue <da.xue@libretech.co>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- Documentation/devicetree/bindings/arm/amlogic.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+The "Alta" board uses an a311d while the "Solitude" variant uses an s905d3.
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index b7b0eda4164a..caab7ceeda45 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -155,6 +155,7 @@ properties:
-           - enum:
-               - bananapi,bpi-m2s
-               - khadas,vim3
-+              - libretech,aml-a311d-cc
-               - radxa,zero2
-           - const: amlogic,a311d
-           - const: amlogic,g12b
-@@ -196,6 +197,7 @@ properties:
-               - hardkernel,odroid-hc4
-               - haochuangyi,h96-max
-               - khadas,vim3l
-+              - libretech,aml-s905d3-cc
-               - seirobotics,sei610
-           - const: amlogic,sm1
- 
+This patchset depends on the usb support for the gl3510 [1] and [6]
+Without it, there will be dt check warnings and usb may not come up properly.
+
+Early u-boot support may be found here [2]. It will be submitted after
+DT is accepted in Linux. As usual with Amlogic, u-boot must be packaged
+with closed source binaries ([3] for the a311d, [4] for the s905d3)
+
+Prebuilt bootloaders are available from libretech [5].
+
+The devices are shipped with libretech's u-boot pre-flashed in SPI NOR.
+If necessary, the boot source may be changed to MMC using the onboard
+switch.
+
+Happy hacking ...
+
+Changes since v1 [7]:
+* Remove extra dvfs opps
+* Rename Alsa cards
+* Reorganize leds for DT schema while keeping meaningful node names
+* Change blue LED trigger to heartbeat
+* Set panic indicator on the orange LED
+* Move hub reset from under the usb phy node to the controller one
+* Drop npu node
+
+[1]: https://lore.kernel.org/all/20231002122909.2338049-1-jbrunet@baylibre.com
+[2]: https://gitlab.com/jbrunet/u-boot/-/tree/cottonwood
+[3]: https://jbrunet.baylibre.com/pub/amlogic/fips/fip-collect-aml-a311d-cc-20230701.tar.gz
+[4]: https://jbrunet.baylibre.com/pub/amlogic/fips/fip-collect-aml-s905d3-cc-20230820.tar.gz
+[5]: https://boot.libre.computer/ci/
+[6]: https://lore.kernel.org/all/20231006101028.1973730-1-jbrunet@baylibre.com
+[7]: https://lore.kernel.org/all/20231002141020.2403652-1-jbrunet@baylibre.com
+
+Jerome Brunet (2):
+  dt-bindings: arm: amlogic: add libretech cottonwood support
+  arm64: dts: amlogic: add libretech cottonwood support
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   2 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   2 +
+ .../amlogic/meson-g12b-a311d-libretech-cc.dts | 121 ++++
+ .../amlogic/meson-libretech-cottonwood.dtsi   | 614 ++++++++++++++++++
+ .../amlogic/meson-sm1-s905d3-libretech-cc.dts |  89 +++
+ 5 files changed, 828 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-s905d3-libretech-cc.dts
+
 -- 
 2.40.1
 
