@@ -4,85 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41163E81DEB
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Oct 2023 11:39:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 616DEE81DE8
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Oct 2023 11:42:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RQAJzX6Wq/ypd9xY0dWyyBaYRqSfOItoFaq/urJ6pqE=; b=z+FFHcxePraGnY
-	ZL4egDIMYOQ7Cq3P/ennd/bW5fX9RodAtu9oycHPQARR9hakDg3ZwW1CBQ5TlxQtbCNrIlpZzW8Jr
-	e5itDZUC+hMawkZ+pyk72v9rGy6MJqxmgRHY/bqikUwKTlc6Wfy8F8b6Q1UJGMnniVLFwtaN47QnC
-	xjpO4kPbDDDyQRm45yMdbv6/thKwocTPDJmaRVHmNfkQOOalEW0tGZ8cecrl0JGgArKOf6T9tnVrd
-	ODQE5Lr0vqAUN1qyt+oCAWgfTNJPiR/Hh0XCi9fWJHJSDUxTII8W8tBGw0F2U64GpSkZFdVozR9fD
-	boye3RUUDF5fv6bJ1Vkg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=E2Leozj85Rae5CnJPI1zwfooW3J6YoCIwgkUMK1lVRQ=; b=0zJF+5lQY8P1lR
+	gu1uJM+KIQhaCneMNynX5qy9N8rUMaMpwnbR7/SFgixBAbPNyVaetVWa7DxuRdJr2GU4O3j6CGnQ/
+	O7OfLzEuMQhkci7xeNh7JjL6aAscicxeFBt4qF2jjK0UX9p3SVXykp1D0rRB7/uiHdeHy6I0d08th
+	PVkQTdTODBzBtAiYCYHYWzVpM4qos3Phr9aH4/oGxY5GlctvuFEas6Hp8OayKR+oYWrxntylbHRFX
+	ntJIOUBdm7XonSOHatrkLeTJ3mEsTXZo8jqFC6bwATNbn1y1B10eRqC7QEunoLcX6u/w2j1SPQ4RA
+	FyMNfZaD30OkelsgEZzg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qojAf-005hJT-2S;
-	Fri, 06 Oct 2023 11:39:05 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1qojDa-005hlI-1K;
+	Fri, 06 Oct 2023 11:42:06 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qojAc-005hIg-2I
-	for linux-amlogic@lists.infradead.org;
-	Fri, 06 Oct 2023 11:39:04 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40684f53d11so19386905e9.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 06 Oct 2023 04:39:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696592339; x=1697197139; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4lXCeX/nmRFaPa+W/SmSphBLmC5PqiBtH5lIkBBz74w=;
-        b=eBdVuD8I/P2ZhL0w+RibbsBtwNShdSWYxizqQuLjkZ6DywNy4OOUGLZwruPHjTSvjM
-         +Tt4UA98uvLsMheLontq9GlERiOMtgBpLNunuLRa6x1UvWvzFjRd93ZR1ND3G7dYISWv
-         IUQhfSfLIgXbK6h/kgGsUPtOZlW+l9mnEBFogQDJnIDzUy5aUW22SDCYRZUiz7haMrSG
-         xpCD5R+ywVMq4Y/d3VS/xMJndbZecg3MNcupzGJfRZqpgw+kKL15STwWKrhHUYt4zqLC
-         hrdNTjeQplH2efB/ZkGZf3qPJDqMxRlFjnT4eozLeARVyW+usWI69EkUqfa0xe5eXcy7
-         rAhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696592339; x=1697197139;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4lXCeX/nmRFaPa+W/SmSphBLmC5PqiBtH5lIkBBz74w=;
-        b=P3251+io89DvpB9OCQhY2Ud9hXU6GpZCDS+0SitxogWXoGZ9qf2NOkMiUgAitwtOdC
-         4gVcGbSEOv4/T8gVS9gVYcpIN/2v6Me3pQeOpLt70Uw3G0SqnDiEJ5HPc9onRFiPhx7C
-         fJhGVaq5Y/SobNDUFKC99aV3C7Fp89YLT+qtl/hK2JdBr8bvIpETyDy27tNDBYAVIcoC
-         zNcq/HI9HhUnLHtN0UL8JmQ2D9VoFmpX8XA9Vp374ohdsFifTJMA5EUSpcgSWN5cOm3V
-         vv4DUiGUU0ntWaGCD2MRrcpzv269pRcCw3mtJpMkrVtPjZ3nQHeSJRL/xJp7M52K77RP
-         rERQ==
-X-Gm-Message-State: AOJu0Yw8V17Y/0TVWkJ7JOHu7uQ6aczCSm+VP1nKz45LsDvfB9d9X/zn
-	lQmpLEe8EYD+lOgMyQRvsUKFbehpfZN0r0w2pvQFUMg+
-X-Google-Smtp-Source: AGHT+IGLqMrlBobTtK4ubGlWM7ey7sxhWNYax4656ew/AmwVJYYvVcHii1oOhmdar1qG9oSo3EgJ6g==
-X-Received: by 2002:a05:600c:294a:b0:3f5:fff8:d4f3 with SMTP id n10-20020a05600c294a00b003f5fff8d4f3mr7527680wmd.7.1696592338825;
-        Fri, 06 Oct 2023 04:38:58 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id p13-20020a5d68cd000000b0031ae8d86af4sm1442191wrw.103.2023.10.06.04.38.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Oct 2023 04:38:58 -0700 (PDT)
-From: neil.armstrong@linaro.org
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Da Xue <da.xue@libretech.co>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org
-Subject: Re: (subset) [PATCH 0/2] arm64: dts: amlogic: add libretech cottonwood support
-Date: Fri,  6 Oct 2023 13:38:55 +0200
-Message-Id: <169659226645.1467422.5247587231855706519.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231002141020.2403652-1-jbrunet@baylibre.com>
-References: <20231002141020.2403652-1-jbrunet@baylibre.com>
+	id 1qojDW-005hjW-1C;
+	Fri, 06 Oct 2023 11:42:05 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 0FC00120006;
+	Fri,  6 Oct 2023 14:41:52 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 0FC00120006
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1696592512;
+	bh=hvuosWr2wdmb2JBZ+is0TB+tnsHxcAuNr2PYKRoXoWA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=SaFk0/vhnOyY5jrUOcT5pnyrBkIHtgO8tulzDenyfCKted4ZDswCeYd2ChVlsuMSs
+	 Y8ndPJMCgf9n+z2pK8XlkLbtU7utvtg+XSKdXwmqbo6dsIhsZmcQc81hXLqYy3zIe0
+	 oEO5F1ZRNnoxnDm3m+fOZvFjpYQx4fSw2FYhn/QwQJStp0SvCkGLi9Am+TBstjfrKJ
+	 ul2r+zBsh4+7rwO9RfD7hEqq8muz0N2R+KhpV5F9Xd6QWgWiKTiCWpsqkjk3Q6FvjJ
+	 kihr5F1MQaIr7zvBgdlk7a3beZGr9Sui0KYLp5GmjqIp9XHydZUSocUE1Tc+xqja6d
+	 S1ydsrSC2/eCQ==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri,  6 Oct 2023 14:41:51 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Fri, 6 Oct 2023 14:41:51 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+	<mturquette@baylibre.com>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>
+CC: <kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	Dmitry Rokosov <ddrokosov@salutedevices.com>, George Stark
+	<gnstark@salutedevices.com>
+Subject: [PATCH v1] arm64: dts: amlogic: a1: support all i2c masters and their muxes
+Date: Fri, 6 Oct 2023 14:41:45 +0300
+Message-ID: <20231006114145.18718-1-ddrokosov@salutedevices.com>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 180422 [Oct 06 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 535 535 da804c0ea8918f802fc60e7a20ba49783d957ba2, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/10/06 08:17:00 #22074438
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231006_043902_758130_DA5243E9 
-X-CRM114-Status: GOOD (  13.55  )
+X-CRM114-CacheID: sfid-20231006_044203_160535_359899B4 
+X-CRM114-Status: GOOD (  11.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,49 +101,187 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Neil Armstrong <neil.armstrong@linaro.org>
+A1 SoC family has four i2c masters: i2c0 (I2CM_A), i2c1 (I2CM_B), i2c2
+(I2CM_C) and i2c3 (I2CM_D).
 
-Hi,
+Signed-off-by: George Stark <gnstark@salutedevices.com>
+Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 144 ++++++++++++++++++++++
+ 1 file changed, 144 insertions(+)
 
-On Mon, 02 Oct 2023 16:10:18 +0200, Jerome Brunet wrote:
-> This patchset adds support for the Libretech cottonwood board family.
-> The 2 boards are based on the same PCB, with an RPi B form factor.
-> 
-> The "Alta" board uses an a311d while the "Solitude" variant uses an s905d3.
-> 
-> This patchset depends on the usb support for the gl3510 [0]
-> Without it, there will be dt check warnings and usb may not come up properly.
-> 
-> [...]
-
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
-
-[1/2] dt-bindings: arm: amlogic: add libretech cottonwood support
-      https://git.kernel.org/amlogic/c/7eb73b8abdae401ac70fd7d463df118a4a2404a9
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.7/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index 823714bcb7a0..f53000a5d0cc 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -126,6 +126,106 @@ gpio: bank@400 {
+ 					gpio-ranges = <&periphs_pinctrl 0 0 62>;
+ 				};
+ 
++				i2c0_f11_pins: i2c0-f11 {
++					mux {
++						groups = "i2c0_sck_f11",
++							 "i2c0_sda_f12";
++						function = "i2c0";
++						bias-pull-up;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c0_f9_pins: i2c0-f9 {
++					mux {
++						groups = "i2c0_sck_f9",
++							 "i2c0_sda_f10";
++						function = "i2c0";
++						bias-pull-up;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c1_x_pins: i2c1-x {
++					mux {
++						groups = "i2c1_sck_x",
++							 "i2c1_sda_x";
++						function = "i2c1";
++						bias-pull-up;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c1_a_pins: i2c1-a {
++					mux {
++						groups = "i2c1_sck_a",
++							 "i2c1_sda_a";
++						function = "i2c1";
++						bias-pull-up;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c2_x0_pins: i2c2-x0 {
++					mux {
++						groups = "i2c2_sck_x0",
++							 "i2c2_sda_x1";
++						function = "i2c2";
++						bias-pull-up;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c2_x15_pins: i2c2-x15 {
++					mux {
++						groups = "i2c2_sck_x15",
++							 "i2c2_sda_x16";
++						function = "i2c2";
++						bias-pull-up;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c2_a4_pins: i2c2-a4 {
++					mux {
++						groups = "i2c2_sck_a4",
++							 "i2c2_sda_a5";
++						function = "i2c2";
++						bias-pull-up;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c2_a8_pins: i2c2-a8 {
++					mux {
++						groups = "i2c2_sck_a8",
++							 "i2c2_sda_a9";
++						function = "i2c2";
++						bias-pull-up;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c3_x_pins: i2c3-x {
++					mux {
++						groups = "i2c3_sck_x",
++							 "i2c3_sda_x";
++						function = "i2c3";
++						bias-pull-up;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c3_f_pins: i2c3-f {
++					mux {
++						groups = "i2c3_sck_f",
++							 "i2c3_sda_f";
++						function = "i2c3";
++						bias-pull-up;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
+ 				uart_a_pins: uart-a {
+ 					mux {
+ 						groups = "uart_a_tx",
+@@ -377,6 +477,17 @@ clkc_periphs: clock-controller@800 {
+ 					      "hifi_pll", "xtal";
+ 			};
+ 
++			i2c0: i2c@1400 {
++				compatible = "amlogic,meson-axg-i2c";
++				status = "disabled";
++				reg = <0x0 0x1400 0x0 0x20>;
++				interrupts = <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&clkc_periphs CLKID_I2C_M_A>;
++				power-domains = <&pwrc PWRC_I2C_ID>;
++			};
++
+ 			uart_AO: serial@1c00 {
+ 				compatible = "amlogic,meson-a1-uart",
+ 					     "amlogic,meson-ao-uart";
+@@ -437,6 +548,39 @@ saradc: adc@2c00 {
+ 				status = "disabled";
+ 			};
+ 
++			i2c1: i2c@5c00 {
++				compatible = "amlogic,meson-axg-i2c";
++				status = "disabled";
++				reg = <0x0 0x5c00 0x0 0x20>;
++				interrupts = <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&clkc_periphs CLKID_I2C_M_B>;
++				power-domains = <&pwrc PWRC_I2C_ID>;
++			};
++
++			i2c2: i2c@6800 {
++				compatible = "amlogic,meson-axg-i2c";
++				status = "disabled";
++				reg = <0x0 0x6800 0x0 0x20>;
++				interrupts = <GIC_SPI 76 IRQ_TYPE_EDGE_RISING>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&clkc_periphs CLKID_I2C_M_C>;
++				power-domains = <&pwrc PWRC_I2C_ID>;
++			};
++
++			i2c3: i2c@6c00 {
++				compatible = "amlogic,meson-axg-i2c";
++				status = "disabled";
++				reg = <0x0 0x6c00 0x0 0x20>;
++				interrupts = <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&clkc_periphs CLKID_I2C_M_D>;
++				power-domains = <&pwrc PWRC_I2C_ID>;
++			};
++
+ 			usb2_phy1: phy@4000 {
+ 				compatible = "amlogic,a1-usb2-phy";
+ 				clocks = <&clkc_periphs CLKID_USB_PHY_IN>;
 -- 
-Neil
+2.36.0
+
 
 _______________________________________________
 linux-amlogic mailing list
