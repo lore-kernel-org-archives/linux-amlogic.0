@@ -4,111 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CAF0E81E03
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Oct 2023 14:47:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DB14E81E17
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Oct 2023 16:16:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=TAQXPPrlAxB7jU3b95UIf9XLLJWXm5Pza7m94J/vht0=; b=DLLI68NgVuHxg7pyzmjN5iFwXT
-	DPPSNjCtL14NRURwSI5SbsCIrYdYkP7GKYPwbQ6Nbh7BaRz9jqiE6YhmEgqNuLtWylf3ivHZuDqye
-	8Y1CcPqtL2EpQTA/hoENG98bfJTJPu84v6FGRgPwvci0Yh8O0f4CWGSxxQxcTyOqlFsTH0ukE0KPc
-	WrxFtbwhfo4HqWCt8z8lZUrmXwX/4+EEs8uOwqqqs0SRAScK2m5N9Z6Du8IqmT+lEo3kNMq2v5cbP
-	VuLOxZkhB+k1ehwQ0PmMAB2y4lbTkqCA2B0pQ6eyXgKJpWmXp6RMJLao1xmLWDAYXMxtilE9HElkW
-	731D7oFQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=6s2MBr/lBs9XcUPjHSWAwsXKuZtciLPbj0Nh6pilPsM=; b=YJDHR0NU8wdEvX
+	HxFPtjC90jEnsOAOSl0qy1uYHrPlKpv9QI6KBzmQACEoPT0+306lqlyNeUhqt17oMzoa+cp+6krk0
+	OIsAPB7HLiBDktPxVnVLe2/BlkOUBQKS/L2l+dfRJBxfmKmm26djOXJb+KLiI2G+fSBj7VyyBglu4
+	tdU8W5kCVWlS5ye53k94TTj6vgqgenAouvLcpv5q2MoBh5aYcJqZK5VR61jkXP3Kbv9TPfpGVxPSA
+	U2M7DAi+Ad6fM7Wy72p1uq+ClJxbYJvqLL+g1oKq5JSXRarW/xiUUVTzqCTDhYW6MQfx6Ys17BKUY
+	gLJLXBjcNXnKZJJ0/79w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qom6R-0060hK-2E;
-	Fri, 06 Oct 2023 14:46:55 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1qonVD-006A53-2M;
+	Fri, 06 Oct 2023 16:16:35 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qom6N-0060gV-1Z
-	for linux-amlogic@lists.infradead.org;
-	Fri, 06 Oct 2023 14:46:54 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4054f790190so21189455e9.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 06 Oct 2023 07:46:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696603610; x=1697208410; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zMY6Oywu9+xD9eu/3FX3tlRBq0A2AjLLPkWOIrzo07w=;
-        b=xI99P4CIobAl0Sy30mS5fEY+RQN79VrYjVY7hv9L87StGJwVl0GYKGaFSaojUzdWbm
-         wG0IZwAN317QAbc4BzLe56lpyY4PmchOnRaoBDjxbolHROXK2bI5OXTWR8wABqW1d1OZ
-         lsJQ3NGAq6oDvi/OviL0E3yjEdErJr5b6JIeK6bItaoNJQPk5JweSJcMIUyFQBRl/5MJ
-         C3vBrnvo4ys8xAMF9QiwYsrhBXEi+Rr25kMsNYvImb+Lp1r4RDJDHYlaO0VWuCtlBp5A
-         XkzVARjHIRvi00pnTDPfdFU9Da+49QIdu9ewUKGuJnuwUDI15c7OxthAkYWa6ZMEpaBJ
-         b/Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696603610; x=1697208410;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=zMY6Oywu9+xD9eu/3FX3tlRBq0A2AjLLPkWOIrzo07w=;
-        b=LorEI57bULsAIFsOD4BgnAryR6lua2n1arXG77i2UXaWSOlf21TTzoTPmeNWwWagfp
-         xA2dKD2NgnO+EE1oHzobOHYX7X0iO8autcfODWeiyqOrHnTSa9dUr4PfMx0VOQItzOhg
-         hBHYeeBpPwmcuOrGIqnhD0Jkykk6rso6jBb6Y532kjHBOAC/M4SkRgFmxXH7iSaNqyJq
-         EZWt//XIxjr//tOuFR1AjGHAeD2Gx3m9/m3uCESrS/VuSwAPTFSmZJS+zoe7cDbiGAjY
-         7unjt6yzM1163RgFm4bB7N52RixEY4ArFap4rN0/1kQCoAH9pCqsMM7bpiHdYsSZyJPu
-         mBGQ==
-X-Gm-Message-State: AOJu0YyDcsD9KJrQ72UPkhAwbDj+YU44JlLrWuiczfQ08pcVNVAnS9d7
-	U6AWNEtLGmRk9UNK3Xuhe7pB8Q==
-X-Google-Smtp-Source: AGHT+IEs8p5YrMMkbRPAukUwPzYqqFBywIqnknUGZ1/mKgg5n7mfYi2FPs0LeWV2gUT14L7JIx8BSg==
-X-Received: by 2002:a05:600c:22d5:b0:406:52e4:cd23 with SMTP id 21-20020a05600c22d500b0040652e4cd23mr7724633wmg.0.1696603610039;
-        Fri, 06 Oct 2023 07:46:50 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:c8f7:4bc7:2e11:c133? ([2a01:e0a:982:cbb0:c8f7:4bc7:2e11:c133])
-        by smtp.gmail.com with ESMTPSA id m7-20020a7bce07000000b003fc16ee2864sm3896804wmc.48.2023.10.06.07.46.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Oct 2023 07:46:49 -0700 (PDT)
-Message-ID: <00bb552d-be6f-464f-9ca9-03a6d4ea26b7@linaro.org>
-Date: Fri, 6 Oct 2023 16:46:48 +0200
+	id 1qonVA-006A3C-0w;
+	Fri, 06 Oct 2023 16:16:33 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by ams.source.kernel.org (Postfix) with ESMTP id 8FF49B829EF;
+	Fri,  6 Oct 2023 16:16:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89291C433C7;
+	Fri,  6 Oct 2023 16:16:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696608982;
+	bh=nn2PakBIGbgtsjEPpxAO4jVlLqjVjHADYSnUr1qUXew=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lFkTvMoc5xPxQnjGQFbbukgR7nGvQnaMUmIi8cIFrTDFwzZVKr9iEZ8kf9UwtmkqS
+	 JjVmj8vB0ZE3TTOhwWGNB1o+JGF1B090dzJEdIgroxf4E0ngIgy808gaNyUPH5DIJl
+	 J26870g4clx/9i8PyhovxrsBJET6ud3yGuLTEpzfK6WP1sXVcDOKmAYFwmPgx7Hx42
+	 TgUnvqo/j6K5BNN2TivJ1Z+rTg5nraUATk/swrNf592B9syT+5kdlaHuidRWPb9A8x
+	 eVXAhvs+zO1q6xgZPse0VgS1i3yG6J3XpznXuO3teSMIwX7oX5V6lQddll6CHRjwHj
+	 1rUD3xOytS4kg==
+Received: (nullmailer pid 4022504 invoked by uid 1000);
+	Fri, 06 Oct 2023 16:16:16 -0000
+Date: Fri, 6 Oct 2023 11:16:16 -0500
+From: Rob Herring <robh@kernel.org>
+To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Komal Bajaj <quic_kbajaj@quicinc.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Sascha Hauer <s.hauer@pengutronix.de>, Matthias Brugger <matthias.bgg@gmail.com>, Kevin Hilman <khilman@baylibre.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Alexandre Belloni <alexandre.belloni@bootlin.com>, Andy Gross <agross@kernel.org>, Hector Martin <marcan@marcan.st>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, NXP Linux Team <linux-imx@nxp.com>, linux-rockchip@lists.infradead.org, linux-rtc@vger.kernel.org, linux-mtd@lists.infradead.org, Vincent Shih <vincent.sunplus@gmail.com>, Christian Marangi <ansuelsmth@gmail.com>, Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>, Kumar Thella <sthella@codeaurora.org>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, Anson Huang <Anson.Huang@nxp.com>, linux-kernel@vger.kernel.org, A
+ ndrew-CT Chen <andrew-ct.chen@mediatek.com>, linux-arm-msm@vger.kernel.org, Fabio Estevam <festevam@gmail.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev, Keiji Hayashibara <hayashibara.keiji@socionext.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Alessandro Zummo <a.zummo@towertech.it>, Lala Lin <lala.lin@mediatek.com>, linux-arm-kernel@lists.infradead.org, Vignesh Raghavendra <vigneshr@ti.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, linux-mediatek@lists.infradead.org, Shawn Guo <shawnguo@kernel.org>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, Richard Weinberger <richard@nod.at>, Sven Peter <sven@svenpeter.dev>, Rob Herring <robh+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Neil Armstrong <neil.armstrong@linaro.org>, Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [PATCH V2] dt-bindings: nvmem: move deprecated cells binding to
+ its own file
+Message-ID: <169660897594.4022464.17777045780008018792.robh@kernel.org>
+References: <20231003064018.7502-1-zajec5@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1] arm64: dts: amlogic: a1: support all i2c masters and
- their muxes
-Content-Language: en-US, fr
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>, jbrunet@baylibre.com,
- mturquette@baylibre.com, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com
-Cc: kernel@sberdevices.ru, rockosov@gmail.com,
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- George Stark <gnstark@salutedevices.com>
-References: <20231006114145.18718-1-ddrokosov@salutedevices.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231006114145.18718-1-ddrokosov@salutedevices.com>
+Content-Disposition: inline
+In-Reply-To: <20231003064018.7502-1-zajec5@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231006_074651_523896_FEE4AB79 
-X-CRM114-Status: GOOD (  11.12  )
+X-CRM114-CacheID: sfid-20231006_091632_591849_B0929BB0 
+X-CRM114-Status: GOOD (  13.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,195 +69,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 06/10/2023 13:41, Dmitry Rokosov wrote:
-> A1 SoC family has four i2c masters: i2c0 (I2CM_A), i2c1 (I2CM_B), i2c2
-> (I2CM_C) and i2c3 (I2CM_D).
-> 
-> Signed-off-by: George Stark <gnstark@salutedevices.com>
-> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 144 ++++++++++++++++++++++
->   1 file changed, 144 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> index 823714bcb7a0..f53000a5d0cc 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> @@ -126,6 +126,106 @@ gpio: bank@400 {
->   					gpio-ranges = <&periphs_pinctrl 0 0 62>;
->   				};
->   
-> +				i2c0_f11_pins: i2c0-f11 {
-> +					mux {
-> +						groups = "i2c0_sck_f11",
-> +							 "i2c0_sda_f12";
-> +						function = "i2c0";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c0_f9_pins: i2c0-f9 {
-> +					mux {
-> +						groups = "i2c0_sck_f9",
-> +							 "i2c0_sda_f10";
-> +						function = "i2c0";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c1_x_pins: i2c1-x {
-> +					mux {
-> +						groups = "i2c1_sck_x",
-> +							 "i2c1_sda_x";
-> +						function = "i2c1";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c1_a_pins: i2c1-a {
-> +					mux {
-> +						groups = "i2c1_sck_a",
-> +							 "i2c1_sda_a";
-> +						function = "i2c1";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c2_x0_pins: i2c2-x0 {
-> +					mux {
-> +						groups = "i2c2_sck_x0",
-> +							 "i2c2_sda_x1";
-> +						function = "i2c2";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c2_x15_pins: i2c2-x15 {
-> +					mux {
-> +						groups = "i2c2_sck_x15",
-> +							 "i2c2_sda_x16";
-> +						function = "i2c2";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c2_a4_pins: i2c2-a4 {
-> +					mux {
-> +						groups = "i2c2_sck_a4",
-> +							 "i2c2_sda_a5";
-> +						function = "i2c2";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c2_a8_pins: i2c2-a8 {
-> +					mux {
-> +						groups = "i2c2_sck_a8",
-> +							 "i2c2_sda_a9";
-> +						function = "i2c2";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c3_x_pins: i2c3-x {
-> +					mux {
-> +						groups = "i2c3_sck_x",
-> +							 "i2c3_sda_x";
-> +						function = "i2c3";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c3_f_pins: i2c3-f {
-> +					mux {
-> +						groups = "i2c3_sck_f",
-> +							 "i2c3_sda_f";
-> +						function = "i2c3";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
->   				uart_a_pins: uart-a {
->   					mux {
->   						groups = "uart_a_tx",
-> @@ -377,6 +477,17 @@ clkc_periphs: clock-controller@800 {
->   					      "hifi_pll", "xtal";
->   			};
->   
-> +			i2c0: i2c@1400 {
-> +				compatible = "amlogic,meson-axg-i2c";
-> +				status = "disabled";
-> +				reg = <0x0 0x1400 0x0 0x20>;
-> +				interrupts = <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				clocks = <&clkc_periphs CLKID_I2C_M_A>;
-> +				power-domains = <&pwrc PWRC_I2C_ID>;
-> +			};
-> +
->   			uart_AO: serial@1c00 {
->   				compatible = "amlogic,meson-a1-uart",
->   					     "amlogic,meson-ao-uart";
-> @@ -437,6 +548,39 @@ saradc: adc@2c00 {
->   				status = "disabled";
->   			};
->   
-> +			i2c1: i2c@5c00 {
-> +				compatible = "amlogic,meson-axg-i2c";
-> +				status = "disabled";
-> +				reg = <0x0 0x5c00 0x0 0x20>;
-> +				interrupts = <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				clocks = <&clkc_periphs CLKID_I2C_M_B>;
-> +				power-domains = <&pwrc PWRC_I2C_ID>;
-> +			};
-> +
-> +			i2c2: i2c@6800 {
-> +				compatible = "amlogic,meson-axg-i2c";
-> +				status = "disabled";
-> +				reg = <0x0 0x6800 0x0 0x20>;
-> +				interrupts = <GIC_SPI 76 IRQ_TYPE_EDGE_RISING>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				clocks = <&clkc_periphs CLKID_I2C_M_C>;
-> +				power-domains = <&pwrc PWRC_I2C_ID>;
-> +			};
-> +
-> +			i2c3: i2c@6c00 {
-> +				compatible = "amlogic,meson-axg-i2c";
-> +				status = "disabled";
-> +				reg = <0x0 0x6c00 0x0 0x20>;
-> +				interrupts = <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				clocks = <&clkc_periphs CLKID_I2C_M_D>;
-> +				power-domains = <&pwrc PWRC_I2C_ID>;
-> +			};
-> +
->   			usb2_phy1: phy@4000 {
->   				compatible = "amlogic,a1-usb2-phy";
->   				clocks = <&clkc_periphs CLKID_USB_PHY_IN>;
-
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Ck9uIFR1ZSwgMDMgT2N0IDIwMjMgMDg6NDA6MTggKzAyMDAsIFJhZmHFgiBNacWCZWNraSB3cm90
+ZToKPiBGcm9tOiBSYWZhxYIgTWnFgmVja2kgPHJhZmFsQG1pbGVja2kucGw+Cj4gCj4gU3VwcG9y
+dCBmb3Igb2xkIE5WTUVNIGZpeGVkIGNlbGxzIHdhcyBkZXByZWNhdGVkIGluIGZhdm91ciBvZgo+
+ICJmaXhlZC1sYXlvdXQiLiBJdCdzIHN0aWxsIHBhcnQgb2YgdGhlIG52bWVtLnlhbWwgdGhvdWdo
+IGFuZCBtYXkgYmUKPiB1bmtub3dpbmdseSB1c2VkIGJ5IG5ldyBiaW5kaW5ncyBhZGRlZCB3aXRo
+b3V0IG11Y2ggb2YgYW5hbHl6ZS4KPiAKPiBUbyBtYWtlIGl0IG1vcmUgZGlmZmljdWx0IHRvIGFj
+Y2lkZW50YWxseSBzdXBwb3J0IG9sZCBzeW50YXggbW92ZSBpdHMKPiBiaW5kaW5nIHRvIHNlcGFy
+YXRlZCBmaWxlIHdpdGggImRlcHJlY2F0ZWQiIGluIGl0cyBuYW1lLgo+IAo+IFNpZ25lZC1vZmYt
+Ynk6IFJhZmHFgiBNacWCZWNraSA8cmFmYWxAbWlsZWNraS5wbD4KPiAtLS0KPiBWMjogRml4IHBh
+dGggdG8gbnZtZW0tZGVwcmVjYXRlZC1jZWxscy55YW1sIGluIGFtbG9naWMsbWVzb242LXJ0Yy55
+YW1sCj4gCj4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL210ZC9tdGQueWFtbCAgICAgICAgICB8
+ICA3ICsrKystCj4gIC4uLi9iaW5kaW5ncy9tdGQvcGFydGl0aW9ucy9udm1lbS1jZWxscy55YW1s
+ICB8ICAxICsKPiAgLi4uL252bWVtL2FtbG9naWMsbWVzb24tZ3hiYi1lZnVzZS55YW1sICAgICAg
+IHwgIDEgKwo+ICAuLi4vYmluZGluZ3MvbnZtZW0vYW1sb2dpYyxtZXNvbjYtZWZ1c2UueWFtbCAg
+fCAgMSArCj4gIC4uLi9iaW5kaW5ncy9udm1lbS9hcHBsZSxlZnVzZXMueWFtbCAgICAgICAgICB8
+ICAxICsKPiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvbnZtZW0vaW14LW9jb3RwLnlhbWwgIHwg
+IDEgKwo+ICAuLi4vYmluZGluZ3MvbnZtZW0vbWVkaWF0ZWssZWZ1c2UueWFtbCAgICAgICAgfCAg
+MSArCj4gIC4uLi9udm1lbS9taWNyb2NoaXAsc2FtYTdnNS1vdHBjLnlhbWwgICAgICAgICB8ICAx
+ICsKPiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvbnZtZW0vbXhzLW9jb3RwLnlhbWwgIHwgIDEg
+Kwo+ICAuLi4vbnZtZW0vbnZtZW0tZGVwcmVjYXRlZC1jZWxscy55YW1sICAgICAgICAgfCAyOCAr
+KysrKysrKysrKysrKysrKysrCj4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL252bWVtL252bWVt
+LnlhbWwgICAgICB8ICA5IC0tLS0tLQo+ICAuLi4vYmluZGluZ3MvbnZtZW0vcWNvbSxxZnByb20u
+eWFtbCAgICAgICAgICAgfCAgMSArCj4gIC4uLi9iaW5kaW5ncy9udm1lbS9xY29tLHNlYy1xZnBy
+b20ueWFtbCAgICAgICB8ICAxICsKPiAgLi4uL2JpbmRpbmdzL252bWVtL3Fjb20sc3BtaS1zZGFt
+LnlhbWwgICAgICAgIHwgIDEgKwo+ICAuLi4vYmluZGluZ3MvbnZtZW0vcm9ja2NoaXAsb3RwLnlh
+bWwgICAgICAgICAgfCAgMSArCj4gIC4uLi9iaW5kaW5ncy9udm1lbS9yb2NrY2hpcC1lZnVzZS55
+YW1sICAgICAgICB8ICAxICsKPiAgLi4uL252bWVtL3NvY2lvbmV4dCx1bmlwaGllci1lZnVzZS55
+YW1sICAgICAgIHwgIDEgKwo+ICAuLi4vYmluZGluZ3MvbnZtZW0vc3VucGx1cyxzcDcwMjEtb2Nv
+dHAueWFtbCAgfCAgMSArCj4gIC4uLi9iaW5kaW5ncy9ydGMvYW1sb2dpYyxtZXNvbjYtcnRjLnlh
+bWwgICAgICB8ICAxICsKPiAgMTkgZmlsZXMgY2hhbmdlZCwgNTAgaW5zZXJ0aW9ucygrKSwgMTAg
+ZGVsZXRpb25zKC0pCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRy
+ZWUvYmluZGluZ3MvbnZtZW0vbnZtZW0tZGVwcmVjYXRlZC1jZWxscy55YW1sCj4gCgpSZXZpZXdl
+ZC1ieTogUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4KCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAps
+aW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
