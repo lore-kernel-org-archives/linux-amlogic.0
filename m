@@ -4,119 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54076CD8CA9
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Oct 2023 16:45:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA616CD98EA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Oct 2023 02:51:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2neUVvuSnEqoNgaS8QWwnFr6wtwqF1VC5kOF1EiOzm8=; b=l58oXgZMqCi2uE
-	SJmc3EsDpMezj8PYSSadU5Xy/JujE0twUgRPj2yt4PJYIAndgVacX+2KLHOQsfQ0fXCkjuBwhJrKD
-	t8NYj1lcccw1vUPPk3ERzVtL2zo/E5Cod1/SrUvWlI6ixyu3+POntltmdm3oNRyDVxTFFksHs5Vdh
-	UamSkx3y6Ki19ncfIOVTFl3Th/3N6r/MRBgU5r0Ty+2xJ8HoWOCsy6wqVReDrsNBjZenUZUIziTe2
-	QR/qQx1baryUriYCcV/vfae9JUg8QH9Va2LD2ZCDvScodNpYjcpNz8L7sM/es6ecxd/4ifOkJuuja
-	i+r0tpR5xGMuum6cwF6Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=okEmJw1dp1iKkiHq5VSuwvlrXt7QgqtT3Awv0vkfd2U=; b=jXRJISifwYTxBlQslLzwn3YhqY
+	PSmhUhbDEnLGMVa724k469CTsHmY14kW4aHpy0jUHbS1Rr+1SkTjyq7zqdfXa6Frpu2cgn4jPUtyF
+	N0YO8SXF8M7LpV6TIhfzm51gYJfSovlrU9JyLXn2WwweqjUHhAEtYNwYS4B75ni6l1chKqFck4Iy6
+	zJFEWyKlvsxjRvzrrB0PFhE+oVfh1lzmCC56FvciouORZN6K5y8R85msFDUcmAfh132woWjIv2F5A
+	/VUayAFQquMb7sw4+bYt0UKIPYrFy8tINIJSSoHu4hLRdK/rj4Kg2BtvYNWBcZI8K0hfnogyCOXAi
+	BefO2kxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qqFr5-00Dmpz-2Q;
-	Tue, 10 Oct 2023 16:45:11 +0000
-Received: from mail-sgaapc01olkn2082a.outbound.protection.outlook.com ([2a01:111:f400:feab::82a] helo=APC01-SG2-obe.outbound.protection.outlook.com)
+	id 1qqPJ3-00EcCA-2h;
+	Wed, 11 Oct 2023 02:50:41 +0000
+Received: from mail-psaapc01on2072d.outbound.protection.outlook.com ([2a01:111:f400:feae::72d] helo=APC01-PSA-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qqFr2-00Dmp0-03;
-	Tue, 10 Oct 2023 16:45:09 +0000
+	id 1qqPIy-00Ec7x-03;
+	Wed, 11 Oct 2023 02:50:39 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iELm5inVMeNQ20FWSEXjt61pQotJXt0sZjhFhohHXuVLJxSjDJK2r6+O1UXd4L1UC/ea33xM2+yHLuQR7sgetE5a1K72Xqn3TcThgKvKcrANXTX+546XGh35pd7p037nrw4bVNZ/4FRIEKv5BRudEnSR9iz0iMBfBvaw3I8IRkr0WOepByouVQAwCpmtyQbzYOQb2nKn84CfL4EV5FShcgOqUsMKELzp4x7q+2VPoF3rLNJr12XAylf+cBcQL9aZ65QqpnvvVAqyWES32ro8TvoOa5e81rrLGaIclNtAgF4DqzNeKtDuO41clsmXshv55sKrVLiW/T1DS5hE+aSQXw==
+ b=d7ataCgcZMUcPe/0BXOioCeFLdD/ZLXFYuRmGZE7Da8/AoGm09AIoxJn99PWgpVpbFx/jm5Vghu/9US3YpiDROosIc0luvwsusrdxuDyeI53PeHaFCdNCnEdv3y3ZTMjagQxx0cHxPWAEL9tpbR5VWI2spRoliwyx/6PAwQL7ilixcaHqCQEPXI0r91JmNvhjF/21kPTY1D4PaJzXd8AkOqWZFn+P0l9TkrUeL+1xLM0OOXSKI5eyRx4opgryp+c8v48eUU8PdKFMe9VEi7PzIdbz4M8/3Xy1Iv18ghXtZJ2S7wDEgu6mBki4vcQnXb7yXN6pJOidxAbCoK9XN1BZw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7Er4IMpZfPSX54I809Kd72s9uLIY/b8EKWkK3Gvhuco=;
- b=LzN+IXylStAg7SYOy5KK1LxDAimNTOlE8od/ldTUvQTU0Yu95T+Dab/LQ30aR+27zNLToBVhLICCXssBW+yUijxmkWuK7uRxY7toDNlYm9OSE4Da7tfomr2F0cKMfvWb43uvRGXyxN5C5FteeRFmWuP3Wu+zO/uyva3fP/VWoTuLQTS0NTxMF57AYgkJtQFNmSdUwL1JfbGCKc/Qxohdmqog4odtKbn46ZKqKqAqqNgBy8WeDwR2pWwxjDIaLSBt6suO5XstSOKIJ+QSRb4q1DyMCw2SyHjIRGjnZvJXstiAoFrUs50VyTzEROo7hIbB/E4Q5mKUeYS/+N92LsuP0Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ bh=s74HjkzSQr56YXmtVLL8mK7Q8FfFT8/LksnS8c/3y1c=;
+ b=WQenpPjAvpTczNqmBTAoMEoTH7X5kU+gvK3eHpCy3/VsKWDXm5+gv3JiMLKslLIUQfaB29oDqJYeG+/ZqTT3II6baoTw6KI8cQiwkTTFENXkE8mry/fP//PGJ+6/lerVsDTvpM41XQl+0HjKs9R2PhGiZTtBm/lKjL9g5gjuG8CpGis1gyZdtA+C+I+XPay6RTBmI9ofn3tuNjoPAbOlhSg+zyTObaiU5/yPcHDJoPbz5laNvqV3r4b4vzu6wAwj7aM6A8nepGToawCOUdrS6NWAzc28Av/9XpbHcBbYzf8yUUp7PzxCLUMIfucTYV83/gdKSaedivuxuMgtiymlMQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7Er4IMpZfPSX54I809Kd72s9uLIY/b8EKWkK3Gvhuco=;
- b=i2VRuLN1AGiPO+b3cAT4/HRyiIsCVjcGQnzghid+lQi3E0H/9iiXC8Scu77ASfryoENq3mAXUcJKfZx9AvX1fgkrPDzpowqrI4jcM1pQiQeg/LDtWloJ7gv+7zDKZ2LEGHsItymQwtgPV6qSnKvDxfEKYoiIrnK4cJanocn0nHDVl8na6U/JjFekeVLLdQlO1zYhMzQV0Mw9An1fCQDrdvDXCxgrQlrkdqk/Ofz4duPPcnCMLzs1sSOgwPsflxMPd+qhzjlWHgnJNvZ7pW3ngW+BV1PPlyPaSwjKAxCESqzVK3r9yrc0M2n5bAgTG1IAXqNzd2inIeGxoXOYp2MnXQ==
-Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
- (2603:1096:400:363::9) by SI2PR01MB3962.apcprd01.prod.exchangelabs.com
- (2603:1096:4:10e::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.38; Tue, 10 Oct
- 2023 16:44:53 +0000
-Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
- ([fe80::3ac0:a6a4:2d8b:7fb9]) by TYZPR01MB5556.apcprd01.prod.exchangelabs.com
- ([fe80::3ac0:a6a4:2d8b:7fb9%4]) with mapi id 15.20.6813.017; Tue, 10 Oct 2023
- 16:44:52 +0000
-From: Ziyang Huang <hzyitc@outlook.com>
-To: ulf.hansson@linaro.org
-Cc: neil.armstrong@linaro.org,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	yinxin_1989@aliyun.com,
-	regressions@leemhuis.info,
-	briannorris@chromium.org,
-	linux-mmc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Ziyang Huang <hzyitc@outlook.com>
-Subject: [PATCH v2] mmc: meson-mx-sdhc: Fix initialization frozen issue
-Date: Wed, 11 Oct 2023 00:44:00 +0800
-Message-ID: <TYZPR01MB5556A3E71554A2EC08597EA4C9CDA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <TYZPR01MB5556B56D834E02F41C44D81DC95FA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-References: <TYZPR01MB5556B56D834E02F41C44D81DC95FA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-X-TMN: [m663dbzJiho1ItKxpjDRASwyqKXEVYHHqVdT8Z9XEEAGOnwkEjJoxw==]
-X-ClientProxiedBy: TYCPR01CA0033.jpnprd01.prod.outlook.com
- (2603:1096:405:1::21) To TYZPR01MB5556.apcprd01.prod.exchangelabs.com
- (2603:1096:400:363::9)
-X-Microsoft-Original-Message-ID: <20231010164400.549969-1-hzyitc@outlook.com>
+ bh=s74HjkzSQr56YXmtVLL8mK7Q8FfFT8/LksnS8c/3y1c=;
+ b=j5Z2nNo3ldeMbtDtpQoomKQOXXygnVLk58rEZUoAGqKdc0ZhCvZPhS/0fmMrqFDwHTfbRpZaQCbq1WlWQT5HeJPM0LKbEHb/cFpuo/MKwKlC85mDGoVD5LJsTqFml9+tSUa1iwS6UFjDlQ393xqg5oF8TOagIAhJuYtc281WESWLAanEcU6B52j6qZEj4ONA45zENS4WqsRNjNNQvv9bjk6tbiCUqtLnauEFDR6ye5uLA+R1/h98GrtAUaZrWgwdxL7JlQWdCDNEDXSJJaIcbMP/8ahKPLXYlepP1qF3OJUxeyKgBCpHtf1Go5iC3YrLbtmHxxGMOmJTSkiBBgqwcQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by SI2PR03MB5771.apcprd03.prod.outlook.com (2603:1096:4:150::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.38; Wed, 11 Oct
+ 2023 02:50:12 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::792a:209d:4919:5db6]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::792a:209d:4919:5db6%7]) with mapi id 15.20.6863.041; Wed, 11 Oct 2023
+ 02:50:11 +0000
+Message-ID: <291f03f9-72aa-2842-b44a-c88c812df4f1@amlogic.com>
+Date: Wed, 11 Oct 2023 10:50:04 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH V2 1/4] dt-bindings: clock: add Amlogic C3 PLL clock
+ controller bindings
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Chuan Liu <chuan.liu@amlogic.com>
+References: <20231010062917.3624223-1-xianwei.zhao@amlogic.com>
+ <20231010062917.3624223-2-xianwei.zhao@amlogic.com>
+ <20231010132151.GA557938-robh@kernel.org>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <20231010132151.GA557938-robh@kernel.org>
+X-ClientProxiedBy: SI2PR06CA0002.apcprd06.prod.outlook.com
+ (2603:1096:4:186::10) To TYZPR03MB6896.apcprd03.prod.outlook.com
+ (2603:1096:400:289::14)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR01MB5556:EE_|SI2PR01MB3962:EE_
-X-MS-Office365-Filtering-Correlation-Id: 90674f13-7ae7-4cae-7aa2-08dbc9b03957
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SI2PR03MB5771:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ee20711-979f-44cf-3f98-08dbca04c94f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Xh36sGv6HxhlcLVmuo1jPnpGZmuCaD1eix0QTlW9LkK17hOjRNc07cStNBqxnUFOcKhTPxS3VwOaCxCmdSpnM4HxPK3kYSDE8NdHCU9LDD+3vsq7ET8Pa98cbYd9c623eHkgr1HsfaP9gTo0z6ITrlXdCX3A2h66iyWhWgyEJZyAg33lkBJKJS801dSFRDDRHxqTK9QQsUGeRB6ibn+OObOmINpGgLn1uH1/mig/A6EvojahMTWhKEP8WyCFnNdrk/JWuG6arAvR3NdBC8hpzZ8/+twxKjQ4GCfYH9+mjIeAIQ/PTcgzuWksRQI77BLwomgH80JivHSmjdRnPBNKkacHemnuhq4KVtiKC3y/TjHIUy7NpEyhsAmroxTvR8XYkR4dooobUP8VjgJizmR6ttGaYdqCxiEsADfUra3/h611G58402bFE/0NiUlkrDnAKLav11kmJpcfSfP4VG0sIZPqcUcSfrD6BSY2dBx3IVNaaRriiJQzFMkpKJCxdlQmTzjphu99bIuPgWq46Ly8xViWbXnfe4VsB7B+SRmN+Mrv+rdcXf4sko58uUkJbgXUyLJXtO/FGl75Q+9CwSbnas7oCD7PYUMIgbgYYeIlrW+QtaQ+x0oWIIJFdhP8RZBo
+X-Microsoft-Antispam-Message-Info: +tA1jHiInbtT6X6HDQk3P4vDy3jmA1Jrk+YJ31Zr3r8Rsr90DI2rSfjdoUMi5EJRk1pZY8ugZoca6tXrgNHR/5C2GdIh6XZMwbBFrKt78IdX4qoCXFNt4Wqh6FxY1KVb660K5PQxTACaZpsHZE7GJWFJAxBxkc+h07f2fb+Vg6+cADG3eQQFBL1d3zInspbuD27SphhwOV9xDpK6slykuy30KGXqUCYU619OrkrW0ZSvGfnT/G8WRiI36COqMnssdPLYoiij+XuRWjBm33YW7kn5MUTPVc51TU6hHcqLwbaoZhioFtl9u6Znk+Qjv0jtYYmXLGSFRlnXlsIrcH0TsLEAoyRA8gke4moqxbCG3spCLlRzZZYfZcSxZzFBvyq3fviOxKJNUw2+HVoFnH/B4R8tFmSOs07b7HbdRCebAKdItV5cMH5xhBt+kVeVDrYfHXS5cwXfjI20w1xckQ9dZKBpFwz7AUu1ZcJIRm2EYeLes04MSKoX9KFIgxZexFCyTFgUZQ32/BrQ5sPjSSjpTDWCs2yzNuCoybtLzpD4b1Nki+qzagVBgEtdXxlCvyqMtI/3ZSGxmkSU/5eTEF51bBTNlZvOocvyA1MpEQ+7mFJ6Q0kswiXYFUomLv3Xad8lLw2DVxo+EfoDJ5Acl7nfDlwV0BtxVq0iCnl7G6obXt4zd/oHMmsmY1AY8ofdwgrz
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39850400004)(346002)(396003)(136003)(376002)(366004)(230922051799003)(451199024)(64100799003)(186009)(1800799009)(31686004)(26005)(53546011)(2616005)(86362001)(38100700002)(36756003)(31696002)(6512007)(4326008)(2906002)(8676002)(7416002)(107886003)(8936002)(54906003)(6666004)(5660300002)(508600001)(6506007)(6916009)(966005)(66946007)(6486002)(83380400001)(316002)(41300700001)(66476007)(66556008)(44832011)(45980500001)(43740500002);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?u19E9jMI136bHM0F1ig0fVyxurvuMLClQr0p0MjgOBog/YirxwJRqiH5eNjw?=
- =?us-ascii?Q?iXzUVhgJ7oUPsV/VEN/PVQTLwuFLuzuDjSkEKlCV8tIX/fpII+lbULekJUy/?=
- =?us-ascii?Q?kx7kEYaq7AfOQIC13imr5pTFBuw6OFzVEvt+AOGZi/kEPq/SEz/wxeJTcv2H?=
- =?us-ascii?Q?Iioon/d84R/oCX/npb6/SCn0cV41NaxTc91kU4IPMjUqbn0qbBPMvRGPU3HN?=
- =?us-ascii?Q?W/Em8OiJqRSCq4IQ4KWF3hMZrxy7ZH77or3tx346DOAGw+R/v/d0hYlbgraY?=
- =?us-ascii?Q?yzKyct/eCD/RsPHyKi4pN3FisY1a0/NyiOg1/AfmBv/vb+aDOlZUvz6ZYxSK?=
- =?us-ascii?Q?VIGmthXvqAt28Ac5IAbbAi+Ei2DksJibdjXchOgZRk4IapscL1wRCTDlJsMN?=
- =?us-ascii?Q?DvooWrWXeqWfCisdhj94kof6uQsCn7/4lGUkV4kcpWVZaL2bjHg2CSiMdAVE?=
- =?us-ascii?Q?7z7IBuB1PzkvRUkCE7Wv3BDcgtJ7us1x2Dh4xYxYlatvmpljIwTTq8VB70Bs?=
- =?us-ascii?Q?iw/1fFbwI4asZVhsISkreFhrMOMvhHcFfCP3lXBajGTmXb3d5dPMkP2QGmOE?=
- =?us-ascii?Q?lcPnj3jiQDKvMOtJLtsMUl3flwSeTlJNZIN6gSg8fy+vbwShH7EeHXBCxzRO?=
- =?us-ascii?Q?EOBjLtpY0S+AZ4h8fa0VNlAUfnN6d3Zgc6rqPuJ9WGb/olH/xbj8bDEP+OIj?=
- =?us-ascii?Q?xLqwGlQG7tdKB7fZi5wqzzYGaD505Sv+g6bx+Jbz0eovDwJsblh+HqlHLHYQ?=
- =?us-ascii?Q?4Nm1LNSXQjPuo/DQ8/QLbNMfLPLzVGETk8PWEG9f2p70ZXqXadm68eDeUaPx?=
- =?us-ascii?Q?vZEYnfI7KQK1xb++jYUAt+SdVtBtN65M+DmnDkBBSQoZkwwonYbetv2xdIwI?=
- =?us-ascii?Q?0QFRTqH539lzzlm4IE67Pbruc6zFrD6cco/KNDdaJ2zXCHuyERazpe8ZUe4o?=
- =?us-ascii?Q?pOSwTX3Mbu3s7yPIL+kTA1zd/POieG12hoA0+jIM/njWlAAfVedJnvyB1O6o?=
- =?us-ascii?Q?LMG440mzC0TzUaIPBbYM9GameOsoMbS5hKPLxqhMI9NDw+XILri05r2VO0kF?=
- =?us-ascii?Q?PlYkSXVwD90zgjXXeMpp4BOgXI0tgIK0zcWKSO0H/YbASEesahglvRt41b/V?=
- =?us-ascii?Q?hE0emADtdtn3kOvSpYODJhznLok0itp5MujIeCTpcz3BrYXjmLnotQqPPi2b?=
- =?us-ascii?Q?B2ONpRmeeRyBY8naAeIUW1VWFSvtNTB7Rb65jC7qC575kNq2yvMA3hJq/jg?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 90674f13-7ae7-4cae-7aa2-08dbc9b03957
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NFRpengyUFpUek5WcFR3OEw2OURCYTBhWXVRT2JXa2xnSjM5WlBteGpXUWhr?=
+ =?utf-8?B?V09DSElNWXhhcHFDUUVKQWdkZXdOM2ZTYjlzWmhrUUowTGU5WmJSVmNZZFh5?=
+ =?utf-8?B?Lzg0MnkwM09qRWdNei9Kc1JYNXBOR2FJQ2xLT2dCTjYxaC9sNzFySmxyWTYx?=
+ =?utf-8?B?QTNmdmx3NXBoRENpRGRKL1N6V0duU2s4enFXY2craTJ3UVdZZ2Y2d05yVW44?=
+ =?utf-8?B?Q2szbFN0THlqSTFkVUxyZGpXQnlRRmJoc2haNjZPWE95V0U3K1kwdm1LaTFF?=
+ =?utf-8?B?anhVOW5nZDBFeGxwNW9YQWVKN2xPS0ErdFlHQXlzZDRLTFBJaks0Rk96Z0dU?=
+ =?utf-8?B?eDFBKzBNSjhSVVlJZW1hVUJYVm5zdlR1YW80SnY0eGZzdTR2SlpPOUFZM2pp?=
+ =?utf-8?B?UzFwenRNeCtHeC9BMDg3a3l1N1NoOXk5T1djVlVGNXp0QW56RjdLbkNiMVdm?=
+ =?utf-8?B?Smx4SkdQWEJnVEROcElNZHU2cFdKY3BRQjhEZlJJQm9JOENBRE0wSWZQd2xX?=
+ =?utf-8?B?bzRpcHppRTE4MWozRmhBRXUwRzBXT2libElLZEZtb1JCUWFBWEtTQ21TTTlN?=
+ =?utf-8?B?SHJjTThEN3l2T1BHUkh2ZlFxQVN4Lzl2UHpiL0prYXJMNThud2M0ZjF5STM4?=
+ =?utf-8?B?L1FpQUZ1bEhLWEJ6WVRVc3JZZSt1K0hVb0NaWkdSeE1FK2N4b3paNCszQkFq?=
+ =?utf-8?B?NnN4VDdCVHN6d3piMnBxS2srU01KWXc0ODY0YldLSnFjTDU0WndZWTJSWUNF?=
+ =?utf-8?B?WHBiVEZVbDVLUXFFcTJGSlZRQ25DM1NvbXJSUktXbTNqWDVBNFhrK0VkL2x5?=
+ =?utf-8?B?ZlpsSHlZNkhNUDYyb2ZOdHhBTTlGWkdaRGUyYWFaNlJzODdWYUJsWC92dW1z?=
+ =?utf-8?B?TE9DL0hVZ1NEZjZhUGdKcXpTQkFUMGRXZ3pwRmdzMjB1QXk3QXR3K0ZwVm1z?=
+ =?utf-8?B?RXFwanpSR0VaUXVxY2tvcklOOXJBa09RcjE4NjIvblUzcVcwdy81cnZidWt0?=
+ =?utf-8?B?SEswa3VEc3hqOUNIemVjdjQrTXlxK25HSlo2NmhPNHlSNG1BQU53R3ZDbkF1?=
+ =?utf-8?B?ckdSU2JzUXQvZWJZRjdPYXlTU252SWVmQ1lEUFVHeTI0YmgvN01yQ2tjOVdC?=
+ =?utf-8?B?MFdma3czZUJhVEE0UmtabkRFRWFFNHpOY3VKMVljVmpibUxiT21kWjFJbWxM?=
+ =?utf-8?B?WDVCcHNaTFBiT3B6TkZwSFpUcUgwY0RPWllOZWNCOGpZL1pqTTE2dEE2Ny9r?=
+ =?utf-8?B?ay9henE5dTJQYjA2dzZFaGU3SUxza1M1TlZYN2NUM3RHTG9TQ0c1OEgrYUlL?=
+ =?utf-8?B?ZFRaU0xYaHhvSkFYV3ZQNlJqN3hRWjhyMkI5NktnSkp0TVRtNjlabEpwaTV1?=
+ =?utf-8?B?Z3hoU0VYTnEvTUQ3UWE3N2Y4RVltMU9PRXFqT216S1dlOU1xSkxmNTRPR3dy?=
+ =?utf-8?B?aUFoWXhYZUxKVkwrQURQWlJNQU5BSHZzT2tzSkFoWFZSMzhQR3NRYnhUcFNv?=
+ =?utf-8?B?ZkZVNkpTYm03YnlRZUEvZGxuYjNzOGVQWkpFNTZXbFBZWTh4UGU5ZHdnV2pZ?=
+ =?utf-8?B?SU5wTldpZUIxZnJwM2xWVmQvMzc3bzNnYkxWOEZDRzFyRGFLWU9MZXJyd2h6?=
+ =?utf-8?B?aU5pRHZKdW1ROTd2OXdZYUlWK0F6NG9janI0bHFQMitzTFR3bE1BL0s3WFZQ?=
+ =?utf-8?B?dUtNY2diTTE2SVYvdkIwMlB2WjBoaWlkMFNQR2EwYVdqUU5yQmJGa1I4QXh5?=
+ =?utf-8?B?a2YwTXRHdXRUZ2tWZzRBaWl2bm8vZG5FbjY2QkFDeHd1S2tBNStQVFhUbDYz?=
+ =?utf-8?B?ZXliRURKVXhrcDJhZUFCMnk3UUtISEFoSENlWWdUQjlpZlo4a1Q3N3lzOVdC?=
+ =?utf-8?B?MWx0YjJad2VXdDc1MWRTc0xkYnkzbUwrS3BVeExZS211UkluaE5JTC9IRXU4?=
+ =?utf-8?B?MzEzdEQrckgrY3lFOHFYcGpOMTczeGJnMUltbHo0QUErWjIycXd2ejJKL1lr?=
+ =?utf-8?B?RzlPTm5UaUNxa0FnQWRkT0FqRFZHL2g0bHpFZVB6SXByUmxSTW9BaWRCMmJ2?=
+ =?utf-8?B?Vnh3VGJyNjkzSWpKT2duSmlhcS9aUjRWc2U5NXVyV3NBZzEybUtLc2xUYm5V?=
+ =?utf-8?B?ZTVBZE51OW9BbWJZZWdubkMyUFY3WWYzc0NBSjhkNWxpaEdsbWRPZmtrKzBJ?=
+ =?utf-8?B?S1E9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ee20711-979f-44cf-3f98-08dbca04c94f
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2023 16:44:52.0769
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Oct 2023 02:50:11.4204
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR01MB3962
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FgPGxfY1snTYQtwNy1OCGKA40pddhv2lKxON3iQK8MbcapvYG9AgtJmMZq0NalcXRCBEVF6POsxxAKh98r4UWfJzROllW87BohBbs5t8YgE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR03MB5771
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231010_094508_077132_25B2DD87 
-X-CRM114-Status: GOOD (  12.81  )
+X-CRM114-CacheID: sfid-20231010_195036_073809_0D05F89B 
+X-CRM114-Status: GOOD (  18.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,82 +149,166 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Commit 4bc31edebde5 ("mmc: core: Set HS clock speed before sending
-HS CMD13") set HS clock (52MHz) before switching to HS mode. For this
-freq, FCLK_DIV5 will be selected and div value is 10 (reg value is 9).
-Then we set rx_clk_phase to 11 or 15 which is out of range and make
-hardware frozen. After we send command request, no irq will be
-interrupted and the mmc driver will keep to wait for request finished,
-even durning rebooting.
+Hi Rob,
+     Thanks for your advise.
 
-So let's set it to Phase 90 which should work in most cases. Then let
-meson_mx_sdhc_execute_tuning() to find the accurate value for data
-transfer.
-
-If this doesn't work, maybe need to define a factor in dts.
-
-Fixes: e4bf1b0970ef ("mmc: host: meson-mx-sdhc: new driver for the Amlogic Meson SDHC host")
-Signed-off-by: Ziyang Huang <hzyitc@outlook.com>
----
-Changes since v1:
-  Use Phase 90 instand of value 1
-
- drivers/mmc/host/meson-mx-sdhc-mmc.c | 26 +++++---------------------
- 1 file changed, 5 insertions(+), 21 deletions(-)
-
-diff --git a/drivers/mmc/host/meson-mx-sdhc-mmc.c b/drivers/mmc/host/meson-mx-sdhc-mmc.c
-index 97168cdfa8e9..29698fceb89c 100644
---- a/drivers/mmc/host/meson-mx-sdhc-mmc.c
-+++ b/drivers/mmc/host/meson-mx-sdhc-mmc.c
-@@ -269,7 +269,7 @@ static int meson_mx_sdhc_enable_clks(struct mmc_host *mmc)
- static int meson_mx_sdhc_set_clk(struct mmc_host *mmc, struct mmc_ios *ios)
- {
- 	struct meson_mx_sdhc_host *host = mmc_priv(mmc);
--	u32 rx_clk_phase;
-+	u32 val, rx_clk_phase;
- 	int ret;
- 
- 	meson_mx_sdhc_disable_clks(mmc);
-@@ -290,27 +290,11 @@ static int meson_mx_sdhc_set_clk(struct mmc_host *mmc, struct mmc_ios *ios)
- 		mmc->actual_clock = clk_get_rate(host->sd_clk);
- 
- 		/*
--		 * according to Amlogic the following latching points are
--		 * selected with empirical values, there is no (known) formula
--		 * to calculate these.
-+		 * Phase 90 should work in most cases. For data transmission,
-+		 * meson_mx_sdhc_execute_tuning() will find a accurate value
- 		 */
--		if (mmc->actual_clock > 100000000) {
--			rx_clk_phase = 1;
--		} else if (mmc->actual_clock > 45000000) {
--			if (ios->signal_voltage == MMC_SIGNAL_VOLTAGE_330)
--				rx_clk_phase = 15;
--			else
--				rx_clk_phase = 11;
--		} else if (mmc->actual_clock >= 25000000) {
--			rx_clk_phase = 15;
--		} else if (mmc->actual_clock > 5000000) {
--			rx_clk_phase = 23;
--		} else if (mmc->actual_clock > 1000000) {
--			rx_clk_phase = 55;
--		} else {
--			rx_clk_phase = 1061;
--		}
--
-+		regmap_read(host->regmap, MESON_SDHC_CLKC, &val);
-+		rx_clk_phase = FIELD_GET(MESON_SDHC_CLKC_CLK_DIV, val) / 4;
- 		regmap_update_bits(host->regmap, MESON_SDHC_CLK2,
- 				   MESON_SDHC_CLK2_RX_CLK_PHASE,
- 				   FIELD_PREP(MESON_SDHC_CLK2_RX_CLK_PHASE,
--- 
-2.34.1
-
+On 2023/10/10 21:21, Rob Herring wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> On Tue, Oct 10, 2023 at 02:29:14PM +0800, Xianwei Zhao wrote:
+>> Add the C3 PLL clock controller dt-bindings for Amlogic C3 SoC family
+>>
+>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>> ---
+>> V1 -> V2: Fix errors when check dtbinding use "make dt_binding_check"
+> 
+> Your patches aren't bisectable. It's fine if you want to combine patch 1
+> and 2 into 1 patch. Or just use the raw numbers here instead of the
+> header.
+> 
+I will combine patch 1 and 2 into 1 patch in V3.
+>> ---
+>>   .../bindings/clock/amlogic,c3-pll-clkc.yaml   | 59 +++++++++++++++++++
+>>   .../dt-bindings/clock/amlogic,c3-pll-clkc.h   | 42 +++++++++++++
+>>   2 files changed, 101 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
+>>   create mode 100644 include/dt-bindings/clock/amlogic,c3-pll-clkc.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
+>> new file mode 100644
+>> index 000000000000..a646992917b7
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
+>> @@ -0,0 +1,59 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +# Copyright (C) 2022-2023 Amlogic, Inc. All rights reserved
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/amlogic,c3-pll-clkc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Amlogic C3 serials PLL Clock Controller
+> 
+> s/serials/Serials/
+> 
+Will fix
+>> +
+>> +maintainers:
+>> +  - Chuan Liu <chuan.liu@amlogic.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: amlogic,c3-pll-clkc
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    minItems: 1
+>> +    items:
+>> +      - description: input pll_in
+>> +      - description: input mclk_pll_in
+>> +
+>> +  clock-names:
+>> +    minItems: 1
+>> +    items:
+>> +      - const: pll_in
+>> +      - const: mclk_pll_in
+>> +
+>> +  "#clock-cells":
+>> +    const: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - "#clock-cells"
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/amlogic,c3-peripherals-clkc.h>
+>> +    apb {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+>> +
+>> +        clkc_pll: clock-controller@8000 {
+> 
+> Drop unused labels.
+> 
+Will delete clkc_pll.
+>> +          compatible = "amlogic,c3-pll-clkc";
+> 
+> Your indentation is not consistent.
+> 
+Will fix it in V3.
+>> +          reg = <0x0 0x8000 0x0 0x1a4>;
+>> +          clocks = <&clkc_periphs CLKID_PLL_IN>,
+>> +                   <&clkc_periphs CLKID_MCLK_PLL_IN>;
+>> +          clock-names = "pll_in", "mclk_pll_in";
+>> +          #clock-cells = <1>;
+>> +        };
+>> +    };
+>> diff --git a/include/dt-bindings/clock/amlogic,c3-pll-clkc.h b/include/dt-bindings/clock/amlogic,c3-pll-clkc.h
+>> new file mode 100644
+>> index 000000000000..aa731e8fae29
+>> --- /dev/null
+>> +++ b/include/dt-bindings/clock/amlogic,c3-pll-clkc.h
+>> @@ -0,0 +1,42 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+>> +/*
+>> + * Copyright (c) 2023 Amlogic, Inc. All rights reserved.
+>> + * Author: Chuan Liu <chuan.liu@amlogic.com>
+>> + */
+>> +
+>> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_C3_PLL_CLKC_H
+>> +#define _DT_BINDINGS_CLOCK_AMLOGIC_C3_PLL_CLKC_H
+>> +
+>> +#define CLKID_FIXED_PLL_DCO                  0
+>> +#define CLKID_FIXED_PLL                              1
+>> +#define CLKID_FCLK_DIV40_DIV                 2
+>> +#define CLKID_FCLK_DIV40                     3
+>> +#define CLKID_FCLK_DIV2_DIV                  4
+>> +#define CLKID_FCLK_DIV2                              5
+>> +#define CLKID_FCLK_DIV2P5_DIV                        6
+>> +#define CLKID_FCLK_DIV2P5                    7
+>> +#define CLKID_FCLK_DIV3_DIV                  8
+>> +#define CLKID_FCLK_DIV3                              9
+>> +#define CLKID_FCLK_DIV4_DIV                  10
+>> +#define CLKID_FCLK_DIV4                              11
+>> +#define CLKID_FCLK_DIV5_DIV                  12
+>> +#define CLKID_FCLK_DIV5                              13
+>> +#define CLKID_FCLK_DIV7_DIV                  14
+>> +#define CLKID_FCLK_DIV7                              15
+>> +#define CLKID_GP0_PLL_DCO                    16
+>> +#define CLKID_GP0_PLL                                17
+>> +#define CLKID_HIFI_PLL_DCO                   18
+>> +#define CLKID_HIFI_PLL                               19
+>> +#define CLKID_MCLK_PLL_DCO                   20
+>> +#define CLKID_MCLK_PLL                               21
+>> +#define CLKID_MCLK_PLL_CLK                   22
+>> +#define CLKID_MCLK0_SEL                              23
+>> +#define CLKID_MCLK0_SEL_OUT                  24
+>> +#define CLKID_MCLK0_DIV                              25
+>> +#define CLKID_MCLK0                          26
+>> +#define CLKID_MCLK1_SEL                              27
+>> +#define CLKID_MCLK1_SEL_OUT                  28
+>> +#define CLKID_MCLK1_DIV                              29
+>> +#define CLKID_MCLK1                          30
+>> +
+>> +#endif  /* _DT_BINDINGS_CLOCK_AMLOGIC_C3_PLL_CLKC_H */
+>>
+>> base-commit: 57b55c76aaf1ba50ecc6dcee5cd6843dc4d85239
+>> --
+>> 2.37.1
+>>
 
 _______________________________________________
 linux-amlogic mailing list
