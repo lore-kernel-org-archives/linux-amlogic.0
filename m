@@ -4,85 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5439CD98F3
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Oct 2023 05:12:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9D9FCDB46E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Oct 2023 10:24:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Message-ID:Date:Cc:To:From:Subject:
+	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qo1VGVIbpgTJNc3dMz16jbSA7hIvBMC3mKVgrKiYJxU=; b=byh3S+bgsnu3mi
-	7whepjTJvuMsakFE8EK/OZ+TyFwKcd8JclPddDGsAsHOO+FeGGNECr8hY8lMEyeA2aKuLUSTI1QAR
-	wjHORKW8g31mFaXWwOsMdArp7CFxRnm5MeGo3+YbBNGwZv/GRMqRh67/s7xL9jguV9EVQmWJXAECL
-	S1RglMjynayAV4spiGqWgWKKBf+h2vhnphPfAsZaVQBUKxB6wG37UCU4EO5dP6m4DA01KfaIF5RNu
-	kOe2SAZpY6bVUIMgQ4ZEhdfggRPc3WwhmT0wwUGvwB6bMWt+CYc2bd5C2tqFX8fDvm6nHf25g9WU1
-	b75AtzQmY/iCKogIZcBA==;
+	List-Owner; bh=64N6H3ZR+FXMTmWA17X2mo0CQkMTZuf5F4DekgL9CkU=; b=dmeicMxunyXjgg
+	2iMvCj9nttf10KV0zJ+v0xZmyq43Aj2Pqkm7xo4qQiAShV5vauM3XVarKYv0zwDHRI+zEBfEmQWyf
+	GKi5B1c3owGeuFLSHeqa3f+RH1beywzmKjGIRUz3ieWqDRUT44rLJ8Z2CXz03eZvfhr7mnNSQe/8U
+	qXdTVZnkRdzrslVNjeMeZa/Gv8uypglvA+wo6ruzqJTo8MCN4CFPOdN3cO8hj6GZvrJticMTKmnez
+	xholNZjUhe1uczkL7lxx7cqyx0uMYditN1H/iRFG2JwYikXkhsQLmkqkausiGagoAR71624n7V3Se
+	mjbCUAiwQfrEijY8/dBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qqRWD-00Ep64-1o;
-	Wed, 11 Oct 2023 05:12:25 +0000
-Received: from mail-pl1-x632.google.com ([2607:f8b0:4864:20::632])
+	id 1qqsr7-000ebZ-0Y;
+	Thu, 12 Oct 2023 10:23:49 +0000
+Received: from postfix2.imaqliq.com ([93.189.151.48])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qqRW9-00Ep4W-2D;
-	Wed, 11 Oct 2023 05:12:22 +0000
-Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1c737d61a00so51432005ad.3;
-        Tue, 10 Oct 2023 22:12:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697001138; x=1697605938; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nigg6NOWWCn0hZudaM7Yq7CsxNtYAT49L0IXth0E2/M=;
-        b=LJyBeoLwfFjBjeQIaAfqPDGEBp+1LucbljfrqnwENRF1tGu7+3qYbqemaY0gToCUvv
-         4C4Xqt3nh2QxyHqoFOVu6zXZ3AP3Db4aNyYjI5YWkETVj9eZhu+DPbqrHhoQn6gtTfLB
-         JCfNLadozxCe9bxOtpOMcRDOI1MpnWXVKqy8v8FL5289+ssz4QghTOyvvO5p1VR9qir+
-         sg8DE5qcuI4h5mzC25O7yJkotMNL1F3dXrrL1wwx6ZWAXTgFuKMNgF8lbRmos+sEbnlF
-         wCyaGt9fhRlq13nuk8C3qOkG8KnH8WBiyO6nd5J8rq+UDIB4tpKKopcAEQ/mBsZopPn1
-         vTnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697001138; x=1697605938;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nigg6NOWWCn0hZudaM7Yq7CsxNtYAT49L0IXth0E2/M=;
-        b=TSdzp5qGHiCcv74AL5HV9y7UGj393scRLBSye3gisD1WNMX4W0SVs2BfNI/eZ4DETz
-         jztGt+nioApKeUaMCE+zNR4XzXK+Y/NiBAXilQnRSEgXlhlE5EwPBZphLqHs/rAny2dE
-         JQQexbWJ2yKA/Jm07w0UKKo5VGMH7pb+Sy5rNM24vgjettyGSNc08wVNg+uM3X4A3+Y0
-         tmOXkwYANtAD1x3KdCH722fe7CCGi1MRDmRPXj2YrRoffDP+BZFnmsp3yQmJC28wb+SV
-         93hV1VcCOHc9hSuce9ydVOYc76wBWHlRvToeIlMuS+OtGOXDDQ/kX5Ka2WusmRMCIRtt
-         mrHQ==
-X-Gm-Message-State: AOJu0YxUJdnT+41K9f9PhmiL0vbRHufZgRRGRCjGunZXPFu8+U55sspq
-	i2v/Qd9DKjxGy4bg7sTHo4A=
-X-Google-Smtp-Source: AGHT+IF3hPtVKNWgsn+MppgNKK1gYtLzV1soJc7B8Z4A5P2rhn/x3scK7LQNx53no261s3rHWSCI0Q==
-X-Received: by 2002:a17:902:e749:b0:1b8:76ce:9d91 with SMTP id p9-20020a170902e74900b001b876ce9d91mr26018626plf.1.1697001138105;
-        Tue, 10 Oct 2023 22:12:18 -0700 (PDT)
-Received: from localhost.localdomain ([49.205.243.94])
-        by smtp.gmail.com with ESMTPSA id u13-20020a170902e5cd00b001c5dea67c26sm12777083plf.233.2023.10.10.22.12.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Oct 2023 22:12:17 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	id 1qqsr3-000eZu-2R;
+	Thu, 12 Oct 2023 10:23:48 +0000
+Received: from verse.imaqliq.com (verse.imaqliq.com [93.189.151.95])
+	by postfix2.imaqliq.com (Postfix) with ESMTP id 4A93A1C2941;
+	Thu, 12 Oct 2023 13:23:36 +0300 (MSK)
+MIME-Version: 1.0
+Sensitivity: 
+Importance: Normal
+X-Priority: 3 (Normal)
+In-Reply-To: 
+References: 
+Subject: [PATCH] tty: serial: meson: hard LOCKUP on crtscts mode
+From: pkrasavin@imaqliq.ru
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org,
+Cc: linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: amlogic: Used onboard usb hub reset on odroid n2
-Date: Wed, 11 Oct 2023 10:41:49 +0530
-Message-ID: <20231011051152.133257-2-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231011051152.133257-1-linux.amoon@gmail.com>
-References: <20231011051152.133257-1-linux.amoon@gmail.com>
-MIME-Version: 1.0
+	pkrasavin@imaqliq.ru
+Date: Thu, 12 Oct 2023 10:23:30 +0000
+Message-ID: <OF28B2B8C9.5BC0CD28-ON00258A46.0037688F-00258A46.0039155B@gdc.ru>
+X-Mailer: Lotus Domino Web Server Release 12.0.2 November 03, 2022
+X-MIMETrack: Serialize by http on verse/com(Release 12.0.2|November 03, 2022) at 10/12/2023
+ 10:23:30,
+	Serialize complete at 10/12/2023 10:23:30,
+	Serialize by Router on verse/com(Release 12.0.2|November 03, 2022) at 10/12/2023
+ 10:23:35
+X-KeepSent: 28B2B8C9:5BC0CD28-00258A46:0037688F;
+ type=4; name=$KeepSent
+X-KLMS-Rule-ID: 1
+X-KLMS-Message-Action: clean
+X-KLMS-AntiSpam-Lua-Profiles: 180559 [Oct 12 2023]
+X-KLMS-AntiSpam-Version: 6.0.0.2
+X-KLMS-AntiSpam-Envelope-From: pkrasavin@imaqliq.ru
+X-KLMS-AntiSpam-Rate: 10
+X-KLMS-AntiSpam-Status: not_detected
+X-KLMS-AntiSpam-Method: none
+X-KLMS-AntiSpam-Auth: dmarc=fail header.from=imaqliq.ru policy=none;spf=softfail smtp.mailfrom=imaqliq.ru;dkim=none
+X-KLMS-AntiSpam-Info: LuaCore: 539 539 807534d9021bfe9ca369c363d15ac993cd93d4d9, {rep_avail}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;gdc.ru:7.1.1;127.0.0.199:7.1.2;imaqliq.ru:7.1.1;verse.imaqliq.com:7.1.1;93.189.151.95:7.1.2, FromAlignment: s, {Tracking_dmark_f}, ApMailHostAddress: 93.189.151.95
+X-MS-Exchange-Organization-SCL: -1
+X-KLMS-AntiSpam-Interceptor-Info: scan successful
+X-KLMS-AntiPhishing: Clean, bases: 2023/10/12 08:55:00
+X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, bases: 2023/10/12 01:34:00 #22164647
+X-KLMS-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231010_221221_723702_FF92B7BB 
-X-CRM114-Status: GOOD (  16.91  )
+X-CRM114-CacheID: sfid-20231012_032346_148445_95422822 
+X-CRM114-Status: UNSURE (   8.88  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,74 +93,72 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Odroid n2/n2+ previously use gpio-hog to reset the usb hub,
-switch to used on-board usb hub reset to enable the usb hub
-and enable power to hub.
+There might be hard lockup if we set crtscts mode on port without RTS/CTS configured:
 
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-v2 no change.
----
- .../dts/amlogic/meson-g12b-odroid-n2.dtsi     | 36 ++++++++++++-------
- 1 file changed, 24 insertions(+), 12 deletions(-)
+# stty -F /dev/ttyAML6 crtscts; echo 1 > /dev/ttyAML6; echo 2 > /dev/ttyAML6
+[   95.890386] rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+[   95.890857] rcu:     3-...0: (201 ticks this GP) idle=e33c/1/0x4000000000000000 softirq=5844/5846 fqs=4984
+[   95.900212] rcu:     (detected by 2, t=21016 jiffies, g=7753, q=296 ncpus=4)
+[   95.906972] Task dump for CPU 3:
+[   95.910178] task:bash            state:R  running task     stack:0     pid:205   ppid:1      flags:0x00000202
+[   95.920059] Call trace:
+[   95.922485]  __switch_to+0xe4/0x168
+[   95.925951]  0xffffff8003477508
+[   95.974379] watchdog: Watchdog detected hard LOCKUP on cpu 3
+[   95.974424] Modules linked in: 88x2cs(O) rtc_meson_vrtc
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-index 91c9769fda20..9e671444eca6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-@@ -31,6 +31,30 @@ hub_5v: regulator-hub_5v {
- 		enable-active-high;
- 	};
+Possible solution would be to not allow to setup crtscts on such port.
+
+Tested on S905X3 based board.
+
+Signed-off-by: Pavel Krasavin <pkrasavin@imaqliq.com>
+
+--- a/drivers/tty/serial/meson_uart.c	2023-08-22 12:46:50.933814528 +0300
++++ b/drivers/tty/serial/meson_uart.c	2023-08-22 14:48:15.593169948 +0300
+@@ -380,10 +380,15 @@ static void meson_uart_set_termios(struc
+ 	else
+ 		val |= AML_UART_STOP_BIT_1SB;
  
-+	/* USB hub supports both USB 2.0 and USB 3.0 root hub */
-+	usb-hub {
-+		dr_mode = "host";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* 2.0 hub on port 1 */
-+		hub_2_0: hub@1 {
-+			compatible = "usb5e3,610";
-+			reg = <1>;
-+			peer-hub = <&hub_3_0>;
-+			vdd-supply = <&usb_pwr_en>;
-+		};
-+
-+		/* 3.0 hub on port 4 */
-+		hub_3_0: hub@2 {
-+			compatible = "usb5e3,620";
-+			reg = <2>;
-+			peer-hub = <&hub_2_0>;
-+			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-+			vdd-supply = <&vcc_5v>;
-+		};
-+	};
-+
- 	sound {
- 		compatible = "amlogic,axg-sound-card";
- 		model = "ODROID-N2";
-@@ -234,18 +258,6 @@ &gpio {
- 		"PIN_3",  /* GPIOX_17 */
- 		"PIN_5",  /* GPIOX_18 */
- 		"PIN_36"; /* GPIOX_19 */
--	/*
--	 * WARNING: The USB Hub on the Odroid-N2 needs a reset signal
--	 * to be turned high in order to be detected by the USB Controller
--	 * This signal should be handled by a USB specific power sequence
--	 * in order to reset the Hub when USB bus is powered down.
--	 */
--	usb-hub-hog {
--		gpio-hog;
--		gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
--		output-high;
--		line-name = "usb-hub-reset";
--	};
- };
+-	if (cflags & CRTSCTS)
+-		val &= ~AML_UART_TWO_WIRE_EN;
+-	else
++	if (cflags & CRTSCTS) {
++		if (port->flags & UPF_HARD_FLOW) {
++			val &= ~AML_UART_TWO_WIRE_EN;
++		} else {
++			termios->c_cflag &= ~CRTSCTS;
++		}
++	} else {
+ 		val |= AML_UART_TWO_WIRE_EN;
++	}
  
- &i2c3 {
--- 
-2.42.0
-
+ 	writel(val, port->membase + AML_UART_CONTROL);
+ 
+@@ -705,6 +710,7 @@ static int meson_uart_probe(struct platf
+ 	u32 fifosize = 64; /* Default is 64, 128 for EE UART_0 */
+ 	int ret = 0;
+ 	int irq;
++	bool has_rtscts;
+ 
+ 	if (pdev->dev.of_node)
+ 		pdev->id = of_alias_get_id(pdev->dev.of_node, "serial");
+@@ -732,6 +738,7 @@ static int meson_uart_probe(struct platf
+ 		return irq;
+ 
+ 	of_property_read_u32(pdev->dev.of_node, "fifo-size", &fifosize);
++	has_rtscts = of_property_read_bool(pdev->dev.of_node, "uart-has-rtscts");
+ 
+ 	if (meson_ports[pdev->id]) {
+ 		return dev_err_probe(&pdev->dev, -EBUSY,
+@@ -762,6 +769,8 @@ static int meson_uart_probe(struct platf
+ 	port->mapsize = resource_size(res_mem);
+ 	port->irq = irq;
+ 	port->flags = UPF_BOOT_AUTOCONF | UPF_LOW_LATENCY;
++	if (has_rtscts)
++		port->flags |= UPF_HARD_FLOW;
+ 	port->has_sysrq = IS_ENABLED(CONFIG_SERIAL_MESON_CONSOLE);
+ 	port->dev = &pdev->dev;
+ 	port->line = pdev->id;
 
 _______________________________________________
 linux-amlogic mailing list
