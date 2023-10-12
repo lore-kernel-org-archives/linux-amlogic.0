@@ -4,120 +4,111 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E210CDB46E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Oct 2023 10:51:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAF59CDB47E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Oct 2023 11:55:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:From:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=x4NV3QLZwrTbseoN5okMwA7uzZXTyRY2g9ehENsj7cA=; b=gIyC06SkiDUdJz
-	10SkjxZxGNtuNl3yIBm5xVoKwMYhUL60EatpMy2w8GuibLx6A98764obnA70C0CaZ60gtaNA6PriB
-	8e/Um09vnPvHzld/j7yzQbtuyoZbIjG6CGB0FHyXq8xWDsQ8Mii9FD0+JyG9sKKZiEWZQAIX/Im5X
-	nydJMdP1oZP3pTS0t+OfU0NEXzZe4ua4pQIwms8zrUTRAFHb3pxndtv2l+9apkDH6YKNnQ2jONtki
-	s3SjNvUcx+uEkd52wPosdp3ngenk3PpdQsvd4N2aibonta3Uqo7vuZ/KTzvuwGzhQ17qwmAC2ISAD
-	Ljqui9WprPtfma+Ld0qw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=nyTwCbtFx+avo7SJ7OuMZ3E5FTFawbh0KK8rxlaTdB8=; b=1sWRXBy1qyWe99Cb0JH1GuCRr7
+	s1qFsT9IxHrU0XT3YcFHTcBXoANrQXH43RWNy+yoV6lYYfkJfOvn3sp6ojvOiBp33a5WYUv5BdnSp
+	kPfRttqFobLkERhtOd+AbAQyQn2lHHKS4nTUrAhvdKenf5f4wWBZz+t24sqA/LwL1rU3sNK0ExZZ5
+	VeCUs7RqE7yZwwIN8ibycXT3VlymW43v1S1oSHSGyw6EVjGJ+oFjLBSwqjFLFys/pQERSJuo+O/PQ
+	QP5jKSxwZHz61/7HdSNL7th5mAJOltzbRIjqazb0Ql0AVfgXLjxbpG+NBuQGNrtPy05NORcQz5Xch
+	IUyyfqHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qqtHi-000hv0-1l;
-	Thu, 12 Oct 2023 10:51:18 +0000
-Received: from mailout2.w1.samsung.com ([210.118.77.12])
+	id 1qquHb-000uXI-0D;
+	Thu, 12 Oct 2023 11:55:15 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qqtHe-000hud-24
+	id 1qquHW-000uUt-2s
 	for linux-amlogic@lists.infradead.org;
-	Thu, 12 Oct 2023 10:51:16 +0000
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20231012105112euoutp02fa0032c4314b6a0190fceb862631b600~NVp41z8hO2562025620euoutp02g
-	for <linux-amlogic@lists.infradead.org>; Thu, 12 Oct 2023 10:51:12 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20231012105112euoutp02fa0032c4314b6a0190fceb862631b600~NVp41z8hO2562025620euoutp02g
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1697107872;
-	bh=yM6GesTFGNN6wdIAfDvDUqkTsSxaBB0xHy+wg5fuqa8=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=Fs66bgOwXT0iqOrj66gar/Si1oEbFiXewEaPFQJj403u2CM2wpnpAvTmO41zTaWJD
-	 UE3oq1rM0YjdKyPDdG5yXWf7e5c4BFJJ4KrWFkfczbktjHY8Pkd5CfmwOuGP9/7IfK
-	 y5QeCiwDjLjaGZNFBlPNq1b+CLh64rgRDEOHVCQ8=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20231012105111eucas1p27c6f0c3c5d4a1aee82addf53ea79b070~NVp4e6oz80057000570eucas1p2U;
-	Thu, 12 Oct 2023 10:51:11 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-	eusmges1new.samsung.com (EUCPMTA) with SMTP id 1A.55.42423.F9FC7256; Thu, 12
-	Oct 2023 11:51:11 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20231012105111eucas1p237cf93ecbccf99b5360ca67caad1a59a~NVp4MQvns0074100741eucas1p2C;
-	Thu, 12 Oct 2023 10:51:11 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20231012105111eusmtrp1bcf19385802fd10df766d52131dde64f~NVp4Lt-FO3058330583eusmtrp1t;
-	Thu, 12 Oct 2023 10:51:11 +0000 (GMT)
-X-AuditID: cbfec7f2-a3bff7000002a5b7-62-6527cf9fb3e6
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id 3E.B4.25043.F9FC7256; Thu, 12
-	Oct 2023 11:51:11 +0100 (BST)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20231012105111eusmtip16fdf470ddaf0ef66f05476dff31274c1~NVp31gUEA2941729417eusmtip1p;
-	Thu, 12 Oct 2023 10:51:10 +0000 (GMT)
-Message-ID: <14c0a0b4-e752-4e6a-98d9-52f230060103@samsung.com>
-Date: Thu, 12 Oct 2023 12:51:10 +0200
+	Thu, 12 Oct 2023 11:55:12 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-307d20548adso777148f8f.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 12 Oct 2023 04:55:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1697111708; x=1697716508; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7EEh0DtjuniCuNrVtcwCXYohORKDMpqfS7tvWNnQQLg=;
+        b=JWjB5LUvCIL8U1gWgRhD/LuV7a1tPR1B3Awcx1leXvuC+xSzUyjC7jvsFuA8GMdHRw
+         xzXXf3GQFvByPANkW7UDnaCfZXLiGU8R3ZZZPufDad7RFxNQdMpWTP/bYo2wtzJGwQbh
+         EEutbhXvlaXD5NSqvdNH4i4JBslaTpgWGqdXB+yLsAO0Ne7rWkPvzkqSdaDEX1gl55Ns
+         0ZBKxJ0e9V5MNkH06oir841gJWpHoh7FJZvBvkHNGFM/S88iTqm5OaNS+2PIfxTrm6Yq
+         sV6vICtUtI+frW/Xd/L6WZr+1pdurIzey/cp6Gly307ymbUeeNUhwpIisa7e6gIRTX+Q
+         9hPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697111708; x=1697716508;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=7EEh0DtjuniCuNrVtcwCXYohORKDMpqfS7tvWNnQQLg=;
+        b=EvgUkWCIh2fS6d4u1/KxzOlV6+/QIGxwXSjgmNfKtj5dVbDh8/M/Mu2Llh/KhSPL71
+         qT3l/EFLN9myLHLaurek8NuYHJf6bitA0oG/18rOn3y/VWtcN1/RLfAJfXWUT2m9iSoi
+         F2qyicvNMfy0L9nFPalGme1qwZuMovLMjLbR8Nlinpq2VZXKkbIpHBNnhzhohYA3mD3Q
+         ODjvhi40c253E6EL4dHBAUtDZZflmUQIS7puyOJ2CeofamsNk77m5+AeNBlzzCbF5QIm
+         N56D+11WCplSTYxdPjr3BnDSrob+rEAkZtpDSpjUfMKWOca1rtJASTAkcQHPUQgDbrXb
+         zfEQ==
+X-Gm-Message-State: AOJu0Yw2I3RMlIXlR88Zwy3TjciVEI4NvEosSGNmMvM0LU3o1XAVieBJ
+	WSIeKq4wO/nN7QR4vFSkdXRlJQ==
+X-Google-Smtp-Source: AGHT+IF/cZdSXKP3hqC6P1rzTaQWACKheA9PXy21cLGdHXi25qE0+eEDjLjzcczKxWWqYi5oeRhu9g==
+X-Received: by 2002:a5d:5a06:0:b0:32d:23b7:49af with SMTP id bq6-20020a5d5a06000000b0032d23b749afmr8409393wrb.36.1697111708198;
+        Thu, 12 Oct 2023 04:55:08 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:d423:df8b:7f17:7909? ([2a01:e0a:982:cbb0:d423:df8b:7f17:7909])
+        by smtp.gmail.com with ESMTPSA id p5-20020a1c7405000000b004064e3b94afsm21802128wmc.4.2023.10.12.04.55.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Oct 2023 04:55:07 -0700 (PDT)
+Message-ID: <10a892e7-18fe-4267-aa5d-c77f5da9a3c8@linaro.org>
+Date: Thu, 12 Oct 2023 13:55:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: cec: meson: always include meson sub-directory
- in Makefile
-Content-Language: en-US
-To: Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	linux-amlogic@lists.infradead.org, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <788e7ae5-1560-4f6f-b6b8-930ce6a9cedb@xs4all.nl>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuphleLIzCtJLcpLzFFi42LZduzned3559VTDZ4fU7e4OPMui8WC2dwW
-	l3fNYbPo2bCV1WLZpj9MDqwem1Z1snlsXlLv8XmTnMepr5/ZA1iiuGxSUnMyy1KL9O0SuDJe
-	35zJVrCXpeL12WbmBsabzF2MnBwSAiYSe7/dYuti5OIQEljBKHHl43Z2kISQwBdGiQM7iiES
-	nxkl/l75yAbTsW/vQWaIxHJGiZmnFkI5HxklNkz8xAhSxStgJ7HrwTSwUSwCqhJf7/5lgYgL
-	Spyc+QTMFhWQl7h/awZQDQeHsECExN6jiSBhZgFxiVtP5jOBzBQR6GWU+LLsGhtEQk/iXdMh
-	JhCbTcBQouttFxtIL6eArcTpU2oQJfIS29/OAbtHQuAAh8Tz1z8ZIa52kfiz7QYThC0s8er4
-	FnYIW0bi9OQeFoiGdkaJBb/vM0E4ExglGp7fguq2lrhz7hfYNmYBTYn1u/Qhwo4Sf9ZeZwUJ
-	SwjwSdx4KwhxBJ/EpG3TmSHCvBIdbUIQ1WoSs46vg1t78MIl5gmMSrOQQmUWkvdnIXlnFsLe
-	BYwsqxjFU0uLc9NTiw3zUsv1ihNzi0vz0vWS83M3MQITzOl/xz/tYJz76qPeIUYmDsZDjBIc
-	zEoivI8yVVKFeFMSK6tSi/Lji0pzUosPMUpzsCiJ86qmyKcKCaQnlqRmp6YWpBbBZJk4OKUa
-	mGY1TYts7Ly+Te1EW8URBdbPufPPLNN/7hJnP/ngFb3j0zPFnc2Mpz3Rso7cPL/lnp5kgtHu
-	qfp1h2uXp5ffebZ+zfQcc+nCtd+S7pSvZV1jd/pt1vq9TRkHO2dXTFfoUXyiPf2hYRVrhJmG
-	56/bymcnVi2TK/vMYpTTMOGA8btfdV9vGE25dGyd1e6LHvfKPgiJeKhdXFkd27JB9/5Pyb7K
-	TRMP1Jq+nblPvUHarYy5+O73iy+YtdZ118ll1bw42RHceqJ9snG/WIhQn/vung6rNj5VBbOk
-	9YI1hqVicw7oub449O8Di/Wv+ffk5qQKRk/y8j+p96zn3cWDizfluAnpMH77HsTzbqNb2976
-	N0osxRmJhlrMRcWJAEl/8AefAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrAIsWRmVeSWpSXmKPExsVy+t/xu7rzz6unGvS/E7a4OPMui8WC2dwW
-	l3fNYbPo2bCV1WLZpj9MDqwem1Z1snlsXlLv8XmTnMepr5/ZA1ii9GyK8ktLUhUy8otLbJWi
-	DS2M9AwtLfSMTCz1DI3NY62MTJX07WxSUnMyy1KL9O0S9DJe35zJVrCXpeL12WbmBsabzF2M
-	nBwSAiYS+/YeBLK5OIQEljJKbDv3jQUiISNxcloDK4QtLPHnWhcbRNF7RonzTZ/BErwCdhK7
-	HkxjB7FZBFQlvt79ywIRF5Q4OfMJmC0qIC9x/9YMsBphgQiJP0u7wHqZBcQlbj2ZzwQyVESg
-	l1GivX05I0RCT+Jd0yEmiG3HGCW2tLwDm8QmYCjR9RbkDA4OTgFbidOn1CDqzSS6tnZB9cpL
-	bH87h3kCo9AsJHfMQrJvFpKWWUhaFjCyrGIUSS0tzk3PLTbSK07MLS7NS9dLzs/dxAiMqm3H
-	fm7Zwbjy1Ue9Q4xMHIyHGCU4mJVEeB9lqqQK8aYkVlalFuXHF5XmpBYfYjQFBsZEZinR5Hxg
-	XOeVxBuaGZgamphZGphamhkrifN6FnQkCgmkJ5akZqemFqQWwfQxcXBKNTAtceL8XhIofyTW
-	6GbpMo+pvw1ntLwx7tgqpmCrq/xTtePl4obvB7wkXgZ1lUmLeOT937mxOt2+ofnTX5+UNk/p
-	wlNZV403b9LL1tkapiSlOmf9jSJ3zq/mNdqzyr9mPLG4VZ+xNLjR9VaozM2j65iddXae0Nkt
-	dbfySteb3rKY37ExWiEaV07yfluqfn6qPnN6WuK3XXdENn59ffWToP8RhttJ92T1kpL0Z8bc
-	FyhO+FtudWbNsurOy2tkRFpMPV93TJQ3De7s2/4+83IVey3HpuUME6ZvVON5ZKaltoHxyyT5
-	/4H3jszfNr/s3rHH52S09vSmNPvKJc9nWn498HLkyZz7OgZ/NhSaKsr0z1NiKc5INNRiLipO
-	BABBGx0QMwMAAA==
-X-CMS-MailID: 20231012105111eucas1p237cf93ecbccf99b5360ca67caad1a59a
-X-Msg-Generator: CA
-X-RootMTR: 20231012103531eucas1p1f370bddcb690aa421498e961f4081f2b
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20231012103531eucas1p1f370bddcb690aa421498e961f4081f2b
-References: <CGME20231012103531eucas1p1f370bddcb690aa421498e961f4081f2b@eucas1p1.samsung.com>
-	<20231012103525.3381314-1-m.szyprowski@samsung.com>
-	<788e7ae5-1560-4f6f-b6b8-930ce6a9cedb@xs4all.nl>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] perf/amlogic: add missing MODULE_DEVICE_TABLE
+Content-Language: en-US, fr
+To: Marek Szyprowski <m.szyprowski@samsung.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Jiucheng Xu <jiucheng.xu@amlogic.com>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <CGME20231012103551eucas1p2422c1c7ace26714addeaadde8b645d4b@eucas1p2.samsung.com>
+ <20231012103543.3381326-1-m.szyprowski@samsung.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20231012103543.3381326-1-m.szyprowski@samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231012_035115_099931_18DE60E9 
-X-CRM114-Status: UNSURE (   7.51  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231012_045510_942112_B76C036F 
+X-CRM114-Status: GOOD (  13.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,28 +120,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 12.10.2023 12:42, Hans Verkuil wrote:
-> On 10/12/23 12:35, Marek Szyprowski wrote:
->> 'meson' directory contains two separate drivers, so it should be added
->> to Makefile compilation hierarchy unconditionally, because otherwise the
->> meson-ao-cec-g12a won't be compiled if meson-ao-cec is not selected.
->>
->> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> Does this need a Fixes tag?
+On 12/10/2023 12:35, Marek Szyprowski wrote:
+> Add missing MODULE_DEVICE_TABLE macro to let this driver to be
+> automatically loaded as module.
+> 
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> ---
+>   drivers/perf/amlogic/meson_g12_ddr_pmu.c | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/perf/amlogic/meson_g12_ddr_pmu.c b/drivers/perf/amlogic/meson_g12_ddr_pmu.c
+> index 8b643888d503..15d52ab3276a 100644
+> --- a/drivers/perf/amlogic/meson_g12_ddr_pmu.c
+> +++ b/drivers/perf/amlogic/meson_g12_ddr_pmu.c
+> @@ -377,6 +377,7 @@ static const struct of_device_id meson_ddr_pmu_dt_match[] = {
+>   	},
+>   	{}
+>   };
+> +MODULE_DEVICE_TABLE(of, meson_ddr_pmu_dt_match);
+>   
+>   static struct platform_driver g12_ddr_pmu_driver = {
+>   	.probe = g12_ddr_pmu_probe,
 
-Fixes: 4be5e8648b0c ("media: move CEC platform drivers to a separate 
-directory")
-
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
