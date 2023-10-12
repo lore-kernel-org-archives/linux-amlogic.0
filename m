@@ -4,77 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 492D5CDB47E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Oct 2023 15:26:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD847CDB482
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Oct 2023 23:52:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-ID:Date:Cc:To:From:Subject:
-	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
+	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=v5S4PcBBzY0+PTZXUFFENfQJ32bU747+uDmygODLptM=; b=ISG5VXR5npz9B6
-	dw4Bjj2B8adS8+9lIhJKmMNpltHiPkWuDJtfEaXnvuFUorZcUT4NQ5kKvBjI1k96TSVO2+o8jp8s8
-	YoWUzvU5KxgZ6z5aSH1RN/ybEzIhaZDf3qGzRCvM0XotDRzQBcpCGjtWOBMDz4g4v9OUFQsZXfvr8
-	+qqMGxbadWl+cjP2NehxREjeujNjtVLtAI+Db3KM8cqJONW4t31eCiBioviHJTfo+LE+uKSgZgPK5
-	IBjkDRvMHoZ0OkVHlrrIqyVM+GXAD/nK7+a5KrWc+aU/Z8Cm34Ik3a8KNoiFpVsayNld/2SWN7GYg
-	zDUIjovInbfpuvpYE3MQ==;
+	List-Owner; bh=uss6cPw9tlgwtk2GEfX1Gk7MY22Dfc6wdyBJk4o19rw=; b=3/hcpYrpEbaNXp
+	789+ZMrKVBJqDWqLju6l/Fx9u+bZ84/1yuePGJ9kw2H+eckFIbrGQPPLo8WUWtAKsvw8LGLUW7kyo
+	8Hdw6r52yXUlBWnp1+oDU1RXH6hEGTdudjSo0CT5P5tRXaUqWVL/w9x1XqvFuafNnrI0R3/4ehS1a
+	Dw0OQX825qNPASng0YNJOdGuZh9hqREs8xJ6wrWFjeQ8JZe7kMPOXqvOg1RaQQgrbH+pXz1actXNb
+	up9Jekupz92k0ko+Q20ore3uXQbPhf3UTK5s7vlUYFIe2KNg2EBhKcTR39RfaFa9VeV4s4DM886qy
+	Qx7p8xWsVBhnqlCDiMFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qqxZM-001I33-0D;
-	Thu, 12 Oct 2023 15:25:48 +0000
-Received: from postfix2.imaqliq.com ([93.189.151.48])
+	id 1qr5TA-0028yN-1y;
+	Thu, 12 Oct 2023 23:51:56 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qqxZH-001I1t-0y;
-	Thu, 12 Oct 2023 15:25:46 +0000
-Received: from verse.imaqliq.com (unknown [93.189.151.95])
-	by postfix2.imaqliq.com (Postfix) with ESMTP id A9C9D1C2953;
-	Thu, 12 Oct 2023 18:25:35 +0300 (MSK)
+	id 1qr5T6-0028x4-33;
+	Thu, 12 Oct 2023 23:51:55 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 36B71CE2C7C;
+	Thu, 12 Oct 2023 23:51:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BFFDC433C7;
+	Thu, 12 Oct 2023 23:51:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697154708;
+	bh=7ci+m7+x7XXxdQsME2tkoDD8RgVXYZGHP0UltC3GUjk=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=ULBz4pFZ8+loGkL1DAGx8tp/a1sgOMFS1Vd65ppgTiHyt5v6y7xrxc+ARZx4h+OX0
+	 FCMuS4Dq11+teVUo/2d30vo7lUcIlN94VGlhao2iXD/Zl7qY/6UjTDhuQ2DrGgpMp3
+	 IjHaK02zo6QQg7brR+0FakpeqdpqB24DuvEvrFR7FHhMOtebZq3tZPeRpsgiMpOEvX
+	 F53EfpzVH+ERjrG/3hf3cRXAB07vniyOzos6tZxdezzL1l+ENItPPS4/ZzEyNF1yE0
+	 ygOeJpPjJd46aGe5L1Jsg6CnE83kbTK4VFm9lXgnFrWjzeKHvtSaU2QyP9x4jcW/oW
+	 X4tFweO6hr15A==
+Message-ID: <5e0bd4bba88701dd1a7a3e89d18412f0.sboyd@kernel.org>
 MIME-Version: 1.0
-Sensitivity: 
-Importance: Normal
-X-Priority: 3 (Normal)
-In-Reply-To: 
-References: 
-Subject: [PATCH v3] tty: serial: meson: hard LOCKUP on crtscts mode
-From: "Pavel Krasavin" <pkrasavin@imaqliq.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Date: Thu, 12 Oct 2023 15:25:29 +0000
-Message-ID: <OF6CF5FFA0.CCFD0E8E-ON00258A46.00549EDF-00258A46.0054BB62@gdc.ru>
-X-Mailer: Lotus Domino Web Server Release 12.0.2 November 03, 2022
-X-MIMETrack: Serialize by http on verse/com(Release 12.0.2|November 03, 2022) at 10/12/2023
- 15:25:29,
-	Serialize complete at 10/12/2023 15:25:29,
-	Serialize by Router on verse/com(Release 12.0.2|November 03, 2022) at 10/12/2023
- 15:25:35
-X-KeepSent: 6CF5FFA0:CCFD0E8E-00258A46:00549EDF;
- type=4; name=$KeepSent
-X-KLMS-Rule-ID: 1
-X-KLMS-Message-Action: clean
-X-KLMS-AntiSpam-Lua-Profiles: 180578 [Oct 12 2023]
-X-KLMS-AntiSpam-Version: 6.0.0.2
-X-KLMS-AntiSpam-Envelope-From: pkrasavin@imaqliq.com
-X-KLMS-AntiSpam-Rate: 10
-X-KLMS-AntiSpam-Status: not_detected
-X-KLMS-AntiSpam-Method: none
-X-KLMS-AntiSpam-Auth: dmarc=fail header.from=imaqliq.com policy=none;spf=softfail smtp.mailfrom=imaqliq.com;dkim=none
-X-KLMS-AntiSpam-Info: LuaCore: 539 539 807534d9021bfe9ca369c363d15ac993cd93d4d9, {rep_avail}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, verse.imaqliq.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;lore.kernel.org:7.1.1;imaqliq.com:7.1.1;gdc.ru:7.1.1;93.189.151.95:7.1.2, FromAlignment: s, {Tracking_dmark_f}, ApMailHostAddress: 93.189.151.95
-X-MS-Exchange-Organization-SCL: -1
-X-KLMS-AntiSpam-Interceptor-Info: scan successful
-X-KLMS-AntiPhishing: Clean, bases: 2023/10/12 13:36:00
-X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, bases: 2023/10/12 09:47:00 #22170412
-X-KLMS-AntiVirus-Status: Clean, skipped
+In-Reply-To: <20231010062917.3624223-5-xianwei.zhao@amlogic.com>
+References: <20231010062917.3624223-1-xianwei.zhao@amlogic.com> <20231010062917.3624223-5-xianwei.zhao@amlogic.com>
+Subject: Re: [PATCH V2 4/4] clk: meson: c3: add c3 clock peripherals controller driver
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chuan Liu <chuan.liu@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Thu, 12 Oct 2023 16:51:44 -0700
+User-Agent: alot/0.10
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231012_082543_677188_C7D15DA8 
-X-CRM114-Status: UNSURE (   9.29  )
+X-CRM114-CacheID: sfid-20231012_165153_158290_A768685C 
+X-CRM114-Status: UNSURE (   9.21  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -92,79 +71,22 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Pavel Krasavin <pkrasavin@imaqliq.com>
+Quoting Xianwei Zhao (2023-10-09 23:29:17)
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index 76be4bbd2afb..c8d59d28c8ff 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -140,6 +140,19 @@ config COMMON_CLK_C3_PLL
+>           Say Y if you want the board to work, because PLLs are the parent of most
+>           peripherals.
+>  
+> +config COMMON_CLK_C3_PERIPHERALS
+> +       tristate "Amlogic C3 peripherals clock controller"
+> +       default y
 
-There might be hard lockup if we set crtscts mode on port without RTS/CTS configured:
-
-# stty -F /dev/ttyAML6 crtscts; echo 1 > /dev/ttyAML6; echo 2 > /dev/ttyAML6
-[   95.890386] rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
-[   95.890857] rcu:     3-...0: (201 ticks this GP) idle=e33c/1/0x4000000000000000 softirq=5844/5846 fqs=4984
-[   95.900212] rcu:     (detected by 2, t=21016 jiffies, g=7753, q=296 ncpus=4)
-[   95.906972] Task dump for CPU 3:
-[   95.910178] task:bash            state:R  running task     stack:0     pid:205   ppid:1      flags:0x00000202
-[   95.920059] Call trace:
-[   95.922485]  __switch_to+0xe4/0x168
-[   95.925951]  0xffffff8003477508
-[   95.974379] watchdog: Watchdog detected hard LOCKUP on cpu 3
-[   95.974424] Modules linked in: 88x2cs(O) rtc_meson_vrtc
-
-Possible solution would be to not allow to setup crtscts on such port.
-
-Tested on S905X3 based board.
-
-Signed-off-by: Pavel Krasavin <pkrasavin@imaqliq.com>
----
-v3: "From:" line added to the mail
-v2: https://lore.kernel.org/lkml/OF950BEF72.7F425944-ON00258A46.00488A76-00258A46.00497D44@gdc.ru/
-braces for single statement removed according to Dmitry's note
-v1: https://lore.kernel.org/lkml/OF28B2B8C9.5BC0CD28-ON00258A46.0037688F-00258A46.0039155B@gdc.ru/
----
-
---- a/drivers/tty/serial/meson_uart.c	2023-10-12 15:44:02.410538523 +0300
-+++ b/drivers/tty/serial/meson_uart.c	2023-10-12 15:58:06.242395253 +0300
-@@ -380,10 +380,14 @@ static void meson_uart_set_termios(struc
- 	else
- 		val |= AML_UART_STOP_BIT_1SB;
- 
--	if (cflags & CRTSCTS)
--		val &= ~AML_UART_TWO_WIRE_EN;
--	else
-+	if (cflags & CRTSCTS) {
-+		if (port->flags & UPF_HARD_FLOW)
-+			val &= ~AML_UART_TWO_WIRE_EN;
-+		else
-+			termios->c_cflag &= ~CRTSCTS;
-+	} else {
- 		val |= AML_UART_TWO_WIRE_EN;
-+	}
- 
- 	writel(val, port->membase + AML_UART_CONTROL);
- 
-@@ -705,6 +709,7 @@ static int meson_uart_probe(struct platf
- 	u32 fifosize = 64; /* Default is 64, 128 for EE UART_0 */
- 	int ret = 0;
- 	int irq;
-+	bool has_rtscts;
- 
- 	if (pdev->dev.of_node)
- 		pdev->id = of_alias_get_id(pdev->dev.of_node, "serial");
-@@ -732,6 +737,7 @@ static int meson_uart_probe(struct platf
- 		return irq;
- 
- 	of_property_read_u32(pdev->dev.of_node, "fifo-size", &fifosize);
-+	has_rtscts = of_property_read_bool(pdev->dev.of_node, "uart-has-rtscts");
- 
- 	if (meson_ports[pdev->id]) {
- 		return dev_err_probe(&pdev->dev, -EBUSY,
-@@ -762,6 +768,8 @@ static int meson_uart_probe(struct platf
- 	port->mapsize = resource_size(res_mem);
- 	port->irq = irq;
- 	port->flags = UPF_BOOT_AUTOCONF | UPF_LOW_LATENCY;
-+	if (has_rtscts)
-+		port->flags |= UPF_HARD_FLOW;
- 	port->has_sysrq = IS_ENABLED(CONFIG_SERIAL_MESON_CONSOLE);
- 	port->dev = &pdev->dev;
- 	port->line = pdev->id;
+Why are these default y? They should depend on something like ARM64 and
+even then I don't see why we want to enable them by default if we're
+building the ARM64 kernel.
 
 _______________________________________________
 linux-amlogic mailing list
