@@ -4,86 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 547DFCDB47E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Oct 2023 07:46:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4162CDB47E
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Oct 2023 07:51:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=V1TWLXOdOsmNZNoYS/wL1RApPdeQ4V7fGuvXfwOKNSg=; b=TVsCq3t4kHXla9
-	JrmuN4LIRuzayMxZgLlou7MQcp+YI4mrgqQ2mRQsxrCnWylJftSf8UQ4hSTcyjmFg64HBpvhxJpUH
-	jWH3L+p2WvoNq70DPfCWHJ5Y0MkTqWDh1Jc2DhlUbOykS6z39/XwM6UI2+bcZrcMQkA2PQzV2W8FN
-	LuMMVCB7tTdwYwo8hwfdaGVk5wY09bGw1Bha5yCPnH1NTKVad8H7/r1GZM6Q6i9RUPktqXVGsMzsn
-	gUDWi8uU6znpUOiop0PXIGB3WICgTDdMiAYbrIX1r9gnEU0AQHkWpU7sIJcH+IKSn9gOv9kGgw8k/
-	d9jdUj5HluUPekTIYWrg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=oGFoDQYeL+F9y7JcJu3b/i9KSylhPgltb60VDM1i7NU=; b=01uUh7VAvwc7rt9PXsSkuZC8TR
+	dAQ7z4gPcKdmIsYmhGFVjY7iZrtJU3i+9f5ja53ZhohZI9p7cOuXiJfwpJ+oWkFGtfslt7yP1bB62
+	/aMNzonrQDzMKuNqyi8PBGxf9SQDaE5awPq4PYG1dD6tmLExegtsO/fAEH4DElsNTDAJoD583lahG
+	nffUPUbdkY2vJrdnD1D9lS/vmm/8hjS9iaEqpxBHj5ObNQp1vgbYweu3yfyvhwiPZpWDPoKMNpYeU
+	wYAMCP3OHJvOBw+m9f9Qi7RezSIA5p3Nx1BVRabQUkGy1Wv1Aps4JZjAbD8/6t75bbUQzAapythLS
+	0fKk23ZA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qrCsT-002k0S-25;
-	Fri, 13 Oct 2023 07:46:33 +0000
-Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
+	id 1qrCxG-002kkI-1t;
+	Fri, 13 Oct 2023 07:51:30 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qrCsQ-002jyl-2B
+	id 1qrCxC-002kjD-1a
 	for linux-amlogic@lists.infradead.org;
-	Fri, 13 Oct 2023 07:46:32 +0000
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-50573e85ee0so2285365e87.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 13 Oct 2023 00:46:28 -0700 (PDT)
+	Fri, 13 Oct 2023 07:51:28 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-405361bba99so18202015e9.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 13 Oct 2023 00:51:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1697183187; x=1697787987; darn=lists.infradead.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=wP8hZWh4qXyybXYLkSLcCZu/0fSSL+752WobzxTNboE=;
-        b=tdPOCOAbIuJ5h8dF7M1MOsA9WjUx+vSBBAPD0WlANs3S+k9wzRvVTVmH8pYbCiMauQ
-         9DAzCi+Dmv3E26hzqLphaMUHZj5Oo6iyy7F6r0H+NAq5rYV+zLk41+slFCcJB0SJefJj
-         YPT3O9A2xpVwiVmIe8sVf7aIAe3pqUPFE+yZCG4o4OW7Q1bbI1snx7Yfmm29YNXgq9uA
-         lERaCudr89XwNHkoyXRPvwZFjE4pCgAQpo6w03nGVyeUKk6doG8Eu7LRu0l8C7TMV7Yz
-         7hvaITGPnl+Ev5LhRsqsfd2uKlOZJ8VBCCHgG7reAN4/oIyJoEKGXLn3a0r01f59CzTL
-         3DyA==
+        d=linaro.org; s=google; t=1697183484; x=1697788284; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QGLLNmMEIoHetPjQdGeJ01Fu1b8ChkbYllNK8qDfC4A=;
+        b=oEaYXTKV33svNMsqeoMM1ju/kCzL4eGnMeTyu1oHix6NInx2ynejDijk5nx5qJQ2AK
+         1/+zY/9gycwQkXNYZhYFyaTXnwRfqF39+oLObouaUt7FNj/2wjvHbPquzTCo7A9NndLS
+         ZpOrMUPS7My7STdLsRL6VadsRN45nAKp7XSN/Cb9P5lBPjjsDK683qNZPpM6remL4oxr
+         h8Bt74+c1UEmFjiK13IAlr4Y+mWmh+y/tAAaKwfLdsqHAG4YVMEV3jp9w5MOHRQCCtFS
+         LvyJikdpx5Qvjnvju4xwf4LWagrCQADxOpMnp8lXSc+EnoofhT8sOPGmVMHWgXlxYzy6
+         pyMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697183187; x=1697787987;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wP8hZWh4qXyybXYLkSLcCZu/0fSSL+752WobzxTNboE=;
-        b=FXVeOHaTgd11dEOhER3MAfURtiaO3WljP/3tv8xKkcjndi1f8YNjnloEAsWK5e5zNW
-         KgV/ro60kDi1RDhjhjv1iEO0XL3VGAiLJ4DbVQ89YBfL1N0LQEckm98myICNgFAR/GUb
-         BL0nlBmo11COhWoiqSpN4m9Gfp6MA7vOiaOu4tC3bzNHOBhwnudThIkYPNyv5e/mxogr
-         JWLla/ysVhQG3mxUkN1RWZ2qh8EMge5MNWReeOU7d2VXl3Iz6RbCyC+SJC+OseZ2VPjD
-         UxOX94h9Sb6z0S/yGKLKCQ7KJbv/HPz2PIqSwiYobgkz6w3O+iZZF5+ztCHPkcw3aV42
-         FL2g==
-X-Gm-Message-State: AOJu0YwKF/GHEsf8Z6HzqdgDLi+QfCpjv327VTXs95rc0486J5jEZ0DK
-	aNaVBky58jNksjp/cUeXFjK/zQ==
-X-Google-Smtp-Source: AGHT+IEkyEN8zAQ5/dhZe4B9ajTP0EDEK/rSt7LjwGLHX2RHEZPT+iFlTiLC7YassaX2zhaMHUp92A==
-X-Received: by 2002:a19:5f04:0:b0:4fb:94c6:fd63 with SMTP id t4-20020a195f04000000b004fb94c6fd63mr16394959lfb.17.1697183186650;
-        Fri, 13 Oct 2023 00:46:26 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:b50c:c5d5:8b1b:e06d])
-        by smtp.gmail.com with ESMTPSA id r6-20020a5d4946000000b0032da022855fsm252248wrs.111.2023.10.13.00.46.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Oct 2023 00:46:26 -0700 (PDT)
-References: <20231010062917.3624223-1-xianwei.zhao@amlogic.com>
- <20231010062917.3624223-5-xianwei.zhao@amlogic.com>
- <5e0bd4bba88701dd1a7a3e89d18412f0.sboyd@kernel.org>
-User-agent: mu4e 1.8.13; emacs 29.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Stephen Boyd <sboyd@kernel.org>, Xianwei Zhao
- <xianwei.zhao@amlogic.com>, devicetree@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette
- <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman
- <khilman@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Chuan Liu <chuan.liu@amlogic.com>
-Subject: Re: [PATCH V2 4/4] clk: meson: c3: add c3 clock peripherals
- controller driver
-Date: Fri, 13 Oct 2023 09:38:14 +0200
-In-reply-to: <5e0bd4bba88701dd1a7a3e89d18412f0.sboyd@kernel.org>
-Message-ID: <1jmswnvub2.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20230601; t=1697183484; x=1697788284;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=QGLLNmMEIoHetPjQdGeJ01Fu1b8ChkbYllNK8qDfC4A=;
+        b=FRbG90StxVK3edwWQfiCJT/PCr0zENVvKVHqpCq3OHm7rG5ymbZsHfQT7R6VpXKDG2
+         4fijGBH6vjXSSHZ/FAUd/Bve1f2/WSY7ugFTe23uX+3auMUjc33thExKf/Zr1XZcNVuE
+         1bYiCutS54Vs54xWm83LY3MOGEsiKtWdgKFkYQC3OUKCbNMMG73/uqymSN0eflRKgcS6
+         R1KK3epIMcppDyV76rs/D6zlEgTBVi2/GBnibUzypt1OlwSnpz83kHx815fTrlS+dcPf
+         9dMivBoqCUXm9EMkLnX4xYfgv4ZJNuwNHxJRLkH3yLodemRrqrh9V9JYx6/ab1SxuVzi
+         Blqg==
+X-Gm-Message-State: AOJu0Ywkb3VnLMT3PlmnQFogjomHsNDWDhsYEYNtnS1DO9U3ZGwzsIAO
+	4Kg3mS507ZAXyxo3/v3YeELbhA==
+X-Google-Smtp-Source: AGHT+IELG391V1Ud7elbQt4QWMSF5GEdV2anomcs+s+Wryke+mq9djUBHEODiUiryn2RFZg18FUapQ==
+X-Received: by 2002:a05:600c:ac1:b0:405:39b4:3145 with SMTP id c1-20020a05600c0ac100b0040539b43145mr23450412wmr.2.1697183484112;
+        Fri, 13 Oct 2023 00:51:24 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:535e:33c9:c7dd:4940? ([2a01:e0a:982:cbb0:535e:33c9:c7dd:4940])
+        by smtp.gmail.com with ESMTPSA id t15-20020a7bc3cf000000b00401b242e2e6sm1783318wmj.47.2023.10.13.00.51.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Oct 2023 00:51:23 -0700 (PDT)
+Message-ID: <39193720-d105-47c0-8475-3e321f7095b5@linaro.org>
+Date: Fri, 13 Oct 2023 09:51:22 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v3] tty: serial: meson: hard LOCKUP on crtscts mode
+Content-Language: en-US, fr
+To: Pavel Krasavin <pkrasavin@imaqliq.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+References: <OF6CF5FFA0.CCFD0E8E-ON00258A46.00549EDF-00258A46.0054BB62@gdc.ru>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <OF6CF5FFA0.CCFD0E8E-ON00258A46.00549EDF-00258A46.0054BB62@gdc.ru>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231013_004630_714444_EDE5CC2C 
-X-CRM114-Status: GOOD (  11.91  )
+X-CRM114-CacheID: sfid-20231013_005126_530400_E25BA7F9 
+X-CRM114-Status: GOOD (  15.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,40 +119,91 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On 12/10/2023 17:25, Pavel Krasavin wrote:
+> From: Pavel Krasavin <pkrasavin@imaqliq.com>
+> 
+> There might be hard lockup if we set crtscts mode on port without RTS/CTS configured:
+> 
+> # stty -F /dev/ttyAML6 crtscts; echo 1 > /dev/ttyAML6; echo 2 > /dev/ttyAML6
+> [   95.890386] rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+> [   95.890857] rcu:     3-...0: (201 ticks this GP) idle=e33c/1/0x4000000000000000 softirq=5844/5846 fqs=4984
+> [   95.900212] rcu:     (detected by 2, t=21016 jiffies, g=7753, q=296 ncpus=4)
+> [   95.906972] Task dump for CPU 3:
+> [   95.910178] task:bash            state:R  running task     stack:0     pid:205   ppid:1      flags:0x00000202
+> [   95.920059] Call trace:
+> [   95.922485]  __switch_to+0xe4/0x168
+> [   95.925951]  0xffffff8003477508
+> [   95.974379] watchdog: Watchdog detected hard LOCKUP on cpu 3
+> [   95.974424] Modules linked in: 88x2cs(O) rtc_meson_vrtc
+> 
+> Possible solution would be to not allow to setup crtscts on such port.
+> 
+> Tested on S905X3 based board.
+> 
+> Signed-off-by: Pavel Krasavin <pkrasavin@imaqliq.com>
+> ---
+> v3: "From:" line added to the mail
+> v2: https://lore.kernel.org/lkml/OF950BEF72.7F425944-ON00258A46.00488A76-00258A46.00497D44@gdc.ru/
+> braces for single statement removed according to Dmitry's note
+> v1: https://lore.kernel.org/lkml/OF28B2B8C9.5BC0CD28-ON00258A46.0037688F-00258A46.0039155B@gdc.ru/
+> ---
+> 
+> --- a/drivers/tty/serial/meson_uart.c	2023-10-12 15:44:02.410538523 +0300
+> +++ b/drivers/tty/serial/meson_uart.c	2023-10-12 15:58:06.242395253 +0300
+> @@ -380,10 +380,14 @@ static void meson_uart_set_termios(struc
+>   	else
+>   		val |= AML_UART_STOP_BIT_1SB;
+>   
+> -	if (cflags & CRTSCTS)
+> -		val &= ~AML_UART_TWO_WIRE_EN;
+> -	else
+> +	if (cflags & CRTSCTS) {
+> +		if (port->flags & UPF_HARD_FLOW)
+> +			val &= ~AML_UART_TWO_WIRE_EN;
+> +		else
+> +			termios->c_cflag &= ~CRTSCTS;
+> +	} else {
+>   		val |= AML_UART_TWO_WIRE_EN;
+> +	}
+>   
+>   	writel(val, port->membase + AML_UART_CONTROL);
+>   
+> @@ -705,6 +709,7 @@ static int meson_uart_probe(struct platf
+>   	u32 fifosize = 64; /* Default is 64, 128 for EE UART_0 */
+>   	int ret = 0;
+>   	int irq;
+> +	bool has_rtscts;
+>   
+>   	if (pdev->dev.of_node)
+>   		pdev->id = of_alias_get_id(pdev->dev.of_node, "serial");
+> @@ -732,6 +737,7 @@ static int meson_uart_probe(struct platf
+>   		return irq;
+>   
+>   	of_property_read_u32(pdev->dev.of_node, "fifo-size", &fifosize);
+> +	has_rtscts = of_property_read_bool(pdev->dev.of_node, "uart-has-rtscts");
+>   
+>   	if (meson_ports[pdev->id]) {
+>   		return dev_err_probe(&pdev->dev, -EBUSY,
+> @@ -762,6 +768,8 @@ static int meson_uart_probe(struct platf
+>   	port->mapsize = resource_size(res_mem);
+>   	port->irq = irq;
+>   	port->flags = UPF_BOOT_AUTOCONF | UPF_LOW_LATENCY;
+> +	if (has_rtscts)
+> +		port->flags |= UPF_HARD_FLOW;
+>   	port->has_sysrq = IS_ENABLED(CONFIG_SERIAL_MESON_CONSOLE);
+>   	port->dev = &pdev->dev;
+>   	port->line = pdev->id;
 
-On Thu 12 Oct 2023 at 16:51, Stephen Boyd <sboyd@kernel.org> wrote:
+Looks fine, I expected the tty core to check uart-has-rtscts or UPF_HARD_FLOW, but seems I was naive.
 
-> Quoting Xianwei Zhao (2023-10-09 23:29:17)
->> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
->> index 76be4bbd2afb..c8d59d28c8ff 100644
->> --- a/drivers/clk/meson/Kconfig
->> +++ b/drivers/clk/meson/Kconfig
->> @@ -140,6 +140,19 @@ config COMMON_CLK_C3_PLL
->>           Say Y if you want the board to work, because PLLs are the parent of most
->>           peripherals.
->>  
->> +config COMMON_CLK_C3_PERIPHERALS
->> +       tristate "Amlogic C3 peripherals clock controller"
->> +       default y
->
-> Why are these default y? They should depend on something like ARM64 and
-> even then I don't see why we want to enable them by default if we're
-> building the ARM64 kernel.
-
-Should indeed depend on ARM64.
-
-Those are the main clock controllers. Like for other AML SoC families,
-they are necessary to boot the device which is why they use 'default y'
-
-Is it a problem ?
-
-The whole meson directory depends on ARCH_MESON, so the drivers will go
-away if Amlogic support is removed on ARM64.
+LGTM
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
