@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D7EFCDB465
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Oct 2023 08:38:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0700CDB465
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Oct 2023 08:41:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
 	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=NNY5NlZZKr2yu+V2XMniLsNyuKeh1oQpoxEIzF5umFE=; b=sGW/dxdaGMdyDV
-	A8xlyUomLOJCrQtBO0MK4K9ZDA+2oUq+Mi/k7i7PGe+QWoEBwU+Vqo9MYVc3laKsfloG/m6LV54Eq
-	kc/oc/G14MxFe70/oT2OIt3oVEiC9FssIDW00QcOKXOn7OBpajV7ms2tnU+xvD123YXedOgikww5H
-	Dcy3Q9xAo1Xry5Dt2ZJyOkk3LWeb3F7kZu89dmZC1CWhFL1W/tvMqNhKS4WcweZw22q0KoqiyjEnY
-	kgJVieJ3RlMCSVQFDWMl/pXB1v3pbLZql8UxnSlUZQB8Qgyxd2DQSVo1zSWty9E9g06Y9Omgg4rQF
-	7vkjFbgt0/uH1o4v7wiQ==;
+	List-Owner; bh=dW9uvAGnENO9Vm2D/oCKWcJXKCnRjbN2X45tEFqduEU=; b=Oy4ylpUnEBItcx
+	ee2XVLob02djrKbmsvEKcXZ76axjKJwBiWmbOm53dFNIzoNjiFR5dmJnzPbjFbMXoYc477J3p8IEA
+	kxyE9/mKUMRuZalTK/hUkvWk8KZzaOub4V1bIi1YjD1lWoJTK+lIT9GHJIrx5yxek1qUG+nvgRBM/
+	JHz6HQhzZhji+vvwky5wxAExHm5FVRPnklCzJsWNDa7AirpdoLOm/rfdWoKGtpBs9Oi6hZye+tnIu
+	c5sVto1Dy0JIGMEzX6x5IFGUFudKWRFcjWIo8nY/ljbngCulmx8FIBEvxfT1IZ8WQ39xIDnye6Gew
+	kYnoVutVigFWPe4TKOzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qsJ6d-008rTS-0H;
-	Mon, 16 Oct 2023 08:37:43 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1qsJ9j-008s7q-2O;
+	Mon, 16 Oct 2023 08:40:55 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qsJ6Z-008rSa-2f
+	id 1qsJ9f-008s5q-2V
 	for linux-amlogic@lists.infradead.org;
-	Mon, 16 Oct 2023 08:37:41 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4066692ad35so43559365e9.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 16 Oct 2023 01:37:39 -0700 (PDT)
+	Mon, 16 Oct 2023 08:40:53 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-405417465aaso41495785e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 16 Oct 2023 01:40:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697445458; x=1698050258; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1697445648; x=1698050448; darn=lists.infradead.org;
         h=content-transfer-encoding:organization:autocrypt:content-language
          :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rTcYqYafZKh61MOwbQxVbQ/Lja6In1E83xTrWheBRJc=;
-        b=LXF2iGDYiK6qhmyyv+ET2dpWoYV/1s89vDS17kgYNsU/iRCeisfZI0+8Hg3usuyDfc
-         PRuc2vP5NzCEZ7vc1nxbknq2W25lRD29oLTecXCRttaOO43HYiRpUyqQKeEImJ917/Dw
-         exmRUwASEp5WUyk9iZXtfY8fb93kbsS+xnINYinJyRIKAQ+qIMWg3tGtaLqnEloW9eVV
-         Wib8KPM4jFdexrYfOuH7BomfFOhGU3vIKn3izcuF0vd86uKSaWye/wcWuN0DIDcg+KwW
-         bgcoDw9e61Hxc/p0lFR/D04PrFJqYqC+eY+v7jrhgY6tnu+8eN5x2RqfSRhdmXogH/Dy
-         rbYw==
+        bh=9UcWuUZM8+p3HcLlQfoaT/bye46PVROxoSbbOHkcbzE=;
+        b=EXiigQqUq4WMhSl3n2q624ZxAGQvRjzGQsMp+GwjGTVXhIWVy55VXV8d7owoJhYuqe
+         47uIDE8EPTyPP/Sac7NLKLC6b+PzlF45CoIopkIHmJK9ldR7jv2H8NUkdOC2S3MaKGM7
+         EM9NeiwEaALxWfR0LwcrCwVnTp7DHyLThgTx8t5fu8Tbz+X8rjyBee+gE4swDTs4cx8y
+         eCPQHK7Ppvyk0viwjHnkO7ZnTn+QevpSyG1+1GCtF7LPTmSPGm9jdGp9aJAFmAZiFaia
+         NUbhffiwR95WiV+LCEHV+FsZ/R/xUPCYA3/9TGurpXRo1Fl8BSt0LXnAz8vvqHJvG9Ux
+         xbIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697445458; x=1698050258;
+        d=1e100.net; s=20230601; t=1697445648; x=1698050448;
         h=content-transfer-encoding:organization:autocrypt:content-language
          :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rTcYqYafZKh61MOwbQxVbQ/Lja6In1E83xTrWheBRJc=;
-        b=mILLRUwQTGf2Aq8h3p36/i9nuSXaZVT/Xz7Tw057nUQQGSmWk1kGPAP7UA9Isge7vv
-         jhIKFOdiFE0e0TSO1vP9brH1R1nf9Z3QR793KbOmMK+mFvLHG3LEpBklWgKs08C7fSdR
-         /PvFErkejv7xkni3n0X5vZIv9WVBNpxLlopsRotBQcR7oAujCYNzczB9QF12szNPulj1
-         YWVuQdgxeXpkaGTUauVcM973wk3vr+Ci2PKKI18lb4mmvzXAHuDUpK/YaHjx3oFl49O3
-         e4Dzm/GLLEd5kRZCT6GDXqXBBD4WwpL6Pt41j6q9HC0jL9kJ3UpMdapXxtgkQj9ofjl4
-         ByJA==
-X-Gm-Message-State: AOJu0YycgOW79rZVCvqfcV1V8w5Wvw3BGcSBkPOXZyz+ZW1Yak2SxIMm
-	4qAFVeTdNxdGpraiPUb8wcIIEQ==
-X-Google-Smtp-Source: AGHT+IHsEMQ8SCTS8ZorNLkIIvReNSc630e0ztnD1QL89wKHDLcTVq16AdmilglEKYOkydPvSU9ppQ==
-X-Received: by 2002:a05:600c:b4b:b0:405:3b1f:968b with SMTP id k11-20020a05600c0b4b00b004053b1f968bmr29498842wmr.21.1697445458392;
-        Mon, 16 Oct 2023 01:37:38 -0700 (PDT)
+        bh=9UcWuUZM8+p3HcLlQfoaT/bye46PVROxoSbbOHkcbzE=;
+        b=NyMu6tNgzQSqDWunAicmKegNoiT5ozsLJ5lXLImJ9D1J08o2THfNFIpUpIYs7Nye/K
+         4cKJCpNz+goGcM8///ABqahAcvrk4ujbGnqp2TU3PBjOeIKY9O8a0NGdR15VyFTRvVrA
+         lthz8okugwa2wt7hPtcDopqErtZ/IIT91WggGJIODEKhW5ujPZ+O02YAifrzCwnrMWk0
+         QHhfk5ovh/voEmLBM4C8tOkpOm+vnhWB9xcQSy8cPxv0P6xTMNdGJFvzrtgOjhsAShtK
+         yU3eCRaT3Fkc3UHLw+nilKipCvbrr91IRbPNegwJcHY+BiMR0MOyZYsp+cufHo3cm/sR
+         4blw==
+X-Gm-Message-State: AOJu0Yw3e0dPcb2gUQQD4TfgmvVNHOgdyP0Z1ucrmDGrQR95NALEZbw4
+	BJX7iZrErHs+aWvDIx50I1Agpw==
+X-Google-Smtp-Source: AGHT+IF1vtPzMqR2x0FMclW36S55OZY3Pajjd5WNGqVHY5t12WAkO6ICGAq+Wxt+RnIzadR2xUzmRQ==
+X-Received: by 2002:a7b:c854:0:b0:401:b53e:6c3b with SMTP id c20-20020a7bc854000000b00401b53e6c3bmr27462213wml.6.1697445647919;
+        Mon, 16 Oct 2023 01:40:47 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:b5ab:4a16:fd45:8130? ([2a01:e0a:982:cbb0:b5ab:4a16:fd45:8130])
-        by smtp.gmail.com with ESMTPSA id p11-20020a05600c358b00b004075d5664basm6629320wmq.8.2023.10.16.01.37.37
+        by smtp.gmail.com with ESMTPSA id n30-20020a05600c501e00b00405959bbf4fsm6463999wmr.19.2023.10.16.01.40.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Oct 2023 01:37:38 -0700 (PDT)
-Message-ID: <00ef6ab3-59c1-484a-9d70-50f16e4cc584@linaro.org>
-Date: Mon, 16 Oct 2023 10:37:37 +0200
+        Mon, 16 Oct 2023 01:40:47 -0700 (PDT)
+Message-ID: <2e08bd06-09e0-4352-8207-bc3b5d26fba4@linaro.org>
+Date: Mon, 16 Oct 2023 10:40:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [GIT PULL] amlogic Drivers updates for v6.7
+Subject: [GIT PULL] amlogic defconfig update for v6.7
 To: soc@kernel.org, arm@kernel.org
 Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Language: en-US, fr
@@ -97,8 +97,8 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231016_013739_869668_6B57B0F0 
-X-CRM114-Status: UNSURE (   5.53  )
+X-CRM114-CacheID: sfid-20231016_014051_811777_216B9641 
+X-CRM114-Status: UNSURE (   7.21  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -119,8 +119,16 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-Here's an Amlogic Drivers changeset for v6.7, with only a couple of
-low priority fixes concerning the meson_sm driver.
+Here's an Amlogic Defconfig changeset for v6.7 enabling drivers that are
+used with most of the Amlogic based boards:
+   - KEYBOARD_GPIO_POLLED=m used to support buttons on pre-G12A boards, the old
+     SoC do not support dual-edge gpio interrupts, so we rely on polling instead
+   - KHADAS_MCU_FAN_THERMAL=m & MFD_KHADAS_MCU=m to control FAN over the MCU on Khadas VIM boards,
+     those boards have an on-board MCU that controls (in addition of boot stuff) the FAN pins
+   - MEDIA_CEC_SUPPORT=y & CEC_MESON_G12A_AO=m to enable the CEC bus
+   - RTC_DRV_PCF8563=m to enable support for RTC on most SBC boards
+   - VIDEO_MESON_VDEC=m to enable HW Video Decoder
+   - MESON_DDR_PMU=m to enable DDR PMU perf driver on G12A & SM1 SoCs
 
 Neil
 
@@ -130,27 +138,28 @@ The following changes since commit 0bb80ecc33a8fb5a682236443c1e740d5c917d1d:
 
 are available in the Git repository at:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-drivers-for-v6.7
+   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-defconfig-for-v6.7
 
-for you to fetch changes up to 5d59b6a49bb8f6841acf53affc0c4720fe7450e5:
+for you to fetch changes up to a23bfeda86239d29f18a149a7e658cc3d4e5ef8a:
 
-   firmware: meson: Use device_get_match_data() (2023-10-09 10:48:15 +0200)
-
-----------------------------------------------------------------
-Amlogic drivers changes for v6.7:
-- correct meson_sm_* API retval handling
-- Use device_get_match_data() in meson SM
+   arm64: defconfig: add various drivers for Amlogic based boards (2023-10-13 09:40:32 +0200)
 
 ----------------------------------------------------------------
-Alexey Romanov (1):
-       drivers: meson: sm: correct meson_sm_* API retval handling
+Amlogic defconfig changes for v6.7:
+- add various drivers for Amlogic based boards
+   - KEYBOARD_GPIO_POLLED=m used to support buttons on pre-G12A boards
+   - KHADAS_MCU_FAN_THERMAL=m & MFD_KHADAS_MCU=m to control FAN over the MCU on Khadas VIM boards
+   - MEDIA_CEC_SUPPORT=y & CEC_MESON_G12A_AO=m to enable the CEC bus
+   - RTC_DRV_PCF8563=m to enable support for RTC on most SBC boards
+   - VIDEO_MESON_VDEC=m to enable HW Video Decoder
+   - MESON_DDR_PMU=m to enable DDR PMU perf driver on G12A & SM1 SoCs
 
-Rob Herring (1):
-       firmware: meson: Use device_get_match_data()
+----------------------------------------------------------------
+Marek Szyprowski (1):
+       arm64: defconfig: add various drivers for Amlogic based boards
 
-  drivers/firmware/meson/meson_sm.c       | 25 ++++++++++++++++---------
-  include/linux/firmware/meson/meson_sm.h |  2 +-
-  2 files changed, 17 insertions(+), 10 deletions(-)
+  arch/arm64/configs/defconfig | 8 ++++++++
+  1 file changed, 8 insertions(+)
 
 _______________________________________________
 linux-amlogic mailing list
