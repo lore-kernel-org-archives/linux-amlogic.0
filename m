@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23334CDB465
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C80ECDB482
 	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Oct 2023 08:02:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6N9fryGu4EB1UGsnClHekVFigCu1gprVW+z5qzTeb9g=; b=OlR0c+FUaRYr3m
-	Ni+THY1mkjipTQQ92yFrmDQm0iqIU/mfTYEr5c8nDsOSgns1XnqYbv7p0AGlFYzEVu1T4s2Ov8lQP
-	5lUJVrhQEFTYcohLeF/Yt81shxhy7kgZw/PajrNdFr1Y3NcuuZZyRfE/mGe17eHC5S3elJ0du1QQO
-	s/BIeAbYDuJePSKwVoZMZp0BlsKMaw3A4Q+9sVxkraWhweV6vd8cTg8jrLz7lgy04MheA9sb+2Sj/
-	g83S7NWOwZBcNqunstc/zt13zjY5WKnhEWk4mFreAWARZQ9Zx0RJLuk/R5ItdO1BkgCUF/bn7hlvD
-	f0UvriUdhZxFf5Y43qfw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=/aPInPaZ9bjXagjf+8igdh96yDhWlvqavPEZ8wIdEuQ=; b=xUjYYyc43j+v95
+	JFkXZXVAb5C2+8SoQQlOLWZdF9ItxoQcpsIV8QiEndUZCnlAtk7ULhTVubwV1iLysztZE9QQiBsn8
+	MILwaE8BDlwFyVCwzlJIFI1zfo1ZEMEgba+Or8w+T0fFahzzrLCU3FP+uNfG36vkA/+Bs3mPhPSeZ
+	T3n3xJXD6SGuuK1++RukUXSY864udB0nD8ED/t2BqytySX14Nxp6WffskM6uzL0W/UE/cfFMsRr8C
+	Y4MgAvdGRK5iOlY59CjqNVqm+OaWnQ/fyYpNGtpgOZz0HaUoH7CZEGvOfss4llrgGvBXlNjKm4TNq
+	hel/FA/O2Qqqv4yBl97A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qsIYW-008k5V-39;
-	Mon, 16 Oct 2023 08:02:28 +0000
-Received: from mail-lj1-f170.google.com ([209.85.208.170])
-	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qsIYO-008jz8-0f;
+	id 1qsIYQ-008k1C-2G;
 	Mon, 16 Oct 2023 08:02:22 +0000
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2c523ac38fbso7965621fa.0;
-        Mon, 16 Oct 2023 01:02:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697443337; x=1698048137;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qtLS9Nj2nFZBWPhUvEtRP9PYRoru3Ywsw6HKjKsybKc=;
-        b=SEAepDQXBp/dRqoocg13mjpC64jGAhHJNIvlFh2vpcrsVGV9qsxT8vboOhquDAuw4+
-         9anPZHMkPfQ0x1fSFBoWJvHtCsYBiDv6dFsdUspHMBRYVbCO77KYezU+6NgrzjpDYTMk
-         fHVy5PUHDPg6oT752PFtr75X5cgb3B3VcDmSll+OCFKdmapMgCTbY4sru4Wr3VljylHu
-         XfFBX6Fm7hJ1hk0s8uBeQcWwFslknqs9kiO+ypcXdi5Hwv71am2yl6sDHvUrbQFEy6Ya
-         oQDX7/4hHHPbNpeUUCYSCPHJqikBejBvzPNncPwdhAhm8G3TkRBrmbrgF3xFq55+kvga
-         k4eg==
-X-Gm-Message-State: AOJu0YyTyS2laqMkHWvSmVpu7nQCGmbH3yJ7egZYF69pw9gsN9GvmKkV
-	tV0V8IiEE0/T4QPVWBOTQgM=
-X-Google-Smtp-Source: AGHT+IEJgVTIkDdKS8wbwl9GR9zgveQ3KCzOuWUyYvLzmOvka53rPoTXp7pcFySPS7cbYgXGyHt08g==
-X-Received: by 2002:a05:6512:33d0:b0:507:a1df:1408 with SMTP id d16-20020a05651233d000b00507a1df1408mr4684169lfg.55.1697443337286;
+Received: from mail-wm1-f54.google.com ([209.85.128.54])
+	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1qsIYN-008jyn-0G;
+	Mon, 16 Oct 2023 08:02:20 +0000
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-405524e6768so40304365e9.2;
         Mon, 16 Oct 2023 01:02:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697443336; x=1698048136;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7vxzdd7hvG1LZGKkqhTZumSilwKU2j2TuY6Cx8E9gJo=;
+        b=t89OHHJSkR0TuKIr2FadJigJJOZAWCXeJY3ct2UKRwt7rLifCafIY45tlEVh+mjLz4
+         ntk3Sfl4XnqrAZgofbVs8YWBar8RKcE5Acpi+FXiuN2E62p8KUJRu8+mgE3s8Nq0/zt0
+         3ccjDzxUJGUPt6aqZNX6i/bnb4GTWpjnP3U8ld+Yj/zEdGExccnR6BgMU7HEuixadXCH
+         pRUWXYjqmp9ppCypl+TYY9QfK6p/8wz0rkyXL6kyYMNhXLKFEE4qPt3KU/MINbfdvddH
+         e6gssI0s7Vz9iI6g9Zmg2/I4kKiVOdqvGwXWjImn9IIuIp0SHgUT88roDU+WMCOQnMB1
+         niFA==
+X-Gm-Message-State: AOJu0Yz3Z0OgUmDucWjsSVqllGs/pHZV4t7BspDbjNrhTRY7Ctn8e6dQ
+	DHL47EnRft5LvFlOuIG9G+s=
+X-Google-Smtp-Source: AGHT+IEnAQcfulAK8tSKm3mqtTHbvdCU+3ufmoudypoqa9HGPqbCXKZR1ZkkXFpExKpIiIPsRBFBng==
+X-Received: by 2002:a7b:c40a:0:b0:406:61c6:30b8 with SMTP id k10-20020a7bc40a000000b0040661c630b8mr28046368wmi.22.1697443335642;
+        Mon, 16 Oct 2023 01:02:15 -0700 (PDT)
 Received: from cizrna.home (cst-prg-37-192.cust.vodafone.cz. [46.135.37.192])
-        by smtp.gmail.com with ESMTPSA id p22-20020a05600c419600b00407460234f9sm6395535wmh.21.2023.10.16.01.02.16
+        by smtp.gmail.com with ESMTPSA id p22-20020a05600c419600b00407460234f9sm6395535wmh.21.2023.10.16.01.02.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Oct 2023 01:02:16 -0700 (PDT)
+        Mon, 16 Oct 2023 01:02:15 -0700 (PDT)
 From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
 To: linux-kernel@vger.kernel.org
 Cc: Da Xue <da@libre.computer>,
 	Tomeu Vizoso <tomeu@tomeuvizoso.net>,
+	Lucas Stach <l.stach@pengutronix.de>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
@@ -65,16 +66,15 @@ Cc: Da Xue <da@libre.computer>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-pm@vger.kernel.org
-Subject: [PATCH 2/2] pmdomain: amlogic: Fix mask for the second NNA mem PD domain
-Date: Mon, 16 Oct 2023 10:02:04 +0200
-Message-ID: <20231016080205.41982-2-tomeu@tomeuvizoso.net>
+Subject: [PATCH 1/2] arm64: dts: VIM3: Set the rates of the clocks for the NPU
+Date: Mon, 16 Oct 2023 10:02:03 +0200
+Message-ID: <20231016080205.41982-1-tomeu@tomeuvizoso.net>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231016080205.41982-1-tomeu@tomeuvizoso.net>
-References: <20231016080205.41982-1-tomeu@tomeuvizoso.net>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231016_010220_243102_F0885B07 
-X-CRM114-Status: GOOD (  11.85  )
+X-CRM114-CacheID: sfid-20231016_010219_121061_029A0F9D 
+X-CRM114-Status: UNSURE (   8.74  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,28 +91,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Without this change, the NPU hangs when the 8th NN core is used.
-
-It matches what the out-of-tree driver does.
+Otherwise they are left at 24MHz and the NPU runs very slowly.
 
 Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Suggested-by: Lucas Stach <l.stach@pengutronix.de>
 ---
- drivers/pmdomain/amlogic/meson-ee-pwrc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/pmdomain/amlogic/meson-ee-pwrc.c b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-index cfb796d40d9d..0dd71cd814c5 100644
---- a/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-+++ b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-@@ -228,7 +228,7 @@ static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_audio[] = {
- 
- static struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_nna[] = {
- 	{ G12A_HHI_NANOQ_MEM_PD_REG0, GENMASK(31, 0) },
--	{ G12A_HHI_NANOQ_MEM_PD_REG1, GENMASK(23, 0) },
-+	{ G12A_HHI_NANOQ_MEM_PD_REG1, GENMASK(31, 0) },
- };
- 
- #define VPU_PD(__name, __top_pd, __mem, __is_pwr_off, __resets, __clks)	\
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index ff68b911b729..9d5eab6595d0 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -2502,6 +2502,9 @@ npu: npu@ff100000 {
+ 		clocks = <&clkc CLKID_NNA_CORE_CLK>,
+ 			 <&clkc CLKID_NNA_AXI_CLK>;
+ 		clock-names = "core", "bus";
++		assigned-clocks = <&clkc CLKID_NNA_CORE_CLK>,
++				  <&clkc CLKID_NNA_AXI_CLK>;
++		assigned-clock-rates = <800000000>, <800000000>;
+ 		resets = <&reset RESET_NNA>;
+ 		status = "disabled";
+ 	};
 -- 
 2.41.0
 
