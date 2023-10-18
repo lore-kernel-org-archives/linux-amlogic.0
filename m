@@ -4,54 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7E5FCDB47E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Oct 2023 09:22:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D87BCDB47E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Oct 2023 12:20:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=il+wKzbHy50kKOT2YwYkUJjmFLBZDsHXJRqPVsHslnA=; b=VIzwUHVgiuQZsf
-	MUJCGSuYLnN8yU/SUeWf6cu/mIX9FO+mZRbtCFnj9o1+xA6+t8Fp4dPjhsrhanUSXNHDZuKWWwOc/
-	1v4KUB5AWq0Z0uEb/uTVjhzLPdDdmLG8lliRyX+yBi7HATpNE2XicJsDsy52kMZH8eIz72QDrV+6U
-	80XF/Nmi+E1KGxsFJ29oayXshMu1BM3u1qJ4vwe/YtBH7xV7L3v7mXJWojyUK77pmq8CygBN1j90V
-	Cw52hvj5+IJhngRsYkbqeV5Lj8JhL2xU3tenZhdTPrclTplwa7EPWCckfjP3XOnwzTir+sh25n99a
-	VNK/5OZ1kNuYE13tOtgA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0le+agXdULY4oKdSvyExPw0PX3viqnifBP2DyEJOJj4=; b=komjnQrtkDWh3s
+	Vo1f6rzllDV/JGtKpWdgxTNbopkatIH1c9+cB9OWc2sYm9ZfHgWxybpzsQq1/I5jBtxk7sAIaRHH2
+	xa/SXmQU1Z5dFZgtw74sUXx+/5vVFHspO1R0+G3g+e/QtjFqIQzCtpPQP8HOAyvsnW3MBBhjal+K1
+	IB78IItTpJwTNebO6amQAsjd3Y4v31JzZ7bv8ANaO4lqcY56Lm/Go7Fh4pnh4FhEg8SNzKn5As2IT
+	m3jJUK25DJERc2tMOIZzJJFsWsfE9fQ2H9yX4JI+5e+nre1sjHDc6UhOfbHq4gs3Q7enjbuzx8PWA
+	1jBic0d7ZJY55jz0CNVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qt2ki-00EGPz-08;
-	Wed, 18 Oct 2023 09:22:08 +0000
-Received: from szxga02-in.huawei.com ([45.249.212.188])
+	id 1qt5We-00Edby-14;
+	Wed, 18 Oct 2023 12:19:48 +0000
+Received: from relay1-d.mail.gandi.net ([2001:4b98:dc4:8::221])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qt2ke-00EGPK-2g;
-	Wed, 18 Oct 2023 09:22:06 +0000
-Received: from kwepemm000014.china.huawei.com (unknown [172.30.72.54])
-	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4S9QHs3s06zRt5p;
-	Wed, 18 Oct 2023 17:18:17 +0800 (CST)
-Received: from huawei.com (10.67.174.78) by kwepemm000014.china.huawei.com
- (7.193.23.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Wed, 18 Oct
- 2023 17:21:57 +0800
-From: Yi Yang <yiyang13@huawei.com>
-To: <liang.yang@amlogic.com>, <miquel.raynal@bootlin.com>, <richard@nod.at>,
-	<vigneshr@ti.com>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
-	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>
-CC: <linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>
-Subject: [PATCH] mtd: rawnand: meson: check return value of devm_kasprintf()
-Date: Wed, 18 Oct 2023 09:20:47 +0000
-Message-ID: <20231018092047.314860-1-yiyang13@huawei.com>
-X-Mailer: git-send-email 2.25.1
+	id 1qt5Wc-00EdbH-0H;
+	Wed, 18 Oct 2023 12:19:47 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 598F2240006;
+	Wed, 18 Oct 2023 12:19:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1697631582;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=D8WY2iRcdIwbz7ogy/kuNLacpb70m77vmQIMF2N7DmQ=;
+	b=LiByQyqWzx7CezxKGdiPA8KO7SRIglhL6/+dTiS4jjq4s2vMDpIF/cR6FjbAcBMStzUUb5
+	CIjCR2GkpLhcO+nYeUSUvMJVMWH/6Lbgd/uaCAWD28Nu7gKQd+te9xOew5pBytbJray2op
+	U8jlGLFGJbBMZ+XEkvvwu9IjuJj4aeKH7knSknW4VwdCcUlrlyj5+veOWYlLKBhW0FCnHP
+	hbS2ggoq3h2sgWKyGjqzRFlOEmPGOfVDYgJ54F2AUIu/Lujx2DfAyIsUerVGsEdqkujh7q
+	eQV/C7b6Bt7+WEZdy2MrbuPsAlTL82fKrOaeT1lZvfM/xCnanRaGoXodbuVQVA==
+Date: Wed, 18 Oct 2023 14:19:36 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Yi Yang <yiyang13@huawei.com>
+Cc: <liang.yang@amlogic.com>, <richard@nod.at>, <vigneshr@ti.com>,
+ <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+ <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+ <linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>
+Subject: Re: [PATCH] mtd: rawnand: meson: check return value of
+ devm_kasprintf()
+Message-ID: <20231018141936.42b5ec6b@xps-13>
+In-Reply-To: <20231018092047.314860-1-yiyang13@huawei.com>
+References: <20231018092047.314860-1-yiyang13@huawei.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-Originating-IP: [10.67.174.78]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- kwepemm000014.china.huawei.com (7.193.23.6)
-X-CFilter-Loop: Reflected
+X-GND-Sasl: miquel.raynal@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231018_022205_109145_DE2ABA0D 
-X-CRM114-Status: UNSURE (   7.73  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231018_051946_427054_43217CFA 
+X-CRM114-Status: GOOD (  14.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,42 +71,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The devm_kasprintf() returns a pointer to dynamically allocated memory.
-that will return NULL when allocate failed.
-Fix it by check return value of devm_kasprintf().
-
-Fixes: 1e4d3ba66888 ("mtd: rawnand: meson: fix the clock")
-Signed-off-by: Yi Yang <yiyang13@huawei.com>
----
- drivers/mtd/nand/raw/meson_nand.c | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index 378f28ce6a74..2c6ae781bb0c 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -1134,6 +1134,11 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
- 	init.name = devm_kasprintf(nfc->dev,
- 				   GFP_KERNEL, "%s#div",
- 				   dev_name(nfc->dev));
-+	if (init.name) {
-+		dev_err(nfc->dev, "failed to allocate init.name\n");
-+		return -ENOMEM;
-+	}
-+
- 	init.ops = &clk_divider_ops;
- 	nfc_divider_parent_data[0].fw_name = "device";
- 	init.parent_data = nfc_divider_parent_data;
--- 
-2.25.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgWWksCgp5aXlhbmcxM0BodWF3ZWkuY29tIHdyb3RlIG9uIFdlZCwgMTggT2N0IDIwMjMgMDk6
+MjA6NDcgKzAwMDA6Cgo+IFRoZSBkZXZtX2thc3ByaW50ZigpIHJldHVybnMgYSBwb2ludGVyIHRv
+IGR5bmFtaWNhbGx5IGFsbG9jYXRlZCBtZW1vcnkuCj4gdGhhdCB3aWxsIHJldHVybiBOVUxMIHdo
+ZW4gYWxsb2NhdGUgZmFpbGVkLgoKTWF5IEkgcHJvcG9zZSByZXdvcmRpbmcgb2YgdGhlIGNvbW1p
+dCBsb2c/CiIKZGV2bV9rYXNwcmludGYoKSByZXR1cm5zIGEgcG9pbnRlciB0byBkeW5hbWljYWxs
+eSBhbGxvY2F0ZWQgbWVtb3J5CndoaWNoIGNhbiBiZSBOVUxMIHVwb24gZmFpbHVyZS4gRW5zdXJl
+IHRoZSBhbGxvY2F0aW9uIHdhcyBzdWNjZXNzZnVsIGJ5CmNoZWNraW5nIHRoZSBwb2ludGVyIHZh
+bGlkaXR5LgoiCgo+IEZpeCBpdCBieSBjaGVjayByZXR1cm4gdmFsdWUgb2YgZGV2bV9rYXNwcmlu
+dGYoKS4KPiAKPiBGaXhlczogMWU0ZDNiYTY2ODg4ICgibXRkOiByYXduYW5kOiBtZXNvbjogZml4
+IHRoZSBjbG9jayIpCj4gU2lnbmVkLW9mZi1ieTogWWkgWWFuZyA8eWl5YW5nMTNAaHVhd2VpLmNv
+bT4KPiAtLS0KPiAgZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVzb25fbmFuZC5jIHwgNSArKysrKwo+
+ICAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQuYyBiL2RyaXZlcnMvbXRkL25hbmQvcmF3L21lc29u
+X25hbmQuYwo+IGluZGV4IDM3OGYyOGNlNmE3NC4uMmM2YWU3ODFiYjBjIDEwMDY0NAo+IC0tLSBh
+L2RyaXZlcnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQuYwo+ICsrKyBiL2RyaXZlcnMvbXRkL25h
+bmQvcmF3L21lc29uX25hbmQuYwo+IEBAIC0xMTM0LDYgKzExMzQsMTEgQEAgc3RhdGljIGludCBt
+ZXNvbl9uZmNfY2xrX2luaXQoc3RydWN0IG1lc29uX25mYyAqbmZjKQo+ICAJaW5pdC5uYW1lID0g
+ZGV2bV9rYXNwcmludGYobmZjLT5kZXYsCj4gIAkJCQkgICBHRlBfS0VSTkVMLCAiJXMjZGl2IiwK
+PiAgCQkJCSAgIGRldl9uYW1lKG5mYy0+ZGV2KSk7Cj4gKwlpZiAoaW5pdC5uYW1lKSB7Cj4gKwkJ
+ZGV2X2VycihuZmMtPmRldiwgImZhaWxlZCB0byBhbGxvY2F0ZSBpbml0Lm5hbWVcbiIpOwoKTm8g
+bmVlZCBmb3IgZXJyb3IgbWVzc2FnZXMgdXBvbiBtZW1vcnkgYWxsb2NhdGlvbiBmYWlsdXJlcy4K
+Cj4gKwkJcmV0dXJuIC1FTk9NRU07Cj4gKwl9Cj4gKwo+ICAJaW5pdC5vcHMgPSAmY2xrX2Rpdmlk
+ZXJfb3BzOwo+ICAJbmZjX2RpdmlkZXJfcGFyZW50X2RhdGFbMF0uZndfbmFtZSA9ICJkZXZpY2Ui
+Owo+ICAJaW5pdC5wYXJlbnRfZGF0YSA9IG5mY19kaXZpZGVyX3BhcmVudF9kYXRhOwoKVGhlc2Ug
+Y29tbWVudHMgYXJlIGFsc28gYXBwbGljYWJsZSB0byB5b3VyIHR3byBvdGhlciBwYXRjaGVzLgoK
+VGhhbmtzLApNaXF1w6hsCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmlu
+ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
+aW51eC1hbWxvZ2ljCg==
