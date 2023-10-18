@@ -4,62 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D87BCDB47E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Oct 2023 12:20:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F19ECDB47E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Oct 2023 23:56:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
+	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0le+agXdULY4oKdSvyExPw0PX3viqnifBP2DyEJOJj4=; b=komjnQrtkDWh3s
-	Vo1f6rzllDV/JGtKpWdgxTNbopkatIH1c9+cB9OWc2sYm9ZfHgWxybpzsQq1/I5jBtxk7sAIaRHH2
-	xa/SXmQU1Z5dFZgtw74sUXx+/5vVFHspO1R0+G3g+e/QtjFqIQzCtpPQP8HOAyvsnW3MBBhjal+K1
-	IB78IItTpJwTNebO6amQAsjd3Y4v31JzZ7bv8ANaO4lqcY56Lm/Go7Fh4pnh4FhEg8SNzKn5As2IT
-	m3jJUK25DJERc2tMOIZzJJFsWsfE9fQ2H9yX4JI+5e+nre1sjHDc6UhOfbHq4gs3Q7enjbuzx8PWA
-	1jBic0d7ZJY55jz0CNVQ==;
+	List-Owner; bh=aKW5mZO60D1YWAto2kjTFJeKaJwccAIpMFTQ64wsIFY=; b=K8srqbyOKHID2Q
+	n/ysGkl3cYBmAfvzsskVF7AbYAw2nWHIYnuBtI2ozTIKy/Ts4upOdAVEQUXO/B8TUGo3XPGES3qcT
+	/ONpkGzKjvjLxRo3GGBm1eOxnrspaaL2WmHuWP6BZvlku0Bm5H2BcgBCcCis2pkN+P1rIPWQ8r8so
+	4tw1ccfpE5Y78Z0ISTYoaSUJu1w8x75BfZoRl1MCsKOnT4VyeaYZ8qkTED1ac5//lJ8Gv6vR8o/7X
+	FE+ZHHQUzQyKoCMOVcEpXmWsDKaVqZHct9KqNFIaD9Re5mHEsC2mQ0jW+tZafptfTj8jkRb1j2enF
+	SodvP+09tF8qPvluuEUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qt5We-00Edby-14;
-	Wed, 18 Oct 2023 12:19:48 +0000
-Received: from relay1-d.mail.gandi.net ([2001:4b98:dc4:8::221])
+	id 1qtGOY-00FyFW-2w;
+	Wed, 18 Oct 2023 23:56:10 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qt5Wc-00EdbH-0H;
-	Wed, 18 Oct 2023 12:19:47 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 598F2240006;
-	Wed, 18 Oct 2023 12:19:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1697631582;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=D8WY2iRcdIwbz7ogy/kuNLacpb70m77vmQIMF2N7DmQ=;
-	b=LiByQyqWzx7CezxKGdiPA8KO7SRIglhL6/+dTiS4jjq4s2vMDpIF/cR6FjbAcBMStzUUb5
-	CIjCR2GkpLhcO+nYeUSUvMJVMWH/6Lbgd/uaCAWD28Nu7gKQd+te9xOew5pBytbJray2op
-	U8jlGLFGJbBMZ+XEkvvwu9IjuJj4aeKH7knSknW4VwdCcUlrlyj5+veOWYlLKBhW0FCnHP
-	hbS2ggoq3h2sgWKyGjqzRFlOEmPGOfVDYgJ54F2AUIu/Lujx2DfAyIsUerVGsEdqkujh7q
-	eQV/C7b6Bt7+WEZdy2MrbuPsAlTL82fKrOaeT1lZvfM/xCnanRaGoXodbuVQVA==
-Date: Wed, 18 Oct 2023 14:19:36 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Yi Yang <yiyang13@huawei.com>
-Cc: <liang.yang@amlogic.com>, <richard@nod.at>, <vigneshr@ti.com>,
- <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
- <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
- <linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-amlogic@lists.infradead.org>
-Subject: Re: [PATCH] mtd: rawnand: meson: check return value of
- devm_kasprintf()
-Message-ID: <20231018141936.42b5ec6b@xps-13>
-In-Reply-To: <20231018092047.314860-1-yiyang13@huawei.com>
-References: <20231018092047.314860-1-yiyang13@huawei.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	id 1qtGOV-00FyF7-0w
+	for linux-amlogic@lists.infradead.org;
+	Wed, 18 Oct 2023 23:56:10 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 95079CE26AE;
+	Wed, 18 Oct 2023 23:56:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF50AC433C7;
+	Wed, 18 Oct 2023 23:56:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1697673361;
+	bh=chjIoI3/HmiaBDvhJLFWJeHklVVsHKeBC8ixad4G+40=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=ZYgnEHz6dgLYUWMMmYc7vF77k1IKzT7DuHHErwxhZTJ6bl+GKm347D1LAuT+KNcry
+	 j5WocECxLtuRjBhVp3Sr5AqECHh4tneDuRS28Zt155Tgqx2mV6sjCrZ0O0sNd0ttwR
+	 8kRU4Ne83oVmL5WVvAjt2uM+xC4FDucrMZFQ6m+xPZz6BJojAahSAVvQVzdKavaCXu
+	 5o7hat+EoYO+6/a65mCJREiTBR0WQn8eCBaYfTY2bg2l2grFiu7NEFl5OzI/B4MRbn
+	 N76ND2QaPdf2hUssflimdsoIkOSc/31qr6UxIelJAZ+K1TWPMCIeb0aRS6QsKVvQdy
+	 +e15xR9kq3whQ==
+Message-ID: <6ef51734c407d1bc5c91fa79e2f5207d.sboyd@kernel.org>
 MIME-Version: 1.0
-X-GND-Sasl: miquel.raynal@bootlin.com
+In-Reply-To: <1j1qdux4rt.fsf@starbuckisacylon.baylibre.com>
+References: <1j1qdux4rt.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [GIT PULL]: clk: meson: amlogic clock updates for v6.7
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org
+To: Jerome Brunet <jbrunet@baylibre.com>
+Date: Wed, 18 Oct 2023 16:55:59 -0700
+User-Agent: alot/0.10
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231018_051946_427054_43217CFA 
-X-CRM114-Status: GOOD (  14.39  )
+X-CRM114-CacheID: sfid-20231018_165607_516155_A1CE7B1C 
+X-CRM114-Status: UNSURE (   7.92  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,37 +67,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgWWksCgp5aXlhbmcxM0BodWF3ZWkuY29tIHdyb3RlIG9uIFdlZCwgMTggT2N0IDIwMjMgMDk6
-MjA6NDcgKzAwMDA6Cgo+IFRoZSBkZXZtX2thc3ByaW50ZigpIHJldHVybnMgYSBwb2ludGVyIHRv
-IGR5bmFtaWNhbGx5IGFsbG9jYXRlZCBtZW1vcnkuCj4gdGhhdCB3aWxsIHJldHVybiBOVUxMIHdo
-ZW4gYWxsb2NhdGUgZmFpbGVkLgoKTWF5IEkgcHJvcG9zZSByZXdvcmRpbmcgb2YgdGhlIGNvbW1p
-dCBsb2c/CiIKZGV2bV9rYXNwcmludGYoKSByZXR1cm5zIGEgcG9pbnRlciB0byBkeW5hbWljYWxs
-eSBhbGxvY2F0ZWQgbWVtb3J5CndoaWNoIGNhbiBiZSBOVUxMIHVwb24gZmFpbHVyZS4gRW5zdXJl
-IHRoZSBhbGxvY2F0aW9uIHdhcyBzdWNjZXNzZnVsIGJ5CmNoZWNraW5nIHRoZSBwb2ludGVyIHZh
-bGlkaXR5LgoiCgo+IEZpeCBpdCBieSBjaGVjayByZXR1cm4gdmFsdWUgb2YgZGV2bV9rYXNwcmlu
-dGYoKS4KPiAKPiBGaXhlczogMWU0ZDNiYTY2ODg4ICgibXRkOiByYXduYW5kOiBtZXNvbjogZml4
-IHRoZSBjbG9jayIpCj4gU2lnbmVkLW9mZi1ieTogWWkgWWFuZyA8eWl5YW5nMTNAaHVhd2VpLmNv
-bT4KPiAtLS0KPiAgZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVzb25fbmFuZC5jIHwgNSArKysrKwo+
-ICAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQuYyBiL2RyaXZlcnMvbXRkL25hbmQvcmF3L21lc29u
-X25hbmQuYwo+IGluZGV4IDM3OGYyOGNlNmE3NC4uMmM2YWU3ODFiYjBjIDEwMDY0NAo+IC0tLSBh
-L2RyaXZlcnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQuYwo+ICsrKyBiL2RyaXZlcnMvbXRkL25h
-bmQvcmF3L21lc29uX25hbmQuYwo+IEBAIC0xMTM0LDYgKzExMzQsMTEgQEAgc3RhdGljIGludCBt
-ZXNvbl9uZmNfY2xrX2luaXQoc3RydWN0IG1lc29uX25mYyAqbmZjKQo+ICAJaW5pdC5uYW1lID0g
-ZGV2bV9rYXNwcmludGYobmZjLT5kZXYsCj4gIAkJCQkgICBHRlBfS0VSTkVMLCAiJXMjZGl2IiwK
-PiAgCQkJCSAgIGRldl9uYW1lKG5mYy0+ZGV2KSk7Cj4gKwlpZiAoaW5pdC5uYW1lKSB7Cj4gKwkJ
-ZGV2X2VycihuZmMtPmRldiwgImZhaWxlZCB0byBhbGxvY2F0ZSBpbml0Lm5hbWVcbiIpOwoKTm8g
-bmVlZCBmb3IgZXJyb3IgbWVzc2FnZXMgdXBvbiBtZW1vcnkgYWxsb2NhdGlvbiBmYWlsdXJlcy4K
-Cj4gKwkJcmV0dXJuIC1FTk9NRU07Cj4gKwl9Cj4gKwo+ICAJaW5pdC5vcHMgPSAmY2xrX2Rpdmlk
-ZXJfb3BzOwo+ICAJbmZjX2RpdmlkZXJfcGFyZW50X2RhdGFbMF0uZndfbmFtZSA9ICJkZXZpY2Ui
-Owo+ICAJaW5pdC5wYXJlbnRfZGF0YSA9IG5mY19kaXZpZGVyX3BhcmVudF9kYXRhOwoKVGhlc2Ug
-Y29tbWVudHMgYXJlIGFsc28gYXBwbGljYWJsZSB0byB5b3VyIHR3byBvdGhlciBwYXRjaGVzLgoK
-VGhhbmtzLApNaXF1w6hsCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmlu
-ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
-aW51eC1hbWxvZ2ljCg==
+Quoting Jerome Brunet (2023-10-16 02:58:26)
+> 
+> Hi Stephen,
+> 
+> Here are the Amlogic clock updates for v6.7
+> It is adding 2 clock controller drivers for the new s4 family SoC.
+> 
+> Cheers
+> 
+> Jerome
+> 
+> 
+> The following changes since commit 0bb80ecc33a8fb5a682236443c1e740d5c917d1d:
+> 
+>   Linux 6.6-rc1 (2023-09-10 16:28:41 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   https://github.com/BayLibre/clk-meson.git tags/clk-meson-v6.7-1
+> 
+> for you to fetch changes up to 57b55c76aaf1ba50ecc6dcee5cd6843dc4d85239:
+> 
+>   clk: meson: S4: add support for Amlogic S4 SoC peripheral clock controller (2023-09-27 11:01:03 +0200)
+> 
+> ----------------------------------------------------------------
+
+Thanks. Pulled into clk-next
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
