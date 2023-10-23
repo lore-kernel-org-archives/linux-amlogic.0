@@ -4,97 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7517C004C0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Oct 2023 14:44:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC2D4C25B46
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Oct 2023 19:40:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:Date:References:
-	In-Reply-To:Message-Id:MIME-Version:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=XEYHSe5wsWttxIl2fSNbxKtV1CcVdaf46ccYmZUl+J8=; b=DD+hsdZqdXq4Th
-	cHn5+oRl7BIwH4E3+CmgO5CLg1c81qtE0PxiOMeoRF1KjTDmLuGjk5XgBp+jTX8OQ7M090IKjJrZO
-	DBgRyGxBgVVhnFnGSliKB3Onf20/dZCoU6WV1UyuISXsi7yc6WXDxbUh2lEIMCUSWi07o+SJEWCXy
-	1PNVsnUZfXMS7XiCuyuzn64DIzQteM8kTbAVmkBpfSrBPXDRCJ6GXvGNmYsOkkz9Nhvd2Sr+4P9kA
-	wAUnoyJUWDmm+lUAE0Mxu3+1lIteHD84arX5JRlIFXO3XMXsdOd3plBURUBS/756cr+FNW0DjQV0U
-	mxA6bTihWq5DrJcp90Yw==;
+	List-Owner; bh=X0PWFu7xNfos5QtcUlwuBpgX4h6thvHltGyMgwnPsKw=; b=ftrXVmy4dgCCeW
+	twrKf8arJYsaeeI89hsfUJW6KCWh9YB8/bPiBTJGgHQnPTrbqm8HZYw1VM5eGffGT3jee7pEfd2Qe
+	b5VucyE3QWdRtfWGbSz3w8gQaTEhmY4VAvBUdtmAMGQLyzxp2jKSKRx0FhD5JuVRUpIK0WByoMhkm
+	Rkgm8OCBLjCW5tqYTOFGMUz2DBpemE4+sMNA6hyekBfAp8jS+wHBfUAMn4vC4ykKmvWMiJ13fr0gR
+	uoJyxvXckPd4CkuO5xjLmTsotxQtODuDrmNGcnZjEMr7az2XjSozpTkvVL/VKXAJ9lAvOZtjQqInM
+	GaRmMsCHuogAMUUjvgKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1quw9w-007bnq-2V;
-	Mon, 23 Oct 2023 14:44:01 +0000
-Received: from out1-smtp.messagingengine.com ([66.111.4.25])
+	id 1qv0md-008Bz4-0N;
+	Mon, 23 Oct 2023 19:40:15 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1quw9u-007bla-0a;
-	Mon, 23 Oct 2023 14:44:00 +0000
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailout.nyi.internal (Postfix) with ESMTP id 529E75C0368;
-	Mon, 23 Oct 2023 10:43:56 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Mon, 23 Oct 2023 10:43:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:sender
-	:subject:subject:to:to; s=fm2; t=1698072236; x=1698158636; bh=LQ
-	3mQFLL5edFDiS47lGR9808SL3EsFpdSI3BztByio0=; b=LPel3AAy/6vzLYDh8Y
-	Z3UbDeFGbTmUStPUg6sw7950XvTsu/LB73xT2WdH7iretw1kLUfXiFK7azKpv+pC
-	NbTieHNl/2I9OOSX97UE4LvJs9jvxyusMr/b+bfwQQbgFpiXztkrX9Bj7eJI4V3b
-	SGlHyKkQzXzgEkrK0A3zsnnE0zzoPt55lgBbdHHkjIs7rYI1xMkY7783evs9p5Gz
-	kIljJ6jDDNi0Gxfy7qHvoMAvD7DqxwPw7kGjGYeR+8Skk2sezWY9d/h+dYLPqLaJ
-	xzdFhxokhpvBr3U0dtmEqdszFmuUExsrXHeQHKYyBPPGZ2QPv2AGC473vij5O0Rp
-	nrZQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:sender:subject
-	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm3; t=1698072236; x=1698158636; bh=LQ3mQFLL5edFD
-	iS47lGR9808SL3EsFpdSI3BztByio0=; b=BYSEWn2MEQtkSKUFEZlo6kqPOvlls
-	H49NmpBLjZJ/eXwbcNMosHKRPpf3gz4VRViq4NfJTZWmB9fc2OMNs0w5ttrwBUzx
-	lt9l/T6MEwlzdRczFXi3fNnk0uNYtluYpjlqNkoKbif9vx37piVjtrm1d5/+KwHU
-	ig462CAIzamIyCLP7RGl5NAj27BSLoQY8szTVtWT2JeOKreDVanEc6Rb6wYv1lL0
-	ZbKD3sWtNTj+LkZbfeIXjEkCAR56OfMRr+igZI/XzlQAYVmNVe7H0Xn25B7R/nQA
-	CiyVX8U49XekNV0UJ6G2xxFKaxoOj5Ye43vQl0rm/lMXWvoxcGgwdDokw==
-X-ME-Sender: <xms:q4Y2ZdcdjzKzlNrKR536Il2i9TXVBiU0ZZhCqseprek0UcwlEzEBNw>
-    <xme:q4Y2ZbP66FfBoVrUGDdV1Ka3FOUlEEIXGTH_Yeo6cHMRsxHKfP_QbQ3ncwcc8VcPr
-    EQ1pPX9nQAlNxi_4lU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrkeeigdejkecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:q4Y2ZWjo0w3CIZllXxtYtTE-rqFNdE0RIeqC2_f3vTx4NPonNkQ-Jw>
-    <xmx:q4Y2ZW_QyvqhnCIo-1oFZFlsvn_pyVwET1qabXsQuO7D8ZwQhmU_gA>
-    <xmx:q4Y2ZZs9NqSZPdaeVobj_EKthwMGkRxPHEUzPbr0A4p3-6KOdOe4kg>
-    <xmx:rIY2ZVEiv_pfQ_0h-XsfW-hNx9JUi5Y2G6O4bWRCZgNroShvlAYOkg>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 234CEB60089; Mon, 23 Oct 2023 10:43:55 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-1048-g9229b632c5-fm-20231019.001-g9229b632
+	id 1qv0mZ-008BwP-0q;
+	Mon, 23 Oct 2023 19:40:14 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id AC12F100009;
+	Mon, 23 Oct 2023 22:39:56 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru AC12F100009
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1698089996;
+	bh=Hhd9o3DW9H02Ejo8WGubQDNC+sSIsjqhUPhxroLp0IQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=Qzlt0w7tTATPGsbMuBs4DaPGSRQmI03REzogB+ki/buGpx2PFXzNGpKqthBzXJXF/
+	 shjiwowWttLUICQjG2Sx2B2mOiIn9LtVx3rs9HdmxuZgW4TP9o19dw0RSU7cuXcZSY
+	 NqJDExsc0U5rC8EHjFTAlCF1B19hD5E6vTGOG5610j7F3cLiIg6/0W9WVwjld0E83C
+	 mgqUmhrQpsd4p4ZZXCCSzg3eSGsYyWYNnffrx8/9BPijeegCItjGGUBL46za6l6se7
+	 cAJmooNCJFccC31E7K0+GgAqNhgSxniWvmGBAM61tNIFZnit5UU4/cP3mQZ9ScmZ9t
+	 D60edgYn72r+w==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon, 23 Oct 2023 22:39:54 +0300 (MSK)
+Received: from [192.168.1.127] (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.37; Mon, 23 Oct 2023 22:39:54 +0300
+Message-ID: <07f978ec-2f18-4079-afb1-4d37827806a3@salutedevices.com>
+Date: Mon, 23 Oct 2023 22:40:15 +0300
 MIME-Version: 1.0
-Message-Id: <6fea22fa-86ec-48b2-93ad-56f77313d53a@app.fastmail.com>
-In-Reply-To: <1j1qdlpgf0.fsf@starbuckisacylon.baylibre.com>
-References: <20231023102810.4001943-1-arnd@kernel.org>
- <1j1qdlpgf0.fsf@starbuckisacylon.baylibre.com>
-Date: Mon, 23 Oct 2023 16:43:32 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Jerome Brunet" <jbrunet@baylibre.com>, "Arnd Bergmann" <arnd@kernel.org>,
- "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Michael Turquette" <mturquette@baylibre.com>,
- "Stephen Boyd" <sboyd@kernel.org>, "Kevin Hilman" <khilman@baylibre.com>,
- "Yu Tu" <yu.tu@amlogic.com>
-Cc: "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>,
- "Dmitry Rokosov" <ddrokosov@sberdevices.ru>, "Jian Hu" <jian.hu@amlogic.com>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] [v2] clk: meson: S4: select CONFIG_COMMON_CLK_MESON_CLKC_UTILS
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 RESEND] pwm: meson: add pwm support for S4
+Content-Language: en-US
+To: Yixun Lan <dlan@gentoo.org>, JunYi Zhao <junyi.zhao@amlogic.com>
+CC: <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
+	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <linux-pwm@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+References: <20231016052457.1191838-1-junyi.zhao@amlogic.com>
+ <20231016223749.GA7647@ofsar>
+From: George Stark <gnstark@salutedevices.com>
+In-Reply-To: <20231016223749.GA7647@ofsar>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 180817 [Oct 23 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 542 542 3d23828e213bab96daa5e52f9cef518f74e40214, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;lists.infradead.org:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2023/10/23 18:44:00
+X-KSMG-LinksScanning: Clean, bases: 2023/10/23 18:45:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/10/23 18:09:00 #22267281
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231023_074358_287184_A990CE2B 
-X-CRM114-Status: UNSURE (   8.47  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231023_124011_653332_CD6EDD80 
+X-CRM114-Status: GOOD (  17.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,25 +98,106 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Oct 23, 2023, at 16:20, Jerome Brunet wrote:
-> On Mon 23 Oct 2023 at 12:28, Arnd Bergmann <arnd@kernel.org> wrote:
+Hello Yixun Lan
 
-> Applied fixing this minor checkpatch warning (1 extra char)
->
-> WARNING: Please use correct Fixes: style 'Fixes: <12 chars of sha1> 
-> ("<title line>")' - ie: 'Fixes: e787c9c55eda ("clk: meson: S4: add 
-> support for Amlogic S4 SoC PLL clock driver")'
->
+On 10/17/23 01:37, Yixun Lan wrote:
+> Hi JunYi
+> 
+> On 13:24 Mon 16 Oct     , JunYi Zhao wrote:
+>> From: "junyi.zhao" <junyi.zhao@amlogic.com>
+>>
+>> Support PWM for S4 soc.
+>> Now the PWM clock input is done in independent CLKCTRL registers.
+>> And no more in the PWM registers.
+>> PWM needs to obtain an external clock source.
+>>
+>> Signed-off-by: junyi.zhao <junyi.zhao@amlogic.com>
+>> ---
+>> V2 -> V3:
+>> Rebase and Review the latest upstream code again.
+>> After reconstruction, stick to the previous code as much as possible.
+>>   drivers/pwm/pwm-meson.c | 19 +++++++++++++++++++
+>>   1 file changed, 19 insertions(+)
+>>
+>> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+>> index 25519cddc2a9..fe9fd75747c4 100644
+>> --- a/drivers/pwm/pwm-meson.c
+>> +++ b/drivers/pwm/pwm-meson.c
+>> @@ -99,6 +99,7 @@ struct meson_pwm_channel {
+>>   struct meson_pwm_data {
+>>   	const char * const *parent_names;
+>>   	unsigned int num_parents;
+>> +	unsigned int extern_clk;
+>>   };
+>>   
+>>   struct meson_pwm {
+>> @@ -396,6 +397,10 @@ static const struct meson_pwm_data pwm_g12a_ao_cd_data = {
+>>   	.num_parents = ARRAY_SIZE(pwm_g12a_ao_cd_parent_names),
+>>   };
+>>   
+>> +static const struct meson_pwm_data pwm_s4_data = {
+>> +	.extern_clk = true,
+>> +};
+>> +
+>>   static const struct of_device_id meson_pwm_matches[] = {
+>>   	{
+>>   		.compatible = "amlogic,meson8b-pwm",
+>> @@ -429,6 +434,10 @@ static const struct of_device_id meson_pwm_matches[] = {
+>>   		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
+>>   		.data = &pwm_g12a_ao_cd_data
+>>   	},
+>> +	{
+>> +		.compatible = "amlogic,s4-pwm",
+>> +		.data = &pwm_s4_data,
+>> +	},
+>>   	{},
+>>   };
+>>   MODULE_DEVICE_TABLE(of, meson_pwm_matches);
+>> @@ -451,6 +460,16 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
+>>   		struct clk_parent_data div_parent = {}, gate_parent = {};
+>>   		struct clk_init_data init = {};
+>>   
+>> +		if (meson->data->extern_clk) {
+>> +			snprintf(name, sizeof(name), "clkin%u", i);
+>> +			channel->clk = devm_clk_get(dev, name);
+> use devm_clk_get_optional() which would save you from introducing
+> the 'extern_clk' variable
 
-Thanks for pointing this out, I have no idea where this was set to 13,
-but I've changed it to 12 in my ~/.gitconfig now.
+On S4 and other recent chips PWM clock resides in separate IP and it 
+must be provided to driver in order to control PWM frequency. So this 
+clock is not optional.
 
-     Arnd
+> 
+>> +			if (IS_ERR(channel->clk)) {
+>> +				dev_err(meson->chip.dev, "can't get device clock\n");
+>> +				return PTR_ERR(channel->clk);
+>> +			}
+>> +			continue;
+>> +		}
+>> +
+>>   		snprintf(name, sizeof(name), "%s#mux%u", dev_name(dev), i);
+>>   
+>>   		init.name = name;
+>>
+>> base-commit: 4d2c646ac07cf4a35ef1c4a935a1a4fd6c6b1a36
+>> -- 
+>> 2.41.0
+>>
+>>
+>> _______________________________________________
+>> linux-amlogic mailing list
+>> linux-amlogic@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> 
+
+-- 
+Best regards
+George
 
 _______________________________________________
 linux-amlogic mailing list
