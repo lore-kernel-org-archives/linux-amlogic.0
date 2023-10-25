@@ -4,89 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3589C00A8F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Oct 2023 15:42:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE0CBC0032E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Oct 2023 10:17:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
-	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=jekUttMn6N/0dW2VQ/Prx3UFF0LvxrISPg0uHZtAbXY=; b=AO5eCSu1my0/Fjp7ASs0jd32jy
-	AKpaw8vkUTKngcF4FC+MUIP/WKp2PGWX5Y0IJo5NEpBKeQXL0qnr/FEZdKsR1qprtMw4Ptj/jrzlD
-	8fa2/z9f/VMki7vBjHgwdS7CC1NqQ6Zczu1rLAjQzI1CAHiWFwXUwVq9mO/9j5I/ur0Cgi+DgjW+T
-	KSUjufZ6NJ62O5bgC5+Pm2JyjKitlOZNVVjJDm0l+TkoJFoYIX1KXD+cC6X8CIGCKc4+Y9/lGD/q4
-	tfNfORovk4bnMjp6U8jtzTjsktRshxs1cytpqrKW7j/7GTGd7ekZurqBNp89Iz5hMP0C5FQZel8TF
-	2aqJpaSw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:
+	Cc:To:Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=JTdVJL3Tr/QRfNDoNc08nfnw8YS5k9cU8FNQBBDQ4ng=; b=cupCfEvWo/Ewqw
+	DHyXEie7BPXMzcgYvE3DKA0zpIedPpoMMEofadDmasNPFOk3kfglyGzqP0R3ccwgo1C/yBoeB8QEL
+	T+EKOOANkuM4TKuVie0i6KJxQOrdu99KQ3NFiRrNS1OSrPs+15CyaO+Gce3qjRbl7R+aWHnRgxI8C
+	OzmRfjLDY0D/LNH013Jz6q7I/VXg7Jpbfk9mPsFfBPuRhWku3C15agS/TIS+cVLluoV9wRWKHWX2G
+	IfiotSaiZsq2rebXy6UPQf3mFlPhZDsZKwkNWm5MRRQpGYBKqvabTteahhYELrvSQ7Ohb+7j0NfF2
+	Nwm7EPGwlpXvT+7JxQVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qvJXP-00AMhM-0B;
-	Tue, 24 Oct 2023 15:41:47 +0000
-Received: from 9.mo584.mail-out.ovh.net ([46.105.40.176])
+	id 1qvawV-00Bvx8-19;
+	Wed, 25 Oct 2023 10:16:51 +0000
+Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qvJXK-00AMfy-2s
-	for linux-amlogic@lists.infradead.org;
-	Tue, 24 Oct 2023 15:41:45 +0000
-Received: from director8.ghost.mail-out.ovh.net (unknown [10.108.4.72])
-	by mo584.mail-out.ovh.net (Postfix) with ESMTP id 4AF3F27BAF
-	for <linux-amlogic@lists.infradead.org>; Tue, 24 Oct 2023 15:41:36 +0000 (UTC)
-Received: from ghost-submission-6684bf9d7b-4l929 (unknown [10.111.172.174])
-	by director8.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 5F09D1FD5A;
-	Tue, 24 Oct 2023 15:41:32 +0000 (UTC)
-Received: from RCM-web6.webmail.mail.ovh.net ([151.80.29.20])
-	by ghost-submission-6684bf9d7b-4l929 with ESMTPSA
-	id YKYSFazlN2WWggAAw4wSxw
-	(envelope-from <rafal@milecki.pl>); Tue, 24 Oct 2023 15:41:32 +0000
+	id 1qvawR-00BvqO-2u;
+	Wed, 25 Oct 2023 10:16:49 +0000
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	id 1qvawH-0002cu-Ry; Wed, 25 Oct 2023 12:16:37 +0200
+Message-ID: <bf6332bc-a6a6-4702-821f-69f2e890fda9@leemhuis.info>
+Date: Wed, 25 Oct 2023 12:16:37 +0200
 MIME-Version: 1.0
-Date: Tue, 24 Oct 2023 17:41:31 +0200
-From: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-To: Rob Herring <robh@kernel.org>
-Cc: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>, Srinivas
- Kandagatla <srinivas.kandagatla@linaro.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger
- <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Hector Martin <marcan@marcan.st>, Sven
- Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, Shawn
- Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
- <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Claudiu Beznea
- <claudiu.beznea@tuxon.dev>, Andy Gross <agross@kernel.org>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Heiko
- Stuebner <heiko@sntech.de>, Kunihiko Hayashi
- <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>,
- Vincent Shih <vincent.sunplus@gmail.com>, Alessandro Zummo
- <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Christian Marangi
- <ansuelsmth@gmail.com>, Anson Huang <Anson.Huang@nxp.com>, Andrew-CT Chen
- <andrew-ct.chen@mediatek.com>, Lala Lin <lala.lin@mediatek.com>, Komal Bajaj
- <quic_kbajaj@quicinc.com>, Kumar Thella <sthella@codeaurora.org>, Keiji
- Hayashibara <hayashibara.keiji@socionext.com>,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, asahi@lists.linux.dev,
- linux-arm-msm@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-rtc@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH V2] dt-bindings: nvmem: move deprecated cells binding to
- its own file
-In-Reply-To: <20231024142457.GA3684864-robh@kernel.org>
-References: <20231003064018.7502-1-zajec5@gmail.com>
- <20231024142457.GA3684864-robh@kernel.org>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <77363977d8f24fc0620a54f36326421b@milecki.pl>
-X-Sender: rafal@milecki.pl
-X-Originating-IP: 31.11.218.106
-X-Webmail-UserID: rafal@milecki.pl
-X-Ovh-Tracer-Id: 16550447158977801020
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedrkeekgdelvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhgfkfigihgtgfesthekjhdttderjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepjedvlefguedthfefleehgeeftdeludeluedvgfeffeevhfevtdehteejteefheegnecukfhppeduvdejrddtrddtrddupdefuddruddurddvudekrddutdeipdduhedurdektddrvdelrddvtdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoehrrghfrghlsehmihhlvggtkhhirdhplheqpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhhinhhugidqrghmlhhoghhitgeslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdpoffvtefjohhsthepmhhoheekgedpmhhouggvpehsmhhtphhouhht
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] mmc: meson-mx-sdhc: Fix initialization frozen issue
+Content-Language: en-US, de-DE
+To: Ulf Hansson <ulf.hansson@linaro.org>, Ziyang Huang <hzyitc@outlook.com>
+Cc: neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, yinxin_1989@aliyun.com,
+ briannorris@chromium.org, linux-mmc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <TYZPR01MB5556B56D834E02F41C44D81DC95FA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+ <TYZPR01MB5556A3E71554A2EC08597EA4C9CDA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+ <CAPDyKFrLUf+dcZbPtXFncu_KO_SgzKSN1KCW8ds4=OUGpT8+Gg@mail.gmail.com>
+From: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+In-Reply-To: <CAPDyKFrLUf+dcZbPtXFncu_KO_SgzKSN1KCW8ds4=OUGpT8+Gg@mail.gmail.com>
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1698229008;54c0b671;
+X-HE-SMSGID: 1qvawH-0002cu-Ry
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231024_084143_225594_BA137DCD 
-X-CRM114-Status: GOOD (  13.77  )
+X-CRM114-CacheID: sfid-20231025_031648_157068_8CA0E6CD 
+X-CRM114-Status: GOOD (  19.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,53 +63,101 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjAyMy0xMC0yNCAxNjoyNCwgUm9iIEhlcnJpbmcgd3JvdGU6Cj4gT24gVHVlLCBPY3QgMDMs
-IDIwMjMgYXQgMDg6NDA6MThBTSArMDIwMCwgUmFmYcWCIE1pxYJlY2tpIHdyb3RlOgo+PiBGcm9t
-OiBSYWZhxYIgTWnFgmVja2kgPHJhZmFsQG1pbGVja2kucGw+Cj4+IAo+PiBTdXBwb3J0IGZvciBv
-bGQgTlZNRU0gZml4ZWQgY2VsbHMgd2FzIGRlcHJlY2F0ZWQgaW4gZmF2b3VyIG9mCj4+ICJmaXhl
-ZC1sYXlvdXQiLiBJdCdzIHN0aWxsIHBhcnQgb2YgdGhlIG52bWVtLnlhbWwgdGhvdWdoIGFuZCBt
-YXkgYmUKPj4gdW5rbm93aW5nbHkgdXNlZCBieSBuZXcgYmluZGluZ3MgYWRkZWQgd2l0aG91dCBt
-dWNoIG9mIGFuYWx5emUuCj4+IAo+PiBUbyBtYWtlIGl0IG1vcmUgZGlmZmljdWx0IHRvIGFjY2lk
-ZW50YWxseSBzdXBwb3J0IG9sZCBzeW50YXggbW92ZSBpdHMKPj4gYmluZGluZyB0byBzZXBhcmF0
-ZWQgZmlsZSB3aXRoICJkZXByZWNhdGVkIiBpbiBpdHMgbmFtZS4KPj4gCj4+IFNpZ25lZC1vZmYt
-Ynk6IFJhZmHFgiBNacWCZWNraSA8cmFmYWxAbWlsZWNraS5wbD4KPj4gLS0tCj4+IFYyOiBGaXgg
-cGF0aCB0byBudm1lbS1kZXByZWNhdGVkLWNlbGxzLnlhbWwgaW4gYW1sb2dpYyxtZXNvbjYtcnRj
-LnlhbWwKPj4gCj4+ICAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9tdGQvbXRkLnlhbWwgICAgICAg
-ICAgfCAgNyArKysrLQo+PiAgLi4uL2JpbmRpbmdzL210ZC9wYXJ0aXRpb25zL252bWVtLWNlbGxz
-LnlhbWwgIHwgIDEgKwo+PiAgLi4uL252bWVtL2FtbG9naWMsbWVzb24tZ3hiYi1lZnVzZS55YW1s
-ICAgICAgIHwgIDEgKwo+PiAgLi4uL2JpbmRpbmdzL252bWVtL2FtbG9naWMsbWVzb242LWVmdXNl
-LnlhbWwgIHwgIDEgKwo+PiAgLi4uL2JpbmRpbmdzL252bWVtL2FwcGxlLGVmdXNlcy55YW1sICAg
-ICAgICAgIHwgIDEgKwo+PiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvbnZtZW0vaW14LW9jb3Rw
-LnlhbWwgIHwgIDEgKwo+PiAgLi4uL2JpbmRpbmdzL252bWVtL21lZGlhdGVrLGVmdXNlLnlhbWwg
-ICAgICAgIHwgIDEgKwo+PiAgLi4uL252bWVtL21pY3JvY2hpcCxzYW1hN2c1LW90cGMueWFtbCAg
-ICAgICAgIHwgIDEgKwo+PiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvbnZtZW0vbXhzLW9jb3Rw
-LnlhbWwgIHwgIDEgKwo+PiAgLi4uL252bWVtL252bWVtLWRlcHJlY2F0ZWQtY2VsbHMueWFtbCAg
-ICAgICAgIHwgMjggCj4+ICsrKysrKysrKysrKysrKysrKysKPj4gIC4uLi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL252bWVtL252bWVtLnlhbWwgICAgICB8ICA5IC0tLS0tLQo+PiAgLi4uL2JpbmRpbmdz
-L252bWVtL3Fjb20scWZwcm9tLnlhbWwgICAgICAgICAgIHwgIDEgKwo+PiAgLi4uL2JpbmRpbmdz
-L252bWVtL3Fjb20sc2VjLXFmcHJvbS55YW1sICAgICAgIHwgIDEgKwo+PiAgLi4uL2JpbmRpbmdz
-L252bWVtL3Fjb20sc3BtaS1zZGFtLnlhbWwgICAgICAgIHwgIDEgKwo+PiAgLi4uL2JpbmRpbmdz
-L252bWVtL3JvY2tjaGlwLG90cC55YW1sICAgICAgICAgIHwgIDEgKwo+PiAgLi4uL2JpbmRpbmdz
-L252bWVtL3JvY2tjaGlwLWVmdXNlLnlhbWwgICAgICAgIHwgIDEgKwo+PiAgLi4uL252bWVtL3Nv
-Y2lvbmV4dCx1bmlwaGllci1lZnVzZS55YW1sICAgICAgIHwgIDEgKwo+PiAgLi4uL2JpbmRpbmdz
-L252bWVtL3N1bnBsdXMsc3A3MDIxLW9jb3RwLnlhbWwgIHwgIDEgKwo+PiAgLi4uL2JpbmRpbmdz
-L3J0Yy9hbWxvZ2ljLG1lc29uNi1ydGMueWFtbCAgICAgIHwgIDEgKwo+PiAgMTkgZmlsZXMgY2hh
-bmdlZCwgNTAgaW5zZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25zKC0pCj4+ICBjcmVhdGUgbW9kZSAx
-MDA2NDQgCj4+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9udm1lbS9udm1lbS1k
-ZXByZWNhdGVkLWNlbGxzLnlhbWwKPiAKPiBZb3UgbWlzc2VkIGFsbHdpbm5lcixzdW40aS1hMTAt
-c2lkLnlhbWwgYW5kIGF0MjQueWFtbAo+IChhcmNoL2FybS9ib290L2R0cy9icm9hZGNvbS9iY201
-MzAxNi1tZXJha2ktbXIzMi5kdHMpLiBNYXliZSB3ZSB3YW50IHRvCj4gZml4IHRoZSBsYXR0ZXIg
-Y2FzZSBiZWNhdXNlIGF0MjQgd2lsbCBjb250aW51YWxseSBoYXZlIG5ldyB1c2Vycy4KCkkgc2Vl
-LiBJIGxvb2tlZCBhdCBleGFtcGxlcyBhbmQgRFRTIGZpbGVzIHdpdGggImFsbHdpbm5lcixzdW40
-aS1hMTAtc2lkIgpiaW5kaW5nIGJ1dCBJIG1pc3NlZCBvdGhlcnMuIEZvciByZWZlcmVuY2UgZml4
-ZWQgY2VsbHMgYXJlIHVzZWQgaW46CjEuIHN1bjUwaS1hNjQuZHRzaQoyLiBzdW41MGktaDYuZHRz
-aQozLiBzdW41MGktYTEwMC5kdHNpCgpJJ2xsIGZpeCB0aGF0IHNvb24hCgotLSAKUmFmYcWCIE1p
-xYJlY2tpCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwps
-aW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5v
-cmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxv
-Z2ljCg==
+On 23.10.23 13:14, Ulf Hansson wrote:
+> On Tue, 10 Oct 2023 at 18:44, Ziyang Huang <hzyitc@outlook.com> wrote:
+>>
+>> Commit 4bc31edebde5 ("mmc: core: Set HS clock speed before sending
+>> HS CMD13") set HS clock (52MHz) before switching to HS mode. For this
+>> freq, FCLK_DIV5 will be selected and div value is 10 (reg value is 9).
+>> Then we set rx_clk_phase to 11 or 15 which is out of range and make
+>> hardware frozen. After we send command request, no irq will be
+>> interrupted and the mmc driver will keep to wait for request finished,
+>> even durning rebooting.
+>>
+>> So let's set it to Phase 90 which should work in most cases. Then let
+>> meson_mx_sdhc_execute_tuning() to find the accurate value for data
+>> transfer.
+>>
+>> If this doesn't work, maybe need to define a factor in dts.
+>>
+>> Fixes: e4bf1b0970ef ("mmc: host: meson-mx-sdhc: new driver for the Amlogic Meson SDHC host")
+>> Signed-off-by: Ziyang Huang <hzyitc@outlook.com>
+> 
+> I have re-added Thorsten to see if he has some time to test this on his end.
+
+FWIW, I was only involved wrt to regression tracking. It iirc was was
+Martin that had reported the problem here:
+https://lore.kernel.org/all/CAFBinCD0RT0p-jk86W0JuMT3ufohRh1RqWCcM35DKZJpuc10HQ@mail.gmail.com/
+
+Side note: a proper Reported-by: tag together with a Link or Closes tag
+would be good to have in the patch descriptions, as explained in the Docs.
+
+Ciao, Thorsten
+
+>> ---
+>> Changes since v1:
+>>   Use Phase 90 instand of value 1
+>>
+>>  drivers/mmc/host/meson-mx-sdhc-mmc.c | 26 +++++---------------------
+>>  1 file changed, 5 insertions(+), 21 deletions(-)
+>>
+>> diff --git a/drivers/mmc/host/meson-mx-sdhc-mmc.c b/drivers/mmc/host/meson-mx-sdhc-mmc.c
+>> index 97168cdfa8e9..29698fceb89c 100644
+>> --- a/drivers/mmc/host/meson-mx-sdhc-mmc.c
+>> +++ b/drivers/mmc/host/meson-mx-sdhc-mmc.c
+>> @@ -269,7 +269,7 @@ static int meson_mx_sdhc_enable_clks(struct mmc_host *mmc)
+>>  static int meson_mx_sdhc_set_clk(struct mmc_host *mmc, struct mmc_ios *ios)
+>>  {
+>>         struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+>> -       u32 rx_clk_phase;
+>> +       u32 val, rx_clk_phase;
+>>         int ret;
+>>
+>>         meson_mx_sdhc_disable_clks(mmc);
+>> @@ -290,27 +290,11 @@ static int meson_mx_sdhc_set_clk(struct mmc_host *mmc, struct mmc_ios *ios)
+>>                 mmc->actual_clock = clk_get_rate(host->sd_clk);
+>>
+>>                 /*
+>> -                * according to Amlogic the following latching points are
+>> -                * selected with empirical values, there is no (known) formula
+>> -                * to calculate these.
+>> +                * Phase 90 should work in most cases. For data transmission,
+>> +                * meson_mx_sdhc_execute_tuning() will find a accurate value
+>>                  */
+>> -               if (mmc->actual_clock > 100000000) {
+>> -                       rx_clk_phase = 1;
+>> -               } else if (mmc->actual_clock > 45000000) {
+>> -                       if (ios->signal_voltage == MMC_SIGNAL_VOLTAGE_330)
+>> -                               rx_clk_phase = 15;
+>> -                       else
+>> -                               rx_clk_phase = 11;
+>> -               } else if (mmc->actual_clock >= 25000000) {
+>> -                       rx_clk_phase = 15;
+>> -               } else if (mmc->actual_clock > 5000000) {
+>> -                       rx_clk_phase = 23;
+>> -               } else if (mmc->actual_clock > 1000000) {
+>> -                       rx_clk_phase = 55;
+>> -               } else {
+>> -                       rx_clk_phase = 1061;
+>> -               }
+>> -
+>> +               regmap_read(host->regmap, MESON_SDHC_CLKC, &val);
+>> +               rx_clk_phase = FIELD_GET(MESON_SDHC_CLKC_CLK_DIV, val) / 4;
+>>                 regmap_update_bits(host->regmap, MESON_SDHC_CLK2,
+>>                                    MESON_SDHC_CLK2_RX_CLK_PHASE,
+>>                                    FIELD_PREP(MESON_SDHC_CLK2_RX_CLK_PHASE,
+>> --
+>> 2.34.1
+>>
+> 
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
