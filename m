@@ -4,54 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE0CBC0032E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Oct 2023 10:17:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31797C25B47
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Oct 2023 13:31:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:
-	Cc:To:Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JTdVJL3Tr/QRfNDoNc08nfnw8YS5k9cU8FNQBBDQ4ng=; b=cupCfEvWo/Ewqw
-	DHyXEie7BPXMzcgYvE3DKA0zpIedPpoMMEofadDmasNPFOk3kfglyGzqP0R3ccwgo1C/yBoeB8QEL
-	T+EKOOANkuM4TKuVie0i6KJxQOrdu99KQ3NFiRrNS1OSrPs+15CyaO+Gce3qjRbl7R+aWHnRgxI8C
-	OzmRfjLDY0D/LNH013Jz6q7I/VXg7Jpbfk9mPsFfBPuRhWku3C15agS/TIS+cVLluoV9wRWKHWX2G
-	IfiotSaiZsq2rebXy6UPQf3mFlPhZDsZKwkNWm5MRRQpGYBKqvabTteahhYELrvSQ7Ohb+7j0NfF2
-	Nwm7EPGwlpXvT+7JxQVQ==;
+	List-Owner; bh=/uqrj5Vy91d0NpBfgWpZGcnQVhc6jsaimUHXDRaUDc0=; b=rOKzmmB/r0vhPP
+	1SQ98a3dDw5X9LvR3WoiKUW7+AcXfTBABVVak13Kat6A39aKnYA+qp3lZiLhKPppWK/QE6A9d3NY0
+	6jvePt7be/Gh4tW2VFrOdWO+/odV2MFujkupkAxiQ8vEPpZvqmLjhIQQ6vKU9C8nVzvMQlIPb/6dx
+	4XBGFexFm0hBZin7lCcPyjV6TH3dJ9Nz6ckcYKzdkeOY3/bKONjy7hanurda5FpqWnl0bAdyLWlMB
+	mxpRVgLV7aAEXCt2ORqoNdR6oUzYZE0pmukFb3BDe0iVsmEGTuA6/Mn3Vx60Y13rzL8gxygTg844R
+	DQo09PlEOzChrsdWeLyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qvawV-00Bvx8-19;
-	Wed, 25 Oct 2023 10:16:51 +0000
-Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
+	id 1qvdy3-00CP8R-1X;
+	Wed, 25 Oct 2023 13:30:39 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qvawR-00BvqO-2u;
-	Wed, 25 Oct 2023 10:16:49 +0000
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
-	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-	id 1qvawH-0002cu-Ry; Wed, 25 Oct 2023 12:16:37 +0200
-Message-ID: <bf6332bc-a6a6-4702-821f-69f2e890fda9@leemhuis.info>
-Date: Wed, 25 Oct 2023 12:16:37 +0200
+	id 1qvdxz-00CP7a-1O
+	for linux-amlogic@lists.infradead.org;
+	Wed, 25 Oct 2023 13:30:37 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-40859c466efso34089145e9.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 25 Oct 2023 06:30:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1698240633; x=1698845433; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Qc3B3MR651658a+IS4oxOuyfK9TAfTIo7Wzkmg44LJo=;
+        b=00jb4YdLika8lU9eFhnemATxfqSOw/S4Wo8CyVTixHIs82ZR0S37VP5njHi3y3nX+J
+         e0zMi1hZLxdCzxOYXECzmXyXIKytkzKewg89ircu55umTTxLSyY3jE44PuwaT7+SeeoD
+         lYwA/bre5bH7LmE0gaiEQVMrSBAO4nZaWcL2ebzwqpGnuFdzN4j1nyCtN23+85A5+98P
+         VyQLA+kFOQc1WAB87CFQLijZXiT1wFiUwQiBdWuVJw/VXWz9zHtcOdd/WgvjAJEnOIJK
+         gLDjxXzeCOjb33P0jLcl3cYmcwVJU7Dj6pGv20PyBWg7xQm41IIe9SAtPpoJMJrX1Ijr
+         mSVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698240633; x=1698845433;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qc3B3MR651658a+IS4oxOuyfK9TAfTIo7Wzkmg44LJo=;
+        b=feVJGu0cRKISy2UgBQRy+loPYeef0HWMnIuZbOUE2d8aU1vEKsavtGvWECVEfPwOnu
+         vg/H9OjSwBrrUYtKwYljf97asaPLapo9XO2P5e2rURgF++9YEU7lZCQGVnT8c3WNNWaT
+         pO/aUBRdi4ok9ZRMNtfhTvaI/AYELkPyA5c6ExJqk1aeWSttOSyX0wxGBK5OIu2xVUqg
+         UvByBRGsUZ4r5izIk6ymUVjPt4eJnA7jyJpW6waN84kex+dPGMyW8BhhBw8VMedrFbKy
+         pWD9TkWhQm9Axw+yQr2KKOUT18bciR/PI1VFLvQDCWIw4GccI1Wku1cimJE+u5HAVsnC
+         amFg==
+X-Gm-Message-State: AOJu0YxPkddZph0LbgPVgO9JXx+eW8rJA64BpLJ8CQ573maPUctQ1u5a
+	Oj/s6MGqIU1YETFGiKEAYfIRyQ==
+X-Google-Smtp-Source: AGHT+IFu+w3osoX+yY1js+KvkKlRPdJPihfR6ey606N4UPL18NXlj4qIi9my+j9HZFy0hyRjvR8aKA==
+X-Received: by 2002:a05:600c:1910:b0:401:b2c7:34a8 with SMTP id j16-20020a05600c191000b00401b2c734a8mr11982343wmq.7.1698240632431;
+        Wed, 25 Oct 2023 06:30:32 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:4a02:2aff:fe07:1efc])
+        by smtp.googlemail.com with ESMTPSA id j15-20020a05600c1c0f00b003fefb94ccc9sm14797439wms.11.2023.10.25.06.30.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Oct 2023 06:30:31 -0700 (PDT)
+Date: Wed, 25 Oct 2023 15:30:30 +0200
+From: Corentin LABBE <clabbe@baylibre.com>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	kernel@pengutronix.de
+Subject: Re: [PATCH 05/42] crypto: amlogic-gxl-core - Convert to platform
+ remove callback returning void
+Message-ID: <ZTkYdqL6Vb07cCjo@Red>
+References: <20231020075521.2121571-44-u.kleine-koenig@pengutronix.de>
+ <20231020075521.2121571-49-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] mmc: meson-mx-sdhc: Fix initialization frozen issue
-Content-Language: en-US, de-DE
-To: Ulf Hansson <ulf.hansson@linaro.org>, Ziyang Huang <hzyitc@outlook.com>
-Cc: neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, yinxin_1989@aliyun.com,
- briannorris@chromium.org, linux-mmc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <TYZPR01MB5556B56D834E02F41C44D81DC95FA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
- <TYZPR01MB5556A3E71554A2EC08597EA4C9CDA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
- <CAPDyKFrLUf+dcZbPtXFncu_KO_SgzKSN1KCW8ds4=OUGpT8+Gg@mail.gmail.com>
-From: "Linux regression tracking (Thorsten Leemhuis)"
- <regressions@leemhuis.info>
-In-Reply-To: <CAPDyKFrLUf+dcZbPtXFncu_KO_SgzKSN1KCW8ds4=OUGpT8+Gg@mail.gmail.com>
-X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1698229008;54c0b671;
-X-HE-SMSGID: 1qvawH-0002cu-Ry
+Content-Disposition: inline
+In-Reply-To: <20231020075521.2121571-49-u.kleine-koenig@pengutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231025_031648_157068_8CA0E6CD 
-X-CRM114-Status: GOOD (  19.35  )
+X-CRM114-CacheID: sfid-20231025_063035_683856_420873B6 
+X-CRM114-Status: GOOD (  24.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,99 +91,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 23.10.23 13:14, Ulf Hansson wrote:
-> On Tue, 10 Oct 2023 at 18:44, Ziyang Huang <hzyitc@outlook.com> wrote:
->>
->> Commit 4bc31edebde5 ("mmc: core: Set HS clock speed before sending
->> HS CMD13") set HS clock (52MHz) before switching to HS mode. For this
->> freq, FCLK_DIV5 will be selected and div value is 10 (reg value is 9).
->> Then we set rx_clk_phase to 11 or 15 which is out of range and make
->> hardware frozen. After we send command request, no irq will be
->> interrupted and the mmc driver will keep to wait for request finished,
->> even durning rebooting.
->>
->> So let's set it to Phase 90 which should work in most cases. Then let
->> meson_mx_sdhc_execute_tuning() to find the accurate value for data
->> transfer.
->>
->> If this doesn't work, maybe need to define a factor in dts.
->>
->> Fixes: e4bf1b0970ef ("mmc: host: meson-mx-sdhc: new driver for the Amlogic Meson SDHC host")
->> Signed-off-by: Ziyang Huang <hzyitc@outlook.com>
-> 
-> I have re-added Thorsten to see if he has some time to test this on his end.
+Le Fri, Oct 20, 2023 at 09:55:27AM +0200, Uwe Kleine-K=F6nig a =E9crit :
+> The .remove() callback for a platform driver returns an int which makes
+> many driver authors wrongly assume it's possible to do error handling by
+> returning an error code. However the value returned is ignored (apart
+> from emitting a warning) and this typically results in resource leaks.
+> =
 
-FWIW, I was only involved wrt to regression tracking. It iirc was was
-Martin that had reported the problem here:
-https://lore.kernel.org/all/CAFBinCD0RT0p-jk86W0JuMT3ufohRh1RqWCcM35DKZJpuc10HQ@mail.gmail.com/
+> To improve here there is a quest to make the remove callback return
+> void. In the first step of this quest all drivers are converted to
+> .remove_new(), which already returns void. Eventually after all drivers
+> are converted, .remove_new() will be renamed to .remove().
+> =
 
-Side note: a proper Reported-by: tag together with a Link or Closes tag
-would be good to have in the patch descriptions, as explained in the Docs.
+> Trivially convert this driver from always returning zero in the remove
+> callback to the void returning variant.
+> =
 
-Ciao, Thorsten
+> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> ---
+>  drivers/crypto/amlogic/amlogic-gxl-core.c | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
+> =
 
->> ---
->> Changes since v1:
->>   Use Phase 90 instand of value 1
->>
->>  drivers/mmc/host/meson-mx-sdhc-mmc.c | 26 +++++---------------------
->>  1 file changed, 5 insertions(+), 21 deletions(-)
->>
->> diff --git a/drivers/mmc/host/meson-mx-sdhc-mmc.c b/drivers/mmc/host/meson-mx-sdhc-mmc.c
->> index 97168cdfa8e9..29698fceb89c 100644
->> --- a/drivers/mmc/host/meson-mx-sdhc-mmc.c
->> +++ b/drivers/mmc/host/meson-mx-sdhc-mmc.c
->> @@ -269,7 +269,7 @@ static int meson_mx_sdhc_enable_clks(struct mmc_host *mmc)
->>  static int meson_mx_sdhc_set_clk(struct mmc_host *mmc, struct mmc_ios *ios)
->>  {
->>         struct meson_mx_sdhc_host *host = mmc_priv(mmc);
->> -       u32 rx_clk_phase;
->> +       u32 val, rx_clk_phase;
->>         int ret;
->>
->>         meson_mx_sdhc_disable_clks(mmc);
->> @@ -290,27 +290,11 @@ static int meson_mx_sdhc_set_clk(struct mmc_host *mmc, struct mmc_ios *ios)
->>                 mmc->actual_clock = clk_get_rate(host->sd_clk);
->>
->>                 /*
->> -                * according to Amlogic the following latching points are
->> -                * selected with empirical values, there is no (known) formula
->> -                * to calculate these.
->> +                * Phase 90 should work in most cases. For data transmission,
->> +                * meson_mx_sdhc_execute_tuning() will find a accurate value
->>                  */
->> -               if (mmc->actual_clock > 100000000) {
->> -                       rx_clk_phase = 1;
->> -               } else if (mmc->actual_clock > 45000000) {
->> -                       if (ios->signal_voltage == MMC_SIGNAL_VOLTAGE_330)
->> -                               rx_clk_phase = 15;
->> -                       else
->> -                               rx_clk_phase = 11;
->> -               } else if (mmc->actual_clock >= 25000000) {
->> -                       rx_clk_phase = 15;
->> -               } else if (mmc->actual_clock > 5000000) {
->> -                       rx_clk_phase = 23;
->> -               } else if (mmc->actual_clock > 1000000) {
->> -                       rx_clk_phase = 55;
->> -               } else {
->> -                       rx_clk_phase = 1061;
->> -               }
->> -
->> +               regmap_read(host->regmap, MESON_SDHC_CLKC, &val);
->> +               rx_clk_phase = FIELD_GET(MESON_SDHC_CLKC_CLK_DIV, val) / 4;
->>                 regmap_update_bits(host->regmap, MESON_SDHC_CLK2,
->>                                    MESON_SDHC_CLK2_RX_CLK_PHASE,
->>                                    FIELD_PREP(MESON_SDHC_CLK2_RX_CLK_PHASE,
->> --
->> 2.34.1
->>
-> 
+> diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/a=
+mlogic/amlogic-gxl-core.c
+> index da6dfe0f9ac3..f54ab0d0b1e8 100644
+> --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
+> +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+> @@ -299,7 +299,7 @@ static int meson_crypto_probe(struct platform_device =
+*pdev)
+>  	return err;
+>  }
+>  =
+
+> -static int meson_crypto_remove(struct platform_device *pdev)
+> +static void meson_crypto_remove(struct platform_device *pdev)
+>  {
+>  	struct meson_dev *mc =3D platform_get_drvdata(pdev);
+>  =
+
+> @@ -312,7 +312,6 @@ static int meson_crypto_remove(struct platform_device=
+ *pdev)
+>  	meson_free_chanlist(mc, MAXFLOW - 1);
+>  =
+
+>  	clk_disable_unprepare(mc->busclk);
+> -	return 0;
+>  }
+>  =
+
+>  static const struct of_device_id meson_crypto_of_match_table[] =3D {
+> @@ -323,7 +322,7 @@ MODULE_DEVICE_TABLE(of, meson_crypto_of_match_table);
+>  =
+
+>  static struct platform_driver meson_crypto_driver =3D {
+>  	.probe		 =3D meson_crypto_probe,
+> -	.remove		 =3D meson_crypto_remove,
+> +	.remove_new	 =3D meson_crypto_remove,
+>  	.driver		 =3D {
+>  		.name		   =3D "gxl-crypto",
+>  		.of_match_table	=3D meson_crypto_of_match_table,
+> -- =
+
+> 2.42.0
+> =
+
+
+Acked-by: Corentin Labbe <clabbe@baylibre.com>
+
+Thanks
 
 _______________________________________________
 linux-amlogic mailing list
