@@ -4,82 +4,125 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31797C25B47
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Oct 2023 13:31:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D81C5C25B48
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Oct 2023 07:33:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/uqrj5Vy91d0NpBfgWpZGcnQVhc6jsaimUHXDRaUDc0=; b=rOKzmmB/r0vhPP
-	1SQ98a3dDw5X9LvR3WoiKUW7+AcXfTBABVVak13Kat6A39aKnYA+qp3lZiLhKPppWK/QE6A9d3NY0
-	6jvePt7be/Gh4tW2VFrOdWO+/odV2MFujkupkAxiQ8vEPpZvqmLjhIQQ6vKU9C8nVzvMQlIPb/6dx
-	4XBGFexFm0hBZin7lCcPyjV6TH3dJ9Nz6ckcYKzdkeOY3/bKONjy7hanurda5FpqWnl0bAdyLWlMB
-	mxpRVgLV7aAEXCt2ORqoNdR6oUzYZE0pmukFb3BDe0iVsmEGTuA6/Mn3Vx60Y13rzL8gxygTg844R
-	DQo09PlEOzChrsdWeLyg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=oufiEbQJgqTtZng+mVIpguBLvoU8iPa+/JQBLFICX4g=; b=24lCo5ceeDhtXi
+	gY7T+6htlG9MdvJVZu3At6PeC6O2z/4poUlA/VVV5a0LKhIgJXc+gyc5bNIxEs6wHZHnEcS8QbWQs
+	U+0as+TPm+Y8/EUXI14x+2u+AdshGW3INDmQrEwQ2+dBhzdWd6+fs1vmpMN+m6WIacAYjtlY7I3Y1
+	bh/KBb1pGmPOgkip0RGj+8Z53syeg6Lf6zrVrhNwXgxXJzqSTW50+0w46mvyDYz/VevnRu8aNvvPX
+	maxcwa5MQvVSzDfaaCjiLg6SiAHPKlUmvbGtc8cr1y+trMS7UYCdFrFEvjD88SoT8IAqdXKe7Bqvo
+	U3I23IQN2OzqHuEHbrRw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qvdy3-00CP8R-1X;
-	Wed, 25 Oct 2023 13:30:39 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1qvurA-00DrCu-06;
+	Thu, 26 Oct 2023 07:32:40 +0000
+Received: from mail-psaapc01on20705.outbound.protection.outlook.com ([2a01:111:f400:feae::705] helo=APC01-PSA-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qvdxz-00CP7a-1O
-	for linux-amlogic@lists.infradead.org;
-	Wed, 25 Oct 2023 13:30:37 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-40859c466efso34089145e9.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 25 Oct 2023 06:30:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1698240633; x=1698845433; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Qc3B3MR651658a+IS4oxOuyfK9TAfTIo7Wzkmg44LJo=;
-        b=00jb4YdLika8lU9eFhnemATxfqSOw/S4Wo8CyVTixHIs82ZR0S37VP5njHi3y3nX+J
-         e0zMi1hZLxdCzxOYXECzmXyXIKytkzKewg89ircu55umTTxLSyY3jE44PuwaT7+SeeoD
-         lYwA/bre5bH7LmE0gaiEQVMrSBAO4nZaWcL2ebzwqpGnuFdzN4j1nyCtN23+85A5+98P
-         VyQLA+kFOQc1WAB87CFQLijZXiT1wFiUwQiBdWuVJw/VXWz9zHtcOdd/WgvjAJEnOIJK
-         gLDjxXzeCOjb33P0jLcl3cYmcwVJU7Dj6pGv20PyBWg7xQm41IIe9SAtPpoJMJrX1Ijr
-         mSVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698240633; x=1698845433;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qc3B3MR651658a+IS4oxOuyfK9TAfTIo7Wzkmg44LJo=;
-        b=feVJGu0cRKISy2UgBQRy+loPYeef0HWMnIuZbOUE2d8aU1vEKsavtGvWECVEfPwOnu
-         vg/H9OjSwBrrUYtKwYljf97asaPLapo9XO2P5e2rURgF++9YEU7lZCQGVnT8c3WNNWaT
-         pO/aUBRdi4ok9ZRMNtfhTvaI/AYELkPyA5c6ExJqk1aeWSttOSyX0wxGBK5OIu2xVUqg
-         UvByBRGsUZ4r5izIk6ymUVjPt4eJnA7jyJpW6waN84kex+dPGMyW8BhhBw8VMedrFbKy
-         pWD9TkWhQm9Axw+yQr2KKOUT18bciR/PI1VFLvQDCWIw4GccI1Wku1cimJE+u5HAVsnC
-         amFg==
-X-Gm-Message-State: AOJu0YxPkddZph0LbgPVgO9JXx+eW8rJA64BpLJ8CQ573maPUctQ1u5a
-	Oj/s6MGqIU1YETFGiKEAYfIRyQ==
-X-Google-Smtp-Source: AGHT+IFu+w3osoX+yY1js+KvkKlRPdJPihfR6ey606N4UPL18NXlj4qIi9my+j9HZFy0hyRjvR8aKA==
-X-Received: by 2002:a05:600c:1910:b0:401:b2c7:34a8 with SMTP id j16-20020a05600c191000b00401b2c734a8mr11982343wmq.7.1698240632431;
-        Wed, 25 Oct 2023 06:30:32 -0700 (PDT)
-Received: from Red ([2a01:cb1d:3d5:a100:4a02:2aff:fe07:1efc])
-        by smtp.googlemail.com with ESMTPSA id j15-20020a05600c1c0f00b003fefb94ccc9sm14797439wms.11.2023.10.25.06.30.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Oct 2023 06:30:31 -0700 (PDT)
-Date: Wed, 25 Oct 2023 15:30:30 +0200
-From: Corentin LABBE <clabbe@baylibre.com>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>,
-	linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	kernel@pengutronix.de
-Subject: Re: [PATCH 05/42] crypto: amlogic-gxl-core - Convert to platform
- remove callback returning void
-Message-ID: <ZTkYdqL6Vb07cCjo@Red>
-References: <20231020075521.2121571-44-u.kleine-koenig@pengutronix.de>
- <20231020075521.2121571-49-u.kleine-koenig@pengutronix.de>
+	id 1qvur3-00DrAx-1w;
+	Thu, 26 Oct 2023 07:32:35 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Kcqi83r3kweh9VWfJ3V1pdYEXiFrH63axBohtGZc3o+yflZUqXWvd81GMqr4lz8CU1W5MQ0aGAvTwPoSaUStsPWyUYZkGPlMJuoth2FvrwOS0BJ9AvEntk0s1WS2Pe9IBJC316Rk3XwPDt1cCUUu8vKmebh+3LoT+DIUrjDEpV/YjbaVp+QfO1gml77/GCHi03pE7PEdtEt3YXMVoWDHa3ayTcoaMWDVYwq9Vjtn3tWSWGVIQ42ZWC8LEkKTl/Wvp08wD/Mq0GVnpfcTKL7zXBo/0/IPZRLPVFWm+MI3tVqxvPPFHcjHgylHAOIL1LdT720yF/S8aus4ZA8yGLfTkg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JSuAmrgINoomT7mtpfOd4wzBPE8um33FG/NO4SM8q+w=;
+ b=QW+2KGkmL2B7uo0jVpqOvFRrZYQjPdVzySIZ4tHdgL0z2l7Ht0mldnTqJ2NQJzgVbg2OuaPNYj9sE1G7jJSTeahkhDfEnghYpucbZyLEDXnmEwbPMhVkQRj92gG7LYavmI+ZBNjsfxys4J52GVEr29hGq9MYebuGiOSdsl1CRPA1ECvaIAPExddnjMWPv5tmoFZn/pNMBY7OQ6/VIEZTPcc0QTVVKCpN3q2aIaAjd9nvs68lL+sNCMqYRuSRQtj/j3nFDah1fbc8uzUjlHk7FMyXV3vDN1R/evgruCUW+FFlGyQeNuKRPH/Y1BBrH5GBqaughtqh3k70iHg9l9z6KQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JSuAmrgINoomT7mtpfOd4wzBPE8um33FG/NO4SM8q+w=;
+ b=M0NVIrGHnFrZezb9MwjiRnitXV1OZ2ck/7jxqvENfC+rOg2V/9+g/HhNFMgiTWjfgZmRpVeNsQt6TVvUyJ/Od86XCf5eyzobbjFRpiZ3+xVw54XcfS0ha5yWWJEJqkf2lLtyMdUSKLOdPDn9YSAZg2bRmrYfhYcdtBqJphVi8lAJ+OG8vA+6rSAbODBzYP3JH57+SN5Qn84yE0yu1U/d1npWs4KHJMU/hFpe/bmydxo615ZfDAPWqnuc26ZxIaojoooyuZNRFcB2iuEtK8gvWIaojN1pxRo85nDHp5crJlOHCP4Dvw7TeI7GYE2hZzI9P8q+HHKT8eJxhQZSyf7bdA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB5939.apcprd03.prod.outlook.com (2603:1096:400:126::12)
+ by SI2PR03MB5830.apcprd03.prod.outlook.com (2603:1096:4:142::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.31; Thu, 26 Oct
+ 2023 07:32:10 +0000
+Received: from TYZPR03MB5939.apcprd03.prod.outlook.com
+ ([fe80::4011:f41:f71f:355c]) by TYZPR03MB5939.apcprd03.prod.outlook.com
+ ([fe80::4011:f41:f71f:355c%5]) with mapi id 15.20.6907.032; Thu, 26 Oct 2023
+ 07:32:09 +0000
+From: "Rong.Chen" <rong.chen@amlogic.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-mmc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Rong Chen <rong.chen@amlogic.com>
+Subject: [PATCH v2] mmc: meson-gx: Remove setting of CMD_CFG_ERROR
+Date: Thu, 26 Oct 2023 15:31:56 +0800
+Message-ID: <20231026073156.2868310-1-rong.chen@amlogic.com>
+X-Mailer: git-send-email 2.42.0
+X-ClientProxiedBy: TYCP286CA0044.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:29d::17) To TYZPR03MB5939.apcprd03.prod.outlook.com
+ (2603:1096:400:126::12)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20231020075521.2121571-49-u.kleine-koenig@pengutronix.de>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB5939:EE_|SI2PR03MB5830:EE_
+X-MS-Office365-Filtering-Correlation-Id: dd02db07-2199-4393-357a-08dbd5f5a8a0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 2ZFSRJrRu82HINap/O57WscdPBLTXutd4ZhDcJDrQHc/kjKzik+thcRB1At9/cobRHUCf9kyjqqUbtt0M4W9PxoGJ4VKZmpR25torWvrB37M8RuiWkRhYFZ9GmOt+2QafyOD98BTN7cy15ILpkfQqL+jiBtLPEyEEChX0KGwPCZMZ/C+TGN6gBWfRK32WfGUrNMRjgj2IMeJn34gxpJUPknU13UvWjOuiptQ1UVUznoI9R8hGj4nYbDg8tOGEk6kFTFBan3ZEtBzG+G4M/t0Q49zQ9OPxCUfAS9d1WvN05zJttvHfLpaLc+6fugeFsLGmHzoI1EWj5zkd2lWxCG14Tau6ny/q4gL+cd6EMbCKbghXoRKlJUBDqc5iVevaBYY8BhLkue8q6a6OPzOiKqvVFjaJEYjFlgKuTUjo+fnh5IID4eVTaicMD2Z3WxGLasJzZ8n3LFoKnvFNT3EvOkspmbEKfTdgEjoarI2SmwKDoTLgdvyyOplHCURMfJzsl4Mu1qOlQ353vL4oz1w0ZHDd0pitAO13A7oiHz8swLDK2d15M5JTAN5qS8rJwCMPgtNvfcJ5C6M8tuMIzvd36XMVibmTEMzgVc+FCV2S8OhPIsgySLvHpuZPJPAUrtj1dkwpq2sPEpIQ5XP3gwXcgyabyTBuEuoMJZWN4BLNESa/ls=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB5939.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(39850400004)(376002)(366004)(136003)(396003)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(8936002)(110136005)(66946007)(8676002)(316002)(5660300002)(6512007)(66476007)(66556008)(6506007)(6666004)(4326008)(478600001)(2906002)(36756003)(41300700001)(86362001)(38100700002)(6486002)(26005)(2616005)(107886003)(52116002)(1076003)(83380400001)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sb/egRTSWN2tuvHtqV2hu7yWgnY0F+drAWI78vJ/5ezVZA8eYR7aPJ67uzNq?=
+ =?us-ascii?Q?IZjPtkjivd2cl350UXGGG7vZLXEM+5zGEgo/suIo04hn2v5m+iUAouXT0pux?=
+ =?us-ascii?Q?OCOneJ9QlpwNlRGVc0Sw6J1FiBu2Szr7FCJNCkdVzkYki23Xme1wvBONnH5i?=
+ =?us-ascii?Q?B5hWxYrW6xwIyNT/gn1WVN9pdgB0SdYW+zxzT+5wkFW3cfYhTgzD1lYfPUA7?=
+ =?us-ascii?Q?rvwIoAhvDeteW4Sy2kit0RzlX83z0V8vsu1JLczt/MiP+YAygDiMHxeB5nd/?=
+ =?us-ascii?Q?qMbGRFXVM+Fpyfjr+ZoW2yvw6Zrw6bJnSfmZEtCsCH11QTwKMbO3N4dcI+59?=
+ =?us-ascii?Q?SQ9yGE/jcYIFyAN0hilqVclccAXhG1RCCTo5sdZzmQQLt85s9MASksANqDTJ?=
+ =?us-ascii?Q?yXlwUFDih3hgjPNlcVBTwDMSZ8bMWiCsDKSc1vMlcgAI4F3uHThRJ0mzoMDs?=
+ =?us-ascii?Q?hv/vHixw/IMurw0rR9QDD8CsMib9AwVm3KQkq42L9k0p+l+xwJbvqnkpUMLi?=
+ =?us-ascii?Q?XGqwyiR6x/8gt8BEcRedJJwTlBuAdy6oiTdeSgnLYTkcjpfXMy7y2+UuoJ8j?=
+ =?us-ascii?Q?OvZrF0KzvVlU4jG8FJx2wgjtks9Q0O8imsKALQcr1DMfup7bDRVARtxGgzNT?=
+ =?us-ascii?Q?fIa1lWwOcoHWETxFyPrdaAllg20WsMyZi0+1f9LaGTn/J2XqJU97bvcl35o2?=
+ =?us-ascii?Q?JoLhWiLCrdRERHmvOXhtb8gZrFf23IA5qQN/+n2m8yyhuImNxlblVjgk2ukG?=
+ =?us-ascii?Q?RPrFd5ekhXMbDArHmF5i6XpZ12DlnroGmEVNPKPireBVtwQpSM6ejW+IL3eh?=
+ =?us-ascii?Q?DLJpYw5mIfHXtbrgMIUpU0RveUcknPWJj21PZI8HgrNKjkwGE8ViW9Dyrmy2?=
+ =?us-ascii?Q?Act+RzLMs5H0i+N7aS1HukvW68vGzC8oy5HL3h8timUSC5lQ6bsOgQrqQLwC?=
+ =?us-ascii?Q?7R9zuV7AHVVF+Pn2vgI1xyPGEl6diToakYCSyzCamPO3FFA9m9B/90mpwQvz?=
+ =?us-ascii?Q?o1oshlrL6yR3ojbOLH+jMVE+WBZvJHvdSr8S5BlTgJtwssWrDJOutYCIDW/S?=
+ =?us-ascii?Q?o1Yoz8dGFQq15N5i/ZIxTWRIg/lKE5hgq+/f5CNvChYtp5WLjRsCDDncZtae?=
+ =?us-ascii?Q?wYRayrUzGHqUBrh5bIBoHPhlG0AFvJ4rsxtDpqmno7ljmgaT/Mc46gTQNcFS?=
+ =?us-ascii?Q?0vTjCuF3i0Vuhe5yTAfYcslEuoJu5WBMHxB7EgPo+vQ44JR2l+S7U/bAPfmN?=
+ =?us-ascii?Q?7X5LKRZ5RhTtnwTN9vFHBrWpDH1+UqQhX+s4pf9VQ7KC4rLKv6ARgHgzIbq5?=
+ =?us-ascii?Q?Pg20RVUxDU0K8RPWcnuncm7/1jnb2BwgcOw+ev2dxjB3gp1hDkuhXEhW/KFK?=
+ =?us-ascii?Q?SWwQxJtDR7ViOIXVNIMRIOcG5byzmUhKeermAayktw9kzdGRsHyJ2k+rlbgQ?=
+ =?us-ascii?Q?5wpzgD1YbymNG8Dd0H+Sj/+GX0znTxsYXi9Q9Oc7z28OQo8Dj9OUO5KLm74a?=
+ =?us-ascii?Q?PSWg8jYmPLbcpYtfBwa2S8P7sdto/SgE5nFpHxxEzMCKyRfj85z7MijxMY7h?=
+ =?us-ascii?Q?10uvuHjjXa0aE98CPSQiuQu5pLWF9Rzf42chVWEFRy0gKBoMXYYKxkcvMYaG?=
+ =?us-ascii?Q?rA=3D=3D?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dd02db07-2199-4393-357a-08dbd5f5a8a0
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB5939.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2023 07:32:08.5250
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yCslIWsvkbIswQOIbvlGsROXFg/pJngLA6PPgXB8sHlBH+Snhf3yEd5p02HYV03b4fAPe9X/Ug+/2M1eNNAW9Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR03MB5830
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231025_063035_683856_420873B6 
-X-CRM114-Status: GOOD (  24.78  )
+X-CRM114-CacheID: sfid-20231026_003233_948455_38016051 
+X-CRM114-Status: UNSURE (   9.95  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,81 +134,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Le Fri, Oct 20, 2023 at 09:55:27AM +0200, Uwe Kleine-K=F6nig a =E9crit :
-> The .remove() callback for a platform driver returns an int which makes
-> many driver authors wrongly assume it's possible to do error handling by
-> returning an error code. However the value returned is ignored (apart
-> from emitting a warning) and this typically results in resource leaks.
-> =
+From: Rong Chen <rong.chen@amlogic.com>
 
-> To improve here there is a quest to make the remove callback return
-> void. In the first step of this quest all drivers are converted to
-> .remove_new(), which already returns void. Eventually after all drivers
-> are converted, .remove_new() will be renamed to .remove().
-> =
+For the t7 and older SoC families, the CMD_CFG_ERROR has no effect.
+Starting from SoC family C3, setting this bit without SG LINK data
+address will cause the controller to generate an IRQ and stop working.
 
-> Trivially convert this driver from always returning zero in the remove
-> callback to the void returning variant.
-> =
+To fix it, don't set the bit CMD_CFG_ERROR anymore.
 
-> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-> ---
->  drivers/crypto/amlogic/amlogic-gxl-core.c | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
-> =
+Fixes: 18f92bc02f17 ("mmc: meson-gx: make sure the descriptor is stopped on errors")
+Signed-off-by: Rong Chen <rong.chen@amlogic.com>
+---
+ drivers/mmc/host/meson-gx-mmc.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-> diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/a=
-mlogic/amlogic-gxl-core.c
-> index da6dfe0f9ac3..f54ab0d0b1e8 100644
-> --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
-> +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-> @@ -299,7 +299,7 @@ static int meson_crypto_probe(struct platform_device =
-*pdev)
->  	return err;
->  }
->  =
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 9837dab096e6..c7c067b9415a 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -801,7 +801,6 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+ 
+ 	cmd_cfg |= FIELD_PREP(CMD_CFG_CMD_INDEX_MASK, cmd->opcode);
+ 	cmd_cfg |= CMD_CFG_OWNER;  /* owned by CPU */
+-	cmd_cfg |= CMD_CFG_ERROR; /* stop in case of error */
+ 
+ 	meson_mmc_set_response_bits(cmd, &cmd_cfg);
+ 
+-- 
+2.42.0
 
-> -static int meson_crypto_remove(struct platform_device *pdev)
-> +static void meson_crypto_remove(struct platform_device *pdev)
->  {
->  	struct meson_dev *mc =3D platform_get_drvdata(pdev);
->  =
-
-> @@ -312,7 +312,6 @@ static int meson_crypto_remove(struct platform_device=
- *pdev)
->  	meson_free_chanlist(mc, MAXFLOW - 1);
->  =
-
->  	clk_disable_unprepare(mc->busclk);
-> -	return 0;
->  }
->  =
-
->  static const struct of_device_id meson_crypto_of_match_table[] =3D {
-> @@ -323,7 +322,7 @@ MODULE_DEVICE_TABLE(of, meson_crypto_of_match_table);
->  =
-
->  static struct platform_driver meson_crypto_driver =3D {
->  	.probe		 =3D meson_crypto_probe,
-> -	.remove		 =3D meson_crypto_remove,
-> +	.remove_new	 =3D meson_crypto_remove,
->  	.driver		 =3D {
->  		.name		   =3D "gxl-crypto",
->  		.of_match_table	=3D meson_crypto_of_match_table,
-> -- =
-
-> 2.42.0
-> =
-
-
-Acked-by: Corentin Labbe <clabbe@baylibre.com>
-
-Thanks
 
 _______________________________________________
 linux-amlogic mailing list
