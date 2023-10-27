@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82D40C25B47
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Oct 2023 11:00:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75723C25B47
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Oct 2023 11:00:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2+X3bQO9Tv8X+RZfaMEkIi0bu129tDzddJF7i+e4JW0=; b=Kb6jCMkOYRyPYc
-	e9w0Fs+rw6Bp+vGnZg2u6xCGPsaRwwH3/IYIH7p89UnkEpWRhlVngri1eObgJjIOUbwiBTunu43WB
-	Zqo/iuKDxViiQX5nrw1y4c5yVuJSunBzJTLD9t86B0xOg1DI4hak63nMaCG37u2wGgQccH0sA92Y8
-	wD8JIyixIzvCEwM/vR98+JgBLn0+ocX6aMSpnd7931Mrt+nCwlKwk0GNi8DVcWIktD0/AraywOQqp
-	RjNtmfZGaME+JFhk/VwKKdIZ+yN07hh8l++ULgnVArfWHsSi2aVF+A5dnTK7l8Mc/r5C6Gd28RJtO
-	Z4zirES2D2KDAXxVh7Pw==;
+	List-Owner; bh=YFc2D36X6WqQV7taODdaFUMcyfQHlkYnBbzoql4xRYk=; b=VKhZeL3vg77Zw0
+	jkiV1jCI48+OcmmBKoLe+jgm3Syn5teM8GNk8ISZpuLd6K8u3oGZP5QFl+5RxfnqsDWFiHGXfxBqb
+	NNUqBMlqFF5wpFvxzjfUMg6IvQIWKNUXoMtVO9mydlLeORy2ONvCqevxIH3vtlzz2/RSef5zPtn0c
+	Nyg5FiY+8wIbJgBhysQPZBbZ4o3EZwc1n6um24o8zSlwHbZYRGGbUztCnKjP6k877F3MyRPks8VYA
+	ol6hGtopLis9FB5H6zz4+ejnpDggOwuFT0Gw4gS/NiYybccjxN75Mftmre07JMC73eEVEopn/N/i3
+	nQqvT8uhyirxziaDOBRQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qwKZH-00GGSf-33;
-	Fri, 27 Oct 2023 10:59:55 +0000
+	id 1qwKZQ-00GGVZ-0F;
+	Fri, 27 Oct 2023 11:00:04 +0000
 Received: from [58.32.228.44] (helo=mail-sh.amlogic.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qwKZ8-00GGP1-0C;
-	Fri, 27 Oct 2023 10:59:47 +0000
+	id 1qwKZ9-00GGP1-2E;
+	Fri, 27 Oct 2023 10:59:48 +0000
 Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Fri, 27 Oct 2023
- 18:44:25 +0800
+ 18:44:26 +0800
 From: Huqiang Qin <huqiang.qin@amlogic.com>
 To: <wim@linux-watchdog.org>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
 	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
@@ -37,17 +37,17 @@ To: <wim@linux-watchdog.org>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
 CC: <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, Huqiang Qin <huqiang.qin@amlogic.com>
-Subject: [PATCH V3 1/3] dt-bindings: watchdog: Add support for Amlogic C3 and S4 SoCs
-Date: Fri, 27 Oct 2023 18:43:56 +0800
-Message-ID: <20231027104358.342861-2-huqiang.qin@amlogic.com>
+Subject: [PATCH V3 2/3] arm64: dts: Add watchdog node for Amlogic C3 SoCs
+Date: Fri, 27 Oct 2023 18:43:57 +0800
+Message-ID: <20231027104358.342861-3-huqiang.qin@amlogic.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231027104358.342861-1-huqiang.qin@amlogic.com>
 References: <20231027104358.342861-1-huqiang.qin@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.28.11.83]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231027_035946_095799_600E75E2 
-X-CRM114-Status: UNSURE (   6.37  )
+X-CRM114-CacheID: sfid-20231027_035947_723340_7305FCAD 
+X-CRM114-Status: UNSURE (   6.09  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -65,36 +65,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Update dt-binding document for watchdog of Amlogic C3 and S4 SoCs.
+Add watchdog device.
 
 Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
 ---
- .../bindings/watchdog/amlogic,meson-gxbb-wdt.yaml    | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
-index 443e2e7ab467..69845ec32e81 100644
---- a/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
-@@ -15,9 +15,15 @@ allOf:
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+index 998f5050795c..2ad1f8eef199 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+@@ -81,6 +81,12 @@ apb4: bus@fe000000 {
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
  
- properties:
-   compatible:
--    enum:
--      - amlogic,meson-gxbb-wdt
--      - amlogic,t7-wdt
-+    oneOf:
-+      - enum:
-+          - amlogic,meson-gxbb-wdt
-+          - amlogic,t7-wdt
-+      - items:
-+          - enum:
-+              - amlogic,c3-wdt
-+              - amlogic,s4-wdt
-+          - const: amlogic,t7-wdt
- 
-   reg:
-     maxItems: 1
++			watchdog@2100 {
++				compatible = "amlogic,c3-wdt", "amlogic,t7-wdt";
++				reg = <0x0 0x2100 0x0 0x10>;
++				clocks = <&xtal>;
++			};
++
+ 			periphs_pinctrl: pinctrl@4000 {
+ 				compatible = "amlogic,c3-periphs-pinctrl";
+ 				#address-cells = <2>;
 -- 
 2.42.0
 
