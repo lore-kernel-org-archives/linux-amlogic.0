@@ -4,82 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56560C27C48
-	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Oct 2023 07:55:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0C9EC4332F
+	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Oct 2023 13:09:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ivy0GX2E7IaKEeFZB9kRFrfK1yRw6apCwP795mzaNn4=; b=rUnLa2mRoi78pt
-	MBc0Bkr6gsduq6D5feBTUDOSQrCd7nd5EgxuTu5s4y/SKayD6Czu/bttZHJKplLLGx7hT9PGi5dzf
-	T7LiZV9OYfmHt7c79xofWPPeWhD0TGxc6ItaD43aOQtQZHCjzC3Sz5BNvABGJkyN1EK4QQ0pYRCR9
-	/FdpbdR9zMOtPbJ6s0fyx4Rn+xzYh7INthVkUiRsMmIRHtpiz5zJkrstQK2MUWQPIEqYk40UUH5Xc
-	Zdk2tIf8H0sOZF5lMMLCwz7I1/SW2MoqNLvgopB4VT968n1zkyhsw6n3T1fNVDljBfbAE74g1vG4H
-	+WofGR3+UIBI0cH6SyMg==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=1mIzKkAx0jQUyo02M+TZp1/m68nAQ8NCDrkbI5sCLkI=; b=INP3xjAdvPDi1x
+	BjtooNiEX3dn73HAW4eIKsgs3Eb8v3jCl3VkYg95+e/LFq9fZ3QRlYvANujcip9oZf6A8piRkeZiY
+	APMCd7ETc7qxKhieIP7dlTkww8qpdRf9yjoAK1o2np6RAXj17vHvDPt25Obk9RWqc6dv/VDVmUVak
+	gxXIHrkcO/Hs1NVUOQbKRAEAH6ANolbIOKeh43aQcMN87ndALzDRemvj4qAbvwzbYpibVM/3Bq+Px
+	zjzX+daSeNmRub7fQWQ0ckGZhhbFh2giGxtNhBym13du/uAtXfgCEtvIF198nzmjY/7oU9A5KUFkX
+	MQnVgmWgEjqckpKYPOWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qwe9q-0009PI-13;
-	Sat, 28 Oct 2023 07:54:58 +0000
-Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
+	id 1qx5XP-001lmf-0s;
+	Sun, 29 Oct 2023 13:09:07 +0000
+Received: from mail-ot1-x32d.google.com ([2607:f8b0:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qwe9m-0009Oc-1p;
-	Sat, 28 Oct 2023 07:54:55 +0000
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-507973f3b65so4315241e87.3;
-        Sat, 28 Oct 2023 00:54:51 -0700 (PDT)
+	id 1qx5XL-001llj-08;
+	Sun, 29 Oct 2023 13:09:04 +0000
+Received: by mail-ot1-x32d.google.com with SMTP id 46e09a7af769-6ce2c71c61fso2184563a34.1;
+        Sun, 29 Oct 2023 06:09:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698479690; x=1699084490; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HWNJsQxt66edieq3NUjONu874gZwqx0vvF3MCSn9U9E=;
-        b=W/QYuYP0wirafBEH+nCzm7KnVESptyn4qE3NroPPP3pl5NRtQ05DU4GH0NYnnZYiyb
-         QSI/r7Sq82DTPI9aiGNnv8amprzb/ysUI0ozoS8EYrKRbNKk2rZNxQn6jzmfYlUPlG9N
-         UYaBkiukCR7MuS4egG08tLva7xWMKVQtkZe8lh2TOcgeybJSyasJ4HhMCEI4PvTofJbE
-         MKgesQ6lKV7hg/c03CiqglobO28dFoEtS8d6g2ry5jBANU43/wyAelK02J67TjgMgpTg
-         rnfQXIGeagMJB7KJlI58NCuqhYg0yzjMvYj5HeDy5/6THvPt7o80HM1qJw5SVFvwOfj5
-         uOIQ==
+        d=gmail.com; s=20230601; t=1698584941; x=1699189741; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8rEsmHyEPkV7MBoxDxxp2oxo1YnlfdW9ufozgcxhuFE=;
+        b=BuoMh91AQbfxNVORBmElPZBfdGUEPqs2FdEG8X+kTqCzbVcitc3qerzH4tHSQnGjd8
+         JGaufl4jkTgsz0RJ88mJQseJPRUaCIYboZn5tvDeM4fvVF9sA+CZlE1gGi7yU5UjX52d
+         mI5RazIrw1HdJcRvasiCIpzBLsUzBVBrQuDNMH1n3+j7Be+UZPmPDGuJyBG/ApBeBXQa
+         c3qaA4mqXgFAsTlDmwj3jUKmatRCir9+JXZ7xW/A8fCxST4iR8NwYsAUw90exiecAeXX
+         2+T0+VwCV+73jMYbZEU4f/xjJEWiTNh7jMprrgX2EIYhqd6DDQscD0rdn3iYVIgnvUpN
+         J5zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698479690; x=1699084490;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1698584941; x=1699189741;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HWNJsQxt66edieq3NUjONu874gZwqx0vvF3MCSn9U9E=;
-        b=YlIzbFe4GnFOYjcNXdonZVn/Iu/dp772ALYXN9Ba553zg8SJUQHT5Frjlta5iuMrSM
-         P40BKGlZUDUoCLHvHH1yAXComs3La/5Ll4els/hcETlWqzFt/Hv4DFKPnuZTNcL1d+xf
-         bIkZ1dXbyy0oduSdBYwpVL5WxB5glA+hKHwaQa1k7+CLI8cU7tFDojkz4nXVZL1SIBVR
-         9+ulZDJSYw9xlpFq3nKZ4jL33QRpQra6vgvWJ+zBliRzMUa/Mk4WQsIciVcs9Z+NfFhD
-         RkofUPLmBjJ89fWsLT82lew2Y0zNH4ai2mTnhpSTtpvsuBcnqATjulaszj8qNEFuNB20
-         /yIQ==
-X-Gm-Message-State: AOJu0YxbsYoUrrh7zBK9mnhOXQGApMJO/0WBIs7oSYHH5X3iK7Xtvs+3
-	ZGYThDSAEFKFVn1KSOMVoqRQ6UMg6PccWg==
-X-Google-Smtp-Source: AGHT+IELtqMRnbnklk2OPXep08KqdzueFWidMDXKJVoTtHqqgwhjS6C32Ie18V8tpr1Tuw8Y+M7g1g==
-X-Received: by 2002:a19:8c19:0:b0:507:b9e9:3e8d with SMTP id o25-20020a198c19000000b00507b9e93e8dmr3529803lfd.28.1698479690039;
-        Sat, 28 Oct 2023 00:54:50 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id n15-20020a5d4c4f000000b0032f7e832cabsm250845wrt.90.2023.10.28.00.54.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Oct 2023 00:54:49 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson: radxa-zero2: add pwm-fan support
-Date: Sat, 28 Oct 2023 07:54:45 +0000
-Message-Id: <20231028075445.3515664-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        bh=8rEsmHyEPkV7MBoxDxxp2oxo1YnlfdW9ufozgcxhuFE=;
+        b=PLF1fdZQHzXFMXm6gQOWjDOgGJiDemMOynYdUgzBYuw1B8XzGh+eRnJBArDffe5FZq
+         DV3wXBl5+4DJch8kDajtnu+eeiLqdzXTTsY3AXzsao2o0M+d04bteTOovEcTrCyQx+SO
+         C2qyywPoo9sdg+aBDDCsJNvGnn9L6BlvN27Bs5/HWvG9oErSl2JSq217vTtCk890Ilhc
+         0uezWKzQSlbyYrFzFaiszN9dxG9XlpN+xJ2WkadDTeYWPW/atL6Z+sbLQgqZul9mN0ZN
+         kGHLCcq0VSVZMlK3NSrcwgDn2leHHVRwtewtct6XxN6X8cz8V/MOfc1rkQHYIl5/uiQ2
+         mElg==
+X-Gm-Message-State: AOJu0Yws4ta6jWc/LIZUtOrCVXesHKjC1dciBpVjOsSi/FskBlOwxw2c
+	Pk6LQoCdJjT33fwLiMvwsWtMz48qxNntYklMvSM=
+X-Google-Smtp-Source: AGHT+IGpgcnqNbXuqkw21XHiLu3JGl/K9IyANpWzyC0AbERHNIwUN7/8BkASMY48GhKsjW160YywNZ4xAk1mlz4h83Y=
+X-Received: by 2002:a9d:6d8a:0:b0:6c6:1e39:e5c6 with SMTP id
+ x10-20020a9d6d8a000000b006c61e39e5c6mr6825448otp.36.1698584940764; Sun, 29
+ Oct 2023 06:09:00 -0700 (PDT)
 MIME-Version: 1.0
+References: <TYZPR01MB5556B56D834E02F41C44D81DC95FA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+ <TYZPR01MB5556A3E71554A2EC08597EA4C9CDA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+In-Reply-To: <TYZPR01MB5556A3E71554A2EC08597EA4C9CDA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Sun, 29 Oct 2023 18:38:45 +0530
+Message-ID: <CANAwSgTqm2-NsMjZWQwfc77CQhL_kCLnbQpm-ithOBS84UV=4w@mail.gmail.com>
+Subject: Re: [PATCH v2] mmc: meson-mx-sdhc: Fix initialization frozen issue
+To: Ziyang Huang <hzyitc@outlook.com>
+Cc: ulf.hansson@linaro.org, neil.armstrong@linaro.org, khilman@baylibre.com, 
+	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, 
+	yinxin_1989@aliyun.com, regressions@leemhuis.info, briannorris@chromium.org, 
+	linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231028_005454_631391_9F968DFC 
-X-CRM114-Status: UNSURE (   9.08  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231029_060903_112557_71AB5D4A 
+X-CRM114-Status: GOOD (  27.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,70 +85,122 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Yuntian Zhang <yt@radxa.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The A311D on Zero2 needs active cooling and the board includes a header to
-connect a simple fan. Add pwm-fan support with basic thermal properties so
-the fan runs when connected.
+Hi Ziyang,
 
-Suggested-by: Yuntian Zhang <yt@radxa.com>
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- .../dts/amlogic/meson-g12b-radxa-zero2.dts    | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+On Tue, 10 Oct 2023 at 22:15, Ziyang Huang <hzyitc@outlook.com> wrote:
+>
+> Commit 4bc31edebde5 ("mmc: core: Set HS clock speed before sending
+> HS CMD13") set HS clock (52MHz) before switching to HS mode. For this
+> freq, FCLK_DIV5 will be selected and div value is 10 (reg value is 9).
+> Then we set rx_clk_phase to 11 or 15 which is out of range and make
+> hardware frozen. After we send command request, no irq will be
+> interrupted and the mmc driver will keep to wait for request finished,
+> even durning rebooting.
+>
+> So let's set it to Phase 90 which should work in most cases. Then let
+> meson_mx_sdhc_execute_tuning() to find the accurate value for data
+> transfer.
+>
+> If this doesn't work, maybe need to define a factor in dts.
+>
+> Fixes: e4bf1b0970ef ("mmc: host: meson-mx-sdhc: new driver for the Amlogic Meson SDHC host")
+> Signed-off-by: Ziyang Huang <hzyitc@outlook.com>
+> ---
+> Changes since v1:
+>   Use Phase 90 instand of value 1
+>
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-index 890f5bfebb03..895b6ea67180 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-@@ -33,6 +33,15 @@ memory@0 {
- 		reg = <0x0 0x0 0x0 0x80000000>;
- 	};
- 
-+	fan0: pwm-fan {
-+		compatible = "pwm-fan";
-+		#cooling-cells = <2>;
-+		cooling-min-state = <0>;
-+		cooling-max-state = <4>;
-+		cooling-levels = <0 64 128 192 255>;
-+		pwms = <&pwm_AO_ab 0 40000 0>;
-+	};
-+
- 	gpio-keys-polled {
- 		compatible = "gpio-keys-polled";
- 		poll-interval = <100>;
-@@ -286,6 +295,24 @@ &cpu103 {
- 	clock-latency = <50000>;
- };
- 
-+&cpu_thermal {
-+	cooling-maps {
-+		map0 {
-+			trip = <&cpu_passive>;
-+			cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+		};
-+	};
-+};
-+
-+&ddr_thermal {
-+	cooling-maps {
-+		map0 {
-+			trip = <&ddr_passive>;
-+			cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+		};
-+	};
-+};
-+
- &frddr_a {
- 	status = "okay";
- };
--- 
-2.34.1
+I have tested this patch on my Odroid C1+ board.
+Please add my
 
+Tested-by: Anand Moon <linux.amoon@gmail.com>
+
+[alarm@alarm ~]$ sudo cat /sys/kernel/debug/mmc1/ios
+clock:          100000000 Hz
+actual clock:   94444445 Hz
+vdd:            21 (3.3 ~ 3.4 V)
+bus mode:       2 (push-pull)
+chip select:    0 (don't care)
+power mode:     2 (on)
+bus width:      3 (8 bits)
+timing spec:    9 (mmc HS200)
+signal voltage: 1 (1.80 V)
+driver type:    0 (driver type B)
+[alarm@alarm ~]$ sync && dd if=/dev/zero of=~/testfile bs=100M count=1
+oflag=dsync && sync
+1+0 records in
+1+0 records out
+104857600 bytes (105 MB, 100 MiB) copied, 5.70235 s, 18.4 MB/s
+[alarm@alarm ~]$ sync && dd if=~/testfile of=/dev/null bs=100M count=1
+iflag=dsync && sync
+1+0 records in
+1+0 records out
+104857600 bytes (105 MB, 100 MiB) copied, 0.20267 s, 517 MB/s
+
+Thanks
+-Anand
+
+>  drivers/mmc/host/meson-mx-sdhc-mmc.c | 26 +++++---------------------
+>  1 file changed, 5 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/mmc/host/meson-mx-sdhc-mmc.c b/drivers/mmc/host/meson-mx-sdhc-mmc.c
+> index 97168cdfa8e9..29698fceb89c 100644
+> --- a/drivers/mmc/host/meson-mx-sdhc-mmc.c
+> +++ b/drivers/mmc/host/meson-mx-sdhc-mmc.c
+> @@ -269,7 +269,7 @@ static int meson_mx_sdhc_enable_clks(struct mmc_host *mmc)
+>  static int meson_mx_sdhc_set_clk(struct mmc_host *mmc, struct mmc_ios *ios)
+>  {
+>         struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> -       u32 rx_clk_phase;
+> +       u32 val, rx_clk_phase;
+>         int ret;
+>
+>         meson_mx_sdhc_disable_clks(mmc);
+> @@ -290,27 +290,11 @@ static int meson_mx_sdhc_set_clk(struct mmc_host *mmc, struct mmc_ios *ios)
+>                 mmc->actual_clock = clk_get_rate(host->sd_clk);
+>
+>                 /*
+> -                * according to Amlogic the following latching points are
+> -                * selected with empirical values, there is no (known) formula
+> -                * to calculate these.
+> +                * Phase 90 should work in most cases. For data transmission,
+> +                * meson_mx_sdhc_execute_tuning() will find a accurate value
+>                  */
+> -               if (mmc->actual_clock > 100000000) {
+> -                       rx_clk_phase = 1;
+> -               } else if (mmc->actual_clock > 45000000) {
+> -                       if (ios->signal_voltage == MMC_SIGNAL_VOLTAGE_330)
+> -                               rx_clk_phase = 15;
+> -                       else
+> -                               rx_clk_phase = 11;
+> -               } else if (mmc->actual_clock >= 25000000) {
+> -                       rx_clk_phase = 15;
+> -               } else if (mmc->actual_clock > 5000000) {
+> -                       rx_clk_phase = 23;
+> -               } else if (mmc->actual_clock > 1000000) {
+> -                       rx_clk_phase = 55;
+> -               } else {
+> -                       rx_clk_phase = 1061;
+> -               }
+> -
+> +               regmap_read(host->regmap, MESON_SDHC_CLKC, &val);
+> +               rx_clk_phase = FIELD_GET(MESON_SDHC_CLKC_CLK_DIV, val) / 4;
+>                 regmap_update_bits(host->regmap, MESON_SDHC_CLK2,
+>                                    MESON_SDHC_CLK2_RX_CLK_PHASE,
+>                                    FIELD_PREP(MESON_SDHC_CLK2_RX_CLK_PHASE,
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
 _______________________________________________
 linux-amlogic mailing list
