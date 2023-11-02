@@ -4,76 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0C9EC4332F
-	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Oct 2023 13:09:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6CC0C4167D
+	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Nov 2023 06:13:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1mIzKkAx0jQUyo02M+TZp1/m68nAQ8NCDrkbI5sCLkI=; b=INP3xjAdvPDi1x
-	BjtooNiEX3dn73HAW4eIKsgs3Eb8v3jCl3VkYg95+e/LFq9fZ3QRlYvANujcip9oZf6A8piRkeZiY
-	APMCd7ETc7qxKhieIP7dlTkww8qpdRf9yjoAK1o2np6RAXj17vHvDPt25Obk9RWqc6dv/VDVmUVak
-	gxXIHrkcO/Hs1NVUOQbKRAEAH6ANolbIOKeh43aQcMN87ndALzDRemvj4qAbvwzbYpibVM/3Bq+Px
-	zjzX+daSeNmRub7fQWQ0ckGZhhbFh2giGxtNhBym13du/uAtXfgCEtvIF198nzmjY/7oU9A5KUFkX
-	MQnVgmWgEjqckpKYPOWA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=OFWm+HqUxah8VTOjjztytOMCYsAoMtjwkZX033SOqG0=; b=iNwz/4wKn+R06L
+	H3LIZEhC0uGNIttJhODmK88CxaxMy7E66/eFZ9/rxDkPfLGeGBJw9nwzbWRrBUfXZfQd8Nz/RuY+O
+	Vb0f6H+AgPECXJn+2VxWF8QDEqgtH06cblPSXJY+2BVNEMxMdq4+SkkhCd823XR9x8jrBIpvYG2KV
+	TFK5zXQ+G+VqnSly9H206kwRaynp3FENGkSuDDRxQYW6G79dgup+EBD7zFpv4l/t9c3zpGSkxlGX4
+	a+XgAlGRNo/ekjBLCgDkqhcAJbD1Cdp4/AnW70IGsLTpv6tEMTjJxvazGuu9bxO0bO1VeBmbzx2wK
+	7U0XK73ezCgrce0ZEnsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qx5XP-001lmf-0s;
-	Sun, 29 Oct 2023 13:09:07 +0000
-Received: from mail-ot1-x32d.google.com ([2607:f8b0:4864:20::32d])
+	id 1qyQwp-008o9J-3B;
+	Thu, 02 Nov 2023 06:12:55 +0000
+Received: from mx.msync.work ([62.182.159.68])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qx5XL-001llj-08;
-	Sun, 29 Oct 2023 13:09:04 +0000
-Received: by mail-ot1-x32d.google.com with SMTP id 46e09a7af769-6ce2c71c61fso2184563a34.1;
-        Sun, 29 Oct 2023 06:09:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698584941; x=1699189741; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8rEsmHyEPkV7MBoxDxxp2oxo1YnlfdW9ufozgcxhuFE=;
-        b=BuoMh91AQbfxNVORBmElPZBfdGUEPqs2FdEG8X+kTqCzbVcitc3qerzH4tHSQnGjd8
-         JGaufl4jkTgsz0RJ88mJQseJPRUaCIYboZn5tvDeM4fvVF9sA+CZlE1gGi7yU5UjX52d
-         mI5RazIrw1HdJcRvasiCIpzBLsUzBVBrQuDNMH1n3+j7Be+UZPmPDGuJyBG/ApBeBXQa
-         c3qaA4mqXgFAsTlDmwj3jUKmatRCir9+JXZ7xW/A8fCxST4iR8NwYsAUw90exiecAeXX
-         2+T0+VwCV+73jMYbZEU4f/xjJEWiTNh7jMprrgX2EIYhqd6DDQscD0rdn3iYVIgnvUpN
-         J5zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698584941; x=1699189741;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8rEsmHyEPkV7MBoxDxxp2oxo1YnlfdW9ufozgcxhuFE=;
-        b=PLF1fdZQHzXFMXm6gQOWjDOgGJiDemMOynYdUgzBYuw1B8XzGh+eRnJBArDffe5FZq
-         DV3wXBl5+4DJch8kDajtnu+eeiLqdzXTTsY3AXzsao2o0M+d04bteTOovEcTrCyQx+SO
-         C2qyywPoo9sdg+aBDDCsJNvGnn9L6BlvN27Bs5/HWvG9oErSl2JSq217vTtCk890Ilhc
-         0uezWKzQSlbyYrFzFaiszN9dxG9XlpN+xJ2WkadDTeYWPW/atL6Z+sbLQgqZul9mN0ZN
-         kGHLCcq0VSVZMlK3NSrcwgDn2leHHVRwtewtct6XxN6X8cz8V/MOfc1rkQHYIl5/uiQ2
-         mElg==
-X-Gm-Message-State: AOJu0Yws4ta6jWc/LIZUtOrCVXesHKjC1dciBpVjOsSi/FskBlOwxw2c
-	Pk6LQoCdJjT33fwLiMvwsWtMz48qxNntYklMvSM=
-X-Google-Smtp-Source: AGHT+IGpgcnqNbXuqkw21XHiLu3JGl/K9IyANpWzyC0AbERHNIwUN7/8BkASMY48GhKsjW160YywNZ4xAk1mlz4h83Y=
-X-Received: by 2002:a9d:6d8a:0:b0:6c6:1e39:e5c6 with SMTP id
- x10-20020a9d6d8a000000b006c61e39e5c6mr6825448otp.36.1698584940764; Sun, 29
- Oct 2023 06:09:00 -0700 (PDT)
+	id 1qyQwk-008o81-0J;
+	Thu, 02 Nov 2023 06:12:54 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0E10714745F;
+	Thu,  2 Nov 2023 06:12:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+	t=1698905560; h=from:subject:date:message-id:to:mime-version:
+	 content-transfer-encoding; bh=d6bGpQGMcWTfIFXeJnfNXYglphqaXvj//mewEVDo5i0=;
+	b=peJtDkTo1fNDhJPVKfV17W63VXWPpCxUauH1uYj6bxUZ9eoQ6v8ABr/dZwnxQXodj5zU0P
+	Rn9NfOkNTc2R8AhjMDeN5IPnDtA9UocjysHowSqFnVjwg6vF+tpC3vfcWL4ykOhqg3fvcL
+	HhfeCeu5q+g1BVH5A/CkAV5FO9743knw2OQCpPp7LyFh1/t6xK7zuguuz7QsN+odaXap3w
+	gwcNpZ3MwdVnBLWcOd9av3sWQvQEbxHKjEH0MTXTipikcb13fDUc2Wn/2sMHGB1hAXWKNF
+	LuVzo1MJInSYfw09bX3PyHDbqbMynCDwLi9uB4mrPf9pA/tHlscCB5ntarjeHQ==
+From: Viacheslav Bocharov <adeep@lexina.in>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: meson-axg: jethub-jxx add support for EEPROM
+Date: Thu,  2 Nov 2023 09:12:33 +0300
+Message-Id: <20231102061233.3113249-1-adeep@lexina.in>
 MIME-Version: 1.0
-References: <TYZPR01MB5556B56D834E02F41C44D81DC95FA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
- <TYZPR01MB5556A3E71554A2EC08597EA4C9CDA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-In-Reply-To: <TYZPR01MB5556A3E71554A2EC08597EA4C9CDA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Sun, 29 Oct 2023 18:38:45 +0530
-Message-ID: <CANAwSgTqm2-NsMjZWQwfc77CQhL_kCLnbQpm-ithOBS84UV=4w@mail.gmail.com>
-Subject: Re: [PATCH v2] mmc: meson-mx-sdhc: Fix initialization frozen issue
-To: Ziyang Huang <hzyitc@outlook.com>
-Cc: ulf.hansson@linaro.org, neil.armstrong@linaro.org, khilman@baylibre.com, 
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, 
-	yinxin_1989@aliyun.com, regressions@leemhuis.info, briannorris@chromium.org, 
-	linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231029_060903_112557_71AB5D4A 
-X-CRM114-Status: GOOD (  27.56  )
+X-CRM114-CacheID: sfid-20231101_231250_733430_5DD6A42E 
+X-CRM114-Status: UNSURE (   7.52  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,117 +68,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Ziyang,
+Add dts node for EEPROM placed on baseboard in JetHub D1+ devices.
 
-On Tue, 10 Oct 2023 at 22:15, Ziyang Huang <hzyitc@outlook.com> wrote:
->
-> Commit 4bc31edebde5 ("mmc: core: Set HS clock speed before sending
-> HS CMD13") set HS clock (52MHz) before switching to HS mode. For this
-> freq, FCLK_DIV5 will be selected and div value is 10 (reg value is 9).
-> Then we set rx_clk_phase to 11 or 15 which is out of range and make
-> hardware frozen. After we send command request, no irq will be
-> interrupted and the mmc driver will keep to wait for request finished,
-> even durning rebooting.
->
-> So let's set it to Phase 90 which should work in most cases. Then let
-> meson_mx_sdhc_execute_tuning() to find the accurate value for data
-> transfer.
->
-> If this doesn't work, maybe need to define a factor in dts.
->
-> Fixes: e4bf1b0970ef ("mmc: host: meson-mx-sdhc: new driver for the Amlogic Meson SDHC host")
-> Signed-off-by: Ziyang Huang <hzyitc@outlook.com>
-> ---
-> Changes since v1:
->   Use Phase 90 instand of value 1
->
+Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
+---
+ .../amlogic/meson-axg-jethome-jethub-j110-rev-2.dts  | 12 ++++++++++++
+ .../amlogic/meson-axg-jethome-jethub-j110-rev-3.dts  | 12 ++++++++++++
+ 2 files changed, 24 insertions(+)
 
-I have tested this patch on my Odroid C1+ board.
-Please add my
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
+index 0062667c4f65..2c684f0ca99a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
+@@ -35,3 +35,15 @@ bluetooth {
+ 		device-wake-gpios = <&gpio GPIOZ_6 GPIO_ACTIVE_HIGH>;
+ 	};
+ };
++
++&i2c_AO {
++	/* EEPROM on base board */
++	eeprompd: eeprom@56 {
++		compatible = "atmel,24c64";
++		reg = <0x56>;
++		pagesize = <0x20>;
++		label = "eeprompd";
++		address-width = <0x10>;
++		vcc-supply = <&vddao_3v3>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-3.dts b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-3.dts
+index c2d22b00c1cd..c356bd2cc63a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-3.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-3.dts
+@@ -25,3 +25,15 @@ memory@0 {
+ &sd_emmc_b {
+ 	broken-cd;/* cd-gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;*/
+ };
++
++&i2c_AO {
++	/* EEPROM on base board */
++	eeprompd: eeprom@56 {
++		compatible = "atmel,24c64";
++		reg = <0x56>;
++		pagesize = <0x20>;
++		label = "eeprompd";
++		address-width = <0x10>;
++		vcc-supply = <&vddao_3v3>;
++	};
++};
+-- 
+2.34.1
 
-Tested-by: Anand Moon <linux.amoon@gmail.com>
-
-[alarm@alarm ~]$ sudo cat /sys/kernel/debug/mmc1/ios
-clock:          100000000 Hz
-actual clock:   94444445 Hz
-vdd:            21 (3.3 ~ 3.4 V)
-bus mode:       2 (push-pull)
-chip select:    0 (don't care)
-power mode:     2 (on)
-bus width:      3 (8 bits)
-timing spec:    9 (mmc HS200)
-signal voltage: 1 (1.80 V)
-driver type:    0 (driver type B)
-[alarm@alarm ~]$ sync && dd if=/dev/zero of=~/testfile bs=100M count=1
-oflag=dsync && sync
-1+0 records in
-1+0 records out
-104857600 bytes (105 MB, 100 MiB) copied, 5.70235 s, 18.4 MB/s
-[alarm@alarm ~]$ sync && dd if=~/testfile of=/dev/null bs=100M count=1
-iflag=dsync && sync
-1+0 records in
-1+0 records out
-104857600 bytes (105 MB, 100 MiB) copied, 0.20267 s, 517 MB/s
-
-Thanks
--Anand
-
->  drivers/mmc/host/meson-mx-sdhc-mmc.c | 26 +++++---------------------
->  1 file changed, 5 insertions(+), 21 deletions(-)
->
-> diff --git a/drivers/mmc/host/meson-mx-sdhc-mmc.c b/drivers/mmc/host/meson-mx-sdhc-mmc.c
-> index 97168cdfa8e9..29698fceb89c 100644
-> --- a/drivers/mmc/host/meson-mx-sdhc-mmc.c
-> +++ b/drivers/mmc/host/meson-mx-sdhc-mmc.c
-> @@ -269,7 +269,7 @@ static int meson_mx_sdhc_enable_clks(struct mmc_host *mmc)
->  static int meson_mx_sdhc_set_clk(struct mmc_host *mmc, struct mmc_ios *ios)
->  {
->         struct meson_mx_sdhc_host *host = mmc_priv(mmc);
-> -       u32 rx_clk_phase;
-> +       u32 val, rx_clk_phase;
->         int ret;
->
->         meson_mx_sdhc_disable_clks(mmc);
-> @@ -290,27 +290,11 @@ static int meson_mx_sdhc_set_clk(struct mmc_host *mmc, struct mmc_ios *ios)
->                 mmc->actual_clock = clk_get_rate(host->sd_clk);
->
->                 /*
-> -                * according to Amlogic the following latching points are
-> -                * selected with empirical values, there is no (known) formula
-> -                * to calculate these.
-> +                * Phase 90 should work in most cases. For data transmission,
-> +                * meson_mx_sdhc_execute_tuning() will find a accurate value
->                  */
-> -               if (mmc->actual_clock > 100000000) {
-> -                       rx_clk_phase = 1;
-> -               } else if (mmc->actual_clock > 45000000) {
-> -                       if (ios->signal_voltage == MMC_SIGNAL_VOLTAGE_330)
-> -                               rx_clk_phase = 15;
-> -                       else
-> -                               rx_clk_phase = 11;
-> -               } else if (mmc->actual_clock >= 25000000) {
-> -                       rx_clk_phase = 15;
-> -               } else if (mmc->actual_clock > 5000000) {
-> -                       rx_clk_phase = 23;
-> -               } else if (mmc->actual_clock > 1000000) {
-> -                       rx_clk_phase = 55;
-> -               } else {
-> -                       rx_clk_phase = 1061;
-> -               }
-> -
-> +               regmap_read(host->regmap, MESON_SDHC_CLKC, &val);
-> +               rx_clk_phase = FIELD_GET(MESON_SDHC_CLKC_CLK_DIV, val) / 4;
->                 regmap_update_bits(host->regmap, MESON_SDHC_CLK2,
->                                    MESON_SDHC_CLK2_RX_CLK_PHASE,
->                                    FIELD_PREP(MESON_SDHC_CLK2_RX_CLK_PHASE,
-> --
-> 2.34.1
->
->
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
 _______________________________________________
 linux-amlogic mailing list
