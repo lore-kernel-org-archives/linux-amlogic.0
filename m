@@ -4,79 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D528BC4332F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Nov 2023 05:39:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCC69C4167D
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Nov 2023 05:48:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=uJ9bKVOlG36koUK5zsuqiQj05j054bW/Irf/nazjCxc=; b=GKnC73xn/XhBja
-	Agk5lOl+qdiv4OzaMaod49lK4NC2N4A6DPn/GZTUkjZxEmPue18qbWBsnq9EhqJLuFGOzN6xJexuz
-	DbHNK31uP2qNIsWpMs1a6YUbkVEKjQsNXw9Ct6BgnyNDZ+gJMjL1B5yrTT30UkOBwG91r8CD2Zhi+
-	+kZ6frQ14dU4VIVgadUKKATnkQ4E0Lgx5kXsonZBHbcPoUSe5jKEHuXolxKYzRFJRYfzH4+ddf/mG
-	3Ebzk3HpxkJVOpemNZL8h+g83DrwuJl2326MdR0DJazZsnn+2qLipjKVJB5CIuido/j8fe0ROp5ic
-	FtQqYRV+8E9iLKF8+DQA==;
+	List-Owner; bh=GLc6PPKvnr5thAkP7Z5BvqBvSuTcD3fo4HEF4bpQqv0=; b=kPfKHJAJlQqCRt
+	Sug6uTFMtQ86FXmnH0I7URKVXHicvlEKcbQBftyKGrExrkIx0gTso8u4F0Tx0lVcDQIXYrrJ+DApS
+	UFjs4amX3c3iVQuOI6yWjB5gLK+LqC3IuyMOCYbNA+vvdA95mJyCMPclftU/kiUdKPxF0wn/65nj2
+	aJ/7ohdg1qFHQRSVmNqA+3yt0IM+sCvaJAlkZ7Qswxh0OtvFkumE+gJZWFnCI3XENDUxTS4TJrhuF
+	/GQ88hlQ57aw1TnUwIELw4pQ24K9AY4CycH6owZ2q3E62ZqhTnP2iJiKbsh+OG2OWhgxqEa8jsXkg
+	e8b3+9OTzwLgAepN+TbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r0xkm-005KmQ-1F;
-	Thu, 09 Nov 2023 05:38:56 +0000
+	id 1r0xtV-005Lc1-2X;
+	Thu, 09 Nov 2023 05:47:57 +0000
 Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r0xki-005Kl7-0e;
-	Thu, 09 Nov 2023 05:38:54 +0000
+	id 1r0xtS-005Lb5-1v;
+	Thu, 09 Nov 2023 05:47:56 +0000
 Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 945D010003B;
-	Thu,  9 Nov 2023 08:38:41 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 945D010003B
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 2471910003B;
+	Thu,  9 Nov 2023 08:47:51 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2471910003B
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1699508321;
-	bh=vfACBLAST4Scd3CASTdoE4hA1o8iyd5yw8r0Mxm6/Hk=;
+	s=mail; t=1699508871;
+	bh=iEPGOwwFpiz4fNsEZ5A9kxrGYqz51ztVWpwbPLPuTaU=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=dH50fik+ijC0enTla93Ib6iGWx7N+Nde2ABB+TDWSgbGCqQNDLTwelmfvvqo9+Xxc
-	 BJ7C9t/PJUOO38aKcXlDqaU8hIPFc94/kIY0QCQbrkA5X4Qq1nXrqGK1/EBA7RyJZU
-	 jvreloB9HmGI+eOOP63b1y7FZVShMipPsQlHHgzNd7ZvcF/Ak/4saJOZ6y+5f6HgZy
-	 /GcYlYgAtEfiiWbusO18Z3yvib0fOr6/36SO5Q3u+IY2J2xUjU1VkiItX2529BZOGC
-	 wHNH3fbvUWGOpKI/VPhmmuF7VfhHxMGwK2WFrMcjyhuEh9qmOeutZtoSuAMrkpoXVP
-	 K12QJzzd9qpCQ==
+	b=Gi+rME1yqP8TWRgKUOiVsTNmRCx+ucxbPYrXjc8BCv4a8sKmlvxZosiAsSjC0RwVU
+	 e8L3owLEYPUOm7t/xB13m17l6ihEetWUZRKFYdTpwMT9Ob4vHWBTq/gNCIjf9+5wkt
+	 gXvF3tFlUTewjFTjCqciP2Fwd0s9odbL4ydYSxrYs1+j2E5rE3xbjbTQiIijicmLm9
+	 NPXNYg6U+cZqgAlTqUirtmZwWd+oFY5SbNNsaBJFxxrfwcgkasjnUbygklQMDzsXqd
+	 GvqZ5yleCBHGBXrWrLAp1bILGgwI3Op9iVjcRH2JF4m3gP+rAV6yknEKHCtEtsAjn6
+	 IDLfeyyMNpJjg==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu,  9 Nov 2023 08:38:41 +0300 (MSK)
+	Thu,  9 Nov 2023 08:47:50 +0300 (MSK)
 Received: from localhost.localdomain (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.37; Thu, 9 Nov 2023 08:38:41 +0300
+ 15.2.1118.37; Thu, 9 Nov 2023 08:47:50 +0300
 From: Arseniy Krasnov <avkrasnov@salutedevices.com>
-To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>
-CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Liang Yang
-	<liang.yang@amlogic.com>, Arseniy Krasnov <avkrasnov@salutedevices.com>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v1] arm64: dts: amlogic: meson-axg: pinctrl node for NAND
-Date: Thu, 9 Nov 2023 08:30:59 +0300
-Message-ID: <20231109053100.3849655-1-avkrasnov@salutedevices.com>
+To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
+	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Arseniy Krasnov
+	<avkrasnov@salutedevices.com>, <linux-mtd@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH v1] mtd: rawnand: meson: handle OOB buffer according OOB layout
+Date: Thu, 9 Nov 2023 08:39:53 +0300
+Message-ID: <20231109053953.3863664-1-avkrasnov@salutedevices.com>
 X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
 X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 181221 [Nov 09 2023]
+X-KSMG-AntiSpam-Lua-Profiles: 181222 [Nov 09 2023]
 X-KSMG-AntiSpam-Version: 6.0.0.2
 X-KSMG-AntiSpam-Envelope-From: avkrasnov@salutedevices.com
 X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 543 543 1e3516af5cdd92079dfeb0e292c8747a62cb1ee4, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 543 543 1e3516af5cdd92079dfeb0e292c8747a62cb1ee4, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
 X-KSMG-AntiPhishing: Clean
@@ -84,8 +84,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/11/09 02:48:00 #22434346
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231108_213852_611593_4F818DC4 
-X-CRM114-Status: GOOD (  12.32  )
+X-CRM114-CacheID: sfid-20231108_214754_981005_4860DB86 
+X-CRM114-Status: GOOD (  13.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,54 +102,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add pinctrl node for the Meson NAND controller.
+In case of MTD_OPS_AUTO_OOB mode, MTD/NAND layer fills/reads OOB buffer
+according current OOB layout so we need to follow it in the driver.
 
 Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 23 ++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ drivers/mtd/nand/raw/meson_nand.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index a49aa62e3f9f..98a17953e969 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -432,6 +432,27 @@ mux-1 {
- 					};
- 				};
+diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+index 561d46d860b7..0d4d358152d7 100644
+--- a/drivers/mtd/nand/raw/meson_nand.c
++++ b/drivers/mtd/nand/raw/meson_nand.c
+@@ -510,7 +510,7 @@ static void meson_nfc_set_user_byte(struct nand_chip *nand, u8 *oob_buf)
+ 	__le64 *info;
+ 	int i, count;
  
-+				nand_all_pins: nand_all_pins {
-+					mux {
-+						groups = "emmc_nand_d0",
-+							 "emmc_nand_d1",
-+							 "emmc_nand_d2",
-+							 "emmc_nand_d3",
-+							 "emmc_nand_d4",
-+							 "emmc_nand_d5",
-+							 "emmc_nand_d6",
-+							 "emmc_nand_d7",
-+							 "nand_ce0",
-+							 "nand_ale",
-+							 "nand_cle",
-+							 "nand_wen_clk",
-+							 "nand_ren_wr";
-+						function = "nand";
-+						input-enable;
-+						bias-pull-up;
-+					};
-+				};
-+
- 				emmc_ds_pins: emmc_ds {
- 					mux {
- 						groups = "emmc_ds";
-@@ -1913,6 +1934,8 @@ nfc: nand-controller@7800 {
- 				reg = <0x0 0x7800 0x0 0x100>,
- 				      <0x0 0x7000 0x0 0x800>;
- 				reg-names = "nfc", "emmc";
-+				pinctrl-0 = <&nand_all_pins>;
-+				pinctrl-names = "default";
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
+-	for (i = 0, count = 0; i < nand->ecc.steps; i++, count += 2) {
++	for (i = 0, count = 0; i < nand->ecc.steps; i++, count += (2 + nand->ecc.bytes)) {
+ 		info = &meson_chip->info_buf[i];
+ 		*info |= oob_buf[count];
+ 		*info |= oob_buf[count + 1] << 8;
+@@ -523,7 +523,7 @@ static void meson_nfc_get_user_byte(struct nand_chip *nand, u8 *oob_buf)
+ 	__le64 *info;
+ 	int i, count;
+ 
+-	for (i = 0, count = 0; i < nand->ecc.steps; i++, count += 2) {
++	for (i = 0, count = 0; i < nand->ecc.steps; i++, count += (2 + nand->ecc.bytes)) {
+ 		info = &meson_chip->info_buf[i];
+ 		oob_buf[count] = *info;
+ 		oob_buf[count + 1] = *info >> 8;
 -- 
 2.35.0
 
