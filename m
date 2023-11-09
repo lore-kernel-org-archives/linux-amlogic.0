@@ -4,84 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6FC1C4167B
-	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Nov 2023 17:11:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D528BC4332F
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Nov 2023 05:39:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Y0MaP+6hXBlIzu2NdtBRfEarD2pFj7OYi7QWC5sO1hM=; b=wF30jRFqIDnvfQ
-	5fm6uoMitWv00DzLtcDFSzBJp7eUfd6uwxT6pPuradsFaMocEtmAxuVT5lg/GX5z3ocTVcSs5pYMz
-	/BSSM94VVAtFBcNkmNwkycR29+Tq006YYTAPe/GO9seiMet0cgiJc8jd1OlDGIOZmzLa7cE1G5z+a
-	WNv1FUQe+azmoQxF5l/kN8WNzg5FJSwKhV91LjyKY3Il3JLQdq+yKS4vsVICQmkqGMFqHgc2DS+YB
-	RIyUQmW0iUkycuKUWPpo2SzS7yCAS0I0QGfQaOM7XkQSkDgjLNKxkJtLbecO7asp+0arBBN+Qc0Zw
-	YT+Rrn6vRe/JKQH9awqg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=uJ9bKVOlG36koUK5zsuqiQj05j054bW/Irf/nazjCxc=; b=GKnC73xn/XhBja
+	Agk5lOl+qdiv4OzaMaod49lK4NC2N4A6DPn/GZTUkjZxEmPue18qbWBsnq9EhqJLuFGOzN6xJexuz
+	DbHNK31uP2qNIsWpMs1a6YUbkVEKjQsNXw9Ct6BgnyNDZ+gJMjL1B5yrTT30UkOBwG91r8CD2Zhi+
+	+kZ6frQ14dU4VIVgadUKKATnkQ4E0Lgx5kXsonZBHbcPoUSe5jKEHuXolxKYzRFJRYfzH4+ddf/mG
+	3Ebzk3HpxkJVOpemNZL8h+g83DrwuJl2326MdR0DJazZsnn+2qLipjKVJB5CIuido/j8fe0ROp5ic
+	FtQqYRV+8E9iLKF8+DQA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r0m5S-004NJi-0H;
-	Wed, 08 Nov 2023 17:11:30 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1r0xkm-005KmQ-1F;
+	Thu, 09 Nov 2023 05:38:56 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r0m5P-004NJ5-2G
-	for linux-amlogic@lists.infradead.org;
-	Wed, 08 Nov 2023 17:11:29 +0000
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4094301d505so52937835e9.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 08 Nov 2023 09:11:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1699463484; x=1700068284; darn=lists.infradead.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=eUTx16xBPwlSZNLX67xZHVAtRWSJgwxGWbgEGrxHA48=;
-        b=mb+zH94KnEZwwthYlRGYTqUv/Pb2DX+2VJ/m7t1Z2p7LRAmvVWg5ms6iMsBtkZSBai
-         ePELjADIP64xq96IWPoyGUY/Wt2tPPsxhheLNhFi0Ax4kUodE/Le1hqBsXuquYmFxwpL
-         67FXa0oj67nV8PrTjVpM95DvTjrtDLnvnQL3FRDIZIxLZ199qNP1MY3C+HP+ZXUQdLLG
-         FR/fwlfELr3RDbjKYTIKTuxnjyGz8jjfAwzIgbmfVKAqXJRI/7fWDfsx27W/le7z/vri
-         GH3s8oaceh8/m1qD63SC+39w2KCWjq2rtCX0uLMvBE4vsENWOLdOtrNrgddfuig44+xB
-         aUiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699463484; x=1700068284;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eUTx16xBPwlSZNLX67xZHVAtRWSJgwxGWbgEGrxHA48=;
-        b=HX+K6jhVnBBMNv3C45lznSwXJC6sTdxEoKf7q4yFxOaexX0MZ4D4f99+hEiNopJ3Ox
-         +e/ASTplbE1uEvOyC/Zq9NlYSj+IuUXQA5q2VRvXuAgl7KsZJ58dX77h+nEaOifGzP6G
-         +uBvFZkq6syWC3bo+P2/OzPbsLB0Aowbxrq3FUtONMFO116ceWIe4sRb0L47S/vy8BEY
-         W303+GGGfMTMJE+n8ulwakacSd5lfcp4fUL9vKivUFc5j8f13iTVlN4HtIbqX1bLuU/5
-         F3Xpv/nFldUaz/Zj2DCN6jU8IW2pDit2C6lHEmwVZYasf8eE3s87fgSWGq8zI6nIMsEK
-         3T6A==
-X-Gm-Message-State: AOJu0Ywf4mltNUi67H8MYBH0e/nG37sFPrJeTt7g7XEBe1Kr4kCDDEep
-	gXeiXJHEPc6Ar/RZHjnZsnu0nQ==
-X-Google-Smtp-Source: AGHT+IHkXUfrA1tiasSTEFj1aoP6Rt1HVyFxHeX293YAedpxpxcOfIUTWQPEe2dFIo4RSBo5O6hgVw==
-X-Received: by 2002:a05:600c:3544:b0:404:72fe:ed5c with SMTP id i4-20020a05600c354400b0040472feed5cmr2402712wmq.29.1699463484552;
-        Wed, 08 Nov 2023 09:11:24 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:dfaa:8961:ce90:9db0])
-        by smtp.gmail.com with ESMTPSA id l2-20020a5d4bc2000000b0032da319a27asm5373005wrt.9.2023.11.08.09.11.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Nov 2023 09:11:24 -0800 (PST)
-References: <20231106103259.703417-1-jbrunet@baylibre.com>
- <20231106103259.703417-3-jbrunet@baylibre.com>
- <20231108170621.GA2417622-robh@kernel.org>
-User-agent: mu4e 1.8.13; emacs 29.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>
-Subject: Re: [PATCH 2/6] dt-bindings: pwm: amlogic: add new compatible for
- meson8 pwm type
-Date: Wed, 08 Nov 2023 18:10:56 +0100
-In-reply-to: <20231108170621.GA2417622-robh@kernel.org>
-Message-ID: <1j7cmscgqs.fsf@starbuckisacylon.baylibre.com>
+	id 1r0xki-005Kl7-0e;
+	Thu, 09 Nov 2023 05:38:54 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 945D010003B;
+	Thu,  9 Nov 2023 08:38:41 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 945D010003B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1699508321;
+	bh=vfACBLAST4Scd3CASTdoE4hA1o8iyd5yw8r0Mxm6/Hk=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=dH50fik+ijC0enTla93Ib6iGWx7N+Nde2ABB+TDWSgbGCqQNDLTwelmfvvqo9+Xxc
+	 BJ7C9t/PJUOO38aKcXlDqaU8hIPFc94/kIY0QCQbrkA5X4Qq1nXrqGK1/EBA7RyJZU
+	 jvreloB9HmGI+eOOP63b1y7FZVShMipPsQlHHgzNd7ZvcF/Ak/4saJOZ6y+5f6HgZy
+	 /GcYlYgAtEfiiWbusO18Z3yvib0fOr6/36SO5Q3u+IY2J2xUjU1VkiItX2529BZOGC
+	 wHNH3fbvUWGOpKI/VPhmmuF7VfhHxMGwK2WFrMcjyhuEh9qmOeutZtoSuAMrkpoXVP
+	 K12QJzzd9qpCQ==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu,  9 Nov 2023 08:38:41 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.37; Thu, 9 Nov 2023 08:38:41 +0300
+From: Arseniy Krasnov <avkrasnov@salutedevices.com>
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>, Liang Yang
+	<liang.yang@amlogic.com>, Arseniy Krasnov <avkrasnov@salutedevices.com>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1] arm64: dts: amlogic: meson-axg: pinctrl node for NAND
+Date: Thu, 9 Nov 2023 08:30:59 +0300
+Message-ID: <20231109053100.3849655-1-avkrasnov@salutedevices.com>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 181221 [Nov 09 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: avkrasnov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 543 543 1e3516af5cdd92079dfeb0e292c8747a62cb1ee4, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/11/09 02:48:00 #22434346
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231108_091127_739867_166661F4 
-X-CRM114-Status: GOOD (  17.71  )
+X-CRM114-CacheID: sfid-20231108_213852_611593_4F818DC4 
+X-CRM114-Status: GOOD (  12.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,93 +102,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Add pinctrl node for the Meson NAND controller.
 
-On Wed 08 Nov 2023 at 11:06, Rob Herring <robh@kernel.org> wrote:
+Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 23 ++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-> On Mon, Nov 06, 2023 at 11:32:49AM +0100, Jerome Brunet wrote:
->> Add a new compatible for the pwm found in the meson8 to sm1 Amlogic SoCs.
->> 
->> The previous clock bindings for these SoCs described the driver and not the
->> HW itself. The clock provided was used to set the parent of the input clock
->> mux among the possible parents hard-coded in the driver.
->> 
->> The new bindings allows to describe the actual clock inputs of the PWM in
->> DT, like most bindings do, instead of relying of hard-coded data.
->> 
->> The new bindings make the old one deprecated.
->> 
->> There is enough experience on this HW to know that the PWM is exactly the
->> same all the supported SoCs. There is no need for a per-SoC compatible.
->> 
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->>  .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 35 +++++++++++++++++--
->>  1 file changed, 33 insertions(+), 2 deletions(-)
->> 
->> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->> index 754b70fc2db0..3aa522c4cae4 100644
->> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->> @@ -22,6 +22,7 @@ properties:
->>            - amlogic,meson-g12a-ao-pwm-ab
->>            - amlogic,meson-g12a-ao-pwm-cd
->>            - amlogic,meson-s4-pwm
->> +          - amlogic,meson8-pwm-v2
->>        - items:
->>            - const: amlogic,meson-gx-pwm
->>            - const: amlogic,meson-gxbb-pwm
->> @@ -37,7 +38,7 @@ properties:
->>  
->>    clocks:
->>      minItems: 1
->> -    maxItems: 2
->> +    maxItems: 4
->>  
->>    clock-names:
->>      minItems: 1
->> @@ -70,11 +71,14 @@ allOf:
->>                - amlogic,meson-gx-pwm
->>                - amlogic,meson-gx-ao-pwm
->>      then:
->> -      # Historic bindings tied to the driver implementation
->> +      # Obsolete historic bindings tied to the driver implementation
->>        # The clocks provided here are meant to be matched with the input
->>        # known (hard-coded) in the driver and used to select pwm clock
->>        # source. Currently, the linux driver ignores this.
->> +      deprecated: true
->>        properties:
->> +        clocks:
->> +          maxItems: 2
->>          clock-names:
->>            oneOf:
->>              - items:
->> @@ -83,6 +87,26 @@ allOf:
->>                  - const: clkin0
->>                  - const: clkin1
->>  
->> +  # Newer binding where clock describe the actual clock inputs of the pwm
->> +  # block. These are necessary but some inputs may be grounded.
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - amlogic,meson8b-pwm-v2
->> +    then:
->> +      properties:
->> +        clocks:
->> +          minItems: 1
->> +          items:
->> +            - description: input clock 0 of the pwm block
->> +            - description: input clock 1 of the pwm block
->> +            - description: input clock 2 of the pwm block
->> +            - description: input clock 3 of the pwm block
->> +      required:
->> +        - clocks
->
-> Again, clock-names?
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index a49aa62e3f9f..98a17953e969 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -432,6 +432,27 @@ mux-1 {
+ 					};
+ 				};
+ 
++				nand_all_pins: nand_all_pins {
++					mux {
++						groups = "emmc_nand_d0",
++							 "emmc_nand_d1",
++							 "emmc_nand_d2",
++							 "emmc_nand_d3",
++							 "emmc_nand_d4",
++							 "emmc_nand_d5",
++							 "emmc_nand_d6",
++							 "emmc_nand_d7",
++							 "nand_ce0",
++							 "nand_ale",
++							 "nand_cle",
++							 "nand_wen_clk",
++							 "nand_ren_wr";
++						function = "nand";
++						input-enable;
++						bias-pull-up;
++					};
++				};
++
+ 				emmc_ds_pins: emmc_ds {
+ 					mux {
+ 						groups = "emmc_ds";
+@@ -1913,6 +1934,8 @@ nfc: nand-controller@7800 {
+ 				reg = <0x0 0x7800 0x0 0x100>,
+ 				      <0x0 0x7000 0x0 0x800>;
+ 				reg-names = "nfc", "emmc";
++				pinctrl-0 = <&nand_all_pins>;
++				pinctrl-names = "default";
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 				interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
+-- 
+2.35.0
 
-yes, same thing
 
 _______________________________________________
 linux-amlogic mailing list
