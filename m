@@ -4,72 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 262BFC4332F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Nov 2023 09:05:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD43AC4167B
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Nov 2023 09:05:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=s0HGFjIWYm3Ojll7A69e9DrBL3Aj36Ixay3TwlpqwiU=; b=exzQruktb0KZIu+HxPK4H/+vJX
-	XsdUKqK91QIolX5XPl3P4NI3UexbT9jMG1ngUfiyPlFndKZdT3gdIj/DWjrTHdYNyP1o58ltn3oFQ
-	ID/JdWxRy9ow7zqL7HWf51JWa5C6KDJmp3+SGjr0St3iQSZVajmDhlfmmqlMIeg9rMzP2oBURLdMA
-	SzEnOEXJgnwLrx6ROkPsR+UtgLkz6MPtFxOSGhUTy73kFxUjfz/2yVOCKGqauumEtrMsqfQXyq/5S
-	ASNaCoFwCndj9/3/h5NA9gLyzq1yZ5iLwq91cmXRYS8B49gYtw5RqsMDQXzQ4HUEEJsSrUcnGzRAV
-	f43FqlSA==;
+	bh=Ze4GU3FQn63+BeaBmOk/p6MfDpJZhbmFMLhvqe/YeAU=; b=k4BdwzDOCSfTix05xr5GnWgJcG
+	EsOp8lAdrAyvXAy//ZWf8yoS+mDsDdZ7TS6XcY3SKaOmw6QhCYQZrWh9MOnhzaZalrMRiA/ugRAsz
+	Ck6saGyrVQv0EpkLOBXd7i8xFAKrMjXVSJgBtkEkRfH0po9EgRtldQvtqh0mMtVwsBSq31BdD+E6o
+	kLKS+aPIenRGTaD+FJEXFQeD1ZdAUFZMz7seZq03XiYg9PG2qc15Tv3dQfnj27Tf2ZocXePlbaZS5
+	kAfUF2glZge2UFV+a9JrgKxeAPw1BFE3inhZJ+yilCSHp/GsSu1nFCQ0LyRQhmERfyFEEz4oNS5IZ
+	nmgOy1wg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r10y1-005itt-3C;
-	Thu, 09 Nov 2023 09:04:49 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1r10yQ-005j0W-0Y;
+	Thu, 09 Nov 2023 09:05:14 +0000
+Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r10xy-005it4-2Y
+	id 1r10yN-005izL-2u
 	for linux-amlogic@lists.infradead.org;
-	Thu, 09 Nov 2023 09:04:48 +0000
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-40850b244beso3986975e9.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 09 Nov 2023 01:04:46 -0800 (PST)
+	Thu, 09 Nov 2023 09:05:13 +0000
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2c6b30acacdso6837861fa.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 09 Nov 2023 01:05:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699520685; x=1700125485; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1699520710; x=1700125510; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hHnsQJ4XpMcktv/vRmuqIsVKlG0FfHcOCkAwJxWxXr4=;
-        b=yP5Vl2hWmk2QRVnJP2dE9SEKRysfF+oDLMJlyStcC0uZQx0umsqVJXU0dNRXmWdqnd
-         /NwFfZWniKE9rPtEdhiDqbaHe6A7jTeSffWRg4ytiVp1NSD20YxLnxxsrU7ws/uKklcG
-         D4f8RS4R7CK1acEpSU4SfuIJmEOv3mA57bJp65zpnAc4DIRmaA39vcIuE370cWT87tVQ
-         uiq+YFK/6aEEm0h72NGAbB4FqWGU0t7MyqD6dDo7+igK5a80L1IjrMddNReDZOpf8L9k
-         GrdRhp6dTvuCXPOWN5zEEi+7R8hEe0fFtqpq6IU6eGKupdaCjVEpQsJ/nMiQ4NHEVnel
-         /W/Q==
+        bh=EwXeCr4WJrMiVz1N0BRYm+ZyoJe1l9iKn/4uLGie6Ww=;
+        b=KWoBF8nPONlJM4sP1d95Sd6q+x1IvRR0lDTzfu6WlTJGpR621z3o7y4h3CeNiahV6i
+         fQNXJiAjSPHvUT9j25tI45S3VIb5B2yJqKzIIF1JlAozR+L40k98Br6saEcdAKnCOxWs
+         oL6v9y4Q6nH69gY9Ej3kTGBABPzsUTHDie3jAyLIlMPwrlK6V2fbzeYdTaa3Xj62K5Vo
+         eAiLaqpoXRRXKYkoQ9wPhmqISrEROFHIIanFQ7T/StjMTlFJLMnJf+fWiAoWdVfV0DfD
+         srX2NhHaCVphDBVhIymx3wkHHpmt5wR5oC8dw7YbYsouhuDvib6MA6W+ZPRiQDNSb9cI
+         m34g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699520685; x=1700125485;
+        d=1e100.net; s=20230601; t=1699520710; x=1700125510;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=hHnsQJ4XpMcktv/vRmuqIsVKlG0FfHcOCkAwJxWxXr4=;
-        b=Vqvet/3hpST3q/Md1f7jr8OtwXz5+ayoe+nAZwJ7Bgvk6RODcJVgpfurUBGKPKV/Iw
-         e+NGzXR3tHBP7rK9IKeo7PhrYC+fj4IT4Xzq5EnVPjsivpzboCuwYskharbSeEjmmC77
-         Ng8iSAO1mOC8GtfLArjlWSTK94t3LyvhkOViyTxVE4bOBuKDzwp67FodbzEg7yBrj1T7
-         25UXpad6V1gsjy7P36rh8oUEfj44Ge4ROEXoMpdq6FfQbqjoUJwdGwp5EqzT7r2uwYlF
-         iPgSzJVj/RmRpj2Bz9/3tEfJeoPRpUbep/PE2WjAUIvxOMGWn0MPzJ1lCbjzAt7fRN2M
-         KP+g==
-X-Gm-Message-State: AOJu0YzPDpd32Iz71sGER0FoEazMpW9wexWALUpyZ9n+LoTWXNu1Wqrq
-	W5M7Frvuor9eW5chCox57VDOiA==
-X-Google-Smtp-Source: AGHT+IG9gxOA4nD09dUm9a8mKZ++Oynr0aMFBrRI4R7rg4AWkBMr5Cz3hYVKfYWan2oKPYH73FN18g==
-X-Received: by 2002:a05:600c:3513:b0:405:82c0:d9f3 with SMTP id h19-20020a05600c351300b0040582c0d9f3mr4018331wmq.30.1699520685274;
-        Thu, 09 Nov 2023 01:04:45 -0800 (PST)
+        bh=EwXeCr4WJrMiVz1N0BRYm+ZyoJe1l9iKn/4uLGie6Ww=;
+        b=Br8oJgdg6f1S0Cj1AxFR7i7rzn7farGv6xkVr4flEfjyLzcgY3y3kyw3VtnY6fLwsC
+         rAs6o4G/Onl87DcTYrZKjxMDvqS4S4R/TytOQOVUkPYqe1F8Z3SGfsBl25+s8SU1jJPm
+         I3NLt5vqS6feaJKV7fFM8fZXJZFe8l2WXgTU3IGiF7ZLtj1uS0j1wLdIZaLroNfIK1Zx
+         cbu/05sZf8R5iOOgsQagNO3RRSm+J24b0aCxXb9RGnnLzz+d/Uycaxm0mmFSqKxWddZg
+         yup1QJD0nevcfd1NqWtEoe9wVHNWJWbQwmfGqzt9kKE93Ypfut9LUcn5P5NocOUAYQYD
+         YoiA==
+X-Gm-Message-State: AOJu0Yz85Ko+2DDhWdEQ3+mfk/D5wwHnWV372rMWRUFZA9JRpx8dVlvi
+	0Sm850nvqeYxnR35GCGucfD84g==
+X-Google-Smtp-Source: AGHT+IF0tpaWBQijHfpYa1G4eCyN/CBUwGg2+EyirhnHCL+6Rn8FIHsbybgcgnceb2Re9bKtUvTxQA==
+X-Received: by 2002:a2e:930d:0:b0:2bd:1000:431d with SMTP id e13-20020a2e930d000000b002bd1000431dmr3509911ljh.10.1699520680538;
+        Thu, 09 Nov 2023 01:04:40 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:8f4c:8054:506f:f04b? ([2a01:e0a:982:cbb0:8f4c:8054:506f:f04b])
-        by smtp.gmail.com with ESMTPSA id 17-20020a05600c229100b003fe1fe56202sm1409881wmf.33.2023.11.09.01.04.44
+        by smtp.gmail.com with ESMTPSA id 17-20020a05600c229100b003fe1fe56202sm1409881wmf.33.2023.11.09.01.04.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 01:04:44 -0800 (PST)
-Message-ID: <1468df75-3094-425b-b940-5c8297bd4067@linaro.org>
-Date: Thu, 9 Nov 2023 10:04:44 +0100
+        Thu, 09 Nov 2023 01:04:39 -0800 (PST)
+Message-ID: <18960bc4-de01-4a72-855a-b8696390a4d4@linaro.org>
+Date: Thu, 9 Nov 2023 10:04:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
-Subject: Re: [PATCH V3 3/3] arm64: dts: Add watchdog node for Amlogic S4 SoCs
+Subject: Re: [PATCH V3 2/3] arm64: dts: Add watchdog node for Amlogic C3 SoCs
 Content-Language: en-US, fr
 To: Huqiang Qin <huqiang.qin@amlogic.com>, wim@linux-watchdog.org,
  linux@roeck-us.net, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -79,7 +79,7 @@ Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <20231027104358.342861-1-huqiang.qin@amlogic.com>
- <20231027104358.342861-4-huqiang.qin@amlogic.com>
+ <20231027104358.342861-3-huqiang.qin@amlogic.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -105,10 +105,11 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20231027104358.342861-4-huqiang.qin@amlogic.com>
+In-Reply-To: <20231027104358.342861-3-huqiang.qin@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231109_010446_855066_F58FA8B9 
-X-CRM114-Status: GOOD (  10.05  )
+X-CRM114-CacheID: sfid-20231109_010511_939633_24325725 
+X-CRM114-Status: UNSURE (   9.95  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -131,25 +132,25 @@ On 27/10/2023 12:43, Huqiang Qin wrote:
 > 
 > Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
 > ---
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 6 ++++++
+>   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 6 ++++++
 >   1 file changed, 6 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> index e0cfc54ebccb..2344b2d741c3 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -92,6 +92,12 @@ apb4: bus@fe000000 {
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> index 998f5050795c..2ad1f8eef199 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> @@ -81,6 +81,12 @@ apb4: bus@fe000000 {
 >   			#size-cells = <2>;
 >   			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
 >   
 > +			watchdog@2100 {
-> +				compatible = "amlogic,s4-wdt", "amlogic,t7-wdt";
+> +				compatible = "amlogic,c3-wdt", "amlogic,t7-wdt";
 > +				reg = <0x0 0x2100 0x0 0x10>;
 > +				clocks = <&xtal>;
 > +			};
 > +
 >   			periphs_pinctrl: pinctrl@4000 {
->   				compatible = "amlogic,meson-s4-periphs-pinctrl";
+>   				compatible = "amlogic,c3-periphs-pinctrl";
 >   				#address-cells = <2>;
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
