@@ -4,73 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71B77C4167D
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Nov 2023 09:00:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56BB3C04E83
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Nov 2023 09:00:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
-	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=zjF6mgPnLAIdVjRghphDhkryOy8m7q2K3YqZCm7KrmQ=; b=NoXcXWEGlt+RsM
-	nJWeaG8fbM7P+qNTqr5i7nVA6X0Btt57jLuNWwkDPIDoSSa5fRFlSJWKO1RFM/3FrXoGYHyBV4xO6
-	YEM+zlaxmy+ltpowmkmMq3+63Ane+PTye3O699Buh/YlZVPyPmn3Gtf0FQUmeCB1x6qylMX6aQwdu
-	XhXhnpuJn+QofT09IL+sv1r7FlxlIyDKqq2bqzi3fVkDTzDGB9gkxApLjP++FN+H6sfzCkTAoNZjv
-	TMVTng/siTy88VjDP5wXPTc1NxfXd/GdCuWK96oY8lZ/WfapHTLrdzUzyK/TmwkqST0b+SAVuE9ym
-	+5uWoumVo8W4iXOZ86xA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=seFXsLCdABqtHHXT0OZyUXPQjjvYHv0wixS7TsLRRPQ=; b=LQE5ySaHnnO54w
+	aaUSVDX9imTlhvl7feqwHhPpxWcofmg4j8qeZ9Eo0g+qqemIi2ykrGDLtwwrcoGZ//i+rRUdlz6MU
+	Ghnob9f11Q9TxbryDyj0od94q1UK8N/BzHM/7n5mLTbBb8idCpXc4sPGkBrF4udc1M6PxtqZ/ia87
+	t53bNB9CxJGmdqM1hbT4hg+guYza6XhXtJdP8LQb9qIogJU8IiYYWXUq28lwcTBBDRvE3pYijBxBI
+	8GBrKKJb5rjwRTtqalk3S/NUeS1+sprgrcixxl0DH3l3fU1WNsVFYcnmOQWc7IVnVNP1uoc6m/ep6
+	l60hhfe80LRWRMOsh2yw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r10tp-005gp2-1g;
-	Thu, 09 Nov 2023 09:00:29 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1r10ts-005grd-0p;
+	Thu, 09 Nov 2023 09:00:32 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r10tf-005gdX-2h
+	id 1r10tg-005gdp-1J
 	for linux-amlogic@lists.infradead.org;
-	Thu, 09 Nov 2023 09:00:23 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40907b82ab9so10230785e9.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 09 Nov 2023 01:00:15 -0800 (PST)
+	Thu, 09 Nov 2023 09:00:24 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-40907b82ab9so10231145e9.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 09 Nov 2023 01:00:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699520414; x=1700125214; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=H3Ds8ZpgCrvCcost0dp5cuIUflgwiKCaqiDpNQ2wAlw=;
-        b=xXfKYY/UwyQOMU96s9c3hDcdle82Gva4/wFnf8d/GViwZm+eMEAkDnZ8F3A79XIcxG
-         yx8mk8od8fwK7tFZj6upm3ayQEksM53tkWpDvS6yWml/XH7iZ+d8wPICf748VF2R6WdL
-         YMPjDQXvipp5ImuoBdqvPNSUsXHd2DKFP1PV9XFKFaFDhy4Kqybm8t0/wskPvAXw1WQc
-         LWsd7HJK69KrSZb+SOKEHAU3QGU6PR6Q5X9debjgXw4lqCjDk/g9kiJY4CVbYotjGBfK
-         5FY7Y4aaxK1wQcDVxq/E0z+hOhzHU5eQju0BgvwL/HAJT1Oq7Wa66u4cllM05k6pQA5E
-         UMJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699520414; x=1700125214;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1699520416; x=1700125216; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=H3Ds8ZpgCrvCcost0dp5cuIUflgwiKCaqiDpNQ2wAlw=;
-        b=TfbIqEXL4frod8z46g0205oFYWzS2ynekJS94FFFigfb/s7r3NZ97VEs1zcJMgeaGZ
-         Om1JPKyEPIe9wAJ/08JKeEVj4g2E6L6rA2D8H5pW08aUadvUuOeNA55Siemfu5Z1JX13
-         Pmgp0ELirI93PzSwY/PLm2qP+CWlcc6orqJYDjoU5KjDDBkszWN3RYjVY+YbNp9QvKDn
-         c3t0mnGHw9nLdaW8FeMzwn0M4HI3n6KuCk3bEIo0Cw3iceh8sOEblnBuwUqRuuyMrJoL
-         EMyGKPmm5IVLB1mwNpxRBNl//0JaKPDls59uJ2n9EUt+cimaaxcvC17eIi95/kblLM5v
-         NnNw==
-X-Gm-Message-State: AOJu0YyP930OSnAeBtM3Nzb5D8LEVn1Rl+p9ttlN2wQWMwRqkP3Xx8JX
-	tblMhvpvOI60kfelQttffNgItA==
-X-Google-Smtp-Source: AGHT+IF5WRyRrsPYdE6yoiaje9gsTiMsVUgql5u/Q2njzx3Fctv6hNFNp2V5P5ydrXi4y3Nvp0sAkw==
-X-Received: by 2002:a05:600c:538f:b0:400:5962:6aa9 with SMTP id hg15-20020a05600c538f00b0040059626aa9mr10744641wmb.11.1699520412260;
-        Thu, 09 Nov 2023 01:00:12 -0800 (PST)
+        bh=ITFrBsMzRnXjAnS6fzAeCUU7VFisCXzwG4lcariYq7Y=;
+        b=XmqCEKmX7bnIOYhAsqPI0drpw913aU7cUggyr3iTH78p3vAwRtnGR2x6kKRBngMjWq
+         UUXLRG+NfTgBIqi7PEq8xlAfRJ1WFSxifbSCciDbEtTMKTyhaMp/u4aXB9Rd7aB/WgLo
+         QDz5Pw8s/pFm5HiMKfPyeJyrU2kEMT4eSFpc8Ro4t6KVFy7jmhOMykzUwLDxLSDfxb6L
+         MCLc0qRleXDEa13e/DQTwr5kOtWNfEfuQKOXOxhTHpUaq6g7lWtLgxWwzawhxnF/SnaD
+         jok10uWzIdyXBJuxRgj4JRRzuDl5W+STRgHTC9I7MLsShRZ6bjGlcIk3/wyNMj/J0kQn
+         WM6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699520416; x=1700125216;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ITFrBsMzRnXjAnS6fzAeCUU7VFisCXzwG4lcariYq7Y=;
+        b=CzKLsUJsrXrhwmw6St4bMNMXtSPVw/8/NrEyCbM/Cdq3xhHRHg4xzHnVyttrbwVoJ3
+         q4Vw4831jgl/qQKxGkBaQpzSCBsoNfqgAqsE9krEze5Rpdz7HmO6tSPcUUEq/p7ruXRZ
+         bVcgHUsox8+mRIGtsoxyvkQIuBHPcRS9xfGhXI4euGpCCBlL0K/ld4DojX2gEUuOg9Z2
+         C5OfEnd7MrFeup92H6t5w5sR52cr02Om8/5j3fIoGYbqnMi79MZpZEiaMCTvmq1SJdpP
+         848sSKF8tauexTd8KuABVLna9Ckj5Hr4Z5if2uupm0iGTojywhQX8Qi0CoZTunBLe6vZ
+         n9XA==
+X-Gm-Message-State: AOJu0YzSPVEP7en2upk6L9+zIqYkqMSepppEkjB5T40DJUG9JdsekPSA
+	jaIaxcQaIOQqXH2Knj1zWH1PTQ==
+X-Google-Smtp-Source: AGHT+IHjO+bTUUKrJCY9qJI6PbshUNq9k86eOeJoeaw8Z2cXsPrb59IOUhiYM5nWZGSaAIA4THxi5Q==
+X-Received: by 2002:a05:600c:3548:b0:402:ea8c:ea57 with SMTP id i8-20020a05600c354800b00402ea8cea57mr5581601wmq.7.1699520416613;
+        Thu, 09 Nov 2023 01:00:16 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ay36-20020a05600c1e2400b0040472ad9a3dsm1428484wmb.14.2023.11.09.01.00.10
+        by smtp.gmail.com with ESMTPSA id ay36-20020a05600c1e2400b0040472ad9a3dsm1428484wmb.14.2023.11.09.01.00.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Nov 2023 01:00:11 -0800 (PST)
+        Thu, 09 Nov 2023 01:00:16 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH v8 00/12] drm/meson: add support for MIPI DSI Display
-Date: Thu, 09 Nov 2023 10:00:01 +0100
-Message-Id: <20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-0-81e4aeeda193@linaro.org>
+Date: Thu, 09 Nov 2023 10:00:04 +0100
+Subject: [PATCH v8 03/12] dt-bindings: phy:
+ amlogic,meson-axg-mipi-pcie-analog: drop text about parent syscon and drop
+ example
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAJGfTGUC/5XPTW7DIBAF4KtErDuVPebPXfUeVReABxvJhggS1
- Cry3Uuyqaps6uV7i+/N3FihHKiwt9ONZaqhhBRb0C8n5hYTZ4Iwtcyww6ETPYLZ1jQHB1UCh+u
- 5XDKZDaYSwDkPNWwDWE0Ce0W954Y1yJpCYLOJbmlUvK5rK8+ZfPh6LH98tryEckn5+3FI5ff20
- Gbl0AGKER2OZFAO72uIJqfXlGd296s4bopmCklWGT6J9tWTKY+bspl+QuNGzQVX+GSqX1N3w79
- M1UwlEfvRO2FR/zH3ff8ByFk1UOYBAAA=
+Message-Id: <20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-3-81e4aeeda193@linaro.org>
+References: <20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-0-81e4aeeda193@linaro.org>
+In-Reply-To: <20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-0-81e4aeeda193@linaro.org>
 To: Jerome Brunet <jbrunet@baylibre.com>, 
  Michael Turquette <mturquette@baylibre.com>, 
  Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
@@ -83,29 +83,28 @@ To: Jerome Brunet <jbrunet@baylibre.com>,
 Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Conor Dooley <conor.dooley@microchip.com>, 
- "Lukas F. Hartmann" <lukas@mntre.com>
+ Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6066;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1520;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=VtqVpMW4Oqauicm9xV/MqmakvcGBhXTA5UAvHnDwNdQ=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlTJ+VIskmW0piYOecFu8ECJXkqP++lHoMcQirlLCK
- t9bzba6JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZUyflQAKCRB33NvayMhJ0ZJ8D/
- kBLY1/dJFvxfhrOHcHr8v/JW4n1farnobNtB+sE5Pp4d7lM9z6HkNhDe7mmqJAiuDNqJufKaxvp4bE
- lom6dYx6HIPOsQhQjJHgmCD29A5vAvDcQM/AUHK75ZYdVdNpZzKukYZRY/e5QrxfgS2bCpo4g6TWg5
- edVkVtPSST7boCJsvp1ybNJ/cT5sy1qUUgWJWfE0npmrNq0ySeDuxNFkdS1V4wETWE+Y0dpi2VV41r
- rEKMe5cmZL3YSuxFiPgLPmKZmn3GH9eZ07pzweGiGcu8t59RvFK8082x+oKfXdvAnh/oC5r+U25/k7
- EGjiD0fVKlrxhgE/Ps5DuiuJOpKtT9ef/rn3iwSsZW2G5Mgd+WT7IGe9Ms/p/Yowm0iTIZFRJ7PD57
- CB9UNBwGzXc1CiASoNN8VK6CNHmys5rpUW7m+WZpQ9PcDMxWL99xMKYdSqkxVHKW3rxUqub8ktZW/p
- Yime4QJ+YV3yxutEmuMiyhC+GcyueStkk+wfq0EDcmRbxQTb/U7mYuv5BRT+4x6jfpetRa1pLrXSyE
- SQFmYfgfc6ovv3kKyc7hAK91G0VBySq0n6ldDjjj1ngSJYC+42ru3k+5LVTi0oSyB+3Ns8WQ2YuWVV
- SXAovq91VxwPeWNhMow30azKWPcpaDP/PmeUoDtcnYXhglrfgc0s9ZpI0zvw==
+ bh=uz/zvzsSZxXVZUEtWgeIKFxNonTPWkXwn8B0J99UAIs=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlTJ+WXcjvLMOnn8fmBl3USzfGqu93t/BCoKbOlBPn
+ Hv552+qJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZUyflgAKCRB33NvayMhJ0ee7EA
+ DB8SNulWBCaChemsw6runu8nf4gmvFIJZoGuRwt/vHyNwD1V0VTJBsWBMA5V5Gh/nfb+7oaE30EMuI
+ 3q1gYVfp9ISlsFbqq3OWfgvUlITVjBC8kqfrJ0+ZWN7Rhyptjba41o7IckERz1gzsgU/cB2ASy4fuq
+ +ysDaWLeNJR2G+ZwZOeetPzp6tnRDdSdMbSyOtKS0mMl93VLzFb226XvQ14IK/zcGuPVb1YY6sJqi5
+ Gilhooh1Q4Epynfu7v3gJ7YfgQt3SCfaoHllwFtsfP2Owe6A6Iasj+l7cB/CMIACS4jSZacvc1aJsK
+ 4EGeLSO6ZnZ9mpbw5FCwspuBh4Mug/Wtu5oxqbTB4BqA6jwfrQzrLc/70MauDw0sSVa0EMnv/UmlGl
+ SdHPs88PTWV4GBtPdRKUSDJNQkqDc/EyGJ1xhK9DF1bnDnaQeAqHkLuUCVo80qwp5Cx7GZ00w62j51
+ UwAOncWLeCYvpkOKKeoGj17j9/hLce6m9f6l6RRM6FIb9GC7c5Sg8/xpLY3UBafFD6djO8MXccAUCT
+ rqpF5Rj2zS7K6acr7tA/a8CXlSfD/Md+tw6hO5qEG1vbArWfnUgv8NdVyMghEcXawh80TH4+gSCPmC
+ QAr0ywKT2RjfuzCynjsFZutbI2JAVasPMsnmHJoNl+baRtCw7d9dbdGz70iA==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231109_010019_885499_656FA38E 
-X-CRM114-Status: GOOD (  18.64  )
+X-CRM114-CacheID: sfid-20231109_010020_444459_B443BC91 
+X-CRM114-Status: UNSURE (   8.97  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,133 +121,49 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
-with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI
-glue on the same Amlogic SoCs.
-
-This is a follow-up of v5  now the DRM patches are applied, the clk & DT changes
-remains for a full DSI support on G12A & SM1 platforms.
-
-The DW-MIPI-DSI transceiver + D-PHY are clocked by the GP0 PLL, and the ENCL encoder + VIU
-pixel reader by the VCLK2 clock using the HDMI PLL.
-
-The DW-MIPI-DSI transceiver gets this pixel stream as input clocked with the VCLK2 clock.
-
-An optional "MEAS" clock can be enabled to measure the delay between each vsync feeding the
-DW-MIPI-DSI transceiver.
-
-The clock setup has been redesigned to use CCF, a common PLL (GP0) and the VCLK2 clock
-path for DSI in preparation of full CCF support and possibly dual display with HDMI.
-
-The change from v5 is that now we use a "VCLK" driver instea dof notifier and rely
-on CLK_SET_RATE_GATE to ensure the VCLK gate operation are called.
+Since this bindings is referred from amlogic,meson-gx-hhi-sysctrl.yaml, drop the now
+useless description about the parent node and also drop the unnecessary example.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
-Changes in v8:
-- Switch vclk clk driver to parm as requested by Jerome
-- Added bindings fixes to amlogic,meson-axg-mipi-pcie-analog & amlogic,g12a-mipi-dphy-analog
-- Fixed DT errors in vim3 example and MNT Reform DT
-- Rebased on next-20231107, successfully tested on VIM3L
-- Link to v7: https://lore.kernel.org/r/20230803-amlogic-v6-4-upstream-dsi-ccf-vim3-v7-0-762219fc5b28@linaro.org
+ .../phy/amlogic,meson-axg-mipi-pcie-analog.yaml         | 17 -----------------
+ 1 file changed, 17 deletions(-)
 
-Changes in v7:
-- Added review tags
-- Fixed patch 5 thanks to George
-- Link to v6: https://lore.kernel.org/r/20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v6-0-fd2ac9845472@linaro.org
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
+index 009a39808318..70def36e5688 100644
+--- a/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
++++ b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
+@@ -9,16 +9,6 @@ title: Amlogic AXG shared MIPI/PCIE analog PHY
+ maintainers:
+   - Remi Pommarel <repk@triplefau.lt>
+ 
+-description: |+
+-  The Everything-Else Power Domains node should be the child of a syscon
+-  node with the required property:
+-
+-  - compatible: Should be the following:
+-                "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon"
+-
+-  Refer to the bindings described in
+-  Documentation/devicetree/bindings/mfd/syscon.yaml
+-
+ properties:
+   compatible:
+     const: amlogic,axg-mipi-pcie-analog-phy
+@@ -31,10 +21,3 @@ required:
+   - "#phy-cells"
+ 
+ additionalProperties: false
+-
+-examples:
+-  - |
+-    mpphy: phy {
+-          compatible = "amlogic,axg-mipi-pcie-analog-phy";
+-          #phy-cells = <0>;
+-    };
 
-Changes in v6:
-- dropped applied DRM patches
-- dropped clk private prefix patches
-- rebased on top of 20230607-topic-amlogic-upstream-clkid-public-migration-v2-0-38172d17c27a@linaro.org
-- re-ordered/cleaned ENCL patches to match clkid public migration
-- Added new "vclk" driver
-- uses vclk driver instead of notifier
-- cleaned VCLK2 clk flags
-- add px_clk gating from DSI driver
-- Link to v5: https://lore.kernel.org/r/20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org
-
-Changes in v5:
-- Aded PRIV all the G12 internal clk IDS to simplify public exposing
-- Fixed the DSI bindings
-- Fixed the DSI HSYNC/VSYNC polarity handling
-- Fixed the DSI clock setup
-- Fixed the DSI phy timings
-- Dropped components for DSI, only keeping it for HDMI
-- Added MNT Reform 2 CM4 DT
-- Dropped already applied PHY fix
-- Link to v4: https://lore.kernel.org/r/20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org
-
-Changes from v3 at [3]:
-- switched all clk setup via CCF
-- using single PLL for DSI controller & ENCL encoder
-- added ENCL clocks to CCF
-- make the VCLK2 clocks configuration by CCF
-- fixed probe/bind of DSI controller to work with panels & bridges
-- added bit_clk to controller to it can setup the BIT clock aswell
-- added fix for components unbind
-- added fix for analog phy setup value
-- added TS050 timings fix
-- dropped previous clk control patch
-
-Changes from v2 at [2]:
-- Fixed patch 3
-- Added reviews from Jagan
-- Rebased on v5.19-rc1
-
-Changes from v1 at [1]:
-- fixed DSI host bindings
-- add reviewed-by tags for bindings
-- moved magic values to defines thanks to Martin's searches
-- added proper prefixes to defines
-- moved phy_configure to phy_init() dw-mipi-dsi callback
-- moved phy_on to a new phy_power_on() dw-mipi-dsi callback
-- correctly return phy_init/configure errors to callback returns
-
-[1] https://lore.kernel.org/r/20200907081825.1654-1-narmstrong@baylibre.com
-[2] https://lore.kernel.org/r/20220120083357.1541262-1-narmstrong@baylibre.com
-[3] https://lore.kernel.org/r/20220617072723.1742668-1-narmstrong@baylibre.com
-
----
-Neil Armstrong (12):
-      dt-bindings: clk: g12a-clkc: add CTS_ENCL clock ids
-      dt-bindings: soc: amlogic,meson-gx-hhi-sysctrl: add example covering meson-axg-hhi-sysctrl
-      dt-bindings: phy: amlogic,meson-axg-mipi-pcie-analog: drop text about parent syscon and drop example
-      dt-bindings: phy: amlogic,g12a-mipi-dphy-analog: drop unneeded reg property and example
-      dt-bindings: arm: amlogic: Document the MNT Reform 2 CM4 adapter with a BPI-CM4 Module
-      clk: meson: g12a: add CTS_ENCL & CTS_ENCL_SEL clocks
-      clk: meson: add vclk driver
-      clk: meson: g12a: make VCLK2 and ENCL clock path configurable by CCF
-      drm/meson: gate px_clk when setting rate
-      arm64: meson: g12-common: add the MIPI DSI nodes
-      DONOTMERGE: arm64: meson: khadas-vim3l: add DSI panel
-      arm64: dts: amlogic: meson-g12b-bananapi-cm4: add support for MNT Reform2 with CM4 adaper
-
- Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
- .../phy/amlogic,g12a-mipi-dphy-analog.yaml         |  12 -
- .../phy/amlogic,meson-axg-mipi-pcie-analog.yaml    |  17 -
- .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  |  41 +++
- arch/arm64/boot/dts/amlogic/Makefile               |   1 +
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  |  70 ++++
- .../meson-g12b-bananapi-cm4-mnt-reform2.dts        | 384 +++++++++++++++++++++
- .../boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi   |   2 +-
- arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi |  74 ++++
- .../boot/dts/amlogic/meson-sm1-khadas-vim3l.dts    |   2 +-
- drivers/clk/meson/Kconfig                          |   5 +
- drivers/clk/meson/Makefile                         |   1 +
- drivers/clk/meson/g12a.c                           | 106 ++++--
- drivers/clk/meson/vclk.c                           | 141 ++++++++
- drivers/clk/meson/vclk.h                           |  51 +++
- drivers/gpu/drm/meson/meson_dw_mipi_dsi.c          |   7 +
- include/dt-bindings/clock/g12a-clkc.h              |   2 +
- 17 files changed, 866 insertions(+), 51 deletions(-)
----
-base-commit: 5cd631a52568a18b12fd2563418985c8cb63e4b0
-change-id: 20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-b8e5217e1f4a
-
-Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+2.34.1
 
 
 _______________________________________________
