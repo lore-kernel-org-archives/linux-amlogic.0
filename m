@@ -4,105 +4,111 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4DE0C4332F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Nov 2023 09:01:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 262BFC4332F
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Nov 2023 09:05:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0TC3o9hevuYH6eMZZZs/4ZqRijW4LhjHPhBpY5FTOZE=; b=VjxXFlIim1lK9j
-	pAYqRMu/6Rd88+WeLbJ2iMU14wv5+2mpaLJRnprnXffKP2PSJC+LgmoaDhgxWyFvZbg8L2pUsbClF
-	5MCJtas5XYRv5yFh5vkBqR8L0cuv8Y7WyOpcbRWmz/6Gn2bD5r19aHHwMn9IvkGdG+egBSyDsH1vt
-	cGZCKDd5HnJTr5eQtk6YRmsWe4MDWE95ZaDKKkXP07fkziHMioMwT1h5dCUtiNakrssm7V/rpq+wH
-	tUrzjcBPjKbYasGb6vZpbVZNlnnYEVN2mZV8aH2vt6wy0mCwedI6TqBr8Fqulw7RYhb629ieBBYfk
-	uAVdoi32Se2BVu77QmjA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=s0HGFjIWYm3Ojll7A69e9DrBL3Aj36Ixay3TwlpqwiU=; b=exzQruktb0KZIu+HxPK4H/+vJX
+	XsdUKqK91QIolX5XPl3P4NI3UexbT9jMG1ngUfiyPlFndKZdT3gdIj/DWjrTHdYNyP1o58ltn3oFQ
+	ID/JdWxRy9ow7zqL7HWf51JWa5C6KDJmp3+SGjr0St3iQSZVajmDhlfmmqlMIeg9rMzP2oBURLdMA
+	SzEnOEXJgnwLrx6ROkPsR+UtgLkz6MPtFxOSGhUTy73kFxUjfz/2yVOCKGqauumEtrMsqfQXyq/5S
+	ASNaCoFwCndj9/3/h5NA9gLyzq1yZ5iLwq91cmXRYS8B49gYtw5RqsMDQXzQ4HUEEJsSrUcnGzRAV
+	f43FqlSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r10u7-005h7O-25;
-	Thu, 09 Nov 2023 09:00:47 +0000
-Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
+	id 1r10y1-005itt-3C;
+	Thu, 09 Nov 2023 09:04:49 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r10tq-005glF-0K
+	id 1r10xy-005it4-2Y
 	for linux-amlogic@lists.infradead.org;
-	Thu, 09 Nov 2023 09:00:33 +0000
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-5079f9675c6so767832e87.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 09 Nov 2023 01:00:27 -0800 (PST)
+	Thu, 09 Nov 2023 09:04:48 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-40850b244beso3986975e9.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 09 Nov 2023 01:04:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699520426; x=1700125226; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1699520685; x=1700125485; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fuSB6hXQgNnhjhBZYMiuriEMaNCWnOiIqJ/w1UyCkVs=;
-        b=Pfrw6rYhdNYXNoh63QB3eU3It8EK1jvFd1361FULM/iNBozSt5Wrg/jNraSp9jiSkf
-         nXyVqqPZhU1RfRUJqmv7QD3mfZFfGna1hCaUT7YzxRjj9l+Ub9C3ZoqNSbXb8sZ9asVU
-         7TSFQfO9EiFexccQQx7FYLPwkQ+mtrxFOLS90yj5H4OzAkEA4iJIC/4MSr2lu1jUWuYS
-         oGpkiCmqEGGD6UesyYBS4g1JflamsRrknDO7hpLy6P++xAyh007bUjsL112+SZvwwq5+
-         gKtTtpCotIjDPZhxl04LwqJjY3y4LVzKtk2jMnWGGyGK9CV0HqYpnql0X8Z1TbzeYzEb
-         +riQ==
+        bh=hHnsQJ4XpMcktv/vRmuqIsVKlG0FfHcOCkAwJxWxXr4=;
+        b=yP5Vl2hWmk2QRVnJP2dE9SEKRysfF+oDLMJlyStcC0uZQx0umsqVJXU0dNRXmWdqnd
+         /NwFfZWniKE9rPtEdhiDqbaHe6A7jTeSffWRg4ytiVp1NSD20YxLnxxsrU7ws/uKklcG
+         D4f8RS4R7CK1acEpSU4SfuIJmEOv3mA57bJp65zpnAc4DIRmaA39vcIuE370cWT87tVQ
+         uiq+YFK/6aEEm0h72NGAbB4FqWGU0t7MyqD6dDo7+igK5a80L1IjrMddNReDZOpf8L9k
+         GrdRhp6dTvuCXPOWN5zEEi+7R8hEe0fFtqpq6IU6eGKupdaCjVEpQsJ/nMiQ4NHEVnel
+         /W/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699520426; x=1700125226;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fuSB6hXQgNnhjhBZYMiuriEMaNCWnOiIqJ/w1UyCkVs=;
-        b=v8qrPO1KnTo5zk6wh7ZJXoBg5dCHFo+oRvPx4UmAcrhTofd/wjhCMW9ApXEdqozKK7
-         eOcNX+oZbUk6IF35gGfMgzoYAT3KBDAKVligD1ePL/fhiywG+r8xa+sYsWdr4mt01XyN
-         SKKt1gGuKFjzlQDijHlHwV0x6ep4kI4Zh4gBZb1zeHbYFCOL3hjU1Hx3cotypmvf9Tdi
-         7F77kuFmYIHEStyNb4DiqxJrCxhCtlUggpBhMCZdwmFMkCobRhUz4jDt6h7f7qfKPO+g
-         +Q41g7aPBMtLCQBNMrEulvuW2CEOnmAfSIKN/cuwIIcqqfd4QUGK5uy2bFAO+AIK1cXG
-         7wQg==
-X-Gm-Message-State: AOJu0YwunCWEq3aur8urMnXyA8yBv1kgQ/+lrbXDVJr65Eq5xd1VDlym
-	nWYldSMwXOLM+Ie8c5dHCAHB6+0+o5ndxiSjVxhHikcP
-X-Google-Smtp-Source: AGHT+IFp6a7B+08Qs7kzVjwz5xE/v2ASX3jMKbrYx5nFLBXZBjgW+CvtIZunwhDWGP4a8erXu/q34g==
-X-Received: by 2002:a05:6512:911:b0:507:f0f2:57bd with SMTP id e17-20020a056512091100b00507f0f257bdmr755918lft.66.1699520426132;
-        Thu, 09 Nov 2023 01:00:26 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ay36-20020a05600c1e2400b0040472ad9a3dsm1428484wmb.14.2023.11.09.01.00.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Nov 2023 01:00:25 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 09 Nov 2023 10:00:11 +0100
-Subject: [PATCH v8 10/12] arm64: meson: g12-common: add the MIPI DSI nodes
+        d=1e100.net; s=20230601; t=1699520685; x=1700125485;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=hHnsQJ4XpMcktv/vRmuqIsVKlG0FfHcOCkAwJxWxXr4=;
+        b=Vqvet/3hpST3q/Md1f7jr8OtwXz5+ayoe+nAZwJ7Bgvk6RODcJVgpfurUBGKPKV/Iw
+         e+NGzXR3tHBP7rK9IKeo7PhrYC+fj4IT4Xzq5EnVPjsivpzboCuwYskharbSeEjmmC77
+         Ng8iSAO1mOC8GtfLArjlWSTK94t3LyvhkOViyTxVE4bOBuKDzwp67FodbzEg7yBrj1T7
+         25UXpad6V1gsjy7P36rh8oUEfj44Ge4ROEXoMpdq6FfQbqjoUJwdGwp5EqzT7r2uwYlF
+         iPgSzJVj/RmRpj2Bz9/3tEfJeoPRpUbep/PE2WjAUIvxOMGWn0MPzJ1lCbjzAt7fRN2M
+         KP+g==
+X-Gm-Message-State: AOJu0YzPDpd32Iz71sGER0FoEazMpW9wexWALUpyZ9n+LoTWXNu1Wqrq
+	W5M7Frvuor9eW5chCox57VDOiA==
+X-Google-Smtp-Source: AGHT+IG9gxOA4nD09dUm9a8mKZ++Oynr0aMFBrRI4R7rg4AWkBMr5Cz3hYVKfYWan2oKPYH73FN18g==
+X-Received: by 2002:a05:600c:3513:b0:405:82c0:d9f3 with SMTP id h19-20020a05600c351300b0040582c0d9f3mr4018331wmq.30.1699520685274;
+        Thu, 09 Nov 2023 01:04:45 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:8f4c:8054:506f:f04b? ([2a01:e0a:982:cbb0:8f4c:8054:506f:f04b])
+        by smtp.gmail.com with ESMTPSA id 17-20020a05600c229100b003fe1fe56202sm1409881wmf.33.2023.11.09.01.04.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Nov 2023 01:04:44 -0800 (PST)
+Message-ID: <1468df75-3094-425b-b940-5c8297bd4067@linaro.org>
+Date: Thu, 9 Nov 2023 10:04:44 +0100
 MIME-Version: 1.0
-Message-Id: <20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-10-81e4aeeda193@linaro.org>
-References: <20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-0-81e4aeeda193@linaro.org>
-In-Reply-To: <20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-0-81e4aeeda193@linaro.org>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Jagan Teki <jagan@amarulasolutions.com>, 
- Nicolas Belin <nbelin@baylibre.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3028;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=xeZV8gmIC9/2/oObVVqqYZ0sOhta5dqkacXris9lM8k=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlTJ+ZCu6htgUtFxFaXFAKQp1sZxpR7+IzNQz6TU6c
- bVMpqCaJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZUyfmQAKCRB33NvayMhJ0dbQD/
- 9jQPYUo+YgcSZCmVFq6YmWrr0+Kkyas8OumKOcdeD3c0ym2NBiqCdKuAzkZ2V4+n2xhsTtSetTgXVs
- N67M8YGG8ZLEeTFicfNF1EcFgZeleWg8hoDnLQkSt4XUkTwREnBcFFy3QhCFhJDDU//OvvrA3CK9hC
- UHlbtR3s3qrRhPfgSpiLgvOLt/bnZIXlbe8OEfnjt4/FjgFIcZFjf+Li5y7Js2GG4GP0Y48uivqyKY
- V7vMXV+wFLbXkzHbn2lhoAhc2Xc23wIDPa3fL+VEp9fIFMwOt3dXeiFx+gmWmPB49Q7NCHxSUopXVo
- 1+qpWPC3AfaWIEorcrnTiTu4fn32pxFQQNDozadRAb90jELPM7bwMKdJAc6WWKHt6fmR6j2cQAE351
- 43dhzroLc9BQGz8wWt1kiKy8tKnmP3/zbTHFBdOi0gftwtDiqNKCYcSrbHupbSLDXttpUqHUd97LwS
- oE0nugHWLLZmqLAIhJJmce+XXrdupLYJrxduf/d/BPFYYoN85gPc7hB3ZDvXCWT9nYpIXzrQQ3G6Lf
- Tk+w5oteJ9HgbzOBX0eIGC1J9UpqjsDo/YVBgSqS99JYkRpTVp0htzv65jnKRB0Guy/Npmtxq6PGxV
- hUnf45HtzEj9BKucV52ykAekSH5w3RPphPUDNEsHfhyz8/dzMTzj4KRaykUA==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH V3 3/3] arm64: dts: Add watchdog node for Amlogic S4 SoCs
+Content-Language: en-US, fr
+To: Huqiang Qin <huqiang.qin@amlogic.com>, wim@linux-watchdog.org,
+ linux@roeck-us.net, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com
+Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20231027104358.342861-1-huqiang.qin@amlogic.com>
+ <20231027104358.342861-4-huqiang.qin@amlogic.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20231027104358.342861-4-huqiang.qin@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231109_010030_169220_CCDB9DD7 
-X-CRM114-Status: UNSURE (   8.99  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231109_010446_855066_F58FA8B9 
+X-CRM114-Status: GOOD (  10.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,121 +120,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the MIPI DSI Analog & Digital PHY nodes and the DSI control
-nodes with proper port endpoint to the VPU.
+On 27/10/2023 12:43, Huqiang Qin wrote:
+> Add watchdog device.
+> 
+> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 6 ++++++
+>   1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> index e0cfc54ebccb..2344b2d741c3 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> @@ -92,6 +92,12 @@ apb4: bus@fe000000 {
+>   			#size-cells = <2>;
+>   			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+>   
+> +			watchdog@2100 {
+> +				compatible = "amlogic,s4-wdt", "amlogic,t7-wdt";
+> +				reg = <0x0 0x2100 0x0 0x10>;
+> +				clocks = <&xtal>;
+> +			};
+> +
+>   			periphs_pinctrl: pinctrl@4000 {
+>   				compatible = "amlogic,meson-s4-periphs-pinctrl";
+>   				#address-cells = <2>;
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 70 +++++++++++++++++++++++
- 1 file changed, 70 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index ff68b911b729..7300408262d5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -1663,9 +1663,28 @@ pwrc: power-controller {
- 								       <250000000>,
- 								       <0>; /* Do Nothing */
- 					};
-+
-+					mipi_analog_dphy: phy {
-+						compatible = "amlogic,g12a-mipi-dphy-analog";
-+						#phy-cells = <0>;
-+						status = "disabled";
-+					};
- 				};
- 			};
- 
-+			mipi_dphy: phy@44000 {
-+				compatible = "amlogic,axg-mipi-dphy";
-+				reg = <0x0 0x44000 0x0 0x2000>;
-+				clocks = <&clkc CLKID_MIPI_DSI_PHY>;
-+				clock-names = "pclk";
-+				resets = <&reset RESET_MIPI_DSI_PHY>;
-+				reset-names = "phy";
-+				phys = <&mipi_analog_dphy>;
-+				phy-names = "analog";
-+				#phy-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			usb3_pcie_phy: phy@46000 {
- 				compatible = "amlogic,g12a-usb3-pcie-phy";
- 				reg = <0x0 0x46000 0x0 0x2000>;
-@@ -2152,6 +2171,15 @@ hdmi_tx_out: endpoint {
- 					remote-endpoint = <&hdmi_tx_in>;
- 				};
- 			};
-+
-+			/* DPI output port */
-+			dpi_port: port@2 {
-+				reg = <2>;
-+
-+				dpi_out: endpoint {
-+					remote-endpoint = <&mipi_dsi_in>;
-+				};
-+			};
- 		};
- 
- 		gic: interrupt-controller@ffc01000 {
-@@ -2189,6 +2217,48 @@ gpio_intc: interrupt-controller@f080 {
- 				amlogic,channel-interrupts = <64 65 66 67 68 69 70 71>;
- 			};
- 
-+			mipi_dsi: dsi@7000 {
-+				compatible = "amlogic,meson-g12a-dw-mipi-dsi";
-+				reg = <0x0 0x7000 0x0 0x1000>;
-+				resets = <&reset RESET_MIPI_DSI_HOST>;
-+				reset-names = "top";
-+				clocks = <&clkc CLKID_MIPI_DSI_HOST>,
-+					 <&clkc CLKID_MIPI_DSI_PXCLK>,
-+					 <&clkc CLKID_CTS_ENCL>;
-+				clock-names = "pclk", "bit", "px";
-+				phys = <&mipi_dphy>;
-+				phy-names = "dphy";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+
-+				assigned-clocks = <&clkc CLKID_MIPI_DSI_PXCLK_SEL>,
-+					 <&clkc CLKID_CTS_ENCL_SEL>,
-+					 <&clkc CLKID_VCLK2_SEL>;
-+				assigned-clock-parents = <&clkc CLKID_GP0_PLL>,
-+					 <&clkc CLKID_VCLK2_DIV1>,
-+					 <&clkc CLKID_GP0_PLL>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					/* VPU VENC Input */
-+					mipi_dsi_venc_port: port@0 {
-+						reg = <0>;
-+
-+						mipi_dsi_in: endpoint {
-+							remote-endpoint = <&dpi_out>;
-+						};
-+					};
-+
-+					/* DSI Output */
-+					mipi_dsi_panel_port: port@1 {
-+						reg = <1>;
-+					};
-+				};
-+			};
-+
- 			watchdog: watchdog@f0d0 {
- 				compatible = "amlogic,meson-gxbb-wdt";
- 				reg = <0x0 0xf0d0 0x0 0x10>;
-
--- 
-2.34.1
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
