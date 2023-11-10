@@ -4,73 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00B6BC4332F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Nov 2023 07:51:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06B1AC4332F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Nov 2023 07:52:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xKujkbayKWcVDmBh29/q2ud9KlkA/OEbtMh+pRldfQ0=; b=wlYc5pGjw6rQodT99xV3R+m3up
-	gagBgBDBozYTlaT47yFntskt59N/yAR681sA/qgLkC+EHViJoPxF/+71nZCc6kj/obZRhlkyku7Ii
-	mVjl2jTzVqPZatg73W0tlCqX+wyL8jqrN8vNMG4Gcdq5FMX8Lki2/bDFWea8chMRsci5JRdu4nkI/
-	lcCDxOTBKY3pfStL4hhSaVMZZgEdcpBX4Xy+DSp77X2afqxU199XHHEThFO+E2ZFyzSljAmm/xMiU
-	f6zEwDtncRNh+CfYLrq4i+AODnRP2Q6Od1fZlLjmWJe7CgbyDJ6SyF3+QdOsgsqeMc7WYAT3sCF88
-	mQY5mJgQ==;
+	bh=6Bav6Q5Xx6cmPuPJqk5UB7goztCcnIAUuQRSrunSZ0o=; b=EsiOsLzTXShXjuNRG2wrqTV2CE
+	cUpjl+AlS7z6DRP/yvQQArdkWLaC3KsOaB6Ze3eUKYK2mtZH8hRakv/eB/rvtcKbCMeYN8wQhofgb
+	nbK1ako3NPtiAVmdFKSJr4SzNN02DUoYPY0Wnc4NfSabKpW64XBz7QdeyLHEOY/e0TVUX/FQWdU/y
+	ifPr09d0Y3cenvJbdbgaSZJz/iSb4gaHGAYGw1uvcP+TFbLZ1NHXEJZYobqunE4yGcoWI3kK8xZaI
+	d53xKRDvPsEuwEYaOcJJ4u7HrQ5Mt8tRwrbOCxYplhXgQnaG2JGxZz4LB2ha3+7oD+lTv4f6mNSv1
+	dxD/AohQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r1MII-0082hc-1S;
-	Fri, 10 Nov 2023 07:51:10 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1r1MJB-0082ow-09;
+	Fri, 10 Nov 2023 07:52:05 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r1MIG-0082gm-0n
+	id 1r1MJ8-0082nc-0r
 	for linux-amlogic@lists.infradead.org;
-	Fri, 10 Nov 2023 07:51:09 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-32da9ef390fso1023139f8f.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 09 Nov 2023 23:51:05 -0800 (PST)
+	Fri, 10 Nov 2023 07:52:03 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-32fe1a29010so949269f8f.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 09 Nov 2023 23:52:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699602664; x=1700207464; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1699602719; x=1700207519; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0EjioNiTBFjyXPezDEnKnxVCu9gZNSOYH3RV1e4/opE=;
-        b=UzuRs5wrhKbfc7dO7WJEu+0K4hy+poI2NbJ6HjzwUDhgvORqfBjL4KOqVWZwhBmgKD
-         AG8Q0NwhwfnZ42cTTomA9lZ1rG9vGber2VKsFPrakt31mPxhwd3cvMjbi6+LlUHVuhPY
-         OD3fQY6vKd0tSN4DfoO5W5okScnrEzfkWhbihlNY1+Zm8hYYOfXWWrWoc3ir7LATWyyN
-         BY2tFhTMfVsO/UE2k1hjPWFd+nARJPOcRJx26yzBo7I+BVwHBMp2I/6LF0ZDcrn4n4N6
-         6SuECqjJiFLD24Y4BR/uuLRBP76gDjFY0lVC+bmEwG4Vp7G4Dvrbjrb+ulLfgk9vBXBs
-         pUGQ==
+        bh=emsT2msKceFt3PV2O7Tp50pasdkiiAdF3O2L4Y3FXfM=;
+        b=nUb0+HRUJFyNjB3rjNGv7gcF0fYRsXzFMjcdO9jeTU95EQOT/fpWJBeSwmpTOp0oVS
+         7PuW18qZdwxRD/bWNIrnrymIr0S/unD3T9ZlnuYytyig7onXiYSfQLY67NimI5N7SLH0
+         2od8yqynjzrwKixjf5uQ7ZdUW48ODi91TpbXYTbPFg20UIov3VRwwnKz4P0wkVFJj8pF
+         x9NegQbIYh7s+vhKRawfEXNt+mD3g+nEQhPxH/qEqyvc5laM2NOpbqsDszRqsjtDT2gy
+         jA/Huohf/9LudX8y5skiBV8TnQTzqQtLA87zfnd0r7rWf+0Jf8JBbwvB2KytiCkBXTbT
+         M/jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699602664; x=1700207464;
+        d=1e100.net; s=20230601; t=1699602719; x=1700207519;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=0EjioNiTBFjyXPezDEnKnxVCu9gZNSOYH3RV1e4/opE=;
-        b=tety9i2CEQk6s00LWyP+0VJ8Xf8hJqsAsPHBS4eF1Bhvdzz5TjDK70/lp1wXw73eID
-         C/9zSd5ZTOEsgMece+J+8b9+yjwsw9nw4e7GP56r6nrGQC/C5BGy92F97SqKgoow6OYc
-         VgFnb2Jbx8nTElkxLoCwqXnCi6I9N7GZFRWYVSfG7MEtCoEbdINGG5u5TXfbppE5i1mK
-         pCswxLxTgTa3ENzsCB9Qm8gs+QRAIYDc2HkBl7zcLi3ERy6NM96wJ/DDkRDDwE/awih0
-         cuxqDWA6XZNtt8/DRfmYlz5EbHmQK5mHlDnZl54lTKPNOQ8EVvsTeL0O3eiwBDWnExsu
-         x5bQ==
-X-Gm-Message-State: AOJu0YxAUBNGf8wQ8hHZ06DC3crltYfSkE7ORHEy3D2rtMSt/TWM3BR1
-	n6OJfFmr1XFDBGMprVEg94C9Pg==
-X-Google-Smtp-Source: AGHT+IGOBJ9Ak/suD1hSXqmK+yk5XNC/WxE0Ed7RGhHsVy2Nnm+c/K/9uXLwRs6KflD0SwZ2VCjo9Q==
-X-Received: by 2002:a05:6000:1846:b0:32f:7bee:f300 with SMTP id c6-20020a056000184600b0032f7beef300mr6542585wri.4.1699602664217;
-        Thu, 09 Nov 2023 23:51:04 -0800 (PST)
+        bh=emsT2msKceFt3PV2O7Tp50pasdkiiAdF3O2L4Y3FXfM=;
+        b=obe63x7SPV0cr/bjycXkPdrmUg+dPOLDj4ulsMJBFWg6l6FbCAIIKACVROm4Can3TY
+         TeSXzSZzehdmmZ8cQg3WrrF0o5lcvilV3bdyxShPKqbv4WvNImrewIS24/N3OB5FpQFh
+         aaF3xphJYrzzghZVfQoImrA9UAzMkqKoa0h5cBBePyR3p2CjAr0qejkiXOjmHlnnX70M
+         hpWuGJRFqI7ZCiQu9bcd0BsHGjHFzcnor4MrygXf5M1JkA/fU/BKPYN5/Wa4kAyMMLQa
+         K1F+tsZ07bUUSBbs1n8GSM4XS46gXt8YgTDhN3in/KuCYQKB6a3n0mDooxd5q0BQgCfQ
+         Z4WQ==
+X-Gm-Message-State: AOJu0YxNmgYkOaeuOVHYk/kE4rG+BgJpwiq4BYnyOwRgate0xswbzOVS
+	+iXxhUKP7rX2mIkAdvl7sMQFRQ==
+X-Google-Smtp-Source: AGHT+IGw+PCkMA6bHWqEEuoAwJ5a3yEHlqxE3b+F0LZFd3qRiaZ2W3inoKUaaR7waw3M3gHHAzI3FA==
+X-Received: by 2002:a5d:6dc5:0:b0:32d:8094:f4c8 with SMTP id d5-20020a5d6dc5000000b0032d8094f4c8mr5497228wrz.19.1699602719377;
+        Thu, 09 Nov 2023 23:51:59 -0800 (PST)
 Received: from [192.168.7.189] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id i5-20020adff305000000b0031c52e81490sm1333879wro.72.2023.11.09.23.51.00
+        by smtp.gmail.com with ESMTPSA id i5-20020adff305000000b0031c52e81490sm1333879wro.72.2023.11.09.23.51.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 23:51:03 -0800 (PST)
-Message-ID: <046062f4-e415-4c3f-a05d-81bef9857649@linaro.org>
-Date: Fri, 10 Nov 2023 08:50:58 +0100
+        Thu, 09 Nov 2023 23:51:58 -0800 (PST)
+Message-ID: <589daf80-727e-460f-a41e-2481b199c805@linaro.org>
+Date: Fri, 10 Nov 2023 08:51:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v8 02/12] dt-bindings: soc: amlogic,meson-gx-hhi-sysctrl:
- add example covering meson-axg-hhi-sysctrl
+Subject: Re: [PATCH v8 04/12] dt-bindings: phy: amlogic,g12a-mipi-dphy-analog:
+ drop unneeded reg property and example
 Content-Language: en-US, fr
 To: Conor Dooley <conor@kernel.org>
 Cc: Jerome Brunet <jbrunet@baylibre.com>,
@@ -86,8 +86,8 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  dri-devel@lists.freedesktop.org
 References: <20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-0-81e4aeeda193@linaro.org>
- <20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-2-81e4aeeda193@linaro.org>
- <20231109-dictator-hedging-94b0dec505b5@spud>
+ <20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-4-81e4aeeda193@linaro.org>
+ <20231109-sterility-unsoiled-e43771c61894@spud>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -113,10 +113,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20231109-dictator-hedging-94b0dec505b5@spud>
+In-Reply-To: <20231109-sterility-unsoiled-e43771c61894@spud>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231109_235108_285500_BECF0589 
-X-CRM114-Status: GOOD (  13.25  )
+X-CRM114-CacheID: sfid-20231109_235202_321357_1113162C 
+X-CRM114-Status: GOOD (  14.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -134,81 +134,59 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 09/11/2023 18:34, Conor Dooley wrote:
-> On Thu, Nov 09, 2023 at 10:00:03AM +0100, Neil Armstrong wrote:
->> Add a thirst example covering the meson-axg-hhi-sysctrl variant and more
+On 09/11/2023 19:04, Conor Dooley wrote:
+> On Thu, Nov 09, 2023 at 10:00:05AM +0100, Neil Armstrong wrote:
+>> Now this bindings is referred from amlogic,meson-gx-hhi-sysctrl.yaml and is
+>> documented as a subnode of a simple-mfd, drop the invalid reg property.
 > 
-> What on earth is a thirst example? Some sort of "hysterical raisins"
-> type of thing?
+> I'd expect a note here tbh about how removing reg & relying on being a
+> subnode of the simple-mfd is safe to do. It looks like your driver
+> was added at the same time as this binding & it was always documented as
+> being a child of the simple-mfd system controller, so I'd kinda expect
+> to see a Fixes tag on this patch..
 > 
-> My confusion about that word aside,
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Am I missing something?
 
-Indeed, I'll fix this bad typo :-)
+No you're totally right, I'll reword the commit message and add a Fixes tags.
 
 Thanks,
 Neil
 
 > 
-> Cheers,
-> Conor.
-> 
->> importantly the phy subnode.
+>>
+>> Also drop the unnecessary example, the top level bindings example should
+>> be enough.
 >>
 >> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 >> ---
->>   .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  | 41 ++++++++++++++++++++++
->>   1 file changed, 41 insertions(+)
+>>   .../bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml          | 12 ------------
+>>   1 file changed, 12 deletions(-)
 >>
->> diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
->> index 16977e4e4357..2edf4ccea845 100644
->> --- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
->> +++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
->> @@ -158,3 +158,44 @@ examples:
->>               };
->>           };
->>       };
->> +
->> +    bus@ff63c000 {
->> +        compatible = "simple-bus";
->> +        reg = <0xff63c000 0x1c00>;
->> +        #address-cells = <1>;
->> +        #size-cells = <1>;
->> +        ranges = <0x0 0xff63c000 0x1c00>;
->> +
->> +        system-controller@0 {
->> +            compatible = "amlogic,meson-axg-hhi-sysctrl", "simple-mfd", "syscon";
->> +            reg = <0 0x400>;
->> +
->> +            clock-controller {
->> +                compatible = "amlogic,axg-clkc";
->> +                #clock-cells = <1>;
->> +                clocks = <&xtal>;
->> +                clock-names = "xtal";
->> +            };
->> +
->> +            power-controller {
->> +                compatible = "amlogic,meson-axg-pwrc";
->> +                #power-domain-cells = <1>;
->> +                amlogic,ao-sysctrl = <&sysctrl_AO>;
->> +
->> +                resets = <&reset_viu>,
->> +                         <&reset_venc>,
->> +                         <&reset_vcbus>,
->> +                         <&reset_vencl>,
->> +                         <&reset_vid_lock>;
->> +                reset-names = "viu", "venc", "vcbus", "vencl", "vid_lock";
->> +                clocks = <&clk_vpu>, <&clk_vapb>;
->> +                clock-names = "vpu", "vapb";
->> +            };
->> +
->> +            phy {
->> +                compatible = "amlogic,axg-mipi-pcie-analog-phy";
->> +                #phy-cells = <0>;
->> +                status = "disabled";
->> +            };
->> +        };
->> +    };
+>> diff --git a/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+>> index c8c83acfb871..81c2654b7e57 100644
+>> --- a/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+>> @@ -16,20 +16,8 @@ properties:
+>>     "#phy-cells":
+>>       const: 0
+>>   
+>> -  reg:
+>> -    maxItems: 1
+>> -
+>>   required:
+>>     - compatible
+>> -  - reg
+>>     - "#phy-cells"
+>>   
+>>   additionalProperties: false
+>> -
+>> -examples:
+>> -  - |
+>> -    phy@0 {
+>> -          compatible = "amlogic,g12a-mipi-dphy-analog";
+>> -          reg = <0x0 0xc>;
+>> -          #phy-cells = <0>;
+>> -    };
 >>
 >> -- 
 >> 2.34.1
