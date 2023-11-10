@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E390FC4167B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Nov 2023 13:23:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38E73C4332F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Nov 2023 13:25:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=K6p4RX75t5q6v3BbdBBxFndqV4vIlfuPulUeNzN0Wds=; b=sA4hfEVQiholDO
-	eMa7zofc9Z5pQ3AtR8vZZcUyi21H6pckUbL0CzotGOphNA2cx0td3GjLJO9/bViN5Lvp4m7opbFDC
-	K83KmyWWLrZZIKgFxY8tAFukaioGlIxCN+cQoyh8zp2RlAzsO9feqj4QqoqrP+mpulwhM9Brcziod
-	AwaOpgCvRdiD7zaIyb3KngcRB44l6Y6l/RTCNKYLjtYghmWHowzBsNxKaXXc+9Bsnouu0PK6i61UV
-	I8BEr8a2iGyhlx6dDfrCAg0hbLup/tfNb062dblxmk71wYrAH0fMYNDXwI/1xnTdCvS0ZQRdeYjkC
-	a7of66m4lnnZcUS2IOoQ==;
+	List-Owner; bh=NYVd73kr6FVN9u56MWXK42+RyEkRadyyT1JSE7TFt3Q=; b=mYVNTcNhcQG0lP
+	vAuh44IC+25J54YUQB9QifWURuQaxfKyhi0wnfCwjTQ8KstwyE2jQ1lZazPOX7RGHVWV1CJ6ffU8Q
+	ikdOfWRaCn9/3muzSL9YuW7JJ0gaRkmeMZ3ZctRCfuo0Ua6N4jtLkiXPjjRGz8hBxAC0H+OOtl1KG
+	t8TTIifs2vsj3LkL9JzBforbITBkVOsMqJcrHcGiXaJJbo24YZjsq7LRFfPVicrQiCaCxh6CvQBuV
+	xf3nIN8VTbywBsipxrM3z29vetMIFqvPF7EiEg+X1sLpuPaUgEinKvRGAiUBrBMM61gklSsvNQzMm
+	RIAmO+J+qqzK/4H2x/ww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r1RTe-008pwm-2b;
-	Fri, 10 Nov 2023 13:23:14 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1r1RV8-008q9H-0z;
+	Fri, 10 Nov 2023 13:24:46 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r1RTc-008pvz-2e
+	id 1r1RV5-008q80-0X
 	for linux-amlogic@lists.infradead.org;
-	Fri, 10 Nov 2023 13:23:14 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-407c3adef8eso15699295e9.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 10 Nov 2023 05:23:11 -0800 (PST)
+	Fri, 10 Nov 2023 13:24:45 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4084095722aso15153645e9.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 10 Nov 2023 05:24:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699622590; x=1700227390; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1699622681; x=1700227481; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BYdCghmYd1Gd+wVY9twL2PNBn7/RrEI+qPFM3x//Sis=;
-        b=quYYdnAQiGHtlB+Ym4Du8IVVWpTnOUwOaE4jEQisIx3PUNCrfs01AEXQDZ4jOAP3k/
-         /g/XPpKitSS2YARturtkkm3nPlk+eBIvTRlC1ogffNpHDMPS9ajx2cAN/8R+fEP6c62L
-         00Ox7L4QVw47JW1nyDFHrroU23eKKIoibHYJnk1XJ8G+LCYrkS71mS27vYWy6glqT0KF
-         gm2XkyyQBSIqbJUmRbDEdR5lLH9qw0u5aYWfrO/VdQAr/UTTMx4KAZD5ubUCUjmQ8BB6
-         E2em+HzqsEFTJ/58Amon8YF1Ts47RHLjFcN3V0jfVr0HCyLwFzd2uQgD3OwBpprf5fP9
-         N2GA==
+        bh=mnZfV2q0+s2CpN5/DatQthuQNf7R4Y9ktwlMu9GlmRg=;
+        b=E/R+3mkT0tWA9VLPhdbZ6JOYC/xD0FvKGlDIR8ShZIp49JAvd94t5C9oEZ1EEQbLVs
+         8v6zLm5mikvfFpFzQgjqMJJVKw2FGryZPtkF5BWXZ9kDtY6C26lqOsk8C2hImIQDMl7x
+         9gRCL5l0TdjeH62LK/Q2x4Dj6p+e1zIYNQTXaO5gxzvXbJrlG6ygRdlFvfpmnyd084FS
+         yxMhFm8n0ppHF0wCxHjNmuRVfShKVQlX78iMPI8uY0WRuAIVRdvP3YXnCHXxbUcCCwPE
+         SQ31Rp7Wl6pKfrJFD8u+mW4uUSO2w8Ai2qRvPQB7JIfeqap2rpJVW61j8ijFmjm46Mv5
+         Yh4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699622590; x=1700227390;
+        d=1e100.net; s=20230601; t=1699622681; x=1700227481;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BYdCghmYd1Gd+wVY9twL2PNBn7/RrEI+qPFM3x//Sis=;
-        b=D+q72VkOcrPYirrRksuu9hZayRrbA/Wxb2c0CMdZQmJpyvNoWd0JdFYFqMrc6QPvqy
-         k5EJDFTbWoiRaD7GxzCg/LJ2VVRPOlmAyMjI2P4PKZi4wtNJ2E4xaqzUTpcNYEapZQxb
-         xxHQIXPmuNWsd2XnuvIqYrgV8dYaE5qYz8grTcOYkyC3MbJqGdl9OVV2uidpPhxYaDjl
-         XvOVeURBvoiABm+ZJtsQkV79F7X5GEHediFNAg3qnBvJrAXcxhsjsPDPZ+pYcgQmtf+R
-         l72s8Y0qavFVRiYY3QH7NwJsh1nxQQAHrNQqnXWOU8sCWEF5dvxBr+MD3wu4z7gBpK+9
-         iDFQ==
-X-Gm-Message-State: AOJu0Yz3FkIxgnUy/hOyW7IRyfsPm2PdfLwDrTIABgb8r5bs8CIWEiQD
-	r6W3C6G9gZpaeM+AxzrMlE9XYQ==
-X-Google-Smtp-Source: AGHT+IE95msiQt+QGvFTMOS1WPz9UddiJxhiVBF1CyYOsty0Tskrxtvc9jQfKczT52RCWQBoXMmzJQ==
-X-Received: by 2002:a05:600c:19cd:b0:409:3f53:c9c7 with SMTP id u13-20020a05600c19cd00b004093f53c9c7mr6691665wmq.35.1699622589872;
-        Fri, 10 Nov 2023 05:23:09 -0800 (PST)
+        bh=mnZfV2q0+s2CpN5/DatQthuQNf7R4Y9ktwlMu9GlmRg=;
+        b=JvjboxwqqQxE5q6sFL3J+EdNxw2SjxuS7opiQvTerBuaKKI4f1akdTy6FgfzCmv5gd
+         J1jAYqu/ZJ6LXmmFESubfzxudS4N/v2xPmnEHHdf5tXJ5fHmarXse7MYFZvxe2v4VxWz
+         YJGT2BcN5MXrRPaiZr1HZz3GT4s4HIrrQH3xr1y4mEjJ9WAydG8E9zswn0x9FawimQnW
+         G/HDR1DJkBN/pgde+rcI3wKcEgHv3m4w6D3r34h21Z/ts1YcNtX0zhnOjicIRV6iMt+a
+         KIFMidxjX04RUwJuvU2Uaid6jZLN1XVsB8+tF5r+l+CCjdyKDPP6Q/byDHgLy8oBCZtY
+         CXZw==
+X-Gm-Message-State: AOJu0YwEcxhUYpxxZt9QmRqHQ0SHQUoV3WBxzu35WaDCu/1a0vrQXM6w
+	dALCGQg4qflvZ4xLkkiOaTGymw==
+X-Google-Smtp-Source: AGHT+IExN1tN1zWwTXGu79ToYWmaOD8R+0nkqDdsx+Z8vmuOqz8sCII3ySxe/8NC79hrJGmcraqczA==
+X-Received: by 2002:a05:600c:4e8a:b0:408:4266:12db with SMTP id f10-20020a05600c4e8a00b00408426612dbmr7150306wmq.13.1699622681107;
+        Fri, 10 Nov 2023 05:24:41 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id 8-20020a05600c22c800b0040303a9965asm5083419wmg.40.2023.11.10.05.23.08
+        by smtp.gmail.com with ESMTPSA id 8-20020a05600c22c800b0040303a9965asm5083419wmg.40.2023.11.10.05.24.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Nov 2023 05:23:09 -0800 (PST)
-Message-ID: <a7497ecd-8516-4f6d-8ea6-5c2f7a5ea276@linaro.org>
-Date: Fri, 10 Nov 2023 14:23:07 +0100
+        Fri, 10 Nov 2023 05:24:40 -0800 (PST)
+Message-ID: <8d9ec256-fbea-4711-966c-8c68d83eeb1f@linaro.org>
+Date: Fri, 10 Nov 2023 14:24:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V6 1/4] dt-bindings: clock: add Amlogic C3 PLL clock
- controller bindings
+Subject: Re: [PATCH V6 2/4] dt-bindings: clock: add Amlogic C3 peripherals
+ clock controller bindings
 Content-Language: en-US
 To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
@@ -82,7 +82,7 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Chuan Liu <chuan.liu@amlogic.com>
 References: <20231106085554.3237511-1-xianwei.zhao@amlogic.com>
- <20231106085554.3237511-2-xianwei.zhao@amlogic.com>
+ <20231106085554.3237511-3-xianwei.zhao@amlogic.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,10 +128,10 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231106085554.3237511-2-xianwei.zhao@amlogic.com>
+In-Reply-To: <20231106085554.3237511-3-xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231110_052312_856981_B2689DF7 
-X-CRM114-Status: UNSURE (   4.92  )
+X-CRM114-CacheID: sfid-20231110_052443_208623_33D85AEE 
+X-CRM114-Status: UNSURE (   7.54  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -150,16 +150,26 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 06/11/2023 09:55, Xianwei Zhao wrote:
-> Add the PLL clock controller dt-bindings for Amlogic C3 SoC family.
-> 
-> Co-developed-by: Chuan Liu <chuan.liu@amlogic.com>
-> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
+> @@ -0,0 +1,237 @@
 
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (c) 2023 Amlogic, Inc. All rights reserved.
+> + * Author: Chuan Liu <chuan.liu@amlogic.com>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_C3_PERIPHERALS_CLKC_H
+> +#define _DT_BINDINGS_CLOCK_AMLOGIC_C3_PERIPHERALS_CLKC_H
+> +
+> +#define CLKID_PLL_SRC				0
+> +#define CLKID_MCLK_PLL_SRC			1
+> +#define CLKID_DDR_PLL_SRC			2
+> +#define CLKID_DDR_PHY_SRC                       3
 
+Fix the indentation. In all other patchses as well.
 
 Best regards,
 Krzysztof
