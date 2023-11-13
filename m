@@ -4,91 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 843BEC4332F
-	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Nov 2023 10:16:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB3C2C4167B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Nov 2023 03:24:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
+	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tlYhZcOrhFjmaucfgXpzLvdGzLHEQw+bTe7PaQB54mc=; b=SZLW33aXp2Hwuk
-	Gi44BKLZ7VL+cQ+YIlxPzSPFlbNkyPyb5rIPxJZm8vVBHvfWt7KWoE4t10lhjgYHLeDmSkEo4WGn0
-	ogOH/aKPfSIz5Tho/I1Tg9yXxj4wqqfL3XfJysqQ98Baqw6tW7egUnQ5w4Ntf37tO3AURt+mho4wH
-	3EaURd1sjv5lvJPO7uWLMTYr1zn6W+KUS8mrgedE8PXUHnam/eFTaJMAAbhIcypTZFBfH5xtn5cZI
-	f9U7ISF0q/iEIL/KcT4XUnUF+CChKpT2TP/VocbQU3v9ykjisJMHW36x7y8dW/HroajInNY6P6wwX
-	wLRpgVl29zYDeeglMY9Q==;
+	List-Owner; bh=VwJExozOIIHx4Qc4X0IGODMHAVlj6ClB3M8NbGdm0AU=; b=HJuIdWG6T4YYLq
+	jUpUwaWroLIxm7VST9ia4fn/4tZ+2Wje65dKXiLojqwKRidy/Iv/7TgQe4OPn8qDr6DkeGfe9Y6Jo
+	7YGlbPr4VSP7oteCtfQCOIBB4QSqwd8h4J+o3Gws22hHJpTW4H1r/upAw9uJqSQHfo6r6YzvCGvPG
+	49nGEDqJFe0MgS+ao9XrJtXFhVBvbII0XwiK0xKjNyn6wOmHeAwzP5/byOtzCEP9GRYvoyd7JfTrE
+	MKvRIgABdG4kiHsdxuUJwPPGacz4MU0dTKuWvEKlrR13Rd2Jl8NdnYZN3MgoihSkE3f1AtlTCcwLa
+	WVWNOhy6RsvWwIt/JmAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r27Vo-00BxJr-1Z;
-	Sun, 12 Nov 2023 10:16:16 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1r2NYQ-00D7wk-0n;
+	Mon, 13 Nov 2023 03:24:02 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r27Vj-00BxIm-1n;
-	Sun, 12 Nov 2023 10:16:14 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 47DD1120005;
-	Sun, 12 Nov 2023 13:16:02 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 47DD1120005
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1699784162;
-	bh=QkAL75FeAUEzLTDdv3OVdvwrABVU5Bl7zMHv1p+MboI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=RyWW0/UunW5czFJ/lL0WsWtvLt/aHe5bUK2kg0FgDmANfZhfgsB4rI7cPMKU5jIge
-	 QumpByB9u3OZJNKAqdIBO6AHjR6hPZ3NdPPmsOwGRKZO2aTm15R5WLPPLoeBabd8Wq
-	 eBtUd5RJRSI6l9sS3E6wMT7Xts10w6DdL6c2M+os8b0qKqBgPWr0+tpx2A6xG+sOnL
-	 XKQMx9qpki6X6G9VAKkjAlqoED0MyfNVXEyBrRqbGXbWJF4xUFp/wHAnky10s2ieTx
-	 W4RF4lhO/yL/EzuM16e72QS98n8wLuiSmmYJhdnKQXBFehpnVilIHfmMIMCz/wjsBr
-	 K197cFhoblTmQ==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Sun, 12 Nov 2023 13:16:02 +0300 (MSK)
-Received: from [192.168.0.106] (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.37; Sun, 12 Nov 2023 13:16:01 +0300
-Message-ID: <2d3a1d7c-7bf2-f8af-6019-85f07fee491e@salutedevices.com>
-Date: Sun, 12 Nov 2023 13:08:20 +0300
+	id 1r2NYM-00D7uz-0I;
+	Mon, 13 Nov 2023 03:23:59 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by ams.source.kernel.org (Postfix) with ESMTP id 662CCB80B6C;
+	Mon, 13 Nov 2023 03:23:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 23FFBC4339A;
+	Mon, 13 Nov 2023 03:23:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699845835;
+	bh=M3Qhhjk/BU+r9ygb4BrBodry+Iy+/+c1KAZvoMB6Rjg=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=tXXHDD4vc13CqUYQaDnEhtGLHW1POo2WeYIwiz7RivcXeGCX56ZEHdMgH4lWjscCu
+	 TRYnwpJvawaBHgmt3cJfhHfVuEEyj9Z4oVfuW4J44Vk+fwBuqUmSiItgpGhvBEvQWa
+	 uUY+5xo82BA1kb1ChCxUiL+iwRg+RpcI0uc8TxmBIlmhU8AqiNRK+dsRlb77FjXT/g
+	 wQmKVPKgIAbBig2lnZ0zl7BxNArqSB9iMwH9Hasgm6eV8Xb3HRP1Y0E25pUR2iuJfO
+	 qIWWcsuFRmJ/kI0wDOLJTjshHmYrPMDwNu0Rpk8xwHufp8wdnYSlDWWi5G6haP8284
+	 LAsQGZ+w47fZg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id E412EE32714;
+	Mon, 13 Nov 2023 03:23:54 +0000 (UTC)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v1] mtd: rawnand: meson: initialize clock register
-To: Liang Yang <liang.yang@amlogic.com>, Miquel Raynal
-	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20231109054037.3864802-1-avkrasnov@salutedevices.com>
-Content-Language: en-US
-From: Arseniy Krasnov <avkrasnov@salutedevices.com>
-In-Reply-To: <20231109054037.3864802-1-avkrasnov@salutedevices.com>
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 181295 [Nov 10 2023]
-X-KSMG-AntiSpam-Version: 6.0.0.2
-X-KSMG-AntiSpam-Envelope-From: avkrasnov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 543 543 1e3516af5cdd92079dfeb0e292c8747a62cb1ee4, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/11/12 05:48:00 #22442901
-X-KSMG-AntiVirus-Status: Clean, skipped
+Subject: Re: [PATCH 00/49] iio: Convert to platform remove callback returning void
+From: patchwork-bot+chrome-platform@kernel.org
+Message-Id: <169984583492.27851.676337627622488866.git-patchwork-notify@kernel.org>
+Date: Mon, 13 Nov 2023 03:23:54 +0000
+References: <20230919174931.1417681-1-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20230919174931.1417681-1-u.kleine-koenig@pengutronix.de>
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig_=3Cu=2Ekleine-koenig=40pengutronix=2Ede=3E?=@ci.codeaurora.org
+Cc: jic23@kernel.org, jikos@kernel.org, srinivas.pandruvada@linux.intel.com,
+ lars@metafoo.de, linux-input@vger.kernel.org, linux-iio@vger.kernel.org,
+ kernel@pengutronix.de, linus.walleij@linaro.org,
+ linux-arm-kernel@lists.infradead.org, eugen.hristev@collabora.com,
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+ claudiu.beznea@tuxon.dev, ruanjinjie@huawei.com, robh@kernel.org,
+ heiko@sntech.de, yangyingliang@huawei.com, wens@csie.org,
+ aidanmacdonald.0x0@gmail.com, andy.shevchenko@gmail.com, rjui@broadcom.com,
+ sbranden@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+ hsweeten@visionengravers.com, alexander.sverdlin@gmail.com,
+ krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com,
+ linux-samsung-soc@vger.kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+ ak@it-klinger.de, cai.huoqing@linux.dev, haibo.chen@nxp.com,
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, gnstark@sberdevices.ru,
+ andriy.shevchenko@linux.intel.com, nuno.sa@analog.com,
+ linux-amlogic@lists.infradead.org, sravanhome@gmail.com, jkluo@hust.edu.cn,
+ dzm91@hust.edu.cn, avifishman70@gmail.com, tmaimon77@gmail.com,
+ tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+ benjaminfair@google.com, openbmc@lists.ozlabs.org, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org,
+ linux-arm-msm@vger.kernel.org, marek.vasut@gmail.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+ olivier.moysan@foss.st.com, fabrice.gasnier@foss.st.com,
+ zhang_shurong@foxmail.com, frank.li@vivo.com,
+ linux-stm32@st-md-mailman.stormreply.com, sean@geanix.com, trix@redhat.com,
+ jernej.skrabec@gmail.com, samuel@sholland.org, rafael.j.wysocki@intel.com,
+ damien.lemoal@opensource.wdc.com, broonie@kernel.org, idosch@nvidia.com,
+ daniel.lezcano@linaro.org, linux-sunxi@lists.linux.dev,
+ dmitry.torokhov@gmail.com, andreas@kemnade.info, peda@axentia.se,
+ vz@mleia.com, ktsai@capellamicro.com, bleung@chromium.org,
+ groeck@chromium.org, chrome-platform@lists.linux.dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231112_021612_279143_643183BF 
-X-CRM114-Status: GOOD (  17.77  )
+X-CRM114-CacheID: sfid-20231112_192358_424877_060CD821 
+X-CRM114-Status: UNSURE (   9.26  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,49 +105,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hello:
 
+This patch was applied to chrome-platform/linux.git (for-kernelci)
+by Jonathan Cameron <Jonathan.Cameron@huawei.com>:
 
-On 09.11.2023 08:40, Arseniy Krasnov wrote:
-> Clock register must be also initialized during controller probing. If
-> this is not performed (for example by bootloader before) - controller
-> will not work.
+On Tue, 19 Sep 2023 19:48:42 +0200 you wrote:
+> this series converts all platform drivers below drivers/iio to use
+> .remove_new(). The motivation is to get rid of an integer return code
+> that is (mostly) ignored by the platform driver core and error prone on
+> the driver side. As all platform drivers return zero unconditionally in their
+> remove callback up to now, the conversions are "trivial".
 > 
-> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
-> ---
->  drivers/mtd/nand/raw/meson_nand.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> See commit 5c5a7680e67b ("platform: Provide a remove callback that
+> returns no value") for an extended explanation and the eventual goal.
 > 
-> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-> index 0d4d358152d7..4e7fa943928c 100644
-> --- a/drivers/mtd/nand/raw/meson_nand.c
-> +++ b/drivers/mtd/nand/raw/meson_nand.c
-> @@ -91,6 +91,8 @@
->  
->  /* eMMC clock register, misc control */
->  #define CLK_SELECT_NAND		BIT(31)
-> +#define CLK_ALWAYS_ON_NAND      BIT(24)
-> +#define CLK_ENABLE_VALUE        0x245
-                                   ^^^^^^
+> [...]
 
-Hi,
+Here is the summary with links:
+  - [45/49] iio: proximity: cros_ec_mkbp: Convert to platform remove callback returning void
+    https://git.kernel.org/chrome-platform/c/2df694f710d2
 
-@Liang, it will be great, if You'll give some details about this magic value. I get it
-from vendor's driver and it makes NAND controller alive, but I don't have any docs.
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-Thanks, Arseniy
 
->  
->  #define NFC_CLK_CYCLE		6
->  
-> @@ -1152,7 +1154,7 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
->  		return PTR_ERR(nfc->nand_clk);
->  
->  	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
-> -	writel(CLK_SELECT_NAND | readl(nfc->reg_clk),
-> +	writel(CLK_ALWAYS_ON_NAND | CLK_SELECT_NAND | CLK_ENABLE_VALUE,
->  	       nfc->reg_clk);
->  
->  	ret = clk_prepare_enable(nfc->core_clk);
 
 _______________________________________________
 linux-amlogic mailing list
