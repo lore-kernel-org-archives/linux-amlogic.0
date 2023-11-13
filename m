@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB3C2C4167B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Nov 2023 03:24:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22227C4332F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Nov 2023 03:43:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
 	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VwJExozOIIHx4Qc4X0IGODMHAVlj6ClB3M8NbGdm0AU=; b=HJuIdWG6T4YYLq
-	jUpUwaWroLIxm7VST9ia4fn/4tZ+2Wje65dKXiLojqwKRidy/Iv/7TgQe4OPn8qDr6DkeGfe9Y6Jo
-	7YGlbPr4VSP7oteCtfQCOIBB4QSqwd8h4J+o3Gws22hHJpTW4H1r/upAw9uJqSQHfo6r6YzvCGvPG
-	49nGEDqJFe0MgS+ao9XrJtXFhVBvbII0XwiK0xKjNyn6wOmHeAwzP5/byOtzCEP9GRYvoyd7JfTrE
-	MKvRIgABdG4kiHsdxuUJwPPGacz4MU0dTKuWvEKlrR13Rd2Jl8NdnYZN3MgoihSkE3f1AtlTCcwLa
-	WVWNOhy6RsvWwIt/JmAA==;
+	List-Owner; bh=toIyUMkgnMvSmTAWSpgmP4vzhkjqGlUXlx3bYsjUv/s=; b=1thWOSomrAhJW2
+	mJYhC0MuPlup9aQ3bZQqPe18E/qSa9yAsQzLTjhAIUo0yeA806E1DNZyi5Jgdmiuhee9c+dNiT/gR
+	nd8QQ1cQrVIshLzMayvReENl9HY2Ms6TbRC9ICKDeKTD46hpZ2sASgmBk0xTUYwFsHWFGoaIr1RIN
+	W7eJ3bj/HDKNvx7oQt3YMXYsL5+LLNH+eKlj8/JOD9oLRLJns/bU537jVmMz9kxQyOxalEU7eUWO+
+	VdtntL1wSZ2udR3kKILsqVui/c+Xpe8TkoTmrsXV/hyTAo+PjkXbEYhZZkS5Gb1zfbkfM+iZGTPZv
+	LNhiTTehSmIdoc9HlE0g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r2NYQ-00D7wk-0n;
-	Mon, 13 Nov 2023 03:24:02 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1r2NqW-00D9CO-0c;
+	Mon, 13 Nov 2023 03:42:44 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r2NYM-00D7uz-0I;
-	Mon, 13 Nov 2023 03:23:59 +0000
+	id 1r2NqS-00D9AS-2k;
+	Mon, 13 Nov 2023 03:42:42 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id 662CCB80B6C;
-	Mon, 13 Nov 2023 03:23:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 23FFBC4339A;
-	Mon, 13 Nov 2023 03:23:55 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id EEEEACE0FE8;
+	Mon, 13 Nov 2023 03:42:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 30071C43391;
+	Mon, 13 Nov 2023 03:42:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699845835;
-	bh=M3Qhhjk/BU+r9ygb4BrBodry+Iy+/+c1KAZvoMB6Rjg=;
+	s=k20201202; t=1699846957;
+	bh=jdxeDVtgM5/V3SaVfri5ZhvhnazvM3zMI/UV31SAZgM=;
 	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=tXXHDD4vc13CqUYQaDnEhtGLHW1POo2WeYIwiz7RivcXeGCX56ZEHdMgH4lWjscCu
-	 TRYnwpJvawaBHgmt3cJfhHfVuEEyj9Z4oVfuW4J44Vk+fwBuqUmSiItgpGhvBEvQWa
-	 uUY+5xo82BA1kb1ChCxUiL+iwRg+RpcI0uc8TxmBIlmhU8AqiNRK+dsRlb77FjXT/g
-	 wQmKVPKgIAbBig2lnZ0zl7BxNArqSB9iMwH9Hasgm6eV8Xb3HRP1Y0E25pUR2iuJfO
-	 qIWWcsuFRmJ/kI0wDOLJTjshHmYrPMDwNu0Rpk8xwHufp8wdnYSlDWWi5G6haP8284
-	 LAsQGZ+w47fZg==
+	b=Ea8hxNwisz1LC/1DzBtjKwF55VCjbDAlXbgbnY45zFxU2WoW0zsWunTZmPaVRAsLA
+	 QJVKUKpitKTbZgtNrsWEeapO9yD0BLH5nWZdygQvmoxqWjiYDi7mXbWyFQGnPY9uFm
+	 ysOFDGLvKa8Ut01D53wuNH/MjQMgT0U9BJUKXrFQZZkE5os7Kqj5v8hQIXF6x8Y7Ik
+	 DPFvCHxRDQK4+Mc2QMy7IBUSf5HjkTjEQPSMjV/VpAcEmMtnjuPqXNCloVYyAK6fqU
+	 qErzOeo2HHErGox/8maRe/4DiNSlfXMO/woseQri91k++DciByjTKNswmtOUiirZWt
+	 EpeJnWQEJISpw==
 Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id E412EE32714;
-	Mon, 13 Nov 2023 03:23:54 +0000 (UTC)
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 0AB63E32712;
+	Mon, 13 Nov 2023 03:42:37 +0000 (UTC)
 MIME-Version: 1.0
 Subject: Re: [PATCH 00/49] iio: Convert to platform remove callback returning void
 From: patchwork-bot+chrome-platform@kernel.org
-Message-Id: <169984583492.27851.676337627622488866.git-patchwork-notify@kernel.org>
-Date: Mon, 13 Nov 2023 03:23:54 +0000
+Message-Id: <169984695702.27851.17182787496510678882.git-patchwork-notify@kernel.org>
+Date: Mon, 13 Nov 2023 03:42:37 +0000
 References: <20230919174931.1417681-1-u.kleine-koenig@pengutronix.de>
 In-Reply-To: <20230919174931.1417681-1-u.kleine-koenig@pengutronix.de>
 To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig_=3Cu=2Ekleine-koenig=40pengutronix=2Ede=3E?=@ci.codeaurora.org
@@ -86,7 +86,7 @@ Cc: jic23@kernel.org, jikos@kernel.org, srinivas.pandruvada@linux.intel.com,
  vz@mleia.com, ktsai@capellamicro.com, bleung@chromium.org,
  groeck@chromium.org, chrome-platform@lists.linux.dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231112_192358_424877_060CD821 
+X-CRM114-CacheID: sfid-20231112_194241_239954_066544D4 
 X-CRM114-Status: UNSURE (   9.26  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -107,7 +107,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hello:
 
-This patch was applied to chrome-platform/linux.git (for-kernelci)
+This patch was applied to chrome-platform/linux.git (for-next)
 by Jonathan Cameron <Jonathan.Cameron@huawei.com>:
 
 On Tue, 19 Sep 2023 19:48:42 +0200 you wrote:
