@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA41FC4167D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Nov 2023 10:15:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53E20C4332F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Nov 2023 10:15:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PX7ETNInpp93jknmuURxl9Dt6IJNf0QOA9Aho3M5iow=; b=Lmva10pgzxlHyP
-	TcM5YGClrKb1NS/qquDdwTTuuAhelK3alrqqLZSiqO0Cqc2iCi5+uzO/K1mKHxA7x7ySDBKIx0o1I
-	QSxKthSnjIFTa2yTdXTJhqWX6YVxRHvnwKrbdiHdCGFgRT0l7GnvRqcSubA+mQO2rn0R7ZyQm4I7h
-	9CNlIONkajOXbld5qLwPFTNzb+sKxEu9RJA40UCrXdTJ14uF4qqReTEZm1FhYqzYmtMXV20ltSUHs
-	k5ts2riTg280t3zYZJc5ZpylnY6QCm1IV3lIx54llcS+LAi0xoBD78WcU+XS2hHs95B4MkBAGTH/d
-	1zxTPeNuCh5/uLFmMOww==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=0bMuiTqjJ+4L+badHa2wbOSftMWhS1Ic+rVZ5NnRJGs=; b=TQIiT7dlAgd3RX
+	eootgzX230Z/RkAXvc2QhloLZe+UaGyS2MlOWbh2KHsldVVFA53x4ECoQwmaPCa6jB/pn91CJ1a7R
+	PqsJW7kP82gET2ruKp8xWhd9PUAgtitc44wjiozPU0pg5yCaDj/gLdZlqZJgVkbKos7RNGiZEQqQD
+	PqiT1643ojpq2W7s8RFw1u52yKxV5gtsqWwNrL19GnXfuoJjmP9Sz/uLVCu5vPbfuL9XqjVicpRTM
+	safIr0feZvKT0JY8exaSCDFKEKq/YHN7SjnBgjoort6PRaj1E7Riy6f0zzhsbmbJjb+7HivxI946Q
+	GwdsGJaqGQ259eT72xAQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r2qRe-00FYjU-0C;
-	Tue, 14 Nov 2023 10:14:58 +0000
+	id 1r2qRb-00FYiI-17;
+	Tue, 14 Nov 2023 10:14:55 +0000
 Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r2qRY-00FYgJ-2g
+	id 1r2qRY-00FYgD-01
 	for linux-amlogic@lists.infradead.org;
-	Tue, 14 Nov 2023 10:14:55 +0000
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-32f9268bf8cso3314406f8f.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 14 Nov 2023 02:14:52 -0800 (PST)
+	Tue, 14 Nov 2023 10:14:53 +0000
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-32da7ac5c4fso3423708f8f.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 14 Nov 2023 02:14:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699956891; x=1700561691; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Usa3VquYxAPDycVqQKpd67nWp9ekHUYyeEdbo8Ek7jY=;
-        b=YON+Bk3IY/Xl0Ii9ZOSLpA//eBcLLOOFLQUaCg7QWzJsVsJP7Tw38lvpASZFCA7IvH
-         QNbzidQIUyrYGLU+P6pfEilvD6HiCTcOxVt4GJWLEgM+d8bnpmxS7qjL1X1e3XtwF3PI
-         3S2HWk1wuGwq3gPnnhGh6gb/Wffb+qt+aT70ruy3sLDu7LsAB4Cm+8h3jpHlNOZNBn+r
-         U8rDmXsHsKpSQs01yAQGQotkXLaNSTGAM867S92j/3zULmCtUYL7CQn5aSUCs+0hEAqB
-         sp3hy0m1cEX45h8A6OClJNbU7JnP7ToksRSF0mB3hu7B2moxndoyL7Te4doXdd3zIml+
-         NPvw==
+        d=linaro.org; s=google; t=1699956889; x=1700561689; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lP4pwuRhYTWCh+6fGIMGYIpMuMAg/mVMsSJit6b5kb8=;
+        b=zUYzpTtECsvIybmiXh9bOERaAC7vvFUnKQBPkGwsUx5Rf+QeBu7QUleOrCX6/F+eDw
+         MRm+irBKmaqQs8MVaYJE6h1OvkUXFHs+hftCJqpJJOjtPz2G8MJDu3x227Uru4gOcS/O
+         t99yDDGZ1PRo3VD08x5tE84K/dbDgdhzCVgDg42ko/yGoTp5YzG95M4ZsokAcA3ExDwa
+         HaZbQwQwgbMoAQODV2jZs+J68u41bZwvHDRGPEyXKZfXLKJrwCCuPboS9koWSRQsWX46
+         HmK/Km9RGEiioyguMur1IeExRIoXivVLIkBu7mG8O2zx/14Etkn6ttW+Fi5/ZJfHsxpH
+         L2mQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699956891; x=1700561691;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Usa3VquYxAPDycVqQKpd67nWp9ekHUYyeEdbo8Ek7jY=;
-        b=gCrcxSKBN+d9Bo6HYvX097+Gs2tZqWsgwNlSodipcqGrmYmndB2Q2dePeqz5fI9+li
-         TedGgnhcHzJSmh572r2q9wb9szNsoYOKPerGKM1NovYP+BXDzISPZ3Rvk52eaPfli192
-         IlTUFHOq1F/g/Jr+djvtjJDBAqtgu/lieZTMM/ZkdOqMqes5EkY9Mj2jhVBjoZQBxvy9
-         gBDqXR+7cAcCJXgVPNxFLTLx+UBp5+wONcR7MdgwMgNoOstp4xgmu2FqVmY+JmVX1nMX
-         wYEMYWXwIEpmJLx/IXyjfmLtItu77L3D3JVuacRAXH5I4KK6MaCuG6g2posN1OcpLWM+
-         TqFA==
-X-Gm-Message-State: AOJu0YwKteBZJ8lkJN1XGp+VYZqBZlAUy9v5lEWPodJcMzo/ZAopdVpj
-	gBDuvECrps/VXp56wH//S0n64g==
-X-Google-Smtp-Source: AGHT+IEzVZMK67kMUGREpJZSlwqk/XFJZSzmj5Cu4UNpZkY1pqqaaiRElgez6kW52TTfdqVYtkAZjg==
-X-Received: by 2002:a05:6000:1565:b0:32f:7ebe:3e5a with SMTP id 5-20020a056000156500b0032f7ebe3e5amr7525048wrz.50.1699956891208;
-        Tue, 14 Nov 2023 02:14:51 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699956889; x=1700561689;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lP4pwuRhYTWCh+6fGIMGYIpMuMAg/mVMsSJit6b5kb8=;
+        b=Gkyi02R7TgCzwsAgWBHAGT1jno2B0/gyb5+TwYYaPTp9jOLi7sAVm9fyYzu3EhziFV
+         97mwxkklTbLp4bnrKgQYe3XOfu22ZAJNuugh3BdAP0lnrkET+6sYp09zX3vagEvvcz+w
+         /hHJ96ASDJy63XuiUPIlL6P2X13/oCyYztpS0TbFNcNbvorHKoJEn+luYr1r/IKO4v/i
+         6IW44Zztf/DQHnR+/YlpOoGE6Ez1gOfVhYAUDXALq5q7o/iEq3uScyE7IBQnvyHoh9od
+         /VRR3V8xboQaWQVFDS3e9kzGBYzTfE1+RRA87euetGY1AcpHSM5wcCZSsxAib1SD+sKy
+         o9/A==
+X-Gm-Message-State: AOJu0YzwyLd4Y5eOldGTdBb/vojI8ijC52YBHkQrGgBXMPvcRqvONLyI
+	AO8D5JAwQWwKu2FTRrJhh2KAYA==
+X-Google-Smtp-Source: AGHT+IGjhN6RX4rBNlnSxxeTha7OzGItl9ZV7rvJ03XS0hXAK5QeQ/02Q4ADuftfGRyfvnxSbKrlPw==
+X-Received: by 2002:a5d:4dcd:0:b0:32d:aabf:1db3 with SMTP id f13-20020a5d4dcd000000b0032daabf1db3mr6480680wru.24.1699956889056;
+        Tue, 14 Nov 2023 02:14:49 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id n2-20020a5d4202000000b0032d886039easm7335585wrq.14.2023.11.14.02.14.50
+        by smtp.gmail.com with ESMTPSA id n2-20020a5d4202000000b0032d886039easm7335585wrq.14.2023.11.14.02.14.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Nov 2023 02:14:50 -0800 (PST)
+        Tue, 14 Nov 2023 02:14:48 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Tue, 14 Nov 2023 11:14:44 +0100
-Subject: [PATCH 2/3] clk: meson: g12a: add MIPI ISP clocks
+Subject: [PATCH 0/3] clk: meson: add MIPI ISP & CSI PHY clocks
+Date: Tue, 14 Nov 2023 11:14:42 +0100
+Message-Id: <20231114-topic-amlogic-upstream-isp-clocks-v1-0-223958791501@linaro.org>
 MIME-Version: 1.0
-Message-Id: <20231114-topic-amlogic-upstream-isp-clocks-v1-2-223958791501@linaro.org>
-References: <20231114-topic-amlogic-upstream-isp-clocks-v1-0-223958791501@linaro.org>
-In-Reply-To: <20231114-topic-amlogic-upstream-isp-clocks-v1-0-223958791501@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAJJIU2UC/x2NQQqDMBAAvyJ7dsEkbal+RTws6WqXqgnZKIL4d
+ 0NPw1xmTlBOwgpddULiXVTCWsTUFfgvrROjfIqDbawzxjwwhygeaZnDVLhFzYlpQdGIfg7+p0h
+ k38+WXs6NDZROTDzK8X/0w3XdoJthzHMAAAA=
 To: Michael Turquette <mturquette@baylibre.com>, 
  Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
@@ -80,25 +80,26 @@ Cc: Daniel Scally <dan.scally@ideasonboard.com>, linux-clk@vger.kernel.org,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3403;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=904;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=dZke1iq4FAITvgVMIUDhLoZap1P+Z6ah4DJyhujVIds=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlU0iXlwUukpCz/mpc05k9GDypuFrhFLdOZG5tKQ+r
- wnMvS0yJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZVNIlwAKCRB33NvayMhJ0cx7D/
- 9z5wa9btnYn9c2UrV+P9UhiZazbpjGG9COykZ17lwepwf4InMJLNjO+5SpCbzT9BV8I+Gr6RdoUozQ
- P2EbVQKscHgusKvlYKyNza3n/6DZ2VnW33BP40nGIs0Ji1cDCUqSQjKdUKWXgniTL++Mc70l0fM9Ar
- LfDQ0VJCEVRUaIMU5mCIu7vc0J67V7ebMuM//zvkGkeq3dGGq22yC/1/r3LJuaRBOQXF4Nm7+tKCc9
- YB/jttKphPf0lHvaeJoKdidTON6c7okJUOLTPTWHqTnkTsYHtosGPJ0R3SJsG8GhZ2CH/KFlJgsjdN
- gTQ8eJJ7aUwYoh2lVlU8QgNr/urUXcsgrR9e1hgVuneNdkFtrprpwI7/S3Vpfg0jQ5J4SNAtgaohr1
- vIUw/7WDyctSoRFZF1FSOQHFLEzzTwVQDILOBAAfZTIKs4ISy/RXXk3FL7y09nYDAO2Q1LKJ9Yzn7h
- YMHIpVnTcyQ9RiB2SsCvCb09SmQ52nF263gMdC6nX/fDyIHqZmHziALJSfaoLME98At8AK2LzaKiKO
- 0zyHJCHYBgYxqJPuBW8oyoJO4nRU8+UaUo03HQa+dlVVUkSx8oI/nnib35TcwImCuuLUtfxTzDc5Vo
- VP2M+eyZKiVPxhPysDcyqh3ie419ejLZuJvW5FDAbt37/md2GLj+0cDa+xdw==
+ bh=PwjQ/DLZqY7Bxq2AfQoR8M0lM8zWRFZSzmKQH+USBu0=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlU0iWvHW+Rz3HPpK51JzL56QxmMmGAg9A3MUNWjOQ
+ APjxiOCJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZVNIlgAKCRB33NvayMhJ0bXRD/
+ 4l5mSNoYLtkeq1lLfw7E9Ryvnyt5Tg3UaBv10vi18Bi7AZYtmC2+stFD0tdIY4km6Yy8lQlte0W30z
+ Z0EoD2SavQ7+Z39dhPXQYeufPMBhDiAvXAIokLI7AZ78Y31GRSK1J26AOkRHrYualoa+MCJo6zpKTU
+ AcBHwUpT+QYIHue2dC/XnNMB5xKeHfMF245eGfcAE+CaCKG46BmdNwcgRn+36esq7l398kxAug+U8f
+ /m2gRnXEtpktrflsqrnjm0c3ZCInq+nAVA2bMydBBslDs3NjTnzoxFIbL4n4ZJyqn9lK8KDz7uflql
+ l1qA4uC6rbi1FSXF4aUGp5JO7U9fM9IVAPQ8epuIus+DT+OkuDhq+qkF9vSGNplKBvm6RM8qb2/r26
+ PwNKxDJMrV8foZE8utygOT8hclPcJMbblh3sF6aLklWIvXSxjYVN4+fr5Cj43A26dSICZJG2gomlN7
+ Z0z70S72g6lSjcBwr5vmVOe4US+MJitfAGaw+rlA9NZawz1+PzNLoq2sFxhWe/IwCWp+21Rk+H5S/4
+ G4wQAtE1H19tA49SyQ/YgFXPEfhkt7XEdP+F1kgyEEK4mww2VlTFYMvx+xcYfWzYi+1D3xOmu37EAC
+ XqzReZ3CuG/YJhJl+l3SJq80dVDcgvIub+ItE2KqS8Ml44txcX63tNuv4RNw==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231114_021452_879167_65B20275 
-X-CRM114-Status: GOOD (  11.89  )
+X-CRM114-CacheID: sfid-20231114_021452_192965_47503E94 
+X-CRM114-Status: UNSURE (   5.97  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,121 +116,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the MIPI ISP gate, divider and mux used to feed the MIPI CSI ISP
-(Image Signal Processor) IP on the Amlogic G12B SoC.
+Add MIPI ISP & CSI PHY clock bindings and entries for
+the Amlogic G12B SoC.
+
+Based on the CTS_ENCL clock bindings patch at [1]
+
+[1] https://lore.kernel.org/all/20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-1-81e4aeeda193@linaro.org/
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/clk/meson/g12a.c | 66 ++++++++++++++++++++++++++++++++++++++++++++++++
- drivers/clk/meson/g12a.h |  1 +
- 2 files changed, 67 insertions(+)
+Neil Armstrong (3):
+      dt-bindings: clock: g12a-clkc: add MIPI ISP & CSI PHY clock ids
+      clk: meson: g12a: add MIPI ISP clocks
+      clk: meson: g12a: add CSI & ISP gates clocks
 
-diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-index f373a8d48b1d..a8312f29d1cc 100644
---- a/drivers/clk/meson/g12a.c
-+++ b/drivers/clk/meson/g12a.c
-@@ -3722,6 +3722,66 @@ static struct clk_regmap g12a_mipi_dsi_pxclk = {
- 	},
- };
- 
-+/* MIPI ISP Clocks */
-+
-+static const struct clk_parent_data g12b_mipi_isp_parent_data[] = {
-+	{ .fw_name = "xtal", },
-+	{ .hw = &g12a_gp0_pll.hw },
-+	{ .hw = &g12a_hifi_pll.hw },
-+	{ .hw = &g12a_fclk_div2p5.hw },
-+	{ .hw = &g12a_fclk_div3.hw },
-+	{ .hw = &g12a_fclk_div4.hw },
-+	{ .hw = &g12a_fclk_div5.hw },
-+	{ .hw = &g12a_fclk_div7.hw },
-+};
-+
-+static struct clk_regmap g12b_mipi_isp_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_ISP_CLK_CNTL,
-+		.mask = 7,
-+		.shift = 9,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mipi_isp_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = g12b_mipi_isp_parent_data,
-+		.num_parents = ARRAY_SIZE(g12b_mipi_isp_parent_data),
-+	},
-+};
-+
-+static struct clk_regmap g12b_mipi_isp_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_ISP_CLK_CNTL,
-+		.shift = 0,
-+		.width = 7,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mipi_isp_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&g12b_mipi_isp_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12b_mipi_isp = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_ISP_CLK_CNTL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "mipi_isp",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&g12b_mipi_isp_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
- /* HDMI Clocks */
- 
- static const struct clk_parent_data g12a_hdmi_parent_data[] = {
-@@ -4729,6 +4789,9 @@ static struct clk_hw *g12b_hw_clks[] = {
- 	[CLKID_MIPI_DSI_PXCLK_SEL]	= &g12a_mipi_dsi_pxclk_sel.hw,
- 	[CLKID_MIPI_DSI_PXCLK_DIV]	= &g12a_mipi_dsi_pxclk_div.hw,
- 	[CLKID_MIPI_DSI_PXCLK]		= &g12a_mipi_dsi_pxclk.hw,
-+	[CLKID_MIPI_ISP_SEL]		= &g12b_mipi_isp_sel.hw,
-+	[CLKID_MIPI_ISP_DIV]		= &g12b_mipi_isp_div.hw,
-+	[CLKID_MIPI_ISP]		= &g12b_mipi_isp.hw,
- };
- 
- static struct clk_hw *sm1_hw_clks[] = {
-@@ -5221,6 +5284,9 @@ static struct clk_regmap *const g12a_clk_regmaps[] = {
- 	&g12a_mipi_dsi_pxclk_sel,
- 	&g12a_mipi_dsi_pxclk_div,
- 	&g12a_mipi_dsi_pxclk,
-+	&g12b_mipi_isp_sel,
-+	&g12b_mipi_isp_div,
-+	&g12b_mipi_isp,
- };
- 
- static const struct reg_sequence g12a_init_regs[] = {
-diff --git a/drivers/clk/meson/g12a.h b/drivers/clk/meson/g12a.h
-index f11ee3c59849..27df99c4565a 100644
---- a/drivers/clk/meson/g12a.h
-+++ b/drivers/clk/meson/g12a.h
-@@ -70,6 +70,7 @@
- #define HHI_MALI_CLK_CNTL		0x1b0
- #define HHI_VPU_CLKC_CNTL		0x1b4
- #define HHI_VPU_CLK_CNTL		0x1bC
-+#define HHI_ISP_CLK_CNTL		0x1C0
- #define HHI_NNA_CLK_CNTL		0x1C8
- #define HHI_HDMI_CLK_CNTL		0x1CC
- #define HHI_VDEC_CLK_CNTL		0x1E0
+ drivers/clk/meson/g12a.c              | 75 +++++++++++++++++++++++++++++++++++
+ drivers/clk/meson/g12a.h              |  1 +
+ include/dt-bindings/clock/g12a-clkc.h |  6 +++
+ 3 files changed, 82 insertions(+)
+---
+base-commit: 71ea46af56818a97cb5ea5d6554a0f10ea624d6d
+change-id: 20231114-topic-amlogic-upstream-isp-clocks-aa2859a633f0
 
+Best regards,
 -- 
-2.34.1
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
 _______________________________________________
