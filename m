@@ -4,71 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F309AC4332F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Nov 2023 10:20:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A47FBC4332F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Nov 2023 10:20:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
-	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=kXBN+5B772ItcMKpjMO2dM+qllWllKiaYzh0zJW72rY=; b=GSjzcFMA5LVOSk
-	7CxYgTQwBxPpc0qmaocFjPS+frTzDvb5jd3VDHde2YKAEE5cxOThpY0rPKp1vGMvAwe3R8yzH8slm
-	yd2S8+oB4dtqhEXD8Tw9N4+DQFQ/jEAp1Sj900ZvbNcF5+0FdRpICsGNZYk4A794YFOjDJXhHkkBk
-	3/n8BdCTqf0JaNcwm3sw/SqzNo1xnX3iQcEhCL7RRo7i4DmFobRyK0qPO6UY8qa76vFKx0DZKfHyk
-	b84aY5W36hj5NWosW1xA6tpwSEG3Qq1ifdL36QrKchH6hjapI7pRfAAzIvVB642m06lYguSV7EIjS
-	cNM4NVHR+cr1kQ5JIBgA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=9BrOhTTMiPDRdgCp+uukGwukf9JFr3VkiYnO9IuZmwA=; b=aSJcn/gu21lua4
+	0JQMejByeyMCSljkRnOkegyT3XMd1ZlxEgjNvE2LGvUtm9UFlO+j5ydHZcNJSD9ZZ4hcxQCnk8z4K
+	slhvhcdj/1nd5/3zRa8Ws5Lyv/19ALObIs4pFcT0Zr3iN7+qZRaF2GGny9rAT4xaYPZBGPXtQ1mIh
+	/cN7m+C77Q01MgAwtzP+rM5SaT3kG3vQIVBjTPPTCV+dgTghq+HTfBlutdZodVtWmuGvFNPQZKqzo
+	eV12UQir7o8kas7sEtqI918YCL4s3tKSywUTLmUKx3eNum8NWigmfkMq3Ib/IOzerbqANI0QkfCU0
+	VPvpa6oOS+7ZacTim8Rg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r2qWX-00FZMo-0b;
-	Tue, 14 Nov 2023 10:20:01 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1r2qWb-00FZOU-2l;
+	Tue, 14 Nov 2023 10:20:05 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r2qWT-00FZKm-3B
+	id 1r2qWU-00FZKs-1g
 	for linux-amlogic@lists.infradead.org;
-	Tue, 14 Nov 2023 10:19:59 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-32da7ac5c4fso3427216f8f.1
+	Tue, 14 Nov 2023 10:20:00 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-32daeed7771so3088509f8f.3
         for <linux-amlogic@lists.infradead.org>; Tue, 14 Nov 2023 02:19:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1699957195; x=1700561995; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2Y3H40OKPDCFfv2becLxXj86Eb8PKEENf7u8qtMu42o=;
-        b=nuzCh+q4eG4oYnXoFbkgvm9Y8j4wcyqj+Bu055fzLsuMrpw01xvXrdDTqDRyRbnJ/X
-         loWwDjvGsNWmILFoLhukFdbOzduVyfFBax32QPn979uBKaXT+KyWxUVVCRkAIh7y23Db
-         9zLGwLuu23yE7elTC0WgoWs+deo62t6ApsQ9VYlSvb2v/nbRuPtJG3KWWcv5ItQ/R8V/
-         2MSlN4Fei6kp0uM7wErx/FfsigbjWmVVjGkj+rpvgcaA45/8hgWa9qgpeduvloryVL1X
-         jlACjxHu/pZB8EmMqRiVjfyanfix8FwiEvLodYMCXLE3NqcalqWJ/6dKyBOVQEKNr67T
-         6w1A==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=D1QWKo5v1x3RldbHoETv2ObEXLCGaOLMr/Qq6NkPTAw=;
+        b=pXMldODOmuiwfrJKzUdpJ+InM9L2a/vJaWsG5ClFpcSr8Enq25h5zfF/q62K/e7lQV
+         1pYyLfBmzjjmLwaWNdfT92yeb/EbcYLoVLdM+eyimxKk0+gnaoOA4pNXWKuSRJpdCW/7
+         ZoRUhhrOeMX7JCOCyhYqSy1AmgYOITbDAA6hbe5pXFH2ARPy4Im/K1ngDPTOpXy3DH5O
+         yhyhcBZIrwQcovI4cU6ghqAWYUDqrCXEiRRGvhuhGGPVp2uEb52aK3VyrF/i3GfKktiG
+         URwDz3blVNdPCKI4YZO+ptVI/KMliSX4ktyFuoihyd+jNRlztLDcyksZMgeql122YYMs
+         d9dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1699957195; x=1700561995;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2Y3H40OKPDCFfv2becLxXj86Eb8PKEENf7u8qtMu42o=;
-        b=QUfyZFPDfGuEvmMaBIBDu+2BOSJm2Q5xt0nYaUTGKaWcfn81E8Tn3mqLs8YpZnyQXF
-         eij7nbllGcwvscKMY39QnZf0HOxQlt0w5Bzhuw4R/dPncbj+cCjR8x4GHCwPDIME3xxO
-         JPFSLxhofe5dNjIBRddiNDWFwR9oZKRTKB1ymCGtZJAbwpum/5120tIkAv8pwxM+MPYg
-         7I7D3TuKcBNKVxhlc2qDoUIDykEBgSfE/eaM9zozYWnBy9Iks5jGgbm/qOaPKje50Y+T
-         Oe745AQjW11yMJ5orthOkX/HuLKvTXKe4JWWbCXEPkO7FMQinbb7T08bp37jfzLbm2kD
-         it+g==
-X-Gm-Message-State: AOJu0Yyy2yakwMG4t/+ddp4IWyfNDX52XdMEIbfqvSh+Ffc5gfUIpKUA
-	jZbxTv+H3pUSRCZrL9fsexh8FA==
-X-Google-Smtp-Source: AGHT+IGNE+czp6sJVuSZ6rbZ4X7ydJSAOjDZv3m+fSTHzBughjwpl/XOaFN/IVKp/JQD37HA6m0OKg==
-X-Received: by 2002:a05:6000:1547:b0:32d:939d:c7cf with SMTP id 7-20020a056000154700b0032d939dc7cfmr5789194wry.52.1699957194709;
-        Tue, 14 Nov 2023 02:19:54 -0800 (PST)
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=D1QWKo5v1x3RldbHoETv2ObEXLCGaOLMr/Qq6NkPTAw=;
+        b=oLqRePwF7RX1QLehzun576PUwD1mZc8jxyIFhe2XMW9thWnh/QsfLjKrMZ01pL12v8
+         4lLJ6GJvql2NdEaQ4ZUPPx5ooeA0xTXy0Bp8O2kMdIoUP6VlvcuubtBb69sKlSF+Fj4u
+         A7OnEQxiB3D4kDqtHTfs9x4A5sbM3MDtzuWx34aGaglqy0dWk7tcV9lqCjVeAQjg4/K8
+         xNvqa4TMxqRq0UxevnsGJoxR4iRCmL7rxLq7bfly89BGdqgV6YK2Zl4IRCgIEKIIX+en
+         qT9MQXKUL9EhLNDA/9E2PWWOKGNeFlaOQeEUgrk5jU25OGj12PGnYH/HPLO3R31lWebZ
+         zR+w==
+X-Gm-Message-State: AOJu0YwP57sF3TBYkwLAiUBZWYm+KRlkMMjWJmB57XHlyoMt41RXkQ+J
+	MMUeqKVWANx8Ctf0im/79iEZhw==
+X-Google-Smtp-Source: AGHT+IEtRy6/1TJjxurvCCcvkAtUDZaID1wnEiQdKSWVWSMY+EUI5ohY3QFVq9O366Nao94h1NMqJw==
+X-Received: by 2002:a05:6000:bce:b0:324:8239:2873 with SMTP id dm14-20020a0560000bce00b0032482392873mr5689990wrb.37.1699957195651;
+        Tue, 14 Nov 2023 02:19:55 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id v9-20020a5d43c9000000b0032da022855fsm7419675wrr.111.2023.11.14.02.19.53
+        by smtp.gmail.com with ESMTPSA id v9-20020a5d43c9000000b0032da022855fsm7419675wrr.111.2023.11.14.02.19.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Nov 2023 02:19:54 -0800 (PST)
+        Tue, 14 Nov 2023 02:19:55 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH 0/2] pmdomain: amlogic: meson-ee-pwrc: add ISP power domain
-Date: Tue, 14 Nov 2023 11:19:49 +0100
-Message-Id: <20231114-topic-amlogic-upstream-isp-pmdomain-v1-0-f01e6fca67a0@linaro.org>
+Date: Tue, 14 Nov 2023 11:19:50 +0100
+Subject: [PATCH 1/2] dt-bindings: power: meson-g12a-power: document ISP
+ power domain
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAMVJU2UC/x2NQQqDMBAAvyJ77oIbtdJ+pfQQdGMXTLJkbSmIf
- zd4GuYys4NxETZ4NjsU/olJTlXo1sD08WlhlLk6uNZ1RNTjllUm9HHNS+VXbSvsI4opapxz9JI
- wjEPrhjuFBxHUkhYO8r8ur/dxnLdsQI51AAAA
+Message-Id: <20231114-topic-amlogic-upstream-isp-pmdomain-v1-1-f01e6fca67a0@linaro.org>
+References: <20231114-topic-amlogic-upstream-isp-pmdomain-v1-0-f01e6fca67a0@linaro.org>
+In-Reply-To: <20231114-topic-amlogic-upstream-isp-pmdomain-v1-0-f01e6fca67a0@linaro.org>
 To: Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
@@ -80,25 +81,25 @@ Cc: Daniel Scally <dan.scally@ideasonboard.com>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=699;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=643;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=hayA/yrjAypiR/MWtBGlEGZQq6NxUCOHYn4lewItjbw=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlU0nIseqnNcBacgt3SvDuVxdTf2VWS+Xbpk768f36
- QchoRuyJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZVNJyAAKCRB33NvayMhJ0VjZEA
- DLwjW/XFbr9zzHFU7tpFiJ9W6tKchyMNqr9Gpcwv/ZfJnCMjpu+2svRAx/mOQYfkIa7giyxJimcykR
- BiV+dWCXLeN6JnddPMQ+xUjvJeFUZy6NjaoQuLHzOrUxoziM/BUF51RRdhsLbCldYQRLi+UX7uxEnQ
- bXsrX7jbRN6rvlkIAQSishqzUlqqEiHC1HLgzlmxKR9ko1NR2DY7v+07mPn9TH1DyEqoHfQqka5ocJ
- tvNNg71f9BigMkVqDh1A27Kv6c4v3E6f0hTTYWSyD4G4fW+rFOboI5z3ZG8kNNl9rDq/PhXx1/3BJC
- PGwZyqZ6i6q5tv+EE35OCGPyViry+Al01U5y4GICcm5LK0UaWoj7v3W7zBZFIGf3Rz34Zhyz2VxQFF
- k/feHqyaKtyvmpYMQXn8tUOPZbx02b3cv4STR9KYGgROS8RrZdCMahOab8K+1p/BjDlfkiNJkS+rNe
- AhwfbyNoSn4F/Ng/PdFWpRkqmhHmnod3fjJccyVD8zQj7K00VB7AtYP8Qsz7yhQMI8eUvv9n1tTeku
- uc5eviHa1Pi61IQBUp/uOAZ7ep5d4NVPgtZWt5XqrZHsZe86wta4jHkfx7AD3lER9hE7Dn8uax3CkG
- avTZ2G+9km6odo/amaOXE0EZ+fsTi0qw5/5mQqVIAFrhonVf8lpTMwS22xFQ==
+ bh=TxQCQp8KexETWz0DJ5Ct9muX5KYY3F1pMZr7p8jc1eY=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlU0nJN8WGk5SnAfQY6NQMuQ9Y2QaJiEjnrNK28CTN
+ 3KX/EhuJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZVNJyQAKCRB33NvayMhJ0c3aEA
+ Cojhb5oA95QAfgsCKWFyi0lXKqq0xsdU+OqBoQahY5LJYvKMov4oy1eWZO8JgU4DbIzXZMXKKv8Fvt
+ occrcqxosWG/hDs5U5qEdWM5N6PoLVgYtofaqm/7GD9Zsm4GRpqIbFgkFZhXAt+VifzXwgYf4STkMM
+ JPYa9O+itDHAOkLyN+kT4Gf9qQunbGaqNQTMs6RMM3Mb6ka6YYRuOm2qopuEv31DE86+U5Cin5TpbM
+ xCUob2ZbP5bL9ue2UcHBsFQ7wJ1FKSByJcEiN0pd8TFWZH2zRLkBWORx1knQ2tObqCzNiNdGJucSS5
+ i397W51sjErzBVTnBoHLq8Qs6PA8Rimrqdw0LwP6ED+b79yCiyhsjjpRhmiPMO5Wr+iXc7rjWf0i5e
+ 00UhsuZG8ruOVONe8zi0kr9EdG3pvwdiJ1Mzfg2U/YRgfXkBGotX0w5ww2xnaeUHiw5NGRnd0BXUyB
+ 2azZ3kOSKNtAxfd90b5GOoDFmUWCRB2g/LStbmpM2Qj4c7MHaA3ItuWkxR2Og6cnAb2ljJk9h0+bpU
+ ocgbE9Kb5Xf6R2wytOISOQ7JuzLBW69l91xmGTkCdPVjTQfm4vze8RE/sxl9NI85H4dHaG0kYW+EE7
+ V9e26rxwkJdHD74bj0B0B0rXhA79oQ1GRpXDyQPn0YWJJKEbSeYmD+Tu+tvQ==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231114_021958_031185_2F12CC28 
-X-CRM114-Status: UNSURE (   6.50  )
+X-CRM114-CacheID: sfid-20231114_021958_600333_A41142AB 
+X-CRM114-Status: UNSURE (   7.99  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -116,25 +117,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add MIPI ISP power domain bindings and entries for the ISP power domain
-found in the Amlogic G12B SoC.
+Add MIPI ISP power domain ID to the G12A Power domains bindings header
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
-Neil Armstrong (2):
-      dt-bindings: power: meson-g12a-power: document ISP power domain
-      pmdomain: amlogic: meson-ee-pwrc: add support for G12A ISP power domain
+ include/dt-bindings/power/meson-g12a-power.h | 1 +
+ 1 file changed, 1 insertion(+)
 
- drivers/pmdomain/amlogic/meson-ee-pwrc.c     | 16 ++++++++++++++++
- include/dt-bindings/power/meson-g12a-power.h |  1 +
- 2 files changed, 17 insertions(+)
----
-base-commit: 5cd631a52568a18b12fd2563418985c8cb63e4b0
-change-id: 20231114-topic-amlogic-upstream-isp-pmdomain-f7502561f911
+diff --git a/include/dt-bindings/power/meson-g12a-power.h b/include/dt-bindings/power/meson-g12a-power.h
+index 44ec0c50e340..01fd0ac4dd08 100644
+--- a/include/dt-bindings/power/meson-g12a-power.h
++++ b/include/dt-bindings/power/meson-g12a-power.h
+@@ -10,5 +10,6 @@
+ #define PWRC_G12A_VPU_ID		0
+ #define PWRC_G12A_ETH_ID		1
+ #define PWRC_G12A_NNA_ID		2
++#define PWRC_G12A_ISP_ID		3
+ 
+ #endif
 
-Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+2.34.1
 
 
 _______________________________________________
