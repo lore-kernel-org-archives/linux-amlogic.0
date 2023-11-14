@@ -4,55 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 515B5C4167B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Nov 2023 11:31:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C0DBC072A2
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Nov 2023 11:45:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DdovNa05ARcXAJFxYm7HuJxLFyQifdQX9OMC71Hb6Y8=; b=oHeyZb0lWtMXUE
-	Cj09gJ7XHW1GIdO8XGb0JMGlTSJmeIYaSzurGjoYcKLUHMoG2dIAu28uIfnGll3ogH17eC7cLLuSx
-	CjxYRvDgKCiuhUpy0QgzCcb85i0ppXncabD7mmvJRP0Ln5ybIiR+D5zEcLyMD4j5PsDCtD7Pq6qQ0
-	ii8JdJt/ey0lnm4cY1XzeD17BKy29Zjx5l7iBsvhUf+69GhPwDeEh7FihXDt/S1G3xmaMyxQMlQkX
-	+hasobVPMADgOAeAhI442O/mm9iUbQDBGP9SMqVHwGq9iXkv/FQsuiPGiQ2MtLR447F9pij4N32/P
-	CW8ZPhGiOMaLpRoGrWeA==;
+	List-Owner; bh=MaXLdxR+QRm2Pgifc7mzPeVl28e+D8uwvAXqNdVABWY=; b=sJHl2Yq3T6lqSE
+	CIvNYQHMBFmnEW6AqfBMy/h9pHx8wQicw5S5p5BPSWsN4BNeqnIAJXUPmVfWGqilc1XYTYykC/Y4c
+	laHgaWLYZIm6e8QzVQzhqamMylPyGmUfLrJFUK0YI830h0dl9zVw1r0j5FpWjBBGaMnDFPDPaufH7
+	OnIuBo0/awGFzP0Him4XIaGv1h2TBGUZ9ZEByZtwkpigVdOBffvfdlbJ6MKlyzEZPtU1n19e/ph05
+	gKpMMa7g7Y+tdOkHyKokJcyfdMIdLPXcZSByWhEPe73iPEemQ5VfJI979fBkJK6WoW8ndFegoD62c
+	UAjpqFpuuSAlK0mxIikw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r2rdP-00FhCj-31;
-	Tue, 14 Nov 2023 11:31:11 +0000
+	id 1r2rql-00Folo-2t;
+	Tue, 14 Nov 2023 11:44:59 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r2rdM-00Fh8z-2p;
-	Tue, 14 Nov 2023 11:31:10 +0000
+	id 1r2rqj-00Foiy-0I;
+	Tue, 14 Nov 2023 11:44:58 +0000
 Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4C3C0223;
-	Tue, 14 Nov 2023 12:30:36 +0100 (CET)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C2216223;
+	Tue, 14 Nov 2023 12:44:29 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1699961436;
-	bh=D/0jbozYMCwlMrAuNWlf7SfgWmrEeTz0FjEKIw1e3jU=;
+	s=mail; t=1699962270;
+	bh=nVXLAM6hu4HEohOhi+g/me75tKaN6ccLrhxS53GSTp4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HL4hDVKxolV3Ool3Iu6ciCy2solBhY0zCxMAqX8+DWnEaTp9opxR6mWb1xxA9wjpX
-	 BQOq4ksq9k+Jl2mhI/4PqSV5AhAaNgLZW+BFiQ2wQAg/+XbEMpa6+JZ2w+/P1gaVSA
-	 30OmxDOnptCf3q3fm+LqzE/9onv6undCPCt+UxfI=
-Message-ID: <a5b98150-bd74-4311-af47-4368fda70e05@ideasonboard.com>
-Date: Tue, 14 Nov 2023 11:30:58 +0000
+	b=XAKGdCGXMn7/V5wmK5B8jPgf0bzlcpV+zcKlMKqd8tv5x4ioZfXbSlXacN+ZaOmiA
+	 Nq5q99PQETcM1McfIeF4MAjGfI4R9GW9JDS8tZttyBeTPMqii25EOCyzPEx+SzaWYO
+	 iuOWjd3hYUFNoSq0pMFa4Z5ks2tKcZnnbYa6VI78=
+Message-ID: <d667b74e-faed-44f4-a0c4-959aede16fb8@ideasonboard.com>
+Date: Tue, 14 Nov 2023 11:44:52 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] clk: meson: add MIPI ISP & CSI PHY clocks
+Subject: Re: [PATCH 1/2] dt-bindings: power: meson-g12a-power: document ISP
+ power domain
 Content-Language: en-US
 To: Neil Armstrong <neil.armstrong@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-References: <20231114-topic-amlogic-upstream-isp-clocks-v1-0-223958791501@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20231114-topic-amlogic-upstream-isp-pmdomain-v1-0-f01e6fca67a0@linaro.org>
+ <20231114-topic-amlogic-upstream-isp-pmdomain-v1-1-f01e6fca67a0@linaro.org>
 From: Dan Scally <dan.scally@ideasonboard.com>
 Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
  xsFNBGLydlEBEADa5O2s0AbUguprfvXOQun/0a8y2Vk6BqkQALgeD6KnXSWwaoCULp18etYW
@@ -97,10 +99,10 @@ Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
  yMcoUWrTK0Uz6UzUGKoJVbxmSW/EJLEGoI5p3NWxWtScEVv8mO49gqQdrRIOheZycDmHnItt
  9Qjv00uFhEwv2YfiyGk6iGF2W40s2pH2t6oeuGgmiZ7g6d0MEK8Ql/4zPItvr1c1rpwpXUC1
  u1kQWgtnNjFHX3KiYdqjcZeRBiry1X0zY+4Y24wUU0KsEewJwjhmCKAsju1RpdlPg2kC
-In-Reply-To: <20231114-topic-amlogic-upstream-isp-clocks-v1-0-223958791501@linaro.org>
+In-Reply-To: <20231114-topic-amlogic-upstream-isp-pmdomain-v1-1-f01e6fca67a0@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231114_033109_092866_F036E9A2 
-X-CRM114-Status: GOOD (  10.40  )
+X-CRM114-CacheID: sfid-20231114_034457_289855_111E33F7 
+X-CRM114-Status: GOOD (  11.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,40 +119,33 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil - thanks for sending these!
+Hi Neil
 
-On 14/11/2023 10:14, Neil Armstrong wrote:
-> Add MIPI ISP & CSI PHY clock bindings and entries for
-> the Amlogic G12B SoC.
->
-> Based on the CTS_ENCL clock bindings patch at [1]
->
-> [1] https://lore.kernel.org/all/20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-1-81e4aeeda193@linaro.org/
+On 14/11/2023 10:19, Neil Armstrong wrote:
+> Add MIPI ISP power domain ID to the G12A Power domains bindings header
 >
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
 
-
 Reviewed-by: Daniel Scally <dan.scally@ideasonboard.com>
-
-and
 
 Tested-by: Daniel Scally <dan.scally@ideasonboard.com>
 
-> Neil Armstrong (3):
->        dt-bindings: clock: g12a-clkc: add MIPI ISP & CSI PHY clock ids
->        clk: meson: g12a: add MIPI ISP clocks
->        clk: meson: g12a: add CSI & ISP gates clocks
+>   include/dt-bindings/power/meson-g12a-power.h | 1 +
+>   1 file changed, 1 insertion(+)
 >
->   drivers/clk/meson/g12a.c              | 75 +++++++++++++++++++++++++++++++++++
->   drivers/clk/meson/g12a.h              |  1 +
->   include/dt-bindings/clock/g12a-clkc.h |  6 +++
->   3 files changed, 82 insertions(+)
-> ---
-> base-commit: 71ea46af56818a97cb5ea5d6554a0f10ea624d6d
-> change-id: 20231114-topic-amlogic-upstream-isp-clocks-aa2859a633f0
+> diff --git a/include/dt-bindings/power/meson-g12a-power.h b/include/dt-bindings/power/meson-g12a-power.h
+> index 44ec0c50e340..01fd0ac4dd08 100644
+> --- a/include/dt-bindings/power/meson-g12a-power.h
+> +++ b/include/dt-bindings/power/meson-g12a-power.h
+> @@ -10,5 +10,6 @@
+>   #define PWRC_G12A_VPU_ID		0
+>   #define PWRC_G12A_ETH_ID		1
+>   #define PWRC_G12A_NNA_ID		2
+> +#define PWRC_G12A_ISP_ID		3
+>   
+>   #endif
 >
-> Best regards,
 
 _______________________________________________
 linux-amlogic mailing list
