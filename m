@@ -4,118 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0D5CC4167D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Nov 2023 14:09:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E6C5C4167B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Nov 2023 15:49:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=A3fhj1s9/1nj+t605mqEkN3TqJLGVrDy9kJvijLEXJM=; b=MKdi1/Ul3CDM7cO7M4jdl2ytjb
-	p5qjhqIftUZS5rOzhJ8k0aSTu1hHwMJv/d4PXouL2QhAiKruOokCRFUnZsXtohM5ikFPFrgHibFxF
-	/1pv/8XXc8tRDpFCQSYBwnqwVCgIdPoqVhY65jm54EdyaenfHw1OHT591J+rqKNKeyndJmrOWkuAz
-	UXDZRzHg05PbTM9egwHJSVCSA4GHP70P27Q/BZXRScwi7Fmf7n+litxI5Yw3NypvUowm0LVdj0sOz
-	9RcZtwZ2v9uszfqAkc9Fl4H6FIR+qiz0rs/lEZuQfPZo9a9wKLfQClUkhHfaBV+Pec7GGFpad8aPC
-	abuJE0EA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=L18e50NiJJj+vdQz9i1c9RilQiKkR3ZURpziHG7l2ks=; b=BrsjLI+8hhyek+
+	mQHo7mP+VRpiOoxA59pR1tk/gpLXIcsBdJTbz7UmrGVdPM1Bhnmn9zRVCpMJfSmZBPbkW3VcDc/uB
+	VGoAYtleuUOHvPr2J7i3WieFEu+/1HpX7dhW7QqdjyaJ6Tk6ZfKaZ16dBqFVblZesvUkvP4PTqbPd
+	IksvQfYVDlDcnF7vwr7n1TFzurX7yvUqMc4PvvTeJ/sNziE8PORZaJYwfWHWukHk6H8vZoz6JQvzU
+	9DQRmKsHsebwr9g0SklN3FC1MYrQiHtkneXtJ202uSpascS98OkURlqomOYFfhas+PBN6nFLkZw1l
+	Mg7On84HI1QyMV62oHLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r2u5q-00G8AF-0u;
-	Tue, 14 Nov 2023 14:08:42 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1r2vfH-00GMt6-2t;
+	Tue, 14 Nov 2023 15:49:23 +0000
+Received: from mail-ed1-f48.google.com ([209.85.208.48])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r2u5n-00G88f-0L
-	for linux-amlogic@lists.infradead.org;
-	Tue, 14 Nov 2023 14:08:40 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-408382da7f0so46974585e9.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 14 Nov 2023 06:08:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699970918; x=1700575718; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Oqf6gytLqFb8qEPqoHx08oC5AruJuDr18v95ngS2z6E=;
-        b=ZXxTGGm7Moz7YLI24vk0Y6EOAwwm0+44E+TR51QsDLnDWtaZlCEayN79eoZSXZ/CAO
-         DxLShM8HeZ1IwF0yg/Kt25xOb9T4m7rvs9AMftBdaBlrph/kcateFQ62Y3uqVykZAyu7
-         VSZOGDDoOcC6bqs1pam6yyRIBmLS4PlPKizAToHrTtMZeu/lgvdzBZ5eS2ZFwvxVt/FJ
-         qUM6BFBZxPGZCAI/feLVmaxdOgeiolN+TExHDw1Tepht3FEnUUPj4gaOhmWUwcDjVegG
-         /YO0xy5z830JCOfXaEVyGmfWmYkKFz67by7vjWGXMSOa/3iFt8dl2p4VyfgYfuxg2+C9
-         fKYg==
+	id 1r2vfE-00GMsY-1c;
+	Tue, 14 Nov 2023 15:49:22 +0000
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-54394328f65so8873359a12.3;
+        Tue, 14 Nov 2023 07:49:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699970918; x=1700575718;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Oqf6gytLqFb8qEPqoHx08oC5AruJuDr18v95ngS2z6E=;
-        b=FK5h5w6ofA8DBYioJyfG8xRrhuN60Hesk1Y3k9RYW+QuFIDNiugPkEJE+ls8coPIIv
-         +P1oGGffzi5G9k7O/UfPmJxgwyrjqr69tDtFdPdOb4Q1fcjOR8TeED79uSLsEgzAaiOj
-         qAm+VhjwjjNx3jnbs2kU2vk1moymT745A7w+UjzUfgXev7J/itnNN7bumphHD/IyaznY
-         4Cu4F2CaOfKu5hzpM93jP6fATF1z0ijPvBIqpzf3BIaMMqWsxfXURPwG8Gh4R1YcH170
-         veJppvuH3KjI4htnqWIXkNN775EvnOMuqtasGGPIQslyRg7DBIjGsXbdbVwwqdfA2BMa
-         bLeQ==
-X-Gm-Message-State: AOJu0YxbfjTJN3rCkgR+LaWrhtOcyOqrB5gtlsvHQLLCY9MBocenPTZ7
-	aI7PkZ8lp6XrDs8fGLlQoxg0CQ==
-X-Google-Smtp-Source: AGHT+IFTU2lq4vDw46y+DKgUmMqgoWFvNm96LbGHVmRkHynSA3vr4y39kjkdpLQGvpzK9zKQ5nKYPg==
-X-Received: by 2002:a05:600c:4715:b0:40a:42dd:c82c with SMTP id v21-20020a05600c471500b0040a42ddc82cmr7754829wmo.27.1699970917579;
-        Tue, 14 Nov 2023 06:08:37 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:a90d:d9d5:9399:5adf? ([2a01:e0a:982:cbb0:a90d:d9d5:9399:5adf])
-        by smtp.gmail.com with ESMTPSA id y7-20020a1c4b07000000b003fe1fe56202sm11435423wma.33.2023.11.14.06.08.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Nov 2023 06:08:37 -0800 (PST)
-Message-ID: <c45a3094-501f-408d-9bef-7e634f99185e@linaro.org>
-Date: Tue, 14 Nov 2023 15:08:35 +0100
+        d=1e100.net; s=20230601; t=1699976954; x=1700581754;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8bC0gh5GtET+GY1POn83wCGMR6SSUdpI6TGA9ZU4YvM=;
+        b=KQYxOznZKDuSORJ985vfUygRyf0Nb9sO65mao5uxd0dlnQFpOEJueWWDigdEse8iLf
+         Kq0hDuOKr2e4FVHbIdKHlJjw2xCumvsXUPaf8Jq0CB+QiwIjznjYKJ9j2Ragi+qDMNWM
+         I3YXW1g/8NaWfElD70c1IAQpTRu+5IunHqAgglDGIjvqbdqBUhwv5+1qseo8Y8KHNRfL
+         fLqLtuGlEO9OXvKjy9WyIhQwlShF4eMhSLtcHhys0gEoBYyv1P4GWerFXN/cmgvU16/h
+         pMb90BFNhUN+1PPcMpcba3Jzbi4pGzpSirMQdB54G3ETN9/r/ykia+PVXyzYpb71kIRM
+         WCiQ==
+X-Gm-Message-State: AOJu0Yyq/HOBpZSeO4IH7c39ZEKTjQjw3ZSquDpod/1wVFTTr2hg81MU
+	SfTo3xjoaUGmQINhezGVUtxflnOfEew=
+X-Google-Smtp-Source: AGHT+IENt1pIK+n+wp8H+la5uVQPNjn4/lEW7n+Ls2HMUqOuHCwh3SZzMgv4ZZ05LH+OzNrW4jjdfA==
+X-Received: by 2002:aa7:d889:0:b0:543:5741:c9cd with SMTP id u9-20020aa7d889000000b005435741c9cdmr6861999edq.34.1699976954369;
+        Tue, 14 Nov 2023 07:49:14 -0800 (PST)
+Received: from ramallet.home (cst-prg-38-127.cust.vodafone.cz. [46.135.38.127])
+        by smtp.gmail.com with ESMTPSA id v22-20020aa7d816000000b00533e915923asm5211770edq.49.2023.11.14.07.49.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Nov 2023 07:49:13 -0800 (PST)
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Tomeu Vizoso <tomeu@tomeuvizoso.net>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: amlogic: meson-g12-common: Set the rates of the clocks for the NPU
+Date: Tue, 14 Nov 2023 16:48:43 +0100
+Message-ID: <20231114154843.1262225-1-tomeu@tomeuvizoso.net>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20231106092202.11127-1-tomeu@tomeuvizoso.net>
+References: <20231106092202.11127-1-tomeu@tomeuvizoso.net>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v8 04/12] dt-bindings: phy: amlogic,g12a-mipi-dphy-analog:
- drop unneeded reg property and example
-Content-Language: en-US, fr
-To: Rob Herring <robh@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Jagan Teki <jagan@amarulasolutions.com>, Nicolas Belin
- <nbelin@baylibre.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org
-References: <20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-0-81e4aeeda193@linaro.org>
- <20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-4-81e4aeeda193@linaro.org>
- <20231110205716.GA413638-robh@kernel.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231110205716.GA413638-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231114_060839_143914_D65F49BA 
-X-CRM114-Status: UNSURE (   9.34  )
+X-CRM114-CacheID: sfid-20231114_074920_557670_8048E7CD 
+X-CRM114-Status: UNSURE (   9.15  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -128,32 +85,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/11/2023 21:57, Rob Herring wrote:
-> On Thu, Nov 09, 2023 at 10:00:05AM +0100, Neil Armstrong wrote:
->> Now this bindings is referred from amlogic,meson-gx-hhi-sysctrl.yaml and is
->> documented as a subnode of a simple-mfd, drop the invalid reg property.
-> 
-> Why is it invalid? It's preferred to have 'reg' in MFDs even if Linux
-> doesn't use them. If there's a chunk of registers you can define, then
-> do so. If it's all register bit soup, then fine, omit it.
+Otherwise they are left at 24MHz and the NPU runs very slowly.
 
-I still don't understand why this particular MFD subnode needs a reg and not
-the other ones, using reg would need adding #address-cells/#size-cells on top
-node and change all examples/DT for nothing.
+Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Suggested-by: Lucas Stach <l.stach@pengutronix.de>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Like the other meson-gx-hhi-sysctrl subnodes, it's a register bit soup and this
-one is no exception.
+---
 
-Neil
+v2: Fix subject (Jerome Brunet)
+---
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> 
-> Rob
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index ff68b911b729..9d5eab6595d0 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -2502,6 +2502,9 @@ npu: npu@ff100000 {
+ 		clocks = <&clkc CLKID_NNA_CORE_CLK>,
+ 			 <&clkc CLKID_NNA_AXI_CLK>;
+ 		clock-names = "core", "bus";
++		assigned-clocks = <&clkc CLKID_NNA_CORE_CLK>,
++				  <&clkc CLKID_NNA_AXI_CLK>;
++		assigned-clock-rates = <800000000>, <800000000>;
+ 		resets = <&reset RESET_NNA>;
+ 		status = "disabled";
+ 	};
+-- 
+2.41.0
 
 
 _______________________________________________
