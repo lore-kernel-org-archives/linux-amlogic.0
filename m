@@ -4,66 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62414C5ACB3
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Nov 2023 11:27:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41705C072A2
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Nov 2023 13:00:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=g/uc1GOh1ZKcHQ2Vm0u0MKoaL7ZdVNujEx6Ykv5lw0I=; b=uGTDy+cA7k3NPg
-	EHznh35c1kdEl9hOeVORnH7Vs6WWsYJV0Dcae7IthjvL6/imXWak5KmTtMwFv/73CPPgy8TmoZ6Ss
-	00ZhV0Cgrer7ovhrFLXjEpkpi6VF99dwDnwjvT8oSIaRrOHy18mAIdSumUBP39McZnPfe5qYRfVp1
-	oA0YAqpXzkXB11riAbzUQHZ9jJ+yKgjz5jldy/MHc755PmoyO9XqMAMd1DpZN46ZPGriCcMVCvpct
-	UolX1do18S7NRBoUYEm/LurwYXpQakQUJTT3qREdrJTWVSnzDsXWpNKa+0Rw962dB1ckj7pjHVYxC
-	4S0jUCxyG7X7LFDQVJ7g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=/z/g5PrxH5V0CcOXrBL2KcgyXgaMJ9WhqPCsSi0inqg=; b=q8g1A0FWX5r3IE
+	YyEoBwDd3fVSP6O04Ke6yWesVXZLv2iYjKDlS6r2At1fBstiMgkHQhBj8Mc56o5OnZpvaB0ZKazqJ
+	FqvDJWByo+CwMtQ4K6aZeylhjurdiHFogbBd0lwFMq+UZtRpB04juSDGQKLM7MmLI5NjXbcr9SGy5
+	keOPp8OR17zE4sp6UbebzkUmfPN/4AqW48mlwr5iAV8TiSG1MVcfocV+N+3rEXqgbscaj6l5R7lOg
+	TlB/VXz6fpKuJWrlGU16G07TpuNhUhbTjrMO7ItmW4eMGKY49lqgq5l4AO/X+UrwQDgI8a5Gbx7a7
+	1Hlvk6wCaSRqkuA6bOcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r3aWY-003EXY-20;
-	Thu, 16 Nov 2023 11:27:06 +0000
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
+	id 1r3yRi-006asJ-21;
+	Fri, 17 Nov 2023 12:59:42 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r3aWU-003ETZ-0G
+	id 1r3yRc-006any-1b
 	for linux-amlogic@lists.infradead.org;
-	Thu, 16 Nov 2023 11:27:04 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1r3aWH-00084B-AI; Thu, 16 Nov 2023 12:26:49 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1r3aWG-009RE3-D5; Thu, 16 Nov 2023 12:26:48 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1r3aWG-002aLs-3s; Thu, 16 Nov 2023 12:26:48 +0100
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Guillaume La Roque <glaroque@baylibre.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Zhang Rui <rui.zhang@intel.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	linux-pm@vger.kernel.org,
+	Fri, 17 Nov 2023 12:59:39 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40859c466efso15199015e9.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 17 Nov 2023 04:59:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700225973; x=1700830773; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EpQ8hiJaDwq9w2ctJl9hSiwcGPI9BQbencVo58l6Ffo=;
+        b=upqnKb1F1LUPRHzkz3nleo1DNAiEi+Ba2LPQWmxDW71W3oCh8kcclR+GE+nERhJ6dq
+         FnCVzFX/WyjZmjO+PqUt/urYDqbH5sxS+FfgtX9qT92gL8PLaWLk1Ud06F2SORb/3fvL
+         grzIBgsr0CkFQVkAZOhyvtP/lfRnbv4VQDZfQjguBtWsiisdXN5XYIAeLy8nWTzN5xnj
+         8jOU/cvhm886nQJl8q+muAodpUxff85YQy1EKxPcsidLdzFW+xE8F0C6GgaDZHzGyZU8
+         79h6BZdUHyYsetfLD78SufGaJDrcF+Ln0NZs0YmRpE/TGbro5/JX/fc6wy2340RwKNto
+         C+/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700225973; x=1700830773;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EpQ8hiJaDwq9w2ctJl9hSiwcGPI9BQbencVo58l6Ffo=;
+        b=TJYShyXClciDJa19zA4xjrAWz1cMi+kuv34o6arfJJ8rX8TYdspm4fAg3aL2/Jw0jL
+         t+SHM7vOUx7RKx0dEN74yK3UNBWVRExeTVgUWM8OO3cDBtqL9/bqzfIfG7rXIuVucvwH
+         csYb7C/sSYaXq4Utzzn2w7aHLFYqb+TYQeZETsXAOoqkVrrkLLmZ2UPPK6vcF+4FdQwl
+         TyTUGPVGVgO0zrR1r4toGCK9BJTxx6QgYrGNbdcnDsp9N8vk6wxPmleUw24XrQAeVTwk
+         KcPOHakq/qyYlDCcBQ7bzdY3Kg7cqeYfr8Bg3kanCLipNB9Fs7i/WAY7gYyyDv8261U3
+         Uuig==
+X-Gm-Message-State: AOJu0Yw79FNpzikJL9VY+6Hs+tuClqvKW9y02Ps0qun/s0UyB5g2yNxV
+	lupclMejb8WW8g0sMVHOG3YRMw==
+X-Google-Smtp-Source: AGHT+IE8NQpxkxGP+Ey2DyBhnqgtsrj1QQ626K6i6p8nLGIjozX1JAbKiKLiLg0yOX3km2RtZ5pLDA==
+X-Received: by 2002:a05:600c:3591:b0:409:295:9c6e with SMTP id p17-20020a05600c359100b0040902959c6emr14085626wmq.30.1700225973659;
+        Fri, 17 Nov 2023 04:59:33 -0800 (PST)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:8196:e423:38cb:9a09])
+        by smtp.googlemail.com with ESMTPSA id k21-20020a05600c1c9500b0040a487758dcsm2671343wms.6.2023.11.17.04.59.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Nov 2023 04:59:33 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Thierry Reding <thierry.reding@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
 	linux-amlogic@lists.infradead.org,
-	kernel@pengutronix.de
-Subject: [PATCH 0/2] thermal: amlogic: Two cleanups
-Date: Thu, 16 Nov 2023 12:26:34 +0100
-Message-ID: <20231116112633.668826-1-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.42.0.586.gbc5204569f7d.dirty
+	linux-pwm@vger.kernel.org,
+	JunYi Zhao <junyi.zhao@amlogic.com>
+Subject: [PATCH v2 2/6] dt-bindings: pwm: amlogic: add new compatible for meson8 pwm type
+Date: Fri, 17 Nov 2023 13:59:12 +0100
+Message-ID: <20231117125919.1696980-3-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231117125919.1696980-1-jbrunet@baylibre.com>
+References: <20231117125919.1696980-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=488; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=1W289yYk/64muKBz1G6Qv0Lggh4SPXvmUP3B6/ALE6w=; b=owGbwMvMwMXY3/A7olbonx/jabUkhtTQP1mLJVh/8IfMuq6nYOK3wFdxg3rRl+K+Fy9VpsUdb DNWj1jTyWjMwsDIxSArpshi37gm06pKLrJz7b/LMINYmUCmMHBxCsBEllax/w/S57c6tbVUdWs+ i4TGmZ13t/+LMWzem1Iz4RiT0pNn1gG3BGv/8B7XVV/0JCnd/GTbkmxt19SDrSHZRfbiuWbGRxf 4Zp+RiXtuFb95n9XOZy8MVBemXWd5uWWpg6PE3+Lvk8W1tYwOpf1OVV9soX/yoW3z1YOtVas+rD vQ5VLAVT7r6a6i0C1VrxexL83xCZR4Z7J2ZpyAlO3mxtNPqxYx34lYvfROmE2azLGN7c6GxS9Oh /lrP8wo8Jy72XFCasu02XNFfjF6nmd8FXm+Tf3H58iSKHsJrdL3k5t5ok8laOw916c6bdvihXVy f/5dKNvdms08NaW9qzVFdoGmwsGXLkyXYqRcNNiEeLV6AA==
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231116_032702_125776_DA67CE9B 
-X-CRM114-Status: UNSURE (   5.69  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231117_045936_538145_BF9451CA 
+X-CRM114-Status: GOOD (  16.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,20 +97,114 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8sCgp3aGlsZSByZWJhc2luZyBteSBwYXRjaCBzdGFjayB0byB2Ni43LXJjMSBJIHNwb3R0
-ZWQgdGhlc2UgdHdvIHBhdGNoCm9wcG9ydHVuaXRpZXMgZm9yIHRoZSBhbWxvZ2ljIHRoZXJtYWwg
-ZHJpdmVyLgoKQmVzdCByZWdhcmRzClV3ZQoKVXdlIEtsZWluZS1Lw7ZuaWcgKDIpOgogIHRoZXJt
-YWw6IGFtbG9naWM6IE1ha2UgYW1sb2dpY190aGVybWFsX2Rpc2FibGUoKSByZXR1cm4gdm9pZAog
-IHRoZXJtYWw6IGFtbG9naWM6IFVzZSBERUZJTkVfU0lNUExFX0RFVl9QTV9PUFMgZm9yIFBNIGZ1
-bmN0aW9ucwoKIGRyaXZlcnMvdGhlcm1hbC9hbWxvZ2ljX3RoZXJtYWwuYyB8IDE5ICsrKysrKysr
-KystLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspLCA5IGRlbGV0aW9u
-cygtKQoKYmFzZS1jb21taXQ6IGYzMTgxN2NiY2Y0OGQxOTFmYWVlN2NlYmZiNTkxOTdkMjA0OGNk
-NjQKLS0gCjIuNDIuMAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
-cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
-bnV4LWFtbG9naWMK
+Add a new compatible for the pwm found in the meson8 to sm1 Amlogic SoCs.
+
+The previous clock bindings for these SoCs described the driver and not the
+HW itself. The clock provided was used to set the parent of the input clock
+mux among the possible parents hard-coded in the driver.
+
+The new bindings allows to describe the actual clock inputs of the PWM in
+DT, like most bindings do, instead of relying of hard-coded data.
+
+The new bindings make the old one deprecated.
+
+There is enough experience on this HW to know that the PWM is exactly the
+same all the supported SoCs. There is no need for a per-SoC compatible.
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 36 +++++++++++++++++--
+ 1 file changed, 34 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+index 387976ed36d5..48b11b7d5df6 100644
+--- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
++++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+@@ -22,6 +22,7 @@ properties:
+           - amlogic,meson-g12a-ao-pwm-ab
+           - amlogic,meson-g12a-ao-pwm-cd
+           - amlogic,meson-s4-pwm
++          - amlogic,meson8-pwm-v2
+       - items:
+           - const: amlogic,meson-gx-pwm
+           - const: amlogic,meson-gxbb-pwm
+@@ -37,7 +38,7 @@ properties:
+ 
+   clocks:
+     minItems: 1
+-    maxItems: 2
++    maxItems: 4
+ 
+   clock-names:
+     minItems: 1
+@@ -70,11 +71,14 @@ allOf:
+               - amlogic,meson-gx-pwm
+               - amlogic,meson-gx-ao-pwm
+     then:
+-      # Historic bindings tied to the driver implementation
++      # Obsolete historic bindings tied to the driver implementation
+       # The clocks provided here are meant to be matched with the input
+       # known (hard-coded) in the driver and used to select pwm clock
+       # source. Currently, the linux driver ignores this.
++      deprecated: true
+       properties:
++        clocks:
++          maxItems: 2
+         clock-names:
+           oneOf:
+             - items:
+@@ -83,6 +87,27 @@ allOf:
+                 - const: clkin0
+                 - const: clkin1
+ 
++  # Newer binding where clock describe the actual clock inputs of the pwm
++  # block. These are necessary but some inputs may be grounded.
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,meson8-pwm-v2
++    then:
++      properties:
++        clocks:
++          minItems: 1
++          items:
++            - description: input clock 0 of the pwm block
++            - description: input clock 1 of the pwm block
++            - description: input clock 2 of the pwm block
++            - description: input clock 3 of the pwm block
++        clock-names: false
++      required:
++        - clocks
++
+   # Newer IP block take a single input per channel, instead of 4 inputs
+   # for both channels
+   - if:
+@@ -112,6 +137,13 @@ examples:
+       clock-names = "clkin0", "clkin1";
+       #pwm-cells = <3>;
+     };
++  - |
++    pwm@2000 {
++      compatible = "amlogic,meson8-pwm-v2";
++      reg = <0x1000 0x10>;
++      clocks = <&xtal>, <0>, <&fdiv4>, <&fdiv5>;
++      #pwm-cells = <3>;
++    };
+   - |
+     pwm@1000 {
+       compatible = "amlogic,meson-s4-pwm";
+-- 
+2.42.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
