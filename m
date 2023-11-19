@@ -4,86 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05DEEC54E76
-	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Nov 2023 02:35:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D4A0C54E76
+	for <linux-amlogic@archiver.kernel.org>; Sun, 19 Nov 2023 16:04:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RIQv9rM/9as2L2o2JeAAH/K0gI61lBCtcoYeXmHfm8Q=; b=R664Ow3fHWZ98l
-	EDVirnpiVhhKnjF4ZpPc/SfVhagzBWtHUeU9kLYzF8X/5aeslMS4BZrgP1wVkEWhnRuoYKfHcnzBX
-	2ihCsJz3PlHfcGt0iZ3fMnCHeVaVyW2Z6/LYRNE2IQjLfOI3y17E1nKag/MrBBgkz7r3QFUKccL88
-	yoz6lUCbiLzUPI5LRkDT72uJ30WwFrwCyNAgtwTPb5XuxXVViYB0CAykVdWViP/tW1e6pu95i7dai
-	fFEaDkSYsWCtxYVMjdcWNR9B4eWucby9KqTdojchFALx/k5mjiUIJTLUYkLj5q20veFdMil1I+Ac6
-	b9Ii2+9gCZbMOXzmB84g==;
+	List-Owner; bh=7+kKweAgEBXCDaBZigOQWgw0yZVGVxD9SsXHaTwVf/Y=; b=RdupYI4wPdtcvR
+	MEy6yf5VL4z47XmR4bBZtdLyIc+h7nng+tWTD4ZH10uvvoXhS1I61I4Hz+H/Us1GHv18VHjf8CPFc
+	EPhhPACuEZjM9DVEnqa1u/igaDLjwZSZUep1Vqp/ySr6jJSOAO6EJlB3NOICN/ZuYahwtiMY9hY84
+	40YUbetL8pslT45oiilceWODct+V9QkzZeOK+cvXRnxSP/6yUKd3qj5+QXYLo0LMMxHCy8AvJ+THx
+	IBYZssD/iX9yLc7Ak/P7a+n7ecBIZYV5WF6h4P/JYGOC0xeF2G2BENuWIXrZ+rYbKeLRqES5jvQ3g
+	CNTJE1ftpY6IbCvQSypw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r4Xee-009QJG-0c;
-	Sun, 19 Nov 2023 02:35:24 +0000
-Received: from mail-pl1-x62d.google.com ([2607:f8b0:4864:20::62d])
+	id 1r4kHe-00AN35-0I;
+	Sun, 19 Nov 2023 16:04:30 +0000
+Received: from mail-oi1-f177.google.com ([209.85.167.177])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r4XeZ-009QIi-30;
-	Sun, 19 Nov 2023 02:35:21 +0000
-Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1cc68c1fac2so29336585ad.0;
-        Sat, 18 Nov 2023 18:35:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700361318; x=1700966118; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5I2bEA6cqofY2I8eKS0KNcDRLfU1oI5gxtSXCZkpuPA=;
-        b=d+XdS5/ByF10VZyZ3GOHLoJ5ZwvK4nLtldRGw5R8s1snu2v8yryjLA30m3eAD+3uAh
-         l98f7ti51rsLS//cW/SG2u5iN8POgk0aGoLsfKgi4NcjIP4L3oyltQik1hJ2mJFzxNu6
-         AUiHxhI9sUXUvbWM7RLZVvIP6EtMj7N4i1xSPaUQG5XOJy1DpCiBWVqipSYDtbFcP1D7
-         h7r0OGHbw9zMUWMbNUXyh0g1v6VYiqIbSrovB/AgYKskSiWT0R30hgTPeYUmVLsXXgX8
-         rn7B1VW9S/Ik21eZJicebaUeu9Wa+r9w4QnI2sx63q5/NQ393cHT2R0IwaryIqBHnVGq
-         8b+w==
+	id 1r4kHb-00AN2c-22
+	for linux-amlogic@lists.infradead.org;
+	Sun, 19 Nov 2023 16:04:29 +0000
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3b40d5ea323so2562294b6e.0
+        for <linux-amlogic@lists.infradead.org>; Sun, 19 Nov 2023 08:04:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700361318; x=1700966118;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5I2bEA6cqofY2I8eKS0KNcDRLfU1oI5gxtSXCZkpuPA=;
-        b=Ug9rbUFqOQeytYjYPI1txzsK4pcGMwi8oKF7wMdPzLe8ji1/kJGdZlbY8GPIi5vpCM
-         +cnNpflKkJUZhsHoqEArb4nUnRpwA4jeEkctfFAMj0dIvEXdlmPgvSg3f1iWyEMzICkW
-         y8wjFT6EvM+hqpHKFYSb4T+ec/UzObTbGst+ahntKvJNkpnexAkhX0FCs3zkEJhuh0vR
-         +i/C77JA3mLeyz633DJwvKrwFiB40VfHx/DYjVp+7DWz/vmpgWDY7RnR8Kf49/jenYcj
-         QS5/3vGNBrys9evcdT2d8Uc7iwgLl2VoDu5hHcYbYb4NH2bizwBtIMJKqVqigcfRjGkB
-         9quw==
-X-Gm-Message-State: AOJu0YzCCgh2DFzgqgEe87Li126TwD5K/pjFY12rEqi7pcfM+zFvzxaZ
-	OrNRfUPQb6CXCSJPCAZll6o=
-X-Google-Smtp-Source: AGHT+IGvoNLZuLcgqp0tI86VONJQTmNikMKIsL2RDRu2+46Ky5lZx1dlKINhrxjnbjUZs+SPLvMGvw==
-X-Received: by 2002:a17:902:ec02:b0:1cc:4467:a563 with SMTP id l2-20020a170902ec0200b001cc4467a563mr4361440pld.3.1700361317659;
-        Sat, 18 Nov 2023 18:35:17 -0800 (PST)
-Received: from localhost.localdomain ([49.205.245.83])
-        by smtp.gmail.com with ESMTPSA id j8-20020a170902da8800b001cf53cd1508sm1526207plx.67.2023.11.18.18.35.14
+        d=1e100.net; s=20230601; t=1700409865; x=1701014665;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IhoBsgcYCPoMOyBClZKCjJFuGRHuuw4KSHpd/ceIW1o=;
+        b=KIdLYlgSLB4gSbi5me0Ux2NrYM4fQwg0WMsjG2stNZ787vnI+CUeNz2OA25QWgnMU1
+         WJcWL1iGU2DSwyEngKjNnjrL05xG95negfXMDD3DT2Xg90vvpqgdhsrMdIlpjCdsWOUD
+         yKWMzl9d/TyQELLeZAqzLyABxIpQrwb0Rw4w/PGxSuB3Rvk4n8uDl/1ou6DpZ+8M8Rkf
+         rsLsZmpkKI5kdgWSilRcghqNNKZ5OMbZIr81M2xe3WOJxIiOaulD31Miwy9qtOWPKL5P
+         uW7I8Np3bDvMMIiB680AxWwr2t3PNgRbYy/0mDltXI9W22mYVFs+VNVH92t81oIOb+ml
+         bCLA==
+X-Gm-Message-State: AOJu0YwNBxJOPWubgcAY4/LcxDf9dyO9XDwX48S39g5akiFarP1Hvpja
+	USUkooeni7IhOM6Pb2IVSw==
+X-Google-Smtp-Source: AGHT+IEPvxQPpSKlB8eS9XX5UGJPIu58cXdUceezJBLkAF6LxsC6V68SFxNoVg0VbT5dJDvCZMnbkg==
+X-Received: by 2002:a05:6808:bcc:b0:3b2:f431:e029 with SMTP id o12-20020a0568080bcc00b003b2f431e029mr8622231oik.26.1700409865587;
+        Sun, 19 Nov 2023 08:04:25 -0800 (PST)
+Received: from herring.priv ([2607:fb90:45e3:889f:15b4:1348:6d64:224b])
+        by smtp.gmail.com with ESMTPSA id i16-20020aca2b10000000b003af642cf646sm998621oik.37.2023.11.19.08.04.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Nov 2023 18:35:17 -0800 (PST)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Anand Moon <linux.amoon@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] arm64: dts: amlogic: Used onboard usb hub reset on odroid n2
-Date: Sun, 19 Nov 2023 08:04:51 +0530
-Message-ID: <20231119023454.1591-3-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231119023454.1591-1-linux.amoon@gmail.com>
-References: <20231119023454.1591-1-linux.amoon@gmail.com>
+        Sun, 19 Nov 2023 08:04:24 -0800 (PST)
+Received: (nullmailer pid 267899 invoked by uid 1000);
+	Sun, 19 Nov 2023 16:04:22 -0000
+Date: Sun, 19 Nov 2023 10:04:22 -0600
+From: Rob Herring <robh@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, JunYi Zhao <junyi.zhao@amlogic.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: pwm: amlogic: fix s4 bindings
+Message-ID: <170040986161.267844.16868927442799371234.robh@kernel.org>
+References: <20231117125919.1696980-1-jbrunet@baylibre.com>
+ <20231117125919.1696980-2-jbrunet@baylibre.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20231117125919.1696980-2-jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231118_183519_990568_A15FB2F5 
-X-CRM114-Status: GOOD (  15.66  )
+X-CRM114-CacheID: sfid-20231119_080427_689098_DE8B3F36 
+X-CRM114-Status: GOOD (  22.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,75 +82,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Odroid n2/n2+ previously use gpio-hog to reset the usb hub,
-switch to used on-board usb hub reset to enable the usb hub
-and enable power to hub.
 
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-v3: none
-v2: none
-v1: none
----
- .../dts/amlogic/meson-g12b-odroid-n2.dtsi     | 36 ++++++++++++-------
- 1 file changed, 24 insertions(+), 12 deletions(-)
+On Fri, 17 Nov 2023 13:59:11 +0100, Jerome Brunet wrote:
+> s4 has been added to the compatible list while converting the Amlogic PWM
+> binding documentation from txt to yaml.
+> 
+> However, on the s4, the clock bindings have different meaning compared to
+> the previous SoCs.
+> 
+> On the previous SoCs the clock bindings used to describe which input the
+> PWM channel multiplexer should pick among its possible parents.
+> 
+> This is very much tied to the driver implementation, instead of describing
+> the HW for what it is. When support for the Amlogic PWM was first added,
+> how to deal with clocks through DT was not as clear as it nowadays.
+> The Linux driver now ignores this DT setting, but still relies on the
+> hard-coded list of clock sources.
+> 
+> On the s4, the input multiplexer is gone. The clock bindings actually
+> describe the clock as it exists, not a setting. The property has a
+> different meaning, even if it is still 2 clocks and it would pass the check
+> when support is actually added.
+> 
+> Also the s4 cannot work if the clocks are not provided, so the property no
+> longer optional.
+> 
+> Finally, for once it makes sense to see the input as being numbered
+> somehow. No need to bother with clock-names on the s4 type of PWM.
+> 
+> Fixes: 43a1c4ff3977 ("dt-bindings: pwm: Convert Amlogic Meson PWM binding")
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 69 ++++++++++++++++---
+>  1 file changed, 60 insertions(+), 9 deletions(-)
+> 
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-index 91c9769fda20..9e671444eca6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-@@ -31,6 +31,30 @@ hub_5v: regulator-hub_5v {
- 		enable-active-high;
- 	};
- 
-+	/* USB hub supports both USB 2.0 and USB 3.0 root hub */
-+	usb-hub {
-+		dr_mode = "host";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* 2.0 hub on port 1 */
-+		hub_2_0: hub@1 {
-+			compatible = "usb5e3,610";
-+			reg = <1>;
-+			peer-hub = <&hub_3_0>;
-+			vdd-supply = <&usb_pwr_en>;
-+		};
-+
-+		/* 3.0 hub on port 4 */
-+		hub_3_0: hub@2 {
-+			compatible = "usb5e3,620";
-+			reg = <2>;
-+			peer-hub = <&hub_2_0>;
-+			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-+			vdd-supply = <&vcc_5v>;
-+		};
-+	};
-+
- 	sound {
- 		compatible = "amlogic,axg-sound-card";
- 		model = "ODROID-N2";
-@@ -234,18 +258,6 @@ &gpio {
- 		"PIN_3",  /* GPIOX_17 */
- 		"PIN_5",  /* GPIOX_18 */
- 		"PIN_36"; /* GPIOX_19 */
--	/*
--	 * WARNING: The USB Hub on the Odroid-N2 needs a reset signal
--	 * to be turned high in order to be detected by the USB Controller
--	 * This signal should be handled by a USB specific power sequence
--	 * in order to reset the Hub when USB bus is powered down.
--	 */
--	usb-hub-hog {
--		gpio-hog;
--		gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
--		output-high;
--		line-name = "usb-hub-reset";
--	};
- };
- 
- &i2c3 {
--- 
-2.42.0
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 
 _______________________________________________
