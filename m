@@ -4,88 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53A8BC197A0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Nov 2023 10:19:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC747C197A0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Nov 2023 11:44:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ie/5Z1S93I0UFn53Klp5JJ/1efqAPaGzNJSpO5e+mMw=; b=kKeIRba0v4sBkD
-	OSTmCchDnTkgSpqvq8Ri1mTWXP/U2A8VSBuWe5s1oZIOxxwz320ClfOkjRzOyjTXYfiOPBC+yuUHJ
-	vmZiawFvmzLGGqF6Ox5py4ovSuLOzmk/+EU47hv73NRZ5l0xyHIW5FHNBJPS0S2NeXUzF8/XySqSE
-	YTugLATBXGvN4SsHrFCJFGspZShftkW+yCPVCWwaNPhQ3UGAXWkCVe2/GQcsZr46NcTdv012XWtA6
-	RiipphzbsEXaG2JjOLfQIZTIyENGP/Yn/kAoibXXDMAtmjqKkxGRIH3qcyCL3pTcrvyYzWkjhfvn9
-	zFcaVXgzKkbHNzWWLTDQ==;
+	List-Owner; bh=tgUbL6eF44ROiodN4GHBang0CrE8tU9D8Z3GClNCzPg=; b=lJUVsMC1wm/2qR
+	4Kgy9YlFUmK+jQNTMO1PKfv5Fzm1qmsXdmlNsEWYakjav9Qm7ft4bCoGzo6B4STpuAbWTEzqITyvJ
+	VgcmlNpZnGE+B/bBfgopmx0V2V9HcgMM30woUm/ZRD7+FdsKgqPpQwBNkUgI0XGkCobB/K2SE/Wdu
+	e4Mlsculmmq36+yfU5bqodwHXQT1B3JfV8+fwbIGAJ9EPHAOOHGweYy2XKPJS5bq6gdzWkEksnmMW
+	d0y3M8laMVtCAH8NzdB/92dacy8z49ah2/2XgvWPEFhSFfNVmI2iz28c94Ln7ey7+br6P4Uwa/+vg
+	nEQrLzUkbL2N2cSr9Eaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r51NH-00Bkxc-1x;
-	Mon, 20 Nov 2023 10:19:27 +0000
-Received: from mail-lj1-x22e.google.com ([2a00:1450:4864:20::22e])
+	id 1r52gr-00BvLn-2t;
+	Mon, 20 Nov 2023 11:43:46 +0000
+Received: from madras.collabora.co.uk ([2a00:1098:0:82:1000:25:2eeb:e5ab])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r51N4-00Bkw3-2z
-	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Nov 2023 10:19:25 +0000
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2c4fdf94666so50882441fa.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 Nov 2023 02:19:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700475551; x=1701080351; darn=lists.infradead.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=m3PqdGd3hzZKCAL9p199LXfBSoxwo8nMT5FPvyOoA9c=;
-        b=GkZwhUir72vnDxJXnyHbXOTfTaHthF0LBbTP5qJMCcdv9svNiR/3ACMPM5RgeQ8pOw
-         cwIK8pYY/ZAm4erTFLF97NC4EBJf78Cu0isTvPbbVB2oQZ0rDYcShH1qrfVw3LgpEiev
-         YLauXC4fKN4Gn4ZfS0bMhNyvZ0XjiGopEczcj4VCImRCN1M02r9Ojwhk75ZFnhG0ntAW
-         rgqLjSki5omJoUqODKPLLcg6Kdb/Zt10vXZvAaadnGxShLJEzRYiFFJcPwj7SkKzpnfj
-         rOKxDuuDP6+NPHqOyflB4VSLQqihVBK3GBwVqHHX5OuODGLXeyCHDuRM2wzYTVvRTWNL
-         BlvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700475551; x=1701080351;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m3PqdGd3hzZKCAL9p199LXfBSoxwo8nMT5FPvyOoA9c=;
-        b=iIHmaTHQJZdrT8zElNVGgOR9CtjrnepcuNE+urp94bXFt8krlb/Ohd2PrSrb6ysrw1
-         UvypUsdecAq1LY2sME7APNgy6P07i8ndUwm/GqqP/W855oF2gnOOS8RZ0UsEdyhkUFrX
-         v5qBOYjdigM28Vuwl1fW6e17ltPuC3562kbC4m9BGcroldhmVeCIz71Rf+P9rT28eeZD
-         OkrOolS8jyWEEzvRfAulNedhMKIFuEVpBpeSaZw6we62N2o6bhY0BzD72tZQneKpgRji
-         9PqBeceV7kyRYDnjFpw2Ah/+G7uCdFlZh5/pwVu8ktZz2NiyAFwbITDdPhAED/7TtsUx
-         4++g==
-X-Gm-Message-State: AOJu0Yy0KeXNd55eSjxNQossjPx+Vo1snCcJMDokoj9wufEKmGHHMujN
-	7wC2DMWHkdbGfNRIYZpojB2Qqg==
-X-Google-Smtp-Source: AGHT+IEPX2G5aclVwRbVdhdVk6Qz+Wvs9j7cq77cqcIy9GhSHMtNLsN6GkXktc/8rAKZlPKJNJuIYw==
-X-Received: by 2002:a2e:a162:0:b0:2bb:b01a:9226 with SMTP id u2-20020a2ea162000000b002bbb01a9226mr4153302ljl.7.1700475550839;
-        Mon, 20 Nov 2023 02:19:10 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:36e8:9c14:4901:7aca])
-        by smtp.gmail.com with ESMTPSA id j32-20020a05600c1c2000b004094c5d929asm13027434wms.10.2023.11.20.02.19.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Nov 2023 02:19:10 -0800 (PST)
-References: <20231117125919.1696980-1-jbrunet@baylibre.com>
- <20231117125919.1696980-3-jbrunet@baylibre.com>
- <170040994064.269288.960284011884896046.robh@kernel.org>
- <4608012c-059f-4d6a-914b-e85ad0c32ff0@linaro.org>
- <1j5y1wg3sb.fsf@starbuckisacylon.baylibre.com>
- <2e7a65da-5c1d-4dd4-ac69-7559a53afdf3@linaro.org>
-User-agent: mu4e 1.10.7; emacs 29.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: neil.armstrong@linaro.org
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
- JunYi Zhao <junyi.zhao@amlogic.com>, devicetree@vger.kernel.org, Rob
- Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kevin
- Hilman <khilman@baylibre.com>, Thierry Reding <thierry.reding@gmail.com>,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-amlogic@lists.infradead.org, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2 2/6] dt-bindings: pwm: amlogic: add new compatible
- for meson8 pwm type
-Date: Mon, 20 Nov 2023 11:04:48 +0100
-In-reply-to: <2e7a65da-5c1d-4dd4-ac69-7559a53afdf3@linaro.org>
-Message-ID: <1j1qckg21u.fsf@starbuckisacylon.baylibre.com>
+	id 1r52gR-00BvK3-37;
+	Mon, 20 Nov 2023 11:43:40 +0000
+Received: from [100.107.97.3] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 271DA6601711;
+	Mon, 20 Nov 2023 11:43:15 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1700480596;
+	bh=x4MLXpWO/aV1ogNe5RsuKzP1dqnIZbDxe0lhCiPQNfs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BnVe493hgYdndPFbDTUozDRDDmiAT45LJkGDzvbyox3bTl5POLPTy/r0MVZKhn15m
+	 gWoMCo+N6Pn+qwxRVI9ChGCwPaH8X0L4BQ05z4zMQmLzzbZVLy9u6SbxhKm2/lHQa9
+	 0ASp9J1xveFvuhX7Of2bTQbG5YpBpMzadwgmdNhx2OJGnFh4RZko+Ezqqb4KqFQttw
+	 eRCkKpc1+A3ZoD/1Qu14IUY8pJ1azwa/c3qwfw4PcZbCoDaHu6J6Wom0E0sq1MJUSS
+	 H46h6POobMJaxHwi/QDziqB5/neK5zIVcVRGshPzNNQ/5cIqiochdmK6Kf6H15Y50y
+	 QrgyVzhRUmKqg==
+Message-ID: <92cf3bcc-18e7-40ba-a082-1b8b6bea0dee@collabora.com>
+Date: Mon, 20 Nov 2023 12:43:12 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Cc: Andrew Davis <afd@ti.com>, Arnd Bergmann <arnd@arndb.de>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Heiko Stuebner <heiko@sntech.de>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michal Simek <michal.simek@amd.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
+ Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org
+References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231120_021914_971068_422F35DB 
-X-CRM114-Status: GOOD (  32.80  )
+X-CRM114-CacheID: sfid-20231120_034321_925245_BABB9FC1 
+X-CRM114-Status: GOOD (  34.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,112 +82,319 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Il 20/11/23 09:40, Krzysztof Kozlowski ha scritto:
+> Document preferred coding style for Devicetree sources (DTS and DTSI),
+> to bring consistency among all (sub)architectures and ease in reviews.
+> 
+> Cc: Andrew Davis <afd@ti.com>
+> Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: Bjorn Andersson <andersson@kernel.org>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Heiko Stuebner <heiko@sntech.de>
+> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Cc: Michal Simek <michal.simek@amd.com>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Nishanth Menon <nm@ti.com>
+> Cc: Olof Johansson <olof@lixom.net>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Merging idea: Rob/DT bindings
+> 
+> Changes in v2
+> =============
+> 1. Hopefully incorporate entire feedback from comments:
+> a. Fix \ { => / { (Rob)
+> b. Name: dts-coding-style (Rob)
+> c. Exceptions for ordering nodes by name for Renesas and pinctrl (Geert,
+>     Konrad)
+> d. Ordering properties by common/vendor (Rob)
+> e. Array entries in <> (Rob)
+> 
+> 2. New chapter: Organizing DTSI and DTS
+> 
+> 3. Several grammar fixes (missing articles)
+> 
+> Cc: linux-rockchip@lists.infradead.org
+> Cc: linux-mediatek@lists.infradead.org
+> Cc: linux-samsung-soc@vger.kernel.org
+> Cc: linux-amlogic@lists.infradead.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-arm-msm@vger.kernel.org
+> ---
+>   .../devicetree/bindings/dts-coding-style.rst  | 163 ++++++++++++++++++
+>   Documentation/devicetree/bindings/index.rst   |   1 +
+>   2 files changed, 164 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/dts-coding-style.rst
+> 
+> diff --git a/Documentation/devicetree/bindings/dts-coding-style.rst b/Documentation/devicetree/bindings/dts-coding-style.rst
+> new file mode 100644
+> index 000000000000..cc7e3b4d1b92
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dts-coding-style.rst
+> @@ -0,0 +1,163 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +.. _dtscodingstyle:
+> +
+> +=====================================
+> +Devicetree Sources (DTS) Coding Style
+> +=====================================
+> +
+> +When writing Devicetree Sources (DTS) please observe below guidelines.  They
+> +should be considered complementary to any rules expressed already in Devicetree
+> +Specification and dtc compiler (including W=1 and W=2 builds).
+> +
+> +Individual architectures and sub-architectures can add additional rules, making
+> +the style stricter.
+> +
+> +Naming and Valid Characters
+> +---------------------------
+> +
+> +1. Node and property names are allowed to use only:
+> +
+> +   * lowercase characters: [a-z]
+> +   * digits: [0-9]
+> +   * dash: -
+> +
+> +2. Labels are allowed to use only:
+> +
+> +   * lowercase characters: [a-z]
+> +   * digits: [0-9]
+> +   * underscore: _
+> +
+> +3. Unit addresses should use lowercase hex, without leading zeros (padding).
 
-On Mon 20 Nov 2023 at 10:55, neil.armstrong@linaro.org wrote:
+This is imperative, so: s/should/shall/g
 
-> Hi Jerome,
->
-> On 20/11/2023 10:18, Jerome Brunet wrote:
->> On Mon 20 Nov 2023 at 09:27, Neil Armstrong <neil.armstrong@linaro.org>
->> wrote:
->> 
->>> Hi Rob,
->>>
->>> On 19/11/2023 17:05, Rob Herring wrote:
->>>> On Fri, 17 Nov 2023 13:59:12 +0100, Jerome Brunet wrote:
->>>>> Add a new compatible for the pwm found in the meson8 to sm1 Amlogic SoCs.
->>>>>
->>>>> The previous clock bindings for these SoCs described the driver and not the
->>>>> HW itself. The clock provided was used to set the parent of the input clock
->>>>> mux among the possible parents hard-coded in the driver.
->>>>>
->>>>> The new bindings allows to describe the actual clock inputs of the PWM in
->>>>> DT, like most bindings do, instead of relying of hard-coded data.
->>>>>
->>>>> The new bindings make the old one deprecated.
->>>>>
->>>>> There is enough experience on this HW to know that the PWM is exactly the
->>>>> same all the supported SoCs. There is no need for a per-SoC compatible.
->>>>>
->>>>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->>>>> ---
->>>>>    .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 36 +++++++++++++++++--
->>>>>    1 file changed, 34 insertions(+), 2 deletions(-)
->>>>>
->>>> Reviewed-by: Rob Herring <robh@kernel.org>
->>>>
->>>
->>> I'm puzzled, isn't it recommended to have a per-soc compatible now ?
->> I have specifically addressed this matter in the description,
->> haven't I ? What good would it do in this case ?
->
-> Yes you did but I was asked for the last year+ that all new compatible
-> should be soc specific (while imprecise, in our care soc family should be ok),
-> with a possible semi-generic callback with an IP version or a first soc
-> implementing the IP.
->
->> Plus the definition of a SoC is very vague. One could argue that
->> the content of the list bellow are vaguely defined families. Should we
->> add meson8b, gxl, gxm, sm1 ? ... or even the actual SoC reference ?
->> This list gets huge for no reason.
->
-> I think in our case soc family is reasonable since they share same silicon
-> design.
->
->> We know all existing PWM of this type are the same. We have been using
->> them for years. It is not a new support we know nothing about.
->> 
->>>
->>> I thought something like:
->>> - items:
->>>      - enum:
->>>          - amlogic,gxbb-pwm
->>>          - amlogic,axg-pwm
->>>          - amlogic,g12a-pwm
->>>      - const: amlogic,pwm-v1
->> I'm not sure I understand what you are suggesting here.
->> Adding a "amlogic,pwm-v1" for the obsolete compatible ? No amlogic DT
->> has that and I'm working to remove this type, so I don't get the point.
->> 
->>>
->>> should be preferred instead of a single amlogic,meson8-pwm-v2 ?
->> This is named after the first SoC supporting the type.
->> Naming it amlogic,pwm-v2 would feel weird with the s4 coming after.
->> Plus the doc specifically advise against this type of names.
->
-> The -v2 refers to a pure software/dt implementation versioning and not
-> an HW version, so I'm puzzled and I requires DT maintainers advice here.
->
-> Yes meson8b is the first "known" platform, even if I'm pretty sure meson6 has
+> +
+> +4. Hex values in properties, e.g. "reg", should use lowercase hex.  The address
+> +   part can be padded with leading zeros.
+> +
 
-This is not my point. I picked this name because I have to pick a
-specific device based one. Not because it is actually the first or
-not. I don't see a problem with meson6 being compatible with
-meson8-pwm-v2, if that ever comes along.
+Same here, I'd say.... :-)
 
-I think the binding here satisfy the rule that it should be specific,
-and the intent that goes with it:
+> +Example::
+> +
+> +	gpi_dma2: dma-controller@800000 {
+> +		compatible = "qcom,sm8550-gpi-dma", "qcom,sm6350-gpi-dma";
+> +		reg = <0x0 0x00800000 0x0 0x60000>;
+> +	}
+> +
+> +Order of Nodes
+> +--------------
+> +
+> +1. Nodes within any bus, thus using unit addresses for children, shall be
+> +   ordered incrementally by unit address.
+> +   Alternatively for some sub-architectures, nodes of the same type can be
+> +   grouped together (e.g. all I2C controllers one after another even if this
+> +   breaks unit address ordering).
+> +
+> +2. Nodes without unit addresses should be ordered alpha-numerically by the node
+> +   name.  For a few types of nodes, they can be ordered by the main property
+> +   (e.g. pin configuration states ordered by value of "pins" property).
+> +
+> +3. When extending nodes in the board DTS via &label, the entries should be
+> +   ordered alpha-numerically.
+> +
+> +Example::
+> +
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/writing-bindings.rst?h=v6.7-rc2#n42
+Hmm, comments!
 
-> the same pwm architecture, this is why "amlogic,pwm-v1" as fallback seems more
-> reasonable and s4 and later pwm could use the "amlogic,pwm-v2"
-> fallback.
+> +	// SoC DTSI
 
-That is not how understand this:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/writing-bindings.rst?h=v6.7-rc2#n82
+....speaking of commenting, should we at least suggest to use C-style comments?
 
->
-> Neil
->> 
->>>
->>> Neil
->> 
+	/* SoC DTSI */
+
+> +
+> +	/ {
+> +		cpus {
+> +			// ...
+> +		};
+> +
+> +		psci {
+> +			// ...
+> +		};
+> +
+> +		soc@ {
+> +			dma: dma-controller@10000 {
+> +				// ...
+> +			};
+> +
+> +			clk: clock-controller@80000 {
+> +				// ...
+> +			};
+> +		};
+> +	};
+> +
+> +	// Board DTS
+> +
+> +	&clk {
+> +		// ...
+> +	};
+> +
+> +	&dma {
+> +		// ...
+> +	};
+> +
+> +
+> +Order of Properties in Device Node
+> +----------------------------------
+> +
+> +Following order of properties in device nodes is preferred:
+> +
+> +1. compatible
+> +2. reg
+> +3. ranges
+> +4. Standard/common properties (defined by common bindings, e.g. without
+> +   vendor-prefixes)
+> +5. Vendor-specific properties
+> +6. status (if applicable)
+> +7. Child nodes, where each node is preceded with a blank line
+> +
+> +The "status" property is by default "okay", thus it can be omitted.
+> +
+> +Example::
+> +
+> +	// SoC DTSI
+> +
+> +	usb_1_hsphy: phy@88e3000 {
+> +		compatible = "qcom,sm8550-snps-eusb2-phy";
+> +		reg = <0x0 0x088e3000 0x0 0x154>;
+> +		#phy-cells = <0>;
+> +		resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+> +		status = "disabled";
+> +	};
+
+Since this describes vendor-specific properties and vendor prefixes as well
+as standard properties, I think it would be clearer if we use something more
+complex that actually contains those as an example.
+
+There's a few. One is MediaTek:
+
+	vdo1_rdma0: dma-controller@1c104000 {
+		compatible = "mediatek,mt8195-vdo1-rdma";
+		reg = <0 0x1c104000 0 0x1000>;
+		#dma-cells = <1>;
+		clocks = <&vdosys1 CLK_VDO1_MDP_RDMA0>;
+		interrupts = <GIC_SPI 495 IRQ_TYPE_LEVEL_HIGH 0>;
+		iommus = <&iommu_vdo M4U_PORT_L2_MDP_RDMA0>;
+		power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
+		mediatek,gce-client-reg = <&gce0 SUBSYS_1c10XXXX 0x4000 0x1000>;
+	};
+
+...or other one can be nVidia:
+
+	mipi: mipi@700e3000 {
+		compatible = "nvidia,tegra210-mipi";
+		reg = <0x0 0x700e3000 0x0 0x100>;
+		clocks = <&tegra_car TEGRA210_CLK_MIPI_CAL>;
+		clock-names = "mipi-cal";
+		power-domains = <&pd_sor>;
+		#nvidia,mipi-calibrate-cells = <1>;
+	};
+
+...or we could make an example out of fantasy, which could work even better
+as far as describing goes.
+
+	/* SoC DTSI */
+
+	device_node: device-class@6789abc {
+		compatible = "vendor,device";
+		reg = <0 0x06789abc 0 0xa123>;
+		ranges = <0 0 0x6789abc 0x1000>;
+		#dma-cells = <1>;
+		clocks = <&clock_controller SOC_CLOCK>;
+		clock-names = "dev-clk";
+		#vendor,custom-cells = <2>;
+		status = "disabled";
+
+		child_node: child-class@100 {
+			reg = <0x100 0x200>;
+			/* ... */
+		};
+	};
+
+	/* Board DTS */
+
+	&device_node {
+		device-supply = <&board_vreg1>;
+		status = "okay";
+	}
+
+> +
+> +	// Board DTS
+> +
+> +	&usb_1_hsphy {
+> +		clocks = <&tcsr TCSR_USB2_CLKREF_EN>;
+> +		clock-names = "ref";
+> +		status = "okay";
+> +	};
+> +
+> +
+> +Indentation
+> +-----------
+> +
+> +1. Use indentation according to :ref:`codingstyle`.
+> +2. For arrays spanning across lines, it is preferred to align the continued
+> +   entries with opening < from the first line.
+> +3. Each entry in arrays with multiple cells (e.g. "reg" with two IO addresses)
+> +   should be enclosed in <>.
+> +
+> +Example::
+> +
+> +	thermal-sensor@c271000 {
+> +		compatible = "qcom,sm8550-tsens", "qcom,tsens-v2";
+> +		reg = <0x0 0x0c271000 0x0 0x1000>,
+> +		      <0x0 0x0c222000 0x0 0x1000>;
+> +	};
+> +
+> +Organizing DTSI and DTS
+> +-----------------------
+> +
+> +The DTSI and DTS files should be organized in a way representing the common
+> +(and re-usable) parts of the hardware.  Typically this means organizing DTSI
+
+                                         ^^^^
+There's a double space here, it was probably unintentional.
+
+
+Cheers,
+Angelo
+
+> +and DTS files into several files:
+> +
+> +1. DTSI with contents of the entire SoC (without nodes for hardware not present
+> +   on the SoC).
+> +2. If applicable: DTSI with common or re-usable parts of the hardware (e.g.
+> +   entire System-on-Module).
+> +3. DTS representing the board.
+> +
+> +Hardware components which are present on the board should be placed in the
+> +board DTS, not in the SoC or SoM DTSI.  A partial exception is a common
+> +external reference SoC-input clock, which could be coded as a fixed-clock in
+> +the SoC DTSI with its frequency provided by each board DTS.
+> diff --git a/Documentation/devicetree/bindings/index.rst b/Documentation/devicetree/bindings/index.rst
+> index d9002a3a0abb..cc1fbdc05657 100644
+> --- a/Documentation/devicetree/bindings/index.rst
+> +++ b/Documentation/devicetree/bindings/index.rst
+> @@ -4,6 +4,7 @@
+>      :maxdepth: 1
+>   
+>      ABI
+> +   dts-coding-style
+>      writing-bindings
+>      writing-schema
+>      submitting-patches
 
 
 _______________________________________________
