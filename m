@@ -4,113 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F526C197A0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Nov 2023 08:28:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D916C54E76
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Nov 2023 08:41:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=9PNLj3polXbjmbHtaRvUOr+Z9WJ4o7fuP6LycJOBb+c=; b=f75sr1++xIKtH1Eeb4mj2ZBQRy
-	Wwk/Wv1Q+ptttUoj1l/PY23onp94pXSEA54BqLozLQ3XX+M68vqT3lpqJrAQj6mheBmrPnYNtTNLy
-	/5vfsa7rXmmGMNS+Smjt3dma8lPWKBpcDgDNlqYH+Z4RyimezVa8m0ZPX3d6Mqoh8G5SL0XXbBOge
-	Wt6ITmTjWoHYr5PLVHsRc/xsQeGRy+XXB19Acon4ex4KXQfP7k5YmLaWkyqD6yR3HysNNGVbCRjbI
-	mwBFP6ujM5dML7kwLN3Se392Dy2OspREXgwNMBZBMKafghZHZldrfyNYPiuhhURZGw7W88PbGRoMG
-	1awarK/w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=bap5DBiG5KvVIiUzSYxp0yOb966MFnOoGNZPkwzHfUc=; b=iFb0l0Tz0lzupF
+	wVVjGLnojDvymCr3NIG1LJlMgQ8py6JCBrUbYY9bvki8tHaurmEkwQNaP2fLP85EIIi1y27odLEwO
+	kXjj2sIO5Ttile+wYKov8Pajuhn35+F55+Yn0Xijm75Yyhx7Z/LOVq+WjWRzMxg1CYT+HeuzYJmJ+
+	BbxwQaZENYrJViOmQs24Y80Awp3opUo2AiQ53u+xhN5GVqX2OXPLQUmqg/tsxVslWMS1Q/j3cabQI
+	8BJOWnnf60WqRW2PPira5DJAFoVMtWRpgAMSurnsLgnhuW82TGdkMfemqdDeGdWhvJiivIpIw7R0c
+	DThnzYpItP9TWbOAuGYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r4zdU-00BVQL-2T;
-	Mon, 20 Nov 2023 08:28:04 +0000
-Received: from mail-lj1-x229.google.com ([2a00:1450:4864:20::229])
+	id 1r4zq4-00BWjq-1W;
+	Mon, 20 Nov 2023 08:41:04 +0000
+Received: from mail-lf1-x129.google.com ([2a00:1450:4864:20::129])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r4zdR-00BVP3-0A
+	id 1r4zpw-00BWgu-1U
 	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Nov 2023 08:28:02 +0000
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2c873cf9f74so24027491fa.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 Nov 2023 00:27:47 -0800 (PST)
+	Mon, 20 Nov 2023 08:41:01 +0000
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-507975d34e8so5689343e87.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 20 Nov 2023 00:40:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700468866; x=1701073666; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3zUGH0c4GY6lD98Q6lqE8V3ux67qaNFVeyeN6TZqzhM=;
-        b=VNViBbxwcFfg5tjw0sUPEPwNkuPt4IpV2M5uxJB+eg1bRUpFL07BdQQzludg4Hw0VS
-         gbIPp5BiLs/3RwnowV/Y6YblB6oZSr45MTx8NQZVlbTaTPbobvtY2HNxyg/pgrOOxClh
-         Mpjkri2WG/RB4YT/Md7MyR8s1c4e0d7ykeJ7zwtqGgnXLb978xTFvUvjPy9KAbejCPCa
-         kDzawV8rvG/B6y/TlvH8QiFtf6mE1viQIneuGAywhiXw2YjlwtG4T7+Dkydo1d95VkcR
-         q2D/GDYii9Vu6zd10ST2NDyl0ivZIocxeOzm7rMVL/WXKmDXQgKqlsFzwDU9qDnh0GPS
-         wcPw==
+        d=linaro.org; s=google; t=1700469652; x=1701074452; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Uja6WpBlyTBG5jgby6fiOGTUsSLknCmEeqWb3eouYXA=;
+        b=g7hFVpwGhSvWE6ToDtmxCP4sGuKRLqXLLkgsnTREkHTUENvYhhKhm5l00ethg8FeH9
+         VuJVRtCQbgGERaWWtp9K5A2HxaBs2l11BqcyhJqaO/dbg4ckTucI8yk/lDrEW8rCY0OO
+         zaydqa+LOTuIazXwpVU7Ppx2e/QBkB3f1vwuDQH1K1MMAam6QQKYqpKAxsa29C3nFNoD
+         DPxE6kqS1iUnkc5d33U6GQxjTt835/sTphxo4olYNzQdELVsC8dDoYQvcLPMK5TB1eZO
+         P9cv7oFwwr0yGLEr166U2usJ16dIdRUQGx0QcxmxcjT4+zGhAEl1vFyg0K+vqVrNoroV
+         RTBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700468866; x=1701073666;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=3zUGH0c4GY6lD98Q6lqE8V3ux67qaNFVeyeN6TZqzhM=;
-        b=UcPSwGRSdlzjIThgMvJ3I/ujrc/eHRLy22GBOdvZCMzho4sR26Lf9oOF53JFQPTgz0
-         F/hZokM8KjpHayEbaPjNZO2Nv/gwAiQAVY1k+eSFJt9Q533uLWSezvssFXV5SjEWqKzs
-         dgFVjhEvoucDvuL5R5+LHV7Lcxho/9mpEsBCB3t2ceM4yd7/GeEoMPICM4l5LHdkmLeJ
-         VIqlFN5KMlxVIl6oS5npO1VS4GMNlJkKgDGgX3rdugciVTxscjCKUK2bti5xBZAPqdpH
-         xhYD6mrMQ8RfYqUjpYT9pOX5mC+1A8Dm3Z8nbrDFwvE7qG9/Un8q5/BHbal+sj6qD+T1
-         v2Mw==
-X-Gm-Message-State: AOJu0YxdRxX+K0NjWFtM1mEYQDQ96oJqLRwmJugSc2HxZxNHdLIih9B/
-	uXUjTGgsPTTMPZ3i4n9PeLq89g==
-X-Google-Smtp-Source: AGHT+IEyiy5b3nZjrxUqCLi8UtuOkrr6suPn1vwp5RodoSz2UKg8GWMKoGwtKyNFwtH6O+JddbUpwQ==
-X-Received: by 2002:a2e:86d5:0:b0:2c5:183d:42bf with SMTP id n21-20020a2e86d5000000b002c5183d42bfmr3998771ljj.45.1700468866186;
-        Mon, 20 Nov 2023 00:27:46 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:f04:f84b:d87d:1d06? ([2a01:e0a:982:cbb0:f04:f84b:d87d:1d06])
-        by smtp.gmail.com with ESMTPSA id je12-20020a05600c1f8c00b0040839fcb217sm12641000wmb.8.2023.11.20.00.27.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 00:27:45 -0800 (PST)
-Message-ID: <4608012c-059f-4d6a-914b-e85ad0c32ff0@linaro.org>
-Date: Mon, 20 Nov 2023 09:27:42 +0100
+        d=1e100.net; s=20230601; t=1700469652; x=1701074452;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Uja6WpBlyTBG5jgby6fiOGTUsSLknCmEeqWb3eouYXA=;
+        b=Wjr/8Xzh/pcg3TzGryD1k/Yg53Hs04wiAWcIzv/YpKiSm4qwzKSl+4sZXNVlZ9OzDl
+         WbKaBQwBx0zs8sCFCQuArcsciCkvQwKk2gcyyrQLKiaREAo90VhBXCUyIfrrMyFPUMT7
+         pMg5ya6F9doKMJcj4Ux+4YbJyzwlX+3R/2KMwkpmWFFTLcdFZyATdk31GVzttslG/bqb
+         IQDGMab85Nv0Whvjc56/4eYIPbhRFMb1eBOzS0m3HGztg/VfVOr3hx2yjskYSw7OnczU
+         qqaf8H35Y7ocRcdnslaY23dVqDEGIYjHT4PZStq8oxEYVdIFwJYMFL+cJ/xHJMMrYTnR
+         9PQw==
+X-Gm-Message-State: AOJu0Yy9jFSauvyhsy4azme/hj4CABATlFuMBWP6YYoBctK19rj2wSb3
+	9BtAJEJjhk+Ud4JctNqHdqvRsA==
+X-Google-Smtp-Source: AGHT+IF2z2UJKmxACAGYnsgCuyDmhU5DSNYyJ8jl3UYFsf5HLqN43Rt4pV8YyXHZTojYeH5cxbBtXA==
+X-Received: by 2002:a2e:bc0f:0:b0:2c6:eccb:344d with SMTP id b15-20020a2ebc0f000000b002c6eccb344dmr6049660ljf.40.1700469652204;
+        Mon, 20 Nov 2023 00:40:52 -0800 (PST)
+Received: from krzk-bin.. ([178.197.222.11])
+        by smtp.gmail.com with ESMTPSA id m7-20020a05600c4f4700b0040772138bb7sm17248340wmq.2.2023.11.20.00.40.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Nov 2023 00:40:51 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Andrew Davis <afd@ti.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Nishanth Menon <nm@ti.com>,
+	Olof Johansson <olof@lixom.net>,
+	linux-rockchip@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org
+Subject: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
+Date: Mon, 20 Nov 2023 09:40:44 +0100
+Message-Id: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 2/6] dt-bindings: pwm: amlogic: add new compatible for
- meson8 pwm type
-Content-Language: en-US, fr
-To: Rob Herring <robh@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>
-Cc: JunYi Zhao <junyi.zhao@amlogic.com>, devicetree@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20231117125919.1696980-1-jbrunet@baylibre.com>
- <20231117125919.1696980-3-jbrunet@baylibre.com>
- <170040994064.269288.960284011884896046.robh@kernel.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <170040994064.269288.960284011884896046.robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231120_002801_110981_C5B608AA 
-X-CRM114-Status: GOOD (  13.76  )
+X-CRM114-CacheID: sfid-20231120_004056_498197_8431600F 
+X-CRM114-Status: GOOD (  21.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,53 +105,242 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Rob,
+Document preferred coding style for Devicetree sources (DTS and DTSI),
+to bring consistency among all (sub)architectures and ease in reviews.
 
-On 19/11/2023 17:05, Rob Herring wrote:
-> 
-> On Fri, 17 Nov 2023 13:59:12 +0100, Jerome Brunet wrote:
->> Add a new compatible for the pwm found in the meson8 to sm1 Amlogic SoCs.
->>
->> The previous clock bindings for these SoCs described the driver and not the
->> HW itself. The clock provided was used to set the parent of the input clock
->> mux among the possible parents hard-coded in the driver.
->>
->> The new bindings allows to describe the actual clock inputs of the PWM in
->> DT, like most bindings do, instead of relying of hard-coded data.
->>
->> The new bindings make the old one deprecated.
->>
->> There is enough experience on this HW to know that the PWM is exactly the
->> same all the supported SoCs. There is no need for a per-SoC compatible.
->>
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->>   .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 36 +++++++++++++++++--
->>   1 file changed, 34 insertions(+), 2 deletions(-)
->>
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
+Cc: Andrew Davis <afd@ti.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Bjorn Andersson <andersson@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Heiko Stuebner <heiko@sntech.de>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Michal Simek <michal.simek@amd.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Nishanth Menon <nm@ti.com>
+Cc: Olof Johansson <olof@lixom.net>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I'm puzzled, isn't it recommended to have a per-soc compatible now ?
+---
 
-I thought something like:
-- items:
-     - enum:
-         - amlogic,gxbb-pwm
-         - amlogic,axg-pwm
-         - amlogic,g12a-pwm
-     - const: amlogic,pwm-v1
+Merging idea: Rob/DT bindings
 
-should be preferred instead of a single amlogic,meson8-pwm-v2 ?
+Changes in v2
+=============
+1. Hopefully incorporate entire feedback from comments:
+a. Fix \ { => / { (Rob)
+b. Name: dts-coding-style (Rob)
+c. Exceptions for ordering nodes by name for Renesas and pinctrl (Geert,
+   Konrad)
+d. Ordering properties by common/vendor (Rob)
+e. Array entries in <> (Rob)
 
-Neil
+2. New chapter: Organizing DTSI and DTS
+
+3. Several grammar fixes (missing articles)
+
+Cc: linux-rockchip@lists.infradead.org
+Cc: linux-mediatek@lists.infradead.org
+Cc: linux-samsung-soc@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-arm-msm@vger.kernel.org
+---
+ .../devicetree/bindings/dts-coding-style.rst  | 163 ++++++++++++++++++
+ Documentation/devicetree/bindings/index.rst   |   1 +
+ 2 files changed, 164 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dts-coding-style.rst
+
+diff --git a/Documentation/devicetree/bindings/dts-coding-style.rst b/Documentation/devicetree/bindings/dts-coding-style.rst
+new file mode 100644
+index 000000000000..cc7e3b4d1b92
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dts-coding-style.rst
+@@ -0,0 +1,163 @@
++.. SPDX-License-Identifier: GPL-2.0
++.. _dtscodingstyle:
++
++=====================================
++Devicetree Sources (DTS) Coding Style
++=====================================
++
++When writing Devicetree Sources (DTS) please observe below guidelines.  They
++should be considered complementary to any rules expressed already in Devicetree
++Specification and dtc compiler (including W=1 and W=2 builds).
++
++Individual architectures and sub-architectures can add additional rules, making
++the style stricter.
++
++Naming and Valid Characters
++---------------------------
++
++1. Node and property names are allowed to use only:
++
++   * lowercase characters: [a-z]
++   * digits: [0-9]
++   * dash: -
++
++2. Labels are allowed to use only:
++
++   * lowercase characters: [a-z]
++   * digits: [0-9]
++   * underscore: _
++
++3. Unit addresses should use lowercase hex, without leading zeros (padding).
++
++4. Hex values in properties, e.g. "reg", should use lowercase hex.  The address
++   part can be padded with leading zeros.
++
++Example::
++
++	gpi_dma2: dma-controller@800000 {
++		compatible = "qcom,sm8550-gpi-dma", "qcom,sm6350-gpi-dma";
++		reg = <0x0 0x00800000 0x0 0x60000>;
++	}
++
++Order of Nodes
++--------------
++
++1. Nodes within any bus, thus using unit addresses for children, shall be
++   ordered incrementally by unit address.
++   Alternatively for some sub-architectures, nodes of the same type can be
++   grouped together (e.g. all I2C controllers one after another even if this
++   breaks unit address ordering).
++
++2. Nodes without unit addresses should be ordered alpha-numerically by the node
++   name.  For a few types of nodes, they can be ordered by the main property
++   (e.g. pin configuration states ordered by value of "pins" property).
++
++3. When extending nodes in the board DTS via &label, the entries should be
++   ordered alpha-numerically.
++
++Example::
++
++	// SoC DTSI
++
++	/ {
++		cpus {
++			// ...
++		};
++
++		psci {
++			// ...
++		};
++
++		soc@ {
++			dma: dma-controller@10000 {
++				// ...
++			};
++
++			clk: clock-controller@80000 {
++				// ...
++			};
++		};
++	};
++
++	// Board DTS
++
++	&clk {
++		// ...
++	};
++
++	&dma {
++		// ...
++	};
++
++
++Order of Properties in Device Node
++----------------------------------
++
++Following order of properties in device nodes is preferred:
++
++1. compatible
++2. reg
++3. ranges
++4. Standard/common properties (defined by common bindings, e.g. without
++   vendor-prefixes)
++5. Vendor-specific properties
++6. status (if applicable)
++7. Child nodes, where each node is preceded with a blank line
++
++The "status" property is by default "okay", thus it can be omitted.
++
++Example::
++
++	// SoC DTSI
++
++	usb_1_hsphy: phy@88e3000 {
++		compatible = "qcom,sm8550-snps-eusb2-phy";
++		reg = <0x0 0x088e3000 0x0 0x154>;
++		#phy-cells = <0>;
++		resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
++		status = "disabled";
++	};
++
++	// Board DTS
++
++	&usb_1_hsphy {
++		clocks = <&tcsr TCSR_USB2_CLKREF_EN>;
++		clock-names = "ref";
++		status = "okay";
++	};
++
++
++Indentation
++-----------
++
++1. Use indentation according to :ref:`codingstyle`.
++2. For arrays spanning across lines, it is preferred to align the continued
++   entries with opening < from the first line.
++3. Each entry in arrays with multiple cells (e.g. "reg" with two IO addresses)
++   should be enclosed in <>.
++
++Example::
++
++	thermal-sensor@c271000 {
++		compatible = "qcom,sm8550-tsens", "qcom,tsens-v2";
++		reg = <0x0 0x0c271000 0x0 0x1000>,
++		      <0x0 0x0c222000 0x0 0x1000>;
++	};
++
++Organizing DTSI and DTS
++-----------------------
++
++The DTSI and DTS files should be organized in a way representing the common
++(and re-usable) parts of the hardware.  Typically this means organizing DTSI
++and DTS files into several files:
++
++1. DTSI with contents of the entire SoC (without nodes for hardware not present
++   on the SoC).
++2. If applicable: DTSI with common or re-usable parts of the hardware (e.g.
++   entire System-on-Module).
++3. DTS representing the board.
++
++Hardware components which are present on the board should be placed in the
++board DTS, not in the SoC or SoM DTSI.  A partial exception is a common
++external reference SoC-input clock, which could be coded as a fixed-clock in
++the SoC DTSI with its frequency provided by each board DTS.
+diff --git a/Documentation/devicetree/bindings/index.rst b/Documentation/devicetree/bindings/index.rst
+index d9002a3a0abb..cc1fbdc05657 100644
+--- a/Documentation/devicetree/bindings/index.rst
++++ b/Documentation/devicetree/bindings/index.rst
+@@ -4,6 +4,7 @@
+    :maxdepth: 1
+ 
+    ABI
++   dts-coding-style
+    writing-bindings
+    writing-schema
+    submitting-patches
+-- 
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
