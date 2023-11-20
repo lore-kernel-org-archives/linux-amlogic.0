@@ -4,137 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39371C2BB3F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Nov 2023 14:58:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E9D9C5AD4C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Nov 2023 19:19:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8ilqlfEurKbUi/KY/d9uXdEBKjX/zVUGiGWY0SnXza4=; b=ta/ewXHpz8Bt4/
-	gi/ht9WnXWjC+yfrBsj2RAj5cG2mhqYRrliLNnVHXsyy06Fy54F8cNVtm+bJUgR04xNdh+VWN9eSO
-	prXG8t8pxMOBgVXuJGMAJ0+TdY4FQSaw6KBkbME3NelhWGPmjx71oOvRlVNjQbRmGF0jYU91jRGlM
-	eCDD6n8pXc2A8CDkXksiLs+JKJg+B0ncjpRVwuKiDJQrpebhv72V4efYAfeFuN8BLXewhWpYTZ6Yi
-	hAgcG7LHWj6pgnZH8Ydkt8A7BBYIfl8ZWwJduodYmoSF3SqPo4q+wndk4PHXE+XMLhtrLAJqScTlO
-	cnLyHSIkWVUrXZjfQIcg==;
+	List-Owner; bh=ryBIl+px2tbuBPQDgWy/2CQkBqKzcOBiW2HMe9M2xfE=; b=ZRvydAhOWoZP7P
+	V1kOxgr7G1Ma6g+r4PG58lBsJgyCNYpQ7CyEcZcd0Lin+SE9KjckZWVRFRi+dyVWpxKEy2Mvlu8vt
+	d+kuNktJZoGrO1gVnFZmOXirFwy9jkdwzPYeTB57p3shc3ybCPzhZ2YTukoZ5W5SIYPLRstjgeiU9
+	gh+rvVWi5Ao20+4atNSdjIxSbdBObiBMn6Do89Ka4+S5kSUmy8ua4j4EpgYMtgHwQVLWw6PpXjSSC
+	WVRShXzv5Kws1WSLAZEbFtgNrkPRUDT9RzCCAvgX2PPtk/ZY0C7MQSkei3k6xSc9nfyS46UPppOu9
+	2Sx73ytYudCKgjMv9xUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r55ic-00CQvJ-1L;
-	Mon, 20 Nov 2023 14:57:46 +0000
-Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
+	id 1r59nX-00Egjp-21;
+	Mon, 20 Nov 2023 19:19:07 +0000
+Received: from mail-yw1-f169.google.com ([209.85.128.169])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r55iC-00CQq3-2s
-	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Nov 2023 14:57:42 +0000
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-54553e4888bso6174151a12.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 Nov 2023 06:57:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700492238; x=1701097038; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mQdmwJggkH5N5H7bleDZIaCxHcp1ZmwZnDUsdCqchNc=;
-        b=Dwi5Pt+2H+G3vcwf/9YEULQWJVCWc9FFE/Y62041OyTuMyQf7j0xQLpvNsfcuknkcu
-         WXCVjtaCd4cq9Pd5ffHV9ChSxLkRvWXqCMjtpRoUq08Amkg1WV/Gyw2untoEoAdRNO6K
-         bv/xRq+A0GrLwKyOeB9DrNFqGBHGY3NfNIqZcoU9nI19yph2LYRZWn0vG0fCESbMhZKd
-         7rBbsZ1pWLbC5nX/0xyVEkl7/GkCATw02P6WQpAilCn9Mx8g/6jwf69OpJx9TysaW80d
-         HFJ1RhfhySB6XMmJ6/FUenldfr/neLHBFMJhsutQSy5FLG5o9Mq2UFI+GYaPuKM+fhJF
-         uU4g==
+	id 1r59nQ-00Egge-1c;
+	Mon, 20 Nov 2023 19:19:02 +0000
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-5ca11922cedso16326567b3.2;
+        Mon, 20 Nov 2023 11:18:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700492238; x=1701097038;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mQdmwJggkH5N5H7bleDZIaCxHcp1ZmwZnDUsdCqchNc=;
-        b=DDNoxgci0qjdKOnEvLK81ZwlJ1i9HBe7k6YAw3DNPbcKfhx6OZALHfxAUBBtMfRFlU
-         4JCLPfKirQb02u+AcszMFFZbzXKKWdr4zqU7SOn0BF0mh+TzFIivN7KynZ4abCtW+2s2
-         nWSw3JyiIU2K0/aqFhP4XK92ANLRZFYA7uHQajcZVJsg92OaMiC7v94i/OwIp6cdbc0s
-         drCqn+pVH5Rq8DrMJmqv1LVrKXFs11MrBg+eLsS0D8h/qREbZ44L11lYl/ED4b3IWLOF
-         UPh6Pgt+EBUlJZm+3AApP9noQLn88nUGZa+a1u+mLCq/nhXD2Yq6UKhxxNPDwulNO2zd
-         2PrQ==
-X-Gm-Message-State: AOJu0Yxm0KEPr8RqcaxeVm9YR9D5NqVip8gsxf9K+IAmvgZIQlhjOzra
-	R+nkwQ/jq291it/okMql9Q7Lfw==
-X-Google-Smtp-Source: AGHT+IGKTCAQ89cSgrdtj41saGZa0eHlqo9fZTfHzsMIgXBpffdgBrR+YTLmJkRQLTrSUGi72DsZPA==
-X-Received: by 2002:a17:907:6d0a:b0:9a5:b878:7336 with SMTP id sa10-20020a1709076d0a00b009a5b8787336mr6347418ejc.7.1700492238455;
-        Mon, 20 Nov 2023 06:57:18 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.11])
-        by smtp.gmail.com with ESMTPSA id me23-20020a170906aed700b009e5c644e34dsm3899105ejb.82.2023.11.20.06.57.15
+        d=1e100.net; s=20230601; t=1700507937; x=1701112737;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GifO7/JOpk0NmY1mNUiYBsJ2MaEkt42xKaLVw+ulB/A=;
+        b=PRPfnSWI1yEdUehiO6BZH3ijLjAc5nxhKrdQQwEt02y4LeO+giTr8C44JovJw8rVHW
+         qKyVn4hkpQ5fGjsMNXTlF4+5rSpneVnWOn29P1VJh4s6mMabgTr++YpLeMtxC4AiLG1C
+         o+jXD3COAADC7ZY4mImPXMrWGuzYwNjGASRalLeNLzOU/B1kNgSJKDotqo81we++7P11
+         1xp2nyO92tauSPHH72vlvKWTHxhJlqmaMHdfJWqSs/5R2rJaMu7zNNyJa+RZPGeHDys5
+         aW7dTkpJ/CH5C4x9/h8bH4F/U6MVHn99mXxfL79dNqKr+dNH7dRfHeZYHo4Pd2ecTQ1L
+         jvzg==
+X-Gm-Message-State: AOJu0YxPthwNQOPp1zohn/K5oIQZgcLWQKmz/4eP6/NY62/ryWVV8Jsb
+	4NCLD4gCLyyKjD9RvuUKYlYtF9Y0L0p83A==
+X-Google-Smtp-Source: AGHT+IFU+oM9Aq/hDuXaXPs1gcio5Qe4CnDMNKqdnjyaduuH/+TIocMvVTCgjuEKNUyojhr4rStrVw==
+X-Received: by 2002:a81:9a8d:0:b0:5ca:7b75:4ecd with SMTP id r135-20020a819a8d000000b005ca7b754ecdmr3667595ywg.22.1700507937232;
+        Mon, 20 Nov 2023 11:18:57 -0800 (PST)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id q126-20020a815c84000000b005a7c829dda2sm2516045ywb.84.2023.11.20.11.18.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Nov 2023 06:57:17 -0800 (PST)
-Message-ID: <e8483375-cace-473c-aba7-1cd60feae242@linaro.org>
-Date: Mon, 20 Nov 2023 15:57:15 +0100
+        Mon, 20 Nov 2023 11:18:55 -0800 (PST)
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-db3a09e96daso1190784276.3;
+        Mon, 20 Nov 2023 11:18:54 -0800 (PST)
+X-Received: by 2002:a5b:f4a:0:b0:da0:c49a:5103 with SMTP id
+ y10-20020a5b0f4a000000b00da0c49a5103mr7300082ybr.47.1700507934171; Mon, 20
+ Nov 2023 11:18:54 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
-Content-Language: en-US
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-Cc: Andrew Davis <afd@ti.com>, Arnd Bergmann <arnd@arndb.de>,
- Bjorn Andersson <andersson@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Heiko Stuebner <heiko@sntech.de>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michal Simek <michal.simek@amd.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
- Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-msm@vger.kernel.org
 References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
- <92cf3bcc-18e7-40ba-a082-1b8b6bea0dee@collabora.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <92cf3bcc-18e7-40ba-a082-1b8b6bea0dee@collabora.com>
+ <19358871-009d-4498-9c13-90d5338b1e9f@amd.com> <76fa8f61-fe31-4040-a38d-cc05be3f4f17@linaro.org>
+In-Reply-To: <76fa8f61-fe31-4040-a38d-cc05be3f4f17@linaro.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 20 Nov 2023 20:18:42 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW4WPJT0Km7w8RWrGJaztk6QDGoFAn0bdGbrEsw81R1FA@mail.gmail.com>
+Message-ID: <CAMuHMdW4WPJT0Km7w8RWrGJaztk6QDGoFAn0bdGbrEsw81R1FA@mail.gmail.com>
+Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Michal Simek <michal.simek@amd.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Heiko Stuebner <heiko@sntech.de>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231120_065726_162903_B4676D9E 
-X-CRM114-Status: GOOD (  30.35  )
+X-CRM114-CacheID: sfid-20231120_111900_537236_9A71B0C1 
+X-CRM114-Status: GOOD (  24.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -146,312 +90,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 20/11/2023 12:43, AngeloGioacchino Del Regno wrote:
-> Il 20/11/23 09:40, Krzysztof Kozlowski ha scritto:
->> Document preferred coding style for Devicetree sources (DTS and DTSI),
->> to bring consistency among all (sub)architectures and ease in reviews.
->>
->> Cc: Andrew Davis <afd@ti.com>
->> Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> Cc: Arnd Bergmann <arnd@arndb.de>
->> Cc: Bjorn Andersson <andersson@kernel.org>
->> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
->> Cc: Heiko Stuebner <heiko@sntech.de>
->> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
->> Cc: Matthias Brugger <matthias.bgg@gmail.com>
->> Cc: Michal Simek <michal.simek@amd.com>
->> Cc: Neil Armstrong <neil.armstrong@linaro.org>
->> Cc: Nishanth Menon <nm@ti.com>
->> Cc: Olof Johansson <olof@lixom.net>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Merging idea: Rob/DT bindings
->>
->> Changes in v2
->> =============
->> 1. Hopefully incorporate entire feedback from comments:
->> a. Fix \ { => / { (Rob)
->> b. Name: dts-coding-style (Rob)
->> c. Exceptions for ordering nodes by name for Renesas and pinctrl (Geert,
->>     Konrad)
->> d. Ordering properties by common/vendor (Rob)
->> e. Array entries in <> (Rob)
->>
->> 2. New chapter: Organizing DTSI and DTS
->>
->> 3. Several grammar fixes (missing articles)
->>
->> Cc: linux-rockchip@lists.infradead.org
->> Cc: linux-mediatek@lists.infradead.org
->> Cc: linux-samsung-soc@vger.kernel.org
->> Cc: linux-amlogic@lists.infradead.org
->> Cc: linux-arm-kernel@lists.infradead.org
->> Cc: linux-arm-msm@vger.kernel.org
->> ---
->>   .../devicetree/bindings/dts-coding-style.rst  | 163 ++++++++++++++++++
->>   Documentation/devicetree/bindings/index.rst   |   1 +
->>   2 files changed, 164 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/dts-coding-style.rst
->>
->> diff --git a/Documentation/devicetree/bindings/dts-coding-style.rst b/Documentation/devicetree/bindings/dts-coding-style.rst
->> new file mode 100644
->> index 000000000000..cc7e3b4d1b92
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/dts-coding-style.rst
->> @@ -0,0 +1,163 @@
->> +.. SPDX-License-Identifier: GPL-2.0
->> +.. _dtscodingstyle:
->> +
->> +=====================================
->> +Devicetree Sources (DTS) Coding Style
->> +=====================================
->> +
->> +When writing Devicetree Sources (DTS) please observe below guidelines.  They
->> +should be considered complementary to any rules expressed already in Devicetree
->> +Specification and dtc compiler (including W=1 and W=2 builds).
->> +
->> +Individual architectures and sub-architectures can add additional rules, making
->> +the style stricter.
->> +
->> +Naming and Valid Characters
->> +---------------------------
->> +
->> +1. Node and property names are allowed to use only:
->> +
->> +   * lowercase characters: [a-z]
->> +   * digits: [0-9]
->> +   * dash: -
->> +
->> +2. Labels are allowed to use only:
->> +
->> +   * lowercase characters: [a-z]
->> +   * digits: [0-9]
->> +   * underscore: _
->> +
->> +3. Unit addresses should use lowercase hex, without leading zeros (padding).
-> 
-> This is imperative, so: s/should/shall/g
-
-Sure, fine.
-
-> 
->> +
->> +4. Hex values in properties, e.g. "reg", should use lowercase hex.  The address
->> +   part can be padded with leading zeros.
->> +
-> 
-> Same here, I'd say.... :-)
-> 
->> +Example::
->> +
->> +	gpi_dma2: dma-controller@800000 {
->> +		compatible = "qcom,sm8550-gpi-dma", "qcom,sm6350-gpi-dma";
->> +		reg = <0x0 0x00800000 0x0 0x60000>;
->> +	}
->> +
->> +Order of Nodes
->> +--------------
->> +
->> +1. Nodes within any bus, thus using unit addresses for children, shall be
->> +   ordered incrementally by unit address.
->> +   Alternatively for some sub-architectures, nodes of the same type can be
->> +   grouped together (e.g. all I2C controllers one after another even if this
->> +   breaks unit address ordering).
->> +
->> +2. Nodes without unit addresses should be ordered alpha-numerically by the node
->> +   name.  For a few types of nodes, they can be ordered by the main property
->> +   (e.g. pin configuration states ordered by value of "pins" property).
->> +
->> +3. When extending nodes in the board DTS via &label, the entries should be
->> +   ordered alpha-numerically.
->> +
->> +Example::
->> +
-> 
-> Hmm, comments!
-> 
->> +	// SoC DTSI
-> 
-> ....speaking of commenting, should we at least suggest to use C-style comments?
-> 
-> 	/* SoC DTSI */
-
-I can switch it to C-style in the example, but we are going with Linux
-Coding Style which soon will allow // judging by Linus' statements.
-
-> 
->> +
->> +	/ {
->> +		cpus {
->> +			// ...
->> +		};
->> +
->> +		psci {
->> +			// ...
->> +		};
->> +
->> +		soc@ {
->> +			dma: dma-controller@10000 {
->> +				// ...
->> +			};
->> +
->> +			clk: clock-controller@80000 {
->> +				// ...
->> +			};
->> +		};
->> +	};
->> +
->> +	// Board DTS
->> +
->> +	&clk {
->> +		// ...
->> +	};
->> +
->> +	&dma {
->> +		// ...
->> +	};
->> +
->> +
->> +Order of Properties in Device Node
->> +----------------------------------
->> +
->> +Following order of properties in device nodes is preferred:
->> +
->> +1. compatible
->> +2. reg
->> +3. ranges
->> +4. Standard/common properties (defined by common bindings, e.g. without
->> +   vendor-prefixes)
->> +5. Vendor-specific properties
->> +6. status (if applicable)
->> +7. Child nodes, where each node is preceded with a blank line
->> +
->> +The "status" property is by default "okay", thus it can be omitted.
->> +
->> +Example::
->> +
->> +	// SoC DTSI
->> +
->> +	usb_1_hsphy: phy@88e3000 {
->> +		compatible = "qcom,sm8550-snps-eusb2-phy";
->> +		reg = <0x0 0x088e3000 0x0 0x154>;
->> +		#phy-cells = <0>;
->> +		resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
->> +		status = "disabled";
->> +	};
-> 
-> Since this describes vendor-specific properties and vendor prefixes as well
-> as standard properties, I think it would be clearer if we use something more
-> complex that actually contains those as an example.
-> 
-> There's a few. One is MediaTek:
-> 
-> 	vdo1_rdma0: dma-controller@1c104000 {
-> 		compatible = "mediatek,mt8195-vdo1-rdma";
-> 		reg = <0 0x1c104000 0 0x1000>;
-> 		#dma-cells = <1>;
-> 		clocks = <&vdosys1 CLK_VDO1_MDP_RDMA0>;
-> 		interrupts = <GIC_SPI 495 IRQ_TYPE_LEVEL_HIGH 0>;
-> 		iommus = <&iommu_vdo M4U_PORT_L2_MDP_RDMA0>;
-> 		power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
-> 		mediatek,gce-client-reg = <&gce0 SUBSYS_1c10XXXX 0x4000 0x1000>;
-> 	};
-> 
-> ...or other one can be nVidia:
-> 
-> 	mipi: mipi@700e3000 {
-> 		compatible = "nvidia,tegra210-mipi";
-> 		reg = <0x0 0x700e3000 0x0 0x100>;
-> 		clocks = <&tegra_car TEGRA210_CLK_MIPI_CAL>;
-> 		clock-names = "mipi-cal";
-> 		power-domains = <&pd_sor>;
-> 		#nvidia,mipi-calibrate-cells = <1>;
-> 	};
-> 
-> ...or we could make an example out of fantasy, which could work even better
-> as far as describing goes.
-> 
-> 	/* SoC DTSI */
-> 
-> 	device_node: device-class@6789abc {
-> 		compatible = "vendor,device";
-
-Yep. I'll use this, unless checkpatch complains about undocumented
-compatible. :) This allows to show the child node.
-
-> 		reg = <0 0x06789abc 0 0xa123>;
-> 		ranges = <0 0 0x6789abc 0x1000>;
-> 		#dma-cells = <1>;
-> 		clocks = <&clock_controller SOC_CLOCK>;
-> 		clock-names = "dev-clk";
-> 		#vendor,custom-cells = <2>;
-> 		status = "disabled";
-> 
-> 		child_node: child-class@100 {
-> 			reg = <0x100 0x200>;
-> 			/* ... */
-> 		};
-> 	};
-> 
-> 	/* Board DTS */
-> 
-> 	&device_node {
-> 		device-supply = <&board_vreg1>;
-> 		status = "okay";
-> 	}
-> 
->> +
->> +	// Board DTS
->> +
->> +	&usb_1_hsphy {
->> +		clocks = <&tcsr TCSR_USB2_CLKREF_EN>;
->> +		clock-names = "ref";
->> +		status = "okay";
->> +	};
->> +
->> +
->> +Indentation
->> +-----------
->> +
->> +1. Use indentation according to :ref:`codingstyle`.
->> +2. For arrays spanning across lines, it is preferred to align the continued
->> +   entries with opening < from the first line.
->> +3. Each entry in arrays with multiple cells (e.g. "reg" with two IO addresses)
->> +   should be enclosed in <>.
->> +
->> +Example::
->> +
->> +	thermal-sensor@c271000 {
->> +		compatible = "qcom,sm8550-tsens", "qcom,tsens-v2";
->> +		reg = <0x0 0x0c271000 0x0 0x1000>,
->> +		      <0x0 0x0c222000 0x0 0x1000>;
->> +	};
->> +
->> +Organizing DTSI and DTS
->> +-----------------------
->> +
->> +The DTSI and DTS files should be organized in a way representing the common
->> +(and re-usable) parts of the hardware.  Typically this means organizing DTSI
-> 
->                                          ^^^^
-> There's a double space here, it was probably unintentional.
-
-I think I used everywhere double-spaces. At least this was my intention,
-so I will fix single-spaces :)
-
-
-Best regards,
-Krzysztof
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgS3J6eXN6dG9mLAoKT24gTW9uLCBOb3YgMjAsIDIwMjMgYXQgMzo1M+KAr1BNIEtyenlzenRv
+ZiBLb3psb3dza2kKPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4gd3JvdGU6Cj4gT24g
+MjAvMTEvMjAyMyAxNTowMSwgTWljaGFsIFNpbWVrIHdyb3RlOj4gPgo+ID4gT24gMTEvMjAvMjMg
+MDk6NDAsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6Cj4gPj4gRG9jdW1lbnQgcHJlZmVycmVk
+IGNvZGluZyBzdHlsZSBmb3IgRGV2aWNldHJlZSBzb3VyY2VzIChEVFMgYW5kIERUU0kpLAo+ID4+
+IHRvIGJyaW5nIGNvbnNpc3RlbmN5IGFtb25nIGFsbCAoc3ViKWFyY2hpdGVjdHVyZXMgYW5kIGVh
+c2UgaW4gcmV2aWV3cy4KCj4gPj4gK09yZ2FuaXppbmcgRFRTSSBhbmQgRFRTCj4gPj4gKy0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tCj4gPj4gKwo+ID4+ICtUaGUgRFRTSSBhbmQgRFRTIGZpbGVzIHNo
+b3VsZCBiZSBvcmdhbml6ZWQgaW4gYSB3YXkgcmVwcmVzZW50aW5nIHRoZSBjb21tb24KPiA+PiAr
+KGFuZCByZS11c2FibGUpIHBhcnRzIG9mIHRoZSBoYXJkd2FyZS4gIFR5cGljYWxseSB0aGlzIG1l
+YW5zIG9yZ2FuaXppbmcgRFRTSQo+ID4+ICthbmQgRFRTIGZpbGVzIGludG8gc2V2ZXJhbCBmaWxl
+czoKPiA+PiArCj4gPj4gKzEuIERUU0kgd2l0aCBjb250ZW50cyBvZiB0aGUgZW50aXJlIFNvQyAo
+d2l0aG91dCBub2RlcyBmb3IgaGFyZHdhcmUgbm90IHByZXNlbnQKPiA+PiArICAgb24gdGhlIFNv
+QykuCj4gPj4gKzIuIElmIGFwcGxpY2FibGU6IERUU0kgd2l0aCBjb21tb24gb3IgcmUtdXNhYmxl
+IHBhcnRzIG9mIHRoZSBoYXJkd2FyZSAoZS5nLgo+ID4+ICsgICBlbnRpcmUgU3lzdGVtLW9uLU1v
+ZHVsZSkuCj4gPgo+ID4gRFRTL0RUU0kgLSBTT01zIGNhbiBhY3R1YWxseSBydW4gYXMgdGhleSBh
+cmUgdGhhdCdzIHdoeSBpdCBpcyBmYWlyIHRvIHNheSB0aGF0Cj4gPiB0aGVyZSBkb2Vzbid0IG5l
+ZWQgdG8gYmUgRFRTIHJlcHJlc2VudGluZyB0aGUgYm9hcmQuCj4KPiBJIGhhdmUgbmV2ZXIgc2Vl
+biBhIFNvTSB3aGljaCBjYW4gcnVuIHdpdGhvdXQgZWxhYm9yYXRlIGhhcmR3YXJlLWhhY2tpbmcK
+PiAoZS5nLiBjb25uZWN0aW5nIG11bHRpcGxlIHdpcmVzIHRvIHRoZSBTb00gcGlucykuIFRoZSBk
+ZWZpbml0aW9uIG9mIHRoZQo+IFNvTSBpcyB0aGF0IGl0IGlzIGEgbW9kdWxlLiBNb2R1bGUgY2Fu
+IGJlIHJlLXVzZWQsIGp1c3QgbGlrZSBTb0MuCgovbWUgbG9va3MgYXQgaGlzIGJvYXJkIGZhcm0u
+Li4KClRoZSBSZW5lc2FzIFdoaXRlLUhhd2sgQ1BVIGJvYXJkIGNhbiBiZSB1c2VkIHN0YW5kYWxv
+bmUsIGFuZCBoYXMgYQpzZXBhcmF0ZSBwb3dlciBpbnB1dCBjb25uZWN0b3IgZm9yIHRoaXMgb3Bl
+cmF0aW9uIG1vZGUuICBBcyBpdCBoYXMgUkFNLApFdGhlcm5ldCwgc2VyaWFsIGNvbnNvbGUsIGVN
+TUMsIGFuZCBldmVuIG1pbmktRFAsIGl0IGNhbiBzZXJ2ZSB1c2VmdWwKcHVycG9zZXMgb24gaXRz
+IG93bi4KSSBhZ3JlZSBpdCdzIG5vdCBhIHN1cGVyLWdvb2QgZXhhbXBsZSwgYXMgdGhlIGJvYXJk
+IGlzIG5vdCByZWFsbHkgYQoiU29NIiwgYW5kIHdlIGN1cnJlbnRseSBkb24ndCBoYXZlIHI4YTc3
+OWcwLXdoaXRlLWhhd2stY3B1LmR0cywgb25seQpyOGE3NzlnMC13aGl0ZS1oYXdrLWNwdS5kdHNp
+LgoKVGhlIFJaL0EyTSBDUFUgQm9hcmQgaXMgYSByZWFsIFNvTSwgd2hpY2ggY2FuIGJlIHBvd2Vy
+ZWQgb3ZlciBVU0IuCkl0IGhhcyBsZXNzIHN0YW5kYXJkIGNvbm5lY3RvcnMgKG1pY3JvU0QsIFVT
+QiwgTUlQSSBDU0ktMiksIGJ1dCBzdGlsbApzdWZmaWNpZW50IGZlYXR1cmVzIHRvIGJlIHVzYWJs
+ZSBvbiBpdHMgb3duLgpBZ2Fpbiwgd2UncmUgZG9pbmcgYSBiYWQgam9iLCBhcyB3ZSBvbmx5IGhh
+dmUgYSBEVFMgZm9yIHRoZSBmdWxsIGV2YWwKYm9hcmQgKHI3czkyMTAtcnphMm1ldmIuZHRzKS4K
+CkkgZ3Vlc3MgdGhlcmUgYXJlIChtYW55KSBvdGhlciBleGFtcGxlcy4uLgoKR3J7b2V0amUsZWV0
+aW5nfXMsCgogICAgICAgICAgICAgICAgICAgICAgICBHZWVydAoKLS0gCkdlZXJ0IFV5dHRlcmhv
+ZXZlbiAtLSBUaGVyZSdzIGxvdHMgb2YgTGludXggYmV5b25kIGlhMzIgLS0gZ2VlcnRAbGludXgt
+bTY4ay5vcmcKCkluIHBlcnNvbmFsIGNvbnZlcnNhdGlvbnMgd2l0aCB0ZWNobmljYWwgcGVvcGxl
+LCBJIGNhbGwgbXlzZWxmIGEgaGFja2VyLiBCdXQKd2hlbiBJJ20gdGFsa2luZyB0byBqb3VybmFs
+aXN0cyBJIGp1c3Qgc2F5ICJwcm9ncmFtbWVyIiBvciBzb21ldGhpbmcgbGlrZSB0aGF0LgogICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0tIExpbnVzIFRvcnZhbGRzCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxp
+bmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
+ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
