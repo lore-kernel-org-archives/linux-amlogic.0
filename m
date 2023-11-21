@@ -4,85 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44CF4C61D92
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Nov 2023 11:05:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F140BC61D92
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Nov 2023 11:09:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=geRfmKLBi0CTJEYkKEDsxDHJ/YUvWg48FvENZWjnolU=; b=Xw5dYTO5AiV8zLKUQ5PjXoieLi
-	bzyPC9TWajm80xNGSAY4wVH+oNDOrAkY+qWrNw4er28O//VfpvmtJdMnHM5j6Ujh5v9u3bau6HOeV
-	uLIS6Xa0TwyU868xuTXzoBQu/7GJA/rnLOm2MJI3XUPOE3JCJsjr6tahKZyoPGvC7qV9K1Qy7emR6
-	AU6icMnvxm9dfmwKQNypUbyMPKachBasDnJXLHLeP5q4wQfyU8rJu9e9Xiq612AWSgitHykPCHPGI
-	ZzICZYDqmrfOE+1GtC4poCq4i54usDfFLiqCMPfK/1LaXbtBjlst8Fg1d07ZHvuShCmtIgcvuDw7w
-	h+B910gw==;
+	bh=Q0JgGzdfk9awuy3Wb8TEJ9JI8ca5RwaHoYv1M4JIDRk=; b=Zu/pLn49JZsbWMZaIMbAXMgC+V
+	Tj9DthcNmOF+noIHn0j4X1sG/Ldh7QTkFkJBF3TdCJGUl1tAIbyC6PYWQ5shJ2DIqXAXuML/XUU1q
+	keqxp7FEfcXWSnfBt5KwKBSF2eqscppQ2kcOKKK81R4BeZ+raHQvoRU0rs9hgnhvar9IlKBfiEsn6
+	pQ9XMTPDt3P1jFFrRpizQ8KTfWoDaMl+dhXsekXpRCTU7iSkxFUzSmxMb+gcDutsdvGruTeX8CtC3
+	c3u5XRvxmxVcj0Ej50S1auIlsqSPNfPHDPh/BskCDpTojUjqrBTMFS9ttJHWz2VXc3GSPU5GtbW6v
+	+d9EtIRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r5OYt-00GMYi-1w;
-	Tue, 21 Nov 2023 11:04:59 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1r5OcP-00GNNQ-2w;
+	Tue, 21 Nov 2023 11:08:37 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r5OYp-00GMX6-3B
+	id 1r5OcN-00GNM3-1O
 	for linux-amlogic@lists.infradead.org;
-	Tue, 21 Nov 2023 11:04:57 +0000
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-32daeed7771so3285537f8f.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 21 Nov 2023 03:04:53 -0800 (PST)
+	Tue, 21 Nov 2023 11:08:36 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4083dbc43cfso20661455e9.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 21 Nov 2023 03:08:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700564692; x=1701169492; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1700564910; x=1701169710; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=kIK/f1U9gj42KtTbzVAHFRC1UQ6zgDgmA86Cyhg1HRw=;
-        b=kSPwBig1N+6MQmi1qW5Y73nhPhFVYOttSd4E0ERIH9QWo0Q5hif0KK++/QrrqorFdy
-         mdTE61Pqn6mmxs7hK3rWXMM7+Yt7A+xc8GGbROBJc8wy/zYC0HM1FMtlsdQQROSrklhi
-         RBpja9TJeCURDPiyMcHYtPPPd37qh8w6Ep1Eaf7Oq5fwH+H9LWcSBK4XhelSagOUcUiD
-         KhzuX2MHruML6O3XenJaTcFvBseFzoDchOEDSe9jZ+2GSWxxmu+H+BCEKveTwXS+Gsq5
-         DEZBQGwdn8tsJOh5mnqrDEWRQME/mokoHjn3w/lcCyue80p013uD8lVqJCg4gE3oBVPr
-         x4eQ==
+        bh=GjdtNxULy8GpfsKCvdM83K03LmtKeMMcPxb4JkNuP7s=;
+        b=ZYlbV3tH8O1mx9QtVfLAj9qwucirWMGCofHUcmjujzSqfXZKjNNHX4HB1XrzAQCgQo
+         Lyp3LNF6v/bSofxE+ofT1Jkjx3QAUZBtrijuU1RbX6C1x80tkoo4glGnAfC3M3vZTyGV
+         WIUOXEpXGITYhZGh+3FkObymfNFBoO8xRLXOkuK2Po0SXQyezL6+7zbe35BQnan/E7t/
+         9z7uv5aZiWncfjoTjW9jsCW+Q5biRee7mpECNV4antJ5YffBU98A5FXYzFlTrygzCx0h
+         5LC8t3rZ8HKgkiRADPXGLIsfK5/iXbiFrqoMYATEwVLUJIP9VMkvoDlPpm2TyQ8ddR7n
+         jrHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700564692; x=1701169492;
+        d=1e100.net; s=20230601; t=1700564910; x=1701169710;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=kIK/f1U9gj42KtTbzVAHFRC1UQ6zgDgmA86Cyhg1HRw=;
-        b=R7qYWpuUWSUa2qmIoqtBkhcLbHosso7p/FrENhgFWRkkeqRwe2qzDWL1LP4Aq0cNu3
-         JLFqwxeMpvbTHhiPcomoatgdDfGgQGR2zESDxpdWhdztl7PrP5VyRThkH32GHCCfwcIL
-         o7JCIifsrANfVBExcbrnkAUNwsgLlcvV8E39Gsgw5zRcexNKr2yzRwI/BU880JP70uzG
-         LhdcpJ8dv3ZNkLV0mAgK9+hOF9YnXFin4dzyCyHzI/7uDnJ8kew9tX4kYQtUb9QqxVFc
-         FgQ+6dhEIZVa2p+IsflXxYVuDZdb7X2b1PFopOCMRv8w+MXhua4UdA/iE++abDS9r7qI
-         cFUw==
-X-Gm-Message-State: AOJu0Yx+fl2fDs55bIIBB43GwrMNAiGC/Nklg+iuGnbRwKoCvBFMvj5Z
-	kWWUGopeqluxi0Okcn7943kn/w==
-X-Google-Smtp-Source: AGHT+IHIYLaPdDRrbJE5uQgQlOj1dJoooND6JHpZCP3BrMLOAYeMAn/fpW4er0klLi7y3R6yE9dZMg==
-X-Received: by 2002:adf:f4cc:0:b0:332:cb97:2cb6 with SMTP id h12-20020adff4cc000000b00332cb972cb6mr2183534wrp.21.1700564691910;
-        Tue, 21 Nov 2023 03:04:51 -0800 (PST)
+        bh=GjdtNxULy8GpfsKCvdM83K03LmtKeMMcPxb4JkNuP7s=;
+        b=aDw45W/TJQHLvvF/wrBujW8XNu9qxhFlrIi4rCzaXTHdVFHdbrX3XIt5mG37zBqvu/
+         2WPlNkHUkgujK9VV9dl/UgVdR8ryM+f9trvLsi+Hr3BQ/RAx2+SJ0afL0L3kuFN72erx
+         54DqpgX2M9QCaH9YjX6ieiIb3EalqGU/wBgrIi5fS/PLQKwsmOqsy43jAIJPOVhlciiM
+         ZZmo9KWFvW4WJjUqWWfebdkP6mphd261nwo5iXxXEPqxCTYqwt1Fxu6Gjz1w+KEg2/TY
+         anZq/1ynO/wSetGtBUO254mSQCThLEh9bC0AjYkjr2EDNcHUOT1853/YmSf/uVSjYvX5
+         W0TQ==
+X-Gm-Message-State: AOJu0YyGFbUDwzcT94VdZRAxpYcIgLNsLt0z9OoerIHzD6ZIRWC33Bfl
+	Pk41T2WSsxLJSfCffRRxe84LFA==
+X-Google-Smtp-Source: AGHT+IE06AyXcbIInK/ALarbb+zk6R0IAgBeYBiZpcgR5OQCTkC4jUkRjeSmSTNHO5ygCD7WzMWbLg==
+X-Received: by 2002:a05:600c:230a:b0:408:37d4:b5ba with SMTP id 10-20020a05600c230a00b0040837d4b5bamr8384988wmo.12.1700564910505;
+        Tue, 21 Nov 2023 03:08:30 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:2a39:bc19:20b6:16a? ([2a01:e0a:982:cbb0:2a39:bc19:20b6:16a])
-        by smtp.gmail.com with ESMTPSA id e1-20020adff341000000b0032f79e55eb8sm14010312wrp.16.2023.11.21.03.04.50
+        by smtp.gmail.com with ESMTPSA id jg6-20020a05600ca00600b0040b2c195523sm449723wmb.31.2023.11.21.03.08.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Nov 2023 03:04:51 -0800 (PST)
-Message-ID: <a69e5dd0-8efe-4415-9747-0554f8370fcf@linaro.org>
-Date: Tue, 21 Nov 2023 12:04:49 +0100
+        Tue, 21 Nov 2023 03:08:30 -0800 (PST)
+Message-ID: <f693f5c2-7103-4d32-bc38-6832b0f46453@linaro.org>
+Date: Tue, 21 Nov 2023 12:08:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/2] pmdomain: amlogic: meson-ee-pwrc: add support for
- G12A ISP power domain
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH] iio: adc: meson: add separate config for axg SoC family
 Content-Language: en-US, fr
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Ulf Hansson <ulf.hansson@linaro.org>,
- Daniel Scally <dan.scally@ideasonboard.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20231114-topic-amlogic-upstream-isp-pmdomain-v1-0-f01e6fca67a0@linaro.org>
- <20231114-topic-amlogic-upstream-isp-pmdomain-v1-2-f01e6fca67a0@linaro.org>
- <CAFBinCDe3yoEBd6SzozNZtC=zGaUHt4VeO_uhV1s5XBaWp0w1Q@mail.gmail.com>
+To: George Stark <gnstark@salutedevices.com>, jic23@kernel.org,
+ lars@metafoo.de, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, andriy.shevchenko@linux.intel.com,
+ nuno.sa@analog.com, u.kleine-koenig@pengutronix.de
+Cc: linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ kernel@salutedevices.com
+References: <20231121075000.133711-1-gnstark@salutedevices.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -108,10 +104,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <CAFBinCDe3yoEBd6SzozNZtC=zGaUHt4VeO_uhV1s5XBaWp0w1Q@mail.gmail.com>
+In-Reply-To: <20231121075000.133711-1-gnstark@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231121_030456_047198_2CF00F39 
-X-CRM114-Status: GOOD (  10.36  )
+X-CRM114-CacheID: sfid-20231121_030835_466770_BF432F1D 
+X-CRM114-Status: GOOD (  12.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,21 +120,64 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjAvMTEvMjAyMyAyMToxNSwgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90ZToKPiBIaSBOZWls
-LAo+IAo+IE9uIFR1ZSwgTm92IDE0LCAyMDIzIGF0IDExOjE54oCvQU0gTmVpbCBBcm1zdHJvbmcK
-PiA8bmVpbC5hcm1zdHJvbmdAbGluYXJvLm9yZz4gd3JvdGU6Cj4gWy4uLl0KPj4gK3N0YXRpYyBz
-dHJ1Y3QgbWVzb25fZWVfcHdyY19tZW1fZG9tYWluIGcxMmFfcHdyY19tZW1faXNwW10gPSB7Cj4+
-ICsgICAgICAgeyBHMTJBX0hISV9JU1BfTUVNX1BEX1JFRzAsIEdFTk1BU0soMzEsIDApIH0sCj4+
-ICsgICAgICAgeyBHMTJBX0hISV9JU1BfTUVNX1BEX1JFRzAsIEdFTk1BU0soMzEsIDApIH0sCj4g
-SSBleHBlY3RlZCB0aGlzIHNlY29uZCBsaW5lIHRvIHVzZSBHMTJBX0hISV9JU1BfTUVNX1BEX1JF
-RzEgKG5vdGUgdGhlCj4gbnVtYmVyIGF0IHRoZSBlbmQ6IDAgdnMgMSkKPiBJcyB0aGlzIGNvcnJl
-Y3Q/CgpJbmRlZWQgeW91J3JlIHJpZ2h0LCBsZXQgbWUgZml4IGl0IGluIGEgdjIsCgpUaGFua3Ms
-Ck5laWwKCj4gCj4gCj4gQmVzdCByZWdhcmRzLAo+IE1hcnRpbgoKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
-CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On 21/11/2023 08:50, George Stark wrote:
+> According to Amlogic custom kernels ADC of axg SoC family requires
+> unique number of setting so add dedicated config for it.
+
+Please rephrase precising AXG has vref_select and requires this setting
+to work nominally and thus requires a separate config.
+
+With this:
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+> 
+> Signed-off-by: George Stark <gnstark@salutedevices.com>
+> ---
+>   drivers/iio/adc/meson_saradc.c | 16 +++++++++++++++-
+>   1 file changed, 15 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+> index db280da9edbf..34555a85f131 100644
+> --- a/drivers/iio/adc/meson_saradc.c
+> +++ b/drivers/iio/adc/meson_saradc.c
+> @@ -1242,6 +1242,20 @@ static const struct meson_sar_adc_param meson_sar_adc_gxl_param = {
+>   	.cmv_select = 1,
+>   };
+>   
+> +static const struct meson_sar_adc_param meson_sar_adc_axg_param = {
+> +	.has_bl30_integration = true,
+> +	.clock_rate = 1200000,
+> +	.bandgap_reg = MESON_SAR_ADC_REG11,
+> +	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
+> +	.resolution = 12,
+> +	.disable_ring_counter = 1,
+> +	.has_reg11 = true,
+> +	.vref_volatge = 1,
+> +	.has_vref_select = true,
+> +	.vref_select = VREF_VDDA,
+> +	.cmv_select = 1,
+> +};
+> +
+>   static const struct meson_sar_adc_param meson_sar_adc_g12a_param = {
+>   	.has_bl30_integration = false,
+>   	.clock_rate = 1200000,
+> @@ -1286,7 +1300,7 @@ static const struct meson_sar_adc_data meson_sar_adc_gxm_data = {
+>   };
+>   
+>   static const struct meson_sar_adc_data meson_sar_adc_axg_data = {
+> -	.param = &meson_sar_adc_gxl_param,
+> +	.param = &meson_sar_adc_axg_param,
+>   	.name = "meson-axg-saradc",
+>   };
+>   
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
