@@ -4,84 +4,173 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22783C5ACB3
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Nov 2023 08:09:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC276C61D90
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Nov 2023 08:21:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Wzz58TqWTmzxcd3Bva4m407UAcY1E5zs3k8lBrbVsO8=; b=rlcMWQpXD8cLNP
-	888L0sumYqxOFrvcgU7eO+ITRxmDVDwtBA9wuF0JsE2L7oB839P2BE4boLSW9diD/eP9XiS1kJ00g
-	rMDXE2KUIRbPV++P9iSsevqgPi0bH7TSPhBFuf2n80UqVFstg4CrlRzfcjo1pRyIZL4fSyqAUAc5f
-	A6Z7vHWtbfLHE+iqqUmgrP6FFuPiP4Q8T0Kg36jwR7BW2KLFscxC/0ezQN3H12mPdhVbh7xJrJqFK
-	WCasTn7MUfCUlKu/8G66zLqHFkBhMd8yzsTmjlT+4+ojUJORtTwZPWd9JK22FGv8GrGDmSB+Z0cah
-	yWn2SaXbq1l0YDD1hx1A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=oUJ3Ruk4dJAs0Ki8ZWFDgwuR2i6SiMNFuOqHv4mVtAE=; b=lUkcz9LSlSzeGgQqMWgLCNVbKB
+	EyaaM8m+BkmHY4Pl3U//Ckj2WoL4weGXD+u/JAPe0jAXFUBBh13e+stHrZwFIh9GXWY1uO2DXpzO9
+	nm6r3HosRiy1KHQJucXOuEqqqFE/cAes+WzDDhI5A1+awZUDSoBKGHpAi86S8KQoIw1gT//VWuNO2
+	4ZC5Cw0k3Ykz1kw5rCbBXWD4XoCMOg9gUbrlcJRh/iBZN0AjPTWs66ewyEdSDFrh20RfKdZzWoKyc
+	6BPc7PRZa2STcxwLDL7mLwjtI9M4WVxvbQeZi04Xkm1nZJMUEHvn+ujXmKVhLggY+wVTQ8Z2R04S4
+	30BjPoLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r5LoY-00FxxC-33;
-	Tue, 21 Nov 2023 08:08:58 +0000
-Received: from mail-lf1-f54.google.com ([209.85.167.54])
+	id 1r5M0O-00FzSk-13;
+	Tue, 21 Nov 2023 08:21:12 +0000
+Received: from smtp-out1.suse.de ([2001:67c:2178:6::1c])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r5LoU-00Fxve-0f;
-	Tue, 21 Nov 2023 08:08:55 +0000
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-50970c2115eso7578923e87.1;
-        Tue, 21 Nov 2023 00:08:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700554126; x=1701158926;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oeOErr72GGCTbFniaP00vmRzQcGaVer6knTx1tHa9Zo=;
-        b=psl3KwH5QXmYDdfNgyvOAW8+Es70L/L1xZUm2xgakqEJ2FDT0WohJCxHskMj5gpXWi
-         k0V1LGF0p8cwW5lXBeqDhNQAP9G0CcuPbQg5wgoD4xwIqWr+UyRpO1jmQa6iEm2ew10G
-         /A4Nps9HtNlKZ5rh0idi73rosKRlLtLKZCa1HQgDeAMVH/V0Tow9iAqH4avGo43DgaBi
-         GbSqcsMIqF0Y/tRS9E7j0yTA9c5lOJwGDQ67AIhzlIFFOgtHVLDAGfKUPX5XVWiFu7TK
-         kvvn5sSdyQw/PSQWCOUEL7mj7S8pQmRDt9HAJNpGy0JbVvLy4cPGCwLZ0WxVFY1eS//D
-         i9cQ==
-X-Gm-Message-State: AOJu0YwJHM4pDNwFPteHZQ8pmciYayR/l/X3dvbYwYLfk8pe2/UdbCRc
-	Qws2I87V0HZzSeYARDnRiNNZOcHbrosUyV+G
-X-Google-Smtp-Source: AGHT+IFjEyNcrp1kGrAz5o65S260jTebtBwfYG1Xn7WCR9ayPio95AbYvBuXNESX/qVgy/9v4+h/gg==
-X-Received: by 2002:a05:6512:2394:b0:507:9fe7:f321 with SMTP id c20-20020a056512239400b005079fe7f321mr8917732lfv.54.1700554125889;
-        Tue, 21 Nov 2023 00:08:45 -0800 (PST)
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com. [209.85.167.44])
-        by smtp.gmail.com with ESMTPSA id bp31-20020a056512159f00b0050aa76b984esm1017199lfb.264.2023.11.21.00.08.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Nov 2023 00:08:45 -0800 (PST)
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-50970c2115eso7578844e87.1;
-        Tue, 21 Nov 2023 00:08:45 -0800 (PST)
-X-Received: by 2002:ac2:599b:0:b0:507:a5e7:724 with SMTP id
- w27-20020ac2599b000000b00507a5e70724mr6535084lfn.38.1700554124979; Tue, 21
- Nov 2023 00:08:44 -0800 (PST)
+	id 1r5M0K-00FzQD-1P;
+	Tue, 21 Nov 2023 08:21:10 +0000
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id E060A2183B;
+	Tue, 21 Nov 2023 08:21:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1700554864; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=DHvhU3HrqobKGoHLioFRjGKT24arfOIced4wAVOChgA=;
+	b=SwQzrjcLmZMWH48dY6XiOmK21OEz/fW4qhRygDWl+M1lp+4hY0clANmK59TflHx0Ac83Pl
+	NSYpUYnL8g7EDOUNRu3Mw7WF3hqqBd/++y2d9+osxHd2GaUXJrtuxM098PWu5EbnEeLaFz
+	TEuH4TNdVPDMrIsQ0APVRARoRCJE/jE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1700554864;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=DHvhU3HrqobKGoHLioFRjGKT24arfOIced4wAVOChgA=;
+	b=E7CNSkwwZydCSsuMEAwi2OltJgC8E/vl9e1oATOyomas37GPScTiIqOjpHSH0F1TfSjF0M
+	tPfFi1p0M+CaYNCg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+	(No client certificate requested)
+	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id BF10E139FD;
+	Tue, 21 Nov 2023 08:21:03 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+	by imap2.suse-dmz.suse.de with ESMTPSA
+	id WbulLW9oXGVzBgAAMHmgww
+	(envelope-from <tzimmermann@suse.de>); Tue, 21 Nov 2023 08:21:03 +0000
+Message-ID: <250b5d51-93f8-4d8c-8507-0c47adbf7237@suse.de>
+Date: Tue, 21 Nov 2023 09:21:02 +0100
 MIME-Version: 1.0
-References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
- <19358871-009d-4498-9c13-90d5338b1e9f@amd.com> <76fa8f61-fe31-4040-a38d-cc05be3f4f17@linaro.org>
- <CAMuHMdW4WPJT0Km7w8RWrGJaztk6QDGoFAn0bdGbrEsw81R1FA@mail.gmail.com>
- <acfdce81-f117-4a1a-a9fe-e2b4b8922adb@linaro.org> <bd49f17c-7ebf-4e19-b77b-b5ec95375f7d@amd.com>
- <b48293f3-16e3-4980-b900-add0cb7d69f6@linaro.org>
-In-Reply-To: <b48293f3-16e3-4980-b900-add0cb7d69f6@linaro.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 21 Nov 2023 09:08:26 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV_gqmf2=cXmZmYgE3aLxvPBr1DVp0cz0C+YrfBVG-8mg@mail.gmail.com>
-Message-ID: <CAMuHMdV_gqmf2=cXmZmYgE3aLxvPBr1DVp0cz0C+YrfBVG-8mg@mail.gmail.com>
-Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Michal Simek <michal.simek@amd.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Heiko Stuebner <heiko@sntech.de>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 00/16] drm: Convert to platform remove callback
+ returning void
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Alexey Brodkin <abrodkin@synopsys.com>, Russell King
+ <linux@armlinux.org.uk>, Aradhya Bhatia <a-bhatia1@ti.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, Zhu Wang
+ <wangzhu9@huawei.com>, Rob Herring <robh@kernel.org>,
+ Lucas Stach <l.stach@pengutronix.de>, Inki Dae <inki.dae@samsung.com>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Jingoo Han <jingoohan1@gmail.com>,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Steven Price <steven.price@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Thierry Reding <treding@nvidia.com>,
+ Dan Carpenter <error27@gmail.com>,
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Deepak R Varma <drv@mailo.com>, Jani Nikula <jani.nikula@intel.com>,
+ Jyri Sarha <jyri.sarha@iki.fi>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: linux-samsung-soc@vger.kernel.org, kernel@pengutronix.de,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Jonas Karlman <jonas@kwiboo.se>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ nouveau@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, NXP Linux Team
+ <linux-imx@nxp.com>, Christian Gmeiner <christian.gmeiner@gmail.com>,
+ linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+References: <20231102165640.3307820-18-u.kleine-koenig@pengutronix.de>
+ <20231120120537.c22pbb2zovxvpdkf@pengutronix.de>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20231120120537.c22pbb2zovxvpdkf@pengutronix.de>
+Authentication-Results: smtp-out1.suse.de;
+	none
+X-Spamd-Result: default: False [-8.79 / 50.00];
+	 RCVD_VIA_SMTP_AUTH(0.00)[];
+	 XM_UA_NO_VERSION(0.01)[];
+	 TO_DN_SOME(0.00)[];
+	 HAS_ATTACHMENT(0.00)[];
+	 REPLY(-4.00)[];
+	 NEURAL_HAM_SHORT(-0.20)[-1.000];
+	 MIME_BASE64_TEXT(0.10)[];
+	 RCPT_COUNT_GT_50(0.00)[62];
+	 SIGNED_PGP(-2.00)[];
+	 FREEMAIL_TO(0.00)[pengutronix.de,intel.com,linaro.org,kernel.org,linux.intel.com,gmail.com,ffwll.ch,ravnborg.org,collabora.com,synopsys.com,armlinux.org.uk,ti.com,redhat.com,huawei.com,samsung.com,oss.nxp.com,arm.com,nvidia.com,baylibre.com,linux.alibaba.com,ideasonboard.com,mailo.com,iki.fi];
+	 FROM_EQ_ENVFROM(0.00)[];
+	 MIME_TRACE(0.00)[0:+,1:+,2:+,3:~];
+	 MID_RHS_MATCH_FROM(0.00)[];
+	 BAYES_HAM(-3.00)[100.00%];
+	 ARC_NA(0.00)[];
+	 FROM_HAS_DN(0.00)[];
+	 FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	 NEURAL_HAM_LONG(-1.00)[-1.000];
+	 TAGGED_RCPT(0.00)[etnaviv,renesas];
+	 MIME_GOOD(-0.20)[multipart/signed,multipart/mixed,text/plain];
+	 TO_MATCH_ENVRCPT_SOME(0.00)[];
+	 DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	 FUZZY_BLOCKED(0.00)[rspamd.com];
+	 RCVD_COUNT_TWO(0.00)[2];
+	 RCVD_TLS_ALL(0.00)[];
+	 SUSPICIOUS_RECIPS(1.50)[];
+	 FREEMAIL_CC(0.00)[vger.kernel.org,pengutronix.de,collabora.com,kwiboo.se,googlemail.com,lists.freedesktop.org,gmail.com,nxp.com,lists.infradead.org,samsung.com,armlinux.org.uk,baylibre.com,ideasonboard.com]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231121_000854_258187_D0D73336 
-X-CRM114-Status: GOOD (  26.91  )
+X-CRM114-CacheID: sfid-20231121_002108_783290_61D03859 
+X-CRM114-Status: GOOD (  18.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,60 +182,145 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============4887397703750152259=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgS3J6eXN6dG9mLAoKT24gVHVlLCBOb3YgMjEsIDIwMjMgYXQgODo0N+KAr0FNIEtyenlzenRv
-ZiBLb3psb3dza2kKPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4gd3JvdGU6Cj4gT24g
-MjEvMTEvMjAyMyAwODozMywgTWljaGFsIFNpbWVrIHdyb3RlOgo+ID4gT24gMTEvMjAvMjMgMjA6
-MzEsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6Cj4gPj4gT24gMjAvMTEvMjAyMyAyMDoxOCwg
-R2VlcnQgVXl0dGVyaG9ldmVuIHdyb3RlOgo+ID4+PiBPbiBNb24sIE5vdiAyMCwgMjAyMyBhdCAz
-OjUz4oCvUE0gS3J6eXN6dG9mIEtvemxvd3NraQo+ID4+PiA8a3J6eXN6dG9mLmtvemxvd3NraUBs
-aW5hcm8ub3JnPiB3cm90ZToKPiA+Pj4+IE9uIDIwLzExLzIwMjMgMTU6MDEsIE1pY2hhbCBTaW1l
-ayB3cm90ZTo+ID4KPiA+Pj4+PiBPbiAxMS8yMC8yMyAwOTo0MCwgS3J6eXN6dG9mIEtvemxvd3Nr
-aSB3cm90ZToKPiA+Pj4+Pj4gRG9jdW1lbnQgcHJlZmVycmVkIGNvZGluZyBzdHlsZSBmb3IgRGV2
-aWNldHJlZSBzb3VyY2VzIChEVFMgYW5kIERUU0kpLAo+ID4+Pj4+PiB0byBicmluZyBjb25zaXN0
-ZW5jeSBhbW9uZyBhbGwgKHN1YilhcmNoaXRlY3R1cmVzIGFuZCBlYXNlIGluIHJldmlld3MuCj4g
-Pj4+Cj4gPj4+Pj4+ICtPcmdhbml6aW5nIERUU0kgYW5kIERUUwo+ID4+Pj4+PiArLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0KPiA+Pj4+Pj4gKwo+ID4+Pj4+PiArVGhlIERUU0kgYW5kIERUUyBmaWxl
-cyBzaG91bGQgYmUgb3JnYW5pemVkIGluIGEgd2F5IHJlcHJlc2VudGluZyB0aGUgY29tbW9uCj4g
-Pj4+Pj4+ICsoYW5kIHJlLXVzYWJsZSkgcGFydHMgb2YgdGhlIGhhcmR3YXJlLiAgVHlwaWNhbGx5
-IHRoaXMgbWVhbnMgb3JnYW5pemluZyBEVFNJCj4gPj4+Pj4+ICthbmQgRFRTIGZpbGVzIGludG8g
-c2V2ZXJhbCBmaWxlczoKPiA+Pj4+Pj4gKwo+ID4+Pj4+PiArMS4gRFRTSSB3aXRoIGNvbnRlbnRz
-IG9mIHRoZSBlbnRpcmUgU29DICh3aXRob3V0IG5vZGVzIGZvciBoYXJkd2FyZSBub3QgcHJlc2Vu
-dAo+ID4+Pj4+PiArICAgb24gdGhlIFNvQykuCj4gPj4+Pj4+ICsyLiBJZiBhcHBsaWNhYmxlOiBE
-VFNJIHdpdGggY29tbW9uIG9yIHJlLXVzYWJsZSBwYXJ0cyBvZiB0aGUgaGFyZHdhcmUgKGUuZy4K
-PiA+Pj4+Pj4gKyAgIGVudGlyZSBTeXN0ZW0tb24tTW9kdWxlKS4KPiA+Pj4+Pgo+ID4+Pj4+IERU
-Uy9EVFNJIC0gU09NcyBjYW4gYWN0dWFsbHkgcnVuIGFzIHRoZXkgYXJlIHRoYXQncyB3aHkgaXQg
-aXMgZmFpciB0byBzYXkgdGhhdAo+ID4+Pj4+IHRoZXJlIGRvZXNuJ3QgbmVlZCB0byBiZSBEVFMg
-cmVwcmVzZW50aW5nIHRoZSBib2FyZC4KPiA+Pj4+Cj4gPj4+PiBJIGhhdmUgbmV2ZXIgc2VlbiBh
-IFNvTSB3aGljaCBjYW4gcnVuIHdpdGhvdXQgZWxhYm9yYXRlIGhhcmR3YXJlLWhhY2tpbmcKPiA+
-Pj4+IChlLmcuIGNvbm5lY3RpbmcgbXVsdGlwbGUgd2lyZXMgdG8gdGhlIFNvTSBwaW5zKS4gVGhl
-IGRlZmluaXRpb24gb2YgdGhlCj4gPj4+PiBTb00gaXMgdGhhdCBpdCBpcyBhIG1vZHVsZS4gTW9k
-dWxlIGNhbiBiZSByZS11c2VkLCBqdXN0IGxpa2UgU29DLgo+ID4+Pgo+ID4+PiAvbWUgbG9va3Mg
-YXQgaGlzIGJvYXJkIGZhcm0uLi4KCj4gPj4+IEkgZ3Vlc3MgdGhlcmUgYXJlIChtYW55KSBvdGhl
-ciBleGFtcGxlcy4uLgo+ID4+Cj4gPj4gT0ssIEkgbmV2ZXIgaGFkIHN1Y2ggaW4gbXkgaGFuZHMu
-IEFueXdheSwgdGhlIFNvTSB3aGljaCBjYW4gcnVuCj4gPj4gc3RhbmRhbG9uZSAgaGFzIGEgbWVh
-bmluZyBvZiBhIGJvYXJkLCBzbyBob3cgZXhhY3RseSB5b3Ugd2FudCB0bwo+ID4+IHJlcGhyYXNl
-IHRoZSBwYXJhZ3JhcGg/Cj4gPgo+ID4gV2hhdCBhYm91dD8KPiA+Cj4gPiAyLiBJZiBhcHBsaWNh
-YmxlOiBEVFNJIHdpdGggY29tbW9uIG9yIHJlLXVzYWJsZSBwYXJ0cyBvZiB0aGUgaGFyZHdhcmUg
-KGUuZy4KPiA+IGVudGlyZSBTeXN0ZW0tb24tTW9kdWxlKS4gRFRTIGlmIHJ1bnMgc3RhbmRhbG9u
-ZS4KPgo+IE9LLCBidXQgdGhlbiBpdCdzIGR1cGxpY2F0aW5nIHRoZSBvcHRpb24gMy4gSXQgYWxz
-byBzdWdnZXN0cyB0aGF0IFNvTQo+IHNob3VsZCBiZSBhIERUUywgd2hpY2ggaXMgbm90IHdoYXQg
-d2Ugd2FudCBmb3Igc3VjaCBjYXNlLiBTdWNoIFNvTXMgbXVzdAo+IGhhdmUgRFRTSStEVFMuCgpT
-byB5b3Ugd2FudCB1cyB0byBoYXZlIGEgb25lLWxpbmUgPFNvTT4uZHRzLCB3aGljaCBqdXN0IGlu
-Y2x1ZGVzIDxTb00+LmR0c2k/CklNSE8gdGhhdCBhZGRzIG1vcmUgZmlsZXMgZm9yIG5vIG11Y2gg
-Z2Fpbi4KVXNlcnMgb2YgYSBTb00gY2FuIGVhc2lseSBpbmNsdWRlIDxTb00+LmR0cy4KJ2dpdCBn
-cmVwICIjaW5jbHVkZSAuKmR0c1w+IicgdGVsbHMgeW91IHdlIGhhdmUgcGxlbnR5IG9mIHVzZXJz
-IG9mIHRoYXQgc2NoZW1lLgoKR3J7b2V0amUsZWV0aW5nfXMsCgogICAgICAgICAgICAgICAgICAg
-ICAgICBHZWVydAoKLS0gCkdlZXJ0IFV5dHRlcmhvZXZlbiAtLSBUaGVyZSdzIGxvdHMgb2YgTGlu
-dXggYmV5b25kIGlhMzIgLS0gZ2VlcnRAbGludXgtbTY4ay5vcmcKCkluIHBlcnNvbmFsIGNvbnZl
-cnNhdGlvbnMgd2l0aCB0ZWNobmljYWwgcGVvcGxlLCBJIGNhbGwgbXlzZWxmIGEgaGFja2VyLiBC
-dXQKd2hlbiBJJ20gdGFsa2luZyB0byBqb3VybmFsaXN0cyBJIGp1c3Qgc2F5ICJwcm9ncmFtbWVy
-IiBvciBzb21ldGhpbmcgbGlrZSB0aGF0LgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-IC0tIExpbnVzIFRvcnZhbGRzCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3Rz
-LmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9saW51eC1hbWxvZ2ljCg==
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============4887397703750152259==
+Content-Language: en-US
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------nqnrv9dXMHR4lITUuwdTooYm"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------nqnrv9dXMHR4lITUuwdTooYm
+Content-Type: multipart/mixed; boundary="------------oJColUxlBAXTr0a7Klbx8daP";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Alexey Brodkin <abrodkin@synopsys.com>, Russell King
+ <linux@armlinux.org.uk>, Aradhya Bhatia <a-bhatia1@ti.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, Zhu Wang
+ <wangzhu9@huawei.com>, Rob Herring <robh@kernel.org>,
+ Lucas Stach <l.stach@pengutronix.de>, Inki Dae <inki.dae@samsung.com>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Jingoo Han <jingoohan1@gmail.com>,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Steven Price <steven.price@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Thierry Reding <treding@nvidia.com>,
+ Dan Carpenter <error27@gmail.com>,
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Deepak R Varma <drv@mailo.com>, Jani Nikula <jani.nikula@intel.com>,
+ Jyri Sarha <jyri.sarha@iki.fi>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: linux-samsung-soc@vger.kernel.org, kernel@pengutronix.de,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Jonas Karlman <jonas@kwiboo.se>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ nouveau@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, NXP Linux Team
+ <linux-imx@nxp.com>, Christian Gmeiner <christian.gmeiner@gmail.com>,
+ linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Message-ID: <250b5d51-93f8-4d8c-8507-0c47adbf7237@suse.de>
+Subject: Re: [PATCH v3 00/16] drm: Convert to platform remove callback
+ returning void
+References: <20231102165640.3307820-18-u.kleine-koenig@pengutronix.de>
+ <20231120120537.c22pbb2zovxvpdkf@pengutronix.de>
+In-Reply-To: <20231120120537.c22pbb2zovxvpdkf@pengutronix.de>
+
+--------------oJColUxlBAXTr0a7Klbx8daP
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
+
+SGkNCg0KQW0gMjAuMTEuMjMgdW0gMTM6MDUgc2NocmllYiBVd2UgS2xlaW5lLUvDtm5pZzoN
+Cj4gW0Ryb3BwZWQgYSBmZXcgcGVvcGxlIGZyb20gVG8gdGhhdCByZXN1bHRlZCBpbiBib3Vu
+Y2VzIGJlZm9yZS5dDQo+IA0KPiBPbiBUaHUsIE5vdiAwMiwgMjAyMyBhdCAwNTo1Njo0MVBN
+ICswMTAwLCBVd2UgS2xlaW5lLUvDtm5pZyB3cm90ZToNCj4+IEhlbGxvLA0KPj4NCj4+IHRo
+aXMgc2VyaWVzIGNvbnZlcnRzIGFsbCBwbGF0Zm9ybSBkcml2ZXJzIGJlbG93IGRyaXZlcnMv
+Z3B1L2RybSB0byB1c2UNCj4+IC5yZW1vdmVfbmV3KCkuIEl0IHN0YXJ0cyB3aXRoIGEgZml4
+IGZvciBhIHByb2JsZW0gdGhhdCBwb3RlbnRpYWxseSBtaWdodA0KPj4gY3Jhc2ggdGhlIGtl
+cm5lbCB0aGF0IEkgc3R1bWJsZWQgb3ZlciB3aGlsZSBpbXBsZW1lbnRpbmcgdGhlIGNvbnZl
+cnNpb24uDQo+Pg0KPj4gU29tZSBvZiB0aGUgY29udmVyc2lvbiBwYXRjaGVzIGZvbGxvd2lu
+ZyB0aGlzIGZpeCB3ZXJlIGFscmVhZHkgc2VuZCBpbg0KPj4gZWFybGllciBzZXJpZXM6DQo+
+Pg0KPj4gCWh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2RyaS1kZXZlbC8yMDIzMDgwMTExMDIz
+OS44MzEwOTktMS11LmtsZWluZS1rb2VuaWdAcGVuZ3V0cm9uaXguZGUNCj4+IAlodHRwczov
+L2xvcmUua2VybmVsLm9yZy9kcmktZGV2ZWwvMjAyMzAzMTgxOTA4MDQuMjM0NjEwLTEtdS5r
+bGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlDQo+Pg0KPj4gYW5kIHRocmVlIHBhdGNoZXMg
+KGJyaWRnZS90cGQxMnMwMTUsIGV4eW5vcyArIHRpbGNkYykgYXJlIG5ldy4gUGFydHMgb2YN
+Cj4+IHRoZSBhYm92ZSBzZXJpZXMgd2VyZSBwaWNrZWQgdXAsIHRoZSBwYXRjaGVzIHJlc2Vu
+ZCBoZXJlIGFyZSBub3QuDQo+IA0KPiBBcGFydCBmcm9tIGEgUmV2aWV3ZWQtYnk6IGJ5IFRv
+bmkgVmFsa2VpbmVuIGZvciBwYXRjaCAjMTYgYW5kIElua2kgRGFlDQo+IHdobyB3cm90ZSB0
+byBoYXZlIHRha2VuIHBhdGNoICM4IChidXQgdGhhdCBkaWRuJ3QgYXBwZWFyIGluIG5laXRo
+ZXIgbmV4dA0KPiBub3IgZHJtLW1pc2MtbmV4dCB5ZXQpLg0KPiANCj4gQWxzbyBpbiB2MiB0
+aGV5IGRpZG4ndCByZXN1bHQgaW4gZXVwaG9yaWMgcmVwbGllcy4NCj4gDQo+IENhbiBzb21l
+b25lIHdobyBjYXJlcyBhYm91dCBkcm0gYXMgYSB3aG9sZSBwbGVhc2UgY2FyZSBmb3IgdGhp
+cyBzZXJpZXMNCj4gYXBwbHkgaXQ/DQoNCkV4Y2VwdCBmb3IgcGF0Y2hlcyA4IGFuZCAxNiwg
+SSd2ZSBwdXNoZWQgdGhpcyBwYXRjaHNldCBpbnRvIGRybS1taXNjLW5leHQuDQoNCkJlc3Qg
+cmVnYXJkcw0KVGhvbWFzDQoNCj4gDQo+IEJlc3QgcmVnYXJkcw0KPiBVd2UNCj4gICANCg0K
+LS0gDQpUaG9tYXMgWmltbWVybWFubg0KR3JhcGhpY3MgRHJpdmVyIERldmVsb3Blcg0KU1VT
+RSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJIDQpGcmFua2Vuc3RyYXNzZSAxNDYs
+IDkwNDYxIE51ZXJuYmVyZywgR2VybWFueQ0KR0Y6IEl2byBUb3RldiwgQW5kcmV3IE15ZXJz
+LCBBbmRyZXcgTWNEb25hbGQsIEJvdWRpZW4gTW9lcm1hbg0KSFJCIDM2ODA5IChBRyBOdWVy
+bmJlcmcpDQo=
+
+--------------oJColUxlBAXTr0a7Klbx8daP--
+
+--------------nqnrv9dXMHR4lITUuwdTooYm
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmVcaG4FAwAAAAAACgkQlh/E3EQov+AN
+KA//a9kAa/bdNI0Ai8/4/SH2OhY7AVHPXJdcQec7SKrNSi64hCplCI6zwvSrTKHdb6ViCONzvUPj
+Z/lLHxxOq2GXTjhiSLgqVEQKBIrJ7v5l8WAZfJ/2SLf5hWTncBM/TvrFLu0brzcYa93ZOnT6jMm0
+1Ybx4kfSN9INpiydrOCS5B2r7T/QIdhaBoDGgptMVE98gdjrHqoODVgcyiOEPNnkK/aCO/vnIEmr
+BmyCVSCD+AiSC/w6x8pu5/2FXrYuM6Ssz3duqJp6eL7LgJNOI7HBHXpY1wnmOwpUYw6OZVDSUZjX
+Rh2P73O8E4XeSem8ZnYZHwvqptO1pmtlnosL+sQQSjtQ1HdHnQfV0t2AmJg0e8qWycyDQNSVNRX4
+y6RnHdCk/fd0X2IGACvPw0Y8LuUhEbHwPeeGS3fQJr8RvRD7maMH5FduraKOgKjvxEJnIifX067n
+T28SJLqdlbTuB05QUz8004eCqrzjBzqF/s6FwfMVSHytCeGuMsrpb3GcSoBv8eXnbn1jCmoZh6TL
+PDXgAJEFmPHYe+oRoDrZnmOI/bXt7I3033iZZkvERz544Ts2QR1VUBOr0elo9GlxcLkFhvy53Bev
+8NTNzLjGJl++/klVQqBC2VS6MxE6NdTaNSMpOAygDVxoj4mBHFhPC1WfDYvm/T9s7YKdQQDSdQQC
+Q5s=
+=GPlo
+-----END PGP SIGNATURE-----
+
+--------------nqnrv9dXMHR4lITUuwdTooYm--
+
+
+--===============4887397703750152259==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4887397703750152259==--
+
