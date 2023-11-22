@@ -4,79 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCED6C61D99
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Nov 2023 15:47:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5B94C61D97
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Nov 2023 17:18:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2gT+sBN7PnTnG8kwrRLqO9g1Ena/TyCUEK0suvhhkzU=; b=qrnHvA8h9pXLs9
-	KtQsQB+X2l2bfsrSruBzWyzFLhQ74Rh3P3QcJROs7BkbbkPTzqal+tWsgnxuY2p4P+/8yCsSQp4xd
-	A5DctV3LAh7Q3u7IbH+QPFEB7seadQO6GRrBi31pBdVlLaNFijOiWyjS5Au6CSY/JF4nzolNREH10
-	HgmEhJHObxJjCIwr5KAeMWfHLUd576qsF1RKNKhyqU5G5RwsMeQDVhhDR/tDvQIUqohrd4JwZw+1b
-	M4HRisdGC9BiGwktu1yc5UcNAQYmc9lEcc3UGGUE9ZyJ1Dynd3weFVKx+C0i7LP7qoQm7h18qv2uL
-	2gWG30807Z5J4NneAWWg==;
+	List-Owner; bh=ECurI0sK/w+XTf0mQ8tIPw1/PPH+J/oStZ9/xZNPgr8=; b=TVJaEk/jlIM5MH
+	1pzr+PaykBzB5I0QSRbQZwkVDWfdScBwcL8hcQIpI4XUlUC/ngP3sgU/3IL4W5KDWepoOQrcEugqF
+	CNznfrdNvnP/8vrYetMb+nhG9+q49LxcCgMboogD/X5C9S0Ct4J089K6LavCN5tu8R3uop01Ptjc8
+	FiEfvemD9BTGoBJJZ6tUTt+qp4oo2vY1K+qwhXHgKVAkYDQhZRBnwVADwtKrU/IxYvVC4ewOn7bNR
+	Zk7sPcCHIeC207Sn/aNbDcwoPJaO/klZeK/mAF2cpZeH9va0oV6JYmZ4VYpKvqtBqAIF8bYsIrNGr
+	qdK0IuHDOjCvn2Iw4m2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r5pRR-002Kmb-1i;
-	Wed, 22 Nov 2023 15:47:05 +0000
-Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
+	id 1r5qrn-002dY2-1j;
+	Wed, 22 Nov 2023 17:18:23 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r5pRN-002Klb-0N
+	id 1r5qrh-002dW6-2q
 	for linux-amlogic@lists.infradead.org;
-	Wed, 22 Nov 2023 15:47:03 +0000
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a02d91ab199so233856866b.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 22 Nov 2023 07:46:56 -0800 (PST)
+	Wed, 22 Nov 2023 17:18:21 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-40891d38e3fso32346615e9.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 22 Nov 2023 09:18:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700668015; x=1701272815; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=r4Sh7iGlNxumB5VcLNDx/95ABOz0bRjlVPQnOa1w1Ss=;
-        b=WVGdIOTTPF112wkSg0qyqXH0AUyYIq7gLjvu+HysKcufluY2FjjdxmPwW444sjreYj
-         cATM/FjW2c8weXwm8WqgX+YLSE7sb3Gh5qUpasoy4/NkKn193Dnx2wuMm+cEcXsI0zX3
-         BBt4akx9dWaJ+IIW1Mc1GFmEwFYh+uonhEfF2BsDFpUptwbYpxqeDJJQXCGgoZ53qgbk
-         mQH/cEuv5xvI7npvqnxCIr9uYMwuOi//iCDB+V3+/YwB00JYl2kVBVZXPya+p0N4yGsq
-         rj3Dk+B6BnOcFVghcBRxE1rnuS96WSz97HiyZw60TlKKrhoY+GCvVA+0Ps6ehXez7wvT
-         CE1Q==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700673495; x=1701278295; darn=lists.infradead.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=EhO7+CVm1m1oUE9z/3Z07Nkno2ujdBPUPga6VKMIC2w=;
+        b=nYkBgQN7rrROcOZuQhNfxAxfWdW1EtihL+UW6ty2q7Xe73DPhDStkd5EIWrOZFyOxh
+         ibRXarFsKxOrz+bVR1PSGl+ethLoMzhAg5T1NCyxm/E/KMp8pnI1i4SeJkYOjJkqaUFz
+         K3zfY9SD/RYkxC46CRbFfT/CaY2FSztZ1ulaMXGMZFvXbWZgfaYZaQsB1tNR5S8QNbYm
+         6U82ww00XWZmC0g57ImqY8FtS4u4p7+2G6capRhlIDV+PH0I4trWufRvJmzYfz/2warn
+         i7Kisi5x6ivA5MvlckVzKze0Yfjx1mjrAfEUvPnZOWrPc59kASrrdKO7PrkG9cJPrrO7
+         Ow/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700668015; x=1701272815;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r4Sh7iGlNxumB5VcLNDx/95ABOz0bRjlVPQnOa1w1Ss=;
-        b=NOpV/P5KbCjA7KAdkD0envPDQcty5NkwY8fmUN9L7WuOZO4QgHYrJgOJfNoUY7xFfD
-         arFMHPPCTgOO3R+rQj8vncIkAQtV0RikwcvoNXWCGs2mutavJPIXitsZ6J+erFsnOgLu
-         6V1LNvfy/V0GdlfupKsh18vcq1Tmd66aKtXklYwIH/uFy6ncyDZTEQZPTeW0aFnRPaQL
-         zGWI9+VjomszvFuHsswF1D+Snym/ZZsjUWCzZ1J+6XSrXK15nlnZ3GzGd9q282D8HuTG
-         0h4EDLKrTX2kjub90Cl4t6mQBRTgaYpdaUHKOuQM8DMd9UHHXXaafZbcxtujPZDMknC0
-         RnXQ==
-X-Gm-Message-State: AOJu0YxI8RVvfVag9yPit7ZvEjYNMYLQwGm00pNR+v6KmPYswRYmRLuP
-	zBbYKtLyMqXJnWtNx+2xSlK/yA==
-X-Google-Smtp-Source: AGHT+IFW5oX9fTLJ1szGuuAzjPMIHff7wKMRPiKVS9OPnwaHAonSoiXRvJddjViCI+jKD3t1JddOwQ==
-X-Received: by 2002:a17:906:b158:b0:9fe:392:c535 with SMTP id bt24-20020a170906b15800b009fe0392c535mr1526575ejb.69.1700668014674;
-        Wed, 22 Nov 2023 07:46:54 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id g26-20020a170906349a00b00a0451802b3csm1013123ejb.4.2023.11.22.07.46.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Nov 2023 07:46:54 -0800 (PST)
-Message-ID: <2d9c4c93-6cea-4a44-9093-c1fd51d0a21c@linaro.org>
-Date: Wed, 22 Nov 2023 16:46:52 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/6] dt-bindings: pwm: amlogic: add new compatible for
- meson8 pwm type
-Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: neil.armstrong@linaro.org, Rob Herring <robh@kernel.org>,
- JunYi Zhao <junyi.zhao@amlogic.com>, devicetree@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+        d=1e100.net; s=20230601; t=1700673495; x=1701278295;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EhO7+CVm1m1oUE9z/3Z07Nkno2ujdBPUPga6VKMIC2w=;
+        b=PbrkJa1OJfbUaYeKMhVKp0ADNyccykap1jSEOAqf2xYNcoU078Z0Ij9sYitUF68JaB
+         xRzqWhZOjiTmyg9VbX+K64KyDpBKbuiBdrwd2bDUNIRY2gEnuLU9i8S3E4AJcsj9dQ3W
+         S4SARm2h6xIVT9vgIGJ3E/gw9w/fe2WXIzwFr4lDGtkKXkFNGzq1p62VkMte1182DAcT
+         ff/QVG8RpTfp1y9Fn87aRvt6wCRq67YkQJzFXE9J7m6XMkL3ELNvBI33w58aXcuiOgNd
+         Gtl4A6s0OLxU1x3v0no0HV/SUHLPCjE49M6YX3gLLEJj4wDKLXOv5sl+hdd22JFNIrJs
+         jZyg==
+X-Gm-Message-State: AOJu0YxtvnoQljFDTftlfb04rKIwa1s0r+s/oBnFZJZNrkMUwwWGaJRf
+	03kCsFdNYXi44v7eUDPdVTroZQ==
+X-Google-Smtp-Source: AGHT+IFGdEFm+aNRJMiaufK8tp1EybalqBvtuMK496Fp/eAzQQiZ+CFnVm6AN+L996HflL2LKvAZfw==
+X-Received: by 2002:a05:600c:5102:b0:405:3455:e1a3 with SMTP id o2-20020a05600c510200b004053455e1a3mr2350009wms.17.1700673495188;
+        Wed, 22 Nov 2023 09:18:15 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:d0a1:9a3c:4f4b:fa20])
+        by smtp.gmail.com with ESMTPSA id n5-20020a7bc5c5000000b0040775501256sm8791wmk.16.2023.11.22.09.18.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Nov 2023 09:18:13 -0800 (PST)
 References: <20231117125919.1696980-1-jbrunet@baylibre.com>
  <20231117125919.1696980-3-jbrunet@baylibre.com>
  <170040994064.269288.960284011884896046.robh@kernel.org>
@@ -88,55 +72,26 @@ References: <20231117125919.1696980-1-jbrunet@baylibre.com>
  <1jwmu9et6j.fsf@starbuckisacylon.baylibre.com>
  <2bbc2031-89d7-42e9-828e-068fa06eabf4@linaro.org>
  <1jo7flerag.fsf@starbuckisacylon.baylibre.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1jo7flerag.fsf@starbuckisacylon.baylibre.com>
+ <2d9c4c93-6cea-4a44-9093-c1fd51d0a21c@linaro.org>
+User-agent: mu4e 1.10.7; emacs 29.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, neil.armstrong@linaro.org, Rob
+ Herring <robh@kernel.org>, JunYi Zhao <junyi.zhao@amlogic.com>,
+ devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Thierry Reding
+ <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v2 2/6] dt-bindings: pwm: amlogic: add new compatible
+ for meson8 pwm type
+Date: Wed, 22 Nov 2023 17:14:56 +0100
+In-reply-to: <2d9c4c93-6cea-4a44-9093-c1fd51d0a21c@linaro.org>
+Message-ID: <1jjzq9emga.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231122_074701_165156_D3A61C1D 
-X-CRM114-Status: GOOD (  39.46  )
+X-CRM114-CacheID: sfid-20231122_091818_117190_6A93BB00 
+X-CRM114-Status: GOOD (  31.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,180 +108,91 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 22/11/2023 16:23, Jerome Brunet wrote:
-> 
-> On Wed 22 Nov 2023 at 16:04, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> On 22/11/2023 15:34, Jerome Brunet wrote:
->>>
->>> On Wed 22 Nov 2023 at 09:37, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>>
->>>> On 20/11/2023 11:04, Jerome Brunet wrote:
->>>>>>>>>>    .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 36 +++++++++++++++++--
->>>>>>>>>>    1 file changed, 34 insertions(+), 2 deletions(-)
->>>>>>>>>>
->>>>>>>>> Reviewed-by: Rob Herring <robh@kernel.org>
->>>>>>>>>
->>>>>>>>
->>>>>>>> I'm puzzled, isn't it recommended to have a per-soc compatible now ?
->>>>
->>>> Yes, it is.
->>>>
->>>>>>> I have specifically addressed this matter in the description,
->>>>>>> haven't I ? What good would it do in this case ?
->>>>
->>>> There is nothing about compatible naming in commit msg.
->>>
->>> Krzysztof, the whole commit desciption is explanation about why a new
->>> compatible is introduced. I don't understand this comment.
->>>
->>>>
->>>>>>
->>>>>> Yes you did but I was asked for the last year+ that all new compatible
->>>>>> should be soc specific (while imprecise, in our care soc family should be ok),
->>>>>> with a possible semi-generic callback with an IP version or a first soc
->>>>>> implementing the IP.
->>>>>>
->>>>>>> Plus the definition of a SoC is very vague. One could argue that
->>>>>>> the content of the list bellow are vaguely defined families. Should we
->>>>>>> add meson8b, gxl, gxm, sm1 ? ... or even the actual SoC reference ?
->>>>>>> This list gets huge for no reason.
->>>>>>
->>>>>> I think in our case soc family is reasonable since they share same silicon
->>>>>> design.
->>>>>>
->>>>>>> We know all existing PWM of this type are the same. We have been using
->>>>>>> them for years. It is not a new support we know nothing about.
->>>>>>>
->>>>>>>>
->>>>>>>> I thought something like:
->>>>>>>> - items:
->>>>>>>>      - enum:
->>>>>>>>          - amlogic,gxbb-pwm
->>>>>>>>          - amlogic,axg-pwm
->>>>>>>>          - amlogic,g12a-pwm
->>>>>>>>      - const: amlogic,pwm-v1
->>>>>>> I'm not sure I understand what you are suggesting here.
->>>>>>> Adding a "amlogic,pwm-v1" for the obsolete compatible ? No amlogic DT
->>>>>>> has that and I'm working to remove this type, so I don't get the point.
->>>>>>>
->>>>>>>>
->>>>>>>> should be preferred instead of a single amlogic,meson8-pwm-v2 ?
->>>>>>> This is named after the first SoC supporting the type.
->>>>>>> Naming it amlogic,pwm-v2 would feel weird with the s4 coming after.
->>>>>>> Plus the doc specifically advise against this type of names.
->>>>>>
->>>>>> The -v2 refers to a pure software/dt implementation versioning and not
->>>>>> an HW version, so I'm puzzled and I requires DT maintainers advice here.
->>>>>>
->>>>>> Yes meson8b is the first "known" platform, even if I'm pretty sure meson6 has
->>>>
->>>> Yes, this should be SoC-based compatible, unless you have clear
->>>> versioning scheme by SoC/IP block vendor. You named it not a HW version,
->>>> which kind of answers to the "unless" case - that's not hardware version.
->>>>
->>>
->>> This is specifically the point of the comment in commit description.
->>> We know all the PWMs compatible are the same HW (version) as one found
->>> in the meson8b.
->>>
->>> It is certain that adding more compatible, listing all the SoC, will be
->>> useless. I can do it if you insist.
->>
->> The docs you references insist on that, so yeah, I insist as well.
->>
->>>
->>>>>
->>>>> This is not my point. I picked this name because I have to pick a
->>>>> specific device based one. Not because it is actually the first or
->>>>> not. I don't see a problem with meson6 being compatible with
->>>>> meson8-pwm-v2, if that ever comes along.
->>>>
->>>> No, the point is not to use "v2". Use SoC compatibles.
->>>
->>> It is a SoC compatible. The second one.
->>
->> "v2" is not the soc. I assume meson8 is one specific SoC, right? Because
->> elinux says it is a *family*:
->> https://elinux.org/Amlogic/SoCs
->>
-> 
-> It is a family. yes
-> 
->>
->>>
->>> The first one, as explained in the description was describing the driver
->>> more that the HW.
->>>
->>> Changing the way clock are passed from DT to the driver would be break
->>> user of the old compatible. So a new compatible is introduced. I believe
->>> this is recommended way to introduce incompatible binding changes.
->>
->> The way is not to introduce incompatible changes. Your way is also not
->> good as it breaks other users of DTS.
->>
->>>
->>> v2 here denote a new interface version, nothing to do with HW
->>> versioning. I happy to pick something else to denote this.
->>
->> Sorry, then it is not a SoC-based compatible.
->>
->>>
->>>>
->>>>>
->>>>> I think the binding here satisfy the rule that it should be specific,
->>>>> and the intent that goes with it:
->>>>>
->>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/writing-bindings.rst?h=v6.7-rc2#n42
->>>>>
->>>>>> the same pwm architecture, this is why "amlogic,pwm-v1" as fallback seems more
->>>>>> reasonable and s4 and later pwm could use the "amlogic,pwm-v2"
->>>>>> fallback.
->>>>>
->>>>> That is not how understand this:
->>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/writing-bindings.rst?h=v6.7-rc2#n82
->>>>>
->>>>
->>>> Again, where the "v2" is defined? Where is any document explaining the
->>>> mapping between version blocks and SoC parts? Why do you list here only
->>>> major version? Blocks almost always have also minor (e.g. v2.0).
->>>
->>> Again, v2 does has nothing to do with the HW. Never wrote it was.
->>> The HW remains the same.
->>
->> Don't add compatibles which are not related to HW, but represent
->> software versioning. Software does not matter for the bindings.
-> 
-> What I did I explicitly what is recommended in Grant's presentation from
-> 2013. 10y old, but I assume slide 10 "Making an incompatible update" is
-> still valid.
-> 
-> https://elinux.org/images/1/1e/DT_Binding_Process_glikely_ksummit_2013_10_28.pdf
-> 
-> Breaking the ABI of the old compatible would break all boards which use
-> u-boot DT and pass it to the kernel, because the meaning of the clock
-> property would change.
 
-You broke U-Boot now as well - it will get your new DTS from the kernel
-and stop working.
+On Wed 22 Nov 2023 at 16:46, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-> 
-> Doing things has suggested in this slide, and this patch, allows every
-> device to continue to work properly, whether the DT given is the one
-> shipped with u-boot (using the old compatible for now) or the kernel.
 
-OK, that explains the reasons. I read your commit msg and nothing like
-this was mentioned there. What's more, you did not deprecate the old
-binding, thus the confusion - it looked like you add entirely new
-hardware (although you put "deprecated" but in some unrelated place, not
-next to the compatibles).
+>>>>>
+>>>>> Again, where the "v2" is defined? Where is any document explaining the
+>>>>> mapping between version blocks and SoC parts? Why do you list here only
+>>>>> major version? Blocks almost always have also minor (e.g. v2.0).
+>>>>
+>>>> Again, v2 does has nothing to do with the HW. Never wrote it was.
+>>>> The HW remains the same.
+>>>
+>>> Don't add compatibles which are not related to HW, but represent
+>>> software versioning. Software does not matter for the bindings.
+>> 
+>> What I did I explicitly what is recommended in Grant's presentation from
+>> 2013. 10y old, but I assume slide 10 "Making an incompatible update" is
+>> still valid.
+>> 
+>> https://elinux.org/images/1/1e/DT_Binding_Process_glikely_ksummit_2013_10_28.pdf
+>> 
+>> Breaking the ABI of the old compatible would break all boards which use
+>> u-boot DT and pass it to the kernel, because the meaning of the clock
+>> property would change.
+>
+> You broke U-Boot now as well - it will get your new DTS from the kernel
+> and stop working.
 
-Anyway, the main point of Neil was that you started using generic
-compatible for all SoCs, which is wrong as well. I guess this was the
-original discussion.
+U-boot will continue to match the old compatible and work properly.
+When the dts using the new compatible lands in u-boot, it won't
+match until proper driver support is added. It is a lot better than
+breaking the ABI, which would have silently broke u-boot.
 
-Best regards,
-Krzysztof
+I don't really see a way around that.
+
+If you have better way to fix a bad interface, feel free to share it.
+
+>
+>> 
+>> Doing things has suggested in this slide, and this patch, allows every
+>> device to continue to work properly, whether the DT given is the one
+>> shipped with u-boot (using the old compatible for now) or the kernel.
+>
+> OK, that explains the reasons. I read your commit msg and nothing like
+> this was mentioned there. What's more, you did not deprecate the old
+> binding, thus the confusion - it looked like you add entirely new
+> hardware (although you put "deprecated" but in some unrelated place, not
+> next to the compatibles).
+
+The old interface being obsoleted by the new one is mentionned in the
+commit description, the comments in the bindings and the bindings itself.
+Thanks a lot for pointing out the placement mistake. I'll fix it.
+
+The commit description says:
+* What the patch does
+* Why it does it:
+  * Why the old bindings is bad/broken
+  * How the new ones fixes the problem
+* Why a single compatible properly describes, IMO, all the related HW.
+
+This describes the entirety of what the change does.
+That seemed clear enough for Rob. If that is not enough for you and you
+would like it reworded, could please provide a few suggestions ?
+
+>
+> Anyway, the main point of Neil was that you started using generic
+> compatible for all SoCs, which is wrong as well. I guess this was the
+> original discussion.
+
+The whole reason for this change is to properly describe the HW, which
+is the 100% same on all the SoCs, or SoC families, concerned. The only
+reason there was a lot of old compatibles is because it was used to match
+data in the driver (this is clearly wrong). This data would now be
+passed through DT.
+
+I have been clear about this in the change description.
+
+So why is it wrong to have single compatible for a type of device that
+is 100% the same HW ?
+
+It is lot a easier to apply a rule correctly when the intent is clear.
+
+>
+> Best regards,
+> Krzysztof
 
 
 _______________________________________________
