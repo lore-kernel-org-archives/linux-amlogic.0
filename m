@@ -4,82 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CC7EC61D90
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Nov 2023 16:05:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0287C61D92
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Nov 2023 07:48:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JzHpuujcXKyqXLgBCxIMIMH2cpLHEFxCpadk/1ab8Ac=; b=VIpxWCyGSOfMCf
-	slYA5mhh9DBz6Z4asvMS1mDQM6zBpuNPezCDm0XDH3t3Ar5ksBuwbKyKdllUxcKI6fvjteREia+yh
-	bvBnIQN4qXgV1U0NbhBc23MqwLOHpxEybEdErA9X1jlEgiutb+912oo9zOd5Ndg6Z9V6+tBFG9/po
-	CZvlz7+MhHqcWjc39Xtf16cfYlBA84/zOHPU7QG22KrmHEch4VFtk11NsWdkYUNqM94cZdbV+BpWo
-	foo0Db4q+htJnAciRtqTWpABI/f2YeIK+QA3Z3Icp/ufdBefES1GPzxFhmbQ0YG3m417cv2pzCIQM
-	VD2ONRm+AxZxw3Q6OgKw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=I0JzGDShKy6bqyXyLka4DYtmBTvugtTHEMaeK8RGiqo=; b=R68ZBzJsOdaTh2
+	5ZXf8n8gCeb1iLWpGkCi92jky7AYtRvYH/qY5TjaC/MQ2OLSqytEJYvbt0m0ArVj2vCNJ0yFR4BvE
+	RXQCcO8JT4ctuPjLuLlsCwN1unIbRvjUvoYq1f0W++Of4RIyeRne1J3JaxZ53sbqq4JQRMIhM4FmZ
+	kXY36YGZgsqKKrURGj/cKg3OW10gJAFwfd/VwAzoek8taQzhx4O1PYr3AN2xumMUzVMPkT7zO08xA
+	H5do1nXodLUSuCC6qeKnQ3fif4gBLWzdvntn0kxb/pYD6f5NdjTZEy8sPg34htawTyO4mhjy6sm61
+	usWxcrEzUJMfKZy6V9FA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r5TEv-00HEfg-1G;
-	Tue, 21 Nov 2023 16:04:41 +0000
-Received: from mail-oo1-f46.google.com ([209.85.161.46])
+	id 1r5hxp-000xZd-2p;
+	Wed, 22 Nov 2023 07:48:01 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r5TEq-00HEeM-0o;
-	Tue, 21 Nov 2023 16:04:38 +0000
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-587b1231dbeso3222251eaf.3;
-        Tue, 21 Nov 2023 08:04:33 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700582672; x=1701187472;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gHWSZ/KZJKkzc0j50L+hOmQiyYp8HOj7xmv0toivCHY=;
-        b=WTE6kbBd9QHq72kF1fXBDfcfxZqz0C7lVFOCGSMviUd0n1bPwr9I4nLfDT0B92kr11
-         YgI530+PEXLBBwDV33yxrDYVl8V8NJpru/NR8OO1QqnXtmBvXVYwBNWn3rQwIdietoUU
-         Z/h4XCs3KQXp7Jd3gjH4B9U7MDPp1CTXKnX8gV3g2WwwHrcNNAJ61raYbGkbeWN3Ebiq
-         TvR+I02QeSbOWboJzEhkePyjFyxqhSjq9xZW6ksqIZ6UykTbn0lcjVdX4+g2dOXSk5dD
-         85rObvCMEYmOZK4Xa+s1S7hi5ebE05ZrmaJ2S+qcXO55oh8kuz6kqooEqCWSm509Huna
-         Jy5g==
-X-Gm-Message-State: AOJu0YzBuGH2iLKe9vV4uUR5QXhRhNW4Rq43YilPb1RQCWhPZy+LP46d
-	nM1vC/3p3NG32O0g/HbmgbTTPmCXNIhBirke
-X-Google-Smtp-Source: AGHT+IF8DvVML4ww18gqgnlm2/fDoBd8MP62HzkkBXaekUGsRV+kQaRiaCz/nw3HanGkmILiO3Clxg==
-X-Received: by 2002:a05:6820:823:b0:582:1477:8362 with SMTP id bg35-20020a056820082300b0058214778362mr11580104oob.4.1700582672342;
-        Tue, 21 Nov 2023 08:04:32 -0800 (PST)
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com. [209.85.167.177])
-        by smtp.gmail.com with ESMTPSA id f138-20020a4a5890000000b00584017f57a9sm1901099oob.30.2023.11.21.08.04.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Nov 2023 08:04:26 -0800 (PST)
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3b6d80daae8so3755750b6e.2;
-        Tue, 21 Nov 2023 08:04:25 -0800 (PST)
-X-Received: by 2002:a05:6808:1201:b0:3b2:ee79:c0fd with SMTP id
- a1-20020a056808120100b003b2ee79c0fdmr14276293oil.1.1700582665655; Tue, 21 Nov
- 2023 08:04:25 -0800 (PST)
+	id 1r5hxm-000xXf-2S;
+	Wed, 22 Nov 2023 07:48:00 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 53E20120017;
+	Wed, 22 Nov 2023 10:47:49 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 53E20120017
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1700639269;
+	bh=oU30MMu9WmhU+2fpdPT9gtSHN94XrD8m14J9f5rDEG0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=fzb1ZwNvSSqMGofOnI5AJBJqXEfseIC0KVAi3z7oH12Xt5C7EeKWzygZfdmQD5nye
+	 pW2BM+pKKAFdH0sxvqyDWxTYtjEwcU3ZAwRhPHFyMnNI6cKWMygjZQeRjHmSG6lZ7u
+	 /JKUl9I6wUhPuAUAWC36NbQqdaPQRwTFB4b6k8Kt/0nlsEEg7OFwbQAL/gILcUeO8V
+	 14N7FY5DUAEHNTvJZQckpR2LYvc1jIwU1lft9INJC9bKvLPXpBsOdoh4QG14SbYD2C
+	 cyCIwf6FCor/B1K5Gls4x8jlWbNwVd4NL9WIl+1K6tzK4NgVJynuS1Jf/XEGcjqkJc
+	 1ZGWMfu4/ax7A==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 22 Nov 2023 10:47:48 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 22 Nov 2023 10:47:48 +0300
+From: George Stark <gnstark@salutedevices.com>
+To: <jic23@kernel.org>, <lars@metafoo.de>, <neil.armstrong@linaro.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <andriy.shevchenko@linux.intel.com>,
+	<nuno.sa@analog.com>, <u.kleine-koenig@pengutronix.de>,
+	<gnstark@salutedevices.com>
+CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<kernel@salutedevices.com>
+Subject: [PATCH v2 1/1] iio: adc: meson: add separate config for axg SoC family
+Date: Wed, 22 Nov 2023 10:47:41 +0300
+Message-ID: <20231122074741.154228-1-gnstark@salutedevices.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
- <19358871-009d-4498-9c13-90d5338b1e9f@amd.com> <76fa8f61-fe31-4040-a38d-cc05be3f4f17@linaro.org>
- <6c80a285-27fc-4d61-9eef-af4744a9decc@amd.com> <cc57dcf1-3c32-426e-920c-6f0741027797@linaro.org>
-In-Reply-To: <cc57dcf1-3c32-426e-920c-6f0741027797@linaro.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 21 Nov 2023 17:04:10 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVGyXizPw9Rggj8fQeNdbx3udRcsHFhz_sqYZzjN1CnZQ@mail.gmail.com>
-Message-ID: <CAMuHMdVGyXizPw9Rggj8fQeNdbx3udRcsHFhz_sqYZzjN1CnZQ@mail.gmail.com>
-Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Michal Simek <michal.simek@amd.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Heiko Stuebner <heiko@sntech.de>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>, linux-rockchip@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 181523 [Nov 22 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 3 0.3.3 e5c6a18a9a9bff0226d530c5b790210c0bd117c8, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/11/22 05:48:00 #22499758
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231121_080436_287590_8E568C7A 
-X-CRM114-Status: GOOD (  25.20  )
+X-CRM114-CacheID: sfid-20231121_234759_138455_E315B442 
+X-CRM114-Status: GOOD (  12.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,39 +96,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgS3J6eXN6dG9mLAoKT24gVHVlLCBOb3YgMjEsIDIwMjMgYXQgMTozNuKAr1BNIEtyenlzenRv
-ZiBLb3psb3dza2kKPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4gd3JvdGU6Cj4gT24g
-MjEvMTEvMjAyMyAxMjo1NSwgTWljaGFsIFNpbWVrIHdyb3RlOgo+ID4+PiBkZXZpY2UtdHJlZSBz
-cGVjaWZpY2F0aW9uIHYwLjQuIENoYXB0ZXIgMi4yLjEvVGFibGUgMi4xIGlzIGRlc2NyaWJpbmcg
-bXVjaCBtb3JlCj4gPj4+IHZhbGlkIGNoYXJhY3RlcnMgZm9yIG5vZGUgbmFtZXMuCj4gPj4+IEl0
-IG1lYW5zIGFib3ZlIGRlc2NyaXB0aW9uIGlzIG5vdCBhY2N1cmF0ZSBvciBEVCBzcGVjIHNob3Vs
-ZCBiZSB1cGRhdGVkLgo+ID4+Cj4gPj4gU3BlYyBhbGxvd3Mgd2F5IHRvIG11Y2guIGR0YyBkb2Vz
-bid0Lgo+ID4+IE9uZSB0aGluZyBpcyB0aGUgc3BlYywgc2Vjb25kCj4gPj4gdGhpbmcgaXMgY29k
-aW5nIHN0eWxlLgo+ID4KPiA+ICBGcm9tIG15IHBvaW50IG9mIHZpZXcgc3BlYyBpcyBwcmltYXJ5
-IHNvdXJjZSBvZiB0cnV0aC4gSWYgc3BlYyBpcyBzYXlpbmcgbmFtZQo+ID4gY2FuIHVzZSB1cHBl
-ciBjYXNlIHRoZW4gSSBjYW4gdXNlIGl0LiBJZiB1cHBlciBjYXNlIGlzIG5vdAo+ID4gcmVjb21t
-ZW5kZWQvZGVwcmVjYXRlZCBiZWNhdXNlIG9mIHdoYXRldmVyIHJlYXNvbiBzcGVjIHNob3VsZCBi
-ZSB1cGRhdGVkIHRvCj4gPiByZWZsZWN0IGl0Lgo+ID4gSSBrbm93IHRoYXQgRFRDIGlzIHJlcG9y
-dGluZyBvdGhlciBpc3N1ZXMgYnV0IGlzbid0IGl0IHRoZSByaWdodCB3YXkgdG8gcmVmbGVjdAo+
-ID4gaXQgYmFjayB0byB0aGUgc3BlYz8KPgo+IFRoZW4gd2h5IGFyZW4ndCB5b3UgcHV0dGluZyBM
-aW51eCBDb2RpbmcgU3R5bGUgaW50byBDIHNwZWM/IEkgZG8gbm90IHNlZQo+IGFueSByZWxhdGlv
-biBiZXR3ZWVuIHNwZWNpZmljYXRpb24gb2YgdGhlIGxhbmd1YWdlIGFuZCB0aGUgY29kaW5nIHN0
-eWxlCj4gY2hvc2VuIGZvciBnaXZlbiBwcm9qZWN0Lgo+Cj4gWmVwaHlyIGNhbiBnbyB3aXRoIHVw
-cGVyLWNhc2UuIFdoeSBpdCBzaG91bGQgYmUgZGlzYWxsb3dlZCBieSB0aGUgc3BlYz8KCkkgdGhv
-dWdodCB0aGVyZSB3YXMgb25seSBPbmUgRFQgdG8gYmluZCB0aGVtIGFsbD8KSU1ITyBpdCB3b3Vs
-ZCBiZSBiZXR0ZXIgdG8gYWxpZ24gRFQgdXNhZ2Ugb2YgWmVwaHlyIGFuZCBMaW51eCAoYW5kCmFu
-eXRoaW5nIGVsc2UpLgoKCkdye29ldGplLGVldGluZ31zLAoKICAgICAgICAgICAgICAgICAgICAg
-ICAgR2VlcnQKCi0tCkdlZXJ0IFV5dHRlcmhvZXZlbiAtLSBUaGVyZSdzIGxvdHMgb2YgTGludXgg
-YmV5b25kIGlhMzIgLS0gZ2VlcnRAbGludXgtbTY4ay5vcmcKCkluIHBlcnNvbmFsIGNvbnZlcnNh
-dGlvbnMgd2l0aCB0ZWNobmljYWwgcGVvcGxlLCBJIGNhbGwgbXlzZWxmIGEgaGFja2VyLiBCdXQK
-d2hlbiBJJ20gdGFsa2luZyB0byBqb3VybmFsaXN0cyBJIGp1c3Qgc2F5ICJwcm9ncmFtbWVyIiBv
-ciBzb21ldGhpbmcgbGlrZSB0aGF0LgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0t
-IExpbnVzIFRvcnZhbGRzCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmlu
-ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
-aW51eC1hbWxvZ2ljCg==
+According to Amlogic custom kernels ADC of axg SoC family has
+vref_select and requires this setting to work nominally and thus
+needs a separate config.
+
+Signed-off-by: George Stark <gnstark@salutedevices.com>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ drivers/iio/adc/meson_saradc.c | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+index db280da9edbf..34555a85f131 100644
+--- a/drivers/iio/adc/meson_saradc.c
++++ b/drivers/iio/adc/meson_saradc.c
+@@ -1242,6 +1242,20 @@ static const struct meson_sar_adc_param meson_sar_adc_gxl_param = {
+ 	.cmv_select = 1,
+ };
+ 
++static const struct meson_sar_adc_param meson_sar_adc_axg_param = {
++	.has_bl30_integration = true,
++	.clock_rate = 1200000,
++	.bandgap_reg = MESON_SAR_ADC_REG11,
++	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
++	.resolution = 12,
++	.disable_ring_counter = 1,
++	.has_reg11 = true,
++	.vref_volatge = 1,
++	.has_vref_select = true,
++	.vref_select = VREF_VDDA,
++	.cmv_select = 1,
++};
++
+ static const struct meson_sar_adc_param meson_sar_adc_g12a_param = {
+ 	.has_bl30_integration = false,
+ 	.clock_rate = 1200000,
+@@ -1286,7 +1300,7 @@ static const struct meson_sar_adc_data meson_sar_adc_gxm_data = {
+ };
+ 
+ static const struct meson_sar_adc_data meson_sar_adc_axg_data = {
+-	.param = &meson_sar_adc_gxl_param,
++	.param = &meson_sar_adc_axg_param,
+ 	.name = "meson-axg-saradc",
+ };
+ 
+-- 
+2.38.4
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
