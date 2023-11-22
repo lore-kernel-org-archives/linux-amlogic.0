@@ -4,78 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA9ECC61D9C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Nov 2023 14:43:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F075BC61D97
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Nov 2023 14:53:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
-	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=FhuTEk0XfcEFdfK52RXSYe/Wn4u4r+SKEuXbdmGH/xc=; b=k1FTO2OU7k2ehvBYPVW4WMC+iU
-	ctf9KwNJGN+0NDO945rQwqlHaO0Ric6MVChRBLwQDtKC7I36A0qt9CZYjhq1QDPmtfGDEySa/3dZM
-	ms3jdnVkQb0zPSkWID/OxFu2uZjFCfZR8Adke9Ak9rVcO2+2S1p4MrOwjLhA8C1HQuisagOAxuxhN
-	qGg50+lMYZjsTrlsJ023FoMBwHSFXtKwll/5RR2lKfAUnhQeNcpKOKEmcZLSggmaPfBjRZOo6h5kN
-	gnnL+R0/8+ipyBoJ/O/DWjj3Lm2TsiyTU67IYQFZq2Th9aBMHc22xmlEAzZ/j9mQlBTvPhVl86xnY
-	dVm7Zzww==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=qofC9gZriGNFOo+ZQwcVHcL+b5MabneQr53HnyTrcfc=; b=NBFrcE+HzWWFFF
+	WrFRnv7JXCs0xR8eIUJx5kCWPKpIH08zoHVmcrwUNgMDOusKdzTIXAMGsp3u29msUmQKLHHvr5Rol
+	ZDatrtX6RFX2qbigC6vO6P3Quc+mXJJqd10gUplIm/mBu1wXkWJMr/at8FVnJle6ZRAp5q8BIYauk
+	VSflaQcF2iEdc2D55YGbyymwTCR0qBISAptoUTyF1R2CB6WF9XIBapVDMOxas/kzjtY1P0Dw2jY/w
+	99ArM9pI2s6bOxGkNKTSLfl2EZ5ezqg5ShJW+khEz/R9csS1IZ1qEY8b3qXVZ+s7mI/zMbPu1Rm3X
+	t4a1g+rnbFcj+94VU1Cg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r5oRW-0028Ex-1g;
-	Wed, 22 Nov 2023 14:43:06 +0000
-Received: from mail.manjaro.org ([2a01:4f8:c0c:51f3::1])
+	id 1r5obA-0029dj-0y;
+	Wed, 22 Nov 2023 14:53:04 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r5oRH-00284b-2w;
-	Wed, 22 Nov 2023 14:42:55 +0000
+	id 1r5ob6-0029cB-20
+	for linux-amlogic@lists.infradead.org;
+	Wed, 22 Nov 2023 14:53:03 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40790b0a224so31948155e9.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 22 Nov 2023 06:52:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700664774; x=1701269574; darn=lists.infradead.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=YU9HkHadrfyg4mO0a1y/iuf4m6/K/aPcwo6FIp9aTrU=;
+        b=3BaiybHPxlwhVk4uKmmofdSo/1ZMYbNc5LvRYMCXzdQAXR6qfhnqUZKCMpyVhyzYp3
+         KzrVTjLaMdq3jk8fCyzxegWbwcx3egiL46134rU3pIqJrzCSZBz7YOgE3BgEf6ZChnJC
+         ToK6c4iDF0GM+xN1GwXzdM/SFOuWGJxWrhFvgV0mWU3rPlGEZN5ovs4eqBZJxll7bhT9
+         ymRhNhm1EHlrN4y3jOVsKolmR/XzZOHH0k6MnpWiNUJuJ9Xd6JCwrl9btVtjNpmm/MDM
+         6NQAn46Si5i7TWD0B+Px/V+oFdYJAuP9IzDybLJwQ7mgCIHSdeang0m71QFXs0cEqdYV
+         yKpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700664774; x=1701269574;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YU9HkHadrfyg4mO0a1y/iuf4m6/K/aPcwo6FIp9aTrU=;
+        b=lBMUrjSpTqv/OvqWJ14WAzGkDr9qFElt2E1Qg+5iEFnIwytAJBabekquKPxp25OgN2
+         SVd81GlhMPJ42xO58rQzzlcPPFE9qH5HURolmeO8wNwIQ+3CVVU6wE2oyvJ0hkdpwoIE
+         0lZeClBahTi1mkQ4FV/7Lqj2xas0NI6aDRudPxxk4dDSUmBLIDPWW/fkejUjBi1b6Gnp
+         qfvTPq0rSsAZShezudZHPBBBNbeKRgIaptMjW/BTXUcg0NkV9Qv2hvAsXxMfzBEjkseX
+         pNK0eprhLxLMsTAzNjPO74890LogAPpogRrpLWx0D7vr9vvHZeND+5SlU2KR1HwtKsnN
+         3nBA==
+X-Gm-Message-State: AOJu0YyCPqAl9o22yLSGApkT7maqGVDaE04ZKmu8mLXEqQsxoozr/UWO
+	ZLaKrRVpvqn2+7Ow8hpMw8jnPHUj4du7bJKeUtA=
+X-Google-Smtp-Source: AGHT+IHx6cb/GfkvDHyM6YwX74rQfXlRrRm6+GoJfSrfbdtc0H2GN2fNm9xMYK5e6rHT+aM/JJHyLQ==
+X-Received: by 2002:a05:600c:5492:b0:40b:3369:d797 with SMTP id iv18-20020a05600c549200b0040b3369d797mr1244407wmb.21.1700664773964;
+        Wed, 22 Nov 2023 06:52:53 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:d0a1:9a3c:4f4b:fa20])
+        by smtp.gmail.com with ESMTPSA id r5-20020a05600c320500b0040a4cc876e0sm2406529wmp.40.2023.11.22.06.52.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Nov 2023 06:52:53 -0800 (PST)
+References: <20231117125919.1696980-1-jbrunet@baylibre.com>
+ <20231117125919.1696980-3-jbrunet@baylibre.com>
+ <170040994064.269288.960284011884896046.robh@kernel.org>
+ <4608012c-059f-4d6a-914b-e85ad0c32ff0@linaro.org>
+ <1j5y1wg3sb.fsf@starbuckisacylon.baylibre.com>
+ <2e7a65da-5c1d-4dd4-ac69-7559a53afdf3@linaro.org>
+ <1j1qckg21u.fsf@starbuckisacylon.baylibre.com>
+ <94e69281-93e1-41cd-9cf5-81cbbc15572c@linaro.org>
+User-agent: mu4e 1.10.7; emacs 29.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, neil.armstrong@linaro.org, Rob
+ Herring <robh@kernel.org>, JunYi Zhao <junyi.zhao@amlogic.com>,
+ devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Thierry Reding
+ <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v2 2/6] dt-bindings: pwm: amlogic: add new compatible
+ for meson8 pwm type
+Date: Wed, 22 Nov 2023 15:34:41 +0100
+In-reply-to: <94e69281-93e1-41cd-9cf5-81cbbc15572c@linaro.org>
+Message-ID: <1jwmu9et6j.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1700664166;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=n9l7CzXN6LlS38rZFFq0Nxp8PK7NYDm9aN5Wn+Z/Buw=;
-	b=x7SQ/I1HOiWc0cwQ6er9JxVxd2di1ktX2ld6tiwKekdklOtdP54pycvx1s1KAVhfCqW8l6
-	t/Y88WRMV20TDY6M4PWiDDHKuWXTh/o5K/9QKplNCSBk0NkOuo8ZkUqFO2cDjC4v3QNQuU
-	BwShho8epg3KI/PenQJo79YnPUu+R5FsDbEhsGaGkkCZXxko8ucAKfY1trKhy7YQjxBAL4
-	BTtM9VWeoaMsWlb7MqndqTur+5yM39vgYLrKyvgk/hsyd6RN8H5cQz82mq6Shd+ZQfQnTj
-	GkqNjDCurBsMM2KsjG+Z6g7/s3ejsd+j727Gtm81FLFE0bqKtMSaw+fL3L7cqg==
-Date: Wed, 22 Nov 2023 15:42:46 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Michal Simek <michal.simek@amd.com>, Geert Uytterhoeven
- <geert@linux-m68k.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>, wens@kernel.org, =?UTF-8?Q?Rafa?=
- =?UTF-8?Q?=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, Arnd Bergmann
- <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Konrad Dybcio <konrad.dybcio@linaro.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>, Olof Johansson
- <olof@lixom.net>, linux-rockchip@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2] docs: dt-bindings: add DTS Coding Style document
-In-Reply-To: <CAL_JsqKkOjBHrJ0WELq3JnJDqgtA=mdF+EtAxHSCGqZMQ9tuSQ@mail.gmail.com>
-References: <20231120084044.23838-1-krzysztof.kozlowski@linaro.org>
- <6b288a2e-d147-4bd3-b1d4-daf56295d939@gmail.com>
- <01f9ce3b-e6e5-4b05-bf7f-0b3a5f74910a@linaro.org>
- <CAGb2v64Vf5dDwq=KTrxwc=+w+0KUD2KVPMjmHg68Y_yukES5dQ@mail.gmail.com>
- <7232a48b-b9ad-44b5-ae6a-d12dad70b3c4@linaro.org>
- <58a9caacc1226c7c3a2bdfe73ef1791f@manjaro.org>
- <cc4c789c-b595-41eb-b543-9e03549c6e61@amd.com>
- <CAMuHMdWm-gRPHeHyuX3_eR+9chJEw3iiZwCNBnoiRPHzoMAs6w@mail.gmail.com>
- <808270d3-2274-4fb7-a397-38538503b67c@amd.com>
- <CAL_JsqKkOjBHrJ0WELq3JnJDqgtA=mdF+EtAxHSCGqZMQ9tuSQ@mail.gmail.com>
-Message-ID: <f9dcdd519c0bbd29838a75113fef0645@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231122_064252_558048_BB10A989 
-X-CRM114-Status: GOOD (  28.33  )
+X-CRM114-CacheID: sfid-20231122_065300_843329_B7BA6943 
+X-CRM114-Status: GOOD (  32.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,89 +99,135 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjAyMy0xMS0yMiAxNTozNCwgUm9iIEhlcnJpbmcgd3JvdGU6Cj4gT24gV2VkLCBOb3YgMjIs
-IDIwMjMgYXQgMTo1N+KAr0FNIE1pY2hhbCBTaW1layA8bWljaGFsLnNpbWVrQGFtZC5jb20+IAo+
-IHdyb3RlOgo+PiBPbiAxMS8yMi8yMyAwOTo1MywgR2VlcnQgVXl0dGVyaG9ldmVuIHdyb3RlOgo+
-PiA+IE9uIFdlZCwgTm92IDIyLCAyMDIzIGF0IDk6NTDigK9BTSBNaWNoYWwgU2ltZWsgPG1pY2hh
-bC5zaW1la0BhbWQuY29tPiB3cm90ZToKPj4gPj4gT24gMTEvMjIvMjMgMDk6MjksIERyYWdhbiBT
-aW1pYyB3cm90ZToKPj4gPj4+IE9uIDIwMjMtMTEtMjIgMDk6MjEsIEtyenlzenRvZiBLb3psb3dz
-a2kgd3JvdGU6Cj4+ID4+Pj4gT24gMjIvMTEvMjAyMyAwOTowOSwgQ2hlbi1ZdSBUc2FpIHdyb3Rl
-Ogo+PiA+Pj4+PiBPbiBXZWQsIE5vdiAyMiwgMjAyMyBhdCA0OjA14oCvUE0gS3J6eXN6dG9mIEtv
-emxvd3NraQo+PiA+Pj4+PiA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPiB3cm90ZToK
-Pj4gPj4+Pj4+Cj4+ID4+Pj4+PiBPbiAyMS8xMS8yMDIzIDE0OjUwLCBSYWZhxYIgTWnFgmVja2kg
-d3JvdGU6Cj4+ID4+Pj4+Pj4+ICtPcmRlciBvZiBQcm9wZXJ0aWVzIGluIERldmljZSBOb2RlCj4+
-ID4+Pj4+Pj4+ICstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4+ID4+Pj4+Pj4+
-ICsKPj4gPj4+Pj4+Pj4gK0ZvbGxvd2luZyBvcmRlciBvZiBwcm9wZXJ0aWVzIGluIGRldmljZSBu
-b2RlcyBpcyBwcmVmZXJyZWQ6Cj4+ID4+Pj4+Pj4+ICsKPj4gPj4+Pj4+Pj4gKzEuIGNvbXBhdGli
-bGUKPj4gPj4+Pj4+Pj4gKzIuIHJlZwo+PiA+Pj4+Pj4+PiArMy4gcmFuZ2VzCj4+ID4+Pj4+Pj4+
-ICs0LiBTdGFuZGFyZC9jb21tb24gcHJvcGVydGllcyAoZGVmaW5lZCBieSBjb21tb24gYmluZGlu
-Z3MsIGUuZy4gd2l0aG91dAo+PiA+Pj4+Pj4+PiArICAgdmVuZG9yLXByZWZpeGVzKQo+PiA+Pj4+
-Pj4+PiArNS4gVmVuZG9yLXNwZWNpZmljIHByb3BlcnRpZXMKPj4gPj4+Pj4+Pj4gKzYuIHN0YXR1
-cyAoaWYgYXBwbGljYWJsZSkKPj4gPj4+Pj4+Pj4gKzcuIENoaWxkIG5vZGVzLCB3aGVyZSBlYWNo
-IG5vZGUgaXMgcHJlY2VkZWQgd2l0aCBhIGJsYW5rIGxpbmUKPj4gPj4+Pj4+Pj4gKwo+PiA+Pj4+
-Pj4+PiArVGhlICJzdGF0dXMiIHByb3BlcnR5IGlzIGJ5IGRlZmF1bHQgIm9rYXkiLCB0aHVzIGl0
-IGNhbiBiZSBvbWl0dGVkLgo+PiA+Pj4+Pj4+Cj4+ID4+Pj4+Pj4gSSB0aGluayBpdCB3b3VsZCBy
-ZWFsbHkgaGVscCB0byBpbmNsdWRlIHBvc2l0aW9uIG9mICNhZGRyZXNzLWNlbGxzIGFuZAo+PiA+
-Pj4+Pj4+ICNzaXplLWNlbGxzIGhlcmUuIEluIHNvbWUgZmlsZXMgSSBzYXcgdGhlbSBhYm92ZSAi
-Y29tcGF0aWJsZSIgdGhhdCBzZWVtcwo+PiA+Pj4+Pj4+IHVuaW50dWl0aXZlLiBTb21lIHByZWZl
-ciBwdXR0aW5nIHRoZW0gYXQgZW5kIHdoaWNoIEkgdGhpbmsgbWFrZXMgc2Vuc2UKPj4gPj4+Pj4+
-PiBhcyB0aGV5IGFmZmVjdCBjaGlsZHJlbiBub2Rlcy4KPj4gPj4+Pj4+Pgo+PiA+Pj4+Pj4+IFdo
-YXRldmVyIHlvdSBjaG9vc2UgaXQnZCBiZSBqdXN0IG5pY2UgdG8gaGF2ZSB0aGluZ3MgY29uc2lz
-dGVudC4KPj4gPj4+Pj4+Cj4+ID4+Pj4+PiBUaGlzIGlzIGEgc3RhbmRhcmQvY29tbW9uIHByb3Bl
-cnR5LCB0aHVzIGl0IGdvZXMgdG8gKDQpIGFib3ZlLgo+PiA+Pj4+Pgo+PiA+Pj4+PiBJdCdzIHBy
-b2JhYmx5IGEgbWl4LCBidXQgQUZBSUsgYSBsb3Qgb2YgdGhlIGRldmljZSB0cmVlcyBpbiB0cmVl
-IGhhdmUKPj4gPj4+Pj4gIyotY2VsbHMgYWZ0ZXIgInN0YXR1cyIuIEluIHNvbWUgY2FzZXMgdGhl
-eSBhcmUgYWRkZWQgaW4gdGhlIGJvYXJkCj4+ID4+Pj4+IC5kdHMgZmlsZXMsIG5vdCB0aGUgY2hp
-cC9tb2R1bGUgLmR0c2kgZmlsZXMuCj4+ID4+Pj4KPj4gPj4+PiBFeGlzdGluZyBEVFMgaXMgbm90
-IGEgZ29vZCBleGFtcGxlIDopCj4+ID4+Pj4KPj4gPj4+Pj4KPj4gPj4+Pj4gKzEgdGhhdCBpdCBt
-YWtlcyBzZW5zZSBhdCB0aGUgZW5kIGFzIHRoZXkgYWZmZWN0IGNoaWxkIG5vZGVzLgo+PiA+Pj4+
-Cj4+ID4+Pj4gSSBzdGlsbCBpbnNpc3QgdGhhdCBzdGF0dXMgbXVzdCBiZSB0aGUgbGFzdCwgYmVj
-YXVzZToKPj4gPj4+PiAxLiBNYW55IFNvQyBub2RlcyBoYXZlIGFkZHJlc3Mvc2l6ZSBjZWxscyBi
-dXQgZG8gbm90IGhhdmUgYW55IGNoaWxkcmVuCj4+ID4+Pj4gKEkyQywgU1BJKSwgc28gd2UgcHV0
-IHVzZWxlc3MgaW5mb3JtYXRpb24gYXQgdGhlIGVuZC4KPj4gPj4+PiAyLiBTdGF0dXMgc2hvdWxk
-IGJlIHRoZSBmaW5hbCBpbmZvcm1hdGlvbiB0byBzYXkgd2hldGhlciB0aGUgbm9kZSBpcwo+PiA+
-Pj4+IHJlYWR5IG9yIGlzIG5vdC4gSSByZWFkIHRoZSBub2RlLCBjaGVjayBwcm9wZXJ0aWVzIGFu
-ZCB0aGVuIGxvb2sgYXQgdGhlIGVuZDoKPj4gPj4+PiBhLiBMYWNrIG9mIHN0YXR1cyBtZWFucyBp
-dCBpcyByZWFkeS4KPj4gPj4+PiBiLiBzdGF0dXM9ZGlzYWJsZWQgbWVhbnMgZGV2aWNlIHN0aWxs
-IG5lZWRzIGJvYXJkIHJlc291cmNlcy9jdXN0b21pemF0aW9uCj4+ID4+Pgo+PiA+Pj4gSSBhZ3Jl
-ZSB3aXRoIHRoZSAic3RhdHVzIiBiZWxvbmdpbmcgdG8gdGhlIHZlcnkgZW5kLCBiZWNhdXNlIGl0
-J3MgYm90aCBsb2dpY2FsCj4+ID4+PiBhbmQgbXVjaCBtb3JlIHJlYWRhYmxlLiAgQWxzbywgInN0
-YXR1cyIgaXMgZXhwZWN0ZWQgdG8gYmUgbW9kaWZpZWQgaW4gdGhlCj4+ID4+PiBkZXBlbmRlbnQg
-RFQgZmlsZXMsIHdoaWNoIG1ha2VzIGl0IGtpbmQgb2Ygdm9sYXRpbGUgYW5kIGV2ZW4gbW9yZSBk
-ZXNlcnZpbmcgdG8KPj4gPj4+IGJlIHBsYWNlZCBsYXN0Lgo+PiA+Pgo+PiA+PiBJIGFtIGp1c3Qg
-Y3VyaW91cyBpZiBoYXZpbmcgc3RhdHVzIHByb3BlcnR5IGF0IHRoZSBlbmQgd29uJ3QgYWZmZWN0
-Cj4+ID4+IGV4ZWN1dGlvbi9ib290IHVwIHRpbWUuIE5vdCBzdXJlIGhvdyBpdCBpcyBkb25lIGlu
-IExpbnV4IGJ1dCBpbiBVLUJvb3QgYXQgbGVhc3QKPj4gPj4gKHdlIHdhbnQgdG8gaGF2ZSBEVHMg
-aW4gc3luYyBiZXR3ZWVuIExpbnV4IGFuZCBVLUJvb3QpIG9mX2ZpbmRfcHJvcGVydHkgaXMKPj4g
-Pj4gcHJldHR5IG11Y2ggYmlnIGxvb3Agb3ZlciBhbGwgcHJvcGVydGllcy4gQW5kIHN0YXR1cyBw
-cm9wZXJ0eSBkZWZpbmVkIGF0IHRoZSBlbmQKPj4gPj4gbWVhbnMgZ29pbmcgb3ZlciBhbGwgb2Yg
-dGhlbSB0byBmaW5kIGl0IG91dCB0byBpZiBkZXZpY2UgaXMgcHJlc2VudC4KPj4gPj4gTm90IHN1
-cmUgaWYgTGludXggd29ya3MgaW4gdGhlIHNhbWUgd2F5IGJ1dCBhdCBsZWFzdCBvZl9nZXRfcHJv
-cGVydHkgaXMgZG9uZSBpbgo+PiA+PiB0aGUgc2FtZSB3YXkuCj4+ID4KPj4gPiBBcyB0aGUgZGVm
-YXVsdCBpcyAib2theSIsIHlvdSBoYXZlIHRvIGxvb3Agb3ZlciBhbGwgcHJvcGVydGllcyBhbnl3
-YXkuCj4+IAo+PiBObyBkb3VidCBpZiB5b3UgZG9uJ3QgZGVmaW5lIHN0YXR1cyBwcm9wZXJ0eSB0
-aGF0IHlvdSBuZWVkIHRvIGxvb3AgCj4+IG92ZXIgYWxsIG9mCj4+IHRoZW0uIFdlIG5vcm1hbGx5
-IGRlc2NyaWJlIHRoZSB3aG9sZSBTT0Mgd2l0aCBwcmV0dHkgbXVjaCBhbGwgSVBzIAo+PiBzdGF0
-dXMgPQo+PiBkaXNhYmxlZCBhbmQgdGhlbiBpbiBib2FyZCBmaWxlIHdlIGFyZSBjaGFuZ2luZyBp
-dCB0byBva2F5IGJhc2VkIG9uIAo+PiB3aGF0IGl0IGlzCj4+IGFjdHVhbGx5IHdpcmVkIG91dC4K
-Pj4gSXQgbWVhbnMgb24gb3VyIHN5c3RlbXMgYWxsIG5vZGVzIGhhdmUgc3RhdHVzIHByb3BlcnRp
-ZXMuIElmIHlvdSBoYXZlIAo+PiBpdCBhdAo+PiBmaXJzdCB5b3UgZG9uJ3QgbmVlZCB0byBnbyBv
-dmVyIGFsbC4KPiAKPiBPcmRlciBpbiB0aGUgc291cmNlIGFuZCBvcmRlciBpbiB0aGUgT1MgYXJl
-IGluZGVwZW5kZW50LiBJZiBjaGVja2luZwo+IHN0YXR1cyBuZWVkcyB0byBiZSBvcHRpbWl6ZWQs
-IHRoZW4gd2UgY291bGQganVzdCBwdXQgaXQgZmlyc3QgaW4gdGhlCj4gcHJvcGVydHkgbGlzdCBv
-ciBtYWtlIHRoZSBzdGF0ZSBhIGZpZWxkIGluIHN0cnVjdCBkZXZpY2Vfbm9kZS4gQnV0Cj4gcHJv
-dmlkZSBzb21lIGRhdGEgdGhhdCBpdCBtYXR0ZXJzIGZpcnN0LgoKVGhhdCdzIGV4YWN0bHkgd2hh
-dCBJIHBsYW4gdG8gZG8sIGkuZS4gdG8gcGVyZm9ybSBzb21lIGJlbmNobWFya3MgYmVmb3JlIAph
-bmQgYWZ0ZXIsIHRvIHNlZSBkb2VzIGl0IGFjdHVhbGx5IG1hdHRlciB0byB0aGUgcG9pbnQgd2hl
-cmUgaW50cm9kdWNpbmcgCnRoZSBjaGFuZ2VzIGlzIHdvcnRoIGl0LgoKPiBJJ3ZlIGhhZCB0aGlz
-IGlkZWEgdG8gcmFuZG9taXplIHRoZSBvcmRlciBub2RlcyBhcmUgcHJvY2Vzc2VkIHNvCj4gdGhl
-cmUncyBubyByZWxpYW5jZSBvbiB0aGUgRFQgb3JkZXIuIE1heWJlIEkgbmVlZCB0aGUgc2FtZSBv
-bgo+IHByb3BlcnRpZXMuLi4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMu
-aW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2xpbnV4LWFtbG9naWMK
+
+On Wed 22 Nov 2023 at 09:37, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+
+> On 20/11/2023 11:04, Jerome Brunet wrote:
+>>>>>>>    .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 36 +++++++++++++++++--
+>>>>>>>    1 file changed, 34 insertions(+), 2 deletions(-)
+>>>>>>>
+>>>>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>>>>>
+>>>>>
+>>>>> I'm puzzled, isn't it recommended to have a per-soc compatible now ?
+>
+> Yes, it is.
+>
+>>>> I have specifically addressed this matter in the description,
+>>>> haven't I ? What good would it do in this case ?
+>
+> There is nothing about compatible naming in commit msg.
+
+Krzysztof, the whole commit desciption is explanation about why a new
+compatible is introduced. I don't understand this comment.
+
+>
+>>>
+>>> Yes you did but I was asked for the last year+ that all new compatible
+>>> should be soc specific (while imprecise, in our care soc family should be ok),
+>>> with a possible semi-generic callback with an IP version or a first soc
+>>> implementing the IP.
+>>>
+>>>> Plus the definition of a SoC is very vague. One could argue that
+>>>> the content of the list bellow are vaguely defined families. Should we
+>>>> add meson8b, gxl, gxm, sm1 ? ... or even the actual SoC reference ?
+>>>> This list gets huge for no reason.
+>>>
+>>> I think in our case soc family is reasonable since they share same silicon
+>>> design.
+>>>
+>>>> We know all existing PWM of this type are the same. We have been using
+>>>> them for years. It is not a new support we know nothing about.
+>>>>
+>>>>>
+>>>>> I thought something like:
+>>>>> - items:
+>>>>>      - enum:
+>>>>>          - amlogic,gxbb-pwm
+>>>>>          - amlogic,axg-pwm
+>>>>>          - amlogic,g12a-pwm
+>>>>>      - const: amlogic,pwm-v1
+>>>> I'm not sure I understand what you are suggesting here.
+>>>> Adding a "amlogic,pwm-v1" for the obsolete compatible ? No amlogic DT
+>>>> has that and I'm working to remove this type, so I don't get the point.
+>>>>
+>>>>>
+>>>>> should be preferred instead of a single amlogic,meson8-pwm-v2 ?
+>>>> This is named after the first SoC supporting the type.
+>>>> Naming it amlogic,pwm-v2 would feel weird with the s4 coming after.
+>>>> Plus the doc specifically advise against this type of names.
+>>>
+>>> The -v2 refers to a pure software/dt implementation versioning and not
+>>> an HW version, so I'm puzzled and I requires DT maintainers advice here.
+>>>
+>>> Yes meson8b is the first "known" platform, even if I'm pretty sure meson6 has
+>
+> Yes, this should be SoC-based compatible, unless you have clear
+> versioning scheme by SoC/IP block vendor. You named it not a HW version,
+> which kind of answers to the "unless" case - that's not hardware version.
+>
+
+This is specifically the point of the comment in commit description.
+We know all the PWMs compatible are the same HW (version) as one found
+in the meson8b.
+
+It is certain that adding more compatible, listing all the SoC, will be
+useless. I can do it if you insist.
+
+>> 
+>> This is not my point. I picked this name because I have to pick a
+>> specific device based one. Not because it is actually the first or
+>> not. I don't see a problem with meson6 being compatible with
+>> meson8-pwm-v2, if that ever comes along.
+>
+> No, the point is not to use "v2". Use SoC compatibles.
+
+It is a SoC compatible. The second one.
+
+The first one, as explained in the description was describing the driver
+more that the HW.
+
+Changing the way clock are passed from DT to the driver would be break
+user of the old compatible. So a new compatible is introduced. I believe
+this is recommended way to introduce incompatible binding changes.
+
+v2 here denote a new interface version, nothing to do with HW
+versioning. I happy to pick something else to denote this.
+
+>
+>> 
+>> I think the binding here satisfy the rule that it should be specific,
+>> and the intent that goes with it:
+>> 
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/writing-bindings.rst?h=v6.7-rc2#n42
+>> 
+>>> the same pwm architecture, this is why "amlogic,pwm-v1" as fallback seems more
+>>> reasonable and s4 and later pwm could use the "amlogic,pwm-v2"
+>>> fallback.
+>> 
+>> That is not how understand this:
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/writing-bindings.rst?h=v6.7-rc2#n82
+>> 
+>
+> Again, where the "v2" is defined? Where is any document explaining the
+> mapping between version blocks and SoC parts? Why do you list here only
+> major version? Blocks almost always have also minor (e.g. v2.0).
+
+Again, v2 does has nothing to do with the HW. Never wrote it was.
+The HW remains the same.
+
+
+>
+> Best regards,
+> Krzysztof
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
