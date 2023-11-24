@@ -4,123 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCABBC61DF4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 13:51:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24CFBC61D97
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 14:41:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=+Rn3MSiyVIhLlZrJ5BeKzVIr60I1jMTJmhOWDYCK7vw=; b=kiWZzrDrcoD4PifEgiJ20HHSm3
-	Ksfah1vijb93AFW/FaRTwhgjrDksDeHUkAiAvCNUNBfinEtNcsV7bxeNGU9iogm5EfTN5cFQcPme3
-	M0pciPuh9s/WJTTIrQ/kc8VphDJTTYxbLYGdwqCCoW/SkPuZuhteRj09ksj2h7kCNpdpzde/i9mtI
-	7Xr9B/yxQG7p18W5cLgVfIev5BDv/9k6Uo610CfheLPnaOCBzYQmYW1t2912ot+/giyYlYkXWMPln
-	zdGm+jsBamtFh7+uDg2Kl3XuezRg4eABKXSvhszNwOLWHVYDSDCI9VQUUlQKtapi9aFC9wiI2XGq/
-	0JqVb4cw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=GHtPFlnMzovYdvNX+Bnum1yuelDaeZOPiBCUJTHHgk8=; b=H3tlShB61Pe4I8
+	P/OAGjsHNITrHC5qzDVXxvhEpHNWeoHqW6P/0NaNk+f9FHzqoZy4Ucs7YzrBEKtKzLL0k07kBy7v8
+	/8SGsvpvhCwPnaZSrwFluO41QA4we6vdzqev1AGxSNUhGyCIlGaTI5sneq6VjFkLrwx7z6ApgZt6m
+	P4D45c8dilZWqLVsiLExrUdDCLMImjzkyqqvYuG60lzZzLgnJSJicjkqlyDMtCOVhQp4LUFbxyHHt
+	raTG3FM3G8Z+m+gYPdowPofqAKr44Mw2XeuwNIl4VfL2lWnIn91Y2eGoOdROD1Wms3tW78PdHIlaK
+	JbEo/yND3BgyhwgWUm0g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6WaO-007M2W-2A;
-	Fri, 24 Nov 2023 13:51:12 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1r6XM9-007QuC-2J;
+	Fri, 24 Nov 2023 14:40:33 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6WaL-007M1A-2C
+	id 1r6XM5-007Qrg-0Q
 	for linux-amlogic@lists.infradead.org;
-	Fri, 24 Nov 2023 13:51:11 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40a4848c6e1so13313095e9.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 24 Nov 2023 05:51:06 -0800 (PST)
+	Fri, 24 Nov 2023 14:40:32 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40b36339549so12732755e9.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 24 Nov 2023 06:40:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700833866; x=1701438666; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VxCC2Aq/t8/Q52ovrlgjo6dDEhp//mxj0rpaMToUQEw=;
-        b=xzt5bx97WvIQ+JVMwNHykFiu8zvGBTWt9a/91M9h8Exjbue3avTfgAMgoPAJu1wlBP
-         DquTcWpfLWIjZUyBZIyB/qlUQi2xioqRmbntfyyPYvtTHo7rd3uSP6i7C7wNvF9+qZ/W
-         uwC5pFtcTsec/RGPr010uerfXwcw16P1gp3qT1wcGFCOJi2PgWHG28CyjMKGtOEvPXqD
-         TLtW3nl7G6yAAnAMIaSygPy4SOkx0A25Kj0nFvhOfEk31Rht9edvBb/6goQ2faS8SQ9c
-         sCMe7DQikLZym8dLkzhkIFt0WO1kxMTy8+U8d0gb/qlUD+49miv7qNlTjanmDDV7BRcu
-         Qw/Q==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700836825; x=1701441625; darn=lists.infradead.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=NIiwAxdmzOkDiTxrhYUc4Y3MMadBDgLLDbQxBLZ1bpU=;
+        b=xFsuMLOK4JIrzyAbTGLrw/TmrjIZBxMc6s2P9H1sDKk7gPWcMmJpuRuObQ7s99mQwO
+         k2Cl25wFkQCy8NrWRnozprwBUFigNJuAYfzgU2uPhdxpcRwEPWScTuKXx7u6skJtATCj
+         fTj9za0MeV9serCVZaL/cmky7acF/7qOHe/DVgrqTBG2sZ34pX2SRDMxD/vo9TvMKlJX
+         44kO+yhjctSyD0kEZ5mdJNHoXOjDGcdUQEiMC2lFdynKyqweS4OrBjYcyVXqPKxmyaXx
+         JyKJgw6+j9EtdFBUqJXcGT6JWvMXH0/yuhmtfY6WpPiEtrVqYjQ2jgDaSXoMHLALmSTw
+         +8Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700833866; x=1701438666;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=VxCC2Aq/t8/Q52ovrlgjo6dDEhp//mxj0rpaMToUQEw=;
-        b=Xkh+BrJuzqNrJLfKiPP8XaTQyX6QFN9FipnRjRpMuT+pOH6O0GT2DQ05gcvpiL9tZZ
-         5HVONGSHtolocLGl4Mb4FLLyVnAzk4zD6j2lDXIc9cbQ0mZU+pAy4w3vqEJJFH0PhgQL
-         k2y4I/DViQlnKqiIjFfu4ToUM2YjRddmzN0TvsrZ/j5mn+PMeG/yY9zFbuV7RcPsq3O9
-         PDTzB+W98uMxgv7dEoA0+h7fVN9nH75OUlQ/Lk96nhjkAdksz2rqF7L7OSQ+4nSVaSvB
-         mCFdux8W3KkTNFHvG7FQ48o8FTLi4X0IUAH0mdr5wZSWpkS+RYheUIe8lSx+u5UyrTzV
-         49KA==
-X-Gm-Message-State: AOJu0Yxu54wU+Nrj+TOeHbdKU8Y+F1h/Opyidb9vanHyA0SJqrq6d1Xi
-	WNPTv0+HXxBtF4IRJZyXoSDq+Q==
-X-Google-Smtp-Source: AGHT+IEEAJHJwIQiERlLA4dW2jNyNyW36yyG+T8pNRKwyFVm+lg97DXezz9uNgCZRLAAjUfPmw5KOA==
-X-Received: by 2002:a05:600c:4f4b:b0:40b:36e9:bf4b with SMTP id m11-20020a05600c4f4b00b0040b36e9bf4bmr2821370wmq.41.1700833865591;
-        Fri, 24 Nov 2023 05:51:05 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:4611:6dae:b5a3:b6a4? ([2a01:e0a:982:cbb0:4611:6dae:b5a3:b6a4])
-        by smtp.gmail.com with ESMTPSA id fj13-20020a05600c0c8d00b00407b93d8085sm5856582wmb.27.2023.11.24.05.50.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Nov 2023 05:51:05 -0800 (PST)
-Message-ID: <c3a07912-07da-4965-94b8-3c0d8889ddc4@linaro.org>
-Date: Fri, 24 Nov 2023 14:50:58 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v9 04/12] dt-bindings: phy: amlogic,g12a-mipi-dphy-analog:
- drop unneeded reg property and example
-Content-Language: en-US, fr
-To: Conor Dooley <conor@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Jagan Teki <jagan@amarulasolutions.com>, Nicolas Belin
- <nbelin@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Remi Pommarel
- <repk@triplefau.lt>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+        d=1e100.net; s=20230601; t=1700836825; x=1701441625;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NIiwAxdmzOkDiTxrhYUc4Y3MMadBDgLLDbQxBLZ1bpU=;
+        b=du3/iN7XVlUpk/AabtglM1syu2TT7UvYNJnj0zuRGRcXH8rKdbVWcRBI9YM01HBdyw
+         ZmZEWc7/GRYh+xFiaZsysfoFooXQr3z+4CbEdl0qKAy0/1zVv5WTqo62GWv3zueThIcN
+         ggzhWilggx85uCBNPtpcL7puFvVZN5K3p44/hWF5hlTBUniVXcilc442cTCEZrtBHZdh
+         w2KVkMFZ18nBQ6DnqRcicqHzw/7tUeJaci+SVg8SstAZV11v92sSPFxeX37F2J6xoPgq
+         sMpLKorQvpX+lDAp7IXtBT1I/SSaoYgfqISeun4qCkN6zr5Wx7heHMxma28Fg4puutq6
+         L2gQ==
+X-Gm-Message-State: AOJu0Yzvp8LFqeoqWaFkSD5mHpkvYUaBhFb3QxGzwXS2bGAExEFum1Fs
+	azStivhM4rX17j+V7pA+zR9Xaw==
+X-Google-Smtp-Source: AGHT+IHzzbRCPSKjkI9QlpIzhC8HlPiBgBVnia+Dbm7E/Rv/wiz9vBCUYYDhElu81nWxgMuUVurIgQ==
+X-Received: by 2002:a5d:4b88:0:b0:32d:87c8:b548 with SMTP id b8-20020a5d4b88000000b0032d87c8b548mr2321540wrt.21.1700836825270;
+        Fri, 24 Nov 2023 06:40:25 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:1243:6910:fe68:2de5])
+        by smtp.gmail.com with ESMTPSA id dm16-20020a0560000bd000b0032d09f7a713sm4500582wrb.18.2023.11.24.06.40.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Nov 2023 06:40:24 -0800 (PST)
+References: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
+ <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-8-95256ed139e6@linaro.org>
+User-agent: mu4e 1.10.7; emacs 29.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jagan Teki <jagan@amarulasolutions.com>,
+ Nicolas Belin <nbelin@baylibre.com>, Vinod Koul <vkoul@kernel.org>, Kishon
+ Vijay Abraham I <kishon@kernel.org>, Remi Pommarel <repk@triplefau.lt>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
  linux-phy@lists.infradead.org, Rob Herring <robh@kernel.org>
-References: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
- <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-4-95256ed139e6@linaro.org>
- <20231124-felt-tip-everybody-f2a6836e52af@spud>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231124-felt-tip-everybody-f2a6836e52af@spud>
+Subject: Re: [PATCH v9 08/12] clk: meson: g12a: make VCLK2 and ENCL clock
+ path configurable by CCF
+Date: Fri, 24 Nov 2023 15:12:53 +0100
+In-reply-to: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-8-95256ed139e6@linaro.org>
+Message-ID: <1jbkbjdxk8.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231124_055109_740149_B3C98775 
-X-CRM114-Status: GOOD (  15.82  )
+X-CRM114-CacheID: sfid-20231124_064029_174241_D27EEEE0 
+X-CRM114-Status: GOOD (  24.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,80 +101,294 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Conor,
 
-On 24/11/2023 13:36, Conor Dooley wrote:
-> On Fri, Nov 24, 2023 at 09:41:15AM +0100, Neil Armstrong wrote:
->> The amlogic,g12a-mipi-dphy-analog is a feature of the simple-mfd
->> amlogic,meson-axg-hhi-sysctrl system control register zone which is an
->> intermixed registers zone, thus it's very hard to define clear ranges for
->> each SoC controlled features even if possible.
->>
->> The amlogic,g12a-mipi-dphy-analog was wrongly documented as an independent
->> register range, which is not the reality, thus fix the bindings by dropping
->> the reg property now it's referred from amlogic,meson-gx-hhi-sysctrl.yaml
->> and documented as a subnode of amlogic,meson-axg-hhi-sysctrl.
->>
->> Also drop the unnecessary example, the top level bindings example should
->> be enough.
->>
->> Fixes: 76ab79f9726c ("dt-bindings: phy: add Amlogic G12A Analog MIPI D-PHY bindings")
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> I feel like I left a tag on this one before, but I can't remember.
-> Perhaps I missed the conclusion to the discussion to the discussion with
-> Rob about whether having "reg" was desirable that lead to a tag being
-> dropped?
+On Fri 24 Nov 2023 at 09:41, Neil Armstrong <neil.armstrong@linaro.org> wrote:
 
-I checked again and nope, not tag, but Rob's question was legitimate and I reworded
-and clarified the commit message following your reviews.
-On the other side you suggested a Fixes tag, which I added.
+> In order to setup the DSI clock, let's make the unused VCLK2 clock path
+> configuration via CCF.
+>
+> The nocache option is removed from following clocks:
+> - vclk2_sel
+> - vclk2_input
+> - vclk2_div
+> - vclk2
+> - vclk_div1
+> - vclk2_div2_en
+> - vclk2_div4_en
+> - vclk2_div6_en
+> - vclk2_div12_en
+> - vclk2_div2
+> - vclk2_div4
+> - vclk2_div6
+> - vclk2_div12
+> - cts_encl_sel
+>
+> vclk2 and vclk2_div uses the newly introduced vclk regmap driver
+> to handle the enable and reset bits.
+>
+> In order to set a rate on cts_encl via the vclk2 clock path,
+> the NO_REPARENT flag is set on cts_encl_sel & vclk2_sel in order
+> to keep CCF from selection a parent.
+> The parents of cts_encl_sel & vclk2_sel are expected to be defined
+> in DT.
+>
+> The following clock scheme is to be used for DSI:
+>
+> xtal
+> \_ gp0_pll_dco
+>    \_ gp0_pll
+>       |- vclk2_sel
+>       |  \_ vclk2_input
+>       |     \_ vclk2_div
+>       |        \_ vclk2
+>       |           \_ vclk2_div1
+>       |              \_ cts_encl_sel
+>       |                 \_ cts_encl	-> to VPU LCD Encoder
+>       |- mipi_dsi_pxclk_sel
+>       \_ mipi_dsi_pxclk_div
+>          \_ mipi_dsi_pxclk		-> to DSI controller
+>
+> The mipi_dsi_pxclk_div is set as RO in order to use the same GP0
+> for mipi_dsi_pxclk and vclk2_input.
 
-The rewording is about why reg doesn't make sense on the nature of the memory
-region and it doesn't make sense here like other similar nodes.
+Could you explain a bit more this part of about the RO ops ?
+Maybe I'm missing something.
 
-Neil
+You would be relying on the reset being always the way it. It is
+probable but not safe.
 
-> 
->> ---
->>   .../bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml          | 12 ------------
->>   1 file changed, 12 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
->> index c8c83acfb871..81c2654b7e57 100644
->> --- a/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
->> +++ b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
->> @@ -16,20 +16,8 @@ properties:
->>     "#phy-cells":
->>       const: 0
->>   
->> -  reg:
->> -    maxItems: 1
->> -
->>   required:
->>     - compatible
->> -  - reg
->>     - "#phy-cells"
->>   
->>   additionalProperties: false
->> -
->> -examples:
->> -  - |
->> -    phy@0 {
->> -          compatible = "amlogic,g12a-mipi-dphy-analog";
->> -          reg = <0x0 0xc>;
->> -          #phy-cells = <0>;
->> -    };
->>
->> -- 
->> 2.34.1
->>
+A way to deal with the shared GP0 would be to:
+* cut rate propagation at mipi_dsi_pxclk_sel (already done) and
+  (vclk2_sel - TBD) ... 
+* Set GP0 base rate through assigned-clock-rate (which you already in
+  patch 11)
+
+With this, I'm not sure anything needs to be RO for the rates to be set
+properly for each subtree.
+
+Also, with the subtree above and your example in patch 11, it looks odd that
+PXCLK is manually set through DT while ENCL is not. Both are input of
+dsi driver.
+
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  drivers/clk/meson/g12a.c | 68 +++++++++++++++++++++++++++++++++---------------
+>  1 file changed, 47 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+> index cadd824336ad..fb3d9196a1fd 100644
+> --- a/drivers/clk/meson/g12a.c
+> +++ b/drivers/clk/meson/g12a.c
+> @@ -22,6 +22,7 @@
+>  #include "clk-regmap.h"
+>  #include "clk-cpu-dyndiv.h"
+>  #include "vid-pll-div.h"
+> +#include "vclk.h"
+>  #include "meson-eeclk.h"
+>  #include "g12a.h"
+>  
+> @@ -3165,7 +3166,7 @@ static struct clk_regmap g12a_vclk2_sel = {
+>  		.ops = &clk_regmap_mux_ops,
+>  		.parent_hws = g12a_vclk_parent_hws,
+>  		.num_parents = ARRAY_SIZE(g12a_vclk_parent_hws),
+> -		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+
+No sure CLK_SET_RATE_PARENT is wise here.
+What you manually set in DT for the GP0, is likely to change because of
+this, isn't it ?
+
+>  	},
+>  };
+>  
+> @@ -3193,7 +3194,7 @@ static struct clk_regmap g12a_vclk2_input = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_sel.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3215,19 +3216,32 @@ static struct clk_regmap g12a_vclk_div = {
+>  };
+>  
+>  static struct clk_regmap g12a_vclk2_div = {
+> -	.data = &(struct clk_regmap_div_data){
+> -		.offset = HHI_VIID_CLK_DIV,
+> -		.shift = 0,
+> -		.width = 8,
+> +	.data = &(struct clk_regmap_vclk_div_data){
+> +		.div = {
+> +			.reg_off = HHI_VIID_CLK_DIV,
+> +			.shift   = 0,
+> +			.width   = 8,
+> +		},
+> +		.enable = {
+> +			.reg_off = HHI_VIID_CLK_DIV,
+> +			.shift   = 16,
+> +			.width   = 1,
+> +		},
+> +		.reset = {
+> +			.reg_off = HHI_VIID_CLK_DIV,
+> +			.shift   = 17,
+> +			.width   = 1,
+> +		},
+> +		.flags = CLK_DIVIDER_ROUND_CLOSEST,
+>  	},
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "vclk2_div",
+> -		.ops = &clk_regmap_divider_ops,
+> +		.ops = &clk_regmap_vclk_div_ops,
+>  		.parent_hws = (const struct clk_hw *[]) {
+>  			&g12a_vclk2_input.hw
+>  		},
+>  		.num_parents = 1,
+> -		.flags = CLK_GET_RATE_NOCACHE,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_GATE,
+>  	},
+>  };
+>  
+> @@ -3246,16 +3260,24 @@ static struct clk_regmap g12a_vclk = {
+>  };
+>  
+>  static struct clk_regmap g12a_vclk2 = {
+> -	.data = &(struct clk_regmap_gate_data){
+> -		.offset = HHI_VIID_CLK_CNTL,
+> -		.bit_idx = 19,
+> +	.data = &(struct clk_regmap_vclk_data){
+> +		.enable = {
+> +			.reg_off = HHI_VIID_CLK_CNTL,
+> +			.shift   = 19,
+> +			.width   = 1,
+> +		},
+> +		.reset = {
+> +			.reg_off = HHI_VIID_CLK_CNTL,
+> +			.shift   = 15,
+> +			.width   = 1,
+> +		},
+>  	},
+>  	.hw.init = &(struct clk_init_data) {
+>  		.name = "vclk2",
+> -		.ops = &clk_regmap_gate_ops,
+> +		.ops = &clk_regmap_vclk_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_div.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_GATE,
+>  	},
+>  };
+>  
+> @@ -3339,7 +3361,7 @@ static struct clk_regmap g12a_vclk2_div1 = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3353,7 +3375,7 @@ static struct clk_regmap g12a_vclk2_div2_en = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3367,7 +3389,7 @@ static struct clk_regmap g12a_vclk2_div4_en = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3381,7 +3403,7 @@ static struct clk_regmap g12a_vclk2_div6_en = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3395,7 +3417,7 @@ static struct clk_regmap g12a_vclk2_div12_en = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3461,6 +3483,7 @@ static struct clk_fixed_factor g12a_vclk2_div2 = {
+>  			&g12a_vclk2_div2_en.hw
+>  		},
+>  		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3474,6 +3497,7 @@ static struct clk_fixed_factor g12a_vclk2_div4 = {
+>  			&g12a_vclk2_div4_en.hw
+>  		},
+>  		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3487,6 +3511,7 @@ static struct clk_fixed_factor g12a_vclk2_div6 = {
+>  			&g12a_vclk2_div6_en.hw
+>  		},
+>  		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3500,6 +3525,7 @@ static struct clk_fixed_factor g12a_vclk2_div12 = {
+>  			&g12a_vclk2_div12_en.hw
+>  		},
+>  		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -3561,7 +3587,7 @@ static struct clk_regmap g12a_cts_encl_sel = {
+>  		.ops = &clk_regmap_mux_ops,
+>  		.parent_hws = g12a_cts_parent_hws,
+>  		.num_parents = ARRAY_SIZE(g12a_cts_parent_hws),
+> -		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+>  	},
+>  };
+>  
+> @@ -3717,7 +3743,7 @@ static struct clk_regmap g12a_mipi_dsi_pxclk_sel = {
+>  		.ops = &clk_regmap_mux_ops,
+>  		.parent_hws = g12a_mipi_dsi_pxclk_parent_hws,
+>  		.num_parents = ARRAY_SIZE(g12a_mipi_dsi_pxclk_parent_hws),
+> -		.flags = CLK_SET_RATE_NO_REPARENT,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+>  	},
+>  };
+>  
+> @@ -3729,7 +3755,7 @@ static struct clk_regmap g12a_mipi_dsi_pxclk_div = {
+>  	},
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "mipi_dsi_pxclk_div",
+> -		.ops = &clk_regmap_divider_ops,
+> +		.ops = &clk_regmap_divider_ro_ops,
+>  		.parent_hws = (const struct clk_hw *[]) {
+>  			&g12a_mipi_dsi_pxclk_sel.hw
+>  		},
 
 
 _______________________________________________
