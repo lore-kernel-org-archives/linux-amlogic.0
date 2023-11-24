@@ -4,93 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B588C61D97
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 10:02:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1BE1C61DF4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 10:49:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
-	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=En7ntAZnnvhjOEmT7Hx3wzhg9jAOaXLbefIiI+csbps=; b=yXhJYF2nEwk6FpDSTFNEHBRqZC
-	y5PEahZmAtxhG1aRgGlZcG2xbp7qXeUCLUCcFY4hl7+Jl+GzHuRx/a4MVe7YL9fDxEjHz1E9sFoaj
-	9dAGIz1to24Hobc/E9xKmlnuMnNBPkgKcxdmlqu0ac5bSKG+NDdEknhqxzOGz5z+0Vqo0/tvjlP8V
-	4HKGr623MrDGNEaYojyFLhXOx4bKbn5BZ8dH+Op+pv+iBIWW/94GHKe/1OVYY1/xMEH80DWjWeYAp
-	9Gv63aBxMkj5FiEwmbT0ic0GWdU4Fse4uxh38RSYiEBB6yagGFFYmWZDybDXSpAflmrG10qWI10aU
-	8410bGSw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=HR8ONpyZM8i2SzjFQH78l9LKs4xGF7IpdEy7HTnZDSI=; b=v0aVREpQiLlTN3
+	Gtps4ydE9dIx+itijHL8ZIdhTx6qWOaqgTq74VFNj6KjoDQmOyPXsFeSHBOx5s0Vldp2OpJXBdHaI
+	vj8AoV2w4yvRaZUe9eBWjRkQee3esu0q2tMGGcs1I83pOWv3aM4keIDmNUjXN0Qao43jUWM5JgrCU
+	xZiuXFPePitzR4b63G7WxRf4yW4l2XT6QPhYkoFeLh5LIH+b58bpecY4fGltqIrON4T9UmFIw7IV2
+	NEp05ma5qBwSzAx4nSENhLIKlM+PNPWT0tlO6bIFAIlEVEFEbz0yUun5gPh1At79DTOKzhqOat0jI
+	I9Auke13HCom6/jEqvDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6T0w-006lqy-1Z;
-	Fri, 24 Nov 2023 10:02:22 +0000
-Received: from mx.msync.work ([62.182.159.68])
+	id 1r6Tjq-006ulo-37;
+	Fri, 24 Nov 2023 10:48:46 +0000
+Received: from mail-ot1-x32f.google.com ([2607:f8b0:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6T0t-006loZ-10;
-	Fri, 24 Nov 2023 10:02:21 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8C26D621CA;
-	Fri, 24 Nov 2023 10:02:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
-	t=1700820132; h=from:subject:date:message-id:to:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references:autocrypt;
-	bh=H98COdnbfmR0Z7+Y4wrDzDOT7wGeif7oLU80xotr7Cg=;
-	b=G8qXOg2ZwxS0VqU2OLG5A9GeE0U5E874KNp6+MorX63r6nMF92WQBNmBJERLVKhudHCDin
-	Ce9MM7UxIuwJrWR/4TC0aG0MUHJOvW7zenHqaWStbyTPPWHKS9r8QXzqZwWVoDxAEZ1RxQ
-	DEghevRtfIrHPU0SZv0qMba1n6rLbdBbc0wTnW5ab0Rkb03znTKgxD5h8vwp4Cls2lLrcD
-	tPQVY2p6tQFIKHYtp8uhdJ23zwcC1o2KbxQYZQGZdx+9qsKLm9JSA6FRxiuPI6IVHWL4vK
-	92tln74wmCPojy+UIimfYfyspZjszAtu4OlksbnrnHyGzrAtj9of6SbXOxCsmQ==
-Message-ID: <798aeac1-bca9-4512-a11c-d7145aeb5645@lexina.in>
-Date: Fri, 24 Nov 2023 13:02:06 +0300
+	id 1r6Tjn-006ukm-0b
+	for linux-amlogic@lists.infradead.org;
+	Fri, 24 Nov 2023 10:48:45 +0000
+Received: by mail-ot1-x32f.google.com with SMTP id 46e09a7af769-6d7eb7ff384so1047558a34.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 24 Nov 2023 02:48:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700822919; x=1701427719; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=JSUEAKedcFlvjkIzN6LzNXLF8ZLIJ83SRbS1kwzATO0=;
+        b=J8PZvPfKO0Tgn04PU3aeiAOdpB4UGinDQJUWXAHAy4afMblaC3f5gNSlkM3B5t1LVh
+         kDsWkd0YjbOWl8t+27FNRkY29snO7NPDsEwBnG/mAPQaIkvtXQ2nTMQTZEDyvCKKWm46
+         RV7F2dac0+FDGseKnRypavRM6ChT3VEp8evCDw49I9y7CzNV+UmHxHfpodXZ8o8V3SAs
+         b+xpAudsukd9rrSeSXlv8Y4YI0RMRrN+cEztiINkMivvTejp2N3nxRSbUZExbv/cWLoY
+         YGUrzLh0Cd5obq9c1B53CmEDDycqbgxkNfVqbm5aw7cR1xyLr8XJhVPJSr9NbjxjgVaX
+         s//g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700822919; x=1701427719;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JSUEAKedcFlvjkIzN6LzNXLF8ZLIJ83SRbS1kwzATO0=;
+        b=MF6Av2yq6sPP/YIo4KJgOsMtXhcuPbdi00Cz17Vt/98uhG377IZGLtKdnrC6S2llOK
+         bcQnbBSgpJdtR3xvTxpH/LtPYQ424qwPPI1xfLIPCaJk+DafMBUArkip/K6vPREaHeui
+         Rj4+8hw5O51lii2K0pX3fGe8gJN82Av58KoGh+L8VCVLbgR3MnnVlyNKCtkzolzNpDqw
+         +jUkHHd/5TSpJMtS6ommqbUo1j7zJLg3KWBqPp657ixX61ZVpsC9r4BrsHOqCEgXNdlk
+         LLNCx7Bkx/+D3eIP/bPYR+BDMKOZXAHK0kcUneQ/Zuk9g0/ZtYEmy43/pBm60Ye8QzpR
+         ICxg==
+X-Gm-Message-State: AOJu0Yx7OTez4NCmC1tB/r+FNXnAhZtatXxsZmaB3wteLysL2bhRVQ6D
+	SyrlgWxPEW95WQZeu83EjnacAX7lvdNq8t6ChpI=
+X-Google-Smtp-Source: AGHT+IH2TyCtkFLMnAO/yClVYDhq70yZy6EcVUl/P6ZwWvgPzvLcjJQMd6c3yTIRYwm7OY8ExvVm49pGjrDQTZCwM54=
+X-Received: by 2002:a05:6870:9f8b:b0:1e9:c7cc:df9a with SMTP id
+ xm11-20020a0568709f8b00b001e9c7ccdf9amr3508073oab.11.1700822919197; Fri, 24
+ Nov 2023 02:48:39 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: amlogic: minor whitespace cleanup around '='
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231124094700.58071-1-krzysztof.kozlowski@linaro.org>
-Content-Language: en-US, ru-RU
-From: Viacheslav <adeep@lexina.in>
-Autocrypt: addr=adeep@lexina.in; keydata=
- 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
-In-Reply-To: <20231124094700.58071-1-krzysztof.kozlowski@linaro.org>
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20231122182351.63214-1-linux.amoon@gmail.com> <20231122182351.63214-2-linux.amoon@gmail.com>
+ <20231123-skeletal-smirk-390543e2d6ab@spud>
+In-Reply-To: <20231123-skeletal-smirk-390543e2d6ab@spud>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Fri, 24 Nov 2023 16:18:23 +0530
+Message-ID: <CANAwSgQCOw_CY_Yy7zYHdme92O=O35Ev=MqHcznYnR=ycaxdPg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+To: Conor Dooley <conor@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231124_020219_683555_106E4B11 
-X-CRM114-Status: GOOD (  10.86  )
+X-CRM114-CacheID: sfid-20231124_024843_224152_FB83D4EC 
+X-CRM114-Status: GOOD (  28.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,67 +87,115 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi!
+Hi Conor
 
-24/11/2023 12.47, Krzysztof Kozlowski wrote:
-> The DTS code coding style expects exactly one space before and after '='
-> sign.
+On Thu, 23 Nov 2023 at 23:26, Conor Dooley <conor@kernel.org> wrote:
 >
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   .../boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts    | 2 +-
->   arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi        | 2 +-
->   arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi            | 2 +-
->   3 files changed, 3 insertions(+), 3 deletions(-)
+> On Wed, Nov 22, 2023 at 11:53:46PM +0530, Anand Moon wrote:
+> > Add the binding example for the USB3.1 Genesys Logic GL3523
+> > integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> > hub.
+> >
+> > Onboard USB hub supports USB 3.x and USB 2.0 peer controllers.
+> > which has a common reset pin and power supply.
+> > peer-hub phandle each peer controller with proper gpio reset
+> > and help each peer power on during initialization
+> > and power off during suspend.
+> >
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > v4: Fix the description of peer-hub and update the commit message.
+> > Schematics of the Odroid N2+
+> > https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121.pdf
+> > V3: fix the dt_binding_check error, added new example for Genesys GL3523
+> > v2: added Genesys GL3523 binding
+> > v1: none
+> > ---
+> >  .../bindings/usb/genesys,gl850g.yaml          | 67 +++++++++++++++++--
+> >  1 file changed, 63 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > index ee08b9c3721f..bc3b3f4c8473 100644
+> > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+> >  maintainers:
+> >    - Icenowy Zheng <uwu@icenowy.me>
+> >
+> > -allOf:
+> > -  - $ref: usb-device.yaml#
+> > -
+> >  properties:
+> >    compatible:
+> >      enum:
+> > @@ -27,12 +24,48 @@ properties:
+> >
+> >    vdd-supply:
+> >      description:
+> > -      the regulator that provides 3.3V core power to the hub.
+> > +      phandle to the regulator that provides power to the hub.
+> > +
+> > +  peer-hub:
 >
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
-> index 0062667c4f65..c9e84db0831a 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
-> @@ -30,7 +30,7 @@ &sd_emmc_b {
->   &uart_B {
->   	bluetooth {
->   		compatible = "realtek,rtl8822cs-bt";
-> -		enable-gpios  = <&gpio GPIOZ_7 GPIO_ACTIVE_HIGH>;
-> +		enable-gpios = <&gpio GPIOZ_7 GPIO_ACTIVE_HIGH>;
->   		host-wake-gpios = <&gpio GPIOZ_8 GPIO_ACTIVE_HIGH>;
->   		device-wake-gpios = <&gpio GPIOZ_6 GPIO_ACTIVE_HIGH>;
->   	};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-> index 995ce10d5c81..08c33ec7e9f1 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-> @@ -369,7 +369,7 @@ &uart_A {
->   
->   	bluetooth {
->   		compatible = "realtek,rtl8822cs-bt";
-> -		enable-gpios  = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-> +		enable-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
->   		host-wake-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
->   		device-wake-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
->   	};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
-> index 0a6a12808568..4b8db872bbf3 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
-> @@ -487,7 +487,7 @@ &uart_A {
->   
->   	bluetooth {
->   		compatible = "realtek,rtl8822cs-bt";
-> -		enable-gpios  = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-> +		enable-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
->   		host-wake-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
->   		device-wake-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
->   	};
+> Should the property not be "peer-controller"? Your description refers to
+> them as such.
 
+No, as per my understanding, peer-hub represents a complete USB hub.
+See the lock diagram in the below link.
 
-Reviewed-by: Viacheslav Bocharov<adeep@lexina.in>
+>
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      onboard USB hub supports USB 3.x and USB 2.0 peer controllers.
+>
+>
+> > +      which has a common reset pin and power supply.
+> > +      peer-hub phandle each peer controller with proper gpio reset
+> > +      and help each peer power on during initialization
+> > +      and power off during suspend.
+>
+> I generally hate to talk about non-native speakers grammar etc, but what
+> you have here is in need of a lot of improvement. The below is my
+> attempt to understand what you are trying to say:
+>
+> "For onboard hubs that support USB 3.x and USB 2.0 controllers with
+> shared resets and power supplies, this property is used to identify
+> the controllers with which these are shared."
+>
 
+Sorry for the poor grammar, I will update this in the next v5.
+
+> Also - this is one particular system, what prevents there being a hub
+> that has more than 2 controllers? Also, as you insist that this is
+> generic, and not just for genesys, should this not be defined in a
+> common location?
+
+Here is the block diagram of the Genesys GL3523 hub.
+[0] https://www.genesyslogic.com.tw/en/product_view.php?show=67 [Block Diagram]
+
+It has two USB 2.0 and USB 3.1 controllers, so using peer-hub node
+the onboard hub module will bring up this hub.
+
+There are many examples that use similar properties hence it is generic.
+
+# Documentation/devicetree/bindings/usb/cypress,hx3.yaml
+# Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+# Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+# Documentation/devicetree/bindings/usb/ti,usb8041.yaml
+# Documentation/devicetree/bindings/usb/vialab,vl817.yaml
+
+>
+> Cheers,
+> Conor.
+>
+
+Thanks
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
