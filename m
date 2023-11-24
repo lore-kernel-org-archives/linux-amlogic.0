@@ -4,85 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2607C61D97
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 17:20:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB522C61D97
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 18:00:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UYRuthIqjmdpr8+hQ2X5S9gr1rzwyFMw+oAC0HZT4a0=; b=TQKLdOfUEX/cbo
-	VZQS7T0P2Zh7+rPIEHd/zDlHTGisSbtgGvLK6Vgp4UffICnFZOLEJfoBLcpLm3AbKGt1So7qcsRCD
-	vAQ3qa0zAyyKqgt54pgOdGLJmgqRwpoPM9i5o/ialVoDg2fqvlSRryeXxfjRy42sllp9E4fqWrNUZ
-	hXYLjQxUPiU88frxwDAEvBY6e/OtPrSbHnGVmIbGIQtpVMNC3FX3NmcRBqB7B85EOVkMhep/4c8PE
-	D2fJTdtJCfNfGVlWqDx7aNMWydUlhTjxUFWCGEI3SG2nGTaNZXrQk9Fp42twNvT7M2HMgZ1S370AC
-	glt7HqBLZlAvBV21H2CA==;
+	List-Owner; bh=vIia4mWU3ZQvZxYol25tb2/nKrmbNKe/C91WWy/Zdfg=; b=RP556DZtQjRvwM
+	M/oFG14DTBjdA0MqDksnx4wjKM0Q1KUKqbTuVm5OIPrFd7fT4L2+FGzFQGGp7RdMKt7H97WrBmZ0O
+	UWIgTqo9aWXN4Nt+pIcO3kOTs/oN3EzzbxrnjJ/tVXB1I062Q+B7fDhv3x1s0pEMYKIxUnzjImNrC
+	NhtMnb1yAE5CfcMTHu5kebD9dI29xqMcmIT9xVk+4I9Ca+ql0+55T9v3SzKDtajoJIt01HNw8lqxu
+	fjEgKG1whu7nTabnaVSkI1ta0g/H0rMRag+aM67dsdie9cfFRYf2jyf2ppEBpgRyKG/LBfEh9YutK
+	U1CpK6/i6vf6HZ8xpH1g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6Zqa-007mwK-0v;
-	Fri, 24 Nov 2023 17:20:08 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1r6aSt-007qGQ-2d;
+	Fri, 24 Nov 2023 17:59:43 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6ZqW-007muw-0g
-	for linux-amlogic@lists.infradead.org;
-	Fri, 24 Nov 2023 17:20:06 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4079ed65471so15834895e9.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 24 Nov 2023 09:20:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700846399; x=1701451199; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2d1leqtXuRjh3vDQD1vENVeJ67TD/CQIGzFzr3jZ/Rw=;
-        b=q454pKY9g8baYIy/83YGJC6j8OhZLfeiDqfzno2c5KyRofJbE/7QmefLgGuhpoE51r
-         gCF/fNbfYsRdij5wVLsRZULpTUJk4mInW/S/bA/JsNsN6xSUbULJU9/eHsmWDpjcMhFe
-         fbc4aCYVMhcgLO70LRuaJYEeal4VOqww/hvcSs6nn8YzRRxlhs2twwNns8WznEcc101v
-         NmTrCPm/dfywmFGQLG1VNlUqSf2YFNH+BuUvk1BO1Tc0K/+ew/4R4iR5Xo/EdQLSeT7C
-         v8lM9VeP3/Vd4u6VanyNlsnUwmDcRElox3JLGP8bRJueD6UrZQBs+ntMrydFXUQy/M2L
-         +TKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700846399; x=1701451199;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2d1leqtXuRjh3vDQD1vENVeJ67TD/CQIGzFzr3jZ/Rw=;
-        b=ANTqpCP24hUbGK3Xa8/VcEYLajkH1O4/brmf/J5TGRrxxW7vQxhwo7FqceCHzloipf
-         fXggGJbJeXejJbAVkAlABt4fdBo+ypuxVZmFtqpcx3UGe08+hTs1Sch/wNe6vYGS3D9R
-         TrcTXF1nSR/lGrGsfmnnXQScdyAEUJqg/NjDGbRPBDqxf0SiDqEs6qvsW+OCcwb8MsDm
-         FSl/vPLVeLE3WbViPJ7qJkjjD3/OmqDY67oo87HqrnhgyDLtZDL+cRmo0Q+tCtCdMAMF
-         IwS+w8hLmRBHHE5Y1rdtVdeDccxUyP39iGbCgI3XzAM0fm2EBBi+MtDdAINMsMuxlgr5
-         O1+Q==
-X-Gm-Message-State: AOJu0Yy22Iqw5Zh1Msrrjjusxf/RsVRmiQhdg4G0jrFYxWzj9s9SCGRW
-	aQZp5OFrP86PzkzbN+nXtz/wig==
-X-Google-Smtp-Source: AGHT+IGof/O1OGnHaLOZnn6ikBllpdYsJKE4lZGWZe1M6TLjaYOYsj7vsLD/q57/Kn0PjoMIKgomtQ==
-X-Received: by 2002:a05:600c:450b:b0:408:3f61:cb4f with SMTP id t11-20020a05600c450b00b004083f61cb4fmr2927268wmo.23.1700846399037;
-        Fri, 24 Nov 2023 09:19:59 -0800 (PST)
-Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:1243:6910:fe68:2de5])
-        by smtp.googlemail.com with ESMTPSA id o18-20020adf8b92000000b00332e8dd713fsm2547663wra.74.2023.11.24.09.19.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Nov 2023 09:19:58 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Daniel Scally <dan.scally@ideasonboard.com>, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20231114-topic-amlogic-upstream-isp-clocks-v1-0-223958791501@linaro.org>
-References: <20231114-topic-amlogic-upstream-isp-clocks-v1-0-223958791501@linaro.org>
-Subject: Re: [PATCH 0/3] clk: meson: add MIPI ISP & CSI PHY clocks
-Message-Id: <170084639792.2638113.9821910765744986123.b4-ty@baylibre.com>
-Date: Fri, 24 Nov 2023 18:19:57 +0100
+	id 1r6aSq-007qFv-1c;
+	Fri, 24 Nov 2023 17:59:42 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 2D02F6227B;
+	Fri, 24 Nov 2023 17:59:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80F7AC433C7;
+	Fri, 24 Nov 2023 17:59:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1700848777;
+	bh=3Iwe5WT4s4K+LGjZlTwOm8hFwFPRgZnSnyDBsNMKZpI=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=CSKo6uxBX2gPBUyMsZx1ctsXaPzNqdh3jlUo/d4fwfcpitr3V/qSJNn0g9QPiWx06
+	 qdVzBqFy/Vt7I3+7fvguRGDiUYWYFHXwkVgryPFD7PGxFK9+dUl836tTgKOBn6P47x
+	 uu/k29xZlU6rgm8LoGddimj6nwBUHhQnr6BUoXXA=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	patches@lists.linux.dev,
+	Kevin Hilman <khilman@baylibre.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	Dmitry Safonov <dima@arista.com>,
+	Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 4.19 77/97] tty/serial: Migrate meson_uart to use has_sysrq
+Date: Fri, 24 Nov 2023 17:50:50 +0000
+Message-ID: <20231124171937.037530116@linuxfoundation.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20231124171934.122298957@linuxfoundation.org>
+References: <20231124171934.122298957@linuxfoundation.org>
+User-Agent: quilt/0.67
+X-stable: review
+X-Patchwork-Hint: ignore
 MIME-Version: 1.0
-X-Mailer: b4 0.12.4
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231124_092004_452293_D8A0E88E 
-X-CRM114-Status: UNSURE (   4.19  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231124_095940_581674_8DD75C76 
+X-CRM114-Status: GOOD (  11.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,18 +76,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Applied to clk-meson (v6.8/drivers), thanks!
+4.19-stable review patch.  If anyone has any objections, please let me know.
 
-[1/3] dt-bindings: clock: g12a-clkc: add MIPI ISP & CSI PHY clock ids
-      https://github.com/BayLibre/clk-meson/commit/439d3404addf
-[2/3] clk: meson: g12a: add MIPI ISP clocks
-      https://github.com/BayLibre/clk-meson/commit/773e4e987308
-[3/3] clk: meson: g12a: add CSI & ISP gates clocks
-      https://github.com/BayLibre/clk-meson/commit/5205628ab0bf
+------------------
 
-Best regards,
---
-Jerome
+From: Dmitry Safonov <dima@arista.com>
+
+[ Upstream commit dca3ac8d3bc9436eb5fd35b80cdcad762fbfa518 ]
+
+The SUPPORT_SYSRQ ifdeffery is not nice as:
+- May create misunderstanding about sizeof(struct uart_port) between
+  different objects
+- Prevents moving functions from serial_core.h
+- Reduces readability (well, it's ifdeffery - it's hard to follow)
+
+In order to remove SUPPORT_SYSRQ, has_sysrq variable has been added.
+Initialise it in driver's probe and remove ifdeffery.
+
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org
+Signed-off-by: Dmitry Safonov <dima@arista.com>
+Link: https://lore.kernel.org/r/20191213000657.931618-22-dima@arista.com
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Stable-dep-of: 2a1d728f20ed ("tty: serial: meson: fix hard LOCKUP on crtscts mode")
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/tty/serial/meson_uart.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+index 849ce8c1ef392..4c3616cc00833 100644
+--- a/drivers/tty/serial/meson_uart.c
++++ b/drivers/tty/serial/meson_uart.c
+@@ -5,10 +5,6 @@
+  * Copyright (C) 2014 Carlo Caione <carlo@caione.org>
+  */
+ 
+-#if defined(CONFIG_SERIAL_MESON_CONSOLE) && defined(CONFIG_MAGIC_SYSRQ)
+-#define SUPPORT_SYSRQ
+-#endif
+-
+ #include <linux/clk.h>
+ #include <linux/console.h>
+ #include <linux/delay.h>
+@@ -716,6 +712,7 @@ static int meson_uart_probe(struct platform_device *pdev)
+ 	port->mapsize = resource_size(res_mem);
+ 	port->irq = res_irq->start;
+ 	port->flags = UPF_BOOT_AUTOCONF | UPF_LOW_LATENCY;
++	port->has_sysrq = IS_ENABLED(CONFIG_SERIAL_MESON_CONSOLE);
+ 	port->dev = &pdev->dev;
+ 	port->line = pdev->id;
+ 	port->type = PORT_MESON;
+-- 
+2.42.0
+
+
 
 
 _______________________________________________
