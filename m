@@ -4,66 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0C08C61DF4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 12:26:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46AFDC61D97
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 12:37:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=YDiTtPb7TZHk6NuyvRr3zLV1r1iucKpF/iS+A+lwvSU=; b=v4j7+Ftre8TWqgdFt3aqh/67Aa
-	KYVYOgkVTb6Em1A4SfKD7P5A1fcJj4wSJxedRuC1rDcadGMtFdKye6axxS3zHnxsXHH27IDeKYsIB
-	tZkl98tF7I6k9cetdEDQcFChXLjstgg4rKr8CI7hQkaKVlbmiHONXHF8/1911t+QTPKbQZH7X/OZ/
-	lyioTFCoh5+dy85SaOoTN9fsmmtLEm5Ky7At0N2HPpgVvxgS2RGoj5eMZGomaHtrdbxAWNoQyC8+I
-	nSGqe1i2ndBIlCcpKrgErAhxlND0dfcUHkReJW9FvidNKhNsxCoYi1H773B5lh2rx7HcgpyUS1ywH
-	xMl4vJtw==;
+	bh=ob7uwDrokMHQVlOLqQo8SOwwqVZJj5MlkKYKvoxc2T8=; b=g4a5EM++1xubXGdCfzuzeVYt6j
+	uP1mZ9yO+ZqVqu6DTnw2ThQoBNmAHomqdcrOG0Rftl8902VeTpxAcwCpukNhBAAQcjOxFnF88DmPw
+	qqVQnRNzVCb9DifWODBOLp4GrBsdvQqqocRORnd9Uu/v/nOhBq/Qyfjl3j0OEf1DM+TqciC2aa4us
+	tWhsBWa40RpjJHhHEvR5uvbX+Idh3Ok7DzhC9WhlsXQrlALM8/FEl6irIZbeMY11DoXRWgMnXVPKD
+	3QgKQzYGHBj/YT0AbVIzg2/HpXZUY9sKyJV1wPt+ZfexCbtav2LBHw9q3ZDfV3bOpo+qgP3DGXYJP
+	twy25Nqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6VFn-007C6u-0L;
-	Fri, 24 Nov 2023 12:25:51 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1r6VQV-007DOu-0U;
+	Fri, 24 Nov 2023 12:36:55 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6VFj-007C4K-25
-	for linux-amlogic@lists.infradead.org;
-	Fri, 24 Nov 2023 12:25:49 +0000
+	id 1r6VQR-007DO8-2G;
+	Fri, 24 Nov 2023 12:36:53 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 969E8CE28E8;
-	Fri, 24 Nov 2023 12:25:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D6D1C433C7;
-	Fri, 24 Nov 2023 12:25:35 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 69DF4CE296E;
+	Fri, 24 Nov 2023 12:36:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62F25C433C9;
+	Fri, 24 Nov 2023 12:36:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700828737;
-	bh=vlxD35wUZLsa3nu20qeMCvKiG+VbVgsNZnGNx/02fxg=;
+	s=k20201202; t=1700829399;
+	bh=iBs/ElE00ZyViC4c51swbIBIFHOSqvLccbbeT1AqVhQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MEiy96NIaGLuNYOdK94gKbB9z+I3s/FeaIKV0dBKmINUWvHX3MacJgcR/0ynhWw73
-	 IIFk1fma1iNdNrikyHikmXCCesbtdUDE7Ot+SvRtsLCoZJQYwhCrpNQp7WaT14cbuE
-	 elmGwdQEoRLZQN/tHB6VW0+FApvFzptjCYF1Ecn7tTEukSwsp6myfWpTcmVysLZQTZ
-	 SIE5rwoPxWoKpu2y3VDMwfAWQEJ2uO7eBMeQJ9vj+mEf/LzozfyeU/+igyGLfCfybF
-	 ipkwdv6owRq9ndEiTm2swcH1CT3oObSX117KQ9G7u4WzZUpoGMU5YneuqXG1lB8Yzz
-	 gbkVOIMrK4GVg==
-Date: Fri, 24 Nov 2023 12:25:33 +0000
+	b=e4tHQasD1uiBgjppYsnvSsVLtBZ9TQ/izusSKXRVoWvDcvG0eAgkyQIZHqHQF94uo
+	 2swUm2B5piBcScLzvcZCI+8HS2Bm42aYhatjDrfqVBjsJa+tqiElsoXd9kDJxd3WWe
+	 8fZNN2/LuPaXYBjsN84OBryouoLRKQaQGQVNh7YMzz+6Ljkp2lWvgzq6TC+NcQScdc
+	 1hZS1y1XM8RFpGnA+sRtd/5cN6Z8JkZ+b2veHsJ/ZRVYxJtRSZuWZTtyDzhmyEkZaM
+	 a9a7gnwnC4HAuYKLPIg6jWciEdAgvft2rybjDAy/9WHSMa2J+R9P++vV4u0zy2Ypj/
+	 u08VbCLPORCjg==
+Date: Fri, 24 Nov 2023 12:36:32 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add the binding example for the
- Genesys Logic GL3523 hub
-Message-ID: <20231124-clear-aids-2fd63e1dcbcf@spud>
-References: <20231122182351.63214-1-linux.amoon@gmail.com>
- <20231122182351.63214-2-linux.amoon@gmail.com>
- <20231123-skeletal-smirk-390543e2d6ab@spud>
- <CANAwSgQCOw_CY_Yy7zYHdme92O=O35Ev=MqHcznYnR=ycaxdPg@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Nicolas Belin <nbelin@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Remi Pommarel <repk@triplefau.lt>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	dri-devel@lists.freedesktop.org, linux-phy@lists.infradead.org,
+	Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v9 04/12] dt-bindings: phy:
+ amlogic,g12a-mipi-dphy-analog: drop unneeded reg property and example
+Message-ID: <20231124-felt-tip-everybody-f2a6836e52af@spud>
+References: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
+ <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-4-95256ed139e6@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <CANAwSgQCOw_CY_Yy7zYHdme92O=O35Ev=MqHcznYnR=ycaxdPg@mail.gmail.com>
+In-Reply-To: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-4-95256ed139e6@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231124_042548_157218_B67EE29F 
-X-CRM114-Status: GOOD (  37.81  )
+X-CRM114-CacheID: sfid-20231124_043652_108410_9F77BB21 
+X-CRM114-Status: GOOD (  16.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,166 +85,100 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7558668078844809604=="
+Content-Type: multipart/mixed; boundary="===============5107109538281933981=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============7558668078844809604==
+--===============5107109538281933981==
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Sjy+fap+ufnQLlh0"
+	protocol="application/pgp-signature"; boundary="rgdN8ghBXlvRBfQ2"
 Content-Disposition: inline
 
 
---Sjy+fap+ufnQLlh0
+--rgdN8ghBXlvRBfQ2
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 24, 2023 at 04:18:23PM +0530, Anand Moon wrote:
-> Hi Conor
+On Fri, Nov 24, 2023 at 09:41:15AM +0100, Neil Armstrong wrote:
+> The amlogic,g12a-mipi-dphy-analog is a feature of the simple-mfd
+> amlogic,meson-axg-hhi-sysctrl system control register zone which is an
+> intermixed registers zone, thus it's very hard to define clear ranges for
+> each SoC controlled features even if possible.
 >=20
-> On Thu, 23 Nov 2023 at 23:26, Conor Dooley <conor@kernel.org> wrote:
-> >
-> > On Wed, Nov 22, 2023 at 11:53:46PM +0530, Anand Moon wrote:
-> > > Add the binding example for the USB3.1 Genesys Logic GL3523
-> > > integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
-> > > hub.
-> > >
-> > > Onboard USB hub supports USB 3.x and USB 2.0 peer controllers.
-> > > which has a common reset pin and power supply.
-> > > peer-hub phandle each peer controller with proper gpio reset
-> > > and help each peer power on during initialization
-> > > and power off during suspend.
-> > >
-> > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > > ---
-> > > v4: Fix the description of peer-hub and update the commit message.
-> > > Schematics of the Odroid N2+
-> > > https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_2021=
-0121.pdf
-> > > V3: fix the dt_binding_check error, added new example for Genesys GL3=
-523
-> > > v2: added Genesys GL3523 binding
-> > > v1: none
-> > > ---
-> > >  .../bindings/usb/genesys,gl850g.yaml          | 67 +++++++++++++++++=
---
-> > >  1 file changed, 63 insertions(+), 4 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yam=
-l b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > > index ee08b9c3721f..bc3b3f4c8473 100644
-> > > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > > @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
-> > >  maintainers:
-> > >    - Icenowy Zheng <uwu@icenowy.me>
-> > >
-> > > -allOf:
-> > > -  - $ref: usb-device.yaml#
-> > > -
-> > >  properties:
-> > >    compatible:
-> > >      enum:
-> > > @@ -27,12 +24,48 @@ properties:
-> > >
-> > >    vdd-supply:
-> > >      description:
-> > > -      the regulator that provides 3.3V core power to the hub.
-> > > +      phandle to the regulator that provides power to the hub.
-> > > +
-> > > +  peer-hub:
-> >
-> > Should the property not be "peer-controller"? Your description refers to
-> > them as such.
+> The amlogic,g12a-mipi-dphy-analog was wrongly documented as an independent
+> register range, which is not the reality, thus fix the bindings by droppi=
+ng
+> the reg property now it's referred from amlogic,meson-gx-hhi-sysctrl.yaml
+> and documented as a subnode of amlogic,meson-axg-hhi-sysctrl.
 >=20
-> No, as per my understanding, peer-hub represents a complete USB hub.
-> See the lock diagram in the below link.
+> Also drop the unnecessary example, the top level bindings example should
+> be enough.
 >=20
-> >
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > +    description:
-> > > +      onboard USB hub supports USB 3.x and USB 2.0 peer controllers.
-> >
-> >
-> > > +      which has a common reset pin and power supply.
-> > > +      peer-hub phandle each peer controller with proper gpio reset
+> Fixes: 76ab79f9726c ("dt-bindings: phy: add Amlogic G12A Analog MIPI D-PH=
+Y bindings")
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-This is what I don't get. You say "peer-hub phandle each peer
-controller..". It is hard for me to understand that portion of the
-sentence, but the interchanging of "hub" and "controller" is
-confusing. The title of the binding says "hub controller", so maybe it
-is better to use that here.
+I feel like I left a tag on this one before, but I can't remember.
+Perhaps I missed the conclusion to the discussion to the discussion with
+Rob about whether having "reg" was desirable that lead to a tag being
+dropped?
 
-> > > +      and help each peer power on during initialization
-> > > +      and power off during suspend.
-> >
-> > I generally hate to talk about non-native speakers grammar etc, but what
-> > you have here is in need of a lot of improvement. The below is my
-> > attempt to understand what you are trying to say:
-> >
-> > "For onboard hubs that support USB 3.x and USB 2.0 controllers with
-> > shared resets and power supplies, this property is used to identify
-> > the controllers with which these are shared."
-
-"For onboard hub controllers that support USB 3.x and USB 2.0 hubs
-with shared resets and power supplies, this property is used to identify
-the hubs with which these are shared."
-
-I re-worded this again to try and remove the use of "controller".
-Do you think that this still makes sense?
-
-> Sorry for the poor grammar, I will update this in the next v5.
+> ---
+>  .../bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml          | 12 ------=
+------
+>  1 file changed, 12 deletions(-)
 >=20
-> > Also - this is one particular system, what prevents there being a hub
-> > that has more than 2 controllers? Also, as you insist that this is
-> > generic, and not just for genesys, should this not be defined in a
-> > common location?
+> diff --git a/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy=
+-analog.yaml b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy=
+-analog.yaml
+> index c8c83acfb871..81c2654b7e57 100644
+> --- a/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog=
+=2Eyaml
+> +++ b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog=
+=2Eyaml
+> @@ -16,20 +16,8 @@ properties:
+>    "#phy-cells":
+>      const: 0
+> =20
+> -  reg:
+> -    maxItems: 1
+> -
+>  required:
+>    - compatible
+> -  - reg
+>    - "#phy-cells"
+> =20
+>  additionalProperties: false
+> -
+> -examples:
+> -  - |
+> -    phy@0 {
+> -          compatible =3D "amlogic,g12a-mipi-dphy-analog";
+> -          reg =3D <0x0 0xc>;
+> -          #phy-cells =3D <0>;
+> -    };
 >=20
-> Here is the block diagram of the Genesys GL3523 hub.
-> [0] https://www.genesyslogic.com.tw/en/product_view.php?show=3D67 [Block =
-Diagram]
+> --=20
+> 2.34.1
 >=20
-> It has two USB 2.0 and USB 3.1 controllers, so using peer-hub node
-> the onboard hub module will bring up this hub.
->=20
-> There are many examples that use similar properties hence it is generic.
->=20
-> # Documentation/devicetree/bindings/usb/cypress,hx3.yaml
-> # Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
-> # Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-> # Documentation/devicetree/bindings/usb/ti,usb8041.yaml
-> # Documentation/devicetree/bindings/usb/vialab,vl817.yaml
 
-Which brings me back to the unanswered question, should this not be
-defined in a common location given there are several devices using it?
-I assume because it only applies to hub controllers and not other types
-of devices.
-
-Also, the descriptions that I saw when looking at some of those other
-bindings are similarly poor. I can't bring myself to care any more,
-just clean up the ambiguous wording here and I'll ack the next version,
-I don't expect you to sort out the wording in other bindings.
-
-Cheers,
-Conor.
-
---Sjy+fap+ufnQLlh0
+--rgdN8ghBXlvRBfQ2
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWCWPQAKCRB4tDGHoIJi
-0n2KAP4gfrkarKYYdtk0+pmhfTKrC35P8NCTE3zgnTcc7D19xwD9EzBpIn9jIfF4
-gxd2BDzJFdP2jjGpQP195vHDU5eDFgY=
-=r79W
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWCYzwAKCRB4tDGHoIJi
+0kCXAP9TU7U/tv4849X5YXYCr5KDY41jG8O0rTLgEd5q1geeoQD9GC0EX/4K+IRA
+uJv3CY2TNiiph0000bxb3dqFwAVvRQM=
+=UdAc
 -----END PGP SIGNATURE-----
 
---Sjy+fap+ufnQLlh0--
+--rgdN8ghBXlvRBfQ2--
 
 
---===============7558668078844809604==
+--===============5107109538281933981==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -245,5 +189,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============7558668078844809604==--
+--===============5107109538281933981==--
 
