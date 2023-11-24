@@ -4,76 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A22FC61D97
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 15:44:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81DEFC61DF4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 16:01:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wRNmMC0VU/mpZyV1aTyY9tdHcMd7+L7ZxW7unX71ZKw=; b=i0ZCBaqAjElF4r
-	20vv6m0q/a3obKySkn5BkhdJ952beZVxvp8PeeVsWEwM0RrlLX1tAf1mYtR2lDAtuYmT3YB9z2t/X
-	JTAbmAPiHgfrqJOnf5rhVNfjut2thlstG6s77ExaJwFMX8Ijh7Uw4MAVwr144pdyPpMQ5yrjKHD7p
-	L6d5ceGiLQoA0r8dWoVs1+HVg66HG1foIhRjql9AnnspXaIwS9pqe28tjmmixehLwPcUBkqpDrmEk
-	0tiKt9Eh8/fQyiAfN8ussyjyl9cXkeo8ZUl973ORxX2WDCaNmndcpiZHPZ9TRktYK5EkaljgRt1v3
-	CEW+QwfPiH6TGxyISx6Q==;
+	List-Owner; bh=17viNX4uOiwpaNSp0AKw8UP5Qe4mKVheahh8+riUK8I=; b=4ssF0PmpQY20Mw
+	Vf/gv4ta18KS+c7+vuUrib+pfdh0/ltpc+I9KBAf69yMFNzG8J1cZCmX9V1DRs34MveX1M5/Vud3c
+	vJUxsn4ptc/w3gXDjuyqWchJhI08PhuBHda/JzSIshOkhuZz7uqRzKl5/7mT9eUu2z0hXC1h4hE9V
+	FDHwKP08rTNKX2fQq6YdqSxPJPtNbI6Zx/zZAMwjN4YUrcCYL2Bni22rfW+X38dLnl5ap2GsJQr2Q
+	POlj4Dy3C9VruJiifi2DA2POBmKNjlPAWau4hn0x+5074ROca23skLQutgRuFk7yK28hTExjZ3aWj
+	1wFyfC3bHsObWS5kB8Fg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6YLC-007ZDk-2H;
-	Fri, 24 Nov 2023 15:43:38 +0000
-Received: from mgamail.intel.com ([198.175.65.10])
+	id 1r6Ybb-007bP3-0S;
+	Fri, 24 Nov 2023 16:00:35 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6YL9-007ZD5-0k;
-	Fri, 24 Nov 2023 15:43:37 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700840615; x=1732376615;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mQWqT7UORe3gKuZXf27y7FIWWgaUuPEuIgNSnzTF6y8=;
-  b=JCabUQ0KVM+taXdycFeBCIND2dz7Io3OyqEBfdQe2FBzVundop81qdje
-   Cn9WEdkAbf5kDI5G1+RPV5Q/Vzv2lT/euIQjNNTbw5DGYdZkSSpSG0fUd
-   qp2sNl8P4JwhLpd74EXwPgIDPIdemQefH9vLMcFnC42HUIz+R4hQTdZCA
-   8FP62BFffxjKjK55jMf7pmDbD3pKMY5McqF85m1bLF74GYoJkRAM4yLTW
-   4cENcuMeB435+oj8/ETtrAbe3xDeX8TiemZoIZVfx/4xdwjWH3kfzmkgf
-   Yuug9rFXA1RGcMUVBZPdCqF2rVh/D6Lf1yUzAb6RjDkuPjjRsNSIrETju
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10904"; a="5662506"
-X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; 
-   d="scan'208";a="5662506"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2023 07:43:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; 
-   d="scan'208";a="16005201"
-Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 24 Nov 2023 07:43:28 -0800
-Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r6YKz-0002z4-1d;
-	Fri, 24 Nov 2023 15:43:25 +0000
-Date: Fri, 24 Nov 2023 23:42:40 +0800
-From: kernel test robot <lkp@intel.com>
-To: Viacheslav Bocharov <adeep@lexina.in>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 4/5] soc: amlogic: Add Amlogic secure-monitor SoC
- Information driver
-Message-ID: <202311242104.RjBPI3uI-lkp@intel.com>
-References: <20231122125643.1717160-5-adeep@lexina.in>
+	id 1r6YbX-007bLc-1p
+	for linux-amlogic@lists.infradead.org;
+	Fri, 24 Nov 2023 16:00:34 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40838915cecso14425065e9.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 24 Nov 2023 08:00:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700841624; x=1701446424; darn=lists.infradead.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=QIZHOCN0O+AJ7xoSGSR7gqeveeQq60Da6ux/290lK/k=;
+        b=TJF750Ovl1rdnDKIwUq5sMK/LC0/IDTKs4nstFveNoRgzC9bmcGpTVqwgA5C7Vvk5T
+         D5CN7lk47MiIKa0MFRsQLU4iI9OZQt6DYElUalo19IzzORP1LJuj9C9gjanAKaJtkpaE
+         hXpFc7tRtIG9G/Wa+DRUovPfbo/dVV41yDglFs+3x/CEJWYvjBLIR01iyBrBJ/efNAlP
+         FDXxmTcGWF0vgBsm+T8slGQnsbrUoiZUskBDGjnyPiSLL43XkThMeJg/342Uh8wOk+Kl
+         HHNjMcgS8tXJfXZNpOdHfsQo5At1k1T/D2V8K0p5hpeb4+PrbudtbIzwEV1jcq/wNMnI
+         /yIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700841624; x=1701446424;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QIZHOCN0O+AJ7xoSGSR7gqeveeQq60Da6ux/290lK/k=;
+        b=n/+F/5dB5Cij77rkyg3j3qgyM+bwNb7Yizhf2nNV2V6f+mL4V8NWzKgOIpmwQsBdgP
+         j48scye1BeIUyC74Ek4+TQjMFRc6puBAFdT2vBbjWgvjipG0Swu3tFL51+b+9rrHvBzA
+         qnBPXD+WnuHKyW5Q/rZCU11ZdJzXdeRPfTf9in5vqpVLz5CcMls7jNNGCH1LXVOOZsEX
+         W+/5vCwPN01zo1QgmnfGTSq9NOLoltwOM+UHS3a7rP9uD4PAPw2htEJcMyhS2zFlyYTp
+         +VMAEALZR834gNRKHfoUP0tFu7deHHnO5XB34m0zG4Vwoxs6iNjv0zCLJMhRstpD/uEo
+         Z9NA==
+X-Gm-Message-State: AOJu0Yz+OU0AC6cck1dWZ5ouuClltlIL+04XjO/NnZ/A+0GxN66+yzxM
+	HGEEiM2Y9s1rx4+SzkfeVG50qg==
+X-Google-Smtp-Source: AGHT+IFZbJEIaR1JnmbP2ltcRj3tm0C6/uC1zEbNnTJYzlCYq+OYJ+nKuLBrMqyGIKkKo/dWAAtGAw==
+X-Received: by 2002:a05:600c:354c:b0:405:39b4:3145 with SMTP id i12-20020a05600c354c00b0040539b43145mr3007348wmq.2.1700841623251;
+        Fri, 24 Nov 2023 08:00:23 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:1243:6910:fe68:2de5])
+        by smtp.gmail.com with ESMTPSA id t5-20020adff045000000b00332e6a0e9f4sm3285103wro.75.2023.11.24.08.00.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Nov 2023 08:00:22 -0800 (PST)
+References: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
+ <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-8-95256ed139e6@linaro.org>
+ <1jbkbjdxk8.fsf@starbuckisacylon.baylibre.com>
+ <b23ddc3b-d995-4cd6-91f2-3efa59d345a5@linaro.org>
+User-agent: mu4e 1.10.7; emacs 29.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: neil.armstrong@linaro.org
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jagan Teki <jagan@amarulasolutions.com>,
+ Nicolas Belin <nbelin@baylibre.com>, Vinod Koul <vkoul@kernel.org>, Kishon
+ Vijay Abraham I <kishon@kernel.org>, Remi Pommarel <repk@triplefau.lt>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-phy@lists.infradead.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v9 08/12] clk: meson: g12a: make VCLK2 and ENCL clock
+ path configurable by CCF
+Date: Fri, 24 Nov 2023 16:32:20 +0100
+In-reply-to: <b23ddc3b-d995-4cd6-91f2-3efa59d345a5@linaro.org>
+Message-ID: <1j34wvdtux.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20231122125643.1717160-5-adeep@lexina.in>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231124_074335_331577_7697315B 
-X-CRM114-Status: GOOD (  12.75  )
+X-CRM114-CacheID: sfid-20231124_080032_305527_EC015661 
+X-CRM114-Status: GOOD (  39.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,103 +108,344 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Viacheslav,
 
-kernel test robot noticed the following build warnings:
+On Fri 24 Nov 2023 at 16:15, Neil Armstrong <neil.armstrong@linaro.org> wrote:
 
-[auto build test WARNING on rockchip/for-next]
-[also build test WARNING on linus/master v6.7-rc2 next-20231124]
-[cannot apply to arm/for-next kvmarm/next arm/fixes]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> On 24/11/2023 15:12, Jerome Brunet wrote:
+>> On Fri 24 Nov 2023 at 09:41, Neil Armstrong <neil.armstrong@linaro.org>
+>> wrote:
+>> 
+>>> In order to setup the DSI clock, let's make the unused VCLK2 clock path
+>>> configuration via CCF.
+>>>
+>>> The nocache option is removed from following clocks:
+>>> - vclk2_sel
+>>> - vclk2_input
+>>> - vclk2_div
+>>> - vclk2
+>>> - vclk_div1
+>>> - vclk2_div2_en
+>>> - vclk2_div4_en
+>>> - vclk2_div6_en
+>>> - vclk2_div12_en
+>>> - vclk2_div2
+>>> - vclk2_div4
+>>> - vclk2_div6
+>>> - vclk2_div12
+>>> - cts_encl_sel
+>>>
+>>> vclk2 and vclk2_div uses the newly introduced vclk regmap driver
+>>> to handle the enable and reset bits.
+>>>
+>>> In order to set a rate on cts_encl via the vclk2 clock path,
+>>> the NO_REPARENT flag is set on cts_encl_sel & vclk2_sel in order
+>>> to keep CCF from selection a parent.
+>>> The parents of cts_encl_sel & vclk2_sel are expected to be defined
+>>> in DT.
+>>>
+>>> The following clock scheme is to be used for DSI:
+>>>
+>>> xtal
+>>> \_ gp0_pll_dco
+>>>     \_ gp0_pll
+>>>        |- vclk2_sel
+>>>        |  \_ vclk2_input
+>>>        |     \_ vclk2_div
+>>>        |        \_ vclk2
+>>>        |           \_ vclk2_div1
+>>>        |              \_ cts_encl_sel
+>>>        |                 \_ cts_encl	-> to VPU LCD Encoder
+>>>        |- mipi_dsi_pxclk_sel
+>>>        \_ mipi_dsi_pxclk_div
+>>>           \_ mipi_dsi_pxclk		-> to DSI controller
+>>>
+>>> The mipi_dsi_pxclk_div is set as RO in order to use the same GP0
+>>> for mipi_dsi_pxclk and vclk2_input.
+>> Could you explain a bit more this part of about the RO ops ?
+>> Maybe I'm missing something.
+>> You would be relying on the reset being always the way it. It is
+>> probable but not safe.
+>> A way to deal with the shared GP0 would be to:
+>> * cut rate propagation at mipi_dsi_pxclk_sel (already done) and
+>>    (vclk2_sel - TBD) ...
+>> * Set GP0 base rate through assigned-clock-rate (which you already in
+>>    patch 11)
+>> With this, I'm not sure anything needs to be RO for the rates to be set
+>> properly for each subtree.
+>> Also, with the subtree above and your example in patch 11, it looks odd
+>> that
+>> PXCLK is manually set through DT while ENCL is not. Both are input of
+>> dsi driver.
+>
+> So the deal is about dynamic setup of clocks for DSI bridges, not really
+> for panels where we can probably know in advance the clock setup.
+>
+> In this particular case, we need to keep a ratio between the vclk and the
+> DSI bitclk, the DSI bitclk is taken from mipi_dsi_pxclk and vclk is derived
+> from gp0 via vclk2.
+>
+> If we set the bitclk rate via mipi_dsi_pxclk, CCF will try to use mipi_dsi_pxclk_div
+> to achieve the rate,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Viacheslav-Bocharov/soc-amlogic-meson-gx-socinfo-move-common-code-to-header-file/20231122-232150
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-patch link:    https://lore.kernel.org/r/20231122125643.1717160-5-adeep%40lexina.in
-patch subject: [PATCH 4/5] soc: amlogic: Add Amlogic secure-monitor SoC Information driver
-config: arc-allmodconfig (https://download.01.org/0day-ci/archive/20231124/202311242104.RjBPI3uI-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231124/202311242104.RjBPI3uI-lkp@intel.com/reproduce)
+If you have CLK_RATE_PARENT on mipi_dsi_pxclk_sel, I'm not surprised it
+does that, but you don't :/ I'm quite surprised it would do that, or
+even could.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311242104.RjBPI3uI-lkp@intel.com/
+From your example setting 96Mhz on both gp0 and mipi_dsi_pxclk, since
+you've proposed RO-OPS, I suppose the divider is assumed to be 1 and
+stay like that forever.
 
-All warnings (new ones prefixed by >>):
+With rate propagation disabled mipi_dsi_pxclk_sel and GP0 is 96Mhz,
+CCF would have no choice but picking 1 as divider, so I don't understand
+how CCF would pick anything else and how RO-OPS help
 
-   In file included from drivers/soc/amlogic/meson-gx-socinfo-sm.c:21:
->> drivers/soc/amlogic/meson-gx-socinfo-internal.h:48:3: warning: 'soc_packages' defined but not used [-Wunused-const-variable=]
-      48 | } soc_packages[] = {
-         |   ^~~~~~~~~~~~
->> drivers/soc/amlogic/meson-gx-socinfo-internal.h:26:3: warning: 'soc_ids' defined but not used [-Wunused-const-variable=]
-      26 | } soc_ids[] = {
-         |   ^~~~~~~
+> and it does it everytime I tried, breaking the vclk/bitclk ratio,
+> and we have no way to know the gp0 rate in this case.
 
+If you really want to ensure the divider value is always 1, why not use a
+divider table allowing only 1 ? Adding a comment in the g12 clock driver
+would nice because this not obvious. It would be safer than relying on
+the reset value.
 
-vim +/soc_packages +48 drivers/soc/amlogic/meson-gx-socinfo-internal.h
+>
+> I suspect mipi_dsi_pxclk_div was added to achieve fractional vclk/bitclk ratios,
+> since it doesn't exist on AXG. Not sure we would ever need it... and none
+> of the other upstream DSI drivers supports such setups.
+>
+> The main reasons I set only mipi_dsi_pxclk in DT is because :
+> 1) the DSI controller requires a bitclk to respond, pclk is not enough
+> 2) GP0 is disabled with an invalid config at cold boot, thus we cannot
+> rely on a default/safe rate on an initial prepare_enable().
+> This permits setting initial valid state for the DSI controller, while
+> the actual bitclk and vclk are calculated dynamically with panel/bridge
+> runtime parameters.
 
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  22  
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  23  static const struct meson_gx_soc_id {
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  24  	const char *name;
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  25  	unsigned int id;
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22 @26  } soc_ids[] = {
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  27  	{ "GXBB", 0x1f },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  28  	{ "GXTVBB", 0x20 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  29  	{ "GXL", 0x21 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  30  	{ "GXM", 0x22 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  31  	{ "TXL", 0x23 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  32  	{ "TXLX", 0x24 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  33  	{ "AXG", 0x25 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  34  	{ "GXLX", 0x26 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  35  	{ "TXHD", 0x27 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  36  	{ "G12A", 0x28 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  37  	{ "G12B", 0x29 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  38  	{ "SM1", 0x2b },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  39  	{ "A1", 0x2c },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  40  };
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  41  
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  42  
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  43  static const struct meson_gx_package_id {
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  44  	const char *name;
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  45  	unsigned int major_id;
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  46  	unsigned int pack_id;
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  47  	unsigned int pack_mask;
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22 @48  } soc_packages[] = {
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  49  	{ "S905", 0x1f, 0, 0x20 }, /* pack_id != 0x20 */
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  50  	{ "S905H", 0x1f, 0x3, 0xf }, /* pack_id & 0xf == 0x3 */
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  51  	{ "S905M", 0x1f, 0x20, 0xf0 }, /* pack_id == 0x20 */
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  52  	{ "S905D", 0x21, 0, 0xf0 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  53  	{ "S905X", 0x21, 0x80, 0xf0 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  54  	{ "S905W", 0x21, 0xa0, 0xf0 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  55  	{ "S905L", 0x21, 0xc0, 0xf0 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  56  	{ "S905M2", 0x21, 0xe0, 0xf0 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  57  	{ "S805X", 0x21, 0x30, 0xf0 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  58  	{ "S805Y", 0x21, 0xb0, 0xf0 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  59  	{ "S912", 0x22, 0, 0x0 }, /* Only S912 is known for GXM */
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  60  	{ "962X", 0x24, 0x10, 0xf0 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  61  	{ "962E", 0x24, 0x20, 0xf0 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  62  	{ "A113X", 0x25, 0x37, 0xff },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  63  	{ "A113X", 0x25, 0x43, 0xff },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  64  	{ "A113D", 0x25, 0x22, 0xff },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  65  	{ "S905D2", 0x28, 0x10, 0xf0 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  66  	{ "S905Y2", 0x28, 0x30, 0xf0 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  67  	{ "S905X2", 0x28, 0x40, 0xf0 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  68  	{ "A311D", 0x29, 0x10, 0xf0 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  69  	{ "S922X", 0x29, 0x40, 0xf0 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  70  	{ "S905D3", 0x2b, 0x4, 0xf5 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  71  	{ "S905X3", 0x2b, 0x5, 0xf5 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  72  	{ "S905X3", 0x2b, 0x10, 0x3f },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  73  	{ "S905D3", 0x2b, 0x30, 0x3f },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  74  	{ "A113L", 0x2c, 0x0, 0xf8 },
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  75  };
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  76  
-2fed8e24da3985 Viacheslav Bocharov 2023-11-22  77  
+Nothing against setting rate in DT when it is static. Setting it then
+overriding it is not easy to follow.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+To work around GP0 not being set, assuming you want to keep rate
+propagation as it is, you could call clk_set_rate() on cts_encl (possibly w/o
+enabling it) to force a setup on gp0 then clk_prepare_enable() on
+pxclk. You'd get a your safe rate on GP0 and the clock you need on pxclk.
+
+It is a bit hackish. Might be better to claim gp0 in your driver to
+manage it directly, cutting rate propagation above it to control each
+branch of the subtree as you need. It seems you need to have control over
+that anyway and it would be clear GP0 is expected to belong to DSI.
+
+>
+> For the record, the samsung-dsim used fixed rate set from DT, and they moved
+> from that in order to support more panel and bridges.
+>
+> But they're quite lucky because usually the DSI PLL is included in the PHY,
+> this makes the Amlogic design quite unusual (like most multimedia stuf...).
+>
+> Neil
+>
+>> 
+>>>
+>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>> ---
+>>>   drivers/clk/meson/g12a.c | 68 +++++++++++++++++++++++++++++++++---------------
+>>>   1 file changed, 47 insertions(+), 21 deletions(-)
+>>>
+>>> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+>>> index cadd824336ad..fb3d9196a1fd 100644
+>>> --- a/drivers/clk/meson/g12a.c
+>>> +++ b/drivers/clk/meson/g12a.c
+>>> @@ -22,6 +22,7 @@
+>>>   #include "clk-regmap.h"
+>>>   #include "clk-cpu-dyndiv.h"
+>>>   #include "vid-pll-div.h"
+>>> +#include "vclk.h"
+>>>   #include "meson-eeclk.h"
+>>>   #include "g12a.h"
+>>>   @@ -3165,7 +3166,7 @@ static struct clk_regmap g12a_vclk2_sel = {
+>>>   		.ops = &clk_regmap_mux_ops,
+>>>   		.parent_hws = g12a_vclk_parent_hws,
+>>>   		.num_parents = ARRAY_SIZE(g12a_vclk_parent_hws),
+>>> -		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
+>>> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+>> No sure CLK_SET_RATE_PARENT is wise here.
+>> What you manually set in DT for the GP0, is likely to change because of
+>> this, isn't it ?
+>> 
+>>>   	},
+>>>   };
+>>>   @@ -3193,7 +3194,7 @@ static struct clk_regmap g12a_vclk2_input = {
+>>>   		.ops = &clk_regmap_gate_ops,
+>>>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_sel.hw },
+>>>   		.num_parents = 1,
+>>> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>>> +		.flags = CLK_SET_RATE_PARENT,
+>>>   	},
+>>>   };
+>>>   @@ -3215,19 +3216,32 @@ static struct clk_regmap g12a_vclk_div = {
+>>>   };
+>>>     static struct clk_regmap g12a_vclk2_div = {
+>>> -	.data = &(struct clk_regmap_div_data){
+>>> -		.offset = HHI_VIID_CLK_DIV,
+>>> -		.shift = 0,
+>>> -		.width = 8,
+>>> +	.data = &(struct clk_regmap_vclk_div_data){
+>>> +		.div = {
+>>> +			.reg_off = HHI_VIID_CLK_DIV,
+>>> +			.shift   = 0,
+>>> +			.width   = 8,
+>>> +		},
+>>> +		.enable = {
+>>> +			.reg_off = HHI_VIID_CLK_DIV,
+>>> +			.shift   = 16,
+>>> +			.width   = 1,
+>>> +		},
+>>> +		.reset = {
+>>> +			.reg_off = HHI_VIID_CLK_DIV,
+>>> +			.shift   = 17,
+>>> +			.width   = 1,
+>>> +		},
+>>> +		.flags = CLK_DIVIDER_ROUND_CLOSEST,
+>>>   	},
+>>>   	.hw.init = &(struct clk_init_data){
+>>>   		.name = "vclk2_div",
+>>> -		.ops = &clk_regmap_divider_ops,
+>>> +		.ops = &clk_regmap_vclk_div_ops,
+>>>   		.parent_hws = (const struct clk_hw *[]) {
+>>>   			&g12a_vclk2_input.hw
+>>>   		},
+>>>   		.num_parents = 1,
+>>> -		.flags = CLK_GET_RATE_NOCACHE,
+>>> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_GATE,
+>>>   	},
+>>>   };
+>>>   @@ -3246,16 +3260,24 @@ static struct clk_regmap g12a_vclk = {
+>>>   };
+>>>     static struct clk_regmap g12a_vclk2 = {
+>>> -	.data = &(struct clk_regmap_gate_data){
+>>> -		.offset = HHI_VIID_CLK_CNTL,
+>>> -		.bit_idx = 19,
+>>> +	.data = &(struct clk_regmap_vclk_data){
+>>> +		.enable = {
+>>> +			.reg_off = HHI_VIID_CLK_CNTL,
+>>> +			.shift   = 19,
+>>> +			.width   = 1,
+>>> +		},
+>>> +		.reset = {
+>>> +			.reg_off = HHI_VIID_CLK_CNTL,
+>>> +			.shift   = 15,
+>>> +			.width   = 1,
+>>> +		},
+>>>   	},
+>>>   	.hw.init = &(struct clk_init_data) {
+>>>   		.name = "vclk2",
+>>> -		.ops = &clk_regmap_gate_ops,
+>>> +		.ops = &clk_regmap_vclk_ops,
+>>>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_div.hw },
+>>>   		.num_parents = 1,
+>>> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>>> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_GATE,
+>>>   	},
+>>>   };
+>>>   @@ -3339,7 +3361,7 @@ static struct clk_regmap g12a_vclk2_div1 = {
+>>>   		.ops = &clk_regmap_gate_ops,
+>>>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>>>   		.num_parents = 1,
+>>> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>>> +		.flags = CLK_SET_RATE_PARENT,
+>>>   	},
+>>>   };
+>>>   @@ -3353,7 +3375,7 @@ static struct clk_regmap g12a_vclk2_div2_en = {
+>>>   		.ops = &clk_regmap_gate_ops,
+>>>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>>>   		.num_parents = 1,
+>>> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>>> +		.flags = CLK_SET_RATE_PARENT,
+>>>   	},
+>>>   };
+>>>   @@ -3367,7 +3389,7 @@ static struct clk_regmap g12a_vclk2_div4_en = {
+>>>   		.ops = &clk_regmap_gate_ops,
+>>>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>>>   		.num_parents = 1,
+>>> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>>> +		.flags = CLK_SET_RATE_PARENT,
+>>>   	},
+>>>   };
+>>>   @@ -3381,7 +3403,7 @@ static struct clk_regmap g12a_vclk2_div6_en = {
+>>>   		.ops = &clk_regmap_gate_ops,
+>>>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>>>   		.num_parents = 1,
+>>> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>>> +		.flags = CLK_SET_RATE_PARENT,
+>>>   	},
+>>>   };
+>>>   @@ -3395,7 +3417,7 @@ static struct clk_regmap g12a_vclk2_div12_en = {
+>>>   		.ops = &clk_regmap_gate_ops,
+>>>   		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>>>   		.num_parents = 1,
+>>> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>>> +		.flags = CLK_SET_RATE_PARENT,
+>>>   	},
+>>>   };
+>>>   @@ -3461,6 +3483,7 @@ static struct clk_fixed_factor g12a_vclk2_div2 =
+>>> {
+>>>   			&g12a_vclk2_div2_en.hw
+>>>   		},
+>>>   		.num_parents = 1,
+>>> +		.flags = CLK_SET_RATE_PARENT,
+>>>   	},
+>>>   };
+>>>   @@ -3474,6 +3497,7 @@ static struct clk_fixed_factor g12a_vclk2_div4 =
+>>> {
+>>>   			&g12a_vclk2_div4_en.hw
+>>>   		},
+>>>   		.num_parents = 1,
+>>> +		.flags = CLK_SET_RATE_PARENT,
+>>>   	},
+>>>   };
+>>>   @@ -3487,6 +3511,7 @@ static struct clk_fixed_factor g12a_vclk2_div6 =
+>>> {
+>>>   			&g12a_vclk2_div6_en.hw
+>>>   		},
+>>>   		.num_parents = 1,
+>>> +		.flags = CLK_SET_RATE_PARENT,
+>>>   	},
+>>>   };
+>>>   @@ -3500,6 +3525,7 @@ static struct clk_fixed_factor g12a_vclk2_div12
+>>> = {
+>>>   			&g12a_vclk2_div12_en.hw
+>>>   		},
+>>>   		.num_parents = 1,
+>>> +		.flags = CLK_SET_RATE_PARENT,
+>>>   	},
+>>>   };
+>>>   @@ -3561,7 +3587,7 @@ static struct clk_regmap g12a_cts_encl_sel = {
+>>>   		.ops = &clk_regmap_mux_ops,
+>>>   		.parent_hws = g12a_cts_parent_hws,
+>>>   		.num_parents = ARRAY_SIZE(g12a_cts_parent_hws),
+>>> -		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
+>>> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+>>>   	},
+>>>   };
+>>>   @@ -3717,7 +3743,7 @@ static struct clk_regmap g12a_mipi_dsi_pxclk_sel
+>>> = {
+>>>   		.ops = &clk_regmap_mux_ops,
+>>>   		.parent_hws = g12a_mipi_dsi_pxclk_parent_hws,
+>>>   		.num_parents = ARRAY_SIZE(g12a_mipi_dsi_pxclk_parent_hws),
+>>> -		.flags = CLK_SET_RATE_NO_REPARENT,
+>>> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+>>>   	},
+>>>   };
+>>>   @@ -3729,7 +3755,7 @@ static struct clk_regmap g12a_mipi_dsi_pxclk_div
+>>> = {
+>>>   	},
+>>>   	.hw.init = &(struct clk_init_data){
+>>>   		.name = "mipi_dsi_pxclk_div",
+>>> -		.ops = &clk_regmap_divider_ops,
+>>> +		.ops = &clk_regmap_divider_ro_ops,
+>>>   		.parent_hws = (const struct clk_hw *[]) {
+>>>   			&g12a_mipi_dsi_pxclk_sel.hw
+>>>   		},
+>> 
+
 
 _______________________________________________
 linux-amlogic mailing list
