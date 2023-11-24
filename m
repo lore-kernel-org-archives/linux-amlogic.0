@@ -4,69 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 384F8C61DF7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 09:49:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95DB8C61DF7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 09:50:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OJ7LRnSMmLTt4hlKNnhDnUdV9lIXOuXghtDRpf7tO+E=; b=SaYTcsK6fWrUCd
-	nMkEBqyPoLr1Op6fM+sJA6+0lj15PWkP1IbrvrFVzR/pltImRObyxA3TagIpyS7arIduKQoklqNvJ
-	iZHpqzXAoeZyhcUfA6DSxfLPXhiBGOcEYbvjxNDOPnVYz1nxeqRJULVLz+VSnC5rPcO57kQ19ZiPj
-	ljx/6X5H1Qaz+qAE/sXAXcfKF9oq7d5N5Rid/yQcGjsGVUka2djEGTTs9bEANeEJ4O0nliSm/ob5u
-	xNsKLjCOvRe/iPZMzR7UPCZSq+5WEBzM21T8RK08xlASz28qXX3ikkiNCYCa5aMPXIBzzfr1z+5hA
-	R0SSAsTXJuHRt9qrpsQg==;
+	List-Owner; bh=aQDNO5ZLqJDNnyUfi5xXyRJxVbXQpmrEAZadC78yUMc=; b=B9hDYyRaMgDbNv
+	2FrcAHt3bqUl0pCZhrxLDthUJKcTXiQl9yO9XAZIw48poMMk1zqhR9G45l07exFa8awhQHxPfkcp9
+	eb02pBPwIHWj59wEbn6G0NeHqr1qJ+p12IB6XU6TDm+NiHp7yoGfV0lGZVtdZeUEP0mlKecJh0Xw3
+	t9JZrXZUOE6gnG26UVg9T0W+EKyvqgRrMSx0vNIuTIEz2WlE6J5mc+T1lomgi3bzkJ95968k+u8BP
+	RcuWB32wGBHwg2u3JIxoqiz9Zev7WliTT79KNR9x4s8e8xRnndfHPSXgRYgjU4iYQdBU5HtoiErra
+	EoUumbuhRcr3+9CHyMew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6So0-006j49-0f;
-	Fri, 24 Nov 2023 09:49:00 +0000
-Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
+	id 1r6Sox-006jQG-1X;
+	Fri, 24 Nov 2023 09:49:59 +0000
+Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6Sny-006j2g-0M
+	id 1r6Sot-006jOE-2x
 	for linux-amlogic@lists.infradead.org;
-	Fri, 24 Nov 2023 09:48:59 +0000
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-54b0073d50fso321574a12.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 24 Nov 2023 01:48:57 -0800 (PST)
+	Fri, 24 Nov 2023 09:49:58 +0000
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-544455a4b56so2308953a12.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 24 Nov 2023 01:49:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700819336; x=1701424136; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1700819394; x=1701424194; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SMOsy4BS7+C/+T6sK+oNPIev7JoOPfD61PlQi68iJYo=;
-        b=qahkvy9aPHviuQ7ewyHatzEzKQz1iytZoPDqR3Lvs2c4YZqUVEZL/5vkx/zpJeY5dm
-         P/9l4OUB5pfCl706dyk2X6VYqyz2IbbxxJjNk1g4pi3+BxX/nU2TQ8VDc9bGKbiobgXW
-         SQk0LGVqwc/v81kdCv5gW3xPn+Typ9p98FZjqWw5ZNpFUzqyXMhNU4AipNpMg21WhnYb
-         K+Umq1hVKlmlUN9+7X4lDnm25xQBeDb7TAp6mYZPN4CIU6Zc3qb1H/uN1dLf5r8fMgzk
-         MwJgUUgrKxEh36LzWOqH+VhFfIC9UzuOLXBCZQ07uo6ChxEkiqBNCAvpAH9wVqb2hbTY
-         JTCw==
+        bh=meNFIBYS7k1p9attdvnlsc7EhPMVsIMhyk19WoTbQqo=;
+        b=l1x9Z4Fhqoo3/oYFqPSuow1bYmrMEkFTwCUAUVo+C5UVC9BnRzYsLJDq+7v30xZh2i
+         Nm7uT7cveW1sCUvDhZvs6KJlN/a10UW98X7nmr2jwya+Hk3My/3Irvhk/8w6DzYZWv4N
+         Nvxdb1eTtlrbZqOp6XMeYmWd+eHa+Fgg2TyWPz/ZBq/q5NCGrXo5vAul/tArnm13Ho5M
+         5T26sErBcMUj0vIQ3nY1cfMi3xS7vyjuiqEhBqsEEcUgeMnNSO35ldUbidSSbGWxxXfp
+         BwxR/6f4Sz/D127Uh4OXwXgshh9E3cT23kKyoLxEPmJ0Ya2nU0HNt7gTkFCtj3hzSUmN
+         J4BA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700819336; x=1701424136;
+        d=1e100.net; s=20230601; t=1700819394; x=1701424194;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SMOsy4BS7+C/+T6sK+oNPIev7JoOPfD61PlQi68iJYo=;
-        b=v4SvJq95VID24+UC/rmvkpi03IszNseuKBIwxmbaii5648RdGX21vw11gCwF9uMzq7
-         4VBo1evb5sl5502YWzX8X6Ouomy9c/EBrv32xVV4kpVMmn1ctsjRZZ0bGg89+59gyK9I
-         EPDcKGxw4WwWr+5DiwkTXEgAudHQ4Ahsu2aNeQhYLyfmnE1aiGTxSrhYFolEiDVjSvEo
-         XQe6pRLuzY8VEbKwGkhysKJryhrnb0wk1RRw5Syhgb5KVNYbzrAewdxnN4gl8UhazQ69
-         GmmeR6Ppg+BLdXgXTwVTytVSPC9sGWO366k9nxe4NZd46Fz2ehHLNGLE9MxnFstUV1Al
-         QIDw==
-X-Gm-Message-State: AOJu0YzrdyNoFdBB/T3IWzT42eKnKReFzJmCrVXe1de6OWanlP5FhZI2
-	uhXsEt5FKL/S9aIXqYM41FBeHw==
-X-Google-Smtp-Source: AGHT+IFkSvUymaRHAiYpPyU7zYLOgqe9caN+6trfr71PAJULjkWEpVBA2RsXpPKsvnjfr1A3R7B8HA==
-X-Received: by 2002:a50:fc0d:0:b0:54a:ebbf:a0a8 with SMTP id i13-20020a50fc0d000000b0054aebbfa0a8mr1593184edr.11.1700819336271;
-        Fri, 24 Nov 2023 01:48:56 -0800 (PST)
+        bh=meNFIBYS7k1p9attdvnlsc7EhPMVsIMhyk19WoTbQqo=;
+        b=fe/Z7Ozzfe5ezHrZomemwn8YIXAJ8XQdGBuI6lbMwHPchEwTTxqjRRRrOtwwA5c+uC
+         trc2zdLxcq7d0XicobC3lM9vMavPPCEzqYQqL9c08wvSzkqyzuytX0Id42zUHFsC0zFe
+         KI/DGdu5xsOKdnKbZBgmlTQ9fsde1Uo93WnXnkNwBSnnfz8R4tOvtpdrt2QH4Kk6WGok
+         RBj78bue6HvMR2Swv17g5QO8DIiyf8MBWzG70B9GziOCV/lV4pb5oS86WBuAdp+esD9Q
+         qWBPKlBCvtLrUKG49fkk76hTBbgjYkO39+++Ny0HWylO0F84h/hg8BqHG/m7dWfJ7JAw
+         cV2Q==
+X-Gm-Message-State: AOJu0YyJDYPaN/Gp10jodIKFJR7EWKLexrma4pfmJOl3ZIqtr8Y8MASC
+	voNBSUtBa2Keimf7nwqhx2Rqnw==
+X-Google-Smtp-Source: AGHT+IEz5kZLK1s5DpUBPdJyoueKinQApphJFPi6vRG+iEiLCWVrFkVY6PcSsxcH6/rkRD7DDmxtNA==
+X-Received: by 2002:a17:906:2d4:b0:a01:7f2c:fb18 with SMTP id 20-20020a17090602d400b00a017f2cfb18mr1373290ejk.0.1700819394654;
+        Fri, 24 Nov 2023 01:49:54 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id d25-20020a50fb19000000b0054a92ddc3e2sm1597948edq.48.2023.11.24.01.48.54
+        by smtp.gmail.com with ESMTPSA id d25-20020a50fb19000000b0054a92ddc3e2sm1597948edq.48.2023.11.24.01.49.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Nov 2023 01:48:55 -0800 (PST)
-Message-ID: <5f87a2e3-06ca-48bd-acc0-79996b180e37@linaro.org>
-Date: Fri, 24 Nov 2023 10:48:54 +0100
+        Fri, 24 Nov 2023 01:49:54 -0800 (PST)
+Message-ID: <4150bf8e-a48d-4d16-902f-a95f6489c6f5@linaro.org>
+Date: Fri, 24 Nov 2023 10:49:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: ti: minor whitespace cleanup around '='
+Subject: Re: [PATCH 2/2] arm64: dts: amlogic: minor whitespace cleanup around
+ '='
 Content-Language: en-US
 To: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -79,6 +80,7 @@ To: Rob Herring <robh+dt@kernel.org>,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <20231124094739.58163-1-krzysztof.kozlowski@linaro.org>
+ <20231124094739.58163-2-krzysztof.kozlowski@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,10 +126,10 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231124094739.58163-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20231124094739.58163-2-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231124_014858_148964_1F75B3E6 
-X-CRM114-Status: UNSURE (   5.89  )
+X-CRM114-CacheID: sfid-20231124_014955_955071_7D74645C 
+X-CRM114-Status: UNSURE (   5.74  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -152,7 +154,7 @@ On 24/11/2023 10:47, Krzysztof Kozlowski wrote:
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
 
-I am sorry, wrong series.
+Please ignore, that's duplicated of my previous send.
 
 Best regards,
 Krzysztof
