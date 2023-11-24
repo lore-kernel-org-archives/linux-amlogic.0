@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB522C61D97
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 18:00:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D5CAC61DF4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 19:26:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vIia4mWU3ZQvZxYol25tb2/nKrmbNKe/C91WWy/Zdfg=; b=RP556DZtQjRvwM
-	M/oFG14DTBjdA0MqDksnx4wjKM0Q1KUKqbTuVm5OIPrFd7fT4L2+FGzFQGGp7RdMKt7H97WrBmZ0O
-	UWIgTqo9aWXN4Nt+pIcO3kOTs/oN3EzzbxrnjJ/tVXB1I062Q+B7fDhv3x1s0pEMYKIxUnzjImNrC
-	NhtMnb1yAE5CfcMTHu5kebD9dI29xqMcmIT9xVk+4I9Ca+ql0+55T9v3SzKDtajoJIt01HNw8lqxu
-	fjEgKG1whu7nTabnaVSkI1ta0g/H0rMRag+aM67dsdie9cfFRYf2jyf2ppEBpgRyKG/LBfEh9YutK
-	U1CpK6/i6vf6HZ8xpH1g==;
+	List-Owner; bh=TsfVQm8hEBPHcxPCGnhj89+1vsPnSBFdR3harCmVYio=; b=Xan0CN5F1Dj+cw
+	iX3wg9wCvbSP8jn0BpT8gH5gPomGzbQ+VtjTfORRjrMcz0s7kqEJfIR0uTIRxTspbbUEXEMNI0Z3c
+	G7ddqd7M0jLTMTta7uc0ZdqwexsPDUfJtK0v2Kofq/0GRU1jyS/cdVoCaZTpX9N25RuMElVugtFcV
+	ME7ylDJlguhcMyYN/Qcny/bMUgKuCSd6S+VyeSJsUd2ZVPQJB8dDbsF05qeDBXzwmspszWkR6PIyo
+	3ejEI+OOtY/xvtawx2e3vnG4OYKR3c0AbsrmUAR+kXWKnTbFjb8KzuP/UU23TBBKucEdvYaOZL3/a
+	yftalZAHtKVMnriGwhcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6aSt-007qGQ-2d;
-	Fri, 24 Nov 2023 17:59:43 +0000
+	id 1r6boe-007wT3-0U;
+	Fri, 24 Nov 2023 19:26:16 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6aSq-007qFv-1c;
-	Fri, 24 Nov 2023 17:59:42 +0000
+	id 1r6bob-007wSW-2I;
+	Fri, 24 Nov 2023 19:26:15 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 2D02F6227B;
-	Fri, 24 Nov 2023 17:59:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80F7AC433C7;
-	Fri, 24 Nov 2023 17:59:37 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 02149623D8;
+	Fri, 24 Nov 2023 19:26:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BAFDC433C8;
+	Fri, 24 Nov 2023 19:26:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1700848777;
-	bh=3Iwe5WT4s4K+LGjZlTwOm8hFwFPRgZnSnyDBsNMKZpI=;
+	s=korg; t=1700853972;
+	bh=5HUemzTQGbVWrGf98L/LO4HohLBkfwLmSmfjFpaSAUw=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=CSKo6uxBX2gPBUyMsZx1ctsXaPzNqdh3jlUo/d4fwfcpitr3V/qSJNn0g9QPiWx06
-	 qdVzBqFy/Vt7I3+7fvguRGDiUYWYFHXwkVgryPFD7PGxFK9+dUl836tTgKOBn6P47x
-	 uu/k29xZlU6rgm8LoGddimj6nwBUHhQnr6BUoXXA=
+	b=gwQ4RUPbtzye0EtHJh+IPLp+kIcpvJIfY+G1ticRJkeLA2/3nJiWcWumOK5Nfhtgz
+	 dXqevbJ/LxndynzS6UNlMiPlg/U/pTlo7rFCOe7BE9zchz09Gn6hV/YoEiMmCDA1Ij
+	 peDf7BikHyxAJHFR8dJ0cI65ZjSny0PeXb+JQb14=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -47,18 +47,18 @@ Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	linux-amlogic@lists.infradead.org,
 	Dmitry Safonov <dima@arista.com>,
 	Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 4.19 77/97] tty/serial: Migrate meson_uart to use has_sysrq
-Date: Fri, 24 Nov 2023 17:50:50 +0000
-Message-ID: <20231124171937.037530116@linuxfoundation.org>
+Subject: [PATCH 5.4 105/159] tty/serial: Migrate meson_uart to use has_sysrq
+Date: Fri, 24 Nov 2023 17:55:22 +0000
+Message-ID: <20231124171946.255482138@linuxfoundation.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231124171934.122298957@linuxfoundation.org>
-References: <20231124171934.122298957@linuxfoundation.org>
+In-Reply-To: <20231124171941.909624388@linuxfoundation.org>
+References: <20231124171941.909624388@linuxfoundation.org>
 User-Agent: quilt/0.67
 X-stable: review
 X-Patchwork-Hint: ignore
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231124_095940_581674_8DD75C76 
+X-CRM114-CacheID: sfid-20231124_112613_791701_D25BD194 
 X-CRM114-Status: GOOD (  11.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -76,7 +76,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-4.19-stable review patch.  If anyone has any objections, please let me know.
+5.4-stable review patch.  If anyone has any objections, please let me know.
 
 ------------------
 
