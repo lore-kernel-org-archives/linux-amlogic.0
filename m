@@ -4,64 +4,113 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0467EC61D97
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Nov 2023 17:57:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC935C61DF4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 08:41:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=gYtFg84TBhH5LTn4jCfwyCHHv1xtkwkNoQtEYBRjBOM=; b=HvcEciWhGG3+dMYSUSo5bz4G13
-	sQbuTX4JXFi6VyDj2wL7iHC7ReU3mQbrS+orgWpoaAe5t/7OvTUZRj9sF9reRFFkegJ5gAUyyL2g0
-	bW5/4UG0VfbJ2W8Or6i3K66NuE//k2PTVZw6E5zmOdCUjfQYt+FgJ6vUcrIbD+Mko74bTkKjRemVt
-	uxtIRfbRbcsNFR/Q6A7LVK0AmjCVDlTPDZZQdAs5f14EXtsq8RFqA/fuHtdWFEXxt2u7szJh4f/A/
-	md9C5YfUSintk3B1zpkVQ/SOgmhb0geR0VXDTdmg/y1m4rP5WgxjRrYclCw3ePk4LoaXHynHVxkx3
-	GQFApb7g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=6nTiO8xYqq/V8NtTD3MKAMelX82ndc2SpAf6gOXlafU=; b=qSgeN7BApnbX4/
+	+rM8NFIdwa0itQkvd+hdoEFBzeWkmL41e6bFg1GlMI/0bgVALxOiY4muFzIRBP90YEqIVe1z+2yZn
+	b4z2mCeHVs33tqE9OkEdv/K8Hav2IwgRGb1Eco2nJZL2kpk3tnggKpiKW0Mpv+rEnFesQSpYPzNuB
+	v974cT5iUG042+l8rCBUJd1ZFEUs7YtWrFMC0Rc3ZoNhtpY9Nic6P9WuMNGPBhDs8Ex++oBsHuPl9
+	6AWrVOnH4WdiZV1mfRlBHWFY6IeExgGqpkDtMcH7HRvgzujrrgFFmvFibR8gKo9rH9Cl828YC3Pg4
+	dMCw9VM7C2CXdc7/eIcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6DwN-005TKQ-2M;
-	Thu, 23 Nov 2023 17:56:39 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1r6Rkl-006XqV-1m;
+	Fri, 24 Nov 2023 08:41:35 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6DwK-005TK2-1n
+	id 1r6Rke-006Xj0-0O
 	for linux-amlogic@lists.infradead.org;
-	Thu, 23 Nov 2023 17:56:38 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id BAA2C62406;
-	Thu, 23 Nov 2023 17:56:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18489C433C7;
-	Thu, 23 Nov 2023 17:56:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700762195;
-	bh=lC5W7+Qr59rnhc4Jd20Dtf/HPxOyflR9v5IaOt+MbeI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O/B7Gq1PllfFYKi98tzgiIqm+eO8BZesekeW8ePGYfCsbyloLFTgwLYSMxT0530wP
-	 H+Ssfwp7bfx7zSXZXctFO9WA2fgL4RZtdO4hwFVdj1iS8t0ocJK8PDzdsrSGx/UgGg
-	 +uYFgEbpmzyah8WMmmzafyGLP5qVL3SLqobMJT9e+1kRv6bo9A45xCVRvSEEiclAEu
-	 rgTVTc4Gk3NQXt2cdrah+ibIjM9o1cXXnbOc6LDcLWz4fbWs8vbR/bdsCe2gUDlLkY
-	 rIPZ5h3uIJyKH1ayQ8BjtoS0oOo4Oq1n8NhuKi8G2pctnkhgv86pASLLIBJc6sL1ds
-	 iftxVyWj3Dl2Q==
-Date: Thu, 23 Nov 2023 17:56:30 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add the binding example for the
- Genesys Logic GL3523 hub
-Message-ID: <20231123-skeletal-smirk-390543e2d6ab@spud>
-References: <20231122182351.63214-1-linux.amoon@gmail.com>
- <20231122182351.63214-2-linux.amoon@gmail.com>
+	Fri, 24 Nov 2023 08:41:31 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40b2c9ee8ecso11256205e9.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 24 Nov 2023 00:41:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700815284; x=1701420084; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=axwYlr1bCa93hK6yfJSQRUDafBt7qvRd8i2tcyYFqRQ=;
+        b=YOvmHS2lX+0RJbXTXSsMq5S7zqMvU80hQ3EmjLlQhBDescdU2UDZXNNbAfiSoqOHed
+         a0S3M/dwAv2PUHHsaK9w24ChuFWiFBUyboHAbFIYzc7Nk8G1Cj5m729vdIgrlQLVxlX8
+         c6pMVWxSZ/RdFthaV9p7FnFSIhAgD3UNO03gJbJi469h+GehAuEFhNg/6sB5HFgCxrKb
+         P48VWiLtFFTJT9YdcUhClbzfCvhKZlkESHEzSsVl1PiSHj/RkGwWD9OgZsD+RLMDYalm
+         0zXCzXGuw8lPEl43bRI1k5fQmJuBLALWSGOqet7j5uICavgh2Dh+cKktp1l4co1AF1PJ
+         NDqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700815284; x=1701420084;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=axwYlr1bCa93hK6yfJSQRUDafBt7qvRd8i2tcyYFqRQ=;
+        b=PLCqN+YNONvqKdUeiSlSq4ZhkDHYjrNAEmFakYOvVN+WtJr5F1wguydO1zx2zCLF4W
+         W1SX1u2+l2kO5i7KSCad+JP6MwdhawKAOFy9+DjoV3rSYTQjUDW9+suM/tDSrMt9Wzbb
+         VIlm/CHPef9ekvSmju1LPfS1eq/aoOvCEUdVimsMJk5gYavMc3T33jiJAwknKlUnJ1zK
+         SUrALCCn5jT/emzDZKDXsEbcBOWEIuI4WHv8gW6t9BbaQIvMLEWhAvJ2Sdg4qbQut8DE
+         TwOkdfkxt6g9BFIusMzy/cpXPogEhZR/S2aJvLysnUExiSA9wuZQx03ffETuEZUJTcYX
+         P9rw==
+X-Gm-Message-State: AOJu0Yx/seh1UcIdDOdlQ9IDz0RQFdypAR/XFT0XJMMzz4EEUnK0LCvh
+	AI2ejpviPQtsbuspHD25qZGtHg==
+X-Google-Smtp-Source: AGHT+IEbECRcfFn8Tv9w0aix64bVk4Z7Vzv1zyGsggCrjsdyTitl8vEspNSq8vim5E4B3zb75pngEw==
+X-Received: by 2002:adf:e40a:0:b0:332:cfd2:7639 with SMTP id g10-20020adfe40a000000b00332cfd27639mr1603211wrm.4.1700815284368;
+        Fri, 24 Nov 2023 00:41:24 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id c11-20020a5d4f0b000000b00332e67d6564sm2534562wru.67.2023.11.24.00.41.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Nov 2023 00:41:23 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v9 00/12] drm/meson: add support for MIPI DSI Display
+Date: Fri, 24 Nov 2023 09:41:11 +0100
+Message-Id: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20231122182351.63214-2-linux.amoon@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAKdhYGUC/5XQu27DMAwF0F8JNJeFRevZqf9RdKBl2hbgRyAlR
+ ovA/14lQ4vCSzxeDueSvInMKXIWb6ebSLzGHJe5BP9yEmGguWeIbckCK6wrLRFoGpc+BlgNKLi
+ e8yUxTdDmCCF0sMaphsaxRmlZdopEgRrKDE2iOQyFmq/jWIbnxF38ejR/fJY8xHxZ0vdjkVXdp
+ 4c6VwUVoPYY0DOhqd/HOFNaXpfUi7u/6uOmLqY23FhSrS5X7Uxz3DTF7Fqk4J3SyuLOtH+mq+q
+ nTFtMaxCl74Ju0O1M92tKWfmnTFdMJ1kRc0vS///ntm0/41yx6DoCAAA=
+To: Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Jagan Teki <jagan@amarulasolutions.com>, 
+ Nicolas Belin <nbelin@baylibre.com>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Remi Pommarel <repk@triplefau.lt>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+ linux-phy@lists.infradead.org, Rob Herring <robh@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ "Lukas F. Hartmann" <lukas@mntre.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6282;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=ZnjfOI3WSO0rOco0IigvGUbmHbM2NTBxMdUeyUtjcWg=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlYGGtniBD2x6vzCki/lGoDJzrGQoY5iWAZYc+cogm
+ PLzBnqqJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZWBhrQAKCRB33NvayMhJ0WCuEA
+ CJifvnOZoVYf7kd/1H2LKGSmsTEHrfzFdLUeFTm7StRyRJK6pNyOuij2PONS4DL4Z+8fQ/Gb/sjzUX
+ 1DPBUBcaiy5m85A4HWKhetikRqbQBteXYUgSHBrjZmleoG3yS8ubi0OQQlTLo3dH9Hur862BGeH2wv
+ N2WJ9MrMDrEbbtuCjS7r2kLky6SDzEZ/rTa62pCTw3rtvCSyIiZH4HJGVzrylovObus4sBgxQoVQBF
+ KuSSuvbGG4ZocPCThx3txD/P/ya64vMeBDKdryNqqb3eQkl3OJTo+vJXguubjDxPM71WKafiFVX93a
+ UxAu6TgM4IEYyAsevvcrBrq28LLN0f/y+dm7ztDz3Kr/0beEUJiorWWrT122QjOWXDNA3z/AtwjQTS
+ 2OiLwroiWicYe0fXBXMKMrK7RbZP50yKoiCJ5OwDJvBKvbhhvwp8RTi71xVzWQRHS24ArMadpDl2M5
+ ebqQRK3go0rq8OwkoIwyctIMar82NiZnbmY+FbmjJIprnc9bjMhfMGeIBDxy5hvKIznZnFTxbSjNal
+ g9WseVhW+s8EQpziJchF8IawbOD20ZoXIvhFoeVCp5EMY9eqKl+SAnsXvjuFhxBL0xx7Wrb3LofLRE
+ VP4QzuYSHCuu5Ghw1tROBVzFkNBwGaNJHpc0dWaWq7uU/zQL+LuWboUbS0HQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231123_095636_677605_D368CDA2 
-X-CRM114-Status: GOOD (  24.00  )
+X-CRM114-CacheID: sfid-20231124_004128_162955_BE9CC2FE 
+X-CRM114-Status: GOOD (  18.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,192 +122,146 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============5369422359423929265=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
+with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI
+glue on the same Amlogic SoCs.
 
---===============5369422359423929265==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="V1sQe/A91J5XE2J3"
-Content-Disposition: inline
+This is a follow-up of v5  now the DRM patches are applied, the clk & DT changes
+remains for a full DSI support on G12A & SM1 platforms.
 
+The DW-MIPI-DSI transceiver + D-PHY are clocked by the GP0 PLL, and the ENCL encoder + VIU
+pixel reader by the VCLK2 clock using the HDMI PLL.
 
---V1sQe/A91J5XE2J3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The DW-MIPI-DSI transceiver gets this pixel stream as input clocked with the VCLK2 clock.
 
-On Wed, Nov 22, 2023 at 11:53:46PM +0530, Anand Moon wrote:
-> Add the binding example for the USB3.1 Genesys Logic GL3523
-> integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
-> hub.
->=20
-> Onboard USB hub supports USB 3.x and USB 2.0 peer controllers.
-> which has a common reset pin and power supply.
-> peer-hub phandle each peer controller with proper gpio reset
-> and help each peer power on during initialization
-> and power off during suspend.
->=20
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> v4: Fix the description of peer-hub and update the commit message.
-> Schematics of the Odroid N2+
-> https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121=
-=2Epdf
-> V3: fix the dt_binding_check error, added new example for Genesys GL3523
-> v2: added Genesys GL3523 binding
-> v1: none
-> ---
->  .../bindings/usb/genesys,gl850g.yaml          | 67 +++++++++++++++++--
->  1 file changed, 63 insertions(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/=
-Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> index ee08b9c3721f..bc3b3f4c8473 100644
-> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
->  maintainers:
->    - Icenowy Zheng <uwu@icenowy.me>
-> =20
-> -allOf:
-> -  - $ref: usb-device.yaml#
-> -
->  properties:
->    compatible:
->      enum:
-> @@ -27,12 +24,48 @@ properties:
-> =20
->    vdd-supply:
->      description:
-> -      the regulator that provides 3.3V core power to the hub.
-> +      phandle to the regulator that provides power to the hub.
-> +
-> +  peer-hub:
+An optional "MEAS" clock can be enabled to measure the delay between each vsync feeding the
+DW-MIPI-DSI transceiver.
 
-Should the property not be "peer-controller"? Your description refers to
-them as such.
+The clock setup has been redesigned to use CCF, a common PLL (GP0) and the VCLK2 clock
+path for DSI in preparation of full CCF support and possibly dual display with HDMI.
 
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      onboard USB hub supports USB 3.x and USB 2.0 peer controllers.
+The change from v5 is that now we use a "VCLK" driver instea dof notifier and rely
+on CLK_SET_RATE_GATE to ensure the VCLK gate operation are called.
 
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v9:
+- Colledte reviewed-bys
+- Fixed patches 2 & 4, commit messages and bindings format
+- Link to v8: https://lore.kernel.org/r/20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-0-81e4aeeda193@linaro.org
 
-> +      which has a common reset pin and power supply.
-> +      peer-hub phandle each peer controller with proper gpio reset
-> +      and help each peer power on during initialization
-> +      and power off during suspend.
+Changes in v8:
+- Switch vclk clk driver to parm as requested by Jerome
+- Added bindings fixes to amlogic,meson-axg-mipi-pcie-analog & amlogic,g12a-mipi-dphy-analog
+- Fixed DT errors in vim3 example and MNT Reform DT
+- Rebased on next-20231107, successfully tested on VIM3L
+- Link to v7: https://lore.kernel.org/r/20230803-amlogic-v6-4-upstream-dsi-ccf-vim3-v7-0-762219fc5b28@linaro.org
 
-I generally hate to talk about non-native speakers grammar etc, but what
-you have here is in need of a lot of improvement. The below is my
-attempt to understand what you are trying to say:
+Changes in v7:
+- Added review tags
+- Fixed patch 5 thanks to George
+- Link to v6: https://lore.kernel.org/r/20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v6-0-fd2ac9845472@linaro.org
 
-"For onboard hubs that support USB 3.x and USB 2.0 controllers with
-shared resets and power supplies, this property is used to identify
-the controllers with which these are shared."
+Changes in v6:
+- dropped applied DRM patches
+- dropped clk private prefix patches
+- rebased on top of 20230607-topic-amlogic-upstream-clkid-public-migration-v2-0-38172d17c27a@linaro.org
+- re-ordered/cleaned ENCL patches to match clkid public migration
+- Added new "vclk" driver
+- uses vclk driver instead of notifier
+- cleaned VCLK2 clk flags
+- add px_clk gating from DSI driver
+- Link to v5: https://lore.kernel.org/r/20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org
 
-Also - this is one particular system, what prevents there being a hub
-that has more than 2 controllers? Also, as you insist that this is
-generic, and not just for genesys, should this not be defined in a
-common location?
+Changes in v5:
+- Aded PRIV all the G12 internal clk IDS to simplify public exposing
+- Fixed the DSI bindings
+- Fixed the DSI HSYNC/VSYNC polarity handling
+- Fixed the DSI clock setup
+- Fixed the DSI phy timings
+- Dropped components for DSI, only keeping it for HDMI
+- Added MNT Reform 2 CM4 DT
+- Dropped already applied PHY fix
+- Link to v4: https://lore.kernel.org/r/20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org
 
-Cheers,
-Conor.
+Changes from v3 at [3]:
+- switched all clk setup via CCF
+- using single PLL for DSI controller & ENCL encoder
+- added ENCL clocks to CCF
+- make the VCLK2 clocks configuration by CCF
+- fixed probe/bind of DSI controller to work with panels & bridges
+- added bit_clk to controller to it can setup the BIT clock aswell
+- added fix for components unbind
+- added fix for analog phy setup value
+- added TS050 timings fix
+- dropped previous clk control patch
 
-> =20
->  required:
->    - compatible
->    - reg
-> =20
-> +allOf:
-> +  - $ref: usb-device.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - usb5e3,608
-> +    then:
-> +      properties:
-> +        peer-hub: false
-> +        vdd-supply: false
-> +        reset-gpios: true
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - usb5e3,610
-> +              - usb5e3,620
-> +    then:
-> +      properties:
-> +        peer-hub: true
-> +        vdd-supply: true
-> +        reset-gpios: true
-> +
->  additionalProperties: false
-> =20
->  examples:
-> @@ -49,3 +82,29 @@ examples:
->              reset-gpios =3D <&pio 7 2 GPIO_ACTIVE_LOW>;
->          };
->      };
-> +
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    usb {
-> +        dr_mode =3D "host";
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        /* 2.0 hub on port 1 */
-> +        hub_2_0: hub@1 {
-> +            compatible =3D "usb5e3,610";
-> +            reg =3D <1>;
-> +            peer-hub =3D <&hub_3_0>;
-> +            reset-gpios =3D <&gpio 20 GPIO_ACTIVE_LOW>;
-> +            vdd-supply =3D <&vcc_5v>;
-> +        };
-> +
-> +        /* 3.1 hub on port 4 */
-> +        hub_3_0: hub@2 {
-> +            compatible =3D "usb5e3,620";
-> +            reg =3D <2>;
-> +            peer-hub =3D <&hub_2_0>;
-> +            reset-gpios =3D <&gpio 20 GPIO_ACTIVE_LOW>;
-> +            vdd-supply =3D <&vcc_5v>;
-> +        };
-> +    };
-> --=20
-> 2.42.0
->=20
+Changes from v2 at [2]:
+- Fixed patch 3
+- Added reviews from Jagan
+- Rebased on v5.19-rc1
 
---V1sQe/A91J5XE2J3
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes from v1 at [1]:
+- fixed DSI host bindings
+- add reviewed-by tags for bindings
+- moved magic values to defines thanks to Martin's searches
+- added proper prefixes to defines
+- moved phy_configure to phy_init() dw-mipi-dsi callback
+- moved phy_on to a new phy_power_on() dw-mipi-dsi callback
+- correctly return phy_init/configure errors to callback returns
 
------BEGIN PGP SIGNATURE-----
+[1] https://lore.kernel.org/r/20200907081825.1654-1-narmstrong@baylibre.com
+[2] https://lore.kernel.org/r/20220120083357.1541262-1-narmstrong@baylibre.com
+[3] https://lore.kernel.org/r/20220617072723.1742668-1-narmstrong@baylibre.com
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZV+STgAKCRB4tDGHoIJi
-0mwwAP9s9qmiSd8TgU4ApJa6D+1a7mUjwbwVn5y9j9brD7RfmgD/bZI//2gN6ZT9
-CAdWofSmLE0P+12w0jvV05yM8LwnvQE=
-=yviR
------END PGP SIGNATURE-----
+---
+Neil Armstrong (12):
+      dt-bindings: clk: g12a-clkc: add CTS_ENCL clock ids
+      dt-bindings: soc: amlogic,meson-gx-hhi-sysctrl: add example covering meson-axg-hhi-sysctrl
+      dt-bindings: phy: amlogic,meson-axg-mipi-pcie-analog: drop text about parent syscon and drop example
+      dt-bindings: phy: amlogic,g12a-mipi-dphy-analog: drop unneeded reg property and example
+      dt-bindings: arm: amlogic: Document the MNT Reform 2 CM4 adapter with a BPI-CM4 Module
+      clk: meson: g12a: add CTS_ENCL & CTS_ENCL_SEL clocks
+      clk: meson: add vclk driver
+      clk: meson: g12a: make VCLK2 and ENCL clock path configurable by CCF
+      drm/meson: gate px_clk when setting rate
+      arm64: meson: g12-common: add the MIPI DSI nodes
+      DONOTMERGE: arm64: meson: khadas-vim3l: add DSI panel
+      arm64: dts: amlogic: meson-g12b-bananapi-cm4: add support for MNT Reform2 with CM4 adaper
 
---V1sQe/A91J5XE2J3--
+ Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
+ .../phy/amlogic,g12a-mipi-dphy-analog.yaml         |  12 -
+ .../phy/amlogic,meson-axg-mipi-pcie-analog.yaml    |  17 -
+ .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  |  33 ++
+ arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  |  70 ++++
+ .../meson-g12b-bananapi-cm4-mnt-reform2.dts        | 384 +++++++++++++++++++++
+ .../boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi   |   2 +-
+ arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi |  74 ++++
+ .../boot/dts/amlogic/meson-sm1-khadas-vim3l.dts    |   2 +-
+ drivers/clk/meson/Kconfig                          |   5 +
+ drivers/clk/meson/Makefile                         |   1 +
+ drivers/clk/meson/g12a.c                           | 106 ++++--
+ drivers/clk/meson/vclk.c                           | 141 ++++++++
+ drivers/clk/meson/vclk.h                           |  51 +++
+ drivers/gpu/drm/meson/meson_dw_mipi_dsi.c          |   7 +
+ include/dt-bindings/clock/g12a-clkc.h              |   2 +
+ 17 files changed, 858 insertions(+), 51 deletions(-)
+---
+base-commit: b0b93834348aaf1a6e14693b4f1d17d3ec024257
+change-id: 20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-b8e5217e1f4a
 
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
---===============5369422359423929265==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============5369422359423929265==--
-
