@@ -4,133 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95DB8C61DF7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 09:50:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B588C61D97
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Nov 2023 10:02:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aQDNO5ZLqJDNnyUfi5xXyRJxVbXQpmrEAZadC78yUMc=; b=B9hDYyRaMgDbNv
-	2FrcAHt3bqUl0pCZhrxLDthUJKcTXiQl9yO9XAZIw48poMMk1zqhR9G45l07exFa8awhQHxPfkcp9
-	eb02pBPwIHWj59wEbn6G0NeHqr1qJ+p12IB6XU6TDm+NiHp7yoGfV0lGZVtdZeUEP0mlKecJh0Xw3
-	t9JZrXZUOE6gnG26UVg9T0W+EKyvqgRrMSx0vNIuTIEz2WlE6J5mc+T1lomgi3bzkJ95968k+u8BP
-	RcuWB32wGBHwg2u3JIxoqiz9Zev7WliTT79KNR9x4s8e8xRnndfHPSXgRYgjU4iYQdBU5HtoiErra
-	EoUumbuhRcr3+9CHyMew==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
+	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=En7ntAZnnvhjOEmT7Hx3wzhg9jAOaXLbefIiI+csbps=; b=yXhJYF2nEwk6FpDSTFNEHBRqZC
+	y5PEahZmAtxhG1aRgGlZcG2xbp7qXeUCLUCcFY4hl7+Jl+GzHuRx/a4MVe7YL9fDxEjHz1E9sFoaj
+	9dAGIz1to24Hobc/E9xKmlnuMnNBPkgKcxdmlqu0ac5bSKG+NDdEknhqxzOGz5z+0Vqo0/tvjlP8V
+	4HKGr623MrDGNEaYojyFLhXOx4bKbn5BZ8dH+Op+pv+iBIWW/94GHKe/1OVYY1/xMEH80DWjWeYAp
+	9Gv63aBxMkj5FiEwmbT0ic0GWdU4Fse4uxh38RSYiEBB6yagGFFYmWZDybDXSpAflmrG10qWI10aU
+	8410bGSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6Sox-006jQG-1X;
-	Fri, 24 Nov 2023 09:49:59 +0000
-Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
+	id 1r6T0w-006lqy-1Z;
+	Fri, 24 Nov 2023 10:02:22 +0000
+Received: from mx.msync.work ([62.182.159.68])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r6Sot-006jOE-2x
-	for linux-amlogic@lists.infradead.org;
-	Fri, 24 Nov 2023 09:49:58 +0000
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-544455a4b56so2308953a12.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 24 Nov 2023 01:49:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700819394; x=1701424194; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=meNFIBYS7k1p9attdvnlsc7EhPMVsIMhyk19WoTbQqo=;
-        b=l1x9Z4Fhqoo3/oYFqPSuow1bYmrMEkFTwCUAUVo+C5UVC9BnRzYsLJDq+7v30xZh2i
-         Nm7uT7cveW1sCUvDhZvs6KJlN/a10UW98X7nmr2jwya+Hk3My/3Irvhk/8w6DzYZWv4N
-         Nvxdb1eTtlrbZqOp6XMeYmWd+eHa+Fgg2TyWPz/ZBq/q5NCGrXo5vAul/tArnm13Ho5M
-         5T26sErBcMUj0vIQ3nY1cfMi3xS7vyjuiqEhBqsEEcUgeMnNSO35ldUbidSSbGWxxXfp
-         BwxR/6f4Sz/D127Uh4OXwXgshh9E3cT23kKyoLxEPmJ0Ya2nU0HNt7gTkFCtj3hzSUmN
-         J4BA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700819394; x=1701424194;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=meNFIBYS7k1p9attdvnlsc7EhPMVsIMhyk19WoTbQqo=;
-        b=fe/Z7Ozzfe5ezHrZomemwn8YIXAJ8XQdGBuI6lbMwHPchEwTTxqjRRRrOtwwA5c+uC
-         trc2zdLxcq7d0XicobC3lM9vMavPPCEzqYQqL9c08wvSzkqyzuytX0Id42zUHFsC0zFe
-         KI/DGdu5xsOKdnKbZBgmlTQ9fsde1Uo93WnXnkNwBSnnfz8R4tOvtpdrt2QH4Kk6WGok
-         RBj78bue6HvMR2Swv17g5QO8DIiyf8MBWzG70B9GziOCV/lV4pb5oS86WBuAdp+esD9Q
-         qWBPKlBCvtLrUKG49fkk76hTBbgjYkO39+++Ny0HWylO0F84h/hg8BqHG/m7dWfJ7JAw
-         cV2Q==
-X-Gm-Message-State: AOJu0YyJDYPaN/Gp10jodIKFJR7EWKLexrma4pfmJOl3ZIqtr8Y8MASC
-	voNBSUtBa2Keimf7nwqhx2Rqnw==
-X-Google-Smtp-Source: AGHT+IEz5kZLK1s5DpUBPdJyoueKinQApphJFPi6vRG+iEiLCWVrFkVY6PcSsxcH6/rkRD7DDmxtNA==
-X-Received: by 2002:a17:906:2d4:b0:a01:7f2c:fb18 with SMTP id 20-20020a17090602d400b00a017f2cfb18mr1373290ejk.0.1700819394654;
-        Fri, 24 Nov 2023 01:49:54 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.100])
-        by smtp.gmail.com with ESMTPSA id d25-20020a50fb19000000b0054a92ddc3e2sm1597948edq.48.2023.11.24.01.49.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Nov 2023 01:49:54 -0800 (PST)
-Message-ID: <4150bf8e-a48d-4d16-902f-a95f6489c6f5@linaro.org>
-Date: Fri, 24 Nov 2023 10:49:52 +0100
+	id 1r6T0t-006loZ-10;
+	Fri, 24 Nov 2023 10:02:21 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8C26D621CA;
+	Fri, 24 Nov 2023 10:02:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+	t=1700820132; h=from:subject:date:message-id:to:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references:autocrypt;
+	bh=H98COdnbfmR0Z7+Y4wrDzDOT7wGeif7oLU80xotr7Cg=;
+	b=G8qXOg2ZwxS0VqU2OLG5A9GeE0U5E874KNp6+MorX63r6nMF92WQBNmBJERLVKhudHCDin
+	Ce9MM7UxIuwJrWR/4TC0aG0MUHJOvW7zenHqaWStbyTPPWHKS9r8QXzqZwWVoDxAEZ1RxQ
+	DEghevRtfIrHPU0SZv0qMba1n6rLbdBbc0wTnW5ab0Rkb03znTKgxD5h8vwp4Cls2lLrcD
+	tPQVY2p6tQFIKHYtp8uhdJ23zwcC1o2KbxQYZQGZdx+9qsKLm9JSA6FRxiuPI6IVHWL4vK
+	92tln74wmCPojy+UIimfYfyspZjszAtu4OlksbnrnHyGzrAtj9of6SbXOxCsmQ==
+Message-ID: <798aeac1-bca9-4512-a11c-d7145aeb5645@lexina.in>
+Date: Fri, 24 Nov 2023 13:02:06 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: amlogic: minor whitespace cleanup around
- '='
-Content-Language: en-US
-To: Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH] arm64: dts: amlogic: minor whitespace cleanup around '='
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
  Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20231124094739.58163-1-krzysztof.kozlowski@linaro.org>
- <20231124094739.58163-2-krzysztof.kozlowski@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231124094739.58163-2-krzysztof.kozlowski@linaro.org>
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20231124094700.58071-1-krzysztof.kozlowski@linaro.org>
+Content-Language: en-US, ru-RU
+From: Viacheslav <adeep@lexina.in>
+Autocrypt: addr=adeep@lexina.in; keydata=
+ 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
+In-Reply-To: <20231124094700.58071-1-krzysztof.kozlowski@linaro.org>
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231124_014955_955071_7D74645C 
-X-CRM114-Status: UNSURE (   5.74  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231124_020219_683555_106E4B11 
+X-CRM114-Status: GOOD (  10.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -142,22 +102,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 24/11/2023 10:47, Krzysztof Kozlowski wrote:
+Hi!
+
+24/11/2023 12.47, Krzysztof Kozlowski wrote:
 > The DTS code coding style expects exactly one space before and after '='
 > sign.
-> 
+>
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
+>   .../boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts    | 2 +-
+>   arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi        | 2 +-
+>   arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi            | 2 +-
+>   3 files changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
+> index 0062667c4f65..c9e84db0831a 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
+> @@ -30,7 +30,7 @@ &sd_emmc_b {
+>   &uart_B {
+>   	bluetooth {
+>   		compatible = "realtek,rtl8822cs-bt";
+> -		enable-gpios  = <&gpio GPIOZ_7 GPIO_ACTIVE_HIGH>;
+> +		enable-gpios = <&gpio GPIOZ_7 GPIO_ACTIVE_HIGH>;
+>   		host-wake-gpios = <&gpio GPIOZ_8 GPIO_ACTIVE_HIGH>;
+>   		device-wake-gpios = <&gpio GPIOZ_6 GPIO_ACTIVE_HIGH>;
+>   	};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
+> index 995ce10d5c81..08c33ec7e9f1 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
+> @@ -369,7 +369,7 @@ &uart_A {
+>   
+>   	bluetooth {
+>   		compatible = "realtek,rtl8822cs-bt";
+> -		enable-gpios  = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
+> +		enable-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
+>   		host-wake-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
+>   		device-wake-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
+>   	};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
+> index 0a6a12808568..4b8db872bbf3 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
+> @@ -487,7 +487,7 @@ &uart_A {
+>   
+>   	bluetooth {
+>   		compatible = "realtek,rtl8822cs-bt";
+> -		enable-gpios  = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
+> +		enable-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
+>   		host-wake-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
+>   		device-wake-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
+>   	};
 
-Please ignore, that's duplicated of my previous send.
 
-Best regards,
-Krzysztof
+Reviewed-by: Viacheslav Bocharov<adeep@lexina.in>
 
 
 _______________________________________________
