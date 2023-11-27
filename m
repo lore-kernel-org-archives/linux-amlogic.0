@@ -4,83 +4,121 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6C68C4167B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Nov 2023 14:20:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79EF1C4167B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Nov 2023 16:15:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lCbMrzULfVPqa16XvtueBbZErvj3S+UmX6Htww7K5i4=; b=eH0l9cCa4wu0zo
-	JqCJXYysN9LqkvUl2c4HNXLC1Mex5+TkRltYkURLFYO98m7N4nSoxl0/Bg6EiPy9StUVGQGfNPO/F
-	twOwTmxQ5pCwTYhhJwnm6rGx83IfvZ76YtuwBkz6Tl7dxWt99bcqLOmMJVYT0guNNEI865YXwyYuV
-	8W8Ft5lnDjw3lCC7NaBDzqinBXwaWpPQOehlAwz6yqWkmoCz3/Yai8hNeXUla4iOrmYLnJjX075MO
-	2poHkc9fndY5oMwEFce85Vw6Euqf4b+JXQ4ALg3LiB28cuGFB5IzhC62CnI9s1N8rqnc8wVtP9liK
-	EQ4f282QA4wlAn0UgL0w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=KzqF1ttWoKiEEFW0305WzTIWNJemj0I4NPMSlqQdHJQ=; b=znHM2wLtl+V9d/C7271ro81qW0
+	i0KH9rc42u74Q1S3H0yxtF/YG72n8SZn/vVbj+folvBbA/exKHMa+DlsZWYIaEGcDh/11BOghTpRy
+	fWSzZ5K0GENlyuK3v6852OxdqQOiF4QmZZtj2MCq3xjrkfJUoiHM/2UfLqk5iXTMPsjYrsaDLZenQ
+	3X0rfa3T2Tl7L711j5jJousiU1qhazGqkSAl8tJqezRjhHdnNXh9koleGrGjQ9gIPhZQwnz5wIwLn
+	t43eC12CpVJg99oxf2MYJRBiYWKGhH+5NgsOnj8uKW787MFQO1zgRs51jX+AiwwgVx+yTAB0qlaHL
+	Wu9K0soA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r7cT5-002gdo-0U;
-	Mon, 27 Nov 2023 14:20:11 +0000
-Received: from mail-yw1-f195.google.com ([209.85.128.195])
+	id 1r7eG0-002vit-0V;
+	Mon, 27 Nov 2023 16:14:48 +0000
+Received: from mail-lf1-x134.google.com ([2a00:1450:4864:20::134])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r7cT0-002gcK-1c;
-	Mon, 27 Nov 2023 14:20:08 +0000
-Received: by mail-yw1-f195.google.com with SMTP id 00721157ae682-5cbcfdeaff3so42805467b3.0;
-        Mon, 27 Nov 2023 06:20:05 -0800 (PST)
+	id 1r7eFv-002vgn-2P
+	for linux-amlogic@lists.infradead.org;
+	Mon, 27 Nov 2023 16:14:46 +0000
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50ba71356ddso3753650e87.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 27 Nov 2023 08:14:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701101680; x=1701706480; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o2vOa7sAsTt4vB8DyrW+ksy/yD+xOGvGom1YweA1IhM=;
+        b=xcYTg/WbgT55th6jjO3573XgoLI5FtZGRMQwO5AX+Zm49nGUUaFx9zqudptUMhJ4mI
+         UorCc8/JVSzggiOzubRLHnRCBptLLtEiLUBHYv/UxC6v+7h4VudMTAdLEKhGGVxXTJeA
+         CLHSV7PEJ9u6NUiqhYUsHVx1aGROZqR/r1Lvrk/tZ+QkioLCkLKorAiTdiSFQ6CXTnb6
+         pJwFmVdwzAnRLQmcBDbfwhYkzHO4/gffY6ATUjJfPywwFoh5AMhq10PJgNZl0buPQLGm
+         EZXQtGEsOqb8z1jynZqkvPo1DZEKzV4XyiNM4oKBn+xqJz1q9QaYko26x6tHk9lYQs5s
+         9m5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701094805; x=1701699605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p8asMA5McnjUqiDsQhrdKj0am/206nD+kU8Fb3R8j7Q=;
-        b=D36gDpEFsbyf0LQs95PnnADCOLwG/fwqPPmEXqB5lKp1WA7h0gmhsrQQpkMIcLVZD8
-         R8r1xOKiDwTEiTNWAVdfOY7WbSq+A7BhbcGz5z83lJZPOEiThtC7JIe17bfI36ceM9L7
-         NzT/c+3OTQDA16ujk0875fIONy3p93jy4DeD0G4rFnklBTe3E7JS9GR3DAy6Ar+rejZ4
-         InZzTga6huLqweN723pfBoPIt/NSX7Y/gj1uh+b8wcKPDAQfvN/p1vkPHpBfDLrlpwIA
-         UmE48W9jb1GHWqyNOYRuLP3LWFoDzybH9tqjrgB0Is7YeCF+47kPrPhFxgnjk2AvCttu
-         Abiw==
-X-Gm-Message-State: AOJu0YwMI8E8fQr5P5IoKgWiTsyXBMyGuSnYkqFaHtLvK3mfAyEk5CAL
-	4STibeHVru4cwC7VUjkqJIB6JobVM7meCFOc
-X-Google-Smtp-Source: AGHT+IHOrcDoV8LHmGn1Fu4pA56O7GTe0BttqKAknUyWlC2jZ9tGtevZtsS4Ssthq7dPn+Q5lggzIg==
-X-Received: by 2002:a81:6008:0:b0:5cd:f157:fd05 with SMTP id u8-20020a816008000000b005cdf157fd05mr11595985ywb.25.1701094804776;
-        Mon, 27 Nov 2023 06:20:04 -0800 (PST)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id a124-20020a0df182000000b005af6df31bb0sm3255806ywf.105.2023.11.27.06.20.03
+        d=1e100.net; s=20230601; t=1701101680; x=1701706480;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=o2vOa7sAsTt4vB8DyrW+ksy/yD+xOGvGom1YweA1IhM=;
+        b=Jk/ON7knVey+vJ9KAIeNE/oSx2aSqG6OBxnWJ/cGMffy5y3eWCzh6X6c3/uw0XwNYq
+         qXvs6rKyiNglxL20FuxTSgeU3mAvFVDZlS9hI3B5TdXXmoIm9Him9SkSY0LMMlyUmFNI
+         p6bbjxY1I09pANgOJQbxGKTFTM3IUjUzwQB6YSDudNY0Trd0iX8y+gL18JXJcCxXXY7H
+         b/RiKFgQhZQJn1/e0iy7rbKbQc5j2qpXqZhA74fpzrpBeeQ+WJINn+2Ytlgbs2KdjpbI
+         Lfx91gGlyBjreqOgciXDTqe/dYcYeweU8R6CJ4ojcbYIFKwkBuE7HxZu6isjbwD2Rl6/
+         vMWQ==
+X-Gm-Message-State: AOJu0Yz/3n9DiHtpeSb9aKDbLaH/OuyKxjz8Q2n+pBi8uGXCDkojPyZY
+	PXqgyMnzlaWctruqejEcWS1H3w==
+X-Google-Smtp-Source: AGHT+IHyo6ztHgNX18sTH2cNNi7/anQssZJBWMkVbCoSK0zP1VlwyicHcNrshfD2A0J0UMJDV9tbeg==
+X-Received: by 2002:a05:6512:3b10:b0:505:7113:1d0f with SMTP id f16-20020a0565123b1000b0050571131d0fmr11220409lfv.13.1701101680043;
+        Mon, 27 Nov 2023 08:14:40 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5a15:ac68:b4a4:85ff? ([2a01:e0a:982:cbb0:5a15:ac68:b4a4:85ff])
+        by smtp.gmail.com with ESMTPSA id d5-20020a05600c34c500b0040b349c91acsm15086215wmq.16.2023.11.27.08.14.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Nov 2023 06:20:04 -0800 (PST)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-5cbcfdeaff3so42805237b3.0;
-        Mon, 27 Nov 2023 06:20:03 -0800 (PST)
-X-Received: by 2002:a0d:e207:0:b0:5a8:207b:48d with SMTP id
- l7-20020a0de207000000b005a8207b048dmr10958508ywe.11.1701094803713; Mon, 27
- Nov 2023 06:20:03 -0800 (PST)
+        Mon, 27 Nov 2023 08:14:39 -0800 (PST)
+Message-ID: <4e5e33c1-45d5-4c83-b647-bfb603347156@linaro.org>
+Date: Mon, 27 Nov 2023 17:14:37 +0100
 MIME-Version: 1.0
-References: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 27 Nov 2023 15:19:52 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUYEwMuxJ2Xx=KRVKneRT-e+uHz8LE1JVY5zLDkWksqKw@mail.gmail.com>
-Message-ID: <CAMuHMdUYEwMuxJ2Xx=KRVKneRT-e+uHz8LE1JVY5zLDkWksqKw@mail.gmail.com>
-Subject: Re: [PATCH v3] docs: dt-bindings: add DTS Coding Style document
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, 
-	Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>, 
-	Chen-Yu Tsai <wens@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Heiko Stuebner <heiko@sntech.de>, 
-	Jonathan Corbet <corbet@lwn.net>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Michal Simek <michal.simek@amd.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>, 
-	linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
-	workflows@vger.kernel.org, linux-doc@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v9 07/12] clk: meson: add vclk driver
+Content-Language: en-US, fr
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jagan Teki <jagan@amarulasolutions.com>, Nicolas Belin
+ <nbelin@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Remi Pommarel
+ <repk@triplefau.lt>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-phy@lists.infradead.org, Rob Herring <robh@kernel.org>
+References: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
+ <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-7-95256ed139e6@linaro.org>
+ <1j7cm7dx1b.fsf@starbuckisacylon.baylibre.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <1j7cm7dx1b.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231127_062006_536329_4B557DA4 
-X-CRM114-Status: GOOD (  24.85  )
+X-CRM114-CacheID: sfid-20231127_081443_849607_ADEF8A7C 
+X-CRM114-Status: GOOD (  29.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,75 +130,307 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: neil.armstrong@linaro.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgS3J6eXN6dG9mLAoKT24gU2F0LCBOb3YgMjUsIDIwMjMgYXQgNzo0NOKAr1BNIEtyenlzenRv
-ZiBLb3psb3dza2kKPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4gd3JvdGU6Cj4gRG9j
-dW1lbnQgcHJlZmVycmVkIGNvZGluZyBzdHlsZSBmb3IgRGV2aWNldHJlZSBzb3VyY2VzIChEVFMg
-YW5kIERUU0kpLAo+IHRvIGJyaW5nIGNvbnNpc3RlbmN5IGFtb25nIGFsbCAoc3ViKWFyY2hpdGVj
-dHVyZXMgYW5kIGVhc2UgaW4gcmV2aWV3cy4KPgo+IENjOiBBbmRyZXcgRGF2aXMgPGFmZEB0aS5j
-b20+Cj4gY2M6IEFuZHJldyBMdW5uIDxhbmRyZXdAbHVubi5jaD4KPiBDYzogQW5nZWxvR2lvYWNj
-aGlubyBEZWwgUmVnbm8gPGFuZ2Vsb2dpb2FjY2hpbm8uZGVscmVnbm9AY29sbGFib3JhLmNvbT4K
-PiBDYzogQXJuZCBCZXJnbWFubiA8YXJuZEBhcm5kYi5kZT4KPiBDYzogQmpvcm4gQW5kZXJzc29u
-IDxhbmRlcnNzb25Aa2VybmVsLm9yZz4KPiBDYzogQ2hlbi1ZdSBUc2FpIDx3ZW5zQGtlcm5lbC5v
-cmc+Cj4gQ2M6IERtaXRyeSBCYXJ5c2hrb3YgPGRtaXRyeS5iYXJ5c2hrb3ZAbGluYXJvLm9yZz4K
-PiBDYzogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydCtyZW5lc2FzQGdsaWRlci5iZT4KPiBDYzog
-SGVpa28gU3R1ZWJuZXIgPGhlaWtvQHNudGVjaC5kZT4KPiBDYzogSm9uYXRoYW4gQ29yYmV0IDxj
-b3JiZXRAbHduLm5ldD4KPiBDYzogS29ucmFkIER5YmNpbyA8a29ucmFkLmR5YmNpb0BsaW5hcm8u
-b3JnPgo+IENjOiBNYXR0aGlhcyBCcnVnZ2VyIDxtYXR0aGlhcy5iZ2dAZ21haWwuY29tPgo+IENj
-OiBNaWNoYWwgU2ltZWsgPG1pY2hhbC5zaW1la0BhbWQuY29tPgo+IENjOiBOZWlsIEFybXN0cm9u
-ZyA8bmVpbC5hcm1zdHJvbmdAbGluYXJvLm9yZz4KPiBDYzogTmlzaGFudGggTWVub24gPG5tQHRp
-LmNvbT4KPiBDYzogT2xvZiBKb2hhbnNzb24gPG9sb2ZAbGl4b20ubmV0Pgo+IENjOiBSYWZhxYIg
-TWnFgmVja2kgPHphamVjNUBnbWFpbC5jb20+Cj4gQWNrZWQtYnk6IE5laWwgQXJtc3Ryb25nIDxu
-ZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPgo+IEFja2VkLWJ5OiBIZWlrbyBTdHVlYm5lciA8aGVp
-a29Ac250ZWNoLmRlPgo+IFNpZ25lZC1vZmYtYnk6IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlz
-enRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4KPgo+IC0tLQo+Cj4gTWVyZ2luZyBpZGVhOiBSb2Iv
-RFQgYmluZGluZ3MKPgo+IENoYW5nZXMgaW4gdjMKPiA9PT09PT09PT09PT09Cj4gMS4gc2hvdWxk
-LT5zaGFsbCAoQW5nZWxvKQo+IDIuIENvbW1lbnRzIC8vIC0+IC8qIChBbmdlbG8sIE1pY2hhbCkK
-PiAzLiBVc2UgaW1hZ2luYXJ5IGV4YW1wbGUgaW4gIk9yZGVyIG9mIFByb3BlcnRpZXMgaW4gRGV2
-aWNlIE5vZGUiCj4gICAgKEFuZ2VsbykKPiA0LiBBZGRlZCBwYXJhZ3JhcGhzIGZvciB0aHJlZSBz
-ZWN0aW9ucyB3aXRoIGp1c3RpZmljYXRpb25zIG9mIGNob3Nlbgo+ICAgIHN0eWxlLgo+IDUuIEFs
-bG93IHR3byBzdHlsZSBvZiBvcmRlcmluZyBvdmVycmlkZXMgaW4gYm9hcmQgRFRTOiBhbHBoYWJl
-dGljYWxseSBvcgo+ICAgIGJ5IG9yZGVyIG9mIERUU0kgKFJvYikuCj4gNi4gSSBkaWQgbm90IGlu
-Y29ycG9yYXRlIGZlZWRiYWNrIGFib3V0LCBkdWUgdG8gbGFjayBvZiBjb25zZW5zdXMgYW5kIG15
-Cj4gICAgZGlzYWdyZWVtZW50Ogo+ICAgIGEuIFNvTSBiZWluZyBEVFMgd2l0aG91dCBEVFNJIGlu
-ICJPcmdhbml6aW5nIERUU0kgYW5kIERUUyIKClRoYW5rcyBmb3IgdGhlIHVwZGF0ZSEKCj4gLS0t
-IC9kZXYvbnVsbAo+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kdHMt
-Y29kaW5nLXN0eWxlLnJzdAoKPiArICAgICAgIC8qIFNvQyBEVFNJICovCj4gKwo+ICsgICAgICAg
-LyB7Cj4gKyAgICAgICAgICAgICAgIGNwdXMgewo+ICsgICAgICAgICAgICAgICAgICAgICAgIC8q
-IC4uLiAqLwo+ICsgICAgICAgICAgICAgICB9Owo+ICsKPiArICAgICAgICAgICAgICAgcHNjaSB7
-Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgLyogLi4uICovCj4gKyAgICAgICAgICAgICAgIH07
-Cj4gKwo+ICsgICAgICAgICAgICAgICBzb2NAIHsKCiJzb2NAIiBpcyBpbnZhbGlkLCB0aGF0IHNo
-b3VsZCBiZSAic29jIi4KCkFzIHRoZSAic29jIiBub2RlIGlzIHNwZWNpYWwsIHlvdSBtYXkgd2Fu
-dCB0byBlbGFib3JhdGU6CgogICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJzaW1wbGUtYnVz
-IjsKICAgICAgICAgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDE+OwogICAgICAgICAgICAgICAg
-I3NpemUtY2VsbHMgPSA8MT47CiAgICAgICAgICAgICAgICByYW5nZXM7Cgo+ICsgICAgICAgICAg
-ICAgICAgICAgICAgIGRtYTogZG1hLWNvbnRyb2xsZXJAMTAwMDAgewo+ICsgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgLyogLi4uICovCj4gKyAgICAgICAgICAgICAgICAgICAgICAgfTsK
-PiArCj4gKyAgICAgICAgICAgICAgICAgICAgICAgY2xrOiBjbG9jay1jb250cm9sbGVyQDgwMDAw
-IHsKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC8qIC4uLiAqLwo+ICsgICAgICAg
-ICAgICAgICAgICAgICAgIH07Cj4gKyAgICAgICAgICAgICAgIH07Cj4gKyAgICAgICB9Owo+ICsK
-PiArICAgICAgIC8qIEJvYXJkIERUUyAtIGFscGhhYmV0aWNhbCBvcmRlciAqLwo+ICsKPiArICAg
-ICAgICZjbGsgewo+ICsgICAgICAgICAgICAgICAvKiAuLi4gKi8KPiArICAgICAgIH07Cj4gKwo+
-ICsgICAgICAgJmRtYSB7Cj4gKyAgICAgICAgICAgICAgIC8qIC4uLiAqLwo+ICsgICAgICAgfTsK
-PiArCj4gKyAgICAgICAvKiBCb2FyZCBEVFMgLSBhbHRlcm5hdGl2ZSBvcmRlciwga2VlcCBhcyBE
-VFNJICovCj4gKwo+ICsgICAgICAgJmRtYSB7Cj4gKyAgICAgICAgICAgICAgIC8qIC4uLiAqLwo+
-ICsgICAgICAgfTsKPiArCj4gKyAgICAgICAmY2xrIHsKPiArICAgICAgICAgICAgICAgLyogLi4u
-ICovCj4gKyAgICAgICB9OwoKSU1PIHRoYXQgYWx0ZXJuYXRpdmUgb3JkZXIgaXMgaGFyZCB0byBy
-ZXZpZXc6IHlvdSBuZWVkIHRvIGhhdmUgbXVsdGlwbGUKZmlsZXMgb3Blbi4gIEl0IHdpbGwgYWxz
-byBtYWtlIHZhbGlkYXRpb24gaGFyZCwgYXMgeW91IGNhbiBvbmx5IHZhbGlkYXRlCnRoZSBlbmQg
-cmVzdWx0LCBub3QgaW5kaXZpZHVhbCBmaWxlcy4KCkFueXdheSwgdGhpcyBpcyBhbHJlYWR5IHF1
-aXRlIHVzYWJsZSBzbwpSZXZpZXdlZC1ieTogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydCtyZW5l
-c2FzQGdsaWRlci5iZT4KCkdye29ldGplLGVldGluZ31zLAoKICAgICAgICAgICAgICAgICAgICAg
-ICAgR2VlcnQKCi0tIApHZWVydCBVeXR0ZXJob2V2ZW4gLS0gVGhlcmUncyBsb3RzIG9mIExpbnV4
-IGJleW9uZCBpYTMyIC0tIGdlZXJ0QGxpbnV4LW02OGsub3JnCgpJbiBwZXJzb25hbCBjb252ZXJz
-YXRpb25zIHdpdGggdGVjaG5pY2FsIHBlb3BsZSwgSSBjYWxsIG15c2VsZiBhIGhhY2tlci4gQnV0
-CndoZW4gSSdtIHRhbGtpbmcgdG8gam91cm5hbGlzdHMgSSBqdXN0IHNheSAicHJvZ3JhbW1lciIg
-b3Igc29tZXRoaW5nIGxpa2UgdGhhdC4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAt
-LSBMaW51cyBUb3J2YWxkcwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5p
-bmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8v
-bGludXgtYW1sb2dpYwo=
+On 24/11/2023 15:41, Jerome Brunet wrote:
+> 
+> On Fri 24 Nov 2023 at 09:41, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> 
+>> The VCLK and VCLK_DIV clocks have supplementary bits.
+>>
+>> The VCLK has a "SOFT RESET" bit to toggle after the whole
+>> VCLK sub-tree rate has been set, this is implemented in
+>> the gate enable callback.
+>>
+>> The VCLK_DIV clocks as enable and reset bits used to disable
+>> and reset the divider, associated with CLK_SET_RATE_GATE it ensures
+>> the rate is set while the divider is disabled and in reset mode.
+>>
+>> The VCLK_DIV enable bit isn't implemented as a gate since it's part
+>> of the divider logic and vendor does this exact sequence to ensure
+>> the divider is correctly set.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   drivers/clk/meson/Kconfig  |   5 ++
+>>   drivers/clk/meson/Makefile |   1 +
+>>   drivers/clk/meson/vclk.c   | 141 +++++++++++++++++++++++++++++++++++++++++++++
+>>   drivers/clk/meson/vclk.h   |  51 ++++++++++++++++
+>>   4 files changed, 198 insertions(+)
+>>
+>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>> index 29ffd14d267b..59a40a49f8e1 100644
+>> --- a/drivers/clk/meson/Kconfig
+>> +++ b/drivers/clk/meson/Kconfig
+>> @@ -30,6 +30,10 @@ config COMMON_CLK_MESON_VID_PLL_DIV
+>>   	tristate
+>>   	select COMMON_CLK_MESON_REGMAP
+>>   
+>> +config COMMON_CLK_MESON_VCLK
+>> +	tristate
+>> +	select COMMON_CLK_MESON_REGMAP
+>> +
+>>   config COMMON_CLK_MESON_CLKC_UTILS
+>>   	tristate
+>>   
+>> @@ -140,6 +144,7 @@ config COMMON_CLK_G12A
+>>   	select COMMON_CLK_MESON_EE_CLKC
+>>   	select COMMON_CLK_MESON_CPU_DYNDIV
+>>   	select COMMON_CLK_MESON_VID_PLL_DIV
+>> +	select COMMON_CLK_MESON_VCLK
+> 
+> This particular line belong in the next patch
+> 
+>>   	select MFD_SYSCON
+>>   	help
+>>   	  Support for the clock controller on Amlogic S905D2, S905X2 and S905Y2
+>> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+>> index 9ee4b954c896..9ba43fe7a07a 100644
+>> --- a/drivers/clk/meson/Makefile
+>> +++ b/drivers/clk/meson/Makefile
+>> @@ -12,6 +12,7 @@ obj-$(CONFIG_COMMON_CLK_MESON_PLL) += clk-pll.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_REGMAP) += clk-regmap.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_SCLK_DIV) += sclk-div.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_VID_PLL_DIV) += vid-pll-div.o
+>> +obj-$(CONFIG_COMMON_CLK_MESON_VCLK) += vclk.o
+>>   
+>>   # Amlogic Clock controllers
+>>   
+>> diff --git a/drivers/clk/meson/vclk.c b/drivers/clk/meson/vclk.c
+>> new file mode 100644
+>> index 000000000000..47f08a52b49f
+>> --- /dev/null
+>> +++ b/drivers/clk/meson/vclk.c
+>> @@ -0,0 +1,141 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+>> + */
+>> +
+>> +#include <linux/module.h>
+>> +#include "vclk.h"
+>> +
+>> +/* The VCLK gate has a supplementary reset bit to pulse after ungating */
+>> +
+>> +static inline struct clk_regmap_vclk_data *
+>> +clk_get_regmap_vclk_data(struct clk_regmap *clk)
+>> +{
+>> +	return (struct clk_regmap_vclk_data *)clk->data;
+>> +}
+>> +
+>> +static int clk_regmap_vclk_enable(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_data *vclk = clk_get_regmap_vclk_data(clk);
+>> +
+>> +	meson_parm_write(clk->map, &vclk->enable, 1);
+>> +
+>> +	/* Do a reset pulse */
+>> +	meson_parm_write(clk->map, &vclk->reset, 1);
+>> +	meson_parm_write(clk->map, &vclk->reset, 0);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void clk_regmap_vclk_disable(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_data *vclk = clk_get_regmap_vclk_data(clk);
+>> +
+>> +	meson_parm_write(clk->map, &vclk->enable, 0);
+>> +}
+>> +
+>> +static int clk_regmap_vclk_is_enabled(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_data *vclk = clk_get_regmap_vclk_data(clk);
+>> +
+>> +	return meson_parm_read(clk->map, &vclk->enable);
+>> +}
+>> +
+>> +const struct clk_ops clk_regmap_vclk_ops = {
+>> +	.enable = clk_regmap_vclk_enable,
+>> +	.disable = clk_regmap_vclk_disable,
+>> +	.is_enabled = clk_regmap_vclk_is_enabled,
+>> +};
+>> +EXPORT_SYMBOL_GPL(clk_regmap_vclk_ops);
+> 
+> s/clk_regmap_vclk/meson_vclk at least for what is exported, ideally most
+> all the code.
+> 
+> I get clk_regmap_ comes from code copied from clk_regmap.c.
+> The reason the this part is different (and not using parm) if that when
+> I converted amlogic to regmap, I hope we could make this generic,
+> possibly converging between aml and qcom (which was the only other
+> platform using regmap for clock at the time). This is why clk_regmap.c
+> is a bit different from the other driver.
+> 
+> For the aml specific drivers, best to look at the mpll or cpu-dyndiv one.
+> 
+>> +
+>> +/* The VCLK Divider has supplementary reset & enable bits */
+>> +
+>> +static inline struct clk_regmap_vclk_div_data *
+>> +clk_get_regmap_vclk_div_data(struct clk_regmap *clk)
+>> +{
+>> +	return (struct clk_regmap_vclk_div_data *)clk->data;
+>> +}
+>> +
+>> +static unsigned long clk_regmap_vclk_div_recalc_rate(struct clk_hw *hw,
+>> +						     unsigned long prate)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_div_data *vclk = clk_get_regmap_vclk_div_data(clk);
+>> +
+>> +	return divider_recalc_rate(hw, prate, meson_parm_read(clk->map, &vclk->div),
+>> +				   vclk->table, vclk->flags, vclk->div.width);
+>> +}
+>> +
+>> +static int clk_regmap_vclk_div_determine_rate(struct clk_hw *hw,
+>> +					      struct clk_rate_request *req)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_div_data *vclk = clk_get_regmap_vclk_div_data(clk);
+>> +
+>> +	return divider_determine_rate(hw, req, vclk->table, vclk->div.width,
+>> +				      vclk->flags);
+>> +}
+>> +
+>> +static int clk_regmap_vclk_div_set_rate(struct clk_hw *hw, unsigned long rate,
+>> +					unsigned long parent_rate)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_div_data *vclk = clk_get_regmap_vclk_div_data(clk);
+>> +	int ret;
+>> +
+>> +	ret = divider_get_val(rate, parent_rate, vclk->table, vclk->div.width,
+>> +			      vclk->flags);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	meson_parm_write(clk->map, &vclk->div, ret);
+>> +
+>> +	return 0;
+>> +};
+>> +
+>> +static int clk_regmap_vclk_div_enable(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_div_data *vclk = clk_get_regmap_vclk_div_data(clk);
+>> +
+>> +	/* Unreset the divider when ungating */
+>> +	meson_parm_write(clk->map, &vclk->reset, 0);
+>> +	meson_parm_write(clk->map, &vclk->enable, 1);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void clk_regmap_vclk_div_disable(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_div_data *vclk = clk_get_regmap_vclk_div_data(clk);
+>> +
+>> +	/* Reset the divider when gating */
+>> +	meson_parm_write(clk->map, &vclk->enable, 0);
+>> +	meson_parm_write(clk->map, &vclk->reset, 1);
+>> +}
+>> +
+>> +static int clk_regmap_vclk_div_is_enabled(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_div_data *vclk = clk_get_regmap_vclk_div_data(clk);
+>> +
+>> +	return meson_parm_read(clk->map, &vclk->enable);
+>> +}
+>> +
+>> +const struct clk_ops clk_regmap_vclk_div_ops = {
+>> +	.recalc_rate = clk_regmap_vclk_div_recalc_rate,
+>> +	.determine_rate = clk_regmap_vclk_div_determine_rate,
+>> +	.set_rate = clk_regmap_vclk_div_set_rate,
+>> +	.enable = clk_regmap_vclk_div_enable,
+>> +	.disable = clk_regmap_vclk_div_disable,
+>> +	.is_enabled = clk_regmap_vclk_div_is_enabled,
+>> +};
+>> +EXPORT_SYMBOL_GPL(clk_regmap_vclk_div_ops);
+>> +
+>> +MODULE_DESCRIPTION("Amlogic vclk clock driver");
+>> +MODULE_AUTHOR("Neil Armstrong <neil.armstrong@linaro.org>");
+>> +MODULE_LICENSE("GPL v2");
+>> diff --git a/drivers/clk/meson/vclk.h b/drivers/clk/meson/vclk.h
+>> new file mode 100644
+>> index 000000000000..4f25d7ad2717
+>> --- /dev/null
+>> +++ b/drivers/clk/meson/vclk.h
+
+Is vclk.c/h ok ? clk-vclk doesn't look pretty, but I can switch to it to
+keep files organized.
+
+Neil
+
+>> @@ -0,0 +1,51 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+>> + */
+>> +
+>> +#ifndef __VCLK_H
+>> +#define __VCLK_H
+> 
+> This is too generic.
+> Please add the MESON prefix like the other clock driver please.
+> 
+>> +
+>> +#include "clk-regmap.h"
+>> +#include "parm.h"
+>> +
+>> +/**
+>> + * struct clk_regmap_vclk_data - vclk regmap backed specific data
+>> + *
+>> + * @enable:	vclk enable field
+>> + * @reset:	vclk reset field
+>> + * @flags:	hardware-specific flags
+>> + *
+>> + * Flags:
+>> + * Same as clk_gate except CLK_GATE_HIWORD_MASK which is ignored
+>> + */
+>> +struct clk_regmap_vclk_data {
+>> +	struct parm enable;
+>> +	struct parm reset;
+>> +	u8 flags;
+>> +};
+>> +
+>> +extern const struct clk_ops clk_regmap_vclk_ops;
+>> +
+>> +/**
+>> + * struct clk_regmap_vclk_div_data - vclk_div regmap back specific data
+>> + *
+>> + * @div:	divider field
+>> + * @enable:	vclk divider enable field
+>> + * @reset:	vclk divider reset field
+>> + * @table:	array of value/divider pairs, last entry should have div = 0
+>> + *
+>> + * Flags:
+>> + * Same as clk_divider except CLK_DIVIDER_HIWORD_MASK which is ignored
+>> + */
+>> +struct clk_regmap_vclk_div_data {
+>> +	struct parm div;
+>> +	struct parm enable;
+>> +	struct parm reset;
+>> +	const struct clk_div_table *table;
+>> +	u8 flags;
+>> +};
+>> +
+>> +extern const struct clk_ops clk_regmap_vclk_div_ops;
+>> +
+>> +#endif /* __VCLK_H */
+> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
