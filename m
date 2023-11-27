@@ -4,96 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F06E7C4167B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Nov 2023 08:19:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7909C4167B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Nov 2023 08:20:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=of8BvL/w3yo++9AgsUXh4lhuaHHuQlBS6vJ7qkA+yUU=; b=pILwIOnWt4yWAj
-	gNJ+pzETIr4e3dwYrwNyay6okVojK4QJbto6kvU/p1x+wD//KGNZQdwpaJjYJMIZCsf+078JsQkQZ
-	aNc/o1ZjE8VVTMvm7x1v9HeUTybQvziwOWk43kc/PLwTXZ441XIz3+x6nmFkX49NlFapZz7cbxU52
-	98929o3YKMzIRdbMqNPkQTum+1qBVSJWcxfeUj5bGH9R8Ku3w4oHQDxHly8zhijI/Igy2xAhkGQ+Q
-	/O/q7pR4BXVI/ZmN/Pjqaz43sfQnulA+PRYCzRHKwmyPoo61Vheo5I65WvCzpC3KHEfknD1qhkGWl
-	ju5TMRDrSnnDiY92j+3g==;
+	List-Owner; bh=p0ict16AjduMrpwNQ0ovNOYJnCNW2WErqJVjUUozASY=; b=W3FOGKq8m8t610
+	pGir6oavLur+rlx2GdfQ+TyFNVj5YsR8rkL3iPH+8s+MbQD7CoYAqb1/vnJfiUO1XOb3/hpzQ+QYj
+	aKtZ98EG0nUKDQTrdNCAcF+Hbs31NY3suGmtgHQvpQdFNEKaDG8ATsp7VbcrPICZDQtKD3N3K722n
+	01QPYr0FyfG+iLiuWKVKGvnmHmaPyZhgU54Iwu871Opl97nEwpYqQciwgEgeaz0Wi/JO8f4t2DCRW
+	CxD+TugnqWmufEwKOMYLa0O0HeI31EPhjhsB8JKSjlddOCre7fEZtpThotwmQA78GS51Yy62TOxpL
+	uAlQIjvuFeb2gCgjG1Wg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r7Wq2-001oPg-20;
-	Mon, 27 Nov 2023 08:19:31 +0000
+	id 1r7WqD-001oa3-1P;
+	Mon, 27 Nov 2023 08:19:41 +0000
 Received: from mail-lj1-x232.google.com ([2a00:1450:4864:20::232])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r7Wpc-001oNO-0y
+	id 1r7Wpc-001oNc-2Z
 	for linux-amlogic@lists.infradead.org;
-	Mon, 27 Nov 2023 08:19:06 +0000
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2c8880fbb33so50826651fa.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 27 Nov 2023 00:19:03 -0800 (PST)
+	Mon, 27 Nov 2023 08:19:07 +0000
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2c875207626so47948251fa.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 27 Nov 2023 00:19:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701073141; x=1701677941; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1701073143; x=1701677943; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y2uKGv73n9zPoCLwWnUxIRJtwy7BLdOeRGasRuwlLaI=;
-        b=Pfy56KSjhqGYWGQFiNZz/R7Km0AdIjjLzmJMkPr0wx3aTN1DpjgXHHGziNx4hUm7xB
-         OSkbTUR5c3p39K5hXGegrRb+PKh9Z3V37XsmaJK+nQW2YZU6Us8NunOBcs/OHFqGCAHP
-         mmH0z5cO5mI4QnKNa9A2ZAWNqzAM1r51Rk0Ng9Y/MP01H7Qwyipbd0NKrp3KpawSMh4G
-         MGPHaewCE3tQnS+fUY43rQc++rwUYyZJBVTGraMlYNVtTce+xTcYSJn/hSVGHXPYKGNP
-         6/MsDrXGGepeTCYqH+kE317w/Uy07rJDXU6N1gyi0n/UoAnRzmoh3vR2mMgUcCrtRPoq
-         mw6g==
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Wu9Mk96O+s9apHEY/wkOo5PiW0m4TNq81XUGjVgZkHY=;
+        b=nfxncbhWRSbWQ2a0k1YICvGyp0CIU0UmyOQwNe/oLXc00H84h7tM1Nnc0yDG4YSwf/
+         X16DB8BIC/F5dSBrtq3d6p2Dr6HOxu4kDaqp6g6zJvFyicD+uYkEwTXWajEaBhqqioqE
+         Fpbt0kiWESdPRtz8Jo5nykLideN14vV883basucxmfGQmGgl+yppxgnG21H8QTBFkkd9
+         8+o8XNbHUvDSIrjY1vU8gsDjrk+LCVu7tQSzHEeW08UdlcDsr3o63pVPRD3BkBTpuS3J
+         9Q385O66Sq0UZWPnR0YkcPwMECeEaHfDWFGnaS6OdZpkMhxV9mHtR3Xp2oVqYFNyfQGP
+         DsSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701073141; x=1701677941;
+        d=1e100.net; s=20230601; t=1701073143; x=1701677943;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=y2uKGv73n9zPoCLwWnUxIRJtwy7BLdOeRGasRuwlLaI=;
-        b=tuCr3Ex4k9Nfol7eK/bdXD2FIqW8O27tLdsuMToiW/3gSZcNOoDbo+PRyUhKPXVWge
-         Vtc4TnalOhKEkCg1yj7O6ezYoKUwMc3u22V9zt6Wsa0G4HLfKA+63Fk1gHdjVvM2mKN5
-         /CzeGxPVJ8cNrvURSe+oNrBN9RW+dNGgAF9/8RnQFb2Erwj+oxlKaeP3NIPHjDEnKXE8
-         HmFbbAOFJgQtMEmSIwucU6joOja7Wv3wq2QnXhdhkTAOrjVUgD9Lm0yBUlIorbogbZx2
-         ANTfuPnxwauDNWd5Gd30un1W7JcSmmH8r5DOwT4VjMzdbpmELmni128En497LthBOReS
-         tEOw==
-X-Gm-Message-State: AOJu0YzNaIh746v4B3hyjid1mftTkpYaPGVNFMb4LUjpICRkfsD3HIrY
-	Im5ZFw5IOebZZNUh6vwcyEW8eA==
-X-Google-Smtp-Source: AGHT+IF1gTyhMEF3F7i1LRqkM6Hdwo5CzhiNmHsO3on2+Ni4UBjAsOeQokHh2iH61R/I1gEzM9biJw==
-X-Received: by 2002:a2e:b5d3:0:b0:2c9:a05c:547d with SMTP id g19-20020a2eb5d3000000b002c9a05c547dmr1718714ljn.34.1701073141585;
-        Mon, 27 Nov 2023 00:19:01 -0800 (PST)
+        bh=Wu9Mk96O+s9apHEY/wkOo5PiW0m4TNq81XUGjVgZkHY=;
+        b=iN+OmfvS+pCm7PPu5Lg/OXUjV5B79vt6Rxyk9uj/yAE2oPQyjEEIdXCqKI08tDvQn2
+         SwtbMsXZlXFFHFz1hJ4ZdN+KEJbFal4yhbr3HyahLumjUuhKw25H42ttKKwU2UBa7C2/
+         0JoKrSongszhD7aDPN5s/gPjEzp4CVdmu4U/ZxZC39KPXBA35O2EL0KXcJgjp5BhVqB4
+         tCp7GNq9kjwX4czta87DSxRbxevefM7JvVNrcAF050uEjraHPGfrl1FZASgZbRX3Ihov
+         6qKIIMRHt0u3JPH68PD/aaXELFTqqa5bYd9skP8PpupHolccLhuXXjnaksZEwGp/2TlH
+         lnvw==
+X-Gm-Message-State: AOJu0YxvFBz0VKL4VM6nZMPYrZwht3wbiSfnVKp2tAz907/xrnSC+me4
+	WvXQxuTj8vhdfeu/VJrmisf5ig==
+X-Google-Smtp-Source: AGHT+IGDxcSkbC3AUO/tKAy4+hS1vqUZ4qPAywCnudeSjQUPPsFylnyIVh+mXWyWIPbyzr0UEtVDmA==
+X-Received: by 2002:a2e:9d8c:0:b0:2c8:744e:dced with SMTP id c12-20020a2e9d8c000000b002c8744edcedmr6794598ljj.35.1701073143490;
+        Mon, 27 Nov 2023 00:19:03 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id be7-20020a05600c1e8700b00405442edc69sm13516568wmb.14.2023.11.27.00.19.00
+        by smtp.gmail.com with ESMTPSA id be7-20020a05600c1e8700b00405442edc69sm13516568wmb.14.2023.11.27.00.19.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Nov 2023 00:19:01 -0800 (PST)
+        Mon, 27 Nov 2023 00:19:03 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+To: Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Jagan Teki <jagan@amarulasolutions.com>, 
- Nicolas Belin <nbelin@baylibre.com>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Remi Pommarel <repk@triplefau.lt>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- linux-phy@lists.infradead.org, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor.dooley@microchip.com>, 
- "Lukas F. Hartmann" <lukas@mntre.com>
-In-Reply-To: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
-References: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
-Subject: Re: (subset) [PATCH v9 00/12] drm/meson: add support for MIPI DSI
- Display
-Message-Id: <170107314034.1083800.1585049254380328915.b4-ty@linaro.org>
-Date: Mon, 27 Nov 2023 09:19:00 +0100
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20231124094700.58071-1-krzysztof.kozlowski@linaro.org>
+References: <20231124094700.58071-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: minor whitespace cleanup around
+ '='
+Message-Id: <170107314264.1083800.3287643351535378638.b4-ty@linaro.org>
+Date: Mon, 27 Nov 2023 09:19:02 +0100
 MIME-Version: 1.0
 X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231127_001904_368295_D3547FD9 
-X-CRM114-Status: GOOD (  12.49  )
+X-CRM114-CacheID: sfid-20231127_001904_993963_4C4EE287 
+X-CRM114-Status: GOOD (  10.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,20 +100,16 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Fri, 24 Nov 2023 09:41:11 +0100, Neil Armstrong wrote:
-> The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
-> with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI
-> glue on the same Amlogic SoCs.
+On Fri, 24 Nov 2023 10:47:00 +0100, Krzysztof Kozlowski wrote:
+> The DTS code coding style expects exactly one space before and after '='
+> sign.
 > 
-> This is a follow-up of v5  now the DRM patches are applied, the clk & DT changes
-> remains for a full DSI support on G12A & SM1 platforms.
 > 
-> [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.8/arm64-dt)
 
-[02/12] dt-bindings: soc: amlogic,meson-gx-hhi-sysctrl: add example covering meson-axg-hhi-sysctrl
-        https://git.kernel.org/amlogic/c/beb9c30ba4188e481991d91124c554f61a7ec121
+[1/1] arm64: dts: amlogic: minor whitespace cleanup around '='
+      https://git.kernel.org/amlogic/c/35b47cefe8955f4c34fe45e5a06cb3376d6a8aa6
 
 These changes has been applied on the intermediate git tree [1].
 
