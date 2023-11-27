@@ -4,76 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2FDBC4167B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Nov 2023 13:23:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6C68C4167B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Nov 2023 14:20:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=A7CPmm+EckXT7vaUuhlu5uvmPvFGUtTZahs/ybaVupc=; b=PjY2BR3uzaFKVM
-	na7i86Bey2qDdYEpAwlYyRt5WSK8T7dSVH6dATNg4tpVXVrauhgUKrTX27hHPW14mLYWsA+uUYkUT
-	9Xp7/6vReNm53+g6tZ1BeAiXETA8/drKr1lQ6a3MGaFgZp/NtS0/ky8eQxKAVhGcx9KTVNSSdSmzj
-	v4o/Co1EwjbCg2AGx1GdOE4VgnY7CThv56NNj+Qi7KTdH6pjFf97c9ANa3YgNEfWkh5bNSRBm+aQv
-	RkvWedgjIKf22qz1/AiKM0x6IhEtw771KCm62ldEJjgDnEbSn4ySnRdggJB2IKA1HVHuPKbfnxvyR
-	YZNVxqjQ6HM+dNsgDfUw==;
+	List-Owner; bh=lCbMrzULfVPqa16XvtueBbZErvj3S+UmX6Htww7K5i4=; b=eH0l9cCa4wu0zo
+	JqCJXYysN9LqkvUl2c4HNXLC1Mex5+TkRltYkURLFYO98m7N4nSoxl0/Bg6EiPy9StUVGQGfNPO/F
+	twOwTmxQ5pCwTYhhJwnm6rGx83IfvZ76YtuwBkz6Tl7dxWt99bcqLOmMJVYT0guNNEI865YXwyYuV
+	8W8Ft5lnDjw3lCC7NaBDzqinBXwaWpPQOehlAwz6yqWkmoCz3/Yai8hNeXUla4iOrmYLnJjX075MO
+	2poHkc9fndY5oMwEFce85Vw6Euqf4b+JXQ4ALg3LiB28cuGFB5IzhC62CnI9s1N8rqnc8wVtP9liK
+	EQ4f282QA4wlAn0UgL0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r7bZa-002Yax-0a;
-	Mon, 27 Nov 2023 13:22:50 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1r7cT5-002gdo-0U;
+	Mon, 27 Nov 2023 14:20:11 +0000
+Received: from mail-yw1-f195.google.com ([209.85.128.195])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r7bZW-002YY0-1n;
-	Mon, 27 Nov 2023 13:22:47 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 9FCE9611EA;
-	Mon, 27 Nov 2023 13:22:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83171C433C9;
-	Mon, 27 Nov 2023 13:22:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701091365;
-	bh=0BLQG6JYQ067UNDJ5wfmB5ZjUGQKZe55ZiL1VEJSO78=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=payg5QeVmhoFO1Y7oc9QbOZipHt7xsfGm3HNu1qNPFnFITyBT53rddcG487o7CsNd
-	 4HXMQEIWY7VFq2UQqGrsotm5PDzVToCJHFZrr6kSlXn4O+oO2uqkh0HOIDopuUJhb8
-	 PUrCOf+xWMU8PwNgfO8EKlmtH8AhiqqzzHj4qmGpWuYUNNGHSUUu+bpl8hmA5Wm/4c
-	 Bby45Ek3MlYijhJq+WtfQC9UXA8Ctn0z1zEsOiYn1k/CQqw8vFF/Y7ce/8nIw1vSfj
-	 bIGRAWOclNGebowmrny7YIPMxVRFON9PfkY7YajyVy1lMPdgeFNa0RsPuFGi2OQ445
-	 6O3SL/k9cB9Iw==
-From: Vinod Koul <vkoul@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Jagan Teki <jagan@amarulasolutions.com>, 
- Nicolas Belin <nbelin@baylibre.com>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Remi Pommarel <repk@triplefau.lt>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- linux-phy@lists.infradead.org, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor.dooley@microchip.com>, 
- "Lukas F. Hartmann" <lukas@mntre.com>
-In-Reply-To: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
-References: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
-Subject: Re: (subset) [PATCH v9 00/12] drm/meson: add support for MIPI DSI
- Display
-Message-Id: <170109135706.42627.15247339910188185100.b4-ty@kernel.org>
-Date: Mon, 27 Nov 2023 18:52:37 +0530
+	id 1r7cT0-002gcK-1c;
+	Mon, 27 Nov 2023 14:20:08 +0000
+Received: by mail-yw1-f195.google.com with SMTP id 00721157ae682-5cbcfdeaff3so42805467b3.0;
+        Mon, 27 Nov 2023 06:20:05 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701094805; x=1701699605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=p8asMA5McnjUqiDsQhrdKj0am/206nD+kU8Fb3R8j7Q=;
+        b=D36gDpEFsbyf0LQs95PnnADCOLwG/fwqPPmEXqB5lKp1WA7h0gmhsrQQpkMIcLVZD8
+         R8r1xOKiDwTEiTNWAVdfOY7WbSq+A7BhbcGz5z83lJZPOEiThtC7JIe17bfI36ceM9L7
+         NzT/c+3OTQDA16ujk0875fIONy3p93jy4DeD0G4rFnklBTe3E7JS9GR3DAy6Ar+rejZ4
+         InZzTga6huLqweN723pfBoPIt/NSX7Y/gj1uh+b8wcKPDAQfvN/p1vkPHpBfDLrlpwIA
+         UmE48W9jb1GHWqyNOYRuLP3LWFoDzybH9tqjrgB0Is7YeCF+47kPrPhFxgnjk2AvCttu
+         Abiw==
+X-Gm-Message-State: AOJu0YwMI8E8fQr5P5IoKgWiTsyXBMyGuSnYkqFaHtLvK3mfAyEk5CAL
+	4STibeHVru4cwC7VUjkqJIB6JobVM7meCFOc
+X-Google-Smtp-Source: AGHT+IHOrcDoV8LHmGn1Fu4pA56O7GTe0BttqKAknUyWlC2jZ9tGtevZtsS4Ssthq7dPn+Q5lggzIg==
+X-Received: by 2002:a81:6008:0:b0:5cd:f157:fd05 with SMTP id u8-20020a816008000000b005cdf157fd05mr11595985ywb.25.1701094804776;
+        Mon, 27 Nov 2023 06:20:04 -0800 (PST)
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
+        by smtp.gmail.com with ESMTPSA id a124-20020a0df182000000b005af6df31bb0sm3255806ywf.105.2023.11.27.06.20.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Nov 2023 06:20:04 -0800 (PST)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-5cbcfdeaff3so42805237b3.0;
+        Mon, 27 Nov 2023 06:20:03 -0800 (PST)
+X-Received: by 2002:a0d:e207:0:b0:5a8:207b:48d with SMTP id
+ l7-20020a0de207000000b005a8207b048dmr10958508ywe.11.1701094803713; Mon, 27
+ Nov 2023 06:20:03 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: b4 0.12.3
+References: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 27 Nov 2023 15:19:52 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUYEwMuxJ2Xx=KRVKneRT-e+uHz8LE1JVY5zLDkWksqKw@mail.gmail.com>
+Message-ID: <CAMuHMdUYEwMuxJ2Xx=KRVKneRT-e+uHz8LE1JVY5zLDkWksqKw@mail.gmail.com>
+Subject: Re: [PATCH v3] docs: dt-bindings: add DTS Coding Style document
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, 
+	Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>, 
+	Chen-Yu Tsai <wens@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Heiko Stuebner <heiko@sntech.de>, 
+	Jonathan Corbet <corbet@lwn.net>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Michal Simek <michal.simek@amd.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>, 
+	linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+	workflows@vger.kernel.org, linux-doc@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231127_052246_641766_840F7279 
-X-CRM114-Status: UNSURE (   7.57  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231127_062006_536329_4B557DA4 
+X-CRM114-Status: GOOD (  24.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,36 +92,75 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Fri, 24 Nov 2023 09:41:11 +0100, Neil Armstrong wrote:
-> The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
-> with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI
-> glue on the same Amlogic SoCs.
-> 
-> This is a follow-up of v5  now the DRM patches are applied, the clk & DT changes
-> remains for a full DSI support on G12A & SM1 platforms.
-> 
-> [...]
-
-Applied, thanks!
-
-[03/12] dt-bindings: phy: amlogic,meson-axg-mipi-pcie-analog: drop text about parent syscon and drop example
-        commit: 130601d488fa06447283767e447909ce9e975e43
-[04/12] dt-bindings: phy: amlogic,g12a-mipi-dphy-analog: drop unneeded reg property and example
-        commit: 5f4a9a66f8a7582e90311fa8251da33a8d2111d7
-
-Best regards,
--- 
-~Vinod
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgS3J6eXN6dG9mLAoKT24gU2F0LCBOb3YgMjUsIDIwMjMgYXQgNzo0NOKAr1BNIEtyenlzenRv
+ZiBLb3psb3dza2kKPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4gd3JvdGU6Cj4gRG9j
+dW1lbnQgcHJlZmVycmVkIGNvZGluZyBzdHlsZSBmb3IgRGV2aWNldHJlZSBzb3VyY2VzIChEVFMg
+YW5kIERUU0kpLAo+IHRvIGJyaW5nIGNvbnNpc3RlbmN5IGFtb25nIGFsbCAoc3ViKWFyY2hpdGVj
+dHVyZXMgYW5kIGVhc2UgaW4gcmV2aWV3cy4KPgo+IENjOiBBbmRyZXcgRGF2aXMgPGFmZEB0aS5j
+b20+Cj4gY2M6IEFuZHJldyBMdW5uIDxhbmRyZXdAbHVubi5jaD4KPiBDYzogQW5nZWxvR2lvYWNj
+aGlubyBEZWwgUmVnbm8gPGFuZ2Vsb2dpb2FjY2hpbm8uZGVscmVnbm9AY29sbGFib3JhLmNvbT4K
+PiBDYzogQXJuZCBCZXJnbWFubiA8YXJuZEBhcm5kYi5kZT4KPiBDYzogQmpvcm4gQW5kZXJzc29u
+IDxhbmRlcnNzb25Aa2VybmVsLm9yZz4KPiBDYzogQ2hlbi1ZdSBUc2FpIDx3ZW5zQGtlcm5lbC5v
+cmc+Cj4gQ2M6IERtaXRyeSBCYXJ5c2hrb3YgPGRtaXRyeS5iYXJ5c2hrb3ZAbGluYXJvLm9yZz4K
+PiBDYzogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydCtyZW5lc2FzQGdsaWRlci5iZT4KPiBDYzog
+SGVpa28gU3R1ZWJuZXIgPGhlaWtvQHNudGVjaC5kZT4KPiBDYzogSm9uYXRoYW4gQ29yYmV0IDxj
+b3JiZXRAbHduLm5ldD4KPiBDYzogS29ucmFkIER5YmNpbyA8a29ucmFkLmR5YmNpb0BsaW5hcm8u
+b3JnPgo+IENjOiBNYXR0aGlhcyBCcnVnZ2VyIDxtYXR0aGlhcy5iZ2dAZ21haWwuY29tPgo+IENj
+OiBNaWNoYWwgU2ltZWsgPG1pY2hhbC5zaW1la0BhbWQuY29tPgo+IENjOiBOZWlsIEFybXN0cm9u
+ZyA8bmVpbC5hcm1zdHJvbmdAbGluYXJvLm9yZz4KPiBDYzogTmlzaGFudGggTWVub24gPG5tQHRp
+LmNvbT4KPiBDYzogT2xvZiBKb2hhbnNzb24gPG9sb2ZAbGl4b20ubmV0Pgo+IENjOiBSYWZhxYIg
+TWnFgmVja2kgPHphamVjNUBnbWFpbC5jb20+Cj4gQWNrZWQtYnk6IE5laWwgQXJtc3Ryb25nIDxu
+ZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPgo+IEFja2VkLWJ5OiBIZWlrbyBTdHVlYm5lciA8aGVp
+a29Ac250ZWNoLmRlPgo+IFNpZ25lZC1vZmYtYnk6IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlz
+enRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4KPgo+IC0tLQo+Cj4gTWVyZ2luZyBpZGVhOiBSb2Iv
+RFQgYmluZGluZ3MKPgo+IENoYW5nZXMgaW4gdjMKPiA9PT09PT09PT09PT09Cj4gMS4gc2hvdWxk
+LT5zaGFsbCAoQW5nZWxvKQo+IDIuIENvbW1lbnRzIC8vIC0+IC8qIChBbmdlbG8sIE1pY2hhbCkK
+PiAzLiBVc2UgaW1hZ2luYXJ5IGV4YW1wbGUgaW4gIk9yZGVyIG9mIFByb3BlcnRpZXMgaW4gRGV2
+aWNlIE5vZGUiCj4gICAgKEFuZ2VsbykKPiA0LiBBZGRlZCBwYXJhZ3JhcGhzIGZvciB0aHJlZSBz
+ZWN0aW9ucyB3aXRoIGp1c3RpZmljYXRpb25zIG9mIGNob3Nlbgo+ICAgIHN0eWxlLgo+IDUuIEFs
+bG93IHR3byBzdHlsZSBvZiBvcmRlcmluZyBvdmVycmlkZXMgaW4gYm9hcmQgRFRTOiBhbHBoYWJl
+dGljYWxseSBvcgo+ICAgIGJ5IG9yZGVyIG9mIERUU0kgKFJvYikuCj4gNi4gSSBkaWQgbm90IGlu
+Y29ycG9yYXRlIGZlZWRiYWNrIGFib3V0LCBkdWUgdG8gbGFjayBvZiBjb25zZW5zdXMgYW5kIG15
+Cj4gICAgZGlzYWdyZWVtZW50Ogo+ICAgIGEuIFNvTSBiZWluZyBEVFMgd2l0aG91dCBEVFNJIGlu
+ICJPcmdhbml6aW5nIERUU0kgYW5kIERUUyIKClRoYW5rcyBmb3IgdGhlIHVwZGF0ZSEKCj4gLS0t
+IC9kZXYvbnVsbAo+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kdHMt
+Y29kaW5nLXN0eWxlLnJzdAoKPiArICAgICAgIC8qIFNvQyBEVFNJICovCj4gKwo+ICsgICAgICAg
+LyB7Cj4gKyAgICAgICAgICAgICAgIGNwdXMgewo+ICsgICAgICAgICAgICAgICAgICAgICAgIC8q
+IC4uLiAqLwo+ICsgICAgICAgICAgICAgICB9Owo+ICsKPiArICAgICAgICAgICAgICAgcHNjaSB7
+Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgLyogLi4uICovCj4gKyAgICAgICAgICAgICAgIH07
+Cj4gKwo+ICsgICAgICAgICAgICAgICBzb2NAIHsKCiJzb2NAIiBpcyBpbnZhbGlkLCB0aGF0IHNo
+b3VsZCBiZSAic29jIi4KCkFzIHRoZSAic29jIiBub2RlIGlzIHNwZWNpYWwsIHlvdSBtYXkgd2Fu
+dCB0byBlbGFib3JhdGU6CgogICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJzaW1wbGUtYnVz
+IjsKICAgICAgICAgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDE+OwogICAgICAgICAgICAgICAg
+I3NpemUtY2VsbHMgPSA8MT47CiAgICAgICAgICAgICAgICByYW5nZXM7Cgo+ICsgICAgICAgICAg
+ICAgICAgICAgICAgIGRtYTogZG1hLWNvbnRyb2xsZXJAMTAwMDAgewo+ICsgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgLyogLi4uICovCj4gKyAgICAgICAgICAgICAgICAgICAgICAgfTsK
+PiArCj4gKyAgICAgICAgICAgICAgICAgICAgICAgY2xrOiBjbG9jay1jb250cm9sbGVyQDgwMDAw
+IHsKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC8qIC4uLiAqLwo+ICsgICAgICAg
+ICAgICAgICAgICAgICAgIH07Cj4gKyAgICAgICAgICAgICAgIH07Cj4gKyAgICAgICB9Owo+ICsK
+PiArICAgICAgIC8qIEJvYXJkIERUUyAtIGFscGhhYmV0aWNhbCBvcmRlciAqLwo+ICsKPiArICAg
+ICAgICZjbGsgewo+ICsgICAgICAgICAgICAgICAvKiAuLi4gKi8KPiArICAgICAgIH07Cj4gKwo+
+ICsgICAgICAgJmRtYSB7Cj4gKyAgICAgICAgICAgICAgIC8qIC4uLiAqLwo+ICsgICAgICAgfTsK
+PiArCj4gKyAgICAgICAvKiBCb2FyZCBEVFMgLSBhbHRlcm5hdGl2ZSBvcmRlciwga2VlcCBhcyBE
+VFNJICovCj4gKwo+ICsgICAgICAgJmRtYSB7Cj4gKyAgICAgICAgICAgICAgIC8qIC4uLiAqLwo+
+ICsgICAgICAgfTsKPiArCj4gKyAgICAgICAmY2xrIHsKPiArICAgICAgICAgICAgICAgLyogLi4u
+ICovCj4gKyAgICAgICB9OwoKSU1PIHRoYXQgYWx0ZXJuYXRpdmUgb3JkZXIgaXMgaGFyZCB0byBy
+ZXZpZXc6IHlvdSBuZWVkIHRvIGhhdmUgbXVsdGlwbGUKZmlsZXMgb3Blbi4gIEl0IHdpbGwgYWxz
+byBtYWtlIHZhbGlkYXRpb24gaGFyZCwgYXMgeW91IGNhbiBvbmx5IHZhbGlkYXRlCnRoZSBlbmQg
+cmVzdWx0LCBub3QgaW5kaXZpZHVhbCBmaWxlcy4KCkFueXdheSwgdGhpcyBpcyBhbHJlYWR5IHF1
+aXRlIHVzYWJsZSBzbwpSZXZpZXdlZC1ieTogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydCtyZW5l
+c2FzQGdsaWRlci5iZT4KCkdye29ldGplLGVldGluZ31zLAoKICAgICAgICAgICAgICAgICAgICAg
+ICAgR2VlcnQKCi0tIApHZWVydCBVeXR0ZXJob2V2ZW4gLS0gVGhlcmUncyBsb3RzIG9mIExpbnV4
+IGJleW9uZCBpYTMyIC0tIGdlZXJ0QGxpbnV4LW02OGsub3JnCgpJbiBwZXJzb25hbCBjb252ZXJz
+YXRpb25zIHdpdGggdGVjaG5pY2FsIHBlb3BsZSwgSSBjYWxsIG15c2VsZiBhIGhhY2tlci4gQnV0
+CndoZW4gSSdtIHRhbGtpbmcgdG8gam91cm5hbGlzdHMgSSBqdXN0IHNheSAicHJvZ3JhbW1lciIg
+b3Igc29tZXRoaW5nIGxpa2UgdGhhdC4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAt
+LSBMaW51cyBUb3J2YWxkcwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5p
+bmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8v
+bGludXgtYW1sb2dpYwo=
