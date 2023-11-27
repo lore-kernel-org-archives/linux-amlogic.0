@@ -4,93 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCCAAC4167B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Nov 2023 08:22:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3645C4167B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Nov 2023 08:22:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=k1+J479bW8CvaUYkPnAT9OIA8laTdC/YE8GkSM8D4zQ=; b=TGZiX1DCMBNxi608Ks6YgdSPM2
-	XIm3o1rOpGGJ37+670C+hFDW24pPqPZ8HfRCwAVqqiR4yAbcjdsW1LoQ0PigU7K/mREG/ZQ90ziC0
-	TLzUj87motkDOcVii1/xkpGeumHlS4I/oW0MJngix+dB4ZzonLKv9Ez3CJ/r+TpN6Ll/kgFhCi96L
-	7lqNP8ZDX7tIbJ2x0zZKnDNYn6MPMu8A+CaC0RIFjjeEoednjUaFZSBs1aSybQNy7DL5af4ogkRdT
-	GW1CXerWtsSjVcJhl3ZLj68M64v6tJ2YpSc44YF0d5vA18yKJa2nHOoV/25TahbT2wttTQ3vkgzh/
-	VE2zOQsw==;
+	bh=dv+9Ky6gptxf3BWf0KT2w8cyjzkpE5J2ZRCyIBn9xNI=; b=SYfXGaMK9zq1p65bugPgqb9JWz
+	Dm85FfCCvxK336N7dyM6aUz1AoROSBnBOVpfWKyAMdO8dv2onMf71bwXbgWjQtUHiqpyGitPOmEHE
+	LPZpB1CQJXGzG7Kh/pVzZAHLJFBSB38Rgs90MKyQw16bcmQgq4hNu2I4MLMzHc/xdbPLd4RYluQpj
+	Zn9PDz3rKayc3URn/72lx6UFw3mYIpLTEv1DgjvOTXs04zHVqTiwh4+Zuuq/VI9mRTy59k76TwNRg
+	0sf3YBcICIDdHXsj+iBIix4Q32DNOq4C81pKn5hcOshEL2k3CC7Pi9vMnl99p8VCggc+86V9HcRD3
+	gfpcTH2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r7Ws8-001pJf-2Y;
-	Mon, 27 Nov 2023 08:21:40 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1r7Wt3-001pVE-1I;
+	Mon, 27 Nov 2023 08:22:37 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r7Ws6-001pHr-2I
+	id 1r7Wsz-001pTt-2h
 	for linux-amlogic@lists.infradead.org;
-	Mon, 27 Nov 2023 08:21:40 +0000
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-332e40322f0so2352790f8f.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 27 Nov 2023 00:21:37 -0800 (PST)
+	Mon, 27 Nov 2023 08:22:35 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-332ce50450dso2533264f8f.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 27 Nov 2023 00:22:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701073296; x=1701678096; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1701073351; x=1701678151; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=a7viWszIcXFoOpqHRSaRGzVaaNqOyV/oWHsy7smbtVg=;
-        b=SrffdSH0RMXMXdGkruoKgl1ecdDCJJa21nwdgW5oQN0ES2/UoX+IZ/3/5Nk4mcTXoO
-         iZCb3Y83MMLChlkXIeXKiq0oNLlx+z0DFv0xTXFEgs3BjJdowSa0FbL+/37P5tAgyXG9
-         pmPSFQYwQW182QxPwfz+Qwtq9jOVKgVaYkuDFQdBmiO7/Rv5dyKyIri7XdWuk1R/64Lg
-         QEcxTC0EEW/kfVV8GWVCKtb7zHhBCFeHUzPUALhOO2R2CSrrkSiPv6nO/ZrFU5wc0qQF
-         fnpPZtDJaEXY8BlSw4Zzt3a57NxDRsoMh6zxk4bj22FOjbBsuNfpNYAosEODI56fmXC/
-         7suw==
+        bh=OF9TqJe720KDQzDl86jGuUrWjMd9dIEg73m5yCaS5nY=;
+        b=DeSNGwL/z9Jeee7FyzY24Bd2mnOC/a2reN55id40CDv5xe5jHjf6eg1IIwVFbO9vDt
+         Dqop+ZNyytUrkhb8Q9xgfkKNNrqG+27AG4ymYFfZfEqp9DrrCOtYKyyMXpPKbxGxs9V+
+         GP/mgmoThs/FjxsrS9YO43k1K/64YktF12yYfG9wkRAWbxqD0yEjv3D5rWPxgCkpDKGJ
+         RZEszp+cOJLf1pLdIfJ6udWU5KnMcf1E4DOgrq/T3/NP0uPBC5r3RoMTsJLjmrTK4Lg1
+         +NxKZN/ckuiaQ5bV3PM429GSu+7/6SJljLi0UQ80+IJBzCyDt6hpfCdwAooRqF0WXcSS
+         q9fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701073296; x=1701678096;
+        d=1e100.net; s=20230601; t=1701073351; x=1701678151;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=a7viWszIcXFoOpqHRSaRGzVaaNqOyV/oWHsy7smbtVg=;
-        b=ctUwWclUy7NDSqfxT6D7gsAQkLnK45rrRgq2QJ5Vm45iuEpi3W5By5bFoTSs9KSMQl
-         qRsf+a24l1etoUzShLFDqaLOlhWMY7ZXGaoj2M0jjnEnJt8dQ50JD4PK8Yt7qEjTLQYd
-         3nO5bZKaVXhQiFhfi4lpZNEy0RkMOGM/02E7a7aIuwnSnFX/Aq0L08k4lafhAdX62VhC
-         TNH8O1smkd6NURb1SJE3SrC+aW/FqO1viK0oI9qh03C8kBac+LUn9KoZ3+VEEqeKQHGc
-         t9tjtXLoc3sP0k/YBKh4fvZBDw3Y1Iux8wDhLW9e7c4nuEdFOYHsk0ZZA/YA9SZ5Q3kG
-         HOTA==
-X-Gm-Message-State: AOJu0YxC2U3SPyNOEdFAwXbZIE7ZxRRGK0Ut0XdGhmaFLHOBGMp+lpaT
-	c1S99CS7Wh1AeHi7srGTHA/XlA==
-X-Google-Smtp-Source: AGHT+IFkDZ/Tc9TFzjuDbFecp8bY9iP6OY/2ge/yDGEVed9tVj/eRKiYrarEioRc6Be7l6syA6eQog==
-X-Received: by 2002:adf:f388:0:b0:332:d152:5e9b with SMTP id m8-20020adff388000000b00332d1525e9bmr7418994wro.57.1701073296160;
-        Mon, 27 Nov 2023 00:21:36 -0800 (PST)
+        bh=OF9TqJe720KDQzDl86jGuUrWjMd9dIEg73m5yCaS5nY=;
+        b=iVkfTaKycvAD2fQky51Az4CW3EFdEeCpFUv+45GJxbVk0349Lx00mnwkhyzDuxJmm8
+         Yb7x6SHTUCaGxnf+o0KUzvMNiaYnSO4N4Ux/84J4jZl6hVRIAMnmgfx6e9Ep+nM/UoH4
+         e6L2S4GS7egsWbHnyQ9L132L98JsbUTR8H+CRVmhI4XNSAfH5Y4tnJnJaWAHjyXyd+Am
+         d3Je/vYhr4MOITQjmnpr1vATjMn75r+XoO/IGZOsNZE2YvFW09QIcG3JnnkREY8G/2sk
+         ZvXTt4nk8ExLflOdm6QzI6/bTZQ4b5IAqU0bXZi/YYKKvCQ3sVYmE3kSE+kIMgER4rEY
+         IGTg==
+X-Gm-Message-State: AOJu0YxgUfC70TKHtFDhpD8PtppEOi4BhrChiYML4EgCu16prFbKIWdM
+	f4mf4bThPpY5FoNQMyE29isqyQ==
+X-Google-Smtp-Source: AGHT+IHafd/LB+FxWpgfBQr++onVtYeeE4ohlbOoFxAS6PQzYHgECy3idzc7MCkYbOa8ljGTihmGvQ==
+X-Received: by 2002:a05:6000:b8f:b0:332:c409:2c80 with SMTP id dl15-20020a0560000b8f00b00332c4092c80mr7371879wrb.48.1701073351260;
+        Mon, 27 Nov 2023 00:22:31 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:5a15:ac68:b4a4:85ff? ([2a01:e0a:982:cbb0:5a15:ac68:b4a4:85ff])
-        by smtp.gmail.com with ESMTPSA id w27-20020adf8bdb000000b00332e5624a31sm10650138wra.84.2023.11.27.00.21.34
+        by smtp.gmail.com with ESMTPSA id w27-20020adf8bdb000000b00332e5624a31sm10650138wra.84.2023.11.27.00.22.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Nov 2023 00:21:35 -0800 (PST)
-Message-ID: <39219cc4-e10a-4cee-9f14-fde061317e37@linaro.org>
-Date: Mon, 27 Nov 2023 09:21:35 +0100
+        Mon, 27 Nov 2023 00:22:30 -0800 (PST)
+Message-ID: <ca1833bc-ddb9-48db-a9f5-1fbc18f543c8@linaro.org>
+Date: Mon, 27 Nov 2023 09:22:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v9 00/12] drm/meson: add support for MIPI DSI Display
+Subject: Re: [PATCH v9 07/12] clk: meson: add vclk driver
 Content-Language: en-US, fr
-To: Vinod Koul <vkoul@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
  Jagan Teki <jagan@amarulasolutions.com>, Nicolas Belin
- <nbelin@baylibre.com>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Remi Pommarel <repk@triplefau.lt>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ <nbelin@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Remi Pommarel
+ <repk@triplefau.lt>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-phy@lists.infradead.org, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor.dooley@microchip.com>,
- "Lukas F. Hartmann" <lukas@mntre.com>
+ linux-phy@lists.infradead.org, Rob Herring <robh@kernel.org>
 References: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
+ <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-7-95256ed139e6@linaro.org>
+ <1j7cm7dx1b.fsf@starbuckisacylon.baylibre.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -116,11 +115,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
+In-Reply-To: <1j7cm7dx1b.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231127_002138_777713_9B73934A 
-X-CRM114-Status: UNSURE (   9.23  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231127_002233_881970_083DB285 
+X-CRM114-Status: GOOD (  29.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,57 +136,304 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Vinod,
+On 24/11/2023 15:41, Jerome Brunet wrote:
+> 
+> On Fri 24 Nov 2023 at 09:41, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> 
+>> The VCLK and VCLK_DIV clocks have supplementary bits.
+>>
+>> The VCLK has a "SOFT RESET" bit to toggle after the whole
+>> VCLK sub-tree rate has been set, this is implemented in
+>> the gate enable callback.
+>>
+>> The VCLK_DIV clocks as enable and reset bits used to disable
+>> and reset the divider, associated with CLK_SET_RATE_GATE it ensures
+>> the rate is set while the divider is disabled and in reset mode.
+>>
+>> The VCLK_DIV enable bit isn't implemented as a gate since it's part
+>> of the divider logic and vendor does this exact sequence to ensure
+>> the divider is correctly set.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   drivers/clk/meson/Kconfig  |   5 ++
+>>   drivers/clk/meson/Makefile |   1 +
+>>   drivers/clk/meson/vclk.c   | 141 +++++++++++++++++++++++++++++++++++++++++++++
+>>   drivers/clk/meson/vclk.h   |  51 ++++++++++++++++
+>>   4 files changed, 198 insertions(+)
+>>
+>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>> index 29ffd14d267b..59a40a49f8e1 100644
+>> --- a/drivers/clk/meson/Kconfig
+>> +++ b/drivers/clk/meson/Kconfig
+>> @@ -30,6 +30,10 @@ config COMMON_CLK_MESON_VID_PLL_DIV
+>>   	tristate
+>>   	select COMMON_CLK_MESON_REGMAP
+>>   
+>> +config COMMON_CLK_MESON_VCLK
+>> +	tristate
+>> +	select COMMON_CLK_MESON_REGMAP
+>> +
+>>   config COMMON_CLK_MESON_CLKC_UTILS
+>>   	tristate
+>>   
+>> @@ -140,6 +144,7 @@ config COMMON_CLK_G12A
+>>   	select COMMON_CLK_MESON_EE_CLKC
+>>   	select COMMON_CLK_MESON_CPU_DYNDIV
+>>   	select COMMON_CLK_MESON_VID_PLL_DIV
+>> +	select COMMON_CLK_MESON_VCLK
+> 
+> This particular line belong in the next patch
 
-On 24/11/2023 09:41, Neil Armstrong wrote:
-
-<snip>
+Indeed
 
 > 
-> ---
-> Neil Armstrong (12):
->        dt-bindings: clk: g12a-clkc: add CTS_ENCL clock ids
->        dt-bindings: soc: amlogic,meson-gx-hhi-sysctrl: add example covering meson-axg-hhi-sysctrl
->        dt-bindings: phy: amlogic,meson-axg-mipi-pcie-analog: drop text about parent syscon and drop example
->        dt-bindings: phy: amlogic,g12a-mipi-dphy-analog: drop unneeded reg property and example
+>>   	select MFD_SYSCON
+>>   	help
+>>   	  Support for the clock controller on Amlogic S905D2, S905X2 and S905Y2
+>> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+>> index 9ee4b954c896..9ba43fe7a07a 100644
+>> --- a/drivers/clk/meson/Makefile
+>> +++ b/drivers/clk/meson/Makefile
+>> @@ -12,6 +12,7 @@ obj-$(CONFIG_COMMON_CLK_MESON_PLL) += clk-pll.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_REGMAP) += clk-regmap.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_SCLK_DIV) += sclk-div.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_VID_PLL_DIV) += vid-pll-div.o
+>> +obj-$(CONFIG_COMMON_CLK_MESON_VCLK) += vclk.o
+>>   
+>>   # Amlogic Clock controllers
+>>   
+>> diff --git a/drivers/clk/meson/vclk.c b/drivers/clk/meson/vclk.c
+>> new file mode 100644
+>> index 000000000000..47f08a52b49f
+>> --- /dev/null
+>> +++ b/drivers/clk/meson/vclk.c
+>> @@ -0,0 +1,141 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+>> + */
+>> +
+>> +#include <linux/module.h>
+>> +#include "vclk.h"
+>> +
+>> +/* The VCLK gate has a supplementary reset bit to pulse after ungating */
+>> +
+>> +static inline struct clk_regmap_vclk_data *
+>> +clk_get_regmap_vclk_data(struct clk_regmap *clk)
+>> +{
+>> +	return (struct clk_regmap_vclk_data *)clk->data;
+>> +}
+>> +
+>> +static int clk_regmap_vclk_enable(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_data *vclk = clk_get_regmap_vclk_data(clk);
+>> +
+>> +	meson_parm_write(clk->map, &vclk->enable, 1);
+>> +
+>> +	/* Do a reset pulse */
+>> +	meson_parm_write(clk->map, &vclk->reset, 1);
+>> +	meson_parm_write(clk->map, &vclk->reset, 0);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void clk_regmap_vclk_disable(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_data *vclk = clk_get_regmap_vclk_data(clk);
+>> +
+>> +	meson_parm_write(clk->map, &vclk->enable, 0);
+>> +}
+>> +
+>> +static int clk_regmap_vclk_is_enabled(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_data *vclk = clk_get_regmap_vclk_data(clk);
+>> +
+>> +	return meson_parm_read(clk->map, &vclk->enable);
+>> +}
+>> +
+>> +const struct clk_ops clk_regmap_vclk_ops = {
+>> +	.enable = clk_regmap_vclk_enable,
+>> +	.disable = clk_regmap_vclk_disable,
+>> +	.is_enabled = clk_regmap_vclk_is_enabled,
+>> +};
+>> +EXPORT_SYMBOL_GPL(clk_regmap_vclk_ops);
+> 
+> s/clk_regmap_vclk/meson_vclk at least for what is exported, ideally most
+> all the code.
+> 
+> I get clk_regmap_ comes from code copied from clk_regmap.c.
+> The reason the this part is different (and not using parm) if that when
+> I converted amlogic to regmap, I hope we could make this generic,
+> possibly converging between aml and qcom (which was the only other
+> platform using regmap for clock at the time). This is why clk_regmap.c
+> is a bit different from the other driver.
+> 
+> For the aml specific drivers, best to look at the mpll or cpu-dyndiv one.
 
-Could you pick patches 3 and 4 ? they are both reviewed.
+Ack
+
+> 
+>> +
+>> +/* The VCLK Divider has supplementary reset & enable bits */
+>> +
+>> +static inline struct clk_regmap_vclk_div_data *
+>> +clk_get_regmap_vclk_div_data(struct clk_regmap *clk)
+>> +{
+>> +	return (struct clk_regmap_vclk_div_data *)clk->data;
+>> +}
+>> +
+>> +static unsigned long clk_regmap_vclk_div_recalc_rate(struct clk_hw *hw,
+>> +						     unsigned long prate)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_div_data *vclk = clk_get_regmap_vclk_div_data(clk);
+>> +
+>> +	return divider_recalc_rate(hw, prate, meson_parm_read(clk->map, &vclk->div),
+>> +				   vclk->table, vclk->flags, vclk->div.width);
+>> +}
+>> +
+>> +static int clk_regmap_vclk_div_determine_rate(struct clk_hw *hw,
+>> +					      struct clk_rate_request *req)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_div_data *vclk = clk_get_regmap_vclk_div_data(clk);
+>> +
+>> +	return divider_determine_rate(hw, req, vclk->table, vclk->div.width,
+>> +				      vclk->flags);
+>> +}
+>> +
+>> +static int clk_regmap_vclk_div_set_rate(struct clk_hw *hw, unsigned long rate,
+>> +					unsigned long parent_rate)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_div_data *vclk = clk_get_regmap_vclk_div_data(clk);
+>> +	int ret;
+>> +
+>> +	ret = divider_get_val(rate, parent_rate, vclk->table, vclk->div.width,
+>> +			      vclk->flags);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	meson_parm_write(clk->map, &vclk->div, ret);
+>> +
+>> +	return 0;
+>> +};
+>> +
+>> +static int clk_regmap_vclk_div_enable(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_div_data *vclk = clk_get_regmap_vclk_div_data(clk);
+>> +
+>> +	/* Unreset the divider when ungating */
+>> +	meson_parm_write(clk->map, &vclk->reset, 0);
+>> +	meson_parm_write(clk->map, &vclk->enable, 1);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void clk_regmap_vclk_div_disable(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_div_data *vclk = clk_get_regmap_vclk_div_data(clk);
+>> +
+>> +	/* Reset the divider when gating */
+>> +	meson_parm_write(clk->map, &vclk->enable, 0);
+>> +	meson_parm_write(clk->map, &vclk->reset, 1);
+>> +}
+>> +
+>> +static int clk_regmap_vclk_div_is_enabled(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct clk_regmap_vclk_div_data *vclk = clk_get_regmap_vclk_div_data(clk);
+>> +
+>> +	return meson_parm_read(clk->map, &vclk->enable);
+>> +}
+>> +
+>> +const struct clk_ops clk_regmap_vclk_div_ops = {
+>> +	.recalc_rate = clk_regmap_vclk_div_recalc_rate,
+>> +	.determine_rate = clk_regmap_vclk_div_determine_rate,
+>> +	.set_rate = clk_regmap_vclk_div_set_rate,
+>> +	.enable = clk_regmap_vclk_div_enable,
+>> +	.disable = clk_regmap_vclk_div_disable,
+>> +	.is_enabled = clk_regmap_vclk_div_is_enabled,
+>> +};
+>> +EXPORT_SYMBOL_GPL(clk_regmap_vclk_div_ops);
+>> +
+>> +MODULE_DESCRIPTION("Amlogic vclk clock driver");
+>> +MODULE_AUTHOR("Neil Armstrong <neil.armstrong@linaro.org>");
+>> +MODULE_LICENSE("GPL v2");
+>> diff --git a/drivers/clk/meson/vclk.h b/drivers/clk/meson/vclk.h
+>> new file mode 100644
+>> index 000000000000..4f25d7ad2717
+>> --- /dev/null
+>> +++ b/drivers/clk/meson/vclk.h
+>> @@ -0,0 +1,51 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+>> + */
+>> +
+>> +#ifndef __VCLK_H
+>> +#define __VCLK_H
+> 
+> This is too generic.
+> Please add the MESON prefix like the other clock driver please.
+
+Ack
+
+> 
+>> +
+>> +#include "clk-regmap.h"
+>> +#include "parm.h"
+>> +
+>> +/**
+>> + * struct clk_regmap_vclk_data - vclk regmap backed specific data
+>> + *
+>> + * @enable:	vclk enable field
+>> + * @reset:	vclk reset field
+>> + * @flags:	hardware-specific flags
+>> + *
+>> + * Flags:
+>> + * Same as clk_gate except CLK_GATE_HIWORD_MASK which is ignored
+>> + */
+>> +struct clk_regmap_vclk_data {
+>> +	struct parm enable;
+>> +	struct parm reset;
+>> +	u8 flags;
+>> +};
+>> +
+>> +extern const struct clk_ops clk_regmap_vclk_ops;
+>> +
+>> +/**
+>> + * struct clk_regmap_vclk_div_data - vclk_div regmap back specific data
+>> + *
+>> + * @div:	divider field
+>> + * @enable:	vclk divider enable field
+>> + * @reset:	vclk divider reset field
+>> + * @table:	array of value/divider pairs, last entry should have div = 0
+>> + *
+>> + * Flags:
+>> + * Same as clk_divider except CLK_DIVIDER_HIWORD_MASK which is ignored
+>> + */
+>> +struct clk_regmap_vclk_div_data {
+>> +	struct parm div;
+>> +	struct parm enable;
+>> +	struct parm reset;
+>> +	const struct clk_div_table *table;
+>> +	u8 flags;
+>> +};
+>> +
+>> +extern const struct clk_ops clk_regmap_vclk_div_ops;
+>> +
+>> +#endif /* __VCLK_H */
+> 
 
 Thanks,
 Neil
-
->        dt-bindings: arm: amlogic: Document the MNT Reform 2 CM4 adapter with a BPI-CM4 Module
->        clk: meson: g12a: add CTS_ENCL & CTS_ENCL_SEL clocks
->        clk: meson: add vclk driver
->        clk: meson: g12a: make VCLK2 and ENCL clock path configurable by CCF
->        drm/meson: gate px_clk when setting rate
->        arm64: meson: g12-common: add the MIPI DSI nodes
->        DONOTMERGE: arm64: meson: khadas-vim3l: add DSI panel
->        arm64: dts: amlogic: meson-g12b-bananapi-cm4: add support for MNT Reform2 with CM4 adaper
-> 
->   Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
->   .../phy/amlogic,g12a-mipi-dphy-analog.yaml         |  12 -
->   .../phy/amlogic,meson-axg-mipi-pcie-analog.yaml    |  17 -
->   .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  |  33 ++
->   arch/arm64/boot/dts/amlogic/Makefile               |   1 +
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  |  70 ++++
->   .../meson-g12b-bananapi-cm4-mnt-reform2.dts        | 384 +++++++++++++++++++++
->   .../boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi   |   2 +-
->   arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi |  74 ++++
->   .../boot/dts/amlogic/meson-sm1-khadas-vim3l.dts    |   2 +-
->   drivers/clk/meson/Kconfig                          |   5 +
->   drivers/clk/meson/Makefile                         |   1 +
->   drivers/clk/meson/g12a.c                           | 106 ++++--
->   drivers/clk/meson/vclk.c                           | 141 ++++++++
->   drivers/clk/meson/vclk.h                           |  51 +++
->   drivers/gpu/drm/meson/meson_dw_mipi_dsi.c          |   7 +
->   include/dt-bindings/clock/g12a-clkc.h              |   2 +
->   17 files changed, 858 insertions(+), 51 deletions(-)
-> ---
-> base-commit: b0b93834348aaf1a6e14693b4f1d17d3ec024257
-> change-id: 20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-b8e5217e1f4a
-> 
-> Best regards,
 
 
 _______________________________________________
