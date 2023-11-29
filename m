@@ -4,67 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F06C1C4167B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Nov 2023 11:35:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6717CC4167B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Nov 2023 11:38:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=z4gZ4TFDqYplRqGipDl0oTKmB/O9J94xvQzYrm2L4Oc=; b=HlQMz/23qXuyXw
-	P/O3C1aoKiPZ1+kSyZMbTFU5BuXIZ6zTAxPPsiUy9URS2DDGUzbY/DFJSD09wjY1nhmvEG9F8fjFJ
-	ejlH3VPeEJ4GtdnHhXQm6Bf0UZPQGmc7dV+j/2BeS5BCSuSI2GVddBae3/ERAa2K7cF7LWaXo5paT
-	S9/7cmUNeHXQieS39RNecMztJ6OQAPZ86pEYvqS5ZSGXlhTmMdZKtAYXCH2YxVI4XGEXNGdi+7hnf
-	0uxTJSVMa6nW+8raC6c2t8ysrIAV88rp7cc96Fe1Kohth4Pbew1KUcK7yiPu0xnJqp8IuOnWQjqmS
-	IB8pfqdj1WkGvGfZFTOg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
+	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=VAcfdvtQfl8icVuVgghEmTBp6GS7jFGfSItR4nhmx90=; b=uxXutl6g40tMuwm8Ok5clZj0KR
+	VmjtAQfCxudHgOJ0WuzMmBGH0ifLjzI86e9ELRl4CzY7qBVQ+9Fp27BzK6Nb1M/ae3j4bB/30Ll/p
+	BrAXd8nvYlos438oBobWpNFL3eqWeENvNnuJmsEQgWzX3VJvn9fehBjf8lZxqs0C944UzdadEem5j
+	tiVoaKPRwbfo5oMK8zRt5dOFx1EGpnZMO0uybc18sYmliVoFpFG4hp+Mb4mQ+I98DDxl72wXKH3VV
+	QdIa0lumfiviyZF+9WBz49dr2SfwId+FdD2lobDi0nw8cFAGW1SfY/oGMI3TN79v8ACA812MiebYS
+	Gp/aUW7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r8Iq5-0088gR-2R;
-	Wed, 29 Nov 2023 11:34:45 +0000
-Received: from m12.mail.163.com ([220.181.12.214])
-	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r8Iq3-0088fL-1x;
-	Wed, 29 Nov 2023 11:34:45 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-Id; bh=ZAsQiqQtYrl7dfrofE
-	u3bEncXTW4ARayG+BTXJ6pdqE=; b=JVUaCztkrUfhYVpftCkPcJzISA6ReUW6G6
-	Lb0ic9gSx8IjfkhQmG53TqHphSEzXyQTlzT72ZtfKWK6iIw3u/W4hIBAqoxcgmIT
-	S2xZL9+j/r0ND6gJP+5I46qfi31vroS9LDV3ENPPIPW4izkH9X5PnVLiG8wTPOd6
-	4uouplpE8=
-Received: from localhost.localdomain (unknown [39.144.190.126])
-	by zwqz-smtp-mta-g5-3 (Coremail) with SMTP id _____wDXXmKvIWdl8CEBEQ--.41793S2;
-	Wed, 29 Nov 2023 19:34:09 +0800 (CST)
-From: Haoran Liu <liuhaoran14@163.com>
-To: maarten.lankhorst@linux.intel.com
-Cc: neil.armstrong@linaro.org,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	daniel@ffwll.ch,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	dri-devel@lists.freedesktop.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Haoran Liu <liuhaoran14@163.com>
-Subject: [PATCH v2] [drm/meson] meson_plane: Add error handling v2(re-aligned)
-Date: Wed, 29 Nov 2023 03:34:05 -0800
-Message-Id: <20231129113405.33057-1-liuhaoran14@163.com>
-X-Mailer: git-send-email 2.17.1
-X-CM-TRANSID: _____wDXXmKvIWdl8CEBEQ--.41793S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7WrWfWryftry3Gr48KFy8Zrb_yoW8AFy3pF
-	47CFyY9ry7Aa1Ut347Ar4YyFW3Ww4rGFyUur18trnYkwnxKFy7Cry3KFZFkFyUXFW5u3Z3
-	KrnxCr4DCr1ayFJanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pRb4SrUUUUU=
-X-Originating-IP: [39.144.190.126]
-X-CM-SenderInfo: xolxxtxrud0iqu6rljoofrz/1tbiwh83glc661p0cgABsz
+	id 1r8Iss-0089Nn-0Y;
+	Wed, 29 Nov 2023 11:37:38 +0000
+Received: from mail.manjaro.org ([116.203.91.91])
+	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1r8Iso-0089Mz-1m;
+	Wed, 29 Nov 2023 11:37:37 +0000
+MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1701257848;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zFMkyI45VT7UXczSOfK7lHaQtQAsm/dZT4KJu3kbR6M=;
+	b=YUTwYCygZsU6Xp6EA/BNba80tC0tNo4Lj5ACDCNmLzJogjTYp7Lee8wOoW6F3wmz8j1e4B
+	gT9p9h9p6IL5YpXbFPyDy7tW1GV4ySnd9idxr+Yl07Az/bD3Bww+PyC5u01Rglv6Z4h86b
+	Jx7it0g9Ar9kd/DHDNiyE8BTFXzRFwL65dzkfiW1wzMnxIzoPAvsIHmeyrl86t2UxsKmZq
+	wBTDB+AMPpuHw3zcwlPDg+I+5bFDJc01y0Bpn+L2WpdxEKUcz7dMrNIWvzMbVPnOAHJ2/h
+	vq7XGBYrnKNgVWA315hLJ8qlYrXmCUQzi+0uMWP9aeQwh15V7XVeiUxo0j5fTw==
+Date: Wed, 29 Nov 2023 12:37:26 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, Andrew Lunn
+ <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson
+ <andersson@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Heiko Stuebner <heiko@sntech.de>, Jonathan Corbet <corbet@lwn.net>, Konrad
+ Dybcio <konrad.dybcio@linaro.org>, Michal Simek <michal.simek@amd.com>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>, Olof
+ Johansson <olof@lixom.net>, =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?=
+ <zajec5@gmail.com>, linux-rockchip@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, workflows@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Subject: Re: [PATCH v3] docs: dt-bindings: add DTS Coding Style document
+In-Reply-To: <0bcc0679-b883-4435-8843-cc830122c0e1@linaro.org>
+References: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
+ <63ec18b2758a9e385f446fb00b60ee69@manjaro.org>
+ <0bcc0679-b883-4435-8843-cc830122c0e1@linaro.org>
+Message-ID: <83b413441a953e8f2bc56adf09511a80@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231129_033444_035956_A56E870C 
-X-CRM114-Status: UNSURE (   9.36  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231129_033735_206358_53BCEF82 
+X-CRM114-Status: GOOD (  25.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,60 +82,151 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch adds robust error handling to the meson_plane_create
-function in drivers/gpu/drm/meson/meson_plane.c. The function
-previously lacked proper handling for potential failure scenarios
-of the drm_universal_plane_init call.
+On 2023-11-29 11:43, Krzysztof Kozlowski wrote:
+> On 28/11/2023 21:00, Dragan Simic wrote:
+>> 
+>> I went through the language of the entire patch, after the notice that
+>> the v4 would no longer accept language improvements.  My wording- and
+>> grammar-related suggestions are available inline below.
+> 
+> Thanks. I want to finish this at some point and it might not happen if
+> grammar fixes will be coming every patch revision. Then after we finish
+> review, new feedback will appear about using British or American
+> spelling (which reminds me old quote/email about which variant of
+> English is most popular in Linux kernel: the incorrect one).
 
-Signed-off-by: Haoran Liu <liuhaoran14@163.com>
----
- drivers/gpu/drm/meson/meson_plane.c | 17 +++++++++++------
- 1 file changed, 11 insertions(+), 6 deletions(-)
+Ah, that's a good one. :)  Basically, both English variants should be 
+fine, but a single document should obviously use only one variant.
 
-diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
-index 815dfe30492b..b43ac61201f3 100644
---- a/drivers/gpu/drm/meson/meson_plane.c
-+++ b/drivers/gpu/drm/meson/meson_plane.c
-@@ -534,6 +534,7 @@ int meson_plane_create(struct meson_drm *priv)
- 	struct meson_plane *meson_plane;
- 	struct drm_plane *plane;
- 	const uint64_t *format_modifiers = format_modifiers_default;
-+	int ret;
- 
- 	meson_plane = devm_kzalloc(priv->drm->dev, sizeof(*meson_plane),
- 				   GFP_KERNEL);
-@@ -548,12 +549,16 @@ int meson_plane_create(struct meson_drm *priv)
- 	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
- 		format_modifiers = format_modifiers_afbc_g12a;
- 
--	drm_universal_plane_init(priv->drm, plane, 0xFF,
--				 &meson_plane_funcs,
--				 supported_drm_formats,
--				 ARRAY_SIZE(supported_drm_formats),
--				 format_modifiers,
--				 DRM_PLANE_TYPE_PRIMARY, "meson_primary_plane");
-+	ret = drm_universal_plane_init(priv->drm, plane, 0xFF,
-+					&meson_plane_funcs,
-+					supported_drm_formats,
-+					ARRAY_SIZE(supported_drm_formats),
-+					format_modifiers,
-+					DRM_PLANE_TYPE_PRIMARY, "meson_primary_plane");
-+	if (ret) {
-+		devm_kfree(priv->drm->dev, meson_plane);
-+		return ret;
-+	}
- 
- 	drm_plane_helper_add(plane, &meson_plane_helper_funcs);
- 
--- 
-2.17.1
+>>> +=====================================
+>>> +Devicetree Sources (DTS) Coding Style
+>>> +=====================================
+>>> +
+>>> +When writing Devicetree Sources (DTS) please observe below 
+>>> guidelines.
+>>>  They
+>> 
+>> The sentence above should be replaced with: "The following guidelines
+>> are to be followed when writing Devicetree Source (DTS) files."
+> 
+> Are you sure? It's passive and I was taught it is discouraged for
+> writing. See for example:
+> https://www.hamilton.edu/academics/centers/writing/seven-sins-of-writing/1
 
+Hmm, you're right, passive voice is usually not the best choice.  Here's 
+my take two for the suggested replacement sentence, which is actually a 
+simplified version:
+
+"This document contains the guidelines for writing Devicetree Source 
+(DTS) files."
+
+>>> +should be considered complementary to any rules expressed already in
+>>> Devicetree
+>>> +Specification and dtc compiler (including W=1 and W=2 builds).
+>> 
+>> A definite article ("the") should be added before "Devicetree
+> 
+> ack
+> 
+>> Specification" and "dtc".  Also, "Specification" in "Devicetree
+>> Specification" should be capitalized.
+> 
+> It was.
+
+Oh, sorry, I see now.  IIRC, it wasn't capitalized in some places, so I 
+made a mistake here.
+
+>>> +
+>>> +Individual architectures and sub-architectures can add additional
+>>> rules, making
+>>> +the style stricter.
+>> 
+>> "Sub-architectures" should be replaced with "subarchitectures".  "Can
+> 
+> A hint, you can write such review feedback as:
+> s/sub-architectures/subarchitectures/
+
+Sure, but I specifically wanted to be less terse, as a way to be 
+respectful.
+
+> BTW, my language spelling points "subarchitectures" as mistake, but
+> sure, ack.
+
+Using hyphens or not is almost always debatable, but modern English in 
+general leans toward not using them.
+
+>>> +3. Unit addresses shall use lowercase hex, without leading zeros
+>>> (padding).
+>> 
+>> "Lowercase hex" should be replaced with "lowercase hexadecimal 
+>> digits".
+>> 
+>>> +
+>>> +4. Hex values in properties, e.g. "reg", shall use lowercase hex.  
+>>> The
+>>> address
+>>> +   part can be padded with leading zeros.
+>> 
+>> "Hex values" should be replaced with "Hexadecimal values".  "Lowercase
+>> hex" should be replaced with "lowercase hexadecimal digits".
+> 
+> ack, but that's quite picky. We are (software) engineers so we are
+> supposed to know the slang.
+
+Sure, but this document is of a bit formal nature, so using slightly 
+more formal language can only be helpful.
+
+>>> +2. Nodes without unit addresses shall be ordered alpha-numerically 
+>>> by
+>>> the node
+>>> +   name.  For a few types of nodes, they can be ordered by the main
+>>> property
+>>> +   (e.g. pin configuration states ordered by value of "pins"
+>>> property).
+>> 
+>> "Alpha-numerically" should be replaced with "alphabetically".
+> 
+> Are you sure? Does alphabetical order include numbers?
+
+That's a good question, which also crossed my mind while writing the 
+suggestions down.  A more correct word would be "lexicographically", 
+with something like ", with the already defined valid characters making 
+the symbol set and the ACSII character set defining the ordering, " 
+serving as an additional explanation.
+
+This would be a rather formal, but also very precise definition of the 
+applied ordering.
+
+>>> +3. When extending nodes in the board DTS via &label, the entries 
+>>> shall
+>>> be
+>>> +   ordered either alpha-numerically or by keeping the order from 
+>>> DTSI
+>>> (choice
+>>> +   depending on sub-architecture).
+>> 
+>> "Alpha-numerically" should be replaced with "alphabetically".
+> 
+> Similar concern
+
+I agree.  We could use "lexicographically" instead, with the precise 
+definition already established earlier in the document.
+
+>>> +board DTS, not in the SoC or SoM DTSI.  A partial exception is a
+>>> common
+>>> +external reference SoC-input clock, which could be coded as a
+>>> fixed-clock in
+>> 
+>> "SoC-input" should be replaced with "SoC input".
+> 
+> ack, thanks!
+
+Thank you once again for working on this document!
 
 _______________________________________________
 linux-amlogic mailing list
