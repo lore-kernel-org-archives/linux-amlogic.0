@@ -4,109 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42CF5C07E97
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Nov 2023 09:27:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31A1FC07CB1
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Nov 2023 09:30:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=9pd4yeE1GfuwYqVgT4J7eGduDih1k+Xi3eW337gkrgc=; b=vrIli5BJN45v8y0BGxYWB00TEB
-	Yd7XLJKOzCgq3S+KxRjAxKFNV1FircuPgih2tanbOtkZLB0GHLJq5O2/gGJtqDM2iLIKBtvuJh7lS
-	UrlHk0h62+WeAD3Ymz4YPSpSsSHQr8U5lkZUY0FmYMb1Og+gcnlK8/MHFyQ/u2v6B7kOzsOdKPyg3
-	kq/O5MwaTeRUvQnIx42/reSaw+uu1XtpC0rA8k3ilX5BmpPQu7jpI0L2SZPN7f0cLClY0MoYDfd+5
-	zRgI15b+026eJkR3Md36eJwJ8hO0TChKu1Du5c1XopVmqrbsjELiaxUWvcNbjeL5bfvXtmhJzcerQ
-	WLLX0ECQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=epl45TBg/GYlV7cNJZJJgYpVajqpEnDFT73uXaiwf88=; b=dGeXZCDLeYjpTI
+	3dX81jZPBhUXgky7hrBlV2XPFlbUb3NhSEnh9+N2Qkz9JG/eM/SnXdTczVcQVsjNIcUrfTKa6DdtC
+	Uv9D93pWZ32j03zNgzqVvrZnEyG4e8VzjAXsJaert5nhVnxRYw06lQdVMl0XP8ZbMu+SwvQApZRq5
+	d4tiPpdyb8bTYf/zeiorTpuKE6PoxSU100LoDoqFOyIyG126ms2pH6KzUyygo3bIqGTJuZA8UJeia
+	UQzrc5fp8AtA+QgHyWEeH1QLKaL2NBJmd8s1fF6ICAci4ho5XCk0FYrTfzYEaNok3pPSudD3KHVgU
+	CxnZtHOEeEqkeL/VZL4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r8Gql-007dNb-34;
-	Wed, 29 Nov 2023 09:27:19 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1r8Gtb-007fLX-0R;
+	Wed, 29 Nov 2023 09:30:15 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r8Gqi-007dKz-2N
-	for linux-amlogic@lists.infradead.org;
-	Wed, 29 Nov 2023 09:27:18 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-333030a6537so1901331f8f.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 29 Nov 2023 01:27:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701250034; x=1701854834; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wSWOGihLbvWd/HkTOnjJVlcVTUALnSb3Os9ZzOpVteY=;
-        b=nV2GPc7y1kwVZDxEdEhUnnLAwyDQq154cW6C/dt/gDVTqo5DoiDENj59Jh0R2Frmzg
-         BCNsOILVZrXlBTFGR765KZqTd51ZVDHiJpHPBM5FcdIJVWSagln4kPIjkvqxvHfYJUcb
-         ++KcUR5Re3SSoj4YrdqBMlRH/A2Vgu1gvKVJ3qK/x4VE1tGG/m3+LsZkI2/YyisLX6yk
-         KVmt3gvBx59JNaScAO4ge6+3egxzro8N6q+BTQYPGLDDLOmAaQaFji/IO8/sSAawUmG0
-         DDebrYomcdIyhG9rFMJmgF/11UbfQDFU95atUzUcaKLlnUNXXKO27a6Fzk+f3XI7uTJM
-         ZOfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701250034; x=1701854834;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=wSWOGihLbvWd/HkTOnjJVlcVTUALnSb3Os9ZzOpVteY=;
-        b=XiSZyLtYygZMgyNvWPsl2ZeGvfHqZRtZweuYRTHYN0Hm5P3eUyjRs2QC6MPoRtWj8+
-         oY+SN6oOriP4xEUVkFys9r4Z9HocFvlDl+BAw4O3Eg5A+P/lu5q7YscQmL5/7Qbnakwh
-         DApoVTKCvzKae4qaxR1R50aruzzbfNev2CGzxR5akS+Ziu3Ndbrc1kdlt3eBUZSNnox4
-         MhxoT0pfapFOzlvN6xQfJwiYXzE2EJMiKzxdeI2tR7mS+oSVit+IXsAFEJ6e9Y3tno0Y
-         tiWri+WJ55wmRI059pe+j2HvP/0ru0t+xv/WpoR+pCBBcP2KQjbrLkfCVjHCte6LScYF
-         gawA==
-X-Gm-Message-State: AOJu0Yy3rKiko8Hr3Eia/SX//LZhSgKLX5SoPb8tqMv2XWcvAYbJ+GFc
-	GEx2Xp/DragKrHOHB6+GGKe7mg==
-X-Google-Smtp-Source: AGHT+IEvFDFRW8z6E5TlMnajfmGUr1GR7ySAnhV1pJPndQQNOYzuf0vOlVDE22biyX9j9hGxRzwgvQ==
-X-Received: by 2002:a5d:6309:0:b0:333:85e:a11c with SMTP id i9-20020a5d6309000000b00333085ea11cmr4770557wru.16.1701250033770;
-        Wed, 29 Nov 2023 01:27:13 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:31d3:eea3:8f97:6a2c? ([2a01:e0a:982:cbb0:31d3:eea3:8f97:6a2c])
-        by smtp.gmail.com with ESMTPSA id l12-20020a5d4bcc000000b00332fbc183ebsm9798399wrt.76.2023.11.29.01.27.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 01:27:13 -0800 (PST)
-Message-ID: <e7a2db20-4d6c-4fd0-ba0e-d8a2057cfbfc@linaro.org>
-Date: Wed, 29 Nov 2023 10:27:11 +0100
+	id 1r8GtO-007f5l-0U;
+	Wed, 29 Nov 2023 09:30:05 +0000
+Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 29 Nov 2023
+ 17:29:51 +0800
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+To: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	"Neil Armstrong" <neil.armstrong@linaro.org>, Kevin Hilman
+	<khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Xianwei Zhao
+	<xianwei.zhao@amlogic.com>
+Subject: [PATCH] arm64: dts: amlogic: s4: add some device nodes
+Date: Wed, 29 Nov 2023 17:29:49 +0800
+Message-ID: <20231129092949.2103338-1-xianwei.zhao@amlogic.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH] [drm/meson] meson_plane: Add error handling
-Content-Language: en-US, fr
-To: Haoran Liu <liuhaoran14@163.com>, maarten.lankhorst@linux.intel.com
-Cc: mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
- daniel@ffwll.ch, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, dri-devel@lists.freedesktop.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20231129092113.32630-1-liuhaoran14@163.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231129092113.32630-1-liuhaoran14@163.com>
+X-Originating-IP: [10.98.11.200]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231129_012716_773943_032E839A 
-X-CRM114-Status: GOOD (  15.18  )
+X-CRM114-CacheID: sfid-20231129_013002_227144_C1AA24AE 
+X-CRM114-Status: GOOD (  10.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,63 +58,489 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Add some device nodes for board AQ222,
+including clock,I2C,SPICC,nand and ethernet.
 
-Thanks for your patch!
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ .../dts/amlogic/meson-s4-s805x2-aq222.dts     |  55 +++
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     | 350 +++++++++++++++++-
+ 2 files changed, 404 insertions(+), 1 deletion(-)
 
-On 29/11/2023 10:21, Haoran Liu wrote:
-> This patch adds robust error handling to the meson_plane_create
-> function in drivers/gpu/drm/meson/meson_plane.c. The function
-> previously lacked proper handling for potential failure scenarios
-> of the drm_universal_plane_init call.
-> 
-> Signed-off-by: Haoran Liu <liuhaoran14@163.com>
-> ---
->   drivers/gpu/drm/meson/meson_plane.c | 7 ++++++-
->   1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
-> index 815dfe30492b..67b36398f146 100644
-> --- a/drivers/gpu/drm/meson/meson_plane.c
-> +++ b/drivers/gpu/drm/meson/meson_plane.c
-> @@ -534,6 +534,7 @@ int meson_plane_create(struct meson_drm *priv)
->   	struct meson_plane *meson_plane;
->   	struct drm_plane *plane;
->   	const uint64_t *format_modifiers = format_modifiers_default;
-> +	int ret;
->   
->   	meson_plane = devm_kzalloc(priv->drm->dev, sizeof(*meson_plane),
->   				   GFP_KERNEL);
-> @@ -548,12 +549,16 @@ int meson_plane_create(struct meson_drm *priv)
->   	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
->   		format_modifiers = format_modifiers_afbc_g12a;
->   
-> -	drm_universal_plane_init(priv->drm, plane, 0xFF,
-> +	ret = drm_universal_plane_init(priv->drm, plane, 0xFF,
->   				 &meson_plane_funcs,
->   				 supported_drm_formats,
->   				 ARRAY_SIZE(supported_drm_formats),
->   				 format_modifiers,
->   				 DRM_PLANE_TYPE_PRIMARY, "meson_primary_plane");
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+index c1f322c73982..fd349c49ebf5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+@@ -23,6 +23,16 @@ memory@0 {
+ 		reg = <0x0 0x0 0x0 0x40000000>;
+ 	};
+ 
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		secmon_reserved: secmon@5000000 {
++			reg = <0x0 0x05000000 0x0 0x4000000>;
++			no-map;
++		};
++	};
+ };
+ 
+ &uart_B {
+@@ -34,3 +44,48 @@ &ir {
+ 	pinctrl-0 = <&remote_pins>;
+ 	pinctrl-names = "default";
+ };
++
++&nand {
++	status = "okay";
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	pinctrl-0 = <&nand_pins>;
++	pinctrl-names = "default";
++
++	nand@0 {
++		reg = <0>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		nand-on-flash-bbt;
++
++		partition@0 {
++			label = "boot";
++			reg = <0x0 0x00200000>;
++		};
++		partition@200000 {
++			label = "env";
++			reg = <0x00200000 0x00400000>;
++		};
++		partition@600000 {
++			label = "system";
++			reg = <0x00600000 0x00a00000>;
++		};
++		partition@1000000 {
++			label = "rootfs";
++			reg = <0x01000000 0x03000000>;
++		};
++		partition@4000000 {
++			label = "media";
++			reg = <0x04000000 0x8000000>;
++		};
++	};
++};
++
++&spicc0 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&spicc0_pins_x>;
++	cs-gpios = <&gpio GPIOX_10 GPIO_ACTIVE_LOW>;
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+index 2344b2d741c3..022aba0f9ef7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+@@ -6,6 +6,10 @@
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/gpio/meson-s4-gpio.h>
++#include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
++#include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
++#include <dt-bindings/power/meson-s4-power.h>
+ 
+ / {
+ 	cpus {
+@@ -92,6 +96,38 @@ apb4: bus@fe000000 {
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+ 
++			clkc_periphs: clock-controller@0 {
++				compatible = "amlogic,s4-peripherals-clkc";
++				reg = <0x0 0x0 0x0 0x49c>;
++				clocks = <&clkc_pll CLKID_FCLK_DIV2>,
++					<&clkc_pll CLKID_FCLK_DIV2P5>,
++					<&clkc_pll CLKID_FCLK_DIV3>,
++					<&clkc_pll CLKID_FCLK_DIV4>,
++					<&clkc_pll CLKID_FCLK_DIV5>,
++					<&clkc_pll CLKID_FCLK_DIV7>,
++					<&clkc_pll CLKID_HIFI_PLL>,
++					<&clkc_pll CLKID_GP0_PLL>,
++					<&clkc_pll CLKID_MPLL0>,
++					<&clkc_pll CLKID_MPLL1>,
++					<&clkc_pll CLKID_MPLL2>,
++					<&clkc_pll CLKID_MPLL3>,
++					<&clkc_pll CLKID_HDMI_PLL>,
++					<&xtal>;
++				clock-names = "fclk_div2", "fclk_div2p5", "fclk_div3",
++						"fclk_div4", "fclk_div5", "fclk_div7",
++						"hifi_pll", "gp0_pll", "mpll0", "mpll1",
++						"mpll2", "mpll3", "hdmi_pll", "xtal";
++				#clock-cells = <1>;
++			};
++
++			clkc_pll: clock-controller@8000 {
++				compatible = "amlogic,s4-pll-clkc";
++				reg = <0x0 0x8000 0x0 0x1e8>;
++				clocks = <&xtal>;
++				clock-names = "xtal";
++				#clock-cells = <1>;
++			};
++
+ 			watchdog@2100 {
+ 				compatible = "amlogic,s4-wdt", "amlogic,t7-wdt";
+ 				reg = <0x0 0x2100 0x0 0x10>;
+@@ -120,6 +156,187 @@ mux {
+ 						bias-disable;
+ 					};
+ 				};
++
++				i2c0_pins1:i2c0-pins1 {
++					mux {
++						groups = "i2c0_sda",
++						       "i2c0_scl";
++						function = "i2c0";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c1_pins1:i2c1-pins1 {
++					mux {
++						groups = "i2c1_sda_c",
++						       "i2c1_scl_c";
++						function = "i2c1";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c1_pins2:i2c1-pins2 {
++					mux {
++						groups = "i2c1_sda_d",
++						       "i2c1_scl_d";
++						function = "i2c1";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c1_pins3:i2c1-pins3 {
++					mux {
++						groups = "i2c1_sda_h",
++						       "i2c1_scl_h";
++						function = "i2c1";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c1_pins4:i2c1-pins4 {
++					mux {
++						groups = "i2c1_sda_x",
++						       "i2c1_scl_x";
++						function = "i2c1";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c2_pins1:i2c2-pins1 {
++					mux {
++						groups = "i2c2_sda_d",
++						       "i2c2_scl_d";
++						function = "i2c2";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c2_pins2:i2c2-pins2 {
++					mux {
++						groups = "i2c2_sda_h8",
++						       "i2c2_scl_h9";
++						function = "i2c2";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c2_pins3:i2c2-pins3 {
++					mux {
++						groups = "i2c2_sda_h0",
++						       "i2c2_scl_h1";
++						function = "i2c2";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c3_pins1:i2c3-pins1 {
++					mux {
++						groups = "i2c3_sda_x",
++						       "i2c3_scl_x";
++						function = "i2c3";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c3_pins2:i2c3-pins2 {
++					mux {
++						groups = "i2c3_sda_z",
++						       "i2c3_scl_z";
++						function = "i2c3";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c4_pins1:i2c4-pins1 {
++					mux {
++						groups = "i2c4_sda_c",
++						       "i2c4_scl_c";
++						function = "i2c4";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c4_pins2:i2c4-pins2 {
++					mux {
++						groups = "i2c4_sda_d",
++						       "i2c4_scl_d";
++						function = "i2c4";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				i2c4_pins3:i2c4-pins3 {
++					mux {
++						groups = "i2c4_sda_z",
++						       "i2c4_scl_z";
++						function = "i2c4";
++						drive-strength-microamp = <3000>;
++						bias-disable;
++					};
++				};
++
++				nand_pins: nand-pins {
++					mux {
++						groups = "emmc_nand_d0",
++						       "emmc_nand_d1",
++						       "emmc_nand_d2",
++						       "emmc_nand_d3",
++						       "emmc_nand_d4",
++						       "emmc_nand_d5",
++						       "emmc_nand_d6",
++						       "emmc_nand_d7",
++						       "nand_ce0",
++						       "nand_ale",
++						       "nand_cle",
++						       "nand_wen_clk",
++						       "nand_ren_wr";
++						function = "nand";
++						input-enable;
++					};
++				};
++
++				spicc0_pins_x: spicc0-pins_x {
++					mux {
++						groups = "spi_a_mosi_x",
++						       "spi_a_miso_x",
++						       "spi_a_clk_x";
++						function = "spi_a";
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				spicc0_pins_h: spicc0-pins-h {
++					mux {
++						groups = "spi_a_mosi_h",
++						       "spi_a_miso_h",
++						       "spi_a_clk_h";
++						function = "spi_a";
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				spicc0_pins_z: spicc0-pins-z {
++					mux {
++						groups = "spi_a_mosi_z",
++						       "spi_a_miso_z",
++						       "spi_a_clk_z";
++						function = "spi_a";
++						drive-strength-microamp = <3000>;
++					};
++				};
++
+ 			};
+ 
+ 			gpio_intc: interrupt-controller@4080 {
+@@ -132,13 +349,119 @@ gpio_intc: interrupt-controller@4080 {
+ 					<10 11 12 13 14 15 16 17 18 19 20 21>;
+ 			};
+ 
++			eth_phy: mdio-multiplexer@28000 {
++				compatible = "amlogic,g12a-mdio-mux";
++				reg = <0x0 0x28000 0x0 0xa4>;
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&clkc_periphs CLKID_ETHPHY>,
++					 <&xtal>,
++					 <&clkc_pll CLKID_MPLL_50M>;
++				clock-names = "pclk", "clkin0", "clkin1";
++				mdio-parent-bus = <&mdio0>;
++
++				ext_mdio: mdio@0 {
++					reg = <0>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++				};
++
++				int_mdio: mdio@1 {
++					reg = <1>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					internal_ephy: ethernet-phy@8 {
++						compatible = "ethernet-phy-id0180.3301",
++							     "ethernet-phy-ieee802.3-c22";
++						interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
++						reg = <8>;
++						max-speed = <100>;
++					};
++				};
++			};
++
++			spicc0: spi@50000 {
++				compatible = "amlogic,meson-g12a-spicc";
++				reg = <0x0 0x50000 0x0 0x44>;
++				interrupts = <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clkc_periphs CLKID_SPICC0>,
++					 <&clkc_periphs CLKID_SPICC0_EN>;
++				clock-names = "core", "pclk";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			i2c0: i2c@66000 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x66000 0x0 0x20>;
++				interrupts = <GIC_SPI 160 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_periphs CLKID_I2C_M_A>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			i2c1: i2c@68000 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x68000 0x0 0x20>;
++				interrupts = <GIC_SPI 161 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_periphs CLKID_I2C_M_B>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			i2c2: i2c@6a000 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x6a000 0x0 0x20>;
++				interrupts = <GIC_SPI 162 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_periphs CLKID_I2C_M_C>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			i2c3: i2c@6c000 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x6c000 0x0 0x20>;
++				interrupts = <GIC_SPI 163 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_periphs CLKID_I2C_M_D>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			i2c4: i2c@6e000 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x6e000 0x0 0x20>;
++				interrupts = <GIC_SPI 164 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_periphs CLKID_I2C_M_E>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			nand: nand-controller@8c800 {
++				compatible = "amlogic,meson-axg-nfc";
++				reg = <0x0 0x8c800 0x0 0x100>, <0x0 0x8c000 0x0 0x4>;
++				reg-names = "nfc", "emmc";
++				interrupts = <GIC_SPI 175 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_periphs CLKID_SD_EMMC_C>,
++					<&clkc_pll CLKID_FCLK_DIV2>;
++				clock-names = "core", "device";
++				status = "disabled";
++			};
++
+ 			uart_B: serial@7a000 {
+ 				compatible = "amlogic,meson-s4-uart",
+ 					     "amlogic,meson-ao-uart";
+ 				reg = <0x0 0x7a000 0x0 0x18>;
+ 				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
+ 				status = "disabled";
+-				clocks = <&xtal>, <&xtal>, <&xtal>;
++				clocks = <&xtal>, <&clkc_periphs CLKID_UART_B>, <&xtal>;
+ 				clock-names = "xtal", "pclk", "baud";
+ 			};
+ 
+@@ -160,5 +483,30 @@ hwrng: rng@440788 {
+ 				reg = <0x0 0x440788 0x0 0x0c>;
+ 			};
+ 		};
++
++		ethmac: ethernet@fdc00000 {
++			compatible = "amlogic,meson-axg-dwmac",
++				     "snps,dwmac-3.70a",
++				     "snps,dwmac";
++			reg = <0x0 0xfdc00000 0x0 0x10000>,
++			      <0x0 0xfe024000 0x0 0x8>;
++
++			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq";
++			power-domains = <&pwrc PWRC_S4_ETH_ID>;
++			clocks = <&clkc_periphs CLKID_ETH>,
++				 <&clkc_pll CLKID_FCLK_DIV2>,
++				 <&clkc_pll CLKID_MPLL2>;
++			clock-names = "stmmaceth", "clkin0", "clkin1";
++			rx-fifo-depth = <4096>;
++			tx-fifo-depth = <2048>;
++			status = "disabled";
++
++			mdio0: mdio {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				compatible = "snps,dwmac-mdio";
++			};
++		};
+ 	};
+ };
 
-Could you re-align those lines aswell ?
+base-commit: 3a5038e9c0556e51db96c2f7149d853efb886c95
+-- 
+2.39.2
 
-> +	if (ret) {
-> +		devm_kfree(priv->drm->dev, meson_plane);
-> +		return ret;
-> +	}
->   
->   	drm_plane_helper_add(plane, &meson_plane_helper_funcs);
->   
-
-Thanks,
-Neil
 
 _______________________________________________
 linux-amlogic mailing list
