@@ -4,73 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6717CC4167B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Nov 2023 11:38:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CA9FC07E97
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Nov 2023 12:04:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
-	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=VAcfdvtQfl8icVuVgghEmTBp6GS7jFGfSItR4nhmx90=; b=uxXutl6g40tMuwm8Ok5clZj0KR
-	VmjtAQfCxudHgOJ0WuzMmBGH0ifLjzI86e9ELRl4CzY7qBVQ+9Fp27BzK6Nb1M/ae3j4bB/30Ll/p
-	BrAXd8nvYlos438oBobWpNFL3eqWeENvNnuJmsEQgWzX3VJvn9fehBjf8lZxqs0C944UzdadEem5j
-	tiVoaKPRwbfo5oMK8zRt5dOFx1EGpnZMO0uybc18sYmliVoFpFG4hp+Mb4mQ+I98DDxl72wXKH3VV
-	QdIa0lumfiviyZF+9WBz49dr2SfwId+FdD2lobDi0nw8cFAGW1SfY/oGMI3TN79v8ACA812MiebYS
-	Gp/aUW7Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+	List-Owner; bh=KyIxZXo+g1YHgup+RaSpiNvDO2FX9V3KfyJnE+TpePg=; b=GBMZe8P24PE4iB
+	t4Ezb8k6itMLBYaE4nwjIA59BzEK2jnJIl3O1KFn9x5GwP3meOgLjk9l0xPqp0caN8nUW5KLmpYJJ
+	V0oVpYiPuU50Tw6OhJlTrCYg9pjp/OuvwnvsQT0dD1rOs6VchSIQPU7NeFzVntekYkKR/X7SIKdNE
+	WIz+3kuoweo1l+TuSbxcOGtqZEbqoio+MONQWMRfUSMJO6k47VNdSiQbuwwbRuuvQYBA1QjHSx+MX
+	Z3Ie0NS4BnB86ySkhtbIorhMf6a7KZl2IrA7Fg5kWSIcNdFdwPeDmHZGUgUdy8DZwpthPbhtDXxtE
+	6rdi+YOq2cCv2MmExiGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r8Iss-0089Nn-0Y;
-	Wed, 29 Nov 2023 11:37:38 +0000
-Received: from mail.manjaro.org ([116.203.91.91])
+	id 1r8JIm-008E6z-2E;
+	Wed, 29 Nov 2023 12:04:24 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r8Iso-0089Mz-1m;
-	Wed, 29 Nov 2023 11:37:37 +0000
+	id 1r8JIj-008E4e-2s
+	for linux-amlogic@lists.infradead.org;
+	Wed, 29 Nov 2023 12:04:23 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <pza@pengutronix.de>)
+	id 1r8JIe-0000FU-CF; Wed, 29 Nov 2023 13:04:16 +0100
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <pza@pengutronix.de>)
+	id 1r8JId-00COSL-5t; Wed, 29 Nov 2023 13:04:15 +0100
+Received: from pza by pty.whiteo.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <pza@pengutronix.de>)
+	id 1r8JIc-00ACOT-SR; Wed, 29 Nov 2023 13:04:14 +0100
+Date: Wed, 29 Nov 2023 13:04:14 +0100
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	zelong dong <zelong.dong@amlogic.com>
+Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	yonghui.yu@amlogic.com, kelvin.zhang@amlogic.com
+Subject: Re: [PATCH v4 0/3] reset: amlogic-c3: add reset driver
+Message-ID: <170125879173.1541321.8685946591376454572.b4-ty@pengutronix.de>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1701257848;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zFMkyI45VT7UXczSOfK7lHaQtQAsm/dZT4KJu3kbR6M=;
-	b=YUTwYCygZsU6Xp6EA/BNba80tC0tNo4Lj5ACDCNmLzJogjTYp7Lee8wOoW6F3wmz8j1e4B
-	gT9p9h9p6IL5YpXbFPyDy7tW1GV4ySnd9idxr+Yl07Az/bD3Bww+PyC5u01Rglv6Z4h86b
-	Jx7it0g9Ar9kd/DHDNiyE8BTFXzRFwL65dzkfiW1wzMnxIzoPAvsIHmeyrl86t2UxsKmZq
-	wBTDB+AMPpuHw3zcwlPDg+I+5bFDJc01y0Bpn+L2WpdxEKUcz7dMrNIWvzMbVPnOAHJ2/h
-	vq7XGBYrnKNgVWA315hLJ8qlYrXmCUQzi+0uMWP9aeQwh15V7XVeiUxo0j5fTw==
-Date: Wed, 29 Nov 2023 12:37:26 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, Andrew Lunn
- <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson
- <andersson@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Heiko Stuebner <heiko@sntech.de>, Jonathan Corbet <corbet@lwn.net>, Konrad
- Dybcio <konrad.dybcio@linaro.org>, Michal Simek <michal.simek@amd.com>, Neil
- Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>, Olof
- Johansson <olof@lixom.net>, =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?=
- <zajec5@gmail.com>, linux-rockchip@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, workflows@vger.kernel.org,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3] docs: dt-bindings: add DTS Coding Style document
-In-Reply-To: <0bcc0679-b883-4435-8843-cc830122c0e1@linaro.org>
-References: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
- <63ec18b2758a9e385f446fb00b60ee69@manjaro.org>
- <0bcc0679-b883-4435-8843-cc830122c0e1@linaro.org>
-Message-ID: <83b413441a953e8f2bc56adf09511a80@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Disposition: inline
+In-Reply-To: <20230914064018.18790-1-zelong.dong@amlogic.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: pza@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231129_033735_206358_53BCEF82 
-X-CRM114-Status: GOOD (  25.08  )
+X-CRM114-CacheID: sfid-20231129_040421_926630_E0CD6900 
+X-CRM114-Status: UNSURE (   9.82  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,151 +76,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2023-11-29 11:43, Krzysztof Kozlowski wrote:
-> On 28/11/2023 21:00, Dragan Simic wrote:
->> 
->> I went through the language of the entire patch, after the notice that
->> the v4 would no longer accept language improvements.  My wording- and
->> grammar-related suggestions are available inline below.
+On Thu, 14 Sep 2023 14:40:15 +0800, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
 > 
-> Thanks. I want to finish this at some point and it might not happen if
-> grammar fixes will be coming every patch revision. Then after we finish
-> review, new feedback will appear about using British or American
-> spelling (which reminds me old quote/email about which variant of
-> English is most popular in Linux kernel: the incorrect one).
-
-Ah, that's a good one. :)  Basically, both English variants should be 
-fine, but a single document should obviously use only one variant.
-
->>> +=====================================
->>> +Devicetree Sources (DTS) Coding Style
->>> +=====================================
->>> +
->>> +When writing Devicetree Sources (DTS) please observe below 
->>> guidelines.
->>>  They
->> 
->> The sentence above should be replaced with: "The following guidelines
->> are to be followed when writing Devicetree Source (DTS) files."
+> This patchset adds Reset controller driver support for Amlogic C3 SoC.
+> The RESET registers count and offset for C3 Soc are same as S4 Soc.
 > 
-> Are you sure? It's passive and I was taught it is discouraged for
-> writing. See for example:
-> https://www.hamilton.edu/academics/centers/writing/seven-sins-of-writing/1
-
-Hmm, you're right, passive voice is usually not the best choice.  Here's 
-my take two for the suggested replacement sentence, which is actually a 
-simplified version:
-
-"This document contains the guidelines for writing Devicetree Source 
-(DTS) files."
-
->>> +should be considered complementary to any rules expressed already in
->>> Devicetree
->>> +Specification and dtc compiler (including W=1 and W=2 builds).
->> 
->> A definite article ("the") should be added before "Devicetree
+> Changes since v1:
+> - remove Change-ID
+> - run scripts/checkpatch.pl and fix reported warnings
+> - sort dts node by base reg offset
 > 
-> ack
-> 
->> Specification" and "dtc".  Also, "Specification" in "Devicetree
->> Specification" should be capitalized.
-> 
-> It was.
+> [...]
 
-Oh, sorry, I see now.  IIRC, it wasn't capitalized in some places, so I 
-made a mistake here.
+Applied patches 1 and 2 to reset/next, thanks!
 
->>> +
->>> +Individual architectures and sub-architectures can add additional
->>> rules, making
->>> +the style stricter.
->> 
->> "Sub-architectures" should be replaced with "subarchitectures".  "Can
-> 
-> A hint, you can write such review feedback as:
-> s/sub-architectures/subarchitectures/
+[1/3] dt-bindings: reset: Add compatible and DT bindings for Amlogic C3 Reset Controller
+      https://git.pengutronix.de/cgit/pza/linux/commit/?id=0c0ea61c9b3a
+[2/3] reset: reset-meson: add support for Amlogic C3 SoC Reset Controller
+      https://git.pengutronix.de/cgit/pza/linux/commit/?id=41df5d7d5e99
 
-Sure, but I specifically wanted to be less terse, as a way to be 
-respectful.
-
-> BTW, my language spelling points "subarchitectures" as mistake, but
-> sure, ack.
-
-Using hyphens or not is almost always debatable, but modern English in 
-general leans toward not using them.
-
->>> +3. Unit addresses shall use lowercase hex, without leading zeros
->>> (padding).
->> 
->> "Lowercase hex" should be replaced with "lowercase hexadecimal 
->> digits".
->> 
->>> +
->>> +4. Hex values in properties, e.g. "reg", shall use lowercase hex.  
->>> The
->>> address
->>> +   part can be padded with leading zeros.
->> 
->> "Hex values" should be replaced with "Hexadecimal values".  "Lowercase
->> hex" should be replaced with "lowercase hexadecimal digits".
-> 
-> ack, but that's quite picky. We are (software) engineers so we are
-> supposed to know the slang.
-
-Sure, but this document is of a bit formal nature, so using slightly 
-more formal language can only be helpful.
-
->>> +2. Nodes without unit addresses shall be ordered alpha-numerically 
->>> by
->>> the node
->>> +   name.  For a few types of nodes, they can be ordered by the main
->>> property
->>> +   (e.g. pin configuration states ordered by value of "pins"
->>> property).
->> 
->> "Alpha-numerically" should be replaced with "alphabetically".
-> 
-> Are you sure? Does alphabetical order include numbers?
-
-That's a good question, which also crossed my mind while writing the 
-suggestions down.  A more correct word would be "lexicographically", 
-with something like ", with the already defined valid characters making 
-the symbol set and the ACSII character set defining the ordering, " 
-serving as an additional explanation.
-
-This would be a rather formal, but also very precise definition of the 
-applied ordering.
-
->>> +3. When extending nodes in the board DTS via &label, the entries 
->>> shall
->>> be
->>> +   ordered either alpha-numerically or by keeping the order from 
->>> DTSI
->>> (choice
->>> +   depending on sub-architecture).
->> 
->> "Alpha-numerically" should be replaced with "alphabetically".
-> 
-> Similar concern
-
-I agree.  We could use "lexicographically" instead, with the precise 
-definition already established earlier in the document.
-
->>> +board DTS, not in the SoC or SoM DTSI.  A partial exception is a
->>> common
->>> +external reference SoC-input clock, which could be coded as a
->>> fixed-clock in
->> 
->> "SoC-input" should be replaced with "SoC input".
-> 
-> ack, thanks!
-
-Thank you once again for working on this document!
+regards
+Philipp
 
 _______________________________________________
 linux-amlogic mailing list
