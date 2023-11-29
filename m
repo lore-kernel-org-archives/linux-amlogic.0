@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68325C4167B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Nov 2023 10:17:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE47DC4167B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Nov 2023 10:19:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Vzxur824cND0Ac9eAfU+VCkqfhkyrr0QrRcd6taMmIE=; b=4SwQpHyQUILx7S
-	B6PTADMQyjb//SGoTJKGCxK/DFgYzih/nWoQ5lc/ajtEdz76gQtN2xfoMOggyEE+0mpf2cBQ/aTZ8
-	zSJgPlzOuj24PZPR/2KZ1mrEP7Nf5xlL8MWmfwf/iQ2Kpj+mHYfaJLEZK7NxFoYtnZjJbd4QMausZ
-	uiFd8eXmFMw3AKtAeiszizGWNlTxbElOtZjKtb5zqowGIvM+7jXXl/NjkhtpO6cT7CDuPdeAzEaNJ
-	LpPHF5eZkhhjUdja7OPHOEYx3aEjvke5gdpQnMfTZxsbAiJRuvkLwOC2I+nWbTU30XjdrMF2x/abB
-	8GM0U6IaIE7r7gEQza7g==;
+	List-Owner; bh=q4z/gEsSzwvK0Qp4NVT1MJKJn0SxMwaXTMJO2UoM8A4=; b=SYHDqv2InWouSK
+	s55m1O922eH9TPXNffVLA71mcbS+1I2klSjp6xbhSW8nhlb4PGP7ZqvgD1NSAcs50yKlwUgBas481
+	h6ZlXNFUYTNtJBzR76Lv6HXC76v0eC2XeUCktiQ6aWJUYMKmshcRduQkzkdG0vyGuKhq27qDFYpwC
+	G9MrZ53O05uCGSWaaPo51Cx9pdHVSHF+TreG6L70Lh+SY4en5NahVCBNUZbzCEXHK6SNnu2DUXdXm
+	4z+goUPRVb0dGMcbttmQZ7+WQq5OFBu1XfabZQY76G7pCDq+iI3l82Xw2ri9pxDkt95dJfuaoksIG
+	/NricUS2m9bo85SZLYWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r8HcW-007mwf-2b;
-	Wed, 29 Nov 2023 10:16:40 +0000
+	id 1r8Hf8-007nTE-2u;
+	Wed, 29 Nov 2023 10:19:22 +0000
 Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r8HcU-007mv7-1M
+	id 1r8Hf5-007nS5-30
 	for linux-amlogic@lists.infradead.org;
-	Wed, 29 Nov 2023 10:16:39 +0000
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-54b0310f536so1409270a12.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 29 Nov 2023 02:16:38 -0800 (PST)
+	Wed, 29 Nov 2023 10:19:21 +0000
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-54af0eca12dso7193267a12.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 29 Nov 2023 02:19:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701252997; x=1701857797; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1701253158; x=1701857958; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Mtc4c0Qc+Eu0vsDQ9fqBtQVu0ExHjq28ELJTpnawBxM=;
-        b=Jybbw59mYHDYwgG+/Bjuxsw+G0UKHPMBvO6+7XnjWjp7YOSlq1kYl1QI9IYkkPLPC2
-         Dk08gWWqGkr6XKZh7+N5CHUe9oOMifjW807/+PF6/fIEnSzm9cRw7gtyWvBoNCw0ZFHM
-         mfIpO1rcaUaK20wHqA93Hrh1001l6jGRH8xFmE3nzFIKlwQav+8vOzBpKGXV6bARKiTZ
-         fl5tczvW1/UKb2zPYXHGzVyHlUkLdglXGpovYT46gyRhICmFX8Ur8iPrV5SUgFWXQEaP
-         sZSKwTUx1+EKFN3onQ0KP47YAeyU6eVTdrZveDFHMPYKxQzA8Y130O8Uut+YmYYSmnVa
-         0QQA==
+        bh=ZgUs8TNBWSvX+Jw36S2+v7tW/A1ICX2uch1ZvXrvqmc=;
+        b=vOVP+SYba/P3Mphrx6D4tIpiOuv1UnP2TuPW9/2Iw1msVUBMbFG6HPjmvTYse7kErT
+         g56JgSHJOF6KmRW2O/CHxFLzWbMaan1iZbX+y6WjL7fSfgacRsfmyYw50rS4yLPdPFiL
+         ESKsZEsTHxd/5IA50Sp9gO3ST90sdbeYX4kHV+TfN0eL+6trjKJRVR9XCnB0Hbc+CKY7
+         GBD39EIY3MbwLuJenMkeJjPwen0aZ2eV8wRt8BHEPa/9+iGyw0dp4D6m0aGfRuMuxmCS
+         4zdJ1Sv9niHZSB6FS8Fczwqlg35C/Q4uVbb5d0qBphswjwIgY+MMWaB+lszIn1vjAetS
+         l2WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701252997; x=1701857797;
+        d=1e100.net; s=20230601; t=1701253158; x=1701857958;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mtc4c0Qc+Eu0vsDQ9fqBtQVu0ExHjq28ELJTpnawBxM=;
-        b=SYCfC+XlmWiV2NS0ZG0Y+inGpVW56M6b9t1CK1Yp932IxqagYbh/ULcYjHKr9fJGL9
-         CgBVYl29b0V11c15OkPWRjrdXv3LoHKODVEWvrvvkm5R1U4iTsA2iApKh5zpoLqJotvi
-         v0lwNmjnb1GJ6RkVtBUmPf92eG/FI+cBts7jJ8+/wRPto5VeZ/I8VIN7/J+KQU0kvVlL
-         pQMv8WxBQ9E4GFujnuGERtxq5eh5EWa5ZCI6lihfbXYT7+whJUirWoPL4gMw+iIJyUsc
-         8nSlg9UbVCB19YBn3wknz+Ti3/UXTRXbeaWVJ7FcnxvATTlBVppyUKCq7i1io8z22coA
-         xaNw==
-X-Gm-Message-State: AOJu0YwWhXcn5QALIl0HeacOYPL9xGRothIqBrGUi6EbQ1bJ5Y2gdq98
-	ERa8LU5LyMnc4SYFgq/UUJcKxw==
-X-Google-Smtp-Source: AGHT+IGu/8SPkF/vFZGrEhiHZ4PgqS2y+L0isIf4cuQ2LgVvEv7goCfc9sLO+3AtcNQJ40HNnSWJnQ==
-X-Received: by 2002:aa7:d8d8:0:b0:54b:346d:cf00 with SMTP id k24-20020aa7d8d8000000b0054b346dcf00mr11346439eds.18.1701252996881;
-        Wed, 29 Nov 2023 02:16:36 -0800 (PST)
+        bh=ZgUs8TNBWSvX+Jw36S2+v7tW/A1ICX2uch1ZvXrvqmc=;
+        b=svlSQ330uaB9nVw+xVEDc9il7imdlCFU1PdPQszCSxmYGZKBB5VGJyWN29+JfvBMg5
+         4FJY47h3vuEsSGZLX1WwDnVxY2nlf6xoJopgK5te8QbnMVxZZkGTXm6I/beNvws+Yv4B
+         b9Fu6Pne7cIs+xShUfZJHMLkeMfphgLL87EIkMomPbF6pn/mO/PkRBhp5n0t1VQ/FAN3
+         n/ahXzTzVIJltB6M9M+3KNskJP3F7yX1g1Z2oZr4OXOBru82rmF0RZHOCnwMym3WiKZ/
+         MYyfX6d2XufWxZOW1ocOWxNeCBCgRrrHYbQVOQWl8y3XLld5b7BGqQi86zuIcNpyGfnJ
+         QVTw==
+X-Gm-Message-State: AOJu0YwTAw2KAR9Y4tZfzyb3PEw6Oy1H3h6dfO7sTNwssQTnhDAh2DV3
+	KFPw8/pogRRyJRY4DfJZ7tYEqw==
+X-Google-Smtp-Source: AGHT+IGGNLDD1SmsCmB/BOBGu2q2gM5rjZKR//wWsqBvJ2rQtIypG4PZ6unz3UPYelxpx5vp9P483g==
+X-Received: by 2002:a50:cdda:0:b0:54b:1ca8:8520 with SMTP id h26-20020a50cdda000000b0054b1ca88520mr12005347edj.1.1701253158492;
+        Wed, 29 Nov 2023 02:19:18 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id c21-20020a056402101500b0053e5f67d637sm7175580edu.9.2023.11.29.02.16.34
+        by smtp.gmail.com with ESMTPSA id j18-20020a508a92000000b0054bbfe0c5fcsm1064282edj.94.2023.11.29.02.19.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Nov 2023 02:16:36 -0800 (PST)
-Message-ID: <b606b44d-6b2f-4b0f-912d-b73847073616@linaro.org>
-Date: Wed, 29 Nov 2023 11:16:34 +0100
+        Wed, 29 Nov 2023 02:19:17 -0800 (PST)
+Message-ID: <46f30852-4824-45b3-bf01-4a4a5ff2cff7@linaro.org>
+Date: Wed, 29 Nov 2023 11:19:15 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v3] docs: dt-bindings: add DTS Coding Style document
 Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>
+To: Francesco Dolcini <francesco@dolcini.it>
 Cc: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
@@ -90,7 +90,7 @@ Cc: Rob Herring <robh+dt@kernel.org>,
  linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
  workflows@vger.kernel.org, linux-doc@vger.kernel.org
 References: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
- <CAMuHMdUYEwMuxJ2Xx=KRVKneRT-e+uHz8LE1JVY5zLDkWksqKw@mail.gmail.com>
+ <ZWboWqELHbIrblnz@francesco-nb.int.toradex.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,10 +136,10 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAMuHMdUYEwMuxJ2Xx=KRVKneRT-e+uHz8LE1JVY5zLDkWksqKw@mail.gmail.com>
+In-Reply-To: <ZWboWqELHbIrblnz@francesco-nb.int.toradex.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231129_021638_486304_3A385A4E 
-X-CRM114-Status: GOOD (  18.10  )
+X-CRM114-CacheID: sfid-20231129_021919_967955_222A209D 
+X-CRM114-Status: GOOD (  20.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -156,85 +156,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 27/11/2023 15:19, Geert Uytterhoeven wrote:
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/dts-coding-style.rst
+On 29/11/2023 08:29, Francesco Dolcini wrote:
+> On Sat, Nov 25, 2023 at 07:44:22PM +0100, Krzysztof Kozlowski wrote:
+>> Document preferred coding style for Devicetree sources (DTS and DTSI),
+>> to bring consistency among all (sub)architectures and ease in reviews.
 > 
->> +       /* SoC DTSI */
+> Thank Krzysztof, we had most of this collected as BKM in some internal
+> documents and it's great to see the effort to consolidate this and add
+> it to the kernel documentation.
+> 
+>> ---
+>> +Following order of properties in device nodes is preferred:
 >> +
->> +       / {
->> +               cpus {
->> +                       /* ... */
->> +               };
->> +
->> +               psci {
->> +                       /* ... */
->> +               };
->> +
->> +               soc@ {
+>> +1. compatible
+>> +2. reg
+>> +3. ranges
+>> +4. Standard/common properties (defined by common bindings, e.g. without
+>> +   vendor-prefixes)
+>> +5. Vendor-specific properties
+>> +6. status (if applicable)
+>> +7. Child nodes, where each node is preceded with a blank line
 > 
-> "soc@" is invalid, that should be "soc".
+> On point 4, do you have a more explicit way to define what is an actual
+> standard/common property? You mention the vendor-prefixes as an example,
+> is this just an example or this is the whole definition?
 
-soc@0 is valid.
+The actual definition is: defined by common bindings, which are:
+meta-schemas and schemas in dtschema, and common bindings per subsystem
+(e.g. leds/common.yaml).
 
-> 
-> As the "soc" node is special, you may want to elaborate:
-> 
->                 compatible = "simple-bus";
->                 #address-cells = <1>;
->                 #size-cells = <1>;
->                 ranges;
-
-but then we go to missing address/size cells in root node. Your comment
-is in general correct, but what you propose here is not a coding style,
-but DTS correctness and I only wanted to show the order of nodes. dtc
-already enforces the proper unit addresses, ranges and cells.
+Lack of vendor-prefix is I think 99% accurate in this matter, but there
+are some "linux," ones.
 
 > 
->> +                       dma: dma-controller@10000 {
->> +                               /* ... */
->> +                       };
->> +
->> +                       clk: clock-controller@80000 {
->> +                               /* ... */
->> +                       };
->> +               };
->> +       };
->> +
->> +       /* Board DTS - alphabetical order */
->> +
->> +       &clk {
->> +               /* ... */
->> +       };
->> +
->> +       &dma {
->> +               /* ... */
->> +       };
->> +
->> +       /* Board DTS - alternative order, keep as DTSI */
->> +
->> +       &dma {
->> +               /* ... */
->> +       };
->> +
->> +       &clk {
->> +               /* ... */
->> +       };
+> What would be the order for this for example (from an existing DTS file)?
 > 
-> IMO that alternative order is hard to review: you need to have multiple
-> files open.  It will also make validation hard, as you can only validate
-> the end result, not individual files.
+> 	reg_sdhc1_vmmc: regulator-sdhci1 {
+> 		compatible = "regulator-fixed";
+> 		pinctrl-names = "default";
+> 		pinctrl-0 = <&pinctrl_sd1_pwr_en>;
+> 		enable-active-high;
+> 		gpio = <&main_gpio0 29 GPIO_ACTIVE_HIGH>;
+> 		off-on-delay-us = <100000>;
+> 		regulator-max-microvolt = <3300000>;
+> 		regulator-min-microvolt = <3300000>;
+> 		regulator-name = "+V3.3_SD";
+> 		startup-delay-us = <2000>;
+> 	};
+> 
+> I guess the point that is not obvious to me here is where do we want
+> pinctrl. I like it at position between 3 and 4, the rationale is that is
+> a very frequent property and this way it will be in a similar place for
+> every node.
 
-Rob commented on this - tools (will) solve the issue. :)
 
-> 
-> Anyway, this is already quite usable so
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
+Order here is correct but all of them are generic properties, thus this
+coding style does not define ordering within.
 
 Best regards,
 Krzysztof
