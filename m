@@ -4,66 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3017AC4167B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Nov 2023 07:30:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B006C07E97
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Nov 2023 08:48:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fgTrVd/PexggrjEqXq7zPLGjKsrBvS8GRdq6cjVzYWc=; b=L1TrStuV4ic5eq
-	x7HbV5mxKRc/xWgXchWC7p34wNewxzUGjO6mh15+u05h4HtYEOhFgGrfPyKKMNhY/c6eA4ln9+Omb
-	mXX9O7TngyFFqczweXDSNQWiGb2i1Y3LRedOx+OmJtBPHM3woco/PTbzFkAiHG2r0NP+wlV4Y0bU2
-	Fvd1TFO3CAQ2Od0AP4F0sFJwvv3eVnJu5YzZTeC5+f71o/k2MJJGfRPcbXEZQzmAPKTh9oui8XMPj
-	40tRXXIVT2CrlVq/SoqfVWnYRC7OowNPQgu1Ncauv89T/YZXGGlU9H9yMrKrpV1tBMKoEYXazRWYg
-	fLw0peN8ocvpFo8neL7w==;
+	List-Owner; bh=vyIwvTF9ug/PDfI8T6Z7xsBgt9Ph0YiDyHVPozWhK8M=; b=1JxTF5/wbo0ihq
+	bWw8f4oBTy4ebSqT5UVfMDMdvRvWBGqI1FUNlUWrDvPBMzcu8Wfm1YcL+XOnuzWLXM3NDnLZpFaP3
+	Gfw4KW1vtil1MiTGKqhGQiQYkDdNCI3Xkz/xVo5asVcsJiOx6gwCz6hPvB373wPIA8uF0Hm7QH9xI
+	fYQuvnYZg3jOv8BSI34BKfNI0zqZ3WGydeMCGmrx+Xgn3h+3RxyOsAJ/1mRJcA52vnxvZFKV0tyRn
+	0bM26KMpdzbs6TcyApKrabYD74WnVB4TWNOXFT8UN9Z3RV/a8i5smQ2UMNNqbYy/5wPGXbi3ene6Z
+	30TttjwT9R3EbEUqezSQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r8F14-007M7B-0J;
-	Wed, 29 Nov 2023 07:29:50 +0000
-Received: from mail11.truemail.it ([217.194.8.81])
+	id 1r8GEj-007WN9-3B;
+	Wed, 29 Nov 2023 08:48:02 +0000
+Received: from mail-yb1-f170.google.com ([209.85.219.170])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r8F10-007M4o-02;
-	Wed, 29 Nov 2023 07:29:49 +0000
-Received: from francesco-nb.int.toradex.com (31-10-206-125.static.upc.ch [31.10.206.125])
-	by mail11.truemail.it (Postfix) with ESMTPA id 3023420395;
-	Wed, 29 Nov 2023 08:29:36 +0100 (CET)
-Date: Wed, 29 Nov 2023 08:29:30 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>,
-	Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Heiko Stuebner <heiko@sntech.de>, Jonathan Corbet <corbet@lwn.net>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-	linux-rockchip@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	workflows@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3] docs: dt-bindings: add DTS Coding Style document
-Message-ID: <ZWboWqELHbIrblnz@francesco-nb.int.toradex.com>
-References: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
+	id 1r8GEf-007WLX-0u;
+	Wed, 29 Nov 2023 08:47:58 +0000
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-db49ab94768so3541010276.2;
+        Wed, 29 Nov 2023 00:47:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701247675; x=1701852475;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mLerLul424y9KF+UL/6zr3ivEhD1RgHSR/3xjytvLS8=;
+        b=YlTwkseC+ErGqKC+70PPJ0NOeVh68NzCW/47ZwuYNJQ7m/TqXgEg0vJy96T00FYu+5
+         TL5UnBaKSI7PV9x9t/siFq4ZK1Pe78aEwOnMXuBsaPlwolSfd3HFCj1GTflAHyaP9o1j
+         lZN0cg2Ll0xYgPp8udzYob8G/Y6kdDqoSCrgu5bqWuMhQPEO2C86857QyZJIGysoE/oY
+         IzAeihEk7Z9v4vrbHc69Y8VzS7gRNqO+NDIHokJRXL7x8/vGXSXgJiCkVz9qf/GZm1iY
+         5Kyf0/fzB6yCcNodtsavYEEYVoAn7FI1pkbRT8ZQLxCzqiT+SCQSKvFL1AYAW6d5SiPm
+         gJIg==
+X-Gm-Message-State: AOJu0YwWvX9vJm7jXO3FepECfKjU3o9tNFlNmLGkZvcfeQxYsfzg9zhi
+	ZWJXSzW8mmY87tgTvvmbAQWLjMZsQgHpvg==
+X-Google-Smtp-Source: AGHT+IHQbh2MXWmQFsE80rDz7IplsF+cRL4zHkgLE7MUjILC4McTBQcuwDU/ogQreY/evE8BO2f5Wg==
+X-Received: by 2002:a25:d54:0:b0:daf:11cd:d54a with SMTP id 81-20020a250d54000000b00daf11cdd54amr16402099ybn.36.1701247674801;
+        Wed, 29 Nov 2023 00:47:54 -0800 (PST)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id n1-20020a254001000000b00d9a577d8434sm4096461yba.53.2023.11.29.00.47.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Nov 2023 00:47:54 -0800 (PST)
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dae0ab8ac3eso5797200276.0;
+        Wed, 29 Nov 2023 00:47:54 -0800 (PST)
+X-Received: by 2002:a25:3d1:0:b0:db4:47e1:407d with SMTP id
+ 200-20020a2503d1000000b00db447e1407dmr16074846ybd.60.1701247673674; Wed, 29
+ Nov 2023 00:47:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
+References: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org> <ZWboWqELHbIrblnz@francesco-nb.int.toradex.com>
+In-Reply-To: <ZWboWqELHbIrblnz@francesco-nb.int.toradex.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 29 Nov 2023 09:47:42 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVSAgihFAuPecyrR+Wvzqr58z_fkWkShOSu+HnHzZnW2g@mail.gmail.com>
+Message-ID: <CAMuHMdVSAgihFAuPecyrR+Wvzqr58z_fkWkShOSu+HnHzZnW2g@mail.gmail.com>
+Subject: Re: [PATCH v3] docs: dt-bindings: add DTS Coding Style document
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, 
+	Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>, 
+	Chen-Yu Tsai <wens@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Jonathan Corbet <corbet@lwn.net>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Michal Simek <michal.simek@amd.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>, 
+	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>, 
+	linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+	workflows@vger.kernel.org, linux-doc@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231128_232946_234248_138131BD 
-X-CRM114-Status: GOOD (  13.83  )
+X-CRM114-CacheID: sfid-20231129_004757_323339_47261C48 
+X-CRM114-Status: GOOD (  29.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,59 +92,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, Nov 25, 2023 at 07:44:22PM +0100, Krzysztof Kozlowski wrote:
-> Document preferred coding style for Devicetree sources (DTS and DTSI),
-> to bring consistency among all (sub)architectures and ease in reviews.
-
-Thank Krzysztof, we had most of this collected as BKM in some internal
-documents and it's great to see the effort to consolidate this and add
-it to the kernel documentation.
-
-> ---
-> +Following order of properties in device nodes is preferred:
-> +
-> +1. compatible
-> +2. reg
-> +3. ranges
-> +4. Standard/common properties (defined by common bindings, e.g. without
-> +   vendor-prefixes)
-> +5. Vendor-specific properties
-> +6. status (if applicable)
-> +7. Child nodes, where each node is preceded with a blank line
-
-On point 4, do you have a more explicit way to define what is an actual
-standard/common property? You mention the vendor-prefixes as an example,
-is this just an example or this is the whole definition?
-
-What would be the order for this for example (from an existing DTS file)?
-
-	reg_sdhc1_vmmc: regulator-sdhci1 {
-		compatible = "regulator-fixed";
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_sd1_pwr_en>;
-		enable-active-high;
-		gpio = <&main_gpio0 29 GPIO_ACTIVE_HIGH>;
-		off-on-delay-us = <100000>;
-		regulator-max-microvolt = <3300000>;
-		regulator-min-microvolt = <3300000>;
-		regulator-name = "+V3.3_SD";
-		startup-delay-us = <2000>;
-	};
-
-I guess the point that is not obvious to me here is where do we want
-pinctrl. I like it at position between 3 and 4, the rationale is that is
-a very frequent property and this way it will be in a similar place for
-every node.
-
-Francesco
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgRnJhbmNlc2NvLAoKT24gV2VkLCBOb3YgMjksIDIwMjMgYXQgODoyOeKAr0FNIEZyYW5jZXNj
+byBEb2xjaW5pIDxmcmFuY2VzY29AZG9sY2luaS5pdD4gd3JvdGU6Cj4gT24gU2F0LCBOb3YgMjUs
+IDIwMjMgYXQgMDc6NDQ6MjJQTSArMDEwMCwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToKPiA+
+IERvY3VtZW50IHByZWZlcnJlZCBjb2Rpbmcgc3R5bGUgZm9yIERldmljZXRyZWUgc291cmNlcyAo
+RFRTIGFuZCBEVFNJKSwKPiA+IHRvIGJyaW5nIGNvbnNpc3RlbmN5IGFtb25nIGFsbCAoc3ViKWFy
+Y2hpdGVjdHVyZXMgYW5kIGVhc2UgaW4gcmV2aWV3cy4KPgo+IFRoYW5rIEtyenlzenRvZiwgd2Ug
+aGFkIG1vc3Qgb2YgdGhpcyBjb2xsZWN0ZWQgYXMgQktNIGluIHNvbWUgaW50ZXJuYWwKPiBkb2N1
+bWVudHMgYW5kIGl0J3MgZ3JlYXQgdG8gc2VlIHRoZSBlZmZvcnQgdG8gY29uc29saWRhdGUgdGhp
+cyBhbmQgYWRkCj4gaXQgdG8gdGhlIGtlcm5lbCBkb2N1bWVudGF0aW9uLgo+Cj4gPiAtLS0KPiA+
+ICtGb2xsb3dpbmcgb3JkZXIgb2YgcHJvcGVydGllcyBpbiBkZXZpY2Ugbm9kZXMgaXMgcHJlZmVy
+cmVkOgo+ID4gKwo+ID4gKzEuIGNvbXBhdGlibGUKPiA+ICsyLiByZWcKPiA+ICszLiByYW5nZXMK
+PiA+ICs0LiBTdGFuZGFyZC9jb21tb24gcHJvcGVydGllcyAoZGVmaW5lZCBieSBjb21tb24gYmlu
+ZGluZ3MsIGUuZy4gd2l0aG91dAo+ID4gKyAgIHZlbmRvci1wcmVmaXhlcykKPiA+ICs1LiBWZW5k
+b3Itc3BlY2lmaWMgcHJvcGVydGllcwo+ID4gKzYuIHN0YXR1cyAoaWYgYXBwbGljYWJsZSkKPiA+
+ICs3LiBDaGlsZCBub2Rlcywgd2hlcmUgZWFjaCBub2RlIGlzIHByZWNlZGVkIHdpdGggYSBibGFu
+ayBsaW5lCj4KPiBPbiBwb2ludCA0LCBkbyB5b3UgaGF2ZSBhIG1vcmUgZXhwbGljaXQgd2F5IHRv
+IGRlZmluZSB3aGF0IGlzIGFuIGFjdHVhbAo+IHN0YW5kYXJkL2NvbW1vbiBwcm9wZXJ0eT8gWW91
+IG1lbnRpb24gdGhlIHZlbmRvci1wcmVmaXhlcyBhcyBhbiBleGFtcGxlLAo+IGlzIHRoaXMganVz
+dCBhbiBleGFtcGxlIG9yIHRoaXMgaXMgdGhlIHdob2xlIGRlZmluaXRpb24/CgpJIHRoaW5rIHRo
+ZXJlIGFyZSB0aHJlZSBjbGFzc2VzIG9mIHN0YW5kYXJkIHByb3BlcnRpZXM6CiAgMS4gRGV2aWNl
+IFRyZWUgU3BlY2lmaWNhdGlvbiAoZnJvbSBkZXZpY2V0cmVlLm9yZykKICAyLiBkdC1zY2hlbWEK
+ICAzLiBDb21tb24gc3Vic3lzdGVtIGJpbmRpbmdzIChEb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3MvKQogICAgIChtYXkgYmUgbW92ZWQgdG8gMikuCgo+IFdoYXQgd291bGQgYmUgdGhl
+IG9yZGVyIGZvciB0aGlzIGZvciBleGFtcGxlIChmcm9tIGFuIGV4aXN0aW5nIERUUyBmaWxlKT8K
+Pgo+ICAgICAgICAgcmVnX3NkaGMxX3ZtbWM6IHJlZ3VsYXRvci1zZGhjaTEgewo+ICAgICAgICAg
+ICAgICAgICBjb21wYXRpYmxlID0gInJlZ3VsYXRvci1maXhlZCI7Cj4gICAgICAgICAgICAgICAg
+IHBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7Cj4gICAgICAgICAgICAgICAgIHBpbmN0cmwtMCA9
+IDwmcGluY3RybF9zZDFfcHdyX2VuPjsKPiAgICAgICAgICAgICAgICAgZW5hYmxlLWFjdGl2ZS1o
+aWdoOwo+ICAgICAgICAgICAgICAgICBncGlvID0gPCZtYWluX2dwaW8wIDI5IEdQSU9fQUNUSVZF
+X0hJR0g+Owo+ICAgICAgICAgICAgICAgICBvZmYtb24tZGVsYXktdXMgPSA8MTAwMDAwPjsKPiAg
+ICAgICAgICAgICAgICAgcmVndWxhdG9yLW1heC1taWNyb3ZvbHQgPSA8MzMwMDAwMD47Cj4gICAg
+ICAgICAgICAgICAgIHJlZ3VsYXRvci1taW4tbWljcm92b2x0ID0gPDMzMDAwMDA+Owo+ICAgICAg
+ICAgICAgICAgICByZWd1bGF0b3ItbmFtZSA9ICIrVjMuM19TRCI7Cj4gICAgICAgICAgICAgICAg
+IHN0YXJ0dXAtZGVsYXktdXMgPSA8MjAwMD47Cj4gICAgICAgICB9Owo+Cj4gSSBndWVzcyB0aGUg
+cG9pbnQgdGhhdCBpcyBub3Qgb2J2aW91cyB0byBtZSBoZXJlIGlzIHdoZXJlIGRvIHdlIHdhbnQK
+PiBwaW5jdHJsLiBJIGxpa2UgaXQgYXQgcG9zaXRpb24gYmV0d2VlbiAzIGFuZCA0LCB0aGUgcmF0
+aW9uYWxlIGlzIHRoYXQgaXMKPiBhIHZlcnkgZnJlcXVlbnQgcHJvcGVydHkgYW5kIHRoaXMgd2F5
+IGl0IHdpbGwgYmUgaW4gYSBzaW1pbGFyIHBsYWNlIGZvcgo+IGV2ZXJ5IG5vZGUuCgpUaGUgcGlu
+Y3RybCBwcm9wZXJ0aWVzIGFyZSBvbmx5IHByZXNlbnQgaW4gYm9hcmQgRFRTIGZpbGVzLCBub3Qg
+aW4KU29DIERUU2kgZmlsZXMuICBUaGVyZSBhcmUgdHdvIGNsYXNzZXMgb2YgdGhlbToKICAxLiBF
+eHRlbnNpb24gb2Ygb24tU29DIGRldmljZXMsIHdoZXJlIHRoZXkgYXJlIGFkZGVkIHRvIGFscmVh
+ZHkKICAgICBleGlzdGluZyBub2RlcywgZGVmaW5lZCBpbiB0aGUgU29DIERUU2kgZmlsZXMsIGUu
+Zy4gKGZyb20gdGhlIHNhbWUKICAgICBleGlzdGluZyBEVFMgZmlsZSk6CgogICAgICAgICAmY3Bz
+dzNnIHsKICAgICAgICAgICAgICAgICBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOwogICAgICAg
+ICAgICAgICAgIHBpbmN0cmwtMCA9IDwmcGluY3RybF9yZ21paTE+OwogICAgICAgICAgICAgICAg
+IHN0YXR1cyA9ICJkaXNhYmxlZCI7CiAgICAgICAgIH07CgogIDIuIFB1cmUgYm9hcmQgZGV2aWNl
+cywgaW4gbmV3IG5vZGVzIChlLmcuIHlvdXIgcmVndWxhdG9yIGV4YW1wbGUpLgogICAgIFRoZXNl
+IGFyZSBsZXNzIGNvbW1vbiwgc28gSSBkb24ndCBldmVuIGtub3cgZnJvbSB0aGUgdG9wIG9mIG15
+CiAgICAgbWluZCB3aGVuIEkgbGFzdCBhZGRlZCBvbmUsIGFuZCB3aGVyZSA7LSkKICAgICBJJ2Qg
+Z3Vlc3MgYWZ0ZXIgYWxsIHN0YW5kYXJkIHByb3BlcnRpZXM/CgpHcntvZXRqZSxlZXRpbmd9cywK
+CiAgICAgICAgICAgICAgICAgICAgICAgIEdlZXJ0CgotLSAKR2VlcnQgVXl0dGVyaG9ldmVuIC0t
+IFRoZXJlJ3MgbG90cyBvZiBMaW51eCBiZXlvbmQgaWEzMiAtLSBnZWVydEBsaW51eC1tNjhrLm9y
+ZwoKSW4gcGVyc29uYWwgY29udmVyc2F0aW9ucyB3aXRoIHRlY2huaWNhbCBwZW9wbGUsIEkgY2Fs
+bCBteXNlbGYgYSBoYWNrZXIuIEJ1dAp3aGVuIEknbSB0YWxraW5nIHRvIGpvdXJuYWxpc3RzIEkg
+anVzdCBzYXkgInByb2dyYW1tZXIiIG9yIHNvbWV0aGluZyBsaWtlIHRoYXQuCiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgLS0gTGludXMgVG9ydmFsZHMKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
+CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
