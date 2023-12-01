@@ -4,77 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35933C4167B
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Dec 2023 16:46:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00391C4167B
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Dec 2023 18:08:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=z0q7JNBn2XfexwQOYUGv788LJR4iTVJrwvHUpP4cxp0=; b=irE4GuMtuvWWnf/AB+MAJCXY9E
-	is6w8ai/gUMR+wIaS3jWViXA65ffwxkDbYyPOdRNBxtEvNgTXaFDB38Is31EWeb1f0vUxTuLA6CBl
-	q/P/kfqyO+ibvJRCi69uM1LDAfdztKVquSVseGuFBSNK0WCf+ul+hzzbVLb3o26YaAGb7hqM7mKt/
-	xlXmM+eIKNPQQFREDP9qXqeyK2MF0cc28pZNW6Re/P206Ir6gpxQP1LdzBsdvLYB7G7tRNlxIZEdr
-	+cwTZ8GkLo7Dkp4H9vnDJ0Dut8cgeR5dRYPqZ0bUTnlLRMSsw79IHCBN4VoCNE+fZR2Dt0ibNMcM8
-	e5NXK2Hw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=srtW8ATJ8I1R2NGWsHiPpwOcznvhFEU1EcOIYrxklU8=; b=jo7dJmy+n5vbo8
+	psaZtVr2M+tnZlzvdqe4oU47wfuLdasXnJl6JqIraN6rbKnWgoJoWx+zdB4vmLGLp88k78UnD7+ym
+	NzOzj7AcdOCZBVmfuNiQb7N10ycLz6oW/B4Hj37wQkESfuM7jNLQShSia4DKoOJ5W6N+21WwgW95f
+	r7i4PxbzGbtVl3gTMbDokGmXjm7OmHKBYTz2ujCjOk09gIsyiObT/ia32NqmBiCYrPGoYOKsc9pto
+	AtbulD7CGV4RWuxG1/V1dAzzGDTD3C7scK0JK/ENiOqgpr0OCubZwyZPoQC9EdNagsSwQ/2tdc2vS
+	LiXM0MbJOYgnr0MoqXcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r96em-00EF7s-1M;
-	Fri, 01 Dec 2023 16:46:24 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1r97wE-00EOej-0V;
+	Fri, 01 Dec 2023 18:08:30 +0000
+Received: from frasgout.his.huawei.com ([185.176.79.56])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r96eh-00EF5X-2n;
-	Fri, 01 Dec 2023 16:46:22 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id 89528B84806;
-	Fri,  1 Dec 2023 16:46:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48D10C433C9;
-	Fri,  1 Dec 2023 16:46:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701449177;
-	bh=LFxpOweV7KVhHEesZpu+S1zzkJsuWf07I3KrLAutqs8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GqkLVWvE/Dk4oW6RsREi2JzmNu2WivSa24e+YqDv01BLNe8eoLZDQjCrMDPRHBHF1
-	 Jii8aN5YItrcg7bA7JLNwLNT7B1F36xrV1lTG++opE+eW2yQz0IyV/kxTjtdWe6uKl
-	 spmKDScf9fbukaDmt3BQXmuhsOjrOhRu939AKtI7l1vl8bfYQ2yvW+0bPj/v7Atvl6
-	 mZYCT5WpQ8iPjNeX7ENlYjz4S0rZFGhnuh2gEr71DfpSJQM1af1s0gfv+waNnG47Fh
-	 j8kC4t5PbGm8QvtaKSw1vqZJFw5O0UDXbjxPl1iufsqn7y5vQOykysZWCpLftzWpma
-	 68wXM0zVIan1Q==
-Date: Fri, 1 Dec 2023 16:46:09 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>,
-	Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Heiko Stuebner <heiko@sntech.de>, Jonathan Corbet <corbet@lwn.net>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-	linux-rockchip@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	workflows@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3] docs: dt-bindings: add DTS Coding Style document
-Message-ID: <20231201-thrive-gully-5260ab07b352@spud>
-References: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
+	id 1r97wA-00EOdZ-2F;
+	Fri, 01 Dec 2023 18:08:29 +0000
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4ShgyW1Yp3z6J9rV;
+	Sat,  2 Dec 2023 02:07:47 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 168131401E0;
+	Sat,  2 Dec 2023 02:08:13 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 1 Dec
+ 2023 18:08:12 +0000
+Date: Fri, 1 Dec 2023 18:08:11 +0000
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: George Stark <gnstark@salutedevices.com>
+CC: Jonathan Cameron <jic23@kernel.org>, <lars@metafoo.de>,
+	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <andriy.shevchenko@linux.intel.com>,
+	<nuno.sa@analog.com>, <u.kleine-koenig@pengutronix.de>,
+	<linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<kernel@salutedevices.com>
+Subject: Re: [PATCH v2 1/1] iio: adc: meson: add separate config for axg SoC
+ family
+Message-ID: <20231201180811.00002783@Huawei.com>
+In-Reply-To: <ca18c346-94f3-4c4c-a540-57509b879b04@salutedevices.com>
+References: <20231122074741.154228-1-gnstark@salutedevices.com>
+	<20231125172508.2a2242bf@jic23-huawei>
+	<ca18c346-94f3-4c4c-a540-57509b879b04@salutedevices.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 MIME-Version: 1.0
-In-Reply-To: <20231125184422.12315-1-krzysztof.kozlowski@linaro.org>
+X-Originating-IP: [10.202.227.76]
+X-ClientProxiedBy: lhrpeml100003.china.huawei.com (7.191.160.210) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231201_084620_089641_1CA7F7B5 
-X-CRM114-Status: GOOD (  10.17  )
+X-CRM114-CacheID: sfid-20231201_100827_039846_BD851E4A 
+X-CRM114-Status: GOOD (  22.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,68 +73,91 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2149528413537848859=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Mon, 27 Nov 2023 22:17:33 +0300
+George Stark <gnstark@salutedevices.com> wrote:
 
---===============2149528413537848859==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="MfDi0fzK8bz3SQxU"
-Content-Disposition: inline
+> Hello Jonathan
+> 
+> Thanks for the review.
+> 
+> On 11/25/23 20:25, Jonathan Cameron wrote:
+> > On Wed, 22 Nov 2023 10:47:41 +0300
+> > George Stark <gnstark@salutedevices.com> wrote:
+> >   
+> >> According to Amlogic custom kernels ADC of axg SoC family has
+> >> vref_select and requires this setting to work nominally and thus
+> >> needs a separate config.
+> >>
+> >> Signed-off-by: George Stark <gnstark@salutedevices.com>
+> >> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>  
+> > 
+> > Is this a fix?  If so, please provide a fixes tag.  
+> Actually yes, these changes could be done in the patch that introduced
+> new configuration parameters.
+> 
+> > Or is it aligning with the vendor kernels and we don't know if
+> > it's strictly necessary or not?  
+> I do know it's necessary if we want kernel driver to be independent from 
+> ADC initialization in vendor u-boot code. I have Amlogic a113x device 
+> (axg family) and can provide test results w and w/o this patch.
 
+Definitely best to not rely on firmware. 
 
---MfDi0fzK8bz3SQxU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+So send a Fixes tag for this and I'll apply it as a fix
+(you get to figure out which patch it fixed :)
 
-On Sat, Nov 25, 2023 at 07:44:22PM +0100, Krzysztof Kozlowski wrote:
-> +Indentation
-> +-----------
-> +
-> +1. Use indentation according to :ref:`codingstyle`.
+Jonathan
 
-One thing Jonathan mentioned before to me was to drop this :ref: stuff.
-| > +:ref:`devicetree-abi` more information on the ABI.
-|=20
-| ...can just be written as "Please see
-| Documentation/devicetree/bindings/ABI.rst".  The cross-reference link
-| will be generated as expected, and readers of the plain-text docs don't
-| have to go grepping to find the reference.
-https://lore.kernel.org/all/87bki23rbx.fsf@meer.lwn.net/
+> 
+> >   
+> >> ---
+> >>   drivers/iio/adc/meson_saradc.c | 16 +++++++++++++++-
+> >>   1 file changed, 15 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+> >> index db280da9edbf..34555a85f131 100644
+> >> --- a/drivers/iio/adc/meson_saradc.c
+> >> +++ b/drivers/iio/adc/meson_saradc.c
+> >> @@ -1242,6 +1242,20 @@ static const struct meson_sar_adc_param meson_sar_adc_gxl_param = {
+> >>   	.cmv_select = 1,
+> >>   };
+> >>   
+> >> +static const struct meson_sar_adc_param meson_sar_adc_axg_param = {
+> >> +	.has_bl30_integration = true,
+> >> +	.clock_rate = 1200000,
+> >> +	.bandgap_reg = MESON_SAR_ADC_REG11,
+> >> +	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
+> >> +	.resolution = 12,
+> >> +	.disable_ring_counter = 1,
+> >> +	.has_reg11 = true,
+> >> +	.vref_volatge = 1,
+> >> +	.has_vref_select = true,
+> >> +	.vref_select = VREF_VDDA,
+> >> +	.cmv_select = 1,
+> >> +};
+> >> +
+> >>   static const struct meson_sar_adc_param meson_sar_adc_g12a_param = {
+> >>   	.has_bl30_integration = false,
+> >>   	.clock_rate = 1200000,
+> >> @@ -1286,7 +1300,7 @@ static const struct meson_sar_adc_data meson_sar_adc_gxm_data = {
+> >>   };
+> >>   
+> >>   static const struct meson_sar_adc_data meson_sar_adc_axg_data = {
+> >> -	.param = &meson_sar_adc_gxl_param,
+> >> +	.param = &meson_sar_adc_axg_param,
+> >>   	.name = "meson-axg-saradc",
+> >>   };
+> >>     
+> >   
+> 
 
-Apparently the doc generation scripting can automagically do the right
-thing here:
-https://docs.kernel.org/process/maintainer-soc.html#devicetree-abi-stability
-
-Cheers,
-Conor.
-
---MfDi0fzK8bz3SQxU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWoN0QAKCRB4tDGHoIJi
-0j9wAQDnyvYZgmaO0R7WxLXB+G3r+OjlxJNGnsVe1AuYO3IFJAD7BhbA4vqCT0nw
-+WHXQA71Ia5T1lkozqxKhBUILq7PPAw=
-=V0a1
------END PGP SIGNATURE-----
-
---MfDi0fzK8bz3SQxU--
-
-
---===============2149528413537848859==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============2149528413537848859==--
-
