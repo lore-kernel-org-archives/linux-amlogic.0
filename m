@@ -4,73 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87977C4167B
-	for <linux-amlogic@archiver.kernel.org>; Sun,  3 Dec 2023 20:26:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05EA2C46CA0
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Dec 2023 10:58:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
-	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ewMxq9XZxRuN6e1xAUN7jCZ958r1D7tzn/oei9z46wM=; b=vn7DqPrKqg2WYCdoUVYeBkK0LB
-	GlOl8ktuj9i2ro45r/HYhFgAXSIKdrJYfVgMBiY0r80C+fPV19JX/RSbukXn3vf3nBy1v2sADgw9G
-	HyIwoGJjg/BXZB0Zlr1Dtf2kQm2xwdDb+mTozeLK7p590SwziNcTrEoTfSugtnJHGYr2g25LfY4yS
-	CPcIa5gwhLBLI6wadALtj2cZo4VN199UQ2cuFHi6qBC0qxU6OcgvkNiz/nr/3BMkRX1NNFtSclg8i
-	h65L5Gz5STeICQpWmOFMTM2GfPP905DM7NPbqKL1LiOeCVZG73l8N2Wfz4maQ4FfKeFxWUT/Y2AAe
-	tTts+Ovw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=b9Hbxb4e/SVcxaH6bf6SlbbqK14/wbNbyS0iIUETMkY=; b=eBXbIapoA+u7t8
+	Ilg1KbvT0Tp1KDlcQM+MVJKmH0oa6ZLhSQwXNKVBJjOqjc/vKgbFtEH51kIADShJxMLvj9v100XCM
+	X24l4uyzoeRjt/vK0sLD/Ai2Ebu4fdme/f/Djn8+ufr+2HmnT/42QDigNg7QyiAmVt+bSwrSkocFg
+	cC3bVyigOlujKhVLs6mYnI2BGK+dVb3qvXhru+GqJm33zmejL8x2fb5GsdACOSYddbyQipOQ4LQOZ
+	izYuq8DpmOAnB7JhVJ0AiZtb55dImjZB++gfqAeRZjtcy0K86pOssoK0z0z+jt/zTFPv5vqnagnHh
+	3BDIgj+moyKhjBkNVRgw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r9t2O-002YvY-0l;
-	Sun, 03 Dec 2023 20:26:00 +0000
-Received: from mail.manjaro.org ([116.203.91.91])
+	id 1rA6e6-003boM-16;
+	Mon, 04 Dec 2023 10:57:50 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r9t2K-002Yuz-3B;
-	Sun, 03 Dec 2023 20:25:58 +0000
+	id 1rA6e1-003bmz-10;
+	Mon, 04 Dec 2023 10:57:48 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by ams.source.kernel.org (Postfix) with ESMTP id 8289CB80D9F;
+	Mon,  4 Dec 2023 10:57:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37F22C433C8;
+	Mon,  4 Dec 2023 10:57:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701687459;
+	bh=I8qqFwU/CNFBFB1RbaJ0Hz5lP25JM/DystuP6KB/gqw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ESX7vJifVGf9HThVts8MfAnPbTBy7uX0FPUy4zk3R9O4JSLCtEhVnr77mwNbTaa90
+	 B29/HPII4ljy0fbh9Tm/30J7v6lQBV9eZx2+5TNGZfRf+2kuC51tqxg471FFh7Rl1k
+	 as2/BNdKxjtFtE5VWZvz/AxPlm/uZY+F4xMg0C8j6nS8USfZ+ZHLqnkR0g5zkXuJRy
+	 MqOXTSKDjQBQ8E294Dmfd/R1Nr/etEKVcx/2t6mqYD7Jfc/YSi0xxre3ggKCBsvEmc
+	 EpGBGG9LkoH8RfrsRWWQlVls4Kr2IlAJAFQ3YOVtFzU5FWPxuw/kH+cXsTQ+700YZk
+	 IbirFw/vFBO7g==
+Date: Mon, 4 Dec 2023 10:57:30 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: George Stark <gnstark@salutedevices.com>
+Cc: <lars@metafoo.de>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+ <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+ <andriy.shevchenko@linux.intel.com>, <nuno.sa@analog.com>,
+ <u.kleine-koenig@pengutronix.de>, <linux-iio@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <linux-amlogic@lists.infradead.org>, <kernel@salutedevices.com>
+Subject: Re: [PATCH v3 1/1] iio: adc: meson: add separate config for axg SoC
+ family
+Message-ID: <20231204105730.49623b12@jic23-huawei>
+In-Reply-To: <20231127235558.71995-1-gnstark@salutedevices.com>
+References: <20231127235558.71995-1-gnstark@salutedevices.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1701635155;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mWJ+aNdDgla6aB8RfWwYvr7B5kGqGCRxqh6xKbSq2wc=;
-	b=PVR0CCV1WRc971ftwf+fTnXvVPx9DB7HXgFoRLGzcnfa4K5fnch4TEMseMxptkpcKSEKZN
-	wGstlWhvUlT0yKzlPJG/ytbfQIzn+nkyRAmIpRK+Mo7YCMKn3LaVElBpqW01N+iZWreVlo
-	U6F0t1DevvvJBTYe7uvafeYl8ebUbFjeJXzBik1Y4gCgqz/dnIpa9RsATQIMWRgV6gpfOr
-	e87Fq2YjDXArbOJscUyA6s4lZc9lGsqUlK8V4amOLod0sYbJpE3OYL3uszJpVI9tSqBTux
-	yChagRYXgjU2tWdJSaXom91KIuRMtnVDJD1L6KBb8IV1Xi3gcvuEciJ1WM7Z8w==
-Date: Sun, 03 Dec 2023 21:25:54 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, Andrew Davis <afd@ti.com>, Andrew Lunn
- <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson
- <andersson@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>, Jonathan Corbet <corbet@lwn.net>, Michal
- Simek <michal.simek@amd.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Nishanth Menon <nm@ti.com>, Olof Johansson <olof@lixom.net>,
- =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>, Heiko Stuebner
- <heiko@sntech.de>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Konrad Dybcio <konradybcio@kernel.org>, Geert Uytterhoeven
- <geert+renesas@glider.be>, linux-rockchip@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, workflows@vger.kernel.org,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH v4] docs: dt-bindings: add DTS Coding Style document
-In-Reply-To: <20231203174622.18402-1-krzysztof.kozlowski@linaro.org>
-References: <20231203174622.18402-1-krzysztof.kozlowski@linaro.org>
-Message-ID: <2223b302fc43959a61578aae9cc3a15a@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231203_122557_222282_F4B8D416 
-X-CRM114-Status: UNSURE (   9.49  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231204_025745_508472_E1DCCCDA 
+X-CRM114-Status: GOOD (  15.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,44 +71,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-> +Order of Properties in Device Node
-> +----------------------------------
-> +
-> +The following order of properties in device nodes is preferred:
-> +
-> +1. compatible
-> +2. reg
-> +3. ranges
-> +4. Standard/common properties (defined by common bindings, e.g. 
-> without
-> +   vendor-prefixes)
-> +5. Vendor-specific properties
-> +6. status (if applicable)
-> +7. Child nodes, where each node is preceded with a blank line
+On Tue, 28 Nov 2023 02:55:58 +0300
+George Stark <gnstark@salutedevices.com> wrote:
 
-Another small suggestion...  It would be good to put the property names 
-found in the list items, such as "compatible" and "status", into 
-quotation marks, to make it obvious what they are.  That way, the list 
-would also be more consistent with the property names mentioned in the 
-sentence right below.
+> According to Amlogic custom kernels ADC of axg SoC family has
+> vref_select and requires this setting to work nominally and thus
+> needs a separate config.
+> 
+> Fixes: 90c6241860bf ("iio: adc: meson: init voltage control bits")
+> Signed-off-by: George Stark <gnstark@salutedevices.com>
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Applied to the fixes-togreg branch of iio.git and marked for stable.
 
+Thanks,
+
+jonathan
+
+> ---
+>  drivers/iio/adc/meson_saradc.c | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+> index db280da9edbf..34555a85f131 100644
+> --- a/drivers/iio/adc/meson_saradc.c
+> +++ b/drivers/iio/adc/meson_saradc.c
+> @@ -1242,6 +1242,20 @@ static const struct meson_sar_adc_param meson_sar_adc_gxl_param = {
+>  	.cmv_select = 1,
+>  };
+>  
+> +static const struct meson_sar_adc_param meson_sar_adc_axg_param = {
+> +	.has_bl30_integration = true,
+> +	.clock_rate = 1200000,
+> +	.bandgap_reg = MESON_SAR_ADC_REG11,
+> +	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
+> +	.resolution = 12,
+> +	.disable_ring_counter = 1,
+> +	.has_reg11 = true,
+> +	.vref_volatge = 1,
+> +	.has_vref_select = true,
+> +	.vref_select = VREF_VDDA,
+> +	.cmv_select = 1,
+> +};
 > +
-> +The "status" property is by default "okay", thus it can be omitted.
-> +
-> +The above-described ordering follows this approach:
-> +
-> +1. Most important properties start the node: compatible then bus 
-> addressing to
-> +   match unit address.
-> +2. Each node will have common properties in similar place.
-> +3. Status is the last information to annotate that device node is or 
-> is not
-> +   finished (board resources are needed).
+>  static const struct meson_sar_adc_param meson_sar_adc_g12a_param = {
+>  	.has_bl30_integration = false,
+>  	.clock_rate = 1200000,
+> @@ -1286,7 +1300,7 @@ static const struct meson_sar_adc_data meson_sar_adc_gxm_data = {
+>  };
+>  
+>  static const struct meson_sar_adc_data meson_sar_adc_axg_data = {
+> -	.param = &meson_sar_adc_gxl_param,
+> +	.param = &meson_sar_adc_axg_param,
+>  	.name = "meson-axg-saradc",
+>  };
+>  
+
 
 _______________________________________________
 linux-amlogic mailing list
