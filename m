@@ -4,83 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D71CC10DC1
-	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Dec 2023 11:50:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8082C4167B
+	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Dec 2023 13:53:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Z8JTIyroCbOhmkby3VqsLTvi4uwYIS6TAHCUZ6Ua5q0=; b=o4ActpjOMbxtOs
-	v7y4gASeXl32UckyHmxGeTh2Nsof4qwsgb5nAZCBMclXLUfn3nBePxbgis2PwATDjnYHX1m88pveN
-	jmh8Erz8x+PAZZzGWYD513vlblva2dl9yUo1rd/QGlBvx1wYpuvYbtci3qkaOFLRj0HQHt5ZM1RDX
-	8rGlVQtks6UWempt2QLv9i+rT04ova2jkMJT71Vlr9UyrNUHtVTNGVDnSUdhKHiPhjABvPpqc4aay
-	3KPaZCJ6kdCm/pDUSrM/3xNj3HieveYbPDQY51WaLzC3DVnR5FXe7VZjUrm0ja9atGWR7Z1gtCEAo
-	f/82on/gK4LL7udXMWuQ==;
+	List-Owner; bh=g4nK9ymrVO3Ow9y7462sWKQHtglBBYmdgSyajO/uoxs=; b=qBSr7uvLYWkzQn
+	FGap8xWe8DbSyv1oFTVPWVxlj96BCOuZ+j6RqlZv8hoY6xpeGu/f0e9nH4LcYA40iupXCU8pCS5dM
+	U8/Rqxr4qSi9yQjpUT30VfKgep13PfNuNdMZ+9QKq/Dn7unBNJzfBYIqbssqRqJZ1gAKxaZ4uMKPw
+	hspEk4YLHO0FSJcBi5C5XhHkNv+8lugQF2VsCFOuYd55pH2Vi1xqjJH5DfqWHaMwh6MybVV8IIbE2
+	2+zMqgxK2IIQpgR3bMmeVM2+EJi1Wxkx02JdNLXCNb8KIiM2sc+4CLqmPm6cVFyiJZEwxCIY666ZV
+	7eDu1v+5fI4VVUjFyo/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rAqPw-00A7rb-0n;
-	Wed, 06 Dec 2023 11:50:16 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1rAsL0-00AQjv-1J;
+	Wed, 06 Dec 2023 13:53:18 +0000
+Received: from mail-oi1-f178.google.com ([209.85.167.178])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rAqOU-00A6Nl-1w
-	for linux-amlogic@bombadil.infradead.org;
-	Wed, 06 Dec 2023 11:48:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=c9n4SEZCVPXQQDXyLWzJg3IUU8bz3KHBhLU2vHG3sPI=; b=jK5lLccem0zbbLw4zgIBquGC+W
-	1XPHOyayDodurGDYdjaIl6sDM1xlSO+LtyQgwCWcdriOeep8w4z0+ToLdv8b+z0Y1MITYcPOmE8vy
-	6tRSXR+3O6vOFIWqAyz71fClcvYog4rWjFZ29SryrX8h6wiC6gM0u3j1M53EAEpRPQQ3U25/27jwZ
-	XHs2ZNtULsEm4v5t4gMoKVrDc4dpa/hHe/IbnlrII4tGuHuJiUaoBFeCaECi717NS1XRlobnvE7Cx
-	qW3JpS1D93u8+06/PMu0dP5fRn0obTIhYJe5QWgWxEIgjPZAKzl/Zwk/vyN7AMU3kLxd/buA0RIQF
-	HeFJa2eQ==;
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rAqOR-0059Wn-17
+	id 1rAsKw-00AQjB-2Z
 	for linux-amlogic@lists.infradead.org;
-	Wed, 06 Dec 2023 11:48:45 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rAqOJ-00075H-KE; Wed, 06 Dec 2023 12:48:35 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rAqOG-00Dww2-W1; Wed, 06 Dec 2023 12:48:33 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rAqOG-00FR1R-MZ; Wed, 06 Dec 2023 12:48:32 +0100
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: kernel@pengutronix.de,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-pwm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH v4 075/115] pwm: meson: Make use of devm_pwmchip_alloc() function
-Date: Wed,  6 Dec 2023 12:44:29 +0100
-Message-ID: <513593a5a3d4169abfdabe36de966e5095edfd3b.1701860672.git.u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <cover.1701860672.git.u.kleine-koenig@pengutronix.de>
-References: <cover.1701860672.git.u.kleine-koenig@pengutronix.de>
+	Wed, 06 Dec 2023 13:53:16 +0000
+Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3b84e328327so4107433b6e.2
+        for <linux-amlogic@lists.infradead.org>; Wed, 06 Dec 2023 05:53:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701870793; x=1702475593;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ELAnzgA5DxDxpCpfzQO17fyyUMvM5sG9LtRZSNKeVTs=;
+        b=Q+IPE8sZcasFFOl8j7tW/O0MhZ9JGti3C0EJiIZ6ycQJAQUA75iCdNENwN0Sr7JnTv
+         oZnaJhpZfAwxpLUt9CSQ3kyvdjJrLvLBy48G9z3zzwNF9j7Y2RtLf7Z9rWwXq+XRcmZy
+         yEZI7+NRBVhwCm/ahN8LbGebhamx62dR1B0dEtmqzM1AGNTExOT6HqG2AV7PZfz1tcUP
+         Zv080EtAntu2zgAMKq3PfzO8n813yt7AHC9e3MzC4jNfmF8kgeCSMKzsbmZvcrttq0Qw
+         W7x+ALhkBuo1+wC0iR0NWcKIRA3x9F+fAEDjmnM72D2ZbDhHD1Oiap2duKlmJuO93P1v
+         w47g==
+X-Gm-Message-State: AOJu0YyxYLSJaEyVZnvVJ+vFWFbXzvT31EP1etvPsP8ZavqeOBDxe4wM
+	mwT0q5iyynZvT6+spjJCnA==
+X-Google-Smtp-Source: AGHT+IEVaa/iHpBSbWcNgoXvomDJzk20fAqRd+fvaRNdmt3y7YPgh2MfstnaZSYrJPliRoSiim9bqg==
+X-Received: by 2002:a05:6808:318b:b0:3b8:b55a:84aa with SMTP id cd11-20020a056808318b00b003b8b55a84aamr1125383oib.43.1701870793491;
+        Wed, 06 Dec 2023 05:53:13 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bm19-20020a0568081a9300b003b9d36eb9c4sm65604oib.57.2023.12.06.05.53.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Dec 2023 05:53:12 -0800 (PST)
+Received: (nullmailer pid 2045482 invoked by uid 1000);
+	Wed, 06 Dec 2023 13:53:11 -0000
+Date: Wed, 6 Dec 2023 07:53:11 -0600
+From: Rob Herring <robh@kernel.org>
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, linux-amlogic@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+Message-ID: <20231206135311.GA2043711-robh@kernel.org>
+References: <20231204144429.45197-1-linux.amoon@gmail.com>
+ <20231204144429.45197-2-linux.amoon@gmail.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2613; i=u.kleine-koenig@pengutronix.de; h=from:subject:message-id; bh=Ue7uTWHXrmzSMDoSz9IIRmhParo0m7noVVdhB3JyFFM=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBlcF7vxeYCUx6b41zw71jBPl2OZ+JAcMvlG6qdo PQxFrMNnbSJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZXBe7wAKCRCPgPtYfRL+ TpQoB/9jwwrVemdukqMpPIKwElv1MMey4NJFPvPG1p0tIYmn+U/Z5Z3oV489iLR0av9F66/FnDO xbLWKh+pioz8cfA1T14ObcO+NG7FDxTIofmGuJJ7BzYf2+NMCn92IFjMHnzXbkAjo+w+lzMjeuG 3QGpJ3WakoDR3vwCcam1GShhWmR8AAUmTWh7PboEqBhVBOvrsE6nU57hsZtC3qm/NkrTKVtygtm LAu51/WUIMPiJveV6KFbstu247sEXwvNQQN1x5K0qh+ql699mwgA5/4W8L3WOUWrdIMHtstlpSP +LqUGZlG9XRJ76wm9xIOrwCHgxohWLky0FXG8FEbnbLGx15I
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+Content-Disposition: inline
+In-Reply-To: <20231204144429.45197-2-linux.amoon@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231206_114843_517889_AD96B0F2 
-X-CRM114-Status: GOOD (  16.23  )
+X-CRM114-CacheID: sfid-20231206_055314_835180_D3B89666 
+X-CRM114-Status: GOOD (  20.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,56 +78,106 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhpcyBwcmVwYXJlcyB0aGUgcHdtLW1lc29uIGRyaXZlciB0byBmdXJ0aGVyIGNoYW5nZXMgb2Yg
-dGhlIHB3bSBjb3JlCm91dGxpbmVkIGluIHRoZSBjb21taXQgaW50cm9kdWNpbmcgZGV2bV9wd21j
-aGlwX2FsbG9jKCkuIFRoZXJlIGlzIG5vCmludGVuZGVkIHNlbWFudGljYWwgY2hhbmdlIGFuZCB0
-aGUgZHJpdmVyIHNob3VsZCBiZWhhdmUgYXMgYmVmb3JlLgoKU2lnbmVkLW9mZi1ieTogVXdlIEts
-ZWluZS1Lw7ZuaWcgPHUua2xlaW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZT4KLS0tCiBkcml2ZXJz
-L3B3bS9wd20tbWVzb24uYyB8IDIxICsrKysrKysrKystLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5n
-ZWQsIDEwIGluc2VydGlvbnMoKyksIDExIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvcHdtL3B3bS1tZXNvbi5jIGIvZHJpdmVycy9wd20vcHdtLW1lc29uLmMKaW5kZXggNjQwZDZm
-ZTYzNzk5Li4xODdjZDZmMzVjY2UgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5j
-CisrKyBiL2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5jCkBAIC0xMDIsNyArMTAyLDYgQEAgc3RydWN0
-IG1lc29uX3B3bV9kYXRhIHsKIH07CiAKIHN0cnVjdCBtZXNvbl9wd20gewotCXN0cnVjdCBwd21f
-Y2hpcCBjaGlwOwogCWNvbnN0IHN0cnVjdCBtZXNvbl9wd21fZGF0YSAqZGF0YTsKIAlzdHJ1Y3Qg
-bWVzb25fcHdtX2NoYW5uZWwgY2hhbm5lbHNbTUVTT05fTlVNX1BXTVNdOwogCXZvaWQgX19pb21l
-bSAqYmFzZTsKQEAgLTExNSw3ICsxMTQsNyBAQCBzdHJ1Y3QgbWVzb25fcHdtIHsKIAogc3RhdGlj
-IGlubGluZSBzdHJ1Y3QgbWVzb25fcHdtICp0b19tZXNvbl9wd20oc3RydWN0IHB3bV9jaGlwICpj
-aGlwKQogewotCXJldHVybiBjb250YWluZXJfb2YoY2hpcCwgc3RydWN0IG1lc29uX3B3bSwgY2hp
-cCk7CisJcmV0dXJuIHB3bWNoaXBfZ2V0X2RydmRhdGEoY2hpcCk7CiB9CiAKIHN0YXRpYyBpbnQg
-bWVzb25fcHdtX3JlcXVlc3Qoc3RydWN0IHB3bV9jaGlwICpjaGlwLCBzdHJ1Y3QgcHdtX2Rldmlj
-ZSAqcHdtKQpAQCAtNDQ5LDcgKzQ0OCw3IEBAIHN0YXRpYyBpbnQgbWVzb25fcHdtX2luaXRfY2hh
-bm5lbHMoc3RydWN0IHB3bV9jaGlwICpjaGlwKQogCQltdXhfcGFyZW50X2RhdGFbaV0ubmFtZSA9
-IG1lc29uLT5kYXRhLT5wYXJlbnRfbmFtZXNbaV07CiAJfQogCi0JZm9yIChpID0gMDsgaSA8IG1l
-c29uLT5jaGlwLm5wd207IGkrKykgeworCWZvciAoaSA9IDA7IGkgPCBjaGlwLT5ucHdtOyBpKysp
-IHsKIAkJc3RydWN0IG1lc29uX3B3bV9jaGFubmVsICpjaGFubmVsID0gJm1lc29uLT5jaGFubmVs
-c1tpXTsKIAkJc3RydWN0IGNsa19wYXJlbnRfZGF0YSBkaXZfcGFyZW50ID0ge30sIGdhdGVfcGFy
-ZW50ID0ge307CiAJCXN0cnVjdCBjbGtfaW5pdF9kYXRhIGluaXQgPSB7fTsKQEAgLTUzNSwyOSAr
-NTM0LDI5IEBAIHN0YXRpYyBpbnQgbWVzb25fcHdtX2luaXRfY2hhbm5lbHMoc3RydWN0IHB3bV9j
-aGlwICpjaGlwKQogCiBzdGF0aWMgaW50IG1lc29uX3B3bV9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1f
-ZGV2aWNlICpwZGV2KQogeworCXN0cnVjdCBwd21fY2hpcCAqY2hpcDsKIAlzdHJ1Y3QgbWVzb25f
-cHdtICptZXNvbjsKIAlpbnQgZXJyOwogCi0JbWVzb24gPSBkZXZtX2t6YWxsb2MoJnBkZXYtPmRl
-diwgc2l6ZW9mKCptZXNvbiksIEdGUF9LRVJORUwpOwotCWlmICghbWVzb24pCi0JCXJldHVybiAt
-RU5PTUVNOworCWNoaXAgPSBkZXZtX3B3bWNoaXBfYWxsb2MoJnBkZXYtPmRldiwgTUVTT05fTlVN
-X1BXTVMsIHNpemVvZigqbWVzb24pKTsKKwlpZiAoSVNfRVJSKGNoaXApKQorCQlyZXR1cm4gUFRS
-X0VSUihjaGlwKTsKKwltZXNvbiA9IHRvX21lc29uX3B3bShjaGlwKTsKIAogCW1lc29uLT5iYXNl
-ID0gZGV2bV9wbGF0Zm9ybV9pb3JlbWFwX3Jlc291cmNlKHBkZXYsIDApOwogCWlmIChJU19FUlIo
-bWVzb24tPmJhc2UpKQogCQlyZXR1cm4gUFRSX0VSUihtZXNvbi0+YmFzZSk7CiAKIAlzcGluX2xv
-Y2tfaW5pdCgmbWVzb24tPmxvY2spOwotCW1lc29uLT5jaGlwLmRldiA9ICZwZGV2LT5kZXY7Ci0J
-bWVzb24tPmNoaXAub3BzID0gJm1lc29uX3B3bV9vcHM7Ci0JbWVzb24tPmNoaXAubnB3bSA9IE1F
-U09OX05VTV9QV01TOworCWNoaXAtPm9wcyA9ICZtZXNvbl9wd21fb3BzOwogCiAJbWVzb24tPmRh
-dGEgPSBvZl9kZXZpY2VfZ2V0X21hdGNoX2RhdGEoJnBkZXYtPmRldik7CiAKLQllcnIgPSBtZXNv
-bl9wd21faW5pdF9jaGFubmVscygmbWVzb24tPmNoaXApOworCWVyciA9IG1lc29uX3B3bV9pbml0
-X2NoYW5uZWxzKGNoaXApOwogCWlmIChlcnIgPCAwKQogCQlyZXR1cm4gZXJyOwogCi0JZXJyID0g
-ZGV2bV9wd21jaGlwX2FkZCgmcGRldi0+ZGV2LCAmbWVzb24tPmNoaXApOworCWVyciA9IGRldm1f
-cHdtY2hpcF9hZGQoJnBkZXYtPmRldiwgY2hpcCk7CiAJaWYgKGVyciA8IDApIHsKIAkJZGV2X2Vy
-cigmcGRldi0+ZGV2LCAiZmFpbGVkIHRvIHJlZ2lzdGVyIFBXTSBjaGlwOiAlZFxuIiwgZXJyKTsK
-IAkJcmV0dXJuIGVycjsKLS0gCjIuNDIuMAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9n
-aWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On Mon, Dec 04, 2023 at 08:14:25PM +0530, Anand Moon wrote:
+> Add the binding example for the USB3.1 Genesys Logic GL3523
+> integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> hub.
+> 
+> For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> with shared resets and power supplies, this property is used to identify
+> the hubs with which these are shared.
+> 
+> GL3523 has built-in 5V to 3.3V and 5V to 1.2V regulators, which serves
+> power to the USB HUB, it uses 5V power regulator.
+> 
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+> V6: fix the description of the regulators
+> Updated the commit message for regulator updates.
+> add reviewed by Conor Dooley
+> [1] https://lore.kernel.org/all/20231130053130.21966-2-linux.amoon@gmail.com/
+> v5: upgrade peer-hub description : Conor Dooley
+> [0] https://www.genesyslogic.com.tw/en/product_view.php?show=67 [Block Diagram]
+> v4: Fix the description of peer-hub and update the commit message.
+> Schematics of the Odroid N2+
+> https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121.pdf
+> V3: fix the dt_binding_check error, added new example for Genesys GL3523
+> v2: added Genesys GL3523 binding
+> v1: none
+> ---
+>  .../bindings/usb/genesys,gl850g.yaml          | 65 +++++++++++++++++--
+>  1 file changed, 61 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> index ee08b9c3721f..c6f63a69396d 100644
+> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+>  maintainers:
+>    - Icenowy Zheng <uwu@icenowy.me>
+>  
+> -allOf:
+> -  - $ref: usb-device.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -27,12 +24,46 @@ properties:
+>  
+>    vdd-supply:
+>      description:
+> -      the regulator that provides 3.3V core power to the hub.
+> +      The regulator that provides 3.3V or 5.0V core power to the hub.
+> +
+> +  peer-hub:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> +      with shared resets and power supplies, this property is used to identify
+> +      the hubs with which these are shared.
+>  
+>  required:
+>    - compatible
+>    - reg
+>  
+> +allOf:
+> +  - $ref: usb-device.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - usb5e3,608
+> +    then:
+> +      properties:
+> +        peer-hub: false
+> +        vdd-supply: false
+> +        reset-gpios: true
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - usb5e3,610
+> +              - usb5e3,620
+> +    then:
+> +      properties:
+> +        peer-hub: true
+> +        vdd-supply: true
+> +        reset-gpios: true
+
+No need for this if schema. The default is they are allowed.
+
+Rob
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
