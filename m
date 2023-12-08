@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CA25C10F05
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Dec 2023 17:58:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA3BAC4167B
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Dec 2023 00:25:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6Eok5o9I94+Z+EBFf4jAtC0JJfcsdEVOrcFYb02nxRM=; b=Y8Ole6K4/Cfrcw
-	v+QUm1fWrRtiWCx9nwwFeWuXiEGqOWEtxCmiNRX1j769C2ifb+9LtwB50uQVsg5FKHExPL5siM7mB
-	r1HzMP2ZZrabkyRpQQPP2NZloERhCtTnQEWtEKIk7Id46V7DtyCQY15u2t1k8bd2u4nfu2yl823nb
-	hmWybvZuqDgcxHZexjtzl4vf52yyZT1mZHyR9/Td1l60RfIBHQaTrkVilXSH/y0uFq3aKu+U/gEdj
-	s74kJOYGLDQZbeyv1ciFQgdv7aY16q9ZUQQjGdKpJ2yN2xNW0OuTsmY4fQhRYdtVLk1wV+4BysOKB
-	jwEjjxfuXcdpsfovyqKg==;
+	List-Owner; bh=SBmx/3psippY84lnSlEhWx91hX55LsVPc+z//p07HoI=; b=n3Yt4SnB8mzq2y
+	+rB7aB75P/K32475b/SzYjQerqGKMvVr236V2FMWHCRdy3VHYLWtzS8Det9wCdz28oYbvKvgFRYIY
+	oBn2SD9V+ZSw4HMjfFYkTU+h9nRJPfGQDqVcoTdbfAX+5BE8t0at1YTJB9p1DGE3ynWLV88GwAsM+
+	uQnkSG38N/pLNBfGC6z4i4sxOFfTlD9Azvyv9Qe01obzNbGEQyO5AZauY9XqnN8h7ALqc1ZSCiCOa
+	9eaw6/KRQsUvLg70UD1Z5+JEnZObPoIiFQ3q1BSuF0ozu0+hM2bs1mtU4Sad+xRvFPTrDO5wqwt9j
+	i7lv4REJljpbD4MIzIaA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rBIdo-00DaP5-1p;
-	Thu, 07 Dec 2023 17:58:28 +0000
-Received: from mail-oa1-f50.google.com ([209.85.160.50])
+	id 1rBOfz-00EJZa-0U;
+	Fri, 08 Dec 2023 00:25:07 +0000
+Received: from mail-oo1-xc32.google.com ([2607:f8b0:4864:20::c32])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rBIdk-00DaNj-2U;
-	Thu, 07 Dec 2023 17:58:26 +0000
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1efb9571b13so783290fac.2;
-        Thu, 07 Dec 2023 09:58:23 -0800 (PST)
+	id 1rBOfv-00EJYZ-1I
+	for linux-amlogic@lists.infradead.org;
+	Fri, 08 Dec 2023 00:25:05 +0000
+Received: by mail-oo1-xc32.google.com with SMTP id 006d021491bc7-5908a63a83fso75000eaf.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 07 Dec 2023 16:25:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701995101; x=1702599901; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MSN+KGwjWnynTpdt4z2HpHMekwKnkXSJkY0oqIZKp+Q=;
+        b=ERfp6bZTMSTHJqN75ID+xvZmg+6yatfelH8oYc8FwfJrsMVKUDYEGTxjFjU+juu+P0
+         C2+f8v7teTvcSuSqpUYglr5KGpR5amjYurBlWo1ts2ZqSZdvOY73Fl0LnqM0jbahIIt/
+         cKrz7XGVYlPR4RrR2tD1gYFsW1/aKo6iT5ZrcJdbU1VJTk3kaAoQmg7SFrYD+fOtHE64
+         mYhxDlBVrfRZEVv4OTRapRDe+JlteMswQgE276sl12Y/xIEhSYFv1ctZBdcHKccNtzTd
+         hxawWBWH6BBwzVTowA7C29UNeVZoYEptYpE9NSlQi+6BWa49f7Ir/JR4RTYtvrCAPgmw
+         thxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701971902; x=1702576702;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XlGlC1SkIL9mmE58AXO5RRQ634yhMDTeXthN1KRiRhM=;
-        b=jLMY+E0s/SC0EWYiSVQO7PUM6iMllgl2S/3fS/TeYbzk2SyzJwaWX753C4jyiMMrAI
-         cOayXAM1AotbLuOfhR1/On35m5nONlr2aAk0AXix/SMkNwIAI09t6Q+/3RZm9kHkK7J5
-         DFkFj0C4s+4w/R7vqugnQsDt2MqdCuQZbH8BXeWAqF/mwnWHTFnovmN89F4oPvpDCExX
-         jAC0PJu304yJpp8nNcdpUvMJF+01Q6QW4UgffeaurxuJk4nx+Us5Jm58MN+mz1trLTvx
-         4uQjoU9mN2zP9escYEcL/QDPUky5AUxV19ZYvVHCASGBxEHS00xPdq3hR15RNt4scRsa
-         2Glw==
-X-Gm-Message-State: AOJu0YworvhEI3UziHwrI2cqxsYNPScnR6YFsAOHAspe1jBKeQoEUy22
-	WnA9WiZWWj57o6+EwSUZTA==
-X-Google-Smtp-Source: AGHT+IHxq2Dw8sFsLLI+z4S9TgWxaf6l0cocAGF+yc2TisyC49euiJvcC1n+Yr/0HeIX18RO0y1CyA==
-X-Received: by 2002:a05:6870:390c:b0:1fa:fee1:6f1e with SMTP id b12-20020a056870390c00b001fafee16f1emr3075427oap.10.1701971902619;
-        Thu, 07 Dec 2023 09:58:22 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k29-20020a05687022dd00b001fb0edac63csm58231oaf.6.2023.12.07.09.58.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Dec 2023 09:58:22 -0800 (PST)
-Received: (nullmailer pid 2977746 invoked by uid 1000);
-	Thu, 07 Dec 2023 17:58:20 -0000
-Date: Thu, 7 Dec 2023 11:58:20 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Nishanth Menon <nm@ti.com>, linux-mediatek@lists.infradead.org, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Olof Johansson <olof@lixom.net>, linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org, 
-	Andrew Davis <afd@ti.com>, Andrew Lunn <andrew@lunn.ch>, linux-rockchip@lists.infradead.org, 
-	Michal Simek <michal.simek@amd.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Konrad Dybcio <konradybcio@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-amlogic@lists.infradead.org, 
-	Bjorn Andersson <andersson@kernel.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>, 
-	linux-kernel@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	workflows@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, 
-	Heiko Stuebner <heiko@sntech.de>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v4] docs: dt-bindings: add DTS Coding Style document
-Message-ID: <170197172648.2974247.13097453111547800548.robh@kernel.org>
-References: <20231203174622.18402-1-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20230601; t=1701995101; x=1702599901;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MSN+KGwjWnynTpdt4z2HpHMekwKnkXSJkY0oqIZKp+Q=;
+        b=YPWkX7HZdruzvTkGKwlIblI+K0QWJzoUlj2YYWXmh6nwVP5FuOCDiTJmqSpT7g3/kR
+         Cy7IAKYjwJR4nM+gZVohvagl3v3askQngJB70CLDycika7IdqGwBVJ0af34WiTvpBjmn
+         HziFc+ITcSpDi284aOAI/XZu+qIFUgeg2I0kyt7/XMtL0Mwh3YoPlQRHEWHmRu4zQyu6
+         /9+L+L4KYMA2Et/oe4df4BagyH/grZaH3oEEHhDcabRkoUXNtjMq3TjRRIS2litKeW6V
+         fedzfCGhC/+qQaJLsvgJocRA8bBClyAlYld+GAfHWdBF2b5KAtW9eNVx7KZuFUbkq+sN
+         aphg==
+X-Gm-Message-State: AOJu0Yw/T02OjvTRHxP38a6cfH0kVL72ssW/vby8rn2F6nbnb6R9dXwa
+	LI7QuGc9VbRu70yb8bay7+YjZqGQj2w/AGvAHvs=
+X-Google-Smtp-Source: AGHT+IE2udV2rvMrY/grsLbuSgK8URfWOYUoftrCeWOfi0y4igmmQ/GFemj7anYUoOXKfI5XMf4vtFLfWHzvboXtdVQ=
+X-Received: by 2002:a05:6820:1ac8:b0:58d:6ea3:8fc with SMTP id
+ bu8-20020a0568201ac800b0058d6ea308fcmr4111694oob.2.1701995100761; Thu, 07 Dec
+ 2023 16:25:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20231203174622.18402-1-krzysztof.kozlowski@linaro.org>
+References: <20231204144429.45197-1-linux.amoon@gmail.com> <20231204144429.45197-2-linux.amoon@gmail.com>
+ <20231206135311.GA2043711-robh@kernel.org> <CANAwSgTS0ZSFPv4x803pCLEpjH5imh8vEoWpbiJRH14Sy3GZww@mail.gmail.com>
+ <21673bfd-bb87-4c7d-a53f-337c263f3a00@linaro.org> <CANAwSgSo37B0zg-xjrmqndSZ5SbyB3m27_wRsqqN9WTONooeiw@mail.gmail.com>
+ <604e653d-c1e2-45c7-b121-8a6b4be5c6bb@linaro.org>
+In-Reply-To: <604e653d-c1e2-45c7-b121-8a6b4be5c6bb@linaro.org>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Fri, 8 Dec 2023 05:54:43 +0530
+Message-ID: <CANAwSgRB=XWo2-40rDru=Zy277-kgGNjozJ8Lxnxgv_4ABB-kg@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	linux-amlogic@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231207_095824_816798_7285FFB0 
-X-CRM114-Status: GOOD (  17.34  )
+X-CRM114-CacheID: sfid-20231207_162503_448298_101138D3 
+X-CRM114-Status: GOOD (  28.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,66 +90,189 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Ck9uIFN1biwgMDMgRGVjIDIwMjMgMTg6NDY6MjIgKzAxMDAsIEtyenlzenRvZiBLb3psb3dza2kg
-d3JvdGU6Cj4gRG9jdW1lbnQgcHJlZmVycmVkIGNvZGluZyBzdHlsZSBmb3IgRGV2aWNldHJlZSBz
-b3VyY2VzIChEVFMgYW5kIERUU0kpLAo+IHRvIGJyaW5nIGNvbnNpc3RlbmN5IGFtb25nIGFsbCAo
-c3ViKWFyY2hpdGVjdHVyZXMgYW5kIGVhc2UgaW4gcmV2aWV3cy4KPiAKPiBDYzogQW5kcmV3IERh
-dmlzIDxhZmRAdGkuY29tPgo+IGNjOiBBbmRyZXcgTHVubiA8YW5kcmV3QGx1bm4uY2g+Cj4gQ2M6
-IEFuZ2Vsb0dpb2FjY2hpbm8gRGVsIFJlZ25vIDxhbmdlbG9naW9hY2NoaW5vLmRlbHJlZ25vQGNv
-bGxhYm9yYS5jb20+Cj4gQ2M6IEFybmQgQmVyZ21hbm4gPGFybmRAYXJuZGIuZGU+Cj4gQ2M6IEJq
-b3JuIEFuZGVyc3NvbiA8YW5kZXJzc29uQGtlcm5lbC5vcmc+Cj4gQ2M6IENoZW4tWXUgVHNhaSA8
-d2Vuc0BrZXJuZWwub3JnPgo+IENjOiBEbWl0cnkgQmFyeXNoa292IDxkbWl0cnkuYmFyeXNoa292
-QGxpbmFyby5vcmc+Cj4gQ2M6IEpvbmF0aGFuIENvcmJldCA8Y29yYmV0QGx3bi5uZXQ+Cj4gQ2M6
-IE1hdHRoaWFzIEJydWdnZXIgPG1hdHRoaWFzLmJnZ0BnbWFpbC5jb20+Cj4gQ2M6IE1pY2hhbCBT
-aW1layA8bWljaGFsLnNpbWVrQGFtZC5jb20+Cj4gQ2M6IE5laWwgQXJtc3Ryb25nIDxuZWlsLmFy
-bXN0cm9uZ0BsaW5hcm8ub3JnPgo+IENjOiBOaXNoYW50aCBNZW5vbiA8bm1AdGkuY29tPgo+IENj
-OiBPbG9mIEpvaGFuc3NvbiA8b2xvZkBsaXhvbS5uZXQ+Cj4gQ2M6IFJhZmHFgiBNacWCZWNraSA8
-emFqZWM1QGdtYWlsLmNvbT4KPiBBY2tlZC1ieTogTmVpbCBBcm1zdHJvbmcgPG5laWwuYXJtc3Ry
-b25nQGxpbmFyby5vcmc+Cj4gQWNrZWQtYnk6IEhlaWtvIFN0dWVibmVyIDxoZWlrb0BzbnRlY2gu
-ZGU+Cj4gUmV2aWV3ZWQtYnk6IExhdXJlbnQgUGluY2hhcnQgPGxhdXJlbnQucGluY2hhcnRAaWRl
-YXNvbmJvYXJkLmNvbT4KPiBBY2tlZC1ieTogS29ucmFkIER5YmNpbyA8a29ucmFkeWJjaW9Aa2Vy
-bmVsLm9yZz4KPiBSZXZpZXdlZC1ieTogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydCtyZW5lc2Fz
-QGdsaWRlci5iZT4KPiBTaWduZWQtb2ZmLWJ5OiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0
-b2Yua296bG93c2tpQGxpbmFyby5vcmc+Cj4gCj4gLS0tCj4gCj4gTWVyZ2luZyBpZGVhOiBSb2Iv
-RFQgYmluZGluZ3MKPiAKPiBDaGFuZ2VzIGluIHY0Cj4gPT09PT09PT09PT09PQo+IDEuIERyb3Ag
-bGFiZWwgYXQgdGhlIHRvcCAoSm9uKQo+IDIuIEdyYW1tYXIgZml4ZXMgKExhdXJlbnQsIERyYWdh
-bikKPiAzLiAiVW5sZXNzIGEgYnVzIGRlZmluZXMgZGlmZmVyZW50bHksIHVuaXQgYWRkcmVzc2Vz
-IHNoYWxsIC4uLiIgKFJvYikKPiA0LiBVc2UgaGV4IGluIGV4YW1wbGUgb2YgZG1hLWNvbnRyb2xs
-ZXIgKEFuZHJldykKPiA1LiBFeGFtcGxlOiBzb2NAIC0+IHNvY0AwCj4gNi4gUmV2ZXJzZSBwb2lu
-dHMgMiBhbmQgMyBpbiAiSW5kZW50YXRpb24iIChBbmRyZXcpCj4gNy4gVXNlIGZ1bGwgcGF0aCB0
-byBjb2Rpbmcgc3R5bGUgZG9jIChDb25vcikKPiAKPiBDaGFuZ2VzIGluIHYzCj4gPT09PT09PT09
-PT09PQo+IDEuIHNob3VsZC0+c2hhbGwgKEFuZ2VsbykKPiAyLiBDb21tZW50cyAvLyAtPiAvKiAo
-QW5nZWxvLCBNaWNoYWwpCj4gMy4gVXNlIGltYWdpbmFyeSBleGFtcGxlIGluICJPcmRlciBvZiBQ
-cm9wZXJ0aWVzIGluIERldmljZSBOb2RlIgo+ICAgIChBbmdlbG8pCj4gNC4gQWRkZWQgcGFyYWdy
-YXBocyBmb3IgdGhyZWUgc2VjdGlvbnMgd2l0aCBqdXN0aWZpY2F0aW9ucyBvZiBjaG9zZW4KPiAg
-ICBzdHlsZS4KPiA1LiBBbGxvdyB0d28gc3R5bGUgb2Ygb3JkZXJpbmcgb3ZlcnJpZGVzIGluIGJv
-YXJkIERUUzogYWxwaGFiZXRpY2FsbHkgb3IKPiAgICBieSBvcmRlciBvZiBEVFNJIChSb2IpLgo+
-IDYuIEkgZGlkIG5vdCBpbmNvcnBvcmF0ZSBmZWVkYmFjayBhYm91dCwgZHVlIHRvIGxhY2sgb2Yg
-Y29uc2Vuc3VzIGFuZCBteQo+ICAgIGRpc2FncmVlbWVudDoKPiAgICBhLiBTb00gYmVpbmcgRFRT
-IHdpdGhvdXQgRFRTSSBpbiAiT3JnYW5pemluZyBEVFNJIGFuZCBEVFMiCj4gCj4gQ2hhbmdlcyBp
-biB2Mgo+ID09PT09PT09PT09PT0KPiAxLiBIb3BlZnVsbHkgaW5jb3Jwb3JhdGUgZW50aXJlIGZl
-ZWRiYWNrIGZyb20gY29tbWVudHM6Cj4gYS4gRml4IFwgeyA9PiAvIHsgKFJvYikKPiBiLiBOYW1l
-OiBkdHMtY29kaW5nLXN0eWxlIChSb2IpCj4gYy4gRXhjZXB0aW9ucyBmb3Igb3JkZXJpbmcgbm9k
-ZXMgYnkgbmFtZSBmb3IgUmVuZXNhcyBhbmQgcGluY3RybCAoR2VlcnQsCj4gICAgS29ucmFkKQo+
-IGQuIE9yZGVyaW5nIHByb3BlcnRpZXMgYnkgY29tbW9uL3ZlbmRvciAoUm9iKQo+IGUuIEFycmF5
-IGVudHJpZXMgaW4gPD4gKFJvYikKPiAKPiAyLiBOZXcgY2hhcHRlcjogT3JnYW5pemluZyBEVFNJ
-IGFuZCBEVFMKPiAKPiAzLiBTZXZlcmFsIGdyYW1tYXIgZml4ZXMgKG1pc3NpbmcgYXJ0aWNsZXMp
-Cj4gCj4gQ2M6IGxpbnV4LXJvY2tjaGlwQGxpc3RzLmluZnJhZGVhZC5vcmcKPiBDYzogbGludXgt
-bWVkaWF0ZWtAbGlzdHMuaW5mcmFkZWFkLm9yZwo+IENjOiBsaW51eC1zYW1zdW5nLXNvY0B2Z2Vy
-Lmtlcm5lbC5vcmcKPiBDYzogbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCj4gQ2M6
-IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZwo+IENjOiBsaW51eC1hcm0tbXNt
-QHZnZXIua2VybmVsLm9yZwo+IENjOiB3b3JrZmxvd3NAdmdlci5rZXJuZWwub3JnCj4gQ2M6IGxp
-bnV4LWRvY0B2Z2VyLmtlcm5lbC5vcmcKPiAtLS0KPiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3Mv
-ZHRzLWNvZGluZy1zdHlsZS5yc3QgIHwgMTk2ICsrKysrKysrKysrKysrKysrKwo+ICBEb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaW5kZXgucnN0ICAgfCAgIDEgKwo+ICAyIGZpbGVz
-IGNoYW5nZWQsIDE5NyBpbnNlcnRpb25zKCspCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZHRzLWNvZGluZy1zdHlsZS5yc3QKPiAKCkkgYWRk
-ZWQgdGhlIHF1b3RlcyBhcyBkaXNjdXNzZWQgYW5kIGFwcGxpZWQsIHRoYW5rcyEKClJvYgoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dp
-YyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9s
-aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Hi Krzysztof,
+
+On Thu, 7 Dec 2023 at 18:11, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 07/12/2023 13:33, Anand Moon wrote:
+> > Hi Krzysztof
+> >
+> > On Thu, 7 Dec 2023 at 14:00, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 06/12/2023 18:14, Anand Moon wrote:
+> >>> Hi Rob,
+> >>>
+> >>> On Wed, 6 Dec 2023 at 19:23, Rob Herring <robh@kernel.org> wrote:
+> >>>>
+> >>>> On Mon, Dec 04, 2023 at 08:14:25PM +0530, Anand Moon wrote:
+> >>>>> Add the binding example for the USB3.1 Genesys Logic GL3523
+> >>>>> integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> >>>>> hub.
+> >>>>>
+> >>>>> For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> >>>>> with shared resets and power supplies, this property is used to identify
+> >>>>> the hubs with which these are shared.
+> >>>>>
+> >>>>> GL3523 has built-in 5V to 3.3V and 5V to 1.2V regulators, which serves
+> >>>>> power to the USB HUB, it uses 5V power regulator.
+> >>>>>
+> >>>>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> >>>>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> >>>>> ---
+> >>>>> V6: fix the description of the regulators
+> >>>>> Updated the commit message for regulator updates.
+> >>>>> add reviewed by Conor Dooley
+> >>>>> [1] https://lore.kernel.org/all/20231130053130.21966-2-linux.amoon@gmail.com/
+> >>>>> v5: upgrade peer-hub description : Conor Dooley
+> >>>>> [0] https://www.genesyslogic.com.tw/en/product_view.php?show=67 [Block Diagram]
+> >>>>> v4: Fix the description of peer-hub and update the commit message.
+> >>>>> Schematics of the Odroid N2+
+> >>>>> https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121.pdf
+> >>>>> V3: fix the dt_binding_check error, added new example for Genesys GL3523
+> >>>>> v2: added Genesys GL3523 binding
+> >>>>> v1: none
+> >>>>> ---
+> >>>>>  .../bindings/usb/genesys,gl850g.yaml          | 65 +++++++++++++++++--
+> >>>>>  1 file changed, 61 insertions(+), 4 deletions(-)
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> >>>>> index ee08b9c3721f..c6f63a69396d 100644
+> >>>>> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> >>>>> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> >>>>> @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+> >>>>>  maintainers:
+> >>>>>    - Icenowy Zheng <uwu@icenowy.me>
+> >>>>>
+> >>>>> -allOf:
+> >>>>> -  - $ref: usb-device.yaml#
+> >>>>> -
+> >>>>>  properties:
+> >>>>>    compatible:
+> >>>>>      enum:
+> >>>>> @@ -27,12 +24,46 @@ properties:
+> >>>>>
+> >>>>>    vdd-supply:
+> >>>>>      description:
+> >>>>> -      the regulator that provides 3.3V core power to the hub.
+> >>>>> +      The regulator that provides 3.3V or 5.0V core power to the hub.
+> >>>>> +
+> >>>>> +  peer-hub:
+> >>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+> >>>>> +    description:
+> >>>>> +      For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> >>>>> +      with shared resets and power supplies, this property is used to identify
+> >>>>> +      the hubs with which these are shared.
+> >>>>>
+> >>>>>  required:
+> >>>>>    - compatible
+> >>>>>    - reg
+> >>>>>
+> >>>>> +allOf:
+> >>>>> +  - $ref: usb-device.yaml#
+> >>>>> +  - if:
+> >>>>> +      properties:
+> >>>>> +        compatible:
+> >>>>> +          contains:
+> >>>>> +            enum:
+> >>>>> +              - usb5e3,608
+> >>>>> +    then:
+> >>>>> +      properties:
+> >>>>> +        peer-hub: false
+> >>>>> +        vdd-supply: false
+> >>>>> +        reset-gpios: true
+> >>>>> +
+> >>>>> +  - if:
+> >>>>> +      properties:
+> >>>>> +        compatible:
+> >>>>> +          contains:
+> >>>>> +            enum:
+> >>>>> +              - usb5e3,610
+> >>>>> +              - usb5e3,620
+> >>>>> +    then:
+> >>>>> +      properties:
+> >>>>> +        peer-hub: true
+> >>>>> +        vdd-supply: true
+> >>>>> +        reset-gpios: true
+> >>>>
+> >>>> No need for this if schema. The default is they are allowed.
+> >>>>
+> >>>
+> >>> If I move reset-gpios to required, I observe the below warning.
+> >>>
+> >>>   DTC_CHK Documentation/devicetree/bindings/usb/maxim,max33359.example.dtb
+> >>> /home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
+> >>> hub@1: 'reset-gpio' is a required property
+> >>>         from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+> >>
+> >> Where are the properties defined? If you open the binding you see:
+> >> nowhere. You cannot define properties in some variant with "true".
+> >> Please define all of them in top-level and only narrow/constrain when
+> >> applicable.
+> >>
+> > What I meant is the example below, required meant applicable for both
+> > the binding
+> > But it shows me the above warning.
+>
+> My explanation stands... So again:
+>
+> >> Please define all of them in top-level and only narrow/constrain when
+> >> applicable.
+>
+Apologies, But I have tried this multiple times but have not been able
+to fix the device tree warning
+I have verified that example
+Documentation/devicetree/bindings/usb/genesys,gl850g.example.dts
+generate is correct
+
+required:
+  - compatible
+  - reg
+  - reset-gpio
+  - peer-hub
+  - vdd-supply
+
+allOf:
+  - $ref: usb-device.yaml#
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - usb5e3,608
+    then:
+      properties:
+        peer-hub: false
+        vdd-supply: false
+
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - usb5e3,610
+              - usb5e3,620
+    then:
+      properties:
+        peer-hub: true
+        vdd-supply: true
+
+additionalProperties: false
+
+> Best regards,
+> Krzysztof
+>
+
+Thanks
+-Anand
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
