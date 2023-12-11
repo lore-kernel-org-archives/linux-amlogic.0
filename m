@@ -4,72 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44D62C4167B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Dec 2023 09:09:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAA44C4167B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Dec 2023 09:10:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
 	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=gTNKCwx5VLcW3pdFbvwftaLCxUYhfejQUmEIn4JzbBs=; b=EkeSUJKeFk7ZqL/ARtLKBcM93O
-	aELHQm9DrdCaulc61vVlfzc/gsspVJT3fM/CM33mgYGwWpUtZ+Kjm3wSxmgLYJvEF1C8I7yDjcF2m
-	NxGFVNR+mhXR3NJ2RGzrNFOdLKUg4Sv6+uN70Nph9R8jnJ00XfS0rbb823mEQHAxa9fdjW6eBMqpt
-	ffuNpZuio2Ky2hUE1YpHaXoBP8nAprCI3PT6WC8r2gM7+H/9MTPx8EIKb4207ED7sT0/m1QwCgKAu
-	Usa1XHjtqumoZZokUjTK6GN8ITtPbB0y5CvSk9lPPHKJdPy4059SPF+ZOpHudiFEzRWTPkVhA7VvO
-	wfLW8tTg==;
+	bh=KK7rsB6bCY0pRTB0DV5619pT19WLnRkfmUojD8ILwk4=; b=oXbsT/Zagdi3Jr3jOY53dWXn7g
+	/VbKV2pmnHJTOUkUAQAUy5XWPbn2qqlOg9k4CqLGi/5uFkE4wt42RURVDy5Pu/0ZZWXRYnI8Jc7+/
+	Pe5h5H+XKBxxgqbszzrpwlRLEavcMiFz9obpEyA8wVuTxZNXxZ4BW9Z5LtDR/w9iZSG0Qj2z8aFQ3
+	Ys2c3VlEElQY0MXynM8vrtdzkIc1f3ngqgx0Zmxi4GD0S3PKPrh7Nm9bDUzJWx17qHmhLPFRBXk+N
+	p7urXLT53NTGtLeGr05Cj36FIqpReb6bSEBGe/BuxG31NlV/cCwKZdllgqvhW8qeB25DTftqImKhC
+	6vrgdIwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rCcHg-004QJb-0u;
-	Mon, 11 Dec 2023 09:09:04 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1rCcJ6-004QXa-2S;
+	Mon, 11 Dec 2023 09:10:32 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rCcHR-004QG0-32
+	id 1rCcJ2-004QVw-2Z
 	for linux-amlogic@lists.infradead.org;
-	Mon, 11 Dec 2023 09:09:02 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40c2c65e6aaso42157405e9.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 11 Dec 2023 01:08:46 -0800 (PST)
+	Mon, 11 Dec 2023 09:10:30 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40c48d7a7a7so4926865e9.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 11 Dec 2023 01:10:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702285725; x=1702890525; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1702285825; x=1702890625; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=4cJRcFR29fUFWBTO/HJarR+HfZgSnSVtsH0mlT3fpCs=;
-        b=qVwon0lyov9IoEzqa+Wn2+69+Co+Ww30VWBxHKMlrua3YGOGRm5zUQMcULRMuXVAOB
-         c1xIElmDSSG3Sjz21Y8hViC3BgDuHdPxiuEziEiA9aTg5ZB20lZtAMz8n3VcvnOUe5uF
-         Y4b1eIEHD99dJ2EMtQKWO07XOQw1CLpfGnjoa2EpvkMeArA7OyQWXCvNsmHd16ZUXeZB
-         lKkqQYAUfpqSulpdx3FZh3PujJm/88oe2OhAE4SkYT9SWbXZe/qPmH0V5mP136VnSAKw
-         vMiU9kmyzRGeA1jfEj/hIaIR+Eg7FsZljFuiJDz2rsOOcopLXoNo42mvTI2IeiNO24/i
-         3HbA==
+        bh=e1hHdtNOUKQtimSKcn02EUH8wMvcC3cjPEPTtQNRnlQ=;
+        b=ZwW4Be7JiqTd+3gQqeVH2w1IP9lqycB1lFxv0Js7lJr+PQG/MZfxbSXUcNK8iE1o2K
+         Jy6q7ERa6n3DU9YzEOcsViatBGe/7zXEMtEVSfevRKM1650IoA3uO1e416TBGzvLDyPE
+         sZtEBwxZZnDwyRCsOPDGB2b4KMuaNjadbva9WtxvXZkj25AxR90QLfu7wYEyreJO7N/q
+         LyQDyiAgeoT8UadjH9ckMFcKOCULnuRPROMCnTY2qHuySYvi4by7G+jov7LSMzqduoob
+         KYTdXZms9naIBJd3nWGPqOyJnWVUDRqa2XTcWbqeUVffZVvVm5nmeok82mhq4UicjJxz
+         2NSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702285725; x=1702890525;
+        d=1e100.net; s=20230601; t=1702285825; x=1702890625;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=4cJRcFR29fUFWBTO/HJarR+HfZgSnSVtsH0mlT3fpCs=;
-        b=owdxGe5sCdV080FvYYf8qpZOh/7dDI6jDcZnmlcckMMojxjTxIeWcS37c81RwPEO3V
-         dkDTWQ6Ys4KnlAvszl0VvfUROrYHl0qsRzTXpLaac85u1jqWlPJINzLVDWUIGOvcQ9dp
-         gzXInRe3zW9d/6ap7IrzSkZ/ktZQJQT0kRCu3AZwKyzZW1lMgV/3+mPsUAKb7FEL/yBl
-         7jsy7IS3YbZlnWWYq7IKgStxwsN+r8hM9DTZP/3cau1cAOMb1v7tDmJ3YTqonJnKNOif
-         Hhj5QSXW9CljXOOew8BHe7p1qYNKjwGKt6JDZeJIlzwChRtJomp3Dowa20YU7+aaBxku
-         ojtQ==
-X-Gm-Message-State: AOJu0YyhmLhKadFZZzHXHw4g0iZ0NvZ6DaE4j/eASCJoB5euyWDbv0AW
-	z3dmCfOsFmaneCu/9aC72MENgw==
-X-Google-Smtp-Source: AGHT+IEnvk9MNR1IJjMMAShUWmT0BdgcUG9TFEnOg7kUWjlvknurjUNKhaRZmMNg1DXk/w9jg2yZxA==
-X-Received: by 2002:a05:600c:1f1a:b0:40c:3508:b40e with SMTP id bd26-20020a05600c1f1a00b0040c3508b40emr1761630wmb.245.1702285724992;
-        Mon, 11 Dec 2023 01:08:44 -0800 (PST)
+        bh=e1hHdtNOUKQtimSKcn02EUH8wMvcC3cjPEPTtQNRnlQ=;
+        b=A3xZEZPAo5DBqyzA1EXNV3bDyoEZKsutDtn3sRF9y2N1KOv6Ac0kUELPdqyUGdORfe
+         QaLKt6M4NG6Tw3oISGOBg7fp/+wdv6O4TR9rCfW5kZOTeS3iiLOQAz0n6j3x4X48H0HA
+         HF369usW0QXVm+OYQOa0oClrZubQg7DkO++Ex4qSBLRmPNSiUuNVTGW5V8O6LSOZu/mW
+         VUNqNeHk3GrSpcIxgYoBp8w0o60wYVM/r7ExGdn+FBfco5/B9DUrV84h6ncczAaPSdTu
+         0taBGXqZ/1kWmr6NxDkd+y2D9xC71bn/jNSL6vcofBisQ3P6Hw5KvgXEw6jQXsHBFN1x
+         bhkQ==
+X-Gm-Message-State: AOJu0YyGk0g75LmxjrAQLQwwjrd2F/vqZQpPS61JAAymsOnc2/Uoe8Ay
+	gHLr1e6iUN4meI5jBakkAZ5bKg==
+X-Google-Smtp-Source: AGHT+IH64u4s+nNS2hEACtXPcIntf1k/WlEVOEsxu7iP8inZ9hFuymODeAPuiTftKfdWL40tXRirWQ==
+X-Received: by 2002:a05:600c:3411:b0:409:79df:7f9c with SMTP id y17-20020a05600c341100b0040979df7f9cmr2584703wmp.36.1702285824976;
+        Mon, 11 Dec 2023 01:10:24 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:302e:e0c2:d42c:cb23? ([2a01:e0a:982:cbb0:302e:e0c2:d42c:cb23])
-        by smtp.gmail.com with ESMTPSA id u17-20020a05600c19d100b0040c440f9393sm4627069wmq.42.2023.12.11.01.08.44
+        by smtp.gmail.com with ESMTPSA id u17-20020a05600c19d100b0040c440f9393sm4627069wmq.42.2023.12.11.01.10.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Dec 2023 01:08:44 -0800 (PST)
-Message-ID: <c336d071-34a9-4635-bcde-3861c7f11bd6@linaro.org>
-Date: Mon, 11 Dec 2023 10:08:44 +0100
+        Mon, 11 Dec 2023 01:10:24 -0800 (PST)
+Message-ID: <449d675f-e98c-4924-ab81-14a139081a97@linaro.org>
+Date: Mon, 11 Dec 2023 10:10:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] arm64: dts: amlogic: drop redundant status=okay
+Subject: Re: [PATCH 2/2] arm64: dts: amlogic: minor whitespace cleanup around
+ '='
 Content-Language: en-US, fr
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Rob Herring <robh+dt@kernel.org>,
@@ -77,9 +78,13 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231209124401.93814-1-krzysztof.kozlowski@linaro.org>
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20231124094739.58163-1-krzysztof.kozlowski@linaro.org>
+ <20231124094739.58163-2-krzysztof.kozlowski@linaro.org>
+ <4150bf8e-a48d-4d16-902f-a95f6489c6f5@linaro.org>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -105,10 +110,11 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20231209124401.93814-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <4150bf8e-a48d-4d16-902f-a95f6489c6f5@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231211_010850_007943_1DB3684F 
-X-CRM114-Status: GOOD (  10.77  )
+X-CRM114-CacheID: sfid-20231211_011028_853974_3D6B183E 
+X-CRM114-Status: UNSURE (   7.75  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,218 +132,29 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 09/12/2023 13:44, Krzysztof Kozlowski wrote:
-> New device nodes are enabled by default, so no need for status=okay.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Tested by comparing decompiled DTBs.
-> ---
->   arch/arm64/boot/dts/amlogic/meson-axg-s400.dts         | 5 -----
->   arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts      | 1 -
->   arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts     | 1 -
->   arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts      | 1 -
->   arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts   | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi    | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts     | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts        | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi   | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts    | 1 -
->   arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts     | 1 -
->   arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts       | 1 -
->   13 files changed, 17 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> index df16eead2c80..c8905663bc75 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> @@ -66,7 +66,6 @@ linein: audio-codec-0 {
->   		VDDA-supply = <&vcc_3v3>;
->   		VDDP-supply = <&vcc_3v3>;
->   		VDDD-supply = <&vcc_3v3>;
-> -		status = "okay";
->   		sound-name-prefix = "Linein";
->   	};
->   
-> @@ -75,14 +74,12 @@ lineout: audio-codec-1 {
->   		compatible = "everest,es7154";
->   		VDD-supply = <&vcc_3v3>;
->   		PVDD-supply = <&vcc_5v>;
-> -		status = "okay";
->   		sound-name-prefix = "Lineout";
->   	};
->   
->   	spdif_dit: audio-codec-2 {
->   		#sound-dai-cells = <0>;
->   		compatible = "linux,spdif-dit";
-> -		status = "okay";
->   		sound-name-prefix = "DIT";
->   	};
->   
-> @@ -91,14 +88,12 @@ dmics: audio-codec-3 {
->   		compatible = "dmic-codec";
->   		num-channels = <7>;
->   		wakeup-delay-ms = <50>;
-> -		status = "okay";
->   		sound-name-prefix = "MIC";
->   	};
->   
->   	spdif_dir: audio-codec-4 {
->   		#sound-dai-cells = <0>;
->   		compatible = "linux,spdif-dir";
-> -		status = "okay";
->   		sound-name-prefix = "DIR";
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> index 0ad0c2b7dfef..4c4550dd4711 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> @@ -45,7 +45,6 @@ dmics: audio-codec-1 {
->   		compatible = "dmic-codec";
->   		num-channels = <2>;
->   		wakeup-delay-ms = <50>;
-> -		status = "okay";
->   		sound-name-prefix = "MIC";
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-> index 4969a76460fa..9b55982b6a6b 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-> @@ -22,7 +22,6 @@ aliases {
->   	spdif_dit: audio-codec-1 {
->   		#sound-dai-cells = <0>;
->   		compatible = "linux,spdif-dit";
-> -		status = "okay";
->   		sound-name-prefix = "DIT";
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
-> index 8fc2e143cb54..0da386cabe1a 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
-> @@ -22,7 +22,6 @@ aliases {
->   	spdif_dit: audio-codec-1 {
->   		#sound-dai-cells = <0>;
->   		compatible = "linux,spdif-dit";
-> -		status = "okay";
->   		sound-name-prefix = "DIT";
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
-> index ce548b373296..6396f190d703 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
-> @@ -17,7 +17,6 @@ / {
->   	spdif_dit: audio-codec-1 {
->   		#sound-dai-cells = <0>;
->   		compatible = "linux,spdif-dit";
-> -		status = "okay";
->   		sound-name-prefix = "DIT";
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-> index 18f7b730289e..e59c3c92b1e7 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-> @@ -26,7 +26,6 @@ dio2133: analog-amplifier {
->   	spdif_dit: audio-codec-0 {
->   		#sound-dai-cells = <0>;
->   		compatible = "linux,spdif-dit";
-> -		status = "okay";
->   		sound-name-prefix = "DIT";
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
-> index e238f1f10124..f28452b9f00f 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
-> @@ -18,7 +18,6 @@ / {
->   	spdif_dit: audio-codec-0 {
->   		#sound-dai-cells = <0>;
->   		compatible = "linux,spdif-dit";
-> -		status = "okay";
->   		sound-name-prefix = "DIT";
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
-> index 292c718ee19c..591455c50e88 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
-> @@ -18,7 +18,6 @@ / {
->   	spdif_dit: audio-codec-0 {
->   		#sound-dai-cells = <0>;
->   		compatible = "linux,spdif-dit";
-> -		status = "okay";
->   		sound-name-prefix = "DIT";
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-> index e8303089bff6..74df32534231 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-> @@ -21,7 +21,6 @@ chosen {
->   	spdif_dit: audio-codec-0 {
->   		#sound-dai-cells = <0>;
->   		compatible = "linux,spdif-dit";
-> -		status = "okay";
->   		sound-name-prefix = "DIT";
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
-> index e1b74b174915..376760d86766 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
-> @@ -17,7 +17,6 @@ / {
->   	spdif_dit: audio-codec-0 {
->   		#sound-dai-cells = <0>;
->   		compatible = "linux,spdif-dit";
-> -		status = "okay";
->   		sound-name-prefix = "DIT";
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-> index 7d525bdb0e06..ad2dd4ad0a31 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-> @@ -28,7 +28,6 @@ chosen {
->   	spdif_dit: audio-codec-0 {
->   		#sound-dai-cells = <0>;
->   		compatible = "linux,spdif-dit";
-> -		status = "okay";
->   		sound-name-prefix = "DIT";
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
-> index 50d49aec41bd..d05dde8da5c5 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
-> @@ -37,7 +37,6 @@ memory@0 {
->   	spdif_dit: audio-codec-0 {
->   		#sound-dai-cells = <0>;
->   		compatible = "linux,spdif-dit";
-> -		status = "okay";
->   		sound-name-prefix = "DIT";
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> index 095579c55f18..109932068dbe 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> @@ -32,7 +32,6 @@ dmics: audio-codec-1 {
->   		compatible = "dmic-codec";
->   		num-channels = <2>;
->   		wakeup-delay-ms = <50>;
-> -		status = "okay";
->   		sound-name-prefix = "MIC";
->   	};
->   
+Hi,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+On 24/11/2023 10:49, Krzysztof Kozlowski wrote:
+> On 24/11/2023 10:47, Krzysztof Kozlowski wrote:
+>> The DTS code coding style expects exactly one space before and after '='
+>> sign.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+> 
+> Please ignore, that's duplicated of my previous send.
+
+I don't see a previous send, so I'm confused.
+I can apply this patch if you're ok.
+
+Thanks,
+Neil
+
+> 
+> Best regards,
+> Krzysztof
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
