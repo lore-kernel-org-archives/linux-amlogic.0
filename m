@@ -4,86 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C36A8C4332F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Dec 2023 15:54:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFCCAC4332F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Dec 2023 16:45:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=os7gVqXPXFQZtzouBr+64G8hAgCavIjTgaIn8/O9QO4=; b=kp3WG4xyYJMfN/R+n+7TYON2Uz
-	+Cfa/JBbGMYe0kzFQ9E/LLiqpCFqKdAjxkgGl8UVrucWEvsZwUM5YtOIgxUa60lCbvwmihaxrnlpI
-	PdCIPaojkcPfhjvDok2yRe8VrsoWdhIConm8Ptc5Tv1b7IHoCGzwek8YmjY27IVNf4afbKEqm//og
-	sMWDlZ+1zZcNLgoFDWuInndly8ta2Ui2srGUQAdBs/BxDYgcriH+rqF80YKRtjiVT1zkojmXWiFnv
-	Y7tIui78rOIziSmJCdKIJ/9YQzkFw5uKw2K6iYoenrLtlT7DIvkyMcmv9sTYC1ZOqGzwivvgYkOVm
-	OuT8B6dA==;
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=bnZbKj5Xks04iQvn7avzC9YUyEevOV8gFGEzvYa9Y/E=; b=Df46U2Kif++Xgt
+	o8OduTB+8R5861lpNQ8LqmCAEGQx77MY14X3up+q1lc4e0RXRVSxfI+HMQ7rxrueSk6A6ZqkbaWP+
+	ekqC/vSI56Qztl59HoABd4CPAhEFP7vaOD07zOAiwS9dc0v0x6yDpXTBqgU0AdA4o5Jbmc42Nnnpe
+	js/68E+JQWOpaWRM6Kb5K3DOsnOP37WErUr4TCj1IWL678gJKT31l5xCwBmIwxCBow+XpIuD58ZZN
+	Fe+ZCkCE5VRXMkdnDYbjAYKiDfUoxkCDoouYYrF4+uDA6rSR9P+32OfAyn6dHXHz7/IUmi/IGff3g
+	80E2BGqhzort7HTRCrPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rDRYa-00FM6I-2S;
-	Wed, 13 Dec 2023 15:53:56 +0000
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
+	id 1rDSLd-00FUut-2Q;
+	Wed, 13 Dec 2023 16:44:37 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rDRYX-00FM5a-2H
+	id 1rDSLb-00FUtb-0W
 	for linux-amlogic@lists.infradead.org;
-	Wed, 13 Dec 2023 15:53:55 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rDRXd-0000t5-N4; Wed, 13 Dec 2023 16:52:57 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rDRXZ-00FbSV-8h; Wed, 13 Dec 2023 16:52:53 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rDRXY-002Mb8-UB; Wed, 13 Dec 2023 16:52:52 +0100
-Date: Wed, 13 Dec 2023 16:52:52 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	dri-devel@lists.freedesktop.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	David Airlie <airlied@gmail.com>, linux-clk@vger.kernel.org,
-	Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>, Chen-Yu Tsai <wens@csie.org>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Johan Hovold <johan+linaro@kernel.org>, linux-sunxi@lists.linux.dev,
-	Daniel Vetter <daniel@ffwll.ch>, linux-pm@vger.kernel.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Kyungmin Park <kyungmin.park@samsung.com>, kernel@pengutronix.de,
-	Georgi Djakov <djakov@kernel.org>
+	Wed, 13 Dec 2023 16:44:36 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-3333074512bso4420559f8f.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 13 Dec 2023 08:44:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702485871; x=1703090671; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xr6toAXCsIC/bmSJ5B/sgzDjMz3Z0Uajw+zCN70ZLA8=;
+        b=VCF1y18VM6iH8UPsnxZ59xEe4f2+XEz40am40ZNDKOSi3FOqhhNQJL9MdVxZTijhVO
+         w8gDj7cAMG96yCY2ErGSXjcGRHB7Gv+fFJY6KI3wEC5Mk1wBhAIUVQEXDBRvDpNBhZX2
+         VpGSgrearDcxmYwgb3JgqQbtWJzF4ea7+xX1Nhoiv6oskA1PuVXZkfvrxZQFWUeE0VAQ
+         qamCZ8yxnqV5YR7bGMaG+14lkA1GGslBpn/DJPjuSXBlFDEb5pwKW2f1rqCRfKhaQS9k
+         xRHxz4Rs9TPCpdqwUSjWHBWVuc2PGBF7PdDzH9OKTGWET8xLelagrM/tOb+7dDeZSmT0
+         lMSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702485871; x=1703090671;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xr6toAXCsIC/bmSJ5B/sgzDjMz3Z0Uajw+zCN70ZLA8=;
+        b=g9rhAAP+1bd224iq4uE1lq5yyzbUxkeoyusHQJ+6NmrvQMU34Ln+J+glsQm2EHYU25
+         j/6NW9iApA8vVwQ53C3RzaYs6m4VbDf+YSE0jtum2ejMOqqQX2E+MsTWUDfkR0BMtobe
+         FdjkHY/fV7Cor/DlN5jcB+6rRRJjJFo7ul2IwX8pmL2EAFH7lUOnxsXU0Rd6e4Su04C/
+         OhttXeHr8TRWiDuYwgSBtvX7oX/IIBRs0FLeeDzSRZ3pIM1gSB2eP7s4CQ/J5bMWkC/1
+         MfRsC568W8huIWcw+8qw1ONjJeKF8+cOKYNwkL+zqL0Fsfq/j5RCeNEcfKApGFvf8ytA
+         wnvw==
+X-Gm-Message-State: AOJu0YycXABa7wenlE8nBb/pS8lzZI/3fujrUZu8M7WcGBQk+DURKFdn
+	tF6LEgGnPey6InhsXbdpVd/3zA==
+X-Google-Smtp-Source: AGHT+IHmb8ewYnbRlq6v/5rMQRoMcMWRfLl01skabFTAXrcQx6eTujOz4Paqf/1jHchf7eivqMmEQQ==
+X-Received: by 2002:a05:600c:2246:b0:40b:2a46:6f1 with SMTP id a6-20020a05600c224600b0040b2a4606f1mr4313509wmm.2.1702485870981;
+        Wed, 13 Dec 2023 08:44:30 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:ac4e:a5fe:7f71:8d59? ([2a01:e0a:982:cbb0:ac4e:a5fe:7f71:8d59])
+        by smtp.gmail.com with ESMTPSA id o4-20020a5d58c4000000b0033333bee379sm13767115wrf.107.2023.12.13.08.44.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Dec 2023 08:44:30 -0800 (PST)
+Message-ID: <212239ae-60ab-46f3-a838-39a4d61091fe@linaro.org>
+Date: Wed, 13 Dec 2023 17:44:28 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 0/5] clk: Make clk_rate_exclusive_get() return void
-Message-ID: <20231213155252.eq6cdzk2vuwllzdu@pengutronix.de>
+Content-Language: en-GB
+To: Maxime Ripard <mripard@kernel.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ dri-devel@lists.freedesktop.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Thierry Reding <thierry.reding@gmail.com>, David Airlie <airlied@gmail.com>,
+ linux-clk@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
+ Rob Herring <robh@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ Kevin Hilman <khilman@baylibre.com>, Russell King <linux@armlinux.org.uk>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Chanwoo Choi
+ <cw00.choi@samsung.com>, Chen-Yu Tsai <wens@csie.org>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Johan Hovold <johan+linaro@kernel.org>, linux-sunxi@lists.linux.dev,
+ Thomas Zimmermann <tzimmermann@suse.de>, linux-pm@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+ Stephen Boyd <sboyd@kernel.org>, Kyungmin Park <kyungmin.park@samsung.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Georgi Djakov <djakov@kernel.org>
 References: <cover.1702400947.git.u.kleine-koenig@pengutronix.de>
  <ki5n3rz5n4oxj2hhc3rj6xpn3e2tdi7fcp2q7exjbzilrlqflp@przautvhuy4g>
  <20231213074300.4bq7wkfqd4jhhcr4@pengutronix.de>
  <2nvbag657mlniqwq7fbilapc6vfw5qumab3yd6bqul25ot6wcn@wdlkh5az2fgs>
- <20231213110829.bjaxjjiyy4ug7o67@pengutronix.de>
- <6wnsxbi27xdxjtaqaaaq5wtwwilp4jfw4mg5y2ctdl7xrs44ry@ns6y36pf7hge>
-MIME-Version: 1.0
-In-Reply-To: <6wnsxbi27xdxjtaqaaaq5wtwwilp4jfw4mg5y2ctdl7xrs44ry@ns6y36pf7hge>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+From: Neil Armstrong <neil.armstrong@linaro.org>
+In-Reply-To: <2nvbag657mlniqwq7fbilapc6vfw5qumab3yd6bqul25ot6wcn@wdlkh5az2fgs>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231213_075353_923719_F68704E2 
-X-CRM114-Status: GOOD (  50.91  )
+X-CRM114-CacheID: sfid-20231213_084435_203183_668FAEF6 
+X-CRM114-Status: GOOD (  53.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,188 +109,127 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2742620848881678797=="
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============2742620848881678797==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4rnwsmpqrmgwol6u"
-Content-Disposition: inline
-
-
---4rnwsmpqrmgwol6u
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Dec 13, 2023 at 12:54:14PM +0100, Maxime Ripard wrote:
-> On Wed, Dec 13, 2023 at 12:08:29PM +0100, Uwe Kleine-K=F6nig wrote:
-> > On Wed, Dec 13, 2023 at 09:36:49AM +0100, Maxime Ripard wrote:
-> > > On Wed, Dec 13, 2023 at 08:43:00AM +0100, Uwe Kleine-K=F6nig wrote:
-> > > > On Wed, Dec 13, 2023 at 08:16:04AM +0100, Maxime Ripard wrote:
-> > > > > On Tue, Dec 12, 2023 at 06:26:37PM +0100, Uwe Kleine-K=F6nig wrot=
-e:
-> > > > > > clk_rate_exclusive_get() returns zero unconditionally. Most use=
-rs "know"
-> > > > > > that and don't check the return value. This series fixes the fo=
-ur users
-> > > > > > that do error checking on the returned value and then makes fun=
-ction
-> > > > > > return void.
-> > > > > >=20
-> > > > > > Given that the changes to the drivers are simple and so merge c=
-onflicts
-> > > > > > (if any) should be easy to handle, I suggest to merge this comp=
-lete
-> > > > > > series via the clk tree.
-> > > > >=20
-> > > > > I don't think it's the right way to go about it.
-> > > > >=20
-> > > > > clk_rate_exclusive_get() should be expected to fail. For example =
-if
-> > > > > there's another user getting an exclusive rate on the same clock.
-> > > > >=20
-> > > > > If we're not checking for it right now, then it should probably be
-> > > > > fixed, but the callers checking for the error are right to do so =
-if they
-> > > > > rely on an exclusive rate. It's the ones that don't that should be
-> > > > > modified.
-> > > >=20
-> > > > If some other consumer has already "locked" a clock that I call
-> > > > clk_rate_exclusive_get() for, this isn't an error. In my bubble I c=
-all
-> > > > this function because I don't want the rate to change e.g. because I
-> > > > setup some registers in the consuming device to provide a fixed UART
-> > > > baud rate or i2c bus frequency (and that works as expected).
-> > >=20
-> > > [a long text of mostly right things (Uwe's interpretation) that are
-> > > however totally unrelated to the patches under discussion.]
->=20
-> I'm glad you consider it "mostly" right.
-
-there was no offense intended. I didn't agree to all points, but didn't
-think it was helpful to discuss that given that I considered them
-orthogonal to my suggested modifications.
-=20
-> > The clk API works with and without my patches in exactly the same way.
-> > It just makes more explicit that clk_rate_exclusive_get() cannot fail
-> > today and removes the error handling from consumers that is never used.
->=20
-> Not really, no.
-
-What exactly do you oppose here? Both of my sentences are correct?!
-=20
-> An API is an interface, meant to provide an abstraction. The only
-> relevant thing is whether or not that function, from an abstract point
-> of view, can fail.
-
-What is the ideal API that you imagine? For me the ideal API is:
-
-A consumer might call clk_rate_exclusive_get() and after that returns
-all other consumers are prohibited to change the rate of the clock
-(directly and indirectly) until clk_rate_exclusive_put() is called. If
-this ends in a double lock (i.e. two different consumers locked the
-clock), then I cannot change the rate (and neither can anybody else).
-
-That is fine iff I don't need to change the rate and just want to rely
-on it to keep its current value (which is a valid use case). And if I
-want to change the rate but another consumer prevents that, I handle
-that in the same away as I handle all other failures to set the rate to
-the value I need. I have to prepare for that anyhow even if I have
-ensured that I'm the only one having exclusivity on that clock.
-
-Letting clk_rate_exclusive_get() fail in the assumption that the
-consumer also wants to modify the rate is wrong. The obvious point where
-to stop such consumers is when they call clk_rate_set(). And those who
-don't modify the rate then continue without interruption even if there
-are two lockers.
-
-This can easily be implemented without clk_rate_exclusive_get() ever
-failing.
-
-> Can you fail to get the exclusivity? Yes. On a theoretical basis, you
-> can, and the function was explicitly documented as such.
-
-Sure, you could modify the clk internals such that
-clk_rate_exclusive_get() needs to allocate memory. Or that it fails if
-another consumer already has called it. At least the latter is a change
-in semantics that requires to review (and maybe fix) all users. Also
-note that calling clk_rate_exclusive_get() essentially locks all parent
-clocks up to the root clock. So if clk_rate_exclusive_get() fails in the
-presence of another locker, you can only have one locker per clock
-hierarchy because it's impossible that both grab the lock on the root
-clock.
-
-> > Is there anyone working on improving the clk framework regarding how clk
-> > rate exclusivity works? I'd probably not notice, but I guess there is
-> > noone that I need to consider for.
->=20
-> I started working on it.
-
-That is indeed a reason to postpone my patches. Feel free to Cc: me when
-you're done. And please mention if you need longer than (say) 6 months,
-then I'd argue that applying my patches now without caring for
-out-of-tree users is the way to go.
-
-My demand for such a rework would be that there is a function for=20
-consumers to call that don't have the requirement for a certain rate but
-only any fixed rate that results in locking the clock's rate to whatever
-it currently is. Today that function exists and is called
-clk_rate_exclusive_get(); this might not be the best name, so maybe
-rename it to something that you consider more sensible at the start of
-your rework?!
-
-Semantically that is similar to read_lock() (which never fails and
-still prevents any writers). And clk_set_rate() is like=20
-
-	try_upgrade_read_lock_to_write_lock();
-	actually_change_the_rate()
-	downgrade_write_lock_to_read_lock();
-
-where try_upgrade_read_lock_to_write_lock() fails if there are other
-readers. So maybe a sensible name for today's clk_rate_exclusive_get()
-is clk_rate_read_lock()?
-
-If your variant of clk_rate_exclusive_get() might fail, you can already
-prepare for me questioning why this is sensible and needed.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---4rnwsmpqrmgwol6u
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmV501MACgkQj4D7WH0S
-/k51hQf8CRNymicQ4BgKO3Qz+szmXEUKIg8qmLZG6f+sJ77H3mvg7zlbvpI/W/hI
-rscYS06UjEHJM9ec8XTYACyQ1nJy98D8BxhawVTn+wrJa2z0tBDSg01HHBXZkVLe
-xG6BYa5Dx94GTfhTXr9H4zwiLgchRz6/FFp4H49wHQ8rHLX6YYwLBUMq258vYNN8
-Df1WULIGmruvRCkwWFyfhVC2OPyUy0FagJ5xsjJyRIavDaiFmuLEGg0avrbfEjN3
-CMcsnDtQD1pALNhIWwvovcLint4Iap8vDz6O3+MyEDj65AZf8DzO8TJZjTYwGnoI
-zj1/dV/j2h1+TK5lvLFOTKPzSD3u1Q==
-=Nnb7
------END PGP SIGNATURE-----
-
---4rnwsmpqrmgwol6u--
-
-
---===============2742620848881678797==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============2742620848881678797==--
-
+SGkgTWF4aW1lLAoKTGUgMTMvMTIvMjAyMyDDoCAwOTozNiwgTWF4aW1lIFJpcGFyZCBhIMOpY3Jp
+dMKgOgo+IEhpLAo+IAo+IE9uIFdlZCwgRGVjIDEzLCAyMDIzIGF0IDA4OjQzOjAwQU0gKzAxMDAs
+IFV3ZSBLbGVpbmUtS8O2bmlnIHdyb3RlOgo+PiBPbiBXZWQsIERlYyAxMywgMjAyMyBhdCAwODox
+NjowNEFNICswMTAwLCBNYXhpbWUgUmlwYXJkIHdyb3RlOgo+Pj4gT24gVHVlLCBEZWMgMTIsIDIw
+MjMgYXQgMDY6MjY6MzdQTSArMDEwMCwgVXdlIEtsZWluZS1Lw7ZuaWcgd3JvdGU6Cj4+Pj4gY2xr
+X3JhdGVfZXhjbHVzaXZlX2dldCgpIHJldHVybnMgemVybyB1bmNvbmRpdGlvbmFsbHkuIE1vc3Qg
+dXNlcnMgImtub3ciCj4+Pj4gdGhhdCBhbmQgZG9uJ3QgY2hlY2sgdGhlIHJldHVybiB2YWx1ZS4g
+VGhpcyBzZXJpZXMgZml4ZXMgdGhlIGZvdXIgdXNlcnMKPj4+PiB0aGF0IGRvIGVycm9yIGNoZWNr
+aW5nIG9uIHRoZSByZXR1cm5lZCB2YWx1ZSBhbmQgdGhlbiBtYWtlcyBmdW5jdGlvbgo+Pj4+IHJl
+dHVybiB2b2lkLgo+Pj4+Cj4+Pj4gR2l2ZW4gdGhhdCB0aGUgY2hhbmdlcyB0byB0aGUgZHJpdmVy
+cyBhcmUgc2ltcGxlIGFuZCBzbyBtZXJnZSBjb25mbGljdHMKPj4+PiAoaWYgYW55KSBzaG91bGQg
+YmUgZWFzeSB0byBoYW5kbGUsIEkgc3VnZ2VzdCB0byBtZXJnZSB0aGlzIGNvbXBsZXRlCj4+Pj4g
+c2VyaWVzIHZpYSB0aGUgY2xrIHRyZWUuCj4+Pgo+Pj4gSSBkb24ndCB0aGluayBpdCdzIHRoZSBy
+aWdodCB3YXkgdG8gZ28gYWJvdXQgaXQuCj4+Pgo+Pj4gY2xrX3JhdGVfZXhjbHVzaXZlX2dldCgp
+IHNob3VsZCBiZSBleHBlY3RlZCB0byBmYWlsLiBGb3IgZXhhbXBsZSBpZgo+Pj4gdGhlcmUncyBh
+bm90aGVyIHVzZXIgZ2V0dGluZyBhbiBleGNsdXNpdmUgcmF0ZSBvbiB0aGUgc2FtZSBjbG9jay4K
+Pj4+Cj4+PiBJZiB3ZSdyZSBub3QgY2hlY2tpbmcgZm9yIGl0IHJpZ2h0IG5vdywgdGhlbiBpdCBz
+aG91bGQgcHJvYmFibHkgYmUKPj4+IGZpeGVkLCBidXQgdGhlIGNhbGxlcnMgY2hlY2tpbmcgZm9y
+IHRoZSBlcnJvciBhcmUgcmlnaHQgdG8gZG8gc28gaWYgdGhleQo+Pj4gcmVseSBvbiBhbiBleGNs
+dXNpdmUgcmF0ZS4gSXQncyB0aGUgb25lcyB0aGF0IGRvbid0IHRoYXQgc2hvdWxkIGJlCj4+PiBt
+b2RpZmllZC4KPj4KPj4gSWYgc29tZSBvdGhlciBjb25zdW1lciBoYXMgYWxyZWFkeSAibG9ja2Vk
+IiBhIGNsb2NrIHRoYXQgSSBjYWxsCj4+IGNsa19yYXRlX2V4Y2x1c2l2ZV9nZXQoKSBmb3IsIHRo
+aXMgaXNuJ3QgYW4gZXJyb3IuIEluIG15IGJ1YmJsZSBJIGNhbGwKPj4gdGhpcyBmdW5jdGlvbiBi
+ZWNhdXNlIEkgZG9uJ3Qgd2FudCB0aGUgcmF0ZSB0byBjaGFuZ2UgZS5nLiBiZWNhdXNlIEkKPj4g
+c2V0dXAgc29tZSByZWdpc3RlcnMgaW4gdGhlIGNvbnN1bWluZyBkZXZpY2UgdG8gcHJvdmlkZSBh
+IGZpeGVkIFVBUlQKPj4gYmF1ZCByYXRlIG9yIGkyYyBidXMgZnJlcXVlbmN5IChhbmQgdGhhdCB3
+b3JrcyBhcyBleHBlY3RlZCkuCj4gCj4gSSBndWVzcyBpdCdzIGEgbGFyZ2VyIGNvbnZlcnNhdGlv
+biwgYnV0IEkgZG9uJ3Qgc2VlIGhvdyB0aGF0IGNhbgo+IHBvc3NpYmx5IHdvcmsuCj4gCj4gVGhl
+IHdheSB0aGUgQVBJIGlzIGRlc2lnbmVkLCB5b3UgaGF2ZSBubyBndWFyYW50ZWUgKG91dHNpZGUg
+b2YKPiBjbGtfcmF0ZV9leGNsdXNpdmVfKikgdGhhdCB0aGUgcmF0ZSBpcyBnb2luZyB0byBjaGFu
+Z2UuCj4gCj4gQW5kIGNsa19yYXRlX2V4Y2x1c2l2ZV9nZXQoKSBkb2Vzbid0IGFsbG93IHRoZSBy
+YXRlIHRvIGNoYW5nZSB3aGlsZSBpbgo+IHRoZSAiY3JpdGljYWwgc2VjdGlvbiIuCj4gCj4gU28g
+dGhlIG9ubHkgcG9zc2libGUgdGhpbmcgdG8gZG8gaXMgY2xrX3NldF9yYXRlKCkgKwo+IGNsa19y
+YXRlX2V4Y2x1c2l2ZV9nZXQoKS4KClRoZXJlJ3MgY2xrX3NldF9yYXRlX2V4Y2x1c2l2ZSgpIGZv
+ciB0aGlzIHB1cnBvc2UuCgo+IAo+IFNvIHRoZXJlJ3MgYSB3aW5kb3cgd2hlcmUgdGhlIGNsb2Nr
+IGNhbiBpbmRlZWQgYmUgY2hhbmdlZCwgYW5kIHRoZQo+IGNvbnN1bWVyIHRoYXQgaXMgYWJvdXQg
+dG8gbG9jayBpdHMgcmF0ZSB3b3VsZG4ndCBiZSBhd2FyZSBvZiBpdC4KPiAKPiBJIGd1ZXNzIGl0
+IHdvdWxkIHdvcmsgaWYgeW91IGRvbid0IGNhcmUgYWJvdXQgdGhlIHJhdGUgYXQgYWxsLCB5b3Ug
+anVzdAo+IHdhbnQgdG8gbWFrZSBzdXJlIGl0IGRvZXNuJ3QgY2hhbmdlLgo+IAo+IE91dCBvZiB0
+aGUgNyB1c2VycyBvZiB0aGF0IGZ1bmN0aW9uLCAzIGFyZSBpbiB0aGF0IHNpdHVhdGlvbiwgc28g
+SSBndWVzcwo+IGl0J3MgZmFpci4KPiAKPiAzIGFyZSBvcGVuIHRvIHRoYXQgcmFjZSBjb25kaXRp
+b24gSSBtZW50aW9uZWQgYWJvdmUuCj4gCj4gMSBpcyBjYWxsaW5nIGNsa19zZXRfcmF0ZSB3aGls
+ZSBpbiB0aGUgY3JpdGljYWwgc2VjdGlvbiwgd2hpY2ggd29ya3MgaWYKPiB0aGVyZSdzIGEgc2lu
+Z2xlIHVzZXIgYnV0IG5vdCBpZiB0aGVyZSdzIG11bHRpcGxlLCBzbyBpdCBzaG91bGQgYmUKPiBk
+aXNjb3VyYWdlZC4KPiAKPj4gSW4gdGhpcyBjYXNlIEkgd29uJ3QgYmUgYWJsZSB0byBjaGFuZ2Ug
+dGhlIHJhdGUgb2YgdGhlIGNsb2NrLCBidXQgdGhhdAo+PiBpcyBzaWduYWxsZWQgYnkgY2xrX3Nl
+dF9yYXRlKCkgZmFpbGluZyAoaWZmIGFuZCB3aGVuIEkgbmVlZCBhd290aGVyCj4+IHJhdGUpIHdo
+aWNoIGFsc28gc2VlbXMgdGhlIHJpZ2h0IHBsYWNlIHRvIGZhaWwgdG8gbWUuCj4gCj4gV2hpY2gg
+aXMgaWdub3JlZCBieSBsaWtlIGhhbGYgdGhlIGNhbGxlcnMsIGluY2x1ZGluZyB0aGUgb25lIG9k
+ZCBjYXNlIEkKPiBtZW50aW9uZWQgYWJvdmUuCj4gCj4gQW5kIHRoYXQncyBzdXBlciBjb25mdXNp
+bmcgc3RpbGw6IHlvdSBjYW4gKmFsd2F5cyogZ2V0IGV4Y2x1c2l2aXR5LCBidXQKPiBub3QgYWx3
+YXlzIGRvIHdoYXRldmVyIHlvdSB3YW50IHdpdGggdGhlIHJhdGUgd2hlbiB5b3UgaGF2ZSBpdD8g
+SG93IGFyZQo+IGRyaXZlcnMgc3VwcG9zZWQgdG8gcmVjb3ZlciBmcm9tIHRoYXQ/IFlvdSBjYW4g
+aGFuZGxlIGZhaWxpbmcgdG8gZ2V0Cj4gZXhjbHVzaXZpdHksIGJ1dCBjZXJ0YWlubHkgbm90IHdv
+cmtpbmcgYXJvdW5kIHZhcmlhYmxlIGd1YXJhbnRlZXMuCj4gCj4+IEl0J3MgbGlrZSB0aGF0IHNp
+bmNlIGNsa19yYXRlX2V4Y2x1c2l2ZV9nZXQoKSB3YXMgaW50cm9kdWNlZCBpbiAyMDE3Cj4+IChj
+b21taXQgNTVlOWI4YjdiODA2ZWMzZjlhODgxN2UxMzU5NjY4MmE1OTgxYzE5YykuCj4gCj4gUmln
+aHQsIGJ1dCAiaXQncyBhbHdheXMgYmVlbiB0aGF0IHdheSIgc3VyZWx5IGNhbid0IGJlIGFuIGFy
+Z3VtZW50LAo+IG90aGVyd2lzZSB5b3Ugd291bGRuJ3QgaGF2ZSBkb25lIHRoYXQgc2VyaWVzIGlu
+IHRoZSBmaXJzdCBwbGFjZS4KPiAKPj4gQlRXLCBJIGp1c3Qgbm90aWNlZCB0aGF0IG15IGFzc2Vy
+dGlvbiAiTW9zdCB1c2VycyBcImtub3dcIiB0aGF0Cj4+IFtjbGtfcmF0ZV9leGNsdXNpdmVfZ2V0
+KCkgcmV0dXJucyB6ZXJvIHVuY29uZGl0aW9uYWxseV0iIGlzIHdyb25nLiBBcyBvZgo+PiBuZXh0
+LTIwMjMxMjEzIHRoZXJlIGFyZSAzIGNhbGxlcnMgaWdub3JpbmcgdGhlIHJldHVybiB2YWx1ZSBv
+Zgo+PiBjbGtfcmF0ZV9leGNsdXNpdmVfZ2V0KCkgYW5kIDQgdGhhdCBoYW5kbGUgKGltYWdpbmFy
+eSkgcmV0dXJuZWQgZXJyb3JzLgo+PiBJIGV4cGVjdGVkIHRoaXMgZnVuY3Rpb24gdG8gYmUgdXNl
+ZCBtb3JlIGV4dGVuc2l2ZWx5LiAoSW4gZmFjdCBJIHRoaW5rCj4+IGl0IHNob3VsZCBiZSB1c2Vk
+IG1vcmUgYXMgc2V2ZXJhbCBkcml2ZXJzIHJlbHkgb24gdGhlIGNsayByYXRlIG5vdAo+PiBjaGFu
+Z2luZy4pCj4gCj4gWWVzLCBidXQgYWxzbyBpdCdzIHN1cGVyIGRpZmZpY3VsdCB0byB1c2UgaW4g
+cHJhY3RpY2UsIGFuZCBtb3N0IGRldmljZXMKPiBkb24ndCBjYXJlLgo+IAo+IFRoZSBjdXJyZW50
+IHNpdHVhdGlvbiBpcyBzb21ldGhpbmcgbGlrZSB0aGlzOgo+IAo+ICAgICogT25seSBhIGhhbmRm
+dWwgb2YgZGV2aWNlcyByZWFsbHkgY2FyZSBhYm91dCB0aGVpciBjbG9jayByYXRlLCBhbmQKPiAg
+ICAgIG9mdGVuIG9ubHkgZm9yIG9uZSBvZiB0aGVpciBjbG9jayBpZiB0aGV5IGhhdmUgc2V2ZXJh
+bC4gWW91IHdvdWxkCj4gICAgICBwcm9iYWJseSBnZXQgYWxsIHRoZSBkZXZpY2VzIHRoYXQgY3Jl
+YXRlIGFuIGFuYWxvZyBzaWduYWwgc29tZWhvdwo+ICAgICAgdGhlcmUsIHNvIGF1ZGlvLCBkaXNw
+bGF5LCBpMmMsIHNwaSwgdWFydHMsIGV0Yy4gUGx1cyB0aGUgb25lcyBkb2luZwo+ICAgICAgZnJl
+cXVlbmN5IHNjYWxpbmcgc28gQ1BVIGFuZCBHUFVzLgo+IAo+ICAgICogQ1BVcyBhbmQgR1BVcyBh
+cmUgdmVyeSBsaWtlbHkgdG8gaGF2ZSBhIGRlZGljYXRlZCBjbG9jaywgc28gd2UgY2FuCj4gICAg
+ICBydWxlIHRoZSAiYW5vdGhlciB1c2VyIGlzIGdvaW5nIHRvIG1lc3Mgd2l0aCBteSBjbG9jayIg
+Y2FzZS4KPiAKPiAgICAqIFVBUlRzL2kyYy9ldGMuIGFyZSB1c3VhbGx5IHRha2luZyB0aGVpciBj
+bG9jayBmcm9tIHRoZSBidXMgaW50ZXJmYWNlCj4gICAgICBkaXJlY3RseSB3aGljaCBpcyBwcmV0
+dHkgbXVjaCBuZXZlciBnb2luZyB0byBjaGFuZ2UgKGZvciBnb29kCj4gICAgICByZWFzb24pLiBB
+bmQgdGhlIHJhdGUgb2YgdGhlIGJ1cyBpcyBub3QgcmVhbGx5IGxpa2VseSB0byBjaGFuZ2UuCj4g
+Cj4gICAgKiBTUEkvTkFORC9NTUMgdXN1YWxseSBoYXZlIHRoZWlyIGRlZGljYXRlZCBjbG9jayB0
+b28sIGFuZCB0aGUgYnVzCj4gICAgICByYXRlIGlzIG5vdCBsaWtlbHkgdG8gY2hhbmdlIGFmdGVy
+IHRoZSBpbml0aWFsIHNldHVwIGVpdGhlci4KPiAKPiBTbywgdGhlIG9ubHkgYWZmZWN0ZWQgZGV2
+aWNlcyBhcmUgdGhlIG9uZXMgZ2VuZXJhdGluZyBleHRlcm5hbCBzaWduYWxzLAo+IHdpdGggdGhl
+IHJhdGUgY2hhbmdpbmcgZHVyaW5nIHRoZSBsaWZlIG9mIHRoZSBzeXN0ZW0uIEV2ZW4gZm9yIGF1
+ZGlvIG9yCj4gdmlkZW8gZGV2aWNlcywgdGhhdCdzIGZhaXJseSB1bmxpa2VseSB0byBoYXBwZW4u
+IEFuZCB5b3UgbmVlZCB0byBoYXZlCj4gbXVsdGlwbGUgZGV2aWNlcyBzaGFyaW5nIHRoZSBzYW1l
+IGNsb2NrIHRyZWUgZm9yIHRoYXQgaXNzdWUgdG8gb2NjdXIsCj4gd2hpY2ggaXMgZnVydGhlciBy
+ZWR1Y2luZyB0aGUgY2hhbmNlcyBpdCBoYXBwZW5zLgoKV2VsbCwgdGhhbmtzIGZvciBIVyBkZXNp
+Z25lcnMsIHRoaXMgZXhpc3RzIGFuZCBzb21lIFNvQ3MgaGFzIGxlc3MgUExMcyB0aGFuCm5lZWRl
+ZCwgYW5kIHRoZXkgY2FuJ3QgYmUgZGVkaWNhdGVkIGZvciBzb21lIGh3IGJsb2Nrcy4KCj4gCj4g
+UmVhbGlzdGljYWxseSBzcGVha2luZywgdGhpcyBvbmx5IG9jY3VycyB3aXRoIG11bHRpLWhlYWQg
+ZGlzcGxheSBvdXRwdXRzCj4gd2hlcmUgaXQncyBzb21ld2hhdCBsaWtlbHkgdG8gaGF2ZSBhbGwg
+dGhlIGRpc3BsYXkgY29udHJvbGxlcnMgZmVlZGluZwo+IGZyb20gdGhlIHNhbWUgY2xvY2ssIGFu
+ZCB0aGUgcG93ZXIgdXAgb2YgdGhlIHZhcmlvdXMgb3V0cHV0IGlzIGRvbmUgaW4KPiBzZXF1ZW5j
+ZSB3aGljaCBjcmVhdGVzIHRoYXQgc2l0dWF0aW9uLgo+IAo+IEFuZCBldmVuIHRoZW4sIHRoZSBj
+bGtfcmF0ZV9leGNsdXNpdmVfKiBpbnRlcmZhY2UgZWZmZWN0aXZlbHkgbG9ja3MgdGhlCj4gZW50
+aXJlIGNsb2NrIHN1YnRyZWUgdG8gaXRzIGN1cnJlbnQgcmF0ZSwgc28gdGhlIGVmZmVjdCBvbiB0
+aGUgcmVzdCBvZgo+IHRoZSBkZXZpY2VzIGNhbiBiZSBzaWduaWZpY2FudC4KPiAKPiBTby4uLiB5
+ZWFoLiBFdmVuIHRob3VnaCB5b3UncmUgcmlnaHQsIGl0J3MgdHJ5aW5nIHRvIGFkZHJlc3MgYSBw
+cm9ibGVtCj4gdGhhdCBpcyBzdXBlciB1bmxpa2VseSB0byBoYXBwZW4gd2l0aCBhIHByZXR0eSBi
+aWcgaGFtbWVyIHRoYXQgbWlnaHQgYmUKPiB0b28gbXVjaCBmb3IgbW9zdC4gU28gaXQncyBub3Qg
+cmVhbGx5IHN1cnByaXNpbmcgaXQncyBub3QgdXNlZCBtb3JlLgoKSG9uZXN0bHkgSSB0cmllZCBt
+eSBiZXN0IHRvIGZpbmQgYSBzbWFydCB3YXkgdG8gc2V0IHRoZSBEU0kgY2xvY2sgdHJlZQp3aXRo
+IG9ubHkgMiBlbmRwb2ludHMgb2YgdGhlIHRyZWUsIGJ1dCBDQ0Ygd2lsbCBleHBsb3JlIGFsbCBw
+b3NzaWJpbGl0aWVzCmFuZCBzaW5jZSB5b3UgY2Fubm90IHNldCBjb25zdHJhaW50cywgbG9ja2lu
+ZyBhIHN1Yi10cmVlIGlzIHRoZSBzbWFydGVzdAp3YXkgSSBmb3VuZC4KSW4gdGhpcyBjYXNlLCB0
+aGUgUExMIGlzIGNvbW1vbiBiZXR3ZWVuIHRoZSBEU0kgY29udHJvbGxlciBhbmQgdmlkZW8gZ2Vu
+ZXJhdG9yLApzbyB0byBrZWVwIHRoZSBleHBlY3RlZCBjbG9jayByYXRpbywgdGhlIHNtYXJ0IHdh
+eSBpcyB0byBzZXQgdGhlIGZyZXEgb24Kb25lIHNpZGUsIGxvY2sgdGhlIHN1YnRyZWUgYW5kIHNl
+dCB0aGUgcmF0ZSBvbiB0aGUgb3RoZXIgc2lkZS4KQW4gQVBJIHBlcm1pdHRpbmcgdG8gc2V0IG11
+bHRpcGxlIHJhdGVzIHRvIG11bHRpcGxlIGNsb2NrcyBpbiBhIHNpbmdsZSBjYWxsCndvdWxkIGJl
+IHRoZSBzb2x1dGlvbiwgYnV0IG5vdCBzdXJlIGlmIHdlIGNvdWxkIHBvc3NpYmx5IHdyaXRlIHN1
+Y2ggYWxnb3JpdGhtLgoKPiAKPiBNYXhpbWUKCk5laWwKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4
+LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
