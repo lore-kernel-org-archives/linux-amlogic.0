@@ -4,74 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B90BC35274
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Dec 2023 12:34:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D647C46CC5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Dec 2023 14:00:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=oZcVCEVDniYmMfM37QVLNAcwbP7T2p7D8DoiUhng0TY=; b=zgs7xcGwwUdd6QUqtEzvvBe2YZ
-	rXVfztM/5/L+DnudfTUPHqPnCrYvFBSJj5mHArhOLuJ0L83P2Z1wiRKvkBRKyWp/Q0GZ5ioIVnGzU
-	xoyRmTRxuh/i1an6CCcNFfT4UzSu4Atdj04mjne3uORsIt1R9RiOrdD6LpiNy6H5qh7hOWL/EMJva
-	DO8ebl17K9VxCCU9xGq7+nDIuqhDopqPDWh2q6rvr/fqpLbpF3wKHrkS4i7h3WeHG6Qqq0GdaTPoe
-	NMtWUREbTCIRzGAPQ11eTd5SH5rI+oDAHh5D4oAb4096vpAVIZfg79FAlaX5+6oQJBDAu9RYWlLFK
-	hKViO77Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=1kKCd/nlqIa9IHL0qWMrheonWBECjHJiIP8esdkly7o=; b=XpL2ic6FJRXOea
+	zCM/UfsUsY0kCmQzGOw7unYf0cm8eZjDKmm00L/6LXEFCra87Z0q3u6sJ9xOoSeMVDPdTkyBqLXWE
+	5jZciI2hWVewP4H5KYvVlqGXD9Nv4p6ZDtKTBZhbOl57T9obWAj+wMHWFOnggAoTcSarFxpgNbEH9
+	01z9JlG/0mgMbpkGV5R3EgKFkVIyDQHz0FmDZ34L/owPBxoS/egE1TNWXf9gTQWNPz2G+BcAxnlXH
+	KF3bTEJyW6fcJL/n/XBntO+kt1IETJfTQrByaxI8pUTSAKTCx4n93V2vwJMps5lPa6An079yhzqve
+	UiNzu+JIWGtQm/FHLqRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rE7Ok-003FcL-2D;
-	Fri, 15 Dec 2023 12:34:34 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1rE8jK-003T0K-1G;
+	Fri, 15 Dec 2023 13:59:54 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rE7Oh-003Fbj-2Y;
-	Fri, 15 Dec 2023 12:34:33 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id 6B2E6B82817;
-	Fri, 15 Dec 2023 12:34:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45979C433C8;
-	Fri, 15 Dec 2023 12:34:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702643668;
-	bh=FaCZ2fNraad49PiDtX3wes78ymtVFrS8O37vDr/7Bwk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GqGTdqkSJTbeNCkys9izOFrKzzGLhSAUGY0S7zmNMp1fq9I+nGBTZ82rMYGw37rBh
-	 YzsNrhE8bM3v+zM28ABp2cZCG3Xndyrx42SAlCImrSLIixr9CIiqpCuoWbH11oSw1o
-	 H6d2m1s6vJpfhUc+yl3E8goo8CkW2kf2Z5GnIEz9BdmyvAem7g3SL0PJlPC9T0sf8G
-	 bJrNdNN631TrOa5WbwoBq4/yfSS0xIg/FVZ+6BEmBDR5OaswBheC9dSsAnaMqFSG31
-	 3oCNJU4tNUgVycsGEWUuuAQY6lh1gZPM4LKW/3+mAxzk6GGV5DIlHW3//laGWdYu0E
-	 BvWrQPiud4/0w==
-Date: Fri, 15 Dec 2023 13:34:26 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	dri-devel@lists.freedesktop.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, David Airlie <airlied@gmail.com>, linux-clk@vger.kernel.org, 
-	Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>, 
-	Samuel Holland <samuel@sholland.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Russell King <linux@armlinux.org.uk>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	Chen-Yu Tsai <wens@csie.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
-	Johan Hovold <johan+linaro@kernel.org>, linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>, 
-	linux-pm@vger.kernel.org, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Stephen Boyd <sboyd@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Kyungmin Park <kyungmin.park@samsung.com>, kernel@pengutronix.de, Georgi Djakov <djakov@kernel.org>
-Subject: Re: [PATCH 0/5] clk: Make clk_rate_exclusive_get() return void
-Message-ID: <nsa54fwu4ewmcaehesuqefoo5r7z3tuvj76hjb4ngtkaygxwxx@h73ihjon5gby>
-References: <cover.1702400947.git.u.kleine-koenig@pengutronix.de>
- <ki5n3rz5n4oxj2hhc3rj6xpn3e2tdi7fcp2q7exjbzilrlqflp@przautvhuy4g>
- <20231213074300.4bq7wkfqd4jhhcr4@pengutronix.de>
- <2nvbag657mlniqwq7fbilapc6vfw5qumab3yd6bqul25ot6wcn@wdlkh5az2fgs>
- <20231213110829.bjaxjjiyy4ug7o67@pengutronix.de>
- <6wnsxbi27xdxjtaqaaaq5wtwwilp4jfw4mg5y2ctdl7xrs44ry@ns6y36pf7hge>
- <20231213155252.eq6cdzk2vuwllzdu@pengutronix.de>
+	id 1rE8j4-003So1-0v
+	for linux-amlogic@lists.infradead.org;
+	Fri, 15 Dec 2023 13:59:40 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rE8iv-0002lM-3E; Fri, 15 Dec 2023 14:59:29 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rE8iu-00G2ZJ-5O; Fri, 15 Dec 2023 14:59:28 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rE8it-003cC6-RU; Fri, 15 Dec 2023 14:59:27 +0100
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>
+Cc: Jiucheng Xu <jiucheng.xu@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 02/18] perf: amlogic: Convert to platform remove callback returning void
+Date: Fri, 15 Dec 2023 14:59:02 +0100
+Message-ID: <33dbadf246eb323edd9e09ac744111216c167a55.1702648124.git.u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <cover.1702648124.git.u.kleine-koenig@pengutronix.de>
+References: <cover.1702648124.git.u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <20231213155252.eq6cdzk2vuwllzdu@pengutronix.de>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1758; i=u.kleine-koenig@pengutronix.de; h=from:subject:message-id; bh=JQzThqbYJP0QqESsItg7VkQxjf7NhjUZgsGroMmrOZc=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBlfFunAL8ycJpqtt6tJDjG+TMfdjLtm1rASeztS gl+kihZlRqJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZXxbpwAKCRCPgPtYfRL+ TohvCACm7G4Swx+T76FjE6UsHXXIG1J+cbT4v9Z3seGjq6SJJgxd/XZI+9sThyUM0hr75yQ+KpS jE0G6cKisaCLXR79HtR5VSEvyrG7PhR6WMmKdDI+pBmcfP5v3XQ69go7jN9lLOEt4oPYIU5iYbJ XunL0YeN0g0LeGgz9Gkk7FmM4LPwIyF+a2+3kHbrFww67ebezxwk5CWO6LQeMAc2NxnUJCLnW4z yZAIEt5KxjFywnR3E9IwFoq9d0jUKGig/POvSBV9AihktZICVmOoVYdMNZd0ET96RzGJUPBGs1x vrxU0Ykd14+Mfgv6oNbwZaIw96Aj6yDImRvhOCTpJyDXxOv8
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231215_043432_121853_9E406110 
-X-CRM114-Status: GOOD (  52.88  )
+X-CRM114-CacheID: sfid-20231215_055938_342249_F7849F9A 
+X-CRM114-Status: GOOD (  14.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,165 +78,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============6691841930586068721=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============6691841930586068721==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wu77dsjz7uev4rk4"
-Content-Disposition: inline
-
-
---wu77dsjz7uev4rk4
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Dec 13, 2023 at 04:52:52PM +0100, Uwe Kleine-K=F6nig wrote:
-> On Wed, Dec 13, 2023 at 12:54:14PM +0100, Maxime Ripard wrote:
-> > On Wed, Dec 13, 2023 at 12:08:29PM +0100, Uwe Kleine-K=F6nig wrote:
-> > > On Wed, Dec 13, 2023 at 09:36:49AM +0100, Maxime Ripard wrote:
-> > > > On Wed, Dec 13, 2023 at 08:43:00AM +0100, Uwe Kleine-K=F6nig wrote:
-> > > > > On Wed, Dec 13, 2023 at 08:16:04AM +0100, Maxime Ripard wrote:
-> > > > > > On Tue, Dec 12, 2023 at 06:26:37PM +0100, Uwe Kleine-K=F6nig wr=
-ote:
-> > > > > > > clk_rate_exclusive_get() returns zero unconditionally. Most u=
-sers "know"
-> > > > > > > that and don't check the return value. This series fixes the =
-four users
-> > > > > > > that do error checking on the returned value and then makes f=
-unction
-> > > > > > > return void.
-> > > > > > >=20
-> > > > > > > Given that the changes to the drivers are simple and so merge=
- conflicts
-> > > > > > > (if any) should be easy to handle, I suggest to merge this co=
-mplete
-> > > > > > > series via the clk tree.
-> > > > > >=20
-> > > > > > I don't think it's the right way to go about it.
-> > > > > >=20
-> > > > > > clk_rate_exclusive_get() should be expected to fail. For exampl=
-e if
-> > > > > > there's another user getting an exclusive rate on the same cloc=
-k.
-> > > > > >=20
-> > > > > > If we're not checking for it right now, then it should probably=
- be
-> > > > > > fixed, but the callers checking for the error are right to do s=
-o if they
-> > > > > > rely on an exclusive rate. It's the ones that don't that should=
- be
-> > > > > > modified.
-> > > > >=20
-> > > > > If some other consumer has already "locked" a clock that I call
-> > > > > clk_rate_exclusive_get() for, this isn't an error. In my bubble I=
- call
-> > > > > this function because I don't want the rate to change e.g. becaus=
-e I
-> > > > > setup some registers in the consuming device to provide a fixed U=
-ART
-> > > > > baud rate or i2c bus frequency (and that works as expected).
-> > > >=20
-> > > > [a long text of mostly right things (Uwe's interpretation) that are
-> > > > however totally unrelated to the patches under discussion.]
-> >=20
-> > I'm glad you consider it "mostly" right.
->=20
-> there was no offense intended. I didn't agree to all points, but didn't
-> think it was helpful to discuss that given that I considered them
-> orthogonal to my suggested modifications.
-> =20
-> > > The clk API works with and without my patches in exactly the same way.
-> > > It just makes more explicit that clk_rate_exclusive_get() cannot fail
-> > > today and removes the error handling from consumers that is never use=
-d.
-> >=20
-> > Not really, no.
->=20
-> What exactly do you oppose here? Both of my sentences are correct?!
-
-That the API works in the exact same way.
-
-> > An API is an interface, meant to provide an abstraction. The only
-> > relevant thing is whether or not that function, from an abstract point
-> > of view, can fail.
->=20
-> What is the ideal API that you imagine? For me the ideal API is:
->=20
-> A consumer might call clk_rate_exclusive_get() and after that returns
-> all other consumers are prohibited to change the rate of the clock
-> (directly and indirectly) until clk_rate_exclusive_put() is called. If
-> this ends in a double lock (i.e. two different consumers locked the
-> clock), then I cannot change the rate (and neither can anybody else).
->=20
-> That is fine iff I don't need to change the rate and just want to rely
-> on it to keep its current value (which is a valid use case). And if I
-> want to change the rate but another consumer prevents that, I handle
-> that in the same away as I handle all other failures to set the rate to
-> the value I need. I have to prepare for that anyhow even if I have
-> ensured that I'm the only one having exclusivity on that clock.
->=20
-> Letting clk_rate_exclusive_get() fail in the assumption that the
-> consumer also wants to modify the rate is wrong. The obvious point where
-> to stop such consumers is when they call clk_rate_set(). And those who
-> don't modify the rate then continue without interruption even if there
-> are two lockers.
->=20
-> This can easily be implemented without clk_rate_exclusive_get() ever
-> failing.
->=20
-> > Can you fail to get the exclusivity? Yes. On a theoretical basis, you
-> > can, and the function was explicitly documented as such.
->=20
-> Sure, you could modify the clk internals such that
-> clk_rate_exclusive_get() needs to allocate memory. Or that it fails if
-> another consumer already has called it. At least the latter is a change
-> in semantics that requires to review (and maybe fix) all users. Also
-> note that calling clk_rate_exclusive_get() essentially locks all parent
-> clocks up to the root clock. So if clk_rate_exclusive_get() fails in the
-> presence of another locker, you can only have one locker per clock
-> hierarchy because it's impossible that both grab the lock on the root
-> clock.
-
-We're not discussing the same thing. You're talking about from a
-technical point of view, I'm talking about it from an abstraction point
-of view. Let's use another example: kmalloc cannot fail. Are we going to
-remove every possible check for a null pointer in the kernel?
-
-No, of course we won't, because at some point it might and the error
-handling will be valuable.
-
-Same story here.
-
-Maxime
-
---wu77dsjz7uev4rk4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZXxH0gAKCRDj7w1vZxhR
-xV/qAQD3/+x4S05zuQ5N2nfPdpjw4SxrkhoevmzHBpy1FgHZiQD/VV4FJjb2kuQG
-qaKs9P5j71Zv3P0kGzQhaFxK9fkLCws=
-=lYpt
------END PGP SIGNATURE-----
-
---wu77dsjz7uev4rk4--
-
-
---===============6691841930586068721==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============6691841930586068721==--
-
+VGhlIC5yZW1vdmUoKSBjYWxsYmFjayBmb3IgYSBwbGF0Zm9ybSBkcml2ZXIgcmV0dXJucyBhbiBp
+bnQgd2hpY2ggbWFrZXMKbWFueSBkcml2ZXIgYXV0aG9ycyB3cm9uZ2x5IGFzc3VtZSBpdCdzIHBv
+c3NpYmxlIHRvIGRvIGVycm9yIGhhbmRsaW5nIGJ5CnJldHVybmluZyBhbiBlcnJvciBjb2RlLiBI
+b3dldmVyIHRoZSB2YWx1ZSByZXR1cm5lZCBpcyBpZ25vcmVkIChhcGFydApmcm9tIGVtaXR0aW5n
+IGEgd2FybmluZykgYW5kIHRoaXMgdHlwaWNhbGx5IHJlc3VsdHMgaW4gcmVzb3VyY2UgbGVha3Mu
+CgpUbyBpbXByb3ZlIGhlcmUgdGhlcmUgaXMgYSBxdWVzdCB0byBtYWtlIHRoZSByZW1vdmUgY2Fs
+bGJhY2sgcmV0dXJuCnZvaWQuIEluIHRoZSBmaXJzdCBzdGVwIG9mIHRoaXMgcXVlc3QgYWxsIGRy
+aXZlcnMgYXJlIGNvbnZlcnRlZCB0bwoucmVtb3ZlX25ldygpLCB3aGljaCBhbHJlYWR5IHJldHVy
+bnMgdm9pZC4gRXZlbnR1YWxseSBhZnRlciBhbGwgZHJpdmVycwphcmUgY29udmVydGVkLCAucmVt
+b3ZlX25ldygpIHdpbGwgYmUgcmVuYW1lZCB0byAucmVtb3ZlKCkuCgpUcml2aWFsbHkgY29udmVy
+dCB0aGlzIGRyaXZlciBmcm9tIGFsd2F5cyByZXR1cm5pbmcgemVybyBpbiB0aGUgcmVtb3ZlCmNh
+bGxiYWNrIHRvIHRoZSB2b2lkIHJldHVybmluZyB2YXJpYW50LgoKU2lnbmVkLW9mZi1ieTogVXdl
+IEtsZWluZS1Lw7ZuaWcgPHUua2xlaW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZT4KLS0tCiBkcml2
+ZXJzL3BlcmYvYW1sb2dpYy9tZXNvbl9nMTJfZGRyX3BtdS5jIHwgNiArKy0tLS0KIDEgZmlsZSBj
+aGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9wZXJmL2FtbG9naWMvbWVzb25fZzEyX2Rkcl9wbXUuYyBiL2RyaXZlcnMvcGVyZi9hbWxv
+Z2ljL21lc29uX2cxMl9kZHJfcG11LmMKaW5kZXggMTVkNTJhYjMyNzZhLi45OWNjNzkxODkyYmMg
+MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvcGVyZi9hbWxvZ2ljL21lc29uX2cxMl9kZHJfcG11LmMKKysr
+IGIvZHJpdmVycy9wZXJmL2FtbG9naWMvbWVzb25fZzEyX2Rkcl9wbXUuYwpAQCAtMzU1LDExICsz
+NTUsOSBAQCBzdGF0aWMgaW50IGcxMl9kZHJfcG11X3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZp
+Y2UgKnBkZXYpCiAJcmV0dXJuIG1lc29uX2Rkcl9wbXVfY3JlYXRlKHBkZXYpOwogfQogCi1zdGF0
+aWMgaW50IGcxMl9kZHJfcG11X3JlbW92ZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQor
+c3RhdGljIHZvaWQgZzEyX2Rkcl9wbXVfcmVtb3ZlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBk
+ZXYpCiB7CiAJbWVzb25fZGRyX3BtdV9yZW1vdmUocGRldik7Ci0KLQlyZXR1cm4gMDsKIH0KIAog
+c3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgbWVzb25fZGRyX3BtdV9kdF9tYXRjaFtd
+ID0gewpAQCAtMzgxLDcgKzM3OSw3IEBAIE1PRFVMRV9ERVZJQ0VfVEFCTEUob2YsIG1lc29uX2Rk
+cl9wbXVfZHRfbWF0Y2gpOwogCiBzdGF0aWMgc3RydWN0IHBsYXRmb3JtX2RyaXZlciBnMTJfZGRy
+X3BtdV9kcml2ZXIgPSB7CiAJLnByb2JlID0gZzEyX2Rkcl9wbXVfcHJvYmUsCi0JLnJlbW92ZSA9
+IGcxMl9kZHJfcG11X3JlbW92ZSwKKwkucmVtb3ZlX25ldyA9IGcxMl9kZHJfcG11X3JlbW92ZSwK
+IAogCS5kcml2ZXIgPSB7CiAJCS5uYW1lID0gIm1lc29uLWcxMi1kZHItcG11IiwKLS0gCjIuNDIu
+MAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4
+LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
+dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
