@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0D8EC3DA6E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Dec 2023 12:12:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 568E9C46CD3
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Dec 2023 12:12:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tnd8D4lEDrzkdujYxuTXCub4hAGK+X08Qpd7PABxvm0=; b=2TU6lwVLqUEiYM
-	V4sWc6waSzi84resNzd3xqfQbMcLnfnn5uqUyalHZUvAJKXiAqSWAYPxiwTVOKRaQDkMy3OQw15Nv
-	vLBfe8jzOyAJQXJxlFpVK45HQDcDGro5CqFvYwhv8XI3AhkzWkw6r6BCdP0wFZkawqUKv9rVLw37W
-	+pMxL9VvJpWq3Vf991juOHWJgISDrW9xXxYHnch+MAYzGLx6KWilCZK4dwTf3U8KP3aC+y4fvNw8P
-	TlfwedJS6qiXHf4FBZRRgJAO3gKPGqA8LOqOXQOX7LxPIyrg8RYRSlUE7v3Gj8GdfMb4kIIFtd5+o
-	9XhYybq3846frAj0T9Sg==;
+	List-Owner; bh=jWnIxQ1N+m84oMPGNB7Ejv6uMAZNiRrQGZ/iRBC50Qk=; b=P32Ip4fvCMIzAs
+	Znl8cg3yL4+OOYNTRcQP/s4GtKjtYpbpi7zpkOQiLVooMh/IZQm32uZhOCs4JezeGZCjiuAg6/1p4
+	RjgdZfVq1T73GOgjPOJzjdlaWpaUmwFRMF2t9SuAR9gkR/SJ2WP5Mlp5MoM/On/wVGIEsybN+/qeh
+	2J9hnJtf+TsxMQ5irvET2qYQLxGgSG42T3ljbQIZUqUCFMT+3dr6xuBmO/w3vr0tIFUWqEksMPOXP
+	p9TzGsE8mDWhRk5G6yYZZ1Nv4PKj/neo3fHyDAND1G8P5rIF1I9EuEJapT+DdnoNcSxBcRL4xWdH1
+	zWwSJrB960966c2g9yHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rFvQb-00HJMz-1I;
-	Wed, 20 Dec 2023 12:11:57 +0000
-Received: from madrid.collaboradmins.com ([2a00:1098:ed:100::25])
+	id 1rFvQh-00HJSp-0y;
+	Wed, 20 Dec 2023 12:12:03 +0000
+Received: from madrid.collaboradmins.com ([46.235.227.194])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rFvQY-00HJKZ-2g;
-	Wed, 20 Dec 2023 12:11:56 +0000
+	id 1rFvQe-00HJP4-0p;
+	Wed, 20 Dec 2023 12:12:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1703074313;
-	bh=cpGbNlIDrcIqhAFCyy26RbpIG22BYa4C8X4/107Zjy8=;
+	s=mail; t=1703074319;
+	bh=5JYtuIZuEkvTZxlUYgCyzZRIqd+leW54ZkRZefuebz0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=H826zMsu4Ly2DqEn2dK54lHrjWC37YcV8O1ySVSqZjIhNZXFth9HFiQ5cPYSiXQs4
-	 6nYwDCj0JViAuWFV+f2RmXtHzu1QaOLmelK0NqTPsoZwUr6rER4/dpQvsJwp4UfR4h
-	 T5r+ROQkeRrl6Gb7/JGzUTn8fx/WsJYq6j5YaG/Sokk41Jflnud+mcgW9V+7b5xqy+
-	 408M2U9Ku6TMpEMXtqYZvvMWID2JWK4qhFTFWJgXyQKG8sfW0oL8nI5Pb8kZQ3uvla
-	 5+yKUYIGfXMiI9Ts7GbiIgGkZbEPGsDsPGW8oS5Tx+hlolGyM6o0bjMVdJ21a9cRRQ
-	 T6D5oDR733+Ug==
+	b=VWFMwSBpYXflgVVjmHkLWkDqTMrLZdeyvBBDlzfjY0Cbfl40+z593xdaFYf20AJXq
+	 DYfwdwTCFEXRgf8ICdB5YeklNI3UzQQz8m/k2hXGh1yfm+yaG1Bw2tgpXCIRsKOdCc
+	 sbnfuWVGRBv8RI8bhMIvrl1WKibyDteLH8XsQgTuXma4JYwGIfcyvh+S+grfHzOUX5
+	 Srot51lVbJlX3Yt/FwUbrTXsBbfIl4zskxlLns1gXTxfwr8AgUQSSB0QqjGuao1PeO
+	 hqwyFGZQXt0yXB8tTVDzTRKHyHv1H5P0nHQwlhiHI1M+B/9F/cD0OeSVcTjgOScaEX
+	 BKmo9gWCZ9jbA==
 Received: from localhost.localdomain (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: vignesh)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9DEB73781FD5;
-	Wed, 20 Dec 2023 12:11:48 +0000 (UTC)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 412613781FED;
+	Wed, 20 Dec 2023 12:11:53 +0000 (UTC)
 From: Vignesh Raman <vignesh.raman@collabora.com>
 To: helen.koike@collabora.com,
 	airlied@gmail.com,
@@ -58,16 +58,16 @@ Cc: david.heidelberg@collabora.com,
 	linux-rockchip@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 4/8] drm/ci: meson: Test both GPU and display drivers
-Date: Wed, 20 Dec 2023 17:41:06 +0530
-Message-Id: <20231220121110.1441160-5-vignesh.raman@collabora.com>
+Subject: [PATCH v1 5/8] drm/ci: Do not set IGT_FORCE_DRIVER based on driver name
+Date: Wed, 20 Dec 2023 17:41:07 +0530
+Message-Id: <20231220121110.1441160-6-vignesh.raman@collabora.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231220121110.1441160-1-vignesh.raman@collabora.com>
 References: <20231220121110.1441160-1-vignesh.raman@collabora.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231220_041155_001835_8CB19096 
-X-CRM114-Status: UNSURE (   7.98  )
+X-CRM114-CacheID: sfid-20231220_041200_417165_EAA874D8 
+X-CRM114-Status: UNSURE (   8.84  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,55 +85,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Meson SOC have a separate display controller and GPU,
-with different drivers for each. Add support in drm-ci
-to test both these drivers.
+Since the correct driver name is passed from the job to
+test gpu and display driver, remove the check to set
+IGT_FORCE_DRIVER based on driver name.
 
 Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
 ---
- drivers/gpu/drm/ci/test.yml | 18 +++++++++++++++---
- 1 file changed, 15 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/ci/igt_runner.sh | 10 ----------
+ 1 file changed, 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
-index 8081925303f5..159eb7ba3588 100644
---- a/drivers/gpu/drm/ci/test.yml
-+++ b/drivers/gpu/drm/ci/test.yml
-@@ -357,20 +357,32 @@ mediatek:mt8183-display:
-     - .lava-igt:arm64
-   stage: meson
-   variables:
--    DRIVER_NAME: meson
-     DTB: ${DEVICE_TYPE}
-     BOOT_METHOD: u-boot
-     KERNEL_IMAGE_TYPE: "image"
+diff --git a/drivers/gpu/drm/ci/igt_runner.sh b/drivers/gpu/drm/ci/igt_runner.sh
+index f1a08b9b146f..ce6e22369d4d 100755
+--- a/drivers/gpu/drm/ci/igt_runner.sh
++++ b/drivers/gpu/drm/ci/igt_runner.sh
+@@ -20,16 +20,6 @@ cat /sys/kernel/debug/dri/*/state
+ set -e
  
--meson:g12b:
-+.g12b:
-   extends:
-     - .meson
-   parallel: 3
-   variables:
-     DEVICE_TYPE: meson-g12b-a311d-khadas-vim3
--    GPU_VERSION: g12b
-     RUNNER_TAG: mesa-ci-x86-64-lava-meson-g12b-a311d-khadas-vim3
- 
-+meson:g12b-gpu:
-+  extends:
-+    - .g12b
-+  variables:
-+    GPU_VERSION: g12b-gpu
-+    DRIVER_NAME: panfrost
-+
-+meson:g12b-display:
-+  extends:
-+    - .g12b
-+  variables:
-+    GPU_VERSION: g12b-display
-+    DRIVER_NAME: meson
-+
- virtio_gpu:none:
-   stage: virtio-gpu
-   variables:
+ case "$DRIVER_NAME" in
+-    rockchip|meson)
+-        export IGT_FORCE_DRIVER="panfrost"
+-        ;;
+-    mediatek)
+-        if [ "$GPU_VERSION" = "mt8173" ]; then
+-            export IGT_FORCE_DRIVER=${DRIVER_NAME}
+-        elif [ "$GPU_VERSION" = "mt8183" ]; then
+-            export IGT_FORCE_DRIVER="panfrost"
+-        fi
+-        ;;
+     amdgpu)
+         # Cannot use HWCI_KERNEL_MODULES as at that point we don't have the module in /lib
+         mv /install/modules/lib/modules/* /lib/modules/.
 -- 
 2.40.1
 
