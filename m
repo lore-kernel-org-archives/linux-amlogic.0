@@ -4,64 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0734FC46CD8
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Dec 2023 11:17:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02885C4706E
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Dec 2023 11:17:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=50YoFudaDPJIHyZ38YZWKX2ekHrXtRNLHZNElshJpcE=; b=JeqJln+RsGRVD7
-	hUC2rU9mrtLNMpEVR8LiZ3ry9Uez6wpIFnIssKwRw9Uyrn+1axcDPEf6r8K0YCck60HrQu/pMf3vE
-	kytORpXycoh8hmm/IC5doHXBG+kyisC9yQBOo5KGZ4+zr9iPZehMCuPV6SvwoCNhS2uMqJ74mZbDv
-	S718MIETsGSh33Y7By2f7uJs0Y5ZfAnIDuOopKce4KQ+zO/Z5PQf3DQcYeyKy2D4nAV9vkUUc7AsW
-	EwOQxW+fVGSRreteAF2OlLdKpjYcfamKHiapGa6r5BI4F3UAGNkqC/HPSfimdZxvu5RkQcf5vsu5t
-	3MrlfWI07N3FJM/XKDcA==;
+	List-Owner; bh=noicOGqVTyV6aShtSKtVX5I4m3z2s3/ZZtusdEK797I=; b=HE6jljnDxmxGJG
+	yKLuzy1CNOXLuJbgJRkVbSOVhA8PqBcgCTvn5A991dqLiVoQVTe2XycjKDqgjTCIIPgq2sooN/uW9
+	cWgTDr2iLxrI9spmcaYlXbDqUqYjmjj0zv1WnuJ7UtHOwWURG8a3N1drFod8dliHoSD0eXlDitR2u
+	FnPOWNqUfFlFFB57VDgESvsCNbi8VHyyCywWIz6pzEmj0vmBAaePHBl1rx+gowZhI3dTnJxEOEOCp
+	9Nf9KAGy8Tuwp8jgSrYrnp5/+xJtuQNySpfrJX/DuOFqm6tfHYaZWX09Z1sN72I4n1PpeASbjrGJT
+	Vyf41zLRPTfSWwU7H6vg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rGdX3-005eIf-0D;
-	Fri, 22 Dec 2023 11:17:33 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
-	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rGdWw-005eFG-2x
-	for linux-amlogic@lists.infradead.org;
+	id 1rGdWz-005eGx-0P;
 	Fri, 22 Dec 2023 11:17:29 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-33677fb38a3so1685543f8f.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 22 Dec 2023 03:17:25 -0800 (PST)
+Received: from mail-lj1-x22a.google.com ([2a00:1450:4864:20::22a])
+	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1rGdWv-005eF9-2V
+	for linux-amlogic@lists.infradead.org;
+	Fri, 22 Dec 2023 11:17:28 +0000
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2cc61d4e5aeso21576971fa.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 22 Dec 2023 03:17:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1703243844; x=1703848644; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1703243843; x=1703848643; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vZCJsoLyOmkKAX7ht3HFrFwteoJzV+g0RP8tYskDzk0=;
-        b=Rp91YvZz9gRJY38umCWOv6gLGlKeny8lWeAbPw6aP2aW6xLn7gjNyDbGWzdn9+BAqL
-         oz1nx8ToxYhkRKfcvPeT5qvAqx6PC7nqxBCLW8ZoPM/7Ak4vK5YP2tn/CqC9JHsJKv5S
-         kiCdFQ8bWS6CNQ9jp8fWVMUjYpyFAnRL0LIJN+dEh5f8z299oMQYv24vF9Z2mz6nRdGt
-         UAgjGYm6K9XRyUDD9zg+H5N3s8zZ902eFvxkN95hWqoYDvYdk6HXgB2G2b07CtYRVMkU
-         dJ7/RncfGZ2vtmtn4H1k+kSL8hNrAzSjz5Ty1WGQLul1UYhMu2lzqRTj/++vWy8CekeW
-         qJMw==
+        bh=hbdPMPGBWozpmFUaZkCdhiZ0Fh092WlwkYQcWOwj7p8=;
+        b=kC082Ph2KOGAfsb6Q6p/8WY4pyGqd95qqAWfccazoB6fL8zopevex5Un76SwsCoove
+         2llDd3olRnvxmO9jnhzJ9Z3Tv4vN9s6C7pneMTM6pc4mMxVnTFrmMm4bPCsd8KqhndW1
+         hV47DwQFnr64Feaf0HEB1IBPjSnKjCf0qIQXDZqsO4XVnryFzDaBE+B/xLclZfg/InS+
+         4G/Y/6A4cxBZFF7pPbqGpyPFpznLs+A8R2VAwkGlJEsQhS/4BxnA/abtDb4NuQClEb3p
+         gI80xxPkjEL2rDM0XdcmXpdTz2A4UKjN3wezZFt79k6BHTJCEgwwnKtf2lXS4BfeJEgy
+         TGUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703243844; x=1703848644;
+        d=1e100.net; s=20230601; t=1703243843; x=1703848643;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vZCJsoLyOmkKAX7ht3HFrFwteoJzV+g0RP8tYskDzk0=;
-        b=itSWWqrsgbqSVw50D7OFlcGMDWZkiG5olV/5G86JCDhX2WTK37JWnxH021vk22ivF2
-         hdU6U/nEQFNlMo/+vghg0sTf53vCt58o4CJEZKCtNiPjXo8DaohNX2pAlgHFkzJ1O8bl
-         62LmyUdSyi1J1dRkrrc1+/emUdPb/6jX4dEJ0J1HaEfaBE8Nbsy1ABUk5UOzNfCGoSa2
-         Vvt7R56NkbF1X8tPyNDkvZbJmt4Z9wQnhWaGYUDWIRkDRwbGYfpJ5KAsodu+sQk8af1T
-         BY6TEk2oXGrwcyQN7SsiAuC9sedJU2x4OGQf0XflMvOhKlro8WqHcu0PqpUG5yrREJUE
-         OkoA==
-X-Gm-Message-State: AOJu0Yyi5evefZ6FqWHg+g9rWZkKwgKLuLFDE/nUVEH6txgcMY7UVQ8Y
-	9/Ril+j+ut1DZ7uZEhzGOFX8diOKWvwFcQ==
-X-Google-Smtp-Source: AGHT+IFBwoFjDZf5fns9Sf1GHZi6C2BjjIZEfE1cXFlQtPWX5Mn0XqjoNSMIEs9vr+cUQbzVBD/2/w==
-X-Received: by 2002:a05:6000:1b07:b0:336:5d2f:3503 with SMTP id f7-20020a0560001b0700b003365d2f3503mr667803wrz.62.1703243844210;
-        Fri, 22 Dec 2023 03:17:24 -0800 (PST)
+        bh=hbdPMPGBWozpmFUaZkCdhiZ0Fh092WlwkYQcWOwj7p8=;
+        b=MkfqDBDDYvRGJBA/d760Ve6aGLCGDJ9HXAmMRSpDybTopxE79pPXphockhJBWfiE16
+         UYctCT0r2iKczobSid+YJmm+hlWu3kCBTZpwbz5VyS65VcSBRoILwt6Zve8RHQ3cTG3c
+         U/MPcKQZEnLrJTBuMPR0oUCVc0TomkRZb1WnZeESJWSP+gbLcZXhaDxN0s76ZDjatXOv
+         lrbE7yk+Z3A6o65Db4o4OJLRgzBDGtiQljWi2CSwhDBc60yHxGKu8o4en4oQ+VYOL/HK
+         /AqqjZbsJAnUs2HLbR2iY+4ascdj5hIm/DOCWYgV1Xf/2z9GjxU0FKkRwBzeGzF1KFJJ
+         ePgw==
+X-Gm-Message-State: AOJu0Yzr+s+Rn0myYIDicbuBU2gHNpC0dZl1vmUIirlsNDVA3TKvFiEI
+	ElpONZGj+bhbI5M341X08S9lDQNeeKJxWQ==
+X-Google-Smtp-Source: AGHT+IG6sZFecjF7WGn330e6ppqprMS3s9YMycmVgYUQnSYXwjARQWVMsAFeawADk6MltkhEO3iEyg==
+X-Received: by 2002:a2e:a499:0:b0:2cc:a253:e72e with SMTP id h25-20020a2ea499000000b002cca253e72emr518179lji.60.1703243842587;
+        Fri, 22 Dec 2023 03:17:22 -0800 (PST)
 Received: from toaster.lan ([2a01:e0a:3c5:5fb1:c099:e596:3179:b0fa])
-        by smtp.googlemail.com with ESMTPSA id f8-20020adffcc8000000b003366b500047sm4054069wrs.50.2023.12.22.03.17.23
+        by smtp.googlemail.com with ESMTPSA id f8-20020adffcc8000000b003366b500047sm4054069wrs.50.2023.12.22.03.17.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Dec 2023 03:17:23 -0800 (PST)
+        Fri, 22 Dec 2023 03:17:22 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Thierry Reding <thierry.reding@gmail.com>,
 	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
@@ -75,18 +75,19 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	linux-kernel@vger.kernel.org,
 	linux-amlogic@lists.infradead.org,
 	linux-pwm@vger.kernel.org,
-	JunYi Zhao <junyi.zhao@amlogic.com>
-Subject: [PATCH v4 3/6] pwm: meson: generalize 4 inputs clock on meson8 pwm type
-Date: Fri, 22 Dec 2023 12:16:51 +0100
-Message-ID: <20231222111658.832167-4-jbrunet@baylibre.com>
+	JunYi Zhao <junyi.zhao@amlogic.com>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v4 1/6] dt-bindings: pwm: amlogic: fix s4 bindings
+Date: Fri, 22 Dec 2023 12:16:49 +0100
+Message-ID: <20231222111658.832167-2-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231222111658.832167-1-jbrunet@baylibre.com>
 References: <20231222111658.832167-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231222_031726_953673_BD5DF4ED 
-X-CRM114-Status: GOOD (  14.21  )
+X-CRM114-CacheID: sfid-20231222_031725_822228_78B2896B 
+X-CRM114-Status: GOOD (  18.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,119 +104,135 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Meson8 pwm type always has 4 input clocks. Some inputs may be grounded,
-like in the AO domain of some SoCs.
+s4 has been added to the compatible list while converting the Amlogic PWM
+binding documentation from txt to yaml.
 
-Drop the parent number parameter and make this is constant.
-This is also done to make addition of generic meson8 compatible easier.
+However, on the s4, the clock bindings have different meaning compared to
+the previous SoCs.
 
+On the previous SoCs the clock bindings used to describe which input the
+PWM channel multiplexer should pick among its possible parents.
+
+This is very much tied to the driver implementation, instead of describing
+the HW for what it is. When support for the Amlogic PWM was first added,
+how to deal with clocks through DT was not as clear as it nowadays.
+The Linux driver now ignores this DT setting, but still relies on the
+hard-coded list of clock sources.
+
+On the s4, the input multiplexer is gone. The clock bindings actually
+describe the clock as it exists, not a setting. The property has a
+different meaning, even if it is still 2 clocks and it would pass the check
+when support is actually added.
+
+Also the s4 cannot work if the clocks are not provided, so the property no
+longer optional.
+
+Finally, for once it makes sense to see the input as being numbered
+somehow. No need to bother with clock-names on the s4 type of PWM.
+
+Fixes: 43a1c4ff3977 ("dt-bindings: pwm: Convert Amlogic Meson PWM binding")
+Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/pwm/pwm-meson.c | 19 ++++++-------------
- 1 file changed, 6 insertions(+), 13 deletions(-)
+ .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 67 ++++++++++++++++---
+ 1 file changed, 58 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 2971bbf3b5e7..ef50c337f444 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -60,7 +60,7 @@
- #define MISC_A_EN		BIT(0)
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+index 527864a4d855..a1d382aacb82 100644
+--- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
++++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+@@ -9,9 +9,6 @@ title: Amlogic PWM
+ maintainers:
+   - Heiner Kallweit <hkallweit1@gmail.com>
  
- #define MESON_NUM_PWMS		2
--#define MESON_MAX_MUX_PARENTS	4
-+#define MESON_NUM_MUX_PARENTS	4
+-allOf:
+-  - $ref: pwm.yaml#
+-
+ properties:
+   compatible:
+     oneOf:
+@@ -43,12 +40,8 @@ properties:
+     maxItems: 2
  
- static struct meson_pwm_channel_data {
- 	u8		reg_offset;
-@@ -98,7 +98,6 @@ struct meson_pwm_channel {
+   clock-names:
+-    oneOf:
+-      - items:
+-          - enum: [clkin0, clkin1]
+-      - items:
+-          - const: clkin0
+-          - const: clkin1
++    minItems: 1
++    maxItems: 2
  
- struct meson_pwm_data {
- 	const char * const *parent_names;
--	unsigned int num_parents;
- };
+   "#pwm-cells":
+     const: 3
+@@ -57,6 +50,55 @@ required:
+   - compatible
+   - reg
  
- struct meson_pwm {
-@@ -343,7 +342,6 @@ static const char * const pwm_meson8b_parent_names[] = {
++allOf:
++  - $ref: pwm.yaml#
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,meson8-pwm
++              - amlogic,meson8b-pwm
++              - amlogic,meson-gxbb-pwm
++              - amlogic,meson-gxbb-ao-pwm
++              - amlogic,meson-axg-ee-pwm
++              - amlogic,meson-axg-ao-pwm
++              - amlogic,meson-g12a-ee-pwm
++              - amlogic,meson-g12a-ao-pwm-ab
++              - amlogic,meson-g12a-ao-pwm-cd
++    then:
++      # Historic bindings tied to the driver implementation
++      # The clocks provided here are meant to be matched with the input
++      # known (hard-coded) in the driver and used to select pwm clock
++      # source. Currently, the linux driver ignores this.
++      properties:
++        clock-names:
++          oneOf:
++            - items:
++                - enum: [clkin0, clkin1]
++            - items:
++                - const: clkin0
++                - const: clkin1
++
++  # Newer IP block take a single input per channel, instead of 4 inputs
++  # for both channels
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,meson-s4-pwm
++    then:
++      properties:
++        clocks:
++          items:
++            - description: input clock of PWM channel A
++            - description: input clock of PWM channel B
++        clock-names: false
++      required:
++        - clocks
++
+ additionalProperties: false
  
- static const struct meson_pwm_data pwm_meson8b_data = {
- 	.parent_names = pwm_meson8b_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_meson8b_parent_names),
- };
- 
- /*
-@@ -351,12 +349,11 @@ static const struct meson_pwm_data pwm_meson8b_data = {
-  * The last 2 are grounded
-  */
- static const char * const pwm_gxbb_ao_parent_names[] = {
--	"xtal", "clk81"
-+	"xtal", "clk81", NULL, NULL,
- };
- 
- static const struct meson_pwm_data pwm_gxbb_ao_data = {
- 	.parent_names = pwm_gxbb_ao_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_gxbb_ao_parent_names),
- };
- 
- static const char * const pwm_axg_ee_parent_names[] = {
-@@ -365,7 +362,6 @@ static const char * const pwm_axg_ee_parent_names[] = {
- 
- static const struct meson_pwm_data pwm_axg_ee_data = {
- 	.parent_names = pwm_axg_ee_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_axg_ee_parent_names),
- };
- 
- static const char * const pwm_axg_ao_parent_names[] = {
-@@ -374,7 +370,6 @@ static const char * const pwm_axg_ao_parent_names[] = {
- 
- static const struct meson_pwm_data pwm_axg_ao_data = {
- 	.parent_names = pwm_axg_ao_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_axg_ao_parent_names),
- };
- 
- static const char * const pwm_g12a_ao_ab_parent_names[] = {
-@@ -383,16 +378,14 @@ static const char * const pwm_g12a_ao_ab_parent_names[] = {
- 
- static const struct meson_pwm_data pwm_g12a_ao_ab_data = {
- 	.parent_names = pwm_g12a_ao_ab_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_g12a_ao_ab_parent_names),
- };
- 
- static const char * const pwm_g12a_ao_cd_parent_names[] = {
--	"xtal", "g12a_ao_clk81",
-+	"xtal", "g12a_ao_clk81", NULL, NULL,
- };
- 
- static const struct meson_pwm_data pwm_g12a_ao_cd_data = {
- 	.parent_names = pwm_g12a_ao_cd_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_g12a_ao_cd_parent_names),
- };
- 
- static const struct of_device_id meson_pwm_matches[] = {
-@@ -434,13 +427,13 @@ MODULE_DEVICE_TABLE(of, meson_pwm_matches);
- 
- static int meson_pwm_init_channels(struct meson_pwm *meson)
- {
--	struct clk_parent_data mux_parent_data[MESON_MAX_MUX_PARENTS] = {};
-+	struct clk_parent_data mux_parent_data[MESON_NUM_MUX_PARENTS] = {};
- 	struct device *dev = meson->chip.dev;
- 	unsigned int i;
- 	char name[255];
- 	int err;
- 
--	for (i = 0; i < meson->data->num_parents; i++) {
-+	for (i = 0; i < MESON_NUM_MUX_PARENTS; i++) {
- 		mux_parent_data[i].index = -1;
- 		mux_parent_data[i].name = meson->data->parent_names[i];
- 	}
-@@ -456,7 +449,7 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
- 		init.ops = &clk_mux_ops;
- 		init.flags = 0;
- 		init.parent_data = mux_parent_data;
--		init.num_parents = meson->data->num_parents;
-+		init.num_parents = MESON_NUM_MUX_PARENTS;
- 
- 		channel->mux.reg = meson->base + REG_MISC_AB;
- 		channel->mux.shift =
+ examples:
+@@ -68,3 +110,10 @@ examples:
+       clock-names = "clkin0", "clkin1";
+       #pwm-cells = <3>;
+     };
++  - |
++    pwm@1000 {
++      compatible = "amlogic,meson-s4-pwm";
++      reg = <0x1000 0x10>;
++      clocks = <&pwm_src_a>, <&pwm_src_b>;
++      #pwm-cells = <3>;
++    };
 -- 
 2.42.0
 
