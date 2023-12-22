@@ -4,77 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BC58C46CD3
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Dec 2023 00:18:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A212C41535
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Dec 2023 07:11:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=knKZO1p67pwr5BGBgbnOwVtaWid+4AAR+1qalhcuCes=; b=3s2c5yxgYcYHCVbPkj5Uzf5LmV
-	IXdEXYnIKWvp1FDTXnVIKOQagjYWtr1OezdkIlPPRWLjbxXXumZu/d4jctgqkrrtFXhnt9IYUoiNg
-	LJ2CH6/8zd8HhPu/za1CbPvYrrZkKvq7Iy/UC1KBXgTno2bXVl83ApudVQgB5v4vo3Ocey2264yGO
-	E+8PIfaaQuy9ibrgkejOFgZqB02V1TA8g7i/JZiSBt2sDtOMXIBSO/T+Uh4AnVxbQK1vCxH3gZdQ6
-	AlQpdBZl4LDrzYt75zsxNPVhvSK+GraFKmtJoNquFAKIz4fIAZplp6CrVO9gicM01w5gtmFCWq1xY
-	hCpp/chg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=8tenyZB5uTeAT4nib3AVz1Fze55pvOJbm6McglezryM=; b=YYmQXmmjGEE9gBCAgXUCnMPFUd
+	j2uYHFFfYZGQIXmNW55F5YTx5ACJ5Kkc82YHnqHx2ND0S4lDe4OhPpdxJiTC3dZP4qoEU0KzyFjFt
+	EKIrvSSZaA/MC2vLIGXnYH9kLutz/8Ol/Kcr0XZiVMnAXqFzMH2HeFkDLJPxfJ7EdFOaK0MnJxbAM
+	Rywyneb2bK72DqdHboe/QTILfsAqJ4vVjI0pHLAxPJh9A5XA8O8GrCueIS79G4+fpMT7xG6Svoe2d
+	qD8vQxp6vYlz9o7Jm2ChwN4swLkd1oUJe1JCopnIsDSTjz+j4glKppY9GZavbifvDPxHrQXQ31KEC
+	ANyJm0GQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rGTEm-004V2Q-15;
-	Fri, 22 Dec 2023 00:18:00 +0000
-Received: from mail-pl1-x62f.google.com ([2607:f8b0:4864:20::62f])
+	id 1rGZgG-005809-0X;
+	Fri, 22 Dec 2023 07:10:48 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rGTEj-004V1N-1M
+	id 1rGZgC-0057zm-1V
 	for linux-amlogic@lists.infradead.org;
-	Fri, 22 Dec 2023 00:17:58 +0000
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1d3f29fea66so9719525ad.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 21 Dec 2023 16:17:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1703204276; x=1703809076; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=K4eLtecU1AzkZ6v0yoRfkSekFdqon4FA+IB17UNyBZc=;
-        b=U8VA+d5wdEbcPaUZe0KEnnfy6aL+u3/q6nwLg72nqSUcddYTArKcUu9gegvR9q5dJU
-         UbARpmYxjyI6FmgJiGhjBHbaetfi505F8gjcJ8ezepXQDs0KzUqdfpZvdR9qqYaA8ciK
-         ejPd2pysX1udkmfWvlC0EzpNdVAV5job9v+aAMpqF7vU+7maNJ6Ew2RIGsJ2UaERNGsW
-         fcv10aibzvFjA7KIdvkNoxEQhHVPbeJzLhv9KlohdLbd2i95EaZZXspedTsqzG0I7h/J
-         06887lFKNgaggtpYM3VfxWa0eIdLU1SsEQhosWczhYwR0bMW3ULfcGECMcEivt068uaE
-         Y9Fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703204276; x=1703809076;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=K4eLtecU1AzkZ6v0yoRfkSekFdqon4FA+IB17UNyBZc=;
-        b=iy3vY56NTgZDpKph4/vCI9buTNlaBh9O00pUWWiZZMQSvri2wpToFmTuEbfHxtXB1N
-         hDfPDzYgtFkjuB94TZmv83vqmvX6xmfkMALdYAxRSr/ZdHpl/VEKuhUPPXalVDp6oFOp
-         wNtpEJsMD37c3bEV3fd9x96uLJbriJq6PK7EfUJDT1MmyNKKVjOjDxNJfOqEi7UiXmlM
-         358ilbHBEuqqm9iSQ5PoKfpsYGbnthnX5GwmP6IuIZsPcooDehDYdtDuHf+kT7PFk1QI
-         1BPzaUh3uF3oq2p9fWrl4huxUbBErSx1oPLYaN5sRUnzNZOT8LmilIBdwVTK4jJGg1RU
-         w79g==
-X-Gm-Message-State: AOJu0Yzja4ax7HGMk/yN+0CSyHg/MIEXJ4Cn9y810PzUDn9SPQWCSt1L
-	d1PJ2Tu3xK8BhCwuaHVB8qQCW5D/GqW0m3HfQDo=
-X-Google-Smtp-Source: AGHT+IHogtZ5maciBE+Gv1/Y3tNb1CAhSD7rJLIduNEIGjOjhD1j6XdGgzYPCtZ3MPpkJXKPikbhw9V3CGgvQTtBDqc=
-X-Received: by 2002:a17:902:7c95:b0:1d0:9609:382e with SMTP id
- y21-20020a1709027c9500b001d09609382emr300415pll.21.1703204275514; Thu, 21 Dec
- 2023 16:17:55 -0800 (PST)
-MIME-Version: 1.0
-References: <20231221211222.1380658-1-martin.blumenstingl@googlemail.com> <tek6c6symqgm6x6ujh4m67q32en24pzrkjbchffir7qljo4gor@7qpu4zmgyzpq>
-In-Reply-To: <tek6c6symqgm6x6ujh4m67q32en24pzrkjbchffir7qljo4gor@7qpu4zmgyzpq>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Fri, 22 Dec 2023 01:17:44 +0100
-Message-ID: <CAFBinCAxh0xU2mDRX3t42j6oJ534p9RPUV+dYoRe0oacTw_7iA@mail.gmail.com>
-Subject: Re: [RFC PATCH v1] regulator: pwm-regulator: Fix continuous
- get_voltage for disabled PWM
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+	Fri, 22 Dec 2023 07:10:47 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rGZg7-00065I-6s; Fri, 22 Dec 2023 08:10:39 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rGZg4-000hWu-Q2; Fri, 22 Dec 2023 08:10:37 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rGZg5-001a8v-JY; Fri, 22 Dec 2023 08:10:37 +0100
+Date: Fri, 22 Dec 2023 08:10:32 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: lgirdwood@gmail.com, broonie@kernel.org, linux-pwm@vger.kernel.org, 
 	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
 	Thierry Reding <thierry.reding@gmail.com>, Heiner Kallweit <hkallweit1@gmail.com>, 
 	Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Content-Type: multipart/mixed; boundary="000000000000d28aac060d0e2533"
+Subject: Re: [RFC PATCH v1] regulator: pwm-regulator: Fix continuous
+ get_voltage for disabled PWM
+Message-ID: <2f2bc3xvemk2x3sno65so6vglmpavjtyeiqzy6yyzwvx5hqtmi@tsfx2hr7rmqp>
+References: <20231221211222.1380658-1-martin.blumenstingl@googlemail.com>
+ <tek6c6symqgm6x6ujh4m67q32en24pzrkjbchffir7qljo4gor@7qpu4zmgyzpq>
+ <CAFBinCAxh0xU2mDRX3t42j6oJ534p9RPUV+dYoRe0oacTw_7iA@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CAFBinCAxh0xU2mDRX3t42j6oJ534p9RPUV+dYoRe0oacTw_7iA@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231221_161757_481250_E7650BD1 
-X-CRM114-Status: GOOD (  20.03  )
+X-CRM114-CacheID: sfid-20231221_231044_522996_E63BD3EF 
+X-CRM114-Status: GOOD (  34.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,92 +73,177 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: multipart/mixed; boundary="===============0587353017049358945=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---000000000000d28aac060d0e2533
-Content-Type: text/plain; charset="UTF-8"
+
+--===============0587353017049358945==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="4gmofv63e2ybipgt"
+Content-Disposition: inline
+
+
+--4gmofv63e2ybipgt
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Uwe,
+Good morning Martin,
 
-On Thu, Dec 21, 2023 at 11:03=E2=80=AFPM Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@pengutronix.de> wrote:
-[...]
-> Note this isn't save in general. You're implicitly assuming that a
-> disabled PWM runs with the minimal supported duty_cycle. Most disabled
-> PWMs yield the inactive level (which corresponds to a 0% relative duty
-> cycle). But there are exceptions.
-Good catch - thank you!
+On Fri, Dec 22, 2023 at 01:17:44AM +0100, Martin Blumenstingl wrote:
+> On Thu, Dec 21, 2023 at 11:03=E2=80=AFPM Uwe Kleine-K=C3=B6nig
+> <u.kleine-koenig@pengutronix.de> wrote:
+> [...]
+> > Note this isn't save in general. You're implicitly assuming that a
+> > disabled PWM runs with the minimal supported duty_cycle. Most disabled
+> > PWMs yield the inactive level (which corresponds to a 0% relative duty
+> > cycle). But there are exceptions.
+> Good catch - thank you!
+>=20
+> [...]
+> > Without claiming to understand all implications, I'd say
+> > pwm_regulator_get_voltage should signal to the caller when the
+> > duty_cycle isn't contained in [min(max_uV_duty, min_uV_duty),
+> > max(max_uV_duty, min_uV_duty)].
+> It seems like there's -ENOTRECOVERABLE that we can signal to the caller.
+> This makes the following message appear in my kernel log:
+>   VDDEE: Setting 1100000-1140000uV
+> Which means that pwm_regulator_set_voltage() is called which will then
+> pick the minimum voltage.
+>=20
+> To make this work I will need to update meson8b-odroidc1.dts (which
+> isn't a problem, I just want to point it out as it's mandatory for
+> that solution. also I will send that in a separate patch).
+>=20
+> See my attached patch (which replaces the initial patch I sent, it's
+> not meant to be applied on top).
+> One question that I still have is whether we are allowed to just
+> enable the PWM output within pwm_regulator_set_voltage().
+> Doing so is actually mandatory, otherwise we end up in an infinite
+> loop of not being able to read the voltage, then sets the minimum
+> voltage (but leaves the PWM output disabled) which then means that it
+> can't read back the voltage which means it tries to set the minimum
+> voltage ....
 
-[...]
-> Without claiming to understand all implications, I'd say
-> pwm_regulator_get_voltage should signal to the caller when the
-> duty_cycle isn't contained in [min(max_uV_duty, min_uV_duty),
-> max(max_uV_duty, min_uV_duty)].
-It seems like there's -ENOTRECOVERABLE that we can signal to the caller.
-This makes the following message appear in my kernel log:
-  VDDEE: Setting 1100000-1140000uV
-Which means that pwm_regulator_set_voltage() is called which will then
-pick the minimum voltage.
+Without enabling the PWM pwm_regulator_set_voltage() doesn't work if the
+PWM isn't enabled already when the function is entered. So I'd say yes,
+you must enable it.
 
-To make this work I will need to update meson8b-odroidc1.dts (which
-isn't a problem, I just want to point it out as it's mandatory for
-that solution. also I will send that in a separate patch).
+> diff --git a/arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts b/arch/arm/bo=
+ot/dts/amlogic/meson8b-odroidc1.dts
+> index b03273d90ad8..df348e119643 100644
+> --- a/arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts
+> +++ b/arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts
+> @@ -217,13 +217,13 @@ vddee: regulator-vddee {
+>  		compatible =3D "pwm-regulator";
+> =20
+>  		regulator-name =3D "VDDEE";
+> -		regulator-min-microvolt =3D <860000>;
+> +		regulator-min-microvolt =3D <1100000>;
+>  		regulator-max-microvolt =3D <1140000>;
+> =20
+>  		pwm-supply =3D <&p5v0>;
+> =20
+>  		pwms =3D <&pwm_cd 1 12218 0>;
+> -		pwm-dutycycle-range =3D <91 0>;
+> +		pwm-dutycycle-range =3D <14 0>;
 
-See my attached patch (which replaces the initial patch I sent, it's
-not meant to be applied on top).
-One question that I still have is whether we are allowed to just
-enable the PWM output within pwm_regulator_set_voltage().
-Doing so is actually mandatory, otherwise we end up in an infinite
-loop of not being able to read the voltage, then sets the minimum
-voltage (but leaves the PWM output disabled) which then means that it
-can't read back the voltage which means it tries to set the minimum
-voltage ....
+This is ugly. You have to take away the description that a relative
+duty-cycle of 91% yields 860 mV just because the linux driver behaves in
+a certain way.
+
+Also the calculation is wrong: If a relative duty-cyle in the interval
+[91%; 0%] maps lineary to [860 mV; 1140 mV] you get 1100 mV at
+
+	     1100 mV - 860 mV
+	91 + ---------------- * (0 - 91) =3D 13
+	     1140 mV - 860 mV
+
+(If the calculations in the driver used signed multiplication and
+division, all the checks for max_uV_duty < min_uV_duty could just go
+away.)
+
+So you want
+
++		pwm-dutycycle-range =3D <13 0>;
+
+(if this restriction is really necessary).
+
+>  		regulator-boot-on;
+>  		regulator-always-on;
+
+> diff --git a/drivers/regulator/pwm-regulator.c b/drivers/regulator/pwm-re=
+gulator.c
+> index 30402ee18392..cb4e5fad5702 100644
+> --- a/drivers/regulator/pwm-regulator.c
+> +++ b/drivers/regulator/pwm-regulator.c
+> @@ -156,13 +156,10 @@ static int pwm_regulator_get_voltage(struct regulat=
+or_dev *rdev)
+>  	unsigned int voltage;
+> =20
+>  	pwm_get_state(drvdata->pwm, &pstate);
+> +	if (!pstate.enabled)
+> +		return -ENOTRECOVERABLE;
+
+This is good.
+
+> =20
+> -	if (pstate.enabled)
+> -		voltage =3D pwm_get_relative_duty_cycle(&pstate, duty_unit);
+> -	else if (max_uV_duty < min_uV_duty)
+> -		voltage =3D max_uV_duty;
+> -	else
+> -		voltage =3D min_uV_duty;
+> +	voltage =3D pwm_get_relative_duty_cycle(&pstate, duty_unit);
+
+I'd add here:
+
+	if (voltage < min(max_uV_duty, min_uV_duty) ||
+	    voltage > max(max_uV_duty, min_uV_duty))
+		return -ENOTRECOVERABLE;
+
+>  	/*
+>  	 * The dutycycle for min_uV might be greater than the one for max_uV.
+> @@ -221,6 +218,7 @@ static int pwm_regulator_set_voltage(struct regulator=
+_dev *rdev,
+> =20
+>  	pwm_set_relative_duty_cycle(&pstate, dutycycle, duty_unit);
+> =20
+> +	pstate.enabled =3D true;
+>  	ret =3D pwm_apply_state(drvdata->pwm, &pstate);
+>  	if (ret) {
+>  		dev_err(&rdev->dev, "Failed to configure PWM: %d\n", ret);
+
+Otherwise the change to the driver looks fine to me.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
+   |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--4gmofv63e2ybipgt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWFNmQACgkQj4D7WH0S
+/k4TOQf/d8O8wmX+LkJC2a8BSERU4HtUlWlaHabQJIiBMC3U9ZMB2wlEboBiR0zz
+z6oXxw2jFOMCF4JWmQtBFJAamwLMQzs/6AqOPNWXfmv4WAM/W0jbQejTQkCjo3n4
+irm/kIzBSf1QY45/j1PJ+2QGb3q/tHmTHIo3oaSZ997tLi7tHvOHsiqkveyPdnyZ
+ZN/r6dI7VDAYb7hycjBTSb/jNrMG7ls7BejTDJYt5jDtv8VZyiT2eb6IhO8fz9n0
+6AwxpFpKLdbzweHgZ8gCYa+5/zOB6W7vjicRXs7O7SJvBGYfPwr3W+oRQsb+AAED
+8ZatcPYn9Uclzl8dfI+XDh3ZkQ/NJg==
+=2XZr
+-----END PGP SIGNATURE-----
+
+--4gmofv63e2ybipgt--
 
 
-Best regards,
-Martin
-
---000000000000d28aac060d0e2533
-Content-Type: text/x-patch; charset="US-ASCII"; name="odroidc1-vddee-fix-to-discuss.diff"
-Content-Disposition: attachment; 
-	filename="odroidc1-vddee-fix-to-discuss.diff"
-Content-Transfer-Encoding: base64
-Content-ID: <f_lqfvouez0>
-X-Attachment-Id: f_lqfvouez0
-
-ZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL2FtbG9naWMvbWVzb244Yi1vZHJvaWRjMS5k
-dHMgYi9hcmNoL2FybS9ib290L2R0cy9hbWxvZ2ljL21lc29uOGItb2Ryb2lkYzEuZHRzCmluZGV4
-IGIwMzI3M2Q5MGFkOC4uZGYzNDhlMTE5NjQzIDEwMDY0NAotLS0gYS9hcmNoL2FybS9ib290L2R0
-cy9hbWxvZ2ljL21lc29uOGItb2Ryb2lkYzEuZHRzCisrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2Ft
-bG9naWMvbWVzb244Yi1vZHJvaWRjMS5kdHMKQEAgLTIxNywxMyArMjE3LDEzIEBAIHZkZGVlOiBy
-ZWd1bGF0b3ItdmRkZWUgewogCQljb21wYXRpYmxlID0gInB3bS1yZWd1bGF0b3IiOwogCiAJCXJl
-Z3VsYXRvci1uYW1lID0gIlZEREVFIjsKLQkJcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8ODYw
-MDAwPjsKKwkJcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8MTEwMDAwMD47CiAJCXJlZ3VsYXRv
-ci1tYXgtbWljcm92b2x0ID0gPDExNDAwMDA+OwogCiAJCXB3bS1zdXBwbHkgPSA8JnA1djA+Owog
-CiAJCXB3bXMgPSA8JnB3bV9jZCAxIDEyMjE4IDA+OwotCQlwd20tZHV0eWN5Y2xlLXJhbmdlID0g
-PDkxIDA+OworCQlwd20tZHV0eWN5Y2xlLXJhbmdlID0gPDE0IDA+OwogCiAJCXJlZ3VsYXRvci1i
-b290LW9uOwogCQlyZWd1bGF0b3ItYWx3YXlzLW9uOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9yZWd1
-bGF0b3IvcHdtLXJlZ3VsYXRvci5jIGIvZHJpdmVycy9yZWd1bGF0b3IvcHdtLXJlZ3VsYXRvci5j
-CmluZGV4IDMwNDAyZWUxODM5Mi4uY2I0ZTVmYWQ1NzAyIDEwMDY0NAotLS0gYS9kcml2ZXJzL3Jl
-Z3VsYXRvci9wd20tcmVndWxhdG9yLmMKKysrIGIvZHJpdmVycy9yZWd1bGF0b3IvcHdtLXJlZ3Vs
-YXRvci5jCkBAIC0xNTYsMTMgKzE1NiwxMCBAQCBzdGF0aWMgaW50IHB3bV9yZWd1bGF0b3JfZ2V0
-X3ZvbHRhZ2Uoc3RydWN0IHJlZ3VsYXRvcl9kZXYgKnJkZXYpCiAJdW5zaWduZWQgaW50IHZvbHRh
-Z2U7CiAKIAlwd21fZ2V0X3N0YXRlKGRydmRhdGEtPnB3bSwgJnBzdGF0ZSk7CisJaWYgKCFwc3Rh
-dGUuZW5hYmxlZCkKKwkJcmV0dXJuIC1FTk9UUkVDT1ZFUkFCTEU7CiAKLQlpZiAocHN0YXRlLmVu
-YWJsZWQpCi0JCXZvbHRhZ2UgPSBwd21fZ2V0X3JlbGF0aXZlX2R1dHlfY3ljbGUoJnBzdGF0ZSwg
-ZHV0eV91bml0KTsKLQllbHNlIGlmIChtYXhfdVZfZHV0eSA8IG1pbl91Vl9kdXR5KQotCQl2b2x0
-YWdlID0gbWF4X3VWX2R1dHk7Ci0JZWxzZQotCQl2b2x0YWdlID0gbWluX3VWX2R1dHk7CisJdm9s
-dGFnZSA9IHB3bV9nZXRfcmVsYXRpdmVfZHV0eV9jeWNsZSgmcHN0YXRlLCBkdXR5X3VuaXQpOwog
-CiAJLyoKIAkgKiBUaGUgZHV0eWN5Y2xlIGZvciBtaW5fdVYgbWlnaHQgYmUgZ3JlYXRlciB0aGFu
-IHRoZSBvbmUgZm9yIG1heF91Vi4KQEAgLTIyMSw2ICsyMTgsNyBAQCBzdGF0aWMgaW50IHB3bV9y
-ZWd1bGF0b3Jfc2V0X3ZvbHRhZ2Uoc3RydWN0IHJlZ3VsYXRvcl9kZXYgKnJkZXYsCiAKIAlwd21f
-c2V0X3JlbGF0aXZlX2R1dHlfY3ljbGUoJnBzdGF0ZSwgZHV0eWN5Y2xlLCBkdXR5X3VuaXQpOwog
-CisJcHN0YXRlLmVuYWJsZWQgPSB0cnVlOwogCXJldCA9IHB3bV9hcHBseV9zdGF0ZShkcnZkYXRh
-LT5wd20sICZwc3RhdGUpOwogCWlmIChyZXQpIHsKIAkJZGV2X2VycigmcmRldi0+ZGV2LCAiRmFp
-bGVkIHRvIGNvbmZpZ3VyZSBQV006ICVkXG4iLCByZXQpOwo=
---000000000000d28aac060d0e2533
+--===============0587353017049358945==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -182,5 +254,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---000000000000d28aac060d0e2533--
+--===============0587353017049358945==--
 
