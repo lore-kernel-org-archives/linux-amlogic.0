@@ -4,77 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEA73C46CCD
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Dec 2023 22:43:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BC58C46CD3
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Dec 2023 00:18:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=74jZhPWGeBc8FB5riZctO1NYz/oT1DRuy3r00HzLEHE=; b=CJUlA/2TEZ3a/A
-	CUo3T+AopaHyEpRahjNl9GX5qPtt0pxwg50vDKnYyavu1xGgI3jmjZdzMV0g6EEI0bMgvQDOT/u4R
-	7ahFG6DMTLOZwM9yvxSzAyX/GOMs6rbWYyKOFa0iNrwy4aYeH5T4SE6zg9Jcb2eOQCGk4yC24HEt3
-	iahKNxM7IVzgkmlFCqiG9Afq6r4iGoQyXJtVMBIBBFcaufR6u/ZULGTY1uZ26obIbBZYRIfG1MLRr
-	LzfHV3RBqT7b47Ae3cP6NvvsNaYseAvmFy1B6R+6PQkpjLBwKMNJD7JWy/vAVSnuJGZuB1cpHd3Gv
-	adTpWt1xvq2JYts96cEA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=knKZO1p67pwr5BGBgbnOwVtaWid+4AAR+1qalhcuCes=; b=3s2c5yxgYcYHCVbPkj5Uzf5LmV
+	IXdEXYnIKWvp1FDTXnVIKOQagjYWtr1OezdkIlPPRWLjbxXXumZu/d4jctgqkrrtFXhnt9IYUoiNg
+	LJ2CH6/8zd8HhPu/za1CbPvYrrZkKvq7Iy/UC1KBXgTno2bXVl83ApudVQgB5v4vo3Ocey2264yGO
+	E+8PIfaaQuy9ibrgkejOFgZqB02V1TA8g7i/JZiSBt2sDtOMXIBSO/T+Uh4AnVxbQK1vCxH3gZdQ6
+	AlQpdBZl4LDrzYt75zsxNPVhvSK+GraFKmtJoNquFAKIz4fIAZplp6CrVO9gicM01w5gtmFCWq1xY
+	hCpp/chg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rGRkb-004L1m-0k;
-	Thu, 21 Dec 2023 22:42:45 +0000
-Received: from mail-pg1-x533.google.com ([2607:f8b0:4864:20::533])
+	id 1rGTEm-004V2Q-15;
+	Fri, 22 Dec 2023 00:18:00 +0000
+Received: from mail-pl1-x62f.google.com ([2607:f8b0:4864:20::62f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rGRkY-004L1P-1Q
+	id 1rGTEj-004V1N-1M
 	for linux-amlogic@lists.infradead.org;
-	Thu, 21 Dec 2023 22:42:44 +0000
-Received: by mail-pg1-x533.google.com with SMTP id 41be03b00d2f7-5cda24a77e0so752340a12.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 21 Dec 2023 14:42:41 -0800 (PST)
+	Fri, 22 Dec 2023 00:17:58 +0000
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1d3f29fea66so9719525ad.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 21 Dec 2023 16:17:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1703198560; x=1703803360; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tTQxlQCO+Gf4xIjXRg1HmFnmLBOGQYr6tXPcOA6WFzY=;
-        b=lfSb6Xpwx1bMlJDDC7ur+2491SSnF6Tt/WRNNhtm5yR5p3KC6ebcawy44AFLkN39Jz
-         Zn/f7dEGP+NxdvAchKhpa/6WDLXokVPyvqn68Zq9hK3rT7kawkH8WFsyf8Euc6acxqij
-         lNScsoMoZ/8a7MHqTxW9qyJdSfut+akyq8Jby9OSV9lzHAvhhYq7KZQD1yRdROATP9Wj
-         +DM9hLf9vqIjp0AqyWvqCbWJXVHs3PXHH2Ly8mghm/9cHgAmvNpWWwwtddZgzDToEe4Q
-         FJbhXHtV62sR8dOwXlPs2RUD2KA9UjvX9kEL2kAKYg7fc/QCAUFAyVrdBZc3Qyeih4Cq
-         ujcw==
+        d=googlemail.com; s=20230601; t=1703204276; x=1703809076; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=K4eLtecU1AzkZ6v0yoRfkSekFdqon4FA+IB17UNyBZc=;
+        b=U8VA+d5wdEbcPaUZe0KEnnfy6aL+u3/q6nwLg72nqSUcddYTArKcUu9gegvR9q5dJU
+         UbARpmYxjyI6FmgJiGhjBHbaetfi505F8gjcJ8ezepXQDs0KzUqdfpZvdR9qqYaA8ciK
+         ejPd2pysX1udkmfWvlC0EzpNdVAV5job9v+aAMpqF7vU+7maNJ6Ew2RIGsJ2UaERNGsW
+         fcv10aibzvFjA7KIdvkNoxEQhHVPbeJzLhv9KlohdLbd2i95EaZZXspedTsqzG0I7h/J
+         06887lFKNgaggtpYM3VfxWa0eIdLU1SsEQhosWczhYwR0bMW3ULfcGECMcEivt068uaE
+         Y9Fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703198560; x=1703803360;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tTQxlQCO+Gf4xIjXRg1HmFnmLBOGQYr6tXPcOA6WFzY=;
-        b=KBjDmApMH1RAs8SciSKPmzHZ93pZytfbqbwveWYG9Iy9JbhdXVl2wSnytKYHHII6MD
-         tzUgjzpq8weCIUhOigR11/Fvs20Cvk0giABtV0RN1oXFe93TqZIrN20OiWdQF0ULShWP
-         muk6FUtrjVewdrOoOy8nlB1gleuC7RmUXWSoY8Swsi0XqPack3OR/dCOV3HtAfrTqrFB
-         Qz8nRBPbSVWaVAPvIWc9hneT8ORtDO/rAjVg+rXDgDDf31O4PLldz8WkcIcJfWZxTfHS
-         YN1eAqZFLnuDdNlJciBsS2e2F7+lANUHupbrFPCJhtpyrPdoOMv4NpM2m9DJZRYQBfua
-         KAkA==
-X-Gm-Message-State: AOJu0YyK4LAcs3cszPNQavyyblG5H8E9JTLg4bqdjgneETM1BviGAUUS
-	DewR4PDNIgT13B3YZuWpiW35591lJU0KNrlr8Us=
-X-Google-Smtp-Source: AGHT+IFs18DvgzMKPzBRIvgnZpu8I+QVnR7YPq+Vnesd+qyDskEada4/byLmH1j6vYxxxmhT3SvY3lJ3atYoHbL7e/8=
-X-Received: by 2002:a05:6a20:8b04:b0:18f:97c:8261 with SMTP id
- l4-20020a056a208b0400b0018f097c8261mr338231pzh.107.1703198560349; Thu, 21 Dec
- 2023 14:42:40 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703204276; x=1703809076;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=K4eLtecU1AzkZ6v0yoRfkSekFdqon4FA+IB17UNyBZc=;
+        b=iy3vY56NTgZDpKph4/vCI9buTNlaBh9O00pUWWiZZMQSvri2wpToFmTuEbfHxtXB1N
+         hDfPDzYgtFkjuB94TZmv83vqmvX6xmfkMALdYAxRSr/ZdHpl/VEKuhUPPXalVDp6oFOp
+         wNtpEJsMD37c3bEV3fd9x96uLJbriJq6PK7EfUJDT1MmyNKKVjOjDxNJfOqEi7UiXmlM
+         358ilbHBEuqqm9iSQ5PoKfpsYGbnthnX5GwmP6IuIZsPcooDehDYdtDuHf+kT7PFk1QI
+         1BPzaUh3uF3oq2p9fWrl4huxUbBErSx1oPLYaN5sRUnzNZOT8LmilIBdwVTK4jJGg1RU
+         w79g==
+X-Gm-Message-State: AOJu0Yzja4ax7HGMk/yN+0CSyHg/MIEXJ4Cn9y810PzUDn9SPQWCSt1L
+	d1PJ2Tu3xK8BhCwuaHVB8qQCW5D/GqW0m3HfQDo=
+X-Google-Smtp-Source: AGHT+IHogtZ5maciBE+Gv1/Y3tNb1CAhSD7rJLIduNEIGjOjhD1j6XdGgzYPCtZ3MPpkJXKPikbhw9V3CGgvQTtBDqc=
+X-Received: by 2002:a17:902:7c95:b0:1d0:9609:382e with SMTP id
+ y21-20020a1709027c9500b001d09609382emr300415pll.21.1703204275514; Thu, 21 Dec
+ 2023 16:17:55 -0800 (PST)
 MIME-Version: 1.0
-References: <20231221211222.1380658-1-martin.blumenstingl@googlemail.com> <0c99b575-5cf2-4bd6-8cfd-af19f5fd58da@sirena.org.uk>
-In-Reply-To: <0c99b575-5cf2-4bd6-8cfd-af19f5fd58da@sirena.org.uk>
+References: <20231221211222.1380658-1-martin.blumenstingl@googlemail.com> <tek6c6symqgm6x6ujh4m67q32en24pzrkjbchffir7qljo4gor@7qpu4zmgyzpq>
+In-Reply-To: <tek6c6symqgm6x6ujh4m67q32en24pzrkjbchffir7qljo4gor@7qpu4zmgyzpq>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 21 Dec 2023 23:42:29 +0100
-Message-ID: <CAFBinCDJnVzE2sMwu52MQGTKW7dtCuUoj63ZZHhJPJO0+dZDkg@mail.gmail.com>
+Date: Fri, 22 Dec 2023 01:17:44 +0100
+Message-ID: <CAFBinCAxh0xU2mDRX3t42j6oJ534p9RPUV+dYoRe0oacTw_7iA@mail.gmail.com>
 Subject: Re: [RFC PATCH v1] regulator: pwm-regulator: Fix continuous
  get_voltage for disabled PWM
-To: Mark Brown <broonie@kernel.org>
-Cc: lgirdwood@gmail.com, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Thierry Reding <thierry.reding@gmail.com>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, linux-pwm@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Thierry Reding <thierry.reding@gmail.com>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Content-Type: multipart/mixed; boundary="000000000000d28aac060d0e2533"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231221_144242_644144_65689A2D 
-X-CRM114-Status: GOOD (  25.25  )
+X-CRM114-CacheID: sfid-20231221_161757_481250_E7650BD1 
+X-CRM114-Status: GOOD (  20.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,57 +86,101 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTWFyaywKCk9uIFRodSwgRGVjIDIxLCAyMDIzIGF0IDEwOjQ14oCvUE0gTWFyayBCcm93biA8
-YnJvb25pZUBrZXJuZWwub3JnPiB3cm90ZToKPgo+IE9uIFRodSwgRGVjIDIxLCAyMDIzIGF0IDEw
-OjEyOjIyUE0gKzAxMDAsIE1hcnRpbiBCbHVtZW5zdGluZ2wgd3JvdGU6Cj4KPiA+IEl0IHR1cm5z
-IG91dCB0aGF0IGF0IGxlYXN0IHNvbWUgYm9vdGxvYWRlciB2ZXJzaW9ucyBhcmUga2VlcGluZyB0
-aGUgUFdNCj4gPiBvdXRwdXQgZGlzYWJsZWQuIFRoaXMgaXMgbm90IGEgcHJvYmxlbSBkdWUgdG8g
-dGhlIHNwZWNpZmljIGRlc2lnbiBvZiB0aGUKPiA+IHJlZ3VsYXRvcjogd2hlbiB0aGUgUFdNIG91
-dHB1dCBpcyBkaXNhYmxlZCB0aGUgb3V0cHV0IHBpbiBpcyBwdWxsZWQgTE9XLAo+ID4gZWZmZWN0
-aXZlbHkgYWNoaWV2aW5nIGEgMCUgZHV0eSBjeWNsZSAod2hpY2ggaW4gcmV0dXJuIG1lYW5zIHRo
-YXQgVkRERUUKPiA+IHZvbHRhZ2UgaXMgYXQgMTE0MG1WKS4KPgo+IEhybS4gIFBlcmhhcHMgdGhl
-IHJlZ3VsYXRvciBzaG91bGQgZmlndXJlIG91dCB0aGF0IGl0J3Mgb24gd2l0aCBhCj4gbWluaW11
-bSB2b2x0YWdlIG9mIDEuMTRWIGluIHRoaXMgY2FzZSAtIEFJVUkgdGhhdCBicm9hZGx5IGNvcnJl
-c3BvbmRzIHRvCj4geW91ciBjaGFuZ2UgZXhjZXB0IGZvciB0aGUgZmFjdCB0aGF0IGl0IGRvZXNu
-J3QgcmVjb2duaXNlIHRoYXQgdGhlcmUncwo+IGFjdHVhbGx5IGFuIG91dHB1dCBpbiB0aGlzIGNh
-c2Ugc2luY2UgaXQgYXNzdW1lcyB0aGF0IGRpc2FibGluZyB0aGUgUFdNCj4gZGlzYWJsZXMgdGhl
-IG91dHB1dCB3aGljaCBpc24ndCB0aGUgY2FzZSB3aXRoIHRoaXMgaGFyZHdhcmUuICBXZSdkIG5l
-ZWQKPiB0byBrbm93IG1vcmUgYWJvdXQgdGhlIFBXTSBpbiB0aGF0IGNhc2UgdGhvdWdoIEkgdGhp
-bmsuCklmIHlvdSBoYXZlIGFueSBzcGVjaWZpYyBxdWVzdGlvbnMgdGhlbiBmZWVsIGZyZWUgdG8g
-YXNrLgpHZW5lcmFsbHkgaXQncyBhIHZlcnkgc2ltcGxlIFBXTSBjb250cm9sbGVyOgotIHdoZW4g
-ZGlzYWJsZWQgdGhlIG91dHB1dCBpcyBMT1cKLSB3aGVuIGVuYWJsZWQgdGhlIG91dHB1dCBtYXRj
-aGVzIHRoZSByZXF1ZXN0ZWQgcGVyaW9kIGFuZCBkdXR5IGN5Y2xlCmFzIGJlc3QgYXMgcG9zc2li
-bGUgKGRlcGVuZGluZyBvbiB0aGUgYXZhaWxhYmxlIGlucHV0IGNsb2NrcykKCj4gPiBUaGUgcHJv
-YmxlbSBjb21lcyB3aGVuIHRoZSBwd20tcmVndWxhdG9yIGRyaXZlciB0cmllcyB0byBpbml0aWFs
-aXplIHRoZQo+ID4gUFdNIG91dHB1dC4gVG8gZG8gc28gaXQgcmVhZHMgdGhlIGN1cnJlbnQgc3Rh
-dGUgZnJvbSB0aGUgaGFyZHdhcmUsIHdoaWNoCj4gPiBpczoKPiA+ICAgcGVyaW9kOiAzNjY2bnMK
-PiA+ICAgZHV0eSBjeWNsZTogMzMzM25zICg9IH45MSUpCj4gPiAgIGVuYWJsZWQ6IGZhbHNlCj4g
-PiBUaGVuIHRob3NlIHZhbHVlcyBhcmUgdHJhbnNsYXRlZCB1c2luZyB0aGUgY29udGludW91cyB2
-b2x0YWdlIHJhbmdlIHRvCj4gPiA4NjBtVi4KPgo+ID4gTGF0ZXIsIHdoZW4gdGhlIHJlZ3VsYXRv
-ciBpcyBiZWluZyBlbmFibGVkIChlaXRoZXIgYnkgdGhlIHJlZ3VsYXRvciBjb3JlCj4gPiBkdWUg
-dG8gdGhlIGFsd2F5cy1vbiBmbGFnIG9yIGZpcnN0IGNvbnN1bWVyIC0gaW4gdGhpcyBjYXNlIHRo
-ZSBsaW1hCj4gPiBkcml2ZXIgZm9yIHRoZSBNYWxpLTQ1MCBHUFUpIHRoZSBwd20tcmVndWxhdG9y
-IGRyaXZlciB0cmllcyB0byBrZWVwIHRoZQo+ID4gdm9sdGFnZSAoYXQgODYwbVYpIGFuZCBqdXN0
-IGVuYWJsZSB0aGUgUFdNIG91dHB1dC4gVGhpcyBpcyB3aGVuIHRoaW5ncwo+ID4gc3RhcnQgdG8g
-Z28gd3JvbmcgYXMgdGhlIHR5cGljYWwgdm9sdGFnZSB1c2VkIGZvciBWRERFRSBpcyAxMTAwbVYu
-Cj4KPiBTbywgdGhlIGNvbnN0cmFpbnRzIHNheSB0aGF0IHRoZSA4NjBtViB2b2x0YWdlIGlzIHdp
-dGhpbiByYW5nZS4gIFdoZXJlCj4gZG9lcyB0aGUgcmVxdWlyZW1lbnQgZm9yIDEuMVYgY29tZSBm
-cm9tIGluIHRoaXMgc2l0dWF0aW9uPyAgSXMgaXQganVzdAo+IHRoYXQgbGltYSBoYXNuJ3Qgc3Rh
-cnRlZCB5ZXQgYW5kIHJlcXVpcmVzIHRoZSAxLjFWIGZvciBoYXJkd2FyZSBpbml0Cj4gKGFuZCBw
-cmVzdW1hYmx5IHBvd2VyIG9uKSBldmVuIGlmIGl0IGNhbiB1c2UgYSBsb3dlciB2b2x0YWdlIGF0
-IHJ1bnRpbWU/ClRoZSB2ZW5kb3IgQlNQIGluY2x1ZGVzIGEgY3VzdG9tIHUtYm9vdCB3aXRoIGxv
-dHMgb2YgcmVsZXZhbnQKaW5mb3JtYXRpb24gZm9yIHdoaWNoIHRoZXJlJ3Mgc2VlbWluZ2x5IG5v
-IGRvY3VtZW50YXRpb24uCkl0IHNlZW1zIHRoYXQgMS4xViBpcyB3aGF0IHNob3VsZCBiZSB1c2Vk
-IGR1cmluZyBub3JtYWwgb3BlcmF0aW9uLgowLjg2ViBpcyB3aGF0IGNhbiBiZSB1c2VkIGR1cmlu
-ZyBzeXN0ZW0gc3VzcGVuZCAod2hlbiBwb3dlciB0byB0aGUKQ29ydGV4LUE1IGNvcmVzIGlzIHR1
-cm5lZCBvZmYgYW5kIGFuIGludGVncmF0ZWQgQVJDIGNvcmUgaXMgdGFraW5nCm92ZXIgZm9yIHdh
-a2V1cCBwdXJwb3NlcykuCkhlbmNlIHRoZSBzdXBwb3J0ZWQgdm9sdGFnZSByYW5nZSBvZiAwLjg2
-Li4xLjFWCgoKQmVzdCByZWdhcmRzLApNYXJ0aW4KCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFt
-bG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+--000000000000d28aac060d0e2533
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Uwe,
+
+On Thu, Dec 21, 2023 at 11:03=E2=80=AFPM Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
+[...]
+> Note this isn't save in general. You're implicitly assuming that a
+> disabled PWM runs with the minimal supported duty_cycle. Most disabled
+> PWMs yield the inactive level (which corresponds to a 0% relative duty
+> cycle). But there are exceptions.
+Good catch - thank you!
+
+[...]
+> Without claiming to understand all implications, I'd say
+> pwm_regulator_get_voltage should signal to the caller when the
+> duty_cycle isn't contained in [min(max_uV_duty, min_uV_duty),
+> max(max_uV_duty, min_uV_duty)].
+It seems like there's -ENOTRECOVERABLE that we can signal to the caller.
+This makes the following message appear in my kernel log:
+  VDDEE: Setting 1100000-1140000uV
+Which means that pwm_regulator_set_voltage() is called which will then
+pick the minimum voltage.
+
+To make this work I will need to update meson8b-odroidc1.dts (which
+isn't a problem, I just want to point it out as it's mandatory for
+that solution. also I will send that in a separate patch).
+
+See my attached patch (which replaces the initial patch I sent, it's
+not meant to be applied on top).
+One question that I still have is whether we are allowed to just
+enable the PWM output within pwm_regulator_set_voltage().
+Doing so is actually mandatory, otherwise we end up in an infinite
+loop of not being able to read the voltage, then sets the minimum
+voltage (but leaves the PWM output disabled) which then means that it
+can't read back the voltage which means it tries to set the minimum
+voltage ....
+
+
+Best regards,
+Martin
+
+--000000000000d28aac060d0e2533
+Content-Type: text/x-patch; charset="US-ASCII"; name="odroidc1-vddee-fix-to-discuss.diff"
+Content-Disposition: attachment; 
+	filename="odroidc1-vddee-fix-to-discuss.diff"
+Content-Transfer-Encoding: base64
+Content-ID: <f_lqfvouez0>
+X-Attachment-Id: f_lqfvouez0
+
+ZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL2FtbG9naWMvbWVzb244Yi1vZHJvaWRjMS5k
+dHMgYi9hcmNoL2FybS9ib290L2R0cy9hbWxvZ2ljL21lc29uOGItb2Ryb2lkYzEuZHRzCmluZGV4
+IGIwMzI3M2Q5MGFkOC4uZGYzNDhlMTE5NjQzIDEwMDY0NAotLS0gYS9hcmNoL2FybS9ib290L2R0
+cy9hbWxvZ2ljL21lc29uOGItb2Ryb2lkYzEuZHRzCisrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2Ft
+bG9naWMvbWVzb244Yi1vZHJvaWRjMS5kdHMKQEAgLTIxNywxMyArMjE3LDEzIEBAIHZkZGVlOiBy
+ZWd1bGF0b3ItdmRkZWUgewogCQljb21wYXRpYmxlID0gInB3bS1yZWd1bGF0b3IiOwogCiAJCXJl
+Z3VsYXRvci1uYW1lID0gIlZEREVFIjsKLQkJcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8ODYw
+MDAwPjsKKwkJcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8MTEwMDAwMD47CiAJCXJlZ3VsYXRv
+ci1tYXgtbWljcm92b2x0ID0gPDExNDAwMDA+OwogCiAJCXB3bS1zdXBwbHkgPSA8JnA1djA+Owog
+CiAJCXB3bXMgPSA8JnB3bV9jZCAxIDEyMjE4IDA+OwotCQlwd20tZHV0eWN5Y2xlLXJhbmdlID0g
+PDkxIDA+OworCQlwd20tZHV0eWN5Y2xlLXJhbmdlID0gPDE0IDA+OwogCiAJCXJlZ3VsYXRvci1i
+b290LW9uOwogCQlyZWd1bGF0b3ItYWx3YXlzLW9uOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9yZWd1
+bGF0b3IvcHdtLXJlZ3VsYXRvci5jIGIvZHJpdmVycy9yZWd1bGF0b3IvcHdtLXJlZ3VsYXRvci5j
+CmluZGV4IDMwNDAyZWUxODM5Mi4uY2I0ZTVmYWQ1NzAyIDEwMDY0NAotLS0gYS9kcml2ZXJzL3Jl
+Z3VsYXRvci9wd20tcmVndWxhdG9yLmMKKysrIGIvZHJpdmVycy9yZWd1bGF0b3IvcHdtLXJlZ3Vs
+YXRvci5jCkBAIC0xNTYsMTMgKzE1NiwxMCBAQCBzdGF0aWMgaW50IHB3bV9yZWd1bGF0b3JfZ2V0
+X3ZvbHRhZ2Uoc3RydWN0IHJlZ3VsYXRvcl9kZXYgKnJkZXYpCiAJdW5zaWduZWQgaW50IHZvbHRh
+Z2U7CiAKIAlwd21fZ2V0X3N0YXRlKGRydmRhdGEtPnB3bSwgJnBzdGF0ZSk7CisJaWYgKCFwc3Rh
+dGUuZW5hYmxlZCkKKwkJcmV0dXJuIC1FTk9UUkVDT1ZFUkFCTEU7CiAKLQlpZiAocHN0YXRlLmVu
+YWJsZWQpCi0JCXZvbHRhZ2UgPSBwd21fZ2V0X3JlbGF0aXZlX2R1dHlfY3ljbGUoJnBzdGF0ZSwg
+ZHV0eV91bml0KTsKLQllbHNlIGlmIChtYXhfdVZfZHV0eSA8IG1pbl91Vl9kdXR5KQotCQl2b2x0
+YWdlID0gbWF4X3VWX2R1dHk7Ci0JZWxzZQotCQl2b2x0YWdlID0gbWluX3VWX2R1dHk7CisJdm9s
+dGFnZSA9IHB3bV9nZXRfcmVsYXRpdmVfZHV0eV9jeWNsZSgmcHN0YXRlLCBkdXR5X3VuaXQpOwog
+CiAJLyoKIAkgKiBUaGUgZHV0eWN5Y2xlIGZvciBtaW5fdVYgbWlnaHQgYmUgZ3JlYXRlciB0aGFu
+IHRoZSBvbmUgZm9yIG1heF91Vi4KQEAgLTIyMSw2ICsyMTgsNyBAQCBzdGF0aWMgaW50IHB3bV9y
+ZWd1bGF0b3Jfc2V0X3ZvbHRhZ2Uoc3RydWN0IHJlZ3VsYXRvcl9kZXYgKnJkZXYsCiAKIAlwd21f
+c2V0X3JlbGF0aXZlX2R1dHlfY3ljbGUoJnBzdGF0ZSwgZHV0eWN5Y2xlLCBkdXR5X3VuaXQpOwog
+CisJcHN0YXRlLmVuYWJsZWQgPSB0cnVlOwogCXJldCA9IHB3bV9hcHBseV9zdGF0ZShkcnZkYXRh
+LT5wd20sICZwc3RhdGUpOwogCWlmIChyZXQpIHsKIAkJZGV2X2VycigmcmRldi0+ZGV2LCAiRmFp
+bGVkIHRvIGNvbmZpZ3VyZSBQV006ICVkXG4iLCByZXQpOwo=
+--000000000000d28aac060d0e2533
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--000000000000d28aac060d0e2533--
+
