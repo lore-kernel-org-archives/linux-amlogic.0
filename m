@@ -4,66 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31028C41535
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Dec 2023 10:28:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79D9DC41535
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Dec 2023 10:49:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Jo324kWPMypPRkozYJ2V0LNX/KcLwg7xYWhvWqaOQs0=; b=agoDdlsf6t7HUwKuOxfA1kY6/C
-	Xt6hFygHwvvjTabm4TA1o0IWXtwGKiNOGPgh4AY7seqUPwphJQFOK+II45j4fG1aqgwrmDVJLQkUx
-	/jXEr3cAypUmj9wFZgABFH8fbn0CbKMO2RYV9MPY31Mjwgj7XCUKnFHnKLyWBEDveRuAqFjpAINYF
-	RZS2uhMkCSYMe+9mzMmo88UEemlts8z8oYoQgVncMcg8cmuZQgc6KE234DdZOSnJiR7E+lMgWoMTH
-	55kGlO1skCDE1Zoz+GqGeYoJBiHRgM2GJPy9gj8zJOoo9m4MY81EjqGLWnmvVty9K/0KtxIbZu7Kz
-	SBQGRkrg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=xEf6zFn8kwaQkD6Ec9jxKnu3RxQt4l4KJXr+/A//esw=; b=BcCQGeGPwbd85G
+	Cdwwj9cnCZ2rUF/UckeLWj0G980K/mElshenEpUdtw1UBt0OTkuV3wWgyJT3gNff4d9vf7R5NBwch
+	XlZeS1yKkp+3eWGYG8pAlIJBNHN4dxILsRUTY2JajzfsNT1EMC5QaEidTeABtMZqi/dozkIjvUSjX
+	XZ1LBNf7/VeOzYn2A00G5K5yjZBwajK+Er77SmjEnhQIxbzPVwurM7GTlD20O03JQP7XEQvw3gnvK
+	/L7uYQIAwJ9PCpuibwgBOAQj4IQg3GlvK4CXizaj7B1hVzx5oOjHORiYFnySuOA+tB5YkuCyj8xfX
+	xdFgPZnMzLc3MERj7IWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rGckj-005XJe-2N;
-	Fri, 22 Dec 2023 10:27:37 +0000
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
+	id 1rGd53-005ab7-13;
+	Fri, 22 Dec 2023 10:48:37 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rGckf-005XHf-0K
+	id 1rGd4z-005aZv-1p
 	for linux-amlogic@lists.infradead.org;
-	Fri, 22 Dec 2023 10:27:35 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rGckX-0008A3-Ce; Fri, 22 Dec 2023 11:27:25 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rGckV-000jXS-3D; Fri, 22 Dec 2023 11:27:24 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rGckV-001cdB-T5; Fri, 22 Dec 2023 11:27:23 +0100
-Date: Fri, 22 Dec 2023 11:27:23 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, linux-pwm@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Thierry Reding <thierry.reding@gmail.com>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Subject: Re: [RFC PATCH v1] regulator: pwm-regulator: Fix continuous
- get_voltage for disabled PWM
-Message-ID: <eyfec4jzcw3japf77jzj3p6w7gytbmogr2ff3g2677nn6qivpe@57huhelwllhd>
-References: <20231221211222.1380658-1-martin.blumenstingl@googlemail.com>
- <tek6c6symqgm6x6ujh4m67q32en24pzrkjbchffir7qljo4gor@7qpu4zmgyzpq>
- <CAFBinCAxh0xU2mDRX3t42j6oJ534p9RPUV+dYoRe0oacTw_7iA@mail.gmail.com>
- <2f2bc3xvemk2x3sno65so6vglmpavjtyeiqzy6yyzwvx5hqtmi@tsfx2hr7rmqp>
- <CAFBinCCLorBkGmpeUiep6gT7N__2641ec+f=hJyUgVEv1x6EdA@mail.gmail.com>
+	Fri, 22 Dec 2023 10:48:36 +0000
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-3368fe4dcb1so590956f8f.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 22 Dec 2023 02:48:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1703242110; x=1703846910; darn=lists.infradead.org;
+        h=mime-version:message-id:date:subject:cc:to:from:user-agent:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=+GWXCTtjSNNR9oPq2iw0nf47LFIhwakJPmZPJ2MyFfU=;
+        b=e2XmsmhRVba++gmq8WvlF9axBOqpE69xgEl5af3z8oNR9TEYt9aC80UWakY71cC80P
+         +G87MWEJhHF93Cfn6PwyKIxpfdUWmkTZt9alo50P8B1C0MQVzvS8cLexvtrpOleAgqeJ
+         H8Cp9D6c9xNW3VXBXv26ncnW7LN9WSRoSJp5YmBjkBqoU/QrMzwceg43EuKEFI734538
+         6kX9V+5tZ8mpobivUzKtoSMXh0LeKTXAWG7Zyfyw9bltWX44LsqJpNX3TzuMtDDkgIwl
+         VyrUb9QzLLFyYzAC1YRjiRCKkLru93X/ow/UmgH3WBJdnZqwUQaB9fHcPsbjOhTm9AEx
+         ZEGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703242110; x=1703846910;
+        h=mime-version:message-id:date:subject:cc:to:from:user-agent
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+GWXCTtjSNNR9oPq2iw0nf47LFIhwakJPmZPJ2MyFfU=;
+        b=X2LB4rcS0MbrG1q/Ib5z6TmAQGNB6o/bnwN+XedhxYvHmKK/xuJTrQveYBTwSmFRpn
+         yUhPKJ2JHgGLQsJWS0fncWgWUeJBx+ZcjKbPI6M1U4OjhF80ZFpCYgcK3J9FZyBc5eXX
+         2+Ck6e8DaddcDWAe4JTeSHCStkzXO03mSogz4rrRTnh55c7rUHgBQN3BiP5OKmZaFqF2
+         w3mFZvby0yVJ7Xiu6rY/gO+NmpsOKNEz0ybnAGg9nHSOvSAr3tRdErUbznwsBKA31043
+         3t21hE8v1Wr9WE+OwSjeLCxEr1ffXrbaUhbxk0Tms7EqQqZr7aQBQjrUBKT1u1LcjlTC
+         mXYQ==
+X-Gm-Message-State: AOJu0Yxu1isedT9tBjDM02PhFaCxJbs6d1vozVSinlO/LipTwrgDA/OL
+	guXfyvYIorZsj0ZpUroSRJabr06JfeC8eA==
+X-Google-Smtp-Source: AGHT+IGpgKGlsu3/wK0e2gT8HUtM9465RlPHpE7S5sqn7igaY/OJ9/MGNXGVgdBk1vdggoRNKVwkTQ==
+X-Received: by 2002:a5d:40cb:0:b0:336:7655:c63f with SMTP id b11-20020a5d40cb000000b003367655c63fmr581406wrq.47.1703242109957;
+        Fri, 22 Dec 2023 02:48:29 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:c099:e596:3179:b0fa])
+        by smtp.gmail.com with ESMTPSA id h16-20020a056000001000b003365c83273csm3992142wrx.16.2023.12.22.02.48.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Dec 2023 02:48:29 -0800 (PST)
+User-agent: mu4e 1.10.8; emacs 29.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+ <khilman@baylibre.com>, linux-clk@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+Subject: [GIT PULL] clk: meson: amlogic clock updates for v6.8
+Date: Fri, 22 Dec 2023 11:41:11 +0100
+Message-ID: <1jzfy28qdf.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCCLorBkGmpeUiep6gT7N__2641ec+f=hJyUgVEv1x6EdA@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231222_022733_178420_BCB02433 
-X-CRM114-Status: GOOD (  24.23  )
+X-CRM114-CacheID: sfid-20231222_024833_796558_A3357D9A 
+X-CRM114-Status: UNSURE (   6.31  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,117 +85,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0209181732001879335=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============0209181732001879335==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ofg2g3grsnoftz76"
-Content-Disposition: inline
+Hi Stephen,
 
+Here are the amlogic clock updates for v6.8.
+It adds few new clocks on the g12 SoC family, for DSI, CSI and the ISP.
 
---ofg2g3grsnoftz76
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Cheers
+Jerome
 
-On Fri, Dec 22, 2023 at 11:12:30AM +0100, Martin Blumenstingl wrote:
-> Hello Uwe,
->=20
-> On Fri, Dec 22, 2023 at 8:10=E2=80=AFAM Uwe Kleine-K=C3=B6nig
-> <u.kleine-koenig@pengutronix.de> wrote:
-> [...]
-> > Also the calculation is wrong: If a relative duty-cyle in the interval
-> > [91%; 0%] maps lineary to [860 mV; 1140 mV] you get 1100 mV at
-> >
-> >              1100 mV - 860 mV
-> >         91 + ---------------- * (0 - 91) =3D 13
-> >              1140 mV - 860 mV
-> >
-> > (If the calculations in the driver used signed multiplication and
-> > division, all the checks for max_uV_duty < min_uV_duty could just go
-> > away.)
-> >
-> > So you want
-> >
-> > +               pwm-dutycycle-range =3D <13 0>;
-> Thank you!
->=20
-> > (if this restriction is really necessary).
-> I could not find a way around this.
-> Without this change pwm_regulator_set_voltage() is called with req_min
-> 860mV and req_max 1140mV.
-> pwm_regulator_set_voltage() will then pick the lowest possible
-> voltage, which then results in 860mV (exactly what I get without any
-> patches).
->=20
-> To be able to keep the original minimum voltage in .dts would be to
-> work on what Mark suggested where he said:
-> "I'd expect a change in the init_state() function, possibly one that
-> programs the PWM to reflect the actual hardware state"
->=20
-> [...]
-> > > -     if (pstate.enabled)
-> > > -             voltage =3D pwm_get_relative_duty_cycle(&pstate, duty_u=
-nit);
-> > > -     else if (max_uV_duty < min_uV_duty)
-> > > -             voltage =3D max_uV_duty;
-> > > -     else
-> > > -             voltage =3D min_uV_duty;
-> > > +     voltage =3D pwm_get_relative_duty_cycle(&pstate, duty_unit);
-> >
-> > I'd add here:
-> >
-> >         if (voltage < min(max_uV_duty, min_uV_duty) ||
-> >             voltage > max(max_uV_duty, min_uV_duty))
-> >                 return -ENOTRECOVERABLE;
-> I can do that - although I think it should be a separate change.
+The following changes since commit b85ea95d086471afb4ad062012a4d73cd328fa86:
 
-That can go in together with the
+  Linux 6.7-rc1 (2023-11-12 16:19:07 -0800)
 
-	if (pstate.enabled)
-		return -ENOTRECOVERABLE;
+are available in the Git repository at:
 
-Otherwise +1 to not mix that with the machine specfic stuff.
+  https://github.com/BayLibre/clk-meson.git tags/clk-meson-v6.8-1
 
-Best regards
-Uwe
+for you to fetch changes up to 5205628ab0bfe64952974d476ee001f6c7e0ef7f:
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
-   |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+  clk: meson: g12a: add CSI & ISP gates clocks (2023-11-24 18:08:48 +0100)
 
---ofg2g3grsnoftz76
-Content-Type: application/pgp-signature; name="signature.asc"
+----------------------------------------------------------------
+Amlogic clock updates for v6.8
 
------BEGIN PGP SIGNATURE-----
+* Add DSI clocks on g12/sm1
+* Add CSI and ISP clocks on g12/sm1
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWFZIoACgkQj4D7WH0S
-/k7wLQgAgB0mlw3wy3ju4Du6LWIxSgraCzeRpxj6i4nzctEXRDsG7vLq9hKVW9Uf
-GAFpXYSwxcG3rUS9CMj3YY7NPeo7ZZ1U6EvHNyQOk/DEbWKIw/Y1eZi2QGaWjUqa
-T0x1En4EaSUKC4ZdDGy+5DgGsC0rlfMyE7YQHkurbuAjb5fvCbfL9XTW/GqnRUuJ
-Ptd+EyNbQfpzwyKA99G9WEy3eWM5ou5n0mTXGRtSpYlEPa7evYWF8+U65dcd/o9Y
-d7mETR2MMvUfIJmbxp1Ob/zj+tjI0Jes6ahX2Jc9ev9BTjmFchcMB4MTE5xY3MRn
-+T9SqS89y1Ku9rTXDCpbDx0uZKAwvA==
-=bR5z
------END PGP SIGNATURE-----
+----------------------------------------------------------------
+Jerome Brunet (1):
+      Merge branch 'v6.8/dt-bindings' into v6.8/drivers
 
---ofg2g3grsnoftz76--
+Neil Armstrong (5):
+      dt-bindings: clk: g12a-clkc: add CTS_ENCL clock ids
+      clk: meson: g12a: add CTS_ENCL & CTS_ENCL_SEL clocks
+      dt-bindings: clock: g12a-clkc: add MIPI ISP & CSI PHY clock ids
+      clk: meson: g12a: add MIPI ISP clocks
+      clk: meson: g12a: add CSI & ISP gates clocks
 
+ drivers/clk/meson/g12a.c              | 115 ++++++++++++++++++++++++++++++++++
+ drivers/clk/meson/g12a.h              |   1 +
+ include/dt-bindings/clock/g12a-clkc.h |   8 +++
+ 3 files changed, 124 insertions(+)
 
---===============0209181732001879335==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============0209181732001879335==--
-
