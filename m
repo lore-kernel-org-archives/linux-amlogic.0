@@ -4,65 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F714C41535
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Dec 2023 11:54:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9C97C41535
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Dec 2023 11:55:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=5DP3m1cmgUD9ATKdpCX8PmxHs24PLUl2iL821IXG93U=; b=gIsiRAL/fVu+vYr6eJ8mjiCiR3
-	ABVgCDVhvpVTk/9OeM0CtF0s2wPn62reY51i2xWMhEVnqXWLZKXOViyrgb8fzanAL34ffyq4H2hiW
-	JzXXkP1hmTI/MK5hsP94nrka4SoP6zurTleQCysZN4GCbQZbIvLY+Gv1aVoIkLQ4ueS6qVdGmS4TO
-	2JwUirDIHkdXywz3qBOd7MQam8CIpQwKf/H4M/Dbzu1Y5rYKdI1c8TG/fXpksf1VqOOaBOwHsmVnm
-	jU2JGztaeTqCFJIwN9X3LSsqznB1h+Vk2bvV4Ve3Xat0lzpH0Eq/YgC+Q/cwmEkfFil0XlwB8VKAP
-	EKRvQZ/g==;
+	bh=9siGXP9Hrk9PYC7kqK1We1O2BQUwkfua5wgnRdouBQw=; b=2VRVcAv3+01+vkd1/OB1/49OtH
+	HGDAHzSNklPCShas2iIb7Czj9H/AgOYdwPcuaRzsCF6pESvIk0yVb+r+/4EC0gtIJIG9Cu3yiL5XR
+	rc/HgBqEetA155t2mMDzoOrBGcJp4F6koeoCR+VYlrpkybHHkmEl7YHX3DonY+6SFlrw1kQy+IjFV
+	OZHGsWz/P0FGz0hI6zquK8FDnuSstYiKaVXhv99+IjR6rpb41Cc85HG10KjaOePZAaVn6nMTSpabG
+	yAnulautJULzbWrIVTo2SF3brSF2HzCIK8H4jrMvzQz+EN4VTozqg9Y609ENMeouFOPfWE8OeLPhA
+	XLLzOJGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rGe6E-005rwF-18;
-	Fri, 22 Dec 2023 11:53:54 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1rGe7N-005s4J-1p;
+	Fri, 22 Dec 2023 11:55:05 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rGe6C-005rvp-1V
+	id 1rGe7K-005s3U-2d
 	for linux-amlogic@lists.infradead.org;
-	Fri, 22 Dec 2023 11:53:53 +0000
+	Fri, 22 Dec 2023 11:55:04 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id 7F386B82171;
-	Fri, 22 Dec 2023 11:53:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF083C433C9;
-	Fri, 22 Dec 2023 11:53:47 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 98898CE2106;
+	Fri, 22 Dec 2023 11:55:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95A5DC433C8;
+	Fri, 22 Dec 2023 11:54:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703246029;
-	bh=NB+xhNYLL2YOdGSpb6W2PV8TAmLE5kyfK0/CSF8eFIg=;
+	s=k20201202; t=1703246099;
+	bh=MniMhNCozgeNpLkvpDvRts/bFndN88of1ENcKV/hfR8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hrqUVWwBAexAmLH6SS89GdnnPZVenC6P6AoqYY0UThGRiUAno75Gh6cHuyckYQINa
-	 1Jj+4RW1ipA/uzJyVng4YogC9NnCoVqqG87AO2yIjoi25EGrPE06YyXvpPZsycCT5w
-	 v9tr41gtXiPbx7purKSLuw/zjsyao1Xxse05sA2kNtAi0Zux31V4aYOZd7LXWispLx
-	 X2reeQDUco/vioRoNOs1JgYoRx7gozydCH3INKjBUBvDKW8s6z868oFgaM+SWyVhWb
-	 rctVbS2HVc9lLYWRtgpR9MTJU4wdTtBiCNJOdpJt9DBVUNedKKmQTvwqqyzMAgcZzL
-	 UK4pucHaUaDuA==
-Date: Fri, 22 Dec 2023 11:53:44 +0000
+	b=JGeuGLoBSuxU+iLQjNorjscPkD3nPNqumthsvoP3JjJc94TSLtt6IZY81T0QKwxww
+	 80gEpDrawf6QijZgYmhEo/Md+SRl3kDWm+jU8o34rnCJrMa/UBoRYLfRdc7R5aP3Va
+	 zDMbgUOS/09sPm8tfPGmJXAW47Rfv+8QoFmzIN+gapbJrEa/t1s3inRfyAfw4PzImW
+	 wWkPlmmtbhucDYGjE5tuaLh8kwI9lyU33TsRwMQoWJfKuxnNce6O13Crfq6vGKe3J2
+	 uaqaEUI9SCjeyKARlkesdwr3SICCkKOpCEEWNnkU6CLhEahWrg1KBVvG3cFY7uwinS
+	 IPom6sp5voG8w==
+Date: Fri, 22 Dec 2023 11:54:54 +0000
 From: Mark Brown <broonie@kernel.org>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	lgirdwood@gmail.com, linux-pwm@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: lgirdwood@gmail.com,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
 	Thierry Reding <thierry.reding@gmail.com>,
 	Heiner Kallweit <hkallweit1@gmail.com>,
 	Dmitry Rokosov <ddrokosov@sberdevices.ru>
 Subject: Re: [RFC PATCH v1] regulator: pwm-regulator: Fix continuous
  get_voltage for disabled PWM
-Message-ID: <54905287-855d-47b4-880f-bfb1b8b1f49d@sirena.org.uk>
+Message-ID: <e32e0ccd-0e7c-4d74-aa2c-0b8155d97698@sirena.org.uk>
 References: <20231221211222.1380658-1-martin.blumenstingl@googlemail.com>
  <0c99b575-5cf2-4bd6-8cfd-af19f5fd58da@sirena.org.uk>
- <jx2vspy4cfuidf3mwmje675igspxdpgrenw5jz35ud5bm65klc@s4ovjad4fusg>
+ <CAFBinCDJnVzE2sMwu52MQGTKW7dtCuUoj63ZZHhJPJO0+dZDkg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <jx2vspy4cfuidf3mwmje675igspxdpgrenw5jz35ud5bm65klc@s4ovjad4fusg>
+In-Reply-To: <CAFBinCDJnVzE2sMwu52MQGTKW7dtCuUoj63ZZHhJPJO0+dZDkg@mail.gmail.com>
 X-Cookie: Familiarity breeds attempt.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231222_035352_657919_D3A7FFA7 
-X-CRM114-Status: GOOD (  20.37  )
+X-CRM114-CacheID: sfid-20231222_035503_035781_9F848B97 
+X-CRM114-Status: GOOD (  16.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,72 +75,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============5383796347493259878=="
+Content-Type: multipart/mixed; boundary="===============3457666907821563427=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============5383796347493259878==
+--===============3457666907821563427==
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="KJDHjVYfXsFaJRDn"
+	protocol="application/pgp-signature"; boundary="ege4RUChGIoDBWw+"
 Content-Disposition: inline
 
 
---KJDHjVYfXsFaJRDn
-Content-Type: text/plain; charset=iso-8859-1
+--ege4RUChGIoDBWw+
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Dec 21, 2023 at 11:07:41PM +0100, Uwe Kleine-K=F6nig wrote:
-> On Thu, Dec 21, 2023 at 09:45:49PM +0000, Mark Brown wrote:
+On Thu, Dec 21, 2023 at 11:42:29PM +0100, Martin Blumenstingl wrote:
+> On Thu, Dec 21, 2023 at 10:45=E2=80=AFPM Mark Brown <broonie@kernel.org> =
+wrote:
 
-> > > -       voltage =3D pwm_get_relative_duty_cycle(&pstate, duty_unit);
-> > > +       if (pstate.enabled)
-> > > +               voltage =3D pwm_get_relative_duty_cycle(&pstate, duty=
-_unit);
-> > > +       else if (max_uV_duty < min_uV_duty)
-> > > +               voltage =3D max_uV_duty;
-> > > +       else
-> > > +               voltage =3D min_uV_duty;
+> > Hrm.  Perhaps the regulator should figure out that it's on with a
+> > minimum voltage of 1.14V in this case - AIUI that broadly corresponds to
+> > your change except for the fact that it doesn't recognise that there's
+> > actually an output in this case since it assumes that disabling the PWM
+> > disables the output which isn't the case with this hardware.  We'd need
+> > to know more about the PWM in that case though I think.
 
-> > AFAICT this means that enabling the PWM changes the voltage read back
-> > which isn't what we expect (other than a change from 0 to target) and is
-> > likely to cause issues.  get_voltage() should not change after an
-> > enable(), and indeed I'm unclear how this change works?  I'd expect a
-> > change in the init_state() function, possibly one that programs the PWM
-> > to reflect the actual hardware state but I'm not 100% confident on that
-> > without digging into the PWM API more.
+> If you have any specific questions then feel free to ask.
+> Generally it's a very simple PWM controller:
+> - when disabled the output is LOW
+> - when enabled the output matches the requested period and duty cycle
+> as best as possible (depending on the available input clocks)
 
-> What is your question here? Looking at pwm_regulator_set_voltage() I
-> think this lacks a
+We would need to know more at runtime to do the correct thing I think.
 
-> 	pstate.enabled =3D true;
-
-> which might also fix Martin's problem?
-
-That's not really a question, it's a statement - I don't see how the
-change works at all and as it stands it introduces a problem with the
-behaviour when the regulator is enabled.
-
---KJDHjVYfXsFaJRDn
+--ege4RUChGIoDBWw+
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWFeMcACgkQJNaLcl1U
-h9DDmAf+MtgUxQLU77WJx9BvRbmHOIj3BusmZ5Vz4wKLhcxHaZ6kCJ6cqgwBBMv0
-HLih1IgKLkKVBYuFGW3v3I2a8KjNglIqo9zDArCmFI16cB7zJ/XB7/oOQoBipnxd
-ttQtIshQIlBeLbxFQcdK9iecfoyYw4uxVoDdmCwo4OKvTIGYz8DEY2ahHEZdDl20
-BpfrAA9JeECG/IuFn3SbSlrKzJ5uNwnctynsPfTOMVqKh7bD6kK2OpVx7W2huR7G
-Gsd8LXK2UGABOa5zc4dC5pe4pG2aqRbwRHoUbHOlC6N1ZF0NNP4cmDxQ8YnJZZG3
-sQafS5nyBfCGJlWOmwecR7JkXeEFhg==
-=Hl8j
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWFeQ0ACgkQJNaLcl1U
+h9BNywgAgAfg176tAU+aqJ+Jp2hFmi4zZ/c3euJEMcr+4MM60eFhd6+i3b9uZsja
+ZgEGxvrF4wFzku+4Kkv2Qip7VS5XaAIc/ewN+vzteFnL2ExWwx3FjIi8vgtTi/5Q
+FfOHVvo2US7qt+pfwrCfEMMv4vgWfHfz557RYnnkiiY08sVaOprSFkMtFuxVLNWo
+YrTHjUUzQv/ComapN/ZSVCjVY96cs4K/0ZiRqys6Xauh2sJBvlOtEvSPPlVxh30S
+ErxN1OwlflViYeqHSoNYIR1lzOEpKanAGRx6FGDQaOsK4ES7JEShiaw0gUYL+8cE
+TiL63LyYDuOhE2DJuWaetMBvLGo1qg==
+=vyyB
 -----END PGP SIGNATURE-----
 
---KJDHjVYfXsFaJRDn--
+--ege4RUChGIoDBWw+--
 
 
---===============5383796347493259878==
+--===============3457666907821563427==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -150,5 +139,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============5383796347493259878==--
+--===============3457666907821563427==--
 
