@@ -4,52 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88399C46CD4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Dec 2023 08:59:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA4C8C46CD2
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Jan 2024 23:34:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=36gRQaY3Qfta6Bv2C9Pzv3z1xvH4C6jCaX/b1QXlriM=; b=dN7skyv9EPFdfm
-	wdoNlUZd94xhI8u8pAVvr83YGbghBLCJxVoT8ptyLceUEAYEJX1ZjRZJkS8ufmlqsz5G99hZuQumo
-	3EU2B9ln+ZbM0eaEYpUw9th+saXNjUceyJiMIcXL40GNSZPpr5zHmMyVLUKZ/PKrnie6/QJliweIV
-	ukZmKD/VaK+YYwZiZQBFeiAIFSdCZTpAy/nZHAxHmJ5ybwBrDDD7W98DwYKAmYbiGUTN/1xQY/uwp
-	+eYdqosIkHRVA+hb7IGBEtIqSTbczJYnBkRG4b0BWwO8VkA0VS799LTRZIUW8JqKaSlfwSdes/a1g
-	SpGNqHI5uW00J5Yv6vkw==;
+	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
+	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=vJp/q+/3pSVfWPmbfi60hx/FnRYgGoTMMRAwl+e/mPc=; b=grkFyZeQf+dL32
+	yLxy9e3xJ26J53dezNGhYXbxzYwzyfEuns4d63Yzy/qRN1y8UcSSTZyjqNKhGzQKW9t57SD8K8V14
+	grhvUl95fjUre+RiBqemPI3hAiM/3gmN2jG4LICzEjHhYMut4GAQSJ2Dv+6/outq2AxUN63GxjbFT
+	FC/gDxKp1I+DoxIUnXdt/ZVn3DZZGBYgs1X/g79CGyr8lUW1oMPD1QCdAPSYql6Gum7ZfgZsh6SzO
+	0Yh0C+tnIR4SLirhr/jemWtKJI+OVxhbRyoWD7OKYUjKvVhucII0xQsNudQlz+apVztboFsZ6DICx
+	1lJo5l3OKRG6bDYaaWSQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rJ8hD-000Upe-0h;
-	Fri, 29 Dec 2023 08:58:23 +0000
-Received: from [162.19.155.126] (helo=mail.commercesolutions.pl)
+	id 1rKoH0-009JKx-1D;
+	Tue, 02 Jan 2024 23:34:14 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rJ8h8-000Uof-0x
+	id 1rKoGx-009JK7-0O
 	for linux-amlogic@lists.infradead.org;
-	Fri, 29 Dec 2023 08:58:21 +0000
-Received: by mail.commercesolutions.pl (Postfix, from userid 1002)
-	id 41B9423E4B; Fri, 29 Dec 2023 08:56:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=commercesolutions.pl;
-	s=mail; t=1703840219;
-	bh=PcMncQpBfIZCnTOfZJY5G1G+gaLn4c9QPfFvoXrE4rA=;
-	h=Date:From:To:Subject:From;
-	b=hLZu+4EKlnSI2haR+qfEgUZJoVkA95mkpKwJRj4+oj150s/OJ/gwUdZY+A+gfKd8A
-	 +xlLymUL9hE5KkuQsU46s99RrSBxAjs6l5ANtY7gPeXEgRzMbH5Zsq12kl5VAcmNAn
-	 iiawRZjDUVI91HbKLt66SFjrNxXkLr1VbSIV/ocX99eWBZHe4Z+m5x9BYwDkG4XVy+
-	 x3PyU2TzUtXfRMYhaE30b1Ax5LqMJeJbwxr1gSkmixNX3WDHy68gggCU7sSraZZwMZ
-	 CJCTqO4yVj4tu0e0bjxl4/eet16EqeTGDsNXoBohFlPId3K2aywBQ4Bg+4/sUL/09D
-	 eRy4Lp9QbXseA==
-Received: by mail.commercesolutions.pl for <linux-amlogic@lists.infradead.org>; Fri, 29 Dec 2023 08:55:48 GMT
-Message-ID: <20231229074500-0.1.ar.2ajsq.0.gle94nin5q@commercesolutions.pl>
-Date: Fri, 29 Dec 2023 08:55:48 GMT
-From: "Kamil Tralewski" <kamil.tralewski@commercesolutions.pl>
-To: <linux-amlogic@lists.infradead.org>
-Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
-X-Mailer: mail.commercesolutions.pl
+	Tue, 02 Jan 2024 23:34:13 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 6BD27612B3;
+	Tue,  2 Jan 2024 23:34:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03D17C433CA;
+	Tue,  2 Jan 2024 23:34:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704238450;
+	bh=WdepfEda+YXgv03KGYsOVF0L11R3Jotno5U9Y+c+TAw=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=h3ZE47LjM5boSq4RLVHmKErAtycl4JyTdvNrZ3PxDxYKvwG4TPvt4O4aNmSw5TLgC
+	 AcSP/MYVa6BITFIehFgFK0hSo3RyInNOWVG67+DfMDaJcW0xlITSwcoPnszCdppSBS
+	 YFWIPEsCPiepqqFN2OoFDAO1zmBCdz45egLiFwrN3KE3xqlZfpJD/XyVzmrD6K1wSS
+	 C3jeTXS25kPl9t6q2AM2mQGgcg98FVguHpelPMH0rh+s75IU8wW1I/3KVO/65p+KgN
+	 0trbD8rDBghJfn7RGkPJLcoGQIzOHBBZ6mPZP16fFM+t/93VVjCu/21xNzpkw+Mr8a
+	 WCB137KrVv5GA==
+Message-ID: <6276336e185b0c347a17722b9582edbd.sboyd@kernel.org>
 MIME-Version: 1.0
+In-Reply-To: <1jzfy28qdf.fsf@starbuckisacylon.baylibre.com>
+References: <1jzfy28qdf.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [GIT PULL] clk: meson: amlogic clock updates for v6.8
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org
+To: Jerome Brunet <jbrunet@baylibre.com>
+Date: Tue, 02 Jan 2024 15:34:07 -0800
+User-Agent: alot/0.10
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231229_005819_090486_DBFB1B00 
-X-CRM114-Status: UNSURE (   0.78  )
+X-CRM114-CacheID: sfid-20240102_153411_812155_24BA3FDF 
+X-CRM114-Status: UNSURE (   8.04  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -62,19 +67,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RHppZcWEIGRvYnJ5LAoKemFwb3puYcWCZW0gc2nEmSB6IFBhxYRzdHdhIG9mZXJ0xIUgaSB6IHBy
-enlqZW1ub8WbY2nEhSBwcnp5em5hasSZLCDFvGUgcHJ6eWNpxIVnYSB1d2FnxJkgaSB6YWNoxJlj
-YSBkbyBkYWxzenljaCByb3ptw7N3LiAKClBvbXnFm2xhxYJlbSwgxbxlIG1vxbxlIG3Ds2fFgmJ5
-bSBtaWXEhyBzd8OzaiB3a8WCYWQgdyBQYcWEc3R3YSByb3p3w7NqIGkgcG9tw7NjIGRvdHJ6ZcSH
-IHogdMSFIG9mZXJ0xIUgZG8gd2nEmWtzemVnbyBncm9uYSBvZGJpb3Jjw7N3LiBQb3p5Y2pvbnVq
-xJkgc3Ryb255IHd3dywgZHppxJlraSBjemVtdSBnZW5lcnVqxIUgxZt3aWV0bnkgcnVjaCB3IHNp
-ZWNpLgoKTW/FvGVteSBwb3Jvem1hd2lhxIcgdyBuYWpibGnFvHN6eW0gY3phc2llPwoKUG96ZHJh
-d2lhbQpLYW1pbCBUcmFsZXdza2kKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlz
-dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2xpbnV4LWFtbG9naWMK
+Quoting Jerome Brunet (2023-12-22 02:41:11)
+> 
+> Hi Stephen,
+> 
+> Here are the amlogic clock updates for v6.8.
+> It adds few new clocks on the g12 SoC family, for DSI, CSI and the ISP.
+> 
+> Cheers
+> Jerome
+> 
+> The following changes since commit b85ea95d086471afb4ad062012a4d73cd328fa86:
+> 
+>   Linux 6.7-rc1 (2023-11-12 16:19:07 -0800)
+> 
+> are available in the Git repository at:
+> 
+>   https://github.com/BayLibre/clk-meson.git tags/clk-meson-v6.8-1
+> 
+> for you to fetch changes up to 5205628ab0bfe64952974d476ee001f6c7e0ef7f:
+> 
+>   clk: meson: g12a: add CSI & ISP gates clocks (2023-11-24 18:08:48 +0100)
+> 
+> ----------------------------------------------------------------
+
+Thanks. Pulled into clk-next
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
