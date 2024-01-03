@@ -4,58 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA4C8C46CD2
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Jan 2024 23:34:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DED92C3DA6E
+	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jan 2024 18:36:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
-	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vJp/q+/3pSVfWPmbfi60hx/FnRYgGoTMMRAwl+e/mPc=; b=grkFyZeQf+dL32
-	yLxy9e3xJ26J53dezNGhYXbxzYwzyfEuns4d63Yzy/qRN1y8UcSSTZyjqNKhGzQKW9t57SD8K8V14
-	grhvUl95fjUre+RiBqemPI3hAiM/3gmN2jG4LICzEjHhYMut4GAQSJ2Dv+6/outq2AxUN63GxjbFT
-	FC/gDxKp1I+DoxIUnXdt/ZVn3DZZGBYgs1X/g79CGyr8lUW1oMPD1QCdAPSYql6Gum7ZfgZsh6SzO
-	0Yh0C+tnIR4SLirhr/jemWtKJI+OVxhbRyoWD7OKYUjKvVhucII0xQsNudQlz+apVztboFsZ6DICx
-	1lJo5l3OKRG6bDYaaWSQ==;
+	List-Owner; bh=T8j+nZj18zIGqBAFsRixjd7/GXwWrP5YkULj8AkhHqI=; b=zoTIMHQ88W09J3
+	n/0NulHQIWT7vVwy/wAG/hy9I/m0ys1rhscMDPbZbx5AKnsH3tO0YKAgpnF0EOaliNKjgnt8FxSlu
+	/3LWa6oQIWB9Qts5sKgb/ahRs4pQz+jSJM0ypOwl7hPziNxgRG2iqyFjstN6tgEq41ondnfrk/Uj7
+	VsxpYV2B+pYVKPGdI9R90CGGqGb/sMwTJ70AMwByxQHMTi5UG5GutFqxo/8s/8e2gWHYJOa7zdY09
+	aweRl8pCSWABsqj5lFNJrnmYumScsskkK0C8bFQb/RP+C1pYYrd04nTRJge3b9dBrP03XqUX3vJy6
+	v1RzibVx/IECoL+guVWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rKoH0-009JKx-1D;
-	Tue, 02 Jan 2024 23:34:14 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1rL65i-00BmdF-0F;
+	Wed, 03 Jan 2024 18:35:46 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rKoGx-009JK7-0O
-	for linux-amlogic@lists.infradead.org;
-	Tue, 02 Jan 2024 23:34:13 +0000
+	id 1rL64S-00Bl5B-03;
+	Wed, 03 Jan 2024 18:34:30 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 6BD27612B3;
-	Tue,  2 Jan 2024 23:34:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03D17C433CA;
-	Tue,  2 Jan 2024 23:34:09 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTP id 7B5F0B8149C;
+	Wed,  3 Jan 2024 18:34:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B1D6C433C7;
+	Wed,  3 Jan 2024 18:34:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704238450;
-	bh=WdepfEda+YXgv03KGYsOVF0L11R3Jotno5U9Y+c+TAw=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=h3ZE47LjM5boSq4RLVHmKErAtycl4JyTdvNrZ3PxDxYKvwG4TPvt4O4aNmSw5TLgC
-	 AcSP/MYVa6BITFIehFgFK0hSo3RyInNOWVG67+DfMDaJcW0xlITSwcoPnszCdppSBS
-	 YFWIPEsCPiepqqFN2OoFDAO1zmBCdz45egLiFwrN3KE3xqlZfpJD/XyVzmrD6K1wSS
-	 C3jeTXS25kPl9t6q2AM2mQGgcg98FVguHpelPMH0rh+s75IU8wW1I/3KVO/65p+KgN
-	 0trbD8rDBghJfn7RGkPJLcoGQIzOHBBZ6mPZP16fFM+t/93VVjCu/21xNzpkw+Mr8a
-	 WCB137KrVv5GA==
-Message-ID: <6276336e185b0c347a17722b9582edbd.sboyd@kernel.org>
+	s=k20201202; t=1704306866;
+	bh=ht4f2L9VNRd0Mc59eoD5YHto4h+iXotwSN2zcCeCmUg=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=gbzXcl7BbbxtSm8Gi1Qyxsl/niVlUDQwNiiEc5sY9rVMtZrwQt5V+HfUcHTM0wYTG
+	 k1x+KtfvTL73UBFGoc7AL2u3mwNEoOfZyLrjEL1QqlK93Rad0S9Rh2WfszzNejvDDl
+	 5ne7Eztu0D6MMIbo9CJnVEfXV37s0HjDsHd0tJUoMAcR4x4s/1qzP/1BlmFe9QeRry
+	 8xDSYJviEHcCfjvIzT+kWLc065GmGQmtQTRD+Z853G+MljPQdC57+2ihRrqy7O2Y27
+	 BLLdtcNI1tQ7/iyjvNm9Bjpi/xVZPPoN1OVXSHPu4MX47rPbyJQSH0Vc+lAHIhz9JC
+	 rEkCyZZhEb/jQ==
+From: Mark Brown <broonie@kernel.org>
+Date: Wed, 03 Jan 2024 18:34:02 +0000
+Subject: [PATCH 2/4] ASoC: meson: g12a-tohdmitx: Validate written enum
+ values
 MIME-Version: 1.0
-In-Reply-To: <1jzfy28qdf.fsf@starbuckisacylon.baylibre.com>
-References: <1jzfy28qdf.fsf@starbuckisacylon.baylibre.com>
-Subject: Re: [GIT PULL] clk: meson: amlogic clock updates for v6.8
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org
-To: Jerome Brunet <jbrunet@baylibre.com>
-Date: Tue, 02 Jan 2024 15:34:07 -0800
-User-Agent: alot/0.10
+Message-Id: <20240103-meson-enum-val-v1-2-424af7a8fb91@kernel.org>
+References: <20240103-meson-enum-val-v1-0-424af7a8fb91@kernel.org>
+In-Reply-To: <20240103-meson-enum-val-v1-0-424af7a8fb91@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>
+X-Mailer: b4 0.13-dev-0438c
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1548; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=ht4f2L9VNRd0Mc59eoD5YHto4h+iXotwSN2zcCeCmUg=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBllaimMWacGtC/oM+FCVutaQUzoegKMoiH8Pk8W
+ Wbk4bW3T96JATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCZZWopgAKCRAk1otyXVSH
+ 0DSyB/9+01n+37YTh84CduFEZq2Oj/ZWKuKbVubO9Xv9hSbfjLZ6hv+BbHfmTJbr5Hna2XehzGw
+ kfhV5m5JcRciYD7N8OTUgKgV36fi+AdE9buDprljnRf7DsyHosNHxmxVRXwZtwMToJmj/V2DV5z
+ bmCkAUJD7HZ/r7KOYAWncYQk6YEjFBGAO37eagiVkwBEpcsD4QKdnkcfPUEU7rjXL7JcLJKRMsi
+ VGDdgmOlqjnHOJzJkkzupjsFvYhWjZPWXjR3NOxFDwQ5MGLIWmnNy++naYdz687laZc20LzB7EL
+ KRlifhoDqlOaXFnwTsGK5ULqE59CrKOJM8v4OQe3GaSuqost
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240102_153411_812155_24BA3FDF 
-X-CRM114-Status: UNSURE (   8.04  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240103_103428_367727_CA9D93E1 
+X-CRM114-Status: GOOD (  10.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,31 +88,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jerome Brunet (2023-12-22 02:41:11)
-> 
-> Hi Stephen,
-> 
-> Here are the amlogic clock updates for v6.8.
-> It adds few new clocks on the g12 SoC family, for DSI, CSI and the ISP.
-> 
-> Cheers
-> Jerome
-> 
-> The following changes since commit b85ea95d086471afb4ad062012a4d73cd328fa86:
-> 
->   Linux 6.7-rc1 (2023-11-12 16:19:07 -0800)
-> 
-> are available in the Git repository at:
-> 
->   https://github.com/BayLibre/clk-meson.git tags/clk-meson-v6.8-1
-> 
-> for you to fetch changes up to 5205628ab0bfe64952974d476ee001f6c7e0ef7f:
-> 
->   clk: meson: g12a: add CSI & ISP gates clocks (2023-11-24 18:08:48 +0100)
-> 
-> ----------------------------------------------------------------
+When writing to an enum we need to verify that the value written is valid
+for the enumeration, the helper function snd_soc_item_enum_to_val() doesn't
+do it since it needs to return an unsigned (and in any case we'd need to
+check the return value).
 
-Thanks. Pulled into clk-next
+Fixes: c8609f3870f7 ("ASoC: meson: add g12a tohdmitx control")
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ sound/soc/meson/g12a-tohdmitx.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/sound/soc/meson/g12a-tohdmitx.c b/sound/soc/meson/g12a-tohdmitx.c
+index f7ef9aa1eed8..51b7703e1834 100644
+--- a/sound/soc/meson/g12a-tohdmitx.c
++++ b/sound/soc/meson/g12a-tohdmitx.c
+@@ -45,6 +45,9 @@ static int g12a_tohdmitx_i2s_mux_put_enum(struct snd_kcontrol *kcontrol,
+ 	struct soc_enum *e = (struct soc_enum *)kcontrol->private_value;
+ 	unsigned int mux, changed;
+ 
++	if (ucontrol->value.enumerated.item[0] >= e->items)
++		return -EINVAL;
++
+ 	mux = snd_soc_enum_item_to_val(e, ucontrol->value.enumerated.item[0]);
+ 	changed = snd_soc_component_test_bits(component, e->reg,
+ 					      CTRL0_I2S_DAT_SEL,
+@@ -93,6 +96,9 @@ static int g12a_tohdmitx_spdif_mux_put_enum(struct snd_kcontrol *kcontrol,
+ 	struct soc_enum *e = (struct soc_enum *)kcontrol->private_value;
+ 	unsigned int mux, changed;
+ 
++	if (ucontrol->value.enumerated.item[0] >= e->items)
++		return -EINVAL;
++
+ 	mux = snd_soc_enum_item_to_val(e, ucontrol->value.enumerated.item[0]);
+ 	changed = snd_soc_component_test_bits(component, TOHDMITX_CTRL0,
+ 					      CTRL0_SPDIF_SEL,
+
+-- 
+2.39.2
+
 
 _______________________________________________
 linux-amlogic mailing list
