@@ -4,74 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58A71C47073
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jan 2024 18:36:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8A8FC3DA6E
+	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jan 2024 20:25:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UnR9SvzumFWGuhOzAKboErW+BW7wFLvpbywyVzL0dlQ=; b=eu2eB+JKoy6hkR
-	hJ4UyLtKLk/1qXjnVBds6y8qxgbxWxtTfbK1Vi+tgDFpMfakKVCLk3hS/zO9LUxFPlwwZcxQGHejb
-	mwW4AQUEgbmt3J87OtXxAeGH0PQpllXDwHbgVcKXf/JGKvBLFzySvuE7c3TwhQSkRZdft2wiH0Oz3
-	5V0p5Dt7uxWAzIatDM7TSqm8WdQwnFdpzaZd6fyJqwgQ3nloHQYZV16shhwja0BsCdZuUWgnZjfvH
-	neh6PMKMQtY9tTmbz+W6kME4NzlF/ymGmNjP+yGISqju5n0hfOTppS8Jf1Pg5dWw+aUs38I/EaF1h
-	3WMtLK0WcTV5vsFQVJXA==;
+	List-Owner; bh=sUCJT16vduZ6w6b5m94qVwPObKxXlA0dqgVbPzJPVrc=; b=nkSvTvxRuzBUeC
+	2sYFaG/Uhi5e6FUhwLGlwW2Gq8EXD8FExY6c+Yt5ocWmrfbzqN1voSs2bRjZCRGILcx0lGWnhfZus
+	ervACMglHNnYBQgHW7FZ2TMMmP4S6PIYN34qKY1Q4ixkrbaE6VEwTx1S97Btsip+M2c9fawVF7tSt
+	Ry3SzpGhkNnqeYwl8+flN/vxChvZfGkWBQ/bcubaQxOtTrt/k4NY4q/mFeWajv1hNvHZGjHXaNZTU
+	EqC6e+hUusYDZLy6QrBGRsaY8B4OMFmJ7ejWBHkYSSmC1K9nNqX+I1DOPxK2c9Q6GdqQZ+ajkbO8I
+	+cnLCEvOkN0h6ol3AgXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rL65n-00Bmj4-1L;
-	Wed, 03 Jan 2024 18:35:51 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1rL7nQ-00C2hy-1R;
+	Wed, 03 Jan 2024 20:25:00 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rL64Y-00BlDu-2X;
-	Wed, 03 Jan 2024 18:34:38 +0000
+	id 1rL7nM-00C2go-2l;
+	Wed, 03 Jan 2024 20:24:58 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id 1AC36B8158C;
-	Wed,  3 Jan 2024 18:34:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F39CCC433C8;
-	Wed,  3 Jan 2024 18:34:29 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 38AA4615BF;
+	Wed,  3 Jan 2024 20:24:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8DDEC433C7;
+	Wed,  3 Jan 2024 20:24:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704306872;
-	bh=k+wZ9DUmK1WPFz8OxLLNZ0ZWpbB8ZluB+bNJACGBqHw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=mN06hYTJYP4vUJkzIVyJggMtNhH5bjGEC6hbcWm2nZoVDE75nJtA5usZkUEJxobtk
-	 OSbPcKja44zFBMGKrJxFfsW8cNTRIuwl5tluLRTqn7GoyXqVzych+HD8AHJOpRCxPj
-	 JR3MoBhNhf1GOqAZizk0oo89SDeoTunakH2oqAawKchZqc3WrEVgWmkzI8O9l3tjwB
-	 JffOo/wQk4Q3yO/bzmLW03GkQ96c1KPcGQSlAFQb0a1kx6Vam1tN4iBjUQx1aSHfZl
-	 GnFLAOGvT7j4bBgqej52HoM86B8nVOOnKWLhJLHVo8XnvI5rdhpFYM/ug+pxnQw8pv
-	 cia96wv1Stc6w==
+	s=k20201202; t=1704313495;
+	bh=7vxiVQamR3pRKvlcOZeP+eFNosrKWWV5Djb3Z0x4Wa4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=UsfZ5GLY4QmiNBLcKHbUuoGVupm7p8Kps4Q30yw/O78ZuO1Rp+Nk0o4JmditS5dAC
+	 EpZKGZLk3FPOk/mDj2JbHjPPdXTeD/EeT2GC9Kyyq2xFbrJD5jlz5c+gfXTsTTv1ge
+	 L2Zpc5ldsfTj2lMupkyHNhu4tH0KGt8U+XGjyu0xqjZXomchIQ3PsMKHo1F91+EkPO
+	 Ca8xH1Bg1TSSQlnum6PqcpK6Hy5gbbGd+qE+cwprYoDdTzDWwSArztU8rVJZ5AplRj
+	 1YnPmqBKB6NGZKEHMuZIu6+lWG5uuhUOA/4l2BKL5JKLFpaKUZsXgrF206ZqZ9pO/U
+	 MNllPsFqa+A2A==
 From: Mark Brown <broonie@kernel.org>
-Date: Wed, 03 Jan 2024 18:34:04 +0000
-Subject: [PATCH 4/4] ASoC: meson: g12a-tohdmitx: Fix event generation for
- S/PDIF mux
-MIME-Version: 1.0
-Message-Id: <20240103-meson-enum-val-v1-4-424af7a8fb91@kernel.org>
-References: <20240103-meson-enum-val-v1-0-424af7a8fb91@kernel.org>
-In-Reply-To: <20240103-meson-enum-val-v1-0-424af7a8fb91@kernel.org>
 To: Jerome Brunet <jbrunet@baylibre.com>, 
  Liam Girdwood <lgirdwood@gmail.com>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Mark Brown <broonie@kernel.org>
 Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240103-meson-enum-val-v1-0-424af7a8fb91@kernel.org>
+References: <20240103-meson-enum-val-v1-0-424af7a8fb91@kernel.org>
+Subject: Re: [PATCH 0/4] ASoC: meson: Fix issues with LibreTech Saphire
+Message-Id: <170431349265.3159626.5476717975051420559.b4-ty@kernel.org>
+Date: Wed, 03 Jan 2024 20:24:52 +0000
+MIME-Version: 1.0
 X-Mailer: b4 0.13-dev-0438c
-X-Developer-Signature: v=1; a=openpgp-sha256; l=932; i=broonie@kernel.org;
- h=from:subject:message-id; bh=k+wZ9DUmK1WPFz8OxLLNZ0ZWpbB8ZluB+bNJACGBqHw=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBllaiofg5sZ5UECpsyDPRJXOqEZ9mf0sLO11M27
- kloJ0lo/iqJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCZZWoqAAKCRAk1otyXVSH
- 0EXVB/9EPTFgsfoqfT5+k9WPYlVvILzv7DRCBrrX4Dk30LFrjy0hOPaay0t+wOgCgFgqVDUcqJI
- LwFTPUnsmA7j5yRuN+SMrAnnFfnQEyuPPV/EFxkREUXU/aCyQKFLmW7OqHmrUwS9htAziujJjrG
- Ww9xm5TT7dpYbhiOpbIFJcRfsDyY3iO2g4BHveT7FZxe4NqiHD7SuRpk6Fye1iM/aF4XgE20rxC
- 0n/ft7mDMd1x2vtbccdNl29rtTK2PZd+UwixHb7cG/mkxMcTqlM6MCCvrHnrjU3am5eW2J81emb
- EAzSaCZpR8PwygqGkgKRcUz9e2Bp2lrNwqW1bF/hhufwivfC
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240103_103434_989002_287C52E8 
-X-CRM114-Status: GOOD (  11.17  )
+X-CRM114-CacheID: sfid-20240103_122456_937904_75D8B723 
+X-CRM114-Status: GOOD (  10.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,33 +77,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When a control changes value the return value from _put() should be 1 so
-we get events generated to userspace notifying applications of the change.
-While the I2S mux gets this right the S/PDIF mux does not, fix the return
-value.
+On Wed, 03 Jan 2024 18:34:00 +0000, Mark Brown wrote:
+> This fixes a few issues I identified when integrating a LibreTech
+> Saphire (based on S905D3) into my CI.
+> 
+> 
 
-Fixes: c8609f3870f7 ("ASoC: meson: add g12a tohdmitx control")
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- sound/soc/meson/g12a-tohdmitx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Applied to
 
-diff --git a/sound/soc/meson/g12a-tohdmitx.c b/sound/soc/meson/g12a-tohdmitx.c
-index 51b7703e1834..b92434125fac 100644
---- a/sound/soc/meson/g12a-tohdmitx.c
-+++ b/sound/soc/meson/g12a-tohdmitx.c
-@@ -118,7 +118,7 @@ static int g12a_tohdmitx_spdif_mux_put_enum(struct snd_kcontrol *kcontrol,
- 
- 	snd_soc_dapm_mux_update_power(dapm, kcontrol, mux, e, NULL);
- 
--	return 0;
-+	return 1;
- }
- 
- static SOC_ENUM_SINGLE_DECL(g12a_tohdmitx_spdif_mux_enum, TOHDMITX_CTRL0,
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
--- 
-2.39.2
+Thanks!
+
+[1/4] ASoC: meson: g12a-toacodec: Validate written enum values
+      commit: 3150b70e944ead909260285dfb5707d0bedcf87b
+[2/4] ASoC: meson: g12a-tohdmitx: Validate written enum values
+      commit: 1e001206804be3f3d21f4a1cf16e5d059d75643f
+[3/4] ASoC: meson: g12a-toacodec: Fix event generation
+      commit: 172c88244b5f2d3375403ebb504d407be0fded59
+[4/4] ASoC: meson: g12a-tohdmitx: Fix event generation for S/PDIF mux
+      commit: b036d8ef3120b996751495ce25994eea58032a98
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
 _______________________________________________
