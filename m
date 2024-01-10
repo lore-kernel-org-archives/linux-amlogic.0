@@ -4,84 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 230BAC47073
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jan 2024 21:09:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F94FC4707B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jan 2024 21:26:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Date:Subject:Message-Id:References:
+	In-Reply-To:Cc:To:From:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PJgPJEE0ElOldcVAfRshQ9z7RBkTuQ/XgwIwau1GJUA=; b=E7nVMjqVge5mzx
-	VuXSECs7WtrGRu9PEEG07303nIye18fgKr2+UbgxcJpOuVTgjiHI5MAiStKF3oY2B1WLOvhQzpcqq
-	IwaHv+2BzLpQmWYgzb9m0btn3r39NS3yG1eRGVgW1fUUTuNtznpthZzZrwsAS0PJwTtZrQ9m1dNsI
-	n8/6oQLn2jtPy1FYz3WD4edeOPnaGWV32UV2FMISAUu9NucT0RIdLjhxyNanRvBaINE62YBqnhPqq
-	uxT7kGT0p60xsXPrhtdO6s1xixgSCXnn85G7qxGUD78PdKFkOcSdTddR0XJVT+ikvzzPOD64+b4ai
-	wCbYPiikI0IYxjVJ1BBA==;
+	List-Owner; bh=szUAtny8oIWFpZVxlyTQ+6iWkoDWtz/0i3FwEkASoRo=; b=tsphUgwPXCkbWt
+	TpUNE+VMLtla3KPuuWk/0hkJZJUdnWghTpHzavazz2oL5fKd965xF1k04F28vhA9Y37c5/RzJBtGI
+	CFZoqe1VVaeXirnv5S+6dRupF5vSlVYRK7xWz8bkNxqysxchdUS35Vdtk+YCvP1moiubcrU4XiUiU
+	gxhCXEhbUFdvkIFMt0/2JLeJFPZAl8gF+Gz/cCl4FU7pfz+A/aDOq+eD7PFlw/CEbn6UH6IUaOS5H
+	wo9oMguV3leOn4o9r7/IouOE2Iai6Vp7ec3nIiHzQOaqTqoQ1lGJ8PIxPOLtH7YfOlNYb1XRL5ChY
+	QWJbC/YI6FiyHSAFlKrw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNfoE-00EBXB-30;
-	Wed, 10 Jan 2024 21:08:22 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1rNg4z-00EFjN-1C;
+	Wed, 10 Jan 2024 21:25:41 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNfoC-00EBVK-2o;
-	Wed, 10 Jan 2024 21:08:22 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40d87df95ddso47909785e9.0;
-        Wed, 10 Jan 2024 13:08:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704920898; x=1705525698; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=sdBkJKGeqx2Ib1rMQ4cwKys6z0bi0e5Co8yXswFscM4=;
-        b=c1JaVc9bCjSppTvo/JyFenxH7XvvKzeb0Kn+nSITi4P1dvthAQBdWbSk76R2vBnM3u
-         VA45TFCki9tZIpPrHFeYQFVxIMpwHAnkCloMBxqZ77ovcRANrArGTEtemzSZISpCysdA
-         BBIHt0ciOUCoeZ1xdUplgqRV+4KHglMbHBcpLH7V5ZiEW2SDJaieRJpXWbnzkyxWHFkp
-         ojPDrudZsq8s9OPEeMC/tTr3RthgjLcezIRwYeVb/qPeN0jpr+H20K+MVZrZJN0OlejF
-         PQLe/uhTUQZP+fGMs9KAWBZPQgDWNwmRDf7PNaRBwoyQRHxbzE6EZvX+ezC54kMb0sPU
-         Y5/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704920898; x=1705525698;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sdBkJKGeqx2Ib1rMQ4cwKys6z0bi0e5Co8yXswFscM4=;
-        b=WxSsBjPpJP14Z0Jn5nC1XnsaKdjThx9pbfsb27e7WKJlyItWqWCpIDvE9HgaPl+6JU
-         bmnsZKvFZNWDYRaCcGZ0U3GYa2GiUSf1RbAQdt00QjhtrJZICC4gPIj6P8NRwZoDQo2Y
-         2YVkLQs8WKdm4seu3omjxvRp7WcR8RmvywNSMlaz0mOJC1QHZ/aMO6N9uPYAWiUjGr8v
-         5ragZz+/WQaRzzLERfa7TSAPJcrHMJdq2ixkZ762aB5hHBCTiJQ5WlGpO/rdFl1hax1I
-         9ebWsE+XBppp4r/EB9VZ89HSVJ4V+G2XLNDgNcTNaLp1jK6peA5a9vzSWlwuzgruPfcV
-         EIQQ==
-X-Gm-Message-State: AOJu0YzTwT8Fx/Pn/KOUuKuiPxc8CdnnEYhhNr3e4squ/HNKRbJ3tLgN
-	E4JaYT8jzavTQ8mgVEeDkFo=
-X-Google-Smtp-Source: AGHT+IEnV73X93ipcA+KqaG2Dc/CRaCkLE83o8sdCdrKdhcEffrQDt94qGVTchMbAPVOs4q40slv7g==
-X-Received: by 2002:a05:600c:2246:b0:40e:455f:fdbb with SMTP id a6-20020a05600c224600b0040e455ffdbbmr9115wmm.280.1704920897638;
-        Wed, 10 Jan 2024 13:08:17 -0800 (PST)
-Received: from Red ([2a01:cb1d:3d5:a100:4a02:2aff:fe07:1efc])
-        by smtp.googlemail.com with ESMTPSA id w10-20020a5d680a000000b003376af392e5sm5670428wru.38.2024.01.10.13.08.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jan 2024 13:08:17 -0800 (PST)
-Date: Wed, 10 Jan 2024 22:08:15 +0100
-From: Corentin Labbe <clabbe.montjoie@gmail.com>
-To: Alexey Romanov <avromanov@salutedevices.com>
-Cc: narmstrong@baylibre.com, neil.armstrong@linaro.org, clabbe@baylibre.com,
-	herbert@gondor.apana.org.au, davem@davemloft.net,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com,
-	artin.blumenstingl@googlemail.com, linux-crypto@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kernel@salutedevices.com
-Subject: Re: [PATCH v1 00/24] Support more Amlogic SoC families in crypto
- driver
-Message-ID: <ZZ8HP7dJgVaZLMw5@Red>
-References: <20240110201216.18016-1-avromanov@salutedevices.com>
+	id 1rNg4w-00EFhg-1J;
+	Wed, 10 Jan 2024 21:25:40 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by ams.source.kernel.org (Postfix) with ESMTP id B5479B81EA2;
+	Wed, 10 Jan 2024 21:25:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C01ECC43390;
+	Wed, 10 Jan 2024 21:25:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704921934;
+	bh=Ax58DmDjPNW74NGwRvhHHGsYqpwIGIZxv4FkZoGcxV4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=WV/+YMoOvCEyWpaRpYZfa87kc6mbQ0JnVBbDnIG5yf/huJPTEyQwx8cXxan8KxinN
+	 6sNBXfQFoVBxzqwDGumSVysnHcLmYq9nvcNjV5hKJ7VVI/muQ0GlHvgx+x3+niVmq9
+	 RuxS7Zd6MOXiXUhr0aTG2YCs+G4j0caWW01HTd+aL1Hy5Lw/lJ9cj/lZOsySBKvQWB
+	 er+OO8VqSbL3cviSAhyf8p2dZWVLVPhS4OLTE6iChmLPRf4MhEPa0XRlj+JhQFQ55u
+	 m/xZtqRUdeC3VwXCXxl9xZQ9TjdHsXZYksEUz4gTQpIoWVCmyU/4A+oymlcDeOrDbP
+	 DQq9jAA3AdwNQ==
+Received: (nullmailer pid 2648568 invoked by uid 1000);
+	Wed, 10 Jan 2024 21:25:28 -0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240110201216.18016-1-avromanov@salutedevices.com>
+From: Rob Herring <robh@kernel.org>
+To: Alexey Romanov <avromanov@salutedevices.com>
+Cc: kernel@salutedevices.com, herbert@gondor.apana.org.au, davem@davemloft.net, neil.armstrong@linaro.org, linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org, khilman@baylibre.com, robh+dt@kernel.org, linux-amlogic@lists.infradead.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, narmstrong@baylibre.com, clabbe@baylibre.com, jbrunet@baylibre.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, artin.blumenstingl@googlemail.com
+In-Reply-To: <20240110201216.18016-17-avromanov@salutedevices.com>
+References: <20240110201216.18016-1-avromanov@salutedevices.com>
+ <20240110201216.18016-17-avromanov@salutedevices.com>
+Message-Id: <170492192887.2648505.6187306596898979418.robh@kernel.org>
+Subject: Re: [PATCH v1 16/24] dt-bindings: crypto: meson: add new
+ compatibles
+Date: Wed, 10 Jan 2024 15:25:28 -0600
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240110_130820_931844_A126FC2D 
-X-CRM114-Status: GOOD (  11.29  )
+X-CRM114-CacheID: sfid-20240110_132538_607991_8C64015A 
+X-CRM114-Status: GOOD (  10.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,37 +68,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Le Wed, Jan 10, 2024 at 11:11:16PM +0300, Alexey Romanov a =E9crit :
-> Hello!
-> =
 
-> This patchset expand the funcionality of the Amlogic
-> crypto driver by adding support for more SoC families: =
+On Wed, 10 Jan 2024 23:11:32 +0300, Alexey Romanov wrote:
+> Now we can use crypto driver at G12A/G12B/S4/A1/SM1/AXG.
+> 
+> Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> ---
+>  .../devicetree/bindings/crypto/amlogic,gxl-crypto.yaml          | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-> AXG, G12A, G12B, SM1, A1, S4.
-> =
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> Also specify and enable crypto node in device tree
-> for reference Amlogic devices.
-> =
+yamllint warnings/errors:
 
-> Tested on AXG, G12A/B, SM1, A1 and S4 devices via
-> custom tests and trcypt module.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.example.dtb: crypto-engine@c883e000: compatible: ['amlogic,gxl-crypto'] is too short
+	from schema $id: http://devicetree.org/schemas/crypto/amlogic,gxl-crypto.yaml#
 
-Hello
+doc reference errors (make refcheckdocs):
 
-Thanks for your patch series.
-Unfortunatly, I fail to apply it for testing on top of linux-next.
-On top of which tree did you have tested ?
-According to patch 01, you used a tree based before "crypto: amlogic - Use =
-new crypto_engine_op interface" so too old.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240110201216.18016-17-avromanov@salutedevices.com
 
-Regards
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
 _______________________________________________
 linux-amlogic mailing list
