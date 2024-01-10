@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C437BC47073
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jan 2024 20:13:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EFD3C47258
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jan 2024 20:13:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Xd3raNc6JIG2AKCK6di5f5a2xD2e+quamdTk5JXo93Y=; b=MXG7B7MgPX7ppQ
-	KLzFZFNtGwiQSLMxN6y9HUemLBRzwOKyN9LPUEqSEUCgGMZW5HSRWkQM7yO2GdPgwHJaLBdD0tmRU
-	LPDnJm5VWgov0LHr/MaE6/tmShV0cG+cYNd2yXEczOWu+WdgOxsUEspqnhSnuyMjh5f35cbaYf7bg
-	tWbBZKQ0nt+PA9d41vpzl4jOmkbtvhKb88hNq6klHl/X+LQ+b6Ogewc5zdW6A4UnCS4Ngw4Qc1VHB
-	AkD1nb+PkpH2BbI1c41fR6evUHUqMe4uYg5saZRh7bZWyt+NiERALypeKPVRi8JxHzUd3SbpZGrhu
-	C9FjUP7GtPruUMNyybaw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=2UIU8jW3nsip0oar2mAafDQ0ycSNUnOvPbT6PRcdttY=; b=T+9/JYBKEQ7CjM
+	iq1/iWoX9VdjZ4g355gyZRZVHPSIfUGvo7lZfAOtNSH2hGmYxJasCWQpsrOMN8xTul6A/aHGDZxx+
+	ALW+Nvs7HkdGQx/tfdx2exYYPF5+LIOAxoFxSenmqkkVIjS8QhxbNTGWGnL/pkuDRRXoSx4KJUdEH
+	hncbF+am7HaTxsHgZbpMaI6Tq0Ot+BhtD5G6APgNoJIhXL5FAEnZBA4QQzn49qLSXxOnClQMywngL
+	e/kM5Oe/5sdK5hpHx9pWnEFELBEoYFn9OdApt82vj61OCusbE6lNYeDBBFh+Q9MnOvJNZaAShRtuQ
+	IVQkLQ7st/dN2qdYYMeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNewK-00Dscb-2m;
-	Wed, 10 Jan 2024 20:12:40 +0000
+	id 1rNewH-00DsZh-2b;
+	Wed, 10 Jan 2024 20:12:37 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNewD-00DsUj-1V;
+	id 1rNewD-00DsUe-1g;
 	Wed, 10 Jan 2024 20:12:36 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id ACE85120019;
-	Wed, 10 Jan 2024 23:12:26 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru ACE85120019
+	by mx1.sberdevices.ru (Postfix) with ESMTP id C4787120005;
+	Wed, 10 Jan 2024 23:12:24 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru C4787120005
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1704917546;
-	bh=ZsEVEKBfXgYOp70GvXu8cfrdsdoWzBIzHkZd6g+E03o=;
+	s=mail; t=1704917544;
+	bh=tQOLNDPALbZxSNiRcS2Pal6rjPLgkScztVD9MdzJmCc=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=Ev5cfX5oNuTHckqSCunuiKGIBPdCYP/9L50pG8Ndo27B+Jp3jBlgXK3l04/aFM1fd
-	 2qxsJLPw0ZjOtyQb8JQkYNqnhUs4KAYwNpa80uWPKo9uJteEKNHRdDDevuXboqCdkR
-	 JGoDxOkkfQQiN8oiId9KTXHhYqoEVAdGHbAivFxWtpTJ9Ndyy0P8qrq1xG+qorlz+h
-	 JnG5bJOgr7+8tpdMTwpWufuk7LUd30Aiowu8eY4sJXt+zWLc+ubsIzAFPBhcVOL+1B
-	 gF8CFz75Xp88z/PNYu5xcyx19SWHn+vXvgRDTxQb/UCv/nhxEqjPqH1Da7H9/CoOFA
-	 geeJw/fZMiwfA==
+	b=QL4yN/Ia+nZze44oEFWPXMJlcJ6vkYuSthIXmBOrPbRRA4Ov2ODl0nUWt5QuUMvhr
+	 dpCI6fq0d47KLiIkHPyw2bozA+fll+kLdRFUD0WsoR+fctmJhPLatVrTnxGt3X5ut+
+	 05+4d9D+4SBRuyoCQM3QYeLFx/9JF9yEAqgOg2NrsV78+N6xbGkVsQpXrrgb9X5Fi2
+	 J+B2bW69nGJv4Wwacqf583/jQ0/cqOA5S51yJCrhJVkSHewZTiYum/TKPLrnihzUlW
+	 hZCW0bkIm1bBSwqrQo3ajLzQYBg0PYMovYP0IWkaUkIR6QhUhEgSDRv/bPSzGHBLZP
+	 9fxm/V8t6OzPw==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 10 Jan 2024 23:12:26 +0300 (MSK)
+	Wed, 10 Jan 2024 23:12:24 +0300 (MSK)
 Received: from localhost.localdomain (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 10 Jan 2024 23:12:26 +0300
+ 15.2.1118.40; Wed, 10 Jan 2024 23:12:24 +0300
 From: Alexey Romanov <avromanov@salutedevices.com>
 To: <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
 	<clabbe@baylibre.com>, <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
@@ -58,14 +58,11 @@ To: <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
 CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
- Romanov <avromanov@salutedevices.com>, Jan Dakinevich
-	<yvdakinevich@salutedevices.com>
-Subject: [PATCH v1 02/24] drivers: crypto: meson: make CLK controller optional
-Date: Wed, 10 Jan 2024 23:11:18 +0300
-Message-ID: <20240110201216.18016-3-avromanov@salutedevices.com>
+ Romanov <avromanov@salutedevices.com>
+Subject: [PATCH v1 00/24] Support more Amlogic SoC families in crypto driver
+Date: Wed, 10 Jan 2024 23:11:16 +0300
+Message-ID: <20240110201216.18016-1-avromanov@salutedevices.com>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20240110201216.18016-1-avromanov@salutedevices.com>
-References: <20240110201216.18016-1-avromanov@salutedevices.com>
 MIME-Version: 1.0
 X-Originating-IP: [100.64.160.123]
 X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
@@ -87,8 +84,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/01/10 17:01:00 #23071477
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240110_121234_254353_F55EF583 
-X-CRM114-Status: GOOD (  12.08  )
+X-CRM114-CacheID: sfid-20240110_121234_254715_7A39B446 
+X-CRM114-Status: GOOD (  10.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,53 +102,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Not all Amlogic SoC's uses CLK controller.
+Hello!
 
-Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
-Signed-off-by: Jan Dakinevich <yvdakinevich@salutedevices.com>
----
- drivers/crypto/amlogic/amlogic-gxl-core.c | 12 ++----------
- 1 file changed, 2 insertions(+), 10 deletions(-)
+This patchset expand the funcionality of the Amlogic
+crypto driver by adding support for more SoC families: 
+AXG, G12A, G12B, SM1, A1, S4.
 
-diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index a5df061f9890..e5f504fb477e 100644
---- a/drivers/crypto/amlogic/amlogic-gxl-core.c
-+++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -248,16 +248,10 @@ static int meson_crypto_probe(struct platform_device *pdev)
- 		dev_err(&pdev->dev, "Cannot request MMIO err=%d\n", err);
- 		return err;
- 	}
--	mc->busclk = devm_clk_get(&pdev->dev, "blkmv");
-+	mc->busclk = devm_clk_get_optional_enabled(&pdev->dev, "blkmv");
- 	if (IS_ERR(mc->busclk)) {
- 		err = PTR_ERR(mc->busclk);
--		dev_err(&pdev->dev, "Cannot get core clock err=%d\n", err);
--		return err;
--	}
--
--	err = clk_prepare_enable(mc->busclk);
--	if (err != 0) {
--		dev_err(&pdev->dev, "Cannot prepare_enable busclk\n");
-+		dev_err(&pdev->dev, "Cannot get and enable core clock err=%d\n", err);
- 		return err;
- 	}
- 
-@@ -279,7 +273,6 @@ static int meson_crypto_probe(struct platform_device *pdev)
- 	meson_unregister_algs(mc);
- error_flow:
- 	meson_free_chanlist(mc, mc->flow_cnt - 1);
--	clk_disable_unprepare(mc->busclk);
- 	return err;
- }
- 
-@@ -295,7 +288,6 @@ static int meson_crypto_remove(struct platform_device *pdev)
- 
- 	meson_free_chanlist(mc, mc->flow_cnt - 1);
- 
--	clk_disable_unprepare(mc->busclk);
- 	return 0;
- }
- 
+Also specify and enable crypto node in device tree
+for reference Amlogic devices.
+
+Tested on AXG, G12A/B, SM1, A1 and S4 devices via
+custom tests and trcypt module.
+
+Alexey Romanov (17):
+  drivers: crypto: meson: don't hardcode IRQ count
+  drivers: crypto: meson: make CLK controller optional
+  drviers: crypto: meson: add platform data
+  drivers: crypto: meson: add MMIO helpers
+  drivers: crypto: meson: move get_engine_number()
+  drivers: crypto: meson: use fallback for 192-bit keys
+  drivers: crypto: meson: add support for G12-series
+  drivers: crypto: meson: add support for AXG-series
+  dt-bindings: crypto: meson: add new compatibles
+  arch: arm64: dts: meson: a1: add crypto node
+  arch: arm64: dts: meson: s4: add crypto node
+  arch: arm64: dts: meson: g12: add crypto node
+  arch: arm64: dts: meson: axg: add crypto node
+  arch: arm64: dts: meson: s4-s805x2-aq222: enable crypto node
+  arch: arm64: dts: meson: a1-ad401: enable crypto node
+  arch: arm64: dts: meson: axg-s400: enable crypto node
+  arch: arm64: dts: meson: g12a-u200: enable crypto node
+
+Jan Dakinevich (7):
+  drivers: crypto: meson: drop status field from meson_flow
+  drivers: crypto: meson: move algs definition and cipher API to
+    cipher.c
+  drivers: crypto: meson: cleanup defines
+  drivers: crypto: meson: process more than MAXDESCS descriptors
+  drivers: crypto: meson: avoid kzalloc in engine thread
+  drivers: crypto: meson: introduce hasher
+  drivers: crypto: meson: add support for AES-CTR
+
+ .../bindings/crypto/amlogic,gxl-crypto.yaml   |   2 +
+ .../arm64/boot/dts/amlogic/meson-a1-ad401.dts |   4 +
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |   8 +
+ .../arm64/boot/dts/amlogic/meson-axg-s400.dts |   4 +
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   7 +
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |   7 +
+ .../boot/dts/amlogic/meson-g12a-u200.dts      |   4 +
+ .../dts/amlogic/meson-s4-s805x2-aq222.dts     |   4 +
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |   7 +
+ drivers/crypto/amlogic/Makefile               |   2 +-
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 591 ++++++++++++------
+ drivers/crypto/amlogic/amlogic-gxl-core.c     | 260 ++++----
+ drivers/crypto/amlogic/amlogic-gxl-hasher.c   | 448 +++++++++++++
+ drivers/crypto/amlogic/amlogic-gxl.h          | 116 +++-
+ 14 files changed, 1135 insertions(+), 329 deletions(-)
+ create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
+
 -- 
 2.30.1
 
