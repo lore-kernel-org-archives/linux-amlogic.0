@@ -4,107 +4,142 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77214C4707B
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jan 2024 09:19:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71F5EC4707B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jan 2024 09:30:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
-	References:Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qnmixLw9HsLKpZbICbQ0aqe1oOfkbOpUvgzCzWXmE/0=; b=UShMHhDWvsTABP
-	yz4gnSfmF7Vc6gx9/h79Ia7saZKZ0DEeeJaf5YpM0xfmJkJXM7Xf6WhnwynY39+OBcAY0KSAyUeZt
-	ltDJwtNvQMY1Rg7hW5m/DW/LYjbdFhjYwaZRPQlMC371Lb4yxHGJO9iXKPixjrOPBLL2bxSpEYEuk
-	mcWb0LBA2e1KWksz+VdDrsMLzAFa//hIZAUGx85PUXpLfQM06a/vLMV76FDGnwtR233Ssu+g21JMg
-	jJeVZfSkcnkAbE2b1uTMxLUKx4VpQoroPuLuomxpf4wPOouVBPumEWunD1NTV9kLAcPgF8ng7d9cd
-	0dFyM0oq0e9z4G4EGccw==;
+	List-Owner; bh=JVVIafN+iD0Hg6dPQTD5e+cjKFcYrvm1VuwNgcNqc+c=; b=lxy5yortbR4GbF
+	LMfS8iqwY+qpOFYIzXx5yxo9qtA1FJalunvXl+L/zxgnRBLnslP3e+08RodRYmhauCqH/ZRakMpOQ
+	uP0sca+bN8D7+8geeYAVixwS5vSNdzWZ6WOD6Q/o4p93NgRHxGp/nRNesGIRs7CQO4G7gNG/oSHvb
+	V1ZmiNXJatosOdYWvmvJ0bRC+4xChaaQTaMGwkZQxU+Fj/Pm75ll3z9gaw0SYFntkzFtZafhf+xq0
+	CLJTvIZluzf2U5AU0ne8SAsSIH30hq0eUL5qm1zXrELodZ+nh63AtaggU1Vt7h5wFeog8NHUgzCdA
+	SKZlo4JJwXzjpAgRHQaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNrDI-00Giv7-1S;
-	Thu, 11 Jan 2024 09:19:00 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1rNrNy-00GlyH-1C;
+	Thu, 11 Jan 2024 09:30:02 +0000
+Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNrDE-00Gitf-1D;
-	Thu, 11 Jan 2024 09:18:59 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 2B4FD100020;
-	Thu, 11 Jan 2024 12:18:47 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2B4FD100020
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1704964727;
-	bh=UXndM8p/4aKoblfGXlaKMeR9wEisIhlgDyx4qfEBvak=;
-	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
-	b=GLTzNfYQ9ryiP6Mh7Gm2l/CwRbEJ+cggSlPGF1EF9tbflb6MhChmbKv7Kmk5Y1PJ2
-	 y9+fG+xiBQpPWDayASYdF29elnqE6dZfwfyxdXg6hvg+tNRRhZPhYqTo6rYyMLPgLU
-	 5GWOavcYIJnaVmgKBsP5sLkTVkJrfzb0xLKFtho7kO4Y9BH8gpOkITfiHd/fCtT7Np
-	 lo0ad2Rhu2g95lO2bccLTdWQtxPhScGWnK/dXFTjLBGbArP/q9p5IZfaLp30cnDCXK
-	 SX6YBADZKWZStYqsYTKj7jtzOKO266NtdznPyVm6iVrhiigMwP4BEemS8IEX4sshEv
-	 xB/0cVt9TDpvw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu, 11 Jan 2024 12:18:46 +0300 (MSK)
-Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 11 Jan 2024 12:18:45 +0300
-Received: from p-i-exch-sc-m01.sberdevices.ru ([fe80::e8ee:cc43:7c6f:7ce0]) by
- p-i-exch-sc-m01.sberdevices.ru ([fe80::e8ee:cc43:7c6f:7ce0%7]) with mapi id
- 15.02.1118.040; Thu, 11 Jan 2024 12:18:45 +0300
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: Corentin Labbe <clabbe.montjoie@gmail.com>
-CC: "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"clabbe@baylibre.com" <clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
-	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
-	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-	"artin.blumenstingl@googlemail.com" <artin.blumenstingl@googlemail.com>,
-	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
+	id 1rNrNw-00Glx4-07
+	for linux-amlogic@lists.infradead.org;
+	Thu, 11 Jan 2024 09:30:01 +0000
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a2a360dbc11so527739966b.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 11 Jan 2024 01:29:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704965397; x=1705570197; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=zI8aOKoY1J1LzQGBJCecKcYIvB4FJqN1IGqRzkcldyQ=;
+        b=YC1g9ForXlk5VZvim58IxbvWwPDljZ3vrRqA1zb9e+MswVIQmOwBEOp71sD6edgYUv
+         m9Zo3RWz0Nb8lKNHh7OnyEYtXuoVQGXpek+YDF5NWJ3pPbHZJgbjSenGbTaymZipLWXU
+         aHIuiSwOjgk89l/8TYLaG8uLBDzsl8i6SsA6BIojDm4vkuHvEo1NPsecMuFLT2QZ0NO3
+         Wf+ylWGyNmw5pgPgdjlDQtlOuLnety8BNP+PckTfAs2vAMzoDFU0yDNlqlKIYxxoMXih
+         Hyi8BpF6UfD0MlfR5kpORGUMjaGEaO4rBPBUbkecqqhylQnIB2edQoSCLY4yGk3vd/fb
+         uzZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704965397; x=1705570197;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zI8aOKoY1J1LzQGBJCecKcYIvB4FJqN1IGqRzkcldyQ=;
+        b=Vxe72qrc8BR0zn7yqFs3ALLoFV6HJ9GDVTIAQx0fWSGc4LptDJiYl9J9oqgD6PUjHr
+         I+cMK4TynkBjaqCazcVwBde/p1Qsq+687Lehiog9CZsikbHVbWJEy5fDc9/B+H6UzJxz
+         i6TdAiFyUm0YynfB/N/vYJXql6U0PIPEfNIRCwYSBsZVMPBVEGMwDHVznwV6fLFeyIah
+         HfXKOxXdi1L3x7MT3HoRxNzgQbEDyn7ZRcGNqCB9lT2pnnJ/TafzuMPNHr55WuEFP+Xw
+         GO4qXSlGLKQ8SFpfFRWMPfCISTC2hWgiipd9mVWGHSIS4poa7KWp70o/j3EHgxJ0eFf1
+         YVSQ==
+X-Gm-Message-State: AOJu0YxAXl0OHH2frXHLbjrExcBvfcOlrZ3QqQdkVQrCqG0YK62hW0Cc
+	yTU8EaHWt3Xtphf+L+MtqRvBSfqzulImoA==
+X-Google-Smtp-Source: AGHT+IFmJvC4h8dnnPMKN5HoXLRJV8fo6ByPAMiPWXQlUHuh1MZAApTAIIIoZ7IAwmgZNLXXFThv7A==
+X-Received: by 2002:a17:907:9346:b0:a29:335f:4248 with SMTP id bv6-20020a170907934600b00a29335f4248mr481321ejc.45.1704965397637;
+        Thu, 11 Jan 2024 01:29:57 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.112])
+        by smtp.gmail.com with ESMTPSA id b4-20020a170906150400b00a2a37f63216sm353336ejd.171.2024.01.11.01.29.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Jan 2024 01:29:56 -0800 (PST)
+Message-ID: <910736a3-069f-430c-ba6c-221777ddcda2@linaro.org>
+Date: Thu, 11 Jan 2024 10:29:53 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v1 00/24] Support more Amlogic SoC families in crypto
  driver
-Thread-Topic: [PATCH v1 00/24] Support more Amlogic SoC families in crypto
- driver
-Thread-Index: AQHaRAFT58y12An6Uk+iikjI6uDH27DTV/OAgADMFAA=
-Date: Thu, 11 Jan 2024 09:18:45 +0000
-Message-ID: <20240111091840.7fe4lqx225rdlwly@cab-wsm-0029881>
+To: Alexey Romanov <avromanov@salutedevices.com>,
+ Corentin Labbe <clabbe.montjoie@gmail.com>
+Cc: "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
+ "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+ "clabbe@baylibre.com" <clabbe@baylibre.com>,
+ "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
+ "davem@davemloft.net" <davem@davemloft.net>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "khilman@baylibre.com" <khilman@baylibre.com>,
+ "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+ "artin.blumenstingl@googlemail.com" <artin.blumenstingl@googlemail.com>,
+ "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
 References: <20240110201216.18016-1-avromanov@salutedevices.com>
- <ZZ8HP7dJgVaZLMw5@Red>
-In-Reply-To: <ZZ8HP7dJgVaZLMw5@Red>
-Accept-Language: ru-RU, en-US
+ <ZZ8HP7dJgVaZLMw5@Red> <20240111091840.7fe4lqx225rdlwly@cab-wsm-0029881>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.18.93]
-Content-ID: <7A7CA03D58C39E4DBA767BD5D753EAA4@sberdevices.ru>
-MIME-Version: 1.0
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 182549 [Jan 11 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.3
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/01/11 07:45:00 #23086920
-X-KSMG-AntiVirus-Status: Clean, skipped
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240111091840.7fe4lqx225rdlwly@cab-wsm-0029881>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240111_011857_129852_0479F3FA 
-X-CRM114-Status: GOOD (  16.06  )
+X-CRM114-CacheID: sfid-20240111_013000_095797_5C368262 
+X-CRM114-Status: GOOD (  10.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,40 +156,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello!
-
-On Wed, Jan 10, 2024 at 10:08:15PM +0100, Corentin Labbe wrote:
-> Le Wed, Jan 10, 2024 at 11:11:16PM +0300, Alexey Romanov a 'ecrit :
-> > Hello!
-> > 
-> > This patchset expand the funcionality of the Amlogic
-> > crypto driver by adding support for more SoC families: 
-> > AXG, G12A, G12B, SM1, A1, S4.
-> > 
-> > Also specify and enable crypto node in device tree
-> > for reference Amlogic devices.
-> > 
-> > Tested on AXG, G12A/B, SM1, A1 and S4 devices via
-> > custom tests and trcypt module.
+On 11/01/2024 10:18, Alexey Romanov wrote:
+> Hello!
 > 
-> Hello
+> On Wed, Jan 10, 2024 at 10:08:15PM +0100, Corentin Labbe wrote:
+>> Le Wed, Jan 10, 2024 at 11:11:16PM +0300, Alexey Romanov a 'ecrit :
+>>> Hello!
+>>>
+>>> This patchset expand the funcionality of the Amlogic
+>>> crypto driver by adding support for more SoC families: 
+>>> AXG, G12A, G12B, SM1, A1, S4.
+>>>
+>>> Also specify and enable crypto node in device tree
+>>> for reference Amlogic devices.
+>>>
+>>> Tested on AXG, G12A/B, SM1, A1 and S4 devices via
+>>> custom tests and trcypt module.
+>>
+>> Hello
+>>
+>> Thanks for your patch series.
+>> Unfortunatly, I fail to apply it for testing on top of linux-next.
+>> On top of which tree did you have tested ?
 > 
-> Thanks for your patch series.
-> Unfortunatly, I fail to apply it for testing on top of linux-next.
-> On top of which tree did you have tested ?
+> We use 6.5-rc3.
 
-We use 6.5-rc3.
+Don't develop on old trees... I mean, internally you can do whatever you
+wish, but don't work upstream on such trees.
 
-> According to patch 01, you used a tree based before "crypto: amlogic - Use new crypto_engine_op interface" so too old.
+Best regards,
+Krzysztof
 
-Will rebase over linux-next in v2.
 
-> 
-> Regards
-
--- 
-Thank you,
-Alexey
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
