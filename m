@@ -4,73 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4B2BC4707B
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jan 2024 08:19:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24245C4707B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jan 2024 08:21:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=WfPR8T3h+GNt/iyvKNUvH/CZicHMQrPdnwJt0uSOBCE=; b=yR2vdpYECcRTZy7Sp5Ejcg7YHJ
-	ipb0OMlu040fS8rrzCnSxdfES7EeUjYX/lfgpkgdzvmEHI6b+NawMEoCeEgFF/IkK2jmhL8MvKBJp
-	zpGT5+aMHRfbNywNON+9cR6tsYIRFfukJ3Bkzt9ZQf8MS1945UeloBUQJCJiRxfm1Fja3i+ddhPEA
-	6HEo9guzXouck5UdhJfgkvm/QQRdLxMgLZ5G8Bf/SMCxNKxb9JRJOC7pQXgpHAkZoCFfQjNvZAGvd
-	Xf833+uU2BHPyCiL6AkI87MEO/Wj1UxT7Qvfie11sXW2lpC60QLH98INhh73G28mD7TudamvcKCt5
-	Ts54MYdg==;
+	bh=MLt9zEtMk1h2whYKTiriAoTzkpSEH0kEdFJIbUqchR8=; b=KanZQDAZ8iyysiqUr7u81iOL0L
+	5hgrulmcsn7RJtp6kyCuy+BG0xfW5neFeHuJgiRk/oosvCeiBFVTf/LZbSafllCSH5r3STWYYdDcO
+	ERzxJf/azgzL0/3eKCMUYo9HuTzaBtnmS8wKteNTCP2eeaaQvOx8D+dbIEQ2lFxpCpPYqL1056zUA
+	+ExX6R0dHT1dqpcsyWUfwt7zKofZoVWlKvd2J8v+iiDjowtelip6DTAtkorbOddAkUG+rszXgrJh9
+	aRGoJv/uVpjcTFDQ/QdMv6MuEyBCz53kg/248hzNHY/v6Ww7iwF3RJHU3MYch1x7eVC6u1uFrjoby
+	gHfl/jbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNqHY-00GSvE-1v;
-	Thu, 11 Jan 2024 08:19:20 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1rNqJB-00GU2q-1T;
+	Thu, 11 Jan 2024 08:21:01 +0000
+Received: from mail-lj1-x231.google.com ([2a00:1450:4864:20::231])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNqHV-00GSt2-0A
+	id 1rNqJ8-00GTyx-27
 	for linux-amlogic@lists.infradead.org;
-	Thu, 11 Jan 2024 08:19:18 +0000
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-3368b9bbeb4so4771591f8f.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 11 Jan 2024 00:19:14 -0800 (PST)
+	Thu, 11 Jan 2024 08:21:00 +0000
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2cca8eb0509so60092281fa.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 11 Jan 2024 00:20:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704961153; x=1705565953; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1704961255; x=1705566055; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+4qHeI/z66hlwEDi1tGbM9yP5c2kAe5foIFfSXCRpNE=;
-        b=GbCC3WeZjcfOdG+4UQ3yklp43qtGBmmdZBz1GoKPmKs6/sDcamBzltFhOetpopwL6+
-         JUag2GtO4hE/ZQVM/LUo7Qb0SQHHb/PcWktENlfnwtBMmzrtZtcFVGccoJvDxyQQdzdQ
-         3tAsxkVMJC6Mgql9mmvfkdAcWgLw/UqBWiU10Qz/5aR65//30z8GogG9acm4yVf/7S6Y
-         2mTYwbNLg0kyRxP0xNsmFxL6ZHQ+n7yHOg5DORTaDVE+ZXlosH0nCaYNjNsaC5+Xhyrl
-         /XBZ9sQqSgg9w3uuKJ04WfiVn9xYjcxEq8x3ibb14lZx/boNStl+lV6JEv0brUe/1zae
-         5gug==
+        bh=d8H8nLABIrRnbxfnMrbAUP0DbCSuPWhYrIfqcQ3RIvA=;
+        b=EqBY07mN+8A0fCfTABrl3vxntjxT9zaRbv6rpVnxkBn4V1W+torp905e+EkITdZePf
+         SQ3FCNpsJIe1UEXFT9NOkIyzmlLz5SlnEn8suFdDPCKYmUvtS/hRjVdmTuVCvUyIUA9p
+         iZt/wzkGHWjJRRE2WGL6A4SUHAfDnemhnuBHZEO05Apnrk7sG/Gw/y1YJxOUhHHM4J44
+         J62EjLIXk3e0QyiHFZHjoMAk5MiTgSZOmd7vWbad3ItZBxe3wM2CEM4uDUss0Xz6rJol
+         WtPe1A7OvKsqnIa4ph+t1OIxYb59dQUJeGewjQYOGiGty7vCh/5gVsCuog2vIiVU4hdK
+         4LuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704961153; x=1705565953;
+        d=1e100.net; s=20230601; t=1704961255; x=1705566055;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=+4qHeI/z66hlwEDi1tGbM9yP5c2kAe5foIFfSXCRpNE=;
-        b=nifbLr+UEp6aIIyz0qEU+DfZ+Ei9Hrgpvza8lLjIjOiSx7GJguqkBJdEpg1Y2wBOpO
-         ElwBbou5yU+Acr9j+rZp9naXRQyqRW4TOyGuB+bQ/LGTRDihQZ78xpW72DPCL6AD28KE
-         uvQyTMNVK+E3+bCQHYYtHBWpgdwV/7kNhYFWDkaQA4IbCBiZhmaCf4kkzhwnnSXZh3Eu
-         3NWp1Jq86yCT/9VhesPeBGTMOPYjes2B0BZvMVgnvjb9U11rsZrw+CdBR95SFNvgwYI4
-         FD4US56BsZCRs4KrLmK+/66CZnRqzz1PNTZcIYDA932q3x82Kst+Sox2QYhVM+6f2iby
-         U+mg==
-X-Gm-Message-State: AOJu0YxoL30DF4z5b//vuaA5dcMXfBWglh/oWPMmvCymBnwcnglIcNr7
-	VAPDY/eX6SEqGOPrfqlFcBq9r5KKjp1ypA==
-X-Google-Smtp-Source: AGHT+IG1MXGBZm+5oHqUHBJdJ1Gjre9hhkiIT+3tfrKpHjQyQgK7AuNU3ufYjUEJBIcpbc9DMxgMRg==
-X-Received: by 2002:adf:ed4e:0:b0:336:4bbc:72e4 with SMTP id u14-20020adfed4e000000b003364bbc72e4mr189239wro.81.1704961153283;
-        Thu, 11 Jan 2024 00:19:13 -0800 (PST)
+        bh=d8H8nLABIrRnbxfnMrbAUP0DbCSuPWhYrIfqcQ3RIvA=;
+        b=M3Z0PfuIdiWUGYDXobuw6rpbkYXBwjSSyfQzbwBeryAnN1v9mm5iOSQ0uIy1NY4ZLP
+         hdvwNk7nK3q+lt0ghXHE1pxksL9HvXygXn92gO5kOYEISL3L/9mHmG8x5oBeAEroZBKu
+         cc/AOynDy3cdK65JRqOERrvV3JEiP/y6rvu6b1IQoV185JQ+HKZAZqQ+reV9lKN2G2/C
+         1vsbaxk3phHIL3gJ0obGa4T+SYS2qwCQfbndzWsfnCpAzFQO2duuA+zbiHQaytrbwNkA
+         vTEVdu6FvU1HSzpLllPWL/MgaaSjTotBhV5n931qLUMPUbdHntfEuPlV8mchS9uEbDL1
+         duNg==
+X-Gm-Message-State: AOJu0YyBv7YtmNv8U/+hk9C3LWKOJP9ceJH6yYuyOJmoUf3mRkfhqrwK
+	lYiD9XLBopYkFSRjeZiOC8r0i/9yS0tysA==
+X-Google-Smtp-Source: AGHT+IHFIdzzA8pDHnJscKixDdClY522jcwFHATS2Aupj39MBfjX5t+c8qexSW8CJXjpE5qrRmvjLw==
+X-Received: by 2002:a2e:9209:0:b0:2cc:daca:2e81 with SMTP id k9-20020a2e9209000000b002ccdaca2e81mr138241ljg.15.1704961255185;
+        Thu, 11 Jan 2024 00:20:55 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:a5aa:e466:ae57:5a26? ([2a01:e0a:982:cbb0:a5aa:e466:ae57:5a26])
-        by smtp.gmail.com with ESMTPSA id x18-20020adfffd2000000b003377680c55bsm555821wrs.16.2024.01.11.00.19.12
+        by smtp.gmail.com with ESMTPSA id j27-20020adfb31b000000b00336e32338f3sm550474wrd.70.2024.01.11.00.20.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 00:19:12 -0800 (PST)
-Message-ID: <b2caf65d-4bc8-4e16-b4db-b24006e3dce6@linaro.org>
-Date: Thu, 11 Jan 2024 09:19:11 +0100
+        Thu, 11 Jan 2024 00:20:54 -0800 (PST)
+Message-ID: <8bc3b9e3-3623-41fa-a269-c0f439aee1b5@linaro.org>
+Date: Thu, 11 Jan 2024 09:20:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1 00/24] Support more Amlogic SoC families in crypto
- driver
+Subject: Re: [PATCH v1 02/24] drivers: crypto: meson: make CLK controller
+ optional
 Content-Language: en-US, fr
 To: Alexey Romanov <avromanov@salutedevices.com>, narmstrong@baylibre.com,
  clabbe@baylibre.com, herbert@gondor.apana.org.au, davem@davemloft.net,
@@ -78,8 +78,10 @@ To: Alexey Romanov <avromanov@salutedevices.com>, narmstrong@baylibre.com,
  khilman@baylibre.com, jbrunet@baylibre.com, artin.blumenstingl@googlemail.com
 Cc: linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
+ linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com,
+ Jan Dakinevich <yvdakinevich@salutedevices.com>
 References: <20240110201216.18016-1-avromanov@salutedevices.com>
+ <20240110201216.18016-3-avromanov@salutedevices.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -105,10 +107,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20240110201216.18016-1-avromanov@salutedevices.com>
+In-Reply-To: <20240110201216.18016-3-avromanov@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240111_001917_110349_6564FA39 
-X-CRM114-Status: GOOD (  13.01  )
+X-CRM114-CacheID: sfid-20240111_002058_694646_1E4C94E5 
+X-CRM114-Status: GOOD (  13.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,75 +128,59 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi !
-
 On 10/01/2024 21:11, Alexey Romanov wrote:
-> Hello!
-> 
-> This patchset expand the funcionality of the Amlogic
-> crypto driver by adding support for more SoC families:
-> AXG, G12A, G12B, SM1, A1, S4.
-> 
-> Also specify and enable crypto node in device tree
-> for reference Amlogic devices.
-> 
-> Tested on AXG, G12A/B, SM1, A1 and S4 devices via
-> custom tests and trcypt module.
+> Not all Amlogic SoC's uses CLK controller.
 
-Thanks a lot for the patchset, it's very welcome!
+In this case you must make clocks not required for the new platforms in the bindings.
 
-Could you provide some procedure used to test and test dumps for all the platforms, like `cryptsetup benchmark` or a summary of tcrypt tests output ?
-
-Thanks,
 Neil
 
 > 
-> Alexey Romanov (17):
->    drivers: crypto: meson: don't hardcode IRQ count
->    drivers: crypto: meson: make CLK controller optional
->    drviers: crypto: meson: add platform data
->    drivers: crypto: meson: add MMIO helpers
->    drivers: crypto: meson: move get_engine_number()
->    drivers: crypto: meson: use fallback for 192-bit keys
->    drivers: crypto: meson: add support for G12-series
->    drivers: crypto: meson: add support for AXG-series
->    dt-bindings: crypto: meson: add new compatibles
->    arch: arm64: dts: meson: a1: add crypto node
->    arch: arm64: dts: meson: s4: add crypto node
->    arch: arm64: dts: meson: g12: add crypto node
->    arch: arm64: dts: meson: axg: add crypto node
->    arch: arm64: dts: meson: s4-s805x2-aq222: enable crypto node
->    arch: arm64: dts: meson: a1-ad401: enable crypto node
->    arch: arm64: dts: meson: axg-s400: enable crypto node
->    arch: arm64: dts: meson: g12a-u200: enable crypto node
+> Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> Signed-off-by: Jan Dakinevich <yvdakinevich@salutedevices.com>
+> ---
+>   drivers/crypto/amlogic/amlogic-gxl-core.c | 12 ++----------
+>   1 file changed, 2 insertions(+), 10 deletions(-)
 > 
-> Jan Dakinevich (7):
->    drivers: crypto: meson: drop status field from meson_flow
->    drivers: crypto: meson: move algs definition and cipher API to
->      cipher.c
->    drivers: crypto: meson: cleanup defines
->    drivers: crypto: meson: process more than MAXDESCS descriptors
->    drivers: crypto: meson: avoid kzalloc in engine thread
->    drivers: crypto: meson: introduce hasher
->    drivers: crypto: meson: add support for AES-CTR
-> 
->   .../bindings/crypto/amlogic,gxl-crypto.yaml   |   2 +
->   .../arm64/boot/dts/amlogic/meson-a1-ad401.dts |   4 +
->   arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |   8 +
->   .../arm64/boot/dts/amlogic/meson-axg-s400.dts |   4 +
->   arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   7 +
->   .../boot/dts/amlogic/meson-g12-common.dtsi    |   7 +
->   .../boot/dts/amlogic/meson-g12a-u200.dts      |   4 +
->   .../dts/amlogic/meson-s4-s805x2-aq222.dts     |   4 +
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |   7 +
->   drivers/crypto/amlogic/Makefile               |   2 +-
->   drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 591 ++++++++++++------
->   drivers/crypto/amlogic/amlogic-gxl-core.c     | 260 ++++----
->   drivers/crypto/amlogic/amlogic-gxl-hasher.c   | 448 +++++++++++++
->   drivers/crypto/amlogic/amlogic-gxl.h          | 116 +++-
->   14 files changed, 1135 insertions(+), 329 deletions(-)
->   create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
-> 
+> diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+> index a5df061f9890..e5f504fb477e 100644
+> --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
+> +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+> @@ -248,16 +248,10 @@ static int meson_crypto_probe(struct platform_device *pdev)
+>   		dev_err(&pdev->dev, "Cannot request MMIO err=%d\n", err);
+>   		return err;
+>   	}
+> -	mc->busclk = devm_clk_get(&pdev->dev, "blkmv");
+> +	mc->busclk = devm_clk_get_optional_enabled(&pdev->dev, "blkmv");
+>   	if (IS_ERR(mc->busclk)) {
+>   		err = PTR_ERR(mc->busclk);
+> -		dev_err(&pdev->dev, "Cannot get core clock err=%d\n", err);
+> -		return err;
+> -	}
+> -
+> -	err = clk_prepare_enable(mc->busclk);
+> -	if (err != 0) {
+> -		dev_err(&pdev->dev, "Cannot prepare_enable busclk\n");
+> +		dev_err(&pdev->dev, "Cannot get and enable core clock err=%d\n", err);
+>   		return err;
+>   	}
+>   
+> @@ -279,7 +273,6 @@ static int meson_crypto_probe(struct platform_device *pdev)
+>   	meson_unregister_algs(mc);
+>   error_flow:
+>   	meson_free_chanlist(mc, mc->flow_cnt - 1);
+> -	clk_disable_unprepare(mc->busclk);
+>   	return err;
+>   }
+>   
+> @@ -295,7 +288,6 @@ static int meson_crypto_remove(struct platform_device *pdev)
+>   
+>   	meson_free_chanlist(mc, mc->flow_cnt - 1);
+>   
+> -	clk_disable_unprepare(mc->busclk);
+>   	return 0;
+>   }
+>   
 
 
 _______________________________________________
