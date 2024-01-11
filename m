@@ -4,106 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09E7DC47077
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jan 2024 09:34:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0ED56C47258
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jan 2024 18:12:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
-	References:Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Lm7wLedmtNLEmBv8b92zbhNwye5a32ObGI4tzpktLVQ=; b=K4XwMjWv5EYgaW
-	AzoqOYXUgNO2sQeMKtbmQycJchF6OjF0yB45Th4yypNSLSSiHOEdxIJkcRtq8FKkNiXq9isQBzxU+
-	CyQN8OTJgsAarys2qxoUxT7t6Dkgs3PXdcbkZiFbdYlK3x7byYYLMvaDcWvYwMHNgGHGP4U/trJMe
-	6SJ5sdgG35ntFDV0wec+V24GL9gOMlP9X4B0AKCMG/D/UzKcOVdtyW5t1CCB5Y8y342QA4QJNk4B1
-	25NlZB2WqcB2lpNrRDxGsQRgqhRGYh5IB+vKIIFRx+IaTvTv2Rzx4ZChAzuFgV98eOO2cz8cZHwyz
-	Zd8qjMjRvzx8o+q+6ygA==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=d1RcM2HmlP62EayPc9SiqcDJuXrbHZtP2/kz6p4l4MA=; b=Fn6wwLdcsteZnjgT+fCG5ECw2g
+	rR6CdWkO4d3uk66YxAigdbBcM8BjoD5zw/R2h9jxjuwGMOefU3HFnHY2+LxKdoBDukIu9H3e2BFWy
+	VBN+hX5aUSKBSyM0gSK3OUQW3eMBN8rYqo9ZGGiLjPhQo7C1JT4j9FmLatbSAHLHrM6H64tnOdn3L
+	hIjivN6oYT1JiWHpFZYOr9klyrghv/DvqQOEe6wsCan3s2jV0JJfzc9DMNrkXWYBlrNu4g4R/0s+I
+	8Fb99vEeRUEAS/eD7cCZescFuBXzDmaCvWOWaPp62mXNq19e98T5dbidoBSXxdElck7uwpI1DF1LY
+	jQVjCsiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNrRe-00GnTK-36;
-	Thu, 11 Jan 2024 09:33:50 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1rNzWq-000njI-0W;
+	Thu, 11 Jan 2024 18:11:44 +0000
+Received: from mail-oi1-x236.google.com ([2607:f8b0:4864:20::236])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNrRc-00GnR6-0N;
-	Thu, 11 Jan 2024 09:33:50 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 6FCAB12001A;
-	Thu, 11 Jan 2024 12:33:44 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6FCAB12001A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1704965624;
-	bh=g2h5bYKkZTz9VczCxo+jetZF5Hf3q3K6NtzYos+6www=;
-	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
-	b=hv+QwaFhRIfcXBnzqCt86ytpeqAe3IB3Zih7TDeTVwsDXnJ5lvTAUWu1RMrysK102
-	 EvpbRu63DmoC7FyMEdhATPCbKCejw8uBEnr/+8aqgyTFG93TyZn4cbXSl+dEvJIPOM
-	 UsZwjGAOV/8lheFvK7phAmZgQWKVL0FWHX7ymy7HRZkuARDEMLNeDomBukU4wfbx+p
-	 J1RgwKkE66nM3NNoiO2PNlCXXE3lIQIYmjnBrbJ01FaxO6KawPVF5/pnGkg2h0hIl4
-	 m11Mh3WUSM2dcPpqc+LhjKEe2o8h41dDdW1IUywxPE54GR8xflW+A76XrqrdtPSY4O
-	 PUYF4a0PQQlPQ==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu, 11 Jan 2024 12:33:44 +0300 (MSK)
-Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 11 Jan 2024 12:33:43 +0300
-Received: from p-i-exch-sc-m01.sberdevices.ru ([fe80::e8ee:cc43:7c6f:7ce0]) by
- p-i-exch-sc-m01.sberdevices.ru ([fe80::e8ee:cc43:7c6f:7ce0%7]) with mapi id
- 15.02.1118.040; Thu, 11 Jan 2024 12:33:43 +0300
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>
-CC: "narmstrong@baylibre.com" <narmstrong@baylibre.com>, "clabbe@baylibre.com"
-	<clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
-	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
-	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-	"artin.blumenstingl@googlemail.com" <artin.blumenstingl@googlemail.com>,
-	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
-Subject: Re: [PATCH v1 00/24] Support more Amlogic SoC families in crypto
- driver
-Thread-Topic: [PATCH v1 00/24] Support more Amlogic SoC families in crypto
- driver
-Thread-Index: AQHaRAFT58y12An6Uk+iikjI6uDH27DUE2iAgAAUzQA=
-Date: Thu, 11 Jan 2024 09:33:43 +0000
-Message-ID: <20240111093338.la4rdg5jxkpc7hz3@cab-wsm-0029881>
-References: <20240110201216.18016-1-avromanov@salutedevices.com>
- <b2caf65d-4bc8-4e16-b4db-b24006e3dce6@linaro.org>
-In-Reply-To: <b2caf65d-4bc8-4e16-b4db-b24006e3dce6@linaro.org>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.18.93]
-Content-ID: <526DB4079F018E41B016430D6453B89C@sberdevices.ru>
+	id 1rNzWm-000nhk-1h
+	for linux-amlogic@lists.infradead.org;
+	Thu, 11 Jan 2024 18:11:42 +0000
+Received: by mail-oi1-x236.google.com with SMTP id 5614622812f47-3bb9d54575cso4192706b6e.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 11 Jan 2024 10:11:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fooishbar-org.20230601.gappssmtp.com; s=20230601; t=1704996697; x=1705601497; darn=lists.infradead.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GNwfPpOc+w6+qUvr4c6LiIOhhkOq06R1P3AdfBXYN2Y=;
+        b=YMS2RajpQQ71eu/F8BeBcMAElVTBWTyAib27FZD1kOHKcY6SfN/vG/KytqRV95wrn8
+         fak9JCqkb0w5FM0gXVifR43Zj9earr5SNX7UQKYWzuna20Mbsh3fy1ZPOKUZUN9sN6Pm
+         qLw16nAZwAURGbbiZbr+5Zl0sdWk3LR+0m4C4GLYK+QyoIrYGFHO4mva4PeJ0TejTiD8
+         JSGYIx6PgXdG9Mm2ACN7tOwjJwPK1EvMC5fxVW6fNZSjJrJ/w8ZcnXlgcz6vIyU1VJnV
+         zE9Eyh0wtEYbi6krfGWM0En2tibVdGog1AuZHIRqnNXufNV8/kHcLWKkAtdlWwsRfRjv
+         CdrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704996697; x=1705601497;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GNwfPpOc+w6+qUvr4c6LiIOhhkOq06R1P3AdfBXYN2Y=;
+        b=cebIoFJx2Pf1WTKlL8JmchVu9g9wpTksLWvdD+zQ8yNyCmeavL+U3sVSdbYTekPPr5
+         R46tAXAnzq9817UoDjjw0zACbrQEXypn5TlijPytNDUejB9AkKRltf1ndxohm9clVRJV
+         0oyphfEOhGdMNJ11YYoU9Ktm/RYksgjgKthGPITxRIldJD36iwXrrJsqtROWf412Ds1Q
+         tfmKYKbKJ3dlGjzF7+eitCRoqyyvbrcZ9NLumsI1DRcSlbJWogx63wX/577fvOZgV7ky
+         ROxwUAwkp4xrJeg8zYhQ9xIt/J4yHjj2plSN6dfM6Us2cP98zPJ8jnPrsEMJrihRJhgD
+         8gag==
+X-Gm-Message-State: AOJu0YxgocQAI30028NPnRDr6RJnJWU0bblX1ex+qwkpQmqYrLeVxSPS
+	/hP1Ax/bdLLcB+8YmyEvxRgawcZmcM09txxO462cx1sTjbTdWQ==
+X-Google-Smtp-Source: AGHT+IEOQA3VGINqdDq3XtCaDe7x77fu7+Iwu6ym4ijoXArXnWe9XYkfG56HHC5HEq3XFTuTf4bmEuP1OyFcAzpA/9w=
+X-Received: by 2002:a05:6808:3989:b0:3bd:5006:e313 with SMTP id
+ gq9-20020a056808398900b003bd5006e313mr78961oib.105.1704996696986; Thu, 11 Jan
+ 2024 10:11:36 -0800 (PST)
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 182551 [Jan 11 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.3
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;gist.github.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/01/11 08:51:00
-X-KSMG-LinksScanning: Clean, bases: 2024/01/11 08:52:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/01/11 07:45:00 #23086920
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <20231220121110.1441160-1-vignesh.raman@collabora.com>
+ <CAPj87rOMPioOK0r74vcnVkXusm6Nah6KNUWyxYgpVLdkMNtW2g@mail.gmail.com> <ad7cbd59-5264-96e8-5e9b-aafde8028e41@collabora.com>
+In-Reply-To: <ad7cbd59-5264-96e8-5e9b-aafde8028e41@collabora.com>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Thu, 11 Jan 2024 18:11:25 +0000
+Message-ID: <CAPj87rPRRfJmxTev50YqxBizyvzCUhCiymoV_bdqsZ-zvcREfA@mail.gmail.com>
+Subject: Re: [PATCH v1 0/8] drm/ci: Add support for GPU and display testing
+To: Helen Koike <helen.koike@collabora.com>, Dave Airlie <airlied@gmail.com>, 
+	Sima Vetter <daniel@ffwll.ch>, Daniel Stone <daniels@collabora.com>, Emma Anholt <emma@anholt.net>, 
+	linux-rockchip <linux-rockchip@lists.infradead.org>, guilherme.gallo@collabora.com, 
+	sergi.blanch.torne@collabora.com, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, 
+	David Heidelberg <david.heidelberg@collabora.com>, Rob Clark <robdclark@gmail.com>, 
+	linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240111_013348_518467_6D6A9E56 
-X-CRM114-Status: GOOD (  22.22  )
+X-CRM114-CacheID: sfid-20240111_101140_730802_04991275 
+X-CRM114-Status: GOOD (  17.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,91 +92,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Vignesh,
 
-Hi Neil,
+On Wed, 10 Jan 2024 at 10:47, Vignesh Raman <vignesh.raman@collabora.com> wrote:
+> On 09/01/24 19:08, Daniel Stone wrote:
+> > A better sequencing would be something like:
+> >    1. add ANX7625 config
+> >    2. refactor _existing_ MTK display jobs to use YAML includes, change
+> > the existing job name, and rename the existing xfail set, remove
+> > IGT_FORCE_DRIVER from the script since it's now set by the job
+> >    3. add MTK Panfrost+PVR GPU jobs with new xfails, add xfail entry to
+> > MAINTAINERS
+> >    4+5: same as 2+3 but for Amlogic
+> >    6+7: same as 2+3 but for Rockchip
+> >
+> > Then the separate rename/update xfail commits just disappear, as does
+> > the removal of IGT_FORCE_DRIVER, because it's just done incrementally
+> > as part of the commits which change the related functionality. It's
+> > extremely important that every change can work standalone, instead of
+> > introducing intermediate breakage which is only fixed in later commits
+> > in the series.
+>
+> Thank you for reviewing the patches. I agree, will follow this sequence
+> and send a v2 version.
 
-On Thu, Jan 11, 2024 at 09:19:11AM +0100, neil.armstrong@linaro.org wrote:
-> Hi !
-> 
-> On 10/01/2024 21:11, Alexey Romanov wrote:
-> > Hello!
-> > 
-> > This patchset expand the funcionality of the Amlogic
-> > crypto driver by adding support for more SoC families:
-> > AXG, G12A, G12B, SM1, A1, S4.
-> > 
-> > Also specify and enable crypto node in device tree
-> > for reference Amlogic devices.
-> > 
-> > Tested on AXG, G12A/B, SM1, A1 and S4 devices via
-> > custom tests and trcypt module.
-> 
-> Thanks a lot for the patchset, it's very welcome!
-> 
-> Could you provide some procedure used to test and test dumps for all the platforms, like `cryptsetup benchmark` or a summary of tcrypt tests output ?
+Alongside Rob's patch to add msm-specific tests to the runlist, we'd
+need to add the Panfrost-specific tests. Whilst we're here, we might
+as well add the vc4/v3d/etnaviv/lima tests so they can use it in
+future.
 
-We use the following kernel module:
+Panfrost should also skip kms_.* tests - since it's not a KMS driver,
+it can't run the KMS tests, so there's no point in trying.
 
-https://gist.github.com/mRrvz/8d9277d57abb4d21568725785ec9e939
+Cheers,
+Daniel
 
-and don't forget to define reserved memory region in device tree.
-
-> 
-> Thanks,
-> Neil
-> 
-> > 
-> > Alexey Romanov (17):
-> >    drivers: crypto: meson: don't hardcode IRQ count
-> >    drivers: crypto: meson: make CLK controller optional
-> >    drviers: crypto: meson: add platform data
-> >    drivers: crypto: meson: add MMIO helpers
-> >    drivers: crypto: meson: move get_engine_number()
-> >    drivers: crypto: meson: use fallback for 192-bit keys
-> >    drivers: crypto: meson: add support for G12-series
-> >    drivers: crypto: meson: add support for AXG-series
-> >    dt-bindings: crypto: meson: add new compatibles
-> >    arch: arm64: dts: meson: a1: add crypto node
-> >    arch: arm64: dts: meson: s4: add crypto node
-> >    arch: arm64: dts: meson: g12: add crypto node
-> >    arch: arm64: dts: meson: axg: add crypto node
-> >    arch: arm64: dts: meson: s4-s805x2-aq222: enable crypto node
-> >    arch: arm64: dts: meson: a1-ad401: enable crypto node
-> >    arch: arm64: dts: meson: axg-s400: enable crypto node
-> >    arch: arm64: dts: meson: g12a-u200: enable crypto node
-> > 
-> > Jan Dakinevich (7):
-> >    drivers: crypto: meson: drop status field from meson_flow
-> >    drivers: crypto: meson: move algs definition and cipher API to
-> >      cipher.c
-> >    drivers: crypto: meson: cleanup defines
-> >    drivers: crypto: meson: process more than MAXDESCS descriptors
-> >    drivers: crypto: meson: avoid kzalloc in engine thread
-> >    drivers: crypto: meson: introduce hasher
-> >    drivers: crypto: meson: add support for AES-CTR
-> > 
-> >   .../bindings/crypto/amlogic,gxl-crypto.yaml   |   2 +
-> >   .../arm64/boot/dts/amlogic/meson-a1-ad401.dts |   4 +
-> >   arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |   8 +
-> >   .../arm64/boot/dts/amlogic/meson-axg-s400.dts |   4 +
-> >   arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   7 +
-> >   .../boot/dts/amlogic/meson-g12-common.dtsi    |   7 +
-> >   .../boot/dts/amlogic/meson-g12a-u200.dts      |   4 +
-> >   .../dts/amlogic/meson-s4-s805x2-aq222.dts     |   4 +
-> >   arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |   7 +
-> >   drivers/crypto/amlogic/Makefile               |   2 +-
-> >   drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 591 ++++++++++++------
-> >   drivers/crypto/amlogic/amlogic-gxl-core.c     | 260 ++++----
-> >   drivers/crypto/amlogic/amlogic-gxl-hasher.c   | 448 +++++++++++++
-> >   drivers/crypto/amlogic/amlogic-gxl.h          | 116 +++-
-> >   14 files changed, 1135 insertions(+), 329 deletions(-)
-> >   create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
-> > 
-> 
-
--- 
-Thank you,
-Alexey
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
