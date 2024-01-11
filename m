@@ -4,71 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71F5EC4707B
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jan 2024 09:30:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9F7FC47077
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jan 2024 09:31:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JVVIafN+iD0Hg6dPQTD5e+cjKFcYrvm1VuwNgcNqc+c=; b=lxy5yortbR4GbF
-	LMfS8iqwY+qpOFYIzXx5yxo9qtA1FJalunvXl+L/zxgnRBLnslP3e+08RodRYmhauCqH/ZRakMpOQ
-	uP0sca+bN8D7+8geeYAVixwS5vSNdzWZ6WOD6Q/o4p93NgRHxGp/nRNesGIRs7CQO4G7gNG/oSHvb
-	V1ZmiNXJatosOdYWvmvJ0bRC+4xChaaQTaMGwkZQxU+Fj/Pm75ll3z9gaw0SYFntkzFtZafhf+xq0
-	CLJTvIZluzf2U5AU0ne8SAsSIH30hq0eUL5qm1zXrELodZ+nh63AtaggU1Vt7h5wFeog8NHUgzCdA
-	SKZlo4JJwXzjpAgRHQaQ==;
+	List-Owner; bh=GfamnmxowJrfzx0xVF+X9GlTO0KWhwQnktX1l3m2ylQ=; b=XsBtwypAWHX/Up
+	v6MxrxL6dSwKVXGuwV/9gOgQ+oUpZ5wTAgGfDmq7Xc7WpkIv+FhO6IWNs92XFwQ8sIGhWa2zimBJk
+	WfncTAwP1mTRgh05QY4GhW2WfGpTxsvVQ2AO1QlA5cGbfrmIy8xdGEE/qBAsIzQSrzZ+SulnL4F+T
+	ty8gYDdLiztIwVkC/a1HfWBmjtIBYpJLffNG2da/ANrgkTw4sTWKELJh/NiWScCjFo8yKEPP76Da6
+	IUJjZEYMnk4YL0lhouvmQU07mF3NZOUIopyepIUyS9wLL4AVPta7VLO1AifqnFU7IZNEvs+ln+bUo
+	Wyq50pDAF4NQDYw7Nsbw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNrNy-00GlyH-1C;
-	Thu, 11 Jan 2024 09:30:02 +0000
-Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
+	id 1rNrPF-00GmM3-0d;
+	Thu, 11 Jan 2024 09:31:21 +0000
+Received: from mail-ej1-x62f.google.com ([2a00:1450:4864:20::62f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNrNw-00Glx4-07
+	id 1rNrPC-00GmIY-26
 	for linux-amlogic@lists.infradead.org;
-	Thu, 11 Jan 2024 09:30:01 +0000
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a2a360dbc11so527739966b.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 11 Jan 2024 01:29:58 -0800 (PST)
+	Thu, 11 Jan 2024 09:31:19 +0000
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-a29058bb2ceso555617766b.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 11 Jan 2024 01:31:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704965397; x=1705570197; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=zI8aOKoY1J1LzQGBJCecKcYIvB4FJqN1IGqRzkcldyQ=;
-        b=YC1g9ForXlk5VZvim58IxbvWwPDljZ3vrRqA1zb9e+MswVIQmOwBEOp71sD6edgYUv
-         m9Zo3RWz0Nb8lKNHh7OnyEYtXuoVQGXpek+YDF5NWJ3pPbHZJgbjSenGbTaymZipLWXU
-         aHIuiSwOjgk89l/8TYLaG8uLBDzsl8i6SsA6BIojDm4vkuHvEo1NPsecMuFLT2QZ0NO3
-         Wf+ylWGyNmw5pgPgdjlDQtlOuLnety8BNP+PckTfAs2vAMzoDFU0yDNlqlKIYxxoMXih
-         Hyi8BpF6UfD0MlfR5kpORGUMjaGEaO4rBPBUbkecqqhylQnIB2edQoSCLY4yGk3vd/fb
-         uzZw==
+        d=linaro.org; s=google; t=1704965474; x=1705570274; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Eor6lImS7ySePlUmbye/lNdlPbDxWcSpzNk/0V1lmvk=;
+        b=YC16cuN3/lRRUyW/1Dpl+DkZNcyMQw53LenOLUDFHR6pPCg5R+w73OIkJXPRFAW4n5
+         1KA91uCunilJEsRDtkF+4OodJTU2pa7gbsfX0SO0DhVNU8LT82T8LSGaa8bDMHSyPuAo
+         jUgjkX8YBMDJGD74PRekijURqpLQBJqUY7P+7hTy/ZEmtBMHw7Z7fJmxNj0/vEDaXPDv
+         L7ENw0hGKVYqpW1Y4FU7x8PKvAOXWUqGYLlNg94x5CvDgwGd2emnMiQNGDcoLwd6f2WP
+         BebM2ll8odK5ljT35oNagHzICi7tsFPYBTQuU2ECPYgOnH75DvyvpxhrxMXN2KV16hJV
+         fnwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704965397; x=1705570197;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zI8aOKoY1J1LzQGBJCecKcYIvB4FJqN1IGqRzkcldyQ=;
-        b=Vxe72qrc8BR0zn7yqFs3ALLoFV6HJ9GDVTIAQx0fWSGc4LptDJiYl9J9oqgD6PUjHr
-         I+cMK4TynkBjaqCazcVwBde/p1Qsq+687Lehiog9CZsikbHVbWJEy5fDc9/B+H6UzJxz
-         i6TdAiFyUm0YynfB/N/vYJXql6U0PIPEfNIRCwYSBsZVMPBVEGMwDHVznwV6fLFeyIah
-         HfXKOxXdi1L3x7MT3HoRxNzgQbEDyn7ZRcGNqCB9lT2pnnJ/TafzuMPNHr55WuEFP+Xw
-         GO4qXSlGLKQ8SFpfFRWMPfCISTC2hWgiipd9mVWGHSIS4poa7KWp70o/j3EHgxJ0eFf1
-         YVSQ==
-X-Gm-Message-State: AOJu0YxAXl0OHH2frXHLbjrExcBvfcOlrZ3QqQdkVQrCqG0YK62hW0Cc
-	yTU8EaHWt3Xtphf+L+MtqRvBSfqzulImoA==
-X-Google-Smtp-Source: AGHT+IFmJvC4h8dnnPMKN5HoXLRJV8fo6ByPAMiPWXQlUHuh1MZAApTAIIIoZ7IAwmgZNLXXFThv7A==
-X-Received: by 2002:a17:907:9346:b0:a29:335f:4248 with SMTP id bv6-20020a170907934600b00a29335f4248mr481321ejc.45.1704965397637;
-        Thu, 11 Jan 2024 01:29:57 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704965474; x=1705570274;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Eor6lImS7ySePlUmbye/lNdlPbDxWcSpzNk/0V1lmvk=;
+        b=Ip/22JggG2f6MDdPYOsYkQ1AUBCzab8IytHk70X0Q74Jjw26kf6QKgi/1Ud8zg+BV+
+         W9ytbwRem+U/NknB0NJFMr6YBYVsXZlENe/3q/rq6lIo7wcFxpFz7xcsjd6Ganow9oyJ
+         OduxfxJ03MEq+YZPWq3+WrIYLH/U77AsIzjDLvjQLphRie03GAia8GsMH8FeVOWNZP+v
+         OJhhcm0bcU30K1FjyreRcoXSMtqApqmMZlEzPVcBNj1wi3yOEaoNC0lvV5fJadzAGm9Z
+         goFK2H7ELVB+LruMx45IoriqkIAwf7Nl09vAoz4cH7+i1lMs6HebpNQ8ihQ/LpfFCIF3
+         /pMg==
+X-Gm-Message-State: AOJu0Yxa0twV0uny8wC2wvRYeSGt+DAPjfiMnJUhUOADjI9ZMRVc1QTL
+	MCazV2avJ58kH54JEkdkBXqI35s4RzH5Cw==
+X-Google-Smtp-Source: AGHT+IGD9nTnB2PCUwRoN7P9hfHTaak6Rf6N5a7I+i6QTcDjkE0MZWvuwl97F/xmIbbqjFd1l3G8BA==
+X-Received: by 2002:a17:906:2459:b0:a2b:643:322 with SMTP id a25-20020a170906245900b00a2b06430322mr243390ejb.138.1704965474275;
+        Thu, 11 Jan 2024 01:31:14 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id b4-20020a170906150400b00a2a37f63216sm353336ejd.171.2024.01.11.01.29.54
+        by smtp.gmail.com with ESMTPSA id b4-20020a170906150400b00a2a37f63216sm353336ejd.171.2024.01.11.01.31.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 01:29:56 -0800 (PST)
-Message-ID: <910736a3-069f-430c-ba6c-221777ddcda2@linaro.org>
-Date: Thu, 11 Jan 2024 10:29:53 +0100
+        Thu, 11 Jan 2024 01:31:13 -0800 (PST)
+Message-ID: <039a4223-3412-415e-a5e6-c5dca53c96e1@linaro.org>
+Date: Thu, 11 Jan 2024 10:31:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v1 00/24] Support more Amlogic SoC families in crypto
  driver
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Alexey Romanov <avromanov@salutedevices.com>,
  Corentin Labbe <clabbe.montjoie@gmail.com>
 Cc: "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
@@ -90,8 +92,7 @@ Cc: "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
  <linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
 References: <20240110201216.18016-1-avromanov@salutedevices.com>
  <ZZ8HP7dJgVaZLMw5@Red> <20240111091840.7fe4lqx225rdlwly@cab-wsm-0029881>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <910736a3-069f-430c-ba6c-221777ddcda2@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -136,10 +137,10 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240111091840.7fe4lqx225rdlwly@cab-wsm-0029881>
+In-Reply-To: <910736a3-069f-430c-ba6c-221777ddcda2@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240111_013000_095797_5C368262 
-X-CRM114-Status: GOOD (  10.66  )
+X-CRM114-CacheID: sfid-20240111_013118_697270_FE01BCF8 
+X-CRM114-Status: GOOD (  10.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -156,33 +157,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 11/01/2024 10:18, Alexey Romanov wrote:
-> Hello!
-> 
-> On Wed, Jan 10, 2024 at 10:08:15PM +0100, Corentin Labbe wrote:
->> Le Wed, Jan 10, 2024 at 11:11:16PM +0300, Alexey Romanov a 'ecrit :
->>> Hello!
->>>
->>> This patchset expand the funcionality of the Amlogic
->>> crypto driver by adding support for more SoC families: 
->>> AXG, G12A, G12B, SM1, A1, S4.
->>>
->>> Also specify and enable crypto node in device tree
->>> for reference Amlogic devices.
->>>
->>> Tested on AXG, G12A/B, SM1, A1 and S4 devices via
->>> custom tests and trcypt module.
+On 11/01/2024 10:29, Krzysztof Kozlowski wrote:
+> On 11/01/2024 10:18, Alexey Romanov wrote:
+>> Hello!
 >>
->> Hello
+>> On Wed, Jan 10, 2024 at 10:08:15PM +0100, Corentin Labbe wrote:
+>>> Le Wed, Jan 10, 2024 at 11:11:16PM +0300, Alexey Romanov a 'ecrit :
+>>>> Hello!
+>>>>
+>>>> This patchset expand the funcionality of the Amlogic
+>>>> crypto driver by adding support for more SoC families: 
+>>>> AXG, G12A, G12B, SM1, A1, S4.
+>>>>
+>>>> Also specify and enable crypto node in device tree
+>>>> for reference Amlogic devices.
+>>>>
+>>>> Tested on AXG, G12A/B, SM1, A1 and S4 devices via
+>>>> custom tests and trcypt module.
+>>>
+>>> Hello
+>>>
+>>> Thanks for your patch series.
+>>> Unfortunatly, I fail to apply it for testing on top of linux-next.
+>>> On top of which tree did you have tested ?
 >>
->> Thanks for your patch series.
->> Unfortunatly, I fail to apply it for testing on top of linux-next.
->> On top of which tree did you have tested ?
+>> We use 6.5-rc3.
 > 
-> We use 6.5-rc3.
+> Don't develop on old trees... I mean, internally you can do whatever you
+> wish, but don't work upstream on such trees.
 
-Don't develop on old trees... I mean, internally you can do whatever you
-wish, but don't work upstream on such trees.
+Number of email bounces also prove the point: you did not Cc right
+people due to work on some ancient files.
 
 Best regards,
 Krzysztof
