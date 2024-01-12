@@ -4,78 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0ED56C47258
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jan 2024 18:12:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79586C47422
+	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Jan 2024 13:50:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=d1RcM2HmlP62EayPc9SiqcDJuXrbHZtP2/kz6p4l4MA=; b=Fn6wwLdcsteZnjgT+fCG5ECw2g
-	rR6CdWkO4d3uk66YxAigdbBcM8BjoD5zw/R2h9jxjuwGMOefU3HFnHY2+LxKdoBDukIu9H3e2BFWy
-	VBN+hX5aUSKBSyM0gSK3OUQW3eMBN8rYqo9ZGGiLjPhQo7C1JT4j9FmLatbSAHLHrM6H64tnOdn3L
-	hIjivN6oYT1JiWHpFZYOr9klyrghv/DvqQOEe6wsCan3s2jV0JJfzc9DMNrkXWYBlrNu4g4R/0s+I
-	8Fb99vEeRUEAS/eD7cCZescFuBXzDmaCvWOWaPp62mXNq19e98T5dbidoBSXxdElck7uwpI1DF1LY
-	jQVjCsiQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=TQN6Kz1KbaOT7bTuYHQmDcNz/eV9IwubCT1Hv24ZgGE=; b=H80utXJ/mxkFsS
+	D7SClMUtccI0NYVqAvIUHW8grux8z8YLyP5vHYXuQ34UTF/erR8Ut3Jm78Ab56JLk6BapH7/rUv/X
+	f0llwCcN1usYTo+qb8zCIueNgGKD+stASnmHE2lUYGyqmbyFIwNfjVXwazBvYGAHjuJanJtFzTWCW
+	BXV8/zR44b+w7J3nxzEUQFbK3+AEF16RPY49kaghD90WQUkO+hydrJyY5tLqFDk2DJnidW2C92AmL
+	qzoOo2oNIBY/uO+hot0cWxq439DaBp4s96Ar39kEoGTO3rqHT6AQbA8P3KXIYpiHmwi/FcC2GiLqh
+	kWQieX1pk8DGqlGZwwoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNzWq-000njI-0W;
-	Thu, 11 Jan 2024 18:11:44 +0000
-Received: from mail-oi1-x236.google.com ([2607:f8b0:4864:20::236])
+	id 1rOHvY-002xap-0c;
+	Fri, 12 Jan 2024 13:50:28 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNzWm-000nhk-1h
-	for linux-amlogic@lists.infradead.org;
-	Thu, 11 Jan 2024 18:11:42 +0000
-Received: by mail-oi1-x236.google.com with SMTP id 5614622812f47-3bb9d54575cso4192706b6e.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 11 Jan 2024 10:11:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fooishbar-org.20230601.gappssmtp.com; s=20230601; t=1704996697; x=1705601497; darn=lists.infradead.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GNwfPpOc+w6+qUvr4c6LiIOhhkOq06R1P3AdfBXYN2Y=;
-        b=YMS2RajpQQ71eu/F8BeBcMAElVTBWTyAib27FZD1kOHKcY6SfN/vG/KytqRV95wrn8
-         fak9JCqkb0w5FM0gXVifR43Zj9earr5SNX7UQKYWzuna20Mbsh3fy1ZPOKUZUN9sN6Pm
-         qLw16nAZwAURGbbiZbr+5Zl0sdWk3LR+0m4C4GLYK+QyoIrYGFHO4mva4PeJ0TejTiD8
-         JSGYIx6PgXdG9Mm2ACN7tOwjJwPK1EvMC5fxVW6fNZSjJrJ/w8ZcnXlgcz6vIyU1VJnV
-         zE9Eyh0wtEYbi6krfGWM0En2tibVdGog1AuZHIRqnNXufNV8/kHcLWKkAtdlWwsRfRjv
-         CdrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704996697; x=1705601497;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GNwfPpOc+w6+qUvr4c6LiIOhhkOq06R1P3AdfBXYN2Y=;
-        b=cebIoFJx2Pf1WTKlL8JmchVu9g9wpTksLWvdD+zQ8yNyCmeavL+U3sVSdbYTekPPr5
-         R46tAXAnzq9817UoDjjw0zACbrQEXypn5TlijPytNDUejB9AkKRltf1ndxohm9clVRJV
-         0oyphfEOhGdMNJ11YYoU9Ktm/RYksgjgKthGPITxRIldJD36iwXrrJsqtROWf412Ds1Q
-         tfmKYKbKJ3dlGjzF7+eitCRoqyyvbrcZ9NLumsI1DRcSlbJWogx63wX/577fvOZgV7ky
-         ROxwUAwkp4xrJeg8zYhQ9xIt/J4yHjj2plSN6dfM6Us2cP98zPJ8jnPrsEMJrihRJhgD
-         8gag==
-X-Gm-Message-State: AOJu0YxgocQAI30028NPnRDr6RJnJWU0bblX1ex+qwkpQmqYrLeVxSPS
-	/hP1Ax/bdLLcB+8YmyEvxRgawcZmcM09txxO462cx1sTjbTdWQ==
-X-Google-Smtp-Source: AGHT+IEOQA3VGINqdDq3XtCaDe7x77fu7+Iwu6ym4ijoXArXnWe9XYkfG56HHC5HEq3XFTuTf4bmEuP1OyFcAzpA/9w=
-X-Received: by 2002:a05:6808:3989:b0:3bd:5006:e313 with SMTP id
- gq9-20020a056808398900b003bd5006e313mr78961oib.105.1704996696986; Thu, 11 Jan
- 2024 10:11:36 -0800 (PST)
+	id 1rOHvV-002xZP-1W;
+	Fri, 12 Jan 2024 13:50:26 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id F2D90CE2253;
+	Fri, 12 Jan 2024 13:50:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06D5AC433F1;
+	Fri, 12 Jan 2024 13:50:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705067418;
+	bh=2GBsmlDMuRrcjc2Hma/6Rsppr8bfpOi1zXgsvajbU7A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b3QPwCi8lSUlKn9lVR7v8i0+OSGblLUhqlsqZKv6AReHbWezDzAbl5Ek0HuC1CMbH
+	 hn/K732i14ODy4j2Gz5t8iq1wiVIrk3MHXTxnaaTe4Io23MZhxn1BkFS0xUqAwdZHg
+	 Vz6QIeDaCfTzD9YbJgKaCHyNxhIMTmMuWDE+DJ3FgKiZPEPzEeUOKGALfd1OgO60AN
+	 cFFoMfQYsZFxQAZCdn/15HZoag1q5sVA2/btsTQxSYdhbfTLInbvYY8Xc7ABrVUw9/
+	 zwYQM6+8NRSDNSlwnhPXE+pdEGVIQVKm32r90zeT7MyJ/h93VrME76gBc61jsp553F
+	 LDNABLAzw/HEg==
+Date: Fri, 12 Jan 2024 13:50:09 +0000
+From: Will Deacon <will@kernel.org>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: Mark Rutland <mark.rutland@arm.com>, Raag Jadav <raag.jadav@intel.com>,
+	Yicong Yang <yangyicong@hisilicon.com>,
+	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Khuong Dinh <khuong@os.amperecomputing.com>,
+	Kevin Hilman <khilman@baylibre.com>, Andy Gross <agross@kernel.org>,
+	NXP Linux Team <linux-imx@nxp.com>, linux-arm-msm@vger.kernel.org,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Frank Li <Frank.li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Besar Wicaksono <bwicaksono@nvidia.com>,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jiucheng Xu <jiucheng.xu@amlogic.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Shuai Xue <xueshuai@linux.alibaba.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH 00/18] perf: Convert to platform remove callback
+ returning void
+Message-ID: <20240112135009.GA16771@willie-the-truck>
+References: <cover.1702648124.git.u.kleine-koenig@pengutronix.de>
+ <vlnl6og3bts5hcdjw5h7c4km7zolzuf6h7cwyfymjzan3uqjwy@rsra3lqdhou7>
 MIME-Version: 1.0
-References: <20231220121110.1441160-1-vignesh.raman@collabora.com>
- <CAPj87rOMPioOK0r74vcnVkXusm6Nah6KNUWyxYgpVLdkMNtW2g@mail.gmail.com> <ad7cbd59-5264-96e8-5e9b-aafde8028e41@collabora.com>
-In-Reply-To: <ad7cbd59-5264-96e8-5e9b-aafde8028e41@collabora.com>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Thu, 11 Jan 2024 18:11:25 +0000
-Message-ID: <CAPj87rPRRfJmxTev50YqxBizyvzCUhCiymoV_bdqsZ-zvcREfA@mail.gmail.com>
-Subject: Re: [PATCH v1 0/8] drm/ci: Add support for GPU and display testing
-To: Helen Koike <helen.koike@collabora.com>, Dave Airlie <airlied@gmail.com>, 
-	Sima Vetter <daniel@ffwll.ch>, Daniel Stone <daniels@collabora.com>, Emma Anholt <emma@anholt.net>, 
-	linux-rockchip <linux-rockchip@lists.infradead.org>, guilherme.gallo@collabora.com, 
-	sergi.blanch.torne@collabora.com, 
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, 
-	David Heidelberg <david.heidelberg@collabora.com>, Rob Clark <robdclark@gmail.com>, 
-	linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org
+Content-Disposition: inline
+In-Reply-To: <vlnl6og3bts5hcdjw5h7c4km7zolzuf6h7cwyfymjzan3uqjwy@rsra3lqdhou7>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240111_101140_730802_04991275 
-X-CRM114-Status: GOOD (  17.22  )
+X-CRM114-CacheID: sfid-20240112_055025_697093_85700DBD 
+X-CRM114-Status: GOOD (  21.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,45 +91,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Vignesh,
+Hi Uwe,
 
-On Wed, 10 Jan 2024 at 10:47, Vignesh Raman <vignesh.raman@collabora.com> wrote:
-> On 09/01/24 19:08, Daniel Stone wrote:
-> > A better sequencing would be something like:
-> >    1. add ANX7625 config
-> >    2. refactor _existing_ MTK display jobs to use YAML includes, change
-> > the existing job name, and rename the existing xfail set, remove
-> > IGT_FORCE_DRIVER from the script since it's now set by the job
-> >    3. add MTK Panfrost+PVR GPU jobs with new xfails, add xfail entry to
-> > MAINTAINERS
-> >    4+5: same as 2+3 but for Amlogic
-> >    6+7: same as 2+3 but for Rockchip
-> >
-> > Then the separate rename/update xfail commits just disappear, as does
-> > the removal of IGT_FORCE_DRIVER, because it's just done incrementally
-> > as part of the commits which change the related functionality. It's
-> > extremely important that every change can work standalone, instead of
-> > introducing intermediate breakage which is only fixed in later commits
-> > in the series.
->
-> Thank you for reviewing the patches. I agree, will follow this sequence
-> and send a v2 version.
+On Wed, Jan 10, 2024 at 09:56:26AM +0100, Uwe Kleine-K=F6nig wrote:
+> On Fri, Dec 15, 2023 at 02:59:00PM +0100, Uwe Kleine-K=F6nig wrote:
+> > this series converts all drivers below drivers/perf to use
+> > .remove_new(). See commit 5c5a7680e67b ("platform: Provide a remove
+> > callback that returns no value") for an extended explanation and the
+> > eventual goal. The TL;DR; is to make it harder for driver authors to
+> > leak resources without noticing.
+> > =
 
-Alongside Rob's patch to add msm-specific tests to the runlist, we'd
-need to add the Panfrost-specific tests. Whilst we're here, we might
-as well add the vc4/v3d/etnaviv/lima tests so they can use it in
-future.
+> > I based the patches on today's next, I had to revert commits =
 
-Panfrost should also skip kms_.* tests - since it's not a KMS driver,
-it can't run the KMS tests, so there's no point in trying.
+> > 3115ee021bfb ("arm64: perf: Include threshold control fields in
+> > PMEVTYPER mask") and 816c26754447 ("arm64: perf: Add support for event
+> > counting threshold") to compile test on ARCH=3Darm (this is a problem in
+> > next, not in my patch series).
+> > =
 
-Cheers,
-Daniel
+> > This is merge window material. All patches are pairwise independent of
+> > each other so they can be applied individually. Still it would be great
+> > to let them go in all together.
+> =
+
+> I wonder if this series is still on someone's radar. It didn't appear in
+> next up to now, so I guess it's too late for 6.8-rc1?!
+
+This came in during the holiday period so, by the time I saw it, it was
+too late to land for this merge window. I can pick it up for 6.9 in a few
+weeks, though. I usually start queueing stuff at -rc3.
+
+Will
 
 _______________________________________________
 linux-amlogic mailing list
