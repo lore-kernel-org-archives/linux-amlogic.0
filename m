@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88821C4706C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03C64C4707B
 	for <linux-amlogic@archiver.kernel.org>; Sat, 13 Jan 2024 22:47:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,56 +12,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cdAUId+Y98du5hFB+cCcLY5jG/4hS77HLc61FbhETeM=; b=rHABC5e68BzxTd
-	UB2hJuyN7rwb2kgfveUqXgi4k50VCsAuZbCMWQqNRWUULmhjUGpUuL4DsQ2+QFmKY3rj9HvHesozx
-	dbYmybKaupsL8NQalRvZQ+MiD1sCh0iJL61psYVd9PtK4ozk+50zHAuSbANBUMXN+0QuKpeDrmVF+
-	mGH9QTq0wY5Ncxao8M4Wcf8q1biX8UStF7W+YaepnWBDoCwKvB+XyKBqcLvPgcyeclLsfnSjVW8tQ
-	YUDjGKWPF9M8ubrwZH007B9RP4NPK7m7sAuPPmdTvytje2eNaBvVmV77RwAbPecrbwbXDQ/jllUkW
-	P0CyCdFwOAhPl4WIaYag==;
+	List-Owner; bh=H8/r3jp6sozVRECr5lWVU5uq5EAfO/yKdm2HhS38nPg=; b=TDEfsgonKoZSaa
+	bBBIbFzYw0e9WPOax6VTIkhs8HRaYuH2o4NR4kn9A75Apdy+6jne3f3Ku9uUJSiSwx+eyjy0wqEpC
+	+AJCQcpE/mZ6Pf38V4ZtG56D+v324LVcZjTb7GF9rpTXewC4+0VWop4IRHAzg3D5TTXQtJUE9p0yd
+	FAZqjiPltHLqK6xbus6oYKAuUcErbD6He0qNZl1H3LdpoPWT5xJg5LDXwiPW4ayNMtL24cCzkRuRE
+	wgZoznjmwXyB2TFsk24N7w7EUf2rWS5US9j5UmzDR7Te+cOZt2UIGe/YStGwxtVU1T5vrr9XfrR6F
+	LYNMdxJe4b8c4+TSruyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rOmmQ-005qtJ-2j;
-	Sat, 13 Jan 2024 22:47:06 +0000
-Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
+	id 1rOmmM-005qsU-1r;
+	Sat, 13 Jan 2024 22:47:02 +0000
+Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rOmmO-005qsE-0I
+	id 1rOmmJ-005qrd-32
 	for linux-amlogic@lists.infradead.org;
-	Sat, 13 Jan 2024 22:47:05 +0000
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-55818b733f7so6142648a12.3
-        for <linux-amlogic@lists.infradead.org>; Sat, 13 Jan 2024 14:47:02 -0800 (PST)
+	Sat, 13 Jan 2024 22:47:01 +0000
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-556c3f0d6c5so9143355a12.2
+        for <linux-amlogic@lists.infradead.org>; Sat, 13 Jan 2024 14:46:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1705186019; x=1705790819; darn=lists.infradead.org;
+        d=googlemail.com; s=20230601; t=1705186017; x=1705790817; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=u77d1PdAZp3rFhBqhc5w9JQRTU1ABuAUI/VbGA4eG5E=;
-        b=XhuUsE3gQDQvRSw52h929tkpqUxI55ljZv97WDQyURgprfiBxN54utcoY7lVnjP049
-         2zKfFgo4uOvHbuNlmt+4UCYrU2W7/OOmqall4hUY+zcOhx6xBNT0HdAtv57miIq7MN1+
-         YAnO74EKeBaNBGaus5Grsdg86QdwoLzdO+7we2AKLiuY1TCzB5SJD8w3zC+8hKAbUBkw
-         pyxcErnpHc64dgDT6SH+Rm+zpe6UQ/eousdqmkNF9/lskk/e5an7symkMSseiJAecrpe
-         Qf0sLvMmoGZsmdSGZPx4xhXP9+OMMkUzyfX1TSFmPxgBYuh/61705htjT2Ha0m2HI7p8
-         eDdg==
+        bh=DY9iwm5mIi1yu3RP8RXkfD0AElUziXIbkBosoDfpThM=;
+        b=dAfJlV21xePusYJuB/53y15qq4e1kcb/dIWfKFrMUF/489amSwT7DQxasariniUb5J
+         zomc4Xe4I1dhhiPE4ujYPASxrO8AoWpt8p6jBa4iEhHS1qUrKZjXVN3enN37Hb2DeDId
+         njNRN1NXDbeIDFxMHx/jODKXqtFJI7RzrvHuq7iCfjqy0b7leXfvzF/SAgqpQCR11NLb
+         0Xa0w2/xc3V0pyl/ch5yOzuurhIek1yPkEJfiKOpQ9kNcUvaQywWcpHp5mSd0daqrxGM
+         y4GZUYUI/0KoMrsM43lNRS922iiohR/HwOEUuM/x2j/zLas65KcHgqNBhr/IHqOUrY2y
+         TCBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705186019; x=1705790819;
+        d=1e100.net; s=20230601; t=1705186017; x=1705790817;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=u77d1PdAZp3rFhBqhc5w9JQRTU1ABuAUI/VbGA4eG5E=;
-        b=GwZZTJKldCa8PfSkgMzkqhGfD5eXvJ33hImD/9wOvtCm8YM4osl9o73u6ME8qH8ZaZ
-         5bI0HNvLsQmpU1y2pMQEeTguQjMbtw9bwZZuKU/EGRtCPyyLANK97P5aUNVen+dHEUUZ
-         a3xC/KyA5+MUE6sHvk9kmqKxBxfYQIBT4/GY1QAGz3zRcgohBO/xKZUJHukmm59MZV9J
-         w5gc4ETg+/KJpTzwgRn9wzeLzS/qsH/7OLILRfTsCBzxS9cX2VgXxiPJc/0AF8fSpiNG
-         fpphDGsLsr7PosJSq6OeI6ZNiijMfY2s4iypOJrRAw9JaIRtJbpFMh1uhvXwP+uNBm05
-         Rn1g==
-X-Gm-Message-State: AOJu0Yz4tp4VeBQe4QLwhzP4Bqej0PYfx+RdKFO2M5WxtvCBv2XBvTWc
-	TVZdiEWau+xewOSx8lBWVkE=
-X-Google-Smtp-Source: AGHT+IGrTHqAsnkxLbC9/RDxevudhcPYQyFh07IzdE4LD1fX0nX39xtURTRDLkgg0t9KwbqmZEZvHA==
-X-Received: by 2002:a17:907:1a55:b0:a2b:1ba9:873b with SMTP id mf21-20020a1709071a5500b00a2b1ba9873bmr1400845ejc.125.1705186019470;
-        Sat, 13 Jan 2024 14:46:59 -0800 (PST)
+        bh=DY9iwm5mIi1yu3RP8RXkfD0AElUziXIbkBosoDfpThM=;
+        b=QLNZHdRAAJBlVAfSaTU8xUlkhE+8FIA2Gcqh6fPsyxYExljhYoccecerBlCjqUdcbU
+         /5gSrxt53tsV6T6Cbz4yJXYCp78nKtq4kpv3oJ9w4++7w5+er+woUtxvfcTiZI75VZpU
+         6XoQsWiHUe84ik2Xr3xzwBLMXnIpxIDQnv8tutEaLexW05Rkd06vyIOGS571IEsduYMX
+         fUYaoWG7C2T7uIPhOokKcLcrsxMnlal4aPiDmk7NdzWc2seon37s8ocNaPXR8b3VgSUR
+         PKsB18wVLzJhiEGQKzmIRKBRPq/pOP7a8eKXFc5QuuPzt+InY/AWyphK2pExhqVGMJN5
+         SIrQ==
+X-Gm-Message-State: AOJu0Yyhu4dLw989iFhRfrL+O9f93DWuS++naV/DXbzYRYbKGUPlzxB1
+	vKNTxcMZQvqaYjMr1zGiXIk=
+X-Google-Smtp-Source: AGHT+IH62OCCDlaYXs/phJT6VVbys7so+fsQxIC6B1SCuu1YODV45kYu9d5gsD4El1bDlgTa3vn+8w==
+X-Received: by 2002:a17:906:ae54:b0:a2d:559a:c72d with SMTP id lf20-20020a170906ae5400b00a2d559ac72dmr263432ejb.229.1705186017432;
+        Sat, 13 Jan 2024 14:46:57 -0800 (PST)
 Received: from localhost.localdomain (dynamic-2a01-0c22-6fe7-c700-0000-0000-0000-0e63.c22.pool.telefonica.de. [2a01:c22:6fe7:c700::e63])
-        by smtp.googlemail.com with ESMTPSA id g18-20020a170906595200b00a2d4e658132sm755409ejr.42.2024.01.13.14.46.58
+        by smtp.googlemail.com with ESMTPSA id g18-20020a170906595200b00a2d4e658132sm755409ejr.42.2024.01.13.14.46.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Jan 2024 14:46:58 -0800 (PST)
+        Sat, 13 Jan 2024 14:46:57 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: lgirdwood@gmail.com,
 	broonie@kernel.org,
@@ -72,16 +72,16 @@ Cc: linux-kernel@vger.kernel.org,
 	Heiner Kallweit <hkallweit1@gmail.com>,
 	Dmitry Rokosov <ddrokosov@sberdevices.ru>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [RFC PATCH v2 3/3] regulator: pwm-regulator: Manage boot-on with disabled PWM channels
-Date: Sat, 13 Jan 2024 23:46:28 +0100
-Message-ID: <20240113224628.377993-4-martin.blumenstingl@googlemail.com>
+Subject: [RFC PATCH v2 1/3] regulator: pwm-regulator: Add validity checks in continuous .get_voltage
+Date: Sat, 13 Jan 2024 23:46:26 +0100
+Message-ID: <20240113224628.377993-2-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240113224628.377993-1-martin.blumenstingl@googlemail.com>
 References: <20240113224628.377993-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240113_144704_127737_C4252CB4 
-X-CRM114-Status: GOOD (  27.86  )
+X-CRM114-CacheID: sfid-20240113_144659_986595_55487BAA 
+X-CRM114-Status: GOOD (  12.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,133 +93,31 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Odroid-C1 uses a Monolithic Power Systems MP2161 controlled via PWM for
-the VDDEE voltage supply of the Meson8b SoC. Commit 6b9352f3f8a1 ("pwm:
-meson: modify and simplify calculation in meson_pwm_get_state") results
-in my Odroid-C1 crashing with memory corruption in many different places
-(seemingly at random). It turns out that this is due to a currently not
-supported corner case.
-
-The VDDEE regulator can generate between 860mV (duty cycle of ~91%) and
-1140mV (duty cycle of 0%). We consider it to be enabled by the bootloader
-(which is why it has the regulator-boot-on flag in .dts) as well as
-being always-on (which is why it has the regulator-always-on flag in
-.dts) because the VDDEE voltage is generally required for the Meson8b
-SoC to work. The public S805 datasheet [0] states on page 17 (where "A5"
-refers to the Cortex-A5 CPU cores):
-  [...] So if EE domains is shut off, A5 memory is also shut off. That
-  does not matter. Before EE power domain is shut off, A5 should be shut
-  off at first.
-
-It turns out that at least some bootloader versions are keeping the PWM
-output disabled. This is not a problem due to the specific design of the
-regulator: when the PWM output is disabled the output pin is pulled LOW,
-effectively achieving a 0% duty cycle (which in return means that VDDEE
-voltage is at 1140mV).
-
-The problem comes when the pwm-regulator driver tries to initialize the
-PWM output. To do so it reads the current state from the hardware, which
-is:
-  period: 3666ns
-  duty cycle: 3333ns (= ~91%)
-  enabled: false
-Then those values are translated using the continuous voltage range to
-860mV.
-Later, when the regulator is being enabled (either by the regulator core
-due to the always-on flag or first consumer - in this case the lima
-driver for the Mali-450 GPU) the pwm-regulator driver tries to keep the
-voltage (at 860mV) and just enable the PWM output. This is when things
-start to go wrong as the typical voltage used for VDDEE is 1100mV.
-
-Commit 6b9352f3f8a1 ("pwm: meson: modify and simplify calculation in
-meson_pwm_get_state") triggers above condition as before that change
-period and duty cycle were both at 0. Since the change to the pwm-meson
-driver is considered correct the solution is to be found in the
-pwm-regulator driver. Update the duty cycle during driver probe if the
-regulator is flagged as boot-on so that a call to pwm_regulator_enable()
-(by the regulator core during initialization of a regulator flagged with
-boot-on) without any preceding call to pwm_regulator_set_voltage() does
-not change the output voltage.
-
-[0] https://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126.pdf
-
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
-Changes from v1 -> v2:
-- This patch is new and the idea is to keep the voltage regulator
-  description in device-tree as-is (which means: support for 860mV to
-  1140mV). Instead we allow the pwm-regulator driver to preserve the
-  output voltage at boot when enabling the regulator.
-- note: Mark Brown said in v1 "I'd expect a change in the init_state()
-  function". That function is not updated as it's only relevant for
-  regulators with a voltage table - on Odroid-C1 we have a continuous
-  regulator though.
-
-
- drivers/regulator/pwm-regulator.c | 33 +++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
-
-diff --git a/drivers/regulator/pwm-regulator.c b/drivers/regulator/pwm-regulator.c
-index d27b9a7a30c9..60cfcd741c2a 100644
---- a/drivers/regulator/pwm-regulator.c
-+++ b/drivers/regulator/pwm-regulator.c
-@@ -323,6 +323,32 @@ static int pwm_regulator_init_continuous(struct platform_device *pdev,
- 	return 0;
- }
- 
-+static int pwm_regulator_init_boot_on(struct platform_device *pdev,
-+				      struct pwm_regulator_data *drvdata,
-+				      const struct regulator_init_data *init_data)
-+{
-+	struct pwm_state pstate;
-+
-+	if (!init_data->constraints.boot_on || drvdata->enb_gpio)
-+		return 0;
-+
-+	pwm_get_state(drvdata->pwm, &pstate);
-+	if (pstate.enabled)
-+		return 0;
-+
-+	/*
-+	 * Update the duty cycle so the output does not change
-+	 * when the regulator core enables the regulator (and
-+	 * thus the PWM channel).
-+	 */
-+	if (pstate.polarity == PWM_POLARITY_INVERSED)
-+		pstate.duty_cycle = pstate.period;
-+	else
-+		pstate.duty_cycle = 0;
-+
-+	return pwm_apply_might_sleep(drvdata->pwm, &pstate);
-+}
-+
- static int pwm_regulator_probe(struct platform_device *pdev)
- {
- 	const struct regulator_init_data *init_data;
-@@ -382,6 +408,13 @@ static int pwm_regulator_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	ret = pwm_regulator_init_boot_on(pdev, drvdata, init_data);
-+	if (ret) {
-+		dev_err(&pdev->dev, "Failed to apply boot_on settings: %d\n",
-+			ret);
-+		return ret;
-+	}
-+
- 	regulator = devm_regulator_register(&pdev->dev,
- 					    &drvdata->desc, &config);
- 	if (IS_ERR(regulator)) {
--- 
-2.43.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Q29udGludW91cyByZWd1bGF0b3JzIGNhbiBiZSBjb25maWd1cmVkIHRvIG9wZXJhdGUgb25seSBp
+biBhIGNlcnRhaW4KZHV0eSBjeWNsZSByYW5nZSAoZm9yIGV4YW1wbGUgZnJvbSAwLi45MSUpLiBB
+ZGQgYSBjaGVjayB0byBlcnJvciBvdXQgaWYKdGhlIGR1dHkgY3ljbGUgdHJhbnNsYXRlcyB0byBh
+biB1bnN1cHBvcnRlZCAob3Igb3V0IG9mIHJhbmdlKSB2b2x0YWdlLgoKU3VnZ2VzdGVkLWJ5OiBV
+d2UgS2xlaW5lLUvDtm5pZyA8dS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlPgpTaWduZWQt
+b2ZmLWJ5OiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1h
+aWwuY29tPgotLS0KQ2hhbmdlcyBmcm9tIHYxIC0+IHYyOgotIHRoaXMgcGF0Y2ggaXMgbmV3LCB1
+c2luZyBzdWdnZXN0aW9ucyBmcm9tIFV3ZQoKCiBkcml2ZXJzL3JlZ3VsYXRvci9wd20tcmVndWxh
+dG9yLmMgfCAzICsrKwogMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvcmVndWxhdG9yL3B3bS1yZWd1bGF0b3IuYyBiL2RyaXZlcnMvcmVndWxhdG9y
+L3B3bS1yZWd1bGF0b3IuYwppbmRleCA2OThjNDIwZTA4NjkuLjIyNmNhNGM2MjY3MyAxMDA2NDQK
+LS0tIGEvZHJpdmVycy9yZWd1bGF0b3IvcHdtLXJlZ3VsYXRvci5jCisrKyBiL2RyaXZlcnMvcmVn
+dWxhdG9yL3B3bS1yZWd1bGF0b3IuYwpAQCAtMTU4LDYgKzE1OCw5IEBAIHN0YXRpYyBpbnQgcHdt
+X3JlZ3VsYXRvcl9nZXRfdm9sdGFnZShzdHJ1Y3QgcmVndWxhdG9yX2RldiAqcmRldikKIAlwd21f
+Z2V0X3N0YXRlKGRydmRhdGEtPnB3bSwgJnBzdGF0ZSk7CiAKIAl2b2x0YWdlID0gcHdtX2dldF9y
+ZWxhdGl2ZV9kdXR5X2N5Y2xlKCZwc3RhdGUsIGR1dHlfdW5pdCk7CisJaWYgKHZvbHRhZ2UgPCBt
+aW4obWF4X3VWX2R1dHksIG1pbl91Vl9kdXR5KSB8fAorCSAgICB2b2x0YWdlID4gbWF4KG1heF91
+Vl9kdXR5LCBtaW5fdVZfZHV0eSkpCisJCXJldHVybiAtRU5PVFJFQ09WRVJBQkxFOwogCiAJLyoK
+IAkgKiBUaGUgZHV0eWN5Y2xlIGZvciBtaW5fdVYgbWlnaHQgYmUgZ3JlYXRlciB0aGFuIHRoZSBv
+bmUgZm9yIG1heF91Vi4KLS0gCjIuNDMuMAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9n
+aWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
