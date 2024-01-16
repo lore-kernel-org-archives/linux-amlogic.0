@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB184C47DA2
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jan 2024 09:56:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA22EC47DA2
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jan 2024 09:56:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=11biqEleWg+/1QLJjxeqTE23gAmZQf4tAP/Fc3EKtno=; b=r2r3oDY+aSjH59
-	sdIQ5CFjS8EFcNGnv/zVLQ5oksFaeLKwmwSgR37Lg5iw+F3hT8TJMTmmY+fr2pFDZXIkdipZ7F5mv
-	sD7giByEwkQllYTkcLQQ/6Flms+sCIJADHVKhhzYv58J2Xk5Rc5W5b2v+YQoxetuFmPjfYhtpnRWX
-	ikXPWMIGlnAuRpjr4d4ZlgIvyce34WtXFTWNXSIsHbakbX7c90JbZV/D8M1Z/OOPkZGK8d5Hft4s+
-	A0tWc3zPzTywppRmc+uw67pLYVyvUEfdisMKTU2k1yUoSWbpNvQXINWi33IS7HtZcZC6V8jKlCwf7
-	7xm9Fk5g2C/GKN8p0vsw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=mBx2lca0pPhvPdkD1VFi3T0pZTt8JHO94wzxKRO9uXM=; b=JHYyTtBYacWK4K
+	Iwk7wuU8I1yXLd2B3MGh58cctBa6MqK1WsusaDE2W9U0cUx/nV+InqafTM3wdKye3mFZF2GMoeM9G
+	csdYaZPQLVLJPS+hKPZ2UdFjQZDgjpbzenIJRxG1TqYqDiMeWkCfJEHMVqppP9IDEACCPA0QDwcJO
+	DeJhZToIcXvaPkxnzEPL94CYyAadWnJFg7l4MX0ezVrE8NhKmX0YTkY9PWlV7jn++DboLWKFhG4W5
+	evrWOkkSiqEHZVoM9ahIOPt/Sf8YySRj9ndGe3ntysI0Om9FShyfZyRUS9LrlKXQxtmd28U3EFQ1h
+	ER0Uab0ZJUEuDNJsEjHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPgAX-00BbYb-2Q;
-	Tue, 16 Jan 2024 09:55:41 +0000
-Received: from madrid.collaboradmins.com ([46.235.227.194])
+	id 1rPgAk-00Bbg4-0d;
+	Tue, 16 Jan 2024 09:55:54 +0000
+Received: from madrid.collaboradmins.com ([2a00:1098:ed:100::25])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPgAV-00BbWv-1B;
-	Tue, 16 Jan 2024 09:55:40 +0000
+	id 1rPgAg-00Bbcp-01;
+	Tue, 16 Jan 2024 09:55:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1705398933;
-	bh=Br3uGw698JM/9pMD4T/qIt8jhsL/ZVXJur8i5VSo5mA=;
-	h=From:To:Cc:Subject:Date:From;
-	b=kUhMUzsrw1vmK+qacsxwDUYmr4rGABBLTRQS0y8kE2/LrieDRkb5D9GaSq+GpPnGa
-	 w03euI1BQuv0ZFC0Au8IrxLvh3k9KtPqCmVu/mx6mw3qUR6B6OWQrimKh0kZUiJyPJ
-	 bFP5++AjL2OxONjb1UVZjm4UxciDokO5zF0zg+S+XRGo09ot4FpCD0yZvQWCDyog1A
-	 CJWQIEysMbT3DuoZBJeqvjGTd+uBH6qQ7Hf/9UFYCafc6N2R/fga2WXBHWUohdGr4R
-	 OF6b3391CjsOAbSKeL6+fBAs0CS/VO9TTjvbfNWtXCys0PsUM0K69eM74stPcsPYuD
-	 3ELywJPSeaDSA==
+	s=mail; t=1705398948;
+	bh=YjbImhJh8bgrlYf3Pw1w/8S18obt3jnMcaKRmMtRMbE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=jQkzX+isG6XuiFkddHOUkt1ZvKebGFACtV3rqV2r6uwJ2ddvqQBOHds5G69mifM39
+	 Drt/s9DaIRMa0NIRW7xL7+LP8iMqLQQGXaiM6Bt0fd0N7aIi3EgZEygTXr7sqSP0W0
+	 EN9FjmPqoEhNDMeeLtP1CmK7/GOV4gqBNwzzBL5dUjXmyhNoK86qSunDxWUwqxEGed
+	 jogJikORkj3B/5KBuCIx3hYaxPx035NbMgmoaFSDMRLQbsXpmQUH/D9n7RJ8B8S7yU
+	 HIVEzjp8kZ0HRyA/1uaExuNAFlbuXez1xw/r4yupgyvdPC+6xWgybiCcp4B49yaDng
+	 iFvMeK+RNDHeQ==
 Received: from localhost.localdomain (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: vignesh)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 12A5F3782066;
-	Tue, 16 Jan 2024 09:55:28 +0000 (UTC)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id B76503782067;
+	Tue, 16 Jan 2024 09:55:44 +0000 (UTC)
 From: Vignesh Raman <vignesh.raman@collabora.com>
 To: dri-devel@lists.freedesktop.org
 Cc: daniel@fooishbar.org,
@@ -56,14 +56,16 @@ Cc: daniel@fooishbar.org,
 	linux-rockchip@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/7] drm/ci: Add support for GPU and display testing
-Date: Tue, 16 Jan 2024 15:24:32 +0530
-Message-Id: <20240116095439.107324-1-vignesh.raman@collabora.com>
+Subject: [PATCH v2 3/7] drm/ci: mediatek: Add job to test panfrost and powervr GPU driver
+Date: Tue, 16 Jan 2024 15:24:35 +0530
+Message-Id: <20240116095439.107324-4-vignesh.raman@collabora.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20240116095439.107324-1-vignesh.raman@collabora.com>
+References: <20240116095439.107324-1-vignesh.raman@collabora.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240116_015539_549727_07FB8292 
-X-CRM114-Status: GOOD (  12.06  )
+X-CRM114-CacheID: sfid-20240116_015550_171683_FA78107C 
+X-CRM114-Status: GOOD (  15.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,73 +82,96 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Some ARM SOCs have a separate display controller and GPU, each with
-different drivers. For mediatek mt8173, the GPU driver is powervr,
-and the display driver is mediatek. In the case of mediatek mt8183,
-the GPU driver is panfrost, and the display driver is mediatek.
-With rockchip rk3288/rk3399, the GPU driver is panfrost, while the
-display driver is rockchip. For amlogic meson, the GPU driver is
-panfrost, and the display driver is meson.
+For mediatek mt8173, the GPU driver is powervr and for mediatek
+mt8183, the GPU driver is panfrost. So add support in drm-ci to
+test panfrost and powervr GPU driver for mediatek SOCs and update
+xfails. Powervr driver was merged in linux kernel, but there's no
+mediatek support yet. So disable the mt8173-gpu job which uses
+powervr driver.
 
-IGT tests run various tests with different xfails and can test both
-GPU devices and KMS/display devices. Currently, in drm-ci for MediaTek,
-Rockchip, and Amlogic Meson platforms, only the GPU driver is tested.
-This leads to incomplete coverage since the display is never tested on
-these platforms. This commit series adds support in drm-ci to run tests
-for both GPU and display drivers for MediaTek, Rockchip, and Amlogic
-Meson platforms.
+Also update the MAINTAINERS file to include xfails for panfrost driver.
 
-Vignesh Raman (7):
-  drm/ci: arm64.config: Enable CONFIG_DRM_ANALOGIX_ANX7625
-  drm/ci: mediatek: Rename exisitng job
-  drm/ci: mediatek: Add job to test panfrost and powervr GPU driver
-  drm/ci: meson: Rename exisitng job
-  drm/ci: meson: Add job to test panfrost GPU driver
-  drm/ci: rockchip: Rename existing job
-  drm/ci: rockchip: Add job to test panfrost GPU driver
+Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+---
 
- MAINTAINERS                                   |   1 +
- drivers/gpu/drm/ci/arm64.config               |   1 +
- drivers/gpu/drm/ci/igt_runner.sh              |  10 --
- drivers/gpu/drm/ci/test.yml                   | 107 ++++++++++++++----
- ....txt => mediatek-mt8173-display-fails.txt} |   0
- .../xfails/mediatek-mt8173-display-flakes.txt |  13 +++
- .../xfails/mediatek-mt8183-display-fails.txt  |   7 ++
- .../xfails/mediatek-mt8183-display-flakes.txt |   8 ++
- .../ci/xfails/meson-g12b-display-fails.txt    |  13 +++
- ...-fails.txt => panfrost-g12b-gpu-fails.txt} |   0
- ...ails.txt => panfrost-mt8183-gpu-fails.txt} |   0
- ...ails.txt => panfrost-rk3288-gpu-fails.txt} |   0
- ...kips.txt => panfrost-rk3288-gpu-skips.txt} |   0
- ...ails.txt => panfrost-rk3399-gpu-fails.txt} |   0
- ...kes.txt => panfrost-rk3399-gpu-flakes.txt} |   0
- ...kips.txt => panfrost-rk3399-gpu-skips.txt} |   0
- .../xfails/rockchip-rk3288-display-fails.txt  |  15 +++
- .../xfails/rockchip-rk3288-display-flakes.txt |  13 +++
- .../xfails/rockchip-rk3288-display-skips.txt  |   8 ++
- .../xfails/rockchip-rk3399-display-fails.txt  |  69 +++++++++++
- .../xfails/rockchip-rk3399-display-flakes.txt |  20 ++++
- .../xfails/rockchip-rk3399-display-skips.txt  |   6 +
- 22 files changed, 261 insertions(+), 30 deletions(-)
- rename drivers/gpu/drm/ci/xfails/{mediatek-mt8173-fails.txt => mediatek-mt8173-display-fails.txt} (100%)
- create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8173-display-flakes.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-display-fails.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-display-flakes.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/meson-g12b-display-fails.txt
- rename drivers/gpu/drm/ci/xfails/{meson-g12b-fails.txt => panfrost-g12b-gpu-fails.txt} (100%)
- rename drivers/gpu/drm/ci/xfails/{mediatek-mt8183-fails.txt => panfrost-mt8183-gpu-fails.txt} (100%)
- rename drivers/gpu/drm/ci/xfails/{rockchip-rk3288-fails.txt => panfrost-rk3288-gpu-fails.txt} (100%)
- rename drivers/gpu/drm/ci/xfails/{rockchip-rk3288-skips.txt => panfrost-rk3288-gpu-skips.txt} (100%)
- rename drivers/gpu/drm/ci/xfails/{rockchip-rk3399-fails.txt => panfrost-rk3399-gpu-fails.txt} (100%)
- rename drivers/gpu/drm/ci/xfails/{rockchip-rk3399-flakes.txt => panfrost-rk3399-gpu-flakes.txt} (100%)
- rename drivers/gpu/drm/ci/xfails/{rockchip-rk3399-skips.txt => panfrost-rk3399-gpu-skips.txt} (100%)
- create mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3288-display-fails.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3288-display-flakes.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3288-display-skips.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3399-display-fails.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3399-display-flakes.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3399-display-skips.txt
+v2:
+  - Add panfrost and PVR GPU jobs for mediatek SOC with new xfails, add xfail
+    entry to MAINTAINERS.
 
+---
+ MAINTAINERS                                    |  1 +
+ drivers/gpu/drm/ci/test.yml                    | 18 ++++++++++++++++++
+ .../ci/xfails/panfrost-mt8183-gpu-fails.txt    | 13 +++++++++++++
+ 3 files changed, 32 insertions(+)
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-mt8183-gpu-fails.txt
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 9d959a6881f7..bcdc17d1aa26 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1645,6 +1645,7 @@ L:	dri-devel@lists.freedesktop.org
+ S:	Supported
+ T:	git git://anongit.freedesktop.org/drm/drm-misc
+ F:	Documentation/gpu/panfrost.rst
++F:	drivers/gpu/drm/ci/xfails/panfrost*
+ F:	drivers/gpu/drm/panfrost/
+ F:	include/uapi/drm/panfrost_drm.h
+ 
+diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
+index e3aaec06a65d..65578427355d 100644
+--- a/drivers/gpu/drm/ci/test.yml
++++ b/drivers/gpu/drm/ci/test.yml
+@@ -299,6 +299,17 @@ amdgpu:stoney:
+     DEVICE_TYPE: mt8183-kukui-jacuzzi-juniper-sku16
+     RUNNER_TAG: mesa-ci-x86-64-lava-mt8183-kukui-jacuzzi-juniper-sku16
+ 
++mediatek:mt8173-gpu:
++  extends:
++    - .mt8173
++  variables:
++    GPU_VERSION: mt8173-gpu
++    DRIVER_NAME: powervr
++  rules:
++    # TODO: powervr driver was merged in linux kernel, but there's no mediatek support yet
++    # Remove the rule once mediatek support is added for powervr
++    - when: never
++
+ mediatek:mt8173-display:
+   extends:
+     - .mt8173
+@@ -306,6 +317,13 @@ mediatek:mt8173-display:
+     GPU_VERSION: mt8173-display
+     DRIVER_NAME: mediatek
+ 
++mediatek:mt8183-gpu:
++  extends:
++    - .mt8183
++  variables:
++    GPU_VERSION: mt8183-gpu
++    DRIVER_NAME: panfrost
++
+ mediatek:mt8183-display:
+   extends:
+     - .mt8183
+diff --git a/drivers/gpu/drm/ci/xfails/panfrost-mt8183-gpu-fails.txt b/drivers/gpu/drm/ci/xfails/panfrost-mt8183-gpu-fails.txt
+new file mode 100644
+index 000000000000..67d690fc4037
+--- /dev/null
++++ b/drivers/gpu/drm/ci/xfails/panfrost-mt8183-gpu-fails.txt
+@@ -0,0 +1,13 @@
++kms_addfb_basic@addfb25-bad-modifier,Fail
++kms_bw@linear-tiling-1-displays-2560x1440p,Fail
++kms_bw@linear-tiling-2-displays-1920x1080p,Fail
++kms_bw@linear-tiling-2-displays-2560x1440p,Fail
++kms_bw@linear-tiling-2-displays-3840x2160p,Fail
++kms_bw@linear-tiling-3-displays-2560x1440p,Fail
++kms_bw@linear-tiling-3-displays-3840x2160p,Fail
++kms_color@pipe-A-invalid-gamma-lut-sizes,Fail
++kms_plane_cursor@overlay,Fail
++kms_plane_cursor@primary,Fail
++kms_plane_cursor@viewport,Fail
++kms_plane_scaling@upscale-with-rotation-20x20,Fail
++kms_rmfb@close-fd,Fail
 -- 
 2.40.1
 
