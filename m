@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C63AC47258
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jan 2024 09:56:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB184C47DA2
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jan 2024 09:56:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oSkDCZxDuYZ7Di6D/VfaaPf/M1d0RNCo/FHW//q1hgk=; b=exGw1c5b+t1c65
-	2mIAMK0jns3EKMucd5lqmXlbd9AmfM4/DAbon7FKpXO5BF6dNE0eagm+TVQSyCBREq6ds3fgYxRbc
-	Icn2B4iDXwZ/nMacMdYTPPbLQOn4/4JoXjj+1Sn1UcZzyNeaWb3xOsmzPyhO8p9P8AeJt7tH/GBVD
-	gblKbuW5jfeIpQ6tz/L9k/CEQhkbOBocPCGGNs6GSbj3qhGmOFQAAnWsvh+liKcp8AtVjY9fICBMD
-	J6WIB5SOJ1oivnvTgO0cp019hGF3J1bMGUxj8s2lz69lZFIY2fHu9CMLTyKjCyD2N39FshOuZG/ZC
-	fi/45qaXbATRR6VUqnZw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=11biqEleWg+/1QLJjxeqTE23gAmZQf4tAP/Fc3EKtno=; b=r2r3oDY+aSjH59
+	sdIQ5CFjS8EFcNGnv/zVLQ5oksFaeLKwmwSgR37Lg5iw+F3hT8TJMTmmY+fr2pFDZXIkdipZ7F5mv
+	sD7giByEwkQllYTkcLQQ/6Flms+sCIJADHVKhhzYv58J2Xk5Rc5W5b2v+YQoxetuFmPjfYhtpnRWX
+	ikXPWMIGlnAuRpjr4d4ZlgIvyce34WtXFTWNXSIsHbakbX7c90JbZV/D8M1Z/OOPkZGK8d5Hft4s+
+	A0tWc3zPzTywppRmc+uw67pLYVyvUEfdisMKTU2k1yUoSWbpNvQXINWi33IS7HtZcZC6V8jKlCwf7
+	7xm9Fk5g2C/GKN8p0vsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPgAZ-00BbZN-2M;
-	Tue, 16 Jan 2024 09:55:43 +0000
+	id 1rPgAX-00BbYb-2Q;
+	Tue, 16 Jan 2024 09:55:41 +0000
 Received: from madrid.collaboradmins.com ([46.235.227.194])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPgAV-00BbXF-1x;
-	Tue, 16 Jan 2024 09:55:41 +0000
+	id 1rPgAV-00BbWv-1B;
+	Tue, 16 Jan 2024 09:55:40 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1705398938;
-	bh=7gy2cH8xCKeZd7q+A6urQ6kNK0M655zZCD9c0wUy2r4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=QcMf11gTMvzzNOZtPCYn+f7g7nolvmby/iKAkFPoWq7ectFIAZcBomxghxN247cQg
-	 oO4n9UHQOIEDlPZLONhur3TZj5jFwqBbDs29DutcRiqmVdYYvHMcjPhk7RrJaFrKGP
-	 wfbCCDEYOoVMtWtrG7DpZ9inXmaQYW5PX0wM7oLH1NjRxB/3yIdvc8l+2V6CL66SzY
-	 haPnEzQG2vQyB3HgwcwjAHoNStbvrJewgB0grI2xvfCKkYch6rjPfEuNZE4My+I5w3
-	 /WTjOahIPZy+5QlITq2RUuFDHTeqX2c7wAIM2hMhjCyqBd3QKEAavdC5vi+s7Fka9S
-	 EYeUgRT5SECog==
+	s=mail; t=1705398933;
+	bh=Br3uGw698JM/9pMD4T/qIt8jhsL/ZVXJur8i5VSo5mA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=kUhMUzsrw1vmK+qacsxwDUYmr4rGABBLTRQS0y8kE2/LrieDRkb5D9GaSq+GpPnGa
+	 w03euI1BQuv0ZFC0Au8IrxLvh3k9KtPqCmVu/mx6mw3qUR6B6OWQrimKh0kZUiJyPJ
+	 bFP5++AjL2OxONjb1UVZjm4UxciDokO5zF0zg+S+XRGo09ot4FpCD0yZvQWCDyog1A
+	 CJWQIEysMbT3DuoZBJeqvjGTd+uBH6qQ7Hf/9UFYCafc6N2R/fga2WXBHWUohdGr4R
+	 OF6b3391CjsOAbSKeL6+fBAs0CS/VO9TTjvbfNWtXCys0PsUM0K69eM74stPcsPYuD
+	 3ELywJPSeaDSA==
 Received: from localhost.localdomain (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: vignesh)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 05A733782067;
-	Tue, 16 Jan 2024 09:55:33 +0000 (UTC)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 12A5F3782066;
+	Tue, 16 Jan 2024 09:55:28 +0000 (UTC)
 From: Vignesh Raman <vignesh.raman@collabora.com>
 To: dri-devel@lists.freedesktop.org
 Cc: daniel@fooishbar.org,
@@ -56,17 +56,14 @@ Cc: daniel@fooishbar.org,
 	linux-rockchip@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/7] drm/ci: arm64.config: Enable CONFIG_DRM_ANALOGIX_ANX7625
-Date: Tue, 16 Jan 2024 15:24:33 +0530
-Message-Id: <20240116095439.107324-2-vignesh.raman@collabora.com>
+Subject: [PATCH v2 0/7] drm/ci: Add support for GPU and display testing
+Date: Tue, 16 Jan 2024 15:24:32 +0530
+Message-Id: <20240116095439.107324-1-vignesh.raman@collabora.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240116095439.107324-1-vignesh.raman@collabora.com>
-References: <20240116095439.107324-1-vignesh.raman@collabora.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240116_015539_767476_0385764A 
-X-CRM114-Status: UNSURE (   8.15  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240116_015539_549727_07FB8292 
+X-CRM114-Status: GOOD (  12.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,35 +80,73 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Enable CONFIG_DRM_ANALOGIX_ANX7625 in the arm64 defconfig to get
-display driver probed on the mt8183-kukui-jacuzzi-juniper machine.
+Some ARM SOCs have a separate display controller and GPU, each with
+different drivers. For mediatek mt8173, the GPU driver is powervr,
+and the display driver is mediatek. In the case of mediatek mt8183,
+the GPU driver is panfrost, and the display driver is mediatek.
+With rockchip rk3288/rk3399, the GPU driver is panfrost, while the
+display driver is rockchip. For amlogic meson, the GPU driver is
+panfrost, and the display driver is meson.
 
-arch/arm64/configs/defconfig has CONFIG_DRM_ANALOGIX_ANX7625=m,
-but drm-ci don't have initrd with modules, so add
-CONFIG_DRM_ANALOGIX_ANX7625=y in CI arm64 config.
+IGT tests run various tests with different xfails and can test both
+GPU devices and KMS/display devices. Currently, in drm-ci for MediaTek,
+Rockchip, and Amlogic Meson platforms, only the GPU driver is tested.
+This leads to incomplete coverage since the display is never tested on
+these platforms. This commit series adds support in drm-ci to run tests
+for both GPU and display drivers for MediaTek, Rockchip, and Amlogic
+Meson platforms.
 
-Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
----
+Vignesh Raman (7):
+  drm/ci: arm64.config: Enable CONFIG_DRM_ANALOGIX_ANX7625
+  drm/ci: mediatek: Rename exisitng job
+  drm/ci: mediatek: Add job to test panfrost and powervr GPU driver
+  drm/ci: meson: Rename exisitng job
+  drm/ci: meson: Add job to test panfrost GPU driver
+  drm/ci: rockchip: Rename existing job
+  drm/ci: rockchip: Add job to test panfrost GPU driver
 
-v2:
-  - No changes
+ MAINTAINERS                                   |   1 +
+ drivers/gpu/drm/ci/arm64.config               |   1 +
+ drivers/gpu/drm/ci/igt_runner.sh              |  10 --
+ drivers/gpu/drm/ci/test.yml                   | 107 ++++++++++++++----
+ ....txt => mediatek-mt8173-display-fails.txt} |   0
+ .../xfails/mediatek-mt8173-display-flakes.txt |  13 +++
+ .../xfails/mediatek-mt8183-display-fails.txt  |   7 ++
+ .../xfails/mediatek-mt8183-display-flakes.txt |   8 ++
+ .../ci/xfails/meson-g12b-display-fails.txt    |  13 +++
+ ...-fails.txt => panfrost-g12b-gpu-fails.txt} |   0
+ ...ails.txt => panfrost-mt8183-gpu-fails.txt} |   0
+ ...ails.txt => panfrost-rk3288-gpu-fails.txt} |   0
+ ...kips.txt => panfrost-rk3288-gpu-skips.txt} |   0
+ ...ails.txt => panfrost-rk3399-gpu-fails.txt} |   0
+ ...kes.txt => panfrost-rk3399-gpu-flakes.txt} |   0
+ ...kips.txt => panfrost-rk3399-gpu-skips.txt} |   0
+ .../xfails/rockchip-rk3288-display-fails.txt  |  15 +++
+ .../xfails/rockchip-rk3288-display-flakes.txt |  13 +++
+ .../xfails/rockchip-rk3288-display-skips.txt  |   8 ++
+ .../xfails/rockchip-rk3399-display-fails.txt  |  69 +++++++++++
+ .../xfails/rockchip-rk3399-display-flakes.txt |  20 ++++
+ .../xfails/rockchip-rk3399-display-skips.txt  |   6 +
+ 22 files changed, 261 insertions(+), 30 deletions(-)
+ rename drivers/gpu/drm/ci/xfails/{mediatek-mt8173-fails.txt => mediatek-mt8173-display-fails.txt} (100%)
+ create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8173-display-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-display-fails.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-display-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/meson-g12b-display-fails.txt
+ rename drivers/gpu/drm/ci/xfails/{meson-g12b-fails.txt => panfrost-g12b-gpu-fails.txt} (100%)
+ rename drivers/gpu/drm/ci/xfails/{mediatek-mt8183-fails.txt => panfrost-mt8183-gpu-fails.txt} (100%)
+ rename drivers/gpu/drm/ci/xfails/{rockchip-rk3288-fails.txt => panfrost-rk3288-gpu-fails.txt} (100%)
+ rename drivers/gpu/drm/ci/xfails/{rockchip-rk3288-skips.txt => panfrost-rk3288-gpu-skips.txt} (100%)
+ rename drivers/gpu/drm/ci/xfails/{rockchip-rk3399-fails.txt => panfrost-rk3399-gpu-fails.txt} (100%)
+ rename drivers/gpu/drm/ci/xfails/{rockchip-rk3399-flakes.txt => panfrost-rk3399-gpu-flakes.txt} (100%)
+ rename drivers/gpu/drm/ci/xfails/{rockchip-rk3399-skips.txt => panfrost-rk3399-gpu-skips.txt} (100%)
+ create mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3288-display-fails.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3288-display-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3288-display-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3399-display-fails.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3399-display-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3399-display-skips.txt
 
----
- drivers/gpu/drm/ci/arm64.config | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/ci/arm64.config b/drivers/gpu/drm/ci/arm64.config
-index 8dbce9919a57..37d23fd7a367 100644
---- a/drivers/gpu/drm/ci/arm64.config
-+++ b/drivers/gpu/drm/ci/arm64.config
-@@ -187,6 +187,7 @@ CONFIG_MTK_DEVAPC=y
- CONFIG_PWM_MTK_DISP=y
- CONFIG_MTK_CMDQ=y
- CONFIG_REGULATOR_DA9211=y
-+CONFIG_DRM_ANALOGIX_ANX7625=y
- 
- # For nouveau.  Note that DRM must be a module so that it's loaded after NFS is up to provide the firmware.
- CONFIG_ARCH_TEGRA=y
 -- 
 2.40.1
 
