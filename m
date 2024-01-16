@@ -4,83 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54DF7C47258
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jan 2024 17:55:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DA22C47077
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jan 2024 08:37:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=x0GI1+b0gi4b7D9c7IgcpmMmUT8ME8lv37dvqh6btdw=; b=KQ3asXcAjNzMp+
-	NeOxnd0So+ec3mYyKbBjWl8sTOYOW/mSU+NvGWSehkkZguHOAX0juVRqw48FyDzYlnWbS+SwFkluV
-	WKl9OOtG3IC2CGxW4R/XhToENBKshJRKTLpnJBiURculEfc9DxMgAYVXe9GYmTI8KHkBrx10zwSnc
-	8pGtn+FFwCNNjgHXymIzO6mmMWS+E6x2P5BySxM/Wn+AbweZhIBRnoALVgXbj8RJ0baQKe0XvKGdw
-	ywsm5PdkKus8+bxAa/xYZXx4OsmQgHcm/9SQzKZTKNRHhpud3MXGiqT2LrEKDY0vva1m0PWDccBAX
-	g3+ZWR96LNX7cHgvieNQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=eZ0IDfcvPyZZFAy6WE1xwWRh+aRMy6dCze8l1JVIfY0=; b=ouCLS40qsKdF3v
+	gI8pkfLkTzCShK82g48LZ9sQoFn33B2eEvykllhPF0rQc3aCF1PNTyFi5991zrh1CazU1wodsIS0x
+	XvO87nCjm6WI23ti/x6NQijcY0QIAYkNf85X714JiKf18JdnmrAV2rFggrPho7K9r/5QE3iV6Iyd/
+	0hHJwYuhgqZVQj0/6EldZpqJpZnYslOixduTiyYk+OXnN7OPePjlVvVOPzAqyn8N3ue6Ml4nSPDed
+	hqVCsk7/nBwQfeJ4xsn2m8L0npt6Z89kS5umUXussyA0Xm8i05lj3jLDHfw3U/IycFV9KnKNDiMxt
+	u1CQdx7rYD3ooMVw5fpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPRAc-009qkL-10;
-	Mon, 15 Jan 2024 17:54:46 +0000
-Received: from mgamail.intel.com ([134.134.136.100])
+	id 1rPew2-00BRNr-0e;
+	Tue, 16 Jan 2024 08:36:38 +0000
+Received: from mail.entropitech.pl ([141.94.250.74])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPRAY-009qjY-0I;
-	Mon, 15 Jan 2024 17:54:43 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1705341282; x=1736877282;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GDOv+KMLJXKRPES2lOk9CeXDyPmRMw69IQKLB2cntJM=;
-  b=K4KDQ/0xuHTjNXoyMqiSRRRp4W1Oh8rqGIol2ktfm8iri7B3uEL2/IYL
-   9D/HsxNE0GF4g0D7MDBnzSXzDDOc5lsVkRym931kqcY5TIIOmMGtBmOQO
-   2pxlHmmErsOuIxz0eCcmi18j0nbwUQk2zq9I2N+2O7LuCdOagmPU71suJ
-   mviCVPagzlkms0s2KkbFQJ99RyAEQnYFpCukzNmb4OMDxhkOKisFRBsVn
-   3psQlsDBPCeJiZGh2r5XknpyaOhQP6HvlQvcWAjvKe8sxJC9NGRSfVLsY
-   4TdMbMTMo0I7UbvtdZlAYEzUJsfaKm2F3J9irI2oFwe7SB6DLVcEZjMxk
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="466045462"
-X-IronPort-AV: E=Sophos;i="6.04,197,1695711600"; 
-   d="scan'208";a="466045462"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2024 09:54:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,197,1695711600"; 
-   d="scan'208";a="32190049"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by orviesa001.jf.intel.com with ESMTP; 15 Jan 2024 09:54:31 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rPRAF-000Ce0-1n;
-	Mon, 15 Jan 2024 17:54:27 +0000
-Date: Tue, 16 Jan 2024 01:54:23 +0800
-From: kernel test robot <lkp@intel.com>
-To: Farouk Bouabid <farouk.bouabid@theobroma-systems.com>,
-	victor.liu@nxp.com, andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org, rfoss@kernel.org, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
-	daniel@ffwll.ch, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-	khilman@baylibre.com, jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com, hjc@rock-chips.com,
-	heiko@sntech.de, yannick.fertre@foss.st.com,
-	raphael.gallais-pou@foss.st.com, philippe.cornu@foss.st.com,
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH] drm/bridge: synopsys: dw-mipi-dsi: fix deferred dsi host
- probe breaks dsi device probe
-Message-ID: <202401160108.j5Lqkppm-lkp@intel.com>
-References: <20240112180737.551318-1-farouk.bouabid@theobroma-systems.com>
+	id 1rPevy-00BRNW-1p
+	for linux-amlogic@lists.infradead.org;
+	Tue, 16 Jan 2024 08:36:35 +0000
+Received: by mail.entropitech.pl (Postfix, from userid 1002)
+	id F054EA3E79; Tue, 16 Jan 2024 08:36:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=entropitech.pl;
+	s=mail; t=1705394192;
+	bh=3C0lFFl3FyqJxhWazybBxamNtYGn+JlC8TtPqc/zclI=;
+	h=Date:From:To:Subject:From;
+	b=HKqd+gLjKQtiiArN7pJ2s6s6JTUHqaHb163VfshgYmyFD+TXqBk0Dx94lqn2loZXi
+	 B/jJ4+5GYOKlpdvmZj/0wtR+yZ2ncl/oRNibXX/Kwdsar3VWA83NFfrz5RQV5IQFke
+	 nDDPm1tN203CXgHyEU88rWJFSgjOK16VUZ7tAaJMvy/rk88BXLaRlfHg8g7afNbuhm
+	 3kotVjvHowA+1WYQc4t4uAvCJgaO381ztWDUkLTpu6zI+p69Y0Zk9xwR/soHQ8tv6n
+	 qC7ijj+Di9b+HDt+9FN0Z9ky9HLfLmSqYzTQndoJlQuXCs/0gtW2iKSScfWM4FDuJQ
+	 Ba9yAaNizs+2Q==
+Received: by mail.entropitech.pl for <linux-amlogic@lists.infradead.org>; Tue, 16 Jan 2024 08:36:04 GMT
+Message-ID: <20240116074500-0.1.ed.p6ks.0.7la08hs48i@entropitech.pl>
+Date: Tue, 16 Jan 2024 08:36:04 GMT
+From: "Szymon Faryk" <szymon.faryk@entropitech.pl>
+To: <linux-amlogic@lists.infradead.org>
+Subject: =?UTF-8?Q?Zam=C3=B3wienie_na_klimatyzatory_postojowe?=
+X-Mailer: mail.entropitech.pl
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240112180737.551318-1-farouk.bouabid@theobroma-systems.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240115_095442_227154_6B8D76D7 
-X-CRM114-Status: GOOD (  15.27  )
+X-CRM114-CacheID: sfid-20240116_003634_773608_95ADB5D8 
+X-CRM114-Status: UNSURE (   1.26  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,138 +62,24 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Farouk,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on drm-misc/drm-misc-next]
-[also build test WARNING on drm/drm-next linus/master v6.7 next-20240112]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Farouk-Bouabid/drm-bridge-synopsys-dw-mipi-dsi-fix-deferred-dsi-host-probe-breaks-dsi-device-probe/20240113-020945
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20240112180737.551318-1-farouk.bouabid%40theobroma-systems.com
-patch subject: [PATCH] drm/bridge: synopsys: dw-mipi-dsi: fix deferred dsi host probe breaks dsi device probe
-config: i386-buildonly-randconfig-002-20240115 (https://download.01.org/0day-ci/archive/20240116/202401160108.j5Lqkppm-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240116/202401160108.j5Lqkppm-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401160108.j5Lqkppm-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c:1187:5: warning: no previous prototype for '__dw_mipi_dsi_probe' [-Wmissing-prototypes]
-    1187 | int __dw_mipi_dsi_probe(struct platform_device *pdev,
-         |     ^~~~~~~~~~~~~~~~~~~
-
-
-vim +/__dw_mipi_dsi_probe +1187 drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
-
-  1186	
-> 1187	int __dw_mipi_dsi_probe(struct platform_device *pdev,
-  1188			    const struct dw_mipi_dsi_plat_data *plat_data, struct dw_mipi_dsi **dsi_p)
-  1189	{
-  1190		struct device *dev = &pdev->dev;
-  1191		struct reset_control *apb_rst;
-  1192		struct dw_mipi_dsi *dsi;
-  1193		int ret;
-  1194	
-  1195		*dsi_p = devm_kzalloc(dev, sizeof(*dsi), GFP_KERNEL);
-  1196		if (!*dsi_p)
-  1197			return -ENOMEM;
-  1198	
-  1199		dsi = *dsi_p;
-  1200	
-  1201		dsi->dev = dev;
-  1202		dsi->plat_data = plat_data;
-  1203	
-  1204		if (!plat_data->phy_ops->init || !plat_data->phy_ops->get_lane_mbps ||
-  1205		    !plat_data->phy_ops->get_timing) {
-  1206			DRM_ERROR("Phy not properly configured\n");
-  1207			return -ENODEV;
-  1208		}
-  1209	
-  1210		if (!plat_data->base) {
-  1211			dsi->base = devm_platform_ioremap_resource(pdev, 0);
-  1212			if (IS_ERR(dsi->base))
-  1213				return -ENODEV;
-  1214	
-  1215		} else {
-  1216			dsi->base = plat_data->base;
-  1217		}
-  1218	
-  1219		dsi->pclk = devm_clk_get(dev, "pclk");
-  1220		if (IS_ERR(dsi->pclk)) {
-  1221			ret = PTR_ERR(dsi->pclk);
-  1222			dev_err(dev, "Unable to get pclk: %d\n", ret);
-  1223			return ret;
-  1224		}
-  1225	
-  1226		/*
-  1227		 * Note that the reset was not defined in the initial device tree, so
-  1228		 * we have to be prepared for it not being found.
-  1229		 */
-  1230		apb_rst = devm_reset_control_get_optional_exclusive(dev, "apb");
-  1231		if (IS_ERR(apb_rst)) {
-  1232			ret = PTR_ERR(apb_rst);
-  1233	
-  1234			if (ret != -EPROBE_DEFER)
-  1235				dev_err(dev, "Unable to get reset control: %d\n", ret);
-  1236	
-  1237			return ret;
-  1238		}
-  1239	
-  1240		if (apb_rst) {
-  1241			ret = clk_prepare_enable(dsi->pclk);
-  1242			if (ret) {
-  1243				dev_err(dev, "%s: Failed to enable pclk\n", __func__);
-  1244				return ret;
-  1245			}
-  1246	
-  1247			reset_control_assert(apb_rst);
-  1248			usleep_range(10, 20);
-  1249			reset_control_deassert(apb_rst);
-  1250	
-  1251			clk_disable_unprepare(dsi->pclk);
-  1252		}
-  1253	
-  1254		dw_mipi_dsi_debugfs_init(dsi);
-  1255		pm_runtime_enable(dev);
-  1256	
-  1257		dsi->dsi_host.ops = &dw_mipi_dsi_host_ops;
-  1258		dsi->dsi_host.dev = dev;
-  1259		dsi->bridge.driver_private = dsi;
-  1260		dsi->bridge.funcs = &dw_mipi_dsi_bridge_funcs;
-  1261		dsi->bridge.of_node = pdev->dev.of_node;
-  1262	
-  1263		ret = mipi_dsi_host_register(&dsi->dsi_host);
-  1264		if (ret) {
-  1265			dev_err(dev, "Failed to register MIPI host: %d\n", ret);
-  1266			pm_runtime_disable(dev);
-  1267			dw_mipi_dsi_debugfs_remove(dsi);
-  1268			return ret;
-  1269		}
-  1270	
-  1271	
-  1272		return 0;
-  1273	}
-  1274	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RHppZcWEIGRvYnJ5LCAKCmtvbnRha3R1asSZIHNpxJkgeiBQYcWEc3R3ZW0sIHBvbmlld2HFvCB3
+IG9mZXJjaWUgbmFzemVqIGZpcm15IHpuYWpkxIUgUGHFhHN0d28gc3plcm9raSB3eWLDs3Igbm93
+b2N6ZXNuZWogaSBpbnR1aWN5am5laiBrbGltYXR5emFjamkgcG9zdG9qb3dlaiBkbyBhdXQgaSBt
+YXN6eW4uCgpPZmVydWplbXkgc3dvaW0gS2xpZW50b20gdXJ6xIVkemVuaWEgY3pvxYJvd3ljaCBw
+cm9kdWNlbnTDs3csIG1hasSFIFBhxYRzdHdvIG1vxbxsaXdvxZvEhyB3eWJyYcSHIGluc3RhbGFj
+asSZLCBrdMOzcmEgc3BlxYJuaSB3c3p5c3RraWUgb2N6ZWtpd2FuaWEgaSB6YXBld25pIGtvbWZv
+cnQgdyBrYcW8ZHljaCB3YXJ1bmthY2guCgpNYW15IHcgc3dvaW0gYXNvcnR5bWVuY2llIGtsaW1h
+dHl6YXRvcnkgcG9kxYJhd2tvd2UsIGthbWVyb3dlLCBrbGltYXR5emF0b3J5IHogcGlsb3RlbSBv
+cmF6IHJvendpxIV6YW5pYSBkb3Bhc293YW5lIGRvIGthbXBlcsOzdyBpIMWCb2R6aS4KClpham11
+amVteSBzacSZIG5pZSB0eWxrbyBzcHJ6ZWRhxbzEhSwgYWxlIHLDs3duaWXFvCBmYWNob3d5bSBk
+b3JhZHp0d2VtIGkgbW9udGHFvGVtIGtsaW1hdHl6YWNqaS4gxZp3aWFkY3p5bXkgcsOzd25pZcW8
+IHVzxYJ1Z2kgc2Vyd2lzb3dlIGkgcHJ6ZWdsxIVkeS4gCgpDenkgc8SFIFBhxYRzdHdvIHphaW50
+ZXJlc293YW5pPyAKCgpQb3pkcmF3aWFtClN6eW1vbiBGYXJ5awoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
+bGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
+b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
