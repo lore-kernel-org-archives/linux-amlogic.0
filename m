@@ -4,86 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75774C47258
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jan 2024 10:21:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45AC6C47258
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jan 2024 10:52:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kSkTr0oTjyswL4Mt9aAvNJRZ2+Se11fjvHQApgrGOQc=; b=FIceLFZndP2pRm
-	M5VQfxO0umgO3ZtMdZ3TbEzq8FWvOwwIzGogrof3OylDUF/K3jUOFsKJb5A25L+MWpsq/SkSVXfbZ
-	fnokNPkruEbOtrVodJNMKZPcHbe6hTtWPfBHt5GOQVzif9Ncum90fdL3NWKNe1AGGHMmoKpEHt4uf
-	gY1Fa8A+lg+o4z1OXdy3j6yHif1L4iaiEqtqsg1thhEq6JtaSZgnnQxfoqmjVGCNm/cbriBrZ8Ana
-	DNWNJjRQg+LkVQ1p4JW4X2/hObE1CDUq7jf9apsHfNDd2oLA9TOQSOD9UlA5Z1w6nBGP0ZtPTZ0YM
-	qk/bxNWfV0kWu9DvsIPw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=LSfqosKlHxySGxbw4aHYVavBHYzZXFq7+iDIL1Ybtfg=; b=nQkp9/bu93mhewO80ZIjnwadCr
+	/22PyDGQlvVOSKV75915YQtpVnVW9oWuRgvzmAKA8yQaHiqubeHkAjQ3dRPRFfE8k5w63fMcLevvV
+	1hU1jhR0RLrMH5/jAa57UB3IZ+mxX7xFRHn7DPlUOBNdvpQ90pJ2x7KznlzCuB873+mfBKculv1Oq
+	N2+yxCXvO6uuaAzbxfSXwd3a/AETJa96+nsC3jDbp7kk8ceb5hfi4yzUDQx0zfl6WQhdhBSf5BSDw
+	OxoQPXcGbnYEFmOKkhMeVqC2IXfmo7VnXj96J8rxY/1HgFdHZqOlOoNyCMHRw1XDKvLHATgfLj/Xq
+	dus5k/2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rQ32o-00FFZL-2L;
-	Wed, 17 Jan 2024 10:21:14 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1rQ3Wh-00FLYf-2n;
+	Wed, 17 Jan 2024 10:52:07 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rQ32k-00FFYq-0I
+	id 1rQ3Wd-00FLXd-2i
 	for linux-amlogic@lists.infradead.org;
-	Wed, 17 Jan 2024 10:21:12 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40e86a9fbd9so11909975e9.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 17 Jan 2024 02:21:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1705486867; x=1706091667; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:cc:to:from:user-agent:references:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5mSVG7D4F/4/rMlg7YZmDmtDRH4U8gyyZuRonzPy+H4=;
-        b=UmOo/PD0XnqC6YvQpniFA+UrEuinCvUg/A6BY2wOUKuuLX7jb13rSjOy7BZRAxpaDB
-         BlGzDsKJp1x9s3xwxC6MLG88LrHquwVvDfZiTbSfsclyffEz/4hRKvlFWtcUaM1SLl6a
-         GMMvKtiKUMlWY/yz93LNqjJZgVR6/B/svocSqNi2+4a+o0t9K/dykRw5fsaOuK2+c9On
-         zKnyvD5z9eECNXlfjJ1thxS9SCnMPP3Zdo7IceoS6T8bNCFrHIC3of2+56WYJzRgBsNv
-         EnlqrKDUTwR305IdIWdItXWl10GBHKwD8Sq7ektlekKO5MPzz0RLcraSynh7EUyS2aMU
-         eQLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705486867; x=1706091667;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:cc:to:from:user-agent:references:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5mSVG7D4F/4/rMlg7YZmDmtDRH4U8gyyZuRonzPy+H4=;
-        b=b1gWf4TPdIKM8yNPyXfqxii0pzUv0g/Phm+mxy+eVfxUOd/MGJSj7+vcsMt6MJ48V5
-         hbUASrAxg1HtQXEqdBzOPw3ulguIi+RqVuarlzuairolwBb0uaSdaVcTRk8heFHvsPdW
-         TQ/Of+BrkdWWj169l+0B5Ex4tK4c2o/r2zigwDgcra4APAe6ePJheVzJtwJyjygJFZTj
-         j6XMOgodjP04RO+FeNnGPmEqHO9V32vBCJsH87Ss2Pd4y6HpxnJS8gjQkf2cgo1vnPWy
-         gju2ZRFSErtK/RSubAI/BFf6oqDc18D/gOIDF1/5aINWImhia6r9qJWUwfA7Br62ov9B
-         exCw==
-X-Gm-Message-State: AOJu0YwlNrLoKzqh7Il0yRqmFsaHQCii3K0Lh4QfiK3QyrWsXx2/THUQ
-	EAEmLzjKJIb8HLNwGh2bnZH+HqNYE8jUcQ==
-X-Google-Smtp-Source: AGHT+IHkPtaUfaJlpb5rgGajtKU+P5rzVz0YPS17UdzuHDV8aXYHDcinmlVZjk1+b215qJd7ggkx8A==
-X-Received: by 2002:a05:600c:22cc:b0:40e:3dcd:2e24 with SMTP id 12-20020a05600c22cc00b0040e3dcd2e24mr4695637wmg.180.1705486867325;
-        Wed, 17 Jan 2024 02:21:07 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:c1f6:14ce:b96f:2df5])
-        by smtp.gmail.com with ESMTPSA id v13-20020a05600c444d00b0040e526bd5fdsm1894578wmn.1.2024.01.17.02.21.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jan 2024 02:21:06 -0800 (PST)
+	Wed, 17 Jan 2024 10:52:06 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rQ3WT-0000Z4-Vr; Wed, 17 Jan 2024 11:51:53 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rQ3WS-000RZ9-OT; Wed, 17 Jan 2024 11:51:52 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rQ3WS-001dbj-28;
+	Wed, 17 Jan 2024 11:51:52 +0100
+Date: Wed, 17 Jan 2024 11:51:52 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>
+Subject: Re: [PATCH v4 2/6] dt-bindings: pwm: amlogic: add new compatible for
+ meson8 pwm type
+Message-ID: <b3a5r4gti67zic6egpwnede7niakn54ewfpmxg4ojm6ye2qopx@rke57jcyuveg>
 References: <20231222111658.832167-1-jbrunet@baylibre.com>
  <20231222111658.832167-3-jbrunet@baylibre.com>
  <4rdb2be2bfzak3s4uaizthcdcdwdrxnx4kr2sgn527hvsie3pb@gfqciim7yryz>
-User-agent: mu4e 1.10.8; emacs 29.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Thierry Reding
- <thierry.reding@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>
-Subject: Re: [PATCH v4 2/6] dt-bindings: pwm: amlogic: add new compatible
- for meson8 pwm type
-Date: Wed, 17 Jan 2024 11:16:31 +0100
-In-reply-to: <4rdb2be2bfzak3s4uaizthcdcdwdrxnx4kr2sgn527hvsie3pb@gfqciim7yryz>
-Message-ID: <1jfrywxnu5.fsf@starbuckisacylon.baylibre.com>
+ <1jfrywxnu5.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
+In-Reply-To: <1jfrywxnu5.fsf@starbuckisacylon.baylibre.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240117_022110_374256_20C346E7 
-X-CRM114-Status: GOOD (  12.76  )
+X-CRM114-CacheID: sfid-20240117_025203_903117_0E49DD04 
+X-CRM114-Status: GOOD (  27.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,45 +76,137 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============7282119272400506241=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Ck9uIFdlZCAxNyBKYW4gMjAyNCBhdCAxMDo1OCwgVXdlIEtsZWluZS1Lw7ZuaWcgPHUua2xlaW5l
-LWtvZW5pZ0BwZW5ndXRyb25peC5kZT4gd3JvdGU6Cgo+IFtbUEdQIFNpZ25lZCBQYXJ0OlVuZGVj
-aWRlZF1dCj4gSGVsbG8sCj4KPiBPbiBGcmksIERlYyAyMiwgMjAyMyBhdCAxMjoxNjo1MFBNICsw
-MTAwLCBKZXJvbWUgQnJ1bmV0IHdyb3RlOgo+PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL3B3bS9wd20tYW1sb2dpYy55YW1sIGIvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL3B3bS9wd20tYW1sb2dpYy55YW1sCj4+IGluZGV4IGExZDM4MmFh
-Y2I4Mi4uZWVjZTM5MDExNGEzIDEwMDY0NAo+PiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3MvcHdtL3B3bS1hbWxvZ2ljLnlhbWwKPj4gKysrIGIvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL3B3bS9wd20tYW1sb2dpYy55YW1sCj4+IEBAIC0yMSwyMyArMjEs
-MzUgQEAgcHJvcGVydGllczoKPj4gICAgICAgICAgICAtIGFtbG9naWMsbWVzb24tZzEyYS1lZS1w
-d20KPj4gICAgICAgICAgICAtIGFtbG9naWMsbWVzb24tZzEyYS1hby1wd20tYWIKPj4gICAgICAg
-ICAgICAtIGFtbG9naWMsbWVzb24tZzEyYS1hby1wd20tY2QKPj4gLSAgICAgICAgICAtIGFtbG9n
-aWMsbWVzb24tczQtcHdtCj4+ICsgICAgICAgIGRlcHJlY2F0ZWQ6IHRydWUKPj4gICAgICAgIC0g
-aXRlbXM6Cj4+ICAgICAgICAgICAgLSBjb25zdDogYW1sb2dpYyxtZXNvbi1neC1wd20KPj4gICAg
-ICAgICAgICAtIGNvbnN0OiBhbWxvZ2ljLG1lc29uLWd4YmItcHdtCj4+ICsgICAgICAgIGRlcHJl
-Y2F0ZWQ6IHRydWUKPj4gICAgICAgIC0gaXRlbXM6Cj4+ICAgICAgICAgICAgLSBjb25zdDogYW1s
-b2dpYyxtZXNvbi1neC1hby1wd20KPj4gICAgICAgICAgICAtIGNvbnN0OiBhbWxvZ2ljLG1lc29u
-LWd4YmItYW8tcHdtCj4+ICsgICAgICAgIGRlcHJlY2F0ZWQ6IHRydWUKPj4gICAgICAgIC0gaXRl
-bXM6Cj4+ICAgICAgICAgICAgLSBjb25zdDogYW1sb2dpYyxtZXNvbjgtcHdtCj4+ICAgICAgICAg
-ICAgLSBjb25zdDogYW1sb2dpYyxtZXNvbjhiLXB3bQo+PiArICAgICAgICBkZXByZWNhdGVkOiB0
-cnVlCj4KPiBJIHRoaW5rIGRlcHJlY2F0aW5nIHRoZSBvbGQgYmluZGluZyBhbmQgYWRkaW5nIGEg
-bmV3IGNvbXBhdGlibGUgc2hvdWxkCj4gYmUgZG9uZSBpbiB0d28gY29tbWl0cy4KCkhpIFV3ZSwK
-ClRoZXJlIHdhcyB0aGUgc2FtZSBjb21tZW50IG9uIHYzIGFuZCBLcnp5c3p0b2Ygc2FpZCBpdCBz
-aG91bGQgYmUgZG9uZQpsaWtlIHRoaXM6CgpodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1w
-d20vZTEyN2RjZWYtMzE0OS00NDNhLTlhOGMtZDI0ZWY0MDU0ZjA5QGxpbmFyby5vcmcKCkkgdGVu
-ZCB0byBhZ3JlZSB3aXRoIEtyenlzenRvZiBvbiB0aGlzIGJ1dCwgYXMgSSBwcmV2aW91c2x5IHNh
-aWQsCkkgZG9uJ3QgcmVhbGx5IG1pbmQgb25lIHdheSBvciB0aGUgb3RoZXIuIEp1c3QgaGF2ZSB0
-byBwaWNrIG9uZS4KCj4KPj4gKyAgICAgIC0gY29uc3Q6IGFtbG9naWMsbWVzb244LXB3bS12Mgo+
-PiArICAgICAgLSBpdGVtczoKPj4gKyAgICAgICAgICAtIGVudW06Cj4+ICsgICAgICAgICAgICAg
-IC0gYW1sb2dpYyxtZXNvbjhiLXB3bS12Mgo+PiArICAgICAgICAgICAgICAtIGFtbG9naWMsbWVz
-b24tZ3hiYi1wd20tdjIKPj4gKyAgICAgICAgICAgICAgLSBhbWxvZ2ljLG1lc29uLWF4Zy1wd20t
-djIKPj4gKyAgICAgICAgICAgICAgLSBhbWxvZ2ljLG1lc29uLWcxMi1wd20tdjIKPj4gKyAgICAg
-ICAgICAtIGNvbnN0OiBhbWxvZ2ljLG1lc29uOC1wd20tdjIKPj4gKyAgICAgIC0gY29uc3Q6IGFt
-bG9naWMsbWVzb24tczQtcHdtCj4KPiBCZXN0IHJlZ2FyZHMKPiBVd2UKCgotLSAKSmVyb21lCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxv
-Z2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDov
-L2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+
+--===============7282119272400506241==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3bhlfpvugwaqjoz5"
+Content-Disposition: inline
+
+
+--3bhlfpvugwaqjoz5
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello Jerome,
+
+On Wed, Jan 17, 2024 at 11:16:31AM +0100, Jerome Brunet wrote:
+> On Wed 17 Jan 2024 at 10:58, Uwe Kleine-K=F6nig <u.kleine-koenig@pengutro=
+nix.de> wrote:
+> > [[PGP Signed Part:Undecided]]
+> > Hello,
+> >
+> > On Fri, Dec 22, 2023 at 12:16:50PM +0100, Jerome Brunet wrote:
+> >> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/=
+Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> >> index a1d382aacb82..eece390114a3 100644
+> >> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> >> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> >> @@ -21,23 +21,35 @@ properties:
+> >>            - amlogic,meson-g12a-ee-pwm
+> >>            - amlogic,meson-g12a-ao-pwm-ab
+> >>            - amlogic,meson-g12a-ao-pwm-cd
+> >> -          - amlogic,meson-s4-pwm
+
+Either I still didn't grasp all the details of this change, or removing
+amlogic,meson-s4-pwm in this commit is wrong.
+
+> >> +        deprecated: true
+> >>        - items:
+> >>            - const: amlogic,meson-gx-pwm
+> >>            - const: amlogic,meson-gxbb-pwm
+> >> +        deprecated: true
+> >>        - items:
+> >>            - const: amlogic,meson-gx-ao-pwm
+> >>            - const: amlogic,meson-gxbb-ao-pwm
+> >> +        deprecated: true
+> >>        - items:
+> >>            - const: amlogic,meson8-pwm
+> >>            - const: amlogic,meson8b-pwm
+> >> +        deprecated: true
+> >
+> > I think deprecating the old binding and adding a new compatible should
+> > be done in two commits.
+>=20
+> Hi Uwe,
+>=20
+> There was the same comment on v3 and Krzysztof said it should be done
+> like this:
+>=20
+> https://lore.kernel.org/linux-pwm/e127dcef-3149-443a-9a8c-d24ef4054f09@li=
+naro.org
+>=20
+> I tend to agree with Krzysztof on this but, as I previously said,
+> I don't really mind one way or the other. Just have to pick one.
+
+Ah, so the machines that used amlogic,meson-g12a-ee-pwm before are
+supposed to use amlogic,meson-g12-pwm-v2 now. With that understood I
+agree to you and Krzysztof.
+
+I wonder if me not understanding that is a sign that the commit log
+isn't optimal (or if it's only that I didn't properly read it :-).
+Now that I understood the change better, the commit log is
+understandable, but maybe still make it a bit more explicit that it
+introduces a new way to formalize already supported hardware. Something
+like:
+
+	dt-bindings: pwm: amlogic: Add a new binding for meson8 pwm types
+
+	The binding that is used up to now describe which input the PWM
+	channel multiplexer should pick among its possible parents,
+	which are hardcoded in the driver. This isn't a good binding in
+	the sense that it should describe hardware but not usage.
+
+	Add a new binding deprecating the old one that uses clocks in a
+	better way and how clocks are usually used today: The list of
+	clocks describe the inputs of the PWM block as they are realised
+	in hardware.
+
+	So deprecate the old bindings and introduce a compatible per SoC
+	family to replace these.
+
+I think I'd understand that better, but that might be because I wrote
+it and it's subjective?
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--3bhlfpvugwaqjoz5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWnsUcACgkQj4D7WH0S
+/k5jBgf+K4/2nlwNuhl98wP3lhKs9noKvnoecmlxEqzV+HowMVaRvasoTYxpWZst
+F0kE3hWQF654JB/Whvdb9NVMJHUIfvuok6egBVBC7VKtGKR8sUUUD1vc0CnxV1OE
+tosScnl0r/zPXyFWU6xYPzFHVrnndxBwjvneScCkA8W1hx8eLG3B8pFHFTjsxvOg
+gQtlS46eDfnJ9llQDl1N2iZHdOdfAXqFegZB2RCHmIorS1z86x53Wci/tFvYLH6F
+e6Jn0Nwrf6EPHzQK2FCQZOa9BwFJDZ6NiivNXMSzp4RgCSmNEySOlc4XVBoF4Sh7
+hbnETJ5us1luELfbF4oSg2Y3H8c3Vw==
+=iYzS
+-----END PGP SIGNATURE-----
+
+--3bhlfpvugwaqjoz5--
+
+
+--===============7282119272400506241==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7282119272400506241==--
+
