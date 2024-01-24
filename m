@@ -4,82 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E9CCC46CD2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jan 2024 11:01:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A61E4C46CD2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jan 2024 13:07:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=087RvVMy7A6ZroC34DWKKpZhdQvq7jBfJ77LquutuGY=; b=b4FpsWRbFgQVQ7QEq0dBkG7NvD
-	yEC57Cj/tKON3bKSTMYB32u+yL2Qvdj64mljmVk9jIZ9opyYus5qjkcdPTnSF24Y3VybFanm3KRUU
-	lb/CND1XnSp10J+rOd2k2UhvrkYNn2oNirpRzAYOVgl94dlCRbuHwsU788WVaNaR6li9q4EgZ1G2f
-	b95D/dNV485coJBU30VOxgSouQwZ9R29HVPwpwr93mefRqyQSBzWl/Wd91idc4TgUJvEZDto5ZdIY
-	II4/zwLBmprNs/klJcIXHsCrDDosAvdKl5boUyyC+GwsF149tNg1P5GJ+SozcLuqdRcHbRPIKTcTp
-	TbQAR5Zw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=UuhssGx6pFnMDuHxUD9J1JKjUCJ9T6v76wOqne7/Nig=; b=QFd13jxsKAdmxp
+	wQY+HmxMhOYgDdW/nI8vT1IqZBIPjpbiCw1vQTaJ3VdSKyU/YXpVlTbgsp1HxgcAtZqZgjiJE3zY1
+	I0HhhJllQcmqcak/Gx++p6ZuvNK30s9lr9Hx2CcVgS+wPxDgWZARaBU+X/xASuhr6ke3GVN5OcODS
+	tGGjtoXgP+ImRYmTaS1ksz+v2RMEuub6ez2hCrkdz9QydbAO+mKnfTbHdjUJXz4QKqv/zWXFiFIKO
+	ZHn3l/aZD8SUurD8jfMOFad7APkFEd8WQlp9+Sdsrqlpk4i/5ZOFDIV7cPiFtT+F26Wn77eW/nbvW
+	jEBb1N2TQFgEmkVl9rtQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rSazl-002e9Z-2A;
-	Wed, 24 Jan 2024 11:00:37 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1rScxt-003P4C-2s;
+	Wed, 24 Jan 2024 13:06:49 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rSZrv-002Kfr-0F
-	for linux-amlogic@bombadil.infradead.org;
-	Wed, 24 Jan 2024 09:48:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=Xg1izc/lSfKSy66iJxzXjiZZ2OlhrUzg8hXvaqaB8n8=; b=IlnCvsCOtvVpFkQdn0LbPfGQA+
-	sytDs7D97eBGpcOLvKJlhHOO7M5emux31c7ujv39PKgXPg9xHJLzI69Vnp/iGQZRw0sW0nFddtR+H
-	OPutwuokG7m4E2yQ7WocHHhVgSJkn0Q9Z8A442WQSVaw2olAA7HKY9pZg6YeFfBLnEILF7E+1d37G
-	ZeRawgVHLr5roLCmiq3y34ShA9DOL87QVbz1fyvC5oPyJ8eiHnHBIgTV4cPvzC3FgKqQO+dKIL8Uf
-	Fl9tmMBZEZ9N9mxx0950kfAxU9UmQOQVTeQTMSbBs30WdLrWI1w1ERkmrtnpIbPnmTPztC3oPez5t
-	FIsuTMPQ==;
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
-	by desiato.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rSZrr-00000004NiD-0fal
-	for linux-amlogic@lists.infradead.org;
-	Wed, 24 Jan 2024 09:48:25 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rSZrk-0004BM-78; Wed, 24 Jan 2024 10:48:16 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rSZrj-0021hH-Cn; Wed, 24 Jan 2024 10:48:15 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rSZrj-0071yh-0x;
-	Wed, 24 Jan 2024 10:48:15 +0100
-Date: Wed, 24 Jan 2024 10:48:15 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>
-Subject: Re: [PATCH v4 5/6] pwm: meson: don't carry internal clock elements
- around
-Message-ID: <jlrptw2norojxgpfmsybv6b5aq3epkdkqvri2l2rkvtx5qofjd@q4ggezt47a42>
-References: <20231222111658.832167-1-jbrunet@baylibre.com>
- <20231222111658.832167-6-jbrunet@baylibre.com>
- <gyhea42rtydw3g45lfkfbxfm6xcbwibz67vw7xke2sm7powz2a@i33g4pyanu4l>
- <1jttn3w0ja.fsf@starbuckisacylon.baylibre.com>
+	id 1rScxo-003P1f-2M;
+	Wed, 24 Jan 2024 13:06:48 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 2D63610000A;
+	Wed, 24 Jan 2024 16:06:38 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2D63610000A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1706101598;
+	bh=zsaAaLH6CJR21EnkfyKWpwpt24RWdug8/kf9Nmutwtk=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=uZPRmfDoQb5g2BQ5jsyq/TzsVOm1HBSDitGpyhC/BnFNLtuBpXV4UZ/1PnoR1v1+r
+	 6qzJaVFiIX8wIdWxXTV0zfM4igd4rrTJZqvGXWhj9gvZ68xjnhfzjoDG0135SgHKiY
+	 9WtLkvcuUT9hfbBecjS+jINhfi/nJnUphA95n+xnY4un1IJYrL7s0ZfZpeYHUHFLiC
+	 4q3EBQfKAsLqk86jqpnjinde/CcfPdlIvh0gfGQhoF0iX/pjRSyWQxxqIy+KRKOWXY
+	 9E+pGec/yTGkntT8Q3aBjf4RCqlcDW3aPl5Ug/eEI/gHGqCIQDNi0LEs2v8s9fbkTh
+	 SGowzrEJgXegg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 24 Jan 2024 16:06:37 +0300 (MSK)
+Received: from user-A520M-DS3H.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 24 Jan 2024 16:06:37 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>
+CC: <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<kernel@salutedevices.com>, Alexey Romanov <avromanov@salutedevices.com>,
+	Dmitry Rokosov <ddrokosov@salutedevices.com>
+Subject: [PATCH v1] arch: arm64: dts: meson: a1: add assigned-clocks for usb node
+Date: Wed, 24 Jan 2024 16:06:23 +0300
+Message-ID: <20240124130623.3471236-1-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-In-Reply-To: <1jttn3w0ja.fsf@starbuckisacylon.baylibre.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 182891 [Jan 24 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/01/24 11:47:00 #23399457
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240124_094823_389229_EC5B7A21 
-X-CRM114-Status: GOOD (  22.40  )
+X-CRM114-CacheID: sfid-20240124_050645_463393_B4FDC77A 
+X-CRM114-Status: GOOD (  10.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,93 +95,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7895263486955227729=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+To ensure proper functionality of USB, it is necessary to use
+the rate of 64000000 for CLKID_USB_BUS. For instance, adb may
+not function correctly without this setting. This information
+has been derived from the vendor SDK.
 
---===============7895263486955227729==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bi3q4dz4cz4stt46"
-Content-Disposition: inline
+Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index cf150f568335..b9fd69112535 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -668,6 +668,8 @@ usb: usb@fe004400 {
+ 				 <&clkc_periphs CLKID_USB_BUS>,
+ 				 <&clkc_periphs CLKID_USB_CTRL_IN>;
+ 			clock-names = "usb_ctrl", "usb_bus", "xtal_usb_ctrl";
++			assigned-clocks = <&clkc_periphs CLKID_USB_BUS>;
++			assigned-clock-rates = <64000000>;
+ 			resets = <&reset RESET_USBCTRL>;
+ 			reset-name = "usb_ctrl";
+ 
+-- 
+2.34.1
 
---bi3q4dz4cz4stt46
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Jerome,
-
-On Wed, Jan 24, 2024 at 10:16:17AM +0100, Jerome Brunet wrote:
-> On Wed 24 Jan 2024 at 10:02, Uwe Kleine-K=F6nig <u.kleine-koenig@pengutro=
-nix.de> wrote:
-> > On Fri, Dec 22, 2023 at 12:16:53PM +0100, Jerome Brunet wrote:
-> >> @@ -442,6 +439,13 @@ static int meson_pwm_init_channels(struct device =
-*dev)
-> >>  		struct meson_pwm_channel *channel =3D &meson->channels[i];
-> >>  		struct clk_parent_data div_parent =3D {}, gate_parent =3D {};
-> >>  		struct clk_init_data init =3D {};
-> >> +		struct clk_divider *div;
-> >> +		struct clk_gate *gate;
-> >> +		struct clk_mux *mux;
-> >> +
-> >> +		mux =3D devm_kzalloc(dev, sizeof(*mux), GFP_KERNEL);
-> >> +		if (!mux)
-> >> +			return -ENOMEM;
-> >
-> > I don't like this change. While it doesn't increase the memory used, it
-> > fragments the used memory and increases the overhead of memory
-> > management and the number of devm allocations.
-> >
-> > Are these members of meson_pwm_channel in the way for anything later?
->=20
-> Not really. It is just not useful on the SoCs which do use it and not
-> used at all starting from s4/a1.
-
-This remembers me about the old pwm-imx driver. This was essentially a
-single file containing two drivers just because both types appeared on
-imx machines. Later it was split into imx1 and imx27.
-
-I didn't look at the relevant differences between the existing driver
-and the changes needed for s4, but please don't repeat this issue for
-meson. Not sure this fear is justified, just saying ...
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---bi3q4dz4cz4stt46
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWw3N4ACgkQj4D7WH0S
-/k4dMAgAozpZ4OhSVfUnrblhtpzwr4SXMznUu/lW+ZcUZ39z8nQi29MQxtKkYOnJ
-UmUDaTwxqWcWOCGOuIL7XksK2uJOhIpH/kRatrulGYfDznloAAhSN/TSrpQ/BPuX
-4P+kRVTDpJggZ6AjKnPZgRqxNOxIpdFhRcKbgpCMuA7FKRNZhB7FzB5qJPn1VM3D
-ghXMcPWD8wH1gG4q/4bVk2vnpZFekLy14qP2MNYk+uEptXHM6bFtHhhxyWaCx/lQ
-Jd6oR9jeQLudBE0oel+3dHv4rPLV4bc3XSKZBzK5xT5rv2ZXk8IgRoZpRopCkz4O
-apNjdhV0xQJvpJ5gDWpPw1TLQVFVxA==
-=SWXC
------END PGP SIGNATURE-----
-
---bi3q4dz4cz4stt46--
-
-
---===============7895263486955227729==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7895263486955227729==--
-
