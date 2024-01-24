@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C5A3C46CD2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jan 2024 07:23:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09102C46CD2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jan 2024 07:23:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cvXLS6vbVf1v8gM6y2As/4w31WbXE4P3W18HKzV/rXQ=; b=nGI3r6UjEXIwaG
-	5lMLsXJOm+J6/jibG4CbcH51R7DcVVeYwnrqvrL3NUTnvw+XlH3oXjiN/D0LwyKxAVtR0UqtdSh+i
-	987mfxozGB+cxgM5tedTMetwI1vvssBofI0TITarnkRLwEewqwM3I7MhWCblCEeY2wwVzfvE+zwk9
-	1qlPh7MMoJAftr3f+BlgTYVqdgQe3PQXzcJXBDDacqpq3DbLuv0d819bPDpQgGXQ3eib4oQCLXxTM
-	2D+bfwivr4bSu0Rk2li4EYoLxOAvbh6rU4QsWfDe6Gx5L/z6sJz8EJf0WWJIIGUi0DA1mMJn7Vkhb
-	I7rprxcvND7g+OEe1Xig==;
+	List-Owner; bh=SLfbZGAeSoBNLVrwuCpR4sCOtD0grld9pQClU2KtuTU=; b=t2iaL8s8w4LsVw
+	3ujIx3urOMGdUmxeQtSr9uOoFJqO8WTgGqL7LQg2BjV8w0SEOvrwjFrCatJIg1uvltXJ9i+q4Vw9K
+	Z774jH13mixbdGJxi14MebwsmDFR8HRt8OVNX/J6fvBXynY2HTNWC9X/0zfPMl/36I9TWCYC+gNbL
+	MxBOErduhRbp4UXxhwbPTWNU7r/maIYkO1w3wN3YKaBfr75n+Qw7nzfmcPHHDDQzBjhjjez+43aSA
+	gQnH5JRmmT9A3s4buhLSqQ22eApDy6Q5zNQWWLNpAOjbGe0PXzQGbY1whPO+zbA7a0H6NLzwunEFn
+	eAXKmqFWoT+5JxfmAJIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rSXaj-001qEU-35;
-	Wed, 24 Jan 2024 07:22:33 +0000
-Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
+	id 1rSXbG-001qRE-2s;
+	Wed, 24 Jan 2024 07:23:06 +0000
+Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rSXag-001qDD-39
+	id 1rSXbD-001qQA-23
 	for linux-amlogic@lists.infradead.org;
-	Wed, 24 Jan 2024 07:22:32 +0000
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-55a5e7fa471so4527887a12.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 23 Jan 2024 23:22:30 -0800 (PST)
+	Wed, 24 Jan 2024 07:23:05 +0000
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a3122b70439so23276966b.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 23 Jan 2024 23:23:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706080949; x=1706685749; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1706080982; x=1706685782; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=74nQwkPGzi/fWf5wR+BH+XBmoovS6yknmDdHMmlxxzI=;
-        b=wHT9e8u4o5L2h4vMzsCpN5f1ursEBKO8qqfiv5EMkIuAMTFkznzyh/N5rYPZgYsfzR
-         BK92i5cvIvxJnSrIks+w2g9X+FWQk6BCQhZiUN3udc6xMYADzFQw4AEWuyWFu9/TTXUy
-         Ssn7CEp//dhhSiPWPRjHxoiX4MPjzjlwYjKki7xA40YC71Rzxr3kYTY2Vl6u1C6InO9e
-         w1mDkIiHfSyhJqgaqOCmaqTBhDZEhYlBfu42gNOCJjdwFPcoHKyzYRh2n93/v/h6oisU
-         5AT4ksIieMJJfFPMvNbGKKaeeDO6rH9QK+KVMtLWnlf5g3TQPdzTh/h6O38sOr1wbrm3
-         7Zcg==
+        bh=9toEF4naAJLYTJgN+U8K9ZKo/e3bxipAXVwvaHdBgq8=;
+        b=gGNiQoRjnPY9EQARpxMz0tsp989cWHkM8FOziDDEhSGg9XiLYrdJLcZfMzV+ClHwoT
+         pYGb5ENspGpe8/IKM2hZFQOYesoJN9G5NT7IXB8J7JIANyZTzQwFywE2LCgoCd5FZh9o
+         SGEtLCfZ9if0NLMUagoWvyFn0rXEj9EQhByhXpOYuHMyrTrKadK1H7YLhNTWXxCF1Als
+         t1LzfTn2TjwGRyNFTEBVIkPKXCWKo1ndGBXDiXBT9MF9sDU/ll2anwssnwNcoga2MiX8
+         H047jtuhpo25/piplkLBzqUi004Eh7FB0j2hLsrO3Fy2WAsKJJB6Wv8jaSrD+dHk7KvF
+         TOPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706080949; x=1706685749;
+        d=1e100.net; s=20230601; t=1706080982; x=1706685782;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=74nQwkPGzi/fWf5wR+BH+XBmoovS6yknmDdHMmlxxzI=;
-        b=ERAjjqWmD+jhrLBl5p3fGsM058CiAuCYUTVOEzxYF4e5mhmitmiOKuLF7N8Ou8Ww7h
-         HvNm3EuY9hjtEb256M61eU0OTTNvkmZwOPuaTp9HL1IWkFBYsDzY5SdLQc9Vc2XGXtWD
-         Ygflwl6JHUU91QJW1JmnBarxHEtwh052ihb6zT6371BHXi4GZ96nVYXQJ/eF/EYHMA9D
-         Suq+HRqqdDMe6Dvdtu75miGhLRY4aC5DqhiaWCaMFwo5NXGoJX9M/s5I3noOs2Li06Qh
-         b01L/T+ABDnLBLvOj3voVgXhj0dp0WX+8XGFcrznL8ED2fs80hd9Pb2DPeRw2pcPoc8+
-         O30Q==
-X-Gm-Message-State: AOJu0YzH7XJ8ClnbvFJdahRc56MrFWW7HM9j0l8yP9GPEh9UJsC8pive
-	y3kpk9ZH1Kzs0d1bj0lXqVKYlqXWRHdw6DZl1+wqz0c3kY8KyowUcuUqBw3VanE=
-X-Google-Smtp-Source: AGHT+IFtkOvHj0t36DzD9lPSd8R1ObltV3wZbnavVyiBgI63pojO5xiM0r0i8GmOgRy6S9P44hEMuQ==
-X-Received: by 2002:a17:906:d295:b0:a2c:d9fb:ed3d with SMTP id ay21-20020a170906d29500b00a2cd9fbed3dmr589490ejb.78.1706080949205;
-        Tue, 23 Jan 2024 23:22:29 -0800 (PST)
+        bh=9toEF4naAJLYTJgN+U8K9ZKo/e3bxipAXVwvaHdBgq8=;
+        b=sBvL8whckIQpfR3Cd8LCFFyJMSPMHPuqxrflw5StAm5mTB+K8gL6yKLSQQuAVr1JzV
+         Prm4hdj5y7E4fWMiLC844O8jhWSde+YLgc6kpcG9hONg3jWREI9YxODA+ip+7f7jv6Q9
+         rSPcpYifcWK+JIcrCwU70yJ6yrrUk2jvbOj4aO8c4ZfZd8yoLgPOwo1RjMHxdeZQoVyl
+         v21NumVa5GI1VwG9EtMzXvePfY8Hfxmae2FZLBM5AZQluU/G3MwrjPnoLE7p/EKIHnVv
+         Wp4pwMZgK7gzd5+i4dzB+vgyFaBxig8PB8eRfsLDnEFlp7dlb4ptdxAnFn3A7qNfivrC
+         KNNA==
+X-Gm-Message-State: AOJu0Yz7YsOrbv+7rDtwfrid8shK5k2eDouBHumq0ne6sPS7xUbplz34
+	pfwAqvhplDx+ocGrb20vKjIu9xlkybk+QwgfRzr19822+ajFVs8/9aQhnUnNAzY=
+X-Google-Smtp-Source: AGHT+IEIvnvWvxzCGCLRZ+bRGK7BGE4LOyHwSoEqSus20hJzFP2VHG61xNLLr9qG+yOFEzTbs1R48A==
+X-Received: by 2002:a17:906:3615:b0:a23:36f7:4918 with SMTP id q21-20020a170906361500b00a2336f74918mr562296ejb.72.1706080981872;
+        Tue, 23 Jan 2024 23:23:01 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id o26-20020a170906289a00b00a2bd8953af2sm15042138ejd.55.2024.01.23.23.22.27
+        by smtp.gmail.com with ESMTPSA id o26-20020a170906289a00b00a2bd8953af2sm15042138ejd.55.2024.01.23.23.22.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 23:22:28 -0800 (PST)
-Message-ID: <3300a9f9-40f2-4a23-849e-52858e4ed4d6@linaro.org>
-Date: Wed, 24 Jan 2024 08:22:27 +0100
+        Tue, 23 Jan 2024 23:23:00 -0800 (PST)
+Message-ID: <b1a8bfbe-8e89-4cbb-af5b-3bd260cc89e7@linaro.org>
+Date: Wed, 24 Jan 2024 08:22:59 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 16/20] dt-bindings: crypto: meson: add new compatibles
+Subject: Re: [PATCH v2 20/20] arch: arm64: dts: meson: axg: add crypto node
 Content-Language: en-US
 To: Alexey Romanov <avromanov@salutedevices.com>, neil.armstrong@linaro.org,
  clabbe@baylibre.com, herbert@gondor.apana.org.au, davem@davemloft.net,
@@ -77,7 +77,7 @@ Cc: linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
 References: <20240123165831.970023-1-avromanov@salutedevices.com>
- <20240123165831.970023-17-avromanov@salutedevices.com>
+ <20240123165831.970023-21-avromanov@salutedevices.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,10 +123,10 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240123165831.970023-17-avromanov@salutedevices.com>
+In-Reply-To: <20240123165831.970023-21-avromanov@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240123_232231_022519_96471D5F 
-X-CRM114-Status: GOOD (  12.51  )
+X-CRM114-CacheID: sfid-20240123_232303_680432_14B4AE34 
+X-CRM114-Status: GOOD (  13.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,68 +144,33 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 23/01/2024 17:58, Alexey Romanov wrote:
-> Now we can use crypto driver at G12A/G12B/S4/A1/SM1/AXG.
+> This patch adds a crypto node declaration. With the
+> Amlogic crypto driver we can use HW implementation
+> of SHA1/224/256 and AES algo.
 > 
 > Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
 > ---
->  .../bindings/crypto/amlogic,gxl-crypto.yaml   | 31 ++++++++++++++++---
->  1 file changed, 27 insertions(+), 4 deletions(-)
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-> index 948e11ebe4ee..a7145b126a06 100644
-> --- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-> @@ -11,8 +11,15 @@ maintainers:
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index 7e5ac9db93f8..39ecb894668e 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -286,6 +286,12 @@ ethmac: ethernet@ff3f0000 {
+>  			status = "disabled";
+>  		};
 >  
->  properties:
->    compatible:
-> -    items:
-> -      - const: amlogic,gxl-crypto
-> +    oneOf:
-> +      - items:
+> +		crypto: crypto@ff63e000 {
+> +			compatible = "amlogic,axg-crypto";
 
-That's just enum.
+Test your code.
 
-> +          - enum:
-> +              - amlogic,g12a-crypto
-> +              - amlogic,s4-crypto
-> +              - amlogic,a1-crypto
-> +      - items:
-> +          - const: amlogic,gxl-crypto
-> +          - const: amlogic,axg-crypto
-
-This is neither explained nor correct. You just affected all DTS.
-
->  
->    reg:
->      maxItems: 1
-> @@ -32,8 +39,24 @@ required:
->    - compatible
->    - reg
->    - interrupts
-> -  - clocks
-> -  - clock-names
-> +
-> +if:
-
-Missing allOf
-
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - amlogic,gxl-crypto
-> +then:
-> +  required:
-> +    - clocks
-> +    - clock-names
-
-Why? Also not explained.
-
-Entire patch was not tested and it unexpectedly affects/changes existing
-bindings without explanation in commit msg.
-
-
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
 
 Best regards,
 Krzysztof
