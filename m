@@ -4,85 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F054C47DDC
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jan 2024 08:39:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 865BDC47DDF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jan 2024 09:03:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cssdzolTO4faB+ORoJJHjolYFNtBar+19sgN/d0c/Bg=; b=mPYP+f/P+6xrYA
-	OCiW9cWpUFUQXcO01JZ6LBSwaeAOHKO/T9BkdSpA8YgUMnaWzqRvTlTjWvuRg/DC6AYXdTrIn7MsI
-	cIo1fRtkxkGHcrJB2RtqjDmy9RVr+9puuLMHhQNLNCAYd9d/BrJfEdqxYX2R1RsEh7WlOI4R8hOkQ
-	OZdQoqrXAyiNMVGm5noCOS0Lt+bnse3b5hABJGVD+pz703aZu5V5XyhlQkNuUI1AlBK+5/vV2vyCz
-	0qx+2ZFBWE3axMZfbU7PUOJKxW4Tp11JUL5jWeGIxXDPCatqagxVmcQknjcuWQK26IUj/F/YGzjAK
-	96eoMhru67vaIE+iD8Vg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=L8uiEhPQnRmTyRCk9K6MrsSYortdVNbYfpZ4Yu60sNI=; b=t05yUMEZYb20Q926cnxGa5UARj
+	wdHIs9QUCCKrPIzm8R+ME3VYxnyWyae/l0IoBO78Yxa/+k5Gkwqrl/o8f75MMmk5YyA966EJ654Ap
+	PekPM47ikZk+z3vsv+IZR4xwBR324y8eKCUXwqN0w+uFauwkB6VhiZA68e+h6Au0nu7aUk6jHhfAo
+	3bdbw2cVG5sTdOirMKE+cRCXNroedokXAc59N1EirRk/JTxYyS0+otIM/r2p0Nh57St3L35VZEqv8
+	/AjZcQlPnwIgReVESM4mEwhvsD85Nr4HBnxAKGOO/vbczF18aldN8ohPJufr4MP7/F8kXRu3GtKaf
+	ih9XgxGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rSYmK-0021yy-1j;
-	Wed, 24 Jan 2024 08:38:36 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1rSZ9o-00267s-2y;
+	Wed, 24 Jan 2024 09:02:52 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rSYmF-0021wc-0u
+	id 1rSZ9l-002665-2f
 	for linux-amlogic@lists.infradead.org;
-	Wed, 24 Jan 2024 08:38:34 +0000
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-33924df7245so3926199f8f.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 24 Jan 2024 00:38:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1706085507; x=1706690307; darn=lists.infradead.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=h1FUWfiTuw8iaOnUVAaUBuSlg9Mxe6vb31eu30jmGPc=;
-        b=WAQNbUgKnQUogXLlNzoobgj/ndz95YWquyiY4rphLpG/UMDYz9nfYuQzr6LJJVRyCG
-         lvHyClj0Let2P1FU7J7W1ZP5EQFAf1qf2CnJ/JNlgFaKW0hvtcDOEpjyEFgEHtZdKovq
-         4PBO6AKaJ6trsdTDGy3jlANM42wy5E3H7gSAovb551yD1fD6s15NXNsUr9FYQqv94ZAn
-         3Lq1L5Y+2B4jSbPphks5LGhMXr00NU7RCfXzF91VToaaOaVmTL8gjk9mW6pDCwa0ywUP
-         WqpIgn0gGUHJFKd+8kfrSn4wKOH6GhVfTMF9JwwMbdy8c+dtVwBpRPFahK9mtBtxbLfw
-         mkDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706085507; x=1706690307;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h1FUWfiTuw8iaOnUVAaUBuSlg9Mxe6vb31eu30jmGPc=;
-        b=e1dUbGph13ma8BUVvPp5jOdrsrUr4+nYOvIBlkUjwryKszCrn/hZmWB+ztoIzvSf3K
-         Wuak4ADoBG50SN36oPjrDfLHhzAa43uCakOw252EShasg4lPmhrYukytO2SQ5o8NXcJo
-         8/NiJ6ZpTBK6BF+dagH3eWTaOiXPvl4SUhgHdDH5bkZy68o+iNZTCKFzvYiioIqqGKzx
-         i+RopqNWJLeQhn3yAWldd6FOAtMw/kpIph4SQK3JYzHIybKolvBFuKq/jIbV8j9wwZF+
-         CWbqVdU+Rkh5aNzADovfCqQnFmQOnQe6zjAkh3rm5hh8pmI4bc8SB7UtMXjeSSRtc8Pi
-         3gQQ==
-X-Gm-Message-State: AOJu0Ywck4mNZknHKWpSTSmgKVL0w8qWkePkJFc+pOmK6mONvnjU53wA
-	JzlI8i5sSNNBij6fVDutpVkOds2Aq9sfLLWuoyFuzA95ZdLRAwKpAe4Aw+VbYiY=
-X-Google-Smtp-Source: AGHT+IHWDnX0w1SzsoI8DA0xPySEzo5xJtqS7XZt2YHYZTHRfUc5D0hbaLhIUuqtBbzsb1EykQ2hjw==
-X-Received: by 2002:a5d:6d52:0:b0:337:bcec:d45e with SMTP id k18-20020a5d6d52000000b00337bcecd45emr300741wri.35.1706085507028;
-        Wed, 24 Jan 2024 00:38:27 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:d8b6:17b6:386f:c67b])
-        by smtp.gmail.com with ESMTPSA id df10-20020a5d5b8a000000b0033947d7651asm2936415wrb.5.2024.01.24.00.38.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Jan 2024 00:38:26 -0800 (PST)
-References: <20240123165831.970023-1-avromanov@salutedevices.com>
- <20240123165831.970023-3-avromanov@salutedevices.com>
-User-agent: mu4e 1.10.8; emacs 29.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Alexey Romanov <avromanov@salutedevices.com>
-Cc: neil.armstrong@linaro.org, clabbe@baylibre.com,
- herbert@gondor.apana.org.au, davem@davemloft.net, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, linux-crypto@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- kernel@salutedevices.com
-Subject: Re: [PATCH v2 02/20] drivers: crypto: meson: make CLK controller
- optional
-Date: Wed, 24 Jan 2024 09:28:00 +0100
-In-reply-to: <20240123165831.970023-3-avromanov@salutedevices.com>
-Message-ID: <1j34unxh1a.fsf@starbuckisacylon.baylibre.com>
+	Wed, 24 Jan 2024 09:02:51 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rSZ9d-0001F3-HK; Wed, 24 Jan 2024 10:02:41 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rSZ9c-00217d-KQ; Wed, 24 Jan 2024 10:02:40 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rSZ9c-0070Sy-1j;
+	Wed, 24 Jan 2024 10:02:40 +0100
+Date: Wed, 24 Jan 2024 10:02:40 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>
+Subject: Re: [PATCH v4 5/6] pwm: meson: don't carry internal clock elements
+ around
+Message-ID: <gyhea42rtydw3g45lfkfbxfm6xcbwibz67vw7xke2sm7powz2a@i33g4pyanu4l>
+References: <20231222111658.832167-1-jbrunet@baylibre.com>
+ <20231222111658.832167-6-jbrunet@baylibre.com>
 MIME-Version: 1.0
+In-Reply-To: <20231222111658.832167-6-jbrunet@baylibre.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240124_003831_499839_26E798AA 
-X-CRM114-Status: GOOD (  16.36  )
+X-CRM114-CacheID: sfid-20240124_010249_879654_B4F05ABD 
+X-CRM114-Status: GOOD (  21.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,75 +74,100 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2808661506761808059=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Tue 23 Jan 2024 at 19:58, Alexey Romanov <avromanov@salutedevices.com> wrote:
+--===============2808661506761808059==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="h373wi4nrohxmd3v"
+Content-Disposition: inline
 
-> Not all Amlogic SoC's uses CLK controller.
 
-That's fairly short description and very likely to be wrong.
+--h373wi4nrohxmd3v
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Of all the SoCs I have seen mentionned in the bindings, they all have clock
-"controllers"
-
-I'd assume you meant "this crypto ip does not take a clock input on some
-SoCs", correct ?
-
-If that is what you mean, giving the list of the SoCs which - according
-to you - do or don't take a clock ip input would be helpful.
-
->
-> Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+On Fri, Dec 22, 2023 at 12:16:53PM +0100, Jerome Brunet wrote:
+> Pointers to the internal clock elements of the PWM are useless
+> after probe. There is no need to carry this around in the device
+> data. Just let devres deal with it.
+>=20
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  drivers/crypto/amlogic/amlogic-gxl-core.c | 11 ++---------
->  1 file changed, 2 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-> index 35ec64df5b3a..a58644be76e9 100644
-> --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
-> +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-> @@ -263,16 +263,10 @@ static int meson_crypto_probe(struct platform_device *pdev)
->  		dev_err(&pdev->dev, "Cannot request MMIO err=%d\n", err);
->  		return err;
->  	}
-> -	mc->busclk = devm_clk_get(&pdev->dev, "blkmv");
-> +	mc->busclk = devm_clk_get_optional_enabled(&pdev->dev, "blkmv");
+>  drivers/pwm/pwm-meson.c | 67 ++++++++++++++++++++++++-----------------
+>  1 file changed, 39 insertions(+), 28 deletions(-)
+>=20
+> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+> index 15c44185d784..fb113bc8da29 100644
+> --- a/drivers/pwm/pwm-meson.c
+> +++ b/drivers/pwm/pwm-meson.c
+> @@ -90,9 +90,6 @@ struct meson_pwm_channel {
+>  	unsigned int hi;
+>  	unsigned int lo;
+> =20
+> -	struct clk_mux mux;
+> -	struct clk_divider div;
+> -	struct clk_gate gate;
+>  	struct clk *clk;
+>  };
+> =20
+> @@ -442,6 +439,13 @@ static int meson_pwm_init_channels(struct device *de=
+v)
+>  		struct meson_pwm_channel *channel =3D &meson->channels[i];
+>  		struct clk_parent_data div_parent =3D {}, gate_parent =3D {};
+>  		struct clk_init_data init =3D {};
+> +		struct clk_divider *div;
+> +		struct clk_gate *gate;
+> +		struct clk_mux *mux;
+> +
+> +		mux =3D devm_kzalloc(dev, sizeof(*mux), GFP_KERNEL);
+> +		if (!mux)
+> +			return -ENOMEM;
 
-Assuming some SoC actually don't have an input clock (I'm not
-convinced), the clock still ain't optional for the ones which do.
+I don't like this change. While it doesn't increase the memory used, it
+fragments the used memory and increases the overhead of memory
+management and the number of devm allocations.
 
-Use the compatible to properly claim the ressource (or not) 
+Are these members of meson_pwm_channel in the way for anything later?
 
->  	if (IS_ERR(mc->busclk)) {
->  		err = PTR_ERR(mc->busclk);
-> -		dev_err(&pdev->dev, "Cannot get core clock err=%d\n", err);
-> -		return err;
-> -	}
-> -
-> -	err = clk_prepare_enable(mc->busclk);
-> -	if (err != 0) {
-> -		dev_err(&pdev->dev, "Cannot prepare_enable busclk\n");
-> +		dev_err(&pdev->dev, "Cannot get and enable core clock err=%d\n", err);
->  		return err;
->  	}
->  
-> @@ -300,7 +294,6 @@ static int meson_crypto_probe(struct platform_device *pdev)
->  	meson_unregister_algs(mc);
->  error_flow:
->  	meson_free_chanlist(mc, mc->flow_cnt - 1);
-> -	clk_disable_unprepare(mc->busclk);
->  	return err;
->  }
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--h373wi4nrohxmd3v
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWw0i8ACgkQj4D7WH0S
+/k683gf9GGBr93JUCS2xEl/m1YAKTTgHqxB2JExfwiC6KJfo/FURTvQbLwW4gtu9
+BqujrqKJuEIj5YPmfS2DfmnGEQteeSmoeb6vtHwsKyehVtqSqDOF/1ZPSIakbMdx
+hE3kSBmZVCVPwj9s1JoNAlR+AtWRnzVYUdF40iEjJ6VPhWZB9Swh9KJhNfWAuUIg
+KxSIivAcwtRrtX9ThjzjKj5sPWGqdaVGTFxir66leKCCmsboGdDOAV60d39u0bSY
+cDXdp36+vG5DQh1bpjAUE7S/+URvABaCmV8CKBRpMSfyxLo9M65b8VlZS1Q36pl0
+ljk2vMhvu45fpewQYEgUv6kO82pUfw==
+=J1Jy
+-----END PGP SIGNATURE-----
+
+--h373wi4nrohxmd3v--
 
 
--- 
-Jerome
+--===============2808661506761808059==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============2808661506761808059==--
+
