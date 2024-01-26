@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6274C47422
-	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jan 2024 23:17:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C27DC47DDB
+	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jan 2024 23:18:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/ZPi29RkBUXDVtlXdxOaENLgLQ2m6I0/zYDVjyrpf+8=; b=0hyPqaQRMxX1G1
-	M2V0B7T2MLNurnj3eAn5smSZvXP4GRRgXSE57UgcGmhxJnE2uLJZFminLGx4H2J+y6uVIQPJVe73+
-	3i+nkr0Jfyr/o8VuXbBy4PKW52mjR/eJ+jdZ0UBDUVSYo1EzceDrGTAmWPhzyok29BicLT4wKGXbJ
-	oo8HwHZUsXgf3x0V+IwF8fedAk6JispTfZBDQ7jJSMUkr143W99mNATGEEeJsJVOYrKEfKyGI6+BB
-	itTi3xRv77JGs/vWDAPQ5M1wCELLjUmQIBm7p3b3fcSEXCw7xQnNZkPgAwqt2N0cNOJkHKHnrdfF/
-	u+hhX+KOLvPPSQvEOvnA==;
+	List-Owner; bh=7k7YhfFmBiSkJ5zhQfvg/Bum5BGPaQ528ODqW2yj/Ls=; b=cu6E7sfmuRRKYa
+	WvGCCDjArPKJttQz/VY1F7N0Kc+o1eyWERKGx2/T/RLMdz7md+XUxb9C6XxHNe8CGkoDUEZDcA9ST
+	wZn1f0V3rELbxwrxeXpN9M68ROO9JkcXVyG4SZuc1tfSPHdzgqZ76EtL5wbcJfDqL/KurrEjYIDBf
+	BxP2SjmfXwkdrzJ4didknLtgfJ+dWahUpj4iDqC78B5e5owwjQtQVn2Aft0zdmv4IfU2hwI033q9D
+	X3VT4PX+bEgzojCFRoSqIkZkmQqec+DJJlRXypDF/uwffIP69iHxoUe+FDWAftZBLSLcZtDkncAyD
+	qO0EJYor0W3bFHQeSfvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTVSI-00000005jsS-015q;
-	Fri, 26 Jan 2024 23:17:50 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1rTVSl-00000005kHC-3F9q;
+	Fri, 26 Jan 2024 23:18:19 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTVQu-00000005igx-3ysD
+	id 1rTVR0-00000005imc-2zhj
 	for linux-amlogic@bombadil.infradead.org;
-	Fri, 26 Jan 2024 23:16:25 +0000
+	Fri, 26 Jan 2024 23:16:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=stuI7gBMJumChDGNuDa5NAtrFPgVVPyF9dOhkVEQIZs=; b=YNFL+6xwLs7UGHUwxrMK9jP65Y
-	nPxGqhiFnRIdioRqMK0Vx8MlcjHKAGlN5GkJTjUWLpbeUG6iGgzHU62/IDS31dyJokz12C3QznmhH
-	0bw7YLApkf3g/S8MpGPr/rGxmBdQub79yHW36OkEe8KBbV5CJiC5muB2ohevOyffOsTpmgbiwvkXa
-	h4COede26lW6l0a+ASm2r4dYrjtE8gDAhqntQHGEmEmItCVPsBT3uQse5ItG/I7+3pDHZHSPP9KzA
-	NA9aDm7IjKJuOeetE2HhrNpP3utjZ+FlG39DuJ/bTfCtm2221rNFjZfxO+E6UNx/Xw9OQdWYkmmkU
-	Drd+9iXA==;
-Received: from mail-qk1-x72a.google.com ([2607:f8b0:4864:20::72a])
-	by desiato.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTVQq-00000006J4T-48pM
+	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
+	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
+	:Reply-To:Content-ID:Content-Description;
+	bh=ppFxbOlS/v6G/Iyc2Jdz2aiKlAo+YrKUjtIhEQOSvas=; b=HqaRyteariv1azqXrm5CT1dwau
+	GyTnLNFcUk+Ht7UygqbKFqlcFFCZqLDI+5kVHYF2RCbhJohO1IlD5b6ZskcYH7V+L4RdVehmA8qqA
+	LWulBXkcpHc7V6ZjGkr4O38WKJ8m7kt1V2qXnP9WSZyrOVcEsL7kr8DmzgSmRsjLRvxLBem0X8B1o
+	wiJdRYE4oyQu+F6k48MlP7pkhGX28UQZ5TGggDlkyLsjyZONEIwWkniSM1AYJpeJ8VIWr3YACZqJl
+	Lfycn5UJHRiWNzdHbYVrjmag43gLNCq8sz5AAQnGNYW0QqbGn3HNnqigh8Zi4y/8iXc3rp2P2Htjr
+	f/Gq0Yjg==;
+Received: from mail-qk1-x732.google.com ([2607:f8b0:4864:20::732])
+	by casper.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1rTVQt-0000000F96N-2dW7
 	for linux-amlogic@lists.infradead.org;
-	Fri, 26 Jan 2024 23:16:23 +0000
-Received: by mail-qk1-x72a.google.com with SMTP id af79cd13be357-783cf58221fso78009085a.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 26 Jan 2024 15:16:20 -0800 (PST)
+	Fri, 26 Jan 2024 23:16:28 +0000
+Received: by mail-qk1-x732.google.com with SMTP id af79cd13be357-783bc26b24aso66155885a.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 26 Jan 2024 15:16:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1706310979; x=1706915779; darn=lists.infradead.org;
+        d=chromium.org; s=google; t=1706310976; x=1706915776; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=stuI7gBMJumChDGNuDa5NAtrFPgVVPyF9dOhkVEQIZs=;
-        b=AglH5q+0KCgMtV9gsNJ1IJqk0NOMITonNrRYODNbZKH7uQPhOC4cCaq5nAuz4cbrGL
-         pASWXQFi3QIbQT8NdiSNJ4QcqFU1yAINTt0uUulpqrzmBRrbKAe8Qq/pJZLuvuJGHIS9
-         QH2qQjCVgq0+gMNDTKb4LquBaMqobdAfWtIpM=
+        bh=ppFxbOlS/v6G/Iyc2Jdz2aiKlAo+YrKUjtIhEQOSvas=;
+        b=mYToIsFpsxfqdmE6CMDidymmle2fS1OZh/Mvch6d5WWuRsPUPANwITB7M8+DKYOpBN
+         rt5s8UwyS9Pe3K6ahT3UX3ceCK0aqcbEfOTavvPhkGsMFES3wW4tr1MS2O6JR6znBrJQ
+         nMUOk+tMA5AXPzpa+PmWD6Tcc4FJpkKldZKAI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706310979; x=1706915779;
+        d=1e100.net; s=20230601; t=1706310976; x=1706915776;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=stuI7gBMJumChDGNuDa5NAtrFPgVVPyF9dOhkVEQIZs=;
-        b=deI0hdmmMZXfWCBZP0YfZZ6JZXAlWVseJMAtk9PJUut12kaCV3ipEySNCLAHPO5n/Y
-         c8IyPM4ih+C4Ucw8lMCu91gLuinyJgg1hMvVW8aguwChBrGoYPImy2P45Cx+j7E2K8H2
-         iaLobX60dj+yoJodyWl99RO415wAKip5zJn8avLZbDZLOF7ngxnekn4AdvdYuk0ROTIO
-         vmBAsoEwkcmmKVslJzEgfxxHFeHNcu8u5Ywop8vmvIrtrCh4gaRqfWpDmajSWh6MPGKE
-         C7vuEgQptgx9kl5zuHTNMLwFjMNKMGCy28fEgyO2psumltFIPQZqv7B43RMtyBYiyAPU
-         TxNg==
-X-Gm-Message-State: AOJu0YxVvEND/S/7RIz6/+qopQa+XrIJ5qljGTuUkvOAGDpz1rZWxt2F
-	gslPYXZIbDIB3RzHXgWpsB21Mhia/zpPrUGNSyLu6NkARj8lGag9RDU3jxPO3w==
-X-Google-Smtp-Source: AGHT+IEd+7JsySye9GLJ+DZua0TH24OzjziTyfzLeDvrZrUGlvpFgq8zte88/+mhTsCB6LhfusGKZw==
-X-Received: by 2002:a05:620a:5593:b0:783:bd38:aca6 with SMTP id vq19-20020a05620a559300b00783bd38aca6mr655440qkn.82.1706310979526;
-        Fri, 26 Jan 2024 15:16:19 -0800 (PST)
+        bh=ppFxbOlS/v6G/Iyc2Jdz2aiKlAo+YrKUjtIhEQOSvas=;
+        b=X8j3v8irXKzzJnAnnLbOOlg5+TZ4YfSzXyQxzOVCN+62QqA8/i/cX19s0tGIWNVsh2
+         +aNhOUfdjUHrt/Pn/TYVlflH7GazYjMFGet8ETCMyFoqSsif8cE0GFOirVi7UAgyt+yV
+         57XHIYTmDFRXKlCRxES4jXGr4Zx5F52qxAx2uePGl8fV84u9ZU46ieCU83i9VmhiqIPi
+         Evge0R6u5uFI4l9ZtwMalmz3R65/StJtr+jgudgidKHwFPUAS0mrB5ReBN9tZfAemL7x
+         as1r1E4PggULClwuncrnihKJKJGhD/boNNlRqupn/ctvQPRAu24YNzrAJrCZZ8s7xOEu
+         y6Rw==
+X-Gm-Message-State: AOJu0YznLS9znFZTfYr97ow87R8SaNC0DzyDcEdKn05sRiaWPb4o/JX4
+	arMfMV5ckhKbcP1EWYbh01ddQlmCVohVBgnInwuDlENCHnd1xV8K18x8/Tm8nQ==
+X-Google-Smtp-Source: AGHT+IGIpAsQSjaDQPGQ6LECGQr9cN1m4828+DZymi0+3bzM+4XluVJo4MprbQD7HbxK6yJ3CFbmNg==
+X-Received: by 2002:a05:620a:2182:b0:783:e064:aa09 with SMTP id g2-20020a05620a218200b00783e064aa09mr622459qka.115.1706310976118;
+        Fri, 26 Jan 2024 15:16:16 -0800 (PST)
 Received: from denia.c.googlers.com (240.157.150.34.bc.googleusercontent.com. [34.150.157.240])
-        by smtp.gmail.com with ESMTPSA id m4-20020a05620a290400b00783de3ddf5esm507358qkp.70.2024.01.26.15.16.18
+        by smtp.gmail.com with ESMTPSA id m4-20020a05620a290400b00783de3ddf5esm507358qkp.70.2024.01.26.15.16.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jan 2024 15:16:19 -0800 (PST)
+        Fri, 26 Jan 2024 15:16:15 -0800 (PST)
 From: Ricardo Ribalda <ribalda@chromium.org>
-Date: Fri, 26 Jan 2024 23:16:12 +0000
-Subject: [PATCH 13/17] media: samsung: s5p-mfc: Fix kerneldoc
+Date: Fri, 26 Jan 2024 23:16:09 +0000
+Subject: [PATCH 10/17] media: verisilicon: Fix kerneldoc
 MIME-Version: 1.0
-Message-Id: <20240126-gix-mtk-warnings-v1-13-eed7865fce18@chromium.org>
+Message-Id: <20240126-gix-mtk-warnings-v1-10-eed7865fce18@chromium.org>
 References: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
 In-Reply-To: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
 To: Tiffany Lin <tiffany.lin@mediatek.com>, 
@@ -116,8 +116,9 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-amlogic@lists.infradead.org, Ricardo Ribalda <ribalda@chromium.org>
 X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240126_231621_729097_E428F292 
-X-CRM114-Status: GOOD (  10.70  )
+X-CRM114-CacheID: sfid-20240126_231625_356373_56E2289B 
+X-CRM114-Status: UNSURE (   8.77  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -134,25 +135,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Remove doc from missing fields.
+The field is not part of the structure. Remove the doc.
 
 Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
 ---
- drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h | 1 -
+ drivers/media/platform/verisilicon/hantro.h | 1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
-index 59450b324f7d..7e7e7b695b53 100644
---- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
-+++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
-@@ -612,7 +612,6 @@ struct s5p_mfc_codec_ops {
-  * @chroma_dpb_size:	dpb buffer size for chroma
-  * @me_buffer_size:	size of the motion estimation buffer
-  * @tmv_buffer_size:	size of temporal predictor motion vector buffer
-- * @frame_type:		used to force the type of the next encoded frame
-  * @ref_queue:		list of the reference buffers for encoding
-  * @force_frame_type:	encoder's frame type forcing control
-  * @ref_queue_cnt:	number of the buffers in the reference list
+diff --git a/drivers/media/platform/verisilicon/hantro.h b/drivers/media/platform/verisilicon/hantro.h
+index 6f5eb975d0e3..811260dc3c77 100644
+--- a/drivers/media/platform/verisilicon/hantro.h
++++ b/drivers/media/platform/verisilicon/hantro.h
+@@ -237,7 +237,6 @@ struct hantro_dev {
+  * @codec_ops:		Set of operations related to codec mode.
+  * @postproc:		Post-processing context.
+  * @h264_dec:		H.264-decoding context.
+- * @jpeg_enc:		JPEG-encoding context.
+  * @mpeg2_dec:		MPEG-2-decoding context.
+  * @vp8_dec:		VP8-decoding context.
+  * @hevc_dec:		HEVC-decoding context.
 
 -- 
 2.43.0.429.g432eaa2c6b-goog
