@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B60C2C47422
-	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jan 2024 23:18:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 531D2C47DDB
+	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jan 2024 23:18:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VIthLph/z8Xsswrd9UPR8j3yTvQ/34cayI9N5WwRKsw=; b=v3FLI/dMD73lWu
-	KqzdOWyPAsmbAh8Kr6tjuhk446yrSbVRlCFnAOFASC8eIULtp8bnBqBPBhxtyOK4X8wCLozPXsSb3
-	PPEK7NVJTWBJUNvUVr7gnOI63wT60V42hjTuMfUQup8OvNBaJRdfdrF8UeSWgIkGwMaKxlOG4DtuP
-	JGupYE7LBnu9IQcr8cFVojRhenFw1I1/LFBvY1i5tm0lW5Ruz8DQQXT/8TBr151QJeYBiRSDG1sHz
-	wKtj8yx6yiV6JO3O+eDDg0GFj9U6WE5Q122ayZXjuH8LaHATdxr+/j0VwpE6VJ4aGbALHPBH2VMLa
-	yPP4m/tb4w6s5zs+xXIQ==;
+	List-Owner; bh=DXRwkz0eMFZOr4/SFSRufRese7e4/H6FBN5GY5kGNZQ=; b=y4Mc2HNs+Bxf0i
+	zGBDpebMtrUE4FqFnFfsjOyuNaBxIXnjQy9pBSFo4nrN+LTsuD1mBebdWne8GIp3C2D1gpEQICxNs
+	1wFnSzoAkNqGuHignEgpKeN0VxGUei626O2dygpiXlc8M/OxsG4kNJrSX/XXehWQqddGcotmvwfp4
+	CiKbTp3fIg2Ey2Rkc4VKWpuX/ijTYJyvTowrc/5L1zO9wPJvGoccLMNhNTu+lq10c1yRgoQKrcG0+
+	e+72d193i18JOQxvsH9YaJshu5XG5bAKPWsxIJIdJOFSx0v9sS/x11sRVsB4l2Gu1jpBmUeBo+Np2
+	lEez2IgmULxipnhiq2kA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTVTC-00000005kbp-0hwZ;
-	Fri, 26 Jan 2024 23:18:46 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1rTVTE-00000005ke6-3YDW;
+	Fri, 26 Jan 2024 23:18:48 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTVR2-00000005ink-1kuQ
+	id 1rTVR5-00000005iq1-036Y
 	for linux-amlogic@bombadil.infradead.org;
-	Fri, 26 Jan 2024 23:16:32 +0000
+	Fri, 26 Jan 2024 23:16:35 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
-	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
-	:Reply-To:Content-ID:Content-Description;
-	bh=N1vQJsjbXwMoV42WRJ/mwpke5D4/XsDiuadCHfD7OFk=; b=DGDrooxhuBKPRMM9Fh8Xk8j3Gl
-	2/QTKfyFGA3I8ddhDOx/dfVujkmDYIPOiPhNLAufi4omKfu7+FG2MO5tvef5UYBQgyviQP6wDejpG
-	qr085hAoPpdnVmBj41d9MvdiQu9fC24BMnm/vEaLhaD9BtEqHcgj5vimivpKo7DOvzwWzAwIOHJaW
-	Irv9HLqw/JSlxh1zu2rNoUv1SchHsjf72BK67eU1OCVyCj6Zffdw+7RJREq8A9Sk6vWS3Bj+G+37q
-	dehglUmdiDdBwJDoJPwXYiCD0ZEeka8iQlsDR/T5JFWO9bd3kjj1wbtB6mHXfKLsPlYQXIxuHi/oZ
-	dOWHH4pw==;
-Received: from mail-qk1-x735.google.com ([2607:f8b0:4864:20::735])
-	by casper.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTVQv-0000000F96G-1YB9
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=mtltgslBdQHae+oLD1399tQsPexikCLm+b/oIxSwL94=; b=dxXDGZA6/JEy+Uw1fA7SIvLchi
+	KE02v9JtixwoU1JbXS2VGBq4roboddu9trpsD3STDEgbbE4S+HPGRCPxEjlyL8hdienjc3wvuomI7
+	fy1Z8KD492zB6cSaWM+DxL8F6pY4NCeb76gD5aI5fZpSxiP0h+UxwhoLUIQAfH8yl06W6wDQeyirD
+	I/cmgXlPq/gAqwGmr7GUCKPn1V3C2T4FcrH9tj7PE6ofSsQlnC1qrlHeqbwBNyfYmNzNhL70C2hFH
+	EM9zWbP3SDdrLxj88DYpHvZO6ArFpCmkolM/SqTuk2D1mJ3Uf7sXXJTuQB95x2ysi4Sr5T4k7CgaO
+	E6JqPhhQ==;
+Received: from mail-qk1-x729.google.com ([2607:f8b0:4864:20::729])
+	by desiato.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1rTVQu-00000006J6c-3mby
 	for linux-amlogic@lists.infradead.org;
-	Fri, 26 Jan 2024 23:16:31 +0000
-Received: by mail-qk1-x735.google.com with SMTP id af79cd13be357-783cd62f1b5so41720685a.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 26 Jan 2024 15:16:16 -0800 (PST)
+	Fri, 26 Jan 2024 23:16:30 +0000
+Received: by mail-qk1-x729.google.com with SMTP id af79cd13be357-783045e88a6so102320285a.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 26 Jan 2024 15:16:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1706310972; x=1706915772; darn=lists.infradead.org;
+        d=chromium.org; s=google; t=1706310983; x=1706915783; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=N1vQJsjbXwMoV42WRJ/mwpke5D4/XsDiuadCHfD7OFk=;
-        b=bXJFv/X8DNe0ijoS4Soape7tuBQEotioUdjarnm24IBUueculKabBhDLvtvp4zmGf8
-         KX6HrssTi5q9urAFF4VmRg+IXc0wOx606AQkQXfHMc5mBiKae9/hkxqx7kosQMQqLq1Z
-         U4Vpn9fziKHnMuoIvC0L5o+I9Fy5uxLsDoT3s=
+        bh=mtltgslBdQHae+oLD1399tQsPexikCLm+b/oIxSwL94=;
+        b=epokoW0nZrBF68rk6G9i2rQEHhuDRksk0Z0bcmrsvG04GeQbuhBiDpzFD7MIfZedSR
+         pTLoJT5lFySag1QwwqM8TGIHMEPVHFNRGhUhb1K9zaupzP/pa0lExmls76FuJaN7o6cB
+         myt0+3NBaA6V142EqpFZLNTI1Y0D1zR//8coc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706310972; x=1706915772;
+        d=1e100.net; s=20230601; t=1706310983; x=1706915783;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=N1vQJsjbXwMoV42WRJ/mwpke5D4/XsDiuadCHfD7OFk=;
-        b=nRJGX6PC8nk3v6bJb7TDQ/kt6QYGzWWII4nB27f7V09D5feqIaQT5p5ViwbynUANPT
-         Df8Y6mbPPj105W5D1w2OiPzhL+lUSBEfBIAZKoEFBRG3XpCEZKsCox2Qix5iPUMl1xkW
-         v8MNg9Dwst2RsOCwFTmbcuWlkJCrcSi2OXPuUpG5DoQlmwYHz5fiP3jexysmEfhzbmYv
-         uGOThPqzTqSLMER3muKoMWTb+DvZar1GXPPVF2RVZ5XWYWp7Omlpz5Hij5DqSRcfRjrQ
-         eY6RMFuWtAxmSVmJKdiWFaDEZNYfqIMK2f/Y+Ddz/ySCW9fzMvm0YoW5Bpyc8ATwOtPh
-         EBuA==
-X-Gm-Message-State: AOJu0YyJL//FrmQQhO+apeyXVEX4cjJ+LowHZ5dbNdtdgso2Z2e+7hX/
-	u9WmdC08eIVTCQGFUX7M+IcgeQXsq91pUTFPxj0nUvD3GcEZcD2/FCPJu6BKkw==
-X-Google-Smtp-Source: AGHT+IFXn0MsvuBZAXCBvS9dkUDMWpYZYCtB32osg432CHr09P1w9jeHvq+JeL7M7GqosemFCv0Elw==
-X-Received: by 2002:a05:620a:628e:b0:783:daec:2fb8 with SMTP id ov14-20020a05620a628e00b00783daec2fb8mr553057qkn.13.1706310972372;
-        Fri, 26 Jan 2024 15:16:12 -0800 (PST)
+        bh=mtltgslBdQHae+oLD1399tQsPexikCLm+b/oIxSwL94=;
+        b=N2d/xUcbQn4bBElURTMPFH+0Q7JFSFEFXWBHfbBIMrgH84mU4qnLupk3RtGp8EMEZF
+         708hlEC0C/+wb00VXaRg1L26ASgkmR9KIeyInAXWgRq8ZyA+ZPO3lTvFeI7zC3do3caA
+         sRIVc0PqEkaFy2wRHaP9H0nVIRrL3wTcstX6GgzwkyCNem25q6GZnvFDNDJTS4eXKgX5
+         8WSKViT/2OwqTQ3HKTNLPHZg18MibgwaoRyn8vLA/SRdwDnKMbe89UF3+NU3rvMl8CCa
+         4kxBckwYyU8JBnCk7DYm++u7xCWWfEvxS7VYhMhRPBxy/qw+a56/YWeM32I8htDVh6b6
+         /pLg==
+X-Gm-Message-State: AOJu0YyxJFk1KZDMNWc4X3AKYec3WSIBJAN5Au8bh4EITlxCBM0YenBd
+	DrSSIbGzTmzG2M607y5Ea1yq60x9OOB6G8dI9/06sdOtSdIowRTDC4T3WT1ZtQ==
+X-Google-Smtp-Source: AGHT+IFr6+3pqj0JMsLxQ2GW7atIeRCtD6HJIvow5am3DYJqsXSoZPigBa/gFlr3DGsp4f3R3YcSBQ==
+X-Received: by 2002:a05:620a:618e:b0:783:4cbd:9ed7 with SMTP id or14-20020a05620a618e00b007834cbd9ed7mr711408qkn.38.1706310983521;
+        Fri, 26 Jan 2024 15:16:23 -0800 (PST)
 Received: from denia.c.googlers.com (240.157.150.34.bc.googleusercontent.com. [34.150.157.240])
-        by smtp.gmail.com with ESMTPSA id m4-20020a05620a290400b00783de3ddf5esm507358qkp.70.2024.01.26.15.16.11
+        by smtp.gmail.com with ESMTPSA id m4-20020a05620a290400b00783de3ddf5esm507358qkp.70.2024.01.26.15.16.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jan 2024 15:16:12 -0800 (PST)
+        Fri, 26 Jan 2024 15:16:23 -0800 (PST)
 From: Ricardo Ribalda <ribalda@chromium.org>
-Date: Fri, 26 Jan 2024 23:16:06 +0000
-Subject: [PATCH 07/17] media: i2c: adv748: Fix kerneldoc
+Date: Fri, 26 Jan 2024 23:16:16 +0000
+Subject: [PATCH 17/17] linux: v4l2-vp9.h: Fix kerneldoc
 MIME-Version: 1.0
-Message-Id: <20240126-gix-mtk-warnings-v1-7-eed7865fce18@chromium.org>
+Message-Id: <20240126-gix-mtk-warnings-v1-17-eed7865fce18@chromium.org>
 References: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
 In-Reply-To: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
 To: Tiffany Lin <tiffany.lin@mediatek.com>, 
@@ -116,9 +116,8 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-amlogic@lists.infradead.org, Ricardo Ribalda <ribalda@chromium.org>
 X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240126_231627_000577_5448FF97 
-X-CRM114-Status: UNSURE (   9.08  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240126_231627_355103_71554946 
+X-CRM114-Status: GOOD (  10.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -135,25 +134,59 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The field is gone, remove the documentation.
+Kerneldoc cannot understand arrays defined like
+v4l2_frame_symbol_counts.
+
+Adding an asterisk to the name does do the trick.
+
+Disable the kerneldoc notation for now, it is already ignored:
+https://docs.kernel.org/search.html?q=v4l2_vp9_frame_symbol_counts
+
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'partition' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'skip' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'intra_inter' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'tx32p' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'tx16p' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'tx8p' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'y_mode' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'uv_mode' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'comp' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'comp_ref' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'single_ref' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'mv_mode' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'filter' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'mv_joint' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'sign' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'classes' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'class0' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'bits' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'class0_fp' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'fp' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'class0_hp' description in 'v4l2_vp9_frame_symbol_counts'
+include/media/v4l2-vp9.h:144: warning: Excess struct member 'hp' description in 'v4l2_vp9_frame_symbol_counts'
 
 Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
 ---
- drivers/media/i2c/adv748x/adv748x.h | 1 -
- 1 file changed, 1 deletion(-)
+ include/media/v4l2-vp9.h | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/media/i2c/adv748x/adv748x.h b/drivers/media/i2c/adv748x/adv748x.h
-index 6f90f78f58cf..d2b5e722e997 100644
---- a/drivers/media/i2c/adv748x/adv748x.h
-+++ b/drivers/media/i2c/adv748x/adv748x.h
-@@ -173,7 +173,6 @@ struct adv748x_afe {
+diff --git a/include/media/v4l2-vp9.h b/include/media/v4l2-vp9.h
+index 05478ad6d4ab..f0d80273bd61 100644
+--- a/include/media/v4l2-vp9.h
++++ b/include/media/v4l2-vp9.h
+@@ -83,7 +83,11 @@ struct v4l2_vp9_frame_context {
+ 	struct v4l2_vp9_frame_mv_context mv;
+ };
+ 
+-/**
++/*
++ * NOTE: This is not a kerneldoc, because the (*name) notation confuses the
++ *	 parser.
++ */
++/*
+  * struct v4l2_vp9_frame_symbol_counts - pointers to arrays of symbol counts
   *
-  * @endpoints:		parsed device node endpoints for each port
-  *
-- * @i2c_addresses:	I2C Page addresses
-  * @i2c_clients:	I2C clients for the page accesses
-  * @regmap:		regmap configuration pages.
-  *
+  * @partition: partition counts.
 
 -- 
 2.43.0.429.g432eaa2c6b-goog
