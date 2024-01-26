@@ -4,90 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30BDDC47258
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jan 2024 20:55:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DDDCC47422
+	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jan 2024 23:16:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=lxgnmK5kJ5h70onDWeHghqskDmAEAR3KeHDuCaonXjM=; b=i+OZCe7jn1aL5bbA1kbGBuKlu7
-	MLcP9QfbQbsgNHU75P9/oSHl08OoCGIPA7f5gC174NprX1+dyq3OU7WDaJqLyaDwFh3Z9CQLnybBV
-	S2DzTnEiYSKDBCtrmZLcpLq1COqrt5UxM4N46XpOhuGzpB1aFsiiBhKl8/Gf04gXz0YGIxvCcZYGZ
-	/oVSMcNKAhEejozFL+1cXI0ResZduxD1DMJYyv9LMbxJXqiUWy1p0bhwBGBQD8bYeGT/PQ/HMRRFa
-	2FrK7TnAIVhax+2YcZmGWBIgyFgHR5as5i7G17BvLyeAohjjEdqptgRQpewiDOdEsdqkOL8cfM5dO
-	BHlJPUTQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=B6IY/Thj8wKxktiTHNYbxkUVbq2jBbQqzx9k6mA1Ygo=; b=sSxY4xCvvfAsqj
+	isnXIQFMKEclZhqNH+wtxzUclPI5y1epyeebP2FLDLHC96hx6CqcjdVIIIr9f1nS2L7XV20MfYX3v
+	Qdt8d7qFndoK5skgSiNMZ5BEC8kJIaIzCsmIzOhSSeXOcdPznubE8MMSLfwIxb9A09rp8iGfULD0/
+	OeY4MUB/7x+ugl2ToFRfr3PV1FpfUVYuLscGXyxWAHvYt1eNGWYo0omPl7ntd0BwUxpCejLMlVO7V
+	08dYUqM8PP7109rjaFnPRHJLCaoU+MrVJRjBsDVMyIDEMGtRePIlutY5lukJY2aOCjMwOSD9pjHKS
+	C3NgC4CxFG4Be/R8mRvA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rT6ks-00000001sFC-3wM9;
-	Thu, 25 Jan 2024 20:55:22 +0000
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
+	id 1rTVQm-00000005iXY-0F9Z;
+	Fri, 26 Jan 2024 23:16:16 +0000
+Received: from mail-qk1-x72b.google.com ([2607:f8b0:4864:20::72b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rT6kp-00000001sDD-0J2a
+	id 1rTVQd-00000005iPu-2rKb
 	for linux-amlogic@lists.infradead.org;
-	Thu, 25 Jan 2024 20:55:20 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rT6kK-0000q6-2e; Thu, 25 Jan 2024 21:54:48 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rT6kE-002MbB-Qk; Thu, 25 Jan 2024 21:54:42 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rT6kE-0088NE-2C;
-	Thu, 25 Jan 2024 21:54:42 +0100
-Date: Thu, 25 Jan 2024 21:54:42 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Douglas Anderson <dianders@chromium.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, dri-devel@lists.freedesktop.org, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Paul Cercueil <paul@crapouillou.net>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	linux-amlogic@lists.infradead.org, Guenter Roeck <groeck@chromium.org>, 
-	linux-riscv@lists.infradead.org, David Airlie <airlied@gmail.com>, 
-	linux-stm32@st-md-mailman.stormreply.com, Jerome Brunet <jbrunet@baylibre.com>, 
-	chrome-platform@lists.linux.dev, linux-samsung-soc@vger.kernel.org, 
-	Robert Foss <rfoss@kernel.org>, Samuel Holland <samuel@sholland.org>, 
-	Kevin Hilman <khilman@baylibre.com>, linux-staging@lists.linux.dev, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, NXP Linux Team <linux-imx@nxp.com>, linux-mips@vger.kernel.org, 
-	linux-sunxi@lists.linux.dev, linux-pwm@vger.kernel.org, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Jonas Karlman <jonas@kwiboo.se>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Ray Jui <rjui@broadcom.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Johan Hovold <johan@kernel.org>, Maxime Ripard <mripard@kernel.org>, greybus-dev@lists.linaro.org, 
-	Fabrice Gasnier <fabrice.gasnier@foss.st.com>, linux-mediatek@lists.infradead.org, 
-	linux-rpi-kernel@lists.infradead.org, Fabio Estevam <festevam@gmail.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Benson Leung <bleung@chromium.org>, kernel@pengutronix.de, 
-	linux-arm-kernel@lists.infradead.org, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Alex Elder <elder@kernel.org>, Scott Branden <sbranden@broadcom.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH v5 003/111] pwm: Provide a macro to get the parent device
- of a given chip
-Message-ID: <h4l5ki3mvayfmfb73jnrokmxu3p2ewutihx4rytefmpce7bcxq@nhsyy2fw6fds>
-References: <cover.1706182805.git.u.kleine-koenig@pengutronix.de>
- <1cae6f73264ab313205eaa9483251f7aaf259cb4.1706182805.git.u.kleine-koenig@pengutronix.de>
- <c89cbecf-253d-4a2c-8782-304b7b620175@broadcom.com>
- <e3xeos2rtfydqj3hz3ql7xkon3aa3aingww7q5lpb3xa4arqrs@6jgwfrgay4le>
+	Fri, 26 Jan 2024 23:16:11 +0000
+Received: by mail-qk1-x72b.google.com with SMTP id af79cd13be357-783da8920e5so52109485a.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 26 Jan 2024 15:16:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1706310964; x=1706915764; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=m1FUbK+X4G1K2LR1tS4ThCJb/HchC8GmhhxPZxsSnw8=;
+        b=BZkfcBhdbYaZiabHPNA8iM2d6Kb6+yO3uXMsKk7ZWKYTb1oS0TNegW5sHKag+7moLy
+         Pb3lqf/zlUCwjmgTAHYGn4+YcMf9A/dRZyUXM/2c9Yd+R6CvYdZLo8IfhmnMK+SNUdm9
+         0Ml0TaLmjT7YRKg5YGMbX+lhwYdfKDJotosdo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706310964; x=1706915764;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=m1FUbK+X4G1K2LR1tS4ThCJb/HchC8GmhhxPZxsSnw8=;
+        b=n0Kgn9jcWzLrB4OvLgqYr03kUmdWPFbRK3MoK8wKKxY7Y3B1y5GYBoXSDsMffACt0C
+         r4hL5Nqf3nA4GKtBqQJmlpw84ITQcsMF9+4T74CmqVCmN3NWQNaSHd0b4WD16r9nIKex
+         agpkxAk7d6zMIilbs7JYd4lxhkDpWfoiq0Z30mC/HDvTUTXV7CX2+X4JOocIj2v5QHB1
+         +NmnSDiFokpsMO9EHTMdsuApj0Wb8Pa1m/ct7AjtaNzQnQv0bXMkDmPgFEQPPZuEfytx
+         mvADKPnKK2Yjs8qockFwKHNXfFE34l1dOCIo1JmpVY11O4RBbf1aUh9e6jyqxQZNB2Fu
+         h7UA==
+X-Gm-Message-State: AOJu0YwgpjIm2i6MgCxpxXrWO5H3IU571JD7g9nhEPHHzD8PRZSb9tJV
+	filXW7J2D84m8qyIdLTH5EU/7OiHzah6QFehwfN5+NYsB8Q1+K7RSxB+mKjEdw==
+X-Google-Smtp-Source: AGHT+IEQ/tz8turm1P2FDbceVdQsCYW4IY1reD0BjYRsTNFIDrY6wN0U97EZCcKxKn339wiLqTkGcQ==
+X-Received: by 2002:ae9:e647:0:b0:783:df7a:a7c4 with SMTP id x7-20020ae9e647000000b00783df7aa7c4mr586658qkl.51.1706310964150;
+        Fri, 26 Jan 2024 15:16:04 -0800 (PST)
+Received: from denia.c.googlers.com (240.157.150.34.bc.googleusercontent.com. [34.150.157.240])
+        by smtp.gmail.com with ESMTPSA id m4-20020a05620a290400b00783de3ddf5esm507358qkp.70.2024.01.26.15.16.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Jan 2024 15:16:03 -0800 (PST)
+From: Ricardo Ribalda <ribalda@chromium.org>
+Subject: [PATCH 00/17] media: kerneldoc warnings
+Date: Fri, 26 Jan 2024 23:15:59 +0000
+Message-Id: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
 MIME-Version: 1.0
-In-Reply-To: <e3xeos2rtfydqj3hz3ql7xkon3aa3aingww7q5lpb3xa4arqrs@6jgwfrgay4le>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+X-B4-Tracking: v=1; b=H4sIAC89tGUC/x3MQQqAIBBA0avErBtQK4WuEi2sRhsiC40KorsnL
+ d/i/wcSRaYEbfFApJMTbyFDlgWMsw2ekKdsUELVQiqNnm9cjwUvGwMHn9CMRjjdVEaaAXK2R3J
+ 8/8uuf98PwmNAwWIAAAA=
+To: Tiffany Lin <tiffany.lin@mediatek.com>, 
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>, 
+ Yunfei Dong <yunfei.dong@mediatek.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>, Hans Verkuil <hverkuil@xs4all.nl>, 
+ Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+ Bin Liu <bin.liu@mediatek.com>, 
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>, 
+ Vikash Garodia <quic_vgarodia@quicinc.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, Bingbu Cao <bingbu.cao@intel.com>, 
+ Tianshu Qiu <tian.shu.qiu@intel.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, linux-staging@lists.linux.dev, 
+ linux-amlogic@lists.infradead.org, Ricardo Ribalda <ribalda@chromium.org>
+X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240125_125519_124962_C0C2955A 
-X-CRM114-Status: GOOD (  26.28  )
+X-CRM114-CacheID: sfid-20240126_151607_839899_1FF93FE5 
+X-CRM114-Status: UNSURE (   8.19  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,105 +115,65 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2646179338876123112=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+While automating the CI, I found the following kernel-doc errors.
 
---===============2646179338876123112==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2cxtxp6sbv6wwe5j"
-Content-Disposition: inline
+Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
+---
+Ricardo Ribalda (17):
+      media: mediatek: vcodec: Fix kerneldoc warnings
+      media: videodev2.h: Fix kerneldoc
+      media: media-entity.h: Fix kerneldoc
+      media: cec.h: Fix kerneldoc
+      media: pci: dt315.h: Fix kerneldoc
+      media: i2c: css-quirk.h: Fix kerneldoc
+      media: i2c: adv748: Fix kerneldoc
+      media: mediatek: jpeg: Fix kerneldoc
+      media: mediatek: vcodec: Fix kerneldoc
+      media: verisilicon: Fix kerneldoc
+      media: qcom: venus: Fix kerneldoc
+      media: samsung: exynos4-is: Fix kerneldoc
+      media: samsung: s5p-mfc: Fix kerneldoc
+      media: dvb-usb: Fix kerneldoc
+      media: ipu3: Fix kerneldoc
+      media: staging: meson: Fix kerneldoc
+      linux: v4l2-vp9.h: Fix kerneldoc
 
+ drivers/media/i2c/adv748x/adv748x.h                |  1 -
+ drivers/media/i2c/ccs/ccs-quirk.h                  |  8 +++---
+ drivers/media/pci/dt3155/dt3155.h                  |  1 -
+ .../media/platform/mediatek/jpeg/mtk_jpeg_core.h   |  1 -
+ .../mediatek/vcodec/decoder/mtk_vcodec_dec.h       |  1 -
+ .../mediatek/vcodec/decoder/vdec/vdec_vp8_req_if.c |  1 -
+ .../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c      |  1 -
+ .../platform/mediatek/vcodec/decoder/vdec_vpu_if.h |  1 -
+ .../mediatek/vcodec/encoder/mtk_vcodec_enc.h       |  1 -
+ drivers/media/platform/qcom/venus/core.h           |  1 -
+ .../media/platform/samsung/exynos4-is/fimc-lite.h  |  3 --
+ .../platform/samsung/s5p-mfc/s5p_mfc_common.h      |  1 -
+ drivers/media/platform/verisilicon/hantro.h        |  1 -
+ drivers/media/usb/dvb-usb/dvb-usb.h                |  2 --
+ .../staging/media/ipu3/include/uapi/intel-ipu3.h   |  3 --
+ drivers/staging/media/meson/vdec/vdec.h            |  1 -
+ include/media/cec.h                                |  2 --
+ include/media/media-entity.h                       |  4 ---
+ include/media/v4l2-vp9.h                           |  6 +++-
+ include/uapi/linux/videodev2.h                     | 32 +++++++++++-----------
+ 20 files changed, 25 insertions(+), 47 deletions(-)
+---
+base-commit: 615d300648869c774bd1fe54b4627bb0c20faed4
+change-id: 20240126-gix-mtk-warnings-7c70f653717b
 
---2cxtxp6sbv6wwe5j
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Best regards,
+-- 
+Ricardo Ribalda <ribalda@chromium.org>
 
-On Thu, Jan 25, 2024 at 09:29:37PM +0100, Uwe Kleine-K=F6nig wrote:
-> On Thu, Jan 25, 2024 at 11:32:47AM -0800, Florian Fainelli wrote:
-> > On 1/25/24 04:08, Uwe Kleine-K=F6nig wrote:
-> > > Currently a pwm_chip stores in its struct device *dev member a pointer
-> > > to the parent device. Preparing a change that embeds a full struct
-> > > device in struct pwm_chip, this accessor macro should be used in all
-> > > drivers directly accessing chip->dev now. This way struct pwm_chip and
-> > > this macro can be changed without having to touch all drivers in the
-> > > same change set.
-> > >=20
-> > > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-> >=20
-> > Nit: this is not a macro but an inline function.
->=20
-> Oh right, it used to be a macro, but I changed that. I made the commit
-> log read:
->=20
->     pwm: Provide an inline function to get the parent device of a given c=
-hip
->=20
->     Currently a pwm_chip stores in its struct device *dev member a pointer
->     to the parent device. Preparing a change that embeds a full struct
->     device in struct pwm_chip, this accessor function should be used in a=
-ll
->     drivers directly accessing chip->dev now. This way struct pwm_chip and
->     this new function can be changed without having to touch all drivers =
-in
->     the same change set.
-
-While looking into further feedback, I noticed I did the same mistake in
-all the patches that convert the drivers to use this function. I did
-
-	git filter-branch --msg-filter 'sed "s/Make use of pwmchip_parent() macro/=
-Make use of pwmchip_parent() accessor/; s/commit as struct pwm_chip::dev, u=
-se the macro/commit as struct pwm_chip::dev, use the accessor/; s/provided =
-for exactly this purpose./function provided for exactly this purpose./"' li=
-nus/master..
-
-on my branch to make the typical commit log read:
-
-	pwm: atmel: Make use of pwmchip_parent() accessor
-=09
-	struct pwm_chip::dev is about to change. To not have to touch this
-	driver in the same commit as struct pwm_chip::dev, use the accessor
-	function provided for exactly this purpose.
-
-I wont resend the whole series if this is the only change to it.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---2cxtxp6sbv6wwe5j
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWyypEACgkQj4D7WH0S
-/k5psggAul+UfI+G8dHEaH2KDgkBUUlYZUwuEaOFluY8XF2KWBYgzrV6GTSkw5wT
-Me32hGYPzkH5GThVge4EwflIY6st1Dpe7hApskZcERowT4iaqpLmRhMLJSfbNFFL
-TKdck+IYqa1cFxKcnCqPr5UHCx9DR2zJulclKHey+IaAQbbiSZ7PXqTliJidSqA4
-gcZdCllP/NksXCjwuu7f3ffFYfT4eD4biOf/g24aQx4AkSSB/1xPNtYnwHwe9U7Q
-NfCN0EtnmSN3qHIMZQ0v8PHGjfE/VvFR+cIRqaher18JI/FRZFfNPMhT1hniO7vh
-qGInsEnK5ClF+KhK7XpBNiDRRAyXtw==
-=6bo9
------END PGP SIGNATURE-----
-
---2cxtxp6sbv6wwe5j--
-
-
---===============2646179338876123112==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============2646179338876123112==--
-
