@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1C5BC47DDB
-	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jan 2024 23:17:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2832C48260
+	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jan 2024 23:17:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OZZMcBqHvXroGBlGp9Mgi3QzPkd3o0Gu+aZJVjT0yzU=; b=koOWuQfEXvl/nI
-	xTQOZexlPB8b+AJkdn5gmXdMvWPEZ96rjA/wBwbB+bZB2HXI/KqByu7dhlyKc7e0EqRR4XDWoFYPH
-	nGX0TZQz0939ePvStJEC8Ruicw4rtF+17nTPzeQBW5Qd6nbKaM2M6nJZFKb6Tv169LjFiI3LNaJHQ
-	G0zmoiJCGEr8p6rEwPnmbvMsbBAvPOU5luZkkTsXiOpH2VNbEJw1QQaFbYeccSZvYbiGvOHFEWy/v
-	ZEqtuwk/BBgF9lTzle5lUa3Mj8q7aOVKprg5ghgBNtRA1zR+GhiioUgYGAbc3Dm9icfPqmhmH7CdP
-	y906B7Fyeduc/Ljsuhfg==;
+	List-Owner; bh=mSxH0VvWdxT4FHK4QyVC69ZdZrZGJ6pa/4SYnnDcNKg=; b=kd/vhfM9/tA7tt
+	635j1CPD51K15TMcAmeDadl9SmH91oovBe+KyqOAGmdEpcWyOvpQoMa1mwn1fqyv/NJzZpOWt+/Rq
+	Giq+CAEeHz511EHNUO+Vrcjs2uRTq6faBKDWwdmEguWSz+SQBuvUkProQRtuiOZ8XV03WQmMtUzWD
+	2p0brKUd+skMe1eV45Iskmmjtvyvp569GGqSMbpAUOq1V9gVkxe+Yncp40JaYfAqmc1O2XuHwg1kX
+	uU91C3HapJUEQp8S3Hm1nmuBJY8Opngl63nhDnyDbKLB2vFOy8cwxp+RHTRjL5lpe8q8wFz7oWeLE
+	QDcqOJwkPwu6VimCVF3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTVRu-00000005jZE-1hP1;
-	Fri, 26 Jan 2024 23:17:26 +0000
-Received: from mail-qk1-x729.google.com ([2607:f8b0:4864:20::729])
+	id 1rTVRy-00000005jcI-1MYq;
+	Fri, 26 Jan 2024 23:17:30 +0000
+Received: from mail-qk1-x730.google.com ([2607:f8b0:4864:20::730])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTVQm-00000005iXP-0CSw
+	id 1rTVQo-00000005iZr-0PiY
 	for linux-amlogic@lists.infradead.org;
-	Fri, 26 Jan 2024 23:16:21 +0000
-Received: by mail-qk1-x729.google.com with SMTP id af79cd13be357-783dc658b59so61101185a.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 26 Jan 2024 15:16:15 -0800 (PST)
+	Fri, 26 Jan 2024 23:16:23 +0000
+Received: by mail-qk1-x730.google.com with SMTP id af79cd13be357-783045e88a6so102316085a.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 26 Jan 2024 15:16:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1706310975; x=1706915775; darn=lists.infradead.org;
+        d=chromium.org; s=google; t=1706310977; x=1706915777; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=2rgIqJyES8gEo830PNonJo5H+atO47Cm+Ctp+2scN+Q=;
-        b=AgoAtrkQ1EGQbUQHJfj1XMt0KjjxV/RwqR46GgTnlqwUYb9hcImYznTE3lhmM5B/U2
-         NJmV2wSUJpvqbJHKIOBksG7m7Ekzn67Q9fxq5sbUEjUtHB3wb9Cpujif6sQJQsYOJGcH
-         QC1Y1X2ANe1LBXwtIUAH5lleU+vB+8gsEX/24=
+        bh=IQ2hVP5YSWUaFh2DmjHhBwG+r6f86O5FO2Ifv95SzW4=;
+        b=S+/YLqV51YkHEpRBSjSayCHVqhv2eryiqhGUoqKDD6NkDvQQpArvgLAaNsfgFUzO9w
+         hXFAo/hXdhB/gHKIc8VgOSsxLJZXLg9lrWxgBi+z8zNC4NltGc0/MvxGixRAqCY57Z7V
+         IoF+QyETVObwU5fDsP9TctoFY+pcCbzAtkIK4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706310975; x=1706915775;
+        d=1e100.net; s=20230601; t=1706310977; x=1706915777;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2rgIqJyES8gEo830PNonJo5H+atO47Cm+Ctp+2scN+Q=;
-        b=LqEIWZjSobMgh1x+R4EQBjTpkGEhrherHdDFne9TUCmpLv09qYL81qZmMRq6j7dQNV
-         fWzFeU0pNKSRqjILKcD45nkC7kxqZHh+1AQw/Abr9Op6HaAa909P9dh451ENLK85TfMm
-         oqpFiByKAjR73CieVHCRv++qcSb5g6LYbwJ3M7x6l5XpQzCHAQgF6MbQXN0hpkP43O3s
-         yuU72VVZdQSl6ZKb/oS21WyPHniO6hm9p8N1E8ty5EcJmD5nx72N2CJv6tOO6mTILqcR
-         hdU3dLn7s4ZwOyEINUuqm1oQuphuktPx3IzBdiuEnJADVIawMnoG0WBFexiczr/ngIuU
-         woOQ==
-X-Gm-Message-State: AOJu0YwF5+HTPbofzSUDd5Z3GwaH0g2xI8RWgjt8jMAAcueiUnOzIt2f
-	G8OLoGtZggARFu65zAoobgtBj8jq48/Q5fmnxGwt+xAPxj4aoAVHniIe7IgWLw==
-X-Google-Smtp-Source: AGHT+IFd4epluudoTRMCuHg+DI2SZnbO+Lp5toeNsVP6WGNIo3gmA/FS5q4GFf/JRmu/UhK6CO/sRA==
-X-Received: by 2002:a05:620a:137c:b0:783:9ab7:374 with SMTP id d28-20020a05620a137c00b007839ab70374mr557152qkl.8.1706310975053;
-        Fri, 26 Jan 2024 15:16:15 -0800 (PST)
+        bh=IQ2hVP5YSWUaFh2DmjHhBwG+r6f86O5FO2Ifv95SzW4=;
+        b=S7wgSXqUIwIvG9B5vrrS5KALapC7gujM+ai68Xee7bEi3FMvhQ7zfVi36HmjPMyNSG
+         gXy/UIOXoMkezfQr+oMPqg7iK82Jri5LmmY9R+VcAlwOwajIsXuEp1I+As/0e6uSqAoM
+         PAyJ9/L9IB/aT9412ZTPxs9F9Uj36uwLT0vSqJAdmV9iD/8jnLIdAhDwlSqftFPfNBAE
+         JJIZg3sAahvzkYjpqhctJVlsbtLMkinjKkBHOieg80zQYWULzZCdmdeqx/6MEhu70ADS
+         N6yCN2dpDxSZkQeTosUzQWmNzKDgHkNjb080REb8oBf8CbJ64eX9+wxum/zZe+C/5j8Z
+         T8BQ==
+X-Gm-Message-State: AOJu0YxhLVnp2knneY4uoDj/9ITk9vDX9X9jZc5XPExJjogtqaTWTIzI
+	WBtNfJ1P7YRQGTkwiYKixSLZu2lwu4cuQCtgAopoT3ZjmDKA20ncxfwlPOL5Jw==
+X-Google-Smtp-Source: AGHT+IHtaIwGnlHCGr2gV5vTdHthY/KJARNYO6pIlwA2CpmdH7LMlVQFPCHc4W3qOep8rQ/bvmYRGg==
+X-Received: by 2002:a05:620a:12d9:b0:783:25ba:6c70 with SMTP id e25-20020a05620a12d900b0078325ba6c70mr576836qkl.129.1706310977198;
+        Fri, 26 Jan 2024 15:16:17 -0800 (PST)
 Received: from denia.c.googlers.com (240.157.150.34.bc.googleusercontent.com. [34.150.157.240])
-        by smtp.gmail.com with ESMTPSA id m4-20020a05620a290400b00783de3ddf5esm507358qkp.70.2024.01.26.15.16.14
+        by smtp.gmail.com with ESMTPSA id m4-20020a05620a290400b00783de3ddf5esm507358qkp.70.2024.01.26.15.16.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jan 2024 15:16:14 -0800 (PST)
+        Fri, 26 Jan 2024 15:16:16 -0800 (PST)
 From: Ricardo Ribalda <ribalda@chromium.org>
-Date: Fri, 26 Jan 2024 23:16:08 +0000
-Subject: [PATCH 09/17] media: mediatek: vcodec: Fix kerneldoc
+Date: Fri, 26 Jan 2024 23:16:10 +0000
+Subject: [PATCH 11/17] media: qcom: venus: Fix kerneldoc
 MIME-Version: 1.0
-Message-Id: <20240126-gix-mtk-warnings-v1-9-eed7865fce18@chromium.org>
+Message-Id: <20240126-gix-mtk-warnings-v1-11-eed7865fce18@chromium.org>
 References: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
 In-Reply-To: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
 To: Tiffany Lin <tiffany.lin@mediatek.com>, 
@@ -101,8 +101,9 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-amlogic@lists.infradead.org, Ricardo Ribalda <ribalda@chromium.org>
 X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240126_151616_374346_01B5E91D 
-X-CRM114-Status: GOOD (  11.05  )
+X-CRM114-CacheID: sfid-20240126_151618_490761_84F3A876 
+X-CRM114-Status: UNSURE (   9.83  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,51 +120,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Those fields have been removed. They do not need to be documented.
+Remove doc for missing field.
 
 Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
 ---
- drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.h | 1 -
- drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.h    | 1 -
- drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc.h | 1 -
- 3 files changed, 3 deletions(-)
+ drivers/media/platform/qcom/venus/core.h | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.h b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.h
-index ece27c880e50..1af075fc0194 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.h
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.h
-@@ -39,7 +39,6 @@ struct vdec_fb {
- /**
-  * struct mtk_video_dec_buf - Private data related to each VB2 buffer.
-  * @m2m_buf:	M2M buffer
-- * @list:	link list
-  * @used:	Capture buffer contain decoded frame data and keep in
-  *			codec data structure
-  * @queued_in_vb2:	Capture buffer is queue in vb2
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.h b/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.h
-index fbb3f34a73f0..aa7d08afc2f4 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.h
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.h
-@@ -22,7 +22,6 @@ struct mtk_vcodec_dec_ctx;
-  *                in place of inst_addr in messages.
-  * @signaled    : 1 - Host has received ack message from VPU, 0 - not received
-  * @ctx         : context for v4l2 layer integration
-- * @dev		: platform device of VPU
-  * @wq          : wait queue to wait VPU message ack
-  * @handler     : ipi handler for each decoder
-  * @codec_type     : use codec type to separate different codecs
-diff --git a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc.h b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc.h
-index 82246401ed4a..908d8179b2d2 100644
---- a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc.h
-+++ b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc.h
-@@ -26,7 +26,6 @@
- /**
-  * struct mtk_video_enc_buf - Private data related to each VB2 buffer.
-  * @m2m_buf:	M2M buffer
-- * @list:	list that buffer link to
-  * @param_change: Types of encode parameter change before encoding this
-  *				buffer
-  * @enc_params: Encode parameters changed before encode this buffer
+diff --git a/drivers/media/platform/qcom/venus/core.h b/drivers/media/platform/qcom/venus/core.h
+index 4a633261ece4..a39986ce79f1 100644
+--- a/drivers/media/platform/qcom/venus/core.h
++++ b/drivers/media/platform/qcom/venus/core.h
+@@ -428,7 +428,6 @@ enum venus_inst_modes {
+  * @error:	an error returned during last HFI sync operation
+  * @session_error:	a flag rised by HFI interface in case of session error
+  * @ops:		HFI operations
+- * @priv:	a private for HFI operations callbacks
+  * @session_type:	the type of the session (decoder or encoder)
+  * @hprop:	a union used as a holder by get property
+  * @core_acquired:	the Core has been acquired
 
 -- 
 2.43.0.429.g432eaa2c6b-goog
