@@ -4,68 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DDDCC47422
-	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jan 2024 23:16:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B12F6C48260
+	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jan 2024 23:16:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
-	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=B6IY/Thj8wKxktiTHNYbxkUVbq2jBbQqzx9k6mA1Ygo=; b=sSxY4xCvvfAsqj
-	isnXIQFMKEclZhqNH+wtxzUclPI5y1epyeebP2FLDLHC96hx6CqcjdVIIIr9f1nS2L7XV20MfYX3v
-	Qdt8d7qFndoK5skgSiNMZ5BEC8kJIaIzCsmIzOhSSeXOcdPznubE8MMSLfwIxb9A09rp8iGfULD0/
-	OeY4MUB/7x+ugl2ToFRfr3PV1FpfUVYuLscGXyxWAHvYt1eNGWYo0omPl7ntd0BwUxpCejLMlVO7V
-	08dYUqM8PP7109rjaFnPRHJLCaoU+MrVJRjBsDVMyIDEMGtRePIlutY5lukJY2aOCjMwOSD9pjHKS
-	C3NgC4CxFG4Be/R8mRvA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=fssYq37rgTwLUj+L+PdbQBdsQ7GU0PwY+75Yx7K0b08=; b=is/PzTOQeLvHtE
+	7B15gx11U1uu1nH6nUM37V3qbQGvHWo3qG7uXgrCV3Gx7IuYNaI8xnWTqrGKHKyn29PbL6M3hr4WC
+	tg8Z+UYoHumqq0JmF/W+h9SiYHcupRfPCAz9uz6u5xjBDYcoZ8C5Yv0OcPmTeBgaXPdYxUSlslm9l
+	KVvaxefXtZrUoDC9YbVKP4UIAF8OIk4QplyDwf2Mw7ivQmvIfH7fZLsRVDX+bm+JKYpzg/I7PMTvZ
+	tnjxIM3mQrVl9sb5JaD3WJNsnGUtNqw67E7Nu5djFg723WUqPDitWWfHWZ8+gKcST3z5RxYG1yjg4
+	j76WcgKM0GTO6P2RBokw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTVQm-00000005iXY-0F9Z;
-	Fri, 26 Jan 2024 23:16:16 +0000
-Received: from mail-qk1-x72b.google.com ([2607:f8b0:4864:20::72b])
+	id 1rTVQo-00000005ia5-0LWP;
+	Fri, 26 Jan 2024 23:16:18 +0000
+Received: from mail-qk1-x72c.google.com ([2607:f8b0:4864:20::72c])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTVQd-00000005iPu-2rKb
+	id 1rTVQd-00000005iQQ-2v2J
 	for linux-amlogic@lists.infradead.org;
-	Fri, 26 Jan 2024 23:16:11 +0000
-Received: by mail-qk1-x72b.google.com with SMTP id af79cd13be357-783da8920e5so52109485a.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 26 Jan 2024 15:16:05 -0800 (PST)
+	Fri, 26 Jan 2024 23:16:13 +0000
+Received: by mail-qk1-x72c.google.com with SMTP id af79cd13be357-783cd62f1b5so41715985a.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 26 Jan 2024 15:16:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1706310964; x=1706915764; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=m1FUbK+X4G1K2LR1tS4ThCJb/HchC8GmhhxPZxsSnw8=;
-        b=BZkfcBhdbYaZiabHPNA8iM2d6Kb6+yO3uXMsKk7ZWKYTb1oS0TNegW5sHKag+7moLy
-         Pb3lqf/zlUCwjmgTAHYGn4+YcMf9A/dRZyUXM/2c9Yd+R6CvYdZLo8IfhmnMK+SNUdm9
-         0Ml0TaLmjT7YRKg5YGMbX+lhwYdfKDJotosdo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706310964; x=1706915764;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=chromium.org; s=google; t=1706310965; x=1706915765; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=m1FUbK+X4G1K2LR1tS4ThCJb/HchC8GmhhxPZxsSnw8=;
-        b=n0Kgn9jcWzLrB4OvLgqYr03kUmdWPFbRK3MoK8wKKxY7Y3B1y5GYBoXSDsMffACt0C
-         r4hL5Nqf3nA4GKtBqQJmlpw84ITQcsMF9+4T74CmqVCmN3NWQNaSHd0b4WD16r9nIKex
-         agpkxAk7d6zMIilbs7JYd4lxhkDpWfoiq0Z30mC/HDvTUTXV7CX2+X4JOocIj2v5QHB1
-         +NmnSDiFokpsMO9EHTMdsuApj0Wb8Pa1m/ct7AjtaNzQnQv0bXMkDmPgFEQPPZuEfytx
-         mvADKPnKK2Yjs8qockFwKHNXfFE34l1dOCIo1JmpVY11O4RBbf1aUh9e6jyqxQZNB2Fu
-         h7UA==
-X-Gm-Message-State: AOJu0YwgpjIm2i6MgCxpxXrWO5H3IU571JD7g9nhEPHHzD8PRZSb9tJV
-	filXW7J2D84m8qyIdLTH5EU/7OiHzah6QFehwfN5+NYsB8Q1+K7RSxB+mKjEdw==
-X-Google-Smtp-Source: AGHT+IEQ/tz8turm1P2FDbceVdQsCYW4IY1reD0BjYRsTNFIDrY6wN0U97EZCcKxKn339wiLqTkGcQ==
-X-Received: by 2002:ae9:e647:0:b0:783:df7a:a7c4 with SMTP id x7-20020ae9e647000000b00783df7aa7c4mr586658qkl.51.1706310964150;
-        Fri, 26 Jan 2024 15:16:04 -0800 (PST)
+        bh=Ar8mBbHXqsE1e1cRGpZMgerGImf36JANUI0hlBJjqHM=;
+        b=fHD1qW4OI4vofpoKVUEJC8tjY9yz+QExMuv6rySAE2gKFmEsO8kd1RmXjDmBjNYSyB
+         4DJsn4gGHQ4g82WXxgMHJZrYAva5o4oRqDT0OKod35lpxq08eb4Hs9rc+c71h5QsZt1h
+         +vq/dUaLcTwfXEAGlmZo5KH1VgDp5fOJwlRqA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706310965; x=1706915765;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ar8mBbHXqsE1e1cRGpZMgerGImf36JANUI0hlBJjqHM=;
+        b=MzNC1noiXVWP25RxR006P2lnCscbFGjMHZ5ETaG+jYSFLC5RlaK4ODY1B8Ep9Ugayk
+         jKaVu9mdZTwZhyjGsXNLFK3txExIUt1vqze/EIAALDhgdXgEjZTEGpLnIHYMgWLSIQdX
+         3iEbPu6BklgFWW1Yz00TTHA5R2Oh+4zxt6iOHC9FQp3aOBQuKWsb7U0l+y2aSw0NUDtj
+         bDH7MkCCveLyagdgaHNHBdiMT65qqPKz3bmqSnEZPp3KnuaScfsc7w6pTTLrTKWi9mgU
+         2SHXq4OCI3GznYvnmf715HG7RYQwsTr7c9NS4d9Y5U738pQDJwUHlCRiRK1VrejgAbpx
+         Z84A==
+X-Gm-Message-State: AOJu0YxMNSDJvoP09TFnIDGkjHxUWQ+h5fZPP3Y7dq7WIuxkbJymTEfO
+	YLyUdwqpRtn5n/la0pi5np9JoAmVnUYgjyyVtDKntHTSSc8nh7wLfTqSaEDudg==
+X-Google-Smtp-Source: AGHT+IEp2TplztXDP53F55JwtnOMG+m/bhamzc+Y9PQOYbhM+M8gtls3bXtKPqVmvF6K1+rXQLaydQ==
+X-Received: by 2002:a05:620a:46a6:b0:783:35f0:d03c with SMTP id bq38-20020a05620a46a600b0078335f0d03cmr626950qkb.135.1706310965318;
+        Fri, 26 Jan 2024 15:16:05 -0800 (PST)
 Received: from denia.c.googlers.com (240.157.150.34.bc.googleusercontent.com. [34.150.157.240])
-        by smtp.gmail.com with ESMTPSA id m4-20020a05620a290400b00783de3ddf5esm507358qkp.70.2024.01.26.15.16.02
+        by smtp.gmail.com with ESMTPSA id m4-20020a05620a290400b00783de3ddf5esm507358qkp.70.2024.01.26.15.16.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jan 2024 15:16:03 -0800 (PST)
+        Fri, 26 Jan 2024 15:16:04 -0800 (PST)
 From: Ricardo Ribalda <ribalda@chromium.org>
-Subject: [PATCH 00/17] media: kerneldoc warnings
-Date: Fri, 26 Jan 2024 23:15:59 +0000
-Message-Id: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
+Date: Fri, 26 Jan 2024 23:16:00 +0000
+Subject: [PATCH 01/17] media: mediatek: vcodec: Fix kerneldoc warnings
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAC89tGUC/x3MQQqAIBBA0avErBtQK4WuEi2sRhsiC40KorsnL
- d/i/wcSRaYEbfFApJMTbyFDlgWMsw2ekKdsUELVQiqNnm9cjwUvGwMHn9CMRjjdVEaaAXK2R3J
- 8/8uuf98PwmNAwWIAAAA=
+Message-Id: <20240126-gix-mtk-warnings-v1-1-eed7865fce18@chromium.org>
+References: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
+In-Reply-To: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
 To: Tiffany Lin <tiffany.lin@mediatek.com>, 
  Andrew-CT Chen <andrew-ct.chen@mediatek.com>, 
  Yunfei Dong <yunfei.dong@mediatek.com>, 
@@ -101,9 +101,8 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-amlogic@lists.infradead.org, Ricardo Ribalda <ribalda@chromium.org>
 X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240126_151607_839899_1FF93FE5 
-X-CRM114-Status: UNSURE (   8.19  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240126_151607_841615_62296132 
+X-CRM114-Status: GOOD (  11.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,57 +119,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-While automating the CI, I found the following kernel-doc errors.
+These fields seems to be gone:
+drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_req_if.c:57: warning: Excess struct member 'wait_key_frame' description in 'vdec_vp8_slice_info'
+drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c:166: warning: Excess struct member 'mv_joint' description in 'vdec_vp9_slice_counts_map'
 
 Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
 ---
-Ricardo Ribalda (17):
-      media: mediatek: vcodec: Fix kerneldoc warnings
-      media: videodev2.h: Fix kerneldoc
-      media: media-entity.h: Fix kerneldoc
-      media: cec.h: Fix kerneldoc
-      media: pci: dt315.h: Fix kerneldoc
-      media: i2c: css-quirk.h: Fix kerneldoc
-      media: i2c: adv748: Fix kerneldoc
-      media: mediatek: jpeg: Fix kerneldoc
-      media: mediatek: vcodec: Fix kerneldoc
-      media: verisilicon: Fix kerneldoc
-      media: qcom: venus: Fix kerneldoc
-      media: samsung: exynos4-is: Fix kerneldoc
-      media: samsung: s5p-mfc: Fix kerneldoc
-      media: dvb-usb: Fix kerneldoc
-      media: ipu3: Fix kerneldoc
-      media: staging: meson: Fix kerneldoc
-      linux: v4l2-vp9.h: Fix kerneldoc
+ drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_req_if.c    | 1 -
+ .../media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c    | 1 -
+ 2 files changed, 2 deletions(-)
 
- drivers/media/i2c/adv748x/adv748x.h                |  1 -
- drivers/media/i2c/ccs/ccs-quirk.h                  |  8 +++---
- drivers/media/pci/dt3155/dt3155.h                  |  1 -
- .../media/platform/mediatek/jpeg/mtk_jpeg_core.h   |  1 -
- .../mediatek/vcodec/decoder/mtk_vcodec_dec.h       |  1 -
- .../mediatek/vcodec/decoder/vdec/vdec_vp8_req_if.c |  1 -
- .../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c      |  1 -
- .../platform/mediatek/vcodec/decoder/vdec_vpu_if.h |  1 -
- .../mediatek/vcodec/encoder/mtk_vcodec_enc.h       |  1 -
- drivers/media/platform/qcom/venus/core.h           |  1 -
- .../media/platform/samsung/exynos4-is/fimc-lite.h  |  3 --
- .../platform/samsung/s5p-mfc/s5p_mfc_common.h      |  1 -
- drivers/media/platform/verisilicon/hantro.h        |  1 -
- drivers/media/usb/dvb-usb/dvb-usb.h                |  2 --
- .../staging/media/ipu3/include/uapi/intel-ipu3.h   |  3 --
- drivers/staging/media/meson/vdec/vdec.h            |  1 -
- include/media/cec.h                                |  2 --
- include/media/media-entity.h                       |  4 ---
- include/media/v4l2-vp9.h                           |  6 +++-
- include/uapi/linux/videodev2.h                     | 32 +++++++++++-----------
- 20 files changed, 25 insertions(+), 47 deletions(-)
----
-base-commit: 615d300648869c774bd1fe54b4627bb0c20faed4
-change-id: 20240126-gix-mtk-warnings-7c70f653717b
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_req_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_req_if.c
+index f64b21c07169..f677e499fefa 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_req_if.c
++++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_req_if.c
+@@ -37,7 +37,6 @@
+  * @bs_sz:		bitstream size
+  * @resolution_changed:resolution change flag 1 - changed,  0 - not change
+  * @frame_header_type:	current frame header type
+- * @wait_key_frame:	wait key frame coming
+  * @crc:		used to check whether hardware's status is right
+  * @reserved:		reserved, currently unused
+  */
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
+index 69d37b93bd35..cf48d09b78d7 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
++++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
+@@ -141,7 +141,6 @@ struct vdec_vp9_slice_frame_counts {
+  * @skip:	skip counts.
+  * @y_mode:	Y prediction mode counts.
+  * @filter:	interpolation filter counts.
+- * @mv_joint:	motion vector joint counts.
+  * @sign:	motion vector sign counts.
+  * @classes:	motion vector class counts.
+  * @class0:	motion vector class0 bit counts.
 
-Best regards,
 -- 
-Ricardo Ribalda <ribalda@chromium.org>
+2.43.0.429.g432eaa2c6b-goog
 
 
 _______________________________________________
