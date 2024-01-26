@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2586C47DDB
-	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jan 2024 23:16:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6222FC47422
+	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jan 2024 23:17:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WpzopjvFmhiET9F2JhIFd8FocoNpKi5uTtXlJIrOrm8=; b=uLeDtOvHu1/+1t
-	kZjAPl1XW/jVttE80zghi6aGD4H+PGln2aBBII8LIoH5p4pBHR66/z+HOZWS1iorlpmGaT28LtujO
-	JdGaIsqxzOGEZLFEJ5afEoFL4KvUmed3/Bp1/u1mHze185qD619RzLPZI70LALaZ+czvGeVTEjcPx
-	ieVvVVM2BzIjw4VgyLLEc4yySf7S4hiwg8coOBB50EGvEtzuzBGkI5quDvtF10tK4sIsgxVAF/SbQ
-	Vk8k/051Y1uqVnC6TBp7SHNnz5OVHbyCAzpLtckK1ovSrwEmakajOKL/ymPtTj7hofXlXGWaFUYRk
-	Rt0QLGKKqrSEZmAf5/fA==;
+	List-Owner; bh=FvATJ68UIiUMf9rT+YmiHVuMCmml/gZutMjEQzCq0og=; b=jfWZPG31pqpwY4
+	yYu8eNt//L8WSJ6bn5pKXlEqSiNFvsatBZVcSe95ftimfg8bxGXTIdUCuCoMG0EIn+IDxn0BX6N3w
+	Ac8ahbPkUnfzb6XLwGX24/FaWy/ykuYA7P0/7Azh5tbL5QhwPNvPClSDcjdqgvaTBJ+yeAq3SQ+lN
+	2AExYUpSux7tc0OTFHCy9pLNNEGA3nF15ZNn+k6Bm2xjiMfsvXzJ2sDjiLATd0u1+vQjZK90njnmb
+	dqYjIEz4o2LnPcGZtz7OwWlTzp3fjfgvp+cOGiWvyUrd54QL4BFjpKraIuOKVBQXm+DxXEW//5d8d
+	l4kBC9s80qPxqQZvJqHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTVRG-00000005j1h-1MbX;
-	Fri, 26 Jan 2024 23:16:46 +0000
-Received: from mail-qk1-x72a.google.com ([2607:f8b0:4864:20::72a])
+	id 1rTVRO-00000005jA0-2qLM;
+	Fri, 26 Jan 2024 23:16:54 +0000
+Received: from mail-qk1-f177.google.com ([209.85.222.177])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTVQe-00000005iQi-3rvb
+	id 1rTVQj-00000005iV9-3f9J
 	for linux-amlogic@lists.infradead.org;
-	Fri, 26 Jan 2024 23:16:17 +0000
-Received: by mail-qk1-x72a.google.com with SMTP id af79cd13be357-783ced12f9bso52802085a.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 26 Jan 2024 15:16:07 -0800 (PST)
+	Fri, 26 Jan 2024 23:16:18 +0000
+Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-783cd245ec0so73626485a.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 26 Jan 2024 15:16:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1706310967; x=1706915767; darn=lists.infradead.org;
+        d=chromium.org; s=google; t=1706310971; x=1706915771; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=yKZ2I0FgT+c8VUKnt1mK+wIxC1JMtHjQ/OWMUKXoVdE=;
-        b=QalqUtMF4PDKz/hKVV5ple+NU8j15nurwIRrtkLlLUxVxGco/kv7OD2XGxTWNJOS6D
-         onH3TjC776OU2kOXHl2D6fwQnWlo8zJQK6uy9MKOnyt/eX6J7KohhKJquyB5H+BM8+GC
-         aXJTZMBmYa8Y/V5IRMpjvSrEVu6LKVa+cXUq0=
+        bh=0dgr7uAnKOP7T5XfeX17z97swkwNkCZ42zeC6YgDi/s=;
+        b=dX92LDcqOKYKKZ7SBfDQdWT5MQisIfUVNr69kWlmTUCkxYgeYFqiSvxkaq2ziHcC1Z
+         OVYF7o4bY1QaC0YeSYEnzEjEpFBbpLhFCjpcTS6hkTO1jm+mpNa9iveEUgmk1DWKG9Dv
+         /DBIdF8KwluqrFvfm1bd5arvfgEPVUlWRI5ZQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706310967; x=1706915767;
+        d=1e100.net; s=20230601; t=1706310971; x=1706915771;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=yKZ2I0FgT+c8VUKnt1mK+wIxC1JMtHjQ/OWMUKXoVdE=;
-        b=eoggx/jfJvL+uL8eHF5/4FiQHZMN+NfTmIJuzXJRjdxgiZUDb7uxobjzrnKIAakGIV
-         n4fXkdZWUuqglFm+lZknLdUbDdIG26Cr+iEhCcgl5WoPRC6uKD6TFUcns78QIWvHAoYQ
-         4Gech68eVASGjzBBcwH7ATMntG1qNhigN9yooClfjbVtUMcypeBRUEhI6DsIJNfUG2qI
-         CcaN7myZOXjKEGpNF8FaIxyTWZ/B9Qj2260zV+q/j048XdD0rLLwHNapGoDjt1ir3h7l
-         dRykPqwRPD+8jzXMFGLg132pZ/JmmMQoguQWKuORjXUK4J82iKgy7U982zDZ7jhAj8TF
-         MQWg==
-X-Gm-Message-State: AOJu0YwZbmBw31jvyuGF0z4PEaDd5bFQDdXbbFFxLuG462ugPpXUdU/n
-	+ixl9Xs6tfyDLIIe6zxFPpV7V4avw5IMnz3oVBqEowAMJhFcRTuX23QiXnyd8g==
-X-Google-Smtp-Source: AGHT+IGfaDanel4bAe+Gm4pPjfl4j2bUb1CcCFTzpsa5FCnRkAwIXhqbnMbyXrNSHptz1QBTZemCAg==
-X-Received: by 2002:a05:620a:3888:b0:783:3cee:425a with SMTP id qp8-20020a05620a388800b007833cee425amr491959qkn.141.1706310966713;
-        Fri, 26 Jan 2024 15:16:06 -0800 (PST)
+        bh=0dgr7uAnKOP7T5XfeX17z97swkwNkCZ42zeC6YgDi/s=;
+        b=kDm25vMin1hjsyPFoFlZvaAWJOHWJ9wTksGDn+zL1+MyGanuAJITj9ajjXc+WatrEA
+         mKQQMkZyMgAiQKC2afgMTgTQPxxnF6Tpkp0fZ9PxEAlOLU6zKHi71X4bDsrj50ND+VfI
+         wcLT1+LvWWybaKcMZugtrbKst/sLo3yl4PQ41G3myIBMwyrJOhUCDoZtbqPgP5DSh/zN
+         7Gs1A8e36JJd5dO310Avl0pCNm/cR8OxuFRG2oWZLRq+Wb0L9FNN9FM2eaq5QwQRvp+j
+         EQY/msgxmtu214k/RD2kUuUErUrdo2GTdbs0n1yKHEsus3e6agJGgEUH9GoPnPWmmavS
+         PrPA==
+X-Gm-Message-State: AOJu0YxjRsYwxzUWcmkMIkEVvYvpvjRLEsUmQUxG1MyVthJrEBTg2y6H
+	+8MqtxK8gMaF4UiJzE+0UvwbifNuj9e4EaZuJ4FELVFvBpx9AP2PDMPSivNphg==
+X-Google-Smtp-Source: AGHT+IHsMkOc7Y1zxu9ngxPBQ4/Ve5FRbTtg/VBTpnZVoIwUFy4DQtcLLUh2LbUFnAzoTvCw0KH84Q==
+X-Received: by 2002:ae9:e917:0:b0:783:4dfb:11ae with SMTP id x23-20020ae9e917000000b007834dfb11aemr522337qkf.63.1706310971522;
+        Fri, 26 Jan 2024 15:16:11 -0800 (PST)
 Received: from denia.c.googlers.com (240.157.150.34.bc.googleusercontent.com. [34.150.157.240])
-        by smtp.gmail.com with ESMTPSA id m4-20020a05620a290400b00783de3ddf5esm507358qkp.70.2024.01.26.15.16.05
+        by smtp.gmail.com with ESMTPSA id m4-20020a05620a290400b00783de3ddf5esm507358qkp.70.2024.01.26.15.16.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jan 2024 15:16:05 -0800 (PST)
+        Fri, 26 Jan 2024 15:16:11 -0800 (PST)
 From: Ricardo Ribalda <ribalda@chromium.org>
-Date: Fri, 26 Jan 2024 23:16:01 +0000
-Subject: [PATCH 02/17] media: videodev2.h: Fix kerneldoc
+Date: Fri, 26 Jan 2024 23:16:05 +0000
+Subject: [PATCH 06/17] media: i2c: css-quirk.h: Fix kerneldoc
 MIME-Version: 1.0
-Message-Id: <20240126-gix-mtk-warnings-v1-2-eed7865fce18@chromium.org>
+Message-Id: <20240126-gix-mtk-warnings-v1-6-eed7865fce18@chromium.org>
 References: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
 In-Reply-To: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
 To: Tiffany Lin <tiffany.lin@mediatek.com>, 
@@ -101,8 +101,8 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-amlogic@lists.infradead.org, Ricardo Ribalda <ribalda@chromium.org>
 X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240126_151609_092970_532583B6 
-X-CRM114-Status: GOOD (  14.41  )
+X-CRM114-CacheID: sfid-20240126_151614_083442_C2017705 
+X-CRM114-Status: GOOD (  12.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,79 +119,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Named nested unions need their prefix:
-https://www.kernel.org/doc/html/latest/doc-guide/kernel-doc.html#nested-structs-unions
+Kerneldoc does not seem to understand that embed doc:
+drivers/media/i2c/ccs/ccs-quirk.h:50: warning: Excess struct member 'write' description in 'ccs_quirk'
+drivers/media/i2c/ccs/ccs-quirk.h:50: warning: Excess struct member 'reg' description in 'ccs_quirk'
+drivers/media/i2c/ccs/ccs-quirk.h:50: warning: Excess struct member 'val' description in 'ccs_quirk'
+
+Convert into a standard doc.
 
 Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
 ---
- include/uapi/linux/videodev2.h | 32 ++++++++++++++++----------------
- 1 file changed, 16 insertions(+), 16 deletions(-)
+ drivers/media/i2c/ccs/ccs-quirk.h | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
-index 68e7ac178cc2..a8015e5e7fa4 100644
---- a/include/uapi/linux/videodev2.h
-+++ b/include/uapi/linux/videodev2.h
-@@ -1041,13 +1041,13 @@ struct v4l2_requestbuffers {
-  * struct v4l2_plane - plane info for multi-planar buffers
-  * @bytesused:		number of bytes occupied by data in the plane (payload)
-  * @length:		size of this plane (NOT the payload) in bytes
-- * @mem_offset:		when memory in the associated struct v4l2_buffer is
-+ * @m.mem_offset:	when memory in the associated struct v4l2_buffer is
-  *			V4L2_MEMORY_MMAP, equals the offset from the start of
-  *			the device memory for this plane (or is a "cookie" that
-  *			should be passed to mmap() called on the video node)
-- * @userptr:		when memory is V4L2_MEMORY_USERPTR, a userspace pointer
-+ * @m.userptr:		when memory is V4L2_MEMORY_USERPTR, a userspace pointer
-  *			pointing to this plane
-- * @fd:			when memory is V4L2_MEMORY_DMABUF, a userspace file
-+ * @m.fd:		when memory is V4L2_MEMORY_DMABUF, a userspace file
-  *			descriptor associated with this plane
-  * @m:			union of @mem_offset, @userptr and @fd
-  * @data_offset:	offset in the plane to the start of data; usually 0,
-@@ -1085,14 +1085,14 @@ struct v4l2_plane {
-  * @sequence:	sequence count of this frame
-  * @memory:	enum v4l2_memory; the method, in which the actual video data is
-  *		passed
-- * @offset:	for non-multiplanar buffers with memory == V4L2_MEMORY_MMAP;
-+ * @m.offset:	for non-multiplanar buffers with memory == V4L2_MEMORY_MMAP;
-  *		offset from the start of the device memory for this plane,
-  *		(or a "cookie" that should be passed to mmap() as offset)
-- * @userptr:	for non-multiplanar buffers with memory == V4L2_MEMORY_USERPTR;
-+ * @m.userptr:	for non-multiplanar buffers with memory == V4L2_MEMORY_USERPTR;
-  *		a userspace pointer pointing to this buffer
-- * @fd:		for non-multiplanar buffers with memory == V4L2_MEMORY_DMABUF;
-+ * @m.fd:		for non-multiplanar buffers with memory == V4L2_MEMORY_DMABUF;
-  *		a userspace file descriptor associated with this buffer
-- * @planes:	for multiplanar buffers; userspace pointer to the array of plane
-+ * @m.planes:	for multiplanar buffers; userspace pointer to the array of plane
-  *		info structs for this buffer
-  * @m:		union of @offset, @userptr, @planes and @fd
-  * @length:	size in bytes of the buffer (NOT its payload) for single-plane
-@@ -2423,15 +2423,15 @@ struct v4l2_meta_format {
- 
- /**
-  * struct v4l2_format - stream data format
-- * @type:	enum v4l2_buf_type; type of the data stream
-- * @pix:	definition of an image format
-- * @pix_mp:	definition of a multiplanar image format
-- * @win:	definition of an overlaid image
-- * @vbi:	raw VBI capture or output parameters
-- * @sliced:	sliced VBI capture or output parameters
-- * @raw_data:	placeholder for future extensions and custom formats
-- * @fmt:	union of @pix, @pix_mp, @win, @vbi, @sliced, @sdr, @meta
-- *		and @raw_data
-+ * @type:		enum v4l2_buf_type; type of the data stream
-+ * @fmt.pix:		definition of an image format
-+ * @fmt.pix_mp:		definition of a multiplanar image format
-+ * @fmt.win:		definition of an overlaid image
-+ * @fmt.vbi:		raw VBI capture or output parameters
-+ * @fmt.sliced:		sliced VBI capture or output parameters
-+ * @fmt.raw_data:	placeholder for future extensions and custom formats
-+ * @fmt:		union of @pix, @pix_mp, @win, @vbi, @sliced, @sdr,
-+ *			@meta and @raw_data
-  */
- struct v4l2_format {
- 	__u32	 type;
+diff --git a/drivers/media/i2c/ccs/ccs-quirk.h b/drivers/media/i2c/ccs/ccs-quirk.h
+index 0b1a64958d71..392c97109617 100644
+--- a/drivers/media/i2c/ccs/ccs-quirk.h
++++ b/drivers/media/i2c/ccs/ccs-quirk.h
+@@ -28,11 +28,11 @@ struct ccs_sensor;
+  * @reg_access: Register access quirk. The quirk may divert the access
+  *		to another register, or no register at all.
+  *
+- *		@write: Is this read (false) or write (true) access?
+- *		@reg: Pointer to the register to access
+- *		@value: Register value, set by the caller on write, or
++ *		-write: Is this read (false) or write (true) access?
++ *		-reg:   Pointer to the register to access
++ *		-val:   Register value, set by the caller on write, or
+  *			by the quirk on read
+- *		@return: 0 on success, -ENOIOCTLCMD if no register
++ *		-return: 0 on success, -ENOIOCTLCMD if no register
+  *			 access may be done by the caller (default read
+  *			 value is zero), else negative error code on error
+  * @flags: Quirk flags
 
 -- 
 2.43.0.429.g432eaa2c6b-goog
