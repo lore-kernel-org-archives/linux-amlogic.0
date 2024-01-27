@@ -4,33 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91563C46CD2
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jan 2024 22:09:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D18DC46CD2
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jan 2024 22:13:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qJ2HUliIHH0soxKW1Iqc8LRAxsinQ0Gcx1ylZ3foebE=; b=buqN43f4O0KM0U
-	2O2YBWOdIiPywwOTTxqWTkB6pc7x2xh+omI8xONuc9Kxt90+kpHaMdWVDVYy6xN1odZyV/SnVLHZX
-	lO1iDDGqO09q2JW2268eP/TBeGXgLxtDy6RVgW+RsLpLW4GzfsQMnGGT3KkYG3j9Jli/H2NC2txoX
-	E16bDeZsP9icWoWLgjB0G/2mtGXGWHsxT0u0ElZoiRrjC5wthaVTbQSUrzvVkG6QREUbw61aWSSIQ
-	wiFFciYLZpHQQC+VXgiynr+6xLyphNXWZ4rsCcTZt48AxbkQELhTW3Hn4EvJxouoKHlHWv0RDNMvn
-	X9D6fNCiSrR2uHDXvd+A==;
+	List-Owner; bh=rNZvLYOJFC0zXtmvHOPheyriU8+DMtPN8rziYbUDFzA=; b=VqY+S5N69g1pc9
+	6QyUj5KJ0v6J7+JVKcphb6aWo0uZWimtblY2EvZOW3zfKvBHornpxpB1PAP22p1TQpPwtzrj6CFqR
+	gStP8vKEUM4uQAl4CXLXMDIfC7m6Xn6nLdDakN1XzccazWlpRiMcHCDxP73Vp4LbewgspQAMOMQbH
+	FvngJB2Lvg4TEezVFwnDkcB5diLdZqTcOTg85Ha4+brJUbKc/9nfcap8Z0p6YI43H65vVyYrWyvhz
+	v8UH+V2K/2kgZwbeLfAOO0QoKLv793DqKATLPLh6cH8BxHRTuuZ70TSjXIrdsH54oRORHNrtDTbKw
+	GSmJsZvCa6cRzzkaMH8g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTqrq-00000008H3v-08e0;
-	Sat, 27 Jan 2024 22:09:38 +0000
+	id 1rTqvh-00000008HQP-1p57;
+	Sat, 27 Jan 2024 22:13:37 +0000
 Received: from [50.53.50.0] (helo=[192.168.254.15])
 	by bombadil.infradead.org with esmtpsa (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTqrm-00000008H2f-3uWE;
-	Sat, 27 Jan 2024 22:09:35 +0000
-Message-ID: <6e780215-2cd2-452d-b879-5f96d4e6f42d@infradead.org>
-Date: Sat, 27 Jan 2024 14:09:33 -0800
+	id 1rTqvd-00000008HOd-0Yhg;
+	Sat, 27 Jan 2024 22:13:33 +0000
+Message-ID: <c8795543-c8b0-4860-8cf2-b5680ba3e5d1@infradead.org>
+Date: Sat, 27 Jan 2024 14:13:31 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/17] media: verisilicon: Fix kerneldoc
+Subject: Re: [PATCH 11/17] media: qcom: venus: Fix kerneldoc
 Content-Language: en-US
 To: Ricardo Ribalda <ribalda@chromium.org>,
  Tiffany Lin <tiffany.lin@mediatek.com>,
@@ -67,9 +67,9 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-samsung-soc@vger.kernel.org, linux-staging@lists.linux.dev,
  linux-amlogic@lists.infradead.org
 References: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
- <20240126-gix-mtk-warnings-v1-10-eed7865fce18@chromium.org>
+ <20240126-gix-mtk-warnings-v1-11-eed7865fce18@chromium.org>
 From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20240126-gix-mtk-warnings-v1-10-eed7865fce18@chromium.org>
+In-Reply-To: <20240126-gix-mtk-warnings-v1-11-eed7865fce18@chromium.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,34 +86,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
+Hi,
 
 On 1/26/24 15:16, Ricardo Ribalda wrote:
-> The field is not part of the structure. Remove the doc.
+> Remove doc for missing field.
 > 
 > Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
-
-Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
-
-Thanks.
-
 > ---
->  drivers/media/platform/verisilicon/hantro.h | 1 -
+>  drivers/media/platform/qcom/venus/core.h | 1 -
 >  1 file changed, 1 deletion(-)
 > 
-> diff --git a/drivers/media/platform/verisilicon/hantro.h b/drivers/media/platform/verisilicon/hantro.h
-> index 6f5eb975d0e3..811260dc3c77 100644
-> --- a/drivers/media/platform/verisilicon/hantro.h
-> +++ b/drivers/media/platform/verisilicon/hantro.h
-> @@ -237,7 +237,6 @@ struct hantro_dev {
->   * @codec_ops:		Set of operations related to codec mode.
->   * @postproc:		Post-processing context.
->   * @h264_dec:		H.264-decoding context.
-> - * @jpeg_enc:		JPEG-encoding context.
->   * @mpeg2_dec:		MPEG-2-decoding context.
->   * @vp8_dec:		VP8-decoding context.
->   * @hevc_dec:		HEVC-decoding context.
+> diff --git a/drivers/media/platform/qcom/venus/core.h b/drivers/media/platform/qcom/venus/core.h
+> index 4a633261ece4..a39986ce79f1 100644
+> --- a/drivers/media/platform/qcom/venus/core.h
+> +++ b/drivers/media/platform/qcom/venus/core.h
+> @@ -428,7 +428,6 @@ enum venus_inst_modes {
+>   * @error:	an error returned during last HFI sync operation
+>   * @session_error:	a flag rised by HFI interface in case of session error
+>   * @ops:		HFI operations
+> - * @priv:	a private for HFI operations callbacks
+>   * @session_type:	the type of the session (decoder or encoder)
+>   * @hprop:	a union used as a holder by get property
+>   * @core_acquired:	the Core has been acquired
 > 
+
+I don't understand this one. I do understand the patch above, but the in the struct,
+I see:
+
+	unsigned long enc_codecs;
+	unsigned long dec_codecs;
+	unsigned int max_sessions_supported;
+	void *priv;
+	const struct hfi_ops *ops;
+	struct delayed_work work;
+
+I'm just guessing, but maybe scripts/kernel-doc is confused....
+
 
 -- 
 #Randy
