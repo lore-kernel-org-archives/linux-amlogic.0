@@ -4,33 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0A32C46CD2
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jan 2024 22:17:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A46CBC47DA9
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jan 2024 22:19:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wk6HKulvtJRs104KEVNTp7gZUe5Vpgj7fvF9aohnx6U=; b=lo/nravsnDr0ev
-	FeLYknpNu5q+VVp5ncHtB1SQ5ezQpKm2mgt8gvIxRSt0f4wtGSw469XdIZ/MpJ1DX0R0ILOEOguCI
-	Vz5muadYeYzz4I5i4R5X/ysocPI3a/o7qXbAbsYVN6VoENQWs3RVL8HPXVVdEwj52Xnt4n3VSbrWa
-	LcRE2PMRjbM0IXjil+16h9Xpy1JZkM9b6jq9D867riyB17xRkLV97vc3NKVI1VPovDaMtfhQseZ2p
-	rhwg1fUDqXRzc0VBjKNpOAhQrecflXGLn4MTJPSXrHOYFpBCGv8QdfwIG6Q/mVf940ayO9cajgZ7r
-	1S1G6ryWMx2aQkAypVXA==;
+	List-Owner; bh=cri5Y7gTbA0W251EFodrStlpkUbb6jRRpBJlcEka7fk=; b=nJog6Uv49MTbIw
+	uEEEPcOf1RE7Ud3XMGX2gNS1i0U35evX+sR0aU2kjP7/eeRFscvHvcRgXbUhgwRnJ0ZlaudYh5xTA
+	uGLbSYUeG6dZfXLO3d+bA0ff3kYnfQ9HAUK47q40Zc1reoxcPiH1/1lewmfrR34WPSa4yXBC7nUy6
+	J9xax9NCpPv0aViAu+M6MJkEjjjh38xMTrptQOYhMkWB5iwdt9xlnlDt5XNDjgKkO4TGt5J/L0Q8O
+	wznMtnrIRDcHmwYTuR/qP46psnetncvfU1PRlXgIqqCrdaScu6hvPyRwH9vbpSqb28DcSW9xwMHq4
+	EanJ6Eeo3HsuZjMd0oIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTqzi-00000008I3o-2Np2;
-	Sat, 27 Jan 2024 22:17:46 +0000
+	id 1rTr1a-00000008IHw-12UG;
+	Sat, 27 Jan 2024 22:19:42 +0000
 Received: from [50.53.50.0] (helo=[192.168.254.15])
 	by bombadil.infradead.org with esmtpsa (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTqzf-00000008Hpp-2Umt;
-	Sat, 27 Jan 2024 22:17:43 +0000
-Message-ID: <9790f78f-8616-45e8-becb-7afc10841e80@infradead.org>
-Date: Sat, 27 Jan 2024 14:17:42 -0800
+	id 1rTr1W-00000008IG6-068G;
+	Sat, 27 Jan 2024 22:19:38 +0000
+Message-ID: <bf319e05-5023-465f-88bb-434d8d8dd545@infradead.org>
+Date: Sat, 27 Jan 2024 14:19:36 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/17] media: samsung: s5p-mfc: Fix kerneldoc
+Subject: Re: [PATCH 14/17] media: dvb-usb: Fix kerneldoc
 Content-Language: en-US
 To: Ricardo Ribalda <ribalda@chromium.org>,
  Tiffany Lin <tiffany.lin@mediatek.com>,
@@ -67,9 +67,9 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-samsung-soc@vger.kernel.org, linux-staging@lists.linux.dev,
  linux-amlogic@lists.infradead.org
 References: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
- <20240126-gix-mtk-warnings-v1-13-eed7865fce18@chromium.org>
+ <20240126-gix-mtk-warnings-v1-14-eed7865fce18@chromium.org>
 From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20240126-gix-mtk-warnings-v1-13-eed7865fce18@chromium.org>
+In-Reply-To: <20240126-gix-mtk-warnings-v1-14-eed7865fce18@chromium.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,7 +89,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 
 On 1/26/24 15:16, Ricardo Ribalda wrote:
-> Remove doc from missing fields.
+> Remove kerneldoc from missing fields.
 > 
 > Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
 
@@ -97,21 +97,22 @@ Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
 Thanks.
 
 > ---
->  drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h | 1 -
->  1 file changed, 1 deletion(-)
+>  drivers/media/usb/dvb-usb/dvb-usb.h | 2 --
+>  1 file changed, 2 deletions(-)
 > 
-> diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
-> index 59450b324f7d..7e7e7b695b53 100644
-> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
-> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
-> @@ -612,7 +612,6 @@ struct s5p_mfc_codec_ops {
->   * @chroma_dpb_size:	dpb buffer size for chroma
->   * @me_buffer_size:	size of the motion estimation buffer
->   * @tmv_buffer_size:	size of temporal predictor motion vector buffer
-> - * @frame_type:		used to force the type of the next encoded frame
->   * @ref_queue:		list of the reference buffers for encoding
->   * @force_frame_type:	encoder's frame type forcing control
->   * @ref_queue_cnt:	number of the buffers in the reference list
+> diff --git a/drivers/media/usb/dvb-usb/dvb-usb.h b/drivers/media/usb/dvb-usb/dvb-usb.h
+> index 0990aa4a17bb..cbb0541d4dc1 100644
+> --- a/drivers/media/usb/dvb-usb/dvb-usb.h
+> +++ b/drivers/media/usb/dvb-usb/dvb-usb.h
+> @@ -126,8 +126,6 @@ struct usb_data_stream_properties {
+>   * @caps: capabilities of the DVB USB device.
+>   * @pid_filter_count: number of PID filter position in the optional hardware
+>   *  PID-filter.
+> - * @num_frontends: number of frontends of the DVB USB adapter.
+> - * @frontend_ctrl: called to power on/off active frontend.
+>   * @streaming_ctrl: called to start and stop the MPEG2-TS streaming of the
+>   *  device (not URB submitting/killing).
+>   *  This callback will be called without data URBs being active - data URBs
 > 
 
 -- 
