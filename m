@@ -4,35 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 170DFC48285
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jan 2024 22:14:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37EE8C47DA9
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jan 2024 22:16:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PKi6FVPnRm5bW4LhW5ys81QjeUIep56kFVbHlDbMMRs=; b=qCGyF77ubXhv6W
-	/MGKvXks5HRWcM/teLRzGmfJ28ig4ukhG9P3ASSo53SFyi4WNKyHb+tw1KUGrn+YMxgWvXldXki36
-	obpWbZdHsmqFmCYv5eAk9yEW+ob9td1yIC4QONtvARFofUYNF5ChbOjbqGt71q/Ql8U8ZZx0Wn98f
-	4wVude118doEjb4gsMtnz3guDCnHc2HirKr9WbuABc9OT0hsyK0WHzb5Fg6Eob1Z5Ddp/GsAygdI5
-	auPfXjRbFw6UoiPv3zmlQpLwt263m7y553Z9hox7WtLSIHmzcMCDNWR5SzX0O8llI5LGkPaPDPncu
-	DzL6f0aY9w/gQzV90Bdw==;
+	List-Owner; bh=IdFhQDRtV2+Xq3yr+wrZYvJ4I9fniicO0HMTf04wFLI=; b=Tza2R9iMFJXWnv
+	Y7QVotTonqWu/HuXg5hcs0t3fZQb/XWl13WKH5JpkQvWpAWECKpGVS5MtN6XJuOaPVyEYBxOqOzAK
+	iU++nnlAz+97Cn+d0TUy9Ll9vXj75eK9JOaDZ8O5k0NccUrCgCYHLhtmqVN0CgRdyXv8BH3nBJE7a
+	N0YrO+p+yBvM+QoDJhsitCTlKGrmYVCCFlU9nqODG8gk3Zwifnl4xmgT5LVLXFi7tSk7LBN+TotiL
+	xXUNJSwZqfBxuDINL5/OlGoNOEhJzdVDY9G8dSYc2+/W6P9ECqrb66y/dtuNQ0WzR0KmWRoAThaa+
+	UncsM1TXYqunByce9pQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTqwa-00000008Hbr-2yt7;
-	Sat, 27 Jan 2024 22:14:32 +0000
+	id 1rTqyQ-00000008HrQ-3YIn;
+	Sat, 27 Jan 2024 22:16:26 +0000
 Received: from [50.53.50.0] (helo=[192.168.254.15])
 	by bombadil.infradead.org with esmtpsa (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTqwX-00000008HOd-1jF6;
-	Sat, 27 Jan 2024 22:14:29 +0000
-Message-ID: <39fdc99e-e9d6-4aa2-b751-f9b2bf0814cd@infradead.org>
-Date: Sat, 27 Jan 2024 14:14:28 -0800
+	id 1rTqyN-00000008Hpp-1WRk;
+	Sat, 27 Jan 2024 22:16:23 +0000
+Message-ID: <4b3f5de5-4039-4b95-880a-70635f2e3112@infradead.org>
+Date: Sat, 27 Jan 2024 14:16:21 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/17] media: qcom: venus: Fix kerneldoc
+Subject: Re: [PATCH 12/17] media: samsung: exynos4-is: Fix kerneldoc
 Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
 To: Ricardo Ribalda <ribalda@chromium.org>,
  Tiffany Lin <tiffany.lin@mediatek.com>,
  Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
@@ -68,9 +67,9 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-samsung-soc@vger.kernel.org, linux-staging@lists.linux.dev,
  linux-amlogic@lists.infradead.org
 References: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
- <20240126-gix-mtk-warnings-v1-11-eed7865fce18@chromium.org>
- <c8795543-c8b0-4860-8cf2-b5680ba3e5d1@infradead.org>
-In-Reply-To: <c8795543-c8b0-4860-8cf2-b5680ba3e5d1@infradead.org>
+ <20240126-gix-mtk-warnings-v1-12-eed7865fce18@chromium.org>
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20240126-gix-mtk-warnings-v1-12-eed7865fce18@chromium.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,48 +88,40 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 
 
-On 1/27/24 14:13, Randy Dunlap wrote:
-> Hi,
+On 1/26/24 15:16, Ricardo Ribalda wrote:
+> Remove doc from missing fields.
 > 
-> On 1/26/24 15:16, Ricardo Ribalda wrote:
->> Remove doc for missing field.
->>
->> Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
->> ---
->>  drivers/media/platform/qcom/venus/core.h | 1 -
->>  1 file changed, 1 deletion(-)
->>
->> diff --git a/drivers/media/platform/qcom/venus/core.h b/drivers/media/platform/qcom/venus/core.h
->> index 4a633261ece4..a39986ce79f1 100644
->> --- a/drivers/media/platform/qcom/venus/core.h
->> +++ b/drivers/media/platform/qcom/venus/core.h
->> @@ -428,7 +428,6 @@ enum venus_inst_modes {
->>   * @error:	an error returned during last HFI sync operation
->>   * @session_error:	a flag rised by HFI interface in case of session error
->>   * @ops:		HFI operations
->> - * @priv:	a private for HFI operations callbacks
->>   * @session_type:	the type of the session (decoder or encoder)
->>   * @hprop:	a union used as a holder by get property
->>   * @core_acquired:	the Core has been acquired
->>
-> 
-> I don't understand this one. I do understand the patch above, but the in the struct,
-> I see:
-> 
-> 	unsigned long enc_codecs;
-> 	unsigned long dec_codecs;
-> 	unsigned int max_sessions_supported;
-> 	void *priv;
-> 	const struct hfi_ops *ops;
-> 	struct delayed_work work;
-> 
-> I'm just guessing, but maybe scripts/kernel-doc is confused....
-> 
-
-Nope, I'm confused. The patch is correct.
-Thanks.
+> Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
 
 Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
+Thanks.
+
+> ---
+>  drivers/media/platform/samsung/exynos4-is/fimc-lite.h | 3 ---
+>  1 file changed, 3 deletions(-)
+> 
+> diff --git a/drivers/media/platform/samsung/exynos4-is/fimc-lite.h b/drivers/media/platform/samsung/exynos4-is/fimc-lite.h
+> index ddf29e0b5b1c..2d96fb00a5c6 100644
+> --- a/drivers/media/platform/samsung/exynos4-is/fimc-lite.h
+> +++ b/drivers/media/platform/samsung/exynos4-is/fimc-lite.h
+> @@ -117,8 +117,6 @@ struct flite_buffer {
+>   * @ctrl_handler: v4l2 control handler
+>   * @test_pattern: test pattern controls
+>   * @index: FIMC-LITE platform device index
+> - * @pipeline: video capture pipeline data structure
+> - * @pipeline_ops: media pipeline ops for the video node driver
+>   * @slock: spinlock protecting this data structure and the hw registers
+>   * @lock: mutex serializing video device and the subdev operations
+>   * @clock: FIMC-LITE gate clock
+> @@ -134,7 +132,6 @@ struct flite_buffer {
+>   * @active_buf_q: the queue head of buffers scheduled in hardware
+>   * @vb_queue: vb2 buffers queue
+>   * @buf_index: helps to keep track of the DMA start address register index
+> - * @active_buf_count: number of video buffers scheduled in hardware
+>   * @frame_count: the captured frames counter
+>   * @reqbufs_count: the number of buffers requested with REQBUFS ioctl
+>   * @events: event info
+> 
 
 -- 
 #Randy
