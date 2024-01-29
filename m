@@ -4,52 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF1A1C47258
-	for <linux-amlogic@archiver.kernel.org>; Sun, 28 Jan 2024 11:01:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76CB4C47DA9
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jan 2024 10:09:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-ID:Date:To:Cc:From:Subject:
-	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yI00ci6SXrBUxyozIMdFJ1HorcumhvzL9EX5IO31F2w=; b=A+Dixj4C4xs1re
-	bCNIDtGi1e4l3JEFDNohqntXOp5oJLohOMjglL7D5loupUDyQgxBbRKChLanabmBYAsIhqfdWqUa9
-	RthhVYihEOZsuzO7T1TooTSNhf93eErZ3KGVLomR0tIWNjoN4QihrJn6KfsFknO5HMs0IyqfoO4JL
-	iFxyJVXh0ovRv+2YYvoeXehkveFVdBw6+GCqypvE8f2zl9Sn8yYP4cd3g32Mk+LF2M8iJL5ke+wpP
-	QMMQuBcR2CgeqdOl2Pd4y24ZwuxMcTMZ7lExJGMUdVIr1UI+TUQL3JXbHWnyJ7bub8d5tI+KDxCe5
-	l9pKcYhieziOlBN7E1gw==;
+	List-Owner; bh=zoQFvjluwUwL3ck9jmIEDVVAomXtCYrwq1TWtFxe1EU=; b=tH5KkJgc6MFWu/
+	R9w5Hpz9ee87xgEtb7kut/myX1svLcqIiglDZX3/IrWASgyN8Lnn+dpDE86COndbcUHS0nxjboks8
+	NuEoEQuQqrYIp8+7UExjLHqDqKRlzbL0WWJ6AECYOnbG71NtHxzktNoW6TknrHG4SsV4ssNZ6ZzDD
+	nJqFAazN3FVuKjQ51u6uTps6ib++xIC+htYCvVcArVgtnmGUcMiwYZUwYXycCnTJ/vFwi6j+sf2O8
+	TkUm57LLoKXZP9QHeuT35F1CwscH6CbKvC5S/IPWY79m0qqQldh7Kqkt1nZjLDa1VRY7PPcNWEj/z
+	Sp2KPeontmXgBmh+fo7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rU2uk-00000009H9H-0l17;
-	Sun, 28 Jan 2024 11:01:26 +0000
-Received: from perceval.ideasonboard.com ([213.167.242.64])
+	id 1rUOZc-0000000C9pJ-0E6o;
+	Mon, 29 Jan 2024 10:09:04 +0000
+Received: from madrid.collaboradmins.com ([2a00:1098:ed:100::25])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rU2uh-00000009H7Z-3noB;
-	Sun, 28 Jan 2024 11:01:25 +0000
-Received: from pendragon.ideasonboard.com (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0639A3D9;
-	Sun, 28 Jan 2024 11:59:58 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1706439599;
-	bh=5srCU8mALld93XXZWkuO9wczxnN7Mp+AiQKKleufIJY=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=RkhbdvRHlz1v8jg4VujoVEvuFFQwER/Of6VU8hgYvGxSJ6sauMOpigUM9jwIZggbM
-	 ovsTDbzG216rVaHmdrHBTfja6Y/1kngp8TZl25L/sIL9hjrprl+/lEEC7ofAXjaoqi
-	 ogP2fskaRCqFSgwLOtdxTIoWzpGtryil4ewfj2mk=
+	id 1rUOZY-0000000C9kK-0AoA;
+	Mon, 29 Jan 2024 10:09:01 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1706522936;
+	bh=gjTm7ZmqucA7gg9UGgFYPMnYH2k2+PyRYYu5UyXv2Qw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=I8YO5r/r038C+J06g3ItoGr3pBXQhzN4TUSw5RrWcJqyfub52KAU89O3q+CHHDo4x
+	 nHYgcYUOpv4jGStICWrnh0nZQVepkftxG/unuJwzp65Q/KtR0/YrXZT7Po8uZdHabR
+	 ZTiMRqUk+CO0NlcsM0VsAqilkMJMZIzGeDgeKfOt595RLKf/hOe99dmDd38IT1rlO/
+	 kK/TQaCHc6pACyU5DPOAms1KCILfsNvRdC9rLZx66TLn5WugpLTBUtoflxx9wwoNi6
+	 INrAlSxTgT5UY9MCxnEIbbSxTGMQxj9aP9cxn+U1RB0zcl8eSlY9r+5rR6M/4ylH5J
+	 0Q0637TBWBPKA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 95DF73781F92;
+	Mon, 29 Jan 2024 10:08:54 +0000 (UTC)
+Message-ID: <c27bc8c3-6ff7-4dd9-a4e4-4eef54b3feda@collabora.com>
+Date: Mon, 29 Jan 2024 11:08:53 +0100
 MIME-Version: 1.0
-In-Reply-To: <20240126-gix-mtk-warnings-v1-7-eed7865fce18@chromium.org>
-References: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org> <20240126-gix-mtk-warnings-v1-7-eed7865fce18@chromium.org>
-Subject: Re: [PATCH 07/17] media: i2c: adv748: Fix kerneldoc
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-arm-msm@vger.kernel.org, linux-samsung-soc@vger.kernel.org, linux-staging@lists.linux.dev, linux-amlogic@lists.infradead.org, Ricardo Ribalda <ribalda@chromium.org>
-To: Alim Akhtar <alim.akhtar@samsung.com>, Andrew-CT Chen <andrew-ct.chen@mediatek.com>, Andrzej Hajda <andrzej.hajda@intel.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Bin Liu <bin.liu@mediatek.com>, Bingbu Cao <bingbu.cao@intel.com>, Bjorn Andersson <andersson@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Hans Verkuil <hverkuil-cisco@xs4all.nl>, Hans Verkuil <hverkuil@xs4all.nl>, Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Marek Szyprowski <m.szyprowski@samsung.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Matthias Brugger <matthias.bgg@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Philipp Zab
- el <p.zabel@pengutronix.de>, Ricardo Ribalda <ribalda@chromium.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, Stanimir Varbanov <stanimir.k.varbanov@gmail.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, Tianshu Qiu <tian.shu.qiu@intel.com>, Tiffany Lin <tiffany.lin@mediatek.com>, Vikash Garodia <quic_vgarodia@quicinc.com>, Yunfei Dong <yunfei.dong@mediatek.com>
-Date: Sun, 28 Jan 2024 11:01:13 +0000
-Message-ID: <170643967334.1879520.13311953581412781310@ping.linuxembedded.co.uk>
-User-Agent: alot/0.10
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/17] media: videodev2.h: Fix kerneldoc
+Content-Language: en-US
+To: Ricardo Ribalda <ribalda@chromium.org>,
+ Tiffany Lin <tiffany.lin@mediatek.com>,
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Yunfei Dong <yunfei.dong@mediatek.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>, Hans Verkuil <hverkuil@xs4all.nl>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Bin Liu <bin.liu@mediatek.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Bingbu Cao <bingbu.cao@intel.com>,
+ Tianshu Qiu <tian.shu.qiu@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-amlogic@lists.infradead.org
+References: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
+ <20240126-gix-mtk-warnings-v1-2-eed7865fce18@chromium.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240126-gix-mtk-warnings-v1-2-eed7865fce18@chromium.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240128_030124_108082_B0DB2B63 
-X-CRM114-Status: GOOD (  12.11  )
+X-CRM114-CacheID: sfid-20240129_020900_258494_67491336 
+X-CRM114-Status: UNSURE (   5.59  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,43 +101,20 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Ricardo Ribalda (2024-01-26 23:16:06)
-> The field is gone, remove the documentation.
-
-Looking at 3e89586a64df ("media: i2c: adv748x: add adv748x driver")
-confims it was never added. Must have been an old leftover when I
-upstreamed.
-
-Thanks for the fix.
-
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-
+Il 27/01/24 00:16, Ricardo Ribalda ha scritto:
+> Named nested unions need their prefix:
+> https://www.kernel.org/doc/html/latest/doc-guide/kernel-doc.html#nested-structs-unions
+> 
 > Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
-> ---
->  drivers/media/i2c/adv748x/adv748x.h | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/drivers/media/i2c/adv748x/adv748x.h b/drivers/media/i2c/adv748x/adv748x.h
-> index 6f90f78f58cf..d2b5e722e997 100644
-> --- a/drivers/media/i2c/adv748x/adv748x.h
-> +++ b/drivers/media/i2c/adv748x/adv748x.h
-> @@ -173,7 +173,6 @@ struct adv748x_afe {
->   *
->   * @endpoints:         parsed device node endpoints for each port
->   *
-> - * @i2c_addresses:     I2C Page addresses
->   * @i2c_clients:       I2C clients for the page accesses
->   * @regmap:            regmap configuration pages.
->   *
-> 
-> -- 
-> 2.43.0.429.g432eaa2c6b-goog
->
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
