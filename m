@@ -4,176 +4,203 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF23CC54E4A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Feb 2024 17:11:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B390C54E4F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Feb 2024 17:11:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Subject:References:
+	In-Reply-To:Cc:To:From:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IO8xlTw6e85SSpOBsPg7wZzVpYLXeQvHxUpB0Mts8Bo=; b=cAd+N0E7M0vMhK
-	0aGAqkAebenBmDI8IKgs8AlKuHBZpWSCI9T+u0uoBdFfL+zM1PDRSwsJgEDCaEEhIVxYaQvqn6d50
-	q0vRNe+AFwT47PnitGKZTwhb5KNoLEAeU2FZYuvftTONar75KJbjhoLkSIbhsG0Z0+MFzk1AsPREk
-	FqOfAeEN44SppH2eG97L5PC31zTGbMoboobxhnK+En5Kd/Md4M1HUZJtfktyHTU41vxUr3f7c+GIM
-	OvXjy7RWWHJgVRZZL3u4y2MIe20YLs7WZ8nxGZmYF0+eAp/rwAZiVh+UnjasqqhDPUoq1mVpHbmTM
-	cEhGiktDF6XwYq9HLyug==;
+	List-Owner; bh=hjgt9cX3ftt/CqH1ieFr441I+P3kpKf+8FydePq49YU=; b=GKV+Fr5Dphs9cH
+	RO3dVJ6Ekzh7JPWNuP48kpZFiqdHW6ZrogLM5C1Ris0Qs8ay6tjy2r9JWJjgne8bRwxz1H0iLsSwo
+	2iFmadSHEqL94oZ35sg83qTphmiQ6tAzFUSV3pYTahdtDd7GSVWqtz8J9luD4aLkMEmmnvKDBUIlc
+	GoDAdSn7+8mthUwdimC3Vnyr5im/HcNs8kHgLOD57rYxpIklzuNjIi+6Tirewf7gveK1KEE2fqCee
+	J7QWcxEXoAXCjCw1ST4QhLeKgFDlNMFPyFDEQPYXEcvhgOo+Y356jx6corzEO9FQOxriextgDrzr1
+	mEqbOr/ByvWhTJRTYslQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rdZ5G-0000000AOsp-1iNT;
-	Fri, 23 Feb 2024 17:11:38 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1rdZ5J-0000000AOud-0QuV;
+	Fri, 23 Feb 2024 17:11:41 +0000
+Received: from mail-os0jpn01on20701.outbound.protection.outlook.com ([2a01:111:f403:201a::701] helo=JPN01-OS0-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rT0Ob-00000000Evw-3eyp
-	for linux-amlogic@bombadil.infradead.org;
-	Thu, 25 Jan 2024 14:07:58 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=C6dz9YpfHmCugtCNf7g+GN9sHtNvRm2IMzaj5KwHZ1s=; b=dlOEfzRzoY0BTcaVGDzW7cVLaB
-	PM9yPdpmxKOGXbJs4aj4EuQTJCuQdi/rqz0iPzVbnwPMpD+enMYP8tk5PiOyI3igLnNDeiS75Xu2J
-	omJ/quUirmON1zukvCxdhxQof18MAmV9Wo6nMjMGy/W94+4vOxrbH4e2aXDUs8YLDoKdRvgprV6No
-	0yikSyljp7ax2xyrYMaCWkojNlbwxIgJiRQXPZd8z2mqZqZPHZPKn1i7dRAmJKYsR5Rk8XRGQveoq
-	Jp+ZFbnieh3X42J2HFmVbG/OH7vaSmKrJBu8DbmR+mzWfwJoWQhvvKxfhfhTA4flbLR7YA2gPok3m
-	HQcjHUoA==;
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
-	by desiato.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rSycX-00000005HzE-1F8s
-	for linux-amlogic@lists.infradead.org;
-	Thu, 25 Jan 2024 12:14:15 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rSyZH-00049s-NK; Thu, 25 Jan 2024 13:10:51 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rSyZE-002HRD-5b; Thu, 25 Jan 2024 13:10:48 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rSyZD-007n0n-33;
-	Thu, 25 Jan 2024 13:10:47 +0100
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Jonathan Corbet <corbet@lwn.net>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	James Clark <james.clark@arm.com>,
-	linux-pwm@vger.kernel.org,
-	Hector Martin <marcan@marcan.st>,
-	Sven Peter <sven@svenpeter.dev>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Alexander Shiyan <shc_work@mail.ru>,
-	Benson Leung <bleung@chromium.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	Hans de Goede <hdegoede@redhat.com>,
-	=?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	=?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Michael Walle <mwalle@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Hammer Hsieh <hammerh0314@gmail.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-	Sean Anderson <sean.anderson@seco.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Robert Foss <rfoss@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>,
-	Anjelique Melendez <quic_amelende@quicinc.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Lu Hongfei <luhongfei@vivo.com>,
-	Bjorn Andersson <quic_bjorande@quicinc.com>,
-	Luca Weiss <luca@z3ntu.xyz>,
-	Johan Hovold <johan@kernel.org>,
-	Alex Elder <elder@kernel.org>
-Cc: linux-doc@vger.kernel.org,
-	kernel@pengutronix.de,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	linux-rpi-kernel@lists.infradead.org,
-	Guenter Roeck <groeck@chromium.org>,
-	chrome-platform@lists.linux.dev,
+	id 1rV2mj-00000001UAj-1xXR;
+	Wed, 31 Jan 2024 05:05:18 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ux7cdCW7SXwnB2JH5AK0jQsVHGQm6ya6vxX0uz+mNFDyDDnyOeKinNpi3oAo9mhu9O+ctTDJNuB9ZXoKLk/6JqejfAlpYAdqRZL2cSeaHBEs9g9jUF9cHpR8a6xxKMIakzBuZg0uhUgHGAUmADw1ibQysx545Tx3TQ07Wdd3u4imoRPay88bb44G1B8g1qebykNEMRIfFjwuSYKSx/DygD75owmSkaenYW7fl5Fiqrz7PLfyCITcXf+bA32VtJ3H3Pe0oALZ6jJzdtjWJGelXLHi/LmhBpx73x1ugltGhauj6P9CBla5BAhuarP8hqqfAf83gJlTKjvw4sZ8c9JXNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4BBD+2hwCWKVV0Gz4IKCygXmCLUzJwjGIsg2wpasMU8=;
+ b=gIKFUDJC9LLtXhf1FFbzWS5sAQ1UBro4f2C01+7leiJOIEaypt7gfiXVQ7q2tCWwTTfZrDgVE0JsBgTGrD70PJoTBve6AKqtEkhjTnN3ySj/QH17Oq4pALLLqEWq4XbzJaAEf0YTlMNftWHsomJxvgm/33VMl/ftt7HtpnfNW7idyGYMzJw2wyY4L+8n4zjNoBcO2dqq/c541Sj07ozH+6ta7nJpay+YBICx6H0foRyLeFv7n6ssMlricxi/bF7/DymjBCiet3NUR8vjfAi7i1SG6p4RYcpqaaMDBMdGO6EZBSxw7a+5MRv6GkVsP+ajEw6ngA4Brf02jltLyMGZLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4BBD+2hwCWKVV0Gz4IKCygXmCLUzJwjGIsg2wpasMU8=;
+ b=pfdxCoAfhcM4LZC974RTOUv8zAuytN/U3lcpsH5SS6SrIrHcB/Ha3i4rO8EZavjayOkC+Y/rnFKlDSaGEiqAmDaLZoMyZiqI4hgg4rfjy013zDlsRulGbRGw81UdLOyMsBXBpu8FJjA2HA4GHi2e6+Y2SU1pVgofIiKR+C9iR5c=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TYCPR01MB8341.jpnprd01.prod.outlook.com
+ (2603:1096:400:15c::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.23; Wed, 31 Jan
+ 2024 05:05:06 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::ce8:8f5e:99a0:aba4]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::ce8:8f5e:99a0:aba4%2]) with mapi id 15.20.7249.023; Wed, 31 Jan 2024
+ 05:05:06 +0000
+Message-ID: <87le866qke.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,	"Lad,  Prabhakar"
+ <prabhakar.csengg@gmail.com>,	=?ISO-8859-1?Q?=22Niklas_S=C3=B6derlund=22?=
+ <niklas.soderlund+renesas@ragnatech.se>,	=?ISO-8859-1?Q?=22Uwe_Kleine-K?=
+ =?ISO-8859-1?Q?=C3=B6nig=22?= <u.kleine-koenig@pengutronix.de>,	Abhinav
+ Kumar <quic_abhinavk@quicinc.com>,	Alexander Shishkin
+ <alexander.shishkin@linux.intel.com>,	Alexander Stein
+ <alexander.stein@ew.tq-group.com>,	Alexandre Belloni
+ <alexandre.belloni@bootlin.com>,	Alexandre Torgue
+ <alexandre.torgue@foss.st.com>,	Alexey Brodkin <abrodkin@synopsys.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,	Andy Gross <agross@kernel.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>,	Bjorn Andersson
+ <andersson@kernel.org>,	Claudiu Beznea <claudiu.beznea@tuxon.dev>,	Daniel
+ Vetter <daniel@ffwll.ch>,	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	David Airlie <airlied@gmail.com>,	Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>,	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Emma Anholt <emma@anholt.net>,	Eugen Hristev
+ <eugen.hristev@collabora.com>,	Florian Fainelli
+ <florian.fainelli@broadcom.com>,	Frank Rowand <frowand.list@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,	Hans Verkuil
+ <hverkuil-cisco@xs4all.nl>,	Helge Deller <deller@gmx.de>,	Hugues Fruchet
+ <hugues.fruchet@foss.st.com>,	Jacopo Mondi <jacopo+renesas@jmondi.org>,
+	Jacopo Mondi <jacopo@jmondi.org>,	James Clark <james.clark@arm.com>,
+	Jaroslav Kysela <perex@perex.cz>,	Jonathan Hunter <jonathanh@nvidia.com>,
+	Kevin Hilman <khilman@baylibre.com>,	Kieran Bingham
+ <kieran.bingham+renesas@ideasonboard.com>,	Kieran Bingham
+ <kieran.bingham@ideasonboard.com>,	Konrad Dybcio
+ <konrad.dybcio@linaro.org>,	Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>,	Laurent Pinchart
+ <laurent.pinchart+renesas@ideasonboard.com>,	Laurent Pinchart
+ <laurent.pinchart@ideasonboard.com>,	Liam Girdwood <lgirdwood@gmail.com>,
+	Liu Ying <victor.liu@nxp.com>,	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,	Marek Vasut
+ <marex@denx.de>,	Mark Brown <broonie@kernel.org>,	Mauro Carvalho Chehab
+ <mchehab@kernel.org>,	Maxime Coquelin <mcoquelin.stm32@gmail.com>,	Maxime
+ Ripard <mripard@kernel.org>,	Michael Tretter <m.tretter@pengutronix.de>,
+	Michal Simek <michal.simek@amd.com>,	Miguel Ojeda <ojeda@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,	Neil Armstrong
+ <neil.armstrong@linaro.org>,	Nick Desaulniers <ndesaulniers@google.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,	Philipp Zabel
+ <p.zabel@pengutronix.de>,	Philippe Cornu <philippe.cornu@foss.st.com>,
+	Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,	Rob Clark
+ <robdclark@gmail.com>,	Rob Herring <robh+dt@kernel.org>,	Robert Foss
+ <rfoss@kernel.org>,	Russell King <linux@armlinux.org.uk>,	Sakari Ailus
+ <sakari.ailus@linux.intel.com>,	Saravana Kannan <saravanak@google.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,	Shawn Guo <shawnguo@kernel.org>,
+	Sowjanya Komatineni <skomatineni@nvidia.com>,	Stefan Agner
+ <stefan@agner.ch>,	Suzuki K Poulose <suzuki.poulose@arm.com>,	Sylwester
+ Nawrocki <s.nawrocki@samsung.com>,	Takashi Iwai <tiwai@suse.com>,	Thierry
+ Reding <thierry.reding@gmail.com>,	Thomas Zimmermann <tzimmermann@suse.de>,
+	Tim Harvey <tharvey@gateworks.com>,	Todor Tomov <todor.too@gmail.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,	Yannick Fertre
+ <yannick.fertre@foss.st.com>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>,
 	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	linux-mips@vger.kernel.org,
-	platform-driver-x86@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org,
-	linux-riscv@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-samsung-soc@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-sunxi@lists.linux.dev,
-	linux-tegra@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
 	Jonas Karlman <jonas@kwiboo.se>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Leo Yan <leo.yan@linaro.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Mike Leach <mike.leach@linaro.org>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Sean Paul <sean@poorly.run>,
+	Tom Rix <trix@redhat.com>,
+	coresight@lists.linaro.org,
+	devicetree@vger.kernel.org,
 	dri-devel@lists.freedesktop.org,
-	linux-leds@vger.kernel.org,
-	greybus-dev@lists.linaro.org,
-	linux-staging@lists.linux.dev
-Subject: [PATCH v5 040/111] pwm: Provide devm_pwmchip_alloc() function
-Date: Thu, 25 Jan 2024 13:09:02 +0100
-Message-ID: <f59b1a4a8d6fba65e4d3e8698310c9cb1d4c43ce.1706182805.git.u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1706182805.git.u.kleine-koenig@pengutronix.de>
-References: <cover.1706182805.git.u.kleine-koenig@pengutronix.de>
+	freedreno@lists.freedesktop.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-fbdev@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-staging@lists.linux.dev,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-tegra@vger.kernel.org,
+	llvm@lists.linux.dev
+In-Reply-To: <87o7d26qla.wl-kuninori.morimoto.gx@renesas.com>
+References: <87o7d26qla.wl-kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH v3 02/24] of: property: use unsigned int return on of_graph_get_endpoint_count()
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+Date: Wed, 31 Jan 2024 05:05:05 +0000
+X-ClientProxiedBy: TYCP301CA0073.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:405:7d::11) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4472; i=u.kleine-koenig@pengutronix.de; h=from:subject:message-id; bh=Y70kt1S+wDMGZ2Y6dT7JBGkOh38DPB/mz0c9lW1w+go=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBlsk9o1J7Qn6pSUgc2O5FQOVH47M2tNWcGfyzpg KqN39khZuCJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZbJPaAAKCRCPgPtYfRL+ Tl7sCACDg65PvULF2T57x8s2GOVh8qHAOM4G2fEdFZQeFhZiTply5wW+kG5bIM1JAdU3cAiM96g uzfqnkdy2Mt6/lWu6ZhjqOk/xYUO80eOZ5e8cyRhQLGb4VsogRhDSOKSAf4k0fkzTYCdCM3jfwP QGXt5GRUeYGJVhDmUC7m1wai9vWlfWG8IXkVbSYnX3LqEAl0A40uaffDMUtp2bFtgHNqtqbGhx6 bM/vJXjzuqiGa8jiFMTuJ50PRpeh9o/6cre0EhT+nv5GQHpRaGSKnNf/E7Q0CK0tiRGYs7M9t6g 2w/lsv8+vxgUQ7yjIC7YwrqDMXW1+x7YTS/xwh76REfV7L9/
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYCPR01MB8341:EE_
+X-MS-Office365-Filtering-Correlation-Id: 54eb8ee5-9a86-403c-eb57-08dc221a30b0
+X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: I/Jyk3TXrfJNe6reGT2TRj7Xj9qCFxsmignr/N8Ov4NBMkI27vs8GqeGeYwKKmCxJxZNwQU1rTUoufC6ImSTIKFK7J8x++FMFYdAqDBxEzs4TXXo3o7n8QtxcI/FOa/CB17Q7/iLo0+sNcv44rIZMKAvpIksE7cxmhg+/8n6lRLo/9J2sJ074zkX6XWtmufpg2gf1vXx4XFpeKKRTGcWsHBxROIQgxJENDxgsdKzMw0aBkiplVZYuShFNy78kV1nn6XI8oiHYxrZqvffgnGU39KzbhO4sDvW+lxPJ0fml5YGwBsyn4E3Uad5M/dF01S5kYf6vHF+TWsLGt3bhK9/akIdCR5QRNlu7An8a6hCZ9GVk0L+zZodRwEyYRSTrQCZHfFvAKo9lIGqY41eNKO11pC7wpwFQVqLeEXAslVHaNFv7kWji1S1cY8zPAFF8vmZqgdnk4nC/unmL7yZUmHk26+itNJTTxZ2M5reBApetCBYC1wvKWBGvxPoPeDg3DJr1ILPv7DitNTD57AKpT/GVm8Wi+4IwMBtpUY/BVgVfW8Kyoo1dIqFpbVMmOxHdb8d4w4lojxLM0QnASCnHZ+Ep+quqkQlbcHN3S2gI4fxb+LJktLX8Za5+HuJ04zJQFZRKVbI+rPETjkFvXPOINmmrg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(346002)(136003)(366004)(376002)(39860400002)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(1191002)(66476007)(8936002)(4326008)(8676002)(7366002)(5660300002)(2906002)(7416002)(7276002)(86362001)(7406005)(110136005)(66946007)(7336002)(316002)(38350700005)(36756003)(54906003)(38100700002)(66556008)(478600001)(52116002)(6506007)(6512007)(6486002)(83380400001)(26005)(41300700001)(921011)(2616005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8o30qwN5U3fXTlNzMAwuVpWNFrgq00eCuOZGmQaSvmkLXIt3WbGjHu8DIeC3?=
+ =?us-ascii?Q?GZi0uQtBkbrzLm036hc862kFxgKsZ8AN+Rgof8OlvO4ysMv+FJdgvspdX+Ym?=
+ =?us-ascii?Q?zfiK+IdHLUxJrzdASUf5MLjauYaUOSFCNcyVB3p9KzkvgpALV7Hh0/bH4rnB?=
+ =?us-ascii?Q?qVbi0+TAKATC6Tq0Re/IurVvk24IKamUBrt1cw2MqTAlTRRytqat5vNqQ8Ku?=
+ =?us-ascii?Q?Vg7GerRuw7Jw6ff1QeskQ1NfqxBWDVeuEZkGWlBsW03Sy79u8D0CuHf9ynqH?=
+ =?us-ascii?Q?MWe4aG3Tv5lg+c5tY5ob//SVU6DYX1lx6eXe4jZtw0e6ggZt4EgU1YKsfNWP?=
+ =?us-ascii?Q?dbkthIDcC7TqTKShzv/X/k6bZrRf4EqQwfYOYkjwnyUZwXWI+/WFM3/iJVhg?=
+ =?us-ascii?Q?Eqr3XLhQgVEgCrav2KKUo28lRbQiGTEKhIP9oHoIoSRxipo4NrVTiM7xYiwX?=
+ =?us-ascii?Q?DsgFR/itvplGC90ZbyTDc9huYWXv4JzqSM6ah/xMLntLBIm946GB/L8qsapB?=
+ =?us-ascii?Q?+qqxBVbNI86fGFl1H8MCwQHpZFPV0SLTjmIPNweF7Y5W6DxjWKYnBNBnv99g?=
+ =?us-ascii?Q?r9V5sma/Rg0ipJ5/MBu1s0DahJkaYUv7Oedk6tfm5UaS+U2bXiOVYhdqnW9v?=
+ =?us-ascii?Q?2D6M8NXSZNPHjHoaKhtw8RtQtYeT2kyvxTbVSjIhCmKBpmHPECEKM/XhFp1x?=
+ =?us-ascii?Q?L3zNXqW8V3JZ++LLuahb9ivTkcpWE6pkCivd9T4o9VdCutEovdCdBmN3imq8?=
+ =?us-ascii?Q?68VsmtFlKKED3Naa+GpF42fmH3rO7GSE+sk0yCk8JgdSKEt21VS0tNIShO5x?=
+ =?us-ascii?Q?gDhCevET+dI7WFu/5xol295mqN+Z5IEFPvZ1RjnHLYM98gX6jjW44/VMobCA?=
+ =?us-ascii?Q?X61DzjfKXWwGIbshXB6HG2M8fkwEDdwko1UKVlydThj/FYWTWrYtcxUcRs44?=
+ =?us-ascii?Q?RNTxpLaSWSw75+G0lfJzlVwcnviI/RW+N76Jf2wLcVYiO4mi06uZnhA6Jijt?=
+ =?us-ascii?Q?3/F+PXJVrWbB7FyWNb4pgyWnv1qplS9qvc6I3cbf+qsk6aDzCHgaY0cV1JjK?=
+ =?us-ascii?Q?SYE/bCFmmBzj/k0UsU5oUOs9OHbwXg9Ha255pXMVwlX0k2sY32tjPvncBpf3?=
+ =?us-ascii?Q?Wm67LsSNqpQJhcXsFC72mfcKn7dod8jysIm5+fcXF74PAmn15im8QnS4rkku?=
+ =?us-ascii?Q?OZt7in84kPb+gTXLq6Vgx5Ne5csTRRzR4OadPZxRhnSKNDulyy+0mW2swTVl?=
+ =?us-ascii?Q?98eeFoasuR1idg/K1equIaNE8XTbiOWLSx0kkI51NYuF7mLwPVH7td9/JzJ4?=
+ =?us-ascii?Q?PwDRuZX2z4Iga2hnhKTHXw5J3NjSjUhkAKZ1JUfIiCwygUnOnbpXkxLxP87g?=
+ =?us-ascii?Q?8jqoxm58BuzGZ/06OfpFancQTUvX0uDa7cv1JkBV0cBk4J5DjaZtE4Vl6vdx?=
+ =?us-ascii?Q?L5nTc+Fr/xSfxmCFvZaKImzdqMk9+c4ZtNN6ha6Dc5kdFmoDU+0sRFgLnuzo?=
+ =?us-ascii?Q?ZzSOSQN0WpEZS06thzNu3eQWSq1r3/lz1tfYqV9m13c0HVDjVca3tnmoJLkl?=
+ =?us-ascii?Q?e8GJ6RmAZKqe2SkjHfUF7dQLh2dPRpUepCQ4Aa7px1nNVXZi3SsDp/RmcYff?=
+ =?us-ascii?Q?J/rJ/mHdozWKau3pxvEblo0=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54eb8ee5-9a86-403c-eb57-08dc221a30b0
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2024 05:05:06.2162
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: BOYJbIOamretAgYnOA7un0mI37FcLhvoEzNTGg5LCaxpQ+Knu6N5nXAA/LcMVNWhSXlsK+uRZJfdhopUoOO3NpcNdztxsbQ6kNulrqPsqX1+aIuKxIWRyIS2AfrbxD1K
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB8341
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240125_121413_393078_CA5A98A9 
-X-CRM114-Status: GOOD (  21.78  )
-X-Mailman-Approved-At: Fri, 23 Feb 2024 09:11:35 -0800
+X-CRM114-CacheID: sfid-20240130_210517_569422_462DC8E7 
+X-CRM114-Status: GOOD (  14.64  )
+X-Mailman-Approved-At: Fri, 23 Feb 2024 09:11:34 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -185,88 +212,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhpcyBmdW5jdGlvbiBhbGxvY2F0ZXMgYSBzdHJ1Y3QgcHdtX2NoaXAgYW5kIGRyaXZlciBkYXRh
-LiBDb21wYXJlZCB0bwp0aGUgc3RhdHVzIHF1byB0aGUgc3BsaXQgaW50byBwd21fY2hpcCBhbmQg
-ZHJpdmVyIGRhdGEgaXMgbmV3LCBvdGhlcndpc2UKaXQgZG9lc24ndCBjaGFuZ2UgYW55dGhpbmcg
-cmVsZXZhbnQgKHlldCkuCgpUaGUgaW50ZW50aW9uIGlzIHRoYXQgYWZ0ZXIgYWxsIGRyaXZlcnMg
-YXJlIHN3aXRjaGVkIHRvIHVzZSB0aGlzCmFsbG9jYXRpb24gZnVuY3Rpb24sIGl0cyBwb3NzaWJs
-ZSB0byBhZGQgYSBzdHJ1Y3QgZGV2aWNlIHRvIHN0cnVjdApwd21fY2hpcCB0byBwcm9wZXJseSB0
-cmFjayB0aGUgbGF0dGVyJ3MgbGlmZXRpbWUgd2l0aG91dCB0b3VjaGluZyBhbGwKZHJpdmVycyBh
-Z2Fpbi4gUHJvcGVyIGxpZmV0aW1lIHRyYWNraW5nIGlzIGEgbmVjZXNzYXJ5IHByZWNvbmRpdGlv
-biB0bwppbnRyb2R1Y2UgY2hhcmFjdGVyIGRldmljZSBzdXBwb3J0IGZvciBQV01zICh0aGF0IGlt
-cGxlbWVudHMgYXRvbWljCnNldHRpbmcgYW5kIGRvZXNuJ3Qgc3VmZmVyIGZyb20gdGhlIHN5c2Zz
-IG92ZXJoZWFkIG9mIHRoZSAvc3lzL2NsYXNzL3B3bQp1c2Vyc3BhY2Ugc3VwcG9ydCkuCgpUaGUg
-bmV3IGZ1bmN0aW9uIHB3bWNoaXBfcHJpdigpIChvYnZpb3VzbHk/KSBvbmx5IHdvcmtzIGZvciBj
-aGlwcwphbGxvY2F0ZWQgd2l0aCBkZXZtX3B3bWNoaXBfYWxsb2MoKS4KClNpZ25lZC1vZmYtYnk6
-IFV3ZSBLbGVpbmUtS8O2bmlnIDx1LmtsZWluZS1rb2VuaWdAcGVuZ3V0cm9uaXguZGU+Ci0tLQog
-Li4uL2RyaXZlci1hcGkvZHJpdmVyLW1vZGVsL2RldnJlcy5yc3QgICAgICAgIHwgIDEgKwogRG9j
-dW1lbnRhdGlvbi9kcml2ZXItYXBpL3B3bS5yc3QgICAgICAgICAgICAgIHwgMTAgKysrKy0tLS0K
-IGRyaXZlcnMvcHdtL2NvcmUuYyAgICAgICAgICAgICAgICAgICAgICAgICAgICB8IDI1ICsrKysr
-KysrKysrKysrKysrKysKIGluY2x1ZGUvbGludXgvcHdtLmggICAgICAgICAgICAgICAgICAgICAg
-ICAgICB8ICAyICsrCiA0IGZpbGVzIGNoYW5nZWQsIDMzIGluc2VydGlvbnMoKyksIDUgZGVsZXRp
-b25zKC0pCgpkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kcml2ZXItYXBpL2RyaXZlci1tb2Rl
-bC9kZXZyZXMucnN0IGIvRG9jdW1lbnRhdGlvbi9kcml2ZXItYXBpL2RyaXZlci1tb2RlbC9kZXZy
-ZXMucnN0CmluZGV4IGM1Zjk5ZDgzNGVjNS4uZTRkZjcyYzQwOGQyIDEwMDY0NAotLS0gYS9Eb2N1
-bWVudGF0aW9uL2RyaXZlci1hcGkvZHJpdmVyLW1vZGVsL2RldnJlcy5yc3QKKysrIGIvRG9jdW1l
-bnRhdGlvbi9kcml2ZXItYXBpL2RyaXZlci1tb2RlbC9kZXZyZXMucnN0CkBAIC00MjAsNiArNDIw
-LDcgQEAgUE9XRVIKICAgZGV2bV9yZWJvb3RfbW9kZV91bnJlZ2lzdGVyKCkKIAogUFdNCisgIGRl
-dm1fcHdtY2hpcF9hbGxvYygpCiAgIGRldm1fcHdtY2hpcF9hZGQoKQogICBkZXZtX3B3bV9nZXQo
-KQogICBkZXZtX2Z3bm9kZV9wd21fZ2V0KCkKZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZHJp
-dmVyLWFwaS9wd20ucnN0IGIvRG9jdW1lbnRhdGlvbi9kcml2ZXItYXBpL3B3bS5yc3QKaW5kZXgg
-M2MyOGNjYzRiNjExLi5jZWU2NmM3ZjAzMzUgMTAwNjQ0Ci0tLSBhL0RvY3VtZW50YXRpb24vZHJp
-dmVyLWFwaS9wd20ucnN0CisrKyBiL0RvY3VtZW50YXRpb24vZHJpdmVyLWFwaS9wd20ucnN0CkBA
-IC0xNDMsMTEgKzE0MywxMSBAQCB0byBpbXBsZW1lbnQgdGhlIHB3bV8qKCkgZnVuY3Rpb25zIGl0
-c2VsZi4gVGhpcyBtZWFucyB0aGF0IGl0J3MgaW1wb3NzaWJsZQogdG8gaGF2ZSBtdWx0aXBsZSBQ
-V00gZHJpdmVycyBpbiB0aGUgc3lzdGVtLiBGb3IgdGhpcyByZWFzb24gaXQncyBtYW5kYXRvcnkK
-IGZvciBuZXcgZHJpdmVycyB0byB1c2UgdGhlIGdlbmVyaWMgUFdNIGZyYW1ld29yay4KIAotQSBu
-ZXcgUFdNIGNvbnRyb2xsZXIvY2hpcCBjYW4gYmUgYWRkZWQgdXNpbmcgcHdtY2hpcF9hZGQoKSBh
-bmQgcmVtb3ZlZAotYWdhaW4gd2l0aCBwd21jaGlwX3JlbW92ZSgpLiBwd21jaGlwX2FkZCgpIHRh
-a2VzIGEgZmlsbGVkIGluIHN0cnVjdAotcHdtX2NoaXAgYXMgYXJndW1lbnQgd2hpY2ggcHJvdmlk
-ZXMgYSBkZXNjcmlwdGlvbiBvZiB0aGUgUFdNIGNoaXAsIHRoZQotbnVtYmVyIG9mIFBXTSBkZXZp
-Y2VzIHByb3ZpZGVkIGJ5IHRoZSBjaGlwIGFuZCB0aGUgY2hpcC1zcGVjaWZpYwotaW1wbGVtZW50
-YXRpb24gb2YgdGhlIHN1cHBvcnRlZCBQV00gb3BlcmF0aW9ucyB0byB0aGUgZnJhbWV3b3JrLgor
-QSBuZXcgUFdNIGNvbnRyb2xsZXIvY2hpcCBjYW4gYmUgYWxsb2NhdGVkIHVzaW5nIGRldm1fcHdt
-Y2hpcF9hbGxvYywgdGhlbiBhZGRlZAordXNpbmcgcHdtY2hpcF9hZGQoKSBhbmQgcmVtb3ZlZCBh
-Z2FpbiB3aXRoIHB3bWNoaXBfcmVtb3ZlKCkuIHB3bWNoaXBfYWRkKCkKK3Rha2VzIGEgZmlsbGVk
-IGluIHN0cnVjdCBwd21fY2hpcCBhcyBhcmd1bWVudCB3aGljaCBwcm92aWRlcyBhIGRlc2NyaXB0
-aW9uIG9mCit0aGUgUFdNIGNoaXAsIHRoZSBudW1iZXIgb2YgUFdNIGRldmljZXMgcHJvdmlkZWQg
-YnkgdGhlIGNoaXAgYW5kIHRoZQorY2hpcC1zcGVjaWZpYyBpbXBsZW1lbnRhdGlvbiBvZiB0aGUg
-c3VwcG9ydGVkIFBXTSBvcGVyYXRpb25zIHRvIHRoZSBmcmFtZXdvcmsuCiAKIFdoZW4gaW1wbGVt
-ZW50aW5nIHBvbGFyaXR5IHN1cHBvcnQgaW4gYSBQV00gZHJpdmVyLCBtYWtlIHN1cmUgdG8gcmVz
-cGVjdCB0aGUKIHNpZ25hbCBjb252ZW50aW9ucyBpbiB0aGUgUFdNIGZyYW1ld29yay4gQnkgZGVm
-aW5pdGlvbiwgbm9ybWFsIHBvbGFyaXR5CmRpZmYgLS1naXQgYS9kcml2ZXJzL3B3bS9jb3JlLmMg
-Yi9kcml2ZXJzL3B3bS9jb3JlLmMKaW5kZXggMWI0YzNkMGNhYTgyLi5iODIxYTJiMGIxNzIgMTAw
-NjQ0Ci0tLSBhL2RyaXZlcnMvcHdtL2NvcmUuYworKysgYi9kcml2ZXJzL3B3bS9jb3JlLmMKQEAg
-LTQ1NCw2ICs0NTQsMzEgQEAgb2ZfcHdtX3NpbmdsZV94bGF0ZShzdHJ1Y3QgcHdtX2NoaXAgKmNo
-aXAsIGNvbnN0IHN0cnVjdCBvZl9waGFuZGxlX2FyZ3MgKmFyZ3MpCiB9CiBFWFBPUlRfU1lNQk9M
-X0dQTChvZl9wd21fc2luZ2xlX3hsYXRlKTsKIAorc3RhdGljIHZvaWQgKnB3bWNoaXBfcHJpdihz
-dHJ1Y3QgcHdtX2NoaXAgKmNoaXApCit7CisJcmV0dXJuICh2b2lkICopY2hpcCArIHNpemVvZigq
-Y2hpcCk7Cit9CisKK3N0cnVjdCBwd21fY2hpcCAqZGV2bV9wd21jaGlwX2FsbG9jKHN0cnVjdCBk
-ZXZpY2UgKnBhcmVudCwgdW5zaWduZWQgaW50IG5wd20sIHNpemVfdCBzaXplb2ZfcHJpdikKK3sK
-KwlzdHJ1Y3QgcHdtX2NoaXAgKmNoaXA7CisJc2l6ZV90IGFsbG9jX3NpemU7CisKKwlhbGxvY19z
-aXplID0gc2l6ZV9hZGQoc2l6ZW9mKCpjaGlwKSwgc2l6ZW9mX3ByaXYpOworCisJY2hpcCA9IGRl
-dm1fa3phbGxvYyhwYXJlbnQsIGFsbG9jX3NpemUsIEdGUF9LRVJORUwpOworCWlmICghY2hpcCkK
-KwkJcmV0dXJuIEVSUl9QVFIoLUVOT01FTSk7CisKKwljaGlwLT5kZXYgPSBwYXJlbnQ7CisJY2hp
-cC0+bnB3bSA9IG5wd207CisKKwlwd21jaGlwX3NldF9kcnZkYXRhKGNoaXAsIHB3bWNoaXBfcHJp
-dihjaGlwKSk7CisKKwlyZXR1cm4gY2hpcDsKK30KK0VYUE9SVF9TWU1CT0xfR1BMKGRldm1fcHdt
-Y2hpcF9hbGxvYyk7CisKIHN0YXRpYyB2b2lkIG9mX3B3bWNoaXBfYWRkKHN0cnVjdCBwd21fY2hp
-cCAqY2hpcCkKIHsKIAlpZiAoIWNoaXAtPmRldiB8fCAhY2hpcC0+ZGV2LT5vZl9ub2RlKQpkaWZm
-IC0tZ2l0IGEvaW5jbHVkZS9saW51eC9wd20uaCBiL2luY2x1ZGUvbGludXgvcHdtLmgKaW5kZXgg
-MmM0OWQyZmUyZmU3Li44YmM3NTA0YWE3ZDQgMTAwNjQ0Ci0tLSBhL2luY2x1ZGUvbGludXgvcHdt
-LmgKKysrIGIvaW5jbHVkZS9saW51eC9wd20uaApAQCAtNDAzLDYgKzQwMyw4IEBAIHN0YXRpYyBp
-bmxpbmUgYm9vbCBwd21fbWlnaHRfc2xlZXAoc3RydWN0IHB3bV9kZXZpY2UgKnB3bSkKIGludCBw
-d21fY2FwdHVyZShzdHJ1Y3QgcHdtX2RldmljZSAqcHdtLCBzdHJ1Y3QgcHdtX2NhcHR1cmUgKnJl
-c3VsdCwKIAkJdW5zaWduZWQgbG9uZyB0aW1lb3V0KTsKIAorc3RydWN0IHB3bV9jaGlwICpkZXZt
-X3B3bWNoaXBfYWxsb2Moc3RydWN0IGRldmljZSAqcGFyZW50LCB1bnNpZ25lZCBpbnQgbnB3bSwg
-c2l6ZV90IHNpemVvZl9wcml2KTsKKwogaW50IF9fcHdtY2hpcF9hZGQoc3RydWN0IHB3bV9jaGlw
-ICpjaGlwLCBzdHJ1Y3QgbW9kdWxlICpvd25lcik7CiAjZGVmaW5lIHB3bWNoaXBfYWRkKGNoaXAp
-IF9fcHdtY2hpcF9hZGQoY2hpcCwgVEhJU19NT0RVTEUpCiB2b2lkIHB3bWNoaXBfcmVtb3ZlKHN0
-cnVjdCBwd21fY2hpcCAqY2hpcCk7Ci0tIAoyLjQzLjAKCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51
-eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+The return type and the variable of of_graph_get_endpoint_count()
+should be unsigned. Tidyup it.
+
+Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+---
+ drivers/of/property.c    | 2 +-
+ include/linux/of_graph.h | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index 4e879faa1710..25d73409aeee 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -817,7 +817,7 @@ EXPORT_SYMBOL(of_graph_get_remote_port);
+  *
+  * Return: count of endpoint of this device node
+  */
+-int of_graph_get_endpoint_count(const struct device_node *np)
++unsigned int of_graph_get_endpoint_count(const struct device_node *np)
+ {
+ 	struct device_node *endpoint;
+ 	int num = 0;
+diff --git a/include/linux/of_graph.h b/include/linux/of_graph.h
+index 4d7756087b6b..a4bea62bfa29 100644
+--- a/include/linux/of_graph.h
++++ b/include/linux/of_graph.h
+@@ -41,7 +41,7 @@ struct of_endpoint {
+ bool of_graph_is_present(const struct device_node *node);
+ int of_graph_parse_endpoint(const struct device_node *node,
+ 				struct of_endpoint *endpoint);
+-int of_graph_get_endpoint_count(const struct device_node *np);
++unsigned int of_graph_get_endpoint_count(const struct device_node *np);
+ struct device_node *of_graph_get_port_by_id(struct device_node *node, u32 id);
+ struct device_node *of_graph_get_next_endpoint(const struct device_node *parent,
+ 					struct device_node *previous);
+@@ -68,7 +68,7 @@ static inline int of_graph_parse_endpoint(const struct device_node *node,
+ 	return -ENOSYS;
+ }
+ 
+-static inline int of_graph_get_endpoint_count(const struct device_node *np)
++static inline unsigned int of_graph_get_endpoint_count(const struct device_node *np)
+ {
+ 	return 0;
+ }
+-- 
+2.25.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
