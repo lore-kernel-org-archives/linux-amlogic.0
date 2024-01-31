@@ -4,108 +4,203 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF15BC54798
-	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Feb 2024 17:11:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4328C54E51
+	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Feb 2024 17:11:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=F0c2+p2cnPS9diyDdB+Mce50eIxN3M3HinQP6JvH/GM=; b=olXUghHdFoLG8WrOnTLIw3fBdh
-	DRv4GRUkGlCkmUfI1THJxdwv1UN8hXAGtAi0qyGyuiKaeTxqPyGnuV+NCBcMDwrCpGILSWfhgI2Sg
-	pDd9af8+1GGBb0+7h07ytCuiElvUvYLVv+hclw50963qn0tnb0SLwtMdKIWaMJCFqjKFN8GMuKZCS
-	zc9p1BaNVWT8DeEoUYcRBDp28rJU2xyxEq+vc1stCj1lUIL7PcAKPebmMeEY+mKMRPcJda1oWNMw8
-	irlJAkP4MnWlnMEJ2Ybojf0mPAujWcOhHNT0omHoQyrgm2Eo0gzyxBPz6FlGabS0h3VKgW7bbuB7I
-	+UPL8ETA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Subject:References:
+	In-Reply-To:Cc:To:From:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=eaSJ0LfF+9ur7xdKmGtoA96IkB8fyLG7GECcoXx4LlI=; b=pYSC64Kiu+aeZP
+	mn+wf60NTNYWiUgY/oDz03KWIXgMfSHOrpLIxPFWLSgVaMRTiUsvcY3gce1kBmFDA4Q5Cs6zNgP+9
+	T9XtjnqYxcZduDNhwIByqnQLfU3pdB9HTRbLfS8bZOfNB65sOiwRorZZhpSta2qs5r+vmf9c4s9Ax
+	UyEwFReNB84JYhP4J4DtIjzjq58nba66LQ9ga8Cv0FKlNa6JOFZ1wq5+E9LPpNtiMH63aEBLsSRWb
+	5V2Pw+mX5rkZkl08Yf+RZjuBiUZjkX45pKVu+IF5wTpLwe4wmyX2DINwACMVzoJF8gOn/3/gMBGGM
+	rhEqEni6QohczvypiLHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rdZ5H-0000000AOtg-3Jfb;
-	Fri, 23 Feb 2024 17:11:39 +0000
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
+	id 1rdZ5O-0000000AOxw-0upJ;
+	Fri, 23 Feb 2024 17:11:46 +0000
+Received: from mail-os0jpn01on20701.outbound.protection.outlook.com ([2a01:111:f403:201a::701] helo=JPN01-OS0-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTPkd-00000004osN-1iOW
-	for linux-amlogic@lists.infradead.org;
-	Fri, 26 Jan 2024 17:12:25 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rTPjB-0003h4-L9; Fri, 26 Jan 2024 18:10:53 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rTPiw-002YFi-JY; Fri, 26 Jan 2024 18:10:38 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rTPiw-008oFN-1F;
-	Fri, 26 Jan 2024 18:10:38 +0100
-Date: Fri, 26 Jan 2024 18:10:38 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Alex Elder <elder@ieee.org>
-Cc: Jonathan Corbet <corbet@lwn.net>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	James Clark <james.clark@arm.com>, linux-pwm@vger.kernel.org, Hector Martin <marcan@marcan.st>, 
-	Sven Peter <sven@svenpeter.dev>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, Alexander Shiyan <shc_work@mail.ru>, 
-	Benson Leung <bleung@chromium.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Paul Cercueil <paul@crapouillou.net>, 
-	Vladimir Zapolskiy <vz@mleia.com>, Hans de Goede <hdegoede@redhat.com>, 
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Conor Dooley <conor.dooley@microchip.com>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
-	Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Michael Walle <mwalle@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
-	Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
-	Fabrice Gasnier <fabrice.gasnier@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Hammer Hsieh <hammerh0314@gmail.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, 
-	Sean Anderson <sean.anderson@seco.com>, Michal Simek <michal.simek@amd.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
-	Anjelique Melendez <quic_amelende@quicinc.com>, Andi Shyti <andi.shyti@kernel.org>, 
-	Lu Hongfei <luhongfei@vivo.com>, Bjorn Andersson <quic_bjorande@quicinc.com>, 
-	Luca Weiss <luca@z3ntu.xyz>, Johan Hovold <johan@kernel.org>, 
-	Douglas Anderson <dianders@chromium.org>, linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	platform-driver-x86@vger.kernel.org, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Guenter Roeck <groeck@chromium.org>, 
-	linux-riscv@lists.infradead.org, Fabio Estevam <festevam@gmail.com>, 
-	linux-stm32@st-md-mailman.stormreply.com, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
-	Jerome Brunet <jbrunet@baylibre.com>, chrome-platform@lists.linux.dev, 
-	linux-samsung-soc@vger.kernel.org, linux-staging@lists.linux.dev, 
-	linux-rockchip@lists.infradead.org, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, NXP Linux Team <linux-imx@nxp.com>, linux-leds@vger.kernel.org, 
-	linux-sunxi@lists.linux.dev, Jonas Karlman <jonas@kwiboo.se>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-gpio@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, greybus-dev@lists.linaro.org, linux-mips@vger.kernel.org, 
-	asahi@lists.linux.dev, kernel@pengutronix.de
-Subject: Re: [PATCH v5 040/111] pwm: Provide devm_pwmchip_alloc() function
-Message-ID: <zjt3r6z5ilpffh26qidwp3axpnvfkwcrwanrtjjm2kscpdovuz@ppcrdlhmqiqq>
-References: <cover.1706182805.git.u.kleine-koenig@pengutronix.de>
- <f59b1a4a8d6fba65e4d3e8698310c9cb1d4c43ce.1706182805.git.u.kleine-koenig@pengutronix.de>
- <db05fb6a-2ea5-4e00-ac03-adc1897d96de@ieee.org>
+	id 1rV2my-00000001UHS-4BT6;
+	Wed, 31 Jan 2024 05:05:34 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JwAX+7TUhajhCFvBNHNrmTdxgDAl1HDpigyZlYBTpXdp4TVyq9sgPO6XBs3Knq9G2CzoU6STylHB9IN/+cyw9arhHLzyshdwC+8YcimB8k901FPvLNtl6K9V13KSFnxpUQhnp5moiWeuGeKWwyWgCj7tVVO/NjHYjN2Sa9D6zmMO8ouuyce9IoZ+vTAwRAILHjXOsEN5vMqST6CYe+tYq73pjcW4oiZwpnsYVcOu6nut5AkcePzJSsmPdkKX5CUuHhwKwsODr0+etT+kgGB67iwoDbt+lt2nXAY6F70gjrAcCq0IeJnyhft1uAjEVE3r/TWzoDyn7Ri8Tt4odn2y7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PlwwnMRHzL9vLYCx+hlgiaCAxZVCKFXat+PBtUg6Iqg=;
+ b=gKWtn2jBvyH5Z7dssWhu6aQBQpjjhdjlvRS3XGfGNkyKLE6pGGLysL6oNe+Wyvfc3l/CyWA451wBliyJAb3MXRtzfchoFz4KeDSlajH1aHzDgWsZBymU2fbq7NvqK6rAgBb6DoT5/lQg3mhmGH16T9Z1pPLW5B1bPqHu0WQ9WzLi+g4ZDtZeoSoVd7VnwhxTpw25TxlG6SjT6sYFan5MBZT2Z238XQ+3/+NVIswdtvgb6lGabAa4LsKEg2cdWo3axzwvMhBjGJWnKV9qpWz8w8zN2UCV+hhkDzsKdf99RqoPET1aKKbvjYuUKZxDMGTelbYgEjkCFfYGZIdIpJ9Syg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PlwwnMRHzL9vLYCx+hlgiaCAxZVCKFXat+PBtUg6Iqg=;
+ b=cLi/K0DC6YTztEEuuSmDXZJg1akdRXdJM40i18hMlx956Sazi1oLtn83LijwPHhkwPKFLGWLiBjp3Lot+ddicCbP7zmgyjoajOdOZdPxk4Sk2T/Ek8CpjKcmJeUn3j/aUnnrEItyBmDisW+117kvHjNIJhGiePlgQ+umYoidzB0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TYCPR01MB8341.jpnprd01.prod.outlook.com
+ (2603:1096:400:15c::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.23; Wed, 31 Jan
+ 2024 05:05:21 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::ce8:8f5e:99a0:aba4]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::ce8:8f5e:99a0:aba4%2]) with mapi id 15.20.7249.023; Wed, 31 Jan 2024
+ 05:05:21 +0000
+Message-ID: <87il3a6qjz.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,	"Lad,  Prabhakar"
+ <prabhakar.csengg@gmail.com>,	=?ISO-8859-1?Q?=22Niklas_S=C3=B6derlund=22?=
+ <niklas.soderlund+renesas@ragnatech.se>,	=?ISO-8859-1?Q?=22Uwe_Kleine-K?=
+ =?ISO-8859-1?Q?=C3=B6nig=22?= <u.kleine-koenig@pengutronix.de>,	Abhinav
+ Kumar <quic_abhinavk@quicinc.com>,	Alexander Shishkin
+ <alexander.shishkin@linux.intel.com>,	Alexander Stein
+ <alexander.stein@ew.tq-group.com>,	Alexandre Belloni
+ <alexandre.belloni@bootlin.com>,	Alexandre Torgue
+ <alexandre.torgue@foss.st.com>,	Alexey Brodkin <abrodkin@synopsys.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,	Andy Gross <agross@kernel.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>,	Bjorn Andersson
+ <andersson@kernel.org>,	Claudiu Beznea <claudiu.beznea@tuxon.dev>,	Daniel
+ Vetter <daniel@ffwll.ch>,	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	David Airlie <airlied@gmail.com>,	Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>,	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Emma Anholt <emma@anholt.net>,	Eugen Hristev
+ <eugen.hristev@collabora.com>,	Florian Fainelli
+ <florian.fainelli@broadcom.com>,	Frank Rowand <frowand.list@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,	Hans Verkuil
+ <hverkuil-cisco@xs4all.nl>,	Helge Deller <deller@gmx.de>,	Hugues Fruchet
+ <hugues.fruchet@foss.st.com>,	Jacopo Mondi <jacopo+renesas@jmondi.org>,
+	Jacopo Mondi <jacopo@jmondi.org>,	James Clark <james.clark@arm.com>,
+	Jaroslav Kysela <perex@perex.cz>,	Jonathan Hunter <jonathanh@nvidia.com>,
+	Kevin Hilman <khilman@baylibre.com>,	Kieran Bingham
+ <kieran.bingham+renesas@ideasonboard.com>,	Kieran Bingham
+ <kieran.bingham@ideasonboard.com>,	Konrad Dybcio
+ <konrad.dybcio@linaro.org>,	Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>,	Laurent Pinchart
+ <laurent.pinchart+renesas@ideasonboard.com>,	Laurent Pinchart
+ <laurent.pinchart@ideasonboard.com>,	Liam Girdwood <lgirdwood@gmail.com>,
+	Liu Ying <victor.liu@nxp.com>,	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,	Marek Vasut
+ <marex@denx.de>,	Mark Brown <broonie@kernel.org>,	Mauro Carvalho Chehab
+ <mchehab@kernel.org>,	Maxime Coquelin <mcoquelin.stm32@gmail.com>,	Maxime
+ Ripard <mripard@kernel.org>,	Michael Tretter <m.tretter@pengutronix.de>,
+	Michal Simek <michal.simek@amd.com>,	Miguel Ojeda <ojeda@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,	Neil Armstrong
+ <neil.armstrong@linaro.org>,	Nick Desaulniers <ndesaulniers@google.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,	Philipp Zabel
+ <p.zabel@pengutronix.de>,	Philippe Cornu <philippe.cornu@foss.st.com>,
+	Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,	Rob Clark
+ <robdclark@gmail.com>,	Rob Herring <robh+dt@kernel.org>,	Robert Foss
+ <rfoss@kernel.org>,	Russell King <linux@armlinux.org.uk>,	Sakari Ailus
+ <sakari.ailus@linux.intel.com>,	Saravana Kannan <saravanak@google.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,	Shawn Guo <shawnguo@kernel.org>,
+	Sowjanya Komatineni <skomatineni@nvidia.com>,	Stefan Agner
+ <stefan@agner.ch>,	Suzuki K Poulose <suzuki.poulose@arm.com>,	Sylwester
+ Nawrocki <s.nawrocki@samsung.com>,	Takashi Iwai <tiwai@suse.com>,	Thierry
+ Reding <thierry.reding@gmail.com>,	Thomas Zimmermann <tzimmermann@suse.de>,
+	Tim Harvey <tharvey@gateworks.com>,	Todor Tomov <todor.too@gmail.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,	Yannick Fertre
+ <yannick.fertre@foss.st.com>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Leo Yan <leo.yan@linaro.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Mike Leach <mike.leach@linaro.org>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Sean Paul <sean@poorly.run>,
+	Tom Rix <trix@redhat.com>,
+	coresight@lists.linaro.org,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-fbdev@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-staging@lists.linux.dev,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-tegra@vger.kernel.org,
+	llvm@lists.linux.dev
+In-Reply-To: <87o7d26qla.wl-kuninori.morimoto.gx@renesas.com>
+References: <87o7d26qla.wl-kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH v3 04/24] video: fbdev: switch to use of_graph_get_next_device_endpoint()
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+Date: Wed, 31 Jan 2024 05:05:20 +0000
+X-ClientProxiedBy: TYWP286CA0018.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:178::8) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 MIME-Version: 1.0
-In-Reply-To: <db05fb6a-2ea5-4e00-ac03-adc1897d96de@ieee.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYCPR01MB8341:EE_
+X-MS-Office365-Filtering-Correlation-Id: 46d3aea8-4748-4d37-318c-08dc221a39ce
+X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: trPaAcDCMrBk4QT9YWU3njD4I/iZ8kKEJ7m7ZJaGnm/INCdoFcW54hO2ygwku01+U1JuXotqrWgh1qdbq0KQ3gdE4/S3AfuqptMyzIYZVvqB3agJhU7JTpdwcHNirqPNfqkWtkp8eUBzgh0z/KWCfWg9SHNBWENNW5JfAanAlp4q5RoSmThWTpKcBb1FISdUoz0FqKpMBeRZy6LYm6Wzz6UE9Un80wyv1x5mBzrCjfMu/5Ckp4qlE/StaeSn4VzwRMRXCy+jarSVoSd4Eh0Rh7m6Yn6FUe3q8Ne9Qmpbz+JSIOmvhne0jsvOPw8qsawJ1g6MLBXsl8w5kEdqihvLPMxb7pOn6JiM3AqHHOj8Om/13YRAKfnpllvNiveDYcnIrITnRboICoyd1S28+SLPPFjPHJPA46gdftUnW2/yvCX2tJol36kT25U0TzcHtzB5xev6qn1agXbxjOAEdhW9JlDi3Fn+sG6c5vhUI5AM4Jinrf218vUAzzaR5YK/fn4KSPQeClurtLF9kw5UXVX9YXPNpAHIWSmMgnAdXDAOWw5z6iWlk+m2j8WsEQiPjSPOk9R8RyiDNno5+6MOjoxZyURNN39eiVUAgb4cAzMKbWPS0NDeBJl1Vrj+A5zh5biwYxFvKqyQkCAUaiUyYwxg8g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(346002)(136003)(366004)(376002)(39860400002)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(1191002)(66476007)(8936002)(4326008)(8676002)(7366002)(5660300002)(2906002)(7416002)(7276002)(86362001)(7406005)(110136005)(66946007)(7336002)(316002)(38350700005)(36756003)(54906003)(38100700002)(66556008)(478600001)(52116002)(6506007)(6512007)(6486002)(83380400001)(26005)(41300700001)(921011)(2616005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?cs0VDo6yQS0piQwIJTjU/814M8oKjZE0OZoglOW8w7So7P2fuzMzTRcYApQ/?=
+ =?us-ascii?Q?xJEvxYXySIoq3E2EXr0lRdHWFsC9+yzIJGmNgZzkephGkcGCLDzzYwC7a0cq?=
+ =?us-ascii?Q?3OVqskIXtx5AJ6wxjX8BPEvw+j/Vv+sRdcr8cM4gO11a13LS/rZNKCxapMUT?=
+ =?us-ascii?Q?vmdpk+fwdWbLf/qySyMxIiieNzJG95SPB3Del9WFlFSTGwuX1f1DR2Sglfrf?=
+ =?us-ascii?Q?+9D/wk0nmktchYI/r9HFPZzgd5b8X88b6dMOrhggDQQKmm0qsFRcwQBqBRpQ?=
+ =?us-ascii?Q?TpQ+2VRQeXxh6vp244crE5uOvg+NAntnE81qjOPshxqN2aUrvZlvKmVmGXV8?=
+ =?us-ascii?Q?JvEvDTq+CITnIuYVa+V/xAxbfEPnvLW2UgNLB2fmp/v6+du3qjX1O4kJs/mt?=
+ =?us-ascii?Q?K9+xUZ3g6HEoZlJT94x20ujhhZEiggnaouFylB32MJv/RgJJ57z71Rjaasw+?=
+ =?us-ascii?Q?5/JpMAEFyNwBFV6fd3icV72rP3Asx6oe0jSuEg19RWiaoH6qGru2VL8vJFJa?=
+ =?us-ascii?Q?McYwTFPSUs+xHMsH9DrAy69ZB4prm4g4SNzsuqLD9sLmP21/Zau6YC8rwIuP?=
+ =?us-ascii?Q?EgpjxGNjlaCtCt9jDxJtthtmTfJXIUMdkmuSyv+01A8aMG9btvhv3G+6MOOd?=
+ =?us-ascii?Q?RTSKhDqe2crpjYVYScrV5LMMwStYxQaT5LK1Hsg27T7lHDATJqJ+o8cr7oMH?=
+ =?us-ascii?Q?Z9tQrYNPj7Mg/KmehGXSCGOIshtYnD9iNU3hNrNeXMACHjNup2wXR0iAgQKd?=
+ =?us-ascii?Q?NcwoCmeBp0tVMfX4DqgMDym5uoYRmlHnA9/73WdZ4z9Ag53o9COYTm4aUvFC?=
+ =?us-ascii?Q?by1wserX2hlPYQX+/o5rtLXhSxp3NFLLaODhx1V9DrPN1dWW5wPBDHbKrH8y?=
+ =?us-ascii?Q?xOM1Q+MCAZIhgBN60Z4hHH+cjKKUWanIKLOf3zfHLEMB4TR16SR9/jlZ/cbH?=
+ =?us-ascii?Q?khvF1uKuY5KbDxSGbu9aD5kOqQ3HZcvkuLzsiiU3UaMJ5HDVvpAKL48XJoJM?=
+ =?us-ascii?Q?ooo1BWZWUYH5vBgcpsMixRu2Gp+K8OqKwt3RzooE3paaM1ZGj0FZK6IuUMnf?=
+ =?us-ascii?Q?6RvqaguZflc+lXOHLb22fwYt22DkbeUGP71ecBeqE0R03wFpMj1VnHOgnMhG?=
+ =?us-ascii?Q?q9JrqOLh9v+AG+fU+dcrky7Qn+3rcGEduMP1DCNqNDPdPhTXwsjGXyNxpBo4?=
+ =?us-ascii?Q?8SuescN60bfcl6OO2EWM8XPRwD09/1CQNlSyTdrOxDdimvPhMyoo21ZL8+R3?=
+ =?us-ascii?Q?QknGYb8aQkwMoVh+suXSVZp/0kHzIwEm1pBuI1IGfFwpvSsX7MaHLO7SYR1Q?=
+ =?us-ascii?Q?mG1XtoCxkBAljKEBTIZ9GMARkHkMoT1Z4yOGPqYx5cp0YJ7uT0rrm8jxddZt?=
+ =?us-ascii?Q?K86VVzLhSLe61EwiTOEaKbeE/Rm7b8bmlXLLo8w6qcNN4nsEv6NQir/9qDqc?=
+ =?us-ascii?Q?n1tz8QUf7xaWWoOpjbys282ezUELMztubKl0qidEkaBhmxnM/mXag74WI5lQ?=
+ =?us-ascii?Q?ImMA+BXyCaX8aCdadclDRRi49qZ7vXSrbxgnOVvh8uIsn0+DOTVYLYbAn2tY?=
+ =?us-ascii?Q?YxApZz5I1UuL8EfnW/kshfsFPyMs9zV2l1Pjv/m1AQxBemy9BpMe28tGm6Wi?=
+ =?us-ascii?Q?Lo8c7V8J0kqEhgi5Fav0H+Q=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 46d3aea8-4748-4d37-318c-08dc221a39ce
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2024 05:05:21.5355
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jLhHr11Uuvt31WNE5O6dTsPxxGK51NTWR97pxiWy8TOaCjZFWKNHlfHy/LxId3onF7gec+pR4fWC5Z9+RPFuRU/xnblE7oVrUIXmqQSTQOsS49hvpaBottpNAaK/PKVI
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB8341
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240126_091223_613915_684607B9 
-X-CRM114-Status: GOOD (  26.67  )
-X-Mailman-Approved-At: Fri, 23 Feb 2024 09:11:36 -0800
+X-CRM114-CacheID: sfid-20240130_210533_066624_7648659C 
+X-CRM114-Status: GOOD (  14.98  )
+X-Mailman-Approved-At: Fri, 23 Feb 2024 09:11:34 -0800
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,92 +212,65 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8264467935020347632=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+of_graph_get_next_endpoint() is now renamed to
+of_graph_get_next_device_endpoint(). Switch to it.
 
---===============8264467935020347632==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="b26sjadvk3fz44v6"
-Content-Disposition: inline
+Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+---
+ drivers/video/fbdev/amba-clcd.c                          | 2 +-
+ drivers/video/fbdev/omap2/omapfb/dss/omapdss-boot-init.c | 2 +-
+ drivers/video/fbdev/pxafb.c                              | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/video/fbdev/amba-clcd.c b/drivers/video/fbdev/amba-clcd.c
+index 0399db369e70..7778c4a6b294 100644
+--- a/drivers/video/fbdev/amba-clcd.c
++++ b/drivers/video/fbdev/amba-clcd.c
+@@ -691,7 +691,7 @@ static int clcdfb_of_init_display(struct clcd_fb *fb)
+ 	/*
+ 	 * Fetch the panel endpoint.
+ 	 */
+-	endpoint = of_graph_get_next_endpoint(fb->dev->dev.of_node, NULL);
++	endpoint = of_graph_get_next_device_endpoint(fb->dev->dev.of_node, NULL);
+ 	if (!endpoint)
+ 		return -ENODEV;
+ 
+diff --git a/drivers/video/fbdev/omap2/omapfb/dss/omapdss-boot-init.c b/drivers/video/fbdev/omap2/omapfb/dss/omapdss-boot-init.c
+index 09f719af0d0c..a5da79214061 100644
+--- a/drivers/video/fbdev/omap2/omapfb/dss/omapdss-boot-init.c
++++ b/drivers/video/fbdev/omap2/omapfb/dss/omapdss-boot-init.c
+@@ -150,7 +150,7 @@ static void __init omapdss_walk_device(struct device_node *node, bool root)
+ 	of_node_put(n);
+ 
+ 	n = NULL;
+-	while ((n = of_graph_get_next_endpoint(node, n)) != NULL) {
++	while ((n = of_graph_get_next_device_endpoint(node, n)) != NULL) {
+ 		struct device_node *pn;
+ 
+ 		pn = of_graph_get_remote_port_parent(n);
+diff --git a/drivers/video/fbdev/pxafb.c b/drivers/video/fbdev/pxafb.c
+index fa943612c4e2..0acdde8b2f45 100644
+--- a/drivers/video/fbdev/pxafb.c
++++ b/drivers/video/fbdev/pxafb.c
+@@ -2171,7 +2171,7 @@ static int of_get_pxafb_mode_info(struct device *dev,
+ 	u32 bus_width;
+ 	int ret, i;
+ 
+-	np = of_graph_get_next_endpoint(dev->of_node, NULL);
++	np = of_graph_get_next_device_endpoint(dev->of_node, NULL);
+ 	if (!np) {
+ 		dev_err(dev, "could not find endpoint\n");
+ 		return -EINVAL;
+-- 
+2.25.1
 
---b26sjadvk3fz44v6
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Alex,
-
-On Fri, Jan 26, 2024 at 08:56:33AM -0600, Alex Elder wrote:
-> On 1/25/24 6:09 AM, Uwe Kleine-K=F6nig wrote:
-> > This function allocates a struct pwm_chip and driver data. Compared to
-> > the status quo the split into pwm_chip and driver data is new, otherwise
-> > it doesn't change anything relevant (yet).
-> >=20
-> > The intention is that after all drivers are switched to use this
-> > allocation function, its possible to add a struct device to struct
-> > pwm_chip to properly track the latter's lifetime without touching all
-> > drivers again. Proper lifetime tracking is a necessary precondition to
-> > introduce character device support for PWMs (that implements atomic
-> > setting and doesn't suffer from the sysfs overhead of the /sys/class/pwm
-> > userspace support).
-> >=20
-> > The new function pwmchip_priv() (obviously?) only works for chips
-> > allocated with devm_pwmchip_alloc().
->=20
-> I think this looks good.  Two questions:
-> - Should you explicitly align the private data?  Or do you believe
->   the default alignment (currently pointer size aligned) is adequate?
-
-I'm not aware of a requirement for a higher order alignment (but I might
-well miss something). I did my tests on arm, nothing exploded there.
-Maybe the conservative approach of asserting the same alignment as
-kmalloc would be a good idea. I'll think and research about that.
-
-iio uses ARCH_DMA_MINALIGN, net uses 32 (NETDEV_ALIGN).
-
-> - Is there a non-devres version of the allocation function?
-
-Patch #109 introduces a non-devres variant. As it's not used it's a
-static function though. Can easily be changed is a use case pops up.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---b26sjadvk3fz44v6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWz540ACgkQj4D7WH0S
-/k4oQwf+Nnq9bGZWZrbCQsHJYB54zfZt1whu2kQgdRMIQzT8HP7NadKhFCqs3Ob6
-5xwIwbIpdczrpzHM25+5ZrTBiH5oSQ/Si0YMzglndL8Tm59GEJxcKoorYpDNplJR
-xHL2owB7VgG87fFIvSCe163biS2vI/gIjAGvL9bpzcSH62Eq7EO3APk7Hx+h7d9e
-QHLzzUmpN9JlrzYOhKE7Pu7/iVFPNqNb7FQtAOnamXe0kRLs05649mgdJ9q30gS8
-imf9reDedsSG7sHM5NjtZpBQpF9H3vulzuGbH2MH2jNDLjtcpvUXUZpfijLN69iQ
-GqSwNOqcwcXljLsP1A1wM8snNwzi/A==
-=cXfD
------END PGP SIGNATURE-----
-
---b26sjadvk3fz44v6--
-
-
---===============8264467935020347632==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============8264467935020347632==--
-
