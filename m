@@ -4,110 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E10AC4828D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Feb 2024 15:39:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAC1AC48297
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Feb 2024 15:55:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TxbgQcCDKCyI2gMoQI3MEYZy4yFl8SgHgneXx7QKOnA=; b=IeqMsa+/SsMVgJ
-	iLI3U7JcsysmEoqlIhf2LQNVgLMdApLNrcWvcSdS1pPE46zAf2ydQzEtx1ZDWwp86qifcXWVYAIVi
-	2NFM1Waswh79CbsHwUq+59u4falMSgcTl5JiCfcbukssmNwgFqItNwfvdpBt1T4tKDk4pM4nf6M5s
-	1vrE3fmbyxbUxCY+ZArisL3wntoJucDdOBkTvXdGacfHtFTxpo0mj6PHGnGzjs4cs1XwEwARKOaD0
-	fOWoM2zhsfqBlJlD4eq97GRNAGZP+lGtOaBHfRfpYeuN9tVuusfKq6oxzHUBXiu9ivE/RMtqtHlbv
-	bk52PUui4Qo5kjLykDYg==;
+	List-Owner; bh=d5IjsxV6yGKUELVfSnRhNpqJVqFzHKbx7JnZ+1do3sM=; b=iJiOnrwIwAI69c
+	aduQIEkxRtCgLgN65JgGu+aF5eAfaZ9ws8hq42odcf+J9iMo7UacmjENO6jA5zczyWT4qzDcxCHpR
+	XP8QeIyS1QjkJ+V6uv6S550Zmm7r2dkjiUFf0IdYbT288IkbyT6w+v+poWlFTJ43Ri/HREZ6hFs65
+	zirRR7KSX4B6SEtz4oJNMM1ZlpQ6GJ+KR8E2nIpBNQ1XqPqwbzW4jOaqjS5eLS14+jM5vbIoyTGWV
+	hsW0DcWMwUC+hER/PMrv07KMkb8Z6YrZKp5Lok1qGV4XupX6MZ+NYMvdjWkmeFcJd0NxN1vMPpMcc
+	cC/u7fy6FuJRJG9oN0UQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rX14N-00000003q1V-0hTw;
-	Mon, 05 Feb 2024 15:39:39 +0000
-Received: from mgamail.intel.com ([198.175.65.10])
+	id 1rX1Jx-00000003sge-27GI;
+	Mon, 05 Feb 2024 15:55:45 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rX14K-00000003q0A-27ZI;
-	Mon, 05 Feb 2024 15:39:37 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1707147576; x=1738683576;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Rv8CV7EZj9twbDgExrfO0rqgaNqI6EazAjEyAvqafJ0=;
-  b=XSKqBAGJZV6zCROXf4SDEQcqsTtwpA4TTPxY7wz0KD+8uzebasq4Aj4o
-   oXxj2RXl/09ECfITYIvn9S3ONr6ilAHGzo2DgZoiK5ITnR77fkI69oqH/
-   zMor1LsRfhMykBfZLosG0M9Che+6asbvLInZEIj/T85hhnNwCjMbnuBDR
-   EHNrNQBUAwQsk330orzkM3I6iE93gR/+bFrv6BGc0v7oRILYrENq7KVLz
-   ne2tr3sTbapsBQkpgFZNTkh87yKnoGb37Llp/lWVFGVyFAuupXg5dOQIe
-   9Nz0whGdTbGjAoeo4BCIk5ayPm/RWk8rLjR8GOMPEkMRNDwnK6bphM1m2
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="17966635"
-X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="17966635"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2024 07:39:35 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="31830670"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2024 07:39:25 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id B935D11FADC;
-	Mon,  5 Feb 2024 12:53:10 +0200 (EET)
-Date: Mon, 5 Feb 2024 10:53:10 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc: Randy Dunlap <rdunlap@infradead.org>,
-	Ricardo Ribalda <ribalda@chromium.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Tiffany Lin <tiffany.lin@mediatek.com>,
-	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-	Yunfei Dong <yunfei.dong@mediatek.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Bin Liu <bin.liu@mediatek.com>,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-	Vikash Garodia <quic_vgarodia@quicinc.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Bingbu Cao <bingbu.cao@intel.com>,
-	Tianshu Qiu <tian.shu.qiu@intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, linux-staging@lists.linux.dev,
-	linux-amlogic@lists.infradead.org,
-	Sakari Ailus <sakari.ailus@iki.fi>
-Subject: Re: [PATCH 17/17] linux: v4l2-vp9.h: Fix kerneldoc
-Message-ID: <ZcC-FjF5pJUKz9Ir@kekkonen.localdomain>
-References: <20240126-gix-mtk-warnings-v1-0-eed7865fce18@chromium.org>
- <20240126-gix-mtk-warnings-v1-17-eed7865fce18@chromium.org>
- <ZbTTb-SdK-EubGdc@valkosipuli.retiisi.eu>
- <201ae1d1-1e03-40e2-9cc4-49df70abb8da@xs4all.nl>
- <8f3bab1f-8697-40c0-91f2-de934b4b9ddb@infradead.org>
- <e565f8bd-19d2-4574-8c6d-5573733a8185@xs4all.nl>
+	id 1rX1Jt-00000003sed-1vRT;
+	Mon, 05 Feb 2024 15:55:43 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id D87C2100011;
+	Mon,  5 Feb 2024 18:55:36 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru D87C2100011
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1707148536;
+	bh=T4w8YmD8VWdxpwAM+qh0428tx6ubcLSqso0bV80y5tA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=pWL8qFXFQHs+Sk+/BWaaIcROy0tlIduHZc3xpmXL2eK5h6jUUve1g03v/LTZC8PJI
+	 8IZpKJnxb99Mjlwe0b5ETiNC3tCSZVgr8VXhJTB0v3C9yVNdH9cVHC6sIyS5nltG4r
+	 YWRaooewFTUPkUvBGHWPQLS+LPj/bQAIyg7HYdx2HkKeojNtHNE0uWcDwv5a6pfrPj
+	 0wMLHv+Kip2b0k3gmrTOvzuGJkOHZQIKwuZfCbTLaql5Upgcgb6JVPQHvHqqjjrFHJ
+	 OCAMF8doqgIUdQJDa2BFtZYtGDPc4MBEsTa0n9rDauy/2fRa+V9XB4WdDxWfYEfi9K
+	 Sj6WodDqIOuxA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon,  5 Feb 2024 18:55:36 +0300 (MSK)
+Received: from user-A520M-DS3H.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 5 Feb 2024 18:55:35 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
+	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>
+CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
+ Romanov <avromanov@salutedevices.com>
+Subject: [PATCH v3 01/20] drivers: crypto: meson: don't hardcode IRQ count
+Date: Mon, 5 Feb 2024 18:55:02 +0300
+Message-ID: <20240205155521.1795552-2-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240205155521.1795552-1-avromanov@salutedevices.com>
+References: <20240205155521.1795552-1-avromanov@salutedevices.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <e565f8bd-19d2-4574-8c6d-5573733a8185@xs4all.nl>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 183204 [Feb 05 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/05 10:19:00 #23362212
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240205_073936_598664_1ABA6122 
-X-CRM114-Status: GOOD (  22.90  )
+X-CRM114-CacheID: sfid-20240205_075542_226533_CB464DB9 
+X-CRM114-Status: GOOD (  22.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,60 +104,186 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Hans,
+IRQ count is no longer hardcoded, and make it part of
+struct meson_flow. We need this for extend driver support for
+other Amlogic SoC's.
 
-On Mon, Feb 05, 2024 at 11:44:13AM +0100, Hans Verkuil wrote:
-> On 05/02/2024 11:39, Randy Dunlap wrote:
-> > 
-> > 
-> > On 2/5/24 02:29, Hans Verkuil wrote:
-> >> On 27/01/2024 10:57, Sakari Ailus wrote:
-> >>> Hi Ricardo,
-> >>>
-> >>> On Fri, Jan 26, 2024 at 11:16:16PM +0000, Ricardo Ribalda wrote:
-> >>>> Kerneldoc cannot understand arrays defined like
-> >>>> v4l2_frame_symbol_counts.
-> >>>>
-> >>>> Adding an asterisk to the name does do the trick.
-> >>>>
-> >>>> Disable the kerneldoc notation for now, it is already ignored:
-> >>>> https://docs.kernel.org/search.html?q=v4l2_vp9_frame_symbol_counts
-> >>>
-> >>> Wouldn't it be nicer to fix kerneldoc instead? It might not be difficult at
-> >>> all.
-> >>>
-> >>> Feel free to, but I can also give it a try.
-> >>>
-> >>
-> >> It would be nice to have this fixed in kerneldoc itself. I'm holding this
-> >> patch back for two weeks to see if someone wants to work on kerneldoc.
-> >>
-> >> If not, then I'll take this anyway to fix the noise in our build.
-> >>
-> >> Note that while this header is indeed ignored in the documentation, that
-> >> is really more a bug and it would be nice to actually include this header
-> >> somewhere in our documentation. So fixing these kerneldoc warnings one way
-> >> or another is something that we should do.
-> >>
-> > 
-> > It's just waiting for Jon to apply it: (from Sakari)
-> > 
-> > https://lore.kernel.org/all/20240131084934.191226-1-sakari.ailus@linux.intel.com/
-> 
-> Ah, that patch was CCed to me but not to linux-media, and I only searched linux-media
-> for it so I missed it. Good news that this is fixed in the right place.
+Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+---
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c |  2 +-
+ drivers/crypto/amlogic/amlogic-gxl-core.c   | 47 ++++++++++++---------
+ drivers/crypto/amlogic/amlogic-gxl.h        |  8 ++--
+ 3 files changed, 31 insertions(+), 26 deletions(-)
 
-My bad, somehow I missed linux-media from the distribution. :-(
-
-> 
-> I marked this 17/17 patch as Obsoleted in patchwork.
-
-Thank you!
-
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+index 29048da6f50a..b19032f92415 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+@@ -19,7 +19,7 @@
+ 
+ static int get_engine_number(struct meson_dev *mc)
+ {
+-	return atomic_inc_return(&mc->flow) % MAXFLOW;
++	return atomic_inc_return(&mc->flow) % mc->flow_cnt;
+ }
+ 
+ static bool meson_cipher_need_fallback(struct skcipher_request *areq)
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+index f54ab0d0b1e8..35ec64df5b3a 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-core.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+@@ -28,8 +28,8 @@ static irqreturn_t meson_irq_handler(int irq, void *data)
+ 	int flow;
+ 	u32 p;
+ 
+-	for (flow = 0; flow < MAXFLOW; flow++) {
+-		if (mc->irqs[flow] == irq) {
++	for (flow = 0; flow < mc->flow_cnt; flow++) {
++		if (mc->chanlist[flow].irq == irq) {
+ 			p = readl(mc->base + ((0x04 + flow) << 2));
+ 			if (p) {
+ 				writel_relaxed(0xF, mc->base + ((0x4 + flow) << 2));
+@@ -110,7 +110,7 @@ static int meson_debugfs_show(struct seq_file *seq, void *v)
+ 	struct meson_dev *mc __maybe_unused = seq->private;
+ 	int i;
+ 
+-	for (i = 0; i < MAXFLOW; i++)
++	for (i = 0; i < mc->flow_cnt; i++)
+ 		seq_printf(seq, "Channel %d: nreq %lu\n", i,
+ #ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
+ 			   mc->chanlist[i].stat_req);
+@@ -153,14 +153,32 @@ static void meson_free_chanlist(struct meson_dev *mc, int i)
+  */
+ static int meson_allocate_chanlist(struct meson_dev *mc)
+ {
++	struct platform_device *pdev = to_platform_device(mc->dev);
+ 	int i, err;
+ 
+-	mc->chanlist = devm_kcalloc(mc->dev, MAXFLOW,
++	mc->flow_cnt = platform_irq_count(pdev);
++	if (mc->flow_cnt <= 0) {
++		dev_err(mc->dev, "No IRQs defined\n");
++		return -ENODEV;
++	}
++
++	mc->chanlist = devm_kcalloc(mc->dev, mc->flow_cnt,
+ 				    sizeof(struct meson_flow), GFP_KERNEL);
+ 	if (!mc->chanlist)
+ 		return -ENOMEM;
+ 
+-	for (i = 0; i < MAXFLOW; i++) {
++	for (i = 0; i < mc->flow_cnt; i++) {
++		mc->chanlist[i].irq = platform_get_irq(pdev, i);
++		if (mc->chanlist[i].irq < 0)
++			return mc->chanlist[i].irq;
++
++		err = devm_request_irq(mc->dev, mc->chanlist[i].irq,
++				       meson_irq_handler, 0, "aml-crypto", mc);
++		if (err < 0) {
++			dev_err(mc->dev, "Cannot request IRQ for flow %d\n", i);
++			return err;
++		}
++
+ 		init_completion(&mc->chanlist[i].complete);
+ 
+ 		mc->chanlist[i].engine = crypto_engine_alloc_init(mc->dev, true);
+@@ -230,7 +248,7 @@ static void meson_unregister_algs(struct meson_dev *mc)
+ static int meson_crypto_probe(struct platform_device *pdev)
+ {
+ 	struct meson_dev *mc;
+-	int err, i;
++	int err;
+ 
+ 	mc = devm_kzalloc(&pdev->dev, sizeof(*mc), GFP_KERNEL);
+ 	if (!mc)
+@@ -252,19 +270,6 @@ static int meson_crypto_probe(struct platform_device *pdev)
+ 		return err;
+ 	}
+ 
+-	for (i = 0; i < MAXFLOW; i++) {
+-		mc->irqs[i] = platform_get_irq(pdev, i);
+-		if (mc->irqs[i] < 0)
+-			return mc->irqs[i];
+-
+-		err = devm_request_irq(&pdev->dev, mc->irqs[i], meson_irq_handler, 0,
+-				       "gxl-crypto", mc);
+-		if (err < 0) {
+-			dev_err(mc->dev, "Cannot request IRQ for flow %d\n", i);
+-			return err;
+-		}
+-	}
+-
+ 	err = clk_prepare_enable(mc->busclk);
+ 	if (err != 0) {
+ 		dev_err(&pdev->dev, "Cannot prepare_enable busclk\n");
+@@ -294,7 +299,7 @@ static int meson_crypto_probe(struct platform_device *pdev)
+ error_alg:
+ 	meson_unregister_algs(mc);
+ error_flow:
+-	meson_free_chanlist(mc, MAXFLOW - 1);
++	meson_free_chanlist(mc, mc->flow_cnt - 1);
+ 	clk_disable_unprepare(mc->busclk);
+ 	return err;
+ }
+@@ -309,7 +314,7 @@ static void meson_crypto_remove(struct platform_device *pdev)
+ 
+ 	meson_unregister_algs(mc);
+ 
+-	meson_free_chanlist(mc, MAXFLOW - 1);
++	meson_free_chanlist(mc, mc->flow_cnt - 1);
+ 
+ 	clk_disable_unprepare(mc->busclk);
+ }
+diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
+index 1013a666c932..79177cfa8b88 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl.h
++++ b/drivers/crypto/amlogic/amlogic-gxl.h
+@@ -22,8 +22,6 @@
+ #define MESON_OPMODE_ECB 0
+ #define MESON_OPMODE_CBC 1
+ 
+-#define MAXFLOW 2
+-
+ #define MAXDESC 64
+ 
+ #define DESC_LAST BIT(18)
+@@ -62,6 +60,7 @@ struct meson_desc {
+  * @keylen:	keylen for this flow operation
+  * @complete:	completion for the current task on this flow
+  * @status:	set to 1 by interrupt if task is done
++ * @irq:	IRQ number for amlogic-crypto
+  * @t_phy:	Physical address of task
+  * @tl:		pointer to the current ce_task for this flow
+  * @stat_req:	number of request done by this flow
+@@ -70,6 +69,7 @@ struct meson_flow {
+ 	struct crypto_engine *engine;
+ 	struct completion complete;
+ 	int status;
++	int irq;
+ 	unsigned int keylen;
+ 	dma_addr_t t_phy;
+ 	struct meson_desc *tl;
+@@ -85,7 +85,7 @@ struct meson_flow {
+  * @dev:	the platform device
+  * @chanlist:	array of all flow
+  * @flow:	flow to use in next request
+- * @irqs:	IRQ numbers for amlogic-crypto
++ * @flow_cnt:	flow count for amlogic-crypto
+  * @dbgfs_dir:	Debugfs dentry for statistic directory
+  * @dbgfs_stats: Debugfs dentry for statistic counters
+  */
+@@ -95,7 +95,7 @@ struct meson_dev {
+ 	struct device *dev;
+ 	struct meson_flow *chanlist;
+ 	atomic_t flow;
+-	int irqs[MAXFLOW];
++	int flow_cnt;
+ #ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
+ 	struct dentry *dbgfs_dir;
+ #endif
 -- 
-Regards,
+2.34.1
 
-Sakari Ailus
 
 _______________________________________________
 linux-amlogic mailing list
