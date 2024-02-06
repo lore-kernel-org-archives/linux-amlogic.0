@@ -4,67 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FBD8C48297
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Feb 2024 10:59:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B505C48297
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Feb 2024 11:00:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=fBZZooWuvD4ozRBCwX6YhmxhA8g+VDw9oSYvsiQOW7Q=; b=UQtZ1CVaZj7JeiCpUxiZPa4br0
-	0Frc1hmbPH0ByDit4lmHGhdSTj5b3P4V3SUMAdZFzrPaDMN+bgKLDPbPr76ITDq0eYqlPcbdeiGb+
-	ZEj5XY95FQvhaxBBdX+ZfxCjClIjp9ByLmuqBZtcBpWVtm/FBuMseyf/BHyMGmahCTTwzZ6ZkjdoA
-	ZpbKEpEIpd2y1WALeCxDC5LRv6wSfliB3QQhQSkDHMF4AZGHwII73+61gTi3u09mvlugybVqLTXHW
-	ItDUwFeq1pnY1YlgYlr8gvFTV78ifkweUxXpqe8U2WVJ644VyB5YbF3Y65kj8HwTkOI/isssLNFv4
-	C67sBYdA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=4tKafWayhUFeXdPieDmhGfPNTAdZJgOOrfJuavMdLtw=; b=uQuo3YrUPb8fgq
+	0bytOMOMghSdFZ0m3CFt0+LN+6MqWGDBlywcVr7lN+x8A/w61dTOSZoyRTZQM7t0aw1Q839DuHyts
+	4ewkEvtfmx8Cn944l0imAmg/cae5FTZelv02uVeDqf5dTVHqC6wy9GUzAf6uIXlJUBoh0CWrO7kzz
+	U0Iu+YIxNoxIcwZs60v8A0UkbDoqd6/RgDaoxXPj14G3qlwoUJCAieeicktJMOMVM9idEq3JDyY/Z
+	lZxzOnRXpyh35ZnsqoBEFh2n5d/jmSzZ/+Zu1QtEPL0uJegwmtEeEKW2XrOvqg0JmYlyW+ljOgZcX
+	LtU4olsxmg7Fn4tWm81Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rXJAX-00000007BMG-0TL0;
-	Tue, 06 Feb 2024 10:59:13 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1rXJBz-00000007BjI-3lOb;
+	Tue, 06 Feb 2024 11:00:43 +0000
+Received: from mx0a-001ae601.pphosted.com ([67.231.149.25] helo=mx0b-001ae601.pphosted.com)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rXJAU-00000007BLP-1bVL;
-	Tue, 06 Feb 2024 10:59:11 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 9226C60FDA;
-	Tue,  6 Feb 2024 10:59:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84048C433C7;
-	Tue,  6 Feb 2024 10:59:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707217149;
-	bh=m1COPvgI8DAgpxWvHI1P0CLUstxG49tEkR1RqUd5cuE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HLYe5xSd1BGjdt9JytXSQ0iJHMFYUejuUzmpBDu+9ZMUDUoClQyZUKCSENVA5kT9m
-	 vgDc4b00j+NSnir3Glqca86K00a/o06TGHh1fnwCNkpUK6oWv8r0FqDkSO0NyJu0cZ
-	 rLFrF/CPpFp2oau3Py417CL7J0e9MbRZtJbWUM6VLnee8KwgN1HLnJbByom/tOK8Be
-	 Xk7aY8V3dII2cBKDeyVAEDbl+Lh5I3cJMobvDIsrE6XoBssIvvw0DkI5tDnIcGq67a
-	 AADmjAgVVue9m299igFPDFXSqzoIMywCIm2wuI/XFXnlIfAOSPv1rjiflwMEtKhD1l
-	 46W6CJKCQDr8Q==
-Date: Tue, 6 Feb 2024 10:59:05 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Bo Liu <liubo03@inspur.com>, lee@kernel.org, wens@csie.org,
-	marek.vasut+renesas@gmail.com, support.opensource@diasemi.com,
-	neil.armstrong@linaro.org, ckeepax@opensource.cirrus.com,
-	rf@opensource.cirrus.com, mazziesaccount@gmail.com,
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, patches@opensource.cirrus.com,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 00/18] mfd: convert to use maple tree register cache
-Message-ID: <ZcIQ+f3F/hSU1Jcx@finisterre.sirena.org.uk>
+	id 1rXIET-00000006qzR-3dkF;
+	Tue, 06 Feb 2024 09:59:16 +0000
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4166xSAC022910;
+	Tue, 6 Feb 2024 03:58:53 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=PODMain02222019; bh=v5p55IOITpqmhF7
+	sZSnOxfOy/BsQIdVVFm5xhqj7f9s=; b=CN8aUZeqvFd31h49unpgQ89je93VaRH
+	rrRbjFcRdvJI7Wgt+s6nVW5BCmZk3kbVOwu/CNVLRLufi+5MpG0xYDqxTb+6FGR1
+	o9Z5Tgj1grqrrtHgHitQltAZFv+FlcF78BNTWogNQGy0jcjoRvRBTMp+qYGKcyKV
+	XNDICT/OwcoiEoN5lqMTQvkzBMfp+afdgbGJ3JbvaGKz8NqjjJWipW4mj1Jxnuzl
+	zV/KdBSpOsXYlEhP/chL66QeINs8nWkqGzvCzBvxVMGhAB+swBUB0wHEydjeg+4f
+	DUmUgJYKr9SezvgEgFSr8PTmX+JsuzS5ZkVX/kvEhcim+tQrksQp1zg==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3w1ks2b7fk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 06 Feb 2024 03:58:53 -0600 (CST)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 6 Feb
+ 2024 09:58:51 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.40 via Frontend Transport; Tue, 6 Feb 2024 09:58:51 +0000
+Received: from ediswmail9.ad.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id E135E820241;
+	Tue,  6 Feb 2024 09:58:50 +0000 (UTC)
+Date: Tue, 6 Feb 2024 09:58:49 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: Bo Liu <liubo03@inspur.com>
+CC: <lee@kernel.org>, <wens@csie.org>, <marek.vasut+renesas@gmail.com>,
+        <support.opensource@diasemi.com>, <neil.armstrong@linaro.org>,
+        <rf@opensource.cirrus.com>, <mazziesaccount@gmail.com>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <linux-kernel@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
+        <linux-amlogic@lists.infradead.org>, <patches@opensource.cirrus.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 09/18] mfd: lochnagar-i2c: convert to use maple tree
+ register cache
+Message-ID: <ZcIC2V/hM8nnekJr@ediswmail9.ad.cirrus.com>
 References: <20240206071314.8721-1-liubo03@inspur.com>
- <CAMuHMdU7fYCsNT9ditqJ-saUsRm9J2zLh=-q-zmExhBRJeE8NQ@mail.gmail.com>
- <ZcIE/RMTq34TgpQt@finisterre.sirena.org.uk>
- <CAMuHMdVj1bS9s69ASrd5xULc8oELoBbnb8HEX9MEmA43853_EQ@mail.gmail.com>
+ <20240206071314.8721-10-liubo03@inspur.com>
 MIME-Version: 1.0
-In-Reply-To: <CAMuHMdVj1bS9s69ASrd5xULc8oELoBbnb8HEX9MEmA43853_EQ@mail.gmail.com>
-X-Cookie: You might have mail.
+Content-Disposition: inline
+In-Reply-To: <20240206071314.8721-10-liubo03@inspur.com>
+X-Proofpoint-GUID: VCnUsQ6Tbcxl1dxM9nGNsPvgd74iHvZt
+X-Proofpoint-ORIG-GUID: VCnUsQ6Tbcxl1dxM9nGNsPvgd74iHvZt
+X-Proofpoint-Spam-Reason: safe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240206_025910_484006_D627157C 
-X-CRM114-Status: GOOD (  13.38  )
+X-CRM114-CacheID: sfid-20240206_015914_129387_7D5B13F9 
+X-CRM114-Status: UNSURE (   8.18  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,72 +89,26 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8353234929699468354=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Tue, Feb 06, 2024 at 02:13:05AM -0500, Bo Liu wrote:
+> The maple tree register cache is based on a much more modern data structure
+> than the rbtree cache and makes optimisation choices which are probably
+> more appropriate for modern systems than those made by the rbtree cache.
+> 
+> Signed-off-by: Bo Liu <liubo03@inspur.com>
+> ---
 
---===============8353234929699468354==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wohqWBqzA9LyPZP8"
-Content-Disposition: inline
+Tested-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 
-
---wohqWBqzA9LyPZP8
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Feb 06, 2024 at 11:14:11AM +0100, Geert Uytterhoeven wrote:
-> On Tue, Feb 6, 2024 at 11:09=E2=80=AFAM Mark Brown <broonie@kernel.org> w=
-rote:
-
-> > There is a very small niche for devices where cache syncs are a
-> > particularly important part of the workload where rbtree's choices might
-> > give better performance, especially on systems with low end CPUs.
-
-> The REGCACHE_* value is specified by the device, not by the CPU?
-
-The device is going to dominate here, the main thing is how much of the
-workload consists of syncs.
-
-> While some of these MFD devices are on-SoC, and thus there is some
-> relation between device and CPU, several others (e.g. PMICs) are
-> external, and thus might be present on systems with a variety of CPU
-> performance.
-
-> Perhaps the value should depend on some CPU heuristic instead?
-
-No.
-
---wohqWBqzA9LyPZP8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXCEPgACgkQJNaLcl1U
-h9CLEQf/Q8Y34eZ58gNTCjgBWHllS9BWTNNoJRfggd2UXR/TK6Wux1Oco73AD+sp
-j/x/FfZT9XT7iXbarZ87ZUfIEOS0Av7GhvLufUzoxtgfwbGkm+8sR96avkCzf8sX
-WpZ5sICL8fs2NykKkJt76AWsgWaBOYnRgyZrIZ+0a1w+ZUiE5UYEb6TQ7IZZtKrE
-EehYa/mJg3yWROqkiRtnEvouDAmIAgVH7rM2Vfj9G79uLyG4fsvvsuOEjQ5KMGMU
-IQAfWU0Vik+XfvR3VhaP11Bd3wjt8noEbyksgDXNSHwDDNH1zytr6GrQJGJkkVh0
-JB5leaIP9fDnAmofgyqoOqG6uUokNQ==
-=UNpd
------END PGP SIGNATURE-----
-
---wohqWBqzA9LyPZP8--
-
-
---===============8353234929699468354==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Thanks,
+Charles
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============8353234929699468354==--
-
