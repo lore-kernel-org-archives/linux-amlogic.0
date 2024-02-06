@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A86E3C4829C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0736C4829D
 	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Feb 2024 07:14:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,26 +12,26 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2wFFcx/V3eVshQQmfq9zM4FfqAEBtDKc55iBef/CKsg=; b=hIQx2xcAkZTQQc
-	Cnv5RLShvx1GM9fjAJFV7MKRUthFeyFHEwJL8wkfjXnR4COdeox9SO9pk+/rAgMenIBHpuARt78hc
-	7/nRYaiPKzru/cRkKuWHZylxwuiSRZJr6LmZo5nkabC3FCMhkFWpuzrPIAmL6DjzImngF8FoSLpeJ
-	k1o9iaucK4oeT1C19FN0YLdwe9cxkwYzU4vrFaa6f5bpQYlaavev0z5sLaact0mr+MGXtQCiTGgBX
-	ZqUT2ZezFrPODKwUZAIWoMv7mx2/xR5EeZlmZhep0tXIfi3gpEiWzEVd3RyqAiQ3Nzsu9v9sOIgHY
-	yGHZlbu7WLbBaZo7XwGw==;
+	List-Owner; bh=TezrNb+aitxRx3wcMzaj/3yOzaJiEhl66oo+hzv4gRs=; b=yFM2j3Z5EjqIM7
+	53h7UnqJ2HV872g8WmjT4ClLfYFmUkW1mL0Ej4QmUi6q7P/uB+9rPWEyKcY2grr4bVgx6SjkiQwdM
+	/wcgjc9mqAIexNSYKc4mjvi5YWauJL8rb0Bd9jP6YPZiUu4eCfFJToz066b4wQeMiMTVjtnCSwFks
+	N1+tGFWgezOPlne5ezHQO93rez6pPKc/GVJ3ma4jKylFt7MKrdrTiBTGTxJphL0WKA+ytI76wvHBd
+	wgwTfgrl0bDHFiiVO0LBWMuRM36O1nX0UxfrdNqMXFt+EprH2NUklQAqj+zH1LJhKC9yy8XfKgE5M
+	A/sL7HVlhktMj4oxUx5Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rXFeT-00000006FQT-31gM;
-	Tue, 06 Feb 2024 07:13:53 +0000
+	id 1rXFeV-00000006FSQ-30JF;
+	Tue, 06 Feb 2024 07:13:55 +0000
 Received: from ssh248.corpemail.net ([210.51.61.248])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rXFeP-00000006FNy-1z85;
-	Tue, 06 Feb 2024 07:13:50 +0000
+	id 1rXFeP-00000006FNx-1z80;
+	Tue, 06 Feb 2024 07:13:51 +0000
 Received: from ssh248.corpemail.net
-        by ssh248.corpemail.net ((D)) with ASMTP (SSL) id CZT00144;
-        Tue, 06 Feb 2024 15:13:44 +0800
+        by ssh248.corpemail.net ((D)) with ASMTP (SSL) id CZT00043;
+        Tue, 06 Feb 2024 15:13:43 +0800
 Received: from localhost.localdomain.com (10.73.45.222) by
  jtjnmail201602.home.langchao.com (10.100.2.2) with Microsoft SMTP Server id
- 15.1.2507.34; Tue, 6 Feb 2024 15:13:44 +0800
+ 15.1.2507.34; Tue, 6 Feb 2024 15:13:43 +0800
 From: Bo Liu <liubo03@inspur.com>
 To: <lee@kernel.org>, <wens@csie.org>, <marek.vasut+renesas@gmail.com>,
 	<support.opensource@diasemi.com>, <neil.armstrong@linaro.org>,
@@ -42,22 +42,22 @@ CC: <linux-kernel@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
 	<linux-amlogic@lists.infradead.org>, <patches@opensource.cirrus.com>,
 	<linux-stm32@st-md-mailman.stormreply.com>,
 	<linux-arm-kernel@lists.infradead.org>, Bo Liu <liubo03@inspur.com>
-Subject: [PATCH 12/18] mfd: rk8xx: convert to use maple tree register cache
-Date: Tue, 6 Feb 2024 02:13:08 -0500
-Message-ID: <20240206071314.8721-13-liubo03@inspur.com>
+Subject: [PATCH 11/18] mfd: rohm: convert to use maple tree register cache
+Date: Tue, 6 Feb 2024 02:13:07 -0500
+Message-ID: <20240206071314.8721-12-liubo03@inspur.com>
 X-Mailer: git-send-email 2.18.2
 In-Reply-To: <20240206071314.8721-1-liubo03@inspur.com>
 References: <20240206071314.8721-1-liubo03@inspur.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.73.45.222]
-tUid: 20242061513443b160295ca69a3eff9f6a52a5f15a112
+tUid: 20242061513430f5b0a1bdcc148beebfea2a7bea359c1
 X-Abuse-Reports-To: service@corp-email.com
 Abuse-Reports-To: service@corp-email.com
 X-Complaints-To: service@corp-email.com
 X-Report-Abuse-To: service@corp-email.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240205_231349_851005_4ABC6670 
-X-CRM114-Status: UNSURE (   9.59  )
+X-CRM114-CacheID: sfid-20240205_231349_851552_3FFBDFE7 
+X-CRM114-Status: UNSURE (   9.90  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -81,22 +81,59 @@ more appropriate for modern systems than those made by the rbtree cache.
 
 Signed-off-by: Bo Liu <liubo03@inspur.com>
 ---
- drivers/mfd/rk8xx-spi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/mfd/rohm-bd71828.c | 4 ++--
+ drivers/mfd/rohm-bd718x7.c | 2 +-
+ drivers/mfd/rohm-bd9576.c  | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/mfd/rk8xx-spi.c b/drivers/mfd/rk8xx-spi.c
-index fd137f38c2c4..3405fb82ff9f 100644
---- a/drivers/mfd/rk8xx-spi.c
-+++ b/drivers/mfd/rk8xx-spi.c
-@@ -34,7 +34,7 @@ static const struct regmap_config rk806_regmap_config_spi = {
- 	.reg_bits = 16,
+diff --git a/drivers/mfd/rohm-bd71828.c b/drivers/mfd/rohm-bd71828.c
+index 594718f7e8e1..2f3826c7eef4 100644
+--- a/drivers/mfd/rohm-bd71828.c
++++ b/drivers/mfd/rohm-bd71828.c
+@@ -197,7 +197,7 @@ static const struct regmap_config bd71815_regmap = {
  	.val_bits = 8,
- 	.max_register = RK806_BUCK_RSERVE_REG5,
+ 	.volatile_table = &bd71815_volatile_regs,
+ 	.max_register = BD71815_MAX_REGISTER - 1,
 -	.cache_type = REGCACHE_RBTREE,
 +	.cache_type = REGCACHE_MAPLE,
- 	.volatile_table = &rk806_volatile_table,
  };
  
+ static const struct regmap_config bd71828_regmap = {
+@@ -205,7 +205,7 @@ static const struct regmap_config bd71828_regmap = {
+ 	.val_bits = 8,
+ 	.volatile_table = &bd71828_volatile_regs,
+ 	.max_register = BD71828_MAX_REGISTER,
+-	.cache_type = REGCACHE_RBTREE,
++	.cache_type = REGCACHE_MAPLE,
+ };
+ 
+ /*
+diff --git a/drivers/mfd/rohm-bd718x7.c b/drivers/mfd/rohm-bd718x7.c
+index 4798bdf27afb..7755a4c073bf 100644
+--- a/drivers/mfd/rohm-bd718x7.c
++++ b/drivers/mfd/rohm-bd718x7.c
+@@ -87,7 +87,7 @@ static const struct regmap_config bd718xx_regmap_config = {
+ 	.val_bits = 8,
+ 	.volatile_table = &volatile_regs,
+ 	.max_register = BD718XX_MAX_REGISTER - 1,
+-	.cache_type = REGCACHE_RBTREE,
++	.cache_type = REGCACHE_MAPLE,
+ };
+ 
+ static int bd718xx_init_press_duration(struct regmap *regmap,
+diff --git a/drivers/mfd/rohm-bd9576.c b/drivers/mfd/rohm-bd9576.c
+index bceac7016740..3a9f61961721 100644
+--- a/drivers/mfd/rohm-bd9576.c
++++ b/drivers/mfd/rohm-bd9576.c
+@@ -62,7 +62,7 @@ static struct regmap_config bd957x_regmap = {
+ 	.val_bits = 8,
+ 	.volatile_table = &volatile_regs,
+ 	.max_register = BD957X_MAX_REGISTER,
+-	.cache_type = REGCACHE_RBTREE,
++	.cache_type = REGCACHE_MAPLE,
+ };
+ 
+ static struct regmap_irq bd9576_irqs[] = {
 -- 
 2.18.2
 
