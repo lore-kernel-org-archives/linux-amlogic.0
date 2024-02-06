@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C6DAC48286
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Feb 2024 07:14:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28DE1C4829D
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Feb 2024 07:15:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=k5nRDDQ4ZKQd+BAR48CQEXiROI53jo/bMbbMnnmsiWs=; b=m2YKl7nu4ptt3S
-	FitSZZRRVCH3N6B4U0NdZb9ZHKTghB1yWiklJWpfuik+EzX/bt3b5dcVRhGdD9C1LQeNBYtka+KII
-	DBOJwXfkNPJo/Zh5ISsltl+cNHv6hClP1V0N2R827If1lI6umW6AWZ+PiR3uPoShefQrF3siYYuOO
-	9TJg/vGkCKtMm3BCAejdG2eX9USDB0bqFvNJWruGwvxwILK35E0DU48DYh670PYoiZiLSq81oUBWx
-	ijyPPlzrH9uIA6wVKzwS4YGrlH/mZpj0ng5ZLeDdYI6jHEolqpqkC2zy+QJ8gKEOlDQECJm1GE71q
-	boUE/BJBugMQ/AaBbzzw==;
+	List-Owner; bh=9rpqejIUCXqmPnubwtAqXFk9aqNoDZi7kFTLjhFAYqY=; b=gN3Jfw5+2pgHuM
+	lbhPaV40T+BWj2JDGSlnNzz4zPRtd8UFWyNqCypqWtL5im/3JRtnOC1N2pYXDjbtYxppnMWq30Nn7
+	FBr1HGtFE2Zbiyt1n1TDx5gzeLjTsK6qztjNNHR6SVGbunXlbqeexSMU7aLX2DWwWOobQYDtzvWCN
+	wSyKdjXupqOpag/9RNssTQrCs2mIZ6XjAkjT4tKM3gVLiJ3xsu44DwasG2kx01DKxgveyjyYhctdq
+	8h5kcbh6631BOaz2rvBZ0R/MieUfnlIyPFqrGqUF1ww+/+5HoiVQVdCyAEfRSpprA2638zZD6cFrp
+	xy44ULoDzHIngTZUokmA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rXFfQ-00000006GKK-13eS;
-	Tue, 06 Feb 2024 07:14:52 +0000
+	id 1rXFfU-00000006GNP-10st;
+	Tue, 06 Feb 2024 07:14:56 +0000
 Received: from ssh248.corpemail.net ([210.51.61.248])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rXFeW-00000006FNd-3d6g;
+	id 1rXFeY-00000006FNl-0TgB;
 	Tue, 06 Feb 2024 07:13:59 +0000
 Received: from ssh248.corpemail.net
-        by ssh248.corpemail.net ((D)) with ASMTP (SSL) id CZT00137;
-        Tue, 06 Feb 2024 15:13:37 +0800
+        by ssh248.corpemail.net ((D)) with ASMTP (SSL) id CZT00040;
+        Tue, 06 Feb 2024 15:13:40 +0800
 Received: from localhost.localdomain.com (10.73.45.222) by
  jtjnmail201602.home.langchao.com (10.100.2.2) with Microsoft SMTP Server id
- 15.1.2507.34; Tue, 6 Feb 2024 15:13:37 +0800
+ 15.1.2507.34; Tue, 6 Feb 2024 15:13:40 +0800
 From: Bo Liu <liubo03@inspur.com>
 To: <lee@kernel.org>, <wens@csie.org>, <marek.vasut+renesas@gmail.com>,
 	<support.opensource@diasemi.com>, <neil.armstrong@linaro.org>,
@@ -42,23 +42,22 @@ CC: <linux-kernel@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
 	<linux-amlogic@lists.infradead.org>, <patches@opensource.cirrus.com>,
 	<linux-stm32@st-md-mailman.stormreply.com>,
 	<linux-arm-kernel@lists.infradead.org>, Bo Liu <liubo03@inspur.com>
-Subject: [PATCH 06/18] mfd: bd9571mwv: convert to use maple tree register cache
-Date: Tue, 6 Feb 2024 02:13:02 -0500
-Message-ID: <20240206071314.8721-7-liubo03@inspur.com>
+Subject: [PATCH 09/18] mfd: lochnagar-i2c: convert to use maple tree register cache
+Date: Tue, 6 Feb 2024 02:13:05 -0500
+Message-ID: <20240206071314.8721-10-liubo03@inspur.com>
 X-Mailer: git-send-email 2.18.2
 In-Reply-To: <20240206071314.8721-1-liubo03@inspur.com>
 References: <20240206071314.8721-1-liubo03@inspur.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.73.45.222]
-tUid: 20242061513371fa66d01b7fc0fd2c57f6d4a721357dc
+tUid: 2024206151340dc7b47325e1d94996cd6585e6dd71cab
 X-Abuse-Reports-To: service@corp-email.com
 Abuse-Reports-To: service@corp-email.com
 X-Complaints-To: service@corp-email.com
 X-Report-Abuse-To: service@corp-email.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240205_231357_394439_3A7929B4 
-X-CRM114-Status: UNSURE (   9.24  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240205_231358_606368_3755EEF2 
+X-CRM114-Status: GOOD (  10.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,31 +80,31 @@ more appropriate for modern systems than those made by the rbtree cache.
 
 Signed-off-by: Bo Liu <liubo03@inspur.com>
 ---
- drivers/mfd/bd9571mwv.c | 4 ++--
+ drivers/mfd/lochnagar-i2c.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/mfd/bd9571mwv.c b/drivers/mfd/bd9571mwv.c
-index 819d09e4d100..0a955178d469 100644
---- a/drivers/mfd/bd9571mwv.c
-+++ b/drivers/mfd/bd9571mwv.c
-@@ -67,7 +67,7 @@ static const struct regmap_access_table bd9571mwv_volatile_table = {
- static const struct regmap_config bd9571mwv_regmap_config = {
- 	.reg_bits	= 8,
- 	.val_bits	= 8,
--	.cache_type	= REGCACHE_RBTREE,
-+	.cache_type	= REGCACHE_MAPLE,
- 	.rd_table	= &bd9571mwv_readable_table,
- 	.wr_table	= &bd9571mwv_writable_table,
- 	.volatile_table	= &bd9571mwv_volatile_table,
-@@ -152,7 +152,7 @@ static const struct regmap_access_table bd9574mwf_volatile_table = {
- static const struct regmap_config bd9574mwf_regmap_config = {
- 	.reg_bits	= 8,
- 	.val_bits	= 8,
--	.cache_type	= REGCACHE_RBTREE,
-+	.cache_type	= REGCACHE_MAPLE,
- 	.rd_table	= &bd9574mwf_readable_table,
- 	.wr_table	= &bd9574mwf_writable_table,
- 	.volatile_table	= &bd9574mwf_volatile_table,
+diff --git a/drivers/mfd/lochnagar-i2c.c b/drivers/mfd/lochnagar-i2c.c
+index 0b76fcccd0bd..6c930c57f2e2 100644
+--- a/drivers/mfd/lochnagar-i2c.c
++++ b/drivers/mfd/lochnagar-i2c.c
+@@ -70,7 +70,7 @@ static const struct regmap_config lochnagar1_i2c_regmap = {
+ 	.use_single_read = true,
+ 	.use_single_write = true,
+ 
+-	.cache_type = REGCACHE_RBTREE,
++	.cache_type = REGCACHE_MAPLE,
+ };
+ 
+ static const struct reg_sequence lochnagar1_patch[] = {
+@@ -163,7 +163,7 @@ static const struct regmap_config lochnagar2_i2c_regmap = {
+ 	.readable_reg = lochnagar2_readable_register,
+ 	.volatile_reg = lochnagar2_volatile_register,
+ 
+-	.cache_type = REGCACHE_RBTREE,
++	.cache_type = REGCACHE_MAPLE,
+ };
+ 
+ static const struct reg_sequence lochnagar2_patch[] = {
 -- 
 2.18.2
 
