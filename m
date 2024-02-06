@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA5A7C4829B
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Feb 2024 07:15:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CDB1C4828D
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Feb 2024 07:15:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=u8BL7Mc87MHlzbR4M604eqL64saRC/bu/ycmbM/GfUU=; b=mKiEr1uTu2IOKJ
-	5VuSkyEadeL05HtLsaoA0YcVGuncRA3gw2G80GohH9APL7ztnZ3QoxgsrLnZjMltHsnXq0OEMDXsK
-	lm0FZ+vumutwSt6JOWJPO7QFuoNWZucK6AP54mBQWWfSn70LzeUT6ROZGTFgujR2YtnZEVq7Cx+/i
-	Q4dM0HLlNnNPqbT9TUimAXs4M8zCNvLn41oUKkJSZhOSLOHjyuASbc7vbZcwAki53vd2jGJ41LpbT
-	XSCHE0lqxEcn6TbgwPc+04+Aq+b7knob5uWfqHzyM6U7gxBLgfVD09zx4vlTuGHdr/f12Rg3AjtK3
-	PsjWBBzIyXawGDjnNf3Q==;
+	List-Owner; bh=02JkKtnJaPKI91skugEZqw5DYGu5eg9WdiBIxVA1GFM=; b=V7oxOJb+Tmg3zU
+	ib8QM9oi5fvLmaHG3Bc3958NzaO1mlGfxcb35C2zpOI0OcXEgpYbkXPkkcyO+lT7IYTiaTzlXS3It
+	j5DKSGTT10RXau5Mi6id72FloHC+WxT6/rsrt9U7uuhfI4Yj65LIedqx+zQfpxX7slGwuAttmvqsV
+	I43+9w56Z41rGOB1fagg180Ni0vKq1yQJQFYTfgOJ5/GWfybIhZe1j0B3PPcNjsEGRd64eJCEBPes
+	qH2HtrET98sZ1SRLvugL+NBaD8l0owBjl0CuTIyPLnnzr/83C8CcUKvLV4LBpu/Xs39kEkeaW8Pcm
+	2gegzbFM+UHP9rZqgVZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rXFfW-00000006GOw-0DZz;
-	Tue, 06 Feb 2024 07:14:58 +0000
+	id 1rXFfX-00000006GQu-3rfV;
+	Tue, 06 Feb 2024 07:14:59 +0000
 Received: from ssh248.corpemail.net ([210.51.61.248])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rXFeY-00000006FNm-0HEQ;
+	id 1rXFeY-00000006FUB-2kCt;
 	Tue, 06 Feb 2024 07:14:00 +0000
 Received: from ssh248.corpemail.net
-        by ssh248.corpemail.net ((D)) with ASMTP (SSL) id CZT00041;
-        Tue, 06 Feb 2024 15:13:41 +0800
+        by ssh248.corpemail.net ((D)) with ASMTP (SSL) id CZT00153;
+        Tue, 06 Feb 2024 15:13:53 +0800
 Received: from localhost.localdomain.com (10.73.45.222) by
  jtjnmail201602.home.langchao.com (10.100.2.2) with Microsoft SMTP Server id
- 15.1.2507.34; Tue, 6 Feb 2024 15:13:42 +0800
+ 15.1.2507.34; Tue, 6 Feb 2024 15:13:54 +0800
 From: Bo Liu <liubo03@inspur.com>
 To: <lee@kernel.org>, <wens@csie.org>, <marek.vasut+renesas@gmail.com>,
 	<support.opensource@diasemi.com>, <neil.armstrong@linaro.org>,
@@ -42,22 +42,22 @@ CC: <linux-kernel@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
 	<linux-amlogic@lists.infradead.org>, <patches@opensource.cirrus.com>,
 	<linux-stm32@st-md-mailman.stormreply.com>,
 	<linux-arm-kernel@lists.infradead.org>, Bo Liu <liubo03@inspur.com>
-Subject: [PATCH 10/18] mfd: wolfson: convert to use maple tree register cache
-Date: Tue, 6 Feb 2024 02:13:06 -0500
-Message-ID: <20240206071314.8721-11-liubo03@inspur.com>
+Subject: [PATCH 18/18] mfd: rc5t583: convert to use maple tree register cache
+Date: Tue, 6 Feb 2024 02:13:14 -0500
+Message-ID: <20240206071314.8721-19-liubo03@inspur.com>
 X-Mailer: git-send-email 2.18.2
 In-Reply-To: <20240206071314.8721-1-liubo03@inspur.com>
 References: <20240206071314.8721-1-liubo03@inspur.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.73.45.222]
-tUid: 20242061513412c33292c74460fb4cc83da7df0762be9
+tUid: 20242061513536484fa655b5a0fc9bdd3e7424c180b4e
 X-Abuse-Reports-To: service@corp-email.com
 Abuse-Reports-To: service@corp-email.com
 X-Complaints-To: service@corp-email.com
 X-Report-Abuse-To: service@corp-email.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240205_231358_576129_6FF952AF 
-X-CRM114-Status: UNSURE (   8.98  )
+X-CRM114-CacheID: sfid-20240205_231359_142289_1EFC0F64 
+X-CRM114-Status: UNSURE (   9.39  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -81,96 +81,22 @@ more appropriate for modern systems than those made by the rbtree cache.
 
 Signed-off-by: Bo Liu <liubo03@inspur.com>
 ---
- drivers/mfd/wm5102-tables.c | 2 +-
- drivers/mfd/wm5110-tables.c | 2 +-
- drivers/mfd/wm8350-regmap.c | 2 +-
- drivers/mfd/wm8400-core.c   | 2 +-
- drivers/mfd/wm97xx-core.c   | 6 +++---
- 5 files changed, 7 insertions(+), 7 deletions(-)
+ drivers/mfd/rc5t583.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/mfd/wm5102-tables.c b/drivers/mfd/wm5102-tables.c
-index f77ecc635b6f..6a8602c1c4ee 100644
---- a/drivers/mfd/wm5102-tables.c
-+++ b/drivers/mfd/wm5102-tables.c
-@@ -1922,7 +1922,7 @@ const struct regmap_config wm5102_spi_regmap = {
- 	.readable_reg = wm5102_readable_register,
- 	.volatile_reg = wm5102_volatile_register,
- 
--	.cache_type = REGCACHE_RBTREE,
-+	.cache_type = REGCACHE_MAPLE,
- 	.reg_defaults = wm5102_reg_default,
- 	.num_reg_defaults = ARRAY_SIZE(wm5102_reg_default),
- };
-diff --git a/drivers/mfd/wm5110-tables.c b/drivers/mfd/wm5110-tables.c
-index eba324875afd..6ff33a54a068 100644
---- a/drivers/mfd/wm5110-tables.c
-+++ b/drivers/mfd/wm5110-tables.c
-@@ -3202,7 +3202,7 @@ const struct regmap_config wm5110_spi_regmap = {
- 	.readable_reg = wm5110_readable_register,
- 	.volatile_reg = wm5110_volatile_register,
- 
--	.cache_type = REGCACHE_RBTREE,
-+	.cache_type = REGCACHE_MAPLE,
- 	.reg_defaults = wm5110_reg_default,
- 	.num_reg_defaults = ARRAY_SIZE(wm5110_reg_default),
- };
-diff --git a/drivers/mfd/wm8350-regmap.c b/drivers/mfd/wm8350-regmap.c
-index 5663b8b0b3ad..3d0ebb004dbf 100644
---- a/drivers/mfd/wm8350-regmap.c
-+++ b/drivers/mfd/wm8350-regmap.c
-@@ -325,7 +325,7 @@ const struct regmap_config wm8350_regmap = {
- 	.reg_bits = 8,
- 	.val_bits = 16,
- 
--	.cache_type = REGCACHE_RBTREE,
-+	.cache_type = REGCACHE_MAPLE,
- 
- 	.max_register = WM8350_MAX_REGISTER,
- 	.readable_reg = wm8350_readable,
-diff --git a/drivers/mfd/wm8400-core.c b/drivers/mfd/wm8400-core.c
-index 75483c9be0c4..ddfb234849dd 100644
---- a/drivers/mfd/wm8400-core.c
-+++ b/drivers/mfd/wm8400-core.c
-@@ -100,7 +100,7 @@ static const struct regmap_config wm8400_regmap_config = {
- 
- 	.volatile_reg = wm8400_volatile,
- 
+diff --git a/drivers/mfd/rc5t583.c b/drivers/mfd/rc5t583.c
+index 5e81f011363f..2c0e8e9630f7 100644
+--- a/drivers/mfd/rc5t583.c
++++ b/drivers/mfd/rc5t583.c
+@@ -230,7 +230,7 @@ static const struct regmap_config rc5t583_regmap_config = {
+ 	.volatile_reg = volatile_reg,
+ 	.max_register = RC5T583_MAX_REG,
+ 	.num_reg_defaults_raw = RC5T583_NUM_REGS,
 -	.cache_type = REGCACHE_RBTREE,
 +	.cache_type = REGCACHE_MAPLE,
  };
  
- /**
-diff --git a/drivers/mfd/wm97xx-core.c b/drivers/mfd/wm97xx-core.c
-index 663acbb1854c..1566a9b04b6a 100644
---- a/drivers/mfd/wm97xx-core.c
-+++ b/drivers/mfd/wm97xx-core.c
-@@ -95,7 +95,7 @@ static const struct regmap_config wm9705_regmap_config = {
- 	.reg_stride = 2,
- 	.val_bits = 16,
- 	.max_register = 0x7e,
--	.cache_type = REGCACHE_RBTREE,
-+	.cache_type = REGCACHE_MAPLE,
- 
- 	.reg_defaults = wm9705_reg_defaults,
- 	.num_reg_defaults = ARRAY_SIZE(wm9705_reg_defaults),
-@@ -163,7 +163,7 @@ static const struct regmap_config wm9712_regmap_config = {
- 	.reg_stride = 2,
- 	.val_bits = 16,
- 	.max_register = 0x7e,
--	.cache_type = REGCACHE_RBTREE,
-+	.cache_type = REGCACHE_MAPLE,
- 
- 	.reg_defaults = wm9712_reg_defaults,
- 	.num_reg_defaults = ARRAY_SIZE(wm9712_reg_defaults),
-@@ -234,7 +234,7 @@ static const struct regmap_config wm9713_regmap_config = {
- 	.reg_stride = 2,
- 	.val_bits = 16,
- 	.max_register = 0x7e,
--	.cache_type = REGCACHE_RBTREE,
-+	.cache_type = REGCACHE_MAPLE,
- 
- 	.reg_defaults = wm9713_reg_defaults,
- 	.num_reg_defaults = ARRAY_SIZE(wm9713_reg_defaults),
+ static int rc5t583_i2c_probe(struct i2c_client *i2c)
 -- 
 2.18.2
 
