@@ -4,118 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BACE6C48297
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Feb 2024 14:01:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1977AC4828D
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Feb 2024 14:07:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=DnCQ5GLzxNzpdn1VfAXnDZ7CvfFUL0AiVsiBkRgvj5Q=; b=ddWpJK+39MuSoOupdsifCxrEef
-	ptGFaLYCLy07Y3Q60Oyuo6cZdWqpfThsBhEaabn/QmUFluDQiDFt+qC1v/bbzZ9e4c+FL+MNadLTk
-	fcEid0OkK2d5JrAwbLaIRDNnuiS0sYsG9VKVTovIEvKWVbZj9wwG0l0UvTT5rAJJB3n+Ynfrt6ZGK
-	8ervj4ClxeEzNQUqovoMYjg6H+5qDZaiQBgLPqegsOeGPov3MZkN5OqVfr3aleMjH7BP864afZn4v
-	+FuOsLBSXmHhwW7ywEe1+XAiYarBLLkCquRyM3YcmMgukp7CY1UR8ZVmXEyx/56MDuCSM97uMdnDO
-	oKy6Yzag==;
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=fo/l90vkMLvYIDsk4CrSkRJ4/3Czyuig5P6zo+Je7w0=; b=o68maNo3wo0aVg
+	FRR8ivNcWfGpiYs6jadIPXoRxaPpzd6a/U/Hs9IiUbnCpoXBHljC8YlJV2UGZJ1VZwir8JwJSFQ99
+	EEJ82PDlrSDDqz+PYXcCr9wu1QhjjnNRJ3zQru7rXwMSTjYg/7hKoheNk+GQPPOoH03+uf+uvrBCI
+	4Gm7H227tISPYXMaJhJykb3bLzfzsDP97+4iQt1e7RMhExSQ6lxg7YuEf+W6FeLf860MP9TMY462q
+	xpxswYrRhXQlgnGWHTukDQ909z6/SJID2BhcG+i2gZZW80Cb58MvtQZfJLTI9egpLHG51Qg5ii5hi
+	sJC4nDPXm0bXCW9xXQ0A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rXM0l-00000007npJ-26GE;
-	Tue, 06 Feb 2024 14:01:19 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1rXM73-00000007ofD-3Gbk;
+	Tue, 06 Feb 2024 14:07:49 +0000
+Received: from out-187.mta1.migadu.com ([95.215.58.187])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rXM0i-00000007nnP-17qT
+	id 1rXM6z-00000007obz-1XQg
 	for linux-amlogic@lists.infradead.org;
-	Tue, 06 Feb 2024 14:01:17 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40ff0799f56so1966165e9.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 06 Feb 2024 06:01:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707228074; x=1707832874; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6lxn5ppjmm76s05rtpg6sFq3Eh8QtCLp9cOdP6Vy6Ac=;
-        b=w4dkqshHJ1pryNijSfY66HjJ1ajx1S1IlYrxazuNDALM6QgnKWnMfOsWrjciFctirZ
-         jXDcBr7q/MhxH+0af/IgAKcctUwlLhwqPtRdpsTv9r7tXu3E6cIC0f8GYIQnzW8DGYtJ
-         1hlbI4MQtkmuROJQwE0A7Upu+R9kR70shEtVNoD2Y/+9W9B1urWvejeXFd7/7Lsh9Yvn
-         B98GnonjvKXTu4eZrr2K1riAxXVecdjN+F/F3QAGLrdlWU+I3eVgB/C/jZxLYt0T0ntt
-         F9xXTzPx+REXngW/sw1iimzU3r5wTtVuY7ds03A29U94D5KF1EZAQrZYI+2+TWIcq7vV
-         VePw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707228074; x=1707832874;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=6lxn5ppjmm76s05rtpg6sFq3Eh8QtCLp9cOdP6Vy6Ac=;
-        b=jRnVtZWVFwovbhXG416QXFKt8fmQY4TNJl0rT1ihgR9gjKfPPjjwO31s0kkfQTtzeG
-         zZ6raEho1xrklUSf3k8/dXxqiuqmnWrW0KXOtzvDltlw5GdvDHYUMeCraxwkFXifNlpj
-         nzLop0DT2V0mIzYqRVXGQyRWUc1YhOmIfanedk1FKnGFv7gRlobkfrWGl2FiOT6UX1M5
-         Y7ltklcCJ+NViQDvUkHAXUtcOdWrRUQUKYmuWSyqStBGUMgFiuHjLSosyi+4AuYQuTFH
-         xnKSMLeynHDcD7UXRdbIMcpwdIvaiOhsv6kpVR3mus8PwAsMxOwVHTUC0Un/MryONVgZ
-         RcHQ==
-X-Gm-Message-State: AOJu0YwuBPNWu5eD7IvsKeACaz0wY5Sk4pbSLsQwrH2sw3nytqqcZnaq
-	YavgHDTwNdARRpPJgLreVLX4CsD31KURB6/gp74GZAlgqr8520DvuMWGQu6cWLY=
-X-Google-Smtp-Source: AGHT+IG92N8Wtnm4SjvEdq2MgTbyvlH4SnM0imHATZ/56b/4lcNlO3daG5aRAqQPJuLOvALLDjOz9w==
-X-Received: by 2002:a05:600c:35cc:b0:40f:cb0d:4de6 with SMTP id r12-20020a05600c35cc00b0040fcb0d4de6mr6794859wmq.5.1707228074403;
-        Tue, 06 Feb 2024 06:01:14 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUln28rRQq8eXt/f8B9dHukEv6uWMfzlaiW6MEpbQlOHK979mB2XqleARY4xLrniPud25+xHcCUrhumz1UUfsXqH4YU/csm+z427F2FgPOnM0z7g7ZsTBSQDAgrGc7kwkuXUu+uwMkuXR2z6Sa08acI8iL+hJsSieu3ykk2oZIVUnW/om6Q9P/nE7A3oB3ATs38ThQ9jxBw0OyDiqmPzLmzRw5sv0e19/hqhS4drsNODPnTXvcxxUHGYoZhOf0Fo9MByRcP6/meKYPUPFhMnimDcH0Wh5oRSuNJ4ymYaLU7IGgNqRBw6eZ6TgYmUHTGc6XBFo3VtiNLdedH1HXql40dnSrLBj4Ry7XN4p9+YFdyHQsHNRCnslr5FrgmB5fPfeFB6wYEYp39Jw==
-Received: from ?IPV6:2a01:e0a:982:cbb0:ba23:8574:fa8:28dd? ([2a01:e0a:982:cbb0:ba23:8574:fa8:28dd])
-        by smtp.gmail.com with ESMTPSA id n29-20020a05600c3b9d00b0040ef2e7041esm2187243wms.6.2024.02.06.06.01.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Feb 2024 06:01:13 -0800 (PST)
-Message-ID: <9ed9b458-33e6-46e7-8eed-87bf8737da76@linaro.org>
-Date: Tue, 6 Feb 2024 15:01:12 +0100
+	Tue, 06 Feb 2024 14:07:48 +0000
+Message-ID: <f4ff9d98-a1ae-4214-9740-c6f921d1bc48@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1707228460;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=kQ1uNrQgl7Q6ppJI7ZiOp0IhPwQJqVIgFs5DYq1SlBY=;
+	b=IcAd4Iv/HZ4cSLrn8NbUVcz4NyCZptygJT1QmfoU7zAShjb6RlNpW6z9vHqXg+fwVdiTYp
+	o0JwJIltEuV8fZj7vXnm395Yp8bun24KAEat+Nn/vIjgrZwl3CbJCjGDP5W5Uu0zfZ9wOj
+	x5HkYaq5CGaU0tfvwDhN6n59gASF8E4=
+Date: Tue, 6 Feb 2024 14:07:32 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [RFC PATCH v1] arm64: dts: amlogic: Add Freebox fbx8am boards
-Content-Language: en-US, fr
-To: Marc Gonzalez <mgonzalez@freebox.fr>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>
-References: <8c865c62-cd80-4c78-9fc5-c85491c037ca@freebox.fr>
- <b69a2132-25c0-4acd-808e-d134f5034e58@linaro.org>
- <59ef3824-13d3-40af-9a3a-9b1ec8add9d3@linaro.org>
- <ef146687-688a-4cf9-a11e-4034a50fb6b4@freebox.fr>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <ef146687-688a-4cf9-a11e-4034a50fb6b4@freebox.fr>
+Subject: Re: [PATCH v3 09/20] drivers: crypto: meson: process more than
+ MAXDESCS descriptors
+Content-Language: en-US
+To: Alexey Romanov <avromanov@salutedevices.com>, neil.armstrong@linaro.org,
+ clabbe@baylibre.com, herbert@gondor.apana.org.au, davem@davemloft.net,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com
+Cc: linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
+References: <20240205155521.1795552-1-avromanov@salutedevices.com>
+ <20240205155521.1795552-10-avromanov@salutedevices.com>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+In-Reply-To: <20240205155521.1795552-10-avromanov@salutedevices.com>
+X-Migadu-Flow: FLOW_OUT
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240206_060116_355537_0099377E 
-X-CRM114-Status: UNSURE (   9.79  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240206_060745_891040_3DE2DE8C 
+X-CRM114-Status: GOOD (  23.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,57 +71,294 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 06/02/2024 14:55, Marc Gonzalez wrote:
-> On 06/02/2024 14:30, Neil Armstrong wrote:
+On 05/02/2024 15:55, Alexey Romanov wrote:
+> 1. The old alhorithm was not designed to process a large
+> amount of memory, and therefore gave incorrect results.
 > 
->> I do have some dtbs_check errors, but those are expected since they are not specific to this patchset.
+> 2. Not all Amlogic SoC's use 3 KEY/IV descriptors.
+> Add keyiv descriptors count parameter to platform data.
 > 
-> Wanted to mention those warnings as a follow-up.
-> Are they easy to fix?
+> Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> ---
+>   drivers/crypto/amlogic/amlogic-gxl-cipher.c | 443 ++++++++++++--------
+>   drivers/crypto/amlogic/amlogic-gxl-core.c   |   1 +
+>   drivers/crypto/amlogic/amlogic-gxl.h        |   2 +
+>   3 files changed, 281 insertions(+), 165 deletions(-)
+> 
+> diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+> index c662c4b86e97..9c96e7b65e1e 100644
+> --- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+> +++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+> @@ -17,35 +17,41 @@
+>   #include <crypto/internal/skcipher.h>
+>   #include "amlogic-gxl.h"
+>   
 
-Yes it's only a matter of writing the missing yaml files and fixing the DT when needed.
-I try to do some regular batches of conversion & fixes but I didn't for a few months now.
+[.. skip ..]
 
-In my last conversion patchset (https://lore.kernel.org/all/20230706-b4-amlogic-bindings-convert-take2-v3-0-f63de6f12dcc@linaro.org/), those were still missing:
-  ['amlogic,axg-audio-clkc']
-  ['amlogic,g12a-audio-clkc']
-  ['amlogic,sm1-audio-clkc']
-  ['amlogic,g12a-tohdmitx']
-  ['amlogic,sm1-tohdmitx', 'amlogic,g12a-tohdmitx']
-  ['everest,es7154']
-  ['everest,es7241']
-  ['ti,tas5707']
-  ['linux,spdif-dir']
+> @@ -84,176 +295,78 @@ static int meson_cipher(struct skcipher_request *areq)
+>   	struct meson_dev *mc = op->mc;
+>   	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
+>   	struct meson_alg_template *algt;
+> -	int flow = rctx->flow;
+> -	unsigned int todo, eat, len;
+> -	struct scatterlist *src_sg = areq->src;
+> -	struct scatterlist *dst_sg = areq->dst;
+> -	struct meson_desc *desc;
+> -	int nr_sgs, nr_sgd;
+> -	int i, err = 0;
+> -	unsigned int keyivlen, ivsize, offset, tloffset;
+> -	dma_addr_t phykeyiv;
+> -	void *backup_iv = NULL, *bkeyiv;
+> -	u32 v;
+> -
+> -	algt = container_of(alg, struct meson_alg_template, alg.skcipher.base);
+> +	struct cipher_ctx ctx = {
+> +		.areq = areq,
+> +		.src_offset = 0,
+> +		.dst_offset = 0,
+> +		.src_sg = areq->src,
+> +		.dst_sg = areq->dst,
+> +		.cryptlen = areq->cryptlen,
+> +	};
+> +	unsigned int ivsize = crypto_skcipher_ivsize(tfm);
+> +	int err;
+>   
+> -	dev_dbg(mc->dev, "%s %s %u %x IV(%u) key=%u flow=%d\n", __func__,
+> +	dev_dbg(mc->dev, "%s %s %u %x IV(%u) key=%u ctx.flow=%d\n", __func__,
+>   		crypto_tfm_alg_name(areq->base.tfm),
+>   		areq->cryptlen,
+>   		rctx->op_dir, crypto_skcipher_ivsize(tfm),
+> -		op->keylen, flow);
+> +		op->keylen, rctx->flow);
+> +
+> +	algt = container_of(alg, struct meson_alg_template, alg.skcipher.base);
+>   
+>   #ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
+>   	algt->stat_req++;
+> -	mc->chanlist[flow].stat_req++;
+> +	mc->chanlist[rctx->flow].stat_req++;
+>   #endif
+>   
+> -	/*
+> -	 * The hardware expect a list of meson_desc structures.
+> -	 * The 2 first structures store key
+> -	 * The third stores IV
+> -	 */
+> -	bkeyiv = kzalloc(48, GFP_KERNEL | GFP_DMA);
+> -	if (!bkeyiv)
+> +	op->key = kzalloc(48, GFP_KERNEL | GFP_DMA);
+> +	if (!op.key)
+>   		return -ENOMEM;
+>   
+> -	memcpy(bkeyiv, op->key, op->keylen);
+> -	keyivlen = op->keylen;
+> +	memcpy(op->key, op->key, op->keylen);
 
-Neil
+Apart form invalid if() you try to copy op->key to itself.
+I believe it should be removed, because you initialize ctx.key.addr
+later
 
-> 
-> $ make dtbs_check
->    LINT    Documentation/devicetree/bindings
->    CHKDT   Documentation/devicetree/bindings/processed-schema.json
->    SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> /home/mgonzalez/linux/Documentation/devicetree/bindings/net/snps,dwmac.yaml: mac-mode: missing type definition
->    DTC_CHK arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dtb
-> arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dtb: /soc/bus@ff600000/bus@42000/clock-controller@0: failed to match any schema with compatible: ['amlogic,g12a-audio-clkc']
-> arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dtb: /soc/bus@ff600000/bus@42000/audio-controller@744: failed to match any schema with compatible: ['amlogic,g12a-tohdmitx']
-> /home/mgonzalez/linux/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dtb: sys-ctrl@0: '#address-cells', '#size-cells', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
-> /home/mgonzalez/linux/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dtb: sound: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-sound-card.yaml#
-> /home/mgonzalez/linux/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dtb: sound: 'anyOf' conditional failed, one must be fixed:
-> 	'clocks' is a required property
-> 	'#clock-cells' is a required property
-> 	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
-> 
-> 
-> Regards
-> 
+> +	ctx.keyiv.len = op->keylen;
+> +	if (ctx.keyiv.len == AES_KEYSIZE_192)
+> +		ctx.keyiv.len = AES_MAX_KEY_SIZE;
+>   
+> -	ivsize = crypto_skcipher_ivsize(tfm);
+> -	if (areq->iv && ivsize > 0) {
+> -		if (ivsize > areq->cryptlen) {
+> -			dev_err(mc->dev, "invalid ivsize=%d vs len=%d\n", ivsize, areq->cryptlen);
+> -			err = -EINVAL;
+> -			goto theend;
+> -		}
+> -		memcpy(bkeyiv + 32, areq->iv, ivsize);
+> -		keyivlen = 48;
+> -		if (rctx->op_dir == MESON_DECRYPT) {
+> -			backup_iv = kzalloc(ivsize, GFP_KERNEL);
+> -			if (!backup_iv) {
+> -				err = -ENOMEM;
+> -				goto theend;
+> -			}
+> -			offset = areq->cryptlen - ivsize;
+> -			scatterwalk_map_and_copy(backup_iv, areq->src, offset,
+> -						 ivsize, 0);
+> -		}
+> -	}
+> -	if (keyivlen == AES_KEYSIZE_192)
+> -		keyivlen = AES_MAX_KEY_SIZE;
+> -
+> -	phykeyiv = dma_map_single(mc->dev, bkeyiv, keyivlen,
+> +	ctx.keyiv.addr = dma_map_single(mc->dev, op->key, ctx.keyiv.len,
+>   				  DMA_TO_DEVICE);
+> -	err = dma_mapping_error(mc->dev, phykeyiv);
+> +	err = dma_mapping_error(mc->dev, ctx.keyiv.addr);
+>   	if (err) {
+>   		dev_err(mc->dev, "Cannot DMA MAP KEY IV\n");
+>   		goto theend;
+>   	}
+>   
+> -	tloffset = 0;
+> -	eat = 0;
+> -	i = 0;
+> -	while (keyivlen > eat) {
+> -		desc = &mc->chanlist[flow].tl[tloffset];
+> -		memset(desc, 0, sizeof(struct meson_desc));
+> -		todo = min(keyivlen - eat, 16u);
+> -		desc->t_src = cpu_to_le32(phykeyiv + i * 16);
+> -		desc->t_dst = cpu_to_le32(i * 16);
+> -		v = DESC_MODE_KEY | DESC_OWN | 16;
+> -		desc->t_status = cpu_to_le32(v);
+> -
+> -		eat += todo;
+> -		i++;
+> -		tloffset++;
+> -	}
+> -
+> -	if (areq->src == areq->dst) {
+> -		nr_sgs = dma_map_sg(mc->dev, areq->src, sg_nents(areq->src),
+> -				    DMA_BIDIRECTIONAL);
+> -		if (!nr_sgs) {
+> -			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgs);
+> -			err = -EINVAL;
+> -			goto theend;
+> -		}
+> -		nr_sgd = nr_sgs;
+> -	} else {
+> -		nr_sgs = dma_map_sg(mc->dev, areq->src, sg_nents(areq->src),
+> -				    DMA_TO_DEVICE);
+> -		if (!nr_sgs || nr_sgs > MAXDESC - 3) {
+> -			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgs);
+> -			err = -EINVAL;
+> -			goto theend;
+> -		}
+> -		nr_sgd = dma_map_sg(mc->dev, areq->dst, sg_nents(areq->dst),
+> -				    DMA_FROM_DEVICE);
+> -		if (!nr_sgd || nr_sgd > MAXDESC - 3) {
+> -			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgd);
+> -			err = -EINVAL;
+> -			goto theend;
+> -		}
+> -	}
+> -
+> -	src_sg = areq->src;
+> -	dst_sg = areq->dst;
+> -	len = areq->cryptlen;
+> -	while (src_sg) {
+> -		desc = &mc->chanlist[flow].tl[tloffset];
+> -		memset(desc, 0, sizeof(struct meson_desc));
+> -
+> -		desc->t_src = cpu_to_le32(sg_dma_address(src_sg));
+> -		desc->t_dst = cpu_to_le32(sg_dma_address(dst_sg));
+> -		todo = min(len, sg_dma_len(src_sg));
+> -		v = op->keymode | DESC_OWN | todo | algt->blockmode;
+> -		if (rctx->op_dir)
+> -			v |= DESC_ENCRYPTION;
+> -		len -= todo;
+> -
+> -		if (!sg_next(src_sg))
+> -			v |= DESC_LAST;
+> -		desc->t_status = cpu_to_le32(v);
+> -		tloffset++;
+> -		src_sg = sg_next(src_sg);
+> -		dst_sg = sg_next(dst_sg);
+> -	}
+> +	err = meson_map_scatterlist(areq, mc);
+> +	if (err)
+> +		goto theend;
+>   
+> -	reinit_completion(&mc->chanlist[flow].complete);
+> -	meson_dma_start(mc, flow);
+> +	ctx.tloffset = 0;
+>   
+> -	err = wait_for_completion_interruptible_timeout(&mc->chanlist[flow].complete,
+> -							msecs_to_jiffies(500));
+> -	if (err == 0) {
+> -		dev_err(mc->dev, "DMA timeout for flow %d\n", flow);
+> -		err = -EINVAL;
+> -	} else if (err < 0) {
+> -		dev_err(mc->dev, "Waiting for DMA completion is failed (%d)\n", err);
+> -	} else {
+> -		/* No error */
+> -		err = 0;
+> -	}
+> +	while (ctx.cryptlen) {
+> +		meson_setup_keyiv_descs(&ctx);
+>   
+> -	dma_unmap_single(mc->dev, phykeyiv, keyivlen, DMA_TO_DEVICE);
+> +		if (meson_setup_data_descs(&ctx)) {
+> +			err = meson_kick_hardware(&ctx);
+> +			if (err)
+> +				break;
+> +		}
+>   
+> -	if (areq->src == areq->dst) {
+> -		dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_BIDIRECTIONAL);
+> -	} else {
+> -		dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_TO_DEVICE);
+> -		dma_unmap_sg(mc->dev, areq->dst, sg_nents(areq->dst), DMA_FROM_DEVICE);
+> -	}
+> +		if (ctx.src_offset == sg_dma_len(ctx.src_sg)) {
+> +			ctx.src_offset = 0;
+> +			ctx.src_sg = sg_next(ctx.src_sg);
+> +		}
+>   
+> -	if (areq->iv && ivsize > 0) {
+> -		if (rctx->op_dir == MESON_DECRYPT) {
+> -			memcpy(areq->iv, backup_iv, ivsize);
+> -		} else {
+> -			scatterwalk_map_and_copy(areq->iv, areq->dst,
+> -						 areq->cryptlen - ivsize,
+> -						 ivsize, 0);
+> +		if (ctx.dst_offset == sg_dma_len(ctx.dst_sg)) {
+> +			ctx.dst_offset = 0;
+> +			ctx.dst_sg = sg_next(ctx.dst_sg);
+>   		}
+>   	}
+> +
+> +	dma_unmap_single(mc->dev, ctx.keyiv.addr, ctx.keyiv.len, DMA_TO_DEVICE);
+> +	meson_unmap_scatterlist(areq, mc);
+> +
+>   theend:
+> -	kfree_sensitive(bkeyiv);
+> -	kfree_sensitive(backup_iv);
+> +	kfree_sensitive(op->key);
+>   
+>   	return err;
+>   }
+> diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+> index 22ff2768b5e5..f93e14f5717d 100644
+> --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
+> +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+> @@ -199,6 +199,7 @@ static const struct meson_pdata meson_gxl_pdata = {
+>   	.descs_reg = 0x0,
+>   	.status_reg = 0x4,
+>   	.need_clk = true,
+> +	.setup_desc_cnt = 3,
+>   };
+>   
+>   static const struct of_device_id meson_crypto_of_match_table[] = {
+> diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
+> index a0d83c82906d..eb2f8cd72b65 100644
+> --- a/drivers/crypto/amlogic/amlogic-gxl.h
+> +++ b/drivers/crypto/amlogic/amlogic-gxl.h
+> @@ -83,11 +83,13 @@ struct meson_flow {
+>    * @reg_descs:	offset to descriptors register
+>    * @reg_status:	offset to status register
+>    * @need_clk:	clock input is needed
+> + * @setup_desc_cnt:	number of setup descriptor to configure.
+>    */
+>   struct meson_pdata {
+>   	u32 descs_reg;
+>   	u32 status_reg;
+>   	bool need_clk;
+> +	u32 setup_desc_cnt;
+>   };
+>   
+>   /*
 
 
 _______________________________________________
