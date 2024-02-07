@@ -4,86 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BA79C4828D
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Feb 2024 07:58:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6798FC4828D
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Feb 2024 18:37:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/uC+GpRHjeVsBubMC8NcMbaJmQ3hodQcZBeG5NpUNtE=; b=X07cCyWdIt4sR4
-	D2IX83aZbYgXPNhSidc06IwIdukGFwq8gtC/wacpXY/xd1g1+JyHJMOjogynlBnfcMzv9Y8yjD9i4
-	DrBVEhlsGGX/+Ytr6LIjm+NOO8pNtYn1hjNDXbc0qSwBaQSbSEBpfA2xPKYLR9Q47Dsz9K21GLUhF
-	1kzITZZqLSW3Eg1H720YTuT6DsUOgJvGJvj0b54Lgic2sryxnoYz2vMuHDNApz6qqWRx2h2f5d6nM
-	/8BPgcjCjkhbauN8W8t4VSFQU6GTCG5infBTQiCguAKpHtLAZp5K7zDpBIbJ2r09kXGrLdwh+wLNk
-	pcfnofc1EbPGwmxiNJug==;
+	List-Owner; bh=eZt7jDmGF5zru4PaRpArvHFcvPGSYW/VN1bCfW6v9lM=; b=QJZaLyIyUDc6BZ
+	RmYhXDFEBFnIRPUm8dotkDviv5z93y4jEOlx79VS5NbHf8fScF+f0KoBtVm/RDVUyTMbGAmWe609z
+	HecG7IxWwzd8mmwLroOn49zjVALxrWOYsDNZAJ2KbgpoZUckyqvcwpEwM1cANVThkNpjL7sor6PL+
+	tIgk1LwoWmF/Uq7zVPLh6+LzxMhI8ocbED7Y6DXahSIVCeD0s4sXBno4uyl+9goY0YDKTaN2+ubss
+	/csfPk3MS1gdl+ArYVOtxKQNJ1LYYg6UiBUBPBkeBogefnuQeyHSKQrIus84rQUse+QcJ7OuRB5oU
+	fClfZVb6nKYt86xGQ1EA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rXcoj-00000009yzl-30m5;
-	Wed, 07 Feb 2024 07:58:01 +0000
-Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
+	id 1rXmnp-0000000BUWL-2LQb;
+	Wed, 07 Feb 2024 18:37:45 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rXcoh-00000009yye-2emI;
-	Wed, 07 Feb 2024 07:58:00 +0000
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-5114b1e8819so461991e87.1;
-        Tue, 06 Feb 2024 23:57:57 -0800 (PST)
+	id 1rXmnl-0000000BUVh-1s0N
+	for linux-amlogic@lists.infradead.org;
+	Wed, 07 Feb 2024 18:37:44 +0000
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-33b401fd72bso806519f8f.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 07 Feb 2024 10:37:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707292676; x=1707897476; darn=lists.infradead.org;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1707331056; x=1707935856; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=faw62muK8rMq99LhU7XEIx44p0VAUyI8BL+QRChVvwA=;
-        b=apP5LYpKHYHR4XGyhGLSt5xAhcUGImC7G5VbMQc1KKwtZGZCFZLY3f+UfbL6lNGx5O
-         qDST5nqTMvGNYEuOmUnqImG6qw0F86gTZ756wXQNJhUXyzbKVq9Kbvn020u2EVhnvvpk
-         Din5ZbVk9NCeiLHpZx1QGbTrG21iiB5fzE5WFDis4Q46BFwTTUnQ/eVR1bTF8IdbaHUy
-         dgsNXo68cihhQHdcMT9ZRbEY4eDDPJIH5VG9Mp7vWd5kdzl4sR4uuK4JiaHnTobX/i1p
-         /l8eW88ue9I9Vmta/m3qhXeiTOlvCP/QAscEYNCPTpSc92IHmbmbyeThduciCevnUS4Q
-         okoA==
+        bh=Y1hbPvzxIa6Wp7FdAAF5RXLHH8K3DSeUZPtNJYiZTw8=;
+        b=fOHAmQ0ADCqnsiOotgbzeTQqeXbMlvmPsRD9ZeQRuO5x3Zv4D6tfP8dkVbQ+IA3AdF
+         zelbdq4IDFT3qexh7hAnuE8hKRQWXCHr08NoDI3jCE/uUxU34YFujX6aMCEvx78jKdWE
+         d0KO6TBIMKDySCYZH2P1ldidFKjkyjIiCK1ZKnj8L9Ebxf7H9TvwU1wAzXRIi2KVaYTu
+         dQV3rcbn/vhXq0K6LgqCSMeD7+eu+D7oA49NmfYmNd3VHz8nnXeUkTDY4eurUb+9YM6i
+         sOXvqU8AX7NXW9XXw/t3lzFni93rlRuYtmISBCVEP4Ing8oMrKjviAzS/yZQZs4PFhAC
+         /lkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707292676; x=1707897476;
+        d=1e100.net; s=20230601; t=1707331056; x=1707935856;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=faw62muK8rMq99LhU7XEIx44p0VAUyI8BL+QRChVvwA=;
-        b=B5ZGdSa/3EK66PK5SyqxtHHkYOWeF9BFbA/E1kjvmO7rmHKPDXTEBlDMd3IkK99i+o
-         voK++UcVVghEBteq+hr3XUAzsUO63iCX6grSs2flutbuoNfB3gKtDhpX1hNFgb4HTpWv
-         gSQEdPuIyNZlnXTG7NOIik5KcMl+yeEOHx7YkeqkZSlFy/RH0DC0U59mEy0pe6ANjgmh
-         GtRTMCKN1vXwDaGaIAYoTY1ZR3ZHVsmA+PGT7qn0uVRKfzh6/o01hBHi0Xa1pCSgyN4r
-         GPE6eq6V41kF/ziw/IdKWFtgUGmkha5Ce2k8JgGu4OxTbWiJdt5+nmGox4BFqHqc+xQI
-         BQgA==
-X-Gm-Message-State: AOJu0Yx0sHkQw+1Lv9AgvHiKRYfOyrnCLVGlMFZmz1UqXlNjtq5cjavV
-	wL5aqDnG3enXgLZAKHRiWIN0nVDOw3VlNQhJpy6oGNRbCVbOkOXl
-X-Google-Smtp-Source: AGHT+IHrOG4ej7Nc8ic00cewvUn2sqV1hsMqwojBzY8/6TzL9zMPEDbPRaGu93Tp6EIf/bcp6ZT7zw==
-X-Received: by 2002:ac2:42d5:0:b0:511:5b47:1fe8 with SMTP id n21-20020ac242d5000000b005115b471fe8mr3472289lfl.6.1707292676205;
-        Tue, 06 Feb 2024 23:57:56 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWCJTQDT9qidD5GSnJxXCfNIUbZHTrA3J5SEMhoGXkwZ8UHtixP6Uu2E0dmz4PJCKV0lED018lrWOuIW368bJFU2nzD5CDed1ZTSKe19z8Dczg0RB0oxZ18Tfzbw8jOsM3Vb4ps4gOqQxHxVRB2ycP8l0JoiKbzhUHUzu9kY77hcC/6ESLjmv6wB3ujRzYOM6FqR2iizc7p/MiKL8nGcQIzct0Kx7YECuXvtTQ9NaYsOxZ7IWQSOGJ0UUs/qUnnVg+iZGKxQ9qxnhKxDng2I6N/+oAD7xAqY6oz5HYas2dUWL2SvBTcPKkJUSKrP3NFocMBv1vjMJMPfX2e4ZOZ4mIxqR6h3uNnOeEUhALQJzGRZKTpfZ08hHuHVBkhqayVq00SB/lUS+4ITMiHqiFEm13zTZ25gt09zSGyk6LunSj+PVdw8u9Ovw4jIvD7iw75kK35MgkLo5fULXOjp3QV9olbvzUPtuN9c6s/lPW7tFOpXimlnGV/BItO7P8F3p3D9N1AgDPOCYl4+5jazyW5qGeUF53lIBl6lzWtfX2/BcIkjPP/p5Apwv7TNC21ji4rpHUfe/ZK1E+L/gXrM8DcgkQUMOIzkVQBh8bYZjJ5tOE=
-Received: from ?IPV6:2001:14ba:7426:df00::2? (drtxq0yyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:7426:df00::2])
-        by smtp.gmail.com with ESMTPSA id n2-20020a056512310200b0051140df84fdsm96155lfb.12.2024.02.06.23.57.55
+        bh=Y1hbPvzxIa6Wp7FdAAF5RXLHH8K3DSeUZPtNJYiZTw8=;
+        b=lj/KJG3lA2/4SUojuHFQzGlNZqUJM9eMej5iTa/mxoQ/TUfyCinvGyB4mxKdWo6d+u
+         ggH6WrNpGFJ1UYAokrv8fxN4g3Sa7Kt3//hVZLYEHlKqmjE0cWYi6/roTLlS1VHNHbqJ
+         hji4hTkYIQepGAlNtq4jrxaApSikOqMTfTtPHj4u7OAmHDj8ULeogIkIVq77121xa6SU
+         MhzwbQsSoNRPfqFsxlft9/0hTmY1eOxadv+gMSo0SdjzRvd1rhZySNNe/XaFXqt1k9LP
+         qy7h+BGvhlWOltw7JI3AcLf73DDQ/eQJvA/wpmy6Jd6YO2AwTTnIC+1WdwWGcv+KEwcS
+         6cuA==
+X-Forwarded-Encrypted: i=1; AJvYcCXfuUfaVTQ3mAArcqkZFzJgN6AlihPzIkElMpzpEvBT2hEUjlY/mW89N3fTTRwnckTLpUNFwNjnku6vlJbBAl4EmRo98bBGtmZTPYPnUvzZuFU=
+X-Gm-Message-State: AOJu0YxV60fdGaF6IxwlhL+31TaJTzGBMh25T5oIqYMTcIAZ5sSJ1V6R
+	rozOKZC4bCMfzhEYLe7NGzK0IDvOoEh+Sbzyh2rTBkgkYwuYA5DOWHckopVvHVs=
+X-Google-Smtp-Source: AGHT+IHdjCu281igYonYc5LjAsqVjOjq7T6pfdcghL+Izjr/4nEkx9LlGFCy/8FEmItcI7B5ETar7A==
+X-Received: by 2002:a5d:4986:0:b0:33b:20c:d2cc with SMTP id r6-20020a5d4986000000b0033b020cd2ccmr4208172wrq.20.1707331056262;
+        Wed, 07 Feb 2024 10:37:36 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWIQsMyQaqINy6Ty1XhxUYXe940+8ZGjGvOFS+KBTy+M+aqr5DLRMd5lHa/FI0Mnxa+oAQkMI3Ppw+aIlinntG+Aew0uHqG+lhCflxFWRb2C4qFudJUJUCt2XIjpeKMxasEztHA9Pgt/JhpXFr7gMl7N/rOuewmTA/s4T/iRSrVlwld6ufIE4HECKQ4UtO9iKSFEgevKIYM8kKbX9gGn5O0FKP2saQ3Cbnu4kaHQLOWgd6DA6KrMA3/iRAgvt7OjEHBuBItJ+WO2CWVxnnO6uP2WT+oR+JJAMsHGJHDajEJpBgtOR6VmYrF5KCLfwQcWmP6H5d6cIpUgbxFOdOiTtZb67821sYiVm81AmoqTeyNvDZ/JV7SO8YTx8JHIeyg
+Received: from ?IPV6:2a02:8428:2a4:1a01:a746:ab33:4ed9:80f9? ([2a02:8428:2a4:1a01:a746:ab33:4ed9:80f9])
+        by smtp.gmail.com with ESMTPSA id z20-20020a05600c0a1400b0040fd24653d4sm2876829wmp.36.2024.02.07.10.37.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Feb 2024 23:57:55 -0800 (PST)
-Message-ID: <ab8d9d0a-aad4-42b7-9e24-9ae6acf7c939@gmail.com>
-Date: Wed, 7 Feb 2024 09:57:54 +0200
+        Wed, 07 Feb 2024 10:37:35 -0800 (PST)
+Message-ID: <091c3f9c-6bd2-42c5-a9b0-9257387b9455@freebox.fr>
+Date: Wed, 7 Feb 2024 19:37:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/18] mfd: rohm: convert to use maple tree register cache
-Content-Language: en-US, en-GB
-To: Bo Liu <liubo03@inspur.com>, lee@kernel.org, wens@csie.org,
- marek.vasut+renesas@gmail.com, support.opensource@diasemi.com,
- neil.armstrong@linaro.org, ckeepax@opensource.cirrus.com,
- rf@opensource.cirrus.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com
-Cc: linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-amlogic@lists.infradead.org, patches@opensource.cirrus.com,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20240206071314.8721-1-liubo03@inspur.com>
- <20240206071314.8721-12-liubo03@inspur.com>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240206071314.8721-12-liubo03@inspur.com>
+Subject: Re: [RFC PATCH v1] arm64: dts: amlogic: Add Freebox fbx8am boards
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>
+Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
+ <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>
+References: <8c865c62-cd80-4c78-9fc5-c85491c037ca@freebox.fr>
+ <2149edc1-e19d-4aae-851d-df35b91bcd98@linaro.org>
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <2149edc1-e19d-4aae-851d-df35b91bcd98@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240206_235759_711786_45D1ED1B 
-X-CRM114-Status: GOOD (  14.41  )
+X-CRM114-CacheID: sfid-20240207_103741_748519_B89A3684 
+X-CRM114-Status: GOOD (  23.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,76 +102,202 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2/6/24 09:13, Bo Liu wrote:
-> The maple tree register cache is based on a much more modern data structure
-> than the rbtree cache and makes optimisation choices which are probably
-> more appropriate for modern systems than those made by the rbtree cache.
+On 06/02/2024 14:38, Neil Armstrong wrote:
+
+> Hi Marc, Pierre-Hugues,
+> On 06/02/2024 14:12, Marc Gonzalez wrote:
+>
+>> From: Pierre-Hugues Husson <phhusson@freebox.fr>
+>>
+>> The fbx8am boards are based on the Amlogic Meson G12A S905X2 SoC,
+>> and the SEI510 board design.
+>>
+>> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
+>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+>> ---
+>> Request For Comments to spot obvious mistakes before formal submission
+>> NB: on IRC, narmstrong mentioned:
+>>> adding dtbos for variants seems to be the new preferred way to handle such case
+>>> the fdtoverlay utility works well for this case
 > 
-> Signed-off-by: Bo Liu <liubo03@inspur.com>
-
-Acked-by: Matti Vaittinen <mazziesaccount@gmail.com>
-
-> ---
->   drivers/mfd/rohm-bd71828.c | 4 ++--
->   drivers/mfd/rohm-bd718x7.c | 2 +-
->   drivers/mfd/rohm-bd9576.c  | 2 +-
->   3 files changed, 4 insertions(+), 4 deletions(-)
+> Thanks for this RFC, first please split it in at least 4 patches:
+> - vendor prefix
+> - bindings
+> - _base_ dt
+> - variant DT
 > 
-> diff --git a/drivers/mfd/rohm-bd71828.c b/drivers/mfd/rohm-bd71828.c
-> index 594718f7e8e1..2f3826c7eef4 100644
-> --- a/drivers/mfd/rohm-bd71828.c
-> +++ b/drivers/mfd/rohm-bd71828.c
-> @@ -197,7 +197,7 @@ static const struct regmap_config bd71815_regmap = {
->   	.val_bits = 8,
->   	.volatile_table = &bd71815_volatile_regs,
->   	.max_register = BD71815_MAX_REGISTER - 1,
-> -	.cache_type = REGCACHE_RBTREE,
-> +	.cache_type = REGCACHE_MAPLE,
->   };
->   
->   static const struct regmap_config bd71828_regmap = {
-> @@ -205,7 +205,7 @@ static const struct regmap_config bd71828_regmap = {
->   	.val_bits = 8,
->   	.volatile_table = &bd71828_volatile_regs,
->   	.max_register = BD71828_MAX_REGISTER,
-> -	.cache_type = REGCACHE_RBTREE,
-> +	.cache_type = REGCACHE_MAPLE,
->   };
->   
->   /*
-> diff --git a/drivers/mfd/rohm-bd718x7.c b/drivers/mfd/rohm-bd718x7.c
-> index 4798bdf27afb..7755a4c073bf 100644
-> --- a/drivers/mfd/rohm-bd718x7.c
-> +++ b/drivers/mfd/rohm-bd718x7.c
-> @@ -87,7 +87,7 @@ static const struct regmap_config bd718xx_regmap_config = {
->   	.val_bits = 8,
->   	.volatile_table = &volatile_regs,
->   	.max_register = BD718XX_MAX_REGISTER - 1,
-> -	.cache_type = REGCACHE_RBTREE,
-> +	.cache_type = REGCACHE_MAPLE,
->   };
->   
->   static int bd718xx_init_press_duration(struct regmap *regmap,
-> diff --git a/drivers/mfd/rohm-bd9576.c b/drivers/mfd/rohm-bd9576.c
-> index bceac7016740..3a9f61961721 100644
-> --- a/drivers/mfd/rohm-bd9576.c
-> +++ b/drivers/mfd/rohm-bd9576.c
-> @@ -62,7 +62,7 @@ static struct regmap_config bd957x_regmap = {
->   	.val_bits = 8,
->   	.volatile_table = &volatile_regs,
->   	.max_register = BD957X_MAX_REGISTER,
-> -	.cache_type = REGCACHE_RBTREE,
-> +	.cache_type = REGCACHE_MAPLE,
->   };
->   
->   static struct regmap_irq bd9576_irqs[] = {
+> For the variant DT, indeed I think DTBOs should be the new preferred way
+> to handle that, for reference I pushed a patch for the DSI panel support
+> of the Khadas VIM3 as a DTBO:
+> https://lore.kernel.org/all/20240205-amlogic-v6-4-upstream-dsi-ccf-vim3-v10-6-dc06073d5330@linaro.org/
+> 
+> It would greatly simplify your handling of current and future variants,
+> reduce the size of builds DTs and make it more flexible.
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+Below is my current patch (which still needs to be split in 4) for reference.
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+We're not quite sure how to apply the DTBO at run-time.
+
+PH mentioned passing a -@ option to dtc?
+
+$ fdtoverlay -i meson-g12a-fbx8am.dtb -o dt.img meson-g12a-fbx8am-brcm.dtbo
+Failed to apply 'meson-g12a-fbx8am-brcm.dtbo': FDT_ERR_NOTFOUND
+
+
+  Documentation/devicetree/bindings/arm/amlogic.yaml         |   1 +
+  Documentation/devicetree/bindings/vendor-prefixes.yaml     |   2 +
+  arch/arm64/boot/dts/amlogic/Makefile                       |   5 +
+  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    |  35 +++
+  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso |  25 ++
+  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts          | 469 +++++++++++++++++++++++++++++++++
+  6 files changed, 537 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index caab7ceeda45a..fce12e44c00af 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -148,6 +148,7 @@ properties:
+                - amlogic,u200
+                - radxa,zero
+                - seirobotics,sei510
++              - freebox,fbx8am
+            - const: amlogic,g12a
+  
+        - description: Boards with the Amlogic Meson G12B A311D SoC
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 1a0dc04f1db47..4f5a1f4e6689a 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -500,6 +500,8 @@ patternProperties:
+      description: FocalTech Systems Co.,Ltd
+    "^forlinx,.*":
+      description: Baoding Forlinx Embedded Technology Co., Ltd.
++  "^freebox,.*":
++    description: Freebox SAS
+    "^freecom,.*":
+      description: Freecom Gmbh
+    "^frida,.*":
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index cc8b34bd583d8..b10958e3837fe 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
+  dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
+  dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-3.dtb
+  dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am.dtb
+  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-radxa-zero.dtb
+  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
+  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
+@@ -80,3 +81,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
+  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
+  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
+  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
++
++# Overlays
++dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-brcm.dtbo
++dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-realtek.dtbo
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
+new file mode 100644
+index 0000000000000..ed79809b15859
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
+@@ -0,0 +1,35 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++// Copyright (c) 2024 Freebox SAS
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/gpio/meson-g12a-gpio.h>
++
++/ {
++	compatible = "freebox,fbx8am-brcm", "freebox,fbx8am", "amlogic,g12a";
++};
++
++&uart_A {
++	bluetooth {
++		compatible = "brcm,bcm43438-bt";
++		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
++		max-speed = <2000000>;
++		clocks = <&wifi32k>;
++		clock-names = "lpo";
++		vbat-supply = <&vddao_3v3>;
++		vddio-supply = <&vddio_ao1v8>;
++	};
++};
++
++&sd_emmc_a {
++	/* Per mmc-controller.yaml */
++	#address-cells = <1>;
++	#size-cells = <0>;
++	/* NB: may be either AP6398S or AP6398SR3 wifi module */
++	brcmf: wifi@1 {
++		reg = <1>;
++		compatible = "brcm,bcm4329-fmac";
++	};
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
+new file mode 100644
+index 0000000000000..5da88fb94fb98
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
+@@ -0,0 +1,25 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++// Copyright (c) 2024 Freebox SAS
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/gpio/meson-g12a-gpio.h>
++
++/ {
++	compatible = "freebox,fbx8am-realtek", "freebox,fbx8am", "amlogic,g12a";
++};
++
++&uart_A {
++	bluetooth {
++		compatible = "realtek,rtl8822cs-bt";
++		enable-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
++		host-wake-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
++		device-wake-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
++	};
++};
++
++&sd_emmc_a {
++	/* No explicit compatible for rtl8822cs sdio */
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
+new file mode 100644
+index 0000000000000..750322c295133
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
+@@ -0,0 +1,469 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++// Copyright (c) 2024 Freebox SAS
++
++/*
++ * SEI codename: SEI530FB (based on SEI510)
++ * Freebox codename: fbx8am
++ * Commercial names: Freebox Pop, Player TV Free 4K
++ */
++
++/dts-v1/;
++
++#include "meson-g12a.dtsi"
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/gpio/meson-g12a-gpio.h>
++#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
++
++/ {
++	compatible = "freebox,fbx8am", "amlogic,g12a";
++	model = "Freebox Player Pop";
++	chassis-type = "embedded";
+
+[ snip ]
 
 
 _______________________________________________
