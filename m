@@ -4,88 +4,131 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6798FC4828D
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Feb 2024 18:37:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F952C4828F
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Feb 2024 08:38:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eZt7jDmGF5zru4PaRpArvHFcvPGSYW/VN1bCfW6v9lM=; b=QJZaLyIyUDc6BZ
-	RmYhXDFEBFnIRPUm8dotkDviv5z93y4jEOlx79VS5NbHf8fScF+f0KoBtVm/RDVUyTMbGAmWe609z
-	HecG7IxWwzd8mmwLroOn49zjVALxrWOYsDNZAJ2KbgpoZUckyqvcwpEwM1cANVThkNpjL7sor6PL+
-	tIgk1LwoWmF/Uq7zVPLh6+LzxMhI8ocbED7Y6DXahSIVCeD0s4sXBno4uyl+9goY0YDKTaN2+ubss
-	/csfPk3MS1gdl+ArYVOtxKQNJ1LYYg6UiBUBPBkeBogefnuQeyHSKQrIus84rQUse+QcJ7OuRB5oU
-	fClfZVb6nKYt86xGQ1EA==;
+	List-Owner; bh=jrAoGKH3GwxQH+S9bv72Pnt4okIGByNjEntnPN/x/X0=; b=YwsHjy5Xp2crxp
+	D+h/7hRo+tqd7Yx1LOk5nhMbTJyPUctJ5VoJJGmJFys42FRgupXGY9LQ+dT/GBlQe1/+4KMbr1G8h
+	JNBJicafFErn382FMCK64SArfblEVH2dAdleE7W1JMr9+0G9g/LUFtEBY9ILmmGVZXj9x8UqgQF0w
+	JxSVohQNtfEjqV8j1Jb9VzR4oVQkHv0HjzhUXpZWxMBNcWTWK00Rzkmje+AYt4WLfbsUNN8Go3ilv
+	7inrPkxbyq2mbljiOOq6nHirDA58/aoQqCXiDGXQl9TS0ukCmOoY8avuKZ5lpS1arSaDUJxySVSee
+	/qT4o6fygAA61w3AAs0A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rXmnp-0000000BUWL-2LQb;
-	Wed, 07 Feb 2024 18:37:45 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1rXzvg-0000000D1wU-3kh6;
+	Thu, 08 Feb 2024 08:38:44 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rXmnl-0000000BUVh-1s0N
+	id 1rXzve-0000000D1vi-0zkX
 	for linux-amlogic@lists.infradead.org;
-	Wed, 07 Feb 2024 18:37:44 +0000
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-33b401fd72bso806519f8f.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 07 Feb 2024 10:37:37 -0800 (PST)
+	Thu, 08 Feb 2024 08:38:43 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-33934567777so1025499f8f.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 08 Feb 2024 00:38:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1707331056; x=1707935856; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1707381519; x=1707986319; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y1hbPvzxIa6Wp7FdAAF5RXLHH8K3DSeUZPtNJYiZTw8=;
-        b=fOHAmQ0ADCqnsiOotgbzeTQqeXbMlvmPsRD9ZeQRuO5x3Zv4D6tfP8dkVbQ+IA3AdF
-         zelbdq4IDFT3qexh7hAnuE8hKRQWXCHr08NoDI3jCE/uUxU34YFujX6aMCEvx78jKdWE
-         d0KO6TBIMKDySCYZH2P1ldidFKjkyjIiCK1ZKnj8L9Ebxf7H9TvwU1wAzXRIi2KVaYTu
-         dQV3rcbn/vhXq0K6LgqCSMeD7+eu+D7oA49NmfYmNd3VHz8nnXeUkTDY4eurUb+9YM6i
-         sOXvqU8AX7NXW9XXw/t3lzFni93rlRuYtmISBCVEP4Ing8oMrKjviAzS/yZQZs4PFhAC
-         /lkQ==
+        bh=qr9JmnlTZM+mC+5PTeNA50C8sKbTF6tVkGIW20MXSlY=;
+        b=ZGBb7S2PMZoYerWGDpZyawAKlDoE6wcvFKhpWspshAeEA+HrYt+MEbCiYquKxNd8EY
+         oKHwXMmSqK0mJmsrnMkwHF56ygNeu/9X7RSO4+LI5RYS+45CFpJjpR5obJpz0JetlKlB
+         NLQ5L5mJaIvxW004KU7cuR6rwHZ8UtLwBT2Yv9PC3/TtXJp3oDzsLixDVfcsMhuIXZG9
+         h1/F+EmKjx0OXYoRgEV94b1NAYZqjlyLgJttRjvtIGK9afOM44YnmxvIsk44MCPvNa8T
+         ynSLPTdCuXYYDgE6LChwY7z+P5c2mrUkhdEFci4Tet1nRHwoEwdpGQDD14pRFeAKmtwY
+         kvEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707331056; x=1707935856;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1707381519; x=1707986319;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y1hbPvzxIa6Wp7FdAAF5RXLHH8K3DSeUZPtNJYiZTw8=;
-        b=lj/KJG3lA2/4SUojuHFQzGlNZqUJM9eMej5iTa/mxoQ/TUfyCinvGyB4mxKdWo6d+u
-         ggH6WrNpGFJ1UYAokrv8fxN4g3Sa7Kt3//hVZLYEHlKqmjE0cWYi6/roTLlS1VHNHbqJ
-         hji4hTkYIQepGAlNtq4jrxaApSikOqMTfTtPHj4u7OAmHDj8ULeogIkIVq77121xa6SU
-         MhzwbQsSoNRPfqFsxlft9/0hTmY1eOxadv+gMSo0SdjzRvd1rhZySNNe/XaFXqt1k9LP
-         qy7h+BGvhlWOltw7JI3AcLf73DDQ/eQJvA/wpmy6Jd6YO2AwTTnIC+1WdwWGcv+KEwcS
-         6cuA==
-X-Forwarded-Encrypted: i=1; AJvYcCXfuUfaVTQ3mAArcqkZFzJgN6AlihPzIkElMpzpEvBT2hEUjlY/mW89N3fTTRwnckTLpUNFwNjnku6vlJbBAl4EmRo98bBGtmZTPYPnUvzZuFU=
-X-Gm-Message-State: AOJu0YxV60fdGaF6IxwlhL+31TaJTzGBMh25T5oIqYMTcIAZ5sSJ1V6R
-	rozOKZC4bCMfzhEYLe7NGzK0IDvOoEh+Sbzyh2rTBkgkYwuYA5DOWHckopVvHVs=
-X-Google-Smtp-Source: AGHT+IHdjCu281igYonYc5LjAsqVjOjq7T6pfdcghL+Izjr/4nEkx9LlGFCy/8FEmItcI7B5ETar7A==
-X-Received: by 2002:a5d:4986:0:b0:33b:20c:d2cc with SMTP id r6-20020a5d4986000000b0033b020cd2ccmr4208172wrq.20.1707331056262;
-        Wed, 07 Feb 2024 10:37:36 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWIQsMyQaqINy6Ty1XhxUYXe940+8ZGjGvOFS+KBTy+M+aqr5DLRMd5lHa/FI0Mnxa+oAQkMI3Ppw+aIlinntG+Aew0uHqG+lhCflxFWRb2C4qFudJUJUCt2XIjpeKMxasEztHA9Pgt/JhpXFr7gMl7N/rOuewmTA/s4T/iRSrVlwld6ufIE4HECKQ4UtO9iKSFEgevKIYM8kKbX9gGn5O0FKP2saQ3Cbnu4kaHQLOWgd6DA6KrMA3/iRAgvt7OjEHBuBItJ+WO2CWVxnnO6uP2WT+oR+JJAMsHGJHDajEJpBgtOR6VmYrF5KCLfwQcWmP6H5d6cIpUgbxFOdOiTtZb67821sYiVm81AmoqTeyNvDZ/JV7SO8YTx8JHIeyg
-Received: from ?IPV6:2a02:8428:2a4:1a01:a746:ab33:4ed9:80f9? ([2a02:8428:2a4:1a01:a746:ab33:4ed9:80f9])
-        by smtp.gmail.com with ESMTPSA id z20-20020a05600c0a1400b0040fd24653d4sm2876829wmp.36.2024.02.07.10.37.35
+        bh=qr9JmnlTZM+mC+5PTeNA50C8sKbTF6tVkGIW20MXSlY=;
+        b=RWmbPpqk1Rm8Qd5Ui5kkuxUiZPDRAkCfyO8GEkK4WkK+fvN99d1Tn441Y1UvWvhApj
+         zqt/JnME5SLb8aGXyNUxs838MQzjUqB8kWN1vePt99RcxuImaZRtuWYGGURp1sgRz7J5
+         GBc8rcPjDz/tDLs6cSa1rzk8aoWjuMOlsrjiEuvxnaU6oT3Hffpl8WnG6qMz0FrQvQCS
+         y0kvBXastLXEF6afFiaHiRHNdnm4dVFZHwEh0vrn+sn7fpVy7uutHLBFruUA+IEgYAun
+         z0o352x76gJAUvm/xqT9icHS6cX46E4n5gIqZU+O5KACiRxFVnXVDLjR3cQGJ+psxWSG
+         LUSw==
+X-Forwarded-Encrypted: i=1; AJvYcCWYpd+GbPJTy1u9qvlaIlvtEOhky9t3RiSC8sEcGSzRjq4PoC/QahvVQ2jM+69eToLVOM2+NWERpAhWehFTbr7zIG5i07sgMdskka8qkGaMELg=
+X-Gm-Message-State: AOJu0YwfhzoaJS/vni3n/xnttM/t/RQOpjhEHnKVIjlVj7YONnypRCm6
+	7SUKM2h9Iwuobx41zObNMIbPut8tjv9zx801tTqboQlZjeEoNv3Z793MoYp79p8=
+X-Google-Smtp-Source: AGHT+IF+cukrfLPNGBJ/O00IGvwc5IG6n2Ej0mJ+11haqqjzNzNtwFvtIxcbPpAzgiPq0nol3J4Viw==
+X-Received: by 2002:a5d:5f44:0:b0:33b:2d46:74e with SMTP id cm4-20020a5d5f44000000b0033b2d46074emr6072969wrb.55.1707381518882;
+        Thu, 08 Feb 2024 00:38:38 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUJ/9Cq4SGjXVrt7HCYGR2R9f2GPIGSEKGJFeIoJvTxKnk7n5TGQsrE5U0d2RXOb4tahO3b5NSca1oAmzKpXDOO16/BMgJ4GuOEcgHqeJsMLmDtgv2ijvAITYUYlOcx4eVmuPG9BzzIC1iGjjTX6o9I/a6wm/EYikyRNSOd17293ELLGN+i4r4KJpc+rcUfcUIS9zJZlCf+vwuU6Pa6g8Cq7HJiILMaOtVflP+Zdj8XE86jMNiGwdjTsEnMGtSAXZTgAaDX+ZBr176JYOZ2nmNwg8rqoX/lGkxJSh1VgkZPkAyrcBhEubigCueaXi9c7wWtZkTQJWOUwoqLLsE30l4I2GskTqeyKoGfg8kkoGxs3p04knUCMXq6td5raHyjL3Zgpj32ya4bJvgQOluMhDuIuU+Ir6RKs2wgJHRwMvCjQPjnucXUYJUGx7wh6EerSEToKyi9biMivItUpDpL8qaPWAAw9jJig67pksYqrJdJzitZE9hQMWfGfuPMaUnfXvprmRFF9Tax8TotxqzHTdHLXfv7ltmO3mEnwmhcVy3RU3XuyOEhzL/v4dBmMWisjpsQkO3bWN0q+bWSc20bOtOXvty1mltLgSyc
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id bg20-20020a05600c3c9400b0040ffe1ca25bsm928058wmb.21.2024.02.08.00.38.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Feb 2024 10:37:35 -0800 (PST)
-Message-ID: <091c3f9c-6bd2-42c5-a9b0-9257387b9455@freebox.fr>
-Date: Wed, 7 Feb 2024 19:37:35 +0100
+        Thu, 08 Feb 2024 00:38:38 -0800 (PST)
+Message-ID: <b2e4ac25-5b07-46c7-a96f-8390a95584ea@linaro.org>
+Date: Thu, 8 Feb 2024 09:38:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v1] arm64: dts: amlogic: Add Freebox fbx8am boards
+Subject: Re: [PATCH v3 16/20] dt-bindings: crypto: meson: support new SoC's
 Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>
-References: <8c865c62-cd80-4c78-9fc5-c85491c037ca@freebox.fr>
- <2149edc1-e19d-4aae-851d-df35b91bcd98@linaro.org>
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <2149edc1-e19d-4aae-851d-df35b91bcd98@linaro.org>
+To: Alexey Romanov <avromanov@salutedevices.com>, neil.armstrong@linaro.org,
+ clabbe@baylibre.com, herbert@gondor.apana.org.au, davem@davemloft.net,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com
+Cc: linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
+References: <20240205155521.1795552-1-avromanov@salutedevices.com>
+ <20240205155521.1795552-17-avromanov@salutedevices.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240205155521.1795552-17-avromanov@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240207_103741_748519_B89A3684 
-X-CRM114-Status: GOOD (  23.71  )
+X-CRM114-CacheID: sfid-20240208_003842_322067_A3E11926 
+X-CRM114-Status: GOOD (  14.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,207 +140,118 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 06/02/2024 14:38, Neil Armstrong wrote:
-
-> Hi Marc, Pierre-Hugues,
-> On 06/02/2024 14:12, Marc Gonzalez wrote:
->
->> From: Pierre-Hugues Husson <phhusson@freebox.fr>
->>
->> The fbx8am boards are based on the Amlogic Meson G12A S905X2 SoC,
->> and the SEI510 board design.
->>
->> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
->> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
->> ---
->> Request For Comments to spot obvious mistakes before formal submission
->> NB: on IRC, narmstrong mentioned:
->>> adding dtbos for variants seems to be the new preferred way to handle such case
->>> the fdtoverlay utility works well for this case
+On 05/02/2024 16:55, Alexey Romanov wrote:
+> Now crypto module available at G12A/G12B/S4/A1/SM1/AXG.
 > 
-> Thanks for this RFC, first please split it in at least 4 patches:
-> - vendor prefix
-> - bindings
-> - _base_ dt
-> - variant DT
+> 1. Add new compatibles:
+>   - amlogic,g12a-crypto
+>   - amlogic,s4-crypto (uses g12a-crypto as fallback)
+>   - amlogic,a1-crypto (uses g12a-crypto as fallback)
+>   - amlogic,axg-crypto
 > 
-> For the variant DT, indeed I think DTBOs should be the new preferred way
-> to handle that, for reference I pushed a patch for the DSI panel support
-> of the Khadas VIM3 as a DTBO:
-> https://lore.kernel.org/all/20240205-amlogic-v6-4-upstream-dsi-ccf-vim3-v10-6-dc06073d5330@linaro.org/
+> 2. All SoC's, exclude GXL, doesn't take a clock input for
+> Crypto IP. Make it required only for amlogic,gxl-crypto.
 > 
-> It would greatly simplify your handling of current and future variants,
-> reduce the size of builds DTs and make it more flexible.
+> 3. All SoC's, exclude GXL, uses only one interrupt flow
+> for Crypto IP.
+> 
+> 4. Add power-domains in schema.
+> 
+> Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> ---
+>  .../bindings/crypto/amlogic,gxl-crypto.yaml   | 44 +++++++++++++++----
+>  1 file changed, 36 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> index 948e11ebe4ee..62f772036b06 100644
+> --- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> @@ -11,20 +11,30 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    items:
+> -      - const: amlogic,gxl-crypto
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - amlogic,a1-crypto
+> +              - amlogic,s4-crypto
+> +          - const: amlogic,g12a-crypto
+> +      - items:
+> +          - const: amlogic,gxl-crypto
+> +      - items:
+> +          - const: amlogic,axg-crypto
+> +      - items:
+> +          - const: amlogic,g12a-crypto
 
-Below is my current patch (which still needs to be split in 4) for reference.
+You just ignored my comment, so repeat: that's just enum with three entries.
 
-We're not quite sure how to apply the DTBO at run-time.
+>  
+>    reg:
+>      maxItems: 1
+>  
+> -  interrupts:
+> -    items:
+> -      - description: Interrupt for flow 0
+> -      - description: Interrupt for flow 1
+> +  interrupts: true
 
-PH mentioned passing a -@ option to dtc?
+No, you need widest constraints here.
 
-$ fdtoverlay -i meson-g12a-fbx8am.dtb -o dt.img meson-g12a-fbx8am-brcm.dtbo
-Failed to apply 'meson-g12a-fbx8am-brcm.dtbo': FDT_ERR_NOTFOUND
+>  
+>    clocks:
+>      maxItems: 1
+>  
+> +  power-domains:
+> +    maxItems: 1
+> +
+>    clock-names:
+>      const: blkmv
+>  
+> @@ -32,8 +42,26 @@ required:
+>    - compatible
+>    - reg
+>    - interrupts
+> -  - clocks
+> -  - clock-names
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: amlogic,gxl-crypto
+> +    then:
+> +      required:
+> +        - clocks
+> +        - clock-names
+> +      properties:
+> +        interrupts:
+> +          maxItems: 2
+> +          minItems: 2
 
+Instead describe items like it was in original code.
 
-  Documentation/devicetree/bindings/arm/amlogic.yaml         |   1 +
-  Documentation/devicetree/bindings/vendor-prefixes.yaml     |   2 +
-  arch/arm64/boot/dts/amlogic/Makefile                       |   5 +
-  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    |  35 +++
-  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso |  25 ++
-  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts          | 469 +++++++++++++++++++++++++++++++++
-  6 files changed, 537 insertions(+)
+> +    else:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+> +          minItems: 1
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index caab7ceeda45a..fce12e44c00af 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -148,6 +148,7 @@ properties:
-                - amlogic,u200
-                - radxa,zero
-                - seirobotics,sei510
-+              - freebox,fbx8am
-            - const: amlogic,g12a
-  
-        - description: Boards with the Amlogic Meson G12B A311D SoC
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 1a0dc04f1db47..4f5a1f4e6689a 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -500,6 +500,8 @@ patternProperties:
-      description: FocalTech Systems Co.,Ltd
-    "^forlinx,.*":
-      description: Baoding Forlinx Embedded Technology Co., Ltd.
-+  "^freebox,.*":
-+    description: Freebox SAS
-    "^freecom,.*":
-      description: Freecom Gmbh
-    "^frida,.*":
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index cc8b34bd583d8..b10958e3837fe 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-3.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-radxa-zero.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
-@@ -80,3 +81,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
-+
-+# Overlays
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-brcm.dtbo
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-realtek.dtbo
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
-new file mode 100644
-index 0000000000000..ed79809b15859
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
-@@ -0,0 +1,35 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (c) 2024 Freebox SAS
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+
-+/ {
-+	compatible = "freebox,fbx8am-brcm", "freebox,fbx8am", "amlogic,g12a";
-+};
-+
-+&uart_A {
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		max-speed = <2000000>;
-+		clocks = <&wifi32k>;
-+		clock-names = "lpo";
-+		vbat-supply = <&vddao_3v3>;
-+		vddio-supply = <&vddio_ao1v8>;
-+	};
-+};
-+
-+&sd_emmc_a {
-+	/* Per mmc-controller.yaml */
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	/* NB: may be either AP6398S or AP6398SR3 wifi module */
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
-new file mode 100644
-index 0000000000000..5da88fb94fb98
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (c) 2024 Freebox SAS
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+
-+/ {
-+	compatible = "freebox,fbx8am-realtek", "freebox,fbx8am", "amlogic,g12a";
-+};
-+
-+&uart_A {
-+	bluetooth {
-+		compatible = "realtek,rtl8822cs-bt";
-+		enable-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		host-wake-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
-+		device-wake-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&sd_emmc_a {
-+	/* No explicit compatible for rtl8822cs sdio */
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
-new file mode 100644
-index 0000000000000..750322c295133
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
-@@ -0,0 +1,469 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (c) 2024 Freebox SAS
-+
-+/*
-+ * SEI codename: SEI530FB (based on SEI510)
-+ * Freebox codename: fbx8am
-+ * Commercial names: Freebox Pop, Player TV Free 4K
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-g12a.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+/ {
-+	compatible = "freebox,fbx8am", "amlogic,g12a";
-+	model = "Freebox Player Pop";
-+	chassis-type = "embedded";
+and what interrupt is expected here?
 
-[ snip ]
+>  
+>  additionalProperties: false
+>  
+
+Best regards,
+Krzysztof
 
 
 _______________________________________________
