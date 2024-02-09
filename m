@@ -4,86 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74C30C48297
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Feb 2024 18:32:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B670C48297
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Feb 2024 21:28:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=o2zH34yKPKSXiROwupiA0LKma44tpbtMUY73KsWtgqU=; b=rz9tJooEnAsqW9
-	IDzI13SewwDIDJuRS4TuT6DrajveR+Uv4oPP+4xyKPrAWPs70FdR7NUp0hZd38QBPqV3t/c65cIix
-	DdMTj5i0nZNCn5+Q2ghT5rFJKUgX/LMX82yDJ0jybw2Beox8F1O21HFSbPKqPjQpUM5xdrVH0fDAM
-	FQ3oeHYtJYE7LF4/sDVSnB9QCDsUM2ODVv97z2crIZVcgaB9KdJt9k5+Up+35pO0h/aoMx7ttwkOJ
-	7BymNd419R+KPUQEs0WTvvH2vbRLYsyFYnJAHGG5gQ4CzB3TtxD1/xqBgCLb2LrYJJxph15mK+3IT
-	pT9IBKo95bziz1Rar8fA==;
+	List-Owner; bh=diaEcVAJDXfVN+YcTKA+vaom/BTOakaVl5QjG8G9FM4=; b=Jik+6epM8SisvJ
+	632iVKqm0VaM9w8uzGudC5sNoVZA+gUHmlw0/wlNCbOG+js+Dolx5I+5CLIc3KsM3EhKZ279XNNkg
+	eSoj/v+abLeXJjjfjii5uM94DFQihDQ6vdSck4tfQGNxnwSWztfzu6RdF9FUR2tSB8N8+QP8sSklF
+	/8lz+42MMJgEZCW+nezBuRWWnM9MfTtoSXbdQk8dXUuDOWqqtwb13x2astCRuNjgavUmFBelGscf/
+	aNNu7A5npSOGqisTnw+qHtNBG5t2B33Tyh0Jhv3lM34XP4ZbG9QMm9gHcbYg5V86q1k6X0mIKLmeq
+	rMG91mK15lXa0Dzzqetg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rYVfL-00000000Fqf-38bf;
-	Fri, 09 Feb 2024 18:31:59 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1rYYQH-00000000e7B-3XB2;
+	Fri, 09 Feb 2024 21:28:37 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rYVf3-00000000Fdt-1vnL;
-	Fri, 09 Feb 2024 18:31:43 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id AA84362154;
-	Fri,  9 Feb 2024 18:31:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2A52C43394;
-	Fri,  9 Feb 2024 18:31:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707503500;
-	bh=2IlRMX/ieZtxo3cdQw6/VrlKIfCnRzjHLu40pTVewHE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pwctSo9KPwrHWOplC+5/FYlnyyjRlGoxxhTeJNxK4sYB8TBw/HJprLy4bYSHDriOo
-	 H1PUEmhNIlkZV4L85E5/8hOzjGc8MzoGd8wb4YwckaBc1nJ/00Kiez0QDL8KHpa4S0
-	 WJ8FZLTBBO6p4apt6VI1GjFAU2f4Cnf2fBYmQ2kK4LLjh78Honq2VDmFJkiZWe5a+h
-	 PS35cl4ywVzlFSXZqJspacolT1aswK3+W61ctNtSfvOR2npoyr4NWX3+kAB5hoW5AS
-	 Tu+dkU8L3bpKs+HTY2SjolAR1CIICdNgZDQebquy6x4/nFpHXkLrlw2MJwELBxS0Pc
-	 DIiJZEDgSBy3A==
-From: Will Deacon <will@kernel.org>
-To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Mark Rutland <mark.rutland@arm.com>
-Cc: catalin.marinas@arm.com,
-	kernel-team@android.com,
-	Will Deacon <will@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Jiucheng Xu <jiucheng.xu@amlogic.com>,
-	Khuong Dinh <khuong@os.amperecomputing.com>,
-	Raag Jadav <raag.jadav@intel.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Shuai Xue <xueshuai@linux.alibaba.com>,
-	Frank Li <Frank.li@nxp.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	linux-kernel@vger.kernel.org,
-	Yicong Yang <yangyicong@hisilicon.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Besar Wicaksono <bwicaksono@nvidia.com>,
-	linux-arm-kernel@lists.infradead.org,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH 00/18] perf: Convert to platform remove callback returning void
-Date: Fri,  9 Feb 2024 18:31:13 +0000
-Message-Id: <170749437153.2624333.6691453190868131616.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1702648124.git.u.kleine-koenig@pengutronix.de>
-References: <cover.1702648124.git.u.kleine-koenig@pengutronix.de>
+	id 1rYYQB-00000000e5e-2m8e;
+	Fri, 09 Feb 2024 21:28:35 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 15EB2120012;
+	Sat, 10 Feb 2024 00:28:27 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 15EB2120012
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1707514107;
+	bh=UksBPVFmefUFUHqRznndwrxhRo3WIvAX17OojuW++vk=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=NAKyYun/KMWjbEBPsY60+209iu7D1M+61o46g0yJz71Lt1goi9WhHBRYTcaMcT1nj
+	 b+pQHQn8O5PAqV+m6ER1to5UnWEQD9/jy9PJhusqlOudl+ncHYs9vT+2pJzEXM9x1J
+	 9NX/2WELBUTkQ6RigZCfWk1Qst7xwtxJvomJkBefaFvlwLT7l9+wsAl6++oZ9B00PI
+	 XIZCvmrPRDN6oMY41hvkZuv6rCrVmb6n0Q8exETslA2OojC/1k6JnM/wOvy50hw/oU
+	 RdpC33l9HVDnqD3oAcLbQtvJpwLoT2KOuNevWoB7pFZfU+Y1WasYqj59KFvGbNRNqk
+	 4PDJ6KWZq++Ew==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Sat, 10 Feb 2024 00:28:26 +0300 (MSK)
+Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sat, 10 Feb 2024 00:28:26 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+	<mturquette@baylibre.com>, <adeep@lexina.in>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <conor+dt@kernel.org>
+CC: <kernel@sberdevices.ru>, <sdfw_system_team@sberdevices.ru>,
+	<rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
+	<ddrokosov@salutedevices.com>
+Subject: [PATCH v1 2/2] arm64: dts: amlogic: axg: initialize default SoC capacitance
+Date: Sat, 10 Feb 2024 00:28:06 +0300
+Message-ID: <20240209212816.11187-3-ddrokosov@salutedevices.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240209212816.11187-1-ddrokosov@salutedevices.com>
+References: <20240209212816.11187-1-ddrokosov@salutedevices.com>
 MIME-Version: 1.0
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 183341 [Feb 09 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/09 20:35:00 #23447606
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240209_103141_789107_9D1CB71B 
-X-CRM114-Status: GOOD (  10.57  )
+X-CRM114-CacheID: sfid-20240209_132832_287079_645781DB 
+X-CRM114-Status: GOOD (  12.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,66 +99,94 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gRnJpLCAxNSBEZWMgMjAyMyAxNDo1OTowMCArMDEwMCwgVXdlIEtsZWluZS1Lw7ZuaWcgd3Jv
-dGU6Cj4gdGhpcyBzZXJpZXMgY29udmVydHMgYWxsIGRyaXZlcnMgYmVsb3cgZHJpdmVycy9wZXJm
-IHRvIHVzZQo+IC5yZW1vdmVfbmV3KCkuIFNlZSBjb21taXQgNWM1YTc2ODBlNjdiICgicGxhdGZv
-cm06IFByb3ZpZGUgYSByZW1vdmUKPiBjYWxsYmFjayB0aGF0IHJldHVybnMgbm8gdmFsdWUiKSBm
-b3IgYW4gZXh0ZW5kZWQgZXhwbGFuYXRpb24gYW5kIHRoZQo+IGV2ZW50dWFsIGdvYWwuIFRoZSBU
-TDtEUjsgaXMgdG8gbWFrZSBpdCBoYXJkZXIgZm9yIGRyaXZlciBhdXRob3JzIHRvCj4gbGVhayBy
-ZXNvdXJjZXMgd2l0aG91dCBub3RpY2luZy4KPiAKPiBJIGJhc2VkIHRoZSBwYXRjaGVzIG9uIHRv
-ZGF5J3MgbmV4dCwgSSBoYWQgdG8gcmV2ZXJ0IGNvbW1pdHMKPiAzMTE1ZWUwMjFiZmIgKCJhcm02
-NDogcGVyZjogSW5jbHVkZSB0aHJlc2hvbGQgY29udHJvbCBmaWVsZHMgaW4KPiBQTUVWVFlQRVIg
-bWFzayIpIGFuZCA4MTZjMjY3NTQ0NDcgKCJhcm02NDogcGVyZjogQWRkIHN1cHBvcnQgZm9yIGV2
-ZW50Cj4gY291bnRpbmcgdGhyZXNob2xkIikgdG8gY29tcGlsZSB0ZXN0IG9uIEFSQ0g9YXJtICh0
-aGlzIGlzIGEgcHJvYmxlbSBpbgo+IG5leHQsIG5vdCBpbiBteSBwYXRjaCBzZXJpZXMpLgo+IAo+
-IFsuLi5dCgpBcHBsaWVkIHRvIHdpbGwgKGZvci1uZXh0L3BlcmYpLCB0aGFua3MhCgpbMDEvMThd
-IHBlcmY6IGFsaWJhYmFfdW5jb3JlX2RydzogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2Fs
-bGJhY2sgcmV0dXJuaW5nIHZvaWQKICAgICAgICBodHRwczovL2dpdC5rZXJuZWwub3JnL3dpbGwv
-Yy8zYmM5ZDcxNzc1ZWUKWzAyLzE4XSBwZXJmOiBhbWxvZ2ljOiBDb252ZXJ0IHRvIHBsYXRmb3Jt
-IHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcgdm9pZAogICAgICAgIGh0dHBzOi8vZ2l0Lmtlcm5l
-bC5vcmcvd2lsbC9jLzk0ODQzZjI2OWFiZApbMDMvMThdIHBlcmY6IGFybS1jY2k6IENvbnZlcnQg
-dG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZyB2b2lkCiAgICAgICAgaHR0cHM6
-Ly9naXQua2VybmVsLm9yZy93aWxsL2MvNGRmM2JkZGY4NzA3ClswNC8xOF0gcGVyZjogYXJtLWNj
-bjogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nIHZvaWQKICAg
-ICAgICBodHRwczovL2dpdC5rZXJuZWwub3JnL3dpbGwvYy8wNzY3ZjFhNDg1MzIKWzA1LzE4XSBw
-ZXJmOiBhcm0tY21uOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5p
-bmcgdm9pZAogICAgICAgIGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvd2lsbC9jLzM5MDljYjNiNWY4
-ZApbMDYvMThdIHBlcmY6IGFybV9jc3BtdTogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2Fs
-bGJhY2sgcmV0dXJuaW5nIHZvaWQKICAgICAgICBodHRwczovL2dpdC5rZXJuZWwub3JnL3dpbGwv
-Yy83OWRjMTU3MGIzMjIKWzA3LzE4XSBwZXJmOiBhcm1fZG1jNjIwOiBDb252ZXJ0IHRvIHBsYXRm
-b3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcgdm9pZAogICAgICAgIGh0dHBzOi8vZ2l0Lmtl
-cm5lbC5vcmcvd2lsbC9jL2NhMWUwMWM4ZDM0YQpbMDgvMThdIHBlcmY6IGFybV9kc3U6IENvbnZl
-cnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZyB2b2lkCiAgICAgICAgaHR0
-cHM6Ly9naXQua2VybmVsLm9yZy93aWxsL2MvMDJkNzdhYzFhYzdlClswOS8xOF0gcGVyZjogYXJt
-X3NtbXV2MzogQ29udmVydCB0byBwbGF0Zm9ybSByZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nIHZv
-aWQKICAgICAgICBodHRwczovL2dpdC5rZXJuZWwub3JnL3dpbGwvYy9kNjdjM2E2MWYwNjMKWzEw
-LzE4XSBwZXJmOiBhcm1fc3BlOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayBy
-ZXR1cm5pbmcgdm9pZAogICAgICAgIGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvd2lsbC9jL2U2M2Iz
-YWVmMTg2YgpbMTEvMThdIHBlcmY6IGZzbF9pbXg4X2RkcjogQ29udmVydCB0byBwbGF0Zm9ybSBy
-ZW1vdmUgY2FsbGJhY2sgcmV0dXJuaW5nIHZvaWQKICAgICAgICBodHRwczovL2dpdC5rZXJuZWwu
-b3JnL3dpbGwvYy8xYmI2MzkzODJkM2YKWzEyLzE4XSBwZXJmOiBmc2xfaW14OV9kZHI6IENvbnZl
-cnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZyB2b2lkCiAgICAgICAgaHR0
-cHM6Ly9naXQua2VybmVsLm9yZy93aWxsL2MvNzhkYTJhOTNiNTViClsxMy8xOF0gcGVyZjogaGlz
-aWxpY29uOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcgdm9p
-ZAogICAgICAgIGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvd2lsbC9jL2UwNzQ4NmE4MzJiYgpbMTQv
-MThdIHBlcmY6IG1hcnZlbGxfY24xMGtfZGRyOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBj
-YWxsYmFjayByZXR1cm5pbmcgdm9pZAogICAgICAgIGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvd2ls
-bC9jL2M4MDJiZDllMzU0ZgpbMTUvMThdIHBlcmY6IG1hcnZlbGxfY24xMGtfdGFkOiBDb252ZXJ0
-IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1cm5pbmcgdm9pZAogICAgICAgIGh0dHBz
-Oi8vZ2l0Lmtlcm5lbC5vcmcvd2lsbC9jLzg2ZTg5NjNmOWRiYQpbMTYvMThdIHBlcmY6IHFjb21f
-bDI6IENvbnZlcnQgdG8gcGxhdGZvcm0gcmVtb3ZlIGNhbGxiYWNrIHJldHVybmluZyB2b2lkCiAg
-ICAgICAgaHR0cHM6Ly9naXQua2VybmVsLm9yZy93aWxsL2MvOGEyZTQzOGU3MTBjClsxNy8xOF0g
-cGVyZjogdGh1bmRlcngyOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxsYmFjayByZXR1
-cm5pbmcgdm9pZAogICAgICAgIGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvd2lsbC9jL2Q0YzVjZWY3
-M2IyNQpbMTgvMThdIHBlcmY6IHhnZW5lOiBDb252ZXJ0IHRvIHBsYXRmb3JtIHJlbW92ZSBjYWxs
-YmFjayByZXR1cm5pbmcgdm9pZAogICAgICAgIGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvd2lsbC9j
-L2IwN2ViZThmMTQyOAoKQ2hlZXJzLAotLSAKV2lsbAoKaHR0cHM6Ly9maXhlcy5hcm02NC5kZXYK
-aHR0cHM6Ly9uZXh0LmFybTY0LmRldgpodHRwczovL3dpbGwuYXJtNjQuZGV2CgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxp
-bmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
-ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+The capacitance value is required for the usage of the cpufreq cooling
+device and power_allocator thermal governor in the appropriate energy
+model.
+
+It helps to compute the power estimated by the SoC at the appropriate
+frequency. If it is the frequency of an existing OPP, or at the
+frequency of the first OPP above the requested value otherwise.
+
+The power is estimated as P = C * V^2 * f, with C being the SoC's
+capacitance and V and f respectively representing the voltage and
+frequency of the OPP.
+
+Since AXG SoC doesn't have SCMI protocol support, we need to initialize
+capacitance using the 'dynamic-power-coefficient' DT entry. Its value is
+retrieved from the vendor kernel, and it gives us the following
+freq2power mapping:
+    +-----------+--------+
+    | frequency,| power, |
+    |    MHz    |   uW   |
+    +-----------+--------+
+    |     100   |  10354 |
+    +-----------+--------+
+    |     250   |  27104 |
+    +-----------+--------+
+    |     500   |  55447 |
+    +-----------+--------+
+    |     667   |  77327 |
+    +-----------+--------+
+    |    1000   | 129024 |
+    +-----------+--------+
+    |    1200   | 164656 |
+    +-----------+--------+
+    |    1296   | 192489 |
+    +-----------+--------+
+    |    1416   | 239870 |
+    +-----------+--------+
+
+Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index ea96fef328e8..6d12b760b90f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -74,6 +74,7 @@ cpu0: cpu@0 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&l2>;
+ 			clocks = <&scpi_dvfs 0>;
++			dynamic-power-coefficient = <140>;
+ 			#cooling-cells = <2>;
+ 		};
+ 
+@@ -84,6 +85,7 @@ cpu1: cpu@1 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&l2>;
+ 			clocks = <&scpi_dvfs 0>;
++			dynamic-power-coefficient = <140>;
+ 			#cooling-cells = <2>;
+ 		};
+ 
+@@ -94,6 +96,7 @@ cpu2: cpu@2 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&l2>;
+ 			clocks = <&scpi_dvfs 0>;
++			dynamic-power-coefficient = <140>;
+ 			#cooling-cells = <2>;
+ 		};
+ 
+@@ -104,6 +107,7 @@ cpu3: cpu@3 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&l2>;
+ 			clocks = <&scpi_dvfs 0>;
++			dynamic-power-coefficient = <140>;
+ 			#cooling-cells = <2>;
+ 		};
+ 
+-- 
+2.43.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
