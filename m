@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B670C48297
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Feb 2024 21:28:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 093CBC4828F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Feb 2024 21:28:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=diaEcVAJDXfVN+YcTKA+vaom/BTOakaVl5QjG8G9FM4=; b=Jik+6epM8SisvJ
-	632iVKqm0VaM9w8uzGudC5sNoVZA+gUHmlw0/wlNCbOG+js+Dolx5I+5CLIc3KsM3EhKZ279XNNkg
-	eSoj/v+abLeXJjjfjii5uM94DFQihDQ6vdSck4tfQGNxnwSWztfzu6RdF9FUR2tSB8N8+QP8sSklF
-	/8lz+42MMJgEZCW+nezBuRWWnM9MfTtoSXbdQk8dXUuDOWqqtwb13x2astCRuNjgavUmFBelGscf/
-	aNNu7A5npSOGqisTnw+qHtNBG5t2B33Tyh0Jhv3lM34XP4ZbG9QMm9gHcbYg5V86q1k6X0mIKLmeq
-	rMG91mK15lXa0Dzzqetg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=bGYmIxqbWAn71Vj9YAkc3D7vDjctsLdSlzyQgyC0oc4=; b=Kofb4Z7dQT2R5p
+	/qx4WcB9SIb42/hmbs4iSq2tF9J6XHQftfaYl2kFW20cR1IS4lRH8vx9aMuXYqIg0eC3of2e1cxf2
+	JDmtkNLhJWD/cX7YN5xIkKTtT+0ztKxcdkHveitPfi0cEHz/UR/3S+O8kZ1uMsbHmnAC4m17eZc3H
+	65FihvhcrwRLycqtqfJqUgmgFQGo/9KOKwZAYzS3bdc9CT44tK+yBYsELGO/qHTqogvJ9Qhhcp1a7
+	GQCQUvYUAhXhWbbxr4ddo2o2o8tImYcR7TFO+hVAoO/HeDMgsjFY+i2FYW1E93kyqUhKkxYOWACrt
+	MhlqvmP5UWckymInALiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rYYQH-00000000e7B-3XB2;
-	Fri, 09 Feb 2024 21:28:37 +0000
+	id 1rYYQG-00000000e6x-0zrk;
+	Fri, 09 Feb 2024 21:28:36 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rYYQB-00000000e5e-2m8e;
-	Fri, 09 Feb 2024 21:28:35 +0000
+	id 1rYYQB-00000000e5Z-2uvp;
+	Fri, 09 Feb 2024 21:28:33 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 15EB2120012;
-	Sat, 10 Feb 2024 00:28:27 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 15EB2120012
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 43968120003;
+	Sat, 10 Feb 2024 00:28:24 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 43968120003
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1707514107;
-	bh=UksBPVFmefUFUHqRznndwrxhRo3WIvAX17OojuW++vk=;
+	s=mail; t=1707514104;
+	bh=dLmQ0i/jpUoW9BKIvHqBZWYTMFOGB89t6XHByYjn+Q8=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=NAKyYun/KMWjbEBPsY60+209iu7D1M+61o46g0yJz71Lt1goi9WhHBRYTcaMcT1nj
-	 b+pQHQn8O5PAqV+m6ER1to5UnWEQD9/jy9PJhusqlOudl+ncHYs9vT+2pJzEXM9x1J
-	 9NX/2WELBUTkQ6RigZCfWk1Qst7xwtxJvomJkBefaFvlwLT7l9+wsAl6++oZ9B00PI
-	 XIZCvmrPRDN6oMY41hvkZuv6rCrVmb6n0Q8exETslA2OojC/1k6JnM/wOvy50hw/oU
-	 RdpC33l9HVDnqD3oAcLbQtvJpwLoT2KOuNevWoB7pFZfU+Y1WasYqj59KFvGbNRNqk
-	 4PDJ6KWZq++Ew==
+	b=ZH6AOevfVZ3AJKxqbu6FhgIDEdRjLVV9kowdaOV/THlihTRQYUIhlUCN8/0ohxiwF
+	 PH76yZJcc3FCCKYgC5VKGBgCbN2wUc9fmgveZ2FqFr2Ib51qY+3Zs/5W7Eq8mMsC2t
+	 S69kRTVSfuyzd31uGwliYDA1MZJ2B98bEMWlEIQ7UIGtAYDOD48DUbjSEUPGshJmE+
+	 4J/szHV4Ta7msD2sySkIG78g9LeUkqdUoXgJQ3gzYi9H5WbKOUN35KHfXcLGsLbwQK
+	 SDjVkYMLAZQm6kOp7Y0t1QWnYYxeQhUTJqsU9nahd+zwuzyqkJ+eYzOOdw7HssYJmd
+	 ioKnZXeOi8Lng==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Sat, 10 Feb 2024 00:28:26 +0300 (MSK)
+	Sat, 10 Feb 2024 00:28:23 +0300 (MSK)
 Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Sat, 10 Feb 2024 00:28:26 +0300
+ 15.2.1118.40; Sat, 10 Feb 2024 00:28:23 +0300
 From: Dmitry Rokosov <ddrokosov@salutedevices.com>
 To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
 	<mturquette@baylibre.com>, <adeep@lexina.in>, <robh+dt@kernel.org>,
@@ -59,12 +59,10 @@ CC: <kernel@sberdevices.ru>, <sdfw_system_team@sberdevices.ru>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
 	<ddrokosov@salutedevices.com>
-Subject: [PATCH v1 2/2] arm64: dts: amlogic: axg: initialize default SoC capacitance
-Date: Sat, 10 Feb 2024 00:28:06 +0300
-Message-ID: <20240209212816.11187-3-ddrokosov@salutedevices.com>
+Subject: [PATCH v1 0/2] meson-axg: properly setup CPU power management
+Date: Sat, 10 Feb 2024 00:28:04 +0300
+Message-ID: <20240209212816.11187-1-ddrokosov@salutedevices.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240209212816.11187-1-ddrokosov@salutedevices.com>
-References: <20240209212816.11187-1-ddrokosov@salutedevices.com>
 MIME-Version: 1.0
 X-Originating-IP: [100.64.160.123]
 X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
@@ -86,8 +84,9 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/09 20:35:00 #23447606
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240209_132832_287079_645781DB 
-X-CRM114-Status: GOOD (  12.38  )
+X-CRM114-CacheID: sfid-20240209_132832_285673_3E01649D 
+X-CRM114-Status: UNSURE (   8.66  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,84 +103,19 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The capacitance value is required for the usage of the cpufreq cooling
-device and power_allocator thermal governor in the appropriate energy
-model.
+The Meson AXG leverages the SCPI ARM protocol for the management of CPU
+power, thermal, and frequency. This series addresses several issues that
+have impacted the functionality of the power_allocator thermal governor
+and cpufreq cooling devices.
 
-It helps to compute the power estimated by the SoC at the appropriate
-frequency. If it is the frequency of an existing OPP, or at the
-frequency of the first OPP above the requested value otherwise.
+Dmitry Rokosov (2):
+  arm64: dts: amlogic: axg: move cpu cooling-cells to common dtsi
+  arm64: dts: amlogic: axg: initialize default SoC capacitance
 
-The power is estimated as P = C * V^2 * f, with C being the SoC's
-capacitance and V and f respectively representing the voltage and
-frequency of the OPP.
+ .../amlogic/meson-axg-jethome-jethub-j1xx.dtsi   | 16 ----------------
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi       |  8 ++++++++
+ 2 files changed, 8 insertions(+), 16 deletions(-)
 
-Since AXG SoC doesn't have SCMI protocol support, we need to initialize
-capacitance using the 'dynamic-power-coefficient' DT entry. Its value is
-retrieved from the vendor kernel, and it gives us the following
-freq2power mapping:
-    +-----------+--------+
-    | frequency,| power, |
-    |    MHz    |   uW   |
-    +-----------+--------+
-    |     100   |  10354 |
-    +-----------+--------+
-    |     250   |  27104 |
-    +-----------+--------+
-    |     500   |  55447 |
-    +-----------+--------+
-    |     667   |  77327 |
-    +-----------+--------+
-    |    1000   | 129024 |
-    +-----------+--------+
-    |    1200   | 164656 |
-    +-----------+--------+
-    |    1296   | 192489 |
-    +-----------+--------+
-    |    1416   | 239870 |
-    +-----------+--------+
-
-Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index ea96fef328e8..6d12b760b90f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -74,6 +74,7 @@ cpu0: cpu@0 {
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
- 			clocks = <&scpi_dvfs 0>;
-+			dynamic-power-coefficient = <140>;
- 			#cooling-cells = <2>;
- 		};
- 
-@@ -84,6 +85,7 @@ cpu1: cpu@1 {
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
- 			clocks = <&scpi_dvfs 0>;
-+			dynamic-power-coefficient = <140>;
- 			#cooling-cells = <2>;
- 		};
- 
-@@ -94,6 +96,7 @@ cpu2: cpu@2 {
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
- 			clocks = <&scpi_dvfs 0>;
-+			dynamic-power-coefficient = <140>;
- 			#cooling-cells = <2>;
- 		};
- 
-@@ -104,6 +107,7 @@ cpu3: cpu@3 {
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
- 			clocks = <&scpi_dvfs 0>;
-+			dynamic-power-coefficient = <140>;
- 			#cooling-cells = <2>;
- 		};
- 
 -- 
 2.43.0
 
