@@ -4,74 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 583CBC4829E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Feb 2024 17:05:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3317FC4829C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Feb 2024 17:05:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=GticQ5qtBrJalaFgufMWWbxIsVCM1L84N9kbTfDEBhw=; b=PccSBeHWqwVsqwSs/aQNAIPtbG
-	a4QcVrgXQ6oMxns/trGb2Exvw3tXhZ3/EgtCz5FVAmv34m5yd75Swd88JfaLfjO1vg6zx9bXNnS9z
-	vd1Rt6ubMuMuJCU2oUbaySlzTZfiVK8tp0muDWjC+UTzlybg32d20qgZE4JCElRSgAua/Nz5vzK7k
-	QK/cwpL0Mr3/VLxVV8QvvNrU4z1AB23tE1bfebUQkJ2GdVzjaDDpLLGvE0MTrEFNrEllMMM9Ucehh
-	GOTREjpaV6LDnddIvqtfKY9v/RW+/9yhEdYQk9RRSKMYTOAT8sJ/2dJd4yJF3OdA83NK0u82mXzDL
-	Vvn1L2IA==;
+	bh=MHsW9anfWJSoHiVoGs8QC0P9uObMiQ+IKDA3CUykpt4=; b=f7LLXye+fkvlPynOKXjr2LhL7W
+	VZGJ1e9oDlvqU6Q9el0YjWB5igCHVKGxcStg7dGXTMLhJbWSzCjgd0Mha8k7OnLwycDPr/IFFYuy1
+	aYuii9gnN5UFXd03tISowQ3Lor+dP6zp8YzgotBsH9g4ng+4895dzfJIf3cyX1r0nF3+DouFxPwGF
+	rP2O0imH/DclcFvkgSiHe6jMbi/RdA/dj8qUvk2BLTlthlY+sGz35bYrHg9RGo3m6vz3uG19m0Ufu
+	skZyUOhXU7hN4RolxLL6mAUc+N2rwH6e95fooDb9SNkFfEke3VUdVcbmGSrVH9463jIl+weBW/26z
+	TW7V8apQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZZjk-00000006KQs-1s4S;
-	Mon, 12 Feb 2024 17:04:56 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1rZZjo-00000006KU3-2J9g;
+	Mon, 12 Feb 2024 17:05:00 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZZjd-00000006KJi-12Pq
+	id 1rZZjj-00000006KOR-3grd
 	for linux-amlogic@lists.infradead.org;
-	Mon, 12 Feb 2024 17:04:50 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-41166710058so4385675e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 12 Feb 2024 09:04:48 -0800 (PST)
+	Mon, 12 Feb 2024 17:04:57 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-410cb93185dso9888165e9.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 12 Feb 2024 09:04:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707757487; x=1708362287; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1707757494; x=1708362294; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=EboZSoorMU/aGDveGWka+nBx5MaeKWpS3zEhsrSo8Ao=;
-        b=l6/YKD86HF2CnWBdlBQ3qOHp+lx9JlxKn/lbJjEuxGHyASr4Q6jYfjBUF+Yr7qMblh
-         zJzJ/rEApw0BKnLPYyyajd2IJo6O0Ok6ptkVzbmMlV5Ul4iSelQEWqF4bwUoyE773g9e
-         DXhecKvQBbJz2KQOTEo/uMkolmg/fyNebz6wQIr00mGoRhvKaw+hMmHSG7EHKMLavex0
-         F01ybn4cjYLH4LP041u/reIg1wCG/qGW43vYxonGl/nmV7v3n/MVYkGm4mCg1cOUQs+f
-         KvopO2ixeUzzYDZbDnlojA836nUwulcYEinrZo+tzdazJGNcEip+InlOIGDZwObSkqZe
-         G9yw==
+        bh=tnlFcYYxV+8xVptqetGlSMvuarTqWvNDzjxOKjAUqOg=;
+        b=IbLneJAtDgqdW+HKcc00x1HhbpiWsT9OoUSRt8d0YVHf8sUIEdDiQl37UJF+4Q6GvA
+         AsEZkM8iRqIivghUFjP9CdDYG4wxk0ocDFG8e0pWBZxqIF+2wfyQ/ce3sKmvCXDqfWFt
+         8b0nDa0Hfr1gemUYyyzNLkDMr7CbIqEBWeHfjWt63hqeyu1qGazSzPNRGqua96IgUt9O
+         cboMmdQs5Cr/yQQJd8ELFvSTD5B9gm+KMFYC6hdol4orHjnajCKUwfkdp84GfGh0uab1
+         sSPhX1D7N6F8BfttuZ+DexqceErpb97c2CUdVuk4ahyei3JhENCPTPUT5PoMN/e1V9pr
+         xNGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707757487; x=1708362287;
+        d=1e100.net; s=20230601; t=1707757494; x=1708362294;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=EboZSoorMU/aGDveGWka+nBx5MaeKWpS3zEhsrSo8Ao=;
-        b=SB9O7mDcYM9gzY1yFgEHFOKFpCpDLLmd/ZuX/HAP9KlomZ6h/+YNPz79L6Wy8+EGkd
-         tHdpf1Iw0oduCrixc6X1YclwzG3RmUSS4n0EaObNpru6P8mhrNeXDoKNdWnISF/IsEx+
-         CGHqfVvqC0QEAkXsNkk4BdOdw8r4kSOj9qmAfVaSPOYI2MFE/INrAcCB72Zr9qmeHgc6
-         TFE3Y7Ou3J+D/Z6i6no0TmmMmZYri8lz14zv3xfMVe3TE2Rc+FkNW1S6K664EdE3Mxe8
-         vgnzPj3X+d0uCdTBi+pSzPGZI9iA5sWx11TCa7sUOwOpEYq+/amPhgIbftu+iN45xiKs
-         5Xbw==
-X-Forwarded-Encrypted: i=1; AJvYcCXSkGnCi5UKZ1eTZpShli+nbd4ZMQrW8nsiWREQpnCblEAD5nhPCHWnMPn8oTxkSlVeqDhDsI9Gpp1F5Vc3rdFQNUOZNgWRmyShij4TJEW1zzk=
-X-Gm-Message-State: AOJu0Yw1xWniFCRpDghTC/E+RFt6/CRVwdv8b/YbJduYo6SU6LSyNeP4
-	FKPC8QV2UXv5ttWLwgynlX8SnP8FowUl3hX6ZPDN7qht5M875USQfslIERXb910=
-X-Google-Smtp-Source: AGHT+IE1a9ilnA+p6OlC353V/A7IFuTkLJbhEXAuhv3rhLJOebkyMrkuRFyECOrY2dEMvZ8Y75Ujyg==
-X-Received: by 2002:a05:600c:3d87:b0:410:ed9f:7acb with SMTP id bi7-20020a05600c3d8700b00410ed9f7acbmr1347709wmb.40.1707757487283;
-        Mon, 12 Feb 2024 09:04:47 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVXqtMKH20PfQi2t3C/eK3iPaMATY5ZstZzR5CwVKZFPpKrSC2Bj/b5SwIqmbzMMnrcsPp4yk4eJHn3l/zwjOkeyem3WCsin52VkDQCQ/Nx0YNMzioSSU6dxmIO/GrmQ0zCh9Wpq3JWB/1SjPHxSVcNaau/7r1BhOoBALSdzblusHMF2zYhwg7q2BngK4nZosCFoc50NBJNQbucCUR8XfQo2sbh7/DQCuIX16BQmU9RwJy9c1HbqtpI5LTqc2N7uRoMm/erRwTJzbl8QAuwZRRrAb3IwYeSUmuYlWyHqBD4YEE6ipUC7P4qz2uhYubXqQ0BXsVBg9Ru1rzdEL/81RvnT8EggYMTNjEmMQux6ZlP5COluu6OIRqbZTbZzjr4Hg2OvsTGMEEUUeqQB/lAbl6AFCX/BkxwtXqpY3DkoYoK4W1aB3/XhhX69YDx18SVDNKkeTu7dmYCGFd5mMpI9itiFfmrn4xBngSXWEi2Ln3UYFxW54orB4dPHDqohGcXhX4ePFinZ/n0tTvRhgJfC/+7Gy2RC1zZlbkK4WLYCyyLH4iM6PwSrAnPamArPKIKZSXZpRSep65iqD+yOBjVC7FpEo/xd+KgbaQX
+        bh=tnlFcYYxV+8xVptqetGlSMvuarTqWvNDzjxOKjAUqOg=;
+        b=biFMKn8HrBbtEYwKTOxPe5y6/KiVuZs5XpVITtHaSmYTlgUtCs+htygRDK5PSOzY2K
+         3zrzfqCb2/WuQfKiKnWHY7s69rUyaFjfPSllPaFupaE8ibzXW+yUvmIltYhKhaTOjjhb
+         pK5P3Qr7MYZQ+nNWKbo0YHjeqnBYqbWm/96gvsigSV0N3ju7E/ahaK8YniCwLMjFXScm
+         MELL+f3ohOVT/QUFln2qpDTy40eaNNjEi4CH2e8QVT3ysRYZNAT4hiNkOf1hJng7E/zO
+         C1eFm9+TC+TLwQ2GzQUKMXJ7QQRI6JwWt+V05TapoNLZMek9GnpHetckSkdsp1WZy7ma
+         peyg==
+X-Gm-Message-State: AOJu0Yw7HT/CX5Q8/yi/YDn3azskOqzXrKLdBk7gUjTraXqoy22F+MUA
+	fYHjDgfL4Tols8A+v7KVGYeCzGNgAEYW5vhLCLYrGAs4LVlfGHNoKHM5pGphkxg=
+X-Google-Smtp-Source: AGHT+IH9qGmw9nwphxghFf7cRSEenHYCVSiFyoQOsKn8U3/wxIxpBARqwzxrILU0T+G/X8nzi8kAcA==
+X-Received: by 2002:a05:600c:a386:b0:410:c148:2a4b with SMTP id hn6-20020a05600ca38600b00410c1482a4bmr3682640wmb.37.1707757493845;
+        Mon, 12 Feb 2024 09:04:53 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUbhtiBWLx71foFqG/Mrmg/AENgTBrjlVZ+U5sFZ7wJ7UWRYzAVg+dLvpvbtXgr2kTvNVY9NWwSKWheJjknZ0joEq0Syyr+s0NKjU4ZGFzscd7wgIjMLzzVo8TSarRChYloisONs/iAnOYYi8IwMqoqRg1HmesUfJy57mr62lqEGaMXXdmqm4SEkNBbVBP3KHF2qPEWvPnpDwZLfXkVvjFci4rAgCUC0/jWNIQt518bNJ9eVxKOwJD5aBvZ5DyAHP36ClLFak1a9lpNWDsrpFBnhJsO66PgohmT58dW2S+lE8LGmqQ4BcbTPuWKJOoONZH+jRCHdEqJv9MGGLk9cBKrZPFgntPZO1JZZudgkVuh5vkBfttYgGbnWIHCTnHhba1WqXFKyaVFwfyj3++DcLzgEiPDS47Rg8A0tDAovOURSg74/WAI7ZNmmKKcN4SMTmmaGP5ulJLAH/sOVfWUXtWvAU78GqvV1zb45mjwzvjg87l9gG8QZI46Ih7THA/zO4UQFjKXk6aZR4BYDzEkb+xxZDIcg5+wQDmeDOGYnIZfp0jeHRYCIgwL8Y8JU1K4GjkeX5rsEtCcR8LlXNrlzHAGtViJiLz3XdNj
 Received: from ?IPV6:2a01:e0a:982:cbb0:fcee:f026:296d:135f? ([2a01:e0a:982:cbb0:fcee:f026:296d:135f])
-        by smtp.gmail.com with ESMTPSA id h16-20020a05600c351000b00410e6a6403esm2462229wmq.34.2024.02.12.09.04.45
+        by smtp.gmail.com with ESMTPSA id h16-20020a05600c351000b00410e6a6403esm2462229wmq.34.2024.02.12.09.04.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 09:04:46 -0800 (PST)
-Message-ID: <1d19de25-362b-4983-98ee-c1aa6d2c5cc0@linaro.org>
-Date: Mon, 12 Feb 2024 18:04:45 +0100
+        Mon, 12 Feb 2024 09:04:53 -0800 (PST)
+Message-ID: <ecf86b35-a53a-4570-8ef1-377759422dcf@linaro.org>
+Date: Mon, 12 Feb 2024 18:04:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v4 19/20] arch: arm64: dts: meson: g12: add crypto node
+Subject: Re: [PATCH v4 20/20] arch: arm64: dts: meson: axg: add crypto node
 Content-Language: en-US, fr
 To: Alexey Romanov <avromanov@salutedevices.com>, clabbe@baylibre.com,
  herbert@gondor.apana.org.au, davem@davemloft.net, robh+dt@kernel.org,
@@ -82,7 +81,7 @@ Cc: linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
 References: <20240212135108.549755-1-avromanov@salutedevices.com>
- <20240212135108.549755-20-avromanov@salutedevices.com>
+ <20240212135108.549755-21-avromanov@salutedevices.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -108,10 +107,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20240212135108.549755-20-avromanov@salutedevices.com>
+In-Reply-To: <20240212135108.549755-21-avromanov@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240212_090449_447276_DF0F5FD3 
-X-CRM114-Status: GOOD (  12.06  )
+X-CRM114-CacheID: sfid-20240212_090456_066277_249DE271 
+X-CRM114-Status: GOOD (  12.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,32 +129,32 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 12/02/2024 14:51, Alexey Romanov wrote:
-> This patch adds a crypto node declaration for Amlogic G12-series.
-> With the Amlogic crypto driver we can use HW implementation
+> This patch adds a crypto node declaration. With the
+> Amlogic crypto driver we can use HW implementation
 > of SHA1/224/256 and AES algo.
 > 
 > Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
 > ---
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 ++++++
+>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 6 ++++++
 >   1 file changed, 6 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> index ff68b911b729..f6d7047a579c 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> @@ -1709,6 +1709,12 @@ internal_ephy: ethernet-phy@8 {
->   					};
->   				};
->   			};
-> +
-> +			crypto: crypto@3e000 {
-> +				compatible = "amlogic,g12a-crypto";
-> +				reg = <0x0 0x3e000 0x0 0x48>;
-> +				interrupts = <GIC_SPI 180 IRQ_TYPE_EDGE_RISING>;
-> +			};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index 6d12b760b90f..b19be72abdd6 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -294,6 +294,12 @@ ethmac: ethernet@ff3f0000 {
+>   			status = "disabled";
 >   		};
 >   
->   		aobus: bus@ff800000 {
+> +		crypto: crypto@ff63e000 {
+> +			compatible = "amlogic,axg-crypto";
+> +			reg = <0x0 0xff63e000 0x0 0x48>;
+> +			interrupts = <GIC_SPI 180 IRQ_TYPE_EDGE_RISING>;
+> +		};
+> +
+>   		pcie_phy: phy@ff644000 {
+>   			compatible = "amlogic,axg-pcie-phy";
+>   			reg = <0x0 0xff644000 0x0 0x1c>;
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
