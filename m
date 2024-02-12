@@ -4,73 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B454FC4829C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Feb 2024 17:04:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 583CBC4829E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Feb 2024 17:05:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=pENlyzFVt0aQ+cssT4fVw7eFwJvfzgMDewmWiWilEAY=; b=1uxiWjiKDxCItIToCyIKGGwcLT
-	OScOBXor00BbFVM+9iT/J8xUvFNqsRAM+9qvBlLS5W1kWbXer0Fser0Q17NgDlO7r/6LzFp3KgKv9
-	vK0aCvyhnt3EV+BJn4KNArZSSEgWeoQ3BkaGnB6j1xRpAeLn3vMDJap8VoG9jqMBJP1iEyixYGMGC
-	0h36QzMB9apWkH3tPoGNTlUPP32ExjvZPocOZ7LbDAD8KzuX7Owl0infhEh+9CU7SX1WW6B5G93VZ
-	YIjlABZJgzTBXXfblPf0aP9HnXak5b/OOr1LtGvVfjImkIi5PFoFvKmAHC+NjahQtJOaMIHoQL3tw
-	jbGLJNMw==;
+	bh=GticQ5qtBrJalaFgufMWWbxIsVCM1L84N9kbTfDEBhw=; b=PccSBeHWqwVsqwSs/aQNAIPtbG
+	a4QcVrgXQ6oMxns/trGb2Exvw3tXhZ3/EgtCz5FVAmv34m5yd75Swd88JfaLfjO1vg6zx9bXNnS9z
+	vd1Rt6ubMuMuJCU2oUbaySlzTZfiVK8tp0muDWjC+UTzlybg32d20qgZE4JCElRSgAua/Nz5vzK7k
+	QK/cwpL0Mr3/VLxVV8QvvNrU4z1AB23tE1bfebUQkJ2GdVzjaDDpLLGvE0MTrEFNrEllMMM9Ucehh
+	GOTREjpaV6LDnddIvqtfKY9v/RW+/9yhEdYQk9RRSKMYTOAT8sJ/2dJd4yJF3OdA83NK0u82mXzDL
+	Vvn1L2IA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZZja-00000006KIB-0WvJ;
-	Mon, 12 Feb 2024 17:04:46 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1rZZjk-00000006KQs-1s4S;
+	Mon, 12 Feb 2024 17:04:56 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZZjX-00000006KGB-3O9J
+	id 1rZZjd-00000006KJi-12Pq
 	for linux-amlogic@lists.infradead.org;
-	Mon, 12 Feb 2024 17:04:45 +0000
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-33b2960ff60so2549141f8f.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 12 Feb 2024 09:04:43 -0800 (PST)
+	Mon, 12 Feb 2024 17:04:50 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-41166710058so4385675e9.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 12 Feb 2024 09:04:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707757482; x=1708362282; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1707757487; x=1708362287; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=bY+FezK6qfZor6Fgr7NiCYHO1vkYOiYYWeDX1ETBgvU=;
-        b=w4A6H5tyLpbeJlDnGX80jUBVcaJ8hDnQj9mk6u53nqJMFEVgO79mWtGkttRqN8tW0v
-         pxE+og/SHvd227QbJyJR4QvkAIn5Bb0LFIk66pQoQUcbJsAq98GefXo+TKq+X+qbgRVA
-         MTMIWEDrgP9JQqnBrZ+V3uN2I/nJorC9Zi6/rqYUV0Ts4uttFaL8F7n59GOdiLKyhkuy
-         IGqcTw4dSSRxUaOGuZFz+f84950wMshHqNJ+KgxJPP8lARSdGa4w9LtOSCH8gWZ+ZqPz
-         BGvSQVTJVHzty+BZPDzSYTHLkN+2tMWH/QDCldXKl/7KdnCD7V5Pgwps9org4cv/kl0s
-         k+Dg==
+        bh=EboZSoorMU/aGDveGWka+nBx5MaeKWpS3zEhsrSo8Ao=;
+        b=l6/YKD86HF2CnWBdlBQ3qOHp+lx9JlxKn/lbJjEuxGHyASr4Q6jYfjBUF+Yr7qMblh
+         zJzJ/rEApw0BKnLPYyyajd2IJo6O0Ok6ptkVzbmMlV5Ul4iSelQEWqF4bwUoyE773g9e
+         DXhecKvQBbJz2KQOTEo/uMkolmg/fyNebz6wQIr00mGoRhvKaw+hMmHSG7EHKMLavex0
+         F01ybn4cjYLH4LP041u/reIg1wCG/qGW43vYxonGl/nmV7v3n/MVYkGm4mCg1cOUQs+f
+         KvopO2ixeUzzYDZbDnlojA836nUwulcYEinrZo+tzdazJGNcEip+InlOIGDZwObSkqZe
+         G9yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707757482; x=1708362282;
+        d=1e100.net; s=20230601; t=1707757487; x=1708362287;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=bY+FezK6qfZor6Fgr7NiCYHO1vkYOiYYWeDX1ETBgvU=;
-        b=ly4M3GouE76KObAKXnriBm89xSbV8hy88Q+laxaOTNeF/sb8diIKZzezk66IqmZ03C
-         hJlN/uYQ8yEWgJS3oBijwOvaNn6qAGU8f48IkcxJyZZlKS72Uq7s3/GO8YxVpZQoa+sX
-         /YCFeR4B6juVtwAlNe2U0a7OglBP58ymlQlbEHx0C/CJkP3eG40ZisArcsNVMew0uk/J
-         mPS1cGBmig+uou4LslryRFZfwzmI8ozyRiXQzbzz2z8jImYU+nlAneA7dDX+8+8vjMvo
-         9nxtosxkUc8ru3OzGl6gBzXesOY8lU4oCD0eMLNaQ9dLiVQWMcrWy1cmjsaF80IMSunQ
-         LKMA==
-X-Gm-Message-State: AOJu0YyJUc5cGMoIjnGZyF+UAMl4306k8cnRkXJfEkIXnLtuar7J8b4y
-	+yQKP24lBvzzFiYpc76OY2kXD1bvThmceN/82k0dSLdA4ijmabiRV1e/SGAEjU4=
-X-Google-Smtp-Source: AGHT+IH917SO5FmEX3J35E6xRhi+8kOsae4nQDGp7E5RuPWECrPya44xdXwKllEUNrt5OEkqyOkvuw==
-X-Received: by 2002:a5d:4683:0:b0:33b:5979:8fd5 with SMTP id u3-20020a5d4683000000b0033b59798fd5mr94653wrq.15.1707757481779;
-        Mon, 12 Feb 2024 09:04:41 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUrJEP0LYpi7JlYkopZBWm45VVZPsm7mXjm0XbJQIm3CiOLr6k8PXLU6cxtWR1X6GfR3oFWsS42pF9Uoea/WSI6Vm6jqZiH4YRhstN72JTpi61GS7Tsw2fyi3iqiU4DGYr1PuxWXnjvlyFUh847D07ydpbGA+3MXTntQQbeazOrOLNVtR4LENSJ1X18Krfnakm1a+50Icv3P06ZI3+o2CrsCJ5TniXBU/Dp8m83u0PKYnntfv+UEBzP/fNgeKHsTFKlWU0V6r9mqHzW5qxFmj7RAm02G5eHuEXMq8qlpUW0OiuzTiz26cywDzkBsh44STfame2HLIWuceTGOphLkRRMLR91CosMksbfPZZmPpGV13CQm9Zuv8qDe7eVGfYoTD+yWh86dSN9Yxg4UgMIXn6sM5c9sj5BNf9OjH2S0CS+FmZKI0gC5U/9Zzl85c/AFqWjYGm1P0AdUU7lO86kce3/LI0+YkEDldUXBfYtE7ieSmBjEmcnds00YiitwUIoP6GqP11UIgtn2w4/IqPIMF0lv83ntnIGUwJ6lwZu6jX3kKhOzSMxSU6kQNdri2khZn+1IBBEShNaFLw5ObiHU47eyLFt6SvW9nGh
+        bh=EboZSoorMU/aGDveGWka+nBx5MaeKWpS3zEhsrSo8Ao=;
+        b=SB9O7mDcYM9gzY1yFgEHFOKFpCpDLLmd/ZuX/HAP9KlomZ6h/+YNPz79L6Wy8+EGkd
+         tHdpf1Iw0oduCrixc6X1YclwzG3RmUSS4n0EaObNpru6P8mhrNeXDoKNdWnISF/IsEx+
+         CGHqfVvqC0QEAkXsNkk4BdOdw8r4kSOj9qmAfVaSPOYI2MFE/INrAcCB72Zr9qmeHgc6
+         TFE3Y7Ou3J+D/Z6i6no0TmmMmZYri8lz14zv3xfMVe3TE2Rc+FkNW1S6K664EdE3Mxe8
+         vgnzPj3X+d0uCdTBi+pSzPGZI9iA5sWx11TCa7sUOwOpEYq+/amPhgIbftu+iN45xiKs
+         5Xbw==
+X-Forwarded-Encrypted: i=1; AJvYcCXSkGnCi5UKZ1eTZpShli+nbd4ZMQrW8nsiWREQpnCblEAD5nhPCHWnMPn8oTxkSlVeqDhDsI9Gpp1F5Vc3rdFQNUOZNgWRmyShij4TJEW1zzk=
+X-Gm-Message-State: AOJu0Yw1xWniFCRpDghTC/E+RFt6/CRVwdv8b/YbJduYo6SU6LSyNeP4
+	FKPC8QV2UXv5ttWLwgynlX8SnP8FowUl3hX6ZPDN7qht5M875USQfslIERXb910=
+X-Google-Smtp-Source: AGHT+IE1a9ilnA+p6OlC353V/A7IFuTkLJbhEXAuhv3rhLJOebkyMrkuRFyECOrY2dEMvZ8Y75Ujyg==
+X-Received: by 2002:a05:600c:3d87:b0:410:ed9f:7acb with SMTP id bi7-20020a05600c3d8700b00410ed9f7acbmr1347709wmb.40.1707757487283;
+        Mon, 12 Feb 2024 09:04:47 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVXqtMKH20PfQi2t3C/eK3iPaMATY5ZstZzR5CwVKZFPpKrSC2Bj/b5SwIqmbzMMnrcsPp4yk4eJHn3l/zwjOkeyem3WCsin52VkDQCQ/Nx0YNMzioSSU6dxmIO/GrmQ0zCh9Wpq3JWB/1SjPHxSVcNaau/7r1BhOoBALSdzblusHMF2zYhwg7q2BngK4nZosCFoc50NBJNQbucCUR8XfQo2sbh7/DQCuIX16BQmU9RwJy9c1HbqtpI5LTqc2N7uRoMm/erRwTJzbl8QAuwZRRrAb3IwYeSUmuYlWyHqBD4YEE6ipUC7P4qz2uhYubXqQ0BXsVBg9Ru1rzdEL/81RvnT8EggYMTNjEmMQux6ZlP5COluu6OIRqbZTbZzjr4Hg2OvsTGMEEUUeqQB/lAbl6AFCX/BkxwtXqpY3DkoYoK4W1aB3/XhhX69YDx18SVDNKkeTu7dmYCGFd5mMpI9itiFfmrn4xBngSXWEi2Ln3UYFxW54orB4dPHDqohGcXhX4ePFinZ/n0tTvRhgJfC/+7Gy2RC1zZlbkK4WLYCyyLH4iM6PwSrAnPamArPKIKZSXZpRSep65iqD+yOBjVC7FpEo/xd+KgbaQX
 Received: from ?IPV6:2a01:e0a:982:cbb0:fcee:f026:296d:135f? ([2a01:e0a:982:cbb0:fcee:f026:296d:135f])
-        by smtp.gmail.com with ESMTPSA id h16-20020a05600c351000b00410e6a6403esm2462229wmq.34.2024.02.12.09.04.40
+        by smtp.gmail.com with ESMTPSA id h16-20020a05600c351000b00410e6a6403esm2462229wmq.34.2024.02.12.09.04.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 09:04:41 -0800 (PST)
-Message-ID: <e490c717-338e-4b43-a9b2-17d5358c4dd1@linaro.org>
-Date: Mon, 12 Feb 2024 18:04:40 +0100
+        Mon, 12 Feb 2024 09:04:46 -0800 (PST)
+Message-ID: <1d19de25-362b-4983-98ee-c1aa6d2c5cc0@linaro.org>
+Date: Mon, 12 Feb 2024 18:04:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v4 18/20] arch: arm64: dts: meson: s4: add crypto node
+Subject: Re: [PATCH v4 19/20] arch: arm64: dts: meson: g12: add crypto node
 Content-Language: en-US, fr
 To: Alexey Romanov <avromanov@salutedevices.com>, clabbe@baylibre.com,
  herbert@gondor.apana.org.au, davem@davemloft.net, robh+dt@kernel.org,
@@ -81,7 +82,7 @@ Cc: linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
 References: <20240212135108.549755-1-avromanov@salutedevices.com>
- <20240212135108.549755-19-avromanov@salutedevices.com>
+ <20240212135108.549755-20-avromanov@salutedevices.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -107,10 +108,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20240212135108.549755-19-avromanov@salutedevices.com>
+In-Reply-To: <20240212135108.549755-20-avromanov@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240212_090443_930487_93AFE01B 
-X-CRM114-Status: GOOD (  12.16  )
+X-CRM114-CacheID: sfid-20240212_090449_447276_DF0F5FD3 
+X-CRM114-Status: GOOD (  12.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,32 +130,32 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 12/02/2024 14:51, Alexey Romanov wrote:
-> This patch adds a crypto node declaration for Amlogic S4-series.
+> This patch adds a crypto node declaration for Amlogic G12-series.
 > With the Amlogic crypto driver we can use HW implementation
 > of SHA1/224/256 and AES algo.
 > 
 > Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
 > ---
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 6 ++++++
+>   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 ++++++
 >   1 file changed, 6 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> index ce90b35686a2..dc05e2c5da3b 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -339,6 +339,12 @@ mux {
->   
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index ff68b911b729..f6d7047a579c 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -1709,6 +1709,12 @@ internal_ephy: ethernet-phy@8 {
+>   					};
+>   				};
 >   			};
->   
-> +			crypto: crypto@440400 {
-> +				compatible = "amlogic,s4-crypto", "amlogic,g12a-crypto";
-> +				reg = <0x0 0x440400 0x0 0x48>;
-> +				interrupts = <GIC_SPI 24 IRQ_TYPE_EDGE_RISING>;
-> +			};
 > +
->   			gpio_intc: interrupt-controller@4080 {
->   				compatible = "amlogic,meson-s4-gpio-intc",
->   					     "amlogic,meson-gpio-intc";
+> +			crypto: crypto@3e000 {
+> +				compatible = "amlogic,g12a-crypto";
+> +				reg = <0x0 0x3e000 0x0 0x48>;
+> +				interrupts = <GIC_SPI 180 IRQ_TYPE_EDGE_RISING>;
+> +			};
+>   		};
+>   
+>   		aobus: bus@ff800000 {
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
