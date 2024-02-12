@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64B49C4829B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91A15C4829F
 	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Feb 2024 13:53:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,43 +12,43 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=W/04LCd3deBCh7p5eHyN6+cUifj3+3jrUkuqIZGaRB0=; b=gkFzc3Wlqkimey
-	aUPQcauCWkUu74mthlyQAPqPMDi28gZDKWadrtiEpbhtMUzZA+zS1HIJm0G3lvwvHL1LR3GWBQ96D
-	jHH3Hwuj6JLznwyIx49u8W9NJOzHkqAFzpEKI6T1cZPiq/owYBfJkzzSypwyxirgNhlVESHlQPgnV
-	eFah/S2P18PGuApFND/PQAo/jvz8loxTNf/7MOppe5HKxvRx7MtzFAeUhAYik9S3u/TJyY97hhkTa
-	Fpa3lZfNUDaUjNkddia+abPlFK4qzHt1RchGSiM/6BAQ3tZsJS87vjwnz3om46IBUrFnrL1Z0D2IA
-	eua+7DjQAnkvoQz+XynQ==;
+	List-Owner; bh=eNksSGLDtRf2GO79Y2FwyETjNez3mALxeZh1i75tdOo=; b=PORsi9iffrDmLF
+	QR0HbG+wH6OzkGhLLSqVfagvgagomUPB4Vg77rtMgnt7qbRxbpvNHoark0AW/nqZX4D7Vl2p+yzFx
+	Xohminz1HE9rxZCq/C2mGEAT195f3kyKSHq7KiWAf4c4WJQoaJWA9DBIT33Son/7xZyxb5mV2qr/2
+	yLgq5lArrSFb6jTrKayjLQioF/ILse05bsjDPNmN0A6K5OweizwLW8TOQJSw4RR1EXm93tkvA5iSz
+	Zn88uq/akDQ+gcf1N4gBN/szS8PaHUZGzRYK9Eu2rEswLhfHEX97Wiu2qdeyk5v0y3I+gYbYBJEyr
+	r8puAd/pvWHpDNEZ9lNA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZWkI-00000005dU5-2KlZ;
-	Mon, 12 Feb 2024 13:53:18 +0000
+	id 1rZWkJ-00000005dUX-0v5N;
+	Mon, 12 Feb 2024 13:53:19 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZWit-00000005cOL-0mxQ;
-	Mon, 12 Feb 2024 13:51:55 +0000
+	id 1rZWit-00000005cQJ-1ydy;
+	Mon, 12 Feb 2024 13:51:56 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 6D75212001D;
-	Mon, 12 Feb 2024 16:51:48 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6D75212001D
+	by mx1.sberdevices.ru (Postfix) with ESMTP id AD20D12001E;
+	Mon, 12 Feb 2024 16:51:49 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru AD20D12001E
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1707745908;
-	bh=gUhc8nz00jwdWrBlKkJkWm4NwzIELiwPYGL3SQmGpqg=;
+	s=mail; t=1707745909;
+	bh=L0Kr6PSaW/CeJjCIRN2fyh6XpKkpUR7UXWLxlaNtQ1s=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=U34sx7D1ctq6bVeZ8L48d8t1o5Nby99ZoEVX4GsOLVFgC9xWSALiVlX88Xi3paRHI
-	 qg8viDA1bkYDjbv69OIZN7rV2b5K1SaEji0xUS5IOujKtcvZEi4zQQFGPdEQDYWF1u
-	 GOYIsBvb9sFivK2nP3bI/t2MHX59NGPw6nVa3/83yhaqQKxKOKjMbOvmYSkcE4Opk8
-	 JazPIJvQQGK8qUHumY9O/XKblBPuy2Q5wQipR/BA9sJSCUnNZAnzSFZNqDmlNwD2nd
-	 Pjmf23f28jqPYjhD5Oi++nUQSZEoz1/ZGNuf4Yje+xbAcLbMJJioTSr3xUPtUNwSbv
-	 txsctMJkx8HIw==
+	b=sErfEYLh3HdTitnX1iMbdIahhfTOHeWCTB3csQCkgi2Y6O7Jnc7IqoSpu1UNcWHjP
+	 gymJYZXXY+tuNtgzJS/x2EljN1XcgMytkMaK6lnmELKj8QooU3PMPTtzJoUBxpsfsI
+	 AGOM/RfEle2wvnVhW8cKpBGX6G/AX11g0GaPv2NCkkAzLxbriUfVUn2DTJJuhnJ0hQ
+	 F1+zHKFdtXlIGCShHTCQxtLhWe6zMqkAHy5xliHcl67DJPoDRh86rn0li2M9gp7vfB
+	 TSOOMAp8LK2jLliK98bS0X0brizQ9Y3aVJ76ZPpyJbVOCiqbSFvZdCrlVrSQ1gC9iH
+	 jYkBsPNmFJ0TA==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon, 12 Feb 2024 16:51:48 +0300 (MSK)
+	Mon, 12 Feb 2024 16:51:49 +0300 (MSK)
 Received: from user-A520M-DS3H.sberdevices.ru (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 12 Feb 2024 16:51:47 +0300
+ 15.2.1118.40; Mon, 12 Feb 2024 16:51:49 +0300
 From: Alexey Romanov <avromanov@salutedevices.com>
 To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
 	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
@@ -59,9 +59,9 @@ CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
  Romanov <avromanov@salutedevices.com>
-Subject: [PATCH v4 17/20] arch: arm64: dts: meson: a1: add crypto node
-Date: Mon, 12 Feb 2024 16:51:05 +0300
-Message-ID: <20240212135108.549755-18-avromanov@salutedevices.com>
+Subject: [PATCH v4 19/20] arch: arm64: dts: meson: g12: add crypto node
+Date: Mon, 12 Feb 2024 16:51:07 +0300
+Message-ID: <20240212135108.549755-20-avromanov@salutedevices.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240212135108.549755-1-avromanov@salutedevices.com>
 References: <20240212135108.549755-1-avromanov@salutedevices.com>
@@ -86,8 +86,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/12 07:49:00 #23556813
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240212_055152_180260_FEEE13FD 
-X-CRM114-Status: GOOD (  10.41  )
+X-CRM114-CacheID: sfid-20240212_055152_448447_6AC7F25C 
+X-CRM114-Status: GOOD (  10.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,33 +104,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch adds a crypto node declaration. With the
-Amlogic crypto driver we can use HW implementation
+This patch adds a crypto node declaration for Amlogic G12-series.
+With the Amlogic crypto driver we can use HW implementation
 of SHA1/224/256 and AES algo.
 
 Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index b9fd69112535..6d11e38ca3c0 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -653,6 +653,13 @@ sd_emmc: sd@10000 {
- 				power-domains = <&pwrc PWRC_SD_EMMC_ID>;
- 				status = "disabled";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index ff68b911b729..f6d7047a579c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -1709,6 +1709,12 @@ internal_ephy: ethernet-phy@8 {
+ 					};
+ 				};
  			};
 +
-+			crypto: crypto@6000 {
-+				compatible = "amlogic,a1-crypto", "amlogic,g12a-crypto";
-+				reg = <0x0 0x6000 0x0 0x48>;
-+				interrupts = <GIC_SPI 120 IRQ_TYPE_EDGE_RISING>;
-+				power-domains = <&pwrc PWRC_DMA_ID>;
++			crypto: crypto@3e000 {
++				compatible = "amlogic,g12a-crypto";
++				reg = <0x0 0x3e000 0x0 0x48>;
++				interrupts = <GIC_SPI 180 IRQ_TYPE_EDGE_RISING>;
 +			};
  		};
  
- 		usb: usb@fe004400 {
+ 		aobus: bus@ff800000 {
 -- 
 2.34.1
 
