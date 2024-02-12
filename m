@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 574B1C48297
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Feb 2024 13:53:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6383C4829D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Feb 2024 13:53:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=94w7Ep8yL2Dqu/Q2ev4iyRPnOpyN00AqOUND9YYbbdg=; b=q5GGIM9boNXA9/
-	pDRvwyHUvK8dQ1M2r+gRi6t+RtTdtMZU6u8YjrhCyA6H6QFR+BEpOD1SmzaqxW8Y/UKDrIkDy4Saq
-	zER/kKfuguF7gGBX4wUtooNJhIem4hm1K4+Eza+3C0z5P/5btl5xpMKkjwvfrvcoGnJ1hQo6ekroa
-	caIrto5UqBGNXCmDouJA2mXsMdmZdUBskqCMeSpjIMM6OUwI68A3vUTcaSK4cNvJtzE1zx6nnSE2r
-	s5mv8HSLW6tit7t1sQ3A7z+E06xsVxgoi0mMDsJHohMMlqVP4bt2RS32m7FZr0nX5mF4WEsnGpC9Q
-	niKl00mlrs74ODoe0Qhw==;
+	List-Owner; bh=Ah42O82ncTWGORlsJrxxvri1TqmymEZQ1Asv2KQ4Mkc=; b=IPEg+u/ntPzgbY
+	pnWGEU5UF6khpbKeCDkU9kaNbMp4SiWOaHHNpsNP78vfzqlOW4H3erwCuV/BMcINONhcetTlZyBgq
+	Yio0o8P4rndUqvHd0R5d/kczlrPL0QPSiNwsPjocOdD533j2Ec46Cu1XCFlFfY3lcWMU8QXIxGdmI
+	iC5n0eXCLnFf18uBRLmyfrmhxPpWDAyqeIsFB4sjbupbYGegNT9C6ku2am6kdHtzZu1ZxAl8Mpe5f
+	F3Ow8kh5c83xfdv7JHR5iV/OsLCoB3hOlp6KlQtEBJMMBUacI/PYaiGyzSht23uqgFsPKsG9yfxFW
+	Xuq7IuLP41sf7V/3IK2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZWkH-00000005dT0-0wke;
+	id 1rZWkH-00000005dTI-3QvX;
 	Mon, 12 Feb 2024 13:53:17 +0000
 Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZWit-00000005cPS-0xjo;
+	id 1rZWir-00000005cNQ-0sAH;
 	Mon, 12 Feb 2024 13:51:55 +0000
 Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 15A6810001B;
-	Mon, 12 Feb 2024 16:51:49 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 15A6810001B
+	by mx1.sberdevices.ru (Postfix) with ESMTP id B42A310001D;
+	Mon, 12 Feb 2024 16:51:47 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru B42A310001D
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1707745909;
-	bh=MDoYO53o9hjbNBR6evxCByByDzZFqFEvMI2ryoM8Lpc=;
+	s=mail; t=1707745907;
+	bh=IRwgLeIR6ybauKW+ejxf9w28ns0m/CaiGYPhKUCYNTk=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=mjFcvaqFFZZP+K4ihX+fP0OpfVysdxhVAG3M/PR3jy03veVUME/mIF1n/TTDkYGj1
-	 05u2z2A7jQ67cEPQ0c+Zz/cJbI5rLvv+4dxaQeDoYCq8GNsTXUtfz7qNsgeXPN721A
-	 UK6ZQeBMZ/sGdu/XyL9rEDM41PddSvMM3hwLB3mPk3d/AwbnH/3+28yIbgfcLQzvWE
-	 vu/Ui8hWNIKqjpZ+OZSfUepxFiMUm7m9HooQNYbWuiNeOdbrJNtpeS6sa/IfMAMwoy
-	 ADTATVL/s3J3oJ+peydl727g3j0khO5HLT0tvVQuj+MVTS6ndVKnDsxsXtDvVYYwyO
-	 pgsMJV98niq1g==
+	b=dOOWvn0V4n+eHiKOTyBoulWgFXfNrzDewGNY9ZADOxNpkONMEV59gnVIfIDtGJToI
+	 iQ428GiWVWUcwSf5e2gP7yWSAAwKTSBPnIarY86xKeKhwcxlQFZSZHus0uf71MZsDt
+	 llLOo+oBE/1SopdfCWfQNbuoo+RXUi2WFYldGwPQdTqp7acu7BeQGCeHwVHZvzego2
+	 6y4dV/QRqLQh/YDuXQTLKlflU0ebMY+yivozYycAxp9yhOgjYiE+w1nFAL9jsxCU1W
+	 5S/x6nGsm5qfkXL2kaHqwn4wkNs0vOwK/nufeKDcHhvgQNgiXMNhdIeEYkzXMEJXNC
+	 tuG3m66ebvVPg==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon, 12 Feb 2024 16:51:48 +0300 (MSK)
+	Mon, 12 Feb 2024 16:51:47 +0300 (MSK)
 Received: from user-A520M-DS3H.sberdevices.ru (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 12 Feb 2024 16:51:48 +0300
+ 15.2.1118.40; Mon, 12 Feb 2024 16:51:47 +0300
 From: Alexey Romanov <avromanov@salutedevices.com>
 To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
 	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
@@ -59,9 +59,9 @@ CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
  Romanov <avromanov@salutedevices.com>
-Subject: [PATCH v4 18/20] arch: arm64: dts: meson: s4: add crypto node
-Date: Mon, 12 Feb 2024 16:51:06 +0300
-Message-ID: <20240212135108.549755-19-avromanov@salutedevices.com>
+Subject: [PATCH v4 16/20] dt-bindings: crypto: meson: support new SoC's
+Date: Mon, 12 Feb 2024 16:51:04 +0300
+Message-ID: <20240212135108.549755-17-avromanov@salutedevices.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240212135108.549755-1-avromanov@salutedevices.com>
 References: <20240212135108.549755-1-avromanov@salutedevices.com>
@@ -86,8 +86,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/12 07:49:00 #23556813
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240212_055152_141100_9949A2C7 
-X-CRM114-Status: GOOD (  10.38  )
+X-CRM114-CacheID: sfid-20240212_055149_861265_26B9C5D1 
+X-CRM114-Status: GOOD (  10.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,32 +104,97 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch adds a crypto node declaration for Amlogic S4-series.
-With the Amlogic crypto driver we can use HW implementation
-of SHA1/224/256 and AES algo.
+Now crypto module available at G12A/G12B/S4/A1/SM1/AXG.
+
+1. Add new compatibles:
+  - amlogic,g12a-crypto
+  - amlogic,s4-crypto (uses g12a-crypto as fallback)
+  - amlogic,a1-crypto (uses g12a-crypto as fallback)
+  - amlogic,axg-crypto
+
+2. All SoC's, exclude GXL, doesn't take a clock input for
+Crypto IP. Make it required only for amlogic,gxl-crypto.
+
+3. All SoC's, exclude GXL, uses only one interrupt flow
+for Crypto IP.
+
+4. Add power-domains in schema.
 
 Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../bindings/crypto/amlogic,gxl-crypto.yaml   | 43 ++++++++++++++++---
+ 1 file changed, 36 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index ce90b35686a2..dc05e2c5da3b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -339,6 +339,12 @@ mux {
+diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+index 948e11ebe4ee..41f0153d58c8 100644
+--- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
++++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+@@ -11,20 +11,30 @@ maintainers:
  
- 			};
+ properties:
+   compatible:
+-    items:
+-      - const: amlogic,gxl-crypto
++    oneOf:
++      - items:
++          - enum:
++              - amlogic,a1-crypto
++              - amlogic,s4-crypto
++          - const: amlogic,g12a-crypto
++      - enum:
++          - amlogic,gxl-crypto
++          - amlogic,axg-crypto
++          - amlogic,g12a-crypto
  
-+			crypto: crypto@440400 {
-+				compatible = "amlogic,s4-crypto", "amlogic,g12a-crypto";
-+				reg = <0x0 0x440400 0x0 0x48>;
-+				interrupts = <GIC_SPI 24 IRQ_TYPE_EDGE_RISING>;
-+			};
+   reg:
+     maxItems: 1
+ 
+   interrupts:
+-    items:
+-      - description: Interrupt for flow 0
+-      - description: Interrupt for flow 1
++    minItems: 1
++    maxItems: 2
+ 
+   clocks:
+     maxItems: 1
+ 
++  power-domains:
++    maxItems: 1
 +
- 			gpio_intc: interrupt-controller@4080 {
- 				compatible = "amlogic,meson-s4-gpio-intc",
- 					     "amlogic,meson-gpio-intc";
+   clock-names:
+     const: blkmv
+ 
+@@ -32,8 +42,27 @@ required:
+   - compatible
+   - reg
+   - interrupts
+-  - clocks
+-  - clock-names
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: amlogic,gxl-crypto
++    then:
++      required:
++        - clocks
++        - clock-names
++      properties:
++        interrupts:
++          items:
++            - description: Interrupt for flow 0
++            - description: Interrupt for flow 1
++    else:
++      properties:
++        interrupts:
++          items:
++            - description: Interrupt for flow 0
+ 
+ additionalProperties: false
+ 
 -- 
 2.34.1
 
