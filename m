@@ -4,127 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B65C2C48260
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Feb 2024 14:56:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D7A0C48260
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Feb 2024 14:58:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UjAB26o1lhEXacznQKO702d4gy6S+avzz2QKV0StYxU=; b=T949neaWjP7MGv
-	ZVorti3k5QrwlMPsfSbTvOEvixCxxUUQaHqUxRlF1AEyUGhCO9mk7UKSOynZ2JjdW846wLXmoJXUd
-	rxH4YFN+vqSwlvT/Bp/9N66gauX0yO4ddEJ7ZKdIzWakYS0OTBOcYEt1R5YnyoQ8SRfJaX7dIrgBJ
-	796rgCW87fQhnZfTeMPVUZopD0YXOOZlyBAavqxfv37XJWOhwa8P8C/ScJIWstLtQKvpHayAQMIUB
-	opSk3cwWjAWyj4BfFsg8m7rhESoLKji2WRkjf0hZvGjhACGcvUvPabwDUzWqmhB6ggxw6WgHm0zVY
-	7sULYWb4PkwxsQHa1Ojw==;
+	List-Owner; bh=I3eoZllaz42A/Y9+7z3ieGWYrBl3nLfdWyCICL+Srng=; b=LiASm6eNHcEWnv
+	+VJKeNhR3hzZcrKAN9UmYS3+7zI7WvOCZVqoPN1TNIVu7H+VU/GokCKoHCt/52Bgdmiqb4cFW2AaZ
+	mhy4jfnr8f1AR4JiRnv1QT2Sbd+GXKLpV2a8T+HgRd6v3lqFBNQTyMqkbgeUmx45Vt1dDY3D+MMWH
+	mV2FF2UW1KGNCt3p9a+3Dr2IhUJKrU3I2GBMfTR7DSo9eyDxaFGVDbMyHb7mh58/mY9ZXynQSdPHN
+	doEh0LD5JvwFLrJaQYtLDiPpxxwfULNUlbdInEb4z0jDRyvP0c1H/V6Z/tws1q/+2Q8nBuqj0SNW8
+	SHv6ZoKycGbL9+8FsGAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZuCj-00000009c1w-2NLs;
-	Tue, 13 Feb 2024 14:56:13 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1rZuEc-00000009d8W-0vGq;
+	Tue, 13 Feb 2024 14:58:10 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZuCh-00000009c0y-0gyI
+	id 1rZuEY-00000009d5o-0Mdm
 	for linux-amlogic@lists.infradead.org;
-	Tue, 13 Feb 2024 14:56:12 +0000
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-33b86bc4bbaso980910f8f.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 13 Feb 2024 06:56:11 -0800 (PST)
+	Tue, 13 Feb 2024 14:58:08 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40efcb37373so35495995e9.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 13 Feb 2024 06:58:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707836170; x=1708440970; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1707836284; x=1708441084; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ssLWo77neaxkSpzAJ8+TOpGyQzL5Wyk8VsbQlbpCfCQ=;
-        b=Qh2phdNM7O1WvlZsfXt1zwBw5Kcbt13FklYIXUs5OBkOoE+xTM/QQBeDEk2dHtg6xJ
-         r4LpjqGW+LtQzFQmYv3fYrxCLKCkZwkVVarCyn0HdTMoxhXUbtUr6F7MJoykJxD5+tSW
-         dWo1hN/jXMet5Puqs5219qKPxl6vmtvimiqvfNKcai95vyyC6mXnUpnvAg+U5jlrNtvx
-         G+rGmRHY3GdpEGN9i4/ZFWCfIjNXEk2O8VaTCJ7vLGItrJXmvUoJ4Yr6O4vJPnIMOjNS
-         8lH0/SOSVnYa41FU9BWCLOFTXAti3Va+zZVNxescHZGTCoWQBl8NCZEY5yS7kJc1ysj8
-         TG7A==
+        bh=LUAbcsBTGnXuZrFl0zL+fom+b/QnzF91JdS1snsJMaU=;
+        b=eY4sqkcjE4uNSWP96AW7X8ljxHOF2ZotH1+uJ2l/gU1WEtruM+xbEIfs2i29j3DOMe
+         xeCNdn7pR4JLXVWfuypgxNFCPwbV+QWThXpoyA7HFW5KJniSK1JGHsGWvpbm8GROpbBf
+         WNPJp2KycFAPIgQqUbl4+liRy4WTx5p0z2JpoXMCCd3a6HI22W5ianMp8XRULtMoTEYr
+         J66E8MlqW+RJ6E4I0vlORItXZKaivrmT5lx58STVR3aDXP2DIYPx9rlkxS2I2HsR5IGd
+         /ChcQZ/vPiFokYKEaC1ynREfFGhIWTM0qGqn/LviMPpLelIQfx26zDa+pDon7bBxqwpj
+         FNVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707836170; x=1708440970;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1707836284; x=1708441084;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ssLWo77neaxkSpzAJ8+TOpGyQzL5Wyk8VsbQlbpCfCQ=;
-        b=WEDEO8bfiyItfZVp6tm2WwIKq4jOptSl+qPw+4SDqRvMKa2736L77CGE7YIOhObRTN
-         CACvOG7BxxE9dD5gjBuu2TMaPYIte8SdkIfybT79gVOxBHnBquXgz2Zh4o4Q/gOZMTzt
-         61il/J/8/jZapL23afFStrX7zLNzsZMwUh+80L5jA++MLLGS6YRLgflr+X9xGboBpWeN
-         hhykpV2LROuIemkXYkJmP74sPEbORT3CumWRI7XOZ7O7e9RSHJz2Et2tXc7O6omhnQT7
-         1/PzcJ0tl01HDwJ99w85WRwl2Zr03+isx7Q4ZgCCkU8f9xTdT7W65OWKzwfwuFlqNAXt
-         j3Pw==
-X-Forwarded-Encrypted: i=1; AJvYcCXvy1eQ6MwhkxZasV0RsbQ5+H4xsBSSmJTocXG5L1BZlglCABs1hOkQWs5jsPegI5aakYoeC0LBHFD6ZDb6b0vdvFccANB9EGszAA7qbUrXqZI=
-X-Gm-Message-State: AOJu0YxzFnd0XZtVrFOP9+MlvcUSNKg4ksa9Y9ochhz8spHnBBQE8ikX
-	8ATG0wMpOSlULjkiNqrNN4UiONuFytns6KadMcuewkw1zSay6/kkv5zAz1xFvDaOvprWWeRiecA
-	I
-X-Google-Smtp-Source: AGHT+IF1C5nh8bJuFLM8ID8/TXnUxy59WDxnTOSKmeTtSXTfm5EIxLSpc8EAZ4jrn+byAImy5b1xdA==
-X-Received: by 2002:adf:b192:0:b0:33a:e950:58fb with SMTP id q18-20020adfb192000000b0033ae95058fbmr6321630wra.57.1707836169918;
-        Tue, 13 Feb 2024 06:56:09 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVp2fb+M8T86JLk57OjakjEiC7ePRaH4vSUiHw9eDkyWv+WkhD5gGBbYV2b8QVu+kudwXXWg9y4OArbVgnEiOnbTXJyyOVB7Zfc5YSjukI7pV8=
-Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id u6-20020a056000038600b0033ce2aae7ffsm625747wrf.33.2024.02.13.06.56.09
+        bh=LUAbcsBTGnXuZrFl0zL+fom+b/QnzF91JdS1snsJMaU=;
+        b=cV8GVQGB+JAEg0L1YTVy8OMvzbU0V4lK1GcwWN7BKVGfrjl9B1Q5KJ0JEp05SxYVql
+         Jo6StDqacmpAtC+IVrwE4fwiIfqVOwD41WFQmguOF2hvBD5dN1YbqZzoLoXz7nY+wNtZ
+         GYwxRJiexS4WFvqBlxJgeQMUvPpOoc2+DAcpuVqvV3XToSj6EgnCyPGsiiA6QdWH3/wv
+         nHSux+d0y4JjObO1wNHpabPQr9RfmwWxS+O8BQzHwt8oGi/P+oY2c3HLWVmPMlwRKo9V
+         oidl6FG+bZMzX6HxvWSoMshI1EY/bsjE955hws/Sdt2moOMdaSKhIM0ztl1D3onxykBQ
+         GHgQ==
+X-Gm-Message-State: AOJu0Yzu9dfbBhcx2XD/IeJk90/4DymIIwNYtiB3U4DbiMHtQcW6NADD
+	xxEU90VkX15WvakTJKdh7HW/GmfseCRFLJW/WZHAmzLKz2jlCMW2/YEOvjURzDw=
+X-Google-Smtp-Source: AGHT+IGqfRF0yh6VsToHHlqtzgQWSF70JzdGHamH70Hi33pe3KApe0JmU4lCyALR1YdPeCC4MuCzvQ==
+X-Received: by 2002:a05:600c:3552:b0:40f:d422:930d with SMTP id i18-20020a05600c355200b0040fd422930dmr8263822wmq.33.1707836284268;
+        Tue, 13 Feb 2024 06:58:04 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXHCRGy++srjBDjMNAaQ800GvAvokm72yRTgdzlb6dzhi5HX7HLv05tgMClb8mblTILP3L7bFauUSHuphWdFjoky0Nsz6Lx+uyrSpzo7/4uv2XLprX5CpVBdmP7yZUjsVFete3Q1Yk78VP3+OHIFXt3ALbvspr2UPSYHv7tGUiAuztAvV74jjR32TOZjjVChusmt3SHfrku4jWOQJCCol9V1aY4XMLcjNfk1hCPuxQ434vIGhqfRT8F+B4u0pgTpQP7983WUUegcq9IzoL36+X3DvjL6IaolUvpKEyjM0wiizLuJa6pmOCabDqyNbn7cbPLSYm2dJgflaElFC6OoTB1NniaTdNgvJAmryH42klZCwW1Zga9mUes
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id r11-20020a05600c458b00b00410504b582csm12072435wmo.11.2024.02.13.06.58.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Feb 2024 06:56:09 -0800 (PST)
-Message-ID: <c4ebe7bc-82e4-4e0f-b870-745e7d1c1c31@linaro.org>
-Date: Tue, 13 Feb 2024 15:56:08 +0100
+        Tue, 13 Feb 2024 06:58:03 -0800 (PST)
+Message-ID: <c7a88346-8221-4098-8112-a5e2c3eb5e98@freebox.fr>
+Date: Tue, 13 Feb 2024 15:58:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: amlogic: replace underscores in node names
+Subject: Re: [PATCH v2 4/4] arm64: dts: amlogic: add fbx8am DT overlays
 Content-Language: en-US
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- AML <linux-amlogic@lists.infradead.org>
-References: <20240213143217.336341-1-krzysztof.kozlowski@linaro.org>
- <e889f65e-9ce4-4995-8279-9275147195dd@freebox.fr>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <e889f65e-9ce4-4995-8279-9275147195dd@freebox.fr>
+To: Rob Herring <robh@kernel.org>
+Cc: AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>
+References: <77edaf7e-aeb5-4fc0-8b69-85dcddfd5a58@freebox.fr>
+ <5ac4741d-766d-4b6d-95ac-669474d05e6a@freebox.fr>
+ <20240213135115.GA1090963-robh@kernel.org>
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <20240213135115.GA1090963-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240213_065611_262853_5C1FC226 
-X-CRM114-Status: GOOD (  11.66  )
+X-CRM114-CacheID: sfid-20240213_065806_188826_8B31EADB 
+X-CRM114-Status: GOOD (  14.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -141,34 +101,73 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 13/02/2024 15:42, Marc Gonzalez wrote:
-> [ Trimming recipients list because my comment is very tangential, almost irrelevant ]
-> 
-> On 13/02/2024 15:32, Krzysztof Kozlowski wrote:
-> 
->> Underscores should not be used in node names (dtc with W=2 warns about
->> them), so replace them with hyphens.
+On 13/02/2024 14:51, Rob Herring wrote:
+
+> On Mon, Feb 12, 2024 at 06:53:01PM +0100, Marc Gonzalez wrote:
+>
+>> From: Pierre-Hugues Husson <phhusson@freebox.fr>
 >>
->> Cc: Marc Gonzalez <mgonzalez@freebox.fr>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Add support for two variants of the fbx8am board.
+>>
+>> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
+>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
 >> ---
->>  .../arm64/boot/dts/amlogic/meson-a1-ad402.dts |  2 +-
->>  .../meson-axg-jethome-jethub-j1xx.dtsi        | 14 ++++++-------
+>>  arch/arm64/boot/dts/amlogic/Makefile                       |  7 +++++++
+>>  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    | 35 ++++++++++++++++++++++++++++++++++
+>>  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso | 25 ++++++++++++++++++++++++
+>>  3 files changed, 67 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+>> index e9baa2cf02273..2fd7c7a18126f 100644
+>> --- a/arch/arm64/boot/dts/amlogic/Makefile
+>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+>> @@ -81,3 +81,10 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
+>> +
+>> +# Overlays
+>> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-brcm.dtbo
+>> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-realtek.dtbo
+>> +
+>> +# Enable support for DT overlays
+>> +DTC_FLAGS_meson-g12a-fbx8am += -@
 > 
-> I use stat=120 so that format-patch doesn't truncate the path.
-> 
-> Without it, it's hard to tell if fixes only target arch/arm64/boot/dts/amlogic
-> 
-> BTW, I didn't mean to single out arch/arm64/boot/dts/amlogic,
-> it's just the tree I'm working on at the moment. The issues
-> are wider than that:
-> 
-> $ git grep -i ' [_a-z0-9-]*_[_a-z0-9-]* {' arch/arm64/boot/dts | wc -l
+> Overlays need to be applied to something in the kernel at build time.
+> Applying is done the same way as composing object files for modules.
 
-I know. I fixed few platforms in the past, fixed few more now.
+Hello Rob,
 
-Best regards,
-Krzysztof
+I don't quite understand your remark.
+I copied what other platforms do:
+
+$ git grep DTC_FLAGS_ arch/arm64/boot/dts/
+arch/arm64/boot/dts/amlogic/Makefile:DTC_FLAGS_meson-g12a-fbx8am += -@
+arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra210-p2371-2180 := -@
+arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra210-p3450-0000 := -@
+arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra186-p2771-0000 := -@
+arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra186-p3509-0000+p3636-0001 := -@
+arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra194-p2972-0000 := -@
+arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra194-p3509-0000+p3668-0000 := -@
+arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra194-p3509-0000+p3668-0001 := -@
+arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra234-p3737-0000+p3701-0000 := -@
+arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra234-p3740-0002+p3701-0008 := -@
+arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra234-p3768-0000+p3767-0000 := -@
+arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra234-p3768-0000+p3767-0005 := -@
+arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-am625-beagleplay += -@
+arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-am625-sk += -@
+arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-am62-lp-sk += -@
+arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-am62a7-sk += -@
+arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-am642-tqma64xxl-mbax4xxl += -@
+arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
+arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-j721e-common-proc-board += -@
+arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-j721s2-common-proc-board += -@
+
+
+Are you saying that is NOT the way it should be done?
+
+Regards
+
 
 
 _______________________________________________
