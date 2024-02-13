@@ -4,84 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A8C2C48260
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Feb 2024 08:47:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0C6DC48260
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Feb 2024 08:47:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wDsW/CGgdgWnoQORhKFAY6VL6QNorSbPemMVOeHT+KU=; b=xQCkDy5MCiQAT1
-	Dfe78L1deDuZHPYo2sHWBfoWuJAi1Vl552mjN3EmhvLjth4Ha9hZ8Sj5W6DtwoAJzjk9zCFgbxQUx
-	Crr1qZDhd0bmyyaDlwOO3xqvtPfcFbUUQpw/Vt7fKCElC+yvpieRcGLT3zOKHdBLmNh4SUMpq0Ikv
-	MrLYKjSZVCkpWj/NmT7FKNl9SRBwBkn/ykJJa0nmL13wlbLWzaMK9CZf4ELQ/Vjol4GuWPxnVLSo/
-	WXHWznwPrn/UkVz6GznGVgGn5b/LbYYi4OWQ/JPEx9hmOvniShkFah30I++RNWfXo2vadyFt+rbdx
-	iNGnCQmmd+Yy8F2GnRIQ==;
+	List-Owner; bh=q69gn6N3FHq8N0jABFMxCds/fLR6sQyIqhKw3sG9gGU=; b=nfPRXZTJy4byzL
+	jdDlSkkwrUUVd5BE8RL1+RiU1YClVfOVXOPmQu5Ewgtak55Nx+BXwH5Lio/Sy+zoojYM9T/rULsfq
+	UYrmsmddR3lNsYNuyEmdWY4VdLz9AKc5mNpoLT7cx3RnJQ0jn1+FGliu8aysCiB1liMn6GGfUw3Tg
+	VLx6CW33sWt+Ti7FfQlg7cqjrD2PdB1o0HantlyaK5TUhQiExG0HCvU7dSV4GjN7eoNs4WWCmFTFV
+	CGoxyVhY5EyNUVyZvmT7bM44Y2/26TAG/gMGe3kfDh5SfXS0A3I0T6+aXBu5KzLHGQN8aqGvNuYve
+	JqGP+L5S5vZ8E7iemhUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZoRg-00000008U7V-15RC;
-	Tue, 13 Feb 2024 08:47:16 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1rZoRn-00000008UCJ-0oKy;
+	Tue, 13 Feb 2024 08:47:23 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZoRW-00000008U0u-10ar
+	id 1rZoRX-00000008U1b-1AHk
 	for linux-amlogic@lists.infradead.org;
-	Tue, 13 Feb 2024 08:47:14 +0000
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-33b8807b55aso777332f8f.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 13 Feb 2024 00:47:05 -0800 (PST)
+	Tue, 13 Feb 2024 08:47:16 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-410c59a3e46so14692195e9.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 13 Feb 2024 00:47:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707814024; x=1708418824; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1707814025; x=1708418825; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=75EEaodnUavPyXiDW/zXiMugNJn4rgT6eT/hJD3ce5o=;
-        b=Dpb3O7D414bQVaCaO808aCGR3tjL0qUyLYaNIE/GxIqJlvuoprDFvR3jJJhjmGQNDp
-         E10tZ5fhr4Wai8Ffk9PyifHOQaEa1KPWJwZ1a/Y4y5Bwe3NaTQHbBC7rBDpQJdaKwUhg
-         xEHPwm8SR+lNm2lrhkkoXETBMFyppY1gq/Wi3jMkRW2LYJsl0puBIVHa23F5yT9HKkZo
-         GITh3USzeBjDivjl/dx0VARGNd1tCYXhiW9X+50ftpSrCSnhfv4sn5o3YzsmMAbpvgjw
-         TmH8rGhN85Mv4qi6kS25/DgMLPc+VyDfE9Be4sBgXLpZyGoTDy0VRU1LOuh/fX6Tjejp
-         OBfA==
+        bh=UL6+54Bn28isJYNVVsc9wHQqBtpvekWqbNxClEEpQwE=;
+        b=lnpUFbOlVcShqlTkOtfh8ii0BfqHZqdDEHb3zZDEjVMrCCA4cLW3sGcGNmoYvQrj38
+         RPiIZI/tmcSCycJOpQewf3ljhDbFUxJ8HkK4QYR8KLIC+V4DYUUm9n1doB/H4FRQKUhw
+         LZ4gF4eXK4HnZ5QHWBrGTtJKZsUN9cCLeXMPdTdSQbNSuRq9ohtrTELUpg/1TEKPiBuH
+         7UTR8e23h+W8SL5ig5zd4JAwbx3Lp3qJVHZlWyHNAwdgc4YuRn28nOzB5XRtFE4B3veU
+         hkKXnGKtXWzBWs3P/+IQC1Re5ElzaAVOIEmj3AKh0yQTidN1H+en/IM6RuJS5kZkacwo
+         wZfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707814024; x=1708418824;
+        d=1e100.net; s=20230601; t=1707814025; x=1708418825;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=75EEaodnUavPyXiDW/zXiMugNJn4rgT6eT/hJD3ce5o=;
-        b=jFyeUY/xaszNFgLePjAApQ1TXe8IImVWuv6DyiJJeMOJGlTNiONus1Q6W6k9dy5r8o
-         cqgHcFzW1mt/KnfqrZU3hXSWhbdKyDtm5h0uUki3hVSxem9Aq9ayfFZxM7ymPFRgzReu
-         +CekPLN6fGGxY7RVhkXszep3iHsBZxTk68WbYfu/iG0X+saq7WDVVn5c9Pjs3j0WoBCE
-         QvZeLqr4BNlB97hDrPA2nbima6F1LqmdJRvAw/NJeQzUFS1f3b02dN22ojD1G6fAyYJD
-         Z6MlbmL2Vk9Dj2Sz6ou5eviLY/zay9sB7K/qwzlDo96rPqNblk15aoIdf9xe2xuepKBo
-         Jlyg==
-X-Gm-Message-State: AOJu0YybNiGoIp1+91ZCvvNP+h7YIjQV6HOaI46NWpQi08SI1YnyETns
-	kUSF3Cr3vp6stuXIEmCvA9XfBZTbnU4OjteolbO2dx1ktQ/nVzOvF8iLe5zBiSI=
-X-Google-Smtp-Source: AGHT+IGTdnZvyHeh7eWYeSJDhc86QdOUzEKnpJMoqWenO+UTYHFk+lx6eFsx1MZkCcVxpEVcl/39mw==
-X-Received: by 2002:adf:f24e:0:b0:33b:304d:36b7 with SMTP id b14-20020adff24e000000b0033b304d36b7mr7221572wrp.56.1707814024476;
-        Tue, 13 Feb 2024 00:47:04 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUeTf7UecjwlGIodtLfDFk7swIZwWcjKycfmtkhdv94Npda/6KaT4lh+JHM9lkBjhtJIkLDZArH8INQQn4CcNWQKUASNUwySyYIZZRK2kgnM6MtKGZ25uzNIthThiIdltkY+mDvStB1dRji9LNKZPmz4fy3isYJeQKdAM+3hV5vpiqawGk8ufN3PytbE8QBLW0cdDUfKjG1sm9/OoxODLVQES4S3lzr94SXWTsC1WTgtY+RRZHCJb/xMOGjSCjJ8bGuwldGnh8tx0dwqZYe0OZWA1i6CdfFtSyqvyxZs7sQyifHVcm/pcezmSf+6cICv3GP8N1gkcpA6ZPMYIcju8MUcDJC5IXZ4HTyHkTJVGTk+Yxz4l+zjNyHcpno83O7LQ/+COWkP38qXks8P7SCs7/HdCIa5/Pr0fmXBKRysE+eyGAUibPVLRbN9B2Ca1JHnv+VXYqspWrBxK63iUf3FoQYff1C45Ym3g4J1w==
+        bh=UL6+54Bn28isJYNVVsc9wHQqBtpvekWqbNxClEEpQwE=;
+        b=ZQUXANMjIY6hymXIVjcRy6zzV2eV6bg9T0o3ifrkQ2HrcNys04Dh+4dgXTuA8kOnhh
+         j2IZG9Sb6XDyDa1MLGvAh+s76wtY8Yi40VWNj8WT3RRjByjfy7zz9VS/h1ELMmhassYY
+         XrmpBhQyuyNHVAzFqHJ//tJavqikFxFilR6BSb7byVS8EKiWpR8xZs9xMc4o+QB45XvR
+         sOGkWkMHFGo0+HPe+SYTBxKeb8Ns0F7b0VgLEQYYMdLKB0mL2/z/uKFiu44j/xWVaKgS
+         VEEAA+ky1HdkKQBLauup1ko/dF8AZ8dxwqY9eDnE1XsZLkcg29nkY5vIndkOtCGUTH+A
+         JEFQ==
+X-Gm-Message-State: AOJu0YzFZXPvm/hHdbX7E2HzboXWofFt26RjyQS8sdcau/SY7sVr8swH
+	cTO2MGu8OD1SihGZdayvs1yWzPIt5skhq5cUiYX/7S90HPfFdIgg6SQoyT0SmEo=
+X-Google-Smtp-Source: AGHT+IE8InF+/Xt1UPuRw5x66d6evDnELpDvPFVVv4NCMEUADrcu3PB0+DvyfdVb86EzCr4XV5tKVw==
+X-Received: by 2002:a05:600c:1548:b0:40f:d25c:41d0 with SMTP id f8-20020a05600c154800b0040fd25c41d0mr8388501wmg.29.1707814025459;
+        Tue, 13 Feb 2024 00:47:05 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUT0GQy7Y8azAepuXHPWUSf2Lg7ZCjC/Cahq9AjpQJPu3FHOKTpR2lqb1bONeEGM+qBzGe+5vj0rGvixZJS+yysrdtV67nrQNLiLOYjCLc9d7WE377YSh4FqbCNdUHf66/x/rv1YvksGU9CdwwX99lkHoF1oG6Q2Iq8QtlWw0vFQ2wcdCwjfzq3pbp6MMgEdMyQAtC1XxBUnlK79xln4z9Vhxg7rAwck3VHfLlXmzp4I7lomnr2O/47ggsudjG0gdojuSfWRtyABSUG1HPHRABdZB0Xj+4vFRtYiPskLmBcyBiVYLniNiUc5nAQ5hjupV+YzyJXIb7wGCnCIUIhP64hw8VCRvj3aHtxlvMdfHFKoiWKZxcvBYYOBOoxsZb6WxrhqSKA0QhL951tGwOMLA4oqhcNbdlB/T32Ulp/QhUP9tk8tf8WCnDuqNFW2qa2Hmmhv9HUV873KaB5jX7kKCzZ+gZ/N7D2fXbed8v7VJQGA5kTUGiBc5ueXBDBlIP7y9NFLEqysPrhuISi5JutHSbI4SifKbrvO6i8axq/bH9zg8+Vrk14lVqadZmLJZlXhfgGDIA=
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id y8-20020a5d4708000000b0033b507b0abdsm8888707wrq.32.2024.02.13.00.47.03
+        by smtp.gmail.com with ESMTPSA id y8-20020a5d4708000000b0033b507b0abdsm8888707wrq.32.2024.02.13.00.47.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Feb 2024 00:47:04 -0800 (PST)
+        Tue, 13 Feb 2024 00:47:05 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
- conor+dt@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com, 
- martin.blumenstingl@googlemail.com, 
- Alexey Romanov <avromanov@salutedevices.com>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- kernel@salutedevices.com, Dmitry Rokosov <ddrokosov@salutedevices.com>
-In-Reply-To: <20240124130623.3471236-1-avromanov@salutedevices.com>
-References: <20240124130623.3471236-1-avromanov@salutedevices.com>
-Subject: Re: [PATCH v1] arch: arm64: dts: meson: a1: add assigned-clocks
- for usb node
-Message-Id: <170781402367.1503948.783057553743938971.b4-ty@linaro.org>
-Date: Tue, 13 Feb 2024 09:47:03 +0100
+To: jbrunet@baylibre.com, mturquette@baylibre.com, adeep@lexina.in, 
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com, 
+ martin.blumenstingl@googlemail.com, conor+dt@kernel.org, 
+ Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: kernel@sberdevices.ru, sdfw_system_team@sberdevices.ru, 
+ rockosov@gmail.com, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20240209212816.11187-1-ddrokosov@salutedevices.com>
+References: <20240209212816.11187-1-ddrokosov@salutedevices.com>
+Subject: Re: [PATCH v1 0/2] meson-axg: properly setup CPU power management
+Message-Id: <170781402460.1503948.8383837524449723560.b4-ty@linaro.org>
+Date: Tue, 13 Feb 2024 09:47:04 +0100
 MIME-Version: 1.0
 X-Mailer: b4 0.12.4
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240213_004706_526999_EDD6903C 
-X-CRM114-Status: GOOD (  10.43  )
+X-CRM114-CacheID: sfid-20240213_004707_402744_12E8EADB 
+X-CRM114-Status: GOOD (  10.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,18 +100,24 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Wed, 24 Jan 2024 16:06:23 +0300, Alexey Romanov wrote:
-> To ensure proper functionality of USB, it is necessary to use
-> the rate of 64000000 for CLKID_USB_BUS. For instance, adb may
-> not function correctly without this setting. This information
-> has been derived from the vendor SDK.
+On Sat, 10 Feb 2024 00:28:04 +0300, Dmitry Rokosov wrote:
+> The Meson AXG leverages the SCPI ARM protocol for the management of CPU
+> power, thermal, and frequency. This series addresses several issues that
+> have impacted the functionality of the power_allocator thermal governor
+> and cpufreq cooling devices.
 > 
+> Dmitry Rokosov (2):
+>   arm64: dts: amlogic: axg: move cpu cooling-cells to common dtsi
+>   arm64: dts: amlogic: axg: initialize default SoC capacitance
 > 
+> [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.9/arm64-dt)
 
-[1/1] arch: arm64: dts: meson: a1: add assigned-clocks for usb node
-      https://git.kernel.org/amlogic/c/d1159418fbd5880d3285f4797d3f11eeaf6d0d42
+[1/2] arm64: dts: amlogic: axg: move cpu cooling-cells to common dtsi
+      https://git.kernel.org/amlogic/c/7c3215fe05fe3b8faacc03245cc922c4b98075d7
+[2/2] arm64: dts: amlogic: axg: initialize default SoC capacitance
+      https://git.kernel.org/amlogic/c/a06d4fdec1ce800188bec15c0219d6774dd145f8
 
 These changes has been applied on the intermediate git tree [1].
 
