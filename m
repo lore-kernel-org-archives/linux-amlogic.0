@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C837C48260
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Feb 2024 14:12:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCE59C48260
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Feb 2024 14:24:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PHfef9kRyDNRHdKJB2KXohCu87PofMkcfxRMR8CrZ+0=; b=tXj8jGgZus2Avl
-	2R7QgwJsPl4Sraph5YHi4xH3wWTmxl7J9XCacYfwy29On+GM1Iq1w/frAjGbtd0zQ38r2ILzIDPET
-	Zx4WnoI4I7y4dXwi81r/eNIxxtoC2DIlSy4CSanfZTmmNwktXDil5RjOsG/EfJLXtGk5Z6ilMmmRF
-	23+523sgtAQ3CO4hwCwQFpIifV/vF6rfzCUcwXHr3fKivP3R6O/DGyqJXdEz3N6Xk09W7affTO6tz
-	AoTMRSUCyprFfojXt+VTi7V3e5xXFxYCiliiLYEeE3l9Ki9wXUTmZ8NvgS8Tn+BLVhx6tkr6Es/WH
-	i7nHnyg5Ka0zSA9ZTx2A==;
+	List-Owner; bh=glq5hbKvkyBC9TacAIl9xJIpohfuvENThNyyzf+hwxQ=; b=HYPNaAKU+Nq6Ac
+	ZlEI1LkOCtnX/BHEF+4Awf+TGC4zZ85AEWYpUe+9mIBxRjIBL4iSkUk7E3bHm9D8Y1TOJwrcXZ1R+
+	M0fnBQK1zeO99fp6qS2T54uho9EwQ4kcQooBCYXNeVq5fwVk1yRalpQx34bODuU9Npg/3CaH+BE84
+	A/SKFa++Drvh38w0ITEcJP+SKF85EfWFhVukxOjM6sADzwt6XiKyzeiWkPyWJu/4ZyWVrTwJ+2yXF
+	At63KDpsTZaXe4TKB5qqOspCJdOLT/L2KkxIVEEOTHadup/VGNmO9se3UKZVSkRR62T0C9bNDwozs
+	m/CWnooQoITsveAsi/Tg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZtWO-00000009SZG-48OL;
-	Tue, 13 Feb 2024 14:12:28 +0000
-Received: from mail-lf1-x133.google.com ([2a00:1450:4864:20::133])
+	id 1rZthX-00000009UqW-10HQ;
+	Tue, 13 Feb 2024 14:23:59 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZtWI-00000009SXh-03yY
+	id 1rZthI-00000009Uml-17Wt
 	for linux-amlogic@lists.infradead.org;
-	Tue, 13 Feb 2024 14:12:28 +0000
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-511821e60c2so3599180e87.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 13 Feb 2024 06:12:21 -0800 (PST)
+	Tue, 13 Feb 2024 14:23:46 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-411c93e6bfaso3491415e9.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 13 Feb 2024 06:23:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707833540; x=1708438340; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1707834222; x=1708439022; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lSWustRDmVhI85u01lyQqqB4mJ3wL9eSszhFn4HC1ao=;
-        b=lOYWW0zlLBB+vnQ5DtA5SweSWHhAKyFx+SWutcv/KgfFTeRSBQvC72qsn/8eiuwluN
-         XHMT2dL/aBR8+CGg7mwVEIBmyRBHGFpbohUQ8QouC/g2qOY2Q6oHlgnN4p75sBzAR3Tc
-         3yFihpgfPFZUOG9oN+35Q0wuh4BzNBex44m5wVLbnFSshY0CCuUWEiivXxKmeDZEQVSP
-         eDmJoIf2J7Cqp52SWWNZoNpumUv5GpNkuTiEK5HCpHvIHuCWkePRIhMFvok46XmN9iyn
-         gJBpMgclCKGcHJxnod1eVc7QxH4GNWoblTXiz/YMEYyMQ4XwsLn9hEAtPnIprChT4lUE
-         VvYA==
+        bh=bnXhTRguW0xSNMCPfA6GHBCpy42I8rpo6smtBUVp2zQ=;
+        b=xrPAyeBiyIk99Gi5dMFPngiIOdO/wIMEz2mKr81s9YerVNvq/r0oTpdOKU3/YKq8er
+         ASicg6AsdTKT51Q55Cq0jzbzrNzyir6NTrc2QO/hZHAd2VDM3JQd1DcO+2ovbMwIO6KW
+         dyzqqvomq0b31HpFfzrCMU9WDQxAywPh1wDF8da1TbE7hkWEr3ljKG5CSHi6+rqkM4SA
+         /1fTA15cYk8i/FTabW9ZmaT+b+Mc683zl2TMMc2gs+HgcEV8ViTqPECce7Ih7j++VxKS
+         kF5mn2+o9kib15yjUWyfFWEPVJ+iwJY1GwyY9klrJLlkaew3Vyve3AEZGosGzK8aDNv1
+         Z9iQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707833540; x=1708438340;
+        d=1e100.net; s=20230601; t=1707834222; x=1708439022;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lSWustRDmVhI85u01lyQqqB4mJ3wL9eSszhFn4HC1ao=;
-        b=juWw0Ft+AkhUVOD6jP4fl744vLUxCif+v8nGXKgrevhcwW9eRVsx0H62E7XY9qtzKw
-         Pe7Y7MCJjJJ8Z8xVUkBFmlqfXUkojbngeHH/I/OcgWyc/JQzvBfe6mUHDmJNDr+q/vEi
-         mycPn6zs2saVDcfFiCEXGaJ5KABIO6Yvg6YPkXl+s9LfjAeabSiEm7ZmWb8enXc9sSeY
-         1zST/KZo45xQcJxwiDVgU43HA0weJrrPYJ5V8PvhcImZNw6CT5Nl7J7iTfAVv3s6sI/y
-         52CceJ38kyCkX43ExdRNqarVIvPKzvCgxpp8oFUWF2bb/eCNc0OP8ir6bc9c88dY1so2
-         HaoA==
-X-Forwarded-Encrypted: i=1; AJvYcCUckePoCZLF/mmYeORGgsfub3jaLIY+WXtLc1ccvzrnF2UTQL7nqmaS/l/kH08qMJZrTmP6fVOw6u7WhcXTNxXNPwEUZA0NLtID5cjm6zQblCU=
-X-Gm-Message-State: AOJu0YybumJZvW47omH296iwaZWqiCi7gfUvcHYy25LLZxOuJQFyqUhd
-	Gcf1mDqin08CWrA0KomAdYX253q0MgeXhQi8ManG6An+qiB/8FhXR7e1FqYycs4=
-X-Google-Smtp-Source: AGHT+IH0RXvtarg8PiTzjsT8dyRdfoHqJN7gf3HiJFzN5ffOBI/fLoSctHHJmOsKG3UyVb2BurzMYg==
-X-Received: by 2002:ac2:4c01:0:b0:511:6f43:b5d with SMTP id t1-20020ac24c01000000b005116f430b5dmr6072272lfq.17.1707833540065;
-        Tue, 13 Feb 2024 06:12:20 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXyE5jXBwBdsO/mN6zCzhJ2ltNN6MZU5Yc50fynq7RyQmny8klhlyguMpzkx8YZi1vmFg/F8iKd8LsumsHaxIt43BxulCzzTOTojxDjrqrQa0zraMVf7G5t9CbpzUZPVklJOaIVwIxigcZe0tUoHjzMbZFUzLlpppGlTK+moRutjiLM8Tl9DtwrV65wy+DC27DveGYjbDWW1p8CCIkylqJMlaUcXMdl54mzjVaSclqBHuzY/vP6AVBtMAqXPXmTFvOImotAd2jTpo4j2aJuH7BsiNUMZKZelRNiKEepBTZR56SDUtU/lvUMtx+icAm/osVf8f17J02VgPfMV9yafuGY5RvhsF434tB2OfMiX0DC8gpYCvlJHHE1Y9463Gdf
+        bh=bnXhTRguW0xSNMCPfA6GHBCpy42I8rpo6smtBUVp2zQ=;
+        b=mvqT4TiPuxKzReEWdJEWQ/l+zWiHQoIPHEFYFj5FMqhC01wjp3si8ZzpUaJaRSa/Ad
+         B73a6ULxGT7zX2+HLbYdVA2na/R/c7hI0c4mKUBsanHszzJsU0fz4vPHAXMy7TujtBoe
+         NG9C36W/2wF6o2gNFt0YtPyiHmNlDRLBrcMGkFHqlxtlNqZilHC+ADgGHdYIhdffeJSY
+         SAkhr8FMIGEtvPz83Ulm+deoS3VSWUM7ogx7jLXm+Vc5oAqlmLF4+loiW4HFUqKXWaB+
+         6hWLumzfWpVh3vEWQ+dryeMBuxuCUJb+Om7fuv7sTfyQhh51jVwGn1QVcRDXDaM9NzLv
+         DiqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWj0dBUiGc5QkKkwjbYVVcUSDj5d2ztYQ5ztcZ2KC58OdBTCQTxpXr7d6Urk5RdmhE6iofI2Ye+wzyNgfBwMrOCsjAqJ7QukOa5pPdidPcLjp0=
+X-Gm-Message-State: AOJu0Yx/SzWcuXqseN+JzsAx+WZPl6jOtYp6wy5/zhi/2JAkwjvRl+u7
+	rAYo1uqtui5EfKjlc0Hs2b+MUzwuivoR9q9zFNU2fwUd4s0iqpfy84w4vU2Q0Ok=
+X-Google-Smtp-Source: AGHT+IGFslU5KlnrtZu/fqJXPDWeMTECYGF+yTuj85YQbGTVhSvMJUrXD+70cMLMKulhwZNFAeaMrw==
+X-Received: by 2002:a05:600c:3542:b0:40e:c2b8:ad3c with SMTP id i2-20020a05600c354200b0040ec2b8ad3cmr7722652wmq.32.1707834222338;
+        Tue, 13 Feb 2024 06:23:42 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVDGBPZFgCUjaKAy9RwOzSWbzNrd7r5slXvUZsSNmGugRcR2/FSYEpuXAAD1RIcYbaYqzWXN2T2MTJiI+luyGALSFycOz/Dx+ZJDQJANvvHwTrwX/jf7bR8DZDP9IIIj3WoFKXs6bJy3scXC5No8SdjIX9s5E72jYfb2dIF0IcDoCQiRCSGQnIRurl48+bJimdmQgZ2hPGDTZ5H0duckYLjxFvbuIouC0AxaEyNT9A/3ZJqggcq55uAIU3lC7Z89CHz8TOa+QXqlcavJ9XnQOHa6EmrP+VVBKUlF0o2cFb1YKJY0eIth5/iLTVbrhGuyfUoEKhMLLcqi+798aCdYHhwEB+Knh8COIUFo7y0in+31OKD9HGJz4zZ7Hr64xyl
 Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id v11-20020a05600c444b00b004110e8d605bsm4511078wmn.44.2024.02.13.06.12.18
+        by smtp.gmail.com with ESMTPSA id v1-20020a05600c214100b00410395dc7d1sm11809391wml.7.2024.02.13.06.23.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Feb 2024 06:12:19 -0800 (PST)
-Message-ID: <ddff601e-d149-4894-84cf-0045b88c1561@linaro.org>
-Date: Tue, 13 Feb 2024 15:12:17 +0100
+        Tue, 13 Feb 2024 06:23:42 -0800 (PST)
+Message-ID: <ea2d11e2-3d6f-4dac-aa96-b18b174af00c@linaro.org>
+Date: Tue, 13 Feb 2024 15:23:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: arm: amlogic: add fbx8am binding
+Subject: Re: [PATCH v2 3/4] arm64: dts: amlogic: add fbx8am board
 Content-Language: en-US
 To: Marc Gonzalez <mgonzalez@freebox.fr>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -79,9 +79,9 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
  Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
  Pierre-Hugues Husson <phhusson@freebox.fr>
 References: <77edaf7e-aeb5-4fc0-8b69-85dcddfd5a58@freebox.fr>
- <8a148279-05e1-4f00-87c1-6ed9ed1cb3dd@freebox.fr>
- <959b8135-a687-4781-993c-5fa5ba3b9c8e@linaro.org>
- <cda7afdb-f75f-4376-87b8-882297f2657e@freebox.fr>
+ <7ff2d053-7645-4016-99b1-646242463547@freebox.fr>
+ <76638bd7-f290-4729-8d15-98e1bccfbb40@linaro.org>
+ <b6a02f8b-8782-48bd-8916-36bbd996d4c3@freebox.fr>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,11 +127,10 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <cda7afdb-f75f-4376-87b8-882297f2657e@freebox.fr>
+In-Reply-To: <b6a02f8b-8782-48bd-8916-36bbd996d4c3@freebox.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240213_061226_496101_F1910D83 
-X-CRM114-Status: UNSURE (   6.95  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240213_062345_230844_7DF8F558 
+X-CRM114-Status: GOOD (  10.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -148,17 +147,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 13/02/2024 13:35, Marc Gonzalez wrote:
+On 13/02/2024 11:49, Marc Gonzalez wrote:
+> On 13/02/2024 09:42, Krzysztof Kozlowski wrote:
+> 
+>> On 12/02/2024 18:51, Marc Gonzalez wrote:
+>>
+>>> The fbx8am boards are based on the Amlogic Meson G12A S905X2 SoC,
+>>> and the SEI510 board design.
+>>
+>> ...
+>>
+>>> +	ao_5v: regulator-ao_5v {
+>>
+>> No underscores in node names.
+>>
+>> Didn't you get such comment before?
+> 
+> For the record, this submission is, mostly, a copy of meson-g12a-sei510.dts
+> 
+> Thus, I did not consider diverging from meson-g12a-sei510.dts
+> 
+> $ git grep -i ' [_a-z0-9-]*_[_a-z0-9-]* {' arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts | wc -l
+
+I'll fix meson stuff.
+
+> 6
+> 
+> $ git grep -i ' [_a-z0-9-]*_[_a-z0-9-]* {' arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
+> arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts:      ao_5v: regulator-ao_5v {
+> arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts:      dc_in: regulator-dc_in {
+> arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts:      emmc_1v8: regulator-emmc_1v8 {
+> arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts:      vddao_3v3: regulator-vddao_3v3 {
+> arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts:      vddao_3v3_t: regultor-vddao_3v3_t {
+> arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts:      vddio_ao1v8: regulator-vddio_ao1v8 {
 > 
 > 
-> Looks like my MUA mangled the patch.
-> Sorry about that, will resubmit.
+> IIUC, you're saying it is preferable to fix the node names in new trees,
+> even if it means diverging? (Using dashes instead of underscores?)
 
 
-I have doubts whether you can send proper patches for us with
-Thunderbird. Even if it works, it's risky way and might lead to
-unexpected issues. Please use "normal" process, which solves all such
-problems, so git send-email or b4.
+IMHO, yes.
 
 Best regards,
 Krzysztof
