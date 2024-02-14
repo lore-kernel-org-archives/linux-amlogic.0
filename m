@@ -4,91 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5D23C48260
-	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Feb 2024 00:27:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75E96C48BEB
+	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Feb 2024 09:36:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=M4/XSKePlitSFh07hd7oTo8tP5ts6Fcgdc9GFlpCro8=; b=hcQFt4doOZPPCi
-	5Rqq06nOFtVkZ+L6at5BsBBoGcJ4szWKeQgq99qaHgIj/b/l9LsT4Im1DNQKco8eXH8G5B6Qtz3V4
-	D4kk8HNeeqCZWfxN+RkxyDLvn7qcF0jBWVAOCaK7vvVx60xInkYrwYxRepkGd2T/FF+XmULTFvNO2
-	eXVD0ecMAm5shQELuI2C7X+WfFrK2Xzfx7gsdfvCb1e4qMXVea5Fp31w5ocdgCvpesaOiR2WTAF9R
-	GNYCeeMltKyhhVyu1uqg9YxAiwBUYg+HEDzc0VxHh2poAaNCzlgmWVO1iGwji2r7b89g6+WPVjh61
-	sjoTg8MmZ8AQKBjNcVTg==;
+	List-Owner; bh=Y69jd5jEE/d1OmsHKbrFBSIW0+eS2p5qSnwBtvHfpO8=; b=e6abZXDCh+dgDA
+	GulG5K1wqozZxgJdBb7VqtqypUagDM+xPbf/3DBv6li96qF/1q84w2RUzcAwwEj6A+YSu41lVkxox
+	azDOIiMUbT3PPqoO078KxZWxtAvF8q7poFnyEXtWN/RoBBdWirZD15s+Q53NVvuLh+hXbNzIl3exu
+	W0uDrho9gTOfPPllIGuu26cYpnVwhoYzA0rwUZwW/Y7WZkYCagztDhXj0TD1wS0qvmF14YUr/NqmT
+	hRgPBW2EUIeyEn23VfiDqSDsc/MAHKvM0q2VZ+PmBhzkx/Fip8C9ghNzyynfhMz2UAYFu3EAm4N1e
+	DdWwd6ItL5zbcSQET2lA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ra37M-0000000BMzW-11BD;
-	Wed, 14 Feb 2024 00:27:16 +0000
-Received: from mail-io1-xd34.google.com ([2607:f8b0:4864:20::d34])
+	id 1raBgz-0000000CM91-3YUW;
+	Wed, 14 Feb 2024 09:36:37 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ra37J-0000000BMyh-0IA3
+	id 1raBf4-0000000CKMD-2lnC
 	for linux-amlogic@lists.infradead.org;
-	Wed, 14 Feb 2024 00:27:14 +0000
-Received: by mail-io1-xd34.google.com with SMTP id ca18e2360f4ac-7c3e01a7fe0so235526139f.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 13 Feb 2024 16:27:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1707870432; x=1708475232; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=p5T7AJQgyciJK6sFO1yWt0ErtUqKT+irq43WlU30JPg=;
-        b=wrxCcwxJq5N0Ym/Y+eiykCiFKZ6nFJG/RXjFfP86Vyr/0opOZUiuEzcSLpy0pE3oEv
-         xe1BVETF/x28jA9A/n3lDaOHUVQ3V2fM82cA34dSN9zbXvlqOUJt24efbdwbwlAheq7R
-         BLjyzwwNEoZA5oFTftn/HbRDGKc9nIe83bu/4E8CYPNTpcCBiKOt/yuaIiS2UNV/8TRT
-         psEOzlsQzjmjJRa0HJqfLEZJ6HTFwgRNdKzhBvJIXuLhKzoDxJ2SWkjWPnzbyS7cbiAV
-         S73L2h/fFyBIl0A2yxOG/afKhQerQHBj+oOKFsoEjr26yK+yYBFguYwYe/KPjXQkY7S8
-         8QRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707870432; x=1708475232;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p5T7AJQgyciJK6sFO1yWt0ErtUqKT+irq43WlU30JPg=;
-        b=rUwqs3IlY3Ir2pJ/LNMYPn1Pm4UXyPcVQcjA5UzMODCGa0Z/QchH21q6/ZOcEj2CWU
-         vMQgIWf6gwvU31WplqQwpvMHbnIT04xdvFLIz08Xu8ZFRbQkJpt8SPaALoRsefsPl73e
-         +H9GcxVwLSNPOyAL1WtXnNgtuoRVjvyj2keNedooYTgBnYoQiEMmcpuncLiWL5LEcSlb
-         DyQg7F2Z6ydofYtmedoNNXqJi8QaeEnS/Q8ZL5WKfAyA5b1ux/j+PezneiFQYFefzAMZ
-         gG2/B7NB0cKPb4ANcetY8XqeV++LdZxcCDwc+fbLMIJyaQ/onfwQ457n+pimv49ZI3dn
-         okvA==
-X-Forwarded-Encrypted: i=1; AJvYcCUoOpBXfcE7OTNOZHSCTBLV9K+guYcfSpSaisxWIM9HT4qdhtDZNAgKkDZDkquLsMJfZ0C5xzgtNDI3+7Gl+SSxc08g6/PTFPT7TmS7K4ryo4M=
-X-Gm-Message-State: AOJu0YyobvMxKXC3sRsjP51+7JflJSKgLyZ0rhXBzX+oUJ1vj+BfZ6S5
-	AivcVR+PIONXtYnsYOgLP16t0FTeYGPTLMzFRELh/2FJcMH5ZPjW5EcdJv5r2g==
-X-Google-Smtp-Source: AGHT+IFlwS590K6G5HLkJzVAbnXNA3kjuDrNpfVIBkAOMMF2uKbvfvsNtgUXwFSf/vpyKj4XnjzfVA==
-X-Received: by 2002:a05:6602:1c3:b0:7c4:19c7:646a with SMTP id w3-20020a05660201c300b007c419c7646amr1528777iot.19.1707870431645;
-        Tue, 13 Feb 2024 16:27:11 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXKbZdIao3MuWR588UKr53QbpcAZKhB9kXOjFoOwymzV+XRimiyLDuoM9Vs57HxOeDppfShIb00Z/u6rJ/tcurfJC3aTiIHy1JRA9nuzvdJSQyVigWL++i27Tg6fIAUmRPs3pe2p+FtKb8rdbUMwpszXHSfCYQ8lYx38ofWsyV43KntDzujWzjLLSYTYoTLz3/NQjxi7/US3Au353TFVbFIwDOwxfHDJfrUod67S4qui5i1m/1IHpqXQQ8wnRjb8MTF97izsHtcc/FdPHceEDqvEzUcFd3/ar9ByItkSBO9/+ufMNWKR/VqijYcxsIvZSPceDEMFIXWklvAyj1SFYHkWcQ5tDpEWTfPAvBv2CiYeyyLsoEeJXsoz8uTOZZuo2pDMSlEFzbAPlrHbAeBfQJJPM17PdZXYkPCbH0wUEjQyBL/W9YvrBKJV/h/Xh6m+14cbyX11OSRs9vYRixUqjBQBfEct7pfYePjSPdHykil6zADzWKQp4GEBbBYxlESGl2IAPVmFP5hsrMppTcEWxjF2HY22Cx0LgkOQRCIACoGIRiPq0cj6S3iAoDhbjgIvMmD+SLjXHsNtqaZMzM=
-Received: from google.com (20.10.132.34.bc.googleusercontent.com. [34.132.10.20])
-        by smtp.gmail.com with ESMTPSA id cp27-20020a056638481b00b0047140ce03casm2180833jab.22.2024.02.13.16.27.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Feb 2024 16:27:11 -0800 (PST)
-Date: Wed, 14 Feb 2024 00:27:08 +0000
-From: Justin Stitt <justinstitt@google.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
+	Wed, 14 Feb 2024 09:34:42 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1raBew-00056v-Pb; Wed, 14 Feb 2024 10:34:30 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1raBeu-000fDA-V0; Wed, 14 Feb 2024 10:34:28 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1raBeu-004Y4Z-2p;
+	Wed, 14 Feb 2024 10:34:28 +0100
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
+	linux-pwm@vger.kernel.org
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev
-Subject: Re: [PATCH v2 2/2] ASoC: meson: t9015: fix function pointer type
- mismatch
-Message-ID: <20240214002708.bhpvpt7cv7o4os5t@google.com>
-References: <20240213215807.3326688-1-jbrunet@baylibre.com>
- <20240213215807.3326688-3-jbrunet@baylibre.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	kernel@pengutronix.de
+Subject: [PATCH v6 071/164] pwm: meson: Make use of pwmchip_parent() accessor
+Date: Wed, 14 Feb 2024 10:31:58 +0100
+Message-ID: <02d5f32001c4d0817fa79f5831cfd16b7e345f00.1707900770.git.u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <cover.1707900770.git.u.kleine-koenig@pengutronix.de>
+References: <cover.1707900770.git.u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240213215807.3326688-3-jbrunet@baylibre.com>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2795; i=u.kleine-koenig@pengutronix.de; h=from:subject:message-id; bh=lGUecNCwBfcrdR1yv/aBSypKpDhhdu1IeSjEpVahTX8=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBlzIicu0Qm2x0kESKafacDQMOK2tGhj6by91QPQ 8xM4An/CGiJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZcyInAAKCRCPgPtYfRL+ TtQaCACrgQRjkPmjo63SZIBLq/BColLa6bOlmKXmO3Lu+7q7KYKjyFJ23MJYIwb0GFMM0tTThqx lKmYG3szeg8npTWTEkLza2H8WSoRxztqcaa06BjuN4EzK4IZ39BvSIzTsMkjshGEyJpQL5JV1Lr ENynJWyjfdzNZR4HU1gxESxp77P5g1dmZU5cKA9nX1l80ZkzuweNlfpYcIRCKIOLYsh+8phmrfM +wWe33LvwP1mDIBbq6InqTfCfuZVRzXwT/fum4MnFpy21ikeki2Vl9GRfIOEcxHWLSxRE29G2qj Hpet/6aqXEfxAEKKulkzRBk5QNMgGtcCu/I4c7Lxdmmo5Y7j
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240213_162713_139918_E44AC4EA 
-X-CRM114-Status: GOOD (  22.06  )
+X-CRM114-CacheID: sfid-20240214_013438_871216_AC13026D 
+X-CRM114-Status: GOOD (  13.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,90 +77,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On Tue, Feb 13, 2024 at 10:58:04PM +0100, Jerome Brunet wrote:
-> clang-16 warns about casting functions to incompatible types, as is done
-> here to call clk_disable_unprepare:
->
-> sound/soc/meson/t9015.c:274:4: error: cast from 'void (*)(struct clk *)' to 'void (*)(void *)' converts to incompatible function type [-Werror,-Wcast-function-type-strict]
->   274 |                         (void(*)(void *))clk_disable_unprepare,
->
-> The pattern of getting, enabling and setting a disable callback for a
-> clock can be replaced with devm_clk_get_enabled(), which also fixes
-> this warning.
->
-> Fixes: 33901f5b9b16 ("ASoC: meson: add t9015 internal DAC driver")
-> Reported-by: Arnd Bergmann <arnd@arndb.de>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-
-Reviewed-by: Justin Stitt <justinstitt@google.com>
-> ---
->  sound/soc/meson/t9015.c | 20 ++++----------------
->  1 file changed, 4 insertions(+), 16 deletions(-)
->
-> diff --git a/sound/soc/meson/t9015.c b/sound/soc/meson/t9015.c
-> index 9c6b4dac6893..571f65788c59 100644
-> --- a/sound/soc/meson/t9015.c
-> +++ b/sound/soc/meson/t9015.c
-> @@ -48,7 +48,6 @@
->  #define POWER_CFG	0x10
->
->  struct t9015 {
-> -	struct clk *pclk;
->  	struct regulator *avdd;
->  };
->
-> @@ -249,6 +248,7 @@ static int t9015_probe(struct platform_device *pdev)
->  	struct t9015 *priv;
->  	void __iomem *regs;
->  	struct regmap *regmap;
-> +	struct clk *pclk;
->  	int ret;
->
->  	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> @@ -256,26 +256,14 @@ static int t9015_probe(struct platform_device *pdev)
->  		return -ENOMEM;
->  	platform_set_drvdata(pdev, priv);
->
-> -	priv->pclk = devm_clk_get(dev, "pclk");
-> -	if (IS_ERR(priv->pclk))
-> -		return dev_err_probe(dev, PTR_ERR(priv->pclk), "failed to get core clock\n");
-> +	pclk = devm_clk_get_enabled(dev, "pclk");
-> +	if (IS_ERR(pclk))
-> +		return dev_err_probe(dev, PTR_ERR(pclk), "failed to get core clock\n");
->
->  	priv->avdd = devm_regulator_get(dev, "AVDD");
->  	if (IS_ERR(priv->avdd))
->  		return dev_err_probe(dev, PTR_ERR(priv->avdd), "failed to AVDD\n");
->
-> -	ret = clk_prepare_enable(priv->pclk);
-> -	if (ret) {
-> -		dev_err(dev, "core clock enable failed\n");
-> -		return ret;
-> -	}
-> -
-> -	ret = devm_add_action_or_reset(dev,
-> -			(void(*)(void *))clk_disable_unprepare,
-> -			priv->pclk);
-> -	if (ret)
-> -		return ret;
-> -
->  	ret = device_reset(dev);
->  	if (ret) {
->  		dev_err(dev, "reset failed\n");
-> --
-> 2.43.0
->
-Thanks
-Justin
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+c3RydWN0IHB3bV9jaGlwOjpkZXYgaXMgYWJvdXQgdG8gY2hhbmdlLiBUbyBub3QgaGF2ZSB0byB0
+b3VjaCB0aGlzCmRyaXZlciBpbiB0aGUgc2FtZSBjb21taXQgYXMgc3RydWN0IHB3bV9jaGlwOjpk
+ZXYsIHVzZSB0aGUgYWNjZXNzb3IKZnVuY3Rpb24gcHJvdmlkZWQgZm9yIGV4YWN0bHkgdGhpcyBw
+dXJwb3NlLgoKU2lnbmVkLW9mZi1ieTogVXdlIEtsZWluZS1Lw7ZuaWcgPHUua2xlaW5lLWtvZW5p
+Z0BwZW5ndXRyb25peC5kZT4KLS0tCiBkcml2ZXJzL3B3bS9wd20tbWVzb24uYyB8IDE2ICsrKysr
+KysrLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDggZGVsZXRpb25z
+KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9wd20vcHdtLW1lc29uLmMgYi9kcml2ZXJzL3B3bS9w
+d20tbWVzb24uYwppbmRleCA3Y2U0MTgxMTUzN2QuLjhmNjdkNmJhNDQzZCAxMDA2NDQKLS0tIGEv
+ZHJpdmVycy9wd20vcHdtLW1lc29uLmMKKysrIGIvZHJpdmVycy9wd20vcHdtLW1lc29uLmMKQEAg
+LTEyMiw3ICsxMjIsNyBAQCBzdGF0aWMgaW50IG1lc29uX3B3bV9yZXF1ZXN0KHN0cnVjdCBwd21f
+Y2hpcCAqY2hpcCwgc3RydWN0IHB3bV9kZXZpY2UgKnB3bSkKIHsKIAlzdHJ1Y3QgbWVzb25fcHdt
+ICptZXNvbiA9IHRvX21lc29uX3B3bShjaGlwKTsKIAlzdHJ1Y3QgbWVzb25fcHdtX2NoYW5uZWwg
+KmNoYW5uZWwgPSAmbWVzb24tPmNoYW5uZWxzW3B3bS0+aHdwd21dOwotCXN0cnVjdCBkZXZpY2Ug
+KmRldiA9IGNoaXAtPmRldjsKKwlzdHJ1Y3QgZGV2aWNlICpkZXYgPSBwd21jaGlwX3BhcmVudChj
+aGlwKTsKIAlpbnQgZXJyOwogCiAJZXJyID0gY2xrX3ByZXBhcmVfZW5hYmxlKGNoYW5uZWwtPmNs
+ayk7CkBAIC0xNzAsMTkgKzE3MCwxOSBAQCBzdGF0aWMgaW50IG1lc29uX3B3bV9jYWxjKHN0cnVj
+dCBwd21fY2hpcCAqY2hpcCwgc3RydWN0IHB3bV9kZXZpY2UgKnB3bSwKIAogCWZpbl9mcmVxID0g
+Y2xrX3JvdW5kX3JhdGUoY2hhbm5lbC0+Y2xrLCBmcmVxKTsKIAlpZiAoZmluX2ZyZXEgPT0gMCkg
+ewotCQlkZXZfZXJyKGNoaXAtPmRldiwgImludmFsaWQgc291cmNlIGNsb2NrIGZyZXF1ZW5jeVxu
+Iik7CisJCWRldl9lcnIocHdtY2hpcF9wYXJlbnQoY2hpcCksICJpbnZhbGlkIHNvdXJjZSBjbG9j
+ayBmcmVxdWVuY3lcbiIpOwogCQlyZXR1cm4gLUVJTlZBTDsKIAl9CiAKLQlkZXZfZGJnKGNoaXAt
+PmRldiwgImZpbl9mcmVxOiAlbHUgSHpcbiIsIGZpbl9mcmVxKTsKKwlkZXZfZGJnKHB3bWNoaXBf
+cGFyZW50KGNoaXApLCAiZmluX2ZyZXE6ICVsdSBIelxuIiwgZmluX2ZyZXEpOwogCiAJY250ID0g
+ZGl2X3U2NChmaW5fZnJlcSAqIHBlcmlvZCwgTlNFQ19QRVJfU0VDKTsKIAlpZiAoY250ID4gMHhm
+ZmZmKSB7Ci0JCWRldl9lcnIoY2hpcC0+ZGV2LCAidW5hYmxlIHRvIGdldCBwZXJpb2QgY250XG4i
+KTsKKwkJZGV2X2Vycihwd21jaGlwX3BhcmVudChjaGlwKSwgInVuYWJsZSB0byBnZXQgcGVyaW9k
+IGNudFxuIik7CiAJCXJldHVybiAtRUlOVkFMOwogCX0KIAotCWRldl9kYmcoY2hpcC0+ZGV2LCAi
+cGVyaW9kPSVsbHUgY250PSV1XG4iLCBwZXJpb2QsIGNudCk7CisJZGV2X2RiZyhwd21jaGlwX3Bh
+cmVudChjaGlwKSwgInBlcmlvZD0lbGx1IGNudD0ldVxuIiwgcGVyaW9kLCBjbnQpOwogCiAJaWYg
+KGR1dHkgPT0gcGVyaW9kKSB7CiAJCWNoYW5uZWwtPmhpID0gY250OwpAQCAtMTkzLDcgKzE5Myw3
+IEBAIHN0YXRpYyBpbnQgbWVzb25fcHdtX2NhbGMoc3RydWN0IHB3bV9jaGlwICpjaGlwLCBzdHJ1
+Y3QgcHdtX2RldmljZSAqcHdtLAogCX0gZWxzZSB7CiAJCWR1dHlfY250ID0gZGl2X3U2NChmaW5f
+ZnJlcSAqIGR1dHksIE5TRUNfUEVSX1NFQyk7CiAKLQkJZGV2X2RiZyhjaGlwLT5kZXYsICJkdXR5
+PSVsbHUgZHV0eV9jbnQ9JXVcbiIsIGR1dHksIGR1dHlfY250KTsKKwkJZGV2X2RiZyhwd21jaGlw
+X3BhcmVudChjaGlwKSwgImR1dHk9JWxsdSBkdXR5X2NudD0ldVxuIiwgZHV0eSwgZHV0eV9jbnQp
+OwogCiAJCWNoYW5uZWwtPmhpID0gZHV0eV9jbnQ7CiAJCWNoYW5uZWwtPmxvID0gY250IC0gZHV0
+eV9jbnQ7CkBAIC0yMTcsNyArMjE3LDcgQEAgc3RhdGljIHZvaWQgbWVzb25fcHdtX2VuYWJsZShz
+dHJ1Y3QgcHdtX2NoaXAgKmNoaXAsIHN0cnVjdCBwd21fZGV2aWNlICpwd20pCiAKIAllcnIgPSBj
+bGtfc2V0X3JhdGUoY2hhbm5lbC0+Y2xrLCBjaGFubmVsLT5yYXRlKTsKIAlpZiAoZXJyKQotCQlk
+ZXZfZXJyKGNoaXAtPmRldiwgInNldHRpbmcgY2xvY2sgcmF0ZSBmYWlsZWRcbiIpOworCQlkZXZf
+ZXJyKHB3bWNoaXBfcGFyZW50KGNoaXApLCAic2V0dGluZyBjbG9jayByYXRlIGZhaWxlZFxuIik7
+CiAKIAlzcGluX2xvY2tfaXJxc2F2ZSgmbWVzb24tPmxvY2ssIGZsYWdzKTsKIApAQCAtNDM5LDcg
+KzQzOSw3IEBAIHN0YXRpYyBpbnQgbWVzb25fcHdtX2luaXRfY2hhbm5lbHMoc3RydWN0IHB3bV9j
+aGlwICpjaGlwKQogewogCXN0cnVjdCBtZXNvbl9wd20gKm1lc29uID0gdG9fbWVzb25fcHdtKGNo
+aXApOwogCXN0cnVjdCBjbGtfcGFyZW50X2RhdGEgbXV4X3BhcmVudF9kYXRhW01FU09OX01BWF9N
+VVhfUEFSRU5UU10gPSB7fTsKLQlzdHJ1Y3QgZGV2aWNlICpkZXYgPSBjaGlwLT5kZXY7CisJc3Ry
+dWN0IGRldmljZSAqZGV2ID0gcHdtY2hpcF9wYXJlbnQoY2hpcCk7CiAJdW5zaWduZWQgaW50IGk7
+CiAJY2hhciBuYW1lWzI1NV07CiAJaW50IGVycjsKLS0gCjIuNDMuMAoKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBs
+aXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFk
+ZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
