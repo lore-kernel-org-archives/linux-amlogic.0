@@ -4,140 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9090C48BC3
-	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Feb 2024 12:50:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BC7EC48BC3
+	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Feb 2024 13:22:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ndWyNV9Uk6HP/jrJPRvMkkAZzZmcODfk7eTuTIDYYPc=; b=T0zWYYa3jCskLv
-	Hy86NusI1DgqWKLnE+ei6sPyusgrrau2iViyarRGOwt/E1oScX9asbQEjjLr8fN9jLSfImC2OJgT3
-	IzAs0ABVRqJZOgsW8aiWw4fIaL5e8PqlFRcxfimeA+EmacaVXIIvnf25gUSFw5WUgv9/5p3JABokn
-	0GFPyNK5EAe0qpHrYkh+WTjloCguXKOQ/vms/KRdFt44XEtQcXJoEA8VPVIO9JwzjGhpAjI9ukVNX
-	QGI/5udsRZDv4I4oiUd4aplck0VcFpewIMnjSN7L2DedOq3U1AmV+JdsG4e6IxGSqvPWN19myL5Hv
-	ruT56KQDqA3lJx3AgcBw==;
+	List-Owner; bh=VzuUxlZJY6V6qMwpRXNxtGDU/lNbYt0i09o276EkXa0=; b=kbPXzxGZdcqcoc
+	HBVdtsJQ23/TsnX9AGJ0iItuRjSjkfREKLfIF5hxul6L9vdwLvscz4qJRn2/at1hoh2TjARjxxWuo
+	hBw7ZZWTueKu+Hoj4/WnsP9eIlwi00K/fvtuQawgQsHINA2/noeyEdtu5Qv9ML/qVmPT53UjBtkol
+	MmzvZDLuaiLYIo+THtDv+8ZZqQDs6PUfBcXwLTq8Y3IGuha3vTJoYt3cpa1oHCt7jsY7PtekZSGiU
+	P3MzJ5JcJDxvrkaIvZhH1KwBKa0YhHoCBjFO675fNfrdcF1uy5rdJhE7LycGhb5YqV3kuLOQqlOU7
+	thaGA6bjYwspftUvDnNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1raEi5-0000000CssP-3fDh;
-	Wed, 14 Feb 2024 12:49:57 +0000
-Received: from mgamail.intel.com ([198.175.65.19])
+	id 1raFDV-0000000Czrv-0Hf8;
+	Wed, 14 Feb 2024 13:22:25 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1raEi1-0000000CsrJ-0MJ2;
-	Wed, 14 Feb 2024 12:49:54 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1707914993; x=1739450993;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=VfFo/DkZzmeQyKntjmarBqvTj2pcgH+G7HGM6HxEwSk=;
-  b=C+SZyq4J6dxhznCmpkjvmy+MGaS5U2l5nRx41CS0BLupO3iyoLrQFtwq
-   BJ09p4KhLgY1jnrwB1UvVd/cr+/uFKMg8mPOLVrZXfn2kkoMCnjOyMVys
-   06ITgTPSgxPSmfeWTFBJG7eCjyYBFeuxTUCEBvOfb64cu+vpEueacGcrj
-   3XhvfcA4wDySrKdmAEZ4QNUixarqaXNbxHtaEZqhWjddpMqbbk2gJ/tC/
-   +sqKqTgMDSRE2B4d0lgr1zoaUokl0Qpr+J0uNWNGJ7DDFtKyEtFriPBju
-   2HJ5FxWp2mk06ybPvs0bdG4n64d367N2BjZP3ySQAQgmGzuJAU2p+mlJk
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1809713"
-X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="1809713"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2024 04:49:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="912083870"
-X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="912083870"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2024 04:49:33 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1raEhb-00000004UXT-0JCa;
-	Wed, 14 Feb 2024 14:49:27 +0200
-Date: Wed, 14 Feb 2024 14:49:26 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Jonathan Corbet <corbet@lwn.net>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	James Clark <james.clark@arm.com>, Mark Brown <broonie@kernel.org>,
-	linux-pwm@vger.kernel.org, Hector Martin <marcan@marcan.st>,
-	Sven Peter <sven@svenpeter.dev>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Alexander Shiyan <shc_work@mail.ru>,
-	Benson Leung <bleung@chromium.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Michael Walle <mwalle@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Hammer Hsieh <hammerh0314@gmail.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-	Sean Anderson <sean.anderson@seco.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>,
-	Anjelique Melendez <quic_amelende@quicinc.com>,
-	Bjorn Andersson <quic_bjorande@quicinc.com>,
-	Kees Cook <keescook@chromium.org>, Rob Herring <robh@kernel.org>,
-	linux-doc@vger.kernel.org, kernel@pengutronix.de,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	linux-rpi-kernel@lists.infradead.org,
-	Guenter Roeck <groeck@chromium.org>,
-	chrome-platform@lists.linux.dev, Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, linux-mips@vger.kernel.org,
-	linux-gpio@vger.kernel.org, platform-driver-x86@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-samsung-soc@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
-	linux-leds@vger.kernel.org
-Subject: Re: [PATCH v6 003/164] pwm: Provide pwmchip_alloc() function and a
- devm variant of it
-Message-ID: <Zcy21tsntcK80hef@smile.fi.intel.com>
-References: <cover.1707900770.git.u.kleine-koenig@pengutronix.de>
- <9577d6053a5a52536057dc8654ff567181c2da82.1707900770.git.u.kleine-koenig@pengutronix.de>
+	id 1raFDF-0000000CznM-2gll;
+	Wed, 14 Feb 2024 13:22:11 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 75A9B61953;
+	Wed, 14 Feb 2024 13:22:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF6E5C43390;
+	Wed, 14 Feb 2024 13:22:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707916928;
+	bh=3BhU0aZnn35CAZKdM6PG56ZetB26JCBoUcsKfsvxGTk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=sX/UcCP3s3y2QCF0191UjJyD2CJK84+XSRUiI1nfqhs8x6EgXD4u/hDmD6bigwF0/
+	 j4AjeSgE3JEtXKxEFmPBtkU8LZVYahLjimx/yREgHv32imHWfpSwWWpju+eb1e06kd
+	 0f5MrjyH0sPnMVLVopaWMcRaet7EWXbGXir6Vi4F1W+jyDvOUE7z4uF2BpAN9JxIUe
+	 iux4t/Hw7uSnQzEdn2E37Z0Nf5bJUGDU0uyQb1vVPmQGo/5OW7xy2xejDh9ixeJnrI
+	 U2CE6YqI+unaEX68jDwd/JNsVxnsOHKrkBbcsNSwIGwOkG0xbFae2+1zSCxzB0hXD9
+	 b73jVOR6qSvnA==
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Nathan Chancellor <nathan@kernel.org>, 
+ Nick Desaulniers <ndesaulniers@google.com>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
+ alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, llvm@lists.linux.dev
+In-Reply-To: <20240213215807.3326688-1-jbrunet@baylibre.com>
+References: <20240213215807.3326688-1-jbrunet@baylibre.com>
+Subject: Re: [PATCH v2 0/2] ASoC: meson: aiu: fix function pointer type
+ mismatch
+Message-Id: <170791692451.143237.6316282376548391909.b4-ty@kernel.org>
+Date: Wed, 14 Feb 2024 13:22:04 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <9577d6053a5a52536057dc8654ff567181c2da82.1707900770.git.u.kleine-koenig@pengutronix.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Mailer: b4 0.13-dev-a684c
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240214_044953_195727_85675CF7 
-X-CRM114-Status: GOOD (  22.82  )
+X-CRM114-CacheID: sfid-20240214_052209_768424_02BC43EF 
+X-CRM114-Status: GOOD (  12.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -149,69 +76,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Feb 14, 2024 at 10:30:50AM +0100, Uwe Kleine-K=F6nig wrote:
-> This function allocates a struct pwm_chip and driver data. Compared to
-> the status quo the split into pwm_chip and driver data is new, otherwise
-> it doesn't change anything relevant (yet).
-> =
+On Tue, 13 Feb 2024 22:58:02 +0100, Jerome Brunet wrote:
+> This patchset fixes 2 -Wcast-function-type-strict warning in amlogic
+> audio drivers with clang 16.
+> 
+> Changes since v1: [0]
+> * use devm_clk_get_enabled() instead of adding a dedicated helper in each
+>   driver.
+> * Split the patch, 1 per fixed commit to make it easier for stable.
+> 
+> [...]
 
-> The intention is that after all drivers are switched to use this
-> allocation function, its possible to add a struct device to struct
-> pwm_chip to properly track the latter's lifetime without touching all
-> drivers again. Proper lifetime tracking is a necessary precondition to
-> introduce character device support for PWMs (that implements atomic
-> setting and doesn't suffer from the sysfs overhead of the /sys/class/pwm
-> userspace support).
-> =
+Applied to
 
-> The new function pwmchip_priv() (obviously?) only works for chips
-> allocated with pwmchip_alloc().
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-...
+Thanks!
 
-> +#define PWMCHIP_ALIGN ARCH_DMA_MINALIGN
-> +
-> +static void *pwmchip_priv(struct pwm_chip *chip)
-> +{
-> +	return (void *)chip + ALIGN(sizeof(*chip), PWMCHIP_ALIGN);
-> +}
+[1/2] ASoC: meson: aiu: fix function pointer type mismatch
+      commit: 98ac85a00f31d2e9d5452b825a9ed0153d934043
+[2/2] ASoC: meson: t9015: fix function pointer type mismatch
+      commit: 5ad992c71b6a8e8a547954addc7af9fbde6ca10a
 
-Why not use dma_get_cache_alignment() ?
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-...
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-> +/* This is the counterpart to pwmchip_alloc */
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-pwmchip_alloc()
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-...
-
-> +EXPORT_SYMBOL_GPL(pwmchip_put);
-
-> +EXPORT_SYMBOL_GPL(pwmchip_alloc);
-
-> +EXPORT_SYMBOL_GPL(devm_pwmchip_alloc);
-
-Are these exported via namespace? If no, can they be from day 1?
-
-...
-
-> +static inline void pwmchip_put(struct pwm_chip *chip)
-> +{
-> +}
-
-Can be one line, but it's up to the present style in this header.
-
--- =
-
-With Best Regards,
-Andy Shevchenko
-
+Thanks,
+Mark
 
 
 _______________________________________________
