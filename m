@@ -4,89 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52409C48260
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Feb 2024 07:47:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6D1AC48BF5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Feb 2024 11:23:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RvHYy/i+ojs3o4rzqogWeyyG/MXAvwkXP+eCJlcaHcA=; b=UnYchJZ5o+4LdM
-	UORaso6e8/be0vsPVHzGFti5FBlWa52SIEFXjuSLqhjwU2bUUSh0NTta1X8qns5vyqKaHfzrtcpHY
-	GjgMhNyRj+Zatd4TtyAJWfJwjbqYSLCiDn0LWtNiFm9SzZi3vwbCZYu3cpR9W/txt2O3xg/RU+CO4
-	vxQzs7r3wx7n4bfiVZU0BCcxtwutIIJdz5v6erETfjksHfebzGJn4fD0XQi++RxsQQh7HvIjQhDd1
-	PpQHBtRpuJjcYOVrHKuBCH+r3u/8S+S+fRL8hL0h+K0XAxo/72HuHKVqXXfvl3zc0NGbW3TRWxd4o
-	0jqWYV6o9LqThUnEEqog==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:References:To:From:Subject:Message-Id:Date:Mime-Version:Reply-To:
+	Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=qXLJbrIxE/5/07J4EooMHBQF4sRuWC+G1zItxMvjmds=; b=E6czBKBYWr1I3caJ2zJ0K2wX+z
+	HUQ1WU7XB3ebto0rLpO3eS5ahfwGOaqJf4JwrFwGUSp8D1TZUB5yjAspG/AYPxlHfH/PRDYq79LbB
+	fcfRkmztQKfK1536kEOIjpNl9Szn/5xR7TjyubIIZfhg8W0a5O9qRFqPRyFSqruboZZruOsU2GPJc
+	/L8Hu5qWMvT0djWFSKMNGV3XLK8gEK+xNRavea7K9IG7u/Z9y3eWlE0z5FkPK2J/zdN2nZeK7I+8f
+	ikC2m398xhj/85nnk3zSssrJUIC78UqMypcqgu2l72+xnIySKSwzOK+NrimQlcHBrjNG+O1Gi/mMq
+	zdEQYwxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1raswX-00000001PgT-3HiD;
-	Fri, 16 Feb 2024 07:47:33 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1rawJj-000000028Nn-0xiZ;
+	Fri, 16 Feb 2024 11:23:43 +0000
+Received: from mail-lf1-x133.google.com ([2a00:1450:4864:20::133])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1raswT-00000001Pfi-1G5p;
-	Fri, 16 Feb 2024 07:47:32 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id A89C412000C;
-	Fri, 16 Feb 2024 10:47:22 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru A89C412000C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1708069642;
-	bh=JBIQUmjhGqPH9CX2watwkGz5Gl4QEsmX9X4DCeR6veI=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=KWSqTlGmCZbZaVN413ix6tubW0zlKnEts0ric9KI0eH7kJJePjFTvu7bcJnL+ahty
-	 +2uDTqajV2lOb3OSckxNBL/KHb4uDUDBsmMsMExUM5K7+glolNWcGmBd5+oKO8kbJ1
-	 K/awcGxdJG+Y8H86k5T6iZ9TqTog5qUwM53cAUgpioSYhnmRRfGavHtflpdnuUHDUr
-	 3jw3LSKEuKRLvP/sqwHXCaw7u86+ejG3RCp5NWsYGMNzA7PfJRct0Nj0cnBGtiVg0R
-	 lMLXD/ty9kYKzokg/lOHLqXqq0/p5BEgXOa1pckZ6Cnqpeus4ieUFcC1NAOaGDNqsB
-	 kePv4zKdeuhCA==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 16 Feb 2024 10:47:22 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 16 Feb
- 2024 10:47:22 +0300
-Date: Fri, 16 Feb 2024 10:47:16 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-CC: Viacheslav Bocharov <adeep@lexina.in>, Jerome Brunet
-	<jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [DMARC error][DKIM error] [PATCH 0/5] soc: amlogic: add new
- meson-gx-socinfo-sm driver
-Message-ID: <20240216074716.a33hrvl5xnpm7aep@CAB-WSD-L081021>
-References: <20231122125643.1717160-1-adeep@lexina.in>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20231122125643.1717160-1-adeep@lexina.in>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 183487 [Feb 16 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.3
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, github.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;elixir.bootlin.com:7.1.1;salutedevices.com:7.1.1;lists.infradead.org:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/02/16 06:18:00
-X-KSMG-LinksScanning: Clean, bases: 2024/02/16 07:22:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/16 06:42:00 #23632408
-X-KSMG-AntiVirus-Status: Clean, skipped
+	id 1rawJg-000000028N1-1e8F;
+	Fri, 16 Feb 2024 11:23:41 +0000
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-511a04c837bso2257568e87.0;
+        Fri, 16 Feb 2024 03:23:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708082618; x=1708687418; darn=lists.infradead.org;
+        h=in-reply-to:references:to:from:subject:message-id:date:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qCkIBF2HUHDgPA/fkE23qtD6c+3DYAPMy1MuIjYZckA=;
+        b=URxzrfgdFsFVPTc90qDPdd8vltCkUHKYii1N6UWJ05gnGEittSK5xiD4cWAXlOHoJv
+         iiN/uXLS0j8tm936cghSG6Ty6yVU7DzKmpSwOF967OPcEwE8xSxQy4+URexwjbuY/Pl5
+         jwdIYgbqzCdBz4NBGI9/kOD17943gV/ytDfLWxhMJB1Weh/kV4GxpKDDqtdf0b5lvCEd
+         /TS6Dxls+tWIrjOcuElpNOXbFqjBXcMNt09hoDY86N4jXf8AAPsLUpXo2hmJT8HaiCaf
+         LSdDPZRdcj2cosPdF/1Z6e1IB6Faf1UiHru0xgf1iEcJ4Vw1P2XlyYEY+TPmX+zrk5/s
+         fuDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708082618; x=1708687418;
+        h=in-reply-to:references:to:from:subject:message-id:date:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qCkIBF2HUHDgPA/fkE23qtD6c+3DYAPMy1MuIjYZckA=;
+        b=T5rBDjlhoq9BuywIhZd/yKvc7O0oJuX/fEJqTQvoruXTgjlMiUOBoYhQr4d86mmzjr
+         E9CqIHe/z1vD5QSY0wz8xfQEi7SCAd948LAsZ8ylagxix8A+MZQbY74esmNC1USev0Pv
+         ZvEhP0Ub1KmlMqcKzGJ1FW7U1mGpaKsuaQXQpVR9ZprdB7MipVffw9ILOaKLuxoENeSc
+         5J9RFnx5rVb20yeUpPZUqxu4IIciIbTmuWk1sEbN6/kQW4G07PNqQu8xk3WFrZzHfA2u
+         7HbtP2eMzQXDGAZ7q3RMuooOUMr5c09oHpijyjmFVFqIzVcrunOAeIT8sPKAX/32uWqz
+         nPGA==
+X-Forwarded-Encrypted: i=1; AJvYcCXYRj35TOG59o9xLxsi3B8OMhP3/vVZIu15KATAmuXMkOYiE0gSvYxPjma0pRhRwg/4P2i1COQCFSF2YSDpkDeTxVdkrUvcSR5pTThLdGSzvpQkQKqGjTT7vTBmozyYGn6ulWeXNKsg632Le5yhlEcGszD12Z/811O/XMDEwcAFeEyATOJ2HIh8BApDoJ5cY7HZGbf28U4=
+X-Gm-Message-State: AOJu0YxPcwl8s4VGFukdX5sNTd06K2JFQiVqp56+bK2DNstYKzomI947
+	B3C3MSjL746aA6dTJ9hFR5MvE5/Kn9UKpz0pfDwiTvO+ACCdHsBi
+X-Google-Smtp-Source: AGHT+IFk4ZkCa0R/m44omA2Xi3MhoAzI8tKPY8V0cTU/2axm4inHWuZNW2UcVx0PzaNks2ZutoR+ew==
+X-Received: by 2002:a05:6512:716:b0:511:8b40:ab6b with SMTP id b22-20020a056512071600b005118b40ab6bmr2834631lfs.50.1708082618024;
+        Fri, 16 Feb 2024 03:23:38 -0800 (PST)
+Received: from localhost (p200300e41f147f00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f14:7f00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id f23-20020a170906561700b00a3d828c54f1sm1459386ejq.135.2024.02.16.03.23.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Feb 2024 03:23:37 -0800 (PST)
+Mime-Version: 1.0
+Date: Fri, 16 Feb 2024 12:23:36 +0100
+Message-Id: <CZ6GR5BWC80N.36XRBM33WF8MW@gmail.com>
+Subject: Re: [PATCH] clk: constify the of_phandle_args argument of
+ of_clk_provider
+From: "Thierry Reding" <thierry.reding@gmail.com>
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Michael
+ Turquette" <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>,
+ "Sudeep Holla" <sudeep.holla@arm.com>, "Peng Fan" <peng.fan@nxp.com>,
+ "Shawn Guo" <shawnguo@kernel.org>, "Nishanth Menon" <nm@ti.com>, "Bjorn
+ Andersson" <andersson@kernel.org>, "Konrad Dybcio"
+ <konrad.dybcio@linaro.org>, "Geert Uytterhoeven" <geert+renesas@glider.be>,
+ "Jonathan Hunter" <jonathanh@nvidia.com>, "Linus Walleij"
+ <linus.walleij@linaro.org>, "Laurent Pinchart"
+ <laurent.pinchart@ideasonboard.com>, "Mauro Carvalho Chehab"
+ <mchehab@kernel.org>, "Vinod Koul" <vkoul@kernel.org>, "Russell King"
+ <linux@armlinux.org.uk>, "Srinivas Kandagatla"
+ <srinivas.kandagatla@linaro.org>, "Mark Brown" <broonie@kernel.org>,
+ "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
+ <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>, <patches@opensource.cirrus.com>,
+ <linux-stm32@st-md-mailman.stormreply.com>, "NXP Linux Team"
+ <linux-imx@nxp.com>, <linux-amlogic@lists.infradead.org>,
+ <linux-arm-msm@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
+ <linux-tegra@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+ <linux-media@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+ <alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>
+X-Mailer: aerc 0.16.0-1-0-g560d6168f0ed-dirty
+References: <20240208163710.512733-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240208163710.512733-1-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240215_234730_066363_0EB69BDC 
-X-CRM114-Status: GOOD (  27.72  )
+X-CRM114-CacheID: sfid-20240216_032340_451953_1D2D3FE7 
+X-CRM114-Status: UNSURE (   5.61  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,120 +105,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1327275599112518665=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Neil,
+--===============1327275599112518665==
+Content-Type: multipart/signed;
+ boundary=87caa6e717479adfa0f5d015ffee82cc14ceb938e5f7a71c46d45b7997b5;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
 
-May I put in my two cents on this patch series?
+--87caa6e717479adfa0f5d015ffee82cc14ceb938e5f7a71c46d45b7997b5
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-There appears to be a misunderstanding regarding the terminology used.
-Allow me to clarify my perspective.
+On Thu Feb 8, 2024 at 5:37 PM CET, Krzysztof Kozlowski wrote:
+[...]
+>  drivers/clk/tegra/clk-bpmp.c                  |  2 +-
+>  drivers/clk/tegra/clk-tegra124.c              |  2 +-
+>  drivers/clk/tegra/clk-tegra20.c               |  2 +-
+>  drivers/clk/tegra/clk-tegra30.c               |  2 +-
+[...]
 
-The original Amlogic chipid has the following format:
+Acked-by: Thierry Reding <treding@nvidia.com>
 
-    4 bytes      12 bytes
-    +-------+-------------------+
-    |       |                   |
-    | CPUID | SOC SERIAL NUMBER |
-    |       |                   |
-    +-------+-------------------+
-    0                          15
+--87caa6e717479adfa0f5d015ffee82cc14ceb938e5f7a71c46d45b7997b5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmXPRbkACgkQ3SOs138+
+s6FzcQ/9F5fJyakwkqSmFCFsFTUwQ0Vv6AmJP7kf0C2oOGiJISmgaFwRE7ikl73f
+tfJ/jetoF3grVZE950B1ZtY1sAK6WLfAlRnkD52YE25Y+NcehSPfcE2403gBL/JZ
+6Rtlw4U/jJhHC7k1NNSCV6W3YM9tFJZzPdOwWL1efc33DWZQkTgvIPKSfqGIHd0i
+iclZTsusANQThdL9ASOlvq81RrglhXgo2PIt/oeGjEBtf+IoDVhHSWqJ65e/lmYV
+cBw1uhHa5zHLiWoT4xTqJY8dPkSLfBSRM3uflLUkA5BRNllvVsHAPvIgR6aBpqi5
+KeLdZEDFeIuIi8nqtYxhhnGa8nKz9t03MNj9GbFf9HYocIVDIV4SvKuKongDjcYZ
+zr5jC3lMZnmuQIM5XOIFu8hQWG0zQ6H+Kuf6ifolHj13E5gplCo4BoZWNnE84OZ8
+fMjNHraK6RNUUqJXW43OBEjejW+FvvZIpMvyyt8TcE/I7hieXCjib0Spu2n5SwvK
+mQgKxPJpsOpCxIOID89cK2VwOX3uOZslT3M5sU9ZkoUcwRpQ/Ntfr7ZWW8Jy/L4Y
+DWnk7IvOvI4fFlmRQONIeWpr8euHFmCL8L8dJ29AI9oB2lvs7ZovvWw9QTE8E6iU
+EjVBwtdG6KqWJxP803h8DAvvD0Vsu0KzQFr+Pwre3NP2FHYDCR0=
+=E0uq
+-----END PGP SIGNATURE-----
+
+--87caa6e717479adfa0f5d015ffee82cc14ceb938e5f7a71c46d45b7997b5--
 
 
-In the current uboot [1] and kernel [2] upstream, only the SOC SERIAL
-NUMBER bytes are read from efuse OTP storage (and it isn't swapped, as
-Amlogic reference code does [3]). We refer to these bytes as "serial".
-
-The original chipid value is utilized in several algorithms (for
-example, in the Amlogic boot protocols), making it crucial to have the
-ability to read the original chipid value as intended by the vendor.
-
-In my opinion, we should align our naming terminology as follows:
-    - "chipid" - Represents the complete Amlogic SoC ID, includes
-                 "cpuid" and "serial"
-    - "serial" - 12 byte unique SoC number, identifying particular die
-
-We strongly believe that this patch series is essential and are highly interested in seeing it applied to the upstream linux-amlogic, for the following reasons:
-    - We use chipid for device identification in our boards
-    - The Amlogic boot protocols utilize the full version of chipid
-      (ADNL, Optimus). As I mentioned in the IRC, we are preparing a
-      patch series for uboot incorporating them.
-    - in OPTEE: for generation of SSK (Secure Storage Key) [4]
-    - RPMB: for generation of RPMB key, further provisioned into RPMB
-      controller (thus particular SoC is bound to particular eMMC
-
-Therefore, I propose that we rename "soc_id" in the Viacheslav patch
-series to "chipid" and subsequently port this patch series to uboot.
-
-What are your thoughts on this matter?
-
-Links:
-[1] - https://elixir.bootlin.com/u-boot/v2024.01/source/arch/arm/mach-meson/sm.c#L84
-[2] - https://elixir.bootlin.com/linux/v6.7.4/source/drivers/firmware/meson/meson_sm.c#L268
-[3] - https://github.com/CoreELEC/u-boot/blob/3efc85a8370796bcec3bcadcdecec9aed973f4a9/arch/arm/mach-meson/g12a/bl31_apis.c#L398-L417
-[4] - https://github.com/OP-TEE/optee_os/blob/5df2a985b2ffd0b6f1107f12ca2a88203bf31328/core/tee/tee_fs_key_manager.c#L152
-
-On Wed, Nov 22, 2023 at 03:56:38PM +0300, Viacheslav Bocharov wrote:
-> The Amlogic Meson SoC Secure Monitor implements a call to retrieve an
-> unique SoC ID starting from the GX Family and all new families.
-> But GX-family chips (e.g. GXB, GXL and newer) supports also 128-bit
-> chip ID. 128-bit chip ID consists 32-bit SoC version and 96-bit OTP data.
-> 
-> This is the second attempt to publish data from the Amlogic secure monitor
-> chipid call. After discussions with Neil Armstrong, it was decided to
-> publish the chipid call results through the soc driver. Since
-> soc_device_match cannot wait for the soc driver to load, and the secure
-> monitor calls in turn depend on the sm driver, it was necessary to create
-> a new driver rather than expand an existing one.
-> 
-> In the patches, in addition to writing the driver:
-> - convert commonly used structures and functions of the meson-gx-socinfo
-> driver to a header file.
-> - transfer the chipid sm call constants to a header file (perhaps they
-> need renaming?).
-> - add secure-monitor references for amlogic,meson-gx-ao-secure sections
-> in dts files of the a1, axg, g12, gx families.
-> 
-> Viacheslav Bocharov (5):
->   soc: amlogic: meson-gx-socinfo: move common code to header file
->   soc: amlogic: meson-gx-socinfo: move common code to exported function
->   firmware: meson_sm: move common definitions to header file
->   soc: amlogic: Add Amlogic secure-monitor SoC Information driver
->   arm64: dts: meson: add dts links to secure-monitor for soc driver in
->     a1, axg, gx, g12
-> 
->  arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |   1 +
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   1 +
->  .../boot/dts/amlogic/meson-g12-common.dtsi    |   1 +
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |   1 +
->  drivers/firmware/meson/meson_sm.c             |   4 -
->  drivers/soc/amlogic/Kconfig                   |  10 +
->  drivers/soc/amlogic/Makefile                  |   1 +
->  .../soc/amlogic/meson-gx-socinfo-internal.h   | 102 ++++++++++
->  drivers/soc/amlogic/meson-gx-socinfo-sm.c     | 178 ++++++++++++++++++
->  drivers/soc/amlogic/meson-gx-socinfo.c        | 106 ++---------
->  include/linux/firmware/meson/meson_sm.h       |   4 +
->  11 files changed, 317 insertions(+), 92 deletions(-)
->  create mode 100644 drivers/soc/amlogic/meson-gx-socinfo-internal.h
->  create mode 100644 drivers/soc/amlogic/meson-gx-socinfo-sm.c
-> 
-> -- 
-> 2.34.1
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
--- 
-Thank you,
-Dmitry
+--===============1327275599112518665==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============1327275599112518665==--
+
