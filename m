@@ -4,90 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 019A6C48BF3
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Feb 2024 21:53:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D823EC48BF5
+	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Feb 2024 10:02:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KdBQBDAyOdeahOXcjrKeRnk8NkX54yQvg2UDs4he83I=; b=bB6fPkzsvIllvy
-	ZdkwTPJCZpyJxVTXJDk+EJ90nPs/nsTttZAszjblPEg/Z+IzlkywijqoH12bPC+XtBJOjvikdF1ZR
-	BPxqL19MgB0D7SOnmjC5RtsBeI111sPXNMUL2DFnLlq5qImBOj9Lh8GZVghJ4+dvU/NrxPpJgfJ7K
-	fQCqry6hK8PfXEfIVos/C1U7BirrDmIRqhQqN61B3X9EI1B41/l/vaO1ARnrYRqL5gAcrD9YYsuar
-	bMnJWiMaLD/e8v69g+Z76kor37qyFzy3EMNGDITcqZ5ClzYwMEipyn/B4HTjC6mUpydDYQf62w0fT
-	hb0EG118IebRZKWaHevA==;
+	List-Owner; bh=2Lb9vQUuB/7AjgrEopQqdOa7NCbCeaG4oFgaRu7KGJ4=; b=Qp97CtS5iTrFDR
+	GpT0TXRKcrjPILd1H62butTzZpzGo9qxXfZb7naKFIDbJe7LlZ2Ukq/7QrVVZbseLnOxfraDSO2lr
+	89GvbpNpJ8SbbagvefJxiu1O6Qr7gLUhqeIp7cTeEwDacqDvqw1bMy1Wzl0W/fikTtZ46eGJ/dBVK
+	GEbNmx50F1DmjGKVPonq/uV51/Nhc9tmli+0Dlc+EchrBgR4+jU51hI7lBv3YLBnR1VWC5Q4UcPH6
+	06pSF5+SOxRdqMIXorJPpwTBrt2ZnAO4j4GjyaWRyv+y7gl3Xzw4z2+n/EwYdgyH8NbP6M38q4CL4
+	Z7EjZuzFlXtzBAXZK+vQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rb69V-00000003rGh-3zBX;
-	Fri, 16 Feb 2024 21:53:49 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1rbHWW-00000005H0j-0qWX;
+	Sat, 17 Feb 2024 10:02:20 +0000
+Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rb69S-00000003rFt-1tPG;
-	Fri, 16 Feb 2024 21:53:48 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 61241100005;
-	Sat, 17 Feb 2024 00:53:42 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 61241100005
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1708120422;
-	bh=ycgHfvDP6Hmv7AFNbq/y/sSR6DpzCZqZPxpxoqGzESc=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=i72NtDXk5VCxkH9s0GL1gSoFkkEXriXLV9VGszo63DOXe2aOg2HNj0+dAqUkd9lhy
-	 vcPwKj9r7R9ZWwHN8QNIZ296b57NGB4Wem99dxyxB2b26356KzJRli0DForEv3sLiO
-	 Res5HY/ykm9WqOYQ3VEHT1t02EdWBVYKuxTHgF1ZgWjT4nWZQcr5MXAOCbErRrYZXL
-	 YSAKHz1kHFBtSC8au6u2agGhveAayceDoIE1rAz5PG83NfQDhmvWqIiiM+AoZT6Fj4
-	 aZPgeI/7IQtn9t6xoRbflLYdV5C+toNJlwBwh3X8RZqSB2KvgHyoT8WmXjMxwWaWap
-	 BCCfCAyWufYdg==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Sat, 17 Feb 2024 00:53:41 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sat, 17 Feb
- 2024 00:53:41 +0300
-Date: Sat, 17 Feb 2024 00:53:41 +0300
-From: Evgeny Bachinin <eabachinin@salutedevices.com>
-To: Viacheslav Bocharov <adeep@lexina.in>
-CC: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
-	<jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 4/5] soc: amlogic: Add Amlogic secure-monitor SoC
- Information driver
-Message-ID: <vln6wuzy3hdql6wwwghmwoetywm24jzzhzy6wutr6qphjl42hr@vfdsc737cust>
-References: <20231122125643.1717160-1-adeep@lexina.in>
- <20231122125643.1717160-5-adeep@lexina.in>
+	id 1rbHWS-00000005Gxh-0xLx;
+	Sat, 17 Feb 2024 10:02:17 +0000
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a3e05775ab9so104704266b.2;
+        Sat, 17 Feb 2024 02:02:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1708164134; x=1708768934; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3ZM66OWGdF6SbtT/QLY8tKqxblTioRIXbDjnM5RGQoM=;
+        b=ebZig5JaND0Sp2J+WcvCYaaNidl9XhefSiwq+1QbI43EvTlWZaarIx88/I0wjHt64E
+         Uh0tX7p/DnGTGaV3BUTUPpnMHjjle/5sA/DHAVnfNQ/M1dfLe6WxQWscQKsbEfHc5M5j
+         SvvCUnDdtJtbZQZrJ/21jXa3mkbx+os5SRNIpYk47SKIrs/4Bn9vgYis5F5NC+bVfCm/
+         nI3gdiOXI3esXmYRP7il3xyklDu7TV9UXQrdZdjUoqTaXgNtdMb9my1DhkX8s1fE1dJY
+         soOwBLjJpRfZNSDJ7TaIKJUArcIZMbrW4DcRnWC5HljuovMIGhTktr9xyh9kxSZZvVa/
+         i61w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708164134; x=1708768934;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3ZM66OWGdF6SbtT/QLY8tKqxblTioRIXbDjnM5RGQoM=;
+        b=Dam8NbDqDr1EnYCR4zbdMRWst9esyVWpLo0qU6EMemu6JaMV8ZU/n1HFYuZg9hkg8D
+         c6D3OAxXHc70ABnWO4XGc/trdHXLJ5nnjKRQ4WmhnYpqwvP0bj02zlG9wqn503a9OHjg
+         BX52pr7GlxRakwiUfcb0ZNR+CNmYwPvMk/Zx0uu0NCxOmVzM7PTgAt+Zt16c1pwo9IWg
+         OdlpYP439/PISoySqiQG+pMz0hsjzTaW7OOonta25VDYWPf+6blAvG/tMr13wvgTCC49
+         nmq/u8OEU7PNP4pkHb7dPfSTKr9x34TM0LessyuubhwPjLzN6nZtfjbt4yrCjdCt4kzZ
+         Egfw==
+X-Gm-Message-State: AOJu0YxsUv772PRRq2lnCO+kSzPR0ji/DmWDyDvnRoJUKL1Nci1YKmoe
+	rDLKA/W7ezYkxY84gPHi26ueUwR1BMspC8LXiY/r4Qxduoi2YYdweob88vkQ
+X-Google-Smtp-Source: AGHT+IH8aFNkKOjHk2QaX+mE3vWKGtqusxEFTd96jtkQJfQEqeUCvx3ptfcS86lAFFLwTWbc4nxtwA==
+X-Received: by 2002:a17:906:abce:b0:a3e:13f3:e1ab with SMTP id kq14-20020a170906abce00b00a3e13f3e1abmr890687ejb.3.1708164133432;
+        Sat, 17 Feb 2024 02:02:13 -0800 (PST)
+Received: from localhost.localdomain (dynamic-2a01-0c23-c18b-3d00-0000-0000-0000-0e63.c23.pool.telefonica.de. [2a01:c23:c18b:3d00::e63])
+        by smtp.googlemail.com with ESMTPSA id vu2-20020a170907a64200b00a3d2e690abfsm832444ejc.122.2024.02.17.02.02.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 17 Feb 2024 02:02:13 -0800 (PST)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org,
+	linux-mmc@vger.kernel.org,
+	ulf.hansson@linaro.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v1 1/2] mmc: meson-mx-sdhc: Use devm_clk_hw_get_clk() for clock retrieval
+Date: Sat, 17 Feb 2024 11:01:59 +0100
+Message-ID: <20240217100200.1494980-2-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240217100200.1494980-1-martin.blumenstingl@googlemail.com>
+References: <20240217100200.1494980-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20231122125643.1717160-5-adeep@lexina.in>
-User-Agent: NeoMutt/20231006
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 183517 [Feb 16 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.3
-X-KSMG-AntiSpam-Envelope-From: eabachinin@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/16 20:10:00 #23642199
-X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240216_135346_882622_CE649BA0 
-X-CRM114-Status: GOOD (  41.59  )
+X-CRM114-CacheID: sfid-20240217_020216_322643_A24E5F29 
+X-CRM114-Status: GOOD (  13.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,306 +94,101 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-please, see notes below
+Now that devm_clk_hw_get_clk() has been available for a while we can
+resolve an older TODO where this API did not exist yet. No functional
+changes intended.
 
-On Wed, Nov 22, 2023 at 03:56:42PM +0300, Viacheslav Bocharov wrote:
-> Amlogic SoCs have a SoC information secure-monitor call for SoC type,
-> package type, revision information and chipid.
-> This patchs adds support for secure-monitor call decoding and exposing
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/mmc/host/meson-mx-sdhc-clkc.c | 43 ++++++++++++++-------------
+ 1 file changed, 23 insertions(+), 20 deletions(-)
 
-
-s/patchs/patch/
-
-
-> with the SoC bus infrastructure in addition to the previous SoC
-> Information driver.
-> 
-> Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
-> ---
->  drivers/soc/amlogic/Kconfig               |  10 ++
->  drivers/soc/amlogic/Makefile              |   1 +
->  drivers/soc/amlogic/meson-gx-socinfo-sm.c | 178 ++++++++++++++++++++++
->  3 files changed, 189 insertions(+)
->  create mode 100644 drivers/soc/amlogic/meson-gx-socinfo-sm.c
-> 
-> diff --git a/drivers/soc/amlogic/Kconfig b/drivers/soc/amlogic/Kconfig
-> index d08e398bdad4..5634ecb60478 100644
-> --- a/drivers/soc/amlogic/Kconfig
-> +++ b/drivers/soc/amlogic/Kconfig
-> @@ -26,6 +26,16 @@ config MESON_GX_SOCINFO
->  	  Say yes to support decoding of Amlogic Meson GX SoC family
->  	  information about the type, package and version.
->  
-> +config MESON_GX_SOCINFO_SM
-> +	bool "Amlogic Meson GX SoC Information driver via Secure Monitor"
-> +	depends on (ARM64 && ARCH_MESON && MESON_GX_SOCINFO && MESON_SM) || COMPILE_TEST
-> +	default MESON_GX_SOCINFO && MESON_SM
-> +	select SOC_BUS
-> +	help
-> +	  Say yes to support decoding of Amlogic Meson GX SoC family
-> +	  information about the type, package and version from secure
-> +	  monitor call.
-> +
->  config MESON_MX_SOCINFO
->  	bool "Amlogic Meson MX SoC Information driver"
->  	depends on (ARM && ARCH_MESON) || COMPILE_TEST
-> diff --git a/drivers/soc/amlogic/Makefile b/drivers/soc/amlogic/Makefile
-> index c25f835e6a26..45d9d6f5904c 100644
-> --- a/drivers/soc/amlogic/Makefile
-> +++ b/drivers/soc/amlogic/Makefile
-> @@ -2,4 +2,5 @@
->  obj-$(CONFIG_MESON_CANVAS) += meson-canvas.o
->  obj-$(CONFIG_MESON_CLK_MEASURE) += meson-clk-measure.o
->  obj-$(CONFIG_MESON_GX_SOCINFO) += meson-gx-socinfo.o
-> +obj-$(CONFIG_MESON_GX_SOCINFO_SM) += meson-gx-socinfo-sm.o
->  obj-$(CONFIG_MESON_MX_SOCINFO) += meson-mx-socinfo.o
-> diff --git a/drivers/soc/amlogic/meson-gx-socinfo-sm.c b/drivers/soc/amlogic/meson-gx-socinfo-sm.c
-> new file mode 100644
-> index 000000000000..52bf3bce09e2
-> --- /dev/null
-> +++ b/drivers/soc/amlogic/meson-gx-socinfo-sm.c
-> @@ -0,0 +1,178 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (c) 2023 JetHome
-> + * Author: Viacheslav Bocharov <adeep@lexina.in>
-> + *
-> + */
-> +
-> +#include <linux/io.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +#include <linux/sys_soc.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/regmap.h>
-> +#include <linux/mfd/syscon.h>
-> +
-> +#include <linux/firmware/meson/meson_sm.h>
-> +
-> +#include "meson-gx-socinfo-internal.h"
-> +
-> +static char *socinfo_get_cpuid(struct device *dev, struct meson_sm_firmware *fw,
-> +			       unsigned int *socinfo)
-> +{
-> +	char *buf;
-> +	uint8_t *id_buf;
-> +	int chip_id_version;
-> +	int ret;
-> +
-> +	id_buf = devm_kzalloc(dev, SM_CHIP_ID_LENGTH, GFP_KERNEL);
-> +	if (!id_buf)
-> +		return NULL;
-> +
-> +	ret = meson_sm_call_read(fw, id_buf, SM_CHIP_ID_LENGTH, SM_GET_CHIP_ID,
-> +				 2, 0, 0, 0, 0);
-> +	if (ret < 0) {
-> +		kfree(id_buf);
-> +		return NULL;
-> +	}
-> +
-> +	chip_id_version = *((unsigned int *)id_buf);
-> +
-> +	if (chip_id_version != 2) {
-> +		uint8_t tmp;
-
-minor:
-The scope of the variable 'tmp' can be reduced.
-
-Up to you, guys. I just highlighted here.
-
-> +		/**
-> +		 * Legacy 12-byte chip ID read out, transform data
-
-The Amlogic chipID v1 and v2 are both 16 bytes long. Probably,
-the "serial" was intended here under "12 byte". However, since we are
-dealing with chipID in this function, wouldn't it be better to just
-remove "12-byte"?"
-
-
-> +		 * to expected order format
-> +		 */
-> +
-> +		memmove(&id_buf[SM_CHIP_ID_OFFSET + 4], &id_buf[SM_CHIP_ID_OFFSET], 12);
-> +		for (int i = 0; i < 6; i++) {
-> +			tmp = id_buf[i + SM_CHIP_ID_OFFSET + 4];
-> +			id_buf[i + SM_CHIP_ID_OFFSET + 4] = id_buf[15 - i + SM_CHIP_ID_OFFSET];
-> +			id_buf[15 - i + SM_CHIP_ID_OFFSET] = tmp;
-> +		}
-> +		*(uint32_t *)(id_buf + SM_CHIP_ID_OFFSET) =
-> +					((*socinfo & 0xff000000)	|	// Family ID
-> +					((*socinfo << 8) & 0xff0000)	|	// Chip Revision
-> +					((*socinfo >> 8) & 0xff00))	|	// Package ID
-> +					((*socinfo) & 0xff);			// Misc
-> +	} else {
-> +		*socinfo = id_buf[SM_CHIP_ID_OFFSET] << 24 |	// Family ID
-> +		   id_buf[SM_CHIP_ID_OFFSET + 2] << 16 |	// Chip revision
-> +		   id_buf[SM_CHIP_ID_OFFSET + 1] << 8 |		// Package ID
-> +		   id_buf[SM_CHIP_ID_OFFSET + 3];		// Misc
-> +	}
-> +
-> +	buf = kasprintf(GFP_KERNEL, "%16phN\n", &id_buf[SM_CHIP_ID_OFFSET]);
-> +	kfree(id_buf);
-> +
-> +	return buf;
-> +}
-> +
-> +static int meson_gx_socinfo_sm_probe(struct platform_device *pdev)
-> +{
-> +	struct soc_device_attribute *soc_dev_attr;
-> +	struct soc_device *soc_dev;
-> +	struct device_node *sm_np;
-> +	struct meson_sm_firmware *fw;
-> +	struct regmap *regmap;
-> +	unsigned int socinfo;
-> +	struct device *dev;
-> +	int ret;
-> +
-> +	/* check if chip-id is available */
-
-My apologies for nitpicking, but looks like the term "has-chip-id" is
-misleading, too.
-AFAIU it does not reflect the presence of the chipID in a particular
-Amlogic SoC. Instead, it specifies the driver's ability to read the
-cpu_id value from the register (via regmap). Therefore, I think,
-it would be more accurate to call it as "has-cpu-id", although it seems
-"has-chip-id" term is a legacy now.
-
-> +	if (!of_property_read_bool(pdev->dev.of_node, "amlogic,has-chip-id"))
-> +		return -ENODEV;
-> +
-> +	/* node should be a syscon */
-> +	regmap = syscon_node_to_regmap(pdev->dev.of_node);
-> +	if (IS_ERR(regmap)) {
-> +		dev_err(&pdev->dev, "failed to get regmap\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	sm_np = of_parse_phandle(pdev->dev.of_node, "secure-monitor", 0);
-> +	if (!sm_np) {
-> +		dev_err(&pdev->dev, "no secure-monitor node found\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	fw = meson_sm_get(sm_np);
-> +	of_node_put(sm_np);
-> +	if (!fw)
-> +		return -EPROBE_DEFER;
-> +
-> +	dev_err(&pdev->dev, "secure-monitor node found\n");
-
-Debug leftover?
-Strange to see an error in the non-error path. I mean is it proper
-log level?
-
-> +
-> +	ret = regmap_read(regmap, AO_SEC_SOCINFO_OFFSET, &socinfo);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (!socinfo) {
-> +		dev_err(&pdev->dev, "invalid regmap chipid value\n");
-
-s/chipid/cpuid/ ?
-because value read from register is actually 4 byte cpuid
-
-> +		return -EINVAL;
-> +	}
-> +
-> +	soc_dev_attr = devm_kzalloc(&pdev->dev, sizeof(*soc_dev_attr),
-> +				    GFP_KERNEL);
-> +	if (!soc_dev_attr)
-> +		return -ENOMEM;
-> +
-> +	soc_dev_attr->serial_number = socinfo_get_cpuid(&pdev->dev, fw, &socinfo);
-
-Several notes.
-
-1) Could you please clarify, why don't you pass socinfo by value?
-
-What's the necessity to overwrite inside socinfo_get_cpuid() the
-socinfo value read above via regmap?
-
-2) Seems, again names' collision.
-Actually, the function returns the chipid as a retval (16 bytes,
-consisting of cpu_id + SoC serial), but the function is named as
-socinfo_get_cpuid(). The reason for this could be that the distinct
-function carries out two actions (returning socinfo and chipid) instead
-of just one specific action.
-
-All in all, what do you think, could the function be renamed as
-s/socinfo_get_cpuid/socinfo_get_chipid/ ?
-
-> +
-> +	meson_gx_socinfo_prepare_soc_driver_attr(soc_dev_attr, socinfo);
-> +
-> +	soc_dev = soc_device_register(soc_dev_attr);
-> +	if (IS_ERR(soc_dev)) {
-> +		kfree(soc_dev_attr->revision);
-> +		kfree_const(soc_dev_attr->soc_id);
-> +		kfree(soc_dev_attr);
-> +		return PTR_ERR(soc_dev);
-> +	}
-> +
-> +	dev = soc_device_to_device(soc_dev);
-> +	platform_set_drvdata(pdev, soc_dev);
-> +
-> +	dev_info(dev, "Amlogic Meson %s Revision %x:%x (%x:%x) Detected at SM driver %x\n",
-> +			soc_dev_attr->soc_id,
-> +			socinfo_to_major(socinfo),
-> +			socinfo_to_minor(socinfo),
-> +			socinfo_to_pack(socinfo),
-> +			socinfo_to_misc(socinfo), socinfo);
-> +
-> +	return PTR_ERR_OR_ZERO(dev);
-> +}
-> +
-> +
-
-is extra line supposed?
-
-> +static int meson_gx_socinfo_sm_remove(struct platform_device *pdev)
-> +{
-> +	struct soc_device *soc_dev = platform_get_drvdata(pdev);
-> +
-> +	soc_device_unregister(soc_dev);
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id meson_gx_socinfo_match[] = {
-> +	{ .compatible = "amlogic,meson-gx-ao-secure", },
-> +	{ /* sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(of, meson_gx_socinfo_match);
-> +
-> +static struct platform_driver meson_gx_socinfo_driver = {
-> +	.probe = meson_gx_socinfo_sm_probe,
-> +	.remove	= meson_gx_socinfo_sm_remove,
-> +	.driver = {
-> +		.name = "meson-gx-socinfo-sm",
-> +		.of_match_table = meson_gx_socinfo_match,
-> +	},
-> +};
-> +
-> +
-
-extra line?
-
-> +module_platform_driver(meson_gx_socinfo_driver);
-> +
-> +MODULE_AUTHOR("Viacheslav Bocharov <adeep@lexina.in>");
-> +MODULE_DESCRIPTION("Amlogic Meson GX SOC SM driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.34.1
-> 
-> 
-
+diff --git a/drivers/mmc/host/meson-mx-sdhc-clkc.c b/drivers/mmc/host/meson-mx-sdhc-clkc.c
+index 19200b7079a6..cbd17a596cd2 100644
+--- a/drivers/mmc/host/meson-mx-sdhc-clkc.c
++++ b/drivers/mmc/host/meson-mx-sdhc-clkc.c
+@@ -71,12 +71,23 @@ static int meson_mx_sdhc_clk_hw_register(struct device *dev,
+ static int meson_mx_sdhc_gate_clk_hw_register(struct device *dev,
+ 					      const char *name_suffix,
+ 					      struct clk_hw *parent,
+-					      struct clk_hw *hw)
++					      struct clk_hw *hw,
++					      struct clk_bulk_data *clk_bulk_data,
++					      u8 bulk_index)
+ {
+ 	struct clk_parent_data parent_data = { .hw = parent };
++	int ret;
++
++	ret = meson_mx_sdhc_clk_hw_register(dev, name_suffix, &parent_data, 1,
++					    &clk_gate_ops, hw);
++	if (ret)
++		return ret;
++
++	clk_bulk_data[bulk_index].clk = devm_clk_hw_get_clk(dev, hw, name_suffix);
++	if (IS_ERR(clk_bulk_data[bulk_index].clk))
++		return PTR_ERR(clk_bulk_data[bulk_index].clk);
+ 
+-	return meson_mx_sdhc_clk_hw_register(dev, name_suffix, &parent_data, 1,
+-					     &clk_gate_ops, hw);
++	return 0;
+ }
+ 
+ int meson_mx_sdhc_register_clkc(struct device *dev, void __iomem *base,
+@@ -115,7 +126,8 @@ int meson_mx_sdhc_register_clkc(struct device *dev, void __iomem *base,
+ 	clkc_data->mod_clk_en.bit_idx = 15;
+ 	ret = meson_mx_sdhc_gate_clk_hw_register(dev, "mod_clk_on",
+ 						 &clkc_data->div.hw,
+-						 &clkc_data->mod_clk_en.hw);
++						 &clkc_data->mod_clk_en.hw,
++						 clk_bulk_data, 0);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -123,7 +135,8 @@ int meson_mx_sdhc_register_clkc(struct device *dev, void __iomem *base,
+ 	clkc_data->tx_clk_en.bit_idx = 14;
+ 	ret = meson_mx_sdhc_gate_clk_hw_register(dev, "tx_clk_on",
+ 						 &clkc_data->div.hw,
+-						 &clkc_data->tx_clk_en.hw);
++						 &clkc_data->tx_clk_en.hw,
++						 clk_bulk_data, 1);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -131,7 +144,8 @@ int meson_mx_sdhc_register_clkc(struct device *dev, void __iomem *base,
+ 	clkc_data->rx_clk_en.bit_idx = 13;
+ 	ret = meson_mx_sdhc_gate_clk_hw_register(dev, "rx_clk_on",
+ 						 &clkc_data->div.hw,
+-						 &clkc_data->rx_clk_en.hw);
++						 &clkc_data->rx_clk_en.hw,
++						 clk_bulk_data, 2);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -139,18 +153,7 @@ int meson_mx_sdhc_register_clkc(struct device *dev, void __iomem *base,
+ 	clkc_data->sd_clk_en.bit_idx = 12;
+ 	ret = meson_mx_sdhc_gate_clk_hw_register(dev, "sd_clk_on",
+ 						 &clkc_data->div.hw,
+-						 &clkc_data->sd_clk_en.hw);
+-	if (ret)
+-		return ret;
+-
+-	/*
+-	 * TODO: Replace clk_hw.clk with devm_clk_hw_get_clk() once that is
+-	 * available.
+-	 */
+-	clk_bulk_data[0].clk = clkc_data->mod_clk_en.hw.clk;
+-	clk_bulk_data[1].clk = clkc_data->sd_clk_en.hw.clk;
+-	clk_bulk_data[2].clk = clkc_data->tx_clk_en.hw.clk;
+-	clk_bulk_data[3].clk = clkc_data->rx_clk_en.hw.clk;
+-
+-	return 0;
++						 &clkc_data->sd_clk_en.hw,
++						 clk_bulk_data, 3);
++	return ret;
+ }
 -- 
-Best Regards,
-Evgeny Bachinin
+2.43.2
+
 
 _______________________________________________
 linux-amlogic mailing list
