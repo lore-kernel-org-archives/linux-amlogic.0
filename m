@@ -4,84 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 822E8C48BF6
-	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Feb 2024 11:20:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83882C5475B
+	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Feb 2024 12:40:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ANkYrWcCfUnIZmrLiGHYZvJKa8CO+aegWeeXAaUQEHc=; b=Trd2ONaE+r+sO7
-	JHkfzj0WZ2ZIWT2YyAv+YAtVdHsQUJeTT5Vx3cR8rwjRtmIZ41VsjzrHHGHy0yHXAFWgNdEUYvMke
-	tWg9PMpO/2kDfIOEfLWdFRjwmy/mBzvQYiELFEujwGyyTFf/lw6aT4JzFLwhFciRYKB6vp8uJTky/
-	UONFsuNWVBM8Az3NyDRTBSoV3oCF3XiLZtP91JvZdmKOnSUdk3OmunOtTcLmfAgOSsu34JD1VUG8s
-	Fm7Z2vy8oBthC/eKnSiMW87G0p5S7zDUFI8mpxIp1C72hBH16pcaC+kgHcMkM0DAHOFWbuPtlsBF5
-	5Xmu/62VcaxuOGvZO7cg==;
+	List-Owner; bh=gwD8IeAJb6fMoWmOVajE92uSGPpywsiKpZERiWV0RUI=; b=wpUNBADgYaof/k
+	zg+3bAcdLHV4oANipbTXo9iB1BExBQPw+z9Y08+bxFziXSW+jJFrWsc9rT2Jf8DNy7qx/d5t0Fe9f
+	WrT2E1RNDlpKqd6dXKkYZnauMedhXuwA3LJzHVHqZGZRSGINYW5PE8uFak5xCq9k6UcBCFHMFfzZf
+	/MG3/vygHsHKn6Yi3r6QU6WO3qWc/Nxu/WSNeSKcUDwD93XLq7IhgleK1VMooWaZPsJs2WVfPrIzK
+	WeLbtFzjY2XBRNaAoGDn2wNdMUon92KfH/CnrVLI9TknoOKZHg2GFeN/k1SwHHTTjnhKzka8pWJ6S
+	PJQyo6qv+8o3/lA3Z+gg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rbfDa-00000007bEk-2LdZ;
-	Sun, 18 Feb 2024 11:20:22 +0000
-Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
+	id 1rbgTC-00000007idU-2pB4;
+	Sun, 18 Feb 2024 12:40:34 +0000
+Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rbfDV-00000007bBx-3NLA;
-	Sun, 18 Feb 2024 11:20:20 +0000
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5640fef9fa6so1994250a12.0;
-        Sun, 18 Feb 2024 03:20:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1708255213; x=1708860013; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iPmTNE6EQgfeRHYPjzRQvUwlTRq7in5uTwy6USAXPPo=;
-        b=Absz8Cx7ZZ++KAn81H9K/4pALQKjXjy6p4sEbQJ0YH//cGn4+42yuVgxn5czK6YPaJ
-         U6z68FWWLO8u9R8orixO9MFE4yqmKsXeslD7r7OHOptRZHxR6mnB7SuxKeonXcKtwA+E
-         zxLF3ETfpmlJH0fJbXe2ssCgLFgvqoKg4d0fo62s8TdgUu+HnRIHKWiT2JPGMRusMmRr
-         LNANI5hoc0b5L/APRAGSb3jp2mVdZ1du44sRjw4xI4gtLM0Rlp1LSHD0npA654nXdOME
-         U9N6z+T6U02dNbE7x9wOHAmr7RGgDFc3iTrC25BQSJVO5G6O2BcFvfkOUzPzzoOq7YjD
-         dNtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708255213; x=1708860013;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iPmTNE6EQgfeRHYPjzRQvUwlTRq7in5uTwy6USAXPPo=;
-        b=mW3zrIvvXBQOAOizSB9gxS1Lbkia9so/LR87KBK9vm2mVEcYJQogO16yqr9adXi4Mw
-         QItHOn51NZi7SCtXK7IACFa7vYyCzSI9GZcnaJHkA4ppyNXR3SRgeS4bvQwrW1FnwUSI
-         032TMSZ47T3hsv+Ods/2E4J3xJtsCMJ7H3r/vpU4TR1SXUKFZ/yScALVu7+wjCvfbPFe
-         AMimm1Z/6w5/DLJagVWFeqjLoQLUFFb3U6TD0hgV9pJR1fUdLY4/WqsGHzwaFl5biQUA
-         mCpmJcNs+fXiWQMt3YJIGqu6eqTcQKePzes0HYe2nu+NChCd9bvMdnhx8mztzOeI8XWu
-         pWoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVpYGpwTYy6IiIipNbWRkn2J1D8zMmkqJSbnS7hcOZsaBt9py1vrmH/PcKuCqRf2EYWpIlI9Apai+rGQ2rtJ6reIVGYlQMYzjzQqZYj7+8/kKMbxUM=
-X-Gm-Message-State: AOJu0YwQI7XIVJmlLOBA14kpfq5ccutBbjtC70JwTa1nUhFo3N7gdR2h
-	2fXLtXXyMqXHkLTL3b2a+Usx+eFM/hfU4+n4j5hIxlMXj3QpuIDHh35Dloly
-X-Google-Smtp-Source: AGHT+IHr9ZdbJztJjtjBHXqCE/IMhxSFhijBU0XuiX8iDIUv0acD2Fpa4u6xKvRiExVfnNHWhQraNA==
-X-Received: by 2002:aa7:d7d9:0:b0:564:3b52:2293 with SMTP id e25-20020aa7d7d9000000b005643b522293mr1997873eds.24.1708255213606;
-        Sun, 18 Feb 2024 03:20:13 -0800 (PST)
-Received: from localhost.localdomain (dynamic-2a01-0c22-7b37-4900-0000-0000-0000-0e63.c22.pool.telefonica.de. [2a01:c22:7b37:4900::e63])
-        by smtp.googlemail.com with ESMTPSA id di25-20020a056402319900b0056401eb3766sm1675190edb.29.2024.02.18.03.20.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Feb 2024 03:20:13 -0800 (PST)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-amlogic@lists.infradead.org
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	neil.armstrong@linaro.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v1 3/3] ARM: dts: meson8b: fix &hwrng node compatible string
-Date: Sun, 18 Feb 2024 12:19:59 +0100
-Message-ID: <20240218111959.1811676-4-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240218111959.1811676-1-martin.blumenstingl@googlemail.com>
-References: <20240218111959.1811676-1-martin.blumenstingl@googlemail.com>
+	id 1rbgT5-00000007ibc-34FX;
+	Sun, 18 Feb 2024 12:40:31 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=gZmqfmB6fTBR74XgJI+NN8XTEyIaAFoIbaH6cB+nt6s=; b=mBR2OF66UJDI6eSNbTgQXD+wCc
+	NesRa+Hql7Df5cVcsDdkuEl5mwXoNrHSgNDgkML6JoR6Mnob4IED2QMayj6A0YoBnGwnw4DaztJFj
+	wihuyCiFiT19ddMcFLX9JYFYZxHSsZofJusrW5UKvtXQ8rJ9exHa/tT14EwJchA+iCgu2pha6aLYD
+	XeIYSz+WpDwgJyxnSGUoXW7cKOuJN7UobFSwWr6AGiUBzvcR5YoLHQciZF6co0COeZICs/QFSfAMJ
+	n9QWMvr8lUZ95gMIJStvpyNQH3m8Slpj1DZQbVil+WiupdVF5jH28K29h13ghcHZGuzRkfvoLnwGs
+	TV57ATRA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:53158)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rbgS7-0002It-3D;
+	Sun, 18 Feb 2024 12:39:28 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rbgRu-0007Qi-70; Sun, 18 Feb 2024 12:39:14 +0000
+Date: Sun, 18 Feb 2024 12:39:14 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Michael Hennerich <michael.hennerich@analog.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Arun Ramadoss <arun.ramadoss@microchip.com>,
+	UNGLinuxDriver@microchip.com, Peter Geis <pgwipeout@gmail.com>,
+	Frank <Frank.Sae@motor-comm.com>, Xu Liang <lxu@maxlinear.com>,
+	Piergiorgio Beruto <piergiorgio.beruto@gmail.com>,
+	Andrei Botila <andrei.botila@oss.nxp.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Michal Simek <michal.simek@amd.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Wedson Almeida Filho <wedsonaf@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@samsung.com>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Robert Marko <robimarko@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	David Epping <david.epping@missinglinkelectronics.com>,
+	Harini Katakam <harini.katakam@amd.com>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, rust-for-linux@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [net-next RFC PATCH 0/3] net: phy: detach PHY driver OPs from
+ phy_driver struct
+Message-ID: <ZdH6csVX1ZOPYP84@shell.armlinux.org.uk>
+References: <20240217194116.8565-1-ansuelsmth@gmail.com>
+ <ZdEOpB1oVDE8+Qhq@shell.armlinux.org.uk>
+ <65d13fcd.050a0220.88fe3.665f@mx.google.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <65d13fcd.050a0220.88fe3.665f@mx.google.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240218_032017_894835_7E1DA63D 
-X-CRM114-Status: GOOD (  11.46  )
+X-CRM114-CacheID: sfid-20240218_044029_114368_B85C81F5 
+X-CRM114-Status: GOOD (  30.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,32 +124,190 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-There's no documentation for a "amlogic,meson8b-rng" compatible string.
-Keep the default compatible string from meson.dtsi which is
-"amlogic,meson-rng" (which is also documented).
+On Sun, Feb 18, 2024 at 12:22:45AM +0100, Christian Marangi wrote:
+> On Sat, Feb 17, 2024 at 07:53:08PM +0000, Russell King (Oracle) wrote:
+> > Would it make more sense instead of this big churn, to instead
+> > introduce into struct phy_driver:
+> > 
+> > 	struct mdio_device_id	*ids;
+> > 
+> > which would then allow a phy_driver structure to be matched by
+> > several device IDs?
+> 
+> Yes that was an alternative idea, but is it good to then have 2 way to
+> declare PHY ID?
+> 
+> Also the name should be changed... Maybe an array of a struct PHY_ID,
+> name that ends with a sentinel?
 
-This fixes a binding check error.
+We already have arrays of mdio_device_id in every driver, whether they
+can be re-used or not is a separate issue. In any case, merely adding
+support for this (only build tested patch below) is a much smaller
+change.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/amlogic/meson8b.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/net/phy/phy_device.c | 64 +++++++++++++++++++++++++++++++++-----------
+ include/linux/phy.h          | 16 ++++++++++-
+ 2 files changed, 63 insertions(+), 17 deletions(-)
 
-diff --git a/arch/arm/boot/dts/amlogic/meson8b.dtsi b/arch/arm/boot/dts/amlogic/meson8b.dtsi
-index 5198f5177c2c..2d9d24d3a95d 100644
---- a/arch/arm/boot/dts/amlogic/meson8b.dtsi
-+++ b/arch/arm/boot/dts/amlogic/meson8b.dtsi
-@@ -620,7 +620,6 @@ pwrc: power-controller {
- };
+diff --git a/drivers/net/phy/phy_device.c b/drivers/net/phy/phy_device.c
+index 2e7d5bfb338e..7e02bf51a2a5 100644
+--- a/drivers/net/phy/phy_device.c
++++ b/drivers/net/phy/phy_device.c
+@@ -522,12 +522,51 @@ static int phy_scan_fixups(struct phy_device *phydev)
+ 	return 0;
+ }
  
- &hwrng {
--	compatible = "amlogic,meson8b-rng", "amlogic,meson-rng";
- 	clocks = <&clkc CLKID_RNG0>;
- 	clock-names = "core";
- };
--- 
-2.43.2
++static const struct mdio_device_id *
++phy_driver_match_id(struct phy_driver *phydrv, u32 id)
++{
++	const struct mdio_device_id *ids = phydrv->ids;
++
++	if (ids) {
++		while (ids->phy_id) {
++			if (phy_id_compare(id, ids->phy_id, ids->phy_id_mask))
++				return ids;
++			ids++;
++		}
++	}
++
++	if (phy_id_compare(id, phydrv->id.phy_id, phydrv->id.phy_id_mask))
++		return &phydrv->id;
++
++	return NULL;
++}
++
++static const struct mdio_device_id *
++phy_driver_match(struct phy_driver *phydrv, struct phy_device *phydev)
++{
++	const int num_ids = ARRAY_SIZE(phydev->c45_ids.device_ids);
++	const struct mdio_device_id *id;
++	int i;
++
++	if (!phydev->is_c45)
++		return phy_driver_match_id(phydrv, phydev->phy_id);
++
++	for (i = 1; i < num_ids; i++) {
++		if (phydev->c45_ids.device_ids[i] == 0xffffffff)
++			continue;
++
++		id = phy_driver_match_id(phydrv, phydev->c45_ids.device_ids[i]);
++		if (id)
++			return id;
++	}
++
++	return NULL;
++}
++
+ static int phy_bus_match(struct device *dev, struct device_driver *drv)
+ {
+ 	struct phy_device *phydev = to_phy_device(dev);
+ 	struct phy_driver *phydrv = to_phy_driver(drv);
+-	const int num_ids = ARRAY_SIZE(phydev->c45_ids.device_ids);
+-	int i;
+ 
+ 	if (!(phydrv->mdiodrv.flags & MDIO_DEVICE_IS_PHY))
+ 		return 0;
+@@ -535,20 +574,7 @@ static int phy_bus_match(struct device *dev, struct device_driver *drv)
+ 	if (phydrv->match_phy_device)
+ 		return phydrv->match_phy_device(phydev);
+ 
+-	if (phydev->is_c45) {
+-		for (i = 1; i < num_ids; i++) {
+-			if (phydev->c45_ids.device_ids[i] == 0xffffffff)
+-				continue;
+-
+-			if (phy_id_compare(phydev->c45_ids.device_ids[i],
+-					   phydrv->phy_id, phydrv->phy_id_mask))
+-				return 1;
+-		}
+-		return 0;
+-	} else {
+-		return phy_id_compare(phydev->phy_id, phydrv->phy_id,
+-				      phydrv->phy_id_mask);
+-	}
++	return !!phy_driver_match(phydrv, phydev);
+ }
+ 
+ static ssize_t
+@@ -3311,6 +3337,7 @@ static int phy_probe(struct device *dev)
+ 	int err = 0;
+ 
+ 	phydev->drv = phydrv;
++	phydev->drv_id = phy_driver_match(phydrv, phydev);
+ 
+ 	/* Disable the interrupt if the PHY doesn't support it
+ 	 * but the interrupt is still a valid one
+@@ -3485,6 +3512,11 @@ int phy_driver_register(struct phy_driver *new_driver, struct module *owner)
+ 	new_driver->mdiodrv.driver.owner = owner;
+ 	new_driver->mdiodrv.driver.probe_type = PROBE_FORCE_SYNCHRONOUS;
+ 
++	if (!new_driver->id.phy_id) {
++		new_driver->id.phy_id = new_driver->phy_id;
++		new_driver->id.phy_id_mask = new_driver->phy_id_mask;
++	}
++
+ 	retval = driver_register(&new_driver->mdiodrv.driver);
+ 	if (retval) {
+ 		pr_err("%s: Error %d in registering driver\n",
+diff --git a/include/linux/phy.h b/include/linux/phy.h
+index fd8dbea9b4d9..2f2ebbd41535 100644
+--- a/include/linux/phy.h
++++ b/include/linux/phy.h
+@@ -542,6 +542,7 @@ struct macsec_ops;
+  *
+  * @mdio: MDIO bus this PHY is on
+  * @drv: Pointer to the driver for this PHY instance
++ * @drv_id: The matched driver ID for this PHY instance
+  * @devlink: Create a link between phy dev and mac dev, if the external phy
+  *           used by current mac interface is managed by another mac interface.
+  * @phy_id: UID for this device found during discovery
+@@ -639,6 +640,7 @@ struct phy_device {
+ 	/* Information about the PHY type */
+ 	/* And management functions */
+ 	const struct phy_driver *drv;
++	const struct mdio_device_id *drv_id;
+ 
+ 	struct device_link *devlink;
+ 
+@@ -882,6 +884,9 @@ struct phy_led {
+  * struct phy_driver - Driver structure for a particular PHY type
+  *
+  * @mdiodrv: Data common to all MDIO devices
++ * @ids: array of mdio device IDs to match this driver (terminated with
++ *   zero phy_id)
++ * @id: mdio device ID to match
+  * @phy_id: The result of reading the UID registers of this PHY
+  *   type, and ANDing them with the phy_id_mask.  This driver
+  *   only works for PHYs with IDs which match this field
+@@ -903,6 +908,8 @@ struct phy_led {
+  */
+ struct phy_driver {
+ 	struct mdio_driver_common mdiodrv;
++	const struct mdio_device_id *ids;
++	struct mdio_device_id id;
+ 	u32 phy_id;
+ 	char *name;
+ 	u32 phy_id_mask;
+@@ -1203,7 +1210,14 @@ static inline bool phy_id_compare(u32 id1, u32 id2, u32 mask)
+  */
+ static inline bool phydev_id_compare(struct phy_device *phydev, u32 id)
+ {
+-	return phy_id_compare(id, phydev->phy_id, phydev->drv->phy_id_mask);
++	u32 mask;
++
++	if (phydev->drv_id)
++		mask = phydev->drv_id->phy_id_mask;
++	else
++		mask = phydev->drv->phy_id_mask;
++
++	return phy_id_compare(id, phydev->phy_id, mask);
+ }
+ 
+ /* A Structure for boards to register fixups with the PHY Lib */
 
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
 _______________________________________________
 linux-amlogic mailing list
