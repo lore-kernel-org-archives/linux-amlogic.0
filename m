@@ -4,81 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8C2FC48BF6
-	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Feb 2024 17:50:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39E36C48BC4
+	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Feb 2024 22:59:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=oZBn1zLEddaLwFJgNAscOFlfx39kF8nNhrnyU+cihng=; b=1nASOYD3/6sxbw
-	TTD6vRd+ptBME8haBHnQqB/k4L+R/93JjidwIwyuUq9zAfl+OfcEm+xZWmapQVU3XhtinQxBh/2ey
-	Eu1o6TRVOpkF3UL3Z/uQhqDtQeCCHZ2WLMO9PofhT7s9YuabArgXUKNXyZbeWGU1qUy+CC+jxmEAm
-	FhvYjp/5s5vIdqWjLix0RXHq8Napj67gcOlmjCqf5ldxzTfWqO+J/n9uDOeKYCRyODVHbEwpbdTtz
-	SX/QXv0GXiIrcDonfs7sZL0zflCoBx2Xmovzzedl9aBZxwU+XAaOU79GNsBIzmO1rT3xnu9MeySvp
-	M8Am4YUfwOBzPwJuh4Yw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0iDspK9CcPoD37537WO4z1HFJPOHWi7ZAgaMaUtZ4i8=; b=fgzlO+qEIzindq
+	9ExNW/IEoY7HLGOlr5mVhqGs/BJR/EQSmqga/SnW3r/XBI1yQgMDokIDNziImf2wKH8Ys7CThCFFE
+	gAX/4MUHdAhUo9Mo8bp+NWQASBeoIInFqRvgdIbFZOE5oHpl7SsWllF43/oBTKsvkSovIpbIzT54f
+	pXdm+13irL8s321UVAlNJ+bw/FP/lx8f+hEAuwcqYJWVwiXFL7IDoJFHzR8r7Y+paIwdYW903BXCy
+	M3aOnHEfnHTRlj17rZWAhJRr8snTfNJMsmP6gjqWW+xijhryUy7tGeoWJ0+ioeeePwO57AtLoSIr/
+	GSD/fXFeT1cYfxVSUWgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rblJN-000000088TA-0cru;
-	Sun, 18 Feb 2024 17:50:45 +0000
-Received: from mail-lj1-x234.google.com ([2a00:1450:4864:20::234])
+	id 1rbq7t-00000008ahL-45xV;
+	Sun, 18 Feb 2024 22:59:13 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rblJK-000000088Rl-0741;
-	Sun, 18 Feb 2024 17:50:43 +0000
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2d107900457so50846521fa.1;
-        Sun, 18 Feb 2024 09:50:41 -0800 (PST)
+	id 1rbq7q-00000008agL-1C5X
+	for linux-amlogic@lists.infradead.org;
+	Sun, 18 Feb 2024 22:59:11 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4126144d931so6967695e9.2
+        for <linux-amlogic@lists.infradead.org>; Sun, 18 Feb 2024 14:59:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1708278640; x=1708883440; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yjpbxfuUN8ClVWyejRT9z307tEN2okR2Dj3IppGtU+I=;
-        b=OwFLlRp3ipzauK8nFRklrmt4gCrPzeTbObCAKX2AfWmN7hnv970UBkCsjfaAlf4z1b
-         6mTUssimyovPrZeaSSyYIp4K+zYcrPkke3z1yy0IfcMQ9JMCMS1rmnNxFD0tCFOW4kA9
-         LllQxppHSBmqrlAnGEDnhRMXijOeAnVef2zraha8OvEIzSi6HdSUQvXbety+HmNMe403
-         H0CDURzqqgkUPJfar+dSBGHGwqcVL2myma/FUNhIX59MYH9lKSaujXuS8BM9ljcDody/
-         NuwAhi/xGYsd9/fERBuMcN2tFrw0n+e2hIszF5wnU621s2sIdAi7fxkHHzxhYO97bsfn
-         lraA==
+        d=linaro.org; s=google; t=1708297148; x=1708901948; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uQQ2o/VIHyGxkFM7utx97JYZDFKZ38CN7sWDsc4f9qI=;
+        b=UsQpOOAM3f5Ph5cj3bK20MaTseyTR3nVU6CbXngHgfUNtglvDd4ENmzvs2rflQnKlx
+         c5UauQ3VpSLNTe93aidfbHaJR3GxloH1HKrLlY3QYWenAfzmjgtHzuevXNDTl2agOaS/
+         RqWj+SBZssIQ5YYK+JT3LItlYoadOfvjNT+3B9rIZokBz4vAU9N4EZuNstg4EP3sEFKy
+         u7i5V1JBiZt/Qq2jyLEBg5RSO3b1+angpBoVHOWMxp4qxrKQLm052rcyqI+/TR3CW81R
+         bcLt82fHTj6h19BZPK7rM7ZLXw+oUssOYly+FhDl3OQj49l2hfODOGdZdzy53biw2AO+
+         SD9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708278640; x=1708883440;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yjpbxfuUN8ClVWyejRT9z307tEN2okR2Dj3IppGtU+I=;
-        b=YX7ge4yTutblcIyXs8zgcilyaSKrl2plwB9wYxi3/4a0DbyOWXzOP5KZHQF5jJhQ9j
-         HBoOZFBOO/2atGuJ6UCdHyq+EfWpe1ELuCwBj9IRJkw4S/BWQsGoYJT3aU326iNrXePj
-         qzFDpMpZXRoGo9ph/y/YlVO48XaLOVOLikWuRj8FQrkG4tGACS17AkPGBGkc+/aQqaI9
-         2wBOmwXbGiBozBFsR/x7a9i0R29HtPi4YrGGIWH0TB+JhVegNKFNxZtABXj2ZcB2hA3y
-         ZfUaFEEJpBZmzNu+qa18zUQ711ZpNyrjqn6eeWY5H+FI/86CFDXZx3IHqbpgfy9LU89W
-         FyzA==
-X-Forwarded-Encrypted: i=1; AJvYcCWXK7GB2wNGKMaud4Ab2j0t+5eq42zhADN/2CBzr2X+n9oMjO2fIQC0otB03IwmFknjd4sdRYEtE7UPL5YTUcfYZUIlZrHv4a307esB3zDC/oLnxNjpKdQMDYthLtcvPGfC9+VbT/NLO24PIiZ0YJWCtN3sDVZSNA==
-X-Gm-Message-State: AOJu0YyO6hjwPa/O6wyYb8IxQQ8BwMxp7iHHe5RE8/50AiptO/8j1UxU
-	JzJUbtixC637rATsTlrsbrSA1Q2hAop2pnQgrDS1P5uh/60ECGp+irgVk0aN
-X-Google-Smtp-Source: AGHT+IF+k6EDEC5TlndQFlEFI46CiqTKLip+fjyqgK9pMQUYRRCGzERWQTf0G82WXK5WrbdSBKZ4+A==
-X-Received: by 2002:a2e:854e:0:b0:2d0:9a93:1fe0 with SMTP id u14-20020a2e854e000000b002d09a931fe0mr6234553ljj.11.1708278639558;
-        Sun, 18 Feb 2024 09:50:39 -0800 (PST)
-Received: from localhost.localdomain (dynamic-2a01-0c22-7b37-4900-0000-0000-0000-0e63.c22.pool.telefonica.de. [2a01:c22:7b37:4900::e63])
-        by smtp.googlemail.com with ESMTPSA id ck8-20020a0564021c0800b0056452477a5esm829283edb.24.2024.02.18.09.50.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Feb 2024 09:50:39 -0800 (PST)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: dri-devel@lists.freedesktop.org,
-	linux-amlogic@lists.infradead.org
-Cc: neil.armstrong@linaro.org,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v1] drm/meson: improve encoder probe / initialization error handling
-Date: Sun, 18 Feb 2024 18:50:35 +0100
-Message-ID: <20240218175035.1948165-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.43.2
+        d=1e100.net; s=20230601; t=1708297148; x=1708901948;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uQQ2o/VIHyGxkFM7utx97JYZDFKZ38CN7sWDsc4f9qI=;
+        b=DlD41klxMuh9Kyjg3pSAdZUX0B+f+DHTlFKY8H6xhfyVUSbPG/KhfQstJXSaHYYZrz
+         w5qLDjHkFxCITm7+S/5QyvY6BHvHvpbALpNH7stinJryeDn8Vqy/ZxOCvXy69E5Un6Tz
+         w6n6G3Q1pT9rNbg41bKQeruabmjeJqr04wtjGb03KqiKst62uJn6H7C8u37B1TjfWzDE
+         1OJtzoy+I2g8Llo/IgrgSTLlgocTWKRP/0dsLx0Y0krY2glohl0kEh+DOpve4pB2YUG0
+         COOxCr27Mdj/Y8zLE7p4ym327orbbeUSlY0ckhA+zmO/S8oR8J3CaOH3IIX1RhRfg2gf
+         OmDw==
+X-Forwarded-Encrypted: i=1; AJvYcCWCBREf9rWMtO4FDljfAEDTgWYbHBEuT17kjCc3p3b4kEQXCU4jQKrRmrtQyvJQbAimAIp+CWLC56Hq5xYb6tmxG8igyFDZ9L5n20W9J0lLx4E=
+X-Gm-Message-State: AOJu0Yw1Mo2P4fpYl+gUjaqisSrAd1yxnV6+vduui17MPAHs8c1UPJoC
+	uJQYiT5bnyp6MkcJqxA9IgIPZlZQWXTsX9V7zHz+NQ2VRiJS0+py0tiUFIGCucg=
+X-Google-Smtp-Source: AGHT+IHeIJpIVjXPkhSQ8GhS6dd+ec6VWCACvhZGppCrUdq2BjsMWx2siRd1nRn9MmkDNotK0sVyHQ==
+X-Received: by 2002:a5d:45c2:0:b0:33d:1596:d916 with SMTP id b2-20020a5d45c2000000b0033d1596d916mr4831372wrs.50.1708297148290;
+        Sun, 18 Feb 2024 14:59:08 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id ay3-20020a5d6f03000000b0033d1b760125sm8742879wrb.92.2024.02.18.14.59.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 Feb 2024 14:59:07 -0800 (PST)
+Message-ID: <ec0b3dfb-3ce2-43f2-9cd4-042c3aca4cf7@linaro.org>
+Date: Sun, 18 Feb 2024 23:59:07 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] clocksource/drivers/arm_global_timer: Fix maximum
+ prescaler value
+Content-Language: en-US
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ tglx@linutronix.de
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ andrea.merello@gmail.com, patrice.chotard@foss.st.com,
+ linux-amlogic@lists.infradead.org
+References: <20240218174138.1942418-1-martin.blumenstingl@googlemail.com>
+ <20240218174138.1942418-2-martin.blumenstingl@googlemail.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20240218174138.1942418-2-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240218_095042_094571_687FEE56 
-X-CRM114-Status: GOOD (  18.32  )
+X-CRM114-CacheID: sfid-20240218_145910_521356_B9FEE553 
+X-CRM114-Status: GOOD (  13.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,275 +93,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Rename meson_encoder_{cvbs,dsi,hdmi}_init() to
-meson_encoder_{cvbs,dsi,hdmi}_probe() so it's clear that these functions
-are used at probe time during driver initialization. Also switch all
-error prints inside those functions to use dev_err_probe() for
-consistency.
-
-This makes the code more straight forward to read and makes the error
-prints within those functions consistent (by logging all -EPROBE_DEFER
-with dev_dbg(), while actual errors are logged with dev_err() and get
-the error value printed).
-
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
-This is meant to be applied on top of my other patch called
-"drm/meson: Don't remove bridges which are created by other drivers" [0]
-
-
-[0] https://lore.kernel.org/dri-devel/20240215220442.1343152-1-martin.blumenstingl@googlemail.com/
-
-
- drivers/gpu/drm/meson/meson_drv.c          |  6 +++---
- drivers/gpu/drm/meson/meson_encoder_cvbs.c | 24 ++++++++++------------
- drivers/gpu/drm/meson/meson_encoder_cvbs.h |  2 +-
- drivers/gpu/drm/meson/meson_encoder_dsi.c  | 23 +++++++++------------
- drivers/gpu/drm/meson/meson_encoder_dsi.h  |  2 +-
- drivers/gpu/drm/meson/meson_encoder_hdmi.c | 15 +++++++-------
- drivers/gpu/drm/meson/meson_encoder_hdmi.h |  2 +-
- 7 files changed, 35 insertions(+), 39 deletions(-)
-
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index cb674966e9ac..17a5cca007e2 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -312,7 +312,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 
- 	/* Encoder Initialization */
- 
--	ret = meson_encoder_cvbs_init(priv);
-+	ret = meson_encoder_cvbs_probe(priv);
- 	if (ret)
- 		goto exit_afbcd;
- 
-@@ -326,12 +326,12 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 		}
- 	}
- 
--	ret = meson_encoder_hdmi_init(priv);
-+	ret = meson_encoder_hdmi_probe(priv);
- 	if (ret)
- 		goto exit_afbcd;
- 
- 	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
--		ret = meson_encoder_dsi_init(priv);
-+		ret = meson_encoder_dsi_probe(priv);
- 		if (ret)
- 			goto exit_afbcd;
- 	}
-diff --git a/drivers/gpu/drm/meson/meson_encoder_cvbs.c b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
-index 3407450435e2..d1191de855d9 100644
---- a/drivers/gpu/drm/meson/meson_encoder_cvbs.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
-@@ -219,7 +219,7 @@ static const struct drm_bridge_funcs meson_encoder_cvbs_bridge_funcs = {
- 	.atomic_reset = drm_atomic_helper_bridge_reset,
- };
- 
--int meson_encoder_cvbs_init(struct meson_drm *priv)
-+int meson_encoder_cvbs_probe(struct meson_drm *priv)
- {
- 	struct drm_device *drm = priv->drm;
- 	struct meson_encoder_cvbs *meson_encoder_cvbs;
-@@ -240,10 +240,9 @@ int meson_encoder_cvbs_init(struct meson_drm *priv)
- 
- 	meson_encoder_cvbs->next_bridge = of_drm_find_bridge(remote);
- 	of_node_put(remote);
--	if (!meson_encoder_cvbs->next_bridge) {
--		dev_err(priv->dev, "Failed to find CVBS Connector bridge\n");
--		return -EPROBE_DEFER;
--	}
-+	if (!meson_encoder_cvbs->next_bridge)
-+		return dev_err_probe(priv->dev, -EPROBE_DEFER,
-+				     "Failed to find CVBS Connector bridge\n");
- 
- 	/* CVBS Encoder Bridge */
- 	meson_encoder_cvbs->bridge.funcs = &meson_encoder_cvbs_bridge_funcs;
-@@ -259,10 +258,9 @@ int meson_encoder_cvbs_init(struct meson_drm *priv)
- 	/* Encoder */
- 	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_cvbs->encoder,
- 				      DRM_MODE_ENCODER_TVDAC);
--	if (ret) {
--		dev_err(priv->dev, "Failed to init CVBS encoder: %d\n", ret);
--		return ret;
--	}
-+	if (ret)
-+		return dev_err_probe(priv->dev, ret,
-+				     "Failed to init CVBS encoder\n");
- 
- 	meson_encoder_cvbs->encoder.possible_crtcs = BIT(0);
- 
-@@ -276,10 +274,10 @@ int meson_encoder_cvbs_init(struct meson_drm *priv)
- 
- 	/* Initialize & attach Bridge Connector */
- 	connector = drm_bridge_connector_init(priv->drm, &meson_encoder_cvbs->encoder);
--	if (IS_ERR(connector)) {
--		dev_err(priv->dev, "Unable to create CVBS bridge connector\n");
--		return PTR_ERR(connector);
--	}
-+	if (IS_ERR(connector))
-+		return dev_err_probe(priv->dev, PTR_ERR(connector),
-+				     "Unable to create CVBS bridge connector\n");
-+
- 	drm_connector_attach_encoder(connector, &meson_encoder_cvbs->encoder);
- 
- 	priv->encoders[MESON_ENC_CVBS] = meson_encoder_cvbs;
-diff --git a/drivers/gpu/drm/meson/meson_encoder_cvbs.h b/drivers/gpu/drm/meson/meson_encoder_cvbs.h
-index 09710fec3c66..7b7bc85c03f7 100644
---- a/drivers/gpu/drm/meson/meson_encoder_cvbs.h
-+++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.h
-@@ -24,7 +24,7 @@ struct meson_cvbs_mode {
- /* Modes supported by the CVBS output */
- extern struct meson_cvbs_mode meson_cvbs_modes[MESON_CVBS_MODES_COUNT];
- 
--int meson_encoder_cvbs_init(struct meson_drm *priv);
-+int meson_encoder_cvbs_probe(struct meson_drm *priv);
- void meson_encoder_cvbs_remove(struct meson_drm *priv);
- 
- #endif /* __MESON_VENC_CVBS_H */
-diff --git a/drivers/gpu/drm/meson/meson_encoder_dsi.c b/drivers/gpu/drm/meson/meson_encoder_dsi.c
-index 311b91630fbe..7816902f5907 100644
---- a/drivers/gpu/drm/meson/meson_encoder_dsi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_dsi.c
-@@ -100,7 +100,7 @@ static const struct drm_bridge_funcs meson_encoder_dsi_bridge_funcs = {
- 	.atomic_reset = drm_atomic_helper_bridge_reset,
- };
- 
--int meson_encoder_dsi_init(struct meson_drm *priv)
-+int meson_encoder_dsi_probe(struct meson_drm *priv)
- {
- 	struct meson_encoder_dsi *meson_encoder_dsi;
- 	struct device_node *remote;
-@@ -118,10 +118,9 @@ int meson_encoder_dsi_init(struct meson_drm *priv)
- 	}
- 
- 	meson_encoder_dsi->next_bridge = of_drm_find_bridge(remote);
--	if (!meson_encoder_dsi->next_bridge) {
--		dev_dbg(priv->dev, "Failed to find DSI transceiver bridge\n");
--		return -EPROBE_DEFER;
--	}
-+	if (!meson_encoder_dsi->next_bridge)
-+		return dev_err_probe(priv->dev, -EPROBE_DEFER,
-+				     "Failed to find DSI transceiver bridge\n");
- 
- 	/* DSI Encoder Bridge */
- 	meson_encoder_dsi->bridge.funcs = &meson_encoder_dsi_bridge_funcs;
-@@ -135,19 +134,17 @@ int meson_encoder_dsi_init(struct meson_drm *priv)
- 	/* Encoder */
- 	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_dsi->encoder,
- 				      DRM_MODE_ENCODER_DSI);
--	if (ret) {
--		dev_err(priv->dev, "Failed to init DSI encoder: %d\n", ret);
--		return ret;
--	}
-+	if (ret)
-+		return dev_err_probe(priv->dev, ret,
-+				     "Failed to init DSI encoder\n");
- 
- 	meson_encoder_dsi->encoder.possible_crtcs = BIT(0);
- 
- 	/* Attach DSI Encoder Bridge to Encoder */
- 	ret = drm_bridge_attach(&meson_encoder_dsi->encoder, &meson_encoder_dsi->bridge, NULL, 0);
--	if (ret) {
--		dev_err(priv->dev, "Failed to attach bridge: %d\n", ret);
--		return ret;
--	}
-+	if (ret)
-+		return dev_err_probe(priv->dev, ret,
-+				     "Failed to attach bridge\n");
- 
- 	/*
- 	 * We should have now in place:
-diff --git a/drivers/gpu/drm/meson/meson_encoder_dsi.h b/drivers/gpu/drm/meson/meson_encoder_dsi.h
-index 9277d7015193..85d5b61805f2 100644
---- a/drivers/gpu/drm/meson/meson_encoder_dsi.h
-+++ b/drivers/gpu/drm/meson/meson_encoder_dsi.h
-@@ -7,7 +7,7 @@
- #ifndef __MESON_ENCODER_DSI_H
- #define __MESON_ENCODER_DSI_H
- 
--int meson_encoder_dsi_init(struct meson_drm *priv);
-+int meson_encoder_dsi_probe(struct meson_drm *priv);
- void meson_encoder_dsi_remove(struct meson_drm *priv);
- 
- #endif /* __MESON_ENCODER_DSI_H */
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-index c4686568c9ca..22e07847a9a7 100644
---- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-@@ -354,7 +354,7 @@ static const struct drm_bridge_funcs meson_encoder_hdmi_bridge_funcs = {
- 	.atomic_reset = drm_atomic_helper_bridge_reset,
- };
- 
--int meson_encoder_hdmi_init(struct meson_drm *priv)
-+int meson_encoder_hdmi_probe(struct meson_drm *priv)
- {
- 	struct meson_encoder_hdmi *meson_encoder_hdmi;
- 	struct platform_device *pdev;
-@@ -374,8 +374,8 @@ int meson_encoder_hdmi_init(struct meson_drm *priv)
- 
- 	meson_encoder_hdmi->next_bridge = of_drm_find_bridge(remote);
- 	if (!meson_encoder_hdmi->next_bridge) {
--		dev_err(priv->dev, "Failed to find HDMI transceiver bridge\n");
--		ret = -EPROBE_DEFER;
-+		ret = dev_err_probe(priv->dev, -EPROBE_DEFER,
-+				    "Failed to find HDMI transceiver bridge\n");
- 		goto err_put_node;
- 	}
- 
-@@ -393,7 +393,7 @@ int meson_encoder_hdmi_init(struct meson_drm *priv)
- 	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_hdmi->encoder,
- 				      DRM_MODE_ENCODER_TMDS);
- 	if (ret) {
--		dev_err(priv->dev, "Failed to init HDMI encoder: %d\n", ret);
-+		dev_err_probe(priv->dev, ret, "Failed to init HDMI encoder\n");
- 		goto err_put_node;
- 	}
- 
-@@ -403,7 +403,7 @@ int meson_encoder_hdmi_init(struct meson_drm *priv)
- 	ret = drm_bridge_attach(&meson_encoder_hdmi->encoder, &meson_encoder_hdmi->bridge, NULL,
- 				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
- 	if (ret) {
--		dev_err(priv->dev, "Failed to attach bridge: %d\n", ret);
-+		dev_err_probe(priv->dev, ret, "Failed to attach bridge\n");
- 		goto err_put_node;
- 	}
- 
-@@ -411,8 +411,9 @@ int meson_encoder_hdmi_init(struct meson_drm *priv)
- 	meson_encoder_hdmi->connector = drm_bridge_connector_init(priv->drm,
- 							&meson_encoder_hdmi->encoder);
- 	if (IS_ERR(meson_encoder_hdmi->connector)) {
--		dev_err(priv->dev, "Unable to create HDMI bridge connector\n");
--		ret = PTR_ERR(meson_encoder_hdmi->connector);
-+		ret = dev_err_probe(priv->dev,
-+				    PTR_ERR(meson_encoder_hdmi->connector),
-+				    "Unable to create HDMI bridge connector\n");
- 		goto err_put_node;
- 	}
- 	drm_connector_attach_encoder(meson_encoder_hdmi->connector,
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.h b/drivers/gpu/drm/meson/meson_encoder_hdmi.h
-index a6cd38eb5f71..fd5485875db8 100644
---- a/drivers/gpu/drm/meson/meson_encoder_hdmi.h
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.h
-@@ -7,7 +7,7 @@
- #ifndef __MESON_ENCODER_HDMI_H
- #define __MESON_ENCODER_HDMI_H
- 
--int meson_encoder_hdmi_init(struct meson_drm *priv);
-+int meson_encoder_hdmi_probe(struct meson_drm *priv);
- void meson_encoder_hdmi_remove(struct meson_drm *priv);
- 
- #endif /* __MESON_ENCODER_HDMI_H */
--- 
-2.43.2
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTgvMDIvMjAyNCAxODo0MSwgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90ZToKPiBUaGUgcHJl
+c2NhbGVyIGluIHRoZSAiR2xvYmFsIFRpbWVyIENvbnRyb2wgUmVnaXN0ZXIgYml0IGFzc2lnbm1l
+bnRzIiBpcwo+IGRvY3VtZW50ZWQgdG8gdXNlIGJpdHMgWzE1OjhdLCB3aGljaCBtZWFucyB0aGF0
+IHRoZSBtYXhpbXVtIHByZXNjYWxlcgo+IHJlZ2lzdGVyIHZhbHVlIGlzIDB4ZmYuCj4gCj4gRml4
+ZXM6IDE3MWI0NWE0YTcwZSAoImNsb2Nrc291cmNlL2RyaXZlcnMvYXJtX2dsb2JhbF90aW1lcjog
+SW1wbGVtZW50IHJhdGUgY29tcGVuc2F0aW9uIHdoZW5ldmVyIHNvdXJjZSBjbG9jayBjaGFuZ2Vz
+IikKPiBTaWduZWQtb2ZmLWJ5OiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3Rp
+bmdsQGdvb2dsZW1haWwuY29tPgo+IC0tLQo+ICAgZHJpdmVycy9jbG9ja3NvdXJjZS9hcm1fZ2xv
+YmFsX3RpbWVyLmMgfCAyICstCj4gICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEg
+ZGVsZXRpb24oLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9jbG9ja3NvdXJjZS9hcm1fZ2xv
+YmFsX3RpbWVyLmMgYi9kcml2ZXJzL2Nsb2Nrc291cmNlL2FybV9nbG9iYWxfdGltZXIuYwo+IGlu
+ZGV4IDQ0YTYxZGM2ZjkzMi4uZTFjNzczYmI1NTM1IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvY2xv
+Y2tzb3VyY2UvYXJtX2dsb2JhbF90aW1lci5jCj4gKysrIGIvZHJpdmVycy9jbG9ja3NvdXJjZS9h
+cm1fZ2xvYmFsX3RpbWVyLmMKPiBAQCAtMzIsNyArMzIsNyBAQAo+ICAgI2RlZmluZSBHVF9DT05U
+Uk9MX0lSUV9FTkFCTEUJCUJJVCgyKQkvKiBiYW5rZWQgKi8KPiAgICNkZWZpbmUgR1RfQ09OVFJP
+TF9BVVRPX0lOQwkJQklUKDMpCS8qIGJhbmtlZCAqLwo+ICAgI2RlZmluZSBHVF9DT05UUk9MX1BS
+RVNDQUxFUl9TSElGVCAgICAgIDgKPiAtI2RlZmluZSBHVF9DT05UUk9MX1BSRVNDQUxFUl9NQVgg
+ICAgICAgIDB4Rgo+ICsjZGVmaW5lIEdUX0NPTlRST0xfUFJFU0NBTEVSX01BWCAgICAgICAgMHhG
+Rgo+ICAgI2RlZmluZSBHVF9DT05UUk9MX1BSRVNDQUxFUl9NQVNLICAgICAgIChHVF9DT05UUk9M
+X1BSRVNDQUxFUl9NQVggPDwgXAo+ICAgCQkJCQkgR1RfQ09OVFJPTF9QUkVTQ0FMRVJfU0hJRlQK
+Ckdvb2QgY2F0Y2ghCgpJTU8gdGhlIGluaXRpYWwgY29uZnVzaW9uIGlzIGNvbWluZyBmcm9tIHRo
+ZSBzaGlmdCBhbmQgdGhlIG1hc2sgc2l6ZS4KCkJ1dCBzaG91bGQgR1RfQ09OVFJPTF9QUkVTQ0FM
+RVJfTUFYIGJlIDI1NiA/IHNvICgweEZGICsgMSkKClRoZSBmb2xsb3dpbmcgbWF5IGJlIGxlc3Mg
+Y29uZnVzaW5nOgoKI2RlZmluZSBHVF9DT05UUk9MX1BSRVNDQUxFUl9TSElGVAk4CiNkZWZpbmUg
+R1RfQ09OVFJPTF9QUkVTQ0FMRVJfTUFTSwlHRU5NQVNLKDE1LDgpCiNkZWZpbmUgR1RfQ09OVFJP
+TF9QUkVTQ0FMRVJfTUFYCShHVF9DT05UUk9MX1BSRVNDQUxFUl9NQVNLID4+IFwKCQkJCQkgR1Rf
+Q09OVFJPTF9QUkVTQ0FMRVJfU0hJRlQpICsgMQoKCi0tIAo8aHR0cDovL3d3dy5saW5hcm8ub3Jn
+Lz4gTGluYXJvLm9yZyDilIIgT3BlbiBzb3VyY2Ugc29mdHdhcmUgZm9yIEFSTSBTb0NzCgpGb2xs
+b3cgTGluYXJvOiAgPGh0dHA6Ly93d3cuZmFjZWJvb2suY29tL3BhZ2VzL0xpbmFybz4gRmFjZWJv
+b2sgfAo8aHR0cDovL3R3aXR0ZXIuY29tLyMhL2xpbmFyb29yZz4gVHdpdHRlciB8CjxodHRwOi8v
+d3d3LmxpbmFyby5vcmcvbGluYXJvLWJsb2cvPiBCbG9nCgoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
+dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
+L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
