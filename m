@@ -4,110 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83882C5475B
-	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Feb 2024 12:40:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECE0BC48BF6
+	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Feb 2024 17:32:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gwD8IeAJb6fMoWmOVajE92uSGPpywsiKpZERiWV0RUI=; b=wpUNBADgYaof/k
-	zg+3bAcdLHV4oANipbTXo9iB1BExBQPw+z9Y08+bxFziXSW+jJFrWsc9rT2Jf8DNy7qx/d5t0Fe9f
-	WrT2E1RNDlpKqd6dXKkYZnauMedhXuwA3LJzHVHqZGZRSGINYW5PE8uFak5xCq9k6UcBCFHMFfzZf
-	/MG3/vygHsHKn6Yi3r6QU6WO3qWc/Nxu/WSNeSKcUDwD93XLq7IhgleK1VMooWaZPsJs2WVfPrIzK
-	WeLbtFzjY2XBRNaAoGDn2wNdMUon92KfH/CnrVLI9TknoOKZHg2GFeN/k1SwHHTTjnhKzka8pWJ6S
-	PJQyo6qv+8o3/lA3Z+gg==;
+	List-Owner; bh=SJQTeyOninfT6fomNAIFgtvGpgkaw5CdMPNmQ7d6oxg=; b=HX5W8gyEAp+phN
+	OGE5y6m7B6rQgwGTklMHs7t4Pv/aaVTvubKzUl8IUAfCtewsl5MDJhSzedExKZ1XuWAA2g/K6FLhX
+	pzvPNYO/ayBLFVH/GfG2hZUOQXcluirlj8n3YDQWRVxtu0YW0Z9p6T6petM/vBZPliSK9O5F/sDrg
+	63Fza1k1DYM5VTjrwr57L8IHwrdXQbM5Fp4gfgooRCfTQJ37XZ3oRObm8JkTx6Zj63PLLzZXX4kZu
+	Gj4tupce6CdLQI8/Dxl8vlkCu0W+J1SX1njwgiNyhLL4aGp9g/XEVlhisRxHN2T6ERei02HySSkME
+	M4pvZKdzo5k77Q15cJhA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rbgTC-00000007idU-2pB4;
-	Sun, 18 Feb 2024 12:40:34 +0000
-Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	id 1rbl1O-000000086lr-0CO5;
+	Sun, 18 Feb 2024 17:32:10 +0000
+Received: from mail-bn1nam02olkn20801.outbound.protection.outlook.com ([2a01:111:f403:2c07::801] helo=NAM02-BN1-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rbgT5-00000007ibc-34FX;
-	Sun, 18 Feb 2024 12:40:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=gZmqfmB6fTBR74XgJI+NN8XTEyIaAFoIbaH6cB+nt6s=; b=mBR2OF66UJDI6eSNbTgQXD+wCc
-	NesRa+Hql7Df5cVcsDdkuEl5mwXoNrHSgNDgkML6JoR6Mnob4IED2QMayj6A0YoBnGwnw4DaztJFj
-	wihuyCiFiT19ddMcFLX9JYFYZxHSsZofJusrW5UKvtXQ8rJ9exHa/tT14EwJchA+iCgu2pha6aLYD
-	XeIYSz+WpDwgJyxnSGUoXW7cKOuJN7UobFSwWr6AGiUBzvcR5YoLHQciZF6co0COeZICs/QFSfAMJ
-	n9QWMvr8lUZ95gMIJStvpyNQH3m8Slpj1DZQbVil+WiupdVF5jH28K29h13ghcHZGuzRkfvoLnwGs
-	TV57ATRA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:53158)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rbgS7-0002It-3D;
-	Sun, 18 Feb 2024 12:39:28 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rbgRu-0007Qi-70; Sun, 18 Feb 2024 12:39:14 +0000
-Date: Sun, 18 Feb 2024 12:39:14 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Michael Hennerich <michael.hennerich@analog.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Qingfang Deng <dqfext@gmail.com>,
-	SkyLake Huang <SkyLake.Huang@mediatek.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Arun Ramadoss <arun.ramadoss@microchip.com>,
-	UNGLinuxDriver@microchip.com, Peter Geis <pgwipeout@gmail.com>,
-	Frank <Frank.Sae@motor-comm.com>, Xu Liang <lxu@maxlinear.com>,
-	Piergiorgio Beruto <piergiorgio.beruto@gmail.com>,
-	Andrei Botila <andrei.botila@oss.nxp.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Michal Simek <michal.simek@amd.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Wedson Almeida Filho <wedsonaf@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@samsung.com>,
-	Alice Ryhl <aliceryhl@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Robert Marko <robimarko@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	David Epping <david.epping@missinglinkelectronics.com>,
-	Harini Katakam <harini.katakam@amd.com>,
-	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, rust-for-linux@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [net-next RFC PATCH 0/3] net: phy: detach PHY driver OPs from
- phy_driver struct
-Message-ID: <ZdH6csVX1ZOPYP84@shell.armlinux.org.uk>
-References: <20240217194116.8565-1-ansuelsmth@gmail.com>
- <ZdEOpB1oVDE8+Qhq@shell.armlinux.org.uk>
- <65d13fcd.050a0220.88fe3.665f@mx.google.com>
+	id 1rbl1K-000000086kF-47JV
+	for linux-amlogic@lists.infradead.org;
+	Sun, 18 Feb 2024 17:32:08 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=G3+IpX0OjDC2zN60RBJ/YK1irxjvNSfiki3HbGk676HRbEPqxcVseRjPHeX8P/3VW+xupr087rjvEKvgUhjNKofwp3cTC3Bj/LGyg9yzfN/R0eXDKo2VoujiU+Gqz9G98uJc1krEIamzhdNQfmfQHIZqMdNFHSyS8Pd1mZIGuQgId6Q4ONXGY1IfKurWzwEjluVxJ6GRDuNrlceEnssCjAA9BGIBrpVGW4k0s5GLa/x5RbDnmaMrvtrRTQ8eCmrgtad+CaBPVxhWhkeG8hm5+r9Lkhc+N9s14Ie94aG8lQThyz4vy9x8qnMTaf+hmlG9EDFZ1yBrGVUKij6k2v9SxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qd0NHIFD+sJ7FC4Az9dm4PjB4N1yseNsedU2cc+qziw=;
+ b=iohLAqLUvQK/2eHKtuWZPXK6yvc8s8BYUTgeSFcLo7WC26TWgnGtZusAc2TTTWMPcecPV47KFYicKmTXgStsw+0GannfisZ/1hpnmyRecRhZu/tsyDEpfeYpOvT9KjnengspNBzX4ztE0/NvWhsS0mV3gOQbwZfvCYNPLiWygV+eOWT1mWsxbzfTrXzesjU7WuQHKQPZ8XLRTitFQ4HqoiCkRz5lwryo46NZrpjaihpFskOmXSp9RWo4H46N2K8nEFpI36z8ucV09rcx2w5WNMHCrB8B3oQPl0lam6DyS9Ona1U91vZE6s2fxQNrIwsmdvr9RipM8SxGAInuFmxSwA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qd0NHIFD+sJ7FC4Az9dm4PjB4N1yseNsedU2cc+qziw=;
+ b=uc3wM6AMtnBF1DBPQskYB3ThFG8jPaRuBMOVdsRVoSNhs02rUtC8aDFacihlpVEi7mJXZHAejZzP966tzJGqsbeEI5EIGBKrbFOruIPWnBOAC7nYYTiCvGOd3D7rwUY97kDOO1IbipXqW/48vj7x8L+t8wvw1UEnWAqUydUZQ/zu06aPqXG7FByG2c2xCh2MKv8siJbDbSqLpXxytS8dIWV25ykYYNPIXsbP48rPxTaPCO4+y/R93VHPt3sHwECTTjssmnApYYo30vg5lfkVWq8NYIMTry1KZjV4OLz7uiIJtTOYVaxxwSKAVj0OwIxx/IpP1Qwy2xgUc4KsY7OJrA==
+Received: from SJ0PR20MB6128.namprd20.prod.outlook.com (2603:10b6:a03:4ef::14)
+ by BN0PR20MB3958.namprd20.prod.outlook.com (2603:10b6:408:12b::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.32; Sun, 18 Feb
+ 2024 17:16:14 +0000
+Received: from SJ0PR20MB6128.namprd20.prod.outlook.com
+ ([fe80::20be:4f49:6e2d:fe89]) by SJ0PR20MB6128.namprd20.prod.outlook.com
+ ([fe80::20be:4f49:6e2d:fe89%4]) with mapi id 15.20.7292.033; Sun, 18 Feb 2024
+ 17:16:14 +0000
+From: Steve Morvai <stevemorvai@hotmail.com>
+To: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+CC: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: RE: [PATCH] drm/meson: Don't remove bridges which are created by
+ other drivers
+Thread-Topic: [PATCH] drm/meson: Don't remove bridges which are created by
+ other drivers
+Thread-Index: AQHaYFsLLO3SRq93xUW8TY9DWkPvhLEQWmmr
+Date: Sun, 18 Feb 2024 17:16:14 +0000
+Message-ID: <SJ0PR20MB6128970D34CD2AAF3D8E06F9B0522@SJ0PR20MB6128.namprd20.prod.outlook.com>
+References: <20240215220442.1343152-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20240215220442.1343152-1-martin.blumenstingl@googlemail.com>
+Accept-Language: en-CA, en-US
+Content-Language: en-CA
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [UINJutI9cznssY3wn59YqNQWTHN/EjHfaaiurNZ0JvNuoS1cI5X3eIBsb78MFqsK]
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ0PR20MB6128:EE_|BN0PR20MB3958:EE_
+x-ms-office365-filtering-correlation-id: 2e38f5f1-e343-4a35-a9ef-08dc30a54f8f
+x-ms-exchange-slblob-mailprops: Cq7lScuPrnohOpWPhDEjUlBDsSugqNy5WZBx5vI1RREUfO00A5alkLDyO05Lm3w99ZXv07BWnga0Fy9gcTDo4TwUftHisk+T+TUCPhcNjSqT6NN6Vu9ssMPGnKCziaO5kKc5O8ryRR2TM1sCqe31moMdgzMjQtmF4Xwy5x6wREKy+hHkDwt2TV0KWs9CRetB7JMzanQoQ4QI7lc2pOcWHYUbNY5/FosDC0EXsOZGCrwelYQZHQpNHrWIQQILYi3ujmt5ftObyFMmcUADZZWUSshMbbWTTB7yFR7Zg595M8JQzLftjQPMQ5bCjZxIZ2HqS7uEMPtLfarsTYbrRby2IK9S1yBKQ7BbrDCgStqI5DYGZHsl5ikxLYlu8kfLM1GD9fTNWd5GjWDHCENgLwVTdQECioqpIRB6ySh+0WVkKxVk6fgesX4oN19yHZuDzuURxY3Jntd0eiNy2sAXH/2IbuiH5vT1wO6GWnfbEd9MoRwhoNQsQ1sVtgMLGyN+MUMcKp+bwmy/DJFPfPHIRJxgLx4i91Ztyl8CZFQyNqze1FzSwSavCeA6BFGd4W51QW3WTVvXjqV3gFsNLZukRUZCmQoBGNvLuEC+gKTmq+i9rKIxJRJG4mob8E0vY1eUOSLP4lrp5XHzpGVqf3MKIZFKzIDxCZaalBrAwVyAOwonGGWBtwkvKI09WzcRhSqTZoRTExwWyWNIZzzYdxTLAGTtEN62pgLW8Sqsau0xZJS1PuNqA9TNHXJ3fJyBW5SNkTR708eAFYPkkck=
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: OcSxfytjEqanrbST0P4WJFPyhWeKAjvEwRZFYF26ZX/lv6NVGVEio9FNUN5zGEefO9TWLaWxzDfplgJcvZ0Bc90HNhpE4P0H9HuOzNVQ6TJm0mc1DPuTUSuEZOYILjmvk1biwJ8xR63ZxchcSUlx2CDcdrEvJNWYoJlJGDq+ep/TlFPE5rMO4fTv+pTrXizUUPggzKIx6gCnju9rvU0SAU25CeR17wTma2f9OCp/fn98yo7GKST6VF2ZWt0pG+yaFm5Ard4ARNcNwmKlmvpjFNWZWIbpPvl/i+hAKaMjDaVI5q/IfQ6KVElzvyPcVoQiSb/QL2Lg9JLVT0Yq4MiqUMGp3WqrJ7uyRDbHtpu+mInNCe83D/xzMKqSk8hi2eswn2IpJa9Bl2w2x8TEiSPc8T2BVGM/idxq6A4FWYBMuB43+lVk6dgfPgGfFeKhtFfYKJaLBJEnl15EwmY+DhFTEozhqoCl7TX/F/s8FIBkJS+w8UG/viCp5zY5+vOFaSrh1a7KBEt6uz1R8tc0h3WvHtoZ5GSoYdjRVxGtjQLwDy3Xpbauh7m6+cOB98JAm7MT
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?t7YYLzqopgsrZWdKmN8KnApsEtWco921NtnJJubK/y0+Kt7jSqm7+/i7wybg?=
+ =?us-ascii?Q?iqd1FmQ8PMZaFXS3/MMnqcj1lfv9+rKrvyfT3IQ5Dp7VVy59//29Gp1VcZxr?=
+ =?us-ascii?Q?sXFRyvuJ3D5QZVPJ83reADh9xuUCt+j4uahLJ6uCpZlj0XZ/GQGj8q/9H3fJ?=
+ =?us-ascii?Q?GTkf9TFO8Tdoa4UvcsBoxxIhq5EOU3XUHoybmgWP7qG5kw/ap+8HvdCmhoQm?=
+ =?us-ascii?Q?m4ZNsjF3s1ddTzfPotNBnxYBeBh7eV1sl0GQQwjOrmewuNoKJ54YcLkjlOVB?=
+ =?us-ascii?Q?1IRaICO8zv++pMgLZBiTuW2ju/GMFCnZ5YNAXjPIp3jC/eV2GNrT3Jav0DgK?=
+ =?us-ascii?Q?2TvKfneII1+vR54QKMjgHfsOFSyCwWLQnlDvDWilhj8MZqp6FRY/4UO5JW7H?=
+ =?us-ascii?Q?2M8DThKE4SwAVD4EsPIlZIQ8ism9CHiVJ8jcP6nPJELSLq1yrFsATsbo9PZV?=
+ =?us-ascii?Q?f/iO2kEh+Ju6NwSoYoEmG9cZf3B+nVDu2fPk6v5T4sTMQ5WFpy3HwMYb5vmH?=
+ =?us-ascii?Q?XXh4IcfZ1SktTXRjKGigc++1/yg9mdP78zJFdOE0kcMcsBYTk3/jHYxPeK2H?=
+ =?us-ascii?Q?T3YMNDSG6Xzi/8Ip4vXVkDoklTjGE1zNVIDd7F/XxJWXnTL4wGbjrzJodc26?=
+ =?us-ascii?Q?aL4CEzED8UdaK2STGKQ4QfAoEBZX1WtNmt/Tq6DtqoeE91ANMfO+G1dPBdQY?=
+ =?us-ascii?Q?wJxckzAvL7MylKsjB6/sVY/4zWd2yALqQQgKl3/SKYlqbyEoz+j8D6+44368?=
+ =?us-ascii?Q?7o/XdnJ155xQrejsaZoCl60Ix86Z2c9LBIuGvSBJobb5WWtZ0uxPWh0pcAla?=
+ =?us-ascii?Q?TDY9/liX+z2uOUtOWYyCZ6Okc13EJM5xYeqX0v6rZer6dI2WsAiosPIDi4dl?=
+ =?us-ascii?Q?fhWmfyvZSr57orZIJS+hsMaS3ItSlwaS8ev5ifWMAA19VP8iJydvl929sV3G?=
+ =?us-ascii?Q?C1xs7jLHMo5VX3F3v9t+oRB0jItLLJWVFCQ/ZbPw2sa7jWltj3l43q0R6azW?=
+ =?us-ascii?Q?DQKpW0SqQFZdmjevVFi4ROSdEMKE2L9JpftNo/Rjiaqzc1BQ0n41hgtFOU4g?=
+ =?us-ascii?Q?CdbPIEQU3cP/URHNELXXmZjPcXXwyJAzFTDuQcCpxamJFArxQQhQlWAZ5aDL?=
+ =?us-ascii?Q?FBCrSG5n+bWa6/bnuTfXVpC21zp6ZD+b8oBuS2sSdpKNMSZrtlnmLxH3nfO6?=
+ =?us-ascii?Q?JfP/hgT7UlP+7PY7VFE01r43Wp2N+4XBSp/U1E+Pf8sWlsiRG+O5e/uXDpgu?=
+ =?us-ascii?Q?0TbKQkrzEJyrGIdcTpni9AZLjiopb0D+fmJqz4CWYJ3sPxW6xFaYWHnUCHyR?=
+ =?us-ascii?Q?taQ=3D?=
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <65d13fcd.050a0220.88fe3.665f@mx.google.com>
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-9803a.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR20MB6128.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2e38f5f1-e343-4a35-a9ef-08dc30a54f8f
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Feb 2024 17:16:14.1759
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR20MB3958
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240218_044029_114368_B85C81F5 
-X-CRM114-Status: GOOD (  30.79  )
+X-CRM114-CacheID: sfid-20240218_093207_041052_0C1B46F8 
+X-CRM114-Status: GOOD (  14.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,190 +130,83 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Feb 18, 2024 at 12:22:45AM +0100, Christian Marangi wrote:
-> On Sat, Feb 17, 2024 at 07:53:08PM +0000, Russell King (Oracle) wrote:
-> > Would it make more sense instead of this big churn, to instead
-> > introduce into struct phy_driver:
-> > 
-> > 	struct mdio_device_id	*ids;
-> > 
-> > which would then allow a phy_driver structure to be matched by
-> > several device IDs?
-> 
-> Yes that was an alternative idea, but is it good to then have 2 way to
-> declare PHY ID?
-> 
-> Also the name should be changed... Maybe an array of a struct PHY_ID,
-> name that ends with a sentinel?
+Tested-by: Steve Morvai <stevemorvai@hotmail.com>
 
-We already have arrays of mdio_device_id in every driver, whether they
-can be re-used or not is a separate issue. In any case, merely adding
-support for this (only build tested patch below) is a much smaller
-change.
+Just to confirm that the correction addresses the failure of the HDMI initialization issue as reported. Thanks.
+________________________________________
+From: Martin Blumenstingl [martin.blumenstingl@googlemail.com]
+Sent: February 15, 2024 5:04 PM
+To: linux-amlogic@lists.infradead.org; dri-devel@lists.freedesktop.org
+Cc: neil.armstrong@linaro.org; maarten.lankhorst@linux.intel.com; mripard@kernel.org; tzimmermann@suse.de; airlied@gmail.com; daniel@ffwll.ch; khilman@baylibre.com; jbrunet@baylibre.com; adrian.larumbe@collabora.com; linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org; Martin Blumenstingl; stable@vger.kernel.org; Steve Morvai
+Subject: [PATCH] drm/meson: Don't remove bridges which are created by other drivers
 
- drivers/net/phy/phy_device.c | 64 +++++++++++++++++++++++++++++++++-----------
- include/linux/phy.h          | 16 ++++++++++-
- 2 files changed, 63 insertions(+), 17 deletions(-)
+Stop calling drm_bridge_remove() for bridges allocated/managed by other
+drivers in the remove paths of meson_encoder_{cvbs,dsi,hdmi}.
+drm_bridge_remove() unregisters the bridge so it cannot be used
+anymore. Doing so for bridges we don't own can lead to the video
+pipeline not being able to come up after -EPROBE_DEFER of the VPU
+because we're unregistering a bridge that's managed by another driver.
+The other driver doesn't know that we have unregistered it's bridge
+and on subsequent .probe() we're not able to find those bridges anymore
+(since nobody re-creates them).
 
-diff --git a/drivers/net/phy/phy_device.c b/drivers/net/phy/phy_device.c
-index 2e7d5bfb338e..7e02bf51a2a5 100644
---- a/drivers/net/phy/phy_device.c
-+++ b/drivers/net/phy/phy_device.c
-@@ -522,12 +522,51 @@ static int phy_scan_fixups(struct phy_device *phydev)
- 	return 0;
+This fixes probe errors on Meson8b boards with the CVBS outputs enabled.
+
+Fixes: 09847723c12f ("drm/meson: remove drm bridges at aggregate driver unbind time")
+Fixes: 42dcf15f901c ("drm/meson: add DSI encoder")
+Cc: stable@vger.kernel.org
+Reported-by: Steve Morvai <stevemorvai@hotmail.com>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+This issue was reported by Steve off-list to me (thanks again for your
+patience and sorry it took so long)!
+The Meson8b VPU driver is not upstream, but the problematic code is.
+Meaning: This issue can also appear on SoCs which are supported
+upstream if the meson DRM driver probe has to be re-tried (with
+-EPROBE_DEFER). That's why I chose to Cc the stable list.
+
+
+ drivers/gpu/drm/meson/meson_encoder_cvbs.c | 1 -
+ drivers/gpu/drm/meson/meson_encoder_dsi.c  | 1 -
+ drivers/gpu/drm/meson/meson_encoder_hdmi.c | 1 -
+ 3 files changed, 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/meson/meson_encoder_cvbs.c b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+index 3f73b211fa8e..3407450435e2 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_cvbs.c
++++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+@@ -294,6 +294,5 @@ void meson_encoder_cvbs_remove(struct meson_drm *priv)
+        if (priv->encoders[MESON_ENC_CVBS]) {
+                meson_encoder_cvbs = priv->encoders[MESON_ENC_CVBS];
+                drm_bridge_remove(&meson_encoder_cvbs->bridge);
+-               drm_bridge_remove(meson_encoder_cvbs->next_bridge);
+        }
  }
- 
-+static const struct mdio_device_id *
-+phy_driver_match_id(struct phy_driver *phydrv, u32 id)
-+{
-+	const struct mdio_device_id *ids = phydrv->ids;
-+
-+	if (ids) {
-+		while (ids->phy_id) {
-+			if (phy_id_compare(id, ids->phy_id, ids->phy_id_mask))
-+				return ids;
-+			ids++;
-+		}
-+	}
-+
-+	if (phy_id_compare(id, phydrv->id.phy_id, phydrv->id.phy_id_mask))
-+		return &phydrv->id;
-+
-+	return NULL;
-+}
-+
-+static const struct mdio_device_id *
-+phy_driver_match(struct phy_driver *phydrv, struct phy_device *phydev)
-+{
-+	const int num_ids = ARRAY_SIZE(phydev->c45_ids.device_ids);
-+	const struct mdio_device_id *id;
-+	int i;
-+
-+	if (!phydev->is_c45)
-+		return phy_driver_match_id(phydrv, phydev->phy_id);
-+
-+	for (i = 1; i < num_ids; i++) {
-+		if (phydev->c45_ids.device_ids[i] == 0xffffffff)
-+			continue;
-+
-+		id = phy_driver_match_id(phydrv, phydev->c45_ids.device_ids[i]);
-+		if (id)
-+			return id;
-+	}
-+
-+	return NULL;
-+}
-+
- static int phy_bus_match(struct device *dev, struct device_driver *drv)
- {
- 	struct phy_device *phydev = to_phy_device(dev);
- 	struct phy_driver *phydrv = to_phy_driver(drv);
--	const int num_ids = ARRAY_SIZE(phydev->c45_ids.device_ids);
--	int i;
- 
- 	if (!(phydrv->mdiodrv.flags & MDIO_DEVICE_IS_PHY))
- 		return 0;
-@@ -535,20 +574,7 @@ static int phy_bus_match(struct device *dev, struct device_driver *drv)
- 	if (phydrv->match_phy_device)
- 		return phydrv->match_phy_device(phydev);
- 
--	if (phydev->is_c45) {
--		for (i = 1; i < num_ids; i++) {
--			if (phydev->c45_ids.device_ids[i] == 0xffffffff)
--				continue;
--
--			if (phy_id_compare(phydev->c45_ids.device_ids[i],
--					   phydrv->phy_id, phydrv->phy_id_mask))
--				return 1;
--		}
--		return 0;
--	} else {
--		return phy_id_compare(phydev->phy_id, phydrv->phy_id,
--				      phydrv->phy_id_mask);
--	}
-+	return !!phy_driver_match(phydrv, phydev);
+diff --git a/drivers/gpu/drm/meson/meson_encoder_dsi.c b/drivers/gpu/drm/meson/meson_encoder_dsi.c
+index 3f93c70488ca..311b91630fbe 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_dsi.c
++++ b/drivers/gpu/drm/meson/meson_encoder_dsi.c
+@@ -168,6 +168,5 @@ void meson_encoder_dsi_remove(struct meson_drm *priv)
+        if (priv->encoders[MESON_ENC_DSI]) {
+                meson_encoder_dsi = priv->encoders[MESON_ENC_DSI];
+                drm_bridge_remove(&meson_encoder_dsi->bridge);
+-               drm_bridge_remove(meson_encoder_dsi->next_bridge);
+        }
  }
- 
- static ssize_t
-@@ -3311,6 +3337,7 @@ static int phy_probe(struct device *dev)
- 	int err = 0;
- 
- 	phydev->drv = phydrv;
-+	phydev->drv_id = phy_driver_match(phydrv, phydev);
- 
- 	/* Disable the interrupt if the PHY doesn't support it
- 	 * but the interrupt is still a valid one
-@@ -3485,6 +3512,11 @@ int phy_driver_register(struct phy_driver *new_driver, struct module *owner)
- 	new_driver->mdiodrv.driver.owner = owner;
- 	new_driver->mdiodrv.driver.probe_type = PROBE_FORCE_SYNCHRONOUS;
- 
-+	if (!new_driver->id.phy_id) {
-+		new_driver->id.phy_id = new_driver->phy_id;
-+		new_driver->id.phy_id_mask = new_driver->phy_id_mask;
-+	}
-+
- 	retval = driver_register(&new_driver->mdiodrv.driver);
- 	if (retval) {
- 		pr_err("%s: Error %d in registering driver\n",
-diff --git a/include/linux/phy.h b/include/linux/phy.h
-index fd8dbea9b4d9..2f2ebbd41535 100644
---- a/include/linux/phy.h
-+++ b/include/linux/phy.h
-@@ -542,6 +542,7 @@ struct macsec_ops;
-  *
-  * @mdio: MDIO bus this PHY is on
-  * @drv: Pointer to the driver for this PHY instance
-+ * @drv_id: The matched driver ID for this PHY instance
-  * @devlink: Create a link between phy dev and mac dev, if the external phy
-  *           used by current mac interface is managed by another mac interface.
-  * @phy_id: UID for this device found during discovery
-@@ -639,6 +640,7 @@ struct phy_device {
- 	/* Information about the PHY type */
- 	/* And management functions */
- 	const struct phy_driver *drv;
-+	const struct mdio_device_id *drv_id;
- 
- 	struct device_link *devlink;
- 
-@@ -882,6 +884,9 @@ struct phy_led {
-  * struct phy_driver - Driver structure for a particular PHY type
-  *
-  * @mdiodrv: Data common to all MDIO devices
-+ * @ids: array of mdio device IDs to match this driver (terminated with
-+ *   zero phy_id)
-+ * @id: mdio device ID to match
-  * @phy_id: The result of reading the UID registers of this PHY
-  *   type, and ANDing them with the phy_id_mask.  This driver
-  *   only works for PHYs with IDs which match this field
-@@ -903,6 +908,8 @@ struct phy_led {
-  */
- struct phy_driver {
- 	struct mdio_driver_common mdiodrv;
-+	const struct mdio_device_id *ids;
-+	struct mdio_device_id id;
- 	u32 phy_id;
- 	char *name;
- 	u32 phy_id_mask;
-@@ -1203,7 +1210,14 @@ static inline bool phy_id_compare(u32 id1, u32 id2, u32 mask)
-  */
- static inline bool phydev_id_compare(struct phy_device *phydev, u32 id)
- {
--	return phy_id_compare(id, phydev->phy_id, phydev->drv->phy_id_mask);
-+	u32 mask;
-+
-+	if (phydev->drv_id)
-+		mask = phydev->drv_id->phy_id_mask;
-+	else
-+		mask = phydev->drv->phy_id_mask;
-+
-+	return phy_id_compare(id, phydev->phy_id, mask);
+diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+index 25ea76558690..c4686568c9ca 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+@@ -474,6 +474,5 @@ void meson_encoder_hdmi_remove(struct meson_drm *priv)
+        if (priv->encoders[MESON_ENC_HDMI]) {
+                meson_encoder_hdmi = priv->encoders[MESON_ENC_HDMI];
+                drm_bridge_remove(&meson_encoder_hdmi->bridge);
+-               drm_bridge_remove(meson_encoder_hdmi->next_bridge);
+        }
  }
- 
- /* A Structure for boards to register fixups with the PHY Lib */
+--
+2.43.2
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
 _______________________________________________
 linux-amlogic mailing list
