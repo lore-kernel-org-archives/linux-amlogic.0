@@ -4,85 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25D9FC48BF6
-	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Feb 2024 23:48:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40144C48BF6
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Feb 2024 01:18:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DqAg6WU40UBBqXdq1TsBH+HX4iidJdennQ2AzLY4Axw=; b=JpXHkP7aPkcONS
-	GT8vq1xZ8JfqiMq6mUOx1K23BXAKgBeGDVSvpPWMBN4XpLmG6oTcrBEs6LJGQbh5KYZJYglV/sg6Y
-	OKInSDbrcZnmoKmUhkm5V7aQbKG8xU8rYqafCS+Ccq9kIPo0Uq9e4wTek6PWWjvukIF6nPGu46Bwg
-	45Y5jYGeAZ+ieMTmvmKk3D3DKhyS0pwMWM3pX9RQEcy+W7/hPHII2q0uN49lgn0A8rri6JdL3k8lc
-	upghmSV8Z/5fctPgWB9ys4PVZY7vByL/IQWuu7s7iy1CQIcxKMfDH6sekOcirpggw3YThS8zTdu6A
-	MgIHg82dnZuwwgDKqj7A==;
+	List-Owner; bh=ey/nbR3kxbsbxFumZj7etQ0dClj1nOPD+iL/2JVCZ+I=; b=gn8wiEGDCeZ2Hl
+	GF2iagK/CXsPYHxGpkWHXP0WIe9JumjwMpyam4bfcyHbWJl2r/K+qnYHj0fVWTPyqOP3n8D6JK7pq
+	/kTAMsrmrnQBntw4UpAseN8ZTIUA8JhIxmIckAYALwFMUC/rd4v4vR+pgvpmDxUwyP5zHeU2SLMvb
+	79JPufMU/wEIILxGG/4Jxj4kULcz05HWYH0KhfUTFxhjX6e4pmQV6vScK/8bEmVEUy+gZTKGz0Kqn
+	KHW/Hr2ap5v5mID2uIDlFU3p6w3qElrqqhGWCB7kSztwRRCpbKmCj0JB5EyQo/3MnVt4kDXVBv69t
+	6t8Q35bSoy7bmc8diZ/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rbqtt-00000008etm-0GZS;
-	Sun, 18 Feb 2024 23:48:49 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1rbsIV-00000008l1C-1POt;
+	Mon, 19 Feb 2024 01:18:19 +0000
+Received: from mail-db8eur05on2060b.outbound.protection.outlook.com ([2a01:111:f400:7e1a::60b] helo=EUR05-DB8-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rbqtq-00000008est-0tZk
-	for linux-amlogic@lists.infradead.org;
-	Sun, 18 Feb 2024 23:48:47 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-41263e8b7f8so4359045e9.2
-        for <linux-amlogic@lists.infradead.org>; Sun, 18 Feb 2024 15:48:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708300119; x=1708904919; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=buA/UKLNcQ5kdyPMEKml7ordtlaWTbAGzP/8x7nK568=;
-        b=UFpo18meOLbaqB1LXKwXL3nVadJ4AhsZlIFRIoSHFgD+ecwGjRsaQsmPGtueDJPu3E
-         9htxeT32USb800+aSRXsxY/SDz4TXvIUlYNVlKiLN2wllCZKYns6IamcYYOXuGOhRqMz
-         HxkCjJOCDyW3HDO/Fx42ulJzBwxVnc+/+3n6VSs5KBEgg1qzKAu91qnfX6IoVrLDNYiN
-         RPDJV7qWMvQcor4Zp2Am55Se3mdGCIZSliaiyRl5poNiGRilfimdMO9GIw6Hd7qxlg28
-         mJQvjVRV6SMK59IiBX4uM6MszBU736te+fVPD+8W87RWbjpHZOXJjQi0jE/iLONgIEy9
-         ycFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708300119; x=1708904919;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=buA/UKLNcQ5kdyPMEKml7ordtlaWTbAGzP/8x7nK568=;
-        b=UJZBdT1Xe2skTqt8DoxE35bXLDss14Dv2uIgEdjaf6Q8b1rQrcsReSquY/YIv7i0wW
-         +KQPzhRrWX4FeZEWAecwJKl9bUI76EXsWJlpSNAyjB3rqY7uhOMuKgk1Tcl/lc936E7L
-         GVSCInA12KwEWR7pO8/N/HWjZfSgY8frhNbnusQ3peoGO+Tk1xZTXaGkBfThldNbfBnF
-         JZC/j00ohiQ1lL0MRJYC/j1WDssYtrGBarGPBLkGmRe/zxLG1fn+S4WgSDRbh1FlwI7B
-         j4CloVK2uz4VAdTKuSH5Wcb3KUykWX3PWaLZ2h5QWhWNVjlICXseH/MLkganhlluKVZk
-         lpXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXTgW/w/8BjzbkY9HTZL5KvsHpdu8tBeT9s3jIDS3tyqVL8nRHqCRpCuObHPuXzzcG5vOfgr8XzWpnBZ7T1R6KIZDIOgF5/kts5/FcHjQ4FhvA=
-X-Gm-Message-State: AOJu0YxvzSuL04NZ/XRjdjSR1sp8CSKblNAZSC5EDEVXDD5AqGqh07Py
-	lHhDFb5Akty2xHUzlTX2PQliPQzVtIqXW5ebsNa27LmkqdNOAT5J5+haiTbJl84=
-X-Google-Smtp-Source: AGHT+IEMnbMNjC4B0Pso0FCy4uKJFZWuQJrqcCZS1B/SG+nzfSMdDR0Xv3aZlRG+CEHH5v3gSGfFjA==
-X-Received: by 2002:a05:600c:4fc9:b0:412:5652:2875 with SMTP id o9-20020a05600c4fc900b0041256522875mr4798821wmq.17.1708300118765;
-        Sun, 18 Feb 2024 15:48:38 -0800 (PST)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id l5-20020a05600c4f0500b0041253692606sm7871460wmq.17.2024.02.18.15.48.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Feb 2024 15:48:38 -0800 (PST)
-Message-ID: <5f6229ac-1390-41b5-af91-53799641d3b2@linaro.org>
-Date: Mon, 19 Feb 2024 00:48:37 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] clocksource/drivers/arm_global_timer: Fix maximum
- prescaler value
+	id 1rbsIR-00000008l0S-0XZl;
+	Mon, 19 Feb 2024 01:18:16 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=a+L1lQPboomxqtos+qRgZMW+u2SWPagBLY1UhwTNLq95Wwm7YPaxStGMzTq6P/Phy+A+3a7IKBasg2h4fSDMVmExVlfpzqHWrh8hJqhWfGxBvbPlKNV0W0/ZillOu0C3Sky/83hfbkeF84kPjINx7222Uttb/+aLUtX8L6UwHfichloG3rPG8H7t8zF+y+++dzhPcCXt/hZ8XB1rQj3twWSDPUgTvwOelf7eaoUOep7m8MTFJgz6Ltek9n31bff0qNkSd6X+T0f9x5fbpDsl6iAMfMaxTEBmQ0Y5Rg7iR6QHM2IdDABI0xEmPpAGTuYEdzSzmHE12GMsXaBk0hzRUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sPgE3ob3aUIeF1aoxeVd81WxBqxETHatx9vjUdTrf9A=;
+ b=Ak3KjwrSc7UeDFYGGwaETHXZJICeav0x29lumAwsgxt4MXJ5jfBs+goQXIvSoNFqf2kOZptXc1nQ0MN+qJ2osD6wAoL/pjZ4LJlwVHW3EnSKfc2a5QkYMu5sVlC1qnqsAfGChfxsy5SWQkWeB5oS0Uk/Ax/uoxpW9M6MRsxBS4zIMECHHgZ5nCyvNB1jgrNO1sNmiMbIcpY+G7s1aMTpygisGxmGHwPp13yie4JfLyT5bLUl74ePkVhZ7J4+z0lhjVxrsNr43mB4c7jB6y0NSVKXiH9h1hWGFyyMd0zcQaE8Iq1zC1KIWWjb4aoamJrwnhVLfTph0l/dvCXEjDCRfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sPgE3ob3aUIeF1aoxeVd81WxBqxETHatx9vjUdTrf9A=;
+ b=B/2WkZBNRf2zavyng2fe95kyClSZr87Pu9YtRpSW9Axxum3h9SjHGYtAN0uOaaMraXdj42v6BFCik9i9o4dQWRMsjAi5UVWl29bGbwW8GcZUnEt4gb1XIh+vQ3rZ9IsrHx1zRhOWqtjlGdmVYlkZg4AnyZ2omAf/QIAwDktQ23Y=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by DU0PR04MB9633.eurprd04.prod.outlook.com (2603:10a6:10:311::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.34; Mon, 19 Feb
+ 2024 01:03:30 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::4ac3:3559:4200:38e1]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::4ac3:3559:4200:38e1%4]) with mapi id 15.20.7292.033; Mon, 19 Feb 2024
+ 01:03:29 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Michael Turquette
+	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Sudeep Holla
+	<sudeep.holla@arm.com>, Shawn Guo <shawnguo@kernel.org>, Nishanth Menon
+	<nm@ti.com>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+	<konrad.dybcio@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter
+	<jonathanh@nvidia.com>, Linus Walleij <linus.walleij@linaro.org>, Laurent
+ Pinchart <laurent.pinchart@ideasonboard.com>, Mauro Carvalho Chehab
+	<mchehab@kernel.org>, Vinod Koul <vkoul@kernel.org>, Russell King
+	<linux@armlinux.org.uk>, Srinivas Kandagatla
+	<srinivas.kandagatla@linaro.org>, Mark Brown <broonie@kernel.org>, Jaroslav
+ Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "patches@opensource.cirrus.com"
+	<patches@opensource.cirrus.com>, "linux-stm32@st-md-mailman.stormreply.com"
+	<linux-stm32@st-md-mailman.stormreply.com>, dl-linux-imx <linux-imx@nxp.com>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+	"linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+	"alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>
+Subject: RE: [PATCH] clk: constify the of_phandle_args argument of
+ of_clk_provider
+Thread-Topic: [PATCH] clk: constify the of_phandle_args argument of
+ of_clk_provider
+Thread-Index: AQHaWq0ZPI/aYtegqkWDKKNVao0UqrEQ6UOQ
+Date: Mon, 19 Feb 2024 01:03:29 +0000
+Message-ID: <DU0PR04MB9417F8D996A661CAA9E542FE88512@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20240208163710.512733-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240208163710.512733-1-krzysztof.kozlowski@linaro.org>
+Accept-Language: en-US
 Content-Language: en-US
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: tglx@linutronix.de, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, andrea.merello@gmail.com,
- patrice.chotard@foss.st.com, linux-amlogic@lists.infradead.org
-References: <20240218174138.1942418-1-martin.blumenstingl@googlemail.com>
- <20240218174138.1942418-2-martin.blumenstingl@googlemail.com>
- <ec0b3dfb-3ce2-43f2-9cd4-042c3aca4cf7@linaro.org>
- <CAFBinCC0BbahEMeW9CYC+hKk0CBQ9a+CqNrOv3c92D8hDtQHdQ@mail.gmail.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <CAFBinCC0BbahEMeW9CYC+hKk0CBQ9a+CqNrOv3c92D8hDtQHdQ@mail.gmail.com>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|DU0PR04MB9633:EE_
+x-ms-office365-filtering-correlation-id: 565eb74d-c0e6-4eab-2e9a-08dc30e69607
+x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: YGHe7wtIOI5wGk2i4JEkm5WM2hr4XcziS1MG9DOD6/0S/iJpB+C8ki334R+NsmFErNIf/ZLWgRU18Nm7mls7jHESTWDd5VVnoFHzYTEmu6V1UgIysYFhjmo5gwXzZ/CgaSGhTd8wK07ivjxjY1M8ovw03pDVjYJ+GhGkW0OQ5BI5ZhzkSkZETdKVY9xRULREz12NvKYoVHdVuBVsGaUeqA4nJ6JgSe3aJaFwueMKeCH/AoKfUSoq7PZb5NVxD3wT8jDsGkJ1rXLfZoNaSqFxEwteM6hzHKuz7wsx5QEzJD3glmVsWWP4kGGXq2UoTZWgaKUS5X0Fp4X6yGBJvumB2s5p30oAunfi3G/+fFzp7l3A3eja0RehNEJcnJkTu5XFZmOy0VhhpFzCp94x3SqorLPRCNJ8dgTpSnfuu+SPu/h1DM7d7trGchR8evQGZO0G17MHAd+/B3EtdRvJpjxzMSGNqjkURB0ZysrwaYHSHmPbWgHIMas2wk7MFpZaSligAyR3w6Jja7tWTi7aV+oxGy8DHJA/EzIU9DrfW1Yjt2UfEzulYF/L7hBJdq9KAIfSVumHrRRhVUy8ViQluzQFwbfWXNswBxBwVJ6fSDSzBC8C4IdUBna9eNNsqy1FSOMsCVRrQBDl3lnvXuTRFdlF6Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(136003)(366004)(39860400002)(396003)(376002)(230922051799003)(186009)(1800799012)(451199024)(64100799003)(38070700009)(921011)(26005)(41300700001)(83380400001)(8936002)(52536014)(8676002)(64756008)(66446008)(66476007)(66946007)(76116006)(66556008)(316002)(478600001)(9686003)(7696005)(71200400001)(110136005)(6506007)(33656002)(122000001)(86362001)(38100700002)(44832011)(5660300002)(2906002)(7416002)(7406005)(55016003)(4744005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?i4+e8mXJqncfZOk6Huf1v5+sflTwSEEfQl94kYxCcN0Sl7VL7CrzqoZCrTRD?=
+ =?us-ascii?Q?XuYQ6F0aRa9sKYpV7Pit1fadsZ0IOI7CY1WVDP3OSSERRcxmsSqJkjojBi3c?=
+ =?us-ascii?Q?Dukxc7+CT5T/T82D0cEumvJymXeSCSCrszSiYWewqkAWMsPAappllUTyi8V/?=
+ =?us-ascii?Q?fRvz2ytDOjkIgkHnF2QyvTxYqia4EdP4Tujd387Cq1my4V75snY0bggxPumG?=
+ =?us-ascii?Q?Pg8yE4uQPs7vmosmqdtZ7FnwFAvLD8c81+KqKaleXXmgqbJaEwJ/jFOnb9hR?=
+ =?us-ascii?Q?N4zjMLyqdzeiofP/U8Mfw2DNSC8/smu25P+1jx+VMf0U7wZy4p3rFf/eFoyP?=
+ =?us-ascii?Q?lbBmUzW6t2WmRVRdkgAOErYibWeovbgYB2xLJSzpAzVQwSOjyt4sscoIp2q8?=
+ =?us-ascii?Q?R0yp54plqxy4u6R6/0vubRX2V4QslKo/ChIO4iZ9wvQJT67Pg/ZBViCKHNxc?=
+ =?us-ascii?Q?4fKF25/FAnX3hbNTKvo5NdvNBvpc+bSJTZOJEMdvB2PLDKvOx7u2QOanSrxE?=
+ =?us-ascii?Q?kEPMu8xUfULWZyg354Qn0dRFsHSJMQrFSquuP7R//csyDj9Hz3VDTWleUSH8?=
+ =?us-ascii?Q?JgEI3sMtOiYS3mptn2lbnpKqRPmgcaccbdLPcF6jeWGz5Vvyqz1/s32sqvWz?=
+ =?us-ascii?Q?/XuiNZzjJCQCN7uFHz7RQQCEy6gS91kDrCd97wMLdtLosKlOu7iQqiKMgIpe?=
+ =?us-ascii?Q?1qUHpY4A+gLCwQN3mWzZQtNmwhmR2rmxi4FlbLkZZy8CKzq02TB5Ihhb1n1v?=
+ =?us-ascii?Q?gjQEe3Vs69xPDMsoZ/Bd/VYMSbOziaSfWe0SQGVxAVd27yhzO4sntfK1L0G7?=
+ =?us-ascii?Q?VqiZjBbzVzYVhDDze7mvVjRGJN2NJbM6Y932iQ32pxmZ9+DMaBphNKd5zHvL?=
+ =?us-ascii?Q?CRoX1MMarGTzwsH2cG7tJvcV63JeasgrNYe8m34Rb7O5ndlwlC2AZtXw8bP2?=
+ =?us-ascii?Q?V7V+B09/SA3cBAzpP477mkJ7Jv852VUaLiQoeZXysqCKzk57ckmn8UOUDPVT?=
+ =?us-ascii?Q?MhC+W2Djq3tXOcrk5t+bqK/DDVeBIOHth6MOt7Mkji1bQVkYwMY1lHgjim7q?=
+ =?us-ascii?Q?5W+0cnnvBXxtW4Fg5qIKrSuzBnJleIure51xNWCudO7VIWUh23Ag32quYpxJ?=
+ =?us-ascii?Q?jPooVPIgKy3YeH7OBvHtkxWopNPUtApwlmRLl6vf8v6CAoklOZfvw87TqVgQ?=
+ =?us-ascii?Q?FzEwN93dbqq9dwwGxUnR2EloREEVlLVlZx2vpmKF+WxMeQHA/4wmPHu/NyGd?=
+ =?us-ascii?Q?Ewhj5AOeC53I4EFFLNtXtkt3lmh6dEZ9dcdSZojDAgq2nWJROz6jx2oFuyJv?=
+ =?us-ascii?Q?PZW/YKWq2aSclkFoC9T/uE22pRpo8tb4hP30JyzlUHSIcvGA/CtS4zsIKFDK?=
+ =?us-ascii?Q?EqDo4iSymHRPUJYsL6iUctvq6Nt8+ouF7xvhSdFpDdFakfeAqHjBt23WQIm4?=
+ =?us-ascii?Q?RVqP0OeGMQJ4Bvc/xBlCJb36i1navEuRaopUM6v9EMJptm5CIDqin7VE8nUW?=
+ =?us-ascii?Q?N1+3mRyLSVUJrm9jhGBUJvAHOTVLO9LwSJ6A18JafVMS8ZTTuZkqKuy+PaHz?=
+ =?us-ascii?Q?YslMAGRZ7W6hbM5eMm0=3D?=
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 565eb74d-c0e6-4eab-2e9a-08dc30e69607
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Feb 2024 01:03:29.7182
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: GYrdvf3S4gMi2esedVC0myE7nCcmuM5HFRGSaYtPOPDOW78ggG4W/4qFfFv+a2m5TagT2bkmI+VKnRFjp1nx4A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9633
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240218_154846_456042_79373CAA 
-X-CRM114-Status: GOOD (  17.93  )
+X-CRM114-CacheID: sfid-20240218_171815_183219_F43830F6 
+X-CRM114-Status: UNSURE (   9.99  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,48 +156,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMTkvMDIvMjAyNCAwMDoxOCwgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90ZToKPiBIaSBEYW5p
-ZWwsCj4gCj4gT24gU3VuLCBGZWIgMTgsIDIwMjQgYXQgMTE6NTnigK9QTSBEYW5pZWwgTGV6Y2Fu
-bwo+IDxkYW5pZWwubGV6Y2Fub0BsaW5hcm8ub3JnPiB3cm90ZToKPiBbLi4uXQo+Pj4gICAgI2Rl
-ZmluZSBHVF9DT05UUk9MX1BSRVNDQUxFUl9TSElGVCAgICAgIDgKPj4+IC0jZGVmaW5lIEdUX0NP
-TlRST0xfUFJFU0NBTEVSX01BWCAgICAgICAgMHhGCj4+PiArI2RlZmluZSBHVF9DT05UUk9MX1BS
-RVNDQUxFUl9NQVggICAgICAgIDB4RkYKPj4+ICAgICNkZWZpbmUgR1RfQ09OVFJPTF9QUkVTQ0FM
-RVJfTUFTSyAgICAgICAoR1RfQ09OVFJPTF9QUkVTQ0FMRVJfTUFYIDw8IFwKPj4+ICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBHVF9DT05UUk9MX1BSRVNDQUxFUl9TSElG
-VAo+Pgo+PiBHb29kIGNhdGNoIQo+Pgo+PiBJTU8gdGhlIGluaXRpYWwgY29uZnVzaW9uIGlzIGNv
-bWluZyBmcm9tIHRoZSBzaGlmdCBhbmQgdGhlIG1hc2sgc2l6ZS4KPj4KPj4gQnV0IHNob3VsZCBH
-VF9DT05UUk9MX1BSRVNDQUxFUl9NQVggYmUgMjU2ID8gc28gKDB4RkYgKyAxKQo+IEl0IGRlcGVu
-ZHMgb24gd2hhdCB3ZSBjb25zaWRlciAibWF4IiB0byBiZToKPiAtIHRoZSByZWdpc3RlciB2YWx1
-ZQo+IC0gdGhlIGFjdHVhbCBudW1iZXIgdGhhdCdzIHVzZWQgaW4gdGhlIGNhbGN1bGF0aW9uIGZv
-cm11bGEKPiAKPiBJZiB3ZSBpZ25vcmUgdGhlIHVzYWdlIG9mIEdUX0NPTlRST0xfUFJFU0NBTEVS
-X01BWCB3aXRoaW4KPiBHVF9DT05UUk9MX1BSRVNDQUxFUl9NQVNLIHRoZW4gdGhlcmUncyBvbmx5
-IG9uZSBvY2N1cnJlbmNlIGxlZnQsIHdoaWNoCj4gZGVjcmVtZW50cyB0aGUgY2FsY3VsYXRlZCB2
-YWx1ZSByaWdodCBiZWZvcmUgY29tcGFyaW5nIGl0IGFnYWluc3QKPiBHVF9DT05UUk9MX1BSRVND
-QUxFUl9NQVguCj4gVGhpcyBtZWFuczogdGhlIHJlbWFpbmluZyBkcml2ZXIgY3VycmVudGx5IGNv
-bnNpZGVycwo+IEdUX0NPTlRST0xfUFJFU0NBTEVSX01BWCB0byBiZSB0aGUgbWF4aW11bSB2YWx1
-ZSB0aGF0IGNhbiBiZSB3cml0dGVuCj4gdG8gdGhlIHJlZ2lzdGVyLCBoYXZpbmcgY29udmVydGVk
-IHRoZSB2YWx1ZSBmcm9tIHRoZSBjYWxjdWxhdGlvbgo+IGZvcm11bGEgdG8gcmVnaXN0ZXIgdmFs
-dWUgYmVmb3JlaGFuZC4KPiAKPj4gVGhlIGZvbGxvd2luZyBtYXkgYmUgbGVzcyBjb25mdXNpbmc6
-Cj4+Cj4+ICNkZWZpbmUgR1RfQ09OVFJPTF9QUkVTQ0FMRVJfU0hJRlQgICAgICA4Cj4+ICNkZWZp
-bmUgR1RfQ09OVFJPTF9QUkVTQ0FMRVJfTUFTSyAgICAgICBHRU5NQVNLKDE1LDgpCj4+ICNkZWZp
-bmUgR1RfQ09OVFJPTF9QUkVTQ0FMRVJfTUFYICAgICAgICAoR1RfQ09OVFJPTF9QUkVTQ0FMRVJf
-TUFTSyA+PiBcCj4+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEdU
-X0NPTlRST0xfUFJFU0NBTEVSX1NISUZUKSArIDEKPiBJZiB5b3UncmUgaW50ZXJlc3RlZCB0aGVu
-IEknbGwgd29yayBvbiBhIGZvbGxvdy11cCBwYXRjaCB0byBjbGVhbiB1cAo+IHRoZSBwcmVzY2Fs
-ZXIgbWFjcm9zICh1c2luZyBGSUVMRF9QUkVQLCBGSUVMRF9HRVQgYW5kIEdFTk1BU0sgd291bGQK
-PiBzaW1wbGlmeSB0aGluZ3MgSU1PKS4KClllcywgY2xlYW51cHMgYXJlIHdlbGNvbWUKCj4gSSB0
-aGluayB0aGF0IHRoaXMgcGF0Y2ggaXMgc3RpbGwgZ29vZCBhcy1pcyBzaW5jZSBpdCdzIHNtYWxs
-IGFuZCBjYW4KPiBiZSBiYWNrcG9ydGVkIGVhc2lseSAoaWYgc29tZW9uZSB3YW50cyB0byBkbyB0
-aGF0KS4KCk9rLCBJJ20gZmluZSB3aXRoIHRoYXQKCgotLSAKPGh0dHA6Ly93d3cubGluYXJvLm9y
-Zy8+IExpbmFyby5vcmcg4pSCIE9wZW4gc291cmNlIHNvZnR3YXJlIGZvciBBUk0gU29DcwoKRm9s
-bG93IExpbmFybzogIDxodHRwOi8vd3d3LmZhY2Vib29rLmNvbS9wYWdlcy9MaW5hcm8+IEZhY2Vi
-b29rIHwKPGh0dHA6Ly90d2l0dGVyLmNvbS8jIS9saW5hcm9vcmc+IFR3aXR0ZXIgfAo8aHR0cDov
-L3d3dy5saW5hcm8ub3JnL2xpbmFyby1ibG9nLz4gQmxvZwoKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
-bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+> Subject: [PATCH] clk: constify the of_phandle_args argument of
+> of_clk_provider
+> 
+> None of the implementations of the get() and get_hw() callbacks of "struct
+> of_clk_provider" modify the contents of received of_phandle_args pointer.
+> They treat it as read-only variable used to find the clock to return.  Make
+> obvious that implementations are not supposed to modify the
+> of_phandle_args, by making it a pointer to const.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+For i.MX:
+Acked-by: Peng Fan <peng.fan@nxp.com>
+
+Regards,
+Peng.
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
