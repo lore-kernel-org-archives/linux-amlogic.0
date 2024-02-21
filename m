@@ -4,58 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0D40C48BF6
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Feb 2024 14:37:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8048AC48BEB
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Feb 2024 15:12:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4Hv24POJpYRIUR7R+sa5Pl2+j6VT461Gk2HNj8MyK88=; b=bYuBNOQHcSektw
-	k12AAg3FqiNLgqDsK1x+bqfPcn9xr+vZkFovYty6ANuq8QLp0RZIIX5EiN8zf/ZGxgWfb7L5C7CDD
-	9/uTo4n1KNZ3Jb8cQJAOLr6NQbjh99DAuOZb4JO2goTlhQrtSgk5k5R+ikaLgAu7ixRIR9lj9aNZf
-	v0LZ6e6TPE0bEDk4hyjCuLVMt4HcuE3BlDsZJayBH3doj5Gi79hyTfHZr6NQ2iMmEl+fyGkdh5t3S
-	s13C6w6k/ndBFb1QHQFh21G4yIFr0Caa+k6IDcXkrYSqjTOnL+/WR+hTnwwwuFf0ecrb0dPalimTU
-	ruun6yzHCWscublWHj4g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=CNv2DgRxxPOMhw9PBcIOj29r9SE6sCi+hTy0CYeTtmM=; b=IUFnLFsG2dpjUr
+	zEDCp607iQLvU2gtv1cCdBMvBMl4o/tsEhXNEoPApmG9FWy+BJaBzMtcEGolhsRezxdn2Rrz/iliA
+	gGom34EH5DeOv/PZCOQhQi7N/ch14EkSDyPr6uhWZ0+gc1g3UnvYF4nXyfEeqyKO1ZX4aDOKB8tCR
+	dPTFdIOG5Ivia39WDZ530VHxUfPHSebpvuRxm4jLOTywrEh7761guTUM+wyNqnQuNv5pHpVApuQRI
+	cM71tikX5huxkaJGhU8Sh4JqNDRCNTj6FguLlTeVHbj5zUio7jBR0kQe0zxyDVVAhQQpGuoELNXKa
+	zcTiMqa5T6HjU0Ab2FbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcniq-00000001J59-1gA1;
-	Wed, 21 Feb 2024 14:37:20 +0000
-Received: from mx.msync.work ([62.182.159.68])
+	id 1rcoGc-00000001QRX-1j9z;
+	Wed, 21 Feb 2024 15:12:14 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcnij-00000001J0C-1egH;
-	Wed, 21 Feb 2024 14:37:15 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 216E510D6F2;
-	Wed, 21 Feb 2024 14:37:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
-	t=1708526226; h=from:subject:date:message-id:to:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=i0Y68y9QYfs+ZNLFMH9hJGuFHOG8YfS2qWD0cNE1Ctk=;
-	b=tqC+zxYwCxS4jA4eJsGD2YjsBFC4lHwLuij/GMNdc2JbOuc0/NrpiOJQrW0l8zATtNoEOV
-	a7T14c/NOjCxPN+LVTxXjAakGszfn+6pHOXFS2dJ75kAC0bKPIFOvCzWF65NcB/3naVFrk
-	zIxaV879hZ4QIJ0kQ3r264wAaQ6EIL4F5ehYL2wEuYipboFk2L4G4MkT2Yrxb8pO4Gj0rf
-	ioNP2InMMBSBV2tNMm2mBy8k93pL1735pqvlgcfvQsqou4HKtxaNWOSOSQnc4pmQRFZJwi
-	6nDMihkevezxY9qCabqQZDLHDM1XUrgFyqICPtvJFnhPeRF7jDn9u0pWrspPPg==
-From: Viacheslav Bocharov <adeep@lexina.in>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
+	id 1rcoGX-00000001QPF-2a82
+	for linux-amlogic@lists.infradead.org;
+	Wed, 21 Feb 2024 15:12:11 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4126f48411dso11878435e9.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 21 Feb 2024 07:12:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1708528328; x=1709133128; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3FBkTY4ktEOVpEo6YvXl49m3OViLG+BImsIBijiLHxg=;
+        b=tdIf7xQVCJ1wPUfnkbbPVM0hJO/IjpVXC+zPqA7yc6HMpkcM8TYFuZFu/NZtwAX6dM
+         EEkl8K5O7xMWx477mgTijitW5EWOGNom06icLAqW9t+qpZewKhc9zU2OaPKDOlmuwkN2
+         sjHAtUAk5MlUaWI8bWvvPUohlLdFFRtgHQzzzHPcH26pEuW2f9DwjxIBsKv9Bh8uYiZX
+         mlsbJN6BwIKA5SJqBmJQ5vmzcaibNEIqyvKvhWkMDh84TxWIp9rdsp9y4zgPlp0B2ouu
+         V/+6F8cEI6SCORsaxfI6LczKnLosdXavAJ5lSaluGbAmCZdYS2x3itv4TN+oKe3YPAt2
+         elTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708528328; x=1709133128;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3FBkTY4ktEOVpEo6YvXl49m3OViLG+BImsIBijiLHxg=;
+        b=I2QEk5LJn5SssYfwnZpBwMEbX0OMGq396YP84iv74IvgMoelq3N4BPdhE4xJmTtoM4
+         TNBg5JVIVgs2STXMb/Vs714pfw4Vre5A/NS+CgsZiDYbA2+GulHAFlvVhcp965PoaIKH
+         D4puOqL005pA26mYeSidd3hFeq7ZwHnUCnyCtUrnWoqS9MdwNWlr0lyQmk8pWfGwv9M/
+         euhdVwC6b2SyRjTPMnMfZSQV7Fb/yT0neYh/nlMlAfb8jgGh/puhlzv76dvtJoxx7pEx
+         LhMs422A/OVqO2GzjDUZ6uhRXxrjnSr9lcRWUK0tdrNJOR7SAPuBKJVKSkBtKsC+nBEI
+         vGmA==
+X-Forwarded-Encrypted: i=1; AJvYcCWkICCvkKGn3wfkV0shQqAFLbyBxb1Prv3yc+/q2S8uNN05Ipn9GEXbiXWXEyaZW+pvJHP4vJyqYdf0r4SiJEM/ZDdpAMVcw85ZZTZpsxyuAQo=
+X-Gm-Message-State: AOJu0YxpMkcYKnvF4GJHZqfQnV3JX1D6EX7g5B36iPZJK6sj1uNT9Cvf
+	aHWlDduRPnOAfT9XwPNfIxrcX6fyEdF0MxJ75gUKIRtKmTMXZwROjMY9NeQEQjU=
+X-Google-Smtp-Source: AGHT+IEbPlqDTjSdZwcRLe9JlRyRaH1Pf7F4HirGnDZSwaq8u4fW6YZ7whK5ATYjJZ9SOJhon0VagA==
+X-Received: by 2002:a05:600c:458d:b0:412:60f9:3fe3 with SMTP id r13-20020a05600c458d00b0041260f93fe3mr10011548wmo.1.1708528327447;
+        Wed, 21 Feb 2024 07:12:07 -0800 (PST)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:1b1a:d907:d735:9f9e])
+        by smtp.googlemail.com with ESMTPSA id bg22-20020a05600c3c9600b0040fc56712e8sm18725342wmb.17.2024.02.21.07.12.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Feb 2024 07:12:07 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH v2 2/3] soc: amlogic: meson-gx-socinfo-sm: Add Amlogic secure-monitor SoC Information driver
-Date: Wed, 21 Feb 2024 17:36:15 +0300
-Message-ID: <20240221143654.544444-3-adeep@lexina.in>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240221143654.544444-1-adeep@lexina.in>
-References: <20240221143654.544444-1-adeep@lexina.in>
+	linux-amlogic@lists.infradead.org,
+	linux-pwm@vger.kernel.org,
+	JunYi Zhao <junyi.zhao@amlogic.com>
+Subject: [PATCH v5 0/5] pwm: meson: dt-bindings fixup
+Date: Wed, 21 Feb 2024 16:11:46 +0100
+Message-ID: <20240221151154.26452-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240221_063713_817650_6A9AABDA 
-X-CRM114-Status: GOOD (  21.76  )
+X-CRM114-CacheID: sfid-20240221_071209_896803_7D5CDBFA 
+X-CRM114-Status: GOOD (  10.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,251 +100,59 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic SoCs have a SoC information secure-monitor call for SoC type,
-package type, revision information and chipid.
-This patchs adds support for secure-monitor call decoding and exposing
-with the SoC bus infrastructure in addition to the previous SoC
-Information driver.
+This patchset aims to:
+* Fix the incorrect bindings for the s4 type of pwm that was introduced
+  while converting the documentation from txt to yaml format.
+* Introduce a new compatible for the existing PWMs to better describe the
+  HW in DT, instead of describing driver settings.
+* Make the introduction of a new pwm variant (s4) slightly easier.
 
-Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
----
- drivers/soc/amlogic/Kconfig               |  10 ++
- drivers/soc/amlogic/Makefile              |   1 +
- drivers/soc/amlogic/meson-gx-socinfo-sm.c | 192 ++++++++++++++++++++++
- 3 files changed, 203 insertions(+)
- create mode 100644 drivers/soc/amlogic/meson-gx-socinfo-sm.c
+Changes since v4 [4]:
+ * Rebased on Uwe's pwm rework in pwm-next
+ * Drop change to carry device data in drvdata
+ * Make the length of parent name array fixed
+ * Single allocation instead 3 for the internal clock elements
+ * meson8-pwm-v2 and meson-pwm-s4 compatibles under an enum instead of
+   2 const
 
-diff --git a/drivers/soc/amlogic/Kconfig b/drivers/soc/amlogic/Kconfig
-index d08e398bdad4..edb724e67968 100644
---- a/drivers/soc/amlogic/Kconfig
-+++ b/drivers/soc/amlogic/Kconfig
-@@ -26,6 +26,16 @@ config MESON_GX_SOCINFO
- 	  Say yes to support decoding of Amlogic Meson GX SoC family
- 	  information about the type, package and version.
- 
-+config MESON_GX_SOCINFO_SM
-+	bool "Amlogic Meson GX SoC Information driver via Secure Monitor"
-+	depends on (ARM64 && ARCH_MESON && MESON_GX_SOCINFO && MESON_SM) || COMPILE_TEST
-+	default MESON_GX_SOCINFO && MESON_SM
-+	select SOC_BUS
-+	help
-+	  Say yes to support decoding of Amlogic Meson GX SoC family
-+	  information about the type, package and version via secure
-+	  monitor call.
-+
- config MESON_MX_SOCINFO
- 	bool "Amlogic Meson MX SoC Information driver"
- 	depends on (ARM && ARCH_MESON) || COMPILE_TEST
-diff --git a/drivers/soc/amlogic/Makefile b/drivers/soc/amlogic/Makefile
-index c25f835e6a26..45d9d6f5904c 100644
---- a/drivers/soc/amlogic/Makefile
-+++ b/drivers/soc/amlogic/Makefile
-@@ -2,4 +2,5 @@
- obj-$(CONFIG_MESON_CANVAS) += meson-canvas.o
- obj-$(CONFIG_MESON_CLK_MEASURE) += meson-clk-measure.o
- obj-$(CONFIG_MESON_GX_SOCINFO) += meson-gx-socinfo.o
-+obj-$(CONFIG_MESON_GX_SOCINFO_SM) += meson-gx-socinfo-sm.o
- obj-$(CONFIG_MESON_MX_SOCINFO) += meson-mx-socinfo.o
-diff --git a/drivers/soc/amlogic/meson-gx-socinfo-sm.c b/drivers/soc/amlogic/meson-gx-socinfo-sm.c
-new file mode 100644
-index 000000000000..e30e1d2feb61
---- /dev/null
-+++ b/drivers/soc/amlogic/meson-gx-socinfo-sm.c
-@@ -0,0 +1,192 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (c) 2017 BayLibre, SAS
-+ * Copyright (c) 2024 JetHome
-+ * Author: Neil Armstrong <neil.armstrong@linaro.org>
-+ * Author: Viacheslav Bocharov <adeep@lexina.in>
-+ *
-+ */
-+
-+#include <linux/io.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+#include <linux/sys_soc.h>
-+#include <linux/regmap.h>
-+#include <linux/mfd/syscon.h>
-+
-+#include <linux/firmware/meson/meson_sm.h>
-+
-+#include "meson-gx-socinfo-internal.h"
-+
-+static char *socinfo_get_chipid(struct device *dev, struct meson_sm_firmware *fw,
-+			       union meson_cpu_id *socinfo)
-+{
-+	char *buf;
-+	struct meson_sm_chip_id *id_buf;
-+	int ret;
-+
-+	id_buf = devm_kzalloc(dev, sizeof(struct meson_sm_chip_id)+1, GFP_KERNEL);
-+	if (!id_buf)
-+		return NULL;
-+
-+	ret = meson_sm_call_read(fw, id_buf, sizeof(struct meson_sm_chip_id), SM_GET_CHIP_ID,
-+				 2, 0, 0, 0, 0);
-+	if (ret < 0) {
-+		kfree(id_buf);
-+		return NULL;
-+	}
-+	dev_info(dev, "got sm version call %i\n", id_buf->version);
-+
-+	if (id_buf->version != 2) {
-+
-+		u8 tmp;
-+		/**
-+		 * Legacy 12-byte chip ID read out, transform data
-+		 * to expected order format
-+		 */
-+		memmove((void *)&id_buf->serial, (void *)&id_buf->cpu_id, 12);
-+		for (int i = 0; i < 6; i++) {
-+			tmp = id_buf->serial[i];
-+			id_buf->serial[i] = id_buf->serial[11 - i];
-+			id_buf->serial[11 - i] = tmp;
-+		}
-+		id_buf->cpu_id.v2.major_id = socinfo->v1.major_id;
-+		id_buf->cpu_id.v2.pack_id = socinfo->v1.pack_id;
-+		id_buf->cpu_id.v2.chip_rev = socinfo->v1.chip_rev;
-+		id_buf->cpu_id.v2.reserved = socinfo->v1.reserved;
-+		id_buf->cpu_id.v2.layout_ver = socinfo->v1.layout_ver;
-+	} else {
-+		/**
-+		 * rewrite socinfo from regmap with value from secure monitor call
-+		 */
-+		socinfo->v1.major_id = id_buf->cpu_id.v2.major_id;
-+		socinfo->v1.pack_id = id_buf->cpu_id.v2.pack_id;
-+		socinfo->v1.chip_rev = id_buf->cpu_id.v2.chip_rev;
-+		socinfo->v1.reserved = id_buf->cpu_id.v2.reserved;
-+		socinfo->v1.layout_ver = id_buf->cpu_id.v2.layout_ver;
-+	}
-+
-+	buf = kasprintf(GFP_KERNEL, "%4phN%12phN", &(id_buf->cpu_id), &(id_buf->serial));
-+
-+	kfree(id_buf);
-+
-+	return buf;
-+}
-+
-+static int meson_gx_socinfo_sm_probe(struct platform_device *pdev)
-+{
-+	struct soc_device_attribute *soc_dev_attr;
-+	struct soc_device *soc_dev;
-+	struct device_node *sm_np;
-+	struct meson_sm_firmware *fw;
-+	struct regmap *regmap;
-+	union meson_cpu_id socinfo;
-+	struct device *dev;
-+	int ret;
-+
-+	/* check if chip-id is available */
-+	if (!of_property_read_bool(pdev->dev.of_node, "amlogic,has-chip-id"))
-+		return -ENODEV;
-+
-+	/* node should be a syscon */
-+	regmap = syscon_node_to_regmap(pdev->dev.of_node);
-+	if (IS_ERR(regmap)) {
-+		dev_err(&pdev->dev, "failed to get regmap\n");
-+		return -ENODEV;
-+	}
-+
-+	sm_np = of_parse_phandle(pdev->dev.of_node, "secure-monitor", 0);
-+	if (!sm_np) {
-+		dev_err(&pdev->dev, "no secure-monitor node found\n");
-+		return -ENODEV;
-+	}
-+
-+	fw = meson_sm_get(sm_np);
-+	of_node_put(sm_np);
-+	if (!fw) {
-+		dev_info(&pdev->dev, "secure-monitor device not ready, probe later\n");
-+		return -EPROBE_DEFER;
-+	}
-+
-+	ret = regmap_read(regmap, AO_SEC_SOCINFO_OFFSET, &socinfo.raw);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (!socinfo.raw) {
-+		dev_err(&pdev->dev, "invalid regmap chipid value\n");
-+		return -EINVAL;
-+	}
-+
-+	soc_dev_attr = devm_kzalloc(&pdev->dev, sizeof(*soc_dev_attr),
-+				    GFP_KERNEL);
-+	if (!soc_dev_attr)
-+		return -ENOMEM;
-+
-+	soc_dev_attr->serial_number = socinfo_get_chipid(&pdev->dev, fw, &socinfo);
-+
-+	soc_dev_attr->family = "Amlogic Meson";
-+	soc_dev_attr->revision = kasprintf(GFP_KERNEL, "%x:%x - %x:%x",
-+					   socinfo.v1.major_id,
-+					   socinfo.v1.chip_rev,
-+					   socinfo.v1.pack_id,
-+					   (socinfo.v1.reserved<<4) + socinfo.v1.layout_ver);
-+	soc_dev_attr->soc_id = kasprintf(GFP_KERNEL, "%s (%s)",
-+					 socinfo_v1_to_soc_id(socinfo),
-+					 socinfo_v1_to_package_id(socinfo));
-+
-+	soc_dev = soc_device_register(soc_dev_attr);
-+
-+
-+	if (IS_ERR(soc_dev)) {
-+		kfree(soc_dev_attr->revision);
-+		kfree_const(soc_dev_attr->soc_id);
-+		kfree(soc_dev_attr);
-+		return PTR_ERR(soc_dev);
-+	}
-+
-+	dev = soc_device_to_device(soc_dev);
-+	platform_set_drvdata(pdev, soc_dev);
-+
-+	dev_info(dev, "Amlogic Meson %s Revision %x:%x (%x:%x) Detected (SM)\n",
-+			soc_dev_attr->soc_id,
-+			socinfo.v1.major_id,
-+			socinfo.v1.chip_rev,
-+			socinfo.v1.pack_id,
-+			(socinfo.v1.reserved<<4) + socinfo.v1.layout_ver);
-+
-+	return PTR_ERR_OR_ZERO(dev);
-+}
-+
-+
-+static int meson_gx_socinfo_sm_remove(struct platform_device *pdev)
-+{
-+	struct soc_device *soc_dev = platform_get_drvdata(pdev);
-+
-+	soc_device_unregister(soc_dev);
-+	return 0;
-+}
-+
-+static const struct of_device_id meson_gx_socinfo_match[] = {
-+	{ .compatible = "amlogic,meson-gx-ao-secure", },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, meson_gx_socinfo_match);
-+
-+static struct platform_driver meson_gx_socinfo_driver = {
-+	.probe = meson_gx_socinfo_sm_probe,
-+	.remove	= meson_gx_socinfo_sm_remove,
-+	.driver = {
-+		.name = "meson-gx-socinfo-sm",
-+		.of_match_table = meson_gx_socinfo_match,
-+	},
-+};
-+
-+
-+module_platform_driver(meson_gx_socinfo_driver);
-+
-+MODULE_AUTHOR("Viacheslav Bocharov <adeep@lexina.in>");
-+MODULE_DESCRIPTION("Amlogic Meson GX SOC SM driver");
-+MODULE_LICENSE("GPL");
+Changes since v3 [3]:
+ * Split first rework patch into 3 changes
+ * Use dev_warn_once() to notify use of obsolete bindings
+ * Rebased on Uwe dev_err_probe() change.
+
+Changes since v2 [2]:
+* Drop DTS changes. These will be re-submitted later on. Possibly after
+  u-boot gets support for the new compatible to minimise conversion
+  problems.
+* Position deprecated property correctly in dt-bindings for the old
+  meson8 type pwm bindings
+* Reword commit description of patch #2 to make more obvious it does not
+  introduce a new HW support but fixes a bad bindings.
+* Dropped Rob's Reviewed-by on patch #2. It seemed appropriate considering
+  the discussion on this change.
+
+Changes since v1 [1]:
+* Fix typo in the new binding compatible documentation
+* Disallow clock-names for the new compatibles in the schema documenation
+
+[1]: https://lore.kernel.org/linux-amlogic/20231106103259.703417-1-jbrunet@baylibre.com
+[2]: https://lore.kernel.org/linux-amlogic/20231117125919.1696980-1-jbrunet@baylibre.com
+[3]: https://lore.kernel.org/linux-amlogic/20231129134004.3642121-1-jbrunet@baylibre.com
+[4]: https://lore.kernel.org/linux-amlogic/20231222111658.832167-1-jbrunet@baylibre.com
+
+Jerome Brunet (5):
+  dt-bindings: pwm: amlogic: fix s4 bindings
+  dt-bindings: pwm: amlogic: Add a new binding for meson8 pwm types
+  pwm: meson: generalize 4 inputs clock on meson8 pwm type
+  pwm: meson: don't carry internal clock elements around
+  pwm: meson: add generic compatible for meson8 to sm1
+
+ .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 115 ++++++-
+ drivers/pwm/pwm-meson.c                       | 289 ++++++++++--------
+ 2 files changed, 260 insertions(+), 144 deletions(-)
+
 -- 
-2.43.2
+2.43.0
 
 
 _______________________________________________
