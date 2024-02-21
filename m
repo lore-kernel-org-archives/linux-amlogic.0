@@ -4,79 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F94BC54788
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Feb 2024 21:44:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2968EC54788
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Feb 2024 22:07:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=nVngDE6AXtsD65A49552VlOmArgnaSj0pKZOzscJrBI=; b=G6Q1RMCHUA1OP7
-	Ebf+ajVjF/TYyfsL46PQi4XgG7GBr/y1hlgBG7aWg6XVME909rJi75Eh3aaKBs0sreRhwgq/9G8ER
-	h/DJtdOrZQGoN4WSWyW70srGBoDTCiSreII37hZkawAClcKHNkysVtBvRPez2wKZvUTwIcvUJTpT3
-	lReKNZhv65UVt8Qo1gEGqSxc/7wLAR3bumxI99ueZUognzOe7QvrSk9goBxM5EydsdMYOp16fIP0M
-	lb93/pxmvHnNVTqB1QoxIohJCP2EhcUMc2ebDaCKcNyF6Vr94swqOszVslZk5RWougUYUjasFfx1X
-	DOK0Lekn9BmMjbiEGo6w==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=x1BjlUXQ+X9pFi7QwN+LfURQtp2egzr0vn9WRFEnzdM=; b=DNBsvDY7hopRms
+	sw1uhTFptRVrOwb60Jepd2i3L8ctAmSJ8ETawR0/2IveB94IhJ6RYpP+pGmjQbW8hLhZJkJTtHOe2
+	FMCWIS1UU4OfwdOUi0rf3mlv5hCxFFGLNEnDW+dHdZpHoB9ZObAAqKegzsv44ROTauYtOzFhcuqBw
+	lLAm2fYpUfrOFhNNZovICXhr5rtnwLV4JKt8ZrB98sFmsNYPxx38oXvfWVcTikHE095+IFQDMD/hr
+	S+kap78Sx3LbU0HcD0l2Juk19wE6gRZ+cRcMPiTMQi/wjz6KoeNwdqGwMzOsRNLrDfAoV8DGVa6DU
+	w8+2kR2U303x3WEMiP/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcuNs-00000002hJ1-1g8l;
-	Wed, 21 Feb 2024 21:44:08 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1rcukb-00000002kgF-1fO2;
+	Wed, 21 Feb 2024 22:07:37 +0000
+Received: from mail-yw1-x112e.google.com ([2607:f8b0:4864:20::112e])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcuNp-00000002hAH-0mmi;
-	Wed, 21 Feb 2024 21:44:06 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4127700a384so7681245e9.3;
-        Wed, 21 Feb 2024 13:44:04 -0800 (PST)
+	id 1rcukZ-00000002kdP-1c2g
+	for linux-amlogic@lists.infradead.org;
+	Wed, 21 Feb 2024 22:07:36 +0000
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-6083dc087b3so37634947b3.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 21 Feb 2024 14:07:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1708551843; x=1709156643; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gYJRtMoIKJFVH+z/bQCTO72nDr9l+UhUGSu3vRcRBJw=;
-        b=lDDM6pbYIpQCLEXNFwM8Y/WZ55FQBQztFMhHF9YApgqCfN1Dj3UoQfMJZA/Yoi1w9s
-         4Phy3/AJzqDT5SovHzySVpr+opj1K4ecqG2UAJUvhpVR8F3YeZPiiliGAutZLRmay4/z
-         tOhobApt0Wv0Z3l99COOHJ288Lzhz9vVO0uoYHE3aEIh5IrXn/F+MpaTPsvHlCln+495
-         XQrPD+4QFEvi68npwmyg/JlA2J1yRypwuK9ZICi4Ry9kjuX9TsZrptZn9wKq96Xo1FhP
-         7V9NTeemhLFPcLaa8yTpMumwYJCRsaWG1+LlshCuvjDjfwFImSoQmjb1IdbpWIQTtyqS
-         vOjQ==
+        d=linaro.org; s=google; t=1708553242; x=1709158042; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1cIdAj9Rc9YrdEZf80SuI9gbBcjMeYE4blz3NlBPNkk=;
+        b=ShOH+i9VvWiBCSwGmXJeYdc5HZfdesLRn2b0k0Uoj97VM6W+UiCL66SpGAsvUVjrqL
+         0km+RQlmz4tBAR/fg9iQ7s7qv8j7GcQuPMFbddZ1M5i9dLnrp/BONo7nkzE1UeERqMKh
+         EZkKJbHiD6jYZf2vEObKn2FZhlCjXSZIet1MLLqlbNoeo9yE5rqCNrfPhTQ5mzAQ4DBp
+         Yv5KM7vY03yKJ+4TbMy2Fu4U1tAQOlAuL7w4GbcBAwZ3SbTVMJJbK+a5KQoHk4QJCE5M
+         tPg3l30FnwTWZHC5F83/R1INaiQamCbgVqVCN15hvKxT6Y8cYZ/8h5/PSoHCoH8HUpGF
+         5Kzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708551843; x=1709156643;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gYJRtMoIKJFVH+z/bQCTO72nDr9l+UhUGSu3vRcRBJw=;
-        b=ERRkfzPQUJkpWh2pNmXD1EUjY93ddw4ks2X/pUm8wlJe2CYUGkraFmJEC8lkDN1pMg
-         33CcpFfswfkId+ie7e5dosf0c0J7LQjzz8PdiNrnRZvG5Qc7SOAWgBesNV7AZiumT28p
-         bcLp2B1224xgg6qkYKwcrUm9yk19ZPYhaUUTZq68vSsLO4CJxlbpwwATZLOXLjYkP80T
-         DHGUjT/FJxu8lqox8q9zl/PFco1I7Zl/Ul7/xx8TrKCmWh/gsmlvE84aLeSBN2o8Nen+
-         4RlM9lTqxK8EyrNYGjUmpDRqLfZmY2/K6slHGw8NA61czUUtCUPnR199xZt5iPQhypgx
-         bQKw==
-X-Forwarded-Encrypted: i=1; AJvYcCUvhsb1oH9+AtuCxFI0eFa8KSprwORm2ThAgZbPKc8MNm8sgp+RW1wVBWTYBMHdHMY51a+wrTKNrgF9hHZ5kkvp8GTahpzvHCdOZksOHcqZbt8=
-X-Gm-Message-State: AOJu0YwKO9jMfrJycV2nSVm/Ns5j4jEFDFXFxFEMG88STgfxANXW5o9J
-	pcVtWJ7JQSUefEzfO8fxyX1bwa04NtAVN1P2OMP+cZW57x9EkdHDWcZXAAhA
-X-Google-Smtp-Source: AGHT+IGRxW4BiwFmPDduFWwDS+y14jjIZGwpxNkLGKAqBL8CVe54qT3cRn6tIitS6iXRRC/drR9O4w==
-X-Received: by 2002:a5d:5f92:0:b0:33d:82a9:206e with SMTP id dr18-20020a5d5f92000000b0033d82a9206emr2206781wrb.28.1708551842773;
-        Wed, 21 Feb 2024 13:44:02 -0800 (PST)
-Received: from localhost.localdomain (dynamic-2a01-0c23-bda0-ec00-0000-0000-0000-0e63.c23.pool.telefonica.de. [2a01:c23:bda0:ec00::e63])
-        by smtp.googlemail.com with ESMTPSA id h7-20020a056000000700b0033ce214a97csm18021982wrx.17.2024.02.21.13.44.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Feb 2024 13:44:02 -0800 (PST)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: daniel.lezcano@linaro.org,
-	tglx@linutronix.de
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	patrice.chotard@foss.st.com,
-	linux-amlogic@lists.infradead.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v1] clocksource/drivers/arm_global_timer: Simplify prescaler register access
-Date: Wed, 21 Feb 2024 22:43:48 +0100
-Message-ID: <20240221214348.2299636-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.43.2
+        d=1e100.net; s=20230601; t=1708553242; x=1709158042;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1cIdAj9Rc9YrdEZf80SuI9gbBcjMeYE4blz3NlBPNkk=;
+        b=G+CEz8qHI7uciCxRPsTTPozz3shBLloElQyYf6dYc9xcpGV4q3N8MwPLwAvCovnM7v
+         PtcOYUN8SEwCVGtwv36aIjJDNO+lBK/zCjN0kYy9j/Tqe/x4OmyPJvl/BdC9JCzuKotH
+         XAILf3DB//bhRE2CphDW7HFbh9qW3SKmZSCFQD52tXCPzsiJ/ZVte8o8V5DF2P3g4oRr
+         XDei9obKyA5/WEGHrC1+jYI4ZM3eq/kKHvzbigkYgFbIw//elMkXaQTDSUEJ4FEpJ9QY
+         cxhHWnt51kJp9XaYbXv6cVEA/EdYOgx3Fxl0EiGneYdxVLEgg3mZgG6Dgm8zCO8aDUER
+         MeCg==
+X-Forwarded-Encrypted: i=1; AJvYcCXOgqrIO1gW1dpV7d5/CTq6Na451THd6D3WbarEljKn0PoYoC7O9RwA8lImyr4pKkbEkscspKWXTqshQTkvqWHsV61FUAdBaOr8RslouviFerM=
+X-Gm-Message-State: AOJu0YyYHMWGAaVgSznO3eFZlRjUeKJKXP6jB6NJ+r3/243jm+Qwsgnj
+	WuWoZRiTcXGdWi0nb3FrdPcP+0rjDdUvMYWIQZNPzPx0cUZdg6eV6/ABzP7wb9Y27rfbLdnNxnO
+	t6g7mkbaIZZ13czN5F0X9ciNhC0WmYAIql8MG5g==
+X-Google-Smtp-Source: AGHT+IHcXCkZHHGUkDm2xvIgiK6VurrE3eAJdP/r6uC/vcQd0YLTd8DmYtHQlaiiKrj98oMZezfQEBryKYUS8JEchGY=
+X-Received: by 2002:a05:690c:86:b0:607:d9f7:e884 with SMTP id
+ be6-20020a05690c008600b00607d9f7e884mr20419761ywb.4.1708553242109; Wed, 21
+ Feb 2024 14:07:22 -0800 (PST)
 MIME-Version: 1.0
+References: <20240217093937.58234-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240217093937.58234-1-krzysztof.kozlowski@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 21 Feb 2024 23:07:11 +0100
+Message-ID: <CACRpkdajVH4Y2K5W+o5XAoiEr57ObVbaR+9QdFV=Cp765B+dfQ@mail.gmail.com>
+Subject: Re: [PATCH] phy: constify of_phandle_args in xlate
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, linux-phy@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	netdev@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240221_134405_255266_424397CF 
-X-CRM114-Status: GOOD (  13.00  )
+X-CRM114-CacheID: sfid-20240221_140735_453848_B45A9F37 
+X-CRM114-Status: UNSURE (   7.07  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,90 +95,20 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use GENMASK() to define the prescaler mask and make the whole driver use
-the mask (together with helpers such as FIELD_GET and FIELD_PREP)
-instead of needed an additional shift and max value constant.
-
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/clocksource/arm_global_timer.c | 19 ++++++++-----------
- 1 file changed, 8 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/clocksource/arm_global_timer.c b/drivers/clocksource/arm_global_timer.c
-index 8dd1e46b7176..1eb91fa00657 100644
---- a/drivers/clocksource/arm_global_timer.c
-+++ b/drivers/clocksource/arm_global_timer.c
-@@ -9,6 +9,7 @@
- 
- #include <linux/init.h>
- #include <linux/interrupt.h>
-+#include <linux/bitfield.h>
- #include <linux/clocksource.h>
- #include <linux/clockchips.h>
- #include <linux/cpu.h>
-@@ -31,10 +32,7 @@
- #define GT_CONTROL_COMP_ENABLE		BIT(1)	/* banked */
- #define GT_CONTROL_IRQ_ENABLE		BIT(2)	/* banked */
- #define GT_CONTROL_AUTO_INC		BIT(3)	/* banked */
--#define GT_CONTROL_PRESCALER_SHIFT      8
--#define GT_CONTROL_PRESCALER_MAX        0xFF
--#define GT_CONTROL_PRESCALER_MASK       (GT_CONTROL_PRESCALER_MAX << \
--					 GT_CONTROL_PRESCALER_SHIFT)
-+#define GT_CONTROL_PRESCALER_MASK	GENMASK(15, 8)
- 
- #define GT_INT_STATUS	0x0c
- #define GT_INT_STATUS_EVENT_FLAG	BIT(0)
-@@ -247,7 +245,7 @@ static void gt_write_presc(u32 psv)
- 
- 	reg = readl(gt_base + GT_CONTROL);
- 	reg &= ~GT_CONTROL_PRESCALER_MASK;
--	reg |= psv << GT_CONTROL_PRESCALER_SHIFT;
-+	reg |= FIELD_PREP(GT_CONTROL_PRESCALER_MASK, psv);
- 	writel(reg, gt_base + GT_CONTROL);
- }
- 
-@@ -256,8 +254,7 @@ static u32 gt_read_presc(void)
- 	u32 reg;
- 
- 	reg = readl(gt_base + GT_CONTROL);
--	reg &= GT_CONTROL_PRESCALER_MASK;
--	return reg >> GT_CONTROL_PRESCALER_SHIFT;
-+	return FIELD_GET(GT_CONTROL_PRESCALER_MASK, reg);
- }
- 
- static void __init gt_delay_timer_init(void)
-@@ -272,9 +269,9 @@ static int __init gt_clocksource_init(void)
- 	writel(0, gt_base + GT_COUNTER0);
- 	writel(0, gt_base + GT_COUNTER1);
- 	/* set prescaler and enable timer on all the cores */
--	writel(((CONFIG_ARM_GT_INITIAL_PRESCALER_VAL - 1) <<
--		GT_CONTROL_PRESCALER_SHIFT)
--	       | GT_CONTROL_TIMER_ENABLE, gt_base + GT_CONTROL);
-+	writel(FIELD_PREP(GT_CONTROL_PRESCALER_MASK,
-+			  CONFIG_ARM_GT_INITIAL_PRESCALER_VAL - 1) |
-+	       GT_CONTROL_TIMER_ENABLE, gt_base + GT_CONTROL);
- 
- #ifdef CONFIG_CLKSRC_ARM_GLOBAL_TIMER_SCHED_CLOCK
- 	sched_clock_register(gt_sched_clock_read, 64, gt_target_rate);
-@@ -301,7 +298,7 @@ static int gt_clk_rate_change_cb(struct notifier_block *nb,
- 		psv--;
- 
- 		/* prescaler within legal range? */
--		if (psv < 0 || psv > GT_CONTROL_PRESCALER_MAX)
-+		if (psv < 0 || psv > FIELD_GET(GT_CONTROL_PRESCALER_MASK, ~0))
- 			return NOTIFY_BAD;
- 
- 		/*
--- 
-2.43.2
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gU2F0LCBGZWIgMTcsIDIwMjQgYXQgMTA6MznigK9BTSBLcnp5c3p0b2YgS296bG93c2tpCjxr
+cnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+IHdyb3RlOgoKPiBUaGUgeGxhdGUgY2FsbGJh
+Y2tzIGFyZSBzdXBwb3NlZCB0byB0cmFuc2xhdGUgb2ZfcGhhbmRsZV9hcmdzIHRvIHByb3Blcgo+
+IHByb3ZpZGVyIHdpdGhvdXQgbW9kaWZ5aW5nIHRoZSBvZl9waGFuZGxlX2FyZ3MuICBNYWtlIHRo
+ZSBhcmd1bWVudAo+IHBvaW50ZXIgdG8gY29uc3QgZm9yIGNvZGUgc2FmZXR5IGFuZCByZWFkYWJp
+bGl0eS4KPgo+IFNpZ25lZC1vZmYtYnk6IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRvZi5r
+b3psb3dza2lAbGluYXJvLm9yZz4KKC4uLikKPiAgZHJpdmVycy9waW5jdHJsL3RlZ3JhL3BpbmN0
+cmwtdGVncmEteHVzYi5jICAgICAgICAgfCAgMiArLQoKQWNrZWQtYnk6IExpbnVzIFdhbGxlaWog
+PGxpbnVzLndhbGxlaWpAbGluYXJvLm9yZz4KCllvdXJzLApMaW51cyBXYWxsZWlqCgpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1h
+aWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3Rz
+LmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
