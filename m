@@ -4,115 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 568A8C48BC3
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Feb 2024 10:01:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38D18C48BF6
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Feb 2024 13:56:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=T40LNigLfk0Orl7sfbbCkf9PoCy9jaD42eF2xQNm2Ls=; b=QikcLFEsOL9FDweNMxG60JcOUp
-	FIN1mFp7ENNq9alTx2KHCXeBtIfNslaXgOPL8cu0dWPtV66+NgPD52csvtcKvpAjmCCnb/7h6B6/o
-	NrxkGe5Fc7aTVBhDMPs0V9f4aw5KMxU4kfsMVo2Zrs9p6beLSIiac22//JrX6nNi9R81SSDz2zGFr
-	P8HirMhQAdG9rQkTwHidx5Ix+CgwZBOk853Up3FR1Ig9LS79VTtB4grKW1DZ4TrtK8E4ufFacREPS
-	UMdThrVwnpydIUSex0EUz+/eJOheLtDq6TdTqadjwG6JP7fdJmPVcf8OOy6Z69mLxEvls8NNV95l5
-	3n5nXxqA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=XOFUYk2WALlIDMQhvEbkVH29+uI3Tnsjq04D3cfeA7M=; b=rt2lO72YmZFhWD
+	QrqnOJcgb3iTDWoi0kMT541ZUxJSQcOaOrnjk2CspXhvWotdpLdLUhkUBBVsabCtNQpeMUG2BweP8
+	IZZp/JR1jib71CfqZubYEhbNFZ6Jqnr8keomvxnlRzOcs9i0L6y+vkzFAnlmm6TB/3s8GVURGHYm5
+	QHqXF0z6Nnhz9lQRlpzsXymtP0ZrU49ALet1q5FUoNBMsiKWig3qsmnXVuBtMuEzpD5jDVXJyFjRl
+	o8EanjK/LIi3+nH1dLDePvVLhNH+Xao76dJ2W47QjyR2MpxGT+MkbUuWus+hRqSP4vvUCrhFxC2TI
+	MemLxUCXeRkGZXbDpC2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcjQ4-00000000PgA-2hZ7;
-	Wed, 21 Feb 2024 10:01:40 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1rcn4y-000000019uY-2sXQ;
+	Wed, 21 Feb 2024 13:56:08 +0000
+Received: from mail-lf1-x12f.google.com ([2a00:1450:4864:20::12f])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcjQ1-00000000Pdy-0sng
+	id 1rcn4s-000000019tv-3JyT
 	for linux-amlogic@lists.infradead.org;
-	Wed, 21 Feb 2024 10:01:38 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-33adec41b55so3268237f8f.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 21 Feb 2024 02:01:36 -0800 (PST)
+	Wed, 21 Feb 2024 13:56:07 +0000
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-511976c126dso903216e87.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 21 Feb 2024 05:56:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708509695; x=1709114495; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fL0mcOobTcwYxXx8b2m98+IfvOzworeTZ6aXI6tNbos=;
-        b=kYjrLPP8WBW7tF6aFZLSHanPVWjoPhyBKL7uSoCkat5UtAMyoIzzId0i5Op6xdqNhB
-         1PrjF0BPc7hOHDxBIkc3+uAhx+JxikjRjfKkd2lDxKtTI1TrzyxQB/Jw1EQ396Bx/DfE
-         TYpsaQo80hBVWvNeZmEcn5x3Wbej+AIXBpK42fE8nEA3Uks52wPM/WHun3Mbdi3vgRZq
-         hUW8jii6uG0RCAIf300Qsx7K0BR69m1QOECkM9PnqBj2PAO0imvfRt60joBD9DZRCjOX
-         bff0ENKTiGWIH3WQ31cueQowYzgcGhXGjrOOR4fwBTeVUr4AkSn4yfdR+R5TeBrCbMGS
-         AVHg==
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1708523761; x=1709128561; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Le192e9NnBtNARlv8O7J8W0J9GLYd0M0VbDbOwWdLN8=;
+        b=cYjS5+fV0Mfd+igjqNnU4cSMATsD03rn7VBnGAVeTbVCzT8uQzemwsEWdMAmlQnGnv
+         QRszJoAtlA5trgn19b/ixsWYS1P3PnwcQzRYU/XRlsLC4gtCvB+J9cTk0EO8pNrbgaKv
+         E/ZHqlZ8Ck7eZHXZhH1x8157R82ktrtCXo2WapjUspMY0JyjYwdzYLgxiSfBTthyr9R4
+         88LfGJYC9X+uZzGb1e8H+4fzQwFtCIrIYE+IhmUrJeV7Rnun7gjjp76UOgvTz6wvosep
+         /wdQGKTk13BUH30TRJEyA8WSaa2UmmypP/d3rrfzETjlwOLCAovWUlRT3CHWt5ccgNil
+         9wYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708509695; x=1709114495;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=fL0mcOobTcwYxXx8b2m98+IfvOzworeTZ6aXI6tNbos=;
-        b=HrU+A82j+YA+YIb19uYcJGVtwYVlP4/+x9zfjpqx9bC02vJemIOOfATKvCZotOot8S
-         uNaxhpqIcOQQc0ZlHshyp87igmNAfVa9UUyCNdEGRIMqWjzuVORbIB/TsQ4t/vjNLYkV
-         t0EiHxZWh6eaZC+62jn26AltfaO/y6l/0P8WK28Rfw0U675BXPVHdbWBGVK9w+YgscXd
-         h795FTKTF6m6HnXPe28WNWs4r0Uo1yKm5dfvvbKevrjK/Cp6Qq2GhnHdo7E29AOfVD7p
-         ew0WGdNhvloX36L5vkVlJcgyOQ1q9rdbip4r6ashZZALv7M4jNrXudlTNxEoUi/w7oE9
-         x4jw==
-X-Forwarded-Encrypted: i=1; AJvYcCV/KMVNW3Y4rQuUxzrt5Vm8G/N1CyKojTJBgBAvDds/bAdjdEh1LaMzSd/+x/hRarMC/pGDX9KYT69OZd1Y3O7WAG76i3J2sBrXkqr5FehQJwM=
-X-Gm-Message-State: AOJu0YwR3jVKT20myN41jWuFel4tbwuq1NKL5etOuGYKtxHhELdOJWwW
-	xsSDRst3pY4g5ErOlUnE61Eyeiny0ztezGqUoZLB19XZXHtB/8XCIJPAzHqq7FE=
-X-Google-Smtp-Source: AGHT+IED/rCd+DPuRUaQSmLl0+vSXBMeqV159iQZjp6y9EdpFxVOjdsE2nlCGIofjRmaE51g1JXBgQ==
-X-Received: by 2002:a5d:6784:0:b0:33d:3a02:8368 with SMTP id v4-20020a5d6784000000b0033d3a028368mr7178028wru.8.1708509694859;
-        Wed, 21 Feb 2024 02:01:34 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:83fc:439c:6f36:ce5c? ([2a01:e0a:982:cbb0:83fc:439c:6f36:ce5c])
-        by smtp.gmail.com with ESMTPSA id x11-20020a5d444b000000b0033b7ce8b496sm16405396wrr.108.2024.02.21.02.01.33
+        d=1e100.net; s=20230601; t=1708523761; x=1709128561;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Le192e9NnBtNARlv8O7J8W0J9GLYd0M0VbDbOwWdLN8=;
+        b=UiQwUANijUMzcT/pjQvP+YtGLry7qZW0KvWHhJrvOxhspO+6iRya53T9ozffIA9FoL
+         shazSikGx+hM0QtWetrmXvRGF1NGU9W1hsGxAR1GOYt2ILJ29/IoZl5pHL5vvZefFwWi
+         DWRiod0wV64jMcIGMNL8FJK17S9HPxM7NPOgip7LZOpibA7Y1S9/99zmu5ZARR+xv2Kc
+         2XJxc3s9yAGp7XlWNg+0djCgQzkTT7lIiWeHtcc+P1dy29Bo/lkOL9NnlxB6r3kstVqb
+         zMgHSxR8qOYaeXpaCCKu4zs6y4kNib+9RkA5G6LBuNnobEw+vpGbFO939oQlXeoo8s5w
+         eB5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVZSSFeNZWcrLC9l0uK/ErvA6Xu4ebqTnqLUAyVkYQLej8wu3BTcoQQvHTd+LZQ875wSuMJbRzGpQoeXdl+MJXePrnwz9d2ZkSYKsC03On+agA=
+X-Gm-Message-State: AOJu0Yy5rk1O1KomMthvHk8xUBsiLYAm28xPcHIj+D+f0vjaYUAJt8Mc
+	4E3JUw0ycjFQ0zal9eWHpS8FlQlVkuQbwbV2c6OHZ7gqP/XfD9meSqEmI8kES+w=
+X-Google-Smtp-Source: AGHT+IFzBms37jkcoNd2VL4j8syw+iw5NIeLtWdtw9mHf2B+BUGMNW6TYNBSevd/h8IcaV1ffhdpjQ==
+X-Received: by 2002:a05:6512:2107:b0:512:d6ca:71ae with SMTP id q7-20020a056512210700b00512d6ca71aemr613204lfr.31.1708523761219;
+        Wed, 21 Feb 2024 05:56:01 -0800 (PST)
+Received: from ?IPV6:2a02:8428:2a4:1a01:c6d1:d0be:89b3:294e? ([2a02:8428:2a4:1a01:c6d1:d0be:89b3:294e])
+        by smtp.gmail.com with ESMTPSA id ck4-20020a5d5e84000000b0033d3f0eee9dsm11831527wrb.27.2024.02.21.05.56.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Feb 2024 02:01:34 -0800 (PST)
-Message-ID: <e3e47a72-8a6c-475b-a248-95da5dae24ff@linaro.org>
-Date: Wed, 21 Feb 2024 11:01:33 +0100
+        Wed, 21 Feb 2024 05:56:00 -0800 (PST)
+Message-ID: <814c9035-1fda-4cd3-ab3c-95b58e2ecb22@freebox.fr>
+Date: Wed, 21 Feb 2024 14:48:15 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 4/4] arm64: dts: amlogic: add fbx8am DT overlays
-Content-Language: en-US, fr
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Marc Gonzalez <mgonzalez@freebox.fr>, DT <devicetree@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH] fixup! arm64: dts: amlogic: add fbx8am DT overlays
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc: Pierre-Hugues Husson <phhusson@freebox.fr>,
- AML <linux-amlogic@lists.infradead.org>
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>
 References: <07f7a695-18a0-4211-82e9-b1e2c7166969@freebox.fr>
  <79ba726d-d02c-44b9-b6f6-59b17ba9755c@freebox.fr>
  <54b4e810-754e-481a-bbc8-984f859b116d@linaro.org>
  <15fcafb2-4b4a-40a1-8ef5-ee3aef9b3b9d@freebox.fr>
  <95cafd69-de6d-497f-b3d6-b6d7a8a3b795@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <95cafd69-de6d-497f-b3d6-b6d7a8a3b795@linaro.org>
+ <e3e47a72-8a6c-475b-a248-95da5dae24ff@linaro.org>
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <e3e47a72-8a6c-475b-a248-95da5dae24ff@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240221_020137_382058_8D919820 
-X-CRM114-Status: GOOD (  19.02  )
+X-CRM114-CacheID: sfid-20240221_055603_011273_4D1272CF 
+X-CRM114-Status: UNSURE (   7.46  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,103 +97,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Marc,
+Drop compatible properties as requested.
 
-On 20/02/2024 11:01, Krzysztof Kozlowski wrote:
-> On 19/02/2024 11:32, Marc Gonzalez wrote:
->> On 14/02/2024 10:47, Neil Armstrong wrote:
->>
->>> On 13/02/2024 18:14, Marc Gonzalez wrote:
->>>
->>>> Add support for two variants of the fbx8am board.
->>>>
->>>> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
->>>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
->>>> ---
->>>>    arch/arm64/boot/dts/amlogic/Makefile                       |  6 ++++++
->>>>    arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    | 35 ++++++++++++++++++++++++++++++++++
->>>>    arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso | 25 ++++++++++++++++++++++++
->>>>    3 files changed, 66 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
->>>> index cc8b34bd583d8..1ab160bf928ae 100644
->>>> --- a/arch/arm64/boot/dts/amlogic/Makefile
->>>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
->>>> @@ -8,6 +8,8 @@ dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
->>>>    dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
->>>>    dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-3.dtb
->>>>    dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
->>>> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-brcm.dtb
->>>> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-realtek.dtb
->>>>    dtb-$(CONFIG_ARCH_MESON) += meson-g12a-radxa-zero.dtb
->>>>    dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
->>>>    dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
->>>> @@ -80,3 +82,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
->>>>    dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
->>>>    dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
->>>>    dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
->>>> +
->>>> +# Overlays
->>>> +meson-g12a-fbx8am-brcm-dtbs	:= meson-g12a-fbx8am.dtb meson-g12a-fbx8am-brcm.dtbo
->>>> +meson-g12a-fbx8am-realtek-dtbs	:= meson-g12a-fbx8am.dtb meson-g12a-fbx8am-realtek.dtbo
->>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
->>>> new file mode 100644
->>>> index 0000000000000..ed79809b15859
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
->>>> @@ -0,0 +1,35 @@
->>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>>> +// Copyright (c) 2024 Freebox SAS
->>>> +
->>>> +/dts-v1/;
->>>> +/plugin/;
->>>> +
->>>> +#include <dt-bindings/gpio/gpio.h>
->>>> +#include <dt-bindings/gpio/meson-g12a-gpio.h>
->>>> +
->>>> +/ {
->>>> +	compatible = "freebox,fbx8am-brcm", "freebox,fbx8am", "amlogic,g12a";
->>>
->>> This looks fine but I'm unsure if those new compatible should be documented or not,
->>> since they are in an overlay
-> 
-> All compatibles in entire Linux source code shall be documented, so
-> please document any new ones appearing in overlays.
+Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    | 4 ----
+ arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso | 4 ----
+ 2 files changed, 8 deletions(-)
 
-You can either add a follow-up patch to:
-- document those new compatibles
-- remove those compatibles
-
-As you want, I plan to send the ARM64 DT PR next week.
-
-Neil
-
-
-> 
->>
->> Rob, Krzysztof, Conor,
->>
->> Just want to make sure this was done "right".
->>
->> Is it acceptable for an overlay (DTSO) to define a more specific compatible prop?
-> 
-> I think it is fine and some DTSO already do it. User-space might want to
-> identify that specific overlay is applied or not. Of course this will
-> not work when multiple overlays are applied and each changes compatible,
-> thus I would say this is in general specific to particular cases of
-> exclusive overlays. In such case, why not making it new board DTS?
-> 
-> If this is not exclusive overlay, then new compatible looks wrong.
-> 
-> Best regards,
-> Krzysztof
-> 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
+index ed79809b15859..9591fdc31ee0e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
+@@ -7,10 +7,6 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/gpio/meson-g12a-gpio.h>
+ 
+-/ {
+-	compatible = "freebox,fbx8am-brcm", "freebox,fbx8am", "amlogic,g12a";
+-};
+-
+ &uart_A {
+ 	bluetooth {
+ 		compatible = "brcm,bcm43438-bt";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
+index 5da88fb94fb98..55fff35b09ae7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
+@@ -7,10 +7,6 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/gpio/meson-g12a-gpio.h>
+ 
+-/ {
+-	compatible = "freebox,fbx8am-realtek", "freebox,fbx8am", "amlogic,g12a";
+-};
+-
+ &uart_A {
+ 	bluetooth {
+ 		compatible = "realtek,rtl8822cs-bt";
+-- 
+2.34.1
 
 
 _______________________________________________
