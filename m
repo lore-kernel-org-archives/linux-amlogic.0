@@ -4,117 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E68CC48BF6
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Feb 2024 14:07:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B234C48BC3
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Feb 2024 14:37:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=cT5/w1rQ/AbIuPDQwZgVpFrideQFWKQRs97y4Cw/kcw=; b=NZD/ghKuc7q+X6iUKhmFabQfjD
-	OLlDttj0dmf1GpDUwA7fpUB4MGQ430cbzRGaJ78cfs9GE2jxYF5KT+vXajhODxA2A046nFFOipG7w
-	7mqelvtCjH1ItzMQGeCvhLHmzjBJFp4r2pggshNIM3n7cgRTiSL0aqts52g8o2/7jh0dMYxOQ+C+C
-	NPpNtfz9aIh7dq6DppNSWN2cMPgjkDcH6sK14Upjyc51TI/z/j0hcHjg7rSuA3ox08Ya54iLm8mIU
-	qR9vMg5ZdKSv4CKHCa2hlHXx0IECbE8FzQx2hntvfrV3sRX238C0ILmmX7AbK52cX1jOBG1TN3mQb
-	yYjGZ/+A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=tcbm50moF/4hqYC6w4zf1gmyOKP35K2Oe47Jppemvgo=; b=i3Ri2m7F2i1fj8
+	vlSOvwIKDl7H9zJ4VGFizgmPX2DSc3ex7RuNtvDE5jB7cjXfGUq0BzQ5Gi3kYGLvbNc0UKnq3GtX/
+	ZoTPN7bdLU3FNw2eKTQ9ahbi4KrJmAUATkKQ+ZMFoQkzgPhQH806O7htKrxBNW3Mm6PliRNP3UQOx
+	y3OkPBVNEyQ6wspL79fucDBeBgaLjnva8kbhJsvPyrYIXh5r9UxI38AH8Jl3JZDCD1INpIsq8SBN8
+	XEcVeKHFQU9mQHkfZIkDJoLfxgNPHjk6lvx/83vELuyb5moln5HP/N8CgLLUhsIBfMJMNzEIWHbDq
+	4Q2rxcCLCVqJBPbDdgLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcnFY-00000001CMU-1vFY;
-	Wed, 21 Feb 2024 14:07:04 +0000
-Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
+	id 1rcnip-00000001J4m-2vff;
+	Wed, 21 Feb 2024 14:37:19 +0000
+Received: from mx.msync.work ([62.182.159.68])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcnFV-00000001CLy-1J57
-	for linux-amlogic@lists.infradead.org;
-	Wed, 21 Feb 2024 14:07:02 +0000
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-512b700c8ebso4247760e87.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 21 Feb 2024 06:07:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708524420; x=1709129220; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CKWxl3OogXVVnFS17fBlVo+bIxHD2cqSz5ab8fWS80s=;
-        b=OAKimb0+Aze6ofr+dOgDwJnmSF2iNQ/XP7kOl/PgYvTCRYU6HOOukKARYc8jNz8KAJ
-         Cb5pql6GB0Qs765A4e5bLlSzt1iDRTlY3dyR6P5ZFMqawBA/5PihhVTIe/kKsLVFhXZL
-         1YIuVd6GDXbiSRr/mGqvh5Ob9FwcRzupHo+S2pgbQWtvbGZezGcx7CiH1wOdiREN9vot
-         IHGWpL1vQRXLrlSMFLwHNkjvaak9S0GI8joqLpBv0Djhj/DUu2jZ8LzLPFfjSxneAYYj
-         8rHYItQlXRGopz0QkTbuxe1KzYoicoAlUZMQjfUiRZUz2s35Nqts1c0vHHqCnYzFxfAf
-         FPKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708524420; x=1709129220;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=CKWxl3OogXVVnFS17fBlVo+bIxHD2cqSz5ab8fWS80s=;
-        b=QhK2rDaCwTMs3PSfG+B4tKrax01G0Sa3yVpuyW7VHR1zYmVXgN122rygVjolRvHdFd
-         DGHtQVC7Ne8DVu0IbbHnZNnrXH6cs9kWwGuDL/6Xv1A3Hfrdv8/5c6qiQUA8atcT7Ep5
-         /HCurhqz6zXw14JntDbEHm+qJnaycMLqr380MGdl9JwQK+NcpFjD/Y4IuX9GgOQgLG5y
-         VZB+NXw21lmuQywn3J2sJmpwcK2X+J5MDFjHDgRbBJ9Fye9U6ssbxv6Wqz5lUUWRGC9O
-         34+9HkDmqsA/enCYRCaE/PRNzrlrNHFBPaSVTUO2SR4vfvltGkxKVw+SV1iyaut6xo+2
-         aRsg==
-X-Forwarded-Encrypted: i=1; AJvYcCUfXLSzFRTSAMYjscPV/quNxPQujk5kBPlpNrUEfiuDKjRAXZRYiID0P++KwUCI71Fl4mu/Pzr+0Gu5Ic5Zceye6KZ8d9LR4/2UL1UuVEmaXAs=
-X-Gm-Message-State: AOJu0YwvEqHlSeKKEChnBT+M6Xus/Iy+HB1Wf5scnVou+Nor5uePUz37
-	/OszhSPxqMZKh7GQe50hJfq+vjjR4ozNrCzs5yz+1yh0pP8mrCE1S0D7L/FlwrKBzHYvF8aaXyw
-	RDCLojw==
-X-Google-Smtp-Source: AGHT+IHlCycFUalK8spusNdvliYS8b0yE47wfcWtbkwDCcSipjuydmvvQfLjQ4AEGVa9UCMUi13c0g==
-X-Received: by 2002:ac2:4c41:0:b0:512:b4cf:ae3 with SMTP id o1-20020ac24c41000000b00512b4cf0ae3mr7444785lfk.19.1708524419725;
-        Wed, 21 Feb 2024 06:06:59 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:83fc:439c:6f36:ce5c? ([2a01:e0a:982:cbb0:83fc:439c:6f36:ce5c])
-        by smtp.gmail.com with ESMTPSA id 14-20020a05600c230e00b0040fafd84095sm2612088wmo.41.2024.02.21.06.06.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Feb 2024 06:06:59 -0800 (PST)
-Message-ID: <1f12586a-16d8-45e8-a974-75923f9a3bd1@linaro.org>
-Date: Wed, 21 Feb 2024 15:06:58 +0100
+	id 1rcnii-00000001Izo-0hs1;
+	Wed, 21 Feb 2024 14:37:15 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9023610D6F0;
+	Wed, 21 Feb 2024 14:37:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+	t=1708526224; h=from:subject:date:message-id:to:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=GEQArPt1kn/Khi/Y6aFVKGpGzNy0MfkExrWMzBfSx18=;
+	b=P2eBt6uTVZ8cFP9+hIJg5UNauXnq5amDgz9wloQx6Uvir/25xuowB2PSw2irSwiDC44VFq
+	1CC2r3bB57U+r/QzTgzJSGq3DpmLwDwYxWWM8bnsxRjowTv6koQ5ceaGEfySL0u9JkLGGp
+	Z7KFbObW6wbGSR+br1d7PVsKAMtD6XOTtq0cx9+cZigmGyaCwlxkTboSWCgjYyhRELMRV8
+	/FHpf1ZS1vm3lh5Jo3CJdGi3do7qNJXEMhgbYOwA4yvaPMM8HK8cWvhETdY96H22y5LJ+e
+	vDKZeR5majwFzLaJGBieWy9Tik4rBFuMM4Wlm2PHaor2Mo0XoZorHMVJKWAoCg==
+From: Viacheslav Bocharov <adeep@lexina.in>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH v2 1/3] soc: amlogic: meson-gx-socinfo: move common code to header file
+Date: Wed, 21 Feb 2024 17:36:14 +0300
+Message-ID: <20240221143654.544444-2-adeep@lexina.in>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240221143654.544444-1-adeep@lexina.in>
+References: <20240221143654.544444-1-adeep@lexina.in>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] fixup! arm64: dts: amlogic: add fbx8am DT overlays
-Content-Language: en-US, fr
-To: Marc Gonzalez <mgonzalez@freebox.fr>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Pierre-Hugues Husson <phhusson@freebox.fr>,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>
-References: <07f7a695-18a0-4211-82e9-b1e2c7166969@freebox.fr>
- <79ba726d-d02c-44b9-b6f6-59b17ba9755c@freebox.fr>
- <54b4e810-754e-481a-bbc8-984f859b116d@linaro.org>
- <15fcafb2-4b4a-40a1-8ef5-ee3aef9b3b9d@freebox.fr>
- <95cafd69-de6d-497f-b3d6-b6d7a8a3b795@linaro.org>
- <e3e47a72-8a6c-475b-a248-95da5dae24ff@linaro.org>
- <814c9035-1fda-4cd3-ab3c-95b58e2ecb22@freebox.fr>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <814c9035-1fda-4cd3-ab3c-95b58e2ecb22@freebox.fr>
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240221_060701_406232_13C1C2ED 
-X-CRM114-Status: UNSURE (   9.24  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240221_063713_254327_AE28EC0A 
+X-CRM114-Status: GOOD (  19.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,58 +67,332 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 21/02/2024 14:48, Marc Gonzalez wrote:
-> Drop compatible properties as requested.
-> 
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    | 4 ----
->   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso | 4 ----
->   2 files changed, 8 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
-> index ed79809b15859..9591fdc31ee0e 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
-> @@ -7,10 +7,6 @@
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/gpio/meson-g12a-gpio.h>
->   
-> -/ {
-> -	compatible = "freebox,fbx8am-brcm", "freebox,fbx8am", "amlogic,g12a";
-> -};
-> -
->   &uart_A {
->   	bluetooth {
->   		compatible = "brcm,bcm43438-bt";
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
-> index 5da88fb94fb98..55fff35b09ae7 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
-> @@ -7,10 +7,6 @@
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/gpio/meson-g12a-gpio.h>
->   
-> -/ {
-> -	compatible = "freebox,fbx8am-realtek", "freebox,fbx8am", "amlogic,g12a";
-> -};
-> -
->   &uart_A {
->   	bluetooth {
->   		compatible = "realtek,rtl8822cs-bt";
+Move common constants and inline functions from meson-gx-socinfo driver
+to header file. Create new structures for store meson64 cpu_id and chip_id.
 
-Squashed on https://git.kernel.org/amlogic/c/13636d5502204e671398470962babbfb46bc2721
-now is:
-https://git.kernel.org/amlogic/c/d881d79f8c77d7f9935a8d9424a1dc4364787bf1
+Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
+---
+ .../soc/amlogic/meson-gx-socinfo-internal.h   | 120 ++++++++++++++++
+ drivers/soc/amlogic/meson-gx-socinfo.c        | 136 ++----------------
+ 2 files changed, 134 insertions(+), 122 deletions(-)
+ create mode 100644 drivers/soc/amlogic/meson-gx-socinfo-internal.h
 
-Thanks,
-Neil
+diff --git a/drivers/soc/amlogic/meson-gx-socinfo-internal.h b/drivers/soc/amlogic/meson-gx-socinfo-internal.h
+new file mode 100644
+index 000000000000..3ebb80972fc7
+--- /dev/null
++++ b/drivers/soc/amlogic/meson-gx-socinfo-internal.h
+@@ -0,0 +1,120 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
++/*
++ * Copyright (c) 2017 BayLibre, SAS
++ * Copyright (c) 2024 JetHome
++ * Author: Neil Armstrong <neil.armstrong@linaro.org>
++ * Author: Viacheslav Bocharov <adeep@lexina.in>
++ *
++ */
++
++#ifndef _MESON_GX_SOCINFO_INTERNAL_H_
++#define _MESON_GX_SOCINFO_INTERNAL_H_
++
++#include <linux/types.h>
++
++#define AO_SEC_SD_CFG8		0xe0
++#define AO_SEC_SOCINFO_OFFSET	AO_SEC_SD_CFG8
++
++union meson_cpu_id {
++	struct { // cpu_id v1
++		u32 layout_ver:4;
++		u32 reserved:4;
++		u32 chip_rev:8;
++		u32 pack_id:8;
++		u32 major_id:8;
++	} v1;
++	struct { // cpu_id v2
++		u32 major_id:8;
++		u32 chip_rev:8;
++		u32 pack_id:8;
++		u32 reserved:4;
++		u32 layout_ver:4;
++	} v2;
++	u32	raw;
++};
++
++struct meson_sm_chip_id {
++	u32 version;
++	union meson_cpu_id cpu_id;
++	u8 serial[12];
++};
++
++static const struct meson_gx_soc_id {
++	const char *name;
++	unsigned int id;
++} soc_ids[] = {
++	{ "GXBB", 0x1f },
++	{ "GXTVBB", 0x20 },
++	{ "GXL", 0x21 },
++	{ "GXM", 0x22 },
++	{ "TXL", 0x23 },
++	{ "TXLX", 0x24 },
++	{ "AXG", 0x25 },
++	{ "GXLX", 0x26 },
++	{ "TXHD", 0x27 },
++	{ "G12A", 0x28 },
++	{ "G12B", 0x29 },
++	{ "SM1", 0x2b },
++	{ "A1", 0x2c },
++};
++
++static const struct meson_gx_package_id {
++	const char *name;
++	unsigned int major_id;
++	unsigned int pack_id;
++	unsigned int pack_mask;
++} soc_packages[] = {
++	{ "S905", 0x1f, 0, 0x20 }, /* pack_id != 0x20 */
++	{ "S905H", 0x1f, 0x3, 0xf }, /* pack_id & 0xf == 0x3 */
++	{ "S905M", 0x1f, 0x20, 0xf0 }, /* pack_id == 0x20 */
++	{ "S905D", 0x21, 0, 0xf0 },
++	{ "S905X", 0x21, 0x80, 0xf0 },
++	{ "S905W", 0x21, 0xa0, 0xf0 },
++	{ "S905L", 0x21, 0xc0, 0xf0 },
++	{ "S905M2", 0x21, 0xe0, 0xf0 },
++	{ "S805X", 0x21, 0x30, 0xf0 },
++	{ "S805Y", 0x21, 0xb0, 0xf0 },
++	{ "S912", 0x22, 0, 0x0 }, /* Only S912 is known for GXM */
++	{ "962X", 0x24, 0x10, 0xf0 },
++	{ "962E", 0x24, 0x20, 0xf0 },
++	{ "A113X", 0x25, 0x37, 0xff },
++	{ "A113D", 0x25, 0x22, 0xff },
++	{ "S905D2", 0x28, 0x10, 0xf0 },
++	{ "S905Y2", 0x28, 0x30, 0xf0 },
++	{ "S905X2", 0x28, 0x40, 0xf0 },
++	{ "A311D", 0x29, 0x10, 0xf0 },
++	{ "S922X", 0x29, 0x40, 0xf0 },
++	{ "S905D3", 0x2b, 0x4, 0xf5 },
++	{ "S905X3", 0x2b, 0x5, 0xf5 },
++	{ "S905X3", 0x2b, 0x10, 0x3f },
++	{ "S905D3", 0x2b, 0x30, 0x3f },
++	{ "A113L", 0x2c, 0x0, 0xf8 },
++};
++
++static inline const char *socinfo_v1_to_package_id(union meson_cpu_id socinfo)
++{
++	int i;
++
++	for (i = 0 ; i < ARRAY_SIZE(soc_packages) ; ++i) {
++		if (soc_packages[i].major_id == socinfo.v1.major_id &&
++		    soc_packages[i].pack_id ==
++				(socinfo.v1.pack_id & soc_packages[i].pack_mask))
++			return soc_packages[i].name;
++	}
++
++	return "Unknown";
++}
++
++static inline const char *socinfo_v1_to_soc_id(union meson_cpu_id socinfo)
++{
++	int i;
++
++	for (i = 0 ; i < ARRAY_SIZE(soc_ids) ; ++i) {
++		if (soc_ids[i].id == socinfo.v1.major_id)
++			return soc_ids[i].name;
++	}
++
++	return "Unknown";
++}
++
++#endif /* _MESON_GX_SOCINFO_INTERNAL_H_ */
+diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
+index 6abb730344ab..006f3b09940d 100644
+--- a/drivers/soc/amlogic/meson-gx-socinfo.c
++++ b/drivers/soc/amlogic/meson-gx-socinfo.c
+@@ -12,118 +12,10 @@
+ #include <linux/platform_device.h>
+ #include <linux/slab.h>
+ #include <linux/sys_soc.h>
+-#include <linux/bitfield.h>
+ #include <linux/regmap.h>
+ #include <linux/mfd/syscon.h>
+ 
+-#define AO_SEC_SD_CFG8		0xe0
+-#define AO_SEC_SOCINFO_OFFSET	AO_SEC_SD_CFG8
+-
+-#define SOCINFO_MAJOR	GENMASK(31, 24)
+-#define SOCINFO_PACK	GENMASK(23, 16)
+-#define SOCINFO_MINOR	GENMASK(15, 8)
+-#define SOCINFO_MISC	GENMASK(7, 0)
+-
+-static const struct meson_gx_soc_id {
+-	const char *name;
+-	unsigned int id;
+-} soc_ids[] = {
+-	{ "GXBB", 0x1f },
+-	{ "GXTVBB", 0x20 },
+-	{ "GXL", 0x21 },
+-	{ "GXM", 0x22 },
+-	{ "TXL", 0x23 },
+-	{ "TXLX", 0x24 },
+-	{ "AXG", 0x25 },
+-	{ "GXLX", 0x26 },
+-	{ "TXHD", 0x27 },
+-	{ "G12A", 0x28 },
+-	{ "G12B", 0x29 },
+-	{ "SM1", 0x2b },
+-	{ "A1", 0x2c },
+-};
+-
+-static const struct meson_gx_package_id {
+-	const char *name;
+-	unsigned int major_id;
+-	unsigned int pack_id;
+-	unsigned int pack_mask;
+-} soc_packages[] = {
+-	{ "S905", 0x1f, 0, 0x20 }, /* pack_id != 0x20 */
+-	{ "S905H", 0x1f, 0x3, 0xf }, /* pack_id & 0xf == 0x3 */
+-	{ "S905M", 0x1f, 0x20, 0xf0 }, /* pack_id == 0x20 */
+-	{ "S905D", 0x21, 0, 0xf0 },
+-	{ "S905X", 0x21, 0x80, 0xf0 },
+-	{ "S905W", 0x21, 0xa0, 0xf0 },
+-	{ "S905L", 0x21, 0xc0, 0xf0 },
+-	{ "S905M2", 0x21, 0xe0, 0xf0 },
+-	{ "S805X", 0x21, 0x30, 0xf0 },
+-	{ "S805Y", 0x21, 0xb0, 0xf0 },
+-	{ "S912", 0x22, 0, 0x0 }, /* Only S912 is known for GXM */
+-	{ "962X", 0x24, 0x10, 0xf0 },
+-	{ "962E", 0x24, 0x20, 0xf0 },
+-	{ "A113X", 0x25, 0x37, 0xff },
+-	{ "A113D", 0x25, 0x22, 0xff },
+-	{ "S905D2", 0x28, 0x10, 0xf0 },
+-	{ "S905Y2", 0x28, 0x30, 0xf0 },
+-	{ "S905X2", 0x28, 0x40, 0xf0 },
+-	{ "A311D", 0x29, 0x10, 0xf0 },
+-	{ "S922X", 0x29, 0x40, 0xf0 },
+-	{ "S905D3", 0x2b, 0x4, 0xf5 },
+-	{ "S905X3", 0x2b, 0x5, 0xf5 },
+-	{ "S905X3", 0x2b, 0x10, 0x3f },
+-	{ "S905D3", 0x2b, 0x30, 0x3f },
+-	{ "A113L", 0x2c, 0x0, 0xf8 },
+-};
+-
+-static inline unsigned int socinfo_to_major(u32 socinfo)
+-{
+-	return FIELD_GET(SOCINFO_MAJOR, socinfo);
+-}
+-
+-static inline unsigned int socinfo_to_minor(u32 socinfo)
+-{
+-	return FIELD_GET(SOCINFO_MINOR, socinfo);
+-}
+-
+-static inline unsigned int socinfo_to_pack(u32 socinfo)
+-{
+-	return FIELD_GET(SOCINFO_PACK, socinfo);
+-}
+-
+-static inline unsigned int socinfo_to_misc(u32 socinfo)
+-{
+-	return FIELD_GET(SOCINFO_MISC, socinfo);
+-}
+-
+-static const char *socinfo_to_package_id(u32 socinfo)
+-{
+-	unsigned int pack = socinfo_to_pack(socinfo);
+-	unsigned int major = socinfo_to_major(socinfo);
+-	int i;
+-
+-	for (i = 0 ; i < ARRAY_SIZE(soc_packages) ; ++i) {
+-		if (soc_packages[i].major_id == major &&
+-		    soc_packages[i].pack_id ==
+-				(pack & soc_packages[i].pack_mask))
+-			return soc_packages[i].name;
+-	}
+-
+-	return "Unknown";
+-}
+-
+-static const char *socinfo_to_soc_id(u32 socinfo)
+-{
+-	unsigned int id = socinfo_to_major(socinfo);
+-	int i;
+-
+-	for (i = 0 ; i < ARRAY_SIZE(soc_ids) ; ++i) {
+-		if (soc_ids[i].id == id)
+-			return soc_ids[i].name;
+-	}
+-
+-	return "Unknown";
+-}
++#include "meson-gx-socinfo-internal.h"
+ 
+ static int __init meson_gx_socinfo_init(void)
+ {
+@@ -131,7 +23,7 @@ static int __init meson_gx_socinfo_init(void)
+ 	struct soc_device *soc_dev;
+ 	struct device_node *np;
+ 	struct regmap *regmap;
+-	unsigned int socinfo;
++	union meson_cpu_id socinfo;
+ 	struct device *dev;
+ 	int ret;
+ 
+@@ -160,11 +52,11 @@ static int __init meson_gx_socinfo_init(void)
+ 		return -ENODEV;
+ 	}
+ 
+-	ret = regmap_read(regmap, AO_SEC_SOCINFO_OFFSET, &socinfo);
++	ret = regmap_read(regmap, AO_SEC_SOCINFO_OFFSET, &socinfo.raw);
+ 	if (ret < 0)
+ 		return ret;
+ 
+-	if (!socinfo) {
++	if (!socinfo.raw) {
+ 		pr_err("%s: invalid chipid value\n", __func__);
+ 		return -EINVAL;
+ 	}
+@@ -175,13 +67,13 @@ static int __init meson_gx_socinfo_init(void)
+ 
+ 	soc_dev_attr->family = "Amlogic Meson";
+ 	soc_dev_attr->revision = kasprintf(GFP_KERNEL, "%x:%x - %x:%x",
+-					   socinfo_to_major(socinfo),
+-					   socinfo_to_minor(socinfo),
+-					   socinfo_to_pack(socinfo),
+-					   socinfo_to_misc(socinfo));
++					   socinfo.v1.major_id,
++					   socinfo.v1.chip_rev,
++					   socinfo.v1.pack_id,
++					   (socinfo.v1.reserved<<4) + socinfo.v1.layout_ver);
+ 	soc_dev_attr->soc_id = kasprintf(GFP_KERNEL, "%s (%s)",
+-					 socinfo_to_soc_id(socinfo),
+-					 socinfo_to_package_id(socinfo));
++					 socinfo_v1_to_soc_id(socinfo),
++					 socinfo_v1_to_package_id(socinfo));
+ 
+ 	soc_dev = soc_device_register(soc_dev_attr);
+ 	if (IS_ERR(soc_dev)) {
+@@ -194,10 +86,10 @@ static int __init meson_gx_socinfo_init(void)
+ 
+ 	dev_info(dev, "Amlogic Meson %s Revision %x:%x (%x:%x) Detected\n",
+ 			soc_dev_attr->soc_id,
+-			socinfo_to_major(socinfo),
+-			socinfo_to_minor(socinfo),
+-			socinfo_to_pack(socinfo),
+-			socinfo_to_misc(socinfo));
++			socinfo.v1.major_id,
++			socinfo.v1.chip_rev,
++			socinfo.v1.pack_id,
++			(socinfo.v1.reserved<<4) + socinfo.v1.layout_ver);
+ 
+ 	return 0;
+ }
+-- 
+2.43.2
+
 
 _______________________________________________
 linux-amlogic mailing list
