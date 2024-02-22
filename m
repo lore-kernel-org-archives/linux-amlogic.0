@@ -4,91 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45867C54788
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Feb 2024 22:13:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0E29C48BEB
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Feb 2024 05:37:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
-	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=kCYZVzyc0VTb/JDwCf/n+arSrq/GJxgqLhcaJGqUG3M=; b=M82s5NLczrhTTZamBVwIokyNGd
-	skVy6hiPwKeUZiFOtPDZcSiCjh1WeWezbNzxbmSsGrzTUC1SjwOCWycOUz1KJ9b2YDI7VnCO1zcD7
-	NclMsFBVpv1nxvly30D4om7CdUk5HSK1DMlKc5AwQ8LzJUOqM4HjTR0NDjHTmjBjhOB1nfnfJrE87
-	35b41sN0MXypiFkSgajpLffN/6YRAUONDqGipwCSiJgkDKbqp+gAJECBsaxVASQcJ7p27mPDHt7J6
-	8MOR+Tx38M7v/4MCKi11hTZPFlNb9pWy2EHXJhJhbk7DdyAo2obr+nSAGaikVWyPO9JBrzJmnFtwb
-	4MRpnmzg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ixRr4BYN+hYbEvDaO7PNawVTYhdqxlaMCewmVh6ubc0=; b=nH+yv0eNY+DDqZ
+	JjLPcOkcRq8PN64bC0ngFbHWGPwgF2ubSkupULXNSy1KwTODBWxlcjojuhN5PGLxV9JzGLR+M+3m6
+	Nvyq0c7nEPvB2rv8cMY1AMX7EXvrbM2kc0DgZIR8ZSqoVR0oIA4N4J2xOD8lYxNOfxOkNJpTEXs8H
+	5EEmyXIlcy1/P6yxsCytQp/zBQHh2uzSZU92WFufOcwhL2X+y/VkKCekU5oKFQXp+wZR2+i8VDyZZ
+	rgYgH2O9ygewnUxiolzK8j24hQbpjwhe3yRlo+dv3czFf9ygJ+x4mKSv8B0XH9eQJLykiHqPE2NOx
+	ULL1WnuA9guDYbE8HLjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcupu-00000002lEl-2Cvc;
-	Wed, 21 Feb 2024 22:13:06 +0000
-Received: from mail-yb1-xb2c.google.com ([2607:f8b0:4864:20::b2c])
+	id 1rd1lQ-00000003cDE-0yzx;
+	Thu, 22 Feb 2024 05:36:56 +0000
+Received: from mgamail.intel.com ([192.198.163.11])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcupq-00000002lCl-372c;
-	Wed, 21 Feb 2024 22:13:04 +0000
-Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-dc6d9a8815fso7088293276.3;
-        Wed, 21 Feb 2024 14:12:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708553571; x=1709158371; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zvHohG/osJUUJ6MrbAQ8TEaNGcUB4t0Qr7/JkHGHUIo=;
-        b=W2+uLuLDecqy3neqnGZwQ/fj2wzz9vKkCLS8WATAEtZNOHCyTI9/w8aPHRc0I5jMlt
-         MKPReH3mKMRjfbvl6g8Rv/mMaFIjYZIujVgnAcnwCuZzRrDNyYmgDHiZ20til58eW0oc
-         nHZ+5BF3LaWIyk8dE/Q27IRNuM3vxVVTKeOalCnG2kC3INWY0vCm8ueRC2UM5ZtvU1YD
-         ymkFSNUXdGNQF9z74XMA5nHsMmtEkE3v+7tskLDgBuQs9GTXFxLpptC1ubnCkD04Yw9G
-         O8a4atEDLYg4jm1gELJcs5GkVaj0Ea+pmimk7YohPftStPpT7gFoj+QwnfNTJY3M3qGa
-         +pvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708553571; x=1709158371;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zvHohG/osJUUJ6MrbAQ8TEaNGcUB4t0Qr7/JkHGHUIo=;
-        b=Rpa+I4ioMo9tmwtWOfdZ+Wv3yEhk9ydL/lGwxiMHNknOq+XePlrJTOvs6APIVApM5w
-         5gArcM1K7AFXAbtjtVeL7HSZwUlt+GZwp/fNaMi5cm8QmtpsDEeJ4el+b2E+LaVVpEn4
-         OB59qELSRRj8OnCybFxOXjRJeBxB1YE6CGR/xmSvwjn0cl9MOyGq2LxhZepnwozuafvC
-         dXoj4qME/2kQFsnVWsjg3VG5LCIjS55EbXbK/ZeLFEV9YKRPozgD3BjzVKZ8PWW1ElR/
-         Hic/DfFsSg0kDe2qN3lx8OIFcmkfON+IFt6N8WCUZNQ/7uEjDa0IkomJAaK566Dt+2Bl
-         p16g==
-X-Forwarded-Encrypted: i=1; AJvYcCW4WXQsIgaaE8N2NZjy8/nZhKFOvmJdF3y2Qh0qWNaEtaWqCv+KcNV7H1Iuu8irnz1a0gDjdM0QopE1kjW+XvlWgFAHnzzHxoGNczqKzDwTFOIEUEfj/ffZPVltdOTkPRpfal/9uF3hP2bzUmkX/GIDjCCpRWd3edUh3o/qQSDI2o3CQ72je7FECJDnbIBJ0Goyw3/rPKTJkZwHFEpe5SJBxNmhmaLu1I+G2T5h1UGgAhhTDbU6exDLpP3YaOTaxoiVTnP7wMuQFx7s+PYgyrpqFp0o9nI6GYeWiqKxtSk=
-X-Gm-Message-State: AOJu0Yw0m/wvSsdSxlC+oGHDMGUKoW+kudvJhqYe2TDO7+P1cddlbtbC
-	zr/WyrMk9oZvUao0X+iPqaEWCy8ZQfukHpmbK3al7DY0LnBmrz3J
-X-Google-Smtp-Source: AGHT+IF7kP+13CFMgvNV4rXPEp1sBAjlnfLwnWDRvHGUt3wwBoE4opoEpDnOPFhvcnuSrbWo1HtsDQ==
-X-Received: by 2002:a25:9346:0:b0:dcc:76a0:503b with SMTP id g6-20020a259346000000b00dcc76a0503bmr692068ybo.13.1708553571608;
-        Wed, 21 Feb 2024 14:12:51 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id i19-20020a05620a405300b007858c17df9csm4712295qko.96.2024.02.21.14.12.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Feb 2024 14:12:50 -0800 (PST)
-Message-ID: <69a0df59-7d27-406b-b0a0-3e43f18b20bf@gmail.com>
-Date: Wed, 21 Feb 2024 14:12:45 -0800
+	id 1rd1lM-00000003cCJ-3FGU;
+	Thu, 22 Feb 2024 05:36:54 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1708580213; x=1740116213;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=QeI2uBjQcu057UUOzLotCkKnUelckhJN0RTsfRbGdyE=;
+  b=BEC10fWBGnDCI/dKj0wMkF7w6vqeJihaLzyICvdppwvswvQzOAWDxjE+
+   eEqOpgkDrninmWj6BCuXXQISGEGKrcgt8a8EHyQcLCtulVWHaQUFj5Bqx
+   TEiFp9duuJ8/1oQ5TWh1FfbKDnp5m8TeLDD6bJT2u6xD2F0zdpvl0BTbK
+   gXLz3cJHBVQpa3hwe5OVIm0J/8zQWdStPbKNGMFlxU6kOqdTMUFKRWpBL
+   fdvH6mocYObZydAGl2iAHG8xoPpzH4RvqWglW1kpHX6O+pSWA/B2X+1gg
+   0M2uPAoFrE2LO/rsp5gYSntKoVRa6sybL2ZAPd4VJRp+kXFpLCyCuokEC
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="13406323"
+X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; 
+   d="scan'208";a="13406323"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2024 21:36:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; 
+   d="scan'208";a="9975667"
+Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
+  by fmviesa003.fm.intel.com with ESMTP; 21 Feb 2024 21:36:42 -0800
+Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rd1l9-00061A-2w;
+	Thu, 22 Feb 2024 05:36:39 +0000
+Date: Thu, 22 Feb 2024 13:35:56 +0800
+From: kernel test robot <lkp@intel.com>
+To: Viacheslav Bocharov <adeep@lexina.in>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v2 2/3] soc: amlogic: meson-gx-socinfo-sm: Add Amlogic
+ secure-monitor SoC Information driver
+Message-ID: <202402221322.ifGMGQa6-lkp@intel.com>
+References: <20240221143654.544444-3-adeep@lexina.in>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] phy: constify of_phandle_args in xlate
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Linus Walleij <linus.walleij@linaro.org>, linux-phy@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- netdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20240217093937.58234-1-krzysztof.kozlowski@linaro.org>
-From: Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20240217093937.58234-1-krzysztof.kozlowski@linaro.org>
+Content-Disposition: inline
+In-Reply-To: <20240221143654.544444-3-adeep@lexina.in>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240221_141302_789525_FB6A01D4 
-X-CRM114-Status: UNSURE (   6.61  )
+X-CRM114-CacheID: sfid-20240221_213652_849091_BE4B4251 
+X-CRM114-Status: UNSURE (   9.62  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,22 +85,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2/17/24 01:39, Krzysztof Kozlowski wrote:
-> The xlate callbacks are supposed to translate of_phandle_args to proper
-> provider without modifying the of_phandle_args.  Make the argument
-> pointer to const for code safety and readability.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Viacheslav,
 
-Acked-by: Florian Fainelli <florian.fainelli@broadcom.com> #Broadcom
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on 9fc1ccccfd8d53dc7936fe6d633f2373fc9f62e8]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Viacheslav-Bocharov/soc-amlogic-meson-gx-socinfo-move-common-code-to-header-file/20240221-224803
+base:   9fc1ccccfd8d53dc7936fe6d633f2373fc9f62e8
+patch link:    https://lore.kernel.org/r/20240221143654.544444-3-adeep%40lexina.in
+patch subject: [PATCH v2 2/3] soc: amlogic: meson-gx-socinfo-sm: Add Amlogic secure-monitor SoC Information driver
+config: arm64-randconfig-002-20240222 (https://download.01.org/0day-ci/archive/20240222/202402221322.ifGMGQa6-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240222/202402221322.ifGMGQa6-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402221322.ifGMGQa6-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   aarch64-linux-ld: Unexpected GOT/PLT entries detected!
+   aarch64-linux-ld: Unexpected run-time procedure linkages detected!
+   aarch64-linux-ld: drivers/soc/amlogic/meson-gx-socinfo-sm.o: in function `socinfo_get_chipid':
+>> meson-gx-socinfo-sm.c:(.text+0xac): undefined reference to `meson_sm_call_read'
+   aarch64-linux-ld: drivers/soc/amlogic/meson-gx-socinfo-sm.o: in function `meson_gx_socinfo_sm_probe':
+>> meson-gx-socinfo-sm.c:(.text+0x438): undefined reference to `meson_sm_get'
+
 -- 
-Florian
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
