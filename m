@@ -4,83 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CE66C48BEB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Feb 2024 10:02:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19C8AC48BEB
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Feb 2024 10:17:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rn8dBX3hYfvWFHAo0MT8D/ONremsf+M/ZFphsusCPtg=; b=iSz+n5k9zmmg5o
-	S1ysl8j72W0GtMpp6J+6flBzwmX6USZ/WG2+AZIYjBtgJwuf/1cyINMZqUOqzt3HXLIekyvQzQXOk
-	0CP93TAACY6jvhSGDobRKeZsadj+lddkiEUxUQuknc4pzIHSY89gHxmsKrqmtDa6bLm6p4gjZHI4c
-	0pFecDxfTkvzD/u+Oavoa7CFPEJkqFJ+Kh+AN7gHiqIsXQsZlmrWe5EzDubhg/ShXNSvsZXqebJ9N
-	CWdy92Ud8QtxhBe80/pyCbVcwgnMEQ8qC1hoA3D/FK7bOZ3YS35Sx8e/FC9WgK3OyZ+0EhkINDFzF
-	zalWh5phgQ69tEMb0YYQ==;
+	List-Owner; bh=UFBzxwaw/UwBCmFBnHcfepyvboaZE4TdJwFVKR80Oas=; b=yGRrndVgm8M1CB
+	SdcsplHuzPW9fdty9EYhcaH4I7gTWKsPHQjg6+gaaPWx79BDIwKJt1PJFSUjtKvJfyk0OxQ7Keh5+
+	hGSTLuxevDTl/UTaDdchFkckrxqNiPj2X3kGHuRvSanuKY3WQlyJU9Jviwt0X7XcVMM9W2k7scCtP
+	5A5DNAgqVj+H8ah35+znag6QBrjro785WCZxy0KgSB0Tz/TmmviKJtRD0ehfutcDBlR1G7U5sITlj
+	/Pkm/P2d+/6bfkFVCk9CHZ51UhseJVGHevNzuQo0mJjpuvrJXmQeWLzeKJNLDBkvYrpcsdxu35iPV
+	F6QuZ3jGSh6WfUyH3Ldw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rd5uP-00000004PNg-2c8j;
-	Thu, 22 Feb 2024 10:02:29 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1rd69D-00000004Rfm-3fgx;
+	Thu, 22 Feb 2024 10:17:47 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rd5uK-00000004PKq-3tZ2
-	for linux-amlogic@lists.infradead.org;
-	Thu, 22 Feb 2024 10:02:27 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-412698ac6f9so3880545e9.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 22 Feb 2024 02:02:23 -0800 (PST)
+	id 1rd69B-00000004Rek-0y5d;
+	Thu, 22 Feb 2024 10:17:46 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-33d26da3e15so432827f8f.1;
+        Thu, 22 Feb 2024 02:17:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708596143; x=1709200943; darn=lists.infradead.org;
+        d=gmail.com; s=20230601; t=1708597063; x=1709201863; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kFYHd6+4AFKoS9s0Ghxng7Vd4m1eqNVYafg51WuAAFY=;
-        b=CKKuBGjIxma1ilNg5sZyMokqsz83rygGaJsE6cs4a8Gd6w2V0rnbw9WPxmidz00/JQ
-         5OIO6QAsEBfeabNW+9JEOwh1tBouO/SEku5mHpCZYiCEOyIMcdNy/5fNzjPruujCLxdz
-         qjMhUVyZMnyiLimFBVpsM+QaRaIG+GC6MDmGIb8zi2eg1dJfU5s2rysdR+anGqeZNQEu
-         /6BYWGdslokDt2YLW3h55J/0QnYzFCjyTGQyctj/01sSsrkuI94Vqli9zT4BvJ6C9Mrd
-         V/EYyzanhf3M8lFQEsxmazI1Pkjia4Zyq9VAn8LPlmxSKeAI9Qr25irnwHqMJUdMM6Q6
-         G4Rg==
+        bh=G1J8J17nCvBwJV4rCbF2JrhC1M/fgT2R9MteVMrLhr8=;
+        b=HjtaAPvkrrapGpfWuY0+xIJv5qbtETsUOHD4SK+nTq66wyEYxy95hmqSKiTvSx84i7
+         6+Yku5w48JmmOH376WTMS/NLXxeQRHRm9ILh5L/rHTF6MprgIEJs1Fi+1SLJef68RQeT
+         mapkB6vJr0Fk2qOEeqMLUfQ0LPsRG2Zvj69vR4z5ASaXLzkOcNGYhBIt0xtEoLpkIjcD
+         8YrJ/3JPvP8cvezc7ohzh01tLpisSL89f1lFDHl84wOMnZdSIolqid35+vMn/lWwKF9p
+         fyrLNL97GZVOmJdOMfAXlg/C4qCHL8m4Ah/zB6+GCvaGY3HGD1936llcrGVkUfoWxTVg
+         19qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708596143; x=1709200943;
+        d=1e100.net; s=20230601; t=1708597063; x=1709201863;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kFYHd6+4AFKoS9s0Ghxng7Vd4m1eqNVYafg51WuAAFY=;
-        b=pkLrStUSHkCUIaxHJ9LmvpWEMA4qcWM3lqtzmDP0ObNr6qygjKRk1SPEmlUKfWhfpS
-         dQ8gwbp2a6uvxN+g9wOcxuPBZ6FEGMbyczjRg7k9pAShKR6qE3IWjXJAamsKF6UuXR2k
-         llgl8Ft13hfhuLrDKzhqfVOHdC19oKO5Sskrijw4otlOh29mk4qiBqrVkvy6sW3ypbqg
-         QlXghNjUR+bBR0ZtgYwaJp6xVpPS0seNvoLpLM+vKGMUYDxy8Bm2DPxjmExj7GH+VnbE
-         dmhmeFsdON+5YRP4VNvNhpdLee3nwthiETC0dQ+i3EItGWSZd1/u1dxeVKBIQAIk0Qj4
-         b1eQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXaXXSVc4TlcsL2/clkh6b8IJQFWstpVyE/Z3tncO7X03Fm5V9y7WAFCtMmOX4uA0LJ8roZmZYGUjjMQfwXf+nNREfV5ra3twKThB0Poldsv1A=
-X-Gm-Message-State: AOJu0Yw+ydMK9zE8XNxVwVVKCuRewweEjjVavCX1TdyGc51I/oA5qT43
-	HOnNW3zJkZAcQjxOdqd2bEigmQCTTK829CoYGcDjSJ1zd/Nrc8lrltJqdivmrsI=
-X-Google-Smtp-Source: AGHT+IF3t8KxDgoDIJivDdmBnVEfL+G0xlPoeOkFEyc7ma9OQbx/VZ8G5e7i3Xh2q0TvvIpR1dxcpQ==
-X-Received: by 2002:a05:600c:3b16:b0:411:b2f4:16e9 with SMTP id m22-20020a05600c3b1600b00411b2f416e9mr1920979wms.14.1708596142728;
-        Thu, 22 Feb 2024 02:02:22 -0800 (PST)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id i8-20020a05600c354800b004127488c941sm5700224wmq.22.2024.02.22.02.02.22
+        bh=G1J8J17nCvBwJV4rCbF2JrhC1M/fgT2R9MteVMrLhr8=;
+        b=XUvKjzklcXzoJahCSx1+rgkiIYS5z2r51b6UlhFDmVkH4z0JwsQbCFuc5Uvi17ZdON
+         B6TykfyMd64hTwL5vk3Jx8gXJDoB971pNwASgIsZmfq4GoiH8jNosUHiOc2nfzESN73x
+         bg7QBoX82yBTUWHBA+3OWXE9xOxTEX25iKTKcz8CbbdQqZ/lVKXS09AGA3pINQLXrHqi
+         PyELJ32GTet41kI1XWRK4owlwYpwH7S/lVykV7zv+WIPW/1ZurZQrYpbbtUUfg8SIfcg
+         sax8cwdOLuTOqyso+/yB6AMbFUhQJxdnllWHG01muMgOm+ejy028MDfz8uCZ7uT81zpD
+         AEOw==
+X-Forwarded-Encrypted: i=1; AJvYcCXbGq+6RcPLSRBtRbyB+8a2mRm6Y43KZyejOqC0+A4WfRGpPWLB+t6WhcxnPr9632Hn1NPjuV1x06YhU4a67RnDD6raLN44GgcWHG4wznr0LOYC4LgojKFngDxNu17yVR5M45A5gsCl+k2030IbB+g6QzeUcGhFew==
+X-Gm-Message-State: AOJu0YzCoQKjwZi+ewvdOpHQ0t16jy4QoBGWYp2inkSFggzowI/7KHl8
+	AAoPuV1zS2B0kejeXVppKab9lOGwqUF0dCzhAguLPYnveCSInZS/
+X-Google-Smtp-Source: AGHT+IGGd9rgcsy5ffeIqgGcAUSF1axJ92HYRhWHu2pwd1QcwlwOgUYgod//TagogmfGZq4p09kl9A==
+X-Received: by 2002:adf:e742:0:b0:33d:3e02:a5b0 with SMTP id c2-20020adfe742000000b0033d3e02a5b0mr1926418wrn.11.1708597063175;
+        Thu, 22 Feb 2024 02:17:43 -0800 (PST)
+Received: from [192.168.50.110] ([90.255.110.157])
+        by smtp.gmail.com with ESMTPSA id bu7-20020a056000078700b0033d5aee2ff1sm11542845wrb.97.2024.02.22.02.17.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Feb 2024 02:02:22 -0800 (PST)
-Message-ID: <a4f8fa60-7c03-4946-a135-a405d53f361b@linaro.org>
-Date: Thu, 22 Feb 2024 11:02:21 +0100
+        Thu, 22 Feb 2024 02:17:42 -0800 (PST)
+Message-ID: <32098130-cd5e-4bed-9bcd-155227c6008d@gmail.com>
+Date: Thu, 22 Feb 2024 10:17:41 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] clocksource/drivers/arm_global_timer: Simplify
- prescaler register access
-Content-Language: en-US
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- tglx@linutronix.de
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- patrice.chotard@foss.st.com, linux-amlogic@lists.infradead.org
-References: <20240221214348.2299636-1-martin.blumenstingl@googlemail.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20240221214348.2299636-1-martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH] arm64: dts: meson-g12b-odroid-n2*: Add support for
+ overclocking Hardkernel ODROID-N2 boards.
+Content-Language: en-GB
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240222082523.1812-1-greena88@gmail.com>
+ <1j8r3cet0i.fsf@starbuckisacylon.baylibre.com>
+From: Adam Green <greena88@gmail.com>
+In-Reply-To: <1j8r3cet0i.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240222_020225_100057_A0E0FB3C 
-X-CRM114-Status: UNSURE (   5.92  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240222_021745_307627_6E9E85F7 
+X-CRM114-Status: GOOD (  12.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,21 +96,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CkhpIE1hcnRpbiwKCnRoYW5rIHlvdSBmb3IgcHJvdmlkaW5nIHRoZXNlIGNsZWFudXBzLgoKT25l
-IHF1ZXN0aW9uIGJlbG93OgoKCk9uIDIxLzAyLzIwMjQgMjI6NDMsIE1hcnRpbiBCbHVtZW5zdGlu
-Z2wgd3JvdGU6CgpbIC4uLiBdCgo+ICAgCQkvKiBwcmVzY2FsZXIgd2l0aGluIGxlZ2FsIHJhbmdl
-PyAqLwo+IC0JCWlmIChwc3YgPCAwIHx8IHBzdiA+IEdUX0NPTlRST0xfUFJFU0NBTEVSX01BWCkK
-PiArCQlpZiAocHN2IDwgMCB8fCBwc3YgPiBGSUVMRF9HRVQoR1RfQ09OVFJPTF9QUkVTQ0FMRVJf
-TUFTSywgfjApKQoKCQlGSUVMRF9NQVgoKSA/CgpbIC4uLiBdCgotLSAKPGh0dHA6Ly93d3cubGlu
-YXJvLm9yZy8+IExpbmFyby5vcmcg4pSCIE9wZW4gc291cmNlIHNvZnR3YXJlIGZvciBBUk0gU29D
-cwoKRm9sbG93IExpbmFybzogIDxodHRwOi8vd3d3LmZhY2Vib29rLmNvbS9wYWdlcy9MaW5hcm8+
-IEZhY2Vib29rIHwKPGh0dHA6Ly90d2l0dGVyLmNvbS8jIS9saW5hcm9vcmc+IFR3aXR0ZXIgfAo8
-aHR0cDovL3d3dy5saW5hcm8ub3JnL2xpbmFyby1ibG9nLz4gQmxvZwoKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBs
-aXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFk
-ZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On 22/02/2024 09:37, Jerome Brunet wrote:
+> Patch title is too long - checkpatch.pl should have given a you warning
+> for this.
+> 
+> Not sure it is wise support overclocking directly in mainline, not by
+> default at least. Maybe as an overlay ? even this I'm not too sure.
+
+Hi Jerome,
+
+Appologies for this but checkpatch did not raise any issues re the
+length of the commit message.
+
+Overclocking is not enabled by default due to the turbo-mode bit
+being set, it still requires the user to issue the following
+command to activate.
+
+echo "1" > /sys/devices/system/cpu/cpufreq/boost
+
+It's also worth noting that regulator voltages have not been
+upped to achieve this.
+
+Lastly if the HK wiki is to be believed then the N2 (non-plus) is 
+already overclocked in mainline.
+
+Best regards,
+
+Adam
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
