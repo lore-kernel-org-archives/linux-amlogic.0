@@ -4,73 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC4F2C5478C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Feb 2024 08:20:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EF2EC5478C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Feb 2024 08:21:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
 	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=P4cdBDABr4+BqAkK6J9LnXwrCfTG1LF7bi7h47MpfUw=; b=0x323Yx/gad/QaZxkCkKoZB8oC
-	JsaDLgjzZ7F1Gr9e0xn69gDghiVSrkL7YM227/bWQ+OK9B8Bed5ty7Ns2uUHWLHRUctuO1OTq5GtV
-	eAMaUVBajWju4t0X3bqw/zHoR4zpbrjhPrskiS6hS6PjZgi5CK9X+W5LwhrO8vPIhm6nxLyZxddW7
-	09xN234uHWoc6l7J2u9Wbd584R3ymX/D0YXEph3Ux0H9Y/n+bYW3v9dlsgiamCSCAPW4YpuN22qf9
-	RE2av505M2G9ps17Vr+NO9DiJAta6Sr2ciKMTrCws15QpX6ELQLIPf9ufnssp78AeLR1ufkPmDNqH
-	bUJIDpRg==;
+	bh=HG/Roqm3U81buKhHMcGE9CmRctqQXNoZJErb6VIAQbo=; b=XeOTTAGblq+u0fvaxgnfY+C8X0
+	y6+inKr7IKvQMY5os84dajaKxBRNkRKyJUyBFfpy/ZI6eiIcSTHkGi0nTy20Nb/C4OGyOGDr/RwGf
+	lvWjM0tN5r4bS2KBySxAba1nA1PnQsvp/ERvYHQtWxcRkyQpBFx9Jrrimkw165Q0RDj5wItI6bXA2
+	kHkyyREoz1DErPWCa0//YUc8lyQMepDh/h2LPNd59tMoyqJpQO3iF6Guc11XsJS7N+8wUH2mNs8CK
+	5HsARLde7VRE9g8NhdMJrIz+lYDpIFSt7e2Qk+RKY6aaa1Ygv+R+e0wzehN4PW+W+gxaK5/VMrK5s
+	vdVCOgLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1reWDx-0000000GxnT-29zb;
-	Mon, 26 Feb 2024 08:20:33 +0000
-Received: from mail-lj1-x230.google.com ([2a00:1450:4864:20::230])
+	id 1reWES-0000000Gxwf-3H7d;
+	Mon, 26 Feb 2024 08:21:04 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1reWDu-0000000Gxm5-2P0r
+	id 1reWEP-0000000GxvD-35m6
 	for linux-amlogic@lists.infradead.org;
-	Mon, 26 Feb 2024 08:20:31 +0000
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2d24a727f78so39861131fa.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 26 Feb 2024 00:20:29 -0800 (PST)
+	Mon, 26 Feb 2024 08:21:03 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-412a4055897so6271005e9.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 26 Feb 2024 00:21:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708935628; x=1709540428; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1708935660; x=1709540460; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=7X/qTLWbPKPd/JiUEePzNNSXCZV2RpnxgxvQjOuEvCY=;
-        b=ny36cK0vP6X/7b2/xj88eQwDoMHonBjl8ENyNAog9nLLr5kF1aYs3TeRMWyNZuLiFV
-         JTslJIdHpfWPjdLJP7IGACdtxE/+iHPuYaHdbvk4Ao3Y0sB0W62NvFF75jC67w7yYyvq
-         m+gumWp1FOyFoVJdHGxnipM1CBqPD5qNMzx3Emedzl9kUFEy0IU6/ImDLxZZe/PyNNcX
-         zZAfxITiiaU/Og8gCHoq/TvfI6NhGaY+ZiILhSFZh/Z9h5GL+B7NOoG1OPObvl5bs5LX
-         AU2z6NI5jRd4Kyv+RHhXd7DQf/NGKKGi+91cTBAT0DO3FI+wo1HiKH9fAI4SRoLIRm6W
-         3xfA==
+        bh=XZY9bAr8HLq1HeXJYbRKkm16dfDwRF3U/KMWeM9nOeg=;
+        b=OceVy4x8txNjRVtwAwGgTeFWVUlF7w0Tf1UtWTrHwKg+S6mV5GSBXNhlcMVSE+rpbd
+         1LC5btcCF7vk2rUPJHGk6x1swwJKWen4ewUpNaLqYWeOzyDRYSTaFnuKoFoX5gLKOcpm
+         mcsHNh56LoeQufwBjhvttUf+5v2pJ/mTGW2gwV+31zuAnxHUXHZFTrBX1pPbJcD6BZdb
+         T7lu29R6gBIM2ZgfZDdh6HqWmcUq727+bIb7jcVPWAn9n5IM/kxIU+ffzhDt/lDOnlZI
+         ptTRrP+X1m5Kh2+h4gr0gK4zoh7OMJMUQZMD65PAWKS9EhF+nu6sjtErtMCUKiR1WrMd
+         F9xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708935628; x=1709540428;
+        d=1e100.net; s=20230601; t=1708935660; x=1709540460;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=7X/qTLWbPKPd/JiUEePzNNSXCZV2RpnxgxvQjOuEvCY=;
-        b=pyMeWxZo1Lax3qTWfIZrRgtwB1S5Gt6P564BWEsg0te469iMdhqlAJyUYkR7nZjuZE
-         k4jAyTZMHlefjoAGqkWZVj+kUNZPAyLDlLJed57uLid1oBlXWxVXdaLLlqc2+0gGneK7
-         9K3gVr0fAx0RMI4VUY/zGycf4SJZEm3PV0HGf5eWfJ7D3osIxXY+lQvWAq7Efm0gQI2I
-         ZBDCeesFeotzwlmL3QcX9fivS4wqJgzDuq6DEUmCzTnP8/4xZuZsVOWF2b9Rtu8aLocY
-         GKlRd7nZ/worKA9JY7Kh6xi1DnCD8VwQKoA63sOADn7fAjD8TmBCtSkTWEwwcKJkk4fS
-         nVNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU9fzys7YHY+DJxa/tCGaeOkNXZg99Us9rynk8L3NxxhgaZ3JD7BvfCe5t/buoTBT2rUnIYiDJFIt+8erzB5P3PR9aMAeWDVKZPmmX7n0RIDi8=
-X-Gm-Message-State: AOJu0YyEAGKiel4BN658H7OSBxFLcxgERsGpEXhhRILNqkKnY5iWGtpd
-	+4sgu+YbF5R3aFqiHQXWvMQA0DB25rrgY60M9uvF66oc/Z+WfMDwTgqwHCR2+xU=
-X-Google-Smtp-Source: AGHT+IG9QcEM3HJrnvTNIfRhHpLmlDOTNhe4OLoEc9FT9CEH84AmgKuofVTjDOdF9TjKJLwzZybwbw==
-X-Received: by 2002:a05:6512:928:b0:512:a980:719f with SMTP id f8-20020a056512092800b00512a980719fmr3375500lft.69.1708935627817;
-        Mon, 26 Feb 2024 00:20:27 -0800 (PST)
+        bh=XZY9bAr8HLq1HeXJYbRKkm16dfDwRF3U/KMWeM9nOeg=;
+        b=bKZgHZM5sh0v+xqDysge7zmEFFn72k+Ry+KtKljETxWSZGSMI5Zr8c6t4ZavwO7Sdc
+         yzKwvPghHuJ2YEbborSodX+8n3UnGzgWI8Bic4TUjKVyzXSpVtXdFbsz38HNNxzR47ou
+         zh1/tNdpqpeIN5INm279D7veefGagoEpugcjLnj3cETsHl/239+vujfWeJJjB6cwzH7b
+         NW7O673JbIcdLsIrxDsjZo55U862+2873wX7ytF8hvfz3wY2JDz9SyiDBpMmDtK620Z5
+         ukBhlV7weOBTBzbVv2aK3zd7YDDEeSjaDwJs/PFSUf6uBPDl8nyMAhBFNR1p44a3L57N
+         Armw==
+X-Forwarded-Encrypted: i=1; AJvYcCUAUSWINAf8xtidC3B/wntUHUdyM2kRenXAK1v7f/I+gFZqt7p6qmqv9pNRu4lVZgceIHetQrHte+L7U68/ydjIwOtq9vxMOJt/gBNsHish4Bc=
+X-Gm-Message-State: AOJu0YyKMWK7wctge/di/b/o6DIc4nQd11u224dHC+3hmAuOiixtNSwh
+	PE0GMkNmY4g+5+EH0dqCUb/HNjZz/KhyYG8xSwEKicIjp9Rz70GECOz7uwrlpr4=
+X-Google-Smtp-Source: AGHT+IFrIdlWNBqo+0PZyg0mwzmMd+bi9doX/IBE3ts5JFCZZOl7ZsXqTrK1QOz/u1os6aSj3joEwg==
+X-Received: by 2002:a05:600c:474a:b0:411:f418:375f with SMTP id w10-20020a05600c474a00b00411f418375fmr4033817wmo.19.1708935659916;
+        Mon, 26 Feb 2024 00:20:59 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:6109:4c61:11d9:ed64? ([2a01:e0a:982:cbb0:6109:4c61:11d9:ed64])
-        by smtp.gmail.com with ESMTPSA id 19-20020a05600c249300b00411e1574f7fsm10999475wms.44.2024.02.26.00.20.26
+        by smtp.gmail.com with ESMTPSA id 19-20020a05600c249300b00411e1574f7fsm10999475wms.44.2024.02.26.00.20.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Feb 2024 00:20:27 -0800 (PST)
-Message-ID: <7d9221e0-8165-422b-abbb-e1566a7a733e@linaro.org>
-Date: Mon, 26 Feb 2024 09:20:27 +0100
+        Mon, 26 Feb 2024 00:20:59 -0800 (PST)
+Message-ID: <e2cda8f8-4250-4ac5-b7ba-6069f37c1b98@linaro.org>
+Date: Mon, 26 Feb 2024 09:20:59 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: remove unstable remark
+Subject: Re: [PATCH 2/2] dt-bindings: arm: amlogic: add Neil, Martin and
+ Jerome as maintainers
 Content-Language: en-US, fr
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Rob Herring <robh@kernel.org>,
@@ -81,6 +82,7 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
 References: <20240224084030.5867-1-krzysztof.kozlowski@linaro.org>
+ <20240224084030.5867-2-krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -106,10 +108,11 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20240224084030.5867-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240224084030.5867-2-krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240226_002030_650835_A834219F 
-X-CRM114-Status: GOOD (  13.53  )
+X-CRM114-CacheID: sfid-20240226_002101_808772_10C8D29E 
+X-CRM114-Status: UNSURE (   9.83  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,38 +133,32 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 + linux-amlogic@lists.infradead.org
 
 On 24/02/2024 09:40, Krzysztof Kozlowski wrote:
-> Amlogic bindings were marked as work-in-progress / unstable in 2017 in
-> commit 7e8634e821e1 ("dt-bindings: amlogic: add unstable statement").
-> Almost seven years is enough, so drop the "unstable" remark and expect
-> usual ABI rules.
+> Add rest of Linux Amlogic Meson SoC maintainers and reviewers to the
+> Amlogic board/SoC binding maintainers.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 > ---
->   Documentation/devicetree/bindings/arm/amlogic.yaml | 11 -----------
->   1 file changed, 11 deletions(-)
+> 
+> Entries ordered by lastname.
+> ---
+>   Documentation/devicetree/bindings/arm/amlogic.yaml | 3 +++
+>   1 file changed, 3 insertions(+)
 > 
 > diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> index ce0ea36de0c0..edbc21159588 100644
+> index edbc21159588..949537cea6be 100644
 > --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
 > +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> @@ -9,17 +9,6 @@ title: Amlogic SoC based Platforms
+> @@ -7,6 +7,9 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>   title: Amlogic SoC based Platforms
+>   
 >   maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> +  - Jerome Brunet <jbrunet@baylibre.com>
 >     - Kevin Hilman <khilman@baylibre.com>
 >   
-> -description: |+
-> -  Work in progress statement:
-> -
-> -  Device tree files and bindings applying to Amlogic SoCs and boards are
-> -  considered "unstable". Any Amlogic device tree binding may change at
-> -  any time. Be sure to use a device tree binary and a kernel image
-> -  generated from the same source tree.
-> -
-> -  Please refer to Documentation/devicetree/bindings/ABI.rst for a definition of a
-> -  stable binding/ABI.
-> -
 >   properties:
->     $nodename:
->       const: '/'
 
 Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
 
