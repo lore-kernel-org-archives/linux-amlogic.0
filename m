@@ -4,87 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8928C54E49
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Feb 2024 12:01:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 387ABC48BF6
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Feb 2024 15:42:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RPmqmP8T8StHAVqhoK3jWdL+et/3tdR+u2Cxuipyi4E=; b=elZrCfcTdTcE/5
-	17vE4mN9wpqFs9x3cUuXY8yOsJXLICXhPwLRhlBJ5ZiLz4YPBo0ijSFtLWJG+Dql+KOhUk0R/qqkG
-	njrSvqhvJiFjeMCnNZ6ZPMWA7mrRyMqfXwtaHxeItNj4ekeicQ7wK1tEQTiITDCeb1IeMIrGEa5KD
-	UvTXfhX0pJAHBmAnqAlASe2bqy+xkTW/jHYIMwIzSQm2FYlKUnjkupks6HafbkS07ChwUwySc/T/i
-	z6fEasF/kzfETlPC1ne9x2Kc5GoFtLeEvzp6sxxgSWUMAmFc1XiMonVd0E385imHAFhHdPOWsVrDP
-	ERVolbtA28cLSHwsw0zw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=fFvQZII/1oRTHBlSwe6vKhbRCscVvcEw9hYMaefMms4=; b=SRT3V1pxpHLUEd2R0ObdZ7/A48
+	+Wu6FS1o/miH1lvuVMnTGw7HrXO8YqvQXOZ7kqSjuHLMZBzoKhOKo3vp7RdKzcC3eiWwvZUWhYJ4l
+	FXpoYWKtQiovH2EVX65SfRx/Vb2sA56JMTcUiVryIW5Pd5ZKMEEmT28rUWocf0jHy/Dy+gE5Q9cEs
+	Et1c541HqKqLXJrqtUZQzpY+5vBU9Ad/cEb1pnsZRrycEJAYX1qQi/bfGIVhbLO8J6MyHM3ieGnnZ
+	PlochSyp7e/8fCpM3nYohxkyqNB+364eauoAWsU1UwN0x8PJSumjbnI6JK1vLpVCuHv3/YMWEAAII
+	YPeW/56A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1reZfZ-00000000Sey-0ydJ;
-	Mon, 26 Feb 2024 12:01:17 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1red7r-00000001TrL-2Bu2;
+	Mon, 26 Feb 2024 15:42:43 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1reYTr-000000009S3-3D6M;
-	Mon, 26 Feb 2024 10:45:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=fPexO6DRjAqEh41hFAbTYxuEnPMPjtTxwMJrh7MLMNs=; b=Ww6886SDXZZ2nj0htHlHBvUaOC
-	Em3HIXq8y6NOXH5MnOQe7YNz8eJDw/1K3g8tW8RivjGKuiIcyw6DMipD5q02b7NyoVRGLG1A89UID
-	7+j6wRtnPtTsbPy+cMF6rNXxiPPtAUiADHIJvds02gUbUTERf1HxJIS/lbQ+uha1Ra8OnsGx5w5WO
-	8wcTcjRCuNLv4mKpydZxYkjW6B488FpjZkjGbBrcEHl9AS+kTT+cKqC09hVAAzI7r/Gp0BAVHr5IW
-	nhgYxBJDDmpCo2TWSpaWKlYwNkdpEUTwwz6WQQ+yZJvSWTLySG2T0qiACLZvl3zXs8PeaiBnkRTux
-	SHSezsLg==;
-Received: from relay3-d.mail.gandi.net ([217.70.183.195])
-	by desiato.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1reYTn-000000017z5-1k31;
-	Mon, 26 Feb 2024 10:45:06 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0A7AA60009;
-	Mon, 26 Feb 2024 10:45:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708944302;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fPexO6DRjAqEh41hFAbTYxuEnPMPjtTxwMJrh7MLMNs=;
-	b=TRaofYXQ2zaSq+Ppu6StTVFrg1zN2D0YPWob5XALDQrTurFWqQcigGboAQdnVCPwhZNcqf
-	40B1yCw8sqby8K7KbFd2GP7zaYzyOMvi6XbUKGNjiSP/zd21Q9MoM2iIZyQDI7oPipQAcC
-	nNppCVoDguyhEZf1As6CmfcvFf/a+OTPpbMPEHrK1yTtZjCnWPX7wZSsi8sWCIU8E46oMz
-	1ZnI8InnR/Peru/Jv6fF9PDB4qtAJGebmpb8yHkSovZxaq87t/GAMOhJUlOM9wIBiW6LEq
-	4fM8kjOb23t6L7TSXNl9VCmL85fKqlbPeuu4uzJw12yvh7IHYpvKDPSE1Rtb/Q==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Arseniy Krasnov <avkrasnov@salutedevices.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Yixun Lan <yixun.lan@amlogic.com>,
-	Jianxin Pan <jianxin.pan@amlogic.com>
-Cc: oxffffaa@gmail.com,
-	linux-mtd@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	kernel@sberdevices.ru,
-	Stable@vger.kernel.org
-Subject: Re: [PATCH v1] mtd: rawnand: meson: fix scrambling mode value in command macro
-Date: Mon, 26 Feb 2024 11:45:00 +0100
-Message-Id: <20240226104500.490108-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240210214551.441610-1-avkrasnov@salutedevices.com>
-References: 
+	id 1red7p-00000001Tqp-1Z6P
+	for linux-amlogic@lists.infradead.org;
+	Mon, 26 Feb 2024 15:42:43 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 65788CE17B2;
+	Mon, 26 Feb 2024 15:42:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EBAEC433F1;
+	Mon, 26 Feb 2024 15:42:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708962157;
+	bh=eL3Sq0didjuZIcQ0uUGAVgBF4oFDIInfGkYzwsFtZ5g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UPxjAqrNQZU6c56kJP7tvRbFozDBHAeT/Ki1LV0YiumSxdtDrvz13EA0H4KhswR51
+	 Y42pqnYvuSEXWhAKu4zJrAmA8dw+IOspFIpDgy6jeF2aEgXXVp9/fvvcOsIv/jBcUy
+	 YhIhoVAOY6nJfSFI+2lm3thxc5OE85qOK+MQehEgLbvRGa+Svu8CDqcfTDADH9x6rR
+	 pg/tC6RN35XNFt+HtOLHmfFbl2MXWFx9MpCZtMhxfskVDrRf9UbmgltQResfhSEAAo
+	 CKKCen9AItd4FaRcKTIgeh2LYngENnSn7DBcZla/oSg1zzI7SZd/MaNh1n4LdxQMAr
+	 w/AWH3h/w19WQ==
+Date: Mon, 26 Feb 2024 15:42:33 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, alsa-devel@alsa-project.org,
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 6/6] ASoC: meson: axg-fifo: use FIELD helpers
+Message-ID: <a828b4f7-282b-4b83-9a64-04557edf9b6a@sirena.org.uk>
+References: <20240223175116.2005407-1-jbrunet@baylibre.com>
+ <20240223175116.2005407-7-jbrunet@baylibre.com>
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'ef6f463599e16924cdd02ce5056ab52879dc008c'
-X-GND-Sasl: miquel.raynal@bootlin.com
+In-Reply-To: <20240223175116.2005407-7-jbrunet@baylibre.com>
+X-Cookie: Your mileage may vary.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240226_104504_581801_836BF6C8 
-X-CRM114-Status: UNSURE (   6.66  )
+X-CRM114-CacheID: sfid-20240226_074241_605884_60988D04 
+X-CRM114-Status: UNSURE (   8.71  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -97,25 +69,76 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============4664861332845281046=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 2024-02-10 at 21:45:51 UTC, Arseniy Krasnov wrote:
-> Scrambling mode is enabled by value (1 << 19). NFC_CMD_SCRAMBLER_ENABLE
-> is already (1 << 19), so there is no need to shift it again in CMDRWGEN
-> macro.
-> 
-> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
-> Cc: <Stable@vger.kernel.org>
-> Fixes: 8fae856c5350 ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
+--===============4664861332845281046==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="US/dKDUluQQUZ0hF"
+Content-Disposition: inline
 
-Miquel
+
+--US/dKDUluQQUZ0hF
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Feb 23, 2024 at 06:51:12PM +0100, Jerome Brunet wrote:
+
+> Use FIELD_GET() and FIELD_PREP() helpers instead of doing it manually.
+
+This breaks the build for me:
+
+/build/stage/linux/sound/soc/meson/axg-fifo.c: In function =E2=80=98axg_fif=
+o_pcm_hw_para
+ms=E2=80=99:
+/build/stage/linux/sound/soc/meson/axg-fifo.c:149:28: error: implicit decla=
+ratio
+n of function =E2=80=98FIELD_PREP=E2=80=99 [-Werror=3Dimplicit-function-dec=
+laration]
+  149 |                            FIELD_PREP(CTRL0_INT_EN, irq_en));
+      |                            ^~~~~~~~~~
+/build/stage/linux/sound/soc/meson/axg-fifo.c: In function =E2=80=98axg_fif=
+o_pcm_irq_blo
+ck=E2=80=99:
+/build/stage/linux/sound/soc/meson/axg-fifo.c:207:18: error: implicit decla=
+ratio
+n of function =E2=80=98FIELD_GET=E2=80=99 [-Werror=3Dimplicit-function-decl=
+aration]
+  207 |         status =3D FIELD_GET(STATUS1_INT_STS, status);
+      |                  ^~~~~~~~~
+cc1: all warnings being treated as errors
+
+--US/dKDUluQQUZ0hF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXcsWgACgkQJNaLcl1U
+h9DIlgf/fnA/FeDBqMLROkPy3MIwMuQ3ZxxLtkBhK7VmoZBxa9cH7MWNDQ84B1pt
+Ed/CFYuM8JzavBhDYl1s+qGi7RRsz36Zk/FAPftRdm/zCTl7L0oXH5a26CgU2WHJ
+DiB6tY1QkkAFWj6nHAlNlNUeIkAXBa8py0pOOv7JKNGiGMVZnEcsRZKtgyhbUdK7
+jvUE3YvTXnjxDtBVKat0fe2/rOVqtefqpnKL94l7BkjlIeRgJ8DmWfGH6gibUm1t
+GFY9mTOE5niV34ypQlId8dCtJEP6tbplAssdgnw0GbMceZ/xlztKtKNy3wMv+W3m
+27/rAv8zQA4CUE078XdfAcxYGntAug==
+=GD+7
+-----END PGP SIGNATURE-----
+
+--US/dKDUluQQUZ0hF--
+
+
+--===============4664861332845281046==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4664861332845281046==--
+
