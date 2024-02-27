@@ -4,80 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93E0BC5478C
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Feb 2024 14:26:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E65FC54798
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Feb 2024 15:08:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=xE7uyLWPKTVI4HLoZkycsBWqAg8Pr2/nbG1RBJzF5dE=; b=OGi7oWTbOJ8w1u
-	E/wl+K8IUNCpHivzJvWL2UrhJOa46f8RQuL7PMtvHjWJ+yzbFAoz8NBKi5+TdVNJjcFqvpZpcnNMj
-	j8WAlvOUHurlV3RNwkFSyQjMqL0haGN0lpQEatbYMwErJn3XKj52vqb4XExQHVVS6XkqD4OEdNNiB
-	dkCE6ZLIxGUJIeSLD4x4Vwh0l+SNnKsJik5+y2pcVOSlhV5THZkEhc4E/1Cz5DmIaYnEGo8SD682S
-	g3Z6JyFwTyIi5UjjiV+KkHVqUEWd+pz2XwyozFya6Eb06v/wgXjfvNX2RfOk5rpbfeApLrPBGM1K7
-	s16YMMc+RHa5s2EClKaA==;
+	List-Owner; bh=7NeJ6UEf8MdIfUcCK9dpKYwVAtnK3qFa5oPWJBeVrW8=; b=kYoyhwJWI/TmgS
+	jLY/J5lhxoMtcaGeLp3ABTwH7pPG7eXCu6DOr1EaCo4+KiHL089bHfOBUIhXFCq6oIwUhs2ApXgd/
+	vKGM2rO2mabxe1bA/SLh0/XuFx/9zD6tyQ0FDxo7YjTT7XXbKWxNBQQdaT5rg/Jqoo5Uf54FW/P1F
+	8FjIZz+FHnchGzrdCcZWRIuRah5nV7CiNO6qK0bRNjJcbv0OntCMeeAEieo/+Njd0qlW30AquwUeo
+	6L6+b/BdkJlo9jCFTv22IrGWiSgMJ/G0ztMA4SP1+jqiySz22G6iXRiZfj2RqoQ18EvnyUaDsE3qp
+	ZLVdAiM+whfjkVS8eXMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1reyPF-00000005ZiZ-0pTf;
-	Tue, 27 Feb 2024 14:26:05 +0000
-Received: from mail-lf1-x12b.google.com ([2a00:1450:4864:20::12b])
+	id 1rez4P-00000005ifn-1xbP;
+	Tue, 27 Feb 2024 15:08:37 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1reyPB-00000005ZhU-3SZT
+	id 1rez4L-00000005ifB-2AYz
 	for linux-amlogic@lists.infradead.org;
-	Tue, 27 Feb 2024 14:26:03 +0000
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-512fb30dbc9so2352093e87.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 27 Feb 2024 06:25:58 -0800 (PST)
+	Tue, 27 Feb 2024 15:08:35 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-33d90dfe73cso2994287f8f.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 27 Feb 2024 07:08:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1709043957; x=1709648757; darn=lists.infradead.org;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QJCFpLQ4tXouiJNKrklGITbj5aNRw6ossGGBLY8/dtc=;
-        b=x9+g9kzcqDY4WeFfi8o1TjJU9ZDexk7/MhhyhgH+UNL9D6ArwgKWTYo732NmQHOj6O
-         5guQYH7ALWsvd5itOjsZ/pLWrtLhPUdpQKZEDXGliUVcbsgzzKbO8wdyf/k9wAiSm4i3
-         AfS36dFMPwi2NOZq8I0/fvAwDCpDAhQVhMHrBuBhzVihsot2LGJoepLWa0Gb1rniErmu
-         l/Pss17EXcBLjoMj5XymgIw3mlPNvlK7uX+ELoyeYuPABNpbKryK0Lf/59gK0VObadaB
-         m+ppQdPlD9ykKKnp9CrfBO77GG9G5vP77qNduYvIeYmmYvKlyYVcFxl7U2WjsLDvHKVu
-         0x2A==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1709046511; x=1709651311; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+v6m3GvEp/53IVFZlfJK0md8YDFfRhBDS5EvRlYK31M=;
+        b=zQr9EVT+JH2zx3/JwJtPWMVtfLP+9/RepAZBqGTDJVVUWkoRoxXoWgxU0C9GX6APM0
+         KZlnniv5wwX512s6vNTRl7ntkNXtHCHVnZdXPxHcm+i3zKLL+A/W+Rvl+bmmNN0TYuIl
+         C27LfDgugG9Lfy7/nUGONNKvyh1FDYtbADLqIY4uRDFIsbEMRCz94r2qGCzg7t8X0sXX
+         7XN+aEmcNyKLNNu8SmPF634pX9qLL7z2P5+yS3eW6lxLv7odDpy+5W4knq6P9Y3MARGI
+         CSyHiI42pZldb/ojYTihrrhkVj3uOBmDnUoRUIb0/NZj21YT7D9b9nbroFR/OEM/RMRA
+         frDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709043957; x=1709648757;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=QJCFpLQ4tXouiJNKrklGITbj5aNRw6ossGGBLY8/dtc=;
-        b=R+XSX5AYJOKjrLP/Pf2RUB0T1IVlEk6elqyB9ckdlyvqImo8Pb5iqX8BpDeiFHSieO
-         5VgcFXVe2OmyN2mPDk+ub66h+IIDzgI1UgtrsEui+PTN+AaOVWt7CCLP6/lmTrOLQePp
-         yK25JuMmd2iTcxt/arEH0wgQnFdl8/A3V+AEZDeEy1c94LVUTPwU8SvLpdbCPKBu9bUJ
-         lcqJHmmjr5G+gqVlTwZh3XufbOz/aaLB3O/5K4HB9PyBW0zzG++oFsG91ZO/DwLs1z4/
-         p2tbw06Ty+u9d9nD97UxZQd98FtyJS8A4naGYMC3PGl1Ph0yiThBmVPqcSGiaMOZKocO
-         g8ew==
-X-Gm-Message-State: AOJu0Yy2c4pIdEhDkzd0GYAKF8iORZdwIpbVP2WRSBtpUvcsaUqfHJGE
-	D61Kde+TOsvc9alVyM+12vmjav9nrKUt38SPZ/r/m0I6/rAmdeNI8c9Aa4/9l5s=
-X-Google-Smtp-Source: AGHT+IFKZtBWKOR1C7DzZFVutoHWziZUtLM09zQ6+uLXh9aPXFcSpx72VZjyUCYRys4vyEGdoFxSIg==
-X-Received: by 2002:ac2:523b:0:b0:513:1573:2dd4 with SMTP id i27-20020ac2523b000000b0051315732dd4mr249128lfl.45.1709043957235;
-        Tue, 27 Feb 2024 06:25:57 -0800 (PST)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id jt2-20020a05600c568200b0041290cd9483sm15186809wmb.28.2024.02.27.06.25.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Feb 2024 06:25:56 -0800 (PST)
-Message-ID: <2c244e57-2898-4f30-8823-b3d0bd856c05@freebox.fr>
-Date: Tue, 27 Feb 2024 15:25:56 +0100
+        d=1e100.net; s=20230601; t=1709046511; x=1709651311;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+v6m3GvEp/53IVFZlfJK0md8YDFfRhBDS5EvRlYK31M=;
+        b=YV5xuCrvW92W834IWc3kepigDc5GzdqmTV/Ds01HDvytDImwyoIcW6Td1JRIdkJjfU
+         P9ioCjEY7vrkjvamlsUjJvAeGRWGGg/wzB0hXnbAhpsM5oPqpdgHESx1qke8hWLs2PYt
+         lyVDTj0gb74htn997bwuj9rioTIwRW0B62sSKp8ygFes23h5747b8lJCOT4jUOh7xAcn
+         lzP7+T+TjQz8xfWFOXC8t6udT2e4yk2o+bGGCR6tX2/ykLa/tNHqygILiIMtobbb7GB4
+         +sGoVSphK8GKrdDnhuesISQlSv3eDoIPuDhcfJPbCOrexwWpBfjxPO/pGFKBp0HdT9ev
+         /+1w==
+X-Forwarded-Encrypted: i=1; AJvYcCUZVD36nJEBSk0dVBwDyTcDncNxkyE5OY8dADirkEWGQN8CsFw9xfUPO9bZ0mF7iG1QrHdI6Vxu/0zW3Ca7apkdcK+S9cA9LCJp8d4Wv0NEDKc=
+X-Gm-Message-State: AOJu0YwOHW3bmKqEOji856ZTNuT/mbzp+DYf+ySB5ZhCy8U5d1oDHwoD
+	UGCT05Xr7ETCCE+Sf4z89+zf5ghE7rrKori/KejC/xbW4qeUmoFttOd8l3c290Y=
+X-Google-Smtp-Source: AGHT+IFm/XZg09NTqX5TssJ/3GJF0wzYhM9ccuLpqG2Z2vxwRZ4k+Ku7JKCZxOttih/m+MCrjG4sTw==
+X-Received: by 2002:adf:ec01:0:b0:33d:e02a:c552 with SMTP id x1-20020adfec01000000b0033de02ac552mr5113789wrn.34.1709046511097;
+        Tue, 27 Feb 2024 07:08:31 -0800 (PST)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:730:ce44:dedb:c94b])
+        by smtp.googlemail.com with ESMTPSA id by15-20020a056000098f00b0033da933b250sm11847249wrb.5.2024.02.27.07.08.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Feb 2024 07:08:30 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	alsa-devel@alsa-project.org,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH v2] ASoC: meson: axg-fifo: use FIELD helpers
+Date: Tue, 27 Feb 2024 16:08:25 +0100
+Message-ID: <20240227150826.573581-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: AML <linux-amlogic@lists.infradead.org>,
- Maxime Jourdan <mjourdan@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Pierre-Hugues Husson <phh@phh.me>
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-Subject: [RFC WIP PATCH v2] Load VDEC FW from TEE
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240227_062602_133857_BD13D224 
-X-CRM114-Status: GOOD (  22.43  )
+X-CRM114-CacheID: sfid-20240227_070833_771281_FAAE37B6 
+X-CRM114-Status: GOOD (  15.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,229 +94,207 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Preliminary support for loading VDEC FW through TEE.
+Use FIELD_GET() and FIELD_PREP() helpers instead of doing it manually.
 
-TODO:
-- split the patch in 2 (or more?)
-  - DT binding amlogic,tee-loads-vdec-fw
-  - driver code
-- test how long the delays need to be (after load & after start)
-- add the DT prop to arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
-
-
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml |  4 ++++
- drivers/staging/media/meson/vdec/Makefile                    |  1 +
- drivers/staging/media/meson/vdec/optee.c                     | 50 ++++++++++++++++++++++++++++++++++++++++++++++++++
- drivers/staging/media/meson/vdec/optee.h                     |  5 +++++
- drivers/staging/media/meson/vdec/vdec.c                      |  3 +++
- drivers/staging/media/meson/vdec/vdec.h                      |  2 ++
- drivers/staging/media/meson/vdec/vdec_1.c                    | 14 +++++++++++++-
- drivers/staging/media/meson/vdec/vdec_hevc.c                 |  9 ++++++++-
- 8 files changed, 86 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-index 55930f6107c9c..543a90e83bfdc 100644
---- a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-+++ b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-@@ -82,6 +82,10 @@ properties:
-     description: should point to a canvas provider node
-     $ref: /schemas/types.yaml#/definitions/phandle
+Changes since v1: [1]
+ * Add missing include <linux/bitfield.h> causing build error
+   with x86 compile test.
+
+[1]: http://lore.kernel.org/alsa-devel/20240223175116.2005407-7-jbrunet@baylibre.com
+
+ sound/soc/meson/axg-fifo.c  | 25 +++++++++++++------------
+ sound/soc/meson/axg-fifo.h  | 12 +++++-------
+ sound/soc/meson/axg-frddr.c |  5 +++--
+ sound/soc/meson/axg-toddr.c | 22 ++++++++++------------
+ 4 files changed, 31 insertions(+), 33 deletions(-)
+
+diff --git a/sound/soc/meson/axg-fifo.c b/sound/soc/meson/axg-fifo.c
+index 65541fdb0038..bebee0ca8e38 100644
+--- a/sound/soc/meson/axg-fifo.c
++++ b/sound/soc/meson/axg-fifo.c
+@@ -3,6 +3,7 @@
+ // Copyright (c) 2018 BayLibre, SAS.
+ // Author: Jerome Brunet <jbrunet@baylibre.com>
  
-+  amlogic,tee-loads-vdec-fw:
-+    type: boolean
-+    description: Linux must request FW load from TEE
-+
- allOf:
-   - if:
-       properties:
-diff --git a/drivers/staging/media/meson/vdec/Makefile b/drivers/staging/media/meson/vdec/Makefile
-index 6e726af84ac9b..41e5006fa6294 100644
---- a/drivers/staging/media/meson/vdec/Makefile
-+++ b/drivers/staging/media/meson/vdec/Makefile
-@@ -4,5 +4,6 @@
- meson-vdec-objs = esparser.o vdec.o vdec_helpers.o vdec_platform.o
- meson-vdec-objs += vdec_1.o vdec_hevc.o
- meson-vdec-objs += codec_mpeg12.o codec_h264.o codec_hevc_common.o codec_vp9.o
-+meson-vdec-objs += optee.o
++#include <linux/bitfield.h>
+ #include <linux/clk.h>
+ #include <linux/of_irq.h>
+ #include <linux/of_platform.h>
+@@ -145,8 +146,8 @@ int axg_fifo_pcm_hw_params(struct snd_soc_component *component,
+ 	/* Enable irq if necessary  */
+ 	irq_en = runtime->no_period_wakeup ? 0 : FIFO_INT_COUNT_REPEAT;
+ 	regmap_update_bits(fifo->map, FIFO_CTRL0,
+-			   CTRL0_INT_EN(FIFO_INT_COUNT_REPEAT),
+-			   CTRL0_INT_EN(irq_en));
++			   CTRL0_INT_EN,
++			   FIELD_PREP(CTRL0_INT_EN, irq_en));
  
- obj-$(CONFIG_VIDEO_MESON_VDEC) += meson-vdec.o
-diff --git a/drivers/staging/media/meson/vdec/optee.c b/drivers/staging/media/meson/vdec/optee.c
-new file mode 100644
-index 0000000000000..00ea935f7656a
---- /dev/null
-+++ b/drivers/staging/media/meson/vdec/optee.c
-@@ -0,0 +1,50 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// Copyright (c) 2024 Freebox SAS
-+
-+#include "optee.h"
-+#include <linux/arm-smccc.h>
-+
-+#define TEE_SMC_FAST_CALL_VAL(func_num) \
-+	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL, ARM_SMCCC_SMC_32, ARM_SMCCC_OWNER_TRUSTED_OS, func_num)
-+
-+static void request_fw_from_optee(struct device *dev, int fw_id)
-+{
-+	struct arm_smccc_res res;
-+	arm_smccc_smc(TEE_SMC_FAST_CALL_VAL(15), fw_id, 0, 0, 0, 0, 0, 0, &res);
-+	dev_dbg(dev, "VDEC FW ID %d: %lu\n", fw_id, res.a0);
-+}
-+
-+/* VDEC FW IDs */
-+#define VDEC_MPEG12	0
-+#define VDEC_H264	11
-+#define VDEC_HEVC	16
-+#define VDEC_HEVC_MMU	17
-+#define VDEC_VP9	18
-+#define VDEC_VP9_MMU	19
-+
-+int amvdec_load_firmware_optee(struct amvdec_session *sess)
-+{
-+	struct device *dev = sess->core->dev_dec;
-+	u32 pixfmt = sess->fmt_out->pixfmt;
-+	int fw_id = 1;
-+
-+	// Load wrong firmware to make TEE reset HW component for us
-+	request_fw_from_optee(dev, fw_id);
-+
-+	if (pixfmt == V4L2_PIX_FMT_MPEG1 || pixfmt == V4L2_PIX_FMT_MPEG2)
-+		fw_id = VDEC_MPEG12;
-+
-+	if (pixfmt == V4L2_PIX_FMT_H264)
-+		fw_id = VDEC_H264;
-+
-+	if (pixfmt == V4L2_PIX_FMT_HEVC)
-+		fw_id = VDEC_HEVC_MMU;
-+
-+	if (pixfmt == V4L2_PIX_FMT_VP9)
-+		fw_id = VDEC_VP9_MMU;
-+
-+	request_fw_from_optee(dev, fw_id);
-+	msleep(100); /*** REQUIRED??? ***/
-+
-+	return 0;
-+}
-diff --git a/drivers/staging/media/meson/vdec/optee.h b/drivers/staging/media/meson/vdec/optee.h
-new file mode 100644
-index 0000000000000..f4e209850ad8a
---- /dev/null
-+++ b/drivers/staging/media/meson/vdec/optee.h
-@@ -0,0 +1,5 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+
-+#include "vdec.h"
-+
-+int amvdec_load_firmware_optee(struct amvdec_session *sess);
-diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
-index de3e0345ab7c6..9acdbb0d53340 100644
---- a/drivers/staging/media/meson/vdec/vdec.c
-+++ b/drivers/staging/media/meson/vdec/vdec.c
-@@ -1029,6 +1029,9 @@ static int vdec_probe(struct platform_device *pdev)
- 	of_id = of_match_node(vdec_dt_match, dev->of_node);
- 	core->platform = of_id->data;
+ 	return 0;
+ }
+@@ -176,9 +177,9 @@ int axg_fifo_pcm_hw_free(struct snd_soc_component *component,
+ {
+ 	struct axg_fifo *fifo = axg_fifo_data(ss);
  
-+	if (of_property_read_bool(dev->of_node, "amlogic,tee-loads-vdec-fw"))
-+		core->use_optee = true;
-+
- 	if (core->platform->revision == VDEC_REVISION_G12A ||
- 	    core->platform->revision == VDEC_REVISION_SM1) {
- 		core->vdec_hevcf_clk = devm_clk_get(dev, "vdec_hevcf");
-diff --git a/drivers/staging/media/meson/vdec/vdec.h b/drivers/staging/media/meson/vdec/vdec.h
-index 0906b8fb5cc60..274e8dae8c386 100644
---- a/drivers/staging/media/meson/vdec/vdec.h
-+++ b/drivers/staging/media/meson/vdec/vdec.h
-@@ -66,6 +66,7 @@ struct amvdec_session;
-  * @v4l2_dev: v4l2 device
-  * @cur_sess: current decoding session
-  * @lock: video device lock
-+ * @use_optee: request FW load from Trusted Execution Environment
+-	/* Disable the block count irq */
++	/* Disable irqs */
+ 	regmap_update_bits(fifo->map, FIFO_CTRL0,
+-			   CTRL0_INT_EN(FIFO_INT_COUNT_REPEAT), 0);
++			   CTRL0_INT_EN, 0);
+ 
+ 	return 0;
+ }
+@@ -187,13 +188,13 @@ EXPORT_SYMBOL_GPL(axg_fifo_pcm_hw_free);
+ static void axg_fifo_ack_irq(struct axg_fifo *fifo, u8 mask)
+ {
+ 	regmap_update_bits(fifo->map, FIFO_CTRL1,
+-			   CTRL1_INT_CLR(FIFO_INT_MASK),
+-			   CTRL1_INT_CLR(mask));
++			   CTRL1_INT_CLR,
++			   FIELD_PREP(CTRL1_INT_CLR, mask));
+ 
+ 	/* Clear must also be cleared */
+ 	regmap_update_bits(fifo->map, FIFO_CTRL1,
+-			   CTRL1_INT_CLR(FIFO_INT_MASK),
+-			   0);
++			   CTRL1_INT_CLR,
++			   FIELD_PREP(CTRL1_INT_CLR, 0));
+ }
+ 
+ static irqreturn_t axg_fifo_pcm_irq_block(int irq, void *dev_id)
+@@ -204,7 +205,7 @@ static irqreturn_t axg_fifo_pcm_irq_block(int irq, void *dev_id)
+ 
+ 	regmap_read(fifo->map, FIFO_STATUS1, &status);
+ 
+-	status = STATUS1_INT_STS(status) & FIFO_INT_MASK;
++	status = FIELD_GET(STATUS1_INT_STS, status);
+ 	if (status & FIFO_INT_COUNT_REPEAT)
+ 		snd_pcm_period_elapsed(ss);
+ 	else
+@@ -254,15 +255,15 @@ int axg_fifo_pcm_open(struct snd_soc_component *component,
+ 
+ 	/* Setup status2 so it reports the memory pointer */
+ 	regmap_update_bits(fifo->map, FIFO_CTRL1,
+-			   CTRL1_STATUS2_SEL_MASK,
+-			   CTRL1_STATUS2_SEL(STATUS2_SEL_DDR_READ));
++			   CTRL1_STATUS2_SEL,
++			   FIELD_PREP(CTRL1_STATUS2_SEL, STATUS2_SEL_DDR_READ));
+ 
+ 	/* Make sure the dma is initially disabled */
+ 	__dma_enable(fifo, false);
+ 
+ 	/* Disable irqs until params are ready */
+ 	regmap_update_bits(fifo->map, FIFO_CTRL0,
+-			   CTRL0_INT_EN(FIFO_INT_MASK), 0);
++			   CTRL0_INT_EN, 0);
+ 
+ 	/* Clear any pending interrupt */
+ 	axg_fifo_ack_irq(fifo, FIFO_INT_MASK);
+diff --git a/sound/soc/meson/axg-fifo.h b/sound/soc/meson/axg-fifo.h
+index a14c31eb06d8..4c48c0a08481 100644
+--- a/sound/soc/meson/axg-fifo.h
++++ b/sound/soc/meson/axg-fifo.h
+@@ -40,21 +40,19 @@ struct snd_soc_pcm_runtime;
+ 
+ #define FIFO_CTRL0			0x00
+ #define  CTRL0_DMA_EN			BIT(31)
+-#define  CTRL0_INT_EN(x)		((x) << 16)
++#define  CTRL0_INT_EN			GENMASK(23, 16)
+ #define  CTRL0_SEL_MASK			GENMASK(2, 0)
+ #define  CTRL0_SEL_SHIFT		0
+ #define FIFO_CTRL1			0x04
+-#define  CTRL1_INT_CLR(x)		((x) << 0)
+-#define  CTRL1_STATUS2_SEL_MASK		GENMASK(11, 8)
+-#define  CTRL1_STATUS2_SEL(x)		((x) << 8)
++#define  CTRL1_INT_CLR			GENMASK(7, 0)
++#define  CTRL1_STATUS2_SEL		GENMASK(11, 8)
+ #define   STATUS2_SEL_DDR_READ		0
+-#define  CTRL1_FRDDR_DEPTH_MASK		GENMASK(31, 24)
+-#define  CTRL1_FRDDR_DEPTH(x)		((x) << 24)
++#define  CTRL1_FRDDR_DEPTH		GENMASK(31, 24)
+ #define FIFO_START_ADDR			0x08
+ #define FIFO_FINISH_ADDR		0x0c
+ #define FIFO_INT_ADDR			0x10
+ #define FIFO_STATUS1			0x14
+-#define  STATUS1_INT_STS(x)		((x) << 0)
++#define  STATUS1_INT_STS		GENMASK(7, 0)
+ #define FIFO_STATUS2			0x18
+ #define FIFO_INIT_ADDR			0x24
+ #define FIFO_CTRL2			0x28
+diff --git a/sound/soc/meson/axg-frddr.c b/sound/soc/meson/axg-frddr.c
+index 98140f449eb3..e97d43ae7fd2 100644
+--- a/sound/soc/meson/axg-frddr.c
++++ b/sound/soc/meson/axg-frddr.c
+@@ -7,6 +7,7 @@
+  * This driver implements the frontend playback DAI of AXG and G12A based SoCs
   */
- struct amvdec_core {
- 	void __iomem *dos_base;
-@@ -91,6 +92,7 @@ struct amvdec_core {
  
- 	struct amvdec_session *cur_sess;
- 	struct mutex lock;
-+	bool use_optee;
- };
++#include <linux/bitfield.h>
+ #include <linux/clk.h>
+ #include <linux/regmap.h>
+ #include <linux/module.h>
+@@ -59,8 +60,8 @@ static int axg_frddr_dai_hw_params(struct snd_pcm_substream *substream,
+ 	/* Trim the FIFO depth if the period is small to improve latency */
+ 	depth = min(period, fifo->depth);
+ 	val = (depth / AXG_FIFO_BURST) - 1;
+-	regmap_update_bits(fifo->map, FIFO_CTRL1, CTRL1_FRDDR_DEPTH_MASK,
+-			   CTRL1_FRDDR_DEPTH(val));
++	regmap_update_bits(fifo->map, FIFO_CTRL1, CTRL1_FRDDR_DEPTH,
++			   FIELD_PREP(CTRL1_FRDDR_DEPTH, val));
  
- /**
-diff --git a/drivers/staging/media/meson/vdec/vdec_1.c b/drivers/staging/media/meson/vdec/vdec_1.c
-index 3fe2de0c9331f..0b46d72a5e0aa 100644
---- a/drivers/staging/media/meson/vdec/vdec_1.c
-+++ b/drivers/staging/media/meson/vdec/vdec_1.c
-@@ -13,6 +13,7 @@
- #include "vdec_1.h"
- #include "vdec_helpers.h"
- #include "dos_regs.h"
-+#include "optee.h"
- 
- /* AO Registers */
- #define AO_RTI_GEN_PWR_SLEEP0	0xe8
-@@ -209,7 +210,11 @@ static int vdec_1_start(struct amvdec_session *sess)
- 
- 	vdec_1_stbuf_power_up(sess);
- 
--	ret = vdec_1_load_firmware(sess, sess->fmt_out->firmware_path);
-+	if (core->use_optee)
-+		ret = amvdec_load_firmware_optee(sess);
-+	else
-+		ret = vdec_1_load_firmware(sess, sess->fmt_out->firmware_path);
-+
- 	if (ret)
- 		goto stop;
- 
-@@ -232,6 +237,13 @@ static int vdec_1_start(struct amvdec_session *sess)
- 	/* Let the firmware settle */
- 	usleep_range(10, 20);
- 
-+	/*
-+	 * When running secure boot, it looks like the codec needs
-+	 * more time to settle (perhaps to authenticate the image?)
-+	 */
-+	if (core->use_optee)
-+		msleep(100); /*** REQUIRED??? ***/
-+
  	return 0;
+ }
+diff --git a/sound/soc/meson/axg-toddr.c b/sound/soc/meson/axg-toddr.c
+index 32ee45cce7f8..e03a6e21c1c6 100644
+--- a/sound/soc/meson/axg-toddr.c
++++ b/sound/soc/meson/axg-toddr.c
+@@ -5,6 +5,7 @@
  
- stop:
-diff --git a/drivers/staging/media/meson/vdec/vdec_hevc.c b/drivers/staging/media/meson/vdec/vdec_hevc.c
-index afced435c9070..6d9141c5f3163 100644
---- a/drivers/staging/media/meson/vdec/vdec_hevc.c
-+++ b/drivers/staging/media/meson/vdec/vdec_hevc.c
-@@ -14,6 +14,7 @@
- #include "vdec_hevc.h"
- #include "hevc_regs.h"
- #include "dos_regs.h"
-+#include "optee.h"
+ /* This driver implements the frontend capture DAI of AXG based SoCs */
  
- /* AO Registers */
- #define AO_RTI_GEN_PWR_SLEEP0	0xe8
-@@ -204,7 +205,10 @@ static int vdec_hevc_start(struct amvdec_session *sess)
++#include <linux/bitfield.h>
+ #include <linux/clk.h>
+ #include <linux/regmap.h>
+ #include <linux/module.h>
+@@ -19,12 +20,9 @@
+ #define CTRL0_TODDR_EXT_SIGNED		BIT(29)
+ #define CTRL0_TODDR_PP_MODE		BIT(28)
+ #define CTRL0_TODDR_SYNC_CH		BIT(27)
+-#define CTRL0_TODDR_TYPE_MASK		GENMASK(15, 13)
+-#define CTRL0_TODDR_TYPE(x)		((x) << 13)
+-#define CTRL0_TODDR_MSB_POS_MASK	GENMASK(12, 8)
+-#define CTRL0_TODDR_MSB_POS(x)		((x) << 8)
+-#define CTRL0_TODDR_LSB_POS_MASK	GENMASK(7, 3)
+-#define CTRL0_TODDR_LSB_POS(x)		((x) << 3)
++#define CTRL0_TODDR_TYPE		GENMASK(15, 13)
++#define CTRL0_TODDR_MSB_POS		GENMASK(12, 8)
++#define CTRL0_TODDR_LSB_POS		GENMASK(7, 3)
+ #define CTRL1_TODDR_FORCE_FINISH	BIT(25)
+ #define CTRL1_SEL_SHIFT			28
  
- 	vdec_hevc_stbuf_init(sess);
+@@ -76,12 +74,12 @@ static int axg_toddr_dai_hw_params(struct snd_pcm_substream *substream,
+ 	width = params_width(params);
  
--	ret = vdec_hevc_load_firmware(sess, sess->fmt_out->firmware_path);
-+	if (core->use_optee)
-+		ret = amvdec_load_firmware_optee(sess);
-+	else
-+		ret = vdec_hevc_load_firmware(sess, sess->fmt_out->firmware_path);
- 	if (ret)
- 		goto stop;
+ 	regmap_update_bits(fifo->map, FIFO_CTRL0,
+-			   CTRL0_TODDR_TYPE_MASK |
+-			   CTRL0_TODDR_MSB_POS_MASK |
+-			   CTRL0_TODDR_LSB_POS_MASK,
+-			   CTRL0_TODDR_TYPE(type) |
+-			   CTRL0_TODDR_MSB_POS(TODDR_MSB_POS) |
+-			   CTRL0_TODDR_LSB_POS(TODDR_MSB_POS - (width - 1)));
++			   CTRL0_TODDR_TYPE |
++			   CTRL0_TODDR_MSB_POS |
++			   CTRL0_TODDR_LSB_POS,
++			   FIELD_PREP(CTRL0_TODDR_TYPE, type) |
++			   FIELD_PREP(CTRL0_TODDR_MSB_POS, TODDR_MSB_POS) |
++			   FIELD_PREP(CTRL0_TODDR_LSB_POS, TODDR_MSB_POS - (width - 1)));
  
-@@ -220,6 +224,9 @@ static int vdec_hevc_start(struct amvdec_session *sess)
- 	/* Let the firmware settle */
- 	usleep_range(10, 20);
- 
-+	if (core->use_optee)
-+		msleep(100); /*** REQUIRED??? ***/
-+
  	return 0;
- 
- stop:
+ }
 -- 
-2.34.1
+2.43.0
 
 
 _______________________________________________
