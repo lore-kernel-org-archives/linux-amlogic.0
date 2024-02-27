@@ -4,82 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 810C3C5478C
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Feb 2024 13:04:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93E0BC5478C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Feb 2024 14:26:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aCxHujIzctfd/Vg8E8ZNC6jBaGBqcGduYZ2nKAfQ9UQ=; b=pIN7fPA85HXWVZ
-	20Rilmv4pv9fjYaDm4q4CRZmDkT39TyUhKYn+7k15wSaLlvvVZQUQLv9sWJPXvmM3lv7efpvL+aWJ
-	e+wInCeiVCOP0w7qWNjcvQtjTLZCbayyE76bE73oG+a2Qj/jkva9CcW78RLPXEAzzNVAryeMKrqYU
-	Hs9jfJbPH55VkuHx2xPbeUtdsaBgUlLl65FKKXXp2NqV2zZovu2Nub49XmrYHx9iHvdMzSYeqIYHq
-	FLCKiYugBxiSu+Bpg/wExHQ5Q/4O9vQYXq0pDkKaq5WAhAtwImwNHKHI76vyUukBIF5QcjsozO3t6
-	M2Fd0w3AdNkBAGxAbLfg==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=xE7uyLWPKTVI4HLoZkycsBWqAg8Pr2/nbG1RBJzF5dE=; b=OGi7oWTbOJ8w1u
+	E/wl+K8IUNCpHivzJvWL2UrhJOa46f8RQuL7PMtvHjWJ+yzbFAoz8NBKi5+TdVNJjcFqvpZpcnNMj
+	j8WAlvOUHurlV3RNwkFSyQjMqL0haGN0lpQEatbYMwErJn3XKj52vqb4XExQHVVS6XkqD4OEdNNiB
+	dkCE6ZLIxGUJIeSLD4x4Vwh0l+SNnKsJik5+y2pcVOSlhV5THZkEhc4E/1Cz5DmIaYnEGo8SD682S
+	g3Z6JyFwTyIi5UjjiV+KkHVqUEWd+pz2XwyozFya6Eb06v/wgXjfvNX2RfOk5rpbfeApLrPBGM1K7
+	s16YMMc+RHa5s2EClKaA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rex8R-00000005JGq-2XYO;
-	Tue, 27 Feb 2024 13:04:39 +0000
-Received: from mail-oo1-xc30.google.com ([2607:f8b0:4864:20::c30])
+	id 1reyPF-00000005ZiZ-0pTf;
+	Tue, 27 Feb 2024 14:26:05 +0000
+Received: from mail-lf1-x12b.google.com ([2a00:1450:4864:20::12b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rex8B-00000005J8v-08CQ;
-	Tue, 27 Feb 2024 13:04:24 +0000
-Received: by mail-oo1-xc30.google.com with SMTP id 006d021491bc7-5a0a19c9bb7so930726eaf.3;
-        Tue, 27 Feb 2024 05:04:22 -0800 (PST)
+	id 1reyPB-00000005ZhU-3SZT
+	for linux-amlogic@lists.infradead.org;
+	Tue, 27 Feb 2024 14:26:03 +0000
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-512fb30dbc9so2352093e87.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 27 Feb 2024 06:25:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709039062; x=1709643862; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1709043957; x=1709648757; darn=lists.infradead.org;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KmGIhE1/yiAnczVNxJafVkaO2xp7KonC01JesBARNDo=;
-        b=dfGsXVBp//W83BjnXHkUUgrEeFa5a1tR/ARfk2thMeSobj1mwsq296b6V9bqZA+wxw
-         HAtvsvKjSbZgzoUHoGSb7a7eJQHBrc1Pkki61H5EnyNKTGB1aC2EtW/BEZucR56ah4EQ
-         GfOgnKG7pUzk1uVe08oPc1wosX9KPBJK9dwzYQjzoO0B7KLdeYf1cXeOi08O9PHddI6Z
-         s1qZEYAGXJrCllu5BWwHbBTJKFq23/P09bKxIOaZHUNCQW/+xc4xQAfpdpZJWwaK9nCY
-         GY/O0eppS+PmC3Xh0jOMCDeS02SboGJaI3IuAaF1MHCMHN7gf4Knz+cB94ijNOEClOHO
-         gmRw==
+        bh=QJCFpLQ4tXouiJNKrklGITbj5aNRw6ossGGBLY8/dtc=;
+        b=x9+g9kzcqDY4WeFfi8o1TjJU9ZDexk7/MhhyhgH+UNL9D6ArwgKWTYo732NmQHOj6O
+         5guQYH7ALWsvd5itOjsZ/pLWrtLhPUdpQKZEDXGliUVcbsgzzKbO8wdyf/k9wAiSm4i3
+         AfS36dFMPwi2NOZq8I0/fvAwDCpDAhQVhMHrBuBhzVihsot2LGJoepLWa0Gb1rniErmu
+         l/Pss17EXcBLjoMj5XymgIw3mlPNvlK7uX+ELoyeYuPABNpbKryK0Lf/59gK0VObadaB
+         m+ppQdPlD9ykKKnp9CrfBO77GG9G5vP77qNduYvIeYmmYvKlyYVcFxl7U2WjsLDvHKVu
+         0x2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709039062; x=1709643862;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KmGIhE1/yiAnczVNxJafVkaO2xp7KonC01JesBARNDo=;
-        b=cE/jGgU1nf89RnXTXHssSgp4VzoZvCeEK14udJXgHAO2y3nmrcdg6eHW/BxlSYIN0x
-         lqsUPr+DKRORBEYXz/BXnUbXFrEMdpwLJMVUd//A1Yn6YdJukxvE91q1wsG/xTAtLFxl
-         Qsw/ncs5iczb5SBNmYwZ7T4biLYW/6TeoEJyVGFR16fm1U01L8DUkl38DNshsrlVYgtj
-         0I6JHWHO8WoJxgarxnyL4iHJFHywXsJfGNZDxk3PDThYt9/yUxrFcRUU6mWtORSZepBX
-         uKhiu5pB5HQOPeKpv1naisWfFUpxoH9CGQMqL91zhOvblDXmQdmDWj94hG1m9iuNdnKa
-         MbUA==
-X-Forwarded-Encrypted: i=1; AJvYcCVJsEfNe2S4AIW3uJzXXuEsdEWrnCWyZ3y/rkfSUKhKeD/XaXu/oVH3bm2z8jmiWXnmNvnopA2OjhkDxgWW7Phc76R6e3FX36O19Z09BIMX3Lb4PcX1Ui+f6wdNEwq/00pPji5d6hWTiMKhPlPWZwzvKGuPFYYd0Q==
-X-Gm-Message-State: AOJu0Yx5u96rfw37b5q8QIJjsEzWjQud7CAh+3Sjc0/6eALB+vIE/rR9
-	efQRBLL9OaeOJnW62PYsaMU5wrDqP7zXDiuva2CS+vRzgXzers1QyZgSM0kc6RsDlP+zwkwXK82
-	qpv/Pn2tWaB83uISpnR2b5WVeQVM=
-X-Google-Smtp-Source: AGHT+IGxJzeAEVxdv8cuiqF70NYJMK21XSZ6TXCxSS4URg5FBbqpRHb9nXTWZ3TQvYRw7dGRitIBE98EwmUuCRyti+o=
-X-Received: by 2002:a4a:7617:0:b0:5a0:3917:5d46 with SMTP id
- t23-20020a4a7617000000b005a039175d46mr8684041ooc.2.1709039061908; Tue, 27 Feb
- 2024 05:04:21 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709043957; x=1709648757;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=QJCFpLQ4tXouiJNKrklGITbj5aNRw6ossGGBLY8/dtc=;
+        b=R+XSX5AYJOKjrLP/Pf2RUB0T1IVlEk6elqyB9ckdlyvqImo8Pb5iqX8BpDeiFHSieO
+         5VgcFXVe2OmyN2mPDk+ub66h+IIDzgI1UgtrsEui+PTN+AaOVWt7CCLP6/lmTrOLQePp
+         yK25JuMmd2iTcxt/arEH0wgQnFdl8/A3V+AEZDeEy1c94LVUTPwU8SvLpdbCPKBu9bUJ
+         lcqJHmmjr5G+gqVlTwZh3XufbOz/aaLB3O/5K4HB9PyBW0zzG++oFsG91ZO/DwLs1z4/
+         p2tbw06Ty+u9d9nD97UxZQd98FtyJS8A4naGYMC3PGl1Ph0yiThBmVPqcSGiaMOZKocO
+         g8ew==
+X-Gm-Message-State: AOJu0Yy2c4pIdEhDkzd0GYAKF8iORZdwIpbVP2WRSBtpUvcsaUqfHJGE
+	D61Kde+TOsvc9alVyM+12vmjav9nrKUt38SPZ/r/m0I6/rAmdeNI8c9Aa4/9l5s=
+X-Google-Smtp-Source: AGHT+IFKZtBWKOR1C7DzZFVutoHWziZUtLM09zQ6+uLXh9aPXFcSpx72VZjyUCYRys4vyEGdoFxSIg==
+X-Received: by 2002:ac2:523b:0:b0:513:1573:2dd4 with SMTP id i27-20020ac2523b000000b0051315732dd4mr249128lfl.45.1709043957235;
+        Tue, 27 Feb 2024 06:25:57 -0800 (PST)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id jt2-20020a05600c568200b0041290cd9483sm15186809wmb.28.2024.02.27.06.25.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Feb 2024 06:25:56 -0800 (PST)
+Message-ID: <2c244e57-2898-4f30-8823-b3d0bd856c05@freebox.fr>
+Date: Tue, 27 Feb 2024 15:25:56 +0100
 MIME-Version: 1.0
-References: <20240205171930.968-1-linux.amoon@gmail.com> <20240205171930.968-5-linux.amoon@gmail.com>
- <cf47b82c-6307-475b-af3a-eab7f09715f0@linaro.org> <CANAwSgTOpDmZGR33veBWrzr75=xEZ-28iu=GeCzqa0ZPXxDchw@mail.gmail.com>
- <f87069a4-042c-467a-94fb-0b65bfa4758d@linaro.org>
-In-Reply-To: <f87069a4-042c-467a-94fb-0b65bfa4758d@linaro.org>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Tue, 27 Feb 2024 18:34:05 +0530
-Message-ID: <CANAwSgR1+Fb5Si6yBU6JXCfRiq-XU0xjr-ecVbnALMj7qmv0Sg@mail.gmail.com>
-Subject: Re: [PATCHv1 4/5] arm64: dts: amlogic: Add cache information to the
- Amlogic S922X SoC
-To: neil.armstrong@linaro.org
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: AML <linux-amlogic@lists.infradead.org>,
+ Maxime Jourdan <mjourdan@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Pierre-Hugues Husson <phh@phh.me>
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+Subject: [RFC WIP PATCH v2] Load VDEC FW from TEE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240227_050423_174409_DA40D83A 
-X-CRM114-Status: GOOD (  23.92  )
+X-CRM114-CacheID: sfid-20240227_062602_133857_BD13D224 
+X-CRM114-Status: GOOD (  22.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,142 +89,237 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTmllbCwKCk9uIFR1ZSwgNiBGZWIgMjAyNCBhdCAyMDozMSwgPG5laWwuYXJtc3Ryb25nQGxp
-bmFyby5vcmc+IHdyb3RlOgo+Cj4gT24gMDYvMDIvMjAyNCAxMToxNSwgQW5hbmQgTW9vbiB3cm90
-ZToKPiA+IEhpIE5laWwsCj4gPgo+ID4gT24gVHVlLCA2IEZlYiAyMDI0IGF0IDE0OjMwLCBOZWls
-IEFybXN0cm9uZyA8bmVpbC5hcm1zdHJvbmdAbGluYXJvLm9yZz4gd3JvdGU6Cj4gPj4KPiA+PiBP
-biAwNS8wMi8yMDI0IDE4OjE5LCBBbmFuZCBNb29uIHdyb3RlOgo+ID4+PiBBcyBwZXIgUzkyMlgg
-ZGF0YXNoZWV0IGFkZCBtaXNzaW5nIGNhY2hlIGluZm9ybWF0aW9uIHRvIHRoZSBBbWxvZ2ljCj4g
-Pj4+IFM5MjJYIFNvQy4KPiA+Pj4KPiA+Pj4gLSBFYWNoIENvcnRleC1BNTMgY29yZSBoYXMgMzIg
-S0Igb2YgaW5zdHJ1Y3Rpb24gY2FjaGUgYW5kCj4gPj4+ICAgICAgICAzMiBLQiBvZiBMMSBkYXRh
-IGNhY2hlIGF2YWlsYWJsZS4KPiA+Pj4gLSBFYWNoIENvcnRleC1BNzMgY29yZSBoYXMgNjQgS0Ig
-b2YgTDEgaW5zdHJ1Y3Rpb24gY2FjaGUgYW5kCj4gPj4+ICAgICAgICA2NCBLQiBvZiBMMSBkYXRh
-IGNhY2hlIGF2YWlsYWJsZS4KPiA+Pj4gLSBUaGUgbGl0dGxlIChBNTMpIGNsdXN0ZXIgaGFzIDUx
-MiBLQiBvZiB1bmlmaWVkIEwyIGNhY2hlIGF2YWlsYWJsZS4KPiA+Pj4gLSBUaGUgYmlnIChBNzMp
-IGNsdXN0ZXIgaGFzIDEgTUIgb2YgdW5pZmllZCBMMiBjYWNoZSBhdmFpbGFibGUuCj4gPj4KPiA+
-PiBEYXRhc2hlZXQgc2F5czoKPiA+PiBUaGUgcXVhZCBjb3JlIENvcnRleOKEoi1BNzMgcHJvY2Vz
-c29yIGlzIHBhaXJlZCB3aXRoIEE1MyBwcm9jZXNzb3IgaW4gYSBiaWcuTGl0dGxlIGNvbmZpZ3Vy
-YXRpb24sIHdpdGggZWFjaAo+ID4+IGNvcmUgaGFzIEwxIGluc3RydWN0aW9uIGFuZCBkYXRhIGNo
-YWNoZXMsIHRvZ2V0aGVyIHdpdGggYSBzaW5nbGUgc2hhcmVkIEwyIHVuaWZpZWQgY2FjaGUgd2l0
-aCBBNTMKPiA+Pgo+ID4gT2ssCj4gPgo+ID4gU2luY2UgYWxsIHRoZSBDb3J0ZXjihKItQTczIGFu
-ZCBDb3J0ZXjihKItQTUzIHNoYXJlIHNvbWUgaW1wcm92ZW1lbnRzIGluCj4gPiB0aGUgYXJjaGl0
-ZWN0dXJlIHdpdGggc29tZSBpbXByb3ZlbWVudHMgaW4gY2FjaGUgZmVhdHVyZXMKPiA+IGhlbmNl
-IEkgdXBkYXRlIHRoZSBjaGFuZ2VzIGFjY29yZGluZ2x5Lgo+ID4gQWxzbywgSSBjaGVja2VkIHRo
-aXMgaW4gdGhlIEFSTSBkb2N1bWVudGF0aW9uIGVhcmxpZXIgb24gdGhpcy4KPgo+IEkgZG9uJ3Qg
-dW5kZXJzdGFuZCwgQW1sb2dpYyBzdGF0ZXMgaXQncyBhIHNoYXJlZCBMMiBjYWNoZSwgYnV0IHlv
-dSB0cnVzdAo+IHRoZSBBUk0gZG9jdW1lbnRhdGlvbiBpbnN0ZWFkID8/PwoKWWVzIHBsZWFzZSBm
-aW5kIHRoZSBDb3J0ZXjihKItQTczIFRSTQpMMSBDYWNoZQpodHRwczovL2RldmVsb3Blci5hcm0u
-Y29tL2RvY3VtZW50YXRpb24vMTAwMDQ4LzAwMDIvbGV2ZWwtMS1tZW1vcnktc3lzdGVtL2Fib3V0
-LXRoZS1sMS1tZW1vcnktc3lzdGVtP2xhbmc9ZW4KTDIgQ2FjaGUKaHR0cHM6Ly9kZXZlbG9wZXIu
-YXJtLmNvbS9kb2N1bWVudGF0aW9uLzEwMDA0OC8wMDAyL2xldmVsLTItbWVtb3J5LXN5c3RlbS9h
-Ym91dC10aGUtbDItbWVtb3J5LXN5c3RlbT9sYW5nPWVuCj4KPiA+Cj4gPj4gQW5kIHRoZXJlJ3Mg
-bm8gaW5kaWNhdGlvbiBvZiB0aGUgTDEgb3IgTDIgY2FjaGUgc2l6ZXMuCj4gPgo+ID4gV2hhdCBJ
-IGZlZWwgaXMgaW4gZ2VuZXJhbCBhbGwgdGhlIENvcnRleOKEoi1BNzMgYW5kIENvcnRleOKEoi1B
-NTMgc3VwcG9ydHMKPiA+IEwxIGFuZCBMMiBjYWNoZSBzaXplIHNpbmNlIGl0IGlzIHBhcnQgb2Yg
-dGhlIGNvcmUgZmVhdHVyZXMuCj4gPiBidXQgSSBvcHRlZCBmb3IgdGhlc2Ugc2l6ZSB2YWx1ZXMg
-ZnJvbSBhIFdpa2lwZWRpYSBhcnRpY2xlLgo+ID4KPiA+IE9uIG15IE9kcm9pZCBOMissIEkgb2Jz
-ZXJ2ZSB0aGUgZm9sbG93aW5nLgo+ID4KPiA+IEkgaGF2ZSBhbHNvIGRvbmUgc29tZSB0ZXN0aW5n
-IG9uIHRoZSBzdHJlc3MtbmcgdG8gdmVyaWZ5IHRoaXMuCj4KPgo+IE9rIEkgZG9uJ3QgZmVlbCBj
-b25maWRlbnQgYWRkaW5nIG51bWJlcnMgdGhhdCBjb21lcyBvdXQgb2YgdGhpbiBhaXIsCj4gYW5k
-IGV2ZW4gbW9yZSBzaW5jZSB0aGV5IGFyZSBvbmx5IHNoYXJlZCB0byB1c2Vyc3BhY2UuCj4KPiBJ
-IHRoaW5rIHdlIHNob3VsZCBvbmx5IGFkZCB0aGUgbnVtYmVycyB3aGljaCBhcmUgMTAwJSBzdXJl
-CgpCZXN0IHdheSB0byBsZXQgdGhlIEFtbG9naWMgU29DIG1lbWJlcnMgY29tbWVudCBvbiB0aGUg
-Q1BVICBMMS8gLyBMMiBjYWNoZSBzaXplLgpCdXQgd2l0aCB0aGUgbGFjayBvZiBwcmVmIFBNVSBl
-dmVudHMgd2UgY2Fubm90IHRlc3QgdGhpcyBmZWF0dXJlLgoKPgo+Cj4gVGhpcyBsb29rcyBwcmV0
-dHksIGJ1dCBsZXQncyBrZWVwIGV4cG9ydGluZyB2ZXJpZmllZCBkYXRhLgo+CgpUaGlzIENQVSBo
-YXJkd2FyZSBzdXBwb3J0cyBjYWNoZSB0aGlzIGZlYXR1cmUsIGJ1dCB3aXRoIG1pc3NpbmcgUE1V
-IGZvciB0aGlzIGNwdQpzbyBpdHMgbm90IGdldHRpbmcgbGlzdGVkIGhhcmR3YXJlIGV2ZW50cyBs
-aWtlIGNhY2hlLW1pc3NlcyBjYWNoZS1yZWZlcmVuY2VzCgphbGFybUBhcmNobC1vbjI6fiQgc3Vk
-byBwZXJmIGxpc3QKW3N1ZG9dIHBhc3N3b3JkIGZvciBhbGFybToKCkxpc3Qgb2YgcHJlLWRlZmlu
-ZWQgZXZlbnRzICh0byBiZSB1c2VkIGluIC1lIG9yIC1NKToKCiAgYWxpZ25tZW50LWZhdWx0cyAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgW1NvZnR3YXJlIGV2ZW50XQogIGJwZi1v
-dXRwdXQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFtTb2Z0d2FyZSBl
-dmVudF0KICBjZ3JvdXAtc3dpdGNoZXMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICBbU29mdHdhcmUgZXZlbnRdCiAgY29udGV4dC1zd2l0Y2hlcyBPUiBjcyAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgW1NvZnR3YXJlIGV2ZW50XQogIGNwdS1jbG9jayAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIFtTb2Z0d2FyZSBldmVudF0KICBjcHUtbWlncmF0
-aW9ucyBPUiBtaWdyYXRpb25zICAgICAgICAgICAgICAgICAgICAgICBbU29mdHdhcmUgZXZlbnRd
-CiAgZHVtbXkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgW1Nv
-ZnR3YXJlIGV2ZW50XQogIGVtdWxhdGlvbi1mYXVsdHMgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIFtTb2Z0d2FyZSBldmVudF0KICBtYWpvci1mYXVsdHMgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICBbU29mdHdhcmUgZXZlbnRdCiAgbWlub3ItZmF1bHRzICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgW1NvZnR3YXJlIGV2ZW50XQogIHBh
-Z2UtZmF1bHRzIE9SIGZhdWx0cyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFtTb2Z0d2Fy
-ZSBldmVudF0KICB0YXNrLWNsb2NrICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICBbU29mdHdhcmUgZXZlbnRdCiAgZHVyYXRpb25fdGltZSAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgW1Rvb2wgZXZlbnRdCiAgdXNlcl90aW1lICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgW1Rvb2wgZXZlbnRdCiAgc3lzdGVtX3RpbWUgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgW1Rvb2wgZXZlbnRdCiAgbWVzb25f
-ZGRyX2J3L2NoYW5fMV9yd19ieXRlcy8gICAgICAgICAgICAgICAgICAgICAgW0tlcm5lbCBQTVUg
-ZXZlbnRdCiAgbWVzb25fZGRyX2J3L2NoYW5fMl9yd19ieXRlcy8gICAgICAgICAgICAgICAgICAg
-ICAgW0tlcm5lbCBQTVUgZXZlbnRdCiAgbWVzb25fZGRyX2J3L2NoYW5fM19yd19ieXRlcy8gICAg
-ICAgICAgICAgICAgICAgICAgW0tlcm5lbCBQTVUgZXZlbnRdCiAgbWVzb25fZGRyX2J3L2NoYW5f
-NF9yd19ieXRlcy8gICAgICAgICAgICAgICAgICAgICAgW0tlcm5lbCBQTVUgZXZlbnRdCiAgbWVz
-b25fZGRyX2J3L3RvdGFsX3J3X2J5dGVzLyAgICAgICAgICAgICAgICAgICAgICAgW0tlcm5lbCBQ
-TVUgZXZlbnRdCiAgck5OTiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgW1JhdyBoYXJkd2FyZQpldmVudCBkZXNjcmlwdG9yXQogIGNwdS90MT12MVssdDI9djIs
-dDMgLi4uXS9tb2RpZmllciAgICAgICAgICAgICAgICAgIFtSYXcgaGFyZHdhcmUKZXZlbnQgZGVz
-Y3JpcHRvcl0KICAgICAgIFsoc2VlICdtYW4gcGVyZi1saXN0JyBvbiBob3cgdG8gZW5jb2RlIGl0
-KV0KICBtZW06PGFkZHI+Wy9sZW5dWzphY2Nlc3NdICAgICAgICAgICAgICAgICAgICAgICAgICBb
-SGFyZHdhcmUgYnJlYWtwb2ludF0KICBhbGFybXRpbWVyOmFsYXJtdGltZXJfY2FuY2VsICAgICAg
-ICAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBhbGFybXRpbWVyOmFsYXJtdGlt
-ZXJfZmlyZWQgICAgICAgICAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBhbGFy
-bXRpbWVyOmFsYXJtdGltZXJfc3RhcnQgICAgICAgICAgICAgICAgICAgICAgICBbVHJhY2Vwb2lu
-dCBldmVudF0KICBhbGFybXRpbWVyOmFsYXJtdGltZXJfc3VzcGVuZCAgICAgICAgICAgICAgICAg
-ICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBhc29jOnNuZF9zb2NfYmlhc19sZXZlbF9kb25lICAg
-ICAgICAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBhc29jOnNuZF9zb2NfYmlh
-c19sZXZlbF9zdGFydCAgICAgICAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBh
-c29jOnNuZF9zb2NfZGFwbV9jb25uZWN0ZWQgICAgICAgICAgICAgICAgICAgICAgICBbVHJhY2Vw
-b2ludCBldmVudF0KICBhc29jOnNuZF9zb2NfZGFwbV9kb25lICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBhc29jOnNuZF9zb2NfZGFwbV9wYXRoICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBhc29jOnNuZF9zb2Nf
-ZGFwbV9zdGFydCAgICAgICAgICAgICAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0K
-ICBhc29jOnNuZF9zb2NfZGFwbV93YWxrX2RvbmUgICAgICAgICAgICAgICAgICAgICAgICBbVHJh
-Y2Vwb2ludCBldmVudF0KICBhc29jOnNuZF9zb2NfZGFwbV93aWRnZXRfZXZlbnRfZG9uZSAgICAg
-ICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBhc29jOnNuZF9zb2NfZGFwbV93aWRnZXRf
-ZXZlbnRfc3RhcnQgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBhc29jOnNuZF9z
-b2NfZGFwbV93aWRnZXRfcG93ZXIgICAgICAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVu
-dF0KICBhc29jOnNuZF9zb2NfamFja19pcnEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBb
-VHJhY2Vwb2ludCBldmVudF0KICBhc29jOnNuZF9zb2NfamFja19ub3RpZnkgICAgICAgICAgICAg
-ICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBhc29jOnNuZF9zb2NfamFja19yZXBv
-cnQgICAgICAgICAgICAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBiaW5kZXI6
-YmluZGVyX2FsbG9jX2xydV9lbmQgICAgICAgICAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBl
-dmVudF0KICBiaW5kZXI6YmluZGVyX2FsbG9jX2xydV9zdGFydCAgICAgICAgICAgICAgICAgICAg
-ICBbVHJhY2Vwb2ludCBldmVudF0KICBiaW5kZXI6YmluZGVyX2FsbG9jX3BhZ2VfZW5kICAgICAg
-ICAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBiaW5kZXI6YmluZGVyX2FsbG9j
-X3BhZ2Vfc3RhcnQgICAgICAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBiaW5k
-ZXI6YmluZGVyX2NvbW1hbmQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBbVHJhY2Vwb2lu
-dCBldmVudF0KICBiaW5kZXI6YmluZGVyX2ZyZWVfbHJ1X2VuZCAgICAgICAgICAgICAgICAgICAg
-ICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBiaW5kZXI6YmluZGVyX2ZyZWVfbHJ1X3N0YXJ0ICAg
-ICAgICAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBiaW5kZXI6YmluZGVyX2lv
-Y3RsICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBi
-aW5kZXI6YmluZGVyX2lvY3RsX2RvbmUgICAgICAgICAgICAgICAgICAgICAgICAgICBbVHJhY2Vw
-b2ludCBldmVudF0KICBiaW5kZXI6YmluZGVyX2xvY2sgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBiaW5kZXI6YmluZGVyX2xvY2tlZCAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBiaW5kZXI6YmluZGVy
-X3JlYWRfZG9uZSAgICAgICAgICAgICAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0K
-ICBiaW5kZXI6YmluZGVyX3JldHVybiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBbVHJh
-Y2Vwb2ludCBldmVudF0KICBiaW5kZXI6YmluZGVyX3RyYW5zYWN0aW9uICAgICAgICAgICAgICAg
-ICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBiaW5kZXI6YmluZGVyX3RyYW5zYWN0aW9u
-X2FsbG9jX2J1ZiAgICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KICBiaW5kZXI6Ymlu
-ZGVyX3RyYW5zYWN0aW9uX2J1ZmZlcl9yZWxlYXNlICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVu
-dF0KICBiaW5kZXI6YmluZGVyX3RyYW5zYWN0aW9uX2ZhaWxlZF9idWZmZXJfcmVsZWFzZSAgICBb
-VHJhY2Vwb2ludCBldmVudF0KICBiaW5kZXI6YmluZGVyX3RyYW5zYWN0aW9uX2ZkX3JlY3YgICAg
-ICAgICAgICAgICAgICBbVHJhY2Vwb2ludCBldmVudF0KCgpbcm9vdEBhcmNobC1vbjIgYWxhcm1d
-IyBwZXJmIHN0YXQgLUIgLWUKY2FjaGUtcmVmZXJlbmNlcyxjYWNoZS1taXNzZXMsY3ljbGVzLGlu
-c3RydWN0aW9ucyxicmFuY2hlcyxmYXVsdHMsbWlncmF0aW9ucwpzbGVlcCA1CgogUGVyZm9ybWFu
-Y2UgY291bnRlciBzdGF0cyBmb3IgJ3NsZWVwIDUnOgoKICAgPG5vdCBzdXBwb3J0ZWQ+ICAgICAg
-Y2FjaGUtcmVmZXJlbmNlcwogICA8bm90IHN1cHBvcnRlZD4gICAgICBjYWNoZS1taXNzZXMKICAg
-PG5vdCBzdXBwb3J0ZWQ+ICAgICAgY3ljbGVzCiAgIDxub3Qgc3VwcG9ydGVkPiAgICAgIGluc3Ry
-dWN0aW9ucwogICA8bm90IHN1cHBvcnRlZD4gICAgICBicmFuY2hlcwogICAgICAgICAgICAgICAg
-NTYgICAgICBmYXVsdHMKICAgICAgICAgICAgICAgICAwICAgICAgbWlncmF0aW9ucwoKICAgICAg
-IDUuMDAzNDA0MTA2IHNlY29uZHMgdGltZSBlbGFwc2VkCgogICAgICAgMC4wMDMzOTYwMDAgc2Vj
-b25kcyB1c2VyCiAgICAgICAwLjAwMDAwMDAwMCBzZWNvbmRzIHN5cwoKVGhhbmtzCgoKCi1BbmFu
-ZAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgt
-YW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0
-dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Preliminary support for loading VDEC FW through TEE.
+
+TODO:
+- split the patch in 2 (or more?)
+  - DT binding amlogic,tee-loads-vdec-fw
+  - driver code
+- test how long the delays need to be (after load & after start)
+- add the DT prop to arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
+
+
+---
+ Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml |  4 ++++
+ drivers/staging/media/meson/vdec/Makefile                    |  1 +
+ drivers/staging/media/meson/vdec/optee.c                     | 50 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ drivers/staging/media/meson/vdec/optee.h                     |  5 +++++
+ drivers/staging/media/meson/vdec/vdec.c                      |  3 +++
+ drivers/staging/media/meson/vdec/vdec.h                      |  2 ++
+ drivers/staging/media/meson/vdec/vdec_1.c                    | 14 +++++++++++++-
+ drivers/staging/media/meson/vdec/vdec_hevc.c                 |  9 ++++++++-
+ 8 files changed, 86 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
+index 55930f6107c9c..543a90e83bfdc 100644
+--- a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
++++ b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
+@@ -82,6 +82,10 @@ properties:
+     description: should point to a canvas provider node
+     $ref: /schemas/types.yaml#/definitions/phandle
+ 
++  amlogic,tee-loads-vdec-fw:
++    type: boolean
++    description: Linux must request FW load from TEE
++
+ allOf:
+   - if:
+       properties:
+diff --git a/drivers/staging/media/meson/vdec/Makefile b/drivers/staging/media/meson/vdec/Makefile
+index 6e726af84ac9b..41e5006fa6294 100644
+--- a/drivers/staging/media/meson/vdec/Makefile
++++ b/drivers/staging/media/meson/vdec/Makefile
+@@ -4,5 +4,6 @@
+ meson-vdec-objs = esparser.o vdec.o vdec_helpers.o vdec_platform.o
+ meson-vdec-objs += vdec_1.o vdec_hevc.o
+ meson-vdec-objs += codec_mpeg12.o codec_h264.o codec_hevc_common.o codec_vp9.o
++meson-vdec-objs += optee.o
+ 
+ obj-$(CONFIG_VIDEO_MESON_VDEC) += meson-vdec.o
+diff --git a/drivers/staging/media/meson/vdec/optee.c b/drivers/staging/media/meson/vdec/optee.c
+new file mode 100644
+index 0000000000000..00ea935f7656a
+--- /dev/null
++++ b/drivers/staging/media/meson/vdec/optee.c
+@@ -0,0 +1,50 @@
++// SPDX-License-Identifier: GPL-2.0+
++// Copyright (c) 2024 Freebox SAS
++
++#include "optee.h"
++#include <linux/arm-smccc.h>
++
++#define TEE_SMC_FAST_CALL_VAL(func_num) \
++	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL, ARM_SMCCC_SMC_32, ARM_SMCCC_OWNER_TRUSTED_OS, func_num)
++
++static void request_fw_from_optee(struct device *dev, int fw_id)
++{
++	struct arm_smccc_res res;
++	arm_smccc_smc(TEE_SMC_FAST_CALL_VAL(15), fw_id, 0, 0, 0, 0, 0, 0, &res);
++	dev_dbg(dev, "VDEC FW ID %d: %lu\n", fw_id, res.a0);
++}
++
++/* VDEC FW IDs */
++#define VDEC_MPEG12	0
++#define VDEC_H264	11
++#define VDEC_HEVC	16
++#define VDEC_HEVC_MMU	17
++#define VDEC_VP9	18
++#define VDEC_VP9_MMU	19
++
++int amvdec_load_firmware_optee(struct amvdec_session *sess)
++{
++	struct device *dev = sess->core->dev_dec;
++	u32 pixfmt = sess->fmt_out->pixfmt;
++	int fw_id = 1;
++
++	// Load wrong firmware to make TEE reset HW component for us
++	request_fw_from_optee(dev, fw_id);
++
++	if (pixfmt == V4L2_PIX_FMT_MPEG1 || pixfmt == V4L2_PIX_FMT_MPEG2)
++		fw_id = VDEC_MPEG12;
++
++	if (pixfmt == V4L2_PIX_FMT_H264)
++		fw_id = VDEC_H264;
++
++	if (pixfmt == V4L2_PIX_FMT_HEVC)
++		fw_id = VDEC_HEVC_MMU;
++
++	if (pixfmt == V4L2_PIX_FMT_VP9)
++		fw_id = VDEC_VP9_MMU;
++
++	request_fw_from_optee(dev, fw_id);
++	msleep(100); /*** REQUIRED??? ***/
++
++	return 0;
++}
+diff --git a/drivers/staging/media/meson/vdec/optee.h b/drivers/staging/media/meson/vdec/optee.h
+new file mode 100644
+index 0000000000000..f4e209850ad8a
+--- /dev/null
++++ b/drivers/staging/media/meson/vdec/optee.h
+@@ -0,0 +1,5 @@
++// SPDX-License-Identifier: GPL-2.0+
++
++#include "vdec.h"
++
++int amvdec_load_firmware_optee(struct amvdec_session *sess);
+diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
+index de3e0345ab7c6..9acdbb0d53340 100644
+--- a/drivers/staging/media/meson/vdec/vdec.c
++++ b/drivers/staging/media/meson/vdec/vdec.c
+@@ -1029,6 +1029,9 @@ static int vdec_probe(struct platform_device *pdev)
+ 	of_id = of_match_node(vdec_dt_match, dev->of_node);
+ 	core->platform = of_id->data;
+ 
++	if (of_property_read_bool(dev->of_node, "amlogic,tee-loads-vdec-fw"))
++		core->use_optee = true;
++
+ 	if (core->platform->revision == VDEC_REVISION_G12A ||
+ 	    core->platform->revision == VDEC_REVISION_SM1) {
+ 		core->vdec_hevcf_clk = devm_clk_get(dev, "vdec_hevcf");
+diff --git a/drivers/staging/media/meson/vdec/vdec.h b/drivers/staging/media/meson/vdec/vdec.h
+index 0906b8fb5cc60..274e8dae8c386 100644
+--- a/drivers/staging/media/meson/vdec/vdec.h
++++ b/drivers/staging/media/meson/vdec/vdec.h
+@@ -66,6 +66,7 @@ struct amvdec_session;
+  * @v4l2_dev: v4l2 device
+  * @cur_sess: current decoding session
+  * @lock: video device lock
++ * @use_optee: request FW load from Trusted Execution Environment
+  */
+ struct amvdec_core {
+ 	void __iomem *dos_base;
+@@ -91,6 +92,7 @@ struct amvdec_core {
+ 
+ 	struct amvdec_session *cur_sess;
+ 	struct mutex lock;
++	bool use_optee;
+ };
+ 
+ /**
+diff --git a/drivers/staging/media/meson/vdec/vdec_1.c b/drivers/staging/media/meson/vdec/vdec_1.c
+index 3fe2de0c9331f..0b46d72a5e0aa 100644
+--- a/drivers/staging/media/meson/vdec/vdec_1.c
++++ b/drivers/staging/media/meson/vdec/vdec_1.c
+@@ -13,6 +13,7 @@
+ #include "vdec_1.h"
+ #include "vdec_helpers.h"
+ #include "dos_regs.h"
++#include "optee.h"
+ 
+ /* AO Registers */
+ #define AO_RTI_GEN_PWR_SLEEP0	0xe8
+@@ -209,7 +210,11 @@ static int vdec_1_start(struct amvdec_session *sess)
+ 
+ 	vdec_1_stbuf_power_up(sess);
+ 
+-	ret = vdec_1_load_firmware(sess, sess->fmt_out->firmware_path);
++	if (core->use_optee)
++		ret = amvdec_load_firmware_optee(sess);
++	else
++		ret = vdec_1_load_firmware(sess, sess->fmt_out->firmware_path);
++
+ 	if (ret)
+ 		goto stop;
+ 
+@@ -232,6 +237,13 @@ static int vdec_1_start(struct amvdec_session *sess)
+ 	/* Let the firmware settle */
+ 	usleep_range(10, 20);
+ 
++	/*
++	 * When running secure boot, it looks like the codec needs
++	 * more time to settle (perhaps to authenticate the image?)
++	 */
++	if (core->use_optee)
++		msleep(100); /*** REQUIRED??? ***/
++
+ 	return 0;
+ 
+ stop:
+diff --git a/drivers/staging/media/meson/vdec/vdec_hevc.c b/drivers/staging/media/meson/vdec/vdec_hevc.c
+index afced435c9070..6d9141c5f3163 100644
+--- a/drivers/staging/media/meson/vdec/vdec_hevc.c
++++ b/drivers/staging/media/meson/vdec/vdec_hevc.c
+@@ -14,6 +14,7 @@
+ #include "vdec_hevc.h"
+ #include "hevc_regs.h"
+ #include "dos_regs.h"
++#include "optee.h"
+ 
+ /* AO Registers */
+ #define AO_RTI_GEN_PWR_SLEEP0	0xe8
+@@ -204,7 +205,10 @@ static int vdec_hevc_start(struct amvdec_session *sess)
+ 
+ 	vdec_hevc_stbuf_init(sess);
+ 
+-	ret = vdec_hevc_load_firmware(sess, sess->fmt_out->firmware_path);
++	if (core->use_optee)
++		ret = amvdec_load_firmware_optee(sess);
++	else
++		ret = vdec_hevc_load_firmware(sess, sess->fmt_out->firmware_path);
+ 	if (ret)
+ 		goto stop;
+ 
+@@ -220,6 +224,9 @@ static int vdec_hevc_start(struct amvdec_session *sess)
+ 	/* Let the firmware settle */
+ 	usleep_range(10, 20);
+ 
++	if (core->use_optee)
++		msleep(100); /*** REQUIRED??? ***/
++
+ 	return 0;
+ 
+ stop:
+-- 
+2.34.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
