@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6E30C54E49
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Mar 2024 13:39:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FE9DC5478C
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Mar 2024 13:39:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VB8kdS/mNGOTJNEhddiqc6yxjhz5/+gQSjko/A8jzzw=; b=2RiV3BNsdDQzqO
-	XRbTpcH3d2Gc1PiQbq2g7u10weGQHPObfi9/ytSiFTgOxOtjuLi8SGq/MtWivOJsW/tXB9pidHavm
-	yiPJ90+hDUgtRa3dXl9vSixyT0e6+hHOUS1EpNvGx4juGKqxNmnkNpRMjfsStBBVFI3VcLVDcR574
-	MOSigbmFdyz05a2ohXiHH7ieWB+lp3/CvVGVZZBuwr9kd2AdARp9PE1YTC3msxWnU6vy5smtMSWaU
-	amqJG2lvmjDrNEJwL3z66Y6ztkskFBkGc3Qdrcj8MUEW4YxDNRJiPdtZut5Q6YbSRom8F2AY98pfk
-	0rZqKpKbenQbyst2HsXw==;
+	List-Owner; bh=roLCfjc5yloDLqJYrJKjZB5t1vFISoqEaTa4Oc/ctzM=; b=tXRGw7D8aMtT1S
+	AatxoPLxmNzdxKU9/t2hTHym9UPfCYx7IdE2qb5+SIAUtjYYqIlCY7XHOnYgY1SWHGmAZ9hCKtqGd
+	jM8e60hhsZdoflBWLFbNd7TN6xbaCKrG0jSeICPKY7r3Mt/L0nTk5hmR4XzxzZQNWo8+3IyLSbcBA
+	pdt3cXQYq070/uefpgvtyhiSFL/Fpbo8kko3uesV22tDS8wSBeIRSEBzCHdRYvNInyoHFfUq+QaLk
+	Heve80NYdka2WRl5od2kX8MSuU2amoCsKWCjFFjwzZuKfsGGIi717kre+Ph3DbmQG4w3x5uhtEe6f
+	oKyqMjlEMNO5DkLRHmOQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rg36O-00000000Y6p-1dw6;
-	Fri, 01 Mar 2024 13:39:04 +0000
+	id 1rg36Z-00000000YFy-3lMv;
+	Fri, 01 Mar 2024 13:39:15 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rg2xu-00000000Skx-0QQp;
+	id 1rg2xv-00000000SlY-0555;
 	Fri, 01 Mar 2024 13:30:20 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id BCAAE1200EF;
-	Fri,  1 Mar 2024 16:30:16 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru BCAAE1200EF
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 9E4D31200EE;
+	Fri,  1 Mar 2024 16:30:17 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 9E4D31200EE
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1709299816;
-	bh=PQcuxsT5RNz8UKAKPndI/ZLDpInU+muroR3BATjdObY=;
+	s=mail; t=1709299817;
+	bh=79TdGOty6YNXA9n2qQuukaYq/6PaX4J0aZnDKrMLGuA=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=tvjOlaYZ5ohY5/Z8sSXjLvL1T25BIq94/ex2xf0ALiLBttME8aV1+lCU2pyrQQI08
-	 k2rP1III9FBL2zklo6j1oIG8Aa++/KR9sZOcYaT5jVTuPuGVjNR6ZHJhtm079gBtgW
-	 H6p45rW7H1o0r/fp+sUmCYXl4cabBFkfO7jbGPZmEEIfJYwtfkOW78+EATXyEUlBCD
-	 bhj1ZP7u7+RWGxH4KdEg33O4NgrMet20YlRmSpKmki9pxq5zs8SccdrhQPG98CQp5I
-	 pmKsUw1m0PVn+kPr6QJD2mLhwOyLwVkXLhY/hTCsvLu5CYKFhinJ1iqFZx/JG2aMlG
-	 dhKr4eHkQ/5RA==
+	b=hEpJ1u0Q+cKbR6lXhk/7kCgJGjxj9ITeTYIyDqpt3iHZaaDV8f3zGUBZTnDysmM9b
+	 yu2pCGvU6HJBJFChLadNJISGS1C4FFRPgvH1x+RfK53YoYrZkf7qBE+SuwkLNjgTFQ
+	 a4lwZnT3L+MaP05rv5NGeR1sQFhK/8Y6YXIaE3tGyVgapkojCWBF+v/bOvdnN4lvbZ
+	 aK6UJ9waY8d5eYxveUiffPm+aptw0BLLKdDk0Uhcff09512Q42Ev89HRG7tYkgY/Oe
+	 qp6B/yAcd7ueyfBeB20Vg0QOmZmbhK+d8Dwy2A4lGA/DyxYllLvBMMPYmZCy9gqw3N
+	 ZqwSojD9wVF6A==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri,  1 Mar 2024 16:30:16 +0300 (MSK)
+	Fri,  1 Mar 2024 16:30:17 +0300 (MSK)
 Received: from user-A520M-DS3H.sigma.sbrf.ru (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 1 Mar 2024 16:30:15 +0300
+ 15.2.1118.40; Fri, 1 Mar 2024 16:30:17 +0300
 From: Alexey Romanov <avromanov@salutedevices.com>
 To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
 	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
@@ -59,9 +59,9 @@ CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
  Romanov <avromanov@salutedevices.com>
-Subject: [PATCH v5 12/21] drivers: crypto: meson: add support for AES-CTR
-Date: Fri, 1 Mar 2024 16:29:27 +0300
-Message-ID: <20240301132936.621238-13-avromanov@salutedevices.com>
+Subject: [PATCH v5 13/21] drivers: crypto: meson: use fallback for 192-bit keys
+Date: Fri, 1 Mar 2024 16:29:28 +0300
+Message-ID: <20240301132936.621238-14-avromanov@salutedevices.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240301132936.621238-1-avromanov@salutedevices.com>
 References: <20240301132936.621238-1-avromanov@salutedevices.com>
@@ -86,8 +86,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 19:21:00 #23899999
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240301_053018_668908_4E8C752C 
-X-CRM114-Status: GOOD (  21.43  )
+X-CRM114-CacheID: sfid-20240301_053019_454075_E4B40C0D 
+X-CRM114-Status: GOOD (  14.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,151 +104,63 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch adds support for AES-CTR algorithm.
-Tested via tcrypt and custom tests.
+Unforunately, not all Amlogic SoC's have a 192-bit key
+support for AES algo. In this case, use fallback.
 
 Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
 ---
- drivers/crypto/amlogic/amlogic-gxl-cipher.c | 59 +++++++++++++++++++--
- drivers/crypto/amlogic/amlogic-gxl-core.c   |  1 +
- drivers/crypto/amlogic/amlogic-gxl.h        |  2 +
- 3 files changed, 58 insertions(+), 4 deletions(-)
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c | 7 +++++++
+ drivers/crypto/amlogic/amlogic-gxl-core.c   | 1 +
+ drivers/crypto/amlogic/amlogic-gxl.h        | 2 ++
+ 3 files changed, 10 insertions(+)
 
 diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-index 8b8f79f08d6e..698868fe2502 100644
+index 698868fe2502..3057a5ab3acf 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
 +++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-@@ -138,6 +138,15 @@ static void meson_unmap_scatterlist(struct skcipher_request *areq, struct meson_
- 	}
- }
+@@ -41,6 +41,13 @@ static bool meson_cipher_need_fallback_sg(struct skcipher_request *areq,
  
-+static void reverse_keyiv(u32 *keyiv, u32 *iv)
-+{
-+	int size = AES_BLOCK_SIZE / sizeof(u32);
-+	int i;
-+
-+	for (i = 0; i < size; i++)
-+		*(keyiv + size - i - 1) = cpu_to_be32(*(iv + i));
-+}
-+
- static void meson_setup_keyiv_descs(struct cipher_ctx *ctx)
+ static bool meson_cipher_need_fallback(struct skcipher_request *areq)
  {
- 	struct meson_cipher_req_ctx *rctx = skcipher_request_ctx(ctx->areq);
-@@ -154,8 +163,12 @@ static void meson_setup_keyiv_descs(struct cipher_ctx *ctx)
- 	if (ctx->tloffset)
- 		return;
- 
--	if (blockmode == DESC_OPMODE_CBC) {
--		memcpy(op->keyiv + AES_MAX_KEY_SIZE, ctx->areq->iv, ivsize);
-+	if (blockmode == DESC_OPMODE_CBC || blockmode == DESC_OPMODE_CTR) {
-+		if (blockmode == DESC_OPMODE_CTR && mc->pdata->reverse_keyiv)
-+			reverse_keyiv((u32 *)(op->keyiv + AES_MAX_KEY_SIZE), (u32 *)ctx->areq->iv);
-+		else
-+			memcpy(op->keyiv + AES_MAX_KEY_SIZE, ctx->areq->iv, ivsize);
++	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(areq);
++	struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
++	struct meson_dev *mc = op->mc;
 +
- 		dma_sync_single_for_device(mc->dev, ctx->keyiv.addr,
- 					   ctx->keyiv.len, DMA_TO_DEVICE);
- 	}
-@@ -186,6 +199,7 @@ static bool meson_setup_data_descs(struct cipher_ctx *ctx)
- 	struct meson_desc *desc = &mc->chanlist[rctx->flow].tl[ctx->tloffset];
- 	unsigned int blocksize = crypto_skcipher_blocksize(tfm);
- 	unsigned int blockmode = algt->blockmode;
-+	unsigned int ivsize = crypto_skcipher_ivsize(tfm);
- 	unsigned int maxlen = rounddown(DESC_MAXLEN, blocksize);
- 	unsigned int todo;
- 	u32 v;
-@@ -204,8 +218,15 @@ static bool meson_setup_data_descs(struct cipher_ctx *ctx)
- 	ctx->src_offset += todo;
- 	ctx->dst_offset += todo;
- 
-+	if (blockmode == DESC_OPMODE_CTR) {
-+		unsigned int nblocks = todo / blocksize;
++	if (op->keymode == DESC_MODE_AES_192 && !mc->pdata->support_192bit_key)
++		return true;
 +
-+		while (nblocks--)
-+			crypto_inc(ctx->areq->iv, ivsize);
-+	}
-+
- 	v = DESC_OWN | blockmode | op->keymode | todo;
--	if (rctx->op_dir == MESON_ENCRYPT)
-+	if (rctx->op_dir == MESON_ENCRYPT || blockmode == DESC_OPMODE_CTR)
- 		v |= DESC_ENCRYPTION;
+ 	if (areq->cryptlen == 0)
+ 		return true;
  
- 	if (!ctx->cryptlen || ctx->tloffset == MAXDESC)
-@@ -322,7 +343,8 @@ static int meson_cipher(struct skcipher_request *areq)
- 	if (ctx.keyiv.len == AES_KEYSIZE_192)
- 		ctx.keyiv.len = AES_MAX_KEY_SIZE;
- 
--	if (algt->blockmode == DESC_OPMODE_CBC) {
-+	if (algt->blockmode == DESC_OPMODE_CBC ||
-+	    algt->blockmode == DESC_OPMODE_CTR) {
- 		memcpy(op->keyiv + AES_MAX_KEY_SIZE, areq->iv, ivsize);
- 		ctx.keyiv.len = AES_MAX_KEY_SIZE + ivsize;
- 	}
-@@ -535,6 +557,35 @@ static struct meson_alg_template algs[] = {
- 		.do_one_request = meson_handle_cipher_request,
- 	},
- },
-+{
-+	.type = CRYPTO_ALG_TYPE_SKCIPHER,
-+	.blockmode = DESC_OPMODE_CTR,
-+	.alg.skcipher.base = {
-+		.base = {
-+			.cra_name = "ctr(aes)",
-+			.cra_driver_name = "ctr-aes-gxl",
-+			.cra_priority = 400,
-+			.cra_blocksize = AES_BLOCK_SIZE,
-+			.cra_flags = CRYPTO_ALG_TYPE_SKCIPHER |
-+				CRYPTO_ALG_ASYNC | CRYPTO_ALG_ALLOCATES_MEMORY |
-+				CRYPTO_ALG_NEED_FALLBACK,
-+			.cra_ctxsize = sizeof(struct meson_cipher_tfm_ctx),
-+			.cra_module = THIS_MODULE,
-+			.cra_alignmask = 0xf,
-+			.cra_init = meson_cipher_init,
-+			.cra_exit = meson_cipher_exit,
-+		},
-+		.min_keysize	= AES_MIN_KEY_SIZE,
-+		.max_keysize	= AES_MAX_KEY_SIZE,
-+		.ivsize		= AES_BLOCK_SIZE,
-+		.setkey		= meson_aes_setkey,
-+		.encrypt	= meson_skencrypt,
-+		.decrypt	= meson_skdecrypt,
-+	},
-+	.alg.skcipher.op = {
-+		.do_one_request = meson_handle_cipher_request,
-+	},
-+},
- };
- 
- int meson_cipher_register(struct meson_dev *mc)
 diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index c5ee40196801..c3cec58cf443 100644
+index c3cec58cf443..e841ce25de67 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
 +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -290,6 +290,7 @@ static const struct meson_pdata meson_gxl_pdata = {
- 	.status_reg = 0x4,
+@@ -291,6 +291,7 @@ static const struct meson_pdata meson_gxl_pdata = {
  	.setup_desc_cnt = 3,
  	.hasher_supported = false,
-+	.reverse_keyiv = true,
+ 	.reverse_keyiv = true,
++	.support_192bit_key = true,
  };
  
  static const struct of_device_id meson_crypto_of_match_table[] = {
 diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
-index cebdfd81f6e2..de11e174f03d 100644
+index de11e174f03d..01913daf1bf4 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl.h
 +++ b/drivers/crypto/amlogic/amlogic-gxl.h
-@@ -24,6 +24,7 @@
- 
- #define DESC_OPMODE_ECB (0 << 26)
- #define DESC_OPMODE_CBC (1 << 26)
-+#define DESC_OPMODE_CTR (2 << 26)
- #define DESC_OPMODE_SHA (0 << 26)
- 
- #define DESC_MAXLEN GENMASK(16, 0)
-@@ -103,6 +104,7 @@ struct meson_pdata {
- 	u32 status_reg;
+@@ -98,6 +98,7 @@ struct meson_flow {
+  * @reg_status:	offset to status register
+  * @setup_desc_cnt:	number of setup descriptor to configure.
+  * @hasher_supported:	indecates whether hasher is supported.
++ * @support_192bit_key:	indicates whether platform support AES 192-bit key
+  */
+ struct meson_pdata {
+ 	u32 descs_reg;
+@@ -105,6 +106,7 @@ struct meson_pdata {
  	u32 setup_desc_cnt;
  	bool hasher_supported;
-+	bool reverse_keyiv;
+ 	bool reverse_keyiv;
++	bool support_192bit_key;
  };
  
  /*
