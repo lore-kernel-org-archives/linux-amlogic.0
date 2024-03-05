@@ -4,82 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59E8FC54798
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Mar 2024 06:58:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 363E7C54E41
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Mar 2024 13:48:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=X/+37FjPKTJUfklwPv3ofyTtx9t7WvO1OJbYpJxHtYg=; b=ToxsRxi4+ym/fm
-	P0cejJLqWd5KVnrSwqlF4LVLxDUmdweH0IUJatpxqRJdlA0gdufvxiErSbeX+7Ht3RI2iR6rCls9M
-	hg4n2ShMpFgQsQQo2wXkOuKa6NbKNkIkaDCuXlfc8bAOpwpUm/odWcyUEKVB04p3kYfWKYJAtSQ4x
-	O0f5PSLLmcdNvNtG0pS/5aQAVLd3kCrEq297Ho4+4j1l0MLk2du9Ii5lkNKyjpasnGhmX1wPnb5iS
-	VThBvP4G4CUnP9FL/iXL6+zdbHDQppbaojQ95r9uvFemNbb2LcENCZb5EpJjkp8U/oZiyg4XM8unZ
-	ZWA5yyScZNqCv05eBLRA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
+	References:Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=GZlu+9u5aspw/qzDtB5RM3Sd6MElTEoSO+fIHpTW4T4=; b=F5FQMH7CRfb6Au
+	Oo6ayNpoSMBf0x75JIWhbV2QBFqWgUTPt5ri80SJyI+QXOeyLSygVTsk7yHYD+8rSG+m7SeppYv67
+	uanZReV8VXx9zl+P+TU9ZT/J6t2FzEm8tESu8mutEOdDjI97XqRvKICb2Rx+zw4/9He0eR5vJXREG
+	ynsFWyIZNxXD7aPMdqWj8D5W7c6x+wiHRMJCzoHFJuetVzpueRF1Iu8gzMr88iKkGb8XTwrCZ2Rhk
+	nQ3CB7aYiRR1BdECfw2CCWYmn5Zg6U/ZsY+o+xnYqmmaLs16rmPFU0MQ8T2xYAwyLXtgqQLtZxSzO
+	lxlO0x97/HSGRseh+1yw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rhOkz-0000000CFg5-2nnA;
-	Tue, 05 Mar 2024 06:58:33 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1rhV94-0000000DsxS-3z31;
+	Tue, 05 Mar 2024 13:47:50 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rhOkw-0000000CFfP-09I6;
-	Tue, 05 Mar 2024 06:58:31 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4254kG67010647;
-	Tue, 5 Mar 2024 06:58:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version:content-type; s=
-	qcppdkim1; bh=gK3b0IT3wiu25dWPzQzhc0q9hQdh5h0QM5PIZNTwpzk=; b=pg
-	JM33lWTHpDRZyblwaKdWmYc4BKhdBFmkT+W4uXFJ41HPNgJ0KMbQWZjPQ5Ns3UCJ
-	EXFzjJXdNLwkMKXeU+RtSbBEg0GNSWv7g44G9Wnyynxcty6x47wSIXrBzJkvhLp/
-	iVgkyCQZVugCqsp2ufMLIfQXNd96ZqmT+dEluFFnoKGA0cVAy/nOfneFWXkPP9/n
-	R3vpAWjT+xRrWN07jQAhW8upIxbSjtI/pj+W0LzacavxFAzIORikAi537NZpnNAu
-	2SMkqnc3jEvswar4LLmPS0BdnuqSWzYMB0U92p8pEzNAgwqmFUSukxOeFT2HZoLu
-	ZbcoTOClIWCUo8IdBbyg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wnn34937n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 05 Mar 2024 06:58:26 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4256wPc8009040
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 5 Mar 2024 06:58:25 GMT
-Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+	id 1rhV8z-0000000DssR-1Uxg;
+	Tue, 05 Mar 2024 13:47:48 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 4492B10000D;
+	Tue,  5 Mar 2024 16:47:38 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4492B10000D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1709646458;
+	bh=fcKXA9lISEMg682+/DBPrSA2kktQOMdU0ud7akHaBpk=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
+	b=mew/wGtcPW1yjR9vUouwfuKRMUg+JtvkzC4/2j5wsnQXzRLPwZmgrl0cUEQ3k/xE/
+	 CozZw8m7QSBItRa1G3ZgTkzGy0Ymcq81Ea023w2lx9UqH4dxLk23oTRC/BNp/wrPmO
+	 BaHRuPzJJ7Iuyn6pZ2pZmLBSwLZRh2wvUgf3Wgi0M03ffVAP2+o78/QzEpQ2gyoNo+
+	 JQl3fvzl0FSBJg+xKM7fOT6RpYd5JCf+G9dvXAgqX8G2Zg3yr8TCUYyAiD+IzHATW2
+	 3dpkEnPIJ0Lp6Q9NxSAlTGuAIuxC8iVvsQHQkSkAeE1DeXzH7mDD1pGYvOzcFSaBcU
+	 jUIyLIdAXPBrQ==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue,  5 Mar 2024 16:47:38 +0300 (MSK)
+Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 4 Mar 2024 22:58:22 -0800
-From: Mukesh Ojha <quic_mojha@quicinc.com>
-To: <srinivas.kandagatla@linaro.org>, <neil.armstrong@linaro.org>,
-        <khilman@baylibre.com>
-CC: <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Mukesh Ojha <quic_mojha@quicinc.com>
-Subject: [PATCH] nvmem: meson-mx-efuse: Remove nvmem_device from efuse struct
-Date: Tue, 5 Mar 2024 12:28:08 +0530
-Message-ID: <1709621888-3173-1-git-send-email-quic_mojha@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+ 15.2.1118.40; Tue, 5 Mar 2024 16:47:37 +0300
+Received: from p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1]) by
+ p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1%7]) with mapi id
+ 15.02.1118.040; Tue, 5 Mar 2024 16:47:37 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"clabbe@baylibre.com" <clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
+	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
+	<khilman@baylibre.com>, "martin.blumenstingl@googlemail.com"
+	<martin.blumenstingl@googlemail.com>, "vadim.fedorenko@linux.dev"
+	<vadim.fedorenko@linux.dev>, "linux-crypto@vger.kernel.org"
+	<linux-crypto@vger.kernel.org>, "linux-amlogic@lists.infradead.org"
+	<linux-amlogic@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v5 03/21] drivers: crypto: meson: make CLK controller
+ optional
+Thread-Topic: [PATCH v5 03/21] drivers: crypto: meson: make CLK controller
+ optional
+Thread-Index: AQHaa9yRWJ/V2yQniEGD1LRIiVhVdrEizjUAgASdYgCAAZG9AA==
+Date: Tue, 5 Mar 2024 13:47:37 +0000
+Message-ID: <20240305134732.z6eyo4nppj7oc2su@cab-wsm-0029881.sigma.sbrf.ru>
+References: <20240301132936.621238-1-avromanov@salutedevices.com>
+ <20240301132936.621238-4-avromanov@salutedevices.com>
+ <1jwmqmrmva.fsf@starbuckisacylon.baylibre.com>
+ <20240304134923.hk5xp5rs3itgw3pk@cab-wsm-0029881.sigma.sbrf.ru>
+In-Reply-To: <20240304134923.hk5xp5rs3itgw3pk@cab-wsm-0029881.sigma.sbrf.ru>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.18.93]
+Content-ID: <591DBD4D237CE74D9FE5610D447E944D@sberdevices.ru>
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: TEbPkxtb-smm8XtIyMUxAIr63JFkxxBd
-X-Proofpoint-ORIG-GUID: TEbPkxtb-smm8XtIyMUxAIr63JFkxxBd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-05_04,2024-03-04_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
- clxscore=1011 mlxlogscore=999 priorityscore=1501 lowpriorityscore=0
- spamscore=0 mlxscore=0 malwarescore=0 phishscore=0 bulkscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403050053
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 183875 [Feb 29 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 19:21:00 #23899999
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240304_225830_105925_4DD244E3 
-X-CRM114-Status: GOOD (  13.86  )
+X-CRM114-CacheID: sfid-20240305_054746_106436_4A6971C0 
+X-CRM114-Status: GOOD (  34.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,45 +122,105 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-nvmem_device is used at one place while registering nvmem
-device and it is not required to be present in efuse struct
-for just this purpose.
+On Mon, Mar 04, 2024 at 01:49:46PM +0000, Alexey Romanov wrote:
+> Hello Jerome,
+> 
+> On Fri, Mar 01, 2024 at 04:21:20PM +0100, Jerome Brunet wrote:
+> > 
+> > On Fri 01 Mar 2024 at 16:29, Alexey Romanov <avromanov@salutedevices.com> wrote:
+> > 
+> > > Amlogic crypto IP doesn't take a clock input on some
+> > > SoCs: AXG / A1 / S4 / G12. So make it optional.
+> > >
+> > 
+> > I commented this patch on v2 and the comment keep on being un-addressed.
+> > 
+> > The SoC either:
+> > * has a clock that is required for the IP to work
+> > * Or does not
+> > 
+> > It is not something you are free to provide or not.
+> > 
+> > For the record, I find very hard believe that some SoC would have clock,
+> > and other would not, for the same HW.
+> > 
+> > Isn't it more likely that the clock just happens to be left enabled by
+> > the bootloader on some SoC and it conviently allows to ignore it ?
+> 
+> 
+> S905X and newer SoC's uses DMA engine for crypto HW and they
+> don't required clock input to work. Clock input is needed for
+> blkmv engine.
+> 
+> Therefore, I'm not sure that it is needed for GXL too (and the second
+> interrupt line). I tested it on vim1 board witouht them and everything
+> works correctly.
 
-Drop nvmem_device and manage with nvmem device stack variable.
+Amlogic says that the crypto HW based on DMA engine doesn't require
+a clock input. GXL uses DMA engine, so, I think we have to remove
+whole clock controller calls in the next series from driver/dts/bindings.
+And the second interrupt line from crypto node in meson-gxl.dtsi too.
 
-Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
----
- drivers/nvmem/meson-mx-efuse.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+> 
+> > 
+> > > Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> > > ---
+> > >  drivers/crypto/amlogic/amlogic-gxl-core.c | 14 +++-----------
+> > >  1 file changed, 3 insertions(+), 11 deletions(-)
+> > >
+> > > diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+> > > index e9e733ed98e0..a3a69a59f476 100644
+> > > --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
+> > > +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+> > > @@ -269,16 +269,11 @@ static int meson_crypto_probe(struct platform_device *pdev)
+> > >  		dev_err(&pdev->dev, "Cannot request MMIO err=%d\n", err);
+> > >  		return err;
+> > >  	}
+> > > -	mc->busclk = devm_clk_get(&pdev->dev, "blkmv");
+> > > +
+> > > +	mc->busclk = devm_clk_get_optional_enabled(&pdev->dev, "blkmv");
+> > >  	if (IS_ERR(mc->busclk)) {
+> > >  		err = PTR_ERR(mc->busclk);
+> > > -		dev_err(&pdev->dev, "Cannot get core clock err=%d\n", err);
+> > > -		return err;
+> > > -	}
+> > > -
+> > > -	err = clk_prepare_enable(mc->busclk);
+> > > -	if (err != 0) {
+> > > -		dev_err(&pdev->dev, "Cannot prepare_enable busclk\n");
+> > > +		dev_err(&pdev->dev, "Cannot get and enable core clock err=%d\n", err);
+> > >  		return err;
+> > >  	}
+> > >  
+> > > @@ -306,7 +301,6 @@ static int meson_crypto_probe(struct platform_device *pdev)
+> > >  	meson_unregister_algs(mc);
+> > >  error_flow:
+> > >  	meson_free_chanlist(mc, mc->flow_cnt - 1);
+> > > -	clk_disable_unprepare(mc->busclk);
+> > >  	return err;
+> > >  }
+> > >  
+> > > @@ -321,8 +315,6 @@ static void meson_crypto_remove(struct platform_device *pdev)
+> > >  	meson_unregister_algs(mc);
+> > >  
+> > >  	meson_free_chanlist(mc, mc->flow_cnt - 1);
+> > > -
+> > > -	clk_disable_unprepare(mc->busclk);
+> > >  }
+> > >  
+> > >  static const struct meson_pdata meson_gxl_pdata = {
+> > 
+> > 
+> > -- 
+> > Jerome
+> 
+> -- 
+> Thank you,
+> Alexey
 
-diff --git a/drivers/nvmem/meson-mx-efuse.c b/drivers/nvmem/meson-mx-efuse.c
-index 3ff04d5ca8f8..3f01fe03dde5 100644
---- a/drivers/nvmem/meson-mx-efuse.c
-+++ b/drivers/nvmem/meson-mx-efuse.c
-@@ -43,7 +43,6 @@ struct meson_mx_efuse_platform_data {
- struct meson_mx_efuse {
- 	void __iomem *base;
- 	struct clk *core_clk;
--	struct nvmem_device *nvmem;
- 	struct nvmem_config config;
- };
- 
-@@ -223,9 +222,9 @@ static int meson_mx_efuse_probe(struct platform_device *pdev)
- 		return PTR_ERR(efuse->core_clk);
- 	}
- 
--	efuse->nvmem = devm_nvmem_register(&pdev->dev, &efuse->config);
-+	nvmem = devm_nvmem_register(&pdev->dev, &efuse->config);
- 
--	return PTR_ERR_OR_ZERO(efuse->nvmem);
-+	return PTR_ERR_OR_ZERO(nvmem);
- }
- 
- static struct platform_driver meson_mx_efuse_driver = {
 -- 
-2.7.4
-
-
+Thank you,
+Alexey
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
