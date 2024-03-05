@@ -4,108 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 363E7C54E41
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Mar 2024 13:48:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4525C54E4A
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Mar 2024 21:33:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
-	References:Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GZlu+9u5aspw/qzDtB5RM3Sd6MElTEoSO+fIHpTW4T4=; b=F5FQMH7CRfb6Au
-	Oo6ayNpoSMBf0x75JIWhbV2QBFqWgUTPt5ri80SJyI+QXOeyLSygVTsk7yHYD+8rSG+m7SeppYv67
-	uanZReV8VXx9zl+P+TU9ZT/J6t2FzEm8tESu8mutEOdDjI97XqRvKICb2Rx+zw4/9He0eR5vJXREG
-	ynsFWyIZNxXD7aPMdqWj8D5W7c6x+wiHRMJCzoHFJuetVzpueRF1Iu8gzMr88iKkGb8XTwrCZ2Rhk
-	nQ3CB7aYiRR1BdECfw2CCWYmn5Zg6U/ZsY+o+xnYqmmaLs16rmPFU0MQ8T2xYAwyLXtgqQLtZxSzO
-	lxlO0x97/HSGRseh+1yw==;
+	List-Owner; bh=0/dnJLwAa8ln/OO+/RSNh20/4zaRJ+jeu9j8tPFzICc=; b=Dz7QIxuID4DB4t
+	reugeAchKrpfJtG+vwFh9NfE1HOWREDddk7kUE36Lbf8KZOeAj0a0KmrYmabIiPVTd/Cwn39QRoyy
+	zHFhhsLGtgkFuWafhrjQKeErJgpFNLUVqS5mr4w0YY6FrzlNcchekJ0uhpNRdyIsL7fOeT/BW3FHJ
+	l7H8gAP8rR6fwIqGOn9DDjGSJXtDOjX16XTNTSBbpCWwbZixad3qH4OwxFx1G3WbJLWDT+7oOkH8y
+	l0lqVv+6ceFcP2QFyqSWiwKFsTFp+qeLygtfXdv3V3S6vCVZp5JEmSoPdjeQqaV62u+4qlmaXqoPi
+	hsQF569GGGt37ZdiYiRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rhV94-0000000DsxS-3z31;
-	Tue, 05 Mar 2024 13:47:50 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1rhcOj-0000000FKit-3tCp;
+	Tue, 05 Mar 2024 21:32:29 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rhV8z-0000000DssR-1Uxg;
-	Tue, 05 Mar 2024 13:47:48 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 4492B10000D;
-	Tue,  5 Mar 2024 16:47:38 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4492B10000D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1709646458;
-	bh=fcKXA9lISEMg682+/DBPrSA2kktQOMdU0ud7akHaBpk=;
-	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
-	b=mew/wGtcPW1yjR9vUouwfuKRMUg+JtvkzC4/2j5wsnQXzRLPwZmgrl0cUEQ3k/xE/
-	 CozZw8m7QSBItRa1G3ZgTkzGy0Ymcq81Ea023w2lx9UqH4dxLk23oTRC/BNp/wrPmO
-	 BaHRuPzJJ7Iuyn6pZ2pZmLBSwLZRh2wvUgf3Wgi0M03ffVAP2+o78/QzEpQ2gyoNo+
-	 JQl3fvzl0FSBJg+xKM7fOT6RpYd5JCf+G9dvXAgqX8G2Zg3yr8TCUYyAiD+IzHATW2
-	 3dpkEnPIJ0Lp6Q9NxSAlTGuAIuxC8iVvsQHQkSkAeE1DeXzH7mDD1pGYvOzcFSaBcU
-	 jUIyLIdAXPBrQ==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue,  5 Mar 2024 16:47:38 +0300 (MSK)
-Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 5 Mar 2024 16:47:37 +0300
-Received: from p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1]) by
- p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1%7]) with mapi id
- 15.02.1118.040; Tue, 5 Mar 2024 16:47:37 +0300
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"clabbe@baylibre.com" <clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
-	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
-	<khilman@baylibre.com>, "martin.blumenstingl@googlemail.com"
-	<martin.blumenstingl@googlemail.com>, "vadim.fedorenko@linux.dev"
-	<vadim.fedorenko@linux.dev>, "linux-crypto@vger.kernel.org"
-	<linux-crypto@vger.kernel.org>, "linux-amlogic@lists.infradead.org"
-	<linux-amlogic@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
-Subject: Re: [PATCH v5 03/21] drivers: crypto: meson: make CLK controller
- optional
-Thread-Topic: [PATCH v5 03/21] drivers: crypto: meson: make CLK controller
- optional
-Thread-Index: AQHaa9yRWJ/V2yQniEGD1LRIiVhVdrEizjUAgASdYgCAAZG9AA==
-Date: Tue, 5 Mar 2024 13:47:37 +0000
-Message-ID: <20240305134732.z6eyo4nppj7oc2su@cab-wsm-0029881.sigma.sbrf.ru>
-References: <20240301132936.621238-1-avromanov@salutedevices.com>
- <20240301132936.621238-4-avromanov@salutedevices.com>
- <1jwmqmrmva.fsf@starbuckisacylon.baylibre.com>
- <20240304134923.hk5xp5rs3itgw3pk@cab-wsm-0029881.sigma.sbrf.ru>
-In-Reply-To: <20240304134923.hk5xp5rs3itgw3pk@cab-wsm-0029881.sigma.sbrf.ru>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.18.93]
-Content-ID: <591DBD4D237CE74D9FE5610D447E944D@sberdevices.ru>
+	id 1rhcOh-0000000FKgo-3JxI
+	for linux-amlogic@lists.infradead.org;
+	Tue, 05 Mar 2024 21:32:29 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rhcOe-0006r5-NY; Tue, 05 Mar 2024 22:32:24 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rhcOe-004cmH-8i; Tue, 05 Mar 2024 22:32:24 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rhcOe-000ISx-0a;
+	Tue, 05 Mar 2024 22:32:24 +0100
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	kernel@pengutronix.de
+Subject: [PATCH 1/3] reset: meson-audio-arb: Convert to platform remove callback returning void
+Date: Tue,  5 Mar 2024 22:32:03 +0100
+Message-ID: <dbca07bad345abe7ca421515004987acf1cb41c2.1709674157.git.u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <cover.1709674157.git.u.kleine-koenig@pengutronix.de>
+References: <cover.1709674157.git.u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 183875 [Feb 29 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.3
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 19:21:00 #23899999
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2039; i=u.kleine-koenig@pengutronix.de; h=from:subject:message-id; bh=ax4ocmWgdyR2S0Rp27gdwmhqKLnCwEq0x6qra/psAgE=; b=owGbwMvMwMXY3/A7olbonx/jabUkhtTn/SExj8u8VgcX69yuiG7acTjXfv7ha9/s2ly/BNrt+ ayv57+uk9GYhYGRi0FWTJHFvnFNplWVXGTn2n+XYQaxMoFMYeDiFICJrHjHwbDzZGJ1H4fz3tww 07/p8iaGmksUnohsDZULuv8sXqmF/02k+4x9/mI3VBLbDxTczjiQnDpl+rJd34RWshfrHJT9Et9 ftKEnVL00+bBXY5n9qzam3nVaxo1MRSlLb1tI7++7ERSjyMZf+a5Y/ue8qRY7J941mbQ6c53e/r n5FjeaWt+zPN8yfZJRfvVZpe9/chVaOmdv9xcXfrrr2yePJ0yz3of88qiZ7Hz2T4pf7cLKXbJSf 1Y5HJzvHnOI56P/u+To1PT3qg8u7b2lX+x86yOX+mTu10K6SkLHHttGOtgH6ogrXxDLnLOJmbPR 6I+O8HFuji4D83wnw9umGyqkPIJDS9SvMhpv+FvsPakMAA==
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240305_054746_106436_4A6971C0 
-X-CRM114-Status: GOOD (  34.07  )
+X-CRM114-CacheID: sfid-20240305_133227_869640_4AA44C0F 
+X-CRM114-Status: GOOD (  15.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,111 +78,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Mar 04, 2024 at 01:49:46PM +0000, Alexey Romanov wrote:
-> Hello Jerome,
-> 
-> On Fri, Mar 01, 2024 at 04:21:20PM +0100, Jerome Brunet wrote:
-> > 
-> > On Fri 01 Mar 2024 at 16:29, Alexey Romanov <avromanov@salutedevices.com> wrote:
-> > 
-> > > Amlogic crypto IP doesn't take a clock input on some
-> > > SoCs: AXG / A1 / S4 / G12. So make it optional.
-> > >
-> > 
-> > I commented this patch on v2 and the comment keep on being un-addressed.
-> > 
-> > The SoC either:
-> > * has a clock that is required for the IP to work
-> > * Or does not
-> > 
-> > It is not something you are free to provide or not.
-> > 
-> > For the record, I find very hard believe that some SoC would have clock,
-> > and other would not, for the same HW.
-> > 
-> > Isn't it more likely that the clock just happens to be left enabled by
-> > the bootloader on some SoC and it conviently allows to ignore it ?
-> 
-> 
-> S905X and newer SoC's uses DMA engine for crypto HW and they
-> don't required clock input to work. Clock input is needed for
-> blkmv engine.
-> 
-> Therefore, I'm not sure that it is needed for GXL too (and the second
-> interrupt line). I tested it on vim1 board witouht them and everything
-> works correctly.
-
-Amlogic says that the crypto HW based on DMA engine doesn't require
-a clock input. GXL uses DMA engine, so, I think we have to remove
-whole clock controller calls in the next series from driver/dts/bindings.
-And the second interrupt line from crypto node in meson-gxl.dtsi too.
-
-> 
-> > 
-> > > Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
-> > > ---
-> > >  drivers/crypto/amlogic/amlogic-gxl-core.c | 14 +++-----------
-> > >  1 file changed, 3 insertions(+), 11 deletions(-)
-> > >
-> > > diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-> > > index e9e733ed98e0..a3a69a59f476 100644
-> > > --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
-> > > +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-> > > @@ -269,16 +269,11 @@ static int meson_crypto_probe(struct platform_device *pdev)
-> > >  		dev_err(&pdev->dev, "Cannot request MMIO err=%d\n", err);
-> > >  		return err;
-> > >  	}
-> > > -	mc->busclk = devm_clk_get(&pdev->dev, "blkmv");
-> > > +
-> > > +	mc->busclk = devm_clk_get_optional_enabled(&pdev->dev, "blkmv");
-> > >  	if (IS_ERR(mc->busclk)) {
-> > >  		err = PTR_ERR(mc->busclk);
-> > > -		dev_err(&pdev->dev, "Cannot get core clock err=%d\n", err);
-> > > -		return err;
-> > > -	}
-> > > -
-> > > -	err = clk_prepare_enable(mc->busclk);
-> > > -	if (err != 0) {
-> > > -		dev_err(&pdev->dev, "Cannot prepare_enable busclk\n");
-> > > +		dev_err(&pdev->dev, "Cannot get and enable core clock err=%d\n", err);
-> > >  		return err;
-> > >  	}
-> > >  
-> > > @@ -306,7 +301,6 @@ static int meson_crypto_probe(struct platform_device *pdev)
-> > >  	meson_unregister_algs(mc);
-> > >  error_flow:
-> > >  	meson_free_chanlist(mc, mc->flow_cnt - 1);
-> > > -	clk_disable_unprepare(mc->busclk);
-> > >  	return err;
-> > >  }
-> > >  
-> > > @@ -321,8 +315,6 @@ static void meson_crypto_remove(struct platform_device *pdev)
-> > >  	meson_unregister_algs(mc);
-> > >  
-> > >  	meson_free_chanlist(mc, mc->flow_cnt - 1);
-> > > -
-> > > -	clk_disable_unprepare(mc->busclk);
-> > >  }
-> > >  
-> > >  static const struct meson_pdata meson_gxl_pdata = {
-> > 
-> > 
-> > -- 
-> > Jerome
-> 
-> -- 
-> Thank you,
-> Alexey
-
--- 
-Thank you,
-Alexey
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhlIC5yZW1vdmUoKSBjYWxsYmFjayBmb3IgYSBwbGF0Zm9ybSBkcml2ZXIgcmV0dXJucyBhbiBp
+bnQgd2hpY2ggbWFrZXMKbWFueSBkcml2ZXIgYXV0aG9ycyB3cm9uZ2x5IGFzc3VtZSBpdCdzIHBv
+c3NpYmxlIHRvIGRvIGVycm9yIGhhbmRsaW5nIGJ5CnJldHVybmluZyBhbiBlcnJvciBjb2RlLiBI
+b3dldmVyIHRoZSB2YWx1ZSByZXR1cm5lZCBpcyBpZ25vcmVkIChhcGFydApmcm9tIGVtaXR0aW5n
+IGEgd2FybmluZykgYW5kIHRoaXMgdHlwaWNhbGx5IHJlc3VsdHMgaW4gcmVzb3VyY2UgbGVha3Mu
+CgpUbyBpbXByb3ZlIGhlcmUgdGhlcmUgaXMgYSBxdWVzdCB0byBtYWtlIHRoZSByZW1vdmUgY2Fs
+bGJhY2sgcmV0dXJuCnZvaWQuIEluIHRoZSBmaXJzdCBzdGVwIG9mIHRoaXMgcXVlc3QgYWxsIGRy
+aXZlcnMgYXJlIGNvbnZlcnRlZCB0bwoucmVtb3ZlX25ldygpLCB3aGljaCBhbHJlYWR5IHJldHVy
+bnMgdm9pZC4gRXZlbnR1YWxseSBhZnRlciBhbGwgZHJpdmVycwphcmUgY29udmVydGVkLCAucmVt
+b3ZlX25ldygpIHdpbGwgYmUgcmVuYW1lZCB0byAucmVtb3ZlKCkuCgpUcml2aWFsbHkgY29udmVy
+dCB0aGlzIGRyaXZlciBmcm9tIGFsd2F5cyByZXR1cm5pbmcgemVybyBpbiB0aGUgcmVtb3ZlCmNh
+bGxiYWNrIHRvIHRoZSB2b2lkIHJldHVybmluZyB2YXJpYW50LgoKU2lnbmVkLW9mZi1ieTogVXdl
+IEtsZWluZS1Lw7ZuaWcgPHUua2xlaW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZT4KLS0tCiBkcml2
+ZXJzL3Jlc2V0L3Jlc2V0LW1lc29uLWF1ZGlvLWFyYi5jIHwgNiArKy0tLS0KIDEgZmlsZSBjaGFu
+Z2VkLCAyIGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9yZXNldC9yZXNldC1tZXNvbi1hdWRpby1hcmIuYyBiL2RyaXZlcnMvcmVzZXQvcmVzZXQtbWVz
+b24tYXVkaW8tYXJiLmMKaW5kZXggNzg5MWQ1MmZhODk5Li44NzQwZjVmNmFiZjggMTAwNjQ0Ci0t
+LSBhL2RyaXZlcnMvcmVzZXQvcmVzZXQtbWVzb24tYXVkaW8tYXJiLmMKKysrIGIvZHJpdmVycy9y
+ZXNldC9yZXNldC1tZXNvbi1hdWRpby1hcmIuYwpAQCAtMTIwLDcgKzEyMCw3IEBAIHN0YXRpYyBj
+b25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkIG1lc29uX2F1ZGlvX2FyYl9vZl9tYXRjaFtdID0gewog
+fTsKIE1PRFVMRV9ERVZJQ0VfVEFCTEUob2YsIG1lc29uX2F1ZGlvX2FyYl9vZl9tYXRjaCk7CiAK
+LXN0YXRpYyBpbnQgbWVzb25fYXVkaW9fYXJiX3JlbW92ZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNl
+ICpwZGV2KQorc3RhdGljIHZvaWQgbWVzb25fYXVkaW9fYXJiX3JlbW92ZShzdHJ1Y3QgcGxhdGZv
+cm1fZGV2aWNlICpwZGV2KQogewogCXN0cnVjdCBtZXNvbl9hdWRpb19hcmJfZGF0YSAqYXJiID0g
+cGxhdGZvcm1fZ2V0X2RydmRhdGEocGRldik7CiAKQEAgLTEzMCw4ICsxMzAsNiBAQCBzdGF0aWMg
+aW50IG1lc29uX2F1ZGlvX2FyYl9yZW1vdmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikK
+IAlzcGluX3VubG9jaygmYXJiLT5sb2NrKTsKIAogCWNsa19kaXNhYmxlX3VucHJlcGFyZShhcmIt
+PmNsayk7Ci0KLQlyZXR1cm4gMDsKIH0KIAogc3RhdGljIGludCBtZXNvbl9hdWRpb19hcmJfcHJv
+YmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKQEAgLTE4OSw3ICsxODcsNyBAQCBzdGF0
+aWMgaW50IG1lc29uX2F1ZGlvX2FyYl9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2
+KQogCiBzdGF0aWMgc3RydWN0IHBsYXRmb3JtX2RyaXZlciBtZXNvbl9hdWRpb19hcmJfcGRydiA9
+IHsKIAkucHJvYmUgPSBtZXNvbl9hdWRpb19hcmJfcHJvYmUsCi0JLnJlbW92ZSA9IG1lc29uX2F1
+ZGlvX2FyYl9yZW1vdmUsCisJLnJlbW92ZV9uZXcgPSBtZXNvbl9hdWRpb19hcmJfcmVtb3ZlLAog
+CS5kcml2ZXIgPSB7CiAJCS5uYW1lID0gIm1lc29uLWF1ZGlvLWFyYi1yZXNldCIsCiAJCS5vZl9t
+YXRjaF90YWJsZSA9IG1lc29uX2F1ZGlvX2FyYl9vZl9tYXRjaCwKLS0gCjIuNDMuMAoKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMg
+bWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
+dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
