@@ -4,75 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13B2BC54E55
-	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Mar 2024 03:09:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5416DC48BF6
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2024 12:29:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=x19jOD2lzaJ3l//bn3sYyLFf4U6fgIlijx7df2BnWTU=; b=uumLzJ6PPC33j+
-	FM4ae17WSpagM2q6KnAQmf/zjYbXkGcVtVwlQQaAnHLl4kZN/YFCinXgrEi43vDtLHkL1br2ZvkoT
-	n5IrQxtzMzKb7HKZ8IrV27u19mZlI8PyfLKCRqsKq7lgy/NSbYrEknEelBOxKfUKhq/lHZJVBOMtH
-	Oh/nasB4XsU2ORWiwgDpeYGPnv2P2eYjHzBwL9C9czKdRqVXk1zRswFs4D1SWqw8aKc+JpeMIvKs2
-	vCEumhhGq+z2I1UgSw/AD1ax9ckWUVDnHSLPceKPmtG63YoJ66N/jITxCO/vVmnlcOIQQcfFDNT0v
-	mZB5D4Qham7vCjL8cJaQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=VV27dExVkRscanohnjPb/apzjlTGfLly1CXbHGVl+W4=; b=1wpx4YqWhjfPxO
+	VpOjBvaIUd6Tp55jtK+xVNrVOAZNoI6K1imdEhI200uV1eRbRM5YM3s2AQRzvW7xNvOYy/6IO9XTJ
+	KFa2jjy3/wB634QmF+qzsjk9onaQulZM9ecCEk0S3nmbziBq6xxEnK5ZXpaJsVWMQU9VYqUiVeKKr
+	iMsoC4Wdu8/VpjlxRhsEYQyLsDSmg5JhLd8UoagKcGGZculsMZFZ68WN1UE7OSftcKlNRtHAjpjE/
+	k9I3VXVdUcOGRJSHWRzfG4kmh/2Mb96ZfA4VZw9nAcNOqlDMS5hA1OmK98m9shjUx+1o4pHgKN7pu
+	DImMeSa39DOzMax+GZ1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rhheZ-0000000G5w3-3SRn;
-	Wed, 06 Mar 2024 03:09:11 +0000
-Received: from madrid.collaboradmins.com ([46.235.227.194])
+	id 1riCri-00000004YzG-1cpP;
+	Thu, 07 Mar 2024 12:28:50 +0000
+Received: from mgamail.intel.com ([192.198.163.17])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rhhe7-0000000G5a6-1WId;
-	Wed, 06 Mar 2024 03:09:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1709694521;
-	bh=3BkW4+8RNznPg6meUhhBDbwnnX1CBhl5Rcgu7Am9+s0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=C+1Sum/bqROLqploRnozFIM75LgacpvQGO0AnWA/NVqgehCj2MKL2c539iZAzkBaY
-	 dNikF6i1kqmzTaaMpNlyysoy2tR46okcjfot+svf0khLi4r0plPkI5jqq0XfHtDN2s
-	 3V4TpKkZ2FFLCIdpLghISk8vvG0P10orwDrmeODOAew/6ogtiBVQi42ACACHQOum8F
-	 7fNRWkd2nNE/Bv87yk6LkUHlQbgjA7MeCln2CugWAEXPR4yr5/X79YZUPiJfZHIxkG
-	 2WoCRl9uIfbb3br77ESJ7whP2fGSScRiNq4t5ev+/rbSeUySQj1Grm6xeRB+dn50op
-	 dtnAL/12QWZJA==
-Received: from localhost.localdomain (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: vignesh)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 79AC33780624;
-	Wed,  6 Mar 2024 03:08:37 +0000 (UTC)
-From: Vignesh Raman <vignesh.raman@collabora.com>
-To: dri-devel@lists.freedesktop.org
-Cc: daniels@collabora.com,
-	helen.koike@collabora.com,
-	airlied@gmail.com,
-	daniel@ffwll.ch,
-	emma@anholt.net,
-	robdclark@gmail.com,
-	david.heidelberg@collabora.com,
-	guilherme.gallo@collabora.com,
-	sergi.blanch.torne@collabora.com,
-	hamohammed.sa@gmail.com,
-	rodrigosiqueiramelo@gmail.com,
-	melissa.srw@gmail.com,
-	mairacanal@riseup.net,
-	mcanal@igalia.com,
-	linux-mediatek@lists.infradead.org,
+	id 1riCrg-00000004Yym-17F6;
+	Thu, 07 Mar 2024 12:28:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1709814528; x=1741350528;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ncGrkL1Poc17x6w99wp3LaEIvCJcHSAVTqunJKRqhHg=;
+  b=a7ktdYbjlvgECMggOjKaQqEZddIgF7dVYrB8QQHP6LGg5Uafrg3ZvrUj
+   RhYPwiz6zURNQo/mvAhelcuk2Om4yNx1EDWpe8p2rNMkc/7GEhoq1+uoD
+   7SJPz6cwVDkw4V7B996kChv+bl/OUwGh2c5hvXlwDi6wd3WvG6cdQZqRF
+   ltS5d+zz6v6uCvmT9lw/V5wEpWVQvP5YGqVD6WlYq59HgXZ/y+bbFeeBf
+   vhEF09a1/ZJBq6utbKjekEJDzt6DRY3P+YPXWGhk+gNZWhS+5ogReE3ni
+   7kAKENpx/nJ10xmRJr1QhnuJbKzMBMFlr+oNvNKYIpEoMpF1OR43tPnE4
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="4343557"
+X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; 
+   d="scan'208";a="4343557"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2024 04:28:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="937046005"
+X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; 
+   d="scan'208";a="937046005"
+Received: from black.fi.intel.com ([10.237.72.28])
+  by fmsmga001.fm.intel.com with ESMTP; 07 Mar 2024 04:28:42 -0800
+Received: by black.fi.intel.com (Postfix, from userid 1003)
+	id 5C932193; Thu,  7 Mar 2024 14:28:41 +0200 (EET)
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	linux-omap@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
 	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 11/11] drm/ci: add tests on vkms
-Date: Wed,  6 Mar 2024 08:36:49 +0530
-Message-Id: <20240306030649.60269-12-vignesh.raman@collabora.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240306030649.60269-1-vignesh.raman@collabora.com>
-References: <20240306030649.60269-1-vignesh.raman@collabora.com>
+	linux-arm-msm@vger.kernel.org,
+	linux-tegra@vger.kernel.org
+Cc: Vignesh Raghavendra <vigneshr@ti.com>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Yue Wang <yue.wang@Amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v1 1/1] PCI: dwc: Remove unused of_gpio.h
+Date: Thu,  7 Mar 2024 14:28:40 +0200
+Message-ID: <20240307122840.3682287-1-andriy.shevchenko@linux.intel.com>
+X-Mailer: git-send-email 2.43.0.rc1.1.gbec44491f096
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240305_190844_451820_7CFC35C8 
-X-CRM114-Status: GOOD (  17.71  )
+X-CRM114-CacheID: sfid-20240307_042848_340166_FB99DD14 
+X-CRM114-Status: UNSURE (   9.95  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,263 +103,75 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add job that runs igt on top of vkms.
+of_gpio.h is deprecated and subject to remove.
+The driver doesn't use it, simply remove the unused header.
 
-Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-Acked-by: Jessica Zhang <quic_jesszhan@quicinc.com>
-Tested-by: Jessica Zhang <quic_jesszhan@quicinc.com>
-Acked-by: Maxime Ripard <mripard@kernel.org>
-Signed-off-by: Helen Koike <helen.koike@collabora.com>
+Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
+ drivers/pci/controller/dwc/pci-dra7xx.c    | 1 -
+ drivers/pci/controller/dwc/pci-meson.c     | 1 -
+ drivers/pci/controller/dwc/pcie-qcom.c     | 1 -
+ drivers/pci/controller/dwc/pcie-tegra194.c | 2 --
+ 4 files changed, 5 deletions(-)
 
-v4:
-  - New patch in the series.
-    https://lore.kernel.org/lkml/20240201065346.801038-1-vignesh.raman@collabora.com/
-
----
- MAINTAINERS                                   |  2 ++
- drivers/gpu/drm/ci/build.sh                   |  1 -
- drivers/gpu/drm/ci/gitlab-ci.yml              |  3 +-
- drivers/gpu/drm/ci/igt_runner.sh              |  6 ++--
- drivers/gpu/drm/ci/image-tags.yml             |  2 +-
- drivers/gpu/drm/ci/test.yml                   | 24 +++++++++++++-
- drivers/gpu/drm/ci/x86_64.config              |  1 +
- .../drm/ci/xfails/virtio_gpu-none-fails.txt   |  1 -
- drivers/gpu/drm/ci/xfails/vkms-none-fails.txt | 33 +++++++++++++++++++
- .../gpu/drm/ci/xfails/vkms-none-flakes.txt    | 20 +++++++++++
- drivers/gpu/drm/ci/xfails/vkms-none-skips.txt | 16 +++++++++
- 11 files changed, 101 insertions(+), 8 deletions(-)
- create mode 100644 drivers/gpu/drm/ci/xfails/vkms-none-fails.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/vkms-none-flakes.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/vkms-none-skips.txt
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 264b23108847..c38d2555cedc 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6964,6 +6964,8 @@ L:	dri-devel@lists.freedesktop.org
- S:	Maintained
- T:	git git://anongit.freedesktop.org/drm/drm-misc
- F:	Documentation/gpu/vkms.rst
-+F:	drivers/gpu/drm/ci/testlist.txt
-+F:	drivers/gpu/drm/ci/xfails/vkms*
- F:	drivers/gpu/drm/vkms/
- 
- DRM DRIVER FOR VIRTUALBOX VIRTUAL GPU
-diff --git a/drivers/gpu/drm/ci/build.sh b/drivers/gpu/drm/ci/build.sh
-index 106f2d40d222..4342872de45f 100644
---- a/drivers/gpu/drm/ci/build.sh
-+++ b/drivers/gpu/drm/ci/build.sh
-@@ -155,7 +155,6 @@ fi
- 
- mkdir -p artifacts/install/lib
- mv install/* artifacts/install/.
--rm -rf artifacts/install/modules
- ln -s common artifacts/install/ci-common
- cp .config artifacts/${CI_JOB_NAME}_config
- 
-diff --git a/drivers/gpu/drm/ci/gitlab-ci.yml b/drivers/gpu/drm/ci/gitlab-ci.yml
-index 9dae74465ce1..b98e56170561 100644
---- a/drivers/gpu/drm/ci/gitlab-ci.yml
-+++ b/drivers/gpu/drm/ci/gitlab-ci.yml
-@@ -110,6 +110,7 @@ stages:
-   - panfrost
-   - powervr
-   - virtio-gpu
-+  - software-driver
- 
- # YAML anchors for rule conditions
- # --------------------------------
-@@ -264,4 +265,4 @@ sanity:
- 
- # Jobs that need to pass before spending hardware resources on further testing
- .required-for-hardware-jobs:
--  needs: []
-\ No newline at end of file
-+  needs: []
-diff --git a/drivers/gpu/drm/ci/igt_runner.sh b/drivers/gpu/drm/ci/igt_runner.sh
-index 711f32772e48..81f66f1687a4 100755
---- a/drivers/gpu/drm/ci/igt_runner.sh
-+++ b/drivers/gpu/drm/ci/igt_runner.sh
-@@ -20,10 +20,10 @@ cat /sys/kernel/debug/dri/*/state
- set -e
- 
- case "$DRIVER_NAME" in
--    amdgpu)
-+    amdgpu|vkms)
-         # Cannot use HWCI_KERNEL_MODULES as at that point we don't have the module in /lib
--        mv /install/modules/lib/modules/* /lib/modules/.
--        modprobe amdgpu
-+        mv /install/modules/lib/modules/* /lib/modules/. || true
-+        modprobe --first-time $DRIVER_NAME
-         ;;
- esac
- 
-diff --git a/drivers/gpu/drm/ci/image-tags.yml b/drivers/gpu/drm/ci/image-tags.yml
-index cf07c3e09b8c..bf861ab8b9c2 100644
---- a/drivers/gpu/drm/ci/image-tags.yml
-+++ b/drivers/gpu/drm/ci/image-tags.yml
-@@ -4,7 +4,7 @@ variables:
-    DEBIAN_BASE_TAG: "${CONTAINER_TAG}"
- 
-    DEBIAN_X86_64_BUILD_IMAGE_PATH: "debian/x86_64_build"
--   DEBIAN_BUILD_TAG: "2023-10-08-config"
-+   DEBIAN_BUILD_TAG: "2024-01-29-vkms"
- 
-    KERNEL_ROOTFS_TAG: "2023-10-06-amd"
-    PKG_REPO_REV: "67f2c46b"
-diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
-index ac8e974723a5..f517f8ee248e 100644
---- a/drivers/gpu/drm/ci/test.yml
-+++ b/drivers/gpu/drm/ci/test.yml
-@@ -407,7 +407,7 @@ panfrost:g12b:
-     DRIVER_NAME: panfrost
- 
- virtio_gpu:none:
--  stage: virtio-gpu
-+  stage: software-driver
-   variables:
-     CROSVM_GALLIUM_DRIVER: llvmpipe
-     DRIVER_NAME: virtio_gpu
-@@ -427,3 +427,25 @@ virtio_gpu:none:
-     - debian/x86_64_test-gl
-     - testing:x86_64
-     - igt:x86_64
-+
-+vkms:none:
-+  stage: software-driver
-+  variables:
-+    DRIVER_NAME: vkms
-+    GPU_VERSION: none
-+  extends:
-+    - .test-gl
-+    - .test-rules
-+  tags:
-+    - kvm
-+  script:
-+    - ln -sf $CI_PROJECT_DIR/install /install
-+    - mv install/bzImage /lava-files/bzImage
-+    - mkdir -p /lib/modules
-+    - mkdir -p $CI_PROJECT_DIR/results
-+    - ln -sf $CI_PROJECT_DIR/results /results
-+    - ./install/crosvm-runner.sh ./install/igt_runner.sh
-+  needs:
-+    - debian/x86_64_test-gl
-+    - testing:x86_64
-+    - igt:x86_64
-diff --git a/drivers/gpu/drm/ci/x86_64.config b/drivers/gpu/drm/ci/x86_64.config
-index 1cbd49a5b23a..8eaba388b141 100644
---- a/drivers/gpu/drm/ci/x86_64.config
-+++ b/drivers/gpu/drm/ci/x86_64.config
-@@ -24,6 +24,7 @@ CONFIG_DRM=y
- CONFIG_DRM_PANEL_SIMPLE=y
- CONFIG_PWM_CROS_EC=y
- CONFIG_BACKLIGHT_PWM=y
-+CONFIG_DRM_VKMS=m
- 
- # Strip out some stuff we don't need for graphics testing, to reduce
- # the build.
-diff --git a/drivers/gpu/drm/ci/xfails/virtio_gpu-none-fails.txt b/drivers/gpu/drm/ci/xfails/virtio_gpu-none-fails.txt
-index 007f21e56d89..f82d437909b5 100644
---- a/drivers/gpu/drm/ci/xfails/virtio_gpu-none-fails.txt
-+++ b/drivers/gpu/drm/ci/xfails/virtio_gpu-none-fails.txt
-@@ -41,7 +41,6 @@ kms_flip@flip-vs-absolute-wf_vblank,Fail
- kms_flip@flip-vs-absolute-wf_vblank-interruptible,Fail
- kms_flip@flip-vs-blocking-wf-vblank,Fail
- kms_flip@flip-vs-expired-vblank,Fail
--kms_flip@flip-vs-expired-vblank-interruptible,Fail
- kms_flip@flip-vs-modeset-vs-hang,Fail
- kms_flip@flip-vs-panning-vs-hang,Fail
- kms_flip@flip-vs-wf_vblank-interruptible,Fail
-diff --git a/drivers/gpu/drm/ci/xfails/vkms-none-fails.txt b/drivers/gpu/drm/ci/xfails/vkms-none-fails.txt
-new file mode 100644
-index 000000000000..ef6101d2c356
---- /dev/null
-+++ b/drivers/gpu/drm/ci/xfails/vkms-none-fails.txt
-@@ -0,0 +1,33 @@
-+kms_cursor_crc@cursor-rapid-movement-128x128,Fail
-+kms_cursor_crc@cursor-rapid-movement-128x42,Fail
-+kms_cursor_crc@cursor-rapid-movement-256x256,Fail
-+kms_cursor_crc@cursor-rapid-movement-256x85,Fail
-+kms_cursor_crc@cursor-rapid-movement-32x10,Fail
-+kms_cursor_crc@cursor-rapid-movement-32x32,Fail
-+kms_cursor_crc@cursor-rapid-movement-512x170,Fail
-+kms_cursor_crc@cursor-rapid-movement-512x512,Fail
-+kms_cursor_crc@cursor-rapid-movement-64x21,Fail
-+kms_cursor_crc@cursor-rapid-movement-64x64,Fail
-+kms_cursor_legacy@basic-flip-before-cursor-atomic,Fail
-+kms_cursor_legacy@basic-flip-before-cursor-legacy,Fail
-+kms_cursor_legacy@cursor-vs-flip-atomic,Fail
-+kms_cursor_legacy@cursor-vs-flip-legacy,Fail
-+kms_cursor_legacy@cursor-vs-flip-toggle,Fail
-+kms_cursor_legacy@cursor-vs-flip-varying-size,Fail
-+kms_cursor_legacy@flip-vs-cursor-atomic,Fail
-+kms_cursor_legacy@flip-vs-cursor-crc-atomic,Fail
-+kms_cursor_legacy@flip-vs-cursor-crc-legacy,Fail
-+kms_cursor_legacy@flip-vs-cursor-legacy,Fail
-+kms_flip@flip-vs-modeset-vs-hang,Fail
-+kms_flip@flip-vs-panning-vs-hang,Fail
-+kms_pipe_crc_basic@nonblocking-crc,Fail
-+kms_pipe_crc_basic@nonblocking-crc-frame-sequence,Fail
-+kms_pipe_crc_basic@suspend-read-crc,Fail
-+kms_plane@plane-panning-bottom-right-suspend,Fail
-+kms_universal_plane@universal-plane-pipe-A-sanity,Fail
-+kms_universal_plane@universal-plane-sanity,Fail
-+kms_vblank@pipe-A-ts-continuation-dpms-suspend,Fail
-+kms_writeback@writeback-check-output,Fail
-+kms_writeback@writeback-fb-id,Fail
-+kms_writeback@writeback-invalid-parameters,Fail
-+kms_writeback@writeback-pixel-formats,Fail
-diff --git a/drivers/gpu/drm/ci/xfails/vkms-none-flakes.txt b/drivers/gpu/drm/ci/xfails/vkms-none-flakes.txt
-new file mode 100644
-index 000000000000..7b52dab45457
---- /dev/null
-+++ b/drivers/gpu/drm/ci/xfails/vkms-none-flakes.txt
-@@ -0,0 +1,20 @@
-+# Board Name: vkms
-+# Bug Report: https://lore.kernel.org/dri-devel/005da8f1-8050-bffd-653c-2a87ae6376f7@collabora.com/T/#u
-+# IGT Version: 1.28-gb0cc8160e
-+# Linux Version: 6.7.0-rc3
-+# Failure Rate: 50
-+
-+# Reported by deqp-runner
-+kms_cursor_legacy@cursorA-vs-flipA-legacy
-+kms_cursor_legacy@cursorA-vs-flipA-varying-size
-+kms_flip@flip-vs-expired-vblank-interruptible
-+kms_flip@flip-vs-expired-vblank
-+kms_flip@plain-flip-fb-recreate
-+kms_flip@plain-flip-fb-recreate-interruptible
-+kms_flip@plain-flip-ts-check-interruptible
-+
-+# The below test shows inconsistency across multiple runs,
-+# giving results of Pass and Fail alternately.
-+kms_cursor_legacy@cursorA-vs-flipA-toggle
-+kms_pipe_crc_basic@nonblocking-crc
-+kms_flip@plain-flip-ts-check
-diff --git a/drivers/gpu/drm/ci/xfails/vkms-none-skips.txt b/drivers/gpu/drm/ci/xfails/vkms-none-skips.txt
-new file mode 100644
-index 000000000000..524e7972c75a
---- /dev/null
-+++ b/drivers/gpu/drm/ci/xfails/vkms-none-skips.txt
-@@ -0,0 +1,16 @@
-+# Hits:
-+# rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
-+# rcu: 	Tasks blocked on level-0 rcu_node (CPUs 0-1): P749/1:b..l
-+kms_prop_blob@invalid-get-prop
-+
-+# keeps printing vkms_vblank_simulate: vblank timer overrun and never ends
-+kms_invalid_mode@int-max-clock
-+
-+# Suspend seems to be broken
-+.*suspend.*
-+
-+# Hangs machine and timeout occurs
-+kms_flip@flip-vs-absolute-wf_vblank-interruptible
-+kms_invalid_mode@zero-hdisplay
-+kms_invalid_mode@bad-vtotal
-+kms_cursor_crc.*
+diff --git a/drivers/pci/controller/dwc/pci-dra7xx.c b/drivers/pci/controller/dwc/pci-dra7xx.c
+index 0e406677060d..f6d2ba42958b 100644
+--- a/drivers/pci/controller/dwc/pci-dra7xx.c
++++ b/drivers/pci/controller/dwc/pci-dra7xx.c
+@@ -17,7 +17,6 @@
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
+-#include <linux/of_gpio.h>
+ #include <linux/of_pci.h>
+ #include <linux/pci.h>
+ #include <linux/phy/phy.h>
+diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+index 6477c83262c2..db9482a113e9 100644
+--- a/drivers/pci/controller/dwc/pci-meson.c
++++ b/drivers/pci/controller/dwc/pci-meson.c
+@@ -9,7 +9,6 @@
+ #include <linux/clk.h>
+ #include <linux/delay.h>
+ #include <linux/gpio/consumer.h>
+-#include <linux/of_gpio.h>
+ #include <linux/pci.h>
+ #include <linux/platform_device.h>
+ #include <linux/reset.h>
+diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+index 2ce2a3bd932b..0084a3390040 100644
+--- a/drivers/pci/controller/dwc/pcie-qcom.c
++++ b/drivers/pci/controller/dwc/pcie-qcom.c
+@@ -20,7 +20,6 @@
+ #include <linux/kernel.h>
+ #include <linux/init.h>
+ #include <linux/of.h>
+-#include <linux/of_gpio.h>
+ #include <linux/pci.h>
+ #include <linux/pm_runtime.h>
+ #include <linux/platform_device.h>
+diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
+index 1f7b662cb8e1..633d8dc50339 100644
+--- a/drivers/pci/controller/dwc/pcie-tegra194.c
++++ b/drivers/pci/controller/dwc/pcie-tegra194.c
+@@ -13,7 +13,6 @@
+ #include <linux/clk.h>
+ #include <linux/debugfs.h>
+ #include <linux/delay.h>
+-#include <linux/gpio.h>
+ #include <linux/gpio/consumer.h>
+ #include <linux/interconnect.h>
+ #include <linux/interrupt.h>
+@@ -21,7 +20,6 @@
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
+-#include <linux/of_gpio.h>
+ #include <linux/of_pci.h>
+ #include <linux/pci.h>
+ #include <linux/phy/phy.h>
 -- 
-2.40.1
+2.43.0.rc1.1.gbec44491f096
 
 
 _______________________________________________
