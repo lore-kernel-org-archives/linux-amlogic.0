@@ -4,59 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAB87C54E4A
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Mar 2024 12:09:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68D28C54E4A
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Mar 2024 17:11:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8Zbj7qMK4HDPEjlR4k+gGoCiOCu1bFKPnRiNALyWhGI=; b=FseXMWWktwJJR6
-	wDGig9cFVTeRVtPwg9AkvG31EyDow2E6Kp4MDhEPMmNNbK9kbW1I1EuqVB/N4iO17m9Z8PPNtyCEB
-	w9QEgrrm2rgms7maLXSv3SeCJ3B39wVLpqMpWXC73HvUJVcxibowH5N2/rvPQTP80k0JZpRwf+Ifp
-	0U0HNOqihycXfsuKt/nda8NpnsGKtyW/Vu3Iit1Q31rxSDP1R2in75wXLgdLar8OZMppBjkZNhbgz
-	MTGAvrYkFpl9Vsq7POEb+VH26R45os5ooAiJeqPdvRNg1CKGGBZS8CxAF5bc6ApyIHTHebmzANqIk
-	93NyCdALBFt48jmHu+qw==;
+	List-Owner; bh=lpZLHK/JtEtll7cRQ5HErvzGlawiDNBU75KgUbtrykc=; b=epCSqNrYN1qIJY
+	GX5gpLMSNTyNm3AU7C2R7tL3JJspTGaIgVKydNps+eVqMqQnatTNMl7u9FaZ0eY/FLPLZyL/Ku3Au
+	CWgKtlmnPNmmCdpQ7RyG918UFaZhe8va8go4vjV+E2ZagaRIRqdJPiyXiIybXmW3QwThdoG0RWyMa
+	O28IlzWZXD4iaeN0qIo8WUwuGDZlXNfkhSz2LD6p3dPnQZG73iDVlf7ofsbV3VftSwNYuZi3WQi1z
+	Cg7Wvm7uFNLHvanjCgEqTNDiIFEu0loncGVxLOQHnuE7neoB54ksXIvty9Fn8JDHf72woQaocgfNz
+	RLKTFM2SY+uFlLnGGpFQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1riZ2l-000000094R2-2oAR;
-	Fri, 08 Mar 2024 12:09:43 +0000
-Received: from mgamail.intel.com ([192.198.163.7])
+	id 1ridkE-0000000APIr-0b0t;
+	Fri, 08 Mar 2024 17:10:54 +0000
+Received: from mail-pj1-x1031.google.com ([2607:f8b0:4864:20::1031])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1riZ2i-000000094Q8-1IBL;
-	Fri, 08 Mar 2024 12:09:41 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1709899780; x=1741435780;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=47pcurjwzPpbUDu63TliTFtfRuG+YF86mZd6kUPfo2M=;
-  b=jEhNVMavc0roGY3VdK43lGFzo7DKjb2ByqZdI/ilOz93VskkGSOZEQOH
-   q+voLdzuJMQDcWAJ4KK8OQgzHopwM3xldNUhFSWf1VUaR0DAUHaw7Usk/
-   yBbN4RUGebvL1WG/j61qi6xp0WweUKDVOIcTZwJupaUfsmYNRhXqKKd0o
-   tce+RfbrsyT9rePWM4fxBFdxMciBmZCyhh93bxwKJfP4n9RuGaV82J0cH
-   Sm4WYB3AxYYvRqQtsKnim2diBCk6MJ3FzBvbOdgdNCkJ7/KLUaBQHuP+T
-   5VK6+1Juk7tKTVfwTiyvDg1NIJWX89Wi0JPkzScbP6pNmnOXwOY1QwXOh
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="30058158"
-X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; 
-   d="scan'208";a="30058158"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2024 04:09:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="914244912"
-X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; 
-   d="scan'208";a="914244912"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2024 04:09:28 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1riZ2T-0000000Apo3-2KVa;
-	Fri, 08 Mar 2024 14:09:25 +0200
-Date: Fri, 8 Mar 2024 14:09:25 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+	id 1ridk9-0000000APEQ-0jhb
+	for linux-amlogic@lists.infradead.org;
+	Fri, 08 Mar 2024 17:10:52 +0000
+Received: by mail-pj1-x1031.google.com with SMTP id 98e67ed59e1d1-29bb557cb05so514913a91.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 08 Mar 2024 09:10:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709917842; x=1710522642; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=w2kWEuzgRtKwEAwMhmmNmodaPq/DI7wxcR5vXLJ04Wo=;
+        b=jcB3olB/BD77o34D8Is8k8CisE8wchnnmeDyqWhB0/rAI0F4ddNZq64Qr/EPOyJI60
+         4u2y00kZVsZLXRG7gvGTYo51YKLpwKyF7P7MNI7jcGMvkgSFEn06oV324SAKs0ceZEyt
+         jDN8cuhq18N8l5tL/jcDDFcYL7MR9FNeiX8rhHzdFlZWvBcU07ZfYYTzoWe4B3YbAUCX
+         G3gCK8IiHStOW7B+EnNcqDEfWVcGvd/bd+/vTasV6lRfzRpNX6bjojqmA/iSjxRpavYV
+         Wkn/W2YIXetvXrA/EAUp0QK0s8neVzULchTyHnm6cZ2x8rKIUZryHUVI+9xAeaUjIptX
+         F8OA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709917842; x=1710522642;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=w2kWEuzgRtKwEAwMhmmNmodaPq/DI7wxcR5vXLJ04Wo=;
+        b=gEuofO5ms2nLzTmJmBneZdQ2GJ0FHEU/DDXvTZUoMvtorLTehgii4MfNEbusQ4jOl5
+         0WKBkGBnKo2C41sZtAtzAxHN1jGwE66WDuJGCIN6/klX7JAjEqQz3nikzkPiB+Sqxmez
+         jyrF+nQtMhAy7Ttjq2EBFY3NDqFlgQj1LST3j7YZnK1B2rD7q0zCTd3EYRRy0CCKaHr6
+         wUR+qzt2FRIlPGaVA7JQGsp1jmiLFRHQEeWZMn5pqTDIn1gaxYS2tCQApUnsn44kF0Uw
+         g/iavpO89NJyuIPdAQ/5VO+HCS72tUc5/CpAW1Mlb4M3fbcK1FCgtbx2KvhmgRspw8OB
+         SUOw==
+X-Forwarded-Encrypted: i=1; AJvYcCV0urjnb8vIDjDDqggVHfv+veM+YCfsjgkSnKxe2ZxHiQpZLRU8yuBtZhP7iaZy32MigsMjSKE0dhD5aX4UXnaBUvWZkr7TzKbHRjuHk1UtBR4=
+X-Gm-Message-State: AOJu0Yy7sDTP7//TmBg73fGz/CI37reB3ZJcjN4wJmLDJh8RONZ1Qn0L
+	pO8j9/HNmnZ9D902bwPEaDrL3lw1ls4VnLGjHmcNpgADd1Bqhg5W8avrCtVkvQ==
+X-Google-Smtp-Source: AGHT+IFZZccyoD4Rjms9sGylhl/6bi13hc3TIZoTOmk5GJOEjCrpAwbGuEHC37AMF3es6hymzRJPLA==
+X-Received: by 2002:a17:90b:318:b0:29b:b6bb:17ba with SMTP id ay24-20020a17090b031800b0029bb6bb17bamr567988pjb.46.1709917841853;
+        Fri, 08 Mar 2024 09:10:41 -0800 (PST)
+Received: from thinkpad ([117.217.183.232])
+        by smtp.gmail.com with ESMTPSA id k61-20020a17090a3ec300b0029ba1b5a692sm2470187pjc.12.2024.03.08.09.10.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Mar 2024 09:10:41 -0800 (PST)
+Date: Fri, 8 Mar 2024 22:40:29 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Cc: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
 	Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
@@ -76,16 +85,16 @@ Cc: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
 	Thierry Reding <thierry.reding@gmail.com>,
 	Jonathan Hunter <jonathanh@nvidia.com>
 Subject: Re: [PATCH v1 1/1] PCI: dwc: Remove unused of_gpio.h
-Message-ID: <Zer_9VTVJqCNoOFG@smile.fi.intel.com>
+Message-ID: <20240308171029.GB53064@thinkpad>
 References: <20240307122840.3682287-1-andriy.shevchenko@linux.intel.com>
  <20240308095547.GI3789@thinkpad>
+ <Zer_9VTVJqCNoOFG@smile.fi.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20240308095547.GI3789@thinkpad>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <Zer_9VTVJqCNoOFG@smile.fi.intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240308_040940_460187_9E0A5C49 
-X-CRM114-Status: GOOD (  14.48  )
+X-CRM114-CacheID: sfid-20240308_091049_428918_1AD4F7B9 
+X-CRM114-Status: GOOD (  21.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,44 +106,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Mar 08, 2024 at 03:25:47PM +0530, Manivannan Sadhasivam wrote:
-> On Thu, Mar 07, 2024 at 02:28:40PM +0200, Andy Shevchenko wrote:
-> > of_gpio.h is deprecated and subject to remove.
-> > The driver doesn't use it, simply remove the unused header.
-
-> What about the rest?
-> 
-> drivers/pci/controller/dwc/pcie-kirin.c
-> drivers/pci/controller/dwc/pci-imx6.c
-
-Have you chance to look at them?
-
-> There is also one non-dwc driver:
-> 
-> drivers/pci/controller/pci-aardvark.c
-
-Keyword: non-dwc.
-This patch is for DesignWare controllers that confirmed not using the header.
-
-> It is better to remove it from all PCI drivers in a single patch.
-
-I disagree on this. These are different drivers and even inside DesignWare not
-all of them can be converted with a simple change like this one.
-
-That said, please consider applying this one as is.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gRnJpLCBNYXIgMDgsIDIwMjQgYXQgMDI6MDk6MjVQTSArMDIwMCwgQW5keSBTaGV2Y2hlbmtv
+IHdyb3RlOgo+IE9uIEZyaSwgTWFyIDA4LCAyMDI0IGF0IDAzOjI1OjQ3UE0gKzA1MzAsIE1hbml2
+YW5uYW4gU2FkaGFzaXZhbSB3cm90ZToKPiA+IE9uIFRodSwgTWFyIDA3LCAyMDI0IGF0IDAyOjI4
+OjQwUE0gKzAyMDAsIEFuZHkgU2hldmNoZW5rbyB3cm90ZToKPiA+ID4gb2ZfZ3Bpby5oIGlzIGRl
+cHJlY2F0ZWQgYW5kIHN1YmplY3QgdG8gcmVtb3ZlLgo+ID4gPiBUaGUgZHJpdmVyIGRvZXNuJ3Qg
+dXNlIGl0LCBzaW1wbHkgcmVtb3ZlIHRoZSB1bnVzZWQgaGVhZGVyLgo+IAo+ID4gV2hhdCBhYm91
+dCB0aGUgcmVzdD8KPiA+IAo+ID4gZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpZS1raXJp
+bi5jCj4gPiBkcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2ktaW14Ni5jCj4gCj4gSGF2ZSB5
+b3UgY2hhbmNlIHRvIGxvb2sgYXQgdGhlbT8KPiAKCk9rLiBJIGZhaWxlZCB0byBzcG90IHRoZSB1
+c2FnZSBvZiBvZl9nZXRfbmFtZWRfZ3BpbygpIGluIGJvdGggZHJpdmVycy4gQnV0IHlvdQphbHJl
+YWR5IHN1Ym1pdHRlZCBhIHBhdGNoIHRvIGNvbnZlcnQga2lyaW4gbGFzdCB5ZWFyIFsxXSwgYW5k
+IHRoYXQgZGlkbid0IGdldAphbnkgbG92ZSBmcm9tIHRoZSBtYWludGFpbmVycy4gQ291bGQgeW91
+IHBsZWFzZSByZXNwaW4/IFBlcmhhcHMgY29udmVydCBpbXg2CmFsc28/CgpbMV0gaHR0cHM6Ly9s
+b3JlLmtlcm5lbC5vcmcvYWxsLzIwMjMwMjEzMTgwNzM1LjQyMTE3LTEtYW5kcml5LnNoZXZjaGVu
+a29AbGludXguaW50ZWwuY29tLwoKPiA+IFRoZXJlIGlzIGFsc28gb25lIG5vbi1kd2MgZHJpdmVy
+Ogo+ID4gCj4gPiBkcml2ZXJzL3BjaS9jb250cm9sbGVyL3BjaS1hYXJkdmFyay5jCj4gCj4gS2V5
+d29yZDogbm9uLWR3Yy4KPiBUaGlzIHBhdGNoIGlzIGZvciBEZXNpZ25XYXJlIGNvbnRyb2xsZXJz
+IHRoYXQgY29uZmlybWVkIG5vdCB1c2luZyB0aGUgaGVhZGVyLgo+IAo+ID4gSXQgaXMgYmV0dGVy
+IHRvIHJlbW92ZSBpdCBmcm9tIGFsbCBQQ0kgZHJpdmVycyBpbiBhIHNpbmdsZSBwYXRjaC4KPiAK
+PiBJIGRpc2FncmVlIG9uIHRoaXMuIFRoZXNlIGFyZSBkaWZmZXJlbnQgZHJpdmVycyBhbmQgZXZl
+biBpbnNpZGUgRGVzaWduV2FyZSBub3QKPiBhbGwgb2YgdGhlbSBjYW4gYmUgY29udmVydGVkIHdp
+dGggYSBzaW1wbGUgY2hhbmdlIGxpa2UgdGhpcyBvbmUuCj4gCgpTaW5jZSB0aGlzIGlzIGp1c3Qg
+YSBoZWFkZXIgcmVtb3ZhbCBJIHRob3VnaHQgeW91IGNhbiBqdXN0IHNlbmQgYSBzaW5nbGUgcGF0
+Y2gKZm9yIHRoZXNlIGRyaXZlcnMgc2luY2UgdGhlcmUgaXMgbm90aGluZyBzcGVjaWFsIHRoYXQg
+d2FycmFudHMgYSBzZXBhcmF0ZSBwYXRjaApmb3IgYWFyZHZhcmsgKGJvdGggYXJlIGluc2lkZSB0
+aGUgZHJpdmVycy9wY2kvIGhpZXJhcmNoeSkuCgpCdXQgYW55d2F5LCBJIHdvdWxkbid0IHByZXNz
+IGZvciBpdC4KCj4gVGhhdCBzYWlkLCBwbGVhc2UgY29uc2lkZXIgYXBwbHlpbmcgdGhpcyBvbmUg
+YXMgaXMuCj4gCgpJIGNhbiBnaXZlIG15IFItby1iIHRhZywgYnV0IExvcmVuem8gb3IgS3J6eXN6
+dG9mIHdpbGwgYXBwbHkgdGhpcy4KClJldmlld2VkLWJ5OiBNYW5pdmFubmFuIFNhZGhhc2l2YW0g
+PG1hbml2YW5uYW4uc2FkaGFzaXZhbUBsaW5hcm8ub3JnPgoKLSBNYW5pCgotLSAK4K6u4K6j4K6/
+4K614K6j4K+N4K6j4K6p4K+NIOCumuCupOCuvuCumuCuv+CuteCuruCvjQoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
+IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
+YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
