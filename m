@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5734C54E5D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Mar 2024 23:23:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ED91C54E69
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Mar 2024 23:23:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=E4rqvD4YYXuM8jkAN0drotUKZCMW/ydOuxqrZ2Qdgwo=; b=w+E437SHoJvsEu
-	XYOjumsaNP0B2Vp+J07bD9GkXEySJR9cc9+S358/72w5f6YQ7p21mDbcAj6/M7Bb+dbnEL1eNQk0N
-	5c7vzf9BcV51VfRvzcZuX4MgVusY1sH1DkKvoVh1Sxz+aq3GXfAnSTBet5QGGplm3PsH7MuWyjlZ9
-	vzwyOGOFnw2wayO13wzUZXqP84vPUEEzh99hsPQRZnhYzrmD0eiz6lZ7BZNbFN1zCz1NSvvenCbQe
-	bwMLdSVxNqfMv9Rh8a2z8l6/SAXLjAZ+UjQgH1IqtCubCj0bzl06XTmWUYGxscz9ky7+3QuT5rWep
-	/23xahlFqQF+g22cm2jQ==;
+	List-Owner; bh=blkv370Y6m+8oAFlnv3kjbnrs7hvvBU5gcx9yUv7Zec=; b=t4RJzsjwHRrM6s
+	R+C2sqI+G+e+jZyelzi/e98OJ8f3TcL7lfMfzEOA1nYb5/cCza3bO4r2gexTmM2EOdt9E+BttULVa
+	ahY2e7+GcmetvTwzI/dduCotPHu6a2ShRfn0aG7lAUeIqpTykI4eJGceXykC4KgBtk9HZwY3AueTD
+	t8sKGLxaU98YrIcr5FvGg9CmjL47AxD5BWS2rT3P3Cxjc0PZ0OZAEa8emBeC4IKj+/6gUxL3O1TKf
+	fQYIIAE+1MTbRk9mH0yduN8AxbgJqKZeCTDvldLAp7OwqPHwfp07qNvTosFJAnhjQHzt2dWyPCNCX
+	PfGkYWK+KOe2TNxvc/yA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rkuQG-0000000Fy0M-0ryl;
+	id 1rkuQG-0000000Fy16-3edH;
 	Thu, 14 Mar 2024 23:23:40 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rkuPp-0000000FxbH-1jBc;
+	id 1rkuPp-0000000Fxbe-1o1e;
 	Thu, 14 Mar 2024 23:23:19 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 84D5B12000A;
-	Fri, 15 Mar 2024 02:23:01 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 84D5B12000A
+	by mx1.sberdevices.ru (Postfix) with ESMTP id D902B12000D;
+	Fri, 15 Mar 2024 02:23:03 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru D902B12000D
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1710458581;
-	bh=dXX2ljZlOjCb/UBesDdkIeLUfuEEcHbQL62Lmr1WJIA=;
+	s=mail; t=1710458583;
+	bh=/nEginKlyNB8n+NrSQ852rUKN1nYJC2wotBJJbFUhDc=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=hQ5pRDVsYZ0gRSXupSa0JMLr/jK2r96lKQr2SwNtxNO/UzcxdESrIW13vIc6h3R+R
-	 4if/HWQwRE96/c0qsbz6cugwzJWGfFq4a6Euf2HNDbuu7xi2FgG5n7/tfuW+nwLwU5
-	 Guru83Ubzjs4eaIf4Eve8dD5ePQbf7e5Ydxf1HxFcOla00BoKG2zkHyu5n62gu4kF9
-	 M2XpWY49xUtnkirwm1Eh3j9F9CtzgSGQBLn94n+6XgJp2mWNZKDDTV6jkbrogYbKnJ
-	 SXPYwQ1k9INqr4xuuWEZ855yjELQnVPxTQ0nnI0jR0YT3w3pmfidls/JfUot87W/rl
-	 Av/kYDNSh1Bgw==
+	b=HTDF2yKRIJoY/MPUM8mEFhZO7KUp6f8pHP7mH2XYXGWwe9am0x56ayaWfuBvFTNrg
+	 rFY/eYikMk2+QCBoxnBe49hvmXqkt+NGzhCLkD6Zi0aN3F0TuZJNdRc8HPdKTWoK0y
+	 2QTdWA2aPXTrHseHtZYQ7BuD7WF3YbnHrbWt2S0VyC58Xq3OBS+r0W8wxnRmqxfp8g
+	 6lglp46qmF11n97hQ+7MqMoMMBLhvn68uJ3qUwFVC5clcqZodAb3jAnuakJs3mp8my
+	 QQZ5Dk+Dj7qR0jqKA1YIMebtBOEF6vSW1xa5XRyOnON0r0Jmjf4Nlvh4P/Cjz8pg91
+	 9iTDnhnbVVdaQ==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 15 Mar 2024 02:23:01 +0300 (MSK)
+	Fri, 15 Mar 2024 02:23:03 +0300 (MSK)
 Received: from CAB-WSD-0003115.sberdevices.ru (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 15 Mar 2024 02:23:00 +0300
+ 15.2.1118.40; Fri, 15 Mar 2024 02:23:03 +0300
 From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Neil Armstrong
 	<neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael
@@ -65,9 +65,9 @@ To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Neil Armstrong
 	<alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>,
 	<linux-gpio@vger.kernel.org>
 CC: <kernel@salutedevices.com>
-Subject: [PATCH 03/25] dt-bindings: clock: meson: add A1 audio clock and reset controller bindings
-Date: Fri, 15 Mar 2024 02:21:39 +0300
-Message-ID: <20240314232201.2102178-4-jan.dakinevich@salutedevices.com>
+Subject: [PATCH 09/25] ASoC: meson: g12a-toacodec: add support for A1 SoC family
+Date: Fri, 15 Mar 2024 02:21:45 +0300
+Message-ID: <20240314232201.2102178-10-jan.dakinevich@salutedevices.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
 References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
@@ -84,16 +84,16 @@ X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_smtp_not_equal_from}, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/02/29 16:52:00
-X-KSMG-LinksScanning: Clean, bases: 2024/02/29 16:52:00
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 19:21:00 #23899999
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240314_162314_438626_D2E0D11D 
-X-CRM114-Status: GOOD (  15.39  )
+X-CRM114-CacheID: sfid-20240314_162314_511037_D612CBC2 
+X-CRM114-Status: GOOD (  22.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,268 +110,387 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Internal codec on A1 SoC has ADC and this commit adds support for
+capturing from it.
+
+Also, regmap now uses caching for all platforms. Values that are written
+to toacodec's register on A1 SoC can not be read back, that breaks
+regmap_update_bits() functionality. Let's hope the caching will not
+break anything on other platforms.
+
 Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 ---
- .../bindings/clock/amlogic,a1-audio-clkc.yaml |  83 ++++++++++++
- .../dt-bindings/clock/amlogic,a1-audio-clkc.h | 122 ++++++++++++++++++
- .../reset/amlogic,meson-a1-audio-reset.h      |  29 +++++
- 3 files changed, 234 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
- create mode 100644 include/dt-bindings/clock/amlogic,a1-audio-clkc.h
- create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
+ sound/soc/meson/g12a-toacodec.c | 221 ++++++++++++++++++++++++++++++--
+ 1 file changed, 208 insertions(+), 13 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
-new file mode 100644
-index 000000000000..c76cad4da493
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
-@@ -0,0 +1,83 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/amlogic,a1-audio-clkc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/sound/soc/meson/g12a-toacodec.c b/sound/soc/meson/g12a-toacodec.c
+index 325cf420fd69..21e569e72157 100644
+--- a/sound/soc/meson/g12a-toacodec.c
++++ b/sound/soc/meson/g12a-toacodec.c
+@@ -50,6 +50,23 @@
+ #define CTRL0_BCLK_SEL_SM1_MSB		6
+ #define CTRL0_BCLK_SEL_SM1_LSB		4
+ 
++/* A1 bits */
++#define CTRL0_DAT_CAPTURE_SEL_A1_MSB	23
++#define CTRL0_DAT_CAPTURE_SEL_A1_LSB	23
++#define CTRL0_LANE_CAPTURE_SEL_A1_MSB	22
++#define CTRL0_LANE_CAPTURE_SEL_A1_LSB	20
++#define CTRL0_DAT_SEL_A1_MSB		19
++#define CTRL0_DAT_SEL_A1_LSB		19
++#define CTRL0_LANE_SEL_A1_MSB		18
++#define CTRL0_LANE_SEL_A1_LSB		16
++#define CTRL0_LRCLK_SEL_A1_MSB		14
++#define CTRL0_LRCLK_SEL_A1_LSB		12
++#define CTRL0_LRCLK_INV_A1		BIT(10)
++#define CTRL0_BLK_CAP_INV_A1		BIT(9)
++#define CTRL0_BCLK_O_INV_A1		BIT(8)
++#define CTRL0_BCLK_SEL_A1_MSB		6
++#define CTRL0_BCLK_SEL_A1_LSB		4
 +
-+title: Amlogic A1 Audio Clock Control Unit and Reset Controller
+ #define TOACODEC_OUT_CHMAX		2
+ 
+ struct g12a_toacodec {
+@@ -60,6 +77,8 @@ struct g12a_toacodec {
+ 
+ struct g12a_toacodec_match_data {
+ 	const struct snd_soc_component_driver *component_drv;
++	struct snd_soc_dai_driver *dai_drv;
++	int num_dai_drv;
+ 	struct reg_field field_dat_sel;
+ 	struct reg_field field_lrclk_sel;
+ 	struct reg_field field_bclk_sel;
+@@ -69,6 +88,10 @@ static const char * const g12a_toacodec_mux_texts[] = {
+ 	"I2S A", "I2S B", "I2S C",
+ };
+ 
++static const char * const a1_toacodec_mux_texts[] = {
++	"I2S A", "I2S B",
++};
 +
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-+  - Jerome Brunet <jbrunet@baylibre.com>
-+  - Jan Dakinevich <jan.dakinevich@salutedevices.com>
+ static int g12a_toacodec_mux_put_enum(struct snd_kcontrol *kcontrol,
+ 				      struct snd_ctl_elem_value *ucontrol)
+ {
+@@ -124,8 +147,12 @@ static SOC_ENUM_SINGLE_DECL(sm1_toacodec_mux_enum, TOACODEC_CTRL0,
+ 			    CTRL0_DAT_SEL_SM1_LSB,
+ 			    g12a_toacodec_mux_texts);
+ 
+-static const struct snd_kcontrol_new g12a_toacodec_mux =
+-	SOC_DAPM_ENUM_EXT("Source", g12a_toacodec_mux_enum,
++static SOC_ENUM_SINGLE_DECL(a1_toacodec_mux_enum, TOACODEC_CTRL0,
++			    CTRL0_DAT_SEL_A1_LSB,
++			    a1_toacodec_mux_texts);
 +
-+properties:
-+  compatible:
-+    const: amlogic,a1-audio-clkc
++static const struct snd_kcontrol_new a1_toacodec_mux =
++	SOC_DAPM_ENUM_EXT("Source", a1_toacodec_mux_enum,
+ 			  snd_soc_dapm_get_enum_double,
+ 			  g12a_toacodec_mux_put_enum);
+ 
+@@ -134,10 +161,21 @@ static const struct snd_kcontrol_new sm1_toacodec_mux =
+ 			  snd_soc_dapm_get_enum_double,
+ 			  g12a_toacodec_mux_put_enum);
+ 
++static const struct snd_kcontrol_new g12a_toacodec_mux =
++	SOC_DAPM_ENUM_EXT("Source", g12a_toacodec_mux_enum,
++			  snd_soc_dapm_get_enum_double,
++			  g12a_toacodec_mux_put_enum);
 +
-+  '#clock-cells':
-+    const: 1
-+
-+  '#reset-cells':
-+    const: 1
-+
-+  reg:
-+    minItems: 2
-+    maxItems: 2
-+
-+  clocks:
-+    items:
-+      - description: input main peripheral bus clock
-+      - description: input dds_in
-+      - description: input fixed pll div2
-+      - description: input fixed pll div3
-+      - description: input hifi_pll
-+      - description: input oscillator (usually at 24MHz)
-+
-+  clock-names:
-+    items:
-+      - const: pclk
-+      - const: dds_in
-+      - const: fclk_div2
-+      - const: fclk_div3
-+      - const: hifi_pll
-+      - const: xtal
-+
-+required:
-+  - compatible
-+  - '#clock-cells'
-+  - '#reset-cells'
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
-+    #include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
-+    audio {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        clkc_audio: audio-clock-controller@0 {
-+                compatible = "amlogic,a1-audio-clkc";
-+                reg = <0x0 0xfe050000 0x0 0xb0>,
-+                      <0x0 0xfe054800 0x0 0x20>;
-+                #clock-cells = <1>;
-+                #reset-cells = <1>;
-+                clocks = <&clkc_periphs CLKID_AUDIO>,
-+                         <&clkc_periphs CLKID_DDS_IN>,
-+                         <&clkc_pll CLKID_FCLK_DIV2>,
-+                         <&clkc_pll CLKID_FCLK_DIV3>,
-+                         <&clkc_pll CLKID_HIFI_PLL>,
-+                         <&xtal>;
-+                clock-names = "pclk",
-+                              "dds_in",
-+                              "fclk_div2",
-+                              "fclk_div3",
-+                              "hifi_pll",
-+                              "xtal";
-+        };
-+    };
-diff --git a/include/dt-bindings/clock/amlogic,a1-audio-clkc.h b/include/dt-bindings/clock/amlogic,a1-audio-clkc.h
-new file mode 100644
-index 000000000000..3392974784e7
---- /dev/null
-+++ b/include/dt-bindings/clock/amlogic,a1-audio-clkc.h
-@@ -0,0 +1,122 @@
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-+/*
-+ * Copyright (c) 2024, SaluteDevices. All Rights Reserved.
-+ *
-+ * Author: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+ static const struct snd_kcontrol_new g12a_toacodec_out_enable =
+ 	SOC_DAPM_SINGLE_AUTODISABLE("Switch", TOACODEC_CTRL0,
+ 				    CTRL0_ENABLE_SHIFT, 1, 0);
+ 
++/* Don't use AUTODISABLE unlike G12A. On A1 it causes noise after playback
++ * is stopped.
 + */
++static const struct snd_kcontrol_new a1_toacodec_enable =
++	SOC_DAPM_SINGLE("Switch", TOACODEC_CTRL0, CTRL0_ENABLE_SHIFT, 1, 0);
 +
-+#ifndef __A1_AUDIO_CLKC_BINDINGS_H
-+#define __A1_AUDIO_CLKC_BINDINGS_H
+ static const struct snd_soc_dapm_widget g12a_toacodec_widgets[] = {
+ 	SND_SOC_DAPM_MUX("SRC", SND_SOC_NOPM, 0, 0,
+ 			 &g12a_toacodec_mux),
+@@ -152,19 +190,34 @@ static const struct snd_soc_dapm_widget sm1_toacodec_widgets[] = {
+ 			    &g12a_toacodec_out_enable),
+ };
+ 
+-static int g12a_toacodec_input_hw_params(struct snd_pcm_substream *substream,
+-					 struct snd_pcm_hw_params *params,
+-					 struct snd_soc_dai *dai)
++static const struct snd_soc_dapm_widget a1_toacodec_widgets[] = {
++	SND_SOC_DAPM_SWITCH("EN", SND_SOC_NOPM, 0, 0,
++			    &a1_toacodec_enable),
++	SND_SOC_DAPM_MUX("Playback SRC", SND_SOC_NOPM, 0, 0,
++			 &a1_toacodec_mux),
++	SND_SOC_DAPM_MUX("Capture SRC A", SND_SOC_NOPM, 0, 0,
++			 &a1_toacodec_mux),
++	SND_SOC_DAPM_MUX("Capture SRC B", SND_SOC_NOPM, 0, 0,
++			 &a1_toacodec_mux),
++};
 +
-+#define AUD_CLKID_DDR_ARB		1
-+#define AUD_CLKID_TDMIN_A		2
-+#define AUD_CLKID_TDMIN_B		3
-+#define AUD_CLKID_TDMIN_LB		4
-+#define AUD_CLKID_LOOPBACK		5
-+#define AUD_CLKID_TDMOUT_A		6
-+#define AUD_CLKID_TDMOUT_B		7
-+#define AUD_CLKID_FRDDR_A		8
-+#define AUD_CLKID_FRDDR_B		9
-+#define AUD_CLKID_TODDR_A		10
-+#define AUD_CLKID_TODDR_B		11
-+#define AUD_CLKID_SPDIFIN		12
-+#define AUD_CLKID_RESAMPLE		13
-+#define AUD_CLKID_EQDRC			14
-+#define AUD_CLKID_LOCKER		15
-+#define AUD_CLKID_MST_A_MCLK_SEL	16
-+#define AUD_CLKID_MST_A_MCLK_DIV	17
-+#define AUD_CLKID_MST_A_MCLK		18
-+#define AUD_CLKID_MST_B_MCLK_SEL	19
-+#define AUD_CLKID_MST_B_MCLK_DIV	20
-+#define AUD_CLKID_MST_B_MCLK		21
-+#define AUD_CLKID_MST_C_MCLK_SEL	22
-+#define AUD_CLKID_MST_C_MCLK_DIV	23
-+#define AUD_CLKID_MST_C_MCLK		24
-+#define AUD_CLKID_MST_D_MCLK_SEL	25
-+#define AUD_CLKID_MST_D_MCLK_DIV	26
-+#define AUD_CLKID_MST_D_MCLK		27
-+#define AUD_CLKID_SPDIFIN_CLK_SEL	28
-+#define AUD_CLKID_SPDIFIN_CLK_DIV	29
-+#define AUD_CLKID_SPDIFIN_CLK		30
-+#define AUD_CLKID_RESAMPLE_CLK_SEL	31
-+#define AUD_CLKID_RESAMPLE_CLK_DIV	32
-+#define AUD_CLKID_RESAMPLE_CLK		33
-+#define AUD_CLKID_LOCKER_IN_CLK_SEL	34
-+#define AUD_CLKID_LOCKER_IN_CLK_DIV	35
-+#define AUD_CLKID_LOCKER_IN_CLK		36
-+#define AUD_CLKID_LOCKER_OUT_CLK_SEL	37
-+#define AUD_CLKID_LOCKER_OUT_CLK_DIV	38
-+#define AUD_CLKID_LOCKER_OUT_CLK	39
-+#define AUD_CLKID_EQDRC_CLK_SEL		40
-+#define AUD_CLKID_EQDRC_CLK_DIV		41
-+#define AUD_CLKID_EQDRC_CLK		42
-+#define AUD_CLKID_MST_A_SCLK_PRE_EN	43
-+#define AUD_CLKID_MST_A_SCLK_DIV	44
-+#define AUD_CLKID_MST_A_SCLK_POST_EN	45
-+#define AUD_CLKID_MST_A_SCLK		46
-+#define AUD_CLKID_MST_B_SCLK_PRE_EN	47
-+#define AUD_CLKID_MST_B_SCLK_DIV	48
-+#define AUD_CLKID_MST_B_SCLK_POST_EN	49
-+#define AUD_CLKID_MST_B_SCLK		50
-+#define AUD_CLKID_MST_C_SCLK_PRE_EN	51
-+#define AUD_CLKID_MST_C_SCLK_DIV	52
-+#define AUD_CLKID_MST_C_SCLK_POST_EN	53
-+#define AUD_CLKID_MST_C_SCLK		54
-+#define AUD_CLKID_MST_D_SCLK_PRE_EN	55
-+#define AUD_CLKID_MST_D_SCLK_DIV	56
-+#define AUD_CLKID_MST_D_SCLK_POST_EN	57
-+#define AUD_CLKID_MST_D_SCLK		58
-+#define AUD_CLKID_MST_A_LRCLK_DIV	59
-+#define AUD_CLKID_MST_A_LRCLK		60
-+#define AUD_CLKID_MST_B_LRCLK_DIV	61
-+#define AUD_CLKID_MST_B_LRCLK		62
-+#define AUD_CLKID_MST_C_LRCLK_DIV	63
-+#define AUD_CLKID_MST_C_LRCLK		64
-+#define AUD_CLKID_MST_D_LRCLK_DIV	65
-+#define AUD_CLKID_MST_D_LRCLK		66
-+#define AUD_CLKID_TDMIN_A_SCLK_SEL	67
-+#define AUD_CLKID_TDMIN_A_SCLK_PRE_EN	68
-+#define AUD_CLKID_TDMIN_A_SCLK_POST_EN	69
-+#define AUD_CLKID_TDMIN_A_SCLK		70
-+#define AUD_CLKID_TDMIN_A_LRCLK		71
-+#define AUD_CLKID_TDMIN_B_SCLK_SEL	72
-+#define AUD_CLKID_TDMIN_B_SCLK_PRE_EN	73
-+#define AUD_CLKID_TDMIN_B_SCLK_POST_EN	74
-+#define AUD_CLKID_TDMIN_B_SCLK		75
-+#define AUD_CLKID_TDMIN_B_LRCLK		76
-+#define AUD_CLKID_TDMIN_LB_SCLK_SEL	77
-+#define AUD_CLKID_TDMIN_LB_SCLK_PRE_EN	78
-+#define AUD_CLKID_TDMIN_LB_SCLK_POST_EN	79
-+#define AUD_CLKID_TDMIN_LB_SCLK		80
-+#define AUD_CLKID_TDMIN_LB_LRCLK	81
-+#define AUD_CLKID_TDMOUT_A_SCLK_SEL	82
-+#define AUD_CLKID_TDMOUT_A_SCLK_PRE_EN	83
-+#define AUD_CLKID_TDMOUT_A_SCLK_POST_EN	84
-+#define AUD_CLKID_TDMOUT_A_SCLK		85
-+#define AUD_CLKID_TDMOUT_A_LRCLK	86
-+#define AUD_CLKID_TDMOUT_B_SCLK_SEL	87
-+#define AUD_CLKID_TDMOUT_B_SCLK_PRE_EN	88
-+#define AUD_CLKID_TDMOUT_B_SCLK_POST_EN	89
-+#define AUD_CLKID_TDMOUT_B_SCLK		90
-+#define AUD_CLKID_TDMOUT_B_LRCLK	91
++static int g12a_toacodec_hw_params(struct snd_pcm_substream *substream,
++				   struct snd_pcm_hw_params *params,
++				   struct snd_soc_dai *dai,
++				   bool playback)
+ {
+ 	struct meson_codec_glue_input *data;
+ 	int ret;
+ 
+-	ret = meson_codec_glue_input_hw_params(substream, params, dai);
++	ret = playback ? meson_codec_glue_input_hw_params(substream, params, dai)
++		       : meson_codec_glue_capture_output_hw_params(substream,
++								   params, dai);
+ 	if (ret)
+ 		return ret;
+ 
+ 	/* The glue will provide 1 lane out of the 4 to the output */
+-	data = meson_codec_glue_input_get_data(dai);
++	data = playback ? meson_codec_glue_input_get_data(dai)
++			: meson_codec_glue_capture_output_get_data(dai);
+ 	data->params.channels_min = min_t(unsigned int, TOACODEC_OUT_CHMAX,
+ 					data->params.channels_min);
+ 	data->params.channels_max = min_t(unsigned int, TOACODEC_OUT_CHMAX,
+@@ -173,6 +226,21 @@ static int g12a_toacodec_input_hw_params(struct snd_pcm_substream *substream,
+ 	return 0;
+ }
+ 
++static int g12a_toacodec_input_hw_params(struct snd_pcm_substream *substream,
++					 struct snd_pcm_hw_params *params,
++					 struct snd_soc_dai *dai)
++{
++	return g12a_toacodec_hw_params(substream, params, dai, true);
++}
 +
-+#define AUD2_CLKID_DDR_ARB		100
-+#define AUD2_CLKID_PDM			101
-+#define AUD2_CLKID_TDMIN_VAD		102
-+#define AUD2_CLKID_TODDR_VAD		103
-+#define AUD2_CLKID_VAD			104
-+#define AUD2_CLKID_AUDIOTOP		105
-+#define AUD2_CLKID_VAD_MCLK_SEL		106
-+#define AUD2_CLKID_VAD_MCLK_DIV		107
-+#define AUD2_CLKID_VAD_MCLK		108
-+#define AUD2_CLKID_VAD_CLK_SEL		109
-+#define AUD2_CLKID_VAD_CLK_DIV		110
-+#define AUD2_CLKID_VAD_CLK		111
-+#define AUD2_CLKID_PDM_DCLK_SEL		112
-+#define AUD2_CLKID_PDM_DCLK_DIV		113
-+#define AUD2_CLKID_PDM_DCLK		114
-+#define AUD2_CLKID_PDM_SYSCLK_SEL	115
-+#define AUD2_CLKID_PDM_SYSCLK_DIV	116
-+#define AUD2_CLKID_PDM_SYSCLK		117
++static int
++g12a_toacodec_capture_output_hw_params(struct snd_pcm_substream *substream,
++				       struct snd_pcm_hw_params *params,
++				       struct snd_soc_dai *dai)
++{
++	return g12a_toacodec_hw_params(substream, params, dai, false);
++}
 +
-+#endif /* __A1_AUDIO_CLKC_BINDINGS_H */
-diff --git a/include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h b/include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
-new file mode 100644
-index 000000000000..6b7ad8ea3da2
---- /dev/null
-+++ b/include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
-@@ -0,0 +1,29 @@
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-+/*
-+ * Copyright (c) 2024, SaluteDevices. All Rights Reserved.
-+ *
-+ * Author: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-+ */
+ static const struct snd_soc_dai_ops g12a_toacodec_input_ops = {
+ 	.probe		= meson_codec_glue_input_dai_probe,
+ 	.remove		= meson_codec_glue_input_dai_remove,
+@@ -184,6 +252,17 @@ static const struct snd_soc_dai_ops g12a_toacodec_output_ops = {
+ 	.startup	= meson_codec_glue_output_startup,
+ };
+ 
++static const struct snd_soc_dai_ops g12a_toacodec_capture_output_ops = {
++	.probe		= meson_codec_glue_capture_output_dai_probe,
++	.remove		= meson_codec_glue_capture_output_dai_remove,
++	.hw_params	= g12a_toacodec_capture_output_hw_params,
++	.set_fmt	= meson_codec_glue_capture_output_set_fmt,
++};
 +
-+#ifndef _DT_BINDINGS_AMLOGIC_MESON_A1_AUDIO_RESET_H
-+#define _DT_BINDINGS_AMLOGIC_MESON_A1_AUDIO_RESET_H
++static const struct snd_soc_dai_ops g12a_toacodec_capture_input_ops = {
++	.startup	= meson_codec_glue_capture_input_startup,
++};
 +
-+#define AUD_RESET_DDRARB	0
-+#define AUD_RESET_TDMIN_A	1
-+#define AUD_RESET_TDMIN_B	2
-+#define AUD_RESET_TDMIN_LB	3
-+#define AUD_RESET_LOOPBACK	4
-+#define AUD_RESET_TDMOUT_A	5
-+#define AUD_RESET_TDMOUT_B	6
-+#define AUD_RESET_FRDDR_A	7
-+#define AUD_RESET_FRDDR_B	8
-+#define AUD_RESET_TODDR_A	9
-+#define AUD_RESET_TODDR_B	10
-+#define AUD_RESET_SPDIFIN	11
-+#define AUD_RESET_RESAMPLE	12
-+#define AUD_RESET_EQDRC		13
-+#define AUD_RESET_LOCKER	14
-+#define AUD_RESET_TOACODEC	30
-+#define AUD_RESET_CLKTREE	31
+ #define TOACODEC_STREAM(xname, xsuffix, xchmax)			\
+ {								\
+ 	.stream_name	= xname " " xsuffix,			\
+@@ -208,6 +287,20 @@ static const struct snd_soc_dai_ops g12a_toacodec_output_ops = {
+ 	.ops = &g12a_toacodec_output_ops,				\
+ }
+ 
++#define TOACODEC_CAPTURE_INPUT(xname, xid) {				\
++	.name = xname,							\
++	.id = (xid),							\
++	.playback = TOACODEC_STREAM(xname, "Playback", 2),		\
++	.ops = &g12a_toacodec_capture_input_ops,			\
++}
 +
-+#endif
++#define TOACODEC_CAPTURE_OUTPUT(xname, xid) {				\
++	.name = xname,							\
++	.id = (xid),							\
++	.capture = TOACODEC_STREAM(xname, "Capture", 2),		\
++	.ops = &g12a_toacodec_capture_output_ops,			\
++}
++
+ static struct snd_soc_dai_driver g12a_toacodec_dai_drv[] = {
+ 	TOACODEC_INPUT("IN A", TOACODEC_IN_A),
+ 	TOACODEC_INPUT("IN B", TOACODEC_IN_B),
+@@ -215,6 +308,16 @@ static struct snd_soc_dai_driver g12a_toacodec_dai_drv[] = {
+ 	TOACODEC_OUTPUT("OUT", TOACODEC_OUT),
+ };
+ 
++static struct snd_soc_dai_driver a1_toacodec_dai_drv[] = {
++	TOACODEC_INPUT("IN A", TOACODEC_IN_A),
++	TOACODEC_INPUT("IN B", TOACODEC_IN_B),
++	TOACODEC_OUTPUT("OUT", TOACODEC_OUT),
++
++	TOACODEC_CAPTURE_OUTPUT("OUT A", TOACODEC_CAPTURE_OUT_A),
++	TOACODEC_CAPTURE_OUTPUT("OUT B", TOACODEC_CAPTURE_OUT_B),
++	TOACODEC_CAPTURE_INPUT("IN", TOACODEC_CAPTURE_IN),
++};
++
+ static int g12a_toacodec_component_probe(struct snd_soc_component *c)
+ {
+ 	/* Initialize the static clock parameters */
+@@ -229,6 +332,32 @@ static int sm1_toacodec_component_probe(struct snd_soc_component *c)
+ 				       CTRL0_BLK_CAP_INV_SM1);
+ }
+ 
++static int a1_toacodec_component_probe(struct snd_soc_component *c)
++{
++	/* Initialize the static clock parameters */
++	return snd_soc_component_write(c, TOACODEC_CTRL0,
++				       CTRL0_BLK_CAP_INV_A1);
++}
++
++static int a1_toacodec_of_xlate_dai_name(struct snd_soc_component *component,
++					 const struct of_phandle_args *args,
++					 const char **dai_name)
++{
++	struct snd_soc_dai *dai;
++
++	if (args->args_count != 1)
++		return -EINVAL;
++
++	for_each_component_dais(component, dai) {
++		if (dai->id == args->args[0]) {
++			*dai_name = dai->driver->name;
++			return 0;
++		}
++	}
++
++	return -EINVAL;
++}
++
+ static const struct snd_soc_dapm_route g12a_toacodec_routes[] = {
+ 	{ "SRC", "I2S A", "IN A Playback" },
+ 	{ "SRC", "I2S B", "IN B Playback" },
+@@ -237,6 +366,19 @@ static const struct snd_soc_dapm_route g12a_toacodec_routes[] = {
+ 	{ "OUT Capture", NULL, "OUT EN" },
+ };
+ 
++static const struct snd_soc_dapm_route a1_toacodec_routes[] = {
++	{ "Playback SRC", "I2S A", "IN A Playback" },
++	{ "Playback SRC", "I2S B", "IN B Playback" },
++	{ "EN", "Switch", "Playback SRC" },
++	{ "OUT Capture", NULL, "Playback SRC" },
++
++	{ "EN", "Switch", "IN Playback" },
++	{ "Capture SRC A", "I2S A", "EN" },
++	{ "Capture SRC B", "I2S B", "EN" },
++	{ "OUT A Capture", NULL, "Capture SRC A" },
++	{ "OUT B Capture", NULL, "Capture SRC B" },
++};
++
+ static const struct snd_kcontrol_new g12a_toacodec_controls[] = {
+ 	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_G12A_LSB,
+ 		   CTRL0_LANE_SEL_G12A_MSB - CTRL0_LANE_SEL_G12A_LSB + 1, 0),
+@@ -247,6 +389,11 @@ static const struct snd_kcontrol_new sm1_toacodec_controls[] = {
+ 		   CTRL0_LANE_SEL_SM1_MSB - CTRL0_LANE_SEL_SM1_LSB + 1, 0),
+ };
+ 
++static const struct snd_kcontrol_new a1_toacodec_controls[] = {
++	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_A1_LSB,
++		   CTRL0_LANE_SEL_A1_MSB - CTRL0_LANE_SEL_A1_LSB + 1, 0),
++};
++
+ static const struct snd_soc_component_driver g12a_toacodec_component_drv = {
+ 	.probe			= g12a_toacodec_component_probe,
+ 	.controls		= g12a_toacodec_controls,
+@@ -269,14 +416,44 @@ static const struct snd_soc_component_driver sm1_toacodec_component_drv = {
+ 	.endianness		= 1,
+ };
+ 
++static const struct snd_soc_component_driver a1_toacodec_component_drv = {
++	.probe			= a1_toacodec_component_probe,
++	.of_xlate_dai_name	= a1_toacodec_of_xlate_dai_name,
++	.controls		= a1_toacodec_controls,
++	.num_controls		= ARRAY_SIZE(a1_toacodec_controls),
++	.dapm_widgets		= a1_toacodec_widgets,
++	.num_dapm_widgets	= ARRAY_SIZE(a1_toacodec_widgets),
++	.dapm_routes		= a1_toacodec_routes,
++	.num_dapm_routes	= ARRAY_SIZE(a1_toacodec_routes),
++	.endianness		= 1,
++};
++
++static const struct reg_default g12a_toacodec_reg_default[] = {
++	{ TOACODEC_CTRL0, 0x0 },
++};
++
++static bool g12_toacodec_readable_reg(struct device *dev, unsigned int reg)
++{
++	/* There are no readable registers */
++	return false;
++}
++
+ static const struct regmap_config g12a_toacodec_regmap_cfg = {
+-	.reg_bits	= 32,
+-	.val_bits	= 32,
+-	.reg_stride	= 4,
++	.reg_bits		= 32,
++	.val_bits		= 32,
++	.reg_stride		= 4,
++	.max_register		= TOACODEC_CTRL0,
++	.max_register_is_0	= true,
++	.cache_type		= REGCACHE_FLAT,
++	.reg_defaults		= g12a_toacodec_reg_default,
++	.num_reg_defaults	= ARRAY_SIZE(g12a_toacodec_reg_default),
++	.readable_reg		= g12_toacodec_readable_reg,
+ };
+ 
+ static const struct g12a_toacodec_match_data g12a_toacodec_match_data = {
+ 	.component_drv	= &g12a_toacodec_component_drv,
++	.dai_drv	= g12a_toacodec_dai_drv,
++	.num_dai_drv	= ARRAY_SIZE(g12a_toacodec_dai_drv),
+ 	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_DAT_SEL_G12A_LSB,
+ 				    CTRL0_DAT_SEL_G12A_MSB),
+ 	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, CTRL0_LRCLK_SEL_G12A_LSB,
+@@ -287,6 +464,8 @@ static const struct g12a_toacodec_match_data g12a_toacodec_match_data = {
+ 
+ static const struct g12a_toacodec_match_data sm1_toacodec_match_data = {
+ 	.component_drv	= &sm1_toacodec_component_drv,
++	.dai_drv	= g12a_toacodec_dai_drv,
++	.num_dai_drv	= ARRAY_SIZE(g12a_toacodec_dai_drv),
+ 	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_DAT_SEL_SM1_LSB,
+ 				    CTRL0_DAT_SEL_SM1_MSB),
+ 	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, CTRL0_LRCLK_SEL_SM1_LSB,
+@@ -295,6 +474,18 @@ static const struct g12a_toacodec_match_data sm1_toacodec_match_data = {
+ 				    CTRL0_BCLK_SEL_SM1_MSB),
+ };
+ 
++static const struct g12a_toacodec_match_data a1_toacodec_match_data = {
++	.component_drv	= &a1_toacodec_component_drv,
++	.dai_drv	= a1_toacodec_dai_drv,
++	.num_dai_drv	= ARRAY_SIZE(a1_toacodec_dai_drv),
++	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_DAT_SEL_A1_LSB,
++				    CTRL0_DAT_SEL_A1_MSB),
++	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, CTRL0_LRCLK_SEL_A1_LSB,
++				     CTRL0_LRCLK_SEL_A1_MSB),
++	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_BCLK_SEL_A1_LSB,
++				    CTRL0_BCLK_SEL_A1_MSB),
++};
++
+ static const struct of_device_id g12a_toacodec_of_match[] = {
+ 	{
+ 		.compatible = "amlogic,g12a-toacodec",
+@@ -304,6 +495,10 @@ static const struct of_device_id g12a_toacodec_of_match[] = {
+ 		.compatible = "amlogic,sm1-toacodec",
+ 		.data = &sm1_toacodec_match_data,
+ 	},
++	{
++		.compatible = "amlogic,a1-toacodec",
++		.data = &a1_toacodec_match_data,
++	},
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, g12a_toacodec_of_match);
+@@ -356,9 +551,9 @@ static int g12a_toacodec_probe(struct platform_device *pdev)
+ 	if (IS_ERR(priv->field_bclk_sel))
+ 		return PTR_ERR(priv->field_bclk_sel);
+ 
+-	return devm_snd_soc_register_component(dev,
+-			data->component_drv, g12a_toacodec_dai_drv,
+-			ARRAY_SIZE(g12a_toacodec_dai_drv));
++	return devm_snd_soc_register_component(dev, data->component_drv,
++					       data->dai_drv,
++					       data->num_dai_drv);
+ }
+ 
+ static struct platform_driver g12a_toacodec_pdrv = {
 -- 
 2.34.1
 
