@@ -4,78 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9247C54E5D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Mar 2024 20:56:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0FAFC54E5D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Mar 2024 23:23:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2Tr8kZds1jqMjgh/GRwlbbvfpJt3rywsTrn1EQEgwBk=; b=BtePEAcWCsB0IV
-	ex1Ls9wkjMGp7msg3ExWOUSQ2539l97O/CJObovZwqOAG/R+2gLYO9lIF0ljCppWUVhknU2to/srE
-	K+ep0eUHRpawuk8XqOqGt4kM7BJjDRKCPEsjwiYwUyNsk4ZlHUfOV0nJ5O2KFU/l9MbdiXmwHVf1V
-	TqxfRlJ/jgRmy0XRaJpweZ1/gCzt03B+QAOv4oNZG4ba56Hepfze0vPY4nkMzEY5YukxwS7kyY07C
-	Om3qks1GQx6KnzDtBWo0wnyonfBvLG93gAbCjCT+QdXl97ChXsE5QW3t57qQ+KZgE/zi2g6iXoB/j
-	xMzGJJPkS03I9MDzSkvQ==;
+	List-Owner; bh=c/tggY1N2up0OqgHGHENsfvObSOkHo0Y0TFZPRfjCss=; b=JvKoQ6gab+QsAQ
+	fCu7xJzXjhMMHNBy8Gbp+fuIAO3dvg/eCsCzHBrKbMqhx5ZfqmfLmKUAZFH8EZ5LWr/xWss23ZdUk
+	+L6SZ+L3HQkA1aYQlszCEUjOKCc5mXKFXEChDejyjKNJYSr4mKfU2HHEQuRaTbPmOei93uFWIikfM
+	9F4IvZ1chD7ONDzfCYtFXkTDcY1QB8p+O9g7IlfXO6GyU0RjfUOifog+wWCie+2lR7tj2YfUQaxKl
+	sE/Il+EYvn61zqf7aDk5Srb//C7yQFu+mkAx3LKcYa+yW8t2sMYo8DJ+tvysbHIw/nZl3YrPFJ8kE
+	Lq6Mq4jmPZGkkZBc7TSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rks7Z-0000000Fg1L-31iI;
-	Thu, 14 Mar 2024 20:56:13 +0000
-Received: from mail-pl1-x62f.google.com ([2607:f8b0:4864:20::62f])
+	id 1rkuPv-0000000FxjV-3TnB;
+	Thu, 14 Mar 2024 23:23:19 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rks7V-0000000Fg0Z-32XH;
-	Thu, 14 Mar 2024 20:56:11 +0000
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1dd9066b7c3so10063475ad.2;
-        Thu, 14 Mar 2024 13:56:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1710449766; x=1711054566; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pRHD+TcjUHkyggbW48f7epyoClmqj1C+KlHwQMyVxzE=;
-        b=grhNFS42HP9lcsUK4aWvTed7ychR6d5p8y/aqlUBBvxex/txZqzMMCaL46ZU1MbT8W
-         db8i/pEWOw2k6NTBIe+fWLVGmBdRKKa5l7jhDLhdBSuBHfS8YCPKbm98T1D0VT2ITlEd
-         v+gjkK4r6/ITd0HkRT1Xfg8oFZZO2ywccgcyioWyDO0YDC36WsWvVEvoJ8jpvVHiHOJA
-         UBgg2QsOzQzAU6fZz3DIXLygj2unprmsP+JKGW+yeYolvmUe/06lV29ZqxxKpTGMMK1d
-         rkQqKR37sLr1Ho/rl7JEsqzlG3wWIsra7YjCRjO+kv++DTWoeEmMJuVFD/UtiULtnKf1
-         4bfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710449766; x=1711054566;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pRHD+TcjUHkyggbW48f7epyoClmqj1C+KlHwQMyVxzE=;
-        b=AUr4WSbkMCerx2yEw26603hYWliLs9WkgbYb3DgW4BhhY9WnOHb9iSZqaY6fR3rxGq
-         P2fwMlhxD7Foy7bzONZcoQ676mqLsaCiDYYMLNhpwugyDRfmGZ6qREqMFjpb7MS3Lys9
-         zUnu/++7mBTu+OBZKQIEJKGSPg0qekbMkEKmg0SgAS4nlX6soGzooby+VXZzEHlz74BX
-         qpAN0RlE5ZyD0Y91rsL0WifxdH5PlqVHjz1fKBvB1yQYOCD5h219woYxGOFHCJDo2/0X
-         715KacyR+TK7Z9vwHHK1kNHahKSelkzdzKQ+fnFYbqU+NgvaGF7zgJI2uzBVOlL2ZaLw
-         JnlA==
-X-Forwarded-Encrypted: i=1; AJvYcCUc7yO7fBa3Y4n+uXEabstQ/O9cbVqTm7VCOHqOt8YyAVtf4BEjyfdTOTz/B4jbc+Kt0OD/DwrV9CSrfTGryyrd/UnrlWNK8bcXMXzkLyPYco/6MQ47b0eUNu2O7SCO+bmvumDGAf+9cLJeBzJ1Z6e4agOgGJc7oQ==
-X-Gm-Message-State: AOJu0YxGMFxqVsHtyaXu/vvUScrnhwyjqI+DQtILIQNUItfYEWfwVqr/
-	15Yplv3EVwKblwRQ03R+/e5a2EKZrWDhcygfknF5VWmAFgKyFuPIKqodjRezIm6l5fP7aK1NThi
-	PRuLNzsVro2eSKqlSHvyhOL0ug/4=
-X-Google-Smtp-Source: AGHT+IHX1AyajLJTVHGSXYPwtKX+7yh7PG9wayr6B9dveZH+o9n5qK2EDhZ/7woQQgmNKPpyAzCre+qGGjjW9NMe9O0=
-X-Received: by 2002:a17:902:780d:b0:1dd:b6c0:1363 with SMTP id
- p13-20020a170902780d00b001ddb6c01363mr2687465pll.69.1710449766557; Thu, 14
- Mar 2024 13:56:06 -0700 (PDT)
+	id 1rkuPp-0000000FxbK-1hw6;
+	Thu, 14 Mar 2024 23:23:16 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 2C36110000F;
+	Fri, 15 Mar 2024 02:23:01 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2C36110000F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1710458581;
+	bh=gLbD9tc2pn1QeC2j87RMdeV5jO49713zgVqzzHkHt5E=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=olAfs4U+XHSt8Jjd8Kt9sbP4C31rhs/GCY26OiVHdADa4Y7Yp2XPE0JKjjsd9lW6v
+	 0cKI4H9dXCsXKID7URpBSBeYnTuS32Ueu5oVaUM5/dzdYScIhPKj2WkVZT7EYkEt9r
+	 I29pzstQtiDxer98h7IzQDdZcuVt57HKUu/eAukhxAZVCX2SOD76x3NTz06BFeFwR7
+	 RVvEljeL67R7hbxAOX9BtnzOQPd8S/XntJr3dNVx6xShjJrttCn1fGVg0oiQkhV0vu
+	 BcATVRWw3lAOtQ+tUOVXGMTiEQ+O1vHTO7hxkDCGqsWCyWwucLDfu7BQTi/OCQFwks
+	 RZL3jDyEKIsJw==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 15 Mar 2024 02:23:01 +0300 (MSK)
+Received: from CAB-WSD-0003115.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 15 Mar 2024 02:23:00 +0300
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael
+ Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus Walleij
+	<linus.walleij@linaro.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>, <linux-amlogic@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>,
+	<linux-gpio@vger.kernel.org>
+CC: <kernel@salutedevices.com>
+Subject: [PATCH 02/25] clk: meson: axg: move reset controller's code to separate module
+Date: Fri, 15 Mar 2024 02:21:38 +0300
+Message-ID: <20240314232201.2102178-3-jan.dakinevich@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
+References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
 MIME-Version: 1.0
-References: <1710259663-14095-1-git-send-email-quic_mojha@quicinc.com>
-In-Reply-To: <1710259663-14095-1-git-send-email-quic_mojha@quicinc.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 14 Mar 2024 21:55:55 +0100
-Message-ID: <CAFBinCC4k5nuwNq8kUub2kqZGNV=qmOQribnchuFg2vaKF3J3Q@mail.gmail.com>
-Subject: Re: [PATCH v2] nvmem: meson-mx-efuse: Remove nvmem_device from efuse struct
-To: Mukesh Ojha <quic_mojha@quicinc.com>
-Cc: srinivas.kandagatla@linaro.org, neil.armstrong@linaro.org, 
-	khilman@baylibre.com, jbrunet@baylibre.com, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 183875 [Feb 29 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_smtp_not_equal_from}, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 19:21:00 #23899999
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240314_135609_816707_009FA978 
-X-CRM114-Status: UNSURE (   8.08  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240314_162314_442171_E14B9341 
+X-CRM114-Status: GOOD (  24.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,19 +105,327 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCBNYXIgMTIsIDIwMjQgYXQgNTowOOKAr1BNIE11a2VzaCBPamhhIDxxdWljX21vamhh
-QHF1aWNpbmMuY29tPiB3cm90ZToKPgo+IG52bWVtX2RldmljZSBpcyB1c2VkIGF0IG9uZSBwbGFj
-ZSB3aGlsZSByZWdpc3RlcmluZyBudm1lbQo+IGRldmljZSBhbmQgaXQgaXMgbm90IHJlcXVpcmVk
-IHRvIGJlIHByZXNlbnQgaW4gZWZ1c2Ugc3RydWN0Cj4gZm9yIGp1c3QgdGhpcyBwdXJwb3NlLgo+
-Cj4gRHJvcCBudm1lbV9kZXZpY2UgYW5kIG1hbmFnZSB3aXRoIG52bWVtIGRldmljZSBzdGFjayB2
-YXJpYWJsZS4KPgo+IFNpZ25lZC1vZmYtYnk6IE11a2VzaCBPamhhIDxxdWljX21vamhhQHF1aWNp
-bmMuY29tPgpSZXZpZXdlZC1ieTogTWFydGluIEJsdW1lbnN0aW5nbCA8bWFydGluLmJsdW1lbnN0
-aW5nbEBnb29nbGVtYWlsLmNvbT4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlz
-dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2xpbnV4LWFtbG9naWMK
+This code will by reused by A1 SoC.
+
+Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+---
+ drivers/clk/meson/Kconfig            |   5 ++
+ drivers/clk/meson/Makefile           |   1 +
+ drivers/clk/meson/axg-audio.c        |  95 +----------------------
+ drivers/clk/meson/meson-audio-rstc.c | 109 +++++++++++++++++++++++++++
+ drivers/clk/meson/meson-audio-rstc.h |  12 +++
+ 5 files changed, 130 insertions(+), 92 deletions(-)
+ create mode 100644 drivers/clk/meson/meson-audio-rstc.c
+ create mode 100644 drivers/clk/meson/meson-audio-rstc.h
+
+diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+index 29ffd14d267b..d6a2fa5f7e88 100644
+--- a/drivers/clk/meson/Kconfig
++++ b/drivers/clk/meson/Kconfig
+@@ -48,6 +48,10 @@ config COMMON_CLK_MESON_CPU_DYNDIV
+ 	tristate
+ 	select COMMON_CLK_MESON_REGMAP
+ 
++config COMMON_CLK_MESON_AUDIO_RSTC
++	tristate
++	select RESET_CONTROLLER
++
+ config COMMON_CLK_MESON8B
+ 	bool "Meson8 SoC Clock controller support"
+ 	depends on ARM
+@@ -101,6 +105,7 @@ config COMMON_CLK_AXG_AUDIO
+ 	select COMMON_CLK_MESON_PHASE
+ 	select COMMON_CLK_MESON_SCLK_DIV
+ 	select COMMON_CLK_MESON_CLKC_UTILS
++	select COMMON_CLK_MESON_AUDIO_RSTC
+ 	select REGMAP_MMIO
+ 	help
+ 	  Support for the audio clock controller on AmLogic A113D devices,
+diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+index 9ee4b954c896..88d94921a4dc 100644
+--- a/drivers/clk/meson/Makefile
++++ b/drivers/clk/meson/Makefile
+@@ -12,6 +12,7 @@ obj-$(CONFIG_COMMON_CLK_MESON_PLL) += clk-pll.o
+ obj-$(CONFIG_COMMON_CLK_MESON_REGMAP) += clk-regmap.o
+ obj-$(CONFIG_COMMON_CLK_MESON_SCLK_DIV) += sclk-div.o
+ obj-$(CONFIG_COMMON_CLK_MESON_VID_PLL_DIV) += vid-pll-div.o
++obj-$(CONFIG_COMMON_CLK_MESON_AUDIO_RSTC) += meson-audio-rstc.o
+ 
+ # Amlogic Clock controllers
+ 
+diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
+index ac3482960903..990203a7ad5c 100644
+--- a/drivers/clk/meson/axg-audio.c
++++ b/drivers/clk/meson/axg-audio.c
+@@ -12,10 +12,10 @@
+ #include <linux/platform_device.h>
+ #include <linux/regmap.h>
+ #include <linux/reset.h>
+-#include <linux/reset-controller.h>
+ #include <linux/slab.h>
+ 
+ #include "meson-clkc-utils.h"
++#include "meson-audio-rstc.h"
+ #include "axg-audio.h"
+ #include "clk-regmap.h"
+ #include "clk-phase.h"
+@@ -1648,84 +1648,6 @@ static struct clk_regmap *const sm1_clk_regmaps[] = {
+ 	&sm1_sysclk_b_en,
+ };
+ 
+-struct axg_audio_reset_data {
+-	struct reset_controller_dev rstc;
+-	struct regmap *map;
+-	unsigned int offset;
+-};
+-
+-static void axg_audio_reset_reg_and_bit(struct axg_audio_reset_data *rst,
+-					unsigned long id,
+-					unsigned int *reg,
+-					unsigned int *bit)
+-{
+-	unsigned int stride = regmap_get_reg_stride(rst->map);
+-
+-	*reg = (id / (stride * BITS_PER_BYTE)) * stride;
+-	*reg += rst->offset;
+-	*bit = id % (stride * BITS_PER_BYTE);
+-}
+-
+-static int axg_audio_reset_update(struct reset_controller_dev *rcdev,
+-				unsigned long id, bool assert)
+-{
+-	struct axg_audio_reset_data *rst =
+-		container_of(rcdev, struct axg_audio_reset_data, rstc);
+-	unsigned int offset, bit;
+-
+-	axg_audio_reset_reg_and_bit(rst, id, &offset, &bit);
+-
+-	regmap_update_bits(rst->map, offset, BIT(bit),
+-			assert ? BIT(bit) : 0);
+-
+-	return 0;
+-}
+-
+-static int axg_audio_reset_status(struct reset_controller_dev *rcdev,
+-				unsigned long id)
+-{
+-	struct axg_audio_reset_data *rst =
+-		container_of(rcdev, struct axg_audio_reset_data, rstc);
+-	unsigned int val, offset, bit;
+-
+-	axg_audio_reset_reg_and_bit(rst, id, &offset, &bit);
+-
+-	regmap_read(rst->map, offset, &val);
+-
+-	return !!(val & BIT(bit));
+-}
+-
+-static int axg_audio_reset_assert(struct reset_controller_dev *rcdev,
+-				unsigned long id)
+-{
+-	return axg_audio_reset_update(rcdev, id, true);
+-}
+-
+-static int axg_audio_reset_deassert(struct reset_controller_dev *rcdev,
+-				unsigned long id)
+-{
+-	return axg_audio_reset_update(rcdev, id, false);
+-}
+-
+-static int axg_audio_reset_toggle(struct reset_controller_dev *rcdev,
+-				unsigned long id)
+-{
+-	int ret;
+-
+-	ret = axg_audio_reset_assert(rcdev, id);
+-	if (ret)
+-		return ret;
+-
+-	return axg_audio_reset_deassert(rcdev, id);
+-}
+-
+-static const struct reset_control_ops axg_audio_rstc_ops = {
+-	.assert = axg_audio_reset_assert,
+-	.deassert = axg_audio_reset_deassert,
+-	.reset = axg_audio_reset_toggle,
+-	.status = axg_audio_reset_status,
+-};
+-
+ static const struct regmap_config axg_audio_regmap_cfg = {
+ 	.reg_bits	= 32,
+ 	.val_bits	= 32,
+@@ -1745,7 +1667,6 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+ 	const struct audioclk_data *data;
+-	struct axg_audio_reset_data *rst;
+ 	struct regmap *map;
+ 	void __iomem *regs;
+ 	struct clk_hw *hw;
+@@ -1807,18 +1728,8 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
+ 	if (!data->reset_num)
+ 		return 0;
+ 
+-	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
+-	if (!rst)
+-		return -ENOMEM;
+-
+-	rst->map = map;
+-	rst->offset = data->reset_offset;
+-	rst->rstc.nr_resets = data->reset_num;
+-	rst->rstc.ops = &axg_audio_rstc_ops;
+-	rst->rstc.of_node = dev->of_node;
+-	rst->rstc.owner = THIS_MODULE;
+-
+-	return devm_reset_controller_register(dev, &rst->rstc);
++	return meson_audio_rstc_register(dev, map, data->reset_offset,
++					 data->reset_num);
+ }
+ 
+ static const struct audioclk_data axg_audioclk_data = {
+diff --git a/drivers/clk/meson/meson-audio-rstc.c b/drivers/clk/meson/meson-audio-rstc.c
+new file mode 100644
+index 000000000000..2079d24c40f4
+--- /dev/null
++++ b/drivers/clk/meson/meson-audio-rstc.c
+@@ -0,0 +1,109 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright (c) 2018 BayLibre, SAS.
++ * Author: Jerome Brunet <jbrunet@baylibre.com>
++ */
++
++#include <linux/reset-controller.h>
++
++#include "meson-audio-rstc.h"
++
++struct meson_audio_reset_data {
++	struct reset_controller_dev rstc;
++	struct regmap *map;
++	unsigned int offset;
++};
++
++static void meson_audio_reset_reg_and_bit(struct meson_audio_reset_data *rst,
++					  unsigned long id,
++					  unsigned int *reg,
++					  unsigned int *bit)
++{
++	unsigned int stride = regmap_get_reg_stride(rst->map);
++
++	*reg = (id / (stride * BITS_PER_BYTE)) * stride;
++	*reg += rst->offset;
++	*bit = id % (stride * BITS_PER_BYTE);
++}
++
++static int meson_audio_reset_update(struct reset_controller_dev *rcdev,
++				    unsigned long id, bool assert)
++{
++	struct meson_audio_reset_data *rst =
++		container_of(rcdev, struct meson_audio_reset_data, rstc);
++	unsigned int offset, bit;
++
++	meson_audio_reset_reg_and_bit(rst, id, &offset, &bit);
++
++	regmap_update_bits(rst->map, offset, BIT(bit),
++			assert ? BIT(bit) : 0);
++
++	return 0;
++}
++
++static int meson_audio_reset_status(struct reset_controller_dev *rcdev,
++				    unsigned long id)
++{
++	struct meson_audio_reset_data *rst =
++		container_of(rcdev, struct meson_audio_reset_data, rstc);
++	unsigned int val, offset, bit;
++
++	meson_audio_reset_reg_and_bit(rst, id, &offset, &bit);
++
++	regmap_read(rst->map, offset, &val);
++
++	return !!(val & BIT(bit));
++}
++
++static int meson_audio_reset_assert(struct reset_controller_dev *rcdev,
++				    unsigned long id)
++{
++	return meson_audio_reset_update(rcdev, id, true);
++}
++
++static int meson_audio_reset_deassert(struct reset_controller_dev *rcdev,
++				      unsigned long id)
++{
++	return meson_audio_reset_update(rcdev, id, false);
++}
++
++static int meson_audio_reset_toggle(struct reset_controller_dev *rcdev,
++				    unsigned long id)
++{
++	int ret;
++
++	ret = meson_audio_reset_assert(rcdev, id);
++	if (ret)
++		return ret;
++
++	return meson_audio_reset_deassert(rcdev, id);
++}
++
++static const struct reset_control_ops meson_audio_rstc_ops = {
++	.assert = meson_audio_reset_assert,
++	.deassert = meson_audio_reset_deassert,
++	.reset = meson_audio_reset_toggle,
++	.status = meson_audio_reset_status,
++};
++
++int meson_audio_rstc_register(struct device *dev, struct regmap *map,
++			      unsigned int offset, unsigned int num)
++{
++	struct meson_audio_reset_data *rst;
++
++	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
++	if (!rst)
++		return -ENOMEM;
++
++	rst->map = map;
++	rst->offset = offset;
++	rst->rstc.nr_resets = num;
++	rst->rstc.ops = &meson_audio_rstc_ops;
++	rst->rstc.of_node = dev->of_node;
++	rst->rstc.owner = THIS_MODULE;
++
++	return devm_reset_controller_register(dev, &rst->rstc);
++}
++EXPORT_SYMBOL_GPL(meson_audio_rstc_register);
++
++MODULE_LICENSE("GPL v2");
+diff --git a/drivers/clk/meson/meson-audio-rstc.h b/drivers/clk/meson/meson-audio-rstc.h
+new file mode 100644
+index 000000000000..6b441549de03
+--- /dev/null
++++ b/drivers/clk/meson/meson-audio-rstc.h
+@@ -0,0 +1,12 @@
++/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
++
++#ifndef __MESON_AUDIO_RSTC_H
++#define __MESON_AUDIO_RSTC_H
++
++#include <linux/device.h>
++#include <linux/regmap.h>
++
++int meson_audio_rstc_register(struct device *dev, struct regmap *map,
++			      unsigned int offset, unsigned int num);
++
++#endif /* __MESON_AUDIO_RSTC_H */
+-- 
+2.34.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
