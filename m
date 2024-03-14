@@ -4,56 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D807DC54E60
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Mar 2024 14:30:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9247C54E5D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Mar 2024 20:56:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DWVWMLvfU3ZQ+2UZ29ulU+arSM794glJJxGgrKJZuiU=; b=O3dJ+knYXHLEi/
-	bN7Zp1FTRAbpGwUoOZMZmG2sbbXBr3KPRUSNGbL0oKBcCJQRZ8YoQLDUzG8PcvZ3aNeEGMTUf6pD8
-	VAbtstumm99Dee37wQtUTqga7NouHzx3ZFGThjKFinE7TDpykIRl+y4i56kaAdBICOJfjgIBsDD26
-	BFKOAiV7ngL/h6jh1nZ1HZkejdL35eY4ijyD1aEjzwP7zBWNtfNDzlvzjrR6sZGch0DPKJOYAkv/Z
-	j/IU3knzZaHxh8Kl37SRXGlXRZZbHOAh1FcNQVy6aQcrRUgxfxnHe8jbOhdvcy7SF5IYM7BwKN0lQ
-	px/g0+QQP2D4PYvaLiZA==;
+	List-Owner; bh=2Tr8kZds1jqMjgh/GRwlbbvfpJt3rywsTrn1EQEgwBk=; b=BtePEAcWCsB0IV
+	ex1Ls9wkjMGp7msg3ExWOUSQ2539l97O/CJObovZwqOAG/R+2gLYO9lIF0ljCppWUVhknU2to/srE
+	K+ep0eUHRpawuk8XqOqGt4kM7BJjDRKCPEsjwiYwUyNsk4ZlHUfOV0nJ5O2KFU/l9MbdiXmwHVf1V
+	TqxfRlJ/jgRmy0XRaJpweZ1/gCzt03B+QAOv4oNZG4ba56Hepfze0vPY4nkMzEY5YukxwS7kyY07C
+	Om3qks1GQx6KnzDtBWo0wnyonfBvLG93gAbCjCT+QdXl97ChXsE5QW3t57qQ+KZgE/zi2g6iXoB/j
+	xMzGJJPkS03I9MDzSkvQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rkm6K-0000000EeFx-1nai;
-	Thu, 14 Mar 2024 14:30:32 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rkm6H-0000000EeFI-3s34;
-	Thu, 14 Mar 2024 14:30:31 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D95E81007;
-	Thu, 14 Mar 2024 07:31:01 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 231BE3F762;
-	Thu, 14 Mar 2024 07:30:24 -0700 (PDT)
-Date: Thu, 14 Mar 2024 14:30:21 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Viacheslav <adeep@lexina.in>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v3 0/4] soc: amlogic: add new meson-gx-socinfo-sm driver
-Message-ID: <ZfMJ_Z07QkwFbOuQ@bogus>
-References: <20240314070433.4151931-1-adeep@lexina.in>
- <ZfLUMoN_ZU-xLfpA@bogus>
- <62d45d81-1366-440f-81e1-e66395707eb9@lexina.in>
+	id 1rks7Z-0000000Fg1L-31iI;
+	Thu, 14 Mar 2024 20:56:13 +0000
+Received: from mail-pl1-x62f.google.com ([2607:f8b0:4864:20::62f])
+	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1rks7V-0000000Fg0Z-32XH;
+	Thu, 14 Mar 2024 20:56:11 +0000
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1dd9066b7c3so10063475ad.2;
+        Thu, 14 Mar 2024 13:56:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1710449766; x=1711054566; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pRHD+TcjUHkyggbW48f7epyoClmqj1C+KlHwQMyVxzE=;
+        b=grhNFS42HP9lcsUK4aWvTed7ychR6d5p8y/aqlUBBvxex/txZqzMMCaL46ZU1MbT8W
+         db8i/pEWOw2k6NTBIe+fWLVGmBdRKKa5l7jhDLhdBSuBHfS8YCPKbm98T1D0VT2ITlEd
+         v+gjkK4r6/ITd0HkRT1Xfg8oFZZO2ywccgcyioWyDO0YDC36WsWvVEvoJ8jpvVHiHOJA
+         UBgg2QsOzQzAU6fZz3DIXLygj2unprmsP+JKGW+yeYolvmUe/06lV29ZqxxKpTGMMK1d
+         rkQqKR37sLr1Ho/rl7JEsqzlG3wWIsra7YjCRjO+kv++DTWoeEmMJuVFD/UtiULtnKf1
+         4bfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710449766; x=1711054566;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pRHD+TcjUHkyggbW48f7epyoClmqj1C+KlHwQMyVxzE=;
+        b=AUr4WSbkMCerx2yEw26603hYWliLs9WkgbYb3DgW4BhhY9WnOHb9iSZqaY6fR3rxGq
+         P2fwMlhxD7Foy7bzONZcoQ676mqLsaCiDYYMLNhpwugyDRfmGZ6qREqMFjpb7MS3Lys9
+         zUnu/++7mBTu+OBZKQIEJKGSPg0qekbMkEKmg0SgAS4nlX6soGzooby+VXZzEHlz74BX
+         qpAN0RlE5ZyD0Y91rsL0WifxdH5PlqVHjz1fKBvB1yQYOCD5h219woYxGOFHCJDo2/0X
+         715KacyR+TK7Z9vwHHK1kNHahKSelkzdzKQ+fnFYbqU+NgvaGF7zgJI2uzBVOlL2ZaLw
+         JnlA==
+X-Forwarded-Encrypted: i=1; AJvYcCUc7yO7fBa3Y4n+uXEabstQ/O9cbVqTm7VCOHqOt8YyAVtf4BEjyfdTOTz/B4jbc+Kt0OD/DwrV9CSrfTGryyrd/UnrlWNK8bcXMXzkLyPYco/6MQ47b0eUNu2O7SCO+bmvumDGAf+9cLJeBzJ1Z6e4agOgGJc7oQ==
+X-Gm-Message-State: AOJu0YxGMFxqVsHtyaXu/vvUScrnhwyjqI+DQtILIQNUItfYEWfwVqr/
+	15Yplv3EVwKblwRQ03R+/e5a2EKZrWDhcygfknF5VWmAFgKyFuPIKqodjRezIm6l5fP7aK1NThi
+	PRuLNzsVro2eSKqlSHvyhOL0ug/4=
+X-Google-Smtp-Source: AGHT+IHX1AyajLJTVHGSXYPwtKX+7yh7PG9wayr6B9dveZH+o9n5qK2EDhZ/7woQQgmNKPpyAzCre+qGGjjW9NMe9O0=
+X-Received: by 2002:a17:902:780d:b0:1dd:b6c0:1363 with SMTP id
+ p13-20020a170902780d00b001ddb6c01363mr2687465pll.69.1710449766557; Thu, 14
+ Mar 2024 13:56:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <62d45d81-1366-440f-81e1-e66395707eb9@lexina.in>
+References: <1710259663-14095-1-git-send-email-quic_mojha@quicinc.com>
+In-Reply-To: <1710259663-14095-1-git-send-email-quic_mojha@quicinc.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Thu, 14 Mar 2024 21:55:55 +0100
+Message-ID: <CAFBinCC4k5nuwNq8kUub2kqZGNV=qmOQribnchuFg2vaKF3J3Q@mail.gmail.com>
+Subject: Re: [PATCH v2] nvmem: meson-mx-efuse: Remove nvmem_device from efuse struct
+To: Mukesh Ojha <quic_mojha@quicinc.com>
+Cc: srinivas.kandagatla@linaro.org, neil.armstrong@linaro.org, 
+	khilman@baylibre.com, jbrunet@baylibre.com, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240314_073030_025855_09B11169 
-X-CRM114-Status: GOOD (  11.62  )
+X-CRM114-CacheID: sfid-20240314_135609_816707_009FA978 
+X-CRM114-Status: UNSURE (   8.08  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,37 +87,19 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Mar 14, 2024 at 03:25:02PM +0300, Viacheslav wrote:
-> Hi!
-> 
-> 14/03/2024 13.40, Sudeep Holla wrote:
-> > On Thu, Mar 14, 2024 at 09:59:50AM +0300, Viacheslav Bocharov wrote:
-> > > The Amlogic Meson SoC Secure Monitor implements a call to retrieve an
-> > > unique SoC ID starting from the GX Family and all new families.
-> > > But GX-family chips (e.g. GXB, GXL and newer) supports also 128-bit
-> > > chip ID. 128-bit chip ID consists 32-bit SoC version and 96-bit OTP data.
-> > > 
-> > 
-> > How old or new are these SoCs ? The reason I ask is that it is really
-> > sad to see vendors still creating their custom interfaces for such things
-> > despite the standard SMCCC interface SOC_ID introduced in SMCCC v1.2 some
-> > time in 2020.
-> 
-> Most of these SoC were created before 2020.
-> 
-
-Fair enough then. Hope they use SOC_ID on newer SoCs.
-
--- 
-Regards,
-Sudeep
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVHVlLCBNYXIgMTIsIDIwMjQgYXQgNTowOOKAr1BNIE11a2VzaCBPamhhIDxxdWljX21vamhh
+QHF1aWNpbmMuY29tPiB3cm90ZToKPgo+IG52bWVtX2RldmljZSBpcyB1c2VkIGF0IG9uZSBwbGFj
+ZSB3aGlsZSByZWdpc3RlcmluZyBudm1lbQo+IGRldmljZSBhbmQgaXQgaXMgbm90IHJlcXVpcmVk
+IHRvIGJlIHByZXNlbnQgaW4gZWZ1c2Ugc3RydWN0Cj4gZm9yIGp1c3QgdGhpcyBwdXJwb3NlLgo+
+Cj4gRHJvcCBudm1lbV9kZXZpY2UgYW5kIG1hbmFnZSB3aXRoIG52bWVtIGRldmljZSBzdGFjayB2
+YXJpYWJsZS4KPgo+IFNpZ25lZC1vZmYtYnk6IE11a2VzaCBPamhhIDxxdWljX21vamhhQHF1aWNp
+bmMuY29tPgpSZXZpZXdlZC1ieTogTWFydGluIEJsdW1lbnN0aW5nbCA8bWFydGluLmJsdW1lbnN0
+aW5nbEBnb29nbGVtYWlsLmNvbT4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlz
+dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2xpbnV4LWFtbG9naWMK
