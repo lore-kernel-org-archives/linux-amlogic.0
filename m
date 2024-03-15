@@ -4,73 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E210C54E58
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2024 13:37:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9161C54E68
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2024 15:50:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=8A1j3OLvTdtJC+98gZoStA+79MoCWz2aOV2cyItnaeA=; b=YyT7dXbKy4r/UZn1RNmRb4UPtC
-	UN8nQlXKW7+z3A7/U0XeLjBEOW2l44TdWDi0gBaquR1ccLVC2h5IGMmh8IKVsXVzoKXh+iRCEMEYK
-	XEY9ljxG3zqIEhUt97OjsXmUu65QUowOMtEaxzA+cZPx8l9DnqU17qiziWKvtAhyuPIXpQU5hK5pk
-	gfggAe1nS2xYdqZ2+T6e12LDOr4KT/U0/9E+Mby+DvdGoOLRKhpdAnVrYEEiP1X0/rjewjySrFxpc
-	vjkYC42HsB4NCYFprxC9uB4aBj/ayqqF2mE0fsw9lI3VX/Eod5RXFcNDl3tnUvzXQ44f9l7jGXAaA
-	eZLk6Tgw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
+	In-Reply-To:Cc:To:From:MIME-Version:Date:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=lpql5sP2gHJCJoAgJSp8d58KLWtawr1XJM1voKsdN4E=; b=o9Zlxyc2CRUeN0SLBgtrU7QZEf
+	cZgL4+Nw30d1169MsHjbI/ZfMiwBfyKRju9Zls608oywrP+EDUf/pn289Bl8BF6/A5vpMRVSE7Ozv
+	C+lTGcc0u4Az3PQVL0tHa4jNtGjbqhnG5Q0h70w5vYRTI6Bgs928ZeUJtIeIcBDCcsjZcWgsAIOYO
+	TK8lZumcJguK5ru42TescOn9f3olSaNRWg1bpfHjNyYdNyYRyXH5EVXmpU7AKiFHs3nHE7lea05Nf
+	vFT8qhCWr+JF3UPjVfwgfs4iPkuhQ59NCERgL71q8obzI2Yx8M5lhPdEYLwaSKz02cWw6ZYA+MN+G
+	6hmA4ApA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rl7k5-00000000LgJ-15jC;
-	Fri, 15 Mar 2024 13:37:01 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1rl9pY-00000000iea-1mqW;
+	Fri, 15 Mar 2024 15:50:48 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rl7k2-00000000Lf1-1CBg;
-	Fri, 15 Mar 2024 13:36:59 +0000
+	id 1rl9pT-00000000id2-1l7n;
+	Fri, 15 Mar 2024 15:50:47 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 4BC8ECE1D8A;
-	Fri, 15 Mar 2024 13:36:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B990C433F1;
-	Fri, 15 Mar 2024 13:36:50 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id BD81E61725;
+	Fri, 15 Mar 2024 15:50:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33D25C433C7;
+	Fri, 15 Mar 2024 15:50:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710509815;
-	bh=mnKx/USIAWKFowB3UECi37soYZOTeSdjE7YC6dui0gY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WBikQgWFYtKFSQn7AJHJtgle7tDUdFM0GNQ/6JqxAf0lxH6kRfm2hxTIXdG5E6Egy
-	 YAzTuwY1PjSj0ojy2bfIUYwcULJe3/38mYLHr+20Nw39reMae5OEJudFQOAYqJS1cG
-	 mjHGzUI/L69hkyZrBEUsb8oCQhOHCT3JZQ44vfSkw/OskPHgcBcH2rCpWA6LWBCF5E
-	 diWwtCdzYwAdPO346YhitMreYA0mq7RAR0VnKsuUT5V6yoGUgrZLjFm21Xpp4uFg52
-	 3KzbWdPKyTbVDmpXxzm5MDzWsiHQEt7QAGwNh5hjZUGzrkEU44uZ9fAbLix7zN5tme
-	 8jjsI9jEx/Dhw==
-Date: Fri, 15 Mar 2024 13:36:48 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org,
-	kernel@salutedevices.com
-Subject: Re: [PATCH 12/25] ASoC: meson: t9015: add support for A1 SoC family
-Message-ID: <5f8e8cd2-f9c4-4961-a85d-a0f3217294e6@sirena.org.uk>
-References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
- <20240314232201.2102178-13-jan.dakinevich@salutedevices.com>
+	s=k20201202; t=1710517842;
+	bh=6q19b+fiofsjhkT1rQDSO2sq7lO0s2NotCj9IMtQRaY=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=cATWngLj0V0uBL2vyvNEcza3aKIZ7Np98iE1Fp7ZewG/iAYpswJuJuFe9bH49wWaX
+	 mnvcdWiUR04/OvSJJ21K3bFM+mpakZDyZjGqOPSAQ1b0njzLjfININ6Qws+lc5B5vR
+	 itjqzDy9xjSTZuK3QOQ9I5yeawb4tbQjD5kCOKlSC5G2luE04THVWHO8dM498VfzAJ
+	 eLxGeBJfdwLQL6jCw2mcOTrOv8k22gs2tbX8UCHfeGLpnoionHOqrxLElqkflT3IWG
+	 FlXaVPlrwuMW0SCEcsynOuS5r9l44wpHCWu3QSG/0OOu0kTEm4j2X9qNt+w2NdnLcK
+	 zT4mBoBAl07Lw==
+Date: Fri, 15 Mar 2024 09:50:41 -0600
 MIME-Version: 1.0
-In-Reply-To: <20240314232201.2102178-13-jan.dakinevich@salutedevices.com>
-X-Cookie: A well-known friend is a treasure.
+From: Rob Herring <robh@kernel.org>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org, 
+ Liam Girdwood <lgirdwood@gmail.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, alsa-devel@alsa-project.org, 
+ Linus Walleij <linus.walleij@linaro.org>, Jaroslav Kysela <perex@perex.cz>, 
+ linux-clk@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>, 
+ Mark Brown <broonie@kernel.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ kernel@salutedevices.com, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ linux-sound@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ linux-gpio@vger.kernel.org, Takashi Iwai <tiwai@suse.com>
+In-Reply-To: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
+References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
+Message-Id: <171051663959.1379925.16000374378934819942.robh@kernel.org>
+Subject: Re: [PATCH 00/25] Introduce support of audio for Amlogic A1 SoC
+ family
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240315_063658_704133_BCC17FF6 
-X-CRM114-Status: GOOD (  10.27  )
+X-CRM114-CacheID: sfid-20240315_085043_571357_0BEF1C7D 
+X-CRM114-Status: GOOD (  20.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,73 +80,136 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8394874743797435712=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============8394874743797435712==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4AHceM7kGoMGggFJ"
-Content-Disposition: inline
+On Fri, 15 Mar 2024 02:21:36 +0300, Jan Dakinevich wrote:
+> This series includes the following:
+> 
+>  - new audio clock and reset controller data and adaptation for it of existing
+>    code (patches 0001..0004);
+> 
+>  - adaptation of existing audio components for A1 Soc (patches 0005..0021);
+> 
+>  - handy cosmetics for dai-link naming (patches 0022..0023);
+> 
+>  - integration of audio devices into common trees (patch 0024);
+> 
+>  - audio support bring up on Amlogic ad402 reference board (patch 0025). This
+>    patch is not actually checked on real hardware (because all ad402 that we had
+>    were burned out). This patch is based on ad402's schematics and on experience
+>    with our own hardware (which is very close to reference board);
+> 
+> Dmitry Rokosov (2):
+>   ASoC: dt-bindings: meson: introduce link-name optional property
+>   ASoC: meson: implement link-name optional property in meson card utils
+> 
+> Jan Dakinevich (23):
+>   clk: meson: a1: restrict an amount of 'hifi_pll' params
+>   clk: meson: axg: move reset controller's code to separate module
+>   dt-bindings: clock: meson: add A1 audio clock and reset controller
+>     bindings
+>   clk: meson: a1: add the audio clock controller driver
+>   ASoC: meson: codec-glue: add support for capture stream
+>   ASoC: meson: g12a-toacodec: fix "Lane Select" width
+>   ASoC: meson: g12a-toacodec: rework the definition of bits
+>   ASoC: dt-bindings: meson: g12a-toacodec: add support for A1 SoC family
+>   ASoC: meson: g12a-toacodec: add support for A1 SoC family
+>   ASoC: meson: t9015: prepare to adding new platforms
+>   ASoC: dt-bindings: meson: t9015: add support for A1 SoC family
+>   ASoC: meson: t9015: add support for A1 SoC family
+>   ASoC: dt-bindings: meson: axg-pdm: document 'sysrate' property
+>   ASoC: meson: axg-pdm: introduce 'sysrate' property
+>   pinctrl/meson: fix typo in PDM's pin name
+>   ASoC: dt-bindings: meson: meson-axg-audio-arb: claim support of A1 SoC
+>     family
+>   ASoC: dt-bindings: meson: axg-fifo: claim support of A1 SoC family
+>   ASoC: dt-bindings: meson: axg-pdm: claim support of A1 SoC family
+>   ASoC: dt-bindings: meson: axg-sound-card: claim support of A1 SoC
+>     family
+>   ASoC: dt-bindings: meson: axg-tdm-formatters: claim support of A1 SoC
+>     family
+>   ASoC: dt-bindings: meson: axg-tdm-iface: claim support of A1 SoC
+>     family
+>   arm64: dts: meson: a1: add audio devices
+>   arm64: dts: ad402: enable audio
+> 
+>  .../bindings/clock/amlogic,a1-audio-clkc.yaml |  83 +++
+>  .../reset/amlogic,meson-axg-audio-arb.yaml    |  10 +-
+>  .../bindings/sound/amlogic,axg-fifo.yaml      |   8 +
+>  .../bindings/sound/amlogic,axg-pdm.yaml       |   5 +
+>  .../sound/amlogic,axg-sound-card.yaml         |  12 +-
+>  .../sound/amlogic,axg-tdm-formatters.yaml     |  22 +-
+>  .../bindings/sound/amlogic,axg-tdm-iface.yaml |   6 +-
+>  .../bindings/sound/amlogic,g12a-toacodec.yaml |   1 +
+>  .../bindings/sound/amlogic,gx-sound-card.yaml |   6 +
+>  .../bindings/sound/amlogic,t9015.yaml         |   4 +-
+>  .../arm64/boot/dts/amlogic/meson-a1-ad402.dts | 126 ++++
+>  arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 471 +++++++++++++++
+>  drivers/clk/meson/Kconfig                     |  18 +
+>  drivers/clk/meson/Makefile                    |   2 +
+>  drivers/clk/meson/a1-audio.c                  | 556 ++++++++++++++++++
+>  drivers/clk/meson/a1-audio.h                  |  58 ++
+>  drivers/clk/meson/a1-pll.c                    |   8 +-
+>  drivers/clk/meson/axg-audio.c                 |  95 +--
+>  drivers/clk/meson/meson-audio-rstc.c          | 109 ++++
+>  drivers/clk/meson/meson-audio-rstc.h          |  12 +
+>  drivers/pinctrl/meson/pinctrl-meson-a1.c      |   6 +-
+>  .../dt-bindings/clock/amlogic,a1-audio-clkc.h | 122 ++++
+>  .../reset/amlogic,meson-a1-audio-reset.h      |  29 +
+>  .../dt-bindings/sound/meson-g12a-toacodec.h   |   5 +
+>  sound/soc/meson/axg-pdm.c                     |  10 +-
+>  sound/soc/meson/g12a-toacodec.c               | 298 ++++++++--
+>  sound/soc/meson/meson-card-utils.c            |  12 +-
+>  sound/soc/meson/meson-codec-glue.c            | 174 ++++--
+>  sound/soc/meson/meson-codec-glue.h            |  23 +
+>  sound/soc/meson/t9015.c                       | 326 +++++++++-
+>  30 files changed, 2394 insertions(+), 223 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
+>  create mode 100644 drivers/clk/meson/a1-audio.c
+>  create mode 100644 drivers/clk/meson/a1-audio.h
+>  create mode 100644 drivers/clk/meson/meson-audio-rstc.c
+>  create mode 100644 drivers/clk/meson/meson-audio-rstc.h
+>  create mode 100644 include/dt-bindings/clock/amlogic,a1-audio-clkc.h
+>  create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
+> 
+> --
+> 2.34.1
+> 
+> 
+> 
 
 
---4AHceM7kGoMGggFJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-On Fri, Mar 15, 2024 at 02:21:48AM +0300, Jan Dakinevich wrote:
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-> +static const char * const a1_adc_mic_bias_level_txt[] = { "2.0V", "2.1V",
-> +	"2.3V", "2.5V", "2.8V" };
-> +static const unsigned int a1_adc_mic_bias_level_values[] = { 0, 1, 2, 3, 7 };
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-Why would this be varied at runtime rather than being something fixed
-when the system is designed?
-
-> +static const char * const a1_adc_pga_txt[] = { "None", "Differential",
-> +	"Positive", "Negative" };
-> +static const unsigned int a1_adc_pga_right_values[] = { 0, PGAR_DIFF,
-> +	PGAR_POSITIVE, PGAR_NEGATIVE };
-> +static const unsigned int a1_adc_pga_left_values[] = { 0, PGAL_DIFF,
-> +	PGAL_POSITIVE, PGAL_NEGATIVE };
-
-Similarly here.
-
-> +	SOC_SINGLE("ADC Mic Bias Switch", LINEIN_CFG, MICBIAS_EN, 1, 0),
-> +	SOC_ENUM("ADC Mic Bias Level", a1_adc_mic_bias_level),
-
-Why would micbias be user controlled rather than a DAPM widget as
-normal?
-
---4AHceM7kGoMGggFJ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmX0Tu8ACgkQJNaLcl1U
-h9B7RQf/eYxVKAjAigpYP4vgwBWRE/HosjdaaB5ogMo8PMSiXfacGnLx0ZtIpWa9
-i6saOA5iW9E/n7Et4JpmJ0J/fYdN7d5TkSlgYGwYP/ojBAChias0hOS7f+fHKvdM
-qH8C+20ovZC5RpNOZUjLmiwJ1WMJQrXgjYVTLpBHn23XPsf8fV3i+B5JEQzBJtXI
-px2DiSaV2iQ+nBmrZQEQo7KnJsQiLahPLQgr81xq5322lUfLN0+kRHrNGnqMU/Aw
-BW++2BV+mf6HXT8WKXrn2DeQByMpBN+jc7eeRDI7xIiB4iAWwpDL9Cn5HsSuYYvI
-ZdU3lU/s6CaDa3e5AyxYVatZ42Rx4Q==
-=sm4b
------END PGP SIGNATURE-----
-
---4AHceM7kGoMGggFJ--
+  pip3 install dtschema --upgrade
 
 
---===============8394874743797435712==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+New warnings running 'make CHECK_DTBS=y amlogic/meson-a1-ad402.dtb' for 20240314232201.2102178-1-jan.dakinevich@salutedevices.com:
+
+arch/arm64/boot/dts/amlogic/meson-a1-ad402.dtb: audio-controller@4800: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,t9015.yaml#
+arch/arm64/boot/dts/amlogic/meson-a1-ad402.dtb: audio-controller@1000: Unevaluated properties are not allowed ('power-domains' was unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-pdm.yaml#
+
+
+
+
+
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============8394874743797435712==--
-
