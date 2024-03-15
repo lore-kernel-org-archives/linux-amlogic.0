@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74BBBC54E58
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2024 09:57:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2007CC54E69
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2024 09:58:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zE4102VqmohIO/KLqfQCQFGPiKg0L9M0KGG6GjePdnw=; b=0z8pbAInM/h+sC
-	uxM6gDhdtEBTa1W4mclA4ANfW0jWAf+556Lrynl3z5u6skl681j4zGQ5rqbTZHuInj3OuURZGaFXK
-	tBZKspdnahMy+uYMtDHSgSds3PeWQHP1VADdf4IVMKZscQU++a6j7Tl+HhXy7GV6L8DvnzUZPgcrQ
-	PcjkdgHf4T5pUxb2m0oLYhqdeUJPcKgqreCU66US2sfCjp/F8RCP8QotUkGlnith2gukZz7MPjkEA
-	OOzwZyIE2Xe9MATg8BbeIhPdITBu57swB2fKPPDttOkRmZnoxgntwV/OEjRiHwUG7vaobMr/b39uV
-	GY9ANTm7Ey5T2/M2MSVg==;
+	List-Owner; bh=jy6OZifd1oVXpXlyHNuhr67P3oQmh3G+CLaotauYiec=; b=Y/JpbaeLc08rsA
+	rFrI2ZW+eiGMMr23HV077339AnAz8HhPnV6aiLS7f0L85VP404DJCYz9x0lE5qnADOr1UVH23VtdV
+	oBplP0LVWfOS5N7UDh0hHzfzjmBUwJziOFPddIX53nlDpqrcLU/84YW0PLzDeXU7bXkyl37a+BfBU
+	A5IRgC21U9rT391btJLhQWzvWnrjvrtM5Ryonnwm5/QriXqI1gxswHcp5UDtTrzgQECnJa3yFPm9F
+	wkPFNde8sIQLWp6b8tY15FZJ9k4JdbOyqE5Iq2dONnmTLqkofauYWQoXOWZDADUkC6DaTk/vBYohY
+	AZ6e7+QF2kvaLjczcBEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rl4JS-0000000HN7D-0004;
-	Fri, 15 Mar 2024 09:57:18 +0000
-Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
+	id 1rl4Km-0000000HNc1-42NC;
+	Fri, 15 Mar 2024 09:58:40 +0000
+Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rl4JE-0000000HMyU-27DU
+	id 1rl4Kk-0000000HNb9-1QYz
 	for linux-amlogic@lists.infradead.org;
-	Fri, 15 Mar 2024 09:57:10 +0000
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-a44f2d894b7so206699066b.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 15 Mar 2024 02:57:03 -0700 (PDT)
+	Fri, 15 Mar 2024 09:58:39 +0000
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a466fc8fcccso206018466b.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 15 Mar 2024 02:58:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710496622; x=1711101422; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1710496716; x=1711101516; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bN2u4rR1Zr2xT6D08j7QKgDjL2CpcTPg9+Xe9EIpbXI=;
-        b=xdUaz5KEj1JvpNjCYSj7oKkCPAgTOhlzODdc+sBDezjFnLGANqrO+WmQYuTRhKX9Vv
-         xSbR/znPls23rgDOnkeTag6Puoohie4MRZL5F9JhQRtAZ4eksuTSFCGkZYjGrotDePcS
-         77GdsyjnLWZxeK1n7XOsYBTpGN3nSHLrm/qcq+hVD4jzo9zHRPX/iEhKaXiPSC5KkPBv
-         DMMYPq1G6C6+gaYexhDc6844bZj4ueCy088LS+RWTvcatbC2VCXEr1Rkq/kphJxhMCg3
-         3O/kz7+GVWkRKPQ+Q0m+xJCyWtKNzFJJhvhhC053BUCBoE76fDDd+elsZ3jkoZJuiZ+T
-         W72Q==
+        bh=XCDp802c/vz00Jj0fM4zOQgn8Q59NL1j5+KpAzF7J7g=;
+        b=o2jwhrLCz3KbcsCL637WvtDYMHbrrmb9PkPUKJKQ9QMzIvrQF9SbQN7V2GSksnmz9L
+         5qfVSP85baCor1quoertFMeTsn6wNSRID+jEvvFcWHpA8PpjC6JnyjULRYQqdfpdAQxj
+         IMbfhR9/LmnWJ4QQefka2Rn65y7Chvjgq7RKmjE4SyPB6NFNcGz9vJvN+ZMQtaa4Zptc
+         AHWWhl55GryWaOcWPWL+xLTyj0HwsLIX3y/2qI9iD8K9fnjTzfHGh/7jy756zPtHmNUs
+         2WSyyVPrGVroBUPEq1vtQ6153ht7B55d1rfJ+uRlTflm80XSuMnkurD/g0qzPli+tPXr
+         uudw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710496622; x=1711101422;
+        d=1e100.net; s=20230601; t=1710496716; x=1711101516;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bN2u4rR1Zr2xT6D08j7QKgDjL2CpcTPg9+Xe9EIpbXI=;
-        b=WlkcSMem42LSlnDY771umzpK2+tkjgenZpt3nlQUkHMn5DM+9iE2N6FDjdc5E8s/Ue
-         YU4Qkr5d9nRBael8tR0+GUxMYKJjlG+UeQ2ajJw+Kumnid4lJw9SFt+a6OZQUyEusnrw
-         KBA/m7cLCYPFVMp4xAwJV2aHptfgzmX3w+sH34QTedvtshW87KdaW1CoOGkyPp38E9ST
-         gk1WBCBQfO07FbX8RzBAA3mm9PO1Vs651muRyWhezKoBamzAni/4Rkq49aoc6oIoW9wt
-         WAW5/dx011qh04N6RI3cJudktwO9kXRrewKo37ZbooMOiDNYpldWiemUC7mzTwZ0I2Fp
-         PigA==
-X-Forwarded-Encrypted: i=1; AJvYcCWDy7uq0JQuwa5+isR/PkQkeJQQLyDdOZ/j6d7Pvl+m8i/jskYoTRKgNSddI9/rSxnafF88MS+xSB0bMe0SZv0d3k4xISlhu5ug+L5KPJSjEKw=
-X-Gm-Message-State: AOJu0Yy3AYn1EQAe6eZSUNIR7DaxnM8qe/FInXKL1lMd3Vi/d2hKnuaA
-	LyuobtkCk7magE8VHYppGZaaYxY4ruSuPUE4HHn9KxyoBsG1n636hBhHiXzt1og=
-X-Google-Smtp-Source: AGHT+IHq7D1NT9mx8FX1vpzkEoVOa1oMEgKYpoLeGT8a7OVBLnX0kslJwG9cpWL/bxxXlee0+eehhA==
-X-Received: by 2002:a17:907:c783:b0:a46:74f0:6278 with SMTP id tz3-20020a170907c78300b00a4674f06278mr3165655ejc.50.1710496621489;
-        Fri, 15 Mar 2024 02:57:01 -0700 (PDT)
+        bh=XCDp802c/vz00Jj0fM4zOQgn8Q59NL1j5+KpAzF7J7g=;
+        b=uApCMhRh+KDEQoZrlyrixfGSGSF4FBgu8AdWwFi6qduKOJkV8SIjXWsu0paSFtFCLC
+         S66OAVa5AccMoJdwvF5dc37UIJ/FBTSBzoLqosbUqbKXkJaJHDHEx98jhl12oHDaZErP
+         80KfF5gfn+4bUVmLP6BoEe7ITtkMLPvDqO8vEISvtkY2T2q38rIYkkrncojgAZ7bKloE
+         /juFs4kuRxfr0Wp92m3eYLaSSBuB5zcofU9zfY/aoj14WehPtUJX4qCdHb1mTqy/wpS1
+         hxFMJ1yUVVj+DGF+oFK8FmA/5ZGEQ2608lJeg4/Px5uNf2h1gkfo+n3ZZjScc+HLObPd
+         rrJw==
+X-Forwarded-Encrypted: i=1; AJvYcCVYXUkFNNCSxFs60HsO0g8yaDTTK3eBuxj5HYN9mI3uPQUmf6/oXEMi1GbbV9782SHFfOqxyAZbrytY0o75KHnVBN9yZrbr9EMi64fGm57H+h0=
+X-Gm-Message-State: AOJu0YzQl9gY2XVch8u0dC78YpCN02UZ8CLx/62Ihz2SYGfEmyxF1/kZ
+	P8u7S6VtDmyNs3NT1GmJv+uT09E+JRiIhNlfCHrVwIplIww2hjmRVSNPjdg0RO0=
+X-Google-Smtp-Source: AGHT+IHIsIdUGhPXOM3BQx4/0p1MeZLlO90elMoxks/E8rq2q+6HU+t6JEfKjICz9pAzbqmmPNO/Hw==
+X-Received: by 2002:a17:907:c086:b0:a46:6dcf:3f39 with SMTP id st6-20020a170907c08600b00a466dcf3f39mr3347105ejc.57.1710496716475;
+        Fri, 15 Mar 2024 02:58:36 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id dv22-20020a170906b81600b00a4658d3e405sm1529599ejb.196.2024.03.15.02.56.58
+        by smtp.gmail.com with ESMTPSA id dv22-20020a170906b81600b00a4658d3e405sm1529599ejb.196.2024.03.15.02.58.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Mar 2024 02:57:00 -0700 (PDT)
-Message-ID: <1b766dae-463f-4839-b527-e260dec5e628@linaro.org>
-Date: Fri, 15 Mar 2024 10:56:57 +0100
+        Fri, 15 Mar 2024 02:58:36 -0700 (PDT)
+Message-ID: <f91ea77c-8170-4ae6-850f-3d5715d83855@linaro.org>
+Date: Fri, 15 Mar 2024 10:58:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/25] dt-bindings: clock: meson: add A1 audio clock and
- reset controller bindings
+Subject: Re: [PATCH 08/25] ASoC: dt-bindings: meson: g12a-toacodec: add
+ support for A1 SoC family
 Content-Language: en-US
 To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
  Neil Armstrong <neil.armstrong@linaro.org>,
@@ -88,7 +88,7 @@ To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
  linux-gpio@vger.kernel.org
 Cc: kernel@salutedevices.com
 References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
- <20240314232201.2102178-4-jan.dakinevich@salutedevices.com>
+ <20240314232201.2102178-9-jan.dakinevich@salutedevices.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,10 +134,10 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240314232201.2102178-4-jan.dakinevich@salutedevices.com>
+In-Reply-To: <20240314232201.2102178-9-jan.dakinevich@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240315_025705_058928_15D96182 
-X-CRM114-Status: GOOD (  13.57  )
+X-CRM114-CacheID: sfid-20240315_025838_504336_7E613DAD 
+X-CRM114-Status: GOOD (  14.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -155,111 +155,37 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 15/03/2024 00:21, Jan Dakinevich wrote:
-> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> Add "amlogic,t9015-a1" compatible string and new device tree phandle
+> options.
 
-You must provide commit messages.
+I don't understand the second part. You did not add any options, no
+phandles. You added some defines for something, so say what are these
+"something".
 
-A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
-
-> ---
->  .../bindings/clock/amlogic,a1-audio-clkc.yaml |  83 ++++++++++++
->  .../dt-bindings/clock/amlogic,a1-audio-clkc.h | 122 ++++++++++++++++++
->  .../reset/amlogic,meson-a1-audio-reset.h      |  29 +++++
->  3 files changed, 234 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/amlogic,a1-audio-clkc.h
->  create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
-> new file mode 100644
-> index 000000000000..c76cad4da493
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/amlogic,a1-audio-clkc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic A1 Audio Clock Control Unit and Reset Controller
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +  - Jan Dakinevich <jan.dakinevich@salutedevices.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,a1-audio-clkc
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +  reg:
-> +    minItems: 2
+> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> ---
+>  .../devicetree/bindings/sound/amlogic,g12a-toacodec.yaml     | 1 +
+>  include/dt-bindings/sound/meson-g12a-toacodec.h              | 5 +++++
+>  2 files changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml b/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
+> index 23f82bb89750..c47604aa590f 100644
+> --- a/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
+> +++ b/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
+> @@ -26,6 +26,7 @@ properties:
+>        - items:
+>            - enum:
+>                - amlogic,sm1-toacodec
+> +              - amlogic,a1-toacodec
 
-Drop
+Keep alphabetical order. Don't stuff new entries to the end...
 
-> +    maxItems: 2
-> +
-> +  clocks:
-> +    items:
-> +      - description: input main peripheral bus clock
-> +      - description: input dds_in
-> +      - description: input fixed pll div2
-> +      - description: input fixed pll div3
-> +      - description: input hifi_pll
-> +      - description: input oscillator (usually at 24MHz)
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pclk
-> +      - const: dds_in
-> +      - const: fclk_div2
-> +      - const: fclk_div3
-> +      - const: hifi_pll
-> +      - const: xtal
-> +
-> +required:
-> +  - compatible
-> +  - '#clock-cells'
-> +  - '#reset-cells'
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
-> +    #include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
-> +    audio {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        clkc_audio: audio-clock-controller@0 {
-> +                compatible = "amlogic,a1-audio-clkc";
-> +                reg = <0x0 0xfe050000 0x0 0xb0>,
 
-Messed indentayion. Use 4 spaces for example indentation.
 
-> +                      <0x0 0xfe054800 0x0 0x20>;
-> +                #clock-cells = <1>;
-> +                #reset-cells = <1>;
-> +                clocks = <&clkc_periphs CLKID_AUDIO>,
-> +                         <&clkc_periphs CLKID_DDS_IN>,
-> +                         <&clkc_pll CLKID_FCLK_DIV2>,
-> +                         <&clkc_pll CLKID_FCLK_DIV3>,
-> +                         <&clkc_pll CLKID_HIFI_PLL>,
+
+Best regards,
+Krzysztof
 
 
 _______________________________________________
