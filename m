@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE176C54E69
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2024 11:24:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0417AC54E67
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2024 12:01:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=c0GmqC/JyA6t5kc5TvsMqaA4LoTXVxFD3U6IgIGQWd8=; b=SKD8vW2ZTX2q/r
-	Yj9RqIiQ/iKjZeDDcGctK6H7htwO9vqhh4R9bNEtf8J2BIXeDVCtoNwQAnxzDPETLbRabA2jU2Fid
-	HYMm1pnKD69LEcqGRMYt7i/oGWH9tQxtlKwrMccP8idc/1QbzzvM3j3r7B/h0n26UH0g5ecyQuOfu
-	gOTzoVab6xaXotRPfCg5Eo03OHpoL/8ptuTJMtXoz0pxMnq/a/1lbd1+5XU8smj5XWYD88JB/054V
-	i8VsNO7Dk195DuhFo0cpJGtwxzrIRuQ3dS3Fbn5exw7kZ2mqQRW6kjQi3QPajIzupoXkaJetO5tyx
-	0+0yOJa5EZSzfkm5xJqQ==;
+	List-Owner; bh=i6UWEOIzLbTmEYFlm7zxT8xacd28yfOtsiXqy89mMtg=; b=Mpd8mVFe3Dsqb3
+	IZW0KmdVW/c5z1gvej+yF+7MLFZnE7twM61DAfDNV3v46k56V3L3E4H5pf6gfkI/ayOqHrJi59EAX
+	LzeJn7oOhRE3aMsxkvEhqJXBgs7+W4KKDO8fw3Pwq9g9Zuobmwh14BSlkI+GL4n1F2tFXp6eBzq57
+	og4qscJ8s/5aOoL96Ga4KRSKbK71LbMAsaUtU7WD5tCPOg7tAuUKJpbyGh5GP3TsHrnFasIan19mz
+	a45s15rZRZE4tWmQJRctAou4LvyYIMb6MfZbH0mG+xKgofR/cXnqQKeX48bR5VSGSTeFvTiyEGA7z
+	nSonrhwP+ER0feWvuBBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rl5fR-000000001Ae-1MTd;
-	Fri, 15 Mar 2024 11:24:05 +0000
-Received: from madrid.collaboradmins.com ([46.235.227.194])
+	id 1rl6FJ-0000000070b-47iZ;
+	Fri, 15 Mar 2024 12:01:09 +0000
+Received: from madrid.collaboradmins.com ([2a00:1098:ed:100::25])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rl5fO-0000000019e-0kyj;
-	Fri, 15 Mar 2024 11:24:03 +0000
+	id 1rl6FH-000000006yo-2nGY;
+	Fri, 15 Mar 2024 12:01:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1710501840;
-	bh=uABvPXOqq/Tla+Cl257JwPcyrRf1VhVmEZ2NakP1f7Y=;
+	s=mail; t=1710504059;
+	bh=wo5KaJTO7g4XTsjvDT5W1hhUtD1zGfjPtDK9XkU/fsw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MsfFOs2ZYu+BQgQDviu0tZEHVVU8he4yCSLf2PFK5ZcEkAh9y/w+V0kUvefrTlE+i
-	 BVQO+/8MmT/ZloAKZNC9kOl74Ju83Uk9kybn/K8qLVeA2yu8NI7/3IVTB1E14OMBGt
-	 FefOx23cfRZ1N095xm64zGX3ddp6IBx6j1MSebmoYWc1SKYt1T6izxYd2QuVNrk3JV
-	 Kblz3U7J4V9jPqFD9czrxC8wJkOP9ltogw5DLsG64OPzF/HEyM/qEWGUQyqB1Pgok/
-	 N9iXEeK15XZ7mmQibOUFVX66F18q1/X6yQMV5orY/j9oz7xsdZM53cW2Rj3qXnfbLS
-	 FWtHAJlrROiXg==
-Received: from [100.66.96.193] (cola.collaboradmins.com [195.201.22.229])
+	b=1jxPqcrx/ox/m1AOEkf/cnIgOag7fS4EFgxhaRQR6tv37YpNkhmjwMdziiVEDa5Ii
+	 RNa47ceM168TpFQcoHUTRQsLKpALlajcmXvRzc3Aw6eyITrsBKbWXLiIS7XmVwchyD
+	 h5lL1gNiFConcL3rmgtDIyYiVK6Hc82QbbabKl1p1QQnWDyh/PcK2+4k9dGRIziPs/
+	 rhPXT6O2yWCSelSqW+RmWE/S9PbgExcDvLe0LyzkQ2OUNEKrRDltU0nCcQ724VDc9W
+	 hnpyxuJitqatKY1oiW2YO9yXCgvwSlEH269TMeWB26+lPF9wKOwdYMIzVLOQ1YhbCX
+	 vi5pfjpYCvEEA==
+Received: from [100.95.196.25] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: vignesh)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D1575378105A;
-	Fri, 15 Mar 2024 11:23:56 +0000 (UTC)
-Message-ID: <1cbe364d-465a-ccba-a446-5f98b9e0efc4@collabora.com>
-Date: Fri, 15 Mar 2024 16:53:55 +0530
+	(Authenticated sender: koike)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D3E8A378105A;
+	Fri, 15 Mar 2024 12:00:53 +0000 (UTC)
+Message-ID: <00b4af3b-bbb6-4057-969f-5882220858a3@collabora.com>
+Date: Fri, 15 Mar 2024 09:00:50 -0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v4 00/11] drm/ci: Add support for GPU and display testing
-Content-Language: en-US
-To: Helen Koike <helen.koike@collabora.com>, dri-devel@lists.freedesktop.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 03/11] drm/ci: uprev IGT and update testlist
+To: Vignesh Raman <vignesh.raman@collabora.com>,
+ dri-devel@lists.freedesktop.org
 Cc: daniels@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
  emma@anholt.net, robdclark@gmail.com, david.heidelberg@collabora.com,
  guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
@@ -59,12 +58,15 @@ Cc: daniels@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
  linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20240306030649.60269-1-vignesh.raman@collabora.com>
- <5559672d-4f62-4ad1-95b7-94f69b8bb9ac@collabora.com>
-From: Vignesh Raman <vignesh.raman@collabora.com>
-In-Reply-To: <5559672d-4f62-4ad1-95b7-94f69b8bb9ac@collabora.com>
+ <20240306030649.60269-4-vignesh.raman@collabora.com>
+ <4f927c99-9ea2-424e-85a7-bd05d0817dab@collabora.com>
+ <af5b6e38-306d-ae79-42af-88e6e9a32cff@collabora.com>
+Content-Language: en-US
+From: Helen Koike <helen.koike@collabora.com>
+In-Reply-To: <af5b6e38-306d-ae79-42af-88e6e9a32cff@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240315_042402_417242_5F02E534 
-X-CRM114-Status: GOOD (  19.26  )
+X-CRM114-CacheID: sfid-20240315_050107_930294_6462576B 
+X-CRM114-Status: GOOD (  20.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,76 +78,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Helen,
-
-On 07/03/24 19:32, Helen Koike wrote:
-> 
-> 
-> On 06/03/2024 00:06, Vignesh Raman wrote:
->> Some ARM SOCs have a separate display controller and GPU, each with
->> different drivers. For mediatek mt8173, the GPU driver is powervr,
->> and the display driver is mediatek. In the case of mediatek mt8183,
->> the GPU driver is panfrost, and the display driver is mediatek.
->> With rockchip rk3288/rk3399, the GPU driver is panfrost, while the
->> display driver is rockchip. For amlogic meson, the GPU driver is
->> panfrost, and the display driver is meson.
->>
->> IGT tests run various tests with different xfails and can test both
->> GPU devices and KMS/display devices. Currently, in drm-ci for MediaTek,
->> Rockchip, and Amlogic Meson platforms, only the GPU driver is tested.
->> This leads to incomplete coverage since the display is never tested on
->> these platforms. This commit series adds support in drm-ci to run tests
->> for both GPU and display drivers for MediaTek, Rockchip, and Amlogic
->> Meson platforms.
->>
->> Uprev mesa and IGT in drm-ci and add amd, v3d, vc4 and vgem specific
->> tests to testlist. Have testlist.txt per driver and include a base
->> testlist so that the driver specific tests will run only on those 
->> hardware
->> and add testlists to the MAINTAINERS file.
->>
->> This series also includes patch to add vkms testing to drm-ci.
->>
->> Working pipeline link,
->> https://gitlab.freedesktop.org/vigneshraman/linux/-/pipelines/1119859
-> 
-> Hi Vignesh, thanks for this patchset.
-> 
-> Just to confirm, the new convention is:
-> 
-> stages are named per DRIVER_NAME
-
-Yes correct.
-
-> jobs are named DRIVER_NAME:GPU_VERSION
-
-Yes
-
-> xfails files and testlist files are named DRIVER_NAME-<xfails-suffix>.txt
-
-Base testlist is named as testlist.txt
-driver specific testlist is named as testlist-$DRIVER_NAME.txt
-
-xfails files are named as $DRIVER_NAME-$GPU_VERSION-<xfails-suffix>.txt 
-(mediatek-mt8183-fails.txt)
-
-> 
-> Looks good.
-> 
-> I just have some minor comments/questions in the series, please check.
-
-Will address those and send v5.
-
-Regards,
-Vignesh
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgpPbiAxNS8wMy8yMDI0IDA4OjEyLCBWaWduZXNoIFJhbWFuIHdyb3RlOgo+IEhpIEhlbGVuLAo+
+IAo+IE9uIDA3LzAzLzI0IDE5OjA1LCBIZWxlbiBLb2lrZSB3cm90ZToKPj4KPj4KPj4gT24gMDYv
+MDMvMjAyNCAwMDowNiwgVmlnbmVzaCBSYW1hbiB3cm90ZToKPj4+IFVwcmV2IElHVCBhbmQgYWRk
+IGFtZCwgdjNkLCB2YzQgYW5kIHZnZW0gc3BlY2lmaWMKPj4+IHRlc3RzIHRvIHRlc3RsaXN0LiBI
+YXZlIHRlc3RsaXN0LnR4dCBwZXIgZHJpdmVyCj4+PiBhbmQgaW5jbHVkZSBhIGJhc2UgdGVzdGxp
+c3Qgc28gdGhhdCB0aGUgZHJpdmVyCj4+PiBzcGVjaWZpYyB0ZXN0cyB3aWxsIHJ1biBvbmx5IG9u
+IHRob3NlIGhhcmR3YXJlLgo+Pj4gQWxzbyBhZGQgdGVzdGxpc3RzIHRvIHRoZSBNQUlOVEFJTkVS
+UyBmaWxlLgo+Pj4KPj4+IFNpZ25lZC1vZmYtYnk6IFZpZ25lc2ggUmFtYW4gPHZpZ25lc2gucmFt
+YW5AY29sbGFib3JhLmNvbT4KPj4+IC0tLQo+Pj4KPj4+IHYzOgo+Pj4gwqDCoCAtIE5ldyBwYXRj
+aCBpbiBzZXJpZXMgdG8gdXByZXYgSUdUIGFuZCB1cGRhdGUgdGVzdGxpc3QuCj4+Pgo+Pj4gdjQ6
+Cj4+PiDCoMKgIC0gQWRkIHRlc3RsaXN0cyB0byB0aGUgTUFJTlRBSU5FUlMgZmlsZSBhbmQgcmVt
+b3ZlIGFtZGdwdSB4ZmFpbHMgCj4+PiBjaGFuZ2VzLgo+Pj4KPj4+IC0tLQo+Pj4gwqAgTUFJTlRB
+SU5FUlPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIHzCoCAxMSArKwo+Pj4gwqAgZHJpdmVycy9ncHUvZHJtL2NpL2dpdGxhYi1jaS55bWzC
+oMKgwqDCoMKgwqDCoMKgIHzCoMKgIDIgKy0KPj4+IMKgIGRyaXZlcnMvZ3B1L2RybS9jaS9pZ3Rf
+cnVubmVyLnNowqDCoMKgwqDCoMKgwqDCoCB8wqAgMTIgKy0KPj4+IMKgIGRyaXZlcnMvZ3B1L2Ry
+bS9jaS90ZXN0bGlzdC1hbWRncHUudHh0wqDCoCB8IDE1MSArKysrKysrKysrKysrKysrKysrKysr
+Kwo+Pj4gwqAgZHJpdmVycy9ncHUvZHJtL2NpL3Rlc3RsaXN0LW1zbS50eHTCoMKgwqDCoMKgIHzC
+oCA1MCArKysrKysrKwo+Pj4gwqAgZHJpdmVycy9ncHUvZHJtL2NpL3Rlc3RsaXN0LXBhbmZyb3N0
+LnR4dCB8wqAgMTcgKysrCj4+PiDCoCBkcml2ZXJzL2dwdS9kcm0vY2kvdGVzdGxpc3QtdjNkLnR4
+dMKgwqDCoMKgwqAgfMKgIDczICsrKysrKysrKysrCj4+PiDCoCBkcml2ZXJzL2dwdS9kcm0vY2kv
+dGVzdGxpc3QtdmM0LnR4dMKgwqDCoMKgwqAgfMKgIDQ5ICsrKysrKysrCj4+PiDCoCBkcml2ZXJz
+L2dwdS9kcm0vY2kvdGVzdGxpc3QudHh0wqDCoMKgwqDCoMKgwqDCoMKgIHzCoCA4NCArKysrKyst
+LS0tLS0tCj4+PiDCoCA5IGZpbGVzIGNoYW5nZWQsIDM5OCBpbnNlcnRpb25zKCspLCA1MSBkZWxl
+dGlvbnMoLSkKPj4+IMKgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vY2kvdGVz
+dGxpc3QtYW1kZ3B1LnR4dAo+Pj4gwqAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2Ry
+bS9jaS90ZXN0bGlzdC1tc20udHh0Cj4+PiDCoCBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9n
+cHUvZHJtL2NpL3Rlc3RsaXN0LXBhbmZyb3N0LnR4dAo+Pj4gwqAgY3JlYXRlIG1vZGUgMTAwNjQ0
+IGRyaXZlcnMvZ3B1L2RybS9jaS90ZXN0bGlzdC12M2QudHh0Cj4+PiDCoCBjcmVhdGUgbW9kZSAx
+MDA2NDQgZHJpdmVycy9ncHUvZHJtL2NpL3Rlc3RsaXN0LXZjNC50eHQKPj4+Cj4+PiBkaWZmIC0t
+Z2l0IGEvTUFJTlRBSU5FUlMgYi9NQUlOVEFJTkVSUwo+Pj4gaW5kZXggM2JjN2UxMjJhMDk0Li40
+ZGE2NmNhOTJmMWEgMTAwNjQ0Cj4+PiAtLS0gYS9NQUlOVEFJTkVSUwo+Pj4gKysrIGIvTUFJTlRB
+SU5FUlMKPj4+IEBAIC0xNjY1LDYgKzE2NjUsOCBAQCBMOsKgwqDCoCBkcmktZGV2ZWxAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCj4+PiDCoCBTOsKgwqDCoCBTdXBwb3J0ZWQKPj4+IMKgIFQ6wqDCoMKg
+IGdpdCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9kcm0vZHJtLW1pc2MKPj4+IMKgIEY6
+wqDCoMKgIERvY3VtZW50YXRpb24vZ3B1L3BhbmZyb3N0LnJzdAo+Pj4gK0Y6wqDCoMKgIGRyaXZl
+cnMvZ3B1L2RybS9jaS90ZXN0bGlzdC1wYW5mcm9zdC50eHQKPj4+ICtGOsKgwqDCoCBkcml2ZXJz
+L2dwdS9kcm0vY2kvdGVzdGxpc3QudHh0Cj4+Cj4+IEkgd29uZGVyIGlmIHdlIHNob3VsZCBoYXZl
+IGJvdGggaGVyZSwgc2luY2UgdGhlIHNlY29uZCBpcyBub3QgdXNlZCByaWdodD8KPiAKPiBZZXMs
+IHdlIG5lZWQgdG8gdXNlIGJvdGggaGVyZS4gdGVzdGxpc3QtcGFuZnJvc3QudHh0IGluY2x1ZGVz
+IAo+IHRlc3RsaXN0LnR4dC4gU28gd2UgaGF2ZSBtb3ZlZCB0aGUgZHJpdmVyIHNwZWNpZmljIHRl
+c3RzIHRvCj4gdGVzdGxpc3QtcGFuZnJvc3QudHh0IGFuZCBoYXZlIGEgYmFzZSB0ZXN0bGlzdC50
+eHQuCj4gCj4gCj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2NpL2lndF9ydW5uZXIu
+c2ggCj4+PiBiL2RyaXZlcnMvZ3B1L2RybS9jaS9pZ3RfcnVubmVyLnNoCj4+PiBpbmRleCBmMWEw
+OGI5YjE0NmYuLjc3Y2Q4MWZlNmQxYSAxMDA3NTUKPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9j
+aS9pZ3RfcnVubmVyLnNoCj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vY2kvaWd0X3J1bm5lci5z
+aAo+Pj4gQEAgLTc0LDEwICs3NCwyMCBAQCBpZiAhIGdyZXAgLXEgImNvcmVfZ2V0dmVyc2lvbiIg
+Cj4+PiAvaW5zdGFsbC90ZXN0bGlzdC50eHQ7IHRoZW4KPj4+IMKgIGZpCj4+PiDCoCBzZXQgK2UK
+Pj4+ICtpZiBbICIkRFJJVkVSX05BTUUiID0gImFtZGdwdSIgXTsgdGhlbgo+Pj4gK8KgwqDCoCBU
+RVNUX0xJU1Q9Ii9pbnN0YWxsL3Rlc3RsaXN0LWFtZGdwdS50eHQiCj4+PiArZWxpZiBbICIkRFJJ
+VkVSX05BTUUiID0gIm1zbSIgXTsgdGhlbgo+Pj4gK8KgwqDCoCBURVNUX0xJU1Q9Ii9pbnN0YWxs
+L3Rlc3RsaXN0LW1zbS50eHQiCj4+PiArZWxpZiBbICIkRFJJVkVSX05BTUUiID0gInBhbmZyb3N0
+IiBdOyB0aGVuCj4+PiArwqDCoMKgIFRFU1RfTElTVD0iL2luc3RhbGwvdGVzdGxpc3QtcGFuZnJv
+c3QudHh0Igo+Pj4gK2Vsc2UKPj4+ICvCoMKgwqAgVEVTVF9MSVNUPSIvaW5zdGFsbC90ZXN0bGlz
+dC50eHQiCj4+PiArZmkKPj4KPj4gTWF5YmUgc2ltcGxpZnkgdGhpcyB3aXRoOgo+Pgo+PiBURVNU
+X0xJU1Q9Ii9pbnN0YWxsL3Rlc3RsaXN0LSREUklWRVJfTkFNRS50eHQiCj4+Cj4+IGlmIFsgISAt
+ZiAiJFRFU1RfTElTVCIgXTsgdGhlbgo+PiDCoMKgwqDCoCBURVNUX0xJU1Q9Ii9pbnN0YWxsL3Rl
+c3RsaXN0LnR4dCIKPj4gZmkKPiAKPiBZZXMsIHRoaXMgaXMgbXVjaCBiZXR0ZXIuIFRoYW5rcy4K
+PiAKPj4KPj4gQW5vdGhlciBxdWVzdGlvbiBJIGhhdmU6IHNob3VsZG4ndCB0ZXN0bGlzdC0kRFJJ
+VkVSX05BTUUudHh0IGFuZCAKPj4gdGVzdGxpc3QudHh0IGJlIG1lcmdlZD8gT3IgdGhleSBhcmUg
+cmVhbGx5IG11dHVhbGx5IGV4Y2x1c2l2ZT8KPiAKPiBXZSBoYXZlIHRlc3RsaXN0LSREUklWRVJf
+TkFNRS50eHQgcGVyIGRyaXZlciBhbmQgaXQgaW5jbHVkZXMgYSBiYXNlIAo+IHRlc3RsaXN0LnR4
+dAoKSSdtIGNvbmZ1c2VkLCBpdCBzZWVtcyB0aGF0IGZyb20gdGhlIGNvZGUgb3IgaXQgdXNlcyAK
+dGVzdGxpc3QtJERSSVZFUl9OQU1FLnR4dCBvciBpdCB1c2VzIHRlc3RsaXN0LnR4dCwgeW91IGRv
+bid0IG1lcmdlIHRoZW0gCmJ5IGNvZGUsIHdoaWNoIG1lYW5zIHRoYXQgZHJpdmVycyBkb24ndCBu
+ZWVkIHRvIGZvbGxvdyBjaGFuZ2VzIHRvIAp0ZXN0bGlzdC50eHQuCgpJZiB0ZXN0bGlzdC0kRFJJ
+VkVSX05BTUUudHh0IGFscmVhZHkgaW5jbHVkZXMgdGVzdHMgaW4gdGVzdGxpc3QudHh0LCAKdGhh
+biB0ZXN0bGlzdC50eHQgZG9lc24ndCBuZWVkIHRvIGJlIGFkZGVkIGluIHRoZSBNQUlOVEVJTkVS
+UyBmaWxlIGluIAphbGwgZHJpdmVycy4KCkhlbGVuCgo+IAo+IFJlZ2FyZHMsCj4gVmlnbmVzaAoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1s
+b2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6
+Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
