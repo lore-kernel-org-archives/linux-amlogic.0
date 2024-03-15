@@ -4,96 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CDECC54E5D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2024 00:32:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20A62C54E60
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2024 01:16:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6y8fXvv04nG+h3FjBr0ZU/vLrFJdizJdsa6lgv24NYM=; b=gtVFSSMSpwW+WN
-	0Hv/ibwKizuggR9tyCWOG0O/1gVR2JAd5Hkjk43NWu2/6+u/23MrYnuUXjcsRbSyLYly69BcTTQ1R
-	FmgTF3wLUSXgpezZjuSeI3qEzddr+Sb4utlN1hIe+oG/dMI2UQBUwSZ43alea+fhC1ms6b0yuh5Bj
-	yOcgZkbyYHDTQn+t5mjERzOwWGMuwYMG2zP9T5v99PcZsw/6JLs/BfC2VTQifd091T+n/DsgRrWtu
-	EOv+MeUomeRTbWR8Bu/tsdVWDky8qZoqSVoKDoN7uubbkeP+B3DaoiBuhCfAMCUJ53I2z1ZVittqA
-	qYjh4XEb04oRq6Eb9JUQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=sIRNvwnLnacBwW9f+Ss8j9wEWLBYb7hfY1/wwO08ZRg=; b=z0f2g3OWPwsiH0ks7Bz4Nnbob0
+	klam8RLDAqCroYzkfy46hR/EcnZ8FeIyxCuXWWcWjD6XEl9ov9Nkg1psJ6ttVCmT8T+Kdl1e4Y7Ng
+	rMN8PfM+XR0KY2LVaXhLxO5R4OEuA6UYsBaFhQIYUdsxBUCIlibuT0s15oRXjAVbqCbzEiBsWmwt4
+	e205GbQACjI19wNIBTCrpkIndO03Pif+21Jjy6GClCneLgVCvbG3dhhKK6SHfTOW+tyXFTXyZ/LS0
+	rAmDjwsfBpy7ZInVsVQxYjTJcK4JggKR3d2+u4GnYB+klTs+skC8iCn8rB9VAsNa2413Kpyhz4U60
+	axnC+z2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rkvUK-0000000GAkB-46S3;
-	Fri, 15 Mar 2024 00:31:56 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1rkwBT-0000000GGW0-0UCL;
+	Fri, 15 Mar 2024 01:16:31 +0000
+Received: from mail-psaapc01on20717.outbound.protection.outlook.com ([2a01:111:f400:feae::717] helo=APC01-PSA-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rkuQ0-0000000Fxmj-0Z0J;
-	Thu, 14 Mar 2024 23:23:33 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id DD85710001D;
-	Fri, 15 Mar 2024 02:23:09 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru DD85710001D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1710458589;
-	bh=oqZUNzb9EejInf+1S98aJFvRrIcXoZ0lddVRALyKqEQ=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=M70ru5P3wE2cJ4xyX4rcsVFpNGNl9xjoAOfDdS85VUZ3gUrU0Wh3mwd0AbVxFQcrI
-	 FnBEmPgnIKlW1ioyCNRFNQY0cXzwV3aPfZWPwHvGZnMUP48fnVlRW0Fcy6JjmzHvpF
-	 rYBZAKcQbrqjWyiPidBV9sNRBYaB0RilEvbrRpzeVXDoTe1ub/A2Ve5P13KSShupiJ
-	 KcKaVINNQJfibv2cjakdyniyOI7SH07amius0rzDOPNmBxjxKqnLXM6zRw0ndBXDGP
-	 hD6we2O5dWnNl4qV6cPJfOP6QhoiPjOktm2x9QSoElIPv46tSKzpAubqGq7bPKQZ7W
-	 fYbVbkXB+iLZw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 15 Mar 2024 02:23:09 +0300 (MSK)
-Received: from CAB-WSD-0003115.sberdevices.ru (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 15 Mar 2024 02:23:09 +0300
-From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus Walleij
-	<linus.walleij@linaro.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
-	<tiwai@suse.com>, <linux-amlogic@lists.infradead.org>,
-	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>,
-	<linux-gpio@vger.kernel.org>
-CC: <kernel@salutedevices.com>
-Subject: [PATCH 24/25] arm64: dts: meson: a1: add audio devices
-Date: Fri, 15 Mar 2024 02:22:00 +0300
-Message-ID: <20240314232201.2102178-25-jan.dakinevich@salutedevices.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
-References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
+	id 1rkwBN-0000000GGR4-1jN6;
+	Fri, 15 Mar 2024 01:16:27 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LSBf0PLWV37V4YypMxHzair5MFMaLok0alMrh1cIxgfO/oUc/OOsJRjZbbXvMwg3VuHQ+hmgD5Mr7B4DW/Ya54MnmeYZ/uXp9ovGUwM5uCMcPEJVK7/w1SaIbVt8H1aDsko8a0mCRTQIpwVd4uQ4jdeXJdtUzOYHuV7uN3vWsBKFzCAEcExgKuXJIm/hn90y4C6I3SCGAskh4Tt6+e1cLUDk/1Vs/yhB3bGNTpXyy8NmkL8R2MSAL1VLouUfDYIfYhzAE1dc1Hn4TvIee1pYp8dounYby/lxMTCKuCLjwTxzo/KIqiiLfCsJLw7n0L04gWnjS/uLyafh6/FPvEP/PQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=akZ3bMfMKXwfz972QDgrEK58fdC1JgjCxxAt2YVw8Ek=;
+ b=PY4VKadluXo3jvnjphaqBT7rCi7kN4Ge0yU0RLi1ooPaOIw7Dy6T2/pn1SJ7dPyLOTP2GyoM79z5SK3QUMoCRj5n0UX8ctfvIATxwqhA3ojxr+cd+OT1bgENQxPnQvaoJwpTIYUeQM6t2nJBVq/RTfRVlwpid+X3xf/DfZcKzxks76RmJ1Y+jq3DApoPFsfSG14prZYiYHSAUnJS18+Ji8YBdHKmt6x5uQKGmYtIJzx6/IkRqIUgNp5AdVbJHdGQ0X7lDg1uGMBR9B/YoJYKCVDdSprLcYyFZeXuQ5X3JiIcbz/12Sd3b6p1/1nccLcjr2NGvSuso3RpQTgdzBLxWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=akZ3bMfMKXwfz972QDgrEK58fdC1JgjCxxAt2YVw8Ek=;
+ b=d8xESCj1yPiTdS5woUYKGofksHVqpOdCM71xrez1e7MZgW99ZJs70o81F9BflEayGfgw8QT2j0vUmt7bg7oWaTh8CKNM6g5UYnwUeiHFIILpn9M/phEaPLuCaaEM+wtGEdqlNWTL+XeTGgKVHaaIkTYkJsYmDms7O+I2+OmPkdGrI4AtmPrczLpNpyyf3qgbWc9cgPvXjTVu/t/GnJ/SiRcyeIPYD2iI5VTmehx+QV05MjOhzgf3GAam19zEEFbtn5jlkAnUXP90cxSoI49oKK66O5JclRTPOc3EBAhB5d3rbYIz6xr1EtySEDIcDw+RVOGgE+sWHT01qlkb4BX1vg==
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by SI2PR03MB6712.apcprd03.prod.outlook.com (2603:1096:4:1ec::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.35; Fri, 15 Mar
+ 2024 01:16:09 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::5198:1b2f:8889:17b]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::5198:1b2f:8889:17b%4]) with mapi id 15.20.7362.035; Fri, 15 Mar 2024
+ 01:16:09 +0000
+Message-ID: <f9c380bf-05c4-4a24-9d42-5ad24b181e66@amlogic.com>
+Date: Fri, 15 Mar 2024 09:16:03 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [DMARC error][DKIM error] [PATCH 3/4] arm64: dts: add support for
+ A4 based Amlogic BA400
+Content-Language: en-US
+To: neil.armstrong@linaro.org, Dmitry Rokosov <ddrokosov@salutedevices.com>,
+ Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+References: <20240312-basic_dt-v1-0-7f11df3a0896@amlogic.com>
+ <20240312-basic_dt-v1-3-7f11df3a0896@amlogic.com>
+ <20240313095311.dxrr7gvt4t3gwoho@CAB-WSD-L081021>
+ <74f96887-572d-47eb-bce4-9d61ec51b88d@amlogic.com>
+ <024b8567-af4c-4522-9b9d-594c42930442@linaro.org>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <024b8567-af4c-4522-9b9d-594c42930442@linaro.org>
+X-ClientProxiedBy: SG2PR01CA0179.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:28::35) To TYZPR03MB6896.apcprd03.prod.outlook.com
+ (2603:1096:400:289::14)
 MIME-Version: 1.0
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 183875 [Feb 29 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.3
-X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_smtp_not_equal_from}, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 19:21:00 #23899999
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SI2PR03MB6712:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: qeSKD8itlxWKNwYcrgDe99ggnMcDUY56+qnuWH9FEXVTq+VCuymnSrp5wmTf1r8TfIGxfhPrkAOUjUk6pfZ7QrgbYkQjHYQkxQsEdPyaWkRZH1iVVJ3ewxFZ8I/zbsTxTr1eQXjbTA+8mabqvymcCK6L6qN+AHf/E5PM+2Spw/CqxRtncX8VUbSK4gEdavrtkpXnut3Ro1HswzcWaCE7ekOvnGE7IwRmtDgNV9EBpAQx4TClM/Ly3pccDwTkIwJUNCn4KmOrGm+IGWSRWIW4IVAKa5/5XVGxLzx02ZRvABwxHnyhLiljFrJl+Dc6fIWjeDRoXuf7GeOJQdJTpGuuRtWTipNfY4XuiOV9RZjmT1FTvaumboFP0VFp8Nk1mz2qp+0U/HHA8U6OSC5onVY8vqSmJQ+g8403v7mIFLv2O31qr7CqdcspQC1ucEKZgdkePkOSyFKmtCKAXiODvDJRgnKT0RaDOzPPgjVyNV7wXYlxo29EA3p9ULl1PaLe4MF28IEIzlodWDowZvxIOobE4UyyvFNBWuLQ3dIqr5sPOxTIxIOTo3SBr9VA067EsrXyqWeK2c+7/3gIozUQ3RrrmUqBYHxKgEvPV3Z7FvRxL0M=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(1800799015)(366007)(376005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WjRhT3pHeEdlSnhDQ1c5VmNVQWR1YklSNG00eTZnR0poUnVDRG5TS0krdXBh?=
+ =?utf-8?B?dnZaQVRabGJyY3RwK2x1VU1PWHcxMHg0dGU3ajlKV3d1Z3JTKzFRbVVUOHlw?=
+ =?utf-8?B?RGs3MEZOS1RkL3lHZkZmOEkxMFJzN1pyU1lhVHRLMzhhRkVUTVY2WS95enow?=
+ =?utf-8?B?dzkvUm1EMGUxZkRLUmRXcHJsSEhkM2QxTnEwdS8zdWtXUmY5b0hDZ2MxOU9R?=
+ =?utf-8?B?UUdIbHAvRktrK3ZINk0wbTRMcE03NVFUeDNDdFNsTVhhR1dOTkRVcFRLTzJj?=
+ =?utf-8?B?R1NLZFMwamdiWTJEYjkyNXoxVG4wcXZqK3N3WGtNRFhld090QjRZYWRJSUZz?=
+ =?utf-8?B?UXpPVE5PT25sUmNjZ0VBZEt0VnU1MHk5YlM3emg2dTN1SkZpQittMVlKY3lI?=
+ =?utf-8?B?VEY1OGJlM21BWXdFY2txL0g2R3FUQ1ovU1hzajdZWUNOQ3ZmMnNlTnlPLzB0?=
+ =?utf-8?B?MThSNjVLSHoxcGUrK0lUeTY5S2FNNkt1TGJobzFhQWF5UDhtZ29RTEljWXlK?=
+ =?utf-8?B?SThvUW8wVjlVNkRGWUFJSmtEaG5DVHg0R1VDcHZXYmJtUi9mR1dPNnVRYWg1?=
+ =?utf-8?B?MWx4b3FkMCtCY2lDblF2VEZkcXVKSkNpVEdPcU1LUlBlb1NPb040bE9Fbjlk?=
+ =?utf-8?B?NFo0T2JuSjdTaDlLSFYrbzlubGxwQ1FYd0lSMU14TGwwc2EzSU0xNEdhTU9V?=
+ =?utf-8?B?QzJEOW12YzkrelVoNjEzcGZhQzNEd0RUem01OE9hSm1XUVJiZWcwZDBSRGlq?=
+ =?utf-8?B?L0c2VjR1eFB5bDFISlpieEVlYXoxU0kva2RFdTN6TFZCZzIrMXVUTndLcE4x?=
+ =?utf-8?B?MGhCU3h6SnhpQ2xuMmVLTmNqTjcyYTZYYWZhOERaWlFYU3g4TUtQM1VvSjZ5?=
+ =?utf-8?B?aFFKS1hmQ0VaRDBGRXYwWlVUaUFlNlRBMVlSWTBvYWJtZ2ErWDNxTmxRL2hV?=
+ =?utf-8?B?L3lHcGo3NVJqOERTMXJubm1tWjdZWVJHR2JJdnNRclk0d1NuOEdNV0x2bWZt?=
+ =?utf-8?B?ZGVSQWZmRXp4ckd1STNaU0lleFI2bURRcDJlWnA2OU5lYUEvQk4vMk1vL1p1?=
+ =?utf-8?B?QUx4T2FHUXNOVWJ5REd6R3E5NFNuaXU5YXBqeGdhaW54NUhoYXFWTlRYY3k4?=
+ =?utf-8?B?VEtaNGJ1M01NRFdRLzFsWWgxVWJDWEtZbmhXVm53cXYrQXFxalVjK1B0SFY1?=
+ =?utf-8?B?SkdhUzB3Y0tDNndsNm4xWTZSaVh4ZjBVRzZpK0g3a1FobVgvMzE4S1lsdHRK?=
+ =?utf-8?B?UXVoNGVtLzNEWHBjd0h4TkZrWDc4NjRjaXhqZ3VpRWt0eGRrdHllZUpiUy9s?=
+ =?utf-8?B?c1hrRnE1SW14UzVWU0hQM0NGT1EwNXd6YjBIUXBUZ0NURVpxMWQ3dGVBZ1Jm?=
+ =?utf-8?B?Ry8vZ3V2UW5zNWFqcndEdmJ0RC91ZG82VnJXWm5XTEZKUks3bmNidEhCWW94?=
+ =?utf-8?B?MUdVV3Z5VVAzd2hVellYdkhpdExLRmo0Z0lmaTVtZms4VHQyZHBkSUVkRFF1?=
+ =?utf-8?B?dHk5U0RUZGNNV3JtajVSbnpERGo1UEJrMEtJLzd5emFCN0lPMnl5Z2c2bElq?=
+ =?utf-8?B?Q0xIc2Z1NjMySFNVQi82aWVWZEwvWU50U0RGeDR3QzliczJtdGZDZEtZRzdQ?=
+ =?utf-8?B?Z01mTmNUL2FXSXVSM09NcUhTNHVxUlZ4SDdrQjhhQWswMEdqMENOcWs3djQw?=
+ =?utf-8?B?TmpXMHdWQXFZZm54cFY3VzNzWW1oUUhSajJHNkwwblRvUDFVZEQ1YjZKZGVD?=
+ =?utf-8?B?NFh1bmJiWU9HR3VhWWZoUmxRNklWTTlZQ2tXYnJnMkZINXdGaWdVNm5BZWI1?=
+ =?utf-8?B?bnV5QW1CT0txZVRiUmtreXEvZWFlUm9iNUxnSE5uVzlJNzZKQnFqKzBzK1hh?=
+ =?utf-8?B?dzdZYnVjSFFzYjByYnRodFB5OW43VFI3Uk04WHQ5blZNcnhWb0NzcTBvOXNl?=
+ =?utf-8?B?Qzdpa05nYTh2bmsvbWpHQUZodldGNTc5aW91Z1d3VUJPL3BhT0ZmaEpXZ1pW?=
+ =?utf-8?B?L1J5RklFR2p3Z0cwR0VQSEk4d2pKUlZoQUx0TXdjMDJuc0thMExEWWpEZVp5?=
+ =?utf-8?B?VkVYU1lseEZ3UzZXZFZkWmNsMlRQVjh3NWUyWk4ydHhPenI3d2d3bHhKVUVV?=
+ =?utf-8?B?RjlnTzdpZ0VVL3AzQVZFaFA5dTA5RkRpK3RZNUxmS3o0eDhWVFJ0N3krWDJ1?=
+ =?utf-8?B?TkE9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec79e54f-e4ec-4d5e-bbf9-08dc448d7eda
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2024 01:16:09.0924
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nQRJfz8P0vZa76hPCNdmOpbRHnLO+EKjCoRTWa9RiLu8j8pGjb0TjzHQk/h/vehKNm22UeP/vk+CF04kGdhk9dtFMM883EHqhImaJcJ9Rzs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR03MB6712
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240314_162325_045212_62CCA587 
-X-CRM114-Status: GOOD (  14.35  )
+X-CRM114-CacheID: sfid-20240314_181625_633183_7415C85D 
+X-CRM114-Status: GOOD (  11.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,531 +146,188 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This commit adds the declarartion of currently supported audio devices
-and their pins found Amlog A1 SoC family. SPDIF declaration is missing
-here becase there are no publicly available boards with it.
-
-Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 471 ++++++++++++++++++++++
- 1 file changed, 471 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index c03e207ea6c5..eaedc2d849db 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -5,11 +5,15 @@
- 
- #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
- #include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
-+#include <dt-bindings/clock/amlogic,a1-audio-clkc.h>
- #include <dt-bindings/gpio/meson-a1-gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/power/meson-a1-power.h>
- #include <dt-bindings/reset/amlogic,meson-a1-reset.h>
-+#include <dt-bindings/reset/amlogic,meson-a1-audio-reset.h>
-+#include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
-+#include <dt-bindings/sound/meson-g12a-toacodec.h>
- 
- / {
- 	compatible = "amlogic,a1";
-@@ -280,6 +284,250 @@ mux {
- 						function = "spif";
- 					};
- 				};
-+
-+				tdm_a_din0_pins: tdm-a-din0 {
-+					mux {
-+						groups = "tdm_a_din0";
-+						function = "tdm_a";
-+						bias-disable;
-+					};
-+				};
-+
-+				tdm_a_din1_pins: tdm-a-din1 {
-+					mux {
-+						groups = "tdm_a_din1";
-+						function = "tdm_a";
-+						bias-disable;
-+					};
-+				};
-+
-+				tdm_a_dout0_pins: tdm-a-dout0 {
-+					mux {
-+						groups = "tdm_a_dout0";
-+						function = "tdm_a";
-+						bias-disable;
-+						drive-strength-microamp = <3000>;
-+					};
-+				};
-+
-+				tdm_a_dout1_pins: tdm-a-dout1 {
-+					mux {
-+						groups = "tdm_a_dout1";
-+						function = "tdm_a";
-+						bias-disable;
-+						drive-strength-microamp = <3000>;
-+					};
-+				};
-+
-+				tdm_a_fs_pins: tdm-a-fs {
-+					mux {
-+						groups = "tdm_a_fs";
-+						function = "tdm_a";
-+						bias-disable;
-+						drive-strength-microamp = <3000>;
-+					};
-+				};
-+
-+				tdm_a_sclk_pins: tdm-a-sclk {
-+					mux {
-+						groups = "tdm_a_sclk";
-+						function = "tdm_a";
-+						bias-disable;
-+						drive-strength-microamp = <3000>;
-+					};
-+				};
-+
-+				tdm_a_slv_fs_pins: tdm-a-slv-fs {
-+					mux {
-+						groups = "tdm_a_slv_fs";
-+						function = "tdm_a";
-+						bias-disable;
-+					};
-+				};
-+
-+				tdm_a_slv_sclk_pins: tdm-a-slv-sclk {
-+					mux {
-+						groups = "tdm_a_slv_sclk";
-+						function = "tdm_a";
-+						bias-disable;
-+					};
-+				};
-+
-+				tdm_b_din0_pins: tdm-b-din0 {
-+					mux {
-+						groups = "tdm_b_din0";
-+						function = "tdm_b";
-+						bias-disable;
-+					};
-+				};
-+
-+				tdm_b_din1_pins: tdm-b-din1 {
-+					mux {
-+						groups = "tdm_b_din1";
-+						function = "tdm_b";
-+						bias-disable;
-+					};
-+				};
-+
-+				tdm_b_din2_pins: tdm-b-din2 {
-+					mux {
-+						groups = "tdm_b_din2";
-+						function = "tdm_b";
-+						bias-disable;
-+					};
-+				};
-+
-+				tdm_b_dout0_pins: tdm-b-dout0 {
-+					mux {
-+						groups = "tdm_b_dout0";
-+						function = "tdm_b";
-+						bias-disable;
-+						drive-strength-microamp = <3000>;
-+					};
-+				};
-+
-+				tdm_b_dout1_pins: tdm-b-dout1 {
-+					mux {
-+						groups = "tdm_b_dout1";
-+						function = "tdm_b";
-+						bias-disable;
-+						drive-strength-microamp = <3000>;
-+					};
-+				};
-+
-+				tdm_b_dout2_pins: tdm-b-dout2 {
-+					mux {
-+						groups = "tdm_b_dout2";
-+						function = "tdm_b";
-+						bias-disable;
-+						drive-strength-microamp = <3000>;
-+					};
-+				};
-+
-+				tdm_b_dout3_pins: tdm-b-dout3 {
-+					mux {
-+						groups = "tdm_b_dout3";
-+						function = "tdm_b";
-+						bias-disable;
-+						drive-strength-microamp = <3000>;
-+					};
-+				};
-+
-+				tdm_b_dout4_pins: tdm-b-dout4 {
-+					mux {
-+						groups = "tdm_b_dout4";
-+						function = "tdm_b";
-+						bias-disable;
-+						drive-strength-microamp = <3000>;
-+					};
-+				};
-+
-+				tdm_b_dout5_pins: tdm-b-dout5 {
-+					mux {
-+						groups = "tdm_b_dout5";
-+						function = "tdm_b";
-+						bias-disable;
-+						drive-strength-microamp = <3000>;
-+					};
-+				};
-+
-+				tdm_b_fs_pins: tdm-b-fs {
-+					mux {
-+						groups = "tdm_b_fs";
-+						function = "tdm_b";
-+						bias-disable;
-+						drive-strength-microamp = <3000>;
-+					};
-+				};
-+
-+				tdm_b_sclk_pins: tdm-b-sclk {
-+					mux {
-+						groups = "tdm_b_sclk";
-+						function = "tdm_b";
-+						bias-disable;
-+						drive-strength-microamp = <3000>;
-+					};
-+				};
-+
-+				tdm_b_slv_fs_pins: tdm-b-slv-fs {
-+					mux {
-+						groups = "tdm_b_slv_fs";
-+						function = "tdm_b";
-+						bias-disable;
-+					};
-+				};
-+
-+				tdm_b_slv_sclk_pins: tdm-b-slv-sclk {
-+					mux {
-+						groups = "tdm_b_slv_sclk";
-+						function = "tdm_b";
-+						bias-disable;
-+					};
-+				};
-+
-+				pdm_din0_a_pins: pdm-din0-a {
-+					mux {
-+						groups = "pdm_din0_a";
-+						function = "pdm";
-+						bias-disable;
-+					};
-+				};
-+
-+				pdm_din0_x_pins: pdm-din0-x {
-+					mux {
-+						groups = "pdm_din0_x";
-+						function = "pdm";
-+						bias-disable;
-+					};
-+				};
-+
-+				pdm_din1_a_pins: pdm-din1-a {
-+					mux {
-+						groups = "pdm_din1_a";
-+						function = "pdm";
-+						bias-disable;
-+					};
-+				};
-+
-+				pdm_din1_x_pins: pdm-din1-x {
-+					mux {
-+						groups = "pdm_din1_x";
-+						function = "pdm";
-+						bias-disable;
-+					};
-+				};
-+
-+				pdm_din2_a_pins: pdm-din2-a {
-+					mux {
-+						groups = "pdm_din2_a";
-+						function = "pdm";
-+						bias-disable;
-+					};
-+				};
-+
-+				pdm_din2_x_pins: pdm-din2-x {
-+					mux {
-+						groups = "pdm_din2_x";
-+						function = "pdm";
-+						bias-disable;
-+					};
-+				};
-+
-+				pdm_dclk_a_pins: pdm-dclk-a {
-+					mux {
-+						groups = "pdm_dclk_a";
-+						function = "pdm";
-+						bias-disable;
-+					};
-+				};
-+
-+				pdm_dclk_x_pins: pdm-dclk-x {
-+					mux {
-+						groups = "pdm_dclk_x";
-+						function = "pdm";
-+						bias-disable;
-+					};
-+				};
- 			};
- 
- 			gpio_intc: interrupt-controller@440 {
-@@ -435,6 +683,207 @@ sd_emmc: sd@10000 {
- 				power-domains = <&pwrc PWRC_SD_EMMC_ID>;
- 				status = "disabled";
- 			};
-+
-+			acodec: audio-controller@4800 {
-+				compatible = "amlogic,t9015-a1";
-+				reg = <0x0 0x4800 0x0 0x14>;
-+				#sound-dai-cells = <0>;
-+				sound-name-prefix = "ACODEC";
-+				clocks = <&clkc_periphs CLKID_AUDIO>;
-+				clock-names = "pclk";
-+				resets = <&reset RESET_ACODEC>;
-+				power-domains = <&pwrc PWRC_ACODEC_ID>;
-+			};
-+
-+			audio: bus@50000 {
-+				compatible = "simple-bus";
-+				#address-cells = <2>;
-+				#size-cells = <2>;
-+				ranges = <0x0 0x0 0x0 0x50000 0 0x4980>;
-+				power-domains = <&pwrc PWRC_AUDIO_ID>;
-+
-+				clkc_audio: audio-clock-controller@0 {
-+					compatible = "amlogic,a1-audio-clkc";
-+					reg = <0x0 0x0 0x0 0xb0>,
-+					      <0x0 0x4800 0x0 0x20>;
-+					#clock-cells = <1>;
-+					#reset-cells = <1>;
-+					clocks = <&clkc_periphs CLKID_AUDIO>,
-+						 <&clkc_periphs CLKID_DDS_IN>,
-+						 <&clkc_pll CLKID_FCLK_DIV2>,
-+						 <&clkc_pll CLKID_FCLK_DIV3>,
-+						 <&clkc_pll CLKID_HIFI_PLL>,
-+						 <&xtal>;
-+					clock-names = "pclk", "dds_in",
-+						      "fclk_div2", "fclk_div3",
-+						      "hifi_pll", "xtal";
-+				};
-+
-+				toddr_a: audio-controller@100 {
-+					compatible = "amlogic,a1-toddr",
-+						     "amlogic,sm1-toddr",
-+						     "amlogic,axg-toddr";
-+					reg = <0x0 0x100 0x0 0x2c>;
-+					#sound-dai-cells = <0>;
-+					sound-name-prefix = "TODDR_A";
-+					interrupts = <GIC_SPI 37 IRQ_TYPE_EDGE_RISING>;
-+					clocks = <&clkc_audio AUD_CLKID_TODDR_A>;
-+					resets = <&arb AXG_ARB_TODDR_A>,
-+						 <&clkc_audio AUD_RESET_TODDR_A>;
-+					reset-names = "arb", "rst";
-+					amlogic,fifo-depth = <128>;
-+				};
-+
-+				toddr_b: audio-controller@140 {
-+					compatible = "amlogic,a1-toddr",
-+						     "amlogic,sm1-toddr",
-+						     "amlogic,axg-toddr";
-+					reg = <0x0 0x140 0x0 0x2c>;
-+					#sound-dai-cells = <0>;
-+					sound-name-prefix = "TODDR_B";
-+					interrupts = <GIC_SPI 38 IRQ_TYPE_EDGE_RISING>;
-+					clocks = <&clkc_audio AUD_CLKID_TODDR_B>;
-+					resets = <&arb AXG_ARB_TODDR_B>,
-+						 <&clkc_audio AUD_RESET_TODDR_B>;
-+					reset-names = "arb", "rst";
-+					amlogic,fifo-depth = <128>;
-+				};
-+
-+				frddr_a: audio-controller@1c0 {
-+					compatible = "amlogic,a1-frddr",
-+						     "amlogic,sm1-frddr",
-+						     "amlogic,axg-frddr";
-+					reg = <0x0 0x1c0 0x0 0x2c>;
-+					#sound-dai-cells = <0>;
-+					sound-name-prefix = "FRDDR_A";
-+					interrupts = <GIC_SPI 40 IRQ_TYPE_EDGE_RISING>;
-+					clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
-+					resets = <&arb AXG_ARB_FRDDR_A>,
-+						 <&clkc_audio AUD_RESET_FRDDR_A>;
-+					reset-names = "arb", "rst";
-+					amlogic,fifo-depth = <128>;
-+				};
-+
-+				frddr_b: audio-controller@200 {
-+					compatible = "amlogic,a1-frddr",
-+						     "amlogic,sm1-frddr",
-+						     "amlogic,axg-frddr";
-+					reg = <0x0 0x200 0x0 0x2c>;
-+					#sound-dai-cells = <0>;
-+					sound-name-prefix = "FRDDR_B";
-+					interrupts = <GIC_SPI 41 IRQ_TYPE_EDGE_RISING>;
-+					clocks = <&clkc_audio AUD_CLKID_FRDDR_B>;
-+					resets = <&arb AXG_ARB_FRDDR_B>,
-+						 <&clkc_audio AUD_RESET_FRDDR_B>;
-+					reset-names = "arb", "rst";
-+					amlogic,fifo-depth = <128>;
-+				};
-+
-+				arb: reset-controller@280 {
-+					compatible = "amlogic,meson-a1-audio-arb",
-+						     "amlogic,meson-sm1-audio-arb";
-+					reg = <0x0 0x280 0x0 0x4>;
-+					#reset-cells = <1>;
-+					clocks = <&clkc_audio AUD_CLKID_DDR_ARB>;
-+				};
-+
-+				tdmin_a: audio-controller@300 {
-+					compatible = "amlogic,a1-tdmin",
-+						     "amlogic,sm1-tdmin";
-+					reg = <0x0 0x300 0x0 0x40>;
-+					sound-name-prefix = "TDMIN_A";
-+					clocks = <&clkc_audio AUD_CLKID_TDMIN_A>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK_SEL>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_A_LRCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_A_LRCLK>;
-+					clock-names = "pclk", "sclk", "sclk_sel",
-+						      "lrclk", "lrclk_sel";
-+					resets = <&clkc_audio AUD_RESET_TDMIN_A>;
-+				};
-+
-+				tdmin_b: audio-controller@340 {
-+					compatible = "amlogic,a1-tdmin",
-+						     "amlogic,sm1-tdmin";
-+					reg = <0x0 0x340 0x0 0x40>;
-+					sound-name-prefix = "TDMIN_B";
-+					clocks = <&clkc_audio AUD_CLKID_TDMIN_B>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK_SEL>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_B_LRCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_B_LRCLK>;
-+					clock-names = "pclk", "sclk", "sclk_sel",
-+						      "lrclk", "lrclk_sel";
-+					resets = <&clkc_audio AUD_RESET_TDMIN_B>;
-+				};
-+
-+				tdmin_lb: audio-controller@3c0 {
-+					compatible = "amlogic,a1-tdmin",
-+						     "amlogic,sm1-tdmin";
-+					reg = <0x0 0x3c0 0x0 0x40>;
-+					sound-name-prefix = "TDMIN_LB";
-+					clocks = <&clkc_audio AUD_CLKID_TDMIN_LB>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK_SEL>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_LB_LRCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_LB_LRCLK>;
-+					clock-names = "pclk", "sclk", "sclk_sel",
-+						      "lrclk", "lrclk_sel";
-+					resets = <&clkc_audio AUD_RESET_TDMIN_LB>;
-+				};
-+
-+				tdmout_a: audio-controller@500 {
-+					compatible = "amlogic,a1-tdmout",
-+						     "amlogic,sm1-tdmout";
-+					reg = <0x0 0x500 0x0 0x40>;
-+					sound-name-prefix = "TDMOUT_A";
-+					clocks = <&clkc_audio AUD_CLKID_TDMOUT_A>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK_SEL>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>;
-+					clock-names = "pclk", "sclk", "sclk_sel",
-+						      "lrclk", "lrclk_sel";
-+					resets = <&clkc_audio AUD_RESET_TDMOUT_A>;
-+				};
-+
-+				tdmout_b: audio-controller@540 {
-+					compatible = "amlogic,a1-tdmout",
-+						     "amlogic,sm1-tdmout";
-+					reg = <0x0 0x540 0x0 0x40>;
-+					sound-name-prefix = "TDMOUT_B";
-+					clocks = <&clkc_audio AUD_CLKID_TDMOUT_B>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK_SEL>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_B_LRCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_B_LRCLK>;
-+					clock-names = "pclk", "sclk", "sclk_sel",
-+						      "lrclk", "lrclk_sel";
-+					resets = <&clkc_audio AUD_RESET_TDMOUT_B>;
-+				};
-+
-+				toacodec: audio-controller@740 {
-+					compatible = "amlogic,a1-toacodec",
-+						     "amlogic,g12a-toacodec";
-+					reg = <0x0 0x740 0x0 0x4>;
-+					#sound-dai-cells = <1>;
-+					sound-name-prefix = "TOACODEC";
-+					resets = <&clkc_audio AUD_RESET_TOACODEC>;
-+				};
-+
-+				pdm: audio-controller@1000 {
-+					compatible = "amlogic,a1-pdm",
-+						     "amlogic,axg-pdm";
-+					reg = <0x0 0x1000 0x0 0x34>;
-+					#sound-dai-cells = <0>;
-+					sound-name-prefix = "PDM";
-+					clocks = <&clkc_audio AUD2_CLKID_PDM>,
-+						 <&clkc_audio AUD2_CLKID_PDM_DCLK>,
-+						 <&clkc_audio AUD2_CLKID_PDM_SYSCLK>;
-+					clock-names = "pclk", "dclk", "sysclk";
-+					power-domains = <&pwrc PWRC_PDMIN_ID>;
-+				};
-+			};
- 		};
- 
- 		usb: usb@fe004400 {
-@@ -517,4 +966,26 @@ xtal: xtal-clk {
- 		clock-output-names = "xtal";
- 		#clock-cells = <0>;
- 	};
-+
-+	tdmif_a: audio-controller-0 {
-+		compatible = "amlogic,a1-tdm-iface",
-+			     "amlogic,axg-tdm-iface";
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "TDM_A";
-+		clocks = <&clkc_audio AUD_CLKID_MST_A_SCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_A_LRCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_A_MCLK>;
-+		clock-names = "sclk", "lrclk", "mclk";
-+	};
-+
-+	tdmif_b: audio-controller-1 {
-+		compatible = "amlogic,a1-tdm-iface",
-+			     "amlogic,axg-tdm-iface";
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "TDM_B";
-+		clocks = <&clkc_audio AUD_CLKID_MST_B_SCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_B_LRCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_B_MCLK>;
-+		clock-names = "sclk", "lrclk", "mclk";
-+	};
- };
--- 
-2.34.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgTmVpbCwKICAgVGhhbmtzIGZvciB5b3VyIHJldmlldy4KCk9uIDIwMjQvMy8xNCAxNzowNCwg
+TmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4gWyBFWFRFUk5BTCBFTUFJTCBdCj4gCj4gT24gMTQvMDMv
+MjAyNCAwNjoxOSwgWGlhbndlaSBaaGFvIHdyb3RlOgo+PiBIaSBEbWl0cnksCj4+IMKgwqDCoCBU
+aGFua3MgZm9yIHlvdXIgcmV2aWV3Lgo+Pgo+PiBPbiAyMDI0LzMvMTMgMTc6NTMsIERtaXRyeSBS
+b2tvc292IHdyb3RlOgo+Pj4gWz8/Pz8/Pz8/PyBkZHJva29zb3ZAc2FsdXRlZGV2aWNlcy5jb20g
+Pz8/Pz8/Pz8/IAo+Pj4gaHR0cHM6Ly9ha2EubXMvTGVhcm5BYm91dFNlbmRlcklkZW50aWZpY2F0
+aW9uPz8/Pz8/Pz8/Pz8/P10KPj4+Cj4+PiBbIEVYVEVSTkFMIEVNQUlMIF0KPj4+Cj4+PiBIZWxs
+byBYaWFud2VpLAo+Pj4KPj4+IE9uIFR1ZSwgTWFyIDEyLCAyMDI0IGF0IDA1OjE4OjU5UE0gKzA4
+MDAsIFhpYW53ZWkgWmhhbyB2aWEgQjQgUmVsYXkgCj4+PiB3cm90ZToKPj4+PiBGcm9tOiBYaWFu
+d2VpIFpoYW8gPHhpYW53ZWkuemhhb0BhbWxvZ2ljLmNvbT4KPj4+Pgo+Pj4+IEFtbG9naWMgQTQg
+aXMgYW4gYXBwbGljYXRpb24gcHJvY2Vzc29yIGRlc2lnbmVkIGZvciBzbWFydCBhdWRpbwo+Pj4+
+IGFuZCBJb1QgYXBwbGljYXRpb25zLgo+Pj4+Cj4+Pj4gQWRkIGJhc2ljIHN1cHBvcnQgZm9yIHRo
+ZSBBNCBiYXNlZCBBbWxvZ2ljIEJBNDAwIGJvYXJkLCB3aGljaCBkZXNjcmliZXMKPj4+PiB0aGUg
+Zm9sbG93aW5nIGNvbXBvbmVudHM6IENQVSwgR0lDLCBJUlEsIFRpbWVyIGFuZCBVQVJULgo+Pj4+
+IFRoZXNlIGFyZSBjYXBhYmxlIG9mIGJvb3RpbmcgdXAgaW50byB0aGUgc2VyaWFsIGNvbnNvbGUu
+Cj4+Pj4KPj4+PiBTaWduZWQtb2ZmLWJ5OiBYaWFud2VpIFpoYW8gPHhpYW53ZWkuemhhb0BhbWxv
+Z2ljLmNvbT4KPj4+PiAtLS0KPj4+PiDCoCBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvTWFr
+ZWZpbGXCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAxICsKPj4+PiDCoCAuLi4vYm9v
+dC9kdHMvYW1sb2dpYy9hbWxvZ2ljLWE0LWExMTNsMi1iYTQwMC5kdHPCoMKgIHwgNDMgKysrKysr
+KysrKwo+Pj4+IMKgIGFyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9hbWxvZ2ljLWE0LmR0c2nC
+oMKgwqDCoMKgwqDCoCB8IDk5IAo+Pj4+ICsrKysrKysrKysrKysrKysrKysrKysKPj4+PiDCoCAz
+IGZpbGVzIGNoYW5nZWQsIDE0MyBpbnNlcnRpb25zKCspCj4+Pj4KPj4+PiBkaWZmIC0tZ2l0IGEv
+YXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL01ha2VmaWxlIAo+Pj4+IGIvYXJjaC9hcm02NC9i
+b290L2R0cy9hbWxvZ2ljL01ha2VmaWxlCj4+Pj4gaW5kZXggMWFiMTYwYmY5MjhhLi45YTUwZWMx
+MWJiOGQgMTAwNjQ0Cj4+Pj4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL01ha2Vm
+aWxlCj4+Pj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL01ha2VmaWxlCj4+Pj4g
+QEAgLTEsNCArMSw1IEBACj4+Pj4gwqAgIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIu
+MAo+Pj4+ICtkdGItJChDT05GSUdfQVJDSF9NRVNPTikgKz0gYW1sb2dpYy1hNC1hMTEzbDItYmE0
+MDAuZHRiCj4+Pj4gwqAgZHRiLSQoQ09ORklHX0FSQ0hfTUVTT04pICs9IGFtbG9naWMtYzMtYzMw
+MngtYXc0MDkuZHRiCj4+Pj4gwqAgZHRiLSQoQ09ORklHX0FSQ0hfTUVTT04pICs9IGFtbG9naWMt
+dDctYTMxMWQyLWFuNDAwLmR0Ygo+Pj4+IMKgIGR0Yi0kKENPTkZJR19BUkNIX01FU09OKSArPSBh
+bWxvZ2ljLXQ3LWEzMTFkMi1raGFkYXMtdmltNC5kdGIKPj4+PiBkaWZmIC0tZ2l0IGEvYXJjaC9h
+cm02NC9ib290L2R0cy9hbWxvZ2ljL2FtbG9naWMtYTQtYTExM2wyLWJhNDAwLmR0cyAKPj4+PiBi
+L2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9hbWxvZ2ljLWE0LWExMTNsMi1iYTQwMC5kdHMK
+Pj4+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+Pj4+IGluZGV4IDAwMDAwMDAwMDAwMC4uNjBmOWYy
+Mzg1OGM2Cj4+Pj4gLS0tIC9kZXYvbnVsbAo+Pj4+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMv
+YW1sb2dpYy9hbWxvZ2ljLWE0LWExMTNsMi1iYTQwMC5kdHMKPj4+PiBAQCAtMCwwICsxLDQzIEBA
+Cj4+Pj4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMCsgT1IgTUlUKQo+Pj4+
+ICsvKgo+Pj4+ICsgKiBDb3B5cmlnaHQgKGMpIDIwMjQgQW1sb2dpYywgSW5jLiBBbGwgcmlnaHRz
+IHJlc2VydmVkLgo+Pj4+ICsgKi8KPj4+PiArCj4+Pj4gKy9kdHMtdjEvOwo+Pj4+ICsKPj4+PiAr
+I2luY2x1ZGUgImFtbG9naWMtYTQuZHRzaSIKPj4+PiArCj4+Pj4gKy8gewo+Pj4+ICvCoMKgwqDC
+oCBtb2RlbCA9ICJBbWxvZ2ljIEExMTNMMiBiYTQwMCBEZXZlbG9wbWVudCBCb2FyZCI7Cj4+Pj4g
+K8KgwqDCoMKgIGNvbXBhdGlibGUgPSAiYW1sb2dpYyxiYTQwMCIsImFtbG9naWMsYTQiOwo+Pj4+
+ICvCoMKgwqDCoCBpbnRlcnJ1cHQtcGFyZW50ID0gPCZnaWM+Owo+Pj4+ICvCoMKgwqDCoCAjYWRk
+cmVzcy1jZWxscyA9IDwyPjsKPj4+PiArwqDCoMKgwqAgI3NpemUtY2VsbHMgPSA8Mj47Cj4+Pj4g
+Kwo+Pj4+ICvCoMKgwqDCoCBhbGlhc2VzIHsKPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IHNlcmlhbDAgPSAmdWFydF9iOwo+Pj4+ICvCoMKgwqDCoCB9Owo+Pj4+ICsKPj4+PiArwqDCoMKg
+wqAgbWVtb3J5QDAgewo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZGV2aWNlX3R5cGUg
+PSAibWVtb3J5IjsKPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJlZyA9IDwweDAgMHgw
+IDB4MCAweDQwMDAwMDAwPjsKPj4+PiArwqDCoMKgwqAgfTsKPj4+PiArCj4+Pj4gK8KgwqDCoMKg
+IHJlc2VydmVkLW1lbW9yeSB7Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAjYWRkcmVz
+cy1jZWxscyA9IDwyPjsKPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICNzaXplLWNlbGxz
+ID0gPDI+Owo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmFuZ2VzOwo+Pj4+ICsKPj4+
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC8qIDUyIE1pQiByZXNlcnZlZCBmb3IgQVJNIFRy
+dXN0ZWQgRmlybXdhcmUgKi8KPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHNlY21vbl9y
+ZXNlcnZlZDpsaW51eCxzZWNtb24gewo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAic2hhcmVkLWRtYS1wb29sIjsKPj4+PiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBuby1tYXA7Cj4+Pj4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYWxpZ25tZW50ID0gPDB4MCAweDQwMDAw
+MD47Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVnID0g
+PDB4MCAweDA1MDAwMDAwIDB4MCAweDM0MDAwMDA+Owo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgfTsKPj4+PiArwqDCoMKgwqAgfTsKPj4+PiArfTsKPj4+PiArCj4+Pj4gKyZ1YXJ0X2Ig
+ewo+Pj4+ICvCoMKgwqDCoCBzdGF0dXMgPSAib2theSI7Cj4+Pj4gK307Cj4+Pj4gZGlmZiAtLWdp
+dCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9hbWxvZ2ljLWE0LmR0c2kgCj4+Pj4gYi9h
+cmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvYW1sb2dpYy1hNC5kdHNpCj4+Pj4gbmV3IGZpbGUg
+bW9kZSAxMDA2NDQKPj4+PiBpbmRleCAwMDAwMDAwMDAwMDAuLjdlODc0NTAxMGI1Mgo+Pj4+IC0t
+LSAvZGV2L251bGwKPj4+PiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvYW1sb2dp
+Yy1hNC5kdHNpCj4+Pj4gQEAgLTAsMCArMSw5OSBAQAo+Pj4+ICsvLyBTUERYLUxpY2Vuc2UtSWRl
+bnRpZmllcjogKEdQTC0yLjArIE9SIE1JVCkKPj4+PiArLyoKPj4+PiArICogQ29weXJpZ2h0IChj
+KSAyMDI0IEFtbG9naWMsIEluYy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4KPj4+PiArICovCj4+Pj4g
+Kwo+Pj4+ICsjaW5jbHVkZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvaXJxLmg+
+Cj4+Pj4gKyNpbmNsdWRlIDxkdC1iaW5kaW5ncy9pbnRlcnJ1cHQtY29udHJvbGxlci9hcm0tZ2lj
+Lmg+Cj4+Pj4gKyNpbmNsdWRlIDxkdC1iaW5kaW5ncy9ncGlvL2dwaW8uaD4KPj4+PiArLyB7Cj4+
+Pj4gK8KgwqDCoMKgIGNwdXMgewo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgI2FkZHJl
+c3MtY2VsbHMgPSA8Mj47Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAjc2l6ZS1jZWxs
+cyA9IDwwPjsKPj4+PiArCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjcHUwOiBjcHVA
+MCB7Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZGV2aWNl
+X3R5cGUgPSAiY3B1IjsKPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBjb21wYXRpYmxlID0gImFybSxjb3J0ZXgtYTUzIjsKPj4+PiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZWcgPSA8MHgwIDB4MD47Cj4+Pj4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZW5hYmxlLW1ldGhvZCA9ICJwc2NpIjsK
+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4+Pj4gKwo+Pj4+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgY3B1MTogY3B1QDEgewo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIGRldmljZV90eXBlID0gImNwdSI7Cj4+Pj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJhcm0sY29ydGV4LWE1
+MyI7Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVnID0g
+PDB4MCAweDE+Owo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IGVuYWJsZS1tZXRob2QgPSAicHNjaSI7Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9
+Owo+Pj4+ICsKPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNwdTI6IGNwdUAyIHsKPj4+
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkZXZpY2VfdHlwZSA9
+ICJjcHUiOwo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNv
+bXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTMiOwo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIHJlZyA9IDwweDAgMHgyPjsKPj4+PiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBlbmFibGUtbWV0aG9kID0gInBzY2kiOwo+Pj4+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfTsKPj4+PiArCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCBjcHUzOiBjcHVAMyB7Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgZGV2aWNlX3R5cGUgPSAiY3B1IjsKPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gImFybSxjb3J0ZXgtYTUzIjsKPj4+
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZWcgPSA8MHgwIDB4
+Mz47Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZW5hYmxl
+LW1ldGhvZCA9ICJwc2NpIjsKPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4+Pj4g
+K8KgwqDCoMKgIH07Cj4+Pj4gKwo+Pj4+ICvCoMKgwqDCoCB0aW1lciB7Cj4+Pj4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gImFybSxhcm12OC10aW1lciI7Cj4+Pj4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpbnRlcnJ1cHRzID0gPEdJQ19QUEkgMTMgKEdJQ19DUFVf
+TUFTS19TSU1QTEUoNCkgfCAKPj4+PiBJUlFfVFlQRV9MRVZFTF9MT1cpPiwKPj4+PiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPEdJQ19QUEkgMTQg
+KEdJQ19DUFVfTUFTS19TSU1QTEUoNCkgfCAKPj4+PiBJUlFfVFlQRV9MRVZFTF9MT1cpPiwKPj4+
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPEdJ
+Q19QUEkgMTEgKEdJQ19DUFVfTUFTS19TSU1QTEUoNCkgfCAKPj4+PiBJUlFfVFlQRV9MRVZFTF9M
+T1cpPiwKPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgPEdJQ19QUEkgMTAgKEdJQ19DUFVfTUFTS19TSU1QTEUoNCkgfCAKPj4+PiBJUlFfVFlQ
+RV9MRVZFTF9MT1cpPjsKPj4+PiArwqDCoMKgwqAgfTsKPj4+PiArCj4+Pj4gK8KgwqDCoMKgIHBz
+Y2kgewo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJhcm0scHNj
+aS0wLjIiOwo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbWV0aG9kID0gInNtYyI7Cj4+
+Pj4gK8KgwqDCoMKgIH07Cj4+Pj4gKwo+Pj4+ICvCoMKgwqDCoCB4dGFsOiB4dGFsLWNsayB7Cj4+
+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gImZpeGVkLWNsb2NrIjsK
+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNsb2NrLWZyZXF1ZW5jeSA9IDwyNDAwMDAw
+MD47Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjbG9jay1vdXRwdXQtbmFtZXMgPSAi
+eHRhbCI7Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAjY2xvY2stY2VsbHMgPSA8MD47
+Cj4+Pj4gK8KgwqDCoMKgIH07Cj4+Pj4gKwo+Pj4+ICvCoMKgwqDCoCBzb2Mgewo+Pj4+ICvCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJzaW1wbGUtYnVzIjsKPj4+PiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgICNhZGRyZXNzLWNlbGxzID0gPDI+Owo+Pj4+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgI3NpemUtY2VsbHMgPSA8Mj47Cj4+Pj4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCByYW5nZXM7Cj4+Pj4gKwo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+Z2ljOiBpbnRlcnJ1cHQtY29udHJvbGxlckBmZmYwMTAwMCB7Cj4+Pj4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJhcm0sZ2ljLTQwMCI7Cj4+
+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgI2ludGVycnVwdC1j
+ZWxscyA9IDwzPjsKPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCAjYWRkcmVzcy1jZWxscyA9IDwwPjsKPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCBpbnRlcnJ1cHQtY29udHJvbGxlcjsKPj4+PiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZWcgPSA8MHgwIDB4ZmZmMDEwMDAgMCAweDEwMDA+
+LAo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIDwweDAgMHhmZmYwMjAwMCAwIDB4MjAwMD4sCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPDB4MCAweGZmZjA0MDAwIDAgMHgyMDAw
+PiwKPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCA8MHgwIDB4ZmZmMDYwMDAgMCAweDIwMDA+Owo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGludGVycnVwdHMgPSA8R0lDX1BQSSA5IAo+Pj4+IChHSUNf
+Q1BVX01BU0tfU0lNUExFKDQpIHwgSVJRX1RZUEVfTEVWRUxfSElHSCk+Owo+Pj4+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgfTsKPj4+PiArCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCBhcGJAZmUwMDAwMDAgewo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIGNvbXBhdGlibGUgPSAic2ltcGxlLWJ1cyI7Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVnID0gPDB4MCAweGZlMDAwMDAwIDB4MCAweDQ4MDAw
+MD47Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgI2FkZHJl
+c3MtY2VsbHMgPSA8Mj47Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgI3NpemUtY2VsbHMgPSA8Mj47Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgcmFuZ2VzID0gPDB4MCAweDAgMHgwIDB4ZmUwMDAwMDAgMHgwIDB4NDgw
+MDAwPjsKPj4+PiArCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgdWFydF9iOiBzZXJpYWxAN2EwMDAgewo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gImFtbG9naWMsbWVz
+b24tczQtdWFydCIsCj4+Pgo+Pj4gSWYgSSdtIG5vdCB3cm9uZywgeW91IG5lZWQgdG8gY3JlYXRl
+IGR0LWJpbmRpbmcgYWxpYXMgZm9yIG1lc29uLWE0LXVhcnQKPj4+IGFuZCB1c2UgaXQgYXMgM3Jk
+IGNvbXBhdGlibGUgc3RyaW5nLgo+IAo+IFBsZWFzZSBhZGQgYW4gQTQgYW5kIEE1IGNvbXBhdGli
+bGUgdXNpbmcgYW1sb2dpYyxtZXNvbi1zNC11YXJ0IGFzIGZhbGxiYWNrLAo+IGFuZCBkcm9wIHRo
+ZSBhby11YXJ0IHNpbmNlIHRoZXJlJ3Mgbm8gbW9yZSBBTyB1YXJ0Lgo+IAo+IEZvbGxvdyBob3cg
+aXQgd2FzIGRvbmUgZm9yIHRoZSBUNyBpbiAKPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3Mvc2VyaWFsL2FtbG9naWMsbWVzb24tdWFydC55YW1sCj4gCj4gVGhlIGFtbG9naWMsbWVz
+b24tczQtdWFydCB3aWxsIHByb3ZpZGUgYW4gZWFybHljb24gbGlrZSBhby11YXJ0IGRpZC4KPiAK
+V2lsbCBkby4KPiBUaGFua3MsCj4gTmVpbAo+IAo+Pj4KPj4gT24gVUFSVCBtb2R1bGUsIEE0IGFu
+ZCBBNSBTb0NzIGV4YWN0bHkgdGhlIHNhbWUgYXMgUzQuIFRoZXJlJ3Mgbm8gCj4+IGRpZmZlcmVu
+Y2UuCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgImFtbG9naWMsbWVzb24tYW8tdWFy
+dCI7Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIHJlZyA9IDwweDAgMHg3YTAwMCAweDAgMHgxOD47Cj4+Pj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGludGVycnVwdHMg
+PSA8R0lDX1NQSSAxNjkgCj4+Pj4gSVJRX1RZUEVfRURHRV9SSVNJTkc+Owo+Pj4+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjbG9ja3Mg
+PSA8Jnh0YWw+LCA8Jnh0YWw+LCA8Jnh0YWw+Owo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjbG9jay1uYW1lcyA9ICJ4dGFsIiwg
+InBjbGsiLCAiYmF1ZCI7Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIHN0YXR1cyA9ICJkaXNhYmxlZCI7Cj4+Pj4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfTsKPj4+PiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIH07Cj4+Pj4gK8KgwqDCoMKgIH07Cj4+Pj4gK307Cj4+Pj4KPj4+PiAtLSAKPj4+
+PiAyLjM3LjEKPj4+Pgo+Pj4+Cj4+Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KPj4+PiBsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAo+Pj4+IGxpbnV4
+LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwo+Pj4+IGh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
+b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo+Pj4KPj4+IC0tIAo+Pj4gVGhhbmsg
+eW91LAo+Pj4gRG1pdHJ5Cj4gCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3Rz
+LmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9saW51eC1hbWxvZ2ljCg==
