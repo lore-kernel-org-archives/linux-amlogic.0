@@ -4,79 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 141E3C54E5D
-	for <linux-amlogic@archiver.kernel.org>; Sat, 16 Mar 2024 13:54:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9038C54E60
+	for <linux-amlogic@archiver.kernel.org>; Sun, 17 Mar 2024 07:30:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ozo5i42JShHv7XZSPKVgZAU7WC2hUiTwhvrYoelcYyM=; b=z+cVsxUOxpceIp
-	oHskBox3dawj8GBeTE1jEJ4/Vv/ixz/kc7vfSIM/DKDYJO8L5PePNE80EN/WBCtOC35DjKpapnhKP
-	ugfQE4LJFBQHXHptfLpkSR0jMwoOtxKnCGno2IaUGYg9p1KU4DDXlA0mTgBahjp1KZbSrDDKZKxXI
-	oblMlHp0wkf4tnNsKHDUS6oBeHBb/W5DvXDmRVuGV1coXUedmWhTGJL90yavWZ+pDHUhhDt35FKw6
-	13V7p9lhAsJrKpcymuPWrc5MjxxUmqjvBxZv7zzgotMvVqbVeKTMWMrXgpsuw3RNVpIpEL/c+aNbz
-	CPL1TLsSl/uZHC60R3CA==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=NLoo/gsOxwtGRT5hyINtjKSTeEX52nCVM/4g/HB35/I=; b=aZA
+	NiKB15oDlK5Z5hnuOdNfE49pT9ZmPcTUI/k/qxDpJmBrgHHc7Yvjt68JlBQ/kjtFfyxbpoUgGNKgD
+	WeUH5mshZiZuHmf7/T9SPankHnud5QeNoTsQ04wp2P1AaVApvhHFpDrgGYAs7RUSZiX0+psz2Q2PR
+	Sm4TxpRujq/+M/NybiC6D+Yhd4I/NUueqmYSFA28hiC0gZtDQpAZ8pDW5rENARRRQdXpDc4kTiuQv
+	x7p9I8tNWOhvGrafn9rdhHUO3Iqf3rvEvErd7cKLFknn4v0/UyvF7EfY1yQ2HVLN1yvFKXWWbCqcc
+	w+lPEtVS+VmUfHn3Qx7MuactL+K1BZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rlUUk-00000003DmD-3rup;
-	Sat, 16 Mar 2024 13:54:42 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1rlkyW-00000004fUl-3G60;
+	Sun, 17 Mar 2024 07:30:32 +0000
+Received: from mail-lj1-x235.google.com ([2a00:1450:4864:20::235])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rlUUh-00000003Dkg-3xOW
+	id 1rlkyQ-00000004fTt-3P5z
 	for linux-amlogic@lists.infradead.org;
-	Sat, 16 Mar 2024 13:54:41 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-41409dc5becso1059255e9.3
-        for <linux-amlogic@lists.infradead.org>; Sat, 16 Mar 2024 06:54:37 -0700 (PDT)
+	Sun, 17 Mar 2024 07:30:29 +0000
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2d2509c66daso46756391fa.3
+        for <linux-amlogic@lists.infradead.org>; Sun, 17 Mar 2024 00:30:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710597276; x=1711202076; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ze781fdYMJC8X6yPwfz4FQS/isO5gR11eLckzIKPCfI=;
-        b=l4pOyVvXV0HiqFwMEyqA/9Ehwj0sUMPJ/2DUozh2/rZO8RyTD+EfpRiFCpOpK/hZjJ
-         6qxGZWvekOAILt6bI8Y3Lb2SodncRdr2oWsxFfRSHOPWugDTkKyEiQtD3Sl70sqPoIqe
-         /zEuJNooy5z8XZSNdILAE/6UyCQKcXUKTTAWjTnn5v8iGS59eo/k6gYJd40Ygx3CDHyH
-         /EHCOTN6rgYSJVypS9CvjcIPqQ+2Ex5KdOYNANznpjN8j6+sv3EHi8VrE0ihJFQD0IQ3
-         HwtHR93FsVxOzXrRPPnnDddwRrYWzyb4CMO91Agl32SRwkNVWwsCX57VIQ5qXNw0cMM1
-         n9Vg==
+        d=gmail.com; s=20230601; t=1710660623; x=1711265423; darn=lists.infradead.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=jnnpolCCi1rdVTKbIA716/w3AlKcuHvl7+iY/Q0GiAo=;
+        b=Apn7KA4woBqaKV10JmWMiZk2w30YoEPsTB7pVxOcQCw8qearYJuAOcVEVNGfNV8ZsN
+         wm4E1RYxl1iCpk0KpqxKk9tZqjzKh37y2IZs6vAc1bFR7dYNvOKAJnwyiNFI5njFafcQ
+         HGtmEDL8PBm3PsiWqBqs7YvDzAHOFO3D7SjGEP18JZJlDYUINTYFRj/0t5OUmsov95Hv
+         gsQfXUuXsJnZrhfLe6147nPxuWSJVqly61eJvpOhmuROrsYnJSFpapGXGKElgF99rKSJ
+         akQd+59Oagzt42Uay39TrjeVp2tz4NQ/kK4AncrPfW3qBmy9FOcquCooJ8B7JovTHK+X
+         lOlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710597276; x=1711202076;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ze781fdYMJC8X6yPwfz4FQS/isO5gR11eLckzIKPCfI=;
-        b=auBrR4nELf0xDguDnlJe+vxtMhTCT7gd5fFXqIUJ5e3YxsexsIsI8tilTa1/GAvH6x
-         0VkkKaU8qdUni6zJkvwlCpjb0b+F1rkt0aRUVQ1FmqI6h9Oqdsv6ti9kSuX0QF5Wqzgt
-         hy0dBdUloIyfpgJcJtZz0x5mJgZNQv7Sy43nX980hT+BOB2wqPiczElwfQD7X43weFEX
-         NXAef8NKO06f3bQUHCY2BHstlPJfyQvxgfFk6RYmYFQUl6nKMUjontgk5YCR8JqNc4bW
-         Qh1N1QzB6+MJJbaX53zmmZc1d3V4eVnWfp+IGb0TRL1EGd3LqJht1CfK+ZwRNNoKLW6X
-         1DTg==
-X-Forwarded-Encrypted: i=1; AJvYcCWadJZu7Lr5LVNXX8O7QtD5Bii6j4IDth28R05J4TOF/md/KhDikNw0hv35YvmNbRfg+LO4HpQHDYxcGrLkEPS/Jhh6jvP8H7ctw323zHO/DsE=
-X-Gm-Message-State: AOJu0Yy7YZhddqgx+oR1TJGzaHdlWPWWIenmpZK9n4JPyc5+PzUAZio9
-	xRYNoIk4tcpDw4IVuq/0upzk8eLsETsQ73ui/3Tb8P1Hf3mkvsKj
-X-Google-Smtp-Source: AGHT+IEBXJ+LDSb8yez8jw+oMX7DHpcrqiZApeJ2kmzGEWKJQ5sNvM+K+W2hgSajgULIqDUK/wrA+A==
-X-Received: by 2002:a05:600c:1f8c:b0:413:f2c6:df3d with SMTP id je12-20020a05600c1f8c00b00413f2c6df3dmr4290047wmb.13.1710597276625;
-        Sat, 16 Mar 2024 06:54:36 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id r7-20020a05600c35c700b0041409fa57c4sm523963wmq.34.2024.03.16.06.54.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Mar 2024 06:54:36 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: u-boot@lists.denx.de,
-	u-boot-amlogic@groups.io,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH 1/3] ARM: dts: fix Ethernet on WeTek Hub/Play2
-Date: Sat, 16 Mar 2024 13:54:28 +0000
-Message-Id: <20240316135430.826898-2-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240316135430.826898-1-christianshewitt@gmail.com>
-References: <20240316135430.826898-1-christianshewitt@gmail.com>
+        d=1e100.net; s=20230601; t=1710660623; x=1711265423;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jnnpolCCi1rdVTKbIA716/w3AlKcuHvl7+iY/Q0GiAo=;
+        b=V8QXl0nsB2UNfVB0oV3hyEggm/CveO2N1D3/MhWi7b3/2dwBKaiiZs5Io9cGgqqToP
+         IiG5AAl/IiyJDlTJRHGWPMhoMx7H5YQh+YlpR3si8WcZDmFZMuboL76Osffr7m3ip9Up
+         5xTuUStzIIZNGKj8hFIwtjJFugtVZx3KL1HAaCblvuznhp0sT638xVKl2SwgX3viT6Sp
+         12SckQgY0C3bN7U1I2KYRh30u8u0mIo7OWpq1oiwSfNtD8eNHeMTNjqKSVa5oJdB9S9C
+         UeIC6RzmTD3JEf0VmV4w8XOn5ye9wKdPzr6x74ikaPrCcLqKmfQExMURXffHgtFr1MiC
+         ZtNQ==
+X-Gm-Message-State: AOJu0Yw8Wjmv20qWuOuvjwZ0R0KxSKymvrOqXzumuZFs8fGiw9xfLlJm
+	l8xGukZxYVUrUUmWMtAXr3dcmvUawX+3CJVtlfTvT85LYJviSYJ/S+zy3VXZvOrbtgG4448A9jM
+	LUMOhdJyeQPk++E2Gs21z0uyrqgYvKJmu4AkvbQ==
+X-Google-Smtp-Source: AGHT+IEhuHxfGhY8NnMJFfZXSA9llmH/zWNzH/o4emFLgAZZc5oMgpDJc6EERobJQFwxL72MT79+x/xfUFt7UEaZxEo=
+X-Received: by 2002:a2e:9008:0:b0:2d4:5bc6:23a9 with SMTP id
+ h8-20020a2e9008000000b002d45bc623a9mr5644299ljg.33.1710660623113; Sun, 17 Mar
+ 2024 00:30:23 -0700 (PDT)
 MIME-Version: 1.0
+From: Yarden Bar <ayash.jorden@gmail.com>
+Date: Sun, 17 Mar 2024 00:29:50 -0700
+Message-ID: <CAJPGt+VZaRCVGcyQqJrn2woPHd1iNegfD--B1WroCUt5M7LPvA@mail.gmail.com>
+Subject: How to Enable I2C on AML-A311D-CC
+To: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240316_065440_006404_9ED2D9BE 
-X-CRM114-Status: GOOD (  10.72  )
+X-CRM114-CacheID: sfid-20240317_003026_985707_8642BA65 
+X-CRM114-Status: UNSURE (   4.38  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,45 +84,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Placing the snps,reset content needed for Ethernet to probe in a common
-uboot.dtsi results in the content not being used and broken Ethernet. Fix
-this by creating two board specific dtsi files with the right content.
+Hello,
+I'm a ROS hobbyist and had nice progress with Libre.Computer Le-Potato
+(s905x chip).
+As I needed a stronger SBC, I got the Alta board, which has the
+AML-A311D-CC chip.
 
-Fixes: 67d5128df950 ("ARM: dts: add support for WeTek Hub and WeTek Play2")
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- ...u-boot.dtsi => meson-gxbb-wetek-hub-u-boot.dtsi} |  0
- arch/arm/dts/meson-gxbb-wetek-play2-u-boot.dtsi     | 13 +++++++++++++
- 2 files changed, 13 insertions(+)
- rename arch/arm/dts/{meson-gxbb-wetek-u-boot.dtsi => meson-gxbb-wetek-hub-u-boot.dtsi} (100%)
- create mode 100644 arch/arm/dts/meson-gxbb-wetek-play2-u-boot.dtsi
+I'm trying to wire a PWM Servo Driver via i2c (pinout [1]), pins
+3,4,5,6, but I can't get device-tree i2c-1 overlay to work, or to even
+be detected.
 
-diff --git a/arch/arm/dts/meson-gxbb-wetek-u-boot.dtsi b/arch/arm/dts/meson-gxbb-wetek-hub-u-boot.dtsi
-similarity index 100%
-rename from arch/arm/dts/meson-gxbb-wetek-u-boot.dtsi
-rename to arch/arm/dts/meson-gxbb-wetek-hub-u-boot.dtsi
-diff --git a/arch/arm/dts/meson-gxbb-wetek-play2-u-boot.dtsi b/arch/arm/dts/meson-gxbb-wetek-play2-u-boot.dtsi
-new file mode 100644
-index 00000000000..3743053eb9c
---- /dev/null
-+++ b/arch/arm/dts/meson-gxbb-wetek-play2-u-boot.dtsi
-@@ -0,0 +1,13 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 BayLibre, SAS.
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+#include "meson-gx-u-boot.dtsi"
-+
-+&ethmac {
-+	snps,reset-gpio = <&gpio GPIOZ_14 0>;
-+	snps,reset-delays-us = <0 10000 1000000>;
-+	snps,reset-active-low;
-+};
--- 
-2.34.1
+There's a thread in Libre.Computer Hub [2] from which I got to this
+mailing list.
+Looking for some guidance on this
 
+Thanks!
+
+[1] - https://docs.google.com/spreadsheets/d/1Ho4OXLqECX-Hy3DQ7zY0UbvHj-qfWhi_P0kPF80lTp4/edit#gid=0
+[2] - https://hub.libre.computer/t/how-to-enable-i2c-on-aml-a311d-cc/3621
 
 _______________________________________________
 linux-amlogic mailing list
