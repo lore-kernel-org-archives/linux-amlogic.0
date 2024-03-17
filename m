@@ -4,76 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A402BC54E67
-	for <linux-amlogic@archiver.kernel.org>; Sun, 17 Mar 2024 16:28:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9805FC54E60
+	for <linux-amlogic@archiver.kernel.org>; Sun, 17 Mar 2024 16:36:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=O3gp0BvWNvILVz9llgGQgiD4VeseJZJ27O9ohDp6SM0=; b=4fHNC+TlZV1cDr
-	gyZVbweX48SPkxPJuX1TCBjWb7Hs2AOyRHUVeekWX646C1jMgWv9Xh8/ApucahiYI0bZNuogY9ZC2
-	0NK+lAVlFjVCmGxZ1TUur4hDGw7R6Y+ny0CDXnaXj9u4UxbwMJGcA0/YNWjcoTNVl/fNNQ35D+a2o
-	PAv284M0L6knfQushf7fbaCg2Y+8kOiwXMqHPE7ogK3CS3XBf3Bv3rR1S42/uTdhmh7rsnZivcKpq
-	PEZWUEA8jmmNCUqoaEUMM/cX6Q+/bx5l4gYQzXLiad5OJcTien7K58DEx87qWazqa6+rBl78LPQz0
-	pg5YUMkilIVgTDKGWWeQ==;
+	List-Owner; bh=Lr7uU5R6XOtvLGr2mD+sRjGUlK99iYUI3qVk/VTLbes=; b=MtwJ9A5B5ZVFvj
+	7gnMa/5+hoP/bFiuaa14zunlIEREzhsxmS+7MPur8WU7rlt6sBHArYNe0ur7zuCuId1AgxAfjNKDj
+	haCVnbR0qUY44hoFea9FcqrwNuM1tIRzkxZzoWi3Iqur49Hbo+Q+euDeqOpnmQOV5ykq86FRPEDJr
+	F5YV4tJi/QVsa0JD3aC3zxSxttxYQMjXSkhgEcUyYOO6NOxFGM7avcowLswVy4pUKERKOFgMv7Mvy
+	1hF34ZRELohilzBBQIPdwIf0SsACUSzVikBhAEuPLydBFrPJ/9hFcsmUOLw/+yRv/FtJ5+viSs/nE
+	jl+t4/vqKFcWEgT1qkpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rltMi-00000005jbk-1Elj;
-	Sun, 17 Mar 2024 16:28:04 +0000
+	id 1rltUK-00000005ld6-1QuM;
+	Sun, 17 Mar 2024 16:35:56 +0000
 Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rltMe-00000005jZb-1WWL;
-	Sun, 17 Mar 2024 16:28:03 +0000
+	id 1rltUG-00000005lc2-3NJ1;
+	Sun, 17 Mar 2024 16:35:54 +0000
 Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 74482100006;
-	Sun, 17 Mar 2024 19:27:57 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 74482100006
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 9E21D100003;
+	Sun, 17 Mar 2024 19:35:49 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 9E21D100003
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1710692877;
-	bh=4qS7So0Sq9vro7xE2zLDXeUD46+3m6X+u8Tq5QOIzBo=;
+	s=mail; t=1710693349;
+	bh=Ho5gEdZl2vZzSp+HXgGh6i6bfV8nU1CpEhQEWuG2/+k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=tW0w0m6RJF1gAE8R44hsxulHFsWnRUpT4WgEYVKp1z2mHww8GdOgs2W7gkOyYeZrA
-	 0doNe4sA+BxnMVi/5Zdk1modCoIZUj3NeT/bbbgCZPCpOEBHjHbfIr079ybI5Bma3y
-	 gGHNhvIVgsk94SRBmJbiYquUXAW9zSPHnQSUwSKZpEPEYRESbpBGpco6KMbOk20/xR
-	 4BNgal5O4neLf422l9A9Tf4nP++vFSjgunGVtQvOjE1EOw5Rog/YBc7126L7bf1ulE
-	 1ZXf++qiKcaT2HXRPbzn9TjrMta/y8+rcd8VbGWdFkRow50TRXjmfBHBxr1dSGlUUC
-	 E2RZul9be+Ozg==
+	b=Ara94oKz7OXqeuBEALrfmD21Q7S2/FkFqw9Rm4p1sWOnZzgnr1kRs62lsXW1DO7ok
+	 wu+D+HmHLdD6ji8551aC9cvT/8hgancPp+ia70XsCCIz6BMnQXJl/eXHf2Lxh0rFVm
+	 97LlkfOIS0UrIiP67Bji/8E5MyAa3++cbccunkLwfKx+I3E2wnPpWrcjOpgYlxO5FU
+	 psBttpHSrNxMsYt3RXhy2z4rNOl72SERA9vopOkTg6XaOar25tzy6d+pLHKHyh61++
+	 NGnhmG/bL2V8/zvLGsSGeR+/dwv1SxixreFtfha++c4DlLD7uZZdB8ieCblfJxpV1V
+	 c0Y81H3ervWxA==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Sun, 17 Mar 2024 19:27:57 +0300 (MSK)
+	Sun, 17 Mar 2024 19:35:49 +0300 (MSK)
 Received: from [172.28.160.49] (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Sun, 17 Mar 2024 19:27:56 +0300
-Message-ID: <c4c0e3a3-eaa8-42c6-bbd3-e5c6993dc63b@salutedevices.com>
-Date: Sun, 17 Mar 2024 19:27:14 +0300
+ 15.2.1118.40; Sun, 17 Mar 2024 19:35:48 +0300
+Message-ID: <54e924ae-4d45-4337-aeae-32eebe773b63@salutedevices.com>
+Date: Sun, 17 Mar 2024 19:35:06 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/25] ASoC: meson: t9015: add support for A1 SoC family
+Subject: Re: [PATCH 13/25] ASoC: dt-bindings: meson: axg-pdm: document
+ 'sysrate' property
 Content-Language: en-US
-To: Mark Brown <broonie@kernel.org>
-CC: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
-	<jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Stephen
- Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael
+ Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
 	Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Liam Girdwood
-	<lgirdwood@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, Jaroslav
- Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <alsa-devel@alsa-project.org>,
-	<linux-sound@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-	<kernel@salutedevices.com>
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus Walleij
+	<linus.walleij@linaro.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>, <linux-amlogic@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>,
+	<linux-gpio@vger.kernel.org>
+CC: <kernel@salutedevices.com>
 References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
- <20240314232201.2102178-13-jan.dakinevich@salutedevices.com>
- <5f8e8cd2-f9c4-4961-a85d-a0f3217294e6@sirena.org.uk>
+ <20240314232201.2102178-14-jan.dakinevich@salutedevices.com>
+ <ca80caab-2664-4797-a222-e14537eea440@linaro.org>
+ <827c4f17-043e-4e09-aea6-0fee22d1b234@salutedevices.com>
+ <16a22924-054d-4d50-9f32-cc07c0bbbdf4@linaro.org>
 From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-In-Reply-To: <5f8e8cd2-f9c4-4961-a85d-a0f3217294e6@sirena.org.uk>
+In-Reply-To: <16a22924-054d-4d50-9f32-cc07c0bbbdf4@linaro.org>
 X-Originating-IP: [100.64.160.123]
 X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
@@ -94,8 +98,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 19:21:00 #23899999
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240317_092801_741653_0B551A33 
-X-CRM114-Status: GOOD (  14.44  )
+X-CRM114-CacheID: sfid-20240317_093553_327966_2905426E 
+X-CRM114-Status: GOOD (  18.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,40 +118,42 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 
 
-On 3/15/24 16:36, Mark Brown wrote:
-> On Fri, Mar 15, 2024 at 02:21:48AM +0300, Jan Dakinevich wrote:
+On 3/17/24 19:27, Krzysztof Kozlowski wrote:
+> On 17/03/2024 16:55, Jan Dakinevich wrote:
+>>
+>>
+>> On 3/15/24 13:00, Krzysztof Kozlowski wrote:
+>>> On 15/03/2024 00:21, Jan Dakinevich wrote:
+>>>> This option allow to redefine the rate of DSP system clock.
+>>>
+>>> And why is it suitable for bindings? Describe the hardware, not what you
+>>> want to do in the driver.
+>>>
+>>
+>> What do you mean? I am adding some new property and should describe it
+>> in dt-bindinds. Isn't it?
 > 
->> +static const char * const a1_adc_mic_bias_level_txt[] = { "2.0V", "2.1V",
->> +	"2.3V", "2.5V", "2.8V" };
->> +static const unsigned int a1_adc_mic_bias_level_values[] = { 0, 1, 2, 3, 7 };
+> No, if the property is not suitable for bindings, you should not add it
+> in the first place. So again: explain what sort of hardware, not driver,
+> problem you are solving here, so we can understand why do you need new
+> property. Otherwise use existing properties or no properties, because we
+> do not define all possible clocks in the bindings.
 > 
-> Why would this be varied at runtime rather than being something fixed
-> when the system is designed?
-> 
->> +static const char * const a1_adc_pga_txt[] = { "None", "Differential",
->> +	"Positive", "Negative" };
->> +static const unsigned int a1_adc_pga_right_values[] = { 0, PGAR_DIFF,
->> +	PGAR_POSITIVE, PGAR_NEGATIVE };
->> +static const unsigned int a1_adc_pga_left_values[] = { 0, PGAL_DIFF,
->> +	PGAL_POSITIVE, PGAL_NEGATIVE };
-> 
-> Similarly here.
+> Let's be clear: with such commit msg explanation as you have, my answer
+> is: no, driver should set clock frequency and you do not need this
+> property at all.
 > 
 
-Both mic bias and ADC's input mode depends on schematics and should be
-configurable. What is the better way to give access to these parameters?
-Device tree?
+Could you please take a look on answer to "Jerome Brunet
+<jbrunet@baylibre.com>"'s message on the same thread. There, I am trying
+to explain what I am solving by this commit.
 
->> +	SOC_SINGLE("ADC Mic Bias Switch", LINEIN_CFG, MICBIAS_EN, 1, 0),
->> +	SOC_ENUM("ADC Mic Bias Level", a1_adc_mic_bias_level),
+I would be happy to avoid this w/a, but currently this is the best I
+came up with.
+
+> Best regards,
+> Krzysztof
 > 
-> Why would micbias be user controlled rather than a DAPM widget as
-> normal?
-
-Yes, I could use SND_SOC_DAPM_SUPPLY, but it supports only raw values,
-and doesn't supports enums. Here, I want to use enum to restrict
-possible values, because only these values mentioned in the
-documentation that I have.
 
 -- 
 Best regards
