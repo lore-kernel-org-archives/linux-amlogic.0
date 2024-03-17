@@ -4,79 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF3D1C54E67
-	for <linux-amlogic@archiver.kernel.org>; Sun, 17 Mar 2024 14:18:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E65C6C54E67
+	for <linux-amlogic@archiver.kernel.org>; Sun, 17 Mar 2024 14:30:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gJDxTdxwXF+sA/+L3rpy0qSyU6N8/rt23dZmqH/5XvQ=; b=DTzS8lrc2W3mpM
-	uKcgigibDZF3P6GSBurB5SOY9wBl/heWmpjaPiwiaigvbVBO/Mn74BC4AiG0crkhrVs6D5b0FrcwC
-	bx/IG9WjGKVVdFCnAO6DrAki7c3W1/mLrHLjo6t4SQjAP767bb2dDevoYABTLGictq9BMD4kXE+0z
-	NhQMjkuJiGkuzLFglAdRo5l1sNcsOd2xVTdbkgj1sa3G+J+JIH5Vo/BIE7fjj31Tqb/1OnMTSktkx
-	5EMFcERT3xNFxtMnDD/P1MdBVy/kUhVh4mlmxwWwnUNBn/JkSvbBdU+VjoDQ82Rt42LJx9+hT5AgQ
-	eujIKZRUjdsoYmrU6xyA==;
+	List-Owner; bh=0bKPXuhDstywnfe82icvuVYev89/EmwKj6Gd34ayE2Y=; b=w3tPw2m50MZC7p
+	Y2YmYbant6PbhYtG55SL3XhqfKlBZz3UGL4M9gGbHALaq62HWKbv+Es8Hvy0T/0kI+QuWsSlHgyd8
+	ciK+9vM9BlEGefJl4ICS2Q/5uxpwowUDGEnRHtsSJwpjeRb1L6CiiqFSHjfJlCXFUDeh1bME4Gfq4
+	HWujv1EnKaqhL2kzJd7ITO+5mutt0B7CGzcyeRehBnIIjkE/90GJ3N730HqNCtN4QqPdSVwuSwqmJ
+	kLC3DIjbdZEoj+95XRslCmm5tvh8vTGJEBTn2IyrcEqyiJVf7F4uc44ZpsMe85iVrHci4hlXpKFyD
+	QmuKefslrmRX8+21vR4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rlrKy-00000005Nbf-1OJa;
-	Sun, 17 Mar 2024 14:18:08 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1rlrWZ-00000005P7b-1VNQ;
+	Sun, 17 Mar 2024 14:30:07 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rlrKu-00000005Na3-1qrE;
-	Sun, 17 Mar 2024 14:18:07 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id EEF53100004;
-	Sun, 17 Mar 2024 17:17:55 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru EEF53100004
+	id 1rlrWW-00000005P65-1t0V;
+	Sun, 17 Mar 2024 14:30:06 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 46CC2120006;
+	Sun, 17 Mar 2024 17:29:57 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 46CC2120006
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1710685075;
-	bh=SQRSKK7y7FzIxWfxLiQrXC7XGIdk++wvMoC5iAR3Cb4=;
+	s=mail; t=1710685797;
+	bh=U7iGhIFEEZJr2pptTT9ef5adqscsVQVXDtlJaym04/U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=uv7Lm/X9X5z1ZUSUWfoS0ttfd/72rpm6SUnpRRaNa24NwI+up88M2sXcGcvi9f9YN
-	 Jig10wMsHnHwV3wanec2UWaKwWicjrcIw9dzuHtmOHhcc7uYxFsB3ysm6RbjCzKe6y
-	 jFKr94t1wofL3qvT2jXHDt0cZ9TG2LvhthtFoXo8mnq8bJQBPmuOH+d043V2q04tZW
-	 98zrHAAMKuh6hEZvYg4S/n02z1WyFyc8uh7Y4DQZO2og/ahv9LdqCGSLBmonIYf9hv
-	 V9kuUDEqBFP9SD9NKttW20YDJR+hHD4daPmB+e6xNuANLo3Bwgo7cs0+9iYR4UQ95k
-	 jIktZ299+OK9Q==
+	b=o04TGxXHCIs+xdCGFZjuqAqJVDHx6+acGPFOJSTYaI6LnxXuT8PcQ2yvRfSAbQQIk
+	 4meOHYBpCBtgy/6fctGtrJgHf9RoHbQC5eYtno1SL599F8tytgg/CiwhCp8Osay7L9
+	 Fic1MUlA5kG6N9L8C5c8T1boCun87MWSgBEP5oNEUUhBfjk/xX7tJvibi212XHDZqB
+	 kgeVfleDZbV3+LhqdLQKJr06dAulZcGzbggyE5O2wYng6Y4wBesR6mKm1yxL4aMynW
+	 OVCBmur3qSylI22aidgBK/5UDVhbBzQZBBzNmjILssrsGHJQV25KrvxHzWRuz+Kvr0
+	 WFngVLFSl9yvg==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Sun, 17 Mar 2024 17:17:55 +0300 (MSK)
+	Sun, 17 Mar 2024 17:29:57 +0300 (MSK)
 Received: from [172.28.160.49] (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Sun, 17 Mar 2024 17:17:55 +0300
-Message-ID: <cbfd9c66-cca5-49f5-9468-43710c48518e@salutedevices.com>
-Date: Sun, 17 Mar 2024 17:17:12 +0300
+ 15.2.1118.40; Sun, 17 Mar 2024 17:29:56 +0300
+Message-ID: <5a541ea3-ac4b-4606-9b6a-b103084b30b5@salutedevices.com>
+Date: Sun, 17 Mar 2024 17:29:14 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/25] clk: meson: a1: restrict an amount of 'hifi_pll'
- params
+Subject: Re: [PATCH 08/25] ASoC: dt-bindings: meson: g12a-toacodec: add
+ support for A1 SoC family
 Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>
-CC: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette
-	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
-	Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <alsa-devel@alsa-project.org>,
-	<linux-sound@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-	<kernel@salutedevices.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael
+ Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus Walleij
+	<linus.walleij@linaro.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>, <linux-amlogic@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>,
+	<linux-gpio@vger.kernel.org>
+CC: <kernel@salutedevices.com>
 References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
- <20240314232201.2102178-2-jan.dakinevich@salutedevices.com>
- <1j8r2jj24k.fsf@starbuckisacylon.baylibre.com>
+ <20240314232201.2102178-9-jan.dakinevich@salutedevices.com>
+ <f91ea77c-8170-4ae6-850f-3d5715d83855@linaro.org>
 From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-In-Reply-To: <1j8r2jj24k.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <f91ea77c-8170-4ae6-850f-3d5715d83855@linaro.org>
 X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
@@ -95,8 +96,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 19:21:00 #23899999
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240317_071805_278363_3FC809E3 
-X-CRM114-Status: GOOD (  22.64  )
+X-CRM114-CacheID: sfid-20240317_073004_879965_64309079 
+X-CRM114-Status: GOOD (  18.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,69 +114,48 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+I mean the following... This commit adds new defines to
+meson-g12a-toacodec.h header. These defines are used in the following way:
 
+sound-dai = <&toacodec TOACODEC_IN_A>;
+sound-dai = <&toacodec TOACODEC_CAPTURE_OUT_A>;
 
-On 3/15/24 11:58, Jerome Brunet wrote:
+So, can you make an advise how to call something like "&toacodec" to
+which I declare new parameters.
+
+On 3/15/24 12:58, Krzysztof Kozlowski wrote:
+> On 15/03/2024 00:21, Jan Dakinevich wrote:
+>> Add "amlogic,t9015-a1" compatible string and new device tree phandle
+>> options.
 > 
-> On Fri 15 Mar 2024 at 02:21, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+> I don't understand the second part. You did not add any options, no
+> phandles. You added some defines for something, so say what are these
+> "something".
 > 
->> Existing values were insufficient to produce accurate clock for audio
->> devices. New values are safe and most suitable to produce 48000Hz sample
->> rate.
-> 
-> The hifi pll is not about 48k only. I see no reason to restrict the PLL
-> to a single setting.
-> > You've provided no justification why the PLL driver can't reach the same
-> setting for 48k. The setting below is just the crude part. the fine
-> tuning is done done with the frac parameter so I doubt this provides a
-> more accurate rate.
-> 
-
-You are right, it is not about 48k only. However, there are two issues.
-
-First, indeed, I could just extend the range of multipliers to 1..255.
-But I am unsure if hifi_pll is able to handle whole range of
-mulptipliers. The value 128 is taken from Amlogic's branch, and I am
-pretty sure that it works.
-
-Second, unfortunately frac parameter currently doesn't work. When frac
-is used enabling of hifi_pll fails in meson_clk_pll_wait_lock(). I see
-it when try to use 44100Hz and multipliers' range is set to 1..255. So,
-support of other rates than 48k requires extra effort.
-
 >>
 >> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 >> ---
->>  drivers/clk/meson/a1-pll.c | 8 ++++----
->>  1 file changed, 4 insertions(+), 4 deletions(-)
+>>  .../devicetree/bindings/sound/amlogic,g12a-toacodec.yaml     | 1 +
+>>  include/dt-bindings/sound/meson-g12a-toacodec.h              | 5 +++++
+>>  2 files changed, 6 insertions(+)
 >>
->> diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
->> index 4325e8a6a3ef..00e06d03445b 100644
->> --- a/drivers/clk/meson/a1-pll.c
->> +++ b/drivers/clk/meson/a1-pll.c
->> @@ -74,9 +74,9 @@ static struct clk_regmap fixed_pll = {
->>  	},
->>  };
->>  
->> -static const struct pll_mult_range hifi_pll_mult_range = {
->> -	.min = 32,
->> -	.max = 64,
->> +static const struct pll_params_table hifi_pll_params_table[] = {
->> +	PLL_PARAMS(128, 5),
->> +	{ },
->>  };
->>  
->>  static const struct reg_sequence hifi_init_regs[] = {
->> @@ -124,7 +124,7 @@ static struct clk_regmap hifi_pll = {
->>  			.shift   = 6,
->>  			.width   = 1,
->>  		},
->> -		.range = &hifi_pll_mult_range,
->> +		.table = hifi_pll_params_table,
->>  		.init_regs = hifi_init_regs,
->>  		.init_count = ARRAY_SIZE(hifi_init_regs),
->>  	},
+>> diff --git a/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml b/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
+>> index 23f82bb89750..c47604aa590f 100644
+>> --- a/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
+>> @@ -26,6 +26,7 @@ properties:
+>>        - items:
+>>            - enum:
+>>                - amlogic,sm1-toacodec
+>> +              - amlogic,a1-toacodec
 > 
+> Keep alphabetical order. Don't stuff new entries to the end...
+> 
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
 > 
 
 -- 
