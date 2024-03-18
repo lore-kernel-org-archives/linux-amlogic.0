@@ -4,94 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8677FC54E5D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2024 10:41:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 045FFC54E5D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2024 10:44:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
 	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uti5VOCRwL2QUvvCdt/QAvtkn2u/E/EndSJSkpDqKBc=; b=JtMJ3f8Z3SxqAP
-	s1BzKm54eYuKitDwxku0Tl0mzAZS0bUEK36Lp4CnojIIA07aDiH462QeQe59CApK/eS1rq6EK8rQU
-	HwX+MkYo5YAh1Hb2lJMY2fkJ3vGhvt7tGCjlKJ68Ef3oJZVJXJ81rUbjW7BNLMl47i3BWAbUh6kDl
-	kOjQgJlQAJRzJMOFsFYcw52UZn/8Pxc6jZ6TYIFjryP1LolrQKWHVHMF27QUTuIWmThtcDTOEK7Lz
-	FBWXWTJmWfH1JmcUozcyTFw548/I2xMPOGTs7urxIIYkYXoofD8EDU4nDfC3zDCbGQWGC65dia+gn
-	U6E8ul5/WZpC/5o9DiFA==;
+	List-Owner; bh=1CdSS7bZiFIVpqL3Ktnza2UGpFLghf2hYCD5wByZljM=; b=kdcdiHRMKMHSLF
+	f+l6CkeULUHkfE6AmBZiY/Oq3MBzkwp5Oe9bn0489q0ptpdsuIivhJtoLO/zMSUefDCQ+bNOSjaNc
+	Gt71RV4ZpcN/gCVCOTLZjmGCsQAy57kxOMp6WGOnRAJYytZ1xG8PIFuV/DP3i1rIFSRZStsXNTzhU
+	hLcOIfIu6yFgXTsQ2Fdynb1TPDLn27fdOFwsSaJqjonyJ8mAfztdObK/1oAz0B5NGopi24glWjbBP
+	IMIsvhuyc5us2J3bj1Vvao5M9n5rDTObiiRckf1YOOWjslO2YuiG8aWax+6oFUf4uwGrWPaoYtRiM
+	DxHBmYx1ujq1bonxk2DQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmAQJ-00000008BQc-41Wa;
-	Mon, 18 Mar 2024 10:40:56 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1rmATy-00000008CVP-0G72;
+	Mon, 18 Mar 2024 10:44:42 +0000
+Received: from mail-lf1-x132.google.com ([2a00:1450:4864:20::132])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmAQD-00000008BGf-1F0G
+	id 1rmATu-00000008CTb-0rsr
 	for linux-amlogic@lists.infradead.org;
-	Mon, 18 Mar 2024 10:40:53 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-41412411672so4271155e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 18 Mar 2024 03:40:46 -0700 (PDT)
+	Mon, 18 Mar 2024 10:44:39 +0000
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-513d717269fso4090987e87.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 18 Mar 2024 03:44:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710758445; x=1711363245; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710758676; x=1711363476; darn=lists.infradead.org;
         h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
          :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=xNzf7P8nz60f5DqiZ1A/ORzVISDkI6sI6tCR2mQw6JE=;
-        b=YjQbzuFkNQPfsO/4ZOF8nf2qpGli71Sj/ugH5Sw7P9kLieKjMeb3YgeswisD0Fp3Qs
-         tm22D8Uvnr0sQYUA2WvJA7gM5mk4Zob+A5y6Aw7ZU6CojJTQ6B8X1DbKzPlNPH/aueQj
-         FcDLc5W7OXGk2K1FiIg/5lzlWF8B1PmnbgxrN5sLplO/Sk3FamNSWmGBAVuDTmEebbNZ
-         LuWCOMkpZ2GYPOTZQfbxO+zqQDu2RijcLsn4nB6klmBLglLVWabvrU8TyoSRxI1Lfgsh
-         JHI2kvNprp2EcSe/iJ7dp+SSIuCHeiF+rEFVom6WpMd+xdhRVaCJFd3r60HYJJv222Ur
-         AHvw==
+        bh=KCGPrCwTOITqjTnhSele0x2XpulUBe47CHNWCd7XesU=;
+        b=Uu5vfr1P9IvE08CbuxWcpTCzVx5yb6ICXJh1EQI09BSFOJvrw5QFYbNbNdJDomHqDq
+         54w33YxELWz8VZKy6fJU8wTPdtPnztsRKixDNlW++6AQfD7mlQYnwcWclPHyaljACDSU
+         i1WXJXM6k46h0DCVq9Yh2l/9c03HIlATOXO9m6XrVKDrBThY6FZmz45Rjv7AglRdjIk3
+         I2pPfv2WTpJKNOLHVBsS6RCVKA+SEJXLZ9qPGlStDzwIwIeLvSwPon9SxxAtN/a1xgZm
+         55wjntqnhhZ8pjZmAK91wAH0BwwROISUnR3Xi4j52wF5MFqcCYmTxqPfQvth9huRcj7x
+         wxKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710758445; x=1711363245;
+        d=1e100.net; s=20230601; t=1710758676; x=1711363476;
         h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
          :user-agent:references:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xNzf7P8nz60f5DqiZ1A/ORzVISDkI6sI6tCR2mQw6JE=;
-        b=h3XVt+HD+X5hPdtLi+Sxd7UIXDl6Kk8o24LtoGipiuaR0VVZPArJbpW+x+pjnnu/HM
-         SLli/bpM4ZJGCjX9x3eSK7G8wVB6hNz4ruVatNBU4XptPJxyIhn3ag1+LVqwdMGfNHRv
-         zJaj8NkiE5uce50rKyC/sW2QEpfOKrZLTYA7yBVPW+9fmsq20PAHzIl2pJGsU5i5WkD5
-         huCW6fEijJdISp+IxRd85CEkQRwOkCVv7/q13I2lLcQJDqNFW8RUHFlRIcEBHy6Zjx1N
-         O4WIjo/6WxUjlWBDq9vVoce2mYjSnrqmJc8gjqyOk6+XVdh5NVVJGOeqJgEjDKAEWwvN
-         6HAw==
-X-Forwarded-Encrypted: i=1; AJvYcCXyP8dE9vm8j4eTs99dpqkP0UCs6f6H5JO7eZi7zP0yk1FqDNWGRuPnrulqBhqzPBPOMVLxe9Ft1UUeY/2GLfdv0186k8sJ53IyUAp8SHSOWJE=
-X-Gm-Message-State: AOJu0YxkFf0oIpXGaqwCFgkYR2FSKIYfcxd3pPkSTC82xw7Vpia81X3z
-	AscPI4Hlfcj35uCbZZ5c/XlEVr6uoS/tUYvB3SU1meUMff/B0mv8IRvjUSgrNFY=
-X-Google-Smtp-Source: AGHT+IF2NPmkDgNrJwjlDs0dlEQjbzK0dB/C1p7NsE17fQtvvBPtrHxeI38T1w1hQ953d1PS97HQkQ==
-X-Received: by 2002:a05:600c:4707:b0:414:ca1:6531 with SMTP id v7-20020a05600c470700b004140ca16531mr3050478wmo.41.1710758445095;
-        Mon, 18 Mar 2024 03:40:45 -0700 (PDT)
+        bh=KCGPrCwTOITqjTnhSele0x2XpulUBe47CHNWCd7XesU=;
+        b=GhlVX+OeKEOW+i4O3k19hEGqDVHEj0hquKsCKH9eC5plTIDZwS9zULNxCjbKch/RHj
+         /ef9hHtzf0J8ppLEbNVYfBWsfp/vFizTtZ/pIjg6bKR33QoYLSF0P4UMU2+MJX1jYHlG
+         m2COMPFXLoizhQ/4Sm2ZB9doQuWR+xBRI1wKWvdLAmfwkdq1zwGTxuBF+a9LFPvLhpkH
+         rVhmX4wCinvBqstytCY9WOf/vgB8i/RI5CHdtuZbRPKs2P5ErHXSaiCXs4HTo0Qcg72I
+         iAgAGHdWVf1y2g1LSooy6naXKO3I4OVCRiUx2yqv8Os5u1FeQAeivTg0seRR8CBz2AJI
+         dcbw==
+X-Forwarded-Encrypted: i=1; AJvYcCUyTw6KNmdoR3OG4P955iQhc6PsrDJUrsbvYbFH7hDnpWm52+SppFNoiCstWhzovgfNUHuaoEMB5/0e/fsQmtPlSiH9UyMr72XxRHaJzFp3vo8=
+X-Gm-Message-State: AOJu0YxxN/kBxgTIS6TpGR/lRk7lf5cJzcnlv325YGdUI4N+th0Axhhv
+	HzMyfwon3wWy62LZEmKCSjKDMgqDjkBKNCmMyzZqK6LIfrluvjIqN+JwDz7ifr4=
+X-Google-Smtp-Source: AGHT+IHrBhAsRVSFIOS45FQu5E9/DGiPnUOBufbspQxtJ2p2r6r0OzKNwEix9BKbpaZlbyfnUT+a6Q==
+X-Received: by 2002:ac2:494f:0:b0:513:c963:895e with SMTP id o15-20020ac2494f000000b00513c963895emr7169639lfi.42.1710758676166;
+        Mon, 18 Mar 2024 03:44:36 -0700 (PDT)
 Received: from localhost ([2a01:e0a:3c5:5fb1:e4d5:78c0:18b:ad85])
-        by smtp.gmail.com with ESMTPSA id f19-20020a05600c155300b00414105c4cd9sm2909256wmg.21.2024.03.18.03.40.43
+        by smtp.gmail.com with ESMTPSA id m8-20020a05600c4f4800b00413ea26f942sm17214532wmq.14.2024.03.18.03.44.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Mar 2024 03:40:44 -0700 (PDT)
+        Mon, 18 Mar 2024 03:44:35 -0700 (PDT)
 References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
- <20240314232201.2102178-2-jan.dakinevich@salutedevices.com>
- <1j8r2jj24k.fsf@starbuckisacylon.baylibre.com>
- <cbfd9c66-cca5-49f5-9468-43710c48518e@salutedevices.com>
+ <20240314232201.2102178-10-jan.dakinevich@salutedevices.com>
+ <2a41e8b6-7e8a-4995-a1d7-c5d30e53c2d5@sirena.org.uk>
+ <3ae535cf-9a89-4187-a761-8390d649b00b@salutedevices.com>
 User-agent: mu4e 1.10.8; emacs 29.2
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Kevin
- Hilman <khilman@baylibre.com>, Martin Blumenstingl
+Cc: Mark Brown <broonie@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael
+ Turquette <mturquette@baylibre.com>, Stephen  Boyd <sboyd@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman
+ <khilman@baylibre.com>, Martin Blumenstingl
  <martin.blumenstingl@googlemail.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Jaroslav  Kysela
+ <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
  linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
  linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org,
  kernel@salutedevices.com
-Subject: Re: [PATCH 01/25] clk: meson: a1: restrict an amount of 'hifi_pll'
- params
-Date: Mon, 18 Mar 2024 11:17:14 +0100
-In-reply-to: <cbfd9c66-cca5-49f5-9468-43710c48518e@salutedevices.com>
-Message-ID: <1jedc7hlg4.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [PATCH 09/25] ASoC: meson: g12a-toacodec: add support for A1
+ SoC family
+Date: Mon, 18 Mar 2024 11:42:20 +0100
+In-reply-to: <3ae535cf-9a89-4187-a761-8390d649b00b@salutedevices.com>
+Message-ID: <1ja5mvhl9o.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240318_034049_792942_809D43EB 
-X-CRM114-Status: GOOD (  24.76  )
+X-CRM114-CacheID: sfid-20240318_034438_300232_EFBFE906 
+X-CRM114-Status: GOOD (  12.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,90 +110,31 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Sun 17 Mar 2024 at 17:17, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+On Sun 17 Mar 2024 at 18:19, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
 
-> On 3/15/24 11:58, Jerome Brunet wrote:
+> On 3/15/24 16:33, Mark Brown wrote:
+>> On Fri, Mar 15, 2024 at 02:21:45AM +0300, Jan Dakinevich wrote:
 >> 
->> On Fri 15 Mar 2024 at 02:21, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+>>>  static const struct regmap_config g12a_toacodec_regmap_cfg = {
+>>> -	.reg_bits	= 32,
+>>> -	.val_bits	= 32,
+>>> -	.reg_stride	= 4,
+>>> +	.reg_bits		= 32,
+>>> +	.val_bits		= 32,
+>>> +	.reg_stride		= 4,
+>>> +	.max_register		= TOACODEC_CTRL0,
+>>> +	.max_register_is_0	= true,
 >> 
->>> Existing values were insufficient to produce accurate clock for audio
->>> devices. New values are safe and most suitable to produce 48000Hz sample
->>> rate.
->> 
->> The hifi pll is not about 48k only. I see no reason to restrict the PLL
->> to a single setting.
->> > You've provided no justification why the PLL driver can't reach the same
->> setting for 48k. The setting below is just the crude part. the fine
->> tuning is done done with the frac parameter so I doubt this provides a
->> more accurate rate.
->> 
+>> If the maximum register is 0 how does the regmap have a stride?
 >
-> You are right, it is not about 48k only. However, there are two issues.
->
-> First, indeed, I could just extend the range of multipliers to 1..255.
+> reg_stride inherited from existing code. Apparently, it was meaningless
+> even before my modifications (the hardware has single register
+> regardless of max_register declaration) and it should be dropped. But,
+> is it okay to remove it in the same commit?
 
-Why 1..255 ? This is not what I'm pointing out
-
-According to the datasheet - the range is 32 - 64, as currently
-set in the driver.
-
-The change you have provided request a multipler of 128/5 = 25,6
-If you put assigned-rate = 614400000 in DT, I see no reason can find the
-same solution on its own.
-
-> But I am unsure if hifi_pll is able to handle whole range of
-> mulptipliers. The value 128 is taken from Amlogic's branch, and I am
-> pretty sure that it works.
-
->
-> Second, unfortunately frac parameter currently doesn't work. When frac
-> is used enabling of hifi_pll fails in meson_clk_pll_wait_lock(). I see
-> it when try to use 44100Hz and multipliers' range is set to 1..255. So,
-> support of other rates than 48k requires extra effort.
-
-Then your change is even more problematic because it certainly does not
-disable frac ... which you say is broken.
-
-That parameter should be removed with a proper comment explaining why
-you are disabling it. That type a limitation / known issue should be
-mentionned in your change.
-
->
->>>
->>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
->>> ---
->>>  drivers/clk/meson/a1-pll.c | 8 ++++----
->>>  1 file changed, 4 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
->>> index 4325e8a6a3ef..00e06d03445b 100644
->>> --- a/drivers/clk/meson/a1-pll.c
->>> +++ b/drivers/clk/meson/a1-pll.c
->>> @@ -74,9 +74,9 @@ static struct clk_regmap fixed_pll = {
->>>  	},
->>>  };
->>>  
->>> -static const struct pll_mult_range hifi_pll_mult_range = {
->>> -	.min = 32,
->>> -	.max = 64,
->>> +static const struct pll_params_table hifi_pll_params_table[] = {
->>> +	PLL_PARAMS(128, 5),
->>> +	{ },
->>>  };
->>>  
->>>  static const struct reg_sequence hifi_init_regs[] = {
->>> @@ -124,7 +124,7 @@ static struct clk_regmap hifi_pll = {
->>>  			.shift   = 6,
->>>  			.width   = 1,
->>>  		},
->>> -		.range = &hifi_pll_mult_range,
->>> +		.table = hifi_pll_params_table,
->>>  		.init_regs = hifi_init_regs,
->>>  		.init_count = ARRAY_SIZE(hifi_init_regs),
->>>  	},
->> 
->> 
-
+Yes it has a single register, for now. Still the stride is 4.
+And assuming the mmio region passed from DT is correct, I'm not sure the
+hunk is useful at all.
 
 -- 
 Jerome
