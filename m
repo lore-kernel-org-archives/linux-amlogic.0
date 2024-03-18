@@ -4,72 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 723DAC54E5D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2024 10:54:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68B39C54E58
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2024 10:56:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
 	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6iAytS6Xah7R2/KcIKeVF7mJEOJVyoi7vva+uizGWDI=; b=kjUhnu2Ys12qvf
-	b3SC2he4/WyliUIlpAsTrh2ebpVCxCdwztdcBH6WmXMhJGUhZCPhyIMzBhatR52pxYcToWDOzFxB8
-	sVVEIlpP9lk4wUBE7IlevMJRiso8sLQ5sJI/WCd6X3YqRbSzlPt8WeLuV8pW5YpScS/juwjF434G3
-	EBLQe6yiYcZUk43rg/sHZ4jbQYyh8WBTg6XZqzdGKVocfHoWXA/Rtrr/IqM2rZxXYaYArT71ysnkI
-	0gH/yZglAUSNfZnR4OaKzi44+V5PRxxf1FkuLH0cv8sa6iObEWyOTFkKbsMhtFN+u+WFSzr79fE0d
-	L2tj5eomdzCed/Im8mow==;
+	List-Owner; bh=gV46cN19kjA0odu8nOiYPxBoJBD9xFQHuc7aImgQu6g=; b=Vmqv6639FA6grY
+	0PW8+UkS09Xb4vnT5QWf5tDGsdIrj4J9O+crwQ8DxFVy1nDb8NEsH+qoT908X4HWfStlQ9DU85b6s
+	68Fb6EybNbkgv++XF4sjZLzw8U1v4TEJal3oLSCnV2/GlAo+CjdisnugEj6QhE22FSIw6QgRHyZCf
+	/VC6TkxNQmyNr2a4KaHDkHa6xHpUBZueCI7nQ6AzONu1wHkX8cr8cvr3Cp5qp/AKRWHyd32DVRSvV
+	lh/bI0psqnIkoWEPQAkAv4JTu5euCCK4CQgVZriI14aC+6DNrO40/qdXcVPelWavwab0UHCgje+C1
+	8Gfz+KkTalo3d2W+rxIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmAdS-00000008DuB-26Zh;
-	Mon, 18 Mar 2024 10:54:30 +0000
-Received: from mail-lj1-x22a.google.com ([2a00:1450:4864:20::22a])
+	id 1rmAfM-00000008EPf-3xpk;
+	Mon, 18 Mar 2024 10:56:28 +0000
+Received: from mail-lf1-x12c.google.com ([2a00:1450:4864:20::12c])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmAdP-00000008DtF-0b0j
+	id 1rmAfI-00000008EOU-3omM
 	for linux-amlogic@lists.infradead.org;
-	Mon, 18 Mar 2024 10:54:29 +0000
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2d46dd8b0b8so55687901fa.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 18 Mar 2024 03:54:26 -0700 (PDT)
+	Mon, 18 Mar 2024 10:56:27 +0000
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-513dd2d2415so2611988e87.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 18 Mar 2024 03:56:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710759265; x=1711364065; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710759383; x=1711364183; darn=lists.infradead.org;
         h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
          :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=av5gLzR7rkEYxoc/gdbN557ReTDhwcmck8nCSWc2+u4=;
-        b=aCuYqs/4zjz0cziSj1bGbWIGKlnxQjBz2RoVHfmEMQDysmYBFFpVJ/jdd7Yk3UED9O
-         AJDt1USlsih9eTBXIVb8tmiL7Kv+4P46a4wkKXHUSpXnO10mN5SU3alfQRTNwmmAy9EE
-         WtcbJwhU0aO91jReuggIYzcx8KO9Jp9P/aKqPpP3J/dtUDTDrGwqP2ijawhm/SmSgNWx
-         K+uxyGuOqDDjxyIxy9Nq8tfzFNT7JZceTFDM1Q78mJYlyT9EdXoRdacJugrcSzpLkob3
-         Bd8izo508uIanondKktJqrDMo0Fz7ZD0E9Q+vVSdoXwrchSzzypv4/Yw83UFguyvUZ0g
-         kplg==
+        bh=F3i97oXHe0eAhEUjD88GKSO+6DE7eLwPQSdXhNfZFbQ=;
+        b=2hDL0eWnpsNwrOyDPIhIHqMXsPSNpYaJd5PuVvR1VVQCTnvATTpH0hiISPsembFCay
+         3Fgn/wFUbM3TWByiMp9tAP94cLCtrrWIlu1LPWjK/hNhbtwS5A30K1DcgbTmEPqaofF5
+         uiHL6itbUggespXyDn4RHu6gNnfd/cPC9/LvDtu+oBYE+dqFZPIfUOraKmvJyfoZToFe
+         TxlNtR8ePJvKHz7BOqKNUp27/RFNiDmru0OwBV3+d4UNoEYXmlGzI4z8o95utxyp97dD
+         8XMUyGFIoMyF8DrHuTp9N3YMDiM8DrletmMSUl3ClCH8p5VvCOdgras6QiyFMvOqcbBb
+         plEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710759265; x=1711364065;
+        d=1e100.net; s=20230601; t=1710759383; x=1711364183;
         h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
          :user-agent:references:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=av5gLzR7rkEYxoc/gdbN557ReTDhwcmck8nCSWc2+u4=;
-        b=PP1ShV0EReN3vFPMcsXyZhVRGNoxdkBqZsqKcOmQf6+Zj5xwSvZoRBt+i4oxk647mc
-         /WJnSL4dUqrZChPBUx3/jALnZHGRUsjFYrUs4FhUFkUUl6Jbi0uDgjsCEDO+PKcLXWxV
-         hzNvLeLyo1mt+uZSnm7Wy0wQEWdQE8NtnQ7fZxRdz9EJF5G/gIx7ZQyzCdEy6JQsBm9f
-         VtDNNVl4/z4lh8xquE+p3Vb/DZLIkT1V1BSLYyA295aoNiUYmDI+0+aIx/22rcXXfYc0
-         HpWl8CuEhKx/I3GCVAnW5kesr0yOz7lIXjwNi9Kna748MpCEzuSciwlUIliaxMvNjuoI
-         GIZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXoIcsiC+np6Fry83iKH2utDqZFJh9uRJwMn7IlpScgEtE0Sta3M7ILaowrl3bYuyU2D7iipkzxDgnJm8PKKylFgYY2N7Y82t1+EXmaXKDXmTc=
-X-Gm-Message-State: AOJu0YwAHHS5tcGsed7NOm6/wt86ZtN8V6wRGOyYc7hNk7nM0+WRd8LG
-	rAyBZ3vU1+B12nkI1jOdtddAz7d39EEbzEEQcEiLWp3K1J+JAZ65xB++RoIuf24=
-X-Google-Smtp-Source: AGHT+IEfWa2sARX5iVa1uwuhVCGh6TdVM/VP1QniC2h7z2co2l7YutX7ZqvHVM7a5OfA0ZKHXEuzOQ==
-X-Received: by 2002:a2e:98d7:0:b0:2d4:1f8f:69b8 with SMTP id s23-20020a2e98d7000000b002d41f8f69b8mr7715102ljj.19.1710759264530;
-        Mon, 18 Mar 2024 03:54:24 -0700 (PDT)
+        bh=F3i97oXHe0eAhEUjD88GKSO+6DE7eLwPQSdXhNfZFbQ=;
+        b=n+2rBKB12bfandghSWGKeqn9qyg3CFzqUFUfhRCNdIuLlNrKpvxkKnMh6ODnk19fKo
+         lHoW1WNYMwJs5OkmzixPgoEKlUha1uq+cK+SyqkJnAFZZjblyS46gJ9J6Grn/mT4fIUP
+         OqpNKrlJza6BxHoolBokE52ZqTFtZB8xTfm8vmicIZQr95BDY3STTC6UNivDS5D07i+6
+         Kr6ILVKb/mu2MZs3CgZM64sBiIjc18Jsp8tb0gl1+NxuYoESNQtff1gIp6tVuu85GkYg
+         R+/BNBoTWZaHF5XNNG0FM1tnq4Wjhe8Xoh7H9h9R7xPijaSUfUnN/fX9hpQOwVAGJWu/
+         RW0g==
+X-Forwarded-Encrypted: i=1; AJvYcCWxU/errh1e+7hf5lgWYu5h9i5v+FpxJajXyTj5jWfNgTG14MhF2381blq6AZPfm0AgB31F5W/3KnOYM+97Xf72jnTWkcalv2v/n7pWCz+vv44=
+X-Gm-Message-State: AOJu0YztMi57S4RRZmNx5vTR2xXngV4pSDQmKAKAeWz8wFjQX30Uo/i7
+	vSBlZmRYOA5RgcrBOGM/RjRI0twOOiKNNEYtdwJrNxr+SlL5+a6wFbEJ2TqX4a7xKE38JiGkBtS
+	W
+X-Google-Smtp-Source: AGHT+IF2t1NObGaOQ+IPe7s03JmYlEbsyaNF+u7Gb3UFP+mZEEcwim7+2sDBYhdUxYtGEoaRHjxYsg==
+X-Received: by 2002:a19:8c0f:0:b0:513:9da7:3792 with SMTP id o15-20020a198c0f000000b005139da73792mr7100240lfd.19.1710759382830;
+        Mon, 18 Mar 2024 03:56:22 -0700 (PDT)
 Received: from localhost ([2a01:e0a:3c5:5fb1:e4d5:78c0:18b:ad85])
-        by smtp.gmail.com with ESMTPSA id p10-20020a2e804a000000b002d0bf097af1sm1426988ljg.123.2024.03.18.03.54.23
+        by smtp.gmail.com with ESMTPSA id n18-20020a05600c3b9200b0041407100b3csm7809350wms.30.2024.03.18.03.56.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Mar 2024 03:54:24 -0700 (PDT)
+        Mon, 18 Mar 2024 03:56:22 -0700 (PDT)
 References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
- <20240314232201.2102178-13-jan.dakinevich@salutedevices.com>
+ <20240314232201.2102178-14-jan.dakinevich@salutedevices.com>
+ <ca80caab-2664-4797-a222-e14537eea440@linaro.org>
+ <1jil1nhjwd.fsf@starbuckisacylon.baylibre.com>
+ <6feba9ff-8bbf-4494-93f0-732679bc4032@salutedevices.com>
 User-agent: mu4e 1.10.8; emacs 29.2
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
- <jbrunet@baylibre.com>, Michael  Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob  Herring <robh@kernel.org>, Krzysztof
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
  Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
  <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Kevin
  Hilman <khilman@baylibre.com>, Martin Blumenstingl
@@ -81,14 +86,15 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
  linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
  linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org,
  kernel@salutedevices.com
-Subject: Re: [PATCH 12/25] ASoC: meson: t9015: add support for A1 SoC family
-Date: Mon, 18 Mar 2024 11:46:58 +0100
-In-reply-to: <20240314232201.2102178-13-jan.dakinevich@salutedevices.com>
-Message-ID: <1j5xxjhktd.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [PATCH 13/25] ASoC: dt-bindings: meson: axg-pdm: document
+ 'sysrate' property
+Date: Mon, 18 Mar 2024 11:55:35 +0100
+In-reply-to: <6feba9ff-8bbf-4494-93f0-732679bc4032@salutedevices.com>
+Message-ID: <1j1q87hkq2.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240318_035427_224665_83FB97B0 
-X-CRM114-Status: GOOD (  22.91  )
+X-CRM114-CacheID: sfid-20240318_035624_978292_5DC3B8B4 
+X-CRM114-Status: GOOD (  20.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,360 +112,85 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Fri 15 Mar 2024 at 02:21, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+On Sun 17 Mar 2024 at 18:52, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
 
-> A1's internal codec is very close to t9015. The main difference, that it
-> has ADC. This commit introduces support for capturing from it.
+> On 3/15/24 13:22, Jerome Brunet wrote:
+>> 
+>> On Fri 15 Mar 2024 at 11:00, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>> 
+>>> On 15/03/2024 00:21, Jan Dakinevich wrote:
+>>>> This option allow to redefine the rate of DSP system clock.
+>>>
+>>> And why is it suitable for bindings? Describe the hardware, not what you
+>>> want to do in the driver.
+>>>
+>>>>
+>>>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml | 4 ++++
+>>>>  1 file changed, 4 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
+>>>> index df21dd72fc65..d2f23a59a6b6 100644
+>>>> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
+>>>> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
+>>>> @@ -40,6 +40,10 @@ properties:
+>>>>    resets:
+>>>>      maxItems: 1
+>>>>  
+>>>> +  sysrate:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +    description: redefine rate of DSP system clock
+>>>
+>>> No vendor prefix, so is it a generic property? Also, missing unit
+>>> suffix, but more importantly I don't understand why this is a property
+>>> of hardware.
+>> 
+>> +1.
+>> 
+>> The appropriate way to set rate of the clock before the driver take over
+>> is 'assigned-rate', if you need to customize this for different
+>> platform.
+>> 
+>
+> It would be great, but it doesn't work. Below, is what I want to see:
+>
+> 	assigned-clocks =
+> 		<&clkc_audio AUD2_CLKID_PDM_SYSCLK_SEL>,
+> 		<&clkc_audio AUD2_CLKID_PDM_SYSCLK_DIV>;
+> 	assigned-clock-parents =
+> 		<&clkc_pll CLKID_FCLK_DIV3>,
+> 		<0>;
+> 	assigned-clock-rates =
+> 		<0>,
+> 		<256000000>;
+>
+> But regardles of this declaration, PDM's driver unconditionally sets
+> sysclk'rate to 250MHz and throws away everything that was configured
+> before, reparents audio2_pdm_sysclk_mux to hifi_pll and changes
+> hifi_pll's rate.
+>
+> This value 250MHz is declared here:
+>
+> static const struct axg_pdm_cfg axg_pdm_config = {
+> 	.filters = &axg_default_filters,
+> 	.sys_rate = 250000000,
+> };
+>
+> The property 'sysrate' is intended to redefine hardcoded 'sys_rate'
+> value in 'axg_pdm_config'.
 
-This is mis-leading.
-
-It does not look like the change is A1 specific but rather a extension
-of the support for t9015. It also mixes several different topics like line
-configuration, capture support, etc ...
-
-Again, the t9015 changes should be a separated series from the rest, and
-there should be one patch per topic.
-
-As Mark, if something is meant to be configured based on the HW layout,
-then there a good change a kcontrol is not appropriate, and this should
-rather be part of the platform description, like DT.
-
-It was also suggested here:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/sound/soc/meson/t9015.c?h=v6.8#n298
+What is stopping you from removing that from the driver and adding
+assigned-rate to 250M is the existing platform ?
 
 >
-> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-> ---
->  sound/soc/meson/t9015.c | 259 ++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 259 insertions(+)
->
-> diff --git a/sound/soc/meson/t9015.c b/sound/soc/meson/t9015.c
-> index 48f6767bd858..365955bfeb78 100644
-> --- a/sound/soc/meson/t9015.c
-> +++ b/sound/soc/meson/t9015.c
-> @@ -19,16 +19,33 @@
->  #define  LOLP_EN	3
->  #define  DACR_EN	4
->  #define  DACL_EN	5
-> +#define  ADCR_EN	6
-> +#define  ADCL_EN	7
-> +#define  PGAR_ZCD_EN	8
-> +#define  PGAL_ZCD_EN	9
-> +#define  PGAR_EN	10
-> +#define  PGAL_EN	11
-> +#define  ADCR_INV	16
-> +#define  ADCL_INV	17
-> +#define  ADCR_SRC	18
-> +#define  ADCL_SRC	19
->  #define  DACR_INV	20
->  #define  DACL_INV	21
->  #define  DACR_SRC	22
->  #define  DACL_SRC	23
-> +#define  ADC_DEM_EN	26
-> +#define  ADC_FILTER_MODE 28
-> +#define  ADC_FILTER_EN	29
->  #define  REFP_BUF_EN	BIT(12)
->  #define  BIAS_CURRENT_EN BIT(13)
->  #define  VMID_GEN_FAST	BIT(14)
->  #define  VMID_GEN_EN	BIT(15)
->  #define  I2S_MODE	BIT(30)
->  #define VOL_CTRL0	0x04
-> +#define  PGAR_VC	0
-> +#define  PGAL_VC	8
-> +#define  ADCR_VC	16
-> +#define  ADCL_VC	24
->  #define  GAIN_H		31
->  #define  GAIN_L		23
->  #define VOL_CTRL1	0x08
-> @@ -46,6 +63,28 @@
->  #define  LOLN_POL	8
->  #define  LOLP_POL	12
->  #define POWER_CFG	0x10
-> +#define LINEIN_CFG	0x14
-> +#define  MICBIAS_LEVEL	0
-> +#define  MICBIAS_EN	3
-> +#define  PGAR_CTVMN	8
-> +#define  PGAR_CTVMP	9
-> +#define  PGAL_CTVMN	10
-> +#define  PGAL_CTVMP	11
-> +#define  PGAR_CTVIN	12
-> +#define  PGAR_CTVIP	13
-> +#define  PGAL_CTVIN	14
-> +#define  PGAL_CTVIP	15
-> +
-> +#define PGAR_MASK	(BIT(PGAR_CTVMP) | BIT(PGAR_CTVMN) | \
-> +			 BIT(PGAR_CTVIP) | BIT(PGAR_CTVIN))
-> +#define PGAR_DIFF	(BIT(PGAR_CTVIP) | BIT(PGAR_CTVIN))
-> +#define PGAR_POSITIVE	(BIT(PGAR_CTVIP) | BIT(PGAR_CTVMN))
-> +#define PGAR_NEGATIVE	(BIT(PGAR_CTVIN) | BIT(PGAR_CTVMP))
-> +#define PGAL_MASK	(BIT(PGAL_CTVMP) | BIT(PGAL_CTVMN) | \
-> +			 BIT(PGAL_CTVIP) | BIT(PGAL_CTVIN))
-> +#define PGAL_DIFF	(BIT(PGAL_CTVIP) | BIT(PGAL_CTVIN))
-> +#define PGAL_POSITIVE	(BIT(PGAL_CTVIP) | BIT(PGAL_CTVMN))
-> +#define PGAL_NEGATIVE	(BIT(PGAL_CTVIN) | BIT(PGAL_CTVMP))
->  
->  struct t9015 {
->  	struct regulator *avdd;
-> @@ -103,6 +142,31 @@ static struct snd_soc_dai_driver t9015_dai = {
->  	.ops = &t9015_dai_ops,
->  };
->  
-> +static struct snd_soc_dai_driver a1_t9015_dai = {
-> +	.name = "t9015-hifi",
-> +	.playback = {
-> +		.stream_name = "Playback",
-> +		.channels_min = 1,
-> +		.channels_max = 2,
-> +		.rates = SNDRV_PCM_RATE_8000_96000,
-> +		.formats = (SNDRV_PCM_FMTBIT_S8 |
-> +			    SNDRV_PCM_FMTBIT_S16_LE |
-> +			    SNDRV_PCM_FMTBIT_S20_LE |
-> +			    SNDRV_PCM_FMTBIT_S24_LE),
-> +	},
-> +	.capture = {
-> +		.stream_name = "Capture",
-> +		.channels_min = 1,
-> +		.channels_max = 2,
-> +		.rates = SNDRV_PCM_RATE_8000_96000,
-> +		.formats = (SNDRV_PCM_FMTBIT_S8 |
-> +			    SNDRV_PCM_FMTBIT_S16_LE |
-> +			    SNDRV_PCM_FMTBIT_S20_LE |
-> +			    SNDRV_PCM_FMTBIT_S24_LE),
-> +	},
-> +	.ops = &t9015_dai_ops,
-> +};
-> +
->  static const DECLARE_TLV_DB_MINMAX_MUTE(dac_vol_tlv, -9525, 0);
->  
->  static const char * const ramp_rate_txt[] = { "Fast", "Slow" };
-> @@ -179,6 +243,166 @@ static const struct snd_soc_dapm_route t9015_dapm_routes[] = {
->  	{ "LOLP", NULL, "Left+ Driver",  },
->  };
->  
-> +static const char * const a1_right_driver_txt[] = { "None", "Right DAC",
-> +	"Left DAC Inverted" };
-> +static const unsigned int a1_right_driver_values[] = { 0, 2, 4 };
-> +
-> +static const char * const a1_left_driver_txt[] = { "None", "Left DAC",
-> +	"Right DAC Inverted" };
-> +static const unsigned int a1_left_driver_values[] = { 0, 2, 4 };
-> +
-> +static SOC_VALUE_ENUM_SINGLE_DECL(a1_right_driver, LINEOUT_CFG, 12, 0x7,
-> +				  a1_right_driver_txt, a1_right_driver_values);
-> +static SOC_VALUE_ENUM_SINGLE_DECL(a1_left_driver, LINEOUT_CFG, 4, 0x7,
-> +				  a1_left_driver_txt, a1_left_driver_values);
-> +
-> +static const struct snd_kcontrol_new a1_right_driver_mux =
-> +	SOC_DAPM_ENUM("Right Driver+ Source", a1_right_driver);
-> +static const struct snd_kcontrol_new a1_left_driver_mux =
-> +	SOC_DAPM_ENUM("Left Driver+ Source", a1_left_driver);
-> +
-> +static const DECLARE_TLV_DB_MINMAX_MUTE(a1_adc_vol_tlv, -29625, 0);
-> +static const DECLARE_TLV_DB_MINMAX_MUTE(a1_adc_pga_vol_tlv, -1200, 0);
-> +
-> +static const char * const a1_adc_right_txt[] = { "Right", "Left" };
-> +static SOC_ENUM_SINGLE_DECL(a1_adc_right, BLOCK_EN, ADCR_SRC, a1_adc_right_txt);
-> +
-> +static const char * const a1_adc_left_txt[] = { "Left", "Right" };
-> +static SOC_ENUM_SINGLE_DECL(a1_adc_left, BLOCK_EN, ADCL_SRC, a1_adc_left_txt);
-> +
-> +static const struct snd_kcontrol_new a1_adc_right_mux =
-> +	SOC_DAPM_ENUM("ADC Right Source", a1_adc_right);
-> +static const struct snd_kcontrol_new a1_adc_left_mux =
-> +	SOC_DAPM_ENUM("ADC Left Source", a1_adc_left);
-> +
-> +static const char * const a1_adc_filter_mode_txt[] = { "Voice", "HiFi"};
-> +static SOC_ENUM_SINGLE_DECL(a1_adc_filter_mode, BLOCK_EN, ADC_FILTER_MODE,
-> +			    a1_adc_filter_mode_txt);
-> +
-> +static const char * const a1_adc_mic_bias_level_txt[] = { "2.0V", "2.1V",
-> +	"2.3V", "2.5V", "2.8V" };
-> +static const unsigned int a1_adc_mic_bias_level_values[] = { 0, 1, 2, 3, 7 };
-> +static SOC_VALUE_ENUM_SINGLE_DECL(a1_adc_mic_bias_level,
-> +				  LINEIN_CFG, MICBIAS_LEVEL, 0x7,
-> +				  a1_adc_mic_bias_level_txt,
-> +				  a1_adc_mic_bias_level_values);
-> +
-> +static const char * const a1_adc_pga_txt[] = { "None", "Differential",
-> +	"Positive", "Negative" };
-> +static const unsigned int a1_adc_pga_right_values[] = { 0, PGAR_DIFF,
-> +	PGAR_POSITIVE, PGAR_NEGATIVE };
-> +static const unsigned int a1_adc_pga_left_values[] = { 0, PGAL_DIFF,
-> +	PGAL_POSITIVE, PGAL_NEGATIVE };
-> +
-> +static SOC_VALUE_ENUM_SINGLE_DECL(a1_adc_pga_right, LINEIN_CFG, 0, PGAR_MASK,
-> +				  a1_adc_pga_txt, a1_adc_pga_right_values);
-> +static SOC_VALUE_ENUM_SINGLE_DECL(a1_adc_pga_left, LINEIN_CFG, 0, PGAL_MASK,
-> +				  a1_adc_pga_txt, a1_adc_pga_left_values);
-> +
-> +static const struct snd_kcontrol_new a1_adc_pga_right_mux =
-> +	SOC_DAPM_ENUM("ADC PGA Right Source", a1_adc_pga_right);
-> +static const struct snd_kcontrol_new a1_adc_pga_left_mux =
-> +	SOC_DAPM_ENUM("ADC PGA Left Source", a1_adc_pga_left);
-> +
-> +static const struct snd_kcontrol_new a1_t9015_snd_controls[] = {
-> +	/* Volume Controls */
-> +	SOC_ENUM("Playback Channel Mode", mono_enum),
-> +	SOC_SINGLE("Playback Switch", VOL_CTRL1, DAC_SOFT_MUTE, 1, 1),
-> +	SOC_DOUBLE_TLV("Playback Volume", VOL_CTRL1, DACL_VC, DACR_VC,
-> +		       0xff, 0, dac_vol_tlv),
-> +
-> +	/* Ramp Controls */
-> +	SOC_ENUM("Ramp Rate", ramp_rate_enum),
-> +	SOC_SINGLE("Volume Ramp Switch", VOL_CTRL1, VC_RAMP_MODE, 1, 0),
-> +	SOC_SINGLE("Mute Ramp Switch", VOL_CTRL1, MUTE_MODE, 1, 0),
-> +	SOC_SINGLE("Unmute Ramp Switch", VOL_CTRL1, UNMUTE_MODE, 1, 0),
-> +
-> +	/* ADC Controls */
-> +	SOC_DOUBLE_TLV("ADC Volume", VOL_CTRL0, ADCL_VC, ADCR_VC,
-> +		       0x7f, 0, a1_adc_vol_tlv),
-> +	SOC_SINGLE("ADC Filter Switch", BLOCK_EN, ADC_FILTER_EN, 1, 0),
-> +	SOC_ENUM("ADC Filter Mode", a1_adc_filter_mode),
-> +	SOC_SINGLE("ADC Mic Bias Switch", LINEIN_CFG, MICBIAS_EN, 1, 0),
-> +	SOC_ENUM("ADC Mic Bias Level", a1_adc_mic_bias_level),
-> +	SOC_SINGLE("ADC DEM Switch", BLOCK_EN, ADC_DEM_EN, 1, 0),
-> +	SOC_DOUBLE_TLV("ADC PGA Volume", VOL_CTRL0, PGAR_VC, PGAL_VC,
-> +		       0x1f, 0, a1_adc_pga_vol_tlv),
-> +	SOC_DOUBLE("ADC PGA Zero Cross-detection Switch", BLOCK_EN,
-> +		   PGAL_ZCD_EN, PGAR_ZCD_EN, 1, 0),
-> +};
-> +
-> +static const struct snd_soc_dapm_widget a1_t9015_dapm_widgets[] = {
-> +	SND_SOC_DAPM_AIF_IN("Right IN", NULL, 0, SND_SOC_NOPM, 0, 0),
-> +	SND_SOC_DAPM_AIF_IN("Left IN", NULL, 0, SND_SOC_NOPM, 0, 0),
-> +	SND_SOC_DAPM_MUX("Right DAC Sel", SND_SOC_NOPM, 0, 0,
-> +			 &t9015_right_dac_mux),
-> +	SND_SOC_DAPM_MUX("Left DAC Sel", SND_SOC_NOPM, 0, 0,
-> +			 &t9015_left_dac_mux),
-> +	SND_SOC_DAPM_DAC("Right DAC", NULL, BLOCK_EN, DACR_EN, 0),
-> +	SND_SOC_DAPM_DAC("Left DAC",  NULL, BLOCK_EN, DACL_EN, 0),
-> +	SND_SOC_DAPM_MUX("Right+ Driver Sel", SND_SOC_NOPM, 0, 0,
-> +			 &a1_right_driver_mux),
-> +	SND_SOC_DAPM_MUX("Left+ Driver Sel", SND_SOC_NOPM, 0, 0,
-> +			 &a1_left_driver_mux),
-> +	SND_SOC_DAPM_OUT_DRV("Right+ Driver", BLOCK_EN, LORP_EN, 0, NULL, 0),
-> +	SND_SOC_DAPM_OUT_DRV("Left+ Driver",  BLOCK_EN, LOLP_EN, 0, NULL, 0),
-> +	SND_SOC_DAPM_OUTPUT("LORP"),
-> +	SND_SOC_DAPM_OUTPUT("LOLP"),
-> +
-> +	SND_SOC_DAPM_INPUT("ADC IN Right"),
-> +	SND_SOC_DAPM_INPUT("ADC IN Left"),
-> +	SND_SOC_DAPM_MUX("ADC PGA Right Sel", SND_SOC_NOPM, 0, 0,
-> +			 &a1_adc_pga_right_mux),
-> +	SND_SOC_DAPM_MUX("ADC PGA Left Sel", SND_SOC_NOPM, 0, 0,
-> +			 &a1_adc_pga_left_mux),
-> +	SND_SOC_DAPM_PGA("ADC PGA Right", BLOCK_EN, PGAR_EN, 0, NULL, 0),
-> +	SND_SOC_DAPM_PGA("ADC PGA Left", BLOCK_EN, PGAL_EN, 0, NULL, 0),
-> +	SND_SOC_DAPM_ADC("ADC Right", NULL, BLOCK_EN, ADCR_EN, 0),
-> +	SND_SOC_DAPM_ADC("ADC Left", NULL, BLOCK_EN, ADCL_EN, 0),
-> +	SND_SOC_DAPM_MUX("ADC Right Sel", SND_SOC_NOPM, 0, 0, &a1_adc_right_mux),
-> +	SND_SOC_DAPM_MUX("ADC Left Sel", SND_SOC_NOPM, 0, 0, &a1_adc_left_mux),
-> +	SND_SOC_DAPM_AIF_OUT("ADC OUT Right", NULL, 0, SND_SOC_NOPM, 0, 0),
-> +	SND_SOC_DAPM_AIF_OUT("ADC OUT Left", NULL, 0, SND_SOC_NOPM, 0, 0),
-> +};
-> +
-> +static const struct snd_soc_dapm_route a1_t9015_dapm_routes[] = {
-> +	{ "Right IN", NULL, "Playback" },
-> +	{ "Left IN", NULL, "Playback" },
-> +	{ "Right DAC Sel", "Right", "Right IN" },
-> +	{ "Right DAC Sel", "Left", "Left IN" },
-> +	{ "Left DAC Sel", "Right", "Right IN" },
-> +	{ "Left DAC Sel", "Left", "Left IN" },
-> +	{ "Right DAC", NULL, "Right DAC Sel" },
-> +	{ "Left DAC", NULL, "Left DAC Sel" },
-> +	{ "Right+ Driver Sel", "Right DAC", "Right DAC" },
-> +	{ "Right+ Driver Sel", "Left DAC Inverted", "Right DAC" },
-> +	{ "Left+ Driver Sel", "Left DAC", "Left DAC" },
-> +	{ "Left+ Driver Sel", "Right DAC Inverted", "Left DAC" },
-> +	{ "Right+ Driver", NULL, "Right+ Driver Sel" },
-> +	{ "Left+ Driver", NULL, "Left+ Driver Sel" },
-> +	{ "LORP", NULL, "Right+ Driver", },
-> +	{ "LOLP", NULL, "Left+ Driver", },
-> +
-> +	{ "ADC PGA Right Sel", "Differential", "ADC IN Right" },
-> +	{ "ADC PGA Right Sel", "Positive", "ADC IN Right" },
-> +	{ "ADC PGA Right Sel", "Negative", "ADC IN Right" },
-> +	{ "ADC PGA Left Sel", "Differential", "ADC IN Left" },
-> +	{ "ADC PGA Left Sel", "Positive", "ADC IN Left" },
-> +	{ "ADC PGA Left Sel", "Negative", "ADC IN Left" },
-> +	{ "ADC PGA Right", NULL, "ADC PGA Right Sel" },
-> +	{ "ADC PGA Left", NULL, "ADC PGA Left Sel" },
-> +	{ "ADC Right", NULL, "ADC PGA Right" },
-> +	{ "ADC Left", NULL, "ADC PGA Left" },
-> +	{ "ADC Right Sel", "Right", "ADC Right" },
-> +	{ "ADC Right Sel", "Left", "ADC Left" },
-> +	{ "ADC Left Sel", "Right", "ADC Right" },
-> +	{ "ADC Left Sel", "Left", "ADC Left" },
-> +	{ "ADC OUT Right", NULL, "ADC Right Sel" },
-> +	{ "ADC OUT Left", NULL, "ADC Left Sel" },
-> +	{ "Capture", NULL, "ADC OUT Right" },
-> +	{ "Capture", NULL, "ADC OUT Left" },
-> +};
-> +
->  static int t9015_set_bias_level(struct snd_soc_component *component,
->  				enum snd_soc_bias_level level)
->  {
-> @@ -241,6 +465,18 @@ static int t9015_component_probe(struct snd_soc_component *component)
->  	return 0;
->  }
->  
-> +static int a1_t9015_component_probe(struct snd_soc_component *component)
-> +{
-> +	/*
-> +	 * This configuration was stealed from original Amlogic's driver to
-> +	 * reproduce the behavior of the driver more accurately. However, it is
-> +	 * not known for certain what it actually affects.
-> +	 */
-> +	snd_soc_component_write(component, POWER_CFG, 0x00010000);
-> +
-> +	return 0;
-> +}
-> +
->  static const struct snd_soc_component_driver t9015_codec_driver = {
->  	.probe			= t9015_component_probe,
->  	.set_bias_level		= t9015_set_bias_level,
-> @@ -254,6 +490,19 @@ static const struct snd_soc_component_driver t9015_codec_driver = {
->  	.endianness		= 1,
->  };
->  
-> +static const struct snd_soc_component_driver a1_t9015_codec_driver = {
-> +	.probe			= a1_t9015_component_probe,
-> +	.set_bias_level		= t9015_set_bias_level,
-> +	.controls		= a1_t9015_snd_controls,
-> +	.num_controls		= ARRAY_SIZE(a1_t9015_snd_controls),
-> +	.dapm_widgets		= a1_t9015_dapm_widgets,
-> +	.num_dapm_widgets	= ARRAY_SIZE(a1_t9015_dapm_widgets),
-> +	.dapm_routes		= a1_t9015_dapm_routes,
-> +	.num_dapm_routes	= ARRAY_SIZE(a1_t9015_dapm_routes),
-> +	.suspend_bias_off	= 1,
-> +	.endianness		= 1,
-> +};
-> +
->  static int t9015_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> @@ -315,11 +564,21 @@ static const struct t9015_match_data t9015_match_data = {
->  	.max_register = POWER_CFG,
->  };
->  
-> +static const struct t9015_match_data a1_t9015_match_data = {
-> +	.component_drv = &a1_t9015_codec_driver,
-> +	.dai_drv = &a1_t9015_dai,
-> +	.max_register = LINEIN_CFG,
-> +};
-> +
->  static const struct of_device_id t9015_ids[] __maybe_unused = {
->  	{
->  		.compatible = "amlogic,t9015",
->  		.data = &t9015_match_data,
->  	},
-> +	{
-> +		.compatible = "amlogic,t9015-a1",
-> +		.data = &a1_t9015_match_data,
-> +	},
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, t9015_ids);
+>> Then you don't have to deal with it in the device driver.
+>> 
+>>>
+>>> Best regards,
+>>> Krzysztof
+>> 
+>> 
 
 
 -- 
