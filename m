@@ -4,69 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C355C54E5D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2024 14:49:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B5D6C54E5D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2024 14:54:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7LwBd2fF5K1g3jfIoaQcs/R7+RL55L/VryH19CYVMsU=; b=RWG4CJR0QTME0D
-	zJNW2UsXNWWcawlW2g3qCptSQQG11Uc3M/HkMhHRSEzsL+mha566o9p61yFNjDNuuWTqvU6EVVZh2
-	a+JpZa7kHeya7d9JqXo5wiZPXBuvcccw+csMzntOPpMz6lk9j9+9NT9AWxOo3DTst2+AkEtjWLoBo
-	G/Ft+qvS0Kh3QgllqfWlTik2GwszChL/ojORWUx8Tnf/97X7mq+2qyd8Ew005n2roXJeJ2TZdKt1p
-	kumM143/wP5vCzZJiudjAAQInBAjLuSgRx2l2COqLv9i1niCnxksqe7oPF8NavzMoZkZ5uUUD98bP
-	w8iqaGJMmY6xzH1HFb8Q==;
+	List-Owner; bh=xnifm9q6NMLrbRTO86E2tkuwwockwFLyAvQ0picVXbg=; b=E/+qj9h5DenhNZ
+	glfPQZu/Ujq7qPCX63hvWrG7FZ7uwGX2H2JIK6Sg3TAxeiB8Dy2O2UkoOyRmb/7ZVtLXC6SQpoYga
+	DvVBIN1mXBi36qAuOw9gZ8+HwscrO4WtSfPWi/dHF8G1TFNb0NS5qnKrxq5TXF0ov0qganTzDLaKX
+	OSisiQOwNpq2//3eFsugjey0/ee+FB9CmuxhS+IaT7kTbi0CuYOEwA1K8A/MEeEV1sJ9vyu/zPKFM
+	LjzCom4H8SJidhyp0mIcAT9NAxI/TQvQKx7wlD0Biglj9fYdoNdUp7YjTOJV5egHm4xwjJmCAMo7w
+	hvUqa/XlUzsXqw4vdDHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmEIZ-00000008rd0-0yw2;
-	Mon, 18 Mar 2024 14:49:11 +0000
-Received: from madrid.collaboradmins.com ([2a00:1098:ed:100::25])
+	id 1rmENj-00000008sMi-3k3p;
+	Mon, 18 Mar 2024 14:54:31 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmEIV-00000008rbc-1Oat;
-	Mon, 18 Mar 2024 14:49:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1710773344;
-	bh=USOr6qU9s7oCtYs/hRrdocv0US/SAICnJv0VzvAXOfs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Kt4qR/q+CdWoweti9UtfSuJ0viP1USdpy92jythJySd+nv/6i13t51t8Blr1njkZ6
-	 iCi3CoElv2WjMVUkToNLrjDFtiH+30oXu61w0tWoJBWvLuFykq04a0qHusmnF9ztZh
-	 XaKVqrx3oap2zxRcSmFNpxYUQsb0vIZokfVBNEVuLtl2IsY8zjOHO0C8VoqJo2XVWX
-	 PlukdzC9HBegy4226bnOGpUm0gqyaI66qQfiBD+g+Uof5XzpKXOV++O1zp6ylz2F2g
-	 MOCS35dvJQf8ChRUq/fKGJdFpFVylmBCegkflwhea6UpBjeqp61oNxQl/ng+/2Ye26
-	 +tqAbm7YEAJPg==
-Received: from [100.66.96.193] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: vignesh)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D539A37811D1;
-	Mon, 18 Mar 2024 14:48:59 +0000 (UTC)
-Message-ID: <9f406611-54cd-3a69-5440-40535f3d30c0@collabora.com>
-Date: Mon, 18 Mar 2024 20:18:57 +0530
+	id 1rmENg-00000008sLl-2b6M;
+	Mon, 18 Mar 2024 14:54:30 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id DC2CECE09CF;
+	Mon, 18 Mar 2024 14:54:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D660CC433F1;
+	Mon, 18 Mar 2024 14:54:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710773666;
+	bh=ywjXIx6HmklPsjIr1i1IzyaHa8odZGdCDM27OSINcmM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CdxMXb2iz+7JsM/SUAYZYz1a0za5xAhxZOCC3lmz+q98zXps0G46eAz43LPzBoHsn
+	 67j2U2E6WOpFWw9gsmMa4RPICEsQH7XpodOIBhZfCOPZRDZQrlL4oFPQatyssd2sPw
+	 BH/mzt6eQXw1JFkZzOkzubzdLiWh2/M7CM+Ka8ye+662wrxuwr8SCxxrygrKl4Gsg1
+	 /G3P/Ru1sNH+HD/YJe0O9YGY2xeuCbVL8NqM/64UstD292013btVgoFU+JyBbJQyZB
+	 HorS0tvkqpI3CtDmcIzAMY3ZbVd907Gnr7iPnj4t/Cq6r+usfMMJRdpoVPAfltgbVS
+	 cQDML6T2f56HA==
+Date: Mon, 18 Mar 2024 09:54:23 -0500
+From: Rob Herring <robh@kernel.org>
+To: Lucas Tanure <tanure@linux.com>
+Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>, Yu Tu <yu.tu@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [RFC][PATCH 1/2] clk: meson: T7: add support for Amlogic T7 SoC
+ PLL clock driver
+Message-ID: <20240318145423.GA3993342-robh@kernel.org>
+References: <20240318114346.112935-1-tanure@linux.com>
+ <20240318114346.112935-2-tanure@linux.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v4 03/11] drm/ci: uprev IGT and update testlist
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
- helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
- emma@anholt.net, robdclark@gmail.com, david.heidelberg@collabora.com,
- guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
- hamohammed.sa@gmail.com, rodrigosiqueiramelo@gmail.com,
- melissa.srw@gmail.com, mairacanal@riseup.net, mcanal@igalia.com,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240306030649.60269-1-vignesh.raman@collabora.com>
- <20240306030649.60269-4-vignesh.raman@collabora.com>
- <CAA8EJpo=OXUitC+NPjZd5Kpq9dF04BSffvgsMYnn7LmmEoh09A@mail.gmail.com>
-From: Vignesh Raman <vignesh.raman@collabora.com>
-In-Reply-To: <CAA8EJpo=OXUitC+NPjZd5Kpq9dF04BSffvgsMYnn7LmmEoh09A@mail.gmail.com>
+Content-Disposition: inline
+In-Reply-To: <20240318114346.112935-2-tanure@linux.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240318_074907_727490_A5FC994A 
-X-CRM114-Status: GOOD (  14.66  )
+X-CRM114-CacheID: sfid-20240318_075428_860925_4F5F39FC 
+X-CRM114-Status: GOOD (  14.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,48 +77,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Dmitry,
-
-On 15/03/24 17:07, Dmitry Baryshkov wrote:
-> On Wed, 6 Mar 2024 at 05:08, Vignesh Raman <vignesh.raman@collabora.com> wrote:
->>
->> Uprev IGT and add amd, v3d, vc4 and vgem specific
->> tests to testlist. Have testlist.txt per driver
->> and include a base testlist so that the driver
->> specific tests will run only on those hardware.
->> Also add testlists to the MAINTAINERS file.
+On Mon, Mar 18, 2024 at 11:43:45AM +0000, Lucas Tanure wrote:
+> Add the T7 PLL clock controller driver in the T7 SoC family.
 > 
-> I think we should move away from specifying tests explicitly. They can
-> easily get out of sync. A month ago I had to manually go through the
-> list of the tests and update it to follow changes in the IGT.
+> This is RFC patch that enables SDCard, Ethernet and Clocking
+> for Amlogic T7 soc.
+> In this current state the patch doesn't work and gives a kernel
+> panic when probing the meson-axg-mmc for the SDCard.
+> DO NOT MERGE.
 > 
-> I think we should directly use testlist.txt from IGT and then filter
-> it out using skips.
+> Signed-off-by: Lucas Tanure <tanure@linux.com>
+> ---
+>  drivers/clk/meson/Kconfig                     |   25 +
+>  drivers/clk/meson/Makefile                    |    2 +
+>  drivers/clk/meson/t7-peripherals.c            | 6368 +++++++++++++++++
+>  drivers/clk/meson/t7-peripherals.h            |  131 +
+>  drivers/clk/meson/t7-pll.c                    | 1543 ++++
+>  drivers/clk/meson/t7-pll.h                    |   83 +
+>  .../clock/amlogic,t7-peripherals-clkc.h       |  410 ++
+>  .../dt-bindings/clock/amlogic,t7-pll-clkc.h   |   69 +
+>  8 files changed, 8631 insertions(+)
+>  create mode 100644 drivers/clk/meson/t7-peripherals.c
+>  create mode 100644 drivers/clk/meson/t7-peripherals.h
+>  create mode 100644 drivers/clk/meson/t7-pll.c
+>  create mode 100644 drivers/clk/meson/t7-pll.h
 
-So we use the test-list-full.txt or test-list.txt from IGT and generate 
-a single testlist for drm-ci when we uprev IGT?
+>  create mode 100644 include/dt-bindings/clock/amlogic,t7-peripherals-clkc.h
+>  create mode 100644 include/dt-bindings/clock/amlogic,t7-pll-clkc.h
 
-Instead of adding the below to skips file for different driver,
-msm_.*
-^amdgpu.*
-panfrost_.*
-v3d_.*
-vc4_.*
+I'm assuming since this is an RFC you know these go in a separate patch 
+with the DT binding schema which is missing.
 
-If we have a separate testlist for each driver, we can update the main 
-testlist.txt along with individual testlist for each driver. We just 
-need to move the driver specific tests from main testlist to individual
-driver testlist file. Please let me know your thoughts.
-
-Thanks.
-
-Regards,
-Vignesh
+Rob
 
 _______________________________________________
 linux-amlogic mailing list
