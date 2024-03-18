@@ -4,97 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1499AC54E5D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2024 12:37:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CAFEC54E58
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2024 13:31:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2lqGICjIb937qGINQPAcYa20LxLzwfqWJ6WgQR5jULs=; b=LSTj0BL9YInTAF
-	OkaEHo3FOEYFrQQmIT0rhviLkEsX5kqgS4otWorczrBxXZKI6ND7aTuOzWd/eziGdf15e8i4VQfGC
-	6ruEIjpRiuAw2DifrLsuOq8DeHMCUH3huRDrSPO+4HX4IiureuDcVYN6uP5hN7ynSfWHoXZP0/6Sj
-	69zontbpwzDgA66CR5gdO/4bCfQG71fxZYKxyePc7cGZ/FJCaxJ5lnhMEYRchgcPXJrWJy25fo2HA
-	sN+A59NkwWt0smEQjiHXlB/5aakgIg+SszRtlB46oPYmMIkMRc+qZgfJYsp4Qpdc958g0Sb5BeAB7
-	kfxnN9JkPLTbzezS9ABQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=+pRQDizTN/s7LgI0RjMXP0RSWQLnLDoz3PWSLMdyG00=; b=gK78tFVEf4BriXzAMcwSPmaPyt
+	d+NBFmEdqrsPkzhw+DcqkNNY/IJm3BeBVwwCpv7YboCFLBlupb05xOJmatv9qGMDxEvpdFVyhVsvG
+	GYzGlZ4YKAn3yntbN1cD585W4ccEQtMb/jxSB/fBXNGyxTw2V3m/sh/HQhfl3l/kfKsxeu5uarQqj
+	RTxKQxfWlqovmpT3NDA21EZ/nsed11DGHwvnQy1HUZxEZitOAi+NFz+qtg/iXtkHJ8DHVCt4uYypi
+	DMaKdLjUDoBNwrY+Q+D3Y9Sztsa6L+WRSkrN0EmW6zAcaCoV+gz6S0guDgKczSvW1qPKmAYrwXQoW
+	RoZ3JkWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmCEs-00000008XE7-3q8y;
-	Mon, 18 Mar 2024 12:37:14 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1rmD4v-00000008fi1-3vOS;
+	Mon, 18 Mar 2024 13:31:01 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmCEn-00000008XCl-233N
-	for linux-amlogic@lists.infradead.org;
-	Mon, 18 Mar 2024 12:37:13 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-33ed6078884so1435678f8f.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 18 Mar 2024 05:37:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710765427; x=1711370227; darn=lists.infradead.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=rOOelAXYkB/aiK2SaiRN9v1LrZq2BMclSsiRMOgV+hM=;
-        b=QizRueRhwsZp3AoAL+gX4slu9WAgLlrtYU0YcsaY/x6fynp2edbKZyBMdtdmbcfQxs
-         ZDmCscrJXXmudMMZdZCVYk3NNQcVA+yIWH/Yf85MZS3WVutKqvwB4iqbWZtyCSldhs+u
-         9opz3e0LzViZW92ZJYAHXfzuL72ul6PlxTJBn8mXOsjtqAesP7xqcc9rieC0BNarJicl
-         VnPiNmYsiGoew0x4h9xb4tQxQSB8rknzs719SZZtmu7u2g8i7JcgJKart6wwICDhRfLJ
-         nm8QWnaOGCta9/T7aEtNNH5sALHdfrA/sjgV2dmAPjA7W0ac+ylJntQ4U9jbfi4Fidxr
-         nplg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710765427; x=1711370227;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rOOelAXYkB/aiK2SaiRN9v1LrZq2BMclSsiRMOgV+hM=;
-        b=cDbzCW9JlP104oy29NuwsfB0tmeMUigMT4Oiq9cnwc6hOLOZAwH5s2sKIGw5RmcJgC
-         CvdSwSwn6L+pbik+x2lgv7ZO3/8K50G4Gxe3DuOqq8FiWqKnrd+Hny0jsVNCe37Fpoij
-         DdFbbIKbwJv9TXtwdLzxzwTuKH/GDU2O0AQ2nP27CTlZSKUbmK2ufniBDLJm8Uh1MfPs
-         6H5GY/XLeGJr4KanCdJAYx6TOJsretN7cHelqcmuW/ISNiu7sThfiDqBEHlnVCB+s+pe
-         me/+IlGB0VmsKrzKFXiFlguxVRgIfge7rLY0ZZFyHR6jChPLwP49q78YeYrWzC12q2Wq
-         pSdg==
-X-Forwarded-Encrypted: i=1; AJvYcCXwEQDUxkliv9ZL2yiiiywlN/XEZeuu5WnGHRjqL/djbxgBZZ/tu56zxnhp5B6Oww7rjZUzWPHL7sfkcVrP+lHoP8V0a3VcWsNV/wvd6ydz4q4=
-X-Gm-Message-State: AOJu0YyuMx3Ha18VWKqbKo9+uTXXjiUkolHyk05wiEVs//4d2mWfpb+E
-	DY4i5al7//rlgJUnUq5SGQYonJTTq7j9I6rO45SeVhXU8KxTuhmB5Apz3HKmYIM=
-X-Google-Smtp-Source: AGHT+IGH3TE2GhAXJz1wHAYIWwW1VoL15oPzUDNMTpeZ23Nb9XboEbKTQoGyB/c9i7ijddIXELni7w==
-X-Received: by 2002:a5d:404a:0:b0:33e:6a81:d8b9 with SMTP id w10-20020a5d404a000000b0033e6a81d8b9mr10519425wrp.20.1710765426924;
-        Mon, 18 Mar 2024 05:37:06 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:e4d5:78c0:18b:ad85])
-        by smtp.gmail.com with ESMTPSA id p6-20020adfe606000000b0033e79eca6dfsm9665379wrm.50.2024.03.18.05.37.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Mar 2024 05:37:06 -0700 (PDT)
+	id 1rmD4t-00000008fhM-06MI;
+	Mon, 18 Mar 2024 13:31:00 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 4182BCE0201;
+	Mon, 18 Mar 2024 13:30:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE5D9C433C7;
+	Mon, 18 Mar 2024 13:30:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710768655;
+	bh=9Fc4MdmLlXNEnOvlrkuX3SM2n8OiLdq3X0zd5LtujCI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JqclMs/DzIEOK7ZpEwUgIzoVU1UjeIdAZZQdx6vUjh0lzTWdigVBvpZmOlesultD5
+	 JTkAUd9Pfse0PNMT4KOwhhsltIaS+gU5RreTQcUBhyH8ZHJTgjpgx7sqsN8RHuuveY
+	 sNriNDMViTvF8HK/DqLXLbfe6iXTq9EnlQOhSCIQFdLdlUS6o/jl0HIK2dEoh32VzZ
+	 h1n/0ieViBX9jibuxMJTowPxhqmHCzl01P8ZfrChyC/0CMImwwn7nOHfNCLVuDYe6x
+	 nljETBFTEnkf8ghtUnwR69ixxtFuhvfglePyeZODASc98n15rwteIxYKNyJbpZVDqo
+	 ZtXX5hnGlSU5A==
+Date: Mon, 18 Mar 2024 13:30:42 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org,
+	kernel@salutedevices.com
+Subject: Re: [PATCH 09/25] ASoC: meson: g12a-toacodec: add support for A1 SoC
+ family
+Message-ID: <143bb232-1ba8-4e91-92a7-bab7c14f6df0@sirena.org.uk>
 References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
- <20240314232201.2102178-14-jan.dakinevich@salutedevices.com>
- <ca80caab-2664-4797-a222-e14537eea440@linaro.org>
- <1jil1nhjwd.fsf@starbuckisacylon.baylibre.com>
- <6feba9ff-8bbf-4494-93f0-732679bc4032@salutedevices.com>
- <1j1q87hkq2.fsf@starbuckisacylon.baylibre.com>
-User-agent: mu4e 1.10.8; emacs 29.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
-  Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Kevin
-  Hilman <khilman@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org,
- kernel@salutedevices.com
-Subject: Re: [PATCH 13/25] ASoC: dt-bindings: meson: axg-pdm: document
- 'sysrate' property
-Date: Mon, 18 Mar 2024 13:19:28 +0100
-In-reply-to: <1j1q87hkq2.fsf@starbuckisacylon.baylibre.com>
-Message-ID: <1jwmpzg1hq.fsf@starbuckisacylon.baylibre.com>
+ <20240314232201.2102178-10-jan.dakinevich@salutedevices.com>
+ <2a41e8b6-7e8a-4995-a1d7-c5d30e53c2d5@sirena.org.uk>
+ <3ae535cf-9a89-4187-a761-8390d649b00b@salutedevices.com>
 MIME-Version: 1.0
+In-Reply-To: <3ae535cf-9a89-4187-a761-8390d649b00b@salutedevices.com>
+X-Cookie: Alaska:
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240318_053709_796634_0D28DFA5 
-X-CRM114-Status: GOOD (  20.37  )
+X-CRM114-CacheID: sfid-20240318_063059_321272_BF65E9A3 
+X-CRM114-Status: GOOD (  12.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,113 +85,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2392915502876803242=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Mon 18 Mar 2024 at 11:55, Jerome Brunet <jbrunet@baylibre.com> wrote:
-
-> On Sun 17 Mar 2024 at 18:52, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
->
->> On 3/15/24 13:22, Jerome Brunet wrote:
->>> 
->>> On Fri 15 Mar 2024 at 11:00, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>> 
->>>> On 15/03/2024 00:21, Jan Dakinevich wrote:
->>>>> This option allow to redefine the rate of DSP system clock.
->>>>
->>>> And why is it suitable for bindings? Describe the hardware, not what you
->>>> want to do in the driver.
->>>>
->>>>>
->>>>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
->>>>> ---
->>>>>  Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml | 4 ++++
->>>>>  1 file changed, 4 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
->>>>> index df21dd72fc65..d2f23a59a6b6 100644
->>>>> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
->>>>> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
->>>>> @@ -40,6 +40,10 @@ properties:
->>>>>    resets:
->>>>>      maxItems: 1
->>>>>  
->>>>> +  sysrate:
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>> +    description: redefine rate of DSP system clock
->>>>
->>>> No vendor prefix, so is it a generic property? Also, missing unit
->>>> suffix, but more importantly I don't understand why this is a property
->>>> of hardware.
->>> 
->>> +1.
->>> 
->>> The appropriate way to set rate of the clock before the driver take over
->>> is 'assigned-rate', if you need to customize this for different
->>> platform.
->>> 
->>
->> It would be great, but it doesn't work. Below, is what I want to see:
->>
->> 	assigned-clocks =
->> 		<&clkc_audio AUD2_CLKID_PDM_SYSCLK_SEL>,
->> 		<&clkc_audio AUD2_CLKID_PDM_SYSCLK_DIV>;
->> 	assigned-clock-parents =
->> 		<&clkc_pll CLKID_FCLK_DIV3>,
->> 		<0>;
->> 	assigned-clock-rates =
->> 		<0>,
->> 		<256000000>;
->>
->> But regardles of this declaration, PDM's driver unconditionally sets
->> sysclk'rate to 250MHz and throws away everything that was configured
->> before, reparents audio2_pdm_sysclk_mux to hifi_pll and changes
->> hifi_pll's rate.
->>
->> This value 250MHz is declared here:
->>
->> static const struct axg_pdm_cfg axg_pdm_config = {
->> 	.filters = &axg_default_filters,
->> 	.sys_rate = 250000000,
->> };
->>
->> The property 'sysrate' is intended to redefine hardcoded 'sys_rate'
->> value in 'axg_pdm_config'.
->
-> What is stopping you from removing that from the driver and adding
-> assigned-rate to 250M is the existing platform ?
-
-... Also, considering how PDM does work, I'm not sure I get the point of
-the doing all this to go from 250MHz to 256Mhz.
-
-PDM value is sampled at ~75% of the half period. That clock basically
-feeds a counter and the threshold is adjusted based on the clock rate.
-
-So there is no need to change the rate. Changing it is only necessary
-when the captured audio rate is extremely slow (<8kHz) and the counter
-may overflow. The driver already adjust this automatically.
-
-So changing the input rate from 250MHz to 256MHz should not make any
-difference.
-
->
->>
->>> Then you don't have to deal with it in the device driver.
->>> 
->>>>
->>>> Best regards,
->>>> Krzysztof
->>> 
->>> 
+--===============2392915502876803242==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="kjWorJl0TaUMqWHd"
+Content-Disposition: inline
 
 
--- 
-Jerome
+--kjWorJl0TaUMqWHd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Sun, Mar 17, 2024 at 06:19:36PM +0300, Jan Dakinevich wrote:
+> On 3/15/24 16:33, Mark Brown wrote:
+
+> > If the maximum register is 0 how does the regmap have a stride?
+
+> reg_stride inherited from existing code. Apparently, it was meaningless
+> even before my modifications (the hardware has single register
+> regardless of max_register declaration) and it should be dropped. But,
+> is it okay to remove it in the same commit?
+
+Sure.
+
+--kjWorJl0TaUMqWHd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmX4QgEACgkQJNaLcl1U
+h9BLdQf/Zz1jN3+6EFmJI8/2S5KURnuXZVf/whz0eP6IHVV+novzn9bZzi9aDR8u
+ivtJ5z3NMrKZpT3yKRb/iP42lcArTnbx8KtRbgkpBCvSW0xodc7pyVJqfkvIDPNg
+ribamZQkNViB+vRZe+1M+lKpXGKZQT9VihxnkNjxjIBjjiDONfYP9zzHFNQorPlh
+lZLfVCdNixkECtkZ8S2pC9SUMOTqVNHUNloEosl515koEkh5H3wWA4izpVAgFuCd
+sAtcI63aM0UfO63qTzXy4qk4482W57UwJx6DuSSws6Y0DSjBpq7nw2gJw6MQb8SE
+xTDZc6yggF0aEYdVMCor8vldLH2yxw==
+=osK+
+-----END PGP SIGNATURE-----
+
+--kjWorJl0TaUMqWHd--
+
+
+--===============2392915502876803242==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============2392915502876803242==--
+
