@@ -4,75 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90D69C54E60
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2024 05:17:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E3A5C54E60
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2024 05:18:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+enssfjc//5NohlYysRy+wAkUGSxiayKFtMahej89tA=; b=sJ4IEUO0TiyKAU
-	vwOHfOiDKFeJmihKdM0Hwuc6poivc5uUE0zUACJXmB3goY95yLZQaDWxcQDBWH7JhoX6/iR2zPypI
-	f6sVtxum5kmUlNNhH5F57DRI5ETliJKLmeZZoPPkYKzqb+KBgD//s6t0Xx/KM9LU4OIH6oLRC+E/I
-	QdXduU42LAXv27FWdI0k6vru3bkNDvJPN8vl93qHyWHvjRXK9VCC51ibq8JYtPAC0jiIwZkCtNx3V
-	k57EuPtCYvm+OUTb5+gdMf+jrZL/yhDIrFU10izpsnQvkR5vMis2irJoIbQpLvmgiip3PpZQYMuoS
-	GCOV2MBzz0tXECceVzBQ==;
+	List-Owner; bh=y0Zmn1KVAXBrCgS6ldKI55dbMeBxUfbwHdgSO0W6zd4=; b=rymVAzgcIJLESq
+	I4Fm/W8IcdK8lIO0K7Pxwa8We+08h/ASvcPMM2MmXrlHENJahwblUpoaasmNI5bGHMlZfpWUjiQy3
+	TXusqPq9HffOmAJuvl2H3Yy0I0CHwXDAiXHZu7umMJ1EvOFG6OGe5AFZKpvj9o9CLVHazVOye5jlF
+	I9Xj1F8YccCVxV/84wTAhIB8Bpl7j0DpioJA6lpNnc070Wa9lKCvgCxLV4eIjayGvUIIrCZbUMkc6
+	CEKh2qLIQAHvv5yWs7JAikkn23lbqDBabCgTDpXJu/tIrR8u4z/n9XU4hcJTbNtqCw2I1ZvIVKQK1
+	HBlR/2UTQGAEKdd8Zc8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmRqb-0000000BJPa-05SQ;
-	Tue, 19 Mar 2024 05:17:13 +0000
-Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
+	id 1rmRrR-0000000BJbm-1Jm5;
+	Tue, 19 Mar 2024 05:18:05 +0000
+Received: from mail-lj1-x22f.google.com ([2a00:1450:4864:20::22f])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmRqX-0000000BJOd-2z1T
+	id 1rmRrN-0000000BJaH-089V
 	for linux-amlogic@lists.infradead.org;
-	Tue, 19 Mar 2024 05:17:11 +0000
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a466a27d30aso661531566b.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 18 Mar 2024 22:17:08 -0700 (PDT)
+	Tue, 19 Mar 2024 05:18:02 +0000
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2d4a901e284so34856231fa.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 18 Mar 2024 22:18:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710825427; x=1711430227; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=A6dmZujj3rrpeCLhV31DevVs1siyY1p4z7CzCm28mJ8=;
-        b=BkwgJpQKZwEHo0l/svh0JaVYwHPZlb1/Z+QuKcTEGvaQtXVzHURsQbeMdeXuSn8E9X
-         eiFIqZVtZHc6uj6jBVWGhJx7uuWj6YGUJ7nhJEak0GjdMrilut3UYn81NyRouiC4AN05
-         5y50Yx0lqazwvBGSLI8X6skCok0qUkWS3yXELNsgnqwMiMI2oidJhn35FTksMKyygsqC
-         3irkXval+IkjX4TV2cqeifh9BReNgPoYsr4Az7Cj/yyzHfTVqMD8tbT+VwikvVCsC8lP
-         w0Tq5Rs661yjKBkDVpW4+0vMhFEaD9L/eabVHZT6FMywni86Z0IW5eoO0zU6JmHQGvTN
-         540w==
+        d=linaro.org; s=google; t=1710825479; x=1711430279; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JI2FbCtp4a1d8gqLlxYEpKkEq7SXIcQUhF5rSMJv6eY=;
+        b=W/JwnGR+M3DI7Styip9Vju4d1adhj/8kSg+ULjLzd1XB+3Hlw5WIxoBFcp/8L6glFx
+         8E6Mn+lmRO/chshxZxy9gWhSYF4rbIyhhYUQNLIEfHiiQUjZGjIqP3OxeLdHzjFaQdVr
+         +GRfmdT33xXxG0mqjqp4LQtRIkCr+FSPsZj4ZTndGpx9fSe7kCl3OsaFt9VUdMkp5CNb
+         wJ0GqWicyXATiQiZI2VjIZjBBUXCj5aRxfkJYWoixH4Qcn3Y6P8e5Q1Ki3397pM7T70m
+         aogZhAe1pLimI2xeD5DFbQVgAsD6M+mEI+dtXBwXzQ3bl9JwuuRAcGOtHFlw4yxYR3/m
+         smOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710825427; x=1711430227;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A6dmZujj3rrpeCLhV31DevVs1siyY1p4z7CzCm28mJ8=;
-        b=epdn++FvOvo24B8KwU70CA8SQkawOAmnZsqiu193V6/HJohzzFCJkMNIJ84D7LdFXD
-         ZfEOTK2DTH50ujqLBsIvxdfX9QUAspqtl7K5iyTZH1IYmOe5AA/nDc8Mh8BlkhXGxdmA
-         L66z2euzMA4Ihy9KzlWaXalhL+idNaKh29t+uwOW1BhMS7GXWczszkZgyJcwTO7uRPVg
-         eTYJGMnUVn2nzfNIx8fgNMGgwNF7IHxRbMsshbbMvZQfsThUcr7verpwl+xDl/9/5Ocw
-         FlIwTVL0QA/QHsT8qrgleyzVJvVgW0DfAZOva+fIidKcae4+vTNF/SqktJooNWSUKm99
-         L/SA==
-X-Forwarded-Encrypted: i=1; AJvYcCUg6Z4ERP7d3MotyR1VkyKMxpVJSl8UYNemodr3F4/Uo/QEPYjIDXw0Xg5ZIgCuNFBcF5VE75o2HPedeBXLSb4PtzZ1kGOuZsperUXevPYGMuU=
-X-Gm-Message-State: AOJu0YxvyRbLTi4edGPwDhOtvblG+nqjUNjZbOvg8hU/HyiGX4ZdfkU7
-	T2zMqLKqWkzEqlPgkiBOn2lPSSn6F3ZY35gSOsHW+R351ZZYZcuFtveiXlwrExo=
-X-Google-Smtp-Source: AGHT+IEmNGvabBJ6k+gmhVzndKnI6ZiE6h4BbtVDtsDUU3kYdiaT5WpmQM/PfthEbTFQJrgj5cSwbQ==
-X-Received: by 2002:a17:906:88d:b0:a46:b1b3:aba0 with SMTP id n13-20020a170906088d00b00a46b1b3aba0mr778832eje.17.1710825427121;
-        Mon, 18 Mar 2024 22:17:07 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1710825479; x=1711430279;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JI2FbCtp4a1d8gqLlxYEpKkEq7SXIcQUhF5rSMJv6eY=;
+        b=QvwivwzgV3Lu2BuzuOp7/bnlr0Q6nfKa1UpJsztqIwCMsEheFg3UNl1RJnzqicFdyL
+         i9RqJXSC/jb9oLG6nBI9vG8wWdqunFqnI59pK9Lb0JYXD+rJ6ON0bZ49ZzHJvdJlZ1we
+         DpDPSyw9pbYVzM0ZxpCgnl3XaBf4hDvAe8jC18iD9D+m48vnNDbcimQp9+Pr3VzqP0z8
+         8wcJkz5KBvii9ltBJ9Q8+dGzWQxm1p9sumtrujOcVwcjTloO69dVjqXQxcsmAx8JDwDw
+         +zWk/6pQVTD4EByCdok9HxsfTOt38Dkar2jN5jQiLbuFylpAYT7gbep8wM3nwYRa7MIy
+         ZmXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVCFq6BEQwR8dnYdX5nNGLDvj0eFml1AbV/or9MS5aDCb4BN5VNaBSr/xaumWsKQyEQTZ31Mrha5dphJQTzlcXFi5OBiNCdNVm3TZLoGHyKm1I=
+X-Gm-Message-State: AOJu0Yy7milK3oyo2sMmKhQgXnAgBa8COMPYnPPF+qCm5bmuUBt2jkaK
+	FgRrY5x4iIbYKRmvRdhnUORYpPohwmRpXQKg+4G0hun3wN25bBlLIihR9R7HEFM=
+X-Google-Smtp-Source: AGHT+IHar+3YLlq5DM7n+Ac5r+Zn05BDnf47HvVfCmOszqWWqnMfN5usck6Hs24uZ5aHqMoY3k04LQ==
+X-Received: by 2002:a05:651c:337:b0:2d4:513d:7b34 with SMTP id b23-20020a05651c033700b002d4513d7b34mr5860519ljp.17.1710825478704;
+        Mon, 18 Mar 2024 22:17:58 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id dm18-20020a170907949200b00a45200fe2b5sm5566916ejc.224.2024.03.18.22.17.05
+        by smtp.gmail.com with ESMTPSA id dm18-20020a170907949200b00a45200fe2b5sm5566916ejc.224.2024.03.18.22.17.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Mar 2024 22:17:06 -0700 (PDT)
-Message-ID: <4b8564e1-0342-4682-a963-bc32ff69622c@linaro.org>
-Date: Tue, 19 Mar 2024 06:17:04 +0100
+        Mon, 18 Mar 2024 22:17:58 -0700 (PDT)
+Message-ID: <1eb98856-dd51-4fab-84d3-392bc4c60e3f@linaro.org>
+Date: Tue, 19 Mar 2024 06:17:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 13/25] ASoC: dt-bindings: meson: axg-pdm: document
  'sysrate' property
+Content-Language: en-US
 To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jerome Brunet <jbrunet@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
  <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -85,15 +85,12 @@ To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
  linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
- linux-gpio@vger.kernel.org
-Cc: kernel@salutedevices.com
+ linux-gpio@vger.kernel.org, kernel@salutedevices.com
 References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
  <20240314232201.2102178-14-jan.dakinevich@salutedevices.com>
  <ca80caab-2664-4797-a222-e14537eea440@linaro.org>
- <827c4f17-043e-4e09-aea6-0fee22d1b234@salutedevices.com>
- <16a22924-054d-4d50-9f32-cc07c0bbbdf4@linaro.org>
- <54e924ae-4d45-4337-aeae-32eebe773b63@salutedevices.com>
-Content-Language: en-US
+ <1jil1nhjwd.fsf@starbuckisacylon.baylibre.com>
+ <6feba9ff-8bbf-4494-93f0-732679bc4032@salutedevices.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -139,10 +136,10 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <54e924ae-4d45-4337-aeae-32eebe773b63@salutedevices.com>
+In-Reply-To: <6feba9ff-8bbf-4494-93f0-732679bc4032@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240318_221709_814924_6447DA94 
-X-CRM114-Status: GOOD (  14.88  )
+X-CRM114-CacheID: sfid-20240318_221801_146693_B5ECDA70 
+X-CRM114-Status: GOOD (  20.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -159,48 +156,81 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 17/03/2024 17:35, Jan Dakinevich wrote:
+On 17/03/2024 16:52, Jan Dakinevich wrote:
 > 
 > 
-> On 3/17/24 19:27, Krzysztof Kozlowski wrote:
->> On 17/03/2024 16:55, Jan Dakinevich wrote:
+> On 3/15/24 13:22, Jerome Brunet wrote:
+>>
+>> On Fri 15 Mar 2024 at 11:00, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>>> On 15/03/2024 00:21, Jan Dakinevich wrote:
+>>>> This option allow to redefine the rate of DSP system clock.
 >>>
+>>> And why is it suitable for bindings? Describe the hardware, not what you
+>>> want to do in the driver.
 >>>
->>> On 3/15/24 13:00, Krzysztof Kozlowski wrote:
->>>> On 15/03/2024 00:21, Jan Dakinevich wrote:
->>>>> This option allow to redefine the rate of DSP system clock.
 >>>>
->>>> And why is it suitable for bindings? Describe the hardware, not what you
->>>> want to do in the driver.
+>>>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml | 4 ++++
+>>>>  1 file changed, 4 insertions(+)
 >>>>
+>>>> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
+>>>> index df21dd72fc65..d2f23a59a6b6 100644
+>>>> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
+>>>> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
+>>>> @@ -40,6 +40,10 @@ properties:
+>>>>    resets:
+>>>>      maxItems: 1
+>>>>  
+>>>> +  sysrate:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +    description: redefine rate of DSP system clock
 >>>
->>> What do you mean? I am adding some new property and should describe it
->>> in dt-bindinds. Isn't it?
+>>> No vendor prefix, so is it a generic property? Also, missing unit
+>>> suffix, but more importantly I don't understand why this is a property
+>>> of hardware.
 >>
->> No, if the property is not suitable for bindings, you should not add it
->> in the first place. So again: explain what sort of hardware, not driver,
->> problem you are solving here, so we can understand why do you need new
->> property. Otherwise use existing properties or no properties, because we
->> do not define all possible clocks in the bindings.
+>> +1.
 >>
->> Let's be clear: with such commit msg explanation as you have, my answer
->> is: no, driver should set clock frequency and you do not need this
->> property at all.
+>> The appropriate way to set rate of the clock before the driver take over
+>> is 'assigned-rate', if you need to customize this for different
+>> platform.
 >>
 > 
-> Could you please take a look on answer to "Jerome Brunet
-> <jbrunet@baylibre.com>"'s message on the same thread. There, I am trying
-> to explain what I am solving by this commit.
+> It would be great, but it doesn't work. Below, is what I want to see:
+> 
+> 	assigned-clocks =
+> 		<&clkc_audio AUD2_CLKID_PDM_SYSCLK_SEL>,
+> 		<&clkc_audio AUD2_CLKID_PDM_SYSCLK_DIV>;
+> 	assigned-clock-parents =
+> 		<&clkc_pll CLKID_FCLK_DIV3>,
+> 		<0>;
+> 	assigned-clock-rates =
+> 		<0>,
+> 		<256000000>;
+> 
+> But regardles of this declaration, PDM's driver unconditionally sets
 
-How is this answer here? You asked "What do you mean", so apparently you
-did not understand why I am responding and why you cannot just document
-whatever you wish, because that "whatever you wish" is not correct. I
-explained that but now you respond that I should read other part of
-emails. Really?
+That's driver's problem. You do not change bindings, just because your
+driver behaves differently. Just fix driver.
 
-So again, do you understand that commit msg should provide rationale why
-you think this describes hardware and why this is suitable for bindings?
+> sysclk'rate to 250MHz and throws away everything that was configured
+> before, reparents audio2_pdm_sysclk_mux to hifi_pll and changes
+> hifi_pll's rate.
+> 
+> This value 250MHz is declared here:
+> 
+> static const struct axg_pdm_cfg axg_pdm_config = {
+> 	.filters = &axg_default_filters,
+> 	.sys_rate = 250000000,
+> };
+> 
+> The property 'sysrate' is intended to redefine hardcoded 'sys_rate'
+> value in 'axg_pdm_config'.
 
+What does it have to do with bindings? Change driver if you are not
+happy how it operates.
 
 Best regards,
 Krzysztof
