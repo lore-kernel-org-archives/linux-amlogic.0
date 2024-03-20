@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F252CD11BF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0052CD11DC
 	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2024 15:55:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,43 +12,43 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sQC45D95IM+y6g+Nm+XgLubB7WXGT4o9TIW1UPN3gVc=; b=4dueR1R8an0Efh
-	Qb1QVt+C9E8XF5y/6iwW23DVmh+oRVYs1I0/Obae3uE/cBX3kHf6vtcp/+9usGJc6S8UD8clhmBay
-	vpWub27CA/gnP7dkAl32B1f9JQbu5GexIt9EYE56zpoKXDOAtxzNzBDcoFpor83ULIFq5fhgv9Czh
-	V+0mgp1qFid8iD5YiQv0EQ0icAL9UbUp65n1ptssBqA46EUYsxgKIKc8nhf3DicDqjuLoxZyw2PRU
-	jn9oR5THDPCNyFTk9xdM/+k5RVwpewJuqZQgh6BDc3SG2vm1Fykp0cn5RTH95rJ7YLo7rzH/NvJDr
-	3/99JPKWUSi9G3n4N+NQ==;
+	List-Owner; bh=kSjhACKj52y0gKWLn4ht5O9PdKBaaOQb+yNH+kF8XFY=; b=1KwLDA2TPCK9e9
+	ImMIic5U2+GDAqDVQkCXX8ArvwMp+2e0cCHr35dQjPnj1gCojpvH/GKVKqH16e7vGGWiy1W8b0pQ0
+	eFtCblru/olfBEMVhRRhdYA8e8FP2DDGqcqdAY0rCyubS0071dFbxJw0LnuWp7H/DqYoRnAsPrdHg
+	l9CwEDL6GgRPtZYyu/8mTZCtpkTOs0MzzBU3mVMxtbnvYidR56lq1sVc91cnDc8dc5nX65pDTLF7M
+	PycR4ZgOlXZAFgc7qAqnhcGuMhDRfq5C1+FD7BOuaKbRq/MxjF+NmCPKGy9dBhJjMbVfrEOIduir4
+	G+C4MzIKTgq5fMOHvMfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmyHw-00000000B8o-37Lk;
+	id 1rmyHw-00000000B8j-1ask;
 	Wed, 20 Mar 2024 15:55:36 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmyHq-00000000B3h-0uYU;
+	id 1rmyHq-00000000B3p-0yXH;
 	Wed, 20 Mar 2024 15:55:33 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 53A81120016;
-	Wed, 20 Mar 2024 18:55:21 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 53A81120016
+	by mx1.sberdevices.ru (Postfix) with ESMTP id F2125120017;
+	Wed, 20 Mar 2024 18:55:22 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru F2125120017
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1710950121;
-	bh=xFwkKn3odkHNxtGC/+UItpOw2vtOIU30piZ6aaGUN60=;
+	s=mail; t=1710950122;
+	bh=ceIFnAOWsBblkZzy/XyE6Bc8LfMdtHX18HrHp7Jy4ZE=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=gR850vVyvX4goW3VAE/NlP5pFm5ALCRU+0SHhT7pKeBMkwXzqU5dOXbYmkC2Xy9RW
-	 xZJRmTF7xDfpk0gSj7jMHyzdbGDD2XnUaQlKB0ydqR1cELDzUnWjs/lJt/J22k/hvV
-	 Jk1fV9uOrLIYZqXpdUUITxJ1/W7mgCnIWgxTRdk2l3OLM+KbAyAoLT6Lz+X+ECoyhB
-	 ukY3DjHRYTdAgnTn7PBucyWW4kc6y+vWYbCRcEMti4Pu0bc5YYLFoiAsEhX/VSYSkL
-	 2oVFstOsl19UDeGWH0FcgtW9bHSKcLrJPGjAayDOZmkTwhRA11Xnp+Awp4IXJui8rL
-	 uSn4xNXm77ilQ==
+	b=pyKwTt2F0tYG0W9D873xLtoFe+JOzaeHGRgDxsQew8CvWcxS7LmbjA9X399LdbTof
+	 OPdPQPSx3MFUwYCmVH1qdjd4RbsYzKwwqkZ3ed09NcsdrvcTSUxVyqlvrxm3+wHPPQ
+	 2MD9ig9O6JdOtJxUaxJaztAOr4UipKaCOyAqifDkf3ArrnAaYAAiz8Z5OfXXdKqjmi
+	 WJS/sXjOXR9I8AXAoTgmkmUXulm5yK4FnrpeIS/BGDeiruLwC0IwpyFtAhG2Q5R5M2
+	 BURa7Dx7TNJigIaByxHKWDwY728qUSxhkS+fUDoKQUtc996PrTq4hTPQfRQ6VhCbUu
+	 YVfW0oEJohDIg==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 20 Mar 2024 18:55:21 +0300 (MSK)
+	Wed, 20 Mar 2024 18:55:22 +0300 (MSK)
 Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 20 Mar 2024 18:55:20 +0300
+ 15.2.1118.40; Wed, 20 Mar 2024 18:55:22 +0300
 From: Dmitry Rokosov <ddrokosov@salutedevices.com>
 To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
 	<mturquette@baylibre.com>, <khilman@baylibre.com>,
@@ -57,9 +57,9 @@ CC: <kernel@salutedevices.com>, <rockosov@gmail.com>,
 	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
 	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	Dmitry Rokosov <ddrokosov@salutedevices.com>
-Subject: [PATCH v1 2/4] clk: meson: a1: pll: determine maximum register in regmap config
-Date: Wed, 20 Mar 2024 18:54:46 +0300
-Message-ID: <20240320155512.3544-3-ddrokosov@salutedevices.com>
+Subject: [PATCH v1 4/4] clk: meson: s4: pll: determine maximum register in regmap config
+Date: Wed, 20 Mar 2024 18:54:48 +0300
+Message-ID: <20240320155512.3544-5-ddrokosov@salutedevices.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240320155512.3544-1-ddrokosov@salutedevices.com>
 References: <20240320155512.3544-1-ddrokosov@salutedevices.com>
@@ -84,7 +84,7 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/20 06:45:00 #24314254
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240320_085530_871907_6CC8B3A3 
+X-CRM114-CacheID: sfid-20240320_085530_881286_EE41F4A3 
 X-CRM114-Status: GOOD (  12.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,21 +107,21 @@ file does not display the entire range of the regmap.
 
 Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
 ---
- drivers/clk/meson/a1-pll.c | 1 +
+ drivers/clk/meson/s4-pll.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
-index 00e06d03445b..60b2e53e7e51 100644
---- a/drivers/clk/meson/a1-pll.c
-+++ b/drivers/clk/meson/a1-pll.c
-@@ -299,6 +299,7 @@ static struct regmap_config a1_pll_regmap_cfg = {
- 	.reg_bits   = 32,
- 	.val_bits   = 32,
- 	.reg_stride = 4,
-+	.max_register = ANACTRL_HIFIPLL_STS,
+diff --git a/drivers/clk/meson/s4-pll.c b/drivers/clk/meson/s4-pll.c
+index 8dfaeccaadc2..c8a95842b14c 100644
+--- a/drivers/clk/meson/s4-pll.c
++++ b/drivers/clk/meson/s4-pll.c
+@@ -798,6 +798,7 @@ static struct regmap_config clkc_regmap_config = {
+ 	.reg_bits       = 32,
+ 	.val_bits       = 32,
+ 	.reg_stride     = 4,
++	.max_register   = ANACTRL_HDMIPLL_CTRL0,
  };
  
- static struct meson_clk_hw_data a1_pll_clks = {
+ static struct meson_clk_hw_data s4_pll_clks = {
 -- 
 2.43.0
 
