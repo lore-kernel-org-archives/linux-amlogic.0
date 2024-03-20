@@ -4,80 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7930AC54E67
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2024 09:45:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E89AC54E58
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2024 09:47:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IetopaPKRq7FqLZOYTV7KdBX6/kBAQCtoANq/Hv2LXY=; b=THnl2sWHwkyLdi
-	Bj6SGFLnewNCsFq5mlxecvBqdk9Yigo67p5LiLD+n2jwclQPd9uZ+o5Rg5+1S+uCpyVZdEyt/SNkt
-	+kv6ufttsC2u35FxFyXNuyj8zg4OzOu6AyKQxEM9BePRYESKcMfywB1Ff8FKzgwPDJyzt7PXuuDhY
-	it96MCD8lLpPuMO92CpQPcklEVWjSdn/+iOLHLZ4xHmuuSnclhh10+s5yTr924lrgd41d9FG7aT70
-	6MS8Z/n8W7qdEATXH/LLMskha3gGM748EDxVU/znJmDsrUbTS4vwioB/JhFS4HYg0wqKFZajkhYGG
-	5DRSe4Wfa5TNQCHRBV/w==;
+	List-Owner; bh=nU3qyf04K3qZ39ACaXSKrXuvGMZLdazO7kJ14Cv3lDQ=; b=iFvPCLhvw1KH4T
+	otoAnECpSkEetxXPLkrhAAKvQxP/D9Lz13qmNzMQ6IVIFN0XK1u2ovHTYPYpTwsT7Z4yYXIq50rb2
+	qcNfYiJEtwVYdOsRgsOgPl2FGJjcu9FVtLzI5XdtFpwTpxQoT4b1ruhGEZKrzfQc69HbgoE2v2nv+
+	nGCRNfiIeoEkPOKWEoxmaA3kHbM+WNiBCbSQ6ZtQj/Rp/QpaHwiSzBhEmPpd3Ny7LoE1qMzgBjujA
+	6dq5k0YyI3jkoMLXGwo6/W0ZpS7LpL3EQclRFxHmJL/jTUNKh2meGirOe7EmixhrjefjMnGB8INro
+	G3Alhvv1/3Xd0oZGZTkA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmsVL-0000000GYJI-2pwb;
-	Wed, 20 Mar 2024 09:45:03 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1rmsXS-0000000GZ9H-2ab0;
+	Wed, 20 Mar 2024 09:47:14 +0000
+Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmsUp-0000000GXwl-33GJ;
-	Wed, 20 Mar 2024 09:44:33 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id B0691CE10DD;
-	Wed, 20 Mar 2024 09:44:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 98545C43394;
-	Wed, 20 Mar 2024 09:44:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710927868;
-	bh=Uf0CCksxzPh94RRVnornSAILdhxqXP3ccZAL4skjSzw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=i+R/Mv6EMFDPiERKE2XT94eFmGajTCo07nPgECSQHYF08j3VQzrLoLm1h9vnMsPj2
-	 hwxYehm5rNYGT5+JnnTHaFfvduTUZnZxiINOuvS/Apgh3jvNqSlCA4u2GrGJYabX9d
-	 3NxUtLW/41N3CwmGAQJq+PrQg4S30dFApfH+PBxNRZ+4vXjb/ve7060KdXJc2VU8+h
-	 /bXcVKr3O2HoLYru6w/viq7I6v+tKBQJxdYxDi553gicQqTKuZPwvT3WOKFbM/wnwN
-	 TRL5ksGryYJypUav/MlJKp0n5h6H50TdN70UQrkIFTDX+TqM1QAnSN7kObNh5TyI/e
-	 W/ZaducsFm0Sg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 82C30CD11DB;
-	Wed, 20 Mar 2024 09:44:28 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Wed, 20 Mar 2024 17:44:14 +0800
-Subject: [PATCH v2 2/5] dt-bindings: arm: amlogic: add A5 support
+	id 1rmsXO-0000000GZ7Z-48hk
+	for linux-amlogic@lists.infradead.org;
+	Wed, 20 Mar 2024 09:47:12 +0000
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-a46cca2a979so167634066b.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 20 Mar 2024 02:47:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710928028; x=1711532828; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=CbzQqgtR2/oPrDWpsF4gk7sQRR5UpFu6LGDqxOTX624=;
+        b=jd0VvXSmd3G+girkBodbKo6sWQLbUDVY/TqbwrNZPmkTMRC0hG5PVMuDQo7J4se4LG
+         vWLMdQwcjPV8N0QckhJlGcElItall1ACiCn4/q/pIvly3oNQvrUDuoPX3sdUAhBVPlpr
+         W0nclvuU05laQewWp7lufEEtChnU8v0k1jQDb6bvYkqy8IFU8ZJeJEs8KeUXZjCm057N
+         1SOcXHG2l2xI7XWQEoa6Op2vaDsjEp8P7V1LGCqoioV6qRaUmbieT2U0U30z95rh1Ork
+         H+pNAAvQ2cRlspHtFq1QUswFfrHcY8YlNHtJ1Qe6sDLgfYEjabtVboz3GNcOPNDewudG
+         /Gmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710928028; x=1711532828;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CbzQqgtR2/oPrDWpsF4gk7sQRR5UpFu6LGDqxOTX624=;
+        b=ccoYHFlzJYaVvYeNFW/vidf48IwNaf4wilQt8JiABiqjniZIlbqXdTq8UJ8fnR7Q8l
+         42PwlLaAeYnU28IXOjY6UVXSMcMhCXOo4FsTRy/p8IqWWAbFkVEkC385/bb5b4xulNSD
+         1RjIR0wb0mjwTRWs4yUnwjqe6kDgYBIszlX0t9c2QkIQbWorTSo6HcDsn2LbJhPWheL9
+         9L4oN2L+FboejGgE9Sa0kJ4ugQ1kqrzl7RUagsvpNm7JbJBiAQukFoa5yg2WRgwQVnYo
+         0E5nExMEbN4kECOe05JoD4jM20LChCW+8bJZwHDdzmLHoD2x77FxLTBQvci9Z/ZVi6nz
+         Vq4g==
+X-Forwarded-Encrypted: i=1; AJvYcCUxzN7LPXRrAknZxZDfe4F0pA59iesSv6yS53+RyRNamyJ7G3a32Kz/ILiKFpU9XDb1PkVW/5EZ2JcY0moX8pLAxl0+ovThfttr2cft1ZQdtR4=
+X-Gm-Message-State: AOJu0Yz7Zxh6uhJcLRF+VbdTAySCMoIdiT472gIIt2+agXt7jUsP657m
+	U32fp08zSkWvXt2rSY08mUUzpIyneFeTuywDml3VjBW+bH23cSEZLLstfjYAb/0=
+X-Google-Smtp-Source: AGHT+IGD8nmNsm4WngcbqJY3GrBLg8IasyBQJUjEkcUlH43SsZdIMB3+tnEuxPC+k6Z6ur7lnlUrtw==
+X-Received: by 2002:a05:6402:3983:b0:565:7ce5:abdb with SMTP id fk3-20020a056402398300b005657ce5abdbmr12567978edb.10.1710928028297;
+        Wed, 20 Mar 2024 02:47:08 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id v24-20020a056402185800b0056a253e66fasm3195614edy.10.2024.03.20.02.47.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Mar 2024 02:47:07 -0700 (PDT)
+Message-ID: <402e56ec-7fee-40a9-995b-b737d4a53d60@linaro.org>
+Date: Wed, 20 Mar 2024 10:47:05 +0100
 MIME-Version: 1.0
-Message-Id: <20240320-basic_dt-v2-2-681ecfb23baf@amlogic.com>
-References: <20240320-basic_dt-v2-0-681ecfb23baf@amlogic.com>
-In-Reply-To: <20240320-basic_dt-v2-0-681ecfb23baf@amlogic.com>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/5] dt-bindings: serial: amlogic,meson-uart: Add
+ compatible string for A4
+To: xianwei.zhao@amlogic.com, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Jiri Slaby <jirislaby@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-serial@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1710927866; l=1029;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=r0xuqU4Ugjg7+rGvC23MyKK1+DvdlUD+RiCVMa++e2I=;
- b=uUUPeJHApSTFAbpk9atAj5lylvkx6geVJ0wgftmHDcIXC3+zOlKydo3Z9XGmH+wK15238Lica
- XrEMVzrTLoRDpOTZNXpzMrzByUyx5lPlxrmqa2kNnHuSEcHB++wU7S3
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-serial@vger.kernel.org
+References: <20240320-basic_dt-v2-0-681ecfb23baf@amlogic.com>
+ <20240320-basic_dt-v2-3-681ecfb23baf@amlogic.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240320-basic_dt-v2-3-681ecfb23baf@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240320_024432_187700_C01CD99B 
-X-CRM114-Status: UNSURE (   7.87  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240320_024711_148896_953646CD 
+X-CRM114-Status: GOOD (  14.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,46 +144,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On 20/03/2024 10:44, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> 
+> Amlogic A4 SoCs uses the same UART controller as S4 SoCs and G12A.
+> There is no need for an extra compatible line in the driver, but
+> add A4 compatible line for documentation.
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> index 2e189e548327..d05c45815dc2 100644
+> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> @@ -54,7 +54,9 @@ properties:
+>            - const: amlogic,meson-gx-uart
+>        - description: UART controller on S4 compatible SoCs
+>          items:
+> -          - const: amlogic,t7-uart
+> +          - enum:
+> +              - amlogic,t7-uart
+> +              - amlogic,a4-uart
 
-Document the new A5 SoC/board device tree bindings.
+Keep alphabetical order. Don't add stuff to the end of lists. This
+comment applies in general, for almost all your patches, so also future
+submissions.
 
-Amlogic A5 is an application processor designed for smart audio
-and IoT applications.
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index 520975e7cac0..e64ced44ece8 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -207,6 +207,12 @@ properties:
-               - amlogic,ba400
-           - const: amlogic,a4
- 
-+      - description: Boards with the Amlogic A5 A113X2 SoC
-+        items:
-+          - enum:
-+              - amlogic,av400
-+          - const: amlogic,a5
-+
-       - description: Boards with the Amlogic C3 C302X/C308L SoC
-         items:
-           - enum:
-
--- 
-2.37.1
-
+Best regards,
+Krzysztof
 
 
 _______________________________________________
