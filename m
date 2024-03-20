@@ -4,72 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7444C54E58
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2024 09:48:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75F6BC54E58
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2024 09:48:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=meB73gCS9aHYKkDZy/1z7Yhi6cCGBUF9ecllf9PX4cA=; b=EXJlEV8b3ob08s
-	FXIeukVgCZmI8WGqCfIk4Zm9K6ce5cu+NRmw8bILHyNcQYyqrST9CrNe0eyQwycsQVDbzuWh1mDoy
-	03cqc2I0UzrFYhvr6IFKXkOpR6uKBE5J7sRcvOsOcICnKj/iM89+Da0aVilADWcI98N34U/3ssclg
-	na5RwmYVAJuTV31+vTeggSYIDmjgXJgQZuTJq+AWwpmucD7uvJclmnYzi69ClUIfPK95n7A6cnC/h
-	ukKzICgUWAl8JASHzULXl/nXsRMveCHGot1o3w6gSXBiZZKL6HWZ+urBV60Y13b908ujMURPrxK2U
-	NpoS7oWxnbQLjG4bdqjg==;
+	List-Owner; bh=oPEqyxIi3yfXkLaUbrc3zqw+jN6APEgLMpgQTDE+HBc=; b=nOwiHYJqwzb3mN
+	/qqSVh0kif5WEAlLZdvFomPi6MFoaF0ZYZ9grXS6i90yhIOAp6C7ma7JhtUgrVJuTUomhDIYJvCw2
+	piLEveeTWcajOCXqQj76GE7wtG1TyV/7RzpWiJbNnJy27YLevq2pqOQs1tjOlyf+5RTEbnGKORFqM
+	7HT3YhVeovQQwQQPGAynHREqxfAvAq7xKGbGQtk4shzRdbV5z0WuvxWMS1/n9Fvkc3Yxl/Xl58jO3
+	DKSXjM/RyGqTyXEf2yFhujY2KJTgxe7UqC+n4eykC++AsxuIFib1c5tN1orBYMY/iy2m0HsncXD6c
+	Fh4lBiKIBJRTUO4qhUDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmsYb-0000000GZOj-1eac;
-	Wed, 20 Mar 2024 09:48:25 +0000
-Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
+	id 1rmsYz-0000000GZWp-1u2e;
+	Wed, 20 Mar 2024 09:48:49 +0000
+Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmsYX-0000000GZNC-2TZQ
+	id 1rmsYv-0000000GZUm-2Ztu
 	for linux-amlogic@lists.infradead.org;
-	Wed, 20 Mar 2024 09:48:22 +0000
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-513ccc70a6dso11138079e87.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 20 Mar 2024 02:48:20 -0700 (PDT)
+	Wed, 20 Mar 2024 09:48:47 +0000
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-a46cca2a979so167756166b.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 20 Mar 2024 02:48:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710928098; x=1711532898; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1710928123; x=1711532923; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=TiF4foxRxkGQ6Ij2GVBxAw+H7nyNXcExqovv3XlaNjE=;
-        b=nZkEuniC0dYdbjlG/W0mEDAAlpCpfDW3Zp9jPGp+pk1DABsOuCVKZg9rQaJ6eQ+4JV
-         09AHvDnNZZKa3sZgYEZ2UrFKEzATIWJMEYU5oOhGAWlOFjFjrcZ6HNJX2mXrHwhRJdb8
-         Pba+iZJU5uO1N5CzlwNsHfZDtA7RmO+dk6Uvfh2OWKkYB5WHZvUU9D4L/Bkub8walXZy
-         oioC5MKKuV2gV1KlvDDMY+j0lEN3zdv/ECE8rqxVO+5z3RzThoKYL00p8w4hnx/tpTBB
-         V+La/tIueU/Z90wWfggFJBx0mPTx6G3LYSRDA6GDQW13/rL/yKQM+OKmmA44Qm1jWb3O
-         FkNw==
+        bh=RaleRXU9y8gHANANvm7WoOgm4v782ffbqIt/APx8PCs=;
+        b=hqJy1/unvXYkolkxdpoYQcfNw/K7uCpvXkN6j1tEt3GR9de2VR7oACggnYcEtCgpNQ
+         R4Ype+G6yteeIUBN5RAWe9CXYSsw9H1zZ8UH+6SukbEA/Kk/0uetccPJXMd0QUd2FOfp
+         Qlk+/bridjPBJmMGZsNhbKn4i2RLsvn37XVxpK9yrL1mmDrjhksLDcSciJlLsg5odB6n
+         TYAmJoaDwV6/dbeDCeW3bucXxkRCf47XT8cGGQNQ82jWIOEmxgOWA35x7n7FfEf2g+ox
+         wI5u60LUblRcFvflufU8SapG0RyhWzdMT4dihNwmuaes7NCwv7BvqaY2H0iEjEe/iH46
+         oY9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710928098; x=1711532898;
+        d=1e100.net; s=20230601; t=1710928123; x=1711532923;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TiF4foxRxkGQ6Ij2GVBxAw+H7nyNXcExqovv3XlaNjE=;
-        b=LxDGv3dzmjLNJZ+NTM9UW2ZypFiSoG0uH5ZyAcTBsBPYP/I17Sj31nDBUPmyS3yqTZ
-         0m0jW9VAX+x/alH/52TblhMeoaucdEz6NvIMExYhPiJTP8wjOsA2Wx/RIj4tkbSYKqNU
-         okwrMaX4kvmmuTGGIQ7nQJL4tyES7m+2hrqhX5OyBnEiF3/AnFaTldMG/KjjurKhNiP2
-         zL2znYblfVEKMFT/KUgB2EE0VKNA3YCxky6b9E/PnExLadtywm+4iuYxBWkvLpfs5E3i
-         2jD/ZLab71Dt4gO8RweWoY0aCBlc/hlSkT9ft3yfNz6Is3PScrip0IJ61qN2rH/D1796
-         SyXg==
-X-Forwarded-Encrypted: i=1; AJvYcCUgZtGdX+E4Y79JLikJK5OvPPQh2YJ5Oluw1m6sGuC4NVvdTOPbQq3160MOU69ZxasxWtIYZvj/nIPkhnK1VYKZO4Iw32YzShUuCBhSWiulFH8=
-X-Gm-Message-State: AOJu0YyjImgM/FfhDNCYhht0/MExvJzCkH12Z814J1taPU8xBK0hhxKS
-	aGPepIbEakSVe4s5Tnf0NbpBCl8O3pcMHGAlMgZLTk4c6Mo7HRg6fv5qZUA4smoIiZ7j8LAYLXD
-	y
-X-Google-Smtp-Source: AGHT+IF/fpYG3BZko/tDHfG809tkYV8HW8iMEuCkSYKe47/nH/sQnVs1mPnBWBjtEl8osNa4WYnoqg==
-X-Received: by 2002:ac2:465e:0:b0:513:a738:20f1 with SMTP id s30-20020ac2465e000000b00513a73820f1mr9811036lfo.25.1710928098552;
-        Wed, 20 Mar 2024 02:48:18 -0700 (PDT)
+        bh=RaleRXU9y8gHANANvm7WoOgm4v782ffbqIt/APx8PCs=;
+        b=KfCjUwsMXidOcxiRDO196YmMjfbz0HhQdQLq7KYiT4syjnljQryvLa2lb4uVR2PTwG
+         wIWywlCPLBgpXx4b6SQyx0Ji8v7Eg8FuCbTgL/gma6ATL4NaeiQVXUh5qFd3ENdT/yhI
+         bX7egj2cLyTtE6Y7cQ3XTmvEHCMK6Rn6RPa0v1wBiRaRCBT107hl2CJbznPHCyBFZp/p
+         p7AMUxEnVs/aC+XvaIwysiYounoxPthhEaJWPoMUnQj32761PEdJeIJGTeM5fiQ6z7jx
+         zfLC1T/ohb76xUCCHuslZuvZi1Gk+Z1H5I36dCTenlSYSMilrTzk5UuRTHFXNL183alv
+         SpOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWo1PTTmSQBnB5dGV1EKYRKZuLaoi1SRGNESaKh1d8+J5Px6TacReFowHLNgEjZUagFqXzehd1jANtntgCbGPFrAmyVUqJ/zvW0CUhE4ajMNOU=
+X-Gm-Message-State: AOJu0YwVEPjSCLbN/FEhGVuSvzEC0WcWlwPfnaMw89vfO7xmgjjx76x8
+	1cy3tnsf83QG4rEMqH9XMO6/QYN1q/rYt+OR9vfX3n6FBDCjQzEb4L6wW+rdNt8=
+X-Google-Smtp-Source: AGHT+IEaHIT8YGRfnULgtJqJ3P7Je/VI3NQE7OOZpN0Q2XBtvZaAPShfob+sQo5gSsE2gR6cbI8R7w==
+X-Received: by 2002:a05:6402:4016:b0:56b:99f6:b599 with SMTP id d22-20020a056402401600b0056b99f6b599mr4169459eda.0.1710928122888;
+        Wed, 20 Mar 2024 02:48:42 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id qt11-20020a170906eceb00b00a46d2e9fd73sm2367850ejb.222.2024.03.20.02.48.16
+        by smtp.gmail.com with ESMTPSA id l24-20020aa7cad8000000b005697d77570dsm3310000edt.66.2024.03.20.02.48.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Mar 2024 02:48:18 -0700 (PDT)
-Message-ID: <f0050b33-c4fb-4263-aee6-4542e2be39e8@linaro.org>
-Date: Wed, 20 Mar 2024 10:48:16 +0100
+        Wed, 20 Mar 2024 02:48:42 -0700 (PDT)
+Message-ID: <98b3fb64-2256-4280-bbfd-c944e5df829b@linaro.org>
+Date: Wed, 20 Mar 2024 10:48:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/5] arm64: dts: add support for A4 based Amlogic BA400
+Subject: Re: [PATCH v2 5/5] arm64: dts: add support for A5 based Amlogic AV400
 To: xianwei.zhao@amlogic.com, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
@@ -82,7 +81,7 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-serial@vger.kernel.org
 References: <20240320-basic_dt-v2-0-681ecfb23baf@amlogic.com>
- <20240320-basic_dt-v2-4-681ecfb23baf@amlogic.com>
+ <20240320-basic_dt-v2-5-681ecfb23baf@amlogic.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -129,10 +128,10 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240320-basic_dt-v2-4-681ecfb23baf@amlogic.com>
+In-Reply-To: <20240320-basic_dt-v2-5-681ecfb23baf@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240320_024821_754439_44A666E9 
-X-CRM114-Status: GOOD (  18.32  )
+X-CRM114-CacheID: sfid-20240320_024845_694102_5F20D748 
+X-CRM114-Status: GOOD (  18.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -152,36 +151,36 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On 20/03/2024 10:44, Xianwei Zhao via B4 Relay wrote:
 > From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> Amlogic A4 is an application processor designed for smart audio
+> Amlogic A5 is an application processor designed for smart audio
 > and IoT applications.
 > 
-> Add basic support for the A4 based Amlogic BA400 board, which describes
+> Add basic support for the A5 based Amlogic AV400 board, which describes
 > the following components: CPU, GIC, IRQ, Timer and UART.
 > These are capable of booting up into the serial console.
 > 
 > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
 >  arch/arm64/boot/dts/amlogic/Makefile               |  1 +
->  .../boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts   | 42 ++++++++++++++
->  arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi | 66 ++++++++++++++++++++++
->  arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 40 +++++++++++++
->  4 files changed, 149 insertions(+)
+>  .../boot/dts/amlogic/amlogic-a5-a113x2-av400.dts   | 42 ++++++++++++++++++++++
+>  arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        | 40 +++++++++++++++++++++
+>  3 files changed, 83 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 1ab160bf928a..9a50ec11bb8d 100644
+> index 9a50ec11bb8d..154c9efb26e4 100644
 > --- a/arch/arm64/boot/dts/amlogic/Makefile
 > +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -1,4 +1,5 @@
+> @@ -1,5 +1,6 @@
 >  # SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += amlogic-a5-a113x2-av400.dtb
 >  dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
 >  dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
 >  dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts b/arch/arm64/boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts b/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts
 > new file mode 100644
-> index 000000000000..43a9c666e1de
+> index 000000000000..2f5f5ea74bc9
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts
 > @@ -0,0 +1,42 @@
 > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 > +/*
@@ -190,15 +189,14 @@ On 20/03/2024 10:44, Xianwei Zhao via B4 Relay wrote:
 > +
 > +/dts-v1/;
 > +
-> +#include "amlogic-a4.dtsi"
+> +#include "amlogic-a5.dtsi"
 > +
 > +/ {
-> +	model = "Amlogic A113L2 ba400 Development Board";
-> +	compatible = "amlogic,ba400","amlogic,a4";
+> +	model = "Amlogic A113X2 av400 Development Board";
+> +	compatible = "amlogic,av400","amlogic,a5";
 
-Still missing space.
+Please fix missing space in all your patches.
 
-You received comment about this. Fix entire file, not just one occurrence.
 
 
 Best regards,
