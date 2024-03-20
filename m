@@ -4,137 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D8A9C54E58
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2024 10:31:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1B42C54E58
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2024 15:55:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Qz2Qoiw44GS72p8na+74ewdZ4NR4AHZ/jDrpcpjxu8c=; b=l6tUHXQ2SXxwgA7tmP0yBuWX8G
-	Rgq54zN8XgBbq4VNydOGQguxYlTryWpIhmpIaSLVycrTnwNh+WPOzzljQDrxJb47D8afdW5eToBCR
-	TuDC01ksBcGKF7ukrF3oj+ntitErfuS5pMWPmkednW/0SuJCpfRusbl2p5te2iMNvA3vVRRN3cWzT
-	yWLdVligRGqobVG2l0aGRXY3E5CjF+BxP2VUtd/Q4MBzYZw+2B2hP9mpTdi6kDs+OWhzaWgaV41Bt
-	RfDjOHTM2HUHq/YjFv+fMbgiv3ieFQ/idossEf+ZvSbSBOTBuiejN76725Z0yre0z3HcQPy4P8ryZ
-	Tk9fRo3w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=1nqq6i3+ABuUHhazVMNc+srl1t+ffcQc3CmGrAjnZzQ=; b=ODtrk3ZjVVgyV8
+	gIHj7n09bv8mIAVtg0EzIVZBdn3Q0t/6hmL5h90JMzRbpBqHUViSkubYec11mSrJ2yjTHeBObl0aL
+	LawQI1mBrL7tNN8pF9WmoyF3CN//88NC6g9IPQ/MRgq/3Idr5wPS6hnaROIeMFf4esQjcpcD9tKzS
+	6bGCAUD0WmGjAcB7PanuWN5One6rjMHPdqk0QY7nE8K5y3lHVOTdiy1XnMWNt1Y3Nm5/5wFrh5QGI
+	2BePChlvj7sVGcmoDcumjfwg5jaxmxvdomiNUM9iR5WP2xE52x2QxVm0bBSQDw5SjP5koKdk3svMz
+	tunZHl7mk1OvNkdge3VA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmtEE-0000000Glcw-1oYD;
-	Wed, 20 Mar 2024 10:31:26 +0000
-Received: from mail-psaapc01on20725.outbound.protection.outlook.com ([2a01:111:f400:feae::725] helo=APC01-PSA-obe.outbound.protection.outlook.com)
+	id 1rmyHt-00000000B6o-2Kw7;
+	Wed, 20 Mar 2024 15:55:33 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmtE9-0000000GlYN-1yRU;
-	Wed, 20 Mar 2024 10:31:23 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=h7WzHRpp5f/jk5noUjmz2Qwn9m+oA7AP1pySyBPlKcSVIEgl8Jyf6YxE/FeRrGgfTf7E6y4B+l1q3+zDsKRs7inDuq3Kw+TKxqAX+XLJH2RGUWnqy0NB8KfhbW4aIFPqVBDVO8STC+GQoQIZUjDX0IUQllHT/CtINNr8lysjmOwWoAOxB2WEqwndnXBfa5tCjhunTQMG1EHC4IIVoJKnhiRnivVf2RO2BZcDibLIlwgIgBsgKBrDl+8w2I0DbyQGKZWImbwi0LsmWM6HRgttM4PDLRTCCNnuoTvwTAklMmnyninVNzgSqeJnxbWmyYb2gAaR7nDtyNdhBYzHzqhemA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Fu1cBagnkADW1tA2e0AwlvvseAJxb7FS07hoch/fUg8=;
- b=lKfoB2GjSdndo+0TV6dxvf3M1/cnYtXR2C7bvlOFM60sqyOZpFQOI7vkE6BPY7s+8of++vBDg+EcTMettPQ/1u9vJwYh9eyC5X8TdFWxCleuYaPtQ3+S4ATiY5XzfhjnGmHzlhPj8rV56BcV8U+hSHa3oUyMZ+Qce+2jYKByULGgMBQeHPzmBy45lbf4RZEWpZUMrRm3orB/8E+NMPPSR+dq5FmEHaSPX6riNfR+nF8MkilMeS1uitxiD0dcONTRINk1dxiWpyJRuTDci8NgX6xtOEnWMpxfjEq/m+MofogzRY4ZhCrq+kZbGMqkjbiaIrlSCawVvaUFOWF57BN2Bg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Fu1cBagnkADW1tA2e0AwlvvseAJxb7FS07hoch/fUg8=;
- b=k7cuBN/JlcKW1exm5TYwtYzQHYEcHCE71TYyUV7xDh1EiC+y+Ue3+IYCBsD6HdOubjagznBLH5fFZaxsVAEx8ZkK74NS6SDWOfPcLP1XazLZ4b/f6ws0JTOWDJjNR3f17h5MH4DEUNcsxCPB79U9V5AVGV3E8lJ4eUZsoB4RKdZ5LOUgmBZmc4b5aJRqXI4hAhYN21y9YgtOBgPFM5uhKK9l13cOgyCZPCBEvQfGNhbcFvYaH80sb2/UVtKg7YUrlrLFoBCIxbtzIYQj0ThAa5VNLf+KIJcglcVqrePZdwGt57vyzuYAQbfSFAH8wJPK/UHAQcjhJ+HLuNjeAxy4vg==
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by OS8PR03MB8961.apcprd03.prod.outlook.com (2603:1096:604:2a3::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.26; Wed, 20 Mar
- 2024 10:31:15 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::441:dcac:7f28:9660]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::441:dcac:7f28:9660%4]) with mapi id 15.20.7386.030; Wed, 20 Mar 2024
- 10:31:15 +0000
-Message-ID: <cc86991d-1c8c-4d49-bdf2-a8d451ddd039@amlogic.com>
-Date: Wed, 20 Mar 2024 18:31:09 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] arm64: dts: add support for A5 based Amlogic AV400
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-serial@vger.kernel.org
-References: <20240320-basic_dt-v2-0-681ecfb23baf@amlogic.com>
- <20240320-basic_dt-v2-5-681ecfb23baf@amlogic.com>
- <98b3fb64-2256-4280-bbfd-c944e5df829b@linaro.org>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <98b3fb64-2256-4280-bbfd-c944e5df829b@linaro.org>
-X-ClientProxiedBy: TYCPR01CA0126.jpnprd01.prod.outlook.com
- (2603:1096:400:26d::6) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+	id 1rmyHq-00000000B3c-0tob;
+	Wed, 20 Mar 2024 15:55:32 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 85D6F10001B;
+	Wed, 20 Mar 2024 18:55:20 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 85D6F10001B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1710950120;
+	bh=0Fa4Y34XfUVQyedPaiuMQc4mBGz6JmwcoPWvUkgtW24=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=IYKSHbW9O4ZzTIfYmM0ds1tK7elpYzLGJXSTvOMinLQxGNhLZXqjRqyk/mbcQRkJm
+	 B8pEFqoZJsd1rfSoi+2nWSsZeTYPBnipwp/I5KND5Fnf/ZCDmFw9xXCcjQjUZM+nLG
+	 mUtp1cwvv3cxQS8v9vagWlEYW/gFFSxsHPeQijBEWjhnbWzCTKm93ZMr+aBIfUXH4Y
+	 vLWBZhlNZO+SswVpobLQKwF/6fn6O+MY9fhauUIVWVG8im9Cz3MBwyb7dPJZp2tnv3
+	 WnY2L6Q7c1/jjyi0Se5FiLXKDIaI8ObinK2jrsSIkz6f30BDy47zqRJTEZT37h0sT+
+	 lfRCoBT858RCg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 20 Mar 2024 18:55:20 +0300 (MSK)
+Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 20 Mar 2024 18:55:19 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+	<mturquette@baylibre.com>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <sboyd@kernel.org>
+CC: <kernel@salutedevices.com>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	Dmitry Rokosov <ddrokosov@salutedevices.com>
+Subject: [PATCH v1 1/4] clk: meson: a1: peripherals: determine maximum register in regmap config
+Date: Wed, 20 Mar 2024 18:54:45 +0300
+Message-ID: <20240320155512.3544-2-ddrokosov@salutedevices.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240320155512.3544-1-ddrokosov@salutedevices.com>
+References: <20240320155512.3544-1-ddrokosov@salutedevices.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|OS8PR03MB8961:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fCbqENdr4sPy4MyZ7/quuH26d53bB055Wv1RmF0rPK+dnlUbmx7KyKCNkqiN1QZ56t1sLXgTbZfW68giSTsOX5EckCVC4wbNVcrrOSocjd+zzL6XCgJyWHVe3nlhcxLAi+j7c567FK2vJw4KPotXc1aC48x+kgaqZpWu//PaPoSRiG28Ttu7JSUQbKSuU5FpEdjSA8ZJ0GeihncsHrhQZNjKBg8r5wzwFfI/BWpZ+RAx2QxI6aYrlsCzd4Wkipj56EQ4pngyhR7go/lxlKwZHzwbT0vNFJfYWa0peOJGR+TxtAuQQ0USbc27ockmXc8F2ogKWbBJiQoclOWhrz2zfu189LHUGaKxMOLyYS8i40zRH8wqE4fHw+EGyPi9ygVal6kxGMkwOjyVhIAXd/M2Es7cYV7DuQDySRinCdjdUG/rPuNluN3P+SWL8/CaltlWnS6dqA7HUnSYBi78oKI6nrQcbMDEdJkhmCh1zql+aWozbl34J8b+vE11CqIm2bdfLe/NpHhISnoVV6hkGPV3VVEBWBM+YyIew2mmSasUiXRZalHOTe85VlE3DrKwaFJ6QeQQSHhBN7lZDYoIHSZrvpyzUg4T4c45Dr/51LZPmyC9X1I7HkODMf1/HpVhifvvDd8kjqXw6ib8ZBnHsaT4HIDSx55jkEl5nw+X391pwevrtPcsYcQxS4NfxOKpU/dMcyKPJbqybtFupviMvB5jmQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(7416005)(366007)(921011);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SU1EcFVLazFyYTIwa1E0K2NOdWppUlV2RzBoTUdEZk5Xd3Z5ajFwaDN6RStq?=
- =?utf-8?B?bFQ4WEZxbitNdHNFS3l5Wkt3c0dBR3lZWTgwMlI0SDEvYmpkV0FVMEwrenNI?=
- =?utf-8?B?VVg5SExBVU9KU2xEN0Q0SnhSMlowZnM5aFJWdEt6RGVISEV5TnZ0TFR5QTZn?=
- =?utf-8?B?aHpKSDZnWjZvdWQzSFlQRmFFN2swSUtQVU9KMEo0NnJaYXpVRlo5Y1pMRVdI?=
- =?utf-8?B?alBNdWsxM1VqRzF1RklwNUdQWDN5ZUx3bE9ocXVFeUtkZGY5QXowZnRrTHpG?=
- =?utf-8?B?eFJiRVk2aU1DT1JYcnp3TllWTWEzUHo1bG9Eejc3WHpON0QyZ0lKbHZaKzVw?=
- =?utf-8?B?Qnc5eVI1cXV5S0ZNZThNRTNFRFYycHRrcysyOGxONXVBNzA1NTQyT0tSNjZG?=
- =?utf-8?B?SkF5U09YV1ROdW51aHJId1hVcm00SXF0WnhyM0ptL0puQWVwQUJLWFVIekY5?=
- =?utf-8?B?clM4TGNGc3h3WVZYREVHeWdyWThaQ0E0bTljM0g5Q1NOaFI2cnFEaHl1UE9M?=
- =?utf-8?B?ZTFHOUxvZTBZVFVDUWxNT1RRdi9MbVB5T2YxRmc1aWlzTEtDRVNOSXZieWxW?=
- =?utf-8?B?TnBEalVBa05VS2JMazkxNGFGK3l0SmlCbGhTL3A4L2ZyWEwxS09uYnhrUm1O?=
- =?utf-8?B?U0ZmUENBM3ZGMmRpOWFYNjUxYS81dVhGZ1JQeXpKd3ZYMVJET0ZHa25rVHp1?=
- =?utf-8?B?azFPcll6SWV5Y05rZmgyc2s2NmlEWWVSa0xheVVlVnZ0TkFyeWpBTkNVZ0dJ?=
- =?utf-8?B?bEtxQXM1NEp0b0R5anJMY09zL0ZRWXo1Z25yaVF2aVphTUlGc25PR0NGZkNx?=
- =?utf-8?B?dWw5Ry9pTUpxdFoyTXZZN2gyTmE0TFJ3YmxVUDRFMGhvRlVsL1E0S0kwSzht?=
- =?utf-8?B?YmJLWTRwVXZIS2JhNDN5Vk9CTk5JRUE2OE1vaXUzUHNOSjZ1Mi9DMFBIMWJB?=
- =?utf-8?B?OVZ2NU5NNElPN2xiNjBHL2NQZ0V6VW5lNVZLd3dXYnh5UjVPTmRmSWNlekx0?=
- =?utf-8?B?WEFKOUN5R1l4Ty8xK21vK2NYWXJvVGVGZUdodUVYK2UwZGJna2xNdDY0RXFz?=
- =?utf-8?B?SWswOXJCMDFLLzFUa1BYcWk0ajBOU3VkN2dVRjc1TnZzWGJKL3liMmJwbFEr?=
- =?utf-8?B?YlVhcFFnalJVM2xzQnFBaFAvVXYxRk5ndExKN3dpWW92blJQNXNVWERMTnRp?=
- =?utf-8?B?WUY4YTlLTy9WZWRWWnQ5cW0rMUo3SkFIZHk3UXhCVnE5ZkorSGlNc1ZrUmZK?=
- =?utf-8?B?WkkxV1BkMnB2Qm5TcGtjcXAvdEtFVU9CZ05NZnpHbVhUWkxaTmdkaDV3OEtU?=
- =?utf-8?B?aStuUnVPL2JXQlJ6WmFEeldUUXdtRjlJeVY5UDhJZzVJVWsybFo4dFdjZE04?=
- =?utf-8?B?U0hlWkVycDNuQUh4MHlERjlMcTFmN3FiMjVPUHNuOVRWTStsZ293aVVFdUNy?=
- =?utf-8?B?K05pRnZRSnNBTVd1N3VFbllZVkF3aXYvQmRTMjYyKy8wWVBGR2p2R1pFYVpt?=
- =?utf-8?B?eUVGc2lvdkpSeGN4Z0VpKzhLSWpoTmRTQmZDMkZEYXdqN3dhRHZoZ0FiNHps?=
- =?utf-8?B?T1BOSG9rZC8vUi9YUWFiUllLeGxuZGk0dTk5cEV4WlBOaDUzWUU5UG0xQ1hh?=
- =?utf-8?B?TS9YRHFFaXUzNk5CbWZ0aEM5bndqMlRuM25BZlBpT2lHai9IdWVuTmd4M3hW?=
- =?utf-8?B?M0xXMmVpT1hxR1VIb3ZGTVlsYXBRVnNHUXpkMHk1QXhQNVR5Wit6YXFpT3d5?=
- =?utf-8?B?cTdOREh2UEREejN4N0pWZzF3RzZzc0NkTVlxTU9jTWFkOElEcXhuTUNXeEIv?=
- =?utf-8?B?VVZJSUpSYjVBU1NtbURnSFNLYk1MWEhkVWJHMmpHcEFKcENxbWZYam5mUFBp?=
- =?utf-8?B?ZjJGRXIrZXF4MTJRcGViNU1lZytQNVcrbVdmRkdiVk12N0ZSSHRPWmI5Wm5D?=
- =?utf-8?B?TVkxSnVhd216M3p3UkduWnBHVklUU0V5cncyZDJ2b3A0eFgrSFpodkl5aE9u?=
- =?utf-8?B?VFdmaHl2dVhqY0JicHdtRk4xMlc5OC9xekp0Mmx5Yk5mVWVkUFBVTXV6TjJk?=
- =?utf-8?B?NmxOazR5VXE5WXBSNVZYTmd2WW1CRjk0NkphVE9EeHNGS0E1c2MvRzhTNUdx?=
- =?utf-8?B?QmNFM2lOaExJd1JQd0JpS1dwa0txK1Y3clZ1WDlYdlFNK2JGOEg5SmlsWXFM?=
- =?utf-8?B?dFE9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1e8a00b-23eb-4dc0-b06a-08dc48c8def7
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2024 10:31:15.5167
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qQofdM3H0aB/nbltQfmo53iud2nCyOjQ6Q9/sUL9LM1vDhBIU82p5WDtq3aYp/IB8YPZza+DZIFBreXkKBM3kdIyaLV+4psZ6xfjNpCBk0A=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS8PR03MB8961
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184302 [Mar 20 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 10 0.3.10 53c821b925e16276b831986eabc71d60ab82ee60, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/20 06:45:00 #24314254
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240320_033121_593120_CA433F76 
-X-CRM114-Status: GOOD (  16.74  )
+X-CRM114-CacheID: sfid-20240320_085530_829827_92B175B1 
+X-CRM114-Status: GOOD (  12.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -146,72 +97,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Krzysztof,
-     Thanks for your reply.
+When the max_register value is not set, the regmap debugfs 'registers'
+file does not display the entire range of the regmap.
 
-On 2024/3/20 17:48, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On 20/03/2024 10:44, Xianwei Zhao via B4 Relay wrote:
->> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>
->> Amlogic A5 is an application processor designed for smart audio
->> and IoT applications.
->>
->> Add basic support for the A5 based Amlogic AV400 board, which describes
->> the following components: CPU, GIC, IRQ, Timer and UART.
->> These are capable of booting up into the serial console.
->>
->> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> ---
->>   arch/arm64/boot/dts/amlogic/Makefile               |  1 +
->>   .../boot/dts/amlogic/amlogic-a5-a113x2-av400.dts   | 42 ++++++++++++++++++++++
->>   arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        | 40 +++++++++++++++++++++
->>   3 files changed, 83 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
->> index 9a50ec11bb8d..154c9efb26e4 100644
->> --- a/arch/arm64/boot/dts/amlogic/Makefile
->> +++ b/arch/arm64/boot/dts/amlogic/Makefile
->> @@ -1,5 +1,6 @@
->>   # SPDX-License-Identifier: GPL-2.0
->>   dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
->> +dtb-$(CONFIG_ARCH_MESON) += amlogic-a5-a113x2-av400.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
->> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts b/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts
->> new file mode 100644
->> index 000000000000..2f5f5ea74bc9
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts
->> @@ -0,0 +1,42 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include "amlogic-a5.dtsi"
->> +
->> +/ {
->> +     model = "Amlogic A113X2 av400 Development Board";
->> +     compatible = "amlogic,av400","amlogic,a5";
-> 
-> Please fix missing space in all your patches.
-> 
-Will fix.
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+---
+ drivers/clk/meson/a1-peripherals.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/clk/meson/a1-peripherals.c b/drivers/clk/meson/a1-peripherals.c
+index e2a1f12f9175..621af1e6e4b2 100644
+--- a/drivers/clk/meson/a1-peripherals.c
++++ b/drivers/clk/meson/a1-peripherals.c
+@@ -2187,6 +2187,7 @@ static struct regmap_config a1_periphs_regmap_cfg = {
+ 	.reg_bits   = 32,
+ 	.val_bits   = 32,
+ 	.reg_stride = 4,
++	.max_register = DMC_CLK_CTRL,
+ };
+ 
+ static struct meson_clk_hw_data a1_periphs_clks = {
+-- 
+2.43.0
+
 
 _______________________________________________
 linux-amlogic mailing list
