@@ -4,104 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B01AC54E5D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2024 13:53:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52235C54E67
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2024 09:44:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=n9bv/CH4jH54rGgLeUKufhXCXxPN4jyBRmNr85IJX8c=; b=GI01G9o2pHUbKp
-	CxiMzY8FnT1K/ByxYs+MBXajPTF21Mw7H1eD+K4FhuWQX8YDH7XF5KaKhM/0MHuaqEwwzDPlHKS6g
-	4WaFOl1usG5WYhehExFyzH5RPr9JiIeOjMLU6pQmQUHlzmqXl3/BmbV/XqqTZ4C92ZZoSp/w3aP4+
-	ykIfmHWjg23hA2ADjrIkd2jSzSf4IAfDsyu0EvbXVdMfO7xJoOybablmyQ7JW3FrlpmwyVZjlBBUk
-	at/DcwNFvRDhu2nEKSph5owf0g5cfOEL7fuZDU1gXxH5BwKEfBbISNv0dgkwwJAEet/zPSm+5V/OF
-	TdZuyAJ3wqDGXGyuR+DA==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=rZOAqcy+Hv/osWOny75b1vJBDWSV1L5JWYrcN5lwufE=; b=gPGmNT4mNTHHb6
+	8HRjF//8O+7buagWCcZ6NGKWghj/muQYdis6CwvJnwQBLzWnz0ZUXcmlEcrJvgoR/31QLObG9sd6z
+	JsS3RLQLON30slfe+XOi7jXA5KAZJgcRUrOtTS/O9WpaMdR3s2ZleCBk3GBXv+eGWntc6Twjw6sFY
+	MCVGra30tQu/qTTvI9/aMI90JjbQERk1YISOnWyAiZaKTekzllqqeAG4rAn5nut6nBRRRADeF/kEi
+	aZm4x5yCPcHHMTokn98Rcg6/reNgSQ7peiFfg5btvjxz5ejOUXd/CGT3G5WjbviqgrOclO9CPxPpA
+	MAvneTvJyHUqUMv4irfw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmZu7-0000000Cs19-3wx2;
-	Tue, 19 Mar 2024 13:53:23 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1rmsUr-0000000GXyO-09ge;
+	Wed, 20 Mar 2024 09:44:33 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmZu3-0000000Cs04-1i6o;
-	Tue, 19 Mar 2024 13:53:22 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 0957D10000A;
-	Tue, 19 Mar 2024 16:53:12 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 0957D10000A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1710856392;
-	bh=cMQFR177UDppiHHa9pB9nbmCdpBrIycSstEw9RoGTQI=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=ZdXJ+IUoxafVJmHArgilqIq/xR+cA8woWE5N9r6qzBMaWFunn7syOsKx8qLG8PS9j
-	 vQ83YE4Sbd4e2GyM/LXFVj5CQEzYiLvCcu31GAteRYOud+OnUBzC23Uf/Xqzn91k3G
-	 ST/k5QpvS04ZBnytrGLzHPs3ec/4lGwCGF1I6Z0yPqQCyvYoG1ITUtXLW7gjQFLDOv
-	 oH3k8K5Ak8eAwJJDsOFfN4BFtfd2MH2RBk9JpLmvU0nmCx8BeYg+zHF8roQ5tmlLJ6
-	 CW/G29alyisg1jGq+assolGMSWPgFNCYosGKMcHu2B9G5KWPNSyYdnYJtcU7RobrrC
-	 IKjlAIup7GSgw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 19 Mar 2024 16:53:11 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 19 Mar
- 2024 16:53:11 +0300
-Date: Tue, 19 Mar 2024 16:53:11 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-CC: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman
-	<khilman@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <alsa-devel@alsa-project.org>,
-	<linux-sound@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-	<kernel@salutedevices.com>
-Subject: Re: [PATCH 01/25] clk: meson: a1: restrict an amount of 'hifi_pll'
- params
-Message-ID: <20240319135311.xjpgkvgyczq4eymi@CAB-WSD-L081021>
-References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
- <20240314232201.2102178-2-jan.dakinevich@salutedevices.com>
- <1j8r2jj24k.fsf@starbuckisacylon.baylibre.com>
- <cbfd9c66-cca5-49f5-9468-43710c48518e@salutedevices.com>
- <1jedc7hlg4.fsf@starbuckisacylon.baylibre.com>
- <d4cfef9e-3cae-4f1a-90b3-33d5707596f9@salutedevices.com>
- <1jsf0mfwwg.fsf@starbuckisacylon.baylibre.com>
+	id 1rmsUn-0000000GXwL-3X2g;
+	Wed, 20 Mar 2024 09:44:31 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id D978A60AF6;
+	Wed, 20 Mar 2024 09:44:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7F8BBC433F1;
+	Wed, 20 Mar 2024 09:44:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710927868;
+	bh=57GTWlJ10xHsfYL6870kURGURrNt5JlLAOfaQw5P9Mw=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=IiQ/KxHjF8Wd5+l6cmnn0tVi1X74aXKgNlUIjiSCypFX/Vo4d4HGRUFOzIhj6LhXi
+	 KGMNXYfdkatHKKiklOBSpvpSlLYaev+Jtb2JOFstH3tEMS6jd2GCLBLeBA4Dqby1Pq
+	 Ch0U46U7VrckcTloNs3lHlWNuYTvbXreBw9JfRitoWnOi7Nccx8S7KtBzEdNx62Tcy
+	 XSNdihlGJ2xFIdfsHFN2/DSBu1Vl8rHODiINu8/iMEChOZVz+v+9pyfWYywp1LFDkO
+	 Brm+GDyFENOxAQGtsR+ODQvfr/DP12LxZiNNXLxQnsNJU9G2ear/WQ6qNOXn8nv/t7
+	 oD9MLlf5zONyg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C0B8CD11C2;
+	Wed, 20 Mar 2024 09:44:28 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v2 0/5] Baisc devicetree support for Amlogic A4 and A5
+Date: Wed, 20 Mar 2024 17:44:12 +0800
+Message-Id: <20240320-basic_dt-v2-0-681ecfb23baf@amlogic.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1jsf0mfwwg.fsf@starbuckisacylon.baylibre.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184265 [Mar 19 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 10 0.3.10 53c821b925e16276b831986eabc71d60ab82ee60, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/03/19 13:26:00
-X-KSMG-LinksScanning: Clean, bases: 2024/03/19 13:26:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/19 01:36:00 #24282057
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-B4-Tracking: v=1; b=H4sIAOyv+mUC/23MSwrCMBSF4a2UOzaSmyZWO3IfUiTm0V6wjSQlK
+ CV7N3bs8D8cvg2Si+QS9M0G0WVKFJYa4tCAmfQyOka2NgguJG9RsIdOZO52Zaic7JRQWmIL9f6
+ KztN7p25D7YnSGuJnlzP+1j9IRsZZ5xGtbzU/X05XPT/DSOZowgxDKeULHOVI+qIAAAA=
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-serial@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1710927866; l=2117;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=57GTWlJ10xHsfYL6870kURGURrNt5JlLAOfaQw5P9Mw=;
+ b=jK6abUosSrr17IwEhUIrG13N7aYIqvBJbqHa/G/LMGiennQnD2whXlY0q+l/D6h/ZnyOdLZ5Y
+ pNQOW88O1UfBKE2djyM09f5JDJ3fXPmBlJvlqA9saYln1HnkZzV7BBn
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240319_065320_152758_F104B190 
-X-CRM114-Status: GOOD (  48.26  )
+X-CRM114-CacheID: sfid-20240320_024429_999211_4D23874C 
+X-CRM114-Status: GOOD (  11.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,173 +89,65 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Mar 19, 2024 at 09:21:27AM +0100, Jerome Brunet wrote:
-> 
-> On Tue 19 Mar 2024 at 01:35, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
-> 
-> > On 3/18/24 13:17, Jerome Brunet wrote:
-> >> 
-> >> On Sun 17 Mar 2024 at 17:17, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
-> >> 
-> >>> On 3/15/24 11:58, Jerome Brunet wrote:
-> >>>>
-> >>>> On Fri 15 Mar 2024 at 02:21, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
-> >>>>
-> >>>>> Existing values were insufficient to produce accurate clock for audio
-> >>>>> devices. New values are safe and most suitable to produce 48000Hz sample
-> >>>>> rate.
-> >>>>
-> >>>> The hifi pll is not about 48k only. I see no reason to restrict the PLL
-> >>>> to a single setting.
-> >>>>> You've provided no justification why the PLL driver can't reach the same
-> >>>> setting for 48k. The setting below is just the crude part. the fine
-> >>>> tuning is done done with the frac parameter so I doubt this provides a
-> >>>> more accurate rate.
-> >>>>
-> >>>
-> >>> You are right, it is not about 48k only. However, there are two issues.
-> >>>
-> >>> First, indeed, I could just extend the range of multipliers to 1..255.
-> >> 
-> >> Why 1..255 ? This is not what I'm pointing out
-> >> 
-> >> According to the datasheet - the range is 32 - 64, as currently
-> >> set in the driver.
-> >> 
-> >
-> > Could you point where in the doc the range 32..64 is documented?
-> > Documentation that I have may be not so complete, but I don't see there
-> > any mention about it.
-> >
-> > Anyway, range 32..64 of multipliers is not enough to produce accurate
-> > clock, and a need 128 for 48kHz.
-> 
-> A1 datasheet v0.4 - Section 7.6.3.2
-> 
-> >
-> >> The change you have provided request a multipler of 128/5 = 25,6
-> >> If you put assigned-rate = 614400000 in DT, I see no reason can find the
-> >> same solution on its own.
-> >> 
-> >
-> > The reasoning is following. I don't know why 32..64 range was declared
-> > for this clock, and whether it would be safe to extend it and include
-> > 128, which is required for 48kHz. But I know, that multiplier=128 is
-> > safe and works fine (together divider=5).
-> 
-> You have not answer my remark.
-> Mainline does not do everything like the AML SDK does. Saying you are
-> copying it because you know it works (in your opinion) is not good
-> enough.
-> 
-> I'm telling you that your hack is not necessary and so far, you have not
-> demonstrated that it is.
-> 
-> Also the multiplier range in m/n, not m alone.
-> 
-> >
-> >>> But I am unsure if hifi_pll is able to handle whole range of
-> >>> mulptipliers. The value 128 is taken from Amlogic's branch, and I am
-> >>> pretty sure that it works.
-> >> 
-> >>>
-> >>> Second, unfortunately frac parameter currently doesn't work. When frac
-> >>> is used enabling of hifi_pll fails in meson_clk_pll_wait_lock(). I see
-> >>> it when try to use 44100Hz and multipliers' range is set to 1..255. So,
-> >>> support of other rates than 48k requires extra effort.
-> >> 
-> >> Then your change is even more problematic because it certainly does not
-> >> disable frac ... which you say is broken.
-> >> 
-> >> That parameter should be removed with a proper comment explaining why
-> >> you are disabling it. That type a limitation / known issue should be
-> >> mentionned in your change.
-> >> 
-> >
-> > Handling of frac should not be removed, it should be fixed to achieve
-> > another rates. But that is not the goal of this commit.
-> 
-> You argued that frac was broken and that was partly why you introduced
-> this work around. I'm telling you this approach is incorrect.
-> 
-> So either :
-> * Remove frac for now, until it is fixed, because it is broken and add
->   comment clearly explaining that quirk.
-> * Or fix it now.
-> 
-> Your choice.
-> 
-> >
-> >
-> >>>
-> >>>>>
-> >>>>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-> >>>>> ---
-> >>>>>  drivers/clk/meson/a1-pll.c | 8 ++++----
-> >>>>>  1 file changed, 4 insertions(+), 4 deletions(-)
-> >>>>>
-> >>>>> diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
-> >>>>> index 4325e8a6a3ef..00e06d03445b 100644
-> >>>>> --- a/drivers/clk/meson/a1-pll.c
-> >>>>> +++ b/drivers/clk/meson/a1-pll.c
-> >>>>> @@ -74,9 +74,9 @@ static struct clk_regmap fixed_pll = {
-> >>>>>  	},
-> >>>>>  };
-> >>>>>  
-> >>>>> -static const struct pll_mult_range hifi_pll_mult_range = {
-> >>>>> -	.min = 32,
-> >>>>> -	.max = 64,
-> >>>>> +static const struct pll_params_table hifi_pll_params_table[] = {
-> >>>>> +	PLL_PARAMS(128, 5),
-> >>>>> +	{ },
-> >>>>>  };
-> >>>>>  
-> >>>>>  static const struct reg_sequence hifi_init_regs[] = {
-> >>>>> @@ -124,7 +124,7 @@ static struct clk_regmap hifi_pll = {
-> >>>>>  			.shift   = 6,
-> >>>>>  			.width   = 1,
-> >>>>>  		},
-> >>>>> -		.range = &hifi_pll_mult_range,
-> >>>>> +		.table = hifi_pll_params_table,
-> >>>>>  		.init_regs = hifi_init_regs,
-> >>>>>  		.init_count = ARRAY_SIZE(hifi_init_regs),
-> >>>>>  	},
-> >>>>
-> >>>>
-> >> 
-> >> 
-> 
-> 
-> -- 
-> Jerome
+Amlogic A4 and A5 are application processors designed for smart audio
+and IoT applications.
 
-BTW, here Amlogic already mentioned all possible output audio rates for
-which hifipll can be used:
+Add the new A4 SoC/board device tree bindings.
 
-https://lore.kernel.org/all/1569411888-98116-1-git-send-email-jian.hu@amlogic.com/T/#md7083b4f851ab97dfce43f8f6a3b266eb49ed329
+Add the new A5 SoC/board device tree bindings.
 
-```
-The audio working frequency are 44.1khz, 48khz and 192khz.
+Add A4 UART compatible line for documentation.
 
-614.4M can meet the three frequency.
+Add basic support for the A4 based Amlogic AV400 board, which describes
+the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
+booting up into the serial console.
 
-after the hifi pll, there are two dividers in Audio clock.
+Add basic support for the A5 based Amlogic AV400 board, which describes
+the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
+booting up into the serial console.
 
-614.4M/3200 = 192khz
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v2:
+- Delete bindings for uncommitted boards.
+- Add A4 UART compatible line for documentation.
+- Use common dtsi for a4 and a5.
+- Fix psci version 1.0, and fix some formats.
+- Modify secmon reserved memory size 10M(actual using).
+- Link to v1: https://lore.kernel.org/r/20240312-basic_dt-v1-0-7f11df3a0896@amlogic.com
 
-614.4M/12800 = 48khz
+---
+Xianwei Zhao (5):
+      dt-bindings: arm: amlogic: add A4 support
+      dt-bindings: arm: amlogic: add A5 support
+      dt-bindings: serial: amlogic,meson-uart: Add compatible string for A4
+      arm64: dts: add support for A4 based Amlogic BA400
+      arm64: dts: add support for A5 based Amlogic AV400
 
-614,4M/13932 = 44.0999khz
-```
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 12 ++++
+ .../bindings/serial/amlogic,meson-uart.yaml        |  4 +-
+ arch/arm64/boot/dts/amlogic/Makefile               |  2 +
+ .../boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts   | 42 ++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi | 66 ++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 40 +++++++++++++
+ .../boot/dts/amlogic/amlogic-a5-a113x2-av400.dts   | 42 ++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        | 40 +++++++++++++
+ 8 files changed, 247 insertions(+), 1 deletion(-)
+---
+base-commit: 7092cfae086f0bc235baca413d0bd904f182670c
+change-id: 20240312-basic_dt-15e47525a413
 
+Best regards,
 -- 
-Thank you,
-Dmitry
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
