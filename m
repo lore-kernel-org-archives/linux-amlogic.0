@@ -4,115 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E9E7C47DD9
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Mar 2024 10:14:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E20BDCD11DB
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Mar 2024 13:26:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=y1F3l9k4xqtH5T5J0LUZoTw7Xg5klRY80BdM3JtqXtY=; b=VLsvoaEpr/WLdOR/0yayCH+zE0
-	WXmMB60ZG1aJYvrJ+zJ+j0bIDQxdW5mguK0vien9arv2N5jauSNP6qvjVKraB35OqbSGdNyLk6RNZ
-	Zt4qRlv08QYjbmU2jGLTpWiXpzgocFud9sXACfQ+uTldbjiuFtcuq1ZRe/BS0g0LlPwzOrWABaVqn
-	fA1tKHCDMD2QoP18WBSniqfVgk63FzPh9zrgi0wZpTlvWbH3BDbgw/HJw6T+tJ5cXxfKF7cnTVHIB
-	v3NN0+wXbkMuUYfcBOKayu7Dm8eaT2uRye5ZDcr8SeR7iC6VeIUgZ0GiP5JTVmxGGXTswHIvsCuR8
-	XY1zo3Pw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=lOQOq/bADMQ8pE7U0sf/DmU0k5xqINZmX0OaAGHsncM=; b=p6djrm0W4g5zoV
+	iSvgirLeQswCm3yN/Q26jHp2qEWmmAljlqphi7leqE2e09itPJ3WaxQA2TZ0xZK4h7pQfQiaK6JmB
+	2cusQ/6CvkzQPs3WQEfFXKvDF3qUA+3G0zjgXchl0gwnCFNMtJ94q4iHf8mNJy4shChYkVZhhlD+S
+	9mOVLT4bDpDHpC1nwZ1urybsVBy4vfkmfG/YqYvs91BqhX2fi3G1FExfV/4Ux9iKYzO8tt0e2cM+5
+	UpXYokTHZQX9edefltSCZAEr873IJd6l8FozSEnKazcXc3KCD3Do/Pz1FkMe/SLZLzBNf+OxmQ1FT
+	Lt/IbYtSLx7K+4hrGjug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rnbul-00000006jYj-4BdQ;
-	Fri, 22 Mar 2024 10:14:20 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1rneut-00000007Hzq-1Vri;
+	Fri, 22 Mar 2024 13:26:39 +0000
+Received: from www.zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rnbui-00000006jXO-0hju
+	id 1rneum-00000007HtA-0JDX
 	for linux-amlogic@lists.infradead.org;
-	Fri, 22 Mar 2024 10:14:18 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4147e735a0bso130525e9.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 22 Mar 2024 03:14:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711102453; x=1711707253; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DOf1xm2Wbn7WqqM5LpTuhpZlLrziWVP3OvZukZiG1Ck=;
-        b=Yf9VBm6G1kUBfEDUbASGZYtaPm15bbX5YGgx1qh91Xqmaya2Jnpcu5fooyv1iIBr+M
-         DRP8MDA80t0PzaVflLHQTLOw/T41v+awyzHj/lE5mPZ1hk9+76h0fHNeF1eKRTEYB0Zv
-         YE8bQHs/HvzHh7FTh4tC0m9N++OlHb5YCxTIY11wAe1EO0G4D2ZtjDn96SD2LBnvVlGh
-         EWMhipV4gKh1wBB05B4HMwQfrGbwl7ETnjXLfGtfcUaMIUGZ+SVyZgcCWsZX8hKFcypE
-         FlA5+8f0VDlJEuYMrWmWMO8EFa7O8l/WK8/RJdqQFJ0H9/ETu1TMLPtB2/06V0yxqsRu
-         jN5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711102453; x=1711707253;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=DOf1xm2Wbn7WqqM5LpTuhpZlLrziWVP3OvZukZiG1Ck=;
-        b=ErzZP6xPxyhzRZQ+54YQrj41q+9P2kWyxUiQpu5+u/1xWidAz1XuG9FVaNry0I5pwy
-         WlpD+VIPMQZ+yoNgX9nSsFQMNORBh2dXtPixL4EzhfAfTHevNTX+x/nlx0yk30i8lSHT
-         3N5ukGlpLQPs4nt4SAJv2i8h4hOGpd9S/gBWRI1hsaoh7AQkXES7Zaeb8zaF7nnmWaP/
-         G7xR/yV+wA633VbanSA2+GsC0wp5jfZN/L/95fXquHLn0GpQUPMtO5h0tMBoYc/Sv5qf
-         URuO+5wJQWvJx0NXjh5gshptFSj6OF4JOAfYxir7QRHC9fIkIUka6FPf1BYIWPMWZLcP
-         zzkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWcKg14QlQwcxMdHUDcKno6rXjPnsoqpsxnfBY5LuOjckBhlt9k0zEhPocxUwL9R1P9R0GHVWdxzu3QT8OcNz2zDY0zyo9KA9boYeGzU1xYPfs=
-X-Gm-Message-State: AOJu0YzBTJWvEF+msY6hxdez70uhk2OlbRl6mk3v2aQ5ATf0cZ4G9Dmo
-	+EFs5H1la4mEdLXqjAmnchmBsTOpqvE9n0mjwHpvvdLXcG4918isMC0jpSSCnnE=
-X-Google-Smtp-Source: AGHT+IEpZLhHtN9no5st6JD8bO8E6gGN/hMjnnh806usH+5rVCCOArNkPL1sv8V/dFDNNeytPOVSQQ==
-X-Received: by 2002:a05:600c:4690:b0:412:f015:6fa6 with SMTP id p16-20020a05600c469000b00412f0156fa6mr1370398wmo.28.1711102452932;
-        Fri, 22 Mar 2024 03:14:12 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:3ee1:a278:2b57:55f7? ([2a01:e0a:982:cbb0:3ee1:a278:2b57:55f7])
-        by smtp.gmail.com with ESMTPSA id e13-20020a05600c4e4d00b004146750314csm8493505wmq.3.2024.03.22.03.14.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Mar 2024 03:14:12 -0700 (PDT)
-Message-ID: <3080f43a-1a10-4c63-8265-fda2284354e1@linaro.org>
-Date: Fri, 22 Mar 2024 11:14:11 +0100
+	Fri, 22 Mar 2024 13:26:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=bOf4HkOrzle/Fy
+	JG8mZHPOABnHhQv51u3vi0fpeyQ5Q=; b=a6wbfcte3+iXXCHibc+JrZzTin6dRv
+	R/KSB8hp01+LD2eYy9sHlg2rk631UWOsn12Y+n+kLseFY+llqMyTkAsXsa6SiRwh
+	MWm4LoN2zRJucl7AcBuXiztmbKc/EIBM7mZDtMCuyBPr9HgJZmeZ/QrbcrtglWHS
+	XN+P7gn2zQD/Lze6LmCDGEGHL9G2ujuVTWCU21W3oIUiV/btIhr/tqNO2UzK6c7u
+	GiqtIoKlD88U2nMoYFxi6SLiCaIBiXxhRRTMJxL3pZ9O0lWnbgR868o+Ty13YBXb
+	C70pYVUa6DcFGd/ysTyvqG2U7fdTnfOcmCXLvQLbrSiCtbkj8qjVIAVA==
+Received: (qmail 3869988 invoked from network); 22 Mar 2024 14:26:20 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 22 Mar 2024 14:26:20 +0100
+X-UD-Smtp-Session: l3s3148p1@LoLvxD8UMpNehhtF
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-i2c@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	asahi@lists.linux.dev,
+	chrome-platform@lists.linux.dev,
+	imx@lists.linux.dev,
+	linux-actions@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-mips@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-sunxi@lists.linux.dev,
+	linux-tegra@vger.kernel.org,
+	openbmc@lists.ozlabs.org,
+	virtualization@lists.linux.dev
+Subject: [PATCH 00/64] i2c: reword i2c_algorithm according to newest specification
+Date: Fri, 22 Mar 2024 14:24:53 +0100
+Message-ID: <20240322132619.6389-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v5 09/21] drivers: crypto: meson: process more than
- MAXDESCS descriptors
-To: Corentin Labbe <clabbe.montjoie@gmail.com>,
- Alexey Romanov <avromanov@salutedevices.com>
-Cc: clabbe@baylibre.com, herbert@gondor.apana.org.au, davem@davemloft.net,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, vadim.fedorenko@linux.dev,
- linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
-References: <20240301132936.621238-1-avromanov@salutedevices.com>
- <20240301132936.621238-10-avromanov@salutedevices.com> <Zf1BAlYtiwPOG-Os@Red>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <Zf1BAlYtiwPOG-Os@Red>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240322_031416_484890_C339FFB3 
-X-CRM114-Status: GOOD (  12.39  )
+X-CRM114-CacheID: sfid-20240322_062632_491607_24EF6667 
+X-CRM114-Status: GOOD (  14.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,112 +84,234 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjIvMDMvMjAyNCAwOToyNywgQ29yZW50aW4gTGFiYmUgd3JvdGU6Cj4gTGUgRnJpLCBNYXIg
-MDEsIDIwMjQgYXQgMDQ6Mjk6MjRQTSArMDMwMCwgQWxleGV5IFJvbWFub3YgYSDDqWNyaXQgOgo+
-PiAxLiBUaGUgb2xkIGFsaG9yaXRobSB3YXMgbm90IGRlc2lnbmVkIHRvIHByb2Nlc3MgYSBsYXJn
-ZQo+PiBhbW91bnQgb2YgbWVtb3J5LCBhbmQgdGhlcmVmb3JlIGdhdmUgaW5jb3JyZWN0IHJlc3Vs
-dHMuCj4+Cj4+IDIuIE5vdCBhbGwgQW1sb2dpYyBTb0MncyB1c2UgMyBLRVkvSVYgZGVzY3JpcHRv
-cnMuCj4+IEFkZCBrZXlpdiBkZXNjcmlwdG9ycyBjb3VudCBwYXJhbWV0ZXIgdG8gcGxhdGZvcm0g
-ZGF0YS4KPj4KPj4gU2lnbmVkLW9mZi1ieTogQWxleGV5IFJvbWFub3YgPGF2cm9tYW5vdkBzYWx1
-dGVkZXZpY2VzLmNvbT4KPj4gLS0tCj4+ICAgZHJpdmVycy9jcnlwdG8vYW1sb2dpYy9hbWxvZ2lj
-LWd4bC1jaXBoZXIuYyB8IDQ0MSArKysrKysrKysrKystLS0tLS0tLQo+PiAgIGRyaXZlcnMvY3J5
-cHRvL2FtbG9naWMvYW1sb2dpYy1neGwtY29yZS5jICAgfCAgIDEgKwo+PiAgIGRyaXZlcnMvY3J5
-cHRvL2FtbG9naWMvYW1sb2dpYy1neGwuaCAgICAgICAgfCAgIDIgKwo+PiAgIDMgZmlsZXMgY2hh
-bmdlZCwgMjgwIGluc2VydGlvbnMoKyksIDE2NCBkZWxldGlvbnMoLSkKPj4KPiAKPiBIZWxsbwo+
-IAo+IEkgaGF2ZSBzdGFydGVkIHRvIHRlc3QgYnkgYWRkaW5nIHBhdGNoIG9uZSBieSBvbmUgYW5k
-IHdoZW4gdGVzdGluZyB0aGlzIG9uZSBJIGdvdDoKPiBbICAgMjEuNjc0OTk1XSBneGwtY3J5cHRv
-IGM4ODNlMDAwLmNyeXB0bzogd2lsbCBydW4gcmVxdWVzdHMgcHVtcCB3aXRoIHJlYWx0aW1lIHBy
-aW9yaXR5Cj4gWyAgIDIxLjY3OTY4Nl0gZ3hsLWNyeXB0byBjODgzZTAwMC5jcnlwdG86IHdpbGwg
-cnVuIHJlcXVlc3RzIHB1bXAgd2l0aCByZWFsdGltZSBwcmlvcml0eQo+IFsgICAyMS43MDQzNjZd
-IC0tLS0tLS0tLS0tLVsgY3V0IGhlcmUgXS0tLS0tLS0tLS0tLQo+IFsgICAyMS43MDQ0ODBdIERN
-QS1BUEk6IGd4bC1jcnlwdG8gYzg4M2UwMDAuY3J5cHRvOiBkZXZpY2UgZHJpdmVyIHRyaWVzIHRv
-IHN5bmMgRE1BIG1lbW9yeSBpdCBoYXMgbm90IGFsbG9jYXRlZCBbZGV2aWNlIGFkZHJlc3M9MHgw
-MDAwMDAwMDAyNjRjMDAwXSBbc2l6ZT00OCBieXRlc10KPiBbICAgMjEuNzE3Njg0XSBXQVJOSU5H
-OiBDUFU6IDEgUElEOiAyNjMgYXQga2VybmVsL2RtYS9kZWJ1Zy5jOjExMDUgY2hlY2tfc3luYysw
-eDFkMC8weDY4OAo+IFsgICAyMS43MjU1MTJdIE1vZHVsZXMgbGlua2VkIGluOiBtZXNvbl9ybmcg
-bWVzb25fZ3hiYl93ZHQgcm5nX2NvcmUgYW1sb2dpY19neGxfY3J5cHRvKCspIG1lc29uX2NhbnZh
-cyBsaWJwaHkoKykgd2F0Y2hkb2cgZ2hhc2hfZ2VuZXJpYyBnY20geGN0ciB4dHMgY3RzIGVzc2l2
-IGF1dGhlbmMgY21hYyB4Y2JjIGNjbQo+IFsgICAyMS43NDEyMTFdIENQVTogMSBQSUQ6IDI2MyBD
-b21tOiBjODgzZTAwMC5jcnlwdG8gTm90IHRhaW50ZWQgNi44LjAtcmMxLTAwMDUyLWc1OTVkNDI0
-OGIxMjcgIzI0Cj4gWyAgIDIxLjc0OTgzNF0gSGFyZHdhcmUgbmFtZTogTGlicmUgQ29tcHV0ZXIg
-QU1MLVM5MDVYLUNDIChEVCkKPiBbICAgMjEuNzU1MzUzXSBwc3RhdGU6IDYwMDAwMGM1IChuWkN2
-IGRhSUYgLVBBTiAtVUFPIC1UQ08gLURJVCAtU1NCUyBCVFlQRT0tLSkKPiBbICAgMjEuNzYyMjUy
-XSBwYyA6IGNoZWNrX3N5bmMrMHgxZDAvMHg2ODgKPiBbICAgMjEuNzY2MDQ3XSBsciA6IGNoZWNr
-X3N5bmMrMHgxZDAvMHg2ODgKPiBbICAgMjEuNzY5ODQyXSBzcCA6IGZmZmY4MDAwODIwZmJiNDAK
-PiBbICAgMjEuNzczMTE5XSB4Mjk6IGZmZmY4MDAwODIwZmJiNDAgeDI4OiAwMDAwMDAwMDAwMDAw
-MDAwIHgyNzogMDAwMDAwMDAwMDAwMDAwMAo+IFsgICAyMS43ODAxOTJdIHgyNjogZmZmZjgwMDA4
-MWQ2MzlkMCB4MjU6IDAwMDAwMDAwMDAwMDEzMjcgeDI0OiBmZmZmMDAwMDAyODhiMDEwCj4gWyAg
-IDIxLjc4NzI2NV0geDIzOiAwMDAwMDAwMDAwMDAwMDUwIHgyMjogMDAwMDAwMDAwMDAwMTMyNyB4
-MjE6IGZmZmY4MDAwODFjMjNhMjAKPiBbICAgMjEuNzk0MzM2XSB4MjA6IGZmZmY4MDAwODBmZTBi
-YjggeDE5OiBmZmZmODAwMDgyMGZiYmMwIHgxODogMDAwMDAwMDAwMDAwMDAwNgo+IFsgICAyMS44
-MDE0MTBdIHgxNzogNjQ1YjIwNjQ2NTc0NjE2MyB4MTY6IDZmNmM2YzYxMjA3NDZmNmUgeDE1OiBm
-ZmZmODAwMDgyMGZiNTQwCj4gWyAgIDIxLjgwODQ4Ml0geDE0OiAwMDAwMDAwMDAwMDAwMDBiIHgx
-MzogZmZmZjgwMDA4MTAwMjc0OCB4MTI6IDAwMDAwMDAwMDAwMDAyNDkKPiBbICAgMjEuODE1NTU0
-XSB4MTE6IDAwMDAwMDAwMDAwMDAwYzMgeDEwOiBmZmZmODAwMDgxMDVhNzQ4IHg5IDogZmZmZjgw
-MDA4MTAwMjc0OAo+IFsgICAyMS44MjI2MjZdIHg4IDogMDAwMDAwMDBmZmZmZWZmZiB4NyA6IGZm
-ZmY4MDAwODEwNWE3NDggeDYgOiA4MDAwMDAwMGZmZmZmMDAwCj4gWyAgIDIxLjgyOTcwMF0geDUg
-OiBmZmZmMDAwMDdkOWFiYjA4IHg0IDogMDAwMDAwMDAwMDAwMDAwMCB4MyA6IDAwMDAwMDAwMDAw
-MDAwMjcKPiBbICAgMjEuODM2NzcyXSB4MiA6IDAwMDAwMDAwMDAwMDAwMDAgeDEgOiAwMDAwMDAw
-MDAwMDAwMDAwIHgwIDogZmZmZjAwMDAwYjMxNGVjMAo+IFsgICAyMS44NDM4NDRdIENhbGwgdHJh
-Y2U6Cj4gWyAgIDIxLjg0NjI2MF0gIGNoZWNrX3N5bmMrMHgxZDAvMHg2ODgKPiBbICAgMjEuODQ5
-NzEwXSAgZGVidWdfZG1hX3N5bmNfc2luZ2xlX2Zvcl9kZXZpY2UrMHhiOC8weGMwCj4gWyAgIDIx
-Ljg1NDg4NV0gIGRtYV9zeW5jX3NpbmdsZV9mb3JfZGV2aWNlKzB4YzAvMHgxMWMKPiBbICAgMjEu
-ODU5NjI4XSAgbWVzb25faGFuZGxlX2NpcGhlcl9yZXF1ZXN0KzB4NDljLzB4N2M0IFthbWxvZ2lj
-X2d4bF9jcnlwdG9dCj4gWyAgIDIxLjg2NjM1Nl0gIGNyeXB0b19wdW1wX3dvcmsrMHgxNjAvMHgy
-YWMKPiBbICAgMjEuODcwMzI0XSAga3RocmVhZF93b3JrZXJfZm4rMHhlNC8weDMwMAo+IFsgICAy
-MS44NzQyOTFdICBrdGhyZWFkKzB4MTFjLzB4MTIwCj4gWyAgIDIxLjg3NzQ4M10gIHJldF9mcm9t
-X2ZvcmsrMHgxMC8weDIwCj4gWyAgIDIxLjg4MTAyMF0gaXJxIGV2ZW50IHN0YW1wOiA5ODgwCj4g
-WyAgIDIxLjg4NDI5Nl0gaGFyZGlycXMgbGFzdCAgZW5hYmxlZCBhdCAoOTg3OSk6IFs8ZmZmZjgw
-MDA4MDk4ODgzND5dIF9yYXdfc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSsweDZjLzB4NzAKPiBbICAg
-MjEuODkzNjk4XSBoYXJkaXJxcyBsYXN0IGRpc2FibGVkIGF0ICg5ODgwKTogWzxmZmZmODAwMDgw
-OTg3Y2EwPl0gX3Jhd19zcGluX2xvY2tfaXJxc2F2ZSsweDg0LzB4ODgKPiBbICAgMjEuOTAyNjY4
-XSBzb2Z0aXJxcyBsYXN0ICBlbmFibGVkIGF0ICg1NjM4KTogWzxmZmZmODAwMDgwMDEwNjc0Pl0g
-X19kb19zb2Z0aXJxKzB4NDk0LzB4NGRjCj4gWyAgIDIxLjkxMDk0N10gc29mdGlycXMgbGFzdCBk
-aXNhYmxlZCBhdCAoNTYyNyk6IFs8ZmZmZjgwMDA4MDAxNjFmMD5dIF9fX19kb19zb2Z0aXJxKzB4
-MTAvMHgxYwo+IFsgICAyMS45MTkyMjddIC0tLVsgZW5kIHRyYWNlIDAwMDAwMDAwMDAwMDAwMDAg
-XS0tLQoKSSBjb25maXJtIEkgc2VlIHRoZSBzYW1lIHN0YXJ0aW5nIHdpdGggdGhpcyBjaGFuZ2Ug
-d2l0aCBETUFfQVBJX0RFQlVHPTEKClsgICAgNC43NDUyNDBdIC0tLS0tLS0tLS0tLVsgY3V0IGhl
-cmUgXS0tLS0tLS0tLS0tLQpbICAgIDQuNzQ1Mjk1XSBETUEtQVBJOiBneGwtY3J5cHRvIGM4ODNl
-MDAwLmNyeXB0bzogZGV2aWNlIGRyaXZlciB0cmllcyB0byBzeW5jIERNQSBtZW1vcnkgaXQgaGFz
-IG5vdCBhbGxvY2F0ZWQgW2RldmljZSBhZGRyZXNzPTB4MDAwMDAwMDAwYTgxNjAzMF0gW3NpemU9
-MTYgYnl0ZXNdClsgICAgNC43NTg0OTZdIFdBUk5JTkc6IENQVTogMyBQSUQ6IDc1IGF0IGtlcm5l
-bC9kbWEvZGVidWcuYzoxMTA1IGNoZWNrX3N5bmMrMHgxZDgvMHg2OTAKWyAgICA0Ljc2NjI0Ml0g
-TW9kdWxlcyBsaW5rZWQgaW46ClsgICAgNC43NjkyNThdIENQVTogMyBQSUQ6IDc1IENvbW06IGM4
-ODNlMDAwLmNyeXB0byBOb3QgdGFpbnRlZCA2LjguMC1yYzYtbmV4dC0yMDI0MDIyOS1nOTlmYmU1
-ODI4NDMxICMxNjcKWyAgICA0Ljc3ODU3Nl0gSGFyZHdhcmUgbmFtZTogTGlicmUgQ29tcHV0ZXIg
-QU1MLVM5MDVYLUNDIChEVCkKWyAgICA0Ljc4NDA5NF0gcHN0YXRlOiA2MDAwMDBjNSAoblpDdiBk
-YUlGIC1QQU4gLVVBTyAtVENPIC1ESVQgLVNTQlMgQlRZUEU9LS0pClsgICAgNC43OTA5OTNdIHBj
-IDogY2hlY2tfc3luYysweDFkOC8weDY5MApbICAgIDQuNzk0Nzg2XSBsciA6IGNoZWNrX3N5bmMr
-MHgxZDgvMHg2OTAKWyAgICA0Ljc5ODU4MV0gc3AgOiBmZmZmODAwMDgyNTYzYjkwClsgICAgNC44
-MDE4NTldIHgyOTogZmZmZjgwMDA4MjU2M2I5MCB4Mjg6IGZmZmY4MDAwODE2ZWYyOTggeDI3OiAw
-MDAwMDAwMDAwMDAwMDAwClsgICAgNC44MDg5MzRdIHgyNjogZmZmZjAwMDAwNDFlZDAxMCB4MjU6
-IDAwMDAwMDAwMDAwMDAwMTggeDI0OiAwMDAwMDAwMDAwMDA0MDAwClsgICAgNC44MTYwMDZdIHgy
-MzogZmZmZjgwMDA4MTZkMTE5MCB4MjI6IDAwMDAwMDAwMDAwMDQwMDAgeDIxOiBmZmZmODAwMDgx
-NTM5YjUwClsgICAgNC44MjMwNzldIHgyMDogZmZmZjgwMDA4MjU2M2M0MCB4MTk6IGZmZmY4MDAw
-ODE2ZWYyYjAgeDE4OiAwMDAwMDAwMDAwMDAwMDMwClsgICAgNC44MzAxNTFdIHgxNzogNjQ1YjIw
-NjQ2NTc0NjE2MyB4MTY6IDZmNmM2YzYxMjA3NDZmNmUgeDE1OiAwNzIwMDcyMDA3MjAwNzIwClsg
-ICAgNC44MzcyMjNdIHgxNDogZmZmZjgwMDA4MTU0ZjJjMCB4MTM6IDAwMDAwMDAwMDAwMDAyYTYg
-eDEyOiAwMDAwMDAwMDAwMDAwMGUyClsgICAgNC44NDQyOTZdIHgxMTogMDcyMDA3MjAwNzIwMDcy
-MCB4MTA6IGZmZmY4MDAwODE1YTcyYzAgeDkgOiAwMDAwMDAwMGZmZmZmMDAwClsgICAgNC44NTEz
-NjldIHg4IDogZmZmZjgwMDA4MTU0ZjJjMCB4NyA6IGZmZmY4MDAwODE1YTcyYzAgeDYgOiAwMDAw
-MDAwMDAwMDAwMDAwClsgICAgNC44NTg0NDFdIHg1IDogODAwMDAwMDBmZmZmZjAwMCB4NCA6IDAw
-MDAwMDAwMDAwMGFmZjUgeDMgOiAwMDAwMDAwMDAwMDAwMDAwClsgICAgNC44NjU1MTRdIHgyIDog
-MDAwMDAwMDAwMDAwMDAwMCB4MSA6IDAwMDAwMDAwMDAwMDAwMDAgeDAgOiBmZmZmMDAwMDA5MWE5
-MTAwClsgICAgNC44NzI1ODddIENhbGwgdHJhY2U6ClsgICAgNC44NzQ5OTldICBjaGVja19zeW5j
-KzB4MWQ4LzB4NjkwClsgICAgNC44Nzg0NDldICBkZWJ1Z19kbWFfc3luY19zaW5nbGVfZm9yX2Nw
-dSsweDg0LzB4OGMKWyAgICA0Ljg4MzM2Nl0gIGRtYV9zeW5jX3NpbmdsZV9mb3JfY3B1KzB4NTgv
-MHgxMGMKWyAgICA0Ljg4Nzg1MV0gIG1lc29uX2hhbmRsZV9jaXBoZXJfcmVxdWVzdCsweDNiMC8w
-eDc4MApbICAgIDQuODkyNzY3XSAgY3J5cHRvX3B1bXBfd29yaysweDE1Yy8weDJiYwpbICAgIDQu
-ODk2NzM0XSAga3RocmVhZF93b3JrZXJfZm4rMHhjYy8weDE4NApbICAgIDQuOTAwNzAyXSAga3Ro
-cmVhZCsweDExOC8weDExYwpbICAgIDQuOTAzODkzXSAgcmV0X2Zyb21fZm9yaysweDEwLzB4MjAK
-WyAgICA0LjkwNzQzMF0gLS0tWyBlbmQgdHJhY2UgMDAwMDAwMDAwMDAwMDAwMCBdLS0tCgpUaGFu
-a3MsCk5laWwKCj4gCj4gUmVnYXJkcwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNA
-bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2xpbnV4LWFtbG9naWMK
+Okay, we need to begin somewhere...
+
+Start changing the wording of the I2C main header wrt. the newest I2C
+v7, SMBus 3.2, I3C specifications and replace "master/slave" with more
+appropriate terms. This first step renames the members of struct
+i2c_algorithm. Once all in-tree users are converted, the anonymous union
+will go away again. All this work will also pave the way for finally
+seperating the monolithic header into more fine-grained headers like
+"i2c/clients.h" etc. So, this is not a simple renaming-excercise but
+also a chance to update the I2C core to recent Linux standards.
+
+My motivation is to improve the I2C core API, in general. My motivation
+is not to clean each and every driver. I think this is impossible
+because register names based on official documentation will need to stay
+as they are. But the Linux-internal names should be updated IMO.
+
+That being said, I worked on 62 drivers in this series beyond plain
+renames inside 'struct i2c_algorithm' because the fruits were so
+low-hanging. Before this series, 112 files in the 'busses/' directory
+contained 'master' and/or 'slave'. After the series, only 57. Why not?
+
+Next step is updating the drivers outside the 'i2c'-folder regarding
+'struct i2c_algorithm' so we can remove the anonymous union ASAP. To be
+able to work on this with minimal dependencies, I'd like to apply this
+series between -rc1 and -rc2.
+
+I hope this will work for you guys. The changes are really minimal. If
+you are not comfortable with changes to your driver or need more time to
+review, please NACK the patch and I will drop the patch and/or address
+the issues separeately.
+
+@Andi: are you okay with this approach? It means you'd need to merge
+-rc2 into your for-next branch. Or rebase if all fails.
+
+Speaking of Andi, thanks a lot to him taking care of the controller
+drivers these days. His work really gives me the freedom to work on I2C
+core issues again. Also, Renesas deserves a honorable mention here for
+increased support of my I2C activities. Thank you!
+
+If you have comments, hints, etc, please let me know.
+
+Happy hacking,
+
+   Wolfram
+
+
+Wolfram Sang (64):
+  i2c: reword i2c_algorithm according to newest specification
+  i2c: ali15x3: reword according to newest specification
+  i2c: altera: reword according to newest specification
+  i2c: amd-mp2-pci: reword according to newest specification
+  i2c: aspeed: reword according to newest specification
+  i2c: au1550: reword according to newest specification
+  i2c: bcm-iproc: reword according to newest specification
+  i2c: bcm-kona: reword according to newest specification
+  i2c: bcm2835: reword according to newest specification
+  i2c: brcmstb: reword according to newest specification
+  i2c: cadence: reword according to newest specification
+  i2c: cht-wc: reword according to newest specification
+  i2c: cp2615: reword according to newest specification
+  i2c: cpm: reword according to newest specification
+  i2c: davinci: reword according to newest specification
+  i2c: digicolor: reword according to newest specification
+  i2c: dln2: reword according to newest specification
+  i2c: eg20t: reword according to newest specification
+  i2c: emev2: reword according to newest specification
+  i2c: fsi: reword according to newest specification
+  i2c: gpio: reword according to newest specification
+  i2c: highlander: reword according to newest specification
+  i2c: hix5hd2: reword according to newest specification
+  i2c: i801: reword according to newest specification
+  i2c: ibm_iic: reword according to newest specification
+  i2c: imx-lpi2c: reword according to newest specification
+  i2c: iop3xx: reword according to newest specification
+  i2c: isch: reword according to newest specification
+  i2c: ismt: reword according to newest specification
+  i2c: ljca: reword according to newest specification
+  i2c: lpc2k: reword according to newest specification
+  i2c: ls2x: reword according to newest specification
+  i2c: mchp-pci1xxxx: reword according to newest specification
+  i2c: microchip-corei2c: reword according to newest specification
+  i2c: mlxcpld: reword according to newest specification
+  i2c: mpc: reword according to newest specification
+  i2c: mt7621: reword according to newest specification
+  i2c: mv64xxx: reword according to newest specification
+  i2c: octeon-core: reword according to newest specification
+  i2c: owl: reword according to newest specification
+  i2c: piix4: reword according to newest specification
+  i2c: powermac: reword according to newest specification
+  i2c: pxa-pci: reword according to newest specification
+  i2c: qup: reword according to newest specification
+  i2c: rcar: reword according to newest specification
+  i2c: riic: reword according to newest specification
+  i2c: rk3x: reword according to newest specification
+  i2c: sh7760: reword according to newest specification
+  i2c: sh_mobile: reword according to newest specification
+  i2c: sis5595: reword according to newest specification
+  i2c: sis630: reword according to newest specification
+  i2c: sprd: reword according to newest specification
+  i2c: st: reword according to newest specification
+  i2c: stm32f4: reword according to newest specification
+  i2c: sun6i-p2wi: reword according to newest specification
+  i2c: synquacer: reword according to newest specification
+  i2c: taos-evm: reword according to newest specification
+  i2c: tiny-usb: reword according to newest specification
+  i2c: uniphier-f: reword according to newest specification
+  i2c: uniphier: reword according to newest specification
+  i2c: viperboard: reword according to newest specification
+  i2c: xlp9xx: reword according to newest specification
+  i2c: scx200_acb: reword according to newest specification
+  i2c: reword i2c_algorithm in drivers according to newest specification
+
+ drivers/i2c/busses/i2c-ali15x3.c           |  2 +-
+ drivers/i2c/busses/i2c-altera.c            |  4 +-
+ drivers/i2c/busses/i2c-amd-mp2-pci.c       |  8 ++--
+ drivers/i2c/busses/i2c-amd-mp2-plat.c      |  2 +-
+ drivers/i2c/busses/i2c-aspeed.c            | 26 +++++-----
+ drivers/i2c/busses/i2c-at91-master.c       |  2 +-
+ drivers/i2c/busses/i2c-at91-slave.c        |  8 ++--
+ drivers/i2c/busses/i2c-au1550.c            | 14 +++---
+ drivers/i2c/busses/i2c-axxia.c             | 10 ++--
+ drivers/i2c/busses/i2c-bcm-iproc.c         | 20 ++++----
+ drivers/i2c/busses/i2c-bcm-kona.c          | 14 +++---
+ drivers/i2c/busses/i2c-bcm2835.c           |  8 ++--
+ drivers/i2c/busses/i2c-brcmstb.c           | 12 ++---
+ drivers/i2c/busses/i2c-cadence.c           | 14 +++---
+ drivers/i2c/busses/i2c-cht-wc.c            |  8 ++--
+ drivers/i2c/busses/i2c-cp2615.c            |  6 +--
+ drivers/i2c/busses/i2c-cpm.c               |  4 +-
+ drivers/i2c/busses/i2c-cros-ec-tunnel.c    |  2 +-
+ drivers/i2c/busses/i2c-davinci.c           | 13 +++--
+ drivers/i2c/busses/i2c-designware-master.c |  2 +-
+ drivers/i2c/busses/i2c-designware-slave.c  |  8 ++--
+ drivers/i2c/busses/i2c-digicolor.c         |  4 +-
+ drivers/i2c/busses/i2c-diolan-u2c.c        |  2 +-
+ drivers/i2c/busses/i2c-dln2.c              |  4 +-
+ drivers/i2c/busses/i2c-eg20t.c             | 10 ++--
+ drivers/i2c/busses/i2c-emev2.c             | 10 ++--
+ drivers/i2c/busses/i2c-exynos5.c           |  4 +-
+ drivers/i2c/busses/i2c-fsi.c               | 56 +++++++++++-----------
+ drivers/i2c/busses/i2c-gpio.c              |  8 ++--
+ drivers/i2c/busses/i2c-gxp.c               | 12 ++---
+ drivers/i2c/busses/i2c-highlander.c        |  2 +-
+ drivers/i2c/busses/i2c-hisi.c              |  4 +-
+ drivers/i2c/busses/i2c-hix5hd2.c           |  4 +-
+ drivers/i2c/busses/i2c-i801.c              | 12 ++---
+ drivers/i2c/busses/i2c-ibm_iic.c           | 26 +++++-----
+ drivers/i2c/busses/i2c-img-scb.c           |  2 +-
+ drivers/i2c/busses/i2c-imx-lpi2c.c         | 10 ++--
+ drivers/i2c/busses/i2c-imx.c               | 12 ++---
+ drivers/i2c/busses/i2c-iop3xx.c            | 10 ++--
+ drivers/i2c/busses/i2c-isch.c              |  2 +-
+ drivers/i2c/busses/i2c-ismt.c              |  2 +-
+ drivers/i2c/busses/i2c-jz4780.c            |  2 +-
+ drivers/i2c/busses/i2c-kempld.c            |  2 +-
+ drivers/i2c/busses/i2c-ljca.c              | 20 ++++----
+ drivers/i2c/busses/i2c-lpc2k.c             |  8 ++--
+ drivers/i2c/busses/i2c-ls2x.c              |  8 ++--
+ drivers/i2c/busses/i2c-mchp-pci1xxxx.c     | 40 ++++++++--------
+ drivers/i2c/busses/i2c-meson.c             |  4 +-
+ drivers/i2c/busses/i2c-microchip-corei2c.c |  4 +-
+ drivers/i2c/busses/i2c-mlxbf.c             |  8 ++--
+ drivers/i2c/busses/i2c-mlxcpld.c           | 12 ++---
+ drivers/i2c/busses/i2c-mpc.c               |  4 +-
+ drivers/i2c/busses/i2c-mt65xx.c            |  2 +-
+ drivers/i2c/busses/i2c-mt7621.c            | 22 ++++-----
+ drivers/i2c/busses/i2c-mv64xxx.c           | 12 ++---
+ drivers/i2c/busses/i2c-mxs.c               |  2 +-
+ drivers/i2c/busses/i2c-nomadik.c           |  2 +-
+ drivers/i2c/busses/i2c-npcm7xx.c           | 12 ++---
+ drivers/i2c/busses/i2c-nvidia-gpu.c        |  4 +-
+ drivers/i2c/busses/i2c-ocores.c            |  8 ++--
+ drivers/i2c/busses/i2c-octeon-core.c       |  6 +--
+ drivers/i2c/busses/i2c-octeon-platdrv.c    |  2 +-
+ drivers/i2c/busses/i2c-omap.c              |  4 +-
+ drivers/i2c/busses/i2c-opal.c              |  4 +-
+ drivers/i2c/busses/i2c-owl.c               | 10 ++--
+ drivers/i2c/busses/i2c-pasemi-core.c       |  2 +-
+ drivers/i2c/busses/i2c-piix4.c             |  2 +-
+ drivers/i2c/busses/i2c-pnx.c               |  2 +-
+ drivers/i2c/busses/i2c-powermac.c          |  8 ++--
+ drivers/i2c/busses/i2c-pxa-pci.c           |  2 +-
+ drivers/i2c/busses/i2c-pxa.c               | 12 ++---
+ drivers/i2c/busses/i2c-qcom-cci.c          |  2 +-
+ drivers/i2c/busses/i2c-qcom-geni.c         |  2 +-
+ drivers/i2c/busses/i2c-qup.c               |  6 +--
+ drivers/i2c/busses/i2c-rcar.c              | 16 +++----
+ drivers/i2c/busses/i2c-riic.c              |  6 +--
+ drivers/i2c/busses/i2c-rk3x.c              | 18 +++----
+ drivers/i2c/busses/i2c-robotfuzz-osif.c    |  2 +-
+ drivers/i2c/busses/i2c-rzv2m.c             |  8 ++--
+ drivers/i2c/busses/i2c-s3c2410.c           |  4 +-
+ drivers/i2c/busses/i2c-sh7760.c            | 18 +++----
+ drivers/i2c/busses/i2c-sh_mobile.c         | 12 ++---
+ drivers/i2c/busses/i2c-sis5595.c           |  2 +-
+ drivers/i2c/busses/i2c-sis630.c            | 16 +++----
+ drivers/i2c/busses/i2c-sprd.c              | 14 +++---
+ drivers/i2c/busses/i2c-st.c                | 17 +++----
+ drivers/i2c/busses/i2c-stm32f4.c           |  8 ++--
+ drivers/i2c/busses/i2c-stm32f7.c           | 14 +++---
+ drivers/i2c/busses/i2c-sun6i-p2wi.c        | 20 ++++----
+ drivers/i2c/busses/i2c-synquacer.c         | 30 ++++++------
+ drivers/i2c/busses/i2c-taos-evm.c          |  2 +-
+ drivers/i2c/busses/i2c-tegra-bpmp.c        |  4 +-
+ drivers/i2c/busses/i2c-tegra.c             |  4 +-
+ drivers/i2c/busses/i2c-thunderx-pcidrv.c   |  2 +-
+ drivers/i2c/busses/i2c-tiny-usb.c          |  4 +-
+ drivers/i2c/busses/i2c-uniphier-f.c        | 22 ++++-----
+ drivers/i2c/busses/i2c-uniphier.c          | 12 ++---
+ drivers/i2c/busses/i2c-viperboard.c        |  8 ++--
+ drivers/i2c/busses/i2c-virtio.c            |  2 +-
+ drivers/i2c/busses/i2c-wmt.c               |  2 +-
+ drivers/i2c/busses/i2c-xiic.c              |  2 +-
+ drivers/i2c/busses/i2c-xlp9xx.c            |  4 +-
+ drivers/i2c/busses/scx200_acb.c            |  4 +-
+ include/linux/i2c.h                        | 24 ++++++++--
+ 104 files changed, 460 insertions(+), 464 deletions(-)
+
+-- 
+2.43.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
