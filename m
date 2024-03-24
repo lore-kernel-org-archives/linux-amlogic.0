@@ -4,79 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2A5DCD11DB
-	for <linux-amlogic@archiver.kernel.org>; Sun, 24 Mar 2024 15:19:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7A67C6FD1F
+	for <linux-amlogic@archiver.kernel.org>; Sun, 24 Mar 2024 17:53:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ozo5i42JShHv7XZSPKVgZAU7WC2hUiTwhvrYoelcYyM=; b=paHsMvxb+tlAp5
-	5/UHHRjuzq0XX3lWxF/suTAeeoCNf72oBUDkeE/5wsl8dBw8fZD5YmcGrKpyzddnG3sErunMDgors
-	9p0u+LWrFAXznm7A0h/ihZLwfLzHoBzCn2tStZqn3u8dmbJ6GMo7YlGNkakcQH2K3ZkqXxH0zb67T
-	0X6Nbh9wacNMUyZ2VH2cUtTWDm00FPsg/39j0O+kecJWnGcAiHjBNI7nn/VWtJD+UIXePyOqJz+xn
-	T1F2quoQTlFJ1AKiN1x91qZGjTUPMQBerszjsTWDJdw7Q3WAdh/6Z1OVjjWGZ1j/PQFezlIvkrgXi
-	v737SFVtYRugY7jYWePA==;
+	List-Owner; bh=ASnjphbx046TpU4uL/LGENTfo4HW/OXzbbkooS9dnLY=; b=V14PlyQVSGP6zF
+	APPxKGpM6Aej+x0J9659w52gAbi5DPPQjSdibgONsb4ALchPf1K1hYMhwO3hqq0XgXCpIKPD2vzQ3
+	J5tyUqRXir3vwGG0HNJv6fTT4AGJvXgPyBZzu8jBlIoU1s1aX/zyd5LtF1pl6AW6NcPvTdTqd/qPD
+	ZGPufteHmTSC0YFgURgskprO+cZHYfQcs+FRf+MA03SQB4L/DMnq5sdywdgwQrkDNnsxq3/kpKFML
+	kildTc+VoQPbEudeq9unn40a3wUWgd3Yau6S/2BKIsKfv2JpGEwmYhYwPmxrjJfP7nsJvDYm8pHDu
+	NphGhclu69ZYZdwR5z7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1roPd7-0000000CqDQ-1qEN;
-	Sun, 24 Mar 2024 15:19:25 +0000
-Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
+	id 1roS1X-0000000D8KS-2CAd;
+	Sun, 24 Mar 2024 17:52:47 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1roPd3-0000000CqAh-1GDR
-	for linux-amlogic@lists.infradead.org;
-	Sun, 24 Mar 2024 15:19:23 +0000
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-56c1364ff79so92882a12.1
-        for <linux-amlogic@lists.infradead.org>; Sun, 24 Mar 2024 08:19:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711293551; x=1711898351; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ze781fdYMJC8X6yPwfz4FQS/isO5gR11eLckzIKPCfI=;
-        b=Fu3ZLc1m7CwFavpGuJgmKlFEjKHAetzaoPCTCm7EoWq9IPH/bEXFUWhIlJ1R/ZhPrA
-         IDfdCDUeegZg0Gxx+Qg+rr5WSFVLd3MlHpaJT0al+DnxKeKpmhqjxyI5nq84J2JDeLgR
-         T5zCrCY5Vo9GHiGJkGbS41cOpP7RJZDFYuBWRR5ujK9tZlPyRcqFCY9E/m9LeMmW2sJw
-         Um02GSsWQ400tcHR4k0miwBsTNBlM50dtE7GUGuDb+wA0/1vEhwwML9Mho5TaA5U3UO7
-         KBc7dffzk08TX4TxJLFYlDL7lNB+yFL9iItZ5ocsw5Smsb9uRyi931x41X4dF6o7r1E6
-         65Bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711293551; x=1711898351;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ze781fdYMJC8X6yPwfz4FQS/isO5gR11eLckzIKPCfI=;
-        b=uZH/5AkRjtsGAa3VE9ttIx6E1UWaNi97ks8JQESvUmHVHOvoeXJgzLK9TWcJHtcNfS
-         coEurq/7D+H74OSmnavxRk3nGOGEUpDEuDceEaWDs2qSzw3FhmbcOkTPF3bNa5gcEssV
-         L/JxoAESmxDSTIeUBRa+lPNGuzKz5TxUVL6UkOq6zT5fkFSK8IuUSb1aUjtEOP9+mTxF
-         4PZSf7ha7pRSsCAw++YRWf09L9KrEJu2JaY3R/H7a46jFT070MTx1xk6nmgk6BjeHprc
-         HJtFEaUnJ5qqg19vUc3l6KMsN3JZ3/1KDGkahbQ9nh3zFb7ybvffjDnX/iQJsL9wFpqa
-         Q8iA==
-X-Forwarded-Encrypted: i=1; AJvYcCUI5H0jS3KPc4kMdACzUha3nt/dcpwZirR9E6HU2I3TP8n/91tK4I/x029LeExy42bxBs19MFTloLvupdZ12qKi3FHPbUZ8tRaJ4QCO/DSULUc=
-X-Gm-Message-State: AOJu0YxXrBFAhxFYxOEKfBlJu7PCjct3pdySrvHaSlBZbQAq/MxlM+H6
-	gIhIPBwP7HwP321AjHdQ1joAszEI3WSLDF/ZTUF95/nyZrHDV/+KT0hH9M/7mbc=
-X-Google-Smtp-Source: AGHT+IGWop+tRdvatwhyMLUo6vB2OpRCupGJ56dqduh0sfpCfS2PruM3icraWlMqlzpjp74V6KKbQQ==
-X-Received: by 2002:a50:d594:0:b0:56b:902e:b144 with SMTP id v20-20020a50d594000000b0056b902eb144mr2966510edi.12.1711293551532;
-        Sun, 24 Mar 2024 08:19:11 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id o26-20020aa7c7da000000b0056bf34d656dsm1996114eds.29.2024.03.24.08.19.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Mar 2024 08:19:11 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: u-boot@lists.denx.de,
-	u-boot-amlogic@groups.io,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH v2 1/2] ARM: dts: fix Ethernet on WeTek Hub/Play2
-Date: Sun, 24 Mar 2024 15:19:04 +0000
-Message-Id: <20240324151905.3817732-2-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240324151905.3817732-1-christianshewitt@gmail.com>
-References: <20240324151905.3817732-1-christianshewitt@gmail.com>
+	id 1roS1T-0000000D8J3-0DOn;
+	Sun, 24 Mar 2024 17:52:45 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 41699120003;
+	Sun, 24 Mar 2024 20:52:33 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 41699120003
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1711302753;
+	bh=rPCKzwxY/P8E8hlP0ZyZIPxAhwhwOHS8SkfFEzDhMSE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=u0RcmHdomX0A7S94roBud3m3OftVEWIzyfo0+wLhUD5RNO2YIkm+Bu+sexbKz179I
+	 i5GpnTO/k7ENM3P7qRlc6B6vZqKFCKks80+FEUdIZzUFiLmcW4x9WMI4RwDatDFD+s
+	 74VhHD8YZCnqv3GTD0mCN/EuweCj7PqXiHaozecwcU+QA5GnFuJ1v8BlPSQH1zvKKd
+	 Ub+6IlO1kQcvkqML+hbN7VHMgEfmPuNcbPG0++Sw67iUPMk2tVUOvD8BGR6OOzMjZ3
+	 urrDZRZmxUZ0I5/8cNdc7ZI870Fc8Z7WiQRuHU+sxzLq25zcJtMwWOzVeay3zaRvL9
+	 zYYThkk6c+Khg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Sun, 24 Mar 2024 20:52:33 +0300 (MSK)
+Received: from [192.168.20.2] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sun, 24 Mar 2024 20:52:32 +0300
+Message-ID: <2bc7976b-3910-4a44-a969-7b6bc5d72869@salutedevices.com>
+Date: Sun, 24 Mar 2024 20:51:04 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/25] ASoC: meson: g12a-toacodec: fix "Lane Select" width
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Stephen
+ Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus Walleij
+	<linus.walleij@linaro.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>, <linux-amlogic@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>,
+	<linux-gpio@vger.kernel.org>
+CC: <kernel@salutedevices.com>
+References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
+ <20240314232201.2102178-7-jan.dakinevich@salutedevices.com>
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <20240314232201.2102178-7-jan.dakinevich@salutedevices.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184373 [Mar 24 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 11 0.3.11 5ecf9895443a5066245fcb91e8430edf92b1b594, {Tracking_smtp_not_equal_from}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:7.1.1,5.0.1, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/24 14:08:00 #24408963
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240324_081921_381821_3826B484 
-X-CRM114-Status: GOOD (  10.87  )
+X-CRM114-CacheID: sfid-20240324_105243_658271_456E3AE0 
+X-CRM114-Status: GOOD (  15.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,45 +111,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Placing the snps,reset content needed for Ethernet to probe in a common
-uboot.dtsi results in the content not being used and broken Ethernet. Fix
-this by creating two board specific dtsi files with the right content.
+Sorry, I screwed up. Original code is correct. I mixed up the maximum
+value and bit offset.
 
-Fixes: 67d5128df950 ("ARM: dts: add support for WeTek Hub and WeTek Play2")
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- ...u-boot.dtsi => meson-gxbb-wetek-hub-u-boot.dtsi} |  0
- arch/arm/dts/meson-gxbb-wetek-play2-u-boot.dtsi     | 13 +++++++++++++
- 2 files changed, 13 insertions(+)
- rename arch/arm/dts/{meson-gxbb-wetek-u-boot.dtsi => meson-gxbb-wetek-hub-u-boot.dtsi} (100%)
- create mode 100644 arch/arm/dts/meson-gxbb-wetek-play2-u-boot.dtsi
+On 3/15/24 02:21, Jan Dakinevich wrote:
+> For both G12A and SM1 the width of "Lane Select" should be 2, not 3.
+> Otherwise, it overlaps with "Source".
+> 
+> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> ---
+>  sound/soc/meson/g12a-toacodec.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/sound/soc/meson/g12a-toacodec.c b/sound/soc/meson/g12a-toacodec.c
+> index 531bb8707a3e..b92de2235627 100644
+> --- a/sound/soc/meson/g12a-toacodec.c
+> +++ b/sound/soc/meson/g12a-toacodec.c
+> @@ -229,11 +229,11 @@ static const struct snd_soc_dapm_route g12a_toacodec_routes[] = {
+>  };
+>  
+>  static const struct snd_kcontrol_new g12a_toacodec_controls[] = {
+> -	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL, 3, 0),
+> +	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL, 2, 0),
+>  };
+>  
+>  static const struct snd_kcontrol_new sm1_toacodec_controls[] = {
+> -	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_SM1, 3, 0),
+> +	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_SM1, 2, 0),
+>  };
+>  
+>  static const struct snd_soc_component_driver g12a_toacodec_component_drv = {
 
-diff --git a/arch/arm/dts/meson-gxbb-wetek-u-boot.dtsi b/arch/arm/dts/meson-gxbb-wetek-hub-u-boot.dtsi
-similarity index 100%
-rename from arch/arm/dts/meson-gxbb-wetek-u-boot.dtsi
-rename to arch/arm/dts/meson-gxbb-wetek-hub-u-boot.dtsi
-diff --git a/arch/arm/dts/meson-gxbb-wetek-play2-u-boot.dtsi b/arch/arm/dts/meson-gxbb-wetek-play2-u-boot.dtsi
-new file mode 100644
-index 00000000000..3743053eb9c
---- /dev/null
-+++ b/arch/arm/dts/meson-gxbb-wetek-play2-u-boot.dtsi
-@@ -0,0 +1,13 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 BayLibre, SAS.
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+#include "meson-gx-u-boot.dtsi"
-+
-+&ethmac {
-+	snps,reset-gpio = <&gpio GPIOZ_14 0>;
-+	snps,reset-delays-us = <0 10000 1000000>;
-+	snps,reset-active-low;
-+};
 -- 
-2.34.1
-
+Best regards
+Jan Dakinevich
 
 _______________________________________________
 linux-amlogic mailing list
