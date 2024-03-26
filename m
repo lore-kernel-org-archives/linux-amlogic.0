@@ -4,89 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21596C54E58
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2024 00:42:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D777C6FD1F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2024 15:24:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pkwEctFgQkd+9+AWrsDiGCJuaJo//+yF5OTA4sdcYAg=; b=lA/nJsCkLKQi4c
-	lCzweWNbikc08Xf6xWQKtHu7Lwleb94xP5FaK3CsOiSmXKoV+LMb5AGOwM/7H3r7mqRzxxzZUhm+I
-	hwTkfhGOvo7XwJoZ9pwJDe0d608WHGeP60DCSzU6jKlQjkyH+NSiLEjRWfc4ARRaB/a4UR2rjzP4l
-	SfWoKzcQyOUCmcPmiCQ4hGhhbVTyRw7kVE53wA6SAe1XgZYX5dSUozKPVvMG38GLNwwX4tjNy8uoB
-	gIEmuryM3aipBdUkosXitPGWQFO38t9clpmqW3G0k5PvyFChFxhvoJ3D5Pp+O18Cv/SWTd5he6p2T
-	jkxR9T4LKyj76sbt+scw==;
+	List-Owner; bh=rG5FkkFzCiFCZWhgfgf9dnypPNMrj0wNRc88Db2UmzA=; b=McBvE+y7IEzTxk
+	+LUxz00Y2IRerD1IQw/Z3/fRDi8TGSn1LetXv8mzEemZBZBlUUswyMr+Cmm4W/7DIyhqUCnpLSsbj
+	AvaRwJC7aD11WOelaIaoAAmkHAljQ5rK1bHLKI0uIwd+pFcdVd/Wl3Di3v6mSyxxTZgAEwNrD/1cw
+	BoyQ02bSGuG3uo8dRbhQSUiGozTV/zOPH/WDv5d96gfiguipjMvTr9CESdFgtd+W/KayD5cQM6/nw
+	uV8hJPcG2kj6sNNq91O/aJpPh3uFsGcJen9UZtf1DWZO5kmdyuPL3QVzLWcN9FtM/QJ3sAyqkqK8J
+	Y+wHcpbNOss+zSIMR4Nw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rout8-00000002WqK-43zR;
-	Tue, 26 Mar 2024 00:42:03 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1rp8eQ-000000058RC-4320;
+	Tue, 26 Mar 2024 15:23:47 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rout5-00000002Wns-0svU;
-	Tue, 26 Mar 2024 00:42:01 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id E2F41120002;
-	Tue, 26 Mar 2024 03:41:55 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru E2F41120002
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1711413715;
-	bh=GUwFIrijniX6tWOtmBIV4uX2Els9gfR5OyRHtM8oZJY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=rsf453z1Okw4SLnv2UFa+1Weco2QHBe2yDbrtP00RdTiCVOmnVFydSkjL3l0kUZ8G
-	 9TTa9lIBfD7+rnABLNRsBZXFmdht3xC1gx4zLM3kZme6rKB63HzyRbVj0rXT7JXmYH
-	 quGOHeulx6YlFrQenBr/sXUcQK63nogixUBc5XMWDhrQTO3urtv//VQ6OlqTLF3rhd
-	 9oobc8gzKZHCrm04Ype9lxwbBCcNcsWRah0Q+TI0iMRYQeyGxTbxCLEHOMxsf7jn46
-	 yjntfmqemFh6i2zU8ovDNlnzFFmdA4mOkC/AjpG1XLmeLLfVjh0Lmhi50TFs3V5d+i
-	 AD198bynLVz7A==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 26 Mar 2024 03:41:55 +0300 (MSK)
-Received: from [172.28.66.90] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 26 Mar 2024 03:41:55 +0300
-Message-ID: <37cb9bc9-88c0-4e2b-8f46-0f67b91bc5be@salutedevices.com>
-Date: Tue, 26 Mar 2024 03:41:55 +0300
+	id 1rp8eO-000000058Pg-0UzS
+	for linux-amlogic@lists.infradead.org;
+	Tue, 26 Mar 2024 15:23:46 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-33ed5b6bf59so4047286f8f.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 26 Mar 2024 08:23:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1711466622; x=1712071422; darn=lists.infradead.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=aM+9RXmEYQB5vl1fffTAMXMZVqZ/ACCmOiJ2FPQkdAA=;
+        b=2V7JIZI97d/EfgQ6SpiBhLIZA/lN5IDetmx3rVvWuegbkljfuDSPp0BRV9P3ImGmmg
+         nZaaK3zKShw7Mtj7c1y/0xzlTIYITVl+2ZLOhvAuoP4JpnSrmVFNHcbUb4DdwF89CRWf
+         nYyzMOqZNnQqG8ZhaOIvAQ/cHc/STCbQY/NPaQg63HVaTzglGXvvy21/EleHwoN4/wRd
+         2qj6UIk01+NvD+Th0a1oB8xiM7BlqzfpC8dahvSuxz2NTwt4uCbXDnQhj1iQffuJt877
+         eUSKwYumrlmM9cjSukyYDEIsrXS5v2V3zwUmP/aFZKtdoLoWcjKtami2e34aY0mnFIAQ
+         PvOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711466622; x=1712071422;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aM+9RXmEYQB5vl1fffTAMXMZVqZ/ACCmOiJ2FPQkdAA=;
+        b=jRKM1fz/wEC2V2fX2Vegwco46OBV03XNO0wr2mJglVA5tc+K4/qSjbG+g/GEmUiJ8J
+         pO0pq4mu+T2v8W4RJi8fpt4iPMZjfVTI40QuvZqdkXF6hwzmcykpHODLYKH8S035PLaa
+         4MFrmbVbD2S22fDaSqj1dczq6TbpX5VtdweDPDym6PnaCNatsBkn0lU0bd0M7UqIwwsM
+         UAinYAE9KTsS7NLKmmcwkiNkJWqP7sxpD1aCSNxhX/wMAcv9H7E+0uUJXpqR64tppTI+
+         2tDsknNXWOTqAC5+M7kR5BeuljmixxshKlgemwwJ7Bu+Uudk0jPA3wOiVIoijTRcXI8h
+         3yfA==
+X-Forwarded-Encrypted: i=1; AJvYcCWsjvogHLjom0sD2qqN35z9VkP8ESp11FOfKJfmDz+fnAmLTasIzu49SdsfgiXVG90c8hrWyMUvjKFiz7iosEo3VGEcgLbQ5vlU2CXgoLNFYcg=
+X-Gm-Message-State: AOJu0YyqbXcbKDt0SErOqWUZRAexTxdX0/57QUqbLfd/Nem3c/LTjOUb
+	r+aL9HKcNEQZw7wV2k+i0mFG+zsj2QLeosvT0z4Hf5mT8ogZGXQrQkZ6UKm2DO8=
+X-Google-Smtp-Source: AGHT+IHsYZJ/uOqZnp1TmWFGMlVgZ+AivccEHh8xx3hUmGEHsDKWJ4EN0Xf/+CitijnbkfltJZVucg==
+X-Received: by 2002:a5d:69ca:0:b0:33e:7adc:516c with SMTP id s10-20020a5d69ca000000b0033e7adc516cmr1290781wrw.57.1711466621739;
+        Tue, 26 Mar 2024 08:23:41 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:97a2:bb9f:463a:6468])
+        by smtp.gmail.com with ESMTPSA id ch9-20020a5d5d09000000b00341c6778171sm8083186wrb.83.2024.03.26.08.23.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Mar 2024 08:23:41 -0700 (PDT)
+References: <20240325235311.411920-1-jan.dakinevich@salutedevices.com>
+User-agent: mu4e 1.10.8; emacs 29.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
+ <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,
+ alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v2] ASoC: meson: g12a-toacodec: rework the
+ definition of bits
+Date: Tue, 26 Mar 2024 16:15:51 +0100
+In-reply-to: <20240325235311.411920-1-jan.dakinevich@salutedevices.com>
+Message-ID: <1j34sd9fur.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/3] iio: adc: meson: consistently use bool/enum in
- struct meson_sar_adc_param
-Content-Language: en-US
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<neil.armstrong@linaro.org>, <lars@metafoo.de>, <jic23@kernel.org>,
-	<linux-amlogic@lists.infradead.org>, "kernel@salutedevices.com"
-	<kernel@salutedevices.com>
-References: <20240323231309.415425-1-martin.blumenstingl@googlemail.com>
- <20240323231309.415425-3-martin.blumenstingl@googlemail.com>
-From: George Stark <gnstark@salutedevices.com>
-In-Reply-To: <20240323231309.415425-3-martin.blumenstingl@googlemail.com>
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184404 [Mar 25 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 11 0.3.11 5ecf9895443a5066245fcb91e8430edf92b1b594, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/25 18:32:00 #24438765
-X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240325_174159_979777_FCFC1887 
-X-CRM114-Status: GOOD (  21.48  )
+X-CRM114-CacheID: sfid-20240326_082344_190627_00B5A48C 
+X-CRM114-Status: GOOD (  19.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,170 +94,179 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Martin
 
-On 3/24/24 02:13, Martin Blumenstingl wrote:
-> Consistently use bool for any register bit that enables/disables
-> functionality and enum for register values where there's a choice
-> between different settings. The aim is to make the code easier to read
-> and understand by being more consistent. No functional changes intended.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Tue 26 Mar 2024 at 02:53, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+
+> There is a lot of defines, but almost all of them are not used. Lets
+> rework them:
+
+Thanks for noticing. Please start by removing what's unused.
+
+>
+>  - keep separate the definition for different platforms to make easier
+>    checking that they match documentation.
+>
+>  - use LSB/MSB sufixes for uniformity.
+
+I'd be in favor of dropping these suffixes completely.
+
+>
+>  - don't use hard-coded values for already declared defines.
+>
+> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 > ---
->   drivers/iio/adc/meson_saradc.c | 47 +++++++++++++++++++---------------
->   1 file changed, 27 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-> index 2615d74534df..6b2af0c2bbc7 100644
-> --- a/drivers/iio/adc/meson_saradc.c
-> +++ b/drivers/iio/adc/meson_saradc.c
-> @@ -156,9 +156,9 @@
->   #define MESON_SAR_ADC_REG11					0x2c
->   	#define MESON_SAR_ADC_REG11_BANDGAP_EN			BIT(13)
->   	#define MESON_SAR_ADC_REG11_CMV_SEL                     BIT(6)
-> -	#define MESON_SAR_ADC_REG11_VREF_VOLTAGE                BIT(5)
-> -	#define MESON_SAR_ADC_REG11_EOC                         BIT(1)
-> -	#define MESON_SAR_ADC_REG11_VREF_SEL                    BIT(0)
-> +	#define MESON_SAR_ADC_REG11_VREF_VOLTAGE		BIT(5)
-> +	#define MESON_SAR_ADC_REG11_EOC				BIT(1)
-> +	#define MESON_SAR_ADC_REG11_VREF_SEL			BIT(0)
->   
->   #define MESON_SAR_ADC_REG13					0x34
->   	#define MESON_SAR_ADC_REG13_12BIT_CALIBRATION_MASK	GENMASK(13, 8)
-> @@ -224,6 +224,11 @@ enum meson_sar_adc_vref_sel {
->   	VREF_VDDA = 1,
->   };
->   
-> +enum meson_sar_adc_vref_voltage {
-> +	VREF_VOLTAGE_0V9 = 0,
-> +	VREF_VOLTAGE_1V8 = 1,
-> +};
+> Links:
+>
+>  [1] https://lore.kernel.org/lkml/20240314232201.2102178-1-jan.dakinevich@salutedevices.com/
+>
+> Changes v1 -> v2:
+>  - Detached from v1's series (patch 7).
+>  - Fixed my wrong understanding of SOC_SINGLE's input parameters.
+>
+>  sound/soc/meson/g12a-toacodec.c | 79 ++++++++++++++++++++-------------
+>  1 file changed, 49 insertions(+), 30 deletions(-)
+>
+> diff --git a/sound/soc/meson/g12a-toacodec.c b/sound/soc/meson/g12a-toacodec.c
+> index 531bb8707a3e..22181f4bab72 100644
+> --- a/sound/soc/meson/g12a-toacodec.c
+> +++ b/sound/soc/meson/g12a-toacodec.c
+> @@ -20,26 +20,37 @@
+>  #define G12A_TOACODEC_DRV_NAME "g12a-toacodec"
+>  
+>  #define TOACODEC_CTRL0			0x0
+> -#define  CTRL0_ENABLE_SHIFT		31
+> -#define  CTRL0_DAT_SEL_SM1_MSB		19
+> -#define  CTRL0_DAT_SEL_SM1_LSB		18
+> -#define  CTRL0_DAT_SEL_MSB		15
+> -#define  CTRL0_DAT_SEL_LSB		14
+> -#define  CTRL0_LANE_SEL_SM1		16
+> -#define  CTRL0_LANE_SEL			12
+> -#define  CTRL0_LRCLK_SEL_SM1_MSB	14
+> -#define  CTRL0_LRCLK_SEL_SM1_LSB	12
+> -#define  CTRL0_LRCLK_SEL_MSB		9
+> -#define  CTRL0_LRCLK_SEL_LSB		8
+> -#define  CTRL0_LRCLK_INV_SM1		BIT(10)
+> -#define  CTRL0_BLK_CAP_INV_SM1		BIT(9)
+> -#define  CTRL0_BLK_CAP_INV		BIT(7)
+> -#define  CTRL0_BCLK_O_INV_SM1		BIT(8)
+> -#define  CTRL0_BCLK_O_INV		BIT(6)
+> -#define  CTRL0_BCLK_SEL_SM1_MSB		6
+> -#define  CTRL0_BCLK_SEL_MSB		5
+> -#define  CTRL0_BCLK_SEL_LSB		4
+> -#define  CTRL0_MCLK_SEL			GENMASK(2, 0)
 > +
->   enum meson_sar_adc_avg_mode {
->   	NO_AVERAGING = 0x0,
->   	MEAN_AVERAGING = 0x1,
-> @@ -321,13 +326,13 @@ struct meson_sar_adc_param {
->   	u8					temperature_trimming_bits;
->   	unsigned int				temperature_multiplier;
->   	unsigned int				temperature_divider;
-> -	u8					disable_ring_counter;
-> +	bool					disable_ring_counter;
->   	bool					has_reg11;
->   	bool					has_vref_select;
-> -	u8					vref_select;
-> -	u8					cmv_select;
-> -	u8					adc_eoc;
+> +/* Common bits */
+> +#define CTRL0_ENABLE_SHIFT		31
+> +#define CTRL0_MCLK_SEL			GENMASK(2, 0)
+> +
+> +/* G12A bits */
+> +#define CTRL0_DAT_SEL_G12A_MSB		15
+> +#define CTRL0_DAT_SEL_G12A_LSB		14
+> +#define CTRL0_LANE_SEL_G12A_MSB		13
+> +#define CTRL0_LANE_SEL_G12A_LSB		12
+> +#define CTRL0_LANE_SEL_G12A_MAX		3
+> +#define CTRL0_LRCLK_SEL_G12A_MSB	9
+> +#define CTRL0_LRCLK_SEL_G12A_LSB	8
+> +#define CTRL0_BLK_CAP_INV_G12A		BIT(7)
+> +#define CTRL0_BCLK_O_INV_G12A		BIT(6)
+> +#define CTRL0_BCLK_SEL_G12A_MSB		5
+> +#define CTRL0_BCLK_SEL_G12A_LSB		4
+> +
+> +/* SM1 bits */
+> +#define CTRL0_DAT_SEL_SM1_MSB		19
+> +#define CTRL0_DAT_SEL_SM1_LSB		18
+> +#define CTRL0_LANE_SEL_SM1_MSB		17
+> +#define CTRL0_LANE_SEL_SM1_LSB		16
+> +#define CTRL0_LANE_SEL_SM1_MAX		3
+> +#define CTRL0_LRCLK_SEL_SM1_MSB		14
+> +#define CTRL0_LRCLK_SEL_SM1_LSB		12
+> +#define CTRL0_LRCLK_INV_SM1		BIT(10)
+> +#define CTRL0_BLK_CAP_INV_SM1		BIT(9)
+> +#define CTRL0_BCLK_O_INV_SM1		BIT(8)
+> +#define CTRL0_BCLK_SEL_SM1_MSB		6
+> +#define CTRL0_BCLK_SEL_SM1_LSB		4
+>  
+>  #define TOACODEC_OUT_CHMAX		2
+>  
+> @@ -108,7 +119,7 @@ static int g12a_toacodec_mux_put_enum(struct snd_kcontrol *kcontrol,
+>  }
+>  
+>  static SOC_ENUM_SINGLE_DECL(g12a_toacodec_mux_enum, TOACODEC_CTRL0,
+> -			    CTRL0_DAT_SEL_LSB,
+> +			    CTRL0_DAT_SEL_G12A_LSB,
+>  			    g12a_toacodec_mux_texts);
+>  
+>  static SOC_ENUM_SINGLE_DECL(sm1_toacodec_mux_enum, TOACODEC_CTRL0,
+> @@ -210,7 +221,7 @@ static int g12a_toacodec_component_probe(struct snd_soc_component *c)
+>  {
+>  	/* Initialize the static clock parameters */
+>  	return snd_soc_component_write(c, TOACODEC_CTRL0,
+> -				       CTRL0_BLK_CAP_INV);
+> +				       CTRL0_BLK_CAP_INV_G12A);
+>  }
+>  
+>  static int sm1_toacodec_component_probe(struct snd_soc_component *c)
+> @@ -229,11 +240,13 @@ static const struct snd_soc_dapm_route g12a_toacodec_routes[] = {
+>  };
+>  
+>  static const struct snd_kcontrol_new g12a_toacodec_controls[] = {
+> -	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL, 3, 0),
+> +	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_G12A_LSB,
+> +		   CTRL0_LANE_SEL_G12A_MAX, 0),
+>  };
+>  
+>  static const struct snd_kcontrol_new sm1_toacodec_controls[] = {
+> -	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_SM1, 3, 0),
+> +	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_SM1_LSB,
+> +		   CTRL0_LANE_SEL_SM1_MAX, 0),
+>  };
+>  
+>  static const struct snd_soc_component_driver g12a_toacodec_component_drv = {
+> @@ -266,16 +279,22 @@ static const struct regmap_config g12a_toacodec_regmap_cfg = {
+>  
+>  static const struct g12a_toacodec_match_data g12a_toacodec_match_data = {
+>  	.component_drv	= &g12a_toacodec_component_drv,
+> -	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, 14, 15),
+> -	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, 8, 9),
+> -	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, 4, 5),
+> +	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_DAT_SEL_G12A_LSB,
+> +				    CTRL0_DAT_SEL_G12A_MSB),
+> +	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, CTRL0_LRCLK_SEL_G12A_LSB,
+> +				     CTRL0_LRCLK_SEL_G12A_MSB),
+> +	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_BCLK_SEL_G12A_LSB,
+> +				    CTRL0_BCLK_SEL_G12A_MSB),
+>  };
+>  
+>  static const struct g12a_toacodec_match_data sm1_toacodec_match_data = {
+>  	.component_drv	= &sm1_toacodec_component_drv,
+> -	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, 18, 19),
+> -	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, 12, 14),
+> -	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, 4, 6),
+> +	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_DAT_SEL_SM1_LSB,
+> +				    CTRL0_DAT_SEL_SM1_MSB),
+> +	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, CTRL0_LRCLK_SEL_SM1_LSB,
+> +				     CTRL0_LRCLK_SEL_SM1_MSB),
+> +	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_BCLK_SEL_SM1_LSB,
+> +				    CTRL0_BCLK_SEL_SM1_MSB),
 
+Those defines are already platform specific by the structure holding
+them and the defines you have added are not helping readability.
 
-The reason to choose u8 type over bool was that those are not actually
-bool values but direct values of hw register bits. We have little 
-information about real meaning of these bits so it won't help much to
-add bool layer and keep real values in the init code instead of param 
-section (adc_eoc, cmv_select).
-bool disable_ring_counter will look deceptive too because it doesn't
-say whether disable ring_counter or not (we always disable it) but
-how to disable it (write 0 or 1)
+I don't see the point to see.
+I'd prefer to keep the field defined as they are.
 
-I think the poor choice was not the type of variables but their names:
-u8 adc_eoc_bit;
-u8 cmv_select_bit;
-u8 disable_ring_counter_bit;
+>  };
+>  
+>  static const struct of_device_id g12a_toacodec_of_match[] = {
 
-would be clearer.
-
-
-> -	enum meson_sar_adc_vref_sel		vref_voltage;
-> +	bool					cmv_select;
-> +	bool					adc_eoc;
-> +	enum meson_sar_adc_vref_sel		vref_select;
-> +	enum meson_sar_adc_vref_voltage		vref_voltage;
->   };
->   
->   struct meson_sar_adc_data {
-> @@ -982,14 +987,16 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
->   				   MESON_SAR_ADC_DELTA_10_TS_REVE0, 0);
->   	}
->   
-> -	regval = FIELD_PREP(MESON_SAR_ADC_REG3_CTRL_CONT_RING_COUNTER_EN,
-> -			    priv->param->disable_ring_counter);
-> +	if (priv->param->disable_ring_counter)
-> +		regval = MESON_SAR_ADC_REG3_CTRL_CONT_RING_COUNTER_EN;
-> +	else
-> +		regval = 0;
->   	regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG3,
->   			   MESON_SAR_ADC_REG3_CTRL_CONT_RING_COUNTER_EN,
->   			   regval);
->   
->   	if (priv->param->has_reg11) {
-> -		regval = FIELD_PREP(MESON_SAR_ADC_REG11_EOC, priv->param->adc_eoc);
-> +		regval = priv->param->adc_eoc ? MESON_SAR_ADC_REG11_EOC : 0;
->   		regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG11,
->   				   MESON_SAR_ADC_REG11_EOC, regval);
->   
-> @@ -1005,8 +1012,7 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
->   		regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG11,
->   				   MESON_SAR_ADC_REG11_VREF_VOLTAGE, regval);
->   
-> -		regval = FIELD_PREP(MESON_SAR_ADC_REG11_CMV_SEL,
-> -				    priv->param->cmv_select);
-> +		regval = priv->param->cmv_select ? MESON_SAR_ADC_REG11_CMV_SEL : 0;
->   		regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG11,
->   				   MESON_SAR_ADC_REG11_CMV_SEL, regval);
->   	}
-> @@ -1225,8 +1231,8 @@ static const struct meson_sar_adc_param meson_sar_adc_gxbb_param = {
->   	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
->   	.resolution = 10,
->   	.has_reg11 = true,
-> -	.vref_voltage = 1,
-> -	.cmv_select = 1,
-> +	.vref_voltage = VREF_VOLTAGE_1V8,
-> +	.cmv_select = true,
->   };
->   
->   static const struct meson_sar_adc_param meson_sar_adc_gxl_param = {
-> @@ -1237,8 +1243,8 @@ static const struct meson_sar_adc_param meson_sar_adc_gxl_param = {
->   	.resolution = 12,
->   	.disable_ring_counter = 1,
->   	.has_reg11 = true,
-> -	.vref_voltage = 1,
-> -	.cmv_select = 1,
-> +	.vref_voltage = VREF_VOLTAGE_1V8,
-> +	.cmv_select = true,
->   };
->   
->   static const struct meson_sar_adc_param meson_sar_adc_axg_param = {
-> @@ -1249,10 +1255,10 @@ static const struct meson_sar_adc_param meson_sar_adc_axg_param = {
->   	.resolution = 12,
->   	.disable_ring_counter = 1,
->   	.has_reg11 = true,
-> -	.vref_voltage = 1,
-> +	.vref_voltage = VREF_VOLTAGE_1V8,
->   	.has_vref_select = true,
->   	.vref_select = VREF_VDDA,
-> -	.cmv_select = 1,
-> +	.cmv_select = true,
->   };
->   
->   static const struct meson_sar_adc_param meson_sar_adc_g12a_param = {
-> @@ -1263,7 +1269,8 @@ static const struct meson_sar_adc_param meson_sar_adc_g12a_param = {
->   	.resolution = 12,
->   	.disable_ring_counter = 1,
->   	.has_reg11 = true,
-> -	.adc_eoc = 1,
-> +	.vref_voltage = VREF_VOLTAGE_0V9,
-> +	.adc_eoc = true,
->   	.has_vref_select = true,
->   	.vref_select = VREF_VDDA,
->   };
 
 -- 
-Best regards
-George
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
