@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EF82C54E67
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D078C6FD1F
 	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2024 16:48:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,43 +12,57 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dvOWMMseI8vzArJIMnEBRyruSEYeeJWu2oXPpUbxFxc=; b=FV1P75OSlLF3GM
-	LAFKiY6yqvG27SYcG0I74SH181ciJ+FuSIhy9vzinpdVao67UBLlxArapBLtCMWkgXCvj8/DMduMU
-	VO+QCIYVI+KSN3nx155q2a0dIDfD99SZ8SUqjv4GODt1nSCuwY28iZfXWXj4AdrmyMjOG1589t/vU
-	wNV3wXit+0lAsc0/Ga78zH9Wn5FJcvtPWzXxzL6IJk0kf53ZxrmZbOTAm4nxYY7fBzSknOSnecyGT
-	p0p+AH46usrtE9Q2/cRks8x9MfjCSLkool3uept/MyZD1eFVcS91hKPO19DlsoDJBt/v8zIlUcKWV
-	ZYk41SvDwOn2RDVMt2EA==;
+	List-Owner; bh=VFrx40MFvAneLkS0cqE66sDPUliFUh4BbxOzpbudD4g=; b=URaGcoKwegooPq
+	WV4CFk9ihNklcLG0M0gQf802h7hLr7sI4PNUDNflznyHaCh2LkRR4Uvfk89CqEokPpCVXlTMHslxX
+	Ufx4gYHJIyR8STYVU4+jpWTOBgM6pVAsTS34UXON4Ac3fWx8oxpiC/4f81NhQIaKgML6eHk3wxHBV
+	WjlkPaSLfLOxX08xA4Q4Zkyh5iK7A28h9TPppCDiXsZW7uWMWqFhzfnq+KfzAJ/O2sc1/ekEu38Z+
+	Qd+mPRd741HLAdiLHI21jCSk50QzSq6/uXZ9WQTBBWIjioiX7dXxNJdvlmPYhPq5bgV/azLwwZFnR
+	u4nC/lHU0TVxJq5P7qqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rp9xs-00000005XsH-2Qj2;
+	id 1rp9xs-00000005XsO-3zGo;
 	Tue, 26 Mar 2024 16:47:56 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rp8nA-00000005BLK-3Pvp;
-	Tue, 26 Mar 2024 15:32:53 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 5481212000B;
-	Tue, 26 Mar 2024 18:32:46 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 5481212000B
+	id 1rp8nI-00000005BRW-2lyv;
+	Tue, 26 Mar 2024 15:32:57 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
+	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=61qskjjgug1CwtUI2sI7KtAFt/01rZPUe79v1kWeFWk=; b=fb5y4SIgTU0PCWx+702Mv75W7F
+	gVn1e/UnGRzZ+elVj99rWTyHGLF7ApsoyqbU49Ycbb1bn3eRFcmU0tlTVmoYuIXwDpZ8HVPq+A3FP
+	0viQNndgq89EboJUKsTURw1sNQZpJ9gJry+oWH6K0heNfd32IIfRxeyG89yPcRrlEqAAeMX+gkpEp
+	y81SkNcNfYYZVr8cdptmBocmfMRpC2Mi9ADL6Pv1L+iW8Z2Z8Sr9317AxR7fnuFuzQqVE+4TyfwLs
+	LmvaoGZKX44JUZ0GUOixZ0rqVvhSPx40VahFwUvcRL9GTAtWAiFT25dzcN+WNz1AA7EBxo9jAOfu7
+	6AsXd2Bw==;
+Received: from mx1.sberdevices.ru ([37.18.73.165])
+	by desiato.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1rp8nE-0000000HGYt-2BCs;
+	Tue, 26 Mar 2024 15:32:54 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 9181810000F;
+	Tue, 26 Mar 2024 18:32:50 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 9181810000F
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1711467166;
-	bh=SJKGmPQbYkfclgAhsmlGviYg6GRGX00qe0nPzzT8s/A=;
+	s=mail; t=1711467170;
+	bh=61qskjjgug1CwtUI2sI7KtAFt/01rZPUe79v1kWeFWk=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=FbK0ROpA04ycrHOHMYJFiJirtWJ/4lhG7+fBxQFYmQ9wuZggCq0Dsw/8ftfWsv977
-	 61LR1uV10v0xUYNWXAbulIHdOSmv0j7lTqdUF+P0X15rqKFjnHFsck0rFKOoAJNpw0
-	 rqbhuED6SzqXoHH3dbAvs+EeI7LkTAJhojPAflj39nFqdcamIJzumThxpa8xiVJH67
-	 ZK4iKrYPfU+zjXJlQL+QzYavtLF8GWPU/SCZP5pOjpb1U+PS2Oyc3KorJWVyxkF9Dr
-	 RwwVUG2N7ZhFT0wef7KcEYmCf/2gjoWxMes6SexPSwmfYfMf/cx97vgSiCiG7wt4ut
-	 SN5r7Ht1V/JMA==
+	b=PtluTWy/skK4GUofVOre+V7ldyE90p4MBD3eCYrPThEj9CIoa182fFuFRpeV2ikRL
+	 OkHc74BmtVmz2rSb6gvDGPxxFw/nkRGTuVysdnAxHUpFQfCqSXKWYll2k4YBCGsvQk
+	 4s0p7aYRco/pJwB6hp/utRbgo38FhcyF2i7Q7iIMKjrSDdLyEgl43Cwtd76xfiW7qy
+	 eJCgn1G/N3Sl4dmJVXLUqE0mAjkrF1JV5DCr4YGDeHVBpICQfE/ehP/PnQ89wYZR/3
+	 UgjsfeAsbhq3UIy9Bt25e4mYHYPIzRWwg2SamEnyJQJA39bMhb9eJmsBaOc/CYcP/C
+	 BeMM5Lp8/J/0w==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 26 Mar 2024 18:32:46 +0300 (MSK)
+	Tue, 26 Mar 2024 18:32:50 +0300 (MSK)
 Received: from user-A520M-DS3H.sigma.sbrf.ru (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 26 Mar 2024 18:32:44 +0300
+ 15.2.1118.40; Tue, 26 Mar 2024 18:32:50 +0300
 From: Alexey Romanov <avromanov@salutedevices.com>
 To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
 	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
@@ -59,9 +73,9 @@ CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
  Romanov <avromanov@salutedevices.com>
-Subject: [PATCH v6 08/23] drivers: crypto: meson: cleanup defines
-Date: Tue, 26 Mar 2024 18:32:04 +0300
-Message-ID: <20240326153219.2915080-9-avromanov@salutedevices.com>
+Subject: [PATCH v6 13/23] drivers: crypto: meson: use fallback for 192-bit keys
+Date: Tue, 26 Mar 2024 18:32:09 +0300
+Message-ID: <20240326153219.2915080-14-avromanov@salutedevices.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240326153219.2915080-1-avromanov@salutedevices.com>
 References: <20240326153219.2915080-1-avromanov@salutedevices.com>
@@ -78,7 +92,7 @@ X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 12 0.3.12 d1a01b14eb3fc102c904d35fe6c2622ed2d1c16e, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 12 0.3.12 d1a01b14eb3fc102c904d35fe6c2622ed2d1c16e, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
 X-KSMG-AntiPhishing: Clean
@@ -86,8 +100,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/26 13:11:00 #24452135
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240326_083249_470466_94B1936C 
-X-CRM114-Status: GOOD (  14.49  )
+X-CRM114-CacheID: sfid-20240326_153252_781662_8B489CB8 
+X-CRM114-Status: GOOD (  14.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,120 +118,66 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-It is bad to use hardcoded values directly in the code.
+Unforunately, not all Amlogic SoC's have a 192-bit key
+support for AES algo. In this case, use fallback.
 
 Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/crypto/amlogic/amlogic-gxl-cipher.c | 24 ++++++++++-----------
- drivers/crypto/amlogic/amlogic-gxl.h        | 16 ++++++++------
- 2 files changed, 21 insertions(+), 19 deletions(-)
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c | 7 +++++++
+ drivers/crypto/amlogic/amlogic-gxl-core.c   | 1 +
+ drivers/crypto/amlogic/amlogic-gxl.h        | 2 ++
+ 3 files changed, 10 insertions(+)
 
 diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-index 48dbd957212d..e2c92505ad6b 100644
+index 5a6ac8960ca9..4fff9928f91e 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
 +++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-@@ -141,8 +141,8 @@ static int meson_cipher(struct skcipher_request *areq)
- 						 ivsize, 0);
- 		}
- 	}
--	if (keyivlen == 24)
--		keyivlen = 32;
-+	if (keyivlen == AES_KEYSIZE_192)
-+		keyivlen = AES_MAX_KEY_SIZE;
+@@ -41,6 +41,13 @@ static bool meson_cipher_need_fallback_sg(struct skcipher_request *areq,
  
- 	phykeyiv = dma_map_single(mc->dev, bkeyiv, keyivlen,
- 				  DMA_TO_DEVICE);
-@@ -161,7 +161,7 @@ static int meson_cipher(struct skcipher_request *areq)
- 		todo = min(keyivlen - eat, 16u);
- 		desc->t_src = cpu_to_le32(phykeyiv + i * 16);
- 		desc->t_dst = cpu_to_le32(i * 16);
--		v = (MODE_KEY << 20) | DESC_OWN | 16;
-+		v = DESC_MODE_KEY | DESC_OWN | 16;
- 		desc->t_status = cpu_to_le32(v);
- 
- 		eat += todo;
-@@ -205,7 +205,7 @@ static int meson_cipher(struct skcipher_request *areq)
- 		desc->t_src = cpu_to_le32(sg_dma_address(src_sg));
- 		desc->t_dst = cpu_to_le32(sg_dma_address(dst_sg));
- 		todo = min(len, sg_dma_len(src_sg));
--		v = (op->keymode << 20) | DESC_OWN | todo | (algt->blockmode << 26);
-+		v = op->keymode | DESC_OWN | todo | algt->blockmode;
- 		if (rctx->op_dir)
- 			v |= DESC_ENCRYPTION;
- 		len -= todo;
-@@ -348,14 +348,14 @@ static int meson_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
- 	struct meson_dev *mc = op->mc;
- 
- 	switch (keylen) {
--	case 128 / 8:
--		op->keymode = MODE_AES_128;
-+	case AES_KEYSIZE_128:
-+		op->keymode = DESC_MODE_AES_128;
- 		break;
--	case 192 / 8:
--		op->keymode = MODE_AES_192;
-+	case AES_KEYSIZE_192:
-+		op->keymode = DESC_MODE_AES_192;
- 		break;
--	case 256 / 8:
--		op->keymode = MODE_AES_256;
-+	case AES_KEYSIZE_256:
-+		op->keymode = DESC_MODE_AES_256;
- 		break;
- 	default:
- 		dev_dbg(mc->dev, "ERROR: Invalid keylen %u\n", keylen);
-@@ -373,7 +373,7 @@ static int meson_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
- static struct meson_alg_template algs[] = {
+ static bool meson_cipher_need_fallback(struct skcipher_request *areq)
  {
- 	.type = CRYPTO_ALG_TYPE_SKCIPHER,
--	.blockmode = MESON_OPMODE_CBC,
-+	.blockmode = DESC_OPMODE_CBC,
- 	.alg.skcipher.base = {
- 		.base = {
- 			.cra_name = "cbc(aes)",
-@@ -402,7 +402,7 @@ static struct meson_alg_template algs[] = {
- },
- {
- 	.type = CRYPTO_ALG_TYPE_SKCIPHER,
--	.blockmode = MESON_OPMODE_ECB,
-+	.blockmode = DESC_OPMODE_ECB,
- 	.alg.skcipher.base = {
- 		.base = {
- 			.cra_name = "ecb(aes)",
++	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(areq);
++	struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
++	struct meson_dev *mc = op->mc;
++
++	if (op->keymode == DESC_MODE_AES_192 && !mc->pdata->support_192bit_key)
++		return true;
++
+ 	if (areq->cryptlen == 0)
+ 		return true;
+ 
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+index 2c8387906655..4acacd925a21 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-core.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+@@ -283,6 +283,7 @@ static const struct meson_pdata meson_gxl_pdata = {
+ 	.setup_desc_cnt = 3,
+ 	.hasher_supported = false,
+ 	.reverse_keyiv = true,
++	.support_192bit_key = true,
+ };
+ 
+ static const struct of_device_id meson_crypto_of_match_table[] = {
 diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
-index 9d66903aa73d..1ab3462dea42 100644
+index de11e174f03d..01913daf1bf4 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl.h
 +++ b/drivers/crypto/amlogic/amlogic-gxl.h
-@@ -11,19 +11,21 @@
- #include <linux/crypto.h>
- #include <linux/scatterlist.h>
+@@ -98,6 +98,7 @@ struct meson_flow {
+  * @reg_status:	offset to status register
+  * @setup_desc_cnt:	number of setup descriptor to configure.
+  * @hasher_supported:	indecates whether hasher is supported.
++ * @support_192bit_key:	indicates whether platform support AES 192-bit key
+  */
+ struct meson_pdata {
+ 	u32 descs_reg;
+@@ -105,6 +106,7 @@ struct meson_pdata {
+ 	u32 setup_desc_cnt;
+ 	bool hasher_supported;
+ 	bool reverse_keyiv;
++	bool support_192bit_key;
+ };
  
--#define MODE_KEY 1
--#define MODE_AES_128 0x8
--#define MODE_AES_192 0x9
--#define MODE_AES_256 0xa
--
- #define MESON_DECRYPT 0
- #define MESON_ENCRYPT 1
- 
--#define MESON_OPMODE_ECB 0
--#define MESON_OPMODE_CBC 1
-+#define DESC_MODE_KEY (0x1 << 20)
-+#define DESC_MODE_AES_128 (0x8 << 20)
-+#define DESC_MODE_AES_192 (0x9 << 20)
-+#define DESC_MODE_AES_256 (0xa << 20)
- 
- #define MAXDESC 64
- 
-+#define DESC_OPMODE_ECB (0 << 26)
-+#define DESC_OPMODE_CBC (1 << 26)
-+
-+#define DESC_MAXLEN GENMASK(16, 0)
-+
- #define DESC_LAST BIT(18)
- #define DESC_ENCRYPTION BIT(28)
- #define DESC_OWN BIT(31)
+ /*
 -- 
 2.34.1
 
