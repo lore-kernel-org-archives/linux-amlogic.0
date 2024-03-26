@@ -4,104 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3DFAC54E67
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2024 15:36:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6CB0C6FD1F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2024 15:40:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QBjn1elocfJmi09lOiAlmHZy1RhaaeOnSzNg4yqpVK4=; b=Qx8BlsB/0P4/dh
-	0GObxMdgLQPxGy1Utm0MfTKYaIoGvRacDj3BRL2mCHHT39Lv1ZH4pnZQq/LhATMkDHellnaLpbaPV
-	4VtnrYQ+1/+hhz5LBpcPLNu6G5eZk5eaKWhoUErhZLmrmQKxqGkSKOEbe56SBuJrpRIIkdOybcJPF
-	Z4uui9Tctdv+SsulqvtuxA0CE8P2cVgvWKAQb/7IKqOayo4+aTMY5Ux3789BaPHX7amV/pjfWH40o
-	lN1JQ8O2owRMrZi+KxfNszTqQjWcacgCcwRjcMPVJwF/aEsOJUS9ATPgHh8TajrlcAZDTdkI+rUr+
-	RFVtZA7GKMWK1936wMTQ==;
+	List-Owner; bh=mUFqXIb4b7Wd3BAtoehAO5dYREM1sS7ds075koflVuU=; b=dwSkwu0/3lVZyX
+	PUeBC0ah0KXXFZIDTtZJt/7aONylGyJIYg3XgjrwT5nLkekSYoXZ97Kx4/owsB6K003298k2UvVVn
+	rgYaYwOq2eEtaDeBVa1LGMjaC1J6sZOhUIPeFXJ9W8IBdqD8hvwx9vdysIssVfO2Z1mwGi2hxZ9HW
+	o5cnaTuygJcvrViAZ1ktZy39PJlHddWP8HcQK/EPjWUVO14U6/L4E/T6VUksXB06HsxUxlig/q0jv
+	ssTWm2dnvFrTqZeL18T2xVGM4/HjMZIl1Nhal2BjHEAedBt7LJhZw4iR9BN78QddtDgVws8ozCBBh
+	8TgSn6dH/JCkRjOJsugw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rp8qw-00000005DRV-33Dw;
-	Tue, 26 Mar 2024 15:36:44 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1rp8uH-00000005FDD-3RSM;
+	Tue, 26 Mar 2024 15:40:09 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rp8nM-00000005BUT-49Qq;
-	Tue, 26 Mar 2024 15:33:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
-	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=OLA6Lkhoz7gCcP8JoJQDn0rr0DM3isWhU/EFIlQtI1w=; b=Gama1MIbbkBy7A+hEZgW3z8yNO
-	0o7wZiim4ypMA51S4LvKc/iWElwLuMOww0SeKV+OS6tNbytB3djYzufWW4lLtxjr+5xQpOAcIA3+5
-	fWq27ZBgaQi9FKCNH9kuknwVGA1QNM+8c/u+qTl6UEdATNRwZ9FBheJ42zgah6Ib5bU8hFJFnhGtp
-	PeuEMSfUmD1uwOqh+iye5tQAAayVmGfcJHFL7wdHCehOcfGo97gtUEMq3yRL15fMj08v3cYl/HVnI
-	caCk0yinnuq7EIrtTxxDPveJQwPAlJsRBhG3w+a8U9MCplDeUVMCe8ZjhwUExry3S5BSsfS0wn/kg
-	B7MnfqIg==;
-Received: from mx1.sberdevices.ru ([37.18.73.165])
-	by desiato.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rp8nJ-0000000HGaO-3IHd;
-	Tue, 26 Mar 2024 15:32:59 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 42D7810000F;
-	Tue, 26 Mar 2024 18:32:56 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 42D7810000F
+	id 1rp8uC-00000005F5z-1gU1;
+	Tue, 26 Mar 2024 15:40:08 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id B15B9120004;
+	Tue, 26 Mar 2024 18:39:50 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru B15B9120004
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1711467176;
-	bh=OLA6Lkhoz7gCcP8JoJQDn0rr0DM3isWhU/EFIlQtI1w=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=YlI+IlpoksGMCKK640hnbRDfWMVpoe8JdCE8+SHcJ44ffZcbEfvb/DAv/nV1Yof7u
-	 1y/IRoWLWKwE/oISPfu5sLXow8cm8bsopFyDakdpg7DHKxz+PneceLMniySuthKJLz
-	 K0kDoY+kdKXpiOMngoS5hanq09etrZOJ8Rka4ZowKLd+rrShwhUaHnPjcCucWt6ego
-	 XYVL9/Vm/f4ftBq7CdhKAX6m9UdjBtp0esAslTBv/Gcy3VvvUef0vbfdNFkOiM6pBT
-	 /9AYHp/8WT06r50KJ7ExrBZn0id1gsv+WeZNv+mubli9ld6y9K4y0KG/edbFvFehbY
-	 MddmG3eB3V9ng==
+	s=mail; t=1711467590;
+	bh=BspCg4rrPJ0Kpig9Yf6f5Zh/R+hA73hjDZvRIpKseLo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=ePA7RZGi1LFC23l7KSsw/4S8dcZ2KX7MSOkB/o4z7Kk2vlwHcGfjZwFTTSddxMF+f
+	 URyiU38kBwTwoJt/UMLBrUizr1BgaYdV4ur+KuUm83f1EozvmNDZ9cpdkeUnpSqQuw
+	 1drQJP1WX826/tyNAVRms1daZhOuqIEHvqQLsIC+JCu+9ywl2hDy5YQDDnBdKRfQvD
+	 pj8lzOMMbooGkBUAhXtSGhBv0LHmcIPKS1BFyB+YOywk42LakpkX/wKKFjbJBw+WEo
+	 z3xSGvHF6QNA37l/vjQL+zyxidP40CmEf+/uQkGuApvFmVpnxMJwDPazWs1VmAbs9x
+	 B2Fcv3mMDFswA==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 26 Mar 2024 18:32:56 +0300 (MSK)
-Received: from user-A520M-DS3H.sigma.sbrf.ru (100.64.160.123) by
+	Tue, 26 Mar 2024 18:39:50 +0300 (MSK)
+Received: from [192.168.20.2] (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 26 Mar 2024 18:32:54 +0300
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
-	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <vadim.fedorenko@linux.dev>
-CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
- Romanov <avromanov@salutedevices.com>
-Subject: [PATCH v6 17/23] dt-bindings: crypto: meson: remove clk and second interrupt line for GXL
-Date: Tue, 26 Mar 2024 18:32:13 +0300
-Message-ID: <20240326153219.2915080-18-avromanov@salutedevices.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240326153219.2915080-1-avromanov@salutedevices.com>
-References: <20240326153219.2915080-1-avromanov@salutedevices.com>
+ 15.2.1118.40; Tue, 26 Mar 2024 18:39:50 +0300
+Message-ID: <13bfb247-9210-48ae-902b-629d850cbae7@salutedevices.com>
+Date: Tue, 26 Mar 2024 18:38:44 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v2] ASoC: meson: g12a-toacodec: rework the definition
+ of bits
+Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>
+CC: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	<alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+References: <20240325235311.411920-1-jan.dakinevich@salutedevices.com>
+ <1j34sd9fur.fsf@starbuckisacylon.baylibre.com>
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <1j34sd9fur.fsf@starbuckisacylon.baylibre.com>
 X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
 X-KSMG-AntiSpam-Lua-Profiles: 184425 [Mar 26 2024]
 X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
 X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 12 0.3.12 d1a01b14eb3fc102c904d35fe6c2622ed2d1c16e, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 12 0.3.12 d1a01b14eb3fc102c904d35fe6c2622ed2d1c16e, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;lore.kernel.org:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;salutedevices.com:7.1.1, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
+X-KSMG-AntiPhishing: Clean, bases: 2024/03/26 11:48:00
+X-KSMG-LinksScanning: Clean, bases: 2024/03/26 11:48:00
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/26 13:11:00 #24452135
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240326_153258_025627_018AA850 
-X-CRM114-Status: GOOD (  10.73  )
+X-CRM114-CacheID: sfid-20240326_084005_395177_6F76F75D 
+X-CRM114-Status: GOOD (  24.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,52 +106,199 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-GXL crypto IP uses DMA engine, which doesn't require clk input
-and second interrupt line.
 
-Fixes: c4a0457eb858 ("ARM64: dts: amlogic: adds crypto hardware node")
-Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
----
- .../bindings/crypto/amlogic,gxl-crypto.yaml         | 13 +------------
- 1 file changed, 1 insertion(+), 12 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-index 948e11ebe4ee..d3af7b4d5f39 100644
---- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-+++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-@@ -20,20 +20,11 @@ properties:
-   interrupts:
-     items:
-       - description: Interrupt for flow 0
--      - description: Interrupt for flow 1
--
--  clocks:
--    maxItems: 1
--
--  clock-names:
--    const: blkmv
- 
- required:
-   - compatible
-   - reg
-   - interrupts
--  - clocks
--  - clock-names
- 
- additionalProperties: false
- 
-@@ -46,7 +37,5 @@ examples:
-     crypto: crypto-engine@c883e000 {
-         compatible = "amlogic,gxl-crypto";
-         reg = <0xc883e000 0x36>;
--        interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>, <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
--        clocks = <&clkc CLKID_BLKMV>;
--        clock-names = "blkmv";
-+        interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>;
-     };
+On 3/26/24 18:15, Jerome Brunet wrote:
+> 
+> On Tue 26 Mar 2024 at 02:53, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+> 
+>> There is a lot of defines, but almost all of them are not used. Lets
+>> rework them:
+> 
+> Thanks for noticing. Please start by removing what's unused.
+> 
+
+I mean, that some values are named. But then numbers are used instead names.
+
+>>
+>>  - keep separate the definition for different platforms to make easier
+>>    checking that they match documentation.
+>>
+>>  - use LSB/MSB sufixes for uniformity.
+> 
+> I'd be in favor of dropping these suffixes completely.
+> 
+>>
+>>  - don't use hard-coded values for already declared defines.
+>>
+>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+>> ---
+>> Links:
+>>
+>>  [1] https://lore.kernel.org/lkml/20240314232201.2102178-1-jan.dakinevich@salutedevices.com/
+>>
+>> Changes v1 -> v2:
+>>  - Detached from v1's series (patch 7).
+>>  - Fixed my wrong understanding of SOC_SINGLE's input parameters.
+>>
+>>  sound/soc/meson/g12a-toacodec.c | 79 ++++++++++++++++++++-------------
+>>  1 file changed, 49 insertions(+), 30 deletions(-)
+>>
+>> diff --git a/sound/soc/meson/g12a-toacodec.c b/sound/soc/meson/g12a-toacodec.c
+>> index 531bb8707a3e..22181f4bab72 100644
+>> --- a/sound/soc/meson/g12a-toacodec.c
+>> +++ b/sound/soc/meson/g12a-toacodec.c
+>> @@ -20,26 +20,37 @@
+>>  #define G12A_TOACODEC_DRV_NAME "g12a-toacodec"
+>>  
+>>  #define TOACODEC_CTRL0			0x0
+>> -#define  CTRL0_ENABLE_SHIFT		31
+>> -#define  CTRL0_DAT_SEL_SM1_MSB		19
+>> -#define  CTRL0_DAT_SEL_SM1_LSB		18
+>> -#define  CTRL0_DAT_SEL_MSB		15
+>> -#define  CTRL0_DAT_SEL_LSB		14
+>> -#define  CTRL0_LANE_SEL_SM1		16
+>> -#define  CTRL0_LANE_SEL			12
+>> -#define  CTRL0_LRCLK_SEL_SM1_MSB	14
+>> -#define  CTRL0_LRCLK_SEL_SM1_LSB	12
+>> -#define  CTRL0_LRCLK_SEL_MSB		9
+>> -#define  CTRL0_LRCLK_SEL_LSB		8
+>> -#define  CTRL0_LRCLK_INV_SM1		BIT(10)
+>> -#define  CTRL0_BLK_CAP_INV_SM1		BIT(9)
+>> -#define  CTRL0_BLK_CAP_INV		BIT(7)
+>> -#define  CTRL0_BCLK_O_INV_SM1		BIT(8)
+>> -#define  CTRL0_BCLK_O_INV		BIT(6)
+>> -#define  CTRL0_BCLK_SEL_SM1_MSB		6
+>> -#define  CTRL0_BCLK_SEL_MSB		5
+>> -#define  CTRL0_BCLK_SEL_LSB		4
+>> -#define  CTRL0_MCLK_SEL			GENMASK(2, 0)
+>> +
+>> +/* Common bits */
+>> +#define CTRL0_ENABLE_SHIFT		31
+>> +#define CTRL0_MCLK_SEL			GENMASK(2, 0)
+>> +
+>> +/* G12A bits */
+>> +#define CTRL0_DAT_SEL_G12A_MSB		15
+>> +#define CTRL0_DAT_SEL_G12A_LSB		14
+>> +#define CTRL0_LANE_SEL_G12A_MSB		13
+>> +#define CTRL0_LANE_SEL_G12A_LSB		12
+>> +#define CTRL0_LANE_SEL_G12A_MAX		3
+>> +#define CTRL0_LRCLK_SEL_G12A_MSB	9
+>> +#define CTRL0_LRCLK_SEL_G12A_LSB	8
+>> +#define CTRL0_BLK_CAP_INV_G12A		BIT(7)
+>> +#define CTRL0_BCLK_O_INV_G12A		BIT(6)
+>> +#define CTRL0_BCLK_SEL_G12A_MSB		5
+>> +#define CTRL0_BCLK_SEL_G12A_LSB		4
+>> +
+>> +/* SM1 bits */
+>> +#define CTRL0_DAT_SEL_SM1_MSB		19
+>> +#define CTRL0_DAT_SEL_SM1_LSB		18
+>> +#define CTRL0_LANE_SEL_SM1_MSB		17
+>> +#define CTRL0_LANE_SEL_SM1_LSB		16
+>> +#define CTRL0_LANE_SEL_SM1_MAX		3
+>> +#define CTRL0_LRCLK_SEL_SM1_MSB		14
+>> +#define CTRL0_LRCLK_SEL_SM1_LSB		12
+>> +#define CTRL0_LRCLK_INV_SM1		BIT(10)
+>> +#define CTRL0_BLK_CAP_INV_SM1		BIT(9)
+>> +#define CTRL0_BCLK_O_INV_SM1		BIT(8)
+>> +#define CTRL0_BCLK_SEL_SM1_MSB		6
+>> +#define CTRL0_BCLK_SEL_SM1_LSB		4
+>>  
+>>  #define TOACODEC_OUT_CHMAX		2
+>>  
+>> @@ -108,7 +119,7 @@ static int g12a_toacodec_mux_put_enum(struct snd_kcontrol *kcontrol,
+>>  }
+>>  
+>>  static SOC_ENUM_SINGLE_DECL(g12a_toacodec_mux_enum, TOACODEC_CTRL0,
+>> -			    CTRL0_DAT_SEL_LSB,
+>> +			    CTRL0_DAT_SEL_G12A_LSB,
+>>  			    g12a_toacodec_mux_texts);
+>>  
+>>  static SOC_ENUM_SINGLE_DECL(sm1_toacodec_mux_enum, TOACODEC_CTRL0,
+>> @@ -210,7 +221,7 @@ static int g12a_toacodec_component_probe(struct snd_soc_component *c)
+>>  {
+>>  	/* Initialize the static clock parameters */
+>>  	return snd_soc_component_write(c, TOACODEC_CTRL0,
+>> -				       CTRL0_BLK_CAP_INV);
+>> +				       CTRL0_BLK_CAP_INV_G12A);
+>>  }
+>>  
+>>  static int sm1_toacodec_component_probe(struct snd_soc_component *c)
+>> @@ -229,11 +240,13 @@ static const struct snd_soc_dapm_route g12a_toacodec_routes[] = {
+>>  };
+>>  
+>>  static const struct snd_kcontrol_new g12a_toacodec_controls[] = {
+>> -	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL, 3, 0),
+>> +	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_G12A_LSB,
+>> +		   CTRL0_LANE_SEL_G12A_MAX, 0),
+>>  };
+>>  
+>>  static const struct snd_kcontrol_new sm1_toacodec_controls[] = {
+>> -	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_SM1, 3, 0),
+>> +	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_SM1_LSB,
+>> +		   CTRL0_LANE_SEL_SM1_MAX, 0),
+>>  };
+>>  
+>>  static const struct snd_soc_component_driver g12a_toacodec_component_drv = {
+>> @@ -266,16 +279,22 @@ static const struct regmap_config g12a_toacodec_regmap_cfg = {
+>>  
+>>  static const struct g12a_toacodec_match_data g12a_toacodec_match_data = {
+>>  	.component_drv	= &g12a_toacodec_component_drv,
+>> -	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, 14, 15),
+>> -	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, 8, 9),
+>> -	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, 4, 5),
+>> +	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_DAT_SEL_G12A_LSB,
+>> +				    CTRL0_DAT_SEL_G12A_MSB),
+>> +	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, CTRL0_LRCLK_SEL_G12A_LSB,
+>> +				     CTRL0_LRCLK_SEL_G12A_MSB),
+>> +	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_BCLK_SEL_G12A_LSB,
+>> +				    CTRL0_BCLK_SEL_G12A_MSB),
+>>  };
+>>  
+>>  static const struct g12a_toacodec_match_data sm1_toacodec_match_data = {
+>>  	.component_drv	= &sm1_toacodec_component_drv,
+>> -	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, 18, 19),
+>> -	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, 12, 14),
+>> -	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, 4, 6),
+>> +	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_DAT_SEL_SM1_LSB,
+>> +				    CTRL0_DAT_SEL_SM1_MSB),
+>> +	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, CTRL0_LRCLK_SEL_SM1_LSB,
+>> +				     CTRL0_LRCLK_SEL_SM1_MSB),
+>> +	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_BCLK_SEL_SM1_LSB,
+>> +				    CTRL0_BCLK_SEL_SM1_MSB),
+> 
+> Those defines are already platform specific by the structure holding
+> them and the defines you have added are not helping readability.
+> 
+
+These values are duplicated. Would it be reasonable to remove them from
+defines?
+
+> I don't see the point to see.
+> I'd prefer to keep the field defined as they are.
+> 
+
+Main goal of this patch is to rearrange definitions by platforms. From
+my point it is quite difficult to read things like this:
+
+#define  CTRL0_LANE_SEL_SM1		16
+#define  CTRL0_LANE_SEL			12
+#define  CTRL0_LRCLK_SEL_SM1_MSB	14
+#define  CTRL0_LRCLK_SEL_SM1_LSB	12
+#define  CTRL0_LRCLK_SEL_MSB		9
+#define  CTRL0_LRCLK_SEL_LSB		8
+
+I am going to add one more platforms, and this will get worse.
+
+>>  };
+>>  
+>>  static const struct of_device_id g12a_toacodec_of_match[] = {
+> 
+> 
+
 -- 
-2.34.1
-
+Best regards
+Jan Dakinevich
 
 _______________________________________________
 linux-amlogic mailing list
