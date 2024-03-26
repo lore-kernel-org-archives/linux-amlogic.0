@@ -4,51 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDC9CC54E67
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2024 15:35:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18B40C54E67
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2024 15:35:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=w1/DqApjT9+V7s+q534y1GPBs3YnZ+DItkcX+QmyhYA=; b=MzLQE0KU4ixF2u
-	TDLWnweYzOX5WRllbAERTVXfS90ejP3ZSzTwZI4SYP1xCBEiP3N8/oCqBx16A2i+Bx5p1CKGS/Yow
-	H8nFzcvrZu+MnmEdMtJonaMl/FpCjywycwGNkv/1wQVXMLfevm7DCs2E0dNOm0nggs8Hbe1SdkQ4u
-	UW8HnenQk2DphUPfgxdquS4TFNRrvzX6VtL0ZrFCxrXQ+XnYUfVMX+uJ2MoXoPHDFqpOnL8pTeBb+
-	pqN/3R2Y9hjMNKoCRDkwlMGNw580E3TkN+womzrTg4UqRUaqyL4S6CYrPeAisnZk843iXu1h4wxK1
-	thrj2ygdaQi0xNCS8D1g==;
+	List-Owner; bh=dAHSiUtwhetEJVOtXkPV9xzTCwvS0n8SI0s4jmI0tWY=; b=SRaZWv7k5zkfY2
+	7005d+4cciSFVHAIXgDI5Eph5YYggX0l2irCD5G9XnmsZI9uJ/dU9uNQIze68b7JUOrSaGOCO+NVD
+	ZFgzU4ER7VFUqq1ZYAbYUnIiP9+6NY24Ap1ey0CpWiE3pLh2d8kDc7LNmkLmas41CnfOoeu5ngp+Q
+	mir85nKfuURIf+n4dDYgylw9hR5DX5Cwxqj1+rcZYPquy5c2jXxtS8Q5epjk4eyd+zSKP/1cobd+B
+	+ZI3RdFk/qOlUyroCh84UpkJrwp0P7E5cTFcKkpBNTeJ9LCMz0mVJfMzsf7CKCTP9hsIYRXcDQVX0
+	D3cubKECl5waamfJIlOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rp8pQ-00000005Cf1-3aTB;
-	Tue, 26 Mar 2024 15:35:09 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1rp8pt-00000005CwP-073D;
+	Tue, 26 Mar 2024 15:35:37 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rp8nM-00000005BTE-0hYZ;
+	id 1rp8nS-00000005BZu-3K6h;
+	Tue, 26 Mar 2024 15:33:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
+	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=05kdFXM47cnBcRHfYdp3Rbz6LB0mZF5MOn8895OSYpU=; b=QROh15NyOId2yl8moV7a91Ukcf
+	P+486uabUdZLWsKVbyjPi0P6+Wn77IClXr+LJ/sTUXvG8nTw8amEvwRvnF6XQkTaBTnG+GYyOdDhW
+	dCTkcNWMa5j6qbKBs5KD92rgt1nEkQLVzICX3/cij/oJl++ddN2CXYxfK70HQnYYji+KNmGOwWYn4
+	QtwW9jak6L3tP7LwIoNpFxbV7U4UaZMvN3RlbtX36zfAeAT4fVkU6EG+hsBJNF4Mf9eWaXgcHLjUt
+	FH4b6EsRLinDU3Olm8HWIrLrGS30KHUGEtvWj2SZ8uwfjMHkxzJbRSwH9JoW8G+JhlH5XzS3FXABo
+	TbqOaP3A==;
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	by desiato.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1rp8nP-0000000HGbi-1wrQ;
 	Tue, 26 Mar 2024 15:33:05 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 5605F12000B;
-	Tue, 26 Mar 2024 18:32:58 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 5605F12000B
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 42A8A120002;
+	Tue, 26 Mar 2024 18:33:02 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 42A8A120002
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1711467178;
-	bh=ffgd+lXKw2v9IInzoIyKOvBtJnitxh3VgKAY/vJlbPQ=;
+	s=mail; t=1711467182;
+	bh=05kdFXM47cnBcRHfYdp3Rbz6LB0mZF5MOn8895OSYpU=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=FHDoc19bFlKQoudgbiqgsbdZQoa7mmUbVRXpJdT7H5dF/HlcDAvwPjitg1xZtvzBb
-	 jjghqlvNN5AInkdXVp7/mEgroDQsOoR5FNLnyYysV+e+/zs40sWbu1nbZDqxWEVNTi
-	 RRnxLnf2v4MeO4iy/5VYaY04xdv9ePL7nIrj27cOU3IWlstpRhkRx7pTUKrW7vrYpD
-	 tRzJbjvVwiMsxAtFzUob66/HBmQvoS5yUVEYC1HTku7Lgd3YvxcM7ATSVKLoBQontp
-	 oPjYoP/kqE/cUvmehHP33gFHzeyq0XmAxecBrmXBi/nYNvdeAhvJSJyVZQkO4JUrdx
-	 SoRt7RpW8RshA==
+	b=sKy4anwI/dXO2DwncsIrK5PwzWGCKJWnyPKChdzuFHNqGSjMkwAfFXk2riA12duM4
+	 yyJu1jKp4tq2ljO6AOciUQZDuxp8b0oeXsvo5X6dzoBEwJRg8fFhpDpN3YzU0IqXBK
+	 G0iXaRMv7EiU6eTtcKQ/ft4mh5JV0w0DjoeaF7H4TLX39J1oJPT5Qz1lSqs1gaW2AO
+	 8s+CqQTwm6qIWX6j6raJTvdWY8hBtdvB1LKNvQpYKtFjh9TQgQMDasjGjgNHi+Zx33
+	 n4PH8syOkXVIDevKV3WeX5FH5zKHBihn91nfmOTNLgTYd7bG63TJuhJlQYFsRH2GZE
+	 FSLLKLD/VhHUA==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 26 Mar 2024 18:32:58 +0300 (MSK)
+	Tue, 26 Mar 2024 18:33:02 +0300 (MSK)
 Received: from user-A520M-DS3H.sigma.sbrf.ru (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 26 Mar 2024 18:32:56 +0300
+ 15.2.1118.40; Tue, 26 Mar 2024 18:33:00 +0300
 From: Alexey Romanov <avromanov@salutedevices.com>
 To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
 	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
@@ -59,9 +73,9 @@ CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
  Romanov <avromanov@salutedevices.com>
-Subject: [PATCH v6 18/23] arch: arm64: dts: meson: gxl: correct crypto node definition
-Date: Tue, 26 Mar 2024 18:32:14 +0300
-Message-ID: <20240326153219.2915080-19-avromanov@salutedevices.com>
+Subject: [PATCH v6 20/23] arch: arm64: dts: meson: a1: add crypto node
+Date: Tue, 26 Mar 2024 18:32:16 +0300
+Message-ID: <20240326153219.2915080-21-avromanov@salutedevices.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240326153219.2915080-1-avromanov@salutedevices.com>
 References: <20240326153219.2915080-1-avromanov@salutedevices.com>
@@ -86,8 +100,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/26 13:11:00 #24452135
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240326_083301_021624_D29BACD2 
-X-CRM114-Status: GOOD (  10.21  )
+X-CRM114-CacheID: sfid-20240326_153303_755014_AEE5E395 
+X-CRM114-Status: GOOD (  10.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,31 +118,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-GXL crypto IP uses DMA engine, which doesn't require clk input
-and second interrupt line. So, remove them.
+This patch adds a crypto node declaration. With the
+Amlogic crypto driver we can use HW implementation
+of SHA1/224/256 and AES algo.
 
-Fixes: c4a0457eb858 ("ARM64: dts: amlogic: adds crypto hardware node")
 Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 17bcfa4702e1..731b0a11a8da 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -68,10 +68,7 @@ acodec: audio-controller@c8832000 {
- 		crypto: crypto@c883e000 {
- 			compatible = "amlogic,gxl-crypto";
- 			reg = <0x0 0xc883e000 0x0 0x36>;
--			interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>,
--				     <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
--			clocks = <&clkc CLKID_BLKMV>;
--			clock-names = "blkmv";
-+			interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>;
- 			status = "okay";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index b9fd69112535..5a54a3283e16 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -653,6 +653,13 @@ sd_emmc: sd@10000 {
+ 				power-domains = <&pwrc PWRC_SD_EMMC_ID>;
+ 				status = "disabled";
+ 			};
++
++			crypto: crypto@6000 {
++				compatible = "amlogic,a1-crypto";
++				reg = <0x0 0x6000 0x0 0x48>;
++				interrupts = <GIC_SPI 120 IRQ_TYPE_EDGE_RISING>;
++				power-domains = <&pwrc PWRC_DMA_ID>;
++			};
  		};
- 	};
+ 
+ 		usb: usb@fe004400 {
 -- 
 2.34.1
 
