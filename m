@@ -4,85 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D777C6FD1F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2024 15:24:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1413C54E67
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2024 15:32:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rG5FkkFzCiFCZWhgfgf9dnypPNMrj0wNRc88Db2UmzA=; b=McBvE+y7IEzTxk
-	+LUxz00Y2IRerD1IQw/Z3/fRDi8TGSn1LetXv8mzEemZBZBlUUswyMr+Cmm4W/7DIyhqUCnpLSsbj
-	AvaRwJC7aD11WOelaIaoAAmkHAljQ5rK1bHLKI0uIwd+pFcdVd/Wl3Di3v6mSyxxTZgAEwNrD/1cw
-	BoyQ02bSGuG3uo8dRbhQSUiGozTV/zOPH/WDv5d96gfiguipjMvTr9CESdFgtd+W/KayD5cQM6/nw
-	uV8hJPcG2kj6sNNq91O/aJpPh3uFsGcJen9UZtf1DWZO5kmdyuPL3QVzLWcN9FtM/QJ3sAyqkqK8J
-	Y+wHcpbNOss+zSIMR4Nw==;
+	List-Owner; bh=ZtWZXPkbM1tHymnvQj+TkoNnxtt04bUW1BXCYx8elV4=; b=H33dIeHGmsPn/D
+	xUzW9UJxshBXLtOUsiYJKMgZFiWOOmQwkhOF1P560YdhQJck9YZKggqiWBsrPWeh3whyDpI9PoskE
+	QG1qgEhuRKzM5/wvwSZuMKly25+h090xMQJVMdzmqf6sw8l3Ebe1iw565ovr8qyS2/OigLwBU++Bk
+	dystniEX2kJ5l6Dtv9UCLHazWK5Dkpzp36y0e5QpwNz5xkD31S+hiy5BwlVvhClR/rDnTLUGMucY0
+	kB6uKJN/yaz2C2oqfjKWcnFMqfmQwJ5GOvHnfITQKwVphAWCdYnacIpg4yKkdkqZ0I1M96Ng3Qt8+
+	ht0MfH1hiktJphFoiugg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rp8eQ-000000058RC-4320;
-	Tue, 26 Mar 2024 15:23:47 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1rp8n4-00000005BHL-1ynL;
+	Tue, 26 Mar 2024 15:32:42 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rp8eO-000000058Pg-0UzS
-	for linux-amlogic@lists.infradead.org;
-	Tue, 26 Mar 2024 15:23:46 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-33ed5b6bf59so4047286f8f.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 26 Mar 2024 08:23:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1711466622; x=1712071422; darn=lists.infradead.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=aM+9RXmEYQB5vl1fffTAMXMZVqZ/ACCmOiJ2FPQkdAA=;
-        b=2V7JIZI97d/EfgQ6SpiBhLIZA/lN5IDetmx3rVvWuegbkljfuDSPp0BRV9P3ImGmmg
-         nZaaK3zKShw7Mtj7c1y/0xzlTIYITVl+2ZLOhvAuoP4JpnSrmVFNHcbUb4DdwF89CRWf
-         nYyzMOqZNnQqG8ZhaOIvAQ/cHc/STCbQY/NPaQg63HVaTzglGXvvy21/EleHwoN4/wRd
-         2qj6UIk01+NvD+Th0a1oB8xiM7BlqzfpC8dahvSuxz2NTwt4uCbXDnQhj1iQffuJt877
-         eUSKwYumrlmM9cjSukyYDEIsrXS5v2V3zwUmP/aFZKtdoLoWcjKtami2e34aY0mnFIAQ
-         PvOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711466622; x=1712071422;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aM+9RXmEYQB5vl1fffTAMXMZVqZ/ACCmOiJ2FPQkdAA=;
-        b=jRKM1fz/wEC2V2fX2Vegwco46OBV03XNO0wr2mJglVA5tc+K4/qSjbG+g/GEmUiJ8J
-         pO0pq4mu+T2v8W4RJi8fpt4iPMZjfVTI40QuvZqdkXF6hwzmcykpHODLYKH8S035PLaa
-         4MFrmbVbD2S22fDaSqj1dczq6TbpX5VtdweDPDym6PnaCNatsBkn0lU0bd0M7UqIwwsM
-         UAinYAE9KTsS7NLKmmcwkiNkJWqP7sxpD1aCSNxhX/wMAcv9H7E+0uUJXpqR64tppTI+
-         2tDsknNXWOTqAC5+M7kR5BeuljmixxshKlgemwwJ7Bu+Uudk0jPA3wOiVIoijTRcXI8h
-         3yfA==
-X-Forwarded-Encrypted: i=1; AJvYcCWsjvogHLjom0sD2qqN35z9VkP8ESp11FOfKJfmDz+fnAmLTasIzu49SdsfgiXVG90c8hrWyMUvjKFiz7iosEo3VGEcgLbQ5vlU2CXgoLNFYcg=
-X-Gm-Message-State: AOJu0YyqbXcbKDt0SErOqWUZRAexTxdX0/57QUqbLfd/Nem3c/LTjOUb
-	r+aL9HKcNEQZw7wV2k+i0mFG+zsj2QLeosvT0z4Hf5mT8ogZGXQrQkZ6UKm2DO8=
-X-Google-Smtp-Source: AGHT+IHsYZJ/uOqZnp1TmWFGMlVgZ+AivccEHh8xx3hUmGEHsDKWJ4EN0Xf/+CitijnbkfltJZVucg==
-X-Received: by 2002:a5d:69ca:0:b0:33e:7adc:516c with SMTP id s10-20020a5d69ca000000b0033e7adc516cmr1290781wrw.57.1711466621739;
-        Tue, 26 Mar 2024 08:23:41 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:97a2:bb9f:463a:6468])
-        by smtp.gmail.com with ESMTPSA id ch9-20020a5d5d09000000b00341c6778171sm8083186wrb.83.2024.03.26.08.23.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Mar 2024 08:23:41 -0700 (PDT)
-References: <20240325235311.411920-1-jan.dakinevich@salutedevices.com>
-User-agent: mu4e 1.10.8; emacs 29.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,
- alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2] ASoC: meson: g12a-toacodec: rework the
- definition of bits
-Date: Tue, 26 Mar 2024 16:15:51 +0100
-In-reply-to: <20240325235311.411920-1-jan.dakinevich@salutedevices.com>
-Message-ID: <1j34sd9fur.fsf@starbuckisacylon.baylibre.com>
+	id 1rp8n0-00000005BCW-1czc;
+	Tue, 26 Mar 2024 15:32:40 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 2B44910000B;
+	Tue, 26 Mar 2024 18:32:34 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2B44910000B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1711467154;
+	bh=jZtwkxqZfetPRoW+MOM8/cOqYkUXkZIy/pIVpC3Q6Zs=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=mcSwzKq2EljxCFAfBUOZ8N9ie6Hc392TzXmEn8vi9hfl06w4dWRhDWXnlpWT/63BS
+	 zkHLJIP2wCUNSe5z1ulZOzOCI7PN6q2/0NdaeHVCsApvXT6ysSBEWYY4OCXeobP/QH
+	 zLbbDxyrhRcqLBaPCMLm2IaD1iunC8p8uiP1bo2MWztqmQO5rBraz85NG0it1z8uE8
+	 0YIaGvs6E9noTF5pdB2c5DJzrkuZWdc16i7XYRIapLDb5PXdeRbcgpTyJkugCLFwbX
+	 KQ/GzHvWhE5Xv0DuXoimKp+s40QuANHqT/RgY24IFdnpV6R1DPkXGmSTN0I1UTZf7W
+	 OPhC3Pj+ylN5w==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 26 Mar 2024 18:32:33 +0300 (MSK)
+Received: from user-A520M-DS3H.sigma.sbrf.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 26 Mar 2024 18:32:32 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
+	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <vadim.fedorenko@linux.dev>
+CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
+ Romanov <avromanov@salutedevices.com>
+Subject: [PATCH v6 01/23] drivers: crypto: meson: don't hardcode IRQ count
+Date: Tue, 26 Mar 2024 18:31:57 +0300
+Message-ID: <20240326153219.2915080-2-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240326153219.2915080-1-avromanov@salutedevices.com>
+References: <20240326153219.2915080-1-avromanov@salutedevices.com>
 MIME-Version: 1.0
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184425 [Mar 26 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 12 0.3.12 d1a01b14eb3fc102c904d35fe6c2622ed2d1c16e, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/26 13:11:00 #24452135
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240326_082344_190627_00B5A48C 
-X-CRM114-Status: GOOD (  19.76  )
+X-CRM114-CacheID: sfid-20240326_083238_861142_6A7ACBB1 
+X-CRM114-Status: GOOD (  22.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,174 +104,186 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+IRQ count is no longer hardcoded, and make it part of
+struct meson_flow. We need this for extend driver support for
+other Amlogic SoC's.
 
-On Tue 26 Mar 2024 at 02:53, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+---
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c |  2 +-
+ drivers/crypto/amlogic/amlogic-gxl-core.c   | 47 ++++++++++++---------
+ drivers/crypto/amlogic/amlogic-gxl.h        |  8 ++--
+ 3 files changed, 31 insertions(+), 26 deletions(-)
 
-> There is a lot of defines, but almost all of them are not used. Lets
-> rework them:
-
-Thanks for noticing. Please start by removing what's unused.
-
->
->  - keep separate the definition for different platforms to make easier
->    checking that they match documentation.
->
->  - use LSB/MSB sufixes for uniformity.
-
-I'd be in favor of dropping these suffixes completely.
-
->
->  - don't use hard-coded values for already declared defines.
->
-> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-> ---
-> Links:
->
->  [1] https://lore.kernel.org/lkml/20240314232201.2102178-1-jan.dakinevich@salutedevices.com/
->
-> Changes v1 -> v2:
->  - Detached from v1's series (patch 7).
->  - Fixed my wrong understanding of SOC_SINGLE's input parameters.
->
->  sound/soc/meson/g12a-toacodec.c | 79 ++++++++++++++++++++-------------
->  1 file changed, 49 insertions(+), 30 deletions(-)
->
-> diff --git a/sound/soc/meson/g12a-toacodec.c b/sound/soc/meson/g12a-toacodec.c
-> index 531bb8707a3e..22181f4bab72 100644
-> --- a/sound/soc/meson/g12a-toacodec.c
-> +++ b/sound/soc/meson/g12a-toacodec.c
-> @@ -20,26 +20,37 @@
->  #define G12A_TOACODEC_DRV_NAME "g12a-toacodec"
->  
->  #define TOACODEC_CTRL0			0x0
-> -#define  CTRL0_ENABLE_SHIFT		31
-> -#define  CTRL0_DAT_SEL_SM1_MSB		19
-> -#define  CTRL0_DAT_SEL_SM1_LSB		18
-> -#define  CTRL0_DAT_SEL_MSB		15
-> -#define  CTRL0_DAT_SEL_LSB		14
-> -#define  CTRL0_LANE_SEL_SM1		16
-> -#define  CTRL0_LANE_SEL			12
-> -#define  CTRL0_LRCLK_SEL_SM1_MSB	14
-> -#define  CTRL0_LRCLK_SEL_SM1_LSB	12
-> -#define  CTRL0_LRCLK_SEL_MSB		9
-> -#define  CTRL0_LRCLK_SEL_LSB		8
-> -#define  CTRL0_LRCLK_INV_SM1		BIT(10)
-> -#define  CTRL0_BLK_CAP_INV_SM1		BIT(9)
-> -#define  CTRL0_BLK_CAP_INV		BIT(7)
-> -#define  CTRL0_BCLK_O_INV_SM1		BIT(8)
-> -#define  CTRL0_BCLK_O_INV		BIT(6)
-> -#define  CTRL0_BCLK_SEL_SM1_MSB		6
-> -#define  CTRL0_BCLK_SEL_MSB		5
-> -#define  CTRL0_BCLK_SEL_LSB		4
-> -#define  CTRL0_MCLK_SEL			GENMASK(2, 0)
-> +
-> +/* Common bits */
-> +#define CTRL0_ENABLE_SHIFT		31
-> +#define CTRL0_MCLK_SEL			GENMASK(2, 0)
-> +
-> +/* G12A bits */
-> +#define CTRL0_DAT_SEL_G12A_MSB		15
-> +#define CTRL0_DAT_SEL_G12A_LSB		14
-> +#define CTRL0_LANE_SEL_G12A_MSB		13
-> +#define CTRL0_LANE_SEL_G12A_LSB		12
-> +#define CTRL0_LANE_SEL_G12A_MAX		3
-> +#define CTRL0_LRCLK_SEL_G12A_MSB	9
-> +#define CTRL0_LRCLK_SEL_G12A_LSB	8
-> +#define CTRL0_BLK_CAP_INV_G12A		BIT(7)
-> +#define CTRL0_BCLK_O_INV_G12A		BIT(6)
-> +#define CTRL0_BCLK_SEL_G12A_MSB		5
-> +#define CTRL0_BCLK_SEL_G12A_LSB		4
-> +
-> +/* SM1 bits */
-> +#define CTRL0_DAT_SEL_SM1_MSB		19
-> +#define CTRL0_DAT_SEL_SM1_LSB		18
-> +#define CTRL0_LANE_SEL_SM1_MSB		17
-> +#define CTRL0_LANE_SEL_SM1_LSB		16
-> +#define CTRL0_LANE_SEL_SM1_MAX		3
-> +#define CTRL0_LRCLK_SEL_SM1_MSB		14
-> +#define CTRL0_LRCLK_SEL_SM1_LSB		12
-> +#define CTRL0_LRCLK_INV_SM1		BIT(10)
-> +#define CTRL0_BLK_CAP_INV_SM1		BIT(9)
-> +#define CTRL0_BCLK_O_INV_SM1		BIT(8)
-> +#define CTRL0_BCLK_SEL_SM1_MSB		6
-> +#define CTRL0_BCLK_SEL_SM1_LSB		4
->  
->  #define TOACODEC_OUT_CHMAX		2
->  
-> @@ -108,7 +119,7 @@ static int g12a_toacodec_mux_put_enum(struct snd_kcontrol *kcontrol,
->  }
->  
->  static SOC_ENUM_SINGLE_DECL(g12a_toacodec_mux_enum, TOACODEC_CTRL0,
-> -			    CTRL0_DAT_SEL_LSB,
-> +			    CTRL0_DAT_SEL_G12A_LSB,
->  			    g12a_toacodec_mux_texts);
->  
->  static SOC_ENUM_SINGLE_DECL(sm1_toacodec_mux_enum, TOACODEC_CTRL0,
-> @@ -210,7 +221,7 @@ static int g12a_toacodec_component_probe(struct snd_soc_component *c)
->  {
->  	/* Initialize the static clock parameters */
->  	return snd_soc_component_write(c, TOACODEC_CTRL0,
-> -				       CTRL0_BLK_CAP_INV);
-> +				       CTRL0_BLK_CAP_INV_G12A);
->  }
->  
->  static int sm1_toacodec_component_probe(struct snd_soc_component *c)
-> @@ -229,11 +240,13 @@ static const struct snd_soc_dapm_route g12a_toacodec_routes[] = {
->  };
->  
->  static const struct snd_kcontrol_new g12a_toacodec_controls[] = {
-> -	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL, 3, 0),
-> +	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_G12A_LSB,
-> +		   CTRL0_LANE_SEL_G12A_MAX, 0),
->  };
->  
->  static const struct snd_kcontrol_new sm1_toacodec_controls[] = {
-> -	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_SM1, 3, 0),
-> +	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_SM1_LSB,
-> +		   CTRL0_LANE_SEL_SM1_MAX, 0),
->  };
->  
->  static const struct snd_soc_component_driver g12a_toacodec_component_drv = {
-> @@ -266,16 +279,22 @@ static const struct regmap_config g12a_toacodec_regmap_cfg = {
->  
->  static const struct g12a_toacodec_match_data g12a_toacodec_match_data = {
->  	.component_drv	= &g12a_toacodec_component_drv,
-> -	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, 14, 15),
-> -	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, 8, 9),
-> -	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, 4, 5),
-> +	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_DAT_SEL_G12A_LSB,
-> +				    CTRL0_DAT_SEL_G12A_MSB),
-> +	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, CTRL0_LRCLK_SEL_G12A_LSB,
-> +				     CTRL0_LRCLK_SEL_G12A_MSB),
-> +	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_BCLK_SEL_G12A_LSB,
-> +				    CTRL0_BCLK_SEL_G12A_MSB),
->  };
->  
->  static const struct g12a_toacodec_match_data sm1_toacodec_match_data = {
->  	.component_drv	= &sm1_toacodec_component_drv,
-> -	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, 18, 19),
-> -	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, 12, 14),
-> -	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, 4, 6),
-> +	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_DAT_SEL_SM1_LSB,
-> +				    CTRL0_DAT_SEL_SM1_MSB),
-> +	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, CTRL0_LRCLK_SEL_SM1_LSB,
-> +				     CTRL0_LRCLK_SEL_SM1_MSB),
-> +	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, CTRL0_BCLK_SEL_SM1_LSB,
-> +				    CTRL0_BCLK_SEL_SM1_MSB),
-
-Those defines are already platform specific by the structure holding
-them and the defines you have added are not helping readability.
-
-I don't see the point to see.
-I'd prefer to keep the field defined as they are.
-
->  };
->  
->  static const struct of_device_id g12a_toacodec_of_match[] = {
-
-
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+index 3308406612fc..8d9ca3f4e5a2 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+@@ -19,7 +19,7 @@
+ 
+ static int get_engine_number(struct meson_dev *mc)
+ {
+-	return atomic_inc_return(&mc->flow) % MAXFLOW;
++	return atomic_inc_return(&mc->flow) % mc->flow_cnt;
+ }
+ 
+ static bool meson_cipher_need_fallback(struct skcipher_request *areq)
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+index f54ab0d0b1e8..35ec64df5b3a 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-core.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+@@ -28,8 +28,8 @@ static irqreturn_t meson_irq_handler(int irq, void *data)
+ 	int flow;
+ 	u32 p;
+ 
+-	for (flow = 0; flow < MAXFLOW; flow++) {
+-		if (mc->irqs[flow] == irq) {
++	for (flow = 0; flow < mc->flow_cnt; flow++) {
++		if (mc->chanlist[flow].irq == irq) {
+ 			p = readl(mc->base + ((0x04 + flow) << 2));
+ 			if (p) {
+ 				writel_relaxed(0xF, mc->base + ((0x4 + flow) << 2));
+@@ -110,7 +110,7 @@ static int meson_debugfs_show(struct seq_file *seq, void *v)
+ 	struct meson_dev *mc __maybe_unused = seq->private;
+ 	int i;
+ 
+-	for (i = 0; i < MAXFLOW; i++)
++	for (i = 0; i < mc->flow_cnt; i++)
+ 		seq_printf(seq, "Channel %d: nreq %lu\n", i,
+ #ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
+ 			   mc->chanlist[i].stat_req);
+@@ -153,14 +153,32 @@ static void meson_free_chanlist(struct meson_dev *mc, int i)
+  */
+ static int meson_allocate_chanlist(struct meson_dev *mc)
+ {
++	struct platform_device *pdev = to_platform_device(mc->dev);
+ 	int i, err;
+ 
+-	mc->chanlist = devm_kcalloc(mc->dev, MAXFLOW,
++	mc->flow_cnt = platform_irq_count(pdev);
++	if (mc->flow_cnt <= 0) {
++		dev_err(mc->dev, "No IRQs defined\n");
++		return -ENODEV;
++	}
++
++	mc->chanlist = devm_kcalloc(mc->dev, mc->flow_cnt,
+ 				    sizeof(struct meson_flow), GFP_KERNEL);
+ 	if (!mc->chanlist)
+ 		return -ENOMEM;
+ 
+-	for (i = 0; i < MAXFLOW; i++) {
++	for (i = 0; i < mc->flow_cnt; i++) {
++		mc->chanlist[i].irq = platform_get_irq(pdev, i);
++		if (mc->chanlist[i].irq < 0)
++			return mc->chanlist[i].irq;
++
++		err = devm_request_irq(mc->dev, mc->chanlist[i].irq,
++				       meson_irq_handler, 0, "aml-crypto", mc);
++		if (err < 0) {
++			dev_err(mc->dev, "Cannot request IRQ for flow %d\n", i);
++			return err;
++		}
++
+ 		init_completion(&mc->chanlist[i].complete);
+ 
+ 		mc->chanlist[i].engine = crypto_engine_alloc_init(mc->dev, true);
+@@ -230,7 +248,7 @@ static void meson_unregister_algs(struct meson_dev *mc)
+ static int meson_crypto_probe(struct platform_device *pdev)
+ {
+ 	struct meson_dev *mc;
+-	int err, i;
++	int err;
+ 
+ 	mc = devm_kzalloc(&pdev->dev, sizeof(*mc), GFP_KERNEL);
+ 	if (!mc)
+@@ -252,19 +270,6 @@ static int meson_crypto_probe(struct platform_device *pdev)
+ 		return err;
+ 	}
+ 
+-	for (i = 0; i < MAXFLOW; i++) {
+-		mc->irqs[i] = platform_get_irq(pdev, i);
+-		if (mc->irqs[i] < 0)
+-			return mc->irqs[i];
+-
+-		err = devm_request_irq(&pdev->dev, mc->irqs[i], meson_irq_handler, 0,
+-				       "gxl-crypto", mc);
+-		if (err < 0) {
+-			dev_err(mc->dev, "Cannot request IRQ for flow %d\n", i);
+-			return err;
+-		}
+-	}
+-
+ 	err = clk_prepare_enable(mc->busclk);
+ 	if (err != 0) {
+ 		dev_err(&pdev->dev, "Cannot prepare_enable busclk\n");
+@@ -294,7 +299,7 @@ static int meson_crypto_probe(struct platform_device *pdev)
+ error_alg:
+ 	meson_unregister_algs(mc);
+ error_flow:
+-	meson_free_chanlist(mc, MAXFLOW - 1);
++	meson_free_chanlist(mc, mc->flow_cnt - 1);
+ 	clk_disable_unprepare(mc->busclk);
+ 	return err;
+ }
+@@ -309,7 +314,7 @@ static void meson_crypto_remove(struct platform_device *pdev)
+ 
+ 	meson_unregister_algs(mc);
+ 
+-	meson_free_chanlist(mc, MAXFLOW - 1);
++	meson_free_chanlist(mc, mc->flow_cnt - 1);
+ 
+ 	clk_disable_unprepare(mc->busclk);
+ }
+diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
+index 1013a666c932..79177cfa8b88 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl.h
++++ b/drivers/crypto/amlogic/amlogic-gxl.h
+@@ -22,8 +22,6 @@
+ #define MESON_OPMODE_ECB 0
+ #define MESON_OPMODE_CBC 1
+ 
+-#define MAXFLOW 2
+-
+ #define MAXDESC 64
+ 
+ #define DESC_LAST BIT(18)
+@@ -62,6 +60,7 @@ struct meson_desc {
+  * @keylen:	keylen for this flow operation
+  * @complete:	completion for the current task on this flow
+  * @status:	set to 1 by interrupt if task is done
++ * @irq:	IRQ number for amlogic-crypto
+  * @t_phy:	Physical address of task
+  * @tl:		pointer to the current ce_task for this flow
+  * @stat_req:	number of request done by this flow
+@@ -70,6 +69,7 @@ struct meson_flow {
+ 	struct crypto_engine *engine;
+ 	struct completion complete;
+ 	int status;
++	int irq;
+ 	unsigned int keylen;
+ 	dma_addr_t t_phy;
+ 	struct meson_desc *tl;
+@@ -85,7 +85,7 @@ struct meson_flow {
+  * @dev:	the platform device
+  * @chanlist:	array of all flow
+  * @flow:	flow to use in next request
+- * @irqs:	IRQ numbers for amlogic-crypto
++ * @flow_cnt:	flow count for amlogic-crypto
+  * @dbgfs_dir:	Debugfs dentry for statistic directory
+  * @dbgfs_stats: Debugfs dentry for statistic counters
+  */
+@@ -95,7 +95,7 @@ struct meson_dev {
+ 	struct device *dev;
+ 	struct meson_flow *chanlist;
+ 	atomic_t flow;
+-	int irqs[MAXFLOW];
++	int flow_cnt;
+ #ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
+ 	struct dentry *dbgfs_dir;
+ #endif
 -- 
-Jerome
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
