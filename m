@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A78EBC54E64
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1ADDC54E67
 	for <linux-amlogic@archiver.kernel.org>; Thu, 28 Mar 2024 13:38:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nN1/mdigXgGIM2k/mZLi+xxAJ2a6qUv9c3T8HJnj1GI=; b=VIwcHFSfSloi/Q
-	zcunCt7mH/5HHJzRR4i/SnGn9cT2I6BwXLXicmzBichR3zzLgkoAlG23eHbt1y3qdXeCmN/4w0/0V
-	/WOyhKJDpvuYGAuUtpUp8/kJNJVT0vst5NXkIFyWjwX81miUOQHzdWiwHn5LZYLHrZIRzILqrkMZe
-	i0MTHa1WbaIHKa5P5j7yIGUFToJzVb0uuUyWAujENUQFl2vNUZdht/EzD1SiIsnNDjLp0bPxQKlCY
-	FTYGLHZnFUPO5kiEVtmWeE3T3/2Z3nR7tuwXQY+WZXhQ8L2+2Yxi7Vq0ME9PuTJ1OGoBqmr4L8Pb7
-	LxGIaA3oHd2qSKfSflFg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=MeBKEojJY8ngDkbk1mn2eOsnWwJN6V4lImTUXM3hVss=; b=yOikewb9xangM2
+	UloxP4+i1FARjbCyN+SmfXJgXjiHLCYn/eQGIiHivG5/7eb69EkEwZkyezMh27w+wLPPvhqptZiTb
+	JjUNikfVfsNyXcqsrQ1J0RQ9qL0aocwsYL9IJRo74EADSWrnT8+NaDzFG8as2XiDPCuIp9qtPlUUX
+	MtkQ4Fk/sPTe1CRAZiEGrqd5NXtQAgipXbigGjRKUFbvocDrD+EKw0LW5fF4S2k8wGptD0azsf2DH
+	VmAejL+/klbbQOqGOkBFM1i84UFzHRCxLVbeNMuaan84DcxUx+FnVv42nmQHygT5OWpPRltPoJ0/p
+	lmlRtf/BmAZhGRatvj9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rppxd-0000000E8Q9-18mT;
+	id 1rppxd-0000000E8QH-2tBZ;
 	Thu, 28 Mar 2024 13:38:29 +0000
 Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rppxX-0000000E8Lr-2E5Y;
+	id 1rppxX-0000000E8La-24Li;
 	Thu, 28 Mar 2024 13:38:27 +0000
 Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 68132100016;
-	Thu, 28 Mar 2024 16:38:11 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 68132100016
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 59E08100014;
+	Thu, 28 Mar 2024 16:38:09 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 59E08100014
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1711633091;
-	bh=YRwihRdpMFrpryJryrHnyMLc35RgfMsFKeEAc77u4o8=;
+	s=mail; t=1711633089;
+	bh=1VOGE1dl8McFh3KcGh2ht+nrIDpqZWZpRU4J/qJlqq8=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=vWvVB3aG1m/eLf0UM82dzWqT3uKfXKYlc++pnS+jg8auBVlcTS6Hh5YxLMU/l4WGP
-	 l5rizDvVd8SXDFMRI+/Xrxo34gZsnBDpVQ9jHiG6XUF8hH2een2D13+t3tKBZJ92h0
-	 a4NxwtVFwvgxSapxnsyT/BnCpeM03riqXnDaBuIBclIiE8Dgk6N8xrYZ4FWnQpExO7
-	 GOyJxhDGu8S9YKN8pMrJS2TsPVXSi2JHjvV6hmGj+FOF0H3xUdRg8yYwC+jNr0bwnl
-	 DWNGysHfHFKln+3OSvcxqmFPbkz91FRy8zC0tfebve5+iiFABNgIX3WU9t83gPAbj6
-	 7/Huxhtd16Szg==
+	b=jR2Sl/zK8pmtiz+iiXdE3k4xB6dE01jb9JHaXlxIqzhPY7uiL8unvBd68Tyg85d64
+	 K97asJ082zBxtMLIXNGiKB9w9eKyt7lhrpm6WJQhXxi4Y8uj+kL7bsnIv5SIXuhCIz
+	 16q5JHKDW3/ydVlsRHy/lOoNsD49amT2g1SHuDVTr3ghzc6nBmRlCFnJFN69K1KO55
+	 pyCULfRLTdpaSW/QneBqalsAMqwKHL6i+ebK+nksm+Xx+Zj5F6Wc5n4MxN66nQWyiL
+	 cu9Dq16HWxEy/0oYBsjgnp9j+2hpKKynn+N8YPPuxWTAh+IVScZFZ9dysKf+oOq1Ly
+	 JZrJADaTyjnMw==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu, 28 Mar 2024 16:38:11 +0300 (MSK)
+	Thu, 28 Mar 2024 16:38:09 +0300 (MSK)
 Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 28 Mar 2024 16:38:10 +0300
+ 15.2.1118.40; Thu, 28 Mar 2024 16:38:08 +0300
 From: Dmitry Rokosov <ddrokosov@salutedevices.com>
 To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
 	<mturquette@baylibre.com>, <khilman@baylibre.com>,
@@ -61,12 +61,10 @@ CC: <kernel@salutedevices.com>, <rockosov@gmail.com>,
 	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
 	<ddrokosov@salutedevices.com>
-Subject: [PATCH v1 2/2] thermal: amlogic: support A1 SoC family Thermal Sensor controller
-Date: Thu, 28 Mar 2024 16:37:53 +0300
-Message-ID: <20240328133802.15651-3-ddrokosov@salutedevices.com>
+Subject: [PATCH v1 0/2] thermal: amlogic: introduce A1 SoC family Thermal Sensor controller
+Date: Thu, 28 Mar 2024 16:37:51 +0300
+Message-ID: <20240328133802.15651-1-ddrokosov@salutedevices.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240328133802.15651-1-ddrokosov@salutedevices.com>
-References: <20240328133802.15651-1-ddrokosov@salutedevices.com>
 MIME-Version: 1.0
 X-Originating-IP: [100.64.160.123]
 X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
@@ -88,8 +86,9 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/28 10:33:00 #24492761
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240328_063824_121856_22BB33A6 
-X-CRM114-Status: GOOD (  12.08  )
+X-CRM114-CacheID: sfid-20240328_063824_124681_53E7AE26 
+X-CRM114-Status: UNSURE (   9.67  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,43 +105,19 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-In comparison to other Amlogic chips, there is one key difference.
-The offset for the sec_ao base, also known as u_efuse_off, is special,
-while other aspects remain the same.
+It is primarily based on the G12A thermal controller, with only a slight
+variation in the offset value of the efuse parameters. Therefore, this
+patch series provides appropriate platform data and dt-bindings to
+ensure proper support.
 
-Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
----
- drivers/thermal/amlogic_thermal.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Dmitry Rokosov (2):
+  dt-bindings: thermal: amlogic: add support for A1 thermal sensor
+  thermal: amlogic: support A1 SoC family Thermal Sensor controller
 
-diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
-index 5877cde25b79..1d23afd32013 100644
---- a/drivers/thermal/amlogic_thermal.c
-+++ b/drivers/thermal/amlogic_thermal.c
-@@ -222,6 +222,12 @@ static const struct amlogic_thermal_data amlogic_thermal_g12a_ddr_param = {
- 	.regmap_config = &amlogic_thermal_regmap_config_g12a,
- };
- 
-+static const struct amlogic_thermal_data amlogic_thermal_a1_cpu_param = {
-+	.u_efuse_off = 0x114,
-+	.calibration_parameters = &amlogic_thermal_g12a,
-+	.regmap_config = &amlogic_thermal_regmap_config_g12a,
-+};
-+
- static const struct of_device_id of_amlogic_thermal_match[] = {
- 	{
- 		.compatible = "amlogic,g12a-ddr-thermal",
-@@ -231,6 +237,10 @@ static const struct of_device_id of_amlogic_thermal_match[] = {
- 		.compatible = "amlogic,g12a-cpu-thermal",
- 		.data = &amlogic_thermal_g12a_cpu_param,
- 	},
-+	{
-+		.compatible = "amlogic,a1-cpu-thermal",
-+		.data = &amlogic_thermal_a1_cpu_param,
-+	},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, of_amlogic_thermal_match);
+ .../bindings/thermal/amlogic,thermal.yaml          | 14 +++++++++-----
+ drivers/thermal/amlogic_thermal.c                  | 10 ++++++++++
+ 2 files changed, 19 insertions(+), 5 deletions(-)
+
 -- 
 2.43.0
 
