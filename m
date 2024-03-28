@@ -4,74 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7B26C54E67
-	for <linux-amlogic@archiver.kernel.org>; Thu, 28 Mar 2024 14:08:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57322CD1283
+	for <linux-amlogic@archiver.kernel.org>; Thu, 28 Mar 2024 14:08:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=oCNpJziDnCsVTMEIlCSq0uAZbckAo78zc5Kcug+w/Nc=; b=NcQNfq6lbin9TQn2ZJ7icmaRGS
-	Dn5UtG8/PxKy7aU/m0v0T7MRm3nGFxgD32ZSOxkYKqzCVehhtHNsU4olWZOp3T7qxoeZkkq9mdAqn
-	fsCBJyJadDvCWT57N5XZUDjCPOTHZe4tZ9mI8ra/0egaNQp/qCYVJpvRfevgY5ojwgiLtQ191uw2s
-	5eHReMkiyL1sCk2E7XZoE9SBfaT0gqWDqv0iEh02I0KosBFH5/LtxZzsXu9qjNWoOPLIgU5PI6ESv
-	X5yRdEsZ0+Wm/369qm8f+K7dGCXEjZwmxrKBrCapl+NLQiOJ2EM7jj4S1OpUY7DKYlc5qwopx1ZvR
-	PDUt4sOA==;
+	bh=KdgWBN+oygD2f/CP8FeksHeA23SXx79bQK26/wPPdIg=; b=eldzoVO8rYTnJcwul/xy8dyCao
+	B3rTZQ5AudnqEDQt1+/Mg8k4sTsEXk1NQaDJ/A9QtH8inCQGbSUKlRm60OdrINl9OctwCIyHi065g
+	gsON02itCLmIbKnYvuAYFUdNg39HbK7DhW0GiGVRfIX289qucqQ9zzuYjwMDBV3q304OSkt9NDknd
+	WTPL2wcO7MlT4C2kzhqL9ADjcs8M4ya9TbRilOMULzTMhrEFVUvAe9cC6KoqsknURru23GODw+ifG
+	Yq9FqHo5j7jCYl5brnSJOXHT608I5fTL6+uIahoKZx4H1o5tQdPOf9Xc87AuMKXv3Xcvc4hetHXVn
+	UXOCs/JQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rpqQi-0000000EF7s-3CX4;
-	Thu, 28 Mar 2024 14:08:32 +0000
-Received: from mail-lj1-x232.google.com ([2a00:1450:4864:20::232])
+	id 1rpqQz-0000000EFFS-3Ykg;
+	Thu, 28 Mar 2024 14:08:49 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rpqQe-0000000EF4Q-0seo
+	id 1rpqQw-0000000EFBu-1s78
 	for linux-amlogic@lists.infradead.org;
-	Thu, 28 Mar 2024 14:08:31 +0000
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2d6a1af9c07so10839801fa.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 28 Mar 2024 07:08:26 -0700 (PDT)
+	Thu, 28 Mar 2024 14:08:48 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-33ddd1624beso655145f8f.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 28 Mar 2024 07:08:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1711634905; x=1712239705; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1711634924; x=1712239724; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=KldVMMTU4wvemf1droJVFNbQxm8DF8GfwQOLOEUBIRI=;
-        b=DsgcfOcnH1nU6dWW8vO8SylUlrtraR3g36oxzUucxcaP4rlmWnzFzw7EV53i8GeKSX
-         DwGpmlzt7q3D4mQ5n1ubcLPexVliuVSEZAY6peGpYV40FQfTDwESCCSZBIkk/bI9Dnbu
-         5muWM1cIi8b8BAkH1kv3hlVjt8je0LzRqL/354iOpQVy881mjsjvhh+eIlHllj9hmqJP
-         pH1vNvtECqEzA2y4T3cpLGumGRdlqUOnReeYG4aG9B4sArl/n3nN4hbpKubu8WjHwN4/
-         G8/5DwaNxDpvj3SDVsTFTabpHD/dedzysF449R1RtywXJRa1S+DxIiJ37yvIMe02L/fs
-         1YzQ==
+        bh=3YqEn6nGpQ+ZQnytWZdjBha5P7xeBVM99EE9tBd3Qr0=;
+        b=Xf4ben0BnL0yMGQKv5zN4VxLyI4yfwgJ4zkqy6L+GiUXAvKO21Qnjji6km0I1IbF7z
+         lyBJhdoOGvBvjWRpczqvKP/yiUOxMDXMJB0QQHf38+TQw9sL6E8hHzBMAX3/3tD8lnad
+         P294uHIJfwYRtYm8AK5u6ypjmLYIgMXHM/3zLNVLsAn0XY3q2zznuIgHkiSCAEn6ZnkI
+         ZMcvMl9mq/ZWmHUDfzvcVYE09iN7Z+ZrhGESm9L450JZcGw6pcY3vMvohF6JvhwLPGVH
+         DamyUWpQ7zEHenuVzm+MpBaloiu2F+fgzCwSvHewrewu16mT35TGYpsf/8zgjGdPCmTn
+         ZdnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711634905; x=1712239705;
+        d=1e100.net; s=20230601; t=1711634924; x=1712239724;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=KldVMMTU4wvemf1droJVFNbQxm8DF8GfwQOLOEUBIRI=;
-        b=PL7539URC+etr97nkojOigTtmK/sFaNqh5HW5Vmjxbxht7Rq0fS0G3/uuQS3hxv390
-         eg9JbhbMuKWuE0NulMVMDdm/nHRV4CCqlMpsT0lHUkUchu+ih5CjC07VDUTB4hLXOUhS
-         G+rkVT1pg9d5+x5glGQnChJi6pu+HCNW5n1W7KxnLP7TCuDCdxFm25qCGEi8/XdZSEeS
-         m+ePeIANwRBQVxip1cipCECXhJaunzka51J3LOEQ0dpUe7EYLELjyz/PgeRl8suHfgdn
-         21T+6vz62ti7W1h6U1TicKEuWNmI6zlw5yTB7hssi2DSUTKvIQcutpWtqFqpXL2oJLvD
-         J4PA==
-X-Forwarded-Encrypted: i=1; AJvYcCURrxjiCOmsIW2GzA8CsflBrzRueQnP1cIAIlO5+UsfvQ3zjvntT6H1t93vNHW+2a6R7gbyfUf9SivIEkW4PbNh+ODUriR6OujvoRDpKooHU2Q=
-X-Gm-Message-State: AOJu0Yw5OrAO8mvGABr3oC394lEpNBtHXLNgWO94uS33mefOckWq+0s0
-	2KoCFqe5gxL3yQXRnAEGZ6n8X6YzdqoQVVu5YgnCwuQxNRxqk/F+icC3YZswYW0=
-X-Google-Smtp-Source: AGHT+IFzi5IGT2Or39luIJGiqxag++Cnfv2uvw0ITZd6e/aW+yO5N1QhpGpdl7mOdWQlSPUri5HLMw==
-X-Received: by 2002:a05:651c:324:b0:2d3:2ecf:c26a with SMTP id b4-20020a05651c032400b002d32ecfc26amr1523605ljp.13.1711634905209;
-        Thu, 28 Mar 2024 07:08:25 -0700 (PDT)
+        bh=3YqEn6nGpQ+ZQnytWZdjBha5P7xeBVM99EE9tBd3Qr0=;
+        b=vPVGB+fTYk7HI3JQrFlRQKGvKSvdNQi8NP5VDCf47h2twzrrMgWq/ZzqEAPuU+jMeq
+         IIlIpzb9wOoGc/nbDjjLBcmXO/TjpwDPwg0vx4wVKE/me2yPN4cYPUIeP8MAJwq88W79
+         chrpfHaoX8baIDmrbCHy7U47aKYLjLNMdjclxS2q/mTaE5dFLNgWhgYkNMl61hn+rTSn
+         6DiJDs9COGnGqKVse1i/2VbPxKXoEZfhOLaQrb4FWCpvCdJNcUBu6yFXIYDAO4QP/Jkv
+         XqoJL4vANzJ223CRyf6dy21rzT7PGwDY6vKLNre0AKgztQAP0ua5q4733q2PFEpax/kl
+         wmkw==
+X-Forwarded-Encrypted: i=1; AJvYcCWG61QlXZB0oNaE9wTO6hCIHblf9eZ4OCINfsXeQ4C+muXji7+jqf0yQFlO+hsLOlv72CN4Yuzs1Xq/7Cl55MJqkZQOJDdLsxJ2qkg7X92xCqs=
+X-Gm-Message-State: AOJu0YwQOSn8nwy2axMnXwGSSyyG4BGn4VrLUHm5ijgNA2MCVWIn5QnA
+	gXmPmxL4pDjZHM6YJjLi+tUSGATMpiW9scxo/oXiAGAIGLXsN4NODMH4k1pYoLo=
+X-Google-Smtp-Source: AGHT+IEC/GG3oRm4e7tBnbj5LOOMmvI8qJFpOtXQq9ZDhffYLQtVrVE6USAKpfkizGiK660to9vDdA==
+X-Received: by 2002:a5d:44cf:0:b0:33e:c68d:d536 with SMTP id z15-20020a5d44cf000000b0033ec68dd536mr1904760wrr.15.1711634923800;
+        Thu, 28 Mar 2024 07:08:43 -0700 (PDT)
 Received: from [192.168.7.190] (82-64-249-211.subs.proxad.net. [82.64.249.211])
-        by smtp.gmail.com with ESMTPSA id g8-20020a05600c310800b0041488cfd0fesm5549851wmo.28.2024.03.28.07.08.23
+        by smtp.gmail.com with ESMTPSA id du9-20020a0560000d4900b00341bdd87fcasm1824861wrb.103.2024.03.28.07.08.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Mar 2024 07:08:24 -0700 (PDT)
-Message-ID: <39ae48ba-02a0-4f68-b0a2-e03272fd50a0@linaro.org>
-Date: Thu, 28 Mar 2024 15:08:23 +0100
+        Thu, 28 Mar 2024 07:08:43 -0700 (PDT)
+Message-ID: <b893fe72-d315-4069-9e57-17e797121639@linaro.org>
+Date: Thu, 28 Mar 2024 15:08:42 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1 2/2] thermal: amlogic: support A1 SoC family Thermal
- Sensor controller
+Subject: Re: [PATCH v1 1/3] arm64: dts: amlogic: a1: add cooling-cells for
+ DVFS feature
 To: Dmitry Rokosov <ddrokosov@salutedevices.com>, jbrunet@baylibre.com,
  mturquette@baylibre.com, khilman@baylibre.com,
  martin.blumenstingl@googlemail.com, glaroque@baylibre.com,
@@ -82,8 +82,8 @@ Cc: kernel@salutedevices.com, rockosov@gmail.com,
  linux-amlogic@lists.infradead.org, linux-pm@vger.kernel.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
-References: <20240328133802.15651-1-ddrokosov@salutedevices.com>
- <20240328133802.15651-3-ddrokosov@salutedevices.com>
+References: <20240328134459.18446-1-ddrokosov@salutedevices.com>
+ <20240328134459.18446-2-ddrokosov@salutedevices.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -110,10 +110,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240328133802.15651-3-ddrokosov@salutedevices.com>
+In-Reply-To: <20240328134459.18446-2-ddrokosov@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240328_070828_464734_965D3DC8 
-X-CRM114-Status: GOOD (  15.02  )
+X-CRM114-CacheID: sfid-20240328_070846_543578_6899CC7E 
+X-CRM114-Status: GOOD (  11.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -131,51 +131,39 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 28/03/2024 14:37, Dmitry Rokosov wrote:
-> In comparison to other Amlogic chips, there is one key difference.
-> The offset for the sec_ao base, also known as u_efuse_off, is special,
-> while other aspects remain the same.
+On 28/03/2024 14:44, Dmitry Rokosov wrote:
+> It's used for CPU with DVFS feature to specify minimum and maximum
+> cooling state used in the reference.
+> Without these values DVFS will not work and dtbs_check will raise the
+> error.
 > 
 > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
 > ---
->   drivers/thermal/amlogic_thermal.c | 10 ++++++++++
->   1 file changed, 10 insertions(+)
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 2 ++
+>   1 file changed, 2 insertions(+)
 > 
-> diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
-> index 5877cde25b79..1d23afd32013 100644
-> --- a/drivers/thermal/amlogic_thermal.c
-> +++ b/drivers/thermal/amlogic_thermal.c
-> @@ -222,6 +222,12 @@ static const struct amlogic_thermal_data amlogic_thermal_g12a_ddr_param = {
->   	.regmap_config = &amlogic_thermal_regmap_config_g12a,
->   };
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> index fbee986421f1..f65d4a77ee52 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -32,6 +32,7 @@ cpu0: cpu@0 {
+>   			reg = <0x0 0x0>;
+>   			enable-method = "psci";
+>   			next-level-cache = <&l2>;
+> +			#cooling-cells = <2>;
+>   		};
 >   
-> +static const struct amlogic_thermal_data amlogic_thermal_a1_cpu_param = {
-> +	.u_efuse_off = 0x114,
-> +	.calibration_parameters = &amlogic_thermal_g12a,
-> +	.regmap_config = &amlogic_thermal_regmap_config_g12a,
-> +};
-> +
->   static const struct of_device_id of_amlogic_thermal_match[] = {
->   	{
->   		.compatible = "amlogic,g12a-ddr-thermal",
-> @@ -231,6 +237,10 @@ static const struct of_device_id of_amlogic_thermal_match[] = {
->   		.compatible = "amlogic,g12a-cpu-thermal",
->   		.data = &amlogic_thermal_g12a_cpu_param,
->   	},
-> +	{
-> +		.compatible = "amlogic,a1-cpu-thermal",
-> +		.data = &amlogic_thermal_a1_cpu_param,
-> +	},
->   	{ /* sentinel */ }
->   };
->   MODULE_DEVICE_TABLE(of, of_amlogic_thermal_match);
+>   		cpu1: cpu@1 {
+> @@ -40,6 +41,7 @@ cpu1: cpu@1 {
+>   			reg = <0x0 0x1>;
+>   			enable-method = "psci";
+>   			next-level-cache = <&l2>;
+> +			#cooling-cells = <2>;
+>   		};
+>   
+>   		l2: l2-cache0 {
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-Keep it even it you change the compatible,
-
-Thanks,
-Neil
 
 _______________________________________________
 linux-amlogic mailing list
