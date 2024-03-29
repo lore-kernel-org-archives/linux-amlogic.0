@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E01BCD1290
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CA3ACD128D
 	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2024 20:59:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=vD7WHnuB6BFJIX6GuMliES2V1g2iZE3CiroEK67rCGM=; b=eotwWVqxOvkBt9
-	m240qk1hTwUEMoqBk6vleu8UF04y32bFfbSemixZ3rat4tzRbGgzuaRXJ9cN7EUMaMSzoB/23U+HY
-	Cn5tR/IEHkUmD1ZYj8Bo1GcRXJwrXs2lJPa4EaGLFTJaaxMOBq+ojx/YPn8v39cmnyiVvmIbEp5BT
-	5kEITsMptvP75egSfBjMvGhZ1fRhhj5zY/rjWBM32/A7jv9aWp6OR1TRRfU8agAhz6C9wi7smT9qL
-	wvcqguw5EliJjiBXwhPh5dZl5D21tjKjjdGUeN8J5KgZC4BfUZa29MfP96BQTf04oFJvzlFicwcWh
-	TXfOnAoB4eSe7AUIrS7g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=oI2Ax4pQtz38Nn9Xymh9oVFK2vzp3daB3jtR9wdUGj0=; b=ywEchfJSERuL2C
+	gbDRcswPLYoyx7WpACuu8JapcvU1mIFZEd0nKzNOYqqa2dbsz3OhxZfTaOFOdBjtZlK/iBI7EJzWK
+	01J9twdv8cMRRSdIxb8KxU7ZNcqq3ORWuqsWKHJPwitCzBw5AsjVgLVcM+PVcV3WJWdYKh8zUSVAR
+	e9sqlxdOMMkbytSkz66rM2gg8a6HvqljoQhu59PFKEW0DKEG18B+HCO24ZBZ8QegeO2jw5ZxCcRbZ
+	2WJKOYU5nxQ0q+pCqoVBVfkoDJx3nyAJLJFOFtm2rFIZS0wLVhUl8YPQIQWZif40ITfh8d446URc9
+	VNnjm4WR0aIL/NlFtygw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rqJJy-00000001y8O-33It;
-	Fri, 29 Mar 2024 20:59:30 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1rqJJx-00000001y7M-1EXh;
+	Fri, 29 Mar 2024 20:59:29 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rqJJo-00000001y31-0izz;
+	id 1rqJJo-00000001y3B-34Aj;
 	Fri, 29 Mar 2024 20:59:24 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 45A46120013;
-	Fri, 29 Mar 2024 23:59:13 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 45A46120013
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 8184710001F;
+	Fri, 29 Mar 2024 23:59:17 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8184710001F
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1711745953;
-	bh=OxJ2dy3C1oN4LgtG/PWU8dFWty4P+oUQ+lLO4Ynkoeg=;
+	s=mail; t=1711745957;
+	bh=wKonTLmT/lAstuWfOUMJ7juI/CNJuYDUMc9VxZUfnJc=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=l9SKmEPdpfEI5v2eEmtiOx/ZDPfs7I6pR9soVAYdCj1Mk5MDhqzuZLiz6Oi8W0pR2
-	 i0n/kPvapasE/e/0XpdlI/RQ8Zv66aLJDBep9pD5VJyQ43a9bkMNuwYfibLI0xiwmo
-	 z0oYYP4oyxikiq2Pb4JGWkOojObgtMdBrmzjgzvjmpyty+g2PM67nj8NJq4kcBN7Dn
-	 AvMHfjnN59fq+x8vRUu9dbq55ijlFXSaFkWPLm6LiK5mxoHUAN9sQkdCbpHQZjtfLc
-	 95NOZ3GXDAiTDjUbBO/VFGu0RDmkOwUF+3jW5cAUr34sQAvIlcJ/+SHABPVMLj+pWa
-	 aW4tEYuVRhM9g==
+	b=LhGnnDhwKyiOWKZfJuSyJGDqfT0S0zmBLtK032Midb6MAKSk00u5rRDDxFwk76Aru
+	 Rsaf2hcABtTY5rFPdfEUqZGcAhIpPVA8MAT+G0CwAz8a/8djKLUi+lKxSeYZVmXF0L
+	 3ugy+p+a197AooSJMT1M7+yQ2ikfhHAbfod+ib5PxplfVkK/zcmA9AYj2AiJDtTBdm
+	 NAmEZieDLtAplalVrroYmu05r3ArlatJ1fxBjYCYbKCT8MqGZQJhPLxAsUwUvbGOi2
+	 Q3+W4TbuRP91G+f6Ug2ZLjS/tQmaIgPnJSQBMZOdqEYvK5NH4/XOw52gzNBZQpMA2J
+	 IDzpGYw1o9dNg==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 29 Mar 2024 23:59:13 +0300 (MSK)
+	Fri, 29 Mar 2024 23:59:17 +0300 (MSK)
 Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 29 Mar 2024 23:59:12 +0300
+ 15.2.1118.40; Fri, 29 Mar 2024 23:59:16 +0300
 From: Dmitry Rokosov <ddrokosov@salutedevices.com>
 To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
 	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
@@ -59,10 +59,12 @@ CC: <kernel@salutedevices.com>, <rockosov@gmail.com>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
 	<ddrokosov@salutedevices.com>
-Subject: [PATCH v1 0/6] clk: meson: introduce Amlogic A1 SoC Family CPU clock controller driver
-Date: Fri, 29 Mar 2024 23:58:40 +0300
-Message-ID: <20240329205904.25002-1-ddrokosov@salutedevices.com>
+Subject: [PATCH v1 5/6] dt-bindings: clock: meson: add A1 CPU clock controller bindings
+Date: Fri, 29 Mar 2024 23:58:45 +0300
+Message-ID: <20240329205904.25002-6-ddrokosov@salutedevices.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240329205904.25002-1-ddrokosov@salutedevices.com>
+References: <20240329205904.25002-1-ddrokosov@salutedevices.com>
 MIME-Version: 1.0
 X-Originating-IP: [100.64.160.123]
 X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
@@ -76,16 +78,16 @@ X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 14 0.3.14 5a0c43d8a1c3c0e5b0916cc02a90d4b950c01f96, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 14 0.3.14 5a0c43d8a1c3c0e5b0916cc02a90d4b950c01f96, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;devicetree.org:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
+X-KSMG-AntiPhishing: Clean, bases: 2024/03/29 19:32:00
+X-KSMG-LinksScanning: Clean, bases: 2024/03/29 19:32:00
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/03/29 16:52:00 #24511844
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240329_135920_979621_D6F336CF 
-X-CRM114-Status: GOOD (  14.05  )
+X-CRM114-CacheID: sfid-20240329_135921_151409_A7F2F034 
+X-CRM114-Status: GOOD (  14.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,105 +104,117 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The CPU clock controller plays a general role in the Amlogic A1 SoC
-family by generating CPU clocks. As an APB slave module, it offers the
-capability to inherit the CPU clock from two sources: the internal fixed
-clock known as 'cpu fixed clock' and the external input provided by the
-A1 PLL clock controller, referred to as 'syspll'.
+Add the documentation and dt bindings for Amlogic A1 CPU clock
+controller.
 
-It is important for the driver to handle the cpu_clk rate switching
-effectively by transitioning to the CPU fixed clock to avoid any
-potential execution freezes.
+This controller consists of the general 'cpu_clk' and two main parents:
+'cpu fixed clock' and 'syspll'. The 'cpu fixed clock' is an internal
+fixed clock, while the 'syspll' serves as an external input from the A1
+PLL clock controller.
 
-Validation:
-* to double-check all clk flags, run the below helper script:
-
-```
-pushd /sys/kernel/debug/clk
-for f in *; do
-    if [[ -f "$f/clk_flags" ]]; then
-        flags="$(cat $f/clk_flags | awk '{$1=$1};1' | sed ':a;N;$!ba;s/\n/ | /g')"
-        echo -e "$f: $flags"
-    fi
-done
-popd
-```
-
-* to trace the current clks state, use the
-  '/sys/kernel/debug/clk/clk_dump' node with jq post-processing:
-
-```
-$ cat /sys/kernel/debug/clk/clk_dump | jq '.' > clk_dump.json
-```
-
-* to see the CPU clock hierarchy, use the
-'/sys/kernel/debug/clk/clk_summary' node with jq post-processing:
-
-```
-$ cat /sys/kernel/debug/clk/clk_summary | jq '.' > clk_dump.json
-```
-
-when cpu_clk is inherited from sys_pll, it should be:
-
-```
-syspll_in    1  1  0  24000000    0  0  50000  Y  deviceless                 no_connection_id
-  sys_pll    2  2  0  1200000000  0  0  50000  Y  deviceless                 no_connection_id
-    cpu_clk  1  1  0  1200000000  0  0  50000  Y  cpu0                       no_connection_id
-                                                  cpu0                       no_connection_id
-                                                  fd000000.clock-controller  dvfs
-                                                  deviceless                 no_connection_id
-```
-
-and from cpu fixed clock:
-
-```
-fclk_div3_div           1  1  0  512000000  0  0  50000  Y  deviceless                 no_connection_id
-  fclk_div3             4  4  0  512000000  0  0  50000  Y  deviceless                 no_connection_id
-    cpu_fsource_sel0    1  1  0  512000000  0  0  50000  Y  deviceless                 no_connection_id
-      cpu_fsource_div0  1  1  0  128000000  0  0  50000  Y  deviceless                 no_connection_id
-        cpu_fsel0       1  1  0  128000000  0  0  50000  Y  deviceless                 no_connection_id
-          cpu_fclk      1  1  0  128000000  0  0  50000  Y  deviceless                 no_connection_id
-            cpu_clk     1  1  0  128000000  0  0  50000  Y  cpu0                       no_connection_id
-                                                            cpu0                       no_connection_id
-                                                            fd000000.clock-controller  dvfs
-                                                            deviceless                 no_connection_id
-```
-
-* to debug cpu clk rate propagation and proper parent switching, compile
-  kernel with the following definition:
-    $ sed -i "s/undef CLOCK_ALLOW_WRITE_DEBUGFS/define CLOCK_ALLOW_WRITE_DEBUGFS/g" drivers/clk/clk.c
-  after that, clk_rate debug node for each clock will be available for
-  write operation
-
-Dmitry Rokosov (6):
-  dt-bindings: clock: meson: a1: pll: introduce new syspll bindings
-  clk: meson: a1: pll: support 'syspll' general-purpose PLL for CPU
-    clock
-  dt-bindings: clock: meson: a1: peripherals: support sys_pll_div16
-    input
-  clk: meson: a1: peripherals: support 'sys_pll_div16' clock as GEN
-    input
-  dt-bindings: clock: meson: add A1 CPU clock controller bindings
-  clk: meson: a1: add Amlogic A1 CPU clock controller driver
-
- .../bindings/clock/amlogic,a1-cpu-clkc.yaml   |  64 ++++
- .../clock/amlogic,a1-peripherals-clkc.yaml    |   5 +-
- .../bindings/clock/amlogic,a1-pll-clkc.yaml   |   7 +-
- drivers/clk/meson/Kconfig                     |  10 +
- drivers/clk/meson/Makefile                    |   1 +
- drivers/clk/meson/a1-cpu.c                    | 324 ++++++++++++++++++
- drivers/clk/meson/a1-cpu.h                    |  16 +
- drivers/clk/meson/a1-peripherals.c            |   4 +-
- drivers/clk/meson/a1-pll.c                    |  78 +++++
- drivers/clk/meson/a1-pll.h                    |   6 +
- .../dt-bindings/clock/amlogic,a1-cpu-clkc.h   |  19 +
- .../dt-bindings/clock/amlogic,a1-pll-clkc.h   |   2 +
- 12 files changed, 531 insertions(+), 5 deletions(-)
+Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+---
+ .../bindings/clock/amlogic,a1-cpu-clkc.yaml   | 64 +++++++++++++++++++
+ .../dt-bindings/clock/amlogic,a1-cpu-clkc.h   | 19 ++++++
+ 2 files changed, 83 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-cpu-clkc.yaml
- create mode 100644 drivers/clk/meson/a1-cpu.c
- create mode 100644 drivers/clk/meson/a1-cpu.h
  create mode 100644 include/dt-bindings/clock/amlogic,a1-cpu-clkc.h
 
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-cpu-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-cpu-clkc.yaml
+new file mode 100644
+index 000000000000..d52d2e084ae7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/amlogic,a1-cpu-clkc.yaml
+@@ -0,0 +1,64 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/amlogic,a1-cpu-clkc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic A1 CPU Clock Control Unit
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++  - Jerome Brunet <jbrunet@baylibre.com>
++  - Dmitry Rokosov <ddrokosov@salutedevices.com>
++
++properties:
++  compatible:
++    const: amlogic,a1-cpu-clkc
++
++  '#clock-cells':
++    const: 1
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: input fixed pll div2
++      - description: input fixed pll div3
++      - description: input sys pll
++      - description: input oscillator (usually at 24MHz)
++
++  clock-names:
++    items:
++      - const: fclk_div2
++      - const: fclk_div3
++      - const: sys_pll
++      - const: xtal
++
++required:
++  - compatible
++  - '#clock-cells'
++  - reg
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
++    apb {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        clock-controller@fd000000 {
++            compatible = "amlogic,a1-cpu-clkc";
++            reg = <0 0xfd000000 0 0x88>;
++            #clock-cells = <1>;
++            clocks = <&clkc_pll CLKID_FCLK_DIV2>,
++                     <&clkc_pll CLKID_FCLK_DIV3>,
++                     <&clkc_pll CLKID_SYS_PLL>,
++                     <&xtal>;
++            clock-names = "fclk_div2", "fclk_div3", "sys_pll", "xtal";
++        };
++    };
+diff --git a/include/dt-bindings/clock/amlogic,a1-cpu-clkc.h b/include/dt-bindings/clock/amlogic,a1-cpu-clkc.h
+new file mode 100644
+index 000000000000..1d321c6eddb7
+--- /dev/null
++++ b/include/dt-bindings/clock/amlogic,a1-cpu-clkc.h
+@@ -0,0 +1,19 @@
++/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
++/*
++ * Copyright (c) 2024, SaluteDevices. All Rights Reserved.
++ * Author: Dmitry Rokosov <ddrokosov@salutedevices.com>
++ */
++
++#ifndef __A1_CPU_CLKC_H
++#define __A1_CPU_CLKC_H
++
++#define CLKID_CPU_FSOURCE_SEL0	0
++#define CLKID_CPU_FSOURCE_DIV0	1
++#define CLKID_CPU_FSEL0		2
++#define CLKID_CPU_FSOURCE_SEL1	3
++#define CLKID_CPU_FSOURCE_DIV1	4
++#define CLKID_CPU_FSEL1		5
++#define CLKID_CPU_FCLK		6
++#define CLKID_CPU_CLK		7
++
++#endif /* __A1_CPU_CLKC_H */
 -- 
 2.43.0
 
