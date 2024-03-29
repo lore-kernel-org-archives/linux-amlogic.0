@@ -4,90 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55CA2CD128E
-	for <linux-amlogic@archiver.kernel.org>; Sun, 31 Mar 2024 16:12:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34EE3CD1284
+	for <linux-amlogic@archiver.kernel.org>; Sun, 31 Mar 2024 17:30:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BE1pF0J/hc25fI11x8bDFtLBjmB33lZT8+x+2C6NwQQ=; b=Orv02xDBYuvrmG
-	KjDrS34pKNCAE6EkZy/9w0oFk727c9laH3fgyATNaaD6J+GUBZc03qlh4tH3XlJeH20VUD7wvL/6Z
-	2PiRsN19NsP59ulevZEVf7TJo4sfuT5RSOwX1e78u+PMYoZ2wjWph6qCFGsCxVnOKytxuqa6yCr1K
-	nIglufvkzy6zpzAcNSI/8Y9HNzcCiq07Bo+LIfDAOjFl4DTqePA7PgrYn+msfuumIEzi9ZfM9z97p
-	caoEU7cKGXgGtNnnRlh2KZODIZwpBcMg8gJ+5IAdgMtrIRrdkNpzu/wavSqy4UlQIW1+XrBanHlsA
-	IP+/+Nsvox5uStBq1Mfg==;
+	List-Owner; bh=ni0Eo0RQXV6LtI9QLoL6VbihXYvHcTeH5iAuyw79c0E=; b=TNjK8/28vjP6lu
+	LZs2xP7sfqc/uVPyrFulguZoL0wolqRj/aJhoTfpohYCI7qOR53fzExR9LLwpZYXCanv53FxqtWAX
+	2YKj4zQEOWtqH5gv3YrCaMshMkLuhIwG6GkTfslj7YDSgKtcSurewm3iLkP4rrOfoiteQQ+XUGFy3
+	KOR6wrSaXrGJ5n5j7ruzH7dBYxWtsXkdZTWehD5KVAUdRO1555iT9ixyK+hVQPZOMd0QnzSYwdpQb
+	Ik0NJmKK1FvaiTZCYYOTeTd9vnnKNmTD0dbG+eSFAbGMQlzeWEb8v901TM3OQ0O00qTEw6/FhtXt2
+	1NV63eUtzB7Efiwqxg0A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rqxn8-00000005hC8-02qy;
-	Sun, 31 Mar 2024 16:12:18 +0000
-Received: from a.mx.secunet.com ([62.96.220.36])
+	id 1rqz0j-00000005zpC-2XdT;
+	Sun, 31 Mar 2024 17:30:25 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rqxmT-00000005gvc-01O7;
-	Sun, 31 Mar 2024 16:11:41 +0000
+	id 1rqy0x-00000005iff-0GDq;
+	Sun, 31 Mar 2024 16:26:35 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=Content-Type:Content-Transfer-Encoding:
+	MIME-Version:List-Unsubscribe:List-Subscribe:List-Id:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
+	Content-Description; bh=rZwAhSZubu/1cmpdTVljvVx0jvWScjKt2fJdmwsJfGk=; b=rbzAE
+	GvnwUU7YuYtTApwGIywoHyuYWlEtLmD3qZ4wpNYPfRwTBGDWa7EL+rOujp7zVwIpLWiC3707ejw7d
+	IcGBsuvgxZpdOa1K+wYtRG870TeIvxk8iwuvg0IoxzkNrHyu/16x50g6MR/mhBC1YjnkeSsOvbP7N
+	/fLp6S/59mr+3O98BoV2LW8xTCxU2vpzv9jgkVhII5FkpejgBjhHsQJhycXcoOa/dNDeuLF1GQ6Sb
+	9qEaBpQM28tbBCB1HH9QydZGV8VkIZTnjnimh2pFEJM4iFg+whNWVEOkSDOw7LzXIuLV+t3ifQ0Wt
+	uYYaRAfnbgBbCmaLMI31xS7PKUpbA==;
+Received: from a.mx.secunet.com ([62.96.220.36])
+	by casper.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1rqy0s-0000000G5JG-2Tdz;
+	Sun, 31 Mar 2024 16:26:33 +0000
 Received: from localhost (localhost [127.0.0.1])
-	by a.mx.secunet.com (Postfix) with ESMTP id 11F3D20896;
-	Sun, 31 Mar 2024 18:02:06 +0200 (CEST)
+	by a.mx.secunet.com (Postfix) with ESMTP id 94A812084C;
+	Sun, 31 Mar 2024 18:26:26 +0200 (CEST)
 X-Virus-Scanned: by secunet
 Received: from a.mx.secunet.com ([127.0.0.1])
 	by localhost (a.mx.secunet.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id JsFaHmWfJDiZ; Sun, 31 Mar 2024 18:02:05 +0200 (CEST)
-Received: from mailout1.secunet.com (mailout1.secunet.com [62.96.220.44])
+	with ESMTP id SB6QFcRslPqE; Sun, 31 Mar 2024 18:26:25 +0200 (CEST)
+Received: from mailout2.secunet.com (mailout2.secunet.com [62.96.220.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by a.mx.secunet.com (Postfix) with ESMTPS id BE0F0207D8;
-	Sun, 31 Mar 2024 18:02:03 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 a.mx.secunet.com BE0F0207D8
+	by a.mx.secunet.com (Postfix) with ESMTPS id 1776F208B2;
+	Sun, 31 Mar 2024 18:26:25 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 a.mx.secunet.com 1776F208B2
 Received: from cas-essen-01.secunet.de (unknown [10.53.40.201])
-	by mailout1.secunet.com (Postfix) with ESMTP id B17D080004A;
-	Sun, 31 Mar 2024 18:02:03 +0200 (CEST)
+	by mailout2.secunet.com (Postfix) with ESMTP id 0A74B80004A;
+	Sun, 31 Mar 2024 18:26:25 +0200 (CEST)
 Received: from mbx-essen-01.secunet.de (10.53.40.197) by
  cas-essen-01.secunet.de (10.53.40.201) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 31 Mar 2024 18:02:03 +0200
+ 15.1.2507.35; Sun, 31 Mar 2024 18:26:24 +0200
 Received: from Pickup by mbx-essen-01.secunet.de with Microsoft SMTP Server id
- 15.1.2507.17; Sun, 31 Mar 2024 15:52:40 +0000
-X-sender: <linux-kernel+bounces-125428-steffen.klassert=secunet.com@vger.kernel.org>
+ 15.1.2507.17; Sun, 31 Mar 2024 16:23:28 +0000
+X-sender: <linux-kernel+bounces-125417-steffen.klassert=secunet.com@vger.kernel.org>
 X-Receiver: <steffen.klassert@secunet.com>
  ORCPT=rfc822;steffen.klassert@secunet.com NOTIFY=NEVER;
  X-ExtendedProps=BQAVABYAAgAAAAUAFAARAPDFCS25BAlDktII2g02frgPADUAAABNaWNyb3NvZnQuRXhjaGFuZ2UuVHJhbnNwb3J0LkRpcmVjdG9yeURhdGEuSXNSZXNvdXJjZQIAAAUAagAJAAEAAAAAAAAABQAWAAIAAAUAQwACAAAFAEYABwADAAAABQBHAAIAAAUAEgAPAGIAAAAvbz1zZWN1bmV0L291PUV4Y2hhbmdlIEFkbWluaXN0cmF0aXZlIEdyb3VwIChGWURJQk9IRjIzU1BETFQpL2NuPVJlY2lwaWVudHMvY249U3RlZmZlbiBLbGFzc2VydDY4YwUACwAXAL4AAACheZxkHSGBRqAcAp3ukbifQ049REI2LENOPURhdGFiYXNlcyxDTj1FeGNoYW5nZSBBZG1pbmlzdHJhdGl2ZSBHcm91cCAoRllESUJPSEYyM1NQRExUKSxDTj1BZG1pbmlzdHJhdGl2ZSBHcm91cHMsQ049c2VjdW5ldCxDTj1NaWNyb3NvZnQgRXhjaGFuZ2UsQ049U2VydmljZXMsQ049Q29uZmlndXJhdGlvbixEQz1zZWN1bmV0LERDPWRlBQAOABEABiAS9uuMOkqzwmEZDvWNNQUAHQAPAAwAAABtYngtZXNzZW4tMDIFADwAAgAADwA2AAAATWljcm9zb2Z0LkV4Y2hhbmdlLlRyYW5zcG9ydC5NYWlsUmVjaXBpZW50LkRpc3BsYXlOYW1lDwARAAAAS2xhc3NlcnQsIFN0ZWZmZW4FAAwAAgAABQBsAAIAAAUAWAAXAEoAAADwxQktuQQJQ5LSCNoNNn64Q049S2xhc3NlcnQgU3RlZmZlbixPVT1Vc2VycyxPVT1NaWdyYXRpb24sREM9c2VjdW5ldCxEQz1kZQUAJgACAAEFACIADwAxAAAAQXV0b1Jlc3BvbnNlU3VwcHJlc3M6IDANClRyYW5zbWl0SGlzdG9ye
 	TogRmFsc2UNCg8ALwAAAE1pY3Jvc29mdC5FeGNoYW5nZS5UcmFuc3BvcnQuRXhwYW5zaW9uR3JvdXBUeXBlDwAVAAAATWVtYmVyc0dyb3VwRXhwYW5zaW9uBQAjAAIAAQ==
 X-CreatedBy: MSExchange15
 X-HeloDomain: b.mx.secunet.com
-X-ExtendedProps: BQBjAAoAkAtrGbMv3AgFAGEACAABAAAABQA3AAIAAA8APAAAAE1pY3Jvc29mdC5FeGNoYW5nZS5UcmFuc3BvcnQuTWFpbFJlY2lwaWVudC5Pcmdhbml6YXRpb25TY29wZREAAAAAAAAAAAAAAAAAAAAAAAUASQACAAEFAAQAFCABAAAAHAAAAHN0ZWZmZW4ua2xhc3NlcnRAc2VjdW5ldC5jb20FAAYAAgABBQApAAIAAQ8ACQAAAENJQXVkaXRlZAIAAQUAAgAHAAEAAAAFAAMABwAAAAAABQAFAAIAAQUAYgAKACQAAADLigAABQBkAA8AAwAAAEh1Yg==
-X-Source: SMTP:Default MBX-ESSEN-01
+X-ExtendedProps: BQBjAAoA+JDp8x1Q3AgFAGEACAABAAAABQA3AAIAAA8APAAAAE1pY3Jvc29mdC5FeGNoYW5nZS5UcmFuc3BvcnQuTWFpbFJlY2lwaWVudC5Pcmdhbml6YXRpb25TY29wZREAAAAAAAAAAAAAAAAAAAAAAAUASQACAAEFAGIACgAPAAAAi4oAAAUABAAUIAEAAAAcAAAAc3RlZmZlbi5rbGFzc2VydEBzZWN1bmV0LmNvbQUABgACAAEFACkAAgABDwAJAAAAQ0lBdWRpdGVkAgABBQACAAcAAQAAAAUAAwAHAAAAAAAFAAUAAgABBQBkAA8AAwAAAEh1Yg==
+X-Source: SMTP:Default MBX-DRESDEN-01
 X-SourceIPAddress: 62.96.220.37
-X-EndOfInjectedXHeaders: 15985
+X-EndOfInjectedXHeaders: 15274
 X-Virus-Scanned: by secunet
-Received-SPF: Pass (sender SPF authorized) identity=mailfrom; client-ip=147.75.80.249; helo=am.mirrors.kernel.org; envelope-from=linux-kernel+bounces-125428-steffen.klassert=secunet.com@vger.kernel.org; receiver=steffen.klassert@secunet.com 
-DKIM-Filter: OpenDKIM Filter v2.11.0 b.mx.secunet.com 1E977200BB
+Received-SPF: Pass (sender SPF authorized) identity=mailfrom; client-ip=139.178.88.99; helo=sv.mirrors.kernel.org; envelope-from=linux-kernel+bounces-125417-steffen.klassert=secunet.com@vger.kernel.org; receiver=steffen.klassert@secunet.com 
+DKIM-Filter: OpenDKIM Filter v2.11.0 b.mx.secunet.com E2FA1200BB
 Authentication-Results: b.mx.secunet.com;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="n75yb7nR"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="Q+fBWFju"
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="n75yb7nR"
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="Q+fBWFju"
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal: i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1711746306; cv=none; b=qIsA6lXUgqZJebWl/Gl4tlLxfvYekeJDzrNfk+b6fXnMkf1BHv+83TwSJAw03iBVty1kiRyscskrKmw0Y5EOPtdfKJg3mGmEXpRGOheaxFAUS16DC9HPlara+eJTc7+ifato3RR0ZVgo+thBBdCBf9j291RT1TToo/0bf44Q36g=
+	t=1711745959; cv=none; b=Z4d2PUulpZsr0m1a/2swz8hYgXCd+vadlDWiRq9w8uEBZJv+KRBbbUl4iI3dhqzstvHq/tUJlZXmI7noq6zUxZBRnuF0cbX3s4XrEU2qaEGQT3Zvm6xVInn7flJBX5oMeRHJpFaUtqQqR0Oxo7CyO5Xmw0p48sR/bbRu0GJL32s=
 ARC-Message-Signature: i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1711746306; c=relaxed/simple;
-	bh=pXYEYgKZ3Uofr33TNsjVz/KOqp3itzo08YoqXY3ebkI=;
+	s=arc-20240116; t=1711745959; c=relaxed/simple;
+	bh=3wLzIvFJXMplW/KAkVYcSz1vGr/nC6U7PB+cPZLmK4g=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hrR6SxubRXkANAhxvgAyimc04nhqr/11+vqzbuTwMSkNwnN6wzAYactPH5zIs/RLVoHYhkZx1hz9C3PKKTn55nCvgqFxXX3x56z8MNV6rKZMCWy4temjgAGDldAuN57Tj7+T5O7/h8E3W3PdsZulLnTHFpO/oFw0GD13u1o1MPo=
-ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=n75yb7nR; arc=none smtp.client-ip=45.89.224.132
+	 MIME-Version:Content-Type; b=p0HMqbQFA7uhsR0Ope5kNuYaeBMv/78AMrc3um2XC+v34dr/86WGFQMEwbgYumTG13DTDzhxFMa/Hwkksalee6P1m/M+jRGtSjKaAj/fYt2hbyQjw5KWUpDBoa80yUUc/nOQCQrRpVMowRomjPACb9fWNC5BCLrDbZulqc+5qBY=
+ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=Q+fBWFju; arc=none smtp.client-ip=37.18.73.165
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2DA06120019
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 58DED100004
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1711746303;
-	bh=v6iv2cWxrh0L5w2lrSwq07tbyW+/upAYliG0TyxpP3o=;
+	s=mail; t=1711745954;
+	bh=rZwAhSZubu/1cmpdTVljvVx0jvWScjKt2fJdmwsJfGk=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=n75yb7nRtRwdTAS4wjIRKlbscogi02NEL+0ey+lQnVTTtp+mOcfI6HrJoGn8lHuN2
-	 A6YTD4LlJN8gBo18oOk8l+1ShZ+WMF4e2E2PwasVdNXcyNn3fS9Ildt3OhoJ990rkK
-	 b4LlXrrGUxkyBj6llNF85gYS8YCdE0847XOfAjPs6DmOgAzlM1w1A741E2A1yPyKKv
-	 4hKrdy9Ptcm28W5Y8OGQHNRU27BO8FKvCjhlHwqbnByq3myO4eK3g/n8bvCXZeCUHa
-	 F/jr/rjzAbpXaBqaoMb1DBETLarMCkSG5+4QdGI71xh5Ru9NiZfzWoSHNDaBQY9956
-	 /2LSX6gzbqK0Q==
+	b=Q+fBWFjux20rxIt5dNutzyO485NqjnrfdT7bYuXIuFPbqVjZbY4eRhM2uoasfMCCH
+	 L7SG6djQVrpb7jSTe4GGCFVIbAtkT45dabq2DfxrN1UyXjBZ3N1qGiS3b07+jK+mzC
+	 Z6FzyLSfy6URE5aQuwSzqb0n2lw8z31N76ucsg+a805pzZGzBQrh1beLc1Qe4HXPSB
+	 l9+cBYWI2BDE486CGgJSIHXLVr7xgjMziKv7TsLfK4+3tXMRMIKxchg9LmihfDOt53
+	 yN0SM/AHYacaKJcd9sR5oMlc+zSpewY0TSylVgXUXMDw5QOdU3xK3USTCrK4wTprER
+	 AJhbOuq79rfZQ==
 From: Dmitry Rokosov <ddrokosov@salutedevices.com>
 To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
 	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
@@ -98,12 +112,12 @@ CC: <kernel@salutedevices.com>, <rockosov@gmail.com>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
 	<ddrokosov@salutedevices.com>
-Subject: [PATCH v1 4/4] arm64: dts: amlogic: a1: setup CPU power management
-Date: Sat, 30 Mar 2024 00:04:42 +0300
-Message-ID: <20240329210453.27530-5-ddrokosov@salutedevices.com>
+Subject: [PATCH v1 1/6] dt-bindings: clock: meson: a1: pll: introduce new syspll bindings
+Date: Fri, 29 Mar 2024 23:58:41 +0300
+Message-ID: <20240329205904.25002-2-ddrokosov@salutedevices.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240329210453.27530-1-ddrokosov@salutedevices.com>
-References: <20240329210453.27530-1-ddrokosov@salutedevices.com>
+In-Reply-To: <20240329205904.25002-1-ddrokosov@salutedevices.com>
+References: <20240329205904.25002-1-ddrokosov@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: linux-kernel@vger.kernel.org
 MIME-Version: 1.0
@@ -118,7 +132,7 @@ X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 14 0.3.14 5a0c43d8a1c3c0e5b0916cc02a90d4b950c01f96, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 14 0.3.14 5a0c43d8a1c3c0e5b0916cc02a90d4b950c01f96, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
 X-KSMG-AntiPhishing: Clean
 X-KSMG-LinksScanning: Clean
@@ -126,8 +140,9 @@ X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-EXCLAIMER-MD-CONFIG: 2c86f778-e09b-4440-8b15-867914633a10
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240331_091137_423962_B01D6EE6 
-X-CRM114-Status: GOOD (  13.61  )
+X-CRM114-CacheID: sfid-20240331_172630_699606_9D063EAE 
+X-CRM114-Status: UNSURE (   9.43  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 List-Id: <linux-amlogic.lists.infradead.org>
@@ -142,92 +157,58 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
-Message-ID: <20240329210442.jvq5lKVdGazqdPSzP2Tc2riNZM88GpPnpo9iaIQvyNs@z>
 
-The Amlogic A1 SoC family utilizes static operating points and a
-PWM-controlled core voltage regulator, which is specific to the board.
-As the main CPU clock input, the SoC uses CLKID_CPU_CLK from the CPU
-clock controller, which can be inherited from the system PLL (syspll) or
-a fixed CPU clock.
-
-Currently, the stable operating points at all frequencies are set to
-800mV. This value is obtained from the vendor setup of several A1
-boards.
+The 'syspll' PLL is a general-purpose PLL designed specifically for the
+CPU clock. It is capable of producing output frequencies within the
+range of 768MHz to 1536MHz.
 
 Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 44 +++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+ .../devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml     | 7 +++++--
+ include/dt-bindings/clock/amlogic,a1-pll-clkc.h            | 2 ++
+ 2 files changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index 0de809f4d42c..c57c7c1cd5f8 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -33,6 +33,13 @@ cpu0: cpu@0 {
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
-+			clocks = <&clkc_cpu CLKID_CPU_CLK>;
-+			clock-names = "core_clk";
-+			operating-points-v2 = <&cpu_opp_table0>;
-+			voltage-tolerance = <0>;
-+			clock-latency = <50000>;
-+			capacity-dmips-mhz = <400>;
-+			dynamic-power-coefficient = <80>;
- 			#cooling-cells = <2>;
- 		};
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+index a59b188a8bf5..fbba57031278 100644
+--- a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
++++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+@@ -26,11 +26,13 @@ properties:
+     items:
+       - description: input fixpll_in
+       - description: input hifipll_in
++      - description: input syspll_in
  
-@@ -42,6 +49,13 @@ cpu1: cpu@1 {
- 			reg = <0x0 0x1>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
-+			clocks = <&clkc_cpu CLKID_CPU_CLK>;
-+			clock-names = "core_clk";
-+			operating-points-v2 = <&cpu_opp_table0>;
-+			voltage-tolerance = <0>;
-+			clock-latency = <50000>;
-+			capacity-dmips-mhz = <400>;
-+			dynamic-power-coefficient = <80>;
- 			#cooling-cells = <2>;
- 		};
+   clock-names:
+     items:
+       - const: fixpll_in
+       - const: hifipll_in
++      - const: syspll_in
  
-@@ -52,6 +66,36 @@ l2: l2-cache0 {
- 		};
- 	};
+ required:
+   - compatible
+@@ -53,7 +55,8 @@ examples:
+             reg = <0 0x7c80 0 0x18c>;
+             #clock-cells = <1>;
+             clocks = <&clkc_periphs CLKID_FIXPLL_IN>,
+-                     <&clkc_periphs CLKID_HIFIPLL_IN>;
+-            clock-names = "fixpll_in", "hifipll_in";
++                     <&clkc_periphs CLKID_HIFIPLL_IN>,
++                     <&clkc_periphs CLKID_SYSPLL_IN>;
++            clock-names = "fixpll_in", "hifipll_in", "syspll_in";
+         };
+     };
+diff --git a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
+index 2b660c0f2c9f..a702d610589c 100644
+--- a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
++++ b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
+@@ -21,5 +21,7 @@
+ #define CLKID_FCLK_DIV5		8
+ #define CLKID_FCLK_DIV7		9
+ #define CLKID_HIFI_PLL		10
++#define CLKID_SYS_PLL		11
++#define CLKID_SYS_PLL_DIV16	12
  
-+	cpu_opp_table0: cpu_opp_table0 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp00 {
-+			opp-hz = /bits/ 64 <128000000>;
-+			opp-microvolt = <800000>;
-+		};
-+		opp01 {
-+			opp-hz = /bits/ 64 <256000000>;
-+			opp-microvolt = <800000>;
-+		};
-+		opp02 {
-+			opp-hz = /bits/ 64 <512000000>;
-+			opp-microvolt = <800000>;
-+		};
-+		opp03 {
-+			opp-hz = /bits/ 64 <768000000>;
-+			opp-microvolt = <800000>;
-+		};
-+		opp04 {
-+			opp-hz = /bits/ 64 <1008000000>;
-+			opp-microvolt = <800000>;
-+		};
-+		opp05 {
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <800000>;
-+		};
-+	};
-+
- 	efuse: efuse {
- 		compatible = "amlogic,meson-gxbb-efuse";
- 		clocks = <&clkc_periphs CLKID_OTP>;
+ #endif /* __A1_PLL_CLKC_H */
 -- 
 2.43.0
 
