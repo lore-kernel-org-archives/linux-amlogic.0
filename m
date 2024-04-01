@@ -4,93 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87400CD128A
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2024 17:22:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87135CD1288
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2024 17:48:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KEEYeQM/rL9w9YcMVgTCtt52VU6qO/Kq9vHptDbsK5w=; b=r9Vyu7gvhjBNdC
-	4GCULz4nmFmJIppMhMfPc68VHGfRTWcv+viDbs8q7neoaoFmMrWaHDIjnhws3mtleDPMLD/ln7OTJ
-	t84yTEVh6gO3GUeslGg/NbJSVRbePj9pTB7xJOs/y+NmYDCpOx/pfUbZde0jDc+inwrJ99BvW8d8M
-	4xYegbDGnwWJx6yamtEzWdrFWzJiWb2VjuJeWd04vy0O1j58LOsvChj93DVreg4G8IJAFrcuQ8AMK
-	h3NIAOjw5uaE7IXL/jocmTk34I6CeSk2s/lkkr3yzjFUpm03dSUTicTps3hGUJMHF2Z6ZGQo8lpym
-	69d3fiwEF/S88P4lVHXQ==;
+	List-Owner; bh=amhHp3GPeDLBETE7dcVuQBo7RxSFOQnTJKytKiT2ntg=; b=fB0za9vWAPl30f
+	AxWjQmTqJsxAfbCvRgUHJI96bzHs5p15mYWC7cOl2xVJCK/WbVCCDflL5xkKJ2X8dp2gd9P98TINE
+	DcMYnVDdBD9btboMxDgpEICjUccePGVL5HXSvR2X5NFROKk8qrU0zLF7Vt3d/mLc5upfoZcQZ6+CF
+	Ul2Mr7/jO8M67NEgNoWpWVHJln9gy3pZ7Xasexqnl6g57dIAZKrYCkm+B0bg7zMt5iE1e27roTlRY
+	nhstYJzNPtLlf7+UXlIHHI6a5Zm7gEFyfmErPDsDXqcYmMn+MlkDCjjL2vj3h9I+uKh/LhcfJ9FG5
+	HbKTHAw3nGSZQRYO2cwQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rrLMx-00000008RvA-1Ss7;
-	Mon, 01 Apr 2024 17:22:51 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1rrLlM-00000008UmC-0VcG;
+	Mon, 01 Apr 2024 17:48:04 +0000
+Received: from madrid.collaboradmins.com ([46.235.227.194])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rrLMt-00000008Rti-1dh8;
-	Mon, 01 Apr 2024 17:22:49 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 4EBEC120003;
-	Mon,  1 Apr 2024 20:22:44 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4EBEC120003
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1711992164;
-	bh=tl1k+GzwBoZHvPC5wGd0gk/FR6ibdQtoq6i6yG3MDtE=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=ePLJZ08v9l/Hp7+tshkLyConpJh3/E7UlPychQ8v4envB4os0v896owqaCmUZBjPw
-	 CASP3Kvn8yjDiOVNug2zR0XVFAP5hfsR2f70JK4yUprzcIq+X0EfxdpSH+mXgwuB5P
-	 9//DgLEl4FR7a0j5vgchoors49NzStQuA6+XtIawT/vGj/MGbgaQehjcYjwt2LM20g
-	 rtq+7EgaEMsCG/LVOtZKVkUAMpAFl8cIcHkxzsdjEWYVb3CApexAknmGL033IXoPJZ
-	 oX41ydw3Fjehxdcd681iiS8shzVEnB4Du+a1Y2CiY1y11Ylv1lpuvDO32cgmzFb4JG
-	 psrARtLC41j3w==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	id 1rrKja-00000008M3X-2UV9;
+	Mon, 01 Apr 2024 16:42:12 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1711989729;
+	bh=WopZIv1m6iHVZ5GAyDRjVH14xeI4Hdv9HeL4nql8kK4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=xLbIBnl792sEhVS0hA7Ot1TsA6aXkyC3C/5TeYVOON+ULaJIJdlN8xkPR8yjC9OEK
+	 XB/LkzmhZy2/RHHSmut0sdP3JKhqkRiDPj2kAOQq252/UgQ6MNvJXZHRIfRDS4OvIP
+	 gqQW4by8jd6/CK06lRraJl+ZaZp4FGt1Vod8Ht3qWXJFVTzaGzjK1fU2hmebQpBD97
+	 fqJUuhFhOa1qj2VOAfLEWJAd7TBx56b6sFqkIer3HaTyVRUPpBQsfDAsXqURGIF98j
+	 GfGJce3xojpChU/ofabShSxisAE2x9OI+txzlIOYDgS0D7nosofAPPpuxTOFBdgGtU
+	 M+oQeOKIFQG/w==
+Received: from [100.95.196.25] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon,  1 Apr 2024 20:22:44 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 1 Apr
- 2024 20:22:43 +0300
-Date: Mon, 1 Apr 2024 20:22:43 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Rob Herring <robh@kernel.org>
-CC: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <kernel@salutedevices.com>,
-	<rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
-	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v1 1/6] dt-bindings: clock: meson: a1: pll: introduce new
- syspll bindings
-Message-ID: <20240401172243.zuvj6d6ptkrt6p33@CAB-WSD-L081021>
-References: <20240329205904.25002-1-ddrokosov@salutedevices.com>
- <20240329205904.25002-2-ddrokosov@salutedevices.com>
- <20240401142011.GA537763-robh@kernel.org>
+	(Authenticated sender: koike)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E30A2378143B;
+	Mon,  1 Apr 2024 16:42:03 +0000 (UTC)
+Message-ID: <f4b6cb98-0146-4f9c-a1ed-3324da01ca16@collabora.com>
+Date: Mon, 1 Apr 2024 13:42:03 -0300
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240401142011.GA537763-robh@kernel.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184515 [Apr 01 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 14 0.3.14 5a0c43d8a1c3c0e5b0916cc02a90d4b950c01f96, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;lore.kernel.org:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/04/01 16:37:00
-X-KSMG-LinksScanning: Clean, bases: 2024/04/01 16:36:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/01 15:13:00 #24563578
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 04/10] drm/ci: mediatek: Refactor existing mediatek
+ jobs
+Content-Language: en-US
+To: Vignesh Raman <vignesh.raman@collabora.com>,
+ dri-devel@lists.freedesktop.org
+Cc: daniels@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
+ emma@anholt.net, robdclark@gmail.com, david.heidelberg@collabora.com,
+ guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
+ hamohammed.sa@gmail.com, rodrigosiqueiramelo@gmail.com,
+ melissa.srw@gmail.com, mairacanal@riseup.net, mcanal@igalia.com,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240401061235.192713-1-vignesh.raman@collabora.com>
+ <20240401061235.192713-5-vignesh.raman@collabora.com>
+From: Helen Koike <helen.koike@collabora.com>
+In-Reply-To: <20240401061235.192713-5-vignesh.raman@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240401_102247_793418_E9C82B31 
-X-CRM114-Status: GOOD (  18.83  )
+X-CRM114-CacheID: sfid-20240401_094210_935824_689D89CC 
+X-CRM114-Status: GOOD (  26.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,61 +77,233 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Rob,
 
-On Mon, Apr 01, 2024 at 09:20:11AM -0500, Rob Herring wrote:
-> On Fri, Mar 29, 2024 at 11:58:41PM +0300, Dmitry Rokosov wrote:
-> > The 'syspll' PLL is a general-purpose PLL designed specifically for the
-> > CPU clock. It is capable of producing output frequencies within the
-> > range of 768MHz to 1536MHz.
-> > 
-> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> > ---
-> >  .../devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml     | 7 +++++--
-> >  include/dt-bindings/clock/amlogic,a1-pll-clkc.h            | 2 ++
-> >  2 files changed, 7 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> > index a59b188a8bf5..fbba57031278 100644
-> > --- a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> > @@ -26,11 +26,13 @@ properties:
-> >      items:
-> >        - description: input fixpll_in
-> >        - description: input hifipll_in
-> > +      - description: input syspll_in
-> >  
-> >    clock-names:
-> >      items:
-> >        - const: fixpll_in
-> >        - const: hifipll_in
-> > +      - const: syspll_in
+
+On 01/04/2024 03:12, Vignesh Raman wrote:
+> For mediatek mt8173 and mt8183, the display driver is mediatek.
+> Currently, in drm-ci for mediatek, only the display driver is
+> tested. Refactor the existing mediatek jobs so that gpu driver
+> testing jobs can be added later and update xfails accordingly.
+> Since the correct driver name is passed from the job to test gpu
+> and display driver, remove the check to set IGT_FORCE_DRIVER
+> based on driver name.
 > 
-> A new required entry is an ABI break. Please state why that's ok or make 
-> it optional (minItems: 2).
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> ---
+> 
+> v2:
+>    - Refactor the patch to rename job to indicate display driver testing,
+>      rename the existing xfail files, and remove IGT_FORCE_DRIVER from the
+>      script since it's now set by the job.
+> 
+> v3:
+>    - Add the job name in GPU_VERSION and use it for xfail file names instead
+>      of using DRIVER_NAME. Also update xfails.
+> 
+> v4:
+>    - Remove the display suffix in job and rename xfails accordingly.
+>      Remove the change adding job name in GPU_VERSION.
+> 
+> v5:
+>    - Add mediatek-display job.
+> 
+> ---
+>   drivers/gpu/drm/ci/igt_runner.sh              | 10 ---------
+>   drivers/gpu/drm/ci/test.yml                   | 21 +++++++++++++++----
+>   .../drm/ci/xfails/mediatek-mt8173-fails.txt   | 15 -------------
+>   .../drm/ci/xfails/mediatek-mt8173-flakes.txt  | 13 ++++++++++++
+>   .../drm/ci/xfails/mediatek-mt8183-fails.txt   | 21 ++++++++++++-------
+>   .../drm/ci/xfails/mediatek-mt8183-flakes.txt  |  8 +++++++
+>   6 files changed, 51 insertions(+), 37 deletions(-)
+>   create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8173-flakes.txt
+>   create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt
+> 
+> diff --git a/drivers/gpu/drm/ci/igt_runner.sh b/drivers/gpu/drm/ci/igt_runner.sh
+> index f1a08b9b146f..ce6e22369d4d 100755
+> --- a/drivers/gpu/drm/ci/igt_runner.sh
+> +++ b/drivers/gpu/drm/ci/igt_runner.sh
+> @@ -20,16 +20,6 @@ cat /sys/kernel/debug/dri/*/state
+>   set -e
+>   
+>   case "$DRIVER_NAME" in
+> -    rockchip|meson)
+> -        export IGT_FORCE_DRIVER="panfrost"
+> -        ;;
+> -    mediatek)
+> -        if [ "$GPU_VERSION" = "mt8173" ]; then
+> -            export IGT_FORCE_DRIVER=${DRIVER_NAME}
+> -        elif [ "$GPU_VERSION" = "mt8183" ]; then
+> -            export IGT_FORCE_DRIVER="panfrost"
+> -        fi
+> -        ;;
+>       amdgpu)
+>           # Cannot use HWCI_KERNEL_MODULES as at that point we don't have the module in /lib
+>           mv /install/modules/lib/modules/* /lib/modules/.
+> diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
+> index 612c9ede3507..d8af670ee51d 100644
+> --- a/drivers/gpu/drm/ci/test.yml
+> +++ b/drivers/gpu/drm/ci/test.yml
+> @@ -282,14 +282,17 @@ amdgpu:stoney:
+>   .mediatek:
 
-Unfortunatelly, it cannot be optional. I've explained here why:
+Maybe we could s/.mediatek/.mediatek-device, so we know we are not 
+talking about the driver name, what do you think?
 
-https://lore.kernel.org/all/20240401171933.bqmjsuanqsjvjosn@CAB-WSD-L081021/
+>     extends:
+>       - .lava-igt:arm64
+> -  stage: mediatek
+>     variables:
+> -    DRIVER_NAME: mediatek
+>       DTB: ${DEVICE_TYPE}
+>       BOOT_METHOD: depthcharge
+>       KERNEL_IMAGE_TYPE: ""
+>   
+> -mediatek:mt8173:
+> +.mediatek-display:
+> +  stage: mediatek
+> +  variables:
+> +    DRIVER_NAME: mediatek
+> +
+> +.mt8173:
+>     extends:
+>       - .mediatek
+>     parallel: 4
+> @@ -298,7 +301,7 @@ mediatek:mt8173:
+>       GPU_VERSION: mt8173
+>       RUNNER_TAG: mesa-ci-x86-64-lava-mt8173-elm-hana
+>   
+> -mediatek:mt8183:
+> +.mt8183:
+>     extends:
+>       - .mediatek
+>     parallel: 3
+> @@ -307,6 +310,16 @@ mediatek:mt8183:
+>       GPU_VERSION: mt8183
+>       RUNNER_TAG: mesa-ci-x86-64-lava-mt8183-kukui-jacuzzi-juniper-sku16
+>   
+> +mediatek:mt8173:
+> +  extends:
+> +    - .mt8173
+> +    - .mediatek-display
+> +
+> +mediatek:mt8183:
+> +  extends:
+> +    - .mt8183
+> +    - .mediatek-display
 
-"""
-The clock source sys_pll_div16, being one of the GEN clock parents,
-plays a crucial role and cannot be tagged as "optional". Unfortunately,
-it was not implemented earlier due to the cpu clock ctrl driver's
-pending status on the TODO list.
-"""
+ From the code, panfrost was being used in IGT_FORCE_DRIVER for mt8183 
+no? --> never mind, I just saw the next patch handles panfrost case. I 
+guess these two commits could be squashed (up to you).
 
-Could you please provide guidance on whether there is any alternative
-approach that could potentially make it possible?
+Regards,
+Helen
 
--- 
-Thank you,
-Dmitry
+> +
+>   # drm-mtk doesn't even probe yet in mainline for mt8192
+>   .mediatek:mt8192:
+>     extends:
+> diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt
+> index ef0cb7c3698c..c63abd603b02 100644
+> --- a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt
+> @@ -9,28 +9,13 @@ kms_bw@linear-tiling-3-displays-1920x1080p,Fail
+>   kms_bw@linear-tiling-3-displays-2560x1440p,Fail
+>   kms_bw@linear-tiling-3-displays-3840x2160p,Fail
+>   kms_color@invalid-gamma-lut-sizes,Fail
+> -kms_color@pipe-A-invalid-gamma-lut-sizes,Fail
+> -kms_color@pipe-B-invalid-gamma-lut-sizes,Fail
+>   kms_cursor_legacy@cursor-vs-flip-atomic,Fail
+>   kms_cursor_legacy@cursor-vs-flip-legacy,Fail
+>   kms_flip@flip-vs-modeset-vs-hang,Fail
+>   kms_flip@flip-vs-panning-vs-hang,Fail
+>   kms_flip@flip-vs-suspend,Fail
+>   kms_flip@flip-vs-suspend-interruptible,Fail
+> -kms_force_connector_basic@force-edid,Fail
+> -kms_force_connector_basic@force-load-detect,Fail
+> -kms_force_connector_basic@prune-stale-modes,Fail
+> -kms_hdmi_inject@inject-4k,Fail
+> -kms_plane_scaling@planes-upscale-20x20,Fail
+> -kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25,Fail
+> -kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-5,Fail
+> -kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-75,Fail
+> -kms_plane_scaling@upscale-with-modifier-20x20,Fail
+> -kms_plane_scaling@upscale-with-pixel-format-20x20,Fail
+> -kms_plane_scaling@upscale-with-rotation-20x20,Fail
+>   kms_properties@get_properties-sanity-atomic,Fail
+>   kms_properties@plane-properties-atomic,Fail
+>   kms_properties@plane-properties-legacy,Fail
+>   kms_rmfb@close-fd,Fail
+> -kms_selftest@drm_format,Timeout
+> -kms_selftest@drm_format_helper,Timeout
+> diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-flakes.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-flakes.txt
+> new file mode 100644
+> index 000000000000..64b30c092c85
+> --- /dev/null
+> +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-flakes.txt
+> @@ -0,0 +1,13 @@
+> +# Board Name: mt8173-elm-hana.dtb
+> +# Bug Report: https://lore.kernel.org/dri-devel/931e3f9a-9c5c-fc42-16fc-abaac4e0c0ff@collabora.com/T/#u
+> +# IGT Version: 1.28-gd2af13d9f
+> +# Failure Rate: 50
+> +# Linux Version: 6.7.0-rc3
+> +
+> +# Reported by deqp-runner
+> +kms_cursor_legacy@cursor-vs-flip-atomic-transitions
+> +
+> +# Below test shows inconsistency across multiple runs,
+> +# giving results of Pass and Timeout/Fail alternately
+> +kms_prop_blob@invalid-set-prop
+> +kms_prop_blob@invalid-set-prop-any
+> diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt
+> index 67d690fc4037..91cd1c4ec068 100644
+> --- a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt
+> @@ -1,13 +1,18 @@
+> -kms_addfb_basic@addfb25-bad-modifier,Fail
+> +core_setmaster_vs_auth,Fail
+> +kms_bw@linear-tiling-1-displays-1920x1080p,Fail
+>   kms_bw@linear-tiling-1-displays-2560x1440p,Fail
+> +kms_bw@linear-tiling-1-displays-3840x2160p,Fail
+>   kms_bw@linear-tiling-2-displays-1920x1080p,Fail
+>   kms_bw@linear-tiling-2-displays-2560x1440p,Fail
+>   kms_bw@linear-tiling-2-displays-3840x2160p,Fail
+> -kms_bw@linear-tiling-3-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-3-displays-3840x2160p,Fail
+> -kms_color@pipe-A-invalid-gamma-lut-sizes,Fail
+> -kms_plane_cursor@overlay,Fail
+> -kms_plane_cursor@primary,Fail
+> -kms_plane_cursor@viewport,Fail
+> -kms_plane_scaling@upscale-with-rotation-20x20,Fail
+> +kms_color@invalid-gamma-lut-sizes,Fail
+> +kms_cursor_legacy@cursor-vs-flip-atomic,Fail
+> +kms_cursor_legacy@cursor-vs-flip-legacy,Fail
+> +kms_flip@flip-vs-modeset-vs-hang,Fail
+> +kms_flip@flip-vs-panning-vs-hang,Fail
+> +kms_flip@flip-vs-suspend,Fail
+> +kms_flip@flip-vs-suspend-interruptible,Fail
+> +kms_properties@get_properties-sanity-atomic,Fail
+> +kms_properties@plane-properties-atomic,Fail
+> +kms_properties@plane-properties-legacy,Fail
+>   kms_rmfb@close-fd,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt
+> new file mode 100644
+> index 000000000000..5885a950fa72
+> --- /dev/null
+> +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt
+> @@ -0,0 +1,8 @@
+> +# Board Name: mt8183-kukui-jacuzzi-juniper-sku16.dtb
+> +# Bug Report: https://lore.kernel.org/dri-devel/931e3f9a-9c5c-fc42-16fc-abaac4e0c0ff@collabora.com/T/#u
+> +# IGT Version: 1.28-gd2af13d9f
+> +# Failure Rate: 100
+> +# Linux Version: 6.7.0-rc3
+> +
+> +# Reported by deqp-runner
+> +kms_cursor_legacy@cursor-vs-flip-atomic-transitions
 
 _______________________________________________
 linux-amlogic mailing list
