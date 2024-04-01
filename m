@@ -4,80 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E944CD128A
-	for <linux-amlogic@archiver.kernel.org>; Sun, 31 Mar 2024 21:40:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54334CD128D
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2024 06:14:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eKU2ZWBL8mliv3j0hYyIvSC9c3s/vjg3CdBxluSBq/E=; b=JsTEfTyl82cQOP
-	BtKGYuS0sOLvZrQstKdKUhT4Ms5UtQpcflpPgdtkO8nwKe5v4lyub91LewAFnlllEnD9biV7RxxP8
-	FmikION+iaedXHcLApmXhP+3HAWkD/u7rcYIa71FDCE6QWsonlrBFrg16176WjEQu3e3lPpiep9L7
-	La9HjecDm9Imgclj7sRFoeK761Xr7ahUCHUnLEtzFNySItQt5uoT0erHcPwflZVDE+9uJ9bZkwIZI
-	eY63tcxUMDR8bNsncyWZCfosc5iXYH/JZr7GU8qqDEN7U3Yu3UzDVJWRbrO6cT22f0xsAGpAb/Dcd
-	bQlARNHhagH2hpZBU4tw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=HXHqJ4VUg2GhshFe/XeRasl/PhuBxCJoLoONcKCRBo8=; b=yZOmqVGuCQ6dV3
+	lJuIV9+mn/nW2Vyyw51Z4FLmTgU5J1CTbCGBI+QtsjRR6KNDBQj0c2haeSzgLleM509F48yLkxz5k
+	J3IqKOhQOxXHh4/89e58/161n0Qbw/Jd75GyVpadOFK7h1tYzdLPJ+sd2lcIevPP7wji+DzUiOTF6
+	slMFVxr2xBpnTL2lE9nMWKpnbN/FjwN5k1pMD1T3Caz1TThCKy3YD9PedR4JL5YEyV8nSWaFecNvO
+	bFHb6mo5DuRtoXwsis9Zpr+Ba5ZeBjutPCYE2AAHVFO/5gKHaUilCR/qprYSVs1TTwKmPJ1P56krM
+	cEzEhOifOglbvr5Rswxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rr2uj-00000006MFq-3qk3;
-	Sun, 31 Mar 2024 21:40:29 +0000
-Received: from mail-pl1-x62e.google.com ([2607:f8b0:4864:20::62e])
+	id 1rrAvL-000000071Kw-3grx;
+	Mon, 01 Apr 2024 06:13:40 +0000
+Received: from madrid.collaboradmins.com ([46.235.227.194])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rr2uh-00000006MFK-0USE;
-	Sun, 31 Mar 2024 21:40:28 +0000
-Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1df01161b39so30676435ad.3;
-        Sun, 31 Mar 2024 14:40:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1711921225; x=1712526025; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6bOAMX8CDxRFe75wZuJ9Z2dq25ZmCynlaxMc7spfxAM=;
-        b=RJ8qeP0le4xXdp711R9QiDgrDwIvImr0rIfd0u8nZ+WvxBBJsWRBqLiAQOlSAAJWqH
-         eMlSTI2MBqCOw+7jRquhTsHnkbVvhouHz7+tRLfT93M3TcrrMETd/U2n/WgVIv7eS9ZW
-         tvnaYwarU+l+d1GcHRqCFkgWUiIVeiyaHDjvBcRdUk4V2YsMVIdycVDByCl9ZRYuUyl8
-         tkE8Op/HRsjpdIn2vWmOpf19oB9GjKR62wTHr+/39Bt+AeXmkBRHe5zVotz6SwDP/iNX
-         1jTHkhu1Xiouy64QINI/vFCYLSnThHiD72zyw4fYJo+8bv7eMXgZLonqohOYJ0ALWR41
-         4Row==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711921225; x=1712526025;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6bOAMX8CDxRFe75wZuJ9Z2dq25ZmCynlaxMc7spfxAM=;
-        b=NsDUWpAtEkQyCXMSu3AQpL1Rmg5J54AqPB3o9dWcXW2pik5k66ONYyZa14uTbU2y+i
-         lNC/YA3AtLhieQoIqzbQdQ1/bax0wf6hXZKGy4xk7EkrkClQ5xARB1OiHpdgDVGSkh15
-         M12F6tTgP4QAU//SNffNHzJFZBk+7RWkTuWJtuejQX3/0wa2kdFDuNlkPAVIdRo2wNmP
-         RkiqopVUmcljdGHU6FE6GGt/G3i7Q4wUEUP3EIn039wJ10k1sJnvjJWF8Doaqcjz6ndi
-         +woMscWtJdQ4OWBt63FYQ64IuffEHiNichZKCSer0pnqjPdFj0bzL5c8Mw4rmc+D1Qai
-         2N3g==
-X-Forwarded-Encrypted: i=1; AJvYcCXvrQ/0yXoT8zpiBrDM5LDyZ9ao6MhoRxUxvF4DoOkMrcFI66TyWy3JhOo9oB1N0GoRKT4wmN8hw7G3RUMD2CkgsxeSE1MRG8BNh9/XgVdDaV6RULBkPTBIqQmeEEFQgwOOHl7UOy5HgohlKjnDKl0GcY6b0m5M9g==
-X-Gm-Message-State: AOJu0Yxxhw3a3a+rqQlrhr/gsTzSi/UNrLJCNT+h0UqkYnb3yyrTbSiM
-	jSwik0sMagr284oH/ypXeIwzEEdV2bfF7h1pbxPBLTE90NrGpSCQ3mpKE7DA10EBdL4O/vC9xf+
-	4VNQio8m4WMerXw1fg5xw8Ot0u14=
-X-Google-Smtp-Source: AGHT+IFiqj4SbYwzxlpmSNvPFU6oA3OXhWytg+jzKWNJs6wKOMo0mOw5iOQRrId8XNfTznU7DImuvdgTgbvN4vcPI8c=
-X-Received: by 2002:a17:903:94b:b0:1e2:3719:43f5 with SMTP id
- ma11-20020a170903094b00b001e2371943f5mr9219842plb.14.1711921224652; Sun, 31
- Mar 2024 14:40:24 -0700 (PDT)
+	id 1rrAvH-000000071JS-3eM2;
+	Mon, 01 Apr 2024 06:13:38 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1711952009;
+	bh=/x4kBCuY+ccxV+JdiuLGZjMTNXMcjW/HgSMYytFO9ik=;
+	h=From:To:Cc:Subject:Date:From;
+	b=F/QFKQRtdRPVizgrcaJWAlxYVtohziHdyu/AmgMpdoIP7elCwdztc7XL9psW7i7u3
+	 aD+wKiMNETxiEYYiOXSFsuZPC8BgsvJwirv8ZhR8rtuAg3d0gDkmpObIlEroLp2pOR
+	 E/GGTLFOQLFB0JvUOPic9KnBJCNwueqADiFThdT8OPTGq/XHKbW0gFjTOfXtS7yEp7
+	 iXvG/GMrlBnStRc5229+XJ8W3oHtR0zaLvxkePKPTONQFHny7OaBltIrYv8cCrCiMH
+	 qntmOqHngcl7vx6Ed+YCEtFzi9ZXPuRDmQRrJUKZIzL1QonUyUpKkD9Q7kr2z7MmQH
+	 fDl/oHvqPISDQ==
+Received: from localhost.localdomain (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: vignesh)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 7749C3781360;
+	Mon,  1 Apr 2024 06:13:25 +0000 (UTC)
+From: Vignesh Raman <vignesh.raman@collabora.com>
+To: dri-devel@lists.freedesktop.org
+Cc: daniels@collabora.com,
+	helen.koike@collabora.com,
+	airlied@gmail.com,
+	daniel@ffwll.ch,
+	emma@anholt.net,
+	robdclark@gmail.com,
+	david.heidelberg@collabora.com,
+	guilherme.gallo@collabora.com,
+	sergi.blanch.torne@collabora.com,
+	hamohammed.sa@gmail.com,
+	rodrigosiqueiramelo@gmail.com,
+	melissa.srw@gmail.com,
+	mairacanal@riseup.net,
+	mcanal@igalia.com,
+	linux-mediatek@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 00/10] drm/ci: Add support for GPU and display testing
+Date: Mon,  1 Apr 2024 11:42:25 +0530
+Message-Id: <20240401061235.192713-1-vignesh.raman@collabora.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-References: <20240329205904.25002-1-ddrokosov@salutedevices.com> <20240329205904.25002-7-ddrokosov@salutedevices.com>
-In-Reply-To: <20240329205904.25002-7-ddrokosov@salutedevices.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 31 Mar 2024 23:40:13 +0200
-Message-ID: <CAFBinCCC5KK-4_w41B-+ZJ3zdZckq_EDuAW+Kak2C0Ow8uuD6Q@mail.gmail.com>
-Subject: Re: [PATCH v1 6/6] clk: meson: a1: add Amlogic A1 CPU clock
- controller driver
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: neil.armstrong@linaro.org, jbrunet@baylibre.com, mturquette@baylibre.com, 
-	sboyd@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	khilman@baylibre.com, kernel@salutedevices.com, rockosov@gmail.com, 
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240331_144027_186280_9388AA15 
-X-CRM114-Status: GOOD (  12.07  )
+X-CRM114-CacheID: sfid-20240331_231336_282345_7ACBFC3D 
+X-CRM114-Status: GOOD (  15.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,35 +82,125 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgRG1pdHJ5LAoKT24gRnJpLCBNYXIgMjksIDIwMjQgYXQgOTo1OeKAr1BNIERtaXRyeSBSb2tv
-c292CjxkZHJva29zb3ZAc2FsdXRlZGV2aWNlcy5jb20+IHdyb3RlOgpbLi4uXQo+ICtzdGF0aWMg
-c3RydWN0IGNsa19yZWdtYXAgY3B1X2ZjbGsgPSB7Cj4gKyAgICAgICAuZGF0YSA9ICYoc3RydWN0
-IGNsa19yZWdtYXBfbXV4X2RhdGEpIHsKPiArICAgICAgICAgICAgICAgLm9mZnNldCA9IENQVUNU
-UkxfQ0xLX0NUUkwwLAo+ICsgICAgICAgICAgICAgICAubWFzayA9IDB4MSwKPiArICAgICAgICAg
-ICAgICAgLnNoaWZ0ID0gMTAsCj4gKyAgICAgICB9LAo+ICsgICAgICAgLmh3LmluaXQgPSAmKHN0
-cnVjdCBjbGtfaW5pdF9kYXRhKSB7Cj4gKyAgICAgICAgICAgICAgIC5uYW1lID0gImNwdV9mY2xr
-IiwKPiArICAgICAgICAgICAgICAgLm9wcyA9ICZjbGtfcmVnbWFwX211eF9vcHMsCj4gKyAgICAg
-ICAgICAgICAgIC5wYXJlbnRfaHdzID0gKGNvbnN0IHN0cnVjdCBjbGtfaHcgKltdKSB7Cj4gKyAg
-ICAgICAgICAgICAgICAgICAgICAgJmNwdV9mc2VsMC5odywKPiArICAgICAgICAgICAgICAgICAg
-ICAgICAmY3B1X2ZzZWwxLmh3LApIYXZlIHlvdSBjb25zaWRlcmVkIHRoZSBDTEtfU0VUX1JBVEVf
-R0FURSBmbGFnIGZvciAmY3B1X2ZzZWwwLmh3IGFuZAomY3B1X2ZzZWwxLmh3IGFuZCB0aGVuIGRy
-b3BwaW5nIHRoZSBjbG9jayBub3RpZmllciBiZWxvdz8KV2UgdXNlIHRoYXQgYXBwcm9hY2ggd2l0
-aCB0aGUgTWFsaSBHUFUgY2xvY2sgb24gb3RoZXIgU29Dcywgc2VlIGZvcgpleGFtcGxlIGNvbW1p
-dCA4ZGFlYWVhOTljYWEgKCJjbGs6IG1lc29uOiBtZXNvbjhiOiBtYWtlIHRoZSBDQ0YgdXNlCnRo
-ZSBnbGl0Y2gtZnJlZSBtYWxpIG11eCIpLgpJdCBtYXkgZGlmZmVyIGZyb20gd2hhdCBBbWxvZ2lj
-IGRvZXMgaW4gdGhlaXIgQlNQLCBidXQgSSBkb24ndCB0aGluawp0aGF0IHRoZXJlJ3MgYW55IGhh
-cm0gKGlmIGl0IHdvcmtzIGluIGdlbmVyYWwpIGJlY2F1c2UgQ0NGIChjb21tb24KY2xvY2sgZnJh
-bWV3b3JrKSB3aWxsIHNldCBhbGwgY2xvY2tzIGluIHRoZSAiaW5hY3RpdmUiIHRyZWUgYW5kIHRo
-ZW4KYXMgYSBsYXN0IHN0ZXAganVzdCBjaGFuZ2UgdGhlIG11eCAoJmNwdV9mY2xrLmh3KS4gU28g
-YXQgbm8gcG9pbnQgaW4KdGltZSB3aWxsIHdlIGdldCBhbnkgb3RoZXIgcmF0ZSB0aGFuIGEpIHRo
-ZSBvcmlnaW5hbCBDUFUgY2xvY2sgcmF0ZQpiZWZvcmUgdGhlIHJhdGUgY2hhbmdlIGIpIHRoZSBu
-ZXcgZGVzaXJlZCBDUFUgY2xvY2sgcmF0ZS4gVGhpcyBpcwpiZWNhdXNlIHdlIGhhdmUgdHdvIHN5
-bW1ldHJpYyBjbG9jayB0cmVlcy4KCgpCZXN0IHJlZ2FyZHMsCk1hcnRpbgoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
-IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Some ARM SOCs have a separate display controller and GPU, each with
+different drivers. For mediatek mt8173, the GPU driver is powervr,
+and the display driver is mediatek. In the case of mediatek mt8183,
+the GPU driver is panfrost, and the display driver is mediatek.
+With rockchip rk3288/rk3399, the GPU driver is panfrost, while the
+display driver is rockchip. For amlogic meson, the GPU driver is
+panfrost, and the display driver is meson.
+
+IGT tests run various tests with different xfails and can test both
+GPU devices and KMS/display devices. Currently, in drm-ci for MediaTek,
+Rockchip, and Amlogic Meson platforms, only the GPU driver is tested.
+This leads to incomplete coverage since the display is never tested on
+these platforms. This commit series adds support in drm-ci to run tests
+for both GPU and display drivers for MediaTek, Rockchip, and Amlogic
+Meson platforms.
+
+Uprev mesa and IGT in drm-ci and add amd, v3d, vc4 and vgem specific
+tests to testlist. Add testlists to the MAINTAINERS file and skip
+driver-specific tests.
+
+This series also includes patch to add vkms testing to drm-ci.
+
+Working pipeline link,
+https://gitlab.freedesktop.org/vigneshraman/linux/-/pipelines/1140647
+
+Vignesh Raman (10):
+  drm/ci: arm64.config: Enable CONFIG_DRM_ANALOGIX_ANX7625
+  drm/ci: uprev mesa version
+  drm/ci: uprev IGT and update testlist
+  drm/ci: mediatek: Refactor existing mediatek jobs
+  drm/ci: mediatek: Add job to test panfrost and powervr GPU driver
+  drm/ci: meson: Refactor existing meson jobs
+  drm/ci: meson: Add job to test panfrost GPU driver
+  drm/ci: rockchip: Refactor existing rockchip jobs
+  drm/ci: rockchip: Add job to test panfrost GPU driver
+  drm/ci: add tests on vkms
+
+ MAINTAINERS                                   |  11 +
+ drivers/gpu/drm/ci/arm64.config               |   1 +
+ drivers/gpu/drm/ci/build.sh                   |   2 +-
+ drivers/gpu/drm/ci/container.yml              |   6 +-
+ drivers/gpu/drm/ci/gitlab-ci.yml              |  18 +-
+ drivers/gpu/drm/ci/igt_runner.sh              |  16 +-
+ drivers/gpu/drm/ci/image-tags.yml             |   5 +-
+ drivers/gpu/drm/ci/test.yml                   | 138 ++++++--
+ drivers/gpu/drm/ci/testlist.txt               | 321 ++++++++++++++++++
+ drivers/gpu/drm/ci/x86_64.config              |   1 +
+ .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt |  25 +-
+ .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |  10 +-
+ .../gpu/drm/ci/xfails/amdgpu-stoney-skips.txt |  23 +-
+ drivers/gpu/drm/ci/xfails/i915-amly-skips.txt |   9 +-
+ drivers/gpu/drm/ci/xfails/i915-apl-skips.txt  |   9 +-
+ drivers/gpu/drm/ci/xfails/i915-cml-skips.txt  |   7 +
+ drivers/gpu/drm/ci/xfails/i915-glk-skips.txt  |   9 +-
+ drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt  |   9 +-
+ drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt  |   9 +-
+ drivers/gpu/drm/ci/xfails/i915-whl-skips.txt  |   9 +-
+ .../drm/ci/xfails/mediatek-mt8173-fails.txt   |  15 -
+ .../drm/ci/xfails/mediatek-mt8173-flakes.txt  |  13 +
+ .../drm/ci/xfails/mediatek-mt8173-skips.txt   |   6 +
+ .../drm/ci/xfails/mediatek-mt8183-fails.txt   |  21 +-
+ .../drm/ci/xfails/mediatek-mt8183-flakes.txt  |   8 +
+ .../drm/ci/xfails/mediatek-mt8183-skips.txt   |   6 +
+ .../gpu/drm/ci/xfails/meson-g12b-fails.txt    |   5 -
+ .../gpu/drm/ci/xfails/meson-g12b-skips.txt    |   6 +
+ .../gpu/drm/ci/xfails/msm-apq8016-skips.txt   |   5 +
+ .../gpu/drm/ci/xfails/msm-apq8096-skips.txt   |   8 +-
+ .../msm-sc7180-trogdor-kingoftown-skips.txt   |   6 +
+ ...sm-sc7180-trogdor-lazor-limozeen-skips.txt |   6 +
+ .../gpu/drm/ci/xfails/msm-sdm845-skips.txt    |   6 +
+ .../gpu/drm/ci/xfails/panfrost-g12b-fails.txt |   1 +
+ .../gpu/drm/ci/xfails/panfrost-g12b-skips.txt |   8 +
+ .../drm/ci/xfails/panfrost-mt8183-fails.txt   |   1 +
+ .../drm/ci/xfails/panfrost-mt8183-skips.txt   |   8 +
+ .../drm/ci/xfails/panfrost-rk3288-fails.txt   |   1 +
+ .../drm/ci/xfails/panfrost-rk3288-skips.txt   |   8 +
+ .../drm/ci/xfails/panfrost-rk3399-fails.txt   |   1 +
+ .../drm/ci/xfails/panfrost-rk3399-skips.txt   |   8 +
+ .../drm/ci/xfails/rockchip-rk3288-fails.txt   |  50 +--
+ .../drm/ci/xfails/rockchip-rk3288-flakes.txt  |  21 ++
+ .../drm/ci/xfails/rockchip-rk3288-skips.txt   |  15 +-
+ .../drm/ci/xfails/rockchip-rk3399-fails.txt   |  38 +--
+ .../drm/ci/xfails/rockchip-rk3399-flakes.txt  |  28 +-
+ .../drm/ci/xfails/rockchip-rk3399-skips.txt   |  11 +
+ .../drm/ci/xfails/virtio_gpu-none-fails.txt   |   1 -
+ .../drm/ci/xfails/virtio_gpu-none-skips.txt   |   9 +-
+ drivers/gpu/drm/ci/xfails/vkms-none-fails.txt |  33 ++
+ .../gpu/drm/ci/xfails/vkms-none-flakes.txt    |  20 ++
+ drivers/gpu/drm/ci/xfails/vkms-none-skips.txt |  23 ++
+ 52 files changed, 890 insertions(+), 144 deletions(-)
+ create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8173-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8173-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/meson-g12b-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/msm-apq8016-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-g12b-fails.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-g12b-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-mt8183-fails.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-mt8183-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3288-fails.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3288-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3399-fails.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3399-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3288-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/vkms-none-fails.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/vkms-none-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/vkms-none-skips.txt
+
+-- 
+2.40.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
