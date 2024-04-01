@@ -4,75 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9D8ECD128D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2024 07:16:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C501CD1293
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2024 10:11:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3zj+ZV0NYqm7MiOPDYpvm1RpL5Dzrbm1ZKMY8mITNXY=; b=VrWwchFQ0UukHY
-	019eVbmyvJV5K2lrY+LJQLxMwN2HFJMDFpUWb4pbBRCUr+4uNQ/zCyX6IVfzcTrRhT1MhaL57zDab
-	SGk6AICIJ5omeuAvuzrjnXsH85/ptmDUL2iuefA+YfFYTn9JHNIHamAKkd7pMXhM5K265MVEya7b6
-	jlZOIrOjv/fFyYCwOArKBFfTa7vI45C25Sq2fzFEUB+GdOUlhOqLrYhgkC1yJxXtsKZAhm0HkBrhN
-	vzrQ1462bi410RzBAMkjNN6bWeoYsCMUI+d316nn9ni4JJau5qNbQz3YtEnFeiQqh2qMVkJ/iwP6o
-	aDqmXW4sAYsaq/n4tCxg==;
+	List-Owner; bh=quNPVhBlbfHFgcSz+5ep1v78CcMOvScOWnP7DB6YA2I=; b=QuGV4fFYKtkB6r
+	WLxboUM9IHxgLsvsUFvPVsA2+UT7eerNCtxAVOAEa5ibh8P7QjxATEiJXSYp1zOoTShs4Cy3VmBml
+	KFAqjeGEydQH5rcFNCXr853uExEFTyT8yqNui8llt7ccXXwkE48NpieCoXY1fSic5TsRBap09u53X
+	A0eqqj27lj0hOJ5m8bFQs3qntSto8UkCRzWc3y08oEDF3YEoOuJafzaLxJtgi38DRkWjC/hSmDdE8
+	51aVuAjpEky9Xq8k+kBWAnAjhRJrzycPlLjzHLuOgHbkzcP4uFU59nNhAm4ltX7tR+rq2Ue+u26XU
+	JNBTFpbFBdl7cRw/J1Zw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rrBuL-000000077vT-47ao;
-	Mon, 01 Apr 2024 07:16:41 +0000
-Received: from madrid.collaboradmins.com ([46.235.227.194])
+	id 1rrEd5-00000007Qkn-0kY5;
+	Mon, 01 Apr 2024 10:11:03 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rrAvn-000000071dX-0Dms;
-	Mon, 01 Apr 2024 06:14:13 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1711952045;
-	bh=8qJ3ciIUKXzXMXkGK0xRIsuO+xbVMIkMF57BNwi+b7w=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=UmQnnZvIRURZFOh1t9ztUQYqqAkkUnvyoENbOwxPitVhdVSeDvES9QDs+k8HBEHRm
-	 VyfW+8BQYx98LfJwHJxKD/VZwP08w+RNbEYIKeId2um/qBawDvWpGHrtArAmoYpfVb
-	 jwDrKySp+Iu7VbJli79F/rWj9+XIZkAxu5SN8vm6Gb96cmGMr+rZmLs8gxFzte8LNf
-	 KNhqnNfRVCCg82JfKmVkZhvj/9nZ3PmCH++Oa8yGpkjP2z/r7XPxVZ+Z2vYynzsMRu
-	 jE1RCqpPXx4A7oMB9TYhAyylFCMw10RdJqBWT5zHdoA9oQWvcXnyL0G2OEGsJQiMpV
-	 mBiSmKBRKvAig==
-Received: from localhost.localdomain (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: vignesh)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 01DAC37813B6;
-	Mon,  1 Apr 2024 06:14:01 +0000 (UTC)
-From: Vignesh Raman <vignesh.raman@collabora.com>
-To: dri-devel@lists.freedesktop.org
-Cc: daniels@collabora.com,
-	helen.koike@collabora.com,
-	airlied@gmail.com,
-	daniel@ffwll.ch,
-	emma@anholt.net,
-	robdclark@gmail.com,
-	david.heidelberg@collabora.com,
-	guilherme.gallo@collabora.com,
-	sergi.blanch.torne@collabora.com,
-	hamohammed.sa@gmail.com,
-	rodrigosiqueiramelo@gmail.com,
-	melissa.srw@gmail.com,
-	mairacanal@riseup.net,
-	mcanal@igalia.com,
-	linux-mediatek@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 09/10] drm/ci: rockchip: Add job to test panfrost GPU driver
-Date: Mon,  1 Apr 2024 11:42:34 +0530
-Message-Id: <20240401061235.192713-10-vignesh.raman@collabora.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240401061235.192713-1-vignesh.raman@collabora.com>
-References: <20240401061235.192713-1-vignesh.raman@collabora.com>
+	id 1rrEcy-00000007QhZ-2Lgx;
+	Mon, 01 Apr 2024 10:10:59 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id E69D960BCB;
+	Mon,  1 Apr 2024 10:10:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 185EEC43142;
+	Mon,  1 Apr 2024 10:10:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711966255;
+	bh=6UGLqY9odgzIryo++HHG92e44N/TaIRCAft0GJGAV94=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=BpQ6uj5+YpkoDAkec+fiSN0D3db8DTNxr8cjDO+8cNg+PYc1hItriDMBxpcN08nN5
+	 mJjmCvYs3DhT/Ldoy+fJeh3iqwkH+/JIqoN/d/XIQE7aMiaFZys/C0py6Wt6DqRtjt
+	 hiLaBEOkaGygQgoWs96awpX0v4dDEJCuIMX8THg2VtKPj6lEI8UvUjyh73qyoFvNPQ
+	 0ehg2zj0cbshbzgc3M/MOYr/GtQrj8SFL/E7u4Hd7sRCsLRbBaidFpVXRfbIU4ElQ6
+	 e+9CJlDIgZ1znBxebqwN6IebTIq5/aiq5/lY5Ha2ZmC3M9M2yieHtWcWdt8x5pEV0Z
+	 P5xIqgYGovrCg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0AB26CD1288;
+	Mon,  1 Apr 2024 10:10:55 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Mon, 01 Apr 2024 18:10:53 +0800
+Subject: [PATCH v3 5/5] arm64: dts: add support for A5 based Amlogic AV400
 MIME-Version: 1.0
+Message-Id: <20240401-basic_dt-v3-5-cb29ae1c16da@amlogic.com>
+References: <20240401-basic_dt-v3-0-cb29ae1c16da@amlogic.com>
+In-Reply-To: <20240401-basic_dt-v3-0-cb29ae1c16da@amlogic.com>
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-serial@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1711966253; l=3327;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=Dl4srjRZCo288fxVGeVbl9OCj623WT1z94/SvifjCLU=;
+ b=7eYoRxg8m6HkOJPtSq+qik4iXOON1xb7oHenYqzrID0UuQUnaAjlRLb9MxU8Hc4eB1PS574N9
+ Hk6QWjRAG/HC7IKjGZZWEVNWAIWnDo2hN3aKKoOEheeE4vIcR4MiUDQ
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240331_231407_734072_CFC17284 
-X-CRM114-Status: GOOD (  15.44  )
+X-CRM114-CacheID: sfid-20240401_031057_009754_781B39E0 
+X-CRM114-Status: GOOD (  14.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,115 +87,137 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-For rockchip rk3288 and rk3399, the GPU driver is panfrost.
-So add support in drm-ci to test panfrost driver for rockchip
-SOC and update xfails. Skip KMS tests for panfrost driver
-since it is not a not a KMS driver and skip driver-specific tests.
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+Amlogic A5 is an application processor designed for smart audio
+and IoT applications.
+
+Add basic support for the A5 based Amlogic AV400 board, which describes
+the following components: CPU, GIC, IRQ, Timer and UART.
+These are capable of booting up into the serial console.
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
+ arch/arm64/boot/dts/amlogic/Makefile               |  1 +
+ .../boot/dts/amlogic/amlogic-a5-a113x2-av400.dts   | 42 ++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        | 40 +++++++++++++++++++++
+ 3 files changed, 83 insertions(+)
 
-v2:
-  - Add panfrost GPU jobs for rockchip SOC with new xfails.
-
-v3:
-  - Skip KMS tests for panfrost driver since it is not a not
-    a KMS driver and update xfails. Add the job name in GPU_VERSION
-    and use it for xfail file names instead of using DRIVER_NAME.
-
-v4:
-  - Remove the gpu suffix in job and rename xfails accordingly.
-
-v5:
-  - Skip driver-specific tests.
-
----
- drivers/gpu/drm/ci/test.yml                         | 10 ++++++++++
- drivers/gpu/drm/ci/xfails/panfrost-rk3288-fails.txt |  1 +
- drivers/gpu/drm/ci/xfails/panfrost-rk3288-skips.txt |  8 ++++++++
- drivers/gpu/drm/ci/xfails/panfrost-rk3399-fails.txt |  1 +
- drivers/gpu/drm/ci/xfails/panfrost-rk3399-skips.txt |  8 ++++++++
- 5 files changed, 28 insertions(+)
- create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3288-fails.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3288-skips.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3399-fails.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3399-skips.txt
-
-diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
-index 96b299c32c07..8c90ae5a51e6 100644
---- a/drivers/gpu/drm/ci/test.yml
-+++ b/drivers/gpu/drm/ci/test.yml
-@@ -191,11 +191,21 @@ rockchip:rk3288:
-     - .rk3288
-     - .rockchip-display
- 
-+panfrost:rk3288:
-+  extends:
-+    - .rk3288
-+    - .panfrost-gpu
-+
- rockchip:rk3399:
-   extends:
-     - .rk3399
-     - .rockchip-display
- 
-+panfrost:rk3399:
-+  extends:
-+    - .rk3399
-+    - .panfrost-gpu
-+
- .i915:
-   extends:
-     - .lava-igt:x86_64
-diff --git a/drivers/gpu/drm/ci/xfails/panfrost-rk3288-fails.txt b/drivers/gpu/drm/ci/xfails/panfrost-rk3288-fails.txt
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 9a50ec11bb8d..154c9efb26e4 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -1,5 +1,6 @@
+ # SPDX-License-Identifier: GPL-2.0
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
++dtb-$(CONFIG_ARCH_MESON) += amlogic-a5-a113x2-av400.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts b/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts
 new file mode 100644
-index 000000000000..abd35a8ef6f4
+index 000000000000..11d8b88c1ce5
 --- /dev/null
-+++ b/drivers/gpu/drm/ci/xfails/panfrost-rk3288-fails.txt
-@@ -0,0 +1 @@
-+panfrost_prime@gem-prime-import,Crash
-diff --git a/drivers/gpu/drm/ci/xfails/panfrost-rk3288-skips.txt b/drivers/gpu/drm/ci/xfails/panfrost-rk3288-skips.txt
-new file mode 100644
-index 000000000000..41a846a59644
---- /dev/null
-+++ b/drivers/gpu/drm/ci/xfails/panfrost-rk3288-skips.txt
-@@ -0,0 +1,8 @@
-+# Panfrost is not a KMS driver, so skip the KMS tests
-+kms_.*
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts
+@@ -0,0 +1,42 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
++ */
 +
-+# Skip driver specific tests
-+msm_.*
-+^amdgpu.*
-+v3d_.*
-+vc4_.*
-diff --git a/drivers/gpu/drm/ci/xfails/panfrost-rk3399-fails.txt b/drivers/gpu/drm/ci/xfails/panfrost-rk3399-fails.txt
-new file mode 100644
-index 000000000000..6f5e760d5ec0
---- /dev/null
-+++ b/drivers/gpu/drm/ci/xfails/panfrost-rk3399-fails.txt
-@@ -0,0 +1 @@
-+panfrost_prime@gem-prime-import,Fail
-diff --git a/drivers/gpu/drm/ci/xfails/panfrost-rk3399-skips.txt b/drivers/gpu/drm/ci/xfails/panfrost-rk3399-skips.txt
-new file mode 100644
-index 000000000000..41a846a59644
---- /dev/null
-+++ b/drivers/gpu/drm/ci/xfails/panfrost-rk3399-skips.txt
-@@ -0,0 +1,8 @@
-+# Panfrost is not a KMS driver, so skip the KMS tests
-+kms_.*
++/dts-v1/;
 +
-+# Skip driver specific tests
-+msm_.*
-+^amdgpu.*
-+v3d_.*
-+vc4_.*
++#include "amlogic-a5.dtsi"
++
++/ {
++	model = "Amlogic A113X2 av400 Development Board";
++	compatible = "amlogic,av400", "amlogic,a5";
++	interrupt-parent = <&gic>;
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	aliases {
++		serial0 = &uart_b;
++	};
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x40000000>;
++	};
++
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		/* 10 MiB reserved for ARM Trusted Firmware */
++		secmon_reserved: secmon@5000000 {
++			compatible = "shared-dma-pool";
++			reg = <0x0 0x05000000 0x0 0xa00000>;
++			no-map;
++		};
++	};
++};
++
++&uart_b {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
+new file mode 100644
+index 000000000000..43f68a7da2f7
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
+@@ -0,0 +1,40 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
++ */
++
++#include "amlogic-a4-common.dtsi"
++/ {
++	cpus {
++		#address-cells = <2>;
++		#size-cells = <0>;
++
++		cpu0: cpu@0 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x0 0x0>;
++			enable-method = "psci";
++		};
++
++		cpu1: cpu@100 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x0 0x100>;
++			enable-method = "psci";
++		};
++
++		cpu2: cpu@200 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x0 0x200>;
++			enable-method = "psci";
++		};
++
++		cpu3: cpu@300 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x0 0x300>;
++			enable-method = "psci";
++		};
++	};
++};
+
 -- 
-2.40.1
+2.37.1
+
 
 
 _______________________________________________
