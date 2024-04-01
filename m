@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A5DFCD128A
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2024 17:19:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87400CD128A
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2024 17:22:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ehxSDghPcxEuSspBZU8foDJdm1IitSWgwUtsBcEov78=; b=bymRdsrdzqRb5j
-	Ddj6Zpjua1oAthCV6iy96XKKMFPD93G1K7AyusayWqF8at6+P93cYJ/o+ET2gdmFrmK20w1gA0jhV
-	M8PjZCUMPC9FDo6BSLtZogERtKuipHJgwJKVbfQHReNcwey2vQ0yJzn2Cq15mfONIxcqbsbH1oq99
-	Tv6n3zfAQVBV+lD7OruHeiTCd2b2EVGu6Ntg171PZ/dJNZGSTqHSRo3XUbAr7oqVLINltcqd54m0e
-	tDJqUkCprCBgvww7HDKULos12Pvao3WBMewhGP8cutlKLcNxoEbcyNd7lXbBMxdbOtEh/QCOb49aY
-	8gPPBkG1JRi5qNhkcjeg==;
+	List-Owner; bh=KEEYeQM/rL9w9YcMVgTCtt52VU6qO/Kq9vHptDbsK5w=; b=r9Vyu7gvhjBNdC
+	4GCULz4nmFmJIppMhMfPc68VHGfRTWcv+viDbs8q7neoaoFmMrWaHDIjnhws3mtleDPMLD/ln7OTJ
+	t84yTEVh6gO3GUeslGg/NbJSVRbePj9pTB7xJOs/y+NmYDCpOx/pfUbZde0jDc+inwrJ99BvW8d8M
+	4xYegbDGnwWJx6yamtEzWdrFWzJiWb2VjuJeWd04vy0O1j58LOsvChj93DVreg4G8IJAFrcuQ8AMK
+	h3NIAOjw5uaE7IXL/jocmTk34I6CeSk2s/lkkr3yzjFUpm03dSUTicTps3hGUJMHF2Z6ZGQo8lpym
+	69d3fiwEF/S88P4lVHXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rrLJu-00000008RS9-1H6t;
-	Mon, 01 Apr 2024 17:19:42 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1rrLMx-00000008RvA-1Ss7;
+	Mon, 01 Apr 2024 17:22:51 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rrLJr-00000008RR6-0ZRx;
-	Mon, 01 Apr 2024 17:19:40 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 15BF1100007;
-	Mon,  1 Apr 2024 20:19:34 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 15BF1100007
+	id 1rrLMt-00000008Rti-1dh8;
+	Mon, 01 Apr 2024 17:22:49 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 4EBEC120003;
+	Mon,  1 Apr 2024 20:22:44 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4EBEC120003
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1711991974;
-	bh=qgJttL0sqx5Y2EBpQH+iH8vcd04Yw7u5T84Z9XbPqFM=;
+	s=mail; t=1711992164;
+	bh=tl1k+GzwBoZHvPC5wGd0gk/FR6ibdQtoq6i6yG3MDtE=;
 	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=TAqmqURqvD7ow4Z0XUa8pCQZuD55vH3SxZhO7JbiUeAJDYeaZudXp7hgZjOilOAsu
-	 eS/Z9RMCjXTPsw+JjJDDA9l2FuA/CtGf9zd552Xck00yMugZXW9u1XkHiHJ0VtvzZA
-	 92cpKqdqxRauvfYktX08lKGt7z8Gm47j4X1QwOexOjafnUKrsJlpXYlRxtoUT7zqOR
-	 unsZKHNA7fQvoyIO7nci19Qw8zyANIcrZ8NcS+s2jNkF4ei/kwVTHQfKnKjhSPIGQG
-	 W+1F2ObmO5ZznEWO4ev8YdB+ZHcbdyNCtBVdJkYcYisiA2xiM0eoacGTJ6CYLE5ERM
-	 MdTZYgIw9cC5Q==
+	b=ePLJZ08v9l/Hp7+tshkLyConpJh3/E7UlPychQ8v4envB4os0v896owqaCmUZBjPw
+	 CASP3Kvn8yjDiOVNug2zR0XVFAP5hfsR2f70JK4yUprzcIq+X0EfxdpSH+mXgwuB5P
+	 9//DgLEl4FR7a0j5vgchoors49NzStQuA6+XtIawT/vGj/MGbgaQehjcYjwt2LM20g
+	 rtq+7EgaEMsCG/LVOtZKVkUAMpAFl8cIcHkxzsdjEWYVb3CApexAknmGL033IXoPJZ
+	 oX41ydw3Fjehxdcd681iiS8shzVEnB4Du+a1Y2CiY1y11Ylv1lpuvDO32cgmzFb4JG
+	 psrARtLC41j3w==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon,  1 Apr 2024 20:19:33 +0300 (MSK)
+	Mon,  1 Apr 2024 20:22:44 +0300 (MSK)
 Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
  (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 1 Apr
- 2024 20:19:33 +0300
-Date: Mon, 1 Apr 2024 20:19:33 +0300
+ 2024 20:22:43 +0300
+Date: Mon, 1 Apr 2024 20:22:43 +0300
 From: Dmitry Rokosov <ddrokosov@salutedevices.com>
 To: Rob Herring <robh@kernel.org>
 CC: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
@@ -59,18 +59,18 @@ CC: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
 	<rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
 	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v1 3/6] dt-bindings: clock: meson: a1: peripherals:
- support sys_pll_div16 input
-Message-ID: <20240401171933.bqmjsuanqsjvjosn@CAB-WSD-L081021>
+Subject: Re: [PATCH v1 1/6] dt-bindings: clock: meson: a1: pll: introduce new
+ syspll bindings
+Message-ID: <20240401172243.zuvj6d6ptkrt6p33@CAB-WSD-L081021>
 References: <20240329205904.25002-1-ddrokosov@salutedevices.com>
- <20240329205904.25002-4-ddrokosov@salutedevices.com>
- <20240401142136.GA559114-robh@kernel.org>
+ <20240329205904.25002-2-ddrokosov@salutedevices.com>
+ <20240401142011.GA537763-robh@kernel.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20240401142136.GA559114-robh@kernel.org>
+In-Reply-To: <20240401142011.GA537763-robh@kernel.org>
 User-Agent: NeoMutt/20220415
 X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
@@ -81,16 +81,16 @@ X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 14 0.3.14 5a0c43d8a1c3c0e5b0916cc02a90d4b950c01f96, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 14 0.3.14 5a0c43d8a1c3c0e5b0916cc02a90d4b950c01f96, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;lore.kernel.org:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
+X-KSMG-AntiPhishing: Clean, bases: 2024/04/01 16:37:00
+X-KSMG-LinksScanning: Clean, bases: 2024/04/01 16:36:00
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/01 15:13:00 #24563578
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240401_101939_549412_2ADC0A21 
-X-CRM114-Status: GOOD (  20.77  )
+X-CRM114-CacheID: sfid-20240401_102247_793418_E9C82B31 
+X-CRM114-Status: GOOD (  18.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,47 +109,50 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hello Rob,
 
-Thank you for the quick review.
-
-On Mon, Apr 01, 2024 at 09:21:36AM -0500, Rob Herring wrote:
-> On Fri, Mar 29, 2024 at 11:58:43PM +0300, Dmitry Rokosov wrote:
-> > The 'sys_pll_div16' input clock is used as one of the sources for the
-> > GEN clock.
+On Mon, Apr 01, 2024 at 09:20:11AM -0500, Rob Herring wrote:
+> On Fri, Mar 29, 2024 at 11:58:41PM +0300, Dmitry Rokosov wrote:
+> > The 'syspll' PLL is a general-purpose PLL designed specifically for the
+> > CPU clock. It is capable of producing output frequencies within the
+> > range of 768MHz to 1536MHz.
 > > 
 > > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
 > > ---
-> >  .../bindings/clock/amlogic,a1-peripherals-clkc.yaml          | 5 ++++-
-> >  1 file changed, 4 insertions(+), 1 deletion(-)
+> >  .../devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml     | 7 +++++--
+> >  include/dt-bindings/clock/amlogic,a1-pll-clkc.h            | 2 ++
+> >  2 files changed, 7 insertions(+), 2 deletions(-)
 > > 
-> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
-> > index 6d84cee1bd75..f6668991ff1f 100644
-> > --- a/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
-> > @@ -29,6 +29,7 @@ properties:
-> >        - description: input fixed pll div5
-> >        - description: input fixed pll div7
-> >        - description: input hifi pll
-> > +      - description: input sys pll div16
-> >        - description: input oscillator (usually at 24MHz)
+> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> > index a59b188a8bf5..fbba57031278 100644
+> > --- a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> > @@ -26,11 +26,13 @@ properties:
+> >      items:
+> >        - description: input fixpll_in
+> >        - description: input hifipll_in
+> > +      - description: input syspll_in
 > >  
 > >    clock-names:
-> > @@ -38,6 +39,7 @@ properties:
-> >        - const: fclk_div5
-> >        - const: fclk_div7
-> >        - const: hifi_pll
-> > +      - const: sys_pll_div16
-> >        - const: xtal
+> >      items:
+> >        - const: fixpll_in
+> >        - const: hifipll_in
+> > +      - const: syspll_in
 > 
-> And adding an entry in the middle is also an ABI break. New entries go 
-> on the end (and should be optional).
+> A new required entry is an ABI break. Please state why that's ok or make 
+> it optional (minItems: 2).
 
+Unfortunatelly, it cannot be optional. I've explained here why:
+
+https://lore.kernel.org/all/20240401171933.bqmjsuanqsjvjosn@CAB-WSD-L081021/
+
+"""
 The clock source sys_pll_div16, being one of the GEN clock parents,
 plays a crucial role and cannot be tagged as "optional". Unfortunately,
 it was not implemented earlier due to the cpu clock ctrl driver's
 pending status on the TODO list.
+"""
 
-I would greatly appreciate your advice on the best and simplest way to
-resolve this matter in an effective manner..
+Could you please provide guidance on whether there is any alternative
+approach that could potentially make it possible?
 
 -- 
 Thank you,
