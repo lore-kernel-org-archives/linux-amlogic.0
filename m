@@ -4,93 +4,123 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6EA8CD1284
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Apr 2024 12:16:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7C8BC6FD1F
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Apr 2024 13:48:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MLIVSlkKKu+MKAFENqbvUssJhfA35WJ59LsqvfpS8N0=; b=F8II1MU1wfg5j4
-	qWtHDrRbZ1H8OS+9u58rHin5dVfJtUvbsKCtXUBPqbzrwhqVTvT9Ui9h20I+k/uv7w0n4qphgW56h
-	xK4y10Kmo4lSEQ9kiyNgihm/tEfrxaRl3q29R/TEskqYVuzg4va2hwwc1c8jbeGDNGIlrH97cpABI
-	fZFm8N5aBtAMfpPoAMuoXP3sNqTh0+KFOoZYR2bAdwmb2YT/KEz6gEyKxtF7/xpfNlo+rP3LMxcAx
-	LCwBTnS2XKptPb9BVlgHVdIB+w4MtWxFHWPwKT9VrB/yaZwehjbeHD/3gxRRyTnfdWcW5znEoNEmi
-	NucCi0+vYtYu4dpapEHg==;
+	List-Owner; bh=FyNt1/sQF3Ln3uPA2z2w5QAkvQIwnw9XDpDMn4MrGQE=; b=vyFPcgqcdMOG/6
+	KoEtGWDfSd2rDZmnSG4xcyNI0H9CUgk4P8ME17YaQHiTsj2eHqoPD3eo8zXmsso+GkyofdhNKOXKN
+	hc/9FEC/dHcLGIoYfcnj9YbWzDJebmfsQi6Slsu+eQqWbG0EHh+h/CyCbFROyzuCnikrrOIFLj72+
+	4KR9jhubFvnVzh2SeIIHRbbkl48yZpnVa/fn0rgwyWCHZRfGTY4XowfFsxl9u9xcsJQqqR9dYYju1
+	P4w+XMdgntS/+4rvhfWEdK8KaffQNwdVthD/pS8IgztHqkyOwVc7/rcLP2h3TX44enC6PFNxLNRz2
+	fM8N+tc2y61SogE4NMFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rrd3T-0000000B0go-1PME;
-	Tue, 02 Apr 2024 12:15:55 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1rreVE-0000000BQS4-2ALG;
+	Tue, 02 Apr 2024 13:48:40 +0000
+Received: from mail-yb1-xb33.google.com ([2607:f8b0:4864:20::b33])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rrd3O-0000000B0fE-3rZ2;
-	Tue, 02 Apr 2024 12:15:53 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 99DA1120002;
-	Tue,  2 Apr 2024 15:15:47 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 99DA1120002
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1712060147;
-	bh=ElpTZ1TrAlE8CP0mE0jFlYKQjyXNnVn6kDPBRqPutDI=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=h3Pv8g6AY+VQuvPVaWfziPBCxqr344JkhvXY/zJB7BS0MiJa6oAsjk65LY8Nbza6L
-	 mW+QPOWfa7T6iGWeVvKntxMXBoOYy9BQ1bmjm0ZvaUe6ynMZ3Dd6hQKwXtGeTPNBHV
-	 ptTXlYMYJlveLsrJvLAE78+pXPJxppJWYDBmUmufDLDAqaZrpox5kUTSNGB5L6cdCA
-	 Om/8HBftrdji1dCm6zYVY8Eh4J1YmE9YNoETy8htKFMHh87/IWOheTw0jvc0Vnue8R
-	 Yp8J4RYi79zl1DPr9bCNmRwDKam740vmzedZ0kbWY4uQZpWXHuuidWG1MMq0YEYBFh
-	 8r+akjvJrTdOw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue,  2 Apr 2024 15:15:47 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 2 Apr
- 2024 15:15:46 +0300
-Date: Tue, 2 Apr 2024 15:15:46 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-CC: <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
-	<sboyd@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <kernel@salutedevices.com>,
-	<rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
-	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v1 2/6] clk: meson: a1: pll: support 'syspll'
- general-purpose PLL for CPU clock
-Message-ID: <20240402121546.qrrc7r5un75464pb@CAB-WSD-L081021>
-References: <20240329205904.25002-1-ddrokosov@salutedevices.com>
- <20240329205904.25002-3-ddrokosov@salutedevices.com>
- <1j4jckjftk.fsf@starbuckisacylon.baylibre.com>
+	id 1rrdMQ-0000000B4Hd-0N5T
+	for linux-amlogic@lists.infradead.org;
+	Tue, 02 Apr 2024 12:35:33 +0000
+Received: by mail-yb1-xb33.google.com with SMTP id 3f1490d57ef6-dd10ebcd702so4749681276.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 02 Apr 2024 05:35:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712061329; x=1712666129; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZhodAsfbqQph/6Oss9KdocUA4jNT8v1VGBe4Vmslbbg=;
+        b=ZKOGy2G3MScom2a/mpirow/XoYv4vu+WHmdUR8SJmGc5amWx19wlDj942Zk68kr7yk
+         +63U3GEar0wJme/22bXCaYALGPuBIg9eo6Vepcf+06io1uDfckhG7+2eCiF+jHKV3yjb
+         5xJQID9oc+Op9sT3ntC8oNKfqG7Q+5L6W3WNcMbKS3IEQPxqO1XtAsuYvjitM/EtB79i
+         +OSp1VKxVs5K2oENcGqkvmtHXPw906rawqPbcqRGmNrFxotvQiBaKsMj8H7973ZaqWss
+         kCyc5GVNswEsoTxr7W+7dG6nUDVEWutiJyW8+8j0jk+g5NXFiEWm4HKUDagNvUiMmU6Y
+         0pAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712061329; x=1712666129;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZhodAsfbqQph/6Oss9KdocUA4jNT8v1VGBe4Vmslbbg=;
+        b=GprWLL9hj38gjHh/2/qplu5749rR2mgY207c9PEmSyf/+3Qv2S/2rlRQIl9Jnij4j5
+         5dO9sQFaHQu4JfeC0izrP7kIODWB60rJezbc0wF6k864qQwuV+q0l2+Q5XfdjSJwtOX1
+         3v4GQR292UtmUQFCPVWNLy/gxEY0ShdQpxAyWyPmjSYt8ffyzFZuWADf7HCtNGQxmUYj
+         EyAVL3xW4U71DsA5ajkj/dpJEEUYO3nUR38mCPb0EeE7/3TQZ6oZgIwOJiUYMCbk64wb
+         Iis/BIjHULe2CfWiB7YziShzQxy9okxr+/ZC6DYBtqwkHQneD3Lzh9gfo71lutH4aE1r
+         MHkg==
+X-Forwarded-Encrypted: i=1; AJvYcCUsYPtCH8qMiJdMzIr/l9G1i3McchflKHxU7N2q1J54bSqpg/Oe28gxr/nM6ulHa7OJl0hkK5ou2LD8RAYAGwmkqPl64F321ApWpQ5PZm4EeYs=
+X-Gm-Message-State: AOJu0YypR1y9j1+o85AO4t/zkmOQRxR14ahZLKVPZcmf4N6RgemUQpXe
+	SK0Fb+qb7l96eeTT+pfWVz+RnfhagAJjWyP5AUIx3yqbcDWLJwTO8iF/Z7IN8+bOqGpCC8dTqTB
+	ujZe7BPQ4l8C6bwZm3cnH3+4tDsJak5EKsIo9Yg==
+X-Google-Smtp-Source: AGHT+IG5hxT/EMYnHoU6u7S6MkbvLw5l9U/Ss0P2rks8Fb0m+zQTGqjqkjSlSz0lY1KsLwpjx1moujtIXAN3uBffPV8=
+X-Received: by 2002:a25:6d86:0:b0:dc2:2d75:5fde with SMTP id
+ i128-20020a256d86000000b00dc22d755fdemr10687728ybc.29.1712061328813; Tue, 02
+ Apr 2024 05:35:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1j4jckjftk.fsf@starbuckisacylon.baylibre.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184533 [Apr 02 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 14 0.3.14 5a0c43d8a1c3c0e5b0916cc02a90d4b950c01f96, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/02 07:07:00 #24571916
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <20240322132619.6389-1-wsa+renesas@sang-engineering.com> <20240322132619.6389-65-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20240322132619.6389-65-wsa+renesas@sang-engineering.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 2 Apr 2024 14:35:17 +0200
+Message-ID: <CACRpkdbtRoDtWN4mnyZY_yEfWQFPCQaVudjBki8N1sOXxXWupQ@mail.gmail.com>
+Subject: Re: [PATCH 64/64] i2c: reword i2c_algorithm in drivers according to
+ newest specification
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-i2c@vger.kernel.org, Elie Morisse <syniurge@gmail.com>, 
+	Shyam Sundar S K <shyam-sundar.s-k@amd.com>, Andi Shyti <andi.shyti@kernel.org>, 
+	Codrin Ciubotariu <codrin.ciubotariu@microchip.com>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	Krzysztof Adamski <krzysztof.adamski@nokia.com>, Benson Leung <bleung@chromium.org>, 
+	Guenter Roeck <groeck@chromium.org>, Jarkko Nikula <jarkko.nikula@linux.intel.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Mika Westerberg <mika.westerberg@linux.intel.com>, Jan Dabros <jsd@semihalf.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Jean-Marie Verdun <verdun@hpe.com>, Nick Hawkins <nick.hawkins@hpe.com>, 
+	Yicong Yang <yangyicong@hisilicon.com>, Oleksij Rempel <o.rempel@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Paul Cercueil <paul@crapouillou.net>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Khalil Blaiech <kblaiech@nvidia.com>, 
+	Asmaa Mnebhi <asmaa@nvidia.com>, Qii Wang <qii.wang@mediatek.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>, 
+	Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>, 
+	Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>, 
+	Ajay Gupta <ajayg@nvidia.com>, Peter Korsgaard <peter@korsgaard.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Robert Richter <rric@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
+	Janusz Krzysztofik <jmkrzyszt@gmail.com>, Tony Lindgren <tony@atomide.com>, Vignesh R <vigneshr@ti.com>, 
+	Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+	Christophe Leroy <christophe.leroy@csgroup.eu>, "Aneesh Kumar K.V" <aneesh.kumar@kernel.org>, 
+	"Naveen N. Rao" <naveen.n.rao@linux.ibm.com>, Hector Martin <marcan@marcan.st>, 
+	Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+	Vladimir Zapolskiy <vz@mleia.com>, Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>, Alain Volmat <alain.volmat@foss.st.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Laxman Dewangan <ldewangan@nvidia.com>, Dmitry Osipenko <digetx@gmail.com>, 
+	Conghui Chen <conghui.chen@intel.com>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, chrome-platform@lists.linux.dev, 
+	linux-samsung-soc@vger.kernel.org, imx@lists.linux.dev, 
+	linux-mips@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org, 
+	linux-omap@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	asahi@lists.linux.dev, linux-arm-msm@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-tegra@vger.kernel.org, virtualization@lists.linux.dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240402_051551_679626_01F14617 
-X-CRM114-Status: GOOD (  38.97  )
+X-CRM114-CacheID: sfid-20240402_053530_999863_27045FD2 
+X-CRM114-Status: UNSURE (   9.89  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,188 +132,23 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Apr 02, 2024 at 11:00:42AM +0200, Jerome Brunet wrote:
-> 
-> On Fri 29 Mar 2024 at 23:58, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
-> 
-> > The 'syspll' PLL, also known as the system PLL, is a general and
-> > essential PLL responsible for generating the CPU clock frequency.
-> > With its wide-ranging capabilities, it is designed to accommodate
-> > frequencies within the range of 768MHz to 1536MHz.
-> >
-> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> > ---
-> >  drivers/clk/meson/a1-pll.c | 78 ++++++++++++++++++++++++++++++++++++++
-> >  drivers/clk/meson/a1-pll.h |  6 +++
-> >  2 files changed, 84 insertions(+)
-> >
-> > diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
-> > index 60b2e53e7e51..02fd2d325cc6 100644
-> > --- a/drivers/clk/meson/a1-pll.c
-> > +++ b/drivers/clk/meson/a1-pll.c
-> > @@ -138,6 +138,81 @@ static struct clk_regmap hifi_pll = {
-> >  	},
-> >  };
-> >  
-> > +static const struct pll_mult_range sys_pll_mult_range = {
-> > +	.min = 32,
-> > +	.max = 64,
-> > +};
-> > +
-> > +/*
-> > + * We assume that the sys_pll_clk has already been set up by the low-level
-> > + * bootloaders as the main CPU PLL source. Therefore, it is not necessary to
-> > + * run the initialization sequence.
-> > + */
-> 
-> I see no reason to make such assumption.
-> This clock is no read-only, it apparently is able to re-lock so assuming
-> anything from the bootloader is just asking from trouble
-> 
-
-Indeed, I have implemented the following initialization sequence. I have
-dumped the bootloader setup and included it in the definition of my
-sys_pll. However, I have encountered an issue with the enable bit. If I
-leave the enable bit switched on by default, there is a possibility that
-the bootloader selects a fixed CPU clock while the sys_pll should be
-switched off. On the other hand, if I keep the enable bit switched off
-by default, the bootloader might configure the CPU clock to use sys_pll,
-resulting in the execution halting when the initialization sequence is
-run. This situation has led me to assume that we should place our trust
-in the bootloader setup.
-
-If you believe it is necessary to include the initialization sequence, I
-can prepare it with the sys_pll enabled by default.
-
-> > +static struct clk_regmap sys_pll = {
-> > +	.data = &(struct meson_clk_pll_data){
-> > +		.en = {
-> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> > +			.shift   = 28,
-> > +			.width   = 1,
-> > +		},
-> > +		.m = {
-> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> > +			.shift   = 0,
-> > +			.width   = 8,
-> > +		},
-> > +		.n = {
-> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> > +			.shift   = 10,
-> > +			.width   = 5,
-> > +		},
-> > +		.frac = {
-> > +			.reg_off = ANACTRL_SYSPLL_CTRL1,
-> > +			.shift   = 0,
-> > +			.width   = 19,
-> > +		},
-> > +		.l = {
-> > +			.reg_off = ANACTRL_SYSPLL_STS,
-> > +			.shift   = 31,
-> > +			.width   = 1,
-> > +		},
-> > +		.current_en = {
-> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> > +			.shift   = 26,
-> > +			.width   = 1,
-> > +		},
-> > +		.l_detect = {
-> > +			.reg_off = ANACTRL_SYSPLL_CTRL2,
-> > +			.shift   = 6,
-> > +			.width   = 1,
-> > +		},
-> > +		.range = &sys_pll_mult_range,
-> > +	},
-> > +	.hw.init = &(struct clk_init_data){
-> > +		.name = "sys_pll",
-> > +		.ops = &meson_clk_pll_ops,
-> > +		.parent_names = (const char *[]){ "syspll_in" },
-> > +		.num_parents = 1,
-> > +		/*
-> > +		 * This clock is used as the main CPU PLL source in low-level
-> > +		 * bootloaders, and it is necessary to mark it as critical.
-> > +		 */
-> > +		.flags = CLK_IS_CRITICAL,
-> 
-> No I don't think so. Downstream consumer maybe critical but that one is
-> not, unless it is read-only.
-> 
-> A CPU pll, like on the g12 family, is unlikely to be read-only since the
-> PLL will need to relock to change rates. During this phase, there will
-> be no reate coming from the PLL so the PLL is not critical and you must
-> be able to "park" your CPU an another clock while poking this one
-> 
-
-Initially, I tagged it with CLK_IS_CRITICAL because I observed in the
-kernel start that CCF disables it. However, upon further understanding,
-I realized that this happened due to other reasons. I believe that if I
-provide an init sequence where sys_pll is enabled by default, CCF will
-not disable this clock.
-
-> > +	},
-> > +};
-> > +
-> > +static struct clk_fixed_factor sys_pll_div16 = {
-> > +	.mult = 1,
-> > +	.div = 16,
-> > +	.hw.init = &(struct clk_init_data){
-> > +		.name = "sys_pll_div16",
-> > +		.ops = &clk_fixed_factor_ops,
-> > +		.parent_hws = (const struct clk_hw *[]) {
-> > +			&sys_pll.hw
-> > +		},
-> > +		.num_parents = 1,
-> > +	},
-> > +};
-> > +
-> >  static struct clk_fixed_factor fclk_div2_div = {
-> >  	.mult = 1,
-> >  	.div = 2,
-> > @@ -283,6 +358,8 @@ static struct clk_hw *a1_pll_hw_clks[] = {
-> >  	[CLKID_FCLK_DIV5]	= &fclk_div5.hw,
-> >  	[CLKID_FCLK_DIV7]	= &fclk_div7.hw,
-> >  	[CLKID_HIFI_PLL]	= &hifi_pll.hw,
-> > +	[CLKID_SYS_PLL]		= &sys_pll.hw,
-> > +	[CLKID_SYS_PLL_DIV16]	= &sys_pll_div16.hw,
-> >  };
-> >  
-> >  static struct clk_regmap *const a1_pll_regmaps[] = {
-> > @@ -293,6 +370,7 @@ static struct clk_regmap *const a1_pll_regmaps[] = {
-> >  	&fclk_div5,
-> >  	&fclk_div7,
-> >  	&hifi_pll,
-> > +	&sys_pll,
-> >  };
-> >  
-> >  static struct regmap_config a1_pll_regmap_cfg = {
-> > diff --git a/drivers/clk/meson/a1-pll.h b/drivers/clk/meson/a1-pll.h
-> > index 4be17b2bf383..666d9b2137e9 100644
-> > --- a/drivers/clk/meson/a1-pll.h
-> > +++ b/drivers/clk/meson/a1-pll.h
-> > @@ -18,6 +18,12 @@
-> >  #define ANACTRL_FIXPLL_CTRL0	0x0
-> >  #define ANACTRL_FIXPLL_CTRL1	0x4
-> >  #define ANACTRL_FIXPLL_STS	0x14
-> > +#define ANACTRL_SYSPLL_CTRL0	0x80
-> > +#define ANACTRL_SYSPLL_CTRL1	0x84
-> > +#define ANACTRL_SYSPLL_CTRL2	0x88
-> > +#define ANACTRL_SYSPLL_CTRL3	0x8c
-> > +#define ANACTRL_SYSPLL_CTRL4	0x90
-> > +#define ANACTRL_SYSPLL_STS	0x94
-> >  #define ANACTRL_HIFIPLL_CTRL0	0xc0
-> >  #define ANACTRL_HIFIPLL_CTRL1	0xc4
-> >  #define ANACTRL_HIFIPLL_CTRL2	0xc8
-
--- 
-Thank you,
-Dmitry
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gRnJpLCBNYXIgMjIsIDIwMjQgYXQgMjoyN+KAr1BNIFdvbGZyYW0gU2FuZwo8d3NhK3JlbmVz
+YXNAc2FuZy1lbmdpbmVlcmluZy5jb20+IHdyb3RlOgoKPiBNYXRjaCB0aGUgd29yZGluZyBpbiBp
+MmNfYWxnb3JpdGhtIGluIEkyQyBkcml2ZXJzIHdydC4gdGhlIG5ld2VzdCBJMkMKPiB2NywgU01C
+dXMgMy4yLCBJM0Mgc3BlY2lmaWNhdGlvbnMgYW5kIHJlcGxhY2UgIm1hc3Rlci9zbGF2ZSIgd2l0
+aCBtb3JlCj4gYXBwcm9wcmlhdGUgdGVybXMuIEZvciBzb21lIGRyaXZlcnMsIHRoaXMgbWVhbnMg
+bm8gbW9yZSBjb252ZXJzaW9ucyBhcmUKPiBuZWVkZWQuIEZvciB0aGUgb3RoZXJzIG1vcmUgd29y
+ayBuZWVkcyB0byBiZSBkb25lIGJ1dCB0aGlzIHdpbGwgYmUKPiBwZXJmb3JtZWQgaW5jcmVtZW50
+YWxseSBhbG9uZyB3aXRoIEFQSSBjaGFuZ2VzL2ltcHJvdmVtZW50cy4gQWxsIHRoZXNlCj4gY2hh
+bmdlcyBoZXJlIGFyZSBzaW1wbGUgc2VhcmNoL3JlcGxhY2UgcmVzdWx0cy4KPgo+IFNpZ25lZC1v
+ZmYtYnk6IFdvbGZyYW0gU2FuZyA8d3NhK3JlbmVzYXNAc2FuZy1lbmdpbmVlcmluZy5jb20+CgpB
+Y2tlZC1ieTogTGludXMgV2FsbGVpaiA8bGludXMud2FsbGVpakBsaW5hcm8ub3JnPgoKWW91cnMs
+CkxpbnVzIFdhbGxlaWoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
+cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
+bnV4LWFtbG9naWMK
