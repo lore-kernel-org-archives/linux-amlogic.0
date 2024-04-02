@@ -4,68 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87135CD1288
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2024 17:48:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31E3FCD128D
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Apr 2024 02:35:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=amhHp3GPeDLBETE7dcVuQBo7RxSFOQnTJKytKiT2ntg=; b=fB0za9vWAPl30f
-	AxWjQmTqJsxAfbCvRgUHJI96bzHs5p15mYWC7cOl2xVJCK/WbVCCDflL5xkKJ2X8dp2gd9P98TINE
-	DcMYnVDdBD9btboMxDgpEICjUccePGVL5HXSvR2X5NFROKk8qrU0zLF7Vt3d/mLc5upfoZcQZ6+CF
-	Ul2Mr7/jO8M67NEgNoWpWVHJln9gy3pZ7Xasexqnl6g57dIAZKrYCkm+B0bg7zMt5iE1e27roTlRY
-	nhstYJzNPtLlf7+UXlIHHI6a5Zm7gEFyfmErPDsDXqcYmMn+MlkDCjjL2vj3h9I+uKh/LhcfJ9FG5
-	HbKTHAw3nGSZQRYO2cwQ==;
+	List-Owner; bh=R6T57rcMBrPGQMYaCcaQeiGDID5WNFmla1Z8DliVRUU=; b=5B4jwF3m8DZqgB
+	scT/AHmOPo++QIASYNL3KB2xkVbFgr2xb/3WaH0+lJRG1e546rqhp3AZuzttcsFaY5HZ2VTnVPfIE
+	gdVG7YsFE6OGs1eNv/+zNOYWWp9+kNP3A0ccfRvhYkiqLa7H2FMkVrU1NCgBDQN9O9KQCXTGcE3vL
+	daHbQKzVe+03vHSlMV2/YZDQphKI0XOEV3imSxdLzMHNYzNNVyWn+XRLcX7TFXDNGpvmr1XJlN7OS
+	kz3X77Ji0CljXzhLgax020cKQgI09Er6o8WzhFivsl6G6vXpBMRpH6fA9B6kXubO8lnaeWovo2+7e
+	8XcsykTKZ8mpBZyOZDsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rrLlM-00000008UmC-0VcG;
-	Mon, 01 Apr 2024 17:48:04 +0000
+	id 1rrTzu-00000009Tdg-078k;
+	Tue, 02 Apr 2024 02:35:38 +0000
 Received: from madrid.collaboradmins.com ([46.235.227.194])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rrKja-00000008M3X-2UV9;
-	Mon, 01 Apr 2024 16:42:12 +0000
+	id 1rrTzp-00000009Tcg-2sWS;
+	Tue, 02 Apr 2024 02:35:36 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1711989729;
-	bh=WopZIv1m6iHVZ5GAyDRjVH14xeI4Hdv9HeL4nql8kK4=;
+	s=mail; t=1712025328;
+	bh=n3HEiQwTgU1n3dd42xTGPFIwh4+BE6gSSHieGE86TrQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=xLbIBnl792sEhVS0hA7Ot1TsA6aXkyC3C/5TeYVOON+ULaJIJdlN8xkPR8yjC9OEK
-	 XB/LkzmhZy2/RHHSmut0sdP3JKhqkRiDPj2kAOQq252/UgQ6MNvJXZHRIfRDS4OvIP
-	 gqQW4by8jd6/CK06lRraJl+ZaZp4FGt1Vod8Ht3qWXJFVTzaGzjK1fU2hmebQpBD97
-	 fqJUuhFhOa1qj2VOAfLEWJAd7TBx56b6sFqkIer3HaTyVRUPpBQsfDAsXqURGIF98j
-	 GfGJce3xojpChU/ofabShSxisAE2x9OI+txzlIOYDgS0D7nosofAPPpuxTOFBdgGtU
-	 M+oQeOKIFQG/w==
-Received: from [100.95.196.25] (cola.collaboradmins.com [195.201.22.229])
+	b=k4IUJvhEY+VVvdclR9buStNwX+4rWx11vuQY+nKLUj9ILV0Mxo9eG1OZIhf97k01G
+	 p1kkVQUg+ltDXlFTCP7EOR/H5YMCzSSmmuiNOFeheszY0c0uaki2lQ3BObfGINbO2J
+	 XachFgF0N5OPYDvn3UqznwNGIiIMEd2tNRZz06LeP7iVwuZZbZZQ69HfeuRYRYxZ34
+	 DMd45x1Ei5FxeVMGm+S4GekLLvV+oZCHU14GGF4ffrKpafTwZW7O9jnKNdLsh/TCi9
+	 C8G1pAMd/gl4cjEjcT/0WKDWfv+CDNEtKYQKVOxSKz6kIjo/ZKbLapzPlbpuDsJ/Q5
+	 jH0hzqma7mI1g==
+Received: from [100.66.96.193] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: koike)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E30A2378143B;
-	Mon,  1 Apr 2024 16:42:03 +0000 (UTC)
-Message-ID: <f4b6cb98-0146-4f9c-a1ed-3324da01ca16@collabora.com>
-Date: Mon, 1 Apr 2024 13:42:03 -0300
+	(Authenticated sender: vignesh)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 8D19237800DE;
+	Tue,  2 Apr 2024 02:35:23 +0000 (UTC)
+Message-ID: <53dddbeb-6b99-f838-ba05-21852fe2ff38@collabora.com>
+Date: Tue, 2 Apr 2024 08:05:21 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 04/10] drm/ci: mediatek: Refactor existing mediatek
- jobs
-Content-Language: en-US
-To: Vignesh Raman <vignesh.raman@collabora.com>,
- dri-devel@lists.freedesktop.org
-Cc: daniels@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
- emma@anholt.net, robdclark@gmail.com, david.heidelberg@collabora.com,
- guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
- hamohammed.sa@gmail.com, rodrigosiqueiramelo@gmail.com,
- melissa.srw@gmail.com, mairacanal@riseup.net, mcanal@igalia.com,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v5 00/10] drm/ci: Add support for GPU and display testing
+To: Christian Hewitt <christianshewitt@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
+ Helen Koike <helen.koike@collabora.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, emma@anholt.net, robdclark@gmail.com,
+ david.heidelberg@collabora.com, guilherme.gallo@collabora.com,
+ sergi.blanch.torne@collabora.com, hamohammed.sa@gmail.com,
+ rodrigosiqueiramelo@gmail.com, melissa.srw@gmail.com, mairacanal@riseup.net,
+ mcanal@igalia.com, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
 References: <20240401061235.192713-1-vignesh.raman@collabora.com>
- <20240401061235.192713-5-vignesh.raman@collabora.com>
-From: Helen Koike <helen.koike@collabora.com>
-In-Reply-To: <20240401061235.192713-5-vignesh.raman@collabora.com>
+ <43FF2E86-D0C7-4497-8203-E598E80FFA1B@gmail.com>
+Content-Language: en-US
+From: Vignesh Raman <vignesh.raman@collabora.com>
+In-Reply-To: <43FF2E86-D0C7-4497-8203-E598E80FFA1B@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240401_094210_935824_689D89CC 
-X-CRM114-Status: GOOD (  26.03  )
+X-CRM114-CacheID: sfid-20240401_193534_799450_71CA3157 
+X-CRM114-Status: GOOD (  22.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,235 +78,136 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-On 01/04/2024 03:12, Vignesh Raman wrote:
-> For mediatek mt8173 and mt8183, the display driver is mediatek.
-> Currently, in drm-ci for mediatek, only the display driver is
-> tested. Refactor the existing mediatek jobs so that gpu driver
-> testing jobs can be added later and update xfails accordingly.
-> Since the correct driver name is passed from the job to test gpu
-> and display driver, remove the check to set IGT_FORCE_DRIVER
-> based on driver name.
-> 
-> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> ---
-> 
-> v2:
->    - Refactor the patch to rename job to indicate display driver testing,
->      rename the existing xfail files, and remove IGT_FORCE_DRIVER from the
->      script since it's now set by the job.
-> 
-> v3:
->    - Add the job name in GPU_VERSION and use it for xfail file names instead
->      of using DRIVER_NAME. Also update xfails.
-> 
-> v4:
->    - Remove the display suffix in job and rename xfails accordingly.
->      Remove the change adding job name in GPU_VERSION.
-> 
-> v5:
->    - Add mediatek-display job.
-> 
-> ---
->   drivers/gpu/drm/ci/igt_runner.sh              | 10 ---------
->   drivers/gpu/drm/ci/test.yml                   | 21 +++++++++++++++----
->   .../drm/ci/xfails/mediatek-mt8173-fails.txt   | 15 -------------
->   .../drm/ci/xfails/mediatek-mt8173-flakes.txt  | 13 ++++++++++++
->   .../drm/ci/xfails/mediatek-mt8183-fails.txt   | 21 ++++++++++++-------
->   .../drm/ci/xfails/mediatek-mt8183-flakes.txt  |  8 +++++++
->   6 files changed, 51 insertions(+), 37 deletions(-)
->   create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8173-flakes.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt
-> 
-> diff --git a/drivers/gpu/drm/ci/igt_runner.sh b/drivers/gpu/drm/ci/igt_runner.sh
-> index f1a08b9b146f..ce6e22369d4d 100755
-> --- a/drivers/gpu/drm/ci/igt_runner.sh
-> +++ b/drivers/gpu/drm/ci/igt_runner.sh
-> @@ -20,16 +20,6 @@ cat /sys/kernel/debug/dri/*/state
->   set -e
->   
->   case "$DRIVER_NAME" in
-> -    rockchip|meson)
-> -        export IGT_FORCE_DRIVER="panfrost"
-> -        ;;
-> -    mediatek)
-> -        if [ "$GPU_VERSION" = "mt8173" ]; then
-> -            export IGT_FORCE_DRIVER=${DRIVER_NAME}
-> -        elif [ "$GPU_VERSION" = "mt8183" ]; then
-> -            export IGT_FORCE_DRIVER="panfrost"
-> -        fi
-> -        ;;
->       amdgpu)
->           # Cannot use HWCI_KERNEL_MODULES as at that point we don't have the module in /lib
->           mv /install/modules/lib/modules/* /lib/modules/.
-> diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
-> index 612c9ede3507..d8af670ee51d 100644
-> --- a/drivers/gpu/drm/ci/test.yml
-> +++ b/drivers/gpu/drm/ci/test.yml
-> @@ -282,14 +282,17 @@ amdgpu:stoney:
->   .mediatek:
-
-Maybe we could s/.mediatek/.mediatek-device, so we know we are not 
-talking about the driver name, what do you think?
-
->     extends:
->       - .lava-igt:arm64
-> -  stage: mediatek
->     variables:
-> -    DRIVER_NAME: mediatek
->       DTB: ${DEVICE_TYPE}
->       BOOT_METHOD: depthcharge
->       KERNEL_IMAGE_TYPE: ""
->   
-> -mediatek:mt8173:
-> +.mediatek-display:
-> +  stage: mediatek
-> +  variables:
-> +    DRIVER_NAME: mediatek
-> +
-> +.mt8173:
->     extends:
->       - .mediatek
->     parallel: 4
-> @@ -298,7 +301,7 @@ mediatek:mt8173:
->       GPU_VERSION: mt8173
->       RUNNER_TAG: mesa-ci-x86-64-lava-mt8173-elm-hana
->   
-> -mediatek:mt8183:
-> +.mt8183:
->     extends:
->       - .mediatek
->     parallel: 3
-> @@ -307,6 +310,16 @@ mediatek:mt8183:
->       GPU_VERSION: mt8183
->       RUNNER_TAG: mesa-ci-x86-64-lava-mt8183-kukui-jacuzzi-juniper-sku16
->   
-> +mediatek:mt8173:
-> +  extends:
-> +    - .mt8173
-> +    - .mediatek-display
-> +
-> +mediatek:mt8183:
-> +  extends:
-> +    - .mt8183
-> +    - .mediatek-display
-
- From the code, panfrost was being used in IGT_FORCE_DRIVER for mt8183 
-no? --> never mind, I just saw the next patch handles panfrost case. I 
-guess these two commits could be squashed (up to you).
-
-Regards,
-Helen
-
-> +
->   # drm-mtk doesn't even probe yet in mainline for mt8192
->   .mediatek:mt8192:
->     extends:
-> diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt
-> index ef0cb7c3698c..c63abd603b02 100644
-> --- a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt
-> +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt
-> @@ -9,28 +9,13 @@ kms_bw@linear-tiling-3-displays-1920x1080p,Fail
->   kms_bw@linear-tiling-3-displays-2560x1440p,Fail
->   kms_bw@linear-tiling-3-displays-3840x2160p,Fail
->   kms_color@invalid-gamma-lut-sizes,Fail
-> -kms_color@pipe-A-invalid-gamma-lut-sizes,Fail
-> -kms_color@pipe-B-invalid-gamma-lut-sizes,Fail
->   kms_cursor_legacy@cursor-vs-flip-atomic,Fail
->   kms_cursor_legacy@cursor-vs-flip-legacy,Fail
->   kms_flip@flip-vs-modeset-vs-hang,Fail
->   kms_flip@flip-vs-panning-vs-hang,Fail
->   kms_flip@flip-vs-suspend,Fail
->   kms_flip@flip-vs-suspend-interruptible,Fail
-> -kms_force_connector_basic@force-edid,Fail
-> -kms_force_connector_basic@force-load-detect,Fail
-> -kms_force_connector_basic@prune-stale-modes,Fail
-> -kms_hdmi_inject@inject-4k,Fail
-> -kms_plane_scaling@planes-upscale-20x20,Fail
-> -kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25,Fail
-> -kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-5,Fail
-> -kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-75,Fail
-> -kms_plane_scaling@upscale-with-modifier-20x20,Fail
-> -kms_plane_scaling@upscale-with-pixel-format-20x20,Fail
-> -kms_plane_scaling@upscale-with-rotation-20x20,Fail
->   kms_properties@get_properties-sanity-atomic,Fail
->   kms_properties@plane-properties-atomic,Fail
->   kms_properties@plane-properties-legacy,Fail
->   kms_rmfb@close-fd,Fail
-> -kms_selftest@drm_format,Timeout
-> -kms_selftest@drm_format_helper,Timeout
-> diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-flakes.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-flakes.txt
-> new file mode 100644
-> index 000000000000..64b30c092c85
-> --- /dev/null
-> +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-flakes.txt
-> @@ -0,0 +1,13 @@
-> +# Board Name: mt8173-elm-hana.dtb
-> +# Bug Report: https://lore.kernel.org/dri-devel/931e3f9a-9c5c-fc42-16fc-abaac4e0c0ff@collabora.com/T/#u
-> +# IGT Version: 1.28-gd2af13d9f
-> +# Failure Rate: 50
-> +# Linux Version: 6.7.0-rc3
-> +
-> +# Reported by deqp-runner
-> +kms_cursor_legacy@cursor-vs-flip-atomic-transitions
-> +
-> +# Below test shows inconsistency across multiple runs,
-> +# giving results of Pass and Timeout/Fail alternately
-> +kms_prop_blob@invalid-set-prop
-> +kms_prop_blob@invalid-set-prop-any
-> diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt
-> index 67d690fc4037..91cd1c4ec068 100644
-> --- a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt
-> +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt
-> @@ -1,13 +1,18 @@
-> -kms_addfb_basic@addfb25-bad-modifier,Fail
-> +core_setmaster_vs_auth,Fail
-> +kms_bw@linear-tiling-1-displays-1920x1080p,Fail
->   kms_bw@linear-tiling-1-displays-2560x1440p,Fail
-> +kms_bw@linear-tiling-1-displays-3840x2160p,Fail
->   kms_bw@linear-tiling-2-displays-1920x1080p,Fail
->   kms_bw@linear-tiling-2-displays-2560x1440p,Fail
->   kms_bw@linear-tiling-2-displays-3840x2160p,Fail
-> -kms_bw@linear-tiling-3-displays-2560x1440p,Fail
-> -kms_bw@linear-tiling-3-displays-3840x2160p,Fail
-> -kms_color@pipe-A-invalid-gamma-lut-sizes,Fail
-> -kms_plane_cursor@overlay,Fail
-> -kms_plane_cursor@primary,Fail
-> -kms_plane_cursor@viewport,Fail
-> -kms_plane_scaling@upscale-with-rotation-20x20,Fail
-> +kms_color@invalid-gamma-lut-sizes,Fail
-> +kms_cursor_legacy@cursor-vs-flip-atomic,Fail
-> +kms_cursor_legacy@cursor-vs-flip-legacy,Fail
-> +kms_flip@flip-vs-modeset-vs-hang,Fail
-> +kms_flip@flip-vs-panning-vs-hang,Fail
-> +kms_flip@flip-vs-suspend,Fail
-> +kms_flip@flip-vs-suspend-interruptible,Fail
-> +kms_properties@get_properties-sanity-atomic,Fail
-> +kms_properties@plane-properties-atomic,Fail
-> +kms_properties@plane-properties-legacy,Fail
->   kms_rmfb@close-fd,Fail
-> diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt
-> new file mode 100644
-> index 000000000000..5885a950fa72
-> --- /dev/null
-> +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt
-> @@ -0,0 +1,8 @@
-> +# Board Name: mt8183-kukui-jacuzzi-juniper-sku16.dtb
-> +# Bug Report: https://lore.kernel.org/dri-devel/931e3f9a-9c5c-fc42-16fc-abaac4e0c0ff@collabora.com/T/#u
-> +# IGT Version: 1.28-gd2af13d9f
-> +# Failure Rate: 100
-> +# Linux Version: 6.7.0-rc3
-> +
-> +# Reported by deqp-runner
-> +kms_cursor_legacy@cursor-vs-flip-atomic-transitions
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgQ2hyaXN0aWFuLAoKT24gMDEvMDQvMjQgMjI6MzksIENocmlzdGlhbiBIZXdpdHQgd3JvdGU6
+Cj4+IE9uIDEgQXByIDIwMjQsIGF0IDEwOjEy4oCvYW0sIFZpZ25lc2ggUmFtYW4gPHZpZ25lc2gu
+cmFtYW5AY29sbGFib3JhLmNvbT4gd3JvdGU6Cj4+Cj4+IFNvbWUgQVJNIFNPQ3MgaGF2ZSBhIHNl
+cGFyYXRlIGRpc3BsYXkgY29udHJvbGxlciBhbmQgR1BVLCBlYWNoIHdpdGgKPj4gZGlmZmVyZW50
+IGRyaXZlcnMuIEZvciBtZWRpYXRlayBtdDgxNzMsIHRoZSBHUFUgZHJpdmVyIGlzIHBvd2VydnIs
+Cj4+IGFuZCB0aGUgZGlzcGxheSBkcml2ZXIgaXMgbWVkaWF0ZWsuIEluIHRoZSBjYXNlIG9mIG1l
+ZGlhdGVrIG10ODE4MywKPj4gdGhlIEdQVSBkcml2ZXIgaXMgcGFuZnJvc3QsIGFuZCB0aGUgZGlz
+cGxheSBkcml2ZXIgaXMgbWVkaWF0ZWsuCj4+IFdpdGggcm9ja2NoaXAgcmszMjg4L3JrMzM5OSwg
+dGhlIEdQVSBkcml2ZXIgaXMgcGFuZnJvc3QsIHdoaWxlIHRoZQo+PiBkaXNwbGF5IGRyaXZlciBp
+cyByb2NrY2hpcC4gRm9yIGFtbG9naWMgbWVzb24sIHRoZSBHUFUgZHJpdmVyIGlzCj4+IHBhbmZy
+b3N0LCBhbmQgdGhlIGRpc3BsYXkgZHJpdmVyIGlzIG1lc29uLgo+IAo+IEnigJltIG5vdCBzdXJl
+IGlmIHRoaXMgaXMgZGVzY3JpYmluZyB0aGUgY29udGVudHMgb2YgYSB0ZXN0IGxhYiBvciBtYWtp
+bmcKPiBhIHN0YXRlbWVudCBvbiB0aGUgQW1sb2dpYyBwbGF0Zm9ybTsgYnV0IChiZWluZyB0aGUg
+cGVkYW50IEkgYW0pIEnigJlsbAo+IHBvaW50IG91dCB0aGF0IEFtbG9naWMgRzEyQS9TTTEgKE1h
+bGkgRzMxKSBhbmQgRzEyQiAoTWFsaSBHNTIpIGJvYXJkcwo+IGRvIHVzZSBwYW5mcm9zdCwgYnV0
+IHRoZSBHWEJCL0dYTC9HWE0gYm9hcmRzIChNYWxpNDUwKSB1c2UgbGltYS4KCkl0IGlzIGRlc2Ny
+aWJpbmcgdGhlIGNvbnRlbnRzIG9mIHRoZSB0ZXN0IGxhYi4gU29ycnkgZm9yIG5vdCBiZWluZyAK
+Y2xlYXIuIFRoZSBkZXZpY2UgdHlwZSBpcyBtZXNvbi1nMTJiLWEzMTFkLWtoYWRhcy12aW0zIHdo
+aWNoIGlzIGJhc2VkIG9uIAp0aGUgQW1sb2dpYyBNZXNvbiBHMTJCIChBMzExRCkgU29DIGZhbWls
+eSAuIEkgd2lsbCB1cGRhdGUgdGhpcyBpbiBjb21taXQgCm1lc3NhZ2UuIFRoYW5rcy4KClJlZ2Fy
+ZHMsClZpZ25lc2gKCj4gCj4gQ0guCj4gCj4+IElHVCB0ZXN0cyBydW4gdmFyaW91cyB0ZXN0cyB3
+aXRoIGRpZmZlcmVudCB4ZmFpbHMgYW5kIGNhbiB0ZXN0IGJvdGgKPj4gR1BVIGRldmljZXMgYW5k
+IEtNUy9kaXNwbGF5IGRldmljZXMuIEN1cnJlbnRseSwgaW4gZHJtLWNpIGZvciBNZWRpYVRlaywK
+Pj4gUm9ja2NoaXAsIGFuZCBBbWxvZ2ljIE1lc29uIHBsYXRmb3Jtcywgb25seSB0aGUgR1BVIGRy
+aXZlciBpcyB0ZXN0ZWQuCj4+IFRoaXMgbGVhZHMgdG8gaW5jb21wbGV0ZSBjb3ZlcmFnZSBzaW5j
+ZSB0aGUgZGlzcGxheSBpcyBuZXZlciB0ZXN0ZWQgb24KPj4gdGhlc2UgcGxhdGZvcm1zLiBUaGlz
+IGNvbW1pdCBzZXJpZXMgYWRkcyBzdXBwb3J0IGluIGRybS1jaSB0byBydW4gdGVzdHMKPj4gZm9y
+IGJvdGggR1BVIGFuZCBkaXNwbGF5IGRyaXZlcnMgZm9yIE1lZGlhVGVrLCBSb2NrY2hpcCwgYW5k
+IEFtbG9naWMKPj4gTWVzb24gcGxhdGZvcm1zLgo+Pgo+PiBVcHJldiBtZXNhIGFuZCBJR1QgaW4g
+ZHJtLWNpIGFuZCBhZGQgYW1kLCB2M2QsIHZjNCBhbmQgdmdlbSBzcGVjaWZpYwo+PiB0ZXN0cyB0
+byB0ZXN0bGlzdC4gQWRkIHRlc3RsaXN0cyB0byB0aGUgTUFJTlRBSU5FUlMgZmlsZSBhbmQgc2tp
+cAo+PiBkcml2ZXItc3BlY2lmaWMgdGVzdHMuCj4+Cj4+IFRoaXMgc2VyaWVzIGFsc28gaW5jbHVk
+ZXMgcGF0Y2ggdG8gYWRkIHZrbXMgdGVzdGluZyB0byBkcm0tY2kuCj4+Cj4+IFdvcmtpbmcgcGlw
+ZWxpbmUgbGluaywKPj4gaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL3ZpZ25lc2hyYW1h
+bi9saW51eC8tL3BpcGVsaW5lcy8xMTQwNjQ3Cj4+Cj4+IFZpZ25lc2ggUmFtYW4gKDEwKToKPj4g
+ICBkcm0vY2k6IGFybTY0LmNvbmZpZzogRW5hYmxlIENPTkZJR19EUk1fQU5BTE9HSVhfQU5YNzYy
+NQo+PiAgIGRybS9jaTogdXByZXYgbWVzYSB2ZXJzaW9uCj4+ICAgZHJtL2NpOiB1cHJldiBJR1Qg
+YW5kIHVwZGF0ZSB0ZXN0bGlzdAo+PiAgIGRybS9jaTogbWVkaWF0ZWs6IFJlZmFjdG9yIGV4aXN0
+aW5nIG1lZGlhdGVrIGpvYnMKPj4gICBkcm0vY2k6IG1lZGlhdGVrOiBBZGQgam9iIHRvIHRlc3Qg
+cGFuZnJvc3QgYW5kIHBvd2VydnIgR1BVIGRyaXZlcgo+PiAgIGRybS9jaTogbWVzb246IFJlZmFj
+dG9yIGV4aXN0aW5nIG1lc29uIGpvYnMKPj4gICBkcm0vY2k6IG1lc29uOiBBZGQgam9iIHRvIHRl
+c3QgcGFuZnJvc3QgR1BVIGRyaXZlcgo+PiAgIGRybS9jaTogcm9ja2NoaXA6IFJlZmFjdG9yIGV4
+aXN0aW5nIHJvY2tjaGlwIGpvYnMKPj4gICBkcm0vY2k6IHJvY2tjaGlwOiBBZGQgam9iIHRvIHRl
+c3QgcGFuZnJvc3QgR1BVIGRyaXZlcgo+PiAgIGRybS9jaTogYWRkIHRlc3RzIG9uIHZrbXMKPj4K
+Pj4gTUFJTlRBSU5FUlMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDExICsK
+Pj4gZHJpdmVycy9ncHUvZHJtL2NpL2FybTY0LmNvbmZpZyAgICAgICAgICAgICAgIHwgICAxICsK
+Pj4gZHJpdmVycy9ncHUvZHJtL2NpL2J1aWxkLnNoICAgICAgICAgICAgICAgICAgIHwgICAyICst
+Cj4+IGRyaXZlcnMvZ3B1L2RybS9jaS9jb250YWluZXIueW1sICAgICAgICAgICAgICB8ICAgNiAr
+LQo+PiBkcml2ZXJzL2dwdS9kcm0vY2kvZ2l0bGFiLWNpLnltbCAgICAgICAgICAgICAgfCAgMTgg
+Ky0KPj4gZHJpdmVycy9ncHUvZHJtL2NpL2lndF9ydW5uZXIuc2ggICAgICAgICAgICAgIHwgIDE2
+ICstCj4+IGRyaXZlcnMvZ3B1L2RybS9jaS9pbWFnZS10YWdzLnltbCAgICAgICAgICAgICB8ICAg
+NSArLQo+PiBkcml2ZXJzL2dwdS9kcm0vY2kvdGVzdC55bWwgICAgICAgICAgICAgICAgICAgfCAx
+MzggKysrKysrLS0KPj4gZHJpdmVycy9ncHUvZHJtL2NpL3Rlc3RsaXN0LnR4dCAgICAgICAgICAg
+ICAgIHwgMzIxICsrKysrKysrKysrKysrKysrKwo+PiBkcml2ZXJzL2dwdS9kcm0vY2kveDg2XzY0
+LmNvbmZpZyAgICAgICAgICAgICAgfCAgIDEgKwo+PiAuLi4vZ3B1L2RybS9jaS94ZmFpbHMvYW1k
+Z3B1LXN0b25leS1mYWlscy50eHQgfCAgMjUgKy0KPj4gLi4uL2RybS9jaS94ZmFpbHMvYW1kZ3B1
+LXN0b25leS1mbGFrZXMudHh0ICAgIHwgIDEwICstCj4+IC4uLi9ncHUvZHJtL2NpL3hmYWlscy9h
+bWRncHUtc3RvbmV5LXNraXBzLnR4dCB8ICAyMyArLQo+PiBkcml2ZXJzL2dwdS9kcm0vY2kveGZh
+aWxzL2k5MTUtYW1seS1za2lwcy50eHQgfCAgIDkgKy0KPj4gZHJpdmVycy9ncHUvZHJtL2NpL3hm
+YWlscy9pOTE1LWFwbC1za2lwcy50eHQgIHwgICA5ICstCj4+IGRyaXZlcnMvZ3B1L2RybS9jaS94
+ZmFpbHMvaTkxNS1jbWwtc2tpcHMudHh0ICB8ICAgNyArCj4+IGRyaXZlcnMvZ3B1L2RybS9jaS94
+ZmFpbHMvaTkxNS1nbGstc2tpcHMudHh0ICB8ICAgOSArLQo+PiBkcml2ZXJzL2dwdS9kcm0vY2kv
+eGZhaWxzL2k5MTUta2JsLXNraXBzLnR4dCAgfCAgIDkgKy0KPj4gZHJpdmVycy9ncHUvZHJtL2Np
+L3hmYWlscy9pOTE1LXRnbC1za2lwcy50eHQgIHwgICA5ICstCj4+IGRyaXZlcnMvZ3B1L2RybS9j
+aS94ZmFpbHMvaTkxNS13aGwtc2tpcHMudHh0ICB8ICAgOSArLQo+PiAuLi4vZHJtL2NpL3hmYWls
+cy9tZWRpYXRlay1tdDgxNzMtZmFpbHMudHh0ICAgfCAgMTUgLQo+PiAuLi4vZHJtL2NpL3hmYWls
+cy9tZWRpYXRlay1tdDgxNzMtZmxha2VzLnR4dCAgfCAgMTMgKwo+PiAuLi4vZHJtL2NpL3hmYWls
+cy9tZWRpYXRlay1tdDgxNzMtc2tpcHMudHh0ICAgfCAgIDYgKwo+PiAuLi4vZHJtL2NpL3hmYWls
+cy9tZWRpYXRlay1tdDgxODMtZmFpbHMudHh0ICAgfCAgMjEgKy0KPj4gLi4uL2RybS9jaS94ZmFp
+bHMvbWVkaWF0ZWstbXQ4MTgzLWZsYWtlcy50eHQgIHwgICA4ICsKPj4gLi4uL2RybS9jaS94ZmFp
+bHMvbWVkaWF0ZWstbXQ4MTgzLXNraXBzLnR4dCAgIHwgICA2ICsKPj4gLi4uL2dwdS9kcm0vY2kv
+eGZhaWxzL21lc29uLWcxMmItZmFpbHMudHh0ICAgIHwgICA1IC0KPj4gLi4uL2dwdS9kcm0vY2kv
+eGZhaWxzL21lc29uLWcxMmItc2tpcHMudHh0ICAgIHwgICA2ICsKPj4gLi4uL2dwdS9kcm0vY2kv
+eGZhaWxzL21zbS1hcHE4MDE2LXNraXBzLnR4dCAgIHwgICA1ICsKPj4gLi4uL2dwdS9kcm0vY2kv
+eGZhaWxzL21zbS1hcHE4MDk2LXNraXBzLnR4dCAgIHwgICA4ICstCj4+IC4uLi9tc20tc2M3MTgw
+LXRyb2dkb3Ita2luZ29mdG93bi1za2lwcy50eHQgICB8ICAgNiArCj4+IC4uLnNtLXNjNzE4MC10
+cm9nZG9yLWxhem9yLWxpbW96ZWVuLXNraXBzLnR4dCB8ICAgNiArCj4+IC4uLi9ncHUvZHJtL2Np
+L3hmYWlscy9tc20tc2RtODQ1LXNraXBzLnR4dCAgICB8ICAgNiArCj4+IC4uLi9ncHUvZHJtL2Np
+L3hmYWlscy9wYW5mcm9zdC1nMTJiLWZhaWxzLnR4dCB8ICAgMSArCj4+IC4uLi9ncHUvZHJtL2Np
+L3hmYWlscy9wYW5mcm9zdC1nMTJiLXNraXBzLnR4dCB8ICAgOCArCj4+IC4uLi9kcm0vY2kveGZh
+aWxzL3BhbmZyb3N0LW10ODE4My1mYWlscy50eHQgICB8ICAgMSArCj4+IC4uLi9kcm0vY2kveGZh
+aWxzL3BhbmZyb3N0LW10ODE4My1za2lwcy50eHQgICB8ICAgOCArCj4+IC4uLi9kcm0vY2kveGZh
+aWxzL3BhbmZyb3N0LXJrMzI4OC1mYWlscy50eHQgICB8ICAgMSArCj4+IC4uLi9kcm0vY2kveGZh
+aWxzL3BhbmZyb3N0LXJrMzI4OC1za2lwcy50eHQgICB8ICAgOCArCj4+IC4uLi9kcm0vY2kveGZh
+aWxzL3BhbmZyb3N0LXJrMzM5OS1mYWlscy50eHQgICB8ICAgMSArCj4+IC4uLi9kcm0vY2kveGZh
+aWxzL3BhbmZyb3N0LXJrMzM5OS1za2lwcy50eHQgICB8ICAgOCArCj4+IC4uLi9kcm0vY2kveGZh
+aWxzL3JvY2tjaGlwLXJrMzI4OC1mYWlscy50eHQgICB8ICA1MCArLS0KPj4gLi4uL2RybS9jaS94
+ZmFpbHMvcm9ja2NoaXAtcmszMjg4LWZsYWtlcy50eHQgIHwgIDIxICsrCj4+IC4uLi9kcm0vY2kv
+eGZhaWxzL3JvY2tjaGlwLXJrMzI4OC1za2lwcy50eHQgICB8ICAxNSArLQo+PiAuLi4vZHJtL2Np
+L3hmYWlscy9yb2NrY2hpcC1yazMzOTktZmFpbHMudHh0ICAgfCAgMzggKy0tCj4+IC4uLi9kcm0v
+Y2kveGZhaWxzL3JvY2tjaGlwLXJrMzM5OS1mbGFrZXMudHh0ICB8ICAyOCArLQo+PiAuLi4vZHJt
+L2NpL3hmYWlscy9yb2NrY2hpcC1yazMzOTktc2tpcHMudHh0ICAgfCAgMTEgKwo+PiAuLi4vZHJt
+L2NpL3hmYWlscy92aXJ0aW9fZ3B1LW5vbmUtZmFpbHMudHh0ICAgfCAgIDEgLQo+PiAuLi4vZHJt
+L2NpL3hmYWlscy92aXJ0aW9fZ3B1LW5vbmUtc2tpcHMudHh0ICAgfCAgIDkgKy0KPj4gZHJpdmVy
+cy9ncHUvZHJtL2NpL3hmYWlscy92a21zLW5vbmUtZmFpbHMudHh0IHwgIDMzICsrCj4+IC4uLi9n
+cHUvZHJtL2NpL3hmYWlscy92a21zLW5vbmUtZmxha2VzLnR4dCAgICB8ICAyMCArKwo+PiBkcml2
+ZXJzL2dwdS9kcm0vY2kveGZhaWxzL3ZrbXMtbm9uZS1za2lwcy50eHQgfCAgMjMgKysKPj4gNTIg
+ZmlsZXMgY2hhbmdlZCwgODkwIGluc2VydGlvbnMoKyksIDE0NCBkZWxldGlvbnMoLSkKPj4gY3Jl
+YXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9jaS94ZmFpbHMvbWVkaWF0ZWstbXQ4MTcz
+LWZsYWtlcy50eHQKPj4gY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9jaS94ZmFp
+bHMvbWVkaWF0ZWstbXQ4MTczLXNraXBzLnR4dAo+PiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVy
+cy9ncHUvZHJtL2NpL3hmYWlscy9tZWRpYXRlay1tdDgxODMtZmxha2VzLnR4dAo+PiBjcmVhdGUg
+bW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2NpL3hmYWlscy9tZWRpYXRlay1tdDgxODMtc2tp
+cHMudHh0Cj4+IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vY2kveGZhaWxzL21l
+c29uLWcxMmItc2tpcHMudHh0Cj4+IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0v
+Y2kveGZhaWxzL21zbS1hcHE4MDE2LXNraXBzLnR4dAo+PiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJp
+dmVycy9ncHUvZHJtL2NpL3hmYWlscy9wYW5mcm9zdC1nMTJiLWZhaWxzLnR4dAo+PiBjcmVhdGUg
+bW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2NpL3hmYWlscy9wYW5mcm9zdC1nMTJiLXNraXBz
+LnR4dAo+PiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2NpL3hmYWlscy9wYW5m
+cm9zdC1tdDgxODMtZmFpbHMudHh0Cj4+IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9k
+cm0vY2kveGZhaWxzL3BhbmZyb3N0LW10ODE4My1za2lwcy50eHQKPj4gY3JlYXRlIG1vZGUgMTAw
+NjQ0IGRyaXZlcnMvZ3B1L2RybS9jaS94ZmFpbHMvcGFuZnJvc3QtcmszMjg4LWZhaWxzLnR4dAo+
+PiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2NpL3hmYWlscy9wYW5mcm9zdC1y
+azMyODgtc2tpcHMudHh0Cj4+IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vY2kv
+eGZhaWxzL3BhbmZyb3N0LXJrMzM5OS1mYWlscy50eHQKPj4gY3JlYXRlIG1vZGUgMTAwNjQ0IGRy
+aXZlcnMvZ3B1L2RybS9jaS94ZmFpbHMvcGFuZnJvc3QtcmszMzk5LXNraXBzLnR4dAo+PiBjcmVh
+dGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2NpL3hmYWlscy9yb2NrY2hpcC1yazMyODgt
+Zmxha2VzLnR4dAo+PiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2NpL3hmYWls
+cy92a21zLW5vbmUtZmFpbHMudHh0Cj4+IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9k
+cm0vY2kveGZhaWxzL3ZrbXMtbm9uZS1mbGFrZXMudHh0Cj4+IGNyZWF0ZSBtb2RlIDEwMDY0NCBk
+cml2ZXJzL2dwdS9kcm0vY2kveGZhaWxzL3ZrbXMtbm9uZS1za2lwcy50eHQKPj4KPj4gLS0gCj4+
+IDIuNDAuMQo+Pgo+Pgo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwo+PiBsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAo+PiBsaW51eC1hbWxvZ2ljQGxp
+c3RzLmluZnJhZGVhZC5vcmcKPj4gaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9saW51eC1hbWxvZ2ljCj4gCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2lj
+QGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9saW51eC1hbWxvZ2ljCg==
