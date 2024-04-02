@@ -4,86 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FF56CD1284
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Apr 2024 11:44:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6EA8CD1284
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Apr 2024 12:16:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9zF88wN5McPtjwntTGbLY8bWPuItebDi49JjB3mByp0=; b=zY+/9a3Q2oZVK8
-	IvO0D8XCD6PlvARBYBBpwWZD+fmXnZi3aKgyBWtFXL3ptfMuF/zE9N/yjUh9pa8UWI+f4QkRn8O+R
-	F/+qgt3QmHjOlVT7rWCQ877BmMMLcDgs4g3/ZFvPTAgP9Sx4IzxuFUMXdpT2TaknjKG4tuu1IiIT7
-	+G1oS2ntrpumdg1j7OpM9E15uUHRxCjZRjDO3hOCYfDWF7ge4ZnskGMmp6WOAIfN6RC4v8QBMlQPG
-	O0bdK5wjV9hn72ed7UzW8QDK39NyUyPcVg9EKqgL5XfeaWTYCYfi9hB7mZQh1F//LSrWeVUqdUSz7
-	SjFhDsdfN2OI8tZpyj6A==;
+	List-Owner; bh=MLIVSlkKKu+MKAFENqbvUssJhfA35WJ59LsqvfpS8N0=; b=F8II1MU1wfg5j4
+	qWtHDrRbZ1H8OS+9u58rHin5dVfJtUvbsKCtXUBPqbzrwhqVTvT9Ui9h20I+k/uv7w0n4qphgW56h
+	xK4y10Kmo4lSEQ9kiyNgihm/tEfrxaRl3q29R/TEskqYVuzg4va2hwwc1c8jbeGDNGIlrH97cpABI
+	fZFm8N5aBtAMfpPoAMuoXP3sNqTh0+KFOoZYR2bAdwmb2YT/KEz6gEyKxtF7/xpfNlo+rP3LMxcAx
+	LCwBTnS2XKptPb9BVlgHVdIB+w4MtWxFHWPwKT9VrB/yaZwehjbeHD/3gxRRyTnfdWcW5znEoNEmi
+	NucCi0+vYtYu4dpapEHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rrcYS-0000000Aupc-0Ls6;
-	Tue, 02 Apr 2024 11:43:52 +0000
+	id 1rrd3T-0000000B0go-1PME;
+	Tue, 02 Apr 2024 12:15:55 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rrcYO-0000000Auo8-1axG;
-	Tue, 02 Apr 2024 11:43:50 +0000
+	id 1rrd3O-0000000B0fE-3rZ2;
+	Tue, 02 Apr 2024 12:15:53 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 295BF120006;
-	Tue,  2 Apr 2024 14:43:44 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 295BF120006
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 99DA1120002;
+	Tue,  2 Apr 2024 15:15:47 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 99DA1120002
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1712058224;
-	bh=wuiJSm2gwfdh+2/YJ8DiGWwXRM4OI+Enlg3GWjkAqQY=;
+	s=mail; t=1712060147;
+	bh=ElpTZ1TrAlE8CP0mE0jFlYKQjyXNnVn6kDPBRqPutDI=;
 	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=f7xcPOcGvkHqQhAbYErDCAhZS1dOFzzq6zcW9Di/esudoJnthSr8ZStQJzjv0Q8q6
-	 V5W6NTQDDQ0XN4OVlhxnzTsMkdRWJ+1ZRMhZE/RelEVGDt7zqdEH694ZddSryvhbw3
-	 lilBxleaWY/2/TNgXMAeWQvMEEvnod1i9SjrtmBUqJYWoKT6cK7j8T1B3Fu57mmcMq
-	 KG5oyBu5Yl4uQ2j/l4PufudeEj9ZV9XFfsGXjmSYGuS4uhAow+kWWFXZ5nw8FglU7I
-	 zHc3K4JinLRlfnwGC5I92Xtpi5Bq/25ngOfYAmzK3g6zj24+XwiywwYPXCVJAyhhfe
-	 FiCAel5zT+w6w==
+	b=h3Pv8g6AY+VQuvPVaWfziPBCxqr344JkhvXY/zJB7BS0MiJa6oAsjk65LY8Nbza6L
+	 mW+QPOWfa7T6iGWeVvKntxMXBoOYy9BQ1bmjm0ZvaUe6ynMZ3Dd6hQKwXtGeTPNBHV
+	 ptTXlYMYJlveLsrJvLAE78+pXPJxppJWYDBmUmufDLDAqaZrpox5kUTSNGB5L6cdCA
+	 Om/8HBftrdji1dCm6zYVY8Eh4J1YmE9YNoETy8htKFMHh87/IWOheTw0jvc0Vnue8R
+	 Yp8J4RYi79zl1DPr9bCNmRwDKam740vmzedZ0kbWY4uQZpWXHuuidWG1MMq0YEYBFh
+	 8r+akjvJrTdOw==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue,  2 Apr 2024 14:43:43 +0300 (MSK)
+	Tue,  2 Apr 2024 15:15:47 +0300 (MSK)
 Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
  (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 2 Apr
- 2024 14:43:43 +0300
-Date: Tue, 2 Apr 2024 14:43:43 +0300
+ 2024 15:15:46 +0300
+Date: Tue, 2 Apr 2024 15:15:46 +0300
 From: Dmitry Rokosov <ddrokosov@salutedevices.com>
 To: Jerome Brunet <jbrunet@baylibre.com>
-CC: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	<neil.armstrong@linaro.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<khilman@baylibre.com>, <kernel@salutedevices.com>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v1 6/6] clk: meson: a1: add Amlogic A1 CPU clock
- controller driver
-Message-ID: <20240402114343.npyh7whgrpuv7jme@CAB-WSD-L081021>
+CC: <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
+	<sboyd@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <kernel@salutedevices.com>,
+	<rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v1 2/6] clk: meson: a1: pll: support 'syspll'
+ general-purpose PLL for CPU clock
+Message-ID: <20240402121546.qrrc7r5un75464pb@CAB-WSD-L081021>
 References: <20240329205904.25002-1-ddrokosov@salutedevices.com>
- <20240329205904.25002-7-ddrokosov@salutedevices.com>
- <CAFBinCCC5KK-4_w41B-+ZJ3zdZckq_EDuAW+Kak2C0Ow8uuD6Q@mail.gmail.com>
- <20240401171237.qoewp2pgcdrqvc3e@CAB-WSD-L081021>
- <1jzfuchztl.fsf@starbuckisacylon.baylibre.com>
+ <20240329205904.25002-3-ddrokosov@salutedevices.com>
+ <1j4jckjftk.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <1jzfuchztl.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1j4jckjftk.fsf@starbuckisacylon.baylibre.com>
 User-Agent: NeoMutt/20220415
 X-Originating-IP: [100.64.160.123]
 X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184532 [Apr 02 2024]
+X-KSMG-AntiSpam-Lua-Profiles: 184533 [Apr 02 2024]
 X-KSMG-AntiSpam-Version: 6.1.0.4
 X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
 X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 14 0.3.14 5a0c43d8a1c3c0e5b0916cc02a90d4b950c01f96, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 14 0.3.14 5a0c43d8a1c3c0e5b0916cc02a90d4b950c01f96, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
 X-KSMG-AntiPhishing: Clean
@@ -91,8 +89,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/02 07:07:00 #24571916
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240402_044349_015615_C4488D09 
-X-CRM114-Status: GOOD (  59.66  )
+X-CRM114-CacheID: sfid-20240402_051551_679626_01F14617 
+X-CRM114-Status: GOOD (  38.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,137 +102,188 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCBBcHIgMDIsIDIwMjQgYXQgMTE6Mjc6MjRBTSArMDIwMCwgSmVyb21lIEJydW5ldCB3
-cm90ZToKPiAKPiBPbiBNb24gMDEgQXByIDIwMjQgYXQgMjA6MTIsIERtaXRyeSBSb2tvc292IDxk
-ZHJva29zb3ZAc2FsdXRlZGV2aWNlcy5jb20+IHdyb3RlOgo+IAo+ID4gSGVsbG8gTWFydGluLAo+
-ID4KPiA+IFRoYW5rIHlvdSBmb3IgcXVpY2sgcmVzcG9uc2UuIFBsZWFzZSBmaW5kIG15IHRob3Vn
-aHRzIGJlbG93Lgo+ID4KPiA+IE9uIFN1biwgTWFyIDMxLCAyMDI0IGF0IDExOjQwOjEzUE0gKzAy
-MDAsIE1hcnRpbiBCbHVtZW5zdGluZ2wgd3JvdGU6Cj4gPj4gSGkgRG1pdHJ5LAo+ID4+IAo+ID4+
-IE9uIEZyaSwgTWFyIDI5LCAyMDI0IGF0IDk6NTnigK9QTSBEbWl0cnkgUm9rb3Nvdgo+ID4+IDxk
-ZHJva29zb3ZAc2FsdXRlZGV2aWNlcy5jb20+IHdyb3RlOgo+ID4+IFsuLi5dCj4gPj4gPiArc3Rh
-dGljIHN0cnVjdCBjbGtfcmVnbWFwIGNwdV9mY2xrID0gewo+ID4+ID4gKyAgICAgICAuZGF0YSA9
-ICYoc3RydWN0IGNsa19yZWdtYXBfbXV4X2RhdGEpIHsKPiA+PiA+ICsgICAgICAgICAgICAgICAu
-b2Zmc2V0ID0gQ1BVQ1RSTF9DTEtfQ1RSTDAsCj4gPj4gPiArICAgICAgICAgICAgICAgLm1hc2sg
-PSAweDEsCj4gPj4gPiArICAgICAgICAgICAgICAgLnNoaWZ0ID0gMTAsCj4gPj4gPiArICAgICAg
-IH0sCj4gPj4gPiArICAgICAgIC5ody5pbml0ID0gJihzdHJ1Y3QgY2xrX2luaXRfZGF0YSkgewo+
-ID4+ID4gKyAgICAgICAgICAgICAgIC5uYW1lID0gImNwdV9mY2xrIiwKPiA+PiA+ICsgICAgICAg
-ICAgICAgICAub3BzID0gJmNsa19yZWdtYXBfbXV4X29wcywKPiA+PiA+ICsgICAgICAgICAgICAg
-ICAucGFyZW50X2h3cyA9IChjb25zdCBzdHJ1Y3QgY2xrX2h3ICpbXSkgewo+ID4+ID4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgJmNwdV9mc2VsMC5odywKPiA+PiA+ICsgICAgICAgICAgICAgICAg
-ICAgICAgICZjcHVfZnNlbDEuaHcsCj4gPj4gSGF2ZSB5b3UgY29uc2lkZXJlZCB0aGUgQ0xLX1NF
-VF9SQVRFX0dBVEUgZmxhZyBmb3IgJmNwdV9mc2VsMC5odyBhbmQKPiA+PiAmY3B1X2ZzZWwxLmh3
-IGFuZCB0aGVuIGRyb3BwaW5nIHRoZSBjbG9jayBub3RpZmllciBiZWxvdz8KPiA+PiBXZSB1c2Ug
-dGhhdCBhcHByb2FjaCB3aXRoIHRoZSBNYWxpIEdQVSBjbG9jayBvbiBvdGhlciBTb0NzLCBzZWUg
-Zm9yCj4gPj4gZXhhbXBsZSBjb21taXQgOGRhZWFlYTk5Y2FhICgiY2xrOiBtZXNvbjogbWVzb244
-YjogbWFrZSB0aGUgQ0NGIHVzZQo+ID4+IHRoZSBnbGl0Y2gtZnJlZSBtYWxpIG11eCIpLgo+ID4+
-IEl0IG1heSBkaWZmZXIgZnJvbSB3aGF0IEFtbG9naWMgZG9lcyBpbiB0aGVpciBCU1AsCj4gPgo+
-ID4gQW1sb2dpYyBpbiB0aGVpciBCU1AgdGFrZXMgYSBkaWZmZXJlbnQgYXBwcm9hY2gsIHdoaWNo
-IGlzIHNsaWdodGx5Cj4gPiBkaWZmZXJlbnQgZnJvbSBtaW5lLiBUaGV5IGNsZXZlcmx5IGNoYW5n
-ZSB0aGUgcGFyZW50IG9mIGNwdV9jbGsgZGlyZWN0bHkKPiA+IGJ5IGZvcmtpbmcgdGhlIGNwdWZy
-ZXEgZHJpdmVyIHRvIGEgY3VzdG9tIHZlcnNpb24uIEkgbXVzdCBhZG1pdCwgaXQncwo+ID4gcXVp
-dGUgYW4gImludGVyZXN0aW5nIGFuZCBhbWF6aW5nIiBpZGVhIDopIGJ1dCBpdCdzIG5vdCBhcmNo
-aXRlY3R1cmFsbHkKPiA+IGNvcnJlY3QgdG90YWxseS4KPiAKPiBJIGRpc2FncmVlLiBNYXJ0aW4n
-cyBzdWdnZXN0aW9uIGlzIGNvcnJlY3QgZm9yIHRoZSBmc2VsIHBhcnQgd2hpY2ggaXMKPiBzeW1l
-dHJpYy4KPiAKCkl0IHNlZW1zIHRoYXQgSSBkaWRuJ3QgZnVsbHkgdW5kZXJzdGFuZCBNYXJ0aW4n
-cyBzdWdnZXN0aW9uLiBJIHdhcwpjb25mdXNlZCBieSB0aGUgYWR2aWNlIHRvIHJlbW92ZSB0aGUg
-bm90aWZpZXIgYmxvY2sgYW5kIHRyaWVkIHRvIGV4cGxhaW4Kd2h5IGl0J3Mgbm90IHBvc3NpYmxl
-LiBIb3dldmVyLCBJIGJlbGlldmUgaXQgaXMgcmVhc29uYWJsZSB0byBwcm90ZWN0CnRoZSBjcHVf
-ZnNlbFggZnJvbSByYXRlIHByb3BhZ2F0aW9uLCBiZWNhdXNlIGl0IGlzIHN5bW1ldHJpYywgYXMg
-eW91Cm1lbnRpb25lZC4KCj4gPgo+ID4+IGJ1dCBJIGRvbid0IHRoaW5rCj4gPj4gdGhhdCB0aGVy
-ZSdzIGFueSBoYXJtIChpZiBpdCB3b3JrcyBpbiBnZW5lcmFsKSBiZWNhdXNlIENDRiAoY29tbW9u
-Cj4gPj4gY2xvY2sgZnJhbWV3b3JrKSB3aWxsIHNldCBhbGwgY2xvY2tzIGluIHRoZSAiaW5hY3Rp
-dmUiIHRyZWUgYW5kIHRoZW4KPiA+PiBhcyBhIGxhc3Qgc3RlcCBqdXN0IGNoYW5nZSB0aGUgbXV4
-ICgmY3B1X2ZjbGsuaHcpLiBTbyBhdCBubyBwb2ludCBpbgo+ID4+IHRpbWUgd2lsbCB3ZSBnZXQg
-YW55IG90aGVyIHJhdGUgdGhhbiBhKSB0aGUgb3JpZ2luYWwgQ1BVIGNsb2NrIHJhdGUKPiA+PiBi
-ZWZvcmUgdGhlIHJhdGUgY2hhbmdlIGIpIHRoZSBuZXcgZGVzaXJlZCBDUFUgY2xvY2sgcmF0ZS4g
-VGhpcyBpcwo+ID4+IGJlY2F1c2Ugd2UgaGF2ZSB0d28gc3ltbWV0cmljIGNsb2NrIHRyZWVzLgo+
-ID4KPiA+IE5vdywgbGV0J3MgZGl2ZSBpbnRvIHRoZSBzcGVjaWZpY3Mgb2YgdGhlIGlzc3VlIHdl
-J3JlIGZhY2luZy4gSSd2ZQo+ID4gZXhhbWluZWQgdGhlIENMS19TRVRfUkFURV9HQVRFIGZsYWcs
-IHdoaWNoLCB0byBteSB1bmRlcnN0YW5kaW5nLCBibG9ja3MKPiA+IHJhdGUgY2hhbmdlcyBmb3Ig
-dGhlIGVudGlyZSBjbG9jayBjaGFpbi4gSG93ZXZlciwgaW4gdGhpcyBwYXJ0aWN1bGFyCj4gPiBz
-aXR1YXRpb24sIGl0IGRvZXNuJ3QgcHJvdmlkZSB0aGUgc29sdXRpb24gd2UgbmVlZC4KPiA+Cj4g
-PiBIZXJlJ3MgdGhlIHByb2JsZW0gd2UncmUgZGVhbGluZyB3aXRoOgo+ID4KPiA+IDEpIFRoZSBD
-UFUgY2xvY2sgY2FuIGhhdmUgdGhlIGZvbGxvd2luZyBmcmVxdWVuY3kgcG9pbnRzOgo+ID4KPiA+
-ICAgYXZhaWxhYmxlIGZyZXF1ZW5jeSBzdGVwczogIDEyOCBNSHosIDI1NiBNSHosIDUxMiBNSHos
-IDc2OCBNSHosIDEuMDEgR0h6LCAxLjIwIEdIego+ID4KPiA+IFdoZW4gd2UgcnVuIHRoZSBjcHVw
-b3dlciwgd2UgZ2V0IHRoZSBmb2xsb3dpbmcgaW5mb3JtYXRpb246Cj4gPiAjIGNwdXBvd2VyIC1j
-IDAsMSBmcmVxdWVuY3ktaW5mbwo+ID4gYW5hbHl6aW5nIENQVSAwOgo+ID4gICBkcml2ZXI6IGNw
-dWZyZXEtZHQKPiA+ICAgQ1BVcyB3aGljaCBydW4gYXQgdGhlIHNhbWUgaGFyZHdhcmUgZnJlcXVl
-bmN5OiAwIDEKPiA+ICAgQ1BVcyB3aGljaCBuZWVkIHRvIGhhdmUgdGhlaXIgZnJlcXVlbmN5IGNv
-b3JkaW5hdGVkIGJ5IHNvZnR3YXJlOiAwIDEKPiA+ICAgbWF4aW11bSB0cmFuc2l0aW9uIGxhdGVu
-Y3k6IDUwLjAgdXMKPiA+ICAgaGFyZHdhcmUgbGltaXRzOiAxMjggTUh6IC0gMS4yMCBHSHoKPiA+
-ICAgYXZhaWxhYmxlIGZyZXF1ZW5jeSBzdGVwczogIDEyOCBNSHosIDI1NiBNSHosIDUxMiBNSHos
-IDc2OCBNSHosIDEuMDEgR0h6LCAxLjIwIEdIego+ID4gICBhdmFpbGFibGUgY3B1ZnJlcSBnb3Zl
-cm5vcnM6IGNvbnNlcnZhdGl2ZSBvbmRlbWFuZCB1c2Vyc3BhY2UgcGVyZm9ybWFuY2Ugc2NoZWR1
-dGlsCj4gPiAgIGN1cnJlbnQgcG9saWN5OiBmcmVxdWVuY3kgc2hvdWxkIGJlIHdpdGhpbiAxMjgg
-TUh6IGFuZCAxMjggTUh6Lgo+ID4gICAgICAgICAgICAgICAgICAgVGhlIGdvdmVybm9yICJzY2hl
-ZHV0aWwiIG1heSBkZWNpZGUgd2hpY2ggc3BlZWQgdG8gdXNlCj4gPiAgICAgICAgICAgICAgICAg
-ICB3aXRoaW4gdGhpcyByYW5nZS4KPiA+ICAgY3VycmVudCBDUFUgZnJlcXVlbmN5OiAxMjggTUh6
-IChhc3NlcnRlZCBieSBjYWxsIHRvIGhhcmR3YXJlKQo+ID4gYW5hbHl6aW5nIENQVSAxOgo+ID4g
-ICBkcml2ZXI6IGNwdWZyZXEtZHQKPiA+ICAgQ1BVcyB3aGljaCBydW4gYXQgdGhlIHNhbWUgaGFy
-ZHdhcmUgZnJlcXVlbmN5OiAwIDEKPiA+ICAgQ1BVcyB3aGljaCBuZWVkIHRvIGhhdmUgdGhlaXIg
-ZnJlcXVlbmN5IGNvb3JkaW5hdGVkIGJ5IHNvZnR3YXJlOiAwIDEKPiA+ICAgbWF4aW11bSB0cmFu
-c2l0aW9uIGxhdGVuY3k6IDUwLjAgdXMKPiA+ICAgaGFyZHdhcmUgbGltaXRzOiAxMjggTUh6IC0g
-MS4yMCBHSHoKPiA+ICAgYXZhaWxhYmxlIGZyZXF1ZW5jeSBzdGVwczogIDEyOCBNSHosIDI1NiBN
-SHosIDUxMiBNSHosIDc2OCBNSHosIDEuMDEgR0h6LCAxLjIwIEdIego+ID4gICBhdmFpbGFibGUg
-Y3B1ZnJlcSBnb3Zlcm5vcnM6IGNvbnNlcnZhdGl2ZSBvbmRlbWFuZCB1c2Vyc3BhY2UgcGVyZm9y
-bWFuY2Ugc2NoZWR1dGlsCj4gPiAgIGN1cnJlbnQgcG9saWN5OiBmcmVxdWVuY3kgc2hvdWxkIGJl
-IHdpdGhpbiAxMjggTUh6IGFuZCAxMjggTUh6Lgo+ID4gICAgICAgICAgICAgICAgICAgVGhlIGdv
-dmVybm9yICJzY2hlZHV0aWwiIG1heSBkZWNpZGUgd2hpY2ggc3BlZWQgdG8gdXNlCj4gPiAgICAg
-ICAgICAgICAgICAgICB3aXRoaW4gdGhpcyByYW5nZS4KPiA+ICAgY3VycmVudCBDUFUgZnJlcXVl
-bmN5OiAxMjggTUh6IChhc3NlcnRlZCBieSBjYWxsIHRvIGhhcmR3YXJlKQo+ID4KPiA+IDIpIEZv
-ciB0aGUgZnJlcXVlbmN5IHBvaW50cyAxMjggTUh6LCAyNTYgTUh6LCBhbmQgNTEyIE1IeiwgdGhl
-IENQVSBmaXhlZAo+ID4gY2xvY2sgc2hvdWxkIGJlIHVzZWQuCj4gCj4gQXBwYXJlbnRseSwgeW91
-IGFyZSByZWx5aW5nIG9uIHRoZSBTWVMgUExMIGxvd2VzdCBwb3NzaWJsZSByYXRlIHRvCj4gZW5m
-b3JlIHRoaXMgY29udHJhaW50LCB3aGljaCBJIHN1cHBvc2UgaXMgMjQgKiAzMiA9IDc2OE1Iei4g
-SXQgd291bGQgYmUKPiBuaWNlIHRvIGNsZWFybHkgc2F5IHNvLgo+IAoKQmFzZWQgb24gbXkgdW5k
-ZXJzdGFuZGluZywgdGhlIG1pbmltdW0gZnJlcXVlbmN5IHRoYXQgc3lzX3BsbCBjYW4KcHJvdmlk
-ZSBpcyBub3QgcmVsZXZhbnQuIFRoZSBDUFUgZml4ZWQgY2xvY2sgaXMgY29uc2lkZXJlZCBhICJz
-YWZldHkiCmNsb2NrLCBhbmQgSSBjYW4gY29uZmlkZW50bHkgY29ubmVjdCB0aGUgY3B1X2NsayBw
-YXJlbnQgdG8gdGhhdCBzdGFibGUKY2xvY2sgd2l0aG91dCBhbnkgaXNzdWVzLiBDQ0Ygd2lsbCBk
-ZWNpZGUgd2hpY2ggcGFyZW50IHdpbGwgYmUgdXNlZCBpbgp0aGUgZW5kIG9mIHJhdGUgY2hhbmdp
-bmcgcHJvY2Vzcy4KCj4gPiBGb3J0dW5hdGVseSwgd2UgZG9uJ3QgZW5jb3VudGVyIGFueSBmcmVl
-emUKPiA+IHByb2JsZW1zIHdoZW4gd2UgYXR0ZW1wdCB0byBjaGFuZ2UgaXRzIHJhdGUgYXQgdGhl
-c2UgZnJlcXVlbmNpZXMuCj4gCj4gVGhhdCBkb2VzIG5vdCBzb3VuZCB2ZXJ5IHNvbGlkIC4uLgo+
-IAoKV2h5PyBQZXIgbXkgdW5kZXJzdGFuZGluZywgQ1BVIGZpeGVkIGNsb2NrIGd1YXJhbnRlZXMg
-dGhpcyBiZWhhdmlvdXIuCgo+ID4KPiA+IDMpIEhvd2V2ZXIsIGZvciB0aGUgZnJlcXVlbmN5IHBv
-aW50cyA3NjggTUh6LCAxLjAxIEdIeiwgYW5kIDEuMjAgR0h6LAo+ID4gdGhlIHN5c19wbGwgaXMg
-dXNlZCBhcyB0aGUgY2xvY2sgc291cmNlIGJlY2F1c2UgaXQncyBhIGZhc3RlciBvcHRpb24uCj4g
-PiBOb3csIGxldCdzIGltYWdpbmUgdGhhdCB3ZSB3YW50IHRvIGNoYW5nZSB0aGUgQ1BVIGNsb2Nr
-IGZyb20gNzY4IE1IeiB0bwo+ID4gMS4wMSBHSHouIFVuZm9ydHVuYXRlbHksIGl0J3Mgbm90IHBv
-c3NpYmxlIGR1ZSB0byB0aGUgYnJva2VuIHN5c19wbGwsCj4gPiBhbmQgYW55IGV4ZWN1dGlvbiBh
-dHRlbXB0cyB3aWxsIHJlc3VsdCBpbiBhIGhhbmcuCj4gCj4gLi4uIEJlY2F1c2UgUExMIG5lZWRz
-IHRvIHJlbG9jaywgaXQgaXMgZ29pbmcgdG8gYmUgb2ZmIGZvciBhIHdoaWxlLiBUaGF0Cj4gaXMg
-bm90ICJicm9rZW4iLCB1bmxlc3MgdGhlcmUgaXMgc29tZXRoaW5nIGVsc2UgPwo+IAoKU29ycnkg
-Zm9yIHdyb25nIHRlcm1pbm9sb2d5LiBJIG1lYW50IHRoYXQgc3lzX3BsbCBjYW5ub3QgYmUgdXNl
-ZCBhcyBhCmNsb2NrIHNvdXJjZSAoY2xvY2sgcGFyZW50KSB3aGlsZSB3ZSBhcmUgY2hhbmdpbmcg
-aXRzIHJhdGUuCgo+ID4KPiA+IDQpIEFzIHlvdSBjYW4gb2JzZXJ2ZSwgaW4gdGhpcyBjYXNlLCB3
-ZSBhY3R1YWxseSBkb24ndCBuZWVkIHRvIGxvY2sgdGhlCj4gPiByYXRlIGZvciB0aGUgc3lzX3Bs
-bCBjaGFpbi4KPiAKPiBJbiB3aGljaCBjYXNlID8gSSdtIGxvc3QuCj4gCgpJbiB0aGUgY2FzZSBm
-b3Igd2hpY2ggbm90aWZpZXIgYmxvY2sgd2FzIGFwcGxpZWQgLSBjcHVfY2xrIGFuZCBzeXNfcGxs
-CnJhdGUgcHJvcGFnYXRpb24uCgo+ID4gV2Ugd2FudCB0byBjaGFuZ2UgdGhlIHJhdGUgaW5zdGVh
-ZC4KPiAKPiAuLi4gSG93IGFyZSB5b3UgZ29pbmcgdG8gZG8gdGhhdCB3aXRob3V0IHJlbG9ja2lu
-ZyB0aGUgUExMID8KPiAKCkknbSBhZnJhaWQsIHRoaXMgaXMgdGVybWlub2xvZ3kgbWlzcyBmcm9t
-IG15IHNpZGUgYWdhaW4uIEJ5ICdzeXNfcGxsCmxvY2snIEkgbWVhbiByYXRlIGxvY2sgdXNpbmcg
-Q0xLX1NFVF9SQVRFX0dBVEUuIEkgd2FudCB0byBzYXkgdGhhdCB3ZQpjYW4ndCBwcm9oaWJpdCBy
-YXRlIHByb3BhZ2F0aW9uIG9mIHN5c19wbGwgY2hhaW4sIGJlY2F1c2Ugd2Ugd2FudCB0bwpjaGFu
-Z2UgdGhlIHJhdGUsIHRoaXMgaXMgb3VyIG1haW4gZ29hbC4KCj4gPiBIZW5jZSwKPiA+IEknbSBu
-b3QgYXdhcmUgb2YgYW55IG90aGVyIG1ldGhvZCB0byBhY2hpZXZlIHRoaXMgZXhjZXB0IGJ5IHN3
-aXRjaGluZwo+ID4gdGhlIGNwdV9jbGsgcGFyZW50IHRvIGEgc3RhYmxlIGNsb2NrIHVzaW5nIGNs
-b2NrIG5vdGlmaWVyIGJsb2NrLgo+ID4gSW50ZXJlc3RpbmdseSwgSSd2ZSBub3RpY2VkIGEgc2lt
-aWxhciBhcHByb2FjaCBpbiB0aGUgQ1BVIGNsb2NrIGRyaXZlcnMKPiA+IG9mIFJvY2tjaGlwLCBR
-dWFsY29tbSwgYW5kIE1lZGlhdGVrLgo+IAo+IFRoZXJlIGlzIGFuIGV4YW1wbGUgb2Ygc3lzcGxs
-IG5vdGlmaWVyIGluIHRoZSBnMTIgY2xvY2sgY29udHJvbGxlci4KPiBZb3Ugc2hvdWxkIGhhdmUg
-YSBsb29rIGF0IGl0CgpPa2F5LiBBcyBJIG1lbnRpb25lZCBpbiBhbm90aGVyIGVtYWlsIHJlcGx5
-LCBpbiBvcmRlciB0byBtYWtlIGl0IGhhcHBlbiwKaXQgaXMgcmVxdWlyZWQgdG8gbW92ZSB0aGUg
-c3lzX3BsbCBjbG9jayB0byB0aGUgYTEtY3B1IGRyaXZlci4gSG93ZXZlciwKSSB0aG91Z2h0IHRo
-YXQgdGhpcyBhcHByb2FjaCBtYXkgbm90IGJlIGNvcnJlY3QgZnJvbSBhIGxvZ2ljYWwKcGVyc3Bl
-Y3RpdmUuIEkgd2lsbCB0cnkuCgotLSAKVGhhbmsgeW91LApEbWl0cnkKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBs
-aXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFk
-ZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On Tue, Apr 02, 2024 at 11:00:42AM +0200, Jerome Brunet wrote:
+> 
+> On Fri 29 Mar 2024 at 23:58, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
+> 
+> > The 'syspll' PLL, also known as the system PLL, is a general and
+> > essential PLL responsible for generating the CPU clock frequency.
+> > With its wide-ranging capabilities, it is designed to accommodate
+> > frequencies within the range of 768MHz to 1536MHz.
+> >
+> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> > ---
+> >  drivers/clk/meson/a1-pll.c | 78 ++++++++++++++++++++++++++++++++++++++
+> >  drivers/clk/meson/a1-pll.h |  6 +++
+> >  2 files changed, 84 insertions(+)
+> >
+> > diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
+> > index 60b2e53e7e51..02fd2d325cc6 100644
+> > --- a/drivers/clk/meson/a1-pll.c
+> > +++ b/drivers/clk/meson/a1-pll.c
+> > @@ -138,6 +138,81 @@ static struct clk_regmap hifi_pll = {
+> >  	},
+> >  };
+> >  
+> > +static const struct pll_mult_range sys_pll_mult_range = {
+> > +	.min = 32,
+> > +	.max = 64,
+> > +};
+> > +
+> > +/*
+> > + * We assume that the sys_pll_clk has already been set up by the low-level
+> > + * bootloaders as the main CPU PLL source. Therefore, it is not necessary to
+> > + * run the initialization sequence.
+> > + */
+> 
+> I see no reason to make such assumption.
+> This clock is no read-only, it apparently is able to re-lock so assuming
+> anything from the bootloader is just asking from trouble
+> 
+
+Indeed, I have implemented the following initialization sequence. I have
+dumped the bootloader setup and included it in the definition of my
+sys_pll. However, I have encountered an issue with the enable bit. If I
+leave the enable bit switched on by default, there is a possibility that
+the bootloader selects a fixed CPU clock while the sys_pll should be
+switched off. On the other hand, if I keep the enable bit switched off
+by default, the bootloader might configure the CPU clock to use sys_pll,
+resulting in the execution halting when the initialization sequence is
+run. This situation has led me to assume that we should place our trust
+in the bootloader setup.
+
+If you believe it is necessary to include the initialization sequence, I
+can prepare it with the sys_pll enabled by default.
+
+> > +static struct clk_regmap sys_pll = {
+> > +	.data = &(struct meson_clk_pll_data){
+> > +		.en = {
+> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
+> > +			.shift   = 28,
+> > +			.width   = 1,
+> > +		},
+> > +		.m = {
+> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
+> > +			.shift   = 0,
+> > +			.width   = 8,
+> > +		},
+> > +		.n = {
+> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
+> > +			.shift   = 10,
+> > +			.width   = 5,
+> > +		},
+> > +		.frac = {
+> > +			.reg_off = ANACTRL_SYSPLL_CTRL1,
+> > +			.shift   = 0,
+> > +			.width   = 19,
+> > +		},
+> > +		.l = {
+> > +			.reg_off = ANACTRL_SYSPLL_STS,
+> > +			.shift   = 31,
+> > +			.width   = 1,
+> > +		},
+> > +		.current_en = {
+> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
+> > +			.shift   = 26,
+> > +			.width   = 1,
+> > +		},
+> > +		.l_detect = {
+> > +			.reg_off = ANACTRL_SYSPLL_CTRL2,
+> > +			.shift   = 6,
+> > +			.width   = 1,
+> > +		},
+> > +		.range = &sys_pll_mult_range,
+> > +	},
+> > +	.hw.init = &(struct clk_init_data){
+> > +		.name = "sys_pll",
+> > +		.ops = &meson_clk_pll_ops,
+> > +		.parent_names = (const char *[]){ "syspll_in" },
+> > +		.num_parents = 1,
+> > +		/*
+> > +		 * This clock is used as the main CPU PLL source in low-level
+> > +		 * bootloaders, and it is necessary to mark it as critical.
+> > +		 */
+> > +		.flags = CLK_IS_CRITICAL,
+> 
+> No I don't think so. Downstream consumer maybe critical but that one is
+> not, unless it is read-only.
+> 
+> A CPU pll, like on the g12 family, is unlikely to be read-only since the
+> PLL will need to relock to change rates. During this phase, there will
+> be no reate coming from the PLL so the PLL is not critical and you must
+> be able to "park" your CPU an another clock while poking this one
+> 
+
+Initially, I tagged it with CLK_IS_CRITICAL because I observed in the
+kernel start that CCF disables it. However, upon further understanding,
+I realized that this happened due to other reasons. I believe that if I
+provide an init sequence where sys_pll is enabled by default, CCF will
+not disable this clock.
+
+> > +	},
+> > +};
+> > +
+> > +static struct clk_fixed_factor sys_pll_div16 = {
+> > +	.mult = 1,
+> > +	.div = 16,
+> > +	.hw.init = &(struct clk_init_data){
+> > +		.name = "sys_pll_div16",
+> > +		.ops = &clk_fixed_factor_ops,
+> > +		.parent_hws = (const struct clk_hw *[]) {
+> > +			&sys_pll.hw
+> > +		},
+> > +		.num_parents = 1,
+> > +	},
+> > +};
+> > +
+> >  static struct clk_fixed_factor fclk_div2_div = {
+> >  	.mult = 1,
+> >  	.div = 2,
+> > @@ -283,6 +358,8 @@ static struct clk_hw *a1_pll_hw_clks[] = {
+> >  	[CLKID_FCLK_DIV5]	= &fclk_div5.hw,
+> >  	[CLKID_FCLK_DIV7]	= &fclk_div7.hw,
+> >  	[CLKID_HIFI_PLL]	= &hifi_pll.hw,
+> > +	[CLKID_SYS_PLL]		= &sys_pll.hw,
+> > +	[CLKID_SYS_PLL_DIV16]	= &sys_pll_div16.hw,
+> >  };
+> >  
+> >  static struct clk_regmap *const a1_pll_regmaps[] = {
+> > @@ -293,6 +370,7 @@ static struct clk_regmap *const a1_pll_regmaps[] = {
+> >  	&fclk_div5,
+> >  	&fclk_div7,
+> >  	&hifi_pll,
+> > +	&sys_pll,
+> >  };
+> >  
+> >  static struct regmap_config a1_pll_regmap_cfg = {
+> > diff --git a/drivers/clk/meson/a1-pll.h b/drivers/clk/meson/a1-pll.h
+> > index 4be17b2bf383..666d9b2137e9 100644
+> > --- a/drivers/clk/meson/a1-pll.h
+> > +++ b/drivers/clk/meson/a1-pll.h
+> > @@ -18,6 +18,12 @@
+> >  #define ANACTRL_FIXPLL_CTRL0	0x0
+> >  #define ANACTRL_FIXPLL_CTRL1	0x4
+> >  #define ANACTRL_FIXPLL_STS	0x14
+> > +#define ANACTRL_SYSPLL_CTRL0	0x80
+> > +#define ANACTRL_SYSPLL_CTRL1	0x84
+> > +#define ANACTRL_SYSPLL_CTRL2	0x88
+> > +#define ANACTRL_SYSPLL_CTRL3	0x8c
+> > +#define ANACTRL_SYSPLL_CTRL4	0x90
+> > +#define ANACTRL_SYSPLL_STS	0x94
+> >  #define ANACTRL_HIFIPLL_CTRL0	0xc0
+> >  #define ANACTRL_HIFIPLL_CTRL1	0xc4
+> >  #define ANACTRL_HIFIPLL_CTRL2	0xc8
+
+-- 
+Thank you,
+Dmitry
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
