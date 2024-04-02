@@ -4,88 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2DE8CD1284
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Apr 2024 09:35:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C5B9CD1284
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Apr 2024 09:56:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
 	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=31uqyehCi+VcMqUyGZDSJC3xYfgUYm/sdsTQ2ppbuvc=; b=lGC+dfQK/z1pQH
-	MgiPTPpz37t8acwW+rl88dVJPKQ4sMz1Ww0e9PvZlXOT8Je0bb2n8SAvhp34JUvApH1Pq7c1iwvE+
-	9UmKSCZHLAsIOTwLsZOW5U6jJZMmVQNllJ9LHN97z5CSHzqoulbyroiB6me2gIDza6w5Ohm7rtaVi
-	3rNqB3D6HgyYoCM4+Tgv42/2+tJVjzAxBLj/ngDTFLVhWgxTWkBYsNj+483GL7aSm8U8zsoNZvRbJ
-	lDx5u+88EwW2NVVRvBLk55026EYfEMZ6WtpCej0EFtt0ZNOVdsySTtQK5ZCqvLHl8ZNd2/Xm4eWn2
-	bM5kZbnnspaa5BEHrLgw==;
+	List-Owner; bh=sRypC28uA/xp0qM2ALtKSa1WLcIJXinUqsWUdMPp7Eo=; b=XxHYSH40rp6b1y
+	UzmdekYCwNRfVo/4ldyAAj+AhVIbJBqK1x/3HG805E3eI67y0UGcA5QSYaN1axdiN4PQ61InWODgW
+	1AfHMv/1Yvsmgz4ruhmhYO98UlWsZnisF/bp/2FUEXy5WLL413d3tOEKiRDLZUm7F35RnAaz0geUM
+	VcaMYDT5YC1d9An8n9/s31TmPpa5a0Lq9hYdGmKxW7h4sjQA3XHV1rmwiYMe8N3viPLAeyFSPhlXz
+	hbF8KZsi4siIaTG4pFRmHa7nWMLfl6S9L5CUnNAhpStYYRiYKgqSQGILCsOc0btFg2brDNHAQb0Vu
+	WkmoRdFM6yVBhrHA8aBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rraYU-0000000ASdx-0YkI;
-	Tue, 02 Apr 2024 09:35:46 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1rrasB-0000000AWaY-4C6e;
+	Tue, 02 Apr 2024 09:56:08 +0000
+Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rraYQ-0000000AScz-2txw
+	id 1rras5-0000000AWWX-1T15
 	for linux-amlogic@lists.infradead.org;
-	Tue, 02 Apr 2024 09:35:44 +0000
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-3436ffe05c9so189686f8f.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 02 Apr 2024 02:35:41 -0700 (PDT)
+	Tue, 02 Apr 2024 09:56:06 +0000
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2d68c6a4630so51631641fa.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 02 Apr 2024 02:55:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712050540; x=1712655340; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:cc:to:from:user-agent:references:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t55JrH3SjWQfNiNN3GlWq9T+unk5wlRC/u7IUzNfWDo=;
-        b=Qka1XS5LPsnMAKRB93vWxLc6w6CAfAzje4+FjAOxAzVfwaXVNQ6f12/eWcqs2zExAr
-         FSfy7QSEe2IWzcS5vuMXoQIwBCqjI+Z+TAReW6UUMXyHpl1DQvLBNMiFsTNcqm8DMSoi
-         EV6RbY7sLCOdHQqeZHSalRiywOLBC0dRO6sVMMSqLluEgR2XTA7ios0UYnf0jREc3JBk
-         8xtXw1aoynzRL8ueSV6gtDHawhmZ6e3T2D4oJ3Cz4FruHstCBdnshLmEWG0pG0Toama0
-         nK8lx6egG3jf5+tuTCEq0lX2/YzO9MhqlvXIV2z9MgNM1Vhv34ln4u3KYL+3hXanbsRO
-         XRCw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712051758; x=1712656558; darn=lists.infradead.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=teUovhhU7jYUUy+FMKkZRNnju8wwgimsa3+RBtigHlI=;
+        b=YLs+INx5b1bDdWeyMiQpLv610oL20uLKVkfK5Fu9MaVoqFRoE2Z69DImoYPjsdK1jq
+         29c1vd9StrJdsm/7P/PvZdwS9JOB5na0ramNXq51w/cK3yAuIUF3cZ2TKZ3Ltp2+9kmZ
+         QouZAz7Txbrno9KtXyzvV7vWdnn6MPh/ceEZBIGaQEcSrWGn69G0uA5kfPSGguZnvOms
+         UWnRnyd2AEXM6l7IFRODbX/mZJc+aGxTbnJjtumHvSbPCbDSzMECgF07OjfLp5K9qZBI
+         SCEqR7LdgkhH0q/4GRekKi0BcFxm6N9T5MG4La9K9LjtVlros+RoeqLRv+OM6pJspRDP
+         VqOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712050540; x=1712655340;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:cc:to:from:user-agent:references:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=t55JrH3SjWQfNiNN3GlWq9T+unk5wlRC/u7IUzNfWDo=;
-        b=DTB9+Kw7RuS98WQSHLxhoeEAZZnrTeDH6a2/Sz9Lg18Jwi3Se8082e9ARj+shS8WDY
-         u+OheYiY834BB/rFjAZQQkYtIW/QK0Lg89dgwCflQoNtZ6QxxYdqFms2/HfjBmnGENuV
-         u9glIH/Lm8j4aN/qGBDBoJfvkcY9YggEfLzc1u4G29hyWgNSekNWL5vQmX46uO0qzs1T
-         yEEjWIbbjnhFRFdSQaSgSrDwxGMBuN6saOiXf23xph2eHvr8VxaPwuxW3HZ8bDg1mLPd
-         C16y+FJZV/zsk6GBHey9NdDTlAdH1bIsLaPNIwazPulg15HBawLuCGRSYoh8QBhrf4sE
-         zgWA==
-X-Forwarded-Encrypted: i=1; AJvYcCXOEs8BQ618KPCgegT+ww4gMEPmCFU75A+03HCt1e45cJHe8g4oSjIa6G+FHEzEYHQTeKJG+wB9uEOocDZTtM1h78pn1eIecyQgNhuc6Zw3frQ=
-X-Gm-Message-State: AOJu0Yw9BffI5kZIhOYJLFN+vIm0zL/NJxRxCQQAIuAea4x7PYQ8jba9
-	uQiMwxDfdVRRSIPU/MjPyo5cPvVBr+Kh7h24qlCdo3pgwm2+kz52a4B3alc8WUU=
-X-Google-Smtp-Source: AGHT+IHhm1TN2m/8h7xq9XVC6c2eoeVECv02Fp+GF4LtMIozj3PFQdmk7yKpQKnxTnferlbKIze4bQ==
-X-Received: by 2002:a5d:4c86:0:b0:343:79b4:5371 with SMTP id z6-20020a5d4c86000000b0034379b45371mr89238wrs.69.1712050534961;
-        Tue, 02 Apr 2024 02:35:34 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1712051758; x=1712656558;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=teUovhhU7jYUUy+FMKkZRNnju8wwgimsa3+RBtigHlI=;
+        b=du7Pe5yQW3TjWGgOTEFc36zYbvR4fyKr4qjfgAF8gNpK1T5KIUudqmy9Oy3sPIN60X
+         F8gVVfbZXngOvGondlgdXXOAVewzte2fEjHS7vuKVSSN2XVaDcPFxCIJ8lChpnvDOk/H
+         R6UeQfH95I4lkG7JBp/h+ODSH1dWv9pnpiTzrrb5Zyh8YrWapQ1ftvkqr9eoJx/ViZvH
+         UCrj6ruMrzu6Sk5BmGi3JffbTTFcRJSpmN4kV7H7kgP/ux+5/frvLyqgCozCIYi+Y8Da
+         ab7xLOq9VQuQsVAbFco3rt/xQWaF6pZuCxOj1dj5WgLnC8CVwTs86qIY4ffnSC5Mxf0+
+         PDuA==
+X-Forwarded-Encrypted: i=1; AJvYcCWZP0a4wrjNjj2ZAU3FaLwjPIoruu481Xv+3aoxww9KNjRFKUFJta1I0FIGeSifh2qHEjs5NRhvWwDf2X/0j1RHjygT7GEo1jd3AqYfYmNu3+Y=
+X-Gm-Message-State: AOJu0YyRZ8HxAkgh0PgJOs/CSUgKrOjpC7bCLdn9KifiBENB/OlwHpaL
+	uilALajDliAVg58CuN/ohB5JgI3hZj5BTLJRUeRq88cSih2jnVj/6jYJ4x9Xli0=
+X-Google-Smtp-Source: AGHT+IFQ5H9jjQaRDQfxnu5M7E3EpzbSkR0hU/BZVBKm4eVRViJzbyBhUMfkzGcNYsqZCD+4X62LGA==
+X-Received: by 2002:a05:651c:ca:b0:2d8:8e5:58a4 with SMTP id 10-20020a05651c00ca00b002d808e558a4mr5816497ljr.49.1712051758290;
+        Tue, 02 Apr 2024 02:55:58 -0700 (PDT)
 Received: from localhost ([2a01:e0a:3c5:5fb1:db22:d5c9:a527:a4cf])
-        by smtp.gmail.com with ESMTPSA id dn13-20020a0560000c0d00b00341b7d5054bsm13754980wrb.72.2024.04.02.02.35.34
+        by smtp.gmail.com with ESMTPSA id q15-20020a7bce8f000000b0041547cdfbc7sm9044730wmj.0.2024.04.02.02.55.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Apr 2024 02:35:34 -0700 (PDT)
+        Tue, 02 Apr 2024 02:55:57 -0700 (PDT)
 References: <20240329205904.25002-1-ddrokosov@salutedevices.com>
  <20240329205904.25002-7-ddrokosov@salutedevices.com>
- <CAFBinCCC5KK-4_w41B-+ZJ3zdZckq_EDuAW+Kak2C0Ow8uuD6Q@mail.gmail.com>
- <20240401171237.qoewp2pgcdrqvc3e@CAB-WSD-L081021>
 User-agent: mu4e 1.10.8; emacs 29.2
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- neil.armstrong@linaro.org, jbrunet@baylibre.com, mturquette@baylibre.com,
- sboyd@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- khilman@baylibre.com, kernel@salutedevices.com, rockosov@gmail.com,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+Cc: neil.armstrong@linaro.org, jbrunet@baylibre.com,
+ mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+ martin.blumenstingl@googlemail.com, kernel@salutedevices.com,
+ rockosov@gmail.com, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Subject: Re: [PATCH v1 6/6] clk: meson: a1: add Amlogic A1 CPU clock
  controller driver
-Date: Tue, 02 Apr 2024 11:27:24 +0200
-In-reply-to: <20240401171237.qoewp2pgcdrqvc3e@CAB-WSD-L081021>
-Message-ID: <1jzfuchztl.fsf@starbuckisacylon.baylibre.com>
+Date: Tue, 02 Apr 2024 11:35:49 +0200
+In-reply-to: <20240329205904.25002-7-ddrokosov@salutedevices.com>
+Message-ID: <1jv850hyvm.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240402_023542_740873_949A0D0D 
-X-CRM114-Status: GOOD (  39.47  )
+X-CRM114-CacheID: sfid-20240402_025601_539691_35C5EF3E 
+X-CRM114-Status: GOOD (  33.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,107 +94,452 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Ck9uIE1vbiAwMSBBcHIgMjAyNCBhdCAyMDoxMiwgRG1pdHJ5IFJva29zb3YgPGRkcm9rb3NvdkBz
-YWx1dGVkZXZpY2VzLmNvbT4gd3JvdGU6Cgo+IEhlbGxvIE1hcnRpbiwKPgo+IFRoYW5rIHlvdSBm
-b3IgcXVpY2sgcmVzcG9uc2UuIFBsZWFzZSBmaW5kIG15IHRob3VnaHRzIGJlbG93Lgo+Cj4gT24g
-U3VuLCBNYXIgMzEsIDIwMjQgYXQgMTE6NDA6MTNQTSArMDIwMCwgTWFydGluIEJsdW1lbnN0aW5n
-bCB3cm90ZToKPj4gSGkgRG1pdHJ5LAo+PiAKPj4gT24gRnJpLCBNYXIgMjksIDIwMjQgYXQgOTo1
-OeKAr1BNIERtaXRyeSBSb2tvc292Cj4+IDxkZHJva29zb3ZAc2FsdXRlZGV2aWNlcy5jb20+IHdy
-b3RlOgo+PiBbLi4uXQo+PiA+ICtzdGF0aWMgc3RydWN0IGNsa19yZWdtYXAgY3B1X2ZjbGsgPSB7
-Cj4+ID4gKyAgICAgICAuZGF0YSA9ICYoc3RydWN0IGNsa19yZWdtYXBfbXV4X2RhdGEpIHsKPj4g
-PiArICAgICAgICAgICAgICAgLm9mZnNldCA9IENQVUNUUkxfQ0xLX0NUUkwwLAo+PiA+ICsgICAg
-ICAgICAgICAgICAubWFzayA9IDB4MSwKPj4gPiArICAgICAgICAgICAgICAgLnNoaWZ0ID0gMTAs
-Cj4+ID4gKyAgICAgICB9LAo+PiA+ICsgICAgICAgLmh3LmluaXQgPSAmKHN0cnVjdCBjbGtfaW5p
-dF9kYXRhKSB7Cj4+ID4gKyAgICAgICAgICAgICAgIC5uYW1lID0gImNwdV9mY2xrIiwKPj4gPiAr
-ICAgICAgICAgICAgICAgLm9wcyA9ICZjbGtfcmVnbWFwX211eF9vcHMsCj4+ID4gKyAgICAgICAg
-ICAgICAgIC5wYXJlbnRfaHdzID0gKGNvbnN0IHN0cnVjdCBjbGtfaHcgKltdKSB7Cj4+ID4gKyAg
-ICAgICAgICAgICAgICAgICAgICAgJmNwdV9mc2VsMC5odywKPj4gPiArICAgICAgICAgICAgICAg
-ICAgICAgICAmY3B1X2ZzZWwxLmh3LAo+PiBIYXZlIHlvdSBjb25zaWRlcmVkIHRoZSBDTEtfU0VU
-X1JBVEVfR0FURSBmbGFnIGZvciAmY3B1X2ZzZWwwLmh3IGFuZAo+PiAmY3B1X2ZzZWwxLmh3IGFu
-ZCB0aGVuIGRyb3BwaW5nIHRoZSBjbG9jayBub3RpZmllciBiZWxvdz8KPj4gV2UgdXNlIHRoYXQg
-YXBwcm9hY2ggd2l0aCB0aGUgTWFsaSBHUFUgY2xvY2sgb24gb3RoZXIgU29Dcywgc2VlIGZvcgo+
-PiBleGFtcGxlIGNvbW1pdCA4ZGFlYWVhOTljYWEgKCJjbGs6IG1lc29uOiBtZXNvbjhiOiBtYWtl
-IHRoZSBDQ0YgdXNlCj4+IHRoZSBnbGl0Y2gtZnJlZSBtYWxpIG11eCIpLgo+PiBJdCBtYXkgZGlm
-ZmVyIGZyb20gd2hhdCBBbWxvZ2ljIGRvZXMgaW4gdGhlaXIgQlNQLAo+Cj4gQW1sb2dpYyBpbiB0
-aGVpciBCU1AgdGFrZXMgYSBkaWZmZXJlbnQgYXBwcm9hY2gsIHdoaWNoIGlzIHNsaWdodGx5Cj4g
-ZGlmZmVyZW50IGZyb20gbWluZS4gVGhleSBjbGV2ZXJseSBjaGFuZ2UgdGhlIHBhcmVudCBvZiBj
-cHVfY2xrIGRpcmVjdGx5Cj4gYnkgZm9ya2luZyB0aGUgY3B1ZnJlcSBkcml2ZXIgdG8gYSBjdXN0
-b20gdmVyc2lvbi4gSSBtdXN0IGFkbWl0LCBpdCdzCj4gcXVpdGUgYW4gImludGVyZXN0aW5nIGFu
-ZCBhbWF6aW5nIiBpZGVhIDopIGJ1dCBpdCdzIG5vdCBhcmNoaXRlY3R1cmFsbHkKPiBjb3JyZWN0
-IHRvdGFsbHkuCgpJIGRpc2FncmVlLiBNYXJ0aW4ncyBzdWdnZXN0aW9uIGlzIGNvcnJlY3QgZm9y
-IHRoZSBmc2VsIHBhcnQgd2hpY2ggaXMKc3ltZXRyaWMuCgo+Cj4+IGJ1dCBJIGRvbid0IHRoaW5r
-Cj4+IHRoYXQgdGhlcmUncyBhbnkgaGFybSAoaWYgaXQgd29ya3MgaW4gZ2VuZXJhbCkgYmVjYXVz
-ZSBDQ0YgKGNvbW1vbgo+PiBjbG9jayBmcmFtZXdvcmspIHdpbGwgc2V0IGFsbCBjbG9ja3MgaW4g
-dGhlICJpbmFjdGl2ZSIgdHJlZSBhbmQgdGhlbgo+PiBhcyBhIGxhc3Qgc3RlcCBqdXN0IGNoYW5n
-ZSB0aGUgbXV4ICgmY3B1X2ZjbGsuaHcpLiBTbyBhdCBubyBwb2ludCBpbgo+PiB0aW1lIHdpbGwg
-d2UgZ2V0IGFueSBvdGhlciByYXRlIHRoYW4gYSkgdGhlIG9yaWdpbmFsIENQVSBjbG9jayByYXRl
-Cj4+IGJlZm9yZSB0aGUgcmF0ZSBjaGFuZ2UgYikgdGhlIG5ldyBkZXNpcmVkIENQVSBjbG9jayBy
-YXRlLiBUaGlzIGlzCj4+IGJlY2F1c2Ugd2UgaGF2ZSB0d28gc3ltbWV0cmljIGNsb2NrIHRyZWVz
-Lgo+Cj4gTm93LCBsZXQncyBkaXZlIGludG8gdGhlIHNwZWNpZmljcyBvZiB0aGUgaXNzdWUgd2Un
-cmUgZmFjaW5nLiBJJ3ZlCj4gZXhhbWluZWQgdGhlIENMS19TRVRfUkFURV9HQVRFIGZsYWcsIHdo
-aWNoLCB0byBteSB1bmRlcnN0YW5kaW5nLCBibG9ja3MKPiByYXRlIGNoYW5nZXMgZm9yIHRoZSBl
-bnRpcmUgY2xvY2sgY2hhaW4uIEhvd2V2ZXIsIGluIHRoaXMgcGFydGljdWxhcgo+IHNpdHVhdGlv
-biwgaXQgZG9lc24ndCBwcm92aWRlIHRoZSBzb2x1dGlvbiB3ZSBuZWVkLgo+Cj4gSGVyZSdzIHRo
-ZSBwcm9ibGVtIHdlJ3JlIGRlYWxpbmcgd2l0aDoKPgo+IDEpIFRoZSBDUFUgY2xvY2sgY2FuIGhh
-dmUgdGhlIGZvbGxvd2luZyBmcmVxdWVuY3kgcG9pbnRzOgo+Cj4gICBhdmFpbGFibGUgZnJlcXVl
-bmN5IHN0ZXBzOiAgMTI4IE1IeiwgMjU2IE1IeiwgNTEyIE1IeiwgNzY4IE1IeiwgMS4wMSBHSHos
-IDEuMjAgR0h6Cj4KPiBXaGVuIHdlIHJ1biB0aGUgY3B1cG93ZXIsIHdlIGdldCB0aGUgZm9sbG93
-aW5nIGluZm9ybWF0aW9uOgo+ICMgY3B1cG93ZXIgLWMgMCwxIGZyZXF1ZW5jeS1pbmZvCj4gYW5h
-bHl6aW5nIENQVSAwOgo+ICAgZHJpdmVyOiBjcHVmcmVxLWR0Cj4gICBDUFVzIHdoaWNoIHJ1biBh
-dCB0aGUgc2FtZSBoYXJkd2FyZSBmcmVxdWVuY3k6IDAgMQo+ICAgQ1BVcyB3aGljaCBuZWVkIHRv
-IGhhdmUgdGhlaXIgZnJlcXVlbmN5IGNvb3JkaW5hdGVkIGJ5IHNvZnR3YXJlOiAwIDEKPiAgIG1h
-eGltdW0gdHJhbnNpdGlvbiBsYXRlbmN5OiA1MC4wIHVzCj4gICBoYXJkd2FyZSBsaW1pdHM6IDEy
-OCBNSHogLSAxLjIwIEdIego+ICAgYXZhaWxhYmxlIGZyZXF1ZW5jeSBzdGVwczogIDEyOCBNSHos
-IDI1NiBNSHosIDUxMiBNSHosIDc2OCBNSHosIDEuMDEgR0h6LCAxLjIwIEdIego+ICAgYXZhaWxh
-YmxlIGNwdWZyZXEgZ292ZXJub3JzOiBjb25zZXJ2YXRpdmUgb25kZW1hbmQgdXNlcnNwYWNlIHBl
-cmZvcm1hbmNlIHNjaGVkdXRpbAo+ICAgY3VycmVudCBwb2xpY3k6IGZyZXF1ZW5jeSBzaG91bGQg
-YmUgd2l0aGluIDEyOCBNSHogYW5kIDEyOCBNSHouCj4gICAgICAgICAgICAgICAgICAgVGhlIGdv
-dmVybm9yICJzY2hlZHV0aWwiIG1heSBkZWNpZGUgd2hpY2ggc3BlZWQgdG8gdXNlCj4gICAgICAg
-ICAgICAgICAgICAgd2l0aGluIHRoaXMgcmFuZ2UuCj4gICBjdXJyZW50IENQVSBmcmVxdWVuY3k6
-IDEyOCBNSHogKGFzc2VydGVkIGJ5IGNhbGwgdG8gaGFyZHdhcmUpCj4gYW5hbHl6aW5nIENQVSAx
-Ogo+ICAgZHJpdmVyOiBjcHVmcmVxLWR0Cj4gICBDUFVzIHdoaWNoIHJ1biBhdCB0aGUgc2FtZSBo
-YXJkd2FyZSBmcmVxdWVuY3k6IDAgMQo+ICAgQ1BVcyB3aGljaCBuZWVkIHRvIGhhdmUgdGhlaXIg
-ZnJlcXVlbmN5IGNvb3JkaW5hdGVkIGJ5IHNvZnR3YXJlOiAwIDEKPiAgIG1heGltdW0gdHJhbnNp
-dGlvbiBsYXRlbmN5OiA1MC4wIHVzCj4gICBoYXJkd2FyZSBsaW1pdHM6IDEyOCBNSHogLSAxLjIw
-IEdIego+ICAgYXZhaWxhYmxlIGZyZXF1ZW5jeSBzdGVwczogIDEyOCBNSHosIDI1NiBNSHosIDUx
-MiBNSHosIDc2OCBNSHosIDEuMDEgR0h6LCAxLjIwIEdIego+ICAgYXZhaWxhYmxlIGNwdWZyZXEg
-Z292ZXJub3JzOiBjb25zZXJ2YXRpdmUgb25kZW1hbmQgdXNlcnNwYWNlIHBlcmZvcm1hbmNlIHNj
-aGVkdXRpbAo+ICAgY3VycmVudCBwb2xpY3k6IGZyZXF1ZW5jeSBzaG91bGQgYmUgd2l0aGluIDEy
-OCBNSHogYW5kIDEyOCBNSHouCj4gICAgICAgICAgICAgICAgICAgVGhlIGdvdmVybm9yICJzY2hl
-ZHV0aWwiIG1heSBkZWNpZGUgd2hpY2ggc3BlZWQgdG8gdXNlCj4gICAgICAgICAgICAgICAgICAg
-d2l0aGluIHRoaXMgcmFuZ2UuCj4gICBjdXJyZW50IENQVSBmcmVxdWVuY3k6IDEyOCBNSHogKGFz
-c2VydGVkIGJ5IGNhbGwgdG8gaGFyZHdhcmUpCj4KPiAyKSBGb3IgdGhlIGZyZXF1ZW5jeSBwb2lu
-dHMgMTI4IE1IeiwgMjU2IE1IeiwgYW5kIDUxMiBNSHosIHRoZSBDUFUgZml4ZWQKPiBjbG9jayBz
-aG91bGQgYmUgdXNlZC4KCkFwcGFyZW50bHksIHlvdSBhcmUgcmVseWluZyBvbiB0aGUgU1lTIFBM
-TCBsb3dlc3QgcG9zc2libGUgcmF0ZSB0bwplbmZvcmUgdGhpcyBjb250cmFpbnQsIHdoaWNoIEkg
-c3VwcG9zZSBpcyAyNCAqIDMyID0gNzY4TUh6LiBJdCB3b3VsZCBiZQpuaWNlIHRvIGNsZWFybHkg
-c2F5IHNvLgoKPiBGb3J0dW5hdGVseSwgd2UgZG9uJ3QgZW5jb3VudGVyIGFueSBmcmVlemUKPiBw
-cm9ibGVtcyB3aGVuIHdlIGF0dGVtcHQgdG8gY2hhbmdlIGl0cyByYXRlIGF0IHRoZXNlIGZyZXF1
-ZW5jaWVzLgoKVGhhdCBkb2VzIG5vdCBzb3VuZCB2ZXJ5IHNvbGlkIC4uLgoKPgo+IDMpIEhvd2V2
-ZXIsIGZvciB0aGUgZnJlcXVlbmN5IHBvaW50cyA3NjggTUh6LCAxLjAxIEdIeiwgYW5kIDEuMjAg
-R0h6LAo+IHRoZSBzeXNfcGxsIGlzIHVzZWQgYXMgdGhlIGNsb2NrIHNvdXJjZSBiZWNhdXNlIGl0
-J3MgYSBmYXN0ZXIgb3B0aW9uLgo+IE5vdywgbGV0J3MgaW1hZ2luZSB0aGF0IHdlIHdhbnQgdG8g
-Y2hhbmdlIHRoZSBDUFUgY2xvY2sgZnJvbSA3NjggTUh6IHRvCj4gMS4wMSBHSHouIFVuZm9ydHVu
-YXRlbHksIGl0J3Mgbm90IHBvc3NpYmxlIGR1ZSB0byB0aGUgYnJva2VuIHN5c19wbGwsCj4gYW5k
-IGFueSBleGVjdXRpb24gYXR0ZW1wdHMgd2lsbCByZXN1bHQgaW4gYSBoYW5nLgoKLi4uIEJlY2F1
-c2UgUExMIG5lZWRzIHRvIHJlbG9jaywgaXQgaXMgZ29pbmcgdG8gYmUgb2ZmIGZvciBhIHdoaWxl
-LiBUaGF0CmlzIG5vdCAiYnJva2VuIiwgdW5sZXNzIHRoZXJlIGlzIHNvbWV0aGluZyBlbHNlID8K
-Cj4KPiA0KSBBcyB5b3UgY2FuIG9ic2VydmUsIGluIHRoaXMgY2FzZSwgd2UgYWN0dWFsbHkgZG9u
-J3QgbmVlZCB0byBsb2NrIHRoZQo+IHJhdGUgZm9yIHRoZSBzeXNfcGxsIGNoYWluLgoKSW4gd2hp
-Y2ggY2FzZSA/IEknbSBsb3N0LgoKPiBXZSB3YW50IHRvIGNoYW5nZSB0aGUgcmF0ZSBpbnN0ZWFk
-LgoKLi4uIEhvdyBhcmUgeW91IGdvaW5nIHRvIGRvIHRoYXQgd2l0aG91dCByZWxvY2tpbmcgdGhl
-IFBMTCA/Cgo+IEhlbmNlLAo+IEknbSBub3QgYXdhcmUgb2YgYW55IG90aGVyIG1ldGhvZCB0byBh
-Y2hpZXZlIHRoaXMgZXhjZXB0IGJ5IHN3aXRjaGluZwo+IHRoZSBjcHVfY2xrIHBhcmVudCB0byBh
-IHN0YWJsZSBjbG9jayB1c2luZyBjbG9jayBub3RpZmllciBibG9jay4KPiBJbnRlcmVzdGluZ2x5
-LCBJJ3ZlIG5vdGljZWQgYSBzaW1pbGFyIGFwcHJvYWNoIGluIHRoZSBDUFUgY2xvY2sgZHJpdmVy
-cwo+IG9mIFJvY2tjaGlwLCBRdWFsY29tbSwgYW5kIE1lZGlhdGVrLgoKVGhlcmUgaXMgYW4gZXhh
-bXBsZSBvZiBzeXNwbGwgbm90aWZpZXIgaW4gdGhlIGcxMiBjbG9jayBjb250cm9sbGVyLgpZb3Ug
-c2hvdWxkIGhhdmUgYSBsb29rIGF0IGl0CgotLSAKSmVyb21lCgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAps
-aW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+
+On Fri 29 Mar 2024 at 23:58, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
+
+> The CPU clock controller plays a general role in the Amlogic A1 SoC
+> family by generating CPU clocks. As an APB slave module, it offers the
+> capability to inherit the CPU clock from two sources: the internal fixed
+> clock known as 'cpu fixed clock' and the external input provided by the
+> A1 PLL clock controller, referred to as 'syspll'.
+>
+> It is important for the driver to handle cpu_clk rate switching
+> effectively by transitioning to the CPU fixed clock to avoid any
+> potential execution freezes.
+>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> ---
+>  drivers/clk/meson/Kconfig  |  10 ++
+>  drivers/clk/meson/Makefile |   1 +
+>  drivers/clk/meson/a1-cpu.c | 324 +++++++++++++++++++++++++++++++++++++
+>  drivers/clk/meson/a1-cpu.h |  16 ++
+>  4 files changed, 351 insertions(+)
+>  create mode 100644 drivers/clk/meson/a1-cpu.c
+>  create mode 100644 drivers/clk/meson/a1-cpu.h
+>
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index 80c4a18c83d2..148d4495eee3 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -111,6 +111,16 @@ config COMMON_CLK_AXG_AUDIO
+>  	  Support for the audio clock controller on AmLogic A113D devices,
+>  	  aka axg, Say Y if you want audio subsystem to work.
+>  
+> +config COMMON_CLK_A1_CPU
+> +	tristate "Amlogic A1 SoC CPU controller support"
+> +	depends on ARM64
+> +	select COMMON_CLK_MESON_REGMAP
+> +	select COMMON_CLK_MESON_CLKC_UTILS
+> +	help
+> +	  Support for the CPU clock controller on Amlogic A113L based
+> +	  device, A1 SoC Family. Say Y if you want A1 CPU clock controller
+> +	  to work.
+> +
+>  config COMMON_CLK_A1_PLL
+>  	tristate "Amlogic A1 SoC PLL controller support"
+>  	depends on ARM64
+> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+> index 4968fc7ad555..2a06eb0303d6 100644
+> --- a/drivers/clk/meson/Makefile
+> +++ b/drivers/clk/meson/Makefile
+> @@ -18,6 +18,7 @@ obj-$(CONFIG_COMMON_CLK_MESON_AUDIO_RSTC) += meson-audio-rstc.o
+>  
+>  obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
+> +obj-$(CONFIG_COMMON_CLK_A1_CPU) += a1-cpu.o
+>  obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
+>  obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
+>  obj-$(CONFIG_COMMON_CLK_A1_AUDIO) += a1-audio.o
+> diff --git a/drivers/clk/meson/a1-cpu.c b/drivers/clk/meson/a1-cpu.c
+> new file mode 100644
+> index 000000000000..5f5d8ae112e5
+> --- /dev/null
+> +++ b/drivers/clk/meson/a1-cpu.c
+> @@ -0,0 +1,324 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Amlogic A1 SoC family CPU Clock Controller driver.
+> + *
+> + * Copyright (c) 2024, SaluteDevices. All Rights Reserved.
+> + * Author: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/platform_device.h>
+> +#include "a1-cpu.h"
+> +#include "clk-regmap.h"
+> +#include "meson-clkc-utils.h"
+> +
+> +#include <dt-bindings/clock/amlogic,a1-cpu-clkc.h>
+> +
+> +static u32 cpu_fsource_sel_table[] = { 0, 1, 2 };
+> +static const struct clk_parent_data cpu_fsource_sel_parents[] = {
+> +	{ .fw_name = "xtal" },
+> +	{ .fw_name = "fclk_div2" },
+> +	{ .fw_name = "fclk_div3" },
+> +};
+> +
+> +static struct clk_regmap cpu_fsource_sel0 = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CPUCTRL_CLK_CTRL0,
+> +		.mask = 0x3,
+> +		.shift = 0,
+> +		.table = cpu_fsource_sel_table,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "cpu_fsource_sel0",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = cpu_fsource_sel_parents,
+> +		.num_parents = ARRAY_SIZE(cpu_fsource_sel_parents),
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap cpu_fsource_div0 = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = CPUCTRL_CLK_CTRL0,
+> +		.shift = 4,
+> +		.width = 6,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "cpu_fsource_div0",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&cpu_fsource_sel0.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap cpu_fsel0 = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CPUCTRL_CLK_CTRL0,
+> +		.mask = 0x1,
+> +		.shift = 2,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "cpu_fsel0",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&cpu_fsource_sel0.hw,
+> +			&cpu_fsource_div0.hw,
+> +		},
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap cpu_fsource_sel1 = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CPUCTRL_CLK_CTRL0,
+> +		.mask = 0x3,
+> +		.shift = 16,
+> +		.table = cpu_fsource_sel_table,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "cpu_fsource_sel1",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = cpu_fsource_sel_parents,
+> +		.num_parents = ARRAY_SIZE(cpu_fsource_sel_parents),
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap cpu_fsource_div1 = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = CPUCTRL_CLK_CTRL0,
+> +		.shift = 20,
+> +		.width = 6,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "cpu_fsource_div1",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&cpu_fsource_sel1.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap cpu_fsel1 = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CPUCTRL_CLK_CTRL0,
+> +		.mask = 0x1,
+> +		.shift = 18,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "cpu_fsel1",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&cpu_fsource_sel1.hw,
+> +			&cpu_fsource_div1.hw,
+> +		},
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap cpu_fclk = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CPUCTRL_CLK_CTRL0,
+> +		.mask = 0x1,
+> +		.shift = 10,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "cpu_fclk",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&cpu_fsel0.hw,
+> +			&cpu_fsel1.hw,
+> +		},
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap cpu_clk = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CPUCTRL_CLK_CTRL0,
+> +		.mask = 0x1,
+> +		.shift = 11,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "cpu_clk",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = (const struct clk_parent_data []) {
+> +			{ .hw = &cpu_fclk.hw },
+> +			{ .fw_name = "sys_pll", },
+> +		},
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> +	},
+> +};
+> +
+> +/* Array of all clocks registered by this provider */
+> +static struct clk_hw *a1_cpu_hw_clks[] = {
+> +	[CLKID_CPU_FSOURCE_SEL0]	= &cpu_fsource_sel0.hw,
+> +	[CLKID_CPU_FSOURCE_DIV0]	= &cpu_fsource_div0.hw,
+> +	[CLKID_CPU_FSEL0]		= &cpu_fsel0.hw,
+> +	[CLKID_CPU_FSOURCE_SEL1]	= &cpu_fsource_sel1.hw,
+> +	[CLKID_CPU_FSOURCE_DIV1]	= &cpu_fsource_div1.hw,
+> +	[CLKID_CPU_FSEL1]		= &cpu_fsel1.hw,
+> +	[CLKID_CPU_FCLK]		= &cpu_fclk.hw,
+> +	[CLKID_CPU_CLK]			= &cpu_clk.hw,
+> +};
+> +
+> +static struct clk_regmap *const a1_cpu_regmaps[] = {
+> +	&cpu_fsource_sel0,
+> +	&cpu_fsource_div0,
+> +	&cpu_fsel0,
+> +	&cpu_fsource_sel1,
+> +	&cpu_fsource_div1,
+> +	&cpu_fsel1,
+> +	&cpu_fclk,
+> +	&cpu_clk,
+> +};
+> +
+> +static struct regmap_config a1_cpu_regmap_cfg = {
+> +	.reg_bits   = 32,
+> +	.val_bits   = 32,
+> +	.reg_stride = 4,
+> +	.max_register = CPUCTRL_CLK_CTRL1,
+> +};
+> +
+> +static struct meson_clk_hw_data a1_cpu_clks = {
+> +	.hws = a1_cpu_hw_clks,
+> +	.num = ARRAY_SIZE(a1_cpu_hw_clks),
+> +};
+> +
+> +struct a1_cpu_clk_nb_data {
+> +	const struct clk_ops *mux_ops;
+
+That's fishy ...
+
+> +	struct clk_hw *cpu_clk;
+> +	struct notifier_block nb;
+> +	u8 parent;
+> +};
+> +
+> +#define MESON_A1_CPU_CLK_GET_PARENT(nbd) \
+> +	((nbd)->mux_ops->get_parent((nbd)->cpu_clk))
+> +#define MESON_A1_CPU_CLK_SET_PARENT(nbd, index) \
+> +	((nbd)->mux_ops->set_parent((nbd)->cpu_clk, index))
+
+... Directly going for the mux ops ??!?? No way !
+
+We have a framework to handle the clocks, the whole point is to use it,
+not bypass it ! 
+
+> +
+> +static int meson_a1_cpu_clk_notifier_cb(struct notifier_block *nb,
+> +					unsigned long event, void *data)
+> +{
+> +	struct a1_cpu_clk_nb_data *nbd;
+> +	int ret = 0;
+> +
+> +	nbd = container_of(nb, struct a1_cpu_clk_nb_data, nb);
+> +
+> +	switch (event) {
+> +	case PRE_RATE_CHANGE:
+> +		nbd->parent = MESON_A1_CPU_CLK_GET_PARENT(nbd);
+> +		/* Fallback to the CPU fixed clock */
+> +		ret = MESON_A1_CPU_CLK_SET_PARENT(nbd, 0);
+> +		/* Wait for clock propagation */
+> +		udelay(100);
+> +		break;
+> +
+> +	case POST_RATE_CHANGE:
+> +	case ABORT_RATE_CHANGE:
+> +		/* Back to the original parent clock */
+> +		ret = MESON_A1_CPU_CLK_SET_PARENT(nbd, nbd->parent);
+> +		/* Wait for clock propagation */
+> +		udelay(100);
+> +		break;
+> +
+> +	default:
+> +		pr_warn("Unknown event %lu for %s notifier block\n",
+> +			event, clk_hw_get_name(nbd->cpu_clk));
+> +		break;
+> +	}
+> +
+> +	return notifier_from_errno(ret);
+> +}
+> +
+> +static struct a1_cpu_clk_nb_data a1_cpu_clk_nb_data = {
+> +	.mux_ops = &clk_regmap_mux_ops,
+> +	.cpu_clk = &cpu_clk.hw,
+> +	.nb.notifier_call = meson_a1_cpu_clk_notifier_cb,
+> +};
+> +
+> +static int meson_a1_dvfs_setup(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct clk *notifier_clk;
+> +	int ret;
+> +
+> +	/* Setup clock notifier for cpu_clk */
+> +	notifier_clk = devm_clk_hw_get_clk(dev, &cpu_clk.hw, "dvfs");
+> +	if (IS_ERR(notifier_clk))
+> +		return dev_err_probe(dev, PTR_ERR(notifier_clk),
+> +				     "can't get cpu_clk as notifier clock\n");
+> +
+> +	ret = devm_clk_notifier_register(dev, notifier_clk,
+> +					 &a1_cpu_clk_nb_data.nb);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "can't register cpu_clk notifier\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static int meson_a1_cpu_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	void __iomem *base;
+> +	struct regmap *map;
+> +	int clkid, i, err;
+> +
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+> +		return dev_err_probe(dev, PTR_ERR(base),
+> +				     "can't ioremap resource\n");
+> +
+> +	map = devm_regmap_init_mmio(dev, base, &a1_cpu_regmap_cfg);
+> +	if (IS_ERR(map))
+> +		return dev_err_probe(dev, PTR_ERR(map),
+> +				     "can't init regmap mmio region\n");
+> +
+> +	/* Populate regmap for the regmap backed clocks */
+> +	for (i = 0; i < ARRAY_SIZE(a1_cpu_regmaps); i++)
+> +		a1_cpu_regmaps[i]->map = map;
+> +
+> +	for (clkid = 0; clkid < a1_cpu_clks.num; clkid++) {
+> +		err = devm_clk_hw_register(dev, a1_cpu_clks.hws[clkid]);
+> +		if (err)
+> +			return dev_err_probe(dev, err,
+> +					     "clock[%d] registration failed\n",
+> +					     clkid);
+> +	}
+> +
+> +	err = devm_of_clk_add_hw_provider(dev, meson_clk_hw_get, &a1_cpu_clks);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "can't add clk hw provider\n");
+
+I wonder if there is a window of opportunity to poke the syspll without
+your notifier here. That being said, the situation would be similar on g12.
+
+> +
+> +	return meson_a1_dvfs_setup(pdev);
+
+
+
+> +}
+> +
+> +static const struct of_device_id a1_cpu_clkc_match_table[] = {
+> +	{ .compatible = "amlogic,a1-cpu-clkc", },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, a1_cpu_clkc_match_table);
+> +
+> +static struct platform_driver a1_cpu_clkc_driver = {
+> +	.probe = meson_a1_cpu_probe,
+> +	.driver = {
+> +		.name = "a1-cpu-clkc",
+> +		.of_match_table = a1_cpu_clkc_match_table,
+> +	},
+> +};
+> +
+> +module_platform_driver(a1_cpu_clkc_driver);
+> +MODULE_AUTHOR("Dmitry Rokosov <ddrokosov@salutedevices.com>");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/clk/meson/a1-cpu.h b/drivers/clk/meson/a1-cpu.h
+> new file mode 100644
+> index 000000000000..e9af4117e26f
+> --- /dev/null
+> +++ b/drivers/clk/meson/a1-cpu.h
+
+There is not point putting the definition here in a header
+These are clearly not going to be shared with another driver.
+
+Please drop this file
+
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
+> +/*
+> + * Amlogic A1 CPU Clock Controller internals
+> + *
+> + * Copyright (c) 2024, SaluteDevices. All Rights Reserved.
+> + * Author: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> + */
+> +
+> +#ifndef __A1_CPU_H
+> +#define __A1_CPU_H
+> +
+> +/* cpu clock controller register offset */
+> +#define CPUCTRL_CLK_CTRL0	0x80
+> +#define CPUCTRL_CLK_CTRL1	0x84
+
+You are claiming the registers from 0x00 to 0x84 (included), but only
+using these 2 registers ? What is the rest ? Are you sure there is only
+clocks in there ?
+
+> +
+> +#endif /* __A1_CPU_H */
+
+
+-- 
+Jerome
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
