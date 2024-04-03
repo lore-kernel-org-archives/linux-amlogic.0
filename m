@@ -4,70 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E65BDCD1288
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Apr 2024 17:03:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C87DCD1288
+	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Apr 2024 21:06:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wpJi9oQmLDNvGeFLfsZCPffvYPZqUusE+gRof2tOw48=; b=SF5AD/y1RjuqHZ
-	Aj8i0n5MMZWHGkwe9Bj3JR26GbhMzhnvjfCO2Lpe9u3RtS05EIoaL83MsH8PbDW4olCAjq+4LMu2k
-	nvdJXgJRSjk+YLhL8CsVEHR0E1h7Xd20uSmedZFaZwJLAucjowS355vejAKm1ZA1zVHAr7pOWVdDB
-	x2X/JaRfZEnOo4CtgPY8RprWyS4C5TH01VTWBW7b+ASTBTgRa7wa/Gn2Lia8DMjeI35cfSzOL1X/k
-	8dLslAHtKnPvbba8piPM0lZz3nIlvbSkT9UwFZisUfzG+FXeuwHOgz/GgPvDSVr7mxlo45ym12hA9
-	kiRR+l0z9CoMRRRrvXOg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=XnNhgsrmPptDCJUYn6eU3KztkhJmTZjEZRFvmpMJb9k=; b=KqBWvr75euYb37NFeHbNa+JD00
+	whoI0wW36xoUrNw55zdpUrwKyPkGvSAk6OIMjX8nnpo0/5eWptVw0z9wiRnv6pJzRA7EX/tfpgRMY
+	QiDm7qK9EIQVHkutm4lvmxFbKtfidzQYald31Gxkzg1ZlAjliLlkvq9VhNJ4FeglveFtAGbvaMKTP
+	dYj5qFkRc/1wVC+QN3QifjFdl+8GRTAbmhP+HLWoImHfajqU/46w5jAOIpC+VDWIt+T08fLcfMVi6
+	Ua3+wzJw72LdsS2DXv4G/+OLVpkOvAqpPWveQQgsre5tgxL6XFguIEUVR+dhe3nAXwr12NGea0ziD
+	7QSOcPdQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rs40m-0000000H55O-2eB4;
-	Wed, 03 Apr 2024 17:02:56 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1rs7oW-00000000Bqo-0P8V;
+	Wed, 03 Apr 2024 21:06:32 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rs40i-0000000H53q-3H0B;
-	Wed, 03 Apr 2024 17:02:54 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 874B2CE2BC3;
-	Wed,  3 Apr 2024 17:02:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87308C43390;
-	Wed,  3 Apr 2024 17:02:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712163739;
-	bh=2oGsbwbq15QL3wvwkV7hEBDpgVGRbcvJNrIyVScYh6g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Rx/GFrI/POAqeyJagkVNQjQ4UaDfYwJqjMkwf9+CnS/ac8n2Nb03EXzq0FqdGLE7L
-	 SZlx7hdF0VWhMXORF4dGtipOW3bT9HocxdzMhoTdJYCqsTyqw1jJwz77HENtm8I2jE
-	 SiV5GRjTCv6qotdJjr41qnIewCD/i3z3HkxRIam96U0DRROD8MUYtopJRnM2djQMGN
-	 Ugyl4CkPhuqxLmbQGsEFgLHry+oNQbGVmqF8a5j2HFVlqXWG5fXewg9exJ4EfF7u/Z
-	 TrLZZPmB8o5YgFCKltUaE9VjMDWMnB4gPxiekAKLQ/s45NQ6VdGym9etkYC0lIJgmC
-	 6n23OeoB3gvgw==
-Date: Wed, 3 Apr 2024 12:02:17 -0500
-From: Rob Herring <robh@kernel.org>
-To: Arseniy Krasnov <avkrasnov@salutedevices.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	oxffffaa@gmail.com, kernel@sberdevices.ru
-Subject: Re: [PATCH v1 1/2] dt-bindings: mtd: amlogic,meson-nand: support
- fields for boot ROM code
-Message-ID: <20240403170217.GA3984955-robh@kernel.org>
-References: <20240402202705.2355326-1-avkrasnov@salutedevices.com>
- <20240402202705.2355326-2-avkrasnov@salutedevices.com>
+	id 1rs7oT-00000000Bpi-1Xmg
+	for linux-amlogic@lists.infradead.org;
+	Wed, 03 Apr 2024 21:06:31 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rs7nv-0001NX-2i; Wed, 03 Apr 2024 23:05:55 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rs7nr-00AFDj-LI; Wed, 03 Apr 2024 23:05:51 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rs7nr-00EqVT-1m;
+	Wed, 03 Apr 2024 23:05:51 +0200
+Date: Wed, 3 Apr 2024 23:05:51 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Mark Brown <broonie@kernel.org>
+Cc: Arnd Bergmann <arnd@kernel.org>, linux-kernel@vger.kernel.org, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Andi Shyti <andi.shyti@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Li Zetao <lizetao1@huawei.com>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Rob Herring <robh@kernel.org>, 
+	Yang Yingliang <yangyingliang@huawei.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Luis de Arquer <luis.dearquer@inertim.com>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Sam Protsenko <semen.protsenko@linaro.org>, Peter Griffin <peter.griffin@linaro.org>, 
+	Jaewon Kim <jaewon02.kim@samsung.com>, linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 31/34] spi: remove incorrect of_match_ptr annotations
+Message-ID: <5f3qvhasho4mfnf6f7i6djak3ankje375mt4fzvv3gqrlj242o@zdk2ajvha6hx>
+References: <20240403080702.3509288-1-arnd@kernel.org>
+ <20240403080702.3509288-32-arnd@kernel.org>
+ <b4418ac1-10ba-4932-be6e-93282707024f@sirena.org.uk>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240402202705.2355326-2-avkrasnov@salutedevices.com>
+In-Reply-To: <b4418ac1-10ba-4932-be6e-93282707024f@sirena.org.uk>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240403_100253_189157_73E61D30 
-X-CRM114-Status: GOOD (  17.71  )
+X-CRM114-CacheID: sfid-20240403_140629_545826_24D82E23 
+X-CRM114-Status: GOOD (  18.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,71 +82,91 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============4307611117474316848=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Apr 02, 2024 at 11:27:04PM +0300, Arseniy Krasnov wrote:
-> Boot ROM code on Meson requires that some pages on NAND must be written
-> in special mode: "short" ECC mode where each block is 384 bytes and
-> scrambling mode is on. Such pages located with the specified interval
-> within specified offset. Both interval and offset are located in the
-> device tree and used by driver if 'nand-is-boot-medium' is set for
-> NAND chip.
-> 
-> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
-> ---
->  .../bindings/mtd/amlogic,meson-nand.yaml         | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> index 57b6957c8415..f49819ee76b8 100644
-> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> @@ -64,11 +64,27 @@ patternProperties:
->          items:
->            maximum: 0
->  
-> +      meson,boot-page-last:
 
-'meson' is not a valid vendor.
+--===============4307611117474316848==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="j3dyffzs5mph63yw"
+Content-Disposition: inline
 
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          The NFC driver needs this information to select ECC
-> +          algorithms supported by the boot ROM.
-> +          Only used in combination with 'nand-is-boot-medium'.
 
-No need to state what's captured with constraints.
+--j3dyffzs5mph63yw
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +
-> +      meson,boot-page-step:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          The NFC driver needs this information to select ECC
-> +          algorithms supported by the boot ROM.
-> +          Only used in combination with 'nand-is-boot-medium'.
+On Wed, Apr 03, 2024 at 10:56:58AM +0100, Mark Brown wrote:
+> On Wed, Apr 03, 2024 at 10:06:49AM +0200, Arnd Bergmann wrote:
+>=20
+> > These appear to all be copied from the same original driver, so fix the=
+m at the
+> > same time by removing the unnecessary of_match_ptr() annotation. As far=
+ as I
+> > can tell, all these drivers are only actually used on configurations th=
+at
+> > have CONFIG_OF enabled.
+>=20
+> Why are we not fixing of_match_ptr() here, or at least adding the ifdefs
+> in case someone does end up wanting to run without OF?
 
-step is in blocks/pages/bytes?
+Fixing of_match_ptr =3D
 
-> +
->      unevaluatedProperties: false
->  
->      dependencies:
->        nand-ecc-strength: [nand-ecc-step-size]
->        nand-ecc-step-size: [nand-ecc-strength]
-> +      meson,boot-page-last: [nand-is-boot-medium]
-> +      meson,boot-page-step: [nand-is-boot-medium]
+diff --git a/include/linux/of.h b/include/linux/of.h
+index a0bedd038a05..d980bccffda0 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -890,7 +890,7 @@ static inline const void *of_device_get_match_data(cons=
+t struct device *dev)
+ 	return NULL;
+ }
+=20
+-#define of_match_ptr(_ptr)	NULL
++#define of_match_ptr(_ptr)	(0 ? (_ptr) : NULL)
+ #define of_match_node(_matches, _node)	NULL
+ #endif /* CONFIG_OF */
+=20
+?
 
-I assume both properties must be present? If so:
+Assuming this helps, I agree this would be the better fix.
 
-meson,boot-page-last: ['meson,boot-page-step']
-meson,boot-page-step: ['meson,boot-page-last']
+Best regards
+Uwe
 
-Rob
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--j3dyffzs5mph63yw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYNxK4ACgkQj4D7WH0S
+/k4RIQf+N9Iy5vdLQiMUAN6AC+cOYMVtNTWEXHv3Iu8OMI4BbFULD/p4hJYx4A/Y
++4trHVq0G7vFcqwJIyZ8XD7U0NnRLweSBCiBdm6lh/R7j8pyI32zbpvrJb8ge/Wm
+LTfO5dGPLQMf1kIpjRlpYniRKxzxOTWIsnKpr801JczfdZDvZ236nLgQNNFTtYNP
+4X9v+IjyFHuXxEjYvIZ52EsIgHnfGsNT7RNmncSBQSxLRwliB6gAO/Bzo1ulw1xS
+iSIatTBxMMTV5D3fDRS1Ve4g7VIjI0LAO+I784HK+wg9jWI4tEwQz2eO5GZXxDXp
+WbiT8oxPt4xi8tsgDAu681Ac2zeUOg==
+=qPPD
+-----END PGP SIGNATURE-----
+
+--j3dyffzs5mph63yw--
+
+
+--===============4307611117474316848==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4307611117474316848==--
+
