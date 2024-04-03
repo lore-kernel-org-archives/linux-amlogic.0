@@ -4,80 +4,111 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53D05C6FD1F
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Apr 2024 08:13:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9552BC6FD1F
+	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Apr 2024 08:49:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=E52sp5Q1PNbc/DcO844WRsrVu4XgqPeJQapT2qMcJ+8=; b=FR0/fedQhFbU+F
-	RtVzOcPDxxda/Cr0uJa40C3zuLdzxwGitcmoXyIhZ7I8Ud5tYclZtOCOPS16O/M4eDmLTjMvUGzZt
-	bon/efW5pJ70Wsa9EIidQpPKOwv5RKzHIyzZAiL6wLOFcd9PlYbTTsc1KaO6iSXEqVJNKzMjWi6X3
-	gBk4+oXSFib5ZLal6+MvsRjKkcC1h9y8zWy53DcqHwiUzPer0hKlJ+7oYQojrGlCAH+Lzcr1JFx0M
-	XQzEwduTN8ww3cAYExf70YQPiQ685hlkaoADX/dZeJ8UDtfXugAlbjSo+NSzvzYm3JspfesHfC+rb
-	UssaO7zd1fagoGf2F5ZQ==;
+	List-Owner; bh=y5tnrppXGUDSAyUoEMNeDMUkRwmq+froUlEMwOSoenA=; b=NMlXMz3wm7E/AF
+	Cql8WLipLygEddtAaoi8bYdQMz1inmp/4YfFbE2LuF7OoCSOUOgc435cWDPuwd63vukLT6NvVbutC
+	crj9M6KPJuq3rLIjieG8qJJMgEVnbKQPZ3uArnwSA/Om5ZBXTebHSCoxBpo8dU04MPMWgzysFGULZ
+	M6qtSRw9x5emNSuj1KWOnV2lW0hAFU6a2JdDQUL9pGyl5STv8ptH5Ia1Yd3cJeh2P3sne0KrbC757
+	v2a1cE7fpObQK53ioS6W8cL3BU4kQvbJ+pxwegAFe/31NchpWQR+V91MHJbrQLtPAyILxYnyp6+SY
+	PSBPXU5e84pbY9s6zpdA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rrvk2-0000000EnM5-2T65;
-	Wed, 03 Apr 2024 08:13:06 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1rrwIo-0000000F2Pr-1SYJ;
+	Wed, 03 Apr 2024 08:49:02 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rrvjy-0000000EnJl-3rTe;
-	Wed, 03 Apr 2024 08:13:04 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 0FD8C60C0B;
-	Wed,  3 Apr 2024 08:13:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A7A0C433F1;
-	Wed,  3 Apr 2024 08:12:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712131981;
-	bh=s7PKCgenwuMtIpkuH0lS5FpL9JoQE1cUgYCVfEquDcE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=rOePu4Gvd7V3cltnm48rPPfQ5ofmjX+GDSCSetysHutysgHNuJEoCnupPctS10Bsx
-	 hqL8FluMuszm1Ww6kb2h9ndFt365zDSvm6q8QOk8LfTZwHcp0TTPbaVrlYNfKzSw44
-	 1HmQwSAT6JhsiowgaDGcCaCcN9Lqe74+k6UwvwN2vvCBl2r4ITMuQq5eC9xknbHo18
-	 Hyl3qSWl0EnJ36XlcsH7dgjLTWiKdg3Onx0lbmBzqIb4hEtGcFA/lYHz0hbWMK4PJq
-	 bzXtcLMqXrxY3tCTLsDSVBCkO0fbJbEv3ftmza4uIhbkbREWWxom0wMjjHtPFDcx4I
-	 DTrsllQrFjW/A==
-From: Arnd Bergmann <arnd@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	Mark Brown <broonie@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Arnd Bergmann <arnd@arndb.de>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Li Zetao <lizetao1@huawei.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Rob Herring <robh@kernel.org>,
-	Yang Yingliang <yangyingliang@huawei.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Luis de Arquer <luis.dearquer@inertim.com>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Sam Protsenko <semen.protsenko@linaro.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Jaewon Kim <jaewon02.kim@samsung.com>,
-	linux-spi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: [PATCH 31/34] spi: remove incorrect of_match_ptr annotations
-Date: Wed,  3 Apr 2024 10:06:49 +0200
-Message-Id: <20240403080702.3509288-32-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240403080702.3509288-1-arnd@kernel.org>
-References: <20240403080702.3509288-1-arnd@kernel.org>
+	id 1rrvKW-0000000EcoC-0YXB
+	for linux-amlogic@lists.infradead.org;
+	Wed, 03 Apr 2024 07:46:47 +0000
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-343620589easo731689f8f.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 03 Apr 2024 00:46:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712130402; x=1712735202; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ALpBomvj7h++qduRiPAlY6JUwZx9tyV38eEVHtgwhRk=;
+        b=h2+gx2Z9kakX8+G7ZkciDIkc4LFFI2AS4NzRWpayCT8ApmqCitCPdqhdF66+QHr4dD
+         hGxG4zuQoTc+0gNwCK8ksx/D9n4qwzaGpO1SC1HRQt6OZk5xg3NdXQxbfVf2DX4pHYqJ
+         6km2b2PVHitBGMPIGYM/9GImtFIkp6VLoFAPtMgYOEE/eoxOurGGqN6iZV5WeQZgkcXg
+         4fgYGBRHycE4WkUyXJCFzU0Fd87WpGnTXrEC2YxS2ijSJqT6ZExwhKnJOJ/HAMPgoMDI
+         rL+ryLRtnNHTQdLLdbQHvupAqzMdLjPBYYlypGVmRqVQ3pdXynnZoB140YwRVBcXG7GY
+         o0Jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712130402; x=1712735202;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ALpBomvj7h++qduRiPAlY6JUwZx9tyV38eEVHtgwhRk=;
+        b=N1ndc4uNYb/i5pSMUw8/YoOq7fCRQL2zL5wr62Nou+fx/MsfOTEiAjDa34MRa1ih5/
+         VQcid1/2GSy4fVJhLIhGM+h4Y1UbL8m1M2kury5kb3/0ZlpVz5YgcNw0O5MjQ62Nok54
+         yajSp7a8yQ/8zbwzX8/YH39GUd6b6r+zFAxqFRu+vHRWEdUWPh/41jUxDsEN8g7llePI
+         NrpFO4E65LOHQ3FuGeJVmj/LU2xo3/4Tyk6v+FIFeeUHm2pL3QrI8woCnOKaEFDkRMXu
+         zYqetHbdWlUJYA9C24G26l58LQvFDJDOuvBvbym9a5g1c+MZsmP1+H1s0u9kffNwQu/b
+         WO/w==
+X-Forwarded-Encrypted: i=1; AJvYcCXx26cwGM/JBhMvfD2VWXmsfnjICATbzAWvevOedWnhk5Ok/luuGvaC6PflxXz+XDKqaRiab3MtSV1VXsckBpSmoaPUBvC9zwsC3Ajz3ARDJ/I=
+X-Gm-Message-State: AOJu0YxTcPheCbhC815qio+V0H/czXnq0zrvybl76TJQof4LLIeQwHaL
+	VW3hVmgyD+fhgl3PM0/8t7APcamilzSkYx3mmd0sKBw8058YyP8bSCGUObM0Gi8=
+X-Google-Smtp-Source: AGHT+IFpo5g4fDFTNor1Pe0aeivWgmpXOELK6V5rSuDJZCAtGNmUdkMpcWyHvS/4yOhpE/5AVNdHSw==
+X-Received: by 2002:adf:f48c:0:b0:343:3538:4ee4 with SMTP id l12-20020adff48c000000b0034335384ee4mr10426871wro.45.1712130402349;
+        Wed, 03 Apr 2024 00:46:42 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id cc13-20020a5d5c0d000000b00341b8edbe8csm14021282wrb.87.2024.04.03.00.46.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Apr 2024 00:46:42 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Wed, 03 Apr 2024 09:46:32 +0200
+Subject: [PATCH v12 1/7] dt-bindings: arm: amlogic: Document the MNT Reform
+ 2 CM4 adapter with a BPI-CM4 Module
 MIME-Version: 1.0
+Message-Id: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-1-99ecdfdc87fc@linaro.org>
+References: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-0-99ecdfdc87fc@linaro.org>
+In-Reply-To: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-0-99ecdfdc87fc@linaro.org>
+To: Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Jagan Teki <jagan@amarulasolutions.com>, 
+ Nicolas Belin <nbelin@baylibre.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=886;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=N3wP+RQ7VRT4++7kCDqamWluNf4gtoR05YTHGQbChM4=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmDQldDTI+SzRhJHYhYdxII9aDRXpw4ZQGmnVanvis
+ mpDKm3uJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZg0JXQAKCRB33NvayMhJ0aIrEA
+ CAjaaiTIpkxGPcKnI9vHfiZrWIDEIV5Fc17MC23AFXn9y6vUK8I6k8t8tjcY70647b9i10lUOnDW+u
+ QTmTVl2J8iqRbWeZ0NUuJkvdiCgHXbuD9N3sJ6rRln1tpGfl6tzAsO1qDOmSoFxIzN3d1LMcisZ9IG
+ EVOso7m5sSQYUpp1jUnx1mXDc1GS77MvuIvE7nwv1vmrkyUh53cxhK9wrFByd2ze7/fShUf2PNzW+X
+ QDeYZbKG6/wq1fPfSCgK7mOS+IjpavXy8aWAIdNoKVvxK8vcv4EuGB2L7ityGXeqEu7h6CIFVQ1VoW
+ oefOSy/kh9jS6GlK+SJBfSdsjHwidkgecN077CdoDspmvB0OSJTN094d0aVTTdZKLc2zbywRzs6TIz
+ 1IHqKljLDCfdlcuI/8tWs0x7PH/cJuXfwYZ+soy/2LONuf8tgFdVXUv0mHoh516guNw7vOry4s08iN
+ IXPc1pYAakMqeuEo4oqLXAIrcZfJtQ7vNW+0miLYAa4LSP7ZzC5fcoNpik5doys5EZDbIDAJyHBnIN
+ duMPHjicb1tOpnatuxPEIypWYT9DuaN5h57UxiUJ9FuDmEXZxSM8XfrmiNACLVNJmIa/j3792PWKEE
+ RfyY3lIrcz8qTs59bJCSHXyezl31JWRG8Svl2gQBFRQN62IEUU7hiTBe9aCg==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240403_011303_100291_0B4639AA 
-X-CRM114-Status: GOOD (  16.17  )
+X-CRM114-CacheID: sfid-20240403_004645_661855_CF5030F1 
+X-CRM114-Status: UNSURE (   8.07  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,170 +125,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Arnd Bergmann <arnd@arndb.de>
+The MNT Reform 2 CM4 adapter can be populated with any Raspberry Pi CM4
+compatible module such as a BPI-CM4 Module, document that.
 
-When building with CONFIG_OF  disabled but W=1 extra warnings enabled,
-a couple of driver cause a warning about an unused ID table:
-
-drivers/spi/spi-armada-3700.c:806:34: error: unused variable 'a3700_spi_dt_ids' [-Werror,-Wunused-const-variable]
-drivers/spi/spi-orion.c:614:34: error: unused variable 'orion_spi_of_match_table' [-Werror,-Wunused-const-variable]
-drivers/spi/spi-pic32-sqi.c:673:34: error: unused variable 'pic32_sqi_of_ids' [-Werror,-Wunused-const-variable]
-drivers/spi/spi-pic32.c:850:34: error: unused variable 'pic32_spi_of_match' [-Werror,-Wunused-const-variable]
-drivers/spi/spi-rockchip.c:1020:34: error: unused variable 'rockchip_spi_dt_match' [-Werror,-Wunused-const-variable]
-drivers/spi/spi-s3c64xx.c:1642:34: error: unused variable 's3c64xx_spi_dt_match' [-Werror,-Wunused-const-variable]
-drivers/spi/spi-st-ssc4.c:439:34: error: unused variable 'stm_spi_match' [-Werror,-Wunused-const-variable]
-
-These appear to all be copied from the same original driver, so fix them at the
-same time by removing the unnecessary of_match_ptr() annotation. As far as I
-can tell, all these drivers are only actually used on configurations that
-have CONFIG_OF enabled.
-
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/spi/spi-armada-3700.c | 2 +-
- drivers/spi/spi-img-spfi.c    | 2 +-
- drivers/spi/spi-meson-spicc.c | 2 +-
- drivers/spi/spi-meson-spifc.c | 2 +-
- drivers/spi/spi-orion.c       | 2 +-
- drivers/spi/spi-pic32-sqi.c   | 2 +-
- drivers/spi/spi-pic32.c       | 2 +-
- drivers/spi/spi-rockchip.c    | 2 +-
- drivers/spi/spi-s3c64xx.c     | 2 +-
- drivers/spi/spi-st-ssc4.c     | 2 +-
- 10 files changed, 10 insertions(+), 10 deletions(-)
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/spi/spi-armada-3700.c b/drivers/spi/spi-armada-3700.c
-index 3c9ed412932f..2fc2e7c0daf2 100644
---- a/drivers/spi/spi-armada-3700.c
-+++ b/drivers/spi/spi-armada-3700.c
-@@ -902,7 +902,7 @@ static int a3700_spi_probe(struct platform_device *pdev)
- static struct platform_driver a3700_spi_driver = {
- 	.driver = {
- 		.name	= DRIVER_NAME,
--		.of_match_table = of_match_ptr(a3700_spi_dt_ids),
-+		.of_match_table = a3700_spi_dt_ids,
- 	},
- 	.probe		= a3700_spi_probe,
- };
-diff --git a/drivers/spi/spi-img-spfi.c b/drivers/spi/spi-img-spfi.c
-index d8360f94d3b7..0d7f89301f8d 100644
---- a/drivers/spi/spi-img-spfi.c
-+++ b/drivers/spi/spi-img-spfi.c
-@@ -753,7 +753,7 @@ static struct platform_driver img_spfi_driver = {
- 	.driver = {
- 		.name = "img-spfi",
- 		.pm = &img_spfi_pm_ops,
--		.of_match_table = of_match_ptr(img_spfi_of_match),
-+		.of_match_table = img_spfi_of_match,
- 	},
- 	.probe = img_spfi_probe,
- 	.remove_new = img_spfi_remove,
-diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-index fc75492e50ff..4189d4434e37 100644
---- a/drivers/spi/spi-meson-spicc.c
-+++ b/drivers/spi/spi-meson-spicc.c
-@@ -946,7 +946,7 @@ static struct platform_driver meson_spicc_driver = {
- 	.remove_new = meson_spicc_remove,
- 	.driver  = {
- 		.name = "meson-spicc",
--		.of_match_table = of_match_ptr(meson_spicc_of_match),
-+		.of_match_table = meson_spicc_of_match,
- 	},
- };
- 
-diff --git a/drivers/spi/spi-meson-spifc.c b/drivers/spi/spi-meson-spifc.c
-index fd8b26dd4a79..0c39d59d0af8 100644
---- a/drivers/spi/spi-meson-spifc.c
-+++ b/drivers/spi/spi-meson-spifc.c
-@@ -432,7 +432,7 @@ static struct platform_driver meson_spifc_driver = {
- 	.remove_new = meson_spifc_remove,
- 	.driver	= {
- 		.name		= "meson-spifc",
--		.of_match_table	= of_match_ptr(meson_spifc_dt_match),
-+		.of_match_table	= meson_spifc_dt_match,
- 		.pm		= &meson_spifc_pm_ops,
- 	},
- };
-diff --git a/drivers/spi/spi-orion.c b/drivers/spi/spi-orion.c
-index eee9ff4bfa5b..a0029e8dc0be 100644
---- a/drivers/spi/spi-orion.c
-+++ b/drivers/spi/spi-orion.c
-@@ -843,7 +843,7 @@ static struct platform_driver orion_spi_driver = {
- 	.driver = {
- 		.name	= DRIVER_NAME,
- 		.pm	= &orion_spi_pm_ops,
--		.of_match_table = of_match_ptr(orion_spi_of_match_table),
-+		.of_match_table = orion_spi_of_match_table,
- 	},
- 	.probe		= orion_spi_probe,
- 	.remove_new	= orion_spi_remove,
-diff --git a/drivers/spi/spi-pic32-sqi.c b/drivers/spi/spi-pic32-sqi.c
-index 3f1e5b27776b..458c1a8d5719 100644
---- a/drivers/spi/spi-pic32-sqi.c
-+++ b/drivers/spi/spi-pic32-sqi.c
-@@ -679,7 +679,7 @@ MODULE_DEVICE_TABLE(of, pic32_sqi_of_ids);
- static struct platform_driver pic32_sqi_driver = {
- 	.driver = {
- 		.name = "sqi-pic32",
--		.of_match_table = of_match_ptr(pic32_sqi_of_ids),
-+		.of_match_table = pic32_sqi_of_ids,
- 	},
- 	.probe = pic32_sqi_probe,
- 	.remove_new = pic32_sqi_remove,
-diff --git a/drivers/spi/spi-pic32.c b/drivers/spi/spi-pic32.c
-index 709edb70ad7d..e8bd32c1fc7c 100644
---- a/drivers/spi/spi-pic32.c
-+++ b/drivers/spi/spi-pic32.c
-@@ -856,7 +856,7 @@ MODULE_DEVICE_TABLE(of, pic32_spi_of_match);
- static struct platform_driver pic32_spi_driver = {
- 	.driver = {
- 		.name = "spi-pic32",
--		.of_match_table = of_match_ptr(pic32_spi_of_match),
-+		.of_match_table = pic32_spi_of_match,
- 	},
- 	.probe = pic32_spi_probe,
- 	.remove_new = pic32_spi_remove,
-diff --git a/drivers/spi/spi-rockchip.c b/drivers/spi/spi-rockchip.c
-index e1ecd96c7858..4dbb5127a9e5 100644
---- a/drivers/spi/spi-rockchip.c
-+++ b/drivers/spi/spi-rockchip.c
-@@ -1042,7 +1042,7 @@ static struct platform_driver rockchip_spi_driver = {
- 	.driver = {
- 		.name	= DRIVER_NAME,
- 		.pm = &rockchip_spi_pm,
--		.of_match_table = of_match_ptr(rockchip_spi_dt_match),
-+		.of_match_table = rockchip_spi_dt_match,
- 	},
- 	.probe = rockchip_spi_probe,
- 	.remove_new = rockchip_spi_remove,
-diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
-index f726d8670428..dbb89f6cb3dd 100644
---- a/drivers/spi/spi-s3c64xx.c
-+++ b/drivers/spi/spi-s3c64xx.c
-@@ -1677,7 +1677,7 @@ static struct platform_driver s3c64xx_spi_driver = {
- 	.driver = {
- 		.name	= "s3c64xx-spi",
- 		.pm = &s3c64xx_spi_pm,
--		.of_match_table = of_match_ptr(s3c64xx_spi_dt_match),
-+		.of_match_table = s3c64xx_spi_dt_match,
- 	},
- 	.probe = s3c64xx_spi_probe,
- 	.remove_new = s3c64xx_spi_remove,
-diff --git a/drivers/spi/spi-st-ssc4.c b/drivers/spi/spi-st-ssc4.c
-index e064025e2fd6..6d288497c500 100644
---- a/drivers/spi/spi-st-ssc4.c
-+++ b/drivers/spi/spi-st-ssc4.c
-@@ -446,7 +446,7 @@ static struct platform_driver spi_st_driver = {
- 	.driver = {
- 		.name = "spi-st",
- 		.pm = &spi_st_pm,
--		.of_match_table = of_match_ptr(stm_spi_match),
-+		.of_match_table = stm_spi_match,
- 	},
- 	.probe = spi_st_probe,
- 	.remove_new = spi_st_remove,
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 949537cea6be..b66b93b8bfd3 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -157,6 +157,7 @@ properties:
+         items:
+           - enum:
+               - bananapi,bpi-cm4io
++              - mntre,reform2-cm4
+           - const: bananapi,bpi-cm4
+           - const: amlogic,a311d
+           - const: amlogic,g12b
+
 -- 
-2.39.2
+2.34.1
 
 
 _______________________________________________
