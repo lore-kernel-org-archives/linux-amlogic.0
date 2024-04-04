@@ -4,88 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2411DCD1284
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Apr 2024 12:23:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19F9FCD1292
+	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Apr 2024 15:34:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JnWl3g9HHxCDxVpmmIT22kUuarEVLK+niK0bTv5VRkQ=; b=MH30ggPtt6/Ilx
-	RFyBSs7K2IPyVPduk9NbIDH/aumVMhyYlCfE4O9UianTcvuzzKbsbOxBO+//6ZCD6nA0o10wuCpmf
-	xkO72CM6OBnvAzTKjU19tnqyjUEdN4elt4XFvkdx1IdfCE4rhyP2vkZgaf77tuZ8UDw7Q/2zuPLok
-	qpDJ+hMIkQHf8LfQKjoZlxe+T7XUP3vnUy+prFAoik/y12hcWu/0pjcWxdoTlMk50nONkcK2fyrXL
-	Ny6IJ6jduAXyptevw0Pvo+54J5TDone0613LcD2fvAko6Qfh7q4Rul0GifkPYAd4gQaHmDbPH81vx
-	aQTt9u8ZjKzHQpf6Blkw==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=THz0KJv/yOh+AcWH6U8e6Qk1L+HQIgQPebYOq+UPJyI=; b=KBvW1CweXVJ5hA4YNaz1nWEcoc
+	gZ+kjFMwdnhh1R8vZHgBozi9//0G1RyHlfaMRDMELws7gkF3yHD0eQJHf5/I8Zfvy08npICgSRxCX
+	bcOUDh7w2NCFKWK7DN+6OuztjizvEXfzPmYYPNMCAh5HKXHM/Ynbkp9BPKehms34oTrmeEsVz2LET
+	soVaTgnbYCqjPPGB0QV3J6Psokk+g7+aw7UJWTUc9HxDZ0ZGiRYxXO8+2/kL9dcMKTe1hvBqChU+6
+	7XmSukP6NIP5vJ5/ifnFccwwR0US+WHewq4O6lLhRDU6KGGOQweeaHxu4v9FBxPb6syPL6EGowH4d
+	ONgkiDvg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rsM7v-00000002ZiF-3po2;
-	Thu, 04 Apr 2024 12:23:31 +0000
-Received: from mail-lj1-x22f.google.com ([2a00:1450:4864:20::22f])
+	id 1rsP6K-00000003FzX-1CvI;
+	Thu, 04 Apr 2024 15:34:04 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rsM7q-00000002ZgI-3qs5
+	id 1rsP6H-00000003Fxx-1NBg
 	for linux-amlogic@lists.infradead.org;
-	Thu, 04 Apr 2024 12:23:28 +0000
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2d6a1ad08b8so10483171fa.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 04 Apr 2024 05:23:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712233403; x=1712838203; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eYE+eshATYqsMOTO3OJcrLKHBczJOSqmODQnoMCtRas=;
-        b=GAvvaL7VuE6+I0i6s3AzOcrjhg0Btsdroc+qq480LywnqlmgFth70/M2+nlnYs9R2a
-         gUFBEqFQYS8n6yAEiOUNlbdgu8pOgUotTeMD5lzF1l00SJka1IPTUfVYiwvKhXogUGWJ
-         a5JjGo1D9cFLELBXntBltBMK/VOy/Cu0JgiZ4zclCD2jDFMy61xlf4qLyGhN5WsSlkoU
-         HxdapfII7zIaNUmFLcAcni/39q2SZtHGEA0u4DmhfF9qIbgKXZSJWs5e0VIRltHWhPLd
-         hOSHbit5kKuFGS3U/G8+wsDyU3NtNbXIJHXKtPoYXpwZArXGf+V00UqmbPJdPrFQJF5Q
-         4w8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712233403; x=1712838203;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eYE+eshATYqsMOTO3OJcrLKHBczJOSqmODQnoMCtRas=;
-        b=vtr7qgzwF27WlRX/QKnailCWUSgMsSqj0YagJ7yNlCp+g67zay+fCB6QeRiJHanRvC
-         IfWb1LNB/8hvnDpdff8OT0RER26ZI8jd4ildY0HOLUrrSIK2HQrgehOoYN4Fr2ANKIQp
-         TvL1J4THiAA0N3Opxyt/Qi+caHTUmeoDe9j7AWM8KFmuFHxgJxOksoTeW2H4mwiizq7Q
-         P52ONrIylD44TWvCZHZnSZ+BuG5ElVCzHi882MDgqjnUJ3RPWYd67wzZNjb0DUOE++ov
-         9SYHVvzwffiRqms3OIK3TqAZEhhSXkzYQNCANnwOgcHpWaJa8JAhNTHqAIBo+3hJLTbo
-         B3cQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXGTi3TUwykxrsUfhHKChhoGDSpYpbhh8h6daEVc7Jweyd/0rCLlVDNL2fQz7bN73QwSxP/ynMvvdHXMqySqX18ZK8z5UHqmNn+dkldo3JqNtQ=
-X-Gm-Message-State: AOJu0YxLiL84qtCjI1I5uL320gOnD7oR0cx9xTFzz8rCEwhTSf1pRBB+
-	09psg2SKWUZDfV9w0upcgNoIdjM2BOKa7R+5iGdZoXHc3M76B/nI4zzKfgUAQEY=
-X-Google-Smtp-Source: AGHT+IHAr8zPO653SUr6XFqHyuFMhuWhZMQKuK8meJtxtbXfUpmzEPy7h6Ezmtdi77EyE7t19gkTfw==
-X-Received: by 2002:a2e:a371:0:b0:2d8:4c9f:ed94 with SMTP id i17-20020a2ea371000000b002d84c9fed94mr1906339ljn.34.1712233402988;
-        Thu, 04 Apr 2024 05:23:22 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id b17-20020a05600c4e1100b004148090cf86sm4646300wmq.0.2024.04.04.05.23.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Apr 2024 05:23:22 -0700 (PDT)
-Message-ID: <38ba3618-2a67-4e21-b08d-7e382411e51a@linaro.org>
-Date: Thu, 4 Apr 2024 14:23:21 +0200
+	Thu, 04 Apr 2024 15:34:03 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rsP64-0001tj-Ny; Thu, 04 Apr 2024 17:33:48 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rsP61-00AP0e-EL; Thu, 04 Apr 2024 17:33:45 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rsP61-00F9uU-18;
+	Thu, 04 Apr 2024 17:33:45 +0200
+Date: Thu, 4 Apr 2024 17:33:45 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	LKML <linux-kernel@vger.kernel.org>, kernel@pengutronix.de, linux-clk@vger.kernel.org, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 7/8] pwm: Add more locking
+Message-ID: <adqtn6iljcguv3m3ovhltusbbf4mljzlwg73yklaudvjjtazxv@vyf5fvuzic6x>
+References: <cover.1710670958.git.u.kleine-koenig@pengutronix.de>
+ <e36c1a44096cbd7e9cb693f2300ac12ed1b2f79d.1710670958.git.u.kleine-koenig@pengutronix.de>
+ <CGME20240404120932eucas1p1b3c1e07bf6f41f6330725148b0268b13@eucas1p1.samsung.com>
+ <5a49cadd-21b7-4384-9e7d-9105ccc288b3@samsung.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] thermal: amlogic: introduce A1 SoC family Thermal
- Sensor controller
-Content-Language: en-US
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>, neil.armstrong@linaro.org,
- jbrunet@baylibre.com, mturquette@baylibre.com, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com, glaroque@baylibre.com,
- rafael@kernel.org, rui.zhang@intel.com, lukasz.luba@arm.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: kernel@salutedevices.com, rockosov@gmail.com,
- linux-amlogic@lists.infradead.org, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240328191322.17551-1-ddrokosov@salutedevices.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20240328191322.17551-1-ddrokosov@salutedevices.com>
+In-Reply-To: <5a49cadd-21b7-4384-9e7d-9105ccc288b3@samsung.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240404_052327_000468_EF44AEE6 
-X-CRM114-Status: UNSURE (   6.40  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240404_083401_573611_210427CF 
+X-CRM114-Status: GOOD (  26.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,21 +73,204 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============6502810980016369063=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjgvMDMvMjAyNCAyMDoxMywgRG1pdHJ5IFJva29zb3Ygd3JvdGU6Cj4gSXQgaXMgcHJpbWFy
-aWx5IGJhc2VkIG9uIHRoZSBHMTJBIHRoZXJtYWwgY29udHJvbGxlciwgd2l0aCBvbmx5IGEgc2xp
-Z2h0Cj4gdmFyaWF0aW9uIGluIHRoZSBvZmZzZXQgdmFsdWUgb2YgdGhlIGVmdXNlIHBhcmFtZXRl
-cnMuIFRoZXJlZm9yZSwgdGhpcwo+IHBhdGNoIHNlcmllcyBwcm92aWRlcyBhcHByb3ByaWF0ZSBw
-bGF0Zm9ybSBkYXRhIGFuZCBkdC1iaW5kaW5ncyB0bwo+IGVuc3VyZSBwcm9wZXIgc3VwcG9ydC4K
-CgpBcHBsaWVkLCB0aGFua3MKCi0tIAo8aHR0cDovL3d3dy5saW5hcm8ub3JnLz4gTGluYXJvLm9y
-ZyDilIIgT3BlbiBzb3VyY2Ugc29mdHdhcmUgZm9yIEFSTSBTb0NzCgpGb2xsb3cgTGluYXJvOiAg
-PGh0dHA6Ly93d3cuZmFjZWJvb2suY29tL3BhZ2VzL0xpbmFybz4gRmFjZWJvb2sgfAo8aHR0cDov
-L3R3aXR0ZXIuY29tLyMhL2xpbmFyb29yZz4gVHdpdHRlciB8CjxodHRwOi8vd3d3LmxpbmFyby5v
-cmcvbGluYXJvLWJsb2cvPiBCbG9nCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
-aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
-dGluZm8vbGludXgtYW1sb2dpYwo=
+
+--===============6502810980016369063==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="q4ybeyaskyjbjlzd"
+Content-Disposition: inline
+
+
+--q4ybeyaskyjbjlzd
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello Marek,
+
+[Cc +=3D linux-clk@vger.kernel.org, Alexander Stein, linux-arm-kernel@lists=
+=2Einfradead.org]
+
+On Thu, Apr 04, 2024 at 02:09:32PM +0200, Marek Szyprowski wrote:
+> On 17.03.2024 11:40, Uwe Kleine-K=F6nig wrote:
+> > This ensures that a pwm_chip that has no corresponding driver isn't used
+> > and that a driver doesn't go away while a callback is still running.
+> >
+> > In the presence of device links this isn't necessary yet (so this is no
+> > fix) but for pwm character device support this is needed.
+> >
+> > To not serialize all pwm_apply_state() calls, this introduces a per chip
+> > lock. An additional complication is that for atomic chips a mutex cannot
+> > be used (as pwm_apply_atomic() must not sleem) and a spinlock cannot be
+> > held while calling an operation for a sleeping chip. So depending on the
+> > chip being atomic or not a spinlock or a mutex is used.
+> >
+> > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+>=20
+>=20
+> This patch landed some time ago in linux-next as commit a740f7879609=20
+> ("pwm: Add more locking"). Recently I've finally found that $subject=20
+> patch is responsible for the following lock dep splat observed for some=
+=20
+> time during day-to-day linux-next testing:
+>=20
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D
+> WARNING: possible circular locking dependency detected
+> 6.9.0-rc1+ #14790 Tainted: G=A0=A0=A0=A0=A0=A0=A0=A0 C
+> ------------------------------------------------------
+> kworker/u24:4/59 is trying to acquire lock:
+> ffff00003c65b510 (&chip->nonatomic_lock){+.+.}-{3:3}, at:=20
+> pwm_apply_might_sleep+0x90/0xd8
+>=20
+> but task is already holding lock:
+> ffff80008310fa40 (prepare_lock){+.+.}-{3:3}, at: clk_prepare_lock+0x4c/0x=
+a8
+>=20
+> which lock already depends on the new lock.
+>=20
+>=20
+> the existing dependency chain (in reverse order) is:
+>=20
+> -> #1 (prepare_lock){+.+.}-{3:3}:
+>  =A0=A0=A0=A0=A0=A0 lock_acquire+0x68/0x84
+>  =A0=A0=A0=A0=A0=A0 __mutex_lock+0xa0/0x840
+>  =A0=A0=A0=A0=A0=A0 mutex_lock_nested+0x24/0x30
+>  =A0=A0=A0=A0=A0=A0 clk_prepare_lock+0x4c/0xa8
+>  =A0=A0=A0=A0=A0=A0 clk_round_rate+0x38/0xd0
+>  =A0=A0=A0=A0=A0=A0 meson_pwm_apply+0x128/0x220 [pwm_meson]
+>  =A0=A0=A0=A0=A0=A0 __pwm_apply+0x64/0x1f8
+>  =A0=A0=A0=A0=A0=A0 pwm_apply_might_sleep+0x58/0xd8
+>  =A0=A0=A0=A0=A0=A0 pwm_regulator_set_voltage+0xbc/0x12c
+>  =A0=A0=A0=A0=A0=A0 _regulator_do_set_voltage+0x110/0x688
+>  =A0=A0=A0=A0=A0=A0 regulator_set_voltage_rdev+0x64/0x25c
+>  =A0=A0=A0=A0=A0=A0 regulator_do_balance_voltage+0x20c/0x47c
+>  =A0=A0=A0=A0=A0=A0 regulator_balance_voltage+0x50/0x9c
+>  =A0=A0=A0=A0=A0=A0 regulator_set_voltage_unlocked+0xa4/0x128
+>  =A0=A0=A0=A0=A0=A0 regulator_set_voltage+0x50/0xec
+>  =A0=A0=A0=A0=A0=A0 _opp_config_regulator_single+0x4c/0x130
+>  =A0=A0=A0=A0=A0=A0 _set_opp+0xfc/0x544
+>  =A0=A0=A0=A0=A0=A0 dev_pm_opp_set_rate+0x190/0x284
+>  =A0=A0=A0=A0=A0=A0 set_target+0x34/0x40
+>  =A0=A0=A0=A0=A0=A0 __cpufreq_driver_target+0x170/0x290
+>  =A0=A0=A0=A0=A0=A0 cpufreq_online+0x814/0xa3c
+>  =A0=A0=A0=A0=A0=A0 cpufreq_add_dev+0x80/0x98
+>  =A0=A0=A0=A0=A0=A0 subsys_interface_register+0xfc/0x118
+>  =A0=A0=A0=A0=A0=A0 cpufreq_register_driver+0x150/0x234
+>  =A0=A0=A0=A0=A0=A0 dt_cpufreq_probe+0x150/0x480
+>  =A0=A0=A0=A0=A0=A0 platform_probe+0x68/0xd8
+>  =A0=A0=A0=A0=A0=A0 really_probe+0xbc/0x2a0
+>  =A0=A0=A0=A0=A0=A0 __driver_probe_device+0x78/0x12c
+>  =A0=A0=A0=A0=A0=A0 driver_probe_device+0xdc/0x164
+>  =A0=A0=A0=A0=A0=A0 __device_attach_driver+0xb8/0x138
+>  =A0=A0=A0=A0=A0=A0 bus_for_each_drv+0x84/0xe0
+>  =A0=A0=A0=A0=A0=A0 __device_attach+0xa8/0x1b0
+>  =A0=A0=A0=A0=A0=A0 device_initial_probe+0x14/0x20
+>  =A0=A0=A0=A0=A0=A0 bus_probe_device+0xb0/0xb4
+>  =A0=A0=A0=A0=A0=A0 deferred_probe_work_func+0x8c/0xc8
+>  =A0=A0=A0=A0=A0=A0 process_one_work+0x220/0x634
+>  =A0=A0=A0=A0=A0=A0 worker_thread+0x268/0x3a8
+>  =A0=A0=A0=A0=A0=A0 kthread+0x124/0x128
+>  =A0=A0=A0=A0=A0=A0 ret_from_fork+0x10/0x20
+
+This is the meson pwm driver calling clk_set_rate() in the .apply()
+callback.
+
+> -> #0 (&chip->nonatomic_lock){+.+.}-{3:3}:
+>  =A0=A0=A0=A0=A0=A0 __lock_acquire+0x1318/0x20c4
+>  =A0=A0=A0=A0=A0=A0 lock_acquire.part.0+0xc8/0x20c
+>  =A0=A0=A0=A0=A0=A0 lock_acquire+0x68/0x84
+>  =A0=A0=A0=A0=A0=A0 __mutex_lock+0xa0/0x840
+>  =A0=A0=A0=A0=A0=A0 mutex_lock_nested+0x24/0x30
+>  =A0=A0=A0=A0=A0=A0 pwm_apply_might_sleep+0x90/0xd8
+>  =A0=A0=A0=A0=A0=A0 clk_pwm_prepare+0x54/0x84
+>  =A0=A0=A0=A0=A0=A0 clk_core_prepare+0xc8/0x2f8
+>  =A0=A0=A0=A0=A0=A0 clk_prepare+0x28/0x44
+>  =A0=A0=A0=A0=A0=A0 mmc_pwrseq_simple_pre_power_on+0x4c/0x8c
+>  =A0=A0=A0=A0=A0=A0 mmc_pwrseq_pre_power_on+0x24/0x34
+>  =A0=A0=A0=A0=A0=A0 mmc_power_up.part.0+0x20/0x16c
+>  =A0=A0=A0=A0=A0=A0 mmc_start_host+0xa0/0xac
+>  =A0=A0=A0=A0=A0=A0 mmc_add_host+0x84/0xf0
+>  =A0=A0=A0=A0=A0=A0 meson_mmc_probe+0x318/0x3e8
+>  =A0=A0=A0=A0=A0=A0 platform_probe+0x68/0xd8
+>  =A0=A0=A0=A0=A0=A0 really_probe+0xbc/0x2a0
+>  =A0=A0=A0=A0=A0=A0 __driver_probe_device+0x78/0x12c
+>  =A0=A0=A0=A0=A0=A0 driver_probe_device+0xdc/0x164
+>  =A0=A0=A0=A0=A0=A0 __device_attach_driver+0xb8/0x138
+>  =A0=A0=A0=A0=A0=A0 bus_for_each_drv+0x84/0xe0
+>  =A0=A0=A0=A0=A0=A0 __device_attach_async_helper+0xb0/0xd4
+>  =A0=A0=A0=A0=A0=A0 async_run_entry_fn+0x34/0xe0
+>  =A0=A0=A0=A0=A0=A0 process_one_work+0x220/0x634
+>  =A0=A0=A0=A0=A0=A0 worker_thread+0x268/0x3a8
+>  =A0=A0=A0=A0=A0=A0 kthread+0x124/0x128
+>  =A0=A0=A0=A0=A0=A0 ret_from_fork+0x10/0x20
+
+This is the clk_pwm driver that calls pwm_enable() in its .prepare()
+callback. Looking at
+arch/arm64/boot/dts/amlogic/meson-g12b-s922x-khadas-vim3.dts the
+pwm-clock uses &pwm_ef which is a meson pwm.
+
+This alone only works because clk_prepare_lock() is reentrant for a
+single thread (see commit 533ddeb1e86f ("clk: allow reentrant calls into
+the clk framework")). (Is this really safe? What does the prepare_lock
+actually protect?)
+
+And because of this the lockdep splat is a false positive (as is every
+ABBA splat involving the clk prepare_lock).
+
+I think to properly address this, the global prepare_lock should be
+replaced by a per-clk lock. This would at least make
+
+	https://lore.kernel.org/all/20231017135436.1241650-1-alexander.stein@ew.tq=
+-group.com/
+
+(which I think is racy and needs a call to clk_rate_exclusive_get())
+unnecessary.
+
+Having said that, I don't know how to prevent that lockdep splat with
+neither dropping the blamed commit (which is needed for race free
+operation in the pwm framework) nor spending hours to rework the locking
+of the clk framework.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--q4ybeyaskyjbjlzd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYOyFgACgkQj4D7WH0S
+/k4RYwgArVz3a8+C0BZ9M8Hrv++No3FtYEZYgX2Sc0PU4bjrgat48gn6bEaFoDWj
+zVXascQSvWsGhUsnfp41Pk8CtAUDuicbWnYlhyP2fJBRhOjus/XNUH/C9CklMkbD
+Dk797Phjk4Xr8/wkZf83UxyTcUYW1/WwAqDdPVaRZQAU1kp6pG4NFOQWkX7SJI75
+BEy6nUA7+kRuWc1nKNdPi0e4ME4xo3kfpocLohSIzOTqlOMt6lbpZ3i6K976RXs0
+o+gKLuS4q2buDoBo4jTDZhjIEUMcK0uxnk+DOzcyKfAZNROsV/rsmCiBSdMrbZiQ
+OJj/DcYqIVdoy3Z1l1FfjI4UonbimA==
+=aqSg
+-----END PGP SIGNATURE-----
+
+--q4ybeyaskyjbjlzd--
+
+
+--===============6502810980016369063==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============6502810980016369063==--
+
