@@ -4,116 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F30C1CD1297
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Apr 2024 22:20:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C44D8CD1284
+	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Apr 2024 04:27:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:Date:References:
-	In-Reply-To:Message-Id:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HTUUxdoi6BDRhTY95cffrnycmM5pvIsJ/ydCZnhbJRc=; b=MCkNCCAYvRzDGN
-	yhAsbsvsMsZuV9I1DO9mHHhTZY4zYZjJMA4SEiO9N9EuYHsJ6EpOy0/fvenwZGUE7fmvktGje0I22
-	BUlG1TVhWV51gkg6EeVV/5MFZoupJ3pASFdDnJqpNa/sorCWOV6HkfToIbmNYGwm568e0c/zsNKRI
-	VlZeqC7X6AoecRhdQ3fvL1mI6QgKyU3mvpayxj2bBuip0tIpK/FPLef9aBqyZ1OBxFGFUx7dm5EIx
-	MpkgpJuLYWFdYoQh/MzDF0A7B+I6VTTVzqR694lDuPLNAd9pw49o6I3y2N9yyJdHRCM2XwS5DvwD4
-	9kIX9UTDI23WBGwYcYWg==;
+	List-Owner; bh=ZHHdHTdROhG1axJyks5X0s9FE5B1y1hl82z9YfP2oTQ=; b=uKjumIiBsFaHCq
+	P81ItxkUqUJfOzztLx5Y8wfvMLAmnAY30w2zjNBbHdmGZ051h46BiumZgqTGo0iYpJ3TMqpJ+7Oci
+	bGbQP1gUIg5RmH7BpItFPk3+4WBaajuQTyBRoCNdLya5T+rjJclO0j3BZpXIvIG2cx4yDWk8XjPeI
+	T1kdpo3lYooewtGOMFQ4aGGRS4USCdmFChW8vmXTp1Cz8pmW7DftttWZwK1ZbkvLSRGi/oqG4JYLu
+	aQxMOmPxuBciYd/+zPIWbO8MCqzd1VVp0kzvxq/KSUq2w6EmySj2QGxNPHR1Uqfk/UpqeYxj8s4GO
+	atzi3auAj+oV3s2Y7x8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rs8xt-00000000N93-2jpt;
-	Wed, 03 Apr 2024 22:20:17 +0000
-Received: from wfout6-smtp.messagingengine.com ([64.147.123.149])
+	id 1rsEhP-00000001Aln-2cvn;
+	Thu, 04 Apr 2024 04:27:39 +0000
+Received: from mail-oo1-xc2a.google.com ([2607:f8b0:4864:20::c2a])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rs8xq-00000000N7q-3QqH;
-	Wed, 03 Apr 2024 22:20:16 +0000
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfout.west.internal (Postfix) with ESMTP id E66511C000D6;
-	Wed,  3 Apr 2024 18:20:05 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Wed, 03 Apr 2024 18:20:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1712182805;
-	 x=1712269205; bh=Xbt92os27lL5H9pYrJJJSECna8SqfJoMjVwzgkuyoZM=; b=
-	cJesWQV6sdI6FrzfX4Lid/lEGt6FnxnOnyh9gq0kDbchrgT68okmI4OuEg1r492/
-	DQCj2kqFBdSg9f4v6PxKlwP3WJ0O2Gvq5+2rWETAzirKeRMxX4S6fuckou+9DtfQ
-	UHcn/mNG6lnEE6byR7hr+uy7geJK8si93XjFbB5FNiFhY4rrKiS7H8jKjBdZjnY5
-	UJsWFBC6TVig2jTzaxJiLECLQCw5EoiutJJw8v9tKcjnCwyZc098EWgIuqvwIyG9
-	mND4GEj/1BxLEBB0LBRffwARQftQftUvvaV+0OP7hhITzN2AEtNUvKw0X+nP/E4S
-	uYss4K1DglH6KZ5SYYt7hA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1712182805; x=
-	1712269205; bh=Xbt92os27lL5H9pYrJJJSECna8SqfJoMjVwzgkuyoZM=; b=w
-	vGu6xtOGcCz9d9iyhRkHEdJk+qDMi9unSaDst+Fg2yk7d3lTD7aYZC7WkjS0PhC/
-	gOdopkn+KZthmg9+FTE/uRJ5yF36BuWnIFtd8C5kV8XJHaORKs+591FbtVBYxJ0h
-	mpHmNItIxNT3WTJzXS1+TxYkeXpKx746regGbPsBvsMB+YPCIfIDyy0ntAq/urEz
-	RrohZpr2o03YQ8aPUh3EWbRcT4xNfSmNf6RZiQna6io7rOTC5+jx03MOYe0wCTGe
-	3XWNGWtwEchsbzLSfYtNuAmjAyhxsrA9Vwg31AHT63Fi7cbB73fc1BDDkYOn+emM
-	upWAjEMBBVe8kEUWMagxQ==
-X-ME-Sender: <xms:FNYNZluQf7QcdxGcufSbjYo1HsftnTLndE9a24KgyTIcl8ym2Mq7qw>
-    <xme:FNYNZudU3LsSXhQcLB_u7SjDhgQp5drJPkhZqPnEZ-6b5sIwri950uqmb5Q5Qhizy
-    rSwQAocGj9r-zSDhD4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudefjedguddtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeegfeejhedvledvffeijeeijeeivddvhfeliedvleevheejleetgedukedt
-    gfejveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:FNYNZowIbH-1mbC7tl04s8luS269xSWyYLvh50n0U2_Gm4z0pKpNag>
-    <xmx:FNYNZsPXoN6J3nYP9LUHpomCZmMH848FtqB1lJFLPI7kw8rCZfX7UA>
-    <xmx:FNYNZl_UXIpsDoIEVulnGYZMwWMxVwGZzIB6ZEMhxLWIfaJfFr34lg>
-    <xmx:FNYNZsVizvrRhvC7M-87G7YT1K82Di35hmhKA6jWxC2yLKzsYM2bVA>
-    <xmx:FdYNZhLG2Ve1yP_2u6OobwgJQnl7P8ga3FycwOyCVO30x_Cnr92C7lpT>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 05200B60092; Wed,  3 Apr 2024 18:20:04 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-333-gbfea15422e-fm-20240327.001-gbfea1542
+	id 1rsEhM-00000001AlL-1sFf
+	for linux-amlogic@lists.infradead.org;
+	Thu, 04 Apr 2024 04:27:38 +0000
+Received: by mail-oo1-xc2a.google.com with SMTP id 006d021491bc7-5a49261093cso289065eaf.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 03 Apr 2024 21:27:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712204854; x=1712809654; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=WWP5RAoFT0kiTo+qfZyglyrEgEHCHG1QIQ9F/lt7B8E=;
+        b=it6M5XnP92SuipBFRdUG5Hy7qScTPe12l4YGJjgSKs3RdqQOR9sGvhegBeuzsIGA8+
+         6IkVh6vACpLg/2oGp1QF/mItz7hF4aQNmi22r3dijeb1lqdwkT/pVjgx/mmOJsuNU1WS
+         3Mg7mFTpwe2P+3Q12Uoo12m79jyo8WEZ/KSFLuyKAnS1RrLEiBTS2hHxFBUT/jXw+SMf
+         2N8UP1OMtJ6pDqg4cTTU+JAq4NktN2piJXctxQ6+YaL7VKvEf45obsX+C9zaGmkjjjlL
+         L/qJjKWXy9xCbCaThsw6c3KBg//151Szr2FrWgSGxijzlSOfL/MDgbR3jOJJUg4C8hJM
+         kd/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712204854; x=1712809654;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WWP5RAoFT0kiTo+qfZyglyrEgEHCHG1QIQ9F/lt7B8E=;
+        b=rExAZCcG59pKbP4WKPp0gFYsylTpzzlv5NWeK7n7/F4N41AcVszv6VDxX9WT6hBNfx
+         6/XR89FTyVhqfTW1IYjP8wJi9yU8MK0LJCj8DJt+HNvlbaVUZ+IGFZbVnKwsc1gwMVYF
+         R0ScDU0l9UyewI/Mley4CsnHnDeOfQspkMzEtImkujvr0XJSFJAFdCncILKr3t8LdK4d
+         5+7UUwKcUCNe2V/tGaEbLPg/hfaixybPfM8Ra5NYN/ypN+fs+RTAAIjR6qhv1iks384y
+         s0j5WzAAnDfT+PEFmi0HXAxkiRtL7TqC2d+w3N8XJREJWlhRiUk/xDVAD9SrjcaMaWvF
+         RcSg==
+X-Forwarded-Encrypted: i=1; AJvYcCUWDDbOuRAqfu0OZW9rI3xodNuee7FWj8p5kGrtN2+3CVk8kZO3PvdzX+vICowydalp0DpMZg2hVHjJnzyld04wOyzB+f2K70ofRjlrul6mDNI=
+X-Gm-Message-State: AOJu0Yxxfni1eK6qGXr/mNg4VWg/hOePNSCaYgXLFVI6ksUEqlkAfq2H
+	NvqovoPH9UyZjYX1p//KNMLZR6XxH7OV0h6LLzTHVI/l4/CqVCQ1wIYGic8B98wJmt4g8arwFH3
+	wfWGrHMusZJXHOsC5E/IuXEpNr2I=
+X-Google-Smtp-Source: AGHT+IFwojGdn5TFA69NQKI8EHFePsm+grycDmM/kwemTgKo/lxJRDpk6nDdoeK1+VDGtXqMUJ0Dsn4FbyEFO4nF0nc=
+X-Received: by 2002:a05:6820:2012:b0:5a5:639a:2faa with SMTP id
+ by18-20020a056820201200b005a5639a2faamr1825200oob.2.1712204854408; Wed, 03
+ Apr 2024 21:27:34 -0700 (PDT)
 MIME-Version: 1.0
-Message-Id: <e5ebcbac-f445-4a48-a40f-7aa606c7d460@app.fastmail.com>
-In-Reply-To: <Zg3GdUtBUKzB6NNZ@surfacebook.localdomain>
-References: <20240403080702.3509288-1-arnd@kernel.org>
- <20240403080702.3509288-32-arnd@kernel.org>
- <b4418ac1-10ba-4932-be6e-93282707024f@sirena.org.uk>
- <5f3qvhasho4mfnf6f7i6djak3ankje375mt4fzvv3gqrlj242o@zdk2ajvha6hx>
- <Zg3GdUtBUKzB6NNZ@surfacebook.localdomain>
-Date: Thu, 04 Apr 2024 00:19:41 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Andy Shevchenko" <andy.shevchenko@gmail.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: "Mark Brown" <broonie@kernel.org>, "Arnd Bergmann" <arnd@kernel.org>,
- linux-kernel@vger.kernel.org,
- "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Kevin Hilman" <khilman@baylibre.com>,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- "Andi Shyti" <andi.shyti@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
- "Jerome Brunet" <jbrunet@baylibre.com>,
- "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>,
- "Alim Akhtar" <alim.akhtar@samsung.com>,
- "Li Zetao" <lizetao1@huawei.com>,
- "Jonathan Cameron" <Jonathan.Cameron@huawei.com>,
- "Rob Herring" <robh@kernel.org>,
- "Yang Yingliang" <yangyingliang@huawei.com>,
- "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>,
- "Luis de Arquer" <luis.dearquer@inertim.com>,
- "Tudor Ambarus" <tudor.ambarus@linaro.org>,
- "Sam Protsenko" <semen.protsenko@linaro.org>,
- "Peter Griffin" <peter.griffin@linaro.org>,
- "Jaewon Kim" <jaewon02.kim@samsung.com>, linux-spi@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH 31/34] spi: remove incorrect of_match_ptr annotations
+References: <20231204144429.45197-1-linux.amoon@gmail.com> <20231204144429.45197-2-linux.amoon@gmail.com>
+ <20231206135311.GA2043711-robh@kernel.org> <CANAwSgTS0ZSFPv4x803pCLEpjH5imh8vEoWpbiJRH14Sy3GZww@mail.gmail.com>
+ <21673bfd-bb87-4c7d-a53f-337c263f3a00@linaro.org> <CANAwSgSo37B0zg-xjrmqndSZ5SbyB3m27_wRsqqN9WTONooeiw@mail.gmail.com>
+ <604e653d-c1e2-45c7-b121-8a6b4be5c6bb@linaro.org> <CANAwSgRB=XWo2-40rDru=Zy277-kgGNjozJ8Lxnxgv_4ABB-kg@mail.gmail.com>
+ <1a78d453-62a2-410a-a40f-1ff0c2b62e86@linaro.org> <CANAwSgTy4N7Q8e0OQLsFRkRDWksTSbkOetKQGygaqsQ8++U1_g@mail.gmail.com>
+ <2e688f4e-11d7-4f8e-b8ec-58f4a97304a8@linaro.org> <CANAwSgQstkS-SDaV2hj0fimt7vgfEgOT_x4efshZ6sZQ0gWSEA@mail.gmail.com>
+ <8f28ea77-b3d0-445e-8d8e-80f980775f89@linaro.org> <CANAwSgRLORHb6qiHWRBR0tMbYB=O=gwatuGhk72SwZyhYMopCw@mail.gmail.com>
+ <d2962ffb-badd-44a6-bdcc-53e15d4a4379@linaro.org> <CANAwSgSpuh-+HFYg2UTgX27SHFyCBddV46MgKakiSCOtFX4+aw@mail.gmail.com>
+ <436ed6a4-2ed9-47bc-bcc9-18a52b1a791b@linaro.org> <CANAwSgS8ip+FvuvgusjNwnVL5Z68PRmEdwfQxhst_ZoVZFoFNw@mail.gmail.com>
+In-Reply-To: <CANAwSgS8ip+FvuvgusjNwnVL5Z68PRmEdwfQxhst_ZoVZFoFNw@mail.gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 4 Apr 2024 09:57:18 +0530
+Message-ID: <CANAwSgSftb3KkXvzNyGGixVtK8SWcOYjxO9WWpLt-B3mf_B6tg@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	linux-amlogic@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240403_152015_043656_94D0DAC4 
-X-CRM114-Status: GOOD (  22.87  )
+X-CRM114-CacheID: sfid-20240403_212736_709304_984E8F39 
+X-CRM114-Status: GOOD (  26.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,47 +97,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gV2VkLCBBcHIgMywgMjAyNCwgYXQgMjM6MTMsIEFuZHkgU2hldmNoZW5rbyB3cm90ZToKPiBX
-ZWQsIEFwciAwMywgMjAyNCBhdCAxMTowNTo1MVBNICswMjAwLCBVd2UgS2xlaW5lLUvDtm5pZyBr
-aXJqb2l0dGk6Cj4+IE9uIFdlZCwgQXByIDAzLCAyMDI0IGF0IDEwOjU2OjU4QU0gKzAxMDAsIE1h
-cmsgQnJvd24gd3JvdGU6Cj4+ID4gT24gV2VkLCBBcHIgMDMsIDIwMjQgYXQgMTA6MDY6NDlBTSAr
-MDIwMCwgQXJuZCBCZXJnbWFubiB3cm90ZToKPj4gPiAKPj4gPiA+IFRoZXNlIGFwcGVhciB0byBh
-bGwgYmUgY29waWVkIGZyb20gdGhlIHNhbWUgb3JpZ2luYWwgZHJpdmVyLCBzbyBmaXggdGhlbSBh
-dCB0aGUKPj4gPiA+IHNhbWUgdGltZSBieSByZW1vdmluZyB0aGUgdW5uZWNlc3Nhcnkgb2ZfbWF0
-Y2hfcHRyKCkgYW5ub3RhdGlvbi4gQXMgZmFyIGFzIEkKPj4gPiA+IGNhbiB0ZWxsLCBhbGwgdGhl
-c2UgZHJpdmVycyBhcmUgb25seSBhY3R1YWxseSB1c2VkIG9uIGNvbmZpZ3VyYXRpb25zIHRoYXQK
-Pj4gPiA+IGhhdmUgQ09ORklHX09GIGVuYWJsZWQuCj4+ID4gCj4+ID4gV2h5IGFyZSB3ZSBub3Qg
-Zml4aW5nIG9mX21hdGNoX3B0cigpIGhlcmUsIG9yIGF0IGxlYXN0IGFkZGluZyB0aGUgaWZkZWZz
-Cj4+ID4gaW4gY2FzZSBzb21lb25lIGRvZXMgZW5kIHVwIHdhbnRpbmcgdG8gcnVuIHdpdGhvdXQg
-T0Y/Cj4+IAo+PiBGaXhpbmcgb2ZfbWF0Y2hfcHRyID0KPj4gCj4+IGRpZmYgLS1naXQgYS9pbmNs
-dWRlL2xpbnV4L29mLmggYi9pbmNsdWRlL2xpbnV4L29mLmgKPj4gaW5kZXggYTBiZWRkMDM4YTA1
-Li5kOTgwYmNjZmZkYTAgMTAwNjQ0Cj4+IC0tLSBhL2luY2x1ZGUvbGludXgvb2YuaAo+PiArKysg
-Yi9pbmNsdWRlL2xpbnV4L29mLmgKPj4gQEAgLTg5MCw3ICs4OTAsNyBAQCBzdGF0aWMgaW5saW5l
-IGNvbnN0IHZvaWQgKm9mX2RldmljZV9nZXRfbWF0Y2hfZGF0YShjb25zdCBzdHJ1Y3QgZGV2aWNl
-ICpkZXYpCj4+ICAJcmV0dXJuIE5VTEw7Cj4+ICB9Cj4+ICAKPj4gLSNkZWZpbmUgb2ZfbWF0Y2hf
-cHRyKF9wdHIpCU5VTEwKPj4gKyNkZWZpbmUgb2ZfbWF0Y2hfcHRyKF9wdHIpCSgwID8gKF9wdHIp
-IDogTlVMTCkKClRoaXMgd291bGQgcmVxdWlyZSByZW1vdmluZyBzZXZlcmFsIGh1bmRyZWQgIiNp
-ZmRlZiBDT05GSUdfT0YiCmNoZWNrcyBhcm91bmQgdGhlIG9mX2RldmljZV9pZCB0YWJsZXMgYXQg
-dGhlIHNhbWUgdGltZQp1bmZvcnR1bmF0ZWx5LiBNb3N0IG9mIHRob3NlIGFyZSBjb21wbGV0ZWx5
-IHVubmVjZXNzYXJ5LCBzbwppZiB3ZSB3YW50ZWQgdG8gcmVtb3ZlIHRob3NlLCB3ZSBzaG91bGQg
-cmVtb3ZlIHRoZSBvZl9tYXRjaF9wdHIoKQppbnN0YW5jZXMgYXQgdGhlIHNhbWUgdGltZS4KCj4+
-ICAjZGVmaW5lIG9mX21hdGNoX25vZGUoX21hdGNoZXMsIF9ub2RlKQlOVUxMCj4+ICAjZW5kaWYg
-LyogQ09ORklHX09GICovCj4+ICAKPj4gPwo+PiAKPj4gQXNzdW1pbmcgdGhpcyBoZWxwcywgSSBh
-Z3JlZSB0aGlzIHdvdWxkIGJlIHRoZSBiZXR0ZXIgZml4Lgo+Cj4gV2h5PyBJIG1lYW4gd2h5IGRv
-IHdlIG5lZWQgdG8gZXZlbiBoYXZlIHRoaXMgQVBJPyBJdCdzIGFsd2F5cwo+IGdvb2QgdG8ga25v
-dyB3aGljaCBkZXZpY2VzIGFyZSBzdXBwb3J0ZWQgYnkgdGhlIG1vZHVsZSBldmVuCj4gaWYgeW91
-IGhhdmUgbm8gbmVlZCBpbiBzdWNoIHN1cHBvcnQgb3IgaXQncyBub3QgY29tcGlsZWQgaW4uCj4g
-T25lIG9mIHRoZSByZWFzb25zIHdoeSBpcyB0byBiZSBhYmxlIHRvIGdvb2dsZSBmb3IgY29tcGF0
-aWJsZSBoYXJkd2FyZSwKPiBmb3IgZXhhbXBsZS4KCkFzIGZhciBhcyBJIGNhbiB0ZWxsLCB0aGUg
-b2ZfbWF0Y2hfcHRyKCkgaGVscGVyIHdhcyBhIGhpc3RvcmljCm1pc3Rha2UsIGl0IG1ha2VzIHBy
-ZXR0eSBtdWNoIG5vIHNlbnNlIGluIGl0cyBjdXJyZW50IGZvcm0uCgpUaGUgdmVyc2lvbiB0aGF0
-IFV3ZSBwcm9wb3NlcyB3b3VsZCBoYXZlIG1hZGUgc2Vuc2UgYnV0IHdlCmNhbid0IGNoYW5nZSBp
-dCBub3cuCgogICAgICBBcm5kCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3Rz
-LmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9saW51eC1hbWxvZ2ljCg==
+Hi Krzysztof,
+
+On Tue, 12 Dec 2023 at 18:47, Anand Moon <linux.amoon@gmail.com> wrote:
+>
+> Hi Krzysztof,
+>
+> On Tue, 12 Dec 2023 at 18:39, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 12/12/2023 13:51, Anand Moon wrote:
+> > > Hi Krzysztof,
+> > >
+> > > On Tue, 12 Dec 2023 at 17:22, Krzysztof Kozlowski
+> > > <krzysztof.kozlowski@linaro.org> wrote:
+> > >>
+> > >> On 12/12/2023 12:37, Anand Moon wrote:
+> > >>>
+> > >>> Here is the list of warnings I observed with this patch
+> > >>>
+> > >>>   DTC_CHK Documentation/devicetree/bindings/usb/nvidia,tegra186-xusb.example.dtb
+> > >>> /home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
+> > >>> hub@1: 'vdd-supply' is a required property
+> > >>
+> > >> You always require the property, but it is not valid for some devices.
+> > >> Just require it only where it is applicable (in if:then: clause).
+> > >>
+> > > I had already done this check many times before.
+> >
+> > I don't ask you to check. I ask you to change the code.
+> >
+> I have tried this and it's not working for me.
+>
+> > > my v6 original patch was doing the same and it passed all the tests
+> > > but since I updated the required field it not parsing correctly.
+> >
+> > Your original v6 patch was different. I don't understand what you are
+> > trying to achieve. Or rather: how is it different, that my simple advice
+> > above does not work for you  (as in the past you reply with some really
+> > unrelated sentence).
+> >
+> Ok, It's my poor English grammar, thanks for your review comments.
+>
+> > Best regards,
+> > Krzysztof
+> >
+
+Any reason this device tree binding got removed,I cannot find this file
+Can not find the commit which removed this file.
+
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/usb?h=v6.9-rc2
+
+Thanks
+-Anand
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
