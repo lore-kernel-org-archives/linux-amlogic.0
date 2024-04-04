@@ -4,64 +4,121 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19F9FCD1292
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Apr 2024 15:34:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35B0ACD1297
+	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Apr 2024 17:00:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=THz0KJv/yOh+AcWH6U8e6Qk1L+HQIgQPebYOq+UPJyI=; b=KBvW1CweXVJ5hA4YNaz1nWEcoc
-	gZ+kjFMwdnhh1R8vZHgBozi9//0G1RyHlfaMRDMELws7gkF3yHD0eQJHf5/I8Zfvy08npICgSRxCX
-	bcOUDh7w2NCFKWK7DN+6OuztjizvEXfzPmYYPNMCAh5HKXHM/Ynbkp9BPKehms34oTrmeEsVz2LET
-	soVaTgnbYCqjPPGB0QV3J6Psokk+g7+aw7UJWTUc9HxDZ0ZGiRYxXO8+2/kL9dcMKTe1hvBqChU+6
-	7XmSukP6NIP5vJ5/ifnFccwwR0US+WHewq4O6lLhRDU6KGGOQweeaHxu4v9FBxPb6syPL6EGowH4d
-	ONgkiDvg==;
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=5f37s6XxqQMw/NjHq2reQJthy3CNaPI4QkSkRdzSVzw=; b=bEXJqOK4XMcKcLzNQbaq+drj0v
+	Us1/1jbyEljx8t5Pp0Kfhw1eBqFH9Bk4NwZ9yg8rfp3u/NqjwbSHUZG2BWIzY1ozvGQqQQTlGx93y
+	Nn/veA9ZNGYqQigS/px3absjqJD94lHl6PYe+9MoCdbV8KW7Kd7Z7No6HkUYQew3+1YTRBxW0XG88
+	+LcMlsu/7F2U7uaexBHiXYb7tXQImaXa2tT84w4ZlT3xBGyUVoSRWRAwRArnLqrfjMTKB26AYyG2o
+	nAsOEUfnvdgHam4f5o+PUYelswYOoehn4szni4ZeDlNnP9RCbHSJHOrIIeZl2SPUVjiBWYDv5Fmmf
+	QGQ+0gyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rsP6K-00000003FzX-1CvI;
-	Thu, 04 Apr 2024 15:34:04 +0000
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
+	id 1rsQRW-00000003Zss-2srd;
+	Thu, 04 Apr 2024 17:00:02 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rsP6H-00000003Fxx-1NBg
+	id 1rsQRS-00000003ZpW-0Pgd
 	for linux-amlogic@lists.infradead.org;
-	Thu, 04 Apr 2024 15:34:03 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rsP64-0001tj-Ny; Thu, 04 Apr 2024 17:33:48 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rsP61-00AP0e-EL; Thu, 04 Apr 2024 17:33:45 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rsP61-00F9uU-18;
-	Thu, 04 Apr 2024 17:33:45 +0200
-Date: Thu, 4 Apr 2024 17:33:45 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	LKML <linux-kernel@vger.kernel.org>, kernel@pengutronix.de, linux-clk@vger.kernel.org, 
-	Alexander Stein <alexander.stein@ew.tq-group.com>, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 7/8] pwm: Add more locking
-Message-ID: <adqtn6iljcguv3m3ovhltusbbf4mljzlwg73yklaudvjjtazxv@vyf5fvuzic6x>
-References: <cover.1710670958.git.u.kleine-koenig@pengutronix.de>
- <e36c1a44096cbd7e9cb693f2300ac12ed1b2f79d.1710670958.git.u.kleine-koenig@pengutronix.de>
- <CGME20240404120932eucas1p1b3c1e07bf6f41f6330725148b0268b13@eucas1p1.samsung.com>
- <5a49cadd-21b7-4384-9e7d-9105ccc288b3@samsung.com>
+	Thu, 04 Apr 2024 16:59:59 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-343b4601415so534194f8f.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 04 Apr 2024 09:59:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1712249993; x=1712854793; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l3Sy/O7JrPcSJpu77aPp9TPQX84YpKNhe7+xiQxZncY=;
+        b=I82u8TbjacPcKSBO3YqgQX5L1WqvsWt4MTtBeMYNgCBaWlc4e476s1LXnj2y0w7rmq
+         CogCa1UiOL4hdgyUdld7l1NGwFOXl+xFWkab8jA6DJqAju3r8zzAjvslt9yvSSOYZ5F7
+         7AbAy2dEgrfzvt5K1/GfeabhVuWEsDPXDxeptDhSdKa8bQCurL1k4y2jhBgHNYuh06v5
+         OvClQH8UztNdpZ8KK95IZQQmaCUy+pMcs1N64JJYFj2ZZHElZurMjMp128dXb6RZzUS4
+         DBj0iMSNOeTfxgGWBIFIn8om6R6aDgOp9WIPGmr/WUEIBopn+avSh4nwkw66KcmwSJ88
+         /AiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712249993; x=1712854793;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=l3Sy/O7JrPcSJpu77aPp9TPQX84YpKNhe7+xiQxZncY=;
+        b=EH0sqUv8vPznDRUDPU0pRUDYSimkYSnsrgQxeEWlHiLAj6ZXGAMbfn8X6EhfbggYlt
+         /GlxPIcxhWkRYS35WQCVKW1Q6LHv23T4Nfc4HUKAEKWdgON86FzDYt/Y97o7qR8ninDi
+         KnTzlqPj6W9kfw9xQN0lyMMCze4fEGsg1j3aNbsoFKEltODH6iKoehcnMtLZIJkZuKDg
+         Ici6KkxU/I45TP/r7YnOqzsL3n3xohERVMr3eXL9hWqqTh5/W977okKZUUgT6YjtVYnU
+         tL5am8sm4LhTc2V0ZfE5xtzkjAbx6k9xZ2Lt4POa11mARa0F+7+uYXQMmGT2EVqu1I3K
+         Sa1w==
+X-Forwarded-Encrypted: i=1; AJvYcCV22INz0U5vgo9hwHQsn2HMU4nNCDvZs0hJeWqtbVaM6i5KdoErCTk8YL2tWrBTYL59y4+e5mjwYJ9vup+5rV2sdOAP40yhNvEJelcsrxLxqRQ=
+X-Gm-Message-State: AOJu0Yx+onohVROgKBKWi0q4BSjslSp88sjRrLk0EfXaNqRf522R2nAe
+	BkHRAPR5RGsKuH9V7TrUtKD1MJqrkQ3JT85+emIjVqBCMBzj32OpcoGxJkDx7bg=
+X-Google-Smtp-Source: AGHT+IFjXaNrqfypx/RIQ+/6bcfFkAfBL80K/QjtfVHCoqExHR3ODQL4yTaaXd1xO2D4BDgljPA4/A==
+X-Received: by 2002:adf:ab1e:0:b0:343:6b42:b3bb with SMTP id q30-20020adfab1e000000b003436b42b3bbmr35091wrc.31.1712249993185;
+        Thu, 04 Apr 2024 09:59:53 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5910:95db:d5a3:46d6? ([2a01:e0a:982:cbb0:5910:95db:d5a3:46d6])
+        by smtp.gmail.com with ESMTPSA id ce8-20020a5d5e08000000b003433e4c6d43sm16950894wrb.32.2024.04.04.09.59.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Apr 2024 09:59:52 -0700 (PDT)
+Message-ID: <2cf79f07-0ae1-4267-ac08-fe40366d87d4@linaro.org>
+Date: Thu, 4 Apr 2024 18:59:51 +0200
 MIME-Version: 1.0
-In-Reply-To: <5a49cadd-21b7-4384-9e7d-9105ccc288b3@samsung.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v12 2/7] clk: meson: add vclk driver
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jagan Teki <jagan@amarulasolutions.com>, Nicolas Belin
+ <nbelin@baylibre.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ dri-devel@lists.freedesktop.org
+References: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-0-99ecdfdc87fc@linaro.org>
+ <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-2-99ecdfdc87fc@linaro.org>
+ <1jmsq9pmgd.fsf@starbuckisacylon.baylibre.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <1jmsq9pmgd.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240404_083401_573611_210427CF 
-X-CRM114-Status: GOOD (  26.09  )
+X-CRM114-CacheID: sfid-20240404_095958_230061_E0588B5A 
+X-CRM114-Status: GOOD (  22.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,204 +130,319 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============6502810980016369063=="
+Reply-To: neil.armstrong@linaro.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On 04/04/2024 10:13, Jerome Brunet wrote:
+> 
+> On Wed 03 Apr 2024 at 09:46, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> 
+>> The VCLK and VCLK_DIV clocks have supplementary bits.
+>>
+>> The VCLK gate has a "SOFT RESET" bit to toggle after the whole
+>> VCLK sub-tree rate has been set, this is implemented in
+>> the gate enable callback.
+>>
+>> The VCLK_DIV clocks as enable and reset bits used to disable
+>> and reset the divider, associated with CLK_SET_RATE_GATE it ensures
+>> the rate is set while the divider is disabled and in reset mode.
+>>
+>> The VCLK_DIV enable bit isn't implemented as a gate since it's part
+>> of the divider logic and vendor does this exact sequence to ensure
+>> the divider is correctly set.
+> 
+> The checkpatch warning is still there. Is it a choice or a mistake ?
+> 
+> Documentation says "GPL v2" exists for historic reason which seems to
+> hint "GPL" is preferred, and I suppose this is why checkpatch warns for
+> it.
 
---===============6502810980016369063==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="q4ybeyaskyjbjlzd"
-Content-Disposition: inline
+Well I didn't see this warning, this is what I fixed:
 
+$ scripts/checkpatch.pl --strict drivers/clk/meson/vclk.c
+CHECK: Alignment should match open parenthesis
+#63: FILE: drivers/clk/meson/vclk.c:63:
++static unsigned long meson_vclk_div_recalc_rate(struct clk_hw *hw,
++                                                    unsigned long prate)
 
---q4ybeyaskyjbjlzd
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+CHECK: Alignment should match open parenthesis
+#73: FILE: drivers/clk/meson/vclk.c:73:
++static int meson_vclk_div_determine_rate(struct clk_hw *hw,
++                                             struct clk_rate_request *req)
 
-Hello Marek,
+CHECK: Alignment should match open parenthesis
+#83: FILE: drivers/clk/meson/vclk.c:83:
++static int meson_vclk_div_set_rate(struct clk_hw *hw, unsigned long rate,
++                                       unsigned long parent_rate)
 
-[Cc +=3D linux-clk@vger.kernel.org, Alexander Stein, linux-arm-kernel@lists=
-=2Einfradead.org]
+<snip>
 
-On Thu, Apr 04, 2024 at 02:09:32PM +0200, Marek Szyprowski wrote:
-> On 17.03.2024 11:40, Uwe Kleine-K=F6nig wrote:
-> > This ensures that a pwm_chip that has no corresponding driver isn't used
-> > and that a driver doesn't go away while a callback is still running.
-> >
-> > In the presence of device links this isn't necessary yet (so this is no
-> > fix) but for pwm character device support this is needed.
-> >
-> > To not serialize all pwm_apply_state() calls, this introduces a per chip
-> > lock. An additional complication is that for atomic chips a mutex cannot
-> > be used (as pwm_apply_atomic() must not sleem) and a spinlock cannot be
-> > held while calling an operation for a sleeping chip. So depending on the
-> > chip being atomic or not a spinlock or a mutex is used.
-> >
-> > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
->=20
->=20
-> This patch landed some time ago in linux-next as commit a740f7879609=20
-> ("pwm: Add more locking"). Recently I've finally found that $subject=20
-> patch is responsible for the following lock dep splat observed for some=
-=20
-> time during day-to-day linux-next testing:
->=20
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
-> WARNING: possible circular locking dependency detected
-> 6.9.0-rc1+ #14790 Tainted: G=A0=A0=A0=A0=A0=A0=A0=A0 C
-> ------------------------------------------------------
-> kworker/u24:4/59 is trying to acquire lock:
-> ffff00003c65b510 (&chip->nonatomic_lock){+.+.}-{3:3}, at:=20
-> pwm_apply_might_sleep+0x90/0xd8
->=20
-> but task is already holding lock:
-> ffff80008310fa40 (prepare_lock){+.+.}-{3:3}, at: clk_prepare_lock+0x4c/0x=
-a8
->=20
-> which lock already depends on the new lock.
->=20
->=20
-> the existing dependency chain (in reverse order) is:
->=20
-> -> #1 (prepare_lock){+.+.}-{3:3}:
->  =A0=A0=A0=A0=A0=A0 lock_acquire+0x68/0x84
->  =A0=A0=A0=A0=A0=A0 __mutex_lock+0xa0/0x840
->  =A0=A0=A0=A0=A0=A0 mutex_lock_nested+0x24/0x30
->  =A0=A0=A0=A0=A0=A0 clk_prepare_lock+0x4c/0xa8
->  =A0=A0=A0=A0=A0=A0 clk_round_rate+0x38/0xd0
->  =A0=A0=A0=A0=A0=A0 meson_pwm_apply+0x128/0x220 [pwm_meson]
->  =A0=A0=A0=A0=A0=A0 __pwm_apply+0x64/0x1f8
->  =A0=A0=A0=A0=A0=A0 pwm_apply_might_sleep+0x58/0xd8
->  =A0=A0=A0=A0=A0=A0 pwm_regulator_set_voltage+0xbc/0x12c
->  =A0=A0=A0=A0=A0=A0 _regulator_do_set_voltage+0x110/0x688
->  =A0=A0=A0=A0=A0=A0 regulator_set_voltage_rdev+0x64/0x25c
->  =A0=A0=A0=A0=A0=A0 regulator_do_balance_voltage+0x20c/0x47c
->  =A0=A0=A0=A0=A0=A0 regulator_balance_voltage+0x50/0x9c
->  =A0=A0=A0=A0=A0=A0 regulator_set_voltage_unlocked+0xa4/0x128
->  =A0=A0=A0=A0=A0=A0 regulator_set_voltage+0x50/0xec
->  =A0=A0=A0=A0=A0=A0 _opp_config_regulator_single+0x4c/0x130
->  =A0=A0=A0=A0=A0=A0 _set_opp+0xfc/0x544
->  =A0=A0=A0=A0=A0=A0 dev_pm_opp_set_rate+0x190/0x284
->  =A0=A0=A0=A0=A0=A0 set_target+0x34/0x40
->  =A0=A0=A0=A0=A0=A0 __cpufreq_driver_target+0x170/0x290
->  =A0=A0=A0=A0=A0=A0 cpufreq_online+0x814/0xa3c
->  =A0=A0=A0=A0=A0=A0 cpufreq_add_dev+0x80/0x98
->  =A0=A0=A0=A0=A0=A0 subsys_interface_register+0xfc/0x118
->  =A0=A0=A0=A0=A0=A0 cpufreq_register_driver+0x150/0x234
->  =A0=A0=A0=A0=A0=A0 dt_cpufreq_probe+0x150/0x480
->  =A0=A0=A0=A0=A0=A0 platform_probe+0x68/0xd8
->  =A0=A0=A0=A0=A0=A0 really_probe+0xbc/0x2a0
->  =A0=A0=A0=A0=A0=A0 __driver_probe_device+0x78/0x12c
->  =A0=A0=A0=A0=A0=A0 driver_probe_device+0xdc/0x164
->  =A0=A0=A0=A0=A0=A0 __device_attach_driver+0xb8/0x138
->  =A0=A0=A0=A0=A0=A0 bus_for_each_drv+0x84/0xe0
->  =A0=A0=A0=A0=A0=A0 __device_attach+0xa8/0x1b0
->  =A0=A0=A0=A0=A0=A0 device_initial_probe+0x14/0x20
->  =A0=A0=A0=A0=A0=A0 bus_probe_device+0xb0/0xb4
->  =A0=A0=A0=A0=A0=A0 deferred_probe_work_func+0x8c/0xc8
->  =A0=A0=A0=A0=A0=A0 process_one_work+0x220/0x634
->  =A0=A0=A0=A0=A0=A0 worker_thread+0x268/0x3a8
->  =A0=A0=A0=A0=A0=A0 kthread+0x124/0x128
->  =A0=A0=A0=A0=A0=A0 ret_from_fork+0x10/0x20
+It seems that checking a commit triggers an extra check....
 
-This is the meson pwm driver calling clk_set_rate() in the .apply()
-callback.
+$ scripts/checkpatch.pl --strict -G 1bac9f6aa3c3
+WARNING: added, moved or deleted file(s), does MAINTAINERS need updating?
+#58:
+new file mode 100644
 
-> -> #0 (&chip->nonatomic_lock){+.+.}-{3:3}:
->  =A0=A0=A0=A0=A0=A0 __lock_acquire+0x1318/0x20c4
->  =A0=A0=A0=A0=A0=A0 lock_acquire.part.0+0xc8/0x20c
->  =A0=A0=A0=A0=A0=A0 lock_acquire+0x68/0x84
->  =A0=A0=A0=A0=A0=A0 __mutex_lock+0xa0/0x840
->  =A0=A0=A0=A0=A0=A0 mutex_lock_nested+0x24/0x30
->  =A0=A0=A0=A0=A0=A0 pwm_apply_might_sleep+0x90/0xd8
->  =A0=A0=A0=A0=A0=A0 clk_pwm_prepare+0x54/0x84
->  =A0=A0=A0=A0=A0=A0 clk_core_prepare+0xc8/0x2f8
->  =A0=A0=A0=A0=A0=A0 clk_prepare+0x28/0x44
->  =A0=A0=A0=A0=A0=A0 mmc_pwrseq_simple_pre_power_on+0x4c/0x8c
->  =A0=A0=A0=A0=A0=A0 mmc_pwrseq_pre_power_on+0x24/0x34
->  =A0=A0=A0=A0=A0=A0 mmc_power_up.part.0+0x20/0x16c
->  =A0=A0=A0=A0=A0=A0 mmc_start_host+0xa0/0xac
->  =A0=A0=A0=A0=A0=A0 mmc_add_host+0x84/0xf0
->  =A0=A0=A0=A0=A0=A0 meson_mmc_probe+0x318/0x3e8
->  =A0=A0=A0=A0=A0=A0 platform_probe+0x68/0xd8
->  =A0=A0=A0=A0=A0=A0 really_probe+0xbc/0x2a0
->  =A0=A0=A0=A0=A0=A0 __driver_probe_device+0x78/0x12c
->  =A0=A0=A0=A0=A0=A0 driver_probe_device+0xdc/0x164
->  =A0=A0=A0=A0=A0=A0 __device_attach_driver+0xb8/0x138
->  =A0=A0=A0=A0=A0=A0 bus_for_each_drv+0x84/0xe0
->  =A0=A0=A0=A0=A0=A0 __device_attach_async_helper+0xb0/0xd4
->  =A0=A0=A0=A0=A0=A0 async_run_entry_fn+0x34/0xe0
->  =A0=A0=A0=A0=A0=A0 process_one_work+0x220/0x634
->  =A0=A0=A0=A0=A0=A0 worker_thread+0x268/0x3a8
->  =A0=A0=A0=A0=A0=A0 kthread+0x124/0x128
->  =A0=A0=A0=A0=A0=A0 ret_from_fork+0x10/0x20
+<snip>
 
-This is the clk_pwm driver that calls pwm_enable() in its .prepare()
-callback. Looking at
-arch/arm64/boot/dts/amlogic/meson-g12b-s922x-khadas-vim3.dts the
-pwm-clock uses &pwm_ef which is a meson pwm.
+WARNING: Prefer "GPL" over "GPL v2" - see commit bf7fbeeae6db ("module: Cure the MODULE_LICENSE "GPL" vs. "GPL v2" bogosity")
+#203: FILE: drivers/clk/meson/vclk.c:141:
++MODULE_LICENSE("GPL v2");
 
-This alone only works because clk_prepare_lock() is reentrant for a
-single thread (see commit 533ddeb1e86f ("clk: allow reentrant calls into
-the clk framework")). (Is this really safe? What does the prepare_lock
-actually protect?)
+<snip>
 
-And because of this the lockdep splat is a false positive (as is every
-ABBA splat involving the clk prepare_lock).
+Neil
 
-I think to properly address this, the global prepare_lock should be
-replaced by a per-clk lock. This would at least make
+> 
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   drivers/clk/meson/Kconfig  |   4 ++
+>>   drivers/clk/meson/Makefile |   1 +
+>>   drivers/clk/meson/vclk.c   | 141 +++++++++++++++++++++++++++++++++++++++++++++
+>>   drivers/clk/meson/vclk.h   |  51 ++++++++++++++++
+>>   4 files changed, 197 insertions(+)
+>>
+>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>> index 29ffd14d267b..8a9823789fa3 100644
+>> --- a/drivers/clk/meson/Kconfig
+>> +++ b/drivers/clk/meson/Kconfig
+>> @@ -30,6 +30,10 @@ config COMMON_CLK_MESON_VID_PLL_DIV
+>>   	tristate
+>>   	select COMMON_CLK_MESON_REGMAP
+>>   
+>> +config COMMON_CLK_MESON_VCLK
+>> +	tristate
+>> +	select COMMON_CLK_MESON_REGMAP
+>> +
+>>   config COMMON_CLK_MESON_CLKC_UTILS
+>>   	tristate
+>>   
+>> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+>> index 9ee4b954c896..9ba43fe7a07a 100644
+>> --- a/drivers/clk/meson/Makefile
+>> +++ b/drivers/clk/meson/Makefile
+>> @@ -12,6 +12,7 @@ obj-$(CONFIG_COMMON_CLK_MESON_PLL) += clk-pll.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_REGMAP) += clk-regmap.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_SCLK_DIV) += sclk-div.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_VID_PLL_DIV) += vid-pll-div.o
+>> +obj-$(CONFIG_COMMON_CLK_MESON_VCLK) += vclk.o
+>>   
+>>   # Amlogic Clock controllers
+>>   
+>> diff --git a/drivers/clk/meson/vclk.c b/drivers/clk/meson/vclk.c
+>> new file mode 100644
+>> index 000000000000..45dc216941ea
+>> --- /dev/null
+>> +++ b/drivers/clk/meson/vclk.c
+>> @@ -0,0 +1,141 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (c) 2024 Neil Armstrong <neil.armstrong@linaro.org>
+>> + */
+>> +
+>> +#include <linux/module.h>
+>> +#include "vclk.h"
+>> +
+>> +/* The VCLK gate has a supplementary reset bit to pulse after ungating */
+>> +
+>> +static inline struct meson_vclk_gate_data *
+>> +clk_get_meson_vclk_gate_data(struct clk_regmap *clk)
+>> +{
+>> +	return (struct meson_vclk_gate_data *)clk->data;
+>> +}
+>> +
+>> +static int meson_vclk_gate_enable(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct meson_vclk_gate_data *vclk = clk_get_meson_vclk_gate_data(clk);
+>> +
+>> +	meson_parm_write(clk->map, &vclk->enable, 1);
+>> +
+>> +	/* Do a reset pulse */
+>> +	meson_parm_write(clk->map, &vclk->reset, 1);
+>> +	meson_parm_write(clk->map, &vclk->reset, 0);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void meson_vclk_gate_disable(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct meson_vclk_gate_data *vclk = clk_get_meson_vclk_gate_data(clk);
+>> +
+>> +	meson_parm_write(clk->map, &vclk->enable, 0);
+>> +}
+>> +
+>> +static int meson_vclk_gate_is_enabled(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct meson_vclk_gate_data *vclk = clk_get_meson_vclk_gate_data(clk);
+>> +
+>> +	return meson_parm_read(clk->map, &vclk->enable);
+>> +}
+>> +
+>> +const struct clk_ops meson_vclk_gate_ops = {
+>> +	.enable = meson_vclk_gate_enable,
+>> +	.disable = meson_vclk_gate_disable,
+>> +	.is_enabled = meson_vclk_gate_is_enabled,
+>> +};
+>> +EXPORT_SYMBOL_GPL(meson_vclk_gate_ops);
+>> +
+>> +/* The VCLK Divider has supplementary reset & enable bits */
+>> +
+>> +static inline struct meson_vclk_div_data *
+>> +clk_get_meson_vclk_div_data(struct clk_regmap *clk)
+>> +{
+>> +	return (struct meson_vclk_div_data *)clk->data;
+>> +}
+>> +
+>> +static unsigned long meson_vclk_div_recalc_rate(struct clk_hw *hw,
+>> +						unsigned long prate)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct meson_vclk_div_data *vclk = clk_get_meson_vclk_div_data(clk);
+>> +
+>> +	return divider_recalc_rate(hw, prate, meson_parm_read(clk->map, &vclk->div),
+>> +				   vclk->table, vclk->flags, vclk->div.width);
+>> +}
+>> +
+>> +static int meson_vclk_div_determine_rate(struct clk_hw *hw,
+>> +					 struct clk_rate_request *req)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct meson_vclk_div_data *vclk = clk_get_meson_vclk_div_data(clk);
+>> +
+>> +	return divider_determine_rate(hw, req, vclk->table, vclk->div.width,
+>> +				      vclk->flags);
+>> +}
+>> +
+>> +static int meson_vclk_div_set_rate(struct clk_hw *hw, unsigned long rate,
+>> +				   unsigned long parent_rate)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct meson_vclk_div_data *vclk = clk_get_meson_vclk_div_data(clk);
+>> +	int ret;
+>> +
+>> +	ret = divider_get_val(rate, parent_rate, vclk->table, vclk->div.width,
+>> +			      vclk->flags);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	meson_parm_write(clk->map, &vclk->div, ret);
+>> +
+>> +	return 0;
+>> +};
+>> +
+>> +static int meson_vclk_div_enable(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct meson_vclk_div_data *vclk = clk_get_meson_vclk_div_data(clk);
+>> +
+>> +	/* Unreset the divider when ungating */
+>> +	meson_parm_write(clk->map, &vclk->reset, 0);
+>> +	meson_parm_write(clk->map, &vclk->enable, 1);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void meson_vclk_div_disable(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct meson_vclk_div_data *vclk = clk_get_meson_vclk_div_data(clk);
+>> +
+>> +	/* Reset the divider when gating */
+>> +	meson_parm_write(clk->map, &vclk->enable, 0);
+>> +	meson_parm_write(clk->map, &vclk->reset, 1);
+>> +}
+>> +
+>> +static int meson_vclk_div_is_enabled(struct clk_hw *hw)
+>> +{
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct meson_vclk_div_data *vclk = clk_get_meson_vclk_div_data(clk);
+>> +
+>> +	return meson_parm_read(clk->map, &vclk->enable);
+>> +}
+>> +
+>> +const struct clk_ops meson_vclk_div_ops = {
+>> +	.recalc_rate = meson_vclk_div_recalc_rate,
+>> +	.determine_rate = meson_vclk_div_determine_rate,
+>> +	.set_rate = meson_vclk_div_set_rate,
+>> +	.enable = meson_vclk_div_enable,
+>> +	.disable = meson_vclk_div_disable,
+>> +	.is_enabled = meson_vclk_div_is_enabled,
+>> +};
+>> +EXPORT_SYMBOL_GPL(meson_vclk_div_ops);
+>> +
+>> +MODULE_DESCRIPTION("Amlogic vclk clock driver");
+>> +MODULE_AUTHOR("Neil Armstrong <neil.armstrong@linaro.org>");
+>> +MODULE_LICENSE("GPL v2");
+>> diff --git a/drivers/clk/meson/vclk.h b/drivers/clk/meson/vclk.h
+>> new file mode 100644
+>> index 000000000000..20b0b181db09
+>> --- /dev/null
+>> +++ b/drivers/clk/meson/vclk.h
+>> @@ -0,0 +1,51 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * Copyright (c) 2024 Neil Armstrong <neil.armstrong@linaro.org>
+>> + */
+>> +
+>> +#ifndef __VCLK_H
+>> +#define __VCLK_H
+>> +
+>> +#include "clk-regmap.h"
+>> +#include "parm.h"
+>> +
+>> +/**
+>> + * struct meson_vclk_gate_data - vclk_gate regmap backed specific data
+>> + *
+>> + * @enable:	vclk enable field
+>> + * @reset:	vclk reset field
+>> + * @flags:	hardware-specific flags
+>> + *
+>> + * Flags:
+>> + * Same as clk_gate except CLK_GATE_HIWORD_MASK which is ignored
+>> + */
+>> +struct meson_vclk_gate_data {
+>> +	struct parm enable;
+>> +	struct parm reset;
+>> +	u8 flags;
+>> +};
+>> +
+>> +extern const struct clk_ops meson_vclk_gate_ops;
+>> +
+>> +/**
+>> + * struct meson_vclk_div_data - vclk_div regmap back specific data
+>> + *
+>> + * @div:	divider field
+>> + * @enable:	vclk divider enable field
+>> + * @reset:	vclk divider reset field
+>> + * @table:	array of value/divider pairs, last entry should have div = 0
+>> + *
+>> + * Flags:
+>> + * Same as clk_divider except CLK_DIVIDER_HIWORD_MASK which is ignored
+>> + */
+>> +struct meson_vclk_div_data {
+>> +	struct parm div;
+>> +	struct parm enable;
+>> +	struct parm reset;
+>> +	const struct clk_div_table *table;
+>> +	u8 flags;
+>> +};
+>> +
+>> +extern const struct clk_ops meson_vclk_div_ops;
+>> +
+>> +#endif /* __VCLK_H */
+> 
+> 
 
-	https://lore.kernel.org/all/20231017135436.1241650-1-alexander.stein@ew.tq=
--group.com/
-
-(which I think is racy and needs a call to clk_rate_exclusive_get())
-unnecessary.
-
-Having said that, I don't know how to prevent that lockdep splat with
-neither dropping the blamed commit (which is needed for race free
-operation in the pwm framework) nor spending hours to rework the locking
-of the clk framework.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---q4ybeyaskyjbjlzd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYOyFgACgkQj4D7WH0S
-/k4RYwgArVz3a8+C0BZ9M8Hrv++No3FtYEZYgX2Sc0PU4bjrgat48gn6bEaFoDWj
-zVXascQSvWsGhUsnfp41Pk8CtAUDuicbWnYlhyP2fJBRhOjus/XNUH/C9CklMkbD
-Dk797Phjk4Xr8/wkZf83UxyTcUYW1/WwAqDdPVaRZQAU1kp6pG4NFOQWkX7SJI75
-BEy6nUA7+kRuWc1nKNdPi0e4ME4xo3kfpocLohSIzOTqlOMt6lbpZ3i6K976RXs0
-o+gKLuS4q2buDoBo4jTDZhjIEUMcK0uxnk+DOzcyKfAZNROsV/rsmCiBSdMrbZiQ
-OJj/DcYqIVdoy3Z1l1FfjI4UonbimA==
-=aqSg
------END PGP SIGNATURE-----
-
---q4ybeyaskyjbjlzd--
-
-
---===============6502810980016369063==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============6502810980016369063==--
-
