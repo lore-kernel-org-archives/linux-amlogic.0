@@ -4,91 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BAE9C67861
-	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2024 08:03:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36B77CD11C2
+	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2024 08:48:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:Cc:References:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Pin2PvHFQjR5TnouKbFBZYB+nXWJY9+VQGjy1BA1GBU=; b=1ISantLdis3niN
-	417AOBxggPeDX198ZnfWU30yzGetOZmzftUfgA0NHh6hDIy1GF4siev8Zis/YgFgor24GcxFQEfkR
-	bRJ5HA4w5OcDbRhVKj4Mk/gDVsNgsA//iDOt6O6Tcr7J8LLHZj9pYa01RN0LOPRaS2H1WGKcYRymG
-	OcuoEP373lq7TAb6PvJepkYk2apGXyQmc9r3C3L+JYoYsIK8++FjA2nXsUo+BCXTYrsoNQIKKdCt1
-	bE/eRbHFyiTS2Q0tgyEweMra+cUlDALQpca8gwC5rrPzKLmpte/hUFO3U9Y8avYepjJmE1cVSjUHF
-	w2c0YwF47jzkuHWUPR3A==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=mMZFfWqg2C/MopHinC+9U8YI27Yio2slzhb9O+5fxLg=; b=ULy5IUmlTARXdJ0RZmF/gUASq8
+	ck/IUPSnFGsQ2gO9yigfGFurgM0tdQZJXSdNkdz0UTS5oHbVZCZQo4kjq3ANkfsqtwCksnCNg7a2r
+	5t3fMAfD6zyThAtXssdbAOnjstHEj7lUvhQdoeFmW6AFt4JDbKGCKG3ii5J1qbMYYFCGbE5t/qbnf
+	c3o6ViXDfUvHywNSzF3MYVZrwAnA3UI8QDxdwij5V3kOqCuPdFqXe2pHqZYW960KZHPLJIM8X5c4e
+	liq20/ZZ11PurzmzUuyElljhNwVLMMIx6V0KoAS9Jc5FfA/Fsdj1IObj2nhr6ZNBouNq6WbRdJKTd
+	tBjwb3lw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rseXf-00000005qvv-07D8;
-	Fri, 05 Apr 2024 08:03:19 +0000
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122])
+	id 1rsfFj-000000060zD-1XJC;
+	Fri, 05 Apr 2024 08:48:51 +0000
+Received: from www.zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rseXY-00000005qoC-0MPk
+	id 1rsfFg-000000060vk-1BUT
 	for linux-amlogic@lists.infradead.org;
-	Fri, 05 Apr 2024 08:03:17 +0000
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 13B2A3F274
-	for <linux-amlogic@lists.infradead.org>; Fri,  5 Apr 2024 08:03:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1712304186;
-	bh=AAPPJoScNUPwvI0DFQBp84Z3ed0SuoO2+/aZj/UXOg4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:Cc:From:
-	 In-Reply-To:Content-Type;
-	b=vjm9vvMFY30VPStbx5avfk17mtS6bxy10+c81Y10vCR0EGvqTElo7SLS9pQlDzwm5
-	 9mzWTTdgwMfVBcRU6NnXxaX2KSek9IbAjnD2mAwsAuTpdloabbpt76DWZEGrS58WnM
-	 85tEJuJwbCq8i9Ehsv74PF+Opv8WBmmwvk+AGukXV1aMQ25Bck8VPVJTOojroGWsEU
-	 4t3ULpcZllpaZjYNqOie/Wcm24h+5bDKKV7i59jy1Jv2FcbW22whNLzcf9+Dq/bKMB
-	 OQGP27zvm9YiJsGA2JiOmITO/X3T2Wzbcmu8CqxW7s8amSiEr/4tI0qzYBU4ugRbv4
-	 tHrBs/dCFt3eA==
-Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-4162b9b1702so6529045e9.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 05 Apr 2024 01:03:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712304185; x=1712908985;
-        h=content-transfer-encoding:in-reply-to:from:cc:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AAPPJoScNUPwvI0DFQBp84Z3ed0SuoO2+/aZj/UXOg4=;
-        b=mzCYJ8UQzE7JDU+gJ8mRou1KnXKQQrtNtrx+T7h2NRjJbItNZK6ugNlydzkbl9yetF
-         FSyOVOsiwAS3iP/ZEWWfZ524NpNiq8EXzvIj52CJOoBM/4a/kGwepsYbTeHiZWp/v38g
-         HOu4oY1fnkaHLaWnoDKuJi+WD82t65WohquGuIpHlMwHj28oIlri6CFj9/gB96y30I1L
-         GK6kRBLlvrHfYGjtmHVN22DKLeW9jmxNhO3EfrNqeDpT6tYe27o76rhKXrb+7miANVDu
-         GM1LatCVtW+lC5jtzDG78OH2gjYoMl9yG6Q6hKlAx3xrM+MKCiUVwUVtUeHKHSJdO8Gz
-         Ig9w==
-X-Forwarded-Encrypted: i=1; AJvYcCUz1p7tqKSbj/YjN5D363QcJYUikNsk+vQf5JlVd5gFC/cdbDJRQ+zyD9q4xJBcCRbXZuCJZp+fzP29aM5Lg5V+vpW8wwKKbWCBFcKR8m3d+UI=
-X-Gm-Message-State: AOJu0YxMekBBD36iiQBPsYwSVrnHXt+oSxrSqvWNlqO7S0NFgnQun1Eo
-	jhwd0O7Ps2kurK6d+F45Xg7uePbnqxryz6iZOTmSI/50lRiokWJ7OsKW1Jib/xWE63L8NSO/N9k
-	VnzelEstHFFcoS+wIw913/cUmNPqjXoDaBigx8ZFyTCofCt9n37sgIxp6pOFc9O3OFbe9Q9gorr
-	xTa03P79AG
-X-Received: by 2002:a05:600c:1554:b0:414:63da:a2a2 with SMTP id f20-20020a05600c155400b0041463daa2a2mr523622wmg.29.1712304185739;
-        Fri, 05 Apr 2024 01:03:05 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFlb0zj8YVjT6ghhGWxWqxYFldl+KAXy1xcq8BLktwN5b4JWYjk34R41kmK0CkvNKlI51mpMg==
-X-Received: by 2002:a05:600c:1554:b0:414:63da:a2a2 with SMTP id f20-20020a05600c155400b0041463daa2a2mr523604wmg.29.1712304185337;
-        Fri, 05 Apr 2024 01:03:05 -0700 (PDT)
-Received: from [192.168.123.161] (ip-062-143-245-032.um16.pools.vodafone-ip.de. [62.143.245.32])
-        by smtp.gmail.com with ESMTPSA id l8-20020a1c7908000000b004155387c08esm1981349wme.27.2024.04.05.01.03.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Apr 2024 01:03:04 -0700 (PDT)
-Message-ID: <52ad00c9-bd87-4384-81de-133c79c4e6f4@canonical.com>
-Date: Fri, 5 Apr 2024 10:03:03 +0200
+	Fri, 05 Apr 2024 08:48:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=D3bA
+	ysj0N+3ktsukYn/zGLisNXUDp098hBJ07HyHzKc=; b=R8T/4zsl0Zd0dNbaommC
+	kCLTauMRf6yuGZlEbnNrPo+sDuLbN4s8BfD2QtEyqFV73GtOSagiQmnkLEuHWGCQ
+	vRejlIPlKU/mYMv+6t8UkEAMEtwYdgwHTAQorcdRr9Ope6KAX7AmqTkxF537SxfY
+	hbp2DrU8wtJm0oExDm1ozx0tnjR+RM/n3EJ7Hxedj1A/sxIF9bIEt0Q6uqjDDZO6
+	DhN5dSoCZRnlewvb/Wq/ACyPQ8GtSN3yttgw0BjHvy2Oz86yt92QQcC0xPBJXssA
+	1OMpCVAZHpK9gwh4XkivjtbsyOTJWxSQAZ6QWGsn2F7XdFdDJmCqNTrRYM5kOmvv
+	nA==
+Received: (qmail 4044863 invoked from network); 5 Apr 2024 10:48:34 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 5 Apr 2024 10:48:34 +0200
+X-UD-Smtp-Session: l3s3148p1@j8VihVUV/oogAwDPXwEGAANOsN0UmmrN
+Date: Fri, 5 Apr 2024 10:48:34 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Andi Shyti <andi.shyti@kernel.org>
+Cc: linux-i2c@vger.kernel.org, asahi@lists.linux.dev, 
+	chrome-platform@lists.linux.dev, imx@lists.linux.dev, linux-actions@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org, linux-omap@vger.kernel.org, 
+	linuxppc-dev@lists.ozlabs.org, linux-renesas-soc@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org, 
+	openbmc@lists.ozlabs.org, virtualization@lists.linux.dev
+Subject: Re: [PATCH 00/64] i2c: reword i2c_algorithm according to newest
+ specification
+Message-ID: <kd2gnsosi5xar3mwc3zz7wqtqkfgicq3wical5ch34sbmlgegk@mb2c2hxzzoi4>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Andi Shyti <andi.shyti@kernel.org>, linux-i2c@vger.kernel.org, asahi@lists.linux.dev, 
+	chrome-platform@lists.linux.dev, imx@lists.linux.dev, linux-actions@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org, linux-omap@vger.kernel.org, 
+	linuxppc-dev@lists.ozlabs.org, linux-renesas-soc@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org, 
+	openbmc@lists.ozlabs.org, virtualization@lists.linux.dev
+References: <20240322132619.6389-1-wsa+renesas@sang-engineering.com>
+ <ug266trshvhhbsln3eoh53fmsuj3l63ziz6gavcl7rv2jhjr5t@3av5givh5n7m>
+ <j2l7tu24itjelylrgwe6gdsy3mfrw3dnve4rdofmri3z7xdroc@se56t5ylmdak>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 33/33] doc: boards: amlogic: add documentation for
- ODROID-HC4
-To: Christian Hewitt <christianshewitt@gmail.com>
-References: <20230320114609.930145-1-christianshewitt@gmail.com>
- <20230320114609.930145-34-christianshewitt@gmail.com>
-Content-Language: en-US
-Cc: u-boot@lists.denx.de, u-boot-amlogic@groups.io,
- linux-amlogic@lists.infradead.org
-From: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-In-Reply-To: <20230320114609.930145-34-christianshewitt@gmail.com>
+In-Reply-To: <j2l7tu24itjelylrgwe6gdsy3mfrw3dnve4rdofmri3z7xdroc@se56t5ylmdak>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240405_010312_704885_7DCDE2AB 
-X-CRM114-Status: GOOD (  19.71  )
+X-CRM114-CacheID: sfid-20240405_014848_626067_6006538A 
+X-CRM114-Status: UNSURE (   6.90  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,202 +87,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============4355882806229009263=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 3/20/23 12:46, Christian Hewitt wrote:
-> Add separate documentation for the ODROID-HC4 board to ensure
-> users build U-Boot using the HC4 defconfig that enables PCIe
-> SATA boot. This avoids user frustration trying to boot after
-> using the C4 recipe which only works from SD card.
-> 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->   doc/board/amlogic/index.rst      |   1 +
->   doc/board/amlogic/odroid-hc4.rst | 141 +++++++++++++++++++++++++++++++
->   2 files changed, 142 insertions(+)
->   create mode 100644 doc/board/amlogic/odroid-hc4.rst
-> 
-> diff --git a/doc/board/amlogic/index.rst b/doc/board/amlogic/index.rst
-> index 7c4c161e0d..9b76bca427 100644
-> --- a/doc/board/amlogic/index.rst
-> +++ b/doc/board/amlogic/index.rst
-> @@ -101,6 +101,7 @@ Board Documentation
->      nanopi-k2
->      odroid-c2
->      odroid-c4
-> +   odroid-hc4
->      odroid-n2
->      odroid-n2l
->      odroid-go-ultra
-> diff --git a/doc/board/amlogic/odroid-hc4.rst b/doc/board/amlogic/odroid-hc4.rst
-> new file mode 100644
-> index 0000000000..94c3312022
-> --- /dev/null
-> +++ b/doc/board/amlogic/odroid-hc4.rst
-> @@ -0,0 +1,141 @@
-> +.. SPDX-License-Identifier: GPL-2.0+
-> +
-> +U-Boot for ODROID-HC4 (S905X3)
-> +==============================
-> +
-> +ODROID-HC4 is a variant of the ODROID-C4 single board computer manufactured by Hardkernel
-> +with the following specification:
-> +
-> + - Amlogic S905X3 Arm Cortex-A55 quad-core SoC
-> + - 4GB DDR4 SDRAM
-> + - 16MB XT25F128B SPI-NOR flash
-> + - Gigabit Ethernet
-> + - HDMI 2.1 display
-> + - 7-pin GPIO header for OLED display and RTC
-> + - 1x USB 2.0 host (micro)
-> + - 2x SATA ports via ASM1061 PCIe to SATA controller
-> + - microSD
-> + - UART serial
-> + - Infrared receiver
-> +
-> +Schematics are available on the manufacturer website.
-> +
-> +U-Boot Compilation
-> +------------------
-> +
-> +.. code-block:: bash
-> +
-> +    $ export CROSS_COMPILE=aarch64-none-elf-
-> +    $ make odroid-hc4_defconfig
-> +    $ make
-> +
-> +U-Boot Signing with Pre-Built FIP repo
-> +--------------------------------------
-> +
-> +.. code-block:: bash
-> +    $ git clone https://github.com/LibreELEC/amlogic-boot-fip --depth=1
-> +    $ cd amlogic-boot-fip
-> +    $ mkdir my-output-dir
-> +    $ ./build-fip.sh odroid-hc4 /path/to/u-boot/u-boot.bin my-output-dir
-> +
-> +U-Boot Manual Signing
-> +---------------------
-> +
-> +Amlogic does not provide sources for the firmware and tools needed to create a bootloader
-> +image so it is necessary to obtain binaries from sources published by the board vendor:
-> +
-> +.. code-block:: bash
-> +
-> +    $ wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
-> +    $ wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
-> +    $ tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
-> +    $ tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
-> +    $ export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
-> +
-> +    $ DIR=odroid-hc4
-> +    $ git clone --depth 1 https://github.com/hardkernel/u-boot.git -b odroidg12-v2015.01 $DIR
-> +
-> +    $ cd odroid-hc4
-> +    $ make odroidc4_defconfig
-> +    $ make
-> +    $ export UBOOTDIR=$PWD
-> +
-> +Go back to mainline U-Boot source tree then:
-> +
-> +.. code-block:: bash
-> +
-> +    $ mkdir fip
 
-Thanks a lot for providing all these board descriptions.
+--===============4355882806229009263==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="c5kq2kdwqrnl4eet"
+Content-Disposition: inline
 
-Prefixing with $ makes copy-/pasting multiple commands impossible.
 
-I personally feel distracted by the prompts. But if you really want 
-those $ signs displayed, please, use
+--c5kq2kdwqrnl4eet
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-     .. prompt:: bash $
+Hi Andi, hi everyone,
 
-       mkdir fip
+thank you for reviewing and waiting. I had a small personal hiatus over
+Easter but now I am back. This series needs another cycle, so no need to
+hurry. I will address some of the review comments but not all. The
+conversion (and API improvements) are some bigger tasks, so
+inconsistencies inbetween can't be avoided AFAICS.
 
-Best regards
+I'll keep you updated.
 
-Heinrich
+Happy hacking,
 
-> +
-> +    $ wget https://github.com/BayLibre/u-boot/releases/download/v2017.11-libretech-cc/blx_fix_g12a.sh -O fip/blx_fix.sh
-> +    $ cp $UBOOTDIR/build/scp_task/bl301.bin fip/
-> +    $ cp $UBOOTDIR/build/board/hardkernel/odroidc4/firmware/acs.bin fip/
-> +    $ cp $UBOOTDIR/fip/g12a/bl2.bin fip/
-> +    $ cp $UBOOTDIR/fip/g12a/bl30.bin fip/
-> +    $ cp $UBOOTDIR/fip/g12a/bl31.img fip/
-> +    $ cp $UBOOTDIR/fip/g12a/ddr3_1d.fw fip/
-> +    $ cp $UBOOTDIR/fip/g12a/ddr4_1d.fw fip/
-> +    $ cp $UBOOTDIR/fip/g12a/ddr4_2d.fw fip/
-> +    $ cp $UBOOTDIR/fip/g12a/diag_lpddr4.fw fip/
-> +    $ cp $UBOOTDIR/fip/g12a/lpddr3_1d.fw fip/
-> +    $ cp $UBOOTDIR/fip/g12a/lpddr4_1d.fw fip/
-> +    $ cp $UBOOTDIR/fip/g12a/lpddr4_2d.fw fip/
-> +    $ cp $UBOOTDIR/fip/g12a/piei.fw fip/
-> +    $ cp $UBOOTDIR/fip/g12a/aml_ddr.fw fip/
-> +    $ cp u-boot.bin fip/bl33.bin
-> +
-> +    $ sh fip/blx_fix.sh \
-> +         fip/bl30.bin \
-> +         fip/zero_tmp \
-> +         fip/bl30_zero.bin \
-> +         fip/bl301.bin \
-> +         fip/bl301_zero.bin \
-> +         fip/bl30_new.bin \
-> +         bl30
-> +
-> +    $ sh fip/blx_fix.sh \
-> +         fip/bl2.bin \
-> +         fip/zero_tmp \
-> +         fip/bl2_zero.bin \
-> +         fip/acs.bin \
-> +         fip/bl21_zero.bin \
-> +         fip/bl2_new.bin \
-> +         bl2
-> +
-> +    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl30sig --input fip/bl30_new.bin \
-> +                                                    --output fip/bl30_new.bin.g12a.enc \
-> +                                                    --level v3
-> +    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl30_new.bin.g12a.enc \
-> +                                                   --output fip/bl30_new.bin.enc \
-> +                                                   --level v3 --type bl30
-> +    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl31.img \
-> +                                                   --output fip/bl31.img.enc \
-> +                                                   --level v3 --type bl31
-> +    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl3sig --input fip/bl33.bin --compress lz4 \
-> +                                                   --output fip/bl33.bin.enc \
-> +                                                   --level v3 --type bl33 --compress lz4
-> +    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bl2sig --input fip/bl2_new.bin \
-> +                                                   --output fip/bl2.n.bin.sig
-> +    $ $UBOOTDIR/fip/g12a/aml_encrypt_g12a --bootmk \
-> +                                          --output fip/u-boot.bin \
-> +                                          --bl2 fip/bl2.n.bin.sig \
-> +                                          --bl30 fip/bl30_new.bin.enc \
-> +                                          --bl31 fip/bl31.img.enc \
-> +                                          --bl33 fip/bl33.bin.enc \
-> +                                          --ddrfw1 fip/ddr4_1d.fw \
-> +                                          --ddrfw2 fip/ddr4_2d.fw \
-> +                                          --ddrfw3 fip/ddr3_1d.fw \
-> +                                          --ddrfw4 fip/piei.fw \
-> +                                          --ddrfw5 fip/lpddr4_1d.fw \
-> +                                          --ddrfw6 fip/lpddr4_2d.fw \
-> +                                          --ddrfw7 fip/diag_lpddr4.fw \
-> +                                          --ddrfw8 fip/aml_ddr.fw \
-> +                                          --ddrfw9 fip/lpddr3_1d.fw \
-> +                                          --level v3
-> +
-> +Then write U-Boot to SD or SPI-NOR with:
-> +
-> +.. code-block:: bash
-> +
-> +    $ DEV=/dev/boot_device
-> +    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
-> +    $ dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=440
+   Wolfram
 
+
+--c5kq2kdwqrnl4eet
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmYPut4ACgkQFA3kzBSg
+KbbwnxAAtFWKOWnU/VyFFeZnqQCgQ76FzO93xERcjysHlgnZv3BnA6UpxFnrHrs4
+Cn7RTWa0i9Ct1ns2AkkjOQ5rUIqczF7M2dVS0tqODwyazGPaDHYtsa3urfkCsLT7
+Gz0y5V+oHHUNj1hypkKtQ37/7iFSYbo5oryt9MFK6eFfs878jel/4BCGJk3SEa48
+ewNnEuM8aYfzlrn7/VbkWqHkCS5J6x8/VFk3PjlxgEW45UtEI3r30K6/jT9HOdx4
+6lCofEZKn4Bl0VbfJJ7MXd1Be2/Dk6ZaY09e97iAKt2+fM1OLrBwig2V8PAdV7ei
+LlHolA153CWJAAkzXE2bJsr252IuCLpVpZobTSQRfr+u5vVV354dfo2ek11R8iff
+DSr94kqdKVvOvegpxt4vyHUxQrfy70R9vlkgVhkdvdGbi3JfLeiCK+C+IcBZlbXr
+uTaPlNvOt6p+VJNAlucnKQF3mK0FvVMK7bTwqjbKR8ZzB8J20qj5pqxqtBZDjfOl
+fpTR9f9+kHWdmBuCLBq35aes6Lxq4JtNRH+czt8F8wIAfx/xcgTf2uPThVoFPO9s
+jyO4fy773Wsfo8PGo9SqSKr7K6gQW3dIDoFTk489lp3e9Y/DYJ+ZV2ixvCQKATjO
+3K0umrWHYd25+mhripLMPzaz3h1GPtmAiQq/dq2GUviAFUPoZas=
+=RWT2
+-----END PGP SIGNATURE-----
+
+--c5kq2kdwqrnl4eet--
+
+
+--===============4355882806229009263==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4355882806229009263==--
+
