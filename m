@@ -4,112 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24FB2C04FFE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C49BC4345F
 	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2024 15:44:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
+	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=T+8pgCHP008J4HQWyVDTGPcGSPkMo3gbtbqEj4SBWe0=; b=cgRnMGV7iPmBeb
-	RqysBzdDmC3BTKiTI42W3/X2+meXZjnhXl4+zFBJm97ctubU/uqgYF/aLd5XZXJRpU1TJjuFy35d2
-	JguDyEKb9ZFq8WsuPJ7+7HhVhrmLlAqS9KP1OTe8GJoMvm+3ivKiHwZRgsDmtBq7/5Aczdx4tYPn5
-	j1BiVAuVbgGxqodwpKj8OxtpDdru4G2erpYu3rQ50xBnmzPLvZzpFopuJ9R7uOOAtPgBlvNpZJEhp
-	ZpM8HCy34+qsuzdqPi8Qy8IeEC/5p4Ktus57svkS4hL1lSoxxo74F3WyqbGwmiwsAFjKAAfCiL1VJ
-	NEtGz4H5FO3GC0Rpjdzw==;
+	List-Owner; bh=9M3pMHFq9UXaJ3vhLiDa1SWPy0nL9e0L6M40vauOhMU=; b=T+BuxWLoWY06kZ
+	faqqR0Xo79xS29XWHHCsWwpjnBWsY+PTP5cxhYZgwkl1lu/yU3AeHGKz+VHJNGuv4bPsvzPGU7dwb
+	dcXdBkWIN8qL8PJO2daHXIE4j9UR1HKBfIJX0DnpJsGiMu4P+FrZ6LHmJjZX3ePWg/61J/4e+aEx0
+	vACAI+eYWP8s76OCnr3BdkMLWiuZadwS3PjgJOBBKR2zZU1pBrVWodezKvTojcQwWX8hJbo0uyzXj
+	QUE8iC/an/uJrl3XmHO9raLtyiJ37vvGC6VXmwQpwlkhM+j6Sbk3S6i2I6fXF5mk8+mx5O4aKMW6j
+	uNHnZ3dmMu+Mgn2LuGqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1TB6-00000003SaA-2pOt;
+	id 1s1TB6-00000003Sa2-1K2A;
 	Mon, 29 Apr 2024 15:44:28 +0000
 Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruSuo-00000005l9N-1yLG;
-	Wed, 10 Apr 2024 08:02:43 +0000
+	id 1rsyTj-00000009hZe-0cQb;
+	Sat, 06 Apr 2024 05:20:37 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 019B5CE2645;
-	Wed, 10 Apr 2024 08:02:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EDFDC43390;
-	Wed, 10 Apr 2024 08:02:36 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id 324081063262; Wed, 10 Apr 2024 10:02:32 +0200 (CEST)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@kernel.org>
-Cc: Arnd Bergmann <arnd@arndb.de>, Michael Ellerman <mpe@ellerman.id.au>, 
- Christophe Leroy <christophe.leroy@csgroup.eu>, 
- Damien Le Moal <dlemoal@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Corey Minyard <minyard@acm.org>, Peter Huewe <peterhuewe@gmx.de>, 
- Jarkko Sakkinen <jarkko@kernel.org>, Tero Kristo <kristo@kernel.org>, 
- Stephen Boyd <sboyd@kernel.org>, Ian Abbott <abbotti@mev.co.uk>, 
- H Hartley Sweeten <hsweeten@visionengravers.com>, 
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>, 
- Len Brown <lenb@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
- John Allen <john.allen@amd.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
- Vinod Koul <vkoul@kernel.org>, Ard Biesheuvel <ardb@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, Moritz Fischer <mdf@kernel.org>, 
- Liviu Dudau <liviu.dudau@arm.com>, 
- Benjamin Tissoires <benjamin.tissoires@redhat.com>, 
- Andi Shyti <andi.shyti@kernel.org>, 
- Michael Hennerich <michael.hennerich@analog.com>, 
- Peter Rosin <peda@axentia.se>, Lars-Peter Clausen <lars@metafoo.de>, 
- Jonathan Cameron <jic23@kernel.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Markuss Broks <markuss.broks@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, Lee Jones <lee@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, 
- Shyam Sundar S K <Shyam-sundar.S-k@amd.com>, 
- Iyappan Subramanian <iyappan@os.amperecomputing.com>, 
- Yisen Zhuang <yisen.zhuang@huawei.com>, Stanislaw Gruszka <stf_xl@wp.pl>, 
- Kalle Valo <kvalo@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
- Tony Lindgren <tony@atomide.com>, Mark Brown <broonie@kernel.org>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Xiang Chen <chenxiang66@hisilicon.com>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Heiko Stuebner <heiko@sntech.de>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Vaibhav Hiremath <hvaibhav.linux@gmail.com>, Alex Elder <elder@kernel.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Jacky Huang <ychuang3@nuvoton.com>, 
- Helge Deller <deller@gmx.de>, Christoph Hellwig <hch@lst.de>, 
- Robin Murphy <robin.murphy@arm.com>, Steven Rostedt <rostedt@goodmis.org>, 
- Masami Hiramatsu <mhiramat@kernel.org>, 
- Andrew Morton <akpm@linux-foundation.org>, 
- Kees Cook <keescook@chromium.org>, 
- Trond Myklebust <trond.myklebust@hammerspace.com>, 
- Anna Schumaker <anna@kernel.org>, Masahiro Yamada <masahiroy@kernel.org>, 
- Nathan Chancellor <nathan@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
- linuxppc-dev@lists.ozlabs.org, linux-ide@vger.kernel.org, 
- openipmi-developer@lists.sourceforge.net, linux-integrity@vger.kernel.org, 
- linux-omap@vger.kernel.org, linux-clk@vger.kernel.org, 
- linux-pm@vger.kernel.org, linux-crypto@vger.kernel.org, 
- dmaengine@vger.kernel.org, linux-efi@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-fpga@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, linux-input@vger.kernel.org, 
- linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, 
- linux-leds@vger.kernel.org, linux-wireless@vger.kernel.org, 
- linux-rtc@vger.kernel.org, linux-scsi@vger.kernel.org, 
- linux-spi@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- greybus-dev@lists.linaro.org, linux-staging@lists.linux.dev, 
- linux-serial@vger.kernel.org, linux-usb@vger.kernel.org, 
- linux-fbdev@vger.kernel.org, iommu@lists.linux.dev, 
- linux-trace-kernel@vger.kernel.org, kasan-dev@googlegroups.com, 
- linux-hardening@vger.kernel.org, linux-nfs@vger.kernel.org, 
- linux-kbuild@vger.kernel.org, alsa-devel@alsa-project.org, 
- linux-sound@vger.kernel.org
-In-Reply-To: <20240403080702.3509288-1-arnd@kernel.org>
-References: <20240403080702.3509288-1-arnd@kernel.org>
-Subject: Re: (subset) [PATCH 00/34] address all -Wunused-const warnings
-Message-Id: <171273615213.1094883.18382201508159771859.b4-ty@collabora.com>
-Date: Wed, 10 Apr 2024 10:02:32 +0200
+	by sin.source.kernel.org (Postfix) with ESMTP id 0D4D5CE2777;
+	Sat,  6 Apr 2024 05:20:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3C5A9C433C7;
+	Sat,  6 Apr 2024 05:20:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712380828;
+	bh=TBj/hcnPrvS19ZOluMZ12evt8AeDaDrUTBeM5kaTuKY=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=HYazYNypOS+iPe/PmwIZVgrP0OAjOmuWcCZaXmQBd5/DF3DU2Cm7HK1KTLKVM8W2j
+	 EfdrhznuDsHvbEh7NeV1r2EDMVkxTqo+hmKt5MdFIcqj68UTB4u7gvHG6geAe3ArfV
+	 cYxb7yc2nqhO3pPj8ToTFIgL78NntzPlzi3tNk1u8F7N5z7SqSGJ1Z/QhHbUaQaR1j
+	 GTv/7bDPNNXqFXoXNMGCl3bjIAtmML/lX++bgYkRjXumLNf6dEzpQPrpxdPeyVgSKh
+	 czfxRuHIWxcuBJ6wGSXEzVfHmRCYmRJdToESEDFulu3u4HF5IZUSSU3tkxxLhyQRAI
+	 TbkNIwkM8MMRA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 19C9BD84BAC;
+	Sat,  6 Apr 2024 05:20:28 +0000 (UTC)
 MIME-Version: 1.0
-X-Mailer: b4 0.13.0
+Subject: Re: [PATCH 00/34] address all -Wunused-const warnings
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <171238082809.31617.17365732495689756509.git-patchwork-notify@kernel.org>
+Date: Sat, 06 Apr 2024 05:20:28 +0000
+References: <20240403080702.3509288-1-arnd@kernel.org>
+In-Reply-To: <20240403080702.3509288-1-arnd@kernel.org>
+To: Arnd Bergmann <arnd@kernel.org>
+Cc: linux-kernel@vger.kernel.org, arnd@arndb.de, mpe@ellerman.id.au,
+ christophe.leroy@csgroup.eu, dlemoal@kernel.org, jikos@kernel.org,
+ gregkh@linuxfoundation.org, minyard@acm.org, peterhuewe@gmx.de,
+ jarkko@kernel.org, kristo@kernel.org, sboyd@kernel.org, abbotti@mev.co.uk,
+ hsweeten@visionengravers.com, srinivas.pandruvada@linux.intel.com,
+ lenb@kernel.org, rafael@kernel.org, john.allen@amd.com,
+ herbert@gondor.apana.org.au, vkoul@kernel.org, ardb@kernel.org,
+ andersson@kernel.org, mdf@kernel.org, liviu.dudau@arm.com,
+ benjamin.tissoires@redhat.com, andi.shyti@kernel.org,
+ michael.hennerich@analog.com, peda@axentia.se, lars@metafoo.de,
+ jic23@kernel.org, dmitry.torokhov@gmail.com, markuss.broks@gmail.com,
+ alexandre.torgue@foss.st.com, lee@kernel.org, kuba@kernel.org,
+ Shyam-sundar.S-k@amd.com, iyappan@os.amperecomputing.com,
+ yisen.zhuang@huawei.com, stf_xl@wp.pl, kvalo@kernel.org, sre@kernel.org,
+ tony@atomide.com, broonie@kernel.org, alexandre.belloni@bootlin.com,
+ chenxiang66@hisilicon.com, martin.petersen@oracle.com,
+ neil.armstrong@linaro.org, heiko@sntech.de, krzysztof.kozlowski@linaro.org,
+ hvaibhav.linux@gmail.com, elder@kernel.org, jirislaby@kernel.org,
+ ychuang3@nuvoton.com, deller@gmx.de, hch@lst.de, robin.murphy@arm.com,
+ rostedt@goodmis.org, mhiramat@kernel.org, akpm@linux-foundation.org,
+ keescook@chromium.org, trond.myklebust@hammerspace.com, anna@kernel.org,
+ masahiroy@kernel.org, nathan@kernel.org, tiwai@suse.com,
+ linuxppc-dev@lists.ozlabs.org, linux-ide@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net, linux-integrity@vger.kernel.org,
+ linux-omap@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-crypto@vger.kernel.org,
+ dmaengine@vger.kernel.org, linux-efi@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-fpga@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-input@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+ linux-leds@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-rtc@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ greybus-dev@lists.linaro.org, linux-staging@lists.linux.dev,
+ linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, iommu@lists.linux.dev,
+ linux-trace-kernel@vger.kernel.org, kasan-dev@googlegroups.com,
+ linux-hardening@vger.kernel.org, linux-nfs@vger.kernel.org,
+ linux-kbuild@vger.kernel.org, alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240410_010242_900176_5A9F53F2 
-X-CRM114-Status: GOOD (  11.39  )
+X-CRM114-CacheID: sfid-20240405_222035_544886_98E08931 
+X-CRM114-Status: UNSURE (   8.27  )
+X-CRM114-Notice: Please train this message.
 X-Mailman-Approved-At: Mon, 29 Apr 2024 08:44:25 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -127,8 +116,12 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hello:
 
-On Wed, 03 Apr 2024 10:06:18 +0200, Arnd Bergmann wrote:
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Wed,  3 Apr 2024 10:06:18 +0200 you wrote:
 > From: Arnd Bergmann <arnd@arndb.de>
 > 
 > Compilers traditionally warn for unused 'static' variables, but not
@@ -138,14 +131,23 @@ On Wed, 03 Apr 2024 10:06:18 +0200, Arnd Bergmann wrote:
 > 
 > [...]
 
-Applied, thanks!
+Here is the summary with links:
+  - [05/34] 3c515: remove unused 'mtu' variable
+    https://git.kernel.org/netdev/net-next/c/17b35355c2c6
+  - [19/34] sunrpc: suppress warnings for unused procfs functions
+    (no matching commit)
+  - [26/34] isdn: kcapi: don't build unused procfs code
+    https://git.kernel.org/netdev/net-next/c/91188544af06
+  - [28/34] net: xgbe: remove extraneous #ifdef checks
+    https://git.kernel.org/netdev/net-next/c/0ef416e045ad
+  - [33/34] drivers: remove incorrect of_match_ptr/ACPI_PTR annotations
+    (no matching commit)
 
-[09/34] power: rt9455: hide unused rt9455_boost_voltage_values
-        commit: 452d8950db3e839aba1bb13bc5378f4bac11fa04
-
-Best regards,
+You are awesome, thank you!
 -- 
-Sebastian Reichel <sebastian.reichel@collabora.com>
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
 _______________________________________________
