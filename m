@@ -4,88 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E393C67861
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2024 19:00:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55175CD1292
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2024 21:25:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0M3ywSS0S1Hmaz5hjFK5YZhhMCT/Jo02fVNw+jt8L6U=; b=fYHLrklzchg68K
-	xGZpRYPK67KXuQ1q0Xi08CinvreLVPZjCvYnGj49QHcxL+sYUi1Uh3dN6EFE4leu68ZH8so3V5gUe
-	I8LkAUot/bIJNehYPy5TKTDP1LnKHny1bF11x4oL9YOO1CVMU61JAlmgfHs9h+NtqIFS5tT2nZtlz
-	6f3XUGhRQXZdTrw6dQqEzuNp/MWvryBr836M4X2yWbiuz/KyPHCWSz23AhhGK27jdrUY+MXSvGBCA
-	HhrJGD1I/oQA4OCD1G7vgf9lfHpS1yh1YzmAVfSAx1gl7q+nItD8kp2bql4SipsiwMtzNoEdBuuiu
-	sylRyWT9Z5Vmwy4c/KKQ==;
+	List-Owner; bh=LCWwrWo2V9DbuesI2wsERAOSdmkQ9BUqKTeAuiSoabE=; b=gxtfX1ORfF7aNv
+	AsmSFh+zKbmZuxocNor4m8Th5yuO6tni38rVB/oYT8EDKuQyBnRxbSlM8ufTdUvnV75lZH43JI432
+	fVOwaVWnP+V7OB/rvrJ+SYgu1dqvt5Us5u8TTniETlb6fLVcjbXtzWmAXlRnZhnmIeCBKyYyeDTIo
+	fe2v9lCmNSJ8agtlcTJrwxdk5G+Ba+nUPrsiV8HwkHtBVdy0Ocsj/79RC55p0El8did/6+Wv/3db9
+	Y8nnZrse/i9Vdv/bPovPIJYdy7H34e0Ly9n5aKzi3XSyc2nFcAhYjGXsgqfwOUeVvGmtPOtuk2KWW
+	CAFV+61ulvfLxczC1t4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rtuEI-0000000GaEK-26sT;
-	Mon, 08 Apr 2024 19:00:30 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1rtwUN-0000000Gt8R-3KEP;
+	Mon, 08 Apr 2024 21:25:16 +0000
+Received: from mgamail.intel.com ([198.175.65.10])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rtuED-0000000GaB5-2ulE
-	for linux-amlogic@lists.infradead.org;
-	Mon, 08 Apr 2024 19:00:29 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-416923f05faso4441005e9.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 08 Apr 2024 12:00:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712602823; x=1713207623; darn=lists.infradead.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=H+B+dIHSb8yRhnSvIGZyYqGXJXmpVr8yjlKl3yu6l4I=;
-        b=gyGGi50xkvCLpEFxr7gF1e7dD1G4wREUwHuSS/DFM+E/Hoxofre3J9a7MnNeVuq0g6
-         0On2hpKk8b5d4S7zIncpOZTyAYgEtDeKnC9xc3j1esXgDSuqrU7HzOzyb8DGn4exrlUO
-         wnjPfQeo7JRFuc+Vg+gLVqViyPnHwRjFPUqbV73a+L2bcR1OEsVQA8MSFWtlSBJRpfEu
-         32xz8WWS0PL7VCZfuFks9RNOHeh832BAReeQM3/WEUPFCjkK8k6TPcvAnxl3NSPuwnGd
-         vJ2UyOd5abUB43ZZsaqdMyu1c3EqgWpNORh/43RYRoIGaACwPg9CPECbhi9KX1ZCz/pY
-         24gQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712602823; x=1713207623;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H+B+dIHSb8yRhnSvIGZyYqGXJXmpVr8yjlKl3yu6l4I=;
-        b=mWWe6wBFAYFCd+lAzRRLuMvVSmQXAE6OOZ+vKJezfluRKnVRKNFhreFPKCwRZNKnsY
-         ym/S2x16qRxdoGa2fWDi2LIXCiwj5RTgx7Y98hEaCxAAFyI/jpn2PBN9kmUKLsw1r1kz
-         YR5v2LMX1On9OLyc8QOIMaWXzPgLD3Yj6k9w87a5Acz7fW42/S4brsBpyJaoqOAErg+7
-         Zyez1DvAHaBwVKttmJi925Yopq0Tm56r9hYNdcLGeiTtrQMjI/wpYf5d7KVwcdqhtwED
-         CdVL/QpSkGE0zsJpv26SEmCWa+GALFMq9Ojp9UJgIFAbJY9WAunMtIe+YvPHJ1LdKhQt
-         7iBg==
-X-Forwarded-Encrypted: i=1; AJvYcCVXEv1/1tizDJzu3Zkox0LwMPmPyeGMN0UsMQhsy8GdZqtzyHfXaMY1piuP0YLd4rrXHZX0g1BnfSdpQt7tZz3wUX+Pb3fYSpwSX9MiCjPKBB4=
-X-Gm-Message-State: AOJu0YyrHkkY6Lfbpo6CO3g12r4baMmb5HGd9KXSQxjO9N3vUSEbIYKt
-	EpDwCrGeXUbOr0ccptHkYOwwBg1bxD4d+Jo5QlVjbmI/Rr83xjNsG2vP+hKPOes=
-X-Google-Smtp-Source: AGHT+IGP2XX1WCI1/h92HKpEVxqSPYGzlO2h896WkQD9sJo7lY2DOrCu08c0YYaiv8QAmxpQYmTAyg==
-X-Received: by 2002:a05:600c:1c8a:b0:415:666e:9438 with SMTP id k10-20020a05600c1c8a00b00415666e9438mr7600760wms.3.1712602822639;
-        Mon, 08 Apr 2024 12:00:22 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:90bc:1f0d:aae2:3c66])
-        by smtp.gmail.com with ESMTPSA id j22-20020a05600c1c1600b004165315d885sm7177799wms.11.2024.04.08.12.00.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Apr 2024 12:00:22 -0700 (PDT)
-References: <20240408164947.30717-1-ddrokosov@salutedevices.com>
- <20240408164947.30717-3-ddrokosov@salutedevices.com>
- <1j1q7fpv1n.fsf@starbuckisacylon.baylibre.com>
- <20240408184041.3jcav5tabxiblpn4@CAB-WSD-L081021>
-User-agent: mu4e 1.10.8; emacs 29.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, neil.armstrong@linaro.org,
- lgirdwood@gmail.com, broonie@kernel.org, conor+dt@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, perex@perex.cz,
- tiwai@suse.com, khilman@baylibre.com, martin.blumenstingl@googlemail.com,
- kernel@salutedevices.com, rockosov@gmail.com,
- linux-amlogic@lists.infradead.org, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 2/2] ASoC: meson: implement link-name optional
- property in meson card utils
-Date: Mon, 08 Apr 2024 20:53:42 +0200
-In-reply-to: <20240408184041.3jcav5tabxiblpn4@CAB-WSD-L081021>
-Message-ID: <1jo7ajof22.fsf@starbuckisacylon.baylibre.com>
+	id 1rtwUJ-0000000Gt71-2l6O;
+	Mon, 08 Apr 2024 21:25:13 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1712611512; x=1744147512;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OtkJqsDRqHxww8gYyHxYwH7UByWcNGjo62aiyrPX3lc=;
+  b=gUrR+BWx6sHYgw13Tj6DVfy92uvlLyzRUKiFyiow5u5y5p8rbp/modDN
+   N6kAVY2STms6Dfz2QVrh7kQ8LepOEwvRosutiszNzsxNFymlYQ01lutlc
+   9R4Xph0NPnBEU3MS7TJEmyX4XK8tmbBRE0a9sMefB1oDbBhxW7okBWeD9
+   rIGU/1fol11glVPdi7FhtYA5hEDrZ8vnaIbPbIrpRcMXhnwXyOnpGTRJS
+   tmEEUfW7sEgOR0mh1zlHfMOKK8u9MPvRPazF/YiX3CLKpw5QAg2DzJvi5
+   KL8ce4JwWSFa9DPBmi2/kp9kqbVQBT+Kiik40k8ySCV60c54MCwinyedO
+   A==;
+X-CSE-ConnectionGUID: iDM65sA5Tgm0mc2UCsUE9A==
+X-CSE-MsgGUID: RfqBHIEYQVOSICredxW0CQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="25354701"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; 
+   d="scan'208";a="25354701"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2024 14:25:10 -0700
+X-CSE-ConnectionGUID: qrO58ha8RyqJHmBfNrQIag==
+X-CSE-MsgGUID: cWAhHusrSreh0wQEs4Hnjw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; 
+   d="scan'208";a="19879521"
+Received: from lkp-server01.sh.intel.com (HELO e61807b1d151) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 08 Apr 2024 14:25:04 -0700
+Received: from kbuild by e61807b1d151 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rtwU9-0005VC-2i;
+	Mon, 08 Apr 2024 21:25:01 +0000
+Date: Tue, 9 Apr 2024 05:24:16 +0800
+From: kernel test robot <lkp@intel.com>
+To: Arseniy Krasnov <avkrasnov@salutedevices.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	oxffffaa@gmail.com, kernel@sberdevices.ru,
+	Arseniy Krasnov <avkrasnov@salutedevices.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: amlogic,meson-nand: support
+ fields for boot ROM code
+Message-ID: <202404090420.FyEkmAU9-lkp@intel.com>
+References: <20240408085931.456337-2-avkrasnov@salutedevices.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20240408085931.456337-2-avkrasnov@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240408_120025_811387_9EBE6A01 
-X-CRM114-Status: GOOD (  33.58  )
+X-CRM114-CacheID: sfid-20240408_142511_758696_BF1FCE35 
+X-CRM114-Status: GOOD (  11.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,106 +101,125 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Arseniy,
 
-On Mon 08 Apr 2024 at 21:40, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
+kernel test robot noticed the following build warnings:
 
-> On Mon, Apr 08, 2024 at 08:15:54PM +0200, Jerome Brunet wrote:
->> 
->> On Mon 08 Apr 2024 at 19:49, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
->> 
->> > The 'link-name' property presents an optional DT feature that empowers
->> > users to customize the name associated with the DAI link and PCM stream.
->> > This functionality reflects the approach often employed in Qualcomm
->> > audio cards, providing enhanced flexibility in DAI naming conventions
->> > for improved system integration and userspace experience.
->> >
->> > It allows userspace program to easy determine PCM stream purpose, e.g.:
->> >     ~ # cat /proc/asound/pcm
->> >     00-00: speaker (*) :  : playback 1
->> >     00-01: mics (*) :  : capture 1
->> >     00-02: loopback (*) :  : capture 1
->> 
->> The example above is exactly what you should not do with link names, at
->> least with the amlogic audio system.
->> 
->> Userspace pcm, otherwise known as DPCM frontend, are merely that:
->> frontends. What they do is entirely defined by the routing defined by
->> the userspace (amixer and friends)
->> 
->> So naming the interface in DT (the FW describing the HW) after what the
->> the userspace SW could possibly set later on is wrong.
->> 
->> Bottom line: I have mixed feeling about this change. It could allow all
->> sort of bad names to be set.
->> 
->> The only way it could make sense HW wise is if the only allowed names
->> where (fr|to)ddr_[abcd], which could help maps the interface and the
->> kcontrol.
->> 
->> Such restriction should be documented in the binding doc.
->> 
->
-> The link-name is an optional parameter. Yes, you are right, it can be
-> routed in a way that it no longer functions as a speaker in most cases.
-> However, if you plan to use your board's dt for common purposes, you
-> should not change the common names for DAI links. But if you know that
-> you have a static setup for speakers, microphones, loopback, or other
-> references (you 100% know it, because you are HW developer of this
-> board), why not help the user understand the PCM device assignment in
-> the easiest way?
->
-> Ultimately, it is the responsibility of the DT board developer to define
-> specific DAIs and name them based on their own knowledge about HW and
-> understanding of the board's usage purposes.
+[auto build test WARNING on mtd/mtd/next]
+[also build test WARNING on mtd/mtd/fixes mtd/nand/next robh/for-next linus/master v6.9-rc3 next-20240408]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Speaker and mics are NOT statically tied to a frontend. They are tied to a
-codec (... possibly). The routing from the frontend to the backend is
-dynamic, even while streaming.
+url:    https://github.com/intel-lab-lkp/linux/commits/Arseniy-Krasnov/dt-bindings-mtd-amlogic-meson-nand-support-fields-for-boot-ROM-code/20240408-171119
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next
+patch link:    https://lore.kernel.org/r/20240408085931.456337-2-avkrasnov%40salutedevices.com
+patch subject: [PATCH v2 1/2] dt-bindings: mtd: amlogic,meson-nand: support fields for boot ROM code
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20240409/202404090420.FyEkmAU9-lkp@intel.com/reproduce)
 
-So defining FW names based on usage in wrong.
-As Mark pointed out as well, DT is not the place for this.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202404090420.FyEkmAU9-lkp@intel.com/
 
->
->> >
->> > The previous naming approach using auto-generated fe or be strings
->> > continues to be utilized as a fallback.
->> >
->> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
->> > ---
->> >  sound/soc/meson/meson-card-utils.c | 12 ++++++++----
->> >  1 file changed, 8 insertions(+), 4 deletions(-)
->> >
->> > diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
->> > index ed6c7e2f609c..7bae72905a9b 100644
->> > --- a/sound/soc/meson/meson-card-utils.c
->> > +++ b/sound/soc/meson/meson-card-utils.c
->> > @@ -94,10 +94,14 @@ static int meson_card_set_link_name(struct snd_soc_card *card,
->> >  				    struct device_node *node,
->> >  				    const char *prefix)
->> >  {
->> > -	char *name = devm_kasprintf(card->dev, GFP_KERNEL, "%s.%s",
->> > -				    prefix, node->full_name);
->> > -	if (!name)
->> > -		return -ENOMEM;
->> > +	const char *name;
->> > +
->> > +	if (of_property_read_string(node, "link-name", &name)) {
->> > +		name = devm_kasprintf(card->dev, GFP_KERNEL, "%s.%s",
->> > +				      prefix, node->full_name);
->> > +		if (!name)
->> > +			return -ENOMEM;
->> > +	}
->> >  
->> >  	link->name = name;
->> >  	link->stream_name = name;
->> 
->> 
->> -- 
->> Jerome
+dtcheck warnings: (new ones prefixed by >>)
+>> Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml:84:61: [warning] too few spaces after comma (commas)
+   Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml:85:61: [warning] too few spaces after comma (commas)
 
+vim +84 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+
+     8	
+     9	allOf:
+    10	  - $ref: nand-controller.yaml
+    11	
+    12	maintainers:
+    13	  - liang.yang@amlogic.com
+    14	
+    15	properties:
+    16	  compatible:
+    17	    enum:
+    18	      - amlogic,meson-gxl-nfc
+    19	      - amlogic,meson-axg-nfc
+    20	
+    21	  reg:
+    22	    maxItems: 2
+    23	
+    24	  reg-names:
+    25	    items:
+    26	      - const: nfc
+    27	      - const: emmc
+    28	
+    29	  interrupts:
+    30	    maxItems: 1
+    31	
+    32	  clocks:
+    33	    minItems: 2
+    34	
+    35	  clock-names:
+    36	    items:
+    37	      - const: core
+    38	      - const: device
+    39	
+    40	patternProperties:
+    41	  "^nand@[0-7]$":
+    42	    type: object
+    43	    $ref: raw-nand-chip.yaml
+    44	    properties:
+    45	      reg:
+    46	        minimum: 0
+    47	        maximum: 1
+    48	
+    49	      nand-ecc-mode:
+    50	        const: hw
+    51	
+    52	      nand-ecc-step-size:
+    53	        enum: [512, 1024]
+    54	
+    55	      nand-ecc-strength:
+    56	        enum: [8, 16, 24, 30, 40, 50, 60]
+    57	        description: |
+    58	          The ECC configurations that can be supported are as follows.
+    59	            meson-gxl-nfc 8, 16, 24, 30, 40, 50, 60
+    60	            meson-axg-nfc 8
+    61	
+    62	      nand-rb:
+    63	        maxItems: 1
+    64	        items:
+    65	          maximum: 0
+    66	
+    67	      amlogic,boot-page-last:
+    68	        $ref: /schemas/types.yaml#/definitions/uint32
+    69	        description:
+    70	          The NFC driver needs this information to select ECC
+    71	          algorithms supported by the boot ROM.
+    72	
+    73	      amlogic,boot-page-step:
+    74	        $ref: /schemas/types.yaml#/definitions/uint32
+    75	        description:
+    76	          The NFC driver needs this information to select ECC
+    77	          algorithms supported by the boot ROM (in pages).
+    78	
+    79	    unevaluatedProperties: false
+    80	
+    81	    dependencies:
+    82	      nand-ecc-strength: [nand-ecc-step-size]
+    83	      nand-ecc-step-size: [nand-ecc-strength]
+  > 84	      amlogic,boot-page-last: [nand-is-boot-medium, amlogic,boot-page-step]
+    85	      amlogic,boot-page-step: [nand-is-boot-medium, amlogic,boot-page-last]
+    86	
+    87	
+    88	required:
+    89	  - compatible
+    90	  - reg
+    91	  - interrupts
+    92	  - clocks
+    93	  - clock-names
+    94	
 
 -- 
-Jerome
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
