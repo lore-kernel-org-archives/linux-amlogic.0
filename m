@@ -4,72 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0FA2C67861
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2024 08:22:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEAB8CD1292
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2024 09:10:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DGjc0VE7BbDDGqHOGfR6jJ4kaBE1ynyhu11g/yfLeWU=; b=VE9Sdjso/eQOL9
-	AjLrxidyARbcdmZrTwpdCYdtWd6DHRvJVVlLcKmWs1eWhoIGQpIDxOTH/d3YYgXyp7E/lEs26fe2Q
-	eoqIjrYxiD+8x3XtxcUmkTcokNNhYtS3xDfl3SSIxA52k/NNmAWEjZYbLuYKMhSpXersxyyeXWC20
-	3O1wvYPSqtLovR1NEDixg69ShcTvxo0IwJMPaybvDQYSX/Y2FVKSu4arVn+XQ9hRsMT+YNs6CP8m7
-	CrfjoW+9l7Su54VEiRoufBXPpw/pZNyDeDI3CUXDpgAoov1Lm4Z0/cFF0wbaeMbnOvOe/x00se1ss
-	bE+JQHHWWqQazuoCpCGQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=VBEbTMHDPF7G1PktPstjWT2YfeQodysIWCBK41fuki4=; b=BiHHnyz1JOIgO8
+	jG6/TpKuIUXcccdsS7ckWQjamqihehNlwDY0mXe/wCBUUYaU0TWBENWFnku/Q3T/G7WIf8F3GDnm7
+	m5cqwraUpMGkBvhU561OpurF73L3aDU9GefrQdLE7wpJnGG0OytLxLwX5L3fVkPPQDCbdyhY97TYQ
+	nRcj2TYIVHasYFlAIZ1ccZBcaJlVDlZxPFLOr458d94r5UVSLVkgWPbRkix4SC0KcNN7Y7J+uYlv8
+	hzB65CN14rPnffgMv+ADn6zNsLH4LOMkWbnEHs0y2qw+YvN6Xh3KnAxPoz6mOa7VUapHP01tGpLRi
+	PnSWNNVRgkAPoHfxGB7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rtkGW-0000000EsLM-3yub;
-	Mon, 08 Apr 2024 08:22:09 +0000
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
+	id 1rtl1M-0000000F1tA-33uK;
+	Mon, 08 Apr 2024 09:10:32 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rtkGT-0000000EsIS-2gNW
-	for linux-amlogic@lists.infradead.org;
-	Mon, 08 Apr 2024 08:22:06 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rtkGC-0005va-HW; Mon, 08 Apr 2024 10:21:48 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rtkGB-00B4mH-Hy; Mon, 08 Apr 2024 10:21:47 +0200
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rtkGB-0003Lx-1e;
-	Mon, 08 Apr 2024 10:21:47 +0200
-Message-ID: <f01cdd910ab35316b8012795f73fd2b34c8e6f8e.camel@pengutronix.de>
-Subject: Re: [RFC PATCH v2 1/5] clk: meson: axg: move reset controller's
- code to separate module
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Stephen Boyd <sboyd@kernel.org>, Jan Dakinevich
-	 <jan.dakinevich@salutedevices.com>, Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette
- <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>,  Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, 
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org
-Date: Mon, 08 Apr 2024 10:21:47 +0200
-In-Reply-To: <e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org>
-References: <20240328010831.884487-1-jan.dakinevich@salutedevices.com>
-	 <20240328010831.884487-2-jan.dakinevich@salutedevices.com>
-	 <1j7chfiz8e.fsf@starbuckisacylon.baylibre.com>
-	 <e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org>
-User-Agent: Evolution 3.46.4-2 
+	id 1rtl1H-0000000F1pb-2Uvx;
+	Mon, 08 Apr 2024 09:10:30 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 9905C120018;
+	Mon,  8 Apr 2024 12:10:20 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 9905C120018
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1712567420;
+	bh=Dl0lEJ2RQvUAsdbkNPBDUxXmtzfTz0ubHkllEirkE18=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=kyCYvBRfBw7/ucgp3jTdLpKIOChBySp1fZQy0q7SPk1NoxlmOpjpb1WsX3SBzHFnk
+	 iqYKwcyedUO/GaUK3CRgW7rsalpOUWjl9IEmUNCi5DnuXPbBQNgaqOxxU6NevklWbT
+	 c7lfNtoTj8vpNqWRtw9B8Q7d0wgR98I4CAuzoSgQM4Q8wwWIYmAwCwLIjFTrwpyy9/
+	 aUKP78cZG7ttmBwozySRqUU6u0u9LD/qtv4+aM9A1GGWD8eqTg0aDnnXFs7j5fH92V
+	 I/s/Lj7ipesPdtyYk96oonH916ogAgvDy/8+8g56yQdhQaYimfuJTBOmSfw5ptmEN2
+	 Qn++t+aBs4nGA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon,  8 Apr 2024 12:10:20 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 8 Apr 2024 12:10:20 +0300
+From: Arseniy Krasnov <avkrasnov@salutedevices.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger
+	<richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+CC: <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <oxffffaa@gmail.com>,
+	<kernel@sberdevices.ru>, Arseniy Krasnov <avkrasnov@salutedevices.com>
+Subject: [PATCH v2 0/2] Meson: R/W support for pages used by boot ROM
+Date: Mon, 8 Apr 2024 11:59:29 +0300
+Message-ID: <20240408085931.456337-1-avkrasnov@salutedevices.com>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184614 [Apr 08 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: avkrasnov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 15 0.3.15 adb41f89e2951eb37b279104a7abb8e79494a5e7, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/08 06:07:00 #24706059
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240408_012205_723205_318F5BC8 
-X-CRM114-Status: GOOD (  24.30  )
+X-CRM114-CacheID: sfid-20240408_021028_364488_F88B2AFF 
+X-CRM114-Status: GOOD (  12.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,50 +104,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On So, 2024-04-07 at 19:39 -0700, Stephen Boyd wrote:
-> Quoting Jerome Brunet (2024-04-02 07:52:38)
-> > 
-> > On Thu 28 Mar 2024 at 04:08, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
-> > 
-> > > This code will by reused by A1 SoC.
-> > 
-> > Could expand a bit please ?
-> > 
-> > > 
-> > > Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-> > 
-> > In general, I like the idea.
-> > 
-> > We do have a couple a reset registers lost in middle of clocks and this
-> > change makes it possible to re-use the code instead duplicating it.
-> > 
-> > The exported function would be used by audio clock controllers, but the
-> > module created would be purely about reset.
-> > 
-> > One may wonder how it ended up in the clock tree, especially since the
-> > kernel as a reset tree too.
-> > 
-> > I'm not sure if this should move to the reset framework or if it would
-> > be an unnecessary churn. Stephen, Philipp, do you have an opinion on
-> > this ?
-> > 
-> 
-> I'd prefer it be made into an auxiliary device and the driver put in
-> drivers/reset/ so we can keep reset code in the reset directory.
+Amlogic's boot ROM code needs that some pages on NAND must be written
+in special "short" ECC mode with scrambling enabled. Such pages:
+1) Contain some metadata about hardware.
+2) Located with some interval starting from 0 offset, until some
+   specified offset. Interval and second offset are set in the
+   device tree.
 
-Seconded, the clk-mpfs/reset-mpfs and clk-starfive-jh7110-sys/reset-
-starfive-jh7110 drivers are examples of this.
+This patchset adds R/W support for such pages. To enable it we can setup
+it in dts:
 
-> The auxiliary device creation function can also be in the
-> drivers/reset/ directory so that the clk driver calls some function
-> to create and register the device.
+    nand-is-boot-medium;
+    amlogic,boot-page-last = <1024>;
+    amlogic,boot-page-step = <128>;
 
-I'm undecided about this, do you think mpfs_reset_controller_register()
-and jh7110_reset_controller_register() should rather live with the
-reset aux drivers in drivers/reset/ ?
+It means that each 128th page in range 0 to 1024 pages will be accessed
+in special mode ("short" ECC + scrambling). In practice this feature is
+needed when we want to update first block of NAND - driver will enable
+required mode by itself using value from device tree.
 
-regards
-Philipp
+Changelog:
+ v1 -> v2:
+  * Rename 'meson,boot-page-XXX' -> 'amlogic,boot-page-XXX'.
+  * Add words that 'amlogic,boot-page-step' is measured in pages.
+  * Remove words that 'amlogic,boot-page-XXX' depends on 'nand-is-boot-medium'.
+  * Make both 'amlogic,boot-page-XXX' depend on each other also, in
+    addition to 'nand-is-boot-medium' dependency.
+
+Arseniy Krasnov (2):
+  dt-bindings: mtd: amlogic,meson-nand: support fields for boot ROM code
+  mtd: rawnand: meson: support R/W mode for boot ROM
+
+ .../bindings/mtd/amlogic,meson-nand.yaml      | 14 +++
+ drivers/mtd/nand/raw/meson_nand.c             | 88 +++++++++++++------
+ 2 files changed, 73 insertions(+), 29 deletions(-)
+
+-- 
+2.35.0
+
 
 _______________________________________________
 linux-amlogic mailing list
