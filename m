@@ -4,78 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7FADCD11C2
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2024 03:26:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0FA2C67861
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2024 08:22:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=4IvfLOvcq79FKEf9RvpPH/auJUkC8VuIxY6uvvTFep4=; b=aYgbdQsDZvtRs7
-	NjSp6d4Veb0XOcw5nR2C20Wld+XuJbr0KmVwktIAmOviQSsGhalYV8Cp2sSTmQ0tUydDzp2OChmza
-	nK9pkL1k3oAwRCnuCO1NhoHrG6PkmnQxbwBwAnUQk77HCmbBdm68a9NR/JDYshvUyu/xbHtm0vxNS
-	LAhex4ZyycbvojG/9QcuaYBV46Z2WA0GCxPqxXRlMWgOzelE5GTuisv4ohTZ6c+c5ccNTTvb8GMcM
-	BI8w90sXGepn+soeQcXQuj5tome8XrNHWEt3JZQ9uynLDyxqd4TUikN92aGvJE9/Dwn9WsYOYUIOw
-	b52qLWIrYgbTWN8ALIaA==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=DGjc0VE7BbDDGqHOGfR6jJ4kaBE1ynyhu11g/yfLeWU=; b=VE9Sdjso/eQOL9
+	AjLrxidyARbcdmZrTwpdCYdtWd6DHRvJVVlLcKmWs1eWhoIGQpIDxOTH/d3YYgXyp7E/lEs26fe2Q
+	eoqIjrYxiD+8x3XtxcUmkTcokNNhYtS3xDfl3SSIxA52k/NNmAWEjZYbLuYKMhSpXersxyyeXWC20
+	3O1wvYPSqtLovR1NEDixg69ShcTvxo0IwJMPaybvDQYSX/Y2FVKSu4arVn+XQ9hRsMT+YNs6CP8m7
+	CrfjoW+9l7Su54VEiRoufBXPpw/pZNyDeDI3CUXDpgAoov1Lm4Z0/cFF0wbaeMbnOvOe/x00se1ss
+	bE+JQHHWWqQazuoCpCGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rtfeV-0000000EBTR-1gTZ;
-	Mon, 08 Apr 2024 03:26:35 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1rtkGW-0000000EsLM-3yub;
+	Mon, 08 Apr 2024 08:22:09 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rtfeS-0000000EBSL-19ME;
-	Mon, 08 Apr 2024 03:26:33 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 34B2C60C69;
-	Mon,  8 Apr 2024 03:26:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B8DC3C433F1;
-	Mon,  8 Apr 2024 03:26:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712546788;
-	bh=y93CELgU798zozilMe740Pyai90Z6Y623ic13iToKHw=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=E/9DD+rNt/YgweHp6RiEO1cKky7kz5Kimv/ixIryQhNM8f3eB5cJn8nrMiv65jWPv
-	 5nwbni9yOdgsadbpryIA2Y/MfxF//SgUD3yfxHcjC7/FT1JKhVMsTxMpdu5Zgx4DBx
-	 iV8XCHdB8PkSqBDJBneI35jPDEDlrj3W8X1UQYS4NwMiWKwOPOAu+GLkApJOf8bu7C
-	 2pRIJfSXf9qpy8xkPB52QkUOporfvBDOZBjOQTzmsE32hsen6NQjufIAZ1iRWHZ04d
-	 mAtZmNgesL6BYAbGiY+GwuuE4wIL0slwt8kPjc1Yn91i4d024u4sYK4svlEZgKXlsi
-	 CSLmbe6Sl6J9w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F2C6CD11C2;
-	Mon,  8 Apr 2024 03:26:28 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Mon, 08 Apr 2024 11:26:25 +0800
-Subject: [PATCH] arm64: dts: meson: fix S4 power-controller node
+	id 1rtkGT-0000000EsIS-2gNW
+	for linux-amlogic@lists.infradead.org;
+	Mon, 08 Apr 2024 08:22:06 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rtkGC-0005va-HW; Mon, 08 Apr 2024 10:21:48 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rtkGB-00B4mH-Hy; Mon, 08 Apr 2024 10:21:47 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rtkGB-0003Lx-1e;
+	Mon, 08 Apr 2024 10:21:47 +0200
+Message-ID: <f01cdd910ab35316b8012795f73fd2b34c8e6f8e.camel@pengutronix.de>
+Subject: Re: [RFC PATCH v2 1/5] clk: meson: axg: move reset controller's
+ code to separate module
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Stephen Boyd <sboyd@kernel.org>, Jan Dakinevich
+	 <jan.dakinevich@salutedevices.com>, Jerome Brunet <jbrunet@baylibre.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette
+ <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>,  Kevin Hilman <khilman@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org
+Date: Mon, 08 Apr 2024 10:21:47 +0200
+In-Reply-To: <e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org>
+References: <20240328010831.884487-1-jan.dakinevich@salutedevices.com>
+	 <20240328010831.884487-2-jan.dakinevich@salutedevices.com>
+	 <1j7chfiz8e.fsf@starbuckisacylon.baylibre.com>
+	 <e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org>
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-Message-Id: <20240408-fix-secpwr-s4-v1-1-01aa7ee72c52@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIAOBjE2YC/x2MQQqAIBAAvyJ7bmELiewr0UFyrb2UuFCB+Pek4
- 8DMFFDOwgqzKZD5FpXrbNB3BrbDnzujhMYw0GDJ0oRRXlTe0pNRLXrnYnQjBfIMrUmZm/D/lrX
- WDxnMTcFfAAAA
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1712546787; l=1062;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=aYGam5atTvFCi6MANFq1gTnEWCmMJGBzGpQ68DNxd4s=;
- b=QOZasB9XfpjbYCM2NkQXMlQePi2brRVq25BtW9pZQ/O/LAgdf/E30jblrbUc47W0QCYLKqMCn
- Sd+AOKQpyePAuPOG9BkArADHL7TsnkikXqRDb0KtLIx1RUfQSqwjBEd
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240407_202632_482913_7C4CFA7B 
-X-CRM114-Status: UNSURE (   8.40  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240408_012205_723205_318F5BC8 
+X-CRM114-Status: GOOD (  24.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,54 +81,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On So, 2024-04-07 at 19:39 -0700, Stephen Boyd wrote:
+> Quoting Jerome Brunet (2024-04-02 07:52:38)
+> > 
+> > On Thu 28 Mar 2024 at 04:08, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+> > 
+> > > This code will by reused by A1 SoC.
+> > 
+> > Could expand a bit please ?
+> > 
+> > > 
+> > > Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> > 
+> > In general, I like the idea.
+> > 
+> > We do have a couple a reset registers lost in middle of clocks and this
+> > change makes it possible to re-use the code instead duplicating it.
+> > 
+> > The exported function would be used by audio clock controllers, but the
+> > module created would be purely about reset.
+> > 
+> > One may wonder how it ended up in the clock tree, especially since the
+> > kernel as a reset tree too.
+> > 
+> > I'm not sure if this should move to the reset framework or if it would
+> > be an unnecessary churn. Stephen, Philipp, do you have an opinion on
+> > this ?
+> > 
+> 
+> I'd prefer it be made into an auxiliary device and the driver put in
+> drivers/reset/ so we can keep reset code in the reset directory.
 
-The power-controller module works well by adding its parent
-node secure-monitor.
+Seconded, the clk-mpfs/reset-mpfs and clk-starfive-jh7110-sys/reset-
+starfive-jh7110 drivers are examples of this.
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+> The auxiliary device creation function can also be in the
+> drivers/reset/ directory so that the clk driver calls some function
+> to create and register the device.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index ce90b35686a2..24d00dce4969 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -65,10 +65,13 @@ xtal: xtal-clk {
- 		#clock-cells = <0>;
- 	};
- 
--	pwrc: power-controller {
--		compatible = "amlogic,meson-s4-pwrc";
--		#power-domain-cells = <1>;
--		status = "okay";
-+	sm: secure-monitor {
-+		compatible = "amlogic,meson-gxbb-sm";
-+
-+		pwrc: power-controller {
-+			compatible = "amlogic,meson-s4-pwrc";
-+			#power-domain-cells = <1>;
-+		};
- 	};
- 
- 	soc {
+I'm undecided about this, do you think mpfs_reset_controller_register()
+and jh7110_reset_controller_register() should rather live with the
+reset aux drivers in drivers/reset/ ?
 
----
-base-commit: 4cece764965020c22cff7665b18a012006359095
-change-id: 20240408-fix-secpwr-s4-a99ff960d0ae
-
-Best regards,
--- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
-
-
+regards
+Philipp
 
 _______________________________________________
 linux-amlogic mailing list
