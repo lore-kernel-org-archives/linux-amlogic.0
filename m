@@ -4,96 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5A5ACD1296
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2024 18:47:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B2E5C67861
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2024 18:49:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7L6pOpqdWBP51zGA0zWKn8puqa0vyuxBs1Dpb1c/6q0=; b=IYJZNTWFNiYDAR
-	3XZ/ETJWDgCP696jCz2yz837U19ViJNMwEQgpcqHyP42nLNOv0YaSfIGmwAnLhOtQmeCcD/kL+vFq
-	/7Ptf91zU+EwVgLr/PfkWgGtFWEbddM5BJJbvKryr4LOYRBCkKGdocJggqALOX5q3NBXnGKyQAaD/
-	g62VKyrD5BnoubuTViilRd6JWk0Kge/1LrHCJYCyr3peMz6HhC/9wFJUAQ49WvA0d9GoiTxaAxOiX
-	LIdh8ImL7zfEnKq4GjG/JHVpzUElw156JBCFx8JDe3MOThxF4vHkf/J/JW0bjLLOcqwFI/AQdAyjc
-	fhAGgs20B6yVu7dCIpVA==;
+	List-Owner; bh=uHu+MohgQMwfNHTj5Y5outfwtX4AFVGSK66igiJM4wk=; b=3ePpO5N2Wlb+NR
+	lL9bWrjKnR0XtBWvsZTJxEUopTsxkQKeTBYQuvLLJpsIUpeE/xSvyz+/RxEllrb891ztCyx/3Dh7M
+	uw+1xsT782wa8ZCrKX2gCgcsAav2K9vILzF+BOlpiQSs5mTTEQLTvbBBuEx62Y0qcSpRiUFST7bWm
+	cTW+wmVnr1c6Ww91H0U/37HIfaaZT4EI4HTKTT8Q32fm8Rs8yokVsqHeb1vxWo7KT9IvTITLpleqH
+	xeDNheAkhlcJGGbkJzmJwNx1QgNAmOa18bLPcAWRpMR/FbkUZequprgEl55PNsCM6GX/2QtVu/Hz3
+	8SMxXpglK5au1Ex3TWeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rtu22-0000000GXjK-46HE;
-	Mon, 08 Apr 2024 18:47:50 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1rtu39-0000000GY5j-3xSl;
+	Mon, 08 Apr 2024 18:48:59 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rtu20-0000000GXha-08rw;
-	Mon, 08 Apr 2024 18:47:49 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 1D9B9120023;
-	Mon,  8 Apr 2024 21:47:45 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 1D9B9120023
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1712602065;
-	bh=j6Pvh7ii/4E5kEvtzQo/0jLzLa8anfIJuWpWiYdLJ2A=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=B9mKlpvxUeWHck4G567ll5BTEaUMz9pFZsXNelEirg4PyMG5uJkEnYdaAanvUf+nV
-	 6WCMxzEokm79CE0YIEUtmbJDUgxzKp7/UIbJe3N3cHLfmcuy0mdPKg9ppVaoRWqhlw
-	 YlTyZK3577X4WOYhxk+PvYotKVjVWO1evfV+bXLujyw5A+S8lgx7WEb9z348XmoiCA
-	 ydbSOZMkJaVcLo4PobcA6AkFWSFXY+dHn2lbdFiyLaj63etnIYVUO0ZGee3df+7eKV
-	 q72udjpDPVnHAaNm1Aqh3zBYMu5h4+jFrpufz0+ljAhYgqTTU9HMPQsl27gyp5X4os
-	 F5vG7OLtHgj+w==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon,  8 Apr 2024 21:47:44 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 8 Apr
- 2024 21:47:44 +0300
-Date: Mon, 8 Apr 2024 21:47:44 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Mark Brown <broonie@kernel.org>
-CC: Jerome Brunet <jbrunet@baylibre.com>, <neil.armstrong@linaro.org>,
-	<lgirdwood@gmail.com>, <conor+dt@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <perex@perex.cz>, <tiwai@suse.com>,
-	<khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-	<kernel@salutedevices.com>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <alsa-devel@alsa-project.org>,
-	<linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v1 2/2] ASoC: meson: implement link-name optional
- property in meson card utils
-Message-ID: <20240408184744.nfktcppdqewurmgg@CAB-WSD-L081021>
+	id 1rtu37-0000000GY4q-0HTX
+	for linux-amlogic@lists.infradead.org;
+	Mon, 08 Apr 2024 18:48:58 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-343d1003106so2880120f8f.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 08 Apr 2024 11:48:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712602135; x=1713206935; darn=lists.infradead.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=/5O9U718NHGvhBsjamAS1sHo9zrNE6S5TEc1aVEiLaU=;
+        b=dDtttQCnu8VS0zHyHH5xK2RjPgu1/Rq1RwgOUuj511lGL7HYjBjDcXr6CkX7SuC3kz
+         pjtD9xIitQ4tXEvypkCXOyYMmLPIr/KEV/1S6+1b7L2M+LsID2bCInUCkKdb3IPdEUXS
+         968oFCnEiPJNM6cITASaqBKsrstWCrKn5Vbp4E/lPq8z1mifXZ4wlNehtBh9sw4sWjSP
+         GYIJZzeKq/DhTyJNsIPEmbj5jjsh1Bc6BiNOJhWTvlvQgqzhcvZGwgvhI+3vXJFGlewz
+         u8XCWHNIu+Sr89n46JhmLoolO28nvU4iECd2tk0Gv+8dNTlhEzMZMh526M/ICoPlxyFx
+         ZvTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712602135; x=1713206935;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/5O9U718NHGvhBsjamAS1sHo9zrNE6S5TEc1aVEiLaU=;
+        b=JaWi8YjvmQRRtWeyqdwc2V5sZayG8s66c8I9s7xldO3sOAJyf7YlOX3w9FfZKags2N
+         3z2rpyQ1Sy/absF14qpfkL10cBMTmUV2eX3pL2yFiFRW1UTY8K49PkPZYp5E/aYvGWkk
+         TKdBVN0jX7828urxMsToJsEKNUJMXeUrAhKi78NSWCArLpzWdL3BBauEYErHwRpl6c8I
+         pcOn5Uhe0acAjFUCF9GVVJB2wsHC1FgVjdzpGSsaT4MTedDsmn8NbeltOmfmdU8X28sp
+         6EKVnYIW/7TD2Xf8ZL2mHnUWQt0rTDfVKZwaxrO4sBDE4hCSCcxF67ivBWKhX7LqKlVv
+         oQHg==
+X-Forwarded-Encrypted: i=1; AJvYcCU8f65ApYDgKWnpJNTrD40gc5rSIjBO0BvPu/X2acd8pJodq825kuZBIa198d+5GjJDCxa5Ni8YuS24O4XpPKjEd6oszHwWv7V7z914ud99AyU=
+X-Gm-Message-State: AOJu0Yy0lVfpivHKjmN/9Gys44LUdvknGaLKhiyyV1x8x7UxVq/GWlrG
+	tRhYqhy+yVvnwgYA9ESaYaq1Dlsd9Ij8us4u3D9QTA2R4kF5P4/eyr87RI8sYEg=
+X-Google-Smtp-Source: AGHT+IG3Lg7mm8hPe5LwKDEb0DtuBWPIrOCUnl2T2Z41lBT6Pyv73n0DcdIqqnsFwOJp3c6VQ0kGmA==
+X-Received: by 2002:a5d:64cf:0:b0:341:d7b5:27 with SMTP id f15-20020a5d64cf000000b00341d7b50027mr8950388wri.6.1712602134884;
+        Mon, 08 Apr 2024 11:48:54 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:90bc:1f0d:aae2:3c66])
+        by smtp.gmail.com with ESMTPSA id m6-20020adff386000000b00343300a4eb8sm9561770wro.49.2024.04.08.11.48.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Apr 2024 11:48:54 -0700 (PDT)
 References: <20240408164947.30717-1-ddrokosov@salutedevices.com>
- <20240408164947.30717-3-ddrokosov@salutedevices.com>
- <1j1q7fpv1n.fsf@starbuckisacylon.baylibre.com>
- <20240408184041.3jcav5tabxiblpn4@CAB-WSD-L081021>
- <51b39153-d1a4-4e7f-9b30-8c77fc4ee46f@sirena.org.uk>
+ <20240408164947.30717-2-ddrokosov@salutedevices.com>
+User-agent: mu4e 1.10.8; emacs 29.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: neil.armstrong@linaro.org, lgirdwood@gmail.com, jbrunet@baylibre.com,
+ broonie@kernel.org, conor+dt@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
+ khilman@baylibre.com, martin.blumenstingl@googlemail.com,
+ kernel@salutedevices.com, rockosov@gmail.com,
+ linux-amlogic@lists.infradead.org, alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 1/2] ASoC: dt-bindings: meson: introduce link-name
+ optional property
+Date: Mon, 08 Apr 2024 20:44:36 +0200
+In-reply-to: <20240408164947.30717-2-ddrokosov@salutedevices.com>
+Message-ID: <1jsezvofl5.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <51b39153-d1a4-4e7f-9b30-8c77fc4ee46f@sirena.org.uk>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184624 [Apr 08 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 15 0.3.15 adb41f89e2951eb37b279104a7abb8e79494a5e7, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:7.1.1,5.0.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/08 15:55:00 #24711186
-X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240408_114748_435111_42945CA2 
-X-CRM114-Status: GOOD (  32.42  )
+X-CRM114-CacheID: sfid-20240408_114857_134523_CB5EC67C 
+X-CRM114-Status: GOOD (  16.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,51 +100,92 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Apr 08, 2024 at 07:45:00PM +0100, Mark Brown wrote:
-> On Mon, Apr 08, 2024 at 09:40:41PM +0300, Dmitry Rokosov wrote:
-> > On Mon, Apr 08, 2024 at 08:15:54PM +0200, Jerome Brunet wrote:
-> 
-> > > Userspace pcm, otherwise known as DPCM frontend, are merely that:
-> > > frontends. What they do is entirely defined by the routing defined by
-> > > the userspace (amixer and friends)
-> 
-> > > So naming the interface in DT (the FW describing the HW) after what the
-> > > the userspace SW could possibly set later on is wrong.
-> 
-> > > Bottom line: I have mixed feeling about this change. It could allow all
-> > > sort of bad names to be set.
-> 
-> > > The only way it could make sense HW wise is if the only allowed names
-> > > where (fr|to)ddr_[abcd], which could help maps the interface and the
-> > > kcontrol.
-> 
-> > The link-name is an optional parameter. Yes, you are right, it can be
-> > routed in a way that it no longer functions as a speaker in most cases.
-> > However, if you plan to use your board's dt for common purposes, you
-> > should not change the common names for DAI links. But if you know that
-> > you have a static setup for speakers, microphones, loopback, or other
-> > references (you 100% know it, because you are HW developer of this
-> > board), why not help the user understand the PCM device assignment in
-> > the easiest way?
-> 
-> I would expect that the place to fix names based on the userspace
-> configuration is in whatever userspace is using to define it's
-> configurations, like a UCM config.
-> 
 
-Honestly, I have tried to find a way to rename the PCM device name or
-mark it in some way (such as using a metainformation tag or any other
-method), but unfortunately, my search has been unsuccessful.
+On Mon 08 Apr 2024 at 19:49, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
 
-> > Ultimately, it is the responsibility of the DT board developer to define
-> > specific DAIs and name them based on their own knowledge about HW and
-> > understanding of the board's usage purposes.
-> 
-> DT seems like the wrong abstraction layer here.
+> The 'link-name' property is an optional DT property that allows for the
+> customization of the name associated with the DAI link and PCM stream.
+> This functionality mirrors the approach commonly utilized in Qualcomm
+> audio cards, providing flexibility in DAI naming conventions for
+> improved system integration and userspace experience.
+
+As explained in patch #2, I think this change is wrong.
+The names below describe a possible userspace usage of the interface,
+not HW. This does not belong in DT.
+
+The only valid name for the interface is one that helps map the PCM
+interface and the kcontrols exposed in userspace.
+
+This information is already available through dai_name, prefixes, etc.
+
+Using DT for this is bad, in the context of these particular sound
+cards at least.
+
+>
+> It allows userspace program to easy determine PCM stream purpose, e.g.:
+>     ~ # cat /proc/asound/pcm
+>     00-00: speaker (*) :  : playback 1
+>     00-01: mics (*) :  : capture 1
+>     00-02: loopback (*) :  : capture 1
+>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> ---
+>  .../devicetree/bindings/sound/amlogic,axg-sound-card.yaml   | 6 ++++++
+>  .../devicetree/bindings/sound/amlogic,gx-sound-card.yaml    | 6 ++++++
+>  2 files changed, 12 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml
+> index 492b41cc8ccd..46774a3e4b1d 100644
+> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml
+> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml
+> @@ -66,6 +66,11 @@ patternProperties:
+>          maxItems: 1
+>          description: phandle of the CPU DAI
+>  
+> +      link-name:
+> +        description: Indicates dai-link name and PCM stream name.
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        maxItems: 1
+> +
+>      patternProperties:
+>        "^dai-tdm-slot-(t|r)x-mask-[0-3]$":
+>          $ref: /schemas/types.yaml#/definitions/uint32-array
+> @@ -137,6 +142,7 @@ examples:
+>  
+>          dai-link-0 {
+>              sound-dai = <&frddr_a>;
+> +            link-name = "speaker";
+>          };
+>  
+>          dai-link-1 {
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+> index d4277d342e69..975c148f9712 100644
+> --- a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+> +++ b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+> @@ -52,6 +52,11 @@ patternProperties:
+>          maxItems: 1
+>          description: phandle of the CPU DAI
+>  
+> +      link-name:
+> +        description: Indicates dai-link name and PCM stream name.
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        maxItems: 1
+> +
+>      patternProperties:
+>        "^codec(-[0-9]+)?$":
+>          type: object
+> @@ -89,6 +94,7 @@ examples:
+>  
+>          dai-link-0 {
+>                 sound-dai = <&i2s_fifo>;
+> +               link-name = "speaker";
+>          };
+>  
+>          dai-link-1 {
+
 
 -- 
-Thank you,
-Dmitry
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
