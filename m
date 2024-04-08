@@ -4,91 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83A99CD129C
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2024 16:50:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E0ABCD1292
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2024 17:05:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wYZ06A0lr0vh9e7ku35BlnB+4r7YF4dmPhJI8er4+fo=; b=dHhMd+3kXqldgx
-	IdYbHaQEKhXT7ceG6qYeZVHsVTNNeV/fznBqdLy2MKTA/76mSBgyPBQgQFy4blJ/Mxo24o+dwCrE2
-	dViC3panIHKN9GCz6G0VSRDTTE5uCa75jfIi5R27kA4hcno6ECbmP1R+sTOeddCzGf5Q7PJ/Nk8eJ
-	z2pCdcW9aTfBFBn+QQWEo9HbRojOPXEIdC/jNwdUywr2gH25jRKBrvzPpQDRNLcmo4+9Lue67UPb3
-	iUOHYNlJsYPRLdhoUVqXyAcll2PRkF72bHYOR0ZifeBRcXXmGAsAaY7/OManjRFh+YDzzODxVn7tf
-	tl14qPZPsAqzRbvidRrQ==;
+	List-Owner; bh=4/CpC9xnTqVy5UU3H4yJr/18Fq7GwpBaTmoP0b67dMA=; b=apZuOOpmCCF/Pd
+	5uvWf/P4SgybM8rkCJvoteHQSvqDds1oMmz+u4h9LoUKScZUKnGmrcwJ0tdsY2VW7x3rSIvauYQ8s
+	ZEcjpVu45jT5iMTTq8YzAmIDhDqr1VZDWvIhGOQZDFJ/Rm6pHT5PJ82+QzlkptzkkFAeFpexbI/Hw
+	b5tBepsmnd3/wXusiuwGxB62Xd5LZzqDZD3e+hW3yGQiL8i2rg2dE7np+D7mrX5OE2iaEY60m5EEV
+	XwGx3e2MeMcwCc3BJmEgk/PFaNgN/RTK8HhUQW0h+kR8mSLvMTuaiILSCdoDWxVb+2jQjkbGWOOKX
+	Q9lO8ak4c0y8HW8t8iRQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rtsCC-0000000GFKs-3I3e;
-	Mon, 08 Apr 2024 16:50:12 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1rtsR7-0000000GI5Q-335x;
+	Mon, 08 Apr 2024 17:05:37 +0000
+Received: from mgamail.intel.com ([198.175.65.21])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rtsC7-0000000GFHU-34O4;
-	Mon, 08 Apr 2024 16:50:10 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id CD7DD100027;
-	Mon,  8 Apr 2024 19:49:55 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru CD7DD100027
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1712594995;
-	bh=/k8oBX6LrTtamgxdFTlC/Khi9/j8G6LrxK0Q4+GixUc=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=P/X2l2DgSy/l5PSnTMgr3YxQ9Tj6HBn4l9rx9Znme8zTvTEfZ/fQRmancWaSoR9Cj
-	 QAFWB6KaAnLnc38YYGAnzYskuXTZTQb+J7fJccRbXXv5XbJ21LH25sVVAtMm97YAq1
-	 6tdMirSaZfS0NNNexJQOvjo9TSe6qAEaFp7gXDa6P//C7jkNmqDgm42/sqnbUZB9ND
-	 44YM2FUOjFsPFRLdRiGvfPCKWaIcnXdw1+Qm9CvYAUSFOhDu9xlQXgyq4uKB6JBQNR
-	 umkfUdHffw8tHagODAgM8B+zYh/Vq0VH0L3vwGZG2qttcyIt+gxPBc4/aDtWNCDcCq
-	 in1K4+BLhB+Yg==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon,  8 Apr 2024 19:49:55 +0300 (MSK)
-Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 8 Apr 2024 19:49:55 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: <neil.armstrong@linaro.org>, <lgirdwood@gmail.com>,
-	<jbrunet@baylibre.com>, <broonie@kernel.org>, <conor+dt@kernel.org>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>, <perex@perex.cz>,
-	<tiwai@suse.com>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>
-CC: <kernel@salutedevices.com>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <alsa-devel@alsa-project.org>,
-	<linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	Dmitry Rokosov <ddrokosov@salutedevices.com>
-Subject: [PATCH v1 1/2] ASoC: dt-bindings: meson: introduce link-name optional property
-Date: Mon, 8 Apr 2024 19:49:39 +0300
-Message-ID: <20240408164947.30717-2-ddrokosov@salutedevices.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240408164947.30717-1-ddrokosov@salutedevices.com>
-References: <20240408164947.30717-1-ddrokosov@salutedevices.com>
+	id 1rtsR4-0000000GI1Z-0PxE
+	for linux-amlogic@lists.infradead.org;
+	Mon, 08 Apr 2024 17:05:35 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1712595934; x=1744131934;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=ep6l4tE6d/T5WqNMeZ7oCFUOTHiY9hJKRKAOBw+/Si0=;
+  b=DhLzgOh8D6lPCpblfYM9DBRZNxrH+eLyww20zInnUL3uBrx9P0tG2STq
+   PeCXBPrvC1dIgRhu+cODCv26LfOgpbBWHOSby+GAdrOxYMyy0SeoNSSXi
+   qQigeyIVnhe07iUL7DBQuWRCywYPmBN5N7j7fx08jH+c7uReGiQZ2Vmco
+   kvQnAyaqcrT4DCkPG5W8J1NLh0dRkLrbg4R9UlhUQfLzpLHMQ0ZPKLnxk
+   n8TBTIbWX82YEiStniYQhk5mO485vL5Tm8IA8e6L8PR8fZYBCgJA5xUz8
+   9EoAQeo4czyCO36hk974Aus9qQiqNyios5Ay64JmLFp0AkFTSWFsDBE+b
+   g==;
+X-CSE-ConnectionGUID: IzUMeFGHSSO9QeadkXMe/w==
+X-CSE-MsgGUID: TDPmRMLjROyYfFop7ebjPQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="7793487"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; 
+   d="scan'208";a="7793487"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2024 10:05:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="827792343"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; 
+   d="scan'208";a="827792343"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+  by orsmga001.jf.intel.com with SMTP; 08 Apr 2024 10:05:31 -0700
+Received: by stinkbox (sSMTP sendmail emulation); Mon, 08 Apr 2024 20:05:30 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH 19/21] drm/meson: Allow build with COMPILE_TEST=y
+Date: Mon,  8 Apr 2024 20:04:24 +0300
+Message-ID: <20240408170426.9285-20-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240408170426.9285-1-ville.syrjala@linux.intel.com>
+References: <20240408170426.9285-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184624 [Apr 08 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 15 0.3.15 adb41f89e2951eb37b279104a7abb8e79494a5e7, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/08 12:02:00 #24709100
-X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240408_095008_549045_1D46F929 
-X-CRM114-Status: GOOD (  10.39  )
+X-CRM114-CacheID: sfid-20240408_100534_198388_36FE26CF 
+X-CRM114-Status: GOOD (  11.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,82 +79,28 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The 'link-name' property is an optional DT property that allows for the
-customization of the name associated with the DAI link and PCM stream.
-This functionality mirrors the approach commonly utilized in Qualcomm
-audio cards, providing flexibility in DAI naming conventions for
-improved system integration and userspace experience.
-
-It allows userspace program to easy determine PCM stream purpose, e.g.:
-    ~ # cat /proc/asound/pcm
-    00-00: speaker (*) :  : playback 1
-    00-01: mics (*) :  : capture 1
-    00-02: loopback (*) :  : capture 1
-
-Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
----
- .../devicetree/bindings/sound/amlogic,axg-sound-card.yaml   | 6 ++++++
- .../devicetree/bindings/sound/amlogic,gx-sound-card.yaml    | 6 ++++++
- 2 files changed, 12 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml
-index 492b41cc8ccd..46774a3e4b1d 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.yaml
-@@ -66,6 +66,11 @@ patternProperties:
-         maxItems: 1
-         description: phandle of the CPU DAI
- 
-+      link-name:
-+        description: Indicates dai-link name and PCM stream name.
-+        $ref: /schemas/types.yaml#/definitions/string
-+        maxItems: 1
-+
-     patternProperties:
-       "^dai-tdm-slot-(t|r)x-mask-[0-3]$":
-         $ref: /schemas/types.yaml#/definitions/uint32-array
-@@ -137,6 +142,7 @@ examples:
- 
-         dai-link-0 {
-             sound-dai = <&frddr_a>;
-+            link-name = "speaker";
-         };
- 
-         dai-link-1 {
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
-index d4277d342e69..975c148f9712 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
-+++ b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
-@@ -52,6 +52,11 @@ patternProperties:
-         maxItems: 1
-         description: phandle of the CPU DAI
- 
-+      link-name:
-+        description: Indicates dai-link name and PCM stream name.
-+        $ref: /schemas/types.yaml#/definitions/string
-+        maxItems: 1
-+
-     patternProperties:
-       "^codec(-[0-9]+)?$":
-         type: object
-@@ -89,6 +94,7 @@ examples:
- 
-         dai-link-0 {
-                sound-dai = <&i2s_fifo>;
-+               link-name = "speaker";
-         };
- 
-         dai-link-1 {
--- 
-2.43.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkFs
+bG93IG1lc29uIHRvIGJlIGJ1aWx0IHdpdGggQ09NUElMRV9URVNUPXkgZm9yIGdyZWF0ZXIKY292
+ZXJhZ2UuIEJ1aWxkcyBmaW5lIG9uIHg4Ni94ODZfNjQgYXQgbGVhc3QuCgpDYzogTmVpbCBBcm1z
+dHJvbmcgPG5laWwuYXJtc3Ryb25nQGxpbmFyby5vcmc+CkNjOiBsaW51eC1hbWxvZ2ljQGxpc3Rz
+LmluZnJhZGVhZC5vcmcKU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
+YWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbWVzb24vS2NvbmZpZyB8
+IDIgKy0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9LY29uZmlnIGIvZHJpdmVycy9ncHUvZHJt
+L21lc29uL0tjb25maWcKaW5kZXggNTUyMGI5ZTNmMDEwLi5kOGY2N2JkOWM3NTUgMTAwNjQ0Ci0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9LY29uZmlnCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9t
+ZXNvbi9LY29uZmlnCkBAIC0xLDcgKzEsNyBAQAogIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjog
+R1BMLTIuMC1vbmx5CiBjb25maWcgRFJNX01FU09OCiAJdHJpc3RhdGUgIkRSTSBTdXBwb3J0IGZv
+ciBBbWxvZ2ljIE1lc29uIERpc3BsYXkgQ29udHJvbGxlciIKLQlkZXBlbmRzIG9uIERSTSAmJiBP
+RiAmJiAoQVJNIHx8IEFSTTY0KQorCWRlcGVuZHMgb24gRFJNICYmIE9GICYmIChBUk0gfHwgQVJN
+NjQgfHwgQ09NUElMRV9URVNUKQogCWRlcGVuZHMgb24gQVJDSF9NRVNPTiB8fCBDT01QSUxFX1RF
+U1QKIAlzZWxlY3QgRFJNX0tNU19IRUxQRVIKIAlzZWxlY3QgRFJNX0dFTV9ETUFfSEVMUEVSCi0t
+IAoyLjQzLjIKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVh
+ZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1h
+bWxvZ2ljCg==
