@@ -4,56 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF8C3C67861
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2024 09:52:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 586F6CD1296
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2024 16:50:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
-	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dbIVSSQlK//B4B6J+ked6e2sexbh48XrCXugilMzqew=; b=GxwAwgqvI0UDTX
-	MwUfH+waJoS5Zyi8wHnTseFRn6VC0d0dnW79Rbsgy2Ci6RGar7rCq4Ircv61z9BTDuGJ4DECUobf/
-	7MOGehL4ENkUS8LuutX7jKI+mMd97w5SUbkrDeq/9qFZOxHNrCi+QA9K0PUhcV7jElX1sg/A8qmU2
-	9cEEWqyzwjPV871ieHbgJSLgmkRf+OT35YXYoHocjAhvs7FSS7ANTAY/onM91wVX6XNQCweeaUOiJ
-	dpet/YN1uhee/E04fl49bpqYxr2EeuMHJBcQqjsWL3ucyMGw67GFWpQxCP7XdQ6bO+f50Vmpr2GVl
-	snlzIrDuhfPQHLVSLYig==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=95O+XbQ29cFnB42HSE43OwyUREIhtlSt8Dy6LhOHjwg=; b=ktWgnedfrwm5lN
+	/pdeDfvITpvyg2JKUnfyj2z6GKlKYKrOMLvCjkhXvtgwcmMCLCSdx4UKZFDrCgcy0PlRqg6MWtzeZ
+	+m6JENY1eP5eG167NXdeS5XFQJRnlaLt1fj/iZ+zo6o0xIf2KuiS/lGNtiXEXePKxN9Skd1UMQFIn
+	4R+L9RixUZlrJ9+mxRlos7S3xR/j8dDxDG4pZQF3vZiL4i7vYFCNAKzlZK6bkyvgiOJ5TLf+uPo2V
+	DIl+N77z21BWkEraSiaQ0BkLhrmXYLAd/1YGA7rwY+BH375IsiPryBatwrI0TKgCbaXSKkndbQ6Ue
+	5R7SiQlFTf+bZNEK81ng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rtlgC-0000000FAMW-06Kz;
-	Mon, 08 Apr 2024 09:52:44 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1rtsCI-0000000GFN9-2fEc;
+	Mon, 08 Apr 2024 16:50:18 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rtlg8-0000000FALV-2h1Q;
-	Mon, 08 Apr 2024 09:52:42 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id A36D660F0E;
-	Mon,  8 Apr 2024 09:52:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33413C43399;
-	Mon,  8 Apr 2024 09:52:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712569959;
-	bh=GuJ9Gj+u419IyvxtgxIuYGQxug7EYXq4Dcg2jFi9tQo=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=nikrOt6lchAeiXTOY7KStWdF/H5VAt7Vkss+si1WV89KtJr71O/CYJckUdGrB/yHT
-	 v7NPaqT2H1iLrrY3CHB3mEyEEPIisGJUA2/EkfBi1aJEw1pJmr1CUiQLeywbW4wBpQ
-	 OGnS+ucMK6o2npixP5tOKTPZr0Jp5BkLXPfXbdBnONsgKDuttG2E2EHFmx8Gxlc6Tv
-	 0nwCHWc2JvBIAMikAVuv4a2lCTcKuxo+BIwjOyVHVA3oqkQi+U7rqyUnoalbTc1twm
-	 o7k8onZI5TJ+U553u1P9oboP8b0hv9I0Q0Huzj3u0t6DhJ9cJmauMuLNGIIaryXNPS
-	 El7J/j/5xgDAg==
-Message-ID: <13617b7a892424d2b024c725505a6f4f.sboyd@kernel.org>
+	id 1rtsCE-0000000GFHT-1Ky1;
+	Mon, 08 Apr 2024 16:50:16 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 9103F120023;
+	Mon,  8 Apr 2024 19:49:54 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 9103F120023
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1712594994;
+	bh=GVKo6znhMy5c2DD7Af70VLwRzPogSN+CP1wNv/Gt+K0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=GKl0rt1Jj2HYmfyKyUjhNSb/kz4hyLxsaa/jopgRVQ/gw0Paprmnt287VkE/rRfoH
+	 REmEizIKeseLRD60c482kp0flYdlWsjOk441rFXVXHkOhpfdX/CSjpDAg0/uy3iLzx
+	 BEtgao8PC1EKsXa/qgVn+530uet9waOyOQtZKm8HqptZuC4L1T6wbF4AEsyR/kXWDI
+	 DhqeviGKT0GgzB8Lh/EeKUwgO6EskWAqX3ZHpTmrMIXeMsyGH4QTOK4NYNAfjYA+bD
+	 PRKiICVaXkblhNOhVq9Rfeq3PbLYlSByxmvVAID5KzL+j/6jAL4zXyVd64qIK4IE6i
+	 Go2JZZdr+sw8A==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon,  8 Apr 2024 19:49:54 +0300 (MSK)
+Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 8 Apr 2024 19:49:53 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <lgirdwood@gmail.com>,
+	<jbrunet@baylibre.com>, <broonie@kernel.org>, <conor+dt@kernel.org>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>, <perex@perex.cz>,
+	<tiwai@suse.com>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>
+CC: <kernel@salutedevices.com>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <alsa-devel@alsa-project.org>,
+	<linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	Dmitry Rokosov <ddrokosov@salutedevices.com>
+Subject: [PATCH v1 0/2] ASoC: meson: implement link-name optional property in meson audio card
+Date: Mon, 8 Apr 2024 19:49:38 +0300
+Message-ID: <20240408164947.30717-1-ddrokosov@salutedevices.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-In-Reply-To: <f01cdd910ab35316b8012795f73fd2b34c8e6f8e.camel@pengutronix.de>
-References: <20240328010831.884487-1-jan.dakinevich@salutedevices.com> <20240328010831.884487-2-jan.dakinevich@salutedevices.com> <1j7chfiz8e.fsf@starbuckisacylon.baylibre.com> <e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org> <f01cdd910ab35316b8012795f73fd2b34c8e6f8e.camel@pengutronix.de>
-Subject: Re: [RFC PATCH v2 1/5] clk: meson: axg: move reset controller's code to separate module
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Jerome Brunet <jbrunet@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>
-Date: Mon, 08 Apr 2024 02:52:37 -0700
-User-Agent: alot/0.10
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184624 [Apr 08 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 15 0.3.15 adb41f89e2951eb37b279104a7abb8e79494a5e7, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/08 12:02:00 #24709100
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240408_025240_791044_D4EC369E 
-X-CRM114-Status: GOOD (  30.54  )
+X-CRM114-CacheID: sfid-20240408_095014_726630_F133EE4C 
+X-CRM114-Status: UNSURE (   8.38  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,54 +104,23 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Philipp Zabel (2024-04-08 01:21:47)
-> On So, 2024-04-07 at 19:39 -0700, Stephen Boyd wrote:
-> > Quoting Jerome Brunet (2024-04-02 07:52:38)
-> > > 
-> > > On Thu 28 Mar 2024 at 04:08, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
-> > > 
-> > > > This code will by reused by A1 SoC.
-> > > 
-> > > Could expand a bit please ?
-> > > 
-> > > > 
-> > > > Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-> > > 
-> > > In general, I like the idea.
-> > > 
-> > > We do have a couple a reset registers lost in middle of clocks and this
-> > > change makes it possible to re-use the code instead duplicating it.
-> > > 
-> > > The exported function would be used by audio clock controllers, but the
-> > > module created would be purely about reset.
-> > > 
-> > > One may wonder how it ended up in the clock tree, especially since the
-> > > kernel as a reset tree too.
-> > > 
-> > > I'm not sure if this should move to the reset framework or if it would
-> > > be an unnecessary churn. Stephen, Philipp, do you have an opinion on
-> > > this ?
-> > > 
-> > 
-> > I'd prefer it be made into an auxiliary device and the driver put in
-> > drivers/reset/ so we can keep reset code in the reset directory.
-> 
-> Seconded, the clk-mpfs/reset-mpfs and clk-starfive-jh7110-sys/reset-
-> starfive-jh7110 drivers are examples of this.
-> 
-> > The auxiliary device creation function can also be in the
-> > drivers/reset/ directory so that the clk driver calls some function
-> > to create and register the device.
-> 
-> I'm undecided about this, do you think mpfs_reset_controller_register()
-> and jh7110_reset_controller_register() should rather live with the
-> reset aux drivers in drivers/reset/ ?
+The 'link-name' is optional feature in the Device Tree that allows users
+to customize the name associated with the DAI link and PCM stream.  This
+feature provides enhanced flexibility in DAI naming conventions, leading
+to improved system integration and a better user experience.
 
-Yes, and also mpfs_reset_read() and friends. We should pass the base
-iomem pointer and parent device to mpfs_reset_adev_alloc() instead and
-then move all that code into drivers/reset with some header file
-exported function to call. That way the clk driver hands over the data
-without having to implement half the implementation.
+Dmitry Rokosov (2):
+  ASoC: dt-bindings: meson: introduce link-name optional property
+  ASoC: meson: implement link-name optional property in meson card utils
+
+ .../bindings/sound/amlogic,axg-sound-card.yaml       |  6 ++++++
+ .../bindings/sound/amlogic,gx-sound-card.yaml        |  6 ++++++
+ sound/soc/meson/meson-card-utils.c                   | 12 ++++++++----
+ 3 files changed, 20 insertions(+), 4 deletions(-)
+
+-- 
+2.43.0
+
 
 _______________________________________________
 linux-amlogic mailing list
