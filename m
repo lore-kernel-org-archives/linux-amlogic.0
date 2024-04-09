@@ -4,69 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEF76CD1292
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2024 01:29:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFDE3CD129A
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2024 08:14:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
-	In-Reply-To:Cc:To:From:MIME-Version:Date:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=lMlGPeshw+/vzW8RVkQz0uZ7vZawdE+0af+UL6HnnN4=; b=yRtPu2EEOJVmHCtEs7+76tfpxe
-	MV94k/y3ZBh8b9z3/udr9f0fQgflv7tAsjvehaCo1Kmcj+2VDcaVCXqBBMkBE3qSikQlHGDwbz3YD
-	qtwxrbSImm0ibOvPLP7oGPkrq9+wvk8/GWvmNIfjoOvEfSjN6IZf7yaGCBhbwZQRxWDM4XcnfFmdq
-	iFxq0limrEeMkZM5C3LnAcSVDKaS5P/vvKW9gEcFZkCzmPJbmPRjQN9rEO+fzet6DQ+moMGuGN+cr
-	iAhLJK6Wp1ykibwfjoto1rrZIrR6rtmKPFfqU7D6/OBSmUIQXN7cCQhTFIX3CmacDIvFJf7VuL2A1
-	RkmK7Ucg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=1iLjfI8UW0mxOrOynzbXVJPkQdclKnAeaYMwiZLsT1s=; b=IycpyG42huTWPy
+	wt5fXL1omq65DhLaLwFPcDgTRpzbkql6BrVtOrfzFaGc4/ke3RDJAVsD2g8abIXp+xJqaeOqkpEFy
+	xzInKmLhMvCScEOUwjhpWsT3pJu5wmtMKQi5NGt2h1iPzbP9rmzjmJ0AbItxiiQqvubm+4YiPHz7a
+	hLeU58o1Wo+JMd8R6v8fLeO+D3dz2sYZkPv/hHmbuo8DCyHGp76HoDxwob9xpoGzQ4G/USfPKRlbz
+	mMM9l2jkPANkpl/+tX9coAHv0l77tVpmMjBrOuj/VjgdyOKGacRH9vuWs9eQBolfBL5u18AZUp8Cg
+	LVznn4d9ug6h/mstdZGg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ru0IT-0000000HOF6-0X8v;
-	Tue, 09 Apr 2024 01:29:13 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1ru6cd-00000000tTM-2gVs;
+	Tue, 09 Apr 2024 08:14:27 +0000
+Received: from madrid.collaboradmins.com ([46.235.227.194])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ru0IO-0000000HODv-33xa;
-	Tue, 09 Apr 2024 01:29:11 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 0A852614C5;
-	Tue,  9 Apr 2024 01:29:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A0F4C433C7;
-	Tue,  9 Apr 2024 01:29:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712626146;
-	bh=05Yu1Hwdufax+g3FUQAUbIZECXJPsnkFawR16oZeuXg=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=BWNQ+o8EKBDZ+M+YSjkCOzd2WzzmFR2Ni7Je2bm0Sle4oubjVJElKU227lBPd+Cbm
-	 zuFEkyZiT5mE6d/NL7mxsTQHWDlJhk69ZA+kAxCm3UUmz8MdM1OwOy5pEJW5J9uVNW
-	 4i6jOIqJn0ipfU7G4d9fCr1rXYjelUTUFC83R+ccyONfpLvTjxJtYa++aIMzXpH7hF
-	 O+tYYejMkPh6wP6K5zVffDrHX1XqTUQrnkbuQVRsSByOrOe2y6bKELPkTDEAel4DQJ
-	 p3HLnP84vjWddfxGSE85TJRMdosF2MPA4FE8ePgLnI51TgfOelEpr2sIvf3s40G5mj
-	 xOjvs7OFIuosw==
-Date: Mon, 08 Apr 2024 20:29:05 -0500
+	id 1ru6cZ-00000000tRl-3xtD;
+	Tue, 09 Apr 2024 08:14:25 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1712650462;
+	bh=z5AaZgRdCHKMFiwqPoJfl7Drtx40Uhi+HYFqiKBiDZc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=TAT/PqQJVMseLBdzIEdVoYbzVayfhEZ1XQ0s2DYOBN0z9ekIq1UEsHJ/hEyY9BWA/
+	 BvfluflROD5gCqjZvtn7gOCI7ptVhmwadVg/YxsdvV6fB/v02AMQMTglXhRNMFTqTt
+	 g1gt05UWsowgejj+Di3b8p/i96lJTNtqis+3Zz8lY/9E6UBb+VRVWVTFSL+cl9wjm/
+	 Iz50LKFsoEDD7nNGKvLKKhYNHLvvBqts+hMrQ+nWeTsJZk7okiAWkL1LzFljYnUpCy
+	 40fdeo0ZM734STDfndruUJbm9Sic3yRYat/g7NB/BQtNG4SLKhC0k7GhnmWhAskX1s
+	 8gDkAZfsUgeGQ==
+Received: from localhost.localdomain (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: vignesh)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id DA4D637820E2;
+	Tue,  9 Apr 2024 08:14:18 +0000 (UTC)
+From: Vignesh Raman <vignesh.raman@collabora.com>
+To: dri-devel@lists.freedesktop.org
+Cc: daniels@collabora.com,
+	helen.koike@collabora.com,
+	airlied@gmail.com,
+	daniel@ffwll.ch,
+	emma@anholt.net,
+	robdclark@gmail.com,
+	david.heidelberg@collabora.com,
+	guilherme.gallo@collabora.com,
+	sergi.blanch.torne@collabora.com,
+	hamohammed.sa@gmail.com,
+	rodrigosiqueiramelo@gmail.com,
+	melissa.srw@gmail.com,
+	mairacanal@riseup.net,
+	mcanal@igalia.com,
+	linux-mediatek@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 1/8] drm/ci: arm64.config: Enable CONFIG_DRM_ANALOGIX_ANX7625
+Date: Tue,  9 Apr 2024 13:43:22 +0530
+Message-Id: <20240409081329.472463-2-vignesh.raman@collabora.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20240409081329.472463-1-vignesh.raman@collabora.com>
+References: <20240409081329.472463-1-vignesh.raman@collabora.com>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Arseniy Krasnov <avkrasnov@salutedevices.com>
-Cc: kernel@sberdevices.ru, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, oxffffaa@gmail.com, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Miquel Raynal <miquel.raynal@bootlin.com>, 
- linux-arm-kernel@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>, 
- Richard Weinberger <richard@nod.at>, linux-mtd@lists.infradead.org, 
- Vignesh Raghavendra <vigneshr@ti.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- linux-amlogic@lists.infradead.org
-In-Reply-To: <20240408085931.456337-2-avkrasnov@salutedevices.com>
-References: <20240408085931.456337-1-avkrasnov@salutedevices.com>
- <20240408085931.456337-2-avkrasnov@salutedevices.com>
-Message-Id: <171262614183.5405.15027515085421244232.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: amlogic,meson-nand: support
- fields for boot ROM code
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240408_182908_845234_5A841D22 
-X-CRM114-Status: GOOD (  13.77  )
+X-CRM114-CacheID: sfid-20240409_011424_160216_C9999C21 
+X-CRM114-Status: UNSURE (   8.11  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,46 +90,50 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Enable CONFIG_DRM_ANALOGIX_ANX7625 in the arm64 defconfig to get
+display driver probed on the mt8183-kukui-jacuzzi-juniper machine.
 
-On Mon, 08 Apr 2024 11:59:30 +0300, Arseniy Krasnov wrote:
-> Boot ROM code on Meson requires that some pages on NAND must be written
-> in special mode: "short" ECC mode where each block is 384 bytes and
-> scrambling mode is on. Such pages located with the specified interval
-> within specified offset. Both interval and offset are located in the
-> device tree and used by driver if 'nand-is-boot-medium' is set for
-> NAND chip.
-> 
-> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
-> ---
->  .../bindings/mtd/amlogic,meson-nand.yaml           | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
+arch/arm64/configs/defconfig has CONFIG_DRM_ANALOGIX_ANX7625=m,
+but drm-ci don't have initrd with modules, so add
+CONFIG_DRM_ANALOGIX_ANX7625=y in CI arm64 config.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Acked-by: Helen Koike <helen.koike@collabora.com>
+Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+---
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml:84:61: [warning] too few spaces after comma (commas)
-./Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml:85:61: [warning] too few spaces after comma (commas)
+v2:
+  - No changes
 
-dtschema/dtc warnings/errors:
+v3:
+  - No changes
 
-doc reference errors (make refcheckdocs):
+v4:
+  - No changes
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240408085931.456337-2-avkrasnov@salutedevices.com
+v5:
+  - No changes
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+v6:
+  - No changes
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+---
+ drivers/gpu/drm/ci/arm64.config | 1 +
+ 1 file changed, 1 insertion(+)
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/drivers/gpu/drm/ci/arm64.config b/drivers/gpu/drm/ci/arm64.config
+index 8dbce9919a57..37d23fd7a367 100644
+--- a/drivers/gpu/drm/ci/arm64.config
++++ b/drivers/gpu/drm/ci/arm64.config
+@@ -187,6 +187,7 @@ CONFIG_MTK_DEVAPC=y
+ CONFIG_PWM_MTK_DISP=y
+ CONFIG_MTK_CMDQ=y
+ CONFIG_REGULATOR_DA9211=y
++CONFIG_DRM_ANALOGIX_ANX7625=y
+ 
+ # For nouveau.  Note that DRM must be a module so that it's loaded after NFS is up to provide the firmware.
+ CONFIG_ARCH_TEGRA=y
+-- 
+2.40.1
 
 
 _______________________________________________
