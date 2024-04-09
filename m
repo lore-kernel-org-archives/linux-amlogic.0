@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08799CD129D
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2024 08:14:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39C28CD129A
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2024 08:14:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=bODspgRzsYnw8DF6Id1+N2enbbuLSxLIy6SMGKa/vuI=; b=XURAioY92ueAtV
-	W8/LzYCynNIeW0Z78Lskj9Cjzh6CAWJAgPjyHnagRlnXCbCL281sHrjklUB83rNUdjn8bU8suneFK
-	gB9ElEXNsr3oJERQLFCOipEn8jWHGjNoSaH6Ecj++6EJ4IKnymNMAUdS/kxYa3FA+6EYQIg1va+ke
-	ygEVey1+UAFvnhjVlcD+SHnm/fupAUgClF1En9x8796kJyobltdmAo0QL6K/Yhafi+ST4CLeSXLse
-	k1U8rE/04ExmJ567Xv8T3tvxDNDLfjV2Nq7t1D0dWzQ7Gb3vCQK4Y8Z8U0taYSwGK1ie62MTntMCV
-	Cy3uu7N5dZ7NroZNBTIg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=acG782gGeLGSHHHjuKDVIrAVpcO4j9Mb6pdvxnHGsDg=; b=BcvrMFEC/0poCZ
+	heYPLYD7wSqP/o788fozpnRZOycNbXfEe88YCIBAdZU53OY6Wz6aT+JLI4eBJchmZq2p/6UrzENNH
+	MSU4S/wDFb6jSsT21Bb/fTmcupbhWncfswrWcnhxzuedsxfvEqYK6GKFcsjzSQNl07imnn7trgVvV
+	dI6UxO3f1I41xByT5Vl2JWSRu+Be7s5qOZAldpQ9uchKsDvM8ljQoNM5Q4h5irkbV2meFu71rYA7p
+	wb++UAGWDOhtyRXvPACFfiddB9oGclAAsZzcuq3s10NzHg2pgW3pn/VBKSUe4q97PR2TKjNz2zEx9
+	phugCTqrR8kf3uRKeqlQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ru6cb-00000000tSF-0mqH;
-	Tue, 09 Apr 2024 08:14:25 +0000
+	id 1ru6cj-00000000tX8-0v1R;
+	Tue, 09 Apr 2024 08:14:34 +0000
 Received: from madrid.collaboradmins.com ([46.235.227.194])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ru6cY-00000000tRM-0XI2;
-	Tue, 09 Apr 2024 08:14:24 +0000
+	id 1ru6ce-00000000tT5-0FjL;
+	Tue, 09 Apr 2024 08:14:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1712650458;
-	bh=HHJaWcLEX+SJOK4IS6kXa8fZRH3gq6oaRUh4XYmoX3Y=;
-	h=From:To:Cc:Subject:Date:From;
-	b=UG7i8vRFvfwmqoL3YTFwumbofRSeIFAR4GXMGW8AyzHK9LDYBxt0mhlQbG7Tw6rNj
-	 PopZuI3D6MdC1RqLpkRc6texJXrWsxI5bbLl9Hpz1HzXJPWUupNJV83CBZgYGimWCs
-	 XGYbDVtSYARMw6nGal+TtaZVmm051Qx/e3mq1u1JuwkJp9RSS7Qes2ME4vXGqOiEik
-	 K8opIEsw8MueLIfOQju2tr0TODz+prGe39WaUDlDVpY37FQBl5180IXYZf+lIatsPW
-	 ct4qgNKwSlQU1OIPAPmnyzecgEGn9g57uvyTZ9488+cMFMHGT5yeFgBNSwTsU5npcc
-	 SvLBx4y3ZSzbg==
+	s=mail; t=1712650466;
+	bh=atnM7VrWweDiTimJjVrECjlnN7wKdVLuCzM5GU+yiqM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=vQig3oWY4Bj3Pg/QxqCqhDvC1zTiL2AepmByfSA4VKaDiEBWzpVzuxouK9WpXbXZo
+	 Qq7LKw52xN+tCXkDLw34LMZ5ovyyYMBV6oshb5hARPLynV94aJtEtnQZ1Wca2+YWRX
+	 F6n0GTWmvIQe2J1+dc0lU3zUJnk7zoRUuSZmpsT9cgS1Oih1OOdcUT1asqzy4DbVj7
+	 18nutYytA1W56cAqCX5n3f5lGNEXkGxjKm8IkSnmhZG1NQtJp4AIen6voDjoo1YnLQ
+	 Vw2FORAjVKy2VQEq3FSxAx4bj0NTnsaavAYT8u71j7B/KdI9dGMrimuNAo7CWrKw17
+	 pOVjcD7GgsrdQ==
 Received: from localhost.localdomain (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: vignesh)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9D255378201A;
-	Tue,  9 Apr 2024 08:14:14 +0000 (UTC)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 3168137820EE;
+	Tue,  9 Apr 2024 08:14:23 +0000 (UTC)
 From: Vignesh Raman <vignesh.raman@collabora.com>
 To: dri-devel@lists.freedesktop.org
 Cc: daniels@collabora.com,
@@ -63,14 +63,16 @@ Cc: daniels@collabora.com,
 	linux-amlogic@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v6 0/8] drm/ci: Add support for GPU and display testing
-Date: Tue,  9 Apr 2024 13:43:21 +0530
-Message-Id: <20240409081329.472463-1-vignesh.raman@collabora.com>
+Subject: [PATCH v6 2/8] drm/ci: uprev mesa version
+Date: Tue,  9 Apr 2024 13:43:23 +0530
+Message-Id: <20240409081329.472463-3-vignesh.raman@collabora.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20240409081329.472463-1-vignesh.raman@collabora.com>
+References: <20240409081329.472463-1-vignesh.raman@collabora.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240409_011422_499152_7E387C5F 
-X-CRM114-Status: GOOD (  15.84  )
+X-CRM114-CacheID: sfid-20240409_011428_364764_AA758179 
+X-CRM114-Status: GOOD (  11.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,118 +89,172 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Some ARM SOCs have a separate display controller and GPU, each with
-different drivers. For mediatek mt8173, the GPU driver is powervr,
-and the display driver is mediatek. In the case of mediatek mt8183,
-the GPU driver is panfrost, and the display driver is mediatek.
-With rockchip rk3288/rk3399, the GPU driver is panfrost, while the
-display driver is rockchip. For amlogic meson G12B (A311D) SOC, the
-GPU driver is panfrost, and the display driver is meson.
+zlib.net is not allowing tarball download anymore and results
+in below error in kernel+rootfs_arm32 container build,
+urllib.error.HTTPError: HTTP Error 403: Forbidden
+urllib.error.HTTPError: HTTP Error 415: Unsupported Media Type
 
-IGT tests run various tests with different xfails and can test both
-GPU devices and KMS/display devices. Currently, in drm-ci for MediaTek,
-Rockchip, and Amlogic Meson platforms, only the GPU driver is tested.
-This leads to incomplete coverage since the display is never tested on
-these platforms. This commit series adds support in drm-ci to run tests
-for both GPU and display drivers for MediaTek mt8173/mt8183, Rockchip
-rk3288/rk3399, and Amlogic Meson G12B (A311D) platforms.
+Uprev mesa which includes a fix for this issue.
+https://gitlab.freedesktop.org/mesa/mesa/-/commit/908f444e
 
-Uprev mesa and IGT in drm-ci and add amd, v3d, vc4 and vgem specific
-tests to testlist. Add testlists to the MAINTAINERS file and skip
-driver-specific tests.
+Also copy helper scripts to install, so that the ci jobs can
+use these scripts for logging.
 
-This series also includes patch to add vkms testing to drm-ci.
+Acked-by: Helen Koike <helen.koike@collabora.com>
+Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+---
 
-Working pipeline link,
-https://gitlab.freedesktop.org/vigneshraman/linux/-/pipelines/1148306
+v3:
+  - New patch in series to uprev mesa.
 
-Vignesh Raman (8):
-  drm/ci: arm64.config: Enable CONFIG_DRM_ANALOGIX_ANX7625
-  drm/ci: uprev mesa version
-  drm/ci: uprev IGT and update testlist
-  drm/ci: mediatek: add tests for mediatek display driver
-  drm/ci: mediatek: add tests for powervr gpu driver
-  drm/ci: meson: add tests for meson display driver
-  drm/ci: rockchip: add tests for rockchip display driver
-  drm/ci: add tests on vkms
+v4:
+  - Fix checkpatch warning.
 
- MAINTAINERS                                   |  12 +
- drivers/gpu/drm/ci/arm64.config               |   1 +
- drivers/gpu/drm/ci/build.sh                   |   2 +-
- drivers/gpu/drm/ci/container.yml              |   6 +-
- drivers/gpu/drm/ci/gitlab-ci.yml              |  18 +-
- drivers/gpu/drm/ci/igt_runner.sh              |  16 +-
- drivers/gpu/drm/ci/image-tags.yml             |   5 +-
- drivers/gpu/drm/ci/test.yml                   | 150 ++++++--
- drivers/gpu/drm/ci/testlist.txt               | 321 ++++++++++++++++++
- drivers/gpu/drm/ci/x86_64.config              |   1 +
- .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt |  25 +-
- .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |  10 +-
- .../gpu/drm/ci/xfails/amdgpu-stoney-skips.txt |  23 +-
- drivers/gpu/drm/ci/xfails/i915-amly-fails.txt |   1 +
- drivers/gpu/drm/ci/xfails/i915-amly-skips.txt |   9 +-
- drivers/gpu/drm/ci/xfails/i915-apl-skips.txt  |   9 +-
- drivers/gpu/drm/ci/xfails/i915-cml-fails.txt  |   1 +
- drivers/gpu/drm/ci/xfails/i915-cml-skips.txt  |   7 +
- drivers/gpu/drm/ci/xfails/i915-glk-fails.txt  |   2 +-
- drivers/gpu/drm/ci/xfails/i915-glk-skips.txt  |   9 +-
- drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt  |   9 +-
- drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt  |   2 +
- drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt  |   9 +-
- drivers/gpu/drm/ci/xfails/i915-whl-fails.txt  |   1 +
- drivers/gpu/drm/ci/xfails/i915-whl-skips.txt  |   9 +-
- .../drm/ci/xfails/mediatek-mt8173-fails.txt   |  15 -
- .../drm/ci/xfails/mediatek-mt8173-flakes.txt  |  13 +
- .../drm/ci/xfails/mediatek-mt8173-skips.txt   |   6 +
- .../drm/ci/xfails/mediatek-mt8183-fails.txt   |  17 +-
- .../drm/ci/xfails/mediatek-mt8183-flakes.txt  |   8 +
- .../drm/ci/xfails/mediatek-mt8183-skips.txt   |   6 +
- .../gpu/drm/ci/xfails/meson-g12b-fails.txt    |   5 -
- .../gpu/drm/ci/xfails/meson-g12b-skips.txt    |   6 +
- .../gpu/drm/ci/xfails/msm-apq8016-skips.txt   |   5 +
- .../gpu/drm/ci/xfails/msm-apq8096-skips.txt   |   8 +-
- .../msm-sc7180-trogdor-kingoftown-skips.txt   |   6 +
- ...sm-sc7180-trogdor-lazor-limozeen-skips.txt |   6 +
- .../gpu/drm/ci/xfails/msm-sdm845-skips.txt    |   6 +
- .../gpu/drm/ci/xfails/panfrost-g12b-fails.txt |   1 +
- .../gpu/drm/ci/xfails/panfrost-g12b-skips.txt |   8 +
- .../drm/ci/xfails/panfrost-mt8183-fails.txt   |   1 +
- .../drm/ci/xfails/panfrost-mt8183-skips.txt   |   8 +
- .../drm/ci/xfails/panfrost-rk3288-fails.txt   |   1 +
- .../drm/ci/xfails/panfrost-rk3288-skips.txt   |   8 +
- .../drm/ci/xfails/panfrost-rk3399-fails.txt   |   1 +
- .../drm/ci/xfails/panfrost-rk3399-skips.txt   |   8 +
- .../drm/ci/xfails/rockchip-rk3288-fails.txt   |  34 --
- .../drm/ci/xfails/rockchip-rk3288-flakes.txt  |  21 ++
- .../drm/ci/xfails/rockchip-rk3288-skips.txt   |  15 +-
- .../drm/ci/xfails/rockchip-rk3399-fails.txt   |  29 +-
- .../drm/ci/xfails/rockchip-rk3399-flakes.txt  |  28 +-
- .../drm/ci/xfails/rockchip-rk3399-skips.txt   |  11 +
- .../drm/ci/xfails/virtio_gpu-none-fails.txt   |  16 +-
- .../drm/ci/xfails/virtio_gpu-none-skips.txt   |   9 +-
- drivers/gpu/drm/ci/xfails/vkms-none-fails.txt |  33 ++
- .../gpu/drm/ci/xfails/vkms-none-flakes.txt    |  20 ++
- drivers/gpu/drm/ci/xfails/vkms-none-skips.txt |  23 ++
- 57 files changed, 884 insertions(+), 156 deletions(-)
- create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8173-flakes.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8173-skips.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-skips.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/meson-g12b-skips.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/msm-apq8016-skips.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-g12b-fails.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-g12b-skips.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-mt8183-fails.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-mt8183-skips.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3288-fails.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3288-skips.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3399-fails.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-rk3399-skips.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3288-flakes.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/vkms-none-fails.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/vkms-none-flakes.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/vkms-none-skips.txt
+v5:
+  - Copy helper scripts to install, so that the ci jobs can
+    use these scripts for logging.
 
+v6:
+  - No changes.
+
+---
+ drivers/gpu/drm/ci/build.sh       |  1 +
+ drivers/gpu/drm/ci/container.yml  |  6 +++---
+ drivers/gpu/drm/ci/gitlab-ci.yml  | 11 ++++++++---
+ drivers/gpu/drm/ci/image-tags.yml |  3 ++-
+ drivers/gpu/drm/ci/test.yml       |  2 ++
+ 5 files changed, 16 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/ci/build.sh b/drivers/gpu/drm/ci/build.sh
+index 106f2d40d222..8a3baa003904 100644
+--- a/drivers/gpu/drm/ci/build.sh
++++ b/drivers/gpu/drm/ci/build.sh
+@@ -128,6 +128,7 @@ fi
+ # Pass needed files to the test stage
+ mkdir -p install
+ cp -rfv .gitlab-ci/* install/.
++cp -rfv ci/*  install/.
+ cp -rfv install/common install/ci-common
+ cp -rfv drivers/gpu/drm/ci/* install/.
+ 
+diff --git a/drivers/gpu/drm/ci/container.yml b/drivers/gpu/drm/ci/container.yml
+index 9764e7921a4f..1060eb380b02 100644
+--- a/drivers/gpu/drm/ci/container.yml
++++ b/drivers/gpu/drm/ci/container.yml
+@@ -40,11 +40,11 @@ debian/x86_64_test-android:
+   rules:
+     - when: never
+ 
+-windows_build_vs2019:
++windows_build_msvc:
+   rules:
+     - when: never
+ 
+-windows_test_vs2019:
++windows_test_msvc:
+   rules:
+     - when: never
+ 
+@@ -56,7 +56,7 @@ rustfmt:
+    rules:
+     - when: never
+ 
+-windows_vs2019:
++windows_msvc:
+    rules:
+     - when: never
+ 
+diff --git a/drivers/gpu/drm/ci/gitlab-ci.yml b/drivers/gpu/drm/ci/gitlab-ci.yml
+index 084e3ff8e3f4..2f9a5e217f5c 100644
+--- a/drivers/gpu/drm/ci/gitlab-ci.yml
++++ b/drivers/gpu/drm/ci/gitlab-ci.yml
+@@ -1,6 +1,6 @@
+ variables:
+   DRM_CI_PROJECT_PATH: &drm-ci-project-path mesa/mesa
+-  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha 9d162de9a05155e1c4041857a5848842749164cf
++  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha c4b32f9e90b7204735e6adf1f60c178bf85752e7
+ 
+   UPSTREAM_REPO: git://anongit.freedesktop.org/drm/drm
+   TARGET_BRANCH: drm-next
+@@ -26,10 +26,13 @@ variables:
+   JOB_ARTIFACTS_BASE: ${PIPELINE_ARTIFACTS_BASE}/${CI_JOB_ID}
+   # default kernel for rootfs before injecting the current kernel tree
+   KERNEL_REPO: "gfx-ci/linux"
+-  KERNEL_TAG: "v6.6.4-for-mesa-ci-e4f4c500f7fb"
++  KERNEL_TAG: "v6.6.13-mesa-9916"
+   KERNEL_IMAGE_BASE: https://${S3_HOST}/mesa-lava/${KERNEL_REPO}/${KERNEL_TAG}
+   LAVA_TAGS: subset-1-gfx
+   LAVA_JOB_PRIORITY: 30
++  ARTIFACTS_BASE_URL: https://${CI_PROJECT_ROOT_NAMESPACE}.${CI_PAGES_DOMAIN}/-/${CI_PROJECT_NAME}/-/jobs/${CI_JOB_ID}/artifacts
++  # Python scripts for structured logger
++  PYTHONPATH: "$PYTHONPATH:$CI_PROJECT_DIR/install"
+ 
+ default:
+   before_script:
+@@ -46,6 +49,7 @@ default:
+     - cd $CI_PROJECT_DIR
+     - curl --output - $DRM_CI_PROJECT_URL/-/archive/$DRM_CI_COMMIT_SHA/mesa-$DRM_CI_COMMIT_SHA.tar.gz | tar -xz
+     - mv mesa-$DRM_CI_COMMIT_SHA/.gitlab-ci* .
++    - mv mesa-$DRM_CI_COMMIT_SHA/bin/ci .
+     - rm -rf mesa-$DRM_CI_COMMIT_SHA/
+     - echo -e "\e[0Ksection_end:$(date +%s):drm_ci_download_section\r\e[0K"
+ 
+@@ -98,6 +102,7 @@ include:
+ stages:
+   - sanity
+   - container
++  - code-validation
+   - git-archive
+   - build
+   - amdgpu
+@@ -107,7 +112,6 @@ stages:
+   - msm
+   - rockchip
+   - virtio-gpu
+-  - lint
+ 
+ # YAML anchors for rule conditions
+ # --------------------------------
+@@ -218,6 +222,7 @@ make git archive:
+   script:
+     # Remove drm-ci files we just added
+     - rm -rf .gitlab-ci.*
++    - rm -rf ci
+ 
+     # Compactify the .git directory
+     - git gc --aggressive
+diff --git a/drivers/gpu/drm/ci/image-tags.yml b/drivers/gpu/drm/ci/image-tags.yml
+index 7ab4f2514da8..cf07c3e09b8c 100644
+--- a/drivers/gpu/drm/ci/image-tags.yml
++++ b/drivers/gpu/drm/ci/image-tags.yml
+@@ -1,5 +1,5 @@
+ variables:
+-   CONTAINER_TAG: "2023-10-11-mesa-uprev"
++   CONTAINER_TAG: "2022-01-29-mesa-uprev"
+    DEBIAN_X86_64_BUILD_BASE_IMAGE: "debian/x86_64_build-base"
+    DEBIAN_BASE_TAG: "${CONTAINER_TAG}"
+ 
+@@ -7,6 +7,7 @@ variables:
+    DEBIAN_BUILD_TAG: "2023-10-08-config"
+ 
+    KERNEL_ROOTFS_TAG: "2023-10-06-amd"
++   PKG_REPO_REV: "67f2c46b"
+ 
+    DEBIAN_X86_64_TEST_BASE_IMAGE: "debian/x86_64_test-base"
+    DEBIAN_X86_64_TEST_IMAGE_GL_PATH: "debian/x86_64_test-gl"
+diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
+index 8bc63912fddb..612c9ede3507 100644
+--- a/drivers/gpu/drm/ci/test.yml
++++ b/drivers/gpu/drm/ci/test.yml
+@@ -150,6 +150,8 @@ msm:sdm845:
+     BM_KERNEL: https://${PIPELINE_ARTIFACTS_BASE}/arm64/cheza-kernel
+     GPU_VERSION: sdm845
+     RUNNER_TAG: google-freedreno-cheza
++    DEVICE_TYPE: sdm845-cheza-r3
++    FARM: google
+   script:
+     - ./install/bare-metal/cros-servo.sh
+ 
 -- 
 2.40.1
 
