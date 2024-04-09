@@ -4,96 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A1CCCD1284
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2024 14:21:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4ED0CD1299
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2024 18:21:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2FegE4dKBifBCzLaLHgCb4Y+jmEBLi88iRUPhWGTu2M=; b=qdLRGSUyBGglqI
-	tSHRajis9fAqcp/ED7wlvfkBzU5Hw1r169nI3fyTiJKQaHs4lXpHCFh8+Xbwb011PZmd0np+t6EbB
-	AQvBUTuEoradvHnheU8Lr1/xucn+8/1JhLZ3OYRLmELLtC6S7v2lTxmVlqMlgtCANLbYX1lp7a6Tv
-	ynhiroyYYEhQDW6RNJtf+H55PHJo0HfxVPhjGCUaU/4219UkQ4Qn9a6q49k2JnE1oLvBLjp21JWvV
-	vjfDh47fteoRCLNAngKKXOtgbw32AmKf3n9m0G79zt1Dat9VjO8zuOc8JDWbexiPx2zjIFMZcZ7jN
-	wNScevUB5ezTEhaUhWjw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=W8l6NfULoS1qOvenne/3HMArWnrOie6URPHcu755AGI=; b=lCVJX3a9NTVMWx
+	ZEhvrQ/Muiekh3NFtBgYf0yPjVWeAr3wdzgXAxktgCaaBPfoA/MBgYlWmtyzYyywOl/0w4LETmi6/
+	cZJBMeTxPZoW4Hv85NASDTLT1jM09wkqY2x1QGFCTsEbOVhJ3eqVe5PGuJMZmE51fbiOOLPkgzM7J
+	1DCmvjnOfWzhzTRP4saj+W8NvXRchSCAT/I4l5sR6YPqLsDTtwoGKkZ+3v1yZI6ZENWDRuyCLsSIn
+	kNX8N1K8YtGGMjHCIBTF/uGh1LMLzGOeHW545z2r7gd0HXaYur2w0SNWwWMVGI4VyVx5HXbroFT/o
+	ywKxwCR8IuI3qkKUDoaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruCLd-00000002ORl-4Bj8;
-	Tue, 09 Apr 2024 14:21:18 +0000
+	id 1ruG5z-00000003K17-1Gar;
+	Tue, 09 Apr 2024 18:21:23 +0000
 Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruCLZ-00000002OQ4-1QLi;
-	Tue, 09 Apr 2024 14:21:16 +0000
+	id 1ruG5u-00000003Jyh-2256;
+	Tue, 09 Apr 2024 18:21:21 +0000
 Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 9067610004E;
-	Tue,  9 Apr 2024 17:21:02 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 9067610004E
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 8E7F410004E;
+	Tue,  9 Apr 2024 21:21:12 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8E7F410004E
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1712672462;
-	bh=PqqwNRBmzHK+DLV9MrZ64lR7K93sMpyqnXfDyXtgkGQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=AXB8s412EtfApS8JBXRYpNcDBCIAk+Bj60Eme6Ex5OHAdTHuR7Q2Tb50sbPVdLVnX
-	 q7AX0kE+CynjDrR6AsNocwr+RtVRL1+TFDId4nFNNeHzfioyvtg7j/wysx4lP33V+A
-	 5cImDkLmY0ar3yfgCWzEZTg1qxG2EosPttgDd4z3dX8Q3AaaDu7ZXWc7rE/besRp1d
-	 49GAC5BsCSWwLo9G3qv+0AxP2ymNMS57KMbZV7O4rrrl2Pxn5NsFOoZ9ahgPgUdg8G
-	 jSkDjp8cLEWo0oXTo3mrLpqJPfbx5hdFXuFMgAscb6GQWC+5p+qvQjCWxlAHuKPkxn
-	 NKZ899P8uJOTA==
+	s=mail; t=1712686872;
+	bh=QZwk+YSIX1yZDPOX63O30JuCgB29OkKBRzU0do3JaVA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=vUH4myaogS72/QwazfmzARXzLqqPehzhI11M7dwROCbkPP8Qc3hrZ4ZuV0f5M64p7
+	 f42HidsP+PbFEuUbNz92q8MT9lSUAFz1XcpFXAhBCmL8Qu81j2Rlbznc2WHGvD9DJD
+	 +fRM+545PjwgfS41xi38/KakA1bq0IuyRPR66z9SCuUShkO8KiPjeozCeXXQH+jkgn
+	 2+PR7jIdSOp1Q0oXMfr/sQOeiyK4pNUc1aDokVXFbUb6MBGWvPZd0wIEAbuU5WlaiH
+	 J4Ah+lDp4L4B0DYYseFtPLqfHQ8Q/Fn8lxd2ao8nwJz7sajvh1BmlK7Yd60ykBVnLW
+	 E2KGCc1H5nojQ==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue,  9 Apr 2024 17:21:02 +0300 (MSK)
-Received: from [172.28.160.201] (100.64.160.123) by
+	Tue,  9 Apr 2024 21:21:12 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 9 Apr 2024 17:21:01 +0300
-Message-ID: <c9fa6376-a88d-278a-7c20-813f0e8975d8@salutedevices.com>
-Date: Tue, 9 Apr 2024 17:10:25 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: amlogic,meson-nand: support
- fields for boot ROM code
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-CC: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger
-	<richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski
+ 15.2.1118.40; Tue, 9 Apr 2024 21:21:12 +0300
+From: Arseniy Krasnov <avkrasnov@salutedevices.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger
+	<richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
  Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, <linux-mtd@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<oxffffaa@gmail.com>, <kernel@sberdevices.ru>
-References: <20240408085931.456337-1-avkrasnov@salutedevices.com>
- <20240408085931.456337-2-avkrasnov@salutedevices.com>
- <20240409134718.GA1050037-robh@kernel.org>
-From: Arseniy Krasnov <avkrasnov@salutedevices.com>
-In-Reply-To: <20240409134718.GA1050037-robh@kernel.org>
+	<martin.blumenstingl@googlemail.com>
+CC: <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <oxffffaa@gmail.com>,
+	<kernel@sberdevices.ru>, Arseniy Krasnov <avkrasnov@salutedevices.com>
+Subject: [PATCH v3 0/2] Meson: R/W support for pages used by boot ROM
+Date: Tue, 9 Apr 2024 21:10:23 +0300
+Message-ID: <20240409181025.55504-1-avkrasnov@salutedevices.com>
+X-Mailer: git-send-email 2.35.0
+MIME-Version: 1.0
 X-Originating-IP: [100.64.160.123]
 X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184638 [Apr 09 2024]
+X-KSMG-AntiSpam-Lua-Profiles: 184641 [Apr 09 2024]
 X-KSMG-AntiSpam-Version: 6.1.0.4
 X-KSMG-AntiSpam-Envelope-From: avkrasnov@salutedevices.com
 X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 15 0.3.15 adb41f89e2951eb37b279104a7abb8e79494a5e7, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 16 0.3.16 6e64c33514fcbd07e515710c86ba61de7f56194e, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
 X-KSMG-AntiPhishing: Clean
 X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/09 12:42:00 #24719205
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/09 14:21:00 #24719986
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240409_072114_103673_2324874F 
-X-CRM114-Status: GOOD (  16.76  )
+X-CRM114-CacheID: sfid-20240409_112119_287466_B9242F44 
+X-CRM114-Status: GOOD (  12.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,60 +104,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Amlogic's boot ROM code needs that some pages on NAND must be written
+in special "short" ECC mode with scrambling enabled. Such pages:
+1) Contain some metadata about hardware.
+2) Located with some interval starting from 0 offset, until some
+   specified offset. Interval and second offset are set in the
+   device tree.
 
+This patchset adds R/W support for such pages. To enable it we can setup
+it in dts:
 
-On 09.04.2024 16:47, Rob Herring wrote:
-> On Mon, Apr 08, 2024 at 11:59:30AM +0300, Arseniy Krasnov wrote:
->> Boot ROM code on Meson requires that some pages on NAND must be written
->> in special mode: "short" ECC mode where each block is 384 bytes and
->> scrambling mode is on. Such pages located with the specified interval
->> within specified offset. Both interval and offset are located in the
->> device tree and used by driver if 'nand-is-boot-medium' is set for
->> NAND chip.
->>
->> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
->> ---
->>  .../bindings/mtd/amlogic,meson-nand.yaml           | 14 ++++++++++++++
->>  1 file changed, 14 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
->> index 57b6957c8415..80ba5003ca70 100644
->> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
->> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
->> @@ -64,11 +64,25 @@ patternProperties:
->>          items:
->>            maximum: 0
->>  
->> +      amlogic,boot-page-last:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        description:
->> +          The NFC driver needs this information to select ECC
->> +          algorithms supported by the boot ROM.
->> +
->> +      amlogic,boot-page-step:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        description:
->> +          The NFC driver needs this information to select ECC
->> +          algorithms supported by the boot ROM (in pages).
->> +
->>      unevaluatedProperties: false
->>  
->>      dependencies:
->>        nand-ecc-strength: [nand-ecc-step-size]
->>        nand-ecc-step-size: [nand-ecc-strength]
->> +      amlogic,boot-page-last: [nand-is-boot-medium, amlogic,boot-page-step]
->> +      amlogic,boot-page-step: [nand-is-boot-medium, amlogic,boot-page-last]
-> 
-> You need quotes if using the inline syntax.
+    nand-is-boot-medium;
+    amlogic,boot-page-last = <1024>;
+    amlogic,boot-page-step = <128>;
 
-IIUC it must look like this:
+It means that each 128th page in range 0 to 1024 pages will be accessed
+in special mode ("short" ECC + scrambling). In practice this feature is
+needed when we want to update first block of NAND - driver will enable
+required mode by itself using value from device tree.
 
-amlogic,boot-page-last: [nand-is-boot-medium, "amlogic,boot-page-step"]
+Changelog:
+ v1 -> v2:
+  * Rename 'meson,boot-page-XXX' -> 'amlogic,boot-page-XXX'.
+  * Add words that 'amlogic,boot-page-step' is measured in pages.
+  * Remove words that 'amlogic,boot-page-XXX' depends on 'nand-is-boot-medium'.
+  * Make both 'amlogic,boot-page-XXX' depend on each other also, in
+    addition to 'nand-is-boot-medium' dependency.
+ v2 -> v3:
+  * Add quotes to 0001 in dependencies. This fixes 'make dt_binding_check'
+    warning.
 
-etc.
+Arseniy Krasnov (2):
+  dt-bindings: mtd: amlogic,meson-nand: support fields for boot ROM code
+  mtd: rawnand: meson: support R/W mode for boot ROM
 
-> 
-> Rob
+ .../bindings/mtd/amlogic,meson-nand.yaml      | 14 +++
+ drivers/mtd/nand/raw/meson_nand.c             | 88 +++++++++++++------
+ 2 files changed, 73 insertions(+), 29 deletions(-)
+
+-- 
+2.35.0
+
 
 _______________________________________________
 linux-amlogic mailing list
