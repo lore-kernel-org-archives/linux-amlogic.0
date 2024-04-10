@@ -4,95 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC368CD1296
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2024 08:55:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E19CCD11C2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2024 08:57:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EfWSyL18mBTfaSCM/hlB03vnCDqSOtM9XCUiG7CeFTg=; b=aHtj29uxpKZFex
-	zNsbYhnacQC5s8Hg3l539u9xcxbICdj3GDrW6r2KUjezabsrZXLSUGXgLmPKNVuFHGgP6mzYsYD/Z
-	GtQjqgSMQ5zaHh+ll37BpYaRa6KyrmjH5BXSYtVXGppx5wRlkQ6QdEqhuZmnhWxbaY3OF1CzYi21W
-	XEWI4smllpQQs0RXKxBE7ZOs02FEgm6u7NSKDz4C9xKK+5i+MajNFsIJJmSAztsxeAjgQC8QarDvC
-	FWX1j8Dil11+RHORbMUAORMs6MNPrajdAKQSDk8OQO8HM1yxeD+OdepyCEzI1axCa7NOGhmBVmSBr
-	tDur1oizEgKKbCGi2mzw==;
+	List-Owner; bh=0QAXMY021JELtHAECf1M5DMTS2KHOMgXyo45fuFVxoc=; b=fPMBTG14K/RPWl
+	EJIe1qca3VSn+2Kc+vetI0U1eA0ZtH7LLGAoNPczA0qJ83ezg1nMwIKkfXvmWa/FRiNeDYwtioQrY
+	5R1A9EuWm8AEwoNhWlgxUVwyvdS1SLF/RHO2Umcq+dHyZdWxFfcAcDDBvLvLwd4rkRdT49fLOGluZ
+	bOzpZrMe3mjv5OzNX3nWO/qT534kS6mW23X7KxHBkXxVzqmYAML0K7xeaVc/ePfrBE3haVV836jxJ
+	FhKbhy3ttyiruZCLgQkKvVtgcgDfn9TLfFwqqJ769VUSGE50HbO+mqO9+N75QJTq9azOGqCuqR45M
+	HMDtPzhd0FxXWbx2fmqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruTjQ-00000006033-2Ct9;
-	Wed, 10 Apr 2024 08:55:00 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1ruTle-000000060hh-2qEr;
+	Wed, 10 Apr 2024 08:57:18 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruTjK-00000005zz6-4177
+	id 1ruTlb-000000060fW-3cy7
 	for linux-amlogic@lists.infradead.org;
-	Wed, 10 Apr 2024 08:54:58 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4173d3b4a3dso2013245e9.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 10 Apr 2024 01:54:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712739292; x=1713344092; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D2AsZ1QIiCmfybXFGVW0zxiOuEp+rgs+ouNgKbZDKFg=;
-        b=YIzW4aKm7y1/GHfBe2Fpr9gl2f9L4aCkJWuG4uNstaS3FsP04DoGzyYh0jvBDqym9s
-         8jh891RTCkN9kZJKLcexsVm0+lW3HHbK3cXnyDK5EdtEKITHvmJjBxJpUh8uF+UtHy6U
-         O33EoXdnA9aHzTbLUp+3AbtqZ5HEPvyD4R6zh2kYoL87vzSOI0RIQs5fBy6imQL1d2qs
-         Z5HsxreSd0KnAdda2Ffy0ECiUbm0Q1R+gyY+pJ6QrvwgC5TE5pE58gtORBLaXspcZruh
-         w+y/Fjzsl9toceXBc8FJzEybffKUr1Vh3vLH93UUCjiYFGh81Nr3Jkt+goToTpPmkKD5
-         d5EA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712739292; x=1713344092;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=D2AsZ1QIiCmfybXFGVW0zxiOuEp+rgs+ouNgKbZDKFg=;
-        b=Eizf4RdckL+hciocc+BiYDaOejMKRNM+of1BNX0rNcJ0Af4Qd4oEYLAQ4URiA1/HdC
-         K5a5WO3jhEjUpuAgFv9S3xgSIlkJYVC+aWKYeaYUGNUpabsWHo+YhEnHnkw3hquxkzKQ
-         8xEi4KIY8vcwPNm6BkY3Fz3Br0xaNU97HyjM3zpJitbXFJfs/6AT7/wReLBo3WLPEYkU
-         t63hKWvt3MsT4xfVZ7ZPoOEvJlqRhYc9/wQ4kCIiXIfpbozUsoVbICU4QTUgxmzsJ/Ec
-         +rc00ZG0IEsJoZ/Unc3qVQRU/mhqdUckQO8B8RrkTL+mwSHi6qEK3S2e9Ewrn4i3xbUB
-         ckHA==
-X-Forwarded-Encrypted: i=1; AJvYcCX6aqfdnHOAKYxomapIrQ2705e7jb6ZLkvfJX0ZWpqrYeklvwIpL8+7dsNjgjKyU1DR2epkJy/GHlPEt8EJFxV8725wMWz75QAV2RynietNxpI=
-X-Gm-Message-State: AOJu0YzLwYShMYcIMhvmobQ2slV1wHO2WPnPKIdDu9TVMFTmhk4A7vXK
-	NY5MnFcyR0lQiuOvSHCrmu2uKu/8e9rWKtnI8zrk9PUJaufBerQNGjkl/ISuXhwi/wDmtslI9dm
-	Wm6s=
-X-Google-Smtp-Source: AGHT+IEJgQ9v9FGTkOkguC9zTMYpllaqcg3VK+wytjhD6ErKqeWqI+TOXQq+JItqSKG5kCWe34nSYg==
-X-Received: by 2002:a05:600c:a4b:b0:414:726:87d9 with SMTP id c11-20020a05600c0a4b00b00414072687d9mr1961567wmq.12.1712739291342;
-        Wed, 10 Apr 2024 01:54:51 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id j1-20020a05600c1c0100b00417be508e44sm408832wms.34.2024.04.10.01.54.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Apr 2024 01:54:50 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Nicolas Belin <nbelin@baylibre.com>, 
- Jagan Teki <jagan@amarulasolutions.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Wed, 10 Apr 2024 08:57:17 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1ruTlJ-0005R5-Qm; Wed, 10 Apr 2024 10:56:57 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1ruTlI-00BSie-TL; Wed, 10 Apr 2024 10:56:56 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1ruTlI-00050O-2l;
+	Wed, 10 Apr 2024 10:56:56 +0200
+Message-ID: <b9ee67f1a6d782e6b6ee9e273bc8c6fa5bc1813b.camel@pengutronix.de>
+Subject: Re: [RFC PATCH v2 1/5] clk: meson: axg: move reset controller's
+ code to separate module
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor@kernel.org>
+Cc: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Jerome Brunet
+ <jbrunet@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, Michael
+ Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>,  Kevin Hilman <khilman@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, 
  linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- Conor Dooley <conor.dooley@microchip.com>, 
- "Lukas F. Hartmann" <lukas@mntre.com>
-In-Reply-To: <20240325-amlogic-v6-4-upstream-dsi-ccf-vim3-v11-0-04f55de44604@linaro.org>
-References: <20240325-amlogic-v6-4-upstream-dsi-ccf-vim3-v11-0-04f55de44604@linaro.org>
-Subject: Re: [PATCH v11 0/7] drm/meson: add support for MIPI DSI Display
-Message-Id: <171273929022.3191460.6988833554592946386.b4-ty@linaro.org>
-Date: Wed, 10 Apr 2024 10:54:50 +0200
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org
+Date: Wed, 10 Apr 2024 10:56:56 +0200
+In-Reply-To: <dde59dd2ef4da81528e31f65844e0b3f.sboyd@kernel.org>
+References: <20240328010831.884487-1-jan.dakinevich@salutedevices.com>
+	 <20240328010831.884487-2-jan.dakinevich@salutedevices.com>
+	 <1j7chfiz8e.fsf@starbuckisacylon.baylibre.com>
+	 <e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org>
+	 <f01cdd910ab35316b8012795f73fd2b34c8e6f8e.camel@pengutronix.de>
+	 <13617b7a892424d2b024c725505a6f4f.sboyd@kernel.org>
+	 <20240408-numerator-escargot-a642507a598e@spud>
+	 <20240409-shallow-voice-c84ed791bc7d@spud>
+	 <dde59dd2ef4da81528e31f65844e0b3f.sboyd@kernel.org>
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-X-Mailer: b4 0.12.4
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240410_015455_079417_35A94988 
-X-CRM114-Status: GOOD (  12.90  )
+X-CRM114-CacheID: sfid-20240410_015715_944822_9A2B6D7B 
+X-CRM114-Status: GOOD (  21.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,59 +91,48 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On Mon, 25 Mar 2024 12:09:46 +0100, Neil Armstrong wrote:
-> The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
-> with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI
-> glue on the same Amlogic SoCs.
+On Di, 2024-04-09 at 19:27 -0700, Stephen Boyd wrote:
+> Quoting Conor Dooley (2024-04-09 05:05:37)
+> > On Mon, Apr 08, 2024 at 06:05:51PM +0100, Conor Dooley wrote:
+> > 
+> > > > > Seconded, the clk-mpfs/reset-mpfs and clk-starfive-jh7110-sys/reset-
+> > > > > starfive-jh7110 drivers are examples of this.
+> > > > > 
+> > > > > > The auxiliary device creation function can also be in the
+> > > > > > drivers/reset/ directory so that the clk driver calls some function
+> > > > > > to create and register the device.
+> > > > > 
+> > > > > I'm undecided about this, do you think mpfs_reset_controller_register()
+> > > > > and jh7110_reset_controller_register() should rather live with the
+> > > > > reset aux drivers in drivers/reset/ ?
+> > > > 
+> > > > Yes, and also mpfs_reset_read() and friends. We should pass the base
+> > > > iomem pointer and parent device to mpfs_reset_adev_alloc() instead and
+> > > > then move all that code into drivers/reset with some header file
+> > > > exported function to call. That way the clk driver hands over the data
+> > > > without having to implement half the implementation.
+> > > 
+> > > I'll todo list that :)
+> > 
+> > Something like the below?
+> > 
+> > -- >8 --
+> > From a12f281d2cb869bcd9a6ffc45d0c6a0d3aa2e9e2 Mon Sep 17 00:00:00 2001
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> > Date: Tue, 9 Apr 2024 11:54:34 +0100
+> > Subject: [PATCH] clock, reset: microchip: move all mpfs reset code to the
+> >  reset subsystem
+> > 
+> > <insert something here>
+> > 
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > 
-> This is a follow-up of v5  now the DRM patches are applied, the clk & DT changes
-> remains for a full DSI support on G12A & SM1 platforms.
-> 
-> [...]
+> Looks pretty good.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.10/arm64-dt)
+Yes, that does look convincing.
 
-[1/7] dt-bindings: arm: amlogic: Document the MNT Reform 2 CM4 adapter with a BPI-CM4 Module
-      https://git.kernel.org/amlogic/c/ef5a84d716042871599ff7c8ff571a6390b99718
-[2/7] clk: meson: add vclk driver
-      (no commit info)
-[3/7] clk: meson: g12a: make VCLK2 and ENCL clock path configurable by CCF
-      (no commit info)
-[4/7] drm/meson: gate px_clk when setting rate
-      (no commit info)
-[5/7] arm64: meson: g12-common: add the MIPI DSI nodes
-      https://git.kernel.org/amlogic/c/6f1c2a12ed1138c3e680935718672d361afee372
-[6/7] arm64: meson: khadas-vim3l: add TS050 DSI panel overlay
-      https://git.kernel.org/amlogic/c/2a885bad5ba4d553758d3f1689000cee8e6dae87
-[7/7] arm64: dts: amlogic: meson-g12b-bananapi-cm4: add support for MNT Reform2 with CM4 adaper
-      https://git.kernel.org/amlogic/c/fde2d69c1626bebb3a8851909c912e582db1ca95
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.10/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
+regards
+Philipp
 
 _______________________________________________
 linux-amlogic mailing list
