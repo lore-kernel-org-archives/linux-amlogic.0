@@ -4,76 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92D3CCD11C2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2024 09:50:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59BE0CD11C2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2024 10:24:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=4BSITnDmk17HzbYpHMrOCZEegTR/RCbqOKYKEx8mXBU=; b=tCCEV7/ys90tMvoSmWkg/OOCrI
-	2Qu6OouHvJvhBZysar9Qevd2Nqd8zz66JfpVjiYKe4Vt9Ajdsp24EHunMJGAIBQm/cV2vQ0f28WM0
-	68eeFn64CyVjxwqX6f/YzTQyjDsPMjrRqxoT9BA5BYGMGUJQKyphBrMlVaEdlKBlsyPwNLnFOrVBo
-	JRIrpq8r3awsH43DGxPksbpPZHBfTe2QoZelDfmO2tvyVAMKMHebM/KqxK/fwsVkFmcGVaHZucDf2
-	CgUZ40FJNxziuoE9/PE76IgOF9ctJpp5vjCfy0g0E4kbKVjDAJ7JKE5VWBXg7QAgrIG6rdd35XUTY
-	KjElZFxA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=gd53txKdu32gYsSctRP9mMJNzVJKySCYVgm631QMF6Y=; b=4Q8k6/gL+8fIwS
+	2+gEgwJBXE6o/swKo1GAxb30Fiu4aWW8ubk4dp9sU5As6HVcIZmeATkK+SdjkZvNHeN3/Hg/qtWVK
+	KhtpPGkx9AOMKUWwxGKbRiqFGST24HATuf5AgkFzC/BvFNIXIj/4lNta7wO8vXm0dkWBPKqOoZ+kq
+	4OEdleyaXe+VpJKmZX4o5Fujj+qWgOENHwGTlLXwvCfw6jyE8OwVbRmeZG4JqcQBZrUaOFDfNUsf0
+	L21foHFAsApgxRZmGDnpVKDb6cp5FolkI4X1w3QAhgH3KgW9O1CJLkDhUPLOORguhQ9BT//q74Ye5
+	m7Ive3ZwD2js0M779n+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruUbS-00000006EET-35Hj;
-	Wed, 10 Apr 2024 09:50:50 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1ruV7j-00000006Mrs-0tcK;
+	Wed, 10 Apr 2024 10:24:11 +0000
+Received: from relay9-d.mail.gandi.net ([217.70.183.199])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruUbP-00000006EDL-0vrp;
-	Wed, 10 Apr 2024 09:50:49 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 49C2DCE26BF;
-	Wed, 10 Apr 2024 09:50:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F951C43390;
-	Wed, 10 Apr 2024 09:50:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712742644;
-	bh=9yBCOfKgxlkwBGNHOhriLBVSumh7h9MF0OaGeGig5vI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Y4Yds2T8BK59a1fZOyIHq1m+QNmg+YCXS5+MbFdrDGQQLIcneYVQuh6c25cHUkq0E
-	 QAnywJxznFvHUL3K77yRQZptAgxjvI07nAWiBPIQcKwMyk2oK9NUHG9JhypFPnWXMI
-	 tcjMRLZt2ymd0prVd6bre59nuTxghQPFTOXT8ZJuTRrI8No8kTIRZn7DcEKVYoItfU
-	 mtQxH17+LWIX7AIOTqsrBI0elMYeaRDplU6A5Ec0LoDy86lQigC8wRaC2TFoxErR7Q
-	 CaMBhHNgh4ivvm5mym6uDc1W3vhLwJP7ZrcinkZniQB3x5YBvMOsYCPE1AvQjDFahR
-	 0hU9T9VkftnOg==
-Date: Wed, 10 Apr 2024 10:50:39 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFC PATCH v2 1/5] clk: meson: axg: move reset controller's code
- to separate module
-Message-ID: <20240410-supremacy-importer-9b5ac1957479@spud>
-References: <20240328010831.884487-1-jan.dakinevich@salutedevices.com>
- <20240328010831.884487-2-jan.dakinevich@salutedevices.com>
- <1j7chfiz8e.fsf@starbuckisacylon.baylibre.com>
- <e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org>
- <f01cdd910ab35316b8012795f73fd2b34c8e6f8e.camel@pengutronix.de>
- <13617b7a892424d2b024c725505a6f4f.sboyd@kernel.org>
- <20240408-numerator-escargot-a642507a598e@spud>
- <20240409-shallow-voice-c84ed791bc7d@spud>
- <dde59dd2ef4da81528e31f65844e0b3f.sboyd@kernel.org>
+	id 1ruV7e-00000006Moz-2BlO;
+	Wed, 10 Apr 2024 10:24:10 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DAACEFF802;
+	Wed, 10 Apr 2024 10:23:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1712744641;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4/SknAElnT6j5HCw0JAN47JCCpbMZWq8jCtLo3WbP8M=;
+	b=GMoX2O1GLeEWdq3Ksgs4NQSytZdT94CWaTvbV8+vCpznmR3+YvQhX86Se1T5n+sa9UYRRu
+	7sjR5RBaUY5F9OCxxf1NscWUs7f2wbWClLClCmeEK6Cvxkez43ejEhudPvS4NM4t7arQr7
+	jKkUYBRl0tF1IxAILLgPRxiiF9SkKaT67sb3JFsmx4YtoQMVoh0FHDgEQVuvj3kSDBlyl5
+	xmwSOspIEDT2CRKLnCHlo1FIKJrdZ3ORsr81S3sZdPMXraiktKbHQKuZ6nieI6lnDqUNJD
+	NpkrMsVyGQnGmRiH1ICqf2VIohsqjE9P06sFV08Z0MMrun8zZ9JfMFBuKfeJ5w==
+Date: Wed, 10 Apr 2024 12:23:56 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Arseniy Krasnov <avkrasnov@salutedevices.com>
+Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
+ <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,
+ <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <oxffffaa@gmail.com>, <kernel@sberdevices.ru>
+Subject: Re: [PATCH v3 1/2] dt-bindings: mtd: amlogic,meson-nand: support
+ fields for boot ROM code
+Message-ID: <20240410122356.30852b3c@xps-13>
+In-Reply-To: <20240409181025.55504-2-avkrasnov@salutedevices.com>
+References: <20240409181025.55504-1-avkrasnov@salutedevices.com>
+	<20240409181025.55504-2-avkrasnov@salutedevices.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <dde59dd2ef4da81528e31f65844e0b3f.sboyd@kernel.org>
+X-GND-Sasl: miquel.raynal@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240410_025047_705338_E6696157 
-X-CRM114-Status: GOOD (  37.71  )
+X-CRM114-CacheID: sfid-20240410_032407_079356_A7F4F240 
+X-CRM114-Status: GOOD (  16.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,160 +77,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0271307923832620856=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============0271307923832620856==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="JPgr6dKZxpVy8iT7"
-Content-Disposition: inline
-
-
---JPgr6dKZxpVy8iT7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Apr 09, 2024 at 07:27:36PM -0700, Stephen Boyd wrote:
-> Quoting Conor Dooley (2024-04-09 05:05:37)
-> > On Mon, Apr 08, 2024 at 06:05:51PM +0100, Conor Dooley wrote:
-> >=20
-> > > > > Seconded, the clk-mpfs/reset-mpfs and clk-starfive-jh7110-sys/res=
-et-
-> > > > > starfive-jh7110 drivers are examples of this.
-> > > > >=20
-> > > > > > The auxiliary device creation function can also be in the
-> > > > > > drivers/reset/ directory so that the clk driver calls some func=
-tion
-> > > > > > to create and register the device.
-> > > > >=20
-> > > > > I'm undecided about this, do you think mpfs_reset_controller_regi=
-ster()
-> > > > > and jh7110_reset_controller_register() should rather live with the
-> > > > > reset aux drivers in drivers/reset/ ?
-> > > >=20
-> > > > Yes, and also mpfs_reset_read() and friends. We should pass the base
-> > > > iomem pointer and parent device to mpfs_reset_adev_alloc() instead =
-and
-> > > > then move all that code into drivers/reset with some header file
-> > > > exported function to call. That way the clk driver hands over the d=
-ata
-> > > > without having to implement half the implementation.
-> > >=20
-> > > I'll todo list that :)
-> >=20
-> > Something like the below?
-> >=20
-> > -- >8 --
-> > From a12f281d2cb869bcd9a6ffc45d0c6a0d3aa2e9e2 Mon Sep 17 00:00:00 2001
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> > Date: Tue, 9 Apr 2024 11:54:34 +0100
-> > Subject: [PATCH] clock, reset: microchip: move all mpfs reset code to t=
-he
-> >  reset subsystem
-> >=20
-> > <insert something here>
-> >=20
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->=20
-> Looks pretty good.
->=20
-> >  static const struct of_device_id mpfs_clk_of_match_table[] =3D {
-> > diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
-> > index 7f3fb2d472f4..27cd68b4ee81 100644
-> > --- a/drivers/reset/reset-mpfs.c
-> > +++ b/drivers/reset/reset-mpfs.c
-> > @@ -137,9 +139,67 @@ static int mpfs_reset_probe(struct auxiliary_devic=
-e *adev,
-> >         return devm_reset_controller_register(dev, rcdev);
-> >  }
-> > =20
-> > +static void mpfs_reset_unregister_adev(void *_adev)
-> > +{
-> > +       struct auxiliary_device *adev =3D _adev;
-> > +
-> > +       auxiliary_device_delete(adev);
-> > +       auxiliary_device_uninit(adev);
-> > +}
-> > +
-> > +static void mpfs_reset_adev_release(struct device *dev)
-> > +{
-> > +       struct auxiliary_device *adev =3D to_auxiliary_dev(dev);
-> > +
-> > +       kfree(adev);
-> > +}
-> > +
-> > +static struct auxiliary_device *mpfs_reset_adev_alloc(struct device *c=
-lk_dev)
-> > +{
-> > +       struct auxiliary_device *adev;
-> > +       int ret;
-> > +
-> > +       adev =3D kzalloc(sizeof(*adev), GFP_KERNEL);
-> > +       if (!adev)
-> > +               return ERR_PTR(-ENOMEM);
-> > +
-> > +       adev->name =3D "reset-mpfs";
-> > +       adev->dev.parent =3D clk_dev;
-> > +       adev->dev.release =3D mpfs_reset_adev_release;
-> > +       adev->id =3D 666u;
-> > +
-> > +       ret =3D auxiliary_device_init(adev);
-> > +       if (ret) {
-> > +               kfree(adev);
-> > +               return ERR_PTR(ret);
-> > +       }
-> > +
-> > +       return adev;
-> > +}
-> > +
-> > +int mpfs_reset_controller_register(struct device *clk_dev, void __iome=
-m *base)
-> > +{
-> > +       struct auxiliary_device *adev;
-> > +       int ret;
-> > +
-> > +       mpfs_reset_addr =3D base;
->=20
-> Instead of a global this can be stashed in adev->dev.platform_data and
-> grabbed in the driver probe?
-
-I suppose, really I was just being "lazy" here and creating a global
-rather than a `struct mpfs_reset` containing only the base address.
-
-The test robot reported some issues with hexagon & COMPILE_TEST, so I'll
-push it out again with this change and the fixes for the reported issues
-and send the patch ones it gets the all clear.
-
-Cheers,
-Conor.
-
---JPgr6dKZxpVy8iT7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhZg7wAKCRB4tDGHoIJi
-0hveAPwNpL7h191WykV2UuzkJO3pu772z/AWkwlY/yHmXJVsuwEApGRz5bEryU3C
-JZ94q3AIj7Df4J7rHqDC1re2X9bNwwA=
-=pOIQ
------END PGP SIGNATURE-----
-
---JPgr6dKZxpVy8iT7--
-
-
---===============0271307923832620856==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============0271307923832620856==--
-
+SGkgQXJzZW5peSwKCmF2a3Jhc25vdkBzYWx1dGVkZXZpY2VzLmNvbSB3cm90ZSBvbiBUdWUsIDkg
+QXByIDIwMjQgMjE6MTA6MjQgKzAzMDA6Cgo+IEJvb3QgUk9NIGNvZGUgb24gTWVzb24gcmVxdWly
+ZXMgdGhhdCBzb21lIHBhZ2VzIG9uIE5BTkQgbXVzdCBiZSB3cml0dGVuCj4gaW4gc3BlY2lhbCBt
+b2RlOiAic2hvcnQiIEVDQyBtb2RlIHdoZXJlIGVhY2ggYmxvY2sgaXMgMzg0IGJ5dGVzIGFuZAo+
+IHNjcmFtYmxpbmcgbW9kZSBpcyBvbi4gU3VjaCBwYWdlcyBsb2NhdGVkIHdpdGggdGhlIHNwZWNp
+ZmllZCBpbnRlcnZhbAo+IHdpdGhpbiBzcGVjaWZpZWQgb2Zmc2V0LiBCb3RoIGludGVydmFsIGFu
+ZCBvZmZzZXQgYXJlIGxvY2F0ZWQgaW4gdGhlCj4gZGV2aWNlIHRyZWUgYW5kIHVzZWQgYnkgZHJp
+dmVyIGlmICduYW5kLWlzLWJvb3QtbWVkaXVtJyBpcyBzZXQgZm9yCj4gTkFORCBjaGlwLgo+IAo+
+IFNpZ25lZC1vZmYtYnk6IEFyc2VuaXkgS3Jhc25vdiA8YXZrcmFzbm92QHNhbHV0ZWRldmljZXMu
+Y29tPgo+IC0tLQo+ICAuLi4vYmluZGluZ3MvbXRkL2FtbG9naWMsbWVzb24tbmFuZC55YW1sICAg
+ICAgICAgICB8IDE0ICsrKysrKysrKysrKysrCj4gIDEgZmlsZSBjaGFuZ2VkLCAxNCBpbnNlcnRp
+b25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
+cy9tdGQvYW1sb2dpYyxtZXNvbi1uYW5kLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3MvbXRkL2FtbG9naWMsbWVzb24tbmFuZC55YW1sCj4gaW5kZXggNTdiNjk1N2M4NDE1
+Li5iODZhMTk1MzA1NmIgMTAwNjQ0Cj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL210ZC9hbWxvZ2ljLG1lc29uLW5hbmQueWFtbAo+ICsrKyBiL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9tdGQvYW1sb2dpYyxtZXNvbi1uYW5kLnlhbWwKPiBAQCAtNjQs
+MTEgKzY0LDI1IEBAIHBhdHRlcm5Qcm9wZXJ0aWVzOgo+ICAgICAgICAgIGl0ZW1zOgo+ICAgICAg
+ICAgICAgbWF4aW11bTogMAo+ICAKPiArICAgICAgYW1sb2dpYyxib290LXBhZ2UtbGFzdDoKPiAr
+ICAgICAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy91aW50MzIKPiAr
+ICAgICAgICBkZXNjcmlwdGlvbjoKPiArICAgICAgICAgIFRoZSBORkMgZHJpdmVyIG5lZWRzIHRo
+aXMgaW5mb3JtYXRpb24gdG8gc2VsZWN0IEVDQwo+ICsgICAgICAgICAgYWxnb3JpdGhtcyBzdXBw
+b3J0ZWQgYnkgdGhlIGJvb3QgUk9NLgoKU2hhbGwgd2UgaGF2ZSBhIGxlbmd0aCByYXRoZXIgdGhh
+biB0aGUgbGFzdCBwYWdlPwoKPiArCj4gKyAgICAgIGFtbG9naWMsYm9vdC1wYWdlLXN0ZXA6Cj4g
+KyAgICAgICAgJHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvdWludDMyCj4g
+KyAgICAgICAgZGVzY3JpcHRpb246Cj4gKyAgICAgICAgICBUaGUgTkZDIGRyaXZlciBuZWVkcyB0
+aGlzIGluZm9ybWF0aW9uIHRvIHNlbGVjdCBFQ0MKPiArICAgICAgICAgIGFsZ29yaXRobXMgc3Vw
+cG9ydGVkIGJ5IHRoZSBib290IFJPTSAoaW4gcGFnZXMpLgo+ICsKPiAgICAgIHVuZXZhbHVhdGVk
+UHJvcGVydGllczogZmFsc2UKPiAgCj4gICAgICBkZXBlbmRlbmNpZXM6Cj4gICAgICAgIG5hbmQt
+ZWNjLXN0cmVuZ3RoOiBbbmFuZC1lY2Mtc3RlcC1zaXplXQo+ICAgICAgICBuYW5kLWVjYy1zdGVw
+LXNpemU6IFtuYW5kLWVjYy1zdHJlbmd0aF0KPiArICAgICAgYW1sb2dpYyxib290LXBhZ2UtbGFz
+dDogW25hbmQtaXMtYm9vdC1tZWRpdW0sICJhbWxvZ2ljLGJvb3QtcGFnZS1zdGVwIl0KPiArICAg
+ICAgYW1sb2dpYyxib290LXBhZ2Utc3RlcDogW25hbmQtaXMtYm9vdC1tZWRpdW0sICJhbWxvZ2lj
+LGJvb3QtcGFnZS1sYXN0Il0KPiAgCj4gIAo+ICByZXF1aXJlZDoKCgpUaGFua3MsCk1pcXXDqGwK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFt
+bG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRw
+Oi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
