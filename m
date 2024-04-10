@@ -4,56 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 510EACD128A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2024 02:27:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41582CD11C2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2024 04:22:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
-	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UKSRbivm8cK6N1gev5XLJRYT2iB2N0fGl1kck0gTY3s=; b=oJvihppSawTvyh
-	Vn+nmF0UY2IICzw5AjtnOSYh/BZy2pbMwTP7k5zfa1FYziqpg9yBgBjmZ76s9WMBplmTHmkUeRkI8
-	hcJRXDgoAcaqOwym8bsccgP4G8nIIGWbChpi5BxDmI2/4/TUw+wc2u75RIGM2bfbp4p3IIkp7jpeF
-	o68T/fc/nGzqeMdGpZR2gF/5oHJJOppSjOLp5ZtLHRWoec81wg5+ErJt78cVyuU9h1zCfg5Q34LUc
-	QBRH6HWtNC63uvvnlBylILP3NCh+3o8lp5vl9M3FJEFwZXkrbq9isJ8qKchwaeX9/HaKd4QRrT3C4
-	DdwCnN8WfYsKR8XeP4xw==;
+	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Cc:Date:
+	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=6x3J6o2S8AYGZ98lSfKr1TTnsGT+5jkUVjxQT0OJPJE=; b=NAoOaV0Xo1k8gi
+	endUIUuPKeUvoBfUxKyeT+T2JdeCvDgYLL4k6Wx75mBT332fBvUMy1X0hPq/LRHTdjheaAfo0HynC
+	XHSLd7egprH51DYHtlUymoiZ5b1RCrVqAEuQO6epFYl5S3xeK9UHw720rhFhjm/Uv254TNM/F0lmw
+	zTZJSOjC+wlXJxrjMBCvpzqsy9lbpwzcNd2sgrERURaaFaZioMxwSLpLWanRl1Jpao59mD7n28k/g
+	JJKlohIAI7oOzBS67shwTku7rBrkVQkMHdtnF4Ht1ZC6blmQ/R5+ANxP/X66PqkxXlLEHiATYXUge
+	U3Eq7Z4hr2yHC6V/+N2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruNgf-00000004kKW-0Vpw;
-	Wed, 10 Apr 2024 02:27:45 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1ruPTz-00000004zus-2Di0;
+	Wed, 10 Apr 2024 04:22:47 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruNgb-00000004kJZ-2O6L;
-	Wed, 10 Apr 2024 02:27:43 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 56E34CE255F;
-	Wed, 10 Apr 2024 02:27:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7921FC433C7;
-	Wed, 10 Apr 2024 02:27:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712716058;
-	bh=KCZk5Jghp9ioOCljK8ePjGa/GSS059iFLxQINPpp1zg=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=cIVXz2yVe7ImcNYM7wBUtIVH3Cy2FfbisfRQ6w1VZOtS98YSFvZBVemDOxX2wRjlh
-	 qp9KtrdBV4GqnI4PQE3m42UGIqt2xiOrQI7AadLeMSEKX8h+SDl6ae7vSnSWaE+7il
-	 1xPhVhzCMwkZbrffA4beBS9yVbxTWNX8sjxYNRd7NzlmRB4Sk96MkOpblZSZmFMRmY
-	 fdY5cy3BCh0lC516EQNQxKmmq8FHiV6gBJ7pyQop6ShhDd+VaZ0qxlDxxEKvpBzJU/
-	 YJQZu0B0Yfg8lKTvD5B55HrdrBE7sLIQkKM5KqpKdGA5M9ucZ0x+yWOXu9pO6qbkzX
-	 5uUSILmGfGBtQ==
-Message-ID: <dde59dd2ef4da81528e31f65844e0b3f.sboyd@kernel.org>
-MIME-Version: 1.0
-In-Reply-To: <20240409-shallow-voice-c84ed791bc7d@spud>
-References: <20240328010831.884487-1-jan.dakinevich@salutedevices.com> <20240328010831.884487-2-jan.dakinevich@salutedevices.com> <1j7chfiz8e.fsf@starbuckisacylon.baylibre.com> <e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org> <f01cdd910ab35316b8012795f73fd2b34c8e6f8e.camel@pengutronix.de> <13617b7a892424d2b024c725505a6f4f.sboyd@kernel.org> <20240408-numerator-escargot-a642507a598e@spud> <20240409-shallow-voice-c84ed791bc7d@spud>
-Subject: Re: [RFC PATCH v2 1/5] clk: meson: axg: move reset controller's code to separate module
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Jerome Brunet <jbrunet@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-To: Conor Dooley <conor@kernel.org>
-Date: Tue, 09 Apr 2024 19:27:36 -0700
-User-Agent: alot/0.10
+	id 1ruPTx-00000004ztp-03KX
+	for linux-amlogic@lists.infradead.org;
+	Wed, 10 Apr 2024 04:22:46 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-34641b7c49aso717826f8f.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 09 Apr 2024 21:22:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712722961; x=1713327761; darn=lists.infradead.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=50/EoYp4xiPcQjk7THZgfgs+ueFYqdmiSEQ2Y/A5NR4=;
+        b=FS9QMmqewgUyMjyGGGREFhCBV+0CpXYrPxjY62WnR6NY39038PolFcKW4nxt0PbvIT
+         bgyds/KExyYWhcuuDuhzTR5SGxsABBIKuy6OkwVz1kFr7vkslQpszuYMi6ducKRk4OrS
+         lel3n/3NlAsaoQVqD4veGq1gCayTY4umdSoximM39RYQajUFrWORdEWnWKnjOaFqrEW1
+         eV8HtHnBncvxevJ7JfwAVzsqhtxxKZQFjzh5z8MsEGFdhpOLGNcnucsaH1hwBND+CH5Z
+         nZK4Nd+M/2fT1UE5ZNhypi9XizJbfkNmf+18fynLvOmi/LpJVsWw92i1uYwOry0TiuD8
+         hetw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712722961; x=1713327761;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=50/EoYp4xiPcQjk7THZgfgs+ueFYqdmiSEQ2Y/A5NR4=;
+        b=RhvnyYO6V8L5bARX2+uSBKnS1HmPMDEjPYsG8jzRS7ZQ1mx7amxV79cm9572iVmPd1
+         eW5Nmar4aoFSN9tyiysb2o4hiUFHMZJqpEdjeLK8YqURJ4h76I8KPkeHAKZUvQLF2sQb
+         OI3YbX6NTvv3eOUA23FlRBLaiKwslSh8K7rkC6Qhw4h2C70/UraShOgx5PPBKhEtADJp
+         3a7Rx2wQ2fGbZmWOjzScWb1gmYRwlP0nzZFwJXck0iIhs/UKsBdqEM3GnhcO5fjDFc4m
+         ZEn4o+Uc+uWFqh00/nCRuUQOuNNXuLcju04YKgGo3fYcOr9DS94Q9D44PNI4Wkn37M9Q
+         jZ9g==
+X-Forwarded-Encrypted: i=1; AJvYcCVYiPOeMKe2I3BcBmY8V0lawQHfJkOXTokutZVv2U+EPbqEpFPz8AgVNJxa0TP8gol9PK4FT7n6klUMxndZ1j00HhldmXjc/NW2ubgLalNrDl0=
+X-Gm-Message-State: AOJu0YxzSvuI8lmCx5UH16rM1OSuRCi2DX0wL6zetHeI/RVFJ+9Ykk2m
+	PupugYPToklLcjRrnMBRCCqwYncsTvXcRFmvaLk4U4D9GiZrHi6p
+X-Google-Smtp-Source: AGHT+IHhKHEr3v3LDAgyhKHwIE9KipXbIkSHGprCwjFscoVbk1+9ZU+3a0NumbkHPHLpvO0f/FlwAg==
+X-Received: by 2002:adf:fc4b:0:b0:343:7d3c:ddcd with SMTP id e11-20020adffc4b000000b003437d3cddcdmr964972wrs.1.1712722961051;
+        Tue, 09 Apr 2024 21:22:41 -0700 (PDT)
+Received: from smtpclient.apple ([167.99.200.149])
+        by smtp.gmail.com with ESMTPSA id p13-20020a5d638d000000b00343ad4bca7dsm12898554wru.85.2024.04.09.21.22.37
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 09 Apr 2024 21:22:40 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.500.171.1.1\))
+Subject: Re: [PATCH 1/2] dt-bindings: panel-simple-dsi: add New Khadas TS050
+ panel bindings
+From: Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <20240409082641.359627-1-jacobe.zang@wesion.com>
+Date: Wed, 10 Apr 2024 08:22:25 +0400
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ quic_jesszhan@quicinc.com,
+ sam@ravnborg.org,
+ nick@khadas.com,
+ thierry.reding@gmail.com,
+ dri-devel@lists.freedesktop.org,
+ devicetree <devicetree@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ AML <linux-amlogic@lists.infradead.org>
+Message-Id: <3CCAF214-09FE-4580-99CD-AB95E78FFB8F@gmail.com>
+References: <20240409082641.359627-1-jacobe.zang@wesion.com>
+To: Jacobe Zang <jacobe.zang@wesion.com>
+X-Mailer: Apple Mail (2.3774.500.171.1.1)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240409_192742_002354_333F2D89 
-X-CRM114-Status: GOOD (  32.84  )
+X-CRM114-CacheID: sfid-20240409_212245_168997_2B81F734 
+X-CRM114-Status: GOOD (  15.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,147 +105,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Conor Dooley (2024-04-09 05:05:37)
-> On Mon, Apr 08, 2024 at 06:05:51PM +0100, Conor Dooley wrote:
-> 
-> > > > Seconded, the clk-mpfs/reset-mpfs and clk-starfive-jh7110-sys/reset-
-> > > > starfive-jh7110 drivers are examples of this.
-> > > > 
-> > > > > The auxiliary device creation function can also be in the
-> > > > > drivers/reset/ directory so that the clk driver calls some function
-> > > > > to create and register the device.
-> > > > 
-> > > > I'm undecided about this, do you think mpfs_reset_controller_register()
-> > > > and jh7110_reset_controller_register() should rather live with the
-> > > > reset aux drivers in drivers/reset/ ?
-> > > 
-> > > Yes, and also mpfs_reset_read() and friends. We should pass the base
-> > > iomem pointer and parent device to mpfs_reset_adev_alloc() instead and
-> > > then move all that code into drivers/reset with some header file
-> > > exported function to call. That way the clk driver hands over the data
-> > > without having to implement half the implementation.
-> > 
-> > I'll todo list that :)
-> 
-> Something like the below?
-> 
-> -- >8 --
-> From a12f281d2cb869bcd9a6ffc45d0c6a0d3aa2e9e2 Mon Sep 17 00:00:00 2001
-> From: Conor Dooley <conor.dooley@microchip.com>
-> Date: Tue, 9 Apr 2024 11:54:34 +0100
-> Subject: [PATCH] clock, reset: microchip: move all mpfs reset code to the
->  reset subsystem
-> 
-> <insert something here>
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-
-Looks pretty good.
-
->  static const struct of_device_id mpfs_clk_of_match_table[] = {
-> diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
-> index 7f3fb2d472f4..27cd68b4ee81 100644
-> --- a/drivers/reset/reset-mpfs.c
-> +++ b/drivers/reset/reset-mpfs.c
-> @@ -137,9 +139,67 @@ static int mpfs_reset_probe(struct auxiliary_device *adev,
->         return devm_reset_controller_register(dev, rcdev);
->  }
->  
-> +static void mpfs_reset_unregister_adev(void *_adev)
-> +{
-> +       struct auxiliary_device *adev = _adev;
-> +
-> +       auxiliary_device_delete(adev);
-> +       auxiliary_device_uninit(adev);
-> +}
-> +
-> +static void mpfs_reset_adev_release(struct device *dev)
-> +{
-> +       struct auxiliary_device *adev = to_auxiliary_dev(dev);
-> +
-> +       kfree(adev);
-> +}
-> +
-> +static struct auxiliary_device *mpfs_reset_adev_alloc(struct device *clk_dev)
-> +{
-> +       struct auxiliary_device *adev;
-> +       int ret;
-> +
-> +       adev = kzalloc(sizeof(*adev), GFP_KERNEL);
-> +       if (!adev)
-> +               return ERR_PTR(-ENOMEM);
-> +
-> +       adev->name = "reset-mpfs";
-> +       adev->dev.parent = clk_dev;
-> +       adev->dev.release = mpfs_reset_adev_release;
-> +       adev->id = 666u;
-> +
-> +       ret = auxiliary_device_init(adev);
-> +       if (ret) {
-> +               kfree(adev);
-> +               return ERR_PTR(ret);
-> +       }
-> +
-> +       return adev;
-> +}
-> +
-> +int mpfs_reset_controller_register(struct device *clk_dev, void __iomem *base)
-> +{
-> +       struct auxiliary_device *adev;
-> +       int ret;
-> +
-> +       mpfs_reset_addr = base;
-
-Instead of a global this can be stashed in adev->dev.platform_data and
-grabbed in the driver probe?
-
-> +
-> +       adev = mpfs_reset_adev_alloc(clk_dev);
-> +       if (IS_ERR(adev))
-> +               return PTR_ERR(adev);
-> +
-> +       ret = auxiliary_device_add(adev);
-> +       if (ret) {
-> +               auxiliary_device_uninit(adev);
-> +               return ret;
-> +       }
-> +
-> +       return devm_add_action_or_reset(clk_dev, mpfs_reset_unregister_adev, adev);
-> +}
-> +
->  static const struct auxiliary_device_id mpfs_reset_ids[] = {
->         {
-> -               .name = "clk_mpfs.reset-mpfs",
-> +               .name = "reset_mpfs.reset-mpfs",
->         },
->         { }
->  };
-> diff --git a/include/soc/microchip/mpfs.h b/include/soc/microchip/mpfs.h
-> index 09722f83b0ca..0b756bf5e9bd 100644
-> --- a/include/soc/microchip/mpfs.h
-> +++ b/include/soc/microchip/mpfs.h
-> @@ -43,11 +43,11 @@ struct mtd_info *mpfs_sys_controller_get_flash(struct mpfs_sys_controller *mpfs_
->  #endif /* if IS_ENABLED(CONFIG_POLARFIRE_SOC_SYS_CTRL) */
->  
->  #if IS_ENABLED(CONFIG_MCHP_CLK_MPFS)
-> -
-> -u32 mpfs_reset_read(struct device *dev);
-> -
-> -void mpfs_reset_write(struct device *dev, u32 val);
-> -
-> +#if IS_ENABLED(CONFIG_RESET_CONTROLLER)
-> +int mpfs_reset_controller_register(struct device *clk_dev, void __iomem *base);
-> +#else
-> +int mpfs_reset_controller_register(struct device *clk_dev, void* __iomem base) { return 0;}
-
-static inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+PiBPbiA5IEFwciAyMDI0LCBhdCAxMjoyNuKAr1BNLCBKYWNvYmUgWmFuZyA8amFjb2JlLnphbmdA
+d2VzaW9uLmNvbT4gd3JvdGU6Cj4gCj4gVGhpcyBhZGQgdGhlIGJpbmRpbmdzIGZvciB0aGUgTmV3
+IEtoYWRhcyBUUzA1MCAxMDgweDE5MjAgNSIgTENEIERTSSBwYW5lbAo+IGRlc2lnbmVkIHRvIHdv
+cmsgd2l0aCB0aGUgS2hhZGFzIFZJTTMgYW5kIFZJTTNMIFNpbmdsZSBCb2FyZCBDb21wdXRlcnMu
+Cj4gCj4gU2lnbmVkLW9mZi1ieTogSmFjb2JlIFphbmcgPGphY29iZS56YW5nQHdlc2lvbi5jb20+
+Cj4gLS0tCj4gLi4uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9wYW5lbC9wYW5lbC1zaW1w
+bGUtZHNpLnlhbWwgICAgIHwgMiArKwo+IDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKykK
+PiAKPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3Bs
+YXkvcGFuZWwvcGFuZWwtc2ltcGxlLWRzaS55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL2Rpc3BsYXkvcGFuZWwvcGFuZWwtc2ltcGxlLWRzaS55YW1sCj4gaW5kZXggZjkx
+NjBkN2JhYzNjYS4uZTE5NDMwOWYzMWI3MiAxMDA2NDQKPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9wYW5lbC9wYW5lbC1zaW1wbGUtZHNpLnlhbWwKPiAr
+KysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9wYW5lbC9wYW5l
+bC1zaW1wbGUtZHNpLnlhbWwKPiBAQCAtMzYsNiArMzYsOCBAQCBwcm9wZXJ0aWVzOgo+ICAgICAg
+IC0gamRpLGZoZC1yNjM0NTIKPiAgICAgICAgICMgS2hhZGFzIFRTMDUwIDUiIDEwODB4MTkyMCBM
+Q0QgcGFuZWwKPiAgICAgICAtIGtoYWRhcyx0czA1MAo+ICsgICAgICAgICMgS2hhZGFzIE5FVyBU
+UzA1MCA1IiAxMDgweDE5MjAgTENEIHBhbmVsCj4gKyAgICAgIC0ga2hhZGFzLG5ld3RzMDUwCgpQ
+cm9kdWN0cyBhcmUgb25seSBuZXcgdW50aWwgdGhleSBhcmUgb2xkLiBBdCBzb21lIGZ1dHVyZSBw
+b2ludCB0aGVyZSB3aWxsCmluZXZpdGFibHkgYmUgYSB0aGlyZCBpdGVyYXRpb24gcmVxdWlyaW5n
+IGEg4oCYbmV3IG5ld+KAmSBuYW1lLiBJTUhPIGl0IHdvdWxkCmJlIGJldHRlciB0byB1c2Ugc29t
+ZXRoaW5nIGxpa2Uga2hhZGFzLHRzMDUwdjIuCgpDSC4KCj4gICAgICAgICAjIEtpbmdkaXNwbGF5
+IEtEMDk3RDA0IDkuNyIgMTUzNngyMDQ4IFRGVCBMQ0QgcGFuZWwKPiAgICAgICAtIGtpbmdkaXNw
+bGF5LGtkMDk3ZDA0Cj4gICAgICAgICAjIExHIEFDWDQ2N0FLTS03IDQuOTUiIDEwODDDlzE5MjAg
+TENEIFBhbmVsCj4gLS0gCj4gMi4zNC4xCj4gCj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KPiBsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAo+IGxp
+bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwo+IGh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
+b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwoKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
+bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
