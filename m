@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C83BACD11C2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC368CD1296
 	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2024 08:55:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,87 +12,87 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uQfirKTeWQ14f0fxsQBFtFUekV8yGrs7U5p0S2RPtMQ=; b=bpIxvMhon+4gFX
-	aInRiiKiyE/+Cv3u4Y4tAvG0rjmuCvGS9UBQ7beWpHUqk90ZcMWf57z018kHDBNA036zSdTJuGi2W
-	c3BXu1WvDwEcF8Zgc9ssgWvQ3KmRa8k6c1e7VRLOiNzrjs0PIQ3df+Fve73xyKVt8rqt/xPuQgc27
-	hxoIvIE/x9fpmi6PWR8/3hwJ9BUXJaThJkRyNF0VebzEJtlmy55VKd3RsS0NsUEm5chILeczeUi6k
-	d/GOhGgzaAeim3vaA6T1TPE/BcHzh5khQgqPWp3PcoKvmZ1fj4kRCauVcQnTSN/KZeCgEsrAf2u6t
-	S53qc81JkngR0vPRuUWw==;
+	List-Owner; bh=EfWSyL18mBTfaSCM/hlB03vnCDqSOtM9XCUiG7CeFTg=; b=aHtj29uxpKZFex
+	zNsbYhnacQC5s8Hg3l539u9xcxbICdj3GDrW6r2KUjezabsrZXLSUGXgLmPKNVuFHGgP6mzYsYD/Z
+	GtQjqgSMQ5zaHh+ll37BpYaRa6KyrmjH5BXSYtVXGppx5wRlkQ6QdEqhuZmnhWxbaY3OF1CzYi21W
+	XEWI4smllpQQs0RXKxBE7ZOs02FEgm6u7NSKDz4C9xKK+5i+MajNFsIJJmSAztsxeAjgQC8QarDvC
+	FWX1j8Dil11+RHORbMUAORMs6MNPrajdAKQSDk8OQO8HM1yxeD+OdepyCEzI1axCa7NOGhmBVmSBr
+	tDur1oizEgKKbCGi2mzw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruTjQ-0000000602s-0IXG;
+	id 1ruTjQ-00000006033-2Ct9;
 	Wed, 10 Apr 2024 08:55:00 +0000
-Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruTjL-00000005zzK-2XcD
+	id 1ruTjK-00000005zz6-4177
 	for linux-amlogic@lists.infradead.org;
 	Wed, 10 Apr 2024 08:54:58 +0000
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-516cbf3fd3dso7493298e87.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 10 Apr 2024 01:54:54 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4173d3b4a3dso2013245e9.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 10 Apr 2024 01:54:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1712739292; x=1713344092; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=q9n9bIdxiQcPgRyTX+n58GNtmNfwkau4b2336NlqK0w=;
-        b=w8D3jD3rMWqM1wnrKmujNQFvMBjaLv6Is4X0EOO3waZdlwdAGTFNDR10KF6UdGA0uS
-         fe/yzQGPq5QUszJ/YD4c4aVc3y4ssUpB/9ZY3Ms/5tvtoyDnUPTE5mYO1uhC74E8oMB8
-         Gsk+xqloIazi5RFXVKNVksSV/o+zQDglapyPM8GuH0jZRfm8VaRgVb0mphuS0our4ugu
-         gK+NCQ5Qy8gBDQdhqzQzwiPlshCxCChxOBWrN2Fr9rkHYKZ0c5UKpukB/ya1NsCedXq3
-         d8BVYAiHfaoRReDCKZ4NY89sZ8PPm9pgVr3c59sCwBmj/6X9AjWhw+KCOpUmQC3SNlqK
-         iouQ==
+        bh=D2AsZ1QIiCmfybXFGVW0zxiOuEp+rgs+ouNgKbZDKFg=;
+        b=YIzW4aKm7y1/GHfBe2Fpr9gl2f9L4aCkJWuG4uNstaS3FsP04DoGzyYh0jvBDqym9s
+         8jh891RTCkN9kZJKLcexsVm0+lW3HHbK3cXnyDK5EdtEKITHvmJjBxJpUh8uF+UtHy6U
+         O33EoXdnA9aHzTbLUp+3AbtqZ5HEPvyD4R6zh2kYoL87vzSOI0RIQs5fBy6imQL1d2qs
+         Z5HsxreSd0KnAdda2Ffy0ECiUbm0Q1R+gyY+pJ6QrvwgC5TE5pE58gtORBLaXspcZruh
+         w+y/Fjzsl9toceXBc8FJzEybffKUr1Vh3vLH93UUCjiYFGh81Nr3Jkt+goToTpPmkKD5
+         d5EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1712739292; x=1713344092;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=q9n9bIdxiQcPgRyTX+n58GNtmNfwkau4b2336NlqK0w=;
-        b=lO3++KDuxDLuW1hr6TV/DR7hrdS3eJcutVMIh2J8tjmMz1Y2aAPiTh/F6EgZPHo8ue
-         MkIxsbctkTO4TznStsidbGJP5M5xLfufZDrS+w+CgNWoqvo6qY/YGEZj/G65WNQBUmbu
-         wNCjT0nuVOFUcxTP77Q8vtiMeqk2owaueHfJjlAURKWTM89Ll9+jeS4fmfrZxoIpmul1
-         8hxLM7/MIlGVT/lbFGagaEWP2PtXQVIDdUPk9Sp+Ix5LFRyMa48UXlu1vmd8xtFs1ZS7
-         joVsR6ff9GKDavDeq6UUv5dE9pwWPiDs5t0rGuUl8GxTnjrILPM/nd7ewah14MaNZUxf
-         IuCw==
-X-Forwarded-Encrypted: i=1; AJvYcCVbHLR3ero1yfQAp6Vo0yWtUFKThIBiLKfzQ+u36WtYPDoMsl1O1WHVpiSGpFGE84Q6S5Mk9ZfI3SB7QJjzHhmk0wCZ8PR/92HF6DJm7QjJuao=
-X-Gm-Message-State: AOJu0YyUIYYAmf/EBu9g/1LDsyUEqlO483SihT+S/kXsFAB2wAjfH3gC
-	hB01rLXaem+rCefDaiVOMG09jV8MgQGzlFqLJtELJtFFjZRZFiAbI2KCq13Ttpg=
-X-Google-Smtp-Source: AGHT+IFNFRt4eMSzQqZ/7NkG1db8x/cM2BTv+GM3c/HklSBaajG7sctnDL9a2AdHlmfF903QzBJ7Tw==
-X-Received: by 2002:ac2:47f0:0:b0:516:d30c:7236 with SMTP id b16-20020ac247f0000000b00516d30c7236mr1322034lfp.18.1712739292455;
-        Wed, 10 Apr 2024 01:54:52 -0700 (PDT)
+        bh=D2AsZ1QIiCmfybXFGVW0zxiOuEp+rgs+ouNgKbZDKFg=;
+        b=Eizf4RdckL+hciocc+BiYDaOejMKRNM+of1BNX0rNcJ0Af4Qd4oEYLAQ4URiA1/HdC
+         K5a5WO3jhEjUpuAgFv9S3xgSIlkJYVC+aWKYeaYUGNUpabsWHo+YhEnHnkw3hquxkzKQ
+         8xEi4KIY8vcwPNm6BkY3Fz3Br0xaNU97HyjM3zpJitbXFJfs/6AT7/wReLBo3WLPEYkU
+         t63hKWvt3MsT4xfVZ7ZPoOEvJlqRhYc9/wQ4kCIiXIfpbozUsoVbICU4QTUgxmzsJ/Ec
+         +rc00ZG0IEsJoZ/Unc3qVQRU/mhqdUckQO8B8RrkTL+mwSHi6qEK3S2e9Ewrn4i3xbUB
+         ckHA==
+X-Forwarded-Encrypted: i=1; AJvYcCX6aqfdnHOAKYxomapIrQ2705e7jb6ZLkvfJX0ZWpqrYeklvwIpL8+7dsNjgjKyU1DR2epkJy/GHlPEt8EJFxV8725wMWz75QAV2RynietNxpI=
+X-Gm-Message-State: AOJu0YzLwYShMYcIMhvmobQ2slV1wHO2WPnPKIdDu9TVMFTmhk4A7vXK
+	NY5MnFcyR0lQiuOvSHCrmu2uKu/8e9rWKtnI8zrk9PUJaufBerQNGjkl/ISuXhwi/wDmtslI9dm
+	Wm6s=
+X-Google-Smtp-Source: AGHT+IEJgQ9v9FGTkOkguC9zTMYpllaqcg3VK+wytjhD6ErKqeWqI+TOXQq+JItqSKG5kCWe34nSYg==
+X-Received: by 2002:a05:600c:a4b:b0:414:726:87d9 with SMTP id c11-20020a05600c0a4b00b00414072687d9mr1961567wmq.12.1712739291342;
+        Wed, 10 Apr 2024 01:54:51 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id j1-20020a05600c1c0100b00417be508e44sm408832wms.34.2024.04.10.01.54.51
+        by smtp.gmail.com with ESMTPSA id j1-20020a05600c1c0100b00417be508e44sm408832wms.34.2024.04.10.01.54.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Apr 2024 01:54:52 -0700 (PDT)
+        Wed, 10 Apr 2024 01:54:50 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
 To: Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
  Michael Turquette <mturquette@baylibre.com>, 
  Stephen Boyd <sboyd@kernel.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
  David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Jagan Teki <jagan@amarulasolutions.com>, 
  Nicolas Belin <nbelin@baylibre.com>, 
+ Jagan Teki <jagan@amarulasolutions.com>, 
  Neil Armstrong <neil.armstrong@linaro.org>
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
  Conor Dooley <conor.dooley@microchip.com>, 
  "Lukas F. Hartmann" <lukas@mntre.com>
-In-Reply-To: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-0-99ecdfdc87fc@linaro.org>
-References: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-0-99ecdfdc87fc@linaro.org>
-Subject: Re: (subset) [PATCH v12 0/7] drm/meson: add support for MIPI DSI
- Display
-Message-Id: <171273929144.3191460.10788273510731412114.b4-ty@linaro.org>
-Date: Wed, 10 Apr 2024 10:54:51 +0200
+In-Reply-To: <20240325-amlogic-v6-4-upstream-dsi-ccf-vim3-v11-0-04f55de44604@linaro.org>
+References: <20240325-amlogic-v6-4-upstream-dsi-ccf-vim3-v11-0-04f55de44604@linaro.org>
+Subject: Re: [PATCH v11 0/7] drm/meson: add support for MIPI DSI Display
+Message-Id: <171273929022.3191460.6988833554592946386.b4-ty@linaro.org>
+Date: Wed, 10 Apr 2024 10:54:50 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.12.4
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240410_015455_718978_9AD8DAF6 
-X-CRM114-Status: GOOD (  12.54  )
+X-CRM114-CacheID: sfid-20240410_015455_079417_35A94988 
+X-CRM114-Status: GOOD (  12.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,12 +111,12 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Wed, 03 Apr 2024 09:46:31 +0200, Neil Armstrong wrote:
+On Mon, 25 Mar 2024 12:09:46 +0100, Neil Armstrong wrote:
 > The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
 > with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI
 > glue on the same Amlogic SoCs.
 > 
-> This is a follow-up of v5 now the DRM patches are applied, the clk & DT changes
+> This is a follow-up of v5  now the DRM patches are applied, the clk & DT changes
 > remains for a full DSI support on G12A & SM1 platforms.
 > 
 > [...]
@@ -125,6 +125,12 @@ Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux
 
 [1/7] dt-bindings: arm: amlogic: Document the MNT Reform 2 CM4 adapter with a BPI-CM4 Module
       https://git.kernel.org/amlogic/c/ef5a84d716042871599ff7c8ff571a6390b99718
+[2/7] clk: meson: add vclk driver
+      (no commit info)
+[3/7] clk: meson: g12a: make VCLK2 and ENCL clock path configurable by CCF
+      (no commit info)
+[4/7] drm/meson: gate px_clk when setting rate
+      (no commit info)
 [5/7] arm64: meson: g12-common: add the MIPI DSI nodes
       https://git.kernel.org/amlogic/c/6f1c2a12ed1138c3e680935718672d361afee372
 [6/7] arm64: meson: khadas-vim3l: add TS050 DSI panel overlay
