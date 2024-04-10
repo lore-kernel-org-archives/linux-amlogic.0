@@ -4,86 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32042CD11C2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2024 09:42:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92D3CCD11C2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2024 09:50:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WQ4wPesW/WSUFWD1tGCmjh6F7DOl0BdWsMWCxGm/o6U=; b=QL2WTLzisVog7g
-	HaiouhFKuDPSpqLpghiOctnUXS6KzeocF2O9DTD+mdOxgERGLDU6R35K8h7Qn37BYn+Kh7NiQgLZ5
-	E8WxMUGzDVW6rsSykO6SQbZ/POz5ZTSz2XRAWXGCP2U7iUwUSHzB3JFmaqk9Oe6Z9uVZcbq2vxb7q
-	Xg4QlssTjoSV+ws8wFnsfK9wiDDI5RAsQLVey32SG3/vftzZPOxJoLTgEeh5p/PA/xBE2hAS29fzr
-	zceF5E1HZFjuxn9teI+0cl4OjjGmyjt5o1lK//C0rHjo+m997RBlbrk/TTK3cuq6DgM2MPyDPb5Dt
-	3CQ7y4/HVyiKSBGtPNoA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=4BSITnDmk17HzbYpHMrOCZEegTR/RCbqOKYKEx8mXBU=; b=tCCEV7/ys90tMvoSmWkg/OOCrI
+	2Qu6OouHvJvhBZysar9Qevd2Nqd8zz66JfpVjiYKe4Vt9Ajdsp24EHunMJGAIBQm/cV2vQ0f28WM0
+	68eeFn64CyVjxwqX6f/YzTQyjDsPMjrRqxoT9BA5BYGMGUJQKyphBrMlVaEdlKBlsyPwNLnFOrVBo
+	JRIrpq8r3awsH43DGxPksbpPZHBfTe2QoZelDfmO2tvyVAMKMHebM/KqxK/fwsVkFmcGVaHZucDf2
+	CgUZ40FJNxziuoE9/PE76IgOF9ctJpp5vjCfy0g0E4kbKVjDAJ7JKE5VWBXg7QAgrIG6rdd35XUTY
+	KjElZFxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruUTF-00000006CXu-2GHQ;
-	Wed, 10 Apr 2024 09:42:21 +0000
-Received: from mail-pl1-x62e.google.com ([2607:f8b0:4864:20::62e])
+	id 1ruUbS-00000006EET-35Hj;
+	Wed, 10 Apr 2024 09:50:50 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruUTB-00000006CUm-0Jc1
-	for linux-amlogic@lists.infradead.org;
-	Wed, 10 Apr 2024 09:42:18 +0000
-Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1e2b137d666so48842955ad.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 10 Apr 2024 02:42:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1712742127; x=1713346927; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=d6mq+XWVQezektM76wlJCZqJNDL7tm6/6S+c5eJ1L7E=;
-        b=jbusLTuVPrALjYlTTCinLgQMzZj6+0+GCuta/C9EsQL/jnVq0SCoDpNbUJHCu+Z/D2
-         cu7d+ykl/H+3QvqO0ImtKl/18GgAOKcL95an+dREaKoo3B89Ihwfve6REVAx0XiiUv41
-         pG9x3Yt2L1R5O8MHLcBgFowfYdZS3uVm774gCUG+t2ASiQjtf8VRq5BNdfxuzpFgpH4Y
-         LB2A8sCpIplXvOOaa/r56q2SqZmcHoolCBGgSLS/UvD/ZjwSd8iFr9xUnuFQ65IFmds4
-         4Ew2+lWCksCXIlywPf19UELIwqUCn43e944WzSLvGEznXqnTu4o6bMrRyq3/aYzEysAe
-         7tTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712742127; x=1713346927;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=d6mq+XWVQezektM76wlJCZqJNDL7tm6/6S+c5eJ1L7E=;
-        b=Cb5ggoKBIc2lvT7DulykDYOLzXohE9MqC63+SPAgqfaomUdFQ2+saXoyIiWzGRWCHH
-         9Bs3bRnD54cgEI4XEds/i9LwMSTbVXVno+UsG3wdClZgR5qd06/ycTqzQM43A037Q2UD
-         zsapfPK7t83B3laUp2Og5n+aKn35abyRAO1SQSR96PCd+zOlFZeJIu4oSXaXK36LO6mW
-         slk4VzIewrO/10IcuUD0FxGcjOrp55QE3KUnlzN98fU+46iwawcehY04+H5UVO8pBhF8
-         JW+MnoAFAB75ykghbEHDzmQVZolDf4HSvaNwnaQZKWFoG9vDyjEc13hHT6uyAjPtix8I
-         LF0g==
-X-Forwarded-Encrypted: i=1; AJvYcCXyJr7pZ8l5nsMzZIoFP1jIk4bthpWHcCddA1MKJY6gpsYkH9nBD7zOGa7UqRwWPx3KqowL+jmluCSwYgNXWAvEo5hmIMF5tNyQQQV7N2SwJKU=
-X-Gm-Message-State: AOJu0YzSg0+0RHZHnrdTYtCzDkDwgK06AUOsEsKo+RYYvzTK6mPqhfv5
-	tsl9pUfD+4zoitGeEp6R57G3PayICteDE6SQBK5w4riyU/0+4EaMPKLfuzAtyipHDGMeifK6hef
-	Zg7eceFjJxm4McZCFeec9LYlKrvQ1G6CC8HrAHA==
-X-Google-Smtp-Source: AGHT+IGxW+1SQOW/hjBi7o8UbjyT2DcaFkvuNfI2f6FK1ZRsStq18tyXZyZ9KYXHh22zEmmhmUKOswcUmQ4A1Q7/6qI=
-X-Received: by 2002:a17:90b:3b87:b0:2a0:4495:1f3d with SMTP id
- pc7-20020a17090b3b8700b002a044951f3dmr2595254pjb.0.1712742127619; Wed, 10 Apr
- 2024 02:42:07 -0700 (PDT)
+	id 1ruUbP-00000006EDL-0vrp;
+	Wed, 10 Apr 2024 09:50:49 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 49C2DCE26BF;
+	Wed, 10 Apr 2024 09:50:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F951C43390;
+	Wed, 10 Apr 2024 09:50:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712742644;
+	bh=9yBCOfKgxlkwBGNHOhriLBVSumh7h9MF0OaGeGig5vI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Y4Yds2T8BK59a1fZOyIHq1m+QNmg+YCXS5+MbFdrDGQQLIcneYVQuh6c25cHUkq0E
+	 QAnywJxznFvHUL3K77yRQZptAgxjvI07nAWiBPIQcKwMyk2oK9NUHG9JhypFPnWXMI
+	 tcjMRLZt2ymd0prVd6bre59nuTxghQPFTOXT8ZJuTRrI8No8kTIRZn7DcEKVYoItfU
+	 mtQxH17+LWIX7AIOTqsrBI0elMYeaRDplU6A5Ec0LoDy86lQigC8wRaC2TFoxErR7Q
+	 CaMBhHNgh4ivvm5mym6uDc1W3vhLwJP7ZrcinkZniQB3x5YBvMOsYCPE1AvQjDFahR
+	 0hU9T9VkftnOg==
+Date: Wed, 10 Apr 2024 10:50:39 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC PATCH v2 1/5] clk: meson: axg: move reset controller's code
+ to separate module
+Message-ID: <20240410-supremacy-importer-9b5ac1957479@spud>
+References: <20240328010831.884487-1-jan.dakinevich@salutedevices.com>
+ <20240328010831.884487-2-jan.dakinevich@salutedevices.com>
+ <1j7chfiz8e.fsf@starbuckisacylon.baylibre.com>
+ <e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org>
+ <f01cdd910ab35316b8012795f73fd2b34c8e6f8e.camel@pengutronix.de>
+ <13617b7a892424d2b024c725505a6f4f.sboyd@kernel.org>
+ <20240408-numerator-escargot-a642507a598e@spud>
+ <20240409-shallow-voice-c84ed791bc7d@spud>
+ <dde59dd2ef4da81528e31f65844e0b3f.sboyd@kernel.org>
 MIME-Version: 1.0
-References: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-0-99ecdfdc87fc@linaro.org>
- <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-4-99ecdfdc87fc@linaro.org>
-In-Reply-To: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-4-99ecdfdc87fc@linaro.org>
-From: Nicolas Belin <nbelin@baylibre.com>
-Date: Wed, 10 Apr 2024 11:41:56 +0200
-Message-ID: <CAJZgTGE10CZiHvahxDu2mf8C0JS9UgQ_x-XCH-G8Vvjfp3CUCg@mail.gmail.com>
-Subject: Re: [PATCH v12 4/7] drm/meson: gate px_clk when setting rate
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Jagan Teki <jagan@amarulasolutions.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	dri-devel@lists.freedesktop.org
+In-Reply-To: <dde59dd2ef4da81528e31f65844e0b3f.sboyd@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240410_024217_177987_8A76701D 
-X-CRM114-Status: GOOD (  15.07  )
+X-CRM114-CacheID: sfid-20240410_025047_705338_E6696157 
+X-CRM114-Status: GOOD (  37.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,38 +85,160 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0271307923832620856=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-TGUgbWVyLiAzIGF2ci4gMjAyNCDDoCAwOTo0NiwgTmVpbCBBcm1zdHJvbmcKPG5laWwuYXJtc3Ry
-b25nQGxpbmFyby5vcmc+IGEgw6ljcml0IDoKPgo+IERpc2FibGUgdGhlIHB4X2NsayB3aGVuIHNl
-dHRpbmcgdGhlIHJhdGUgdG8gcmVjb3ZlciBhIGZ1bGx5Cj4gY29uZmlndXJlZCBhbmQgY29ycmVj
-dGx5IHJlc2V0IFZDTEsgY2xvY2sgdHJlZSBhZnRlciB0aGUgcmF0ZQo+IGlzIHNldC4KPgo+IEZp
-eGVzOiA3N2Q5ZTFlNmI4NDYgKCJkcm0vbWVzb246IGFkZCBzdXBwb3J0IGZvciBNSVBJLURTSSB0
-cmFuc2NlaXZlciIpCj4gU2lnbmVkLW9mZi1ieTogTmVpbCBBcm1zdHJvbmcgPG5laWwuYXJtc3Ry
-b25nQGxpbmFyby5vcmc+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9kd19t
-aXBpX2RzaS5jIHwgNyArKysrKysrCj4gIDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKykK
-Pgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZHdfbWlwaV9kc2ku
-YyBiL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9kd19taXBpX2RzaS5jCj4gaW5kZXggYTZi
-YzFiZGIzZDBkLi5hMTBjZmYzY2ExZmUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21l
-c29uL21lc29uX2R3X21pcGlfZHNpLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVz
-b25fZHdfbWlwaV9kc2kuYwo+IEBAIC05NSw2ICs5NSw3IEBAIHN0YXRpYyBpbnQgZHdfbWlwaV9k
-c2lfcGh5X2luaXQodm9pZCAqcHJpdl9kYXRhKQo+ICAgICAgICAgICAgICAgICByZXR1cm4gcmV0
-Owo+ICAgICAgICAgfQo+Cj4gKyAgICAgICBjbGtfZGlzYWJsZV91bnByZXBhcmUobWlwaV9kc2kt
-PnB4X2Nsayk7Cj4gICAgICAgICByZXQgPSBjbGtfc2V0X3JhdGUobWlwaV9kc2ktPnB4X2Nsaywg
-bWlwaV9kc2ktPm1vZGUtPmNsb2NrICogMTAwMCk7Cj4KPiAgICAgICAgIGlmIChyZXQpIHsKPiBA
-QCAtMTAzLDYgKzEwNCwxMiBAQCBzdGF0aWMgaW50IGR3X21pcGlfZHNpX3BoeV9pbml0KHZvaWQg
-KnByaXZfZGF0YSkKPiAgICAgICAgICAgICAgICAgcmV0dXJuIHJldDsKPiAgICAgICAgIH0KPgo+
-ICsgICAgICAgcmV0ID0gY2xrX3ByZXBhcmVfZW5hYmxlKG1pcGlfZHNpLT5weF9jbGspOwo+ICsg
-ICAgICAgaWYgKHJldCkgewo+ICsgICAgICAgICAgICAgICBkZXZfZXJyKG1pcGlfZHNpLT5kZXYs
-ICJGYWlsZWQgdG8gZW5hYmxlIERTSSBQaXhlbCBjbG9jayAocmV0ICVkKVxuIiwgcmV0KTsKPiAr
-ICAgICAgICAgICAgICAgcmV0dXJuIHJldDsKPiArICAgICAgIH0KPiArCj4gICAgICAgICBzd2l0
-Y2ggKG1pcGlfZHNpLT5kc2lfZGV2aWNlLT5mb3JtYXQpIHsKPiAgICAgICAgIGNhc2UgTUlQSV9E
-U0lfRk1UX1JHQjg4ODoKPiAgICAgICAgICAgICAgICAgZHBpX2RhdGFfZm9ybWF0ID0gRFBJX0NP
-TE9SXzI0QklUOwo+Cj4gLS0KPiAyLjM0LjEKPgoKTG9va3MgZ29vZCB0byBtZQoKUmV2aWV3ZWQt
-Ynk6IE5pY29sYXMgQmVsaW4gPG5iZWxpbkBiYXlsaWJyZS5jb20+CgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
-dApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVh
-ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+
+--===============0271307923832620856==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="JPgr6dKZxpVy8iT7"
+Content-Disposition: inline
+
+
+--JPgr6dKZxpVy8iT7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Apr 09, 2024 at 07:27:36PM -0700, Stephen Boyd wrote:
+> Quoting Conor Dooley (2024-04-09 05:05:37)
+> > On Mon, Apr 08, 2024 at 06:05:51PM +0100, Conor Dooley wrote:
+> >=20
+> > > > > Seconded, the clk-mpfs/reset-mpfs and clk-starfive-jh7110-sys/res=
+et-
+> > > > > starfive-jh7110 drivers are examples of this.
+> > > > >=20
+> > > > > > The auxiliary device creation function can also be in the
+> > > > > > drivers/reset/ directory so that the clk driver calls some func=
+tion
+> > > > > > to create and register the device.
+> > > > >=20
+> > > > > I'm undecided about this, do you think mpfs_reset_controller_regi=
+ster()
+> > > > > and jh7110_reset_controller_register() should rather live with the
+> > > > > reset aux drivers in drivers/reset/ ?
+> > > >=20
+> > > > Yes, and also mpfs_reset_read() and friends. We should pass the base
+> > > > iomem pointer and parent device to mpfs_reset_adev_alloc() instead =
+and
+> > > > then move all that code into drivers/reset with some header file
+> > > > exported function to call. That way the clk driver hands over the d=
+ata
+> > > > without having to implement half the implementation.
+> > >=20
+> > > I'll todo list that :)
+> >=20
+> > Something like the below?
+> >=20
+> > -- >8 --
+> > From a12f281d2cb869bcd9a6ffc45d0c6a0d3aa2e9e2 Mon Sep 17 00:00:00 2001
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> > Date: Tue, 9 Apr 2024 11:54:34 +0100
+> > Subject: [PATCH] clock, reset: microchip: move all mpfs reset code to t=
+he
+> >  reset subsystem
+> >=20
+> > <insert something here>
+> >=20
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> Looks pretty good.
+>=20
+> >  static const struct of_device_id mpfs_clk_of_match_table[] =3D {
+> > diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
+> > index 7f3fb2d472f4..27cd68b4ee81 100644
+> > --- a/drivers/reset/reset-mpfs.c
+> > +++ b/drivers/reset/reset-mpfs.c
+> > @@ -137,9 +139,67 @@ static int mpfs_reset_probe(struct auxiliary_devic=
+e *adev,
+> >         return devm_reset_controller_register(dev, rcdev);
+> >  }
+> > =20
+> > +static void mpfs_reset_unregister_adev(void *_adev)
+> > +{
+> > +       struct auxiliary_device *adev =3D _adev;
+> > +
+> > +       auxiliary_device_delete(adev);
+> > +       auxiliary_device_uninit(adev);
+> > +}
+> > +
+> > +static void mpfs_reset_adev_release(struct device *dev)
+> > +{
+> > +       struct auxiliary_device *adev =3D to_auxiliary_dev(dev);
+> > +
+> > +       kfree(adev);
+> > +}
+> > +
+> > +static struct auxiliary_device *mpfs_reset_adev_alloc(struct device *c=
+lk_dev)
+> > +{
+> > +       struct auxiliary_device *adev;
+> > +       int ret;
+> > +
+> > +       adev =3D kzalloc(sizeof(*adev), GFP_KERNEL);
+> > +       if (!adev)
+> > +               return ERR_PTR(-ENOMEM);
+> > +
+> > +       adev->name =3D "reset-mpfs";
+> > +       adev->dev.parent =3D clk_dev;
+> > +       adev->dev.release =3D mpfs_reset_adev_release;
+> > +       adev->id =3D 666u;
+> > +
+> > +       ret =3D auxiliary_device_init(adev);
+> > +       if (ret) {
+> > +               kfree(adev);
+> > +               return ERR_PTR(ret);
+> > +       }
+> > +
+> > +       return adev;
+> > +}
+> > +
+> > +int mpfs_reset_controller_register(struct device *clk_dev, void __iome=
+m *base)
+> > +{
+> > +       struct auxiliary_device *adev;
+> > +       int ret;
+> > +
+> > +       mpfs_reset_addr =3D base;
+>=20
+> Instead of a global this can be stashed in adev->dev.platform_data and
+> grabbed in the driver probe?
+
+I suppose, really I was just being "lazy" here and creating a global
+rather than a `struct mpfs_reset` containing only the base address.
+
+The test robot reported some issues with hexagon & COMPILE_TEST, so I'll
+push it out again with this change and the fixes for the reported issues
+and send the patch ones it gets the all clear.
+
+Cheers,
+Conor.
+
+--JPgr6dKZxpVy8iT7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZhZg7wAKCRB4tDGHoIJi
+0hveAPwNpL7h191WykV2UuzkJO3pu772z/AWkwlY/yHmXJVsuwEApGRz5bEryU3C
+JZ94q3AIj7Df4J7rHqDC1re2X9bNwwA=
+=pOIQ
+-----END PGP SIGNATURE-----
+
+--JPgr6dKZxpVy8iT7--
+
+
+--===============0271307923832620856==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============0271307923832620856==--
+
