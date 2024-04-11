@@ -4,63 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EB10CD1292
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Apr 2024 07:40:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD2E5C001CC
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Apr 2024 13:51:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gxuukqixQSlyZ43Ym0fDqW8jj6YBDtKhXBUSqt7T/c0=; b=OU0ZEs1gVJpcWa
-	NNvsK/1I13FVFGDDU6GznsjoJsGu1rTAT1lzmjZDPOMfNmbVIcmhZQJA2FwD/GfXJzqtYX0djdzOH
-	a7855jJVF9H5CXX+cK/4lVH0ThK6qxE+JFpx2z92sVmr20leqhzmFTl2mjmNS2xCm7dF2EERXc87v
-	nJA8fIeoTVhB0n1uY7F1/eiE4xa+AU9d2QKqnCG89Ki3xQLbfOcE9C+JQGeUMIWLiw5vlZzFmi1gP
-	lZV1moWIk3wSz8wmaXZiQH5f5013BpdXuQo52nlzoNPrqe4oWd2BXda5ABIBRz8aHpG3Ajhrzisuo
-	Mknr64FA2DUwERpBx61Q==;
+	List-Owner; bh=+wbdsEC6NTwKynU9RgOF0Ni9f2U5IcN8E6KNeqbOhtg=; b=z7chWrQ22pUWHT
+	h5YNxYfZO1x+LgKnY8ZgofQYO0bCZBnqVhw+KayZ6OfwXxNEAe4Ty+JvrWZglsvCN7CaTwWXezCu9
+	twZcBYYK5e4yOT9SvrEPNNPgjUZrgjgJCUfs6QPS2qEMiEvuflqTkytqJ5LYdkKYl/HrBasHzcobI
+	212+ya3NIukAnba6+KR8rKXH2NjbfrjxMQw+fJZdxmwvSrcVTEX/fcoevy4FijPmx7AXrnC7Waj61
+	HIRfeqnwrFsMh/dKXmOw3R4NlxXs1SDhg8Bfg+WxnlDX6eKhuhuNbkU1BgqezKsDJhOI3o6x8C0uY
+	chZnMhxBlfmQEEhQNbPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rup2Y-0000000Atzb-3NCm;
-	Thu, 11 Apr 2024 07:40:10 +0000
-Received: from abb.hmeau.com ([144.6.53.87])
+	id 1ruue2-0000000CCNc-12RF;
+	Thu, 11 Apr 2024 13:39:14 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rup2U-0000000Atv6-1ThL;
-	Thu, 11 Apr 2024 07:40:09 +0000
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-	id 1rup1d-000Fuk-TF; Thu, 11 Apr 2024 15:39:14 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Thu, 11 Apr 2024 15:39:31 +0800
-Date: Thu, 11 Apr 2024 15:39:31 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Alexey Romanov <avromanov@salutedevices.com>
-Cc: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"clabbe@baylibre.com" <clabbe@baylibre.com>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"khilman@baylibre.com" <khilman@baylibre.com>,
-	"jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
-	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
-	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	kernel <kernel@sberdevices.ru>
-Subject: Re: [PATCH v6 11/23] drivers: crypto: meson: introduce hasher
-Message-ID: <ZheTs8kfpSPOtN/1@gondor.apana.org.au>
-References: <20240326153219.2915080-1-avromanov@salutedevices.com>
- <20240326153219.2915080-12-avromanov@salutedevices.com>
- <Zg+gnrO/wX5S+zlw@gondor.apana.org.au>
- <20240410103908.suw6x3pywk73nftp@cab-wsm-0029881.sigma.sbrf.ru>
+	id 1ruudl-0000000CC9V-3DeM;
+	Thu, 11 Apr 2024 13:39:01 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 541E3120077;
+	Thu, 11 Apr 2024 16:38:56 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 541E3120077
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1712842736;
+	bh=NhKK43BFs9WSPEu12TubmDHMMoMRfMTyJ3HOlIxykU8=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=iiZR7l8HxCnAGbYj1+LYrc5sTm/hxHqQVMv092gfRJzzgeZNQrTy2FU7YBBps3vgA
+	 qsXbpzzqKcq5ZsAUxklI4LHdj8WcWOZ8ok2hurI5k2oDGEyyc3yA6WZ8gaT3+rdD8Y
+	 0NIn/n5iRU6uwMw8xbShO0YpK76bFY35WUBnlzWDmhMVW5gHjhUXX+iSqB6an1ioTZ
+	 98tU6KsBIDotdyWoOuLleqTGmGKdf63Pwsj1aJB1qpA6TyRXLwbZpZFozLTRv6YGea
+	 YZbPPYxoijLVhomNylsY11q4WWKAkLz17lg+f/TmE3TWyNfXWXTLjotuns8M13fvkG
+	 zB6LWTMAaZ6sA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu, 11 Apr 2024 16:38:56 +0300 (MSK)
+Received: from user-A520M-DS3H.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 11 Apr 2024 16:38:54 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
+	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <vadim.fedorenko@linux.dev>
+CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
+ Romanov <avromanov@salutedevices.com>
+Subject: [PATCH v7 04/23] drivers: crypto: meson: add MMIO helpers
+Date: Thu, 11 Apr 2024 16:38:13 +0300
+Message-ID: <20240411133832.2896463-5-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240411133832.2896463-1-avromanov@salutedevices.com>
+References: <20240411133832.2896463-1-avromanov@salutedevices.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240410103908.suw6x3pywk73nftp@cab-wsm-0029881.sigma.sbrf.ru>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184672 [Apr 11 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 16 0.3.16 6e64c33514fcbd07e515710c86ba61de7f56194e, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/11 09:22:00 #24744908
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240411_004006_413530_37B7A0D2 
-X-CRM114-Status: GOOD (  15.76  )
+X-CRM114-CacheID: sfid-20240411_063858_175984_F4A73CA7 
+X-CRM114-Status: GOOD (  15.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,40 +104,87 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Apr 10, 2024 at 10:39:14AM +0000, Alexey Romanov wrote:
-> Hello Herbert,
-> 
-> On Fri, Apr 05, 2024 at 02:56:30PM +0800, Herbert Xu wrote:
-> > On Tue, Mar 26, 2024 at 06:32:07PM +0300, Alexey Romanov wrote:
-> > > Introduce support for SHA1/SHA224/SHA256 hash algos.
-> > > Tested via tcrypt and custom tests.
-> > > 
-> > > Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
-> > > ---
-> > >  drivers/crypto/amlogic/Makefile             |   2 +-
-> > >  drivers/crypto/amlogic/amlogic-gxl-core.c   |  25 +-
-> > >  drivers/crypto/amlogic/amlogic-gxl-hasher.c | 460 ++++++++++++++++++++
-> > >  drivers/crypto/amlogic/amlogic-gxl.h        |  51 +++
-> > >  4 files changed, 536 insertions(+), 2 deletions(-)
-> > >  create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
-> > 
-> > Where are the import/export functions?
-> 
-> Sorry, I miss understand you. What do you mean by "import/epxort
-> functions"?
+Add MMIO access helpers: meson_dma_start() and meson_dma_ready().
 
-The crypto hash API supports partial hashing, which means that
-you need to be able to hash part of the data, save the state,
-and then resume it later.
+Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c |  2 +-
+ drivers/crypto/amlogic/amlogic-gxl-core.c   | 24 ++++++++++++++++-----
+ drivers/crypto/amlogic/amlogic-gxl.h        |  2 ++
+ 3 files changed, 22 insertions(+), 6 deletions(-)
 
-If your hardware only supports full hashing then you will need
-to add a software fallback.
-
-Cheers,
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+index 7eff3ae7356f..1fe916b0a138 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+@@ -225,7 +225,7 @@ static int meson_cipher(struct skcipher_request *areq)
+ 
+ 	reinit_completion(&mc->chanlist[flow].complete);
+ 	mc->chanlist[flow].status = 0;
+-	writel(mc->chanlist[flow].t_phy | 2, mc->base + ((mc->pdata->descs_reg + flow) << 2));
++	meson_dma_start(mc, flow);
+ 	wait_for_completion_interruptible_timeout(&mc->chanlist[flow].complete,
+ 						  msecs_to_jiffies(500));
+ 	if (mc->chanlist[flow].status == 0) {
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+index 9d92115043c3..0698ac5e2a6a 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-core.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+@@ -22,18 +22,32 @@
+ 
+ #include "amlogic-gxl.h"
+ 
++void meson_dma_start(struct meson_dev *mc, int flow)
++{
++	u32 offset = (mc->pdata->descs_reg + flow) << 2;
++
++	writel(mc->chanlist[flow].t_phy | 2, mc->base + offset);
++}
++
++static bool meson_dma_ready(struct meson_dev *mc, int flow)
++{
++	u32 offset = (mc->pdata->status_reg + flow) << 2;
++	u32 data = readl(mc->base + offset);
++
++	if (data)
++		writel_relaxed(0xF, mc->base + offset);
++
++	return data;
++}
++
+ static irqreturn_t meson_irq_handler(int irq, void *data)
+ {
+ 	struct meson_dev *mc = (struct meson_dev *)data;
+ 	int flow;
+-	u32 p;
+ 
+ 	for (flow = 0; flow < mc->flow_cnt; flow++) {
+ 		if (mc->chanlist[flow].irq == irq) {
+-			p = readl(mc->base + ((mc->pdata->status_reg + flow) << 2));
+-			if (p) {
+-				writel_relaxed(0xF, mc->base +
+-					      ((mc->pdata->status_reg + flow) << 2));
++			if (meson_dma_ready(mc, flow)) {
+ 				mc->chanlist[flow].status = 1;
+ 				complete(&mc->chanlist[flow].complete);
+ 				return IRQ_HANDLED;
+diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
+index 9ad75da214ff..8670f7ebcdda 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl.h
++++ b/drivers/crypto/amlogic/amlogic-gxl.h
+@@ -161,6 +161,8 @@ struct meson_alg_template {
+ #endif
+ };
+ 
++void meson_dma_start(struct meson_dev *mc, int flow);
++
+ int meson_enqueue(struct crypto_async_request *areq, u32 type);
+ 
+ int meson_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
