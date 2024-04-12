@@ -4,76 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9711C4345F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Apr 2024 13:12:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF643C4345F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Apr 2024 13:13:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=e2x0OFKjwwZdK6Lq1aYF+Vbg81UQyPdz8EQlpYlrTR0=; b=CcxqOkN61BhwgqIOffXPIBMe28
-	LxG5ktcnuPJZ5J4X2VlU4iYIOCziKN24t6U//WixWQpxpii1YAPzppe31uNpuAmqmBvVeRmTRdSeY
-	F36LZvBXCdL590RFiCu2whDRvT+781QLPa7RECPQPzMnIC4Zr/5vypCWwDv/2chTHHjYavH8cue34
-	NM8tolW1yn2EfldNgEb212LrQmx1Zhs6ibiw3HMVSMgINMXFhiCqkx8FBihVXGKUJSeRHOK/SBzoK
-	ufoKs8K6oSV9k81f6YgDatbV/lWgl47JW/pQRvYcAuU4oAOTuc0HyuWnzwvCKrHWxJqOTY4mqoZtj
-	Noi5NPwQ==;
+	bh=UmqSmgDXujVmLdOIWMe7fm4fNWmT2m9mNxf3jvi3JsE=; b=zTaeMsDwCCvo27otSfet32bhOC
+	iXJhFD4/NNuRlEcx6G4gJQo5u79YuCloJ71QGAolp3pu245I+OIN96kRj7nW47VCDiZqa+QoQtTb9
+	SWq3+QZNSLUelZ52GUykv27bmi8eLV5PPbn3XlWCWzu6yr491N0GoxqTUPfR1wUhKoor0zelEDxpZ
+	xUGuO4vf0XtR7VV6eyHcFMaoHAnh81QaV53btO/XueiTB6UjIl5YxDRAwHxOzpGtYSGZ8j7UWWTuL
+	AbVKa/u2fA06VL56oKlz5WTHo2MrunnOOKKSgTsQ9yer+vV9Iqffk0AUk4udbcyG1XpX/UE5wKg6y
+	f0pN5k9Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rvGhR-0000000HFo5-3HY1;
-	Fri, 12 Apr 2024 13:12:13 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1rvGiP-0000000HGAT-13ws;
+	Fri, 12 Apr 2024 13:13:13 +0000
+Received: from mail-lj1-x22b.google.com ([2a00:1450:4864:20::22b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rvGhL-0000000HFja-2fyN
+	id 1rvGiL-0000000HG97-31c9
 	for linux-amlogic@lists.infradead.org;
-	Fri, 12 Apr 2024 13:12:11 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-343e096965bso518932f8f.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 12 Apr 2024 06:12:03 -0700 (PDT)
+	Fri, 12 Apr 2024 13:13:11 +0000
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2da01cb187cso13794591fa.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 12 Apr 2024 06:13:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712927522; x=1713532322; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1712927588; x=1713532388; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HQ0L1lTlp0VaxEc/hCXJVTS/lOCsBpaPDpagV2ZMnic=;
-        b=wQzMlC39dwihFzQnzG7CIXhMI7tsAxJoSS1gZVQCYJXlrUAth2/4s4hQUQWCVlKWGW
-         ZGaqsD5ADwxPVXu+ogenn+Nzr0xg594NoLuZkXO5EOJSeb8EHw9P81rhOKwpHyLzkD4p
-         hujZlBzbU65RSaz8TNFOUEPfybtmOu2CZT/uKnpI1ND4o6cJa5hf32EJ6BTwZ7oqgNgo
-         7wK8VoDN4DAGkXjkF9QFkxBebJeWouyPlhdm81f7VeTUpba1cGji/BDnxvVlSkJBpMCO
-         VQs+LsTxPSA720+VHIsiGWGUUNHkSqYbHNWvLlNqAVHba9gfEMpdv5KrAFCG5UPWjrQA
-         Rvow==
+        bh=xtuLBfdgT9O7IxnW5LngiuzSdf1ZJSvc18BOhG86MJk=;
+        b=Uv3vpudoJUndaJ7QAwSpBl0jBUngjYn7evxQ/zRqu+2EbAfR4pQT8pEwZ/k3l9Gjmy
+         X1hUK3r86EKCIgq7QeGaacspipGMlcE1sGk9JXSMpyyrptQ+KMBxtIGqKvF2yPqKLPBr
+         uMKVKPQdhVIxDK9tsZqPwkDtxtyJd1wHfOE/67HX4RLZhl1OONEAknw5aiQahevq+Wdy
+         vAXfYoSWwaovMLAqj379rbzD4qrlVeW+tKVsdAtRPlwzO3UU7aLN52h11DDxuwIvlpog
+         YmiWCnuQWzw7J9e1GhQ4qLvtr5E+1hO0+ofnHjjq4sRGQfl2cl6+fkrxJ+g6bT7zkDZn
+         iWzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712927522; x=1713532322;
+        d=1e100.net; s=20230601; t=1712927588; x=1713532388;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=HQ0L1lTlp0VaxEc/hCXJVTS/lOCsBpaPDpagV2ZMnic=;
-        b=bJRl6765u3pcHM+9b54mM+mwAJb2t1VgzwmIZkEpD7mFr6whzAH/nPiLku0tHxrvwx
-         ITelZ40ST5eFM9nGRtuNgX0nmGwT+SeZ+OpDKlRbY/eR99/a70sUBf++/q9NjpKrF0eP
-         SeU31zfWOLWHWXOSh5lW70NBKVq9U0IhjTEykhGvFg/2icqrCmhzFcCJzr7lTepik1Jd
-         ZmLJfISx+2NrSNEhfKfwJ18IvtGodZPHZsBVN6X0+wj/aTtFRq2lwXZIUpyFfL3mZgb1
-         fvY1Di/sADYzk13LVSRBZZYy5hatFPssgP3E1uIe+xz2LWsgt1JAZL6oCokE/yoFHrJf
-         9Ccg==
-X-Forwarded-Encrypted: i=1; AJvYcCWrk8zb5YUbfk5yPPj3dN+w0bZI8PAZR5HuxWd7Dbatmf8olwEfEhxQe9PWgAPcURuosZiPZvmhEjwUz79mRF/+RuJrTXhtkW2Y4yXEFHqJ5Jo=
-X-Gm-Message-State: AOJu0Yw+ddIFSh59gHgui6XQhpSNiNfjbAXeekOnywN7BRiPohkqTK//
-	zXZVZq7hor/4yHGdQ6IHPqfR/KXbkgGmKPU0qh0yBcZzI2YTuzl7DV7CR5NoboN5AugxwD3JWKu
-	E98nmjg==
-X-Google-Smtp-Source: AGHT+IE5Zi7ZrlXGaEdi53dt4XiFi3zXa53JxDtMekuN6h8VpfwL+rzY9QfseJ9e4XvEwbI3EVbvvA==
-X-Received: by 2002:adf:e5c5:0:b0:347:ced:c7c7 with SMTP id a5-20020adfe5c5000000b003470cedc7c7mr1491393wrn.9.1712927522091;
-        Fri, 12 Apr 2024 06:12:02 -0700 (PDT)
+        bh=xtuLBfdgT9O7IxnW5LngiuzSdf1ZJSvc18BOhG86MJk=;
+        b=UWcV5F/zNXtcucpafUJl+kkdhtQvdxyiC4oQWlahIpwwJP/kx/tEs9SYoCyMBL0kAF
+         yIGmbMRgGzEeTLkI1l4YT2b8YeXTz+vm964Vj2yI8ptzDwJyJd/T0Hof38OaLSzx1/Kj
+         18hwtrfeeMmDe0jtFYrKBiNngjZW2vIp66JxrOjMyWXsFBqpOthaJ9nHNPRufcmm6EJV
+         O3nKENJb7to6OBbvDXOWSW9tHHI0boX8gQ7TIMh1hxyVhojUjFnf+iEHVLD38/YIsAfP
+         6XqTIbcmzKKdyp71/w7ZRL5GceafRf4KJcj8rCjLcBqJQEgazC/v7cAWB+EANswOo1ps
+         yxQA==
+X-Forwarded-Encrypted: i=1; AJvYcCXO0Kbqn78xMKNmw97SE8k/Uxm1XYn6+FaqJF52c40LfjIpj4Ko97l1AUFue+k0kvubV/6VWAbJrOHfSkAtEATCDSL89tBrQeUzQMVylhehdO0=
+X-Gm-Message-State: AOJu0YziYZt99aFgqhZtVnb3tCbmIhfQhUkO8ElqeGDKCYIS/FA9ixWq
+	RoqlhpsiKVRjsUhSysEXgEcnRKhYeP4qavd2VqQRf+l0CNC8aBEjsEAYmp/IWVg=
+X-Google-Smtp-Source: AGHT+IHFNhjOs9W6uuEXESacXfBAgAM2gqmrbmOS0xKW8DUuzebaRbsNb1d/ydZOoh78gSJFpe63/g==
+X-Received: by 2002:a05:651c:19a7:b0:2da:6b4:8b19 with SMTP id bx39-20020a05651c19a700b002da06b48b19mr1887093ljb.36.1712927587790;
+        Fri, 12 Apr 2024 06:13:07 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:986c:54c:12ce:a121? ([2a01:e0a:982:cbb0:986c:54c:12ce:a121])
-        by smtp.gmail.com with ESMTPSA id h6-20020a5d5046000000b00346df659e7dsm2857058wrt.17.2024.04.12.06.12.01
+        by smtp.gmail.com with ESMTPSA id o4-20020a05600c4fc400b004170e0aff7asm8460789wmq.35.2024.04.12.06.13.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Apr 2024 06:12:01 -0700 (PDT)
-Message-ID: <10650c59-96f2-4234-b5fd-aa8efec90e5b@linaro.org>
-Date: Fri, 12 Apr 2024 15:12:00 +0200
+        Fri, 12 Apr 2024 06:13:07 -0700 (PDT)
+Message-ID: <1a94a14d-cdcd-4764-a5f5-3224258165a6@linaro.org>
+Date: Fri, 12 Apr 2024 15:13:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 1/3] dt-bindings: reset: Add Amlogic T7 Reset Controller
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- kelvin.zhang@amlogic.com, Philipp Zabel <p.zabel@pengutronix.de>,
+Subject: Re: [PATCH 0/3] Add support for Amlogic T7 Reset
+To: kelvin.zhang@amlogic.com, Philipp Zabel <p.zabel@pengutronix.de>,
  Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
@@ -83,8 +81,6 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
  Zelong Dong <zelong.dong@amlogic.com>
 References: <20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com>
- <20240329-t7-reset-v1-1-4c6e2e68359e@amlogic.com>
- <927ad2cb-3b41-4eda-b930-856be64ae9ba@linaro.org>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -111,10 +107,11 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <927ad2cb-3b41-4eda-b930-856be64ae9ba@linaro.org>
+In-Reply-To: <20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240412_061207_915131_EEC39027 
-X-CRM114-Status: GOOD (  18.39  )
+X-CRM114-CacheID: sfid-20240412_061309_770396_0588F44B 
+X-CRM114-Status: UNSURE (   9.47  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,75 +129,36 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Hi Philipp,
 
-On 29/03/2024 20:39, Krzysztof Kozlowski wrote:
-> On 29/03/2024 10:17, Kelvin Zhang via B4 Relay wrote:
->> From: Zelong Dong <zelong.dong@amlogic.com>
->>
->> Add a new compatible and the related header file
->> for Amlogic T7 Reset Controller.
->>
->> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
->> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
->> ---
->>   .../bindings/reset/amlogic,meson-reset.yaml        |   1 +
->>   include/dt-bindings/reset/amlogic,t7-reset.h       | 197 +++++++++++++++++++++
->>   2 files changed, 198 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->> index f0c6c0df0ce3..fefe343e5afe 100644
->> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->> @@ -19,6 +19,7 @@ properties:
->>         - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
->>         - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
->>         - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
->> +      - amlogic,t7-reset # Reset Controller on T7 and compatible SoCs
->>   
+On 29/03/2024 10:17, Kelvin Zhang via B4 Relay wrote:
+> Add a new compatible and device node for Amlogic T7 Reset.
 > 
-> If there is going to be any resend, please drop the comment. It's not
-> really helpful and makes it trickier to read.
-> 
->>     reg:
->>       maxItems: 1
->> diff --git a/include/dt-bindings/reset/amlogic,t7-reset.h b/include/dt-bindings/reset/amlogic,t7-reset.h
->> new file mode 100644
->> index 000000000000..ca4a832eeeec
->> --- /dev/null
->> +++ b/include/dt-bindings/reset/amlogic,t7-reset.h
->> @@ -0,0 +1,197 @@
->> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
->> +/*
->> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->> + */
->> +
->> +#ifndef _DT_BINDINGS_AMLOGIC_T7_RESET_H
->> +#define _DT_BINDINGS_AMLOGIC_T7_RESET_H
->> +
->> +/* RESET0 */
->> +/*					0-3	*/
-> 
-> I assume this matches existing drivers which do not use IDs but map the
-> binding to hardware value? I remember we talked about changing it, so if
-> something happened about this and it could be changed: please change.
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+> ---
+> Zelong Dong (3):
+>        dt-bindings: reset: Add Amlogic T7 Reset Controller
+>        reset: reset-meson: add support for Amlogic T7 SoC Reset Controller
+>        arm64: dts: amlogic: add reset controller for Amlogic T7 SoC
 
-I'm not aware of such discussion, and I don't really see the issue...
-thoses are IDs, and yes they match the Hardware offsets, and ?
-
-> 
-> Otherwise, it's fine:
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+If you could apply patches 1 & 2 and prepare me an immutable branch, I could
+merge the DT part for v6.10.
 
 Thanks,
 Neil
 
 > 
+>   .../bindings/reset/amlogic,meson-reset.yaml        |   1 +
+>   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        |   7 +
+>   drivers/reset/reset-meson.c                        |   6 +
+>   include/dt-bindings/reset/amlogic,t7-reset.h       | 197 +++++++++++++++++++++
+>   4 files changed, 211 insertions(+)
+> ---
+> base-commit: a6bd6c9333397f5a0e2667d4d82fef8c970108f2
+> change-id: 20240329-t7-reset-f87e8346fadb
 > 
 > Best regards,
-> Krzysztof
-> 
 
 
 _______________________________________________
