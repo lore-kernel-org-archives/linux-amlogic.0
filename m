@@ -4,64 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92B16C4345F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Apr 2024 08:22:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 264D8C4345F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Apr 2024 08:26:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
+	References:Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YFNYu8ODmVdKYUsQEDx/BLRj2K+VyTgnr7eFCGkNGP4=; b=QieXlQL8x6oxwH
-	0B2ncGnFGOLqgQ6Nc3HV144/ppSpcqdJkxaDBQusvN/CWxw7pzWZYG8P8PebrLyd25XRKQe2GOL4B
-	s47b9vKTCaBdqa38+NhSaaQGgvdKmRplQU89fAqd8JMWFzp9H/1bcOpupd3ze3+TNNYS77udj5s4l
-	WabCG8zI09ameFjNl3CBn0uIQXkL7ofbb/yjPabebQzIfMqS6bqTkEvK+DNcRvBl6RyaVgh40ISDb
-	soJXbJt8FKN8g/fVWF/VunOXH8IXpyKjGR9CrYKQTwFhDc7S6xNZo9VZ9BN0qX/jItPjuPbpo613r
-	GbVG30rgmCEg/PpchNvQ==;
+	List-Owner; bh=PhcY0i6C2Pa1vGmwFj4d7scK5HAP2n6RLOMET+Md3uI=; b=GLY5gq3WTOuXQ7
+	rj7Le+Xub8n997Wo/qvrq9Si4xvh12rG7X409JDyw6DEvWj9IjEqRZ7OnS4B93vvvJRjG6yJwnjAM
+	Zh3UlBOgPseJ8YAdRYLjdAFFUtWGFTDlgbgg295Kfw+pl1QucCl0b4/3wlViW7RIxE00YvhzQ/i/0
+	8MZZQEZzfGLS5WWegccAz92YEm8oLcOpQyzgjiMv35HWLjVgMMB0NORMhPTUe87tyb99w3Or0MsRI
+	4cFHXMZORtqxsABbCoZESSpOA9EED752kNSz5w8HCkM5a4SOOgbhPsOLi5ucmiJ/QI577Fk1T3aZB
+	MrMrXkD4DOCtgO1xJX7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rvCB0-0000000G3Qq-0As5;
-	Fri, 12 Apr 2024 08:22:26 +0000
-Received: from abb.hmeau.com ([144.6.53.87])
+	id 1rvCEL-0000000G4Fn-0Xdq;
+	Fri, 12 Apr 2024 08:25:53 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rvCAx-0000000G3OZ-0pIB;
-	Fri, 12 Apr 2024 08:22:25 +0000
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-	id 1rvCAN-000n5W-DN; Fri, 12 Apr 2024 16:21:48 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 12 Apr 2024 16:22:04 +0800
-Date: Fri, 12 Apr 2024 16:22:04 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Alexey Romanov <avromanov@salutedevices.com>
-Cc: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"clabbe@baylibre.com" <clabbe@baylibre.com>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	id 1rvCEH-0000000G4E7-2JgR;
+	Fri, 12 Apr 2024 08:25:51 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id BA55C120006;
+	Fri, 12 Apr 2024 11:25:46 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru BA55C120006
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1712910346;
+	bh=AgQMwhLM2SQJL/DxUrA6t4vddU8OTk+2j0IqX/shhbU=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
+	b=C8YBflIpipAZ1mefV1MD4x/XIVT6rsTSMbfjhioBjJDidSL6leypyb9BeXPtgCcCm
+	 XPU3EBax6cIFufbBJy4gPC59D8uvydAABfj8CdDcf7YVqA7KTSVE94RmUD/v77c8NV
+	 1HTkVFrhRvpTH9nBZBkdCyVauNLvXopCCWJSuavTr0P3Xhw3foVhPFW2LAzYAiqJHZ
+	 rkpzr2HijTQdszf39V9GZariGuUkxTe1TUr2wiIQatAHsUv1BnmcRK5LGzLDTVZ3py
+	 FhTahrgp42fUF2ac97CMhCGCpMgbEvSAIZkTr7rfAVz5VFWrDrQW1ttWNH3SeHXfk7
+	 C6m2KpSMAiBng==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 12 Apr 2024 11:25:46 +0300 (MSK)
+Received: from p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 12 Apr 2024 11:25:46 +0300
+Received: from p-i-exch-sc-m02.sberdevices.ru ([fe80::10c3:6e04:fd07:c511]) by
+ p-i-exch-sc-m02.sberdevices.ru ([fe80::10c3:6e04:fd07:c511%9]) with mapi id
+ 15.02.1118.040; Fri, 12 Apr 2024 11:25:46 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: Herbert Xu <herbert@gondor.apana.org.au>
+CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"clabbe@baylibre.com" <clabbe@baylibre.com>, "davem@davemloft.net"
+	<davem@davemloft.net>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
 	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"khilman@baylibre.com" <khilman@baylibre.com>,
-	"jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
+	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
 	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
 	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
 	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
 	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
 	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
 	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	kernel <kernel@sberdevices.ru>
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
 Subject: Re: [PATCH v7 00/23] Support more Amlogic SoC families in crypto
  driver
-Message-ID: <ZhjvLMcMXKNmlCZ7@gondor.apana.org.au>
+Thread-Topic: [PATCH v7 00/23] Support more Amlogic SoC families in crypto
+ driver
+Thread-Index: AQHajBWUrVGAoz0gN0yHbEf56dYdJrFjvtOAgABbAICAAAC3AIAAAQKA
+Date: Fri, 12 Apr 2024 08:25:46 +0000
+Message-ID: <20240412082541.zxlbnigfs733q4sf@cab-wsm-0029881.sigma.sbrf.ru>
 References: <20240411133832.2896463-1-avromanov@salutedevices.com>
  <ZhiiPVckOYH9dFQ/@gondor.apana.org.au>
  <20240412081931.3s2fw6hds3hh5cwg@cab-wsm-0029881.sigma.sbrf.ru>
+ <ZhjvLMcMXKNmlCZ7@gondor.apana.org.au>
+In-Reply-To: <ZhjvLMcMXKNmlCZ7@gondor.apana.org.au>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.18.92]
+Content-ID: <7DE82C9FF3EB794695833D14A6D82635@sberdevices.ru>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240412081931.3s2fw6hds3hh5cwg@cab-wsm-0029881.sigma.sbrf.ru>
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184683 [Apr 12 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 16 0.3.16 6e64c33514fcbd07e515710c86ba61de7f56194e, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;gondor.apana.org.au:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;cab-wsm-0029881.sigma.sbrf.ru:7.1.1,5.0.1;smtp.sberdevices.ru:7.1.1,5.0.1;salutedevices.com:7.1.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/04/12 08:01:00
+X-KSMG-LinksScanning: Clean, bases: 2024/04/12 08:01:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/12 02:59:00 #24750120
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240412_012223_264218_56CCAC0B 
-X-CRM114-Status: UNSURE (   8.49  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240412_012549_994577_7A8CF765 
+X-CRM114-Status: GOOD (  14.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,26 +122,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Apr 12, 2024 at 08:19:36AM +0000, Alexey Romanov wrote:
->
-> Old Amlogic Soc's for crypto HW used a BLKMV engine, which required
-> a clk input and a second interrupt line. New SoC's uses DMA engine
-> and don't need this.
+On Fri, Apr 12, 2024 at 04:22:04PM +0800, Herbert Xu wrote:
+> On Fri, Apr 12, 2024 at 08:19:36AM +0000, Alexey Romanov wrote:
+> >
+> > Old Amlogic Soc's for crypto HW used a BLKMV engine, which required
+> > a clk input and a second interrupt line. New SoC's uses DMA engine
+> > and don't need this.
+> > 
+> > I spoke with vendor, and they confirmed that AXG, G12A, G12B, SM1,
+> > A1, S4 and GXL is using DMA engine and crypto HW is not connected
+> > to clk / second interrupt line.
 > 
-> I spoke with vendor, and they confirmed that AXG, G12A, G12B, SM1,
-> A1, S4 and GXL is using DMA engine and crypto HW is not connected
-> to clk / second interrupt line.
+> Sorry I'm just asking you to ensure that you've tested the whole
+> patch-series with CRYPTO_MANAGER_EXTRA_TESTS enabled and there are
+> no errors reported.
 
-Sorry I'm just asking you to ensure that you've tested the whole
-patch-series with CRYPTO_MANAGER_EXTRA_TESTS enabled and there are
-no errors reported.
+Oh, yep, I will test with this option enabled soon.
 
-Thanks,
+> 
+> Thanks,
+> -- 
+> Email: Herbert Xu <herbert@gondor.apana.org.au>
+> Home Page: http://gondor.apana.org.au/~herbert/
+> PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
-
+Thank you,
+Alexey
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
