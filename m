@@ -4,85 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37567C4345F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Apr 2024 13:09:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9711C4345F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Apr 2024 13:12:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=oz7/M9fOmGzM9fV6UVrtSqKdE2fYMbCCK/XfO9uiQcU=; b=EQLUZ0jyBqdzAT5vlchReZXVHY
-	JrhPNkZLVU2Qw0/vYAEjhoeUDLPBhDTKc3209VGCi+57G2yetd41/k8W5SwBpUTpgRtcxG51MWhA2
-	kqtSQLsNpX9dkItoVR6lZYfsUrN+JmQBG6cTQ7kFbF7bPixfj3arrQFhFBXYLlG8ADm2cMd2XLCBy
-	PyXWwTSrW333nEX4ALLHE05o/xdEhEpp1z71OKQIj6Ggq6RqRbLz2e8LabnyJBDTzYkVHKJYqFEgk
-	Fq5DG6HoZYLBkIaHa8U3OARdNK5TJKsb5NAMey8b3lpfo4ZPDeGyDNA1ofAOIeuP+gph2AMcA/3eQ
-	zZqlfA+Q==;
+	bh=e2x0OFKjwwZdK6Lq1aYF+Vbg81UQyPdz8EQlpYlrTR0=; b=CcxqOkN61BhwgqIOffXPIBMe28
+	LxG5ktcnuPJZ5J4X2VlU4iYIOCziKN24t6U//WixWQpxpii1YAPzppe31uNpuAmqmBvVeRmTRdSeY
+	F36LZvBXCdL590RFiCu2whDRvT+781QLPa7RECPQPzMnIC4Zr/5vypCWwDv/2chTHHjYavH8cue34
+	NM8tolW1yn2EfldNgEb212LrQmx1Zhs6ibiw3HMVSMgINMXFhiCqkx8FBihVXGKUJSeRHOK/SBzoK
+	ufoKs8K6oSV9k81f6YgDatbV/lWgl47JW/pQRvYcAuU4oAOTuc0HyuWnzwvCKrHWxJqOTY4mqoZtj
+	Noi5NPwQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rvGej-0000000HEyw-2tez;
-	Fri, 12 Apr 2024 13:09:25 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1rvGhR-0000000HFo5-3HY1;
+	Fri, 12 Apr 2024 13:12:13 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rvGef-0000000HEwd-3wGO
+	id 1rvGhL-0000000HFja-2fyN
 	for linux-amlogic@lists.infradead.org;
-	Fri, 12 Apr 2024 13:09:23 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-417f81ef467so5347535e9.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 12 Apr 2024 06:09:21 -0700 (PDT)
+	Fri, 12 Apr 2024 13:12:11 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-343e096965bso518932f8f.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 12 Apr 2024 06:12:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1712927360; x=1713532160; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1712927522; x=1713532322; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/mV7BMke1UIa5mb95gKPd8HhIzp2MCcM69xRq4po3gY=;
-        b=Jr7t+Oi1UeCvNydEt8/lu1uAWy18Bk3jJuTSU9Lr4VR8aqCUOitx+OPcRnXkxMfUId
-         55VMXZeSqDPJv/utRtKrZUbeIGeDnQLiButqVAGaamkbmPm60gFQvPpcDDOOZ7IWX1Cl
-         1MYtNmqTcBhwSA61QyBTpajte/qriekfPNXvzwksIrGPUQnkAUbRYNEuH63JW+0tdpzb
-         1lq7Af/33O/YT+f7yJw38sPPLNvJN0zf9xIqoeUcysR6HVZBVdGuTZqU9QMgWBpe+nqA
-         ak0jiCfaPrFPh+FYHqqV6VdMIfjqDCwM+HzlBYPOjDkTS+e8GE9L46Y8WL2Gjku69Tp0
-         hHQQ==
+        bh=HQ0L1lTlp0VaxEc/hCXJVTS/lOCsBpaPDpagV2ZMnic=;
+        b=wQzMlC39dwihFzQnzG7CIXhMI7tsAxJoSS1gZVQCYJXlrUAth2/4s4hQUQWCVlKWGW
+         ZGaqsD5ADwxPVXu+ogenn+Nzr0xg594NoLuZkXO5EOJSeb8EHw9P81rhOKwpHyLzkD4p
+         hujZlBzbU65RSaz8TNFOUEPfybtmOu2CZT/uKnpI1ND4o6cJa5hf32EJ6BTwZ7oqgNgo
+         7wK8VoDN4DAGkXjkF9QFkxBebJeWouyPlhdm81f7VeTUpba1cGji/BDnxvVlSkJBpMCO
+         VQs+LsTxPSA720+VHIsiGWGUUNHkSqYbHNWvLlNqAVHba9gfEMpdv5KrAFCG5UPWjrQA
+         Rvow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712927360; x=1713532160;
+        d=1e100.net; s=20230601; t=1712927522; x=1713532322;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=/mV7BMke1UIa5mb95gKPd8HhIzp2MCcM69xRq4po3gY=;
-        b=o/POidC7p8tvQr7XrhbC83wth8pyL/CcksMcxPoiMBCkmjd1UNx30zl3liUn3OOoml
-         nlkjsZNNj+34MWbjNaOq1CCuZniKYkMHfb6ovea2cATCwUlxT/2KbiRQ7fbu/wDQNOfG
-         C/e+It7qZ+h8YBibWL7fNGSmUzhiQSRFY4touIjsqkB946HaUGlEP2XfLbSRwLwojyIv
-         27NcsX4t5FGUlJ0oYNmaRReGpYnNPC6Ovnw0c6a2J4Aik8nmiWKNW+sWpHvnaUhBZaew
-         JX6jSoTIFc2VQZJOm0Rh8i2Dty941xx10Wiq4AhbyA30cOh7/rCDehq05sIzL2zssGxH
-         dLTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVdFdCzSz30+hweZeUcTGdzC2ycM6Sd3LuI4gDyLjagkxzV3AxRXbnfwV1E6Oco06gBC3eKO93QdHDfhOWl00DeHzyZgylk1p8qep/yNS73DLc=
-X-Gm-Message-State: AOJu0Yyci374vFy/0WLuYghBamQZRhdDDANvUpAkbc4CeQpMhmOeUOg8
-	JrzIkP6jdw9e80+U9hfRuBob9ZFVuhr+bRbH+j8Bqlze/6vTuQxDXwB5tUbcfQM=
-X-Google-Smtp-Source: AGHT+IEAyK9cKqRWpSgxfI0K1PfDcNfIPSuyV7Xa16+5eyFSd02DJFnbu/C6yLCsxNJauPE0X8SWWg==
-X-Received: by 2002:a05:600c:1f93:b0:416:bc18:2a00 with SMTP id je19-20020a05600c1f9300b00416bc182a00mr1973759wmb.38.1712927359295;
-        Fri, 12 Apr 2024 06:09:19 -0700 (PDT)
+        bh=HQ0L1lTlp0VaxEc/hCXJVTS/lOCsBpaPDpagV2ZMnic=;
+        b=bJRl6765u3pcHM+9b54mM+mwAJb2t1VgzwmIZkEpD7mFr6whzAH/nPiLku0tHxrvwx
+         ITelZ40ST5eFM9nGRtuNgX0nmGwT+SeZ+OpDKlRbY/eR99/a70sUBf++/q9NjpKrF0eP
+         SeU31zfWOLWHWXOSh5lW70NBKVq9U0IhjTEykhGvFg/2icqrCmhzFcCJzr7lTepik1Jd
+         ZmLJfISx+2NrSNEhfKfwJ18IvtGodZPHZsBVN6X0+wj/aTtFRq2lwXZIUpyFfL3mZgb1
+         fvY1Di/sADYzk13LVSRBZZYy5hatFPssgP3E1uIe+xz2LWsgt1JAZL6oCokE/yoFHrJf
+         9Ccg==
+X-Forwarded-Encrypted: i=1; AJvYcCWrk8zb5YUbfk5yPPj3dN+w0bZI8PAZR5HuxWd7Dbatmf8olwEfEhxQe9PWgAPcURuosZiPZvmhEjwUz79mRF/+RuJrTXhtkW2Y4yXEFHqJ5Jo=
+X-Gm-Message-State: AOJu0Yw+ddIFSh59gHgui6XQhpSNiNfjbAXeekOnywN7BRiPohkqTK//
+	zXZVZq7hor/4yHGdQ6IHPqfR/KXbkgGmKPU0qh0yBcZzI2YTuzl7DV7CR5NoboN5AugxwD3JWKu
+	E98nmjg==
+X-Google-Smtp-Source: AGHT+IE5Zi7ZrlXGaEdi53dt4XiFi3zXa53JxDtMekuN6h8VpfwL+rzY9QfseJ9e4XvEwbI3EVbvvA==
+X-Received: by 2002:adf:e5c5:0:b0:347:ced:c7c7 with SMTP id a5-20020adfe5c5000000b003470cedc7c7mr1491393wrn.9.1712927522091;
+        Fri, 12 Apr 2024 06:12:02 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:986c:54c:12ce:a121? ([2a01:e0a:982:cbb0:986c:54c:12ce:a121])
-        by smtp.gmail.com with ESMTPSA id j24-20020a05600c1c1800b0041643c9cb0dsm8907068wms.42.2024.04.12.06.09.18
+        by smtp.gmail.com with ESMTPSA id h6-20020a5d5046000000b00346df659e7dsm2857058wrt.17.2024.04.12.06.12.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Apr 2024 06:09:18 -0700 (PDT)
-Message-ID: <ea89f2c5-c9da-46d8-b431-5fc83b1a1738@linaro.org>
-Date: Fri, 12 Apr 2024 15:09:18 +0200
+        Fri, 12 Apr 2024 06:12:01 -0700 (PDT)
+Message-ID: <10650c59-96f2-4234-b5fd-aa8efec90e5b@linaro.org>
+Date: Fri, 12 Apr 2024 15:12:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 5/5] arm64: dts: add support for A5 based Amlogic AV400
-To: xianwei.zhao@amlogic.com, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH 1/3] dt-bindings: reset: Add Amlogic T7 Reset Controller
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ kelvin.zhang@amlogic.com, Philipp Zabel <p.zabel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-serial@vger.kernel.org
-References: <20240401-basic_dt-v3-0-cb29ae1c16da@amlogic.com>
- <20240401-basic_dt-v3-5-cb29ae1c16da@amlogic.com>
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Zelong Dong <zelong.dong@amlogic.com>
+References: <20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com>
+ <20240329-t7-reset-v1-1-4c6e2e68359e@amlogic.com>
+ <927ad2cb-3b41-4eda-b930-856be64ae9ba@linaro.org>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -109,10 +111,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240401-basic_dt-v3-5-cb29ae1c16da@amlogic.com>
+In-Reply-To: <927ad2cb-3b41-4eda-b930-856be64ae9ba@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240412_060922_125750_17962F32 
-X-CRM114-Status: GOOD (  18.32  )
+X-CRM114-CacheID: sfid-20240412_061207_915131_EEC39027 
+X-CRM114-Status: GOOD (  18.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,131 +132,76 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 01/04/2024 12:10, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Hi,
+
+On 29/03/2024 20:39, Krzysztof Kozlowski wrote:
+> On 29/03/2024 10:17, Kelvin Zhang via B4 Relay wrote:
+>> From: Zelong Dong <zelong.dong@amlogic.com>
+>>
+>> Add a new compatible and the related header file
+>> for Amlogic T7 Reset Controller.
+>>
+>> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+>> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+>> ---
+>>   .../bindings/reset/amlogic,meson-reset.yaml        |   1 +
+>>   include/dt-bindings/reset/amlogic,t7-reset.h       | 197 +++++++++++++++++++++
+>>   2 files changed, 198 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+>> index f0c6c0df0ce3..fefe343e5afe 100644
+>> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+>> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+>> @@ -19,6 +19,7 @@ properties:
+>>         - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
+>>         - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
+>>         - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
+>> +      - amlogic,t7-reset # Reset Controller on T7 and compatible SoCs
+>>   
 > 
-> Amlogic A5 is an application processor designed for smart audio
-> and IoT applications.
+> If there is going to be any resend, please drop the comment. It's not
+> really helpful and makes it trickier to read.
 > 
-> Add basic support for the A5 based Amlogic AV400 board, which describes
-> the following components: CPU, GIC, IRQ, Timer and UART.
-> These are capable of booting up into the serial console.
+>>     reg:
+>>       maxItems: 1
+>> diff --git a/include/dt-bindings/reset/amlogic,t7-reset.h b/include/dt-bindings/reset/amlogic,t7-reset.h
+>> new file mode 100644
+>> index 000000000000..ca4a832eeeec
+>> --- /dev/null
+>> +++ b/include/dt-bindings/reset/amlogic,t7-reset.h
+>> @@ -0,0 +1,197 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+>> +/*
+>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+>> + */
+>> +
+>> +#ifndef _DT_BINDINGS_AMLOGIC_T7_RESET_H
+>> +#define _DT_BINDINGS_AMLOGIC_T7_RESET_H
+>> +
+>> +/* RESET0 */
+>> +/*					0-3	*/
 > 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->   arch/arm64/boot/dts/amlogic/Makefile               |  1 +
->   .../boot/dts/amlogic/amlogic-a5-a113x2-av400.dts   | 42 ++++++++++++++++++++++
->   arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        | 40 +++++++++++++++++++++
->   3 files changed, 83 insertions(+)
+> I assume this matches existing drivers which do not use IDs but map the
+> binding to hardware value? I remember we talked about changing it, so if
+> something happened about this and it could be changed: please change.
+
+I'm not aware of such discussion, and I don't really see the issue...
+thoses are IDs, and yes they match the Hardware offsets, and ?
+
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 9a50ec11bb8d..154c9efb26e4 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -1,5 +1,6 @@
->   # SPDX-License-Identifier: GPL-2.0
->   dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += amlogic-a5-a113x2-av400.dtb
->   dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
->   dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
->   dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts b/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts
-> new file mode 100644
-> index 000000000000..11d8b88c1ce5
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts
-> @@ -0,0 +1,42 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "amlogic-a5.dtsi"
-> +
-> +/ {
-> +	model = "Amlogic A113X2 av400 Development Board";
-> +	compatible = "amlogic,av400", "amlogic,a5";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	aliases {
-> +		serial0 = &uart_b;
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x40000000>;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		/* 10 MiB reserved for ARM Trusted Firmware */
-> +		secmon_reserved: secmon@5000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x0 0x05000000 0x0 0xa00000>;
-> +			no-map;
-> +		};
-> +	};
-> +};
-> +
-> +&uart_b {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-> new file mode 100644
-> index 000000000000..43f68a7da2f7
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-> @@ -0,0 +1,40 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +#include "amlogic-a4-common.dtsi"
-> +/ {
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x0 0x0>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu1: cpu@100 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x0 0x100>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu2: cpu@200 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x0 0x200>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu3: cpu@300 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x0 0x300>;
-> +			enable-method = "psci";
-> +		};
-> +	};
-> +};
+> Otherwise, it's fine:
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Thanks,
+Neil
+
+> 
+> 
+> Best regards,
+> Krzysztof
 > 
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
