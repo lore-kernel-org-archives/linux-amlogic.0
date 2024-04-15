@@ -4,169 +4,124 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2245FC4345F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Apr 2024 10:32:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A918AC4345F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Apr 2024 12:59:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=YV8JkE39xZvfDRB8GOaM4h0JlJnNZEftKF1JpSCd1ZA=; b=lkdgYGYsVgEL7G7f0J1cPBYvkf
-	EvDkmeLNmFQFwsT/MINvcSX4+eLmJdIPR7MfqlH+4igsMoh3z76vZxvEv1nM2WGt4GJF85OHMlNqw
-	w+OBfYf9mHT9yObNMgi8OfZ6rQo2FbZodWyFL0cTrzfsKQFhpSTVOwwx6j+45pn11ZqFZUPppDZDj
-	4KCW1v7P5GP8Q5nDzKVAuVNuJqJUeIYkSwgBTGuAxrGVVd9j87RnzK8QTQeLGyh++Qbd12xESOhBU
-	qR5MKO1tohtQQU5Hmg+g3UYQX+blC7gIvLppVo9XixhFI4hgxzsKKkPCdmKpnykkb35Yvzrd39ksc
-	Ns+n91Zg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=T1CW2zD0IexlUgzMNHY3ui+gHbrrJIoNZ9l2HPuLLRs=; b=14ZqbCdJYTXBT+
+	N6U2jnU/cPQV+q2Vtbbl8eVmVurz31C6E1ynljw2yy9hzgOWPKsaFH5GPb2IUaQYHfnyFRIDzoVfb
+	RLAIWPvRE32fCO5rVC0SUk0iX8FyMy3A2+jYOc5DC/g65GbCKBzRPNUiNKltg2MVNmEmguTYvNymp
+	1ZsajizwbMM3i8+MYYM+/i86LQhEnFdcT+FvP1d2YQtWFGLK3iRF6PIfDKcNEJ9Lx2IxNuwQgG9ev
+	b/J6JdiFZZhIcX6CeB9zfys+ORt0baAPzcLzd4/NGecH8FLzHiKZGzhrM/d9HfBKAsNUGVnJONbO0
+	heyWi76Dh9uaVnKRVffg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rwJdE-00000007sQ2-3Sqa;
-	Mon, 15 Apr 2024 10:32:12 +0000
-Received: from mail-southeastasiaazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c401::3] helo=SINPR02CU002.outbound.protection.outlook.com)
+	id 1rwLvK-00000008KsK-1foN;
+	Mon, 15 Apr 2024 12:59:02 +0000
+Received: from mailout2.w1.samsung.com ([210.118.77.12])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rwJd9-00000007sNN-28qH;
-	Mon, 15 Apr 2024 10:32:09 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fLLWGqFDtRQTJeqwGXgAewKDXR2M/1GPLHez0UNPT3jNppMsrVCtFRS1+XOjAEvH+ojIcErD5kMx3nCTbtBKifHj2B57MtczjcUrVtcrnba89QoPeQC5Gs3SyEauyZz+owUdfUN8FD3+VmfAmAnSTY95VKrsf8Zl7LsvFGLhUx6YbPAfNEMZtnp+Kj0qKODcFCbHEEh+FGgZjDybAxbh4ErQJwE0fnf+QwSyantpsNTGjUyw9hK0/4RFqFTFPOe2q5yoEw1KO0HxNy6cPOqBIRsb1xF8G8/1t1zWylcMADGklwZAGokVAkbSh3Rke71DIXSJTObwB5+lS3amBdmQrA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ds3L1mtXBJMHEFdXwN/fDYE5noDINJwrKk8MVbKSTfw=;
- b=PuxDNc4u2INRJknlxXNIe459x7rA58b5zabjAkdXngE8VpSgqQqa1T1geLLb+ualMXx536ufEZatA136Gp7xyLiyMjH+Wmfony9jXBp9JXpTdTUh1Qj/TbhAmKlua9g1atEbW3zJ0NK0KG8JtFAI0tIOHo1eq65FndgeK7bACnj3oVnGkyDg2idoq5oUcmSkDPXitm6TDjmJY7Y/4CZ2HEie5DC+V1KRdCMClyCqAXJBgMK4tVu50FawjRsVeLMotO+V6KtCaYH4sn8FYgOYZ9tL6NJI0IcacFg2UGP7Mr5cBnRS8Zo+C4E0DVkEaole4kq8zdpiD39by1oR2l9GHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ds3L1mtXBJMHEFdXwN/fDYE5noDINJwrKk8MVbKSTfw=;
- b=wKvX/WwcjDeBlzn68ykvIPeLbdq8WanDuGUcasM9PtEGchJdFqqAwE99QDX+9GQo0aQIo8gvYrtlpNUnxJRwHO7fdppWu2FRQpzoC3t/Oz1aUdaplMQ+ZEkdQt0XCiBYMlR3FY7GeBoGWy5Q909f0jEgvYUhxxAFU4NJ8V2sTNujCrlMY7If7DxyEFAAy6TJJSkAJ2b+uRPVBpJn4LbytAnKYWmdDLlCGPgWr0A0t/g0VyY/gKIHJv5IaMGXrMO0Q06H/RJDf6z14vKockzJ0XztAlHXRER9WYuHCGaKhyBFETL6/PuJ/kRiWqaRUXadQxbr1enFrsmN3GdWNCpElQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from JH0PR03MB7384.apcprd03.prod.outlook.com (2603:1096:990:11::8)
- by SEZPR03MB6958.apcprd03.prod.outlook.com (2603:1096:101:9f::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Mon, 15 Apr
- 2024 10:31:57 +0000
-Received: from JH0PR03MB7384.apcprd03.prod.outlook.com
- ([fe80::8627:9243:4397:43c3]) by JH0PR03MB7384.apcprd03.prod.outlook.com
- ([fe80::8627:9243:4397:43c3%6]) with mapi id 15.20.7452.049; Mon, 15 Apr 2024
- 10:31:57 +0000
-Message-ID: <48005005-54ad-473b-826d-23b0b3f3a52c@amlogic.com>
-Date: Mon, 15 Apr 2024 18:31:46 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: reset: Add Amlogic T7 Reset Controller
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- neil.armstrong@linaro.org, Philipp Zabel <p.zabel@pengutronix.de>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- Zelong Dong <zelong.dong@amlogic.com>
-References: <20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com>
- <20240329-t7-reset-v1-1-4c6e2e68359e@amlogic.com>
- <927ad2cb-3b41-4eda-b930-856be64ae9ba@linaro.org>
- <10650c59-96f2-4234-b5fd-aa8efec90e5b@linaro.org>
- <579a1569-7bba-491f-ba5e-7cfcb34ccc1f@linaro.org>
- <c7e243e3-3f61-4d63-8727-3837838bdfcc@linaro.org>
-Content-Language: en-US
-From: Kelvin Zhang <kelvin.zhang@amlogic.com>
-In-Reply-To: <c7e243e3-3f61-4d63-8727-3837838bdfcc@linaro.org>
-X-ClientProxiedBy: TYCP286CA0095.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:2b4::18) To JH0PR03MB7384.apcprd03.prod.outlook.com
- (2603:1096:990:11::8)
+	id 1rwLvG-00000008Koz-03Qs
+	for linux-amlogic@lists.infradead.org;
+	Mon, 15 Apr 2024 12:59:01 +0000
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20240415125848euoutp025ebf80705b801407c93a7ea7d72fd2fc~GdYZw3tSt1205512055euoutp02s
+	for <linux-amlogic@lists.infradead.org>; Mon, 15 Apr 2024 12:58:48 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20240415125848euoutp025ebf80705b801407c93a7ea7d72fd2fc~GdYZw3tSt1205512055euoutp02s
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1713185928;
+	bh=K7kgIzAF8cwrWU7cZnQZrJq9/UxYfRIxipy6YJIOOnc=;
+	h=Date:From:Subject:To:Cc:In-Reply-To:References:From;
+	b=U3DZfTt2tz636C6PK/TOxc5kdPqHBA+WgNL+c9f7jbLpkfE7TazfaTNa1XDFdbp4K
+	 OoNcBD9ppaVqFVCdTDnNa+PocIQQNt/VohmdBru9TOuKws3EYQ6SPCtNybhXcx7/Ii
+	 uvixRC/CXtAC7SbwwI43vAloRWJGzUYSBTHr2z0Y=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20240415125848eucas1p2693e3902c12ef8668751a407d9d9f211~GdYZi7waQ1350713507eucas1p20;
+	Mon, 15 Apr 2024 12:58:48 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+	eusmges2new.samsung.com (EUCPMTA) with SMTP id 83.07.09875.8842D166; Mon, 15
+	Apr 2024 13:58:48 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae~GdYZAlLpo1350813508eucas1p25;
+	Mon, 15 Apr 2024 12:58:47 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240415125847eusmtrp2b598b357b551f9ce09ab776ff9f34d8a~GdYY-6IPH2471724717eusmtrp2U;
+	Mon, 15 Apr 2024 12:58:47 +0000 (GMT)
+X-AuditID: cbfec7f4-11bff70000002693-32-661d2488da1c
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+	eusmgms1.samsung.com (EUCPMTA) with SMTP id 89.6F.08810.7842D166; Mon, 15
+	Apr 2024 13:58:47 +0100 (BST)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20240415125846eusmtip1044831a80b43d035463a2940376d5e6d~GdYYUHAow1109911099eusmtip1Q;
+	Mon, 15 Apr 2024 12:58:46 +0000 (GMT)
+Message-ID: <91ac609b-0fae-4856-a2a6-636908d7ad3c@samsung.com>
+Date: Mon, 15 Apr 2024 14:58:46 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: JH0PR03MB7384:EE_|SEZPR03MB6958:EE_
-X-MS-Office365-Filtering-Correlation-Id: 85b34fca-25ba-44c6-83d0-08dc5d3746f0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?d0RTaXppWlZ2b0lHdzdHK3lKSnJiVGJqS05NZW1NUzVORzMzdlNrMWxlVWRq?=
- =?utf-8?B?NmZZb0ZScVFOdVJLUlhQalVtbWpTM2ZIRnRSa3ZPWldYUElmZDFERkpaei90?=
- =?utf-8?B?WXJWbGgvbC9ONldJRlppVm1MeUtqZVQzSExnazRmc2x0c3Z6cGxjRy90djU4?=
- =?utf-8?B?MlZ4RVJkcGRYWXZ1K1czNUd4YTVhQ3RNYjNLRjQ2am1UbHVGUERKWEVCQkNW?=
- =?utf-8?B?aXhIbmNZSnVHN09YQ1FMa3g4OUtWM0JOd29CR1A2VllhUHMyb1hOVUV1MlVv?=
- =?utf-8?B?WElxQjQ0Z0JuUm0yNXhWM2J5ZXhsTjAzbTNNUy95bTRkMFhjaE81L0E2UnVm?=
- =?utf-8?B?RENXYitDMmcvdVRJZlZMc1RVaTY0UjRHY1dwVU0vQUNac3JQZGViTy84MEor?=
- =?utf-8?B?ZXNTTXd0Vzd5S0JIdlZJZVNlcmVFSW1tcWlmVUprZWpKWlRyVzdmSm1kWUZ4?=
- =?utf-8?B?UzBoUUNGWWxra1VMVndweWNVT0t3Z3VidGRSZ1dQRzZEZjBFckhsS2ljN3dt?=
- =?utf-8?B?Vk9BWW5uWjljRVM3dlcyWkZRczQwSHZQVTR3MUhyRzdGeHFTS0VWdWVyMWpS?=
- =?utf-8?B?T1Izem9jeC95M0VKaVBqdWtXdzJhQitXMTN5OE5WMGNtY1psY0ZJQUhyS1Bu?=
- =?utf-8?B?ZUxGeVhidFduVVRKUm84S3IwY3JoVFMwQy9Kcnk3cEhQNHRGelQ4enFZUWVM?=
- =?utf-8?B?MUdSZkpvOTI5QkV0THhoc1dFNC9JL1BpVlM1VTJBdTVYMWZkeG1SOXhPbzlN?=
- =?utf-8?B?akpMbWU5OG80bHhVS1VDSTZkaFQ0RklRL1NWWk55UFZiRStrWUlMWDArVGV3?=
- =?utf-8?B?Kzc4d3NOWnpTWXh6RDFyN29YdGg0OUJXYm96Y1VTSTFzL2VkWjBSRHRGK1Jx?=
- =?utf-8?B?bjIvdEd3ZkNjcW55TVdCN2JRbk1lRVdnU1hCekhvcFV5cmwzRmhWNExkeUdG?=
- =?utf-8?B?eDZnOEVmWXNzdGwyamZZNnJZSjB2cElMK0tmVlM3OXRVSnZUNXkyZFZZQXVS?=
- =?utf-8?B?alNLVjZSWEQrcXRCU0k0bDhzMktpaGdGK2o3dVNreWM1L05nVFlHZUZZY3Rr?=
- =?utf-8?B?K2ZHQmJ4WllCKy93azVZUjhsa3pQaFkvZUpuVEk4em4yMnpIN1BaVG5xT2dP?=
- =?utf-8?B?RnVRdjA0dnZDV2s0RThEdCtmbW9BaHpheVM0enE0WXJCa203amNQd0ZRa3Ix?=
- =?utf-8?B?bEh1NHA4aHd0bTdrRGgvSllScHJVbFBXR2JmN1p5ajN0LzFUdjhYN3R4b0Vo?=
- =?utf-8?B?djBWNEtOY3R2L2N1UGw2MDhPSEhzQTZJbjY5V2V0REgvYWlJMkg2ZDZjdUNP?=
- =?utf-8?B?VnI3KzltcU5Obm5qcGliODM4M0FOT2lCVHZUeWt0Y1JNSmwvUlVNVjhLK1hP?=
- =?utf-8?B?Nnl4c29wZjJ3WEVWVFMzRG1PSnY1d0I5UG1wTHFFdkptOVVOdDE2SnIyYThI?=
- =?utf-8?B?aUppeUNpeXJtVjUranFKN1kzd2pwbWFaOVA3WldVdEVyb21aREZ0bEVqUmVG?=
- =?utf-8?B?bXltdjRPS1c1UmRJejhvRlM4UDRzaUdsOHVTeStJQm1HczU0U00rYThlMHh3?=
- =?utf-8?B?NU9MUHpnbFlZcTVFbFVMK2RzMWU2Z0RKbXBpTmkrWGhzMEVPZGx1M2ZWQ3Ey?=
- =?utf-8?B?TUx6OTFaQXdrWFBFMzYxTGhaOEVmejJBQXpzR2VDVngvNmlGVDFsVjFuc09a?=
- =?utf-8?B?NE1ZRVFhSE5rV05zOS8vejRmRnB1NjliUFFRa29QR1kra2haclBwMCtBPT0=?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:JH0PR03MB7384.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(7416005)(1800799015);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SHZOeWI1SU1rc01OaWJFZXAvZTV1UnFsQm1OYXVBZW96Z1ZSYWdMMEpsMFJ2?=
- =?utf-8?B?MTF5OTZTRWE4YWZtMC9CaUE2VVBVVXRybGxXa0ZTSk1CZGxRWFVLTy84UXlI?=
- =?utf-8?B?R0wycFNUeHNIUUFRTk5GUE5kK0lkT1V3ejdoQVRJN1JsSE0vWndkdVlvbDha?=
- =?utf-8?B?am9uWGhwOUhXRmxNM0QzOWJWc2JaQXRUUC9SWHA1N2pmNkZQSVlyQURKNEcr?=
- =?utf-8?B?enR4TU5PRUhLQ0RNYzJpWEpDR0RVeTRCQ0YvUE04eklpVXZ1WkNDOWRjUmtG?=
- =?utf-8?B?eEFOQlJrZ2ZrRlhjYzRMRCs0cWVWK3RJUll0MFdjZ3dxMGhvaERYZzNFL0JC?=
- =?utf-8?B?bU5KSVBPWW0wSlRHZHJzSzM5aWNQOGZVZ29rNE5pMVdnS1k4eisweWhJd0th?=
- =?utf-8?B?VFc5cVFmNTlmbk9EdGlCaTcvak5oQlhNTnJMdExHaWszL2VPMWlNZ242VUFl?=
- =?utf-8?B?SHlVUUZWWUVOdXZrNVJqbUhiaE8xL3BjSmxBQVV2RHNncFpaTW5jSWpJR3hj?=
- =?utf-8?B?QXpIWlBmcmlPczlKZE55d1B1Uk54VW9BM3FFUXRBczIzSEV5SGdMWHcwelph?=
- =?utf-8?B?NzhCRkNXZEJuaUo4clFwS2QwOStnQlBlelBsNGJNWStncFoxdmJZNUpJVDBZ?=
- =?utf-8?B?L2YzeExodDJmUVY2V1Y5ZVh0TmR5ektHb2pLTjJxOG1DMmQ0Si9MOG9meXh6?=
- =?utf-8?B?NUdEdzNKb2pGVktNWFg0Vm1EUktoOXdrdTFFdGZOQ3RubTBYME5DMm1Yb3dI?=
- =?utf-8?B?cFZDMjR4Tm1DMHdxei9GdDdUUHV6dXNoWmt5OTVnVlBhSmdtNFpTUDlqYjkv?=
- =?utf-8?B?SU9vTDdQZWw3aEU0M2NKQlNnUzBiamdnV1VIcS81RGIzWFRDQmZZU1ZzMk5T?=
- =?utf-8?B?TkNxa2hwcGpxU2t4RmpBdStaM0hscW9US1hoWUY4U0JuMi9TUXRQbGVGR2Mx?=
- =?utf-8?B?OVMzbGFJRVZibXJDOC92VG9adGsrdG42SjJUVUordTk5azF6RWVUSWlzSDNP?=
- =?utf-8?B?Zm43eGUvaHhHbno1QXFaTWdRNjNGb09Ub24zY2NtV3VIVkJScVB6d21tUUpF?=
- =?utf-8?B?RFFRNllXSldlR1hLYUN2MXYwNm1YSnpZa001TDY1M0ZvNWVEVEVFdU40Njlj?=
- =?utf-8?B?UUdBV1o4eEtmSUg2c3EvR2RLdStBRXZIUlZ5RE9GNGxVZXFlYU8xVXJvNFl6?=
- =?utf-8?B?TFdMb2t0VHVHa2lranViUVBtNllhb3FwSXZyZVR5dm1VTjlpNkpwTENXa0Q3?=
- =?utf-8?B?NUpYYk1TZmZQa2xLZTJObVNXTnNDK244amJsZHdjbThITGtzb3cyVnFBemlO?=
- =?utf-8?B?UlZKQTN1NUZOOWRsVkVKSDRHNEgzZWJnZGd1UHN0cVVTazhnL1B3VlZENENT?=
- =?utf-8?B?bjE5T3p6QmYyU0ZwWUpMaWVTbXozWDFqRUtBVVphMHpkd3N3Y3ZSaDROdWw2?=
- =?utf-8?B?NE1rTXZWSGVNTmZTM2c1YVJna0pkK0VmWkJITUM3anNmb2Zjdi9rbktSdUZ3?=
- =?utf-8?B?cE9uaml0ditjbVJpWG9MQ2t4eXpiTS9BbUJ5czZGbTNkMmdpM2tBUS9EQmRX?=
- =?utf-8?B?MHFmOENQTC80aTdhY2dNUiswUjczOHppdmRDMll4TjFrelpkenFJS2czR3Q4?=
- =?utf-8?B?ckp6eEthaXZHYk42MjBTQ1Ewc1ZHcHdycjRjcnlMdDVWTWVlWHF0ZlNZQVph?=
- =?utf-8?B?dlExZENZU0pyT3p6YUV2cUJMZWlUS3k0VndQbnBvS3BmWGI4eDBJNmlqRFFB?=
- =?utf-8?B?SVNoRGxBMnZaUTRpSHVUN3VlQmtxKzc2djVoeVJaSll2K1V6Z3VnN1hTTlc2?=
- =?utf-8?B?dnoyRVhNL3MyR3dGNzhoUGk1eDl4Z0VnOWVTQW4yWlp6eXdHL01QWWNQSklL?=
- =?utf-8?B?bHdPQllaQ0ZzbkhoU0xDTkRPSGpCWUdVdXNmWWRFUHRuOUtSamRSWEVnM04w?=
- =?utf-8?B?VDJzcitqNmlwSUVSM1FQT2kza0VSUEFTa2lJM0xoMjl3YmlUaXZ6LzFQeDk1?=
- =?utf-8?B?TXNvampiNzg4NFJYL2htaVpjSEVocW00ZXdCcTNNKy9wbzAwdVZnWVdsKzRJ?=
- =?utf-8?B?c1E1bVZtaTFGaXdnOC9iN3pYZjRCUGMwQnV1cnoyeWVlNFRlNGFhRllneUgy?=
- =?utf-8?B?RXZhdU5nWTFVdVlIV1labGpYbHg2VDVuMExXMGpnNzBjWHNOYld1Uk1mVUpB?=
- =?utf-8?B?TXc9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85b34fca-25ba-44c6-83d0-08dc5d3746f0
-X-MS-Exchange-CrossTenant-AuthSource: JH0PR03MB7384.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2024 10:31:57.6081
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8Xr+vNb7UcoR4liksWm7yxw9Et3odT1e6SwBsCaE/wKaIzPzUXkqOh7h87fgbZgQ+r1EE+ffa5T0T2A2CPwoKT5SO3ZEtoBS8cO7Euk3gCs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB6958
+User-Agent: Mozilla Thunderbird
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH 12/15] tty: serial: switch from circ_buf to kfifo
+To: "Jiri Slaby (SUSE)" <jirislaby@kernel.org>, gregkh@linuxfoundation.org,
+	linux-amlogic@lists.infradead.org, "linux-arm-msm@vger.kernel.org"
+	<linux-arm-msm@vger.kernel.org>
+Cc: linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, Bjorn
+	Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+	<khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+	Blumenstingl <martin.blumenstingl@googlemail.com>
+Content-Language: en-US
+In-Reply-To: <20240405060826.2521-13-jirislaby@kernel.org>
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrHKsWRmVeSWpSXmKPExsWy7djP87odKrJpBtu2clls67CxaF68ns3i
+	zaMjzBbv5spY/GzfwmTRMXk7i8WC2dwWE/efZbe4vGsOm8WZxb3sFscWnWSxeL/zFqMDj8f7
+	G63sHk8nTGb32LSqk83jzrU9bB77565h99i8pN7j8ya5APYoLpuU1JzMstQifbsErozl3xYz
+	FhxQqtiw6iNrA2OLbBcjB4eEgInEvgmSXYxcHEICKxglXm+9zAjhfGGU6Dv3Csr5zCjR3TGX
+	uYuRE6zjaMNfZojEckaJD8svsEM4Hxklll1tAKviFbCT2P/zGxOIzSKgKvFg8go2iLigxMmZ
+	T1hAbFEBeYn7t2awg9hsAoYSXW+7wGqEBVwlLr15ywYyVERgE6PEzYcvwDYwC5xkkrj7vBGs
+	g1lAXOLWk/lgGzgFrCS+t35jhYjLSzRvnQ11azunxMMeawjbReLm7SNsELawxKvjW9ghbBmJ
+	/ztB5nCB1DNKLPh9H8qZwCjR8PwWI0SVtcSdc7/YQGHGLKApsX6XPkTYUeLmz35WSFDySdx4
+	KwhxA5/EpG3TmSHCvBIdbUIQ1WoSs46vg1t78MIl5gmMSrOQwmUWks9mIflmFsLeBYwsqxjF
+	U0uLc9NTi43yUsv1ihNzi0vz0vWS83M3MQKT2Ol/x7/sYFz+6qPeIUYmDsZDjBIczEoivC3C
+	smlCvCmJlVWpRfnxRaU5qcWHGKU5WJTEeVVT5FOFBNITS1KzU1MLUotgskwcnFINTIn/TW/5
+	/DDaavv4asTFHU1BRxweWISkse3w6PTanv4ztNg7duZy1ntlUg9khJIzzj3+Um+Yk5ld0Ci3
+	9whT8fWV3ou4j2jv+ijQrKWRq/ROmfHHj8f3XytIbZ/xuFftru7bXK3p71bxNnz0OpD6Yx3r
+	9NPepTO31f6J6VM/MXWWua3dqf7Jh+/aKisrHOzI/iX47Z2+pXqthkCSv9zKehPjFbVfXaOE
+	fbQcly642sK5WSg4IVEhzqRU/schx4Ifc5O0uROSV7z5ZhWw+mudaATvur/XSh5fM0p/vPvC
+	k+uKceIvlGafa1+kfHvbrnLVCL5/zDv35Jz++jHqzW6uTa5L2sq/ON09fnXXWmOGP0osxRmJ
+	hlrMRcWJADgPeZLRAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrAIsWRmVeSWpSXmKPExsVy+t/xu7rtKrJpBheWK1ts67CxaF68ns3i
+	zaMjzBbv5spY/GzfwmTRMXk7i8WC2dwWE/efZbe4vGsOm8WZxb3sFscWnWSxeL/zFqMDj8f7
+	G63sHk8nTGb32LSqk83jzrU9bB77565h99i8pN7j8ya5APYoPZui/NKSVIWM/OISW6VoQwsj
+	PUNLCz0jE0s9Q2PzWCsjUyV9O5uU1JzMstQifbsEvYzl3xYzFhxQqtiw6iNrA2OLbBcjJ4eE
+	gInE0Ya/zF2MXBxCAksZJbZ9m8oMkZCRODmtgRXCFpb4c62LDaLoPaPE0pfbwIp4Bewk9v/8
+	xgRiswioSjyYvIINIi4ocXLmExYQW1RAXuL+rRnsIDabgKFE19susBphAVeJS2/egtkiApuA
+	Nn+JAFnALHCaSWL1xYdgm4UEMiQ2rH0CtoBZQFzi1pP5YDangJXE99ZvrBBxM4murV2MELa8
+	RPPW2cwTGIVmIbljFpL2WUhaZiFpWcDIsopRJLW0ODc9t9hQrzgxt7g0L10vOT93EyMwarcd
+	+7l5B+O8Vx/1DjEycTAeYpTgYFYS4W0Rlk0T4k1JrKxKLcqPLyrNSS0+xGgKDIyJzFKiyfnA
+	tJFXEm9oZmBqaGJmaWBqaWasJM7rWdCRKCSQnliSmp2aWpBaBNPHxMEp1cB0hMGP+ZL/w18K
+	+zrbqtRvJdlZC3688KT3cF6w8nzJJjWBrGXretofr7quLegUNmMeU7fM7TvaZw1rd67i0O70
+	e8Uw+Y9l9QSP9+zPzfWNJ6+RYog8EcwhcMFblMeh2n21hpjpjDli4Ut15KpPnb//c64Ok17W
+	PvsXNY2Bu5SKbiqapHSvyJX3/5Uad0rrCntR9udk4f7pjH+j8jM2JuRdZ2x7xlcv5+C9dfak
+	KwJv2eykvji8VfPb5qY042mSatjmGu5bxceePpUWdphxylz6juqS03rz0necFf7s1X5/2tNc
+	S/1j2VLGSscY/jKUTUx3X3UuVb387Ju/HD63T+hsi1ylI6XG67D5robxCiWW4oxEQy3mouJE
+	AEHZq4VjAwAA
+X-CMS-MailID: 20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae
+X-Msg-Generator: CA
+X-RootMTR: 20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae
+References: <20240405060826.2521-1-jirislaby@kernel.org>
+	<20240405060826.2521-13-jirislaby@kernel.org>
+	<CGME20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae@eucas1p2.samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240415_033207_819104_6EC8E9B1 
-X-CRM114-Status: GOOD (  26.69  )
+X-CRM114-CacheID: sfid-20240415_055858_698602_D3E42904 
+X-CRM114-Status: GOOD (  19.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -178,128 +133,87 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On 2024/4/13 02:03, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On 12/04/2024 19:57, Krzysztof Kozlowski wrote:
->> On 12/04/2024 15:12, Neil Armstrong wrote:
->>> Hi,
->>>
->>> On 29/03/2024 20:39, Krzysztof Kozlowski wrote:
->>>> On 29/03/2024 10:17, Kelvin Zhang via B4 Relay wrote:
->>>>> From: Zelong Dong <zelong.dong@amlogic.com>
->>>>>
->>>>> Add a new compatible and the related header file
->>>>> for Amlogic T7 Reset Controller.
->>>>>
->>>>> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
->>>>> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
->>>>> ---
->>>>>    .../bindings/reset/amlogic,meson-reset.yaml        |   1 +
->>>>>    include/dt-bindings/reset/amlogic,t7-reset.h       | 197 +++++++++++++++++++++
->>>>>    2 files changed, 198 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->>>>> index f0c6c0df0ce3..fefe343e5afe 100644
->>>>> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->>>>> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->>>>> @@ -19,6 +19,7 @@ properties:
->>>>>          - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
->>>>>          - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
->>>>>          - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
->>>>> +      - amlogic,t7-reset # Reset Controller on T7 and compatible SoCs
->>>>>
->>>>
->>>> If there is going to be any resend, please drop the comment. It's not
->>>> really helpful and makes it trickier to read.
->>>>
->>>>>      reg:
->>>>>        maxItems: 1
->>>>> diff --git a/include/dt-bindings/reset/amlogic,t7-reset.h b/include/dt-bindings/reset/amlogic,t7-reset.h
->>>>> new file mode 100644
->>>>> index 000000000000..ca4a832eeeec
->>>>> --- /dev/null
->>>>> +++ b/include/dt-bindings/reset/amlogic,t7-reset.h
->>>>> @@ -0,0 +1,197 @@
->>>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
->>>>> +/*
->>>>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->>>>> + */
->>>>> +
->>>>> +#ifndef _DT_BINDINGS_AMLOGIC_T7_RESET_H
->>>>> +#define _DT_BINDINGS_AMLOGIC_T7_RESET_H
->>>>> +
->>>>> +/* RESET0 */
->>>>> +/*                                        0-3     */
->>>>
->>>> I assume this matches existing drivers which do not use IDs but map the
->>>> binding to hardware value? I remember we talked about changing it, so if
->>>> something happened about this and it could be changed: please change.
->>>
->>> I'm not aware of such discussion, and I don't really see the issue...
->>> thoses are IDs, and yes they match the Hardware offsets, and ?
->>
->> Bindings are not for hardware offsets/values/addresses. It's just not a
->> binding.
->>
->> I quickly looked at your driver patch and it confirms: not a binding.
->> Binding constant is used by the driver and DTS consumer.
->>
->> I am really sure we had this talk in the past, but could be I think
->> about different platform. Since this is not a binding, I do not think
->> claiming there is any ABI here is reasonable. Feel free to store them
->> with other hardware values, like in DTS headers etc. We already moved to
->> DTS headers several such "non-binding" constants.
-> 
-> Un-acked.
-> 
-> I looked at my archives and we did talk about it and you were CCed:
-> 
-> https://lore.kernel.org/linux-devicetree/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
-> simple-reset is an exception.
-> 
-> So to recap:
-> That's not a binding. Don't add some real values to binding headers
-> because it is not a binding then.
-> 
-> https://lore.kernel.org/linux-devicetree/CAK8P3a1APzs74YTcZ=m43G3zrmwJZKcYSTvV5eDDQX-37UY7Tw@mail.gmail.com/
-> https://lore.kernel.org/linux-devicetree/CAK8P3a0fDJQvGLEtG0fxLkG08Fh9V7LEMPsx4AaS+2Ldo_xWxw@mail.gmail.com/
-> https://lore.kernel.org/linux-devicetree/b60f5fd2-dc48-9375-da1c-ffcfe8292683@linaro.org/
-> https://lore.kernel.org/linux-devicetree/418c5f0c-5279-41f5-3705-345ec9a97ea2@linaro.org/
-> https://lore.kernel.org/all/201401111415.29395.arnd@arndb.de/
-> 
-Got it. Will delete amlogic,t7-reset.h and use the hardware numbers
-directly in the DT.
-
-Hi Neil,
-As you know, Amlogic reset controller is divided into several groups: 
-reset0, reset1, ..., resetN. I'd like to discuss the rationality of 
-splitting the one device node of reset controller into device nodes 
-according to the groups. Then we can use the bit number within the 
-'resets' property.
-reset0: reset-controller@2000 {
-...
-};
-
-reset1: reset-controller@2004 {
-...
-};
-...
-
-What do you think?
-Thanks!
-> 
-> Best regards,
-> Krzysztof
-> 
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RGVhciBBbGwsCgpPbiAwNS4wNC4yMDI0IDA4OjA4LCBKaXJpIFNsYWJ5IChTVVNFKSB3cm90ZToK
+PiBTd2l0Y2ggZnJvbSBzdHJ1Y3QgY2lyY19idWYgdG8gcHJvcGVyIGtmaWZvLiBrZmlmbyBwcm92
+aWRlcyBtdWNoIGJldHRlcgo+IEFQSSwgZXNwLiB3aGVuIHdyYXAtYXJvdW5kIG9mIHRoZSBidWZm
+ZXIgbmVlZHMgdG8gYmUgdGFrZW4gaW50byBhY2NvdW50Lgo+IExvb2sgYXQgcGwwMTFfZG1hX3R4
+X3JlZmlsbCgpIG9yIGNwbV91YXJ0X3R4X3B1bXAoKSBjaGFuZ2VzIGZvciBleGFtcGxlLgo+Cj4g
+S2ZpZm8gQVBJIGNhbiBhbHNvIGZpbGwgaW4gc2NhdHRlci1nYXRoZXIgRE1BIHN0cnVjdHVyZXMs
+IHNvIGl0IGVhc2llcgo+IGZvciB0aGF0IHVzZSBjYXNlIHRvby4gTG9vayBhdCBscHVhcnRfZG1h
+X3R4KCkgZm9yIGV4YW1wbGUuIE5vdGUgdGhhdAo+IG5vdCBhbGwgZHJpdmVycyBjYW4gYmUgY29u
+dmVydGVkIHRvIHRoYXQgKGxpa2UgYXRtZWxfc2VyaWFsKSwgdGhleQo+IGhhbmRsZSBETUEgc3Bl
+Y2lhbGx5Lgo+Cj4gTm90ZSB0aGF0IHVzYi1zZXJpYWwgdXNlcyBrZmlmbyBmb3IgVFggZm9yIGFn
+ZXMuCj4KPiBvbWFwIG5lZWRlZCBhIGJpdCBtb3JlIGNhcmUgYXMgaXQgbmVlZHMgdG8gcHV0IGEg
+Y2hhciBpbnRvIEZJRk8gdG8gc3RhcnQKPiB0aGUgRE1BIHRyYW5zZmVyIHdoZW4gT01BUF9ETUFf
+VFhfS0lDSyBpcyBzZXQuIEluIHRoYXQgY2FzZSwgd2UgaGF2ZSB0bwo+IGRvIGtmaWZvX2RtYV9v
+dXRfcHJlcGFyZSB0d2ljZTogb25jZSB0byBmaW5kIG91dCB0aGUgdHhfc2l6ZSAodG8gZmluZAo+
+IG91dCBpZiBpdCBpcyB3b3J0aHMgdG8gZG8gRE1BIGF0IGFsbCAtLSBzaXplID49IDQpLCB0aGUg
+c2Vjb25kIHRpbWUgZm9yCj4gdGhlIGFjdHVhbCB0cmFuc2Zlci4KPgo+IEFsbCB0cmFjZXMgb2Yg
+Y2lyY19idWYgYXJlIHJlbW92ZWQgZnJvbSBzZXJpYWxfY29yZS5oIChhbmQgaXRzIHN0cnVjdAo+
+IHVhcnRfc3RhdGUpLgo+Cj4gU2lnbmVkLW9mZi1ieTogSmlyaSBTbGFieSAoU1VTRSkgPGppcmlz
+bGFieUBrZXJuZWwub3JnPgo+IC4uLgoKVGhpcyBwYXRjaCBsYW5kZWQgaW4gbGludXgtbmV4dCBh
+cyBjb21taXQgMTc4OGNmNmE5MWQ5ICgidHR5OiBzZXJpYWw6IApzd2l0Y2ggZnJvbSBjaXJjX2J1
+ZiB0byBrZmlmbyIpLiBVbmZvcnR1bmF0ZWx5IGl0IGJyZWFrcyBVQVJUIG9wZXJhdGlvbiAKb24g
+dGhyIEFtbG9naWMgTWVzb24gYmFzZWQgYm9hcmRzIChkcml2ZXJzL3R0eS9zZXJpYWwvbWVzb25f
+dWFydC5jIApkcml2ZXIpIGFuZCBRdWFsY29tbSBSQjUgYm9hcmQgKGRyaXZlcnMvdHR5L3Nlcmlh
+bC9xY29tX2dlbmlfc2VyaWFsLmMpLiAKT25jZSB0aGUgaW5pdCBwcm9jZXNzIGlzIHN0YXJ0ZWQs
+IGEgY29tcGxldGUgZ2FyYmFnZSBpcyBwcmludGVkIHRvIHRoZSAKc2VyaWFsIGNvbnNvbGUuIEhl
+cmUgaXMgYW4gZXhhbXBsZSBob3cgaXQgbG9va3M6CgpbwqDCoMKgIDguNzYzMTU0XSBSdW4gL3Ni
+aW4vaW5pdCBhcyBpbml0IHByb2Nlc3MKTlQgW8KgwqAgMTIuNDI5Nzc2XSBwbGF0Zm9ybSBjcHVm
+cmVxLWR0OiBkZWZlcnJlZCBwcm9iZSBwZW5kaW5nOiAocmVhc29uIAp1bmtub3duKQpbwqDCoCAx
+Mi40MzQyNTldIHBsYXRmb3JtIHJlZ3VsYXRvci12ZGRjcHU6IGRlZmVycmVkIHByb2JlIHBlbmRp
+bmc6IApwd20tcmVndWxhdG9yOiBGYWlsZWQgdG8gZ2V0IFBXTQpbWzZpZjs5XVVpZ21rZmwtdGwg
+b2NyZXRibyBucm5lZSAuW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0Ym8gbnJuZWUgLgpbWzZpZjs5
+XVVpZ21rZmwtdGwgb2NyZXRibyBucm5lZSAuCltbNmlmOzldVWlnbWtmbC10bCBvY3JldGJvIG5y
+bmVlIC4KW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0Ym8gbnJuZWUgLgpbWzZpZjs5XVVpZ21rZmwt
+dGwgb2NyZXRibyBucm5lZSAuCltbNmlmOzldVWlnbWtmbC10bCBvY3JldGJvIG5ybmVlIC4KWy4u
+IHRyaWdodGxnZWV0IGlwdGhyIHl0bS1kdltbNmlmOzldVWlnbWtmbC10bCBvY3JldGJvIG5ybmVl
+IC4KWy4uIHRyaWdodGxnZWV0IGlwdGhyIHl0bS1kdjVjW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
+Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
+LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
+Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
+LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
+Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
+LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
+Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
+LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
+Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
+LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
+Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
+LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
+Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
+LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
+Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
+LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
+Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
+LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uWzJsWzFbWzZpZjs5XVVpZ21rZmwtdGwg
+b2NyZXRibyBucm5lZSAuClsuLiB0cmlnaHRsZ2VldCBpcHRociB5dG0tZHY1YzdbR21vIFs5NG04
+WzJoWzAuClsuLiB5dGVpaWd0ZWlpaWxodGxnZWV0IGR2Y3MuLltbNmlmOzldVWlnbWtmbC10bCBv
+Y3JldGJvIG5ybmVlIC4KWy4uIHRyaWdodGxnZWV0IGlwdGhyIHl0bS1kdjVjN1tHbW8gWzk0bThb
+MmhbMC4KWy4uIHl0ZWlpZ3RlaWlpbGh0bGdlZXQgZHZjcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9j
+cmV0Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsy
+aFswLgpbLi4geXRlaWlndGVpaWlsaHRsZ2VldCBkdmNzLi5bWzZpZjs5XVVpZ21rZmwtdGwgb2Ny
+ZXRibyBucm5lZSAuClsuLiB0cmlnaHRsZ2VldCBpcHRociB5dG0tZHY1YzdbR21vIFs5NG04WzJo
+WzAuClsuLiB5dGVpaWd0ZWlpaWxodGxnZWV0IGR2Y3MuLltbNmlmOzldVWlnbWtmbC10bCBvY3Jl
+dGJvIG5ybmVlIC4KWy4uIHRyaWdodGxnZWV0IGlwdGhyIHl0bS1kdjVjN1tHbW8gWzk0bThbMmhb
+MC4KWy4uIHl0ZWlpZ3RlaWlpbGh0bGdlZXQgZHZjcy4uW8KgIDEwNS42MTM0MjBdIGRlYnVnZnM6
+IERpcmVjdG9yeSAKJ2ZmODAwMjgwLmNlYycgd2l0aCBwYXJlbnQgJ3JlZ21hcCcgYWxyZWFkeSBw
+cmVzZW50IQpbWzZpZjs5XVVpZ21rZmwtdGwgb2NyZXRibyBucm5lZSAuClsuLiB0cmlnaHRsZ2Vl
+dCBpcHRociB5dG0tZHY1YzdbR21vIFs5NG04WzJoWzAuCi4uXVNuaHN6biBoIG50YSBvcHUgdm5z
+KHVzc2VzLi5bMmxbMTFbWzIgazs5PzVbwqAgMTA1LjYzODgwOV0gbWM6IExpbnV4IAptZWRpYSBp
+bnRlcmZhY2U6IHYwLjEwClsuLiBhdG4gbyBkdnQgZWZseXBwbHRkLlvCoCAxMDUuNzA3MzkwXSBt
+ZXNvbi12cnRjIGZmODAwMGE4LnJ0YzogCnJlZ2lzdGVyZWQgYXMgcnRjMAoKCkkgZm91bmQgdGhp
+cyBwYXRjaCBieSBiaXNlY3RpbmcgdG9kYXkncyBsaW51eC1uZXh0LiBJJ3ZlIGNoZWNrZWQgdGhl
+IApjaGFuZ2VzIGluIHRoZSByZWxhdGVkIFVBUlQgZHJpdmVycyBhbmQgSSBkb24ndCBzZWUgYW55
+IG9idmlvdXMgaXNzdWVzIAp0aG91Z2guIExldCBtZSBrbm93IGlmIEkgY2FuIGhlbHAgZGVidWdn
+aW5nIHRoaXMgaXNzdWUgc29tZWhvdy4KCkkndmUgdHJpbW1lZCByZWNpcGllbnQgbGlzdCBkdWUg
+dG8gbXkgc210cCBzZXJ2ZXIgbGltaXRhdGlvbi4KCgpCZXN0IHJlZ2FyZHMKCi0tIApNYXJlayBT
+enlwcm93c2tpLCBQaEQKU2Ftc3VuZyBSJkQgSW5zdGl0dXRlIFBvbGFuZAoKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
+ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
+cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
