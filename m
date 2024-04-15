@@ -4,124 +4,120 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A918AC4345F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Apr 2024 12:59:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2D49C4345F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Apr 2024 13:28:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=T1CW2zD0IexlUgzMNHY3ui+gHbrrJIoNZ9l2HPuLLRs=; b=14ZqbCdJYTXBT+
-	N6U2jnU/cPQV+q2Vtbbl8eVmVurz31C6E1ynljw2yy9hzgOWPKsaFH5GPb2IUaQYHfnyFRIDzoVfb
-	RLAIWPvRE32fCO5rVC0SUk0iX8FyMy3A2+jYOc5DC/g65GbCKBzRPNUiNKltg2MVNmEmguTYvNymp
-	1ZsajizwbMM3i8+MYYM+/i86LQhEnFdcT+FvP1d2YQtWFGLK3iRF6PIfDKcNEJ9Lx2IxNuwQgG9ev
-	b/J6JdiFZZhIcX6CeB9zfys+ORt0baAPzcLzd4/NGecH8FLzHiKZGzhrM/d9HfBKAsNUGVnJONbO0
-	heyWi76Dh9uaVnKRVffg==;
+	List-Owner; bh=mrDtaHQLZZUrBQZYbk/a+6a6UuUlr8vEQpAerCwWNdI=; b=ZrtMvQ70sC33MC
+	ejdLDldiOT6evkQ+mlXiYsMrHl0qcDaqFASHV0i+jdjQ2OMGSbeD+iYilcTS/dnjLZVX0akDiuPNJ
+	dljM1B/Tk2EynWYeMFpTOUihBlE2F4rFYvITY6/DpRsBJO60y7NIbIoK0O0um+1qZBEaCsSR2+xd9
+	yUjx7C1GX9e04PKo+jJC3bZrUEQqCcha7P7TSdYZFH04aiiQswhLrG/lTNkNUGTqMwfA/YhQIFqCL
+	EvYZZaezS6k75hZ8gwIAK0jJhPog1bJ//c1+VHnuSIvQmA4C5Jy9uFxCOEia/ePTi217KkzeNgzf3
+	wreSmyfzH1fyoGx0+CRw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rwLvK-00000008KsK-1foN;
-	Mon, 15 Apr 2024 12:59:02 +0000
-Received: from mailout2.w1.samsung.com ([210.118.77.12])
+	id 1rwMOB-00000008TYF-3PPX;
+	Mon, 15 Apr 2024 13:28:51 +0000
+Received: from mail-wr1-f51.google.com ([209.85.221.51])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rwLvG-00000008Koz-03Qs
+	id 1rwMO9-00000008TXK-13sU
 	for linux-amlogic@lists.infradead.org;
-	Mon, 15 Apr 2024 12:59:01 +0000
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20240415125848euoutp025ebf80705b801407c93a7ea7d72fd2fc~GdYZw3tSt1205512055euoutp02s
-	for <linux-amlogic@lists.infradead.org>; Mon, 15 Apr 2024 12:58:48 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20240415125848euoutp025ebf80705b801407c93a7ea7d72fd2fc~GdYZw3tSt1205512055euoutp02s
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1713185928;
-	bh=K7kgIzAF8cwrWU7cZnQZrJq9/UxYfRIxipy6YJIOOnc=;
-	h=Date:From:Subject:To:Cc:In-Reply-To:References:From;
-	b=U3DZfTt2tz636C6PK/TOxc5kdPqHBA+WgNL+c9f7jbLpkfE7TazfaTNa1XDFdbp4K
-	 OoNcBD9ppaVqFVCdTDnNa+PocIQQNt/VohmdBru9TOuKws3EYQ6SPCtNybhXcx7/Ii
-	 uvixRC/CXtAC7SbwwI43vAloRWJGzUYSBTHr2z0Y=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20240415125848eucas1p2693e3902c12ef8668751a407d9d9f211~GdYZi7waQ1350713507eucas1p20;
-	Mon, 15 Apr 2024 12:58:48 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-	eusmges2new.samsung.com (EUCPMTA) with SMTP id 83.07.09875.8842D166; Mon, 15
-	Apr 2024 13:58:48 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae~GdYZAlLpo1350813508eucas1p25;
-	Mon, 15 Apr 2024 12:58:47 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240415125847eusmtrp2b598b357b551f9ce09ab776ff9f34d8a~GdYY-6IPH2471724717eusmtrp2U;
-	Mon, 15 Apr 2024 12:58:47 +0000 (GMT)
-X-AuditID: cbfec7f4-11bff70000002693-32-661d2488da1c
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-	eusmgms1.samsung.com (EUCPMTA) with SMTP id 89.6F.08810.7842D166; Mon, 15
-	Apr 2024 13:58:47 +0100 (BST)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20240415125846eusmtip1044831a80b43d035463a2940376d5e6d~GdYYUHAow1109911099eusmtip1Q;
-	Mon, 15 Apr 2024 12:58:46 +0000 (GMT)
-Message-ID: <91ac609b-0fae-4856-a2a6-636908d7ad3c@samsung.com>
-Date: Mon, 15 Apr 2024 14:58:46 +0200
+	Mon, 15 Apr 2024 13:28:50 +0000
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-34782453ffdso1444217f8f.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 15 Apr 2024 06:28:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713187726; x=1713792526;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+lrgrGzjjgYNJJjfx46YZRyvfOQXPcVBXxjVFNNCm2M=;
+        b=ZmbCf8JNP1IA79nxV0QWf7l66vEakA+ehNLiBcMsQUAH2xT4jHlWyO3auBi6L8g9sL
+         7cG7I2hEjJC1TWCc1ShkZLD0IpJeX8yw6DwklW22NM+163Qlle8SjgAwiPi4293NaURI
+         T6rRMl7QqzjkVnN5jdG0MehW4AkOxMsvCp6lmu08Wu06XVfKu/x4tH9Qd3RiN27qkvAY
+         vCqWAX0Zp0UrzMYpWGJMgwGj+WEF9T94xtbgH3omjUBjJ8Lfy6KCOoF61GFcvn1i7NVU
+         SdmWt+Xu1vSiLfOKr+ygHn94AvWAu7tnPaPQKnX2SM614vQIlImDa0Rrn9pK6x3JBFPO
+         8qbw==
+X-Forwarded-Encrypted: i=1; AJvYcCXln5/WiAWToges9R/hfM1hOF2HOX36NIeMjOHlkKa668DZzO5NbebP8FdHG2918WqYNN+loTAD/+HcAppzm7bPffSoRC/71E/2r6iv0TaN1IQ=
+X-Gm-Message-State: AOJu0Yzl9bmW6sqrCB9SnWGyUPsc80VYee2IEW5WumTS5ehmSulpn68P
+	2yMGzRH251webzyt6ABYho0bMSiBUWtNjssuhkRqDhIgwAcqpCBE
+X-Google-Smtp-Source: AGHT+IEnVEco3CbkMrPnlNwXMvP9q4ttl9SGzT8tNl6Ytwu7CS/s3vEsYwkX2DFq4d51oKk++f2Lzw==
+X-Received: by 2002:a5d:64e3:0:b0:346:4151:12c4 with SMTP id g3-20020a5d64e3000000b00346415112c4mr11291238wri.10.1713187726032;
+        Mon, 15 Apr 2024 06:28:46 -0700 (PDT)
+Received: from ?IPV6:2a0b:e7c0:0:107::aaaa:69? ([2a0b:e7c0:0:107::aaaa:69])
+        by smtp.gmail.com with ESMTPSA id t7-20020adfe447000000b00343eac2acc4sm12148705wrm.111.2024.04.15.06.28.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Apr 2024 06:28:44 -0700 (PDT)
+Message-ID: <d70049d5-d0fe-465f-a558-45b6785f6014@kernel.org>
+Date: Mon, 15 Apr 2024 15:28:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Marek Szyprowski <m.szyprowski@samsung.com>
 Subject: Re: [PATCH 12/15] tty: serial: switch from circ_buf to kfifo
-To: "Jiri Slaby (SUSE)" <jirislaby@kernel.org>, gregkh@linuxfoundation.org,
-	linux-amlogic@lists.infradead.org, "linux-arm-msm@vger.kernel.org"
-	<linux-arm-msm@vger.kernel.org>
-Cc: linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, Bjorn
-	Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
-	<khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
-	Blumenstingl <martin.blumenstingl@googlemail.com>
-Content-Language: en-US
-In-Reply-To: <20240405060826.2521-13-jirislaby@kernel.org>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrHKsWRmVeSWpSXmKPExsWy7djP87odKrJpBtu2clls67CxaF68ns3i
-	zaMjzBbv5spY/GzfwmTRMXk7i8WC2dwWE/efZbe4vGsOm8WZxb3sFscWnWSxeL/zFqMDj8f7
-	G63sHk8nTGb32LSqk83jzrU9bB77565h99i8pN7j8ya5APYoLpuU1JzMstQifbsErozl3xYz
-	FhxQqtiw6iNrA2OLbBcjB4eEgInEvgmSXYxcHEICKxglXm+9zAjhfGGU6Dv3Csr5zCjR3TGX
-	uYuRE6zjaMNfZojEckaJD8svsEM4Hxklll1tAKviFbCT2P/zGxOIzSKgKvFg8go2iLigxMmZ
-	T1hAbFEBeYn7t2awg9hsAoYSXW+7wGqEBVwlLr15ywYyVERgE6PEzYcvwDYwC5xkkrj7vBGs
-	g1lAXOLWk/lgGzgFrCS+t35jhYjLSzRvnQ11azunxMMeawjbReLm7SNsELawxKvjW9ghbBmJ
-	/ztB5nCB1DNKLPh9H8qZwCjR8PwWI0SVtcSdc7/YQGHGLKApsX6XPkTYUeLmz35WSFDySdx4
-	KwhxA5/EpG3TmSHCvBIdbUIQ1WoSs46vg1t78MIl5gmMSrOQwmUWks9mIflmFsLeBYwsqxjF
-	U0uLc9NTi43yUsv1ihNzi0vz0vWS83M3MQKT2Ol/x7/sYFz+6qPeIUYmDsZDjBIczEoivC3C
-	smlCvCmJlVWpRfnxRaU5qcWHGKU5WJTEeVVT5FOFBNITS1KzU1MLUotgskwcnFINTIn/TW/5
-	/DDaavv4asTFHU1BRxweWISkse3w6PTanv4ztNg7duZy1ntlUg9khJIzzj3+Um+Yk5ld0Ci3
-	9whT8fWV3ou4j2jv+ijQrKWRq/ROmfHHj8f3XytIbZ/xuFftru7bXK3p71bxNnz0OpD6Yx3r
-	9NPepTO31f6J6VM/MXWWua3dqf7Jh+/aKisrHOzI/iX47Z2+pXqthkCSv9zKehPjFbVfXaOE
-	fbQcly642sK5WSg4IVEhzqRU/schx4Ifc5O0uROSV7z5ZhWw+mudaATvur/XSh5fM0p/vPvC
-	k+uKceIvlGafa1+kfHvbrnLVCL5/zDv35Jz++jHqzW6uTa5L2sq/ON09fnXXWmOGP0osxRmJ
-	hlrMRcWJADgPeZLRAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrAIsWRmVeSWpSXmKPExsVy+t/xu7rtKrJpBheWK1ts67CxaF68ns3i
-	zaMjzBbv5spY/GzfwmTRMXk7i8WC2dwWE/efZbe4vGsOm8WZxb3sFscWnWSxeL/zFqMDj8f7
-	G63sHk8nTGb32LSqk83jzrU9bB77565h99i8pN7j8ya5APYoPZui/NKSVIWM/OISW6VoQwsj
-	PUNLCz0jE0s9Q2PzWCsjUyV9O5uU1JzMstQifbsEvYzl3xYzFhxQqtiw6iNrA2OLbBcjJ4eE
-	gInE0Ya/zF2MXBxCAksZJbZ9m8oMkZCRODmtgRXCFpb4c62LDaLoPaPE0pfbwIp4Bewk9v/8
-	xgRiswioSjyYvIINIi4ocXLmExYQW1RAXuL+rRnsIDabgKFE19susBphAVeJS2/egtkiApuA
-	Nn+JAFnALHCaSWL1xYdgm4UEMiQ2rH0CtoBZQFzi1pP5YDangJXE99ZvrBBxM4murV2MELa8
-	RPPW2cwTGIVmIbljFpL2WUhaZiFpWcDIsopRJLW0ODc9t9hQrzgxt7g0L10vOT93EyMwarcd
-	+7l5B+O8Vx/1DjEycTAeYpTgYFYS4W0Rlk0T4k1JrKxKLcqPLyrNSS0+xGgKDIyJzFKiyfnA
-	tJFXEm9oZmBqaGJmaWBqaWasJM7rWdCRKCSQnliSmp2aWpBaBNPHxMEp1cB0hMGP+ZL/w18K
-	+zrbqtRvJdlZC3688KT3cF6w8nzJJjWBrGXretofr7quLegUNmMeU7fM7TvaZw1rd67i0O70
-	e8Uw+Y9l9QSP9+zPzfWNJ6+RYog8EcwhcMFblMeh2n21hpjpjDli4Ut15KpPnb//c64Ok17W
-	PvsXNY2Bu5SKbiqapHSvyJX3/5Uad0rrCntR9udk4f7pjH+j8jM2JuRdZ2x7xlcv5+C9dfak
-	KwJv2eykvji8VfPb5qY042mSatjmGu5bxceePpUWdphxylz6juqS03rz0necFf7s1X5/2tNc
-	S/1j2VLGSscY/jKUTUx3X3UuVb387Ju/HD63T+hsi1ylI6XG67D5robxCiWW4oxEQy3mouJE
-	AEHZq4VjAwAA
-X-CMS-MailID: 20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae
-X-Msg-Generator: CA
-X-RootMTR: 20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae
+To: Marek Szyprowski <m.szyprowski@samsung.com>, gregkh@linuxfoundation.org,
+ linux-amlogic@lists.infradead.org,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>
+Cc: linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20240405060826.2521-1-jirislaby@kernel.org>
-	<20240405060826.2521-13-jirislaby@kernel.org>
-	<CGME20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae@eucas1p2.samsung.com>
+ <20240405060826.2521-13-jirislaby@kernel.org>
+ <CGME20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae@eucas1p2.samsung.com>
+ <91ac609b-0fae-4856-a2a6-636908d7ad3c@samsung.com>
+Content-Language: en-US
+From: Jiri Slaby <jirislaby@kernel.org>
+Autocrypt: addr=jirislaby@kernel.org; keydata=
+ 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
+In-Reply-To: <91ac609b-0fae-4856-a2a6-636908d7ad3c@samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240415_055858_698602_D3E42904 
-X-CRM114-Status: GOOD (  19.50  )
+X-CRM114-CacheID: sfid-20240415_062849_328499_D922B064 
+X-CRM114-Status: GOOD (  14.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -133,87 +129,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RGVhciBBbGwsCgpPbiAwNS4wNC4yMDI0IDA4OjA4LCBKaXJpIFNsYWJ5IChTVVNFKSB3cm90ZToK
-PiBTd2l0Y2ggZnJvbSBzdHJ1Y3QgY2lyY19idWYgdG8gcHJvcGVyIGtmaWZvLiBrZmlmbyBwcm92
-aWRlcyBtdWNoIGJldHRlcgo+IEFQSSwgZXNwLiB3aGVuIHdyYXAtYXJvdW5kIG9mIHRoZSBidWZm
-ZXIgbmVlZHMgdG8gYmUgdGFrZW4gaW50byBhY2NvdW50Lgo+IExvb2sgYXQgcGwwMTFfZG1hX3R4
-X3JlZmlsbCgpIG9yIGNwbV91YXJ0X3R4X3B1bXAoKSBjaGFuZ2VzIGZvciBleGFtcGxlLgo+Cj4g
-S2ZpZm8gQVBJIGNhbiBhbHNvIGZpbGwgaW4gc2NhdHRlci1nYXRoZXIgRE1BIHN0cnVjdHVyZXMs
-IHNvIGl0IGVhc2llcgo+IGZvciB0aGF0IHVzZSBjYXNlIHRvby4gTG9vayBhdCBscHVhcnRfZG1h
-X3R4KCkgZm9yIGV4YW1wbGUuIE5vdGUgdGhhdAo+IG5vdCBhbGwgZHJpdmVycyBjYW4gYmUgY29u
-dmVydGVkIHRvIHRoYXQgKGxpa2UgYXRtZWxfc2VyaWFsKSwgdGhleQo+IGhhbmRsZSBETUEgc3Bl
-Y2lhbGx5Lgo+Cj4gTm90ZSB0aGF0IHVzYi1zZXJpYWwgdXNlcyBrZmlmbyBmb3IgVFggZm9yIGFn
-ZXMuCj4KPiBvbWFwIG5lZWRlZCBhIGJpdCBtb3JlIGNhcmUgYXMgaXQgbmVlZHMgdG8gcHV0IGEg
-Y2hhciBpbnRvIEZJRk8gdG8gc3RhcnQKPiB0aGUgRE1BIHRyYW5zZmVyIHdoZW4gT01BUF9ETUFf
-VFhfS0lDSyBpcyBzZXQuIEluIHRoYXQgY2FzZSwgd2UgaGF2ZSB0bwo+IGRvIGtmaWZvX2RtYV9v
-dXRfcHJlcGFyZSB0d2ljZTogb25jZSB0byBmaW5kIG91dCB0aGUgdHhfc2l6ZSAodG8gZmluZAo+
-IG91dCBpZiBpdCBpcyB3b3J0aHMgdG8gZG8gRE1BIGF0IGFsbCAtLSBzaXplID49IDQpLCB0aGUg
-c2Vjb25kIHRpbWUgZm9yCj4gdGhlIGFjdHVhbCB0cmFuc2Zlci4KPgo+IEFsbCB0cmFjZXMgb2Yg
-Y2lyY19idWYgYXJlIHJlbW92ZWQgZnJvbSBzZXJpYWxfY29yZS5oIChhbmQgaXRzIHN0cnVjdAo+
-IHVhcnRfc3RhdGUpLgo+Cj4gU2lnbmVkLW9mZi1ieTogSmlyaSBTbGFieSAoU1VTRSkgPGppcmlz
-bGFieUBrZXJuZWwub3JnPgo+IC4uLgoKVGhpcyBwYXRjaCBsYW5kZWQgaW4gbGludXgtbmV4dCBh
-cyBjb21taXQgMTc4OGNmNmE5MWQ5ICgidHR5OiBzZXJpYWw6IApzd2l0Y2ggZnJvbSBjaXJjX2J1
-ZiB0byBrZmlmbyIpLiBVbmZvcnR1bmF0ZWx5IGl0IGJyZWFrcyBVQVJUIG9wZXJhdGlvbiAKb24g
-dGhyIEFtbG9naWMgTWVzb24gYmFzZWQgYm9hcmRzIChkcml2ZXJzL3R0eS9zZXJpYWwvbWVzb25f
-dWFydC5jIApkcml2ZXIpIGFuZCBRdWFsY29tbSBSQjUgYm9hcmQgKGRyaXZlcnMvdHR5L3Nlcmlh
-bC9xY29tX2dlbmlfc2VyaWFsLmMpLiAKT25jZSB0aGUgaW5pdCBwcm9jZXNzIGlzIHN0YXJ0ZWQs
-IGEgY29tcGxldGUgZ2FyYmFnZSBpcyBwcmludGVkIHRvIHRoZSAKc2VyaWFsIGNvbnNvbGUuIEhl
-cmUgaXMgYW4gZXhhbXBsZSBob3cgaXQgbG9va3M6CgpbwqDCoMKgIDguNzYzMTU0XSBSdW4gL3Ni
-aW4vaW5pdCBhcyBpbml0IHByb2Nlc3MKTlQgW8KgwqAgMTIuNDI5Nzc2XSBwbGF0Zm9ybSBjcHVm
-cmVxLWR0OiBkZWZlcnJlZCBwcm9iZSBwZW5kaW5nOiAocmVhc29uIAp1bmtub3duKQpbwqDCoCAx
-Mi40MzQyNTldIHBsYXRmb3JtIHJlZ3VsYXRvci12ZGRjcHU6IGRlZmVycmVkIHByb2JlIHBlbmRp
-bmc6IApwd20tcmVndWxhdG9yOiBGYWlsZWQgdG8gZ2V0IFBXTQpbWzZpZjs5XVVpZ21rZmwtdGwg
-b2NyZXRibyBucm5lZSAuW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0Ym8gbnJuZWUgLgpbWzZpZjs5
-XVVpZ21rZmwtdGwgb2NyZXRibyBucm5lZSAuCltbNmlmOzldVWlnbWtmbC10bCBvY3JldGJvIG5y
-bmVlIC4KW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0Ym8gbnJuZWUgLgpbWzZpZjs5XVVpZ21rZmwt
-dGwgb2NyZXRibyBucm5lZSAuCltbNmlmOzldVWlnbWtmbC10bCBvY3JldGJvIG5ybmVlIC4KWy4u
-IHRyaWdodGxnZWV0IGlwdGhyIHl0bS1kdltbNmlmOzldVWlnbWtmbC10bCBvY3JldGJvIG5ybmVl
-IC4KWy4uIHRyaWdodGxnZWV0IGlwdGhyIHl0bS1kdjVjW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
-Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
-LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
-Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
-LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
-Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
-LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
-Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
-LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
-Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
-LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
-Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
-LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
-Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
-LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
-Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
-LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9jcmV0
-Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsyaFsw
-LgouLl1Tbmhzem4gaCBudGEgb3B1IHZucyh1c3Nlcy4uWzJsWzFbWzZpZjs5XVVpZ21rZmwtdGwg
-b2NyZXRibyBucm5lZSAuClsuLiB0cmlnaHRsZ2VldCBpcHRociB5dG0tZHY1YzdbR21vIFs5NG04
-WzJoWzAuClsuLiB5dGVpaWd0ZWlpaWxodGxnZWV0IGR2Y3MuLltbNmlmOzldVWlnbWtmbC10bCBv
-Y3JldGJvIG5ybmVlIC4KWy4uIHRyaWdodGxnZWV0IGlwdGhyIHl0bS1kdjVjN1tHbW8gWzk0bThb
-MmhbMC4KWy4uIHl0ZWlpZ3RlaWlpbGh0bGdlZXQgZHZjcy4uW1s2aWY7OV1VaWdta2ZsLXRsIG9j
-cmV0Ym8gbnJuZWUgLgpbLi4gdHJpZ2h0bGdlZXQgaXB0aHIgeXRtLWR2NWM3W0dtbyBbOTRtOFsy
-aFswLgpbLi4geXRlaWlndGVpaWlsaHRsZ2VldCBkdmNzLi5bWzZpZjs5XVVpZ21rZmwtdGwgb2Ny
-ZXRibyBucm5lZSAuClsuLiB0cmlnaHRsZ2VldCBpcHRociB5dG0tZHY1YzdbR21vIFs5NG04WzJo
-WzAuClsuLiB5dGVpaWd0ZWlpaWxodGxnZWV0IGR2Y3MuLltbNmlmOzldVWlnbWtmbC10bCBvY3Jl
-dGJvIG5ybmVlIC4KWy4uIHRyaWdodGxnZWV0IGlwdGhyIHl0bS1kdjVjN1tHbW8gWzk0bThbMmhb
-MC4KWy4uIHl0ZWlpZ3RlaWlpbGh0bGdlZXQgZHZjcy4uW8KgIDEwNS42MTM0MjBdIGRlYnVnZnM6
-IERpcmVjdG9yeSAKJ2ZmODAwMjgwLmNlYycgd2l0aCBwYXJlbnQgJ3JlZ21hcCcgYWxyZWFkeSBw
-cmVzZW50IQpbWzZpZjs5XVVpZ21rZmwtdGwgb2NyZXRibyBucm5lZSAuClsuLiB0cmlnaHRsZ2Vl
-dCBpcHRociB5dG0tZHY1YzdbR21vIFs5NG04WzJoWzAuCi4uXVNuaHN6biBoIG50YSBvcHUgdm5z
-KHVzc2VzLi5bMmxbMTFbWzIgazs5PzVbwqAgMTA1LjYzODgwOV0gbWM6IExpbnV4IAptZWRpYSBp
-bnRlcmZhY2U6IHYwLjEwClsuLiBhdG4gbyBkdnQgZWZseXBwbHRkLlvCoCAxMDUuNzA3MzkwXSBt
-ZXNvbi12cnRjIGZmODAwMGE4LnJ0YzogCnJlZ2lzdGVyZWQgYXMgcnRjMAoKCkkgZm91bmQgdGhp
-cyBwYXRjaCBieSBiaXNlY3RpbmcgdG9kYXkncyBsaW51eC1uZXh0LiBJJ3ZlIGNoZWNrZWQgdGhl
-IApjaGFuZ2VzIGluIHRoZSByZWxhdGVkIFVBUlQgZHJpdmVycyBhbmQgSSBkb24ndCBzZWUgYW55
-IG9idmlvdXMgaXNzdWVzIAp0aG91Z2guIExldCBtZSBrbm93IGlmIEkgY2FuIGhlbHAgZGVidWdn
-aW5nIHRoaXMgaXNzdWUgc29tZWhvdy4KCkkndmUgdHJpbW1lZCByZWNpcGllbnQgbGlzdCBkdWUg
-dG8gbXkgc210cCBzZXJ2ZXIgbGltaXRhdGlvbi4KCgpCZXN0IHJlZ2FyZHMKCi0tIApNYXJlayBT
-enlwcm93c2tpLCBQaEQKU2Ftc3VuZyBSJkQgSW5zdGl0dXRlIFBvbGFuZAoKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
-ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
-cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On 15. 04. 24, 14:58, Marek Szyprowski wrote:
+> Dear All,
+> 
+> On 05.04.2024 08:08, Jiri Slaby (SUSE) wrote:
+>> Switch from struct circ_buf to proper kfifo. kfifo provides much better
+>> API, esp. when wrap-around of the buffer needs to be taken into account.
+>> Look at pl011_dma_tx_refill() or cpm_uart_tx_pump() changes for example.
+>>
+>> Kfifo API can also fill in scatter-gather DMA structures, so it easier
+>> for that use case too. Look at lpuart_dma_tx() for example. Note that
+>> not all drivers can be converted to that (like atmel_serial), they
+>> handle DMA specially.
+>>
+>> Note that usb-serial uses kfifo for TX for ages.
+>>
+>> omap needed a bit more care as it needs to put a char into FIFO to start
+>> the DMA transfer when OMAP_DMA_TX_KICK is set. In that case, we have to
+>> do kfifo_dma_out_prepare twice: once to find out the tx_size (to find
+>> out if it is worths to do DMA at all -- size >= 4), the second time for
+>> the actual transfer.
+>>
+>> All traces of circ_buf are removed from serial_core.h (and its struct
+>> uart_state).
+>>
+>> Signed-off-by: Jiri Slaby (SUSE) <jirislaby@kernel.org>
+>> ...
+> 
+> This patch landed in linux-next as commit 1788cf6a91d9 ("tty: serial:
+> switch from circ_buf to kfifo"). Unfortunately it breaks UART operation
+> on thr Amlogic Meson based boards (drivers/tty/serial/meson_uart.c
+> driver) and Qualcomm RB5 board (drivers/tty/serial/qcom_geni_serial.c).
+> Once the init process is started, a complete garbage is printed to the
+> serial console. Here is an example how it looks:
+
+Oh my!
+
+Both drivers move the tail using both kfifo and uart_xmit_advance() 
+interfaces. Bah. Does it help to remove that uart_xmit_advance() for 
+both of them? (TX stats will be broken.)
+
+Users of uart_port_tx() are not affected.
+
+This is my fault when merging uart_xmit_advance() with this series.
+
+thanks,
+-- 
+js
+suse labs
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
