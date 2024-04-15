@@ -4,72 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47C7AC4345F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Apr 2024 08:02:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80C15C4345F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Apr 2024 08:02:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=67J5wvmIOePHcstcvCEoRSrnqy16fp7xf9jJKyA/ZLY=; b=LPmTD7ZLBpmee/
-	my0OvSJA8VPpw84XeSHaLsB9jPrYuH6esxjbTj+vTt/Y45Iy1oaUr7PqLDC9ZeLApLfevzbGievbp
-	zTu96ZM7IphdPmXnmGnK616PZ09ItI11q0jVDQrlpDd2OtL2yUIWgMiURZJmrGObTX58R9WjAealC
-	A3ZzT61Mcki2SvUIUbW9m0DZ5gomjF9hz7brandx0UcAGvayNwZIF4/tHk1qXGi1yEjvha3gW+0l0
-	vooV1XcPC/cFsba4ebjyNR3S0Yb65tsSUiP+pdnfTdfthi6lZe2SXYws1mojFiTgdmBeQKJRmejan
-	yX1SdJH9uXx710s3X5pQ==;
+	List-Owner; bh=PibeEMpp5XZHfdgwvk7Kp2GvrV5D+TIvY8mtbHoJE2s=; b=TdnGK5GKT4tQE0
+	/Q9NB+qKMdqyVnEDTcYGYrBn8dNvWfp7P54xlZOuezJhx4eX/PXAF3gG403wUrFwKJJXWHLj2Kryn
+	EptnzgEuwUsFgj3Q6LiisY5e5GdxMCDa5jSQLbIPBuhRtwrqJw7qKgieiKgegWlwH8Mla3h4Gmk/Z
+	MXlQV0uhB4N919zWQxXIYJn74tJMZc/yVlyNCBuggtuhMuBceeTEb70rd6Beim7CKyGML+cGmlogY
+	MHm4aRtPMo8qtwWzzv6GTX39MFJKItBuJfNaQLr0DcyhbKoxzd+S8KumfrRW0aULFTVVH8L4NBFoP
+	9bTlUBYQdJlTKuIAvI2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rwHHw-00000007S5V-1Y1I;
-	Mon, 15 Apr 2024 08:02:04 +0000
-Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
+	id 1rwHII-00000007SDL-2WIc;
+	Mon, 15 Apr 2024 08:02:26 +0000
+Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rwHHo-00000007S2R-0kwy
+	id 1rwHIC-00000007SA6-1Gbp
 	for linux-amlogic@lists.infradead.org;
-	Mon, 15 Apr 2024 08:02:03 +0000
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-a52582ecde4so132240166b.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 15 Apr 2024 01:01:54 -0700 (PDT)
+	Mon, 15 Apr 2024 08:02:24 +0000
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-55a179f5fa1so2740772a12.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 15 Apr 2024 01:02:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713168113; x=1713772913; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1713168136; x=1713772936; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=CPtOHLp/ItL6XzmgbbTsKkPtCjWRiufv9K9fIf2mnm8=;
-        b=pycxnc5gVo+1AZjRggcvz9zbqw3BFOmjXwc8Xc+ggX/gVbbr26La6/pJSRnMus/Kvo
-         2ozmOnQYg/2uQiWlTc0gsAPE8pvl0XI2XmD9cY0oD1eu4F1PahGXO3L4DhGzN7idOgAm
-         GKwUZZXpGeOzeJwJgC37P6U4U02aLQK8KxsNDax7sHWfMuffZxzW3zAEgzQlIl2vdqXf
-         Y1+5pfZ/IMaOMiTR0bt7HeVl9Ck/VmPbAOhpk8JENGAHDP4W0XYf+oLIs1C6uYO9lyoV
-         j5HrPF5b0yVrRwIBWln2cYbUf70ay/bnrFSyQnaZFOreOEYA2uYOzm6bGJliMDLU+ziB
-         7ZGQ==
+        bh=RxxnOIbWdKNhd8ESydWyV3bXibSeuFiEKlNzMtKAmLk=;
+        b=AVDbczHbuzzkoXw/hPDVVlhY6uZhNcMBYaJWoM8X2gG7BYVQBmMFnFpBnEAnGkZez5
+         V4CZPM+qTmSxPKlPvvkEUOIOUjLHKk+/y8r/OGuvPZAhkXAUH05nBZKhvmgxYIdfAI9E
+         7VRMHMpwBgB4bmskVipE6jFr5yNoayIjUkZ4nAVmy9C8WJnmx4w0kixU3DFaNND3FAS6
+         GmxqdecED5grT6+pNkbSTqfzQRkLuACumMJZd6mNyXRYui65L2Cxxv9HSMVsLsWG2Drr
+         sAtQNK+mCSSDSFKBLqLlnwqVH5reEalOSbECJAxRflnXkBFJ6MaOOK9R512ZPwgvIj62
+         T6bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713168113; x=1713772913;
+        d=1e100.net; s=20230601; t=1713168136; x=1713772936;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CPtOHLp/ItL6XzmgbbTsKkPtCjWRiufv9K9fIf2mnm8=;
-        b=o2a3T5F1OWPcnS0u55fkdizE5vQbrn208stD/HtQMKZEuz0/PMNHxPuGnUfRdd4iTU
-         4u0FHtRsXTz3xfP0mgbUW8n2QwPZmtI8/rszHnSm7L6QyjjiO8o6CxhW+beYLQ60UmMW
-         HgHrt/flf3wScDi3pyYls04pkPjAYTJ+b/0r8MZU8ey4cxbRwKirIy9A4GLozwK0cdTL
-         w8V5ttaiJhAlRQeDmrX5b9xLbvyRZyoXKctzj8T4EHJc06WAB7hwSBWtnaSBzjKNwvLU
-         rasqjLwephtMacw+0TqaOteGmrZm7K/frJKm8gXbcJAOV5jgVHMFMM7eBnVf2oV0T1NT
-         fl/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWLBatWJtUgszu0XS/KlW1vldzcg/NbVA6tn5PjuaYtOAF3ZmVaT1fGDNVF2kmZUzHFYfuU8KgPsulGse6CbDzmyWGHlBOvHuUrlIRJFDs0NaU=
-X-Gm-Message-State: AOJu0YyXodLJhUXFJL52YefpLBwHUMDJrLz9BZ3YoLlOgYhiX7KxD4n5
-	NAlOJdkVWfoc5vx5iCqtKGzIiOmDZs0R8nlhBp/gEuoWnbprwRwxUTuiJQxYQYk=
-X-Google-Smtp-Source: AGHT+IEdGqwmGJNHSzZVRiK8R+/NH6MxDXrqe2ePpwNY5brpbviKuBMuMuDBrM2FOKJ/iq2Bog7jGg==
-X-Received: by 2002:a17:907:7da1:b0:a51:b0e1:8640 with SMTP id oz33-20020a1709077da100b00a51b0e18640mr7918052ejc.9.1713168113019;
-        Mon, 15 Apr 2024 01:01:53 -0700 (PDT)
+        bh=RxxnOIbWdKNhd8ESydWyV3bXibSeuFiEKlNzMtKAmLk=;
+        b=wNtT7XqboQ1h9W7jlugXuHDj0evGC4nfgiAt8/f8Hs4e7hZcACkc1pRgRuELMVxTbS
+         g7kPMVNF6UszjI1l/aZ69dfGaIbsUekhQtjCDQMondSjSi1WH/tZIYRrwydJvHSU6B1N
+         4w0W6x35GcS1Vq1Vm2ZiYz7LCaSlYTxFcfybThRKZT16g2Vs7l8mhu7obJxngY0SAAlT
+         f1Lg3CjgeK7kMjMU1YKEFIjMMlL61uvFWbO+olnQ6VQgAFFsB2Xfe1UdFhFZjmqL5XbH
+         ZBzu+0bc5jHNUcZaR0AMBNBYXjZfJE9S509qIxtAfJc2Ctp8D5josN++0O0hH4YzQLbs
+         3xvw==
+X-Forwarded-Encrypted: i=1; AJvYcCU+v57kKgAelSuv/xJ4DqenQFcIfZHFXwTlAxm+pYTbUm0j3fyHDRHhbdCsOtLpKyz7/QnpA1EXIhjc+0Xw0MxPp70mC1oZeMhINIRpiCaHf9o=
+X-Gm-Message-State: AOJu0Yx/E36sH2AF5NixgE4KqMivBBdbDAtXL0MxpNNI7RSKZRh7K9KP
+	jgyCUAIkuCchWjzL78VPVTS54TaL0HfnstUssWROIaU4YXzM8WHYyGWA0DQwOhk=
+X-Google-Smtp-Source: AGHT+IE+29LAzKxpO+NSRFKt+Kk57LXcT97w4Z8npCIK16tiVH+cS7yhl+ztmLssddXCKvIelgyqlg==
+X-Received: by 2002:a50:d59d:0:b0:56e:4676:aa3a with SMTP id v29-20020a50d59d000000b0056e4676aa3amr6025013edi.16.1713168135626;
+        Mon, 15 Apr 2024 01:02:15 -0700 (PDT)
 Received: from [10.230.170.72] (46-253-189-43.dynamic.monzoon.net. [46.253.189.43])
-        by smtp.gmail.com with ESMTPSA id cw4-20020a170906c78400b00a4e58c74c9fsm5124245ejb.6.2024.04.15.01.01.51
+        by smtp.gmail.com with ESMTPSA id s24-20020a056402037800b0056e44b681a6sm4560227edw.57.2024.04.15.01.02.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Apr 2024 01:01:52 -0700 (PDT)
-Message-ID: <17950726-6c8b-4ca6-af90-6abb9b0c05c5@linaro.org>
-Date: Mon, 15 Apr 2024 10:01:51 +0200
+        Mon, 15 Apr 2024 01:02:15 -0700 (PDT)
+Message-ID: <9df035d3-438a-46d7-8fba-183aea84023a@linaro.org>
+Date: Mon, 15 Apr 2024 10:02:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: panel-simple-dsi: add Khadas TS050 V2
- panel bindings
+Subject: Re: [PATCH v2 0/2] drm/panel: add Khadas TS050 V2 panel support
 To: Jacobe Zang <jacobe.zang@wesion.com>, neil.armstrong@linaro.org,
  airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
  mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
@@ -79,7 +78,6 @@ Cc: nick@khadas.com, linux-amlogic@lists.infradead.org,
  dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20240415031408.8150-1-jacobe.zang@wesion.com>
- <20240415031408.8150-2-jacobe.zang@wesion.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -126,10 +124,10 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240415031408.8150-2-jacobe.zang@wesion.com>
+In-Reply-To: <20240415031408.8150-1-jacobe.zang@wesion.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240415_010156_335675_6FDB6F20 
-X-CRM114-Status: UNSURE (   9.11  )
+X-CRM114-CacheID: sfid-20240415_010220_351203_D89C93BD 
+X-CRM114-Status: UNSURE (   5.88  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -148,33 +146,11 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 15/04/2024 05:14, Jacobe Zang wrote:
-> This add the bindings for the Khadas TS050 V2 1080x1920 5" LCD DSI panel
-> designed to work with the Khadas VIM3 and VIM3L Single Board Computers.
+> Changes from v1 at [1]:
+> - Fix name from "newts050" to "ts050v2"
+> - Add specific description about controller change 
 
-A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
-
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-
----
-
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+You must say that you ignored/dropped received tags.
 
 Best regards,
 Krzysztof
