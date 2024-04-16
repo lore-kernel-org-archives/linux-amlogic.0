@@ -4,84 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDD34C4345F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Apr 2024 01:20:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E32AC04FF6
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Apr 2024 05:48:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=9mCFK5mq/QHDcGhOmWAE2KsrBWzCNB+shspUHnF8Haw=; b=damYOHf43VXa//
-	MK1RosHGSlw8rHA23T0NpV5ahaVh/XfROxCoJl8LpivB9Drrjei1sYsz3hSrteGrSG0J8+jMgUzqN
-	I8GII6gM7qC07wWSUYnd33rKdJTPN10K1a+StGKctB5uKXO5kW+am8VrGbOdRv2LinxPZW5wDQVb3
-	aVRcUoKUCMCHnzVUqC4FzC4Yf76wIGXyi135aOiq4xbIzrNp33NjKa2XV2cjR+cUzW2HChn0DLTPH
-	P+71BabuK0kjMWGlijN1r6fL6l842nXyVUlRZ/pMn0mwUzWePoxBAff42NRMWyAh5sGmZScQVbiBf
-	RVs4i/udDxBbEsUdkBlA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=RFAYAat0246LKKUIwL7ibOWMva3kXlSRs1bZsslfsIg=; b=12lgVlI1XQGti4
+	FBiHarGnIcwtZW5g2ow4OTcgXT72eCF/s5+bG5hkXiVTUO5GmNkTibCYb9MWkL5s20KXhSSPQUqxJ
+	KfRLCkAx9gYpUC5GHJASDfUWKmeJDQT69EdipBcmkOsKJqgqrddeRV6OiN5MEns6eBBMHRwRaeuB2
+	L+JSeSjDjPOQUyTHL9dhTQY9l3Cv01NSHFtV/bR8/4lfb4tfPbtUnyXJIrBOs/ru8L+hhshIVN+cj
+	vKvmWursI8ZpBMVtTuNEzrHGk4AHv55v3I3vz29ryIiQEvlK9tvdXAlfb4qqS7u8OzQdrF0KzcPMP
+	LV+O2780TRN61L0QPqZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rwXUu-0000000AQRb-1wxN;
-	Tue, 16 Apr 2024 01:20:32 +0000
-Received: from mail-pf1-x433.google.com ([2607:f8b0:4864:20::433])
+	id 1rwbgK-0000000AyPU-2ZXH;
+	Tue, 16 Apr 2024 05:48:36 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rwXUo-0000000AQQY-0ezP;
-	Tue, 16 Apr 2024 01:20:29 +0000
-Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-6ed054f282aso2770660b3a.0;
-        Mon, 15 Apr 2024 18:20:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713230424; x=1713835224; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xcz+73pSqE9SfopeTAgajRWWiV1WsHA33Nl/GYOpK3o=;
-        b=dlWS8I8070J8jXhyHRB6wHgb8kCZIkzqNUVMZFLTte3CRltIVyNpM//LAvKrs/gKqv
-         J0VrQgvlRdZAR76HJErQTdMbhvZqFWxBhx3MqIzgiwYn/hKOeB9kvshXC0ssQFs7jJrC
-         SIy+Q8qZbJlJvBQdb1brOH8GNOREa7ljmzye5dbboi6vbDIMuYeA+8zFaWVqLfjjWVNp
-         bLeo3nnfP3bG9q4Eu3bCFtDHVACex7LNqMWoJCFwsQfaBeXrgm6VS6GPkSViI+EjO2n4
-         YuRKDIl+6N4QsodO3HPwegr8WhqeoowQmFJy9Ivc12cc4KboU/r+RFGo/ntbaEirp4P+
-         e3lw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713230424; x=1713835224;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xcz+73pSqE9SfopeTAgajRWWiV1WsHA33Nl/GYOpK3o=;
-        b=ToCh14nwOKSVEfXXClLGZpb9GkYlU1eG2A5su9cH2LqgP3po8k5lEVDCX7VHuVEuFl
-         zRqYeNvZ1e5EXwq73WSJF/aj5I4iKcdqlOY4MTKHlklSbJiM/nnAJQbJxbeQWDtGgbGy
-         VdALAscxKBCxSim/rkLlGB/8OvEsCsaHCzuxrca0lFbNgkEdMOHK6R0IRlDeqvWfOUIN
-         ThMY+JcPv4sS5LHDlFUj/EJCXtQRNQGhW4m8ApuspsyCWbVAJXSqKXbaFdGGvpTydPfr
-         oLRAtAGI5KfK+QBSk5TAPlBahOYch9oyBT7G4Ahbzqg8TcaRCZTU3rjU5CUi5qAp1obr
-         PhEw==
-X-Forwarded-Encrypted: i=1; AJvYcCWKqm8IdDH2YGiissDgfJKwMk9am/2HMRMSfT9RfjuCGRVRWerhcfqS0Frqo8WQduqztEP2oh+XccyuLWXCZ6zzsZj3qGBeHfyxHbn1Y+R0+SbVt8jJC4uHkILgM40jV09q7pNXrEsN/uvWcK1adyQ/DQhnIl3YOQ==
-X-Gm-Message-State: AOJu0YyrlmJIwsC6M1EKb+klvlh/sPj9kH5xNZMypiqv8zsF/rNhTVSO
-	pQzZR/STEKcFCBhRqVRalKXOFmcN/oq9uCWn3/ZO+p/zA2ot1ajYo33J7mU0
-X-Google-Smtp-Source: AGHT+IGKSm5nin6p9UNwnL1BsNEX4TIhlHRZpogTl4rQv960sLOS5qdNTVHqAH3CSeYwafOn5VBL6g==
-X-Received: by 2002:a05:6a00:b96:b0:6ec:ea4b:f07a with SMTP id g22-20020a056a000b9600b006ecea4bf07amr11785479pfj.34.1713230423713;
-        Mon, 15 Apr 2024 18:20:23 -0700 (PDT)
-Received: from mari.. ([2804:431:cfd3:2714:2d55:751b:9f5f:563e])
-        by smtp.gmail.com with ESMTPSA id y30-20020a056a00181e00b006e6854d45afsm8061866pfa.97.2024.04.15.18.20.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Apr 2024 18:20:23 -0700 (PDT)
-From: MarileneGarcia <marilene.agarcia@gmail.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	id 1rwbgI-0000000AyOx-0sZw;
+	Tue, 16 Apr 2024 05:48:35 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 5427CCE0EE2;
+	Tue, 16 Apr 2024 05:48:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EC4AC113CE;
+	Tue, 16 Apr 2024 05:48:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713246510;
+	bh=TenS7osWv9s/9Jh6uxGzY8R47mJAGgM3ek3C2c2/Yho=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=ZbER8nYLUIIjS30NXjJqeds3Ul9G382K+Go27g16/LkqOliUU2PcQbgsZ7IwVvPQB
+	 AvpNaz1cli8oqhHZWJJnULv7FWqPsLzHGW/ntcCQTkCP87G4atKjmkVRZok/QHp07I
+	 R65Of2LEoRmDC0O/0gSeiMm7/PJUX0jIikO6fvjaVMeXb0oD2UZxMBacBGXuPpGOL/
+	 XuKWsqTFXsNO6SESO2ZjELkmC2A0GgsJCCRtO42v0FglZEN7LSM8VhPfrPDOj98Viy
+	 Ikxqi9XqxbXNGjNGLvnL536ZmKVPxi+imFyZWeeLasK+K2+Jz2Qs+Fpd6WihkgMQt3
+	 yJGntA62YB6Rg==
+From: "Jiri Slaby (SUSE)" <jirislaby@kernel.org>
+To: gregkh@linuxfoundation.org
+Cc: linux-serial@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	"Jiri Slaby (SUSE)" <jirislaby@kernel.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Julia Lawall <julia.lawall@inria.fr>
-Cc: MarileneGarcia <marilene.agarcia@gmail.com>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] nvmem: meson-efuse: Replacing the use of of_node_put to __free
-Date: Mon, 15 Apr 2024 22:17:51 -0300
-Message-Id: <20240416011751.93016-1-marilene.agarcia@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	linux-arm-msm@vger.kernel.org
+Subject: [PATCH] serial: meson+qcom: don't advance the kfifo twice
+Date: Tue, 16 Apr 2024 07:48:25 +0200
+Message-ID: <20240416054825.6211-1-jirislaby@kernel.org>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <1dd9e3a1-29d0-4628-9b6a-b7e9fc09bf0f@samsung.com>
+References: <1dd9e3a1-29d0-4628-9b6a-b7e9fc09bf0f@samsung.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240415_182026_215877_610A07E0 
-X-CRM114-Status: GOOD (  11.66  )
+X-CRM114-CacheID: sfid-20240415_224834_638563_FF74D4EF 
+X-CRM114-Status: GOOD (  10.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,49 +80,72 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use __free for device_node values, and thus drop calls to
-of_node_put.
+Marek reports, that the -next commit 1788cf6a91d9 (tty: serial: switch
+from circ_buf to kfifo) broke meson_uart and qcom_geni_serial. The
+commit mistakenly advanced the kfifo twice: once by
+uart_fifo_get()/kfifo_out() and second time by uart_xmit_advance().
 
-The goal is to reduce memory management issues by using this
-scope-based of_node_put() cleanup to simplify function exit
-handling. When using __free a resource is allocated within a
-block, it is automatically freed at the end of the block.
+To advance the fifo only once, drop the superfluous uart_xmit_advance()
+from both.
 
-Suggested-by: Julia Lawall <julia.lawall@inria.fr>
-Signed-off-by: MarileneGarcia <marilene.agarcia@gmail.com>
+To count the TX statistics properly, use uart_fifo_out() in
+qcom_geni_serial (meson_uart_start_tx() already uses that).
+
+I checked all other uses of uart_xmit_advance() and they appear correct:
+either they are finishing DMA transfers or are after peek/linear_ptr
+(i.e. they do not advance fifo).
+
+Signed-off-by: Jiri Slaby (SUSE) <jirislaby@kernel.org>
+Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/nvmem/meson-efuse.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-arm-msm@vger.kernel.org
+---
+ drivers/tty/serial/meson_uart.c       | 1 -
+ drivers/tty/serial/qcom_geni_serial.c | 4 +---
+ 2 files changed, 1 insertion(+), 4 deletions(-)
 
-diff --git a/drivers/nvmem/meson-efuse.c b/drivers/nvmem/meson-efuse.c
-index 33678d0af2c2..400a9a075e53 100644
---- a/drivers/nvmem/meson-efuse.c
-+++ b/drivers/nvmem/meson-efuse.c
-@@ -42,20 +42,19 @@ static int meson_efuse_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct meson_sm_firmware *fw;
--	struct device_node *sm_np;
- 	struct nvmem_device *nvmem;
- 	struct nvmem_config *econfig;
- 	struct clk *clk;
- 	unsigned int size;
-+	struct device_node *sm_np __free(device_node) =
-+		of_parse_phandle(pdev->dev.of_node, "secure-monitor", 0);
+diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+index 4587ed4d4d5d..8eb586ac3b0d 100644
+--- a/drivers/tty/serial/meson_uart.c
++++ b/drivers/tty/serial/meson_uart.c
+@@ -162,7 +162,6 @@ static void meson_uart_start_tx(struct uart_port *port)
+ 			break;
  
--	sm_np = of_parse_phandle(pdev->dev.of_node, "secure-monitor", 0);
- 	if (!sm_np) {
- 		dev_err(&pdev->dev, "no secure-monitor node\n");
- 		return -ENODEV;
+ 		writel(ch, port->membase + AML_UART_WFIFO);
+-		uart_xmit_advance(port, 1);
  	}
  
- 	fw = meson_sm_get(sm_np);
--	of_node_put(sm_np);
- 	if (!fw)
- 		return -EPROBE_DEFER;
+ 	if (!kfifo_is_empty(&tport->xmit_fifo)) {
+diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
+index 7814982f1921..2bd25afe0d92 100644
+--- a/drivers/tty/serial/qcom_geni_serial.c
++++ b/drivers/tty/serial/qcom_geni_serial.c
+@@ -855,7 +855,6 @@ static void qcom_geni_serial_send_chunk_fifo(struct uart_port *uport,
+ 					     unsigned int chunk)
+ {
+ 	struct qcom_geni_serial_port *port = to_dev_port(uport);
+-	struct tty_port *tport = &uport->state->port;
+ 	unsigned int tx_bytes, remaining = chunk;
+ 	u8 buf[BYTES_PER_FIFO_WORD];
+ 
+@@ -863,8 +862,7 @@ static void qcom_geni_serial_send_chunk_fifo(struct uart_port *uport,
+ 		memset(buf, 0, sizeof(buf));
+ 		tx_bytes = min(remaining, BYTES_PER_FIFO_WORD);
+ 
+-		tx_bytes = kfifo_out(&tport->xmit_fifo, buf, tx_bytes);
+-		uart_xmit_advance(uport, tx_bytes);
++		tx_bytes = uart_fifo_out(uport, buf, tx_bytes);
+ 
+ 		iowrite32_rep(uport->membase + SE_GENI_TX_FIFOn, buf, 1);
  
 -- 
-2.34.1
+2.44.0
 
 
 _______________________________________________
