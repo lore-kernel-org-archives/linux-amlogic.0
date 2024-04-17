@@ -4,91 +4,127 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F385EC4345F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Apr 2024 10:08:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E6BCC4345F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Apr 2024 10:21:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:From:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CBZY1amAvY1vAkJdhJPiWe8KtFlL40Qm4yp7HYpid7E=; b=pK98JO18JVi3D4
-	65K1xVqGr7Q/r1+bgRkiUwJ009Haje8HNJG0913bZtGrtQs5n4B3GrRKAGWjivfBwAlU8b2M/bRwM
-	57sZzqONLHcVbqJS4XXTdtuuyzBs0s14YJQshJruRxT5sVQn2AN2YJRRRQifLF8y3JUB5zVeGST8O
-	QkvQIc9Hrd5YKSh6bXc8wUV92lZgADNE21BJEps+Lr9SmMiZ51M7K2QiXkBTWYrpMmsG2hYlHhPax
-	L679QteCgBKaEO37AzTKHUd1N0hQr0+7OOCcuZt77d6rEsmEvwTTCHE1dmBEx4aQDC2RaBXNtxSnS
-	Nedrui5hCB6FB+P/wNpA==;
+	List-Owner; bh=Na7I41HvVp0/Qg8o/ligvCaL5gfsLBb1HrVsRgRvfjw=; b=5AIUnyeRhDG07Q
+	q3IAS8YzL4ZYycCgycucG+6S6d4pUM4cYhUoXPVi574iQvVbwJDk351k85Q8SXLM7K35VgWy/sFaf
+	AUWK1EJiSDZTTOxFuKGuwDaZ4TcfzxyWoJa9/3spHBfz+OUF9sXpoODlRbCuzZ9xmNwZystZzyFge
+	Bgcrfp0fRue1dkDC1xF2A5NX7PSNpaSDJMPMwmV/nFpMj9xYxVjLahStX97pvcGtZw0Oi2zHT8ov9
+	gKEjfzQDy6w17cQUbUbnWyfXttMWXPxUsR0yQMn4pTM1pO0SH5nGnXLHzQLpL8MDepMKKtj6QYZ2U
+	Ff7GeSe/veFxMg7ya0Iw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rx2D7-0000000FWOM-0dEv;
-	Wed, 17 Apr 2024 10:08:13 +0000
-Received: from mail-lf1-x132.google.com ([2a00:1450:4864:20::132])
+	id 1rx2PP-0000000FZnn-1nyP;
+	Wed, 17 Apr 2024 10:20:55 +0000
+Received: from mailout2.w1.samsung.com ([210.118.77.12])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rx2D2-0000000FWLj-20eR
+	id 1rx2P5-0000000FZYk-1GnU
 	for linux-amlogic@lists.infradead.org;
-	Wed, 17 Apr 2024 10:08:12 +0000
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-518b9527c60so4410068e87.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 17 Apr 2024 03:08:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713348483; x=1713953283; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rew6iLA0plRdxtIqeoXYtK2CEUSuSYY+qCYCtmDSd1o=;
-        b=NQOxS4LvDhf+nwLKLC3QOyxXep+XjHosWnjsgnjZRzZuq6MgiTSnqtKZzTNV8X3tzr
-         54BoZH/LnAIgM8xS1hr/XV679osYZUKKAxU24L+TeFuUPGnRub4Dp49U+gS4cCyT2UmA
-         KRBNbmReKy8Uqf1zI3Y6hxxtDNqS7mpXuDAR2/Xv7qT7fOIS2lUdVU0JF7KDHPxNBnyo
-         JwKiALdJbYsbi2MkaX9aZsKYeoBcnwjYZvWtqOupc0vNqn3zp3g7tXCvhCbsEcb69X6y
-         lm0r4QQUhMVKClz/jfUx1T3gWlwF6ZaYaym7cdTdw1y12huoWtVol4GqE9TcsaeThVQi
-         YmGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713348483; x=1713953283;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rew6iLA0plRdxtIqeoXYtK2CEUSuSYY+qCYCtmDSd1o=;
-        b=QOwzo5h9+CpwwMOeraQGoAY9foKWWoAYKvHwNKHa+0AA8g8TW5UAcihWAiQOFkp5DK
-         vlPamOoxWXEAE4sILo2UYOUNKQCxeUYyav5er9qpfy7qPe3uzzuCEmi04QAWxSlosM/v
-         mcqyJJifozKrMPFij8go3tADTtCxmPK1qoVjdZAJn0gdRUE8ZKDsvfaS6Rj7pjyUGVFD
-         AFWUicm6OD+GIFXRjrFYqRvssvwq7O2VjHq78UldabZsw4AN7le9DNn5b0t9X53y9hiU
-         H9yvd9mNJOuYonkXPPfgp1Z0dw7UP6iLIHxaRyTR5rqtxwRDc0CTr5R/7urLwObk5SJj
-         3vtw==
-X-Forwarded-Encrypted: i=1; AJvYcCUo0ADiPqhmYF9eCR39eebKHidJGqHzVUnfRVIaqFE7RGCuVEx13+tMuERbUr52Lddc8yrt+davHY5yKpgHw0Zagz3QljMuQQQXoYl73dz8sr4=
-X-Gm-Message-State: AOJu0YxtYBNMTmpv/x0LlV7YUeJ78lgEPHtvKm7jj9CQ/0XMXN6wdgED
-	PjoYgRqlJSbT/Io4x4B93RPK+XY+vHWx6MrXpqDxGcFqzL7SFmhka3ixnJCPHwAwBZhgLQbT8rk
-	Y
-X-Google-Smtp-Source: AGHT+IHpU2FckcUTS4T6HUYuJqnYbBgP+xCaAEopvwDiMHdA/fetkEHgQoPYTTOMp3Se2U1GhQcWFA==
-X-Received: by 2002:a19:ca03:0:b0:519:5c34:9652 with SMTP id a3-20020a19ca03000000b005195c349652mr10971lfg.31.1713348483318;
-        Wed, 17 Apr 2024 03:08:03 -0700 (PDT)
-Received: from localhost (c-9b0ee555.07-21-73746f28.bbcust.telenor.se. [85.229.14.155])
-        by smtp.gmail.com with ESMTPSA id i25-20020a0565123e1900b00518dfedc3ddsm1012464lfv.12.2024.04.17.03.08.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Apr 2024 03:08:02 -0700 (PDT)
-Date: Wed, 17 Apr 2024 12:08:02 +0200
-From: Anders Roxell <anders.roxell@linaro.org>
-To: Jiri Slaby <jirislaby@kernel.org>
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>, gregkh@linuxfoundation.org,
-	linux-amlogic@lists.infradead.org,
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 12/15] tty: serial: switch from circ_buf to kfifo
-Message-ID: <Zh-fgtujwjiSXz7D@monster>
-References: <20240405060826.2521-1-jirislaby@kernel.org>
- <20240405060826.2521-13-jirislaby@kernel.org>
- <CGME20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae@eucas1p2.samsung.com>
- <91ac609b-0fae-4856-a2a6-636908d7ad3c@samsung.com>
- <d70049d5-d0fe-465f-a558-45b6785f6014@kernel.org>
+	Wed, 17 Apr 2024 10:20:38 +0000
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20240417102031euoutp024daa2ae94d1555fad8dd01c1dbd61d29~HCgx42H3L2070420704euoutp02D
+	for <linux-amlogic@lists.infradead.org>; Wed, 17 Apr 2024 10:20:31 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20240417102031euoutp024daa2ae94d1555fad8dd01c1dbd61d29~HCgx42H3L2070420704euoutp02D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1713349231;
+	bh=dFt6dfcqV3zT2/ZiPZ6VfWUb9Ittzgqcfr2mHlwzjko=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=mkJh3BtIzO80Gg+ySnEXp6oFTse34sqblkl0o4Ue5vGXUqRxc0+v5gcoYkATjhzn6
+	 f6c1HGwzkv8ogHl1K6tt3qzJSoBEp5bZMwXosy6Njj8ewelg155GGIBUg+BoN23jTr
+	 pluVfCm7C5G9aCZXjpFUqCTJWeGLvXaXGuRBGTbY=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+	20240417102031eucas1p1a388b363c581a557fe3c4ca64f141a92~HCgxlaONv1596815968eucas1p1Z;
+	Wed, 17 Apr 2024 10:20:31 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges2new.samsung.com (EUCPMTA) with SMTP id AA.39.09875.F62AF166; Wed, 17
+	Apr 2024 11:20:31 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20240417102031eucas1p221e613c1c12e7f71449935a2090cd72e~HCgxLJvvj1176911769eucas1p27;
+	Wed, 17 Apr 2024 10:20:31 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20240417102031eusmtrp1f8fa65831e1464c22b1362499d7a4fdd~HCgxJ80f-2417024170eusmtrp1B;
+	Wed, 17 Apr 2024 10:20:31 +0000 (GMT)
+X-AuditID: cbfec7f4-11bff70000002693-21-661fa26f07c1
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id 21.B5.09010.E62AF166; Wed, 17
+	Apr 2024 11:20:30 +0100 (BST)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20240417102030eusmtip21c4b82205fab31cb65d46fa91d3a4030~HCgwZ4A6z1594315943eusmtip2g;
+	Wed, 17 Apr 2024 10:20:30 +0000 (GMT)
+Message-ID: <c091da0b-a150-428a-bf96-75f9f3eab2e2@samsung.com>
+Date: Wed, 17 Apr 2024 12:20:29 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <d70049d5-d0fe-465f-a558-45b6785f6014@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/15] tty: serial: switch from circ_buf to kfifo
+To: Anders Roxell <anders.roxell@linaro.org>, Jiri Slaby
+	<jirislaby@kernel.org>
+Cc: gregkh@linuxfoundation.org, linux-amlogic@lists.infradead.org,
+	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, Bjorn Andersson
+	<andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Neil
+	Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+Content-Language: en-US
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <Zh-fgtujwjiSXz7D@monster>
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrCKsWRmVeSWpSXmKPExsWy7djPc7r5i+TTDK5eVbC4NeU3k8W2DhuL
+	5sXr2SzePDrCbPFurozFz/YtTBYdk7ezWCyYzW0xcf9ZdovLu+awWZxZ3MtucWzRSRaL9ztv
+	MTrwery/0cru8XTCZHaPTas62TzuXNvD5rF/7hp2j81L6j0+b5ILYI/isklJzcksSy3St0vg
+	ythw9hFLwWyRioldn9kaGA8JdDFyckgImEgsP3iNsYuRi0NIYAWjxNztx1ggnC+MEu8vdbND
+	OJ8ZJd5c388E0/JidR8bRGI5o8TlUxOgnI+MEjufPger4hWwk+g9O5MNxGYRUJVY2LKNGSIu
+	KHFy5hMWEFtUQF7i/q0Z7CC2sICrxKU3b8HqRQQCJbZc3wE2lFngLLPEriV3wYqYBcQlbj2Z
+	D7aATcBQouttF1gDp4C6xMkTi5kgauQltr+dwwzSLCEwmVPi6PdNLBB3u0isXnsZ6gdhiVfH
+	t7BD2DISpyf3sEA0tDNKLPh9nwnCmcAo0fD8FiNElbXEnXO/gNZxAK3QlFi/Sx8i7Chx82c/
+	K0hYQoBP4sZbQYgj+CQmbZvODBHmlehoE4KoVpOYdXwd3NqDFy4xT2BUmoUULrOQvDkLyTuz
+	EPYuYGRZxSieWlqcm55abJSXWq5XnJhbXJqXrpecn7uJEZjQTv87/mUH4/JXH/UOMTJxMB5i
+	lOBgVhLhbRGWTRPiTUmsrEotyo8vKs1JLT7EKM3BoiTOq5oinyokkJ5YkpqdmlqQWgSTZeLg
+	lGpg6tDesLvT3ks6+6orkza/cK6vZ1+izPTLM6N7WXImpzwQbrBYLxe24q7A028LDnBx//Z4
+	84TDfOZZK/7XEiaJE3asOZnJ9Kn9Y/PdPylyS5mD+vi2b0zks9E+0+ArXFb9z+TQu/kPDK69
+	vqO24ple3pZ3zRHaR8rPPC3ocPN/6v2zsnRCddfZ2yFC9jdaruZKXV+oVjjXI6DL7ALD1Hjj
+	zrY128RrasNYpzc9C71y9PYU+VUGn3pfWh5lfPZejsdRTW/uqsnMnjJfkt4GHrpee19/xYWG
+	av5Ivy5pWeGm3F+PWXOO9P62X6L/NdDD2vaZtmz1t1TmCf8N3i27X2Vywshh54Tc4x3bXTV1
+	PecpsRRnJBpqMRcVJwIAoUmG79cDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrGIsWRmVeSWpSXmKPExsVy+t/xe7p5i+TTDN4/sbK4NeU3k8W2DhuL
+	5sXr2SzePDrCbPFurozFz/YtTBYdk7ezWCyYzW0xcf9ZdovLu+awWZxZ3MtucWzRSRaL9ztv
+	MTrwery/0cru8XTCZHaPTas62TzuXNvD5rF/7hp2j81L6j0+b5ILYI/SsynKLy1JVcjILy6x
+	VYo2tDDSM7S00DMysdQzNDaPtTIyVdK3s0lJzcksSy3St0vQy9hw9hFLwWyRioldn9kaGA8J
+	dDFyckgImEi8WN3H1sXIxSEksJRR4s6yVlaIhIzEyWkNULawxJ9rXVBF7xklHu08DZbgFbCT
+	6D07kw3EZhFQlVjYso0ZIi4ocXLmExYQW1RAXuL+rRnsILawgKvEpTdvwepFBAIlrt5Zwg4y
+	lFngPLPEhOZ9rBAbDjBJ3F23DqyDWUBc4taT+UwgNpuAoUTX2y6wbk4BdYmTJxYzQdSYSXRt
+	7WKEsOUltr+dwzyBUWgWkkNmIRk1C0nLLCQtCxhZVjGKpJYW56bnFhvpFSfmFpfmpesl5+du
+	YgRG8LZjP7fsYFz56qPeIUYmDsZDjBIczEoivC3CsmlCvCmJlVWpRfnxRaU5qcWHGE2BoTGR
+	WUo0OR+YQvJK4g3NDEwNTcwsDUwtzYyVxHk9CzoShQTSE0tSs1NTC1KLYPqYODilGphWKz++
+	WxdkKsZh9Pla9pEchZcXTbnfBoj/8Nsod1jt2F1XsSdTT5Xvr9ix1+lCjXCwweLDuVtszzxc
+	vVbdt3Lu66Ml5lptj3ImRO1YN3nKNUvpA9knP08PkZRItDt24a1PJ+eV82avT062+enwIVaL
+	JdxFh2caixWbhf7bTQ7752TLmSsFy2n2n3EV3X/MVmbLM8vKvs/mU4sWnYs8KHjI7RO/YeNs
+	Me19ixenvH/yvkrh8EZ192WCusFM9zaWf0vIkZhqJP6iz+fE0/QYPvGN9vHczwQz9sTP31As
+	+HLrmuv8M9pssu8fqwuxvx/G57jOP3uay+pojmlPFr1p7rn/cX/PvswDQWutlQL3XlJQYinO
+	SDTUYi4qTgQAEwnrVGkDAAA=
+X-CMS-MailID: 20240417102031eucas1p221e613c1c12e7f71449935a2090cd72e
+X-Msg-Generator: CA
+X-RootMTR: 20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae
+References: <20240405060826.2521-1-jirislaby@kernel.org>
+	<20240405060826.2521-13-jirislaby@kernel.org>
+	<CGME20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae@eucas1p2.samsung.com>
+	<91ac609b-0fae-4856-a2a6-636908d7ad3c@samsung.com>
+	<d70049d5-d0fe-465f-a558-45b6785f6014@kernel.org> <Zh-fgtujwjiSXz7D@monster>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240417_030808_663233_5E9BE473 
-X-CRM114-Status: GOOD (  28.64  )
+X-CRM114-CacheID: sfid-20240417_032035_658988_56F08C89 
+X-CRM114-Status: GOOD (  18.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,62 +141,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2024-04-15 15:28, Jiri Slaby wrote:
-> On 15. 04. 24, 14:58, Marek Szyprowski wrote:
-> > Dear All,
-> > 
-> > On 05.04.2024 08:08, Jiri Slaby (SUSE) wrote:
-> > > Switch from struct circ_buf to proper kfifo. kfifo provides much better
-> > > API, esp. when wrap-around of the buffer needs to be taken into account.
-> > > Look at pl011_dma_tx_refill() or cpm_uart_tx_pump() changes for example.
-> > > 
-> > > Kfifo API can also fill in scatter-gather DMA structures, so it easier
-> > > for that use case too. Look at lpuart_dma_tx() for example. Note that
-> > > not all drivers can be converted to that (like atmel_serial), they
-> > > handle DMA specially.
-> > > 
-> > > Note that usb-serial uses kfifo for TX for ages.
-> > > 
-> > > omap needed a bit more care as it needs to put a char into FIFO to start
-> > > the DMA transfer when OMAP_DMA_TX_KICK is set. In that case, we have to
-> > > do kfifo_dma_out_prepare twice: once to find out the tx_size (to find
-> > > out if it is worths to do DMA at all -- size >= 4), the second time for
-> > > the actual transfer.
-> > > 
-> > > All traces of circ_buf are removed from serial_core.h (and its struct
-> > > uart_state).
-> > > 
-> > > Signed-off-by: Jiri Slaby (SUSE) <jirislaby@kernel.org>
-> > > ...
-> > 
-> > This patch landed in linux-next as commit 1788cf6a91d9 ("tty: serial:
-> > switch from circ_buf to kfifo"). Unfortunately it breaks UART operation
-> > on thr Amlogic Meson based boards (drivers/tty/serial/meson_uart.c
-> > driver) and Qualcomm RB5 board (drivers/tty/serial/qcom_geni_serial.c).
-> > Once the init process is started, a complete garbage is printed to the
-> > serial console. Here is an example how it looks:
-> 
-> Oh my!
-> 
-> Both drivers move the tail using both kfifo and uart_xmit_advance()
-> interfaces. Bah. Does it help to remove that uart_xmit_advance() for both of
-> them? (TX stats will be broken.)
-> 
-> Users of uart_port_tx() are not affected.
-> 
-> This is my fault when merging uart_xmit_advance() with this series.
-> 
+On 17.04.2024 12:08, Anders Roxell wrote:
+> On 2024-04-15 15:28, Jiri Slaby wrote:
+>> On 15. 04. 24, 14:58, Marek Szyprowski wrote:
+>>> On 05.04.2024 08:08, Jiri Slaby (SUSE) wrote:
+>>>> Switch from struct circ_buf to proper kfifo. kfifo provides much better
+>>>> API, esp. when wrap-around of the buffer needs to be taken into account.
+>>>> Look at pl011_dma_tx_refill() or cpm_uart_tx_pump() changes for example.
+>>>>
+>>>> Kfifo API can also fill in scatter-gather DMA structures, so it easier
+>>>> for that use case too. Look at lpuart_dma_tx() for example. Note that
+>>>> not all drivers can be converted to that (like atmel_serial), they
+>>>> handle DMA specially.
+>>>>
+>>>> Note that usb-serial uses kfifo for TX for ages.
+>>>>
+>>>> omap needed a bit more care as it needs to put a char into FIFO to start
+>>>> the DMA transfer when OMAP_DMA_TX_KICK is set. In that case, we have to
+>>>> do kfifo_dma_out_prepare twice: once to find out the tx_size (to find
+>>>> out if it is worths to do DMA at all -- size >= 4), the second time for
+>>>> the actual transfer.
+>>>>
+>>>> All traces of circ_buf are removed from serial_core.h (and its struct
+>>>> uart_state).
+>>>>
+>>>> Signed-off-by: Jiri Slaby (SUSE) <jirislaby@kernel.org>
+>>>> ...
+>>> This patch landed in linux-next as commit 1788cf6a91d9 ("tty: serial:
+>>> switch from circ_buf to kfifo"). Unfortunately it breaks UART operation
+>>> on thr Amlogic Meson based boards (drivers/tty/serial/meson_uart.c
+>>> driver) and Qualcomm RB5 board (drivers/tty/serial/qcom_geni_serial.c).
+>>> Once the init process is started, a complete garbage is printed to the
+>>> serial console. Here is an example how it looks:
+>> Oh my!
+>>
+>> Both drivers move the tail using both kfifo and uart_xmit_advance()
+>> interfaces. Bah. Does it help to remove that uart_xmit_advance() for both of
+>> them? (TX stats will be broken.)
+>>
+>> Users of uart_port_tx() are not affected.
+>>
+>> This is my fault when merging uart_xmit_advance() with this series.
+>>
+> I'm trying to run on two dragonboard devices db410c and db845c and both
+> fails to boot see the boot failure from db845c [1], linux-next tag: next-20240415.
+> I tried to apply the patch [2] (that you proposed in this thread) ontop of next-20240415. However, that didn't
+> help bootlog on db845c [3].
 
-I'm trying to run on two dragonboard devices db410c and db845c and both
-fails to boot see the boot failure from db845c [1], linux-next tag: next-20240415.
-I tried to apply the patch [2] (that you proposed in this thread) ontop of next-20240415. However, that didn't
-help bootlog on db845c [3].
+This is a different issue, which I've reported 2 days ago. See the 
+following thread:
 
-Cheers,
-Anders
-[1] https://tuxapi.tuxsuite.com/v1/groups/linaro/projects/lkft/tests/2f7sLxYtIQXQzsnTzE1Dye2xweg/logs?format=html
-[2] https://lore.kernel.org/lkml/20240416054825.6211-1-jirislaby@kernel.org/raw
-[3] https://tuxapi.tuxsuite.com/v1/groups/linaro/projects/anders/tests/2fDgvWnyEmFm9mqMCxOaruBOfTe/logs?format=html
+https://lore.kernel.org/all/d3eb9f21-f3e1-43ec-bf41-984c6aa5cfc8@samsung.com/
+
+
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
 
 _______________________________________________
 linux-amlogic mailing list
