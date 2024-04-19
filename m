@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AC83C04FFE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54A30C4345F
 	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Apr 2024 13:00:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=6Bo6oUemttL8wPfzCoCTh6+SJje596YwrIQZ8AFUTKM=; b=GlT2LCxQKkOfj0
-	3lEK4ky1Kj7lwnzgBiUnCHnyvmro2xQBw7yHmZH7/DPk0W8CDoAcg+f12rFp17mTVu9x+DT3BiCh1
-	maZTmjZqFYYJPrWHCKpJYUKxBo/zgUhEWIA/DLSioDrxPQU6nke8QYdCQRs0+Xn6Cu7reMs149/Jy
-	OXPVhhveGGI7V7ns0ZM9bFTQ4O46wfDmidXWaRRuAqc49nxqwzTprik7SZjfT2A0Ofpz2u4C9bPG3
-	vVmYqxBJcRC2n/nks+xQy3dEWdhZol/vVIZw+jKXwuFHjmoAyglA9EsuQZBkOf1V/QU1MBlIZpm5V
-	Y4CKWVm19U3f8nuXveZA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=cFzzcs/10fjHu/gT8scbCjDbCD2M85jsNPMbEtP3ZOM=; b=QqmqPM+vls7zpK
+	7wct3y5XjL4DzNcB8I+bDMO63QhJcKTtARyuPLQx0uu5C+b1e/rfG4IPzbHelb2XSDQzLrkQmOngb
+	0TXYURAnxloIGnJaxV+3hT/F7+1fT2svychRXq26maa6CkLHdS1RbY4Pa4a7yEZ4gC+zxN4sPRFUy
+	7amwFRvXUQCwwpKly1wurWm53iWhiNGWJ8o69p8JIuHgHNwmH7AUomd2TC3L3IKdTd1RqdSK1P8Hy
+	4kf/HSIvBYuRs3ZkfZiLaZoBuFSPG+4ku5sH0xFn9/chI+a1OEi5nFKa4RoZAIxfjwdm7x6MdiD5g
+	esnHuAxvKILgh6uLyGCw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rxnrC-00000005gCQ-0eEK;
+	id 1rxnrC-00000005gCl-3LIX;
 	Fri, 19 Apr 2024 13:00:46 +0000
 Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rxnr6-00000005g6I-2ylo;
+	id 1rxnr6-00000005g6S-34DJ;
 	Fri, 19 Apr 2024 13:00:44 +0000
 Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id DF042100007;
-	Fri, 19 Apr 2024 16:00:26 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru DF042100007
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 08833100011;
+	Fri, 19 Apr 2024 16:00:29 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 08833100011
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1713531626;
-	bh=wKFbGy5kXF6YmVtQApc9Loyay81pnuGNBjJQMyo1XHY=;
+	s=mail; t=1713531629;
+	bh=9YcpTEJbkYHh6jlH4Iyv1Uule4PTEqqLcOBy2AHk+6I=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=JTk3EAzoeVCi0LAVhcBtRyaZ5iOqwv+J8I0jB2MdXcy47F5vYDm71XyOhTbhTbBGA
-	 5HUXxV8cEAb+JkcncVQZkOVLVWVD89NrNNP/etjFUTN+0ScoY1rkmzA2Rf/I3n+PZu
-	 XZWLPYNLuSScVsEX3ugY7ZYa6inHZvODmGW1rikza8alooapkWEXHbA0RSn2kyWBda
-	 J+UnNddlNmjQlvRKcdL4iEbyTsuDoqWw6BCVV8UE2MyeTwWyjQaqb7E4MxLsGLRnPi
-	 IieTMCcXrapmWJyYAR3xbxQ0eQefy3aTOf2kXlT7nI2fBrLqqd0Imp9JnWho6rFxrq
-	 ByOzpbBrrv1DQ==
+	b=cSzyztkokSbM2DmYfBCifstig1eG8ybeed6lQ3CxCChSAMGIgy6jSY5vSnOWvzIdp
+	 gVNKGa22qS+oPxMkPKWcikYHaQJWEFu4w3N9YcEvSzUbT6mwtGyOrN3YowryAF+rbn
+	 JKlsgzweIV2RmZGMYR96H2nl4DMbVRgUt7EzU7gJWVc64vQS9CuqPndmt4QG3+vahY
+	 149h4VqPJMh5j20Rdm8fTfi2/tZi/ejPjha/czI2a8Mfzi2DcLgpRfWw1W4Lg5o+lB
+	 uwVKeYJKdvjf+OexMCxz/znzzqRcJmssYvIzuU91VTtB/mSoFxp/i9JyTAtFk24uWL
+	 c2Mk/2R7Gw+VQ==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 19 Apr 2024 16:00:26 +0300 (MSK)
+	Fri, 19 Apr 2024 16:00:28 +0300 (MSK)
 Received: from CAB-WSD-0003115.sberdevices.ru (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 19 Apr 2024 16:00:26 +0300
+ 15.2.1118.40; Fri, 19 Apr 2024 16:00:28 +0300
 From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Neil Armstrong
 	<neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael
@@ -60,10 +60,12 @@ To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Neil Armstrong
 	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>
-Subject: [RFC PATCH v3 0/6] Add A1 Soc audio clock controller driver
-Date: Fri, 19 Apr 2024 15:58:06 +0300
-Message-ID: <20240419125812.983409-1-jan.dakinevich@salutedevices.com>
+Subject: [RFC PATCH v3 6/6] arm64: dts: meson: a1: add the audio clock controller
+Date: Fri, 19 Apr 2024 15:58:12 +0300
+Message-ID: <20240419125812.983409-7-jan.dakinevich@salutedevices.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240419125812.983409-1-jan.dakinevich@salutedevices.com>
+References: <20240419125812.983409-1-jan.dakinevich@salutedevices.com>
 MIME-Version: 1.0
 X-Originating-IP: [100.64.160.123]
 X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
@@ -77,16 +79,16 @@ X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 18 0.3.18 b9d6ada76958f07c6a68617a7ac8df800bc4166c, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;lore.kernel.org:7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 18 0.3.18 b9d6ada76958f07c6a68617a7ac8df800bc4166c, {Tracking_smtp_not_equal_from}, sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/04/19 12:19:00
-X-KSMG-LinksScanning: Clean, bases: 2024/04/19 12:19:00
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/18 23:49:00 #24865988
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240419_060041_438104_F912B38C 
-X-CRM114-Status: GOOD (  13.25  )
+X-CRM114-CacheID: sfid-20240419_060041_496059_79B6ACC1 
+X-CRM114-Status: GOOD (  11.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,59 +105,77 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This series adds support for audio clock and reset controllers on A1 SoC family.
+Add the bus and audio clock controllers' device tree nodes.
 
-Changes v2 -> v3
- - reset:
-   * added auxiliary device
- - yaml:
-   * added declaration of optional clocks
-   * fixed names in example and another cosmetics
- - clocks:
-   * reworked naming
-   * stop using of "core" clock name
-   * fixed wrong parenting
+Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 46 +++++++++++++++++++++++
+ 1 file changed, 46 insertions(+)
 
-Changes v1 -> v2:
- - Detached from v1's series (patch 2, 3, 4, 25).
- - Reuse some of defines from axg-audio;
- - Split the controller into two memory regions.
-
-Links:
- [1] https://lore.kernel.org/lkml/20240314232201.2102178-1-jan.dakinevich@salutedevices.com/
- [2] https://lore.kernel.org/lkml/20240328010831.884487-1-jan.dakinevich@salutedevices.com/
-
-Jan Dakinevich (6):
-  reset: reset-meson-audio: introduce separate driver
-  clk: meson: axg: share the set of audio helper macro
-  clk: meson: axg: introduce AUD_MUX_TABLE() helper macro
-  dt-bindings: clock: meson: document A1 SoC audio clock controller
-    driver
-  clk: meson: a1: add the audio clock controller driver
-  arm64: dts: meson: a1: add the audio clock controller
-
- .../bindings/clock/amlogic,a1-audio-clkc.yaml | 124 ++++
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |  46 ++
- drivers/clk/meson/Kconfig                     |  16 +
- drivers/clk/meson/Makefile                    |   1 +
- drivers/clk/meson/a1-audio.c                  | 651 ++++++++++++++++++
- drivers/clk/meson/axg-audio.c                 | 244 +------
- drivers/clk/meson/meson-audio.h               | 149 ++++
- drivers/reset/Kconfig                         |   7 +
- drivers/reset/Makefile                        |   1 +
- drivers/reset/reset-meson-audio.c             | 207 ++++++
- .../dt-bindings/clock/amlogic,a1-audio-clkc.h | 122 ++++
- .../reset/amlogic,meson-a1-audio-reset.h      |  29 +
- include/soc/amlogic/meson-audio-reset.h       |  10 +
- 13 files changed, 1371 insertions(+), 236 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
- create mode 100644 drivers/clk/meson/a1-audio.c
- create mode 100644 drivers/clk/meson/meson-audio.h
- create mode 100644 drivers/reset/reset-meson-audio.c
- create mode 100644 include/dt-bindings/clock/amlogic,a1-audio-clkc.h
- create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
- create mode 100644 include/soc/amlogic/meson-audio-reset.h
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index c03e207ea6c5..b45407aa95da 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -5,6 +5,7 @@
+ 
+ #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
+ #include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
++#include <dt-bindings/clock/amlogic,a1-audio-clkc.h>
+ #include <dt-bindings/gpio/meson-a1-gpio.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+@@ -435,6 +436,51 @@ sd_emmc: sd@10000 {
+ 				power-domains = <&pwrc PWRC_SD_EMMC_ID>;
+ 				status = "disabled";
+ 			};
++
++			audio: bus@50000 {
++				compatible = "simple-bus";
++				#address-cells = <2>;
++				#size-cells = <2>;
++				ranges = <0x0 0x0 0x0 0x50000 0 0x4980>;
++				power-domains = <&pwrc PWRC_AUDIO_ID>;
++
++				clkc_audio: clock-controller@0 {
++					compatible = "amlogic,a1-audio-clkc";
++					reg = <0x0 0x0 0x0 0xb0>;
++					#clock-cells = <1>;
++					#reset-cells = <1>;
++					clocks = <&clkc_audio_vad AUD_CLKID_VAD_AUDIOTOP>,
++						 <&clkc_periphs CLKID_DDS_IN>,
++						 <&clkc_pll CLKID_FCLK_DIV2>,
++						 <&clkc_pll CLKID_FCLK_DIV3>,
++						 <&clkc_pll CLKID_HIFI_PLL>,
++						 <&xtal>;
++					clock-names = "pclk",
++						      "dds_in",
++						      "fclk_div2",
++						      "fclk_div3",
++						      "hifi_pll",
++						      "xtal";
++				};
++
++				clkc_audio_vad: clock-controller@4800 {
++					compatible = "amlogic,a1-audio-vad-clkc";
++					reg = <0x0 0x4800 0x0 0x20>;
++					#clock-cells = <1>;
++					clocks = <&clkc_periphs CLKID_AUDIO>,
++						 <&clkc_periphs CLKID_DDS_IN>,
++						 <&clkc_pll CLKID_FCLK_DIV2>,
++						 <&clkc_pll CLKID_FCLK_DIV3>,
++						 <&clkc_pll CLKID_HIFI_PLL>,
++						 <&xtal>;
++					clock-names = "pclk",
++						      "dds_in",
++						      "fclk_div2",
++						      "fclk_div3",
++						      "hifi_pll",
++						      "xtal";
++				};
++			};
+ 		};
+ 
+ 		usb: usb@fe004400 {
 -- 
 2.34.1
 
