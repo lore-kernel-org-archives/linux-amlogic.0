@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54A30C4345F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Apr 2024 13:00:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A610FC04FF6
+	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Apr 2024 13:00:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cFzzcs/10fjHu/gT8scbCjDbCD2M85jsNPMbEtP3ZOM=; b=QqmqPM+vls7zpK
-	7wct3y5XjL4DzNcB8I+bDMO63QhJcKTtARyuPLQx0uu5C+b1e/rfG4IPzbHelb2XSDQzLrkQmOngb
-	0TXYURAnxloIGnJaxV+3hT/F7+1fT2svychRXq26maa6CkLHdS1RbY4Pa4a7yEZ4gC+zxN4sPRFUy
-	7amwFRvXUQCwwpKly1wurWm53iWhiNGWJ8o69p8JIuHgHNwmH7AUomd2TC3L3IKdTd1RqdSK1P8Hy
-	4kf/HSIvBYuRs3ZkfZiLaZoBuFSPG+4ku5sH0xFn9/chI+a1OEi5nFKa4RoZAIxfjwdm7x6MdiD5g
-	esnHuAxvKILgh6uLyGCw==;
+	List-Owner; bh=eUB1Oy6P0Jytk674hseQ/daIYnhf+iT4jU7t4TuFFWE=; b=ImO6Hq0NbfuPj0
+	+yMzvXZEe37iacc2ucSk8DSwQW5VwyTlhkPk785DOpJQM387jmPrndzQTeg9IuFbQ5Hc39lDnrInx
+	yrr+zQuitUg6ysEkdkFhBFv4HCpoWUaP89Y0PpRZyuKJzTZYWoaSbxhk1nUxy3/eJLsi4RXaS1+/a
+	oxBuwjAHtQTGjniiX3KncE4d7AsDS1q6NoVfLt9wk3lvystnGgsYraJGmh/H//XshU6VlYl5jspsB
+	EAiKVI0VrJhxD0BNJVLMvhovjE3wXMp9yydhIVIvsdb4f3pX1qjJY5+UwulxIXY66NoMy6DbKHNBD
+	9U1Wqc+5BBxPvRJFhFyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rxnrC-00000005gCl-3LIX;
-	Fri, 19 Apr 2024 13:00:46 +0000
+	id 1rxnrD-00000005gCw-1wFC;
+	Fri, 19 Apr 2024 13:00:47 +0000
 Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rxnr6-00000005g6S-34DJ;
+	id 1rxnr6-00000005g6H-35MJ;
 	Fri, 19 Apr 2024 13:00:44 +0000
 Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 08833100011;
-	Fri, 19 Apr 2024 16:00:29 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 08833100011
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 1159D10000B;
+	Fri, 19 Apr 2024 16:00:28 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 1159D10000B
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1713531629;
-	bh=9YcpTEJbkYHh6jlH4Iyv1Uule4PTEqqLcOBy2AHk+6I=;
+	s=mail; t=1713531628;
+	bh=KIuGAr064Uhr/J/wzqdUXxyIs1qnbRClXG3hlcnxZzs=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=cSzyztkokSbM2DmYfBCifstig1eG8ybeed6lQ3CxCChSAMGIgy6jSY5vSnOWvzIdp
-	 gVNKGa22qS+oPxMkPKWcikYHaQJWEFu4w3N9YcEvSzUbT6mwtGyOrN3YowryAF+rbn
-	 JKlsgzweIV2RmZGMYR96H2nl4DMbVRgUt7EzU7gJWVc64vQS9CuqPndmt4QG3+vahY
-	 149h4VqPJMh5j20Rdm8fTfi2/tZi/ejPjha/czI2a8Mfzi2DcLgpRfWw1W4Lg5o+lB
-	 uwVKeYJKdvjf+OexMCxz/znzzqRcJmssYvIzuU91VTtB/mSoFxp/i9JyTAtFk24uWL
-	 c2Mk/2R7Gw+VQ==
+	b=Gw+XRuSqvKMjnf+7GtKvUJLYy8p23vmHiIZhAPW3gc5DUUg3NwXJlYvMGhaaQG3ug
+	 hDFEB3UGCPGeiNU7X/LEwGpGq/p3H5FKrcohaXgKKPI8phcACa7pafFAEWRd6MCI5R
+	 AoHeqfRPLnGOfgJgOGP6K41uQnPKZRGZs9Repo9FOqjb5KZzcEvTgHFneOmyKytik9
+	 7CLURLQ61RSVobjCE55L3soLmBLNs/YGhBQ7AJMqWxWHR3STwomfqWgH8ZSyKqHJSe
+	 shlTG0X5gWjDAVyZDYCFCNX9mE4UfDpzlEzArNbJk2EJynaI53uVnMZkw3pNfLRVMX
+	 87kPj3gLomS1A==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 19 Apr 2024 16:00:28 +0300 (MSK)
+	Fri, 19 Apr 2024 16:00:27 +0300 (MSK)
 Received: from CAB-WSD-0003115.sberdevices.ru (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 19 Apr 2024 16:00:28 +0300
+ 15.2.1118.40; Fri, 19 Apr 2024 16:00:27 +0300
 From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Neil Armstrong
 	<neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael
@@ -60,9 +60,9 @@ To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Neil Armstrong
 	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>
-Subject: [RFC PATCH v3 6/6] arm64: dts: meson: a1: add the audio clock controller
-Date: Fri, 19 Apr 2024 15:58:12 +0300
-Message-ID: <20240419125812.983409-7-jan.dakinevich@salutedevices.com>
+Subject: [RFC PATCH v3 3/6] clk: meson: axg: introduce AUD_MUX_TABLE() helper macro
+Date: Fri, 19 Apr 2024 15:58:09 +0300
+Message-ID: <20240419125812.983409-4-jan.dakinevich@salutedevices.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240419125812.983409-1-jan.dakinevich@salutedevices.com>
 References: <20240419125812.983409-1-jan.dakinevich@salutedevices.com>
@@ -87,8 +87,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/18 23:49:00 #24865988
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240419_060041_496059_79B6ACC1 
-X-CRM114-Status: GOOD (  11.79  )
+X-CRM114-CacheID: sfid-20240419_060041_477759_BDF2A558 
+X-CRM114-Status: GOOD (  11.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,77 +105,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the bus and audio clock controllers' device tree nodes.
+This macro takes into account ->table property of
+'struct clk_regmap_mux_data'.
 
 Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 46 +++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+ drivers/clk/meson/meson-audio.h | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index c03e207ea6c5..b45407aa95da 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -5,6 +5,7 @@
+diff --git a/drivers/clk/meson/meson-audio.h b/drivers/clk/meson/meson-audio.h
+index cbcdbd487d4a..1947c6cbf233 100644
+--- a/drivers/clk/meson/meson-audio.h
++++ b/drivers/clk/meson/meson-audio.h
+@@ -17,9 +17,11 @@
+ 	},								\
+ }
  
- #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
- #include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
-+#include <dt-bindings/clock/amlogic,a1-audio-clkc.h>
- #include <dt-bindings/gpio/meson-a1-gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-@@ -435,6 +436,51 @@ sd_emmc: sd@10000 {
- 				power-domains = <&pwrc PWRC_SD_EMMC_ID>;
- 				status = "disabled";
- 			};
-+
-+			audio: bus@50000 {
-+				compatible = "simple-bus";
-+				#address-cells = <2>;
-+				#size-cells = <2>;
-+				ranges = <0x0 0x0 0x0 0x50000 0 0x4980>;
-+				power-domains = <&pwrc PWRC_AUDIO_ID>;
-+
-+				clkc_audio: clock-controller@0 {
-+					compatible = "amlogic,a1-audio-clkc";
-+					reg = <0x0 0x0 0x0 0xb0>;
-+					#clock-cells = <1>;
-+					#reset-cells = <1>;
-+					clocks = <&clkc_audio_vad AUD_CLKID_VAD_AUDIOTOP>,
-+						 <&clkc_periphs CLKID_DDS_IN>,
-+						 <&clkc_pll CLKID_FCLK_DIV2>,
-+						 <&clkc_pll CLKID_FCLK_DIV3>,
-+						 <&clkc_pll CLKID_HIFI_PLL>,
-+						 <&xtal>;
-+					clock-names = "pclk",
-+						      "dds_in",
-+						      "fclk_div2",
-+						      "fclk_div3",
-+						      "hifi_pll",
-+						      "xtal";
-+				};
-+
-+				clkc_audio_vad: clock-controller@4800 {
-+					compatible = "amlogic,a1-audio-vad-clkc";
-+					reg = <0x0 0x4800 0x0 0x20>;
-+					#clock-cells = <1>;
-+					clocks = <&clkc_periphs CLKID_AUDIO>,
-+						 <&clkc_periphs CLKID_DDS_IN>,
-+						 <&clkc_pll CLKID_FCLK_DIV2>,
-+						 <&clkc_pll CLKID_FCLK_DIV3>,
-+						 <&clkc_pll CLKID_HIFI_PLL>,
-+						 <&xtal>;
-+					clock-names = "pclk",
-+						      "dds_in",
-+						      "fclk_div2",
-+						      "fclk_div3",
-+						      "hifi_pll",
-+						      "xtal";
-+				};
-+			};
- 		};
+-#define AUD_MUX(_name, _reg, _mask, _shift, _dflags, _pdata, _iflags) {	\
++#define AUD_MUX_TABLE(_name, _reg, _table, _mask, _shift, _dflags,	\
++		      _pdata, _iflags) {				\
+ 	.data = &(struct clk_regmap_mux_data){				\
+ 		.offset = (_reg),					\
++		.table = (_table),					\
+ 		.mask = (_mask),					\
+ 		.shift = (_shift),					\
+ 		.flags = (_dflags),					\
+@@ -33,6 +35,10 @@
+ 	},								\
+ }
  
- 		usb: usb@fe004400 {
++#define AUD_MUX(_name, _reg, _mask, _shift, _dflags, _pdata, _iflags)	\
++	AUD_MUX_TABLE(_name, (_reg), NULL, (_mask), (_shift),		\
++		      (_dflags), (_pdata), (_iflags))
++
+ #define AUD_DIV(_name, _reg, _shift, _width, _dflags, _pname, _iflags) { \
+ 	.data = &(struct clk_regmap_div_data){				\
+ 		.offset = (_reg),					\
 -- 
 2.34.1
 
