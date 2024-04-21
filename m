@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26441C4345F
-	for <linux-amlogic@archiver.kernel.org>; Sun, 21 Apr 2024 18:15:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08E76C4345F
+	for <linux-amlogic@archiver.kernel.org>; Sun, 21 Apr 2024 18:17:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RMuP7hKkXw4Ni1x4vusxZdfJlOLAwA3iW/t4keCqfLM=; b=oCKNKD+QvMLcVW
-	4f1+7LYyOGev3N9shzQjdNfU9zBB6QovNDa0QGJ/PA93Bxyo1pPsx+q9NoZYBaB8uGYFclOUZNJRb
-	1Kk1H24poVYLoT1wYhBSBJS43J1MrH5gu+flF66LqUunwQzZUfxOPuD64oQDpRyAwuprzzcRRajHU
-	vIJhzLKruFs8eoJ315NzBLuRJubzeYEskCdIneWCSSyifkg7SbTf2BXUJ4Qko7LfdmVSXEXHGen6G
-	nSJBlKAe1SoJWPdyCn/lfQsj9Fsjwo107EmHJRw9uKgpAmLxzIsABeOyYI8mHKTz5V5TcwdxxhY+6
-	odLwcqA0CIiEfUT68R0A==;
+	List-Owner; bh=nbabVtDu4PxA3SKxgd73wUFN9RBrz5KUUAHqEczD8oM=; b=enl5ekeNxc3Yst
+	dMIUNXaypnGSKTOP8y6mxfYwmaw+rhICu4cO1CdzDtf2q6XiM9c7Bjl6WCAmxssAEiSto0liDaQjJ
+	DKMeylxfoTffDF84+FZJcuWUXsU78NO0taCKXOO2WDpHWau7Yh50gYOm+gOUIs9syLGBJkKDjTeyu
+	u1yHUUx2sWEeyLHlgqGKU5n2eV9gOYzr4F4Y9EN6z60zf3GrHczs8WDm17xZIILH0Jo3m+A6XW6XU
+	nkg9mNMzuAsg5jgNM3pcPazOVNL3HIcQdQvJr1vC83MT2lXLMQOHGJeC8/l4bGX7/WbXYs7iPGRwk
+	ZhRuT+fPjkgKEP0OLWOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rybiB-0000000B2TH-2IxC;
-	Sun, 21 Apr 2024 18:14:47 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1rybkm-0000000B2mL-0iNM;
+	Sun, 21 Apr 2024 18:17:28 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rybi5-0000000B2Sb-3J95;
-	Sun, 21 Apr 2024 18:14:43 +0000
+	id 1rybki-0000000B2lo-366C;
+	Sun, 21 Apr 2024 18:17:26 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id AF9DBCE018A;
-	Sun, 21 Apr 2024 18:14:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB83BC113CE;
-	Sun, 21 Apr 2024 18:14:33 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 78AE360BA7;
+	Sun, 21 Apr 2024 18:17:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B42C6C113CE;
+	Sun, 21 Apr 2024 18:17:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713723277;
-	bh=NZPIJ6LLpCZyFzBCf6T3HzpkPCMGo9MmvGw9KeZNOXQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EbSmLXIMifLYsMbNn3RR9C73zMefvlh9w47fHrXdsYI6DAIQhm9RjpbyFF/qOEJFn
-	 1HZCX/Tei7NBOdJ3xyt8ds6WnYVdIwZwWtDhQ65x++OtOQRASwXQ5XFHkOqvSyoL5V
-	 ZALLaKfGrqYRCId53LUCXV78Xd0l3XyNtxmzAguNN8tlyfrPPPKuJblQB2iOQF2Mm1
-	 7ENuq4AHnC5oGxXxXeAJs8ovvTxoUTBELJIlbLyAu+llUXjy77/UP60LOXA+nFceAl
-	 C5EMvphIMqA54TiP8NxwWgVQKOnZvKV3ncCdyKqvFWf+IldZw/piEIjIRaxBeWIFNK
-	 oCFzsQGtiuhuw==
-Message-ID: <48e9f035-390b-40c9-a3ad-49880c0b972d@kernel.org>
-Date: Sun, 21 Apr 2024 20:14:30 +0200
+	s=k20201202; t=1713723442;
+	bh=w85IwqQb+A5zg1qYjhWFn/BvQxCdbd79OHyQID1GX8s=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=hH9Aw/Tjzv2tJ1JaBTt0RF75Bzcx7JignWaMhqHVBmCbTN8h6mqv6UUIa3hDtST6z
+	 eSYqVI+AhyXvrPNHF/vmv2KM1p/zoVrY3FK5PSGn3oLa5NbQ/qab9I6aOy7Qsi1Ny7
+	 BVS1Al2mW+Gxnus8xJ1NYZs9ewH/p7UUgdrVMtxzEI08FmHR6Sx23F+d78pJz7CJNR
+	 T3hoE1cpmPMCdphrOCNXDLf2aZC7QktO3Iqc9LQrY6madLF7KqJDCK9wtvdYkq+uet
+	 5QRXy8MedaSwKfWrAytZZ8O7UDrxzA31lRAlvDRYrc+c6QeVnEj9AGtJKqEkc27ypt
+	 WVp2rQGvBHYKQ==
+Message-ID: <7a3ea23d-d6a2-4036-9d0a-9b9b6582d26f@kernel.org>
+Date: Sun, 21 Apr 2024 20:17:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [RFC PATCH v3 4/6] dt-bindings: clock: meson: document A1 SoC
  audio clock controller driver
 To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
- Rob Herring <robh@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Philipp Zabel <p.zabel@pengutronix.de>, Jiucheng Xu
  <jiucheng.xu@amlogic.com>, linux-amlogic@lists.infradead.org,
@@ -61,8 +61,10 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20240419125812.983409-1-jan.dakinevich@salutedevices.com>
  <20240419125812.983409-5-jan.dakinevich@salutedevices.com>
- <20240419210949.GA3979121-robh@kernel.org>
- <b86f1058-da53-4a9c-bc12-e7297351b482@salutedevices.com>
+ <07b1ca57-49a0-4151-99bf-caac053eaa01@kernel.org>
+ <0194ddb8-6e93-4a77-9fdd-93fc79a4e03e@salutedevices.com>
+ <7746a6a8-110f-4920-9f15-8fb592e829ff@kernel.org>
+ <ca1b1263-1574-4fbe-913e-f68f6c59608e@salutedevices.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,10 +110,11 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <b86f1058-da53-4a9c-bc12-e7297351b482@salutedevices.com>
+In-Reply-To: <ca1b1263-1574-4fbe-913e-f68f6c59608e@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240421_111442_244458_B23DDD54 
-X-CRM114-Status: GOOD (  19.39  )
+X-CRM114-CacheID: sfid-20240421_111724_950001_D9C8B530 
+X-CRM114-Status: UNSURE (   9.71  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,93 +131,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 20/04/2024 18:15, Jan Dakinevich wrote:
-> 
-> 
-> On 4/20/24 00:09, Rob Herring wrote:
->> On Fri, Apr 19, 2024 at 03:58:10PM +0300, Jan Dakinevich wrote:
->>> Add device tree bindings for A1 SoC audio clock and reset controllers.
+On 21/04/2024 17:35, Jan Dakinevich wrote:
+>>>>
+>>>>> +        };
+>>>>> +
+>>>>> +        clkc_audio_vad: clock-controller@fe054800 {
+>>>>
+>>>> Just keep one example. It's basically almost the same.
+>>>>
 >>>
->>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
->>> ---
->>>
->>> This controller has 6 mandatory and up to 20 optional clocks. To describe
->>> this, I use 'additionalItems'. It produces correct processed-schema.json:
->>>
->>>   "clock-names": {
->>>       "maxItems": 26,
->>>       "items": [
->>>           {
->>>               "const": "pclk"
->>>           },
->>>           {
->>>               "const": "dds_in"
->>>           },
->>>           {
->>>               "const": "fclk_div2"
->>>           },
->>>           {
->>>               "const": "fclk_div3"
->>>           },
->>>           {
->>>               "const": "hifi_pll"
->>>           },
->>>           {
->>>               "const": "xtal"
->>>           }
->>>       ],
->>>       "additionalItems": {
->>>           "oneOf": [
->>>               {
->>>                   "pattern": "^slv_sclk[0-9]$"
->>>               },
->>>               {
->>>                   "pattern": "^slv_lrclk[0-9]$"
->>>               }
->>>           ]
->>>       },
->>>       "type": "array",
->>>       "minItems": 6
->>>   },
->>>
->>> and it behaves as expected. However, the checking is followed by
->>> complaints like this:
->>>
->>>   Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml: properties:clock-names:additionalItems: {'oneOf': [{'pattern': '^slv_sclk[0-9]$'}, {'pattern': '^slv_lrclk[0-9]$'}]} is not of type 'boolean'
->>>
->>> And indeed, 'additionalItems' has boolean type in meta-schema. So, how to
->>> do it right?
+>>> The worth of this duplication is to show how a clock from second
+>>> controller (<&clkc_audio_vad AUD_CLKID_VAD_AUDIOTOP>) is used by first
+>>> one. May be it would be better to keep it... What do you think?
 >>
->> The meta-schemas are written both to prevent nonsense that json-schema 
->> allows by default (e.g additionalitems (wrong case)) and constraints to 
->> follow the patterns we expect. I'm happy to loosen the latter case if 
->> there's really a need. 
+>> I don't understand what is worth here. Using clocks is kind of obvious?
+>> What's special?
 >>
->> Generally, most bindings shouldn't be using 'additionalItems' at all as 
->> all entries should be defined, but there's a few exceptions. Here, the 
->> only reasoning I see is 26 entries is a lot to write out, but that 
->> wouldn't really justify it. 
 > 
-> Writing a lot of entries don't scary me too much, but the reason is that
-> the existence of optional clock sources depends on schematics. Also, we
+> The special is that the clock "pclk" for "clkc_audio" must be
+> <&clkc_audio_vad AUD_CLKID_VAD_AUDIOTOP>. This thing is not obvious. I
 
-Aren't you documenting SoC component, not a board? So how exactly it
-depends on schematics? SoC is done or not done...
+So you want to document non-obvious SoC architecture via example, not
+via actual documentation. Plus you want to document it for purpose of
+...? Isn't this SoC component, so once you write DTSI it is done?
 
-> unable to declare dt-nodes for 'clocks' array in any generic way,
-> because their declaration would depends on that what is actually
-> connected to the SoC (dt-node could be "fixed-clock" with specific rate
-> or something else).
+I fail to see any logic in this, but maybe the binding is kind of
+special, misrepresented or hardware is different? But the subject
+clearly states it is part of SoC, so dunno...
 
-So these are clock inputs to the SoC?
+> can keep only "clkc_audio" node here, but reference to "clkc_audio_vad"
+> will be undefined in example. Is it okay?
 
-> 
-> By the way, I don't know any example (neither for A1 SoC nor for other
-> Amlogic's SoCs) where these optional clocks are used, but they are
-> allowed by hw.
-> 
-> This is my understanding of this controller. I hope, Jerome Brunet will
-> clarify how it actually works.
+Just like all phandles.
 
 Best regards,
 Krzysztof
