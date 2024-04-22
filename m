@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25B8EC07C79
-	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Apr 2024 11:12:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04221C10F15
+	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Apr 2024 11:12:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=j1sP3ZQPs1HHzlpN3GCWZ7LUUUi1fiBRwHrictqe6p4=; b=R8XBS1+bub+m4I
-	MSBR1DBkG876d0YPWP+KAef5ZdYLr8as5BaWGf0aALIxl9KYhRdImYqS9hlSINopn0K0GVs2xXABB
-	Lvk/+CCf3Lzl+EltkT96hfdnuQ05x4a9hg1r2LhKiwPDpqmmYtiNouj1LoIUhyNMJzDwgw9xZ6i2T
-	nOXihkDTm+HTm/Hs612NK1LANmYr3d98kI7ZneErQb1wD0/8w4jt6RV0wygy6n3+BdGtSAAb+1Cwv
-	fcTWhdWzUYR0CaF8ewuQVQYXStqa5EZNNX+7C1H0f8ZdqKr0ivAazPD+SfzDJ6syXd28IorQloxri
-	DKp5rtg1ZY8O3AvG5vJg==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=n6PJFTJ3L+QsdTG1ars84j5fqJQbBxh+kiUjR3TKcGo=; b=LXGnM47s06Z6Hz
+	rE2VxXonx0hr6NdmHjIQ6LJgm3pZYJYP13FRw7wAtbYAtQb0yxOe65FqsbkSusMuVRMJIZdZQ4BEa
+	KcqR4dB3FtESs5WBbzFi7HwhcjwoFMsAQXzfFdBWlsTYM0/w7VA0zFjJu6TTFX5PBZiDX8SxqHSS9
+	ZiAMiedrUrdqOmsWrI8/istzqwkncSu2o7bLz7DKAbsO1iX/ye9ia3NFZD3z0Xx+zbT2XkFTyDtom
+	1bu4E7MESsY4rHt4LLsc4yohlhsjx5rQbqo3QpuZcgowJVA7MDssK0Y65nn3Oa1EwTwTN28Ouk3Gb
+	RSxNDZUyzCNk9jN5lwLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ryrau-0000000DIpY-3z65;
-	Mon, 22 Apr 2024 11:12:20 +0000
+	id 1ryrb7-0000000DIxA-2Itm;
+	Mon, 22 Apr 2024 11:12:33 +0000
 Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ryrar-0000000DIlV-0Ell;
-	Mon, 22 Apr 2024 11:12:18 +0000
+	id 1ryras-0000000DIlr-0Mh1;
+	Mon, 22 Apr 2024 11:12:20 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 1FF07CE0B03;
+	by sin.source.kernel.org (Postfix) with ESMTP id 87088CE0B2D;
 	Mon, 22 Apr 2024 11:12:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 378ACC113CC;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 58BD0C32783;
 	Mon, 22 Apr 2024 11:12:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1713784333;
-	bh=60Nj6Eui0n3N0tnpm8vqfyc7ou3dQzK95LfY94ljJ2Q=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=r0gpY5K9/azlRnLLLeyXFSWAylhXDnQWwb5khECKFRQFAJ0aEFEx36KIv302Zt6lk
-	 925R7ZgDUiSvfFoThBPGCD134S0n8YbNtvJqr54XrqigpGTlYGn2hWLtbbpTKliG/+
-	 op1CljMdeNTSkQDrucsU91bbH8xCuT802DYH0oAJO86ivAB3PdqPwL3fLbKdt1i2eV
-	 J1rEmp+DW3SWUW1+TrI/isB4+NQ/d3IbcsfrJvhj3idgzoIskZNvE0FXLFBa9tJMna
-	 BcdD5WbYHgXYC37Drhjb7zyRsji4+2ZLYJdU5WkV0oAkBW2XK+3T189aHoxToqbmbW
-	 SPULFniiaQVOw==
+	bh=bMqGcfPIcqx1tPWsZvdzEzpM4FPqCSlBC/LMTX8Eg+c=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=X139oaBoc3aq5DGz6cVJHdIoOEfnMpMuFxPhWbGxdWByxgt5adBGeLiopc1oP4LsX
+	 g3ahZJGh05hmwNRkaAiI/TTj4Bdnt8bhKHxSnD9OTYu6Pob40aMkxRZcn4514yB+pj
+	 LUM6bYVvFsDdMjRyv80du+fP2apHLZAAMN513FGMufaxpDZ03B3Dfsh4TsCqkoPZ3d
+	 1rGvmGDELRnUJPtbFOPBl7z0Ik0fB/UlxxhktahwJ1joJSxGJtEwVY+wsyqoGngayO
+	 RkotAskrxa0gh+HpFJiOyYh/hRGRot+46hTRxP9BROu76fbtBLfR8znTll95uWmJZJ
+	 MI9ntNJ+vF7HA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 22E20C4345F;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4B639C10F15;
 	Mon, 22 Apr 2024 11:12:13 +0000 (UTC)
 From: Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>
-Subject: [PATCH v2 0/3] Add support for Amlogic T7 reset controller
-Date: Mon, 22 Apr 2024 19:11:42 +0800
-Message-Id: <20240422-t7-reset-v2-0-cb82271d3296@amlogic.com>
+Date: Mon, 22 Apr 2024 19:11:45 +0800
+Subject: [PATCH v2 3/3] arm64: dts: amlogic: Add Amlogic T7 reset
+ controller
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAO5FJmYC/23MQQ7CIBCF4as0sxZDASl15T1MF0iHdhJbDDRE0
- 3B3sWuX/8vLt0PCSJjg2uwQMVOisNYQpwbcbNcJGY21QXChuBQ92zoWMeHGvOnQSKW9HR9Q76+
- Int4HdR9qz5S2ED+HnNvf+gfJLeNMOY0CtZGXHm92eYaJ3NmFBYZSyhdgXGSeogAAAA==
+Message-Id: <20240422-t7-reset-v2-3-cb82271d3296@amlogic.com>
+References: <20240422-t7-reset-v2-0-cb82271d3296@amlogic.com>
+In-Reply-To: <20240422-t7-reset-v2-0-cb82271d3296@amlogic.com>
 To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
@@ -63,20 +63,19 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Zelong Dong <zelong.dong@amlogic.com>, 
  Kelvin Zhang <kelvin.zhang@amlogic.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1713784331; l=1114;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1713784331; l=7206;
  i=kelvin.zhang@amlogic.com; s=20240329; h=from:subject:message-id;
- bh=60Nj6Eui0n3N0tnpm8vqfyc7ou3dQzK95LfY94ljJ2Q=;
- b=/gYjYSk1vpwpkjfjMUbBti+TUQEAmVkAzsRF+ybxSZczfGfjPre9hMD1+0lbyMdq48VlAUv76
- e1nzmYjH+6PBDZqJxUF9CDf4k45OZe3hoGe/2cujuahY92nBy7spKPX
+ bh=AZvvv8u/6d8dUV/1ucCs/zLKuwMDc1r1Xd/1XFvNB84=;
+ b=NOZLubPnMfr1mcIsYi2kiMtNjw6LmHvaiN/sYtNjbdOVcrQNS6zwAXohzFaQmPGbEDplUg9TG
+ wNPYUjFXcVMDN5BWz98fW3q9H+ZEla0z1lD71YU2svlbw3pIybdn95d
 X-Developer-Key: i=kelvin.zhang@amlogic.com; a=ed25519;
  pk=pgnle7HTNvnNTcOoGejvtTC7BJT30HUNXfMHRRXSylI=
 X-Endpoint-Received: by B4 Relay for kelvin.zhang@amlogic.com/20240329 with
  auth_id=148
 X-Original-From: Kelvin Zhang <kelvin.zhang@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240422_041217_332303_B8A563C3 
-X-CRM114-Status: UNSURE (   7.77  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240422_041219_025754_32828F31 
+X-CRM114-Status: GOOD (  11.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,35 +93,250 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add a new compatible and device node for Amlogic T7 reset controller.
-And modify the driver accordingly.
+From: Zelong Dong <zelong.dong@amlogic.com>
+
+Add the device node and related header file
+for Amlogic T7 reset controller.
 
 Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
 Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
-Changes in v2:
-- Drop the compatible comment in dt-binding.
-- Move t7-reset.h to arch/arm64/boot/dts/amlogic.
-- Link to v1: https://lore.kernel.org/r/20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com
+ arch/arm64/boot/dts/amlogic/amlogic-t7-reset.h | 197 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi    |   7 +
+ 2 files changed, 204 insertions(+)
 
----
-Zelong Dong (3):
-      dt-bindings: reset: Add Amlogic T7 reset controller
-      reset: reset-meson: Add support for Amlogic T7 SoC reset controller
-      arm64: dts: amlogic: Add Amlogic T7 reset controller
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-reset.h b/arch/arm64/boot/dts/amlogic/amlogic-t7-reset.h
+new file mode 100644
+index 000000000000..ec90a11df508
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-reset.h
+@@ -0,0 +1,197 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
++/*
++ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
++ */
++
++#ifndef __DTS_AMLOGIC_T7_RESET_H
++#define __DTS_AMLOGIC_T7_RESET_H
++
++/* RESET0 */
++/*					0-3	*/
++#define RESET_USB			4
++#define RESET_U2DRD			5
++#define RESET_U3DRD			6
++#define RESET_U3DRD_PIPE0		7
++#define RESET_U2PHY20			8
++#define RESET_U2PHY21			9
++#define RESET_GDC			10
++#define RESET_HDMI20_AES		11
++#define RESET_HDMIRX			12
++#define RESET_HDMIRX_APB		13
++#define RESET_DEWARP			14
++/*					15	*/
++#define RESET_HDMITX_CAPB3		16
++#define RESET_BRG_VCBUG_DEC		17
++#define RESET_VCBUS			18
++#define RESET_VID_PLL_DIV		19
++#define RESET_VDI6			20
++#define RESET_GE2D			21
++#define RESET_HDMITXPHY			22
++#define RESET_VID_LOCK			23
++#define RESET_VENC0			24
++#define RESET_VDAC			25
++#define RESET_VENC2			26
++#define RESET_VENC1			27
++#define RESET_RDMA			28
++#define RESET_HDMITX			29
++#define RESET_VIU			30
++#define RESET_VENC			31
++
++/* RESET1 */
++#define RESET_AUDIO			32
++#define RESET_MALI_CAPB3		33
++#define RESET_MALI			34
++#define RESET_DDR_APB			35
++#define RESET_DDR			36
++#define RESET_DOS_CAPB3			37
++#define RESET_DOS			38
++#define RESET_COMBO_DPHY_CHAN2		39
++#define RESET_DEBUG_B			40
++#define RESET_DEBUG_A			41
++#define RESET_DSP_B			42
++#define RESET_DSP_A			43
++#define RESET_PCIE_A			44
++#define RESET_PCIE_PHY			45
++#define RESET_PCIE_APB			46
++#define RESET_ANAKIN			47
++#define RESET_ETH			48
++#define RESET_EDP0_CTRL			49
++#define RESET_EDP1_CTRL			50
++#define RESET_COMBO_DPHY_CHAN0		51
++#define RESET_COMBO_DPHY_CHAN1		52
++#define RESET_DSI_LVDS_EDP_TOP		53
++#define RESET_PCIE1_PHY			54
++#define RESET_PCIE1_APB			55
++#define RESET_DDR_1			56
++/*					57	*/
++#define RESET_EDP1_PIPELINE		58
++#define RESET_EDP0_PIPELINE		59
++#define RESET_MIPI_DSI1_PHY		60
++#define RESET_MIPI_DSI0_PHY		61
++#define RESET_MIPI_DSI_A_HOST		62
++#define RESET_MIPI_DSI_B_HOST		63
++
++/* RESET2 */
++#define RESET_DEVICE_MMC_ARB		64
++#define RESET_IR_CTRL			65
++#define RESET_TS_A73			66
++#define RESET_TS_A53			67
++#define RESET_SPICC_2			68
++#define RESET_SPICC_3			69
++#define RESET_SPICC_4			70
++#define RESET_SPICC_5			71
++#define RESET_SMART_CARD		72
++#define RESET_SPICC_0			73
++#define RESET_SPICC_1			74
++#define RESET_RSA			75
++/*					76-79	*/
++#define RESET_MSR_CLK			80
++#define RESET_SPIFC			81
++#define RESET_SAR_ADC			82
++#define RESET_BT			83
++/*					84-87	*/
++#define RESET_ACODEC			88
++#define RESET_CEC			89
++#define RESET_AFIFO			90
++#define RESET_WATCHDOG			91
++/*					92-95	*/
++
++/* RESET3 */
++#define RESET_BRG_NIC1_GPV		96
++#define RESET_BRG_NIC2_GPV		97
++#define RESET_BRG_NIC3_GPV		98
++#define RESET_BRG_NIC4_GPV		99
++#define RESET_BRG_NIC5_GPV		100
++/*					101-121	*/
++#define RESET_MIPI_ISP			122
++#define RESET_BRG_ADB_MALI_1		123
++#define RESET_BRG_ADB_MALI_0		124
++#define RESET_BRG_ADB_A73		125
++#define RESET_BRG_ADB_A53		126
++#define RESET_BRG_CCI			127
++
++/* RESET4 */
++#define RESET_PWM_AO_AB			128
++#define RESET_PWM_AO_CD			129
++#define RESET_PWM_AO_EF			130
++#define RESET_PWM_AO_GH			131
++#define RESET_PWM_AB			132
++#define RESET_PWM_CD			133
++#define RESET_PWM_EF			134
++/*					135-137	*/
++#define RESET_UART_A			138
++#define RESET_UART_B			139
++#define RESET_UART_C			140
++#define RESET_UART_D			141
++#define RESET_UART_E			142
++#define RESET_UART_F			143
++#define RESET_I2C_S_A			144
++#define RESET_I2C_M_A			145
++#define RESET_I2C_M_B			146
++#define RESET_I2C_M_C			147
++#define RESET_I2C_M_D			148
++#define RESET_I2C_M_E			149
++#define RESET_I2C_M_F			150
++#define RESET_I2C_M_AO_A		151
++#define RESET_SD_EMMC_A			152
++#define RESET_SD_EMMC_B			153
++#define RESET_SD_EMMC_C			154
++#define RESET_I2C_M_AO_B		155
++#define RESET_TS_GPU			156
++#define RESET_TS_NNA			157
++#define RESET_TS_VPN			158
++#define RESET_TS_HEVC			159
++
++/* RESET5 */
++#define RESET_BRG_NOC_DDR_1		160
++#define RESET_BRG_NOC_DDR_0		161
++#define RESET_BRG_NOC_MAIN		162
++#define RESET_BRG_NOC_ALL		163
++/*					164-167	*/
++#define RESET_BRG_NIC2_SYS		168
++#define RESET_BRG_NIC2_MAIN		169
++#define RESET_BRG_NIC2_HDMI		170
++#define RESET_BRG_NIC2_ALL		171
++#define RESET_BRG_NIC3_WAVE		172
++#define RESET_BRG_NIC3_VDEC		173
++#define RESET_BRG_NIC3_HEVCF		174
++#define RESET_BRG_NIC3_HEVCB		175
++#define RESET_BRG_NIC3_HCODEC		176
++#define RESET_BRG_NIC3_GE2D		177
++#define RESET_BRG_NIC3_GDC		178
++#define RESET_BRG_NIC3_AMLOGIC		179
++#define RESET_BRG_NIC3_MAIN		180
++#define RESET_BRG_NIC3_ALL		181
++#define RESET_BRG_NIC5_VPU		182
++/*					183-185	*/
++#define RESET_BRG_NIC4_DSPB		186
++#define RESET_BRG_NIC4_DSPA		187
++#define RESET_BRG_NIC4_VAPB		188
++#define RESET_BRG_NIC4_CLK81		189
++#define RESET_BRG_NIC4_MAIN		190
++#define RESET_BRG_NIC4_ALL		191
++
++/* RESET6 */
++#define RESET_BRG_VDEC_PIPEL		192
++#define RESET_BRG_HEVCF_DMC_PIPEL	193
++#define RESET_BRG_NIC2TONIC4_PIPEL	194
++#define RESET_BRG_HDMIRXTONIC2_PIPEL	195
++#define RESET_BRG_SECTONIC4_PIPEL	196
++#define RESET_BRG_VPUTONOC_PIPEL	197
++#define RESET_BRG_NIC4TONOC_PIPEL	198
++#define RESET_BRG_NIC3TONOC_PIPEL	199
++#define RESET_BRG_NIC2TONOC_PIPEL	200
++#define RESET_BRG_NNATONOC_PIPEL	201
++#define RESET_BRG_FRISP3_PIPEL		202
++#define RESET_BRG_FRISP2_PIPEL		203
++#define RESET_BRG_FRISP1_PIPEL		204
++#define RESET_BRG_FRISP0_PIPEL		205
++/*					206-217	*/
++#define RESET_BRG_AMPIPE_NAND		218
++#define RESET_BRG_AMPIPE_ETH		219
++/*					220	*/
++#define RESET_BRG_AM2AXI0		221
++#define RESET_BRG_AM2AXI1		222
++#define RESET_BRG_AM2AXI2		223
++
++#endif /* ___DTS_AMLOGIC_T7_RESET_H */
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+index 5248bdf824ea..c23efc6c7ac0 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+@@ -5,6 +5,7 @@
+ 
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/power/amlogic,t7-pwrc.h>
++#include "amlogic-t7-reset.h"
+ 
+ / {
+ 	interrupt-parent = <&gic>;
+@@ -149,6 +150,12 @@ apb4: bus@fe000000 {
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+ 
++			reset: reset-controller@2000 {
++				compatible = "amlogic,t7-reset";
++				reg = <0x0 0x2000 0x0 0x98>;
++				#reset-cells = <1>;
++			};
++
+ 			watchdog@2100 {
+ 				compatible = "amlogic,t7-wdt";
+ 				reg = <0x0 0x2100 0x0 0x10>;
 
- .../bindings/reset/amlogic,meson-reset.yaml        |   1 +
- arch/arm64/boot/dts/amlogic/amlogic-t7-reset.h     | 197 +++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        |   7 +
- drivers/reset/reset-meson.c                        |   6 +
- 4 files changed, 211 insertions(+)
----
-base-commit: f529a6d274b3b8c75899e949649d231298f30a32
-change-id: 20240329-t7-reset-f87e8346fadb
-
-Best regards,
 -- 
-Kelvin Zhang <kelvin.zhang@amlogic.com>
+2.37.1
 
 
 
