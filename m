@@ -4,96 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F788C4345F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Apr 2024 16:58:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F03C6C07C79
+	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Apr 2024 17:18:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ff4+rMN9sCaef2cVMOF6t7fmn2v9r9tRpAdC5d7Nmcg=; b=RO3uEJ0eXqR5Cu
-	fLK8hzSoM8njqNdlZ3XNSgkm/Da6RKNdHsPdoDsTPI3C1v0SZvKcVF7l8wb7MZDCDioeqh6xK83eK
-	nhpyMtlgClCQxlwMeTRUTw37PZfkDA/nmyKMMjTqxIPhvdQ579YQ8M2yOTfK2zsOFQXT6F+50HwcY
-	PYTiJ1nAjwUWzERQV1zdQQalusMwn2vdzU2On+JLcdNsaNctuZ8Br1UsiGfUoYMO6+n/y4zd1c/Mw
-	YIwxoXoigrSRBLYZZaJ55WtSzdYE3tSNTbnWkCA/pDz3WC9OAMGux4fOfuD9G4YAMLbzJGHNLEuMs
-	mZ6BTluQ1CJt+j9A5Ncg==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=rmRUIZJZpWu/Iu1hEaAzfDTEb9U2BP8m86+wSjQR7OQ=; b=IMU2tIph4Ijaww
+	jsHvYGgf6i6XWZsyq9WLhLXc1ZA9kOwxmIXnKwRVSufjmV1L5kN73Yv/BTrFCrC9HRwfjvsTSeltr
+	ngzodQIuZ5vDNmeSm2bNVsIvjhDWSderxivqVnnhPAh74hTpebEuOfEUviILaOpihCegayUY9XB4r
+	/C3hCuEexwY9DlD0D2FQY1PrIFJerfEwMLkFKzKcxzSMdEbWyz6KayJcyyJxiZNlzA/yfmT/FGAZy
+	waQH/0N84VP0UuEdgq/QaNpbbWS+LB1Hv36k4+WrVtHN75eW+re3CE9wD8Y97l4gc38vxbyb4KfAP
+	Xrb1k6wD08lcXHSv82bQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rywzM-0000000EOUG-0kiG;
-	Mon, 22 Apr 2024 16:57:56 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1ryxJH-0000000EScr-4714;
+	Mon, 22 Apr 2024 17:18:31 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rywzI-0000000EOSX-1VQj
+	id 1ryxJF-0000000ESbl-3JUj
 	for linux-amlogic@lists.infradead.org;
-	Mon, 22 Apr 2024 16:57:53 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-34b029296f5so1359450f8f.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 22 Apr 2024 09:57:51 -0700 (PDT)
+	Mon, 22 Apr 2024 17:18:31 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-34a32ba1962so3302286f8f.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 22 Apr 2024 10:18:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1713805070; x=1714409870; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XFejkMe0OVlEaHFS27AO4JIPaFi1PczIDcBY/+c6L4w=;
-        b=DhVzwLdVGQq87VN1sMfOjJVDcyM+/XrilS2zZKZl0rr1uG9ovHMtMHCaw1yYgtOhmQ
-         rGH8vsQH/cMgePmANDV55/SgcvljSWW6DonORPe5CnhfPejGDRNneknICVqQyMep9oDg
-         JIJaEhgvymhUfyTTmjYY8p6FQMpQvgy1TYjlxgstXBAjpMCApBYToaps3dwW3GcHg02g
-         MGjDW83P6TTsA4O+9IuDAePluVg64qaaxlqr6oj9ZOFPZ+qGy2TldFLV/OKnEgXqyjvU
-         GSmxG1xk0T+pv9Fi8o1h4ZR75QKT3yoZtgrZK+6eiDi5BKBUqdREKwQ2uWJ2KdNAqejH
-         sLwQ==
+        d=linaro.org; s=google; t=1713806307; x=1714411107; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5fWgmC+cKq5ILi/+wUPD9o03c3KoRbDPga2rnK4G2r8=;
+        b=uyBM5ZGh9pwJnzi9yjyMvzuqTITrBDcXzIoyB0Bt6wQBBbBiKcL5eEqVjOAoUH1ygy
+         SS5fTbi0GFiRWk2bXVpfvDxWhx8L7s+VGfnrz246qFQ49sdg0RUgjtuG7AFJ/eLEOSb/
+         z2+dyAFJFsuiVjusAn1FQdsecqUcXVszRjDAQGWzvE5Yc4Qokh88C2qfUyLnp035aS5m
+         761fo87VxwJqTjH6xOQH4vO1Hj5upIQCY8DHWLg6Kmyg2zHgZZP64YYzA/ba7BsPDXlk
+         qj4ciTiLTUFQhRS2QBu8ohAvTL8FL6tZzsTkFzxXPwQBbpqHN22o1U1WIO6jvn4chJ1o
+         P1jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713805070; x=1714409870;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XFejkMe0OVlEaHFS27AO4JIPaFi1PczIDcBY/+c6L4w=;
-        b=GlwE7lOHBq75gdYVhmsIyh9tRYJKxTqlgrOm9aSd5jqRYqDL7bXqMrutvmb48tBpAb
-         3FwBsznbobVSZ/LksksAKivTzcdFKVmISgXJ+HF7wrjAmtglB5MW/ewBjfDo+ArHhobB
-         WzkaDqohvqCnVuYMDCxC666PObckVTO2W8UYLbUPIu2xoASOOvll8jWVJSpWAr3Nv1+X
-         JowQ6BSxhsyMkiJaTzaBk4y6B0ck8ay22NTC8Hp/5lpwfMTISAU1d0z3aQo+CL39KBew
-         I26fm1YkTrEl6dHjKKDvzjkMYXjsaAv/BCh8T1YlTUS00aBQKYfj4m6zPBHN5fpleapb
-         BWHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVqmDvsQDUBkXpvI8nGdklLgz79ZPocETmEUTPA40hmoUwHKcqgRti8758K0r0sFLWwdbEbVCgmGSCN0z48DtoFf6ITTLph7kdgfuVAZInHOcU=
-X-Gm-Message-State: AOJu0YwpZviI/uOH4dQ6oFAip5JoX4f9yNzt75ZT82kA47H+Oy1TTyX6
-	4cvuc4I8kyL302G5m054muxRiJpgzg3LEv8YG7ztbYU1osakmI+DEVuX7byJ7jjBz2yukfblWEh
-	h4ZDnVA==
-X-Google-Smtp-Source: AGHT+IFPgoNY7jL28vA9FqUBo9t0jArnUgL+gophkF/W85BBll+VXJnnlKToYJDSJz0chYDGNDGGmw==
-X-Received: by 2002:a5d:4082:0:b0:34a:2c89:8517 with SMTP id o2-20020a5d4082000000b0034a2c898517mr7612659wrp.10.1713805070257;
-        Mon, 22 Apr 2024 09:57:50 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id y7-20020a5d6207000000b00346f9071405sm12509330wru.21.2024.04.22.09.57.49
+        d=1e100.net; s=20230601; t=1713806307; x=1714411107;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5fWgmC+cKq5ILi/+wUPD9o03c3KoRbDPga2rnK4G2r8=;
+        b=ursvtw6YouVUEEUJvXG/LphOzVMLyweilAaf+s3QOSEwMIXU+JAK9hJlOs8xwxlxp7
+         SkZLrf3P0T3QoLQIBV6mHPQJXNtF46aEDwc1qLfdgcw0+YDqruh2f15+gUszzOAuFekC
+         uB1OvqYqH4sQomOqhnXWrkskl5aeDsNLe+W7El3Fsfq4EKyaKNoEN/Iz9MEFyu9dOZRX
+         3Owrv1UNDrel/ptDEGRNZe5/FW0SC3I5mm+ON6sZIK0SNmQ2/+h7ovaHVHEh+omRfl7T
+         FVSHNCrs5j6yp6OSVSI+f/KQD3N2ybpfechnL0htUPFnQIMUY5SJ+WTeqABcp2Ykc9J2
+         HCDg==
+X-Gm-Message-State: AOJu0Ywzaqo+DmPSc7qd3N7ws9khQBrXTVCQDCJp4+qNqyK5PllkI6mR
+	2qTcsxWEgzNQ0wq1mCLu7jwGxRlcCOEhLcyWCbJV6UFe8iFV2PFizZOU8MFPmEfnblSMRYKLvR6
+	+gzRxEg==
+X-Google-Smtp-Source: AGHT+IE4x4r3L8ahx/2rD1lKZZqMztrneV/8IjQ6Ck6/f6K0Cf0g5tGKk+eOJckqxS6wN1WNIlXM+Q==
+X-Received: by 2002:a5d:5586:0:b0:34a:e73a:51be with SMTP id i6-20020a5d5586000000b0034ae73a51bemr3385127wrv.31.1713806307048;
+        Mon, 22 Apr 2024 10:18:27 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id d1-20020adfef81000000b0034a7a95c8cfsm8655132wro.9.2024.04.22.10.18.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Apr 2024 09:57:49 -0700 (PDT)
+        Mon, 22 Apr 2024 10:18:26 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Jagan Teki <jagan@amarulasolutions.com>, 
- Nicolas Belin <nbelin@baylibre.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- Conor Dooley <conor.dooley@microchip.com>, 
- "Lukas F. Hartmann" <lukas@mntre.com>
-In-Reply-To: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-0-99ecdfdc87fc@linaro.org>
-References: <20240403-amlogic-v6-4-upstream-dsi-ccf-vim3-v12-0-99ecdfdc87fc@linaro.org>
-Subject: Re: (subset) [PATCH v12 0/7] drm/meson: add support for MIPI DSI
- Display
-Message-Id: <171380506905.4152979.12753297685732463141.b4-ty@linaro.org>
-Date: Mon, 22 Apr 2024 18:57:49 +0200
+Date: Mon, 22 Apr 2024 19:18:25 +0200
+Subject: [PATCH] arm64: defconfig: enable Khadas TS050 panel as module
 MIME-Version: 1.0
-X-Mailer: b4 0.12.4
+Message-Id: <20240422-amlogic-v6-9-upstream-deconfig-dsi-v1-1-01511908477c@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAOCbJmYC/x3NTQqDMBBA4avIrB3QNNjqVcRFfibpQE0kY6Ug3
+ r3B5bd57wShwiQwNScUOlg4p4q+bcC9TYqE7KtBdUp3Wik06ydHdngMOOJ3k72QWdGTyylwRC+
+ M+kW9dc+H1cFDDW2FAv/uybxc1x/5GsRVdAAAAA==
+To: linux-amlogic@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ khilman@baylibre.com, jbrunet@baylibre.com, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=935;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=ylVPuLqcS1WJMgp9a8XuASTt4JhCVhE3OAvfInu5e0g=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmJpvhtHJRYeJBd1fbJE5+8INMdIKqwRLZNT1E137M
+ scLJBhqJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZiab4QAKCRB33NvayMhJ0a+wD/
+ 47b6efjdEaUF1ykivJFo1MeNg9w10zCSwsLnUmi48eiBkiv7gKY0+1Qj3HLbeq0BKe+cJ3YRZdV1pK
+ PFbZQUhXm0gdHsxKzo5fcV7Du6zgcsA0mZ4gbRGK5Tc3iPr4K8QMWDCQO8aguYo9JrblofwBESSMeD
+ +0Zret1WVqk9DmQbqDYQyeRmZUjRzT+rEOQ+j4sQJ9u6cw4gLxzk+TujsdUVgEmzCq7zcRCEfrIGc2
+ wawJEyzCqqK/b3GKNTOblLX/385tRpophcbQx7Apto6oRPoMbslImDW6xOw6URnnlAnKBf3xI+z4F9
+ HvgfWBuyEYBHVnGbT9DE9xI2zaPB34qeMjhcch2kkfSsIRBEAGp3oAj27xghdRc2heOLGekNj2A+gp
+ RR3sZEu+ET6os8pCicVUJMJ9DQaF4l3zNSJfnTsY6Wt+Z0UUmfoRG0L0sUiIf1c3FE+Nv0zcW/Dk0a
+ 8JpQp4IHVBu19WQSNRtu12nXZFW0hBkgnu54kfhPNonUC+I7uhd/XMWXZxpeEhB705xSbc82E3vl/i
+ T0hyqA4UxVj34tmfpaQnTM71PdV4dCKgPNPlOg4AarhhBqey1xuwsekHvDfuV1GbvKfoDrF0FlGqyc
+ UyULF3B8yqF0z51z2pcnCpFF6Fi6PDaaiSfJ18aY46e3049V66afI5toPMwQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240422_095752_439350_AA90815A 
-X-CRM114-Status: UNSURE (   8.28  )
+X-CRM114-CacheID: sfid-20240422_101829_882628_654BCEA0 
+X-CRM114-Status: UNSURE (   7.70  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -111,25 +111,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Enable the Khadas TS050 panel driver as module since it's
+required to use the TS050 panel on the Khadas VIM3 and VIM3L
+boards.
 
-On Wed, 03 Apr 2024 09:46:31 +0200, Neil Armstrong wrote:
-> The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
-> with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI
-> glue on the same Amlogic SoCs.
-> 
-> This is a follow-up of v5 now the DRM patches are applied, the clk & DT changes
-> remains for a full DSI support on G12A & SM1 platforms.
-> 
-> [...]
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ arch/arm64/configs/defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index 2c30d617e180..76c687ae8b89 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -865,6 +865,7 @@ CONFIG_DRM_PANEL_LVDS=m
+ CONFIG_DRM_PANEL_SIMPLE=m
+ CONFIG_DRM_PANEL_EDP=m
+ CONFIG_DRM_PANEL_ILITEK_ILI9882T=m
++CONFIG_DRM_PANEL_KHADAS_TS050=m
+ CONFIG_DRM_PANEL_MANTIX_MLAF057WE51=m
+ CONFIG_DRM_PANEL_RAYDIUM_RM67191=m
+ CONFIG_DRM_PANEL_SITRONIX_ST7703=m
 
-[4/7] drm/meson: gate px_clk when setting rate
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/5c9837374ecf55a1fa3b7622d365a0456960270f
+---
+base-commit: 4cece764965020c22cff7665b18a012006359095
+change-id: 20240422-amlogic-v6-9-upstream-deconfig-dsi-48e1bc73b4fd
 
+Best regards,
 -- 
-Neil
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
 _______________________________________________
