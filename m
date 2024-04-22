@@ -4,125 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2538C04FF6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Apr 2024 06:46:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88FA5C4345F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Apr 2024 07:40:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OUL9zdZgrRlS3UWwcLLr63geKTMBCv289k3eY9cNW/A=; b=rrmzciKjT3xZ5v
-	IMB2juFpoSmE+97QZRFhJeEq+wZZshF1IW6QBmYkOWdm7JCWkw0bSFtcQBlwzsnWk/FSy+1nm/sbz
-	JctIzi//Nc65l8RVgEzz/DLV9kdiJO73gVVkhYFscEkECb2anTuFVB+vv8ldkaImi7v3TiC3MIbiD
-	gDi7Vc84YqZwyvP85RowhWJstQmet/pkMxwNhk8AAJmlU3HZ8AU2u+B7J81va7VJdblc1cxSEAyVm
-	Pd9kbQ4Jjev9iSdyCPZC0Wj6UuVQnnIYEyGMzPlZS8t6syx74qmf8NyPSa4gtJ1S7BSBptqwmtkoU
-	N6+BFWye9s9qhUjYYA0Q==;
+	List-Owner; bh=vHe4V8YI6+ERYRvh4eFL3c/wdGjeG0/k98XJi41HgL8=; b=Idg137WX5/umB5
+	8LU3/7hCOBxpmVjpa66/rmHmUQruvi29YG/7S3olfFzIzO+dq7s9w+2L8+h8CbLdlZUtdoNEM4V5b
+	/TENaY2k3IoK6dEHVF16ncyGJjc7125nvWMUB3rQO7cFZq1wUHPwFTKnDjh7fF8pxMv0rp87tWd38
+	EgEet4RhaNbU3nyiMgYthqyMKsMz9vzkKqg/yqf47xVnhU0PX0dZHxBmxa9JyB0JL2l9bwnlga2D0
+	b11dmWv9vLzaH6x5rrDHppawxELt0JOuGvm2bp+BusZsRhs07tV2Xgvv2eZeUNUob8jjhGN7ssEGN
+	kzwrlev7UK6AQZatPc7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rynR7-0000000CI77-06iD;
-	Mon, 22 Apr 2024 06:45:57 +0000
-Received: from mail-ed1-f54.google.com ([209.85.208.54])
+	id 1ryoHo-0000000CTMu-3OJ5;
+	Mon, 22 Apr 2024 07:40:24 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rynR3-0000000CI6R-3Ovk
+	id 1ryoHj-0000000CTLo-3Tdw
 	for linux-amlogic@lists.infradead.org;
-	Mon, 22 Apr 2024 06:45:55 +0000
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-571c22d9de4so5132072a12.3
-        for <linux-amlogic@lists.infradead.org>; Sun, 21 Apr 2024 23:45:52 -0700 (PDT)
+	Mon, 22 Apr 2024 07:40:22 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-419fc79e4dcso7642735e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 22 Apr 2024 00:40:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713771616; x=1714376416; darn=lists.infradead.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=QE+BamrWTuLTpWa6qXzuznIbfPLHvLIlFCqgFnP4XM4=;
+        b=b0QtKJlUOx0fnnFkjVweE7sYNt/boWt5TSmLIhkBdNLYC3/XIvyUZeRGifvKzxU1FQ
+         oQfdMAVjhGtDDDnNX+YNUpooeqsF8Ki6r3lTuz1r4pdTPrvH8R4dLT3ZDw69AQE4qYMA
+         CLwrZsALurRSrpd17cYL0BUSSl7okiwAgzawfmBgJ05W7jvzoS7iFMxEPszVKuA5HBw+
+         XHKImlEb8VCprtbIbFXI64vBzBVDdTyEk0ZlCQ9dLPBQidd/ukBPJE6Zpb2g3rKOnT5i
+         dWCKQp/1ZxmeLzxgb5CX3PnA51XoSxAvuym7+obhm9NCm5SNVdRXc7944d1olaQjqnFG
+         5RMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713768350; x=1714373150;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1713771616; x=1714376416;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GhIyK0k38NfXA3SQgYdyxr+nopAq4gC1c596LtQxjg8=;
-        b=wozIpCsisbC7yVezyxBxKJOHfkNsp8gCSxmjmVNh7YBhAjcQ1dX/FmCw3/uu9k+P4a
-         TcUTKAsp2HKguOFSCjF2Ibc6eAzc3dCqpHzbUk3HxAC1S3LnUQKj7qAbChJ0GPS7Fq6o
-         6dN6yZSQeRU8V3xBYN0ULyV1fz96ADdmjHxEuuw4PMtKnlEmzeuKHqdGsYdgr1wconvd
-         siPB7ho/E+7fkG0wITPp9vQThx6Hsw/UnlstnalNe+Zf/WBZWmqqfQzCBTWIKOuS1G3l
-         FVWwUEu6m2R2NNmTlQvdjEsiErcJb6B1uZm5i9Qxnoa/ABO3G0a26WEpO3/R/bZMJr16
-         Vvzg==
-X-Forwarded-Encrypted: i=1; AJvYcCXxfjMGpZNN0B/yoJgxqOLDH/24QCsX5rbY3vXI/EHc1UcahZQ7tEzBzZlfWSGqfgcR21YCGZLf4CVZmYSUhLyuq/14FkM/g6SyI2oRl35f3vY=
-X-Gm-Message-State: AOJu0YxJeKl7DMstHHLAW5v7elaK2vTyUMqYtsdz+wWLNFKXgMWDD/Q1
-	AWmnUGJhLDviu2RjlJ/tu1PCh040cycg2dcWtNsy1eUtx/t5Jfqnus6ixxO1GHg=
-X-Google-Smtp-Source: AGHT+IF6pFeOYyFJcUR2YYwktzKqqEsVL+7YNw2LCDfI4a+snMHD6EFtqrqfydxM5T1KrxphxXBijw==
-X-Received: by 2002:a17:907:1b1e:b0:a55:ac3d:5871 with SMTP id mp30-20020a1709071b1e00b00a55ac3d5871mr2083265ejc.77.1713768350171;
-        Sun, 21 Apr 2024 23:45:50 -0700 (PDT)
-Received: from ?IPV6:2a0b:e7c0:0:107::aaaa:69? ([2a0b:e7c0:0:107::aaaa:69])
-        by smtp.gmail.com with ESMTPSA id sa40-20020a1709076d2800b00a5255afc856sm5357362ejc.84.2024.04.21.23.45.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 21 Apr 2024 23:45:49 -0700 (PDT)
-Message-ID: <6ef3422c-d931-4993-856d-c080b11d72d5@kernel.org>
-Date: Mon, 22 Apr 2024 08:45:48 +0200
+        bh=QE+BamrWTuLTpWa6qXzuznIbfPLHvLIlFCqgFnP4XM4=;
+        b=gCfHz9Up8Va666yFlHP5rG/UN9UcWYtdzatsef/mrE4xA/uGKPSa+eG/4dPT/posd/
+         QoPpxkRneFOtVuWG4H/5Dy99I3W8vH5qZN3z6Tz70HADZWKFvthfmlsLNqR9S04RLlpG
+         tI9R0EISSSK/L+zkI+6iQOu8rQvcVttU4H9YPWVtFClt/VjjlXPwWOVWIYXez7S5NweD
+         bX8VX8CHqmNkyq/ps5fY6UxFBQiIFYWULHzIrccXphSiG6eEMIoDlszgMJ+QwztAlCwV
+         YKBvaGJXskJu97lKpb7STXHNyAqJ5ErmY8a2tBIT9C3ooNUOExEeApx+kblLgQEOuceI
+         8iog==
+X-Forwarded-Encrypted: i=1; AJvYcCXnOhDFDPf+Gg8rFKnK9OpUMk1kg/g/7rmFeKcVe8tGgohROUU1Fum6me18ePmw2UMDQ621Ptv2weCk6bRxTE/6GY25Sgp51KFx4MaD3fSJ5V0=
+X-Gm-Message-State: AOJu0Yyui+DXwT6UUU4uij2RdXVsDgsdyuHWNp2NsieGbegIUlSx48/S
+	Zr2pY2Zni67UuiJyd+WbWQKw5n02f6FfBtTJzo7c0Q66WfboPpgNKwO/kwPiDEg=
+X-Google-Smtp-Source: AGHT+IG1GxMcmf9NdFOYPr777X3p7JMNSnBLkFZFuq+TgYqkM9gLohUFhW5rZ49xsD+geaucH5c0gg==
+X-Received: by 2002:adf:fd0c:0:b0:343:f662:18f8 with SMTP id e12-20020adffd0c000000b00343f66218f8mr4577170wrr.63.1713771615818;
+        Mon, 22 Apr 2024 00:40:15 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:a619:ccb0:5f40:262c])
+        by smtp.gmail.com with ESMTPSA id j6-20020a5d5646000000b0034b19cb1531sm1609899wrw.59.2024.04.22.00.40.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Apr 2024 00:40:15 -0700 (PDT)
+References: <20240419125812.983409-1-jan.dakinevich@salutedevices.com>
+ <20240419125812.983409-5-jan.dakinevich@salutedevices.com>
+ <20240419210949.GA3979121-robh@kernel.org>
+ <b86f1058-da53-4a9c-bc12-e7297351b482@salutedevices.com>
+ <48e9f035-390b-40c9-a3ad-49880c0b972d@kernel.org>
+User-agent: mu4e 1.10.8; emacs 29.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Rob Herring
+ <robh@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Jerome
+ Brunet <jbrunet@baylibre.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kevin
+ Hilman <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Jiucheng Xu <jiucheng.xu@amlogic.com>,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC PATCH v3 4/6] dt-bindings: clock: meson: document A1 SoC
+ audio clock controller driver
+Date: Mon, 22 Apr 2024 09:16:01 +0200
+In-reply-to: <48e9f035-390b-40c9-a3ad-49880c0b972d@kernel.org>
+Message-ID: <1jle55c0bl.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/15] tty: serial: switch from circ_buf to kfifo
-To: Anders Roxell <anders.roxell@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: gregkh@linuxfoundation.org, linux-amlogic@lists.infradead.org,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20240405060826.2521-1-jirislaby@kernel.org>
- <20240405060826.2521-13-jirislaby@kernel.org>
- <CGME20240415125847eucas1p2bc180c35f40f9c490c713679871af9ae@eucas1p2.samsung.com>
- <91ac609b-0fae-4856-a2a6-636908d7ad3c@samsung.com>
- <d70049d5-d0fe-465f-a558-45b6785f6014@kernel.org> <Zh-fgtujwjiSXz7D@monster>
- <c091da0b-a150-428a-bf96-75f9f3eab2e2@samsung.com>
- <CADYN=9LCJS0SW4PuF+e356HUxhzJYi093K6U+BdErPohq4RDWQ@mail.gmail.com>
-Content-Language: en-US
-From: Jiri Slaby <jirislaby@kernel.org>
-Autocrypt: addr=jirislaby@kernel.org; keydata=
- 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
-In-Reply-To: <CADYN=9LCJS0SW4PuF+e356HUxhzJYi093K6U+BdErPohq4RDWQ@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240421_234553_885909_6D7F4F7C 
-X-CRM114-Status: UNSURE (   8.15  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240422_004019_982326_C8847EF4 
+X-CRM114-Status: GOOD (  25.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -134,40 +101,136 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 17. 04. 24, 13:19, Anders Roxell wrote:
->> I'm trying to run on two dragonboard devices db410c and db845c and both
->>> fails to boot see the boot failure from db845c [1], linux-next tag: next-20240415.
->>> I tried to apply the patch [2] (that you proposed in this thread) ontop of next-20240415. However, that didn't
->>> help bootlog on db845c [3].
->>
->> This is a different issue, which I've reported 2 days ago. See the
->> following thread:
->>
->> https://lore.kernel.org/all/d3eb9f21-f3e1-43ec-bf41-984c6aa5cfc8@samsung.com/
-> 
-> Oh ok, I did the bisection on db845v, and that led me to this
-> patch 1788cf6a91d9 ("tty: serial: switch from circ_buf to kfifo")
 
-Could you re-test with the today's -next?
+On Sun 21 Apr 2024 at 20:14, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-In particular, with this commit:
-commit f70f95b485d78838ad28dbec804b986d11ad7bb0
-Author: Jiri Slaby (SUSE) <jirislaby@kernel.org>
-Date:   Fri Apr 19 10:09:31 2024 +0200
+> On 20/04/2024 18:15, Jan Dakinevich wrote:
+>> 
+>> 
+>> On 4/20/24 00:09, Rob Herring wrote:
+>>> On Fri, Apr 19, 2024 at 03:58:10PM +0300, Jan Dakinevich wrote:
+>>>> Add device tree bindings for A1 SoC audio clock and reset controllers.
+>>>>
+>>>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+>>>> ---
+>>>>
+>>>> This controller has 6 mandatory and up to 20 optional clocks. To describe
+>>>> this, I use 'additionalItems'. It produces correct processed-schema.json:
+>>>>
+>>>>   "clock-names": {
+>>>>       "maxItems": 26,
+>>>>       "items": [
+>>>>           {
+>>>>               "const": "pclk"
+>>>>           },
+>>>>           {
+>>>>               "const": "dds_in"
+>>>>           },
+>>>>           {
+>>>>               "const": "fclk_div2"
+>>>>           },
+>>>>           {
+>>>>               "const": "fclk_div3"
+>>>>           },
+>>>>           {
+>>>>               "const": "hifi_pll"
+>>>>           },
+>>>>           {
+>>>>               "const": "xtal"
+>>>>           }
+>>>>       ],
+>>>>       "additionalItems": {
+>>>>           "oneOf": [
+>>>>               {
+>>>>                   "pattern": "^slv_sclk[0-9]$"
+>>>>               },
+>>>>               {
+>>>>                   "pattern": "^slv_lrclk[0-9]$"
+>>>>               }
+>>>>           ]
+>>>>       },
+>>>>       "type": "array",
+>>>>       "minItems": 6
+>>>>   },
+>>>>
+>>>> and it behaves as expected. However, the checking is followed by
+>>>> complaints like this:
+>>>>
+>>>>   Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml: properties:clock-names:additionalItems: {'oneOf': [{'pattern': '^slv_sclk[0-9]$'}, {'pattern': '^slv_lrclk[0-9]$'}]} is not of type 'boolean'
+>>>>
+>>>> And indeed, 'additionalItems' has boolean type in meta-schema. So, how to
+>>>> do it right?
+>>>
+>>> The meta-schemas are written both to prevent nonsense that json-schema 
+>>> allows by default (e.g additionalitems (wrong case)) and constraints to 
+>>> follow the patterns we expect. I'm happy to loosen the latter case if 
+>>> there's really a need. 
+>>>
+>>> Generally, most bindings shouldn't be using 'additionalItems' at all as 
+>>> all entries should be defined, but there's a few exceptions. Here, the 
+>>> only reasoning I see is 26 entries is a lot to write out, but that 
+>>> wouldn't really justify it. 
+>> 
+>> Writing a lot of entries don't scary me too much, but the reason is that
+>> the existence of optional clock sources depends on schematics. Also, we
+>
+> Aren't you documenting SoC component, not a board? So how exactly it
+> depends on schematics? SoC is done or not done...
+>
+>> unable to declare dt-nodes for 'clocks' array in any generic way,
+>> because their declaration would depends on that what is actually
+>> connected to the SoC (dt-node could be "fixed-clock" with specific rate
+>> or something else).
+>
+> So these are clock inputs to the SoC?
+>
 
-     serial: msm: check dma_map_sg() return value properly
+Yes, possibly.
+Like an external crystal or a set clocks provided by an external codec
+where the codec is the clock master of the link.
 
+This is same case as the AXG that was discussed here:
+https://lore.kernel.org/linux-devicetree/20230808194811.113087-1-alexander.stein@mailbox.org/
 
-thanks,
+IMO, like the AXG, only the pclk is a required clock.
+All the others - master and slave clocks - are optional.
+The controller is designed to operate with grounded inputs
+
+>> 
+>> By the way, I don't know any example (neither for A1 SoC nor for other
+>> Amlogic's SoCs) where these optional clocks are used, but they are
+>> allowed by hw.
+
+Those scenario exists and have been tested. There is just no dts using
+that upstream because they are all mostly copy of the AML ref design.
+
+>> 
+>> This is my understanding of this controller. I hope, Jerome Brunet will
+>> clarify how it actually works.
+>
+
+I think the simpliest way to deal with this to just list all the clocks
+with 'minItems = 1'. It is going be hard to read with a lot of '<0>,' in
+the DTS when do need those slave clocks but at least the binding doc
+will be simple.
+
+> Best regards,
+> Krzysztof
+
+If you are going ahead with this, please name the file
+amlogic,axg-audio-clkc.yaml because this is really the first controller
+of the type and is meant to be documented in the same file.
+
+You are free to handle the conversion of the AXG at the same time if
+you'd like. It would be much appreciated if you do.
+
 -- 
-js
-suse labs
-
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
