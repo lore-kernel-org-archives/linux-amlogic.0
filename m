@@ -4,62 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13BBDC4345F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2024 20:04:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34809C4345F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2024 20:17:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HLFNtAlRMspxaMOoJqn5DcLaQLgeHMgHergikEuxa6A=; b=wlXsJ0mhBCT7Nc
-	4700ry8gzEUkWy39YJbq3jsqKARNiY80z86vREyD4qEdBvXqcLPhquK7ismZ22SHmDjK6LvGFIkZF
-	cthd7WomWslp1px0aV7teCTibbZ9yHYqSn8VqeAS6DG9oXK7cGsLA7OKSitQqOkY1QcCdKC0l/Pxc
-	tRAqkTP7hLcsM+HyvCD9k6gaLnqEDQXsHMaNOelXetvutP1FB3Ndo+zr6mYsR6VUSq+HNYDJdFNhS
-	C+h+8a2hTNCqJ8g3gaJSbifelDMdij4lZ7B6b/Gvx2mvVcT8DapSTSCqGIStZKL/UxFGAO1BolpOO
-	WEu7h0d/ffpY2YcWwvNw==;
+	List-Owner; bh=X4AX/Mi+AoA1MytSVytF3XMtqa4ZumoxMVBMfsntRFY=; b=kwG1N7aCTcsBXu
+	Y8/pqSuIt6uGiwcayUtyXqHygFn2h4BPDpMkhFZgJRH9UmQeRJO6/9GdFgfIb0657Q0juLrdjyqBb
+	0tgj6HIPiYGW9rXc1CV1LxSruO9evUVa1rhUSyeXdbr2bw7zAFpupf0TbPox7Fkqet1hkhR4X1XpI
+	vRfOJG2sucC4U+TJAwrKl3nh/mr5R5keTeujGUFWaqWViRuim40wEvRQ819wVFjoNivy98t/yNQ1P
+	arq6oCiPPxR15DO3gxoTvfzG9v8VA3QAxqv8+rQFeI1VfTBhv9aiS7UEe0l06Sue9+cF1kH1/x2vu
+	t3CMMTBJONQf+5QaBzuQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzMNI-00000001Mhu-2BDR;
-	Tue, 23 Apr 2024 20:04:20 +0000
-Received: from mgamail.intel.com ([192.198.163.11])
+	id 1rzMZZ-00000001O8I-1Zks;
+	Tue, 23 Apr 2024 20:17:01 +0000
+Received: from mail-vi1eur05on20601.outbound.protection.outlook.com ([2a01:111:f403:2613::601] helo=EUR05-VI1-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzMNE-00000001MhD-3ClG;
-	Tue, 23 Apr 2024 20:04:18 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1713902657; x=1745438657;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EUJ5LGU/8rzeyG4lTaZK13osGBD9kQIZNmjQSYrpH2Y=;
-  b=ZzblwhtErAfvcENrIWxUp+cbZ/Qy5FFCRDZAjFXF1x0CzAgDmiH3fMOW
-   j60xt4WULRMOrOegnzGJT1Gj/pejFrS60A3AadFOEZ0zpm2+Gij1LlPXk
-   0Hf42fZNyurhNE0jdFTJ04nh672ofTwFsc53sClAz6G1YNBIjRaJcQraq
-   jXZYuiMftJBW4JBNH/gq4L07vZBrpVZTqcyFdRE/oI+t1uCB85Q4q6FDf
-   Mb+iOZetIgYsZsA7FozkrUgNHUNk3yMIDdJtjf81ZsRZ8lCwaeoKOTPf6
-   uBmYuPjPmK/+U52noV4NO9ssX1lp19t7ntrlhhZYBzAByhyaOevms5ylw
-   w==;
-X-CSE-ConnectionGUID: uMCIXqCrS0aRk7u+oRFQ1Q==
-X-CSE-MsgGUID: e2LcHKVSQ3m8vzyosgEv9Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="20121412"
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
-   d="scan'208";a="20121412"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2024 13:04:11 -0700
-X-CSE-ConnectionGUID: jm0sMGbqTauuhA2EjqiNlA==
-X-CSE-MsgGUID: 4AudXI+ZSV+tSzYw/JyrDA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
-   d="scan'208";a="29124283"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2024 13:04:04 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rzMMy-00000000SbY-00GQ;
-	Tue, 23 Apr 2024 23:04:00 +0300
-Date: Tue, 23 Apr 2024 23:03:59 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Frank Li <Frank.li@nxp.com>
+	id 1rzMZW-00000001O7d-0wMF;
+	Tue, 23 Apr 2024 20:16:59 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ro8jA9zWLUUI7LhVBIBHnV8qvuae3K9Z/WCr/rmcHt/ddfdDsONKq8TD2c8upmEeVaBRIM49GU0Odj1zAQEVCIGrR/WP3u7p9mXDU7+YGnhM9LS+QWISnV0aFhvBdpxmAbC0cPu0ThdRsUJx+gQqS00hL99VEP3ObSOSaKmqwtwU6fdnRG0NFd6QLfsHeV9hnwrYjGUicodp/xgTfK/lQjsnpx+KIJH0yIbFUS1GOfOEvOV11yJfXF/7gFYZqKNmfJpCTy76cylQiW3+N6q/Nk71oI+TZQyjPYXyaflfvrgGDavfxOXhf2sGKKLhkVbbi8+S3O0sMjGCIA1DDQCjfw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=I7QyoMIElxsbh8Zl5Q274z9fuaJ92JlGX+NXewDMV1w=;
+ b=iYAzh6rjAp8uOhpnFLSlps8n/4AInKCPhGtcfQnYvDlGegtueoJ8iajnmBwRGzW1AN3f3gSjHrfJK1WEhLFmJXMyrnDKXlNTjzEIBAHnKTbKN4NBZcCekR1N8iWyZ5i/2Kc+3f24JgvucLTYP1CQS3i5HVWWkkj3x9+OpR3K4gnTgXnUZgnJdjRE5Bg0ugzGrEEXtKjANY17JMYDObmSbeFI26ZqmmaAucAp6/LG5tP0tz0kMvCevo6bduypXnWbLKItlZDpIBjQYOWayHR0ttbo70jnm6CqS0F8yuhPNleFxHBSVju1dDQtaUQlr7Oh9HZ1fpyuzKKA/8CB6wCjgA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=I7QyoMIElxsbh8Zl5Q274z9fuaJ92JlGX+NXewDMV1w=;
+ b=O9JKKnWQbtnRkF8GWqpS4zlAPkHijqzFZgQoovEyG+84j2qiJbcs+25niOkfX8FfmnHT0hASL83vQ63uXx0bi2G5xEQpmCLf/w3cRPmFo3Af4HikLTkLVujwX9+PZimGZLe0DNN/EeM+rbBj+/+3dWh/Z/gbLXQ08icn9JjVDlI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU2PR04MB8615.eurprd04.prod.outlook.com (2603:10a6:10:2da::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Tue, 23 Apr
+ 2024 20:16:49 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7472.044; Tue, 23 Apr 2024
+ 20:16:49 +0000
+Date: Tue, 23 Apr 2024 16:16:36 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
 	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
 	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
@@ -89,17 +83,89 @@ Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
 Subject: Re: [PATCH v2 3/4] PCI: imx6: Convert to agnostic GPIO API
-Message-ID: <ZigUL7exXBSbWDIR@smile.fi.intel.com>
+Message-ID: <ZigXJJj4e+oaANAt@lizhi-Precision-Tower-5810>
 References: <20240423172208.2723892-1-andriy.shevchenko@linux.intel.com>
  <20240423172208.2723892-4-andriy.shevchenko@linux.intel.com>
  <ZigSiCBIwoEIPYoG@lizhi-Precision-Tower-5810>
-MIME-Version: 1.0
+ <ZigUL7exXBSbWDIR@smile.fi.intel.com>
 Content-Disposition: inline
-In-Reply-To: <ZigSiCBIwoEIPYoG@lizhi-Precision-Tower-5810>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <ZigUL7exXBSbWDIR@smile.fi.intel.com>
+X-ClientProxiedBy: BY5PR04CA0024.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::34) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU2PR04MB8615:EE_
+X-MS-Office365-Filtering-Correlation-Id: fda70e91-29bc-438c-668c-08dc63d24e62
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?63f5h6wHyXRAaiExdrEt+EyjQrEDAi4xXVCJ9xeXOVni4V3iWFmSLM+cVecu?=
+ =?us-ascii?Q?isu8Ufdkw5NXsh7J5M7qzuGupnzKS9iAqNZhifLNc2nQyRTfgT/0mzlsMJEc?=
+ =?us-ascii?Q?GD8VdAH5fo7ZRcksvoOKYisEiAI+f/LnlGJIpXvPTWU4zOkcJvYBI7iI8ovo?=
+ =?us-ascii?Q?XJWwNLyzo8CSpeJfaUkWRSCzzk8OIXL15Z5cdIamU4OfkYnNJPXFQDtGmdfE?=
+ =?us-ascii?Q?N6nyI61C3WbZIWMbbKVmmBhugs/DWoBf45gH4mWzPMITF9JvE/CqPNsrlfjK?=
+ =?us-ascii?Q?oGGvajTLDHWxfhMnut/bfyJlY6Ra+LdAPWM9pXy8XDjMKwtSDHfDqpYqNqRk?=
+ =?us-ascii?Q?CHKwNuYbs1FfkucqGUZJHen0Ig7rNOE88wWXd91o9M2JsRtHioolUMu6+rsE?=
+ =?us-ascii?Q?YBlsS141VZNzee1Xb3/gLCcYt6YJtwFUMrWKyyIv7x10fdfJrDUgdGt/kRhk?=
+ =?us-ascii?Q?Yu7L9Xku7LDljQ3wMdq2e9kOwQv/iucv4w2jBY+o+xArMTtAwNigq6zRS3oE?=
+ =?us-ascii?Q?abTEADQuhqksXBXWJdIzgk2YcBhyiiRrMoZxU3tIEH7P1kSrLleOXmIEMXu8?=
+ =?us-ascii?Q?9BxEmLk5HRHjCZlS3qRHHqerYwYRmC0IrGg1SIFPRXVN7/VIJmyjnsNHYORY?=
+ =?us-ascii?Q?Pnq5Vm3iBpP20VYO6f6xlzwQUVfrS3sKpo+shfP5Ghu6qPR5lVlUm7nSY2vH?=
+ =?us-ascii?Q?eGoyepLacpTG4QAfmB1PeExDV+TB0DYBzmfAu0gB21JfVTm0aVQ9uOxgSwOG?=
+ =?us-ascii?Q?DkeQ6LRgqqDd74aEf8SeVh6W8gMUFK4wbeUAszHMF/MDZ3ivcWm3eKpcOqTT?=
+ =?us-ascii?Q?u1yN8CINJCAQ1UbzoO/7fLOh7j8fgfpJ9geQ9MiHT+DajlddiJ3AlHdhrJfK?=
+ =?us-ascii?Q?OUfWkld68ETXOJA0E+KKwpMu0cnwCZywbU7LQIOGAIA9psyrYQq1Pnqox5/M?=
+ =?us-ascii?Q?eFZJm7t2SyiGq8w1VgTH6oNwS6EKdkfUGxG0ZMd7UQ9GBiMCIR5VLASd1MFq?=
+ =?us-ascii?Q?acE6UVL5cyftCeR4KzNiAjOt9P56z+sDuxfAF+PkNRcIeISK5UCoT4oyoHpA?=
+ =?us-ascii?Q?Si6/Szym0wjl8pFuG2FEh8FYXnDLK1FmX2LGsamXSZoIk18j88CdJZm+PaNx?=
+ =?us-ascii?Q?WBpbF3d7TCpXFb+HbY2hakQXVJYdDqwR6OyfyGJ5IHU442b9OpxqYDPHXnqb?=
+ =?us-ascii?Q?FEsH72eGdH9fqTTt+xhiOy0w7eXrMkmlhJHEomevsNY7i1IxRSU6xu1GwOD+?=
+ =?us-ascii?Q?Oi2YadCQXal2NpwWDfsh9KIalmSDk6DQNLG0dqGrspMKd19WRqdOCTug8Zwn?=
+ =?us-ascii?Q?70QZ9sAYSt4lT3bS/QZuy2e6dWn13jnrZx7fhAEtn0myUg=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(52116005)(1800799015)(7416005)(366007)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Q/alq3jYTDmY662v9+Ke6OpyP4VqoAEAV2I9uUyv0nCCDpBOuGbX38MLZBdZ?=
+ =?us-ascii?Q?aw6jg4OSDMr0y//Ulu9zWJ9+W+gbOl4E2r7r5fGYR+zQcBh9koGGoKItiNDd?=
+ =?us-ascii?Q?VQxEfcl1lVOzzQqml5l/bP70ZQ/6EXTILatrU6N2Jh5KFkSG/V4051N+Gafa?=
+ =?us-ascii?Q?VmGoQWZxQheopGglNf8VhE7evbxoo00B5yG1yMybNxlPtNMQ9gVuzePl7xUy?=
+ =?us-ascii?Q?bqZyt1spuaA+gMO+JbwgqQ5inYogOv6xIMKv43TZ05AAyy7YWe39mNGdXHgk?=
+ =?us-ascii?Q?AYtSABAgB2jTTbpCzpl5n3tN2gIsoYZUYAiWh6LE5au07C5XE14c6z6Lb+Bk?=
+ =?us-ascii?Q?YSxiDjhe+lauqABn6um914RRuZnEHQor4/Hn0ZMUwh9mAKe3mvwBqTyZepy4?=
+ =?us-ascii?Q?F0cifpbtGarP1vzY2MVbsCYY4P82qodzZLtvNvU7waglvrrT6CusxylCD35r?=
+ =?us-ascii?Q?b2cljfAns90hNefY5clBGpB7xV+SrfDshI3XGpsG1FTLW+JHJcgmoDF1U8Uc?=
+ =?us-ascii?Q?f5tOKfe13Pd4w/cA4y/Pi8AJJQTCakPbcIiyOMADqdsDZKhLG7MPPgsmk8Md?=
+ =?us-ascii?Q?LFSW83Dy8f7xJ2Q6QSJM3iYajs8V2lbLzOh5Mn/PWlKfaHkP/u9drBAtEBTG?=
+ =?us-ascii?Q?KvK4MiA4K+3Mw6oF9v2Vq0rgV23ZuuJE0CiHVcmGFq1h1fV8fMTvw0OLyLoe?=
+ =?us-ascii?Q?5YsrlLSpDvGWsFyTrgaNxQ+oZPucWSn2ny/TMeQqKuHD4LZEhPTiQsq0gEq8?=
+ =?us-ascii?Q?Xklas0kmLtxJcpMgOZ3CEFSejwZM2LNaeD14GWcVSWCnVz60BoqCpTdxGThi?=
+ =?us-ascii?Q?KpNJep+K9w+uPrzpZXZ/n/MuV8goqUbOS9LNuy2sCKBv81UhSBYkOmYQ7lwD?=
+ =?us-ascii?Q?FAiWA/zUWMSAdcmlFCrguCZ7dKZUHTSTu2bkVEXQiAJkF92kueQ2d2bvvB4a?=
+ =?us-ascii?Q?v0CqXttQoBnMVMJKg3u5ONpOmRiNzZItt0Lse11r4S6krAP83v2niNFybF8G?=
+ =?us-ascii?Q?bMMBs8JVoPW1SJwA/YABPFi74OA/UO+q+IjM2rmkdvsza4enzx/xFHvm+Yor?=
+ =?us-ascii?Q?LKO7eyvwHgN65pJPPMbZtlQ/mYKiuzCKovj7cspsnoEkbTps6Eh6uvaROyNN?=
+ =?us-ascii?Q?IokaqAyE8EDkRS5FLFillw/qkhEALC6bdk+CbaIPHAxiOs0rgyZwn36fo/iG?=
+ =?us-ascii?Q?OLz/ivMblicuNoUbHy2ABAO8NQEXJXykSP7iLQ4NtkGZMaMYHeCbWwCsDKDo?=
+ =?us-ascii?Q?VgCNjukgghMMeCOcimaBcA38ZESXIRJamvxHJIB1yLfzQ5TXqbEja/It64Ka?=
+ =?us-ascii?Q?Jt0G+tLwsQg2ZvxULWCveyl7XCXEGRCYPZgTslH+pZ8N1mQF15EnJOHFWdlr?=
+ =?us-ascii?Q?Qy9ne9+wEfaC/6KOcR1W4bb0SkkggwPpzErI680Lo6gtTc05K6HF4Zs9eNHA?=
+ =?us-ascii?Q?QVLPDiGS6YxpnXjgalH79KIn4IAgH8i1YU8QHzkjI9Ms1ytLfW56ooC1WVOU?=
+ =?us-ascii?Q?HXWeLY6a6J0Bn0E8tgc7MJTrK6t65hPfrmUGbX0pLOCBMckv0WMftkoFuZFH?=
+ =?us-ascii?Q?f6uGZfzmKb9n/h1/8GfeM9cGZEkbVOHX4pluVhXt?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fda70e91-29bc-438c-668c-08dc63d24e62
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 20:16:48.9926
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: U+l9MjkGn/knoIHUprvkIyAW0InSfQc4WoDdbEIrhB4VRfHZhbE4C2j54VxCU1BxRSnNqFv1cykZUndLCAdrMA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8615
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240423_130416_841403_561E3ECA 
-X-CRM114-Status: GOOD (  11.06  )
+X-CRM114-CacheID: sfid-20240423_131658_369658_83355650 
+X-CRM114-Status: GOOD (  16.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,30 +182,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Apr 23, 2024 at 03:56:56PM -0400, Frank Li wrote:
-> On Tue, Apr 23, 2024 at 08:19:06PM +0300, Andy Shevchenko wrote:
-
-...
-
-> > +	imx6_pcie->reset_gpiod =
-> > +		devm_gpiod_get_optional(dev, "reset",
-> > +			imx6_pcie->gpio_active_high ? GPIOD_OUT_HIGH : GPIOD_OUT_LOW);
-> > +	if (IS_ERR(imx6_pcie->reset_gpiod))
-> > +		return dev_err_probe(dev, PTR_ERR(imx6_pcie->reset_gpiod),
-> > +				     "unable to get reset gpio\n");
+On Tue, Apr 23, 2024 at 11:03:59PM +0300, Andy Shevchenko wrote:
+> On Tue, Apr 23, 2024 at 03:56:56PM -0400, Frank Li wrote:
+> > On Tue, Apr 23, 2024 at 08:19:06PM +0300, Andy Shevchenko wrote:
 > 
-> Small problem here. err message "unable to get reset gpio\n" will print
-> when -EPROBE_DEFER happen. EPROBE_DEFER is quite common when use i2c
-> expand gpio chip.
+> ...
+> 
+> > > +	imx6_pcie->reset_gpiod =
+> > > +		devm_gpiod_get_optional(dev, "reset",
+> > > +			imx6_pcie->gpio_active_high ? GPIOD_OUT_HIGH : GPIOD_OUT_LOW);
+> > > +	if (IS_ERR(imx6_pcie->reset_gpiod))
+> > > +		return dev_err_probe(dev, PTR_ERR(imx6_pcie->reset_gpiod),
+> > > +				     "unable to get reset gpio\n");
+> > 
+> > Small problem here. err message "unable to get reset gpio\n" will print
+> > when -EPROBE_DEFER happen. EPROBE_DEFER is quite common when use i2c
+> > expand gpio chip.
+> 
+> I'm not sure how you come to this conclusion. Can you elaborate, please?
+> P.S> I do not see a problem as described.
 
-I'm not sure how you come to this conclusion. Can you elaborate, please?
-P.S> I do not see a problem as described.
+If i2c gpio-expander driver have not load when imx6_pcie probe, I supposed
+devm_gpiod_get_optional() will return -EPROBE_DEFER, 
 
--- 
-With Best Regards,
-Andy Shevchenko
+if (IS_ERR(imx6_pcie->reset_gpiod)) should be true. then dev_err_probe()
+will run and print "unable to get reset gpio\n" with error code
+-EPROBE_DEFER.
 
+driver framework will retry imx6_pcie probe again when a new device appear.
+it may retry sevial times utill i2c gpio-expander driver probe success or
+timeout.
 
+Frank
+
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
 
 _______________________________________________
 linux-amlogic mailing list
