@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15AD6C19F53
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2024 04:03:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A92DC04FF8
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2024 04:04:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=166oPx5fllNLU+g8j/FXrCKnn1ek+zX24OSzeegH3M0=; b=fY92SZtHSkuJVW
-	121wR6Y9BnpdE3psQJREwHotpa1FlKuNPazmpmvSz9fAzclDc+u+9rIPpYcH6PnwCR+3BIOtV2Yr7
-	htw1S8xXnSWhm7W0fayCtvw7DyhpwcxqqQK9s5TKfyWjcXX/sNasRpCwnAhmlNQGeLqkfJReoyyeo
-	8P9QojhyE0YIV7v8wKOIW/kbTAwQ/STTk4FdXIFiP883zLI32b2v7oN+DrZ7XY+ic4/Esu7qTOC8t
-	p8VzzteCR4hzr4ceIYRqS5Kjfyg1JOe4caFWuXcUJe35UlL1qdOkMhn8ejs+0k/Nd72NWsND67YCy
-	0r4C2/B/1RvTmeo7CZQQ==;
+	List-Owner; bh=T85fqvbF+XYG/jP3n//ETZRo8KfLSxB6p2LDCKtdJXo=; b=W37P54XSJIIJgP
+	GnLvlpOcChzGWJDO6tRKK9KEScoSPoLbDxQBBFb0FbPGpbPkEkeQNBSdEU8oHFwJAuOfMO3I36qOy
+	Is17Bp9sYxexSo5f5s69VPkDosPKgQ/9lsPHlkbQdbGQsuHvwdaeKVP19is7vtzr5eKR35K1tkfhP
+	g9o3H269UetBfQ/UjPKQlTVtBH3d6Q+o1KCZtuAyo6qi2VYwOCOcp0IO1ZvP1diN5x9QtZWxP9aGv
+	PULmKSaYb5ItY3dXWZ0S7sNBGxiJwWIgHiKPxq6qWSOoO8/bIg4R1EacxQayR18KIGEwepOLwSu3L
+	snhYue+SJT8TjT5Xn/+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rz7NY-0000000Ftpy-3z2q;
-	Tue, 23 Apr 2024 04:03:36 +0000
+	id 1rz7Ns-0000000Fu5i-2uiL;
+	Tue, 23 Apr 2024 04:03:56 +0000
 Received: from madrid.collaboradmins.com ([2a00:1098:ed:100::25])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rz7NU-0000000Ftnu-0dmj;
-	Tue, 23 Apr 2024 04:03:34 +0000
+	id 1rz7Nj-0000000FtyF-36cr;
+	Tue, 23 Apr 2024 04:03:54 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1713845010;
-	bh=VAaKLzzCKwuE52HpbPyhCXEtgH470macmRPpN1oVxeE=;
+	s=mail; t=1713845026;
+	bh=l6t0+xD5cSLXuFjrlw0rQ9CpJFqmCCNFNWDGh7hNpkA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=U57xcu3J8Fa/jrun+mUzvvs4lHrJV3mSGeUz/H2Tdg7YOf3Xh5W65jfnhh9yCbN9J
-	 iTWTnM6XA413yj7Pz7mYEzYYCmesX03US3uX9dsyiQum4WKtrM9YaONEDMNPwAHJiU
-	 MWijXuQ93eWSgpCvT59tkAAnz3dI73h9fvvMkguYdMM+ET8WNWUVh4auy+HT9XzXPs
-	 B+hiP1ouTr0snNO+QeOjbZdjrl16Fwoq6kSKGRk7ShC9TbmmkV8V67vTFo3F3C6etX
-	 pIdXsZM47OT85D8Qid38sWWncVi1fPEq7hJTmkvL2TgxBNg+yzp6a3AV1vjPwe6uRI
-	 LySB6xqv1bDDQ==
+	b=4XsyYzwucvqBuyJMDYP8LXUELDCmgdHWbKuzwCH6eBuAzupLP/oJ2lp2ykRFDY4f2
+	 NeCqTinxvSG0tCj2S1m0EINGGsClZQ+9qGsjsozL64dizgAiEs9zBIs8comJUSrYfk
+	 gkRBA0im9jR998RbatWbofnBFznf19sRJdDInE5IRPWVia3zwPJdJkEZj4GWPeRvKK
+	 xX29zwbVdmUQxQ4pTrusvYCKTqwuYrW3cRpwtuqC4k5UXQYEb6dCQL1rgoMY1i2DsR
+	 oO9rQr2OXNITSAg+C89qOMGmxSeFcuSD/OedOvbsGTk2OLrZ0DE7iAQCjUeRVVb5Xb
+	 zd5w0kKbNbnWA==
 Received: from localhost.localdomain (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: vignesh)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id B6A843780C21;
-	Tue, 23 Apr 2024 04:03:26 +0000 (UTC)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id EBFA3378213F;
+	Tue, 23 Apr 2024 04:03:42 +0000 (UTC)
 From: Vignesh Raman <vignesh.raman@collabora.com>
 To: dri-devel@lists.freedesktop.org
 Cc: daniels@collabora.com,
@@ -63,16 +63,16 @@ Cc: daniels@collabora.com,
 	intel-gfx@lists.freedesktop.org,
 	virtualization@lists.linux-foundation.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 1/4] drm/ci: uprev mesa version
-Date: Tue, 23 Apr 2024 09:32:40 +0530
-Message-Id: <20240423040243.448091-2-vignesh.raman@collabora.com>
+Subject: [PATCH v1 4/4] drm/ci: add tests on vkms
+Date: Tue, 23 Apr 2024 09:32:43 +0530
+Message-Id: <20240423040243.448091-5-vignesh.raman@collabora.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20240423040243.448091-1-vignesh.raman@collabora.com>
 References: <20240423040243.448091-1-vignesh.raman@collabora.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240422_210332_432263_838104BD 
-X-CRM114-Status: GOOD (  11.19  )
+X-CRM114-CacheID: sfid-20240422_210348_178630_EF558716 
+X-CRM114-Status: GOOD (  16.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,175 +84,162 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-zlib.net is not allowing tarball download anymore and results
-in below error in kernel+rootfs_arm32 container build,
-urllib.error.HTTPError: HTTP Error 403: Forbidden
-urllib.error.HTTPError: HTTP Error 415: Unsupported Media Type
-
-Uprev mesa to latest version which includes a fix for this issue.
-https://gitlab.freedesktop.org/mesa/mesa/-/commit/908f444e
-
-Also copy helper scripts to install, so that the ci jobs can
-use these scripts for logging.
-
-Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
----
- drivers/gpu/drm/ci/build.sh       |  1 +
- drivers/gpu/drm/ci/container.yml  | 12 ++++--------
- drivers/gpu/drm/ci/gitlab-ci.yml  | 11 ++++++++---
- drivers/gpu/drm/ci/image-tags.yml |  3 ++-
- drivers/gpu/drm/ci/test.yml       |  2 ++
- 5 files changed, 17 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/ci/build.sh b/drivers/gpu/drm/ci/build.sh
-index 106f2d40d222..8a3baa003904 100644
---- a/drivers/gpu/drm/ci/build.sh
-+++ b/drivers/gpu/drm/ci/build.sh
-@@ -128,6 +128,7 @@ fi
- # Pass needed files to the test stage
- mkdir -p install
- cp -rfv .gitlab-ci/* install/.
-+cp -rfv ci/*  install/.
- cp -rfv install/common install/ci-common
- cp -rfv drivers/gpu/drm/ci/* install/.
- 
-diff --git a/drivers/gpu/drm/ci/container.yml b/drivers/gpu/drm/ci/container.yml
-index 9764e7921a4f..d6edf3635b23 100644
---- a/drivers/gpu/drm/ci/container.yml
-+++ b/drivers/gpu/drm/ci/container.yml
-@@ -36,15 +36,15 @@ debian/android_build:
-   rules:
-     - when: never
- 
--debian/x86_64_test-android:
-+.debian/x86_64_test-android:
-   rules:
-     - when: never
- 
--windows_build_vs2019:
-+windows_build_msvc:
-   rules:
-     - when: never
- 
--windows_test_vs2019:
-+windows_test_msvc:
-   rules:
-     - when: never
- 
-@@ -56,10 +56,6 @@ rustfmt:
-    rules:
-     - when: never
- 
--windows_vs2019:
--   rules:
--    - when: never
--
--clang-format:
-+windows_msvc:
-    rules:
-     - when: never
-\ No newline at end of file
-diff --git a/drivers/gpu/drm/ci/gitlab-ci.yml b/drivers/gpu/drm/ci/gitlab-ci.yml
-index 084e3ff8e3f4..9bf5190604a7 100644
---- a/drivers/gpu/drm/ci/gitlab-ci.yml
-+++ b/drivers/gpu/drm/ci/gitlab-ci.yml
-@@ -1,6 +1,6 @@
- variables:
-   DRM_CI_PROJECT_PATH: &drm-ci-project-path mesa/mesa
--  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha 9d162de9a05155e1c4041857a5848842749164cf
-+  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha e5f133ccc426a197c48a4e88f5377f943f078180
- 
-   UPSTREAM_REPO: git://anongit.freedesktop.org/drm/drm
-   TARGET_BRANCH: drm-next
-@@ -26,10 +26,13 @@ variables:
-   JOB_ARTIFACTS_BASE: ${PIPELINE_ARTIFACTS_BASE}/${CI_JOB_ID}
-   # default kernel for rootfs before injecting the current kernel tree
-   KERNEL_REPO: "gfx-ci/linux"
--  KERNEL_TAG: "v6.6.4-for-mesa-ci-e4f4c500f7fb"
-+  KERNEL_TAG: "v6.6.21-mesa-19fc"
-   KERNEL_IMAGE_BASE: https://${S3_HOST}/mesa-lava/${KERNEL_REPO}/${KERNEL_TAG}
-   LAVA_TAGS: subset-1-gfx
-   LAVA_JOB_PRIORITY: 30
-+  ARTIFACTS_BASE_URL: https://${CI_PROJECT_ROOT_NAMESPACE}.${CI_PAGES_DOMAIN}/-/${CI_PROJECT_NAME}/-/jobs/${CI_JOB_ID}/artifacts
-+  # Python scripts for structured logger
-+  PYTHONPATH: "$PYTHONPATH:$CI_PROJECT_DIR/install"
- 
- default:
-   before_script:
-@@ -46,6 +49,7 @@ default:
-     - cd $CI_PROJECT_DIR
-     - curl --output - $DRM_CI_PROJECT_URL/-/archive/$DRM_CI_COMMIT_SHA/mesa-$DRM_CI_COMMIT_SHA.tar.gz | tar -xz
-     - mv mesa-$DRM_CI_COMMIT_SHA/.gitlab-ci* .
-+    - mv mesa-$DRM_CI_COMMIT_SHA/bin/ci .
-     - rm -rf mesa-$DRM_CI_COMMIT_SHA/
-     - echo -e "\e[0Ksection_end:$(date +%s):drm_ci_download_section\r\e[0K"
- 
-@@ -98,6 +102,7 @@ include:
- stages:
-   - sanity
-   - container
-+  - code-validation
-   - git-archive
-   - build
-   - amdgpu
-@@ -107,7 +112,6 @@ stages:
-   - msm
-   - rockchip
-   - virtio-gpu
--  - lint
- 
- # YAML anchors for rule conditions
- # --------------------------------
-@@ -218,6 +222,7 @@ make git archive:
-   script:
-     # Remove drm-ci files we just added
-     - rm -rf .gitlab-ci.*
-+    - rm -rf ci
- 
-     # Compactify the .git directory
-     - git gc --aggressive
-diff --git a/drivers/gpu/drm/ci/image-tags.yml b/drivers/gpu/drm/ci/image-tags.yml
-index 7ab4f2514da8..d8f72b82c938 100644
---- a/drivers/gpu/drm/ci/image-tags.yml
-+++ b/drivers/gpu/drm/ci/image-tags.yml
-@@ -1,5 +1,5 @@
- variables:
--   CONTAINER_TAG: "2023-10-11-mesa-uprev"
-+   CONTAINER_TAG: "2024-04-22-mesa-uprev"
-    DEBIAN_X86_64_BUILD_BASE_IMAGE: "debian/x86_64_build-base"
-    DEBIAN_BASE_TAG: "${CONTAINER_TAG}"
- 
-@@ -7,6 +7,7 @@ variables:
-    DEBIAN_BUILD_TAG: "2023-10-08-config"
- 
-    KERNEL_ROOTFS_TAG: "2023-10-06-amd"
-+   PKG_REPO_REV: "3cc12a2a"
- 
-    DEBIAN_X86_64_TEST_BASE_IMAGE: "debian/x86_64_test-base"
-    DEBIAN_X86_64_TEST_IMAGE_GL_PATH: "debian/x86_64_test-gl"
-diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
-index 8bc63912fddb..612c9ede3507 100644
---- a/drivers/gpu/drm/ci/test.yml
-+++ b/drivers/gpu/drm/ci/test.yml
-@@ -150,6 +150,8 @@ msm:sdm845:
-     BM_KERNEL: https://${PIPELINE_ARTIFACTS_BASE}/arm64/cheza-kernel
-     GPU_VERSION: sdm845
-     RUNNER_TAG: google-freedreno-cheza
-+    DEVICE_TYPE: sdm845-cheza-r3
-+    FARM: google
-   script:
-     - ./install/bare-metal/cros-servo.sh
- 
--- 
-2.40.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+QWRkIGpvYiB0aGF0IHJ1bnMgaWd0IG9uIHRvcCBvZiB2a21zLgoKQWNrZWQtYnk6IE1hw61yYSBD
+YW5hbCA8bWNhbmFsQGlnYWxpYS5jb20+CkFja2VkLWJ5OiBIZWxlbiBLb2lrZSA8aGVsZW4ua29p
+a2VAY29sbGFib3JhLmNvbT4KU2lnbmVkLW9mZi1ieTogVmlnbmVzaCBSYW1hbiA8dmlnbmVzaC5y
+YW1hbkBjb2xsYWJvcmEuY29tPgpBY2tlZC1ieTogSmVzc2ljYSBaaGFuZyA8cXVpY19qZXNzemhh
+bkBxdWljaW5jLmNvbT4KVGVzdGVkLWJ5OiBKZXNzaWNhIFpoYW5nIDxxdWljX2plc3N6aGFuQHF1
+aWNpbmMuY29tPgpBY2tlZC1ieTogTWF4aW1lIFJpcGFyZCA8bXJpcGFyZEBrZXJuZWwub3JnPgpT
+aWduZWQtb2ZmLWJ5OiBIZWxlbiBLb2lrZSA8aGVsZW4ua29pa2VAY29sbGFib3JhLmNvbT4KLS0t
+CiBNQUlOVEFJTkVSUyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgMSArCiBk
+cml2ZXJzL2dwdS9kcm0vY2kvZ2l0bGFiLWNpLnltbCAgICAgICAgICAgICAgfCAgMSArCiBkcml2
+ZXJzL2dwdS9kcm0vY2kvaWd0X3J1bm5lci5zaCAgICAgICAgICAgICAgfCAgMiArLQogZHJpdmVy
+cy9ncHUvZHJtL2NpL2ltYWdlLXRhZ3MueW1sICAgICAgICAgICAgIHwgIDQgKy0KIGRyaXZlcnMv
+Z3B1L2RybS9jaS90ZXN0LnltbCAgICAgICAgICAgICAgICAgICB8IDI0ICsrKysrKysrKy0KIGRy
+aXZlcnMvZ3B1L2RybS9jaS94ODZfNjQuY29uZmlnICAgICAgICAgICAgICB8ICAxICsKIGRyaXZl
+cnMvZ3B1L2RybS9jaS94ZmFpbHMvdmttcy1ub25lLWZhaWxzLnR4dCB8IDQ2ICsrKysrKysrKysr
+KysrKysrKysKIC4uLi9ncHUvZHJtL2NpL3hmYWlscy92a21zLW5vbmUtZmxha2VzLnR4dCAgICB8
+IDIxICsrKysrKysrKwogZHJpdmVycy9ncHUvZHJtL2NpL3hmYWlscy92a21zLW5vbmUtc2tpcHMu
+dHh0IHwgMzAgKysrKysrKysrKysrCiA5IGZpbGVzIGNoYW5nZWQsIDEyNiBpbnNlcnRpb25zKCsp
+LCA0IGRlbGV0aW9ucygtKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9jaS94
+ZmFpbHMvdmttcy1ub25lLWZhaWxzLnR4dAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1
+L2RybS9jaS94ZmFpbHMvdmttcy1ub25lLWZsYWtlcy50eHQKIGNyZWF0ZSBtb2RlIDEwMDY0NCBk
+cml2ZXJzL2dwdS9kcm0vY2kveGZhaWxzL3ZrbXMtbm9uZS1za2lwcy50eHQKCmRpZmYgLS1naXQg
+YS9NQUlOVEFJTkVSUyBiL01BSU5UQUlORVJTCmluZGV4IGM5N2Q3OWQwYjJiNC4uMTlhZDkzNzVk
+N2NkIDEwMDY0NAotLS0gYS9NQUlOVEFJTkVSUworKysgYi9NQUlOVEFJTkVSUwpAQCAtNzAzNSw2
+ICs3MDM1LDcgQEAgTDoJZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwogUzoJTWFpbnRh
+aW5lZAogVDoJZ2l0IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vbWlzYy9rZXJu
+ZWwuZ2l0CiBGOglEb2N1bWVudGF0aW9uL2dwdS92a21zLnJzdAorRjoJZHJpdmVycy9ncHUvZHJt
+L2NpL3hmYWlscy92a21zKgogRjoJZHJpdmVycy9ncHUvZHJtL3ZrbXMvCiAKIERSTSBEUklWRVIg
+Rk9SIFZJUlRVQUxCT1ggVklSVFVBTCBHUFUKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9j
+aS9naXRsYWItY2kueW1sIGIvZHJpdmVycy9ncHUvZHJtL2NpL2dpdGxhYi1jaS55bWwKaW5kZXgg
+NmNjOTQ3NDdkOGQ1Li42ZGFjN2FlOTg0MTkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9j
+aS9naXRsYWItY2kueW1sCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9jaS9naXRsYWItY2kueW1sCkBA
+IC0xMTIsNiArMTEyLDcgQEAgc3RhZ2VzOgogICAtIG1zbQogICAtIHJvY2tjaGlwCiAgIC0gdmly
+dGlvLWdwdQorICAtIHNvZnR3YXJlLWRyaXZlcgogCiAjIFlBTUwgYW5jaG9ycyBmb3IgcnVsZSBj
+b25kaXRpb25zCiAjIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCmRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vY2kvaWd0X3J1bm5lci5zaCBiL2RyaXZlcnMvZ3B1L2RybS9jaS9p
+Z3RfcnVubmVyLnNoCmluZGV4IDBmZDdkNjdmOTFlMy4uMjUzOGYyOWZjYjJjIDEwMDc1NQotLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vY2kvaWd0X3J1bm5lci5zaAorKysgYi9kcml2ZXJzL2dwdS9kcm0v
+Y2kvaWd0X3J1bm5lci5zaApAQCAtMzAsNyArMzAsNyBAQCBjYXNlICIkRFJJVkVSX05BTUUiIGlu
+CiAgICAgICAgICAgICBleHBvcnQgSUdUX0ZPUkNFX0RSSVZFUj0icGFuZnJvc3QiCiAgICAgICAg
+IGZpCiAgICAgICAgIDs7Ci0gICAgYW1kZ3B1fHZpcnRpb19ncHUpCisgICAgYW1kZ3B1fHZpcnRp
+b19ncHV8dmttcykKICAgICAgICAgIyBDYW5ub3QgdXNlIEhXQ0lfS0VSTkVMX01PRFVMRVMgYXMg
+YXQgdGhhdCBwb2ludCB3ZSBkb24ndCBoYXZlIHRoZSBtb2R1bGUgaW4gL2xpYgogICAgICAgICBt
+diAvaW5zdGFsbC9tb2R1bGVzL2xpYi9tb2R1bGVzLyogL2xpYi9tb2R1bGVzLy4gfHwgdHJ1ZQog
+ICAgICAgICBtb2Rwcm9iZSAtLWZpcnN0LXRpbWUgJERSSVZFUl9OQU1FCmRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vY2kvaW1hZ2UtdGFncy55bWwgYi9kcml2ZXJzL2dwdS9kcm0vY2kvaW1h
+Z2UtdGFncy55bWwKaW5kZXggZmQxY2I2MDYxMTY2Li40M2JkODcxYzJlNjAgMTAwNjQ0Ci0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9jaS9pbWFnZS10YWdzLnltbAorKysgYi9kcml2ZXJzL2dwdS9kcm0v
+Y2kvaW1hZ2UtdGFncy55bWwKQEAgLTQsOSArNCw5IEBAIHZhcmlhYmxlczoKICAgIERFQklBTl9C
+QVNFX1RBRzogIiR7Q09OVEFJTkVSX1RBR30iCiAKICAgIERFQklBTl9YODZfNjRfQlVJTERfSU1B
+R0VfUEFUSDogImRlYmlhbi94ODZfNjRfYnVpbGQiCi0gICBERUJJQU5fQlVJTERfVEFHOiAiMjAy
+NC0wNC0yMi12aXJ0aW8iCisgICBERUJJQU5fQlVJTERfVEFHOiAiMjAyNC0wNC0yMi12a21zIgog
+Ci0gICBLRVJORUxfUk9PVEZTX1RBRzogIjIwMjQtMDQtMjItdmlydGlvIgorICAgS0VSTkVMX1JP
+T1RGU19UQUc6ICIyMDI0LTA0LTIyLXZrbXMiCiAgICBQS0dfUkVQT19SRVY6ICIzY2MxMmEyYSIK
+IAogICAgREVCSUFOX1g4Nl82NF9URVNUX0JBU0VfSU1BR0U6ICJkZWJpYW4veDg2XzY0X3Rlc3Qt
+YmFzZSIKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9jaS90ZXN0LnltbCBiL2RyaXZlcnMv
+Z3B1L2RybS9jaS90ZXN0LnltbAppbmRleCAxZjhjYzE3ZjJhZDEuLjc0NTcxNjkyMGZmYyAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2NpL3Rlc3QueW1sCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9jaS90ZXN0LnltbApAQCAtMzMzLDcgKzMzMyw3IEBAIG1lc29uOmcxMmI6CiAgICAgUlVOTkVS
+X1RBRzogbWVzYS1jaS14ODYtNjQtbGF2YS1tZXNvbi1nMTJiLWEzMTFkLWtoYWRhcy12aW0zCiAK
+IHZpcnRpb19ncHU6bm9uZToKLSAgc3RhZ2U6IHZpcnRpby1ncHUKKyAgc3RhZ2U6IHNvZnR3YXJl
+LWRyaXZlcgogICB2YXJpYWJsZXM6CiAgICAgQ1JPU1ZNX0dBTExJVU1fRFJJVkVSOiBsbHZtcGlw
+ZQogICAgIERSSVZFUl9OQU1FOiB2aXJ0aW9fZ3B1CkBAIC0zNTQsMyArMzU0LDI1IEBAIHZpcnRp
+b19ncHU6bm9uZToKICAgICAtIGRlYmlhbi94ODZfNjRfdGVzdC1nbAogICAgIC0gdGVzdGluZzp4
+ODZfNjQKICAgICAtIGlndDp4ODZfNjQKKwordmttczpub25lOgorICBzdGFnZTogc29mdHdhcmUt
+ZHJpdmVyCisgIHZhcmlhYmxlczoKKyAgICBEUklWRVJfTkFNRTogdmttcworICAgIEdQVV9WRVJT
+SU9OOiBub25lCisgIGV4dGVuZHM6CisgICAgLSAudGVzdC1nbAorICAgIC0gLnRlc3QtcnVsZXMK
+KyAgdGFnczoKKyAgICAtIGt2bQorICBzY3JpcHQ6CisgICAgLSBsbiAtc2YgJENJX1BST0pFQ1Rf
+RElSL2luc3RhbGwgL2luc3RhbGwKKyAgICAtIG12IGluc3RhbGwvYnpJbWFnZSAvbGF2YS1maWxl
+cy9iekltYWdlCisgICAgLSBta2RpciAtcCAvbGliL21vZHVsZXMKKyAgICAtIG1rZGlyIC1wICRD
+SV9QUk9KRUNUX0RJUi9yZXN1bHRzCisgICAgLSBsbiAtc2YgJENJX1BST0pFQ1RfRElSL3Jlc3Vs
+dHMgL3Jlc3VsdHMKKyAgICAtIC4vaW5zdGFsbC9jcm9zdm0tcnVubmVyLnNoIC4vaW5zdGFsbC9p
+Z3RfcnVubmVyLnNoCisgIG5lZWRzOgorICAgIC0gZGViaWFuL3g4Nl82NF90ZXN0LWdsCisgICAg
+LSB0ZXN0aW5nOng4Nl82NAorICAgIC0gaWd0Ong4Nl82NApkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2NpL3g4Nl82NC5jb25maWcgYi9kcml2ZXJzL2dwdS9kcm0vY2kveDg2XzY0LmNvbmZp
+ZwppbmRleCA3ODQ3OWYwNjNlOGUuLjY2YzZmNjdkZmRkNiAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2NpL3g4Nl82NC5jb25maWcKKysrIGIvZHJpdmVycy9ncHUvZHJtL2NpL3g4Nl82NC5j
+b25maWcKQEAgLTI0LDYgKzI0LDcgQEAgQ09ORklHX0RSTT15CiBDT05GSUdfRFJNX1BBTkVMX1NJ
+TVBMRT15CiBDT05GSUdfUFdNX0NST1NfRUM9eQogQ09ORklHX0JBQ0tMSUdIVF9QV009eQorQ09O
+RklHX0RSTV9WS01TPW0KIAogIyBTdHJpcCBvdXQgc29tZSBzdHVmZiB3ZSBkb24ndCBuZWVkIGZv
+ciBncmFwaGljcyB0ZXN0aW5nLCB0byByZWR1Y2UKICMgdGhlIGJ1aWxkLgpkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2NpL3hmYWlscy92a21zLW5vbmUtZmFpbHMudHh0IGIvZHJpdmVycy9n
+cHUvZHJtL2NpL3hmYWlscy92a21zLW5vbmUtZmFpbHMudHh0Cm5ldyBmaWxlIG1vZGUgMTAwNjQ0
+CmluZGV4IDAwMDAwMDAwMDAwMC4uYzAxNWU0YTk2ODEwCi0tLSAvZGV2L251bGwKKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2NpL3hmYWlscy92a21zLW5vbmUtZmFpbHMudHh0CkBAIC0wLDAgKzEsNDYg
+QEAKK2NvcmVfaG90dW5wbHVnQGhvdHJlYmluZCxGYWlsCitjb3JlX2hvdHVucGx1Z0Bob3RyZWJp
+bmQtbGF0ZWNsb3NlLEZhaWwKK2NvcmVfaG90dW5wbHVnQGhvdHJlcGx1ZyxGYWlsCitjb3JlX2hv
+dHVucGx1Z0Bob3RyZXBsdWctbGF0ZWNsb3NlLEZhaWwKK2NvcmVfaG90dW5wbHVnQGhvdHVuYmlu
+ZC1yZWJpbmQsRmFpbAorY29yZV9ob3R1bnBsdWdAaG90dW5wbHVnLXJlc2NhbixGYWlsCitjb3Jl
+X2hvdHVucGx1Z0B1bmJpbmQtcmViaW5kLEZhaWwKK2NvcmVfaG90dW5wbHVnQHVucGx1Zy1yZXNj
+YW4sRmFpbAorZGV2aWNlX3Jlc2V0QGNvbGQtcmVzZXQtYm91bmQsRmFpbAorZGV2aWNlX3Jlc2V0
+QHJlc2V0LWJvdW5kLEZhaWwKK2RldmljZV9yZXNldEB1bmJpbmQtY29sZC1yZXNldC1yZWJpbmQs
+RmFpbAorZGV2aWNlX3Jlc2V0QHVuYmluZC1yZXNldC1yZWJpbmQsRmFpbAorZHVtYl9idWZmZXJA
+aW52YWxpZC1icHAsRmFpbAora21zX2NvbnRlbnRfcHJvdGVjdGlvbkBhdG9taWMsQ3Jhc2gKK2tt
+c19jb250ZW50X3Byb3RlY3Rpb25AYXRvbWljLWRwbXMsQ3Jhc2gKK2ttc19jb250ZW50X3Byb3Rl
+Y3Rpb25AY29udGVudC10eXBlLWNoYW5nZSxDcmFzaAora21zX2NvbnRlbnRfcHJvdGVjdGlvbkBs
+aWMtdHlwZS0wLENyYXNoCitrbXNfY29udGVudF9wcm90ZWN0aW9uQGxpYy10eXBlLTEsQ3Jhc2gK
+K2ttc19jb250ZW50X3Byb3RlY3Rpb25Ac3JtLENyYXNoCitrbXNfY29udGVudF9wcm90ZWN0aW9u
+QHR5cGUxLENyYXNoCitrbXNfY29udGVudF9wcm90ZWN0aW9uQHVldmVudCxDcmFzaAora21zX2N1
+cnNvcl9sZWdhY3lAYmFzaWMtZmxpcC1iZWZvcmUtY3Vyc29yLWF0b21pYyxGYWlsCitrbXNfY3Vy
+c29yX2xlZ2FjeUBiYXNpYy1mbGlwLWJlZm9yZS1jdXJzb3ItbGVnYWN5LEZhaWwKK2ttc19jdXJz
+b3JfbGVnYWN5QGN1cnNvci12cy1mbGlwLWF0b21pYyxGYWlsCitrbXNfY3Vyc29yX2xlZ2FjeUBj
+dXJzb3ItdnMtZmxpcC1sZWdhY3ksRmFpbAora21zX2N1cnNvcl9sZWdhY3lAY3Vyc29yLXZzLWZs
+aXAtdG9nZ2xlLEZhaWwKK2ttc19jdXJzb3JfbGVnYWN5QGN1cnNvci12cy1mbGlwLXZhcnlpbmct
+c2l6ZSxGYWlsCitrbXNfY3Vyc29yX2xlZ2FjeUBmbGlwLXZzLWN1cnNvci1hdG9taWMsRmFpbAor
+a21zX2N1cnNvcl9sZWdhY3lAZmxpcC12cy1jdXJzb3ItY3JjLWF0b21pYyxGYWlsCitrbXNfY3Vy
+c29yX2xlZ2FjeUBmbGlwLXZzLWN1cnNvci1jcmMtbGVnYWN5LEZhaWwKK2ttc19jdXJzb3JfbGVn
+YWN5QGZsaXAtdnMtY3Vyc29yLWxlZ2FjeSxGYWlsCitrbXNfZmxpcEBiYXNpYy1mbGlwLXZzLXdm
+X3ZibGFuayxGYWlsCitrbXNfZmxpcEBmbGlwLXZzLWFic29sdXRlLXdmX3ZibGFuayxGYWlsCitr
+bXNfZmxpcEBmbGlwLXZzLWJsb2NraW5nLXdmLXZibGFuayxGYWlsCitrbXNfZmxpcEBmbGlwLXZz
+LW1vZGVzZXQtdnMtaGFuZyxGYWlsCitrbXNfZmxpcEBmbGlwLXZzLXBhbm5pbmctdnMtaGFuZyxG
+YWlsCitrbXNfZmxpcEBmbGlwLXZzLXdmX3ZibGFuay1pbnRlcnJ1cHRpYmxlLEZhaWwKK2ttc19s
+ZWFzZUBsZWFzZS11ZXZlbnQsRmFpbAora21zX3dyaXRlYmFja0B3cml0ZWJhY2stY2hlY2stb3V0
+cHV0LEZhaWwKK2ttc193cml0ZWJhY2tAd3JpdGViYWNrLWNoZWNrLW91dHB1dC1YUkdCMjEwMTAx
+MCxGYWlsCitrbXNfd3JpdGViYWNrQHdyaXRlYmFjay1mYi1pZCxGYWlsCitrbXNfd3JpdGViYWNr
+QHdyaXRlYmFjay1mYi1pZC1YUkdCMjEwMTAxMCxGYWlsCitrbXNfd3JpdGViYWNrQHdyaXRlYmFj
+ay1pbnZhbGlkLXBhcmFtZXRlcnMsRmFpbAora21zX3dyaXRlYmFja0B3cml0ZWJhY2stcGl4ZWwt
+Zm9ybWF0cyxGYWlsCitwZXJmQGk5MTUtcmVmLWNvdW50LEZhaWwKK3Rvb2xzX3Rlc3RAdG9vbHNf
+dGVzdCxGYWlsCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vY2kveGZhaWxzL3ZrbXMtbm9u
+ZS1mbGFrZXMudHh0IGIvZHJpdmVycy9ncHUvZHJtL2NpL3hmYWlscy92a21zLW5vbmUtZmxha2Vz
+LnR4dApuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRleCAwMDAwMDAwMDAwMDAuLmFiNjFlOWE2MmQz
+OAotLS0gL2Rldi9udWxsCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9jaS94ZmFpbHMvdmttcy1ub25l
+LWZsYWtlcy50eHQKQEAgLTAsMCArMSwyMSBAQAorIyBCb2FyZCBOYW1lOiB2a21zCisjIEJ1ZyBS
+ZXBvcnQ6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2RyaS1kZXZlbC8wMDVkYThmMS04MDUwLWJm
+ZmQtNjUzYy0yYTg3YWU2Mzc2ZjdAY29sbGFib3JhLmNvbS9ULyN1CisjIEZhaWx1cmUgUmF0ZTog
+NTAKKyMgSUdUIFZlcnNpb246IDEuMjgtZzdkMTg0MTMxNworIyBMaW51eCBWZXJzaW9uOiA2Ljku
+MC1yYzQKKyMgUmVwb3J0ZWQgYnkgZGVxcC1ydW5uZXIKK2ttc19mbGlwQGJsb2NraW5nLXdmX3Zi
+bGFuawora21zX2ZsaXBAZmxpcC12cy1leHBpcmVkLXZibGFuawora21zX2ZsaXBAcGxhaW4tZmxp
+cC1mYi1yZWNyZWF0ZQora21zX2ZsaXBAcGxhaW4tZmxpcC1mYi1yZWNyZWF0ZS1pbnRlcnJ1cHRp
+YmxlCitrbXNfZmxpcEBwbGFpbi1mbGlwLXRzLWNoZWNrCitrbXNfZmxpcEBwbGFpbi1mbGlwLXRz
+LWNoZWNrLWludGVycnVwdGlibGUKK2ttc19waXBlX2NyY19iYXNpY0Bub25ibG9ja2luZy1jcmMK
+K2ttc19waXBlX2NyY19iYXNpY0Bub25ibG9ja2luZy1jcmMtZnJhbWUtc2VxdWVuY2UKK2ttc19m
+bGlwQGZsaXAtdnMtYWJzb2x1dGUtd2ZfdmJsYW5rCisKKyMgVGhlIGJlbG93IHRlc3Qgc2hvd3Mg
+aW5jb25zaXN0ZW5jeSBhY3Jvc3MgbXVsdGlwbGUgcnVucywgZ2l2aW5nCisjIHJlc3VsdHMgb2Yg
+UGFzcyBhbmQgRmFpbC4KK2ttc19mbGlwQGJhc2ljLWZsaXAtdnMtd2ZfdmJsYW5rCitrbXNfZmxp
+cEBmbGlwLXZzLWJsb2NraW5nLXdmLXZibGFuawora21zX2ZsaXBAZmxpcC12cy13Zl92Ymxhbmst
+aW50ZXJydXB0aWJsZQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2NpL3hmYWlscy92a21z
+LW5vbmUtc2tpcHMudHh0IGIvZHJpdmVycy9ncHUvZHJtL2NpL3hmYWlscy92a21zLW5vbmUtc2tp
+cHMudHh0Cm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAwMDAwMC4uNGMzNTFlMzMy
+ZmM3Ci0tLSAvZGV2L251bGwKKysrIGIvZHJpdmVycy9ncHUvZHJtL2NpL3hmYWlscy92a21zLW5v
+bmUtc2tpcHMudHh0CkBAIC0wLDAgKzEsMzAgQEAKKyMgSGl0czoKKyMgcmN1OiBJTkZPOiByY3Vf
+cHJlZW1wdCBkZXRlY3RlZCBzdGFsbHMgb24gQ1BVcy90YXNrczoKKyMgcmN1OiAJVGFza3MgYmxv
+Y2tlZCBvbiBsZXZlbC0wIHJjdV9ub2RlIChDUFVzIDAtMSk6IFA3NDkvMTpiLi5sCitrbXNfcHJv
+cF9ibG9iQGludmFsaWQtZ2V0LXByb3AKKworIyBrZWVwcyBwcmludGluZyB2a21zX3ZibGFua19z
+aW11bGF0ZTogdmJsYW5rIHRpbWVyIG92ZXJydW4gYW5kIG5ldmVyIGVuZHMKK2ttc19pbnZhbGlk
+X21vZGVAaW50LW1heC1jbG9jaworCisjIFN1c3BlbmQgc2VlbXMgdG8gYmUgYnJva2VuCisuKnN1
+c3BlbmQuKgorCisjIEhhbmdzIG1hY2hpbmUgYW5kIHRpbWVvdXQgb2NjdXJzCitrbXNfZmxpcEBm
+bGlwLXZzLWFic29sdXRlLXdmX3ZibGFuay1pbnRlcnJ1cHRpYmxlCitrbXNfaW52YWxpZF9tb2Rl
+QHplcm8taGRpc3BsYXkKK2ttc19pbnZhbGlkX21vZGVAYmFkLXZ0b3RhbAora21zX2N1cnNvcl9j
+cmMuKgorCisjIFNraXAgZHJpdmVyIHNwZWNpZmljIHRlc3RzCiteYW1kZ3B1LioKK21zbV8uKgor
+bm91dmVhdV8uKgorcGFuZnJvc3RfLioKK152M2QuKgorXnZjNC4qCitedm13Z2Z4KgorCisjIFNr
+aXAgaW50ZWwgc3BlY2lmaWMgdGVzdHMKK2dlbV8uKgoraTkxNV8uKgoreGVfLioKLS0gCjIuNDAu
+MQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4
+LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
+dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
