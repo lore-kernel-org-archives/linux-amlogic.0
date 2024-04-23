@@ -4,86 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4588C4345F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2024 17:43:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1354C4345F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2024 17:46:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
 	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NWqthS/yAjB2vTbLh++gd4yfHzydU/YYfqiFlJra/BI=; b=vRDiC/vbay+5FF
-	t+NhqvnkV8D5ALfzrDm74Bxv8+T78tjdbfkhe1Uv2Mk4KVn9J0pPlAvdrNiZfl2Se6B45zA2q/npR
-	UgTefiMali7Vd+MoKbq9yMzHCOFiKytVs+iHJMb4se7fLFK/k525nAbp1cuIfaiiEXacDyNC2VYWn
-	z2dEtYii4eV9Zi6Zw2hUvxLqRR5E+2cg58kJABP+UqYRA8BXd7uO1oLjsuMxPNO/qrK2Gm0GnJPbo
-	LXUlRz2kWVbB21OMmmNAtzmD1mZWXAbMkdNuCNOmultX3qLg3U1/OKiOLbbjGw9NpNwrsWkOZasAt
-	rM+7b0KL8YxpgwdZMpZQ==;
+	List-Owner; bh=38s+IgWFI7Km2BQuGuJF1Z++MtsxeFA5E6gyLPWejfQ=; b=cIAWK4sfj8qPf3
+	IKcks6/851IqF30lvddK7jaBH02JTBZ/4naMLPDRsYpTEoEb4zbn70vxu1MumNk9Pg9dn5jf+TwKV
+	ZUfOUfb+CfoCBAzs68w1O3xjhp88gXxy9o82gXsjBT8t/LgBloiRBhR7cGB4cKltQvYnAIDtt+XBu
+	KKAW2yQ3u95ePbKLIVj4iZM1rJsVTzBObv3AKZ6fU+hSiCQ9dbcFN4WCJAqeAt2onvLCWkRDefgyE
+	0yETtxwdCIIOdEWf1jgCChaMxDwCZq1xBljC52E3Ja58zgDEDMyOMdBjtut/zRQygDnBJO09OLtLj
+	bR/0KW3QAWHeVWo3tTMQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzKBH-000000011Bt-3D9w;
-	Tue, 23 Apr 2024 17:43:47 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1rzKDl-000000011bk-1w68;
+	Tue, 23 Apr 2024 17:46:21 +0000
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzKBE-0000000119i-0ZFi
+	id 1rzKDi-000000011Zl-1n66
 	for linux-amlogic@lists.infradead.org;
-	Tue, 23 Apr 2024 17:43:46 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-41a5b68ed85so543925e9.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 23 Apr 2024 10:43:42 -0700 (PDT)
+	Tue, 23 Apr 2024 17:46:19 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-346b96f1483so50895f8f.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 23 Apr 2024 10:46:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713894221; x=1714499021; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713894377; x=1714499177; darn=lists.infradead.org;
         h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
          :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=xP/dSnA767BtvZjFr+UbEirp9Ik35vqXQ9msNy380rM=;
-        b=pEBl2v3It7ULVhMp7MXEIPQzvdQopiShRdsvw4HWauMcVKMSjrt0ulV6X5oPMl+Hhu
-         H8igNjUF0NyMkfp2Fc9xpzezdK9PaAZpDnNc7Jpd9ZmScMcbeAxZnlKYo1i5rrWuXnA6
-         G2gOvpFmTEGxVtxLjPeM5Y89vzxPkBRgPnCSJy5cjbboYLsum04g8uJf1o1CvkF7kZX2
-         6tC/tMWDUVLFcMjhkG5Gwdxnz9hO7mP+0xtuTFU9PUguSvDr2s6AZ5SgYlIDCR6r/aqt
-         GJckcx1XOK63s2aBmLssTcVDSlQ7gtyXI1jHWl4CQ5n2fnQd2GGiwzdILIueENETbTBV
-         WmyA==
+        bh=zGMw34tv1HuOcHijB9t3OKRrzUWV9Hg/9xS27N3bQHs=;
+        b=2j54kf+HruFAN6TA4XleEPQdKJquqIiDxH0MxLkq3x4S+pBpy3eGf8zbysNYX5jr/Z
+         1xhb0+JZIIqyMkCvceaAm5vaUXgI1iPz3/nlGzJZptLwun7nxwmItEQQS2TjV4XI8tRI
+         H//XaMFayBN+MfSU/AFpEu6r0RQDYpz3di+0DiWkNBc0gmnExfPJD0szYTKhMMo+ZvZw
+         bar/LhxAahAHRWfwixHjhFaBoKZDTQ4V5cfDGIhQD8dturh4JyvqeTwtchZdVnNM1Zfp
+         xM6Xm6tX7P+vur3UVmUcIZBSe3D8NvZekWO/UWfFgBb9RRHeGvBVDxPQhARyX6xUPiXC
+         cHgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713894221; x=1714499021;
+        d=1e100.net; s=20230601; t=1713894377; x=1714499177;
         h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
          :user-agent:references:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xP/dSnA767BtvZjFr+UbEirp9Ik35vqXQ9msNy380rM=;
-        b=lO1c7Y5U9enAWQJurTKASnc70n0YhGjZCJcuj3rXz7D/kygoVgq1UwUFGfK7mEAYQr
-         hrLhxnLwgo05d/SncbsY8ye08nDDgSP3gEoWOVxV0epZpfwCC3/Y7KTuBV8eYxAvPX9V
-         KLs4msMetPahtNIVQC7MqbnnHjNBFPwOzmEKM7z/vx9yhD2TsXTdD36460/jI9M1VfSb
-         WoxMPG+8STOE7iR4qT3CqZ8CgzPjCmhJOLX07x14ikeXFOaL9S45znaiJnkvizBJa80K
-         9eVZq1NymL0tPIeOQNv7lpYyfympmm4nDmbFVSKbVLUwv7koH0Oirm7WBZUicF2Jyylf
-         Yh2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV4cHVBsI60sKM0LypY/nRhwaNYDyltrW2mHghubrMlPIu+MbDci28JSWHX79Wly7TpELAP913n6nip9L/Ftc4eGV6XWCAIaNu+Hnpk1Kbzucg=
-X-Gm-Message-State: AOJu0YxaL5FEpMv+qpEw6Hl6/wfarYmwhpZXlJoQ+65/Gh2v+MTU6GvJ
-	zcIlASaVVBh/4dDTyGEquZol9AUQo5e15hzPVcmZqo86hKZqAmeQ/GHl53qjwh0=
-X-Google-Smtp-Source: AGHT+IFN3sKGf0QLUl/rmcrF/MIEa7ILZ5sxMGe+vffDzMV1NNJqknbDpN+wCiQiguhfqPPiAmgxhg==
-X-Received: by 2002:a05:600c:1988:b0:418:f219:6f64 with SMTP id t8-20020a05600c198800b00418f2196f64mr2738580wmq.4.1713894221268;
-        Tue, 23 Apr 2024 10:43:41 -0700 (PDT)
+        bh=zGMw34tv1HuOcHijB9t3OKRrzUWV9Hg/9xS27N3bQHs=;
+        b=KxzGE9oZJBnGegUM/MJx7TacDyf3MEJCDj8enaW/KlBXjy66gVYyP5snyp/VB/rAB0
+         majBnQBj9uayq1SrJ53QjQeTytfnsyKADXcd4VNsD3fGsL47SQvloR1aFdK0od73Xz2R
+         uAbhHOs3z5HKl/iOIgS9zNdDE5U+7qi6HQdnWGYo2nNSBMAApSmV0XT7WdHxUyvkCX8E
+         zaW1BZv9h4IixUwWwA3KC0oMrixOQbfgH5K0O2jncRzTAfCXbgmBbrG2G4l9MU8x/qRb
+         Q5P33gF2TPQkFv2vQkTseOtljt1R+VdErT8kmSedzwgz+iR4c8H6vcclVcxASGY3W/uU
+         ch5w==
+X-Forwarded-Encrypted: i=1; AJvYcCV5c+bhX1PLhPRit176iFr7VVTskDzVx7wtluaBKUmzODXQIgARWuO0vnf44nv9ly4zJPbpTxT7T+rwGtGMG8cwNhso9Q+yibDf7baapnNE93U=
+X-Gm-Message-State: AOJu0YyrNTOWUu5J6k2d8WH8FCugSE2n4DOwkbH6EuXybZP4FKY/luAC
+	Uk19MVFF70hDZ8ZjQ4SgshDgu0ni02UmdV6nJ7m4Q4awt7ST4TeblIi3OsdAIMk=
+X-Google-Smtp-Source: AGHT+IH80+mYiY8wLOolbQuNc5GEwyFsWGYaA4bWu8luwqVmUsFfilpQUnT2LT28gZIz55MBD8d4Vg==
+X-Received: by 2002:a05:6000:18d1:b0:343:6c07:c816 with SMTP id w17-20020a05600018d100b003436c07c816mr110767wrq.16.1713894376770;
+        Tue, 23 Apr 2024 10:46:16 -0700 (PDT)
 Received: from localhost ([2a01:e0a:3c5:5fb1:aa38:830e:cbbf:591])
-        by smtp.gmail.com with ESMTPSA id d5-20020a5d6445000000b0034659d971a6sm15078195wrw.26.2024.04.23.10.43.40
+        by smtp.gmail.com with ESMTPSA id l18-20020a5d5612000000b0034a62e51429sm11993475wrv.112.2024.04.23.10.46.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Apr 2024 10:43:40 -0700 (PDT)
+        Tue, 23 Apr 2024 10:46:16 -0700 (PDT)
 References: <20240423161006.2522351-1-gnstark@salutedevices.com>
- <20240423161006.2522351-3-gnstark@salutedevices.com>
+ <20240423161006.2522351-2-gnstark@salutedevices.com>
+ <20240423-wildcard-smoking-90b50f00da50@spud>
 User-agent: mu4e 1.10.8; emacs 29.2
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: George Stark <gnstark@salutedevices.com>
-Cc: u.kleine-koenig@pengutronix.de, neil.armstrong@linaro.org,
+To: Conor Dooley <conor@kernel.org>
+Cc: George Stark <gnstark@salutedevices.com>,
+ u.kleine-koenig@pengutronix.de, neil.armstrong@linaro.org,
  khilman@baylibre.com, jbrunet@baylibre.com,
  martin.blumenstingl@googlemail.com, thierry.reding@gmail.com,
  hkallweit1@gmail.com, robh+dt@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
  linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, kernel@salutedevices.com, George Stark
- <gnstark@sberdevices.ru>, Dmitry Rokosov <ddrokosov@salutedevices.com>
-Subject: Re: [PATCH 2/2] pwm: meson: support meson A1 SoC family
-Date: Tue, 23 Apr 2024 19:35:15 +0200
-In-reply-to: <20240423161006.2522351-3-gnstark@salutedevices.com>
-Message-ID: <1jv848ezzo.fsf@starbuckisacylon.baylibre.com>
+ linux-kernel@vger.kernel.org, kernel@salutedevices.com, Dmitry Rokosov
+ <ddrokosov@salutedevices.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: amlogic: Add new bindings for
+ meson A1 pwm
+Date: Tue, 23 Apr 2024 19:44:35 +0200
+In-reply-to: <20240423-wildcard-smoking-90b50f00da50@spud>
+Message-ID: <1jr0ewezvc.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240423_104344_225570_DAB52B38 
-X-CRM114-Status: GOOD (  23.37  )
+X-CRM114-CacheID: sfid-20240423_104618_549227_D36E4D8C 
+X-CRM114-Status: GOOD (  13.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,95 +104,56 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Tue 23 Apr 2024 at 19:10, George Stark <gnstark@salutedevices.com> wrote:
+On Tue 23 Apr 2024 at 17:56, Conor Dooley <conor@kernel.org> wrote:
 
-> From: George Stark <gnstark@sberdevices.ru>
+> [[PGP Signed Part:Undecided]]
+> On Tue, Apr 23, 2024 at 07:10:05PM +0300, George Stark wrote:
+>> The chip has 3 dual channel PWM modules AB, CD, EF.
+>> 
+>> Signed-off-by: George Stark <gnstark@salutedevices.com>
+>> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
 >
-> Add a compatible string and configuration for the meson A1 SoC family
-> PWM. Additionally, provide an external clock initialization helper
-> specifically designed for these PWM IPs.
+> a would sort before s.
 >
-> Signed-off-by: George Stark <gnstark@sberdevices.ru>
-> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> ---
->  drivers/pwm/pwm-meson.c | 35 +++++++++++++++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
+> With the re-order,
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 >
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index ea96c5973488..529a541ba7b6 100644
-> --- a/drivers/pwm/pwm-meson.c
-> +++ b/drivers/pwm/pwm-meson.c
-> @@ -462,6 +462,33 @@ static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
->  	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
->  }
->  
-> +static int meson_pwm_init_channels_ext_clock(struct pwm_chip *chip)
+> Thanks,
+> Conor.
+>
+>> ---
+>>  Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml | 2 ++
+>>  1 file changed, 2 insertions(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>> index 1d71d4f8f328..ef6daf1760ff 100644
+>> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>> @@ -37,6 +37,7 @@ properties:
+>>        - enum:
+>>            - amlogic,meson8-pwm-v2
+>>            - amlogic,meson-s4-pwm
+>> +          - amlogic,meson-a1-pwm
 
-That kind on naming (ext) is almost sure to clash with whatever comes next.
-Just use the name of the first SoC using the method, a1 for instance.
+AFAICT, the a1 interface is exactly as the s4 interface.
+So a1 should list s4 as a fallback and the driver should match on the s4.
 
-> +{
-> +	struct device *dev = pwmchip_parent(chip);
-> +	struct meson_pwm *meson = to_meson_pwm(chip);
-> +	struct meson_pwm_channel *channels = meson->channels;
-> +	struct clk_bulk_data *clks = NULL;
-> +	unsigned int i;
-> +	int res;
-> +
-> +	res = devm_clk_bulk_get_all(dev, &clks);
-> +	if (res < 0) {
-> +		dev_err(dev, "can't get device clocks\n");
-> +		return res;
-> +	}
-
-I don't think allocating the 'clk_bulk_data *clks' is necessary or safe.
-We know exactly how many clocks we expect, there is no need for a get all.
-
-> +
-> +	if (res != MESON_NUM_PWMS) {
-> +		dev_err(dev, "clock count must be %d, got %d\n",
-> +			MESON_NUM_PWMS, res);
-> +		return -EINVAL;
-> +	}
-
-... and this only catches the problem after the fact.
-
-It is probably convinient but not necessary.
-
-> +
-> +	for (i = 0; i < MESON_NUM_PWMS; i++)
-> +		channels[i].clk = clks[i].clk;
-
-channels[i].clk could be assigned directly of_clk_get() using clock
-indexes. No extra allocation needed.
-
-> +
-> +	return 0;
-> +}
-> +
->  static const struct meson_pwm_data pwm_meson8b_data = {
->  	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
->  	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-> @@ -500,11 +527,19 @@ static const struct meson_pwm_data pwm_meson8_v2_data = {
->  	.channels_init = meson_pwm_init_channels_meson8b_v2,
->  };
->  
-> +static const struct meson_pwm_data pwm_meson_ext_clock_data = {
-> +	.channels_init = meson_pwm_init_channels_ext_clock,
-> +};
-> +
->  static const struct of_device_id meson_pwm_matches[] = {
->  	{
->  		.compatible = "amlogic,meson8-pwm-v2",
->  		.data = &pwm_meson8_v2_data
->  	},
-> +	{
-> +		.compatible = "amlogic,meson-a1-pwm",
-> +		.data = &pwm_meson_ext_clock_data
-> +	},
->  	/* The following compatibles are obsolete */
->  	{
->  		.compatible = "amlogic,meson8b-pwm",
+>>        - items:
+>>            - enum:
+>>                - amlogic,meson8b-pwm-v2
+>> @@ -126,6 +127,7 @@ allOf:
+>>            contains:
+>>              enum:
+>>                - amlogic,meson-s4-pwm
+>> +              - amlogic,meson-a1-pwm
+>>      then:
+>>        properties:
+>>          clocks:
+>> -- 
+>> 2.25.1
+>> 
+>
+> [[End of PGP Signed Part]]
 
 
 -- 
