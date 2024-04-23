@@ -4,56 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1AC2C4345F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2024 19:57:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13BBDC4345F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2024 20:04:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=O0xBSuEr6oXwegK+djfePdHlL7GDy/bVpQTxPS4FfNI=; b=YBSxQWEH1fN5+j
-	0G9QpRuLwlrImQnNKIMwHmhBAYywuEeFKUDTXdDVbxgKCpG1TI0w6kx00FYdhoSe8kQ06eeqwhr8t
-	t5BvMxDbac1VC/AEAdDgkbn5zJty+bM7kd6T+eKWnoSiRBgzxD0gpsCsW2dogQoIa/wDvapzBMVUt
-	LuQcB+65qe+W5ITIKPw6CNee+IjiSutZlV6daaKkI0VvWctNJxu+z3Kl9Xu4lMxes9bkvj3UhzIqE
-	wLPKJ9R0I9W1HTGHeXpFQpNYmu4MYuSEytR6pWtrmhi9aBNG1gt25Mm6Orku/D8WnscdthPgQf9hN
-	xO16J7YhaHkoSi4XnSFA==;
+	List-Owner; bh=HLFNtAlRMspxaMOoJqn5DcLaQLgeHMgHergikEuxa6A=; b=wlXsJ0mhBCT7Nc
+	4700ry8gzEUkWy39YJbq3jsqKARNiY80z86vREyD4qEdBvXqcLPhquK7ismZ22SHmDjK6LvGFIkZF
+	cthd7WomWslp1px0aV7teCTibbZ9yHYqSn8VqeAS6DG9oXK7cGsLA7OKSitQqOkY1QcCdKC0l/Pxc
+	tRAqkTP7hLcsM+HyvCD9k6gaLnqEDQXsHMaNOelXetvutP1FB3Ndo+zr6mYsR6VUSq+HNYDJdFNhS
+	C+h+8a2hTNCqJ8g3gaJSbifelDMdij4lZ7B6b/Gvx2mvVcT8DapSTSCqGIStZKL/UxFGAO1BolpOO
+	WEu7h0d/ffpY2YcWwvNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzMGZ-00000001Leo-0C6i;
-	Tue, 23 Apr 2024 19:57:23 +0000
-Received: from mail-db5eur01on062e.outbound.protection.outlook.com ([2a01:111:f400:fe02::62e] helo=EUR01-DB5-obe.outbound.protection.outlook.com)
+	id 1rzMNI-00000001Mhu-2BDR;
+	Tue, 23 Apr 2024 20:04:20 +0000
+Received: from mgamail.intel.com ([192.198.163.11])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzMGS-00000001Ld9-35pu;
-	Tue, 23 Apr 2024 19:57:20 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Htgr8AJ7JodW/q/ipaBowo+aNiJn/IYHJeqU/0MqibFlJqfl90ehbhqp7DpxieoU9orHbfmEGjDyZJK0rqL+XLEllNlMwMoRID21ESyKi0f5azAjMa5Eg0v0sPB6HT+aIYEIVbEOp3wefLPPr9AzL/dGS0Ya3RY0ZvS+GbfwA7ahlSQcaE5CN/t8ycliKFbB2HPsrnklXiI1JZMLRSPF5NW66kXVm5RdKdyTLV0R+Dm8xr4aopCatYtfIdIcH5rB8iIuzAZz5fx7DV7/WaCkzcGO14PEHpZYutu0SsaevHpv8PVB4XlaTCCEUQ5YE4ri7vcs/taWTmXjx72S6SsUdQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HoQnRcB2msEP6VEf3ytWxy2WIM3vJg1G4G2FWlMtOVw=;
- b=a+AhlJUIVZjhglZNM2G0Gq4hsNYvSxYGAA3q9hRFlORNdyCMMnY7msHy2ZWsZbVtovTPql6WnjaK/m9vBdf18wKhwoV664O2rS1hTwdVfSP8Javq/AvEafO7q4MyDiKwfeFsAUpOU3pifF3f9E2ZTT5UXpddpmp+bamxvwH514ZTZswcaf0o/+OrHK4PJOBgRRMTOygEZ+ikNibbNtO/lWzwWk9XboDyCZH3yO+je7w+sopCQYLGTZWHpxJaTlCvH2lxr55oc1M9lrd8wZSum6BU7u2+kKl/pHY9mS9IaRijqyqDOBUNS/SridEvq/MOKd6aGw1G/a3NT5dtuwnrZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HoQnRcB2msEP6VEf3ytWxy2WIM3vJg1G4G2FWlMtOVw=;
- b=eHd4VnZ65J/43jDVyLL0c+j6Uct20X1KNWeG9X4quC8ohfYZjcoH2Efl/fPqbLBAnYinkWwOOSdjoVJYNNGEbS2Wei67MuYbYftEoEQMPrUvBaA3QKyqzjr+79Dv0v5ECmVPQTu3iGe3r5Vow/Lt/znH3eeXoE/8C4fTh08At4E=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB7557.eurprd04.prod.outlook.com (2603:10a6:20b:294::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Tue, 23 Apr
- 2024 19:57:09 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7472.044; Tue, 23 Apr 2024
- 19:57:09 +0000
-Date: Tue, 23 Apr 2024 15:56:56 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+	id 1rzMNE-00000001MhD-3ClG;
+	Tue, 23 Apr 2024 20:04:18 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1713902657; x=1745438657;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=EUJ5LGU/8rzeyG4lTaZK13osGBD9kQIZNmjQSYrpH2Y=;
+  b=ZzblwhtErAfvcENrIWxUp+cbZ/Qy5FFCRDZAjFXF1x0CzAgDmiH3fMOW
+   j60xt4WULRMOrOegnzGJT1Gj/pejFrS60A3AadFOEZ0zpm2+Gij1LlPXk
+   0Hf42fZNyurhNE0jdFTJ04nh672ofTwFsc53sClAz6G1YNBIjRaJcQraq
+   jXZYuiMftJBW4JBNH/gq4L07vZBrpVZTqcyFdRE/oI+t1uCB85Q4q6FDf
+   Mb+iOZetIgYsZsA7FozkrUgNHUNk3yMIDdJtjf81ZsRZ8lCwaeoKOTPf6
+   uBmYuPjPmK/+U52noV4NO9ssX1lp19t7ntrlhhZYBzAByhyaOevms5ylw
+   w==;
+X-CSE-ConnectionGUID: uMCIXqCrS0aRk7u+oRFQ1Q==
+X-CSE-MsgGUID: e2LcHKVSQ3m8vzyosgEv9Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="20121412"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
+   d="scan'208";a="20121412"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2024 13:04:11 -0700
+X-CSE-ConnectionGUID: jm0sMGbqTauuhA2EjqiNlA==
+X-CSE-MsgGUID: 4AudXI+ZSV+tSzYw/JyrDA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
+   d="scan'208";a="29124283"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2024 13:04:04 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1rzMMy-00000000SbY-00GQ;
+	Tue, 23 Apr 2024 23:04:00 +0300
+Date: Tue, 23 Apr 2024 23:03:59 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Frank Li <Frank.li@nxp.com>
 Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
 	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
 	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
@@ -83,87 +89,17 @@ Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
 Subject: Re: [PATCH v2 3/4] PCI: imx6: Convert to agnostic GPIO API
-Message-ID: <ZigSiCBIwoEIPYoG@lizhi-Precision-Tower-5810>
+Message-ID: <ZigUL7exXBSbWDIR@smile.fi.intel.com>
 References: <20240423172208.2723892-1-andriy.shevchenko@linux.intel.com>
  <20240423172208.2723892-4-andriy.shevchenko@linux.intel.com>
-Content-Disposition: inline
-In-Reply-To: <20240423172208.2723892-4-andriy.shevchenko@linux.intel.com>
-X-ClientProxiedBy: BYAPR08CA0054.namprd08.prod.outlook.com
- (2603:10b6:a03:117::31) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+ <ZigSiCBIwoEIPYoG@lizhi-Precision-Tower-5810>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB7557:EE_
-X-MS-Office365-Filtering-Correlation-Id: 98a2ce6e-3be1-4bf9-911a-08dc63cf8f44
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?XBBg2XY20IgJ0EpdzHhRhdONHdCH0SmFhi35luqGsHdZ52BkyZrBwjEiuJhy?=
- =?us-ascii?Q?o17wZFxuKMCQ8PF95vTxR5EPbiOGMIXVsPIydYbekwCCWXPC3ROvmLGv7WoU?=
- =?us-ascii?Q?aOScWbf49qeeQW9VMXI3YPNeEJBKBKN5ZerdfRLWHVYEvfeLsW+RXvVvXKTS?=
- =?us-ascii?Q?fIS6/NPHUURmyUzEpvBM0rg8rbw4dkoN30PsTTut9lEjLwo7g0or8z66V+dh?=
- =?us-ascii?Q?e4/qHQI9bC0sNbFXo0t30go/InO9OCI7WHjGNkw9lytYYYqKvRJG0gj4gY5m?=
- =?us-ascii?Q?41BcZIInfJpeZKkkOM0huVxKLDIMrflCse+5qbsfy1qcloSvzQ1iPiGgpWdq?=
- =?us-ascii?Q?8Vg1mWpt0O7yuww3sIrgWmm35gPB2GjS2JZXexw540Jz9oYLLQnFQoEt3vTH?=
- =?us-ascii?Q?ZF5AHt5tX/Ue8v4Q2mvSOnGEzRmPHcaBK2HaYvhCuDVSdJ0FLkBmL0d/pspi?=
- =?us-ascii?Q?tcgnOvEcX6R/IkGa6L0uEwIWbKLsfvTKqp0cHnj6nmnvMk5qxIr5xxMOxrAl?=
- =?us-ascii?Q?gT9ZZ9+CT2W/pBIVoRr1uQVqFnOF/24GkBrnijXcdBgIThohzHn+Cwc2LPxj?=
- =?us-ascii?Q?5nrN+XoVz2wUtX5Qi8mKz8QLGImZVtkgNeA00X2CAadirxyZWiw2b4CqlYGW?=
- =?us-ascii?Q?pPaQVAsc0T8wALAPZAli43JaYm2rb+XOrUO1JQvfK268CNhDrMkjeUszVMAE?=
- =?us-ascii?Q?xjdN7TxPPfMglAWTIT3BtXGij67vHtJnT/DGlNB60XwVEryNDrcgwQXDGxNd?=
- =?us-ascii?Q?dF+62VPMqVL958vY/bOOUNHjop6wavh5pIj2JYquQSDupk4WN0EBPcHP8wYa?=
- =?us-ascii?Q?mF3zzUcV5A+45+YeXtZQ8kJ5QByDmY1s7Oot9GRw/1Gw+J/X6lOrUzKnueGY?=
- =?us-ascii?Q?2aQvUVw1hJCTvr0xForOkumpjtO61YCV1wM8kUMQrrSoFo5VMvqfqUpAR8FF?=
- =?us-ascii?Q?f7LLDtrurVnHsG3tkPJirOtuyYw6M3SEVuSm73M7NU1Mr20V3DVAjwuRVL3J?=
- =?us-ascii?Q?2SlUu8c77m8dF3uFO6BuEE2o8GeAJbmVYpAgYf1bZql7V2qbszszI3CVVQyD?=
- =?us-ascii?Q?YT3P5/t29gUNIeiYnugRRdDZKL6gnOQCTxl23UNqXUVrNkKNN6CDtnMvvqfl?=
- =?us-ascii?Q?YPPVK47/hOhrnnCV2APhakAD3yEnco6jW+GZXHfydlEtDCknEAjHaMYQOKk2?=
- =?us-ascii?Q?5fhFUyX1UHRdyJyBA3bY+KfigcXHALijMfiGgmKLKJM/EZbMruRHmHu/ltN8?=
- =?us-ascii?Q?LKZhSXRQ2fbjDYHm3+MGI3lFHDlj1djeS02aTHELaEWBZoOZ4Tumy8ak5cV6?=
- =?us-ascii?Q?pvdRNdfmGaTbkn7bBh/8XWsu8d6CyAbnduwwRAqoPHsfSw=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(7416005)(376005)(366007)(52116005)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?MCdC1B5PQrjeleI7y0jckqqbkzlYlQkuW+5g8YsvlbxsLBALYvg2HpZXUzsK?=
- =?us-ascii?Q?8+CneFb3LR0anitBjBjKHQq7j7v9hr0Me6fjzTWyBa97X4h6tKWEDkEHr77Y?=
- =?us-ascii?Q?L9RXLVS0pvkxFxBdfmpYqd3hPhxWpI5G8sAuJOQXPdqoPmkPr6kERo6+lfs1?=
- =?us-ascii?Q?HO/es70zwEKUUcvNbUYgTMVd4YioholXcF+vqkD/uBsJlTLhBRnHcusybakh?=
- =?us-ascii?Q?jFu4tKVeTrPLP1ovgamzFdcRzrFaTuYVB7VhFaxLfyNyDFxSGALkYahzquzr?=
- =?us-ascii?Q?6fP9QSQ+YHhLw9Qq3s19lb/UQz4BQccdo0hgcYUFuQBtzuMjo+XTRtiJZ99r?=
- =?us-ascii?Q?A9ocJLWMiKetCdqnFn6JZ1jJcNiqdjvWEAqEGjJIdk2HJYZo1mI27+CsnCa2?=
- =?us-ascii?Q?/iuvQ4k0BoMVT/EmLjW2exswP9ufvX5rAK7asGqoFRc9ORC1+r6ODwDWykAS?=
- =?us-ascii?Q?v5M5ZiZopV2v85MLoYaLzp94OIMs7k0QW0ZyxKQNNKWz0EmFAAAM03W/62Zs?=
- =?us-ascii?Q?aISHGedOvkiApKyemnx2jWn0hjqWUjbCeQvCztNJsk+En9FnDp0kPAGQ6sdc?=
- =?us-ascii?Q?RqeUrAJBTq9GiRPjjFE+3JB6DzKRWqKKxH5qVpjpzS/Hw3Bq9er9IjuJQSvQ?=
- =?us-ascii?Q?YPaTqbEeUMI3Vo91Ua8GqueOy2GCjme304kiMYC/D6XmTf7C3TrAKEkYW4Ig?=
- =?us-ascii?Q?cgnQ4JMkbjB++qlEfC4hOaVKtX3ArOUQeWxY89TdZov1tqvTBdz96SwhqFyr?=
- =?us-ascii?Q?LNQrB7tXl6DjWc3nzM30rrckEjRS+nD5UhukeJl3vjgxsKg8sbvRQaUoM865?=
- =?us-ascii?Q?a1Yp2sKzI6TWNHIAGu4tSJasjlr7L1AyAgSHIj4TfNZFx54WmVHUaY04x+k3?=
- =?us-ascii?Q?FtWlCaViaStpKWXHbn4YNXz/+vlDhrwE6ky3OowzEzBB4dW4IFaGAejvv4gW?=
- =?us-ascii?Q?kEfA4NhjKv5MfZFl4pZwxw0xpTodiamMe9YQuEhCWGZNbtq0ng6OPP7ovdZD?=
- =?us-ascii?Q?P3nfoqv4NPxu+MfIZ57UQgtKv5BO9Ad1e/9O0VeXdrOp3wexs6cxYns4fAuH?=
- =?us-ascii?Q?dRkUC2u3smeXEmY+9AMy02S+XY4i58mgFyCdDJQPaBk4b4aURAKYt1NN9PgN?=
- =?us-ascii?Q?8vm7Qjj23HMJQyqie3OiwJXVwzVOxHsbRxTklcJQ98LIpCuT6UFW12ztNdQ1?=
- =?us-ascii?Q?WQP6xciq8JDAIAI3CgxONgibZYXi7uzSiXKUxzzPfB69jOPKQNnOKaLIzxs9?=
- =?us-ascii?Q?K8BAukSb6bPLo3nmypX0/X81ubKr4PiNJWAfuvfNQQFm4cwu/7iEni7JMthw?=
- =?us-ascii?Q?AkXVIoZRkajHC89pAhInycYr8ODCs/HdgCQ/867N0E60qMaeE6FSrQBwLw8E?=
- =?us-ascii?Q?XVF8hOrJMpWAWLQsM/2YWYzPAsAeIHWkALnb98FTtxTsFnPXW390Ncjc7GPz?=
- =?us-ascii?Q?J/6BjKUClgdLTZCgwqFrVuxJ6ubfkj3yjf/C6CY2BItSCeOJ21DDZgK8oqIH?=
- =?us-ascii?Q?zjmO3A4eeREN1nMxgNaaTd+dQ+WisVs6J0WS70OU2erCRAq4V0SPHpWYlKZG?=
- =?us-ascii?Q?/DjvMGcGLKipwBSX4iU=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 98a2ce6e-3be1-4bf9-911a-08dc63cf8f44
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 19:57:09.3945
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TZE2iZmU5m02DqKsAokM+PGDdsovzyHjsWCucO+LPJS8/os30IobokzQ5FZqDdwXmZsyNzd74JihAo1fmouk3A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7557
+Content-Disposition: inline
+In-Reply-To: <ZigSiCBIwoEIPYoG@lizhi-Precision-Tower-5810>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240423_125716_867219_E2BA3877 
-X-CRM114-Status: GOOD (  21.90  )
+X-CRM114-CacheID: sfid-20240423_130416_841403_561E3ECA 
+X-CRM114-Status: GOOD (  11.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -180,110 +116,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Apr 23, 2024 at 08:19:06PM +0300, Andy Shevchenko wrote:
-> The of_gpio.h is going to be removed. In preparation of that convert
-> the driver to the agnostic API.
-> 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
->  drivers/pci/controller/dwc/pci-imx6.c | 37 ++++++++++-----------------
->  1 file changed, 14 insertions(+), 23 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index 917c69edee1d..d620f1e1a43c 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -11,14 +11,13 @@
->  #include <linux/bitfield.h>
->  #include <linux/clk.h>
->  #include <linux/delay.h>
-> -#include <linux/gpio.h>
-> +#include <linux/gpio/consumer.h>
->  #include <linux/kernel.h>
->  #include <linux/mfd/syscon.h>
->  #include <linux/mfd/syscon/imx6q-iomuxc-gpr.h>
->  #include <linux/mfd/syscon/imx7-iomuxc-gpr.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> -#include <linux/of_gpio.h>
->  #include <linux/of_address.h>
->  #include <linux/pci.h>
->  #include <linux/platform_device.h>
-> @@ -107,7 +106,7 @@ struct imx6_pcie_drvdata {
->  
->  struct imx6_pcie {
->  	struct dw_pcie		*pci;
-> -	int			reset_gpio;
-> +	struct gpio_desc	*reset_gpiod;
->  	bool			gpio_active_high;
->  	bool			link_is_up;
->  	struct clk_bulk_data	clks[IMX6_PCIE_MAX_CLKS];
-> @@ -721,9 +720,8 @@ static void imx6_pcie_assert_core_reset(struct imx6_pcie *imx6_pcie)
->  	}
->  
->  	/* Some boards don't have PCIe reset GPIO. */
-> -	if (gpio_is_valid(imx6_pcie->reset_gpio))
-> -		gpio_set_value_cansleep(imx6_pcie->reset_gpio,
-> -					imx6_pcie->gpio_active_high);
-> +	gpiod_set_raw_value_cansleep(imx6_pcie->reset_gpiod,
-> +				     imx6_pcie->gpio_active_high);
->  }
->  
->  static int imx6_pcie_deassert_core_reset(struct imx6_pcie *imx6_pcie)
-> @@ -771,10 +769,10 @@ static int imx6_pcie_deassert_core_reset(struct imx6_pcie *imx6_pcie)
->  	}
->  
->  	/* Some boards don't have PCIe reset GPIO. */
-> -	if (gpio_is_valid(imx6_pcie->reset_gpio)) {
-> +	if (imx6_pcie->reset_gpiod) {
->  		msleep(100);
-> -		gpio_set_value_cansleep(imx6_pcie->reset_gpio,
-> -					!imx6_pcie->gpio_active_high);
-> +		gpiod_set_raw_value_cansleep(imx6_pcie->reset_gpiod,
-> +					     !imx6_pcie->gpio_active_high);
->  		/* Wait for 100ms after PERST# deassertion (PCIe r5.0, 6.6.1) */
->  		msleep(100);
->  	}
-> @@ -1285,22 +1283,15 @@ static int imx6_pcie_probe(struct platform_device *pdev)
->  		return PTR_ERR(pci->dbi_base);
->  
->  	/* Fetch GPIOs */
-> -	imx6_pcie->reset_gpio = of_get_named_gpio(node, "reset-gpio", 0);
->  	imx6_pcie->gpio_active_high = of_property_read_bool(node,
->  						"reset-gpio-active-high");
-> -	if (gpio_is_valid(imx6_pcie->reset_gpio)) {
-> -		ret = devm_gpio_request_one(dev, imx6_pcie->reset_gpio,
-> -				imx6_pcie->gpio_active_high ?
-> -					GPIOF_OUT_INIT_HIGH :
-> -					GPIOF_OUT_INIT_LOW,
-> -				"PCIe reset");
-> -		if (ret) {
-> -			dev_err(dev, "unable to get reset gpio\n");
-> -			return ret;
-> -		}
-> -	} else if (imx6_pcie->reset_gpio == -EPROBE_DEFER) {
-> -		return imx6_pcie->reset_gpio;
-> -	}
-> +	imx6_pcie->reset_gpiod =
-> +		devm_gpiod_get_optional(dev, "reset",
-> +			imx6_pcie->gpio_active_high ? GPIOD_OUT_HIGH : GPIOD_OUT_LOW);
-> +	if (IS_ERR(imx6_pcie->reset_gpiod))
-> +		return dev_err_probe(dev, PTR_ERR(imx6_pcie->reset_gpiod),
-> +				     "unable to get reset gpio\n");
+On Tue, Apr 23, 2024 at 03:56:56PM -0400, Frank Li wrote:
+> On Tue, Apr 23, 2024 at 08:19:06PM +0300, Andy Shevchenko wrote:
 
-Small problem here. err message "unable to get reset gpio\n" will print
-when -EPROBE_DEFER happen. EPROBE_DEFER is quite common when use i2c
-expand gpio chip.
+...
 
-Frank
-
-> +	gpiod_set_consumer_name(imx6_pcie->reset_gpiod, "PCIe reset");
->  
->  	if (imx6_pcie->drvdata->clks_cnt >= IMX6_PCIE_MAX_CLKS)
->  		return dev_err_probe(dev, -ENOMEM, "clks_cnt is too big\n");
-> -- 
-> 2.43.0.rc1.1336.g36b5255a03ac
+> > +	imx6_pcie->reset_gpiod =
+> > +		devm_gpiod_get_optional(dev, "reset",
+> > +			imx6_pcie->gpio_active_high ? GPIOD_OUT_HIGH : GPIOD_OUT_LOW);
+> > +	if (IS_ERR(imx6_pcie->reset_gpiod))
+> > +		return dev_err_probe(dev, PTR_ERR(imx6_pcie->reset_gpiod),
+> > +				     "unable to get reset gpio\n");
 > 
+> Small problem here. err message "unable to get reset gpio\n" will print
+> when -EPROBE_DEFER happen. EPROBE_DEFER is quite common when use i2c
+> expand gpio chip.
+
+I'm not sure how you come to this conclusion. Can you elaborate, please?
+P.S> I do not see a problem as described.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
 _______________________________________________
 linux-amlogic mailing list
