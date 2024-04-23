@@ -4,89 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D5E8C04FFE
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2024 16:14:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56800C4345F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2024 16:40:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pmwnw6Pke4sht/8p0/MKlIi7Zb05pr1oZrqUk2Q+bcc=; b=wznzKuYhY5tvv6
-	XYJ96yh6eoWYf9jCopm6lZJ2mKvVD+lBiR6l9YinuU44ccaq1EqeQcY1HFHnAcjrU+lNzZBHmj41H
-	f2CBKeCnvKRq31bdmANf09cK4iPpjWy/rzvmuvVtlu8kfjAOs2VrSfKkgV316Y4jNiXEf/bXRs5jZ
-	dyJ/qiT6TpSdJ0XI36fJGaxsemwKmHgN5CXJUowPHyuOtUoeISQ5q3XDXVRFZ2jIJU/G1IJJTG1G4
-	efOut7WRFqGI02Cfd0J7ZSg+ysPw2NTpRCypejlb5gptFUOS2kwUgorxHoTXWQYeGmx0uJrWYTuUE
-	OK7f68nFT5PF7xs4IIbA==;
+	List-Owner; bh=UTO5ZEqELcw8SvMfV7TYOT382F+o3Dd/fxFNs1wCkRU=; b=Z7zlMVBHVDrkeh
+	wBD/VYCPsptLoCjpMdcKznsbnbs5jJptS9BTKSzRpYXliYixrUE308nBSs8D0JsdxJE9h8xmUxTbv
+	ZnZBUrMVvFnALhfdjpYZBwI+i962cc0vLKrftYrgAvWW/73jF2RMFwOqDPBbQl3qlrtG9CyzVxYZQ
+	Sny3NCycppaP0K/rRWDr+wbqT/VUQfrSbFyKLhfc6ITK4fAQ31OFdThCAbol7Bb8ksbUB+lYiFcBq
+	4CuvH9iGaJx8vzMKnm8uLe/2/VpZFOXhCxyRGA3Xne47LLGYyxQmVZ/8/gSkjBXNA/9CEnJviHk17
+	3osL0PxyIJNUCDQdUnyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzImc-00000000gEb-0z0Q;
-	Tue, 23 Apr 2024 16:14:14 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1rzJBe-00000000mcn-1lf8;
+	Tue, 23 Apr 2024 16:40:06 +0000
+Received: from mgamail.intel.com ([192.198.163.9])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzImV-00000000gAP-1OIY;
-	Tue, 23 Apr 2024 16:14:09 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id F38FC10000F;
-	Tue, 23 Apr 2024 19:14:04 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru F38FC10000F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1713888844;
-	bh=Eb7vuPSuYnLMwuwGHzpqpt0wDC94w7XsXp1ME5MdeHM=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=rAWXG9MTkFJR8xM9NJQegShLU8uEwEu2YxwpPSX4u4ccFgdSmtiPJAtZepxmV0flQ
-	 2NIuYWF5/eZs3NadRRTTBcvvA5MA5TuOcRxLzUpcZxZEipGMIoUgZEzETKcVo+6jSs
-	 96ODG7/fU44CEaWDjdxp1cgI6tkeIWja2uDjeQgeM0MyBuG+ZQEL0L7Y44kmCafL3s
-	 tuTWRVPFa4M4Oi6vo1wlmE+bMScl5Y732jQJfYcMFjtmtHb3n80+PxPB44vaYMK8/j
-	 kXe23Yx/LSUFxxxIRfBM/5OP0dUIrqgFO27JPQlck7A3CHpDd+ebwrj8wiCnMHmKJq
-	 156PXjxde7AxA==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 23 Apr 2024 19:14:04 +0300 (MSK)
-Received: from work.sberdevices.ru (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 23 Apr 2024 19:14:04 +0300
-From: George Stark <gnstark@salutedevices.com>
-To: <u.kleine-koenig@pengutronix.de>, <neil.armstrong@linaro.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <thierry.reding@gmail.com>,
-	<hkallweit1@gmail.com>
-CC: <linux-pwm@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@salutedevices.com>, George Stark <gnstark@salutedevices.com>, Dmitry
- Rokosov <ddrokosov@salutedevices.com>
-Subject: [PATCH 1/2] pwm: meson: drop unneeded check in get_state callback
-Date: Tue, 23 Apr 2024 19:13:55 +0300
-Message-ID: <20240423161356.2522636-2-gnstark@salutedevices.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240423161356.2522636-1-gnstark@salutedevices.com>
-References: <20240423161356.2522636-1-gnstark@salutedevices.com>
+	id 1rzJBX-00000000maS-1XdB;
+	Tue, 23 Apr 2024 16:40:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1713890399; x=1745426399;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UZSu4Bcaj41tuZdLznVgg+wmyuxc9D7LdkUtpGpC5uk=;
+  b=IuaknStN+PJTN+p6rf2cVouE9vKxsi6c1aUCtoLb+933wuJFSK16alM5
+   b3xv1QkWx08xBhf36Kmm3UulUcW84YppNHDp1zYEhN7qjURaQstxQK9QX
+   fkEUabmpvHnQR0yRNsK1ocuC6Ze00RDsV2Kk0UWXeiOR4u6mcvIlL5pLQ
+   qHt3QANurPij5D2SJk4GCsSpQMlVhLpwKcWj+N/+iLCqC8T/lqHvOcY+1
+   37m9ANzlZwO2BYQgwcVLWVby6mRh7f5JShM+YyohkqaHOZt5Td06yaBVM
+   NXryFy8kNu7a1UBqiJbkffXltTvU/1zVzJ2S/NvoMCrOxM+MZvVEZXvzO
+   Q==;
+X-CSE-ConnectionGUID: bPVrIOIXSVmF3XgrqJ0e9g==
+X-CSE-MsgGUID: EOxu+RjjQm2V6BcJ47GpSA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="20182275"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
+   d="scan'208";a="20182275"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2024 09:39:58 -0700
+X-CSE-ConnectionGUID: i4kDePn9TVuD6B1wLCiCiA==
+X-CSE-MsgGUID: ce04Eyj5Q5WWfqulzqJizA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
+   d="scan'208";a="55624711"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2024 09:39:53 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1rzJBN-00000000Ojk-2cFZ;
+	Tue, 23 Apr 2024 19:39:49 +0300
+Date: Tue, 23 Apr 2024 19:39:49 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-tegra@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Yue Wang <yue.wang@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>
+Subject: Re: [PATCH v1 1/1] PCI: dwc: Remove unused of_gpio.h
+Message-ID: <ZifkVRL5Uvoso2O4@smile.fi.intel.com>
+References: <20240307122840.3682287-1-andriy.shevchenko@linux.intel.com>
+ <20240308095547.GI3789@thinkpad>
+ <Zer_9VTVJqCNoOFG@smile.fi.intel.com>
+ <20240308171029.GB53064@thinkpad>
 MIME-Version: 1.0
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184882 [Apr 23 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 18 0.3.18 b9d6ada76958f07c6a68617a7ac8df800bc4166c, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/23 04:11:00 #24934400
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Disposition: inline
+In-Reply-To: <20240308171029.GB53064@thinkpad>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240423_091407_832608_60026D84 
-X-CRM114-Status: GOOD (  10.49  )
+X-CRM114-CacheID: sfid-20240423_093959_455939_C71AB0C8 
+X-CRM114-Status: GOOD (  25.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,32 +107,65 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Drop checking state argument for null pointer in meson_pwm_get_state()
-due to it is called only from pwm core with always valid arguments.
+On Fri, Mar 08, 2024 at 10:40:29PM +0530, Manivannan Sadhasivam wrote:
+> On Fri, Mar 08, 2024 at 02:09:25PM +0200, Andy Shevchenko wrote:
+> > On Fri, Mar 08, 2024 at 03:25:47PM +0530, Manivannan Sadhasivam wrote:
+> > > On Thu, Mar 07, 2024 at 02:28:40PM +0200, Andy Shevchenko wrote:
+> > > > of_gpio.h is deprecated and subject to remove.
+> > > > The driver doesn't use it, simply remove the unused header.
+> > 
+> > > What about the rest?
+> > > 
+> > > drivers/pci/controller/dwc/pcie-kirin.c
+> > > drivers/pci/controller/dwc/pci-imx6.c
+> > 
+> > Have you chance to look at them?
+> 
+> Ok. I failed to spot the usage of of_get_named_gpio() in both drivers. But you
+> already submitted a patch to convert kirin last year [1], and that didn't get
+> any love from the maintainers. Could you please respin?
 
-Fixes: 211ed630753d ("pwm: Add support for Meson PWM Controller")
-Signed-off-by: George Stark <gnstark@salutedevices.com>
-Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
----
- drivers/pwm/pwm-meson.c | 3 ---
- 1 file changed, 3 deletions(-)
+Sure.
 
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 529a541ba7b6..ebe76298f6e2 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -311,9 +311,6 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 	struct meson_pwm_channel *channel;
- 	u32 value;
- 
--	if (!state)
--		return 0;
--
- 	channel = &meson->channels[pwm->hwpwm];
- 	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
- 
+> Perhaps convert imx6 also?
+
+I'll look at it, if it's easy enough, why not, otherwise let it rotten for a while.
+
+> [1] https://lore.kernel.org/all/20230213180735.42117-1-andriy.shevchenko@linux.intel.com/
+> 
+> > > There is also one non-dwc driver:
+> > > 
+> > > drivers/pci/controller/pci-aardvark.c
+> > 
+> > Keyword: non-dwc.
+> > This patch is for DesignWare controllers that confirmed not using the header.
+> > 
+> > > It is better to remove it from all PCI drivers in a single patch.
+> > 
+> > I disagree on this. These are different drivers and even inside DesignWare not
+> > all of them can be converted with a simple change like this one.
+> > 
+> 
+> Since this is just a header removal I thought you can just send a single patch
+> for these drivers since there is nothing special that warrants a separate patch
+> for aardvark (both are inside the drivers/pci/ hierarchy).
+
+I'll look at aadvark as well, I dunno if it's simple removal enough there.
+
+> But anyway, I wouldn't press for it.
+> 
+> > That said, please consider applying this one as is.
+> 
+> I can give my R-o-b tag, but Lorenzo or Krzysztof will apply this.
+> 
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+Thank you!
+
 -- 
-2.25.1
+With Best Regards,
+Andy Shevchenko
+
 
 
 _______________________________________________
