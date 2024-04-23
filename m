@@ -4,95 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC314C04FFE
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2024 22:52:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2459FC04FFE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2024 23:00:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IiA3l8mDSpgrlKgd1jjZ2rx6ni/tazyEzpJ7oi/f8E4=; b=FrIwYghDzD7GC/
-	oya0gM9uWcSwfbdB3QTyvJ9Y3V0QPchF52mHtsjXEaMbNz8K+CzhmDUYYz6CDr27QektPbn7kPjT7
-	H0PSVVw9atL9eYmPFjl7k/QSsUXHh67I64CUFOauI63akHv4cYQRaZFT+8+gcAR7CKqF2ezMtg55O
-	IpPtXfjPju1O7rZWJHBlPB2gnomiS2WqGM4ZcqkbjgsQjuuykp4hqds5Jb677732sVzuhxlfov9Nb
-	YaI8GxHWYG6Id2oSJ+psgjbIz9WDoNDxyA2zlokWkdhxNbgy/je3iVNxq6iVteYzeBIjdjoXisUpA
-	530My+Y+FmLwYLyvLAag==;
+	List-Owner; bh=AEQKzNIVhLYdvAE23H1D7dvFsFt6c6/XkmdcdzCVIG8=; b=CB5Xd8PoAUSGnF
+	1FHPhn6HNQtt1RvBfRSMTR1QB9NnWS6h9wUcZt9W7DFKc/04s1JcSIVMn8siME3gaQpahgRdDohqD
+	y9Sic3L8CVbk/v8vdRHo6vA3kdsKj5U+gk+Y80qZr0mYXT3t+UNbl5ztVwDYgF4rx7iN6EZ8rb9f3
+	npZyGfOnfOhXHoB0QPKVTrT82+51oWBEJ1K7Ut7hPz9MJGDW0dJClo/s/1Wwu9fPPmtZJGqjRWf9w
+	97fyh7IdPIHrzJlpmdcivIC5AbhHgdYf3PGyDdXzSfmPfABH1JZCdJqAJVKSjFoJ4K/yChDzFIvoR
+	rjtIN/z0sXFPV5jC3aKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzOzb-00000001kba-3J2D;
-	Tue, 23 Apr 2024 22:52:03 +0000
-Received: from mgamail.intel.com ([192.198.163.9])
+	id 1rzP7m-00000001m6D-1drc;
+	Tue, 23 Apr 2024 23:00:30 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzOzX-00000001kaS-2h1R;
-	Tue, 23 Apr 2024 22:52:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1713912719; x=1745448719;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mznsmpZGIdBKgMqGdAUj/EZ/hJtwZ06FnB1V1izwzhk=;
-  b=R1MLh05fILEqPKlnz7E08szaNW9OrKmSXS6sIW/9IyFYCCIfZik0qikv
-   tMEbp1sNpELMonRH486bXftzmqPJTqjLOXZ4PnUXNphaVWnlBly5n4yK2
-   0IGtBuYWjyLEQBJ0AhuZSGydizh/5CBq1wgoWcZKxS27PTmyP9E3FRL+I
-   8y2HPN/ZibHqfefVdPhZXHxOWDWktZpbOeXdH4SAm1C9ei7zRLKU7C8q9
-   hvHkb6YOeVylr6fIVUUcAFv3qs5Aqcs9YC7fvvyqkikaxMt/M5ZVQsphO
-   SYDO1X9QTEHqGutQ+9m9xaR+RzmG9PG0QPOcKKJPNIVj/k//0udBc+NOi
-   Q==;
-X-CSE-ConnectionGUID: nveouaaNTjuHsxznhlUzfQ==
-X-CSE-MsgGUID: 0ILv41xgSY6m9JCIb5GJsg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="20218393"
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
-   d="scan'208";a="20218393"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2024 15:51:54 -0700
-X-CSE-ConnectionGUID: 4vpTSJ/BT0WzosPs6zKsoA==
-X-CSE-MsgGUID: lwCZffPLR/SpYCqnMxTVow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
-   d="scan'208";a="24557021"
-Received: from lkp-server01.sh.intel.com (HELO e434dd42e5a1) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 23 Apr 2024 15:51:47 -0700
-Received: from kbuild by e434dd42e5a1 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rzOzI-0000bA-2C;
-	Tue, 23 Apr 2024 22:51:44 +0000
-Date: Wed, 24 Apr 2024 06:51:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-amlogic@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Yue Wang <yue.wang@amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Xiaowei Song <songxiaowei@hisilicon.com>
-Subject: Re: [PATCH v2 2/4] PCI: dwc: Remove unused of_gpio.h
-Message-ID: <202404240649.QgY8lto8-lkp@intel.com>
-References: <20240423172208.2723892-3-andriy.shevchenko@linux.intel.com>
+	id 1rzP7i-00000001m3t-0XXH;
+	Tue, 23 Apr 2024 23:00:28 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 23725100004;
+	Wed, 24 Apr 2024 02:00:21 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 23725100004
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1713913221;
+	bh=tcVfNzm8I5LEMAd+H5pTx/XXdCO1zxNExqAEu+sh1rk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=Ey2kgYalHNsRgGMEO8gcRyn3v4qM3sybzmq8nLPF5QgoUxsadY+FbtMZ0/fPt6/sp
+	 kDgX9dxk+jdYtPfZQcWaax5+HH8QwHvpuG2+FgPMEi9A8fKwJXD5FUGSBexCT3xdm9
+	 5aGwvjIJqEe16Ep7Fbap0bnVS4+neN8mS/6BczYxn3VP7NYLyrZ3zGciNCXr323hfY
+	 i8wSdmMUrkOG1sKC/xLWOlvUcE6jX6Sx2JP5DaDDeihgnPLA8tNr8kGIkg5TlsqK8N
+	 D5m7oLk4CPJLiZgmQVayu00tjEACovLNRcwAGfyi+nFm82MuO6mwM41q3XSMyddk2q
+	 K1aNgUCRAT6Sg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 24 Apr 2024 02:00:20 +0300 (MSK)
+Received: from [192.168.1.143] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 24 Apr 2024 02:00:20 +0300
+Message-ID: <4feb8fe3-af72-4483-87b2-30503328cfe2@salutedevices.com>
+Date: Wed, 24 Apr 2024 02:00:20 +0300
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240423172208.2723892-3-andriy.shevchenko@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] pwm: meson: support meson A1 SoC family
+To: Jerome Brunet <jbrunet@baylibre.com>
+CC: <u.kleine-koenig@pengutronix.de>, <neil.armstrong@linaro.org>,
+	<khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+	<thierry.reding@gmail.com>, <hkallweit1@gmail.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <kernel@salutedevices.com>, George Stark
+	<gnstark@sberdevices.ru>, Dmitry Rokosov <ddrokosov@salutedevices.com>
+References: <20240423161006.2522351-1-gnstark@salutedevices.com>
+ <20240423161006.2522351-3-gnstark@salutedevices.com>
+ <1jv848ezzo.fsf@starbuckisacylon.baylibre.com>
+Content-Language: en-US
+From: George Stark <gnstark@salutedevices.com>
+In-Reply-To: <1jv848ezzo.fsf@starbuckisacylon.baylibre.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184885 [Apr 23 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 18 0.3.18 b9d6ada76958f07c6a68617a7ac8df800bc4166c, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/23 19:04:00 #24945065
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240423_155159_774768_12AF38C2 
-X-CRM114-Status: GOOD (  10.59  )
+X-CRM114-CacheID: sfid-20240423_160026_887838_E96F4123 
+X-CRM114-Status: GOOD (  28.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,90 +102,133 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Andy,
+Hello Jerome
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on pci/next]
-[also build test ERROR on pci/for-linus mani-mhi/mhi-next linus/master v6.9-rc5 next-20240423]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Shevchenko/PCI-aardvark-Remove-unused-of_gpio-h/20240424-012448
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-patch link:    https://lore.kernel.org/r/20240423172208.2723892-3-andriy.shevchenko%40linux.intel.com
-patch subject: [PATCH v2 2/4] PCI: dwc: Remove unused of_gpio.h
-config: arm-defconfig (https://download.01.org/0day-ci/archive/20240424/202404240649.QgY8lto8-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project.git f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240424/202404240649.QgY8lto8-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202404240649.QgY8lto8-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/pci/controller/dwc/pci-dra7xx.c:262:2: error: implicit declaration of function 'chained_irq_enter' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
-           chained_irq_enter(chip, desc);
-           ^
->> drivers/pci/controller/dwc/pci-dra7xx.c:284:2: error: implicit declaration of function 'chained_irq_exit' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
-           chained_irq_exit(chip, desc);
-           ^
-   drivers/pci/controller/dwc/pci-dra7xx.c:284:2: note: did you mean 'chained_irq_enter'?
-   drivers/pci/controller/dwc/pci-dra7xx.c:262:2: note: 'chained_irq_enter' declared here
-           chained_irq_enter(chip, desc);
-           ^
-   2 errors generated.
+Thanks for the review
 
 
-vim +/chained_irq_enter +262 drivers/pci/controller/dwc/pci-dra7xx.c
+On 4/23/24 20:35, Jerome Brunet wrote:
+> 
+> On Tue 23 Apr 2024 at 19:10, George Stark <gnstark@salutedevices.com> wrote:
+> 
+>> From: George Stark <gnstark@sberdevices.ru>
+>>
+>> Add a compatible string and configuration for the meson A1 SoC family
+>> PWM. Additionally, provide an external clock initialization helper
+>> specifically designed for these PWM IPs.
+>>
+>> Signed-off-by: George Stark <gnstark@sberdevices.ru>
+>> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+>> ---
+>>   drivers/pwm/pwm-meson.c | 35 +++++++++++++++++++++++++++++++++++
+>>   1 file changed, 35 insertions(+)
+>>
+>> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+>> index ea96c5973488..529a541ba7b6 100644
+>> --- a/drivers/pwm/pwm-meson.c
+>> +++ b/drivers/pwm/pwm-meson.c
+>> @@ -462,6 +462,33 @@ static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
+>>   	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
+>>   }
+>>   
+>> +static int meson_pwm_init_channels_ext_clock(struct pwm_chip *chip)
+> 
+> That kind on naming (ext) is almost sure to clash with whatever comes next.
+> Just use the name of the first SoC using the method, a1 for instance.
 
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  252  
-9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  253  static void dra7xx_pcie_msi_irq_handler(struct irq_desc *desc)
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  254  {
-9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  255  	struct irq_chip *chip = irq_desc_get_chip(desc);
-9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  256  	struct dra7xx_pcie *dra7xx;
-60b3c27fb9b92b drivers/pci/controller/dwc/pci-dra7xx.c Serge Semin            2022-06-24  257  	struct dw_pcie_rp *pp;
-9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  258  	struct dw_pcie *pci;
-09b2d20349e37a drivers/pci/dwc/pci-dra7xx.c            Vignesh R              2017-12-29  259  	unsigned long reg;
-d21faba11693c1 drivers/pci/controller/dwc/pci-dra7xx.c Marc Zyngier           2021-08-02  260  	u32 bit;
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  261  
-9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27 @262  	chained_irq_enter(chip, desc);
-9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  263  
-9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  264  	pp = irq_desc_get_handler_data(desc);
-9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  265  	pci = to_dw_pcie_from_pp(pp);
-9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  266  	dra7xx = to_dra7xx_pcie(pci);
-9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  267  
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  268  	reg = dra7xx_pcie_readl(dra7xx, PCIECTRL_DRA7XX_CONF_IRQSTATUS_MSI);
-9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  269  	dra7xx_pcie_writel(dra7xx, PCIECTRL_DRA7XX_CONF_IRQSTATUS_MSI, reg);
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  270  
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  271  	switch (reg) {
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  272  	case MSI:
-9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  273  		dra7xx_pcie_handle_msi_irq(pp);
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  274  		break;
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  275  	case INTA:
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  276  	case INTB:
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  277  	case INTC:
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  278  	case INTD:
-d21faba11693c1 drivers/pci/controller/dwc/pci-dra7xx.c Marc Zyngier           2021-08-02  279  		for_each_set_bit(bit, &reg, PCI_NUM_INTX)
-d21faba11693c1 drivers/pci/controller/dwc/pci-dra7xx.c Marc Zyngier           2021-08-02  280  			generic_handle_domain_irq(dra7xx->irq_domain, bit);
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  281  		break;
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  282  	}
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  283  
-9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27 @284  	chained_irq_exit(chip, desc);
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  285  }
-47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  286  
+It's true that pwm core in a1 s4, t7 etc is the same AFAWK.
+I just want to clarify your proposal:
+I add a1 compatible to the dt-bindings with s4 as fallback,
+t7 compatible will be added later in the same way.
+
+Here in the driver I don't mention a1 at all and use s4-centric naming e.g.:
+
+{
+	.compatible = "amlogic,meson-s4-pwm",
+	.data = &pwm_meson_s4_data
+},
+static const struct meson_pwm_data pwm_meson_s4_data = {
+	.channels_init = meson_pwm_init_channels_s4,
+};
+
+right?
+
+>> +{
+>> +	struct device *dev = pwmchip_parent(chip);
+>> +	struct meson_pwm *meson = to_meson_pwm(chip);
+>> +	struct meson_pwm_channel *channels = meson->channels;
+>> +	struct clk_bulk_data *clks = NULL;
+>> +	unsigned int i;
+>> +	int res;
+>> +
+>> +	res = devm_clk_bulk_get_all(dev, &clks);
+>> +	if (res < 0) {
+>> +		dev_err(dev, "can't get device clocks\n");
+>> +		return res;
+>> +	}
+> 
+> I don't think allocating the 'clk_bulk_data *clks' is necessary or safe.
+> We know exactly how many clocks we expect, there is no need for a get all.
+> 
+>> +
+>> +	if (res != MESON_NUM_PWMS) {
+>> +		dev_err(dev, "clock count must be %d, got %d\n",
+>> +			MESON_NUM_PWMS, res);
+>> +		return -EINVAL;
+>> +	}
+> 
+> ... and this only catches the problem after the fact.
+> 
+> It is probably convinient but not necessary.
+> 
+>> +
+>> +	for (i = 0; i < MESON_NUM_PWMS; i++)
+>> +		channels[i].clk = clks[i].clk;
+> 
+> channels[i].clk could be assigned directly of_clk_get() using clock
+> indexes. No extra allocation needed.
+
+if we use of_clk_get then we'll have to free the clock objects in the
+end. Could we use devm_clk_bulk_get instead?
+
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   static const struct meson_pwm_data pwm_meson8b_data = {
+>>   	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
+>>   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
+>> @@ -500,11 +527,19 @@ static const struct meson_pwm_data pwm_meson8_v2_data = {
+>>   	.channels_init = meson_pwm_init_channels_meson8b_v2,
+>>   };
+>>   
+>> +static const struct meson_pwm_data pwm_meson_ext_clock_data = {
+>> +	.channels_init = meson_pwm_init_channels_ext_clock,
+>> +};
+>> +
+>>   static const struct of_device_id meson_pwm_matches[] = {
+>>   	{
+>>   		.compatible = "amlogic,meson8-pwm-v2",
+>>   		.data = &pwm_meson8_v2_data
+>>   	},
+>> +	{
+>> +		.compatible = "amlogic,meson-a1-pwm",
+>> +		.data = &pwm_meson_ext_clock_data
+>> +	},
+>>   	/* The following compatibles are obsolete */
+>>   	{
+>>   		.compatible = "amlogic,meson8b-pwm",
+> 
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards
+George
 
 _______________________________________________
 linux-amlogic mailing list
