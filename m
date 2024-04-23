@@ -4,68 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEE7FC04FFE
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2024 20:23:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC314C04FFE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2024 22:52:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=g42cf+tJ0EryCqU9ssvkaGHvXbzvjALEhljdIDIkyKw=; b=ArUy3U1ja3VGTn
-	70Tiw9DulW72v0Z2ZYHsS1Vt9F+Im6MaRYPIRFhp5hS8uwhJjwyWcaSCFsChZcDF8J1YvqHIjojNk
-	Nex57Gajpibtx5f9V0Q4QAwHIWcPZjqCNP6W0l8gXWgF8FelzZ4GtTe3CY7JR93k0bFbwg/BfiQLd
-	9j+Nav7kK9BL/X/ySbwnkY2Q1Fb/+ipIVhQLQ4gziq4WQDvbXAl6EhURlBNre8Z7QrUC7TebnSL+P
-	3QVoX2WRJo3IgbeYX9NTjRuWWlW0gwUt22JIyBYOmXB4EHKcXSt33E8njkmCY04P/5x7R9Heqd7yO
-	vZhl/KIHUtE+LdJFEw0g==;
+	List-Owner; bh=IiA3l8mDSpgrlKgd1jjZ2rx6ni/tazyEzpJ7oi/f8E4=; b=FrIwYghDzD7GC/
+	oya0gM9uWcSwfbdB3QTyvJ9Y3V0QPchF52mHtsjXEaMbNz8K+CzhmDUYYz6CDr27QektPbn7kPjT7
+	H0PSVVw9atL9eYmPFjl7k/QSsUXHh67I64CUFOauI63akHv4cYQRaZFT+8+gcAR7CKqF2ezMtg55O
+	IpPtXfjPju1O7rZWJHBlPB2gnomiS2WqGM4ZcqkbjgsQjuuykp4hqds5Jb677732sVzuhxlfov9Nb
+	YaI8GxHWYG6Id2oSJ+psgjbIz9WDoNDxyA2zlokWkdhxNbgy/je3iVNxq6iVteYzeBIjdjoXisUpA
+	530My+Y+FmLwYLyvLAag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzMg7-00000001PEE-1emM;
-	Tue, 23 Apr 2024 20:23:47 +0000
-Received: from mail-dbaeur03on20600.outbound.protection.outlook.com ([2a01:111:f403:260d::600] helo=EUR03-DBA-obe.outbound.protection.outlook.com)
+	id 1rzOzb-00000001kba-3J2D;
+	Tue, 23 Apr 2024 22:52:03 +0000
+Received: from mgamail.intel.com ([192.198.163.9])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzMg3-00000001PCN-1UPI;
-	Tue, 23 Apr 2024 20:23:44 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=la4cMJVwnN9PppJFaYEy089LlDDTdD5sXHWUN0ghzsTt60fWmLPH3nWkSm7wbKaDpf/gum9PUGMtzPP6Zj7onC8L+F/LD2I6d+lTs2UN+WfLui2p7sIuG2wuwvUfukT4W/+Dy2vfdqW/0gfut6Bu6J1RigMx4moPY9ceJArmek8PYPYERKHP7FwV5FQXzOQRh4v0o41XW4zjmbvlreYRoxd0Unp4dtk00frzJLL5bfo/3hk5c+BT/3pGhIAij0mj8CN6ZtrGHMd1irtx6vcZuEuRYfJwocppq69MJzlRasFAPAGR7o7g7SL9tMAbhLVClUp9VDBLUi9dWO49HWtmEQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0a+Js7elHfVkkwA5LmfROcELMrGjeCLb2qiC5suCJTY=;
- b=jxIjdmy/HqMH0wyjGnjIA3zh8M33qStMjscm6mL+pCLvC26tirRRuoHbI8ECQJm4isn+VIEv+ww7Zc2gO6K3k0Cib/innRa8bxGSlrKxeUrxNDemT0dUXktiCJa0FAzaLnywgU32CiQ/C2vyovS0GktbAne4iCDI4LZilJo9nHKMGTTSXCA3ypQUme3vVS/D7MqDjM0wBKRvr+j5q9px7xQjJIaYaI+4/LiwNDXfqEh9zmp1u78GdeJxUwtpBBSOTSo2mv8knR0j5J2fV50FLnu/UGiM4ay09ZWS0WgOkkc6clgaYPzjIxI0g9KYu22jBWCMtnhLL/QvXE2jxrIi/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0a+Js7elHfVkkwA5LmfROcELMrGjeCLb2qiC5suCJTY=;
- b=Yt3hXkHeuvv/4tHMGEgGIln1dWSH/1npmXCJcS6F5YIi/GcUWx+g2lyr7XFzAZLGIjWg7kSIMW39mj5Vv1yFw5i7QVLef1H04FTKgTXHyQDqhLOk9EfxjCL0OfJJv7PSKEDdAK2EzYw6AEFzAduQA/G1YnveHOS9p/Qi3vZb4QU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PA1PR04MB10169.eurprd04.prod.outlook.com (2603:10a6:102:465::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Tue, 23 Apr
- 2024 20:23:18 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7472.044; Tue, 23 Apr 2024
- 20:23:18 +0000
-Date: Tue, 23 Apr 2024 16:23:06 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	id 1rzOzX-00000001kaS-2h1R;
+	Tue, 23 Apr 2024 22:52:01 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1713912719; x=1745448719;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=mznsmpZGIdBKgMqGdAUj/EZ/hJtwZ06FnB1V1izwzhk=;
+  b=R1MLh05fILEqPKlnz7E08szaNW9OrKmSXS6sIW/9IyFYCCIfZik0qikv
+   tMEbp1sNpELMonRH486bXftzmqPJTqjLOXZ4PnUXNphaVWnlBly5n4yK2
+   0IGtBuYWjyLEQBJ0AhuZSGydizh/5CBq1wgoWcZKxS27PTmyP9E3FRL+I
+   8y2HPN/ZibHqfefVdPhZXHxOWDWktZpbOeXdH4SAm1C9ei7zRLKU7C8q9
+   hvHkb6YOeVylr6fIVUUcAFv3qs5Aqcs9YC7fvvyqkikaxMt/M5ZVQsphO
+   SYDO1X9QTEHqGutQ+9m9xaR+RzmG9PG0QPOcKKJPNIVj/k//0udBc+NOi
+   Q==;
+X-CSE-ConnectionGUID: nveouaaNTjuHsxznhlUzfQ==
+X-CSE-MsgGUID: 0ILv41xgSY6m9JCIb5GJsg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="20218393"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
+   d="scan'208";a="20218393"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Apr 2024 15:51:54 -0700
+X-CSE-ConnectionGUID: 4vpTSJ/BT0WzosPs6zKsoA==
+X-CSE-MsgGUID: lwCZffPLR/SpYCqnMxTVow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
+   d="scan'208";a="24557021"
+Received: from lkp-server01.sh.intel.com (HELO e434dd42e5a1) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 23 Apr 2024 15:51:47 -0700
+Received: from kbuild by e434dd42e5a1 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rzOzI-0000bA-2C;
+	Tue, 23 Apr 2024 22:51:44 +0000
+Date: Wed, 24 Apr 2024 06:51:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Frank Li <Frank.Li@nxp.com>,
 	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
 	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
 	linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
 	imx@lists.linux.dev, linux-amlogic@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
 	Vignesh Raghavendra <vigneshr@ti.com>,
 	Siddharth Vadapalli <s-vadapalli@ti.com>,
 	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
 	Richard Zhu <hongxing.zhu@nxp.com>,
 	Lucas Stach <l.stach@pengutronix.de>,
 	Shawn Guo <shawnguo@kernel.org>,
@@ -76,97 +83,16 @@ Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Xiaowei Song <songxiaowei@hisilicon.com>,
-	Binghui Wang <wangbinghui@hisilicon.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Subject: Re: [PATCH v2 3/4] PCI: imx6: Convert to agnostic GPIO API
-Message-ID: <ZigYqtyn4BTbWgRu@lizhi-Precision-Tower-5810>
-References: <20240423172208.2723892-1-andriy.shevchenko@linux.intel.com>
- <20240423172208.2723892-4-andriy.shevchenko@linux.intel.com>
- <ZigSiCBIwoEIPYoG@lizhi-Precision-Tower-5810>
- <ZigUL7exXBSbWDIR@smile.fi.intel.com>
- <ZigXJJj4e+oaANAt@lizhi-Precision-Tower-5810>
-Content-Disposition: inline
-In-Reply-To: <ZigXJJj4e+oaANAt@lizhi-Precision-Tower-5810>
-X-ClientProxiedBy: SJ0PR03CA0224.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::19) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	Xiaowei Song <songxiaowei@hisilicon.com>
+Subject: Re: [PATCH v2 2/4] PCI: dwc: Remove unused of_gpio.h
+Message-ID: <202404240649.QgY8lto8-lkp@intel.com>
+References: <20240423172208.2723892-3-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA1PR04MB10169:EE_
-X-MS-Office365-Filtering-Correlation-Id: b64f75f9-a092-45f4-26f5-08dc63d3367b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?8yiShEKiyqqkUtcMv+qMciDg7kemd2oIZTMPYmmHG1/rtYkAoNqc0fF4IiIv?=
- =?us-ascii?Q?dmi1P0/gJpe/SMNK/vDn+oYFbgBZHmf3/oHdKD2rJx7piGtR2JYzqamvZWzT?=
- =?us-ascii?Q?D4NxIW6YsB4qRup09Gwv5ofRTjcCxqrb/1EUk3VSAgFCzVRzPShEoL8KOX/h?=
- =?us-ascii?Q?nWPxbmonhdMCiADLflBCBezX2LJJYxK7SvsbASDCjQirHGy6VdVuEVhxx8aV?=
- =?us-ascii?Q?sst7KjV8Vp5rtF/cG61j1SiLEL5gvoghhcRxhBXw05kSoJlhV1/DB28W/wtG?=
- =?us-ascii?Q?0YlmjNO5jw+o0764YtBGfGedGvdmK2/EiXR9IndqQJ9qv44BKxVuj53aRCZd?=
- =?us-ascii?Q?MHjbj+gc6wsRCLv7ZrvyB/ADRVABVi8lK0eiF6sSRui+BgbcvKDZh8tPt4Q1?=
- =?us-ascii?Q?GtZS7i5xQnw+EYMbWnYVcrsrIjBy3Fj8i0bN/3mQ6gFA80tFMlHx6b8iTtMI?=
- =?us-ascii?Q?PFEKBPTmw9G+hGZ8ZphAjJ0gb5yoeIAh8EATLiJQVqPPQsTL+sK3WdOH8Wrd?=
- =?us-ascii?Q?mB5k+xR0eycqHYllk/Hwe1juu/8U2w+dPKGh7/e6dEZsvSi1CiDjspShNWn6?=
- =?us-ascii?Q?Bh6bgRVipA5r6jZcmxvgq0Aptx63ceq1H9H78GVtxxxjif0NOqyp+oAtd1Rk?=
- =?us-ascii?Q?5YgrtuP8c7n5mu69Z/4UpphfLdhQyecZxQ9SSx9jCgfsk73CpGOjxCi4pmJX?=
- =?us-ascii?Q?dKbQaU78F4YXO3CYgy4vxNmOTcaPNPLVjo/+N92p3NIMhxB4UbKO1MLd+8jE?=
- =?us-ascii?Q?SDEGyrcHql7+bzWrBA0F0DiWZaigzEM8W3xOTCVV+4VPiFlZ0xR2PokaNx10?=
- =?us-ascii?Q?xxFKwIC3EUFdUKamLzSuK18IIQEYhkfKGnrNLE/9f3bkuXoQFuyQY3MTQbGa?=
- =?us-ascii?Q?fh+Y4JT7jhbl6xYHBOWbKWXhchUqIlsTdHsY9P/IB9cKSXTD4olNZNWjkD0T?=
- =?us-ascii?Q?I1AALPtSxp9cAccALWE6boR40KCzFObq7+odh6s/k7t1AqQukgqXfq1bFKDv?=
- =?us-ascii?Q?2dKDaFpBEsgaT+JGk9dhzr1mKGnc0reQ5LR9y44xXV3Ffn1IDQnsCBv/WlwR?=
- =?us-ascii?Q?oAyj5wmv6G5EqbE04CAhpKdFs9ejflZKCYcyEtgEqjYejNex6voNrOXkurUg?=
- =?us-ascii?Q?6xSEOlkL99KG/jUvqZvqP5yOJsNhLXcGz4rc0FSwHcW8gWurSTdBHmtTefg0?=
- =?us-ascii?Q?mvKJh8hA0nVeVLA6xvgqcidkfni7pxD1BXkvYbzVHflatfkL908Y7ClW+A8e?=
- =?us-ascii?Q?tTzLea4ggngFLiO8KvRR7KZTK/8w3vlp+nsRSnSpYG4nazJtQSQKlror5ByY?=
- =?us-ascii?Q?9ZB56ypBDy413lA6IDyk9iL6zwRwssiSxlnQCAhZ8hgcCg=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(7416005)(52116005)(1800799015)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?r3T4Wpt/g/Y5f1wZ25LCK8fqTUkl/jJt+frZcf/rKPvIC+wWisSPVKrW+Pg6?=
- =?us-ascii?Q?DnfhsZJUSp7vJr0mYjE8aTLVnnLdeq9m+UhczihiIG8Nciqj5eaWoJYKdQnw?=
- =?us-ascii?Q?4wNLcCWxe0Wn1aR7K3mAEX0dchVImAC2cMq/cLTfywYuPqmERe1r/s0dQ3mt?=
- =?us-ascii?Q?V2WTlWi9V4tiW7UGqWeExjO6ojTW6pMFybUvxK29wYn9iRGKZ9nMB1XW6FHK?=
- =?us-ascii?Q?BMo+28ku+7MDtOlUIPlLVmzIfBBKehpPdeYmXR9JQp/crZSgbXs3Tsvoaj3m?=
- =?us-ascii?Q?ZoIhcEiFRILEeuh5tnJpdX5gZLbEusLqit/QuQ+mE8KxRlELgRMIRFavjgt9?=
- =?us-ascii?Q?bb02zTbi7SQFIoQmBPQKZZ73gYO8t243XpHIMol7NN/3Qb05CjiawAjpZWaz?=
- =?us-ascii?Q?f2uwEgTePgeU3XFtGo5QyAwAqwZ+Pn6d3xpRGAkKhhwHxjoHqcQUoGz0EYK6?=
- =?us-ascii?Q?H8AlzPOmNtfR6L89m6ttGciUmtZPcd5vDiIV8SPojZmwvu/DyIgK5P9FZWGy?=
- =?us-ascii?Q?PNSSumTyOFtBZWebIE2BHvFNxD0SWXePlZ/S0QsqQAHnIf5dwUKUy6qIw2uT?=
- =?us-ascii?Q?OqEIgF+9r3/ofCEZ4zYI/7nidZdL8kRbBuh1Y1sNwLt8LuMumU+DlQFAmN0/?=
- =?us-ascii?Q?y8PpgRFWE7WBulBbFx3WdP027yIwn5sFx+ZlF4+TUxZUe6T/79OKPpZ2FgTT?=
- =?us-ascii?Q?7hRWoaqe2EEPpmVEytpJ8y3Gu224lRhWxmRU/7x2XHUwpIvAeNvrHzQjmypM?=
- =?us-ascii?Q?Zm0t+/MQZgEjTRPs81FlDKyJ4RqDRS2ipYujlisq5qWOPBQpmzsKJCqCRyaY?=
- =?us-ascii?Q?2dDYQM+SoyHbTJ+mTc5Q0w1tGZYlE/oNBhC2ZTSprbWkvfqc1G+JxYpF4hs/?=
- =?us-ascii?Q?x75q6tPQBCUPgs9YcEJn645PDzBkSCuFJGqnBjM7+jUCdPDe0+yaf0JTswS1?=
- =?us-ascii?Q?mJQxEaKYkg6r3XCI1C4Rg4cNE+rKb8PcPT4tNkxAE8s76YWGJPPr6LMMN61+?=
- =?us-ascii?Q?rYxql4wGejH/FlMkc83JzMbjzdW6rK04p344iOaUfnGSNWfV5FEAhEsGAOau?=
- =?us-ascii?Q?CH5IATTVeBQHkriNI41I7HkyzFpa6l6oIgZsZCmBoTWQXDkyyP8s/fiUMRle?=
- =?us-ascii?Q?9/3Dy24S7p12XGZV6HAM5lP6l2Pyt54azsduy3Zt/2UDR66rFCAcfos9TO6+?=
- =?us-ascii?Q?C5Q90Bjrdd5vDT8EPbk49b4n6n3lNRkpGmOUtXJB4Z7VMK4jhcrUbk1Rfsfa?=
- =?us-ascii?Q?stAQGshZLdwarLYTa4m3zlanUmUeDaUFtKY2r/XGQCaC2gUwpRorKAm20Zka?=
- =?us-ascii?Q?UWc65MclVOiD8yi6DVag9Ps3gab4lPpzDFBab853L7BraKUJm06NjHuIKVWy?=
- =?us-ascii?Q?szQgQf9KvHdqApuGK7vSsuXtnEYp4fAHfxdFASVfR/HvfYdJAVdhAfKRX+HC?=
- =?us-ascii?Q?jERadBedpndCTNaeLijLh7/jflfGZ7Husg7EjLk3u1hZOv8aBGfp5ctfS4eC?=
- =?us-ascii?Q?eKsS+9Krm9hIlMkUkj4B0oZzbg8eNRnMZ8Kn094acVheU6E+UzW0OnABE4M2?=
- =?us-ascii?Q?yoVRNR0M9J68JEuj1DRCr6NLYYv1/iUoRJFiR2+Y?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b64f75f9-a092-45f4-26f5-08dc63d3367b
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 20:23:18.4883
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KTx85ekG1/Rq6NQFinYUq8AUqIOVahBwkxIH9KZq1gz4DunP1A9QcR65w3bi1iKmBJqaBdoB/bhDgKhyp04Stw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10169
+Content-Disposition: inline
+In-Reply-To: <20240423172208.2723892-3-andriy.shevchenko@linux.intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240423_132343_431781_15233D4D 
-X-CRM114-Status: GOOD (  20.19  )
+X-CRM114-CacheID: sfid-20240423_155159_774768_12AF38C2 
+X-CRM114-Status: GOOD (  10.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -183,61 +109,85 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Apr 23, 2024 at 04:16:36PM -0400, Frank Li wrote:
-> On Tue, Apr 23, 2024 at 11:03:59PM +0300, Andy Shevchenko wrote:
-> > On Tue, Apr 23, 2024 at 03:56:56PM -0400, Frank Li wrote:
-> > > On Tue, Apr 23, 2024 at 08:19:06PM +0300, Andy Shevchenko wrote:
-> > 
-> > ...
-> > 
-> > > > +	imx6_pcie->reset_gpiod =
-> > > > +		devm_gpiod_get_optional(dev, "reset",
-> > > > +			imx6_pcie->gpio_active_high ? GPIOD_OUT_HIGH : GPIOD_OUT_LOW);
-> > > > +	if (IS_ERR(imx6_pcie->reset_gpiod))
-> > > > +		return dev_err_probe(dev, PTR_ERR(imx6_pcie->reset_gpiod),
-> > > > +				     "unable to get reset gpio\n");
-> > > 
-> > > Small problem here. err message "unable to get reset gpio\n" will print
-> > > when -EPROBE_DEFER happen. EPROBE_DEFER is quite common when use i2c
-> > > expand gpio chip.
-> > 
-> > I'm not sure how you come to this conclusion. Can you elaborate, please?
-> > P.S> I do not see a problem as described.
-> 
-> If i2c gpio-expander driver have not load when imx6_pcie probe, I supposed
-> devm_gpiod_get_optional() will return -EPROBE_DEFER, 
-> 
-> if (IS_ERR(imx6_pcie->reset_gpiod)) should be true. then dev_err_probe()
-> will run and print "unable to get reset gpio\n" with error code
-> -EPROBE_DEFER.
+Hi Andy,
 
-Sorry for that. dev_err_probe() already consider this. Please forget my
-comments.
+kernel test robot noticed the following build errors:
 
-dev_err_probe() 
-{
-	if (err != -EPROBE_DEFER) {
-		dev_err(dev, "error %pe: %pV", ERR_PTR(err), &vaf);
-	}
-}
+[auto build test ERROR on pci/next]
+[also build test ERROR on pci/for-linus mani-mhi/mhi-next linus/master v6.9-rc5 next-20240423]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-So:
+url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Shevchenko/PCI-aardvark-Remove-unused-of_gpio-h/20240424-012448
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
+patch link:    https://lore.kernel.org/r/20240423172208.2723892-3-andriy.shevchenko%40linux.intel.com
+patch subject: [PATCH v2 2/4] PCI: dwc: Remove unused of_gpio.h
+config: arm-defconfig (https://download.01.org/0day-ci/archive/20240424/202404240649.QgY8lto8-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project.git f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240424/202404240649.QgY8lto8-lkp@intel.com/reproduce)
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202404240649.QgY8lto8-lkp@intel.com/
 
-> 
-> driver framework will retry imx6_pcie probe again when a new device appear.
-> it may retry sevial times utill i2c gpio-expander driver probe success or
-> timeout.
-> 
-> Frank
-> 
-> > 
-> > -- 
-> > With Best Regards,
-> > Andy Shevchenko
-> > 
-> > 
+All errors (new ones prefixed by >>):
+
+>> drivers/pci/controller/dwc/pci-dra7xx.c:262:2: error: implicit declaration of function 'chained_irq_enter' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
+           chained_irq_enter(chip, desc);
+           ^
+>> drivers/pci/controller/dwc/pci-dra7xx.c:284:2: error: implicit declaration of function 'chained_irq_exit' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
+           chained_irq_exit(chip, desc);
+           ^
+   drivers/pci/controller/dwc/pci-dra7xx.c:284:2: note: did you mean 'chained_irq_enter'?
+   drivers/pci/controller/dwc/pci-dra7xx.c:262:2: note: 'chained_irq_enter' declared here
+           chained_irq_enter(chip, desc);
+           ^
+   2 errors generated.
+
+
+vim +/chained_irq_enter +262 drivers/pci/controller/dwc/pci-dra7xx.c
+
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  252  
+9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  253  static void dra7xx_pcie_msi_irq_handler(struct irq_desc *desc)
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  254  {
+9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  255  	struct irq_chip *chip = irq_desc_get_chip(desc);
+9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  256  	struct dra7xx_pcie *dra7xx;
+60b3c27fb9b92b drivers/pci/controller/dwc/pci-dra7xx.c Serge Semin            2022-06-24  257  	struct dw_pcie_rp *pp;
+9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  258  	struct dw_pcie *pci;
+09b2d20349e37a drivers/pci/dwc/pci-dra7xx.c            Vignesh R              2017-12-29  259  	unsigned long reg;
+d21faba11693c1 drivers/pci/controller/dwc/pci-dra7xx.c Marc Zyngier           2021-08-02  260  	u32 bit;
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  261  
+9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27 @262  	chained_irq_enter(chip, desc);
+9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  263  
+9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  264  	pp = irq_desc_get_handler_data(desc);
+9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  265  	pci = to_dw_pcie_from_pp(pp);
+9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  266  	dra7xx = to_dra7xx_pcie(pci);
+9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  267  
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  268  	reg = dra7xx_pcie_readl(dra7xx, PCIECTRL_DRA7XX_CONF_IRQSTATUS_MSI);
+9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  269  	dra7xx_pcie_writel(dra7xx, PCIECTRL_DRA7XX_CONF_IRQSTATUS_MSI, reg);
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  270  
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  271  	switch (reg) {
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  272  	case MSI:
+9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27  273  		dra7xx_pcie_handle_msi_irq(pp);
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  274  		break;
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  275  	case INTA:
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  276  	case INTB:
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  277  	case INTC:
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  278  	case INTD:
+d21faba11693c1 drivers/pci/controller/dwc/pci-dra7xx.c Marc Zyngier           2021-08-02  279  		for_each_set_bit(bit, &reg, PCI_NUM_INTX)
+d21faba11693c1 drivers/pci/controller/dwc/pci-dra7xx.c Marc Zyngier           2021-08-02  280  			generic_handle_domain_irq(dra7xx->irq_domain, bit);
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  281  		break;
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  282  	}
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  283  
+9a5595ab21a9d1 drivers/pci/controller/dwc/pci-dra7xx.c Vignesh Raghavendra    2020-03-27 @284  	chained_irq_exit(chip, desc);
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  285  }
+47ff3de911a728 drivers/pci/host/pci-dra7xx.c           Kishon Vijay Abraham I 2014-07-22  286  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
