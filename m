@@ -4,65 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22C74C4345F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Apr 2024 14:19:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2984C4345F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Apr 2024 14:29:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=4dkZZfiV67YCsXWReLXD9kXjP2dZuRxD/w+NriQZtK4=; b=XCzQm+OjsgxSUrn14ftSHUl3cz
-	4qNM88i+A7KCeDmb1c7QW8MX60LP/ohtTwrIjfRkJGK+6Q8kQuXJ/1NyGBvCnpdHz+J6EfoQ1SzU6
-	GOyiJNfcxHKqGNloD70JvCPPn5RJkz3MJNI0r6uAPBIvag06nM4jXpcIGYmdJB+54sn2EmyEysYJu
-	P0EEpFzL7zTjUjdDQI0M3zmY/mzOOd4riltjI2CLfeKx7QnC1PDVakU4iw8itHHRF2igHk7rkRxC7
-	W6y0fDinMueb8r5LLwX67q4t2cQRiujcCR+S1jMJgnovcdzPN6jJPqMvoCGPiiSgTf2fcAsqz4qSr
-	9oPNO6RQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=fbV9dY0WfTAr88MmiK8c8PRWpzVTMKPKhOU8QrVxdPc=; b=c7mNDBxnsExvUD
+	Kk0xVtKUbvgemHNGW5WhntcMzUO3lOGXxyoyTlW9AAinGpDdCHo70xcv8KT4BP4um7RrE+wMfYOqg
+	QDmOmHEPeZO2mCOd/cF74PteBUCwWYirzeYQUj5a+K2SzIiR/HG9MFB5dAcSCJUKi18egJhEoXrGX
+	VtB2DYzxpYLC/mi7RNM6rgrQ/bOAI2m6uaQBO0PzuS6RqP0vUcvJsTOS0o17YTzGU4OFvVO+rw8yN
+	iKPa9j9dDv+XRk+RGhcOPXr2t5rjmB2PApKDeZuT4ryA/fcbOPBZ69DDpmbcvWUJxrZRKO7nL3MEK
+	8IHdtHYBm1E8jiaHrsZA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzdSp-00000004SU1-3Ovz;
-	Wed, 24 Apr 2024 14:19:11 +0000
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
+	id 1rzdci-00000004UIA-1AJ3;
+	Wed, 24 Apr 2024 14:29:24 +0000
+Received: from mgamail.intel.com ([198.175.65.10])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzdSn-00000004SSn-0AYj
-	for linux-amlogic@lists.infradead.org;
-	Wed, 24 Apr 2024 14:19:10 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rzdSj-0003vP-Nj; Wed, 24 Apr 2024 16:19:05 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rzdSi-00E638-Nf; Wed, 24 Apr 2024 16:19:04 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rzdSi-007q8K-23;
-	Wed, 24 Apr 2024 16:19:04 +0200
-Date: Wed, 24 Apr 2024 16:19:04 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: George Stark <gnstark@salutedevices.com>
-Cc: neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, 
-	martin.blumenstingl@googlemail.com, thierry.reding@gmail.com, hkallweit1@gmail.com, 
-	linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, kernel@salutedevices.com, 
-	Dmitry Rokosov <ddrokosov@salutedevices.com>
-Subject: Re: [PATCH v2 2/2] pwm: meson: Add check for error from
- clk_round_rate()
-Message-ID: <xb2prc5ewslr74eh22xo4heeiepeiu4rb72zekuatcuhp45p6s@nhwhnq26tthg>
-References: <20240424132408.2565916-1-gnstark@salutedevices.com>
- <20240424132408.2565916-3-gnstark@salutedevices.com>
+	id 1rzdcf-00000004UGc-1xXy;
+	Wed, 24 Apr 2024 14:29:23 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1713968962; x=1745504962;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WnfZajOmHIFhVo2TmxnugInu6gBY+wQy/yoWHmvGXAc=;
+  b=fjWge50tOh7FB7RT6wnhWGYNS2P1Klulq1gRYr8fUQi9KLUh5DUsPG3g
+   W67XM65GL54vpqrpC7F9NjB3/HLMEqmGyXTp4Um78ZhKrQzIezPnH/sxy
+   NAzZvYbE3iIZiNlbmNiETYrvdqxsoA159nw9NKm/bwVNRPPC4cqvu92Tc
+   8m99JQHGWVcx3QKIC0Li7QxvrR8qsEbThQcKxssXkdgbHDEXuCz1j25vD
+   Eu2UDPrkxf5AayEWSL4pho3Zm7ncSCapfrf0fyW7UB3vjSjie+SwHQwzn
+   YWaJ2N8L4gmPMHmKs5BLvIxpgXwDCXUrMZIuMFUbfLu9Y0lyYRUifNn5i
+   Q==;
+X-CSE-ConnectionGUID: K+GcAwiNTgOsYosgHcuA2A==
+X-CSE-MsgGUID: s0AdveEjRPG+yZP5eQCpIA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="27058530"
+X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; 
+   d="scan'208";a="27058530"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2024 07:29:21 -0700
+X-CSE-ConnectionGUID: C88DltovSWq1GS2a3z6jdw==
+X-CSE-MsgGUID: M1TpDd9ySvC4wXOuBMxm9w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; 
+   d="scan'208";a="29366565"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2024 07:29:14 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1rzdcU-00000000fvA-0mQd;
+	Wed, 24 Apr 2024 17:29:10 +0300
+Date: Wed, 24 Apr 2024 17:29:09 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: kernel test robot <lkp@intel.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-amlogic@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org,
+	llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Yue Wang <yue.wang@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Xiaowei Song <songxiaowei@hisilicon.com>
+Subject: Re: [PATCH v2 2/4] PCI: dwc: Remove unused of_gpio.h
+Message-ID: <ZikXNX_RZJWRso4d@smile.fi.intel.com>
+References: <20240423172208.2723892-3-andriy.shevchenko@linux.intel.com>
+ <202404240649.QgY8lto8-lkp@intel.com>
+ <ZikT0lWPOQD3uuH0@smile.fi.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20240424132408.2565916-3-gnstark@salutedevices.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+Content-Disposition: inline
+In-Reply-To: <ZikT0lWPOQD3uuH0@smile.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240424_071909_113076_2D390151 
-X-CRM114-Status: GOOD (  19.98  )
+X-CRM114-CacheID: sfid-20240424_072921_602353_8CC038F6 
+X-CRM114-Status: GOOD (  18.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,112 +107,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7440383179761252999=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Wed, Apr 24, 2024 at 05:14:43PM +0300, Andy Shevchenko wrote:
+> On Wed, Apr 24, 2024 at 06:51:05AM +0800, kernel test robot wrote:
+> > Hi Andy,
+> > 
+> > kernel test robot noticed the following build errors:
+> > 
+> > [auto build test ERROR on pci/next]
+> > [also build test ERROR on pci/for-linus mani-mhi/mhi-next linus/master v6.9-rc5 next-20240423]
+> > [If your patch is applied to the wrong git tree, kindly drop us a note.
+> > And when submitting patch, we suggest to use '--base' as documented in
+> > https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> > 
+> > url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Shevchenko/PCI-aardvark-Remove-unused-of_gpio-h/20240424-012448
+> > base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
+> > patch link:    https://lore.kernel.org/r/20240423172208.2723892-3-andriy.shevchenko%40linux.intel.com
+> > patch subject: [PATCH v2 2/4] PCI: dwc: Remove unused of_gpio.h
+> > config: arm-defconfig (https://download.01.org/0day-ci/archive/20240424/202404240649.QgY8lto8-lkp@intel.com/config)
+> > compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project.git f28c006a5895fc0e329fe15fead81e37457cb1d1)
+> > reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240424/202404240649.QgY8lto8-lkp@intel.com/reproduce)
+> > 
+> > If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> > the same patch/commit), kindly add following tags
+> > | Reported-by: kernel test robot <lkp@intel.com>
+> > | Closes: https://lore.kernel.org/oe-kbuild-all/202404240649.QgY8lto8-lkp@intel.com/
+> > 
+> > All errors (new ones prefixed by >>):
+> 
+> Right, I need to add a chained_irq.h which I have in a separate patch for now.
 
---===============7440383179761252999==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fikxshr2mxc6iptg"
-Content-Disposition: inline
+This is here
+20240423211817.3995488-1-andriy.shevchenko@linux.intel.com
 
+Which should be applied before this one.
 
---fikxshr2mxc6iptg
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Apr 24, 2024 at 04:24:08PM +0300, George Stark wrote:
-> clk_round_rate() can return not only zero if requested frequency can not
-> be provided but also negative error code so add check for it too.
->=20
-> Also change type of variable holding clk_round_rate() result from
-> unsigned long to long. It's safe due to clk_round_rate() returns long.
->=20
-> Fixes: 329db102a26d ("pwm: meson: make full use of common clock framework=
-")
-> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> Signed-off-by: George Stark <gnstark@salutedevices.com>
-> ---
->  drivers/pwm/pwm-meson.c | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index f4d70da621ec..d4228ac1e7ea 100644
-> --- a/drivers/pwm/pwm-meson.c
-> +++ b/drivers/pwm/pwm-meson.c
-> @@ -148,7 +148,7 @@ static int meson_pwm_calc(struct pwm_chip *chip, stru=
-ct pwm_device *pwm,
->  	struct meson_pwm *meson =3D to_meson_pwm(chip);
->  	struct meson_pwm_channel *channel =3D &meson->channels[pwm->hwpwm];
->  	unsigned int cnt, duty_cnt;
-> -	unsigned long fin_freq;
-> +	long fin_freq;
->  	u64 duty, period, freq;
-> =20
->  	duty =3D state->duty_cycle;
-> @@ -168,9 +168,10 @@ static int meson_pwm_calc(struct pwm_chip *chip, str=
-uct pwm_device *pwm,
->  		freq =3D ULONG_MAX;
-> =20
->  	fin_freq =3D clk_round_rate(channel->clk, freq);
-> -	if (fin_freq =3D=3D 0) {
-> -		dev_err(pwmchip_parent(chip), "invalid source clock frequency\n");
-> -		return -EINVAL;
-> +	if (fin_freq <=3D 0) {
-> +		dev_err(pwmchip_parent(chip),
-> +			"invalid source clock frequency %llu\n", freq);
-> +		return fin_freq ? fin_freq : -EINVAL;
->  	}
-> =20
->  	dev_dbg(pwmchip_parent(chip), "fin_freq: %lu Hz\n", fin_freq);
-                                                   ^
-With fin_freq now being unsigned, this ------------' should be a 'd'.
-
-If you want to still extend your fixes series: A bit further below there
-is
-
-	cnt =3D div_u64(fin_freq * period, NSEC_PER_SEC);
-
-=2E The multiplication there might overflow. This should better use
-mul_u64_u64_div_u64() (or one of it's variants).
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---fikxshr2mxc6iptg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYpFNcACgkQj4D7WH0S
-/k6FHwgAgAJd3kevEdN/itUIoFGC4HyfsHU4mupmXhK8vQlLQeSLp88NOl8o4aq1
-krOsXkTeyPpYboayP13PMoNCEalGdGz0u1O6YRT7zhNmjTgho+BDeC5aYheIFNEr
-sBop9BWBnlUWXxKJNvv89YVYJX8/gm1lYUbJ+aY5cp4x1Sima7d81bIU6XGrKwZu
-Kay2eRvXf9c8F2WpSNhTS/NlQWOFZYHUQujWJKBUOQuIc6g9q916JnX9MalzD25a
-3sP5sShWiSiNdGJ0Z9oVqmWU4O4A9o3WZHYWg3mZme79PTQdVIO9oIcOMMUOiKm/
-t754lFYORol+j34xFOkG3l1bcOnwpg==
-=xYuN
------END PGP SIGNATURE-----
-
---fikxshr2mxc6iptg--
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
---===============7440383179761252999==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7440383179761252999==--
-
