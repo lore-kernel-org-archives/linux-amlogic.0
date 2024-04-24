@@ -4,75 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC43CC4345F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Apr 2024 14:15:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D147C07E8E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Apr 2024 14:15:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5sRRhngZbNHp83Yzbf2MQrfDn3RFqggX6WWbtWb2ujQ=; b=aYt4WBvttM+XS/
-	yI1bbzmyTW8Olia6gLIiYx6NtWtXw+pmvHtzDifIeTo5+2nV+ydcgBEC4qFnje+oP+0M652aIXrui
-	n39LOzw3JW2jL7CxS/Nby0zXqOiQIuBxTV7qcyhU2+omjeSzwxYHtlONJIsdmEIIztI0N4z94+m6T
-	CWqKYftotGG3oivznfUBQQQUJXr/AG/Ds6ynTurS2vwORtUR23KNUgsE+5HGzi4JJEMAgIf79dxZH
-	sKB5Yo4D39EzX2nh5u2HC4+jMoKcjwXId+fzYVlLAToAxS2p72LgdKGOxF62PoBz3GaQEb54NGzdU
-	3fOPojL7e80mehSsLzKA==;
+	List-Owner; bh=KlV9SilYRJyyQaMMc8jWTdmUqvgR6RNwlqTHIqGEq0E=; b=cWISdnxxlEIWw5
+	oT77L+5MoMtLyZZ3QANfXpPX+fsMLTOoIqxq5W/AIA7myG309ZzYDhXXfTNH3XDOl3kYDLZ7h907P
+	R4Yh0pS8YrS+OZ4Xvhhz5JhjMyrzI9LOdsGOAin6iEc5EyecibQw4ievlHHdY8DAj35mAfeYBe03a
+	aq+rQNB3OUUV1rZmvmcUMbCN2dPcJuHR0PFpbYMI+gwfspEIa3b66jH13vyoTBaxfcxrpR240eOPm
+	jtCYxRwjxE/rJw8OcK6T861TTM4zfG5/VMIK4FO8NkiyXGJay8RiQspNKz8oMwZ3d7rhwJlBdn+Lc
+	HUh2FcS7vwXKFRBNAHtQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzdOn-00000004RDk-36yg;
-	Wed, 24 Apr 2024 14:15:01 +0000
-Received: from mgamail.intel.com ([198.175.65.10])
+	id 1rzdPP-00000004RW7-2tUG;
+	Wed, 24 Apr 2024 14:15:39 +0000
+Received: from mgamail.intel.com ([192.198.163.18])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzdOk-00000004RCj-3CnH;
-	Wed, 24 Apr 2024 14:15:00 +0000
+	id 1rzdPF-00000004RQE-0y25;
+	Wed, 24 Apr 2024 14:15:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1713968099; x=1745504099;
+  t=1713968129; x=1745504129;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=ll03pwob+gLokLHhKJ9wKqSKaJJ7BhxC+kqwsk3GZ64=;
-  b=ggpWxupDVSVaosetmySKmbvTRC3FCp7I/pj5k/i6JkA2Wqu9mdYvIc16
-   3DM7Be+PPH2PjItiDNw/1UXYBuKeK58K8qNqlLrD4oacISnFa2wrPrDdN
-   SOTVwlhds7Ti6rN9Z6LI8kKxyTw4gb9/cZ9GPC8lyIHz4mXq6tWXypQPz
-   3pxsN4egu+UDKsCPxpOgYFHEh+liUW6I5QVrSwYlOgYmJdJLiCJhH6frz
-   ZMjybSwwYj6y9F11eQRj99ry8LMl0Ux1fGFGqA03Rse46YKcPJciKtJP9
-   I4LXUw0ozgoZJ+D4DIxZHH07JIH6Ja2lU5JyNZC0/nJGQtnj9NfoPDDWX
-   w==;
-X-CSE-ConnectionGUID: FVzD4HvFQOS4cXkRz5lI5w==
-X-CSE-MsgGUID: cJyJba29QN2X54ti53WHrA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="27055531"
+  bh=gMosq5KDq4+veBQ/DQ6irfWO7y5x/xROAoojLy7Xjtg=;
+  b=jFfpfZjCgEI5wAXz+ivarQQeU12E29U/SLcmqvs/9XZeiFTNlxMOW0yO
+   jmhMUAYi+ebCHYs6TpwDkWRVRwnLISiSatSyygs3e7kTMbeUEVvu3DUVT
+   H3uUU4luG4id4Njym1epJfcp55Ri6t29/PxrDOj3/t6K2A65dTf3QFYoZ
+   dUIiasNVMsXQ1F404R4qMKgws9ouAVeRbZcSYItuDyS/NdbzOoliw/gK3
+   fv9573eq30LMP3Ltg1VVzrMVN+8LcYi1XINj6//pvgyCa4faGsyJmfGAg
+   HWQpmV7MZxINpj4gG6Hh8FrNYu223q53XG7s79M+GcdOUl/bOBldo9KYH
+   A==;
+X-CSE-ConnectionGUID: L5HmeWCfRYCKk51XAnFvnA==
+X-CSE-MsgGUID: D7wCrzXwQnOLzrW7dqmjew==
+X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="9452599"
 X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; 
-   d="scan'208";a="27055531"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2024 07:14:54 -0700
-X-CSE-ConnectionGUID: jF/bLxj+TMOWgskL6OyzxQ==
-X-CSE-MsgGUID: /E2UezzlQCWzmgGctGONLw==
+   d="scan'208";a="9452599"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2024 07:15:25 -0700
+X-CSE-ConnectionGUID: 1PwAzvoPSYuU9xCed7iHNw==
+X-CSE-MsgGUID: H6Za2bLiQaqX+cjCsv32Mw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; 
-   d="scan'208";a="29364232"
+   d="scan'208";a="29527516"
 Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2024 07:14:47 -0700
+  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2024 07:15:18 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.97)
 	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rzdOV-00000000ff8-0bTg;
-	Wed, 24 Apr 2024 17:14:43 +0300
-Date: Wed, 24 Apr 2024 17:14:42 +0300
+	id 1rzdOz-00000000ffl-36yR;
+	Wed, 24 Apr 2024 17:15:13 +0300
+Date: Wed, 24 Apr 2024 17:15:13 +0300
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: kernel test robot <lkp@intel.com>
+To: Frank Li <Frank.li@nxp.com>
 Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Frank Li <Frank.Li@nxp.com>,
 	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
 	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
 	linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
 	imx@lists.linux.dev, linux-amlogic@lists.infradead.org,
 	linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org,
-	llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
 	Vignesh Raghavendra <vigneshr@ti.com>,
 	Siddharth Vadapalli <s-vadapalli@ti.com>,
 	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
 	Richard Zhu <hongxing.zhu@nxp.com>,
 	Lucas Stach <l.stach@pengutronix.de>,
 	Shawn Guo <shawnguo@kernel.org>,
@@ -83,18 +82,28 @@ Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Xiaowei Song <songxiaowei@hisilicon.com>
-Subject: Re: [PATCH v2 2/4] PCI: dwc: Remove unused of_gpio.h
-Message-ID: <ZikT0lWPOQD3uuH0@smile.fi.intel.com>
-References: <20240423172208.2723892-3-andriy.shevchenko@linux.intel.com>
- <202404240649.QgY8lto8-lkp@intel.com>
+	Xiaowei Song <songxiaowei@hisilicon.com>,
+	Binghui Wang <wangbinghui@hisilicon.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Subject: Re: [PATCH v2 3/4] PCI: imx6: Convert to agnostic GPIO API
+Message-ID: <ZikT8QczxkIXoOlc@smile.fi.intel.com>
+References: <20240423172208.2723892-1-andriy.shevchenko@linux.intel.com>
+ <20240423172208.2723892-4-andriy.shevchenko@linux.intel.com>
+ <ZigSiCBIwoEIPYoG@lizhi-Precision-Tower-5810>
+ <ZigUL7exXBSbWDIR@smile.fi.intel.com>
+ <ZigXJJj4e+oaANAt@lizhi-Precision-Tower-5810>
+ <ZigYqtyn4BTbWgRu@lizhi-Precision-Tower-5810>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <202404240649.QgY8lto8-lkp@intel.com>
+In-Reply-To: <ZigYqtyn4BTbWgRu@lizhi-Precision-Tower-5810>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240424_071458_886153_BA53A222 
-X-CRM114-Status: GOOD (  15.29  )
+X-CRM114-CacheID: sfid-20240424_071529_341336_0F68F9E7 
+X-CRM114-Status: UNSURE (   6.94  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,33 +120,15 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Apr 24, 2024 at 06:51:05AM +0800, kernel test robot wrote:
-> Hi Andy,
-> 
-> kernel test robot noticed the following build errors:
-> 
-> [auto build test ERROR on pci/next]
-> [also build test ERROR on pci/for-linus mani-mhi/mhi-next linus/master v6.9-rc5 next-20240423]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Shevchenko/PCI-aardvark-Remove-unused-of_gpio-h/20240424-012448
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-> patch link:    https://lore.kernel.org/r/20240423172208.2723892-3-andriy.shevchenko%40linux.intel.com
-> patch subject: [PATCH v2 2/4] PCI: dwc: Remove unused of_gpio.h
-> config: arm-defconfig (https://download.01.org/0day-ci/archive/20240424/202404240649.QgY8lto8-lkp@intel.com/config)
-> compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project.git f28c006a5895fc0e329fe15fead81e37457cb1d1)
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240424/202404240649.QgY8lto8-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202404240649.QgY8lto8-lkp@intel.com/
-> 
-> All errors (new ones prefixed by >>):
+On Tue, Apr 23, 2024 at 04:23:06PM -0400, Frank Li wrote:
+> On Tue, Apr 23, 2024 at 04:16:36PM -0400, Frank Li wrote:
 
-Right, I need to add a chained_irq.h which I have in a separate patch for now.
+...
+
+
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+
+Thank you!
 
 -- 
 With Best Regards,
