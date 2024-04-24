@@ -4,68 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5732C4345F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Apr 2024 12:08:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BB8AC07E8E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Apr 2024 13:24:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=8NOw87mUmcAwtE587I6sm5TbUB2+KxTw7DTcnE0s8xw=; b=4qN/SeJ5sCH76xIy+9Lr38Xe+Z
-	aH9XcaLfzs3HLe5Ha4wlmPHb0Czx44XgNF7usyAoylY2d/RpaHafQ3Y8/Wx2+4s+JFvVDLmxbrcxx
-	ApbbkMmAaYeLsHD9Ol87ZD3OKm3kwf9kOgrRfkjX2kYDOJL2VTkSZLZ+O2hRrAV+EeMt1BB8b1LOm
-	MaHt/niDu8cTF0hotJ0e+VzAmoK6FxYeXlqu1AO6/kpCMdGsgG+pUd+YqYmDy/x5lGKTxtelGCedo
-	vl3G9QWp5iR6EWzg6nvKcqslFtWqJa4wbBQtaLu8q/9DAl1neLQhlXuVcqBk0H909TGcf9NxzssWQ
-	uihOu/zg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=q8zow6U0WszoI6W+s1JLeDFrG9rksZfCxm/nTlhmJWg=; b=VLcGHk5KmwmD5P
+	rz5NyeoATjQ+QTfWrECfaoH8KDGFYC5/oTy+HToS5X9ZAyheyp8WaAWO7GZvfGNugbm8jzC9wa7uz
+	8QHtX4bQ+Le3wSr5rA+25TEjpC+Jn2BMv0gafViw94y6nycIN27kWHSTStgcxskEKEudyJtKgi0si
+	+Pf09dmhNhCG5XFQaF494556iouduhxYi9DQppNOz24uoYCFEXNn0IzsZVr4FtdFumxaKlJypRF7f
+	bpP9wRRqOo7gMpVhpYyCK+TIQrCTMv0BwwP9XewS+jk34X34FJbEZoxw87vocGPMBhQaaofGOcTl0
+	MhLKQrAIg58+rZJ+6m6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzbQB-0000000409t-05zJ;
-	Wed, 24 Apr 2024 12:08:19 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1rzcbu-00000004F1d-0v6C;
+	Wed, 24 Apr 2024 13:24:30 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzbQ8-0000000409P-01Zi;
-	Wed, 24 Apr 2024 12:08:17 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 41F2860E26;
-	Wed, 24 Apr 2024 12:08:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CF6BC113CE;
-	Wed, 24 Apr 2024 12:08:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1713960494;
-	bh=XIDRIdvM6seDLp5rS9urHwiVla14vdnVG5FbNeLWF9E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DdnEjJzjaMwTbabFNNrhDkLC6z+lrldg8wq05SR18LT/OPdT+SBJv18zIMYA5oQoh
-	 8bqLo0v2AUKxk2Xf6hxwemSumoEw7mTEi6gDi4dsOpBhgv5ruNuI+Z5P5fvCu1BXgd
-	 FRzVQpfR4F4krOtS0TIXQ2LTJhWDMmNTYC1wiyaADjzjZHTYPmS53Rwe9D2GjLQjIa
-	 owmB5lI8GfRTrovkXwakF/TxkeNHNVp+UZHAMkFMgJ91rZLo0FIbIxGNup+DEtSk1f
-	 e8yO/0jXDCe0jMwH9d14bJDYJ+ENpU8ziiGkCL8rpq+Oq4G0o3HCJ306GBrTWVMnPL
-	 HrOnskZccep1w==
-Date: Wed, 24 Apr 2024 13:08:09 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: George Stark <gnstark@salutedevices.com>,
-	u.kleine-koenig@pengutronix.de, neil.armstrong@linaro.org,
-	khilman@baylibre.com, martin.blumenstingl@googlemail.com,
-	thierry.reding@gmail.com, hkallweit1@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	kernel@salutedevices.com,
-	Dmitry Rokosov <ddrokosov@salutedevices.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: amlogic: Add new bindings for
- meson A1 pwm
-Message-ID: <20240424-word-scoring-830983094ff5@spud>
-References: <20240423161006.2522351-1-gnstark@salutedevices.com>
- <20240423161006.2522351-2-gnstark@salutedevices.com>
- <20240423-wildcard-smoking-90b50f00da50@spud>
- <1jr0ewezvc.fsf@starbuckisacylon.baylibre.com>
+	id 1rzcbo-00000004Ezj-0cRw;
+	Wed, 24 Apr 2024 13:24:26 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id C7A4B120015;
+	Wed, 24 Apr 2024 16:24:16 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru C7A4B120015
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1713965056;
+	bh=CJqJH6Aem+/Zgl9mTPvkSpY22mVAhX57+bi5i0Gt8yo=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=FTfSJxOoLiB1ltBzGDF2jq0P38lxy7g/qI0iDbTIisQo1R7GODF8Tj59opkiKAlJX
+	 eLS/ziL3Qu5cNc5Rt6gYAnmuyKEuYeLA5GPnGny32Pa31uMj8WMNTDshUV219fKcvl
+	 vCx2Ft7HDOJ+NoYxILPa60a86aAB+aivhDh31VSTZWLBiu8gyNuL/ELyDA5gm82P2Y
+	 oxjCuS6/205wwxr1ovZHDAuyx2miBaUwTAIXhxiVBVo/Af/zuvdXcoWDM1Xs6b50Oe
+	 vEKgt1YqwoPF8Mbw6EwYib7BWxdQJokDL4IDqNKcwH2cvi/ilS1AUvkRPyrl3w7KMs
+	 lUan7Mr/4Gs8w==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 24 Apr 2024 16:24:16 +0300 (MSK)
+Received: from work.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 24 Apr 2024 16:24:16 +0300
+From: George Stark <gnstark@salutedevices.com>
+To: <u.kleine-koenig@pengutronix.de>, <neil.armstrong@linaro.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <thierry.reding@gmail.com>,
+	<hkallweit1@gmail.com>
+CC: <linux-pwm@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<kernel@salutedevices.com>, George Stark <gnstark@salutedevices.com>, Dmitry
+ Rokosov <ddrokosov@salutedevices.com>
+Subject: [PATCH v2 1/2] pwm: meson: Drop unneeded check in .get_state()
+Date: Wed, 24 Apr 2024 16:24:07 +0300
+Message-ID: <20240424132408.2565916-2-gnstark@salutedevices.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240424132408.2565916-1-gnstark@salutedevices.com>
+References: <20240424132408.2565916-1-gnstark@salutedevices.com>
 MIME-Version: 1.0
-In-Reply-To: <1jr0ewezvc.fsf@starbuckisacylon.baylibre.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184897 [Apr 24 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 18 0.3.18 b9d6ada76958f07c6a68617a7ac8df800bc4166c, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/24 08:29:00 #24954596
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240424_050816_220979_E53F0886 
-X-CRM114-Status: GOOD (  18.93  )
+X-CRM114-CacheID: sfid-20240424_062424_886954_CCAAA1E0 
+X-CRM114-Status: GOOD (  10.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,85 +98,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8474931067438326839=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Drop checking state argument for NULL pointer in meson_pwm_get_state()
+due to it is called only from pwm core with always valid arguments.
 
---===============8474931067438326839==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="47Y2FJ9ZWeX1qYH+"
-Content-Disposition: inline
+Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Signed-off-by: George Stark <gnstark@salutedevices.com>
+---
+ drivers/pwm/pwm-meson.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
+diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+index ea96c5973488..f4d70da621ec 100644
+--- a/drivers/pwm/pwm-meson.c
++++ b/drivers/pwm/pwm-meson.c
+@@ -311,9 +311,6 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+ 	struct meson_pwm_channel *channel;
+ 	u32 value;
 
---47Y2FJ9ZWeX1qYH+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+-	if (!state)
+-		return 0;
+-
+ 	channel = &meson->channels[pwm->hwpwm];
+ 	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
 
-On Tue, Apr 23, 2024 at 07:44:35PM +0200, Jerome Brunet wrote:
->=20
-> On Tue 23 Apr 2024 at 17:56, Conor Dooley <conor@kernel.org> wrote:
->=20
-> > [[PGP Signed Part:Undecided]]
-> > On Tue, Apr 23, 2024 at 07:10:05PM +0300, George Stark wrote:
-> >> The chip has 3 dual channel PWM modules AB, CD, EF.
-> >>=20
-> >> Signed-off-by: George Stark <gnstark@salutedevices.com>
-> >> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> >
-> > a would sort before s.
-> >
-> > With the re-order,
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> >
-> > Thanks,
-> > Conor.
-> >
-> >> ---
-> >>  Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml | 2 ++
-> >>  1 file changed, 2 insertions(+)
-> >>=20
-> >> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/=
-Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> >> index 1d71d4f8f328..ef6daf1760ff 100644
-> >> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> >> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> >> @@ -37,6 +37,7 @@ properties:
-> >>        - enum:
-> >>            - amlogic,meson8-pwm-v2
-> >>            - amlogic,meson-s4-pwm
-> >> +          - amlogic,meson-a1-pwm
->=20
-> AFAICT, the a1 interface is exactly as the s4 interface.
-> So a1 should list s4 as a fallback and the driver should match on the s4.
+--
+2.25.1
 
-Crap, I should have checked. Please make use of the fallback :)
-
---47Y2FJ9ZWeX1qYH+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZij2KQAKCRB4tDGHoIJi
-0gnuAP0b+BgwJoXOj4siqxBf/5EczpoJGS7AHdX0u3bkL+a90gEA0jrhT5vIgfb0
-hE7m80/W2o2Z0D7i7qG2yePTa/lmwAA=
-=2KkJ
------END PGP SIGNATURE-----
-
---47Y2FJ9ZWeX1qYH+--
-
-
---===============8474931067438326839==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============8474931067438326839==--
-
