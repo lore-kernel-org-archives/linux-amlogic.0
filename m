@@ -4,89 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D91DC10F15
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Apr 2024 13:24:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FDBEC4345F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Apr 2024 13:51:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=O/errRJ2fJQYVz8cre+CeMehoHp9z8aJZB09X4tg5Uk=; b=HmCynZA73+iLlc
-	fZxr/2H59w2v7hMLck/puHlvb6eOQT2DIgqIMTqCWDDN2EjKUOm1/DbJCa8/9/KqfhtfaHt2RwxBO
-	cfQSyiECZzmhXUEihyzHRlsF28UBCyr0UIcRWsHSyup+F7OHi6mViY5eqaO3HSF9mrjjIpHY7r4Ne
-	S60heIFglv/j4CXX4NLJcMxCLfsuwXprjO8W3T6IyyVKrFPnzUIUp6pq/xpJkTYRlD7wJh9dV6161
-	PRg9Lqi3BzgpIB+BzzR/DU9WgD3yj71ko+vbBTyfKOSM5AHqv6EmRknltOty7bNxJoOBnL/28e05t
-	mmJnFhuFG3PFJe6aWHgg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=kc/nOI1CwDncB/4i4AV3BcfvvsMHo/FzY/BPBe16Wy0=; b=U3nnIpiWmUNA7eBFtj2WiK9s4z
+	4Pf8ErMgt7uVYHXSJLKs9N8v11Kr7DwkkLCumts3Se2cKMCCkRXgd98yfL7S92KOpRmH01j7QKASv
+	Llok2pz9luVuUZ0VY667GlzPSNcWcP0mx9LIZjAPE6qEvSkvNegRTFjYc+AgGTL7GTEtKce52Dszj
+	1e89a1QZ713DH09mJxY7pUe3KuwMKV/oxLk7vFeUSf0e2J+KVj/BV8lmdnJrmtSMdOV4FMu6Fw+J4
+	iCBqBYBkVNQnXfOaiexobAEpCaguYyboV7zLZKlTHGE8U5NRCsYbtZiARRb6wnqV0ZONeGF82BrSb
+	6prFptYQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzcbx-00000004F2p-0UFp;
-	Wed, 24 Apr 2024 13:24:33 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1rzd2J-00000004LmJ-3B4w;
+	Wed, 24 Apr 2024 13:51:47 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzcbo-00000004Ezh-0cF3;
-	Wed, 24 Apr 2024 13:24:27 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 0DF08100014;
-	Wed, 24 Apr 2024 16:24:17 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 0DF08100014
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1713965057;
-	bh=P3gJosMyO15rQMcOY6eGDpvCUcmma/l8WDr0SIlJGFY=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=tS5crxaor0clxEgV4A7QWdlmSgbipRYHdLmKDwl0lhCBQQZbZQZYUmFs5JNYwmeQE
-	 e455Oo9oug+lDlsWMNAoM9PQYPqXlEqGLmomYAwlCtxHE6IXVe5zF8CjYdLU4MCGWA
-	 rtukjd8T8nb9XLFePMmJ2ISpEi+sNI/YVK0vyITHPyxlK22WAnohZ099PW6p8Mn6p7
-	 qhzQ7GFHlbylUPPlpUWpeNZ88sZ33PVBOFSBe5i/mcMEXXM/RUqrLc2aI/XZ2NoYJb
-	 hf6nYYImEIuVt5ud/9/p2IsedJCapJ9xZu6sby+L5OauTh8z00mCazLD2Foc8Li3qr
-	 tXjIq8JmW1K8w==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 24 Apr 2024 16:24:16 +0300 (MSK)
-Received: from work.sberdevices.ru (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 24 Apr 2024 16:24:16 +0300
-From: George Stark <gnstark@salutedevices.com>
-To: <u.kleine-koenig@pengutronix.de>, <neil.armstrong@linaro.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <thierry.reding@gmail.com>,
-	<hkallweit1@gmail.com>
-CC: <linux-pwm@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@salutedevices.com>, George Stark <gnstark@salutedevices.com>, Dmitry
- Rokosov <ddrokosov@salutedevices.com>
-Subject: [PATCH v2 2/2] pwm: meson: Add check for error from clk_round_rate()
-Date: Wed, 24 Apr 2024 16:24:08 +0300
-Message-ID: <20240424132408.2565916-3-gnstark@salutedevices.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240424132408.2565916-1-gnstark@salutedevices.com>
-References: <20240424132408.2565916-1-gnstark@salutedevices.com>
+	id 1rzd2F-00000004Ll5-47DZ
+	for linux-amlogic@lists.infradead.org;
+	Wed, 24 Apr 2024 13:51:45 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rzd24-0006Wx-Ru; Wed, 24 Apr 2024 15:51:32 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rzd23-00E5fI-OP; Wed, 24 Apr 2024 15:51:31 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rzd23-007pJV-27;
+	Wed, 24 Apr 2024 15:51:31 +0200
+Date: Wed, 24 Apr 2024 15:51:31 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: kelvin.zhang@amlogic.com, George Stark <gnstark@salutedevices.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Junyi Zhao <junyi.zhao@amlogic.com>
+Subject: Re: [PATCH v4 1/2] pwm: meson: Add support for Amlogic S4 PWM
+Message-ID: <ikwqq5veuad7fehk6qrpebevvn2ezuxwm3h7agloqeomxc5cbg@kj3be67luyxm>
+References: <20240424-s4-pwm-v4-0-ee22effd40d0@amlogic.com>
+ <20240424-s4-pwm-v4-1-ee22effd40d0@amlogic.com>
+ <1jil07f3ps.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184897 [Apr 24 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 18 0.3.18 b9d6ada76958f07c6a68617a7ac8df800bc4166c, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/24 08:29:00 #24954596
-X-KSMG-AntiVirus-Status: Clean, skipped
+In-Reply-To: <1jil07f3ps.fsf@starbuckisacylon.baylibre.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240424_062424_891590_7FF3E127 
-X-CRM114-Status: GOOD (  14.04  )
+X-CRM114-CacheID: sfid-20240424_065144_052423_4DBB644C 
+X-CRM114-Status: GOOD (  12.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,56 +75,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2607972573169990473=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-clk_round_rate() can return not only zero if requested frequency can not
-be provided but also negative error code so add check for it too.
 
-Also change type of variable holding clk_round_rate() result from
-unsigned long to long. It's safe due to clk_round_rate() returns long.
+--===============2607972573169990473==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="iu54kaoqx4r57nc6"
+Content-Disposition: inline
 
-Fixes: 329db102a26d ("pwm: meson: make full use of common clock framework")
-Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Signed-off-by: George Stark <gnstark@salutedevices.com>
----
- drivers/pwm/pwm-meson.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index f4d70da621ec..d4228ac1e7ea 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -148,7 +148,7 @@ static int meson_pwm_calc(struct pwm_chip *chip, struct pwm_device *pwm,
- 	struct meson_pwm *meson = to_meson_pwm(chip);
- 	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
- 	unsigned int cnt, duty_cnt;
--	unsigned long fin_freq;
-+	long fin_freq;
- 	u64 duty, period, freq;
- 
- 	duty = state->duty_cycle;
-@@ -168,9 +168,10 @@ static int meson_pwm_calc(struct pwm_chip *chip, struct pwm_device *pwm,
- 		freq = ULONG_MAX;
- 
- 	fin_freq = clk_round_rate(channel->clk, freq);
--	if (fin_freq == 0) {
--		dev_err(pwmchip_parent(chip), "invalid source clock frequency\n");
--		return -EINVAL;
-+	if (fin_freq <= 0) {
-+		dev_err(pwmchip_parent(chip),
-+			"invalid source clock frequency %llu\n", freq);
-+		return fin_freq ? fin_freq : -EINVAL;
- 	}
- 
- 	dev_dbg(pwmchip_parent(chip), "fin_freq: %lu Hz\n", fin_freq);
--- 
-2.25.1
+--iu54kaoqx4r57nc6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hello,
+
+On Wed, Apr 24, 2024 at 12:32:36PM +0200, Jerome Brunet wrote:
+> > +err:
+> > +	while (--i >=3D 0) {
+> > +		channel =3D &meson->channels[i];
+> > +		clk_put(channel->clk);
+>=20
+> Fine on error but leaks on module unload.
+>=20
+> Same as George,
+>=20
+> Add the devm variant of of_clk_get() if you must.
+
+There shouldn't be a reason to still use of_clk_get(). I'd expect that
+devm_clk_get() should do the job and if not that's a bug.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--iu54kaoqx4r57nc6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmYpDmIACgkQj4D7WH0S
+/k4DWwf7B/jLf47AuXBENtfvni8lWuon3Tt/DXDsPZRlEb9UoEXv4WxXlFZKVftO
+l0q+KF0HHEML/dD9UUE4g8UNe2U7eUlEg7gyUjExBdfPlGM+j3lNOGZDwdqreNle
+Gdoit31nRGG4IBuTHQDewkHDPOs92aw0EqeWayTuBlTXdl/F6Sm7qe8/HckfWumO
+o9DdQi0o6HUdFpx6WLKRX3HiNebDQSVaWg9BSZeJyFt8uF3ppm6ZfWNKlyDJzxvE
+lnQ+8aDWoPghdZFh4OBPg6KCRTd/hgs2jnkVq1py5jjxyoz68cQHxAh+fAho+9sX
+EHf+41Kbc2RIW2j8/2JXauQz2hDXXA==
+=LRdh
+-----END PGP SIGNATURE-----
+
+--iu54kaoqx4r57nc6--
+
+
+--===============2607972573169990473==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============2607972573169990473==--
+
