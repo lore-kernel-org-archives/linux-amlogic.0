@@ -4,91 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9209C4345F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Apr 2024 07:57:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B42AC4345F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Apr 2024 09:08:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7U+lbAz28KGdaFa73wulZu51g0M1RfmJJSLoxP7umfw=; b=kjSe64MX/SRRpH
-	daU7qnDmCeWC7WjbUsM12X3BZrHzViSNrFKs7T03kc+HJ8AjreX9PJrT08mTsWIctv4+w6PS/VELV
-	N6vVZwqBEa0qfe3XfjbcEMWynUw5v3sbmTtMdP/3/Z2HD+Z6CiQpyNAxFwz89ZBkZHb1YIL6PWdr5
-	BoYOdvts5Hs1QWWaeV86eEjGkY49ITfrvo6npD19oDFDeM3wU+LkOGggtyzG/y0QAoAguKhMoUhkT
-	gymJwkWHKxh9epb15vTrn1cks5+7Ue7YelMj91lq9Zk0kRJd2VhF4L6lgh//VRcqzAZrVe7Hz6hG5
-	lttqwrtuc57Yp9E4BLgw==;
+	List-Owner; bh=fSYpLKllB2Qpbm+r0UQdBYOlv1/OUqnW58iOGYUGIzQ=; b=Nvz3HS3uK37tjC
+	l538dGPV9L6L0LLtMiBDSBqEplCPJHB9wdsZbNXKooeieVwmv7lkmZ5eNJRitNw41Imh+n5VMzK3i
+	UBh3z6KktMK6yT6O3phl6Gv0mC11Rot9YVUepeWZQlcrfO8rDPK29tojTdqNE3QsoPjHw1mhGx+Vo
+	LnIzav/Ynck7jnsYR4IRo9riSMhYXh2hNdh3vo8tfOIPAsKqPVOXk4VteUNd4RIUtxcRRFRxO/1Jn
+	eGL8CsnmfKlFKPImXR86l1P67gtYbFyO/DTN2H/HY/2TS1OiIiyf1m8JviHBP7il6CpqRKrxbsAua
+	RmPeQifpLU/+nHE8owpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzXVi-00000003BB5-3wiu;
-	Wed, 24 Apr 2024 07:57:46 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1rzYcF-00000003QWG-2AQk;
+	Wed, 24 Apr 2024 09:08:35 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzXVd-00000003B8b-3xdv;
-	Wed, 24 Apr 2024 07:57:45 +0000
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 73A87100014;
-	Wed, 24 Apr 2024 10:57:35 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 73A87100014
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1713945455;
-	bh=MMX6QiCqy4Wkoh4oQ7dRjKfmKsrE2YLbEXXPVkHkon4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=knpp7o+rlSmXPXWuf4/yNNp4X85+CfGDCqeqeTc/IUKAVW90Kc80z8RRcRYbcRpWu
-	 GbB3ujXyBOWT3ORfzPNjenLJe4gJ6FXgHZnTo/BN64T0LUlHOD6mAad9nuRtIZWK8J
-	 XNIXSOAHiUu+3/jhnR4K74raRpTobcrxVFHTjyRNAgjbkDHwoiFh75X6RTRCv1Cl5N
-	 +VaAJU6wgM91mECx5nc9PcqY4Edlh8Pd4Z0NqIHbKifxDsCQfy3p5ehI1X2HgbrDo1
-	 GbiGwlGweiNmkH46e2JYvLqixEjoD66BANg10YJa1cbPJRCXRMxlzaqvsKGkRAfqCJ
-	 1JjZPFbyUHivA==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 24 Apr 2024 10:57:35 +0300 (MSK)
-Received: from [172.28.226.27] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 24 Apr 2024 10:57:34 +0300
-Message-ID: <6d34b236-4067-42bf-a6f7-d2f3b3270e3b@salutedevices.com>
-Date: Wed, 24 Apr 2024 10:57:34 +0300
+	id 1rzYcB-00000003QVC-1kfq
+	for linux-amlogic@lists.infradead.org;
+	Wed, 24 Apr 2024 09:08:33 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-41a442c9dcbso25889205e9.2
+        for <linux-amlogic@lists.infradead.org>; Wed, 24 Apr 2024 02:08:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1713949708; x=1714554508; darn=lists.infradead.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=rvbtxxL0KA7+nw2JDrdSITHMot8lmC1r+u81WvHz+K8=;
+        b=Ij8nJI60zpKk5iwpifULzHkmVK1KDInDJceD2po9iwrYM0cj8i02Ql0NK0lZaUSlFv
+         /wCYA+H2jFR+Kv35usPlK0TXCBG0udDymCJzyXEftZzr+JV/peVEu2EzSnAl3r3eqkuU
+         ZPPoivjk9IIVBt5VH4H3FmhuUnMFrrju85v89fEme7+hGG/jkLVBSkacdLfkXvqPDQN4
+         ZhY7bA5uZLoLroYZQuELmETDZUGLh9cVi742YPs1Hr2kClhzEeSGmFqFgEuW9ABq1fnV
+         ZjME58yh/x77wIOs9LBDILWy+Ggs1cXvQdPte/exb4FrINn1ZjATHLAI14u5rTKKdjJD
+         14Ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713949708; x=1714554508;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rvbtxxL0KA7+nw2JDrdSITHMot8lmC1r+u81WvHz+K8=;
+        b=uPb9eyjL8PjdElHbiB4Gl5SruuaWgn25YJDEWAbJQlY9/2s4gdqLc0pI8zj52yUvJP
+         C82X+3AJj9PUR4dIun0ULj34ibkmLGPypzAg3xpFAFxWdIlu0nIyw8V12RWkDra+AIdn
+         ekNNDrVZlUR6UGo9tZ13oKnHc1AM1InFDLqWpBva8jPSGgj6zaY4nAmj4W0wxZ8CT6uh
+         F3FeKNhYQxpQi8RWSN4koVq7K45HPirEfUve7Ub9W3DzTiUopRqipMsEkj/cDrhztsUV
+         t5mZkkqGHOICbYP7+LK6jLqimwRq9prrUrrF1pVHQdk4ubVY03Jeeev7h5jwG7gAPQ8z
+         AXLg==
+X-Forwarded-Encrypted: i=1; AJvYcCV6iR3exWPmIE/HfpNGUK1/uRyf2IxSiBFp12rGc9a/E7AIRyUH45kliPqA/SwE046VJ2cDeI6OUamO3GXnf0+2L46/9o/xDsdPKbbqx441850=
+X-Gm-Message-State: AOJu0YzM5sA8zBdgKdylGszxhaMOV82szjSTFXhL9SifOc17/PHRlcBt
+	QZTklPIO0Qerd6XKfzLGU/ljHW2Hfun1H8XDVDIaN7XWvr6iYheWtOadrnr/H0o=
+X-Google-Smtp-Source: AGHT+IFezzal7JjWvHMGZYy61bCLzRhsiQD5U7WszFsfXL9gRrzNRJlTMjBSCQ2VYQubwKxlAGjtSw==
+X-Received: by 2002:a05:600c:468d:b0:418:f307:4b82 with SMTP id p13-20020a05600c468d00b00418f3074b82mr1358453wmo.39.1713949708334;
+        Wed, 24 Apr 2024 02:08:28 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:ab48:1b7:631c:952a])
+        by smtp.gmail.com with ESMTPSA id p16-20020a05600c1d9000b0041b0d4e1c27sm987467wms.42.2024.04.24.02.08.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Apr 2024 02:08:27 -0700 (PDT)
+References: <20240423161006.2522351-1-gnstark@salutedevices.com>
+ <20240423161006.2522351-3-gnstark@salutedevices.com>
+ <1jv848ezzo.fsf@starbuckisacylon.baylibre.com>
+ <4feb8fe3-af72-4483-87b2-30503328cfe2@salutedevices.com>
+User-agent: mu4e 1.10.8; emacs 29.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: George Stark <gnstark@salutedevices.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, u.kleine-koenig@pengutronix.de,
+ neil.armstrong@linaro.org, khilman@baylibre.com,
+ martin.blumenstingl@googlemail.com, thierry.reding@gmail.com,
+ hkallweit1@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, kernel@salutedevices.com, George Stark
+ <gnstark@sberdevices.ru>, Dmitry Rokosov <ddrokosov@salutedevices.com>,
+ Kelvin Zhang <kelvin.zhang@amlogic.com>
+Subject: Re: [PATCH 2/2] pwm: meson: support meson A1 SoC family
+Date: Wed, 24 Apr 2024 11:02:10 +0200
+In-reply-to: <4feb8fe3-af72-4483-87b2-30503328cfe2@salutedevices.com>
+Message-ID: <1jmspjf7qs.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] pwm: meson: drop unneeded check in get_state callback
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-CC: <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
-	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-	<thierry.reding@gmail.com>, <hkallweit1@gmail.com>,
-	<linux-pwm@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@salutedevices.com>, Dmitry Rokosov <ddrokosov@salutedevices.com>
-References: <20240423161356.2522636-1-gnstark@salutedevices.com>
- <20240423161356.2522636-2-gnstark@salutedevices.com>
- <wkn6ybnnlco7vrqbpclfxaajt5cvywpr633au7qcr6vpjihabq@kb7q6y4khh2k>
-Content-Language: en-US
-From: George Stark <gnstark@salutedevices.com>
-In-Reply-To: <wkn6ybnnlco7vrqbpclfxaajt5cvywpr633au7qcr6vpjihabq@kb7q6y4khh2k>
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 184892 [Apr 24 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 18 0.3.18 b9d6ada76958f07c6a68617a7ac8df800bc4166c, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/24 05:07:00 #24952670
-X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240424_005742_682282_DF0C2077 
-X-CRM114-Status: GOOD (  14.25  )
+X-CRM114-CacheID: sfid-20240424_020831_605881_5ED5939F 
+X-CRM114-Status: GOOD (  26.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,28 +98,145 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8gVXdlCgpUaGFua3MgZm9yIHRoZSByZXZpZXcKCk9uIDQvMjQvMjQgMTA6MTksIFV3ZSBL
-bGVpbmUtS8O2bmlnIHdyb3RlOgo+IEhlbGxvIEdlb3JnZSwKPiAKPiBPbiBUdWUsIEFwciAyMywg
-MjAyNCBhdCAwNzoxMzo1NVBNICswMzAwLCBHZW9yZ2UgU3Rhcmsgd3JvdGU6Cj4+IERyb3AgY2hl
-Y2tpbmcgc3RhdGUgYXJndW1lbnQgZm9yIG51bGwgcG9pbnRlciBpbiBtZXNvbl9wd21fZ2V0X3N0
-YXRlKCkKPj4gZHVlIHRvIGl0IGlzIGNhbGxlZCBvbmx5IGZyb20gcHdtIGNvcmUgd2l0aCBhbHdh
-eXMgdmFsaWQgYXJndW1lbnRzLgo+Pgo+PiBGaXhlczogMjExZWQ2MzA3NTNkICgicHdtOiBBZGQg
-c3VwcG9ydCBmb3IgTWVzb24gUFdNIENvbnRyb2xsZXIiKQo+PiBTaWduZWQtb2ZmLWJ5OiBHZW9y
-Z2UgU3RhcmsgPGduc3RhcmtAc2FsdXRlZGV2aWNlcy5jb20+Cj4+IFNpZ25lZC1vZmYtYnk6IERt
-aXRyeSBSb2tvc292IDxkZHJva29zb3ZAc2FsdXRlZGV2aWNlcy5jb20+Cj4gCj4gSSdkIGFwcGx5
-IHRoaXMgb25lIHdpdGggdGhlIGZvbGxvd2luZyBjaGFuZ2VzIGlmIHlvdSBhZ3JlZToKPiAKPiAg
-IC0gY2FwaXRhbGl6ZSAiZHJvcCIgaW4gdGhlIFN1YmplY3QgbGluZQo+ICAgLSBzL2dldF9zdGF0
-ZS8uZ2V0X3N0YXRlKCkvCj4gICAtIG1ha2UgIm51bGwiIGFsbCBjYXBzIChpLmUuICJOVUxMIikK
-PiAgIC0gc3dhcCB0aGUgb3JkZXIgb2YgU2lnbmVkLW9mZi1ieSBsaW5lcyB0byBoYXZlIHlvdXJz
-IGxhc3QuCj4gCj4gQWx0ZXJuYXRpdmVseSBzZW5kIGl0IGluIGEgdjIgdG9nZXRoZXIgd2l0aCBh
-ZGRyZXNzaW5nIHRoZSBjb21tZW50IGluCj4gdGhlIHNlY29uZCBwYXRjaC4KCkkgYWdyZWUgd2l0
-aCB0aGUgcHJvcG9zZWQgY2hhbmdlcyBhbmQKSSdsbCBjbGVhbiBpdCB1cCBhZnRlciBteXNlbGYg
-aW4gdjIKCj4gQmVzdCByZWdhcmRzCj4gVXdlCj4gCgotLSAKQmVzdCByZWdhcmRzCkdlb3JnZQoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1s
-b2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6
-Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+
+On Wed 24 Apr 2024 at 02:00, George Stark <gnstark@salutedevices.com> wrote:
+
+> Hello Jerome
+>
+> Thanks for the review
+>
+>
+> On 4/23/24 20:35, Jerome Brunet wrote:
+>> On Tue 23 Apr 2024 at 19:10, George Stark <gnstark@salutedevices.com>
+>> wrote:
+>> 
+>>> From: George Stark <gnstark@sberdevices.ru>
+>>>
+>>> Add a compatible string and configuration for the meson A1 SoC family
+>>> PWM. Additionally, provide an external clock initialization helper
+>>> specifically designed for these PWM IPs.
+>>>
+>>> Signed-off-by: George Stark <gnstark@sberdevices.ru>
+>>> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+>>> ---
+>>>   drivers/pwm/pwm-meson.c | 35 +++++++++++++++++++++++++++++++++++
+>>>   1 file changed, 35 insertions(+)
+>>>
+>>> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+>>> index ea96c5973488..529a541ba7b6 100644
+>>> --- a/drivers/pwm/pwm-meson.c
+>>> +++ b/drivers/pwm/pwm-meson.c
+>>> @@ -462,6 +462,33 @@ static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
+>>>   	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
+>>>   }
+>>>   +static int meson_pwm_init_channels_ext_clock(struct pwm_chip *chip)
+>> That kind on naming (ext) is almost sure to clash with whatever comes
+>> next.
+>> Just use the name of the first SoC using the method, a1 for instance.
+>
+> It's true that pwm core in a1 s4, t7 etc is the same AFAWK.
+> I just want to clarify your proposal:
+> I add a1 compatible to the dt-bindings with s4 as fallback,
+> t7 compatible will be added later in the same way.
+
+If you know t7 is compatible as well, please add it to.
+
+Other people (including from amlogic) have responded to thread around
+the s4 pwm topic. You should probably Cc them of your future submission.
+
+They may help test and review
+
+>
+> Here in the driver I don't mention a1 at all and use s4-centric naming e.g.:
+>
+> {
+> 	.compatible = "amlogic,meson-s4-pwm",
+> 	.data = &pwm_meson_s4_data
+> },
+> static const struct meson_pwm_data pwm_meson_s4_data = {
+> 	.channels_init = meson_pwm_init_channels_s4,
+> };
+>
+> right?
+>
+yes
+
+>>> +{
+>>> +	struct device *dev = pwmchip_parent(chip);
+>>> +	struct meson_pwm *meson = to_meson_pwm(chip);
+>>> +	struct meson_pwm_channel *channels = meson->channels;
+>>> +	struct clk_bulk_data *clks = NULL;
+>>> +	unsigned int i;
+>>> +	int res;
+>>> +
+>>> +	res = devm_clk_bulk_get_all(dev, &clks);
+>>> +	if (res < 0) {
+>>> +		dev_err(dev, "can't get device clocks\n");
+>>> +		return res;
+>>> +	}
+>> I don't think allocating the 'clk_bulk_data *clks' is necessary or safe.
+>> We know exactly how many clocks we expect, there is no need for a get all.
+>> 
+>>> +
+>>> +	if (res != MESON_NUM_PWMS) {
+>>> +		dev_err(dev, "clock count must be %d, got %d\n",
+>>> +			MESON_NUM_PWMS, res);
+>>> +		return -EINVAL;
+>>> +	}
+>> ... and this only catches the problem after the fact.
+>> It is probably convinient but not necessary.
+>> 
+>>> +
+>>> +	for (i = 0; i < MESON_NUM_PWMS; i++)
+>>> +		channels[i].clk = clks[i].clk;
+>> channels[i].clk could be assigned directly of_clk_get() using clock
+>> indexes. No extra allocation needed.
+>
+> if we use of_clk_get then we'll have to free the clock objects in the
+> end. Could we use devm_clk_bulk_get instead?
+
+Add the devm variant of of_clk_get() if you must.
+Use devm_add_action_or_reset() otherwise
+
+>
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>>   static const struct meson_pwm_data pwm_meson8b_data = {
+>>>   	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
+>>>   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
+>>> @@ -500,11 +527,19 @@ static const struct meson_pwm_data pwm_meson8_v2_data = {
+>>>   	.channels_init = meson_pwm_init_channels_meson8b_v2,
+>>>   };
+>>>   +static const struct meson_pwm_data pwm_meson_ext_clock_data = {
+>>> +	.channels_init = meson_pwm_init_channels_ext_clock,
+>>> +};
+>>> +
+>>>   static const struct of_device_id meson_pwm_matches[] = {
+>>>   	{
+>>>   		.compatible = "amlogic,meson8-pwm-v2",
+>>>   		.data = &pwm_meson8_v2_data
+>>>   	},
+>>> +	{
+>>> +		.compatible = "amlogic,meson-a1-pwm",
+>>> +		.data = &pwm_meson_ext_clock_data
+>>> +	},
+>>>   	/* The following compatibles are obsolete */
+>>>   	{
+>>>   		.compatible = "amlogic,meson8b-pwm",
+>> 
+
+
+-- 
+Jerome
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
