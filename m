@@ -4,98 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2984C4345F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Apr 2024 14:29:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E03DAC4345F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Apr 2024 20:01:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fbV9dY0WfTAr88MmiK8c8PRWpzVTMKPKhOU8QrVxdPc=; b=c7mNDBxnsExvUD
-	Kk0xVtKUbvgemHNGW5WhntcMzUO3lOGXxyoyTlW9AAinGpDdCHo70xcv8KT4BP4um7RrE+wMfYOqg
-	QDmOmHEPeZO2mCOd/cF74PteBUCwWYirzeYQUj5a+K2SzIiR/HG9MFB5dAcSCJUKi18egJhEoXrGX
-	VtB2DYzxpYLC/mi7RNM6rgrQ/bOAI2m6uaQBO0PzuS6RqP0vUcvJsTOS0o17YTzGU4OFvVO+rw8yN
-	iKPa9j9dDv+XRk+RGhcOPXr2t5rjmB2PApKDeZuT4ryA/fcbOPBZ69DDpmbcvWUJxrZRKO7nL3MEK
-	8IHdtHYBm1E8jiaHrsZA==;
+	List-Owner; bh=ePMgSR+IW9zomYz4abaBXlPOQsreSO4/CDrAYBlxp7A=; b=I8H9rkaAqcD9g4
+	g9Y/UIAWCKtwh/3KbTuVGMZJG2udobGSEhNOpkKhBfRHpH9HdE4ZiWGbNnQsdpE8ZPYCTPBPBbx7m
+	NlBDMrAK6YuoMnyCtQjqpywEZ3CrmasDV/D63NoQJH0bMJr0FfnQ4e0tZHeCoJRRmYgZBhXlDYGEg
+	met+0YjnDj5nj/rsvWVBiRks/W+eHm8amYRw8K7z2Wjd3cmP/ziH6k160JBod6Ub3mhey1s9HSQmY
+	LFtxyUq6FlZLuQDYE8+z3uwCpNHP4WWiub89vYaHsClN9Fc8GLYf5OjPU80sx4gY/iVVMffVvJuja
+	Bd4pDyQusGqXWCYRFSqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzdci-00000004UIA-1AJ3;
-	Wed, 24 Apr 2024 14:29:24 +0000
-Received: from mgamail.intel.com ([198.175.65.10])
+	id 1rzinq-00000005mpF-3jUm;
+	Wed, 24 Apr 2024 20:01:14 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzdcf-00000004UGc-1xXy;
-	Wed, 24 Apr 2024 14:29:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1713968962; x=1745504962;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WnfZajOmHIFhVo2TmxnugInu6gBY+wQy/yoWHmvGXAc=;
-  b=fjWge50tOh7FB7RT6wnhWGYNS2P1Klulq1gRYr8fUQi9KLUh5DUsPG3g
-   W67XM65GL54vpqrpC7F9NjB3/HLMEqmGyXTp4Um78ZhKrQzIezPnH/sxy
-   NAzZvYbE3iIZiNlbmNiETYrvdqxsoA159nw9NKm/bwVNRPPC4cqvu92Tc
-   8m99JQHGWVcx3QKIC0Li7QxvrR8qsEbThQcKxssXkdgbHDEXuCz1j25vD
-   Eu2UDPrkxf5AayEWSL4pho3Zm7ncSCapfrf0fyW7UB3vjSjie+SwHQwzn
-   YWaJ2N8L4gmPMHmKs5BLvIxpgXwDCXUrMZIuMFUbfLu9Y0lyYRUifNn5i
-   Q==;
-X-CSE-ConnectionGUID: K+GcAwiNTgOsYosgHcuA2A==
-X-CSE-MsgGUID: s0AdveEjRPG+yZP5eQCpIA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="27058530"
-X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; 
-   d="scan'208";a="27058530"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2024 07:29:21 -0700
-X-CSE-ConnectionGUID: C88DltovSWq1GS2a3z6jdw==
-X-CSE-MsgGUID: M1TpDd9ySvC4wXOuBMxm9w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; 
-   d="scan'208";a="29366565"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2024 07:29:14 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rzdcU-00000000fvA-0mQd;
-	Wed, 24 Apr 2024 17:29:10 +0300
-Date: Wed, 24 Apr 2024 17:29:09 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: kernel test robot <lkp@intel.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-amlogic@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org,
-	llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Yue Wang <yue.wang@amlogic.com>,
+	id 1rzinn-00000005mml-1OOd;
+	Wed, 24 Apr 2024 20:01:12 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 9F8116197C;
+	Wed, 24 Apr 2024 20:01:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23667C2BD10;
+	Wed, 24 Apr 2024 20:01:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713988870;
+	bh=pZJnhrqBEUNU8L74CRDodYNAWKN1FAjVYMm8hIp5g1U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Q9U15ByIAFQBGd9skRQXTyRyW8pnoJsycZmxyPQe7bt/nQeOsflcdAiEPhRpZDlXd
+	 NtAydSRRHY8MVh7kbicsB+D3eDn0yNiHvRhOdw187BP3/xgCZ3p5ZjCUHHyxjWkPGk
+	 zoFr2Yk1jPynaSWrG7jBXSsfwnce/TggQhRrGbyPKXhQlTSGieK2Liyi+dWaRLFTKr
+	 RAWT63JHPJ0340sl5u5sGkcXHaoy7QKRMZIpWm2oGp2erKM3q15g2bkazjDMSbpp+W
+	 DTBH6DsPDHLXpEs57VIKXzX/EVdk6mYn09uvrZlbW0Os3QTzRdhfTC4PX4ciybMn19
+	 ENt4PklHwh9cg==
+Date: Wed, 24 Apr 2024 15:01:07 -0500
+From: Rob Herring <robh@kernel.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Xiaowei Song <songxiaowei@hisilicon.com>
-Subject: Re: [PATCH v2 2/4] PCI: dwc: Remove unused of_gpio.h
-Message-ID: <ZikXNX_RZJWRso4d@smile.fi.intel.com>
-References: <20240423172208.2723892-3-andriy.shevchenko@linux.intel.com>
- <202404240649.QgY8lto8-lkp@intel.com>
- <ZikT0lWPOQD3uuH0@smile.fi.intel.com>
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Chuan Liu <chuan.liu@amlogic.com>
+Subject: Re: [PATCH v7 5/5] clk: meson: c3: add c3 clock peripherals
+ controller driver
+Message-ID: <20240424200107.GA372179-robh@kernel.org>
+References: <20240424050928.1997820-1-xianwei.zhao@amlogic.com>
+ <20240424050928.1997820-6-xianwei.zhao@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <ZikT0lWPOQD3uuH0@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20240424050928.1997820-6-xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240424_072921_602353_8CC038F6 
-X-CRM114-Status: GOOD (  18.20  )
+X-CRM114-CacheID: sfid-20240424_130111_540930_02827220 
+X-CRM114-Status: GOOD (  20.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,45 +82,85 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Apr 24, 2024 at 05:14:43PM +0300, Andy Shevchenko wrote:
-> On Wed, Apr 24, 2024 at 06:51:05AM +0800, kernel test robot wrote:
-> > Hi Andy,
-> > 
-> > kernel test robot noticed the following build errors:
-> > 
-> > [auto build test ERROR on pci/next]
-> > [also build test ERROR on pci/for-linus mani-mhi/mhi-next linus/master v6.9-rc5 next-20240423]
-> > [If your patch is applied to the wrong git tree, kindly drop us a note.
-> > And when submitting patch, we suggest to use '--base' as documented in
-> > https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> > 
-> > url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Shevchenko/PCI-aardvark-Remove-unused-of_gpio-h/20240424-012448
-> > base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-> > patch link:    https://lore.kernel.org/r/20240423172208.2723892-3-andriy.shevchenko%40linux.intel.com
-> > patch subject: [PATCH v2 2/4] PCI: dwc: Remove unused of_gpio.h
-> > config: arm-defconfig (https://download.01.org/0day-ci/archive/20240424/202404240649.QgY8lto8-lkp@intel.com/config)
-> > compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project.git f28c006a5895fc0e329fe15fead81e37457cb1d1)
-> > reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240424/202404240649.QgY8lto8-lkp@intel.com/reproduce)
-> > 
-> > If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> > the same patch/commit), kindly add following tags
-> > | Reported-by: kernel test robot <lkp@intel.com>
-> > | Closes: https://lore.kernel.org/oe-kbuild-all/202404240649.QgY8lto8-lkp@intel.com/
-> > 
-> > All errors (new ones prefixed by >>):
+On Wed, Apr 24, 2024 at 01:09:28PM +0800, Xianwei Zhao wrote:
+> Add the C3 peripherals clock controller driver in the C3 SoC family.
 > 
-> Right, I need to add a chained_irq.h which I have in a separate patch for now.
+> Co-developed-by: Chuan Liu <chuan.liu@amlogic.com>
+> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  drivers/clk/meson/Kconfig          |   15 +
+>  drivers/clk/meson/Makefile         |    1 +
+>  drivers/clk/meson/c3-peripherals.c | 2366 ++++++++++++++++++++++++++++
+>  3 files changed, 2382 insertions(+)
+>  create mode 100644 drivers/clk/meson/c3-peripherals.c
+> 
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index 9f975a980581..0b85d584910e 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -142,6 +142,21 @@ config COMMON_CLK_C3_PLL
+>  	  AKA C3. Say Y if you want the board to work, because PLLs are the parent
+>  	  of most peripherals.
+>  
+> +config COMMON_CLK_C3_PERIPHERALS
+> +	tristate "Amlogic C3 peripherals clock controller"
+> +	depends on ARM64
+> +	depends on ARM_SCMI_PROTOCOL
 
-This is here
-20240423211817.3995488-1-andriy.shevchenko@linux.intel.com
+I may have missed it, but I don't see the dependency on SCMI in this 
+driver.
 
-Which should be applied before this one.
+> +	depends on COMMON_CLK_SCMI
+> +	depends on COMMON_CLK_C3_PLL
+> +	default y
+> +	select COMMON_CLK_MESON_REGMAP
+> +	select COMMON_CLK_MESON_DUALDIV
+> +	select COMMON_CLK_MESON_CLKC_UTILS
+> +	help
+> +	  Support for the Peripherals clock controller on Amlogic C302X and
+> +	  C308L devices, AKA C3. Say Y if you want the peripherals clock to
+> +	  work.
+> +
+>  config COMMON_CLK_G12A
+>  	tristate "G12 and SM1 SoC clock controllers support"
+>  	depends on ARM64
+> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+> index 4420af628b31..20ad9482c892 100644
+> --- a/drivers/clk/meson/Makefile
+> +++ b/drivers/clk/meson/Makefile
+> @@ -20,6 +20,7 @@ obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
+>  obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
+>  obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
+>  obj-$(CONFIG_COMMON_CLK_C3_PLL) += c3-pll.o
+> +obj-$(CONFIG_COMMON_CLK_C3_PERIPHERALS) += c3-peripherals.o
+>  obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
+> diff --git a/drivers/clk/meson/c3-peripherals.c b/drivers/clk/meson/c3-peripherals.c
+> new file mode 100644
+> index 000000000000..0f834ced0ee9
+> --- /dev/null
+> +++ b/drivers/clk/meson/c3-peripherals.c
+> @@ -0,0 +1,2366 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Amlogic C3 Peripherals Clock Controller Driver
+> + *
+> + * Copyright (c) 2023 Amlogic, inc.
+> + * Author: Chuan Liu <chuan.liu@amlogic.com>
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/of_device.h>
 
--- 
-With Best Regards,
-Andy Shevchenko
+I don't think you need this header.
 
-
+> +#include <linux/platform_device.h>
+> +#include "clk-regmap.h"
+> +#include "clk-dualdiv.h"
+> +#include "meson-clkc-utils.h"
+> +#include <dt-bindings/clock/amlogic,c3-peripherals-clkc.h>
 
 _______________________________________________
 linux-amlogic mailing list
