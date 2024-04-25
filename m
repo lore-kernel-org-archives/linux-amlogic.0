@@ -4,167 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F084AC10F1A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Apr 2024 06:29:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78371C4345F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Apr 2024 17:13:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=M8W/X60kx9vNVSBm+idkCTyJzFd+ZK9ALl2HGl2PWzE=; b=TItA7b7uWgd6HuE7kofouM+fFu
-	kY9VRtiCWYQmdU0lCXdnJh9wKwQWC3UgK5ejYrlzc3TpFAIxKKZ7Al86/FNI5TsXAozbeBcSyXDJb
-	pvezjOuhUnkKxNFwHLa+S5BwZiZQOx5QzTcJE78Pcwzf+1TOBx1QdZqI0WwDc+VPzKsC5ztIkiFEa
-	PdiMOkRdq4ET2202mjEwg2kA8sCor8+SlyYmAmE6FYCiYNNqiNaXTcVxfaOYMWWdVYPInBIDETcJY
-	a8e1PuS/kEAoz1u6VVHn/eO5xETfC1kfPpXHkvvd2y3QIIGDHYagk2H7gBQS23wgsie9F1irlSKeS
-	2UFdj2JA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=q8zow6U0WszoI6W+s1JLeDFrG9rksZfCxm/nTlhmJWg=; b=3anqdtonwPHiV2
+	b1tcFPIp7kvKI1P/y+4AZOt4S8PIC6umSoQ5toIR+C4RcCEApYlTkGxFY6p9spGeSqDk4cvWYw+eN
+	dRLjcwkoj1LA4p9nGq/3HF6iCokwwEve0KVMhZs5vboFiKGII9iLCywYeNKakQMCV9Bily/TBk0xY
+	NRTXC8DtzDBwRXTSIBcY08ybOrIzyZa2UNe/mdlDF7tvqQVotfPOM4BJ+cpPead8i/19hIoVKgctA
+	D2+RN4p/KmJWUPM9zGsMx0b7F1AJ21VZO4Iw0kbiryXj7SDdlNPRNNttHeEUrmlpyW+IEPPdbK23A
+	eEbH251+CGUVbEHL0Muw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzsbA-000000078Vp-2GEN;
-	Thu, 25 Apr 2024 06:28:48 +0000
-Received: from mail-psaapc01on2071c.outbound.protection.outlook.com ([2a01:111:f400:feae::71c] helo=APC01-PSA-obe.outbound.protection.outlook.com)
+	id 1s02em-00000009XOc-2c4n;
+	Thu, 25 Apr 2024 17:13:12 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzsb7-000000078U0-1eA1;
-	Thu, 25 Apr 2024 06:28:46 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TqQbqK/Nj1SpfS5naA/5OcwrGIGI/9TmbfNb5dTaOXoDDUNNdypZOMdWZujsvubR+WS3KF0jna7rq0/f1yjysGJ+KzK1Kk56De/lNpj/WaBTjHdnBR5Y581zjYWPj4c9uLWLQZVmXb8muKWkZgqBuVFIgR1KgjiLwDwe3+5PzoDU1VTBhqEIe3WhLhcBzPg+3rPfTkwN/XND7n/EkYj9kbH4Cv16DC2TFUs2eI7RtPsTND+tDqdBUQx5+Y2dr20WcRCE6T3X+qo48kYaA+2FJxUd5wDaumEIb7duk1V/PT+kVV1NCiFUf2MEsg4+Gzippumgk4gtOQHsNf+XFNbuqA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+4I+htJ0sWB6j5qPI4BTJL5RfnU2oduo5QELRVQOB/U=;
- b=Y0pkaM4nXOeLF6QZ42bwoVjn8ZiV3bdFPYG04O7M22n4oQycVdFAqbCyvBFby9SbOzWV+vBeKUyVEQ8lQggLZINw4bn7RSFgN9HEnGA9Gp0fpUg2E8jF7Thl/x2ZKMVroSC/wGW2G13FZjJBsQq9nRSqC/sjWtbPFSfXp6Rc/uILBiJhSrcRHVHaDHqo6d9svan4UxC/6I1nnQbVCEMo0d1gtNNQgDqAekQxdPUAbsvsfH7zUeexsu8LBUN2Jf8iMnwWSVZ6jpCeuz/07cPSozVJp6hWriEM0vT5djNSu+qN5av0QySIvsG5supzaYhCyhd2s9vZMQus9UR414uPIg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+4I+htJ0sWB6j5qPI4BTJL5RfnU2oduo5QELRVQOB/U=;
- b=CHpSNlxZU1b4DZf0BgnC7fYEWB1bgjb0sdhKyolwojVmKunVkqmzyO4MwrAiD7h+43kOV3AYZtZb8l/qezcqxbd8BZbKVRwXJQ4Inmqeezqqm2StjHZu6eRWpr6eY4CHvJW2ZVQGyqVyUm8eAEcuHB/14BSzqJeYXAOg1Q/78j/DSJw2z1MpoAMmT636kkh5SiYDkjCdnGrDjBuCfC9zJ/1GB93OYkb4NPZlBWaLbmcFVlu1IfeWjhh/OnNKBB00ttVfsfQN+EstjVZ/okgGoazNO2IkWXHE0SK8w8x6+RhTKPrneX4w3gvNSFaVxI1exWCol5g+oDuBzW530pF12A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by JH0PR03MB8639.apcprd03.prod.outlook.com (2603:1096:990:8e::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Thu, 25 Apr
- 2024 06:28:33 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::f4ff:211b:7c34:16c8]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::f4ff:211b:7c34:16c8%6]) with mapi id 15.20.7544.008; Thu, 25 Apr 2024
- 06:28:33 +0000
-Message-ID: <9a9ab302-5da5-47bb-85f1-d2295fa9f8c9@amlogic.com>
-Date: Thu, 25 Apr 2024 14:28:27 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 5/5] clk: meson: c3: add c3 clock peripherals
- controller driver
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Chuan Liu <chuan.liu@amlogic.com>
-References: <20240424050928.1997820-1-xianwei.zhao@amlogic.com>
- <20240424050928.1997820-6-xianwei.zhao@amlogic.com>
- <20240424200107.GA372179-robh@kernel.org>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <20240424200107.GA372179-robh@kernel.org>
-X-ClientProxiedBy: TYAPR01CA0162.jpnprd01.prod.outlook.com
- (2603:1096:404:7e::30) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+	id 1s02ei-00000009XKX-2o55;
+	Thu, 25 Apr 2024 17:13:11 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 2D2E512000B;
+	Thu, 25 Apr 2024 20:13:01 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2D2E512000B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1714065181;
+	bh=CJqJH6Aem+/Zgl9mTPvkSpY22mVAhX57+bi5i0Gt8yo=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=uDRWWGvrKFm3INDbb3i4wRym37hwu3R1vuirLTjgbAtvFZCqcNueMfBLFc7wXVI94
+	 bTZiVb4NfVLeqIWN0jKqx3/9BCbFmXYg6mqyp+2TQRtsAEe0iVcEet/cKVBAHYXLDg
+	 uj+1+c4RcHcO7AzsTRNGR46T9zD8i2LmyLsrvqwIUH+Ng1+q/PmimH2dXoS6SNaZ+G
+	 6iQRBHnJAMz3nQkMlBmwor8215SzYdHpQid3SANpDs0ZNHmewG6wVXBN8EHOdMIZWy
+	 xnYJN5g7Q5FAv1lOMPMcQVQ0Wn7skYI0fiI4SSogQTkw5T7iL1G7jquu2ihmFU9wk8
+	 JBgUN5tp7IZZw==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu, 25 Apr 2024 20:13:00 +0300 (MSK)
+Received: from work.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 25 Apr 2024 20:13:00 +0300
+From: George Stark <gnstark@salutedevices.com>
+To: <u.kleine-koenig@pengutronix.de>, <neil.armstrong@linaro.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <thierry.reding@gmail.com>,
+	<hkallweit1@gmail.com>
+CC: <linux-pwm@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<kernel@salutedevices.com>, George Stark <gnstark@salutedevices.com>, Dmitry
+ Rokosov <ddrokosov@salutedevices.com>
+Subject: [PATCH v3 1/3] pwm: meson: Drop unneeded check in .get_state()
+Date: Thu, 25 Apr 2024 20:12:51 +0300
+Message-ID: <20240425171253.2752877-2-gnstark@salutedevices.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240425171253.2752877-1-gnstark@salutedevices.com>
+References: <20240425171253.2752877-1-gnstark@salutedevices.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|JH0PR03MB8639:EE_
-X-MS-Office365-Filtering-Correlation-Id: b3016ab3-4aac-40b8-413b-08dc64f0ee3c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YzlkTGlZMlhTeGMzSUw0TXN0VzJLY0ttZGNXYy8razNhT0lwQXUwYmQ0Z0c2?=
- =?utf-8?B?dTEvQ1lQM2ZnajhNY2U3K1RHbG9HYUg1M1VaWURWdWI4LzNRbUN6Njh5NlU5?=
- =?utf-8?B?YUhGaUxHbisyaytlZHR1am92U3g2bytBNU5uQ2J2TUJkd3dmR1hZNXFPbkZZ?=
- =?utf-8?B?UWV0SkZlOUFJUUlZdkpZblhSL1BHOUR5OFJIVFU5a1R6b1pvUzZNNW9DQ3Zk?=
- =?utf-8?B?b0g4dXhRNlMxMzlUTmkwdDNBcnNCem9oMVB5STIwL0JQYVY0KzF1dWswdC82?=
- =?utf-8?B?OXdTUThrS3MrV29MUm85dkFGQUhYZFdpQkZueVF2a3ZyWFdiYWFCeHdKSjhF?=
- =?utf-8?B?SUNtaURYNGJFcnJSaTdtdXlOd1k5VmdKSWhZdHZlcWlySDUxZ210WTJ3cWdF?=
- =?utf-8?B?eWZFT3pVU1E5YVJab0g4ZzhDNHdGR1hxYmRLL1NtUGZHbGpQRHQ5NCtLb0pM?=
- =?utf-8?B?OFBUaTArSG5wUG1xcjAvVkZhb0hHZVREV2pnbDYrWUFzUkc2MGpNc2RyaG1Y?=
- =?utf-8?B?S0RqaFFlT3h1c0tNQk1jRDRjM2ZBZG9weG1qcTdnUGFNM29idmFNRVNGSVZK?=
- =?utf-8?B?YkFrdmt2OXdKK0pOdFBFZWZRM2k1R2NYNnQ0Tmc0TkVVWWhhY2xTVkFKMldB?=
- =?utf-8?B?Y0RDbjQxTmx2V1M0WlBySVRGNkJpNVhUdW0vNi9UbytTR2M3SFQxSnUzdWFs?=
- =?utf-8?B?aWhSOUxWcE1nOS9OeC8zMmZiZkpQcCs2QTM4bllROE9qT2xScHZCNXZYb05Y?=
- =?utf-8?B?NmZuU0VFa0hZNzY5V2lPMU45Tmd0L3ZXTXFJblpkdC92OVdzeGFEUFJ0MGJ5?=
- =?utf-8?B?MnpaZTVvRFZOUzQyaHI1TzhsZmwxdGdqQ3N4SmI1U3pkWEJLenZhZUdPVHYw?=
- =?utf-8?B?VXNPK0t4bmlOQ3R4SWpHTXpvRU9EZHA4TVBLYkYrNHVTZWcwdjNFd3g0OTVj?=
- =?utf-8?B?L1lrTWdVQmVNSVlOWk1HbXVTZVdoUG5vN1ZBUFBUR1VvcThGY0x6UTFFaitu?=
- =?utf-8?B?V3BncjhQcTV6NE9JMUNub0hzbzMwekZoRW5oRlNDN2t4dVZCOE8rZEtwOFA5?=
- =?utf-8?B?UEI0aldlNFZhU2Q1ZkJXL1NhMkU2ZFlhTkdoVnlQb1o2eEhkYTVUdGV6N1RV?=
- =?utf-8?B?a0RWOTlXSnptQVVnemJyYXp3RnpuYWVER0ZXNThDeURoM0NEOUg2M2RETFpM?=
- =?utf-8?B?ZzNXNjVQVjVHTkdObDRISlQ3N1FqWnJkOFBhK24ydVQ0Um5hL20vZUFuRmJE?=
- =?utf-8?B?V1AxQ1dNdWxZdWJORGdLMHZka0ZZOWFFZWpTQnhhUHZhSnp4Z0svMndtTEU3?=
- =?utf-8?B?U0FNeXRNZnhkSkp5eWV4ZDB1VkZmbit4bEJMY1VmUkpaRllXeW0rc0pWVHdq?=
- =?utf-8?B?ZWFycDc1eVk1VHZCakcxZE1QY2I4S2FIL2tSYmZYNVFOTWpxMDdVOTdoVXkw?=
- =?utf-8?B?eDliby9Md3Nxa3pMRTVaNU5XUktKUEJhQTZyTlFFdit3U2dJTUZlTDl4RVJI?=
- =?utf-8?B?SmJZbmRiSkNnNmJRdU5oVjl1M1doMlVIYkRTOUttcnl6TWRnQVZITVQza2pQ?=
- =?utf-8?B?K0Zjci8zZVJ3N3FiK2E4QWVPN09CdW5qeSsxcVVhcktKNkFwVXdEUTNEYWlK?=
- =?utf-8?B?WkhlR0hnMFVHY0xVR1Q1eWl3MjN0T0ozQXN4NldUSUIzaVNaeXBwQ09MMnBU?=
- =?utf-8?B?clRacDI1WThRWUs5ZS9tdGY2VmNGVnloNzd5SzhJSmIxZTVWYjJIdUd3PT0=?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(366007)(376005)(7416005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Sm9zNi80QkNiRjNKdkZWK2NqRGVLais4OGJHd1RUOU8rb2RkZWhMYUJxcld2?=
- =?utf-8?B?SVFkVndqWlB6ei9IN1B2Q0N6L1ZBZDFEYWlIYzhyL2NGMi9hTElkTVloZ2VC?=
- =?utf-8?B?bWljRjdrV2sxNjcwZ3BFQmFtTlE4ZG04NXVCTDRWblF4clduekp4dUpESGZV?=
- =?utf-8?B?YmFJWUZqdkFiNHRWZDdMcURybmV5SW1UL09DZlkrWjEwakFxdmpQVmhxRGNj?=
- =?utf-8?B?YW5yTHd1ampxd3oyZHdkSVUxdFRRZk1qMFJ3RGJNajBTNlpnd3l4SER5NUtk?=
- =?utf-8?B?SGhkTzBUWHNrbVNoYzBiK2tiajlma1NNQXAzNzRoR0hXUnE1dUMrbkNEUklB?=
- =?utf-8?B?dW05dWJZTERRZ3JhRzZjNDFyblQxNGRFNXFHemJ3QkJrL2VpU3NRbG5hLytS?=
- =?utf-8?B?ZW13Y01xVDNxSVQ5dHhsbmFYYVVCMFpFWmo0Nzdaeks0YTM0dmFHajlDVS9V?=
- =?utf-8?B?aEJLd1YrSTV2NGRqWlNIcG12YWJwSXArZUJZYUU4djY2NjBwRnp2a3FSMitL?=
- =?utf-8?B?dTV2Ums2djZsV2YwNVhScmdVdWFJdkRhc2Z5c2VNd29NR0hWRWFRRVdZM0t2?=
- =?utf-8?B?VFlvY3JDTUFCWHpWVk5MZm1VMHBETUJUckJ3M2FVdzBrU04xdnh3QWNGYjhz?=
- =?utf-8?B?Q0w5QkZpN00vQmhsQzFQdVMvMDVSc2kvNDg5MjRYREtyTjBHVHpENm0yVTRW?=
- =?utf-8?B?eFpUQTJlOXdUNitIdnpHS05MNkhxYVcvVjRocEJVVENwRlF5QTIvTXMyOXJX?=
- =?utf-8?B?bEtNYVhwZHQzZ3QrNDY2cUVsM3YwTkllcXRWSjA1QmZmS2NVeVJhZVBUa0pi?=
- =?utf-8?B?QzFScGd5UnlHbXlxbWFwMi9IYmZMTGpOVS85ZURjeEczbGVOazRUNW9MMGY2?=
- =?utf-8?B?eWI0bklYbUFKeEdIaFZkZEFyVktUdW8rTUZjL0hzK2g4VGc3OE1jNDFZOFg2?=
- =?utf-8?B?Zm1wNFhvWnUrSWcvM29CcHFCU2dPdm1vM2gvTHh4Um8vc2pSQlJ6cHRDalpu?=
- =?utf-8?B?d0ZJQlVMOGpLRTJvSGh3TVJGUndvWjF5OEpYNWJrQ21QRlpCLzBKNHJONjVz?=
- =?utf-8?B?RmRTTHZLQmszWFcrUGVUN1NKNzRITlczOUZJc01VTGY0aUZsY1F0dFNJZFIr?=
- =?utf-8?B?ZENUTzNWNzRLU0ZnOHhsT0c3KzJPL0c2eS9xd1RJMW5Ld3lTNmwvWjJ2WG53?=
- =?utf-8?B?alIvWU5oUWV6WjNpVzRVRnI5Y2JWMFVDdlMyVWIrdkdkb2xIdmhwWUdLa1BQ?=
- =?utf-8?B?RW44RnhkVnIzam4zMSt0NEJOS2U4QmM0b1hyTlhRNkJmZ2ttYkE5MVp3ZVZ0?=
- =?utf-8?B?c01WaURZVW5TQ3cxTERlZzhxR1JVcTYvQjJlMmpjdG1uL1VCLzhsZm0raTNo?=
- =?utf-8?B?Y2N5L0QzWGxqdlpxZHFYSWNlNElTWjl1aHF0M1JyTXZHUEkxcmpHK3V3ZlU1?=
- =?utf-8?B?MmtiVW1oTkpQYjgraXhBTTlleXFTeWRZb0hHMXdsODkrV1lvTTZ6UENZcGxm?=
- =?utf-8?B?T0VwdlI3cTlYUEQvaVIxSUV0VDBHT3ZJT25kZTNlMkhtWkpGK0draFZBSlF6?=
- =?utf-8?B?RlcvdlMzUVllYjRXcGlkemdHdzFrcTFTbnZoWGZRaVk2SWZXcEVWeDkyMldH?=
- =?utf-8?B?MmFBdzBHQ1lkbzJyVnBJb1NCYncrNHFqbWczN254Qm50SjVDKzVNQlBqcllu?=
- =?utf-8?B?b1dFM3JWbEtxbTV3Z0V2STV5TEpkTVlwTlAzOE5ZaFhpOEplUFZQTjYvSEpI?=
- =?utf-8?B?c2QzL2VxU0RDRGJJd0pDbHdGd2Z2bmozYXN2WDY1NVlkNGdhUm8vU0t0NHVw?=
- =?utf-8?B?a3dPQWRjS2N1eGQzUWFvR1lDRkEyL2FxYXRqcThLKzA0Z21HWDB4WjRWbzFP?=
- =?utf-8?B?OXgzS3lVN2dpZDl1aWVRMW93eXJjVzZzaWw1VUZobU5OZVRYV25mcENraE1S?=
- =?utf-8?B?NFF1OGRRWnFFQU8vb1BSeEhnVENacnB5eHlpeWVUMERrKzhBWGJ4QU50RVl1?=
- =?utf-8?B?dmM0K09Eckt4K0RYdE4zaXllSTEweGxHUWN2ZlhzTDRybGRUcFZSQUxabGhI?=
- =?utf-8?B?alduKzVVbkFUSmhnMlVmNnR2dldyV1QyQTJaSUkvWjNBQnlqRVlMNjFmQnFO?=
- =?utf-8?B?S24wSjFvY3F5T09FNXRuYWRBdFVodGR0aGo0VFBlekdQUStHa3E1OVJ4MjFU?=
- =?utf-8?B?ZXc9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3016ab3-4aac-40b8-413b-08dc64f0ee3c
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2024 06:28:33.2668
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2Dz2r8mZf8JnZLa2IRlRzsPWJPNuZq8er+PYOrCnv93HhayA4uX1dEPmO3KPiCVQJc/aH7oYGmPukxsUOz7hifiLn2e0o/NnpYf88+YMP/w=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB8639
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 184930 [Apr 25 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 18 0.3.18 b9d6ada76958f07c6a68617a7ac8df800bc4166c, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/25 14:02:00 #24969020
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240424_232845_491659_C1053245 
-X-CRM114-Status: GOOD (  19.09  )
+X-CRM114-CacheID: sfid-20240425_101309_422198_09375C46 
+X-CRM114-Status: GOOD (  10.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -176,104 +98,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Rob,
-    Thanks for your review.
+Drop checking state argument for NULL pointer in meson_pwm_get_state()
+due to it is called only from pwm core with always valid arguments.
 
-On 2024/4/25 04:01, Rob Herring wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On Wed, Apr 24, 2024 at 01:09:28PM +0800, Xianwei Zhao wrote:
->> Add the C3 peripherals clock controller driver in the C3 SoC family.
->>
->> Co-developed-by: Chuan Liu <chuan.liu@amlogic.com>
->> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
->> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> ---
->>   drivers/clk/meson/Kconfig          |   15 +
->>   drivers/clk/meson/Makefile         |    1 +
->>   drivers/clk/meson/c3-peripherals.c | 2366 ++++++++++++++++++++++++++++
->>   3 files changed, 2382 insertions(+)
->>   create mode 100644 drivers/clk/meson/c3-peripherals.c
->>
->> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
->> index 9f975a980581..0b85d584910e 100644
->> --- a/drivers/clk/meson/Kconfig
->> +++ b/drivers/clk/meson/Kconfig
->> @@ -142,6 +142,21 @@ config COMMON_CLK_C3_PLL
->>          AKA C3. Say Y if you want the board to work, because PLLs are the parent
->>          of most peripherals.
->>
->> +config COMMON_CLK_C3_PERIPHERALS
->> +     tristate "Amlogic C3 peripherals clock controller"
->> +     depends on ARM64
->> +     depends on ARM_SCMI_PROTOCOL
-> 
-> I may have missed it, but I don't see the dependency on SCMI in this
-> driver.
-> 
+Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Signed-off-by: George Stark <gnstark@salutedevices.com>
+---
+ drivers/pwm/pwm-meson.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-Some clock sources for peripherals controller from SCMI module.
-In previous version, Jerome suggest us the clock  that relevant 
-registers can only be accessed securely is implemented through SCMI.
+diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+index ea96c5973488..f4d70da621ec 100644
+--- a/drivers/pwm/pwm-meson.c
++++ b/drivers/pwm/pwm-meson.c
+@@ -311,9 +311,6 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+ 	struct meson_pwm_channel *channel;
+ 	u32 value;
+ 
+-	if (!state)
+-		return 0;
+-
+ 	channel = &meson->channels[pwm->hwpwm];
+ 	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
+ 
+-- 
+2.25.1
 
->> +     depends on COMMON_CLK_SCMI
->> +     depends on COMMON_CLK_C3_PLL
->> +     default y
->> +     select COMMON_CLK_MESON_REGMAP
->> +     select COMMON_CLK_MESON_DUALDIV
->> +     select COMMON_CLK_MESON_CLKC_UTILS
->> +     help
->> +       Support for the Peripherals clock controller on Amlogic C302X and
->> +       C308L devices, AKA C3. Say Y if you want the peripherals clock to
->> +       work.
->> +
->>   config COMMON_CLK_G12A
->>        tristate "G12 and SM1 SoC clock controllers support"
->>        depends on ARM64
->> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
->> index 4420af628b31..20ad9482c892 100644
->> --- a/drivers/clk/meson/Makefile
->> +++ b/drivers/clk/meson/Makefile
->> @@ -20,6 +20,7 @@ obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
->>   obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
->>   obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
->>   obj-$(CONFIG_COMMON_CLK_C3_PLL) += c3-pll.o
->> +obj-$(CONFIG_COMMON_CLK_C3_PERIPHERALS) += c3-peripherals.o
->>   obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
->>   obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
->>   obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
->> diff --git a/drivers/clk/meson/c3-peripherals.c b/drivers/clk/meson/c3-peripherals.c
->> new file mode 100644
->> index 000000000000..0f834ced0ee9
->> --- /dev/null
->> +++ b/drivers/clk/meson/c3-peripherals.c
->> @@ -0,0 +1,2366 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Amlogic C3 Peripherals Clock Controller Driver
->> + *
->> + * Copyright (c) 2023 Amlogic, inc.
->> + * Author: Chuan Liu <chuan.liu@amlogic.com>
->> + */
->> +
->> +#include <linux/clk-provider.h>
->> +#include <linux/of_device.h>
-> 
-> I don't think you need this header.
-> 
-
-Yes, I will fix it with c3-pll.c.
-
->> +#include <linux/platform_device.h>
->> +#include "clk-regmap.h"
->> +#include "clk-dualdiv.h"
->> +#include "meson-clkc-utils.h"
->> +#include <dt-bindings/clock/amlogic,c3-peripherals-clkc.h>
 
 _______________________________________________
 linux-amlogic mailing list
