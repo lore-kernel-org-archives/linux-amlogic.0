@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78371C4345F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Apr 2024 17:13:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DCB5C19F4E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Apr 2024 17:13:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=q8zow6U0WszoI6W+s1JLeDFrG9rksZfCxm/nTlhmJWg=; b=3anqdtonwPHiV2
-	b1tcFPIp7kvKI1P/y+4AZOt4S8PIC6umSoQ5toIR+C4RcCEApYlTkGxFY6p9spGeSqDk4cvWYw+eN
-	dRLjcwkoj1LA4p9nGq/3HF6iCokwwEve0KVMhZs5vboFiKGII9iLCywYeNKakQMCV9Bily/TBk0xY
-	NRTXC8DtzDBwRXTSIBcY08ybOrIzyZa2UNe/mdlDF7tvqQVotfPOM4BJ+cpPead8i/19hIoVKgctA
-	D2+RN4p/KmJWUPM9zGsMx0b7F1AJ21VZO4Iw0kbiryXj7SDdlNPRNNttHeEUrmlpyW+IEPPdbK23A
-	eEbH251+CGUVbEHL0Muw==;
+	List-Owner; bh=eiGZkEKHO5zIIrJar1Sjm+tB0PJEmt2WDZmkPSgXdB8=; b=cX8oB3zSqautCr
+	et1n0V1wlubIRhBbVjQPPJeqK8z/nvtM1Dg2ROKhVHNIKMpaSGsSjCvysZk2PY8g0arh4f38NKxWI
+	FETYbVmAU+xyRQB3i/jyznkG2UGSWPZ0SWPCi7fFPW4RjK4/tW1qaiOQEj0I7yUn6znxLSBqbiwtG
+	ywJdiMSiuDRh+ZNYBR5NVMbZ6bx4L0afzs2f/Goy0vmL7vYITfZCJvjsrSuVhZVFkcnPeBtmj6SXI
+	H0fKrBQ4OxI4P5BO/zddqgG65t1W98834+cPRXVXQZiuW3cn6KapKfZvPD8xxMD1/3zEl34ScEQ4l
+	6/u8Wt1IqjESyUf+XMww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s02em-00000009XOc-2c4n;
-	Thu, 25 Apr 2024 17:13:12 +0000
+	id 1s02en-00000009XOp-0dyj;
+	Thu, 25 Apr 2024 17:13:13 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s02ei-00000009XKX-2o55;
+	id 1s02ei-00000009XKW-2pzm;
 	Thu, 25 Apr 2024 17:13:11 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 2D2E512000B;
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 873B312000C;
 	Thu, 25 Apr 2024 20:13:01 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2D2E512000B
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 873B312000C
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
 	s=mail; t=1714065181;
-	bh=CJqJH6Aem+/Zgl9mTPvkSpY22mVAhX57+bi5i0Gt8yo=;
+	bh=JVrgXdX8kamEaJvltEQAZzfNIWpOQgobLePARW6BHyw=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=uDRWWGvrKFm3INDbb3i4wRym37hwu3R1vuirLTjgbAtvFZCqcNueMfBLFc7wXVI94
-	 bTZiVb4NfVLeqIWN0jKqx3/9BCbFmXYg6mqyp+2TQRtsAEe0iVcEet/cKVBAHYXLDg
-	 uj+1+c4RcHcO7AzsTRNGR46T9zD8i2LmyLsrvqwIUH+Ng1+q/PmimH2dXoS6SNaZ+G
-	 6iQRBHnJAMz3nQkMlBmwor8215SzYdHpQid3SANpDs0ZNHmewG6wVXBN8EHOdMIZWy
-	 xnYJN5g7Q5FAv1lOMPMcQVQ0Wn7skYI0fiI4SSogQTkw5T7iL1G7jquu2ihmFU9wk8
-	 JBgUN5tp7IZZw==
+	b=hacgZigGhvKMoaRiuJ83hvQiZTCQVWAhgAxc1glqBPpO9++CICyrJuodgqWxYRKMT
+	 M7kMt3bWzI/3qPgbuycHhk/Kzl4IbaDc81tsTXfMoqhIqzl/h5LvpVA9h40mKLA3CI
+	 +pzXh1ik+29My4jDStWMcCTVoNIcLfd7B//NXoJSIjRWEv5kJard8cZkSAo8CYDkeF
+	 PnwBCSLp6H0NmDA4y58qosiEed6bzLRr8KmB/L1M0FEJ7ITYuQUDeYqYExcclKvJkp
+	 4eqWJr7GxzgFbNxft8IoTZeVpz7S4TEGRhr7qli0bV10zyva2ylgBZSRn8lIn/lsBZ
+	 8yBDx/Pl4IoPA==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu, 25 Apr 2024 20:13:00 +0300 (MSK)
+	Thu, 25 Apr 2024 20:13:01 +0300 (MSK)
 Received: from work.sberdevices.ru (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
@@ -58,9 +58,9 @@ CC: <linux-pwm@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
 	<kernel@salutedevices.com>, George Stark <gnstark@salutedevices.com>, Dmitry
  Rokosov <ddrokosov@salutedevices.com>
-Subject: [PATCH v3 1/3] pwm: meson: Drop unneeded check in .get_state()
-Date: Thu, 25 Apr 2024 20:12:51 +0300
-Message-ID: <20240425171253.2752877-2-gnstark@salutedevices.com>
+Subject: [PATCH v3 2/3] pwm: meson: Add check for error from clk_round_rate()
+Date: Thu, 25 Apr 2024 20:12:52 +0300
+Message-ID: <20240425171253.2752877-3-gnstark@salutedevices.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240425171253.2752877-1-gnstark@salutedevices.com>
 References: <20240425171253.2752877-1-gnstark@salutedevices.com>
@@ -85,8 +85,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/04/25 14:02:00 #24969020
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240425_101309_422198_09375C46 
-X-CRM114-Status: GOOD (  10.52  )
+X-CRM114-CacheID: sfid-20240425_101309_428944_19B531D0 
+X-CRM114-Status: GOOD (  14.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,29 +103,50 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Drop checking state argument for NULL pointer in meson_pwm_get_state()
-due to it is called only from pwm core with always valid arguments.
+clk_round_rate() can return not only zero if requested frequency can not
+be provided but also negative error code so add check for it too.
 
+Also change type of variable holding clk_round_rate() result from
+unsigned long to long. It's safe due to clk_round_rate() returns long.
+
+Fixes: 329db102a26d ("pwm: meson: make full use of common clock framework")
 Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
 Signed-off-by: George Stark <gnstark@salutedevices.com>
 ---
- drivers/pwm/pwm-meson.c | 3 ---
- 1 file changed, 3 deletions(-)
+ drivers/pwm/pwm-meson.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index ea96c5973488..f4d70da621ec 100644
+index f4d70da621ec..4a652d500dfc 100644
 --- a/drivers/pwm/pwm-meson.c
 +++ b/drivers/pwm/pwm-meson.c
-@@ -311,9 +311,6 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 	struct meson_pwm_channel *channel;
- 	u32 value;
+@@ -148,7 +148,7 @@ static int meson_pwm_calc(struct pwm_chip *chip, struct pwm_device *pwm,
+ 	struct meson_pwm *meson = to_meson_pwm(chip);
+ 	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
+ 	unsigned int cnt, duty_cnt;
+-	unsigned long fin_freq;
++	long fin_freq;
+ 	u64 duty, period, freq;
  
--	if (!state)
--		return 0;
--
- 	channel = &meson->channels[pwm->hwpwm];
- 	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
+ 	duty = state->duty_cycle;
+@@ -168,12 +168,13 @@ static int meson_pwm_calc(struct pwm_chip *chip, struct pwm_device *pwm,
+ 		freq = ULONG_MAX;
  
+ 	fin_freq = clk_round_rate(channel->clk, freq);
+-	if (fin_freq == 0) {
+-		dev_err(pwmchip_parent(chip), "invalid source clock frequency\n");
+-		return -EINVAL;
++	if (fin_freq <= 0) {
++		dev_err(pwmchip_parent(chip),
++			"invalid source clock frequency %llu\n", freq);
++		return fin_freq ? fin_freq : -EINVAL;
+ 	}
+ 
+-	dev_dbg(pwmchip_parent(chip), "fin_freq: %lu Hz\n", fin_freq);
++	dev_dbg(pwmchip_parent(chip), "fin_freq: %ld Hz\n", fin_freq);
+ 
+ 	cnt = div_u64(fin_freq * period, NSEC_PER_SEC);
+ 	if (cnt > 0xffff) {
 -- 
 2.25.1
 
