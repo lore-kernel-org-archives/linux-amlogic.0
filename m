@@ -4,64 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D10C2C4345F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Apr 2024 15:30:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28AD8C19F4F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Apr 2024 15:30:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=FN/yj0WuDSxBHbNqpu/i998pZzhZ4VPCop1qj3Fw/gU=; b=OVVR/gm0EN5s0o
-	B050KtPW/RlJkzgJEo+y3fLhdUtmrH+1IgKFXrlGkS554WEgx0++xiJHrYEOX8YkULJo/uVpXheyC
-	XdjoSR6GQA7/3Ja/nwcFRsrKRmThh9ogySRcA+oGCCe7Klal4clD8HRpsNse4DxgHzveXwmg58i3Q
-	8MKRtFP29g38P2MuXCC9rSutWFW8yqlxuXFiEd+8IndYVPCJluMBgoQGLrbheL3S4IXjSVY3iUgLy
-	u+K+OVKUmOSShkgXoKbuyzxqSfm4VjWMYPCbsqmT2KpbIN4VDJFWpmJGEl9C0Kd8jUwoWI8wXxox+
-	5Go55j+Xs9AbTT6hXnPg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=4KJPwxD74L8inYP5ugwxoBDMiols3D1ru5eCRYJsfKI=; b=SFBwVgFR6dTOoh
+	EHy5UGrQWYgDc3ZV5vK7xnGFoYnS1epW1/z4KcPJ+mfzpTIypLyUAUVOfRJ9IPP1cuHioaOZTgToM
+	3uMNRtEHYQSGIzakw4woIqw1kU2Q3pPA8WwVev9PIcDmyUGGmEIsMP1xPHix+gv8haS/ZGaZc6JZU
+	z1fNKzTjyrPAEGwo6HaYtB2m0fHVR+V2c2uGyRFxWFitY6KyCAEozTDv8ydPU5HpduSWpJSlHVg/t
+	fvZ6bmYpHACz4YRgiSmXz+5yoS9AIxLR9qAv2SoobKFs/FiSx8JsF6SjksJyL8yuBoZg28oAVxXtg
+	UCrOFJk+J7OXOjRqj6GA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s0NWV-0000000D3Hs-30wF;
-	Fri, 26 Apr 2024 15:30:03 +0000
-Received: from mail-lf1-x131.google.com ([2a00:1450:4864:20::131])
+	id 1s0NWU-0000000D3H8-3182;
+	Fri, 26 Apr 2024 15:30:02 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s0NWQ-0000000D3CX-1j7P
+	id 1s0NWQ-0000000D3CY-2cdN
 	for linux-amlogic@lists.infradead.org;
-	Fri, 26 Apr 2024 15:30:01 +0000
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-51ae315bb20so2804954e87.1
+	Fri, 26 Apr 2024 15:30:00 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-41b5dd5af48so12890385e9.0
         for <linux-amlogic@lists.infradead.org>; Fri, 26 Apr 2024 08:29:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1714145395; x=1714750195; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xUkLsSc4WA93wLtzN5OQsZNRMCNr0FDmpfgqlBr15OA=;
-        b=tnmWyvGuX4uK9Jq3FmsaGoCRWchjzX/57YFLX8lxhcHdgPzio5+aQPnpJogKwev05p
-         N2tXNcP+CkZbiE4bplU7D5qFhFhDjJ+1Am7U8MjVVHF51oFGbVl2xhlNfQjnfGhvggLM
-         OBK/59Zk+DrKjVUTidEd31bW5a2oV4OHA00GF0zm0xtlAOZ3GCYvH1aELMT141r7V2IM
-         F+9Qp/N8Z4n7Xw8inW8Q5DEC4VHX7g3N1dNaHlD+Ri7/RfwOwwZRik11xtLR0Ophzvth
-         0sMA0YmQLV77J5e+zPDYK7JCGCEVTetkpEro+74HAAJ8ooLWl2TeRs23+2dNvHsY6gl2
-         Nclg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1714145396; x=1714750196; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wdxkC9xy0JdUlM4HJdidG8uU38VPySKk64XDlad2PLg=;
+        b=idoxkQdjOKqxH8EofiH1tOI6TGW6m0s9hgVRrgpKnSZD9xm0V4E4Q0OKesC0Cbsvfn
+         GXlVxZQtjAng6cxqCk53SR2VJ4gwpK/xLfFUUO/7sP80ovGf8KjNRLCiAimqVs7jXVxa
+         EkmMEPjvabSLEzns75Crlc04l7Exu+Dtl8VUE9ygW0sV//6SknqHm42SuS/MNNFd8LCp
+         Dl2YGQKyz/gQv55Qdnogex7BsPJ6Y3hTECCcJtIT2MpD9PZ3GP6YADOl58lAveIEoYNp
+         A7xh+N3I6O0+Oi+Q+UUs6vLBDftgBy9q1BhKk/BlzQdhLU+wjk/Vf/VL+QcAeCNNVmY8
+         WGyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714145395; x=1714750195;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xUkLsSc4WA93wLtzN5OQsZNRMCNr0FDmpfgqlBr15OA=;
-        b=ab8yOZl74pvGslLvFF1LbV+miTxaljqJ3WPDhDQTtyF1I/zIEP/PYWMgftB24gomPh
-         E4IpgV2jsfUD4DDEO4zbBv0OXibstcpZDKi3EyIB+JVWfLA2I8ueobz7T3Az1NwEoFZz
-         PoW8yy/5uaEozixh3AC33RiOQf50jBorqzVMnlZBNnMLjuAAjLu29zun6DeILv0N1UM1
-         XKCVi/QFm0kGKwHISoHDb/5kdTG811Z6MW0IQ87BbzmC5A2ZxKifGExlezUhsWT8QjlD
-         rvXMJy3n3IuB3d7IMN+E6X1FxOBUP8Uy2irHrXizrQ/9A7AviB3kSDeUxWBxYqVenpZU
-         BveQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXRiTA+ikDmKUBeX+PqaIW37FcHL2uhBesMXMcMX0ZiKmb/H9fn9SPR5qHccex4Sh2Ee4mGeoBzvaKVLSHDgs9+tezo46X52lgU8jbOPHYQl2A=
-X-Gm-Message-State: AOJu0Yw3YlP7kjsAqYYVyDs+UQmAamSqpD2QyVl1bsYZIvjUIoJRMUFt
-	XvGGuI44u3FL4QP6FgFLAu3ssInsPffgeqqzyY4PKzbppnOOT9t24KkmMOCg+fQ=
-X-Google-Smtp-Source: AGHT+IFMxlBhWe1Oje3VzHCy05U8U/CCJEV92z6GmGIYTbHCedgsiCSp+J0MWzhqi0Ldz9xuDlW6Sw==
-X-Received: by 2002:a19:ac0b:0:b0:51a:f255:ade3 with SMTP id g11-20020a19ac0b000000b0051af255ade3mr1761882lfc.20.1714145395077;
+        d=1e100.net; s=20230601; t=1714145396; x=1714750196;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wdxkC9xy0JdUlM4HJdidG8uU38VPySKk64XDlad2PLg=;
+        b=mN+KUUKhZUiGs+4Fyn3YtqqToCZDBO+U6xqAoie7QFxPyFZYqthTHjTr8h7EdyN3iz
+         3B1BA1boeKBh45KEYFamj9pNs4KQC/GK3n6QuceQg3rhyFoWkc9TlPyID87UbmKU5dME
+         9QycQ53SKsy50hvygq01+No3o7YcO53h3fqydFpOd2OruvS44oAlEPucBoj8AtUQteWK
+         ollTQreauKnhK5Wxm8UIg/WPHtykgq5D09uB7zZijxgDtRahQ3+J9wQ7XnwhXRCYNYxM
+         zbLZPd3bwXLJY/IaQUYWblofC+ZQD1jhmd+thM1fVocNQOZBFHAbZffL0GZbENtvS3wS
+         EvXw==
+X-Forwarded-Encrypted: i=1; AJvYcCWFgpci9J5ffgsHJEsyDWZ8Vm4vcU70LEjmT4vmqeaJUz7B9sJKYrMTBSIiUoqajuKzaI1Vj3nPOdS6h5+QRc2rwEt/6sPR6eX6RirolhG52VI=
+X-Gm-Message-State: AOJu0YyXtjfIfjDG/TgkJWSFIXuBP4AXmSgEW3mZujxvIEq6d+HbNG7S
+	N7bGRlfoA5vcyT+1y17/vi/EYpMTyAtHbPvxyg6AIyzYzJkyD/2gUzxmVF5isJZOtkXwixmp5Yj
+	4
+X-Google-Smtp-Source: AGHT+IHPpBP3QSa57mdn7C6mGnSnPPrJ1b15kSZTPSoFNzWhfVV6qwoJcqsNBhnR4twzoAilz89DKA==
+X-Received: by 2002:a05:600c:4ecf:b0:416:bc18:2a00 with SMTP id g15-20020a05600c4ecf00b00416bc182a00mr2136057wmq.38.1714145395834;
         Fri, 26 Apr 2024 08:29:55 -0700 (PDT)
 Received: from toaster.lan ([2a01:e0a:3c5:5fb1:1926:f73e:8b99:1c0a])
-        by smtp.googlemail.com with ESMTPSA id i13-20020a05600c354d00b00419fba938d8sm22628687wmq.27.2024.04.26.08.29.54
+        by smtp.googlemail.com with ESMTPSA id i13-20020a05600c354d00b00419fba938d8sm22628687wmq.27.2024.04.26.08.29.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Apr 2024 08:29:54 -0700 (PDT)
+        Fri, 26 Apr 2024 08:29:55 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Mark Brown <broonie@kernel.org>,
 	Liam Girdwood <lgirdwood@gmail.com>
@@ -69,15 +71,17 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	alsa-devel@alsa-project.org,
 	linux-kernel@vger.kernel.org,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH 0/4] ASoC: meson: tdm fixes
-Date: Fri, 26 Apr 2024 17:29:37 +0200
-Message-ID: <20240426152946.3078805-1-jbrunet@baylibre.com>
+Subject: [PATCH 1/4] ASoC: meson: axg-fifo: use threaded irq to check periods
+Date: Fri, 26 Apr 2024 17:29:38 +0200
+Message-ID: <20240426152946.3078805-2-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240426152946.3078805-1-jbrunet@baylibre.com>
+References: <20240426152946.3078805-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240426_082958_474902_A4CD10D7 
-X-CRM114-Status: GOOD (  12.28  )
+X-CRM114-CacheID: sfid-20240426_082958_699711_D6A48AFD 
+X-CRM114-Status: GOOD (  13.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,52 +98,80 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patchset fixes 2 problems on TDM which both find a solution
-by properly implementing the .trigger() callback for the TDM backend.
+With the AXG audio subsystem, there is a possible random channel shift on
+TDM capture, when the slot number per lane is more than 2, and there is
+more than one lane used.
 
-ATM, enabling the TDM formatters is done by the .prepare() callback
-because handling the formatter is slow due to necessary calls to CCF.
+The problem has been there since the introduction of the axg audio support
+but such scenario is pretty uncommon. This is why there is no loud
+complains about the problem.
 
-The first problem affects the TDMIN. Because .prepare() is called on DPCM
-backend first, the formatter are started before the FIFOs and this may
-cause a random channel shifts if the TDMIN use multiple lanes with more
-than 2 slots per lanes. Using trigger() allows to set the FE/BE order,
-solving the problem.
+Solving the problem require to make the links non-atomic and use the
+trigger() callback to start FEs and BEs in the appropriate order.
 
-There has already been an attempt to fix this 3y ago [1] and reverted [2]
-It triggered a 'sleep in irq' error on the period IRQ. The solution is
-to just use the bottom half of threaded IRQ. This is patch #1. Patch #2
-and #3 remain mostly the same as 3y ago.
+This was tried in the past and reverted because it caused the block irq to
+sleep while atomic. However, instead of reverting, the solution is to call
+snd_pcm_period_elapsed() in a non atomic context.
 
-For TDMOUT, the problem is on pause. ATM pause only stops the FIFO and
-the TDMOUT just starves. When it does, it will actually repeat the last
-sample continuously. Depending on the platform, if there is no high-pass
-filter on the analog path, this may translate to a constant position of
-the speaker membrane. There is no audible glitch but it may damage the
-speaker coil.
+Use the bottom half of a threaded IRQ to do so.
 
-Properly stopping the TDMOUT in pause solves the problem. There is
-behaviour change associated with that fix. Clocks used to be continuous
-on pause because of the problem above. They will now be gated on pause by
-default, as they should. The last change introduce the proper support for
-continuous clocks, if needed.
+Fixes: 6dc4fa179fb8 ("ASoC: meson: add axg fifo base driver")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ sound/soc/meson/axg-fifo.c | 29 +++++++++++++++++++----------
+ 1 file changed, 19 insertions(+), 10 deletions(-)
 
-[1]: https://lore.kernel.org/linux-amlogic/20211020114217.133153-1-jbrunet@baylibre.com
-[2]: https://lore.kernel.org/linux-amlogic/20220421155725.2589089-1-narmstrong@baylibre.com
-
-Jerome Brunet (4):
-  ASoC: meson: axg-fifo: use threaded irq to check periods
-  ASoC: meson: axg-card: make links nonatomic
-  ASoC: meson: axg-tdm-interface: manage formatters in trigger
-  ASoC: meson: axg-tdm: add continuous clock support
-
- sound/soc/meson/axg-card.c          |  1 +
- sound/soc/meson/axg-fifo.c          | 29 +++++++++++++--------
- sound/soc/meson/axg-tdm-formatter.c | 40 +++++++++++++++++++++++++++++
- sound/soc/meson/axg-tdm-interface.c | 38 +++++++++++++++++++--------
- sound/soc/meson/axg-tdm.h           |  5 ++++
- 5 files changed, 93 insertions(+), 20 deletions(-)
-
+diff --git a/sound/soc/meson/axg-fifo.c b/sound/soc/meson/axg-fifo.c
+index bebee0ca8e38..ecb3eb7a9723 100644
+--- a/sound/soc/meson/axg-fifo.c
++++ b/sound/soc/meson/axg-fifo.c
+@@ -204,18 +204,26 @@ static irqreturn_t axg_fifo_pcm_irq_block(int irq, void *dev_id)
+ 	unsigned int status;
+ 
+ 	regmap_read(fifo->map, FIFO_STATUS1, &status);
+-
+ 	status = FIELD_GET(STATUS1_INT_STS, status);
++	axg_fifo_ack_irq(fifo, status);
++
++	/* Use the thread to call period elapsed on nonatomic links */
+ 	if (status & FIFO_INT_COUNT_REPEAT)
+-		snd_pcm_period_elapsed(ss);
+-	else
+-		dev_dbg(axg_fifo_dev(ss), "unexpected irq - STS 0x%02x\n",
+-			status);
++		return IRQ_WAKE_THREAD;
+ 
+-	/* Ack irqs */
+-	axg_fifo_ack_irq(fifo, status);
++	dev_dbg(axg_fifo_dev(ss), "unexpected irq - STS 0x%02x\n",
++		status);
++
++	return IRQ_NONE;
++}
++
++static irqreturn_t axg_fifo_pcm_irq_block_thread(int irq, void *dev_id)
++{
++	struct snd_pcm_substream *ss = dev_id;
++
++	snd_pcm_period_elapsed(ss);
+ 
+-	return IRQ_RETVAL(status);
++	return IRQ_HANDLED;
+ }
+ 
+ int axg_fifo_pcm_open(struct snd_soc_component *component,
+@@ -243,8 +251,9 @@ int axg_fifo_pcm_open(struct snd_soc_component *component,
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = request_irq(fifo->irq, axg_fifo_pcm_irq_block, 0,
+-			  dev_name(dev), ss);
++	ret = request_threaded_irq(fifo->irq, axg_fifo_pcm_irq_block,
++				   axg_fifo_pcm_irq_block_thread,
++				   IRQF_ONESHOT, dev_name(dev), ss);
+ 	if (ret)
+ 		return ret;
+ 
 -- 
 2.43.0
 
