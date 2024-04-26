@@ -4,80 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 273D5C4345F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Apr 2024 13:42:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D5E6C4345F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Apr 2024 14:27:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Zcs5dsNftp+7yAxFW7RCyIvEs3xfi8EvAmw5htYERz0=; b=p9FkRbQsl90bL0
-	ArodMqJiRXW0XHODY833h5Nqmxq5yYgJ+aaPQZhceGO4hPU6PtD3UlkprLQK+Yom+IsCDzV1WWZbq
-	lq3e/8DA+hj5ccQt66CT4Z4Y8YfyFg1JVqdSun8yo+8h0Evuq1TeQPUDlQPKw//dVqfpRErKUnm7S
-	HD2KpuL0Uvg/JridabEjaOvWuyB88yOeI5PQUzAgSlsrL8W21dn3EVskHSgQRSBmsBwKqNrPAgCk9
-	fnzkD+rC8C4voss5SJY7j6gTo1xa2VN4SHIkNocLPT1Lok3iZhB+yfQQ25/9ilc3ZrZBaV73/n0pk
-	nk4PRlLUjbgSloQBOplg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=go20xzTuG3IPZ9QxJtaJoaSAWWByThkDGLOLPAhgUUs=; b=iSOgNbV2ntKGUH
+	DDsD15wRrvEkYzArpLI5yl8qtvpsovqtWRSCUlnmAl4WP2Gkj6c6zLLKcEluO433yMoqaqhW6Qomk
+	L9OM9ZhnRttY97K/cWvcOJCXupQihzpTnR0AXvIg/+hyG1PGDWTrvbSmhL4OSbxOiKEPjg1ieomqh
+	kRE7jddOkn24OcdZ4XCdldWw1EiIvlP5Tq213Z0DRwHf2PGY0Vor/XoWINTZuIFo1+o908ofHwskw
+	GK1DAjvOeLz92DkHeILuHvbbQbVwnJX23qYkZAAgtw2a2OqO3Fvpah7nfgpdV8SQqc+Q1iuBLIHg1
+	UerKNCWhlwnoUdco4JUA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s0Lq3-0000000CgPt-1P26;
-	Fri, 26 Apr 2024 13:42:07 +0000
-Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
+	id 1s0MXc-0000000Cq3o-1Elx;
+	Fri, 26 Apr 2024 14:27:08 +0000
+Received: from mgamail.intel.com ([192.198.163.17])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s0Lpz-0000000CgP9-1kV4
-	for linux-amlogic@lists.infradead.org;
-	Fri, 26 Apr 2024 13:42:05 +0000
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-518a56cdc03so2457105e87.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 26 Apr 2024 06:42:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1714138920; x=1714743720; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4ZoPAqs/FsSRU0VmqAIyUDeL5k+oeAlm1vs0Pwv/KPc=;
-        b=Lbv9WuM6VamcVXAq2gNKkcMv9Cvbq8XlA9fXLinLxpaSLbWlu2vqqNrN9szuCLPIa3
-         YoiGIbJ8QOBt0zaR+f6iikyYJ0SUrvWxLHgRN8ZTMESK0Tw3jZWu9MM6ojTpI2X7beD5
-         L1+S0F9Dr2y7Q/ulkecR/r12k4vOuIG8xtKZYR6Nn4sbbTAPAuo5MmlCZOYEhHHqymYj
-         DXbiHl3UZbZp6q0LaxcnP+z2o4MW3hHK36nJieHmY9yFUF5oSEYKJmnoDOYCJvheN2kC
-         Tdp+GT95yyGkoagOlXKV3tpfExBqGVHWDyMpzbYtZ94tZwH6lrtHD0KQPi87oS0xPLaF
-         8zig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714138920; x=1714743720;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4ZoPAqs/FsSRU0VmqAIyUDeL5k+oeAlm1vs0Pwv/KPc=;
-        b=OX6DIYq6O7hDy4TzWo85zRUTdbPdUV+tLhDSih/t157FurPthW/dku7EuL9GNcVZc9
-         M6bDqLG9sPf+BMePG6dTKZLb62sddVvRzRDJ97J+bhvOhvfvudckYL+8raeQjAejcw5t
-         ayROS8lsf4O6u/6ar8cB52ZrcAeVGbTHzNExrYJ6hW72fp8FPIVWZj0C/vfeqQylgzz7
-         QcTYngbpTfdBa6EHeBovOlEAQL7t1Epb/tHdF5hkM3qSOLOVEeINSV5m3qLI2V6wNtDC
-         fLb2pErqro/uxNXfC1FGpWQmg3tt21Inc4szxX6/aveXKA9GwupGr5/QLqMDWfTj7bT0
-         W9dg==
-X-Forwarded-Encrypted: i=1; AJvYcCWcvWvF3JnYjN6PE2/A+w+cAmozaGjfA1sohMruTWewtCXQzkT2pNaYinUZUayk1X26iNdz2VCyVkSgA3KorUXgVDFNi/aHNF3MFFRXSaN5WQQ=
-X-Gm-Message-State: AOJu0YxwtcdX6isxGHV1HxgZN9PBnz7jAWGxmdYn97I1Gx97MeTjf4Q3
-	TyTSz4EJmBSDrWRnVbEh2pSx3m+jzRf+3VxzMhDf6Ozg/82san/QIJScW6A9yzE=
-X-Google-Smtp-Source: AGHT+IGPLKZcerp3MvuJR5uN1npoHSmtLy+7WTMWioCuEvXXFNm30DQl5IWvmOoTb1lmO9LmLUtnzw==
-X-Received: by 2002:a05:6512:3609:b0:51b:7c36:da61 with SMTP id f9-20020a056512360900b0051b7c36da61mr1513968lfs.56.1714138919541;
-        Fri, 26 Apr 2024 06:41:59 -0700 (PDT)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:1926:f73e:8b99:1c0a])
-        by smtp.googlemail.com with ESMTPSA id jg1-20020a05600ca00100b0041b25a70a85sm7558852wmb.30.2024.04.26.06.41.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Apr 2024 06:41:58 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	alsa-devel@alsa-project.org,
-	linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH] ASoC: meson: cards: select SND_DYNAMIC_MINORS
-Date: Fri, 26 Apr 2024 15:41:47 +0200
-Message-ID: <20240426134150.3053741-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.43.0
+	id 1s0MXX-0000000Cq12-1ZHs;
+	Fri, 26 Apr 2024 14:27:04 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1714141623; x=1745677623;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RJXu2LkQVK1cV7mKmI83/hFP8kY8ALJVxwCc+HYZvWc=;
+  b=c/SJ68nyEYHElKhNs0zKiCaz5e51k8IJFIMucYKSjs7VxXm2Kf+OYh6R
+   PetXbimdBQZGz/2JNstvkKAwQTf2zdKBrZrLuyoGjL6uUz6Uuf9ee4qVy
+   HLV1uM6dx1oQK7tPDMNnVKwVwFW+I+DGYRqOl0VKJUktOQ8IWvAOOQoUd
+   +jzxBabYmt96G3THpKk1Wyq9MJabroM4Q+bUWzY+VAc9ErXJJ97xXZ62a
+   rguX9e8N94ncY8lTbG3QNoxw+PBjJZaBsQCircA4vQzrSZLb9WQQ5HnwX
+   LqxZF61JxJaHkQuanpT1JMG83jfS8hw/nrDEkuJZEh3GVpz+OLEo8XYLk
+   Q==;
+X-CSE-ConnectionGUID: G0A0whbZSEexmPykR1/1fw==
+X-CSE-MsgGUID: 9jZO+C1kSCCxHP77Fjlakg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11056"; a="9748627"
+X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; 
+   d="scan'208";a="9748627"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2024 07:27:01 -0700
+X-CSE-ConnectionGUID: Z9MPD8bKRLWZvyNzP7TRqA==
+X-CSE-MsgGUID: UCa/xp75QjicJtuXgCc+2g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; 
+   d="scan'208";a="56607339"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2024 07:26:54 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1s0MXJ-00000001LQV-3ha8;
+	Fri, 26 Apr 2024 17:26:49 +0300
+Date: Fri, 26 Apr 2024 17:26:49 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-amlogic@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org
+Cc: Vignesh Raghavendra <vigneshr@ti.com>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Yue Wang <yue.wang@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Xiaowei Song <songxiaowei@hisilicon.com>,
+	Binghui Wang <wangbinghui@hisilicon.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Subject: Re: [PATCH v2 0/4] PCI: controller: Move to agnostic GPIO API
+Message-ID: <Ziu5qSjWLPoM9mbg@smile.fi.intel.com>
+References: <20240423172208.2723892-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+Content-Disposition: inline
+In-Reply-To: <20240423172208.2723892-1-andriy.shevchenko@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240426_064203_577182_EF5AE80F 
-X-CRM114-Status: UNSURE (   8.87  )
+X-CRM114-CacheID: sfid-20240426_072703_449423_0353B218 
+X-CRM114-Status: UNSURE (   6.45  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -95,43 +115,16 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic sound cards do create a lot of pcm interfaces, possibly more than
-8. Some pcm interfaces are internal (like DPCM backends and c2c) and not
-exposed to userspace.
+On Tue, Apr 23, 2024 at 08:19:03PM +0300, Andy Shevchenko wrote:
+> Convert the PCI controller drivers to use GPIO agnostic API.
+> While at it, remove of_gpio.h leftover from some of the drivers.
 
-Those interfaces still increase the number passed to snd_find_free_minor(),
-which eventually exceeds 8 causing -EBUSY error on card registration if
-CONFIG_SND_DYNAMIC_MINORS=n and the interface is exposed to userspace.
+So, can we move forward with this series and its prerequisite?
 
-select CONFIG_SND_DYNAMIC_MINORS for Amlogic cards to avoid the problem.
-
-Fixes: 7864a79f37b5 ("ASoC: meson: add axg sound card support")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
-
-NOTE: This problem was found while toying with a minimal configuration
-which disabled CONFIG_SND_DYNAMIC_MINORS and DT overlays. Overlays
-prepend nodes instead of doing append. This changes the order in which
-the links are parsed by the card driver, which in turn changes the pcm
-numbers. The userpace pcm number then got over 8 triggering the problem.
-
- sound/soc/meson/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/sound/soc/meson/Kconfig b/sound/soc/meson/Kconfig
-index b93ea33739f2..6458d5dc4902 100644
---- a/sound/soc/meson/Kconfig
-+++ b/sound/soc/meson/Kconfig
-@@ -99,6 +99,7 @@ config SND_MESON_AXG_PDM
- 
- config SND_MESON_CARD_UTILS
- 	tristate
-+	select SND_DYNAMIC_MINORS
- 
- config SND_MESON_CODEC_GLUE
- 	tristate
 -- 
-2.43.0
+With Best Regards,
+Andy Shevchenko
+
 
 
 _______________________________________________
