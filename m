@@ -4,89 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C195C4345F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Apr 2024 16:03:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB8A1C4345F
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2024 06:39:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7VfzmDSEce7zajE3NrWSCiRjBaUzRJMPYVkbInhA6gk=; b=eLrcruaz0ieGsx
-	Htb0J7UkjveiGk744M3GJDBJMivagauIvcBpRcngfbNr2MKKrWY3DQw45EVb+i1xP9DY/6beT6cEE
-	d6tNPgFiHvB0EzYav6uBVoKcYX4yNL5bchS697b+Hg3B++5K71J7/svzUT9HvChFCObNV064AAjO7
-	/b6N9a5Dg9DselTP2x+PJLKrglr8Owy5CsQ5SXt72K0zUTFnfamffYqaaDj+6vAGAxwcmse3vGSbW
-	23c78DcOmnJhvr9rV4IiAPFF3KjCBNl4bg2tVrNN8b1aoRF9UvhajKyCSWkndRU6feFlVbU3Ty698
-	Vpy1UPrWlZjeYGqI7wxA==;
+	List-Owner; bh=T2aZCAm4xcGCRGLSqEKBxNRBd/iOyrGUWqtLW3KtNcw=; b=utr16o0IY9av3p
+	D7HWYLUOJXxFsG/zyb2dvClq8HNsLLSVu5TfWz6l2zHCZZZRBouHD3zu6nnElrxOdp9qZKfVN/cH6
+	ncE+d8t5+xZwtfuXDIGkkSIGaHWSJNHiPO3phmuydeTEyA5M71j15pzJwEp7XmFH6jiFb3M133+5Q
+	VCj1jg+9MdLINAmXOkZt0HAlQxbND0kvwhEDdKiv9vN78Ox5MZ2vmlBMSc32LMUZ2ACxhTcnB7LT/
+	akYERBNsLS0XJkYkVP8w+z/tKJsTNXjMIKj5D80EUcI9hkHDIyjCbCVydGLqjSsFhtTgmi6run858
+	qs+a4SVqm7eQ91e1pfTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s0O2r-0000000DAqh-2pgv;
-	Fri, 26 Apr 2024 16:03:29 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1s0bi8-0000000EyZ7-0rIc;
+	Sat, 27 Apr 2024 06:39:00 +0000
+Received: from mail-pf1-x430.google.com ([2607:f8b0:4864:20::430])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s0O2j-0000000DAlg-0NlM
+	id 1s0bi4-0000000EyXN-2oyG
 	for linux-amlogic@lists.infradead.org;
-	Fri, 26 Apr 2024 16:03:28 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-41b5e74fa2fso11270975e9.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 26 Apr 2024 09:03:20 -0700 (PDT)
+	Sat, 27 Apr 2024 06:38:58 +0000
+Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-6effe9c852eso2613778b3a.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 26 Apr 2024 23:38:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1714147399; x=1714752199; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VwWBLD0qVTKGOAoQ6eE14pnlmcdWHx3m3KgGPqRsyL0=;
-        b=VstYEGRTqm6rqicvcTjTeNyz2hV1R1Im94BcwCSxYCK6FAYKQ69FgCAaX1im5fNYnO
-         cO45h29z1MNHW3Fmmfs7inWK2ksyoZyVYp8ikNUPodhGNRbPwJ6QCE5n4nH1f+bLi0Cm
-         LgtphpN6OyB5EsSehZF9TDLA5tCkhmZAckvxUWOxKtAzDq2P9Ty5MAl2ft4S8yD1zkJH
-         cyyo/uOoJ/HAd1eGro0b/9k+HCFKVrBjVCfgAw7QhnjTHOyikhNgenN7ACuT7ZJDg2TW
-         ikmF2b+xzHoMasCS4kMxyx5N37k6Ah0/yvl4G7V+AheJHvyqSTw/ltW9CUgjyOVmtdP6
-         up7g==
+        d=linaro.org; s=google; t=1714199930; x=1714804730; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=u5BZd/9PlqkZZUs68lDdFcJ5CEc1B68syvKugYGnzVE=;
+        b=lZ4rj1dD2zkQMFvcyz0j8WV8a6Xqbj19Ez522zoI1EkmNuPA0AZah/Rr84fQBglVJP
+         WH9cs6Et8ds4dtvEfYtKjg4DHZxAFMR+8Zoz5tB6PJi91vzMb6DnbNq5HHU68uXIhxhp
+         83kGPN+SVxK/kuSmdupzkAylA/QO5xLXbla6o51+TBzbubHK50q7vFEspCrKW4BwifvN
+         VB3pPOIr6TKHF7eLzx8Pt/0QT5U4YugDg+BAvv4ZDcW9ODtKlTLbPocBSwxQ4ZUZRPUj
+         6ajs+YzZ3rtI8VNXHXV7AP4qfPMQrmcsI+D7DB5aV1nzWgoy4M5lN4cQ5XRsc6CFNW3N
+         uyLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714147399; x=1714752199;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VwWBLD0qVTKGOAoQ6eE14pnlmcdWHx3m3KgGPqRsyL0=;
-        b=JvFh3LC+AT0vRWfKpbNsnI9y0cCQ//56sF6n5ciLAZGqfBACTelq/+Mtu/mq1rk6gx
-         LpBwLunERbD0xW4EazOU2eP8IhvhzkKBHFlGHp9aQDQdkxz2b9V9S8XNO2uP1a/r+2Lo
-         NtzvCN4s8/o8TVp9SDxXVK8/57+79dyXPDU2awaJZFbsm9QKrDIVhkPkhOQ55oeEcrgU
-         vp1INJUxuN3II0OfpBPaEtTNTQDX+yin+BULr8EqMXu0MpnSiZShKz3Gh9zLl5hcRzly
-         O8I/4aDVyqc8ZZ/F51vVAFDWUcAiuv312J+v4QxkI220XtlI/WKtniCbPjsaMTuYG7Hu
-         elKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUrnsLGxIECqptbXsvdf0gqrUT5Aes/6VnOHeO7dckualyfgw5snq/g6jlzbivFMUyyVzswyHorqVTixojuD9PovrGt9VjjFYcPY1/2adI39Ns=
-X-Gm-Message-State: AOJu0YxuQUl0RyxH1jg/jJpIFp5u0Wc15z3zBdO5W6Gz+aE06J2zVzBz
-	yRJUi5mexAQz0yNiuuK0oHjZOItTfNr8Ii9N2iz/vm+c70DD2ufGYM+RInnvCX8=
-X-Google-Smtp-Source: AGHT+IHkz1L3NwwxZXGlD2vu7++NI5Hhk5UYu+PbPcgI+aC0ZN9bQl9YHJFAVv+F4MLdLuQUjRV3jw==
-X-Received: by 2002:a05:600c:1913:b0:41b:ab72:3f4d with SMTP id j19-20020a05600c191300b0041bab723f4dmr749759wmq.1.1714147399382;
-        Fri, 26 Apr 2024 09:03:19 -0700 (PDT)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:1926:f73e:8b99:1c0a])
-        by smtp.googlemail.com with ESMTPSA id p14-20020a05600c1d8e00b0041bab13cd74sm1271408wms.17.2024.04.26.09.03.18
+        d=1e100.net; s=20230601; t=1714199930; x=1714804730;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u5BZd/9PlqkZZUs68lDdFcJ5CEc1B68syvKugYGnzVE=;
+        b=gP6sC0QTFchL0Fb8CKWWvZy+de0AI2/ah/7eKABolkWf/kFpbAxNcWzHcZGkYPrQ/z
+         jYZUsel7U0/6SbhC5DsWdXrk8j+OWs47SuJkWtB1Mmwjjw78U9SB5d6r235Vs9AxJerf
+         XxPW3iW2xkasgJoh5iITU7AEHJfd0trNyEISIkzavn18u/HBcCUGIsuncGCVnsX7oRWF
+         nv4TSHIgx6W4ROAkKVA3PcXVpv9npjzl8rJ50ChBJjZL3JC15ado6cH/Vh2e8JPFmOJ+
+         83Fl6bDzUkghlir8Lq1DclhTenFWn2OLwRS9E90PXWO0TVwLmq/RK1GyizCylV3XN258
+         QpsA==
+X-Forwarded-Encrypted: i=1; AJvYcCWSYleOLjcpvTwNK9JzlnlCHhDVZ+qtKlmihryf5lX1X2gHmoO4mGH0qHAjo1cQbjhb7UhYq3tC5+WML9qMF6u/HBjFqm35A6azx9vJTbw2jyE=
+X-Gm-Message-State: AOJu0YxMiHzqXQKsZE5PMRc3M9Vq0zA2mf2BpoL2MB+gHy7qROG6l/Fw
+	XIIf4go+a8xlewMKyfcsOzmyF9FhciV+OnbqLqFCFSN4S8vKKKaJxPzQTEV3jw==
+X-Google-Smtp-Source: AGHT+IFOTwYBRJQ6hpSLIlWNvowiugvVRk7RGAo5g37wQTTmlbJt9WKRQxSRhuQmeF2kLwvwvDKZ0g==
+X-Received: by 2002:a05:6a20:f394:b0:1a3:55d2:1489 with SMTP id qr20-20020a056a20f39400b001a355d21489mr4790412pzb.7.1714199930233;
+        Fri, 26 Apr 2024 23:38:50 -0700 (PDT)
+Received: from thinkpad ([120.60.53.237])
+        by smtp.gmail.com with ESMTPSA id r18-20020aa79892000000b006ed0c9751d0sm16232311pfl.98.2024.04.26.23.38.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Apr 2024 09:03:19 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
+        Fri, 26 Apr 2024 23:38:49 -0700 (PDT)
+Date: Sat, 27 Apr 2024 12:08:32 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Frank Li <Frank.Li@nxp.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-amlogic@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Yue Wang <yue.wang@Amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	dri-devel@lists.freedesktop.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] drm/meson: dw-hdmi: add bandgap setting for g12
-Date: Fri, 26 Apr 2024 18:02:54 +0200
-Message-ID: <20240426160256.3089978-3-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240426160256.3089978-1-jbrunet@baylibre.com>
-References: <20240426160256.3089978-1-jbrunet@baylibre.com>
+	Xiaowei Song <songxiaowei@hisilicon.com>,
+	Binghui Wang <wangbinghui@hisilicon.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Subject: Re: [PATCH v2 1/4] PCI: aardvark: Remove unused of_gpio.h
+Message-ID: <20240427063832.GA1981@thinkpad>
+References: <20240423172208.2723892-1-andriy.shevchenko@linux.intel.com>
+ <20240423172208.2723892-2-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+Content-Disposition: inline
+In-Reply-To: <20240423172208.2723892-2-andriy.shevchenko@linux.intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240426_090321_515948_95C2001B 
-X-CRM114-Status: GOOD (  15.46  )
+X-CRM114-CacheID: sfid-20240426_233856_766324_02CCA0F9 
+X-CRM114-Status: GOOD (  13.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,134 +115,28 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When no mode is set, the utility pin appears to be grounded. No signal
-is getting through.
-
-This is problematic because ARC and eARC use this line and may do so even
-if no display mode is set.
-
-This change enable the bandgap setting on g12 chip, which fix the problem
-with the utility pin. This is done by restoring init values on PHY init and
-disable.
-
-Fixes: 3b7c1237a72a ("drm/meson: Add G12A support for the DW-HDMI Glue")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/gpu/drm/meson/meson_dw_hdmi.c | 43 ++++++++++++++++-----------
- 1 file changed, 26 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index a83d93078537..5565f7777529 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -106,6 +106,8 @@
- #define HHI_HDMI_CLK_CNTL	0x1cc /* 0x73 */
- #define HHI_HDMI_PHY_CNTL0	0x3a0 /* 0xe8 */
- #define HHI_HDMI_PHY_CNTL1	0x3a4 /* 0xe9 */
-+#define  PHY_CNTL1_INIT		0x03900000
-+#define  PHY_INVERT		BIT(17)
- #define HHI_HDMI_PHY_CNTL2	0x3a8 /* 0xea */
- #define HHI_HDMI_PHY_CNTL3	0x3ac /* 0xeb */
- #define HHI_HDMI_PHY_CNTL4	0x3b0 /* 0xec */
-@@ -130,6 +132,8 @@ struct meson_dw_hdmi_data {
- 				    unsigned int addr);
- 	void		(*dwc_write)(struct meson_dw_hdmi *dw_hdmi,
- 				     unsigned int addr, unsigned int data);
-+	u32 cntl0_init;
-+	u32 cntl1_init;
- };
- 
- struct meson_dw_hdmi {
-@@ -458,7 +462,9 @@ static void dw_hdmi_phy_disable(struct dw_hdmi *hdmi,
- 
- 	DRM_DEBUG_DRIVER("\n");
- 
--	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, 0);
-+	/* Fallback to init mode */
-+	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL1, dw_hdmi->data->cntl1_init);
-+	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, dw_hdmi->data->cntl0_init);
- }
- 
- static enum drm_connector_status dw_hdmi_read_hpd(struct dw_hdmi *hdmi,
-@@ -576,11 +582,22 @@ static const struct regmap_config meson_dw_hdmi_regmap_config = {
- 	.fast_io = true,
- };
- 
--static const struct meson_dw_hdmi_data meson_dw_hdmi_gx_data = {
-+static const struct meson_dw_hdmi_data meson_dw_hdmi_gxbb_data = {
- 	.top_read = dw_hdmi_top_read,
- 	.top_write = dw_hdmi_top_write,
- 	.dwc_read = dw_hdmi_dwc_read,
- 	.dwc_write = dw_hdmi_dwc_write,
-+	.cntl0_init = 0x0,
-+	.cntl1_init = PHY_CNTL1_INIT | PHY_INVERT,
-+};
-+
-+static const struct meson_dw_hdmi_data meson_dw_hdmi_gxl_data = {
-+	.top_read = dw_hdmi_top_read,
-+	.top_write = dw_hdmi_top_write,
-+	.dwc_read = dw_hdmi_dwc_read,
-+	.dwc_write = dw_hdmi_dwc_write,
-+	.cntl0_init = 0x0,
-+	.cntl1_init = PHY_CNTL1_INIT,
- };
- 
- static const struct meson_dw_hdmi_data meson_dw_hdmi_g12a_data = {
-@@ -588,6 +605,8 @@ static const struct meson_dw_hdmi_data meson_dw_hdmi_g12a_data = {
- 	.top_write = dw_hdmi_g12a_top_write,
- 	.dwc_read = dw_hdmi_g12a_dwc_read,
- 	.dwc_write = dw_hdmi_g12a_dwc_write,
-+	.cntl0_init = 0x000b4242, /* Bandgap */
-+	.cntl1_init = PHY_CNTL1_INIT,
- };
- 
- static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
-@@ -626,18 +645,8 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
- 	meson_dw_hdmi->data->top_write(meson_dw_hdmi, HDMITX_TOP_BIST_CNTL, BIT(12));
- 
- 	/* Setup PHY */
--	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1,
--			   0xffff << 16, 0x0390 << 16);
--
--	/* BIT_INVERT */
--	if (dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-gxl-dw-hdmi") ||
--	    dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-gxm-dw-hdmi") ||
--	    dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-g12a-dw-hdmi"))
--		regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1,
--				   BIT(17), 0);
--	else
--		regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1,
--				   BIT(17), BIT(17));
-+	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL1, meson_dw_hdmi->data->cntl1_init);
-+	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, meson_dw_hdmi->data->cntl0_init);
- 
- 	/* Enable HDMI-TX Interrupt */
- 	meson_dw_hdmi->data->top_write(meson_dw_hdmi, HDMITX_TOP_INTR_STAT_CLR,
-@@ -848,11 +857,11 @@ static const struct dev_pm_ops meson_dw_hdmi_pm_ops = {
- 
- static const struct of_device_id meson_dw_hdmi_of_table[] = {
- 	{ .compatible = "amlogic,meson-gxbb-dw-hdmi",
--	  .data = &meson_dw_hdmi_gx_data },
-+	  .data = &meson_dw_hdmi_gxbb_data },
- 	{ .compatible = "amlogic,meson-gxl-dw-hdmi",
--	  .data = &meson_dw_hdmi_gx_data },
-+	  .data = &meson_dw_hdmi_gxl_data },
- 	{ .compatible = "amlogic,meson-gxm-dw-hdmi",
--	  .data = &meson_dw_hdmi_gx_data },
-+	  .data = &meson_dw_hdmi_gxl_data },
- 	{ .compatible = "amlogic,meson-g12a-dw-hdmi",
- 	  .data = &meson_dw_hdmi_g12a_data },
- 	{ }
--- 
-2.43.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVHVlLCBBcHIgMjMsIDIwMjQgYXQgMDg6MTk6MDRQTSArMDMwMCwgQW5keSBTaGV2Y2hlbmtv
+IHdyb3RlOgo+IG9mX2dwaW8uaCBpcyBkZXByZWNhdGVkIGFuZCBzdWJqZWN0IHRvIHJlbW92ZS4K
+PiBUaGUgZHJpdmVyIGRvZXNuJ3QgdXNlIGl0LCBzaW1wbHkgcmVtb3ZlIHRoZSB1bnVzZWQgaGVh
+ZGVyLgo+IAo+IFNpZ25lZC1vZmYtYnk6IEFuZHkgU2hldmNoZW5rbyA8YW5kcml5LnNoZXZjaGVu
+a29AbGludXguaW50ZWwuY29tPgoKUmV2aWV3ZWQtYnk6IE1hbml2YW5uYW4gU2FkaGFzaXZhbSA8
+bWFuaXZhbm5hbi5zYWRoYXNpdmFtQGxpbmFyby5vcmc+CgotIE1hbmkKCj4gLS0tCj4gIGRyaXZl
+cnMvcGNpL2NvbnRyb2xsZXIvcGNpLWFhcmR2YXJrLmMgfCAxIC0KPiAgMSBmaWxlIGNoYW5nZWQs
+IDEgZGVsZXRpb24oLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9w
+Y2ktYWFyZHZhcmsuYyBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvcGNpLWFhcmR2YXJrLmMKPiBp
+bmRleCA3MWVjZDdkZGNjOGEuLjhiM2UxYTA3OWNmMyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL3Bj
+aS9jb250cm9sbGVyL3BjaS1hYXJkdmFyay5jCj4gKysrIGIvZHJpdmVycy9wY2kvY29udHJvbGxl
+ci9wY2ktYWFyZHZhcmsuYwo+IEBAIC0yMyw3ICsyMyw2IEBACj4gICNpbmNsdWRlIDxsaW51eC9w
+bGF0Zm9ybV9kZXZpY2UuaD4KPiAgI2luY2x1ZGUgPGxpbnV4L21zaS5oPgo+ICAjaW5jbHVkZSA8
+bGludXgvb2ZfYWRkcmVzcy5oPgo+IC0jaW5jbHVkZSA8bGludXgvb2ZfZ3Bpby5oPgo+ICAjaW5j
+bHVkZSA8bGludXgvb2ZfcGNpLmg+Cj4gIAo+ICAjaW5jbHVkZSAiLi4vcGNpLmgiCj4gLS0gCj4g
+Mi40My4wLnJjMS4xMzM2LmczNmI1MjU1YTAzYWMKPiAKCi0tIArgrq7grqPgrr/grrXgrqPgr43g
+rqPgrqngr40g4K6a4K6k4K6+4K6a4K6/4K614K6u4K+NCgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51
+eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
