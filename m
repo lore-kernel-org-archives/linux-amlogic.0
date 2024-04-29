@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41EC5C4345F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2024 11:49:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F549C4345F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2024 11:49:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ECKJyQfhZe2L1SEBGI4m0IDpZAPshOqnF+XhM9N36lc=; b=QP1z4op6JGkc6w
-	o6vnAlX6VQamdcvrAdOh9Fnr/+MZ0KaKIjsFUq1XP0zs1/23WeO3ZmJ0PK+hgBcZkcT2d51bePids
-	SvfzodDjKcUigKjKOGjr3K4v1P2oMQG0GwHq1nA5F93MRGLPX1xuvonLHTiCFmmTvF0V+hiovLcpx
-	ytERfswZJx4ij9t58GbI3eMYSO5ZN5tAdNLSZJ5pKe1FBUpyPTljkEMSmPi2oCNrqqUSlyLMhzngz
-	jAk1uk3GMqFX1AWjuCjHYE6DvcKPd4aJvqjrOOgCECqkaCnleypEsLA7YP9r5KLWhMhdNQw4Sd0WQ
-	CXXZ0ZAR3u0zwNtygSCA==;
+	List-Owner; bh=K9NDoCYaJYDf6FUtcRXWc9FvivmsnwUdlY+fDS843ig=; b=mwmDM4aw5wMwfE
+	LdOUpeZetwtul55e7DmUQH37QslWrNVU/gifxdLa7PC1VQPBZHAGWDyyQZPfZo4D+cJKPfo7AELcQ
+	TudUsqLnTwWRHBgzozr17cXgs1AzW2sUrlVwGLrOhlW15beP5F273YRk2Ti8P0YTnUST6Po17efKn
+	Ti32q37Q5J2mSdX/Xqz2ZlV5uBLASBs0SMeZXFsGvBkqTfxG3HvGRX+5fjDvzUTi6vWQPsjC2MH7y
+	BLhSNNNHh6Hq4qPL7eluqBkj9wOCbl7Gh8oh65llyAc7mgh3tL3P0+kOZmdkYSTx8DAJtqXpXV5qO
+	YDn7OTYurW+aJeb6tDXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1PVT-00000002WB7-34mL;
-	Mon, 29 Apr 2024 11:49:15 +0000
-Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
+	id 1s1PVc-00000002WFq-36yA;
+	Mon, 29 Apr 2024 11:49:24 +0000
+Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1PVN-00000002W53-2Lhh
+	id 1s1PVN-00000002W4q-44YY
 	for linux-amlogic@lists.infradead.org;
 	Mon, 29 Apr 2024 11:49:12 +0000
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-56e1baf0380so5380220a12.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 29 Apr 2024 04:49:08 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5708d8beec6so5360055a12.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 29 Apr 2024 04:49:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714391346; x=1714996146; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1714391345; x=1714996145; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=IbYwH1iwfsZOTjLTYa1sxRyjdfJ65pOFz+5ojKjybfY=;
-        b=cHsxIMBWqMX/fWX72CoJmH7hx1dTH4+LHGKDEEMrQf0kgIFMW0mRo969/nYO0FDz5s
-         0+7FwyRQoVplAZri8KmX+x+U9jjKNBn/KTokTtOTev6zQXjRzB4/ldJNo3F9EAf4QTEh
-         acdTmljaTKr8LfbY4VsWQ9hrfrghaDZonvuhC14WPDmW2iNe6KGxY9haYOX+a8MsjupR
-         3xyL8+R1usvIMY8ZOzw7ISw7IxWMRIJzTgGRBEy0LATTTIdIRc8oDtGoNKtTVwHCq57S
-         B5VgsgwqISGaekep79HiVxXrFlu8Q+rTRArWdfrM5SFQLornpJ9N0tOWUyK2CX4Ii6gW
-         XW3A==
+        bh=r2TryCs7KoAc+knf+2Iegg4aToZXu71FrGOJZxalZRo=;
+        b=vZFniBcbT8ikpA0uBXpQudVjAYCrUIVLR9Hnisd7cqDD3FGAN00CpB+wbTqCoXlshU
+         cnD1UXVbdgNPaz1oE6Ny8mp1LhpHYuErZqvvg+DGlHqcwf8xMSDn7BU/ssCDCPpqExyA
+         /OzYvsjJbIc4QnCFfL1ObceDbnawK0C263VPKopzgzBn0vQ/zJUMBDmFUxGTQ0MuSiMf
+         MJ9nHhTDqN5XaJo3zwGKMTqZ5584lLxu1rEviiCXbXNoWPir29jIQzPpZv5y3ydzsa3Q
+         620reiT+X7IbCdM3nsp1ZvWSyecK5YmUQFoM5M5bWGvVRdLO4wBKjDj4uM2a1XHis2AZ
+         25/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714391346; x=1714996146;
+        d=1e100.net; s=20230601; t=1714391345; x=1714996145;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IbYwH1iwfsZOTjLTYa1sxRyjdfJ65pOFz+5ojKjybfY=;
-        b=DhIFIIDk3HsZZgPJh9irBrpM31p2GWYkrj8diHhRvsYG05ieSnqDSksNwjBAhs8N/m
-         /+HCst2GIMj9K7l+Zz8lZOrHDSiw+341Qmg3czidB4S9Q7onADz4wV5Mj2oplStIxtPc
-         P4HEAhstmDLJynDC8bvpfZq1+v8qXtzXzjtHj9dkY+nivSJoY/6lcsiZHSdi188rcO8T
-         FLbHOqc3f4hVtI4Td2jKy7p9YUUAjUNduaicEecbXzt6lyKv6mzmjOb0fhtQc+XFMDB9
-         kuK3gKQZ5mKfa32RiMzUC717R917yxKTpBc3PhYprxXPTxqVSMZmm+UQ6MjNsh3y2McD
-         G0Dg==
-X-Forwarded-Encrypted: i=1; AJvYcCX9ueBa3zr0Wk0MuGSxf+qyf0Qw6wHcYakZmoLpjolw3knxcs6B4MBum7KH0Z2eSQ84nrh15n9G7P7h1Z3BEHmaFhYWzmVR3OfN0rY0wyjOOoA=
-X-Gm-Message-State: AOJu0Yy7r7iKmlBK6AtKiGfGBNWHq7YIzTkJT7aPHqm20e36xZVZH8X1
-	AfUlYgbaaPjo8cPjHfiNox1F6C89viNlpUuO6H8Ux8q01vMdQCWrrAk80adjTI4=
-X-Google-Smtp-Source: AGHT+IEcZNlFMX0KN5Zv3Mt9V9vUg/Vy8Fa9KRdDd7Hab4D4q7tKY2rb228nXG1TnPQpT2jd9cvgNw==
-X-Received: by 2002:a05:6402:3487:b0:572:689f:638a with SMTP id v7-20020a056402348700b00572689f638amr4800369edc.17.1714391346466;
-        Mon, 29 Apr 2024 04:49:06 -0700 (PDT)
+        bh=r2TryCs7KoAc+knf+2Iegg4aToZXu71FrGOJZxalZRo=;
+        b=SLD4yQB/APPG2dZBPG4GW0eb/3ZS5EE/VEOk/6dmbZ38xS+wbmNEzHAUUS8KrIvXxM
+         Rm2nak8HycoRBLX1CXI7M1ql5banDHHtz/KlkvmIjzNyKpyvzEumOlev4VQjg+h0BFVu
+         sWyNMmnzS1GXmXZlhYAMhpbpX7/OoICMXTCw3HVz3aQvQvqXD2xTl4ibVjoW0kRz+rEA
+         na5zIwDft94mMK9lrUDAjjNcg5G5dJvNybq55YQPH1T3mOe+WfX6VhfE6AcvGZogXzmw
+         9aVWd9CB/ca9AqxCnK7kWpOJ3vJlf2+IOXz9SdESNf0KxoKNQbD56S6nyjMvTF72WKUq
+         1UNA==
+X-Forwarded-Encrypted: i=1; AJvYcCWEVHuDdP8Lmi65vMRU8Evdw93MBtph8f+SCmdNy9YoOm/Uib6DHccWMdX9IIYxRZPxOFLVTWORoFC5UmQXeD1hglkF87s3FXwTSY6gjgm8CAs=
+X-Gm-Message-State: AOJu0YwDSgU9c1WWCbsQnXLyrW6vQGgNwdBMtu7BjNSNfm+S3YWeaf/J
+	KfgKE0zsNlhLSq4pVMMgpMtPfBOyjHnbWWczkOxCTmPMXB5NxTmahMcGVu3L5qs=
+X-Google-Smtp-Source: AGHT+IE7Wa1uhxiwDIcwEN93hp17bsG0rm9iXFrpgirDNmmGz9BzEYEL+4mFW282MhhBjXekfPbkUA==
+X-Received: by 2002:a50:c34d:0:b0:572:4e6b:958 with SMTP id q13-20020a50c34d000000b005724e6b0958mr8878245edb.2.1714391338535;
+        Mon, 29 Apr 2024 04:48:58 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id y43-20020a50bb2e000000b0057000a2cb5bsm13549651ede.18.2024.04.29.04.49.04
+        by smtp.gmail.com with ESMTPSA id y43-20020a50bb2e000000b0057000a2cb5bsm13549651ede.18.2024.04.29.04.48.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Apr 2024 04:49:05 -0700 (PDT)
+        Mon, 29 Apr 2024 04:48:58 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Mon, 29 Apr 2024 13:48:47 +0200
-Subject: [PATCH 2/4] ASoC: fsl: Constify static snd_pcm_hardware
+Date: Mon, 29 Apr 2024 13:48:46 +0200
+Subject: [PATCH 1/4] ASoC: qcom: Constify static snd_pcm_hardware
 MIME-Version: 1.0
-Message-Id: <20240429-n-asoc-const-snd-pcm-hardware-v1-2-c6ce60989834@linaro.org>
+Message-Id: <20240429-n-asoc-const-snd-pcm-hardware-v1-1-c6ce60989834@linaro.org>
 References: <20240429-n-asoc-const-snd-pcm-hardware-v1-0-c6ce60989834@linaro.org>
 In-Reply-To: <20240429-n-asoc-const-snd-pcm-hardware-v1-0-c6ce60989834@linaro.org>
 To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
@@ -90,26 +90,26 @@ Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
  linux-amlogic@lists.infradead.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=829;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2057;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=07XNlzH+Om30NPL+5RgZatpoAnoy8SZw09iGVLs1Juw=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBmL4kklslopCBSQVS24U7RLVNAErQ+RmdZW+cnY
- 2vP6DhzCt2JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZi+JJAAKCRDBN2bmhouD
- 1/OhD/9OuP5DVUEzlKoiXyRfzWiPWETGaurZlgqXePCKIhR7Aw4zgQNkrl7olw7V0PXD3AG+lxB
- kQuxk8MGNdzM5gRQ5QvitxieqGs7Q6wB65JF4E6nljMW38QLNdX8xK+9AWe99iF6Y3Ljii/Sa9d
- QmF2lRiKOifVy5b84Ro2jZFhzL2IRk6zPR+kAAkHQmlxNfAqjGJWJwRF/XQG2azeaVobrL7Z69t
- Wjv6ACChJ4RMAH1iMe6Rm9khR3AByTKQSi6OEgO9pC8lsiGxjucEMfRmQ+naf/VSjjcVdBfgaaG
- Q8eTW2nPWJFZoF4tuDX++42H/5gf4cMxpgTQ4b4rRU4czeBYwRLBULJOjAWCXps0jxBBniD35Rw
- aYXsnzH27A4T1myauv8wnF55tdbunLfRlYFeXh2/vGe09r8v1gY0ZsmXKw0A+GE7Q7UHYzTHU3c
- 0iOiLeTEzwX5sjIlF7NAhYxIhvDLWQdOBOeRioCCqUk2retxoDCP7ytx55nRYTFY7Y7/PQlmLy/
- D0KFHsf7XdM7Q+FzJePSXI+QPgtGwuWIP5LkO7YQ2YwmQwUyNc00Iwo9H+JnB1acl7IU0c/nC/a
- y2Q3MIQjM8Gocdd/6jN78rhB/DEqkZppZX1UMVkC88/l0ZD2sNPIV0++IJ5qJ4rRR3c4oGObRaJ
- TcPObSVlxia1CEQ==
+ bh=L+z19Mflj6dbjsuY/oyg7M2Nl7bx7birqfaMqqiWFh4=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBmL4kjQtqus+caDsWogKmeSbNLXw+geB1/pDh6h
+ zr4LbfsFbuJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZi+JIwAKCRDBN2bmhouD
+ 14b0D/0V8sY+FV/qujbJc2MZicjp6syHrzotc7cYVvSeV+dkb439YYh+NaGaaqpeJUxjyJb2iwN
+ g80bspO9f4x8zDrj33iaDX6i3PTrzUfqIdX9sdjRVTV3Fr4uwKC3aCbsFa2Vxiv17HN44sBJGNk
+ xcWehLqO4B7ywwZItmOd80D5xro3XPgXNLdKOH0MdqlZklYl6hO+1xNLiPfWpip/W612624D8iQ
+ 9cP+3JFtg/WOs8bs1pw19ck/erjsxcK5agwdvb8/PBDqzGw+thqtLTiyhfNYkK84HIQRMnr/HAB
+ zZ2imnBm+Sq/JYviHRnhDisoAwtJIMJjkKz5LVikIN/ZncgetLX/XtHcabi9PUe8u1UVTlQI35t
+ p8N0ddiiugWxBSwUqeB0l/oUYVGD25BM7rw6FvLyxGRRbq6wNHIF2FM5L+CvTbf4Cjj7en2yqIe
+ YAmbAszVP1IJinxReJfTLotoI8eOEInUmx5Oi6/RtoiA8PrGDx91vg9sv8+GHiPKwyUq86gzY56
+ lnNPaYQ7rkZ3xUUxNfiaxz3bU/Xfdd5mCFC9bVihIo/K+xYvtE7VpBIULyS/kS+qAUaKjOPuTWS
+ nSbxB6Ep7ZaUfi/J8Le0Job8rTy/m6gU/Q+TRR6KLg0Fp6FzUP4wqvblu8wCjozXsnk7ZvM43r7
+ Qo+Ozchtl/HeR4w==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240429_044909_677399_1A6CDFE7 
-X-CRM114-Status: GOOD (  12.42  )
+X-CRM114-CacheID: sfid-20240429_044910_063086_8497A0B0 
+X-CRM114-Status: GOOD (  13.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,22 +132,45 @@ safety.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- sound/soc/fsl/imx-pcm-rpmsg.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ sound/soc/qcom/qdsp6/q6apm-dai.c | 4 ++--
+ sound/soc/qcom/qdsp6/q6asm-dai.c | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/sound/soc/fsl/imx-pcm-rpmsg.c b/sound/soc/fsl/imx-pcm-rpmsg.c
-index b84d1dfddba2..128728b65a3a 100644
---- a/sound/soc/fsl/imx-pcm-rpmsg.c
-+++ b/sound/soc/fsl/imx-pcm-rpmsg.c
-@@ -16,7 +16,7 @@
- #include "fsl_rpmsg.h"
- #include "imx-pcm-rpmsg.h"
+diff --git a/sound/soc/qcom/qdsp6/q6apm-dai.c b/sound/soc/qcom/qdsp6/q6apm-dai.c
+index 00bbd291be5c..3c78440a2f0f 100644
+--- a/sound/soc/qcom/qdsp6/q6apm-dai.c
++++ b/sound/soc/qcom/qdsp6/q6apm-dai.c
+@@ -85,7 +85,7 @@ struct q6apm_dai_data {
+ 	long long sid;
+ };
  
--static struct snd_pcm_hardware imx_rpmsg_pcm_hardware = {
-+static const struct snd_pcm_hardware imx_rpmsg_pcm_hardware = {
- 	.info = SNDRV_PCM_INFO_INTERLEAVED |
- 		SNDRV_PCM_INFO_BLOCK_TRANSFER |
- 		SNDRV_PCM_INFO_BATCH |
+-static struct snd_pcm_hardware q6apm_dai_hardware_capture = {
++static const struct snd_pcm_hardware q6apm_dai_hardware_capture = {
+ 	.info =                 (SNDRV_PCM_INFO_MMAP | SNDRV_PCM_INFO_BLOCK_TRANSFER |
+ 				 SNDRV_PCM_INFO_MMAP_VALID | SNDRV_PCM_INFO_INTERLEAVED |
+ 				 SNDRV_PCM_INFO_PAUSE | SNDRV_PCM_INFO_RESUME |
+@@ -104,7 +104,7 @@ static struct snd_pcm_hardware q6apm_dai_hardware_capture = {
+ 	.fifo_size =            0,
+ };
+ 
+-static struct snd_pcm_hardware q6apm_dai_hardware_playback = {
++static const struct snd_pcm_hardware q6apm_dai_hardware_playback = {
+ 	.info =                 (SNDRV_PCM_INFO_MMAP | SNDRV_PCM_INFO_BLOCK_TRANSFER |
+ 				 SNDRV_PCM_INFO_MMAP_VALID | SNDRV_PCM_INFO_INTERLEAVED |
+ 				 SNDRV_PCM_INFO_PAUSE | SNDRV_PCM_INFO_RESUME |
+diff --git a/sound/soc/qcom/qdsp6/q6asm-dai.c b/sound/soc/qcom/qdsp6/q6asm-dai.c
+index aeb6a9d479ab..3913706ccdc5 100644
+--- a/sound/soc/qcom/qdsp6/q6asm-dai.c
++++ b/sound/soc/qcom/qdsp6/q6asm-dai.c
+@@ -103,7 +103,7 @@ static const struct snd_pcm_hardware q6asm_dai_hardware_capture = {
+ 	.fifo_size =            0,
+ };
+ 
+-static struct snd_pcm_hardware q6asm_dai_hardware_playback = {
++static const struct snd_pcm_hardware q6asm_dai_hardware_playback = {
+ 	.info =                 (SNDRV_PCM_INFO_MMAP | SNDRV_PCM_INFO_BATCH |
+ 				SNDRV_PCM_INFO_BLOCK_TRANSFER |
+ 				SNDRV_PCM_INFO_MMAP_VALID |
 
 -- 
 2.43.0
