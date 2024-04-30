@@ -4,84 +4,124 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FDBEC19F53
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Apr 2024 10:17:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3F38C4345F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Apr 2024 14:02:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=W7D8RwCeD1pusABaZk7zDv912Mhf21anrdIveibfaQI=; b=ylk22WzVjUSIH3
-	P+2N7PnULddIfLtB37FvaQwjlQi0FU+qSHjnTgGCXatx5C7FwDgK7tq6o0UTemXqyzEhL42MooBgT
-	I91IK0u6E2/uKlbrJRW61tApDAR57JyzrFUu2oTPnb1OfAvEwSfqUSktzkUX7YwpXZKkwoiDJx7gd
-	qMiwaJ4YeadHV7Tf3i6y8C7Yvelqz7+aKPvnHsNqx34XAPMKIw/RaTOItZNY7omYGDUL9YH46HeMy
-	k7K1bIwWnLKn9RONMY0slOAWFivMs1Wnvm+CqyBrRGPXdurXCyoqWL3SMXYyjm0/Smay2TsHZQmmJ
-	GF6dXbMIg902828gSDeA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=hDVCkn9stLTOq5nbOpkdl13AmiKH8LOUs0Xk7ap1oFw=; b=quZlSAPkLffODs
+	W2NVoAufnZnHZ7GycFY8l6FYiiGUPmcCJ6UneugIrXRgjgeTBc9qqcwP9M7jEs5S1QdJbkD5sMO1y
+	KxyAOcD08FMizmvFNs3csesNMCdfUJqjGQdZNvJWj5DDvSvigZNAozo3udhyonqVrVBWDF/hvJXz1
+	482ovnxH3HJ4dHpj5saWuY4+KNUDQKix+2nf9WMCuWna+GrORsJB/dT0pwbpC7d9uGkSsjNdzIstR
+	ZaaXBrwMaUYBFlFwv37F9KWMHtrFHixtSVbrW4S7F6f8ME9tlUg0Y6gRwGJQ0a0qmoUoV8k03l3rX
+	7hwT9K2HTjZjMnca4P4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1kYa-00000005yew-1oah;
-	Tue, 30 Apr 2024 10:17:52 +0000
-Received: from mail-lj1-x231.google.com ([2a00:1450:4864:20::231])
+	id 1s1o4F-00000006e9K-3TRY;
+	Tue, 30 Apr 2024 14:02:47 +0000
+Received: from mail-lf1-x12f.google.com ([2a00:1450:4864:20::12f])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1kYW-00000005yYU-3SQM
+	id 1s1o46-00000006e1j-30kO
 	for linux-amlogic@lists.infradead.org;
-	Tue, 30 Apr 2024 10:17:51 +0000
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2de2f5ca076so62144561fa.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 30 Apr 2024 03:17:20 -0700 (PDT)
+	Tue, 30 Apr 2024 14:02:45 +0000
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-51d62b0ecb7so4567509e87.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 30 Apr 2024 07:02:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714472239; x=1715077039; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vLkLH0SSmvOSmWzdY7vcX+RCH3AFTNGOUA3YHRv8hu4=;
-        b=I17mWeWWV2Jp8pC3luUrowChXvL+AtlAkgFUvHHEhCUWqf+v+sI4gh1a5chVS21rqR
-         boPKm+NDgumbJ67Or8teE8zSwps1BhloL4T7VarJiKkaKlLSQYOIFAqpcYnja8a7LVLw
-         Q6OyHJklNcAlS/sUGjfWvWp6WcCjBeyKTVAIbu5HGzEIJht1+8I7NYuwmqWHQz6TR7uN
-         effScvCs9GgfxAqbXtmqN3HoXEVKtSWVKgKBp+sAZVrpOANvNaYC+NRW9iBxPdC9kBgt
-         OYaLoIfoCHclAborseF5aHzrK2a7EjnJP0/4nIuOQtM71v4t2PVss8RoYRV7RmgK2/hi
-         oQtg==
+        d=linaro.org; s=google; t=1714485756; x=1715090556; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7ziKPpXLYR2zn3+NU5Pk66H9ism9mr6GLdkSFbxKAZ4=;
+        b=A+vKjuHr0fFXGuMeUNDT/E5XgxQ9DQOUZ97bwP23VB7q5xkl/iAZi4W3hVdW9MJfJU
+         quZDlwmE1W5XqhFYqbmKdSof6+lK0aC+aocM+60myjvOON9hjU0GUUppG2vPW3xeYmV6
+         MmQHSsaI0F+N6t3lu1ftLWxxC2/wkG6Y91LlHyZWQG5+bC6fF765dQMv1Vg8VrAxz2rO
+         KMNnQaOFwPmG5iI5ug2Q9QnqQ20JhK1hR4B5BQgXZdO4Brsd4r26n6YMYetzE22InuKL
+         9Ci0mz7lvKYqbOxQO/PH6j2rlgU7g+86adyHspQYjh0EMKZd8j1obSh2bAeKnxZQ47cK
+         8lYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714472239; x=1715077039;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vLkLH0SSmvOSmWzdY7vcX+RCH3AFTNGOUA3YHRv8hu4=;
-        b=mEuQHSepkrLNZqeWpMTQRI/rkpESIUYY7Iw8Akw4qGDF3HF/ydoK0INmyZjiI9dZOM
-         c9nefmHqNjXVGnS+AwXez0J6wGlE3CF9m8LpIBlWmstXijn7JUG7FmGzwZvFF6hX6gdl
-         lI5ELZxlb1K50+qVnkK4j0lwwsCTOQ4WmcFo/estSSJP5zAhG94yD9AU7jnUtRd6s3zF
-         o5Iso28ltVBxuxmITYZFqgxrUcpX9l3PmoXa0bp0s5dCndX6hC8WLY7VB6ItHicIU6SG
-         /Ebtn/48QTkEuLem2FsRtwgpO9L/BWmy7ABJPmzmCD8nu3JrM/dDsk4bpOCvG6pKDHqk
-         ysDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW8cxh1cjCRPk61WZcC7VS4qjwl7NKXRhN4V+d//hK5+zRPT6Df/DD+qstKAy6M1L4YSqg2h8128sEks3Gld7hjO6PbhmskpxcbbdnDn9ZsRDQ=
-X-Gm-Message-State: AOJu0YwxZLkYRtIl5H5og76PuxVJM47gPoNp8fB/3A5/hib9FJgcIip1
-	kPy1fpBu86pj4Mshtuy6d3SWYlgbvMxDggWE1c9mpWm6qJGcJV/B+Nti7oA9oGw=
-X-Google-Smtp-Source: AGHT+IHaFm4lzkxq9U1a8iPWUfix49p5Xd5gLpx7H0AEzCvQ84t8kRB/7beeUSB3FIO6fjrXa0k+4A==
-X-Received: by 2002:a2e:8e23:0:b0:2e0:e129:7011 with SMTP id r3-20020a2e8e23000000b002e0e1297011mr1308756ljk.16.1714472238962;
-        Tue, 30 Apr 2024 03:17:18 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id f28-20020a2eb5bc000000b002e0e78240a4sm205475ljn.77.2024.04.30.03.17.18
+        d=1e100.net; s=20230601; t=1714485756; x=1715090556;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7ziKPpXLYR2zn3+NU5Pk66H9ism9mr6GLdkSFbxKAZ4=;
+        b=dCGMzfs6A5oRUZaugbQcrvQHb910k1I682DwQ6ZichwPWXVqMzlo9ghEWCSWTL1BVR
+         a8d7A0D4w2S8TJntVLuFTqH8lsSVbVXpvmbqVmahXQ8dyMiyWkupW5EV76x10ChOhDvK
+         R8LkHtyt1cU7Y15tGi4guncostCEJHTGAyOTQ4d8y1myvh+nbNrr3InMlB4BB08yoB8B
+         63ynlXSUCNN/CC3oGg0EQdc1yL7+erYb/FAqtoFxv6R8NN66fPnHkFY/kjZZlDbD+VEm
+         AItkxT+nD3GH0I+u5Q41OKttXLQ0akjQjM9J/2Mt/1z3RnUoMi60WQ0DToz1wciyLO1g
+         JCDg==
+X-Forwarded-Encrypted: i=1; AJvYcCXisLPp8Zy2xUk/ZyPTupyjB/6X+7o6J4FwBGolokaqIq8CWS7047+JWa8QwpxOr0An0jl+tj7wBEpoo8sLfHYmYEbFmkFGU6Qi640jUzUTA6A=
+X-Gm-Message-State: AOJu0YzOR+6ofYdfVn/Z9pKL2Czi/ciV1mxWulCJVC5zhGNxe2flQUss
+	IFrY73ZGIioGEw4Ql9YGwf7lxrWAcTXGrJazYwZncyft2p4DL7xMaBFanTk3qjc=
+X-Google-Smtp-Source: AGHT+IFxX6RMrPFkE+iKjGFWGX6uNErIhwrc6ioCbIidZRB0tmw4GxAmrC5NZWl96iLeoUrVLfRGvw==
+X-Received: by 2002:ac2:47f0:0:b0:51d:70d9:f844 with SMTP id b16-20020ac247f0000000b0051d70d9f844mr5882908lfp.22.1714485756019;
+        Tue, 30 Apr 2024 07:02:36 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.223.16])
+        by smtp.gmail.com with ESMTPSA id pv27-20020a170907209b00b00a5940af3f67sm31434ejb.16.2024.04.30.07.02.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Apr 2024 03:17:18 -0700 (PDT)
-Date: Tue, 30 Apr 2024 13:17:17 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Vignesh Raman <vignesh.raman@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
-	helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch, robdclark@gmail.com, 
-	david.heidelberg@collabora.com, guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com, 
-	mcanal@igalia.com, linux-mediatek@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
-	virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/5] drm/ci: generate testlist from build
-Message-ID: <k7sepoksttro3dgxxtwxfmlxwv5w5zn3aeso7p24mm3n74bo45@kx2dpe2qkqgo>
-References: <20240430091121.508099-1-vignesh.raman@collabora.com>
- <20240430091121.508099-3-vignesh.raman@collabora.com>
+        Tue, 30 Apr 2024 07:02:35 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 00/13] ASoC: Use snd_soc_substream_to_rtd() for accessing
+ private_data
+Date: Tue, 30 Apr 2024 16:02:09 +0200
+Message-Id: <20240430-asoc-snd-substream-clean-v1-0-6f8a8902b479@linaro.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240430091121.508099-3-vignesh.raman@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAOL5MGYC/x3MTQrCMBBA4auUWTuQxEhqryIu8jPRgZqUTBWh5
+ O4Gl9/ivQOEGpPAMh3Q6MPCtQzo0wTx6cuDkNMwGGWssmeFXmpEKQnlHWRv5F8YV/IFr8YGp12
+ a88XCyLdGmb//9e3e+w9CANGvagAAAA==
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Peter Ujfalusi <peter.ujfalusi@gmail.com>, 
+ Jarkko Nikula <jarkko.nikula@bitmer.com>, Daniel Mack <daniel@zonque.org>, 
+ Haojian Zhuang <haojian.zhuang@gmail.com>, 
+ Robert Jarzmik <robert.jarzmik@free.fr>, 
+ Shengjiu Wang <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>, 
+ Fabio Estevam <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Ban Tao <fengzheng923@gmail.com>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>
+Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org, 
+ linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linuxppc-dev@lists.ozlabs.org, imx@lists.linux.dev, 
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3547;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=nmVD9KKu0onQCo4+scSWvtThsneJsuva2ZwAC2itQ+Q=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBmMPnp5GgNlhBx+/I3aG9tNIg/czLIulpjsgqB+
+ gIo9+t++USJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZjD56QAKCRDBN2bmhouD
+ 1/7LEACEfk8kijEA2LTMQcsqwb/zKSF+KUnI8xKuCriVzrabC5ANnLec53cOfXlJiZr0ORRQZu1
+ 470KfeDgCK0rPa+5rmHArn0RjNORLJGv3UY9o33TRjgnRKnhemsjjVBOY2q2aSGa12PGCdgZZ2W
+ 9lYT6gbghyhPF8NwejTYWU67cXXHzw57qZrigi06wTI2UMEzGCAPqjVhM2lDMHiEyCTYsFh5fZC
+ rR2QeMZ5pK1z03KZd5SaMByAHa4DJKQOESKs+zVprbQfv5lzpQpn0EVjmxu4IuLRoQxBzfNJhPt
+ 36FgoerUfQRcpNoGC21+oBlav8jvX4KPs07WDOuNAmbmOtgXCpWnMgFcFwHmF3waXKQHwzOjK+/
+ 2KrHGzOUV9Xbz/fFxxDvcrJ9KdrqfbWpHM0xl7iwulLPWb1KsQr+/NFKNg6MfijGBKz4sC0Zqt8
+ vQP4on/GzYRbye0DENyAmvUZGrWaBcF6ARh875j/Wtbgf4akwjlz1IziblIY+5XW/H1pl10EmuK
+ rZVUZawHpK9VaDDe13ybwYLFC6jLwchoLTS52Pq2adjWzHJ+DAX0kMA60ACfugVQyPnugr0zBEz
+ B7kqe01ESwCaFe3059W+GzYuXFpqQpOOJOqIoNfu7R23l0QqyopaR9hd/2Y62EwfsI/mkovGRET
+ HqyQWjcO1YItmKQ==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240430_031748_880191_5B0A9965 
-X-CRM114-Status: GOOD (  21.68  )
+X-CRM114-CacheID: sfid-20240430_070238_955705_AE995648 
+X-CRM114-Status: GOOD (  10.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,96 +138,76 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Apr 30, 2024 at 02:41:18PM +0530, Vignesh Raman wrote:
-> Stop vendoring the testlist into the kernel. Instead, use the
-> testlist from the IGT build to ensure we do not miss renamed
-> or newly added tests.
-> 
-> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> ---
->  drivers/gpu/drm/ci/build-igt.sh  |   23 +
->  drivers/gpu/drm/ci/igt_runner.sh |    9 +-
->  drivers/gpu/drm/ci/testlist.txt  | 2761 ------------------------------
->  3 files changed, 28 insertions(+), 2765 deletions(-)
->  delete mode 100644 drivers/gpu/drm/ci/testlist.txt
-> 
-> diff --git a/drivers/gpu/drm/ci/build-igt.sh b/drivers/gpu/drm/ci/build-igt.sh
-> index 500fa4f5c30a..cedc62baba1e 100644
-> --- a/drivers/gpu/drm/ci/build-igt.sh
-> +++ b/drivers/gpu/drm/ci/build-igt.sh
-> @@ -26,6 +26,29 @@ meson build $MESON_OPTIONS $EXTRA_MESON_ARGS
->  ninja -C build -j${FDO_CI_CONCURRENT:-4} || ninja -C build -j 1
->  ninja -C build install
->  
-> +set +ex
-> +export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/igt/lib64
-> +while read -r line; do
-> +    if [ "$line" = "TESTLIST" ] || [ "$line" = "END TESTLIST" ]; then
-> +        continue
-> +    fi
-> +
-> +    tests=$(echo "$line" | tr ' ' '\n')
-> +
-> +    for test in $tests; do
-> +        output=$(/igt/libexec/igt-gpu-tools/"$test" --list-subtests)
-> +
-> +        if [ -z "$output" ]; then
-> +            echo "$test"
-> +        else
-> +            echo "$output" | while read -r subtest; do
-> +                echo "$test@$subtest"
-> +            done
-> +        fi
-> +    done
-> +done < /igt/libexec/igt-gpu-tools/test-list.txt > /igt/libexec/igt-gpu-tools/testlist.txt
-> +set -ex
+Hi,
 
-Is the list in sync between x86 and arm/arm64 IGT builds? Is there a
-chance of having a safety net here?
+Do not open-code snd_soc_substream_to_rtd() when accessing
+snd_pcm_substream->private_data.  This makes code more consistent with
+rest of ASoC and allows in the future to move the field to any other
+place or add additional checks in snd_soc_substream_to_rtd().
 
-> +
->  mkdir -p artifacts/
->  tar -cf artifacts/igt.tar /igt
->  
-> diff --git a/drivers/gpu/drm/ci/igt_runner.sh b/drivers/gpu/drm/ci/igt_runner.sh
-> index f1a08b9b146f..20026612a9bd 100755
-> --- a/drivers/gpu/drm/ci/igt_runner.sh
-> +++ b/drivers/gpu/drm/ci/igt_runner.sh
-> @@ -59,25 +59,26 @@ fi
->  
->  curl -L --retry 4 -f --retry-all-errors --retry-delay 60 -s ${FDO_HTTP_CACHE_URI:-}$PIPELINE_ARTIFACTS_BASE/$ARCH/igt.tar.gz | tar --zstd -v -x -C /
->  
-> +TESTLIST="/igt/libexec/igt-gpu-tools/testlist.txt"
->  
->  # If the job is parallel at the gitab job level, take the corresponding fraction
->  # of the caselist.
->  if [ -n "$CI_NODE_INDEX" ]; then
-> -    sed -ni $CI_NODE_INDEX~$CI_NODE_TOTAL"p" /install/testlist.txt
-> +    sed -ni $CI_NODE_INDEX~$CI_NODE_TOTAL"p" $TESTLIST
->  fi
->  
->  # core_getversion checks if the driver is loaded and probed correctly
->  # so run it in all shards
-> -if ! grep -q "core_getversion" /install/testlist.txt; then
-> +if ! grep -q "core_getversion" $TESTLIST; then
->      # Add the line to the file
-> -    echo "core_getversion" >> /install/testlist.txt
-> +    echo "core_getversion" >> $TESTLIST
->  fi
->  
->  set +e
->  igt-runner \
->      run \
->      --igt-folder /igt/libexec/igt-gpu-tools \
-> -    --caselist /install/testlist.txt \
-> +    --caselist $TESTLIST \
->      --output /results \
->      $IGT_SKIPS \
->      $IGT_FLAKES \
+Best regards,
+Krzysztof
 
+---
+Krzysztof Kozlowski (13):
+      ASoC: qcom: Use snd_soc_substream_to_rtd() for accessing private_data
+      ASoC: tegra: Use snd_soc_substream_to_rtd() for accessing private_data
+      ASoC: ti: Use snd_soc_substream_to_rtd() for accessing private_data
+      ASoC: arm: Use snd_soc_substream_to_rtd() for accessing private_data
+      ASoC: amd: Use snd_soc_substream_to_rtd() for accessing private_data
+      ASoC: fsl: Use snd_soc_substream_to_rtd() for accessing private_data
+      ASoC: img: Use snd_soc_substream_to_rtd() for accessing private_data
+      ASoC: kirkwood: Use snd_soc_substream_to_rtd() for accessing private_data
+      ASoC: loongson: Use snd_soc_substream_to_rtd() for accessing private_data
+      ASoC: mediatek: Use snd_soc_substream_to_rtd() for accessing private_data
+      ASoC: meson: Use snd_soc_substream_to_rtd() for accessing private_data
+      ASoC: samsung: Use snd_soc_substream_to_rtd() for accessing private_data
+      ASoC: sunxi: Use snd_soc_substream_to_rtd() for accessing private_data
+
+ sound/arm/pxa2xx-pcm-lib.c                 |  4 ++--
+ sound/soc/amd/acp/acp-mach-common.c        |  2 +-
+ sound/soc/amd/acp3x-rt5682-max9836.c       |  2 +-
+ sound/soc/amd/ps/ps-sdw-dma.c              |  2 +-
+ sound/soc/fsl/fsl-asoc-card.c              |  2 +-
+ sound/soc/fsl/imx-card.c                   |  6 +++---
+ sound/soc/fsl/imx-hdmi.c                   |  2 +-
+ sound/soc/fsl/imx-pcm-rpmsg.c              |  6 +++---
+ sound/soc/img/img-i2s-in.c                 |  2 +-
+ sound/soc/img/img-i2s-out.c                |  2 +-
+ sound/soc/kirkwood/kirkwood-dma.c          |  2 +-
+ sound/soc/loongson/loongson_card.c         |  2 +-
+ sound/soc/loongson/loongson_dma.c          |  2 +-
+ sound/soc/mediatek/mt7986/mt7986-afe-pcm.c |  4 ++--
+ sound/soc/mediatek/mt8186/mt8186-afe-pcm.c | 14 +++++++-------
+ sound/soc/mediatek/mt8186/mt8186-mt6366.c  |  2 +-
+ sound/soc/mediatek/mt8188/mt8188-afe-pcm.c |  8 ++++----
+ sound/soc/mediatek/mt8188/mt8188-mt6359.c  |  6 +++---
+ sound/soc/mediatek/mt8195/mt8195-afe-pcm.c | 10 +++++-----
+ sound/soc/mediatek/mt8195/mt8195-mt6359.c  |  4 ++--
+ sound/soc/meson/aiu-fifo.c                 |  2 +-
+ sound/soc/meson/axg-fifo.c                 |  2 +-
+ sound/soc/qcom/apq8016_sbc.c               |  4 ++--
+ sound/soc/qcom/qdsp6/q6apm-dai.c           |  2 +-
+ sound/soc/qcom/sc7180.c                    | 10 +++++-----
+ sound/soc/qcom/sc7280.c                    | 12 ++++++------
+ sound/soc/qcom/sc8280xp.c                  |  8 ++++----
+ sound/soc/qcom/sdw.c                       |  8 ++++----
+ sound/soc/qcom/sm8250.c                    | 10 +++++-----
+ sound/soc/qcom/x1e80100.c                  |  8 ++++----
+ sound/soc/samsung/midas_wm1811.c           |  2 +-
+ sound/soc/sunxi/sun50i-dmic.c              |  2 +-
+ sound/soc/tegra/tegra_asoc_machine.c       |  2 +-
+ sound/soc/tegra/tegra_pcm.c                |  6 +++---
+ sound/soc/ti/omap-hdmi.c                   |  2 +-
+ 35 files changed, 82 insertions(+), 82 deletions(-)
+---
+base-commit: 82415cf72c7e224be7a6496f3a53c0b365c2fe9d
+change-id: 20240430-asoc-snd-substream-clean-924b717d8f54
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 _______________________________________________
 linux-amlogic mailing list
