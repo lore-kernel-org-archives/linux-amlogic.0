@@ -4,71 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3461C19F53
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Apr 2024 14:04:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D318FC4345F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Apr 2024 14:04:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EYW+0mX9HYdfWD5jr+7sK02/PAj300fa/L1oc80nFms=; b=C2GVMbWiCO4VQD
-	4liMJvDdKkccqJ6DJhea7EeAnoHYa/xsClhZ4bph0GdIEqhtUmXnnkVlEolDeWg2WqxZcDDU4e7U/
-	I2JChEzuzEmUOM58a3M1/WQPaZh2j9tGzGvbHFqDR4FaMUZ7vZ8UpqN390y/Oajmw4xv4iBNCd36A
-	JughdfY9tn0CNJtMrn/wFuFAbzhQmaKpKKau6S7qbe9PbTm1gmzk0mxiav2dPVKsalN5CaBKhyhCD
-	ULJg6H/IIJkFrV53zFBNxcPKWdpBr5cJ0PjlZ3KxPjOilZBBjxO+xp3pWF33GtxTOrYhkMB9s5elJ
-	xUWF7I+UCX0aiRiffmew==;
+	List-Owner; bh=9aecODoMkNvEZqr8NfSiu72PP4HMLD5Fr+O6tvGdyig=; b=k69yUrRF2Tulhl
+	La/kA4iwPllocs9mhb7jJpcE8GAw1SKovok4NfXiLIk4M0LY41sPzsZqjKTlbCwnvMKUKSGiY+lvY
+	W2TQnM3VNNjB5nkslC3XIzj/owLa2xFsYRawLk3+6dxhupOvVhUgSKXDv1H2Smb9aVv1aTvdGIIj/
+	5PfkU3NiKP1WTlFJHPQIevHTG9IB+g/jt8PrPvt6r/Hd4iU+rvH9ApUcnn8GI1HE5wBAU+14O/xjx
+	73Qkj+neyDpDj01bFpiuVB8rF9/3/+ikQLPq9wxcvnQpnMaRLCttSYE6vYx8popfAoNbwm5ZWn7YG
+	k3ddMh7aNkuoOL/2GTsg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1o5R-00000006f4D-0fHX;
-	Tue, 30 Apr 2024 14:04:01 +0000
-Received: from mail-lf1-x12e.google.com ([2a00:1450:4864:20::12e])
+	id 1s1o5d-00000006fBu-2cgx;
+	Tue, 30 Apr 2024 14:04:13 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1o4S-00000006eGX-0Dmp
+	id 1s1o4k-00000006eX8-3H3w
+	for linux-amlogic@bombadil.infradead.org;
+	Tue, 30 Apr 2024 14:03:18 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
+	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
+	:Reply-To:Content-ID:Content-Description;
+	bh=HMdvqht5zOkDrEgl++6w26ILXUpiKeLdEJgBolPMUp4=; b=kPMS68up+s8p5hRfDg6Ays54hx
+	ACxhJ/ncLW1QbvOowjigjz5rqSeUYAz9oRCQiyyMpnh22Padd95S57dTg9U1f4lv8BfDs7o5fyx3L
+	K09on4f+9G9+LfTxg2Xcc1wxefZV5BzfZtbCwCp8vCFqCzoMa+k51N5srMAHdGKCUiASSTyQceyMY
+	9odcCKSSN0NlvJA48lf4GBwLt+KpRVKJrL7c18IuExMzIWOkHTIoLnU3fynNT7IwemTfPV3wOLAoD
+	EvzKrfc4UlOvXE/BPQWhJ5yhs4ojIZ3gKzw9XRAwvGKkwBBjqyBgpFSrtpRXHDGtZblpcFwnbbtcj
+	t75UaKEw==;
+Received: from mail-lf1-x12c.google.com ([2a00:1450:4864:20::12c])
+	by casper.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1s1o4e-0000000EvnP-1gsH
 	for linux-amlogic@lists.infradead.org;
-	Tue, 30 Apr 2024 14:03:14 +0000
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-51d62b0ecb7so4568879e87.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 30 Apr 2024 07:02:59 -0700 (PDT)
+	Tue, 30 Apr 2024 14:03:17 +0000
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-51abd9fcbf6so9618721e87.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 30 Apr 2024 07:03:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714485778; x=1715090578; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1714485790; x=1715090590; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=YNgLEZpy94T5of5dDiteuT7S3SOS839FWPGD9Oz3+lU=;
-        b=Afepo8KGaYZJCkiDESTOIP8AHU5LqEEJ4hCTbpZXLHKHH7Lue6r19CfdX4QXycyUkc
-         Y47zFmCOfY2Gv8tiNxrFigF22RW0A3ykDnLU9a9JAIHVbZ547RckcY3xunQd8KgiZbBR
-         w1xWVUvmaNjnV3zwdn+X3MiK3BZSeEDJajUD7l0xWtTGizKvicJU9mTmftqi8AwdKKS9
-         HX/QWNNar9vO6swuOAjaAQOx2ugyekTuQ/7pJw/Ywx2l3qo8CDtYRTxHuFK3/v8uuDWX
-         6ZQJXkIB8F/UhcORc6IFJk6R+3jesm8jMCnBFYlXeOQMg78aUVUpNLjfmLM8S3WCKLkD
-         c5Cw==
+        bh=HMdvqht5zOkDrEgl++6w26ILXUpiKeLdEJgBolPMUp4=;
+        b=tljn1AYRjS+IzmGOu3ftIMf8veANpAlh6TZtqYwfzfG5yimlk3OvxyJnUKTcg8r+71
+         ypVzUT8FY/i4rmzq2Xzog2LYdleF+vLvOY7A3llrqe7xb7lz5UW+wIYomXLmynChD7Mz
+         QjJt67Ay7bSGi9aaFKTICmUy3rLGTYk9DBT38RV1cFq9QZNPnpxV0i6br1afi7JfcW0K
+         WzQiwuSTaxG9J6JLIxRHXgqgQgt9fFIcpjwsBD4wK6nZkWrJKctsWdoiTWHiC29kdCmx
+         5sPdvhq2T8TWCNUOiCqTOA9EqMGr5mj9534bFl87mneF88YWotdgsOZvqQWMAsY5N/h6
+         BsMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714485778; x=1715090578;
+        d=1e100.net; s=20230601; t=1714485790; x=1715090590;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YNgLEZpy94T5of5dDiteuT7S3SOS839FWPGD9Oz3+lU=;
-        b=OjkByhjvSimeSYMyywlXybUeM9+ZJqJt7keQvuY7UjId6+IwFEcjQd8NwrckH0ZktS
-         mdJVxKvKc/56NUtFmkaAO5ThmhiYuiQR4pwTBAmxuNuuWmM8IH/1YTo610FlMQB62Tm2
-         d+RmyJN3AZNGGC3AWgXQlPfsAKlgHbE/gJtbAsWPBedrV/o03BcIcqy/TEaYvVWaO6O8
-         JoqRU/7+1V8iizS2GFLTImlIjT+TULkM3avkd6kGI+N9GoWHueRq3tfxttPV907gaCDZ
-         7sp1I6BcuCbBRajD36+aN2U3CxTgDLynpC9Vp5aJJHxqix6SOOXMD5joPWCa68BaknZo
-         f3uA==
-X-Forwarded-Encrypted: i=1; AJvYcCUucpz0SyAnd6xJktr4R3TvakeGY8sBi32nyMwxryIUZHdjymhZcREVxCzSJY63DaATFBeeu62syGoUUe+6Nzzym835z5ukQiVE7mP2aEAk8vM=
-X-Gm-Message-State: AOJu0Yy8jZr35eVFuV+smzxKAaKqAptxgIZhEyisEvzBOTGtVEPVixIh
-	yLxi9xYjzqAQhGcRBvzRFAFesVHtu/B0jzHv8pIL7KADI4D1G4h3+rSFJQDzu6k=
-X-Google-Smtp-Source: AGHT+IFjpnpTp49C7eNXISEFR7RNPga2jXB5JGxKI22M+Sgkavx0dXEQC64nAv94ubWY9cbPtavVlQ==
-X-Received: by 2002:a2e:9d88:0:b0:2dd:da86:ee38 with SMTP id c8-20020a2e9d88000000b002ddda86ee38mr10711122ljj.8.1714485777680;
-        Tue, 30 Apr 2024 07:02:57 -0700 (PDT)
+        bh=HMdvqht5zOkDrEgl++6w26ILXUpiKeLdEJgBolPMUp4=;
+        b=iUYsM95fUQLTLl2P4rtqJrjmBwiJaa2/+OdgzZ0PVROzJOjoDLbW9HECNelp3p1/Eq
+         +qsYousFgM0tfhTiJLVETN3ha8VKfnTSYZWOrg6peIsgAhInrcZmqeiAYgYSmjaVkOUB
+         3W3p/K7OUwcgeIWopD8c9w8tKF54YVsYPakhvFhp27s/bOp1dnP7azTzwDbTWHTEeP27
+         CGMXlonaUa3T4PFfCUqUPmeQz5lT5nISYmFR9Sxh3OUoarAwvkGAgsRDvyRNMtW7kucL
+         DBM2NcGwn+EQWSLam42Bstb3Z68hvQ9XqiMNFxDzjzS40jIjswfjsZ8YHmK2/hpnKDhB
+         srOA==
+X-Forwarded-Encrypted: i=1; AJvYcCU6Bj7D6HUlrIgdwpvpBjVn5xyt7obZLwlhsSgiqUg1tqeNqmwMl2PIpr4htoNv9S3M67wxWcoLGVujMaTn8wo5wuRer+5HbRXNxviwGiqdh7o=
+X-Gm-Message-State: AOJu0YxlfWATEQOCKN3sB0/tBtbGQJubQXucHMQxhXWxn+2JsoROliAG
+	71b+vL1D5dhA4R8wkHZ6X+5Qu8Q/ShY6K93puEdGOGgWhCHQZ3KJgBzqe7FTQYw=
+X-Google-Smtp-Source: AGHT+IHF9BCm3Hpto4qRWqGnR6LWsHIvsR6psO89D0oVIbNwL85POL6TwPmXMEZNmxvO3lf19inFfA==
+X-Received: by 2002:a05:6512:3982:b0:519:166a:d217 with SMTP id j2-20020a056512398200b00519166ad217mr13782162lfu.32.1714485789720;
+        Tue, 30 Apr 2024 07:03:09 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id pv27-20020a170907209b00b00a5940af3f67sm31434ejb.16.2024.04.30.07.02.52
+        by smtp.gmail.com with ESMTPSA id pv27-20020a170907209b00b00a5940af3f67sm31434ejb.16.2024.04.30.07.03.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Apr 2024 07:02:57 -0700 (PDT)
+        Tue, 30 Apr 2024 07:03:08 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Tue, 30 Apr 2024 16:02:15 +0200
-Subject: [PATCH 06/13] ASoC: fsl: Use snd_soc_substream_to_rtd() for
+Date: Tue, 30 Apr 2024 16:02:18 +0200
+Subject: [PATCH 09/13] ASoC: loongson: Use snd_soc_substream_to_rtd() for
  accessing private_data
 MIME-Version: 1.0
-Message-Id: <20240430-asoc-snd-substream-clean-v1-6-6f8a8902b479@linaro.org>
+Message-Id: <20240430-asoc-snd-substream-clean-v1-9-6f8a8902b479@linaro.org>
 References: <20240430-asoc-snd-substream-clean-v1-0-6f8a8902b479@linaro.org>
 In-Reply-To: <20240430-asoc-snd-substream-clean-v1-0-6f8a8902b479@linaro.org>
 To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
@@ -102,26 +117,26 @@ Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
  linux-sunxi@lists.linux.dev, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5066;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1661;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=ucjMMVrCkGueEU7NLLh2sAE4bDhfGS2t9ibvgfiZuqk=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBmMPnyVTX4VSForeLiGua7AKa1bycRXXidVTl9D
- CaOooFdBBqJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZjD58gAKCRDBN2bmhouD
- 1x+nD/9L3QfdqNvflH7gpARtP03tnjdskVjY9BZshvK55BYu/8uL8qeQ8m7grVZgtdnFSp17jzg
- psAIaY2iZ3XjkhL1Wm9i2Bco6fY+REaa9ipQVksNn10h2zoFp4l3tKiNz9T6HIW+tr9LB4YJ0ez
- 95oxVwwR3mmgoGnOTgoBhBquIQotbSGxNdua1owIxI4ynwBEDk9aSuLzFvyZaK+a5pQqlk8sFHE
- 1Zk4N9BanSfRWtR7ZmuLxcDMQFw+f9cLlfnQjEF7qbDegbSaNYOR4VuwuAPVTQgmhL2FDZ9ZZBZ
- VS8nH1w1VupmUXyDCQM9+Ord+ux+JRHtepLks0LWYAmaEYSn0maBsInTR79T6/Z5BTnHY5o05cb
- 17XjcuRdjm0E9YceHUg/H7Cu+qPpavOo45i3peulA/Kw8Bmz/UrCoPzgKCZECARmZhBwtFfXKFi
- BFBqwmlfaJ5mO+BUYtGOK0mi8QL8IJGpqneIw6WuwxG8gcximwl6XUtbhpG9dUMulPUId44Q4Lx
- 6MRqlOL82xSEpJjTLh5Q1IVtCafvXHdADF0e5NcyPGZeB3xciZX49dPUqRv/agS7rPISpGBqP+3
- 2uMcyxscGa3WWW9aQmkwpKw3L4QuI/OgOw5ddiu+DS7516wv6HU8Om/sxKJq6Fm9j1OTCD6HkT0
- JghFY64qvYvldfw==
+ bh=b6kuGLsh7Fncnab7O/x1sZHKoAE2to9yOPoWLkFWFoc=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBmMPn1MXBzjTFYW1vw+HGX+bgAlb8xjIeAN12qT
+ 8heTgZA8qOJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZjD59QAKCRDBN2bmhouD
+ 18asD/sG4cfwm5/cvMuyWs/KhNg7FPcNnM4eFOVtUPz5xnRqVF4pt6jUcKqDJjRfrq3s5JoYJ3c
+ vBUD9jgSmkuB8tYCeWM/fFAOimxAXRa1keWd3xM/+KL3qsLAqkpXIdkHwS20hkhT7fIF+E2cU34
+ 35Ajyyg+q/q32ZXoeF+z7chz0oMLOUq3jDN4mGTO2PE/l4xWHZqC30HaBVtVZLYOr2WdfJN14l+
+ YsJUUR1UBA5aXsr++f01Vf/m5pPIFSvYtRQcrp5YyZeaWVGm24AD0kDXcfdaYuSD6hlnoVB1j9K
+ LlP/ODUgDC6zWb68dtVEkLXAfru4YUdiN9M9PLsBzBz0IIoe1aPihWRNB80Uyu2Z/lWy8ceeaX/
+ rMUdGMoXE+1AcbqrE0sZvujjGVmL/5axnumRcAJRvAi4jE27qyDapAyfgL2FTvrC5fHHC0WF/Pe
+ zkWTZpTx4al2ZotNljcAD9imjfQSGKB+Iovem2sQW+eZIGnWm6EeDiADskK/J5bROpHvWbfLRMM
+ rXaqxY9WzOy+EFocuuu+Vq9ckAOOUcikB/3Y6YS/odwg7AZZA9hLSefMdTXWrnaJnScqKcP/bAw
+ gRWnITyzDhtzuAN/vsyQ5gi3lbBmCYNL5XhK6oDlLe5BamoqScRwdbTHBthRDUiaLtaYXHQGkXj
+ jOwKVSiBpozJEaw==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240430_070300_411884_A1E0B79B 
-X-CRM114-Status: GOOD (  14.04  )
+X-CRM114-CacheID: sfid-20240430_150312_535157_E14A4D2C 
+X-CRM114-Status: GOOD (  11.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -142,100 +157,36 @@ Do not open-code snd_soc_substream_to_rtd().
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- sound/soc/fsl/fsl-asoc-card.c | 2 +-
- sound/soc/fsl/imx-card.c      | 6 +++---
- sound/soc/fsl/imx-hdmi.c      | 2 +-
- sound/soc/fsl/imx-pcm-rpmsg.c | 6 +++---
- 4 files changed, 8 insertions(+), 8 deletions(-)
+ sound/soc/loongson/loongson_card.c | 2 +-
+ sound/soc/loongson/loongson_dma.c  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/sound/soc/fsl/fsl-asoc-card.c b/sound/soc/fsl/fsl-asoc-card.c
-index f6d2564864c6..5ddc0c2fe53f 100644
---- a/sound/soc/fsl/fsl-asoc-card.c
-+++ b/sound/soc/fsl/fsl-asoc-card.c
-@@ -242,7 +242,7 @@ static int fsl_asoc_card_hw_params(struct snd_pcm_substream *substream,
- 
- static int fsl_asoc_card_hw_free(struct snd_pcm_substream *substream)
- {
--	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
- 	struct fsl_asoc_card_priv *priv = snd_soc_card_get_drvdata(rtd->card);
- 	struct codec_priv *codec_priv = &priv->codec_priv;
- 	struct device *dev = rtd->card->dev;
-diff --git a/sound/soc/fsl/imx-card.c b/sound/soc/fsl/imx-card.c
-index cb8723965f2f..0e18ccabe28c 100644
---- a/sound/soc/fsl/imx-card.c
-+++ b/sound/soc/fsl/imx-card.c
-@@ -252,7 +252,7 @@ static unsigned long akcodec_get_mclk_rate(struct snd_pcm_substream *substream,
- 					   struct snd_pcm_hw_params *params,
- 					   int slots, int slot_width)
- {
--	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
- 	struct imx_card_data *data = snd_soc_card_get_drvdata(rtd->card);
- 	const struct imx_card_plat_data *plat_data = data->plat_data;
- 	struct dai_link_data *link_data = &data->link_data[rtd->num];
-@@ -289,7 +289,7 @@ static unsigned long akcodec_get_mclk_rate(struct snd_pcm_substream *substream,
- static int imx_aif_hw_params(struct snd_pcm_substream *substream,
- 			     struct snd_pcm_hw_params *params)
+diff --git a/sound/soc/loongson/loongson_card.c b/sound/soc/loongson/loongson_card.c
+index e8432d466f60..fae5e9312bf0 100644
+--- a/sound/soc/loongson/loongson_card.c
++++ b/sound/soc/loongson/loongson_card.c
+@@ -23,7 +23,7 @@ struct loongson_card_data {
+ static int loongson_card_hw_params(struct snd_pcm_substream *substream,
+ 				   struct snd_pcm_hw_params *params)
  {
 -	struct snd_soc_pcm_runtime *rtd = substream->private_data;
 +	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
  	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
- 	struct snd_soc_card *card = rtd->card;
- 	struct imx_card_data *data = snd_soc_card_get_drvdata(card);
-@@ -405,7 +405,7 @@ static int ak5558_hw_rule_rate(struct snd_pcm_hw_params *p, struct snd_pcm_hw_ru
- static int imx_aif_startup(struct snd_pcm_substream *substream)
- {
- 	struct snd_pcm_runtime *runtime = substream->runtime;
--	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
- 	struct snd_soc_card *card = rtd->card;
- 	struct imx_card_data *data = snd_soc_card_get_drvdata(card);
- 	struct dai_link_data *link_data = &data->link_data[rtd->num];
-diff --git a/sound/soc/fsl/imx-hdmi.c b/sound/soc/fsl/imx-hdmi.c
-index e454085c6e5c..fe47b439a818 100644
---- a/sound/soc/fsl/imx-hdmi.c
-+++ b/sound/soc/fsl/imx-hdmi.c
-@@ -32,7 +32,7 @@ struct imx_hdmi_data {
- static int imx_hdmi_hw_params(struct snd_pcm_substream *substream,
- 			      struct snd_pcm_hw_params *params)
- {
--	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
- 	struct imx_hdmi_data *data = snd_soc_card_get_drvdata(rtd->card);
- 	bool tx = substream->stream == SNDRV_PCM_STREAM_PLAYBACK;
- 	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
-diff --git a/sound/soc/fsl/imx-pcm-rpmsg.c b/sound/soc/fsl/imx-pcm-rpmsg.c
-index b84d1dfddba2..ba491cbb9930 100644
---- a/sound/soc/fsl/imx-pcm-rpmsg.c
-+++ b/sound/soc/fsl/imx-pcm-rpmsg.c
-@@ -316,7 +316,7 @@ static int imx_rpmsg_pcm_prepare(struct snd_soc_component *component,
- 				 struct snd_pcm_substream *substream)
- {
- 	struct snd_pcm_runtime *runtime = substream->runtime;
--	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
- 	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
- 	struct fsl_rpmsg *rpmsg = dev_get_drvdata(cpu_dai->dev);
- 
-@@ -461,7 +461,7 @@ static int imx_rpmsg_pcm_trigger(struct snd_soc_component *component,
- 				 struct snd_pcm_substream *substream, int cmd)
- {
- 	struct snd_pcm_runtime *runtime = substream->runtime;
--	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
- 	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
- 	struct fsl_rpmsg *rpmsg = dev_get_drvdata(cpu_dai->dev);
- 	int ret = 0;
-@@ -515,7 +515,7 @@ static int imx_rpmsg_pcm_ack(struct snd_soc_component *component,
+ 	struct snd_soc_dai *codec_dai = snd_soc_rtd_to_codec(rtd, 0);
+ 	struct loongson_card_data *ls_card = snd_soc_card_get_drvdata(rtd->card);
+diff --git a/sound/soc/loongson/loongson_dma.c b/sound/soc/loongson/loongson_dma.c
+index 8090662e8ff2..4fcc2868160b 100644
+--- a/sound/soc/loongson/loongson_dma.c
++++ b/sound/soc/loongson/loongson_dma.c
+@@ -226,7 +226,7 @@ static int loongson_pcm_open(struct snd_soc_component *component,
  			     struct snd_pcm_substream *substream)
  {
  	struct snd_pcm_runtime *runtime = substream->runtime;
 -	struct snd_soc_pcm_runtime *rtd = substream->private_data;
 +	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
- 	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
- 	struct fsl_rpmsg *rpmsg = dev_get_drvdata(cpu_dai->dev);
- 	struct rpmsg_info *info = dev_get_drvdata(component->dev);
+ 	struct snd_card *card = substream->pcm->card;
+ 	struct loongson_runtime_data *prtd;
+ 	struct loongson_dma_data *dma_data;
 
 -- 
 2.43.0
