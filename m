@@ -4,86 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D318FC4345F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Apr 2024 14:04:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1A6AC4345F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Apr 2024 14:04:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9aecODoMkNvEZqr8NfSiu72PP4HMLD5Fr+O6tvGdyig=; b=k69yUrRF2Tulhl
-	La/kA4iwPllocs9mhb7jJpcE8GAw1SKovok4NfXiLIk4M0LY41sPzsZqjKTlbCwnvMKUKSGiY+lvY
-	W2TQnM3VNNjB5nkslC3XIzj/owLa2xFsYRawLk3+6dxhupOvVhUgSKXDv1H2Smb9aVv1aTvdGIIj/
-	5PfkU3NiKP1WTlFJHPQIevHTG9IB+g/jt8PrPvt6r/Hd4iU+rvH9ApUcnn8GI1HE5wBAU+14O/xjx
-	73Qkj+neyDpDj01bFpiuVB8rF9/3/+ikQLPq9wxcvnQpnMaRLCttSYE6vYx8popfAoNbwm5ZWn7YG
-	k3ddMh7aNkuoOL/2GTsg==;
+	List-Owner; bh=FyVuD/uvZKED7yeOJQfv/ZXAva6Un/e+1Lojva8AAGI=; b=b3YC3thUZDA7rA
+	KZp8dga3mw9mwGjznLr4mHMnoIhJykGW/OBrauycnjYS8cmEcXXyXTDuP5nwCR8I0wqFgGP0j0D6x
+	djdZpRS0qqMnZR2T2ZRk4L/SKp11RStkWTNboh2C0HJKIy+iX2VhvRMpfLlu5TcvgsUh3cB3IGumM
+	pXU936yK86EkregsVDc62ciOa8OICqxIkJ7uEmBLCQjL6zbytaUnv47ltrUMWNzXH6Nht3G8xrUhH
+	yNQ2CkNnnwvUuvKTMaa1vVyJg/CuKehmti4uB+2OKuL1TfyyziI/Uj8LDp/TxdljZMOyWGtKb1YMK
+	dnBtau251U1Pe8duwtPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1o5d-00000006fBu-2cgx;
-	Tue, 30 Apr 2024 14:04:13 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1s1o5v-00000006fPd-2yEB;
+	Tue, 30 Apr 2024 14:04:31 +0000
+Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1o4k-00000006eX8-3H3w
-	for linux-amlogic@bombadil.infradead.org;
-	Tue, 30 Apr 2024 14:03:18 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
-	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
-	:Reply-To:Content-ID:Content-Description;
-	bh=HMdvqht5zOkDrEgl++6w26ILXUpiKeLdEJgBolPMUp4=; b=kPMS68up+s8p5hRfDg6Ays54hx
-	ACxhJ/ncLW1QbvOowjigjz5rqSeUYAz9oRCQiyyMpnh22Padd95S57dTg9U1f4lv8BfDs7o5fyx3L
-	K09on4f+9G9+LfTxg2Xcc1wxefZV5BzfZtbCwCp8vCFqCzoMa+k51N5srMAHdGKCUiASSTyQceyMY
-	9odcCKSSN0NlvJA48lf4GBwLt+KpRVKJrL7c18IuExMzIWOkHTIoLnU3fynNT7IwemTfPV3wOLAoD
-	EvzKrfc4UlOvXE/BPQWhJ5yhs4ojIZ3gKzw9XRAwvGKkwBBjqyBgpFSrtpRXHDGtZblpcFwnbbtcj
-	t75UaKEw==;
-Received: from mail-lf1-x12c.google.com ([2a00:1450:4864:20::12c])
-	by casper.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1o4e-0000000EvnP-1gsH
+	id 1s1o4b-00000006eNe-2AB8
 	for linux-amlogic@lists.infradead.org;
-	Tue, 30 Apr 2024 14:03:17 +0000
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-51abd9fcbf6so9618721e87.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 30 Apr 2024 07:03:11 -0700 (PDT)
+	Tue, 30 Apr 2024 14:03:21 +0000
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-a58989cd1f8so736494066b.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 30 Apr 2024 07:03:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714485790; x=1715090590; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1714485787; x=1715090587; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HMdvqht5zOkDrEgl++6w26ILXUpiKeLdEJgBolPMUp4=;
-        b=tljn1AYRjS+IzmGOu3ftIMf8veANpAlh6TZtqYwfzfG5yimlk3OvxyJnUKTcg8r+71
-         ypVzUT8FY/i4rmzq2Xzog2LYdleF+vLvOY7A3llrqe7xb7lz5UW+wIYomXLmynChD7Mz
-         QjJt67Ay7bSGi9aaFKTICmUy3rLGTYk9DBT38RV1cFq9QZNPnpxV0i6br1afi7JfcW0K
-         WzQiwuSTaxG9J6JLIxRHXgqgQgt9fFIcpjwsBD4wK6nZkWrJKctsWdoiTWHiC29kdCmx
-         5sPdvhq2T8TWCNUOiCqTOA9EqMGr5mj9534bFl87mneF88YWotdgsOZvqQWMAsY5N/h6
-         BsMQ==
+        bh=xJJbSwuzaR0w7NGJdc7U0qNxw71mhhvz2h+n/8bje3M=;
+        b=S8hc6iVHI4H+pXgIRg6uzHU5WVTUbQc/+mpet/hsEfWkMqLmAXuIKgOXOq401I27b+
+         eDon+zWCGL8+AisNqHMY/BT4DuDw7q4XiRaoVEPdJKSyYopGWCs488osQoJphoU5vati
+         sqoYppa/rSyFpjId3SES/Yk4w7/g5AniTxWfcR6Aj7AzmHWIMVMryOnbeqHm3Hs+yN9c
+         p67/NC9ZMxKi2GMYK4H6FsK+RDbX2bMnLKoR2491CXQxF8IpodVtbPLx+I+UyOn7ObEW
+         wVw31Vg10KjsxLCvpafCbdiDsqRbJz0Z851+RDddO2Ibttdky4uGa3bwcNITiTMr5/UD
+         DWUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714485790; x=1715090590;
+        d=1e100.net; s=20230601; t=1714485787; x=1715090587;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HMdvqht5zOkDrEgl++6w26ILXUpiKeLdEJgBolPMUp4=;
-        b=iUYsM95fUQLTLl2P4rtqJrjmBwiJaa2/+OdgzZ0PVROzJOjoDLbW9HECNelp3p1/Eq
-         +qsYousFgM0tfhTiJLVETN3ha8VKfnTSYZWOrg6peIsgAhInrcZmqeiAYgYSmjaVkOUB
-         3W3p/K7OUwcgeIWopD8c9w8tKF54YVsYPakhvFhp27s/bOp1dnP7azTzwDbTWHTEeP27
-         CGMXlonaUa3T4PFfCUqUPmeQz5lT5nISYmFR9Sxh3OUoarAwvkGAgsRDvyRNMtW7kucL
-         DBM2NcGwn+EQWSLam42Bstb3Z68hvQ9XqiMNFxDzjzS40jIjswfjsZ8YHmK2/hpnKDhB
-         srOA==
-X-Forwarded-Encrypted: i=1; AJvYcCU6Bj7D6HUlrIgdwpvpBjVn5xyt7obZLwlhsSgiqUg1tqeNqmwMl2PIpr4htoNv9S3M67wxWcoLGVujMaTn8wo5wuRer+5HbRXNxviwGiqdh7o=
-X-Gm-Message-State: AOJu0YxlfWATEQOCKN3sB0/tBtbGQJubQXucHMQxhXWxn+2JsoROliAG
-	71b+vL1D5dhA4R8wkHZ6X+5Qu8Q/ShY6K93puEdGOGgWhCHQZ3KJgBzqe7FTQYw=
-X-Google-Smtp-Source: AGHT+IHF9BCm3Hpto4qRWqGnR6LWsHIvsR6psO89D0oVIbNwL85POL6TwPmXMEZNmxvO3lf19inFfA==
-X-Received: by 2002:a05:6512:3982:b0:519:166a:d217 with SMTP id j2-20020a056512398200b00519166ad217mr13782162lfu.32.1714485789720;
-        Tue, 30 Apr 2024 07:03:09 -0700 (PDT)
+        bh=xJJbSwuzaR0w7NGJdc7U0qNxw71mhhvz2h+n/8bje3M=;
+        b=IZDznNbBW440VTu9EHs49MLiItoGynoaHZm8cfaII+aLhCSo9LT5YU+uulQI46FHbv
+         YcmKADxYP9CH5qi2EGHHKCyiJ2ZeEwEo9PCcIsYbc+dN9MMqHXLsCnFuyV63afJUNYJp
+         ghu77v1OAGuz9G4L8OulRiSOPpWygJ5OOH2uyTRDX238BMkF0KIQu7BNFr8klnAL9WEA
+         28lmjJAOfr43ZPJwRQY0Uok3KiW2U16sCddQx5A5BMsV8yeevBvaYQ028lCFz5qycmEJ
+         0Xpd+5Ubn+ddol8ur7c4wqGLcE3QJiXmhEX1LbHfHzwFKCkpvXyaf/KoELTrs7jTA6oQ
+         kfBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXeMeIVwoF8Xfj2H2JReHBTs2AoQma+tLcVa8n3Hxc+G0DUTeSmClGNZs98OlTt+TJPbgyBiH8cml9uUQZKq52Um1Z3dmBL9s11YwO0fZlhJos=
+X-Gm-Message-State: AOJu0Yxq9hmfA6ykVue8HAuTqIr4p0rOs+9GSEKnlnyvQAkeZUF/ZGxs
+	Dm2aCSkMI43nIUxmhH09AmZj7lCutjrv5AJY160F7gjHfMiPyXAFyfMkjWI5TuY=
+X-Google-Smtp-Source: AGHT+IGuEd/p4bNUH8qGU+eaFSK8VAtxB3CIFoT6x1kpuMcKSCXiGNBYxe9tpKOFHZ0t3goA5+TDFQ==
+X-Received: by 2002:a17:906:5d1:b0:a52:5460:a1c6 with SMTP id t17-20020a17090605d100b00a525460a1c6mr8141356ejt.48.1714485786717;
+        Tue, 30 Apr 2024 07:03:06 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id pv27-20020a170907209b00b00a5940af3f67sm31434ejb.16.2024.04.30.07.03.07
+        by smtp.gmail.com with ESMTPSA id pv27-20020a170907209b00b00a5940af3f67sm31434ejb.16.2024.04.30.07.03.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Apr 2024 07:03:08 -0700 (PDT)
+        Tue, 30 Apr 2024 07:03:06 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Tue, 30 Apr 2024 16:02:18 +0200
-Subject: [PATCH 09/13] ASoC: loongson: Use snd_soc_substream_to_rtd() for
+Date: Tue, 30 Apr 2024 16:02:17 +0200
+Subject: [PATCH 08/13] ASoC: kirkwood: Use snd_soc_substream_to_rtd() for
  accessing private_data
 MIME-Version: 1.0
-Message-Id: <20240430-asoc-snd-substream-clean-v1-9-6f8a8902b479@linaro.org>
+Message-Id: <20240430-asoc-snd-substream-clean-v1-8-6f8a8902b479@linaro.org>
 References: <20240430-asoc-snd-substream-clean-v1-0-6f8a8902b479@linaro.org>
 In-Reply-To: <20240430-asoc-snd-substream-clean-v1-0-6f8a8902b479@linaro.org>
 To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
@@ -117,26 +102,26 @@ Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
  linux-sunxi@lists.linux.dev, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1661;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=764;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=b6kuGLsh7Fncnab7O/x1sZHKoAE2to9yOPoWLkFWFoc=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBmMPn1MXBzjTFYW1vw+HGX+bgAlb8xjIeAN12qT
- 8heTgZA8qOJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZjD59QAKCRDBN2bmhouD
- 18asD/sG4cfwm5/cvMuyWs/KhNg7FPcNnM4eFOVtUPz5xnRqVF4pt6jUcKqDJjRfrq3s5JoYJ3c
- vBUD9jgSmkuB8tYCeWM/fFAOimxAXRa1keWd3xM/+KL3qsLAqkpXIdkHwS20hkhT7fIF+E2cU34
- 35Ajyyg+q/q32ZXoeF+z7chz0oMLOUq3jDN4mGTO2PE/l4xWHZqC30HaBVtVZLYOr2WdfJN14l+
- YsJUUR1UBA5aXsr++f01Vf/m5pPIFSvYtRQcrp5YyZeaWVGm24AD0kDXcfdaYuSD6hlnoVB1j9K
- LlP/ODUgDC6zWb68dtVEkLXAfru4YUdiN9M9PLsBzBz0IIoe1aPihWRNB80Uyu2Z/lWy8ceeaX/
- rMUdGMoXE+1AcbqrE0sZvujjGVmL/5axnumRcAJRvAi4jE27qyDapAyfgL2FTvrC5fHHC0WF/Pe
- zkWTZpTx4al2ZotNljcAD9imjfQSGKB+Iovem2sQW+eZIGnWm6EeDiADskK/J5bROpHvWbfLRMM
- rXaqxY9WzOy+EFocuuu+Vq9ckAOOUcikB/3Y6YS/odwg7AZZA9hLSefMdTXWrnaJnScqKcP/bAw
- gRWnITyzDhtzuAN/vsyQ5gi3lbBmCYNL5XhK6oDlLe5BamoqScRwdbTHBthRDUiaLtaYXHQGkXj
- jOwKVSiBpozJEaw==
+ bh=XOQ3D1Q+qL3SzysXsYcm80LUwBWHBaXzmlHz6/Wj4iY=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBmMPn0JcifyNVMar6zygwpR2fCs5/vlSNdY5zrU
+ P/gTARf59qJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZjD59AAKCRDBN2bmhouD
+ 1zGnD/4/+HNhnrisX+IxTCcgOIYVGlhMNGY5vKejxjMo983A81khcr7uNg3V39Ut/IpxeMUDDM2
+ Rk6W37xxCNkLbnV8wmT6q0+6JYwo8P4avbWhlcyWX4f/X54F3DagobrxkUqSfNm3z/Ohm2iMNsI
+ 5ugz6Ay/15M8khl/LqKWzwuHNFkFgmxkcWkPSduL9KTHrRilAIDNLYrHPm02HPDdxNLtZNU+BHW
+ HTvM9E0VR5hTDhkw7zVMnhr+YV3QpwCclGbZOhu0Cp0nBuhuyLS6jviuYyHCMCY6GkcreN+twHB
+ cXmh7Xs1u91x/WYnyYmDtSjzvRIkkxVrWxw/QN9qTHQ1RYB/Xx60ra0zeLmBEmOfRz9SMfyGoUn
+ vRlI/JhDNPgNBYSjjkyIBwajOY5i3uiToFIm6XjRwuDnhvfIY1W7C/uwA0GMStEoF+JFVDyw8pW
+ XIHJD1hjJyGYX0RH/SbX84Zx3pQWMS27eL7z7lzWdJWctPFRnKSWOGotjeOgM72adhckEHzGgIF
+ QJDjo4+G5LVVPbCJwrxnbN0CSfbzPMsVVru2jraEYMcMNH7CzrolNQXfdPgbEj/6nlHJvhm8a5t
+ qifBptWPRDKql5mFD1fojt0Pdiv7EWmzeVOR/7d4Fw5AkjTCjcEbUzTHSDxxQlJZ3JQ4G9+PKsH
+ o8NVxPN16vhnqFQ==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240430_150312_535157_E14A4D2C 
-X-CRM114-Status: GOOD (  11.54  )
+X-CRM114-CacheID: sfid-20240430_070311_273430_FFDA2573 
+X-CRM114-Status: GOOD (  11.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -157,36 +142,22 @@ Do not open-code snd_soc_substream_to_rtd().
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- sound/soc/loongson/loongson_card.c | 2 +-
- sound/soc/loongson/loongson_dma.c  | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ sound/soc/kirkwood/kirkwood-dma.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/sound/soc/loongson/loongson_card.c b/sound/soc/loongson/loongson_card.c
-index e8432d466f60..fae5e9312bf0 100644
---- a/sound/soc/loongson/loongson_card.c
-+++ b/sound/soc/loongson/loongson_card.c
-@@ -23,7 +23,7 @@ struct loongson_card_data {
- static int loongson_card_hw_params(struct snd_pcm_substream *substream,
- 				   struct snd_pcm_hw_params *params)
+diff --git a/sound/soc/kirkwood/kirkwood-dma.c b/sound/soc/kirkwood/kirkwood-dma.c
+index ef00792e1d49..036b42058272 100644
+--- a/sound/soc/kirkwood/kirkwood-dma.c
++++ b/sound/soc/kirkwood/kirkwood-dma.c
+@@ -19,7 +19,7 @@
+ 
+ static struct kirkwood_dma_data *kirkwood_priv(struct snd_pcm_substream *subs)
  {
--	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
- 	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
- 	struct snd_soc_dai *codec_dai = snd_soc_rtd_to_codec(rtd, 0);
- 	struct loongson_card_data *ls_card = snd_soc_card_get_drvdata(rtd->card);
-diff --git a/sound/soc/loongson/loongson_dma.c b/sound/soc/loongson/loongson_dma.c
-index 8090662e8ff2..4fcc2868160b 100644
---- a/sound/soc/loongson/loongson_dma.c
-+++ b/sound/soc/loongson/loongson_dma.c
-@@ -226,7 +226,7 @@ static int loongson_pcm_open(struct snd_soc_component *component,
- 			     struct snd_pcm_substream *substream)
- {
- 	struct snd_pcm_runtime *runtime = substream->runtime;
--	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
- 	struct snd_card *card = substream->pcm->card;
- 	struct loongson_runtime_data *prtd;
- 	struct loongson_dma_data *dma_data;
+-	struct snd_soc_pcm_runtime *soc_runtime = subs->private_data;
++	struct snd_soc_pcm_runtime *soc_runtime = snd_soc_substream_to_rtd(subs);
+ 	return snd_soc_dai_get_drvdata(snd_soc_rtd_to_cpu(soc_runtime, 0));
+ }
+ 
 
 -- 
 2.43.0
