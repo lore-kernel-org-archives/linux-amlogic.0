@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44689C10F16
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EECCC25B4F
 	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Apr 2024 15:15:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,63 +12,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p3xgtZac6LljqHTyIramWJ4OP2oyTWfWTT2SiaPMDEI=; b=zY42Ky7j31fQ3c
-	Yupja3agxpBhHuKh7bJKw3ikVObrPGmac+bMtuaLugiVmXm6gCgcDxLE52h2qObMNVJtCyCpRNgG9
-	5iDMXLa7+XbYJGUo0PY/TWg7MJolGm+a5RTiPahYA7QOI6e9Vl7JzmTzVAeWU0RB+j7IYX0HrQEmf
-	TgCGfSl/CtgCV3XzrwZtgecCw8h45lmx9zemwqQyLLBfMV3M+1fsD7QbSXX/tvCJL8WbGqKXjKxM7
-	ciW7rcDG3NXwmWydB68Zz3NNm33r9pFgvlEM+3/OX0P4IVdmhqBmEaDmFdpq+AIy7fAUrEgLG7pih
-	RPx660lb3X+64/a2BZaQ==;
+	List-Owner; bh=YNoD0hZsXeP/m5NFZtq15EfATboROzSSuoYnrwqXUUE=; b=soefaeW32FSgSc
+	0mKL3r5dp2NtRTAUSBfvyV1qHUAVMBYtjoXpeigu11BEaHLA3tPe1SCMIwakEDBh5wixbJLKwxIIu
+	dBlrBXguJO8hawta7ZkvUHKF9pti8iYRql+hzLGZwEMgqF0NTMsaxtDTp6CB+Igz8lbZvmpp18IlP
+	I5uZ7QKNgx7yr7kW8DHJBnek06xmSKPZ85Dg6IFzLEK8ZdjSzvw7ApgxEMjYKSlZ8ISkQoZud349q
+	Qc+kC6NWqwsHl4zOFHW+nGMdVJE4s2Bp8nPH/PYr3tf1+5f5CFl11KtyDoty5hfQZln6ZAxDFIDU4
+	wYsUqYGEOCL9qQHGuifQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1pCn-000000070ky-1Cvt;
-	Tue, 30 Apr 2024 15:15:41 +0000
-Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
+	id 1s1pCm-000000070ko-348u;
+	Tue, 30 Apr 2024 15:15:40 +0000
+Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1o4E-00000006e7V-3GNk
+	id 1s1o4C-00000006e53-21Dr
 	for linux-amlogic@lists.infradead.org;
-	Tue, 30 Apr 2024 14:02:59 +0000
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-a58d0aea14cso536751266b.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 30 Apr 2024 07:02:45 -0700 (PDT)
+	Tue, 30 Apr 2024 14:02:57 +0000
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a4702457ccbso758681966b.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 30 Apr 2024 07:02:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714485764; x=1715090564; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1714485762; x=1715090562; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5Lk1lue097q/WOSyrBvWDsG60XQkpuZqlzoh3fFX8H4=;
-        b=tGKQIYOMpv/6Lh4X10+I6x0Z3C/RLvzxfeTwByZ82Zq4YNy8fRyYx8Q5puEORgPJ9R
-         EpdqeLn6F/yTju8FzdEz0ypw1cZzL5G6Hw32+KvoM3SzJkuEzevH2gL2SX7RtThOdm1v
-         PDa/j8oYzNQde29wIjgVa4li8uwOh8n9Ybbj8Y343502YXTlk3R1x8uyiAxcufdZc69z
-         ZEa2kKb5s4+/vkHYjX09nUEbjCL9l9OzQ5DcMI1JdCHN1Fkiasvg5Q+sZf2bCDQ026/6
-         EbputXNnwvN8Almu++ZHctsydsiT7XIZCYmugNA1TqHjwQvIJuJ7iFaqnzydM8XJmeTT
-         va2g==
+        bh=5IV4t0pNrZLc8K3zjbiMUiExRG0rwvdrAQLRnesERno=;
+        b=TepLFGsYBaZ1O/LxIA1eEnPrMagcFrhJXFRuzW8nhWV/geOH9Ug7v8fZcoQX51UGM+
+         qZ3DorJxiYoOiqufNKW5ZMf9j12L+YkYc8MEea5m/RRo4yQFxx9Kr0npnCRNUwkzKDyV
+         vK6/BGa8Qdp7P1VI7RWLPl6hMjsRLR2GrbG3FPEykuSOI1dtJkOdQxoKV4LDFQKrO3CC
+         Juk8+1Gc382Ss7sz140S9fYToXxzwhTozJhlfH5BN1AFhdha9+QZK2TLG9ixiXigiRYu
+         x6+wVHg6g5akshbHRIxHmzeCdIRXeR2PBeNCktmhW8COI72OHErbiKL+39konDdKSjCT
+         jb+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714485764; x=1715090564;
+        d=1e100.net; s=20230601; t=1714485762; x=1715090562;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5Lk1lue097q/WOSyrBvWDsG60XQkpuZqlzoh3fFX8H4=;
-        b=JVAxVRXtDdxx6KaF+qA07A6KMVndcquZ47t1FRiof80TLJiFf3gKQqhBAUILMo1mDu
-         1UH3Xx1evR4xfxKB7jF9ZFDBIpRZ2jqVlKe/xPAbz0OmIkqONfNjry5EXBzgt42/OMJA
-         wB4dJ/alX4i/R81OUfj3V/D8MlHhD5ShKlgFTohrfIY61xiAzqPwCFv38PiPU/B194d2
-         L968WPSRVHvyUKPt4pIKm20+apx/pWFUJrnQins9oL5Sy+gJ7e+Ga7uqrHxSwIfsu1e5
-         9dOzTur2h4DqWtvrM8Ec9+ZmNEfjg6nEtM7CRoxy+yIww4qvwsdrx5n+YH1d4A+6kdQe
-         wtJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUdnQtO8SZzgHlerAtHkRnv5zSZAcSzpz7Gnjh6xbJSjh7VfGRnj6M7JB0LZMNaBI/qi+VXcSZd9lfRABSh7DDEIrw8Sh7fQn1MsuiEO7x0SUk=
-X-Gm-Message-State: AOJu0YwKLh0bLu5hp2xOi3o0cXyg6vSgTRdKvSYVcSZ0HnK2XxLG8MCO
-	CHIto67H1OZDFMy1nrUCtlTiiz9OAPBE4d0ylXUnhmKEAiiO7m+/01OvsxqSLyk=
-X-Google-Smtp-Source: AGHT+IEe6L8iR4uGhiIxTqGIW4asn+4q9EAd3lfdb1piiCjrm73a/9Wg4NOc67T8NvbSyWss22Ri9g==
-X-Received: by 2002:a17:906:ff42:b0:a55:b345:63ec with SMTP id zo2-20020a170906ff4200b00a55b34563ecmr2134852ejb.15.1714485764472;
-        Tue, 30 Apr 2024 07:02:44 -0700 (PDT)
+        bh=5IV4t0pNrZLc8K3zjbiMUiExRG0rwvdrAQLRnesERno=;
+        b=Qh2tcXkv0sKINNppCiFl5C6rNDjVdFJKJCL0ELd1qtE4kgmEciYGtqVEDJkr0FWBm2
+         aUn/pHNI/i0o+SLjJDW8wh8eF9zHgEE9uNGJbmCorsrrlhscSwpiKkfyhXBbAp53M2v8
+         ykdTTRZf0VFoC/k2tVv8MXO3CdZ8iFCPNO0Kcv/zH/ZDcdu8sAcIa5DnYvupjFgfChih
+         spv5xyaZNb6oS0HhuAItYZJe8Ho0iqC3N+k7Y6KeCGuCZQJRzCH2Q+eLXRUhXM3tOmKy
+         9kWYQwDxUkGV6t0T/0+tXNCxlfTfWHBDi5/SjaXZLlxwzCg4Yqqeqxlwb332zKDaf5ue
+         H73Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWvWlBDFnw69BSMrEflUem5aOC5WrFBhmxoK440QQZPwixxwexLRZ1f7EKqHUTzeT8IhrccODW91e8DzJ98CPu8okPljsPwC36Ek6088DD5GVs=
+X-Gm-Message-State: AOJu0YwFcbmgWw4JZ6c28ur3luwk4VIOBLrptt83Cv1XG2qxDAypfqiu
+	VLD0jxtbFpwdyY5L++iwMHVVoehqsvrKuxokOPOnhyj7s8OPGHmOBsaxAlaLKpI=
+X-Google-Smtp-Source: AGHT+IHiryIlMBuC9NM2KOjVX/FiEZN10FwJJA8ZsqNvWyktK2eDEXsG0W+ylaSuA6HZE7/EUxYrVw==
+X-Received: by 2002:a17:906:5851:b0:a52:54d8:6d21 with SMTP id h17-20020a170906585100b00a5254d86d21mr10321769ejs.7.1714485761837;
+        Tue, 30 Apr 2024 07:02:41 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id pv27-20020a170907209b00b00a5940af3f67sm31434ejb.16.2024.04.30.07.02.42
+        by smtp.gmail.com with ESMTPSA id pv27-20020a170907209b00b00a5940af3f67sm31434ejb.16.2024.04.30.07.02.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Apr 2024 07:02:43 -0700 (PDT)
+        Tue, 30 Apr 2024 07:02:41 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Tue, 30 Apr 2024 16:02:12 +0200
-Subject: [PATCH 03/13] ASoC: ti: Use snd_soc_substream_to_rtd() for
+Date: Tue, 30 Apr 2024 16:02:11 +0200
+Subject: [PATCH 02/13] ASoC: tegra: Use snd_soc_substream_to_rtd() for
  accessing private_data
 MIME-Version: 1.0
-Message-Id: <20240430-asoc-snd-substream-clean-v1-3-6f8a8902b479@linaro.org>
+Message-Id: <20240430-asoc-snd-substream-clean-v1-2-6f8a8902b479@linaro.org>
 References: <20240430-asoc-snd-substream-clean-v1-0-6f8a8902b479@linaro.org>
 In-Reply-To: <20240430-asoc-snd-substream-clean-v1-0-6f8a8902b479@linaro.org>
 To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
@@ -102,26 +102,26 @@ Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
  linux-sunxi@lists.linux.dev, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=704;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2412;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=WaTWh6A8XvKFs+19MMAHdgA+abbpsyoPq1iDSypgs+0=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBmMPnvj78Se5sQ1IGtmZPj3Apt3l8lrraNbdATP
- 5UZknZzzu2JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZjD57wAKCRDBN2bmhouD
- 1/rKEACNiDDDmi+VKdGySua5uR69g1WVV9N9njkaGa6BQYvqocDTXh2A5T950fbqbmHniXfNShS
- JZsCqqwu5KxhFaDGF7+cJT9d8h+f+7+N7XdkXJiLCDqED/vhEdXSK+RJxvjyb2UGCtkF2vXvq3I
- qq11t/wIu9DJwANQ/5NqaRpQUsdJGIYQrngiCXGTVr86HT4kWz6cB50Fq2Rc1Nwer1MNbFgNXPD
- EjdcTuqvqRJxRoo0qJQ1uv5PK8ANQ1WI38IhHUgC9cSPyb8BjmRNwBk/6M8bqGZXxd2GI3h0DzD
- 8V7Ep+O/4i5WkC/o/RdS0k/Jvzkfl794WdVSrh5ko0yoTWBfgLKB0pDzT5Td5wsGDLH4nLzQX/V
- 5FUZJy3lvXFB5nrv9g3mS+E8KOagd4bqA8hkkVqkp5amB7IyjqR87us8YZTtD99ZhtHJ8VBMkd+
- fbJwxHjx4G4Tlbdh0zvD3QybwWSvS6+wPWtlX37WjHLAiWt8YIsZU7wDGSPZJGubhB71ork6bJk
- ATYI7HLcuqJT/iIWO4n1K+oIgsMbXTSo/c+WM1q9Tc22MWyviROO784jazEoZ1HWS2txtvOqMzf
- OBzZt/XtPghj+yRRLI6/+9SDQsMxuhH//frbs22BShcGa8gdvXz3dj2VkoB0xwDtpQ8OPZ7XHdl
- o8rt6UoEwW2rmsw==
+ bh=NWayqZgMTQyhrridkNgCIJtQs25nYri5VnM17XYp3Mo=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBmMPnuu9RjFk0ZahGK7moh34+XMb8y5IAinmHhw
+ 3VHDPhugCqJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZjD57gAKCRDBN2bmhouD
+ 1zWOD/4+tyzs1xgp6ykzyyJogYehC2MKqc9o7BAwaYhBihjzf+kvS/a49wjR8gzDJ7Vh3y3/hwL
+ aLdHFckj8wwv4l0ss9+e4sAMLoHDo7uUPKc+rfA+yOS8XjuXoRm8FI6LehOSZcU8NK5w+LQWJ3U
+ ceuoYZ1qz1qlNuzBLWh3xpsoRbk5sjR2sakihrnAleKyfoasgq6+XdUIQ0VJqWO3MEUcYPC/eXU
+ h0snq64j4az27aiyUMbwLNSs6H3gn3+qoBo7CHTzJnJ0JDyk11jeRzxeQyznlPWuSUIqCMkCeft
+ uT+ECq9fYZbdwFZIupds9jdP/39elefh2kxAnzlm5ROlK2Z/TDTgDQeaEvraSuji6ucd/CTWMOv
+ VkU3vwo2GtZi3mVhPPnkMo6Nz5ObAvyQbuIY180agGlUo1VC1+m9LeJ98LBIPAdLIkbp6biPcfM
+ 6AHQapXJgPIkZGgszpxcOMdIHIf7X4eaVUkr12gdIijUr7p/VilIGXBzL7mADqRC3+Pzk5Q590A
+ 8MyHOr4aKOGAWSWyPRn1clfTUJnmOg92ZBgTm7yfpzUeQRED96dVL+70aCGXXlCP1V+EwhgZecx
+ m2VLP4rPyvCJT3suEVLW0aKsOrnHxRm5mvO2RcJ5U/k/EfE5uCaHFZFgyQE+iEqtAyQa0sQ1Vex
+ ffzIPP9MiKJu/1A==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240430_070246_973864_8E0B0E45 
-X-CRM114-Status: GOOD (  12.55  )
+X-CRM114-CacheID: sfid-20240430_070244_907246_69BE9111 
+X-CRM114-Status: GOOD (  12.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -142,22 +142,54 @@ Do not open-code snd_soc_substream_to_rtd().
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- sound/soc/ti/omap-hdmi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ sound/soc/tegra/tegra_asoc_machine.c | 2 +-
+ sound/soc/tegra/tegra_pcm.c          | 6 +++---
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/sound/soc/ti/omap-hdmi.c b/sound/soc/ti/omap-hdmi.c
-index 4513b527ab97..639bc83f4263 100644
---- a/sound/soc/ti/omap-hdmi.c
-+++ b/sound/soc/ti/omap-hdmi.c
-@@ -40,7 +40,7 @@ struct hdmi_audio_data {
- static
- struct hdmi_audio_data *card_drvdata_substream(struct snd_pcm_substream *ss)
+diff --git a/sound/soc/tegra/tegra_asoc_machine.c b/sound/soc/tegra/tegra_asoc_machine.c
+index 192e9692bdf2..775ce433fdbf 100644
+--- a/sound/soc/tegra/tegra_asoc_machine.c
++++ b/sound/soc/tegra/tegra_asoc_machine.c
+@@ -290,7 +290,7 @@ static unsigned int tegra_machine_mclk_rate_6mhz(unsigned int srate)
+ static int tegra_machine_hw_params(struct snd_pcm_substream *substream,
+ 				   struct snd_pcm_hw_params *params)
  {
--	struct snd_soc_pcm_runtime *rtd = ss->private_data;
-+	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(ss);
+-	struct snd_soc_pcm_runtime *rtd = substream->private_data;
++	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
+ 	struct snd_soc_dai *codec_dai = snd_soc_rtd_to_codec(rtd, 0);
+ 	struct snd_soc_card *card = rtd->card;
+ 	struct tegra_machine *machine = snd_soc_card_get_drvdata(card);
+diff --git a/sound/soc/tegra/tegra_pcm.c b/sound/soc/tegra/tegra_pcm.c
+index 42acb56543db..4bdbcd2635ef 100644
+--- a/sound/soc/tegra/tegra_pcm.c
++++ b/sound/soc/tegra/tegra_pcm.c
+@@ -76,7 +76,7 @@ EXPORT_SYMBOL_GPL(tegra_pcm_platform_unregister);
+ int tegra_pcm_open(struct snd_soc_component *component,
+ 		   struct snd_pcm_substream *substream)
+ {
+-	struct snd_soc_pcm_runtime *rtd = substream->private_data;
++	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
+ 	struct snd_dmaengine_dai_dma_data *dmap;
+ 	struct dma_chan *chan;
+ 	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
+@@ -127,7 +127,7 @@ EXPORT_SYMBOL_GPL(tegra_pcm_open);
+ int tegra_pcm_close(struct snd_soc_component *component,
+ 		    struct snd_pcm_substream *substream)
+ {
+-	struct snd_soc_pcm_runtime *rtd = substream->private_data;
++	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
  
- 	return snd_soc_card_get_drvdata(rtd->card);
- }
+ 	if (rtd->dai_link->no_pcm)
+ 		return 0;
+@@ -142,7 +142,7 @@ int tegra_pcm_hw_params(struct snd_soc_component *component,
+ 			struct snd_pcm_substream *substream,
+ 			struct snd_pcm_hw_params *params)
+ {
+-	struct snd_soc_pcm_runtime *rtd = substream->private_data;
++	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
+ 	struct snd_dmaengine_dai_dma_data *dmap;
+ 	struct dma_slave_config slave_config;
+ 	struct dma_chan *chan;
 
 -- 
 2.43.0
