@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDBE4C4345F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Apr 2024 06:45:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 425AFC25B10
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Apr 2024 06:45:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=uAKtOG7cOWMwmoT1+RWyaT1UgOIALVFNe2j1gLvAKo0=; b=Zo2Cg8TutBalcQ
-	mJURCATyEWeK52jSVpxLcNIQcwGv+/6SEPFJ/IUDU69psvLTWI8VopdWJJipZoEa3eFIrKlCJFBJL
-	Di4y14DoBtux+0HsW3xCIJmCbDDuz6RZLCot6eLV2RThHua5aksm8KTqHmhBMa6+bpKVoHH1heJBt
-	jfDPVMKuYJV650v+E/JCd3F02IMbwe2bmWrwNauP4NIamu5C4J5IPG6vpnKvhDCzCedszBXbXW5Ch
-	2hEE6RSe2ASxrvZnNA8LXtGJj75VcjMCcFLmhrS5aCzclyjzKrwqknXsEu0UUltlnrdKEj6luQxDL
-	jVqAhwg5y3tEBVcaewMw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=PKF57XzNlvljyH6WdGus+Gzi/gILbs/JtqLJSBx8RDY=; b=jOhV4Y6Sbize+n
+	IUJduKDij29oeD1qZhp8x4/MOMYE8TalWHIvrGWIbca/SeLo1LaS3OyPMTyH1XG4s+vOk+GCHUKha
+	jQCVF3C/o1rfh2I3kqT7w2vN8Dc9idQZEvuPDCB/PcAF5VDbAqZuOjZQDeEpPhs3uHcaGFNYYWKiB
+	y91NhprSAkVPLOuX7u1ScuzJSW77T5bSezOAx7HCZPDxoV2qc+h57hB4q2842i3lMbjRhzpBSmLhX
+	14AA5Qqg51eyiDrYsAt+lQgo2/P6XjBso7xaI6yWqjkb3Nh/DtyBTx1OibOXsaJqGEfAulXGIO2f7
+	6+fo6131VlNUTwkUGjew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1hEs-00000005K3P-0g8k;
-	Tue, 30 Apr 2024 06:45:18 +0000
+	id 1s1hEu-00000005K51-2A4J;
+	Tue, 30 Apr 2024 06:45:20 +0000
 Received: from [58.32.228.46] (helo=mail-sh.amlogic.com)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1hEo-00000005Jzr-3uDh;
-	Tue, 30 Apr 2024 06:45:16 +0000
+	id 1s1hEr-00000005Jzr-0lSd;
+	Tue, 30 Apr 2024 06:45:18 +0000
 Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.6; Tue, 30 Apr 2024
- 14:44:42 +0800
+ 14:44:48 +0800
 From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 To: <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
@@ -37,16 +37,20 @@ CC: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
 	<jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, "Stephen
  Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: [PATCH v8 0/5] Add C3 SoC PLLs and Peripheral clock
-Date: Tue, 30 Apr 2024 14:44:33 +0800
-Message-ID: <20240430064438.2094701-1-xianwei.zhao@amlogic.com>
+	Kevin Hilman <khilman@baylibre.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Chuan Liu
+	<chuan.liu@amlogic.com>
+Subject: [PATCH v8 1/5] dt-bindings: clock: add Amlogic C3 PLL clock controller
+Date: Tue, 30 Apr 2024 14:44:34 +0800
+Message-ID: <20240430064438.2094701-2-xianwei.zhao@amlogic.com>
 X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20240430064438.2094701-1-xianwei.zhao@amlogic.com>
+References: <20240430064438.2094701-1-xianwei.zhao@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.98.11.200]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240429_234515_226321_43C2588E 
-X-CRM114-Status: GOOD (  10.62  )
+X-CRM114-CacheID: sfid-20240429_234517_227357_6C1C9A95 
+X-CRM114-Status: GOOD (  11.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,84 +67,130 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Changes since V7 [1]:
- - Remove included head file not used.
- - Link to v7: https://lore.kernel.org/all/20240424050928.1997820-1-xianwei.zhao@amlogic.com
+Add the PLL clock controller dt-bindings for Amlogic C3 SoC family.
 
-Changes since V6 [12]:
- - Add pad src for rtc clock.
- - Add SCMI clock controller support, move some clock node in SCMI,such as GP1 PLL DDR USB etc.
- - Fix some spelling mistake.
- - Use lower case for bindings and update some input clocks desc.
- - Update some clock comments.
- - Delete prefix "AML_" for macro definition.
- - Addd some clock annotation and some clock flag CRITICAL.
- - Add maximum for regmap_config.
- - Delete some unused register definition and unused clock inputs. 
- - Drop patch subject redundant "bindings". Suggested by Krzysztof.
- - Not reference header file "clk.h" and replace comment. Suggested by Jerome.
- - Modify description about board in Kconfig file help item. Suggested by Jerome.
- - Link to v6: https://lore.kernel.org/all/20231106085554.3237511-1-xianwei.zhao@amlogic.com
-
-Changes since V5 [3]:
- - Fix some typo and modify formart for MARCO. Suggested by Jerome.
- - Add pad clock for peripheral input clock in bindings.
- - Add some description for explaining why ddr_dpll_pt_clk and cts_msr_clk are out of tree.
-Changes since V4 [10]:
- - Change some fw_name of clocks. Suggested by Jerome.
- - Delete minItem of clocks.
- - Add CLk_GET_RATE_NOCACHE flags for gp1_pll
- - Fix some format. and fix width as 8 for mclk_pll_dco.
- - exchange gate and divder for fclk_50m clock.
- - add CLK_SET_RATE_PARENT for axi_a_divder & axi_b_divder.
- - add CLK_IS_CRITICAL for axi_clk
- - Optimized macro define for pwm clk.
- - add cts_oscin_clk mux between 24M and 32k
- - add some missing gate clock, such as ddr_pll.
-Changes since V3 [7]:
- - Modify Kconfig desc and PLL yaml clk desc.
- - Fix some format.Suggested by Yixun and Jerome.
- - Add flag CLK_GET_RATE_NOCACHE for sys_clk.
- - Optimized macro define for pwm clk.
- - Use flag CLK_IS_CRITICAL for axi_clk.
- - Add some description for some clocks.
- - Use FCLK_50M instead of FCLK_DIV40.
-Changes since V2 [4]:
- - Modify some format, include clk name & inline, and so on.
- - Define marco for pwm clock.
- - Add GP1_PLL clock.
- - Modify yaml use raw instead of macro.
-Changes since V1 [2]:
- - Fix errors when check binding by using "make dt_binding_check".
- - Delete macro definition.
-
-Xianwei Zhao (5):
-  dt-bindings: clock: add Amlogic C3 PLL clock controller
-  dt-bindings: clock: add Amlogic C3 SCMI clock controller support
-  dt-bindings: clock: add Amlogic C3 peripherals clock controller
-  clk: meson: c3: add support for the C3 SoC PLL clock
-  clk: meson: c3: add c3 clock peripherals controller driver
-
- .../clock/amlogic,c3-peripherals-clkc.yaml    |  120 +
- .../bindings/clock/amlogic,c3-pll-clkc.yaml   |   59 +
- drivers/clk/meson/Kconfig                     |   29 +
- drivers/clk/meson/Makefile                    |    2 +
- drivers/clk/meson/c3-peripherals.c            | 2365 +++++++++++++++++
- drivers/clk/meson/c3-pll.c                    |  746 ++++++
- .../clock/amlogic,c3-peripherals-clkc.h       |  212 ++
- .../dt-bindings/clock/amlogic,c3-pll-clkc.h   |   40 +
- .../dt-bindings/clock/amlogic,c3-scmi-clkc.h  |   27 +
- 9 files changed, 3600 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/amlogic,c3-peripherals-clkc.yaml
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Co-developed-by: Chuan Liu <chuan.liu@amlogic.com>
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ .../bindings/clock/amlogic,c3-pll-clkc.yaml   | 59 +++++++++++++++++++
+ .../dt-bindings/clock/amlogic,c3-pll-clkc.h   | 40 +++++++++++++
+ 2 files changed, 99 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
- create mode 100644 drivers/clk/meson/c3-peripherals.c
- create mode 100644 drivers/clk/meson/c3-pll.c
- create mode 100644 include/dt-bindings/clock/amlogic,c3-peripherals-clkc.h
  create mode 100644 include/dt-bindings/clock/amlogic,c3-pll-clkc.h
- create mode 100644 include/dt-bindings/clock/amlogic,c3-scmi-clkc.h
 
-
-base-commit: ba535bce57e71463a86f8b33a0ea88c26e3a6418
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
+new file mode 100644
+index 000000000000..43de3c6fc1cf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2022-2023 Amlogic, Inc. All rights reserved
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/amlogic,c3-pll-clkc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic C3 series PLL Clock Controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++  - Jerome Brunet <jbrunet@baylibre.com>
++  - Chuan Liu <chuan.liu@amlogic.com>
++  - Xianwei Zhao <xianwei.zhao@amlogic.com>
++
++properties:
++  compatible:
++    const: amlogic,c3-pll-clkc
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: input top pll
++      - description: input mclk pll
++
++  clock-names:
++    items:
++      - const: top
++      - const: mclk
++
++  "#clock-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - "#clock-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    apb {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        clock-controller@8000 {
++            compatible = "amlogic,c3-pll-clkc";
++            reg = <0x0 0x8000 0x0 0x1a4>;
++            clocks = <&scmi_clk 2>,
++                     <&scmi_clk 5>;
++            clock-names = "top", "mclk";
++            #clock-cells = <1>;
++        };
++    };
+diff --git a/include/dt-bindings/clock/amlogic,c3-pll-clkc.h b/include/dt-bindings/clock/amlogic,c3-pll-clkc.h
+new file mode 100644
+index 000000000000..fcdc558715e8
+--- /dev/null
++++ b/include/dt-bindings/clock/amlogic,c3-pll-clkc.h
+@@ -0,0 +1,40 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
++/*
++ * Copyright (c) 2023 Amlogic, Inc. All rights reserved.
++ * Author: Chuan Liu <chuan.liu@amlogic.com>
++ */
++
++#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_C3_PLL_CLKC_H
++#define _DT_BINDINGS_CLOCK_AMLOGIC_C3_PLL_CLKC_H
++
++#define CLKID_FCLK_50M_EN			0
++#define CLKID_FCLK_50M				1
++#define CLKID_FCLK_DIV2_DIV			2
++#define CLKID_FCLK_DIV2				3
++#define CLKID_FCLK_DIV2P5_DIV			4
++#define CLKID_FCLK_DIV2P5			5
++#define CLKID_FCLK_DIV3_DIV			6
++#define CLKID_FCLK_DIV3				7
++#define CLKID_FCLK_DIV4_DIV			8
++#define CLKID_FCLK_DIV4				9
++#define CLKID_FCLK_DIV5_DIV			10
++#define CLKID_FCLK_DIV5				11
++#define CLKID_FCLK_DIV7_DIV			12
++#define CLKID_FCLK_DIV7				13
++#define CLKID_GP0_PLL_DCO			14
++#define CLKID_GP0_PLL				15
++#define CLKID_HIFI_PLL_DCO			16
++#define CLKID_HIFI_PLL				17
++#define CLKID_MCLK_PLL_DCO			18
++#define CLKID_MCLK_PLL_OD			19
++#define CLKID_MCLK_PLL				20
++#define CLKID_MCLK0_SEL				21
++#define CLKID_MCLK0_SEL_EN			22
++#define CLKID_MCLK0_DIV				23
++#define CLKID_MCLK0				24
++#define CLKID_MCLK1_SEL				25
++#define CLKID_MCLK1_SEL_EN			26
++#define CLKID_MCLK1_DIV				27
++#define CLKID_MCLK1				28
++
++#endif  /* _DT_BINDINGS_CLOCK_AMLOGIC_C3_PLL_CLKC_H */
 -- 
 2.39.2
 
