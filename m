@@ -4,124 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EECCC25B4F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Apr 2024 15:15:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 244C1C4345F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Apr 2024 19:54:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YNoD0hZsXeP/m5NFZtq15EfATboROzSSuoYnrwqXUUE=; b=soefaeW32FSgSc
-	0mKL3r5dp2NtRTAUSBfvyV1qHUAVMBYtjoXpeigu11BEaHLA3tPe1SCMIwakEDBh5wixbJLKwxIIu
-	dBlrBXguJO8hawta7ZkvUHKF9pti8iYRql+hzLGZwEMgqF0NTMsaxtDTp6CB+Igz8lbZvmpp18IlP
-	I5uZ7QKNgx7yr7kW8DHJBnek06xmSKPZ85Dg6IFzLEK8ZdjSzvw7ApgxEMjYKSlZ8ISkQoZud349q
-	Qc+kC6NWqwsHl4zOFHW+nGMdVJE4s2Bp8nPH/PYr3tf1+5f5CFl11KtyDoty5hfQZln6ZAxDFIDU4
-	wYsUqYGEOCL9qQHGuifQ==;
+	List-Owner; bh=FH/vkaoUYfBVxUgofJf9jUow2QPzxZoV0zxSyUN6fyc=; b=Cql+sBW0zgVAaH
+	HRRBOcbzeJMyiHyc84jLH4Gsx3ze8CLTTxWCUWvrVTIzcL7nsKB5J2d8tYyBWBASUiallSKOP5v//
+	f/qE69qQDYyF61kGPRVKcvArJO7ngsXcf+8dcHS/yT2ZJD0YiuOmvXXy/DkbhUckrOidaifPHY6Fm
+	XkHxXIaT1VgWlZF56IHMRQ1zcsTkYpRGWo59S8IsB6T1OzeKNcZA4oiM6mxu87kIMW7dxsmFBv+rg
+	Xl0EhaquOawULc1BnaEC18/srNZaIEUF3jFQlBmCqkA0HKe2G8M4KNpjTarnhvrvMiJA5h8tOslm5
+	8iHnWKaY69AxRxawvYQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1pCm-000000070ko-348u;
-	Tue, 30 Apr 2024 15:15:40 +0000
-Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
+	id 1s1tYL-00000007lmr-2Wmb;
+	Tue, 30 Apr 2024 19:54:13 +0000
+Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1o4C-00000006e53-21Dr
-	for linux-amlogic@lists.infradead.org;
-	Tue, 30 Apr 2024 14:02:57 +0000
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a4702457ccbso758681966b.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 30 Apr 2024 07:02:43 -0700 (PDT)
+	id 1s1tY4-00000007lhs-2Aod;
+	Tue, 30 Apr 2024 19:53:58 +0000
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-a51a7d4466bso676636366b.2;
+        Tue, 30 Apr 2024 12:53:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714485762; x=1715090562; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5IV4t0pNrZLc8K3zjbiMUiExRG0rwvdrAQLRnesERno=;
-        b=TepLFGsYBaZ1O/LxIA1eEnPrMagcFrhJXFRuzW8nhWV/geOH9Ug7v8fZcoQX51UGM+
-         qZ3DorJxiYoOiqufNKW5ZMf9j12L+YkYc8MEea5m/RRo4yQFxx9Kr0npnCRNUwkzKDyV
-         vK6/BGa8Qdp7P1VI7RWLPl6hMjsRLR2GrbG3FPEykuSOI1dtJkOdQxoKV4LDFQKrO3CC
-         Juk8+1Gc382Ss7sz140S9fYToXxzwhTozJhlfH5BN1AFhdha9+QZK2TLG9ixiXigiRYu
-         x6+wVHg6g5akshbHRIxHmzeCdIRXeR2PBeNCktmhW8COI72OHErbiKL+39konDdKSjCT
-         jb+g==
+        d=gmail.com; s=20230601; t=1714506833; x=1715111633; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HQq1oWqrCF0TfrogSNrGXKQjYOwjvsMuDYhQTiGCeqo=;
+        b=Axzx2sTiLta5kb6UocddvHHGBeVNVFloztVg6t/BM/dZMAMlN+nqstUiRT7YPcBpua
+         hkuEpknIixQSzXE/815bub2RToOTJS++/ntSb8WrlLFOxuQZBoRqwLu4RoyBcIYbajTg
+         /LbQl1aCd2iph2nddhVEyW67LB2ogwTXF9k3hVdNsM7pdK2uXcJJz43P48QGZkUMaAJd
+         hmC81zMR/08mBkgF6YkoUqdDeaibOLrwenEVm0AeC9p5+71TpDyj9MQVU2BUFED0PWrF
+         dzgCiO3Do6BNRZOrQsOOo/7012KM0ONlbVIrwlKeqJS2MZ7wOS+ZTtXTcbhboJDX/d1x
+         7TGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714485762; x=1715090562;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1714506833; x=1715111633;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5IV4t0pNrZLc8K3zjbiMUiExRG0rwvdrAQLRnesERno=;
-        b=Qh2tcXkv0sKINNppCiFl5C6rNDjVdFJKJCL0ELd1qtE4kgmEciYGtqVEDJkr0FWBm2
-         aUn/pHNI/i0o+SLjJDW8wh8eF9zHgEE9uNGJbmCorsrrlhscSwpiKkfyhXBbAp53M2v8
-         ykdTTRZf0VFoC/k2tVv8MXO3CdZ8iFCPNO0Kcv/zH/ZDcdu8sAcIa5DnYvupjFgfChih
-         spv5xyaZNb6oS0HhuAItYZJe8Ho0iqC3N+k7Y6KeCGuCZQJRzCH2Q+eLXRUhXM3tOmKy
-         9kWYQwDxUkGV6t0T/0+tXNCxlfTfWHBDi5/SjaXZLlxwzCg4Yqqeqxlwb332zKDaf5ue
-         H73Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWvWlBDFnw69BSMrEflUem5aOC5WrFBhmxoK440QQZPwixxwexLRZ1f7EKqHUTzeT8IhrccODW91e8DzJ98CPu8okPljsPwC36Ek6088DD5GVs=
-X-Gm-Message-State: AOJu0YwFcbmgWw4JZ6c28ur3luwk4VIOBLrptt83Cv1XG2qxDAypfqiu
-	VLD0jxtbFpwdyY5L++iwMHVVoehqsvrKuxokOPOnhyj7s8OPGHmOBsaxAlaLKpI=
-X-Google-Smtp-Source: AGHT+IHiryIlMBuC9NM2KOjVX/FiEZN10FwJJA8ZsqNvWyktK2eDEXsG0W+ylaSuA6HZE7/EUxYrVw==
-X-Received: by 2002:a17:906:5851:b0:a52:54d8:6d21 with SMTP id h17-20020a170906585100b00a5254d86d21mr10321769ejs.7.1714485761837;
-        Tue, 30 Apr 2024 07:02:41 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.223.16])
-        by smtp.gmail.com with ESMTPSA id pv27-20020a170907209b00b00a5940af3f67sm31434ejb.16.2024.04.30.07.02.39
+        bh=HQq1oWqrCF0TfrogSNrGXKQjYOwjvsMuDYhQTiGCeqo=;
+        b=V0NLafOQx4YqnQpfg/YSD1nAp+YIetV6s/Ip+nu0GWBHPuUoPTqqby3ekEFEpcFeQi
+         MKu9omo9Vy6JHwUy29W84JJ4sSp7R6rEv0OKb/Y7pTRL+UvVwO2Rz5Ww0WwVuce/PJ1u
+         aMk/MoafWuIBl8jLOSKnk3hLYsUEUYy3W5/SgWicepYFAPm6YXKhUJJNMk9U7K4QCU1+
+         foyPFNI5njfE2xgqoWyYkWjr70oS1Q4o0aUD+IDlUk4f5Hgz3XVeD0uJ0Mm25/IWSVwk
+         F8LBSqN2Wyv1qYeCfKuBEeMo/7HliF8U1EVfTAPeRLFUC8tSXpiphZxi5CjSySJVGwOc
+         rCkA==
+X-Forwarded-Encrypted: i=1; AJvYcCV3wYK0CtCq3wxu8XIYXYvoC6UiVl6WV8j2hgeYMtrtiOGYefPyn286ZsKhMQ9J50bsBAkusqXELyzPfez4+ZX/o6lp6Fxqzmvx7sW2c9U5p7AAg2RlGFzNBYfTj63IoS6sfZla1asgxAic9ltOqDwlMy7DAXl5OI3qtmdGKGdQkx01QpQzwh8I7Xluwrm/gqHksdeETHwrGt6cRw==
+X-Gm-Message-State: AOJu0YwaEcakA1yXjFCjjulFD63HeELORaneaeF9FgO5eubiuinmjIgU
+	J3lB2rXNO+1HwgKtClPObuEllqsKiQhpvuQg3xC3eHb5cMRH+AiR
+X-Google-Smtp-Source: AGHT+IHcHyFMebv11hNczXbfOSBPzOfPEK56ZS5IQDWu8DzPrwNQuSSocR8UcDfVrVvZhY8lrKqE1g==
+X-Received: by 2002:a17:906:a084:b0:a55:387b:eef9 with SMTP id q4-20020a170906a08400b00a55387beef9mr455005ejy.10.1714506832645;
+        Tue, 30 Apr 2024 12:53:52 -0700 (PDT)
+Received: from jernej-laptop.localnet ([188.159.248.16])
+        by smtp.gmail.com with ESMTPSA id 13-20020a170906058d00b00a522d34fee8sm15418045ejn.114.2024.04.30.12.53.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Apr 2024 07:02:41 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Tue, 30 Apr 2024 16:02:11 +0200
-Subject: [PATCH 02/13] ASoC: tegra: Use snd_soc_substream_to_rtd() for
- accessing private_data
-MIME-Version: 1.0
-Message-Id: <20240430-asoc-snd-substream-clean-v1-2-6f8a8902b479@linaro.org>
-References: <20240430-asoc-snd-substream-clean-v1-0-6f8a8902b479@linaro.org>
-In-Reply-To: <20240430-asoc-snd-substream-clean-v1-0-6f8a8902b479@linaro.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, 
- Peter Ujfalusi <peter.ujfalusi@gmail.com>, 
- Jarkko Nikula <jarkko.nikula@bitmer.com>, Daniel Mack <daniel@zonque.org>, 
- Haojian Zhuang <haojian.zhuang@gmail.com>, 
- Robert Jarzmik <robert.jarzmik@free.fr>, 
- Shengjiu Wang <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>, 
- Fabio Estevam <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Ban Tao <fengzheng923@gmail.com>, Chen-Yu Tsai <wens@csie.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org, 
- linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linuxppc-dev@lists.ozlabs.org, imx@lists.linux.dev, 
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, 
+        Tue, 30 Apr 2024 12:53:52 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+ Jarkko Nikula <jarkko.nikula@bitmer.com>, Daniel Mack <daniel@zonque.org>,
+ Haojian Zhuang <haojian.zhuang@gmail.com>,
+ Robert Jarzmik <robert.jarzmik@free.fr>,
+ Shengjiu Wang <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>,
+ Fabio Estevam <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Ban Tao <fengzheng923@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2412;
- i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=NWayqZgMTQyhrridkNgCIJtQs25nYri5VnM17XYp3Mo=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBmMPnuu9RjFk0ZahGK7moh34+XMb8y5IAinmHhw
- 3VHDPhugCqJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZjD57gAKCRDBN2bmhouD
- 1zWOD/4+tyzs1xgp6ykzyyJogYehC2MKqc9o7BAwaYhBihjzf+kvS/a49wjR8gzDJ7Vh3y3/hwL
- aLdHFckj8wwv4l0ss9+e4sAMLoHDo7uUPKc+rfA+yOS8XjuXoRm8FI6LehOSZcU8NK5w+LQWJ3U
- ceuoYZ1qz1qlNuzBLWh3xpsoRbk5sjR2sakihrnAleKyfoasgq6+XdUIQ0VJqWO3MEUcYPC/eXU
- h0snq64j4az27aiyUMbwLNSs6H3gn3+qoBo7CHTzJnJ0JDyk11jeRzxeQyznlPWuSUIqCMkCeft
- uT+ECq9fYZbdwFZIupds9jdP/39elefh2kxAnzlm5ROlK2Z/TDTgDQeaEvraSuji6ucd/CTWMOv
- VkU3vwo2GtZi3mVhPPnkMo6Nz5ObAvyQbuIY180agGlUo1VC1+m9LeJ98LBIPAdLIkbp6biPcfM
- 6AHQapXJgPIkZGgszpxcOMdIHIf7X4eaVUkr12gdIijUr7p/VilIGXBzL7mADqRC3+Pzk5Q590A
- 8MyHOr4aKOGAWSWyPRn1clfTUJnmOg92ZBgTm7yfpzUeQRED96dVL+70aCGXXlCP1V+EwhgZecx
- m2VLP4rPyvCJT3suEVLW0aKsOrnHxRm5mvO2RcJ5U/k/EfE5uCaHFZFgyQE+iEqtAyQa0sQ1Vex
- ffzIPP9MiKJu/1A==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linuxppc-dev@lists.ozlabs.org, imx@lists.linux.dev,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-sunxi@lists.linux.dev,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 13/13] ASoC: sunxi: Use snd_soc_substream_to_rtd() for accessing
+ private_data
+Date: Tue, 30 Apr 2024 21:53:49 +0200
+Message-ID: <3292058.44csPzL39Z@jernej-laptop>
+In-Reply-To: <20240430-asoc-snd-substream-clean-v1-13-6f8a8902b479@linaro.org>
+References: <20240430-asoc-snd-substream-clean-v1-0-6f8a8902b479@linaro.org>
+ <20240430-asoc-snd-substream-clean-v1-13-6f8a8902b479@linaro.org>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240430_070244_907246_69BE9111 
-X-CRM114-Status: GOOD (  12.24  )
+X-CRM114-CacheID: sfid-20240430_125356_705620_7BAC9355 
+X-CRM114-Status: GOOD (  16.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,61 +120,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Do not open-code snd_soc_substream_to_rtd().
+Dne torek, 30. april 2024 ob 16:02:22 GMT +2 je Krzysztof Kozlowski napisal(a):
+> Do not open-code snd_soc_substream_to_rtd().
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- sound/soc/tegra/tegra_asoc_machine.c | 2 +-
- sound/soc/tegra/tegra_pcm.c          | 6 +++---
- 2 files changed, 4 insertions(+), 4 deletions(-)
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-diff --git a/sound/soc/tegra/tegra_asoc_machine.c b/sound/soc/tegra/tegra_asoc_machine.c
-index 192e9692bdf2..775ce433fdbf 100644
---- a/sound/soc/tegra/tegra_asoc_machine.c
-+++ b/sound/soc/tegra/tegra_asoc_machine.c
-@@ -290,7 +290,7 @@ static unsigned int tegra_machine_mclk_rate_6mhz(unsigned int srate)
- static int tegra_machine_hw_params(struct snd_pcm_substream *substream,
- 				   struct snd_pcm_hw_params *params)
- {
--	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
- 	struct snd_soc_dai *codec_dai = snd_soc_rtd_to_codec(rtd, 0);
- 	struct snd_soc_card *card = rtd->card;
- 	struct tegra_machine *machine = snd_soc_card_get_drvdata(card);
-diff --git a/sound/soc/tegra/tegra_pcm.c b/sound/soc/tegra/tegra_pcm.c
-index 42acb56543db..4bdbcd2635ef 100644
---- a/sound/soc/tegra/tegra_pcm.c
-+++ b/sound/soc/tegra/tegra_pcm.c
-@@ -76,7 +76,7 @@ EXPORT_SYMBOL_GPL(tegra_pcm_platform_unregister);
- int tegra_pcm_open(struct snd_soc_component *component,
- 		   struct snd_pcm_substream *substream)
- {
--	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
- 	struct snd_dmaengine_dai_dma_data *dmap;
- 	struct dma_chan *chan;
- 	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
-@@ -127,7 +127,7 @@ EXPORT_SYMBOL_GPL(tegra_pcm_open);
- int tegra_pcm_close(struct snd_soc_component *component,
- 		    struct snd_pcm_substream *substream)
- {
--	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
- 
- 	if (rtd->dai_link->no_pcm)
- 		return 0;
-@@ -142,7 +142,7 @@ int tegra_pcm_hw_params(struct snd_soc_component *component,
- 			struct snd_pcm_substream *substream,
- 			struct snd_pcm_hw_params *params)
- {
--	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
- 	struct snd_dmaengine_dai_dma_data *dmap;
- 	struct dma_slave_config slave_config;
- 	struct dma_chan *chan;
+Best regards,
+Jernej
 
--- 
-2.43.0
+> ---
+>  sound/soc/sunxi/sun50i-dmic.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/sound/soc/sunxi/sun50i-dmic.c b/sound/soc/sunxi/sun50i-dmic.c
+> index c76628bc86c6..fedfa4fc95fb 100644
+> --- a/sound/soc/sunxi/sun50i-dmic.c
+> +++ b/sound/soc/sunxi/sun50i-dmic.c
+> @@ -74,7 +74,7 @@ static const struct dmic_rate dmic_rate_s[] = {
+>  static int sun50i_dmic_startup(struct snd_pcm_substream *substream,
+>  			       struct snd_soc_dai *cpu_dai)
+>  {
+> -	struct snd_soc_pcm_runtime *rtd = substream->private_data;
+> +	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
+>  	struct sun50i_dmic_dev *host = snd_soc_dai_get_drvdata(snd_soc_rtd_to_cpu(rtd, 0));
+>  
+>  	/* only support capture */
+> 
+> 
+
+
+
 
 
 _______________________________________________
