@@ -4,106 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 244C1C4345F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Apr 2024 19:54:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DE83C25B10
+	for <linux-amlogic@archiver.kernel.org>; Wed,  1 May 2024 13:43:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FH/vkaoUYfBVxUgofJf9jUow2QPzxZoV0zxSyUN6fyc=; b=Cql+sBW0zgVAaH
-	HRRBOcbzeJMyiHyc84jLH4Gsx3ze8CLTTxWCUWvrVTIzcL7nsKB5J2d8tYyBWBASUiallSKOP5v//
-	f/qE69qQDYyF61kGPRVKcvArJO7ngsXcf+8dcHS/yT2ZJD0YiuOmvXXy/DkbhUckrOidaifPHY6Fm
-	XkHxXIaT1VgWlZF56IHMRQ1zcsTkYpRGWo59S8IsB6T1OzeKNcZA4oiM6mxu87kIMW7dxsmFBv+rg
-	Xl0EhaquOawULc1BnaEC18/srNZaIEUF3jFQlBmCqkA0HKe2G8M4KNpjTarnhvrvMiJA5h8tOslm5
-	8iHnWKaY69AxRxawvYQw==;
+	List-Owner; bh=YLQWBzZXgrKQVjbqfJy7fkVr3mPSg7fh5gEos21TFuk=; b=q2b8q44P1Kut78
+	FiP5w74phpA6Q2Um1IUPTjBbd+z9datUcc2lVH82+0PTvyOB9iyIOvZirvIv+XRwSg+ZREoUzfmIG
+	Blq7ns1EuL+QOkZ8/QN7EEJgnhZ08sKsCVRBsiquJ4APjwsvStbf4G//gWOykXXK8mDsZ+L9zElmg
+	/To9gy4U3Ka1tpb2TC2diIQpV2Rnnufm0ObEoTgE1NSioqiSqEGKe9FOdfjQxwFWvxxzQ/HItpSKF
+	Bu+9gCIocqmo7QLgDTzUXds3+X5ClPygH8WsdSXg0knIcsC/QUU7WTbEz6JVUd1RvMCqxsECF9ov6
+	LSQmwmkD/5yQnpziza9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1tYL-00000007lmr-2Wmb;
-	Tue, 30 Apr 2024 19:54:13 +0000
-Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
+	id 1s2AF7-00000009i34-11DW;
+	Wed, 01 May 2024 13:43:30 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1tY4-00000007lhs-2Aod;
-	Tue, 30 Apr 2024 19:53:58 +0000
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-a51a7d4466bso676636366b.2;
-        Tue, 30 Apr 2024 12:53:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714506833; x=1715111633; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HQq1oWqrCF0TfrogSNrGXKQjYOwjvsMuDYhQTiGCeqo=;
-        b=Axzx2sTiLta5kb6UocddvHHGBeVNVFloztVg6t/BM/dZMAMlN+nqstUiRT7YPcBpua
-         hkuEpknIixQSzXE/815bub2RToOTJS++/ntSb8WrlLFOxuQZBoRqwLu4RoyBcIYbajTg
-         /LbQl1aCd2iph2nddhVEyW67LB2ogwTXF9k3hVdNsM7pdK2uXcJJz43P48QGZkUMaAJd
-         hmC81zMR/08mBkgF6YkoUqdDeaibOLrwenEVm0AeC9p5+71TpDyj9MQVU2BUFED0PWrF
-         dzgCiO3Do6BNRZOrQsOOo/7012KM0ONlbVIrwlKeqJS2MZ7wOS+ZTtXTcbhboJDX/d1x
-         7TGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714506833; x=1715111633;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HQq1oWqrCF0TfrogSNrGXKQjYOwjvsMuDYhQTiGCeqo=;
-        b=V0NLafOQx4YqnQpfg/YSD1nAp+YIetV6s/Ip+nu0GWBHPuUoPTqqby3ekEFEpcFeQi
-         MKu9omo9Vy6JHwUy29W84JJ4sSp7R6rEv0OKb/Y7pTRL+UvVwO2Rz5Ww0WwVuce/PJ1u
-         aMk/MoafWuIBl8jLOSKnk3hLYsUEUYy3W5/SgWicepYFAPm6YXKhUJJNMk9U7K4QCU1+
-         foyPFNI5njfE2xgqoWyYkWjr70oS1Q4o0aUD+IDlUk4f5Hgz3XVeD0uJ0Mm25/IWSVwk
-         F8LBSqN2Wyv1qYeCfKuBEeMo/7HliF8U1EVfTAPeRLFUC8tSXpiphZxi5CjSySJVGwOc
-         rCkA==
-X-Forwarded-Encrypted: i=1; AJvYcCV3wYK0CtCq3wxu8XIYXYvoC6UiVl6WV8j2hgeYMtrtiOGYefPyn286ZsKhMQ9J50bsBAkusqXELyzPfez4+ZX/o6lp6Fxqzmvx7sW2c9U5p7AAg2RlGFzNBYfTj63IoS6sfZla1asgxAic9ltOqDwlMy7DAXl5OI3qtmdGKGdQkx01QpQzwh8I7Xluwrm/gqHksdeETHwrGt6cRw==
-X-Gm-Message-State: AOJu0YwaEcakA1yXjFCjjulFD63HeELORaneaeF9FgO5eubiuinmjIgU
-	J3lB2rXNO+1HwgKtClPObuEllqsKiQhpvuQg3xC3eHb5cMRH+AiR
-X-Google-Smtp-Source: AGHT+IHcHyFMebv11hNczXbfOSBPzOfPEK56ZS5IQDWu8DzPrwNQuSSocR8UcDfVrVvZhY8lrKqE1g==
-X-Received: by 2002:a17:906:a084:b0:a55:387b:eef9 with SMTP id q4-20020a170906a08400b00a55387beef9mr455005ejy.10.1714506832645;
-        Tue, 30 Apr 2024 12:53:52 -0700 (PDT)
-Received: from jernej-laptop.localnet ([188.159.248.16])
-        by smtp.gmail.com with ESMTPSA id 13-20020a170906058d00b00a522d34fee8sm15418045ejn.114.2024.04.30.12.53.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Apr 2024 12:53:52 -0700 (PDT)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Peter Ujfalusi <peter.ujfalusi@gmail.com>,
- Jarkko Nikula <jarkko.nikula@bitmer.com>, Daniel Mack <daniel@zonque.org>,
- Haojian Zhuang <haojian.zhuang@gmail.com>,
- Robert Jarzmik <robert.jarzmik@free.fr>,
- Shengjiu Wang <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>,
- Fabio Estevam <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Ban Tao <fengzheng923@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linuxppc-dev@lists.ozlabs.org, imx@lists.linux.dev,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-sunxi@lists.linux.dev,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 13/13] ASoC: sunxi: Use snd_soc_substream_to_rtd() for accessing
- private_data
-Date: Tue, 30 Apr 2024 21:53:49 +0200
-Message-ID: <3292058.44csPzL39Z@jernej-laptop>
-In-Reply-To: <20240430-asoc-snd-substream-clean-v1-13-6f8a8902b479@linaro.org>
-References: <20240430-asoc-snd-substream-clean-v1-0-6f8a8902b479@linaro.org>
- <20240430-asoc-snd-substream-clean-v1-13-6f8a8902b479@linaro.org>
+	id 1s2AF4-00000009i0n-2Jei
+	for linux-amlogic@lists.infradead.org;
+	Wed, 01 May 2024 13:43:28 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id BE264CE12FD;
+	Wed,  1 May 2024 13:43:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C60D4C113CC;
+	Wed,  1 May 2024 13:43:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714571002;
+	bh=O6VvEOG1FYYxiSATtFdjPAV7d0igftAeyhbDcL2/oH0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=qh8W1fcNhbalI3y+nG4MQoEDqYZzv56KKCouGMwdNtQQ6ImtLhumgFcinolCuOUJ3
+	 dcwtvnQW4NvKJ0UwzADP0Z+EjWW0JZG1qkdgE8wsDY4ZxesO6g5ilAgOaCXBLjRCx7
+	 x8XY6qza8LaQndjO8KrQVKvVMaYWi+StgB6Lwb/HZoM4UNDclvuOoM8f3SJM3Yryhe
+	 i6FWm4V1uYMTgTsn9jgg8JkZuZg8qcf7Y9NwtUaUAvlDbAiUC60Bxx0xPRad7Wy4gn
+	 MLEk2n+A5XwxvsRgivZVy4OMGldX2CCvQ7usaj0zPkPRDBal6g1ZLWgVSp6yV7sG6/
+	 S1byDemKE4IKw==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>
+Cc: alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org, 
+ linux-amlogic@lists.infradead.org
+In-Reply-To: <20240426152946.3078805-1-jbrunet@baylibre.com>
+References: <20240426152946.3078805-1-jbrunet@baylibre.com>
+Subject: Re: [PATCH 0/4] ASoC: meson: tdm fixes
+Message-Id: <171457100123.1888704.3713341677013104535.b4-ty@kernel.org>
+Date: Wed, 01 May 2024 22:43:21 +0900
 MIME-Version: 1.0
+X-Mailer: b4 0.14-dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240430_125356_705620_7BAC9355 
-X-CRM114-Status: GOOD (  16.10  )
+X-CRM114-CacheID: sfid-20240501_064326_904592_3680AF7B 
+X-CRM114-Status: GOOD (  13.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,38 +73,54 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Dne torek, 30. april 2024 ob 16:02:22 GMT +2 je Krzysztof Kozlowski napisal(a):
-> Do not open-code snd_soc_substream_to_rtd().
+On Fri, 26 Apr 2024 17:29:37 +0200, Jerome Brunet wrote:
+> This patchset fixes 2 problems on TDM which both find a solution
+> by properly implementing the .trigger() callback for the TDM backend.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-
-Best regards,
-Jernej
-
-> ---
->  sound/soc/sunxi/sun50i-dmic.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> ATM, enabling the TDM formatters is done by the .prepare() callback
+> because handling the formatter is slow due to necessary calls to CCF.
 > 
-> diff --git a/sound/soc/sunxi/sun50i-dmic.c b/sound/soc/sunxi/sun50i-dmic.c
-> index c76628bc86c6..fedfa4fc95fb 100644
-> --- a/sound/soc/sunxi/sun50i-dmic.c
-> +++ b/sound/soc/sunxi/sun50i-dmic.c
-> @@ -74,7 +74,7 @@ static const struct dmic_rate dmic_rate_s[] = {
->  static int sun50i_dmic_startup(struct snd_pcm_substream *substream,
->  			       struct snd_soc_dai *cpu_dai)
->  {
-> -	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-> +	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
->  	struct sun50i_dmic_dev *host = snd_soc_dai_get_drvdata(snd_soc_rtd_to_cpu(rtd, 0));
->  
->  	/* only support capture */
+> The first problem affects the TDMIN. Because .prepare() is called on DPCM
+> backend first, the formatter are started before the FIFOs and this may
+> cause a random channel shifts if the TDMIN use multiple lanes with more
+> than 2 slots per lanes. Using trigger() allows to set the FE/BE order,
+> solving the problem.
 > 
-> 
+> [...]
 
+Applied to
 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
+Thanks!
+
+[1/4] ASoC: meson: axg-fifo: use threaded irq to check periods
+      commit: b11d26660dff8d7430892008616452dc8e5fb0f3
+[2/4] ASoC: meson: axg-card: make links nonatomic
+      commit: dcba52ace7d4c12e2c8c273eff55ea03a84c8baf
+[3/4] ASoC: meson: axg-tdm-interface: manage formatters in trigger
+      commit: f949ed458ad15a00d41b37c745ebadaef171aaae
+[4/4] ASoC: meson: axg-tdm: add continuous clock support
+      commit: a5a89037d080e0870d7517c61f8b2123d58ab33b
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
 _______________________________________________
