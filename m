@@ -4,86 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B91DCC4345F
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 May 2024 08:51:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A73FC10F16
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 May 2024 12:20:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+m8HQ10+T3dFhDjrZoCVofsny8dL/zjAgDF+B4VLrWI=; b=tirZiGpyj+mEDj
-	DEbN2QZ3ik+GLj1yXngs4ypAFJ7IM/541VSOZhVYUkdBi4mmNfMhIrBnTLJR+WhQMuOxDFgKZRWNQ
-	9+Crmza7rf2wcmGC5XUUkq9gKNjE5FT7DNRH9vf7cG1TPYMpOTf7hHGjizX4JSndEc7C9uJ1fo7Wb
-	msSkeJ1UW2rMX9l2hQIrrmNYtfbGB+bI0s6Bg5pdFCuXu9R3AAK0QG3nYRtAYBGcrIP1Euj7mf5f1
-	d7i0n/b5Q6eMyNEB9ixQK6PMTko0Zjqe61c3SHrOvn3adcERTIv+Ln6cr78nbamYR08m/sxL21Vyb
-	SthCinnjhbj8k8Nqk7/Q==;
+	List-Owner; bh=CsrnQCMQU/igT7614MRu7W/Wa0bvSpBiMq/XqWRdj3M=; b=ohjcqQ4Rn2/IW7
+	ERMLvgviBeBFQcNtk7w1QbXaN19E3hfJIWOKj/AHXji8Io0+KFrcupg3ma+his4ic7B/u+brG+8x1
+	NxV1jufV7iM4dOX52Bdsjt1vcff/r5dloYWH4iUR3COshYqrnOMr6yVtsKFe7Vs83qOjXu8C5cErb
+	MIWVoQtgl06JKhe3g0RH2+MUz4c8gqH6l/ABRow92CnpeSlQANmWaNXTEIzMM8Mcojzd5VtKL6OlK
+	8FV+UigrcFwX837dWYRoBN+Rr8MPbCTkdUG8xSX+vopRIt1XlUHPr/IWWyQaFrpA7sXPzHOS1AUNx
+	s8dIo0+3m6sN0vR89FDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s2odX-0000000FjfJ-18Qd;
-	Fri, 03 May 2024 08:51:23 +0000
-Received: from mail-lj1-x22d.google.com ([2a00:1450:4864:20::22d])
+	id 1s2rtS-0000000GOvR-2TSg;
+	Fri, 03 May 2024 12:20:02 +0000
+Received: from mail-lf1-x129.google.com ([2a00:1450:4864:20::129])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s2odV-0000000FjeN-0TUk
+	id 1s2rtO-0000000GOty-0vRA
 	for linux-amlogic@lists.infradead.org;
-	Fri, 03 May 2024 08:51:22 +0000
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2e242b1dfd6so5667471fa.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 03 May 2024 01:51:19 -0700 (PDT)
+	Fri, 03 May 2024 12:20:00 +0000
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-51f0f6b613dso2483576e87.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 03 May 2024 05:19:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1714726278; x=1715331078; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZWk/psw7Jn7h8F9Bpz9pTT51OJv92Z7OG1gjIzaGghI=;
-        b=NmSkat80QEbi3WykcMVB+fZJbxAFIgcH8r7qiTfQ6Wfi3AA38ScXYBWj7HK0fnGxc/
-         qrpvogwSlUV1rZW6HbHcsiFCJ51ZaXIzUCGt1FpuXmnFaz0W8cnYVBXcBQdEmiTmh9ww
-         gwccxiaLbpdwVlECroesw7L0gfGnB6cf87bM7y1P4VM+mRoPKVfNpbH3hkza57uWctQT
-         +dQLi4HVH1y3Q+61K5tJnfZnF7fUwgJC+uJF/NjvI+eje5xzt+8ffqiqciZUUrdClgh8
-         9WutPxtnGgjO4JzZOcPINKMV+nnrf/C3nyNuWppLTsc1sliaDwGvajuup6cTgHfvPDUz
-         C2Hg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1714738792; x=1715343592; darn=lists.infradead.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=2eqCGUNVwZTag5I7AILZ3zgJXV85rMS4OnjGvjuWay0=;
+        b=JyvHc2AhZMLEWpv46O4ArQTIpJIamCDKMSGrfBACuNUGUzK0Tt5pqGcE9xIE5MfDAi
+         2WyT2kUj9dFdtYQKv9XIrFCgEoQAms8KWePKQS9P1tcyecldmYsKt5WF+8jYEg/uYOaM
+         uNcHgLvW285DBUNY35COG08wDg8UhWf4sEhdCPsTrcJR1V/zZbBsN8ktyO/hbOk2lFFV
+         DvQRdsrgTnbLpES5+hF54i4e8yXRPamE/5vVj7rdrRffkPlkjNzY3BrcBlYyZpFr9ioE
+         FcmUmtLFsOE7ZZ6BIykTWu4SWRGGpf0KxksRbpq8q8OYMw2SInFVcrCPwEQZmxtRENgH
+         YFJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714726278; x=1715331078;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZWk/psw7Jn7h8F9Bpz9pTT51OJv92Z7OG1gjIzaGghI=;
-        b=vqf7lNZRWGiRj/tvoNq/rey25PHrqqe0+pkTHZdzqkFA2VzpcV25guS69HzYDIYYWE
-         uc5biGDhSy5k3U3DUSVXOxrpASXtRenzc43lovKoyRJWAJ1rXltZqfHuSwwLGpMSjipC
-         X9WpjQahH2kQGkvktLZr7eKUpNtozDZcrzdsw1ULaeYTvTvKvB2T7IXYpBU5Jx+scaa2
-         mq+I2TdWMgHf7L+QRI7joUiYoojLFyKe3cT7DzcRYsy1dlmjBdQyays/Xp6txf2sTXyr
-         UjK6wGYwvqCl1etS9RG40qP8RCUx5KjklJoWV4fPTd7A4Z7S/G171W+vjmEN6zDMLBhj
-         lXnA==
-X-Forwarded-Encrypted: i=1; AJvYcCU7Oxj2xNcNrkuq6LxFipn4AHTVmkN4mlmMWnvX25mzHLUNThyoOsaDB7BpBAAFks/M4Vkc6hevrzeuocTDOAOJ/SEzovtf2CBJdFddtwEVmvQ=
-X-Gm-Message-State: AOJu0YwaOoDUGLlbHWmIfMY9xzpBhrQHuNlJ6X1OrBrVFGT7ZNNnfPM7
-	0Mopbo+JHfO6CDmsvwn0ETd02dqQpAwXg/EzLZpFLJTg14A8LXExeSevFbWHaWw=
-X-Google-Smtp-Source: AGHT+IHcI2LurCc2hKenAfI5jjKmPmOLR9ME3lIwcmztZCp99vEXqtLskwgBUgkpuv4Q6SUOsRVoww==
-X-Received: by 2002:a05:6512:2eb:b0:51d:70d9:ece0 with SMTP id m11-20020a05651202eb00b0051d70d9ece0mr1451847lfq.6.1714726277628;
-        Fri, 03 May 2024 01:51:17 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id i15-20020adfb64f000000b0034af40b2efdsm3204178wre.108.2024.05.03.01.51.16
+        d=1e100.net; s=20230601; t=1714738792; x=1715343592;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2eqCGUNVwZTag5I7AILZ3zgJXV85rMS4OnjGvjuWay0=;
+        b=kaRXB8KYy5RZiGilyOhghqrKonPnDffMH7Kl/ImmSVtGt2/c2yG9ZUXivKVIWJ4XT9
+         YLr6HNtS9PhV6ktcXdCyd9otno14ZVxwoitvw49eKh2+cfvPtFX5eJhfnjhiME7bZC++
+         k9lh6uTS2FX/Wnxcem0H+kdZI/GPdy445gLImRL7blDsnLeYZPjMan0jZDx8quoELXVb
+         ow5/+ZXfl4j7WrBnGxOPVcBz17KvJF+woujXNowxJeeNelEFfFiRQkbHIAFIQG+1aNHd
+         AjVy3i8tSVH4yMOM+K26dvhYkBHY8hx+CB4Zf/SA2DkJgscV41vB107oJQx3slIYqpV7
+         BDNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWZrs3pW34byU+ytkEyL7UbXtzNbfSNQBcwIPOpZgbNc4xTswpdDTJbaLog/SMMTSq0nS52IVmOQqgCgTIqVITGnAnBbn2kD4XGpYchcai4wUs=
+X-Gm-Message-State: AOJu0YzoA9yfhE+xAIYevBaGWBDS4SXvi3W45i7cGywqn4BGuuLH9/hj
+	9NMLtgfSIKn2P1oIj/5Z2Qy7y5nEc2J+hXmpKMJ9+3D/Sqk5Oal10XJbVYVS/NU=
+X-Google-Smtp-Source: AGHT+IHCsUvbERAVRCqb5stqTzQ2F0+83tkFBnxwOqCKN+ECOXNxNs4F4W5oi11tZ2FknKUU/uEH9Q==
+X-Received: by 2002:ac2:47e4:0:b0:51a:c207:12b with SMTP id b4-20020ac247e4000000b0051ac207012bmr1640318lfp.37.1714738792161;
+        Fri, 03 May 2024 05:19:52 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:1b85:e590:355b:9957])
+        by smtp.gmail.com with ESMTPSA id ay2-20020a05600c1e0200b00418948a5eb0sm9229978wmb.32.2024.05.03.05.19.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 May 2024 01:51:17 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Jerome Brunet <jbrunet@baylibre.com>
-Cc: Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20240426160256.3089978-1-jbrunet@baylibre.com>
-References: <20240426160256.3089978-1-jbrunet@baylibre.com>
-Subject: Re: [PATCH 0/2] drm/meson: fix hdmi auxiliary system operation
- without display
-Message-Id: <171472627680.386161.1617857178874394298.b4-ty@linaro.org>
-Date: Fri, 03 May 2024 10:51:16 +0200
+        Fri, 03 May 2024 05:19:51 -0700 (PDT)
+References: <20240424050928.1997820-1-xianwei.zhao@amlogic.com>
+ <20240424050928.1997820-6-xianwei.zhao@amlogic.com>
+ <20240424200107.GA372179-robh@kernel.org>
+ <9a9ab302-5da5-47bb-85f1-d2295fa9f8c9@amlogic.com>
+User-agent: mu4e 1.10.8; emacs 29.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Rob Herring <robh@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Neil
+ Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
+ <jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Chuan Liu <chuan.liu@amlogic.com>
+Subject: Re: [PATCH v7 5/5] clk: meson: c3: add c3 clock peripherals
+ controller driver
+Date: Fri, 03 May 2024 14:16:17 +0200
+In-reply-to: <9a9ab302-5da5-47bb-85f1-d2295fa9f8c9@amlogic.com>
+Message-ID: <1jle4r3x5l.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-Mailer: b4 0.13.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240503_015121_208986_61DBED33 
-X-CRM114-Status: UNSURE (   8.47  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240503_051958_386535_3C7C02EB 
+X-CRM114-Status: GOOD (  21.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,28 +102,113 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
 
-On Fri, 26 Apr 2024 18:02:52 +0200, Jerome Brunet wrote:
-> CEC and ARC should work even when HDMI is not actively used for the
-> display but it is not the case with Amlogic HDMI.
-> 
-> This is important for devices such as sound bars which may use DSI
-> to display a UI and HDMI for CEC/ARC. A display is not required for these
-> functions
-> 
-> [...]
+On Thu 25 Apr 2024 at 14:28, Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
 
-Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-fixes)
+> Hi Rob,
+>    Thanks for your review.
+>
+> On 2024/4/25 04:01, Rob Herring wrote:
+>> [ EXTERNAL EMAIL ]
+>> On Wed, Apr 24, 2024 at 01:09:28PM +0800, Xianwei Zhao wrote:
+>>> Add the C3 peripherals clock controller driver in the C3 SoC family.
+>>>
+>>> Co-developed-by: Chuan Liu <chuan.liu@amlogic.com>
+>>> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>> ---
+>>>   drivers/clk/meson/Kconfig          |   15 +
+>>>   drivers/clk/meson/Makefile         |    1 +
+>>>   drivers/clk/meson/c3-peripherals.c | 2366 ++++++++++++++++++++++++++++
+>>>   3 files changed, 2382 insertions(+)
+>>>   create mode 100644 drivers/clk/meson/c3-peripherals.c
+>>>
+>>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>>> index 9f975a980581..0b85d584910e 100644
+>>> --- a/drivers/clk/meson/Kconfig
+>>> +++ b/drivers/clk/meson/Kconfig
+>>> @@ -142,6 +142,21 @@ config COMMON_CLK_C3_PLL
+>>>          AKA C3. Say Y if you want the board to work, because PLLs are the parent
+>>>          of most peripherals.
+>>>
+>>> +config COMMON_CLK_C3_PERIPHERALS
+>>> +     tristate "Amlogic C3 peripherals clock controller"
+>>> +     depends on ARM64
+>>> +     depends on ARM_SCMI_PROTOCOL
+>> I may have missed it, but I don't see the dependency on SCMI in this
+>> driver.
+>> 
+>
+> Some clock sources for peripherals controller from SCMI module.
+> In previous version, Jerome suggest us the clock  that relevant registers
+> can only be accessed securely is implemented through SCMI.
+>
 
-[1/2] drm/meson: dw-hdmi: power up phy on device init
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/04703bfd7f99c016a823c74712b97f8b5590ce87
-[2/2] drm/meson: dw-hdmi: add bandgap setting for g12
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/08001033121dd92b8297a5b7333636b466c30f13
+There is no dependency but you are guranteed to have have problem if
+SCMI is missing because it provides several inputs to this controller.
+
+IMO, this controller should 'imply ARM_SCMI_PROTOCOL'
+
+You have already posted a v8 without it.
+I expect a fix up change on top of v8 if there is no other comment on
+this v8 version. Part of v9 otherwise.
+
+>>> +     depends on COMMON_CLK_SCMI
+>>> +     depends on COMMON_CLK_C3_PLL
+>>> +     default y
+>>> +     select COMMON_CLK_MESON_REGMAP
+>>> +     select COMMON_CLK_MESON_DUALDIV
+>>> +     select COMMON_CLK_MESON_CLKC_UTILS
+>>> +     help
+>>> +       Support for the Peripherals clock controller on Amlogic C302X and
+>>> +       C308L devices, AKA C3. Say Y if you want the peripherals clock to
+>>> +       work.
+>>> +
+>>>   config COMMON_CLK_G12A
+>>>        tristate "G12 and SM1 SoC clock controllers support"
+>>>        depends on ARM64
+>>> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+>>> index 4420af628b31..20ad9482c892 100644
+>>> --- a/drivers/clk/meson/Makefile
+>>> +++ b/drivers/clk/meson/Makefile
+>>> @@ -20,6 +20,7 @@ obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
+>>>   obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
+>>>   obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
+>>>   obj-$(CONFIG_COMMON_CLK_C3_PLL) += c3-pll.o
+>>> +obj-$(CONFIG_COMMON_CLK_C3_PERIPHERALS) += c3-peripherals.o
+>>>   obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
+>>>   obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
+>>>   obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
+>>> diff --git a/drivers/clk/meson/c3-peripherals.c b/drivers/clk/meson/c3-peripherals.c
+>>> new file mode 100644
+>>> index 000000000000..0f834ced0ee9
+>>> --- /dev/null
+>>> +++ b/drivers/clk/meson/c3-peripherals.c
+>>> @@ -0,0 +1,2366 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>> +/*
+>>> + * Amlogic C3 Peripherals Clock Controller Driver
+>>> + *
+>>> + * Copyright (c) 2023 Amlogic, inc.
+>>> + * Author: Chuan Liu <chuan.liu@amlogic.com>
+>>> + */
+>>> +
+>>> +#include <linux/clk-provider.h>
+>>> +#include <linux/of_device.h>
+>> I don't think you need this header.
+>> 
+>
+> Yes, I will fix it with c3-pll.c.
+>
+>>> +#include <linux/platform_device.h>
+>>> +#include "clk-regmap.h"
+>>> +#include "clk-dualdiv.h"
+>>> +#include "meson-clkc-utils.h"
+>>> +#include <dt-bindings/clock/amlogic,c3-peripherals-clkc.h>
+
 
 -- 
-Neil
-
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
