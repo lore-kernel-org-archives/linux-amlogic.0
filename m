@@ -4,97 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0D6AC4345F
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 May 2024 07:53:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30FE4C4345F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 May 2024 08:24:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NSRcOauYDcblQrk2b1yiS/c4iswQAiXn3gewjBFZC18=; b=G9DUAuk5InLXdY
-	Fg9aUIRwniP/2sAfHDVXa5jcXy5B4OGd5UBtCs1exF6JCevZyNOKjAFJykZLSz4cq5+9GIpipXL7E
-	bL9WvUPJIw3kOAguSFZKusexkU05HuX0gHYDDR7k2thwnKICZR5di097cgoRHcfvJympJjdrdtLzi
-	HggwU4lKqdbFBbBBL8CBHeaSq4QGV+TBVIh+IgNfKyFwA3FztuBV6JhPwb/JGXoo77/XqsJNOZC9h
-	N27bP4AqmLhC+qQO8wj8AkUV+39fsOXEzUq5CA6huGEoKk2JGA25skvOD3iSgF2DrP/oZHUt2MuFs
-	B+/ZFBE9uivw6411uJwg==;
+	List-Owner; bh=sFzytF7irYHGSjqMG7JaCYbg1rOOtX3pA/LXdn+1XIA=; b=aFC3NwppE2rwQj
+	a0Vf1aXsVW+5AnKZe6zNMvo4luc5lLExL6fFXq+0QvmLFVKV5L9uwFX6FU3cYdbvw0m0mVh7Delqu
+	TN5iZNOr/j1B+n201NxOvY98h+vQiAO3h7U9tm0ugpLvM/jyiStW2tAzeEx0FOT3txLZRDTEU5wL+
+	phOINP/RKFbZoeIwQwgd+LAvP8/4XZ1Q0dLiBjDjuRg91/+gUfShJNu29fZQmvMa+U2sYI27yNV9Y
+	zYm6g/oHQEWSbIh+kmJA/DEV0abBA91xojJGE6jlU9bu+QXRgOPGYVTKrH8msH4cZwXtk6nBoKnvw
+	nh3IQNlGgLZU8V2PV5Xw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s2njB-0000000FXYy-0soi;
-	Fri, 03 May 2024 07:53:09 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1s2oD5-0000000Fd9m-2eJB;
+	Fri, 03 May 2024 08:24:03 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s2nj6-0000000FXXU-421J;
-	Fri, 03 May 2024 07:53:07 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 314C012000C;
-	Fri,  3 May 2024 10:52:56 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 314C012000C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1714722776;
-	bh=vPYAXAEpU06TIJUWj2rEgevmEmcxPqtBx4Bo9O+8NsY=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=fpFYMV31LZZ4ynG08Pe03cA8a9KzeMzVOBBPvA7yhE4GkpadK25lCQuKD2i2VquMz
-	 Yz2DhND7KNfEk2+ltk4DG2n5sHRn/ShXRUyQBX5z9Vtq/SzCVzCDXnu9WFmmsJPx48
-	 8HvcyN8as4yWi9tBk9eSuA3QviSdPYK2y5i8T9XOvrLluchZWqS3KvWT8nEmmMbGKI
-	 tbTiIsbUOP7BUvWAOvkkDjZapdbfl2s/lJPO9H7UBpNw9HFaXqduhJbwm6j/zoYJxD
-	 82MWVXvE5/336Red8Oe25+0pqPkLKRhcuELTb2VJ0iOdTsbKXVG3CxND1nltay1lBr
-	 /xQsNWMXw7uwA==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri,  3 May 2024 10:52:55 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 3 May
- 2024 10:52:55 +0300
-Date: Fri, 3 May 2024 10:52:55 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-CC: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-	<mturquette@baylibre.com>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <glaroque@baylibre.com>,
-	<rafael@kernel.org>, <rui.zhang@intel.com>, <lukasz.luba@arm.com>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <kernel@salutedevices.com>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 0/2] thermal: amlogic: introduce A1 SoC family Thermal
- Sensor controller
-Message-ID: <20240503075221.suupx27777tvhdvu@CAB-WSD-L081021>
-References: <20240328191322.17551-1-ddrokosov@salutedevices.com>
- <38ba3618-2a67-4e21-b08d-7e382411e51a@linaro.org>
- <20240417084007.uzg2uc7gwb6mi7bi@CAB-WSD-L081021>
- <20240426073106.3yl2dplvauper3lg@CAB-WSD-L081021>
- <35c9dbe9-9166-4358-bfa9-99f205acd8de@linaro.org>
+	id 1s2oD3-0000000Fd80-1KSG
+	for linux-amlogic@lists.infradead.org;
+	Fri, 03 May 2024 08:24:02 +0000
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-34d9c9f2cf0so2830161f8f.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 03 May 2024 01:24:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714724639; x=1715329439; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=et6LYnCnjjrqaS0ajC2g4eAsd21FS3OIwXp1rsweKIM=;
+        b=sZGR9zHWtWNZARnhwT/+q3JYjuur+LxarD6Z0NCOvoaCpID33ATDgW2RMWtw2GNzlP
+         2p8wK2K7BoR3TV5nnawxIUbyMCl/DUeycHthAyTWdmY36yvs+u4HKlRRmmzWbN4md4ti
+         lTjCdad8vhGiUYpVS7vsqZvB3ipkF7lOYGiSKy7r33bUnCGms/zcHwBSpCgaZA85dwLD
+         EkXQIDU0rfrfisbS5QyyJG8HmTuNao50AH6CPRAMEIJtlN00RX+AAgG4h99NG5zG6HxG
+         kUv3H1NtkmSlgmfm7wNOOxrTJujQYM7kd4rKGOLg4HHD0R0A7VZGqDM+i7DGRe83/Mlj
+         m03Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714724639; x=1715329439;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=et6LYnCnjjrqaS0ajC2g4eAsd21FS3OIwXp1rsweKIM=;
+        b=Xt+3VKGzTsHACQ26Ka8NsrTazBzTVi4tVXsUMsWMmuuO01uEc/3zRQQ0hK9OgVIxKe
+         6PqISLKeJ2e0LDjnZXdvI6RD8aGZTExcL61+/qe4pa7KjM++x5A6H3O78rerp6VYj7hX
+         KztKhPH911cjCa/hRb+5zq7pN34cIqr/UW9uAoRp/ZmIV+Bn6GBe0mi2G7Le6tNZ9GHa
+         o/FOISDFClWtbL+jcxJBVpnhifXCVLf7Re1GXpS7njYaq6CsIeSgIlOixgRiJ+ID5M3I
+         Yo0Kity5UKt29qyXGFDaaltJEyJUx9HNPBM3s9rjwcZ0Ev3iA/wYsotxSaPtztRLsgFG
+         HSaQ==
+X-Gm-Message-State: AOJu0Yy8kTr61yayLn2rZNCWWEwb+Q3jp8ZmQxIHHlw1oqavwvOfeQkl
+	0vQAuqXrEC3+p6/Gf/koLHzrzuYiRQjBWHlxyIgYeN00hv2782NzHfX60YGf+0s=
+X-Google-Smtp-Source: AGHT+IFbJvf/A1i/LY+L7YNCn2NMJ6Ar57AENdV/ab6ZsQGTGBVmw4kitluYmeYo8l2QW3VK+WFZ2w==
+X-Received: by 2002:a5d:480e:0:b0:34d:ce14:c419 with SMTP id l14-20020a5d480e000000b0034dce14c419mr1886518wrq.7.1714724638437;
+        Fri, 03 May 2024 01:23:58 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id s3-20020adfe003000000b0034e8a10039esm136834wrh.10.2024.05.03.01.23.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 May 2024 01:23:58 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: linux-amlogic@lists.infradead.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ khilman@baylibre.com, jbrunet@baylibre.com
+In-Reply-To: <20240422-amlogic-v6-9-upstream-deconfig-dsi-v1-1-01511908477c@linaro.org>
+References: <20240422-amlogic-v6-9-upstream-deconfig-dsi-v1-1-01511908477c@linaro.org>
+Subject: Re: [PATCH] arm64: defconfig: enable Khadas TS050 panel as module
+Message-Id: <171472463780.344144.1485415806892562407.b4-ty@linaro.org>
+Date: Fri, 03 May 2024 10:23:57 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <35c9dbe9-9166-4358-bfa9-99f205acd8de@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 185030 [May 03 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 19 0.3.19 07c7fa124d1a1dc9662cdc5aace418c06ae99d2b, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;git.kernel.org:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/05/03 06:33:00
-X-KSMG-LinksScanning: Clean, bases: 2024/05/03 06:33:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/03 04:34:00 #25076274
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-Mailer: b4 0.13.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240503_005305_707644_4A71CF9C 
-X-CRM114-Status: GOOD (  22.98  )
+X-CRM114-CacheID: sfid-20240503_012401_364436_8D163F0E 
+X-CRM114-Status: GOOD (  11.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,45 +93,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Daniel,
+Hi,
 
-On Fri, Apr 26, 2024 at 09:57:29AM +0200, Daniel Lezcano wrote:
+On Mon, 22 Apr 2024 19:18:25 +0200, Neil Armstrong wrote:
+> Enable the Khadas TS050 panel driver as module since it's
+> required to use the TS050 panel on the Khadas VIM3 and VIM3L
+> boards.
 > 
-> Hi Dmitry,
 > 
-> On 26/04/2024 09:31, Dmitry Rokosov wrote:
-> > Hello Neil,
-> > 
-> > I hope you're doing well. I was wondering if you could assist me with
-> > below problem.
-> > 
-> > I'm a bit confused about which kernel repository the series was applied
-> > to. I asked Daniel about it, but unfortunately, I didn't receive any
-> > feedback from him. Could you provide some clarification on this matter?
-> > 
-> > Thank you in advance for your help.
-> 
-> I was OoO the last two weeks.
-> 
-> Your series is in my tree [1], which is pulled automatically by the linux-pm
-> tree in its bleeding-edge branch.
-> 
-> Today, this branch will move to the linux-next branch [2] which will also be
-> pulled by the linux-pm/next branch automatically.
-> 
-> Hope that helps and sorry for the delay to answer
-> 
->   -- Daniel
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/log/?h=thermal/bleeding-edge
-> 
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/log/?h=thermal/linux-next
 
-Thanks a lot for the update! Now I see the patches in the above repos.
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.10/defconfig)
+
+[1/1] arm64: defconfig: enable Khadas TS050 panel as module
+      https://git.kernel.org/amlogic/c/fb73c312a939cfcf9bae0d88fdb382516b424e50
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.10/defconfig branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
 -- 
-Thank you,
-Dmitry
+Neil
+
 
 _______________________________________________
 linux-amlogic mailing list
