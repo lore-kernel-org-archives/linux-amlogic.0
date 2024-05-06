@@ -4,104 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4042EC25B4F
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 May 2024 14:22:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFAA7C10F16
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 May 2024 15:47:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=701rm535H/MkMqSGZxrn0VsA+eKXQ6WvIE85vRUek50=; b=TMHeT6oSHTI/rB
-	esJIwuzAK5E1SkhDsLeV5l3LL3V/1UlWuU6RG9Oi8ufCy/OdLZwwsDaYWFRUvr89flEhAFaAaV58I
-	9EGOhcksdfEdPO6ocnfCeF/UFOdjbxR6uQCncGzAnsFekJRVROTBW7k1vTk+2Mp81R7flc5MKaDKS
-	ojY3FJ9LnAWjNJ3F34w84ObucBEiitsJir6OSQ9ZApwk/UfttFImtrU3wXmZyUQ05OL99GasaOMmP
-	vtGmizOCZj1vsrNblKRUYYItCVOUTq4yEuvbBw3oMaOIKE2weYx++avFn05rFRL05XlbJMWHr5Cxz
-	vGY0P06bDvQARq3WHyqA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=mc9o+3hwsI4JT36AsrlFr1gyW58ZupQ1veo6PdKU8WY=; b=DL0dDsxGkY+8dKr3Ki1oosiCTx
+	uQ7DAWqeu3gYb4aNLceznfUIh7kkqkGIyZvqpTH5t/9pdiHgWiyjggMrdm/4HBaVXxK77GHdIksmQ
+	6efRETto3uwMqMkjLbqEbZ/5sYT9Pprq4nBRezkVozF35MbNVyjQiup8K1QUY3byiogM7g3VvQIgo
+	hOdvelXrefJ5gfpmSlZ82xWdPUrDTIJnw3zr+5yM+g8F1EHk1lTGkE1Pv1HOSuj8lkUKvJ3s5FkZP
+	ifl+1UTA2a+y7uQJLpbjPWf62fhza7LgN3d8gcDvMjAyxPvcLo4gNrS842ukEtFVA9+ylHY2tbSx/
+	Mwfpa5+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s3zET-00000007dyn-2ufM;
-	Mon, 06 May 2024 14:22:21 +0000
-Received: from mgamail.intel.com ([192.198.163.10])
+	id 1s40Z2-00000007v0l-22az;
+	Mon, 06 May 2024 15:47:40 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s3zEI-00000007dod-3gik;
-	Mon, 06 May 2024 14:22:16 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1715005331; x=1746541331;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Zfipl6FRTfKyTzY0Cyv5249Uhwjc0MFiQSe+NaO7iiI=;
-  b=SyZco2a0e8h6DwbmWllN7dyNloQkclGUi7SDDqoSUoxO1Xe+qG2u1f2Q
-   Y2sXyLSd8oPVlnWJ1XfqunHxiFOpTNKOEZhEXtvbzGeGlLg0igwg+6sGN
-   ey4ARuqAJWubT8SFZjTLt+26OC2eLaOiACGklclMkLG0OSPtBWojRkf/s
-   8+NTvbSWWUduqBlXkZdhT6g+DcHmctQPFs7f0AH8Exgil5O8GCXC950rB
-   Gf8MBjZ1uKfvNAsHvXKL4Kr32q6L+ArwFpih+KOztSRWx+7pnvTnmnqS8
-   AGUytU3oa59pkWmEde/26TgjuMkEKX4/tkwjQrOOE7uhOqtQiBhzIJqgK
-   g==;
-X-CSE-ConnectionGUID: hYCE/wwURW6HMU2tglk3EA==
-X-CSE-MsgGUID: T7XtuLxlRx24U8KDO3vqAA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="22155610"
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; 
-   d="scan'208";a="22155610"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2024 07:22:01 -0700
-X-CSE-ConnectionGUID: W7ga+nScT0mXar9tI4jBqg==
-X-CSE-MsgGUID: waswy0tmReqTs/9s5pGM6w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; 
-   d="scan'208";a="32988759"
-Received: from black.fi.intel.com ([10.237.72.28])
-  by orviesa005.jf.intel.com with ESMTP; 06 May 2024 07:21:53 -0700
-Received: by black.fi.intel.com (Postfix, from userid 1003)
-	id 3EDE35A2; Mon, 06 May 2024 17:21:43 +0300 (EEST)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-omap@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Cc: Vignesh Raghavendra <vigneshr@ti.com>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Yue Wang <yue.wang@Amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Xiaowei Song <songxiaowei@hisilicon.com>,
-	Binghui Wang <wangbinghui@hisilicon.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH v4 5/5] PCI: kirin: Convert to agnostic GPIO API
-Date: Mon,  6 May 2024 17:20:41 +0300
-Message-ID: <20240506142142.4042810-6-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.43.0.rc1.1336.g36b5255a03ac
-In-Reply-To: <20240506142142.4042810-1-andriy.shevchenko@linux.intel.com>
-References: <20240506142142.4042810-1-andriy.shevchenko@linux.intel.com>
+	id 1s40Yz-00000007uz9-0wY6;
+	Mon, 06 May 2024 15:47:38 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 3471761336;
+	Mon,  6 May 2024 15:47:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 763DAC116B1;
+	Mon,  6 May 2024 15:47:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715010454;
+	bh=h5Zn71IG11xUlo/JirQepQ3NK+G0HDNvWXGwp8rEKRk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OrWbB8pLnQpbuok8zaRSW4weeZre/pSDnn9c2tYySH9JX9kJWrE37F6x7eT2huT80
+	 Clrv1urIZSjstPQ8XCIxfUzJvo3I4G+YNz07kK2Q2LNZO+E4WUmEUTEVjrrlrabWGA
+	 uJXyfwMLyE7RBgPfsxl6jnkvCsg5uo9vzWmnAoERrFehCcA8F+MJYPIcPN3QJ8BuMM
+	 wZBcZpG7MUPRR+IeNpa/gzXd3wbQpMHB7W/q8Lrc/bMzsxJIz7NK/sipNbfBz3Re2Q
+	 ZDX22+oOMwUrSP9ByqPsyJBNaU1SoROcrYHcxWU/wT8XC/5jFEhewp0wnBv9cTPPwW
+	 q/jQ8zTQfv7EQ==
+Date: Mon, 6 May 2024 16:47:29 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Alexey Romanov <avromanov@salutedevices.com>
+Cc: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"clabbe@baylibre.com" <clabbe@baylibre.com>,
+	"herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"khilman@baylibre.com" <khilman@baylibre.com>,
+	"jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v7 17/23] dt-bindings: crypto: meson: remove clk and
+ second interrupt line for GXL
+Message-ID: <20240506-distrust-famine-6848f75dd3fe@spud>
+References: <20240411133832.2896463-1-avromanov@salutedevices.com>
+ <20240411133832.2896463-18-avromanov@salutedevices.com>
+ <20240415-schnapps-plating-eb0895459004@spud>
+ <20240506134754.jl633ncne7ct6szo@cab-wsm-0029881>
 MIME-Version: 1.0
+In-Reply-To: <20240506134754.jl633ncne7ct6szo@cab-wsm-0029881>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240506_072211_715443_18886EE6 
-X-CRM114-Status: GOOD (  19.27  )
+X-CRM114-CacheID: sfid-20240506_084737_429579_BE5853A5 
+X-CRM114-Status: GOOD (  23.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,228 +84,121 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============3321216992334929082=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The of_gpio.h is going to be removed. In preparation of that convert
-the driver to the agnostic API.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- drivers/pci/controller/dwc/pcie-kirin.c | 105 ++++++++----------------
- 1 file changed, 35 insertions(+), 70 deletions(-)
+--===============3321216992334929082==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="GdrLK7VTJWvHWU47"
+Content-Disposition: inline
 
-diff --git a/drivers/pci/controller/dwc/pcie-kirin.c b/drivers/pci/controller/dwc/pcie-kirin.c
-index d5523f302102..d1f54f188e71 100644
---- a/drivers/pci/controller/dwc/pcie-kirin.c
-+++ b/drivers/pci/controller/dwc/pcie-kirin.c
-@@ -12,12 +12,10 @@
- #include <linux/compiler.h>
- #include <linux/delay.h>
- #include <linux/err.h>
--#include <linux/gpio.h>
- #include <linux/gpio/consumer.h>
- #include <linux/interrupt.h>
- #include <linux/mfd/syscon.h>
- #include <linux/of.h>
--#include <linux/of_gpio.h>
- #include <linux/of_pci.h>
- #include <linux/phy/phy.h>
- #include <linux/pci.h>
-@@ -78,16 +76,16 @@ struct kirin_pcie {
- 	void		*phy_priv;	/* only for PCIE_KIRIN_INTERNAL_PHY */
- 
- 	/* DWC PERST# */
--	int		gpio_id_dwc_perst;
-+	struct gpio_desc *id_dwc_perst_gpio;
- 
- 	/* Per-slot PERST# */
- 	int		num_slots;
--	int		gpio_id_reset[MAX_PCI_SLOTS];
-+	struct gpio_desc *id_reset_gpio[MAX_PCI_SLOTS];
- 	const char	*reset_names[MAX_PCI_SLOTS];
- 
- 	/* Per-slot clkreq */
- 	int		n_gpio_clkreq;
--	int		gpio_id_clkreq[MAX_PCI_SLOTS];
-+	struct gpio_desc *id_clkreq_gpio[MAX_PCI_SLOTS];
- 	const char	*clkreq_names[MAX_PCI_SLOTS];
- };
- 
-@@ -381,15 +379,20 @@ static int kirin_pcie_get_gpio_enable(struct kirin_pcie *pcie,
- 	pcie->n_gpio_clkreq = ret;
- 
- 	for (i = 0; i < pcie->n_gpio_clkreq; i++) {
--		pcie->gpio_id_clkreq[i] = of_get_named_gpio(dev->of_node,
--						    "hisilicon,clken-gpios", i);
--		if (pcie->gpio_id_clkreq[i] < 0)
--			return pcie->gpio_id_clkreq[i];
-+		pcie->id_clkreq_gpio[i] = devm_gpiod_get_index(dev,
-+							"hisilicon,clken", i,
-+							GPIOD_OUT_LOW);
-+		if (IS_ERR(pcie->id_clkreq_gpio[i]))
-+			return dev_err_probe(dev, PTR_ERR(pcie->id_clkreq_gpio[i]),
-+					     "unable to get a valid clken gpio\n");
- 
- 		pcie->clkreq_names[i] = devm_kasprintf(dev, GFP_KERNEL,
- 						       "pcie_clkreq_%d", i);
- 		if (!pcie->clkreq_names[i])
- 			return -ENOMEM;
-+
-+		gpiod_set_consumer_name(pcie->id_clkreq_gpio[i],
-+					pcie->clkreq_names[i]);
- 	}
- 
- 	return 0;
-@@ -407,10 +410,16 @@ static int kirin_pcie_parse_port(struct kirin_pcie *pcie,
- 		for_each_available_child_of_node(parent, child) {
- 			i = pcie->num_slots;
- 
--			pcie->gpio_id_reset[i] = of_get_named_gpio(child,
--							"reset-gpios", 0);
--			if (pcie->gpio_id_reset[i] < 0)
--				continue;
-+			pcie->id_reset_gpio[i] = devm_fwnode_gpiod_get_index(dev,
-+							 of_fwnode_handle(child),
-+							 "reset", 0, GPIOD_OUT_LOW,
-+							 NULL);
-+			if (IS_ERR(pcie->id_reset_gpio[i])) {
-+				if (PTR_ERR(pcie->id_reset_gpio[i]) == -ENOENT)
-+					continue;
-+				return dev_err_probe(dev, PTR_ERR(pcie->id_reset_gpio[i]),
-+						     "unable to get a valid reset gpio\n");
-+			}
- 
- 			pcie->num_slots++;
- 			if (pcie->num_slots > MAX_PCI_SLOTS) {
-@@ -434,6 +443,9 @@ static int kirin_pcie_parse_port(struct kirin_pcie *pcie,
- 				ret = -ENOMEM;
- 				goto put_node;
- 			}
-+
-+			gpiod_set_consumer_name(pcie->id_reset_gpio[i],
-+						pcie->reset_names[i]);
- 		}
- 	}
- 
-@@ -463,14 +475,11 @@ static long kirin_pcie_get_resource(struct kirin_pcie *kirin_pcie,
- 		return PTR_ERR(kirin_pcie->apb);
- 
- 	/* pcie internal PERST# gpio */
--	kirin_pcie->gpio_id_dwc_perst = of_get_named_gpio(dev->of_node,
--							  "reset-gpios", 0);
--	if (kirin_pcie->gpio_id_dwc_perst == -EPROBE_DEFER) {
--		return -EPROBE_DEFER;
--	} else if (!gpio_is_valid(kirin_pcie->gpio_id_dwc_perst)) {
--		dev_err(dev, "unable to get a valid gpio pin\n");
--		return -ENODEV;
--	}
-+	kirin_pcie->id_dwc_perst_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR(kirin_pcie->id_dwc_perst_gpio))
-+		return dev_err_probe(dev, PTR_ERR(kirin_pcie->id_dwc_perst_gpio),
-+				     "unable to get a valid gpio pin\n");
-+	gpiod_set_consumer_name(kirin_pcie->id_dwc_perst_gpio, "pcie_perst_bridge");
- 
- 	ret = kirin_pcie_get_gpio_enable(kirin_pcie, pdev);
- 	if (ret)
-@@ -553,7 +562,7 @@ static int kirin_pcie_add_bus(struct pci_bus *bus)
- 
- 	/* Send PERST# to each slot */
- 	for (i = 0; i < kirin_pcie->num_slots; i++) {
--		ret = gpio_direction_output(kirin_pcie->gpio_id_reset[i], 1);
-+		ret = gpiod_direction_output_raw(kirin_pcie->id_reset_gpio[i], 1);
- 		if (ret) {
- 			dev_err(pci->dev, "PERST# %s error: %d\n",
- 				kirin_pcie->reset_names[i], ret);
-@@ -623,44 +632,6 @@ static int kirin_pcie_host_init(struct dw_pcie_rp *pp)
- 	return 0;
- }
- 
--static int kirin_pcie_gpio_request(struct kirin_pcie *kirin_pcie,
--				   struct device *dev)
--{
--	int ret, i;
--
--	for (i = 0; i < kirin_pcie->num_slots; i++) {
--		if (!gpio_is_valid(kirin_pcie->gpio_id_reset[i])) {
--			dev_err(dev, "unable to get a valid %s gpio\n",
--				kirin_pcie->reset_names[i]);
--			return -ENODEV;
--		}
--
--		ret = devm_gpio_request(dev, kirin_pcie->gpio_id_reset[i],
--					kirin_pcie->reset_names[i]);
--		if (ret)
--			return ret;
--	}
--
--	for (i = 0; i < kirin_pcie->n_gpio_clkreq; i++) {
--		if (!gpio_is_valid(kirin_pcie->gpio_id_clkreq[i])) {
--			dev_err(dev, "unable to get a valid %s gpio\n",
--				kirin_pcie->clkreq_names[i]);
--			return -ENODEV;
--		}
--
--		ret = devm_gpio_request(dev, kirin_pcie->gpio_id_clkreq[i],
--					kirin_pcie->clkreq_names[i]);
--		if (ret)
--			return ret;
--
--		ret = gpio_direction_output(kirin_pcie->gpio_id_clkreq[i], 0);
--		if (ret)
--			return ret;
--	}
--
--	return 0;
--}
--
- static const struct dw_pcie_ops kirin_dw_pcie_ops = {
- 	.read_dbi = kirin_pcie_read_dbi,
- 	.write_dbi = kirin_pcie_write_dbi,
-@@ -680,7 +651,7 @@ static int kirin_pcie_power_off(struct kirin_pcie *kirin_pcie)
- 		return hi3660_pcie_phy_power_off(kirin_pcie);
- 
- 	for (i = 0; i < kirin_pcie->n_gpio_clkreq; i++)
--		gpio_direction_output(kirin_pcie->gpio_id_clkreq[i], 1);
-+		gpiod_direction_output_raw(kirin_pcie->id_clkreq_gpio[i], 1);
- 
- 	phy_power_off(kirin_pcie->phy);
- 	phy_exit(kirin_pcie->phy);
-@@ -707,10 +678,6 @@ static int kirin_pcie_power_on(struct platform_device *pdev,
- 		if (IS_ERR(kirin_pcie->phy))
- 			return PTR_ERR(kirin_pcie->phy);
- 
--		ret = kirin_pcie_gpio_request(kirin_pcie, dev);
--		if (ret)
--			return ret;
--
- 		ret = phy_init(kirin_pcie->phy);
- 		if (ret)
- 			goto err;
-@@ -723,11 +690,9 @@ static int kirin_pcie_power_on(struct platform_device *pdev,
- 	/* perst assert Endpoint */
- 	usleep_range(REF_2_PERST_MIN, REF_2_PERST_MAX);
- 
--	if (!gpio_request(kirin_pcie->gpio_id_dwc_perst, "pcie_perst_bridge")) {
--		ret = gpio_direction_output(kirin_pcie->gpio_id_dwc_perst, 1);
--		if (ret)
--			goto err;
--	}
-+	ret = gpiod_direction_output_raw(kirin_pcie->id_dwc_perst_gpio, 1);
-+	if (ret)
-+		goto err;
- 
- 	usleep_range(PERST_2_ACCESS_MIN, PERST_2_ACCESS_MAX);
- 
--- 
-2.43.0.rc1.1336.g36b5255a03ac
 
+--GdrLK7VTJWvHWU47
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, May 06, 2024 at 01:48:01PM +0000, Alexey Romanov wrote:
+> On Mon, Apr 15, 2024 at 05:43:15PM +0100, Conor Dooley wrote:
+> > On Thu, Apr 11, 2024 at 04:38:26PM +0300, Alexey Romanov wrote:
+> > > GXL crypto IP isn't connected to clk and seconnd interrput line,
+> > > so we must remove them from dt-bindings.
+> >=20
+> > How does the device work without a clock?
+>=20
+> It's clocked by a common clock, the vendor didn't provide more
+> information. It doesn't have any special clock domains.
+
+So the hardware block does have a clock, which, even if it is a clock
+shared with other hardware blocks, makes your patch incorrect.
+
+Is the "blkmv" clock the shared clock?
+
+Cheers,
+Conor.
+
+> > > Fixes: 7f7d115dfb51 ("dt-bindings: crypto: Add DT bindings
+> > > documentation for amlogic-crypto")
+> > >=20
+> > > Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> > > ---
+> > >  .../bindings/crypto/amlogic,gxl-crypto.yaml         | 13 +----------=
+--
+> > >  1 file changed, 1 insertion(+), 12 deletions(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-cry=
+pto.yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> > > index 948e11ebe4ee..d3af7b4d5f39 100644
+> > > --- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> > > +++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> > > @@ -20,20 +20,11 @@ properties:
+> > >    interrupts:
+> > >      items:
+> > >        - description: Interrupt for flow 0
+> > > -      - description: Interrupt for flow 1
+> > > -
+> > > -  clocks:
+> > > -    maxItems: 1
+> > > -
+> > > -  clock-names:
+> > > -    const: blkmv
+> > > =20
+> > >  required:
+> > >    - compatible
+> > >    - reg
+> > >    - interrupts
+> > > -  - clocks
+> > > -  - clock-names
+> > > =20
+> > >  additionalProperties: false
+> > > =20
+> > > @@ -46,7 +37,5 @@ examples:
+> > >      crypto: crypto-engine@c883e000 {
+> > >          compatible =3D "amlogic,gxl-crypto";
+> > >          reg =3D <0xc883e000 0x36>;
+> > > -        interrupts =3D <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>, <GIC_SPI =
+189 IRQ_TYPE_EDGE_RISING>;
+> > > -        clocks =3D <&clkc CLKID_BLKMV>;
+> > > -        clock-names =3D "blkmv";
+> > > +        interrupts =3D <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>;
+> > >      };
+> > > --=20
+> > > 2.34.1
+> > >=20
+>=20
+>=20
+>=20
+>=20
+> --=20
+> Thank you,
+> Alexey
+
+--GdrLK7VTJWvHWU47
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjj7kQAKCRB4tDGHoIJi
+0l3kAQD5POkxdd7Ibsf2owlwltjfQ8u5NyntENYzmmppOVoEcQD+Jv1hTUFpdYX1
+AIEdvzcVlt1l4S5vs5DnQz3ZOI72Uw4=
+=nXAR
+-----END PGP SIGNATURE-----
+
+--GdrLK7VTJWvHWU47--
+
+
+--===============3321216992334929082==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============3321216992334929082==--
+
