@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C126C10F16
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 May 2024 14:22:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0901BC25B5F
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 May 2024 14:22:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VwEQt0qMkm7Mi5EL9GpvWxtyCL3MQgls5DXMMYg1JoU=; b=dGf8iCHuOfovCn
-	RzTAit5WBJRzBzIJ+ZrzfGDSL2AuIR0kzjtfojiOUaXDLh/viez50m4/OCmm8rSxY/bUS1N8UZLsr
-	IMxsPnYc7mDLX+i58tbtiAgWJepacxOhkQEP5gVutKXF72N8yMH+G06MUJD7rrLKq25IpWslltEME
-	TC6/cENZDObM5rA7fAMMuPmjgThcutGWIe1HjGjgyfbO/It5hv/3+EUVaEXZxFFMXABWPNQR4Jw5J
-	CjLPDjt80t2c6N2o4bWyjUWZdM4E0JVUB+/wdi9YNdL2l6hlNMzdwfK3BE2y2bcruHPyF64TQwW4o
-	N8K5O3f38W+16rhBRPHg==;
+	List-Owner; bh=gW9bPVDRjPk9UoA7F9Gj/DqFe7j6oRC3X6luO5wx7Mc=; b=M+ZvAdpTIZnKGm
+	hrRymwtKTTyWZbcRuKHfsN3QgERQzbtHJ7rSeOl1mvqYPXLZXvxiDZHMPDTPff4HG2laXFMlel2b5
+	d48EXowEuHXjkHGR3mscJ9UVCNkowCoamJFAy0QXH3xXf0jZi22Vo8PwrwYrIIcimBNExLg5qKU7z
+	hhnJ4OTq2undkC/+QbG7919yGB5P75ZnYgZsUr8IGRYqyBk9eYpEqLgJJ6xK1vfrDc4ufh1MzZblI
+	cwECEGPaCkmzG5FNiQVjdpknRR1wdCnWJoxw/JgRFya3FuR+eyWgzSivO/Kvn8HfKPdgqOBPqM6s2
+	Fm7NuQIBMi9IYxfYufwA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s3zE9-00000007dgg-0yjX;
-	Mon, 06 May 2024 14:22:01 +0000
+	id 1s3zEE-00000007dkF-03W9;
+	Mon, 06 May 2024 14:22:06 +0000
 Received: from mgamail.intel.com ([192.198.163.17])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s3zE4-00000007ddv-3b7o;
-	Mon, 06 May 2024 14:21:59 +0000
+	id 1s3zE8-00000007ddv-0WhH;
+	Mon, 06 May 2024 14:22:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1715005317; x=1746541317;
+  t=1715005320; x=1746541320;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=mnVWFiBfYUU2lpuKyQVuWsMjv4lrzOkciv18t8WSb+Q=;
-  b=ELneKoaWjVq9JWzkoZECY1+R1Y66CiHDsOc5A/wTikdO9fJS2tuEAoAT
-   n3gxtU+lxRy1BRTatzIjYm86FsF1r8EzYINscoawmk7dTyR4Ffym1sCj5
-   eTo5ZPmiIJSeqTZTsIGC0kNLps22TtbPTGATJEuM5ll9QyfB0I1BfO/KT
-   PVvvGspMWhjNeqoGJjTMgDbZ9Oz0tWHmYk4QIV60TJVEIhnO+eoOriPGy
-   Gh23b5aElgHF6d0UqNLKFK5IvlsRLtfUEeJu9mqH52zUCV5v7Uur/XRzJ
-   YpM+ehobVGvLdUuta4it53MtiSEeAVDbLFgK5sPcLnoW9ZQOjJOimk7q7
-   w==;
-X-CSE-ConnectionGUID: bpVMCZcKQeq0y8Hf2zi9kg==
-X-CSE-MsgGUID: I8x9SCARRVCb7FQ9eAdI3Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10631822"
+  bh=8rSWiYZvmKFnXcw8ynHscd2dH4mpaWep1+0Q3U6jY4c=;
+  b=NXMkfO6ZonOD0ISfPB8bKoTNUjmPJvexwqkQ+udtaRyeZoOmAYHY0GDl
+   ApD23IAZml+FIqIchruxbKwk0wx5QROpQ40jUWVpxIm2A1YhmHXW5Wez3
+   +fhPtIidugKHffqJPP90Ynx2BCQ6gK8Yy3d1e3tFHzFg+3wD7v34lCXtQ
+   5Bald1uFZTfSQyo7OUQJOIgBr1L9DfHTXWIwE0GiswZF2tSaL7NPPvdeb
+   GoGe+7VDouXQ/jd1A4vgp7gyJiC8DBWB7BLYgwHz9p8TMHiR+2BB3/nRD
+   JPv+bt2s5nlSCvcu/x8yw0AHcFVtdNJEsXQvbUtgpO6nLk9yk4ntfIgPJ
+   Q==;
+X-CSE-ConnectionGUID: WT2qiRbIRqyd2OQmsIJDcA==
+X-CSE-MsgGUID: P7i/fJc2QsO6klIfw9Ks4w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10631837"
 X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; 
-   d="scan'208";a="10631822"
+   d="scan'208";a="10631837"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
   by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2024 07:21:51 -0700
-X-CSE-ConnectionGUID: v6vxQqJzQgqtr/xtC6HB+Q==
-X-CSE-MsgGUID: FLhmLFrsTPe4VWRVLgvWFw==
+X-CSE-ConnectionGUID: dc8p9NFvQJWZ6MHCsO4kmA==
+X-CSE-MsgGUID: YEsu2LobRQyrkpY2uDctpw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; 
-   d="scan'208";a="32652260"
+   d="scan'208";a="32652261"
 Received: from black.fi.intel.com ([10.237.72.28])
   by fmviesa005.fm.intel.com with ESMTP; 06 May 2024 07:21:44 -0700
 Received: by black.fi.intel.com (Postfix, from userid 1003)
-	id 1AACF43E; Mon, 06 May 2024 17:21:43 +0300 (EEST)
+	id 29B8249F; Mon, 06 May 2024 17:21:43 +0300 (EEST)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
 	Frank Li <Frank.Li@nxp.com>,
@@ -92,16 +92,16 @@ Cc: Vignesh Raghavendra <vigneshr@ti.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	=?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
 	Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH v4 2/5] PCI: aardvark: Remove unused of_gpio.h
-Date: Mon,  6 May 2024 17:20:38 +0300
-Message-ID: <20240506142142.4042810-3-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v4 3/5] PCI: dwc: Remove unused of_gpio.h
+Date: Mon,  6 May 2024 17:20:39 +0300
+Message-ID: <20240506142142.4042810-4-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.43.0.rc1.1336.g36b5255a03ac
 In-Reply-To: <20240506142142.4042810-1-andriy.shevchenko@linux.intel.com>
 References: <20240506142142.4042810-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240506_072156_928622_FAA50CE6 
-X-CRM114-Status: UNSURE (   9.26  )
+X-CRM114-CacheID: sfid-20240506_072200_199983_66C3546B 
+X-CRM114-Status: UNSURE (   8.95  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,21 +125,68 @@ The driver doesn't use it, simply remove the unused header.
 Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/pci/controller/pci-aardvark.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/pci/controller/dwc/pci-dra7xx.c    | 1 -
+ drivers/pci/controller/dwc/pci-meson.c     | 1 -
+ drivers/pci/controller/dwc/pcie-qcom.c     | 1 -
+ drivers/pci/controller/dwc/pcie-tegra194.c | 2 --
+ 4 files changed, 5 deletions(-)
 
-diff --git a/drivers/pci/controller/pci-aardvark.c b/drivers/pci/controller/pci-aardvark.c
-index 71ecd7ddcc8a..8b3e1a079cf3 100644
---- a/drivers/pci/controller/pci-aardvark.c
-+++ b/drivers/pci/controller/pci-aardvark.c
-@@ -23,7 +23,6 @@
- #include <linux/platform_device.h>
- #include <linux/msi.h>
- #include <linux/of_address.h>
+diff --git a/drivers/pci/controller/dwc/pci-dra7xx.c b/drivers/pci/controller/dwc/pci-dra7xx.c
+index b67071a63f8a..cf8392190856 100644
+--- a/drivers/pci/controller/dwc/pci-dra7xx.c
++++ b/drivers/pci/controller/dwc/pci-dra7xx.c
+@@ -18,7 +18,6 @@
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
 -#include <linux/of_gpio.h>
  #include <linux/of_pci.h>
- 
- #include "../pci.h"
+ #include <linux/pci.h>
+ #include <linux/phy/phy.h>
+diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+index 6477c83262c2..db9482a113e9 100644
+--- a/drivers/pci/controller/dwc/pci-meson.c
++++ b/drivers/pci/controller/dwc/pci-meson.c
+@@ -9,7 +9,6 @@
+ #include <linux/clk.h>
+ #include <linux/delay.h>
+ #include <linux/gpio/consumer.h>
+-#include <linux/of_gpio.h>
+ #include <linux/pci.h>
+ #include <linux/platform_device.h>
+ #include <linux/reset.h>
+diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+index 14772edcf0d3..436076612c8f 100644
+--- a/drivers/pci/controller/dwc/pcie-qcom.c
++++ b/drivers/pci/controller/dwc/pcie-qcom.c
+@@ -20,7 +20,6 @@
+ #include <linux/kernel.h>
+ #include <linux/init.h>
+ #include <linux/of.h>
+-#include <linux/of_gpio.h>
+ #include <linux/pci.h>
+ #include <linux/pm_runtime.h>
+ #include <linux/platform_device.h>
+diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
+index 93f5433c5c55..e8cd8c1bd4f4 100644
+--- a/drivers/pci/controller/dwc/pcie-tegra194.c
++++ b/drivers/pci/controller/dwc/pcie-tegra194.c
+@@ -13,7 +13,6 @@
+ #include <linux/clk.h>
+ #include <linux/debugfs.h>
+ #include <linux/delay.h>
+-#include <linux/gpio.h>
+ #include <linux/gpio/consumer.h>
+ #include <linux/interconnect.h>
+ #include <linux/interrupt.h>
+@@ -21,7 +20,6 @@
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
+-#include <linux/of_gpio.h>
+ #include <linux/of_pci.h>
+ #include <linux/pci.h>
+ #include <linux/phy/phy.h>
 -- 
 2.43.0.rc1.1336.g36b5255a03ac
 
