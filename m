@@ -4,101 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 530FFC25B75
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 May 2024 13:13:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EAD5C10F1A
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 May 2024 14:35:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=X146ZKus8tPtCqRwdwKvI4vaCfYMaHWWBimSRpw+Diw=; b=sx59KyidoXyq2o
-	m3L5Ru6DzEQOH5VTSrAGXmq/SSXh9mKvzrA3g99vQFkL5DZBvtuWEZGow8ExZoqoGWQNbXnP24bYU
-	bDBM6y9NhrIuGK8TXKIhSlYbLo4CVZQpaXrpqCBfSsO1Ai26dfj0QvjrPFc6vCd5VGtDTQmqFzIHa
-	WLJvo/sk3VaXCAdT1A5Db6H3xr0zPBut8jWmXna3/D4fARDt7/9i5I+PP73i006h0gPA+IVBnZ44+
-	CdMZ3Nf9EZwUtnHQdDi61m7e8ou8mcBkiInb803937ElpluLJXJbrCFLJFz79EQUPjWPKvKQg77bw
-	RC5cWMjMOF0K3PGasA5Q==;
+	List-Owner; bh=mj7s902iZgS1t3COluWtAutxGm4aXdFhvlWpRW0XcFU=; b=JVbSHKSyT1893q
+	425OfLjgWbd3kn8j1G4M657o6OInP8OUtT90MYXg6xG9BqtIh1UvlJMSOWv32ZQETEs3SayYmZKnr
+	y0Vu/IUbMd1TQouYNplltjuuvEKpmYL+3xx/iQoPQvA/UTosjKcOpBv5Iw9bm37aNeSxM/HArup1C
+	OFzBmhDfKWaEZFCLtKJ+O/4n152al4tUPxL7wQ37J+aT5Osa7wcOM5TE2DF152kXrqetuF0nIz0qv
+	ly26v7akuJdkl+/cNT2klnP0mWhEGpo+V2RokthW4gPic+WiV6Wg/ZDPd3iNxg3NWLPwt4hR/Xp7c
+	iU25GKtGYy/S+w66SocA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s4Kd3-0000000B7dw-3Yvg;
-	Tue, 07 May 2024 13:13:09 +0000
-Received: from mgamail.intel.com ([192.198.163.11])
+	id 1s4LuR-0000000BXLM-0Jpp;
+	Tue, 07 May 2024 14:35:11 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s4Kcq-0000000B7U3-2beK;
-	Tue, 07 May 2024 13:12:58 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1715087577; x=1746623577;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=a6gSLSNzkB7vq5lvXJKxfEYqY5Zj8C4OuyJc6Y6NlXY=;
-  b=V1N6VmycTnyAyagUvhvFtwL8dYYx7PxTan7YBKjiQxAlqQErLNSsIG9q
-   Jh4TgYBMHoO23HJCY5IZvcUzP5xOMU1lzLV8BcKiQj1d1mCSZaeLo9hed
-   mKCWZ/26t1i3AQZSGNs5zWZ8ViR61BuQFIQbsBqAdS8F+qKu7AlVYwpin
-   YKyW3rrbELilY58S5dV79Jbh8IhaXcQ+Gf1FIdqoqsiKN7t52qlCaa9IM
-   IH0QKe2rzxYY85g8V8M9+9ghqk3OcgGCvWiLQd2ceL4tY1Tl4WSKCuHPe
-   cGYB8hX5oMl+VEW7ay9ZlnI/HcD5niWjG9L5SCz3yKW0WY7jed0NxB8mE
-   Q==;
-X-CSE-ConnectionGUID: U6BAX8YzRJaRSl/uRcz5lw==
-X-CSE-MsgGUID: fsZQTn9ZQLyCXax+Dah1eA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="21483951"
-X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; 
-   d="scan'208";a="21483951"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 May 2024 06:12:50 -0700
-X-CSE-ConnectionGUID: Fu6nYwQcTgeZWSY044wYqQ==
-X-CSE-MsgGUID: MsXTeSYhRgedCqb9bG/apQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; 
-   d="scan'208";a="28920705"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 May 2024 06:12:42 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1s4KcY-000000052fm-0iB8;
-	Tue, 07 May 2024 16:12:38 +0300
-Date: Tue, 7 May 2024 16:12:37 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-amlogic@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Yue Wang <yue.wang@amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Xiaowei Song <songxiaowei@hisilicon.com>,
-	Binghui Wang <wangbinghui@hisilicon.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Subject: Re: [PATCH v4 0/5] PCI: controller: Move to agnostic GPIO API
-Message-ID: <ZjooxTO3wb2ItvGv@smile.fi.intel.com>
-References: <20240506142142.4042810-1-andriy.shevchenko@linux.intel.com>
- <CACRpkda=a3X=jyZKQoOFrfgzpE2C+rZ9UC1VDnCvGL7QP4x4BA@mail.gmail.com>
+	id 1s4LuO-0000000BXJE-1lfW;
+	Tue, 07 May 2024 14:35:10 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 4F8DCCE126E;
+	Tue,  7 May 2024 14:35:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16855C2BBFC;
+	Tue,  7 May 2024 14:34:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715092502;
+	bh=y6WKrVLOQiWpSilDvghHWU2H2C7Bg6g2vDY3+N3fXQ4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=jsh4qTC5gVZ7sYBPuy5NlWFptghPLLD48L0GvjH4JiS3kx7qOWhxE7m21fp7sfw5c
+	 OZfXdkbVtD4CmIf0rWQc/ADEFT+DencCfMXoMCOMYluT7CnDXVqh+Po/Z45ToGLJ4N
+	 q/GfiRzpjYDI+kuA54dDD4j/cOQ6T81YZvpCLOiTrXY8Rsqbr2u3Pt4dWloOqnbdmK
+	 dEF17UfmRG74qkmmf4YzoCKy1/QtSvaWf3ESfV5psZBtE0MmNvwqoDLyERgaX9ZgtU
+	 ZOs30E1pnraWOyvvVNTqrFU7qisbhaGsGF5Z+19N7FUZM8OUy3ExYFzba4k3X0v+0X
+	 dOQVG31vmlkFA==
+From: Mark Brown <broonie@kernel.org>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Peter Ujfalusi <peter.ujfalusi@gmail.com>, 
+ Jarkko Nikula <jarkko.nikula@bitmer.com>, Daniel Mack <daniel@zonque.org>, 
+ Haojian Zhuang <haojian.zhuang@gmail.com>, 
+ Robert Jarzmik <robert.jarzmik@free.fr>, 
+ Shengjiu Wang <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>, 
+ Fabio Estevam <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Ban Tao <fengzheng923@gmail.com>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org, 
+ linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linuxppc-dev@lists.ozlabs.org, imx@lists.linux.dev, 
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev
+In-Reply-To: <20240430-asoc-snd-substream-clean-v1-0-6f8a8902b479@linaro.org>
+References: <20240430-asoc-snd-substream-clean-v1-0-6f8a8902b479@linaro.org>
+Subject: Re: [PATCH 00/13] ASoC: Use snd_soc_substream_to_rtd() for
+ accessing private_data
+Message-Id: <171509249287.1985791.3932273255744591305.b4-ty@kernel.org>
+Date: Tue, 07 May 2024 23:34:52 +0900
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CACRpkda=a3X=jyZKQoOFrfgzpE2C+rZ9UC1VDnCvGL7QP4x4BA@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Mailer: b4 0.14-dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240507_061256_790238_A66DD27D 
-X-CRM114-Status: GOOD (  11.68  )
+X-CRM114-CacheID: sfid-20240507_073508_859726_EE6C06E8 
+X-CRM114-Status: GOOD (  13.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,24 +94,76 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCBNYXkgMDcsIDIwMjQgYXQgMTI6MDM6NTBQTSArMDIwMCwgTGludXMgV2FsbGVpaiB3
-cm90ZToKPiBPbiBNb24sIE1heSA2LCAyMDI0IGF0IDQ6MjLigK9QTSBBbmR5IFNoZXZjaGVua28K
-PiA8YW5kcml5LnNoZXZjaGVua29AbGludXguaW50ZWwuY29tPiB3cm90ZToKPiAKPiA+IEluIHY0
-Ogo+ID4gLSBhZGRlZCB0YWcgKE1hbmkpCj4gPiAtIGZpeGVkIGEgcG9sYXJpdHkgYnVnIGluIGlN
-WC42IGRyaXZlciAoTGludXMpCj4gCj4gTG9va3MgZ29vZCBub3cuIFRoZSBzZXJpZXM6Cj4gUmV2
-aWV3ZWQtYnk6IExpbnVzIFdhbGxlaWogPGxpbnVzLndhbGxlaWpAbGluYXJvLm9yZz4KClRoYW5r
-IHlvdSEKCj4gUGVyaGFwcyB0aGUgdXNlIG9mICBfcmF3IGFjY2Vzc29ycyBjb3VsZCBiZSBhdm9p
-ZGVkIGluIDUvNSBieSBzb21lCj4gZWxhYm9yYXJ0IHBvbGFyaXR5IHF1aXJrIGJ1dCBJJ20gbm8g
-cGVyZmVjdGlvbmlzdCBhbmQgaXQgY2FuIGJlIGZpeGVkIGxhdGVyLgoKQWZ0ZXIgeW91ciBjb21t
-ZW50IEkgd2FzIHRoaW5raW5nIHRoZSBzYW1lLCBhbmQgY2FtZSB0byB0aGUgc2ltaWxhciBjb25j
-bHVzaW9uLAp3ZSBtaWdodCBmaXggdGhpcyBsYXRlciBhcyBpbiBjb21wYXJpc29uIHRvIGlNWC42
-IGNhc2UgdGhpcyByZXF1aXJlcyBhbgphZGRpdGlvbmFsIGNvZGUgdG8gYmUgYWRkZWQgdG8gZ3Bp
-b2xpYi1vZi5jLgoKLS0gCldpdGggQmVzdCBSZWdhcmRzLApBbmR5IFNoZXZjaGVua28KCgoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dp
-YyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9s
-aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On Tue, 30 Apr 2024 16:02:09 +0200, Krzysztof Kozlowski wrote:
+> Do not open-code snd_soc_substream_to_rtd() when accessing
+> snd_pcm_substream->private_data.  This makes code more consistent with
+> rest of ASoC and allows in the future to move the field to any other
+> place or add additional checks in snd_soc_substream_to_rtd().
+> 
+> Best regards,
+> Krzysztof
+> 
+> [...]
+
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[01/13] ASoC: qcom: Use snd_soc_substream_to_rtd() for accessing private_data
+        commit: 77678a25d1ecf70dc1d7ea2c0ab7609af15b83d3
+[02/13] ASoC: tegra: Use snd_soc_substream_to_rtd() for accessing private_data
+        commit: 3beb985abbf29e660edd1708f8a120ae9bbbddc3
+[03/13] ASoC: ti: Use snd_soc_substream_to_rtd() for accessing private_data
+        commit: 72a666f47f958a57db16b6bdd9ed385674069693
+[04/13] ASoC: arm: Use snd_soc_substream_to_rtd() for accessing private_data
+        commit: a80f2f8443a4ae10c568566f57fe704ea52c5bdb
+[05/13] ASoC: amd: Use snd_soc_substream_to_rtd() for accessing private_data
+        commit: a84d84077512fc64cf1fc2292a3638690a026737
+[06/13] ASoC: fsl: Use snd_soc_substream_to_rtd() for accessing private_data
+        commit: b695d8be5bba9897ee670ec102ca608ecaf625c4
+[07/13] ASoC: img: Use snd_soc_substream_to_rtd() for accessing private_data
+        commit: 3b62178720594e08bdf8a87515ccca0328fe41fe
+[08/13] ASoC: kirkwood: Use snd_soc_substream_to_rtd() for accessing private_data
+        commit: fe42c3b75b93dee9a4010e2297f1783e48684af7
+[09/13] ASoC: loongson: Use snd_soc_substream_to_rtd() for accessing private_data
+        commit: ffad75cebb865fef6f8e40f921c08c79a8faf7e3
+[10/13] ASoC: mediatek: Use snd_soc_substream_to_rtd() for accessing private_data
+        commit: 410a45140fb76709cf2bbad84bc8a731acf632c8
+[11/13] ASoC: meson: Use snd_soc_substream_to_rtd() for accessing private_data
+        commit: 22f5680a9cbc7388f97e5386c15c325d6961b958
+[12/13] ASoC: samsung: Use snd_soc_substream_to_rtd() for accessing private_data
+        commit: 3e726593107d134221f666b4f2be612b278c3ddb
+[13/13] ASoC: sunxi: Use snd_soc_substream_to_rtd() for accessing private_data
+        commit: 47aa51677c975a5f66bc93d1c527e8878cf34d6c
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
