@@ -4,69 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 218E8C04FFE
-	for <linux-amlogic@archiver.kernel.org>; Wed,  8 May 2024 14:09:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09FAEC19F4F
+	for <linux-amlogic@archiver.kernel.org>; Wed,  8 May 2024 14:44:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=V7TyZyghJVJKKLyT2dXs8o5LGPxUORMdK1G89yOFsho=; b=uR29GyrwjRACdS
-	0AR5W31gIdZOZrkW3F3JlfKdrp7Fiiq3Q1ZyS7CHFsEQlyWZNpJ2a2zOaN7zDy1CLnylHx4qjKoZM
-	C99Fhw4bLk8jR+Vl0x93nnOWnB6nzF/FdbAn/kDfawerFolsORappRIJpmbpICSt1EycXPI2E7PTD
-	11m+wS4gZIfAZsJIkCERsn/KTfrcnmGpb9nNXXCucHJtA7mwbEXxmlZDxU9azjV1D+rgWJ7PYGzOt
-	Pf5ppFju5PDnRqFMQ0xCxxQF8MCSmfYXHHhV9xPETvQxmL8DYx6WOSKLqb3Iskckse0jEX/P9+qYy
-	g7GiqvzF7awLebNJxa9g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=7IhKM1DZmwWrudipU1XEcsQWMSLvPZyD/CJtIxmdV48=; b=F23pJVLWYHJwHw
+	CZcYlucabcO3WGnCsd38i+JrFUeGiPtcCrfqyrRugnwK5u6Vf2g4DxwCohpoBP8oygf5/4GE3YY4N
+	3D/O7BRNtp07tc4jTjqPEwrF9B8NZ2gWpoR5EhRSrLcJK1EaDkyEPDW+YBz63FOvJ9W9HEM7C1eip
+	ZFzUizzj6RoW1iy78fdKtzabxUlRGz8KO8hhvu3JWTm4FQ97a1JiuQiFyRB3LXO0/yeVkH1Z7BuUf
+	vX5tYOZ3bmf4Ryfz6YDpx/IEJcDJDqFAHQaO3kpqGL+jqIKm/D5PSYyYMj3OOWxv/MP8BVg0RF8e8
+	qASpCUpr/4hsE3H0017w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s4hz3-0000000FnR5-0If8;
-	Wed, 08 May 2024 14:09:25 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1s4iWQ-0000000Ft9H-3AgT;
+	Wed, 08 May 2024 14:43:54 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s4hyv-0000000FnOq-2NKK;
-	Wed, 08 May 2024 14:09:23 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 31151CE12EA;
-	Wed,  8 May 2024 14:09:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E100C113CC;
-	Wed,  8 May 2024 14:09:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715177353;
-	bh=VZyUtgn7CSrqZqD2WXaMMzb6R5zKmx5KV+opHAphR2Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FfK55lXIxxm/5TEJWNmw3vYYan6hnJpce8FOxpJnul6TMsmsdOk7CmNCaHYXaOobc
-	 pa5rpx0Jd0c5mg/SyIYRivD8ofsnFlUBpyE2Va4NH7ZxymuNaGhwpUxSZYfB2RJ7sI
-	 KbvYvutvUYdtmv3zLRpKMUjZ1/X17Sm5tqd9VhkCKU0tiUJF6o8N+yIDi1t8q1a48O
-	 51vQYjhGDcswN4zd/4iBPrFuD5lQb/DSm0ULYs9ytwRvV1f7S9cAmunIAilmKkYN3s
-	 8/aDsad/YDxVTA4PmV5g3jydDY5244NkvnQdQAeWt2kv+k8lGqmPn5/9E5NPaqdong
-	 avbGNizqPHUMQ==
-Date: Wed, 8 May 2024 09:09:11 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Arseniy Krasnov <avkrasnov@salutedevices.com>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>, devicetree@vger.kernel.org,
-	Kevin Hilman <khilman@baylibre.com>, linux-mtd@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, oxffffaa@gmail.com,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org, kernel@sberdevices.ru,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v6 1/3] dt-bindings: mtd: amlogic,meson-nand: support
- fields for boot ROM code
-Message-ID: <171517732606.1572649.16193191353725811830.robh@kernel.org>
-References: <20240507230903.3399594-1-avkrasnov@salutedevices.com>
- <20240507230903.3399594-2-avkrasnov@salutedevices.com>
+	id 1s4iWF-0000000FszO-1jNR;
+	Wed, 08 May 2024 14:43:52 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id AC99E120008;
+	Wed,  8 May 2024 17:43:30 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru AC99E120008
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1715179410;
+	bh=0jC9OmU53LLfwrewlLDVbsUks0O+ztvJHUVnwfXtnnc=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=hbJjq/xOsUZo4lq6NzU+mi2uH0Fa4xKbcDdoVehmhEvqdrge33F1MqIfwMpT6BHNn
+	 X+Dtopb7QTym6SHfQw0FoNwaEeLPBQGxlEaURt3CJv0k9rgqeVN+0dmPVyIlG+7R8v
+	 LJXMLBIlHD+ujEtO6ePzBBa60wVtOr425HQuYQ8/etDlYXpfYZOr0JMDq/b2Sdfl6n
+	 d1EhVyZCaEc6eUlIwpagQ7LQgU86vp9gduMl9dx+6OKWeSEFm6ybvZGD/urqMVeHn7
+	 qK9Xa/w/eqAWjG0Rm0iNWRcKhRqB7Sosi918x3E4NnqSVmGxAO7Cmjuxc+lIggGB3b
+	 ZQMmtnWtYx+VA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed,  8 May 2024 17:43:30 +0300 (MSK)
+Received: from CAB-WSD-0003115.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 8 May 2024 17:43:30 +0300
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Michael Turquette
+	<mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, Rob
+ Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Subject: [QUESTION] Convert axg-audio-clkc to YAML format
+Date: Wed, 8 May 2024 17:42:56 +0300
+Message-ID: <20240508144259.191843-1-jan.dakinevich@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240507230903.3399594-2-avkrasnov@salutedevices.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185143 [May 08 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 19 0.3.19 07c7fa124d1a1dc9662cdc5aace418c06ae99d2b, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, {Tracking_bl_eng_cat, c15}, salutedevices.com:7.1.1;lore.kernel.org:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;sberdevices.ru:5.0.1,7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/05/08 13:27:00
+X-KSMG-LinksScanning: Clean, bases: 2024/05/08 13:27:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/08 09:52:00 #25122865
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240508_070917_811571_005BA983 
-X-CRM114-Status: GOOD (  14.32  )
+X-CRM114-CacheID: sfid-20240508_074344_231538_1C515131 
+X-CRM114-Status: GOOD (  11.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,39 +102,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Previously we discussed how to implement dt-schema for audio clock controller in
+Amlogic SoC [1]. Also, there was an earlier attempt to convert to yaml [2].
 
-On Wed, 08 May 2024 02:09:01 +0300, Arseniy Krasnov wrote:
-> Boot ROM code on Meson requires that some pages on NAND must be written
-> in special mode: "short" ECC mode where each block is 384 bytes and
-> scrambling mode is on. Such pages are located on the chip in the
-> following way (for example):
-> 
-> [ p0 ][ p1 ][ p2 ][ p3 ][ p4 ][ p5 ][ p6 ][ p7 ] ... [ pN ]
->   ^           ^           ^           ^
-> 
-> pX is page number "X". "^" means "special" page used by boot ROM - e.g.
-> every 2nd page in the range of [0, 7]. Step (2 in example is set by
-> 'amlogic,boot-page-step' field. Last page in range (7 in example) is
-> set by 'amlogic,boot-pages' field.
-> 
-> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
-> ---
->  .../bindings/mtd/amlogic,meson-nand.yaml       | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
+Let me remind you that the problem is that only "pclk" clock of this controller.
+Other clocks are optional and they are allowed to be not routed.
 
+I can suggest two approaches how to deal with this. Could you please tell me
+which of them is more correct?
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+Approach 1: use 'additionalItems' to declare optional clocks.
+Pros: 
+ - it is short and simple;
+ - no need to modify existing DTSIs.
+Cons:
+ - checking works but 'additionalItems' doesn't expect no-boolean value [3]
+ - there is reasoning that all clocks should be specified ragardless if they are
+   used or not [3][4].
 
-If a tag was not added on purpose, please state why and what changed.
+Approach 2: assume that all clocks are mandatory and declare all of them.
+Pros:
+ - it is more common and compatible with existing meta-schemas;
+ - may be architecturally it is more correct.
+Cons:
+ - boilerplate in schema and in DTSIs;
+ - requires modification of existing DTSIs.
 
-Missing tags:
+Links:
+[1] https://lore.kernel.org/lkml/20240419125812.983409-5-jan.dakinevich@salutedevices.com/
+[2] https://lore.kernel.org/linux-devicetree/20230808194811.113087-1-alexander.stein@mailbox.org/
+[3] https://lore.kernel.org/lkml/20240419210949.GA3979121-robh@kernel.org/
+[4] https://lore.kernel.org/lkml/07b1ca57-49a0-4151-99bf-caac053eaa01@kernel.org/
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
-
+-- 
+2.34.1
 
 
 _______________________________________________
