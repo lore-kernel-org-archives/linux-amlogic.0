@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06CC0C25B10
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 May 2024 09:13:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DAD4C25B4F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 May 2024 09:14:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=TxmCGw6hXYU8nZntMWCjdngWl4xx9GoF51Uul3w5Gds=; b=kdgj2J7iT1fTF5
-	z7gEm/Nh/ryaw+uCyw2kOp4L9f9pWlJQJKdNDY85SeIOnY9H64c9oDt8LmpCQny0mUlRU09pXGyVM
-	YhNMi2+zShvYuM0TUo5bIn3lXIRkxBBbqoQdmdjRjWqL0KKXkq/Yr/iZlVwR90KbWIzB1SpDz5OkU
-	ZmBrbIg3HQYyx50mgNaR0dQvI3ZU5ti6bGkzOCsbmpVLKGiBFUisrRLmG1Neq0geH6f+Q8v6tE+J6
-	jIFfXq+LDEP9sr9ZNM03ZEHyn62RCDsB7T4RCTKVaQS+04VUoMX9di9LXMNVFSmjV2w69rXk37k4u
-	vESVq9Cn5LorvsewPvEw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=HJAXSAoifdg7u52gnqZFNNMkkOSLvH898oqqbZdMrBA=; b=c46tm0z98wddNb
+	pJ5fxXLEt/LgReadJj+IutxX9wI+WbS/DvYMo8nd/nBtkR+A2+Vx8D/CqhM5fxecLDa8ZnhU7lI36
+	Zd2xUKog9GrbQiZa5HlLtYsMQdOUOgBK+sTyQdF9qxbxFDfPBHMXONIo5nf8XMe0gOdTk7UI2yTwW
+	JOf+yQ0T2nhZHRCByBwgIDfRA49elSYMZCnwOro28Bvn1f3Ml8xvH/YCSOYrPj/5xoZRKOj7HzgLi
+	fDVZpo7P/neva8RdE5PZML4oi2IflyLv/4W/+afbV/NP2K/fZ94JEYaUjK0oeWViXH7YQUiUdTiQx
+	SQUk1EN6E15AaH/Mvh0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s5MK9-00000004e6x-48re;
-	Fri, 10 May 2024 09:13:54 +0000
+	id 1s5MKB-00000004e7j-0OOn;
+	Fri, 10 May 2024 09:13:55 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s5MJO-00000004dV9-2u4g;
+	id 1s5MJO-00000004dUy-1ltX;
 	Fri, 10 May 2024 09:13:06 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
-	:MIME-Version:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
-	Content-Description:In-Reply-To:References;
-	bh=bQgoaZsfgswFdd7mMDy6KL8G+EznVwjqFXmnJMgJs34=; b=bqpPWdR9EF9pgajXk1mAzYhhhs
-	N3/ev+eWRduQ3CAJDk661qQlTiMg7RqBRPQr8Pna99ftsWlzJamyeJ+YnWvM21XWCmljMysxhIXsy
-	09bYyCPufHXpNy95pRBXgOvi+GXWqvQkGXmrx8jZFtltvVJQ7H7fpGE4gCaujZzDIIr61h3zgaFxz
-	cUAm2phPUw2AniqLPaoMoCAiQ7iPJ7T3dBZiLYEyL0+yoQfqmXLUSStXtJfCmq0T21IfUboq26PE5
-	9lf2sblTjebN/56wIGdgT3gtlnAlvgJdUAvuaVdtYVBwwYL9akJqYVkM1hHXn995DbfrugSCwPCe4
-	CVevPM1g==;
+	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=Qg4pXQQl5Lta582hsxBt1jkX2lzQKNXAMhqzfSLdzUI=; b=JDP1JspCBjfavCcB2gqf5iCuqu
+	RcHAYCDdpjskcW/sbYOWrF+gf62r8J02YRdF/x2IGe1Isli4slnB3zKUSXLS5QqLB46Sf1MwB73Eg
+	gYdwyYAHM0ZJghCxY+HKAGQl124vFAEzbtE8Azd9vJcYGrKSszxRMsXKJETLW+SbPQLuQ58zi64BX
+	ysElhnuc906odj3GjK8jkI0bTenfewc+iZJWFKBZgjIsUBJuQ4qAFJkFVeEQ/c/UWN5rz7jjpihGX
+	Zsd23FUSHDh6/FMnABgz/rJJmDRwq0idq34SyWJ8JNtH7dnzzFInaYvjUCPLS0ObGdUC3SycAYQMl
+	sNlQkPBQ==;
 Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by desiato.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s5MJK-00000003KQk-0mGw;
-	Fri, 10 May 2024 09:13:05 +0000
+	id 1s5MJK-00000003KQn-0mDQ;
+	Fri, 10 May 2024 09:13:04 +0000
 Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 8CCEF100006;
-	Fri, 10 May 2024 12:12:58 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8CCEF100006
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 3D0C8100007;
+	Fri, 10 May 2024 12:13:00 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 3D0C8100007
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1715332378;
-	bh=bQgoaZsfgswFdd7mMDy6KL8G+EznVwjqFXmnJMgJs34=;
+	s=mail; t=1715332380;
+	bh=Qg4pXQQl5Lta582hsxBt1jkX2lzQKNXAMhqzfSLdzUI=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=SB7tzLbjeRYjJr5ZPWIDixYFHw1uxlnctqwlLu7W8pdJ8OFyzjyH/JW2skgB5NZgN
-	 Zn+2G851sjzl2LkP1eTc+JRgC2Ibo5WjPwzPUzK0pc9yqkNfsk8nZ1xe5jUYYuoBYM
-	 KzYDvhqZGPAvUMc3PtXsUtjo7iK7WFkke9T0oBb1Xl8m65nS5ijb+gyrcniQUIiR+9
-	 LcQ/D7z+wBP3O9R5OHLv3sZZehB3AAdbga4b07xum7gSs/fKtreBja1pKkS4U++WXi
-	 v13x7Gd2MYtOC1YIVXFd+ghnP53iZCn/lyoEvz4zlnFuR+MTn2zI4IIpCBJWqCDMlF
-	 FIMKN5Hb/QvOw==
+	b=BZgcQ6Cq/su+5ejJmXEURFGJdKwzScavwUXNFiZQu/eT3oteTQ1YFAS8R9N53ZjMZ
+	 F/CQnSED1jjoi9RQCQKDUDOVqN3z2pOGvzDsej5Fqnd0REFVlRbO3Ca7nK9Mj54Q1i
+	 OZAUz7xGiHE71rE7Gwr+XZ5E8mdT/U+hBj0Oz0a5bD5G2NCI28bEL+OFPXqnMnbwYH
+	 fjRgdJ1ewNXGkGJHRERqp0H9w2lJcIwIVzxZhmNEIEDtL9JMgFGB7/8D0NriuX1cUI
+	 FJST16/Rhfc5WK9uhS5P9gVshyKGKpSIoCdZqzmmDxlVEK0NU+bt5OCZ6JZlICtRHR
+	 xtZJrPKhxygTg==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 10 May 2024 12:12:58 +0300 (MSK)
+	Fri, 10 May 2024 12:13:00 +0300 (MSK)
 Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 10 May 2024 12:12:57 +0300
+ 15.2.1118.40; Fri, 10 May 2024 12:12:59 +0300
 From: Dmitry Rokosov <ddrokosov@salutedevices.com>
 To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
 	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
@@ -73,10 +73,12 @@ CC: <kernel@salutedevices.com>, <rockosov@gmail.com>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
 	<ddrokosov@salutedevices.com>
-Subject: [PATCH v2 0/4] arm64: dts: amlogic: a1: Support CPU Power Management
-Date: Fri, 10 May 2024 12:12:22 +0300
-Message-ID: <20240510091251.20086-1-ddrokosov@salutedevices.com>
+Subject: [PATCH v2 2/4] arm64: dts: amlogic: a1: declare cpu clock controller
+Date: Fri, 10 May 2024 12:12:24 +0300
+Message-ID: <20240510091251.20086-3-ddrokosov@salutedevices.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240510091251.20086-1-ddrokosov@salutedevices.com>
+References: <20240510091251.20086-1-ddrokosov@salutedevices.com>
 MIME-Version: 1.0
 X-Originating-IP: [100.64.160.123]
 X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
@@ -90,16 +92,16 @@ X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 19 0.3.19 07c7fa124d1a1dc9662cdc5aace418c06ae99d2b, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;lore.kernel.org:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 19 0.3.19 07c7fa124d1a1dc9662cdc5aace418c06ae99d2b, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/05/10 08:35:00
-X-KSMG-LinksScanning: Clean, bases: 2024/05/10 08:36:00
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/10 07:36:00 #25144647
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240510_101302_542498_E269F7D9 
-X-CRM114-Status: GOOD (  12.05  )
+X-CRM114-CacheID: sfid-20240510_101302_506200_FAFDAAA1 
+X-CRM114-Status: GOOD (  11.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,100 +118,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Amlogic A1 SoC family utilizes static operating points and a
-PWM-controlled core voltage regulator that is specific to the board. As
-the main CPU clock input, the SoC uses CLKID_CPU_CLK from the CPU clock
-controller, which can be inherited from the system PLL (syspll) or a
-fixed CPU clock.
+The Amlogic A1 SoC family relies on the CPU clock controller to generate
+CPU clocks, serving a crucial function. It has 4 inputs: main
+oscillator, fixed clocks and system pll.
 
-Currently, the stable operating points at all frequencies are set to
-800mV. This value is obtained from the vendor setup of several A1
-boards.
+Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-The current patch series includes:
-    * CPU clock controller declaration
-    * syspll setup in the PLL controller
-    * operating points
-    * CPU special power parameters: voltage-tolerance, clock-latency,
-      capacity-dmips-mhz, dynamic-power-coefficient
-
-Please be informed that the AD402 vddcpu PWM regulator does not exist in
-this patch series because currently PWM A1 support is under development.
-However, it should look like:
-
-```
-vddcpu: regulator-vddcpu {
-	compatible = "pwm-regulator";
-	pinctrl-0 = <&pwm_f_pins4>;
-	pinctrl-names = "default";
-	regulator-name = "VDDCPU";
-	regulator-min-microvolt = <690000>;
-	regulator-max-microvolt = <1050000>;
-	pwm-supply = <&dc_12v_in>;
-	pwms = <&pwm_ef 1 1500 0>; // 667kHz
-	voltage-table = <1050000 0>,
-			<1040000 3>,
-			<1030000 6>,
-			<1020000 8>,
-			<1010000 11>,
-			<1000000 14>,
-			<990000 17>,
-			<980000 20>,
-			<970000 23>,
-			<960000 26>,
-			<950000 29>,
-			<940000 31>,
-			<930000 34>,
-			<920000 37>,
-			<910000 40>,
-			<900000 43>,
-			<890000 45>,
-			<880000 48>,
-			<870000 51>,
-			<860000 54>,
-			<850000 56>,
-			<840000 59>,
-			<830000 62>,
-			<820000 65>,
-			<810000 68>,
-			<800000 70>,
-			<790000 73>,
-			<780000 76>,
-			<770000 79>,
-			<760000 81>,
-			<750000 84>,
-			<740000 87>,
-			<730000 89>,
-			<720000 92>,
-			<710000 95>,
-			<700000 98>,
-			<690000 100>;
-	regulator-boot-on;
-	regulator-always-on;
-};
-```
-
-This patch series depends on [1].
-
-Changes v2 since v1 at [2]:
-    - remove holes from the beginning of cpu clock controller regmap
-    - move sys_pll_div16 to the end of the clocks list
-
-Links:
-    [1] https://lore.kernel.org/all/20240510090933.19464-1-ddrokosov@salutedevices.com/
-    [2] https://lore.kernel.org/all/20240329210453.27530-1-ddrokosov@salutedevices.com/
-
-Dmitry Rokosov (4):
-  arm64: dts: amlogic: a1: add new syspll_in input for clkc_pll
-    controller
-  arm64: dts: amlogic: a1: declare cpu clock controller
-  arm64: dts: amlogic: a1: add new input clock 'sys_pll_div16' to
-    clkc_periphs
-  arm64: dts: amlogic: a1: setup CPU power management
-
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 70 +++++++++++++++++++++--
- 1 file changed, 66 insertions(+), 4 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index feed2bd7ae48..afb5d7361177 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -3,6 +3,7 @@
+  * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+  */
+ 
++#include <dt-bindings/clock/amlogic,a1-cpu-clkc.h>
+ #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
+ #include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
+ #include <dt-bindings/clock/amlogic,a1-audio-clkc.h>
+@@ -94,6 +95,19 @@ soc {
+ 		#size-cells = <2>;
+ 		ranges;
+ 
++		clkc_cpu: clock-controller@fd000000 {
++			compatible = "amlogic,a1-cpu-clkc";
++			reg = <0 0xfd000080 0 0x8>;
++			#clock-cells = <1>;
++
++			clocks = <&clkc_pll CLKID_FCLK_DIV2>,
++				 <&clkc_pll CLKID_FCLK_DIV3>,
++				 <&clkc_pll CLKID_SYS_PLL>,
++				 <&xtal>;
++			clock-names = "fclk_div2", "fclk_div3",
++				      "sys_pll", "xtal";
++		};
++
+ 		spifc: spi@fd000400 {
+ 			compatible = "amlogic,a1-spifc";
+ 			reg = <0x0 0xfd000400 0x0 0x290>;
 -- 
 2.43.0
 
