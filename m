@@ -4,89 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4D6FC25B74
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 May 2024 10:11:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CBC9C25B4F
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 May 2024 13:03:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Lhbb5bhTzpcl1MB3MuEcCX66Ra1kEqYhejhOljSDm1E=; b=q96cbfoueL2wFh
-	sVbO3RDTcRhh4TTECJgRiZwrj3CQ6iDVRZBXm3iZQry2Vx0Mk539kNkonumjXX4V/ZjwuwQBHblva
-	uWFUzOgwKe9Zlq/oi5wGRhxJFaQQ1KkuRLfq65oaBUNuaR90H5rHnN+E4Ean5QgeRb8rENDx6sQyP
-	GyhiDZV+Mcf6taQcsVrfoB+BJBmIL1nxVZJ4CANxJd8iJr+CuYz2ABqFZ53yVJ53CJeeYxxzrr8Mc
-	PaqZjGo17CHu5aGvPOCRssbqEVjZSjrY0i5ZtkX4K+HDqKtskQ8XBIxpruEDPAT7m7cP+Ya/vUA0I
-	2cebfOxt8gTs3eodVpwg==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=YRYMmiA4eHv5JA+8MmgXNhQXnSkrmibl32FFemuPqlI=; b=QQ8LP4QeHZXgLSbCY6PR3LvSyM
+	TUmKtn2+4td7x1fCqwETdJE7bqXYdlOPpFbNgonRFNmxMa+9LHwGG+/MgAK9AZh63Cuovlbx2IwVX
+	+5jVJZhTGQzdjzeOA6+U/Q+x61N35RbGAC0RjEtqmNbxZoqTcubgYKt4fFj8dHqCL067VHr5+U8HL
+	S+3frKWx0qdZE3V2i8ANQLUleWBWMUocXH11D5nkhShQOKAvejxcaLbm+5idzUcV432pwlTUruYi9
+	XPs3DRoYXYBpGWT0hgQ7LiAZnj+Chfme89Z2lv54svW786XOONw09T4H4PPX41zzJfqrG55fffc+O
+	O2jNYH7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s5NDs-00000004pNC-29jd;
-	Fri, 10 May 2024 10:11:28 +0000
-Received: from madrid.collaboradmins.com ([46.235.227.194])
+	id 1s5mNu-00000007wy3-0N89;
+	Sat, 11 May 2024 13:03:30 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s5NDq-00000004pMc-0Ott;
-	Fri, 10 May 2024 10:11:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1715335884;
-	bh=c1waZ+eyh/3LEv2xQyu5LjuVf0SWbog1966q3KjkEqw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=xJk+hOhpaV0T+ju3F8+sGmHBtzFTyVUG4277e8N/HYwbkr3BX3CzBx/+wcN2hgGpe
-	 y3AQfCENjfRWsQqdzX9NFQcE6TCs0Uotjwtt9fg9LZId1pbDM11ZYIgJo4uNpzZkdY
-	 PnTqo9/+m/7JFxbRrFDEoqFkqIJ0VZ6crTG9McyI4maP8wggHhvKx30Wg8XTzClStG
-	 9FwDc0JokaW1oDrkqv4OxNLzVAO+B3GnAKvPKu5ny7tz7dWVkxfryNJjCzGuw1FWRn
-	 SruPRMpQcZD28dXZLjtT+UObBpWlZRpJ164RAFgDp6ZALOCqDHsItLhm9U+1Qm20Vt
-	 af9aDi8aR6llA==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 1D92A3782185;
-	Fri, 10 May 2024 10:11:22 +0000 (UTC)
-Message-ID: <d95cafca-bc4c-4571-a6ed-b66b6f63a579@collabora.com>
-Date: Fri, 10 May 2024 12:11:21 +0200
+	id 1s5mNq-00000007wxP-3w4C;
+	Sat, 11 May 2024 13:03:28 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 4B16061211;
+	Sat, 11 May 2024 13:03:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAD50C32781;
+	Sat, 11 May 2024 13:03:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715432606;
+	bh=nmhW8quEOj7e8lsF6Vgn3FxigiWdqJzbbfjcHiI4FF4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=p8Z/hvEH0Tz1Wsjzc/s0tw6Uk0zCa+ZRb2ykAVHUAAiicT+RL/2IHtFXpl9nOYA8y
+	 1nYGa04Pr6qqXAZOzxQC36PT0UNXhJLEb+CXlbAGAoCjnh0ksm1dsDjZnPZtkqVN8/
+	 TaJ4mpR7fvKC0jJpcBNWzg6oZRZTlgxnKVL6hK3UTV2xjGDmcawxm2CYozyH254u7i
+	 WJx3LP/8IWIrb5k1runTAru/m4IXfWTTxDmTGa7BiHyEDrjkLqS8ytPd19VNNaUDU3
+	 JazlPNSUrmoJ34YYBloFSLuWxAOSeKJzDYTMHbEfvHqE1kvKCsn1BNTtj9HGTk8Q51
+	 5jrBl4gUZoUUw==
+Date: Sat, 11 May 2024 14:03:20 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: neil.armstrong@linaro.org, jbrunet@baylibre.com,
+	mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+	martin.blumenstingl@googlemail.com, jian.hu@amlogic.com,
+	kernel@sberdevices.ru, rockosov@gmail.com,
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 4/7] dt-bindings: clock: meson: a1: peripherals:
+ support sys_pll_div16 input
+Message-ID: <20240511-courier-afflicted-e351af5cded2@spud>
+References: <20240510090933.19464-1-ddrokosov@salutedevices.com>
+ <20240510090933.19464-5-ddrokosov@salutedevices.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/1] nvmem: Change return type of reg read/write to
- ssize_t
-To: Joy Chakraborty <joychakr@google.com>, Hector Martin <marcan@marcan.st>,
- Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Vladimir Zapolskiy <vz@mleia.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Heiko Stuebner <heiko@sntech.de>,
- Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
- <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Vincent Shih <vincent.sunplus@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Rafal Milecki <rafal@milecki.pl>,
- Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
- Masami Hiramatsu <mhiramat@kernel.org>, Michal Simek <michal.simek@amd.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
- manugautam@google.com
-References: <20240510082929.3792559-1-joychakr@google.com>
- <20240510082929.3792559-2-joychakr@google.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240510082929.3792559-2-joychakr@google.com>
+In-Reply-To: <20240510090933.19464-5-ddrokosov@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240510_031126_345785_862BA961 
-X-CRM114-Status: UNSURE (   8.96  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240511_060327_107687_1D10B9A4 
+X-CRM114-Status: GOOD (  15.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,28 +73,104 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============0048782168736009247=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Il 10/05/24 10:29, Joy Chakraborty ha scritto:
-> Change return type of reg_read() and reg_write() callback to ssize_t for
-> nvmem suppliers to return number of bytes read/written to the nvmem core.
-> 
-> Currently nvmem core assumes the amount of data read/written is equal
-> to what it has requested from the supplier, this return code facilitates
-> better error handling in the nvmem core.
-> 
-> Signed-off-by: Joy Chakraborty <joychakr@google.com>
 
-For MediaTek:
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+--===============0048782168736009247==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="TNx0su8gnKIgNzEa"
+Content-Disposition: inline
 
 
+--TNx0su8gnKIgNzEa
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, May 10, 2024 at 12:08:56PM +0300, Dmitry Rokosov wrote:
+> The 'sys_pll_div16' input clock is used as one of the sources for the
+> GEN clock.
+>=20
+> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+
+Provided that this new clock is optional in the driver,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+> ---
+>  .../bindings/clock/amlogic,a1-peripherals-clkc.yaml        | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-periphera=
+ls-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-periphera=
+ls-clkc.yaml
+> index 6d84cee1bd75..11862746ba44 100644
+> --- a/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc=
+=2Eyaml
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc=
+=2Eyaml
+> @@ -30,6 +30,7 @@ properties:
+>        - description: input fixed pll div7
+>        - description: input hifi pll
+>        - description: input oscillator (usually at 24MHz)
+> +      - description: input sys pll div16
+> =20
+>    clock-names:
+>      items:
+> @@ -39,6 +40,7 @@ properties:
+>        - const: fclk_div7
+>        - const: hifi_pll
+>        - const: xtal
+> +      - const: sys_pll_div16
+> =20
+>  required:
+>    - compatible
+> @@ -65,9 +67,10 @@ examples:
+>                       <&clkc_pll CLKID_FCLK_DIV5>,
+>                       <&clkc_pll CLKID_FCLK_DIV7>,
+>                       <&clkc_pll CLKID_HIFI_PLL>,
+> -                     <&xtal>;
+> +                     <&xtal>,
+> +                     <&clkc_pll CLKID_SYS_PLL_DIV16>;
+>              clock-names =3D "fclk_div2", "fclk_div3",
+>                            "fclk_div5", "fclk_div7",
+> -                          "hifi_pll", "xtal";
+> +                          "hifi_pll", "xtal", "sys_pll_div16";
+>          };
+>      };
+> --=20
+> 2.43.0
+>=20
+>=20
+
+--TNx0su8gnKIgNzEa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZj9smAAKCRB4tDGHoIJi
+0sVPAP4qBtz3ATp9etCU/S5CukAKn4AJFaAGHLtaVCEhh9TnJwEApgjVh2zKcIAl
+WlAU5kVo+VO3uM0AxaBrQrhxsiADUQA=
+=31o0
+-----END PGP SIGNATURE-----
+
+--TNx0su8gnKIgNzEa--
+
+
+--===============0048782168736009247==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============0048782168736009247==--
+
