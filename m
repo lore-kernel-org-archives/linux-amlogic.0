@@ -4,64 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13BB9C04FFE
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 May 2024 13:08:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62187C25B4F
+	for <linux-amlogic@archiver.kernel.org>; Sun, 12 May 2024 17:38:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=SZxBrkULQDwQnxkkf4rNYrXcBQVej0NuX2QuRM6nE8E=; b=K9rkPvnCBn19A7X0Oc5D4iigFm
-	uWHvbToP3scT4WLetdGJRfP9IPfwNf4MNUJBUqKXjnwU0Dc2sKmCbeLSNj9PnNCqU+F+aFcLf14Y/
-	S417arbV3O3utJNmf5/LKfkP0h4/5/G6v13D+LEhgXSmUpOMTWDFMKBL2IFpnDrg8kdkaXPF6D1ff
-	PZ0WFAv2uBPfIK+wg0VF1D9e933O1VWgmAjwSTyECjm7eG9t0l31lb7OI1yDoeYbWZxlZAPl2+DOm
-	6019gzCUsmSFjSJRsKDivpIwqzJRBw4Z9GKAC7DxEFxfMTxvoidKZGjUKYKp7rzrSrm3hoRnshK7B
-	imwDK1ww==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=4iZ+hkqxuzW/5J11MZ1dc1TFb3aHIoT8bwgB1UqE+xQ=; b=OltyWcRE1hIkCj
+	zj0O9C0CSnKMO0VCizoC6lH+dwdaUwILkXczGuwHQe2r9n4Oungwunoa5S2mFtzXu48IBx8GIJYIe
+	tFdd1wh96v7iy1tSoIDzz5H9qPTgArWCaFXnjEI+ejBrfFfxM7wSD04BSxQa5vkDZm3lzAu8k53Dn
+	xEcmgeXJjmOS/BrnOyquXQXVUi/XfQMyVmTXM183FMU3hopPMVnaejgOlQZ4neHcdZ8lFmTDqbLhB
+	YnnIt7kxIi02dSsLY+7Vm9yjHu0qOjawXAUsMlNdZPItuvJ9z19xVm8mHPanRL/wP8ILNxLCKWTmw
+	WzXuz8c5uMVJx50LfWUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s5mSU-00000007xr4-1aCn;
-	Sat, 11 May 2024 13:08:14 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1s6D92-0000000ASD6-2zdP;
+	Sun, 12 May 2024 17:37:56 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s5mSR-00000007xqZ-1oAY;
-	Sat, 11 May 2024 13:08:13 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 9BBBE611F2;
-	Sat, 11 May 2024 13:08:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08707C2BBFC;
-	Sat, 11 May 2024 13:08:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715432889;
-	bh=nn5CCGqDXRDW0kal5/Z0nExGsCcCmd7RqOdWPQZZ+Fs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DMBV/L0Rf02+pxMLC/ZTNs8StcL5fKgQTU5ppq5oaWJDipa8ukbCHuu/An38u5vZU
-	 NnvuNdjhyXgdTFMGWo8KlgW8zLJmi3r7tGype6lRozJK8NjdT6VfopQtHp/fe1MEnX
-	 SNlppIGviW72sy/N86tNc1o4u9AfAZcoo4x96htViPYEdUyh/egQzsQtT/0S6IIlND
-	 TFqDsQ2KaXVatNx1bFwXu6QFyGvbnmYHwoV42p57DbnAQdI7Hri0K8vHJzciBLqfvz
-	 +CRGOg8oJbrFXEHKBNvNDKDvLyF8imNkO+DwfSnPqPPxj4sWLcOAAAymdDRm15AbLo
-	 LZgR1LdLH6XtQ==
-Date: Sat, 11 May 2024 14:08:03 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: neil.armstrong@linaro.org, jbrunet@baylibre.com,
-	mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
-	martin.blumenstingl@googlemail.com, jian.hu@amlogic.com,
-	kernel@sberdevices.ru, rockosov@gmail.com,
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/7] dt-bindings: clock: meson: a1: pll: introduce new
- syspll bindings
-Message-ID: <20240511-secret-barcode-e25c722ddf1d@spud>
-References: <20240510090933.19464-1-ddrokosov@salutedevices.com>
- <20240510090933.19464-3-ddrokosov@salutedevices.com>
+	id 1s6D8y-0000000ASBb-10fW;
+	Sun, 12 May 2024 17:37:54 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 4DD4F120002;
+	Sun, 12 May 2024 20:37:43 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4DD4F120002
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1715535463;
+	bh=uwsRFR9afraqpGHPq8DU2TSJXRBWv6wXpdPPQhQUsLY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=MJWlGTEOl1552sZrUtJQGf6XyPUgf5YKCyzIZH/ZnvlUOVrcmO9vlSlrOeiKUUOpK
+	 3DTB1ZTu5xJrJ5AGiLLm1D/uGN6J+i/LwWEZCab7wU2gTLos9fgSZMu0hiMMkMb3Hm
+	 BsCUstwLD5Qmk10Eq4MKdGgfHdZknWmJcJLn/HUyZSCzECeazwPqvbZ65ifdTjFvsR
+	 4+zM81xf0Qs1FkJv94UN0k+cFjS7UcmySsuk0hKzp1AZYywW0nGbM7aLB8Vflg9jgt
+	 8L/qzVtlLCuxtVULswG4HAXTiDRfmucsTRZ/h4G1YP/z+mbKruUPPhKfE/aBCnlYBK
+	 u8eJPbczokiYg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Sun, 12 May 2024 20:37:43 +0300 (MSK)
+Received: from [172.28.226.125] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sun, 12 May 2024 20:37:42 +0300
+Message-ID: <418e29c7-9baf-ee4c-7a24-49c196ac89b2@salutedevices.com>
+Date: Sun, 12 May 2024 20:26:51 +0300
 MIME-Version: 1.0
-In-Reply-To: <20240510090933.19464-3-ddrokosov@salutedevices.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v6 1/3] dt-bindings: mtd: amlogic,meson-nand: support
+ fields for boot ROM code
+Content-Language: en-US
+To: Krasnov Arseniy <oxffffaa@gmail.com>, "Rob Herring (Arm)"
+	<robh@kernel.org>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Miquel Raynal
+	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>,
+	<devicetree@vger.kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	<linux-amlogic@lists.infradead.org>, <kernel@sberdevices.ru>, Jerome Brunet
+	<jbrunet@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
+	<linux-kernel@vger.kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>
+References: <20240507230903.3399594-1-avkrasnov@salutedevices.com>
+ <20240507230903.3399594-2-avkrasnov@salutedevices.com>
+ <171517732606.1572649.16193191353725811830.robh@kernel.org>
+ <CAP_G_RUdN+6OcsQZUkqWQMYoH-ZvmPnskT3yONK_YssqUYhm9Q@mail.gmail.com>
+From: Arseniy Krasnov <avkrasnov@salutedevices.com>
+In-Reply-To: <CAP_G_RUdN+6OcsQZUkqWQMYoH-ZvmPnskT3yONK_YssqUYhm9Q@mail.gmail.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185167 [May 11 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: avkrasnov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 19 0.3.19 07c7fa124d1a1dc9662cdc5aace418c06ae99d2b, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/12 16:13:00 #25178084
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240511_060811_603857_8CEF4B0E 
-X-CRM114-Status: GOOD (  20.31  )
+X-CRM114-CacheID: sfid-20240512_103753_055554_9B09C06F 
+X-CRM114-Status: GOOD (  14.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,122 +108,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============5076111809140753672=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============5076111809140753672==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="BapyMlBTqqZEbUPF"
-Content-Disposition: inline
-
-
---BapyMlBTqqZEbUPF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, May 10, 2024 at 12:08:54PM +0300, Dmitry Rokosov wrote:
-> The 'syspll' PLL is a general-purpose PLL designed specifically for the
-> CPU clock. It is capable of producing output frequencies within the
-> range of 768MHz to 1536MHz.
->=20
-> The clock source sys_pll_div16, being one of the GEN clock parents,
-> plays a crucial role and cannot be tagged as "optional". Unfortunately,
-> it was not implemented earlier due to the cpu clock ctrl driver's
-> pending status on the TODO list.
-
-It's fine to not mark it optional in the binding, but it should be
-optional in the driver as otherwise backwards compatibility will be
-broken. Given this is an integral clock driver, sounds like it would
-quite likely break booting on these devices if the driver doesn't treat
-syspll_in as optional.
-A lesson perhaps in describing the hardware entirely, even if the
-drivers don't make use of all the information yet?
-
-Cheers,
-Conor.
-
->=20
-> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> ---
->  .../devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml     | 7 +++++--
->  include/dt-bindings/clock/amlogic,a1-pll-clkc.h            | 2 ++
->  2 files changed, 7 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.=
-yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> index a59b188a8bf5..fbba57031278 100644
-> --- a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> @@ -26,11 +26,13 @@ properties:
->      items:
->        - description: input fixpll_in
->        - description: input hifipll_in
-> +      - description: input syspll_in
-> =20
->    clock-names:
->      items:
->        - const: fixpll_in
->        - const: hifipll_in
-> +      - const: syspll_in
-> =20
->  required:
->    - compatible
-> @@ -53,7 +55,8 @@ examples:
->              reg =3D <0 0x7c80 0 0x18c>;
->              #clock-cells =3D <1>;
->              clocks =3D <&clkc_periphs CLKID_FIXPLL_IN>,
-> -                     <&clkc_periphs CLKID_HIFIPLL_IN>;
-> -            clock-names =3D "fixpll_in", "hifipll_in";
-> +                     <&clkc_periphs CLKID_HIFIPLL_IN>,
-> +                     <&clkc_periphs CLKID_SYSPLL_IN>;
-> +            clock-names =3D "fixpll_in", "hifipll_in", "syspll_in";
->          };
->      };
-> diff --git a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h b/include/dt=
--bindings/clock/amlogic,a1-pll-clkc.h
-> index 2b660c0f2c9f..a702d610589c 100644
-> --- a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> +++ b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> @@ -21,5 +21,7 @@
->  #define CLKID_FCLK_DIV5		8
->  #define CLKID_FCLK_DIV7		9
->  #define CLKID_HIFI_PLL		10
-> +#define CLKID_SYS_PLL		11
-> +#define CLKID_SYS_PLL_DIV16	12
-> =20
->  #endif /* __A1_PLL_CLKC_H */
-> --=20
-> 2.43.0
->=20
->=20
-
---BapyMlBTqqZEbUPF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZj9tswAKCRB4tDGHoIJi
-0pj2AP9o4HZKD5fAbbwEJlMifsTMl/7hSOmkyRbcNK3IJjs/IwEAovKPd0n+svw5
-TYMMJ7Bah8z91bGRNWgo/Zn/yyRxdw8=
-=ohus
------END PGP SIGNATURE-----
-
---BapyMlBTqqZEbUPF--
-
-
---===============5076111809140753672==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============5076111809140753672==--
-
+U29ycnksIHNlbmRpbmcgZnJvbSBwcm9wZXIgbWFpbCBjbGllbnQgYWdhaW4gKG5vdCBzdXJlIGl0
+IHdhcyBkZWxpdmVyZWQgc2VudCBmcm9tIGdtYWlsIGNsaWVudCBvbiAwOC4wNSkgOikKClItYiB3
+YXMgcmVtb3ZlZCwgYmVjYXVzZSB0aGlzIHBhdGNoIHdhcyB1cGRhdGVkCgpUaGFua3MsIEFyc2Vu
+aXkKCk9uIDA4LjA1LjIwMjQgMjA6MDcsIEtyYXNub3YgQXJzZW5peSB3cm90ZToKPiBIaSEgSSBy
+ZW1vdmVkIFlvdXIgUi1iIGJlY2F1c2UgcGF0Y2ggd2FzIGNoYW5nZWQgaW4gdGhpcyB2ZXJzaW9u
+LCBhZnRlcgo+IGNvbW1lbnRzIGZyb20gTWlxdWVsIFJheW5hbAo+IAo+IFRoYW5rcwo+IAo+INGB
+0YAsIDgg0LzQsNGPIDIwMjQg0LMuLCAxNzowOSBSb2IgSGVycmluZyAoQXJtKSA8cm9iaEBrZXJu
+ZWwub3JnPjoKPiAKPj4KPj4gT24gV2VkLCAwOCBNYXkgMjAyNCAwMjowOTowMSArMDMwMCwgQXJz
+ZW5peSBLcmFzbm92IHdyb3RlOgo+Pj4gQm9vdCBST00gY29kZSBvbiBNZXNvbiByZXF1aXJlcyB0
+aGF0IHNvbWUgcGFnZXMgb24gTkFORCBtdXN0IGJlIHdyaXR0ZW4KPj4+IGluIHNwZWNpYWwgbW9k
+ZTogInNob3J0IiBFQ0MgbW9kZSB3aGVyZSBlYWNoIGJsb2NrIGlzIDM4NCBieXRlcyBhbmQKPj4+
+IHNjcmFtYmxpbmcgbW9kZSBpcyBvbi4gU3VjaCBwYWdlcyBhcmUgbG9jYXRlZCBvbiB0aGUgY2hp
+cCBpbiB0aGUKPj4+IGZvbGxvd2luZyB3YXkgKGZvciBleGFtcGxlKToKPj4+Cj4+PiBbIHAwIF1b
+IHAxIF1bIHAyIF1bIHAzIF1bIHA0IF1bIHA1IF1bIHA2IF1bIHA3IF0gLi4uIFsgcE4gXQo+Pj4g
+ICBeICAgICAgICAgICBeICAgICAgICAgICBeICAgICAgICAgICBeCj4+Pgo+Pj4gcFggaXMgcGFn
+ZSBudW1iZXIgIlgiLiAiXiIgbWVhbnMgInNwZWNpYWwiIHBhZ2UgdXNlZCBieSBib290IFJPTSAt
+IGUuZy4KPj4+IGV2ZXJ5IDJuZCBwYWdlIGluIHRoZSByYW5nZSBvZiBbMCwgN10uIFN0ZXAgKDIg
+aW4gZXhhbXBsZSBpcyBzZXQgYnkKPj4+ICdhbWxvZ2ljLGJvb3QtcGFnZS1zdGVwJyBmaWVsZC4g
+TGFzdCBwYWdlIGluIHJhbmdlICg3IGluIGV4YW1wbGUpIGlzCj4+PiBzZXQgYnkgJ2FtbG9naWMs
+Ym9vdC1wYWdlcycgZmllbGQuCj4+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogQXJzZW5peSBLcmFzbm92
+IDxhdmtyYXNub3ZAc2FsdXRlZGV2aWNlcy5jb20+Cj4+PiAtLS0KPj4+ICAuLi4vYmluZGluZ3Mv
+bXRkL2FtbG9naWMsbWVzb24tbmFuZC55YW1sICAgICAgIHwgMTggKysrKysrKysrKysrKysrKysr
+Cj4+PiAgMSBmaWxlIGNoYW5nZWQsIDE4IGluc2VydGlvbnMoKykKPj4+Cj4+Cj4+Cj4+IFBsZWFz
+ZSBhZGQgQWNrZWQtYnkvUmV2aWV3ZWQtYnkgdGFncyB3aGVuIHBvc3RpbmcgbmV3IHZlcnNpb25z
+LiBIb3dldmVyLAo+PiB0aGVyZSdzIG5vIG5lZWQgdG8gcmVwb3N0IHBhdGNoZXMgKm9ubHkqIHRv
+IGFkZCB0aGUgdGFncy4gVGhlIHVwc3RyZWFtCj4+IG1haW50YWluZXIgd2lsbCBkbyB0aGF0IGZv
+ciBhY2tzIHJlY2VpdmVkIG9uIHRoZSB2ZXJzaW9uIHRoZXkgYXBwbHkuCj4+Cj4+IElmIGEgdGFn
+IHdhcyBub3QgYWRkZWQgb24gcHVycG9zZSwgcGxlYXNlIHN0YXRlIHdoeSBhbmQgd2hhdCBjaGFu
+Z2VkLgo+Pgo+PiBNaXNzaW5nIHRhZ3M6Cj4+Cj4+IFJldmlld2VkLWJ5OiBSb2IgSGVycmluZyAo
+QXJtKSA8cm9iaEBrZXJuZWwub3JnPgo+Pgo+Pgo+Pgo+Pgo+IAoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
+bGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
+b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
