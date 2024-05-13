@@ -4,94 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DFD7C25B10
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 May 2024 21:47:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2308BC25B78
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 May 2024 22:47:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AM6f9kY226WMMkFo2tTPvUrYzXOZTuwVqB3Ze7w6fOo=; b=X30dWglVdqA2gi
-	JIBngTj9k+mX0HER9ODJQcH+8vydZc3+Wk/RdfUmVwO/zTQT4xeuEGf9i2IJfkWlla8XPl6IEeJHH
-	3OHapro2/NO5Q045yz0K7tCRTAfkpiavir+6qs1s/Kkv5Y775hVZX9O19dtqb4OKxiON152OuovYT
-	ae9WiUl9umXRD252WN4FIzW06ccgHJIQrGc8IUcNnuLuN7kzmmI7Xy5ZzRnDQagjCvV9Yu5mJtFen
-	voD2eOefLHXkSqABlH44pCcMd2Ojq0hJKIlQKsG7n+Dy3zAhXyovmlMhSqYBNAglDtm21p36BF1eo
-	NNOlk8kHT5TeDOiC17zg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=3BVRH6+Va0KbryhJhG6bGBCS0Jc5dCsqiFfDrxyG0Q4=; b=fdmVQvBxF2y69P
+	AUn003YJDdSWkRYufPQQOcLQ2OZsCfGS3IXdpAySNa+9XoDf5fQ77L4Ymq8TNa5igFIZilm+Jplr0
+	jtw5i2eJTh9F+Bn8suh7/ql+FfcPBB8aAPAzoxZXjDS4xx4+PGvAhcFL7/CJeaxBHeIZvHJc05q+t
+	Nv16XZCfftZ2KyI8I8hM61QATUcjsMwJjxbBO6JCAywYcbro8dRH6bu5IVAeomS1oq7yeTQQnoM2Q
+	ve90r2b9+SwI01bdTIAIkHWkFpBm7J7z2JlKlKCsPPx58Ofl1BuFPInnR3V4U9WBNmgl0aQxoVSj7
+	CRSFgfPB0/XtCq5tZ+5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s6dWD-0000000EILd-0KbV;
-	Mon, 13 May 2024 21:47:37 +0000
+	id 1s6eRc-0000000EQDb-0SHw;
+	Mon, 13 May 2024 22:46:56 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s6dW9-0000000EIKl-2WuJ;
-	Mon, 13 May 2024 21:47:35 +0000
+	id 1s6eRW-0000000EQC1-1dkf
+	for linux-amlogic@lists.infradead.org;
+	Mon, 13 May 2024 22:46:54 +0000
 Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 591CE12001C;
-	Tue, 14 May 2024 00:47:29 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 591CE12001C
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 8B56F12001C;
+	Tue, 14 May 2024 01:46:43 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8B56F12001C
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1715636849;
-	bh=ZM+lhNatKFUHF9a5/vTMQlspJzgvNe8FHwZNKI0g9q0=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=vSR/QEKByL5EOOHvOy4bWeZ01VVdtBRk4ratwRSJMeGDlEA7q+1H4RIko65+sPvvw
-	 8pgRVvW9Q5IM2cyfTMoM7glWw6OYHmYHXCzizc1xhHmrRhDMo/Ha+WJAEiu84k30js
-	 HgWDmc6UaAC9mXZ/RPlq/gZ8xo+M2wUUBPwmZJd9eMfyMJ4IMYZ0+vEW73X2Mpz6dk
-	 gWotq29uAjyKzT92Ha++7hStbvYbBoN0E5nCST/lCJZk8/Mr9FnlziwQKoMkUEzVTz
-	 u7V6sXnHeMBol2wYHoVf3qwfp3cnW0QY4cjcO3wjUtbdafjckNvnA4XbPVia0wV49v
-	 v6l6RDAvU8S+A==
+	s=mail; t=1715640403;
+	bh=kXE1Li6CYAMN37Y6ndANEsSdW059zB4iC9T0bLHvcxg=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=kHLkwhFueeFp6DpOXB/h35U1Z6uGicWSKOkof9iyYngtvn3GPyZu2cn3aUQXCX0it
+	 oXSAhD8Ad0+hSVNrS6AlhIId6hNaKXDFQakdxfC7cgQik37aazcYC/6uFsaGqCZeJm
+	 vcwLo/3/vfu9PP49863eIAw5dW2mml8Q8kFIBTctudJXdY56jWEnscpKl5t+6eoLdo
+	 UunROdUtrE5oFgzFHRIPXaLtsSt38/7g95nRetP8aaT/6GD9Ma3TsvqFoz7PPSs8VU
+	 xEztQzkVpm1LlHfxaw2T3AhdSI2/wFU7fq9cUPGsrXFTzGygW1Z0BTUatTci+3mSmM
+	 cpDbXI/HzZ/7g==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 14 May 2024 00:47:29 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 14 May
- 2024 00:47:28 +0300
-Date: Tue, 14 May 2024 00:47:28 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-CC: <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
-	<sboyd@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
-	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	Tue, 14 May 2024 01:46:43 +0300 (MSK)
+Received: from CAB-WSD-0003115.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 14 May 2024 01:46:42 +0300
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 1/7] clk: meson: introduce 'INIT_ONCE' flag to
- eliminate init for enabled PLL
-Message-ID: <20240513214728.g4isbfisifxalqxy@CAB-WSD-L081021>
-References: <20240510090933.19464-1-ddrokosov@salutedevices.com>
- <20240510090933.19464-2-ddrokosov@salutedevices.com>
- <1jfrulzxms.fsf@starbuckisacylon.baylibre.com>
+	<linux-kernel@vger.kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>
+Subject: [PATCH v2] dt-bindings: clock: meson: Convert axg-audio-clkc to YAML format
+Date: Tue, 14 May 2024 01:45:52 +0300
+Message-ID: <20240513224552.800153-1-jan.dakinevich@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1jfrulzxms.fsf@starbuckisacylon.baylibre.com>
-User-Agent: NeoMutt/20220415
 X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
 X-KSMG-AntiSpam-Lua-Profiles: 185198 [May 13 2024]
 X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
 X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;devicetree.org:7.1.1;100.64.160.123:7.1.2;lore.kernel.org:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/13 16:04:00 #25186646
+X-KSMG-AntiPhishing: Clean, bases: 2024/05/13 21:20:00
+X-KSMG-LinksScanning: Clean, bases: 2024/05/13 21:20:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/13 20:57:00 #25189509
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240513_144734_082431_EF6364EF 
-X-CRM114-Status: GOOD (  37.71  )
+X-CRM114-CacheID: sfid-20240513_154651_054050_7B592061 
+X-CRM114-Status: GOOD (  19.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,148 +101,305 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, May 13, 2024 at 02:44:06PM +0200, Jerome Brunet wrote:
-> 
-> On Fri 10 May 2024 at 12:08, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
-> 
-> > When dealing with certain PLLs, it is necessary to avoid modifying them
-> > if they have already been initialized by lower levels. For instance, in
-> > the A1 SoC Family, the sys_pll is enabled as the parent for the cpuclk,
-> > and it cannot be disabled during the initialization sequence. Therefore,
-> > initialization phase must be skipped.
-> >
-> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> > ---
-> >  drivers/clk/meson/clk-pll.c | 37 +++++++++++++++++++++----------------
-> >  drivers/clk/meson/clk-pll.h |  1 +
-> >  2 files changed, 22 insertions(+), 16 deletions(-)
-> >
-> > diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-> > index 78d17b2415af..47b22a6be2e4 100644
-> > --- a/drivers/clk/meson/clk-pll.c
-> > +++ b/drivers/clk/meson/clk-pll.c
-> > @@ -289,11 +289,32 @@ static int meson_clk_pll_wait_lock(struct clk_hw *hw)
-> >  	return -ETIMEDOUT;
-> >  }
-> >  
-> > +static int meson_clk_pll_is_enabled(struct clk_hw *hw)
-> > +{
-> > +	struct clk_regmap *clk = to_clk_regmap(hw);
-> > +	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
-> > +
-> > +	if (MESON_PARM_APPLICABLE(&pll->rst) &&
-> > +	    meson_parm_read(clk->map, &pll->rst))
-> > +		return 0;
-> > +
-> > +	if (!meson_parm_read(clk->map, &pll->en) ||
-> > +	    !meson_parm_read(clk->map, &pll->l))
-> > +		return 0;
-> > +
-> > +	return 1;
-> > +}
-> > +
-> >  static int meson_clk_pll_init(struct clk_hw *hw)
-> >  {
-> >  	struct clk_regmap *clk = to_clk_regmap(hw);
-> >  	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
-> >  
-> > +	/* Do not init already enabled PLL which marked with 'init_once'
-> > */
-> 
-> That is decribing the code, which we can read. So not really helpful
-> Saying why you do it, like "Keep the clock running from the bootloader
-> stage and avoid glitching it ..." gives more context about what you are
-> trying to do.
-> 
+From: Alexander Stein <alexander.stein@mailbox.org>
 
-Yes, I agree with you.
+Convert Amlogic AXG Audio Clock Controller binding to yaml.
 
-"Instead of describing the action, provide the reasoning behind it."
+Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+---
 
-I will incorporate your feedback in the upcoming version.
+Also, this patch was discussed at [1].
 
-> > +	if ((pll->flags & CLK_MESON_PLL_INIT_ONCE) &&
-> 
-> I don't like INIT_ONCE. It gives the false impression that
-> 
-> * The PLL is going to be initialized once in Linux if it has the flag
-> * Is initialised multiple times otherwise 
+Changes v1 -> v2 [2]
+ - Stop using conditionals and list all clocks;
+ - Cosmetics.
 
-But that's how things happen. For previous clocks on other platforms, we
-assumed that the PLL could be initialized multiple times: once from the
-bootloader and once from Linux. We didn't have the ability to disable
-initialization from the Linux side before, so it meant that multiple
-initializations were potentially possible by default.
+Links
+[1] https://lore.kernel.org/linux-devicetree/20240508144259.191843-1-jan.dakinevich@salutedevices.com/
+[2] https://lore.kernel.org/linux-devicetree/20230808194811.113087-1-alexander.stein@mailbox.org/
 
-> 
-> I agree that currently that carefully reading the code clears that up
-> but it is misleading
-> 
-> CLK_MESON_PLL_EN_NOINIT ?
-> 
+ .../bindings/clock/amlogic,axg-audio-clkc.txt |  59 -----
+ .../clock/amlogic,axg-audio-clkc.yaml         | 201 ++++++++++++++++++
+ 2 files changed, 201 insertions(+), 59 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
 
-I have been considering this name and its derivatives, such as:
-
-    CLK_MESON_PLL_SKIP_ENABLED
-    CLK_MESON_PLL_NOINIT_ENABLED
-    CLK_MESON_PLL_INIT_DISABLED_ONLY
-
-However, I find all of these names to be quite long and bulky. It
-reminded me of the WARN_ONCE() function, which ensures that a warning
-message is only printed once. In my opinion, the name "INIT_ONCE"
-accurately reflects the situation.  Nevertheless, if it is your
-requirement for me to change the flag name, I am more than willing to do
-so, it's not a problem.
-
-> > +	    meson_clk_pll_is_enabled(hw))
-> > +		return 0;
-> > +
-> >  	if (pll->init_count) {
-> >  		if (MESON_PARM_APPLICABLE(&pll->rst))
-> >  			meson_parm_write(clk->map, &pll->rst, 1);
-> > @@ -308,22 +329,6 @@ static int meson_clk_pll_init(struct clk_hw *hw)
-> >  	return 0;
-> >  }
-> >  
-> > -static int meson_clk_pll_is_enabled(struct clk_hw *hw)
-> > -{
-> > -	struct clk_regmap *clk = to_clk_regmap(hw);
-> > -	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
-> > -
-> > -	if (MESON_PARM_APPLICABLE(&pll->rst) &&
-> > -	    meson_parm_read(clk->map, &pll->rst))
-> > -		return 0;
-> > -
-> > -	if (!meson_parm_read(clk->map, &pll->en) ||
-> > -	    !meson_parm_read(clk->map, &pll->l))
-> > -		return 0;
-> > -
-> > -	return 1;
-> > -}
-> > -
-> >  static int meson_clk_pcie_pll_enable(struct clk_hw *hw)
-> >  {
-> >  	int retries = 10;
-> > diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
-> > index a2228c0fdce5..23195ea4eae1 100644
-> > --- a/drivers/clk/meson/clk-pll.h
-> > +++ b/drivers/clk/meson/clk-pll.h
-> > @@ -28,6 +28,7 @@ struct pll_mult_range {
-> >  	}
-> >  
-> >  #define CLK_MESON_PLL_ROUND_CLOSEST	BIT(0)
-> > +#define CLK_MESON_PLL_INIT_ONCE		BIT(1)
-> >  
-> >  struct meson_clk_pll_data {
-> >  	struct parm en;
-> 
-> 
-> -- 
-> Jerome
-
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+deleted file mode 100644
+index 3a8948c04bc9..000000000000
+--- a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
++++ /dev/null
+@@ -1,59 +0,0 @@
+-* Amlogic AXG Audio Clock Controllers
+-
+-The Amlogic AXG audio clock controller generates and supplies clock to the
+-other elements of the audio subsystem, such as fifos, i2s, spdif and pdm
+-devices.
+-
+-Required Properties:
+-
+-- compatible	: should be "amlogic,axg-audio-clkc" for the A113X and A113D,
+-		  "amlogic,g12a-audio-clkc" for G12A,
+-		  "amlogic,sm1-audio-clkc" for S905X3.
+-- reg		: physical base address of the clock controller and length of
+-		  memory mapped region.
+-- clocks	: a list of phandle + clock-specifier pairs for the clocks listed
+-		  in clock-names.
+-- clock-names	: must contain the following:
+-		  * "pclk" - Main peripheral bus clock
+-		  may contain the following:
+-		  * "mst_in[0-7]" - 8 input plls to generate clock signals
+-		  * "slv_sclk[0-9]" - 10 slave bit clocks provided by external
+-				      components.
+-		  * "slv_lrclk[0-9]" - 10 slave sample clocks provided by external
+-				       components.
+-- resets	: phandle of the internal reset line
+-- #clock-cells	: should be 1.
+-- #reset-cells  : should be 1 on the g12a (and following) soc family
+-
+-Each clock is assigned an identifier and client nodes can use this identifier
+-to specify the clock which they consume. All available clocks are defined as
+-preprocessor macros in the dt-bindings/clock/axg-audio-clkc.h header and can be
+-used in device tree sources.
+-
+-Example:
+-
+-clkc_audio: clock-controller@0 {
+-	compatible = "amlogic,axg-audio-clkc";
+-	reg = <0x0 0x0 0x0 0xb4>;
+-	#clock-cells = <1>;
+-
+-	clocks = <&clkc CLKID_AUDIO>,
+-		 <&clkc CLKID_MPLL0>,
+-		 <&clkc CLKID_MPLL1>,
+-		 <&clkc CLKID_MPLL2>,
+-		 <&clkc CLKID_MPLL3>,
+-		 <&clkc CLKID_HIFI_PLL>,
+-		 <&clkc CLKID_FCLK_DIV3>,
+-		 <&clkc CLKID_FCLK_DIV4>,
+-		 <&clkc CLKID_GP0_PLL>;
+-	clock-names = "pclk",
+-		      "mst_in0",
+-		      "mst_in1",
+-		      "mst_in2",
+-		      "mst_in3",
+-		      "mst_in4",
+-		      "mst_in5",
+-		      "mst_in6",
+-		      "mst_in7";
+-	resets = <&reset RESET_AUDIO>;
+-};
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+new file mode 100644
+index 000000000000..fd7982dd4cea
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+@@ -0,0 +1,201 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic AXG Audio Clock Controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++  - Jerome Brunet <jbrunet@baylibre.com>
++
++description:
++  The Amlogic AXG audio clock controller generates and supplies clock to the
++  other elements of the audio subsystem, such as fifos, i2s, spdif and pdm
++  devices.
++
++properties:
++  compatible:
++    enum:
++      - amlogic,axg-audio-clkc
++      - amlogic,g12a-audio-clkc
++      - amlogic,sm1-audio-clkc
++
++  '#clock-cells':
++    const: 1
++
++  '#reset-cells':
++    const: 1
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    items:
++      - description: main peripheral bus clock
++      - description: input plls to generate clock signals N0
++      - description: input plls to generate clock signals N1
++      - description: input plls to generate clock signals N2
++      - description: input plls to generate clock signals N3
++      - description: input plls to generate clock signals N4
++      - description: input plls to generate clock signals N5
++      - description: input plls to generate clock signals N6
++      - description: input plls to generate clock signals N7
++      - description: slave bit clock N0 provided by external components
++      - description: slave bit clock N1 provided by external components
++      - description: slave bit clock N2 provided by external components
++      - description: slave bit clock N3 provided by external components
++      - description: slave bit clock N4 provided by external components
++      - description: slave bit clock N5 provided by external components
++      - description: slave bit clock N6 provided by external components
++      - description: slave bit clock N7 provided by external components
++      - description: slave bit clock N8 provided by external components
++      - description: slave bit clock N9 provided by external components
++      - description: slave sample clock N0 provided by external components
++      - description: slave sample clock N1 provided by external components
++      - description: slave sample clock N2 provided by external components
++      - description: slave sample clock N3 provided by external components
++      - description: slave sample clock N4 provided by external components
++      - description: slave sample clock N5 provided by external components
++      - description: slave sample clock N6 provided by external components
++      - description: slave sample clock N7 provided by external components
++      - description: slave sample clock N8 provided by external components
++      - description: slave sample clock N9 provided by external components
++
++  clock-names:
++    minItems: 1
++    items:
++      - const: pclk
++      - const: mst_in0
++      - const: mst_in1
++      - const: mst_in2
++      - const: mst_in3
++      - const: mst_in4
++      - const: mst_in5
++      - const: mst_in6
++      - const: mst_in7
++      - const: slv_sclk0
++      - const: slv_sclk1
++      - const: slv_sclk2
++      - const: slv_sclk3
++      - const: slv_sclk4
++      - const: slv_sclk5
++      - const: slv_sclk6
++      - const: slv_sclk7
++      - const: slv_sclk8
++      - const: slv_sclk9
++      - const: slv_lrclk0
++      - const: slv_lrclk1
++      - const: slv_lrclk2
++      - const: slv_lrclk3
++      - const: slv_lrclk4
++      - const: slv_lrclk5
++      - const: slv_lrclk6
++      - const: slv_lrclk7
++      - const: slv_lrclk8
++      - const: slv_lrclk9
++
++  resets:
++    description: internal reset line
++
++required:
++  - compatible
++  - '#clock-cells'
++  - reg
++  - clocks
++  - clock-names
++  - resets
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,g12a-audio-clkc
++              - amlogic,sm1-audio-clkc
++    then:
++      required:
++        - '#reset-cells'
++    else:
++      properties:
++        '#reset-cells': false
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/axg-clkc.h>
++    #include <dt-bindings/reset/amlogic,meson-axg-reset.h>
++    apb {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        clkc_audio: clock-controller@0 {
++            compatible = "amlogic,axg-audio-clkc";
++            reg = <0x0 0x0 0x0 0xb4>;
++            #clock-cells = <1>;
++
++            clocks = <&clkc CLKID_AUDIO>,
++                     <&clkc CLKID_MPLL0>,
++                     <&clkc CLKID_MPLL1>,
++                     <&clkc CLKID_MPLL2>,
++                     <&clkc CLKID_MPLL3>,
++                     <&clkc CLKID_HIFI_PLL>,
++                     <&clkc CLKID_FCLK_DIV3>,
++                     <&clkc CLKID_FCLK_DIV4>,
++                     <&clkc CLKID_GP0_PLL>,
++                     <&slv_sclk0>,
++                     <&slv_sclk1>,
++                     <&slv_sclk2>,
++                     <&slv_sclk3>,
++                     <&slv_sclk4>,
++                     <&slv_sclk5>,
++                     <&slv_sclk6>,
++                     <&slv_sclk7>,
++                     <&slv_sclk8>,
++                     <&slv_sclk9>,
++                     <&slv_lrclk0>,
++                     <&slv_lrclk1>,
++                     <&slv_lrclk2>,
++                     <&slv_lrclk3>,
++                     <&slv_lrclk4>,
++                     <&slv_lrclk5>,
++                     <&slv_lrclk6>,
++                     <&slv_lrclk7>,
++                     <&slv_lrclk8>,
++                     <&slv_lrclk9>;
++            clock-names = "pclk",
++                          "mst_in0",
++                          "mst_in1",
++                          "mst_in2",
++                          "mst_in3",
++                          "mst_in4",
++                          "mst_in5",
++                          "mst_in6",
++                          "mst_in7",
++                          "slv_sclk0",
++                          "slv_sclk1",
++                          "slv_sclk2",
++                          "slv_sclk3",
++                          "slv_sclk4",
++                          "slv_sclk5",
++                          "slv_sclk6",
++                          "slv_sclk7",
++                          "slv_sclk8",
++                          "slv_sclk9",
++                          "slv_lrclk0",
++                          "slv_lrclk1",
++                          "slv_lrclk2",
++                          "slv_lrclk3",
++                          "slv_lrclk4",
++                          "slv_lrclk5",
++                          "slv_lrclk6",
++                          "slv_lrclk7",
++                          "slv_lrclk8",
++                          "slv_lrclk9";
++            resets = <&reset RESET_AUDIO>;
++        };
++    };
 -- 
-Thank you,
-Dmitry
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
