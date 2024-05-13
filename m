@@ -4,86 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9EE2C25B10
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 May 2024 12:59:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDB1CC41513
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 May 2024 13:45:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
-	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZA1YMZfn/RFmnpHy91eRkG8+c1flCJf+QLKIBb32A3o=; b=qtUf1ItLpQv8p5
-	KrTxkaawrzUo0NHne4PSHuJIPLXrNoncGIq6iBEG506VZ+L/3WyKxIc/pzf1Hs8zIA6DXN2z7yJ/q
-	LGvt/FzRcI9gT6U6RAEMPaKkLk6FM+C59INB3svaL3my8wSVEvujtzNnwrW7qEENulv4aOyC9VWbr
-	lgDKOqmx5BbI/8dQ8e3kPbiRaD7Lcd4KArwncKRxaN7BTH7cr7I5tQ7rkTFzGfFPuP9LoSCE4fn1D
-	l36MjVwKaTVSO6AHOg6QlwmLAR1CjEjSQmGmlW8SzLsgo1N+JaaRPZx3/zJefg+FxAg7ktcU7w9i9
-	Rllwr3PjVVE+Z89MADSQ==;
+	List-Owner; bh=CXun0YDFG+LUcU9WO9BSrcVLYHAMdtOCbe/rzX79Gjo=; b=zUJS4mQuuWQ97B
+	iT1pqb2/+FH2NCPJDwTcpunQHVcKB5C59cWLlzXYHGtnwQdi6OMU+lJO8Fyv8NF6LJnhI1VE8KPZA
+	ewSlUPdoM8p2wrErSBKyB9iioxnDZUI13OfwXnMREUCMxSq1hs4NytZnOlgZRkxqSDv04QUje+3NZ
+	SjsW9XjHco9Tdx83qg9Y1EnHdyyJsIl7ftlQQ+1jLhpWrPqIdsYvs1k0wDWMGOSFvKk0cRpDOhoPm
+	eyf+3oXT6lmL4eGrk8PR7zhoNW9fc7iBHHcHE+P62TyLfTxFlcKm6mzremSOcTbQsRmdsEQV6avJ/
+	ERjXjBP+gk9qgBea6yvQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s6VGh-0000000CuiA-15Et;
-	Mon, 13 May 2024 12:59:03 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1s6VzF-0000000D366-0IRK;
+	Mon, 13 May 2024 13:45:05 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s6VGc-0000000CugC-2Ggq
-	for linux-amlogic@lists.infradead.org;
-	Mon, 13 May 2024 12:59:00 +0000
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-34e28e32ea4so2700837f8f.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 13 May 2024 05:58:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715605136; x=1716209936; darn=lists.infradead.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=+KHY/va/UiG2Na9MP8nc/w2XW81daquGbqT+2NhsgSg=;
-        b=bjtNRQb08Z1ZVreAmXks4m/Zy8h0ErdvjMNsm/ZSsRFnmRFEy0FggM/XNGJfGewjfn
-         i6d7WPyRIj6Dyy/28+tVPTn9P+pP3NPDyx3YRoEhlP11sO3TLiYha23IAQURVIIo1EAc
-         Nr9t0EAjIjG1ef2ACOeiImwlr//Q64qULAKcHm3X2iXSlzcA/7XkYaB61VKOShuKImMn
-         /5GPdaMZpbSZI5fNDEr3lvQL7hY03YOWlRCYkaxgqANE1J4Lm8GEJaTshmIR9vmMac/B
-         YpkpnXIn4smJRAwmPwpKvkgWMfw9bBMFUTn7s9HaqtwPtR1pl/+V8HWoZ1n8Q0diddsr
-         kCqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715605136; x=1716209936;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+KHY/va/UiG2Na9MP8nc/w2XW81daquGbqT+2NhsgSg=;
-        b=acM2eSXX1EojCglTPP4qjuDpyMlU2PVGEbRYlS0apI1cHuAmaYGYxwQOWqYRmobbgB
-         P5Cd+3GsQBsMK+Y1QbK2lrV1Nh34Ig43FoFu0iWSiK9ad6vPa4v8GKQGMdTeYn9atPyX
-         OqbL/5S+TYs8ivgtMbLl+moeoomt0jUNRXuhjgH8eqJf4YYb+77ZbZJMbH4aEhsDlGjG
-         RQDYH0EKCzVG+Uz4nMoM11YOrWLvSSP5ksVKuipB9kBQy8Ln3OrLXzHgNfKvghak28AS
-         wahkfBWmGBtoPVlTw9dfTAp9crrRJHE0JkMf97wT2B8mSRUIHuAXXOJrOAeyKs1QG5j9
-         gg6A==
-X-Forwarded-Encrypted: i=1; AJvYcCUIESwnZtaTgFFXRjNnMyqIkqz0oX16hiuI0UwgEQJqt9T+yvj2Clhge8Mm+r6CAg/LuC9oKkxERENmmuPoqK0OhBEg/GuKp7ZF6nSFkIY4Eog=
-X-Gm-Message-State: AOJu0Yx2sVjYGIAH7WSoJ9OYlPPrN5wIXPmT2DO3A3jtryHHra00aLBM
-	LfT/T04TrMxldBig8HRfuCIL8UTrUy/5snVgBasfKeDob/1mwqV+4OkVkjNE/4E=
-X-Google-Smtp-Source: AGHT+IHeRnTDN4SH3gn7w7eJ7nzHsxhbKa6Pl2AcPY9SrajcE/+4MjtBKCpMvS1sSqhDwJN1TAPHXQ==
-X-Received: by 2002:adf:fe04:0:b0:34f:f540:bdc9 with SMTP id ffacd0b85a97d-3504a63300amr6183580f8f.9.1715605136359;
-        Mon, 13 May 2024 05:58:56 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:5b77:3e5a:a808:339a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502b8969fbsm11019601f8f.37.2024.05.13.05.58.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 May 2024 05:58:55 -0700 (PDT)
-References: <20240510090933.19464-1-ddrokosov@salutedevices.com>
- <20240510090933.19464-4-ddrokosov@salutedevices.com>
-User-agent: mu4e 1.10.8; emacs 29.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: neil.armstrong@linaro.org, jbrunet@baylibre.com,
- mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com, jian.hu@amlogic.com,
- kernel@sberdevices.ru, rockosov@gmail.com,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 3/7] clk: meson: a1: pll: support 'syspll'
- general-purpose PLL for CPU clock
-Date: Mon, 13 May 2024 14:48:58 +0200
-In-reply-to: <20240510090933.19464-4-ddrokosov@salutedevices.com>
-Message-ID: <1jbk59zx4g.fsf@starbuckisacylon.baylibre.com>
+	id 1s6VzD-0000000D34j-0VeB;
+	Mon, 13 May 2024 13:45:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=hXM0sVWup9YdkURx0BPGiywKWy51MZ0a1/FHOhFw1K4=; b=U4efElPved0BbuAnt8kymY+fQm
+	Hr/pNbFIGhqtLpbj0ChneMp5s0xB2X6w4fVVjODrjHpm5q5b8mauzP69F6o2SA5XiDcUUp+7ZNrJT
+	/VeqZ0iNqytXv0afmLJphFa+sQ2Y+eRgeqhP/F5WxHc30SWSrAC85aTMQ/izx52dhltatVlM9k+75
+	vv4NtxWE20Z4d+HO5xtOVOmMGZKBAaI6ThyFLX4A/QNGUfKvrRqs9Qk+iip1JECoVnHd8FRQNNyC8
+	cUbPzOsfmlzS9e36/F0UxkF9rn7tmu3ovYDIL5pTXH31ZmLUDcgDdAIu/F/Dm47MHoUJ3y2y8H0VZ
+	tMWQ66QA==;
+Received: from dfw.source.kernel.org ([139.178.84.217])
+	by desiato.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1s6Vz9-00000004Vpt-20YU;
+	Mon, 13 May 2024 13:45:01 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 9B57C60DDE;
+	Mon, 13 May 2024 13:44:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F040C113CC;
+	Mon, 13 May 2024 13:44:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715607895;
+	bh=n87KKV+BF5dZ/93FCjBaWdbxZVC6KFuXqnr7dqwfO9M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AryBU4ocAifL7bA09c9DHou1/vDq9KNXExgVjrCdQTBHE76Yqe9jo0zhooKH8ybNV
+	 1v413UT50CSml6IumZti56rDdVYLr8PzKNRuca+lEdqUuoSwKV0BohLTOFEzvp1uiU
+	 IW8sGbo/FuicuNtqJ8sG1rL2UAnnCuUIgNZVP3FO31Nalpk/BxvXqQxsN36QYm5F1E
+	 sDtRcosdnmSFjD1Ajtq9f/GBTRoVCJaXhTmzw6f7wd+hwHRNi0qW5dDKgiDOs7iOUL
+	 16hFYqCg8lUoJQ/1wpWrOKNUsQUclYiwMlgzOaPN15AYBLD6LhzGVnxcqHeS5glEy8
+	 qn+H3fHdZmWyQ==
+Date: Mon, 13 May 2024 08:44:53 -0500
+From: Rob Herring <robh@kernel.org>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [APPROACH 2 1/2] arm64: dts: amlogic: list all slave clocks for
+ audio clock controller
+Message-ID: <20240513134453.GA2482519-robh@kernel.org>
+References: <20240508144259.191843-1-jan.dakinevich@salutedevices.com>
+ <20240508144259.191843-3-jan.dakinevich@salutedevices.com>
+ <20240508175013.GA2244257-robh@kernel.org>
+ <3fa610c2-1f69-41d4-b06a-035980483b3c@salutedevices.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <3fa610c2-1f69-41d4-b06a-035980483b3c@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240513_055858_622493_3C2ABBD7 
-X-CRM114-Status: GOOD (  19.05  )
+X-CRM114-CacheID: sfid-20240513_144500_051906_55D2D1D4 
+X-CRM114-Status: GOOD (  18.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,160 +98,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Sun, May 12, 2024 at 10:06:23PM +0300, Jan Dakinevich wrote:
+> 
+> 
+> On 5/8/24 20:50, Rob Herring wrote:
+> > On Wed, May 08, 2024 at 05:42:58PM +0300, Jan Dakinevich wrote:
+> >> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> >> ---
+> >>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 27 ++++++++++++++++++++--
+> >>  arch/arm64/boot/dts/amlogic/meson-g12.dtsi | 26 +++++++++++++++++++--
+> >>  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 26 +++++++++++++++++++--
+> >>  3 files changed, 73 insertions(+), 6 deletions(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> >> index 6d12b760b90f..28f4ec5f39b0 100644
+> >> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> >> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> >> @@ -1342,7 +1342,9 @@ clkc_audio: clock-controller@0 {
+> >>  					 <&clkc CLKID_HIFI_PLL>,
+> >>  					 <&clkc CLKID_FCLK_DIV3>,
+> >>  					 <&clkc CLKID_FCLK_DIV4>,
+> >> -					 <&clkc CLKID_GP0_PLL>;
+> >> +					 <&clkc CLKID_GP0_PLL>,
+> >> +					 <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>,
+> >> +					 <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>;
+> > 
+> > All 3 cases are just unused clocks on the end. I suppose that's not 
+> > always the case. You could just set 'minItems' in the binding to 
+> > avoid needing to pad the end and the dts changes.
+> > 
+> 
+> You are right. I mistakenly thought that 'minItems' can not be
+> redefined. But not, it is allowed to redefine it and it works. Thus,
+> this patch is not needed for this approach.
+> 
+> Anyway, what do you think about first approach? As for me, it is more
+> simple and readable.
 
-On Fri 10 May 2024 at 12:08, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
+I prefer this one as it enforces the order.
 
-> The 'syspll' PLL, also known as the system PLL, is a general and
-> essential PLL responsible for generating the CPU clock frequency.
-> With its wide-ranging capabilities, it is designed to accommodate
-> frequencies within the range of 768MHz to 1536MHz.
->
-> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> ---
->  drivers/clk/meson/a1-pll.c | 79 ++++++++++++++++++++++++++++++++++++++
->  drivers/clk/meson/a1-pll.h |  6 +++
->  2 files changed, 85 insertions(+)
->
-> diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
-> index 60b2e53e7e51..af47ba308bbe 100644
-> --- a/drivers/clk/meson/a1-pll.c
-> +++ b/drivers/clk/meson/a1-pll.c
-> @@ -138,6 +138,82 @@ static struct clk_regmap hifi_pll = {
->  	},
->  };
->  
-> +static const struct pll_mult_range sys_pll_mult_range = {
-> +	.min = 32,
-> +	.max = 64,
-> +};
-> +
-> +static const struct reg_sequence sys_pll_init_regs[] = {
-> +	{ .reg = ANACTRL_SYSPLL_CTRL1, .def = 0x01800000 },
-> +	{ .reg = ANACTRL_SYSPLL_CTRL2, .def = 0x00001100 },
-> +	{ .reg = ANACTRL_SYSPLL_CTRL3, .def = 0x10022300 },
-> +	{ .reg = ANACTRL_SYSPLL_CTRL4, .def = 0x00300000 },
-> +	{ .reg = ANACTRL_SYSPLL_CTRL0, .def = 0x01f18432 },
-> +};
-> +
-> +static struct clk_regmap sys_pll = {
-> +	.data = &(struct meson_clk_pll_data){
-> +		.en = {
-> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> +			.shift   = 28,
-> +			.width   = 1,
-> +		},
-> +		.m = {
-> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> +			.shift   = 0,
-> +			.width   = 8,
-> +		},
-> +		.n = {
-> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> +			.shift   = 10,
-> +			.width   = 5,
-> +		},
-> +		.frac = {
-> +			.reg_off = ANACTRL_SYSPLL_CTRL1,
-> +			.shift   = 0,
-> +			.width   = 19,
-> +		},
-> +		.l = {
-> +			.reg_off = ANACTRL_SYSPLL_STS,
-> +			.shift   = 31,
-> +			.width   = 1,
-> +		},
-> +		.current_en = {
-> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> +			.shift   = 26,
-> +			.width   = 1,
-> +		},
-> +		.l_detect = {
-> +			.reg_off = ANACTRL_SYSPLL_CTRL2,
-> +			.shift   = 6,
-> +			.width   = 1,
-> +		},
-> +		.range = &sys_pll_mult_range,
-> +		.init_regs = sys_pll_init_regs,
-> +		.init_count = ARRAY_SIZE(sys_pll_init_regs),
-
-Like other 'fishy' flags, I would like a clear comment why this flag is
-required so, 2y from now, we will know why it was put there and how we
-can deal with it.
-
-> +		.flags = CLK_MESON_PLL_INIT_ONCE,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "sys_pll",
-> +		.ops = &meson_clk_pll_ops,
-> +		.parent_names = (const char *[]){ "syspll_in" },
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor sys_pll_div16 = {
-> +	.mult = 1,
-> +	.div = 16,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "sys_pll_div16",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&sys_pll.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-
-Unlike the fdivs, this fixed divider is not part of the diagram
-describing the syspll clock.
-
-IMO, it could as well be in peripheral controller because it exists
-(from what I can see) just testing purposes, to make the sys pll
-observable through tst_out or gen_clk.
-
-It also looks less awkward in the bindings.
-
-> +
->  static struct clk_fixed_factor fclk_div2_div = {
->  	.mult = 1,
->  	.div = 2,
-> @@ -283,6 +359,8 @@ static struct clk_hw *a1_pll_hw_clks[] = {
->  	[CLKID_FCLK_DIV5]	= &fclk_div5.hw,
->  	[CLKID_FCLK_DIV7]	= &fclk_div7.hw,
->  	[CLKID_HIFI_PLL]	= &hifi_pll.hw,
-> +	[CLKID_SYS_PLL]		= &sys_pll.hw,
-> +	[CLKID_SYS_PLL_DIV16]	= &sys_pll_div16.hw,
->  };
->  
->  static struct clk_regmap *const a1_pll_regmaps[] = {
-> @@ -293,6 +371,7 @@ static struct clk_regmap *const a1_pll_regmaps[] = {
->  	&fclk_div5,
->  	&fclk_div7,
->  	&hifi_pll,
-> +	&sys_pll,
->  };
->  
->  static struct regmap_config a1_pll_regmap_cfg = {
-> diff --git a/drivers/clk/meson/a1-pll.h b/drivers/clk/meson/a1-pll.h
-> index 4be17b2bf383..666d9b2137e9 100644
-> --- a/drivers/clk/meson/a1-pll.h
-> +++ b/drivers/clk/meson/a1-pll.h
-> @@ -18,6 +18,12 @@
->  #define ANACTRL_FIXPLL_CTRL0	0x0
->  #define ANACTRL_FIXPLL_CTRL1	0x4
->  #define ANACTRL_FIXPLL_STS	0x14
-> +#define ANACTRL_SYSPLL_CTRL0	0x80
-> +#define ANACTRL_SYSPLL_CTRL1	0x84
-> +#define ANACTRL_SYSPLL_CTRL2	0x88
-> +#define ANACTRL_SYSPLL_CTRL3	0x8c
-> +#define ANACTRL_SYSPLL_CTRL4	0x90
-> +#define ANACTRL_SYSPLL_STS	0x94
->  #define ANACTRL_HIFIPLL_CTRL0	0xc0
->  #define ANACTRL_HIFIPLL_CTRL1	0xc4
->  #define ANACTRL_HIFIPLL_CTRL2	0xc8
-
-
--- 
-Jerome
+Rob
 
 _______________________________________________
 linux-amlogic mailing list
