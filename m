@@ -4,95 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CDACC25B75
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 May 2024 10:21:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53AAEC25B7A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 May 2024 12:04:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-reply-to:
+	Date:Subject:Cc:To:From:References:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jTEjc1BX5u+Q18bP7Vh0fhsaV4R3odMJ9QeZNx1+dEY=; b=OjEsn8SzRWAawP
-	1DCI1wQSYrgnHNtufVO5yoZhewBakfgC8efLCeEsWqoU6qObVNMuuAMUrbBP8i6FBGI2I1za2jePF
-	2AWU6XTaTODbZdqenzaT/kpGWTYtmAWWEE2M6N5iU3dIQm2GA/Pn+qnJ3HkTQStEsX+iJAbJtQd+A
-	oFv+D57rg/l84WV953OVZvOmwhoH14abqIZTDDgBznnWAko2PQ90USo98H3if2UgWErrKAZPDznRk
-	O07kVAdoqInhyMaWrob0UGCTrrnnCl7Q5RRyYOdNwIQaNWgUVIn68OawU6f7hHJpt91S1YtdyvM3P
-	pEK0b+RHr2aOtjKvmlEw==;
+	List-Owner; bh=m17uwjY9aSmHel1StAmoY9iz3fVMdOwdskzfDOEOk8M=; b=hIburRpKWM6sZY
+	qmOBslTviXaLF1d5gAWaPD3Itht7q3kbQjesjkVKjGPvOcqP3g5g3YPVWtu+QacAbUt8w9wrvdhDr
+	dkKMZ4pYdyFPrMnEsdc9p0GxPSQUX56pCS6/P0l+r5655foZn3tZFfLWAFGo/H5t1uQxBbr3Obrc9
+	ZqIeE0AFuPWr+FbaYrWkeXh8IEW/3OKARK+9urA4uSRXcf+a5wqduqlHYZm5kQmlg/Ly57ayEKsol
+	cD5k0pVydLA03mZ6D1nsBE16VCgFYps1Mf/KxPa/4zIYPeXhmm8diD1jftomeLZtzWAxhnc0pUD76
+	uVIco/mN6yzl3vXeGmAQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s6SoF-0000000CW3i-3r6W;
-	Mon, 13 May 2024 10:21:31 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1s6UQ6-0000000Ckks-0omi;
+	Mon, 13 May 2024 12:04:42 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s6SoD-0000000CW2Y-0Edu;
-	Mon, 13 May 2024 10:21:31 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 8E12312000D;
-	Mon, 13 May 2024 13:21:23 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8E12312000D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1715595683;
-	bh=Gn/Rt6hFwjiHJvNZkbzYpga0+RVCKD7S0ie1DFPi/Wg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=uD2yM309DjHBMvvSLX6ucXCb1X7jDB8wC9PvGMBURZe1L5sLyPHqmIdm+dmjbWvKf
-	 v9c16sZZsAVNr3kIRxt2uEGhMH96MqAl9frkYtRcdEx4Wfvojh+XkMYpiRTSfLDJNo
-	 6uqOIeAwB6nmeipYaz73EgfKfcMESIHMhrtWOyYwye8lGQwLso5JvZjCYQHm2syqCo
-	 OejucoNWCsXZyvUS7qCOjS3pMK+mEsPktLpAKGcRhC9gwdDrSANsSCj+3zkMXPZME3
-	 VJOlunsXp82SWxK8g94nzE97f9XNDGkb1FYMaiYZimup2IM1uosB6jXTPV3IR1vC8G
-	 hpVS/7q07nvcQ==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon, 13 May 2024 13:21:23 +0300 (MSK)
-Received: from [172.28.160.201] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 13 May 2024 13:21:22 +0300
-Message-ID: <8769f323-fbff-bd75-a1f5-7ec789639b82@salutedevices.com>
-Date: Mon, 13 May 2024 13:10:34 +0300
+	id 1s6UQ2-0000000Ckh2-1YDP
+	for linux-amlogic@lists.infradead.org;
+	Mon, 13 May 2024 12:04:40 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-41fe54cb0e3so26417115e9.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 13 May 2024 05:04:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715601872; x=1716206672; darn=lists.infradead.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=evr7Nj7xKQ7Cd3Ztm3Cf+ORmYJrKhwgikDv0J0g06qQ=;
+        b=Pjw11dQFYvfrUUhQ2vt9V8jMrxZ9AZZmFidx2cdGS5o7bSu0VNU8ClEG2KI3fsxYFf
+         GO+9JmPffI2UNTY4fqIfn/buLtKf9WB2HPY3HZrqLkHU65PAlbNmAk5BfP7ojx4ozur0
+         QjMzJ8X8DE39uKaeCrFcZAkxwjTPgUGjETNMB4KExMlcZqfokYv9UsfEiRIMc4OpcVvw
+         PMiFbfgFOEapfbJEZAcyVRVu380Bz5c2l8xnPoqHXY/S5dqR3HfTUJrna38fRVcJD+BI
+         QFG7PjbTdoQdrlyH2GAXLji/JbNt10bK7nouvg+8SGVWLF0EXXFw8rwsq53xDZ5k87oa
+         Ngjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715601872; x=1716206672;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=evr7Nj7xKQ7Cd3Ztm3Cf+ORmYJrKhwgikDv0J0g06qQ=;
+        b=BR4pkNkojUrdG1/GT/NAMzxyb6tvBNflMcnCq6D/s58RnBZJQUJC3nNxmIjN1rrQzU
+         vmsFeEKqDvrMaHwUyqkwos/9psYo9Ba01DXowDtbIfprptoy/xa8/t9NX12Gyv97qjfd
+         Ush/2JLI7RKyI3u7Vjw1lhjsCaKPH5Wya+BPeaulApBCsKYZjf+k6rxNHgLjw240n1/Z
+         c2skQwr9l7cYc+yTUZRUm0FuKmhTS1gbK+hQI5ndFzJVi72szmFAWxyKEnM34DDPXSmd
+         28CNStt/7NZ8+R+S8J6zVsfwruMy2XZD3gvkgvEoQspOMoYwak0vRfLmmUl1SPxewgst
+         XH1g==
+X-Forwarded-Encrypted: i=1; AJvYcCWkhy0jfagedGjh8pObv0AgLRQqMb766pYIxlZ6Ns4Ac7MQO0V1WOfdaSb96VhvRaWhoBuOdKg5WCLATnc2SmCLttTVJ52nw0JtQyLGDehSnUc=
+X-Gm-Message-State: AOJu0YznI5SdmlgOLbJoSqZALb+gXhzILt0/qv80ihTQYnCOq+wGG7Yy
+	7XwqYAXrh+DiqC9coiONHXEQzwlCshQBXx5UeOBD8sEaIrBhkuao9Zc+xSa/3s4=
+X-Google-Smtp-Source: AGHT+IGnkiii1p31wpEBxYvlhM/aMqmsmiEtQ3NQ+1Qn6f87Nt4y/G9/2KcL8KQaX8/8bf+QvAuVbg==
+X-Received: by 2002:a05:600c:4fcf:b0:420:1585:7a99 with SMTP id 5b1f17b1804b1-42015857b80mr27774355e9.38.1715601871464;
+        Mon, 13 May 2024 05:04:31 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:5b77:3e5a:a808:339a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42013c5fa61sm49472435e9.40.2024.05.13.05.04.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 May 2024 05:04:31 -0700 (PDT)
+References: <20240510090933.19464-1-ddrokosov@salutedevices.com>
+ <20240510090933.19464-5-ddrokosov@salutedevices.com>
+ <20240511-courier-afflicted-e351af5cded2@spud>
+User-agent: mu4e 1.10.8; emacs 29.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Dmitry Rokosov <ddrokosov@salutedevices.com>, neil.armstrong@linaro.org,
+ jbrunet@baylibre.com, mturquette@baylibre.com, sboyd@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ khilman@baylibre.com, martin.blumenstingl@googlemail.com,
+ jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 4/7] dt-bindings: clock: meson: a1: peripherals:
+ support sys_pll_div16 input
+Date: Mon, 13 May 2024 14:02:21 +0200
+In-reply-to: <20240511-courier-afflicted-e351af5cded2@spud>
+Message-ID: <1jo799zzn5.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v6 1/3] dt-bindings: mtd: amlogic,meson-nand: support
- fields for boot ROM code
-Content-Language: en-US
-To: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger
-	<richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>
-CC: <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <oxffffaa@gmail.com>, <kernel@sberdevices.ru>
-References: <20240507230903.3399594-1-avkrasnov@salutedevices.com>
- <20240507230903.3399594-2-avkrasnov@salutedevices.com>
-From: Arseniy Krasnov <avkrasnov@salutedevices.com>
-In-Reply-To: <20240507230903.3399594-2-avkrasnov@salutedevices.com>
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 185182 [May 13 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: avkrasnov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 19 0.3.19 07c7fa124d1a1dc9662cdc5aace418c06ae99d2b, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;salutedevices.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/13 04:27:00 #25181647
-X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240513_032129_810999_978F90DC 
-X-CRM114-Status: GOOD (  19.23  )
+X-CRM114-CacheID: sfid-20240513_050438_618899_FCAFBCCC 
+X-CRM114-Status: GOOD (  15.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,68 +101,73 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Changelog:
 
-v5 -> v6:
+On Sat 11 May 2024 at 14:03, Conor Dooley <conor@kernel.org> wrote:
 
-* Update description in 'yaml' and commit message by adding more details
-  about such special Meson mode. R-b was removed so.
+> [[PGP Signed Part:Undecided]]
+> On Fri, May 10, 2024 at 12:08:56PM +0300, Dmitry Rokosov wrote:
+>> The 'sys_pll_div16' input clock is used as one of the sources for the
+>> GEN clock.
+>> 
+>> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+>
+> Provided that this new clock is optional in the driver,
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks, Arseniy
+The way CCF works, it is not going to crash if DT does not have this.
+It will be viewed as non-connected input, in a way
 
-On 08.05.2024 02:09, Arseniy Krasnov wrote:
-> Boot ROM code on Meson requires that some pages on NAND must be written
-> in special mode: "short" ECC mode where each block is 384 bytes and
-> scrambling mode is on. Such pages are located on the chip in the
-> following way (for example):
-> 
-> [ p0 ][ p1 ][ p2 ][ p3 ][ p4 ][ p5 ][ p6 ][ p7 ] ... [ pN ]
->   ^           ^           ^           ^
-> 
-> pX is page number "X". "^" means "special" page used by boot ROM - e.g.
-> every 2nd page in the range of [0, 7]. Step (2 in example is set by
-> 'amlogic,boot-page-step' field. Last page in range (7 in example) is
-> set by 'amlogic,boot-pages' field.
-> 
-> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
-> ---
->  .../bindings/mtd/amlogic,meson-nand.yaml       | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> index 57b6957c8415..284f0f882c32 100644
-> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> @@ -64,11 +64,29 @@ patternProperties:
->          items:
->            maximum: 0
->  
-> +      amlogic,boot-pages:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          Number of pages starting from offset 0, where a special ECC
-> +          configuration must be used because it is accessed by the ROM
-> +          code. This ECC configuration uses 384 bytes data blocks.
-> +          Also scrambling mode is enabled for such pages.
-> +
-> +      amlogic,boot-page-step:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          Interval between pages, accessed by the ROM code. For example
-> +          we have 8 pages [0, 7]. Pages 0,2,4,6 are accessed by the
-> +          ROM code, so this field will be 2 (e.g. every 2nd page). Rest
-> +          of pages - 1,3,5,7 are read/written without this mode.
-> +
->      unevaluatedProperties: false
->  
->      dependencies:
->        nand-ecc-strength: [nand-ecc-step-size]
->        nand-ecc-step-size: [nand-ecc-strength]
-> +      amlogic,boot-pages: [nand-is-boot-medium, "amlogic,boot-page-step"]
-> +      amlogic,boot-page-step: [nand-is-boot-medium, "amlogic,boot-pages"]
->  
->  
->  required:
+>
+> Cheers,
+> Conor.
+>
+>> ---
+>>  .../bindings/clock/amlogic,a1-peripherals-clkc.yaml        | 7 +++++--
+>>  1 file changed, 5 insertions(+), 2 deletions(-)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
+>> index 6d84cee1bd75..11862746ba44 100644
+>> --- a/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
+>> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
+>> @@ -30,6 +30,7 @@ properties:
+>>        - description: input fixed pll div7
+>>        - description: input hifi pll
+>>        - description: input oscillator (usually at 24MHz)
+>> +      - description: input sys pll div16
+>>  
+>>    clock-names:
+>>      items:
+>> @@ -39,6 +40,7 @@ properties:
+>>        - const: fclk_div7
+>>        - const: hifi_pll
+>>        - const: xtal
+>> +      - const: sys_pll_div16
+>>  
+>>  required:
+>>    - compatible
+>> @@ -65,9 +67,10 @@ examples:
+>>                       <&clkc_pll CLKID_FCLK_DIV5>,
+>>                       <&clkc_pll CLKID_FCLK_DIV7>,
+>>                       <&clkc_pll CLKID_HIFI_PLL>,
+>> -                     <&xtal>;
+>> +                     <&xtal>,
+>> +                     <&clkc_pll CLKID_SYS_PLL_DIV16>;
+>>              clock-names = "fclk_div2", "fclk_div3",
+>>                            "fclk_div5", "fclk_div7",
+>> -                          "hifi_pll", "xtal";
+>> +                          "hifi_pll", "xtal", "sys_pll_div16";
+>>          };
+>>      };
+>> -- 
+>> 2.43.0
+>> 
+>> 
+>
+> [[End of PGP Signed Part]]
+
+
+-- 
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
