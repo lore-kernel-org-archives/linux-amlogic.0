@@ -4,84 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B847BC25B75
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2024 14:31:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CB9CC25B78
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2024 14:45:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pOSPTv52ZQ+lKcnxZBv6iHvbE870WVnMXck5DpYWqf0=; b=zBZzEeA6A+224P
-	nFqna3Bhd55dWq52/UypIEhA3TKqNMBug00/uT86mg8ub0EHyadkNFFoX+Y+gI2CFslwNEBS8cSHV
-	ytAUSnvxkiSKDTsxKNFIK75KRlv3MNNVtGTPb/FUplPDKF7wX60iBkuKymX04Kb4CLC8olhTUrGl0
-	HEzdWRryzu93hjPJPWsynF5MO3kRejnj/IoHrPpi+W7Myk2xO05dnPnaCfD3IY5T4UUbaOKgsL1Ie
-	OqFsSg1gUXHWiGnUh2TciQWxOZNwwK0yfHXWPSORt5c+o+9QGR9O6pBAZSdytzyA7F46VFTYDfrs9
-	mTQxd2psl7X5Ww8B9cnw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=U1euwCGNBwYi+tU8Xyy5UZjq5JejzsEo5uS++6eZQK0=; b=QSm2FB1UAOsmkO/dCV549uCjlC
+	54Gs5CT/vmDXB/kWqbn8vi7kY5IlJnyr1Gu/jToP8c165cQkb6SIKc/huVqqZ8YgL+DoKiuO7Esqb
+	/+gM8K9HON1HnXG9gCr5GDdXps9QCqtpLXPF2Dgpz3m17LaYekdnLiB3QpJ9xPKo7WfeMo27r5w7F
+	NDt0kpKXyYuET9EhVA+nrv3QEMO9iqUtxNPizTB9qv6CcqBBqz6ZChllp+rsvghHQOHJmN5Ex20Km
+	FhlDgDAVKtHAHwYLiCH8mtJpIwHYSOmdZU8mouXF71OShpDjpriGItnnpz+MFDpGfZ62SRUlFwPvl
+	dgumHmuw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s6tBp-0000000GBuW-0Dvl;
-	Tue, 14 May 2024 14:31:37 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1s6tPO-0000000GE7B-0aP3;
+	Tue, 14 May 2024 14:45:38 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s6tBl-0000000GBsq-1Bk9
+	id 1s6tPK-0000000GE64-3b49
 	for linux-amlogic@lists.infradead.org;
-	Tue, 14 May 2024 14:31:35 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-34d8d11a523so3588570f8f.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 14 May 2024 07:31:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715697086; x=1716301886; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ln4czWjw11QmRtGLij7AUk0r+XUH7GvNjZu/Euwwgag=;
-        b=cB7u7bjx9FAIDHe/07CI1YuYChoRxCx2oZo6+IztPhvA58KY+OuKFAwKV3YeNX/3+A
-         tyXqOWRcFnb/cTRy1lWwWNaPyc8Fa/jpT32Fw+VSdJrO74RYST9dP3QpcAsWXXzLkhLW
-         NPq3DVbTrk3+L1yLOIhMqP9YWE3xzSTyViKBCSVD/F3qmxQmJc8FNMNrne3k1BlfxgnQ
-         69Y1klQ+1p3mROw+lCmQw+PZmgEwzbm8Oj9Ywr0I9z1yBvbTatmx5j7lgZsncSUlVnj/
-         ghFNwyP7EYeaQwXwQQT/nKVKdfIYCN1avh64gackBGWjeITpAlyTBaxlNz5/z9SX/P+Y
-         LFZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715697086; x=1716301886;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ln4czWjw11QmRtGLij7AUk0r+XUH7GvNjZu/Euwwgag=;
-        b=XsEvobrIoCEodw6TQ5PYkzlri42S4dI64UhXYD72KDOK4+9DqeH1MJ+hAy6+RmOBJn
-         Kiz95rYcQWe/lEdO+40yZsPoYp1CiWhUXGg3I3fJFYTEyE/kWnagC44wh4SeVdnnjrZ9
-         D6OLYWFtKSkXifRXhAj+gF8X6TV1PvtNgDyh3bIf+g5jlcdsWg38k8KosMGrs4z/dEil
-         HqIGvx422pQd8m/m9ZK+voX/I1a4mdl07C77k+4M47Iwsj+1Gau3Krsf2ECYG8s0bdId
-         SQDKz7ZcLtecGx8g+ox5QuKmBD8tkkKeLK+i5KjZdC9RHtAKVwRsLmcc6+WigH6uUOBB
-         vUWg==
-X-Forwarded-Encrypted: i=1; AJvYcCXv2zRO7P6dd+Hp2AGPXv35oH4owiHxa9cj0ULa5wzEnAQiTIUNCHHnzh8DXAK0XT/C00YTFTN8fIrSn+CxMsXzZcNkf/R6rPVHAkOtyJIy1IU=
-X-Gm-Message-State: AOJu0Yx59n/Fr/cNnMMx31YJfht+3ICVLo0FeIjQR9Lj1o7vAsMVWjLE
-	pCV6BvlwWCgIyy12DAyVp8GCMYebwtoYXSkDcJCHqe9ShNz+G61gloIn/YcsH34=
-X-Google-Smtp-Source: AGHT+IEMwg+hLrvXY8E1TdPRRYJF6yX+6J61OrtJvgZefi9YUEoDxzUYDJl8/OrpwBDQbxRW36oP3g==
-X-Received: by 2002:adf:fa0f:0:b0:34d:1b8c:1afb with SMTP id ffacd0b85a97d-3504a736b48mr7803454f8f.24.1715697086450;
-        Tue, 14 May 2024 07:31:26 -0700 (PDT)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:3f47:f219:de13:38a7])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-351cb0fb6b4sm627163f8f.24.2024.05.14.07.31.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 May 2024 07:31:26 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	alsa-devel@alsa-project.org,
-	linux-kernel@vger.kernel.org,
+	Tue, 14 May 2024 14:45:36 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 541B2CE128C;
+	Tue, 14 May 2024 14:45:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5018FC2BD10;
+	Tue, 14 May 2024 14:45:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715697930;
+	bh=wzTmRzJutMuitj1ZyyTCjWRU/hDuecvlwjfoxvBzzJY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BGmWHQIieVE2KDMVTUWg2LKGRaVwFMaoi1G3oWxRV58XyoKWK6P9sYUiaEf8PItdk
+	 MfMArjQiI7Xd3vhA/Of13m0f19rQbs5R86V+fPdJyquNBgCUxfl9Cvz7lOWctuJksI
+	 Sb04bSJ7vLGkIpsBXYJWQyjtwi9reEV3hFOSCofIsJJ5CpbTUo/yVSK1WYAOposC6q
+	 lXRrLW9GutUgkf0MnCSG+AHV0Xoa78yw3QfiQJetws8/I1s0fj5/W99zmFRH+iPVwS
+	 2vk19i4TliOK8yw6a0egdIqc55cFrjhLWXMPcSqHjH0UASF/pZzQFKOdtBkk9tPSry
+	 Q2q4S/wb7sXGA==
+Date: Tue, 14 May 2024 15:45:26 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH RFC] ASoC: amlogic: do not use dpcm_playback/capture flags
-Date: Tue, 14 May 2024 16:30:46 +0200
-Message-ID: <20240514143116.3824376-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <87o79azh65.wl-kuninori.morimoto.gx@renesas.com>
+Subject: Re: [PATCH RFC] ASoC: amlogic: do not use dpcm_playback/capture flags
+Message-ID: <46daae9b-10dc-4f49-8a25-c387d03ae87a@sirena.org.uk>
 References: <87o79azh65.wl-kuninori.morimoto.gx@renesas.com>
+ <20240514143116.3824376-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+In-Reply-To: <20240514143116.3824376-1-jbrunet@baylibre.com>
+X-Cookie: In the war of wits, he's unarmed.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240514_073133_456074_E68968D1 
-X-CRM114-Status: GOOD (  16.61  )
+X-CRM114-CacheID: sfid-20240514_074535_099709_A8B72F1A 
+X-CRM114-Status: GOOD (  11.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,95 +70,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============8919411024347257523=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-dpcm_playback/capture flags are being deprecated in ASoC.
-Use playback/capture_only flags instead
 
-Suggested-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
+--===============8919411024347257523==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3SR10CprQBp87L0m"
+Content-Disposition: inline
 
-Following Kuninori's series, dpcm_playback/capture will be ignored.
-However, properly disabling stream direction is important for Amlogic
-audio drivers.
 
-I'm not too sure how this should be applied to avoid breaking bisect,
-before or after Kuninori's series. Maybe it should be merged into it ?
+--3SR10CprQBp87L0m
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Any suggestion Kuninori ?
+On Tue, May 14, 2024 at 04:30:46PM +0200, Jerome Brunet wrote:
+> dpcm_playback/capture flags are being deprecated in ASoC.
+> Use playback/capture_only flags instead
+>=20
+> Suggested-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>=20
+> Following Kuninori's series, dpcm_playback/capture will be ignored.
+> However, properly disabling stream direction is important for Amlogic
+> audio drivers.
+>=20
+> I'm not too sure how this should be applied to avoid breaking bisect,
+> before or after Kuninori's series. Maybe it should be merged into it ?
 
- sound/soc/meson/axg-card.c         | 10 +++++-----
- sound/soc/meson/meson-card-utils.c |  4 ++--
- 2 files changed, 7 insertions(+), 7 deletions(-)
+Probably better to integrate it I think?
 
-diff --git a/sound/soc/meson/axg-card.c b/sound/soc/meson/axg-card.c
-index 09aa36e94c85..646ab87afac2 100644
---- a/sound/soc/meson/axg-card.c
-+++ b/sound/soc/meson/axg-card.c
-@@ -132,7 +132,7 @@ static int axg_card_add_tdm_loopback(struct snd_soc_card *card,
- 	lb->stream_name = lb->name;
- 	lb->cpus->of_node = pad->cpus->of_node;
- 	lb->cpus->dai_name = "TDM Loopback";
--	lb->dpcm_capture = 1;
-+	lb->capture_only = 1;
- 	lb->no_pcm = 1;
- 	lb->ops = &axg_card_tdm_be_ops;
- 	lb->init = axg_card_tdm_dai_lb_init;
-@@ -176,7 +176,7 @@ static int axg_card_parse_cpu_tdm_slots(struct snd_soc_card *card,
- 
- 	/* Disable playback is the interface has no tx slots */
- 	if (!tx)
--		link->dpcm_playback = 0;
-+		link->capture_only = 1;
- 
- 	for (i = 0, rx = 0; i < AXG_TDM_NUM_LANES; i++) {
- 		snprintf(propname, 32, "dai-tdm-slot-rx-mask-%d", i);
-@@ -186,9 +186,9 @@ static int axg_card_parse_cpu_tdm_slots(struct snd_soc_card *card,
- 
- 	/* Disable capture is the interface has no rx slots */
- 	if (!rx)
--		link->dpcm_capture = 0;
-+		link->playback_only = 1;
- 
--	/* ... but the interface should at least have one of them */
-+	/* ... but the interface should at least have one direction */
- 	if (!tx && !rx) {
- 		dev_err(card->dev, "tdm link has no cpu slots\n");
- 		return -EINVAL;
-@@ -275,7 +275,7 @@ static int axg_card_parse_tdm(struct snd_soc_card *card,
- 		return ret;
- 
- 	/* Add loopback if the pad dai has playback */
--	if (link->dpcm_playback) {
-+	if (!link->capture_only) {
- 		ret = axg_card_add_tdm_loopback(card, index);
- 		if (ret)
- 			return ret;
-diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
-index ed6c7e2f609c..1a4ef124e4e2 100644
---- a/sound/soc/meson/meson-card-utils.c
-+++ b/sound/soc/meson/meson-card-utils.c
-@@ -186,9 +186,9 @@ int meson_card_set_fe_link(struct snd_soc_card *card,
- 	link->dpcm_merged_rate = 1;
- 
- 	if (is_playback)
--		link->dpcm_playback = 1;
-+		link->playback_only = 1;
- 	else
--		link->dpcm_capture = 1;
-+		link->capture_only = 1;
- 
- 	return meson_card_set_link_name(card, link, node, "fe");
- }
--- 
-2.43.0
+--3SR10CprQBp87L0m
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZDeQUACgkQJNaLcl1U
+h9Cj2Qf9HLVOdSH5HaXxIypjX5tfpQwLPzkXCL218MMV73bB2xh2jUSxphoymOOH
+g/jtFZsI35zWgGd/xrN/JDW03rRJSbdDd+ZnNU+k8Cgvt7IiRG1dI8ZH7LjhDaw2
+ufxmUFtogpQOsuF23t1oWroO7Yrd85fnl/yQp53uTfeOqr+3zWGkRjJUxkl39UA1
+4zgESYgpKV6HkvjSak9//kWPz9MlIZN1zjiIg7kA4k2Y1+utiPrkE0ysSt0Q8Vbf
+jZyNJbacqoEYv2UeukWrsHiw6gqyrA5f8cGC1w6Jw27AScoSDVB2lviUxOMoifL6
+R+0iAdSYEauoEee4GA6jE08l4zyBMQ==
+=vfji
+-----END PGP SIGNATURE-----
+
+--3SR10CprQBp87L0m--
+
+
+--===============8919411024347257523==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============8919411024347257523==--
+
