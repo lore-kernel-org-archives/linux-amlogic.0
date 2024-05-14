@@ -4,61 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CB9CC25B78
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2024 14:45:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55781C04FFE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2024 18:34:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=U1euwCGNBwYi+tU8Xyy5UZjq5JejzsEo5uS++6eZQK0=; b=QSm2FB1UAOsmkO/dCV549uCjlC
-	54Gs5CT/vmDXB/kWqbn8vi7kY5IlJnyr1Gu/jToP8c165cQkb6SIKc/huVqqZ8YgL+DoKiuO7Esqb
-	/+gM8K9HON1HnXG9gCr5GDdXps9QCqtpLXPF2Dgpz3m17LaYekdnLiB3QpJ9xPKo7WfeMo27r5w7F
-	NDt0kpKXyYuET9EhVA+nrv3QEMO9iqUtxNPizTB9qv6CcqBBqz6ZChllp+rsvghHQOHJmN5Ex20Km
-	FhlDgDAVKtHAHwYLiCH8mtJpIwHYSOmdZU8mouXF71OShpDjpriGItnnpz+MFDpGfZ62SRUlFwPvl
-	dgumHmuw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=fDRFM0mgwTYS/+GXU7YYCKMn0clK44Ij5mh8b8ydk4g=; b=Q7mamrCfsdipfY
+	6lX27PqCFQpRsaf+zXm31lQyd+c+udM4jGFb6vQsQzlP5x+tk+BGrwRV/3NrXU6P1yi9CtH9Ri0Ms
+	ZdlDzGrHQ+zrElnN3aTpnidUUkevjB+BrsZjYqCs3YDYyT0d3/xlW9avxg8D5WVOr8mUEv/feiooy
+	RUG7bG4B3xLWBF+rzB10lMCfJFC7eZTjAd35WreXnBVkYEGtnW8oNP0ldRvjCJXdqcqdIyAYBAAmv
+	ILLEI9CGQuN3yJBs2/ixO0wv5j7aKLtlrV/IEinwi2XT9KGTnUQhnOtiLkoGqTZWXLv0CdAhtqwB3
+	9FCGZ9sIvNNpMUKK6B+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s6tPO-0000000GE7B-0aP3;
-	Tue, 14 May 2024 14:45:38 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1s6wyR-0000000GqXG-16E5;
+	Tue, 14 May 2024 18:34:03 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s6tPK-0000000GE64-3b49
-	for linux-amlogic@lists.infradead.org;
-	Tue, 14 May 2024 14:45:36 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 541B2CE128C;
-	Tue, 14 May 2024 14:45:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5018FC2BD10;
-	Tue, 14 May 2024 14:45:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715697930;
-	bh=wzTmRzJutMuitj1ZyyTCjWRU/hDuecvlwjfoxvBzzJY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BGmWHQIieVE2KDMVTUWg2LKGRaVwFMaoi1G3oWxRV58XyoKWK6P9sYUiaEf8PItdk
-	 MfMArjQiI7Xd3vhA/Of13m0f19rQbs5R86V+fPdJyquNBgCUxfl9Cvz7lOWctuJksI
-	 Sb04bSJ7vLGkIpsBXYJWQyjtwi9reEV3hFOSCofIsJJ5CpbTUo/yVSK1WYAOposC6q
-	 lXRrLW9GutUgkf0MnCSG+AHV0Xoa78yw3QfiQJetws8/I1s0fj5/W99zmFRH+iPVwS
-	 2vk19i4TliOK8yw6a0egdIqc55cFrjhLWXMPcSqHjH0UASF/pZzQFKOdtBkk9tPSry
-	 Q2q4S/wb7sXGA==
-Date: Tue, 14 May 2024 15:45:26 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH RFC] ASoC: amlogic: do not use dpcm_playback/capture flags
-Message-ID: <46daae9b-10dc-4f49-8a25-c387d03ae87a@sirena.org.uk>
-References: <87o79azh65.wl-kuninori.morimoto.gx@renesas.com>
- <20240514143116.3824376-1-jbrunet@baylibre.com>
+	id 1s6wyM-0000000GqWP-3V9u;
+	Tue, 14 May 2024 18:34:01 +0000
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 034EF12001D;
+	Tue, 14 May 2024 21:33:49 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 034EF12001D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1715711629;
+	bh=Xf0rp2z6RWB8A7jw+gQ0k7R5uIp5z8rMQsLDxIyOnGY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=gN7mctjFb6jxMKefpJoF3Imp/vg88131RgtYJaNEZZ5R5n9qMY+LrIZL+vz2Pa4vW
+	 QXulTl90Y5GPZg94/2e8WPnLY0lupbFzsr7s8S9J09Mgp+rKq8d+B8DZrL+FCU7k/Y
+	 2gXass6t6AGuzs3nQKshrOChwf0sWJIO3ICs9jiqXNVylrZNRTS92La+ApQqOYgzlW
+	 8CMiyvJJlhVHyuuSCrOebRt/ZHi7kJLF3U7xNHxPbjkUz2hP8c4KrCxKaFkpVlD91h
+	 dtz0dwLsk3yLP2Cq58JBFSRbXUIwHkfLLZ6vWXgOW5tOdHMJBe9nxi7dFeGjqYervX
+	 fuLX/zz6OicpQ==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 14 May 2024 21:33:48 +0300 (MSK)
+Received: from [172.28.128.189] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 14 May 2024 21:33:47 +0300
+Message-ID: <7860cbce-053d-4eb2-aee8-c7c233392cf7@salutedevices.com>
+Date: Tue, 14 May 2024 21:33:05 +0300
 MIME-Version: 1.0
-In-Reply-To: <20240514143116.3824376-1-jbrunet@baylibre.com>
-X-Cookie: In the war of wits, he's unarmed.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v3 1/6] reset: reset-meson-audio: introduce separate
+ driver
+Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>
+CC: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette
+	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Jiucheng Xu <jiucheng.xu@amlogic.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+References: <20240419125812.983409-1-jan.dakinevich@salutedevices.com>
+ <20240419125812.983409-2-jan.dakinevich@salutedevices.com>
+ <1j8r15bzqa.fsf@starbuckisacylon.baylibre.com>
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <1j8r15bzqa.fsf@starbuckisacylon.baylibre.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185229 [May 14 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_smtp_not_equal_from}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2;sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/14 15:44:00 #25213880
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240514_074535_099709_A8B72F1A 
-X-CRM114-Status: GOOD (  11.55  )
+X-CRM114-CacheID: sfid-20240514_113359_443601_76484808 
+X-CRM114-Status: GOOD (  34.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,67 +104,492 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8919411024347257523=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============8919411024347257523==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3SR10CprQBp87L0m"
-Content-Disposition: inline
 
+On 4/22/24 10:46, Jerome Brunet wrote:
+> 
+> On Fri 19 Apr 2024 at 15:58, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+> 
+>> Typically, Amlogic Meson SoCs have a couple a reset registers lost in
+>> middle of audio clock controller. Reset controller on top of them was
+>> implemented inside audio clock controller driver. This patch moves reset
+>> functionality of this controller to auxiliary driver. There are at least
+>> two reasons for this:
+>>
+>>   - architecturally it is more convenient;
+>>
+>>   - reusing the code of reset controller for new SoCs becomes easier.
+>>
+>> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+>> ---
+>>  drivers/clk/meson/Kconfig               |   2 +
+>>  drivers/clk/meson/axg-audio.c           | 106 +------------
+>>  drivers/reset/Kconfig                   |   7 +
+>>  drivers/reset/Makefile                  |   1 +
+>>  drivers/reset/reset-meson-audio.c       | 197 ++++++++++++++++++++++++
+>>  include/soc/amlogic/meson-audio-reset.h |  10 ++
+> 
+> You must an effort to touch a single subsystem per series.
+> Making a series about a single subsystem makes like a lot easier for
+> maintainers. clk, reset and dt and different subsystems
+> 
+> That constraints relaxed for RFCs but mixing subsystems within a single
+> patch is a red flag, unless you really have a good reason ... and you
+> don't have one here.
+> 
+> Nothing blocks introducting support in reset, then use it in clocks.
+> 
+> You could also have allowed a bit more time before reposting since I
+> said I would look at the reset issue.
+> 
 
---3SR10CprQBp87L0m
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Jerome, do you have any updates? I'm still waiting to send the new
+version of the clock driver.
 
-On Tue, May 14, 2024 at 04:30:46PM +0200, Jerome Brunet wrote:
-> dpcm_playback/capture flags are being deprecated in ASoC.
-> Use playback/capture_only flags instead
->=20
-> Suggested-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->=20
-> Following Kuninori's series, dpcm_playback/capture will be ignored.
-> However, properly disabling stream direction is important for Amlogic
-> audio drivers.
->=20
-> I'm not too sure how this should be applied to avoid breaking bisect,
-> before or after Kuninori's series. Maybe it should be merged into it ?
+> I doubt introducing a separate driver for this is required since since
+> the current amlogic reset driver is fairly close.
+> 
+>>  6 files changed, 224 insertions(+), 99 deletions(-)
+>>  create mode 100644 drivers/reset/reset-meson-audio.c
+>>  create mode 100644 include/soc/amlogic/meson-audio-reset.h
+>>
+>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>> index 29ffd14d267b..33614f8b8cf7 100644
+>> --- a/drivers/clk/meson/Kconfig
+>> +++ b/drivers/clk/meson/Kconfig
+>> @@ -101,6 +101,8 @@ config COMMON_CLK_AXG_AUDIO
+>>  	select COMMON_CLK_MESON_PHASE
+>>  	select COMMON_CLK_MESON_SCLK_DIV
+>>  	select COMMON_CLK_MESON_CLKC_UTILS
+>> +	select RESET_CONTROLLER
+>> +	select RESET_MESON_AUDIO
+>>  	select REGMAP_MMIO
+>>  	help
+>>  	  Support for the audio clock controller on AmLogic A113D devices,
+>> diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
+>> index ac3482960903..9cd6b5c3aa7e 100644
+>> --- a/drivers/clk/meson/axg-audio.c
+>> +++ b/drivers/clk/meson/axg-audio.c
+>> @@ -12,9 +12,10 @@
+>>  #include <linux/platform_device.h>
+>>  #include <linux/regmap.h>
+>>  #include <linux/reset.h>
+>> -#include <linux/reset-controller.h>
+>>  #include <linux/slab.h>
+>>  
+>> +#include <soc/amlogic/meson-audio-reset.h>
+>> +
+>>  #include "meson-clkc-utils.h"
+>>  #include "axg-audio.h"
+>>  #include "clk-regmap.h"
+>> @@ -1648,84 +1649,6 @@ static struct clk_regmap *const sm1_clk_regmaps[] = {
+>>  	&sm1_sysclk_b_en,
+>>  };
+>>  
+>> -struct axg_audio_reset_data {
+>> -	struct reset_controller_dev rstc;
+>> -	struct regmap *map;
+>> -	unsigned int offset;
+>> -};
+>> -
+>> -static void axg_audio_reset_reg_and_bit(struct axg_audio_reset_data *rst,
+>> -					unsigned long id,
+>> -					unsigned int *reg,
+>> -					unsigned int *bit)
+>> -{
+>> -	unsigned int stride = regmap_get_reg_stride(rst->map);
+>> -
+>> -	*reg = (id / (stride * BITS_PER_BYTE)) * stride;
+>> -	*reg += rst->offset;
+>> -	*bit = id % (stride * BITS_PER_BYTE);
+>> -}
+>> -
+>> -static int axg_audio_reset_update(struct reset_controller_dev *rcdev,
+>> -				unsigned long id, bool assert)
+>> -{
+>> -	struct axg_audio_reset_data *rst =
+>> -		container_of(rcdev, struct axg_audio_reset_data, rstc);
+>> -	unsigned int offset, bit;
+>> -
+>> -	axg_audio_reset_reg_and_bit(rst, id, &offset, &bit);
+>> -
+>> -	regmap_update_bits(rst->map, offset, BIT(bit),
+>> -			assert ? BIT(bit) : 0);
+>> -
+>> -	return 0;
+>> -}
+>> -
+>> -static int axg_audio_reset_status(struct reset_controller_dev *rcdev,
+>> -				unsigned long id)
+>> -{
+>> -	struct axg_audio_reset_data *rst =
+>> -		container_of(rcdev, struct axg_audio_reset_data, rstc);
+>> -	unsigned int val, offset, bit;
+>> -
+>> -	axg_audio_reset_reg_and_bit(rst, id, &offset, &bit);
+>> -
+>> -	regmap_read(rst->map, offset, &val);
+>> -
+>> -	return !!(val & BIT(bit));
+>> -}
+>> -
+>> -static int axg_audio_reset_assert(struct reset_controller_dev *rcdev,
+>> -				unsigned long id)
+>> -{
+>> -	return axg_audio_reset_update(rcdev, id, true);
+>> -}
+>> -
+>> -static int axg_audio_reset_deassert(struct reset_controller_dev *rcdev,
+>> -				unsigned long id)
+>> -{
+>> -	return axg_audio_reset_update(rcdev, id, false);
+>> -}
+>> -
+>> -static int axg_audio_reset_toggle(struct reset_controller_dev *rcdev,
+>> -				unsigned long id)
+>> -{
+>> -	int ret;
+>> -
+>> -	ret = axg_audio_reset_assert(rcdev, id);
+>> -	if (ret)
+>> -		return ret;
+>> -
+>> -	return axg_audio_reset_deassert(rcdev, id);
+>> -}
+>> -
+>> -static const struct reset_control_ops axg_audio_rstc_ops = {
+>> -	.assert = axg_audio_reset_assert,
+>> -	.deassert = axg_audio_reset_deassert,
+>> -	.reset = axg_audio_reset_toggle,
+>> -	.status = axg_audio_reset_status,
+>> -};
+>> -
+>>  static const struct regmap_config axg_audio_regmap_cfg = {
+>>  	.reg_bits	= 32,
+>>  	.val_bits	= 32,
+>> @@ -1737,15 +1660,13 @@ struct audioclk_data {
+>>  	struct clk_regmap *const *regmap_clks;
+>>  	unsigned int regmap_clk_num;
+>>  	struct meson_clk_hw_data hw_clks;
+>> -	unsigned int reset_offset;
+>> -	unsigned int reset_num;
+>> +	const char *reset_name;
+>>  };
+>>  
+>>  static int axg_audio_clkc_probe(struct platform_device *pdev)
+>>  {
+>>  	struct device *dev = &pdev->dev;
+>>  	const struct audioclk_data *data;
+>> -	struct axg_audio_reset_data *rst;
+>>  	struct regmap *map;
+>>  	void __iomem *regs;
+>>  	struct clk_hw *hw;
+>> @@ -1804,21 +1725,10 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
+>>  		return ret;
+>>  
+>>  	/* Stop here if there is no reset */
+>> -	if (!data->reset_num)
+>> +	if (!data->reset_name)
+>>  		return 0;
+>>  
+>> -	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
+>> -	if (!rst)
+>> -		return -ENOMEM;
+>> -
+>> -	rst->map = map;
+>> -	rst->offset = data->reset_offset;
+>> -	rst->rstc.nr_resets = data->reset_num;
+>> -	rst->rstc.ops = &axg_audio_rstc_ops;
+>> -	rst->rstc.of_node = dev->of_node;
+>> -	rst->rstc.owner = THIS_MODULE;
+>> -
+>> -	return devm_reset_controller_register(dev, &rst->rstc);
+>> +	return meson_audio_reset_register(dev, data->reset_name);
+>>  }
+>>  
+>>  static const struct audioclk_data axg_audioclk_data = {
+>> @@ -1837,8 +1747,7 @@ static const struct audioclk_data g12a_audioclk_data = {
+>>  		.hws = g12a_audio_hw_clks,
+>>  		.num = ARRAY_SIZE(g12a_audio_hw_clks),
+>>  	},
+>> -	.reset_offset = AUDIO_SW_RESET,
+>> -	.reset_num = 26,
+>> +	.reset_name = "g12a",
+>>  };
+>>  
+>>  static const struct audioclk_data sm1_audioclk_data = {
+>> @@ -1848,8 +1757,7 @@ static const struct audioclk_data sm1_audioclk_data = {
+>>  		.hws = sm1_audio_hw_clks,
+>>  		.num = ARRAY_SIZE(sm1_audio_hw_clks),
+>>  	},
+>> -	.reset_offset = AUDIO_SM1_SW_RESET0,
+>> -	.reset_num = 39,
+>> +	.reset_name = "sm1",
+>>  };
+>>  
+>>  static const struct of_device_id clkc_match_table[] = {
+>> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+>> index 7112f5932609..98106694566f 100644
+>> --- a/drivers/reset/Kconfig
+>> +++ b/drivers/reset/Kconfig
+>> @@ -138,6 +138,13 @@ config RESET_MESON
+>>  	help
+>>  	  This enables the reset driver for Amlogic Meson SoCs.
+>>  
+>> +config RESET_MESON_AUDIO
+>> +	tristate "Meson Audio Reset Driver"
+>> +	depends on ARCH_MESON || COMPILE_TEST
+>> +	select AUXILIARY_BUS
+>> +	help
+>> +	  This enables the audio reset driver for Amlogic Meson SoCs.
+>> +
+>>  config RESET_MESON_AUDIO_ARB
+>>  	tristate "Meson Audio Memory Arbiter Reset Driver"
+>>  	depends on ARCH_MESON || COMPILE_TEST
+>> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+>> index fd8b49fa46fc..8ee7a57ccf03 100644
+>> --- a/drivers/reset/Makefile
+>> +++ b/drivers/reset/Makefile
+>> @@ -20,6 +20,7 @@ obj-$(CONFIG_RESET_LANTIQ) += reset-lantiq.o
+>>  obj-$(CONFIG_RESET_LPC18XX) += reset-lpc18xx.o
+>>  obj-$(CONFIG_RESET_MCHP_SPARX5) += reset-microchip-sparx5.o
+>>  obj-$(CONFIG_RESET_MESON) += reset-meson.o
+>> +obj-$(CONFIG_RESET_MESON_AUDIO) += reset-meson-audio.o
+>>  obj-$(CONFIG_RESET_MESON_AUDIO_ARB) += reset-meson-audio-arb.o
+>>  obj-$(CONFIG_RESET_NPCM) += reset-npcm.o
+>>  obj-$(CONFIG_RESET_NUVOTON_MA35D1) += reset-ma35d1.o
+>> diff --git a/drivers/reset/reset-meson-audio.c b/drivers/reset/reset-meson-audio.c
+>> new file mode 100644
+>> index 000000000000..aaea9931cfe2
+>> --- /dev/null
+>> +++ b/drivers/reset/reset-meson-audio.c
+>> @@ -0,0 +1,197 @@
+>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>> +/*
+>> + * Copyright (c) 2018 BayLibre, SAS.
+>> + * Author: Jerome Brunet <jbrunet@baylibre.com>
+>> + */
+>> +
+>> +#include <linux/regmap.h>
+>> +#include <linux/auxiliary_bus.h>
+>> +#include <linux/reset-controller.h>
+>> +
+>> +#include <soc/amlogic/meson-audio-reset.h>
+>> +
+>> +struct meson_audio_reset_data {
+>> +	struct reset_controller_dev rstc;
+>> +	struct regmap *map;
+>> +	unsigned int offset;
+>> +};
+>> +
+>> +struct meson_audio_reset_info {
+>> +	unsigned int reset_offset;
+>> +	unsigned int reset_num;
+>> +};
+>> +
+>> +static void meson_audio_reset_reg_and_bit(struct meson_audio_reset_data *rst,
+>> +					  unsigned long id,
+>> +					  unsigned int *reg,
+>> +					  unsigned int *bit)
+>> +{
+>> +	unsigned int stride = regmap_get_reg_stride(rst->map);
+>> +
+>> +	*reg = (id / (stride * BITS_PER_BYTE)) * stride;
+>> +	*reg += rst->offset;
+>> +	*bit = id % (stride * BITS_PER_BYTE);
+>> +}
+>> +
+>> +static int meson_audio_reset_update(struct reset_controller_dev *rcdev,
+>> +				    unsigned long id, bool assert)
+>> +{
+>> +	struct meson_audio_reset_data *rst =
+>> +		container_of(rcdev, struct meson_audio_reset_data, rstc);
+>> +	unsigned int offset, bit;
+>> +
+>> +	meson_audio_reset_reg_and_bit(rst, id, &offset, &bit);
+>> +
+>> +	regmap_update_bits(rst->map, offset, BIT(bit),
+>> +			assert ? BIT(bit) : 0);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int meson_audio_reset_status(struct reset_controller_dev *rcdev,
+>> +				    unsigned long id)
+>> +{
+>> +	struct meson_audio_reset_data *rst =
+>> +		container_of(rcdev, struct meson_audio_reset_data, rstc);
+>> +	unsigned int val, offset, bit;
+>> +
+>> +	meson_audio_reset_reg_and_bit(rst, id, &offset, &bit);
+>> +
+>> +	regmap_read(rst->map, offset, &val);
+>> +
+>> +	return !!(val & BIT(bit));
+>> +}
+>> +
+>> +static int meson_audio_reset_assert(struct reset_controller_dev *rcdev,
+>> +				    unsigned long id)
+>> +{
+>> +	return meson_audio_reset_update(rcdev, id, true);
+>> +}
+>> +
+>> +static int meson_audio_reset_deassert(struct reset_controller_dev *rcdev,
+>> +				      unsigned long id)
+>> +{
+>> +	return meson_audio_reset_update(rcdev, id, false);
+>> +}
+>> +
+>> +static int meson_audio_reset_toggle(struct reset_controller_dev *rcdev,
+>> +				    unsigned long id)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = meson_audio_reset_assert(rcdev, id);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	return meson_audio_reset_deassert(rcdev, id);
+>> +}
+>> +
+>> +static const struct reset_control_ops meson_audio_reset_ops = {
+>> +	.assert = meson_audio_reset_assert,
+>> +	.deassert = meson_audio_reset_deassert,
+>> +	.reset = meson_audio_reset_toggle,
+>> +	.status = meson_audio_reset_status,
+>> +};
+>> +
+>> +static int meson_audio_reset_probe(struct auxiliary_device *adev,
+>> +				  const struct auxiliary_device_id *id)
+>> +{
+>> +	struct device *dev = &adev->dev;
+>> +	struct meson_audio_reset_info *info =
+>> +		(struct meson_audio_reset_info *)id->driver_data;
+>> +	struct meson_audio_reset_data *rst;
+>> +
+>> +	dev_info(dev, "%s, reset_offset = %#x, reset_num = %u", __func__,
+>> +		 info->reset_offset, info->reset_num);
+>> +
+>> +	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
+>> +	if (!rst)
+>> +		return -ENOMEM;
+>> +
+>> +	rst->map = dev_get_regmap(dev->parent, NULL);
+>> +	if (!rst->map)
+>> +		return -ENODEV;
+>> +
+>> +	rst->offset = info->reset_offset;
+>> +	rst->rstc.ops = &meson_audio_reset_ops;
+>> +	rst->rstc.of_node = dev->parent->of_node;
+>> +	rst->rstc.nr_resets = info->reset_num;
+>> +	rst->rstc.owner = THIS_MODULE;
+>> +
+>> +	return devm_reset_controller_register(dev, &rst->rstc);
+>> +}
+>> +
+>> +static void meson_audio_reset_adev_release(struct device *dev)
+>> +{
+>> +	struct auxiliary_device *adev = to_auxiliary_dev(dev);
+>> +
+>> +	kfree(adev);
+>> +}
+>> +
+>> +static void meson_audio_reset_adev_unregister(void *_adev)
+>> +{
+>> +	struct auxiliary_device *adev = _adev;
+>> +
+>> +	auxiliary_device_delete(adev);
+>> +	auxiliary_device_uninit(adev);
+>> +}
+>> +
+>> +static const struct meson_audio_reset_info meson_audio_reset_info_g12a = {
+>> +	.reset_offset = 0x024,
+>> +	.reset_num = 26,
+>> +};
+>> +
+>> +static const struct meson_audio_reset_info meson_audio_reset_info_sm1 = {
+>> +	.reset_offset = 0x028,
+>> +	.reset_num = 39,
+>> +};
+>> +static const struct auxiliary_device_id meson_audio_reset_id[] = {
+>> +	{
+>> +		.name = "reset_meson_audio.g12a",
+>> +		.driver_data = (kernel_ulong_t)&meson_audio_reset_info_g12a,
+>> +	},
+>> +	{
+>> +		.name = "reset_meson_audio.sm1",
+>> +		.driver_data = (kernel_ulong_t)&meson_audio_reset_info_sm1,
+>> +	},
+>> +	{},
+>> +};
+>> +MODULE_DEVICE_TABLE(auxiliary, meson_audio_reset_id);
+>> +
+>> +static struct auxiliary_driver meson_audio_reset_driver = {
+>> +	.probe = meson_audio_reset_probe,
+>> +	.id_table = meson_audio_reset_id,
+>> +};
+>> +
+>> +module_auxiliary_driver(meson_audio_reset_driver);
+>> +
+>> +int meson_audio_reset_register(struct device *dev, const char *name)
+>> +{
+>> +	struct auxiliary_device *adev;
+>> +	int ret;
+>> +
+>> +	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
+>> +	if (!adev)
+>> +		return -ENOMEM;
+>> +
+>> +	adev->name = name;
+>> +	adev->dev.parent = dev;
+>> +	adev->dev.release = meson_audio_reset_adev_release;
+>> +	adev->id = 0;
+>> +
+>> +	ret = auxiliary_device_init(adev);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = auxiliary_device_add(adev);
+>> +	if (ret) {
+>> +		auxiliary_device_uninit(adev);
+>> +		return ret;
+>> +	}
+>> +
+>> +	return devm_add_action_or_reset(dev, meson_audio_reset_adev_unregister,
+>> +					adev);
+>> +}
+>> +EXPORT_SYMBOL_GPL(meson_audio_reset_register);
+>> +
+>> +MODULE_LICENSE("GPL v2");
+>> diff --git a/include/soc/amlogic/meson-audio-reset.h b/include/soc/amlogic/meson-audio-reset.h
+>> new file mode 100644
+>> index 000000000000..279c6a2197ec
+>> --- /dev/null
+>> +++ b/include/soc/amlogic/meson-audio-reset.h
+>> @@ -0,0 +1,10 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+>> +
+>> +#ifndef __MESON_AUDIO_RESET_H
+>> +#define __MESON_AUDIO_RESET_H
+>> +
+>> +#include <linux/device.h>
+>> +
+>> +int meson_audio_reset_register(struct device *dev, const char *name);
+>> +
+>> +#endif /* __MESON_AUDIO_RESET_H */
+> 
+> 
 
-Probably better to integrate it I think?
-
---3SR10CprQBp87L0m
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZDeQUACgkQJNaLcl1U
-h9Cj2Qf9HLVOdSH5HaXxIypjX5tfpQwLPzkXCL218MMV73bB2xh2jUSxphoymOOH
-g/jtFZsI35zWgGd/xrN/JDW03rRJSbdDd+ZnNU+k8Cgvt7IiRG1dI8ZH7LjhDaw2
-ufxmUFtogpQOsuF23t1oWroO7Yrd85fnl/yQp53uTfeOqr+3zWGkRjJUxkl39UA1
-4zgESYgpKV6HkvjSak9//kWPz9MlIZN1zjiIg7kA4k2Y1+utiPrkE0ysSt0Q8Vbf
-jZyNJbacqoEYv2UeukWrsHiw6gqyrA5f8cGC1w6Jw27AScoSDVB2lviUxOMoifL6
-R+0iAdSYEauoEee4GA6jE08l4zyBMQ==
-=vfji
------END PGP SIGNATURE-----
-
---3SR10CprQBp87L0m--
-
-
---===============8919411024347257523==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+Best regards
+Jan Dakinevich
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============8919411024347257523==--
-
