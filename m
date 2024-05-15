@@ -4,70 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A121EC25B78
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 May 2024 19:14:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E614DC25B75
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 May 2024 19:17:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=31b1qzMgHdL05CkpKNRxlwwDgBNhLLBh9WmT+Zxo/UU=; b=AEEgNdCf9fUFc1
-	aUBVIsC5lHPmDBZYl9kSU4AZFYoDKoWeHVC1Su5q4OAXPwWrQTT9AO5XL1wxNJ/3XeMjEVz/6PB/H
-	tUXAvpYFlaMMkUP0nvVRuzChERKQTdNEanOux0fGQhtapspuH6POfotI/ctcoL6hTdR32eOAjlIoc
-	iXx3uKs1DA4JV1iU2TCoPSaJM4MCKvaDvI/yTEb1U92BBshvbtJZecX0jSyt7wRf9BdqoY2183qsH
-	/JupRU9pWcCcjK0P3VLlOyjY4/mfdHqkZxdJCC8bpv2s4bWBuQOH8WSljRvRoyP+a+Rhfyv+Xg38u
-	mpwA+zrw/Panp+2nSb6g==;
+	List-Owner; bh=32rqE/WkILl8K3svJfNAh9pnUVVqixu1NWUobXQ6YU8=; b=jI7z85gItm3EtC
+	p4mzDDMUXks8jPhIkNbl+FqJN8K7Yfx6J07BWAfKgRORg6zaHIfgvex0g8xJCawr+tuGbcK6XwKf3
+	nH8aSQyqSxcU7d4SUiH83ir33uj+/+Yc0f8T+he0Yt2FZOBF3s5cvS5OCVQ1MRqQzaSE/YWCvRhuP
+	pI0df76AaobDKz9s0Dv112WwxIaRMsrA8rmVnQPObOihfIb9DxdVispZ4hVo7/R0/67ugSeTEsCAR
+	thGEEIOUdZ4v36OhZYDxMnuMFdZGeaE75uxIdOroic2GTSwqJYv7D+N26R0vUm36vMwb1gTX9JRyB
+	r20dOFQ0GN90Yqs2d82g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s7K54-00000002fQi-3HZj;
-	Wed, 15 May 2024 19:14:26 +0000
+	id 1s7K7y-00000002gLc-2Bnr;
+	Wed, 15 May 2024 19:17:26 +0000
 Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s7K4u-00000002fLo-278c;
-	Wed, 15 May 2024 19:14:18 +0000
+	id 1s7K7n-00000002gJJ-27Lz;
+	Wed, 15 May 2024 19:17:24 +0000
 Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 27141100030;
-	Wed, 15 May 2024 22:14:15 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 27141100030
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 7888B10002F;
+	Wed, 15 May 2024 22:17:12 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 7888B10002F
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1715800455;
-	bh=NHE/cyJ4hjdoSsX5f+ngui3aX6kFyg54YIAFYbwdUE4=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=Or96sAyOomR5tn99oXKtH2xYKJ04NsC5JjCzE/OqcsjPDg80e1ElekhD3SwtvWCBd
-	 lXZqBMam5qENYy+D1jDTZ4hMwLzEiZYiM0p+S9ERVbnGuDJI7yg/GOqP4l3nJ+eTH4
-	 BCQgsfcLHhyaFh6WFJeH0Is9RRs0wUX/sQdTfWpzNbHAOuttZt2rgBmd0dvRVhRNl6
-	 TlbbhKlIlyOFPCuVj+1DGzRSQ8V/s5IT7ssUXqi/hMl9aeKXV3teIsZ6P1Cnwr1PwB
-	 083epMQi4zvyeNCDG1tH/la8ZrHIEgJ0ndEWmyueYaItNusZRjQsMs1UAZznyU/8eD
-	 VRmnMdZCUpOxA==
+	s=mail; t=1715800632;
+	bh=0753sID6h0JKAX7uW58+tc82AGYS+dbom4wraQwXJOU=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=REkKWhWurHkxfjqqLrnnr+zsQd9y9VC1UnwvBMKYK7xIKSIr1+XAGpvMK7HDH62bN
+	 c0jYuV963J2dT1XvTQgJwqCsKLP7aM4E+KE9A2DoQcb7706m19AMxvfnKNtfSNTPWc
+	 0azZeDbWEzUfUKEOcf28OlThCiCg9+gqzI577WpaEIqlZQSJhQ19YFjbFk/1Ep/8c0
+	 3D49RcCwzW1nDY/K9mjoCgNrXlcPdIXcIe+vQ7rtta06WIG2Nbn79B7qiy2jXXa9yP
+	 O5PzxUJMfYoJtCkVCCWtRj5ahX+jCGE30OxGG8B6ryh+T7qGpRZhUdLZLQO07ghoeX
+	 omxh0ktXh66sA==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 15 May 2024 22:14:14 +0300 (MSK)
-Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 15 May 2024 22:14:14 +0300
+	Wed, 15 May 2024 22:17:12 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
+ (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 15 May
+ 2024 22:17:11 +0300
+Date: Wed, 15 May 2024 22:17:11 +0300
 From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>
-CC: <kernel@salutedevices.com>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
-	<ddrokosov@salutedevices.com>
-Subject: [PATCH v3 4/4] arm64: dts: amlogic: a1: setup CPU power management
-Date: Wed, 15 May 2024 22:13:53 +0300
-Message-ID: <20240515191405.25395-5-ddrokosov@salutedevices.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240515191405.25395-1-ddrokosov@salutedevices.com>
-References: <20240515191405.25395-1-ddrokosov@salutedevices.com>
+To: <neil.armstrong@linaro.org>
+CC: <jbrunet@baylibre.com>, <mturquette@baylibre.com>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <glaroque@baylibre.com>,
+	<rafael@kernel.org>, <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
+	<lukasz.luba@arm.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<kernel@salutedevices.com>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 0/3] arm64: dts: amlogic: a1: introduce thermal setup
+Message-ID: <20240515191711.3bltbh536pntnvdg@CAB-WSD-L081021>
+References: <20240328192645.20914-1-ddrokosov@salutedevices.com>
+ <20240503184222.cqka6nmjxhezfhtg@CAB-WSD-L081021>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20240503184222.cqka6nmjxhezfhtg@CAB-WSD-L081021>
+User-Agent: NeoMutt/20220415
 X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
@@ -78,16 +81,16 @@ X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:7.1.1,5.0.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;lore.kernel.org:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
+X-KSMG-AntiPhishing: Clean, bases: 2024/05/15 12:35:00
+X-KSMG-LinksScanning: Clean, bases: 2024/05/15 18:39:00
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/15 13:12:00 #25231738
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240515_121416_947545_789C20DA 
-X-CRM114-Status: GOOD (  12.56  )
+X-CRM114-CacheID: sfid-20240515_121723_403147_F1EBBC34 
+X-CRM114-Status: GOOD (  19.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,93 +107,51 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Amlogic A1 SoC family utilizes static operating points and a
-PWM-controlled core voltage regulator, which is specific to the board.
-As the main CPU clock input, the SoC uses CLKID_CPU_CLK from the CPU
-clock controller, which can be inherited from the system PLL (syspll) or
-a fixed CPU clock.
+Hello Neil,
 
-Currently, the stable operating points at all frequencies are set to
-800mV. This value is obtained from the vendor setup of several A1
-boards.
+Excuse me, pls ping.
 
-Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 44 +++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+On Fri, May 03, 2024 at 09:42:22PM +0300, Dmitry Rokosov wrote:
+> Hello Neil,
+> 
+> A1 Thermal Sensor was applied to linux-pm for v6.10-rc1:
+> 
+> https://lore.kernel.org/all/89a02410-87c8-47c6-aa50-04dad5b4e585@linaro.org/
+> 
+> Could you please advise if it's enough to proceed with this series? Or
+> do I need to do something more?
+> 
+> On Thu, Mar 28, 2024 at 10:26:34PM +0300, Dmitry Rokosov wrote:
+> > This patch series introduces thermal sensor declaration to the Meson A1
+> > common dtsi file. It also sets up thermal zones for the AD402 reference
+> > board. It depends on the series with A1 thermal support at [1].
+> > 
+> > Changes v2 since v1 at [2]:
+> >     - provide Neil RvB for cooling-cells dts patch
+> >     - purge unnecessary 'amlogic,a1-thermal' fallback
+> > 
+> > Links:
+> > [1] - https://lore.kernel.org/all/20240328191322.17551-1-ddrokosov@salutedevices.com/
+> > [2] - https://lore.kernel.org/all/20240328134459.18446-1-ddrokosov@salutedevices.com/
+> > 
+> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> > 
+> > Dmitry Rokosov (3):
+> >   arm64: dts: amlogic: a1: add cooling-cells for DVFS feature
+> >   arm64: dts: amlogic: a1: introduce cpu temperature sensor
+> >   arm64: dts: amlogic: ad402: setup thermal-zones
+> > 
+> >  .../arm64/boot/dts/amlogic/meson-a1-ad402.dts | 45 +++++++++++++++++++
+> >  arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 13 ++++++
+> >  2 files changed, 58 insertions(+)
+> 
+> -- 
+> Thank you,
+> Dmitry
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index f73bb7d1f381..5746c6a5b07b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -33,6 +33,13 @@ cpu0: cpu@0 {
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
-+			clocks = <&clkc_cpu CLKID_CPU_CLK>;
-+			clock-names = "core_clk";
-+			operating-points-v2 = <&cpu_opp_table0>;
-+			voltage-tolerance = <0>;
-+			clock-latency = <50000>;
-+			capacity-dmips-mhz = <400>;
-+			dynamic-power-coefficient = <80>;
- 			#cooling-cells = <2>;
- 		};
- 
-@@ -42,6 +49,13 @@ cpu1: cpu@1 {
- 			reg = <0x0 0x1>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
-+			clocks = <&clkc_cpu CLKID_CPU_CLK>;
-+			clock-names = "core_clk";
-+			operating-points-v2 = <&cpu_opp_table0>;
-+			voltage-tolerance = <0>;
-+			clock-latency = <50000>;
-+			capacity-dmips-mhz = <400>;
-+			dynamic-power-coefficient = <80>;
- 			#cooling-cells = <2>;
- 		};
- 
-@@ -52,6 +66,36 @@ l2: l2-cache0 {
- 		};
- 	};
- 
-+	cpu_opp_table0: cpu_opp_table0 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp00 {
-+			opp-hz = /bits/ 64 <128000000>;
-+			opp-microvolt = <800000>;
-+		};
-+		opp01 {
-+			opp-hz = /bits/ 64 <256000000>;
-+			opp-microvolt = <800000>;
-+		};
-+		opp02 {
-+			opp-hz = /bits/ 64 <512000000>;
-+			opp-microvolt = <800000>;
-+		};
-+		opp03 {
-+			opp-hz = /bits/ 64 <768000000>;
-+			opp-microvolt = <800000>;
-+		};
-+		opp04 {
-+			opp-hz = /bits/ 64 <1008000000>;
-+			opp-microvolt = <800000>;
-+		};
-+		opp05 {
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <800000>;
-+		};
-+	};
-+
- 	efuse: efuse {
- 		compatible = "amlogic,meson-gxbb-efuse";
- 		clocks = <&clkc_periphs CLKID_OTP>;
 -- 
-2.43.0
-
+Thank you,
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
