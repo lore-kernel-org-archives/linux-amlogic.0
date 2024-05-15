@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA620C25B75
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 May 2024 19:14:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A121EC25B78
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 May 2024 19:14:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HJAXSAoifdg7u52gnqZFNNMkkOSLvH898oqqbZdMrBA=; b=LuDYq1l/H626Kl
-	Bbz0tehxkhGcsbzMOE49EOsxRY1ITYWUghddv9qB1tBF9beZJ2S7mQmE9ooXwk54z2w/vbxm46jql
-	1PeX7ijojfxbpuUM7ZDvmmP6XW0HeBXXLWmlQb7isYy42gD6/2yCwuZ/B8QPfeSITzqu1mHmN/TJj
-	5ngh5Ac9GddHn0ulLA7Imry7UTbk6Wpi6q85SZUE+7RgFec4uD9ffVFwI7m6CTvZeSJDTn2l2/UpN
-	G082uLvfIhD2w+xVnzPhnEJ+6tFB9xcAKgH9aff2wWejisk6TpXBivzU+9spIuDii3ot2McyVFDTD
-	FPIAhHv89N6fTn0lDJyg==;
+	List-Owner; bh=31b1qzMgHdL05CkpKNRxlwwDgBNhLLBh9WmT+Zxo/UU=; b=AEEgNdCf9fUFc1
+	aUBVIsC5lHPmDBZYl9kSU4AZFYoDKoWeHVC1Su5q4OAXPwWrQTT9AO5XL1wxNJ/3XeMjEVz/6PB/H
+	tUXAvpYFlaMMkUP0nvVRuzChERKQTdNEanOux0fGQhtapspuH6POfotI/ctcoL6hTdR32eOAjlIoc
+	iXx3uKs1DA4JV1iU2TCoPSaJM4MCKvaDvI/yTEb1U92BBshvbtJZecX0jSyt7wRf9BdqoY2183qsH
+	/JupRU9pWcCcjK0P3VLlOyjY4/mfdHqkZxdJCC8bpv2s4bWBuQOH8WSljRvRoyP+a+Rhfyv+Xg38u
+	mpwA+zrw/Panp+2nSb6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s7K52-00000002fPC-0KD1;
-	Wed, 15 May 2024 19:14:24 +0000
+	id 1s7K54-00000002fQi-3HZj;
+	Wed, 15 May 2024 19:14:26 +0000
 Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s7K4t-00000002fLZ-14Xt;
-	Wed, 15 May 2024 19:14:17 +0000
+	id 1s7K4u-00000002fLo-278c;
+	Wed, 15 May 2024 19:14:18 +0000
 Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id C59C710002F;
-	Wed, 15 May 2024 22:14:13 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru C59C710002F
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 27141100030;
+	Wed, 15 May 2024 22:14:15 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 27141100030
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1715800453;
-	bh=Qg4pXQQl5Lta582hsxBt1jkX2lzQKNXAMhqzfSLdzUI=;
+	s=mail; t=1715800455;
+	bh=NHE/cyJ4hjdoSsX5f+ngui3aX6kFyg54YIAFYbwdUE4=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=mi2ZikeUjgQUCsFbc5niTeo1F3w8peifiOyzC2luRNDcUzO+qKAMgELfaogBvFLGZ
-	 //Z+ntr69Mi1dIie1tVpYeLtDuTTtPfqh0+wDDA3IjY9rDT1OtMgNtPdwMBaQqLy2R
-	 dPtzK0SMdZO8cdZb5cTpEhTvAnW4UtHeiedpLh6qEVwlpftPwHNpDsWeKqbZVOY066
-	 5TJfM7YSyjq2dhfnWe1wKXfkmyASFtCmxvrQKRePMekya3ZfP6PocE3N7MKYdyprpl
-	 AZR04HhoHCYmFigFhBrgexgfDB9SJVFaQo70YhHC1OySGGgp+6pMdATV7wbkOBmn+a
-	 UWD5v3+2gw4BA==
+	b=Or96sAyOomR5tn99oXKtH2xYKJ04NsC5JjCzE/OqcsjPDg80e1ElekhD3SwtvWCBd
+	 lXZqBMam5qENYy+D1jDTZ4hMwLzEiZYiM0p+S9ERVbnGuDJI7yg/GOqP4l3nJ+eTH4
+	 BCQgsfcLHhyaFh6WFJeH0Is9RRs0wUX/sQdTfWpzNbHAOuttZt2rgBmd0dvRVhRNl6
+	 TlbbhKlIlyOFPCuVj+1DGzRSQ8V/s5IT7ssUXqi/hMl9aeKXV3teIsZ6P1Cnwr1PwB
+	 083epMQi4zvyeNCDG1tH/la8ZrHIEgJ0ndEWmyueYaItNusZRjQsMs1UAZznyU/8eD
+	 VRmnMdZCUpOxA==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 15 May 2024 22:14:13 +0300 (MSK)
+	Wed, 15 May 2024 22:14:14 +0300 (MSK)
 Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 15 May 2024 22:14:13 +0300
+ 15.2.1118.40; Wed, 15 May 2024 22:14:14 +0300
 From: Dmitry Rokosov <ddrokosov@salutedevices.com>
 To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
 	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
@@ -59,9 +59,9 @@ CC: <kernel@salutedevices.com>, <rockosov@gmail.com>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
 	<ddrokosov@salutedevices.com>
-Subject: [PATCH v3 2/4] arm64: dts: amlogic: a1: declare cpu clock controller
-Date: Wed, 15 May 2024 22:13:51 +0300
-Message-ID: <20240515191405.25395-3-ddrokosov@salutedevices.com>
+Subject: [PATCH v3 4/4] arm64: dts: amlogic: a1: setup CPU power management
+Date: Wed, 15 May 2024 22:13:53 +0300
+Message-ID: <20240515191405.25395-5-ddrokosov@salutedevices.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240515191405.25395-1-ddrokosov@salutedevices.com>
 References: <20240515191405.25395-1-ddrokosov@salutedevices.com>
@@ -86,8 +86,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/15 13:12:00 #25231738
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240515_121415_777277_0912608E 
-X-CRM114-Status: GOOD (  11.10  )
+X-CRM114-CacheID: sfid-20240515_121416_947545_789C20DA 
+X-CRM114-Status: GOOD (  12.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,47 +104,90 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Amlogic A1 SoC family relies on the CPU clock controller to generate
-CPU clocks, serving a crucial function. It has 4 inputs: main
-oscillator, fixed clocks and system pll.
+The Amlogic A1 SoC family utilizes static operating points and a
+PWM-controlled core voltage regulator, which is specific to the board.
+As the main CPU clock input, the SoC uses CLKID_CPU_CLK from the CPU
+clock controller, which can be inherited from the system PLL (syspll) or
+a fixed CPU clock.
+
+Currently, the stable operating points at all frequencies are set to
+800mV. This value is obtained from the vendor setup of several A1
+boards.
 
 Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 44 +++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index feed2bd7ae48..afb5d7361177 100644
+index f73bb7d1f381..5746c6a5b07b 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -3,6 +3,7 @@
-  * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-  */
+@@ -33,6 +33,13 @@ cpu0: cpu@0 {
+ 			reg = <0x0 0x0>;
+ 			enable-method = "psci";
+ 			next-level-cache = <&l2>;
++			clocks = <&clkc_cpu CLKID_CPU_CLK>;
++			clock-names = "core_clk";
++			operating-points-v2 = <&cpu_opp_table0>;
++			voltage-tolerance = <0>;
++			clock-latency = <50000>;
++			capacity-dmips-mhz = <400>;
++			dynamic-power-coefficient = <80>;
+ 			#cooling-cells = <2>;
+ 		};
  
-+#include <dt-bindings/clock/amlogic,a1-cpu-clkc.h>
- #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
- #include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
- #include <dt-bindings/clock/amlogic,a1-audio-clkc.h>
-@@ -94,6 +95,19 @@ soc {
- 		#size-cells = <2>;
- 		ranges;
+@@ -42,6 +49,13 @@ cpu1: cpu@1 {
+ 			reg = <0x0 0x1>;
+ 			enable-method = "psci";
+ 			next-level-cache = <&l2>;
++			clocks = <&clkc_cpu CLKID_CPU_CLK>;
++			clock-names = "core_clk";
++			operating-points-v2 = <&cpu_opp_table0>;
++			voltage-tolerance = <0>;
++			clock-latency = <50000>;
++			capacity-dmips-mhz = <400>;
++			dynamic-power-coefficient = <80>;
+ 			#cooling-cells = <2>;
+ 		};
  
-+		clkc_cpu: clock-controller@fd000000 {
-+			compatible = "amlogic,a1-cpu-clkc";
-+			reg = <0 0xfd000080 0 0x8>;
-+			#clock-cells = <1>;
+@@ -52,6 +66,36 @@ l2: l2-cache0 {
+ 		};
+ 	};
+ 
++	cpu_opp_table0: cpu_opp_table0 {
++		compatible = "operating-points-v2";
++		opp-shared;
 +
-+			clocks = <&clkc_pll CLKID_FCLK_DIV2>,
-+				 <&clkc_pll CLKID_FCLK_DIV3>,
-+				 <&clkc_pll CLKID_SYS_PLL>,
-+				 <&xtal>;
-+			clock-names = "fclk_div2", "fclk_div3",
-+				      "sys_pll", "xtal";
++		opp00 {
++			opp-hz = /bits/ 64 <128000000>;
++			opp-microvolt = <800000>;
 +		};
++		opp01 {
++			opp-hz = /bits/ 64 <256000000>;
++			opp-microvolt = <800000>;
++		};
++		opp02 {
++			opp-hz = /bits/ 64 <512000000>;
++			opp-microvolt = <800000>;
++		};
++		opp03 {
++			opp-hz = /bits/ 64 <768000000>;
++			opp-microvolt = <800000>;
++		};
++		opp04 {
++			opp-hz = /bits/ 64 <1008000000>;
++			opp-microvolt = <800000>;
++		};
++		opp05 {
++			opp-hz = /bits/ 64 <1200000000>;
++			opp-microvolt = <800000>;
++		};
++	};
 +
- 		spifc: spi@fd000400 {
- 			compatible = "amlogic,a1-spifc";
- 			reg = <0x0 0xfd000400 0x0 0x290>;
+ 	efuse: efuse {
+ 		compatible = "amlogic,meson-gxbb-efuse";
+ 		clocks = <&clkc_periphs CLKID_OTP>;
 -- 
 2.43.0
 
