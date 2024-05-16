@@ -4,62 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04438C25B74
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 May 2024 11:32:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9F67C25B77
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 May 2024 15:09:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=U+iwqr9QRfCBH/u+V4OScNbRPMZh/OpZOev6dPJu3TE=; b=rix5kXAIBk05eu
-	KWug8z4TPhm188KSFqwBiBOsbuiNrlZTTkENJ3prvq1bvhtX/dMhEy0wY1WVYuwTiN/YVfEy8R0+d
-	qu0Y88jaWQl7AwQdhUKlxH01Legf0ehgX9A+Ql8ZbSYrV3z5UB9r9Gtrh+ahr3HMCPAQwPSO2MWan
-	O13u8nTMr26NcWKsFt0sxE1vFZeNvfTQkDrS8zrdrQoG/RV/wASl1CkuW0k81ZuLNCZcPWkexCczP
-	mEX1CMnJQE2vnOzVI2JP35q7lwnHN3h1ZkzQHrilXh0DMuG71bogxzqqwFkWeT8o+esUadG5Oooxm
-	38gm+hMTMXrwcvTcpQSQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=D6N1gSw9h2JTFy4tI5C80MgekGC02EyUgzxikSlcANc=; b=jcOhRz9Dzm5WfD
+	ukZ830d/dgOovq/ZeZCofGBi7Ymg/QZLk2XCX9Z3cPxb9DObxZ1iei7y1QOcAU4IKkk8uH0SULEZ6
+	qtD7YF6UmnRFBBwlBhNiS/oLl9TcRlMUG3jBZChnRIBOlJI4jB3ZGuyZWdCYCeS2rXgxhvYvXbldT
+	NkdZfVy2jsZZtrLyfXdqnqysRtAEvRikQREj78KwofXNNgUrxezqdozOYygstXSH0pdZTxCEhktTg
+	aLm41sCG5Z6dlH4cSxP82RRfGMKG/xLnQ7rY5giH60Oag/jWZmrWFk0Y/izw3PFIvQy0s2qC7e6LG
+	Ghl02xXSgqA3FrOjYMbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s7ZL3-00000004cm9-1DGa;
-	Thu, 16 May 2024 11:31:57 +0000
-Received: from mx.adeep.su ([185.250.0.168])
+	id 1s7cj1-00000005Fop-2kqE;
+	Thu, 16 May 2024 15:08:55 +0000
+Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s7ZKv-00000004ceE-3kme;
-	Thu, 16 May 2024 11:31:53 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2AC6D181D4E;
-	Thu, 16 May 2024 14:31:47 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
-	t=1715859107; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=+UBrzMeNJuIEWIdnDs+QZQBlvEK3sk7AsllHTSelVpQ=;
-	b=KJHUUIkuFggKkNXicjirmIFtaVHZGg5FPC2mBRdnou0pM5QdihSvTlOe8YW0FcZwjVAQPP
-	uv+IsQ+vuUVRY3KiCo6js/RSRadNtAApvmKu0QD5aLQWdYGDZjNs+s3rm+ka5rUbZf0wLU
-	0ZZk+OFqJ7CSlJ53AWX3zoCz+fGfvWfNuuII/8Tx/QZW+Hx/1UWQsQjrFhyWoaQqizBVJp
-	DeYgYrLLh6XG8TGLwNNzMLySYxZA7jb1t5iCdgxgHgRK85Gz+dyMNHEvERNFvOGPQM+uoL
-	kjnLrDkwJj2yXe046L+haIZnwjfHgRR8qm32VCce8f7SKtJXYe97oXDujyf1Ig==
-From: Viacheslav Bocharov <adeep@lexina.in>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	id 1s7ciw-00000005Fju-1LhA
+	for linux-amlogic@lists.infradead.org;
+	Thu, 16 May 2024 15:08:53 +0000
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2db17e8767cso12510381fa.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 16 May 2024 08:08:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715872128; x=1716476928; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7ioxEy7SZPKbhBowmAqXOs3HJ/6GyUDvxxnPo9F3uNU=;
+        b=iSCvGPnX4EzoPOrLSgJyqiBaD3TlDO3Kda0frPSinTQSmSe2X+KUBI7nFojthQwXAc
+         XQEvyOMY5Q/vInxYVbPy3fbLVSH+u5mG8hVLXYsEYOox+6p/DSqMZZYjo7hRWH2T87Gi
+         097lqSjJdHI36rOGMDMN+/IJfQ6QSiGcvQN8DvpBA7J3kvoKeoNRE4M/kj8cJCyj8kuN
+         6qBAyv6I6khauvoAdtZzLj5c9/SFVYPayIH5XclnS9Ve6i/vQ7OtyUgyVzVKjGh9aabr
+         lMNA6IbLsudOiNX5typsjXuuLNyvTNRRMFkOtoyAdRmhEn9GItVRh0ZLb61daQwrwyEo
+         Ph4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715872128; x=1716476928;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7ioxEy7SZPKbhBowmAqXOs3HJ/6GyUDvxxnPo9F3uNU=;
+        b=lKDpZCD17msUeMhAyHMpZ7vn+DP1sIAvSBtdCeaV8J2nnV6bOm/2L74R2VzhZMMHv6
+         6q/jmH9MeVXx5s2xrBO62snBetlpNDqJrKZjsrATy2pROpMILh8Uzz5PcQPOr0b15HM4
+         uVeZNBPXh8CuHSR6rqNtfmAWZZuI+a1z7J44BPZzkjAiy8TTvM6VxyOKf32YeosKmmKx
+         kvo8LAF1MYLqlUMMiRAaeLKg2goVc92twlr0zmkXdFLTyuE3MX2miC+7p1tpqbSq7p+o
+         PKeN29O8DW+Xne9iVd11xVhFrmNlr+086+Zz75AHwNPjgN5fXeUEiBPdpCdKon9BHC6Y
+         5KkA==
+X-Forwarded-Encrypted: i=1; AJvYcCUZJMTqLQqIHK6R4Tq6WhtjSFadvlfbo6FCPCYzVVW8oTNMtaAgHdwiyt2ZZNYpUe668FDE1Aqke0XF3+BIj8yGkGdaxYXn7GhcbxmUqU0xK2w=
+X-Gm-Message-State: AOJu0YzTwkXktcI/5TBv4S1103v3Yl1+aJ5N8rEDnDgDNw9bxKBHerO0
+	yXQTaKUdg6ta7F8vBTF+SSPgLkjEJDF0WqlyMYtxWtS6pTGYX1sPGcoIdgzKVK4=
+X-Google-Smtp-Source: AGHT+IGKctbnPBmcJ2QPLjHUp6edy8mIEVUT9pkFFtdxGM+N329/NRHhlQe7LdHxvECgOEtFtlKB4A==
+X-Received: by 2002:a2e:4a11:0:b0:2e5:8720:50d2 with SMTP id 38308e7fff4ca-2e5891d3b9dmr83515781fa.0.1715872127572;
+        Thu, 16 May 2024 08:08:47 -0700 (PDT)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:1fce:7e5a:e201:edd5])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-41f87c25459sm309351725e9.18.2024.05.16.08.08.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 May 2024 08:08:47 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Jan Dakinevich <jan.dakinevich@salutedevices.com>,
 	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
-	devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH v4 4/4] arm64: dts: meson: add dts links to secure-monitor for soc driver in a1, axg, gx, g12
-Date: Thu, 16 May 2024 14:26:51 +0300
-Message-ID: <20240516112849.3803674-8-adeep@lexina.in>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240516112849.3803674-2-adeep@lexina.in>
-References: <20240516112849.3803674-2-adeep@lexina.in>
+	linux-clk@vger.kernel.org
+Subject: [RFC PATCH 0/9] reset: amlogic: move reset drivers out of CCF
+Date: Thu, 16 May 2024 17:08:30 +0200
+Message-ID: <20240516150842.705844-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240516_043150_206555_E2FA2FB1 
-X-CRM114-Status: UNSURE (   9.01  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240516_080850_504055_9ECF9029 
+X-CRM114-Status: GOOD (  11.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,67 +96,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add links to secure-monitor in soc driver section for A1, AXG, GX, G12
-Amlogic family for use with meson-socinfo-sm driver.
+This RFC follows the discussion about having reset driver in the clock tree
+[1]. Ideally those should reside in the reset part of tree.
 
-Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi         | 1 +
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 1 +
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 1 +
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 1 +
- 4 files changed, 4 insertions(+)
+Also the code of the amlogic reset driver is very similar between the 2 trees
+and could use the same driver code.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index c03e207ea6c5..d47f056117fc 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -407,6 +407,7 @@ hwrng: rng@5118 {
- 			sec_AO: ao-secure@5a20 {
- 				compatible = "amlogic,meson-gx-ao-secure", "syscon";
- 				reg = <0x0 0x5a20 0x0 0x140>;
-+				secure-monitor = <&sm>;
- 				amlogic,has-chip-id;
- 			};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 6d12b760b90f..45791ec6694a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -1689,6 +1689,7 @@ mux {
- 			sec_AO: ao-secure@140 {
- 				compatible = "amlogic,meson-gx-ao-secure", "syscon";
- 				reg = <0x0 0x140 0x0 0x140>;
-+				secure-monitor = <&sm>;
- 				amlogic,has-chip-id;
- 			};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 9d5eab6595d0..a8c1c72543b7 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2026,6 +2026,7 @@ cec_AO: cec@100 {
- 			sec_AO: ao-secure@140 {
- 				compatible = "amlogic,meson-gx-ao-secure", "syscon";
- 				reg = <0x0 0x140 0x0 0x140>;
-+				secure-monitor = <&sm>;
- 				amlogic,has-chip-id;
- 			};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 2673f0dbafe7..656e08b3d872 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -471,6 +471,7 @@ cec_AO: cec@100 {
- 			sec_AO: ao-secure@140 {
- 				compatible = "amlogic,meson-gx-ao-secure", "syscon";
- 				reg = <0x0 0x140 0x0 0x140>;
-+				secure-monitor = <&sm>;
- 				amlogic,has-chip-id;
- 			};
- 
+This RFC moves the reset driver of audio clock controller of the g12 and
+sm1 SoC family to the reset tree, using the auxiliary bus.
+
+The infrastructure put in place is meant to be generic enough so we may
+eventually also move the reset drivers in the meson8b and aoclk clock
+controllers.
+
+[1] https://lore.kernel.org/linux-clk/e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org
+
+Jerome Brunet (9):
+  reset: amlogic: convert driver to regmap
+  reset: amlogic: add driver parameters
+  reset: amlogic: split the device and platform probe
+  reset: amlogic: use reset number instead of register count
+  reset: amlogic: add reset status support
+  reset: amlogic: add toggle reset support
+  reset: amlogic: add auxiliary reset driver support
+  clk: meson: add auxiliary reset helper driver
+  clk: amlogic: axg-audio: use the auxiliary reset driver
+
+ drivers/clk/meson/Kconfig                     |   6 +
+ drivers/clk/meson/Makefile                    |   1 +
+ drivers/clk/meson/axg-audio.c                 | 108 +--------
+ drivers/clk/meson/meson-clk-rst-aux.c         |  84 +++++++
+ drivers/clk/meson/meson-clk-rst-aux.h         |  14 ++
+ drivers/reset/Kconfig                         |   1 +
+ drivers/reset/reset-meson.c                   | 210 ++++++++++++++----
+ include/soc/amlogic/meson8b-auxiliary-reset.h |  17 ++
+ 8 files changed, 293 insertions(+), 148 deletions(-)
+ create mode 100644 drivers/clk/meson/meson-clk-rst-aux.c
+ create mode 100644 drivers/clk/meson/meson-clk-rst-aux.h
+ create mode 100644 include/soc/amlogic/meson8b-auxiliary-reset.h
+
 -- 
-2.43.2
+2.43.0
 
 
 _______________________________________________
