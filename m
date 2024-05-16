@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B984CC25B74
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 May 2024 15:09:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F805C25B74
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 May 2024 15:09:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jVm0DLf8Oepoe2Q9iW8kXrqziAoLljiLA7dGshiTNsw=; b=JhaQPnEry5PCL4
-	qL/XD3Z/w8sCE7GpoopCbWybjDVYE89fKThmZn97vN9GCd8WC18hBm366r3Npct0b6qmTfjcujIBD
-	P1RpZDYMos4BWKmmL48IiSpuIptDMh/N4lgxu4xcHbVACR/KZULGUCwsjndzyHtaNFgufyfZiTdhn
-	j3hdwILTyeseWlRfYc8lbi2bKtSj2ExSUsgzRIKXh1DKSH/UDq1USIqyvy0NBsc+UhC7DM2WIWExz
-	0TVtUGARaJ1gLDR4i41fPOsPpHtZrfAxXLH/PsbUFBBJFCxhf8AhMN+IA2XNygPsutdmdAIwGCXQn
-	RznCqMteIqDm0Z46Rrdw==;
+	List-Owner; bh=7mW+Rk2K+u4cy7NdqaHLI7M4FR+qcmWJNJc3iACk20M=; b=HNAhC6XClwYWAz
+	+sLGD9ovOIKIb+TElXuBH6I4T0ScIUb2tHwsnc+1a4WilFA/sSa1EO0DWhGR4rnJ1Ih1eX/cIWeZC
+	ohGbPz2FVrRq9AbGTEFGJovGWXDqm6/cY59iS2tfaufYX4wRnYH+FggJSnegskygVT8qTHXouzHOg
+	ZqnMKJNLifUNFdntd+fk5c4XQYAehtzsy1TfVFHpdbdKO97fl5mvHwukzUKeEsk1UIcGc2xI0w7CP
+	whnk/iUdZSXsBx5UsxJUoRIljJK3Kb9/jkUEDFoso7WEdi2HGr8DVX2n4lh95c4Ehcq7TZLVCpKTI
+	WJ93EvjlqGkBi2BzJ6Vw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s7cj1-00000005FoV-0Lek;
-	Thu, 16 May 2024 15:08:55 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1s7cj4-00000005Fpk-3sIk;
+	Thu, 16 May 2024 15:08:59 +0000
+Received: from mail-lj1-x22f.google.com ([2a00:1450:4864:20::22f])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s7ciw-00000005FkB-200m
+	id 1s7cix-00000005FkZ-0xI0
 	for linux-amlogic@lists.infradead.org;
-	Thu, 16 May 2024 15:08:53 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4202c1d19d5so5018375e9.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 16 May 2024 08:08:49 -0700 (PDT)
+	Thu, 16 May 2024 15:08:54 +0000
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2df83058d48so11219301fa.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 16 May 2024 08:08:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715872128; x=1716476928; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715872129; x=1716476929; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+f/3bReYMesF4TJq9BOi7hv3PG6ArjPAwHRzmWrlWAw=;
-        b=n8o2m8dQUTrveEZWez9Rvt9AmCrkqXaglxPkZS661TR0IJe8C8TuDbmsrhWlejVHC7
-         mRgqGg5/xAdkmlAIIUdU7q6Wvr3tL8IgoUU7BfdQ2s15Cmv5yov9C9yDYtIar3eZQP3o
-         glqAOkl6OgDdeCTK5lw5kqlpNxnEN+xdVuumagy72DQbzFc9qBfNc+HXWDir7dH43p2q
-         6+8lJSa9bvjk53/ugdkF4SnZQPoP5OJm50jZBg+o6zkLy1Vrju62XACJ4tlEZ8mAc/sp
-         nKlJE6gqb5wDhEgX2fTINB0jqiMRrcMrv5XPSF0DMRfVoWBbVtNVeLvZ/L8BEhCxFanF
-         yj1A==
+        bh=QEvOpWPnO+AdwLbOiUNmMA/qUdgyKNblxOI/csLZzos=;
+        b=eaHCteu09lb78zw3+Lq3k0kMKn/OAWbP/iJNHNai3/44gqS3teH0HGBvi1kFw7Z5dn
+         m/qqG1jhkQPSEC9kCN3C3XPBem/GWqgjqI0oGsZfvxSnN79rd83m85A9C4KgZBu/18tD
+         /3cuQTO8HfOr5IMJJRBIVZ9eV2hipFjeTWP8NSe6XfTqos3XweCXzRYNx8guUZQe5XXZ
+         IydjP3CGjri4UsUw6G9NYHdLtKhN6j37v8Qh7MtRrqdCdzsMl47i9QEJHurqsiyLPwS3
+         /0n8UEFZ6mDiZwe6n91GbgVkhAkElOIVn9HQc2BTURe3+/lS3BFG5qfHe0E5bR1LoRBr
+         29cA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715872128; x=1716476928;
+        d=1e100.net; s=20230601; t=1715872129; x=1716476929;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+f/3bReYMesF4TJq9BOi7hv3PG6ArjPAwHRzmWrlWAw=;
-        b=olWKkRYWxK6wPc8fblz97Zb25cPp+BHrEb/ysKg4ZQDxxonG0vs/tHL+2xPmpBxF27
-         sM1CaGnFdN6JW/1kZhzDXb6uFq8iFegDtmFSXBKcRtIQ4eY7V7oG5K+TohsFrWof41aP
-         C7QnOEg60OKcTFZNeUXgsf9sOU+xad9F35O7a8UYxUqj4jq6RNui6nHZjFsbyK1+Xmm7
-         56jk6uW4LLm/w/x2xGWi4ozTr4dp/zMIcNMP6+Zszzd17+0CJ6PAGKlhE2PF+fQ2/IsM
-         TRfaKbrCbkDbz/KHMcs4RpFFNX9esHe/eXCWPJoddSdpnOTuu+hNSkOs4l8O2EdnYmxe
-         CV4A==
-X-Forwarded-Encrypted: i=1; AJvYcCVV7ZLZFMtB0ascdT33lvzhJuAFLnAPXGuYiAbpwDK15zpnmxxHmlLNVs6MXGsKqLEFRPS0lG9cMpB15QaSHWgsRQdp/Jmaw3EHob8M69WCpjs=
-X-Gm-Message-State: AOJu0YxEcjq2eV/EkIRsKFc3u3BhnwgpcqenSHX5x5YWMalLdp5sBvNy
-	eoDu794UE4HYnaIoanCKz8NsK5JcodOBHuX/u3RZ9fIOV+8ukcomapDrPGtpvPA=
-X-Google-Smtp-Source: AGHT+IEYZF+5ejklYa8gOutFOpqH9vmFIkmi4oDHndgWrV0jEKKooJucmjXLHzEaKGqSFHUhay2i4Q==
-X-Received: by 2002:a05:600c:5008:b0:41f:e7ac:cc72 with SMTP id 5b1f17b1804b1-41fead643a0mr145586765e9.40.1715872128318;
-        Thu, 16 May 2024 08:08:48 -0700 (PDT)
+        bh=QEvOpWPnO+AdwLbOiUNmMA/qUdgyKNblxOI/csLZzos=;
+        b=k0PaKXYoO4VOG+nHfwhlsDxcjFrkM1GgQRz/od85EHGl36FBy7OA4EdNzpliZ/hpY9
+         cOexT41HIh6i1XO3LHe0TqbyxkY+MUlY+4jdtMLQGeig0ToSXmE2BG607RqIqx4NLXTC
+         SuhZ0G6684e11mtCbuFOkDFP3cidEkXQUMDEzDp3SrDuN+SAllc1Mjz8NMG9TxDws4/k
+         ZKxgJDVc2d7KnRO8j0CwXv5hxm8ei0wOQa/s4UzGcs0xZWPVp1C0CGrqifO6owPRX2ar
+         Fh/0SGRNDtYvv4QaaPDHqchlq95YUEwYhnf3RJ3H993uGltO+ds7eJRDAp0RocOvSiYA
+         Agbw==
+X-Forwarded-Encrypted: i=1; AJvYcCVuc+JOp+F5zAQbFnHSgrt4e8xHnk2K+SbmEnbzcfDiGK0giDkHsgDYjXNDk5DtTjszzbcled2f/bxuLUbftw+Rnx1HldM9nMhaFcvFMtgvNeA=
+X-Gm-Message-State: AOJu0Yy5nIr5q+NTpeaDuueZaSUEDAMwkBpuqYTScK/rSbIk2rkXvYkn
+	31WJdJs6ZXznUmCBxLGS/TH6cu/Mm0jROn+pM8M66dK5/JeFIkj+Zb14h4/WwkA=
+X-Google-Smtp-Source: AGHT+IGYAck85LsbcTOvXFQY8nZM3fKLyOR5JchkAjsB3ueKLHe+uoUsgS+o6TUKMWmJKolx9ml/0A==
+X-Received: by 2002:a2e:a412:0:b0:2e4:e15d:40b0 with SMTP id 38308e7fff4ca-2e52028aefemr120909581fa.32.1715872129220;
+        Thu, 16 May 2024 08:08:49 -0700 (PDT)
 Received: from toaster.lan ([2a01:e0a:3c5:5fb1:1fce:7e5a:e201:edd5])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-41f87c25459sm309351725e9.18.2024.05.16.08.08.47
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-41f87c25459sm309351725e9.18.2024.05.16.08.08.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 16 May 2024 08:08:48 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
@@ -72,17 +72,17 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	linux-kernel@vger.kernel.org,
 	linux-amlogic@lists.infradead.org,
 	linux-clk@vger.kernel.org
-Subject: [RFC PATCH 1/9] reset: amlogic: convert driver to regmap
-Date: Thu, 16 May 2024 17:08:31 +0200
-Message-ID: <20240516150842.705844-2-jbrunet@baylibre.com>
+Subject: [RFC PATCH 2/9] reset: amlogic: add driver parameters
+Date: Thu, 16 May 2024 17:08:32 +0200
+Message-ID: <20240516150842.705844-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240516150842.705844-1-jbrunet@baylibre.com>
 References: <20240516150842.705844-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240516_080850_557534_4A3A00F3 
-X-CRM114-Status: GOOD (  17.14  )
+X-CRM114-CacheID: sfid-20240516_080851_369071_EC7827D9 
+X-CRM114-Status: GOOD (  13.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,156 +100,73 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 To allow using the same driver for the main reset controller and the
-auxiliary ones embedded in the clock controllers, convert the
-the Amlogic reset driver to regmap.
+auxiliary ones embedded in the clock controllers, allow to customise
+the reset offset, same as the level offset. Also add an option to make
+the level reset active low or high.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/reset/reset-meson.c | 80 ++++++++++++++++++++-----------------
- 1 file changed, 44 insertions(+), 36 deletions(-)
+ drivers/reset/reset-meson.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
-index f78be97898bc..8f3d6e9df235 100644
+index 8f3d6e9df235..59126c9f194a 100644
 --- a/drivers/reset/reset-meson.c
 +++ b/drivers/reset/reset-meson.c
-@@ -11,36 +11,44 @@
- #include <linux/of.h>
- #include <linux/module.h>
- #include <linux/platform_device.h>
-+#include <linux/regmap.h>
- #include <linux/reset-controller.h>
- #include <linux/slab.h>
- #include <linux/types.h>
+@@ -18,7 +18,9 @@
  
--#define BITS_PER_REG	32
--
  struct meson_reset_param {
  	int reg_count;
++	int reset_offset;
  	int level_offset;
++	bool level_low_reset;
  };
  
  struct meson_reset {
--	void __iomem *reg_base;
- 	const struct meson_reset_param *param;
- 	struct reset_controller_dev rcdev;
--	spinlock_t lock;
-+	struct regmap *map;
- };
+@@ -46,6 +48,7 @@ static int meson_reset_reset(struct reset_controller_dev *rcdev,
+ 	unsigned int offset, bit;
  
-+static void meson_reset_offset_and_bit(struct meson_reset *data,
-+				       unsigned long id,
-+				       unsigned int *offset,
-+				       unsigned int *bit)
-+{
-+	unsigned int stride = regmap_get_reg_stride(data->map);
-+
-+	*offset = (id / (stride * BITS_PER_BYTE)) * stride;
-+	*bit = id % (stride * BITS_PER_BYTE);
-+}
-+
- static int meson_reset_reset(struct reset_controller_dev *rcdev,
--			      unsigned long id)
-+			     unsigned long id)
- {
- 	struct meson_reset *data =
- 		container_of(rcdev, struct meson_reset, rcdev);
--	unsigned int bank = id / BITS_PER_REG;
--	unsigned int offset = id % BITS_PER_REG;
--	void __iomem *reg_addr = data->reg_base + (bank << 2);
-+	unsigned int offset, bit;
+ 	meson_reset_offset_and_bit(data, id, &offset, &bit);
++	offset += data->param->reset_offset;
  
--	writel(BIT(offset), reg_addr);
-+	meson_reset_offset_and_bit(data, id, &offset, &bit);
+ 	return regmap_update_bits(data->map, offset,
+ 				  BIT(bit), BIT(bit));
+@@ -60,9 +63,10 @@ static int meson_reset_level(struct reset_controller_dev *rcdev,
  
--	return 0;
-+	return regmap_update_bits(data->map, offset,
-+				  BIT(bit), BIT(bit));
- }
+ 	meson_reset_offset_and_bit(data, id, &offset, &bit);
+ 	offset += data->param->level_offset;
++	assert ^= data->param->level_low_reset;
  
- static int meson_reset_level(struct reset_controller_dev *rcdev,
-@@ -48,25 +56,13 @@ static int meson_reset_level(struct reset_controller_dev *rcdev,
- {
- 	struct meson_reset *data =
- 		container_of(rcdev, struct meson_reset, rcdev);
--	unsigned int bank = id / BITS_PER_REG;
--	unsigned int offset = id % BITS_PER_REG;
--	void __iomem *reg_addr;
--	unsigned long flags;
--	u32 reg;
-+	unsigned int offset, bit;
- 
--	reg_addr = data->reg_base + data->param->level_offset + (bank << 2);
-+	meson_reset_offset_and_bit(data, id, &offset, &bit);
-+	offset += data->param->level_offset;
- 
--	spin_lock_irqsave(&data->lock, flags);
--
--	reg = readl(reg_addr);
--	if (assert)
--		writel(reg & ~BIT(offset), reg_addr);
--	else
--		writel(reg | BIT(offset), reg_addr);
--
--	spin_unlock_irqrestore(&data->lock, flags);
--
--	return 0;
-+	return regmap_update_bits(data->map, offset,
-+				  BIT(bit), assert ? 0 : BIT(bit));
+ 	return regmap_update_bits(data->map, offset,
+-				  BIT(bit), assert ? 0 : BIT(bit));
++				  BIT(bit), assert ? BIT(bit) : 0);
  }
  
  static int meson_reset_assert(struct reset_controller_dev *rcdev,
-@@ -113,30 +109,42 @@ static const struct of_device_id meson_reset_dt_ids[] = {
+@@ -85,17 +89,23 @@ static const struct reset_control_ops meson_reset_ops = {
+ 
+ static const struct meson_reset_param meson8b_param = {
+ 	.reg_count	= 8,
++	.reset_offset	= 0x0,
+ 	.level_offset	= 0x7c,
++	.level_low_reset = true,
  };
- MODULE_DEVICE_TABLE(of, meson_reset_dt_ids);
  
-+static const struct regmap_config regmap_config = {
-+	.reg_bits   = 32,
-+	.val_bits   = 32,
-+	.reg_stride = 4,
-+};
-+
- static int meson_reset_probe(struct platform_device *pdev)
- {
-+	struct device *dev = &pdev->dev;
- 	struct meson_reset *data;
-+	void __iomem *base;
+ static const struct meson_reset_param meson_a1_param = {
+ 	.reg_count	= 3,
++	.reset_offset	= 0x0,
+ 	.level_offset	= 0x40,
++	.level_low_reset = true,
+ };
  
--	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
- 	if (!data)
- 		return -ENOMEM;
+ static const struct meson_reset_param meson_s4_param = {
+ 	.reg_count	= 6,
++	.reset_offset	= 0x0,
+ 	.level_offset	= 0x40,
++	.level_low_reset = true,
+ };
  
--	data->reg_base = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(data->reg_base))
--		return PTR_ERR(data->reg_base);
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
- 
--	data->param = of_device_get_match_data(&pdev->dev);
-+	data->param = of_device_get_match_data(dev);
- 	if (!data->param)
- 		return -ENODEV;
- 
--	spin_lock_init(&data->lock);
-+	data->map = devm_regmap_init_mmio(dev, base, &regmap_config);
-+	if (IS_ERR(data->map))
-+		return dev_err_probe(dev, PTR_ERR(data->map),
-+				     "can't init regmap mmio region\n");
- 
- 	data->rcdev.owner = THIS_MODULE;
--	data->rcdev.nr_resets = data->param->reg_count * BITS_PER_REG;
-+	data->rcdev.nr_resets = data->param->reg_count * BITS_PER_BYTE
-+		* regmap_config.reg_stride;
- 	data->rcdev.ops = &meson_reset_ops;
--	data->rcdev.of_node = pdev->dev.of_node;
-+	data->rcdev.of_node = dev->of_node;
- 
--	return devm_reset_controller_register(&pdev->dev, &data->rcdev);
-+	return devm_reset_controller_register(dev, &data->rcdev);
- }
- 
- static struct platform_driver meson_reset_driver = {
+ static const struct of_device_id meson_reset_dt_ids[] = {
 -- 
 2.43.0
 
