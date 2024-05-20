@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05B7EC25B77
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2024 10:43:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5BDBC04FFE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2024 11:00:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=z6/EnXuAGkugNAvFaKD31MN/WPxgzgLd2QmoFYlBX+k=; b=LNX7ssxsDnOCU1
-	yCFEwyrAAEp7aDJBNnTSWOJcU+l7LL9LhdSJPilT/c+7hGeayB3Jupeuw6Vl34NlXeqsJlt242JN3
-	3yXuGboRjxt7cUIFvoq/AszHO//QQAxTkHnJPEjZSj1JCtUk6YyWH4kmw8UUsmhhyzfmpJRtWWtk4
-	WnC2866/qIu3QV20w07uPyysxi4gf3vzAZ5vgz4jaL4nuFzpi8SizllCS1jWzik7E5OOf13vOX9nE
-	G5MlXD51FK3wa9C67FKIAl1f+6eOYTigF4cTpM54BDNm7DxP71/Doh93TfdGeOKweKtNvVB7Eo1UD
-	6AGtDKnpHLv0xS35IT1Q==;
+	List-Owner; bh=CTFjMThjirCA7pA20kc2xDwLI7LvfOpMEgJyyGC7smU=; b=fEa4pAtK/FB0tz
+	P4nZbk4uGciK34rRwijiDIUSn+cClky/EO+5q9Y+zkRvZRnBCdPU107mCG2Kq45v0yDTBLXV8pSRr
+	lyGsP75zIGKCvy2bJsuB+x6xKB7wv+iL4ew3gLvwlhcLdhisEyFy/12vONSN6qYidmAWHhUB79eBn
+	yU9hSyD9CKe2UZhzIrrnV6mdhNpHF/aUw6pt4TcHpz2u7l6E/pxt0gLtr2O113BKtkDgC+Ai9zzvQ
+	SKnDn/1x1u7Fe5Do1sElN07pDWLu027nupHyevlD5UQdpLQsTHdBjSg82H20K+gPheArkXdqh2G52
+	ZWy+JTFnuhVIr4v/fOQQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s90UT-0000000EBiP-1pJV;
-	Mon, 20 May 2024 10:43:37 +0000
-Received: from mail-lf1-x130.google.com ([2a00:1450:4864:20::130])
+	id 1s90l5-0000000EDu5-2AzV;
+	Mon, 20 May 2024 11:00:47 +0000
+Received: from mail-lf1-x129.google.com ([2a00:1450:4864:20::129])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s90UO-0000000EBdz-1uzN
+	id 1s90l3-0000000EDtE-0h0R
 	for linux-amlogic@lists.infradead.org;
-	Mon, 20 May 2024 10:43:35 +0000
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-51fcb7dc722so3667200e87.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 20 May 2024 03:43:28 -0700 (PDT)
+	Mon, 20 May 2024 11:00:46 +0000
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-52388d9ca98so5171194e87.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 20 May 2024 04:00:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716201807; x=1716806607; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1716202843; x=1716807643; darn=lists.infradead.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=icwVF42TmZ2hZjEXcduZvhpSy5tVelIfuJSjSBSENHo=;
-        b=WhPs+B6L2+z9wNokzXkUDMHQ2ik9RPqpwHUOWb9XenZqNTHg3W15d9Bu17tmOf3MWv
-         8cyuBNAzWLwKx8IVYHnxZhZYLAcbY2wk47Y1YgjAZg976X0D0bwHqjRWzZm++HXcv9ml
-         rIsdrQeatyZ07ojnpLn92GYSaN+NOZaW90gURClrxFBz4iGaDpnRH0rtpOHeqeMB53E7
-         htVNI5ipnv7GPgYUshmibcDcpx4nUv/mOEt1Oskn7Yj3pY48eo+Bhl2pdxvZH0dsjpPF
-         9P2veOQFmwvvRjwRSWp1lNYiEVukNnRTiTvDiDEHEoSW0jGnILpflDcO2DfkLu5aiL7s
-         C/eg==
+        bh=zbU3zeRUyfJhQipGYR6FKYCuEp6+mBicTADebou1jyQ=;
+        b=OSeN7zTb3l8yGHQUWPQb0ayPpiGQ63DRJ+QPQ0mU15bsiTL/6azmG3dsQt/1QpeLNf
+         mzyE+rujkWbrlA2H421T8B+GVoegZW+M0aya1gs0mfZpcDm/04CMN6mW+K77lNfa3ATv
+         P98/hrTx7Sb/gFb+KvJObO5GvOkw14hsT1zjKJbWOUQbaX9IaT5FYszrm1vLlz7tUvfS
+         Rmt4GXwsuFC5DxRJwMQRAGZxLFXeGM+jnQUAth3ZCTQxKM01/a87ooXaI9o/xGZBBtbZ
+         3NIqpmmZwXQX90iFzhip1OyLVrwQMNuMWHVCQdJAiIIX+ouyuPyx6rOfjq7L01+3OZ4o
+         B5gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716201807; x=1716806607;
+        d=1e100.net; s=20230601; t=1716202843; x=1716807643;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=icwVF42TmZ2hZjEXcduZvhpSy5tVelIfuJSjSBSENHo=;
-        b=biNIC/ksU57sKvyXFP57Gn6c6T4bcR6XUzZyX/qy4B70e5jqcGYAuBS/24UsVGoU8r
-         zekQGMOYYw53C1rBvjkEzf4rxoWzfBSF1TCUVYrhxTLXwGh6msLxELofuM3OSXQc8fC8
-         TzUkhm/DKJgmbCUBF3mQ1ZDa1gp6H0Tcl85UNUEISMwXXkdKcABFMx0GTtyChq4M57LZ
-         Jo9rQrknGJWwfpwexpMLUKRw+hp/ZB/PIXXCO/GjepmbrqjOiQhnZFrAAUtAO3AI/BXs
-         fuv3a7oxddOPxDAWc+hu+YuUsVKqVLtu/b8wp1kPysrysQ3aA94f56ISMHiK40ifnq7x
-         ibNA==
-X-Forwarded-Encrypted: i=1; AJvYcCX1617NcNIDxlEUER3PVzB4jbGwovddkeuHYfgpEnuUJ7/oT3Cc2DfbC891KQvOA6vtYjjdOu3atQZTtssYONy7XZzJM+hTup8yL9jD+eCCKbc=
-X-Gm-Message-State: AOJu0Yy2uJCgJJABr3r5sTAAdbmTx4cB+/lMs8gPkqLFdRTlZk2CaEB2
-	gB9bETZl2/b/dkKTFIBvSSLa83MHTwQ+SSOYD2oqUgZQWcEOmYmfh6RkL4ssiyM=
-X-Google-Smtp-Source: AGHT+IFzot8n6xHV0OHm6wH4k0sEr+LYxBLD0eD+umJwBs/mAovf2bSRWjBos0WaEoAs2a0risJ1Ww==
-X-Received: by 2002:a05:6512:4801:b0:51d:8ff3:f835 with SMTP id 2adb3069b0e04-52407cddc3fmr1595444e87.26.1716201806986;
-        Mon, 20 May 2024 03:43:26 -0700 (PDT)
+        bh=zbU3zeRUyfJhQipGYR6FKYCuEp6+mBicTADebou1jyQ=;
+        b=SXuQU25+mnwJJzKf8KsloIheYAG+SEtoOCVVzf7+FYn40OqVNPjwjP1QGPDGx38DQl
+         jgXhcb2xyoT1YsyKrIzdoc1nPrETbwhnFOjz2Kc3TfxDgNEDITrikWpMv/aquhZesBo0
+         sCGDsiQF98Uw6vgJU0iO198C0RqHm0i2WJY91xx+00P54bf7Ej+gQ8XZWsgY5z28Kzxu
+         qYUgVhRHbDxh3uxUPvJYgAuxEEfM+Mjhm8dh1Fxjpo/PytfWviEdHTJEDBh9KSMSWonj
+         83VtjULmz/mBcVg5OtbhPVxcvhKJIJit+Bd6M9p3zQgMv1o8/dgKgShZgpN3Vjirdg8b
+         8fxA==
+X-Forwarded-Encrypted: i=1; AJvYcCXwojFRejI3HJl7j+LJ2K+jVKz3j0cTW1753AKvUvGhyZIPCbkB/4SAv5gn5uZk9jh4MUAzq7cNg5CAFf1zoGmTCkFlYFQmz4FpTb0Nk0xN1vU=
+X-Gm-Message-State: AOJu0YyP52KBuQ+YCEn2yDEALPfsnv6JS8+bTEWbVISezaHwgZluAvV2
+	cL4DCqqbLF2Dzdk5A2Q4WxLOSXeV8pcbmZS8SAc4vWBSk4vefm+BCr881y+x6ck=
+X-Google-Smtp-Source: AGHT+IEoP2+bL0oMFj4P0Aa7CMuek/Wx23WK1fJZHUBxVQUK6n4Or8upEK0eOTuockV49z8ZJoyWZA==
+X-Received: by 2002:ac2:504c:0:b0:51a:df97:cc8d with SMTP id 2adb3069b0e04-5220fd7cc70mr18338046e87.26.1716202842997;
+        Mon, 20 May 2024 04:00:42 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5238bee41afsm2044239e87.294.2024.05.20.03.43.25
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-521f35ad5fdsm4253446e87.24.2024.05.20.04.00.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 May 2024 03:43:26 -0700 (PDT)
-Date: Mon, 20 May 2024 13:43:24 +0300
+        Mon, 20 May 2024 04:00:42 -0700 (PDT)
+Date: Mon, 20 May 2024 14:00:40 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Vignesh Raman <vignesh.raman@collabora.com>
 Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
@@ -72,16 +72,16 @@ Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
 	linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
 	amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
 	virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] drm/ci: uprev mesa version
-Message-ID: <2qzmfv3oc6feihwxu3tl37rg6w3qsj2vddu5olvqk6vhqr26cc@bxu5y6ijvtfa>
+Subject: Re: [PATCH v2 2/6] drm/ci: generate testlist from build
+Message-ID: <o363vir3dqz2znrnifo6enbdwudalmxqbigdkci2ykxf5qjbnx@2ngllflxotgk>
 References: <20240517092502.647420-1-vignesh.raman@collabora.com>
- <20240517092502.647420-2-vignesh.raman@collabora.com>
+ <20240517092502.647420-3-vignesh.raman@collabora.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20240517092502.647420-2-vignesh.raman@collabora.com>
+In-Reply-To: <20240517092502.647420-3-vignesh.raman@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240520_034332_572076_920B4870 
-X-CRM114-Status: GOOD (  17.35  )
+X-CRM114-CacheID: sfid-20240520_040045_232399_21E94575 
+X-CRM114-Status: GOOD (  15.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,60 +98,54 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, May 17, 2024 at 02:54:57PM +0530, Vignesh Raman wrote:
-> zlib.net is not allowing tarball download anymore and results
-> in below error in kernel+rootfs_arm32 container build,
-> urllib.error.HTTPError: HTTP Error 403: Forbidden
-> urllib.error.HTTPError: HTTP Error 415: Unsupported Media Type
-> 
-> Uprev mesa to latest version which includes a fix for this issue.
-> https://gitlab.freedesktop.org/mesa/mesa/-/commit/908f444e
-> 
-> Use id_tokens for JWT authentication. Since s3 bucket is migrated to
-> mesa-rootfs, update the variables accordingly. Also copy helper scripts
-> to install, so that the ci jobs can use these scripts for logging.
+On Fri, May 17, 2024 at 02:54:58PM +0530, Vignesh Raman wrote:
+> Stop vendoring the testlist into the kernel. Instead, use the
+> testlist from the IGT build to ensure we do not miss renamed
+> or newly added tests.
 > 
 > Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
 > ---
 > 
 > v2:
->   - Uprev to recent version and use id_tokens for JWT authentication
+>   - Fix testlist generation for arm and arm64 builds.
 > 
 > ---
->  drivers/gpu/drm/ci/build-igt.sh   |  2 +-
->  drivers/gpu/drm/ci/build.sh       |  6 +++--
->  drivers/gpu/drm/ci/container.yml  | 12 +++------
->  drivers/gpu/drm/ci/gitlab-ci.yml  | 44 +++++++++++++++++++++----------
->  drivers/gpu/drm/ci/image-tags.yml |  2 +-
->  drivers/gpu/drm/ci/lava-submit.sh |  4 +--
->  drivers/gpu/drm/ci/test.yml       |  2 ++
->  7 files changed, 44 insertions(+), 28 deletions(-)
+>  drivers/gpu/drm/ci/build-igt.sh  |   34 +
+>  drivers/gpu/drm/ci/igt_runner.sh |    9 +-
+>  drivers/gpu/drm/ci/testlist.txt  | 2761 ------------------------------
+>  3 files changed, 39 insertions(+), 2765 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/ci/testlist.txt
 > 
+> diff --git a/drivers/gpu/drm/ci/build-igt.sh b/drivers/gpu/drm/ci/build-igt.sh
+> index 7859554756c4..e62244728613 100644
+> --- a/drivers/gpu/drm/ci/build-igt.sh
+> +++ b/drivers/gpu/drm/ci/build-igt.sh
 
-[skipped]
+[...]
 
-> diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
-> index 8bc63912fddb..612c9ede3507 100644
-> --- a/drivers/gpu/drm/ci/test.yml
-> +++ b/drivers/gpu/drm/ci/test.yml
-> @@ -150,6 +150,8 @@ msm:sdm845:
->      BM_KERNEL: https://${PIPELINE_ARTIFACTS_BASE}/arm64/cheza-kernel
->      GPU_VERSION: sdm845
->      RUNNER_TAG: google-freedreno-cheza
-> +    DEVICE_TYPE: sdm845-cheza-r3
-> +    FARM: google
-
-I see that this is the only user of the FARM: tag. Is it correct?
-Also we miss DEVICE_TYPE for several other boards. Should we be adding
-them?
-
->    script:
->      - ./install/bare-metal/cros-servo.sh
+> @@ -26,6 +50,16 @@ meson build $MESON_OPTIONS $EXTRA_MESON_ARGS
+>  ninja -C build -j${FDO_CI_CONCURRENT:-4} || ninja -C build -j 1
+>  ninja -C build install
 >  
-> -- 
-> 2.40.1
-> 
+> +if [[ "$KERNEL_ARCH" = "arm64" ]]; then
+> +    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/igt/lib/aarch64-linux-gnu
+> +elif [[ "$KERNEL_ARCH" = "arm" ]]; then
+> +    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/igt/lib
+> +else
+> +    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/igt/lib64
 
+Could you please clarify this part? The arm64 vs arm don't look logical
+from my point of view.
+
+The rest LGTM.
+
+> +fi
+> +
+> +generate_testlist
+> +
+>  mkdir -p artifacts/
+>  tar -cf artifacts/igt.tar /igt
+>  
 -- 
 With best wishes
 Dmitry
