@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CED16C25B75
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6DAEC25B78
 	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2024 08:32:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FQWYFuOkHUnrfQqK9IoPK7kJRAcfUpdWUfs6JCiS3FQ=; b=v3Qlw5Ol/q68Bd
-	M2JNXOwoEQh/cQBgxZBjFgJF3jRC6uQsyVxAoXyRugkpdMrzNy1ZJX7xrsX535n3S2KIm7Os94Cio
-	uxo9FtoECKXe9AsFUC8tSvKVBTeroDxFTDxTgltC+UhDHFp2GrHYe+0qk2qBJP7GaI8An1PPVUv0u
-	yyNLhKnu8EEdpY5eszEGQWv2eyiiohEGaPimNTWKvopWrX8gFp2IjZIcPUrprxfHjL3uHpBuGDfse
-	jjW4zHk3ILCfvgjOHwslvagHYECD0VpZyoa7CgRPrXk9XFvHT0z9qicZjJwGFjXSLUj04DNzQyVmE
-	CHdxaF0fjGWRSNY5AkWQ==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=PmB+sw8dayVYrmaO2XAMzuVymWFd/+knaCqZVEqTPQ8=; b=IK5jtb9wghSL68
+	ThjYzlbegrVXcdEY7jceoBB6XWn8JXdeJ5VeAKYvg16g+OkE5hM33CGvSB8gpINA/WuqYUNGDresP
+	kv35o4+WeBUp7mNbgbsHHQ3svhW8eCmkWOYFsIcebP9pA9ZuMhAL/bYA/J50Ml5xi+XI7DaAAk4i9
+	bENAXJESmwnxYGYdhff57J90NDC8ghuRuaNUQQnOJg/RkBtTm+yRI7cjiv+z4iiIExbRmTSln9jny
+	Lh5biApriuJE4PRuhrIe1OCfpLAfmdraq9E3LFxNoMuGER2rGYaIZEN+j9qvKVfsH9mtUfP5yaAfF
+	XuKx1+czYf7UwQukuxjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s9Kuj-0000000GliO-3by5;
-	Tue, 21 May 2024 08:32:05 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1s9Kui-0000000Glhv-3PA7;
+	Tue, 21 May 2024 08:32:04 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s9Kuf-0000000Glgn-3hLv;
+	id 1s9Kuf-0000000Glgi-1gZh;
 	Tue, 21 May 2024 08:32:03 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 50338CE0EBC;
-	Tue, 21 May 2024 08:31:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6E74EC4AF07;
+	by dfw.source.kernel.org (Postfix) with ESMTP id BB08762090;
+	Tue, 21 May 2024 08:31:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 645DCC2BD11;
 	Tue, 21 May 2024 08:31:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1716280318;
-	bh=FvFfKXmL892C/19FVjh91A40ta7Bup2GELFyNP6Jycw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Bx3PYm6SGeIJCgWyRBd4NJFtPuc9zvFFTpshrrRhzpoMWryJgiflnH0ZXAaURqRrl
-	 xFjlA9U7Yj2osmMIb5b1zohISb/fOmn1DNUAztFd50SM2/c7xmmWAMQNPS5xEHtbYV
-	 Qw3WasyUuGb7lSwDCUvsMHbDrZ0o/jZAuEU5qc9tLYdhmDWR+60WeYlpJ8bl+bDk9Z
-	 /kCtpSVQBmQXt3Q80Sdo7ZlCRIFpqSmEgU34q3jGW4UXDUSZIulvieG5on7FULVhS/
-	 Oud7Ah9FPnsQ7AMwRdfin5r5nzaHMUO4k6tuys4/zjINhKQB3E+Jyube3+tkGDvO3k
-	 bE3bA+eGEkNpw==
+	bh=8sDFlj1Gwr4M6++unKHbhg9lGquHLfbGNCat/SHDtO8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=EVMAu9spISPmj5wcZir1ZwC8EOT2723ZPfJRyPHsI7UPgZBbnJBeqVihe8T8SW/e9
+	 0VWMpGRIEiWQnxynFJLeJ0sLD67YmuLHcBzsS7IhIqXlJZiVA8W7k/5odJU7v8w82Y
+	 YYl4RSLBxegny9KQT4CjK1ckHu+BfDPKqcO4kC9MGwEm/OIwgeLhVQIiEvU9Rvk/u4
+	 Js+UgkngSCZRA/ZVuYsndMM1yJIvBc3CApIW+GROkW4C7XMy//bO8lcESoqruTDPUF
+	 Ct+Y+9Z9tth8mC/FLYXEY7u4Qo69BhbI9504GYHeA/RtvrHupwckqnB1BiG3o/5Nih
+	 8D+uMZ1Eb6hiQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 59678C25B78;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4892BC25B75;
 	Tue, 21 May 2024 08:31:58 +0000 (UTC)
 From: Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>
-Date: Tue, 21 May 2024 16:31:34 +0800
-Subject: [PATCH v5 1/2] pwm: meson: Add support for Amlogic S4 PWM
+Subject: [PATCH v5 0/2] Add support for Amlogic S4 PWM
+Date: Tue, 21 May 2024 16:31:33 +0800
+Message-Id: <20240521-s4-pwm-v5-0-0c91f5fa32cd@amlogic.com>
 MIME-Version: 1.0
-Message-Id: <20240521-s4-pwm-v5-1-0c91f5fa32cd@amlogic.com>
-References: <20240521-s4-pwm-v5-0-0c91f5fa32cd@amlogic.com>
-In-Reply-To: <20240521-s4-pwm-v5-0-0c91f5fa32cd@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAOVbTGYC/2XMywrCMBCF4VcpszYyhPFSV76HdBGSSTtgmpKUq
+ JS8u7Fbl//h8G2QOQlnuHUbJC6SJc4tTocO7GTmkZW41qBRE5ImlUktr6C0u2DfX8/WMEM7L4m
+ 9vHfoMbSeJK8xfXa30G/9IwopVMxas/eO0OHdhGccxR5tDDDUWr8Le7g+ngAAAA==
 To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
@@ -62,19 +63,20 @@ Cc: linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  devicetree@vger.kernel.org, Kelvin Zhang <kelvin.zhang@amlogic.com>, 
  Junyi Zhao <junyi.zhao@amlogic.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1716280316; l=2531;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1716280316; l=802;
  i=kelvin.zhang@amlogic.com; s=20240329; h=from:subject:message-id;
- bh=TO8jk1KfAyzCYn3EQLKzqT09OdAOiA4QmoDLOLbNW40=;
- b=5mmETv38pNe+0fspL2pwrWOlZHTqe3xBoP5S/HyPB3sSldBE+iqroQeEX7+lrj6B8K/8KMeGU
- b0igt5ehiIKBiBuNmWcxyEcow9PXSdNQWtU4PVQZpKlNYdMUHcpPyta
+ bh=8sDFlj1Gwr4M6++unKHbhg9lGquHLfbGNCat/SHDtO8=;
+ b=KKSNn/ElfAgYrD7BO58I3c5C8vB5uGsP6pt7ktkMU4BuQE/FsH8XzspsgB5ryJpTkuh7AF31j
+ RUpIylqtVOBDRnzK1f+s/NeZHkzNcF3E/mMKJ0suVlIDZCdvvFsrNEQ
 X-Developer-Key: i=kelvin.zhang@amlogic.com; a=ed25519;
  pk=pgnle7HTNvnNTcOoGejvtTC7BJT30HUNXfMHRRXSylI=
 X-Endpoint-Received: by B4 Relay for kelvin.zhang@amlogic.com/20240329 with
  auth_id=148
 X-Original-From: Kelvin Zhang <kelvin.zhang@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240521_013202_515793_AE0688A2 
-X-CRM114-Status: GOOD (  15.01  )
+X-CRM114-CacheID: sfid-20240521_013201_519141_86B24CEA 
+X-CRM114-Status: UNSURE (   6.76  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,97 +94,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Junyi Zhao <junyi.zhao@amlogic.com>
+Add support for Amlogic S4 PWM and related device nodes.
 
-This patch adds support for Amlogic S4 PWM.
-
-Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
 Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
 ---
- drivers/pwm/pwm-meson.c | 53 +++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 53 insertions(+)
+Changes in v5:
+- Add devm_add_action_or_reset for free clk when unloading.
+- Replace the underscores of node name with dashes.
+- Link to v4: https://lore.kernel.org/r/20240424-s4-pwm-v4-0-ee22effd40d0@amlogic.com
 
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index b2f97dfb01bb..9fea28a51921 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -460,6 +460,51 @@ static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
- 	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
- }
- 
-+static void meson_pwm_s4_put_clk(void *data)
-+{
-+	int i;
-+	struct meson_pwm *meson;
-+	struct meson_pwm_channel *channel;
-+
-+	meson = (struct meson_pwm *)data;
-+	for (i = 0; i < MESON_NUM_PWMS; i++) {
-+		channel = &meson->channels[i];
-+		clk_put(channel->clk);
-+	}
-+}
-+
-+static int meson_pwm_init_channels_meson_s4(struct pwm_chip *chip)
-+{
-+	int i, ret;
-+	struct device *dev = pwmchip_parent(chip);
-+	struct device_node *np = dev->of_node;
-+	struct meson_pwm *meson = to_meson_pwm(chip);
-+	struct meson_pwm_channel *channel;
-+
-+	for (i = 0; i < MESON_NUM_PWMS; i++) {
-+		channel = &meson->channels[i];
-+		channel->clk = of_clk_get(np, i);
-+		if (IS_ERR(channel->clk)) {
-+			ret = PTR_ERR(channel->clk);
-+			dev_err_probe(dev, ret, "Failed to get clk\n");
-+			goto err;
-+		}
-+	}
-+	ret = devm_add_action_or_reset(dev, meson_pwm_s4_put_clk, meson);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+
-+err:
-+	while (--i >= 0) {
-+		channel = &meson->channels[i];
-+		clk_put(channel->clk);
-+	}
-+
-+	return ret;
-+}
-+
- static const struct meson_pwm_data pwm_meson8b_data = {
- 	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
- 	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-@@ -498,6 +543,10 @@ static const struct meson_pwm_data pwm_meson8_v2_data = {
- 	.channels_init = meson_pwm_init_channels_meson8b_v2,
- };
- 
-+static const struct meson_pwm_data pwm_meson_s4_data = {
-+	.channels_init = meson_pwm_init_channels_meson_s4,
-+};
-+
- static const struct of_device_id meson_pwm_matches[] = {
- 	{
- 		.compatible = "amlogic,meson8-pwm-v2",
-@@ -536,6 +585,10 @@ static const struct of_device_id meson_pwm_matches[] = {
- 		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
- 		.data = &pwm_g12a_ao_cd_data
- 	},
-+	{
-+		.compatible = "amlogic,meson-s4-pwm",
-+		.data = &pwm_meson_s4_data
-+	},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, meson_pwm_matches);
+---
+Junyi Zhao (2):
+      pwm: meson: Add support for Amlogic S4 PWM
+      arm64: dts: amlogic: Add Amlogic S4 PWM
 
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 207 ++++++++++++++++++++++++++++++
+ drivers/pwm/pwm-meson.c                   |  53 ++++++++
+ 2 files changed, 260 insertions(+)
+---
+base-commit: 124cfbcd6d185d4f50be02d5f5afe61578916773
+change-id: 20240424-s4-pwm-2d709986caee
+
+Best regards,
 -- 
-2.37.1
+Kelvin Zhang <kelvin.zhang@amlogic.com>
 
 
 
