@@ -4,44 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 220E8C25B74
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2024 19:08:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12427C25B74
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2024 19:25:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=C8WFJ4u+/Hl9kgqfJPRzD2aLyAcDRz9Dkl8++cjoCxQ=; b=HZ3rzdqHG4vPgi
-	91R5EkxNNgT8cjcSuZ7uplSTaMg8HjcxKH7tzUTDfP9rYnEPsv2xxjoOYnJw3oxCIVL01PcPql9Ch
-	Uw/rxdSYXKunvLwKQzz/+BLQu/Pqd55rRIdUfjtKZEhYYSVa9tKSotkzAHo8RyZt6KBXMcElvCQxZ
-	dV3sy9xXvhTVTB6+YYndR7TZ5XfU26aFeMC+jtuzol9aPnYvuShxEd4+ZMYnpEF3nNdBpHnyeiOeY
-	y4LPpfVjN4aOnmxyQ7eSRudPTbEtjXtG5L9IMkWzXGGRH58ShQjtMU+RR7j5bJa72+/7GBEiWIrK7
-	/CsDwtD5heewz2tisV6g==;
+	List-Owner; bh=2gqfjaVj2h+e5+ivUvm0iYVPYwWApTig6J6HLGV+lHw=; b=bEUOSS1pCGGrL3
+	xOMdn8h2nMYy1jUs+TwFcn5PN7Ce65iFUxqzbYAS53EqtTSBPbP049NdgIhe6GITILy3/scMPfmgv
+	gh2Ut3YWVHgtbnvP9o2IKffLJVQzckSq0aOoB/QUOUwx6dvWaf923cdisLafP8LpP9flzlaeAbBAa
+	LC0VcyD8XlxtsdyCBgUJhD7RD1CFJtUbRk4vlWNOh57Y+S/q+a65+UPssECckD6nOkRJeQtRm3I5C
+	aQTeH1m2Sua6sje5zHhTXqh4tl1IVYTIIPPRE4KuuPtuudDKeoH2M3vYQjGINcW2f1LVptlUrAivD
+	A2oa5syl021LtZG1skww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s9UqM-00000000s2K-3bRM;
-	Tue, 21 May 2024 19:08:14 +0000
-Received: from vps0.lunn.ch ([156.67.10.101])
+	id 1s9V6t-00000000tx1-3lJs;
+	Tue, 21 May 2024 19:25:19 +0000
+Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s9UqJ-00000000s13-1b6Q;
-	Tue, 21 May 2024 19:08:12 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Aa0cLQv6EXqOfkPotmVcZhdZiy3itIGTrTeuDAF0fks=; b=JugbqVueUMPEOzD6J0OMO/9EUb
-	HVQwA9KIYPYMQBLTwCMP3MfSLThC4zef/dXWPErhjdUyKOEoNvSM0TDt6f0GEJ3OPJV2j4vp9DjJ7
-	DJOGnhcRqdyekj0IducRHiff0mImOKiA/wvJGV6qXI7kdd6uo86LRDtuWuRWdQ8YxBK0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1s9Uq1-00FmSO-8x; Tue, 21 May 2024 21:07:53 +0200
-Date: Tue, 21 May 2024 21:07:53 +0200
-From: Andrew Lunn <andrew@lunn.ch>
+	id 1s9V6q-00000000tw5-0GrA;
+	Tue, 21 May 2024 19:25:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=ZFRPG/s8Udv0lTg44aiXcb7QGspIA/wWM/HaBDg/rf0=; b=vRjQkKgGcgQ8JjB+noOjPk4YvA
+	hNS7dUTomZslnzQzvqOklJZU7SP8WWxR63hLGSC1tqfepoehuvV1U/gRRNpWDz4lh2gCVwITQFtKu
+	hO+U+omMCnpejxzzOw3itoUi7JIgQB9qr/COAKHRkky3tmBhTSpe+5UsBdsKYzbf3jx0wE4w8KQ/K
+	Tuu4GQvfGh3xp3rCPIHNI1KYi6v4BqEcKqWGIM63pMHwo7ef+DlDuCZ2J06VfXGoNUF0xDWXwuf1f
+	9aB0rK3gqCR5DBoT1dGWt8k+a/lTa9KlHZdLd5pyw/CYUPXRPoM+1IA+H5EM3xwC1vlUJdjRlERPh
+	y9xNIX0A==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:49428)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1s9V6Q-0002hi-1S;
+	Tue, 21 May 2024 20:24:50 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1s9V6Q-0005S3-5B; Tue, 21 May 2024 20:24:50 +0100
+Date: Tue, 21 May 2024 20:24:50 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
 To: Da Xue <da@libre.computer>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
 	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
@@ -53,14 +62,14 @@ Cc: Heiner Kallweit <hkallweit1@gmail.com>,
 	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
 	linux-stable <stable@vger.kernel.org>
 Subject: Re: [PATCH] net: mdio: meson-gxl set 28th bit in eth_reg2
-Message-ID: <8593ae57-d5ec-4b89-899d-4619d7767f81@lunn.ch>
+Message-ID: <Zkz1Au7njclh1r3g@shell.armlinux.org.uk>
 References: <CACqvRUbx-KsrMwCHYQS6eGXBohynD8Q1CQx=8=9VhqZi13BCQQ@mail.gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
 In-Reply-To: <CACqvRUbx-KsrMwCHYQS6eGXBohynD8Q1CQx=8=9VhqZi13BCQQ@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240521_120811_440777_7DCA0C75 
-X-CRM114-Status: GOOD (  10.43  )
+X-CRM114-CacheID: sfid-20240521_122516_437093_3A3D29B7 
+X-CRM114-Status: GOOD (  11.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,33 +87,24 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On Tue, May 21, 2024 at 02:56:45PM -0400, Da Xue wrote:
-> This bit is necessary to enable packets on the interface. Without this
-> bit set, ethernet behaves as if it is working but no activity occurs.
+> @@ -65,7 +66,7 @@ static void gxl_enable_internal_mdio(struct
+> gxl_mdio_mux *priv)
+>   * The only constraint is that it must match the one in
+>   * drivers/net/phy/meson-gxl.c to properly match the PHY.
+>   */
+> - writel(FIELD_PREP(REG2_PHYID, EPHY_GXL_ID),
+> + writel(REG2_RESERVED_28 | FIELD_PREP(REG2_PHYID, EPHY_GXL_ID),
+>          priv->regs + ETH_REG2);
 > 
-> The vendor SDK sets this bit along with the PHY_ID bits. u-boot will set
-> this bit as well but if u-boot is not compiled with networking, the
-> interface will not work.
-> 
-> Fixes: 9a24e1ff4326 ("net: mdio: add amlogic gxl mdio mux support");
-> 
-> Signed-off-by: Da Xue <da@libre.computer>
+>   /* Enable the internal phy */
 
-Please don't put blank lines between tags.
+In addition to what Andrew said, you need to look at how you're sending
+patches - this patch looks like it has been whitespace damaged, which
+means it can't be applied.
 
-If you intend that this patch is backported to stable, please add
-
-Cc: stable@vger.kernel.org
-
-Also please read:
-
-https://www.kernel.org/doc/html/latest/process/maintainer-netdev.html#netdev-faq
-
-particularly the bit about indicating the tree in the Subject:
-
-    Andrew
-
----
-pw-bot: cr
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
 _______________________________________________
 linux-amlogic mailing list
