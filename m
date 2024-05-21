@@ -4,78 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5C0BC25B74
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2024 18:57:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 220E8C25B74
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2024 19:08:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=l9AvoiyXjvJ6EzMk4vNkun1NHaoKG7CeccBlp7D8/rY=; b=WYLDnZTv6IlJkS
-	eNNkEYwUBja54bOeEAG1n14IgsqY/3cNuKg7xjXUE9uuU8bq8m15gu3BWP/gwU5vRFv0OecPiNLwH
-	MMXgr/Qhsz/llhVGImAaQw982CCV056BU0Yhj2pzS/r6P8o8v11cXbTrFWTJ/I3U1ig/2dtrM7Uw4
-	+aELFBFCxuspTsrOFNtJchqu7pbFlyEKIWJ10EYRrWsCs9cBepDqHsY5/48jqskw4Moz+cy0UnXS1
-	gkcisrdlSAaWtE00qvRO24zkcTZz8rqLL5az7Q4D+LrMHwPMj5Y9bXj3sAS5qzZ2bIUGBQ0iPRDNB
-	QGpd1WSsX0fYr6aL2k9A==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=C8WFJ4u+/Hl9kgqfJPRzD2aLyAcDRz9Dkl8++cjoCxQ=; b=HZ3rzdqHG4vPgi
+	91R5EkxNNgT8cjcSuZ7uplSTaMg8HjcxKH7tzUTDfP9rYnEPsv2xxjoOYnJw3oxCIVL01PcPql9Ch
+	Uw/rxdSYXKunvLwKQzz/+BLQu/Pqd55rRIdUfjtKZEhYYSVa9tKSotkzAHo8RyZt6KBXMcElvCQxZ
+	dV3sy9xXvhTVTB6+YYndR7TZ5XfU26aFeMC+jtuzol9aPnYvuShxEd4+ZMYnpEF3nNdBpHnyeiOeY
+	y4LPpfVjN4aOnmxyQ7eSRudPTbEtjXtG5L9IMkWzXGGRH58ShQjtMU+RR7j5bJa72+/7GBEiWIrK7
+	/CsDwtD5heewz2tisV6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s9UfX-00000000qR0-3kLn;
-	Tue, 21 May 2024 18:57:03 +0000
-Received: from mail-lj1-x22a.google.com ([2a00:1450:4864:20::22a])
+	id 1s9UqM-00000000s2K-3bRM;
+	Tue, 21 May 2024 19:08:14 +0000
+Received: from vps0.lunn.ch ([156.67.10.101])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s9UfU-00000000qPu-0JBU
-	for linux-amlogic@lists.infradead.org;
-	Tue, 21 May 2024 18:57:01 +0000
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2e3b1b6e9d1so67200091fa.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 21 May 2024 11:56:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=libre.computer; s=google; t=1716317816; x=1716922616; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=wK5e67Jdl5vfjzEOu3Eo6/JgeP8I4p2OioGReqzd8h8=;
-        b=JmmRy06N6nYnUXCY1TeH0/5m9A/6l6Eh/g8cfjDxrIbmU/+MWMH/MIJ+ZJ4i7d2uY4
-         WLCtY81RKsZQSx6imAEJLCCm5n3dq42HqPgMgJXUmRc5GK6e2n/E0CWm2tKye/a8Tdcd
-         uag5r/HI9E+3Nw/kBKmOvgaIhk8LGrP9CiVpgRGKsNvH2Ae1NTZ48sqijEZB5gYU8Jqt
-         Fn9hvQi2DlizdPnc/cLZw4il3AqLsPhTBtch6sbHOOTryU7MD8VKOGGEyldY0fgKkZfm
-         w7b/BV7z91VPQjBpJ1I1P/q/sVCB3iW/JisAWh1ufSjbUEHnDn4KSMqTowuC2NbtrpwZ
-         po9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716317816; x=1716922616;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wK5e67Jdl5vfjzEOu3Eo6/JgeP8I4p2OioGReqzd8h8=;
-        b=RG8m9fHTsOy7Uuu4EsMYT0QFcm5rMH20Q5NTP5kxTeJaJWl7fSvgA6IvHPWoDsmYhe
-         /qf/xbzXzZlGimI1yoQC2vuBhJROmg7SVohvWDrQn/73+1SJuBnyDjf59cYj0Ck5dBPn
-         3pkPUGUO76X1GAVJ+vIRt3c5MEKDkdBvo0ND+oyPrBOBh1q+p4Hrp1ZeRnHzUfOmrflc
-         bf3wb76uinJ9wb9lyr3Ym83JzrhFNo0dvqHnZ0kHNfViC+yT+Rk5C0Ax1weczeG6n1ov
-         VwrBKrTErJsmuL+l4VmIxZVi6dF7F5CV+Jh0iRd1KjnE9MlD/mHaP8zlPL56+mHbf/rp
-         Pozw==
-X-Forwarded-Encrypted: i=1; AJvYcCWtWP9Nfk22NjAJUx2Gh/P4WlACW6Fj4bZ7fqy8/m9SYmMVlxSR7de9t4NbyBqGIyf9P1BQL2AxOB6/85mRTY5oX4IwZx+ObqhNsoBsbd1lwJk=
-X-Gm-Message-State: AOJu0Yy9DR5sTLQHmU3KcKtEgL3HElZtU9v3EuYG05sMM0blls/ZqWw3
-	f5r9+wZWMpm0u32boF9fthLbv5eUxzNfJtZLjHpb/sw/wl+CrLmecesofLbp/Rmi73ok3KMiyeO
-	Fp9esI6mdUFqp/DL/QfEuMJF8TjbJPl+8+Guk
-X-Google-Smtp-Source: AGHT+IEqPa+du8fjYKGXkpILJkupqk3Qb0cGifkvSVqA1SHvtN7Dt3pRQ9a8SeREQmZzpASy17m8MSkPD92GjkUvBm8=
-X-Received: by 2002:a2e:a58b:0:b0:2e2:891d:5f62 with SMTP id
- 38308e7fff4ca-2e51ff6692amr237140221fa.29.1716317816220; Tue, 21 May 2024
- 11:56:56 -0700 (PDT)
+	id 1s9UqJ-00000000s13-1b6Q;
+	Tue, 21 May 2024 19:08:12 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Aa0cLQv6EXqOfkPotmVcZhdZiy3itIGTrTeuDAF0fks=; b=JugbqVueUMPEOzD6J0OMO/9EUb
+	HVQwA9KIYPYMQBLTwCMP3MfSLThC4zef/dXWPErhjdUyKOEoNvSM0TDt6f0GEJ3OPJV2j4vp9DjJ7
+	DJOGnhcRqdyekj0IducRHiff0mImOKiA/wvJGV6qXI7kdd6uo86LRDtuWuRWdQ8YxBK0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1s9Uq1-00FmSO-8x; Tue, 21 May 2024 21:07:53 +0200
+Date: Tue, 21 May 2024 21:07:53 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Da Xue <da@libre.computer>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-stable <stable@vger.kernel.org>
+Subject: Re: [PATCH] net: mdio: meson-gxl set 28th bit in eth_reg2
+Message-ID: <8593ae57-d5ec-4b89-899d-4619d7767f81@lunn.ch>
+References: <CACqvRUbx-KsrMwCHYQS6eGXBohynD8Q1CQx=8=9VhqZi13BCQQ@mail.gmail.com>
 MIME-Version: 1.0
-From: Da Xue <da@libre.computer>
-Date: Tue, 21 May 2024 14:56:45 -0400
-Message-ID: <CACqvRUbx-KsrMwCHYQS6eGXBohynD8Q1CQx=8=9VhqZi13BCQQ@mail.gmail.com>
-Subject: [PATCH] net: mdio: meson-gxl set 28th bit in eth_reg2
-To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, netdev@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Cc: linux-stable <stable@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CACqvRUbx-KsrMwCHYQS6eGXBohynD8Q1CQx=8=9VhqZi13BCQQ@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240521_115700_417241_EF98EF39 
-X-CRM114-Status: GOOD (  10.97  )
+X-CRM114-CacheID: sfid-20240521_120811_440777_7DCA0C75 
+X-CRM114-Status: GOOD (  10.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,45 +77,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This bit is necessary to enable packets on the interface. Without this
-bit set, ethernet behaves as if it is working but no activity occurs.
+On Tue, May 21, 2024 at 02:56:45PM -0400, Da Xue wrote:
+> This bit is necessary to enable packets on the interface. Without this
+> bit set, ethernet behaves as if it is working but no activity occurs.
+> 
+> The vendor SDK sets this bit along with the PHY_ID bits. u-boot will set
+> this bit as well but if u-boot is not compiled with networking, the
+> interface will not work.
+> 
+> Fixes: 9a24e1ff4326 ("net: mdio: add amlogic gxl mdio mux support");
+> 
+> Signed-off-by: Da Xue <da@libre.computer>
 
-The vendor SDK sets this bit along with the PHY_ID bits. u-boot will set
-this bit as well but if u-boot is not compiled with networking, the
-interface will not work.
+Please don't put blank lines between tags.
 
-Fixes: 9a24e1ff4326 ("net: mdio: add amlogic gxl mdio mux support");
+If you intend that this patch is backported to stable, please add
 
-Signed-off-by: Da Xue <da@libre.computer>
+Cc: stable@vger.kernel.org
+
+Also please read:
+
+https://www.kernel.org/doc/html/latest/process/maintainer-netdev.html#netdev-faq
+
+particularly the bit about indicating the tree in the Subject:
+
+    Andrew
+
 ---
- drivers/net/mdio/mdio-mux-meson-gxl.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/mdio/mdio-mux-meson-gxl.c
-b/drivers/net/mdio/mdio-mux-meson-gxl.c
-index 89554021b5cc..b2bd57f54034 100644
---- a/drivers/net/mdio/mdio-mux-meson-gxl.c
-+++ b/drivers/net/mdio/mdio-mux-meson-gxl.c
-@@ -17,6 +17,7 @@
- #define  REG2_LEDACT GENMASK(23, 22)
- #define  REG2_LEDLINK GENMASK(25, 24)
- #define  REG2_DIV4SEL BIT(27)
-+#define  REG2_RESERVED_28 BIT(28)
- #define  REG2_ADCBYPASS BIT(30)
- #define  REG2_CLKINSEL BIT(31)
- #define ETH_REG3 0x4
-@@ -65,7 +66,7 @@ static void gxl_enable_internal_mdio(struct
-gxl_mdio_mux *priv)
-  * The only constraint is that it must match the one in
-  * drivers/net/phy/meson-gxl.c to properly match the PHY.
-  */
-- writel(FIELD_PREP(REG2_PHYID, EPHY_GXL_ID),
-+ writel(REG2_RESERVED_28 | FIELD_PREP(REG2_PHYID, EPHY_GXL_ID),
-         priv->regs + ETH_REG2);
-
-  /* Enable the internal phy */
--- 
-2.39.2
+pw-bot: cr
 
 _______________________________________________
 linux-amlogic mailing list
