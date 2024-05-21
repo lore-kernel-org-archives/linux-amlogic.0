@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C972AC25B74
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2024 08:32:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CED16C25B75
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2024 08:32:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=poMm0dn2eRhahz+BO78h809lremd58Rf/bJ8w8OPvHg=; b=maMLxAJE6S3qvi
-	+vZjPotuaGenrcgpmPvgOdCdS89KDx2cpD5nrAMaCsPQ/0o5rFIZAYS4ahwC94pYmwVU70SmxCYa3
-	FLnMZSD+j6hTqDCxafhN1f0pDTAzFrIcvxrpf3gNep/sdbYZmENUIL3fAV2lk7BJ/2ecmVowMQ3KZ
-	868kQOLNwIXFtennBJwzOu+oxKzx8olQkN/0i3Haa/D5z87S+oiE8JUD6dciaZBD67LFAISLb4Qya
-	6PwG0514yQnaAsDqaN8E801Y072Xk+b4OfpveNQpXTXCVHBGuBSkOfvQbhaHMppzm5qUUHVPl7s1o
-	to2Qbn3pnNGvTPwkHq0g==;
+	List-Owner; bh=FQWYFuOkHUnrfQqK9IoPK7kJRAcfUpdWUfs6JCiS3FQ=; b=v3Qlw5Ol/q68Bd
+	M2JNXOwoEQh/cQBgxZBjFgJF3jRC6uQsyVxAoXyRugkpdMrzNy1ZJX7xrsX535n3S2KIm7Os94Cio
+	uxo9FtoECKXe9AsFUC8tSvKVBTeroDxFTDxTgltC+UhDHFp2GrHYe+0qk2qBJP7GaI8An1PPVUv0u
+	yyNLhKnu8EEdpY5eszEGQWv2eyiiohEGaPimNTWKvopWrX8gFp2IjZIcPUrprxfHjL3uHpBuGDfse
+	jjW4zHk3ILCfvgjOHwslvagHYECD0VpZyoa7CgRPrXk9XFvHT0z9qicZjJwGFjXSLUj04DNzQyVmE
+	CHdxaF0fjGWRSNY5AkWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s9Kul-0000000Glja-1Zt9;
-	Tue, 21 May 2024 08:32:07 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
-	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s9Kuh-0000000Glgo-03HH;
+	id 1s9Kuj-0000000GliO-3by5;
 	Tue, 21 May 2024 08:32:05 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
+	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1s9Kuf-0000000Glgn-3hLv;
+	Tue, 21 May 2024 08:32:03 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id A50F5CE0EBF;
+	by sin.source.kernel.org (Postfix) with ESMTP id 50338CE0EBC;
 	Tue, 21 May 2024 08:31:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 7CFC8C32782;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6E74EC4AF07;
 	Tue, 21 May 2024 08:31:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1716280318;
-	bh=yjaY+ZWB/r8AWrG1fpHU57xxaI1jWMEra2VrDdLZwM4=;
+	bh=FvFfKXmL892C/19FVjh91A40ta7Bup2GELFyNP6Jycw=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=GwYluKuL+2IUlfcQ7Bky6JoT5VuXWvi5ncILmD81WxU5bA5Ez1o1GZy2NWifu8c6w
-	 AEyx6KIkjJBernEA+VLDU5VUMNi9EktlCqxmMP9sY5EOHO6YvLgLVkQzMoRGtiVJtW
-	 anJMsqCLe1UZGPCnqHVBs6kOXqxefQ3/4yeOKPCu547D9kA/MACvti1KERhKWMmD6r
-	 CvmQOWgOTjGJqFNQnhnv9+Ehx2EmLxoz7YGWBxdIMrurW6coEg9u+9Zv0mmsgyTmf7
-	 ee/qxufCy5mQD1m3w9+8yARxeZxFKBo2rYPHoNzLUlYChbQGYH/KR5qoPDGgztCc1u
-	 pRpBn7yRjL0dw==
+	b=Bx3PYm6SGeIJCgWyRBd4NJFtPuc9zvFFTpshrrRhzpoMWryJgiflnH0ZXAaURqRrl
+	 xFjlA9U7Yj2osmMIb5b1zohISb/fOmn1DNUAztFd50SM2/c7xmmWAMQNPS5xEHtbYV
+	 Qw3WasyUuGb7lSwDCUvsMHbDrZ0o/jZAuEU5qc9tLYdhmDWR+60WeYlpJ8bl+bDk9Z
+	 /kCtpSVQBmQXt3Q80Sdo7ZlCRIFpqSmEgU34q3jGW4UXDUSZIulvieG5on7FULVhS/
+	 Oud7Ah9FPnsQ7AMwRdfin5r5nzaHMUO4k6tuys4/zjINhKQB3E+Jyube3+tkGDvO3k
+	 bE3bA+eGEkNpw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6A275C25B74;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 59678C25B78;
 	Tue, 21 May 2024 08:31:58 +0000 (UTC)
 From: Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>
-Date: Tue, 21 May 2024 16:31:35 +0800
-Subject: [PATCH v5 2/2] arm64: dts: amlogic: Add Amlogic S4 PWM
+Date: Tue, 21 May 2024 16:31:34 +0800
+Subject: [PATCH v5 1/2] pwm: meson: Add support for Amlogic S4 PWM
 MIME-Version: 1.0
-Message-Id: <20240521-s4-pwm-v5-2-0c91f5fa32cd@amlogic.com>
+Message-Id: <20240521-s4-pwm-v5-1-0c91f5fa32cd@amlogic.com>
 References: <20240521-s4-pwm-v5-0-0c91f5fa32cd@amlogic.com>
 In-Reply-To: <20240521-s4-pwm-v5-0-0c91f5fa32cd@amlogic.com>
 To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
@@ -62,20 +62,19 @@ Cc: linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  devicetree@vger.kernel.org, Kelvin Zhang <kelvin.zhang@amlogic.com>, 
  Junyi Zhao <junyi.zhao@amlogic.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1716280316; l=5107;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1716280316; l=2531;
  i=kelvin.zhang@amlogic.com; s=20240329; h=from:subject:message-id;
- bh=5U3ZfvXqlCsNqXvPvEl3sOq8j8Habn9zsVZgLm81vao=;
- b=VuJ8JSN53fe4qCKxBNROGp19H9cncXyicg5TF2ALwOQDBZbI61YplGZmPAelAyY3UapyoJl34
- qvsE3DCst64A6f5T8xhAcMgBG475Ik8W/F8XE5lVN4Rjc11NNL7nisH
+ bh=TO8jk1KfAyzCYn3EQLKzqT09OdAOiA4QmoDLOLbNW40=;
+ b=5mmETv38pNe+0fspL2pwrWOlZHTqe3xBoP5S/HyPB3sSldBE+iqroQeEX7+lrj6B8K/8KMeGU
+ b0igt5ehiIKBiBuNmWcxyEcow9PXSdNQWtU4PVQZpKlNYdMUHcpPyta
 X-Developer-Key: i=kelvin.zhang@amlogic.com; a=ed25519;
  pk=pgnle7HTNvnNTcOoGejvtTC7BJT30HUNXfMHRRXSylI=
 X-Endpoint-Received: by B4 Relay for kelvin.zhang@amlogic.com/20240329 with
  auth_id=148
 X-Original-From: Kelvin Zhang <kelvin.zhang@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240521_013204_547083_038378BD 
-X-CRM114-Status: UNSURE (   8.76  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240521_013202_515793_AE0688A2 
+X-CRM114-Status: GOOD (  15.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,240 +94,92 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Junyi Zhao <junyi.zhao@amlogic.com>
 
-Add device nodes for PWM_AB, PWM_CD, PWM_EF, PWM_GH and PWM_IJ
-along with GPIO PIN configs of each channel.
+This patch adds support for Amlogic S4 PWM.
 
 Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
 Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 207 ++++++++++++++++++++++++++++++
- 1 file changed, 207 insertions(+)
+ drivers/pwm/pwm-meson.c | 53 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 53 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index 10896f9df682..d0c170368892 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -292,6 +292,168 @@ mux {
- 					};
- 				};
+diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+index b2f97dfb01bb..9fea28a51921 100644
+--- a/drivers/pwm/pwm-meson.c
++++ b/drivers/pwm/pwm-meson.c
+@@ -460,6 +460,51 @@ static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
+ 	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
+ }
  
-+				pwm_a_pins1: pwm-a-pins1 {
-+					mux {
-+						groups = "pwm_a_d";
-+						function = "pwm_a";
-+					};
-+				};
++static void meson_pwm_s4_put_clk(void *data)
++{
++	int i;
++	struct meson_pwm *meson;
++	struct meson_pwm_channel *channel;
 +
-+				pwm_a_pins2: pwm-a-pins2 {
-+					mux {
-+						groups = "pwm_a_x";
-+						function = "pwm_a";
-+					};
-+				};
++	meson = (struct meson_pwm *)data;
++	for (i = 0; i < MESON_NUM_PWMS; i++) {
++		channel = &meson->channels[i];
++		clk_put(channel->clk);
++	}
++}
 +
-+				pwm_a_pins: pwm-a-pins {
-+					mux {
-+						groups = "pwm_a_d";
-+						function = "pwm_a";
-+					};
-+				};
++static int meson_pwm_init_channels_meson_s4(struct pwm_chip *chip)
++{
++	int i, ret;
++	struct device *dev = pwmchip_parent(chip);
++	struct device_node *np = dev->of_node;
++	struct meson_pwm *meson = to_meson_pwm(chip);
++	struct meson_pwm_channel *channel;
 +
-+				pwm_b_pins1: pwm-b-pins1 {
-+					mux {
-+						groups = "pwm_b_d";
-+						function = "pwm_b";
-+					};
-+				};
++	for (i = 0; i < MESON_NUM_PWMS; i++) {
++		channel = &meson->channels[i];
++		channel->clk = of_clk_get(np, i);
++		if (IS_ERR(channel->clk)) {
++			ret = PTR_ERR(channel->clk);
++			dev_err_probe(dev, ret, "Failed to get clk\n");
++			goto err;
++		}
++	}
++	ret = devm_add_action_or_reset(dev, meson_pwm_s4_put_clk, meson);
++	if (ret)
++		return ret;
 +
-+				pwm_b_pins2: pwm-b-pins2 {
-+					mux {
-+						groups = "pwm_b_x";
-+						function = "pwm_b";
-+					};
-+				};
++	return 0;
 +
-+				pwm_c_pins1: pwm-c-pins1 {
-+					mux {
-+						groups = "pwm_c_d";
-+						function = "pwm_c";
-+					};
-+				};
++err:
++	while (--i >= 0) {
++		channel = &meson->channels[i];
++		clk_put(channel->clk);
++	}
 +
-+				pwm_c_pins2: pwm-c-pins2 {
-+					mux {
-+						groups = "pwm_c_x";
-+						function = "pwm_c";
-+					};
-+				};
++	return ret;
++}
 +
-+				pwm_d_pins1: pwm-d-pins1 {
-+					mux {
-+						groups = "pwm_d_d";
-+						function = "pwm_d";
-+					};
-+				};
-+
-+				pwm_d_pins2: pwm-d-pins2 {
-+					mux {
-+						groups = "pwm_d_h";
-+						function = "pwm_d";
-+					};
-+				};
-+
-+				pwm_e_pins1: pwm-e-pins1 {
-+					mux {
-+						groups = "pwm_e_x";
-+						function = "pwm_e";
-+						drive-strength-microamp = <500>;
-+					};
-+				};
-+
-+				pwm_e_pins2: pwm-e-pins2 {
-+					mux {
-+						groups = "pwm_e_z";
-+						function = "pwm_e";
-+					};
-+				};
-+
-+				pwm_f_pins1: pwm-f-pins1 {
-+					mux {
-+						groups = "pwm_f_x";
-+						function = "pwm_f";
-+					};
-+				};
-+
-+				pwm_f_pins2: pwm-f-pins2 {
-+					mux {
-+						groups = "pwm_f_z";
-+						function = "pwm_f";
-+					};
-+				};
-+
-+				pwm_g_pins1: pwm-g-pins1 {
-+					mux {
-+						groups = "pwm_g_d";
-+						function = "pwm_g";
-+					};
-+				};
-+
-+				pwm_g_pins2: pwm-g-pins2 {
-+					mux {
-+						groups = "pwm_g_z";
-+						function = "pwm_g";
-+					};
-+				};
-+
-+				pwm_h_pins: pwm-h-pins {
-+					mux {
-+						groups = "pwm_h";
-+						function = "pwm_h";
-+					};
-+				};
-+
-+				pwm_i_pins1: pwm-i-pins1 {
-+					mux {
-+						groups = "pwm_i_d";
-+						function = "pwm_i";
-+					};
-+				};
-+
-+				pwm_i_pins2: pwm-i-pins2 {
-+					mux {
-+						groups = "pwm_i_h";
-+						function = "pwm_i";
-+					};
-+				};
-+
-+				pwm_j_pins: pwm-j-pins {
-+					mux {
-+						groups = "pwm_j";
-+						function = "pwm_j";
-+					};
-+				};
-+
-+				pwm_a_hiz_pins: pwm-a-hiz-pins {
-+					mux {
-+						groups = "pwm_a_hiz";
-+						function = "pwm_a_hiz";
-+					};
-+				};
-+
-+				pwm_b_hiz_pins: pwm-b-hiz-pins {
-+					mux {
-+						groups = "pwm_b_hiz";
-+						function = "pwm_b_hiz";
-+					};
-+				};
-+
-+				pwm_c_hiz_pins: pwm-c-hiz-pins {
-+					mux {
-+						groups = "pwm_c_hiz";
-+						function = "pwm_b_hiz";
-+					};
-+				};
-+
-+				pwm_g_hiz_pins: pwm-g-hiz-pins {
-+					mux {
-+						groups = "pwm_g_hiz";
-+						function = "pwm_g_hiz";
-+					};
-+				};
-+
- 				nand_pins: nand-pins {
- 					mux {
- 						groups = "emmc_nand_d0",
-@@ -449,6 +611,51 @@ i2c4: i2c@6e000 {
- 				status = "disabled";
- 			};
+ static const struct meson_pwm_data pwm_meson8b_data = {
+ 	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
+ 	.channels_init = meson_pwm_init_channels_meson8b_legacy,
+@@ -498,6 +543,10 @@ static const struct meson_pwm_data pwm_meson8_v2_data = {
+ 	.channels_init = meson_pwm_init_channels_meson8b_v2,
+ };
  
-+			pwm_ab: pwm@58000 {
-+				compatible = "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x58000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_A>,
-+						<&clkc_periphs CLKID_PWM_B>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
++static const struct meson_pwm_data pwm_meson_s4_data = {
++	.channels_init = meson_pwm_init_channels_meson_s4,
++};
 +
-+			pwm_cd: pwm@5a000 {
-+				compatible = "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x5a000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_C>,
-+						<&clkc_periphs CLKID_PWM_D>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_ef: pwm@5c000 {
-+				compatible = "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x5c000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_E>,
-+						<&clkc_periphs CLKID_PWM_F>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_gh: pwm@5e000 {
-+				compatible = "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x5e000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_G>,
-+						<&clkc_periphs CLKID_PWM_H>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_ij: pwm@60000 {
-+				compatible = "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x60000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_I>,
-+						<&clkc_periphs CLKID_PWM_J>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
- 			nand: nand-controller@8c800 {
- 				compatible = "amlogic,meson-axg-nfc";
- 				reg = <0x0 0x8c800 0x0 0x100>, <0x0 0x8c000 0x0 0x4>;
+ static const struct of_device_id meson_pwm_matches[] = {
+ 	{
+ 		.compatible = "amlogic,meson8-pwm-v2",
+@@ -536,6 +585,10 @@ static const struct of_device_id meson_pwm_matches[] = {
+ 		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
+ 		.data = &pwm_g12a_ao_cd_data
+ 	},
++	{
++		.compatible = "amlogic,meson-s4-pwm",
++		.data = &pwm_meson_s4_data
++	},
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, meson_pwm_matches);
 
 -- 
 2.37.1
