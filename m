@@ -4,94 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B452FC25B74
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2024 18:50:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5C0BC25B74
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2024 18:57:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HVuQqv0AezGKYRV5Sw2aEOS0HFtxHIYnjR2ejD8+c+Y=; b=AZq/ivpJ1ZD/KM
-	CL/e1BCzyG1fmqf7nHdFowGnm+cQJHTizR267RzCmlFslD05XXpgBqFZyqAsyOA+I5nWiRN7BUcUP
-	oD1yQgaXq6Hb4L28Ow0FeTKUoYdgdWxKiEmQD97qxLU/4xecH+iE12r/Yrmw7uTsyUa3Lf+vysfnC
-	qH5LaPCLYLRiV1D/jP/ns/1KqplHpOjiELsEkvwLn0mt2t5CYMjVq8yOtUN9DeJumQSIyJYRppFaw
-	DTUan2sx50zncF4L9sf+OnD30fNb22R+P/4rp+S1LwpqQwVd63Hrd2PwFjv8laFijxYm9fWzYRTGT
-	Na9xA/SKfRKe0niG4/lw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=l9AvoiyXjvJ6EzMk4vNkun1NHaoKG7CeccBlp7D8/rY=; b=WYLDnZTv6IlJkS
+	eNNkEYwUBja54bOeEAG1n14IgsqY/3cNuKg7xjXUE9uuU8bq8m15gu3BWP/gwU5vRFv0OecPiNLwH
+	MMXgr/Qhsz/llhVGImAaQw982CCV056BU0Yhj2pzS/r6P8o8v11cXbTrFWTJ/I3U1ig/2dtrM7Uw4
+	+aELFBFCxuspTsrOFNtJchqu7pbFlyEKIWJ10EYRrWsCs9cBepDqHsY5/48jqskw4Moz+cy0UnXS1
+	gkcisrdlSAaWtE00qvRO24zkcTZz8rqLL5az7Q4D+LrMHwPMj5Y9bXj3sAS5qzZ2bIUGBQ0iPRDNB
+	QGpd1WSsX0fYr6aL2k9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s9UZ7-00000000piM-2G0r;
-	Tue, 21 May 2024 18:50:25 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1s9UfX-00000000qR0-3kLn;
+	Tue, 21 May 2024 18:57:03 +0000
+Received: from mail-lj1-x22a.google.com ([2a00:1450:4864:20::22a])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s9UZ3-00000000phf-21an;
-	Tue, 21 May 2024 18:50:24 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 2BB1F120005;
-	Tue, 21 May 2024 21:50:13 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2BB1F120005
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1716317413;
-	bh=layIMEI/pkFEQkS/PJJqywpWNGCjnNMloO+DcQbHo2s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=twf+yDEYeGnc8V8rmhzGZNgtuCb1UG/9wxtYXD7uOUAfw8PWdYoIvnxNDrni9YUZF
-	 pdhlqlgWSN6eAub5PMoPWf0CkTi682zSrm2bQ+7Qgr9MrbObX0iLFLuyCLueQ9Ugbg
-	 9CAuInykDuKE50mG2TcWmCwYFRL3Nuzh9/TLt5Jw20e53jw0Uf6pIqu/0NMNCTj+pQ
-	 //fUDTVaK9ycLN+YZwwGwPU5Dhl3HnMPC1HbzfUvEpDQTldPe8o9vK193kZ8/NOXc6
-	 22ziJVXKTDc4ybFOgsz7ATDrkpILVsDSgFRc+EDbDlfxu0dReGzhVTLeoZbL0fCvZo
-	 edxh+LI8gmvUw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 21 May 2024 21:50:12 +0300 (MSK)
-Received: from [172.28.65.135] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 21 May 2024 21:50:12 +0300
-Message-ID: <4fd9fe90-1da0-4b8c-8bc4-18b7a4dc38ab@salutedevices.com>
-Date: Tue, 21 May 2024 21:50:12 +0300
+	id 1s9UfU-00000000qPu-0JBU
+	for linux-amlogic@lists.infradead.org;
+	Tue, 21 May 2024 18:57:01 +0000
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2e3b1b6e9d1so67200091fa.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 21 May 2024 11:56:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=libre.computer; s=google; t=1716317816; x=1716922616; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=wK5e67Jdl5vfjzEOu3Eo6/JgeP8I4p2OioGReqzd8h8=;
+        b=JmmRy06N6nYnUXCY1TeH0/5m9A/6l6Eh/g8cfjDxrIbmU/+MWMH/MIJ+ZJ4i7d2uY4
+         WLCtY81RKsZQSx6imAEJLCCm5n3dq42HqPgMgJXUmRc5GK6e2n/E0CWm2tKye/a8Tdcd
+         uag5r/HI9E+3Nw/kBKmOvgaIhk8LGrP9CiVpgRGKsNvH2Ae1NTZ48sqijEZB5gYU8Jqt
+         Fn9hvQi2DlizdPnc/cLZw4il3AqLsPhTBtch6sbHOOTryU7MD8VKOGGEyldY0fgKkZfm
+         w7b/BV7z91VPQjBpJ1I1P/q/sVCB3iW/JisAWh1ufSjbUEHnDn4KSMqTowuC2NbtrpwZ
+         po9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716317816; x=1716922616;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wK5e67Jdl5vfjzEOu3Eo6/JgeP8I4p2OioGReqzd8h8=;
+        b=RG8m9fHTsOy7Uuu4EsMYT0QFcm5rMH20Q5NTP5kxTeJaJWl7fSvgA6IvHPWoDsmYhe
+         /qf/xbzXzZlGimI1yoQC2vuBhJROmg7SVohvWDrQn/73+1SJuBnyDjf59cYj0Ck5dBPn
+         3pkPUGUO76X1GAVJ+vIRt3c5MEKDkdBvo0ND+oyPrBOBh1q+p4Hrp1ZeRnHzUfOmrflc
+         bf3wb76uinJ9wb9lyr3Ym83JzrhFNo0dvqHnZ0kHNfViC+yT+Rk5C0Ax1weczeG6n1ov
+         VwrBKrTErJsmuL+l4VmIxZVi6dF7F5CV+Jh0iRd1KjnE9MlD/mHaP8zlPL56+mHbf/rp
+         Pozw==
+X-Forwarded-Encrypted: i=1; AJvYcCWtWP9Nfk22NjAJUx2Gh/P4WlACW6Fj4bZ7fqy8/m9SYmMVlxSR7de9t4NbyBqGIyf9P1BQL2AxOB6/85mRTY5oX4IwZx+ObqhNsoBsbd1lwJk=
+X-Gm-Message-State: AOJu0Yy9DR5sTLQHmU3KcKtEgL3HElZtU9v3EuYG05sMM0blls/ZqWw3
+	f5r9+wZWMpm0u32boF9fthLbv5eUxzNfJtZLjHpb/sw/wl+CrLmecesofLbp/Rmi73ok3KMiyeO
+	Fp9esI6mdUFqp/DL/QfEuMJF8TjbJPl+8+Guk
+X-Google-Smtp-Source: AGHT+IEqPa+du8fjYKGXkpILJkupqk3Qb0cGifkvSVqA1SHvtN7Dt3pRQ9a8SeREQmZzpASy17m8MSkPD92GjkUvBm8=
+X-Received: by 2002:a2e:a58b:0:b0:2e2:891d:5f62 with SMTP id
+ 38308e7fff4ca-2e51ff6692amr237140221fa.29.1716317816220; Tue, 21 May 2024
+ 11:56:56 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [DMARC error][DKIM error] [PATCH v5 1/2] pwm: meson: Add support
- for Amlogic S4 PWM
-To: <kelvin.zhang@amlogic.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
-	<u.kleine-koenig@pengutronix.de>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-pwm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Junyi Zhao <junyi.zhao@amlogic.com>,
-	"kernel@salutedevices.com" <kernel@salutedevices.com>
-References: <20240521-s4-pwm-v5-0-0c91f5fa32cd@amlogic.com>
- <20240521-s4-pwm-v5-1-0c91f5fa32cd@amlogic.com>
-Content-Language: en-US
-From: George Stark <gnstark@salutedevices.com>
-In-Reply-To: <20240521-s4-pwm-v5-1-0c91f5fa32cd@amlogic.com>
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 185399 [May 21 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_uf_ne_domains}, {Tracking_dating_text_input_url}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;www.kernel.org:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/05/21 16:20:00
-X-KSMG-LinksScanning: Clean, bases: 2024/05/21 17:40:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/21 08:41:00 #25230763
-X-KSMG-AntiVirus-Status: Clean, skipped
+From: Da Xue <da@libre.computer>
+Date: Tue, 21 May 2024 14:56:45 -0400
+Message-ID: <CACqvRUbx-KsrMwCHYQS6eGXBohynD8Q1CQx=8=9VhqZi13BCQQ@mail.gmail.com>
+Subject: [PATCH] net: mdio: meson-gxl set 28th bit in eth_reg2
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Russell King <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, netdev@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Cc: linux-stable <stable@vger.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240521_115022_258246_A80B4B13 
-X-CRM114-Status: GOOD (  23.65  )
+X-CRM114-CacheID: sfid-20240521_115700_417241_EF98EF39 
+X-CRM114-Status: GOOD (  10.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,126 +87,50 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Kelvin, Junyi
+This bit is necessary to enable packets on the interface. Without this
+bit set, ethernet behaves as if it is working but no activity occurs.
 
-On 5/21/24 11:31, Kelvin Zhang via B4 Relay wrote:
-> From: Junyi Zhao <junyi.zhao@amlogic.com>
-> 
-> This patch adds support for Amlogic S4 PWM.
+The vendor SDK sets this bit along with the PHY_ID bits. u-boot will set
+this bit as well but if u-boot is not compiled with networking, the
+interface will not work.
 
-Please take a look at 
-https://www.kernel.org/doc/html/v6.9/process/submitting-patches.html#describe-your-changes
+Fixes: 9a24e1ff4326 ("net: mdio: add amlogic gxl mdio mux support");
 
-It should be something like
-Add support for Amlogic S4 PWM.
+Signed-off-by: Da Xue <da@libre.computer>
+---
+ drivers/net/mdio/mdio-mux-meson-gxl.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/net/mdio/mdio-mux-meson-gxl.c
+b/drivers/net/mdio/mdio-mux-meson-gxl.c
+index 89554021b5cc..b2bd57f54034 100644
+--- a/drivers/net/mdio/mdio-mux-meson-gxl.c
++++ b/drivers/net/mdio/mdio-mux-meson-gxl.c
+@@ -17,6 +17,7 @@
+ #define  REG2_LEDACT GENMASK(23, 22)
+ #define  REG2_LEDLINK GENMASK(25, 24)
+ #define  REG2_DIV4SEL BIT(27)
++#define  REG2_RESERVED_28 BIT(28)
+ #define  REG2_ADCBYPASS BIT(30)
+ #define  REG2_CLKINSEL BIT(31)
+ #define ETH_REG3 0x4
+@@ -65,7 +66,7 @@ static void gxl_enable_internal_mdio(struct
+gxl_mdio_mux *priv)
+  * The only constraint is that it must match the one in
+  * drivers/net/phy/meson-gxl.c to properly match the PHY.
+  */
+- writel(FIELD_PREP(REG2_PHYID, EPHY_GXL_ID),
++ writel(REG2_RESERVED_28 | FIELD_PREP(REG2_PHYID, EPHY_GXL_ID),
+         priv->regs + ETH_REG2);
 
-> 
-> Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
-> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
-> ---
->   drivers/pwm/pwm-meson.c | 53 +++++++++++++++++++++++++++++++++++++++++++++++++
->   1 file changed, 53 insertions(+)
-> 
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index b2f97dfb01bb..9fea28a51921 100644
-> --- a/drivers/pwm/pwm-meson.c
-> +++ b/drivers/pwm/pwm-meson.c
-> @@ -460,6 +460,51 @@ static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
->   	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
->   }
->   
-> +static void meson_pwm_s4_put_clk(void *data)
-> +{
-> +	int i;
-> +	struct meson_pwm *meson;
-> +	struct meson_pwm_channel *channel;
-> +
-> +	meson = (struct meson_pwm *)data;
-You can initialize meson variable along with declaration; type casting 
-is not needed
-
-> +	for (i = 0; i < MESON_NUM_PWMS; i++) {
-> +		channel = &meson->channels[i];
-> +		clk_put(channel->clk);
-> +	}
-you can save 3 lines just by using clk_put(meson->channels[i].clk);
-
-> +}
-> +
-> +static int meson_pwm_init_channels_meson_s4(struct pwm_chip *chip)
-> +{
-> +	int i, ret;
-> +	struct device *dev = pwmchip_parent(chip);
-> +	struct device_node *np = dev->of_node;
-> +	struct meson_pwm *meson = to_meson_pwm(chip);
-> +	struct meson_pwm_channel *channel;
-> +
-> +	for (i = 0; i < MESON_NUM_PWMS; i++) {
-> +		channel = &meson->channels[i];
-> +		channel->clk = of_clk_get(np, i);
-> +		if (IS_ERR(channel->clk)) {
-> +			ret = PTR_ERR(channel->clk);
-> +			dev_err_probe(dev, ret, "Failed to get clk\n");
-> +			goto err;
-> +		}
-> +	}
-> +	ret = devm_add_action_or_reset(dev, meson_pwm_s4_put_clk, meson);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +
-> +err:
-> +	while (--i >= 0) {
-> +		channel = &meson->channels[i];
-> +		clk_put(channel->clk);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
->   static const struct meson_pwm_data pwm_meson8b_data = {
->   	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
->   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-> @@ -498,6 +543,10 @@ static const struct meson_pwm_data pwm_meson8_v2_data = {
->   	.channels_init = meson_pwm_init_channels_meson8b_v2,
->   };
->   
-> +static const struct meson_pwm_data pwm_meson_s4_data = {
-> +	.channels_init = meson_pwm_init_channels_meson_s4,
-> +};
-> +
-according to already existing soc-specific named vars and functions
-new names should be
-static const struct meson_pwm_data pwm_s4_data
-and
-static int meson_pwm_init_channels_s4(struct pwm_chip *chip)
-
->   static const struct of_device_id meson_pwm_matches[] = {
->   	{
->   		.compatible = "amlogic,meson8-pwm-v2",
-> @@ -536,6 +585,10 @@ static const struct of_device_id meson_pwm_matches[] = {
->   		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
->   		.data = &pwm_g12a_ao_cd_data
->   	},
-> +	{
-> +		.compatible = "amlogic,meson-s4-pwm",
-> +		.data = &pwm_meson_s4_data
-> +	},
->   	{},
->   };
->   MODULE_DEVICE_TABLE(of, meson_pwm_matches);
-> 
-
+  /* Enable the internal phy */
 -- 
-Best regards
-George
+2.39.2
 
 _______________________________________________
 linux-amlogic mailing list
