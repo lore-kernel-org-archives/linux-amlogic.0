@@ -4,92 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04E5BC25B78
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 May 2024 17:42:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82450C25B75
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 May 2024 05:46:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zziNJFuoWP3nwSRueklRUtxDlrr/978sjuZexDkydhQ=; b=QUFFEmqFq5WmEK
-	MmgJm0uzUYx+aFTXsFphcD5EeB57iGTcKTp9TDk10MZ6Togs7vY1MBo/T57Gnan617YWFNDgzgryx
-	mUzQ635iTrzT7dTOgJ8P5MLwTlHq2UuRK+gWteA5LcFh24rHcf5bPdLhzg+tpDcI7yfhpzwE/K5NL
-	ePFYE40OqYozQn5x8j9beVE6OcGIAV2ms7E5bQ/eLP0wU7OjpMQ4ixmIQbGVgjtqif+xtdeBefJHI
-	Rn0xur1PXiB4xpuvUZiTrae0rFWrsIkxcXcZzVDBPV0Tw2ET0EriqWPWtWcWPh7P97BmZC2a0d7NQ
-	zBQ9H7DS4zW4jdcrU7zA==;
+	List-Owner; bh=KEL6MlfC1cnJlKKyeVEJxypF4OokDXjxSz+KWru2G4w=; b=vjv2QXFkDAz1yi
+	NO6PS5r3AMwaNGYxQLdG4MdvtV7sH7kUowlhtlxS9BGHoFyk20mnsnW64KliQtrjg0G8EfIhj8SBe
+	61JiGlsh77WPV4Xaapp5W18Mq9TZRtfqewwnLYa6XsLtfXP5gEFqEQMNh/Pk4pHjiaMiRunXTugp5
+	Lsr4ysYhy9YJC7mtiUGlhD1a12k+NKYO5LHAyhk1LThN9OHoY7ecj5xX313Y+85om3JqyBsyl0R66
+	0s510OFTFDODJmAxEIrrpSoOL9cDb5hGCJvcT5wxfySMtahLU1P8xdxWxxcgf4gqFiPVXKVkb0bgA
+	eXrH333EQHpu/gRhYFXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s9pyO-00000003gfR-0jTh;
-	Wed, 22 May 2024 17:41:56 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1sA1H2-0000000587t-23IX;
+	Thu, 23 May 2024 05:45:56 +0000
+Received: from madrid.collaboradmins.com ([2a00:1098:ed:100::25])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s9pyK-00000003geo-2a7n;
-	Wed, 22 May 2024 17:41:55 +0000
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 2FBAE120011;
-	Wed, 22 May 2024 20:41:46 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2FBAE120011
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1716399706;
-	bh=ORccFiShbmiAytq5SHZC9Z2mGFe7Gewrl8C0g5tV60s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=NBKw/BeORAvdvC8MqaROXAc1l0DIcDjtIVTtItU5G1ZbPpME7C/gZReDQ3QE+Kr3/
-	 e22NzJmm1DYClHQ/vpQ/VzP3eFpf/sljJpjf9SNiqW4n/tdBRxvoI2/UoR5V9rXPQw
-	 os+0XDe9M2L9Qyh0kxAYS1WICIbiuTjDSzww+FC2oopTeNtt5owTPgSJ0cjwyDvIMm
-	 7rpSOvEgbLaLDhjka7BoQB/I3tsj40PfXzaovQxP15PPFadoUfkRtltIXelfyJjJVw
-	 wFZ7xJ0N7vIhKf5KzdU2Tcww46u8RkFviq8Ik/t37q/ZbUq2e44jVd0T56tJ9eE5FM
-	 CbI9Ylythhw0w==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	id 1sA1Gz-00000005874-00ed;
+	Thu, 23 May 2024 05:45:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1716443149;
+	bh=ixt8OajYR20IPA+H5M4ytRrCuvQEPCIDj6wZr5U9vZU=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=V6XZISe2rHRPDxCU3RcaRltfEjMsf3Um1F7s2Knx3jBoPnoWXYLTzBB1x2GEXFNlA
+	 zCUCvq/awcplJhGU9EHEmA06ZVtHfJe0QRL0SxHOCBDpNUeLpks5b6o7YrYR8Z+0JD
+	 jJVHUHbOum7lO29ITpT33LzBWBmhEmtjVsm1AeUnTM81zmzbDR00y3AVw7dE0/xQ7q
+	 wgIzSxGobBDfFQRLyrrVAK78jMvSAybnilANfAm2CwRhrPydRXI5h2h1YYYNI9aIDM
+	 pVoGtRcF0sS4YgQRyYQUvx/UVf6KA9mvN2TP05pxOmAzrMSCZx594KP6GwZlPhptpQ
+	 PQxZ6jnI5aOrg==
+Received: from [100.66.96.193] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 22 May 2024 20:41:45 +0300 (MSK)
-Received: from [172.28.128.189] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 22 May 2024 20:41:45 +0300
-Message-ID: <edc6241b-195f-4188-b802-24706ebc9541@salutedevices.com>
-Date: Wed, 22 May 2024 20:40:40 +0300
+	(Authenticated sender: vignesh)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 8AA8637820E5;
+	Thu, 23 May 2024 05:45:45 +0000 (UTC)
+Message-ID: <bb94b70d-cb6d-4ca6-8c80-abb6a12c2ef3@collabora.com>
+Date: Thu, 23 May 2024 11:15:42 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] Introduce initial support of Amlogic AC200 board
+Subject: Re: [PATCH v2 3/6] drm/ci: build virtual GPU driver as module
+From: Vignesh Raman <vignesh.raman@collabora.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
+ helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
+ robdclark@gmail.com, david.heidelberg@collabora.com,
+ guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
+ mcanal@igalia.com, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org
+References: <20240517092502.647420-1-vignesh.raman@collabora.com>
+ <20240517092502.647420-4-vignesh.raman@collabora.com>
+ <elftuzsd7lhz6y5ow6rb5uu5fb5b5jcprxtvxtxtojo774rnyr@swpeg4vkgtnc>
+ <f3646d66-01f0-476c-8b7f-5df102790fcb@collabora.com>
 Content-Language: en-US
-To: "Rob Herring (Arm)" <robh@kernel.org>
-CC: Jerome Brunet <jbrunet@baylibre.com>, Xianwei Zhao
-	<xianwei.zhao@amlogic.com>, Lucas Tanure <tanure@linux.com>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Dmitry Rokosov
-	<ddrokosov@sberdevices.ru>, Conor Dooley <conor+dt@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-amlogic@lists.infradead.org>
-References: <20240521222155.28094-1-jan.dakinevich@salutedevices.com>
- <171638551693.3169786.7201121718393921307.robh@kernel.org>
-From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-In-Reply-To: <171638551693.3169786.7201121718393921307.robh@kernel.org>
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 185427 [May 22 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;devicetree.org:7.1.1;salutedevices.com:7.1.1;sberdevices.ru:7.1.1,5.0.1;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/05/22 13:13:00
-X-KSMG-LinksScanning: Clean, bases: 2024/05/22 16:46:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/22 16:29:00 #25238160
-X-KSMG-AntiVirus-Status: Clean, skipped
+In-Reply-To: <f3646d66-01f0-476c-8b7f-5df102790fcb@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240522_104153_221252_037CC554 
-X-CRM114-Status: GOOD (  19.40  )
+X-CRM114-CacheID: sfid-20240522_224553_361740_41B74EE7 
+X-CRM114-Status: GOOD (  18.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,111 +79,98 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 5/22/24 16:46, Rob Herring (Arm) wrote:
-> 
-> On Wed, 22 May 2024 01:21:52 +0300, Jan Dakinevich wrote:
->>  - Make some cosmetics in existing device tree files;
->>
->>  - Add the board.
->>
->> Jan Dakinevich (3):
->>   arch/arm64: dts: ac2xx: make common the sound card
->>   dt-bindings: arm: amlogic: document AC200 support
->>   arch/arm64: dts: ac200: introduce initial support of the board
->>
->>  .../devicetree/bindings/arm/amlogic.yaml      |  1 +
->>  .../dts/amlogic/meson-sm1-a95xf3-air-gbit.dts | 87 -------------------
->>  .../boot/dts/amlogic/meson-sm1-a95xf3-air.dts | 87 -------------------
->>  .../boot/dts/amlogic/meson-sm1-ac200.dts      | 22 +++++
->>  .../boot/dts/amlogic/meson-sm1-ac2xx.dtsi     | 87 +++++++++++++++++++
->>  .../boot/dts/amlogic/meson-sm1-h96-max.dts    | 87 -------------------
->>  .../dts/amlogic/meson-sm1-x96-air-gbit.dts    | 87 -------------------
->>  .../boot/dts/amlogic/meson-sm1-x96-air.dts    | 87 -------------------
->>  8 files changed, 110 insertions(+), 435 deletions(-)
->>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dts
->>
->> --
->> 2.34.1
->>
->>
->>
-> 
-> 
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
-> 
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
-> 
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
-> 
->   pip3 install dtschema --upgrade
-> 
-> 
-> New warnings running 'make CHECK_DTBS=y amlogic/meson-sm1-a95xf3-air-gbit.dtb amlogic/meson-sm1-a95xf3-air.dtb amlogic/meson-sm1-ac200.dtb amlogic/meson-sm1-h96-max.dtb amlogic/meson-sm1-x96-air-gbit.dtb amlogic/meson-sm1-x96-air.dtb' for 20240521222155.28094-1-jan.dakinevich@salutedevices.com:
-> 
-> arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dtb: audio-controller@380: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: /soc/bus@ff600000/bus@60000/clock-controller@0: failed to match any schema with compatible: ['amlogic,sm1-audio-clkc']
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller@300: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller@340: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller@380: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller@3c0: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: /soc/bus@ff600000/bus@60000/audio-controller@744: failed to match any schema with compatible: ['amlogic,sm1-tohdmitx', 'amlogic,g12a-tohdmitx']
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: /soc/bus@ff600000/bus@60000/audio-controller@744: failed to match any schema with compatible: ['amlogic,sm1-tohdmitx', 'amlogic,g12a-tohdmitx']
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: sys-ctrl@0: '#address-cells', '#size-cells', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-0: clock-names:0: 'sclk' was expected
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-0: clock-names:1: 'lrclk' was expected
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-0: clock-names:2: 'mclk' was expected
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-1: clock-names:0: 'sclk' was expected
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-1: clock-names:1: 'lrclk' was expected
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-1: clock-names:2: 'mclk' was expected
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-1: Unevaluated properties are not allowed ('clock-names' was unexpected)
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-2: clock-names:0: 'sclk' was expected
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-2: clock-names:1: 'lrclk' was expected
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-2: clock-names:2: 'mclk' was expected
-> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: sound: 'anyOf' conditional failed, one must be fixed:
-> 	'clocks' is a required property
-> 	'#clock-cells' is a required property
-> 	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
-> 
-> 
-> 
-> 
-> 
-
-These errors were here before my modifications, and they require extra
-efforts to rework generic 'meson-sm1.dtsi' etc. But it is not the goal
-of this series. Should I do anything about this right now?
-
--- 
-Best regards
-Jan Dakinevich
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgRG1pdHJ5LAoKT24gMjEvMDUvMjQgMTI6MzksIFZpZ25lc2ggUmFtYW4gd3JvdGU6Cj4gSGkg
+RG1pdHJ5LAo+IAo+IE9uIDIwLzA1LzI0IDE2OjMyLCBEbWl0cnkgQmFyeXNoa292IHdyb3RlOgo+
+PiBPbiBGcmksIE1heSAxNywgMjAyNCBhdCAwMjo1NDo1OVBNICswNTMwLCBWaWduZXNoIFJhbWFu
+IHdyb3RlOgo+Pj4gV2l0aCBsYXRlc3QgSUdULCB0aGUgdGVzdHMgdHJpZXMgdG8gbG9hZCB0aGUg
+bW9kdWxlIGFuZCBpdAo+Pj4gZmFpbHMuIFNvIGJ1aWxkIHRoZSB2aXJ0dWFsIEdQVSBkcml2ZXIg
+Zm9yIHZpcnRpbyBhcyBtb2R1bGUuCj4+Cj4+IFdoeT8gSWYgdGhlIHRlc3QgZmFpbHMgb24gbW9k
+dWxlIGxvYWRpbmcgKGlmIHRoZSBkcml2ZXIgaXMgYnVpbHQtaW4pCj4+IHRoZW4gaXQncyB0aGUg
+dGVzdCB0aGF0IG5lZWRzIHRvIGJlIGZpeGVkLCBub3QgdGhlIGtlcmVuZWwgY29uZmlnLgo+Pgo+
+PiBJdCdzIGZpbmUgYXMgYSB0ZW1wb3JhbCB3b3JrYXJvdW5kLCBidXQgcGxlYXNlIGluY2x1ZGUg
+YSBsaW5rIHRvIHRoZQo+PiBwYXRjaCBwb3N0ZWQgdG8gZml4IHRoZSBpc3N1ZS4KPiAKPiBJIHdp
+bGwgcmVjaGVjayB0aGlzIGlzc3VlIGFuZCBwb3N0IGEgbGluayB0byB0aGUgZml4LgoKClRoaXMg
+d2FzIHRoZSBpc3N1ZSBzZWVuIHdpdGggSUdUIGNvbW1pdCAKaHR0cHM6Ly9naXRsYWIuZnJlZWRl
+c2t0b3Aub3JnL2RybS9pZ3QtZ3B1LXRvb2xzLy0vY29tbWl0LzdkMTg0MTMxN2MxM2MxOWMyNmI2
+MzUyZjkyM2IyMDVkNDM3NDJjNTUgCgoKWyAgICA0LjQ1MDU3MV0gW2RybTp2aXJ0aW9fZ3B1X2lu
+aXRdICpFUlJPUiogZmFpbGVkIHRvIGZpbmQgdmlydCBxdWV1ZXMKWyAgICA0LjQ1MDk2Ml0gdmly
+dGlvX2dwdSB2aXJ0aW8wOiBwcm9iZSB3aXRoIGRyaXZlciB2aXJ0aW9fZ3B1IGZhaWxlZCAKd2l0
+aCBlcnJvciAtMgpbICAgIDUuNDcxNDE3XSBbZHJtOnZpcnRpb19ncHVfaW5pdF0gKkVSUk9SKiBm
+YWlsZWQgdG8gZmluZCB2aXJ0IHF1ZXVlcwpbICAgIDUuNDcxOTE2XSB2aXJ0aW9fZ3B1IHZpcnRp
+bzA6IHByb2JlIHdpdGggZHJpdmVyIHZpcnRpb19ncHUgZmFpbGVkIAp3aXRoIGVycm9yIC0yCgpo
+dHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvdmlnbmVzaHJhbWFuL2xpbnV4Ly0vam9icy81
+OTAzNzEyMgoKV2l0aCB0aGUgcmVjZW50IHVwcmV2IG9mIElHVCB0byAKaHR0cHM6Ly9naXRsYWIu
+ZnJlZWRlc2t0b3Aub3JnL2RybS9pZ3QtZ3B1LXRvb2xzLy0vY29tbWl0LzBkZjdiOWI5N2Y5ZGEw
+ZTM2NGY1ZWUzMGZlMzMxMDA0YjhjODZiNTYsCnRoaXMgaXNzdWUgaXMgbm90IHNlZW4uIFNvIHdp
+bGwgZHJvcCB0aGlzIGNvbW1pdC4KClJlZ2FyZHMsClZpZ25lc2gKCj4gCj4gUmVnYXJkcywKPiBW
+aWduZXNoCj4gCj4+Cj4+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogVmlnbmVzaCBSYW1hbiA8dmlnbmVz
+aC5yYW1hbkBjb2xsYWJvcmEuY29tPgo+Pj4gLS0tCj4+Pgo+Pj4gdjI6Cj4+PiDCoMKgIC0gTm8g
+Y2hhbmdlcy4KPj4+Cj4+PiAtLS0KPj4+IMKgIGRyaXZlcnMvZ3B1L2RybS9jaS9idWlsZC5zaMKg
+wqDCoMKgwqDCoCB8IDEgLQo+Pj4gwqAgZHJpdmVycy9ncHUvZHJtL2NpL2lndF9ydW5uZXIuc2jC
+oCB8IDYgKysrLS0tCj4+PiDCoCBkcml2ZXJzL2dwdS9kcm0vY2kvaW1hZ2UtdGFncy55bWwgfCA0
+ICsrLS0KPj4+IMKgIGRyaXZlcnMvZ3B1L2RybS9jaS90ZXN0LnltbMKgwqDCoMKgwqDCoCB8IDEg
+Kwo+Pj4gwqAgZHJpdmVycy9ncHUvZHJtL2NpL3g4Nl82NC5jb25maWfCoCB8IDIgKy0KPj4+IMKg
+IDUgZmlsZXMgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQo+Pj4KPj4+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vY2kvYnVpbGQuc2ggYi9kcml2ZXJzL2dwdS9k
+cm0vY2kvYnVpbGQuc2gKPj4+IGluZGV4IGE2Nzg3MWZkY2QzZi4uZTkzODA3NGFjOGU3IDEwMDY0
+NAo+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2NpL2J1aWxkLnNoCj4+PiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vY2kvYnVpbGQuc2gKPj4+IEBAIC0xNTcsNyArMTU3LDYgQEAgZmkKPj4+IMKgIG1r
+ZGlyIC1wIGFydGlmYWN0cy9pbnN0YWxsL2xpYgo+Pj4gwqAgbXYgaW5zdGFsbC8qIGFydGlmYWN0
+cy9pbnN0YWxsLy4KPj4+IC1ybSAtcmYgYXJ0aWZhY3RzL2luc3RhbGwvbW9kdWxlcwo+Pj4gwqAg
+bG4gLXMgY29tbW9uIGFydGlmYWN0cy9pbnN0YWxsL2NpLWNvbW1vbgo+Pj4gwqAgY3AgLmNvbmZp
+ZyBhcnRpZmFjdHMvJHtDSV9KT0JfTkFNRX1fY29uZmlnCj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2NpL2lndF9ydW5uZXIuc2ggCj4+PiBiL2RyaXZlcnMvZ3B1L2RybS9jaS9pZ3Rf
+cnVubmVyLnNoCj4+PiBpbmRleCAyMDAyNjYxMmE5YmQuLjU1NTMyZjc5ZmJkYyAxMDA3NTUKPj4+
+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9jaS9pZ3RfcnVubmVyLnNoCj4+PiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vY2kvaWd0X3J1bm5lci5zaAo+Pj4gQEAgLTMwLDEwICszMCwxMCBAQCBjYXNlICIk
+RFJJVkVSX05BTUUiIGluCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBleHBvcnQgSUdU
+X0ZPUkNFX0RSSVZFUj0icGFuZnJvc3QiCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqAgZmkKPj4+IMKg
+wqDCoMKgwqDCoMKgwqDCoCA7Owo+Pj4gLcKgwqDCoCBhbWRncHUpCj4+PiArwqDCoMKgIGFtZGdw
+dXx2aXJ0aW9fZ3B1KQo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgICMgQ2Fubm90IHVzZSBIV0NJX0tF
+Uk5FTF9NT0RVTEVTIGFzIGF0IHRoYXQgcG9pbnQgd2UgZG9uJ3QgCj4+PiBoYXZlIHRoZSBtb2R1
+bGUgaW4gL2xpYgo+Pj4gLcKgwqDCoMKgwqDCoMKgIG12IC9pbnN0YWxsL21vZHVsZXMvbGliL21v
+ZHVsZXMvKiAvbGliL21vZHVsZXMvLgo+Pj4gLcKgwqDCoMKgwqDCoMKgIG1vZHByb2JlIGFtZGdw
+dQo+Pj4gK8KgwqDCoMKgwqDCoMKgIG12IC9pbnN0YWxsL21vZHVsZXMvbGliL21vZHVsZXMvKiAv
+bGliL21vZHVsZXMvLiB8fCB0cnVlCj4+PiArwqDCoMKgwqDCoMKgwqAgbW9kcHJvYmUgLS1maXJz
+dC10aW1lICREUklWRVJfTkFNRQo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIDs7Cj4+PiDCoCBlc2Fj
+Cj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2NpL2ltYWdlLXRhZ3MueW1sIAo+Pj4g
+Yi9kcml2ZXJzL2dwdS9kcm0vY2kvaW1hZ2UtdGFncy55bWwKPj4+IGluZGV4IDYwMzIzZWJjNzMw
+NC4uMzI4ZjVjNTYwNzQyIDEwMDY0NAo+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2NpL2ltYWdl
+LXRhZ3MueW1sCj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vY2kvaW1hZ2UtdGFncy55bWwKPj4+
+IEBAIC00LDkgKzQsOSBAQCB2YXJpYWJsZXM6Cj4+PiDCoMKgwqDCoCBERUJJQU5fQkFTRV9UQUc6
+ICIke0NPTlRBSU5FUl9UQUd9Igo+Pj4gwqDCoMKgwqAgREVCSUFOX1g4Nl82NF9CVUlMRF9JTUFH
+RV9QQVRIOiAiZGViaWFuL3g4Nl82NF9idWlsZCIKPj4+IC3CoMKgIERFQklBTl9CVUlMRF9UQUc6
+ICIyMDIzLTEwLTA4LWNvbmZpZyIKPj4+ICvCoMKgIERFQklBTl9CVUlMRF9UQUc6ICIyMDI0LTA1
+LTA5LXZpcnRpbyIKPj4+IC3CoMKgIEtFUk5FTF9ST09URlNfVEFHOiAiMjAyMy0xMC0wNi1hbWQi
+Cj4+PiArwqDCoCBLRVJORUxfUk9PVEZTX1RBRzogIjIwMjQtMDUtMDktdmlydGlvIgo+Pj4gwqDC
+oMKgwqAgREVCSUFOX1g4Nl82NF9URVNUX0JBU0VfSU1BR0U6ICJkZWJpYW4veDg2XzY0X3Rlc3Qt
+YmFzZSIKPj4+IMKgwqDCoMKgIERFQklBTl9YODZfNjRfVEVTVF9JTUFHRV9HTF9QQVRIOiAiZGVi
+aWFuL3g4Nl82NF90ZXN0LWdsIgo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9jaS90
+ZXN0LnltbCBiL2RyaXZlcnMvZ3B1L2RybS9jaS90ZXN0LnltbAo+Pj4gaW5kZXggNjEyYzllZGUz
+NTA3Li44NjRhYzM4MDlkODQgMTAwNjQ0Cj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vY2kvdGVz
+dC55bWwKPj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9jaS90ZXN0LnltbAo+Pj4gQEAgLTM1MCw2
+ICszNTAsNyBAQCB2aXJ0aW9fZ3B1Om5vbmU6Cj4+PiDCoMKgwqAgc2NyaXB0Ogo+Pj4gwqDCoMKg
+wqDCoCAtIGxuIC1zZiAkQ0lfUFJPSkVDVF9ESVIvaW5zdGFsbCAvaW5zdGFsbAo+Pj4gwqDCoMKg
+wqDCoCAtIG12IGluc3RhbGwvYnpJbWFnZSAvbGF2YS1maWxlcy9iekltYWdlCj4+PiArwqDCoMKg
+IC0gbWtkaXIgLXAgL2xpYi9tb2R1bGVzCj4+Cj4+IElzIGl0IG5lY2Vzc2FyeSB0byBjcmVhdGUg
+aXQgbWFudWFsbHkgaGVyZT8KPj4KPj4+IMKgwqDCoMKgwqAgLSBta2RpciAtcCAkQ0lfUFJPSkVD
+VF9ESVIvcmVzdWx0cwo+Pj4gwqDCoMKgwqDCoCAtIGxuIC1zZiAkQ0lfUFJPSkVDVF9ESVIvcmVz
+dWx0cyAvcmVzdWx0cwo+Pj4gwqDCoMKgwqDCoCAtIGluc3RhbGwvY3Jvc3ZtLXJ1bm5lci5zaCBp
+bnN0YWxsL2lndF9ydW5uZXIuc2gKPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vY2kv
+eDg2XzY0LmNvbmZpZyAKPj4+IGIvZHJpdmVycy9ncHUvZHJtL2NpL3g4Nl82NC5jb25maWcKPj4+
+IGluZGV4IDFjYmQ0OWE1YjIzYS4uNzg0NzlmMDYzZThlIDEwMDY0NAo+Pj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2NpL3g4Nl82NC5jb25maWcKPj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9jaS94
+ODZfNjQuY29uZmlnCj4+PiBAQCAtOTEsNyArOTEsNyBAQCBDT05GSUdfS1ZNPXkKPj4+IMKgIENP
+TkZJR19LVk1fR1VFU1Q9eQo+Pj4gwqAgQ09ORklHX1ZJUlRfRFJJVkVSUz15Cj4+PiDCoCBDT05G
+SUdfVklSVElPX0ZTPXkKPj4+IC1DT05GSUdfRFJNX1ZJUlRJT19HUFU9eQo+Pj4gK0NPTkZJR19E
+Uk1fVklSVElPX0dQVT1tCj4+PiDCoCBDT05GSUdfU0VSSUFMXzgyNTBfQ09OU09MRT15Cj4+PiDC
+oCBDT05GSUdfVklSVElPX05FVD15Cj4+PiDCoCBDT05GSUdfVklSVElPX0NPTlNPTEU9eQo+Pj4g
+LS0gCj4+PiAyLjQwLjEKPj4+Cj4+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxp
+c3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9saW51eC1hbWxvZ2ljCg==
