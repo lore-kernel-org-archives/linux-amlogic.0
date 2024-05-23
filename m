@@ -4,84 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8C2CC25B79
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 May 2024 10:00:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6102FC25B75
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 May 2024 10:46:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
+	References:Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tjG0sJ0JiI096X5mjF7sCUD5rbSr9CvR31JafrLjOW8=; b=QpsJtcG3zezHQR
-	0JnBx1+XK9vVQa2Dw9Y0AcVyoLCbrZFgEyeG78jj0bHJNqJPMmgsavRClDZ291ceCiaKgjRfUVDUL
-	8/T+gX0muTEVIkz8Q8XSvCiQbWZPIT7kY0Po82TtttFMuqjnwkpB5L0u16PaGS2u4tz6xdP3Z9cwb
-	XgVqr7xqlccJr+KaU0gVGGpaKKEZ9r0ob2uhkSVbFRTGFjn8EJkwEhY3dhMoh3a0YhYUwxv/JiUQi
-	+PA+8i4oDMOGInpmM+qGJlCfifB/XjDZrk9bEqHEhMVJqON8SOrS7bIrvX6maxGQzsRoui9+aYiOY
-	kJ+95I+HMCP7ztyJN61A==;
+	List-Owner; bh=Qn1g2I7xKCKbJCc3YHGsS0I/FpMhAEcxPmuzPCpx0EM=; b=3g37ooU+2q9ZOa
+	0ZmxFe87xAct49/0ba9FvMrxHe+pZZmRj36/JrTbbnXINIY/1/X/dAqnw44zHfrRiDRp3U1L5h4w7
+	SvdY+fEeGPG2Rcey466g9exuYbFnMjRH0riIwHgoHKELvzDLtB8oyXYqkV/n8qxC1eqG2Z6FTt5om
+	IExRVQ4USTRpl8KmxlT+cOBdKb5TG5olxpGtLnKq4Y14XH/N3goSWA6YD9a5vFd2ydH/Ch2Nvqjwk
+	NaIfzZUVps3D4w/7Z7bGgd8a/kI7Dr5O+RTlFs7BIls5Js+2O3Hdg3wLMK/sU5Zxp8MeVqeiztTtN
+	ey7peqdyNb/tyM41UR6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sA5F5-00000005mlu-096B;
-	Thu, 23 May 2024 10:00:11 +0000
-Received: from mail-yb1-xb31.google.com ([2607:f8b0:4864:20::b31])
+	id 1sA5yE-00000005w6C-0A6e;
+	Thu, 23 May 2024 10:46:50 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sA5F0-00000005mf8-2Tc8
-	for linux-amlogic@lists.infradead.org;
-	Thu, 23 May 2024 10:00:09 +0000
-Received: by mail-yb1-xb31.google.com with SMTP id 3f1490d57ef6-dcc71031680so5786710276.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 23 May 2024 02:59:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716458387; x=1717063187; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4eLg5W63v6nyWYGdaPlQGL+64DpELLePyMxWT5qrNUU=;
-        b=LHlbMoN2BMkR1zqM2oMj9WF2LORnlpSE6g9qflAr3L27IKc8eKpfyOAN5KdOvlrIY/
-         7oTScg6zIU/QH8E/MJCH/vEGq9S8UUTPMSpcJV9qfy8tsLUczohxNsYGYqgwOVtzVy01
-         Xfbumzsj57L26tMP8LVodh172Rosv5FoihT79+n9s77EAUKyJ237v+2bF11eXYQdA8kW
-         08TmR+voAYDHl4KGtSyAAcVhaZmTxNEkTlma97wAjCAfw5xcwDXtdlQcnyT5b4h/oLp4
-         hm+cyg4pvPXj1YK6ZHaLKt/3cf3Jv0xr6J+35EYpyASVBVbZuKJuReaw5nO18Xc7+gyx
-         IOPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716458387; x=1717063187;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4eLg5W63v6nyWYGdaPlQGL+64DpELLePyMxWT5qrNUU=;
-        b=IaxgCGrgTo2209zooVUGHZxz2LrQGkXRhQS8vUgsBCX0/qmAnQ6TKj5l9Fvel+9zJY
-         ejcSKDDpP5VgauQDPw25g+rctRg5pZrOoNCJFi7w/rPUDOEqtIPH9xMgHFs2g+EDNqJL
-         hxyLH7rkA6Mg6+LTjWdnuwItLPNqusTPhWpfVsKddEB21ti+Apjl2dTKPSamgSYRL5BJ
-         WxogzcDdUI9AT3w1WMJm/3dvEVtnbeJ83vIbZ3ReM0M8q34/nSfQAw1R+oaXElIk26an
-         yHtL8Ir5aq8XVmZSnmcLxofKqnl6plgrovi5xj+vrox6uzISO/7e9u2gqTNw4M4z6Z1K
-         1Y7g==
-X-Forwarded-Encrypted: i=1; AJvYcCVjUoszvt7loeF+d+asPMPguK+dBwWc53UFjk79n5+H1vhGLJ5Xqac6SQOx/EaPBCbPboSN4g4d/lkO/8arkL+LDF6APER9RVvExrpoZq/tThA=
-X-Gm-Message-State: AOJu0YzWGQqQb5kN5k7zoDF/dVISQp28S55jhtagOFgkeRZWBLdkwKS0
-	xfH2CMQsMkt6uA+TB/XCsiDVgNg+Km8gjoc7tGXLOcPbP2tBuXgLb9YiVCz0fAjkWoetb4cQ08M
-	HSVvtLBjeKKoVqrOSELDbLvmXuxRPpg5tipGCKw==
-X-Google-Smtp-Source: AGHT+IEH2bet0vxbyQkGUI55R017CbgvtHVbrVup5m0zjkPeCkh3N7ZUjMndzd5BhJJAs4TMZp+oQ52G6r3Sss4urHM=
-X-Received: by 2002:a25:b181:0:b0:dee:607c:3528 with SMTP id
- 3f1490d57ef6-df4e0a9cfa9mr4821493276.3.1716458387642; Thu, 23 May 2024
- 02:59:47 -0700 (PDT)
+	id 1sA5y9-00000005w4V-069w;
+	Thu, 23 May 2024 10:46:47 +0000
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id A0860100013;
+	Thu, 23 May 2024 13:46:36 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru A0860100013
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1716461196;
+	bh=rnyJQc1d86XKiiLfsDTO95JbMJ3DJ5VaEkCq2oxfEnQ=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
+	b=XgKtqM6NCtTLA5Z/OdZI3BU+DWFC1tck1eSc02By5hPnEfP+2PSZe37i7YkyTPQi4
+	 GC7CxA+kD1zMBVoKJ80AckALSi0Rx4vjV2jkTcHGUhH01+FmZCy+IGNrVA9fn1rxRa
+	 G5OcH4R7Cgbc3iy1l4nBSAD1ng4w5UN28kuW5RtYsJyQcpHn57aDxxPgOjsjTJbHS1
+	 RQ2J03s6BYYsE0HR0lYo3KSVtBj9bq5Dpizc318BEzxb624LgE6oVuc8kuPJCwbXrq
+	 SiSTtbdrMp2ZTUVbmKkAN/JI/EnH3fOjwmkT2wsokp3r+pKlQPlLobb2jVCPZwh/r0
+	 q5U3EBxOOIQUQ==
+Received: from smtp.sberdevices.ru (p-i-exch-a-m1.sberdevices.ru [172.24.196.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu, 23 May 2024 13:46:36 +0300 (MSK)
+Received: from p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) by
+ p-i-exch-a-m1.sberdevices.ru (172.24.196.116) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Thu, 23 May 2024 13:46:36 +0300
+Received: from p-i-exch-sc-m02.sberdevices.ru ([fe80::10c3:6e04:fd07:c511]) by
+ p-i-exch-sc-m02.sberdevices.ru ([fe80::10c3:6e04:fd07:c511%9]) with mapi id
+ 15.02.1118.040; Thu, 23 May 2024 13:46:36 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: Conor Dooley <conor@kernel.org>
+CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"clabbe@baylibre.com" <clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
+	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
+	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v7 17/23] dt-bindings: crypto: meson: remove clk and
+ second interrupt line for GXL
+Thread-Topic: [PATCH v7 17/23] dt-bindings: crypto: meson: remove clk and
+ second interrupt line for GXL
+Thread-Index: AQHajBWjbcqi/hz3Ckugw/49eH+udbFpXY+AgCDP+ACAACFpgIAaY4MA
+Date: Thu, 23 May 2024 10:46:35 +0000
+Message-ID: <20240523104624.tr5omyxnzxsjkpai@cab-wsm-0029881.sigma.sbrf.ru>
+References: <20240411133832.2896463-1-avromanov@salutedevices.com>
+ <20240411133832.2896463-18-avromanov@salutedevices.com>
+ <20240415-schnapps-plating-eb0895459004@spud>
+ <20240506134754.jl633ncne7ct6szo@cab-wsm-0029881>
+ <20240506-distrust-famine-6848f75dd3fe@spud>
+In-Reply-To: <20240506-distrust-famine-6848f75dd3fe@spud>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.18.93]
+Content-ID: <60740C6C7B2A8844930F23000BCA19F7@sberdevices.ru>
 MIME-Version: 1.0
-References: <20240517092502.647420-1-vignesh.raman@collabora.com>
- <20240517092502.647420-2-vignesh.raman@collabora.com> <2qzmfv3oc6feihwxu3tl37rg6w3qsj2vddu5olvqk6vhqr26cc@bxu5y6ijvtfa>
- <9cd0667a-12ee-4d45-80e8-dc34259bf01d@collabora.com>
-In-Reply-To: <9cd0667a-12ee-4d45-80e8-dc34259bf01d@collabora.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 23 May 2024 12:59:36 +0300
-Message-ID: <CAA8EJprVVkQO7aPkehwL2zhYkGRkm4Foc13ErfuY6ikBA_4nLQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] drm/ci: uprev mesa version
-To: Vignesh Raman <vignesh.raman@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
-	helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch, 
-	robdclark@gmail.com, david.heidelberg@collabora.com, 
-	guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com, 
-	mcanal@igalia.com, linux-mediatek@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
-	intel-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org, 
-	linux-kernel@vger.kernel.org
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185437 [May 23 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;cab-wsm-0029881.sigma.sbrf.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/23 07:54:00 #25244744
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240523_030006_668557_B7D5985C 
-X-CRM114-Status: GOOD (  23.73  )
+X-CRM114-CacheID: sfid-20240523_034645_778324_2B69E000 
+X-CRM114-Status: GOOD (  28.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,91 +124,96 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 23 May 2024 at 09:07, Vignesh Raman <vignesh.raman@collabora.com> wrote:
->
-> Hi Dmitry,
->
-> On 20/05/24 16:13, Dmitry Baryshkov wrote:
-> > On Fri, May 17, 2024 at 02:54:57PM +0530, Vignesh Raman wrote:
-> >> zlib.net is not allowing tarball download anymore and results
-> >> in below error in kernel+rootfs_arm32 container build,
-> >> urllib.error.HTTPError: HTTP Error 403: Forbidden
-> >> urllib.error.HTTPError: HTTP Error 415: Unsupported Media Type
-> >>
-> >> Uprev mesa to latest version which includes a fix for this issue.
-> >> https://gitlab.freedesktop.org/mesa/mesa/-/commit/908f444e
-> >>
-> >> Use id_tokens for JWT authentication. Since s3 bucket is migrated to
-> >> mesa-rootfs, update the variables accordingly. Also copy helper scripts
-> >> to install, so that the ci jobs can use these scripts for logging.
-> >>
-> >> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> >> ---
-> >>
-> >> v2:
-> >>    - Uprev to recent version and use id_tokens for JWT authentication
-> >>
-> >> ---
-> >>   drivers/gpu/drm/ci/build-igt.sh   |  2 +-
-> >>   drivers/gpu/drm/ci/build.sh       |  6 +++--
-> >>   drivers/gpu/drm/ci/container.yml  | 12 +++------
-> >>   drivers/gpu/drm/ci/gitlab-ci.yml  | 44 +++++++++++++++++++++----------
-> >>   drivers/gpu/drm/ci/image-tags.yml |  2 +-
-> >>   drivers/gpu/drm/ci/lava-submit.sh |  4 +--
-> >>   drivers/gpu/drm/ci/test.yml       |  2 ++
-> >>   7 files changed, 44 insertions(+), 28 deletions(-)
-> >>
-> >
-> > [skipped]
-> >
-> >> diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
-> >> index 8bc63912fddb..612c9ede3507 100644
-> >> --- a/drivers/gpu/drm/ci/test.yml
-> >> +++ b/drivers/gpu/drm/ci/test.yml
-> >> @@ -150,6 +150,8 @@ msm:sdm845:
-> >>       BM_KERNEL: https://${PIPELINE_ARTIFACTS_BASE}/arm64/cheza-kernel
-> >>       GPU_VERSION: sdm845
-> >>       RUNNER_TAG: google-freedreno-cheza
-> >> +    DEVICE_TYPE: sdm845-cheza-r3
-> >> +    FARM: google
-> >
-> > I see that this is the only user of the FARM: tag. Is it correct?
->
-> No, we need to add FARM variable for other jobs as well.
+Hi Conor,
 
-Why? Even if we have to, we don't have them now and the change doesn't
-seem to be related to the uprev'ing of mesa. So this probably should
-go to a separate commit.
+On Mon, May 06, 2024 at 04:47:29PM +0100, Conor Dooley wrote:
+> On Mon, May 06, 2024 at 01:48:01PM +0000, Alexey Romanov wrote:
+> > On Mon, Apr 15, 2024 at 05:43:15PM +0100, Conor Dooley wrote:
+> > > On Thu, Apr 11, 2024 at 04:38:26PM +0300, Alexey Romanov wrote:
+> > > > GXL crypto IP isn't connected to clk and seconnd interrput line,
+> > > > so we must remove them from dt-bindings.
+> > > 
+> > > How does the device work without a clock?
+> > 
+> > It's clocked by a common clock, the vendor didn't provide more
+> > information. It doesn't have any special clock domains.
+> 
+> So the hardware block does have a clock, which, even if it is a clock
+> shared with other hardware blocks, makes your patch incorrect.
+> 
+> Is the "blkmv" clock the shared clock?
 
->
-> > Also we miss DEVICE_TYPE for several other boards. Should we be adding
-> > them?
->
-> Yes, device type needs to be added for msm:apq8016, msm:apq8096, virtio_gpu.
->
-> I will add this. Thanks.
+I received accurate information from the vendor. Starting from GXL,
+DMA engine is used for crypto HW and clock is hard weired to it (at RTL
+level). That's why we have to remove it from device tree, because we can't
+control it anyway.
 
-I'd guess, separate commit too.
+I will add clarification about this in commit message in text patch
+series.
 
->
-> Regards,
-> Vignesh
->
-> >
-> >>     script:
-> >>       - ./install/bare-metal/cros-servo.sh
-> >>
-> >> --
-> >> 2.40.1
-> >>
-> >
+
+> 
+> Cheers,
+> Conor.
+> 
+> > > > Fixes: 7f7d115dfb51 ("dt-bindings: crypto: Add DT bindings
+> > > > documentation for amlogic-crypto")
+> > > > 
+> > > > Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> > > > ---
+> > > >  .../bindings/crypto/amlogic,gxl-crypto.yaml         | 13 +------------
+> > > >  1 file changed, 1 insertion(+), 12 deletions(-)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> > > > index 948e11ebe4ee..d3af7b4d5f39 100644
+> > > > --- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> > > > +++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> > > > @@ -20,20 +20,11 @@ properties:
+> > > >    interrupts:
+> > > >      items:
+> > > >        - description: Interrupt for flow 0
+> > > > -      - description: Interrupt for flow 1
+> > > > -
+> > > > -  clocks:
+> > > > -    maxItems: 1
+> > > > -
+> > > > -  clock-names:
+> > > > -    const: blkmv
+> > > >  
+> > > >  required:
+> > > >    - compatible
+> > > >    - reg
+> > > >    - interrupts
+> > > > -  - clocks
+> > > > -  - clock-names
+> > > >  
+> > > >  additionalProperties: false
+> > > >  
+> > > > @@ -46,7 +37,5 @@ examples:
+> > > >      crypto: crypto-engine@c883e000 {
+> > > >          compatible = "amlogic,gxl-crypto";
+> > > >          reg = <0xc883e000 0x36>;
+> > > > -        interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>, <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
+> > > > -        clocks = <&clkc CLKID_BLKMV>;
+> > > > -        clock-names = "blkmv";
+> > > > +        interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>;
+> > > >      };
+> > > > -- 
+> > > > 2.34.1
+> > > > 
+> > 
+> > 
+> > 
+> > 
+> > -- 
+> > Thank you,
+> > Alexey
 
 
 
 -- 
-With best wishes
-Dmitry
-
+Thank you,
+Alexey
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
