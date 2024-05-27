@@ -4,69 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F124C25B74
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2024 07:24:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF950C41513
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2024 13:30:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JhG1n/o59mxgPynNFBkluk8M+1grF9Fqh7vU5hyYRRY=; b=I9P2NAkd1Zq7LY
-	xLePXd6Vabvg53EInRYpjIKQLX/v7TND0FA2QWFmuRyO2rFu6sSm1W/jSzYnErkonqJhWuPqbfUvV
-	0o9ZGf1FkbzUY2vCQIxqzNbhcZKrAKT/c9eCNxNRVDR4vskp3tnnahlcQfn394m0sFvjnQX6lIaXa
-	Xvmy0JCg7q81cplNhAlAvbCnMCV5kB4lQrbZ523dPBjYFt0rxmZw2bxKtSVMF3xhX7RZc+99rsXSg
-	4IHmmvufAllk6G6IWitAx9w8njmRVSUlnwNuDtaxgk3tNlPoJY3hUWjVi7IzFgFLL8LYHqaZurEl0
-	cTwh/XXPE3mVcSPVazNw==;
+	List-Owner; bh=lGHbORle7mo5o6gel4bb46qYEeY8WdR7wCHk2jTSFOA=; b=oNoMCVoQJZp3T0
+	IU2tDMdShMxQ6SdGpITf7ZWsRcjkR/DYeaOP7+nUQELlU7v5ef1jIKR4ZpzH6vyv7mKoIma6BO3+m
+	i1JhMU7bUsCg1S7Vaq4AYTGqIRfQmmCOefVUsbWepzxrmcyO5/hysNqxigvuZMdD3Vbm1YcNzK/1X
+	xsHcwPL/Bm7+DHJgq6b2fT7boQ6Os//JKUHAy6EQ5AFepFZzO2Y2Q8s3vNzMTkUvIGQQ1yiUbHGJG
+	iPseg1Dv6Z0fxx2xSzZrBN6RC4B8nYfxCd6SHfLmF3DpFzruVAzF6sJwDDQEBdfIbwhg3usHZSCHc
+	LV0IacZmdYaoGl++RujA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sBUiI-0000000E38Q-0Wy1;
-	Mon, 27 May 2024 07:24:10 +0000
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
+	id 1sBaQp-0000000F5zM-0Ef0;
+	Mon, 27 May 2024 13:30:31 +0000
+Received: from relay5-d.mail.gandi.net ([2001:4b98:dc4:8::225])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sBUiE-0000000E371-1qLX
-	for linux-amlogic@lists.infradead.org;
-	Mon, 27 May 2024 07:24:07 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1sBUhx-0007Uf-So; Mon, 27 May 2024 09:23:49 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1sBUhw-0039iX-Er; Mon, 27 May 2024 09:23:48 +0200
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1sBUhw-0001dI-1H;
-	Mon, 27 May 2024 09:23:48 +0200
-Message-ID: <9b7e1a88a812f5c86ada75b094c95b9cf65891c3.camel@pengutronix.de>
-Subject: Re: [PATCH 0/3] reset: Convert to platform remove callback
- returning void
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Nishanth Menon <nm@ti.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Tero Kristo <kristo@kernel.org>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, kernel@pengutronix.de,  Santosh Shilimkar
- <ssantosh@kernel.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,  Jerome Brunet <jbrunet@baylibre.com>
-Date: Mon, 27 May 2024 09:23:48 +0200
-In-Reply-To: <3emqw7comsegnkso6o3srb3ebeoa7n2m5ckv2ycznu6muh7ydz@krrx33tn4vyv>
-References: <cover.1709674157.git.u.kleine-koenig@pengutronix.de>
-	 <f35398925846addb282df9c8a6f09d24ecc5c6fc.camel@pengutronix.de>
-	 <3emqw7comsegnkso6o3srb3ebeoa7n2m5ckv2ycznu6muh7ydz@krrx33tn4vyv>
-User-Agent: Evolution 3.46.4-2 
+	id 1sBZJh-0000000Eq9P-24Dp;
+	Mon, 27 May 2024 12:19:11 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2420F1C0003;
+	Mon, 27 May 2024 12:19:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1716812343;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9HFncU1PhOHKdcu8vvbi3jbm3StjIMaMlXJRXdVMGNw=;
+	b=oTrXooR9clakWRqcxff2jUrpg+xOGC2/Wh2pZvkxR2oXNxjWE2TRUI2KnX9Qp/t+IT+YSy
+	fMLZGe4NN5Nhi+YARc8b6vknTmcP36AfFysSNfnu7b991hGQFGSBo3qyp7O2bpCCPMzsod
+	pCD1JUyBzL3fwovy8Y3C91BprjLGyxtJHhCJjG23Wfv+BxVG4cAla3AqvFdK6JY4ljgTNr
+	TIkninxriOji7uPAJHNj1AqcduSwYWcXp1iQV4nT8RqEkQ6TR646EXTYIbOLIkxDwft3ER
+	pwI6uQ1Js30Ab0vz0VIOtQ7Ptgnl87gONUKHqnjPILdVREfgob7Tc8BXrBivcg==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Arseniy Krasnov <avkrasnov@salutedevices.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	oxffffaa@gmail.com,
+	kernel@sberdevices.ru
+Subject: Re: [PATCH v6 2/3] mtd: rawnand: meson: refactor use of 'meson_nfc_cmd_access()'
+Date: Mon, 27 May 2024 14:19:01 +0200
+Message-Id: <20240527121901.178655-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20240507230903.3399594-3-avkrasnov@salutedevices.com>
+References: 
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'2234585f5c12f2a633fff715cca32ce0b40cfa29'
+X-GND-Sasl: miquel.raynal@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240527_002406_866059_ECB853EF 
-X-CRM114-Status: GOOD (  16.23  )
+X-CRM114-CacheID: sfid-20240527_051905_824541_EAF6F3DF 
+X-CRM114-Status: UNSURE (   5.08  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,35 +84,22 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgVXdlLAoKT24gU2EsIDIwMjQtMDUtMjUgYXQgMTI6MTQgKzAyMDAsIFV3ZSBLbGVpbmUtS8O2
-bmlnIHdyb3RlOgo+IEhlbGxvIFBoaWxpcHAsCj4gCj4gT24gVHVlLCBNYXIgMTIsIDIwMjQgYXQg
-MDk6NDc6MjRBTSArMDEwMCwgUGhpbGlwcCBaYWJlbCB3cm90ZToKPiA+IE9uIERpLCAyMDI0LTAz
-LTA1IGF0IDIyOjMyICswMTAwLCBVd2UgS2xlaW5lLUvDtm5pZyB3cm90ZToKPiA+ID4gdGhpcyBz
-ZXJpZXMgY29udmVydHMgYWxsIHBsYXRmb3JtIGRyaXZlcnMgYmVsb3cgZHJpdmVycy9yZXNldCB0
-byBzdHJ1Y3QKPiA+ID4gcGxhdGZvcm1fZHJpdmVyOjpyZW1vdmVfbmV3KCkuIFNlZSBjb21taXQg
-NWM1YTc2ODBlNjdiICgicGxhdGZvcm06Cj4gPiA+IFByb3ZpZGUgYSByZW1vdmUgY2FsbGJhY2sg
-dGhhdCByZXR1cm5zIG5vIHZhbHVlIikgZm9yIGFuIGV4dGVuZGVkCj4gPiA+IGV4cGxhbmF0aW9u
-IGFuZCB0aGUgZXZlbnR1YWwgZ29hbC4KPiA+ID4gCj4gPiA+IEFsbCBjb252ZXJzYXRpb25zIGFy
-ZSB0cml2aWFsLCBiZWNhdXNlIHRoZWlyIC5yZW1vdmUoKSBjYWxsYmFja3MKPiA+ID4gcmV0dXJu
-ZWQgemVybyB1bmNvbmRpdGlvbmFsbHkuCj4gPiA+IAo+ID4gPiBUaGVyZSBhcmUgbm8gaW50ZXJk
-ZXBlbmRlbmNpZXMgYmV0d2VlbiB0aGVzZSBwYXRjaGVzLCBzbyB0aGV5IGNvdWxkIGJlCj4gPiA+
-IHBpY2tlZCB1cCBpbmRpdmlkdWFsbHkuIEJ1dCBJJ2QgaG9wZSB0aGF0IHRoZXkgZ2V0IHBpY2tl
-ZCB1cCBhbGwKPiA+ID4gdG9nZXRoZXIgYnkgUGhpbGlwcC4KPiA+IAo+ID4gVGhhbmsgeW91LCBJ
-J2xsIHBpY2sgdGhlbSB1cC4KPiA+IAo+ID4gUmV2aWV3ZWQtYnk6IFBoaWxpcHAgWmFiZWwgPHAu
-emFiZWxAcGVuZ3V0cm9uaXguZGU+Cj4gCj4gVGhlc2UgcGF0Y2hlcyBtYWRlIGl0IGludG8gbmV4
-dCAoYXMgdjYuOS1yYzEuLjZkODlkZjYxNjUwZCksIGJ1dCBub3QgeWV0Cj4gaW50byBMaW51cydz
-IHRyZWUgZm9yIHY2LjEwLXJjMS4gSSBpbnRlbmQgdG8gc2VuZCBhIFBSIHRvIEdyZWcgZWFybHkg
-bmV4dCB3ZWVrIGNoYW5naW5nCj4gcGxhdGZvcm1fZHJpdmVyOjpyZW1vdmUgdG8gbWF0Y2ggcmVt
-b3ZlX25ldyB0byBjb29rCj4gbG9uZyBpbiBuZXh0IGZvciB2Ni4xMS1yYzEuIElmIHRoZXNlIHJl
-c2V0IGNvbW1pdHMgZG9uJ3QgbWFrZSBpdCBpbiBpbiB0aW1lLAo+IEknbGwgYmUgc28gYm9sZCBh
-bmQganVzdCBpbmNsdWRlIHRoZSBjb21taXRzIGZyb20geW91ciBmb3ItbmV4dCBicmFuY2gKPiBp
-biBteSBQUi4KClBsZWFzZSBkbywgdGhhbmsgeW91LgoKQWNrZWQtYnk6IFBoaWxpcHAgWmFiZWwg
-PHAuemFiZWxAcGVuZ3V0cm9uaXguZGU+CgpyZWdhcmRzClBoaWxpcHAKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBs
-aXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFk
-ZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On Tue, 2024-05-07 at 23:09:02 UTC, Arseniy Krasnov wrote:
+> Move call 'meson_nfc_cmd_seed()' and check for 'NAND_NEED_SCRAMBLING'
+> to 'meson_nfc_cmd_access()', thus removing code duplication.
+> 
+> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
+
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
+
+Miquel
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
