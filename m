@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF950C41513
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4EC9C25B7D
 	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2024 13:30:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,34 +12,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lGHbORle7mo5o6gel4bb46qYEeY8WdR7wCHk2jTSFOA=; b=oNoMCVoQJZp3T0
-	IU2tDMdShMxQ6SdGpITf7ZWsRcjkR/DYeaOP7+nUQELlU7v5ef1jIKR4ZpzH6vyv7mKoIma6BO3+m
-	i1JhMU7bUsCg1S7Vaq4AYTGqIRfQmmCOefVUsbWepzxrmcyO5/hysNqxigvuZMdD3Vbm1YcNzK/1X
-	xsHcwPL/Bm7+DHJgq6b2fT7boQ6Os//JKUHAy6EQ5AFepFZzO2Y2Q8s3vNzMTkUvIGQQ1yiUbHGJG
-	iPseg1Dv6Z0fxx2xSzZrBN6RC4B8nYfxCd6SHfLmF3DpFzruVAzF6sJwDDQEBdfIbwhg3usHZSCHc
-	LV0IacZmdYaoGl++RujA==;
+	List-Owner; bh=uyE8Gdug3JNVyqe/rwmolFXXGhgB/qeY8ZJNowrvTeU=; b=XSZ+ewND6+zkD0
+	gBheQR3Ad3s+D+zY0lbUqHm6ATHFU+IRr332212DlNDVekrGs2d/ENiY7he+3gniORYoOJKc4i7Sc
+	v1/h7/Tz1wcpH55AJkv6dRC48lkvlfeE9DvZE0ds8YyVjqzzNsUfapNNLCJOrBuiyNJV4x+ZnM/fe
+	FeXYEO6EfJmtUAeK/ArwzBcdULz2lki2wKuzjgLpL80/3DXmSPn+mAimoia9dX9VFS9RyrDrSmuxJ
+	how+wndJ58vdPHN/TA57jHOMvIon0TEoHw0mJbC5FW80S+OjT/s3jIj02G9cyWo7X/SKzWbDiSI5C
+	1D/DptIWM0oQPtelgViQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sBaQp-0000000F5zM-0Ef0;
-	Mon, 27 May 2024 13:30:31 +0000
-Received: from relay5-d.mail.gandi.net ([2001:4b98:dc4:8::225])
+	id 1sBaQo-0000000F5ym-1kCG;
+	Mon, 27 May 2024 13:30:30 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sBZJh-0000000Eq9P-24Dp;
-	Mon, 27 May 2024 12:19:11 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2420F1C0003;
-	Mon, 27 May 2024 12:19:01 +0000 (UTC)
+	id 1sBZJm-0000000EqCo-3Vyg;
+	Mon, 27 May 2024 12:19:10 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=H6dIIUfmUc8NO0pZNfG5eRyXQNvs/FWO1RLC4XodFVw=; b=A1kium/sq8zOdPpNUjEfrNApSh
+	musOHwWbbFZvY+VAm7I19W3OTFGa8fICRzTTGBgVxX5hWk16Lk2kVXQ02K9T/7mcWCbxzyFNR+gAK
+	5tP87JEOAg3gz0Kw2FNXrZyzoOFkP+H877qUBpIC8cgoAe3F8mp3Kn7PTAcbIgWzgdrmtFm7UtpRH
+	LPv+FjfDLBqRdXcNKfE2af8ffHRR0cNsfi4UNQnDr7dON1cLcZSdyRbV0bsnH0dAy8bq16hc9ZaOv
+	7ewrlA94jQ39Ygin8I9lQ29LoU3Uz4o0ejMQl22VqqCdCWmjOaA2SAcVWgKHG3wx2LALRTWgPnZjT
+	CtD7LhLg==;
+Received: from relay8-d.mail.gandi.net ([2001:4b98:dc4:8::228])
+	by desiato.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1sBZJg-0000000BHZO-1Po4;
+	Mon, 27 May 2024 12:19:08 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 41DAD1BF206;
+	Mon, 27 May 2024 12:18:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1716812343;
+	t=1716812339;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=9HFncU1PhOHKdcu8vvbi3jbm3StjIMaMlXJRXdVMGNw=;
-	b=oTrXooR9clakWRqcxff2jUrpg+xOGC2/Wh2pZvkxR2oXNxjWE2TRUI2KnX9Qp/t+IT+YSy
-	fMLZGe4NN5Nhi+YARc8b6vknTmcP36AfFysSNfnu7b991hGQFGSBo3qyp7O2bpCCPMzsod
-	pCD1JUyBzL3fwovy8Y3C91BprjLGyxtJHhCJjG23Wfv+BxVG4cAla3AqvFdK6JY4ljgTNr
-	TIkninxriOji7uPAJHNj1AqcduSwYWcXp1iQV4nT8RqEkQ6TR646EXTYIbOLIkxDwft3ER
-	pwI6uQ1Js30Ab0vz0VIOtQ7Ptgnl87gONUKHqnjPILdVREfgob7Tc8BXrBivcg==
+	bh=H6dIIUfmUc8NO0pZNfG5eRyXQNvs/FWO1RLC4XodFVw=;
+	b=bTnKYUeJvoYRvmmPBzaCq35Th5ZcUumDCLdE9crX1ZR1o+bgNKbq/2CzR11AFbJvlbcgdm
+	MGxCR5SkzP7VnAypaGPl1udU7UaUifdomsSBGDn1cq8Mufx7XRAFeA07vW5WiLeouZoPrK
+	DVNCWBqkJAtKex4IBdV+on+xvpmVWLWwDZbFz+H2mXIpFs+tg4O2eo+vnF0XUXAlisLuCn
+	G9vqp5YMTQhY9uWPp762N9BDVdiVDJ5WzpTQCKP/hfwBdwaYE1DGi84DoXAAF0D/Gy6jh1
+	prbL8hAmFxy5b4+l6rh4QOn3nn+e+TiUtOQgLw3ySZjJrw77pWV+uhrppcEY5w==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
 To: Arseniy Krasnov <avkrasnov@salutedevices.com>,
 	Miquel Raynal <miquel.raynal@bootlin.com>,
@@ -59,19 +73,19 @@ Cc: linux-mtd@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	oxffffaa@gmail.com,
 	kernel@sberdevices.ru
-Subject: Re: [PATCH v6 2/3] mtd: rawnand: meson: refactor use of 'meson_nfc_cmd_access()'
-Date: Mon, 27 May 2024 14:19:01 +0200
-Message-Id: <20240527121901.178655-1-miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v6 3/3] mtd: rawnand: meson: read/write access for boot ROM pages
+Date: Mon, 27 May 2024 14:18:57 +0200
+Message-Id: <20240527121857.178627-1-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240507230903.3399594-3-avkrasnov@salutedevices.com>
+In-Reply-To: <20240507230903.3399594-4-avkrasnov@salutedevices.com>
 References: 
 MIME-Version: 1.0
 X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'2234585f5c12f2a633fff715cca32ce0b40cfa29'
+X-linux-mtd-patch-commit: b'04a81b4f9ba1a473af7715168306c23ca4e15a25'
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240527_051905_824541_EAF6F3DF 
-X-CRM114-Status: UNSURE (   5.08  )
+X-CRM114-CacheID: sfid-20240527_131904_585777_F9F68355 
+X-CRM114-Status: UNSURE (   8.65  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -89,9 +103,18 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 2024-05-07 at 23:09:02 UTC, Arseniy Krasnov wrote:
-> Move call 'meson_nfc_cmd_seed()' and check for 'NAND_NEED_SCRAMBLING'
-> to 'meson_nfc_cmd_access()', thus removing code duplication.
+On Tue, 2024-05-07 at 23:09:03 UTC, Arseniy Krasnov wrote:
+> Boot ROM on Meson needs some pages to be read/written in a special mode:
+> 384 byte ECC mode (so called "short" by Amlogic) and with scrambling
+> enabled. Such pages are located on the chip in the following way (for
+> example):
+> 
+> [ p0 ][ p1 ][ p2 ][ p3 ][ p4 ][ p5 ][ p6 ][ p7 ] ... [ pN ]
+>   ^           ^           ^           ^
+> 
+> pX is page number "X". "^" means "special" page used by boot ROM - e.g.
+> every 2nd page in the range of [0, 7]. Step (2 here) and last page in
+> range is read from the device tree.
 > 
 > Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
 
