@@ -4,64 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8ED9CC25B7E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 28 May 2024 17:42:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4B49C25B78
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 May 2024 17:42:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
-	In-Reply-To:Cc:To:From:MIME-Version:Date:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=YnW8AiVY7JHvPolQ+Gsg0UGw8jfx3HbznoW5k5iYKgA=; b=YImLz2WZ7VDoHfGv6zPk8bFWUo
-	M5M4zj3P8rggyAXWs8pLeLzVXmKuRcNmb3VRlq9XwGSsDN8XTY1/qz2kB4uPLVgvqPVqBJ8um10xX
-	G5UwQX5adTemCqtwPxJKF7Xo4bX7PE1bybY9q8XhsEqpDbi0h8X3b9thz2eLK6sqBQkc9HjEYpW95
-	1TdTCQqKxAQiFvkKOOZhdjntd2cUayyZnSgRbxJ+Pf5XigZfjKhXtJfcEgLXHeEoanPsEArD2E1UY
-	lLW0r+7XobNOjG1YIfepvdmyLtx4YYlKxfwSzDt6SDnKZjOd6xnTnM/PgV690iu2qanC9bgBFhi5C
-	GOF3MSCg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=SC+P+x+quiycQbZSofUxlaB6+UWkVL4KaHblwzSNmJU=; b=jzhcfY8qb49HQm
+	LBhmmHRAKjofS7nKOM6BbHE7DWjjcqeZIdWgDMHiPKfo68YxytT7T9A2mJZg/2uPwcm+j/pcdA8KU
+	E/5gBoUKpLVOFwLoyZyTNyrfjbnqxa6CFtVw/0MsVpHTTqI8Xw3sjwYCvAmhgTliShZdAypy85Bps
+	QAnpeC23d1//yqSMNuOid/ADj24OpCcp3f5KvONbZbrZ7LgVN8XQG3Cb3rR7DuYsX5AghOCxjAiqu
+	p4VmaXFVo3SldE3+NNeopJY6WBSBkz1jlDh384jfmJ0NzFm8fVBVRKWv76boDIMf8Tui7R/Ib/bpa
+	6WYmIM85Rf7ooNMqHbOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sC0pe-00000001ZnE-45OS;
-	Tue, 28 May 2024 17:41:54 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1sC0pk-00000001Zrn-0iUy;
+	Tue, 28 May 2024 17:42:00 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sC0pX-00000001ZkL-2DHP;
-	Tue, 28 May 2024 17:41:49 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 12874622EA;
-	Tue, 28 May 2024 17:41:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A69EC4AF0D;
-	Tue, 28 May 2024 17:41:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716918106;
-	bh=2WG8Xkeg5/Ff6RAW5YMx7uPU5FeuGNoTNHsOpsHRehQ=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=eieCx/XlgmI+jlhbY37vUn6HYPJW/gdOMKp6mGaNzjjz3GOLToGr9QjASihqrsJbG
-	 LxXvFXrAz7U4G6jbq+TKzDZCIGnrtrkdkJHIG3U6AOAzLt1ZPrvfHuaI9FiDy28wQH
-	 nqaNeIA43S58NjBfrTuPRI3AkibBoH88oec2U0ZBkWv6srzSyTnCdeXyfv+i+9Y0Dn
-	 +lrojj7a+Ruvrtku4jyFHIj7T66kfQSF4y6OMVYH0htFqt1re7FU0/SiUmmO8mHUKM
-	 Z8CqT9IDh+70zIPOsrQJFZ/8ld246XSWA3LUDKxQCpmgm5EyGWsxawSmTPN6ElHLqQ
-	 HVMaos4AAKWsA==
-Date: Tue, 28 May 2024 12:41:45 -0500
+	id 1sC0pe-00000001ZkM-0bwk;
+	Tue, 28 May 2024 17:41:56 +0000
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 96BFB100016;
+	Tue, 28 May 2024 20:41:45 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 96BFB100016
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1716918105;
+	bh=U5jiUUaxJmXPUet0vDMhP+OhbC5yo4Ho1nO40crCeco=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=B+ZG/3r8ZKVVzixK86pMjEKbdWHXrTLK/CE4hhHEiJ/ExIGY2WAsFlA1K8dbcz7Od
+	 g3u5/Zx2r6ZF3PoiINe+6GNbUYEl0whIU1icoxgmEeWjZnN9crOggX4CmezGsoFnxO
+	 DM5HIhuV1kjHYzaBBHS+iHadtFEiOL55zG5uSz5WvcWBan2cA3uDMCUraSMxXiSYKD
+	 vD6L03vA2TYfThU6XcVjXiTjtbTwQ4Kc2C/HQcxYci+QaiWAQLdtZiavLvIB9yuHff
+	 e+UUg28Pdmtu3ICPqkJ5vvUg4vIfpMkzeOBB2k1ysnrvARDGVCMG0io5P39eYtEIwz
+	 NCD/a0TEYWphA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 28 May 2024 20:41:45 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
+ (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 28 May
+ 2024 20:41:45 +0300
+Date: Tue, 28 May 2024 20:41:44 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>
+CC: <jian.hu@amlogic.com>, <kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 0/7] clk: meson: introduce Amlogic A1 SoC Family CPU
+ clock controller driver
+Message-ID: <20240528174144.v2aiq4zryqdbu6dh@CAB-WSD-L081021>
+References: <20240515185103.20256-1-ddrokosov@salutedevices.com>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Arnd Bergmann <arnd@kernel.org>
-Cc: Arnd Bergmann <arnd@arndb.de>, Igor Prusov <ivprusov@salutedevices.com>, 
- Conor Dooley <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Dmitry Rokosov <ddrokosov@salutedevices.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-In-Reply-To: <20240528133215.2266419-1-arnd@kernel.org>
-References: <20240528133215.2266419-1-arnd@kernel.org>
-Message-Id: <171691793458.1180705.102565751927092612.robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: amlogic: ad402: move thermal-zones to top
- node
+Content-Disposition: inline
+In-Reply-To: <20240515185103.20256-1-ddrokosov@salutedevices.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185554 [May 28 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;salutedevices.com:7.1.1;lore.kernel.org:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/05/28 12:46:00
+X-KSMG-LinksScanning: Clean, bases: 2024/05/28 15:20:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/28 10:03:00 #25311634
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240528_104147_677055_7913CA6E 
-X-CRM114-Status: GOOD (  11.35  )
+X-CRM114-CacheID: sfid-20240528_104154_970735_029F3634 
+X-CRM114-Status: GOOD (  29.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,46 +105,154 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hello guys!
 
-On Tue, 28 May 2024 15:31:59 +0200, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
+Kindly reminder :)
+
+On Wed, May 15, 2024 at 09:47:23PM +0300, Dmitry Rokosov wrote:
+> The CPU clock controller plays a general role in the Amlogic A1 SoC
+> family by generating CPU clocks. As an APB slave module, it offers the
+> capability to inherit the CPU clock from two sources: the internal fixed
+> clock known as 'cpu fixed clock' and the external input provided by the
+> A1 PLL clock controller, referred to as 'syspll'.
 > 
-> It appears that this accidentally got added into the spi node, causing
-> a warning.
+> It is important for the driver to handle the cpu_clk rate switching
+> effectively by transitioning to the CPU fixed clock to avoid any
+> potential execution freezes.
 > 
-> arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts:119.16-161.4: Warning (spi_bus_reg): /soc/spi@fd000400/thermal-zones: missing or empty reg property
+> Validation:
+> * to double-check all clk flags, run the below helper script:
 > 
-> Fixes: 593ab951232b ("arm64: dts: amlogic: ad402: setup thermal-zones")
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> ---
->  .../arm64/boot/dts/amlogic/meson-a1-ad402.dts | 62 +++++++++----------
->  1 file changed, 31 insertions(+), 31 deletions(-)
+> ```
+> pushd /sys/kernel/debug/clk
+> for f in *; do
+>     if [[ -f "$f/clk_flags" ]]; then
+>         flags="$(cat $f/clk_flags | awk '{$1=$1};1' | sed ':a;N;$!ba;s/\n/ | /g')"
+>         echo -e "$f: $flags"
+>     fi
+> done
+> popd
+> ```
+> 
+> * to trace the current clks state, use the
+>   '/sys/kernel/debug/clk/clk_dump' node with jq post-processing:
+> 
+> ```
+> $ cat /sys/kernel/debug/clk/clk_dump | jq '.' > clk_dump.json
+> ```
+> 
+> * to see the CPU clock hierarchy, use the
+> '/sys/kernel/debug/clk/clk_summary' node with jq post-processing:
+> 
+> ```
+> $ cat /sys/kernel/debug/clk/clk_summary | jq '.' > clk_dump.json
+> ```
+> 
+> when cpu_clk is inherited from sys_pll, it should be:
+> 
+> ```
+> syspll_in    1  1  0  24000000    0  0  50000  Y  deviceless                 no_connection_id
+>   sys_pll    2  2  0  1200000000  0  0  50000  Y  deviceless                 no_connection_id
+>     cpu_clk  1  1  0  1200000000  0  0  50000  Y  cpu0                       no_connection_id
+>                                                   cpu0                       no_connection_id
+>                                                   fd000000.clock-controller  dvfs
+>                                                   deviceless                 no_connection_id
+> ```
+> 
+> and from cpu fixed clock:
+> 
+> ```
+> fclk_div3_div           1  1  0  512000000  0  0  50000  Y  deviceless                 no_connection_id
+>   fclk_div3             4  4  0  512000000  0  0  50000  Y  deviceless                 no_connection_id
+>     cpu_fsource_sel0    1  1  0  512000000  0  0  50000  Y  deviceless                 no_connection_id
+>       cpu_fsource_div0  1  1  0  128000000  0  0  50000  Y  deviceless                 no_connection_id
+>         cpu_fsel0       1  1  0  128000000  0  0  50000  Y  deviceless                 no_connection_id
+>           cpu_fclk      1  1  0  128000000  0  0  50000  Y  deviceless                 no_connection_id
+>             cpu_clk     1  1  0  128000000  0  0  50000  Y  cpu0                       no_connection_id
+>                                                             cpu0                       no_connection_id
+>                                                             fd000000.clock-controller  dvfs
+>                                                             deviceless                 no_connection_id
+> ```
+> 
+> * to debug cpu clk rate propagation and proper parent switching, compile
+>   kernel with the following definition:
+>     $ sed -i "s/undef CLOCK_ALLOW_WRITE_DEBUGFS/define CLOCK_ALLOW_WRITE_DEBUGFS/g" drivers/clk/clk.c
+>   after that, clk_rate debug node for each clock will be available for
+>   write operation
+> 
+> Changes v3 since v2 at [2]:
+>     - rename CLK_MESON_PLL_INIT_ONCE to CLK_MESON_PLL_NOINIT_ENABLED to
+>       accurately describe the behavior when we don't run the
+>       initialization sequence for an already enabled PLL
+>     - provide accurate comment about CLK_MESON_PLL_NOINIT_ENABLED flag
+>       to meson_clk_pll_init() and A1 sys_pll clock definition
+>     - tag syspll_in and sys_pll input clocks as optional in the a1-pll
+>       and a1-peripherals clkc bindings per Conor and Rob suggestion
+>     - move sys_pll_div16 clock from a1-pll clkc to a1-peripherals clkc
+>       as Jerome suggested
+> 
+> Changes v2 since v1 at [1]:
+>     - introduce new 'INIT_ONCE' flag to eliminate init for already
+>       enabled PLL
+>     - explain why we need to break ABI for a1-pll driver by adding
+>       sys_pll connections
+>     - implement sys_pll init sequence, which is applicable when sys_pll
+>       is disabled
+>     - remove CLK_IS_CRITICAL from sys_pll
+>     - move sys_pll_div16 binding to the end per Rob's suggestion
+>     - add Rob's RvB
+>     - remove holes from the beginning of the cpu clock controller regmap
+>     - move a1-cpu.h registers offsets definition to a1-cpu.c
+>     - set CLK_SET_RATE_GATE for parallel cpu fixed clock source trees
+>       per Martin's and Jerome's suggestion
+>     - redesign clock notifier block from cpu_clk to sys_pll to keep
+>       cpu_clock working continuously (the same implementation is located
+>       in the g12a clock driver)
+> 
+> Links:
+>     [1] https://lore.kernel.org/all/20240329205904.25002-1-ddrokosov@salutedevices.com/
+>     [2] https://lore.kernel.org/all/20240510090933.19464-1-ddrokosov@salutedevices.com/
+> 
+> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> 
+> Dmitry Rokosov (7):
+>   clk: meson: add 'NOINIT_ENABLED' flag to eliminate init for enabled
+>     PLL
+>   dt-bindings: clock: meson: a1: pll: introduce new syspll bindings
+>   clk: meson: a1: pll: support 'syspll' general-purpose PLL for CPU
+>     clock
+>   dt-bindings: clock: meson: a1: peripherals: support sys_pll input
+>   clk: meson: a1: peripherals: support 'sys_pll_div16' clock as GEN
+>     input
+>   dt-bindings: clock: meson: add A1 CPU clock controller bindings
+>   clk: meson: a1: add Amlogic A1 CPU clock controller driver
+> 
+>  .../bindings/clock/amlogic,a1-cpu-clkc.yaml   |  64 ++++
+>  .../clock/amlogic,a1-peripherals-clkc.yaml    |   9 +-
+>  .../bindings/clock/amlogic,a1-pll-clkc.yaml   |   9 +-
+>  drivers/clk/meson/Kconfig                     |  10 +
+>  drivers/clk/meson/Makefile                    |   1 +
+>  drivers/clk/meson/a1-cpu.c                    | 331 ++++++++++++++++++
+>  drivers/clk/meson/a1-peripherals.c            |  18 +-
+>  drivers/clk/meson/a1-pll.c                    |  72 ++++
+>  drivers/clk/meson/a1-pll.h                    |   6 +
+>  drivers/clk/meson/clk-pll.c                   |  40 ++-
+>  drivers/clk/meson/clk-pll.h                   |   1 +
+>  .../dt-bindings/clock/amlogic,a1-cpu-clkc.h   |  19 +
+>  .../clock/amlogic,a1-peripherals-clkc.h       |   1 +
+>  .../dt-bindings/clock/amlogic,a1-pll-clkc.h   |   1 +
+>  14 files changed, 560 insertions(+), 22 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-cpu-clkc.yaml
+>  create mode 100644 drivers/clk/meson/a1-cpu.c
+>  create mode 100644 include/dt-bindings/clock/amlogic,a1-cpu-clkc.h
+> 
+> -- 
+> 2.43.0
 > 
 
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y amlogic/meson-a1-ad402.dtb' for 20240528133215.2266419-1-arnd@kernel.org:
-
-arch/arm64/boot/dts/amlogic/meson-a1-ad402.dtb: spi@fd000400: Unevaluated properties are not allowed ('power-domains' was unexpected)
-	from schema $id: http://devicetree.org/schemas/spi/amlogic,a1-spifc.yaml#
-
-
-
-
-
+-- 
+Thank you,
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
