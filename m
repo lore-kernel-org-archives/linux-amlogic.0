@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB45BC25B78
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 May 2024 02:42:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A3C6C27C4F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 May 2024 02:42:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=K/TB2xwu8aSF2qv59Gyj86MSF34phTrR75uLp6cNcdw=; b=IEK52FxhXgvcgH
-	tuc7lPnUguBVRMfhRgr9GZHeGlnMaCBHUFjOIUDHhzYzYblgqdEqkdlO0Frcotxz8dSpVVjXxt3rw
-	LMyCIhDtQD/tZWDlKw2bG/q7cZTiwE/6Y1X4TIWacwtnTep1jXqRXUHU1hXrdd2nXB1nPRforlAsx
-	xWeiQHt3q3KHfw182ZNSCiOSJTpT4bMJOsuwQwXM6abGLihOnho7x9+iBi4A2VbDEl+DXOXeDRBK0
-	oQQcYB8y8wa6gddkV4LxPEbTvhv/eh8U7s1IPxh2QjPO2+9pIbv3IwQ7m/eCS4YSo/C0Ti/1imX7P
-	Qeybf3CeHA4SSV6Mol4A==;
+	List-Owner; bh=etL1kPqXrFWz1F9U8g385oStts/eIDOQJrRD2+L4PYg=; b=S2bEhNQQRcUJPg
+	ebrt3dDgfbbSJBPvg9+jkFmgCA0Y1cstFUPS2wEm0Wy+As/PHNHsSnuhfpIJG29mZ7GID1LZcOBIA
+	PKpKCJVxUBan3+9K4pYg8JqUtE0NluAjXxIm49lyDNjtrgUBX3D0OEAWu2KWwUVrf3CMok5LKYhVf
+	JBMVyKz3V/24HJm/tILgJx10lrteiwxCOKaXiyscy0wyFoJld3BFYPQbr2z/H7ccpL7pW2w7+CPv9
+	humPK5s1D4tq1wJeuJWhayBqzs/g8g4vJw424J16UcE/uaiRDDoAHcAPxvpT7O01+mreebZmHVmPO
+	QvZeVZLr2JsEUprf9lfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sC9GQ-00000002chs-1Rsh;
-	Wed, 29 May 2024 02:42:06 +0000
-Received: from madrid.collaboradmins.com ([2a00:1098:ed:100::25])
+	id 1sC9Gj-00000002cv2-2Krs;
+	Wed, 29 May 2024 02:42:25 +0000
+Received: from madrid.collaboradmins.com ([46.235.227.194])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sC9GI-00000002ca1-0al6;
-	Wed, 29 May 2024 02:42:03 +0000
+	id 1sC9GM-00000002cea-2Qq8;
+	Wed, 29 May 2024 02:42:15 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1716950516;
-	bh=on0EOWF+GkQb1PJcpMNExjb9HNOdj76aATPkzOg3PAg=;
+	s=mail; t=1716950521;
+	bh=FbGtRsAhSJxQzXd2gStTghEYNFX2gPeqeD6lXFa+nIg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=41Y/EPEAiCbuxuQnH4Q92zY4teEN8tmt/m7HJ5dHcGdr5VPAKPagjuEeYHoIBgC7X
-	 EMIgr2nlop2O1Cqp44+whbpYLZAXdYyuTYP4/R+fkqtRLppGSCFA6LsA/6HVw7+oUR
-	 25XOVhMc6NVJBjVHS6ehxO1S6qrUaNvwJJm/RtSoREKw81KiMUDlykgjMQ4Vn8k05A
-	 IYIvghzwU5DNsjnbw0yTrAKrVfwbovrYppgx8GBYQfX8LFKxKJh03JYsAt2SwZMOVP
-	 iupqyKSv+ibOnL2r2ST/t4XN8u6LHbIGr9S6eiMq1UYVbmwx2UHSFz/4aHR9xgiezt
-	 deQSjTukXh+Cg==
+	b=s7GtwMczyYHLkRxVqw40c6loypiPNBctZOjSC844eN5hApJwZLD5Q99jFThIXRrI9
+	 TUCXEeRXeHjcxhMhONmlSinj84u/rOo/w9f8/tVs5koy717TCVB7kN4ugCb0Qdw/Zx
+	 z/NDqhmb5SrzIfEHWadlC43pE7oeOQbmrd/ul9prlGzeEeaWUnKdez77pjQPVZl6V5
+	 ZoyGcArzCQKccNA8TeIbYaz9RqWZbUqpswpjBVSqniuwO1Unvz4MaUxMiCa6o4m2rg
+	 n4jmbhP29v+Ktnne6BhUdypJkAZnh/6ChLRIsFNNbWWV/8u14HQVmvKFmCfvA58N3V
+	 VMngQTcwwS07g==
 Received: from localhost.localdomain (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: vignesh)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D7130378215E;
-	Wed, 29 May 2024 02:41:52 +0000 (UTC)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 303383782160;
+	Wed, 29 May 2024 02:41:56 +0000 (UTC)
 From: Vignesh Raman <vignesh.raman@collabora.com>
 To: dri-devel@lists.freedesktop.org
 Cc: daniels@collabora.com,
@@ -63,17 +63,16 @@ Cc: daniels@collabora.com,
 	intel-gfx@lists.freedesktop.org,
 	virtualization@lists.linux-foundation.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 4/6] drm/ci: uprev IGT
-Date: Wed, 29 May 2024 08:10:47 +0530
-Message-Id: <20240529024049.356327-5-vignesh.raman@collabora.com>
+Subject: [PATCH v3 5/6] drm/ci: skip driver specific tests
+Date: Wed, 29 May 2024 08:10:48 +0530
+Message-Id: <20240529024049.356327-6-vignesh.raman@collabora.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20240529024049.356327-1-vignesh.raman@collabora.com>
 References: <20240529024049.356327-1-vignesh.raman@collabora.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240528_194158_756420_DA93279D 
-X-CRM114-Status: UNSURE (   9.98  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240528_194203_002773_82E528AC 
+X-CRM114-Status: GOOD (  14.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,55 +89,429 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-test-list.txt and test-list-full.txt are not generated for
-cross-builds and they are required by drm-ci for testing
-arm32 targets. This is fixed in igt-gpu-tools. So uprev
-IGT to include the commit which fixes this issue. Also
-disable building xe driver tests for non-intel platforms.
+Skip driver specific tests and skip kms tests for
+panfrost driver since it is not a kms driver.
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
 ---
 
 v2:
-  - Split IGT uprev to seperate patch.
+  - Skip xe tests for amdgpu and virtio.
 
 v3:
   - No changes.
 
 ---
- drivers/gpu/drm/ci/build-igt.sh  | 4 ++++
- drivers/gpu/drm/ci/gitlab-ci.yml | 2 +-
- 2 files changed, 5 insertions(+), 1 deletion(-)
+ .../gpu/drm/ci/xfails/amdgpu-stoney-skips.txt   | 15 ++++++++++++++-
+ drivers/gpu/drm/ci/xfails/i915-amly-skips.txt   | 11 ++++++++++-
+ drivers/gpu/drm/ci/xfails/i915-apl-skips.txt    | 11 ++++++++++-
+ drivers/gpu/drm/ci/xfails/i915-cml-skips.txt    |  9 +++++++++
+ drivers/gpu/drm/ci/xfails/i915-glk-skips.txt    | 11 ++++++++++-
+ drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt    | 11 ++++++++++-
+ drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt    | 11 ++++++++++-
+ drivers/gpu/drm/ci/xfails/i915-whl-skips.txt    | 11 ++++++++++-
+ .../gpu/drm/ci/xfails/mediatek-mt8173-skips.txt | 12 ++++++++++++
+ .../gpu/drm/ci/xfails/mediatek-mt8183-skips.txt | 14 ++++++++++++++
+ drivers/gpu/drm/ci/xfails/meson-g12b-skips.txt  | 14 ++++++++++++++
+ drivers/gpu/drm/ci/xfails/msm-apq8016-skips.txt | 11 +++++++++++
+ drivers/gpu/drm/ci/xfails/msm-apq8096-skips.txt | 14 +++++++++++++-
+ .../msm-sc7180-trogdor-kingoftown-skips.txt     | 12 ++++++++++++
+ .../msm-sc7180-trogdor-lazor-limozeen-skips.txt | 12 ++++++++++++
+ drivers/gpu/drm/ci/xfails/msm-sdm845-skips.txt  | 12 ++++++++++++
+ .../gpu/drm/ci/xfails/rockchip-rk3288-skips.txt | 17 ++++++++++++++++-
+ .../gpu/drm/ci/xfails/rockchip-rk3399-skips.txt | 15 +++++++++++++++
+ .../gpu/drm/ci/xfails/virtio_gpu-none-skips.txt | 16 +++++++++++++++-
+ 19 files changed, 229 insertions(+), 10 deletions(-)
+ create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8173-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/meson-g12b-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/msm-apq8016-skips.txt
 
-diff --git a/drivers/gpu/drm/ci/build-igt.sh b/drivers/gpu/drm/ci/build-igt.sh
-index b7d2a49a6db3..eddb5f782a5e 100644
---- a/drivers/gpu/drm/ci/build-igt.sh
-+++ b/drivers/gpu/drm/ci/build-igt.sh
-@@ -45,6 +45,10 @@ MESON_OPTIONS="-Doverlay=disabled                    \
-                -Dlibunwind=enabled                   \
-                -Dprefix=/igt"
- 
-+if [[ "$KERNEL_ARCH" = "arm64" ]] || [[ "$KERNEL_ARCH" = "arm" ]]; then
-+    MESON_OPTIONS="$MESON_OPTIONS -Dxe_driver=disabled"
-+fi
+diff --git a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-skips.txt b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-skips.txt
+index e2c538a0f954..21d26d5e67c2 100644
+--- a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-skips.txt
+@@ -1,2 +1,15 @@
+ # Suspend to RAM seems to be broken on this machine
+-.*suspend.*
+\ No newline at end of file
++.*suspend.*
 +
- mkdir -p /igt
- meson build $MESON_OPTIONS $EXTRA_MESON_ARGS
- ninja -C build -j${FDO_CI_CONCURRENT:-4} || ninja -C build -j 1
-diff --git a/drivers/gpu/drm/ci/gitlab-ci.yml b/drivers/gpu/drm/ci/gitlab-ci.yml
-index 8f32de63d92e..1b29c3b6406b 100644
---- a/drivers/gpu/drm/ci/gitlab-ci.yml
-+++ b/drivers/gpu/drm/ci/gitlab-ci.yml
-@@ -5,7 +5,7 @@ variables:
-   UPSTREAM_REPO: git://anongit.freedesktop.org/drm/drm
-   TARGET_BRANCH: drm-next
++# Skip driver specific tests
++msm_.*
++nouveau_.*
++panfrost_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
++
++# Skip intel specific tests
++gem_.*
++i915_.*
++xe_.*
+diff --git a/drivers/gpu/drm/ci/xfails/i915-amly-skips.txt b/drivers/gpu/drm/ci/xfails/i915-amly-skips.txt
+index fe55540a3f9a..1e80987cf584 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-amly-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-amly-skips.txt
+@@ -1,4 +1,13 @@
+ # Suspend to RAM seems to be broken on this machine
+ .*suspend.*
+ # This is generating kernel oops with divide error
+-kms_plane_scaling@invalid-parameters
+\ No newline at end of file
++kms_plane_scaling@invalid-parameters
++
++# Skip driver specific tests
++^amdgpu.*
++msm_.*
++nouveau_.*
++panfrost_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
+diff --git a/drivers/gpu/drm/ci/xfails/i915-apl-skips.txt b/drivers/gpu/drm/ci/xfails/i915-apl-skips.txt
+index 3430b215c06e..0104f2ffa8ba 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-apl-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-apl-skips.txt
+@@ -3,4 +3,13 @@
+ # This is generating kernel oops with divide error
+ kms_plane_scaling@invalid-parameters
+ # This is cascading issues
+-kms_3d
+\ No newline at end of file
++kms_3d
++
++# Skip driver specific tests
++^amdgpu.*
++msm_.*
++nouveau_.*
++panfrost_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
+diff --git a/drivers/gpu/drm/ci/xfails/i915-cml-skips.txt b/drivers/gpu/drm/ci/xfails/i915-cml-skips.txt
+index 6d3d7ddc377f..398ebe163ad0 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-cml-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-cml-skips.txt
+@@ -1,2 +1,11 @@
+ # This is generating kernel oops with divide error
+ kms_plane_scaling@invalid-parameters
++
++# Skip driver specific tests
++^amdgpu.*
++msm_.*
++nouveau_.*
++panfrost_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
+diff --git a/drivers/gpu/drm/ci/xfails/i915-glk-skips.txt b/drivers/gpu/drm/ci/xfails/i915-glk-skips.txt
+index 4c7d00ce14bc..4f5419d62170 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-glk-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-glk-skips.txt
+@@ -2,4 +2,13 @@
+ .*suspend.*
  
--  IGT_VERSION: d2af13d9f5be5ce23d996e4afd3e45990f5ab977
-+  IGT_VERSION: 0df7b9b97f9da0e364f5ee30fe331004b8c86b56
+ # This is generating kernel oops with divide error
+-kms_plane_scaling@invalid-parameters
+\ No newline at end of file
++kms_plane_scaling@invalid-parameters
++
++# Skip driver specific tests
++^amdgpu.*
++msm_.*
++nouveau_.*
++panfrost_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
+diff --git a/drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt b/drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt
+index 4c7d00ce14bc..4f5419d62170 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt
+@@ -2,4 +2,13 @@
+ .*suspend.*
  
-   DEQP_RUNNER_GIT_URL: https://gitlab.freedesktop.org/anholt/deqp-runner.git
-   DEQP_RUNNER_GIT_TAG: v0.15.0
+ # This is generating kernel oops with divide error
+-kms_plane_scaling@invalid-parameters
+\ No newline at end of file
++kms_plane_scaling@invalid-parameters
++
++# Skip driver specific tests
++^amdgpu.*
++msm_.*
++nouveau_.*
++panfrost_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
+diff --git a/drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt b/drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt
+index 1d0621750b14..b0372c239b93 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt
+@@ -8,4 +8,13 @@ gem_eio.*
+ kms_flip@absolute-wf_vblank@a-edp1
+ 
+ # This is generating kernel oops with divide error
+-kms_plane_scaling@invalid-parameters
+\ No newline at end of file
++kms_plane_scaling@invalid-parameters
++
++# Skip driver specific tests
++^amdgpu.*
++msm_.*
++nouveau_.*
++panfrost_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
+diff --git a/drivers/gpu/drm/ci/xfails/i915-whl-skips.txt b/drivers/gpu/drm/ci/xfails/i915-whl-skips.txt
+index f3be0888a214..398ebe163ad0 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-whl-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-whl-skips.txt
+@@ -1,2 +1,11 @@
+ # This is generating kernel oops with divide error
+-kms_plane_scaling@invalid-parameters
+\ No newline at end of file
++kms_plane_scaling@invalid-parameters
++
++# Skip driver specific tests
++^amdgpu.*
++msm_.*
++nouveau_.*
++panfrost_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
+diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-skips.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-skips.txt
+new file mode 100644
+index 000000000000..db0c9dbbeb61
+--- /dev/null
++++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-skips.txt
+@@ -0,0 +1,12 @@
++# Skip driver specific tests
++^amdgpu.*
++msm_.*
++nouveau_.*
++panfrost_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
++
++# Skip intel specific tests
++gem_.*
++i915_.*
+diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-skips.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-skips.txt
+new file mode 100644
+index 000000000000..7a1c8be89e5b
+--- /dev/null
++++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-skips.txt
+@@ -0,0 +1,14 @@
++# Skip driver specific tests
++^amdgpu.*
++msm_.*
++nouveau_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
++
++# Skip intel specific tests
++gem_.*
++i915_.*
++
++# Panfrost is not a KMS driver, so skip the KMS tests
++kms_.*
+diff --git a/drivers/gpu/drm/ci/xfails/meson-g12b-skips.txt b/drivers/gpu/drm/ci/xfails/meson-g12b-skips.txt
+new file mode 100644
+index 000000000000..7a1c8be89e5b
+--- /dev/null
++++ b/drivers/gpu/drm/ci/xfails/meson-g12b-skips.txt
+@@ -0,0 +1,14 @@
++# Skip driver specific tests
++^amdgpu.*
++msm_.*
++nouveau_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
++
++# Skip intel specific tests
++gem_.*
++i915_.*
++
++# Panfrost is not a KMS driver, so skip the KMS tests
++kms_.*
+diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8016-skips.txt b/drivers/gpu/drm/ci/xfails/msm-apq8016-skips.txt
+new file mode 100644
+index 000000000000..7fea49ec6b8f
+--- /dev/null
++++ b/drivers/gpu/drm/ci/xfails/msm-apq8016-skips.txt
+@@ -0,0 +1,11 @@
++# Skip driver specific tests
++^amdgpu.*
++nouveau_.*
++panfrost_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
++
++# Skip intel specific tests
++gem_.*
++i915_.*
+diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8096-skips.txt b/drivers/gpu/drm/ci/xfails/msm-apq8096-skips.txt
+index cd49c8ce2059..9ab2177df1ab 100644
+--- a/drivers/gpu/drm/ci/xfails/msm-apq8096-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/msm-apq8096-skips.txt
+@@ -1,2 +1,14 @@
+ # Whole machine hangs
+-kms_cursor_legacy@all-pipes-torture-move
+\ No newline at end of file
++kms_cursor_legacy@all-pipes-torture-move
++
++# Skip driver specific tests
++^amdgpu.*
++nouveau_.*
++panfrost_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
++
++# Skip intel specific tests
++gem_.*
++i915_.*
+diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-skips.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-skips.txt
+index 327039f70252..edf64057f866 100644
+--- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-skips.txt
+@@ -1,2 +1,14 @@
+ # Suspend to RAM seems to be broken on this machine
+ .*suspend.*
++
++# Skip driver specific tests
++^amdgpu.*
++nouveau_.*
++panfrost_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
++
++# Skip intel specific tests
++gem_.*
++i915_.*
+diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-skips.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-skips.txt
+index 327039f70252..edf64057f866 100644
+--- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-skips.txt
+@@ -1,2 +1,14 @@
+ # Suspend to RAM seems to be broken on this machine
+ .*suspend.*
++
++# Skip driver specific tests
++^amdgpu.*
++nouveau_.*
++panfrost_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
++
++# Skip intel specific tests
++gem_.*
++i915_.*
+diff --git a/drivers/gpu/drm/ci/xfails/msm-sdm845-skips.txt b/drivers/gpu/drm/ci/xfails/msm-sdm845-skips.txt
+index 618e3a3a7277..dd24dc190db0 100644
+--- a/drivers/gpu/drm/ci/xfails/msm-sdm845-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/msm-sdm845-skips.txt
+@@ -5,3 +5,15 @@ kms_bw.*
+ # https://gitlab.freedesktop.org/gfx-ci/linux/-/commit/4b49f902ec6f2bb382cbbf489870573f4b43371e
+ # https://gitlab.freedesktop.org/gfx-ci/linux/-/commit/38cdf4c5559771e2474ae0fecef8469f65147bc1
+ msm_mapping@*
++
++# Skip driver specific tests
++^amdgpu.*
++nouveau_.*
++panfrost_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
++
++# Skip intel specific tests
++gem_.*
++i915_.*
+diff --git a/drivers/gpu/drm/ci/xfails/rockchip-rk3288-skips.txt b/drivers/gpu/drm/ci/xfails/rockchip-rk3288-skips.txt
+index f20c3574b75a..c33dc95b7fc1 100644
+--- a/drivers/gpu/drm/ci/xfails/rockchip-rk3288-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/rockchip-rk3288-skips.txt
+@@ -49,4 +49,19 @@ kms_plane_lowres@pipe-F-tiling-y
+ kms_cursor_crc.*
+ 
+ # Machine is hanging in this test, so skip it
+-kms_pipe_crc_basic@disable-crc-after-crtc
+\ No newline at end of file
++kms_pipe_crc_basic@disable-crc-after-crtc
++
++# Skip driver specific tests
++^amdgpu.*
++msm_.*
++nouveau_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
++
++# Skip intel specific tests
++gem_.*
++i915_.*
++
++# Panfrost is not a KMS driver, so skip the KMS tests
++kms_.*
+diff --git a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-skips.txt b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-skips.txt
+index 10c3d81a919a..8a7c9464b30d 100644
+--- a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-skips.txt
+@@ -3,3 +3,18 @@
+ 
+ # Too unstable, machine ends up hanging after lots of Oopses
+ kms_cursor_legacy.*
++
++# Skip driver specific tests
++^amdgpu.*
++msm_.*
++nouveau_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
++
++# Skip intel specific tests
++gem_.*
++i915_.*
++
++# Panfrost is not a KMS driver, so skip the KMS tests
++kms_.*
+diff --git a/drivers/gpu/drm/ci/xfails/virtio_gpu-none-skips.txt b/drivers/gpu/drm/ci/xfails/virtio_gpu-none-skips.txt
+index 78be18174012..59d390d6856f 100644
+--- a/drivers/gpu/drm/ci/xfails/virtio_gpu-none-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/virtio_gpu-none-skips.txt
+@@ -3,4 +3,18 @@
+ kms_cursor_legacy.*
+ 
+ # Job just hangs without any output
+-kms_flip@flip-vs-suspend.*
+\ No newline at end of file
++kms_flip@flip-vs-suspend.*
++
++# Skip driver specific tests
++^amdgpu.*
++msm_.*
++nouveau_.*
++panfrost_.*
++^v3d.*
++^vc4.*
++^vmwgfx*
++
++# Skip intel specific tests
++gem_.*
++i915_.*
++xe_.*
 -- 
 2.40.1
 
