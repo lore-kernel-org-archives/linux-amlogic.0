@@ -4,64 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0FBAC25B74
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jun 2024 05:54:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27182C27C52
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jun 2024 05:54:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CgM8d8SwHhCqFDfvYBtqdUW4OJWCUpOxAPVZ/o/ii3g=; b=e9kdRiCG9wUFCA
-	7dficHdAVB2m4OBDrZV6UUs/JFGXyeVspIWtAOkIbH++RYpIYBIKufwHklpRWJiG7AZjFMt+7v5Hg
-	ICXDGLWlBEVOQF5naP2VUvDV/CSuFwWZxuHGGIx7pPuwqVw9NlwHSdNvTJ8eqgpaYnesX3ZsuyhI9
-	5lnmvyLdLb1lghibcxlFQnLfSS5QkxTNMohh69XwvSK6T8OnSuEoOhI7rilSj3L5G5Vtqm+pVqPwm
-	886OFAjz6O+w0oyJ/BGKdDfnxa4eTPc6GrBzIxrLGYBL6yL8tADgxsIOGd3GSekUC9szcqjIXL9u6
-	EpBQ6YIoLN7U9sqrQgKw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=fJB/IOOGu+7bR/2tjZKuMPfggeWlJe5CQ/n0SlVjVyA=; b=sMfZgrnXouWVSz
+	fcJiapERRofWW7pmRh/qmgmhPNf7ujNuHb+J5Djr/CggqlnJCwVCXiBws593aAPaIEglHBgyu9fsk
+	L6Q9tBape996o5P4rgEQCrg3L5izA0pDu+ZDihhO5HXtKBKxHiUo3RTNS9qiw16fgApSbPNgm4fN7
+	aUtyXWUU4Ytsy4/v00Z71FC4jChPU+W+ckXjEkx5o/cEVNrirUphHs/+Y0/oorNGyHYH3hbUCOMjR
+	ThaDBK0kc9lISV9sHopECHVy8haiOd0ENWBM++i9tDsQrCDqt6/Z0JBHGrhDY0gJ+bsJ1Y04pX3US
+	GCJ7uPFNek/m9uC2Mw1g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEN87-00000001JuX-42Jl;
-	Tue, 04 Jun 2024 05:54:43 +0000
-Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
-	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEN84-00000001Jsd-2J67;
+	id 1sEN85-00000001JtR-2vCN;
 	Tue, 04 Jun 2024 05:54:41 +0000
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-57a85cc2d96so45438a12.2;
-        Mon, 03 Jun 2024 22:54:40 -0700 (PDT)
+Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
+	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1sEN82-00000001JrB-3BHl;
+	Tue, 04 Jun 2024 05:54:40 +0000
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-57a23997da3so5440783a12.3;
+        Mon, 03 Jun 2024 22:54:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717480479; x=1718085279; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hNXQ/SoJYaWo0NJj93vx8GPkV2wEKcXWEow45UeQsg8=;
-        b=mduG5W+byrm4UaZk3YmrzWryF6xyzlm4g0Nw0x22dA2N1ISaSh/Pt5ZsfKx3BEdo29
-         SR6rABXzDXbTfAMUw2/rVtsnwn5LKTQrisXIks2lDkUNa+C2wQVSMJPHbsE73kPQTeMK
-         JIb3vir9ZCO7ZoohKo7vWiqvLVJRd0mOb5Le3k6Bu609p+YtGCywEqjkLI/7b+jf4708
-         v+fsTM25IHMRU1i3+QZLRiaVApj8iyL29ZEUN2elpz5GG6XBAhFXJw+mVbL1QfoeaAdT
-         1JP2qTbphwIYTwp0t1wBEm2cBNph/vohxrAvLeghP9EwBB+hPTBwIa1uzwBpkDuccP22
-         gqIQ==
+        d=gmail.com; s=20230601; t=1717480476; x=1718085276; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/B3D4wtGRpJZ2iApcLLvXsbZjMk476N0oS3prX5uEXY=;
+        b=CHr31Y5t18W5s9rinXpj/rMRi6KAY+tbYsuAp9DYbCUDumqBP8f4+ggpg3w3D5EpIZ
+         05/UZZEkigqySt1iuG+PxeUHBXkiESMQ1IdMVarn2fW+gReehEXnGqwvOM6PsNdC8N6T
+         zGBiJ/LZVGTNsYQ/m01Aaw2WMWw3njzkZ1M+SKMvaUMZzqHjLaXvN/dtOo5hNmIkyqxc
+         l2hYK5Alvp6kgH9wUPtVZ5sUZ9LiSRSZtnEPv9uRqcBk7z6ruQCy1muJF6iDt1WbvLBc
+         16E97unlYC4ngOMPYls3KnxK/FZG/KEMAEKrlW8JsZXxtB57Ju/F251sBNQA7htHqhNq
+         4i5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717480479; x=1718085279;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hNXQ/SoJYaWo0NJj93vx8GPkV2wEKcXWEow45UeQsg8=;
-        b=ZSHJ0s+fjSZ87v2zrJbPvHZ1utBHqbzuCuR0Mo/e3WA8G8GPI4By9EOGqY8w+911JN
-         ROYfWdiZpweXcdfPtN3DIR/HBY/M0Qudwpx5nGgjiEmtqZL0UPFDhdL787SC8xtsZ+77
-         xw7ZkpK3tUZjgunm/vKzbmiLyKQcEarmrLhvRbrvdBZdHGTRkiGWhPKJHJYy2LLS454x
-         DMbgT5H9nwjs4I1utQmSxUEExc1iMLPzoJh37QoZcdC3kL8go2Mx2oatS2n4HL7NR/Wr
-         /4DyIGpyXIpxyNwqxFLR9NxmCbBBoTlTSAoNQg8+97mpAf1d6wQB+O+8vBZh3IuNHNi5
-         ikZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX7cV1VVSFUv2tUw5zBYbHSgKUJAaP31u/g+QO7ocHwOWBZmerrHPsiJaYUx5UjUjv2VEuKLzvTdyCr/pPLLIy6cceZiT7+UPfIJGT0ZbqLRPnAjfSHfCql5/Yg3K1ceQnci3FAjZueRoTkSiiXCIq/73rfV+/QOA==
-X-Gm-Message-State: AOJu0YzmSsT+CSaO6x/caUnsNUS5lRpee78X6d1Y2uU5IXgBDGg+PbAI
-	K7Xeayh1/F0VrvtADtYBUDBH/y0TaWqJgZD/CnPMkoCQBnjf0k3b
-X-Google-Smtp-Source: AGHT+IFvO3hGcwGjzkhM2BCfkJy/zitS1v/oJjTYW85m+xbHO4VeID9IRH5+ElX1GrCzxo+B/yunjA==
-X-Received: by 2002:a50:9ee1:0:b0:578:36a2:7073 with SMTP id 4fb4d7f45d1cf-57a36450a36mr7711221a12.29.1717480478704;
-        Mon, 03 Jun 2024 22:54:38 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1717480476; x=1718085276;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/B3D4wtGRpJZ2iApcLLvXsbZjMk476N0oS3prX5uEXY=;
+        b=thymY3vfmsbDfvsesMySw76CIHmUMgJYElFna/QVgX/5FiBQ+LudPFqmD6lHQqKnyY
+         psSMilFO0fJbJC/RC+dpWjzVP5wHUh/jeB57p53ioip1FidugVC2LDOoPDlfEMuJQucu
+         HeSMSlxPHkc72AMwgHaSXMkwhsNjy/l2SY8w+SDJMovhqiGjUBF0zo9pOYxrvfH7/DxC
+         Pb0ZK21OKXIqd4GWN28Ep8hXgE2hO3x4eTIk2TqqyMkxhf8U/CL8TTZwX4kIqaiWEI9e
+         2otIMJJTgRgGn67o7cGlQWWUPKCuK4LxaXkOghmPqn0DmPbrBOkue+7DCYUyUaj30ehp
+         NY5g==
+X-Forwarded-Encrypted: i=1; AJvYcCVyO6rA5Mb5+rTks7i7PxW0mIeJpTLfST/EtbgsGOMEZtguZGvhiLF0JB5X/o7xoRKnGu4GLmbN/KntHbG3aGhJnTuxbhG99xdI5t3+vdGLYl1cLIN6x7Q+r1bI2IiscUxhRczQ4NjLScZipcDQwmKcGJFGF3lqPQ==
+X-Gm-Message-State: AOJu0YyL82hoFY7cPz8pCQUrw3zx+Ey8Al0YsWBrpHAb0Xn2y1uTKqIO
+	mIMdCJN3Rxtl9dQfVJgCtwSSiLCekNryLZl4FgBniJGQ9MZ+xvJd
+X-Google-Smtp-Source: AGHT+IHVXdxysaq5WMsG98sCezHcJNWQkXwVmFFXDwwcoFJhWDYblpS3zlpgz69HjU4vaFXbm5lIDQ==
+X-Received: by 2002:a50:f609:0:b0:57a:2a46:701 with SMTP id 4fb4d7f45d1cf-57a3638f2f7mr8298598a12.19.1717480475987;
+        Mon, 03 Jun 2024 22:54:35 -0700 (PDT)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a4fc842b5sm4895643a12.71.2024.06.03.22.54.36
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a4fc842b5sm4895643a12.71.2024.06.03.22.54.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Jun 2024 22:54:38 -0700 (PDT)
+        Mon, 03 Jun 2024 22:54:35 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Jonathan Cameron <jic23@kernel.org>,
 	Lars-Peter Clausen <lars@metafoo.de>,
@@ -77,16 +75,15 @@ To: Jonathan Cameron <jic23@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] iio: adc: meson: add support for the GXLX SoC
-Date: Tue,  4 Jun 2024 05:54:31 +0000
-Message-Id: <20240604055431.3313961-2-christianshewitt@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: iio: adc: amlogic,meson-saradc: add GXLX SoC compatible
+Date: Tue,  4 Jun 2024 05:54:30 +0000
+Message-Id: <20240604055431.3313961-1-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240604055431.3313961-1-christianshewitt@gmail.com>
-References: <20240604055431.3313961-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240603_225440_618546_C72CBFB9 
-X-CRM114-Status: GOOD (  14.27  )
+X-CRM114-CacheID: sfid-20240603_225438_830094_889EB7F6 
+X-CRM114-Status: UNSURE (   8.71  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,94 +102,27 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-The SARADC IP on GXLX is identical to the one found on GXL SoCs: except
-GXLX requires poking the first three bits in the MESON_SAR_ADC_REG12
-register to get the three MPLL clocks (used as clock generators for the
-audio frequencies) to work. Register bits are from the vendor kernel.
+Add support for the GXLX SoC. GXLX is very similar to GXL but has three
+additional bits in MESON_SAR_ADC_REG12 for the three MPLL clocks.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- drivers/iio/adc/meson_saradc.c | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ .../devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml        | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 13b473d8c6c7..200eb8271617 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -160,6 +160,11 @@
- 	#define MESON_SAR_ADC_REG11_EOC                         BIT(1)
- 	#define MESON_SAR_ADC_REG11_VREF_SEL                    BIT(0)
- 
-+#define MESON_SAR_ADC_REG12					0x30
-+	#define MESON_SAR_ADC_REG12_MPLL0_UNKNOWN		BIT(0)
-+	#define MESON_SAR_ADC_REG12_MPLL1_UNKNOWN		BIT(1)
-+	#define MESON_SAR_ADC_REG12_MPLL2_UNKNOWN		BIT(2)
-+
- #define MESON_SAR_ADC_REG13					0x34
- 	#define MESON_SAR_ADC_REG13_12BIT_CALIBRATION_MASK	GENMASK(13, 8)
- 
-@@ -327,6 +332,7 @@ struct meson_sar_adc_param {
- 	u8					vref_select;
- 	u8					cmv_select;
- 	u8					adc_eoc;
-+	bool					mpll_clock_bits;
- 	enum meson_sar_adc_vref_sel		vref_volatge;
- };
- 
-@@ -1009,6 +1015,12 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
- 				    priv->param->cmv_select);
- 		regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG11,
- 				   MESON_SAR_ADC_REG11_CMV_SEL, regval);
-+
-+		if (priv->param->mpll_clock_bits)
-+			regmap_write(priv->regmap, MESON_SAR_ADC_REG12,
-+				     MESON_SAR_ADC_REG12_MPLL0_UNKNOWN |
-+				     MESON_SAR_ADC_REG12_MPLL1_UNKNOWN |
-+				     MESON_SAR_ADC_REG12_MPLL2_UNKNOWN);
- 	}
- 
- 	ret = clk_set_parent(priv->adc_sel_clk, priv->clkin);
-@@ -1241,6 +1253,17 @@ static const struct meson_sar_adc_param meson_sar_adc_gxl_param = {
- 	.cmv_select = 1,
- };
- 
-+static const struct meson_sar_adc_param meson_sar_adc_gxlx_param = {
-+	.has_bl30_integration = true,
-+	.clock_rate = 1200000,
-+	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
-+	.resolution = 12,
-+	.disable_ring_counter = 1,
-+	.vref_voltage = VREF_VOLTAGE_1V8,
-+	.cmv_select = true,
-+	.mpll_clock_bits = true,
-+};
-+
- static const struct meson_sar_adc_param meson_sar_adc_axg_param = {
- 	.has_bl30_integration = true,
- 	.clock_rate = 1200000,
-@@ -1293,6 +1316,11 @@ static const struct meson_sar_adc_data meson_sar_adc_gxl_data = {
- 	.name = "meson-gxl-saradc",
- };
- 
-+static const struct meson_sar_adc_data meson_sar_adc_gxlx_data = {
-+	.param = &meson_sar_adc_gxlx_param,
-+	.name = "meson-gxlx-saradc",
-+};
-+
- static const struct meson_sar_adc_data meson_sar_adc_gxm_data = {
- 	.param = &meson_sar_adc_gxl_param,
- 	.name = "meson-gxm-saradc",
-@@ -1324,6 +1352,9 @@ static const struct of_device_id meson_sar_adc_of_match[] = {
- 	}, {
- 		.compatible = "amlogic,meson-gxl-saradc",
- 		.data = &meson_sar_adc_gxl_data,
-+	}, {
-+		.compatible = "amlogic,meson-gxlx-saradc",
-+		.data = &meson_sar_adc_gxlx_data,
- 	}, {
- 		.compatible = "amlogic,meson-gxm-saradc",
- 		.data = &meson_sar_adc_gxm_data,
+diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
+index 7e8328e9ce13..b2fef72267b4 100644
+--- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
+@@ -23,6 +23,7 @@ properties:
+               - amlogic,meson8m2-saradc
+               - amlogic,meson-gxbb-saradc
+               - amlogic,meson-gxl-saradc
++              - amlogic,meson-gxlx-saradc
+               - amlogic,meson-gxm-saradc
+               - amlogic,meson-axg-saradc
+               - amlogic,meson-g12a-saradc
 -- 
 2.34.1
 
