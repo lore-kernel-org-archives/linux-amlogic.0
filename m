@@ -4,86 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03692C27C52
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jun 2024 08:41:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE57FC25B7E
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jun 2024 09:12:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rqxyHeUUPmHpmmSIyf9PRjw5O8L5r5bDW6s0rrbJc08=; b=q17FtTQj7HGgve
-	cyyEKC5Trnd7rvTpR1MupTjeBfLIaVsL+jbFlQuzqb+8rcmIEThnbpt7zj/h1DXys8QvtrvEkiQ6R
-	I2vFtfD+mkZmRnampyf+E8FtqgD51sP/o1zUd7k8AitAxItUXOpKb3h0250etlCfkX6BFwpHP4x9N
-	rT3dureyZLEqiVtvwVgEtbG9JdHqUje/cEtO4PtLlyET9IWtPy2BbQCXgTFp/IADb9mXuUeoALmDY
-	JCQP4leciTHv9cWRNufs42KlJHgaphkvO0e8KMY/Q9TwGUWoUgWoDUDaKahut67y7FFQWI9tHyqT0
-	UMCu52IMiRC/kotA5KaA==;
+	List-Owner; bh=//dVv8iMaK3xWzs85blhab1lJAS+zHyq0KemvP1cpBQ=; b=PN/EI8pdGWZW10
+	wGmYjlTpdI+cd5+dvLCxzPRxUXHLAjWNcgWb3t5fXwMyWy/Hqn/SiI3z2eKpJCjzD+YbVZENrd5Se
+	CYrjd/pLnFRS5DvqQ4eJj16Syrnf3Bkvzc2mq216mHOZuk1rc4Vg/jhEXXcsHCjI+o7Q/rd0mCSPx
+	1Yve2Vus3hdzMyG1jSt/KA2IlIqEgXsRuXVNXDAA5Ul6gJOpOYRtC9mOjtCt3hamFkNaQDpQiG+H4
+	RtIQrSqGpWfAafgqjqBI+muSm5TheOe+u76uSwXQE9uU1T3kYRx5HuhsHciAHsACK4TaFQkUHZyj8
+	F61LBUT4kNMFN/0jtsyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEPjo-00000001hUc-23Le;
-	Tue, 04 Jun 2024 08:41:48 +0000
-Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
+	id 1sEQCv-00000001nov-3rmG;
+	Tue, 04 Jun 2024 09:11:53 +0000
+Received: from mgamail.intel.com ([198.175.65.14])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEPjk-00000001hT7-1Kqe;
-	Tue, 04 Jun 2024 08:41:45 +0000
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-57a526c6a2cso2965079a12.2;
-        Tue, 04 Jun 2024 01:41:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717490501; x=1718095301; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Fgqvf7dSV2wg1wNnuZIK3NfsH411d74v9AFFfs0leYc=;
-        b=i1aI0lPLP4kRwK/CaZLebC76sIHRzTpiHktUisBk3rf+qX2CAO+7MKY0v5Jd7wdBy2
-         XJSOfa9XXTfqeYW6007auHP1MGIUet/ZcbNNOrHkml010t5agvR8ug4qUiKuyDLNhYa7
-         P60dgiXDRhImPJt61krKXjBF5mESKtx8Z2+pN9xUigwVoI4xcPRdsJ7YH7CE3TtRiwkk
-         E9U7McxB/tUU/JgFpj1DkmWBjsDGxLtvak+hLgTVSv1NH85oXebfhKqigSgldoTrRHFe
-         QFn5q9UbWNfXj0u+7vTlmSvHRV9/B7z7/adWtXDUFLu1Zg6d9N00xWw8h8KJ7wgMwVS0
-         ufSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717490501; x=1718095301;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Fgqvf7dSV2wg1wNnuZIK3NfsH411d74v9AFFfs0leYc=;
-        b=mwoSPf9qpK18XQ2EikBlHqX0Bc0IWl1F+TriUNBnMxhLlr7HOgvMW9k5j5uLn8wRIG
-         FYX64kyYh3UnCuLh4N7eG+iaJOHBhL5JZWl6tENTAfl4+sxEWitPM/kIn07qpCELZhtK
-         FObzQRDuyTQ5DG9yIyeLqLecb0hPWeEL0V5Z3oZeahIRut7OFpmgH60hsJeCu2Lh+kJ0
-         t0lOUIaIiNUgemLA5+g6gSJuFHkL4W+ff6cRLtqEB1PoO5auPPkY3QUvWGshMLeGx1BA
-         UlPxxVhQ3IvxDeRVOA2DGNKV/w0CdaaNF/0PiYbboJJPngOmBf86OAoDzC3oY8ZJ5kgN
-         8DXg==
-X-Forwarded-Encrypted: i=1; AJvYcCUA3AxEAWjCWYgkglG4kw7qUpwLWTct76qq63uJ61Y0sASfwzPShsr3wMbsR/w8b96g7uEBfMmeM4Y3ccyasH5vV/aebzV+pkIxZqAFsU748jeiJjVmDgiaSpDHvE5rbXuG931KRrHOcxUdRo3g9mMGOqDAylLyHQ==
-X-Gm-Message-State: AOJu0YwPp06h09J5Y8zHWT+WVo03ejIaI3FlOgV4ns8iqrBjGo44ZG9B
-	xQHK225f6gG4iWp0X6iHoy65tM0fyWVE6SLy9ikGRfOESTbKEld8+1859VvSk/u0Bg==
-X-Google-Smtp-Source: AGHT+IF5RkpOyKdBjOA7FhxkRqHcjGiGJP05hVM1+o69oyRQ6HrXgoBqgxpOdIC/4HMia/nXUvIFQA==
-X-Received: by 2002:a17:907:9708:b0:a69:2553:92b8 with SMTP id a640c23a62f3a-a6925539323mr273452866b.34.1717490501265;
-        Tue, 04 Jun 2024 01:41:41 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a692ad28816sm166550966b.31.2024.06.04.01.41.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jun 2024 01:41:40 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	id 1sEQCs-00000001no3-0x5o;
+	Tue, 04 Jun 2024 09:11:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1717492310; x=1749028310;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ImJhbNsrIco+qebnToiezXtyMfSwI41zKI18NzCQA3A=;
+  b=Btu4Ru1XPINSIQ/aD2pQtRJYLKStbMOFiCNTf3udwon59PQxZ24ZfoHF
+   nFXoO+MiVAs2jo6vsSj66Gm8/d9xkzRRLrZkaiuQWGn7kPs7r1KoVUG4R
+   0tCFsyQ6cn3eTdOo8S4Ztgf5g17Pb4iF7EZUJ45v24YKWgtaaiGW6p2xS
+   GoAjNQjIEMlY2Tx2aLtUOtDnXTgSShUnbFB/u7rhAls2rn0OQM18+ZbT1
+   lC5ALcxJadGAVUTiHd07kujENmNsDnpPbaC639yUmeeThDn0x8+hiG4qe
+   pYaa6ZPFGTLyrua78e+rTRXoD8DHRfE7W/wx8Gq5SlwLl1GQQkp6/Byb0
+   Q==;
+X-CSE-ConnectionGUID: UgduunSURdGQU5eGnWSUTQ==
+X-CSE-MsgGUID: g6UvMqX+R+mXr+NJbjgzbQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="17854997"
+X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; 
+   d="scan'208";a="17854997"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2024 02:11:45 -0700
+X-CSE-ConnectionGUID: UTy3s7lEQtCIAKPlMIJ4mw==
+X-CSE-MsgGUID: xOhWAYg1T8Kfg7RJFjH19g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; 
+   d="scan'208";a="37299303"
+Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
+  by fmviesa009.fm.intel.com with ESMTP; 04 Jun 2024 02:11:41 -0700
+Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sEQCg-000MzT-1r;
+	Tue, 04 Jun 2024 09:11:38 +0000
+Date: Tue, 4 Jun 2024 17:10:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian Hewitt <christianshewitt@gmail.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: meson: add GXLX/S905L/p271 support
-Date: Tue,  4 Jun 2024 08:41:34 +0000
-Message-Id: <20240604084134.3315841-2-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240604084134.3315841-1-christianshewitt@gmail.com>
-References: <20240604084134.3315841-1-christianshewitt@gmail.com>
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 2/2] iio: adc: meson: add support for the GXLX SoC
+Message-ID: <202406041751.elQWr6cj-lkp@intel.com>
+References: <20240604055431.3313961-2-christianshewitt@gmail.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20240604055431.3313961-2-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240604_014144_378573_4AF51A0E 
-X-CRM114-Status: GOOD (  15.01  )
+X-CRM114-CacheID: sfid-20240604_021150_330758_F4529BFC 
+X-CRM114-Status: GOOD (  12.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,101 +97,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add a device-tree for the GXLX Amlogic P271 (S905L) reference design
-board. This is a low-cost design similar to P281 (S905W) but with
-silicon differences to omit VP9 and use Mali 450-MP2 (not MP3). The
-SoC is marked with S905L and "2" (believed to denote MP2) resulting
-in chip distributor stock lists and Android STB marketing sometimes
-describing it as an S905L2 chip.
+Hi Christian,
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
-NOTE: This patch depends upon the following submitted patches for
-VDEC [0] and SARADC [1] support:
+kernel test robot noticed the following build errors:
 
-[0] https://patchwork.kernel.org/project/linux-amlogic/list/?series=858514
-[1] https://patchwork.kernel.org/project/linux-amlogic/list/?series=858525
+[auto build test ERROR on jic23-iio/togreg]
+[also build test ERROR on robh/for-next linus/master v6.10-rc2 next-20240604]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-CHECK_DTBS generates some warnings for pre-existing issues inherited
-from common dtsi files. The patch does not add any new issues.
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Hewitt/iio-adc-meson-add-support-for-the-GXLX-SoC/20240604-135606
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20240604055431.3313961-2-christianshewitt%40gmail.com
+patch subject: [PATCH 2/2] iio: adc: meson: add support for the GXLX SoC
+config: arm-defconfig (https://download.01.org/0day-ci/archive/20240604/202406041751.elQWr6cj-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240604/202406041751.elQWr6cj-lkp@intel.com/reproduce)
 
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../dts/amlogic/meson-gxlx-s905l-p271.dts     | 51 +++++++++++++++++++
- 2 files changed, 52 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406041751.elQWr6cj-lkp@intel.com/
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 0f29517da5ec..0746e01b5853 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -62,6 +62,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc-v2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxlx-s905l-p271.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-gt1-ultimate.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-mecool-kiii-pro.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts b/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
-new file mode 100644
-index 000000000000..1221f4545130
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
-@@ -0,0 +1,51 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2024 Christian Hewitt <christianshewitt@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-gxl-s905x.dtsi"
-+#include "meson-gx-p23x-q20x.dtsi"
-+
-+/ {
-+	compatible = "amlogic,p271", "amlogic,s905l", "amlogic,meson-gxlx";
-+	model = "Amlogic Meson GXLX (S905L) P271 Development Board";
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	sound {
-+		model = "P271";
-+	};
-+};
-+
-+&apb {
-+	mali: gpu@c0000 {
-+		/* Mali 450-MP2 */
-+		interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "gp", "gpmmu", "pp", "pmu",
-+			"pp0", "ppmmu0", "pp1", "ppmmu1";
-+	};
-+};
-+
-+&saradc {
-+	compatible = "amlogic,meson-gxlx-saradc", "amlogic,meson-saradc";
-+};
-+
-+&usb {
-+	dr_mode = "host";
-+};
-+
-+&vdec {
-+	compatible = "amlogic,gxlx-vdec", "amlogic,gx-vdec";
-+};
+All errors (new ones prefixed by >>):
+
+>> drivers/iio/adc/meson_saradc.c:1262:18: error: use of undeclared identifier 'VREF_VOLTAGE_1V8'
+           .vref_voltage = VREF_VOLTAGE_1V8,
+                           ^
+   1 error generated.
+
+
+vim +/VREF_VOLTAGE_1V8 +1262 drivers/iio/adc/meson_saradc.c
+
+  1255	
+  1256	static const struct meson_sar_adc_param meson_sar_adc_gxlx_param = {
+  1257		.has_bl30_integration = true,
+  1258		.clock_rate = 1200000,
+  1259		.regmap_config = &meson_sar_adc_regmap_config_gxbb,
+  1260		.resolution = 12,
+  1261		.disable_ring_counter = 1,
+> 1262		.vref_voltage = VREF_VOLTAGE_1V8,
+  1263		.cmv_select = true,
+  1264		.mpll_clock_bits = true,
+  1265	};
+  1266	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
