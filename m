@@ -4,61 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D666CC25B74
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jun 2024 06:29:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C1CBC25B7E
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jun 2024 06:47:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=SnXixKzG3lWkYX9GqdPfMKPumfTk4furwRU8fpHlDDA=; b=Na5j8otoXDv0ab
-	IsvEYtmP96p5uqByfDTU6uxa0Q8BqpTBjXRcR+QaFIX7IY+raGg+jwNwSl9HGpkgZXFYTSpACbNUR
-	NRFCAFEQIy30pG19QoB0oSLGapf97M1g+UV+kurs4zBjATRSHveBkt1gdhHtkAPiRD+HeYw8A8v5R
-	P1teNtLi8NHzkto1xH43wMW10PPDES8RRrEVz2T0GxTTbhGmv28UmSrjtr29e/GIWoUBnKT3RZm8y
-	QPFG7TblGKfGjhQBBNDHUZ6TfwcVKsSDt/eLjX6sbBsmovUz9ONNY/QwxKAn4ZU+178zzxRmorIoO
-	TKl7GajrgviPMJSZD2cw==;
+	List-Owner; bh=UGf6CPARxXiKcyrDaiF9Txq5/wg/KAq2Adgq+T5+4GI=; b=GD6ysmWOIOItta
+	rHdJdWedH1T2tcQ9TCSKGrDoTrfl9cIW0ERIHslNSsc87gOgjPhxZF+Af2rkhyXrVIFCG7kAu6+zy
+	q8s7us+2ZyCHyr3btX+OYbmyn6B50fD2Y/VczX8p1D8X+Tbbautvq3ntia8nqqVENfFCUUh9tY/5z
+	r57vbGYGbb21gXCQmlj8hzsDEdgwaCy3v7AJRclrVUPgHHEMEXgUnfUtEgDigB7SfXOPElo95T8I8
+	6EBh9kvk0APp3tJVJvgOORcnGoF87WAOf9EN+0uL+r6cc1uoucf6igKlWi3gDLZ/ouwrAh0sF47u3
+	opapsMYvnNmb+vRJUxhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sENfJ-00000001NXA-3AHj;
-	Tue, 04 Jun 2024 06:29:01 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1sENx4-00000001QZH-37Ru;
+	Tue, 04 Jun 2024 06:47:22 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sENfH-00000001NWS-1bUL;
-	Tue, 04 Jun 2024 06:29:00 +0000
+	id 1sENx1-00000001QXr-0b83;
+	Tue, 04 Jun 2024 06:47:21 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id AD595611F6;
-	Tue,  4 Jun 2024 06:28:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CAC6C2BBFC;
-	Tue,  4 Jun 2024 06:28:53 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 37E60CE09B5;
+	Tue,  4 Jun 2024 06:47:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D845AC2BBFC;
+	Tue,  4 Jun 2024 06:47:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717482537;
-	bh=Ee4EP6JXspvBxLB9eKYgXCccLrc5W1jo7F2glI6Jta4=;
+	s=k20201202; t=1717483636;
+	bh=X9ZK+SAfznHqHkrZTVhT4CHqaxJgtAX0ujnpnuvhm2Q=;
 	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Cd9oFiS4vsW+MkWn7q6k9PljpSOBYnro+w51FJOtOXtaJtpzSfv+LirxV5y9qOY87
-	 5erEolXtJUpjviM92MBrTGozfAO6ZvBIFBwvHnLp2pPjlszrJBSQzPiqSxwWIecP3v
-	 Jh0hDJCc+zskX9qDewFt8++BDjh/KM28S6r4zL1cpwCqC/EQ4jFSCnt2oppHI7o8oM
-	 CFdnbNSCVhJGCBMVArUnJmkHZII/XAH9G7iH24JGWhLbXQ/mC1/AVw3rliJ+06X0Qm
-	 N/sYDfbtNHsVoxVbCoyzmHtlDyVoS0D47UpF2SrbIpQoRSGGKfXOgXj0lu160yHUQZ
-	 SI7eIimsbsSBg==
-Message-ID: <7eb0556f-c25f-4568-a17b-24fb6b60ada8@kernel.org>
-Date: Tue, 4 Jun 2024 08:28:51 +0200
+	b=fqyaBIJadUKtFIS4cW8piBJyw8EkFACaa6upSngIs2whVUB7hAwe95pF8hUeA+WLe
+	 eqL4fkMeAMzPJd2KXb4gl0a4J5uvHMJKR8itb2RFvgFVScRGMqzsZpmn/5l01zeeTl
+	 gXcASo5ZeDq4WSxebIfcIbagM6PXCSei6v8zh9lcZmmi0hEpLzEhmMaYJO7CathBFn
+	 jnUktelT1TIRUkWfoUxK87b2TvTO3RrIQAJWDNL+VPUXS2YTgzyAQ59IOYSs98xIQL
+	 NFZY22HX90syxyq6jQntPalHUGcARY+T7A165zJYiDpIScSdqc5lKIEWZr/giZ6qmN
+	 yn+nIuUdRXX7A==
+Message-ID: <4b29304b-cc1a-419e-8c22-22c3a68f2479@kernel.org>
+Date: Tue, 4 Jun 2024 08:47:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: media: amlogic,gx-vdec: add the GXLX SoC
- family and update GXL
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: amlogic,meson-saradc: add GXLX
+ SoC compatible
 To: Christian Hewitt <christianshewitt@gmail.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240604051533.3312944-1-christianshewitt@gmail.com>
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240604055431.3313961-1-christianshewitt@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,10 +103,10 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240604051533.3312944-1-christianshewitt@gmail.com>
+In-Reply-To: <20240604055431.3313961-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240603_232859_554988_7E24AE14 
-X-CRM114-Status: UNSURE (   8.72  )
+X-CRM114-CacheID: sfid-20240603_234719_571235_80AEEF7F 
+X-CRM114-Status: UNSURE (   6.50  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,14 +124,15 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 04/06/2024 07:15, Christian Hewitt wrote:
-> The GXLX SoC is a GXL variant that omits VP9 codec support. Also add S905W
-> and S905Y as GXL chips and sort the GXL comment.
+On 04/06/2024 07:54, Christian Hewitt wrote:
+> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > 
+> Add support for the GXLX SoC. GXLX is very similar to GXL but has three
+> additional bits in MESON_SAR_ADC_REG12 for the three MPLL clocks.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
