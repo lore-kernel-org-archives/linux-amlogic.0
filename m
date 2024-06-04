@@ -4,85 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27182C27C52
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jun 2024 05:54:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D666CC25B74
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jun 2024 06:29:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=fJB/IOOGu+7bR/2tjZKuMPfggeWlJe5CQ/n0SlVjVyA=; b=sMfZgrnXouWVSz
-	fcJiapERRofWW7pmRh/qmgmhPNf7ujNuHb+J5Djr/CggqlnJCwVCXiBws593aAPaIEglHBgyu9fsk
-	L6Q9tBape996o5P4rgEQCrg3L5izA0pDu+ZDihhO5HXtKBKxHiUo3RTNS9qiw16fgApSbPNgm4fN7
-	aUtyXWUU4Ytsy4/v00Z71FC4jChPU+W+ckXjEkx5o/cEVNrirUphHs/+Y0/oorNGyHYH3hbUCOMjR
-	ThaDBK0kc9lISV9sHopECHVy8haiOd0ENWBM++i9tDsQrCDqt6/Z0JBHGrhDY0gJ+bsJ1Y04pX3US
-	GCJ7uPFNek/m9uC2Mw1g==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=SnXixKzG3lWkYX9GqdPfMKPumfTk4furwRU8fpHlDDA=; b=Na5j8otoXDv0ab
+	IsvEYtmP96p5uqByfDTU6uxa0Q8BqpTBjXRcR+QaFIX7IY+raGg+jwNwSl9HGpkgZXFYTSpACbNUR
+	NRFCAFEQIy30pG19QoB0oSLGapf97M1g+UV+kurs4zBjATRSHveBkt1gdhHtkAPiRD+HeYw8A8v5R
+	P1teNtLi8NHzkto1xH43wMW10PPDES8RRrEVz2T0GxTTbhGmv28UmSrjtr29e/GIWoUBnKT3RZm8y
+	QPFG7TblGKfGjhQBBNDHUZ6TfwcVKsSDt/eLjX6sbBsmovUz9ONNY/QwxKAn4ZU+178zzxRmorIoO
+	TKl7GajrgviPMJSZD2cw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEN85-00000001JtR-2vCN;
-	Tue, 04 Jun 2024 05:54:41 +0000
-Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
+	id 1sENfJ-00000001NXA-3AHj;
+	Tue, 04 Jun 2024 06:29:01 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEN82-00000001JrB-3BHl;
-	Tue, 04 Jun 2024 05:54:40 +0000
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-57a23997da3so5440783a12.3;
-        Mon, 03 Jun 2024 22:54:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717480476; x=1718085276; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/B3D4wtGRpJZ2iApcLLvXsbZjMk476N0oS3prX5uEXY=;
-        b=CHr31Y5t18W5s9rinXpj/rMRi6KAY+tbYsuAp9DYbCUDumqBP8f4+ggpg3w3D5EpIZ
-         05/UZZEkigqySt1iuG+PxeUHBXkiESMQ1IdMVarn2fW+gReehEXnGqwvOM6PsNdC8N6T
-         zGBiJ/LZVGTNsYQ/m01Aaw2WMWw3njzkZ1M+SKMvaUMZzqHjLaXvN/dtOo5hNmIkyqxc
-         l2hYK5Alvp6kgH9wUPtVZ5sUZ9LiSRSZtnEPv9uRqcBk7z6ruQCy1muJF6iDt1WbvLBc
-         16E97unlYC4ngOMPYls3KnxK/FZG/KEMAEKrlW8JsZXxtB57Ju/F251sBNQA7htHqhNq
-         4i5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717480476; x=1718085276;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/B3D4wtGRpJZ2iApcLLvXsbZjMk476N0oS3prX5uEXY=;
-        b=thymY3vfmsbDfvsesMySw76CIHmUMgJYElFna/QVgX/5FiBQ+LudPFqmD6lHQqKnyY
-         psSMilFO0fJbJC/RC+dpWjzVP5wHUh/jeB57p53ioip1FidugVC2LDOoPDlfEMuJQucu
-         HeSMSlxPHkc72AMwgHaSXMkwhsNjy/l2SY8w+SDJMovhqiGjUBF0zo9pOYxrvfH7/DxC
-         Pb0ZK21OKXIqd4GWN28Ep8hXgE2hO3x4eTIk2TqqyMkxhf8U/CL8TTZwX4kIqaiWEI9e
-         2otIMJJTgRgGn67o7cGlQWWUPKCuK4LxaXkOghmPqn0DmPbrBOkue+7DCYUyUaj30ehp
-         NY5g==
-X-Forwarded-Encrypted: i=1; AJvYcCVyO6rA5Mb5+rTks7i7PxW0mIeJpTLfST/EtbgsGOMEZtguZGvhiLF0JB5X/o7xoRKnGu4GLmbN/KntHbG3aGhJnTuxbhG99xdI5t3+vdGLYl1cLIN6x7Q+r1bI2IiscUxhRczQ4NjLScZipcDQwmKcGJFGF3lqPQ==
-X-Gm-Message-State: AOJu0YyL82hoFY7cPz8pCQUrw3zx+Ey8Al0YsWBrpHAb0Xn2y1uTKqIO
-	mIMdCJN3Rxtl9dQfVJgCtwSSiLCekNryLZl4FgBniJGQ9MZ+xvJd
-X-Google-Smtp-Source: AGHT+IHVXdxysaq5WMsG98sCezHcJNWQkXwVmFFXDwwcoFJhWDYblpS3zlpgz69HjU4vaFXbm5lIDQ==
-X-Received: by 2002:a50:f609:0:b0:57a:2a46:701 with SMTP id 4fb4d7f45d1cf-57a3638f2f7mr8298598a12.19.1717480475987;
-        Mon, 03 Jun 2024 22:54:35 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a4fc842b5sm4895643a12.71.2024.06.03.22.54.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Jun 2024 22:54:35 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: iio: adc: amlogic,meson-saradc: add GXLX SoC compatible
-Date: Tue,  4 Jun 2024 05:54:30 +0000
-Message-Id: <20240604055431.3313961-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	id 1sENfH-00000001NWS-1bUL;
+	Tue, 04 Jun 2024 06:29:00 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id AD595611F6;
+	Tue,  4 Jun 2024 06:28:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CAC6C2BBFC;
+	Tue,  4 Jun 2024 06:28:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717482537;
+	bh=Ee4EP6JXspvBxLB9eKYgXCccLrc5W1jo7F2glI6Jta4=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=Cd9oFiS4vsW+MkWn7q6k9PljpSOBYnro+w51FJOtOXtaJtpzSfv+LirxV5y9qOY87
+	 5erEolXtJUpjviM92MBrTGozfAO6ZvBIFBwvHnLp2pPjlszrJBSQzPiqSxwWIecP3v
+	 Jh0hDJCc+zskX9qDewFt8++BDjh/KM28S6r4zL1cpwCqC/EQ4jFSCnt2oppHI7o8oM
+	 CFdnbNSCVhJGCBMVArUnJmkHZII/XAH9G7iH24JGWhLbXQ/mC1/AVw3rliJ+06X0Qm
+	 N/sYDfbtNHsVoxVbCoyzmHtlDyVoS0D47UpF2SrbIpQoRSGGKfXOgXj0lu160yHUQZ
+	 SI7eIimsbsSBg==
+Message-ID: <7eb0556f-c25f-4568-a17b-24fb6b60ada8@kernel.org>
+Date: Tue, 4 Jun 2024 08:28:51 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: media: amlogic,gx-vdec: add the GXLX SoC
+ family and update GXL
+To: Christian Hewitt <christianshewitt@gmail.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240604051533.3312944-1-christianshewitt@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20240604051533.3312944-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240603_225438_830094_889EB7F6 
-X-CRM114-Status: UNSURE (   8.71  )
+X-CRM114-CacheID: sfid-20240603_232859_554988_7E24AE14 
+X-CRM114-Status: UNSURE (   8.72  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,31 +125,19 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On 04/06/2024 07:15, Christian Hewitt wrote:
+> The GXLX SoC is a GXL variant that omits VP9 codec support. Also add S905W
+> and S905Y as GXL chips and sort the GXL comment.
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 
-Add support for the GXLX SoC. GXLX is very similar to GXL but has three
-additional bits in MESON_SAR_ADC_REG12 for the three MPLL clocks.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- .../devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml        | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-index 7e8328e9ce13..b2fef72267b4 100644
---- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-@@ -23,6 +23,7 @@ properties:
-               - amlogic,meson8m2-saradc
-               - amlogic,meson-gxbb-saradc
-               - amlogic,meson-gxl-saradc
-+              - amlogic,meson-gxlx-saradc
-               - amlogic,meson-gxm-saradc
-               - amlogic,meson-axg-saradc
-               - amlogic,meson-g12a-saradc
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
 _______________________________________________
