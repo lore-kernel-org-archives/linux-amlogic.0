@@ -4,64 +4,132 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4689AC25B78
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jun 2024 15:29:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94611C25B78
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Jun 2024 15:30:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
-	In-Reply-To:Cc:To:From:MIME-Version:Date:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=wCQVMJ55fg+dpaTYxZAMkGAaivuWCkqNgxxQ2MbqIZQ=; b=ePZPURmClOkVYl9pn/FI1Mw/1A
-	VittXoNNMgS8ROc82sNWArTXLsGn1H7KR1bXjrkBfznnjrvUiEUMsYn/UEIZtfOUsxARPgk9w7v5p
-	9xADbX/MagNj90m8wuUDKFLt2cnqtcnu/rXArDNpcSyx6M9g/uaWTmbK+GhKT7o/YJ1YPaxx3JXoK
-	j1S3MXtXjdihuX3s3tOlHLk265yGlCniNZe91A2WBxJvnqAE+EZpu06ar2RRjgwuLEnReU8H5N3Su
-	yNo/FMxFI3ztpU7FzguOd90LRhCCRPYNVdIwll0Phykjl1GFr8uUdHNVjupJuKDwfgFRtkQVEc3fK
-	C8cKDNvw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Rb5ngw9ZNzVS5FTXLT/SfKlar8YUg6g8MFNbqyeHpB4=; b=jWx7m9OxSRLawj
+	QqKb4sUjL7XEgm2XZRrpNfoMkUnQWchVbWAWq3FJYb8oTB9jp3QSjzhgerzNM0Wg1TN2n1VnYwpwc
+	vcvB7d970xi7mB1GB4vRVybOO9fASYt7RWsxJR7BMQ+mtqS0BDiTPfeC0BV7ZbblTPMmBKElnKFCo
+	ialamSUNoxGb3vjdZwTZS2W9A0DZ9kt8z9Hld1ePbmwFthOy2xnegY6R7E7/JUlKEqpu9sQ5zLqTW
+	l/aKnlxWT+sxdzsEmuOb7W8IYnuKImr/sy0TCBX4/KdWEK6M3CAEf/KlxeDZnPNH/YMDWLoXX6dwT
+	thEKiOOwtci5YJy2VhFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEW5w-00000002uxh-0uJU;
-	Tue, 04 Jun 2024 15:29:04 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1sEW7B-00000002vha-3bIi;
+	Tue, 04 Jun 2024 15:30:21 +0000
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEW5s-00000002uuO-2Bky;
-	Tue, 04 Jun 2024 15:29:02 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id C995CCE11E3;
-	Tue,  4 Jun 2024 15:28:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C879DC4AF07;
-	Tue,  4 Jun 2024 15:28:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717514938;
-	bh=aXE8gOS2TuQOrCEK4qKB62qDKs93x0nvxlcAsf6CsQg=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=mb5BLESp0dCeu1l4lVu/jtlOXaoiG+X9Tk0jKTHIF6aArnOo3vs/aI0TzWnuFLjm4
-	 3FcGMhI6J8BByrzvmX1srj1un0RRU32bHH98btU7RE6VuaTjUlHn6rX3AVGQDp0f07
-	 PcRZPf6LcwRVxeMWona4WjGK/KYmo7P7OZujTmcjdDjayNyIPSbDZtvdHp3vdD6Drp
-	 y/2ZxIIWDk4ALp26sV/jBA4dxnm10tBd3oUCRpzKtb4mzECWgUGKW72zdEIbjT/lkW
-	 oQePp8Vjruy7WoeARDGBtalzZw6aD9fGOgSulDnRu0n8tpv7TRBrWauD1mi9q4aUvq
-	 7ykG8peR3pbhQ==
-Date: Tue, 04 Jun 2024 10:28:55 -0500
+	id 1sEW79-00000002vff-1nYP
+	for linux-amlogic@lists.infradead.org;
+	Tue, 04 Jun 2024 15:30:20 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-35dc1d8867eso4932740f8f.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 04 Jun 2024 08:30:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717515017; x=1718119817; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=j5uH3wfnvrFiksTGlbKOSszbSf1fAnlhCPie5IFC614=;
+        b=EUxSx19lIFSKR06Ud6/XxtcHSO9b+8gElZuOI8bdWC9mFacdm8cH4kJHPOjLX2EEJw
+         Z/8stAJMpJiXdz6thNWdz6zarpZ8wvlg+Mdcm/w53YTobPayt7iwOaN7+IICMgsqvxyz
+         m/I6Z7nvuXyWaXUZOUhrUvTLRbJDkw1oTsEtqM41G3w6z1PQcv8aiVDDctaPt5PT3uEk
+         PnDJ+8QhWnnQgpxnNX3weqY2ISvW3aTwmaPkGzIt1D2Nyl0n66ROVf+gzheyoU8+Zhvl
+         m9Ei5Z70/yeJ+Rvs3+ZsLd+ybBWKLW8uKFVuc3qT1AMHejJrCO5SXDT3/+gJoeFuYt4A
+         tE+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717515017; x=1718119817;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=j5uH3wfnvrFiksTGlbKOSszbSf1fAnlhCPie5IFC614=;
+        b=a1O5HNM/im7k0wor2uKl/smSJ5xAPHUararCFCjLne495RF+DsZ30Z8MVzvE63uUWa
+         XnUNGUpgiGm5ZLXkD8mHB4stKrVhTwTY615d1oD0tGq+oAUIdE3rRc2zyZJZJeXbQ5nd
+         bE52HdOW/idZ1fWYFRK9LgDZKXJ4mD1URMagftpeQ3nEzUGDWwFShZkQ2oy/8JaLzNdT
+         tS3rsmsD6Z3EO33u5biHkePvuJRjL1z9B+b6hRfRRWf9yW3R2eJ5x5J18OYW5e3uRzKu
+         JEbGem1HUAkJe+LA0wPoVs4ZwmfkrTEDWYfY/IswLHpU4v3kc1XiK+USIIOurfntUIEk
+         HU/w==
+X-Forwarded-Encrypted: i=1; AJvYcCUqH7Wy/mpHjRwf3a4DajnPNXNUkyFK2D20dm4fi9cLb3fumDIQNdzVDGsduG610Q2yBkLsufEfMmhtiBu4aJe8urarSYssENRfrrBYZuyF1fo=
+X-Gm-Message-State: AOJu0YwgsnIkhBxzOGYBS12DifXzjjaPKqPChYtJrDcpq0RjCVXyuxB8
+	mmlHlZN21qVZur9E5sff4T24j3TnbS2UFbgfvicCMdsO494gG9NQxTdMj6hVNgo=
+X-Google-Smtp-Source: AGHT+IFfygADI3Knw6uoDLdNWJTkubtO3DnhNjlCUfWwACEhTqW2+UzF/XTt9DYR7CgI5sWzIYcM1A==
+X-Received: by 2002:a5d:5265:0:b0:356:48f5:4383 with SMTP id ffacd0b85a97d-35e0f36fba1mr9078996f8f.61.1717515017204;
+        Tue, 04 Jun 2024 08:30:17 -0700 (PDT)
+Received: from [192.168.2.24] ([110.93.11.116])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dd04c0e8fsm11910035f8f.2.2024.06.04.08.30.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jun 2024 08:30:16 -0700 (PDT)
+Message-ID: <44f4c2ba-56de-4b20-90d8-fcfea4c32cd3@linaro.org>
+Date: Tue, 4 Jun 2024 17:30:15 +0200
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Christian Hewitt <christianshewitt@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- linux-amlogic@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>
-In-Reply-To: <20240604084134.3315841-1-christianshewitt@gmail.com>
-References: <20240604084134.3315841-1-christianshewitt@gmail.com>
-Message-Id: <171751454959.786114.9525171695833472350.robh@kernel.org>
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add GXLX/S905L/p271
  reference board
+To: Christian Hewitt <christianshewitt@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240604084134.3315841-1-christianshewitt@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240604084134.3315841-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240604_082900_894200_9F889CC2 
-X-CRM114-Status: GOOD (  11.94  )
+X-CRM114-CacheID: sfid-20240604_083019_516160_CF74EDE7 
+X-CRM114-Status: UNSURE (   8.67  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,8 +146,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Tue, 04 Jun 2024 08:41:33 +0000, Christian Hewitt wrote:
+On 04/06/2024 10:41, Christian Hewitt wrote:
 > Add support for an Amlogic GXLX based S905L SoC and P271 reference
 > design board. The S905L is a low-cost design similar to the P281
 > (S905W) and is similarly derived from P212 (S905X). However S905L
@@ -89,37 +156,11 @@ On Tue, 04 Jun 2024 08:41:33 +0000, Christian Hewitt wrote:
 > ---
 >  Documentation/devicetree/bindings/arm/amlogic.yaml | 7 +++++++
 >  1 file changed, 7 insertions(+)
-> 
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y amlogic/meson-gxlx-s905l-p271.dtb' for 20240604084134.3315841-1-christianshewitt@gmail.com:
-
-arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dtb: /soc/bus@c1100000/adc@8680: failed to match any schema with compatible: ['amlogic,meson-gxlx-saradc', 'amlogic,meson-saradc']
-arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dtb: /soc/video-codec@c8820000: failed to match any schema with compatible: ['amlogic,gxlx-vdec', 'amlogic,gx-vdec']
-arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dtb: sound: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,gx-sound-card.yaml#
-arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dtb: sound: 'anyOf' conditional failed, one must be fixed:
-	'clocks' is a required property
-	'#clock-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
-
-
-
-
+Best regards,
+Krzysztof
 
 
 _______________________________________________
