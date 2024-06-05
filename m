@@ -4,8 +4,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E0A7C27C65
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2024 19:02:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A1DCC27C52
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2024 19:02:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,61 +13,76 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	References:Mime-Version:In-Reply-To:Date:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=jEfVRiprO8+hTukNi73+oEZjlsoYz1S12DxOn21kBeg=; b=OMnyd+RyQpJXYmx3a7+qvtLUUI
-	L5ppyyRq1h7ONTIRdvVJ4iHv/bU96Udxl4UUgsT0l2qyl1B0/ph6cC7QNPVMx5fOw0XtyXAXM7bFs
-	auPTJ42Re9+ZL3cSSeE2sUGD58a2vII2Fc2FcIpR6rbtZNHNC+EZ6dtGPcznrEN86HiKGf9avF47Y
-	Ie4peJrYn2mFD6+LGv1WhXbT/RR5bem676XEHwlo0T3/4FiPz0RSvzEH8tCothnJidIcOGnYlezOf
-	CvYSX51/M6OeyItNthpqY3I5DZgXX5CxrtzhhEILgc2DMEVXJcbohItftYvaJrsFejpLeLrIwHVu/
-	yD/sUYQQ==;
+	bh=WwDOql6KQUEA8jQ30FEY116l/cqZiO7H4QAatqvr1Io=; b=l6EyK/KIWNiGZiS/pXbhP4doNf
+	tS5mOF+iJUAy64qU0kqwAAiEbyTA4jGowokC6Z+mfZ4u7mSyGWB4BOEh7laXW88y098jFfdE4T+Ne
+	y/r3+bO2rmlQXh4nFhkWayMQJN288CxC/LOl5s6rlWCB6X8YqDP1N/1oKyktvtCVI48AO7MubQF/R
+	nFt0NCxaMdoi6xzzJnw0fTvdOj82PKPHcUK4ZT/ypFIPVKjFF8fzdyXVm9jNq6bW9Yu+v1TdwcYjc
+	zHljKnD620MwqUqkfX2EsSqSzU2fIakGuuXCRTmM/e4EyJRA2yJrlQyWxQByJ+H6+2JYWbXegWRoN
+	G0enJufg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEvta-00000007FbW-1A0y;
-	Wed, 05 Jun 2024 19:02:02 +0000
-Received: from mail-yw1-x114a.google.com ([2607:f8b0:4864:20::114a])
+	id 1sEvtb-00000007FcV-1RJg;
+	Wed, 05 Jun 2024 19:02:03 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEuw7-000000073QJ-007p
+	id 1sEuwF-000000073c6-3UQx
+	for linux-amlogic@bombadil.infradead.org;
+	Wed, 05 Jun 2024 18:00:44 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Cc:To:From:Subject:
+	Message-ID:References:Mime-Version:In-Reply-To:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=MVw14u+NFBf2FJ7HWAHlLpDDoc6dqDnKHHZFCo9Dzmo=; b=gJWGtAgen7nuG1iP8lKRXIy9Ex
+	bmB8hspCbBRaHFKLWIRxNh67SoAErtIOyJZgBr8qfMo8XXTZJ4V++qWJQXiFCM9wVxsSMm/HejB2S
+	NAKk99WorvgvWtKCJe9n7amGcGQWSnY6ZmiCBHx2yIh1Wbe0vKkf/cd16quPAnL/xomJ00dSKM3V7
+	F2wfTjn9yM1GBwGikrCSiT5wyFfP9BqKREizfXtgk/T1Jw3lrVh5HuaTtBr8QrpZSfu9Ve8SNXxuy
+	524n30EaPwTIc9BQMVi6tJtDS73fh7i6w2Pp+23vY8LQSKo4MB59W95jr2O0k4BIRnjibkngZfmus
+	JIgqq8dQ==;
+Received: from mail-yw1-x1149.google.com ([2607:f8b0:4864:20::1149])
+	by desiato.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1sEuwC-0000000Foy6-0nDG
 	for linux-amlogic@lists.infradead.org;
-	Wed, 05 Jun 2024 18:00:41 +0000
-Received: by mail-yw1-x114a.google.com with SMTP id 00721157ae682-62a089511f9so15305497b3.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 05 Jun 2024 11:00:31 -0700 (PDT)
+	Wed, 05 Jun 2024 18:00:42 +0000
+Received: by mail-yw1-x1149.google.com with SMTP id 00721157ae682-627e9a500faso392837b3.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 05 Jun 2024 11:00:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1717610430; x=1718215230; darn=lists.infradead.org;
+        d=google.com; s=20230601; t=1717610434; x=1718215234; darn=lists.infradead.org;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=GabZAVwK9FSl0VODpa0rRnhc7Hb5WIAFsUpyNY/Jkgw=;
-        b=ckwPFo3b9FzZ80AXhPlbZl9Sp8r43TS+dCRvhO72dZkNabZYg/mR+slPHeMij7v64P
-         gm7DBIUCb0VUA07LPR0c7q5xiOTg99kHOtsolNDGvqaNtSUeoYeLmOm0mHZKlwyAYKK0
-         YpL0Kb/tYlzvP9+tknUPPJoLieCXOxQ5T8GqhhGSSpFUxV9/NLQstOqTs/UbUhH+fo0B
-         vzfwPS5udHr1YQLaojwb96qidYiTc7EBR5Ly1GyBb3UgEhkbwXYuhvwKEt8NrzDujxeb
-         bKDXcC3SV98mPeXU3HRwcwo8Tjwuvsp7/CSwJGm2Bawq2OolT7NVN9O4Xwyo5Lv0x8un
-         v/Jg==
+        bh=MVw14u+NFBf2FJ7HWAHlLpDDoc6dqDnKHHZFCo9Dzmo=;
+        b=G2z68Q42h8BopQasNC59Hs1iU6alvuTCNS3++OdmKiQ5yn8O3op6CCl2OMR44KEs3h
+         tqXBYH3WeAjYKGLPhr0uuEuEsCOaRxv5R74eUo3eF4kZTZlggp+gsYsL2FJf2atqLRI8
+         wSpwd9nDpECCC9+s+cbRMCa4afFaxTd0Cn00gsyketdA5vKiH8P8Efxo/+LBtpnrRTX7
+         cco5CJRd9j2SDjg5tse/3onRoO5soomEeS0lXJ0RErL9Xl5ioyFWURmOHEqBK3mUFtkX
+         9V7k+lpdhW2OYZ8HOrxuy+Tyc4jAgwhZsxlwR58fJCbUcR3H2WHOxA/LilsKzzmW2SL4
+         JIXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717610430; x=1718215230;
+        d=1e100.net; s=20230601; t=1717610434; x=1718215234;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GabZAVwK9FSl0VODpa0rRnhc7Hb5WIAFsUpyNY/Jkgw=;
-        b=bkzrlqsGJBezopQsOKkWA5Mi1cST4fmoQBCy1C45K/I8KV3YoELApdGXpb/rW77i9m
-         AUPS9db2fZulsRlsOY2u7B54yYLgv6LmJfbWdsObVOB05uESJS8M/81PSdyGH3xUV5Cp
-         dINB7z2NB+xwYpE9j4dEjlYgUqDnZBEyzmJ7BQRb3JFzbkYSbcirXnmGGYwrYb20jslx
-         HI33KUqLbci1tquObDTKzCHo8tLbeeokJ+FQOVraj3s7/0ki3kExZ19eR3mb+pRB/uEm
-         YNvu/J1hGHWqpcgf0z+SKiOHG0ZCqFYLdWR98hzCI1YOXkFXpqo+NLe9FlvOo7v3/bOM
-         pZ9g==
-X-Forwarded-Encrypted: i=1; AJvYcCUubDRUSlttmT8mwKX1PGO0C9+rVhOzh1T+o/5xQYxaspxVO6FcVxdoc35hvj1MantClwiW6PCJKD9ZsnTSfrE/YkO3PrrFRTlxoi3cYASWHH4=
-X-Gm-Message-State: AOJu0YxTX1kFaGSnCwIXgdb9x6E4Zoey8FbsaOHFBSAVAVo9dY4qBNoK
-	/U7VMeURKEQnv3diVYJOVBRUxtIpINu9QPEu3Sr3mtnaCY86nq9fEZzn3XTx+poFk0i6hoXW8hJ
-	XY1qTlRY0Gg==
-X-Google-Smtp-Source: AGHT+IEja+GLVOpS7V2U0r8IR9Z9ZB6nAf9rPU6225JSB7wTRYk1qUU4QFIkeBtYF/8VHx1IHDowrDp0WPzcZg==
+        bh=MVw14u+NFBf2FJ7HWAHlLpDDoc6dqDnKHHZFCo9Dzmo=;
+        b=iEBX6/uFSGOxlA19Ap6Tt7H8Fha+3WEB4rqzvJ1IXJLJZFqv+ph2qbnWuB6wN/hNc9
+         /P0Jp0uy7nd56WcnDaHw5RdxhpJZ2kyins0MtAY8bxdU8+001hHXqx7HSc1ChOEsYI2r
+         7yb8aqLzxqp3epfp3bNvruhpkFuy5ZZwuyB7Zr5350lus4JLIkY7FGIewf3jRUHOjGn+
+         yb7hUt+un8Oz1v/eLRoLDQDz5C5gQqs/kwH3Zpign0C24V4VnTyco+8H6GtNgpmGC7SN
+         S2uuqALK98g7PKDVHiReBz/EODSVSGlGO0y3IycH5E4Y8vFiEgSlzgzd8eOIZCR4PWuF
+         T0AA==
+X-Forwarded-Encrypted: i=1; AJvYcCVQz5rRnddW4ItW/nxYcl5L8zFN5YAS0bmHMmqaBi8LYRYI+LCkZNCSuFe9DJZN/v+CquU7L9IraL6UNimks7C7JM/+jsLO0sp2pr0L2dAFjRQ=
+X-Gm-Message-State: AOJu0YwlV7jXB5UdG2rRXXdQARiMRpBouYBeCz5VK0/fUjPP+wxcY1FA
+	hIEYmuRYb10lKq54KLN1PjBHT2wkyH6RYrCrWMsy3LXi4bXSqFmyzQ93WIvZ47ea4WvJRi3kZzm
+	XRUlsS4LK6Q==
+X-Google-Smtp-Source: AGHT+IFNKfAUW4OMaL9qXpdep3tJtwg2SPr15+NfVtMPZB9WLEiwmeB7gCF1Z3uW4GFYC8/zL1lL4yiz6W2izA==
 X-Received: from joychakr.c.googlers.com ([fda3:e722:ac3:cc00:4f:4b78:c0a8:6ea])
- (user=joychakr job=sendgmr) by 2002:a0d:d952:0:b0:627:de82:8077 with SMTP id
- 00721157ae682-62cc709af05mr798057b3.2.1717610430440; Wed, 05 Jun 2024
- 11:00:30 -0700 (PDT)
-Date: Wed,  5 Jun 2024 17:59:51 +0000
+ (user=joychakr job=sendgmr) by 2002:a05:690c:39c:b0:627:96bd:b2b with SMTP id
+ 00721157ae682-62cbb596fc6mr8752147b3.6.1717610434368; Wed, 05 Jun 2024
+ 11:00:34 -0700 (PDT)
+Date: Wed,  5 Jun 2024 17:59:52 +0000
 In-Reply-To: <20240605175953.2613260-1-joychakr@google.com>
 Mime-Version: 1.0
 References: <20240605175953.2613260-1-joychakr@google.com>
 X-Mailer: git-send-email 2.45.1.467.gbab1589fc0-goog
-Message-ID: <20240605175953.2613260-8-joychakr@google.com>
-Subject: [PATCH v1 07/17] misc: eeprom: at25: Change nvmem reg_read/write
+Message-ID: <20240605175953.2613260-9-joychakr@google.com>
+Subject: [PATCH v1 08/17] misc: eeprom: 93xx46: Change nvmem reg_read/write
  return type
 From: Joy Chakraborty <joychakr@google.com>
 To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
@@ -86,8 +101,8 @@ Cc: linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-usb@vger.kernel.org, manugautam@google.com, 
 	Joy Chakraborty <joychakr@google.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240605_110035_711769_8AE8C12D 
-X-CRM114-Status: GOOD (  12.09  )
+X-CRM114-CacheID: sfid-20240605_190040_465436_B55AFC86 
+X-CRM114-Status: GOOD (  10.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,55 +123,60 @@ Change nvmem read/write function definition return type to ssize_t.
 
 Signed-off-by: Joy Chakraborty <joychakr@google.com>
 ---
- drivers/misc/eeprom/at25.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/misc/eeprom/eeprom_93xx46.c | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/misc/eeprom/at25.c b/drivers/misc/eeprom/at25.c
-index 595ceb9a7126..73d60f80aea8 100644
---- a/drivers/misc/eeprom/at25.c
-+++ b/drivers/misc/eeprom/at25.c
-@@ -74,8 +74,8 @@ struct at25_data {
+diff --git a/drivers/misc/eeprom/eeprom_93xx46.c b/drivers/misc/eeprom/eeprom_93xx46.c
+index 45c8ae0db8f9..5d618a13fe5a 100644
+--- a/drivers/misc/eeprom/eeprom_93xx46.c
++++ b/drivers/misc/eeprom/eeprom_93xx46.c
+@@ -79,10 +79,11 @@ static inline bool has_quirk_extra_read_cycle(struct eeprom_93xx46_dev *edev)
+ 	return edev->pdata->quirks & EEPROM_93XX46_QUIRK_EXTRA_READ_CYCLE;
+ }
  
- #define	io_limit	PAGE_SIZE	/* bytes */
- 
--static int at25_ee_read(void *priv, unsigned int offset,
--			void *val, size_t count)
-+static ssize_t at25_ee_read(void *priv, unsigned int offset,
-+			    void *val, size_t count)
+-static int eeprom_93xx46_read(void *priv, unsigned int off,
+-			      void *val, size_t count)
++static ssize_t eeprom_93xx46_read(void *priv, unsigned int off,
++				  void *val, size_t count)
  {
- 	struct at25_data *at25 = priv;
+ 	struct eeprom_93xx46_dev *edev = priv;
++	size_t bytes_read = count;
  	char *buf = val;
-@@ -147,7 +147,7 @@ static int at25_ee_read(void *priv, unsigned int offset,
+ 	int err = 0;
+ 	int bits;
+@@ -158,7 +159,7 @@ static int eeprom_93xx46_read(void *priv, unsigned int off,
  
- 	dev_dbg(&at25->spi->dev, "read %zu bytes at %d\n",
- 		count, offset);
--	return 0;
-+	return count;
+ 	mutex_unlock(&edev->lock);
+ 
+-	return err;
++	return err < 0 ? err : bytes_read;
  }
  
- /* Read extra registers as ID or serial number */
-@@ -195,10 +195,11 @@ static struct attribute *sernum_attrs[] = {
- };
- ATTRIBUTE_GROUPS(sernum);
+ static int eeprom_93xx46_ew(struct eeprom_93xx46_dev *edev, int is_on)
+@@ -258,12 +259,13 @@ eeprom_93xx46_write_word(struct eeprom_93xx46_dev *edev,
+ 	return ret;
+ }
  
--static int at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
-+static ssize_t at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
+-static int eeprom_93xx46_write(void *priv, unsigned int off,
++static ssize_t eeprom_93xx46_write(void *priv, unsigned int off,
+ 				   void *val, size_t count)
  {
- 	struct at25_data *at25 = priv;
- 	size_t maxsz = spi_max_transfer_size(at25->spi);
+ 	struct eeprom_93xx46_dev *edev = priv;
+ 	char *buf = val;
+ 	int i, ret, step = 1;
 +	size_t bytes_written = count;
- 	const char *buf = val;
- 	int			status = 0;
- 	unsigned		buf_size;
-@@ -313,7 +314,7 @@ static int at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
- 	mutex_unlock(&at25->lock);
  
- 	kfree(bounce);
--	return status;
-+	return status < 0 ? status : bytes_written;
+ 	if (unlikely(off >= edev->size))
+ 		return -EFBIG;
+@@ -304,7 +306,7 @@ static int eeprom_93xx46_write(void *priv, unsigned int off,
+ 
+ 	/* erase/write disable */
+ 	eeprom_93xx46_ew(edev, 0);
+-	return ret;
++	return ret < 0 ? ret : bytes_written;
  }
  
- /*-------------------------------------------------------------------------*/
+ static int eeprom_93xx46_eral(struct eeprom_93xx46_dev *edev)
 -- 
 2.45.1.467.gbab1589fc0-goog
 
