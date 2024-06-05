@@ -4,103 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BFA9C27C52
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2024 09:37:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34341C27C52
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2024 09:58:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
-	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=UK1jdgtZGy5a8WtT5ZyxoGzvztsMTZb0d+LqAWwn8gE=; b=oyVgZQDi91LtXk
-	o1/5hgv1dEBeUD7xN+qaCMpCRWyfR+p5SO/fOwfo5RNUMguU+9d5D1tAS+4g8+xIMhW8meGvczToZ
-	p10kbUlxNdt2Y5xtVOtA0kSHTORuD2S5kkh8beSpK6CiH7Shy2YDkgsaf6qRFBZQWDk/OqGHbWqKM
-	QPeGi4ug3qjBNWI4/bGL2MtXAjOupdGf7Lk7n14akwkvpgatg2LIaiClxh8bwMHKT5R6RwnsmLnHt
-	JQ4cyS364qXoFLUyM7bSuToDvphSkPaIg46sSgXFomQXqjzj8LIuH16VMIz/YXyMC2AxxdSdDSAHU
-	QoXBYjf1HirK9Sos051w==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=F1ZK+7RoRKRV7XxMUvTUMiBk+c9gMCCHrMDMKOqXDzs=; b=L0c2brNbrg245d
+	dTSPiyDUmdqkqOOpMUGREwom/2Oza9Qbh1lb+UqXt2kycMbBTa8m/SegRVrsGhjyJgO+x/bSueLtP
+	SaT3GQ9CTlp/EwQfKFLcJUJU18lCD2vPiolbQuzIF82KD6xBPxymdH8BI70QqZiEKkCtSprBGFmK8
+	4814ioP8NPzt8yW0drb0CCVa3P6Gxi1suJgBV/4VHv66tW7HWpHBw5Rmpog1zezuXWwcJa9X9D0xi
+	W8CpTMaYBGTYpPrBlIfPwuLlpK8wpFL3RE566MbY7MnFYV556d632FI87SWTxg3tNYyTWxR0naWyy
+	ULHsmikmgzPbrmhZznOA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEn50-00000005RTJ-3j6m;
-	Wed, 05 Jun 2024 09:37:14 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1sEnPG-00000005VCt-0OJo;
+	Wed, 05 Jun 2024 09:58:10 +0000
+Received: from mail-yb1-xb35.google.com ([2607:f8b0:4864:20::b35])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEn4z-00000005RRx-02Dn
+	id 1sEnPB-00000005V9N-2sUj
 	for linux-amlogic@lists.infradead.org;
-	Wed, 05 Jun 2024 09:37:14 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-42155e7084cso8049655e9.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 05 Jun 2024 02:37:11 -0700 (PDT)
+	Wed, 05 Jun 2024 09:58:07 +0000
+Received: by mail-yb1-xb35.google.com with SMTP id 3f1490d57ef6-dfac121b6a6so624100276.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 05 Jun 2024 02:58:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717580230; x=1718185030; darn=lists.infradead.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=LSZI+79Ozf+tLjEjjKM/vl02OsbKzTxtYkNCBqG2m2s=;
-        b=wY1Wg8EkEmUyCR2s8Ou2TsLnpcTj1X/T0xjiuCw6zW9QhJ7rHWxFWrnKTZf9xfUu22
-         mN5BH8H8zKoGu7JPWbvXUNN+unitc7KzbykfwlnEc772kXqFNIzzw9tohTzGQUtSIlEK
-         zLGF9foD0O9aIS2LtV5t0P2RSD3mdBGkFmZiLa2WBH4U8AiRJYLgLSmqZUs7oQgBbir2
-         hAdg7Dvch9w+iqSgsgdd95blAJ7KewX4Iorc6Br2q+5WgM0ZfS3QKbyqQpxT6a9ZK9nj
-         rCB2O2TSMu+GjB86XVohmPeYzac5GOE2VhfqzkAEaYksHi/yXwpbTBLwL2YEVcpqBULe
-         XZ2Q==
+        d=linaro.org; s=google; t=1717581483; x=1718186283; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5mAYD1Avt8pq2XcOOEM7xebLX9m2RKKIBoR9HWmP6lo=;
+        b=uV3iyvb5x4oD6bWev1dwwe3HTCOV1TVqD4DhatdSuH84hqvWhnlxssWQPRShq8WHLY
+         8LJJEOJgj3YbDr6PEgH5xuIGAclAaIyu16QHPnj25+h8ObWT6cVsIomt8ihWLZF7B2W5
+         yrx+nb2WWOOUXVoE6OWzkD028S5v7MsrFzOBAGc+mMLPVzpKcpA4RZ6hfWtTeileYkMS
+         BfQ3880pJbSyv4J+WuAjzo9ES5yuomKyo7W5fC0yUaCAzyLVg4iRgWmzWccRsMCGuEsE
+         PtGqIi6a8QieS+Uk/RBdwsi4kM8UnViWql3AmQbzDCcsnsbY50uEAsjaicTU75h3llx8
+         4sJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717580230; x=1718185030;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1717581483; x=1718186283;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=LSZI+79Ozf+tLjEjjKM/vl02OsbKzTxtYkNCBqG2m2s=;
-        b=HhcJDb025DmhhrEGBbWCnqXupXZlqpVsYYMtmDfFOUsQn2O5ku4ZJRjjO2l7/Y4I3a
-         xthlLTJWGBPLe/tCgvsmEE2+q2N0D5MXt0MeYcRXUmATMcn+Za184dFwVx01cA2nCs74
-         TiSQH5a45xnhL2TYvtok78KJDZY6Y9Z9Z//S0HwZRR5eC7S1ZUYknK+XP8mgSxl8EcAG
-         WF4SbQ0Ym1yE+5bmNle4r0Kslyks4chGHPWCykfmPm61E4KzgoPFYfZ19+bxJIqOABeo
-         yzi8MBTT+mGqIRUB4G0A/XxWdWHco1cHljz46WMe98wDq3LJOKRsxIx5/CTyc2F+rEmw
-         +NzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUxvbhcwHPlsPIbcjDrM3pIbq/oBkU8cpvvLlYRFSTbrBpnJJBPD8shlgFlG4XuUQOcxRLiLEiyVoNTPRK4h0yJDdmdJAzm9BBgbnpFEReoaAU=
-X-Gm-Message-State: AOJu0YwK7vMgJu1zt6Y/VGrpHlNzQkGtPwGlLA0wxFa6Und5Ll9iW02P
-	vATWmIzGh+fiQQDT9S8SYK/3+SZQ/l4A3/Q3vNnKDMUxpKy+9k4BVddRPc32zgM=
-X-Google-Smtp-Source: AGHT+IGAjFy2U1Sr+dNT5Lezmn24SCXAPKGBu2lzxTmKU5abNAvO1losuUJ7PfnTYXCgDx0HUW4r9A==
-X-Received: by 2002:a05:600c:46d3:b0:421:2adb:dd5d with SMTP id 5b1f17b1804b1-421562c7fa6mr15583975e9.8.1717580230396;
-        Wed, 05 Jun 2024 02:37:10 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421581016c6sm14510245e9.3.2024.06.05.02.37.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 02:37:10 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 05 Jun 2024 11:37:08 +0200
-Subject: [PATCH] dt-bindings: iio: adc: amlogic,meson-saradc: add optional
- power-domains
+        bh=5mAYD1Avt8pq2XcOOEM7xebLX9m2RKKIBoR9HWmP6lo=;
+        b=uTfPf+TK5CI6WQbthxRqtZy/Eb6yEX2UtlkqiyjXjTqvuvhX2RMYlqWfL1hdp3aSv2
+         /wj2LRTdEABWxrmdMe0Qnb1AN1MlWCSUaEx2l1EusRL0N3E5HjoR7tQZu36KN0qYIsSo
+         vuUMqTvFPGCs0LErUQhjJMUIWuhkDE0opjroTd4huyktUwu+qKWmklaKsQCOAw5kvvsa
+         so120vJ+uuFxe/WTDQ599+CwLaTYOLGYamruZLlEhmJxoW0x3YxQFWRybsgB/A5oQPxJ
+         e2zpdzkOtAV126qfqqHCugVXsX9A7gmKChpR/dKJR478vCRI4XFkYMLVLRXpnIycEbwy
+         00uw==
+X-Forwarded-Encrypted: i=1; AJvYcCUbORbG8D8levy/TMbb9SZxzOB42v3k6xLUtmCSeVc0SqiuxnEO22zJFpyWwXIUE3MQWKmDB20Tp2f+9PNo5+D/up/3P3RDt9P8EeX7m+bor8k=
+X-Gm-Message-State: AOJu0YzghnobRlnorAoo49EXfgp0tzrFWZ63/0VW/zqXzvZ8+rvMYAJ5
+	zv437w8o3ki5pkX+cXlXzUUmGWu27rvZOq6/BCjgo0Hzn1shNqzeQJQCw0lkpZXtXlN8ghRr8Pe
+	/X+TA6IbBuCrNZMU6NuVhgxiSFL2OAqJrezWqvA==
+X-Google-Smtp-Source: AGHT+IF2R/aghDc5IVYeX1rVhBtT3A6VAsaeguTPhS6sYRA62wpiuZD2zzzvBra0tS6pu+Cqh5RE9zZsadl70OemW/g=
+X-Received: by 2002:a25:b88:0:b0:de5:8427:d66f with SMTP id
+ 3f1490d57ef6-dfac96febfemr1772988276.4.1717581482636; Wed, 05 Jun 2024
+ 02:58:02 -0700 (PDT)
 MIME-Version: 1.0
-Message-Id: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-sardac-v1-1-40a8de6baa59@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAMMxYGYC/x2NSQrDMAxFrxK0rsA1daerlCzUWHEF9YCUDhBy9
- 5quHg8e/69grMIG12EF5beY1NJlvxtgelBJjBK7g3f+4I4u4FKbTEj5WVPnq9miTBnvUqKUZDj
- Llw1b/bBirJmkGBpppAndfIne84lDOEM/aMr/uu/fxm37AUJHyVSMAAAA
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1007;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=oi2WvBkcuibAfXOROdiAwxHovEGXU0w54vU+XEWreVY=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmYDHFLxSezg6MSIqYHnt3c+yfTVn70mG8pfNZ2oUF
- kJzSJT6JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZmAxxQAKCRB33NvayMhJ0bRND/
- 9VWdftl4+ZipFhnGlqNjNwYhnqAPXR3Z0dbtvuMA7h/YrhUWK7oCzAcQM/xI+XK/HfPi9D1TKdstU3
- KL2F2FexCIHybxIBX76TWWAdT7C/hN8/Y9zXPj80wZLln4S2POzcAjiRRQ89IjZB3C+8LVDApKR/uC
- fozYKf3ofRX8YJXg5yojKqoBcB2wH2JOysdHma+e6i1JlQs6GSa7SS6iBwyZhFena7sh+hqTu+N3NV
- ezXtvolX/8fA5N7H4u0q2se2jxPsxqo4jc5awmDyLlcO86DSh2q8rK5E+fqB6I+hN4Jta2oj5WQ6fO
- WrIU1IzJXu9q84bFBPfeOIRXOaRI4UT/D7oC3NysuOYVNKHFinu6hshbdTcyQMsrICWcodXvAia8zp
- rfrdHW+tgck335MYJ7X3uTJXztALrOhB48enyC/8pk/eTzV+VyIJ3vf4pMm1CUToJEihZET5y/qshi
- 7OWOZHGeOQSt7HQusRVZTAkmHx7tktOa0IPSKZd6essrqWBLamjpSD6D7BN/RJegC040YlSBV4Hc4C
- 2/lrsFupoKccNtpaMrOb8djrXYpMF62TNkmRA5cCP/uUg51FfU9tZVl0IzeLwi14VwKLBkwFJLHg0j
- i8AcF8M73dcI7L/LbXTxXYzGYrLXDueA0365BDHWLs3FGCdHKCVkuyqzZvow==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+References: <20240529-a4_secpowerdomain-v2-0-47502fc0eaf3@amlogic.com>
+In-Reply-To: <20240529-a4_secpowerdomain-v2-0-47502fc0eaf3@amlogic.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 5 Jun 2024 11:57:26 +0200
+Message-ID: <CAPDyKFo-V4aNKWQn2r61_Q5d9R2Lhj8d5Ri_b-zW7VMsVBHARw@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] Power: A4: add power domain driver
+To: xianwei.zhao@amlogic.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jianxin Pan <jianxin.pan@amlogic.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240605_023713_128218_9CCAB629 
-X-CRM114-Status: UNSURE (   6.81  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240605_025805_925702_2696DB38 
+X-CRM114-Status: GOOD (  11.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,37 +95,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On newer SoCs, the SAR ADC hardware can require a power-domain to operate,
-add it as optional.
+On Wed, 29 May 2024 at 05:10, Xianwei Zhao via B4 Relay
+<devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
+>
+> Add power controller driver support for Amlogic A4 SoC.
+>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+> Changes in v2:
+> - dts: Move power-controller node to be a child of secure-monitor.
+> - dts: Include power head file.
+> - Link to v1: https://lore.kernel.org/r/20240528-a4_secpowerdomain-v1-0-2a9d7df9b128@amlogic.com
+>
+> ---
+> Xianwei Zhao (3):
+>       dt-bindings: power: add Amlogic A4 power domains
+>       pmdomain: amlogic: Add support for A4 power domains controller
+>       arm64: dts: amlogic: a4: add power domain controller node
+>
+>  .../bindings/power/amlogic,meson-sec-pwrc.yaml     |  1 +
+>  arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 10 ++++++++
+>  drivers/pmdomain/amlogic/meson-secure-pwrc.c       | 28 ++++++++++++++++++++++
+>  include/dt-bindings/power/amlogic,a4-pwrc.h        | 21 ++++++++++++++++
+>  4 files changed, 60 insertions(+)
+> ---
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Patch 1 and 2 applied for next, thanks!
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-index 7e8328e9ce13..f748f3a60b35 100644
---- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-@@ -66,6 +66,9 @@ properties:
-   nvmem-cell-names:
-     const: temperature_calib
- 
-+  power-domains:
-+    maxItems: 1
-+
- allOf:
-   - if:
-       properties:
+Note that the DT patch (patch1) is also available on the immutable dt branch.
 
----
-base-commit: c3f38fa61af77b49866b006939479069cd451173
-change-id: 20240605-topic-amlogic-upstream-bindings-fixes-power-domains-sardac-0f9d22e7e558
-
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
-
+Kind regards
+Uffe
 
 _______________________________________________
 linux-amlogic mailing list
