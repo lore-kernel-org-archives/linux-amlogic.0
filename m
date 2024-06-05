@@ -4,101 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2C77C27C52
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2024 09:36:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BFA9C27C52
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2024 09:37:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
 	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=hPqIXeEIUApFi8xoDG5NdzvNDSFwbo50R51jdKszAek=; b=wQn/665CEpwQ3b
-	QmluBuTkbcdod59McmRD4LsqeH/1NCcOzHdsBkv0Ml25rcSpoAndcuJwy89jkou4bLJ6qgnd7k3TR
-	/7FXkGDqLVeKcPA+iQY75erjGBrr+CSXKET9yZSvnWXhRaMP36uwYiOYLUEaxCiJrU/RnteibLuTF
-	qWsX3668a23g+7fk7ahx3rglYx2OAQCxqCscmE1RnG1ZjHtdeY0TCBSCZzct2rDMgiboylzRzvIdZ
-	l/QO1f42wGIqY+HNvq366gdQ3VfqxRKhFSIozm6ImSFejvXm/0WNHAFGQ95r/JDcY628RVFPO5GbN
-	v9cHk6wIeR2Jo/Mg5kfg==;
+	List-Owner; bh=UK1jdgtZGy5a8WtT5ZyxoGzvztsMTZb0d+LqAWwn8gE=; b=oyVgZQDi91LtXk
+	o1/5hgv1dEBeUD7xN+qaCMpCRWyfR+p5SO/fOwfo5RNUMguU+9d5D1tAS+4g8+xIMhW8meGvczToZ
+	p10kbUlxNdt2Y5xtVOtA0kSHTORuD2S5kkh8beSpK6CiH7Shy2YDkgsaf6qRFBZQWDk/OqGHbWqKM
+	QPeGi4ug3qjBNWI4/bGL2MtXAjOupdGf7Lk7n14akwkvpgatg2LIaiClxh8bwMHKT5R6RwnsmLnHt
+	JQ4cyS364qXoFLUyM7bSuToDvphSkPaIg46sSgXFomQXqjzj8LIuH16VMIz/YXyMC2AxxdSdDSAHU
+	QoXBYjf1HirK9Sos051w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEn4T-00000005RIs-2O1w;
-	Wed, 05 Jun 2024 09:36:41 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1sEn50-00000005RTJ-3j6m;
+	Wed, 05 Jun 2024 09:37:14 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEn4Q-00000005RH0-0Fua
+	id 1sEn4z-00000005RRx-02Dn
 	for linux-amlogic@lists.infradead.org;
-	Wed, 05 Jun 2024 09:36:39 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4213485697fso39799235e9.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 05 Jun 2024 02:36:37 -0700 (PDT)
+	Wed, 05 Jun 2024 09:37:14 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-42155e7084cso8049655e9.2
+        for <linux-amlogic@lists.infradead.org>; Wed, 05 Jun 2024 02:37:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717580196; x=1718184996; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1717580230; x=1718185030; darn=lists.infradead.org;
         h=cc:to:message-id:content-transfer-encoding:mime-version:subject
          :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=S+Qke+DYIixXi8AtYBTaGh8w9/pQLqnaMQOsYZEWgPo=;
-        b=p07iW88qf/WOYo/geyOVOe0SgSNFUR1B3SdVDAVN4QLBJp/3mxtWIsIc+cn07vvLRj
-         DIBOeSIcj3eOXqw3eEBxdMJmoDMX15z3T3BR179SHC9leUOhSuI/uCh0RaCukVp1mBaz
-         jyaiCUo0DrUP4yvZ2MUEcPfF0YZrMryM0x9j7PPXxwVdB8Iy6lQUa5zUFXAibx2ScRxk
-         MKPk60a/nIZv7tTAjtSVk/rKuDORXq2gxXbdAwJUmZe0j/CaIfQS7rwLionMMVRay08p
-         6NzA/wKnhCnUn/tXZ238dxh+reb63wUWW5qgpaFUFU7mkHNaI2BrgaxuvreBc8fc6RQ3
-         aqAg==
+        bh=LSZI+79Ozf+tLjEjjKM/vl02OsbKzTxtYkNCBqG2m2s=;
+        b=wY1Wg8EkEmUyCR2s8Ou2TsLnpcTj1X/T0xjiuCw6zW9QhJ7rHWxFWrnKTZf9xfUu22
+         mN5BH8H8zKoGu7JPWbvXUNN+unitc7KzbykfwlnEc772kXqFNIzzw9tohTzGQUtSIlEK
+         zLGF9foD0O9aIS2LtV5t0P2RSD3mdBGkFmZiLa2WBH4U8AiRJYLgLSmqZUs7oQgBbir2
+         hAdg7Dvch9w+iqSgsgdd95blAJ7KewX4Iorc6Br2q+5WgM0ZfS3QKbyqQpxT6a9ZK9nj
+         rCB2O2TSMu+GjB86XVohmPeYzac5GOE2VhfqzkAEaYksHi/yXwpbTBLwL2YEVcpqBULe
+         XZ2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717580196; x=1718184996;
+        d=1e100.net; s=20230601; t=1717580230; x=1718185030;
         h=cc:to:message-id:content-transfer-encoding:mime-version:subject
          :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=S+Qke+DYIixXi8AtYBTaGh8w9/pQLqnaMQOsYZEWgPo=;
-        b=a2feyL/G6WRpfItghDGUzrbsY97BjOY4N8S1Lw/96U5w4aJ/cv8zG7uyPPRkz+J3+f
-         4IWeyFDTIu17mwa62Wku9a5sQ8XfyR+O+TRZVIEAD7i+u9s6SOdEQhfW/IKP591jGryr
-         tmM8BAMyoBGaPWy6QUHeo85fnQN+blk8imPxcwoK5dLwerDZVccbrF/G88K0V/G6eqVL
-         ObJVaqH6zQ6J1cVjOxGTNfsnXxzR3Kb4IOFyriiv3kfOHv/sDip6wZPpIMjV/x/WTgPG
-         c17c7dNvi1tZGSdZN6bJF5zeg4DW83Ma57cCNEo4Fv922P3gr4cKKSGl3+tOC6YRiOId
-         omYA==
-X-Forwarded-Encrypted: i=1; AJvYcCUfApLRY1RoyOZUiGaLOCqJAcSeld8+BsJjB4KQH9feEEvfFtH3rbq4IayV57rDPr9+S/bOQY1tODQIr/jCHvsfn+AtGw4tuxPNNvWc3dyENC8=
-X-Gm-Message-State: AOJu0YynF+7ajZH+xLkaVae3GmqeuLWNhSOdubk3pC54By72dhjtJnGn
-	VK5c/H3nLgCL6S9OtQ4bbeygrx8tDQqzNjNWm93meQU3rlVielXNwprhMRsVrLk=
-X-Google-Smtp-Source: AGHT+IFnr32emR/PgOzI+akAF0W2xUwd9LLOs+MUm2LqQFB7YUQr4DvWGDXy+MVTyauWrZccpH/Bjg==
-X-Received: by 2002:a05:600c:364a:b0:41a:f76f:3362 with SMTP id 5b1f17b1804b1-421562e9219mr15433755e9.21.1717580195873;
-        Wed, 05 Jun 2024 02:36:35 -0700 (PDT)
+        bh=LSZI+79Ozf+tLjEjjKM/vl02OsbKzTxtYkNCBqG2m2s=;
+        b=HhcJDb025DmhhrEGBbWCnqXupXZlqpVsYYMtmDfFOUsQn2O5ku4ZJRjjO2l7/Y4I3a
+         xthlLTJWGBPLe/tCgvsmEE2+q2N0D5MXt0MeYcRXUmATMcn+Za184dFwVx01cA2nCs74
+         TiSQH5a45xnhL2TYvtok78KJDZY6Y9Z9Z//S0HwZRR5eC7S1ZUYknK+XP8mgSxl8EcAG
+         WF4SbQ0Ym1yE+5bmNle4r0Kslyks4chGHPWCykfmPm61E4KzgoPFYfZ19+bxJIqOABeo
+         yzi8MBTT+mGqIRUB4G0A/XxWdWHco1cHljz46WMe98wDq3LJOKRsxIx5/CTyc2F+rEmw
+         +NzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUxvbhcwHPlsPIbcjDrM3pIbq/oBkU8cpvvLlYRFSTbrBpnJJBPD8shlgFlG4XuUQOcxRLiLEiyVoNTPRK4h0yJDdmdJAzm9BBgbnpFEReoaAU=
+X-Gm-Message-State: AOJu0YwK7vMgJu1zt6Y/VGrpHlNzQkGtPwGlLA0wxFa6Und5Ll9iW02P
+	vATWmIzGh+fiQQDT9S8SYK/3+SZQ/l4A3/Q3vNnKDMUxpKy+9k4BVddRPc32zgM=
+X-Google-Smtp-Source: AGHT+IGAjFy2U1Sr+dNT5Lezmn24SCXAPKGBu2lzxTmKU5abNAvO1losuUJ7PfnTYXCgDx0HUW4r9A==
+X-Received: by 2002:a05:600c:46d3:b0:421:2adb:dd5d with SMTP id 5b1f17b1804b1-421562c7fa6mr15583975e9.8.1717580230396;
+        Wed, 05 Jun 2024 02:37:10 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42158149008sm14118775e9.29.2024.06.05.02.36.35
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421581016c6sm14510245e9.3.2024.06.05.02.37.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 02:36:35 -0700 (PDT)
+        Wed, 05 Jun 2024 02:37:10 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 05 Jun 2024 11:36:33 +0200
-Subject: [PATCH] dt-bindings: rng: meson: add optional power-domains
+Date: Wed, 05 Jun 2024 11:37:08 +0200
+Subject: [PATCH] dt-bindings: iio: adc: amlogic,meson-saradc: add optional
+ power-domains
 MIME-Version: 1.0
-Message-Id: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-rng-v1-1-0a55a7ba55e4@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAKAxYGYC/x2M0QrCMAwAf2Xk2UAdm0x/RXzo2qwGbFqSTYWxf
- 7f4dBwct4ORMhncuh2U3mxcpMn51EF4ekmEHJtD7/rBXdyIa6kc0OdXSY1btVXJZ5xZIksyXPh
- LhrV8SDGW7FkMVRKGyS3jdaDJ9zO0e1X6p21+fxzHD32uuVWJAAAA
-To: Olivia Mackall <olivia@selenic.com>, 
- Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>, 
+Message-Id: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-sardac-v1-1-40a8de6baa59@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAMMxYGYC/x2NSQrDMAxFrxK0rsA1daerlCzUWHEF9YCUDhBy9
+ 5quHg8e/69grMIG12EF5beY1NJlvxtgelBJjBK7g3f+4I4u4FKbTEj5WVPnq9miTBnvUqKUZDj
+ Llw1b/bBirJmkGBpppAndfIne84lDOEM/aMr/uu/fxm37AUJHyVSMAAAA
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
  Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=958;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1007;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=ZGNGImwfXQPYzvN7hTLk86VHMRVaS+cOQyr5AuCudSE=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmYDGi7TW+cDne+1GPmNVykLtj9Lh25nQ29KXMDq1M
- wpRlrNuJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZmAxogAKCRB33NvayMhJ0SRIEA
- CM7OJXDmeM01XGdakesCnn7mmmpFjwKAmLXZ9B/Z2Ux+Zj5saW+XREccR+BVXTAJKKFP4z+mVRadie
- WWz1n8ht7hN9/FUbB1Ek9loxGnipr4aYjtv+YTxvOeNUCYNls7vVltlb9oxiapoeNhnUB611OyQMfk
- XRMz/c8SJUIBmRn4RFOGzHxAsxUHTLwokEEQKIKAb2+reEX4lMmCvkSYvDhBS3husXD5Vits3lnu2c
- QRAkIFVEdLUxgVJyWCKB6OrNoBp4xw2P62tnp/jXiexn2vMoR3orMfQB/dyI0ZWQ/aFV6w0cY+OtNp
- oPZlHvTGTsDLWPUYXTvCBt+/yIf8kFv3tfJBkDi+vqguI/2izncscAwdoRaikoxoeTW2v36o2ZoIQi
- 7+9+S/E3i0qG7HD+eeTo5lPNcY+X5iebSZrbfy473oPM84qjNJ/14gvRaSGpwPSwpRfwLbvhww5OvL
- vQodjHG/luggNlg2n/p/636eMBcjN2iMddikJ9Z1H5IFGmrJVSIUAmA6JDuU6ioGLWwZd3rM4Jhp8h
- Hhp+CF1/uiIqSEMT4dKMRbN542ROQ8FZhquz1JYlIybV7d2b0w1fAr16XJ9FFWoYtLXO/2nRDb857R
- UqpAAamr1dz15MFeDNChtMGzMoqL4lTRg7FiSX9TQ5jdq+FyFg9TuMQfy8QQ==
+ bh=oi2WvBkcuibAfXOROdiAwxHovEGXU0w54vU+XEWreVY=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmYDHFLxSezg6MSIqYHnt3c+yfTVn70mG8pfNZ2oUF
+ kJzSJT6JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZmAxxQAKCRB33NvayMhJ0bRND/
+ 9VWdftl4+ZipFhnGlqNjNwYhnqAPXR3Z0dbtvuMA7h/YrhUWK7oCzAcQM/xI+XK/HfPi9D1TKdstU3
+ KL2F2FexCIHybxIBX76TWWAdT7C/hN8/Y9zXPj80wZLln4S2POzcAjiRRQ89IjZB3C+8LVDApKR/uC
+ fozYKf3ofRX8YJXg5yojKqoBcB2wH2JOysdHma+e6i1JlQs6GSa7SS6iBwyZhFena7sh+hqTu+N3NV
+ ezXtvolX/8fA5N7H4u0q2se2jxPsxqo4jc5awmDyLlcO86DSh2q8rK5E+fqB6I+hN4Jta2oj5WQ6fO
+ WrIU1IzJXu9q84bFBPfeOIRXOaRI4UT/D7oC3NysuOYVNKHFinu6hshbdTcyQMsrICWcodXvAia8zp
+ rfrdHW+tgck335MYJ7X3uTJXztALrOhB48enyC/8pk/eTzV+VyIJ3vf4pMm1CUToJEihZET5y/qshi
+ 7OWOZHGeOQSt7HQusRVZTAkmHx7tktOa0IPSKZd6essrqWBLamjpSD6D7BN/RJegC040YlSBV4Hc4C
+ 2/lrsFupoKccNtpaMrOb8djrXYpMF62TNkmRA5cCP/uUg51FfU9tZVl0IzeLwi14VwKLBkwFJLHg0j
+ i8AcF8M73dcI7L/LbXTxXYzGYrLXDueA0365BDHWLs3FGCdHKCVkuyqzZvow==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240605_023638_234547_F9E5F705 
-X-CRM114-Status: UNSURE (   6.97  )
+X-CRM114-CacheID: sfid-20240605_023713_128218_9CCAB629 
+X-CRM114-Status: UNSURE (   6.81  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -116,32 +117,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On newer SoCs, the random number generator can require a power-domain to
-operate, add it as optional.
+On newer SoCs, the SAR ADC hardware can require a power-domain to operate,
+add it as optional.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml | 3 +++
+ Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
-index afa52af442a7..f03b87e1b01c 100644
---- a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
-+++ b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
-@@ -26,6 +26,9 @@ properties:
-     items:
-       - const: core
+diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
+index 7e8328e9ce13..f748f3a60b35 100644
+--- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
+@@ -66,6 +66,9 @@ properties:
+   nvmem-cell-names:
+     const: temperature_calib
  
 +  power-domains:
 +    maxItems: 1
 +
- required:
-   - compatible
-   - reg
+ allOf:
+   - if:
+       properties:
 
 ---
 base-commit: c3f38fa61af77b49866b006939479069cd451173
-change-id: 20240605-topic-amlogic-upstream-bindings-fixes-power-domains-rng-c80f594e8a2b
+change-id: 20240605-topic-amlogic-upstream-bindings-fixes-power-domains-sardac-0f9d22e7e558
 
 Best regards,
 -- 
