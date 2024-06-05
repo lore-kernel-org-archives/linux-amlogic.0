@@ -4,70 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C8E3C25B76
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2024 18:00:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63DDCC27C55
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2024 18:02:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:From:Subject:Message-ID:
-	References:Mime-Version:In-Reply-To:Date:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=jAqnrwzVzOgnTAlLOlfsIne1LYYZxZel+Xl5t7ZxAok=; b=3YHCtITrYUcSwN2yYakZAqAm8R
-	womkJgvKB3z3oaWn+O0GbIXEQKRlxzKxVpw5ttTxd+GElNXMjhX2iWTSkyJnRmYiUVKGdQCs+fN5W
-	U9o8zNQ5w/Gq8RJYN1bEwtfFoLgUo+TTU/fQzj9KmQQfSjVj4aj3/DSaf/Pv1qPGxJrZub9NMMOq5
-	XogR8o9Hg9yyTZjQWJPOM/z5CktbZtP3z7S7rZlHumS1dlEoIioGqVZ24pAtvt207C9sdrexkNlhc
-	dbzO2/gGgSCmpy42CcE4JqPX0p1jan88YX8SGeqSVjmAppzFdQmW0BJHKRSfXbq1TL28sHMESPmf4
-	J06ELtFw==;
+	Mime-Version:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=SYpcafqGZwfU0cHdSAI8CLWGYMiERd+PBAPeHef+S/Q=; b=B1q
+	HDyr/Qa1/ydaSMNkaFD5nAMphCTi6/rWdFBYwSTae/r+l598XgX9ypSgclCj98NvHlzAYAr9wzYuv
+	jJX/38lPN4vak4P3PVQNnVaUDtfub8KhuCULK8xYX+xahry/dkrYB/aYKPwXKPpiiS317yn9vS/Pd
+	AHk9ZVgMmpjj56rzw7FdukrEHZlA/iM1dTttJ1+/Nva6ttvd6XazmposvHxdLt/8r9avECSyOsYxc
+	mFLvA6N0nXl+gQ0zM087tFpmofZRFknN6ZqZtoLlZnARAXpaV9RC8J3eMbsl1dQxS+uh3etLnsk2g
+	Y0v+rNiHb+kze/3Oi4GV/CmzN6PN0zw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEuwL-000000073hi-1fGa;
-	Wed, 05 Jun 2024 18:00:49 +0000
-Received: from mail-yb1-xb4a.google.com ([2607:f8b0:4864:20::b4a])
+	id 1sEuyJ-000000074W4-39ez;
+	Wed, 05 Jun 2024 18:02:51 +0000
+Received: from mail-yw1-x114a.google.com ([2607:f8b0:4864:20::114a])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEuvz-000000073Jj-0AqL
+	id 1sEuyG-000000074TK-0XXw
 	for linux-amlogic@lists.infradead.org;
-	Wed, 05 Jun 2024 18:00:29 +0000
-Received: by mail-yb1-xb4a.google.com with SMTP id 3f1490d57ef6-df7a6530373so128567276.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 05 Jun 2024 11:00:23 -0700 (PDT)
+	Wed, 05 Jun 2024 18:02:49 +0000
+Received: by mail-yw1-x114a.google.com with SMTP id 00721157ae682-627e7f0ca54so338707b3.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 05 Jun 2024 11:02:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1717610423; x=1718215223; darn=lists.infradead.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=oWEvs7lXuHPW/wbGZW3HASpAVL3QgOZ/ef+Ervw8nvw=;
-        b=LXVFdLSNn5f8aX1v/sXHtqs3bcIUwvw60RsKzj2iM9bZnhkzjxQOH5vgGrJ1kw5r3V
-         ftJBu0wjezQSsANOg4d1VJbOwxj/nyHX7LDpKUatbQtQvj35QeFIqVmnkQqR5Aedl14e
-         l0rS2s9l+AHuoCEknZK8h/tHw3o/6i1/qdna4Q0bRTpMPyw53nfCCcEXYqVFtOi5D+qZ
-         I7O3KmJCxEL5eZixpzDCUcz9HSSLx4G4qpp7Thme1YNwexIPCXi2tHrMTWYfOybefIpe
-         Ioq1DrJyIdpb8ihs74NCQ3ogFIBf4E6jDROdkzfjtvy+/p2lGFEeT4upAnCNHmn/eV/s
-         ot3g==
+        d=google.com; s=20230601; t=1717610564; x=1718215364; darn=lists.infradead.org;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=y5YxZkBMx7xM0lBc97o2/iv7RwAsHr+ZFIuj4hushzk=;
+        b=2DWnL00H9LXKeklLar1PcxZ2u0vpYz3P4MbVLjma0TJEIMD9qWQNK5eGDqWFPM2P4k
+         6fv2LI0pK1EPH/m1+q8ic6riVdoXIHi7LENLW8g8NKz3vyskowYfUATtQe3VclNjz0np
+         tiIV6o3qlYC1MJz0jfXyXuVTjhiF+QRQzC4TDo0CTDY8O7b7JjGVyDXcAaVlDpYALyT1
+         /baZZpqk4dlkXWJ6NveUFMn/zDFer7re2jJXZl9eRh7RoOcty7H+T7HTVKiiiIWJfEot
+         mSbS8p7wAKeH2CjPmhjJI4RF+S/9VLQpFolJRRsyUqTztEhBPe0JHpoC0+XAVIIhcz5N
+         io0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717610423; x=1718215223;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oWEvs7lXuHPW/wbGZW3HASpAVL3QgOZ/ef+Ervw8nvw=;
-        b=EmCLKHKi0R5XT+vxlFRVufdKGaqmAXEYd6vcUlOvBv5sxlH4a5pYGvyL2ggvHQBExw
-         rcW7mQa470s7b4VGrmhma0YrAql4hDY/4GBsDgYT6dJ+a6pZe+dfIFJoC856rDY2/mIl
-         NkmA0pJ5SVYXuNrlh6MPxk8fpV9wOPizEZele5Xdb+I7aOxlTGrvyMKNZ/m+39JxVutZ
-         Zs7W/Ai5V6BZxOtwa3FEWN+1rTRMQA7svKFxnB5ppvZRBoakA27BO2q0jdLnwlLCttSY
-         Zlv05xbPDVie0rzKovyaIJzzWw+mKrbC+DIO1v3AFpP+OgEYy9vjZUnUAADpDyKz4F+k
-         cLcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXgYVBiKZnitxEb2Zkd3YMVbxqrDijfkTdk5So/kcchJhU9h9OZaw7mqmoDmOqiANYJZBooFpW5hIJV8OxcnEEVeUNy/rj0b/xS+lNpsRKGt4M=
-X-Gm-Message-State: AOJu0Yw9Xj0tnP7QOF3IKE0Odw7hQIypkq9L1/jp+54zMOHaLZPFmbXI
-	C2qF8VqJ7ObMYnRcWHA13TFC6QHrh+oQ66y2FNEFWpPIPNYIQO7wnOpvbAvjIdm4SD2uDlLMRIJ
-	G5xDSuCbodw==
-X-Google-Smtp-Source: AGHT+IHzBpKnrggHmMHMkvKX90wRDGnyxC/rya4wNnolxBy/S7eZxADMs2JOhL4gs65LRvS4Cl380vcS0L4//g==
+        d=1e100.net; s=20230601; t=1717610564; x=1718215364;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=y5YxZkBMx7xM0lBc97o2/iv7RwAsHr+ZFIuj4hushzk=;
+        b=VqLyzvZoazIuzPEadzk4dWlVsFpFMqnTyLPYsVLX1w5L6lg5jQ7tk2BZk8Zsvw4Uvw
+         mGCllWPmfA0rsVcTlgQfEPvnDCy7aQva0ci97ekteJeLDBeYIuDx7qYJWO/BrdibxlwP
+         5UHc30YEukFBUP8JirTcq3e3c7CTQnKJwW45YGI9RWDyEQB5tojkOu0cb3go52hdWeYg
+         mK+8Z6nghaJA4R1wK2PCSruXJEsrAj7e2/W9mQalHXHY4ED6f61iUmEkO5qqT+qFP6g9
+         qLoZIKIhI94uAMubfG6QmV9ro7uGEE5MssvPTKukLVyY7u0meh2gMpAdjx/2PmUR7cSy
+         UaXg==
+X-Forwarded-Encrypted: i=1; AJvYcCXScUmLm9DxCMmHuZRuYItXBMd5Ib5xLnN5carRkDcA6dMWQbimfha/q6cB2vzDoBvUhM24W2zlyrcbCe4SSKdE54aO+qBXuQ1AnJebw6cXXkk=
+X-Gm-Message-State: AOJu0YyZoaIZ9lUag6wXBAdAzk9n5IIWsn8ag6fE2n5AKkEwiOY1nz7i
+	Vqd9d3XS+NH3U/6Yfs3P3PhRs1VtOehomCzCbiwhYS8vshCg7I35DqsRVO0c9O3hjJTjUY3tBq2
+	HxLFn/UyLEw==
+X-Google-Smtp-Source: AGHT+IGCU+GmK3Rf3XT5eiVn8GBJTqffr6kRhdYR5C7W1ubGEWJe6ysf+n1fV0SHLE+oXrcbvgWtj6KwbrbfFQ==
 X-Received: from joychakr.c.googlers.com ([fda3:e722:ac3:cc00:4f:4b78:c0a8:6ea])
- (user=joychakr job=sendgmr) by 2002:a25:9004:0:b0:de5:a44c:25af with SMTP id
- 3f1490d57ef6-dfadec0b255mr68771276.5.1717610422643; Wed, 05 Jun 2024 11:00:22
- -0700 (PDT)
-Date: Wed,  5 Jun 2024 17:59:49 +0000
-In-Reply-To: <20240605175953.2613260-1-joychakr@google.com>
+ (user=joychakr job=sendgmr) by 2002:a05:690c:884:b0:61d:3304:c25e with SMTP
+ id 00721157ae682-62cbb5b3bc3mr8573737b3.7.1717610564108; Wed, 05 Jun 2024
+ 11:02:44 -0700 (PDT)
+Date: Wed,  5 Jun 2024 18:02:31 +0000
 Mime-Version: 1.0
-References: <20240605175953.2613260-1-joychakr@google.com>
 X-Mailer: git-send-email 2.45.1.467.gbab1589fc0-goog
-Message-ID: <20240605175953.2613260-6-joychakr@google.com>
-Subject: [PATCH v1 05/17] misc: ds1682: Change nvmem reg_read/write return type
+Message-ID: <20240605180238.2617808-1-joychakr@google.com>
+Subject: [PATCH v1 10/17] mtd: core: Change nvmem reg_read/write return type
 From: Joy Chakraborty <joychakr@google.com>
 To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
@@ -83,10 +80,10 @@ Cc: linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
 	linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org, 
 	linux-usb@vger.kernel.org, manugautam@google.com, 
-	Joy Chakraborty <joychakr@google.com>
+	Joy Chakraborty <joychakr@google.com>, kernel test robot <lkp@intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240605_110027_423287_242451FF 
-X-CRM114-Status: UNSURE (   9.76  )
+X-CRM114-CacheID: sfid-20240605_110248_179565_97BC1D0B 
+X-CRM114-Status: UNSURE (   9.77  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -106,48 +103,72 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Change nvmem read/write function definition return type to ssize_t.
 
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202406050200.8BOdZUla-lkp@intel.com/
 Signed-off-by: Joy Chakraborty <joychakr@google.com>
 ---
- drivers/misc/ds1682.c | 16 ++++++----------
- 1 file changed, 6 insertions(+), 10 deletions(-)
+ drivers/mtd/mtdcore.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/misc/ds1682.c b/drivers/misc/ds1682.c
-index 5f8dcd0e3848..953341666ddb 100644
---- a/drivers/misc/ds1682.c
-+++ b/drivers/misc/ds1682.c
-@@ -198,26 +198,22 @@ static const struct bin_attribute ds1682_eeprom_attr = {
- 	.write = ds1682_eeprom_write,
- };
+diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
+index 724f917f91ba..b13752ec2f1c 100644
+--- a/drivers/mtd/mtdcore.c
++++ b/drivers/mtd/mtdcore.c
+@@ -530,8 +530,8 @@ int mtd_pairing_groups(struct mtd_info *mtd)
+ }
+ EXPORT_SYMBOL_GPL(mtd_pairing_groups);
  
--static int ds1682_nvmem_read(void *priv, unsigned int offset, void *val,
--			     size_t bytes)
-+static ssize_t ds1682_nvmem_read(void *priv, unsigned int offset, void *val,
-+				 size_t bytes)
+-static int mtd_nvmem_reg_read(void *priv, unsigned int offset,
+-			      void *val, size_t bytes)
++static ssize_t mtd_nvmem_reg_read(void *priv, unsigned int offset,
++				  void *val, size_t bytes)
  {
- 	struct i2c_client *client = priv;
--	int ret;
+ 	struct mtd_info *mtd = priv;
+ 	size_t retlen;
+@@ -541,7 +541,7 @@ static int mtd_nvmem_reg_read(void *priv, unsigned int offset,
+ 	if (err && err != -EUCLEAN)
+ 		return err;
  
--	ret = i2c_smbus_read_i2c_block_data(client, DS1682_REG_EEPROM + offset,
-+	return i2c_smbus_read_i2c_block_data(client, DS1682_REG_EEPROM + offset,
- 					    bytes, val);
--	return ret < 0 ? ret : 0;
+-	return retlen == bytes ? 0 : -EIO;
++	return retlen;
  }
  
--static int ds1682_nvmem_write(void *priv, unsigned int offset, void *val,
--			      size_t bytes)
-+static ssize_t ds1682_nvmem_write(void *priv, unsigned int offset, void *val,
-+				  size_t bytes)
- {
- 	struct i2c_client *client = priv;
--	int ret;
- 
--	ret = i2c_smbus_write_i2c_block_data(client, DS1682_REG_EEPROM + offset,
-+	return i2c_smbus_write_i2c_block_data(client, DS1682_REG_EEPROM + offset,
- 					     bytes, val);
--	return ret < 0 ? ret : 0;
+ static int mtd_nvmem_add(struct mtd_info *mtd)
+@@ -919,8 +919,8 @@ static struct nvmem_device *mtd_otp_nvmem_register(struct mtd_info *mtd,
+ 	return nvmem;
  }
  
- /*
+-static int mtd_nvmem_user_otp_reg_read(void *priv, unsigned int offset,
+-				       void *val, size_t bytes)
++static ssize_t mtd_nvmem_user_otp_reg_read(void *priv, unsigned int offset,
++					   void *val, size_t bytes)
+ {
+ 	struct mtd_info *mtd = priv;
+ 	size_t retlen;
+@@ -930,11 +930,11 @@ static int mtd_nvmem_user_otp_reg_read(void *priv, unsigned int offset,
+ 	if (ret)
+ 		return ret;
+ 
+-	return retlen == bytes ? 0 : -EIO;
++	return retlen;
+ }
+ 
+-static int mtd_nvmem_fact_otp_reg_read(void *priv, unsigned int offset,
+-				       void *val, size_t bytes)
++static ssize_t mtd_nvmem_fact_otp_reg_read(void *priv, unsigned int offset,
++					   void *val, size_t bytes)
+ {
+ 	struct mtd_info *mtd = priv;
+ 	size_t retlen;
+@@ -944,7 +944,7 @@ static int mtd_nvmem_fact_otp_reg_read(void *priv, unsigned int offset,
+ 	if (ret)
+ 		return ret;
+ 
+-	return retlen == bytes ? 0 : -EIO;
++	return retlen;
+ }
+ 
+ static int mtd_otp_nvmem_add(struct mtd_info *mtd)
 -- 
 2.45.1.467.gbab1589fc0-goog
 
