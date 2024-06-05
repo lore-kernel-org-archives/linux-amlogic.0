@@ -4,8 +4,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 706DFC27C55
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2024 19:02:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E0A7C27C65
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2024 19:02:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,61 +13,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	References:Mime-Version:In-Reply-To:Date:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=2g4lFbyw43/H+C5MsYifVRVPh0Ra72KIHLDEsYahy6c=; b=DShJoEqSfkEE9ktG4hqrwrsrDv
-	HJj626iZl570NitCHYyZiqIEft0lxuiYBDk8G0X0Q8VAav7AMFE7r8GG0z6cMJ6hqNnEsyEIgDEaV
-	cxqekIuIExc3A5ewTgNHiVSgEUY3UwD18gCxU2pb89hLvXeFCQ53lxDNKYb7PAd9nUubhCDR8v2mT
-	Pu8emcifEaCxQvoy+cU6h+QHBdTBAZDoCxKFVLW61+RAw1onlhnrCR5nEO0Tt8K+xJp1xCY03TVTt
-	Z+7JY5QnNCEVE9U9Bf5acXzQLYrJndOYKfUQtAXZktLvvLMXnPz3wekVXlLBXcCRSpTFylubVGRAm
-	Z8ikQj0w==;
+	bh=jEfVRiprO8+hTukNi73+oEZjlsoYz1S12DxOn21kBeg=; b=OMnyd+RyQpJXYmx3a7+qvtLUUI
+	L5ppyyRq1h7ONTIRdvVJ4iHv/bU96Udxl4UUgsT0l2qyl1B0/ph6cC7QNPVMx5fOw0XtyXAXM7bFs
+	auPTJ42Re9+ZL3cSSeE2sUGD58a2vII2Fc2FcIpR6rbtZNHNC+EZ6dtGPcznrEN86HiKGf9avF47Y
+	Ie4peJrYn2mFD6+LGv1WhXbT/RR5bem676XEHwlo0T3/4FiPz0RSvzEH8tCothnJidIcOGnYlezOf
+	CvYSX51/M6OeyItNthpqY3I5DZgXX5CxrtzhhEILgc2DMEVXJcbohItftYvaJrsFejpLeLrIwHVu/
+	yD/sUYQQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEvtW-00000007FYG-0YkC;
-	Wed, 05 Jun 2024 19:01:58 +0000
+	id 1sEvta-00000007FbW-1A0y;
+	Wed, 05 Jun 2024 19:02:02 +0000
 Received: from mail-yw1-x114a.google.com ([2607:f8b0:4864:20::114a])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEuw2-000000073Mn-2zOC
+	id 1sEuw7-000000073QJ-007p
 	for linux-amlogic@lists.infradead.org;
-	Wed, 05 Jun 2024 18:00:35 +0000
-Received: by mail-yw1-x114a.google.com with SMTP id 00721157ae682-62a088faef7so15617517b3.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 05 Jun 2024 11:00:27 -0700 (PDT)
+	Wed, 05 Jun 2024 18:00:41 +0000
+Received: by mail-yw1-x114a.google.com with SMTP id 00721157ae682-62a089511f9so15305497b3.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 05 Jun 2024 11:00:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1717610426; x=1718215226; darn=lists.infradead.org;
+        d=google.com; s=20230601; t=1717610430; x=1718215230; darn=lists.infradead.org;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kq8gN9PC4V0/WUeYJD+ngNL2/82oznUqnDRsVCEUyhc=;
-        b=eHoQbCRQWdzbk7jqAn75VRv068J3wp+Cl8xeWBjZ18byVpf9+X4lgl0/CMmIrR/Gzv
-         GoJl66vo4YXkPAJ9xRm0DFLd8XcY3R8EihQo+kYvUafcWsKPJSlcwt08gXi5dPcTDAq9
-         NRKcsgt4PLDOqfXZqZMjvR/8a9xUQmbykuPQAF7YNBjfI7U9rWywpho1DjlVS7FZMBrK
-         rk1YUhXEFqyCM6sYe3RTlWixUA2WUeOzvYTfDRCeY7lLtbahDuSTuKs8xoDPIY2A3rmF
-         RPzOmWkhjG//s97r5GdU/FzAUQkncWD+GH6nfdN+YYe2xs/3ew6I1/WcUTJyUHPE0wCQ
-         ysYQ==
+        bh=GabZAVwK9FSl0VODpa0rRnhc7Hb5WIAFsUpyNY/Jkgw=;
+        b=ckwPFo3b9FzZ80AXhPlbZl9Sp8r43TS+dCRvhO72dZkNabZYg/mR+slPHeMij7v64P
+         gm7DBIUCb0VUA07LPR0c7q5xiOTg99kHOtsolNDGvqaNtSUeoYeLmOm0mHZKlwyAYKK0
+         YpL0Kb/tYlzvP9+tknUPPJoLieCXOxQ5T8GqhhGSSpFUxV9/NLQstOqTs/UbUhH+fo0B
+         vzfwPS5udHr1YQLaojwb96qidYiTc7EBR5Ly1GyBb3UgEhkbwXYuhvwKEt8NrzDujxeb
+         bKDXcC3SV98mPeXU3HRwcwo8Tjwuvsp7/CSwJGm2Bawq2OolT7NVN9O4Xwyo5Lv0x8un
+         v/Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717610426; x=1718215226;
+        d=1e100.net; s=20230601; t=1717610430; x=1718215230;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kq8gN9PC4V0/WUeYJD+ngNL2/82oznUqnDRsVCEUyhc=;
-        b=gCqU5/sb71VUsq5iW8NZR7Gc9IeKWe0oTO4YSVCLNJ20+DmcY4+etGUkW8yj0fxa61
-         SOn0EwpkIgdTcqb4W4tZALABH7rZ0j4itCgLr4wMQBNhnhXBsvfYjZpZ1mUBZhbhC38x
-         MhkYQccAEifWIc/+9lLezdk9eq9ZTpJUkMQqIQVulnCVTffDh5/oG8x1j/gFARpxLQ/d
-         OXWEvskak4oIs0WjhDVq7Kgshc5B7B/Psn3v3iaF5p1yufvLkmN3phI9JZ9Qu2RKFhD+
-         gZvhstr3EMsdGXIu0R7Cm9zw1WtVXcn/TXkH3fwnDryOnQe+b1UURnD2Id2AEXP/irJ5
-         hKig==
-X-Forwarded-Encrypted: i=1; AJvYcCXdpqZ8pO9JNk/M3xhLvVClKvddYoIc1FTJnAVQf7z2W2t94GkIqeOOujuEkfIuaZI36KQSVzPToNI5Ct/+vkSBHhW8FVJdxIZY11ZrYFS/RAo=
-X-Gm-Message-State: AOJu0Yz6LK7w60AUFAFzMx8VGyrhv8+fBFWuYKKja1L5HprILTgXZZfV
-	pa07X+rIM5eiBBqhG0vsXjetzXuh0kHwjvRMB33zwy1W1tEKp5g4ZJgkxMVvTp+SKPABlhz1D9b
-	+FzNEaRCoAA==
-X-Google-Smtp-Source: AGHT+IGpQQ4ibO82CB++j7EQg4rT4P/RHw0r35tzLXXxO3B/dL6yEQW14Z2L0s1fkq9sPWcVhlzFxs8YqockaA==
+        bh=GabZAVwK9FSl0VODpa0rRnhc7Hb5WIAFsUpyNY/Jkgw=;
+        b=bkzrlqsGJBezopQsOKkWA5Mi1cST4fmoQBCy1C45K/I8KV3YoELApdGXpb/rW77i9m
+         AUPS9db2fZulsRlsOY2u7B54yYLgv6LmJfbWdsObVOB05uESJS8M/81PSdyGH3xUV5Cp
+         dINB7z2NB+xwYpE9j4dEjlYgUqDnZBEyzmJ7BQRb3JFzbkYSbcirXnmGGYwrYb20jslx
+         HI33KUqLbci1tquObDTKzCHo8tLbeeokJ+FQOVraj3s7/0ki3kExZ19eR3mb+pRB/uEm
+         YNvu/J1hGHWqpcgf0z+SKiOHG0ZCqFYLdWR98hzCI1YOXkFXpqo+NLe9FlvOo7v3/bOM
+         pZ9g==
+X-Forwarded-Encrypted: i=1; AJvYcCUubDRUSlttmT8mwKX1PGO0C9+rVhOzh1T+o/5xQYxaspxVO6FcVxdoc35hvj1MantClwiW6PCJKD9ZsnTSfrE/YkO3PrrFRTlxoi3cYASWHH4=
+X-Gm-Message-State: AOJu0YxTX1kFaGSnCwIXgdb9x6E4Zoey8FbsaOHFBSAVAVo9dY4qBNoK
+	/U7VMeURKEQnv3diVYJOVBRUxtIpINu9QPEu3Sr3mtnaCY86nq9fEZzn3XTx+poFk0i6hoXW8hJ
+	XY1qTlRY0Gg==
+X-Google-Smtp-Source: AGHT+IEja+GLVOpS7V2U0r8IR9Z9ZB6nAf9rPU6225JSB7wTRYk1qUU4QFIkeBtYF/8VHx1IHDowrDp0WPzcZg==
 X-Received: from joychakr.c.googlers.com ([fda3:e722:ac3:cc00:4f:4b78:c0a8:6ea])
- (user=joychakr job=sendgmr) by 2002:a0d:d4ca:0:b0:623:be6:d5e4 with SMTP id
- 00721157ae682-62cc71784bdmr605497b3.4.1717610426639; Wed, 05 Jun 2024
- 11:00:26 -0700 (PDT)
-Date: Wed,  5 Jun 2024 17:59:50 +0000
+ (user=joychakr job=sendgmr) by 2002:a0d:d952:0:b0:627:de82:8077 with SMTP id
+ 00721157ae682-62cc709af05mr798057b3.2.1717610430440; Wed, 05 Jun 2024
+ 11:00:30 -0700 (PDT)
+Date: Wed,  5 Jun 2024 17:59:51 +0000
 In-Reply-To: <20240605175953.2613260-1-joychakr@google.com>
 Mime-Version: 1.0
 References: <20240605175953.2613260-1-joychakr@google.com>
 X-Mailer: git-send-email 2.45.1.467.gbab1589fc0-goog
-Message-ID: <20240605175953.2613260-7-joychakr@google.com>
-Subject: [PATCH v1 06/17] misc: eeprom: at24: Change nvmem reg_read/write
+Message-ID: <20240605175953.2613260-8-joychakr@google.com>
+Subject: [PATCH v1 07/17] misc: eeprom: at25: Change nvmem reg_read/write
  return type
 From: Joy Chakraborty <joychakr@google.com>
 To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
@@ -86,8 +86,8 @@ Cc: linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-usb@vger.kernel.org, manugautam@google.com, 
 	Joy Chakraborty <joychakr@google.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240605_110031_617614_B99BB99F 
-X-CRM114-Status: GOOD (  10.22  )
+X-CRM114-CacheID: sfid-20240605_110035_711769_8AE8C12D 
+X-CRM114-Status: GOOD (  12.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,48 +108,55 @@ Change nvmem read/write function definition return type to ssize_t.
 
 Signed-off-by: Joy Chakraborty <joychakr@google.com>
 ---
- drivers/misc/eeprom/at24.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ drivers/misc/eeprom/at25.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
-index 4bd4f32bcdab..0e8d92d6ab1e 100644
---- a/drivers/misc/eeprom/at24.c
-+++ b/drivers/misc/eeprom/at24.c
-@@ -424,8 +424,9 @@ static ssize_t at24_regmap_write(struct at24_data *at24, const char *buf,
- 	return -ETIMEDOUT;
- }
+diff --git a/drivers/misc/eeprom/at25.c b/drivers/misc/eeprom/at25.c
+index 595ceb9a7126..73d60f80aea8 100644
+--- a/drivers/misc/eeprom/at25.c
++++ b/drivers/misc/eeprom/at25.c
+@@ -74,8 +74,8 @@ struct at25_data {
  
--static int at24_read(void *priv, unsigned int off, void *val, size_t count)
-+static ssize_t at24_read(void *priv, unsigned int off, void *val, size_t count)
+ #define	io_limit	PAGE_SIZE	/* bytes */
+ 
+-static int at25_ee_read(void *priv, unsigned int offset,
+-			void *val, size_t count)
++static ssize_t at25_ee_read(void *priv, unsigned int offset,
++			    void *val, size_t count)
  {
-+	size_t bytes_read = count;
- 	struct at24_data *at24;
- 	struct device *dev;
+ 	struct at25_data *at25 = priv;
  	char *buf = val;
-@@ -465,11 +466,12 @@ static int at24_read(void *priv, unsigned int off, void *val, size_t count)
- 	if (unlikely(at24->read_post))
- 		at24->read_post(off, buf, i);
+@@ -147,7 +147,7 @@ static int at25_ee_read(void *priv, unsigned int offset,
  
+ 	dev_dbg(&at25->spi->dev, "read %zu bytes at %d\n",
+ 		count, offset);
 -	return 0;
-+	return bytes_read;
++	return count;
  }
  
--static int at24_write(void *priv, unsigned int off, void *val, size_t count)
-+static ssize_t at24_write(void *priv, unsigned int off, void *val, size_t count)
+ /* Read extra registers as ID or serial number */
+@@ -195,10 +195,11 @@ static struct attribute *sernum_attrs[] = {
+ };
+ ATTRIBUTE_GROUPS(sernum);
+ 
+-static int at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
++static ssize_t at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
  {
+ 	struct at25_data *at25 = priv;
+ 	size_t maxsz = spi_max_transfer_size(at25->spi);
 +	size_t bytes_written = count;
- 	struct at24_data *at24;
- 	struct device *dev;
- 	char *buf = val;
-@@ -509,7 +511,7 @@ static int at24_write(void *priv, unsigned int off, void *val, size_t count)
+ 	const char *buf = val;
+ 	int			status = 0;
+ 	unsigned		buf_size;
+@@ -313,7 +314,7 @@ static int at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
+ 	mutex_unlock(&at25->lock);
  
- 	pm_runtime_put(dev);
- 
--	return 0;
-+	return bytes_written;
+ 	kfree(bounce);
+-	return status;
++	return status < 0 ? status : bytes_written;
  }
  
- static int at24_make_dummy_client(struct at24_data *at24, unsigned int index,
+ /*-------------------------------------------------------------------------*/
 -- 
 2.45.1.467.gbab1589fc0-goog
 
