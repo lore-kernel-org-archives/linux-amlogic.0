@@ -4,89 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10610C41513
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2024 18:03:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AF10C25B76
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2024 18:12:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:From:Subject:Message-ID:
-	References:Mime-Version:In-Reply-To:Date:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=mtp0Pop1Crdh0yqfpRhl7VZSl2ipDypcwQGJgAn/yHo=; b=Fy8ODwgc2Shugbi3qMD5JwgFp1
-	L8SpMxMcwuJq9vHja+TydqSDhjtKtLBtR5WHdm8tcBkR7RT72uhiizabrpCSVDR/1fT1Elsq86RmK
-	7uTmkmr7yC9GM5DSInaOBhZmFPF1R6jy9mdDcxMBMVl+e9qIvAhIlnqIMskhTX+w+PxEqUr/sBLN8
-	uGPOWukySMfKfjjLylvt3rbjv3ZfDo5uPXJenQ7/+1936d9Geg41FG74xDw8KKwSWtNMYAmjB3TzK
-	QDN7P53EiVlp2yaCEcnpBtwF8ZLabmNHKXpae7qShkM4Fgag+qSy7+zZ0J2jgXwaEzXbodHhg7tnm
-	xjFIkA8w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=TlxwQXygTsgLO8LyEcMbSfDREr7g+DhU9tpvoHq+S4g=; b=PHmG75GBf6dIDY
+	feVpBezuqvz5j0SijVbKokjkWHaE3/rkcj5CAQXTs3EfuNOkSl/uh4FhnSSzQTjZF8jnj1T2yj//4
+	vta3QDNT9dKhQyRAj0Qb+JZ4/weeMo6P6E6UuGBz3hs6GTUT2o28URdIGQB2rXDFy69mznU10/w64
+	yzHP0xcqktPDmSA74jYx0w6eswKBKP24BKatNRZZr9b33SLAUpF6bKdsmmuru/QUjKhHMaeoCBmBS
+	dHaexdbQCI/l08ezhTt7yC3ATGbqkNd0B2VhwylGd1HGMt8Y9Sqyji56+VtDXpJLFaBy3kSXNueUs
+	ZfpS8LVTnEZtIWuliXkQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEuzE-000000075EA-0xhW;
-	Wed, 05 Jun 2024 18:03:48 +0000
-Received: from mail-yw1-x1149.google.com ([2607:f8b0:4864:20::1149])
+	id 1sEv7R-000000077Z5-3YVH;
+	Wed, 05 Jun 2024 18:12:17 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEuyg-000000074nN-2plS
+	id 1sEv7N-000000077VJ-49n2
 	for linux-amlogic@lists.infradead.org;
-	Wed, 05 Jun 2024 18:03:21 +0000
-Received: by mail-yw1-x1149.google.com with SMTP id 00721157ae682-629f8a71413so473187b3.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 05 Jun 2024 11:03:11 -0700 (PDT)
+	Wed, 05 Jun 2024 18:12:15 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4214f52b810so1883025e9.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 05 Jun 2024 11:12:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1717610590; x=1718215390; darn=lists.infradead.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LqJdwI0kfu08l8zta4NZb2Dhq8rse0Xjye+A2f9mH7A=;
-        b=4VxQrumrJ1mKCsy33vQUWuhkVGTGf5Eb/hWWkDMXaG224lH91aZFOV+hFSKK4v0Zqr
-         qLGhn8S5T6d7N4qSbx0Ly3IDVxPVXAxIe9vxSWHa+hzAmCvTdJAtPtHo4lnz1mfKbGY7
-         rCaNqxknmwPWzxAXrvhdMeHD1u4WQMli5rSWu3bohXaefp31AIrYDD2Tm26TnimHmQBH
-         xWcc6QT8zhBG6ZJzbIEGPOvwkqnDS2nkAHOrAJwFaHES8Ti3C+iP0MQlD2qya1yQpdp9
-         GSvYZpvYUFyslKyiPjWXjS3NT4MOh11ysGpvoVGdI3CZBRyYEduzehPErSdMEn4WCdTJ
-         gcWg==
+        d=linaro.org; s=google; t=1717611128; x=1718215928; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=z9OkqguqeJwlzfT4o/NLntU6DYYfOLDylgpwXRTP5l0=;
+        b=VgM3J3q2yThUY27nsWhcY5Ya6Lenmu20kJ+hUIFdFC+7cLAKZhNHspnbbS8/JEhT9k
+         ieMGOXhsZfmoRyLaKbG0E2dqtzQBxxwx04dMok4ca4SNgtGJ5u1iuIcnAvplDSAF5EVS
+         yrj7j6sXGLHaAjWVKtm1u24bly60NCrLhsFrablzaWR2YuchX8YmBbZEPBqFEm4TpfK7
+         9Guj9T+CX7dozhFU6qiZZPMdzD54QLjtZ4ils3ABfQEqNGwMe6M0w0E3RpyRQrKlcZ5Z
+         7aTqdfO8urgcGRAVIZitmuDMX/qNqD6NPOA5cmAPd6rijD1ksf/+aGIkd1o3D/DQUy8e
+         HzSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717610590; x=1718215390;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LqJdwI0kfu08l8zta4NZb2Dhq8rse0Xjye+A2f9mH7A=;
-        b=XHMjesXXBnJZ8jdXzbEMuOHLwYqO04YOdm/6VHk0pEo9Cuw40ZAdg8FAKZUv3UjKLD
-         L0wq4156DyjOhGME9hTSKf1OUVLWh9sB3EPGmIqSkW9SWEo1zMzjSCx0RIQU0n1tzyw0
-         QyxWW+bK7F2oMROtRKkc8fjLFftuZKhjmUD4Gm/nJXvlQIcP6Bgn2Xnss4B88bRXFWYz
-         Kk20skTPZvWdAyfQ3Jq84wS3bo0u1bnC50d10fY+UoFqdC2PyTg36kk06efVXg1rOBsS
-         ky2p3n3kpCCUYY2gP5qVX60J+N4zwyUVrqipwTeHiXXjJZnN7FHcWMVsA4rPp9e5oAZB
-         kN2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVmgsGVYOqtnBttoDwJfK0WxHwd+e8MUeLUdVFxhqCC/dS1+YJ2cQrNYGDrwlyf9E3VtmAZ+Df6aEJsPLGAyV2G5K2KOaWtq8987ZLpiWq489U=
-X-Gm-Message-State: AOJu0YzrAJPr3JgHbRhJ1g5+0YgPVHSCR0gnylcBPKpGKnNHo65aoB/Y
-	lNIuDGtb/Z8/bXRkjkG4X3UZ3PW+ym3NRBdFtApiBqE9l7vzxOlTnHbb5HlMVRAaey2gH0jNBz5
-	RDFQ4qZcOVg==
-X-Google-Smtp-Source: AGHT+IFarMTHRQyaGAXOhvjvZC3Ev9S2zTS3Kvs5hpqZrMnxro2/BzrazXCSnRirdCi4qPaGa/c0QONTMKwCWA==
-X-Received: from joychakr.c.googlers.com ([fda3:e722:ac3:cc00:4f:4b78:c0a8:6ea])
- (user=joychakr job=sendgmr) by 2002:a25:d608:0:b0:df7:d31b:7a29 with SMTP id
- 3f1490d57ef6-dfacad1dc1amr763889276.12.1717610590398; Wed, 05 Jun 2024
- 11:03:10 -0700 (PDT)
-Date: Wed,  5 Jun 2024 18:02:37 +0000
-In-Reply-To: <20240605180238.2617808-1-joychakr@google.com>
-Mime-Version: 1.0
-References: <20240605180238.2617808-1-joychakr@google.com>
-X-Mailer: git-send-email 2.45.1.467.gbab1589fc0-goog
-Message-ID: <20240605180238.2617808-7-joychakr@google.com>
-Subject: [PATCH v1 16/17] soc: tegra: fuse: Change nvmem reg_read/write return type
-From: Joy Chakraborty <joychakr@google.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Bingbu Cao <bingbu.cao@intel.com>, Zhihao Cheng <chengzhihao1@huawei.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-mtd@lists.infradead.org, linux-rtc@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org, 
-	linux-usb@vger.kernel.org, manugautam@google.com, 
-	Joy Chakraborty <joychakr@google.com>
+        d=1e100.net; s=20230601; t=1717611128; x=1718215928;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=z9OkqguqeJwlzfT4o/NLntU6DYYfOLDylgpwXRTP5l0=;
+        b=SsRCV4UX5gQ3cjlUrcNvT5jb2GEedVg3PEBiJVPcBcevSgoC6FmpFrJahP4InePaow
+         JtHLOCIMNsL+41mFoE1X7XwGq5pFqZbCSLFhQ7oafHauQT1jXWxOBFs30b0QGxqnT/Oh
+         3oWvjirMqh9EmK/Ir2r2nQZa6WbI8hDaVhH8LY+LQZac6TCGl/fSTSh6eNGzWWtcx2dR
+         +bIa0Htyrmp1z/ngB5m4LAYVjGi/SYyD81P0SbLeEo/DMosfsyIOCoY+O+ohpL4IS6Kk
+         EFZ5W3nco4cnxF9hJfVUSx/XAm148jfSkcJBaf1YwmPXVHzccgMKV1h94eQoy7L80QnQ
+         AchQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXOGtA8bW3eKOtUy7RE4N/7SGUtJL1P9evvmT0hWJ7opyFwe0KYS7H+egKvQx0EjmnDzDnhOgiAZ7/0q3LUVzAVOpyxrowkfUGH5eduaAY2nhY=
+X-Gm-Message-State: AOJu0YzFXVJBTznd3XK4TyUwq19ommkQhL5lpAhps5w13NegiROrhR+N
+	PtRIM1+4lZ1OBtvxHK3JlRINIkLIXnr3ILxQ+pAChMWAS8mEAVVMKeEqB/hPK4s=
+X-Google-Smtp-Source: AGHT+IEvaA8Q5QYjqCVUDlFHwF6aq9tSqiBZFVHoOS8pIX0aZ0OJo7FFt2ruymdqoNfkRUE1c/CDUw==
+X-Received: by 2002:a05:600c:4e92:b0:421:29cd:5c95 with SMTP id 5b1f17b1804b1-421562ccd31mr34249765e9.10.1717611128459;
+        Wed, 05 Jun 2024 11:12:08 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-35dd04d9c68sm15224191f8f.56.2024.06.05.11.12.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jun 2024 11:12:07 -0700 (PDT)
+Message-ID: <d7cfe53e-533a-4c39-b4d8-cdbee3617294@linaro.org>
+Date: Wed, 5 Jun 2024 19:12:06 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 00/17] nvmem: Handle change of return type in
+ reg_read/write() definition
+To: Joy Chakraborty <joychakr@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Bingbu Cao <bingbu.cao@intel.com>, Zhihao Cheng <chengzhihao1@huawei.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-mtd@lists.infradead.org, linux-rtc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
+ linux-usb@vger.kernel.org, manugautam@google.com
+References: <20240605175953.2613260-1-joychakr@google.com>
+Content-Language: en-US
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20240605175953.2613260-1-joychakr@google.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240605_110315_328892_1E3033F7 
-X-CRM114-Status: GOOD (  12.50  )
+X-CRM114-CacheID: sfid-20240605_111214_066563_F4E6418B 
+X-CRM114-Status: UNSURE (   6.47  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,45 +103,22 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Change nvmem read/write function definition return type to ssize_t.
 
-Signed-off-by: Joy Chakraborty <joychakr@google.com>
----
- drivers/soc/tegra/fuse/fuse-tegra.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/soc/tegra/fuse/fuse-tegra.c b/drivers/soc/tegra/fuse/fuse-tegra.c
-index b6bfd6729df3..1b067dd8a585 100644
---- a/drivers/soc/tegra/fuse/fuse-tegra.c
-+++ b/drivers/soc/tegra/fuse/fuse-tegra.c
-@@ -96,8 +96,8 @@ static const struct of_device_id tegra_fuse_match[] = {
- 	{ /* sentinel */ }
- };
- 
--static int tegra_fuse_read(void *priv, unsigned int offset, void *value,
--			   size_t bytes)
-+static ssize_t tegra_fuse_read(void *priv, unsigned int offset, void *value,
-+			       size_t bytes)
- {
- 	unsigned int count = bytes / 4, i;
- 	struct tegra_fuse *fuse = priv;
-@@ -106,7 +106,7 @@ static int tegra_fuse_read(void *priv, unsigned int offset, void *value,
- 	for (i = 0; i < count; i++)
- 		buffer[i] = fuse->read(fuse, offset + i * 4);
- 
--	return 0;
-+	return bytes;
- }
- 
- static void tegra_fuse_restore(void *base)
--- 
-2.45.1.467.gbab1589fc0-goog
+On 05/06/2024 18:59, Joy Chakraborty wrote:
+> Currently the nvmem core change is picked on
+> https://git.kernel.org/pub/scm/linux/kernel/git/srini/nvmem.git/log/?h=for-next
+This patch is reverted due to next build failures.
 
+Please resend the series with this included.
+
+
+--srini
 
 _______________________________________________
 linux-amlogic mailing list
