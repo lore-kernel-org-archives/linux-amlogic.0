@@ -4,113 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B374C25B75
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 09:08:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 977CBC25B75
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 09:13:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=tBFtbhPWVat37HlBbVrUVZuSXIi3+BavmmwnINrre/U=; b=U73uSC4F6+xEn4yc5qTLv/hUcL
-	MGaPXJYQ5XmrZgklVFbmrufbD4i3MJqr91ZDWB3cJuvPk2Qk4vXxem3eYZTk/sJ6Z5Wl8K12VTEgJ
-	LZCNJiRwMEqZPUzf1pBwT4gbvSAlutZxh3/H+QcZmy4T+1aMXKu67XrgwWRU0WKePxq/rGx0jg1zv
-	+875KOtMwXVO0kD0HcLGuO/ecHeheHxMw5RMtmT9/Sd0ln8Ezj34Cq0AJCQbyXyIcDsJGkPGC8Rfq
-	uoT4p5C+FkLPH8gSR14D3O8rcN4LByYI81/X2n/qc+gj7rPphIKzeDJzlseaH46s2zlf9uS3cu8o+
-	wLeLZ0Pg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=PVRccn0WHnC0Jg/dJYNnhFdztaWsRETWsByIsjb9GsU=; b=ykLIzUpG0gcR+Q
+	/4zVG3dsm9HTFgq2Id+tgPPsfuzg2aQJzvwl3NQIvZLviR6MOOt7PrBlEADqsMBKlZ7x820A6oIgq
+	FUaY/FmUcktIkMDjSWEgvnYVagPYcVHP3Kmi6hOloBPynFQVvaoeY7FDumJm4aPSWjc5SuD4Dp17R
+	AeSx7q0klnFV5Xix9nVeFIBxfikzBAJkujc3scss4HtkoMQTsVi4WBzGcVUnGtQuUigkUf4JIRZ4D
+	OFS+jQvgyKAa5QLbuI5Ex+hhcsqHCvgPpTpHWjUqNwygsEGc8kHOZR580K1fEWbg8ONg6sy6/sbvK
+	WABlWaClalh+x8meUqFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF969-000000091mU-3Z4c;
-	Thu, 06 Jun 2024 09:07:53 +0000
-Received: from mail-lj1-x235.google.com ([2a00:1450:4864:20::235])
+	id 1sF9BX-000000093lj-3dEX;
+	Thu, 06 Jun 2024 09:13:27 +0000
+Received: from mail-lf1-x129.google.com ([2a00:1450:4864:20::129])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF967-000000091kf-2OmT
+	id 1sF9BT-000000093ij-3c8u
 	for linux-amlogic@lists.infradead.org;
-	Thu, 06 Jun 2024 09:07:53 +0000
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2eab0bc74cdso6769101fa.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 02:07:50 -0700 (PDT)
+	Thu, 06 Jun 2024 09:13:25 +0000
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-52b9dda4906so1007430e87.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 02:13:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717664869; x=1718269669; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KPF9fzni22fLRIj1FpmdUoWEOi6ddOcH0r0gTMI9lQ8=;
-        b=osDiTzMUY3h3jM3MXRsQO1TA58rFO36mIrBL8qBJ/U71qeo46CLRK/8azPuGYdDX/d
-         1MSNrDRo4DRflpJ/1NODmVfRrvObx5xeDXxottfiS/GbvGq5Wlkd8i9irhaQGWer8pCx
-         hp3QvWVWJgINOMXanKuUeoH79yx5C6rhQ5SutwTpz2vBhXTk53IpitSUkLtVYdfDnjac
-         T5FOLyzqgqqurWKNWPbYDehHX+SS95ttE0KnIYO3212FDZN7QZK0z0CtlrfO3+U6YaG7
-         Y6hG+ZG6g/1KgSOlYtvasQGMEKUbn1nV72SPSOI4cbLgppuEixeeBCh5/evqKkp5v9/K
-         6zog==
+        d=linaro.org; s=google; t=1717665202; x=1718270002; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l8XpB9v83VyPuuQdMulEgHFlBA3mzFMN9vIEdPPQdzQ=;
+        b=DomvXez61COBYmnNX58dJs9DgEKvlgBE1JHywZE+PNsPPTfdf8PGGXGcQUUaR6GGW9
+         6HBkhA8TEAlBMOsPPFUO3Zp3sx4U5fSHIQv8iBU/G7RiA7dQGRNJ+Lh+T1jPxgeMgYRc
+         kX4iUK0m/pqgZz1EafDnyshFRVrzdIIQQCYB5cUiP/p5W2hPobN3AUQ14HW7ow5wvwjb
+         BtG6bFEETTyyS6HWG9LvmtY6zyXX4Yc1/lLC7hiTMHlKnFLj3H2HlqZu1pJqbpiIWWNM
+         ZjI8hXJFfauzSnrTFhLVPlQj8T8043bM5vG90nPyGCJ9I9cOdAh4UtBg6KOrl1R5xj80
+         ZABw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717664869; x=1718269669;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=KPF9fzni22fLRIj1FpmdUoWEOi6ddOcH0r0gTMI9lQ8=;
-        b=looEOSzZSJlIvaviUamfnSWQcxdt9ix1ab19sdRPgZ15dsNLPHwrnMVx4M/XvrOgT/
-         //J/uFZ6DyxVth50MruorMWQNqLuie6RparwODk/fEjMsYnmSDE7WXCk+QCkCYdDhrne
-         BWQuJ7SeaLC4CDO9/T3kOs4dnSwFkWMq9tYaoT9Xxv0ahufEdHeFsIW9WWTRITADcY3L
-         YhaHUJXhSrvC17cRRXzwJqdehEJJIip5HG+UZJ0pq5UfBzPMVBLWtrrsMQBI9rl8Veme
-         TbtravpGY72mr0JFR4yBB/0RTLveMGil/nmqnsyUwd3zl+sIue5nthYLwLTE07/cOe5a
-         IBKw==
-X-Forwarded-Encrypted: i=1; AJvYcCWvFwUsjSl1V1Scfp3LAlIiAAitscLICoWJa5ypVcLwNwXwnLIRiPQl92ejGsrtDf0lXqv5gdlTh2XEQrXdfheS6YddsEWaR3UOYi+9s6O5rFc=
-X-Gm-Message-State: AOJu0YwnuSz7VKl+DbO5GyVXsltAkKfJ+HwHnpOAfFCYc4t+MVys5Cpc
-	OAyQnnZu1GYqBMPDxO2jmRwrjZQpeFaCxw3QHPbkR0lnEG/HEp6ak/zaeQEU6pI=
-X-Google-Smtp-Source: AGHT+IEqhYxcHENwcuN/drruOszDra21Dj0rKWsHjgMy/QCI/qwuKnYia4mvGh8RBVLaDwQHREQ6hA==
-X-Received: by 2002:a2e:9e84:0:b0:2e9:794c:19ae with SMTP id 38308e7fff4ca-2eac7a09843mr29560631fa.23.1717664869260;
-        Thu, 06 Jun 2024 02:07:49 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:22fd:4ae6:287f:17f2? ([2a01:e0a:982:cbb0:22fd:4ae6:287f:17f2])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215814fc11sm48347935e9.48.2024.06.06.02.07.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jun 2024 02:07:48 -0700 (PDT)
-Message-ID: <120a2b2e-abb9-4476-a175-10f83a322434@linaro.org>
-Date: Thu, 6 Jun 2024 11:07:37 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+        d=1e100.net; s=20230601; t=1717665202; x=1718270002;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=l8XpB9v83VyPuuQdMulEgHFlBA3mzFMN9vIEdPPQdzQ=;
+        b=rWqaBrJBlKmO+Ur2eocnE8nrTvLhX9axntoRvMdDJ7l8gIpiFSIfmE+KnPwHB2/JYh
+         tJfUG2nCyWP40p/jTlWyvx6b7koypzWDI8lsOY6nPr7M5WgqUkVuBDRngT8OBHi+49mn
+         rX+K0w0/8TnUmmW0/T7akEqTZGxSIzLHn28O+dvdme+/MhpuHBHWP7cWnjeHIcOIOAj2
+         Zj9FulT2lWZwn6j/QS83tydyN0+VjLrVbopETX8ZgCYelxfH31FEh1ogaX5cgIjeSgxO
+         DZ0oyO6S6Ws56QYJrbtDumDZ6Pg4aPMVTsoLMuqy3LUoIqpWgDZ9fIWNBuQWwVRlFfy8
+         lxHw==
+X-Forwarded-Encrypted: i=1; AJvYcCX0ki2b2vUGyfeRQ6e6eGinmZjSGI5VQe84jNZlNx6a+npOevtTvx5byAxzYnX7BwPUZfDZPU0vg5/Wtm8N9ZiW4035phFid8UbJKURy0SJ5XU=
+X-Gm-Message-State: AOJu0Yw748LgYArDp2K0bw6Yvn80qxf8VzPfBD3T2E4FQP3ZPlICRQYS
+	ayRAV4N1SHvVwXF92/O4mmqQsoLVEEFzAgwap0B90Lx4WKaI1KAmUDskbTFs0g3AZAsKeUK1eiG
+	i
+X-Google-Smtp-Source: AGHT+IFqolBgjPb1yWWf0ytpdS7ylHHarzNbdgoMc38k4aaIgXcMNql57H+efViwpESPzqw6RAKTdw==
+X-Received: by 2002:a05:6512:3f03:b0:523:8a79:21b with SMTP id 2adb3069b0e04-52bab4ce48cmr4559162e87.11.1717665201463;
+        Thu, 06 Jun 2024 02:13:21 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d66d01sm1027407f8f.50.2024.06.06.02.13.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Jun 2024 02:13:20 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2] arm64: dts: meson: radxa-zero2: add pwm-fan support
-To: Christian Hewitt <christianshewitt@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: Yuntian Zhang <yt@radxa.com>
-References: <20240606090615.3946433-1-christianshewitt@gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240606090615.3946433-1-christianshewitt@gmail.com>
+To: Kevin Hilman <khilman@baylibre.com>, Arnd Bergmann <arnd@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Dmitry Rokosov <ddrokosov@salutedevices.com>, 
+ Igor Prusov <ivprusov@salutedevices.com>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240528133215.2266419-1-arnd@kernel.org>
+References: <20240528133215.2266419-1-arnd@kernel.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: ad402: move thermal-zones to top
+ node
+Message-Id: <171766520046.3911343.14113541266786791367.b4-ty@linaro.org>
+Date: Thu, 06 Jun 2024 11:13:20 +0200
+MIME-Version: 1.0
+X-Mailer: b4 0.13.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240606_020751_658988_8E51D15F 
-X-CRM114-Status: GOOD (  13.86  )
+X-CRM114-CacheID: sfid-20240606_021323_974101_8CE751E1 
+X-CRM114-Status: GOOD (  10.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,75 +96,50 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 06/06/2024 11:06, Christian Hewitt wrote:
-> The A311D on Zero2 needs active cooling and the board includes a header to
-> connect a simple fan. Add pwm-fan support with basic thermal properties so
-> the fan runs when connected.
-> 
-> Suggested-by: Yuntian Zhang <yt@radxa.com>
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
-> Changes since v1: [0]
-> - Drop min/max state to comply with bindings
-> - Drop ddr_thermal node
-> - Add cpu_thermal trips
-> - Use cooling map2 to avoid clashing with dtsi inherited maps
-> 
-> [0] https://patchwork.kernel.org/project/linux-amlogic/patch/20231028075445.3515664-1-christianshewitt@gmail.com/
-> 
->   .../dts/amlogic/meson-g12b-radxa-zero2.dts    | 24 +++++++++++++++++++
->   1 file changed, 24 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-> index 890f5bfebb03..8445701100d0 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-> @@ -33,6 +33,13 @@ memory@0 {
->   		reg = <0x0 0x0 0x0 0x80000000>;
->   	};
->   
-> +	fan0: pwm-fan {
-> +		compatible = "pwm-fan";
-> +		#cooling-cells = <2>;
-> +		cooling-levels = <0 64 128 192 255>;
-> +		pwms = <&pwm_AO_ab 0 40000 0>;
-> +	};
-> +
->   	gpio-keys-polled {
->   		compatible = "gpio-keys-polled";
->   		poll-interval = <100>;
-> @@ -286,6 +293,23 @@ &cpu103 {
->   	clock-latency = <50000>;
->   };
->   
-> +&cpu_thermal {
-> +	trips {
-> +		cpu_active: cpu-active {
-> +			temperature = <70000>; /* millicelsius */
-> +			hysteresis = <2000>; /* millicelsius */
-> +			type = "active";
-> +		};
-> +	};
-> +
-> +	cooling-maps {
-> +		map2 {
-> +			trip = <&cpu_active>;
-> +			cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +		};
-> +	};
-> +};
-> +
->   &frddr_a {
->   	status = "okay";
->   };
+Hi,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Tue, 28 May 2024 15:31:59 +0200, Arnd Bergmann wrote:
+> It appears that this accidentally got added into the spi node, causing
+> a warning.
+> 
+> arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts:119.16-161.4: Warning (spi_bus_reg): /soc/spi@fd000400/thermal-zones: missing or empty reg property
+> 
+> 
+
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.11/arm64-dt)
+
+[1/1] arm64: dts: amlogic: ad402: move thermal-zones to top node
+      https://git.kernel.org/amlogic/c/6c9b5ba73ca77ef3863cda6560856fdfe7dc237a
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.11/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
+
 
 _______________________________________________
 linux-amlogic mailing list
