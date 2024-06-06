@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 582C5C27C55
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 08:48:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5759C25B75
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 08:48:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fTKjcKQ+wd9GGF9I0hQKG+Vk6MrfKvYlDsVhzOqOuKc=; b=db8U3LfPzGOFHs
-	O92AXZsV6ezOfYD5ZUQfJuZ/Jh7g0CyFF2D1cnABwDHo5ngC1yqJYyvN8XCfhSPWI8jGrH6wJzfR3
-	2BCJ1jt1U6G9ISUvXSNOx4G+WKp1ZBOZVPEiy9TCv6Gd/TyDGvHqEWKUw7Yj0ZRHCss6zWGjea8uJ
-	70I8f9NKSSQfYyTpFegHkb9sa0m9hmNIisl+JEcaraswUGCxJk1V9pG5C/D60+VwAbLaOjOVdwvRF
-	CB+hVQMZa8xkFOKUYgiFbwV8Z4xb6QYAd6CdhxXLu81p4wtpWpq7OVg+TVOVnifcNxkgEctG6E3aP
-	P4ahoG3xN4BkcG+TbVdQ==;
+	List-Owner; bh=ZXKprpnpBmbEnNUPeYdJfQpOV00MX/wUrSRGJY1Tgys=; b=IELvzjwYri8tf8
+	GB94tuiduRbMLo7cdKm+eVDyA6vAbk71qeHJUwfqaK5iIZg7vJi4MrxwpiEcEhjq9zqdUnJPafTnj
+	Y2BYFKcquCg8h5bxVHikJkvU4EskWdeIVPZmaOuzmRBmi5TaDhus2TFdtZaaetZi9gGunX1FLmKaC
+	QKH+A3Z3gUx41YJDJ7zTEtzaAvowRT6+Q2DCPUxe8TZuMILGPSd0MffZD/DqIhL49CSK2nS4KBzcX
+	sdJtwxdng1ESLf3QtvxqV80Ay67eYrY4WSoimX8raX9WtTkbyUflx73Thx+6t4KOxKweG+Ywh81CP
+	8DeGg2NoFIf46F/E1bIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF8nc-00000008ua7-0ytv;
-	Thu, 06 Jun 2024 08:48:44 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1sF8nh-00000008udt-2cka;
+	Thu, 06 Jun 2024 08:48:49 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF8nG-00000008uGu-01iZ
+	id 1sF8nG-00000008uIM-2hop
 	for linux-amlogic@lists.infradead.org;
 	Thu, 06 Jun 2024 08:48:24 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4210aa012e5so8942295e9.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 01:48:20 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-421572bb0f0so8624985e9.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 01:48:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717663699; x=1718268499; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1717663701; x=1718268501; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=I11GCmwbwTQWJnggMYRy+IvcpltjoVwOcfxWgF2WTsg=;
-        b=ffCA24T1VpV9QawNgFo8NmUP4M63v+UJIjoaRuRNn6PmmLVKS3Oriqg6MIJklVfBpB
-         u5+BLIDvPFqluho3v540lVLV0vAOl47UFqDHlUhOC0EzoPvV1xTmarGm0pzhfkpzCem6
-         Kmo5ybD2PbE6XkdbL9rvP8GHcMfaSd+DbaZcDIURxLcPkqGfBMfPr1Qw/o9UweuA5Qjo
-         K/qnUwVn8ch65V0xdJLJh9N8Y0D0AhJiiR1CWW6YCGkpJaW1LdaFPLzxJslo4JLCzOen
-         Mn6xdp1uO+ynBAsqJ1kBH8G/bZdIQsxH4wq0R7J8DnZayKrCwAo94LnlL0Oe1RiJ2ceD
-         sZHw==
+        bh=+IWuxffXrg4LQwBLFnoOeZEokseDHoUki1HFBLSFSBM=;
+        b=ajgooW76Ol5/axkNHwktvpeziiJGLe/eyuh10YQpG1Sgkjgc9iWv4DSdiuPzIUwlqU
+         4pTtivgd9JimJQPh7LYbsMZdte0cEBhazTf5mbO7rpnVE8IfLdQ7P9tb9OBQibqth3Bu
+         8aKQuoXU5HOj2bSn66rC3dR/M0lOquRInuhqsr+xyq1bxOMPgQ8kRxuRdO4scXXRZNZB
+         UGIny4gsIPRv4qShhZxeU4af+6lpaAhARKxTK7QUlPlgSTz8J/MTLBLTfDiXH+6k8Yar
+         ofVuHgS8mjQyGMno0AbTaxZtrgnlHaAE24o/taBkRQwbpd/JZMhM4nBPm2ceaw1uY/uy
+         EH9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717663699; x=1718268499;
+        d=1e100.net; s=20230601; t=1717663701; x=1718268501;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=I11GCmwbwTQWJnggMYRy+IvcpltjoVwOcfxWgF2WTsg=;
-        b=pmaWUxEE1rGseHMEnCWwi3uH5EVKHICaSGUSFs9jK+zdkByW5+AIoyr2ecfaZPD16L
-         XKgIi2/LSKfuHOUjbj7fmuuv7HB2trLzNspAJussuf9dYTjMtdbQKjIjxMKWO3QcHhll
-         eUyqP5t0QZk8ZrRAxGAoByqAqnPGHZq4NJzl9XvCeGUHYJnJUYjjRVMkRljXv5qNP54r
-         on4tsrlt4Jg1gQnRsIeetAtpkS/vWyhFDYgDjrcHKHKbto4hvB1nORj2yDSjN0aBtln2
-         bUEI1rE/QNUcK92m/mxWlBMDB1kTkpoak6HuJkJzhs1mn9RNzPCj/WZBLt9kvnYh0uJj
-         W1Hw==
-X-Forwarded-Encrypted: i=1; AJvYcCUvKeOQougPwNekP6XppI8fquCcT6JoFQ6j5qaOblosbllFC+73TOqGG806ju2wqW7Y8d19CLtMmvWWQu5M7vxqA3xoKs5iDMSTNNfZYvyATcg=
-X-Gm-Message-State: AOJu0YyYy2ylu9QeRMz9O95SVwB2zUIujPjdZdSCgRrTrvv5r2yLuLTk
-	ih2YfjTkEGptptT3KJ3xTUFCb133gXp9LZ3DfiAeV3I4tz2QszOGHDLEjB6STcs=
-X-Google-Smtp-Source: AGHT+IHXNskKx96eAveDBrVtdYp/2X22ILbdY24ts/HP9hnKmVYhMiCzDPYXHNWBqE8KmW8CLvFx1Q==
-X-Received: by 2002:a05:600c:b85:b0:421:2edb:d207 with SMTP id 5b1f17b1804b1-4215632eb27mr45552835e9.28.1717663699425;
-        Thu, 06 Jun 2024 01:48:19 -0700 (PDT)
+        bh=+IWuxffXrg4LQwBLFnoOeZEokseDHoUki1HFBLSFSBM=;
+        b=n1gm0FPgjTm7eG+bvXXc+KvvKaXMK6fgNpDZWE41SOjk6JgagxoZILQr4PzFu+CBgf
+         DC9xBIV0fUUwEdl2LBXlPp05HbH0kdlxtVVcZC55yuVE99C08DZ5rqTmtUrNp+32LTQR
+         lEuMa+fy2nnAaowb+wdieh0Or8KW8jbn2d46bcLw+RBXslhKLacq2PzdKh4s4JCUF2Hh
+         Hu2XWGLWYrsQos0F2WnzS+3sF7cEcK2BP1tjxYjWbbtr0YBJtxHPVxpmkqT1lDXvFtjy
+         dy4B2pRIdjrVWPBNiTmVgESJ4K0ypw31v70Ncsr0HP/V5IfIFu3IseMJCeUri+3Fu7w2
+         OCtw==
+X-Forwarded-Encrypted: i=1; AJvYcCUeTJH7vU+vlypFcq+z/h6JUjH5wYCG+SYlxaX3uI2eCUvk25Z56tGz8WH8UrEXtDEDoDQoj/IK6lkpKcB77rTpjcduvIKOrXFg91Dhq2Ey4nc=
+X-Gm-Message-State: AOJu0YyIJLQvkWovR6WXi8SEjjGDSv1E+TSv1s6biex1B/DNtNCOzpD0
+	tpW2mcUC5QXyz0Z1UJZI8RIuP8zPzrwHaHRw71hFdmfOfx69HddoFvTarKP3fCA=
+X-Google-Smtp-Source: AGHT+IGalqseq3iSUyoZ1rDpRKcx8jiSTVA95CddC3u6Wzo2fIiN7QpZR/sxDIygQnEaSIhb84DOGA==
+X-Received: by 2002:a05:600c:4254:b0:421:55e6:d4fe with SMTP id 5b1f17b1804b1-421562e7748mr38548195e9.19.1717663701048;
+        Thu, 06 Jun 2024 01:48:21 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215c2c690dsm14227445e9.34.2024.06.06.01.48.18
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215c2c690dsm14227445e9.34.2024.06.06.01.48.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 01:48:19 -0700 (PDT)
+        Thu, 06 Jun 2024 01:48:20 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 06 Jun 2024 10:48:11 +0200
-Subject: [PATCH 04/12] arm64: dts: amlogic: sm1: fix tdm audio-controller
- clock order
+Date: Thu, 06 Jun 2024 10:48:13 +0200
+Subject: [PATCH 06/12] arm64: dts: amlogic: g12a-u200: drop invalid
+ sound-dai-cells
 MIME-Version: 1.0
-Message-Id: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-4-62e812729541@linaro.org>
+Message-Id: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-6-62e812729541@linaro.org>
 References: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-0-62e812729541@linaro.org>
 In-Reply-To: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-0-62e812729541@linaro.org>
 To: Kevin Hilman <khilman@baylibre.com>, 
@@ -78,25 +78,25 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3425;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=798;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=ZbE2vLa8S9lvPjkvME7nqfkOHEOptRs807yC/TclS54=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmYXfLxLYrVWx88kK9rLfSbTE4DHKxGZePo9EX4BNc
- N8QPGlOJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZmF3ywAKCRB33NvayMhJ0TaFD/
- 0VbGVTEtlallTWLLyKR/zCiWlQXmvjToJXlCheIxQSQKdLvSRWDv85LNyDUkPmOXq1gBwHNai3/is8
- tTgsWatCbxKm2V5r8Hwoy5Tm6zm6+P4V7uxCMP3W7TrdNRS7SKW/bqBvAtaSviLlKBRAjqOimEl7x1
- trIJfw86VACmLRWuRQx7RcQ5wChwIMu+DUy0ejeUFCUuZUk0PacElcQjxKy4i+TA9o/9Dm3/R/As10
- umrNj9LUtdfxio+TNIYY/ZT9K3MzkZZs1LlM+cYZB+vBd8UuEiHnaW26PnQOo5utjN233REotdKIyl
- tioawwMea5ZtMM3qO6/H2b+vR1mBosVpFrMqYoOatoaxJaJIdvB5eGO+qFPko4cMxD6CMNxZJmahBg
- Y25CKAppqTP19cFPExsKzsjLYCiRgirQQ2cDdcbvGmXHIIle7tctYQQVMBOil1YYapNaa3kGZBoSk3
- emnjlBFDWRYlfYrD/4O23UNsiP6R4v4yNK31kojoOYRWSOq9qDs446jXWY8MRxb/mDUugJtyeKoqwN
- pvZYppHURcF+4bP92sutL0C0ZkpJmnn81WlIfmw9VuNVifBbOroxVOZqL2Rn6MZI+38/vZMi2Rxtx6
- d/GGsFPQ5aDK2NBUKLqCBYpVEgArqtSuyCrcouu5KhuK8yLUWWpAPvPMORFQ==
+ bh=EXGEWAhKpF7QnohcFYB5Y1PiMZfbRrYfXGdvRy+dRzk=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmYXfMxNcVWAzCvmfhczk/oa52KNH8pz/V974sJxZP
+ zqYfDwqJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZmF3zAAKCRB33NvayMhJ0Rq8EA
+ Cu8y+nE/eTc41AHaN4QELvpQlLweEg095Ph0hOo2cdNBpmZ4KJTAF9JavC985V9svwTtKY9mB3wxPN
+ tZo8p+6s0z7IVzxtlnxGw4wY1bVudbvxU8Xgp4Pfn+IvV+d8UKOKNNrGLZ3Db3pUaOFRis+1qR2tI0
+ p+sqNS/LwW5kbXzwgStosHdh4cR6s98BD7RNb65dMCkGr5fQwpaPs7vzNpNz2smvoiJtAAqWC2v62G
+ w/8hTjqDyD+gh2dl4abMQtAM+lOLNtnezkoOBJ9HCIP7Ewd/Jq4m26wPo6t7a2M6NGOF+euSzOxCqV
+ xDRzPWIoXrL46RUhF3fN8244TrlDww9mwFYVTf9NMlwsrUrZKaj17RA65sbe8RGbKykL4Jtqif9CNW
+ DIiqaYqxdnBnVcXoyZS7MEm8hoCEcUZHM4pdXdq49POIYJBK+L3fekQMK07OToNPvC9u+Kx2DJjKRF
+ ddIO1yHtCEDZAgi5YF7bxGn+sHXVyxs8niOg7upYzS0gs57AIAlOfSaUipkG5nRoiT5rRYqIu/jW+m
+ HjH0QTjM4CRcsDnuV2aIVN7/bzjU2NGr5RlJ1j5wQx2uEfXy9rm0zGiaFHpKkj9m+p7ESvldLwiKRQ
+ qqYeFOpOJ/bqRBTnbygUt6h1MtE/8/jlmOxo/RWHfrakoyfp+gtvOTxS0SkA==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240606_014822_208951_FCE595A7 
-X-CRM114-Status: UNSURE (   9.04  )
+X-CRM114-CacheID: sfid-20240606_014822_893491_3DC15C6D 
+X-CRM114-Status: UNSURE (   8.87  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -114,80 +114,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix the clock order in the tdm audio-controller nodes,
-this fixes the following errors:
-
-audio-controller-0: clock-names:0: 'sclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-audio-controller-0: clock-names:1: 'lrclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-audio-controller-0: clock-names:2: 'mclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-audio-controller-1: clock-names:0: 'sclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-audio-controller-1: clock-names:1: 'lrclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-audio-controller-1: clock-names:2: 'mclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-audio-controller-2: clock-names:0: 'sclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-audio-controller-2: clock-names:1: 'lrclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-audio-controller-2: clock-names:2: 'mclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+This fixes the following:
+audio-amplifier-0: '#sound-dai-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 24 ++++++++++++------------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-index 643f94d9d08e..6822c2f3cfed 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-@@ -17,10 +17,10 @@ tdmif_a: audio-controller-0 {
- 		compatible = "amlogic,axg-tdm-iface";
- 		#sound-dai-cells = <0>;
- 		sound-name-prefix = "TDM_A";
--		clocks = <&clkc_audio AUD_CLKID_MST_A_MCLK>,
--			 <&clkc_audio AUD_CLKID_MST_A_SCLK>,
--			 <&clkc_audio AUD_CLKID_MST_A_LRCLK>;
--		clock-names = "mclk", "sclk", "lrclk";
-+		clocks = <&clkc_audio AUD_CLKID_MST_A_SCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_A_LRCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_A_MCLK>;
-+		clock-names = "sclk", "lrclk", "mclk";
- 		status = "disabled";
- 	};
- 
-@@ -28,10 +28,10 @@ tdmif_b: audio-controller-1 {
- 		compatible = "amlogic,axg-tdm-iface";
- 		#sound-dai-cells = <0>;
- 		sound-name-prefix = "TDM_B";
--		clocks = <&clkc_audio AUD_CLKID_MST_B_MCLK>,
--			 <&clkc_audio AUD_CLKID_MST_B_SCLK>,
--			 <&clkc_audio AUD_CLKID_MST_B_LRCLK>;
--		clock-names = "mclk", "sclk", "lrclk";
-+		clocks = <&clkc_audio AUD_CLKID_MST_B_SCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_B_LRCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_B_MCLK>;
-+		clock-names = "sclk", "lrclk", "mclk";
- 		status = "disabled";
- 	};
- 
-@@ -39,10 +39,10 @@ tdmif_c: audio-controller-2 {
- 		compatible = "amlogic,axg-tdm-iface";
- 		#sound-dai-cells = <0>;
- 		sound-name-prefix = "TDM_C";
--		clocks = <&clkc_audio AUD_CLKID_MST_C_MCLK>,
--			 <&clkc_audio AUD_CLKID_MST_C_SCLK>,
--			 <&clkc_audio AUD_CLKID_MST_C_LRCLK>;
--		clock-names = "mclk", "sclk", "lrclk";
-+		clocks = <&clkc_audio AUD_CLKID_MST_C_SCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_C_LRCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_C_MCLK>;
-+		clock-names = "sclk", "lrclk", "mclk";
- 		status = "disabled";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+index 17c38bb3368c..e0f15d824249 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+@@ -24,7 +24,6 @@ dioo2133: audio-amplifier-0 {
+ 		compatible = "simple-audio-amplifier";
+ 		enable-gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
+ 		VCC-supply = <&vcc_5v>;
+-		#sound-dai-cells = <0>;
+ 		sound-name-prefix = "10U2";
  	};
  
 
