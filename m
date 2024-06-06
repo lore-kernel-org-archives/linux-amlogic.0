@@ -4,95 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 625C4C25B75
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 08:42:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D133C27C55
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 08:48:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kSzCbMSuDWkvcez61c7UVEwBe/QYo8JBTyTOPJAvDAs=; b=d1Fhv52K6+Rl6P
-	lv6eEzHt/uTavBFDhuhd9+g1bPw10Ysj9y3yLp/Od+nFbVHvZqbF4qWhUUKnuBsf5PuPoUSVDtjhl
-	sNILx0YoS4pZUwSY8ba7/7zkOZmkJ/n1j8Dm34fMSGqxEW/ok4hDHgxmrLV+M/fV/7QOlHjywXeem
-	U4jQVg2juYaIHO7Oxf26qXDpQSr7g329wntu1bvDcrUcNrQjfTEhZYyn17ss0i9vHAY1vJR6dr5W6
-	pPddB1OCXweiOlb+JjzC+vYwzAUVh0yIbMK8Yi9YLv64Bk1N9rKI26NxrEEfUkvHecIYluGAGhCea
-	o5YsuB75B6N1Igoqx11w==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ijOiXWtsEPoJjnrRBME1g8R7tL9LQEjo9iVIpQHSESo=; b=QaYI6EBEbDk4oc
+	ZwjS8Qs9N2DILLDp+37yO2ODBhMfRPmwu9ZsvT5QnEux9pLdsJD6BWV5/y3dxvxcLTdnZXcRpLyFC
+	sPVn6TLl0NU4bSsNzku+MWJaPvHm0EmJgxtYMvDlBVb+JDn+P9BcUbYp/skzv9nzhFAIIzJqT4vWl
+	+EQFqfV12Rvnfq+clRk7rvUP8yU3L6p68Y5WahU/hL6hIYFCd6Z6cZ2BSRVj/TnZzNmGBlPb1EsJW
+	uSLTYAqwlfxHLQoQJheLsMzwI1/VtLuVabh871v2hR4V5GZf5cFCaP6lyVQKNPjXZh0e/FcWKJtqX
+	TfdkkVBIe6p0kVOcglqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF8h4-00000008t0L-185y;
-	Thu, 06 Jun 2024 08:41:58 +0000
-Received: from mail-lj1-x235.google.com ([2a00:1450:4864:20::235])
+	id 1sF8nG-00000008uIW-1mSO;
+	Thu, 06 Jun 2024 08:48:22 +0000
+Received: from mail-lf1-x12a.google.com ([2a00:1450:4864:20::12a])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF8gz-00000008swO-0eli
+	id 1sF8nC-00000008uEr-1PkF
 	for linux-amlogic@lists.infradead.org;
-	Thu, 06 Jun 2024 08:41:55 +0000
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2ead2c6b553so6695191fa.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 01:41:52 -0700 (PDT)
+	Thu, 06 Jun 2024 08:48:19 +0000
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-52962423ed8so856151e87.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 01:48:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717663311; x=1718268111; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=lboqGDLkSlZiXGaj/uzeRuz104hFq0ngZ+Ud/fj/+Ag=;
-        b=VWAvD2q90H40Xu7vnSnkGRP2nMztNDARn8+LgZ3dfpRLzM7jCdJgadimN5EGo6NTpU
-         WjmVEsfqd4xLM57BRRnlfB0oZlVlPmJyVFnH/mEmaY3Wc4rl0eyILvtpE4bnOq5NQVpb
-         Q4Zjvn3sPAwTo4v6IVcNxwyIWRLRT+jyv5TRkGvyXLibxXPllmTwAAqGh6pp7JaTT+cm
-         BZyAdcVD3+aRlVU+QswVKSYOa4hYHkWlzcVTIJiEd0mQbvymhjPV8ypRSrfbKrUKTvnK
-         kJG7+xscl7iA6iIVY3t18p0L9gZitQZlmfwnI/h4QucV/LlbFBfpO025fjSjjA8dJYYM
-         c/qQ==
+        d=linaro.org; s=google; t=1717663696; x=1718268496; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=clNoI1HZOlvZDlF+a49KVrl+gXHl7hyV1SfXg3I8Hww=;
+        b=HgI8LgVrCSG/avOdsb790a52JAcEpuQcPI4bYxSPAwWu/YfxVb31FxL6RJxgr8SlTo
+         8NUQ5IdwNkq86Ls9SC24MOuQLkwN12hw5PX9e1csSzNb7fpEb3vjYmnGCyfZB5wb3c71
+         dGMv5E8OV6trZ1gyhEm7Tr/Q7Xpnkq44GjRUlT6Cx0AGxGEK6RfxTQoD1pM1M3hLSGJ1
+         5hMZHsXkrz8F64ZRTASnVKWQ+sT6GcNtPT+IFmiL4vmhL9+jrIi0SVtDNjdxkB1YLDie
+         RqlfVl36AdhOguaxhU73zSEwveVwpx8+9YAnNIf3XUpSOVLn6GD2r/pNON8AfxCXpWSm
+         7GqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717663311; x=1718268111;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lboqGDLkSlZiXGaj/uzeRuz104hFq0ngZ+Ud/fj/+Ag=;
-        b=tHJ/cVfvF2ruGm5xnOYCoDw1iqAxoVHOyLBlw1KeLfbN+nnRf5MxChAVx9f2Wf7jdX
-         bg1CG8KY+eIPVd5qBIyt+50ADuZNfrSl/RAgsjutYdpY0LZVfxGH+7ISLQKCuoh2JlXQ
-         CBdAKtpNJ4SjsuBSgcj8hJvKAiXgfJgVMzW72pLNcArLdFZAbHfIrEKCcU/XQSHXgpRE
-         xMEsQYsTxGvrmEQMsJLCIp2EWrvlqVcsK1aGL+1xjRamUBGhnn5lEoWIkt1RApxuLYfF
-         jxVOBh1/dEFuf3gfYXtC+fj5KrEVXYCm7vKraWQSRQt017mDSs/OvW4ISpTNXUT+5M1B
-         vm+w==
-X-Forwarded-Encrypted: i=1; AJvYcCW4Kc2WAETYIdEnoJC+bvp+rhbu2DQ7g3lVUcRPKmtf1b/2BcXhrVrZs+fjLH2qMQ6IRYrDM6Czcab5/u0yjEZnmEAq12VZm6x57w7NUKlCi6U=
-X-Gm-Message-State: AOJu0Yzm814F8aLSlHzMl1fmMNCnQxIrlJ1QEges1uh+RXcEPFW2L7cC
-	AN7usK2sUkAoNw8WCgPSmnh8vAjQa+9/pnIrro/DoA0vO4WsoMrOamwqpv2y7Bk=
-X-Google-Smtp-Source: AGHT+IEzdn9+piYZ1x5EsTOIWqi/J/85mLEB4Nr/4e4HHjN18eVZC+5BHKwFvsEHZndySpOVd4em4g==
-X-Received: by 2002:a2e:8550:0:b0:2e6:d1fb:4470 with SMTP id 38308e7fff4ca-2eac7a832dbmr34173771fa.42.1717663310478;
-        Thu, 06 Jun 2024 01:41:50 -0700 (PDT)
-Received: from localhost ([102.222.70.76])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57aadf9d8ddsm715207a12.1.2024.06.06.01.41.49
+        d=1e100.net; s=20230601; t=1717663696; x=1718268496;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=clNoI1HZOlvZDlF+a49KVrl+gXHl7hyV1SfXg3I8Hww=;
+        b=lgLY1R8wH/zedyBi2M+Ewu55Egh1Z5TT3JwMGDwFHfJHBypb39cwxfqDVu+Utv7Dfn
+         Y1a50PUZDXh5vTvoPbhCk4VPbesQmKKd19pn9cYJN4/J06ERy8o5twnLS9Q0eDNVn8NT
+         vVCtDZ2NVwEow1O5b65vV175I+Ar8f0/5nNq2qbosoG+sonAzH3KzERO7PXCuQrxdDrZ
+         idTeSX91rup74ypH5oiBpSdryiMh9Pyi/0etve6eHqQcxhzq/uo2/Zi36Z8ocGS4Ogyr
+         f6RjFRKx6Xc71GpGJ/H8LQVehRjkt+LfDqiBDB9ZgO78lkPhKnp1aAScqhNEj4S8GkkM
+         QU+A==
+X-Forwarded-Encrypted: i=1; AJvYcCU7oQOQheVahm/CVXw9FUMPKvVuYPYS7Ft1DmJlPFZ6uiIc0/gaE9Py4W01heqihx93LmO72iu8SQVboiyab5gPsmJiOR6Ha9miHC+1Z5T91EY=
+X-Gm-Message-State: AOJu0YxG+ex5J+S3AA8AzhfJ441qpqAIua0QBL2ZoQjdnAyP0/rD+9sF
+	it1C6VDgO70mJPZt07iMHYjfG5HWlZtm9gKrOSix1w/8H4BAmK0aMIB1m17SL4A=
+X-Google-Smtp-Source: AGHT+IG/yuLE8o9z5rgP9gmN4unUSaVfCH4FIg5olqMGVJEGljKPXUFa/spz1zuCEqFtz/oo7RbWcQ==
+X-Received: by 2002:a05:6512:614:b0:52b:8610:a7e9 with SMTP id 2adb3069b0e04-52bab509c6cmr2931872e87.62.1717663696062;
+        Thu, 06 Jun 2024 01:48:16 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215c2c690dsm14227445e9.34.2024.06.06.01.48.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 01:41:50 -0700 (PDT)
-Date: Thu, 6 Jun 2024 11:41:45 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Joy Chakraborty <joychakr@google.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Bingbu Cao <bingbu.cao@intel.com>,
-	Zhihao Cheng <chengzhihao1@huawei.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-mtd@lists.infradead.org, linux-rtc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org,
-	manugautam@google.com
-Subject: Re: [PATCH v1 07/17] misc: eeprom: at25: Change nvmem reg_read/write
- return type
-Message-ID: <f98a1d8f-e936-4798-8447-c642e8fe11d5@moroto.mountain>
-References: <20240605175953.2613260-1-joychakr@google.com>
- <20240605175953.2613260-8-joychakr@google.com>
+        Thu, 06 Jun 2024 01:48:15 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH 00/12] arm64: meson: bunch of DT fixes, take 4 (final one
+ ??)
+Date: Thu, 06 Jun 2024 10:48:07 +0200
+Message-Id: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-0-62e812729541@linaro.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240605175953.2613260-8-joychakr@google.com>
+X-B4-Tracking: v=1; b=H4sIAMd3YWYC/x2MQQoCMQwAv7LkbKDWbgW/Ih7iNtaA25amirDs3
+ w2ehmFgNlDuwgqXaYPOH1GpxeR4mGB5UsmMkszBOx9cdBFHbbIgra+aje+mozOteJeSpGTFh3x
+ ZMQ3FSPPZU5rDyQewX+v8j7a73vb9ByxXC697AAAA
+To: Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6130;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=Z0NNIzHhaWZJ143ndEEsLQVnT+L4J/ae06XwwJbYU10=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmYXfJOh1HVavEBIRhO4ENEnVQkyDOfpbdd/oGJ13K
+ kSxAAcmJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZmF3yQAKCRB33NvayMhJ0c4lD/
+ 9TuwdUpGz16RXXBi7HFVOXHBvWhlCIdtkewCvf/dxxRj+RGof6VXA9ekyfV3xZ+xMaOomyebezNkEy
+ yCUPsVz4Y1gfxmT+A+8uJZujmflqTEABsMQCuhTXLVLQz3HiK6i8Mz+QbWSBGWAu14MnIupvQ94cZG
+ dZrukB4XCed/JKJofENpcCPUz3Wvskz/7w/+n7WkApQymXtziTbj8RPmznHGrD5rfeYYrHR9SDX/n0
+ jdoVzCqCI5C1U6Jkkn8njJAFCSEm/sP0m+3Kr76KTaTKhNzqMp1GWCAa9Pd4Sn4DOPIPRZ5x754Dp1
+ zfoTHtmz6h7+7gGMYp24mlgMUmeR2RGFt5hJpDa/t0+vKnpzlm9UdPefLfQKmqFblHBvVKApPnfYKt
+ fjpWMP/y1BJjKKeixTu7LhV8h9BYo52AHek88qE7OzaRDk19NGkF5lAV63fteD/gz99leLuU1+VVYs
+ +H6hmw8HUoOKJaeheAobVQTLPChNaTo4MDke2K/3kK6lXieUltS1sc1j11WyoY3cU+o96+zjUQT2Va
+ kbanoG/IE2qcNT/fzY7tJMSgBdf64EQLr9JazZspEXMT2O22cZyWPIW9vDSnFQXbX4EexWrOQDxE+D
+ mGReQwAtAt5gJjm0yCGXw7fLtY/+SpL7fza3hp8uRupH1ryf5o77W307Y+nQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240606_014153_219716_2986D5A8 
-X-CRM114-Status: GOOD (  19.51  )
+X-CRM114-CacheID: sfid-20240606_014818_456318_9D53C137 
+X-CRM114-Status: UNSURE (   7.25  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,89 +114,106 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jun 05, 2024 at 05:59:51PM +0000, Joy Chakraborty wrote:
-> @@ -195,10 +195,11 @@ static struct attribute *sernum_attrs[] = {
->  };
->  ATTRIBUTE_GROUPS(sernum);
->  
-> -static int at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
-> +static ssize_t at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
->  {
->  	struct at25_data *at25 = priv;
->  	size_t maxsz = spi_max_transfer_size(at25->spi);
-> +	size_t bytes_written = count;
->  	const char *buf = val;
->  	int			status = 0;
->  	unsigned		buf_size;
-> @@ -313,7 +314,7 @@ static int at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
->  	mutex_unlock(&at25->lock);
->  
->  	kfree(bounce);
-> -	return status;
-> +	return status < 0 ? status : bytes_written;
->  }
+Along with the following:
+- https://lore.kernel.org/all/20240422-t7-reset-v2-1-cb82271d3296@amlogic.com/
+- https://lore.kernel.org/all/20240513224552.800153-1-jan.dakinevich@salutedevices.com/
+- https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-spifc-v1-1-380f29ba4a16@linaro.org/
+- https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-convert-spdif-receiver-v1-1-262465adbac2@linaro.org/
+- https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-mmc-v1-1-4acbb8cc2626@linaro.org/
+- https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-nvmem-v1-1-ef6f10c86a63@linaro.org/
+- https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-phy-v1-1-c819b0ecd8c8@linaro.org/
+- https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-rng-v1-1-0a55a7ba55e4@linaro.org/
+- https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-audio-widgets-v1-1-65bd7cc2e09b@linaro.org/
+- https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-sardac-v1-1-40a8de6baa59@linaro.org/
+- https://lore.kernel.org/all/20240606-topic-amlogic-upstream-bindings-convert-g12a-tohdmitx-v2-1-70d44fa30790@linaro.org/
 
-So the original bug was that rmem_read() is returning positive values
-on success instead of zero[1].  That started a discussion about partial
-reads which resulted in changing the API to support partial reads[2].
-That patchset broke the build.  This patchset is trying to fix the
-build breakage.
+this bunch of changes fixes 99% of the remaining dts check errors.
 
-[1] https://lore.kernel.org/all/20240206042408.224138-1-joychakr@google.com/
-[2] https://lore.kernel.org/all/20240510082929.3792559-2-joychakr@google.com/
+The two remaining bindings conversions for arm64/amlogic are:
+- ti,tas5707
+- everest,es7241
 
-The bug in rmem_read() is still not fixed.  That needs to be fixed as
-a stand alone patch.  We can discuss re-writing the API separately.
+I'm too lazy to do them right now, so if someone is interested
+in doing the conversion, please do it!
 
-These functions are used internally and exported to the user through
-sysfs via bin_attr_nvmem_read/write().  For internal users partial reads
-should be treated as failure.  What are we supposed to do with a partial
-read?  I don't think anyone has asked for partial reads to be supported
-from sysfs either except Greg was wondering about it while reading the
-code.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Neil Armstrong (12):
+      arm64: dts: amlogic: meson-g12b-bananapi: remove invalid fan on wrong pwm_cd controller
+      arm64: dts: amlogic: move ao_pinctrl into aobus
+      arm64: dts: amlogic: move assigned-clocks* from sound to clkc_audio node
+      arm64: dts: amlogic: sm1: fix tdm audio-controller clock order
+      arm64: dts: amlogic: sm1: fix tdm controllers compatible
+      arm64: dts: amlogic: g12a-u200: drop invalid sound-dai-cells
+      arm64: dts: amlogic: g12a-u200: add missing AVDD-supply to acodec
+      arm64: dts: amlogic: axg: fix tdm audio-controller clock order
+      arm64: dts: amlogic: c3: use correct compatible for gpio_intc node
+      arm64: dts: amlogic: a1: use correct node name for mmc controller
+      arm64: dts: amlogic: a1: drop the invalid reset-name for usb@fe004400
+      arm64: dts: amlogic: gxbb-odroidc2: fix invalid reset-gpio property
 
-Currently, a lot of drivers return -EINVAL for partial read/writes but
-some return success.  It is a bit messy.  But this patchset doesn't
-really improve anything.  In at24_read() we check if it's going to be a
-partial read and return -EINVAL.  Below we report a partial read as a
-full read.  It's just a more complicated way of doing exactly what we
-were doing before.
+ arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        |   3 +-
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |   3 +-
+ arch/arm64/boot/dts/amlogic/meson-axg-s400.dts     |  17 +-
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi         |  24 +-
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  | 427 ++++++++++-----------
+ arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts  |  16 +-
+ .../boot/dts/amlogic/meson-g12a-radxa-zero.dts     |  16 +-
+ arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts  |  16 +-
+ arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts    |  18 +-
+ arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts |  16 +-
+ .../dts/amlogic/meson-g12b-bananapi-cm4-cm4io.dts  |  18 +-
+ .../meson-g12b-bananapi-cm4-mnt-reform2.dts        |  18 +-
+ .../boot/dts/amlogic/meson-g12b-bananapi.dtsi      |  30 +-
+ .../arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts |  16 +-
+ .../boot/dts/amlogic/meson-g12b-gtking-pro.dts     |  16 +-
+ arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts  |  16 +-
+ .../dts/amlogic/meson-g12b-odroid-go-ultra.dts     |  16 +-
+ .../boot/dts/amlogic/meson-g12b-odroid-n2.dtsi     |  18 +-
+ .../boot/dts/amlogic/meson-g12b-odroid-n2l.dts     |  18 +-
+ .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    |  16 +-
+ .../boot/dts/amlogic/meson-g12b-ugoos-am6.dts      |  16 +-
+ .../boot/dts/amlogic/meson-gx-libretech-pc.dtsi    |  17 +-
+ .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi |  18 +-
+ arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts |  17 +-
+ .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts      |  17 +-
+ .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    |  17 +-
+ .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |  19 +-
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts    |  17 +-
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts    |  17 +-
+ .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      |  17 +-
+ .../boot/dts/amlogic/meson-gxbb-wetek-hub.dts      |  17 +-
+ .../boot/dts/amlogic/meson-gxbb-wetek-play2.dts    |  17 +-
+ .../dts/amlogic/meson-gxl-s805x-libretech-ac.dts   |  17 +-
+ .../boot/dts/amlogic/meson-gxl-s805x-p241.dts      |  17 +-
+ .../dts/amlogic/meson-gxl-s905x-khadas-vim.dts     |  17 +-
+ .../amlogic/meson-gxl-s905x-libretech-cc-v2.dts    |  17 +-
+ .../dts/amlogic/meson-gxl-s905x-libretech-cc.dts   |  17 +-
+ .../boot/dts/amlogic/meson-gxl-s905x-p212.dts      |  17 +-
+ .../boot/dts/amlogic/meson-gxm-khadas-vim2.dts     |  17 +-
+ .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |  17 +-
+ arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts |  17 +-
+ arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi |  16 +-
+ .../dts/amlogic/meson-libretech-cottonwood.dtsi    |  16 +-
+ .../boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts |  16 +-
+ .../boot/dts/amlogic/meson-sm1-a95xf3-air.dts      |  16 +-
+ .../boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts |  16 +-
+ .../boot/dts/amlogic/meson-sm1-bananapi-m5.dts     |  16 +-
+ arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts  |  16 +-
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi  |  16 +-
+ arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts   |  16 +-
+ .../boot/dts/amlogic/meson-sm1-x96-air-gbit.dts    |  16 +-
+ arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts  |  16 +-
+ arch/arm64/boot/dts/amlogic/meson-sm1.dtsi         |  36 +-
+ 53 files changed, 679 insertions(+), 630 deletions(-)
+---
+base-commit: c3f38fa61af77b49866b006939479069cd451173
+change-id: 20240606-topic-amlogic-upstream-bindings-fixes-dts-6a572ad54324
 
-drivers/misc/eeprom/at25.c
-   198  static int at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
-   199  {
-   200          struct at25_data *at25 = priv;
-   201          size_t maxsz = spi_max_transfer_size(at25->spi);
-New:            size_t bytes_written = count;
-                       ^^^^^^^^^^^^^^^^^^^^^
-This is not the number of bytes written.
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
-   202          const char *buf = val;
-   203          int                     status = 0;
-   204          unsigned                buf_size;
-   205          u8                      *bounce;
-   206  
-   207          if (unlikely(off >= at25->chip.byte_len))
-   208                  return -EFBIG;
-   209          if ((off + count) > at25->chip.byte_len)
-   210                  count = at25->chip.byte_len - off;
-                        ^^^^^
-This is.
-
-   211          if (unlikely(!count))
-   212                  return -EINVAL;
-   213  
-   214          /* Temp buffer starts with command and address */
-   215          buf_size = at25->chip.page_size;
-   216          if (buf_size > io_limit)
-   217                  buf_size = io_limit;
-   218          bounce = kmalloc(buf_size + at25->addrlen + 1, GFP_KERNEL);
-   219          if (!bounce)
-   220                  return -ENOMEM;
-   221  
-
-regards,
-dan carpenter
 
 _______________________________________________
 linux-amlogic mailing list
