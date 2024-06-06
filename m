@@ -4,67 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD3D2C25B75
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 14:48:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C993DC27C54
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 15:56:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eBuqFnN5BiMqXlN1c0GkHroJq26p5XqSndnKPYDgcsk=; b=3vBmE0uKrWfDjE
-	EpFMdUmZF7pNc3PrmLZl5G39cOFhcROvpADQ4CaLhDb3Z5AXQktMy4419+NxvW4Ix/+fKCfKfHS5w
-	rptVHCXNIIEobGuMrn93KgotQkBtu/cLI4r8RlhX16v25UrEKoFCrJNKgExdJwECBQiC0JRoIVwz5
-	WgTthNUJ9Va9FpMeEkX+8q0BJIP9EYVFfg0jTm0EizCXGrCIXDvcm94fTjv9kkT331YH1F2fDK2hj
-	7Xm6rtCfqt8AOP2YHn2uJGpNWms3hWCFVkdKqPczdXytFbJl2Tb2BmI8vRBv6i1HpTTsvZEBP3x6K
-	VJe68T1k1mh4gAcCwDiA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
+	In-Reply-To:Cc:To:From:MIME-Version:Date:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=SsUBfrKl/9BB67uywL4HZ4XBkNQ2wEl8eywSgBGYnUU=; b=oeDTxlLenVbkKE3k9hLCPkUXU8
+	3Dn8zMZ0VZGpsB2ypi9tARJiUO2wlqhccBzS3rvHRt3bI3NfGRN+45b3/xOZ3ZqWd7+nXRfMHOdmJ
+	1xOcR/PAPUy0ZRvaaqtyTnxe4xv5xxySNBoUTUJxOPgBHVQTYQfBzgxswFR1SYx+hjGV54Nt3fWYi
+	uhbVfSd+3clzIjeg6R8kY3Eo9jw3vt12Q63rfa0hcICuH3e8D+TL2YH9zvc5Mtm7S6GJttYwv4uU3
+	PNrL73Vn4A+oE9faN0/KJ/hmWE3roT3R10fKsH033KpJvVxNiltTdria6zbYug9pSNoNE/9zuWOs+
+	BllbdOzA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFEPU-0000000A8WB-08T1;
-	Thu, 06 Jun 2024 14:48:12 +0000
-Received: from madrid.collaboradmins.com ([2a00:1098:ed:100::25])
+	id 1sFFTT-0000000AOO0-0yN1;
+	Thu, 06 Jun 2024 15:56:23 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFEPQ-0000000A8Va-3UMd;
-	Thu, 06 Jun 2024 14:48:10 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1717685287;
-	bh=dQuMVnPcFvL2rm7IsOiVG0+PEE/oKkyHvTcPJNmZa+0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YtRrkQHKb+X7xskObtg8FVCsFdwW8ShtHfCWtk4KRWoyx36T/q0AyGDwcPLitgXD0
-	 juSSzZ3cVZnQbEDdzMDSSm8xGeGxl3vLT/L53APO2Uo9mJm74o3YO7FrEl2BM+EyDS
-	 RHflhbHlPHGWQ7EThEjdeN/fGUeVCYOlIKGO8DrwcAr/iYf/5sLnc4QHnStmIq0v0h
-	 xLL7JMpSpaAnGsWurIR2SiEcuC0uSUEfaXkzCyK0B0+QnKCJRPycr/Fv0n4gXpkoOX
-	 CpotkDssPI/ghb/8UWFmzZvE0qBspVDQY2C+F0VYLb5GEI9kUvXljorsWjykBsbJu8
-	 LAPtwkBjkdYrA==
-Received: from [100.95.196.25] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: koike)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 233DF37821F4;
-	Thu,  6 Jun 2024 14:48:01 +0000 (UTC)
-Message-ID: <da1366fa-4d48-4227-ae4b-4b39a6607973@collabora.com>
-Date: Thu, 6 Jun 2024 11:47:59 -0300
+	id 1sFFTP-0000000AOLh-2DNs;
+	Thu, 06 Jun 2024 15:56:21 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id C0AE361E16;
+	Thu,  6 Jun 2024 15:56:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CA4EC32781;
+	Thu,  6 Jun 2024 15:56:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717689378;
+	bh=tgSaH7pDA3q488BIGAg9INFjOhEWBEU92Cre1GIHnnA=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=nxHxUkDy5SRXgOUC05eRFC9BM0omMZ1mJdaJJ5BTQ8mSdDDepnOjlXjqS/4JUjWoq
+	 7EuUUBdiYF7wGJH3Wimq2/EgzENSUqdtPWE/6bSrBUmttExLsHFlxngfNObfFtdEkS
+	 BUl1QNfQH5rbO9257a0+EHiJO2aT2Hz88curu3ZWONVInuRcoQSfomCBEbB3UuLIqg
+	 rmfR9u6F7TRzdbpoGCkIYv09MJa9fbXWuvBa3DYlw/MvhBBbefYGiO7kE5pBWY3Sfi
+	 7OJRysDSPVMqJyolD54U0YUjea88gIXWW/+tboACn8KlCd5VHuxb9yMof763cUZnGz
+	 t+FJ+DMqmnP+Q==
+Date: Thu, 06 Jun 2024 09:56:17 -0600
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/6] drm/ci: uprev mesa/IGT and generate testlist
-To: Vignesh Raman <vignesh.raman@collabora.com>,
- dri-devel@lists.freedesktop.org
-Cc: daniels@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
- robdclark@gmail.com, david.heidelberg@collabora.com,
- guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
- dmitry.baryshkov@linaro.org, mcanal@igalia.com,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org
-References: <20240529024049.356327-1-vignesh.raman@collabora.com>
-Content-Language: en-US
-From: Helen Koike <helen.koike@collabora.com>
-In-Reply-To: <20240529024049.356327-1-vignesh.raman@collabora.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Christian Hewitt <christianshewitt@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20240606094513.3949323-1-christianshewitt@gmail.com>
+References: <20240606094513.3949323-1-christianshewitt@gmail.com>
+Message-Id: <171768925717.3793270.14812356444317886177.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: add dream vendor prefix
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240606_074809_040529_5284FA22 
-X-CRM114-Status: GOOD (  11.92  )
+X-CRM114-CacheID: sfid-20240606_085619_666805_6C8BD0EF 
+X-CRM114-Status: GOOD (  10.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,114 +72,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-
-On 28/05/2024 23:40, Vignesh Raman wrote:
-> Uprev mesa and IGT to the latest version and stop vendoring the
-> testlist into the kernel. Instead, use the testlist from the
-> IGT build to ensure we do not miss renamed or newly added tests.
-> Update the xfails with the latest testlist run.
+On Thu, 06 Jun 2024 09:45:11 +0000, Christian Hewitt wrote:
+> Add a vendor prefix for Dream Property GmbH
 > 
-> Add farm variable and update device type variable.
-> 
-> https://gitlab.freedesktop.org/vigneshraman/linux/-/pipelines/1187556
-> 
-> Vignesh Raman (6):
->    drm/ci: uprev mesa version
->    drm/ci: add farm variable
->    drm/ci: generate testlist from build
->    drm/ci: uprev IGT
->    drm/ci: skip driver specific tests
->    drm/ci: update xfails for the new testlist
-> 
->   drivers/gpu/drm/ci/build-igt.sh               |   41 +-
->   drivers/gpu/drm/ci/build.sh                   |    6 +-
->   drivers/gpu/drm/ci/container.yml              |   12 +-
->   drivers/gpu/drm/ci/gitlab-ci.yml              |   46 +-
->   drivers/gpu/drm/ci/igt_runner.sh              |    9 +-
->   drivers/gpu/drm/ci/image-tags.yml             |    2 +-
->   drivers/gpu/drm/ci/lava-submit.sh             |    4 +-
->   drivers/gpu/drm/ci/test.yml                   |   17 +-
->   drivers/gpu/drm/ci/testlist.txt               | 2761 -----------------
->   .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt |   41 +-
->   .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |    7 +
->   .../gpu/drm/ci/xfails/amdgpu-stoney-skips.txt |   33 +-
->   drivers/gpu/drm/ci/xfails/i915-amly-fails.txt |   31 +
->   .../gpu/drm/ci/xfails/i915-amly-flakes.txt    |    9 +
->   drivers/gpu/drm/ci/xfails/i915-amly-skips.txt |   22 +-
->   drivers/gpu/drm/ci/xfails/i915-apl-fails.txt  |   46 +-
->   drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt |    6 +
->   drivers/gpu/drm/ci/xfails/i915-apl-skips.txt  |   26 +-
->   drivers/gpu/drm/ci/xfails/i915-cml-fails.txt  |   38 +
->   drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt |    6 +
->   drivers/gpu/drm/ci/xfails/i915-cml-skips.txt  |   23 +
->   drivers/gpu/drm/ci/xfails/i915-glk-fails.txt  |   41 +-
->   drivers/gpu/drm/ci/xfails/i915-glk-flakes.txt |    7 +
->   drivers/gpu/drm/ci/xfails/i915-glk-skips.txt  |   26 +-
->   drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt  |   42 +-
->   drivers/gpu/drm/ci/xfails/i915-kbl-flakes.txt |    7 +-
->   drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt  |   36 +-
->   drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt  |   77 +-
->   drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt  |   28 +-
->   drivers/gpu/drm/ci/xfails/i915-whl-fails.txt  |   63 +-
->   drivers/gpu/drm/ci/xfails/i915-whl-flakes.txt |    6 +
->   drivers/gpu/drm/ci/xfails/i915-whl-skips.txt  |   22 +-
->   .../drm/ci/xfails/mediatek-mt8173-fails.txt   |   30 +-
->   .../drm/ci/xfails/mediatek-mt8173-flakes.txt  |   11 +
->   .../drm/ci/xfails/mediatek-mt8173-skips.txt   |   16 +
->   .../drm/ci/xfails/mediatek-mt8183-fails.txt   |   21 +-
->   .../drm/ci/xfails/mediatek-mt8183-skips.txt   |   18 +
->   .../gpu/drm/ci/xfails/meson-g12b-fails.txt    |   24 +-
->   .../gpu/drm/ci/xfails/meson-g12b-skips.txt    |   18 +
->   .../gpu/drm/ci/xfails/msm-apq8016-fails.txt   |   12 +-
->   .../gpu/drm/ci/xfails/msm-apq8016-skips.txt   |   15 +
->   .../gpu/drm/ci/xfails/msm-apq8096-fails.txt   |    7 +
->   .../gpu/drm/ci/xfails/msm-apq8096-flakes.txt  |    6 +
->   .../gpu/drm/ci/xfails/msm-apq8096-skips.txt   |   26 +-
->   .../msm-sc7180-trogdor-kingoftown-fails.txt   |  175 +-
->   .../msm-sc7180-trogdor-kingoftown-flakes.txt  |    8 +
->   .../msm-sc7180-trogdor-kingoftown-skips.txt   |   19 +
->   ...sm-sc7180-trogdor-lazor-limozeen-fails.txt |  175 +-
->   ...m-sc7180-trogdor-lazor-limozeen-flakes.txt |    6 +
->   ...sm-sc7180-trogdor-lazor-limozeen-skips.txt |   16 +
->   .../gpu/drm/ci/xfails/msm-sdm845-fails.txt    |   38 +-
->   .../gpu/drm/ci/xfails/msm-sdm845-flakes.txt   |   25 +-
->   .../gpu/drm/ci/xfails/msm-sdm845-skips.txt    |   19 +
->   .../drm/ci/xfails/rockchip-rk3288-fails.txt   |   62 +-
->   .../drm/ci/xfails/rockchip-rk3288-skips.txt   |   21 +-
->   .../drm/ci/xfails/rockchip-rk3399-fails.txt   |   83 +-
->   .../drm/ci/xfails/rockchip-rk3399-flakes.txt  |   13 +-
->   .../drm/ci/xfails/rockchip-rk3399-skips.txt   |   19 +
->   drivers/gpu/drm/ci/xfails/update-xfails.py    |    4 +-
->   .../drm/ci/xfails/virtio_gpu-none-fails.txt   |   94 +-
->   .../drm/ci/xfails/virtio_gpu-none-skips.txt   |   20 +-
->   61 files changed, 1348 insertions(+), 3194 deletions(-)
->   delete mode 100644 drivers/gpu/drm/ci/testlist.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/i915-glk-flakes.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/i915-whl-flakes.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8173-flakes.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8173-skips.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-skips.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/meson-g12b-skips.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/msm-apq8016-skips.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/msm-apq8096-flakes.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-flakes.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-flakes.txt
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 
-Applied to drm-misc-next
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-Thanks
-Helen
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y amlogic/meson-g12b-dreambox-one.dtb amlogic/meson-g12b-dreambox-two.dtb' for 20240606094513.3949323-1-christianshewitt@gmail.com:
+
+arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dtb: /soc/bus@ff600000/bus@42000/clock-controller@0: failed to match any schema with compatible: ['amlogic,g12a-audio-clkc']
+arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dtb: /soc/bus@ff600000/bus@42000/clock-controller@0: failed to match any schema with compatible: ['amlogic,g12a-audio-clkc']
+arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dtb: /soc/bus@ff600000/bus@42000/audio-controller@744: failed to match any schema with compatible: ['amlogic,g12a-tohdmitx']
+arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dtb: sys-ctrl@0: '#address-cells', '#size-cells', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
+arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dtb: /soc/bus@ff600000/bus@42000/audio-controller@744: failed to match any schema with compatible: ['amlogic,g12a-tohdmitx']
+arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dtb: sys-ctrl@0: '#address-cells', '#size-cells', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
+
+
+
+
+
 
 _______________________________________________
 linux-amlogic mailing list
