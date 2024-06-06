@@ -4,62 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAEB1C27C53
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 00:33:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C9D3C27C53
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 00:33:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=knkAHwVsO5hPwF6n5wi7V3qpN8xAljcezX2EqgPTLqs=; b=jtPbJy/KhQErmo
-	sU7qqMLUu+b/mu9K/yM28dgx/eYA/kUhFgYLVNlFNBfufHL480ulZk0bYuK2R+K9cKmVgdJ9pufxk
-	yx6ENgUu2Sasttd3KOpu02l54TjRjT8oIoYjSrjwncD9Ex7PFtUNJ/8BFSMm2ir7ZbPE72Ta2qUgJ
-	HuLGM6hwuxK6S53HrnllbLjE5wYsqIz9YWp4EEvlzF666DR+n57hOJoDnyQKHWefccFy4NZF9/SU3
-	bleQ3SBn0z6+XpWs+Lug+VLNS2lzpr+Z3lslVHi+sWRpUrsbl6bCAnxufGRmoSYp0OQ/0dZrBMiiw
-	uCtcZtqleCbQ4bEQxMiQ==;
+	List-Owner; bh=WcldsJ8fzgKCv/+enCZm/OEMu1otakAqgEfRRZf5M38=; b=uTeyExPaL/A5wH
+	DzRcZiYA9adS2Rj5A0fKMfM8aRBl0KO0emFTLGTZbhATOuhRF7m+ToUXtWzL3x/oRa1IeBHcF6frk
+	NhPUb+8Okvy/OBVmh86vqRjrdjP5PllSJYfCycKst3xrCaQ3GtXk1zhKRNoCWUWsk2KW3Fayn6t1d
+	t5YOi+uIdVYhgGGZOEXTAfsXKuHTIv9tMg3W3pU+1ljqeQcsY03BX+KdlCs4v2q5XBKeyLP9dEz79
+	dyPjxkeN59iZi5hyRPMMljx6UibWUbXrEUpFwBtEKLCspZsYLe70v3IG6NzLfaTgjBRdj58yWt6R4
+	cKlSxbs7UkYV0ZbpOFvQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF14C-00000007yCv-3N6O;
-	Thu, 06 Jun 2024 00:33:20 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1sF14V-00000007yJJ-33pz;
+	Thu, 06 Jun 2024 00:33:39 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF149-00000007yCa-3zBc;
-	Thu, 06 Jun 2024 00:33:19 +0000
+	id 1sF14S-00000007yIH-3cYG;
+	Thu, 06 Jun 2024 00:33:38 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id DD0D961218;
-	Thu,  6 Jun 2024 00:33:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EE93C2BD11;
-	Thu,  6 Jun 2024 00:33:16 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 6F217CE1901;
+	Thu,  6 Jun 2024 00:33:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72639C2BD11;
+	Thu,  6 Jun 2024 00:33:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717633996;
-	bh=WQF0gHP8Z0+bptDb1mHSImhPzB/SQ12M5264wKzMY5U=;
+	s=k20201202; t=1717634013;
+	bh=56qUZqP/b9o5DLhPAmeKSWqAvPFqXnecS90zH8EEqvU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bLgHCFPvdj12ouyCp2nhTERThnl3msBGm6S6R5Glz4n+rmeMjnM+Ofv7AXjMVRFnk
-	 T3BPG9OUGwYxO/yspQrFZu6Ql+3bi+yW9rDNnpa2aTa9jaDsflyriLNeWZTSFt35ak
-	 0Agw6hO6zC/TWBLNXhllP5TgOuIbRTyc+W7gwW23Di9jE9vfpGE2/coDik5fSQ9MK+
-	 HuHjnsjYqPjTeeAUqvmjVu4JPUkolyX0oOMkUtgW8q0iS4cLAjAVH2+7oWJaFhXgpO
-	 Me4Sx7E6+X3aiR9qh3i5jrHwfpkWBNUiigmvLmKU4W8uEvvD6SBEOcH7fXrScX2O8T
-	 I0c+AF5sb9WMg==
-Date: Wed, 5 Jun 2024 18:33:13 -0600
+	b=Q6ml0GK5ln8BzDQqNTUhmFXOlKge2R+ZxDTU1gpyOWxj7gGZbShGTGL1/p6yczmuu
+	 MuNpPaHlO4siG4s+uqlzmsa15hrL8J8XDoPZBqKEGjmOGZ+om1+W/VMrarYKE3tTyp
+	 kZkCAfqLa9Z+Y4HqiMBDCjMNXfx6o5p3nqcyFoCR2gV7qjdjmIXJcvCYyRKAEn1ZcO
+	 tb90g5xhpDatlVKVzZmAk2x4+gJQxWBrR7akawDsNmOtssCeSfvbEUgk2TnSy1lk0E
+	 FDib/zdUE0GgZ12jUT8qIi1Wq8trXGjhPdB30msXlkji0SL5n+lq2cQI+gB98zaNLl
+	 0/WzEJ9G4wkeA==
+Date: Wed, 5 Jun 2024 18:33:31 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mmc: meson-gx: add optional power-domains
-Message-ID: <171763399122.3518466.10613163286977063987.robh@kernel.org>
-References: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-mmc-v1-1-4acbb8cc2626@linaro.org>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-amlogic@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: nvmem: amlogic,meson-gx-efuse: add optional
+ power-domains
+Message-ID: <171763400890.3519005.9651126174187029952.robh@kernel.org>
+References: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-nvmem-v1-1-ef6f10c86a63@linaro.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-mmc-v1-1-4acbb8cc2626@linaro.org>
+In-Reply-To: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-nvmem-v1-1-ef6f10c86a63@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240605_173318_058998_68DD03A0 
-X-CRM114-Status: UNSURE (   8.65  )
+X-CRM114-CacheID: sfid-20240605_173337_209983_024D4C55 
+X-CRM114-Status: UNSURE (   8.55  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,13 +81,13 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Wed, 05 Jun 2024 11:34:46 +0200, Neil Armstrong wrote:
-> On newer SoCs, the MMC controller can require a power-domain to operate,
+On Wed, 05 Jun 2024 11:35:22 +0200, Neil Armstrong wrote:
+> On newer SoCs, the eFuse hardware can require a power-domain to operate,
 > add it as optional.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml | 3 +++
+>  Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml | 3 +++
 >  1 file changed, 3 insertions(+)
 > 
 
