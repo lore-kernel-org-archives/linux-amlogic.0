@@ -4,95 +4,117 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01A6DC25B75
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 07:43:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF12CC27C55
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 07:54:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Pb8B8HJNUMIDIg8IEqL7JhKjFsKyPh+Z3gV8S1k1Ayc=; b=YV9fZQ3zgcYzrs
-	sfMvaXLPKqAJpHpOTGgn5B+DxXuZsd8wyqWDyildw/c2Ufwop2Tzeh1332Wi78GhgLtmYS7sMgyZt
-	PExS3P/ekXEoRTYDc1tehGUSUzucf/0z0QegBezrQ83TpbE1rPUiCRbHMY27WTJ9sjUjyjSdbrHwN
-	O9t3MHjHV8KygWytVNZpmWZbrK91IBjbPFHEKFM7HCO7VCRIIhDeCeRkZ6h9skc0GzpYus2QGS024
-	/v1y0u6JObu5zdbyDpMiwwYZ8pOIcU7a88tyKo38OjRI4i2mbKgQ5qdDCkD3oeyMNETt95FzQjNmi
-	Q2O+XyGEA0jfxo88rXeA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=QBRaMT3Hdob9a1yGMhbAtDHbWiUeGsVjLRJQ15Mqxfg=; b=SO4CX0ossCpKVBVva5uZCtWnsG
+	LqQCbT3LqVU/3okjdNHjQd3OZJGtGRduwuRITiTYhxOzFK/BJtfPOlriqgZTijuvJbsSUhKXZA9U9
+	zkzANulYZUvZVd09iY7IT3UwjPc8z2VRyTdAeHIt2bOlnJ7pc7SulXgUs7O2EEr0cFVhvi7sR5kSY
+	oW1IUTi9e2KuNAOFXN/gWGghy841Nez9AZG1zym7BgTIvPRRMww1eRqCRpWlYOjcrP6FW8q3eeSaN
+	pw9xVyXqduYC6yxDpkDuoKZ+Mb0DyzmJIw7CfR/NGxdS4lFkOWErnaOMR243HTPWTAmS8S4Pq2NrI
+	iE5RS9Hw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF7ls-00000008iML-2lOO;
-	Thu, 06 Jun 2024 07:42:52 +0000
-Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
+	id 1sF7x9-00000008jYh-1x5I;
+	Thu, 06 Jun 2024 07:54:31 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF7lp-00000008iL1-3TDj
+	id 1sF7x6-00000008jW7-1R6y
 	for linux-amlogic@lists.infradead.org;
-	Thu, 06 Jun 2024 07:42:51 +0000
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-57a2ed9af7dso865001a12.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 00:42:41 -0700 (PDT)
+	Thu, 06 Jun 2024 07:54:29 +0000
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-35dceef429bso267435f8f.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 00:54:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717659760; x=1718264560; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7hn7A2vtREo0E7HfSwjkC9hqptsOSWf7nUvmnuVDMQY=;
-        b=QpdF8/e2+csDerZVEAgxFTXKe4QxjbJf/SuFhVnwju5bl8w49TY3TwHrWdUAQ8zY6y
-         lqZ0GgewidQxXU58nkFYTdctAdti9jZeJHVhBd4WWJwoMmTUoANmnEDRYe/RgrQ7Lisl
-         UTbUQayPecNGtxkpQjPYNvxMgmgFwjcJ168VSD4R8rcLMHR23xn3GvwAUV1uE+Ca/Hab
-         DfCUyKvhQ+ZdX56fd2flfrqBqKEIRLR9gM+jESSi2MaSquuaL0rkHJy5h8fe2ZjPBoiL
-         HWRD78GVnCtMZO8eYycVkI7sF5UVzrCZ/LRV9CUG5dLPYAP1AR/VWLYJBloB9Dncetye
-         AhDQ==
+        d=linaro.org; s=google; t=1717660464; x=1718265264; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kmYn9rMjzNzeNgtppFDQy4tGwULHDIGKKfhkuKp/Fsc=;
+        b=Txbp34a0nYQqB87IQo3mIYkkBxL0ttN/FPaQHR/5FgC4t6uqHG/KDz8wRSXHXYnjVD
+         JHpgEUXhokxi1GnvM3/8HaCxs++NXTiGAcjidmPJVzj+kpWyY6ttaXJQMoSSzlV/vD7j
+         Us8juhixib2/9nhaFyWctWUZmU5ZxBGEpKFZ3dnYHnzMUaoptLduzdYB/XNQxj3wqW7t
+         xuMHJ79vd+NTgSrLDHHCVgllltbYZXmI2ZmK1362D5aH0ZzzO/vHgetjs9bdWfTXCnRM
+         FNnimJZaxH/hRBK5a7s3qj66GrKwvBqajt7V/Z42vHusPa671Qno6NVNRsrtGvRx/E0U
+         Ktng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717659760; x=1718264560;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7hn7A2vtREo0E7HfSwjkC9hqptsOSWf7nUvmnuVDMQY=;
-        b=JSRy8Re2Y+I00HXjal/1GDpzSyOmnyeYYFlHvhMXE0+ioeyIG1mGFfHKAjDdO6erx2
-         nHk7risil+oXl5vOS15EcPxQ1v8W62c40w/2+QqxzxBYZkFbWYLieNi7pxVc0cjO/+rB
-         i3jDGU2pViWwtirTlYkbKqVA6/b8mJUcFdcFFvO9i/0RLP1P6Mfmp+nOBUkbuuUjrFUN
-         aWg50b+Pzu6aJMwz3sJvVNtvGsXxhr00uqTjNIFy+FqiqzW2/c6HRCVmX0wtn/sGE09z
-         t0JxmEcuEBbun/lkKvUITWM8gZRE5jUUhPzGoJarVcyC8ih9VwcwuvOLR0SLHxKsTHSl
-         8tGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU8Bhm7+4E4zevC8xXLg/LHfGP/gxmgezzVZU9CD/NfcFNFArZjib94twBl9lfzW3m5Is3RgxiyLAy5gvRw4MI/XxHJIJ4uK3DUOx2+Qw2ZjjY=
-X-Gm-Message-State: AOJu0YzluMjcY+XHePJwTKz3THXzFjlphD7DzVepZgfzrNtwFbluWi7x
-	IS4T3iFgTPksIUHa34Mc9CqTwx+ElxvsBcVAvCVH2U666G9ea6nSYpETcAczdpo=
-X-Google-Smtp-Source: AGHT+IG9fb84ekx6f8HaBtotI1FnubBAZuTJ3dgM/XdsdCeyuhCLEIFdUbolQkfIb3FKjJXzmIhddQ==
-X-Received: by 2002:a17:907:900e:b0:a68:fe79:9499 with SMTP id a640c23a62f3a-a699f88b67cmr343464966b.40.1717659760015;
-        Thu, 06 Jun 2024 00:42:40 -0700 (PDT)
-Received: from localhost ([102.222.70.76])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c806ebc43sm57149266b.141.2024.06.06.00.42.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 00:42:39 -0700 (PDT)
-Date: Thu, 6 Jun 2024 10:42:35 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Joy Chakraborty <joychakr@google.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Bingbu Cao <bingbu.cao@intel.com>,
-	Zhihao Cheng <chengzhihao1@huawei.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-mtd@lists.infradead.org, linux-rtc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org,
-	manugautam@google.com
-Subject: Re: [PATCH v1 01/17] hwmon: pmbus: adm1266: Change nvmem
- reg_read/write return type
-Message-ID: <08ff07f4-034d-4342-89da-d83044871ab1@moroto.mountain>
-References: <20240605175953.2613260-1-joychakr@google.com>
- <20240605175953.2613260-2-joychakr@google.com>
+        d=1e100.net; s=20230601; t=1717660464; x=1718265264;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=kmYn9rMjzNzeNgtppFDQy4tGwULHDIGKKfhkuKp/Fsc=;
+        b=X1wFbyxS6gAV2Cg+vySlgs9TtcZIZTtpofjSA/1rgup4AlLVAfdTKj+foQFB+KZQ8s
+         3znjmr4F9C31MlJqnHs2xXyO5i7JwAu1bDvhgKVo76O+VH5Bk3YwXnzDWqjA4ZdOeKLp
+         LqrtVYJKH/ZbnlyIkhNobbM5R3Zl4ir2AGU4cqBQSojQvXyKAUGL+axVcAMeDMt05FgT
+         qboSqNhGXaBC471wI8FSYmmKSkXURQgRiUh1eU9xsJiGx3o9fItqyWxvrsAtaqsEMPYN
+         v0P5Lj+YihIYLI0JL979lCLrP+HDjh0IOCd0lU58iF3ejcR+w4tNoGoPnwsl30a3wRJS
+         tUzA==
+X-Forwarded-Encrypted: i=1; AJvYcCX4O6AZPx3lCQqIg9iWUCmCev1JnOdlN1L+t4YXGxvvnOR6UqAnVUZfjl2zMDYPOms72xi9AwbyvnYFzcof4gtLqFcfgQAYe00O6F0Ypm2MYTQ=
+X-Gm-Message-State: AOJu0YxBhArW6bnGlMpHXdqScsP0Qd/7dHCcUNFmxVnJ9XMQORz8wZOw
+	Nh7mxfge1J9AFr/lh6mdCMVWKkhqaX/W5gNVUW9oW06tM3CCeJdvhn1b34KPsfY=
+X-Google-Smtp-Source: AGHT+IH4KWb4XVK34xYY5tEiXvzfkgFMx11vnQnrD9YBFyNgpHbpBdy+mWtj8PG7uu3umEeRvRNHwQ==
+X-Received: by 2002:a5d:6a44:0:b0:357:16f6:71dc with SMTP id ffacd0b85a97d-35ef0d7a2e0mr1635823f8f.13.1717660464551;
+        Thu, 06 Jun 2024 00:54:24 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:22fd:4ae6:287f:17f2? ([2a01:e0a:982:cbb0:22fd:4ae6:287f:17f2])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42158148f66sm47781085e9.32.2024.06.06.00.54.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jun 2024 00:54:24 -0700 (PDT)
+Message-ID: <1a82eeb8-bb95-4fad-acce-798ba0cda170@linaro.org>
+Date: Thu, 6 Jun 2024 09:54:22 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240605175953.2613260-2-joychakr@google.com>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] dt-bindings: iio: adc: amlogic,meson-saradc: add optional
+ power-domains
+To: Conor Dooley <conor@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-sardac-v1-1-40a8de6baa59@linaro.org>
+ <20240605-abdomen-starch-4fd4d7ead431@spud>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240605-abdomen-starch-4fd4d7ead431@spud>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240606_004249_999826_B81FF140 
-X-CRM114-Status: GOOD (  17.48  )
+X-CRM114-CacheID: sfid-20240606_005428_458898_98EC7492 
+X-CRM114-Status: UNSURE (   7.72  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,48 +126,24 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jun 05, 2024 at 05:59:45PM +0000, Joy Chakraborty wrote:
-> Change nvmem read/write function definition return type to ssize_t.
+On 05/06/2024 18:58, Conor Dooley wrote:
+> On Wed, Jun 05, 2024 at 11:37:08AM +0200, Neil Armstrong wrote:
+>> On newer SoCs, the SAR ADC hardware can require a power-domain to operate,
+>> add it as optional.
 > 
-> Signed-off-by: Joy Chakraborty <joychakr@google.com>
-> ---
->  drivers/hwmon/pmbus/adm1266.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/hwmon/pmbus/adm1266.c b/drivers/hwmon/pmbus/adm1266.c
-> index 2c4d94cc8729..7eaab5a7b04c 100644
-> --- a/drivers/hwmon/pmbus/adm1266.c
-> +++ b/drivers/hwmon/pmbus/adm1266.c
-> @@ -375,7 +375,7 @@ static int adm1266_nvmem_read_blackbox(struct adm1266_data *data, u8 *read_buff)
->  	return 0;
->  }
->  
-> -static int adm1266_nvmem_read(void *priv, unsigned int offset, void *val, size_t bytes)
-> +static ssize_t adm1266_nvmem_read(void *priv, unsigned int offset, void *val, size_t bytes)
->  {
->  	struct adm1266_data *data = priv;
->  	int ret;
-> @@ -395,7 +395,7 @@ static int adm1266_nvmem_read(void *priv, unsigned int offset, void *val, size_t
->  
->  	memcpy(val, data->dev_mem + offset, bytes);
->  
-> -	return 0;
-> +	return bytes;
->  }
+> What about the older socs that don't have power domains, the property is
+> now usable there?
 
-This breaks the build so it's not allowed.  The way to do it is to:
-1) add a new pointer which takes a ssize_t
-2) convert everything to the new pointer
-3) Rename the new pointer to the old name
+Old SoCs doesn't necessarily have an associated power domain, or was handled
+by firmware, does it harm if we make it optional for older ones as well ?
 
-regards,
-dan carpenter
-
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
