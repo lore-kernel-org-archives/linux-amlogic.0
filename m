@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A3A8C25B75
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 12:35:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8948BC27C54
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 12:36:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QwIxbHgDQm2aTbSeWMnl4vDiOycFV5EwnDBkDmS88+o=; b=W2ZV4K7CyJDjkj
-	e50mNj5LdTd5ahL409XGEcREZxluLqW0JQcfQWoAwg6yQxSaeMb92hGYpoaz7ca/i3QxquJA6vTZh
-	VkhELu2/xdH1wQpICrZLW9DgCNM1kcdBVuN1ArTFH7CEUigWniEluqB+QmBpUv5IMWUKgIPq4vy1u
-	6iW06/oowBoIXk0t7YJ0s2/ag4GsjQ+N/Uxcj4hTw9iX1MVC5Pe9F0Kdq1zbFFBfWva3bfBMC++36
-	L7yrJGQJUIb2EFlAVl51yxefLIs0wIDFI4IIVEPHCVIQVMIzniUWlWuD7XBZ3Q11hpC7B/PWG7LMJ
-	r+ugUC3kYRFt8GKUguwg==;
+	List-Owner; bh=SUN5RoWAQRSh9tGFMik+qateynzXsSH65TzZTAx24UM=; b=MxhbeTSN6QyeUr
+	nmBhwbjlSxT2ETPRO0MMcTlL1GoTwavOYtxr66QD6hPlygYeCWu2SMGoGR5YaTLaPSKvtqwD0vEve
+	vAdy467COafUIEjPNG/ggQkI4oBOZss2OLvcNjYa36XnLLIi6cxxzeT9VmFH8pJNREq/GENe8ZMUB
+	uaSOPtwdvFOcS8rCh8Ihq/oi3ydyd8bogSX1NMZwPhpMvSGisIAYPNMQuE0qrvWo0kpba96OlkM7R
+	cK42nrWsbPaaeSQcmgLCNafhRVHHWQRbCqIkiQ3IBUpPSQm5orhjSEWSlr8V17YXqgAGbExQaS3kF
+	pgBz58x9Jy4cRHzMvVYQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFCLF-00000009iVX-13si;
-	Thu, 06 Jun 2024 12:35:41 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1sFCLi-00000009if7-15LJ;
+	Thu, 06 Jun 2024 12:36:10 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFCLC-00000009iUR-0KnT
+	id 1sFCLg-00000009idZ-0DNM
 	for linux-amlogic@lists.infradead.org;
-	Thu, 06 Jun 2024 12:35:40 +0000
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-35e5c6600f0so740675f8f.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 05:35:35 -0700 (PDT)
+	Thu, 06 Jun 2024 12:36:09 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4212b4eea2eso9291265e9.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 05:36:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717677334; x=1718282134; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1717677366; x=1718282166; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gnVwk1qvmc5Fsad+Z4X3tVu6jWMtGl51Xl48H9WIuCg=;
-        b=DSg8UHdH8q5hIPRBbwZ9p4QR8No81qqqMUpI8yGYgD2IbL8Zxu+i9uP+IyrbJz6xKY
-         ptq/vuUjQU1YtChem7f1vby6Ieu547pmJCGgYFHmLjxtwRjJZMcLVuN0HfuaYa3+2rdV
-         ieSm1NcPIy0IZHIuW4H1tms8yZLyDCVNgpSn55k8mb0P5FB4E/5koaEyUIyo/y9rjb3H
-         IEQkO0ZpddbVJ5CnBzkANep18EQnTPZIqYk7m4D36Pls1jt8aenpuW7MA3TsXRbHEHp4
-         kBHbgKuQuzZcu0T434PXEwML2+obtT8KX4GQTi96gwYiEO2dAD3MSa9RRMFKtNrm59hT
-         Ddog==
+        bh=ogY55IeWKsz6nhskBHDlN3lk/o0stE2xrcCaIWC2sHs=;
+        b=xVks2kmlmm8Ur1XuL9mExazU8vvp/jMU8e7f2ta1vpRhs7YGFsal6AOtDIc/xUv/UN
+         O7MjjMfGBTWSxOSnmm170H4jdj5QfMmALDswSxn6S0RTT3CtHvOjXbeeLXIIqNm9xKXl
+         cShZhEeZ0YudUY2FwPx5HzUu3bj8fN23Ap54WVq+iljCi3tBI050AVjtcEMkPLGPUgVG
+         SJeE5zbRFrmdKsINbPMyoUsPd5Z7TSS5DeEYK0FwuR+Nicj7HkQCa7Aas50pu6MgleRF
+         l34x9iUlFZEqiioxsL5NRdIc9TZeM0fRjtrOBZAugRsmS+m3yTQ4fmjs/0rQmIqQA3sZ
+         +mJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717677334; x=1718282134;
+        d=1e100.net; s=20230601; t=1717677366; x=1718282166;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gnVwk1qvmc5Fsad+Z4X3tVu6jWMtGl51Xl48H9WIuCg=;
-        b=OqAU1fSnVB1mCaWbOSIa0mwHdU4AO2W9Wgfq7mrLjbek/GA6wJuCX3lBsWlfRNfz4Z
-         Qds/mjMsbsjXO0vovMckLqbTLBdhQd6jWr1vi16+alulY6Zf2UWGQ3mbX1s6oK/9XP8F
-         S4FocqM/Y5T2zEYENj9b6OJ6IBblkAX3ayfRXWuhxnExj0vCEDJ0MvSu7tUXC+BI48m3
-         tl0Qi9mBUv+Rph8GA18lZkSNTO444RiWTH4dod6gwPwr0B1VExDjpx6JbrUZr3oa5nVT
-         mKJPaLfMPbgD5yRZ6JfRZVYlYmWnezcyXJwN/l6ZERuB0hrTKks3W3+s/d5HLaHmBebK
-         3rfA==
-X-Forwarded-Encrypted: i=1; AJvYcCW/CdnfwHDl03Q3rW1qKmWm5TUKpjkjeevyetswCuWfXHacj6BwLt+Y4Nsyk5Cfw+enH+zWdwMKYxEOGwFfyQ6oY4Tmx+N3CCHUC+mtz8RsbzQ=
-X-Gm-Message-State: AOJu0Yz2MPPaPoKqacGENWIHPlvUHTo2MIjJIojtNZUAnuBj00uWvIy3
-	bwZ/4q/WrGrJ8Ox38cq7xStwhd7wUwocTeS899p/wF3bfa7+gKngObL8DDIxjoE=
-X-Google-Smtp-Source: AGHT+IFd53/s+0+5U7aZUBkcncfwJiY9Y4vT5N+6LdWmq2uvsfi+ejLkS30I4EkxgQo1p62nIJVGDg==
-X-Received: by 2002:a05:6000:459b:b0:357:bcdd:a99d with SMTP id ffacd0b85a97d-35e8406097emr3519353f8f.21.1717677334042;
-        Thu, 06 Jun 2024 05:35:34 -0700 (PDT)
+        bh=ogY55IeWKsz6nhskBHDlN3lk/o0stE2xrcCaIWC2sHs=;
+        b=SPaQZ8BEPQVfhL5q1KgGn6slijilFWRi1AWy+SY58opRMKeyUur2wIQpjA1uhsn1qU
+         24X9PZYEujGXjdmG6wNnKSZ0MrX5veUdGS9m1fa85KbFdjQ/BivWJdBg5C48rN/WDvrJ
+         OUEfAILNciN3R00jjopsgYCG15aQ/Z+cgHWbHnfYFs08VeMIwPe+Gli6HNPt8dLIloSJ
+         FoOK1U8NlvJIlnDD03BF2rkMdr1c1g1E5g0n3ycyFsC9ENvG2Ol567wXWHNgcPs3HKP6
+         TJWZYeee42WzRNEIi5SHfOg9DG0gx169n1X/GRWLQUxJB0HnQ0TtH6bcdm4u6Av5eUtf
+         Z7vw==
+X-Forwarded-Encrypted: i=1; AJvYcCWVpFV4dC3iWH3+BZdWOvouDuFqOh7o7J0kd3sXoNHRCXWmkn1+sBFcF3jwFFquyXEtd357nWzYqTZ4wF0wi0l64ouy1PpNM79bJU7WuLH69EI=
+X-Gm-Message-State: AOJu0YxC4LNq1m8EjXqbkum96DdLZ2JVXDo3JFQvcH2PfXyPy48rji0D
+	nx7HbkxljBj1MfhoRuVk2j5dM+yxoDAUWrQAM4NaESaeTBbntmbMvu87EL7pT2s=
+X-Google-Smtp-Source: AGHT+IHVI3vQZBy/HXvAuNxs2tFj9UxFWNOQxTwJYAajuQ0iu0j1R4hPD19fqE02mrYtg7hJDVcByg==
+X-Received: by 2002:a05:600c:1391:b0:421:925:6655 with SMTP id 5b1f17b1804b1-421562df25dmr40150145e9.1.1717677365733;
+        Thu, 06 Jun 2024 05:36:05 -0700 (PDT)
 Received: from [192.168.2.24] ([110.93.11.116])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5fc31adsm1445974f8f.92.2024.06.06.05.35.32
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421580fe366sm54771735e9.7.2024.06.06.05.36.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jun 2024 05:35:33 -0700 (PDT)
-Message-ID: <b9e90667-43cd-4f6a-95b3-5efbc407346b@linaro.org>
-Date: Thu, 6 Jun 2024 14:35:32 +0200
+        Thu, 06 Jun 2024 05:36:05 -0700 (PDT)
+Message-ID: <3c7c9662-7eff-471d-9274-f8b340cdb2b6@linaro.org>
+Date: Thu, 6 Jun 2024 14:36:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add OSMC Vero 4K
+Subject: Re: [PATCH 1/3] dt-bindings: add dream vendor prefix
 To: Christian Hewitt <christianshewitt@gmail.com>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -77,7 +77,7 @@ To: Christian Hewitt <christianshewitt@gmail.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240606095419.3950015-1-christianshewitt@gmail.com>
+References: <20240606094513.3949323-1-christianshewitt@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -124,10 +124,10 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240606095419.3950015-1-christianshewitt@gmail.com>
+In-Reply-To: <20240606094513.3949323-1-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240606_053538_135580_1E979024 
-X-CRM114-Status: UNSURE (   6.22  )
+X-CRM114-CacheID: sfid-20240606_053608_518320_F9A6C9A2 
+X-CRM114-Status: UNSURE (   5.60  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -145,12 +145,11 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 06/06/2024 11:54, Christian Hewitt wrote:
-> Add support for the OSMC Vero 4K Linux-based STB
+On 06/06/2024 11:45, Christian Hewitt wrote:
+> Add a vendor prefix for Dream Property GmbH
 > 
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
