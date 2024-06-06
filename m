@@ -4,70 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8948BC27C54
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 12:36:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BE2AC27C54
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 12:36:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=SUN5RoWAQRSh9tGFMik+qateynzXsSH65TzZTAx24UM=; b=MxhbeTSN6QyeUr
-	nmBhwbjlSxT2ETPRO0MMcTlL1GoTwavOYtxr66QD6hPlygYeCWu2SMGoGR5YaTLaPSKvtqwD0vEve
-	vAdy467COafUIEjPNG/ggQkI4oBOZss2OLvcNjYa36XnLLIi6cxxzeT9VmFH8pJNREq/GENe8ZMUB
-	uaSOPtwdvFOcS8rCh8Ihq/oi3ydyd8bogSX1NMZwPhpMvSGisIAYPNMQuE0qrvWo0kpba96OlkM7R
-	cK42nrWsbPaaeSQcmgLCNafhRVHHWQRbCqIkiQ3IBUpPSQm5orhjSEWSlr8V17YXqgAGbExQaS3kF
-	pgBz58x9Jy4cRHzMvVYQ==;
+	List-Owner; bh=FVEKPytm4yRv4+MTJAFcJSPSHAtIax8TF/0JAICaH/s=; b=PTEvYs9FmZA6Y2
+	5OalpD47Gl31loX9+bMAa4V/pIVDzj5THWHhjKTmXqfFZ0c3yQaVkHwgibjMmank7m1QZ3KUY1dyc
+	lZph6wy2sxAQQj+GD5ACtUK+SZXeTJUmgCFQ9otZzbo5nkfrlSS9bPgp/LpUH5Rc/Q95+iIA+BeVP
+	9C40jrDSLwlVeIqBe2QGSr60mnY7Uop4o0A+OclBwG+kmHhXzNb1C4gbcb+2FAK8nd0vmli6YJa8f
+	IGFPUE+Ws1Ii/4v4yQqtB+bFLHrlKl+sU8a2EHNbLKNlRZkZAGll57PUi7M+BDvdW1i9UJLHOlCUo
+	sFDGxqxqDKjCG+QDkvPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFCLi-00000009if7-15LJ;
-	Thu, 06 Jun 2024 12:36:10 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1sFCLw-00000009inF-3RLq;
+	Thu, 06 Jun 2024 12:36:24 +0000
+Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFCLg-00000009idZ-0DNM
+	id 1sFCLm-00000009igP-1ftY
 	for linux-amlogic@lists.infradead.org;
-	Thu, 06 Jun 2024 12:36:09 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4212b4eea2eso9291265e9.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 05:36:07 -0700 (PDT)
+	Thu, 06 Jun 2024 12:36:16 +0000
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-52b936c958dso1075446e87.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 05:36:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717677366; x=1718282166; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ogY55IeWKsz6nhskBHDlN3lk/o0stE2xrcCaIWC2sHs=;
-        b=xVks2kmlmm8Ur1XuL9mExazU8vvp/jMU8e7f2ta1vpRhs7YGFsal6AOtDIc/xUv/UN
-         O7MjjMfGBTWSxOSnmm170H4jdj5QfMmALDswSxn6S0RTT3CtHvOjXbeeLXIIqNm9xKXl
-         cShZhEeZ0YudUY2FwPx5HzUu3bj8fN23Ap54WVq+iljCi3tBI050AVjtcEMkPLGPUgVG
-         SJeE5zbRFrmdKsINbPMyoUsPd5Z7TSS5DeEYK0FwuR+Nicj7HkQCa7Aas50pu6MgleRF
-         l34x9iUlFZEqiioxsL5NRdIc9TZeM0fRjtrOBZAugRsmS+m3yTQ4fmjs/0rQmIqQA3sZ
-         +mJw==
+        d=linaro.org; s=google; t=1717677372; x=1718282172; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=CwfHtQYioR0Ch6IYzc3G8E96QHC5Vz0OXP+upCsTiZQ=;
+        b=rDIT2x43Wh0egMsJGe2jvb8H6IfI/Ku9Wc6/IsKNN9rIH+2pQJOP66eq2nCM9PKXik
+         NK0mFJ1F9hBXdVUvDxiyLQcJ9lBCdjeX3W8h5a/jMOLbgcjHSuMVxwGJ7516jIooiROS
+         dZTeIv3TYsxLx8QPyS8uU2X4PTZbq7owNlKdxwqyoWmsYtbqG30kptBJod197YcQkVvC
+         hCaAzrw2ZzsWRTfkJ7u+xG+vDyz/oEheUURVtz45quzBuOHSotHFLolv1SXsWFWLC4Yg
+         kChMU8BwkLkG8pEKZw9jmpaU06s6qXtWHgrHP7zljSCPY7fsN3YSaBUNYh9s2nN3LPjV
+         HccA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717677366; x=1718282166;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ogY55IeWKsz6nhskBHDlN3lk/o0stE2xrcCaIWC2sHs=;
-        b=SPaQZ8BEPQVfhL5q1KgGn6slijilFWRi1AWy+SY58opRMKeyUur2wIQpjA1uhsn1qU
-         24X9PZYEujGXjdmG6wNnKSZ0MrX5veUdGS9m1fa85KbFdjQ/BivWJdBg5C48rN/WDvrJ
-         OUEfAILNciN3R00jjopsgYCG15aQ/Z+cgHWbHnfYFs08VeMIwPe+Gli6HNPt8dLIloSJ
-         FoOK1U8NlvJIlnDD03BF2rkMdr1c1g1E5g0n3ycyFsC9ENvG2Ol567wXWHNgcPs3HKP6
-         TJWZYeee42WzRNEIi5SHfOg9DG0gx169n1X/GRWLQUxJB0HnQ0TtH6bcdm4u6Av5eUtf
-         Z7vw==
-X-Forwarded-Encrypted: i=1; AJvYcCWVpFV4dC3iWH3+BZdWOvouDuFqOh7o7J0kd3sXoNHRCXWmkn1+sBFcF3jwFFquyXEtd357nWzYqTZ4wF0wi0l64ouy1PpNM79bJU7WuLH69EI=
-X-Gm-Message-State: AOJu0YxC4LNq1m8EjXqbkum96DdLZ2JVXDo3JFQvcH2PfXyPy48rji0D
-	nx7HbkxljBj1MfhoRuVk2j5dM+yxoDAUWrQAM4NaESaeTBbntmbMvu87EL7pT2s=
-X-Google-Smtp-Source: AGHT+IHVI3vQZBy/HXvAuNxs2tFj9UxFWNOQxTwJYAajuQ0iu0j1R4hPD19fqE02mrYtg7hJDVcByg==
-X-Received: by 2002:a05:600c:1391:b0:421:925:6655 with SMTP id 5b1f17b1804b1-421562df25dmr40150145e9.1.1717677365733;
-        Thu, 06 Jun 2024 05:36:05 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1717677372; x=1718282172;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CwfHtQYioR0Ch6IYzc3G8E96QHC5Vz0OXP+upCsTiZQ=;
+        b=sr8zDhYp6UUPe5O4+6HAkJXMiInlzHIFplYyg258DhFhe8+2LmzI2d3FoXXZ4FFGpw
+         L4HaZ3LeZVaNrdzjLjex9V+0kxxZEjHMNgHX2HmCif2hYdicrJ168rmILcf9Mw7RmNJQ
+         gcZ7OMoPv1Qj/1ZMUFKLrzheQBj5qCT4D32uFbnA5vxJeFwKDyNb5BcRoTtUl8RSLaiE
+         9JzlMMovIvJTvUog5co4eBxQ51mxH70WckJ9c6un2d1CI7bpLWfzrSxMJC7H7xHUiayo
+         i+k2sRHzyNJdY0LNTHPZnGLAvbi+E67eoYe/QcvUra32zO9cIEVUY08LcbsUZ2yT9bBE
+         FIlA==
+X-Forwarded-Encrypted: i=1; AJvYcCUiPfasjOflrsw+ZfpZkBcxKm6eKK6O8flZM8FjypIML+k9QdAvOM02Lvzu7xlwLY5B+AoKP5NSDxWehFqmH9tihPKEqzcwBjDGkYKfgCeV+Cs=
+X-Gm-Message-State: AOJu0YwvPQ38SRr/GODmj9P4c7x1BL90QTbuH3GuZKiYlPvHOHWfh+h9
+	bm8JBpe0eFRDLd5zF8kYIYPuc5oGMbU1mMc+hCZIIRtYOdMYGlACKTW0Cmni5ms=
+X-Google-Smtp-Source: AGHT+IFxf5AbZK0xfoIuzBycTPd0ERSVWXQofkSrXHJeZcE6CsZLV7QVG/4Dq36UAbGn4z0NplXrCg==
+X-Received: by 2002:a19:7006:0:b0:52b:98ab:6100 with SMTP id 2adb3069b0e04-52bab4c92d3mr3154822e87.15.1717677371942;
+        Thu, 06 Jun 2024 05:36:11 -0700 (PDT)
 Received: from [192.168.2.24] ([110.93.11.116])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421580fe366sm54771735e9.7.2024.06.06.05.36.04
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421580fe366sm54771735e9.7.2024.06.06.05.36.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jun 2024 05:36:05 -0700 (PDT)
-Message-ID: <3c7c9662-7eff-471d-9274-f8b340cdb2b6@linaro.org>
-Date: Thu, 6 Jun 2024 14:36:04 +0200
+        Thu, 06 Jun 2024 05:36:11 -0700 (PDT)
+Message-ID: <db540adf-b03a-445c-b9a4-aa48b2a844b5@linaro.org>
+Date: Thu, 6 Jun 2024 14:36:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: add dream vendor prefix
+Subject: Re: [PATCH 2/3] dt-bindings: arm: amlogic: add support for Dreambox
+ One/Two
 To: Christian Hewitt <christianshewitt@gmail.com>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -78,8 +80,9 @@ To: Christian Hewitt <christianshewitt@gmail.com>,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20240606094513.3949323-1-christianshewitt@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <20240606094513.3949323-2-christianshewitt@gmail.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -124,10 +127,10 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240606094513.3949323-1-christianshewitt@gmail.com>
+In-Reply-To: <20240606094513.3949323-2-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240606_053608_518320_F9A6C9A2 
-X-CRM114-Status: UNSURE (   5.60  )
+X-CRM114-CacheID: sfid-20240606_053614_612664_AF1BD6BF 
+X-CRM114-Status: UNSURE (   5.67  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -146,7 +149,8 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 06/06/2024 11:45, Christian Hewitt wrote:
-> Add a vendor prefix for Dream Property GmbH
+> Dreambox One and Dreambox Two are DVBS/T2 receiver boxes based
+> on the Amlogic W400 reference board with an S922X chip.
 > 
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
