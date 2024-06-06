@@ -4,85 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BF80C27C52
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 09:13:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C678C27C55
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 09:13:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wDmHggBtAe4GU4cFR4nVN2gMBETpOKhbPoNMi15pVJA=; b=tII1fGJGAPkvoU
-	JqXpEgqKwXCKOzU76/Z+5QhjGLl/JcZXd6nFCAkIpstA4ShnIPBHGRbJrvRHqRfa7n19J/+4V0BGS
-	Trc2FEShbRe/aDw/IiG2D6x/bLIg0lh6kKDxCJPeGIi4U2stjVq/eaQblJRoZye2nYb7KyBvtG/de
-	AjdtaZ5sLc/pmzt5f4m5idu3xT4RQTRHESvBupTS8CbG6UuphgdGsJzw83PSBkZ78fxDpREyDm7nd
-	AV1Vw+NfN4J4dDTLTsd/ZJaBwr2URli8HwMfUG6Y9m8csF7xQCzMpximdzjHYVXs98PRpXiBGcWUw
-	Ke/6bDlp+jVhusBvXt7g==;
+	List-Owner; bh=QcWFv3rKyD0gAO3w8S8Yr84Hm2SqXOVnu2kIcLKSMfY=; b=ZfWCOL+AWQZlUv
+	e62gyX8fsPaeq9zzoU7kVJNOjU8v3iNkXGtt/7mNWhJCLpa5qWgXfkoRwGqaENGU059xTJoAEXCoh
+	VDpGvMPK90PB2oGMohJAeN4cIJ78pn+lEIT93gk9ry6iQKOGfGzuunxWYa52zByefpkp9MPVkU/Ea
+	NquZu5mAOlG24QFPj2CKv8Tbeo4PCPy7WfHgwfvwna2TjBadDIEWSGGtqYmcc2C1mwN9926c+tIhz
+	10ufnc1Qk3+m1Qz1B1nIROygn4kNayTtuhlWheo20qTD7xCiBJN19gctZy1tISzvwK9yTLdaV9rNP
+	UpH4Q36mhPfJde2G89Zg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF9BY-000000093mg-3h4T;
-	Thu, 06 Jun 2024 09:13:28 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1sF9Bm-000000093x2-3FBM;
+	Thu, 06 Jun 2024 09:13:42 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF9BU-000000093j8-3ftv
+	id 1sF9Bh-000000093s3-2DT3
 	for linux-amlogic@lists.infradead.org;
-	Thu, 06 Jun 2024 09:13:27 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-35dc1d8867eso816333f8f.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 02:13:24 -0700 (PDT)
+	Thu, 06 Jun 2024 09:13:40 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-42155dfc484so4660365e9.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 02:13:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717665203; x=1718270003; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1717665216; x=1718270016; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8rV+wPIak8jDJVIln2KU5nBsAQyEDveq8MoQL7f6Gpw=;
-        b=MlEJSWOwfsZRGNjmr+h7orRBAwa/Eqhlz9qRrq5vdT1BhN3WPWw1Z2EDMat2WzgOeX
-         4GLrbk0Mr8LoBGA0aXxZSgOxn8XrfeCHa6+lSnPsoQtZBJbs0FO33cQwkMni8w3BSKx1
-         Fai8eVrJuGX2sCgp5oxpgBGWtLTlt0kNsGmUh9jsFp9/ZE8YLPcJhky93XQI4xCNjKji
-         gqSUVweWoHLKrcKGptnK0+i7eH1pAWjBgfONVISeOBV4UQgtA4H7y7cI2uZM8Pm+HQ19
-         g3wcZlk/40fmoQGG79o6XnawubbXQ1fohN/dXfEQCVzYVDNQaDkZhjyhTYYTlHwIPz/f
-         r11w==
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FeksLIX2BzaZCNAN7y72dDwBN6DfppMxjFM7Q5oi4xQ=;
+        b=pb1nGPv9AOP5MUBeYyA0KlMARe9UsTkKnqyOqSyKaAkWkcx3/YV5bUUjhr4a0doYNS
+         Yg9veFovqzUNygihcMtslTToTL/d86yemIsMyW5FUxdw6AXVwiFUl8LyYz7Icmv/nkQo
+         nZArm0YIKBsI7U5kdg5Me3cWxUnrB8I1jz/bKSZT2sh7kITqEpUuhNKRp+jOJx5ltnho
+         W0cPZm1gG68vANqcQsthkAx7K8Gikr5wzKDjdxDGZvEuzaqFCNlKH9UVwE+pfXX0y5wm
+         vb07ydytGpg/tq0ssO2A7bFPS8F2us4QS+5lP1Ses9Sq7syAOKww3CtMIOVhr5vZGR+z
+         WpKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717665203; x=1718270003;
+        d=1e100.net; s=20230601; t=1717665216; x=1718270016;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8rV+wPIak8jDJVIln2KU5nBsAQyEDveq8MoQL7f6Gpw=;
-        b=ZKCxac8miNfNVpQTQ8Goif/ZUw1FkcIAL39SbZ1gsaJBEk1bzl/EcWi7i8oyLy9FcK
-         ynuNKN9zkyrRrIKz2GHMPUaj7UUJpycQFrOSzxx5xNTF+i5RPt8XPNnSN4pPWDF3rqD5
-         1jDvidJLF/OyYj22Ghe2mJN6lWKGiM4onR7JvSbiQHI7/hpH4PogCsIpx0F48bdaKgp8
-         HTgAgS92F8yjTn/grS+EUMhBAy8v1CA0Sd+JNKCsPx/vW6fEcS6rL1RJxyk1Rp7sJS9I
-         76+VKvBVaTXIsugor9n8GqCtdYaaH/1j5xVyA/anm7VC9mhK0KsIffcdOM/aMY04aUVL
-         D87g==
-X-Forwarded-Encrypted: i=1; AJvYcCXI02F4duncmE6a8lYf/PzJAHx0Qtn3iJUa6BNSbFYJIBifuwVMm/jIBivptoZirht/Gg1RPwUTl+9iOhcy/tKfiWReig65ooGsnsdEPy1+ujE=
-X-Gm-Message-State: AOJu0YyNa9WOz/wb3SW04wJbQhelMPUr6eHuIEoSZ5yKf3Vb4RoDIt0d
-	xumeDD0QV3Z9j1kaFkaxwer3g4tNl1in1IN4bJ5KSkhodovBIr8qLC9R9Pso1QA=
-X-Google-Smtp-Source: AGHT+IENoBRX9GZB8aiNkmV7wcMdCnCEvVTAjFXuir5TAL6BESM6I1wWByFMmTrTiJi75bRLz3bAJg==
-X-Received: by 2002:a5d:5f8f:0:b0:355:2212:45fd with SMTP id ffacd0b85a97d-35e8ef7ea42mr4942853f8f.46.1717665203266;
-        Thu, 06 Jun 2024 02:13:23 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d66d01sm1027407f8f.50.2024.06.06.02.13.22
+        bh=FeksLIX2BzaZCNAN7y72dDwBN6DfppMxjFM7Q5oi4xQ=;
+        b=eXaXs6oVqOSFgUx2ZUBAU/KehkJCAGUlWjsmPQcqInA5P4EiUZYiSj6EF/1E2BsSaq
+         yNhieTc42RiRzyq+A/yDcENeL6CVmD5h97NiEPIQ7D5bgCk5HYoeMVcwO/3iPol5ZtSY
+         w+qAabf7sXNnNYixSlVS6yxG7sQmcRphZhZyd3nmqhLbfKZY39QSxBB9VFIjy10d21dN
+         xBmwzi8F3LDCeHknT+dLIE4wSTqTS2Mew7AUm4AvDxzJ1F83D7wOADNh7gazTDGBTpOu
+         ZFzQhSWnojuM14qUcN0pEeE/xbiaflF8dUrZTLvxkYv2M66qD1QVO19CUpsZIMBncOjD
+         y7vg==
+X-Forwarded-Encrypted: i=1; AJvYcCXlpMyJqPhjAT7j3wr0tiNeg8ZOoGTXhx8k7NiAS17KmxvwI9ckLMUqlzvVp017kvC5HsD0h+/W73YomBjm73hMgw12QR95W9qkOOk56fVuBiE=
+X-Gm-Message-State: AOJu0YzGQv3FEdbB3A7dyE6OTrbDx+KGUaI9MEHHU9B6fDBozdjIEFaQ
+	REEosa8rQmw3D1zP0b2Z5DmdA8Vy8dsjSZ+/IRRUQGJbbkovbsP8GUq/5ngIZIk=
+X-Google-Smtp-Source: AGHT+IGiTcenUwmrVbwMZ8CWLNgOE8eMGra87A9ikPjy4LKrOALDBu62I+rUPEWsyHUIPgFuKNgcsw==
+X-Received: by 2002:a05:600c:a03:b0:421:1d8:add4 with SMTP id 5b1f17b1804b1-4215634e602mr46190305e9.35.1717665215936;
+        Thu, 06 Jun 2024 02:13:35 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215c2a544bsm15038175e9.21.2024.06.06.02.13.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 02:13:22 -0700 (PDT)
+        Thu, 06 Jun 2024 02:13:35 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+To: Kevin Hilman <khilman@baylibre.com>, 
  Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Christian Hewitt <christianshewitt@gmail.com>
-Cc: Yuntian Zhang <yt@radxa.com>
-In-Reply-To: <20240606090615.3946433-1-christianshewitt@gmail.com>
-References: <20240606090615.3946433-1-christianshewitt@gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: meson: radxa-zero2: add pwm-fan support
-Message-Id: <171766520246.3911343.18150781840775151395.b4-ty@linaro.org>
-Date: Thu, 06 Jun 2024 11:13:22 +0200
+In-Reply-To: <20240604050752.3312468-1-christianshewitt@gmail.com>
+References: <20240604050752.3312468-1-christianshewitt@gmail.com>
+Subject: Re: [PATCH] soc: amlogic: meson-gx-socinfo: Add S905L ID
+Message-Id: <171766521524.3911648.14792995642693649032.b4-ty@linaro.org>
+Date: Thu, 06 Jun 2024 11:13:35 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.13.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240606_021324_948550_6832430E 
-X-CRM114-Status: UNSURE (   9.87  )
+X-CRM114-CacheID: sfid-20240606_021337_670105_2A7B41DD 
+X-CRM114-Status: UNSURE (   8.56  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -102,21 +99,21 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Thu, 06 Jun 2024 09:06:15 +0000, Christian Hewitt wrote:
-> The A311D on Zero2 needs active cooling and the board includes a header to
-> connect a simple fan. Add pwm-fan support with basic thermal properties so
-> the fan runs when connected.
+On Tue, 04 Jun 2024 05:07:52 +0000, Christian Hewitt wrote:
+> Add the S905L SoC ID observed in several P271 boards:
+> 
+> kernel: soc soc0: Amlogic Meson GXLX (S905L) Revision 26:a (c1:2) Detected
 > 
 > 
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.11/arm64-dt)
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.11/drivers)
 
-[1/1] arm64: dts: meson: radxa-zero2: add pwm-fan support
-      https://git.kernel.org/amlogic/c/1d1239a1b0e502faffe43b97d530232285b9f061
+[1/1] soc: amlogic: meson-gx-socinfo: Add S905L ID
+      https://git.kernel.org/amlogic/c/d1d0f1f6ff6013211e3ee00237e4cc25ad0cd64b
 
 These changes has been applied on the intermediate git tree [1].
 
-The v6.11/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+The v6.11/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
 for inclusion in their intermediate git branches in order to be sent to Linus during
 the next merge window, or sooner if it's a set of fixes.
 
