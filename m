@@ -4,134 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BE2AC27C54
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 12:36:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78763C27C5F
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 14:19:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FVEKPytm4yRv4+MTJAFcJSPSHAtIax8TF/0JAICaH/s=; b=PTEvYs9FmZA6Y2
-	5OalpD47Gl31loX9+bMAa4V/pIVDzj5THWHhjKTmXqfFZ0c3yQaVkHwgibjMmank7m1QZ3KUY1dyc
-	lZph6wy2sxAQQj+GD5ACtUK+SZXeTJUmgCFQ9otZzbo5nkfrlSS9bPgp/LpUH5Rc/Q95+iIA+BeVP
-	9C40jrDSLwlVeIqBe2QGSr60mnY7Uop4o0A+OclBwG+kmHhXzNb1C4gbcb+2FAK8nd0vmli6YJa8f
-	IGFPUE+Ws1Ii/4v4yQqtB+bFLHrlKl+sU8a2EHNbLKNlRZkZAGll57PUi7M+BDvdW1i9UJLHOlCUo
-	sFDGxqxqDKjCG+QDkvPQ==;
+	List-Owner; bh=qz8h4nl9UMi3UuosjwRfIt7vMGVl/OTmMgOn0gtcBJg=; b=MTLN0N7a3hiy7D
+	7jAPgOJ5CbH6PoQ2M17D9DQlCuP5D7rGy8FUrFBbnQASMdjBfAfdop4SzhZGctNvoFLbGaS2Pn0NU
+	khuuGFgJvCYPsTO2KunDpQ/8c+zUTG3d3qXlJ96ULYRS73Co8Lf/MrNeoNKwOyAzn9EPNDbNq7RuK
+	apaY41+ihqBKM2Hhy2YhJlfQvqF7L4avpGqPh3Y/N6+sboxW+4cL4tibTL2pE/KoINN5STUfUgmXA
+	UMN+1hvDGbGdWAr3gkGV2gKyBmmwOLJBLV49PlkggFdTHIp9OY5Py+ElIchtwXVEMNaMvaovPMyoi
+	ZSvxrgm/FvJExvTs3VEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFCLw-00000009inF-3RLq;
-	Thu, 06 Jun 2024 12:36:24 +0000
-Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
+	id 1sFDxV-0000000A1yn-3z5I;
+	Thu, 06 Jun 2024 14:19:17 +0000
+Received: from madrid.collaboradmins.com ([2a00:1098:ed:100::25])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFCLm-00000009igP-1ftY
-	for linux-amlogic@lists.infradead.org;
-	Thu, 06 Jun 2024 12:36:16 +0000
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-52b936c958dso1075446e87.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 05:36:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717677372; x=1718282172; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=CwfHtQYioR0Ch6IYzc3G8E96QHC5Vz0OXP+upCsTiZQ=;
-        b=rDIT2x43Wh0egMsJGe2jvb8H6IfI/Ku9Wc6/IsKNN9rIH+2pQJOP66eq2nCM9PKXik
-         NK0mFJ1F9hBXdVUvDxiyLQcJ9lBCdjeX3W8h5a/jMOLbgcjHSuMVxwGJ7516jIooiROS
-         dZTeIv3TYsxLx8QPyS8uU2X4PTZbq7owNlKdxwqyoWmsYtbqG30kptBJod197YcQkVvC
-         hCaAzrw2ZzsWRTfkJ7u+xG+vDyz/oEheUURVtz45quzBuOHSotHFLolv1SXsWFWLC4Yg
-         kChMU8BwkLkG8pEKZw9jmpaU06s6qXtWHgrHP7zljSCPY7fsN3YSaBUNYh9s2nN3LPjV
-         HccA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717677372; x=1718282172;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CwfHtQYioR0Ch6IYzc3G8E96QHC5Vz0OXP+upCsTiZQ=;
-        b=sr8zDhYp6UUPe5O4+6HAkJXMiInlzHIFplYyg258DhFhe8+2LmzI2d3FoXXZ4FFGpw
-         L4HaZ3LeZVaNrdzjLjex9V+0kxxZEjHMNgHX2HmCif2hYdicrJ168rmILcf9Mw7RmNJQ
-         gcZ7OMoPv1Qj/1ZMUFKLrzheQBj5qCT4D32uFbnA5vxJeFwKDyNb5BcRoTtUl8RSLaiE
-         9JzlMMovIvJTvUog5co4eBxQ51mxH70WckJ9c6un2d1CI7bpLWfzrSxMJC7H7xHUiayo
-         i+k2sRHzyNJdY0LNTHPZnGLAvbi+E67eoYe/QcvUra32zO9cIEVUY08LcbsUZ2yT9bBE
-         FIlA==
-X-Forwarded-Encrypted: i=1; AJvYcCUiPfasjOflrsw+ZfpZkBcxKm6eKK6O8flZM8FjypIML+k9QdAvOM02Lvzu7xlwLY5B+AoKP5NSDxWehFqmH9tihPKEqzcwBjDGkYKfgCeV+Cs=
-X-Gm-Message-State: AOJu0YwvPQ38SRr/GODmj9P4c7x1BL90QTbuH3GuZKiYlPvHOHWfh+h9
-	bm8JBpe0eFRDLd5zF8kYIYPuc5oGMbU1mMc+hCZIIRtYOdMYGlACKTW0Cmni5ms=
-X-Google-Smtp-Source: AGHT+IFxf5AbZK0xfoIuzBycTPd0ERSVWXQofkSrXHJeZcE6CsZLV7QVG/4Dq36UAbGn4z0NplXrCg==
-X-Received: by 2002:a19:7006:0:b0:52b:98ab:6100 with SMTP id 2adb3069b0e04-52bab4c92d3mr3154822e87.15.1717677371942;
-        Thu, 06 Jun 2024 05:36:11 -0700 (PDT)
-Received: from [192.168.2.24] ([110.93.11.116])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421580fe366sm54771735e9.7.2024.06.06.05.36.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jun 2024 05:36:11 -0700 (PDT)
-Message-ID: <db540adf-b03a-445c-b9a4-aa48b2a844b5@linaro.org>
-Date: Thu, 6 Jun 2024 14:36:10 +0200
+	id 1sFDxS-0000000A1uE-0Qg8;
+	Thu, 06 Jun 2024 14:19:16 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1717683543;
+	bh=Fn85BNJY8o23kIO+1l+XNYU0QSUu0sHvm9EFYZMdX9Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jdiewfDlYSl0qQpB0TUBm24SkPj4ms2S2ZS4PszSay6Omhj/MQoLVJjfPcd7z9YMv
+	 lY4lHZXP3IN7zYNnm36BLSkbFZ580E2sVU/U/BP/YwrxYEL1UxDkx+aGDmeA+pfP3F
+	 eiSxiJB6xUorsHO9na7XclLNRHb/dtndLSPE1xrProSgiSSx4jTmgNezXlSiEr8/gS
+	 2QG7JNmFT8KHqEieaowotWK+vKi2B+wGtnDx2leWx13iu6b6DIVyFCkqgcFz/QuQh3
+	 7GG6LghaoIgTchP02jUa5OekjhS3e+rkiOVebK74hDZxqYmTJbPrPN4URJn2jTVZX5
+	 EmPEEDXWsyL7w==
+Received: from [100.95.196.25] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: koike)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id DC43237821DE;
+	Thu,  6 Jun 2024 14:18:56 +0000 (UTC)
+Message-ID: <28b51ad5-637f-4935-ae20-08ff982a5127@collabora.com>
+Date: Thu, 6 Jun 2024 11:18:54 -0300
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: arm: amlogic: add support for Dreambox
- One/Two
-To: Christian Hewitt <christianshewitt@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240606094513.3949323-1-christianshewitt@gmail.com>
- <20240606094513.3949323-2-christianshewitt@gmail.com>
+Subject: Re: [PATCH v3 1/6] drm/ci: uprev mesa version
+To: Vignesh Raman <vignesh.raman@collabora.com>,
+ dri-devel@lists.freedesktop.org
+Cc: daniels@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
+ robdclark@gmail.com, david.heidelberg@collabora.com,
+ guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
+ dmitry.baryshkov@linaro.org, mcanal@igalia.com,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org
+References: <20240529024049.356327-1-vignesh.raman@collabora.com>
+ <20240529024049.356327-2-vignesh.raman@collabora.com>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240606094513.3949323-2-christianshewitt@gmail.com>
+From: Helen Koike <helen.koike@collabora.com>
+In-Reply-To: <20240529024049.356327-2-vignesh.raman@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240606_053614_612664_AF1BD6BF 
-X-CRM114-Status: UNSURE (   5.67  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240606_071914_638963_7E30A128 
+X-CRM114-Status: GOOD (  21.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -143,23 +77,284 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 06/06/2024 11:45, Christian Hewitt wrote:
-> Dreambox One and Dreambox Two are DVBS/T2 receiver boxes based
-> on the Amlogic W400 reference board with an S922X chip.
+
+
+On 28/05/2024 23:40, Vignesh Raman wrote:
+> zlib.net is not allowing tarball download anymore and results
+> in below error in kernel+rootfs_arm32 container build,
+> urllib.error.HTTPError: HTTP Error 403: Forbidden
+> urllib.error.HTTPError: HTTP Error 415: Unsupported Media Type
 > 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> Uprev mesa to latest version which includes a fix for this issue.
+> https://gitlab.freedesktop.org/mesa/mesa/-/commit/908f444e
+> 
+> Use id_tokens for JWT authentication. Since s3 bucket is migrated to
+> mesa-rootfs, update the variables accordingly. Also copy helper scripts
+> to install, so that the ci jobs can use these scripts for logging.
+> 
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+
+Acked-by: Helen Koike <helen.koike@collabora.com>
+
 > ---
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+> 
+> v2:
+>    - Uprev to recent version and use id_tokens for JWT authentication
+> 
+> v3:
+>    - Move adding farm variable and updating device type variable to seperate commit
+> 
+> ---
+>   drivers/gpu/drm/ci/build-igt.sh   |  2 +-
+>   drivers/gpu/drm/ci/build.sh       |  6 +++--
+>   drivers/gpu/drm/ci/container.yml  | 12 +++------
+>   drivers/gpu/drm/ci/gitlab-ci.yml  | 44 +++++++++++++++++++++----------
+>   drivers/gpu/drm/ci/image-tags.yml |  2 +-
+>   drivers/gpu/drm/ci/lava-submit.sh |  4 +--
+>   6 files changed, 42 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/ci/build-igt.sh b/drivers/gpu/drm/ci/build-igt.sh
+> index 500fa4f5c30a..7859554756c4 100644
+> --- a/drivers/gpu/drm/ci/build-igt.sh
+> +++ b/drivers/gpu/drm/ci/build-igt.sh
+> @@ -32,4 +32,4 @@ tar -cf artifacts/igt.tar /igt
+>   # Pass needed files to the test stage
+>   S3_ARTIFACT_NAME="igt.tar.gz"
+>   gzip -c artifacts/igt.tar > ${S3_ARTIFACT_NAME}
+> -ci-fairy s3cp --token-file "${CI_JOB_JWT_FILE}" ${S3_ARTIFACT_NAME} https://${PIPELINE_ARTIFACTS_BASE}/${KERNEL_ARCH}/${S3_ARTIFACT_NAME}
+> +ci-fairy s3cp --token-file "${S3_JWT_FILE}" ${S3_ARTIFACT_NAME} https://${PIPELINE_ARTIFACTS_BASE}/${KERNEL_ARCH}/${S3_ARTIFACT_NAME}
+> diff --git a/drivers/gpu/drm/ci/build.sh b/drivers/gpu/drm/ci/build.sh
+> index 106f2d40d222..a67871fdcd3f 100644
+> --- a/drivers/gpu/drm/ci/build.sh
+> +++ b/drivers/gpu/drm/ci/build.sh
+> @@ -128,6 +128,7 @@ fi
+>   # Pass needed files to the test stage
+>   mkdir -p install
+>   cp -rfv .gitlab-ci/* install/.
+> +cp -rfv ci/*  install/.
+>   cp -rfv install/common install/ci-common
+>   cp -rfv drivers/gpu/drm/ci/* install/.
+>   
+> @@ -141,14 +142,15 @@ if [[ "$UPLOAD_TO_MINIO" = "1" ]]; then
+>           FILES_TO_UPLOAD="$FILES_TO_UPLOAD $(basename -a $DEVICE_TREES)"
+>       fi
+>   
+> +    ls -l "${S3_JWT_FILE}"
+>       for f in $FILES_TO_UPLOAD; do
+> -        ci-fairy s3cp --token-file "${CI_JOB_JWT_FILE}" /lava-files/$f \
+> +        ci-fairy s3cp --token-file "${S3_JWT_FILE}" /lava-files/$f \
+>                   https://${PIPELINE_ARTIFACTS_BASE}/${DEBIAN_ARCH}/$f
+>       done
+>   
+>       S3_ARTIFACT_NAME="kernel-files.tar.zst"
+>       tar --zstd -cf $S3_ARTIFACT_NAME install
+> -    ci-fairy s3cp --token-file "${CI_JOB_JWT_FILE}" ${S3_ARTIFACT_NAME} https://${PIPELINE_ARTIFACTS_BASE}/${DEBIAN_ARCH}/${S3_ARTIFACT_NAME}
+> +    ci-fairy s3cp --token-file "${S3_JWT_FILE}" ${S3_ARTIFACT_NAME} https://${PIPELINE_ARTIFACTS_BASE}/${DEBIAN_ARCH}/${S3_ARTIFACT_NAME}
+>   
+>       echo "Download vmlinux.xz from https://${PIPELINE_ARTIFACTS_BASE}/${DEBIAN_ARCH}/vmlinux.xz"
+>   fi
+> diff --git a/drivers/gpu/drm/ci/container.yml b/drivers/gpu/drm/ci/container.yml
+> index 9764e7921a4f..d6edf3635b23 100644
+> --- a/drivers/gpu/drm/ci/container.yml
+> +++ b/drivers/gpu/drm/ci/container.yml
+> @@ -36,15 +36,15 @@ debian/android_build:
+>     rules:
+>       - when: never
+>   
+> -debian/x86_64_test-android:
+> +.debian/x86_64_test-android:
+>     rules:
+>       - when: never
+>   
+> -windows_build_vs2019:
+> +windows_build_msvc:
+>     rules:
+>       - when: never
+>   
+> -windows_test_vs2019:
+> +windows_test_msvc:
+>     rules:
+>       - when: never
+>   
+> @@ -56,10 +56,6 @@ rustfmt:
+>      rules:
+>       - when: never
+>   
+> -windows_vs2019:
+> -   rules:
+> -    - when: never
+> -
+> -clang-format:
+> +windows_msvc:
+>      rules:
+>       - when: never
+> \ No newline at end of file
+> diff --git a/drivers/gpu/drm/ci/gitlab-ci.yml b/drivers/gpu/drm/ci/gitlab-ci.yml
+> index 084e3ff8e3f4..8f32de63d92e 100644
+> --- a/drivers/gpu/drm/ci/gitlab-ci.yml
+> +++ b/drivers/gpu/drm/ci/gitlab-ci.yml
+> @@ -1,6 +1,6 @@
+>   variables:
+>     DRM_CI_PROJECT_PATH: &drm-ci-project-path mesa/mesa
+> -  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha 9d162de9a05155e1c4041857a5848842749164cf
+> +  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha e2b9c5a9e3e4f9b532067af8022eaef8d6fc6c00
+>   
+>     UPSTREAM_REPO: git://anongit.freedesktop.org/drm/drm
+>     TARGET_BRANCH: drm-next
+> @@ -19,33 +19,47 @@ variables:
+>             bash download-git-cache.sh
+>             rm download-git-cache.sh
+>             set +o xtrace
+> +  S3_JWT_FILE: /s3_jwt
+>     S3_HOST: s3.freedesktop.org
+> +  # This bucket is used to fetch the kernel image
+> +  S3_KERNEL_BUCKET: mesa-rootfs
+> +  # Bucket for git cache
+> +  S3_GITCACHE_BUCKET: git-cache
+> +  # Bucket for the pipeline artifacts pushed to S3
+> +  S3_ARTIFACTS_BUCKET: artifacts
+>     # per-pipeline artifact storage on MinIO
+> -  PIPELINE_ARTIFACTS_BASE: ${S3_HOST}/artifacts/${CI_PROJECT_PATH}/${CI_PIPELINE_ID}
+> +  PIPELINE_ARTIFACTS_BASE: ${S3_HOST}/${S3_ARTIFACTS_BUCKET}/${CI_PROJECT_PATH}/${CI_PIPELINE_ID}
+>     # per-job artifact storage on MinIO
+>     JOB_ARTIFACTS_BASE: ${PIPELINE_ARTIFACTS_BASE}/${CI_JOB_ID}
+>     # default kernel for rootfs before injecting the current kernel tree
+>     KERNEL_REPO: "gfx-ci/linux"
+> -  KERNEL_TAG: "v6.6.4-for-mesa-ci-e4f4c500f7fb"
+> -  KERNEL_IMAGE_BASE: https://${S3_HOST}/mesa-lava/${KERNEL_REPO}/${KERNEL_TAG}
+> +  KERNEL_TAG: "v6.6.21-mesa-f8ea"
+> +  KERNEL_IMAGE_BASE: https://${S3_HOST}/${S3_KERNEL_BUCKET}/${KERNEL_REPO}/${KERNEL_TAG}
+> +  PKG_REPO_REV: "3cc12a2a"
+>     LAVA_TAGS: subset-1-gfx
+>     LAVA_JOB_PRIORITY: 30
+> +  ARTIFACTS_BASE_URL: https://${CI_PROJECT_ROOT_NAMESPACE}.${CI_PAGES_DOMAIN}/-/${CI_PROJECT_NAME}/-/jobs/${CI_JOB_ID}/artifacts
+> +  # Python scripts for structured logger
+> +  PYTHONPATH: "$PYTHONPATH:$CI_PROJECT_DIR/install"
+>   
+>   default:
+> +  id_tokens:
+> +    S3_JWT:
+> +      aud: https://s3.freedesktop.org
+>     before_script:
+>       - export SCRIPTS_DIR=$(mktemp -d)
+>       - curl -L -s --retry 4 -f --retry-all-errors --retry-delay 60 -O --output-dir "${SCRIPTS_DIR}" "${DRM_CI_PROJECT_URL}/-/raw/${DRM_CI_COMMIT_SHA}/.gitlab-ci/setup-test-env.sh"
+>       - source ${SCRIPTS_DIR}/setup-test-env.sh
+>       - echo -e "\e[0Ksection_start:$(date +%s):unset_env_vars_section[collapsed=true]\r\e[0KUnsetting vulnerable environment variables"
+> -    - export CI_JOB_JWT_FILE="${CI_JOB_JWT_FILE:-$(mktemp)}"
+> -    - echo -n "${CI_JOB_JWT}" > "${CI_JOB_JWT_FILE}"
+> -    - unset CI_JOB_JWT
+> +    - echo -n "${S3_JWT}" > "${S3_JWT_FILE}"
+> +    - unset CI_JOB_JWT S3_JWT
+>       - echo -e "\e[0Ksection_end:$(date +%s):unset_env_vars_section\r\e[0K"
+>   
+>       - echo -e "\e[0Ksection_start:$(date +%s):drm_ci_download_section[collapsed=true]\r\e[0KDownloading mesa from $DRM_CI_PROJECT_URL/-/archive/$DRM_CI_COMMIT_SHA/mesa-$DRM_CI_COMMIT_SHA.tar.gz"
+>       - cd $CI_PROJECT_DIR
+>       - curl --output - $DRM_CI_PROJECT_URL/-/archive/$DRM_CI_COMMIT_SHA/mesa-$DRM_CI_COMMIT_SHA.tar.gz | tar -xz
+>       - mv mesa-$DRM_CI_COMMIT_SHA/.gitlab-ci* .
+> +    - mv mesa-$DRM_CI_COMMIT_SHA/bin/ci .
+>       - rm -rf mesa-$DRM_CI_COMMIT_SHA/
+>       - echo -e "\e[0Ksection_end:$(date +%s):drm_ci_download_section\r\e[0K"
+>   
+> @@ -53,9 +67,9 @@ default:
+>       - >
+>         set +x
+>   
+> -      test -e "${CI_JOB_JWT_FILE}" &&
+> -      export CI_JOB_JWT="$(<${CI_JOB_JWT_FILE})" &&
+> -      rm "${CI_JOB_JWT_FILE}"
+> +      test -e "${S3_JWT_FILE}" &&
+> +      export S3_JWT="$(<${S3_JWT_FILE})" &&
+> +      rm "${S3_JWT_FILE}"
+>   
+>   include:
+>     - project: 'freedesktop/ci-templates'
+> @@ -87,6 +101,7 @@ include:
+>         - '/src/intel/ci/gitlab-ci-inc.yml'
+>         - '/src/freedreno/ci/gitlab-ci-inc.yml'
+>         - '/src/amd/ci/gitlab-ci-inc.yml'
+> +      - '/src/virtio/ci/gitlab-ci-inc.yml'
+>     - drivers/gpu/drm/ci/image-tags.yml
+>     - drivers/gpu/drm/ci/container.yml
+>     - drivers/gpu/drm/ci/static-checks.yml
+> @@ -98,6 +113,7 @@ include:
+>   stages:
+>     - sanity
+>     - container
+> +  - code-validation
+>     - git-archive
+>     - build
+>     - amdgpu
+> @@ -107,7 +123,6 @@ stages:
+>     - msm
+>     - rockchip
+>     - virtio-gpu
+> -  - lint
+>   
+>   # YAML anchors for rule conditions
+>   # --------------------------------
+> @@ -218,14 +233,15 @@ make git archive:
+>     script:
+>       # Remove drm-ci files we just added
+>       - rm -rf .gitlab-ci.*
+> +    - rm -rf ci
+>   
+>       # Compactify the .git directory
+>       - git gc --aggressive
+>       # compress the current folder
+>       - tar -cvzf ../$CI_PROJECT_NAME.tar.gz .
+>   
+> -    # login with the JWT token file
+> -    - ci-fairy s3cp --token-file "${CI_JOB_JWT_FILE}" ../$CI_PROJECT_NAME.tar.gz https://$S3_HOST/git-cache/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_PROJECT_NAME.tar.gz
+> +    # Use id_tokens for JWT auth
+> +    - ci-fairy s3cp --token-file "${S3_JWT_FILE}" ../$CI_PROJECT_NAME.tar.gz https://$S3_HOST/${S3_GITCACHE_BUCKET}/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_PROJECT_NAME.tar.gz
+>   
+>   
+>   # Sanity checks of MR settings and commit logs
+> @@ -262,4 +278,4 @@ sanity:
+>   
+>   # Jobs that need to pass before spending hardware resources on further testing
+>   .required-for-hardware-jobs:
+> -  needs: []
+> \ No newline at end of file
+> +  needs: []
+> diff --git a/drivers/gpu/drm/ci/image-tags.yml b/drivers/gpu/drm/ci/image-tags.yml
+> index 7ab4f2514da8..60323ebc7304 100644
+> --- a/drivers/gpu/drm/ci/image-tags.yml
+> +++ b/drivers/gpu/drm/ci/image-tags.yml
+> @@ -1,5 +1,5 @@
+>   variables:
+> -   CONTAINER_TAG: "2023-10-11-mesa-uprev"
+> +   CONTAINER_TAG: "2024-05-09-mesa-uprev"
+>      DEBIAN_X86_64_BUILD_BASE_IMAGE: "debian/x86_64_build-base"
+>      DEBIAN_BASE_TAG: "${CONTAINER_TAG}"
+>   
+> diff --git a/drivers/gpu/drm/ci/lava-submit.sh b/drivers/gpu/drm/ci/lava-submit.sh
+> index 3d39b0c916a8..0707fa706a48 100755
+> --- a/drivers/gpu/drm/ci/lava-submit.sh
+> +++ b/drivers/gpu/drm/ci/lava-submit.sh
+> @@ -27,7 +27,7 @@ KERNEL_IMAGE_BASE="https://${BASE_SYSTEM_HOST_PATH}" \
+>   section_end variables
+>   
+>   tar zcf job-rootfs-overlay.tar.gz -C results/job-rootfs-overlay/ .
+> -ci-fairy s3cp --token-file "${CI_JOB_JWT_FILE}" job-rootfs-overlay.tar.gz "https://${JOB_ROOTFS_OVERLAY_PATH}"
+> +ci-fairy s3cp --token-file "${S3_JWT_FILE}" job-rootfs-overlay.tar.gz "https://${JOB_ROOTFS_OVERLAY_PATH}"
+>   
+>   touch results/lava.log
+>   tail -f results/lava.log &
+> @@ -45,7 +45,7 @@ PYTHONPATH=artifacts/ artifacts/lava/lava_job_submitter.py \
+>   	--ci-project-dir "${CI_PROJECT_DIR}" \
+>   	--device-type "${DEVICE_TYPE}" \
+>   	--dtb-filename "${DTB}" \
+> -	--jwt-file "${CI_JOB_JWT_FILE}" \
+> +	--jwt-file "${S3_JWT_FILE}" \
+>   	--kernel-image-name "${KERNEL_IMAGE_NAME}" \
+>   	--kernel-image-type "${KERNEL_IMAGE_TYPE}" \
+>   	--boot-method "${BOOT_METHOD}" \
 
 _______________________________________________
 linux-amlogic mailing list
