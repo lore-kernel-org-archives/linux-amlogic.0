@@ -4,111 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A79FC25B75
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 08:26:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 625C4C25B75
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 08:42:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=HBMlreXIMBt/staBJbXoUszBR7+FnVIQh7iqex2slV4=; b=mOzB6oFvqnYKLaecR8OQrBLm+E
-	w6yS/VqacTP50m+78HXqGXAVG2ZVnZZDxlYnLZJia4g0Nfm1EBK2dAubFC26E2ipGUI2Hw78dtfDP
-	toYNQv7KZ+lnC7Kno1Z+ACxcNqlJqZOTOU4TDngCRAMOTOt4UOdR7sYXwrR5gOCH1/ZBFFUjzqIY8
-	K3hso6jwe8/dbxCVM21F8S3fgCfepRPpfvicvA20Gjk4yXv6eJDZwuSbOBL6jFacpv/uuS8er4/MZ
-	f+HTX5Byv/oPoDFrbVaHHMaoD9I0UbiOEoEGdRwszKAANRicHksyQQ433D9vj2RhA+gInUPjdlAvN
-	WKQO+1eQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=kSzCbMSuDWkvcez61c7UVEwBe/QYo8JBTyTOPJAvDAs=; b=d1Fhv52K6+Rl6P
+	lv6eEzHt/uTavBFDhuhd9+g1bPw10Ysj9y3yLp/Od+nFbVHvZqbF4qWhUUKnuBsf5PuPoUSVDtjhl
+	sNILx0YoS4pZUwSY8ba7/7zkOZmkJ/n1j8Dm34fMSGqxEW/ok4hDHgxmrLV+M/fV/7QOlHjywXeem
+	U4jQVg2juYaIHO7Oxf26qXDpQSr7g329wntu1bvDcrUcNrQjfTEhZYyn17ss0i9vHAY1vJR6dr5W6
+	pPddB1OCXweiOlb+JjzC+vYwzAUVh0yIbMK8Yi9YLv64Bk1N9rKI26NxrEEfUkvHecIYluGAGhCea
+	o5YsuB75B6N1Igoqx11w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF8Rj-00000008p0X-0rLq;
-	Thu, 06 Jun 2024 08:26:07 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1sF8h4-00000008t0L-185y;
+	Thu, 06 Jun 2024 08:41:58 +0000
+Received: from mail-lj1-x235.google.com ([2a00:1450:4864:20::235])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF8Re-00000008ozV-3Kqb
+	id 1sF8gz-00000008swO-0eli
 	for linux-amlogic@lists.infradead.org;
-	Thu, 06 Jun 2024 08:26:04 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4215b0c4b7dso8116425e9.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 01:26:01 -0700 (PDT)
+	Thu, 06 Jun 2024 08:41:55 +0000
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2ead2c6b553so6695191fa.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 01:41:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717662360; x=1718267160; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bIK7ZRurCp3VUMKrCmmBFEo7JzuHyJlxiXupFh9itNg=;
-        b=YimceT6RZ2BrF5tfniRq2qO2zh1agSQIoUyxHz2t7LKZ6eqxEZKIDUqyF1VA1nFSNo
-         dYP0qZys4qyJC0Gplnj9Bvlj55N00QkQ1kAjSPgFNeGm8dwXRwd2qbk5TJO7mgJ9cLE3
-         u+CziPFOCB7hA3Y3f39gpB8jLmP2ak1FfDvAFWBnc0B1DLvB+FIqWTgdomZZtZzjXy9b
-         hDujziwAEgJPJRJZQaN2/fznDR8HlXaZB223Anjh3admrrkixqfrsGUt0FbJ0m+zBDMu
-         L5s5JEL+JSK9RTDyO95rCA4SYw73ZN6mtj+cVsxidshN8ja18Yd3z9rQPQgQ26lEZz30
-         PWOQ==
+        d=linaro.org; s=google; t=1717663311; x=1718268111; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lboqGDLkSlZiXGaj/uzeRuz104hFq0ngZ+Ud/fj/+Ag=;
+        b=VWAvD2q90H40Xu7vnSnkGRP2nMztNDARn8+LgZ3dfpRLzM7jCdJgadimN5EGo6NTpU
+         WjmVEsfqd4xLM57BRRnlfB0oZlVlPmJyVFnH/mEmaY3Wc4rl0eyILvtpE4bnOq5NQVpb
+         Q4Zjvn3sPAwTo4v6IVcNxwyIWRLRT+jyv5TRkGvyXLibxXPllmTwAAqGh6pp7JaTT+cm
+         BZyAdcVD3+aRlVU+QswVKSYOa4hYHkWlzcVTIJiEd0mQbvymhjPV8ypRSrfbKrUKTvnK
+         kJG7+xscl7iA6iIVY3t18p0L9gZitQZlmfwnI/h4QucV/LlbFBfpO025fjSjjA8dJYYM
+         c/qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717662360; x=1718267160;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=bIK7ZRurCp3VUMKrCmmBFEo7JzuHyJlxiXupFh9itNg=;
-        b=gVwijlEpU1q3/natnRX8lyqJ0L7LPTzKhPZ+LvjdnWyAtYn3JnfEt+rKJkadfL+Gm7
-         5QwEBua+U0c41DOJGECNkKt5wHXSDC7hPwCDXxkQIt8beKYUvBd0tCi/tEArvzjYLjAT
-         QbUmwEgA3i5rrNZ6tQvBDpj3DTIPq3i6htW0mRUgwWWz/jgQ3dQLdoBOy/aMmd4yhtvM
-         g+0+a8H7O+O2/Z6DtltgJdDzTIjPuKn2/rbRlJTegWkpJHIE51md6WRQ1BzwK0D1+frQ
-         6xJT5izvDHUYdDfTuNKT7+O7RR1Ol5U2e3IseUPuidrNY5jpcaMn36xYhB81TI7477M8
-         BdzA==
-X-Forwarded-Encrypted: i=1; AJvYcCWUwsfX6rxyhwz2wXDt0TVgDdzSSzR1yW/PMIk7GhZjOKenrRNYlB5Rkym2Rv0XT7rjB1vDEuJeeNKl++5fs/WJKgY/HWoRP5pAfBKEuDoAVQg=
-X-Gm-Message-State: AOJu0YyA1eZGibmJPwGplt0CwDXoVZmu/xaFzMnoLIIc69e9V4Py4Z4U
-	zCOyYZzR4QChzhThZq8UI1kfY6fOzLkrDYbJuQIM2eDCVWCUWX3Vrrotov54bf0=
-X-Google-Smtp-Source: AGHT+IGD8CDRoGr7gLwFeA2KRHdkZI2ybG//UzckD4ZVgnplhUKkVBRsXPMX3dKrY8nsGsU9Tl8Vag==
-X-Received: by 2002:a05:600c:4592:b0:41f:e10f:889a with SMTP id 5b1f17b1804b1-421562c6d2amr42212735e9.7.1717662360385;
-        Thu, 06 Jun 2024 01:26:00 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:22fd:4ae6:287f:17f2? ([2a01:e0a:982:cbb0:22fd:4ae6:287f:17f2])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215814f64fsm47751845e9.47.2024.06.06.01.25.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jun 2024 01:25:59 -0700 (PDT)
-Message-ID: <52d8af51-1af1-400e-9793-2337bd1ff4ea@linaro.org>
-Date: Thu, 6 Jun 2024 10:25:59 +0200
+        d=1e100.net; s=20230601; t=1717663311; x=1718268111;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lboqGDLkSlZiXGaj/uzeRuz104hFq0ngZ+Ud/fj/+Ag=;
+        b=tHJ/cVfvF2ruGm5xnOYCoDw1iqAxoVHOyLBlw1KeLfbN+nnRf5MxChAVx9f2Wf7jdX
+         bg1CG8KY+eIPVd5qBIyt+50ADuZNfrSl/RAgsjutYdpY0LZVfxGH+7ISLQKCuoh2JlXQ
+         CBdAKtpNJ4SjsuBSgcj8hJvKAiXgfJgVMzW72pLNcArLdFZAbHfIrEKCcU/XQSHXgpRE
+         xMEsQYsTxGvrmEQMsJLCIp2EWrvlqVcsK1aGL+1xjRamUBGhnn5lEoWIkt1RApxuLYfF
+         jxVOBh1/dEFuf3gfYXtC+fj5KrEVXYCm7vKraWQSRQt017mDSs/OvW4ISpTNXUT+5M1B
+         vm+w==
+X-Forwarded-Encrypted: i=1; AJvYcCW4Kc2WAETYIdEnoJC+bvp+rhbu2DQ7g3lVUcRPKmtf1b/2BcXhrVrZs+fjLH2qMQ6IRYrDM6Czcab5/u0yjEZnmEAq12VZm6x57w7NUKlCi6U=
+X-Gm-Message-State: AOJu0Yzm814F8aLSlHzMl1fmMNCnQxIrlJ1QEges1uh+RXcEPFW2L7cC
+	AN7usK2sUkAoNw8WCgPSmnh8vAjQa+9/pnIrro/DoA0vO4WsoMrOamwqpv2y7Bk=
+X-Google-Smtp-Source: AGHT+IEzdn9+piYZ1x5EsTOIWqi/J/85mLEB4Nr/4e4HHjN18eVZC+5BHKwFvsEHZndySpOVd4em4g==
+X-Received: by 2002:a2e:8550:0:b0:2e6:d1fb:4470 with SMTP id 38308e7fff4ca-2eac7a832dbmr34173771fa.42.1717663310478;
+        Thu, 06 Jun 2024 01:41:50 -0700 (PDT)
+Received: from localhost ([102.222.70.76])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57aadf9d8ddsm715207a12.1.2024.06.06.01.41.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Jun 2024 01:41:50 -0700 (PDT)
+Date: Thu, 6 Jun 2024 11:41:45 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Joy Chakraborty <joychakr@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Bingbu Cao <bingbu.cao@intel.com>,
+	Zhihao Cheng <chengzhihao1@huawei.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-mtd@lists.infradead.org, linux-rtc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org,
+	manugautam@google.com
+Subject: Re: [PATCH v1 07/17] misc: eeprom: at25: Change nvmem reg_read/write
+ return type
+Message-ID: <f98a1d8f-e936-4798-8447-c642e8fe11d5@moroto.mountain>
+References: <20240605175953.2613260-1-joychakr@google.com>
+ <20240605175953.2613260-8-joychakr@google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2] [drm/meson] meson_plane: Add error handling
- v2(re-aligned)
-To: Haoran Liu <liuhaoran14@163.com>, maarten.lankhorst@linux.intel.com
-Cc: mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
- daniel@ffwll.ch, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, dri-devel@lists.freedesktop.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20231129113405.33057-1-liuhaoran14@163.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20231129113405.33057-1-liuhaoran14@163.com>
+Content-Disposition: inline
+In-Reply-To: <20240605175953.2613260-8-joychakr@google.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240606_012602_954178_D4F068B5 
-X-CRM114-Status: GOOD (  14.22  )
+X-CRM114-CacheID: sfid-20240606_014153_219716_2986D5A8 
+X-CRM114-Status: GOOD (  19.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,60 +104,94 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 29/11/2023 12:34, Haoran Liu wrote:
-> This patch adds robust error handling to the meson_plane_create
-> function in drivers/gpu/drm/meson/meson_plane.c. The function
-> previously lacked proper handling for potential failure scenarios
-> of the drm_universal_plane_init call.
-> 
-> Signed-off-by: Haoran Liu <liuhaoran14@163.com>
-> ---
->   drivers/gpu/drm/meson/meson_plane.c | 17 +++++++++++------
->   1 file changed, 11 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
-> index 815dfe30492b..b43ac61201f3 100644
-> --- a/drivers/gpu/drm/meson/meson_plane.c
-> +++ b/drivers/gpu/drm/meson/meson_plane.c
-> @@ -534,6 +534,7 @@ int meson_plane_create(struct meson_drm *priv)
->   	struct meson_plane *meson_plane;
->   	struct drm_plane *plane;
->   	const uint64_t *format_modifiers = format_modifiers_default;
-> +	int ret;
->   
->   	meson_plane = devm_kzalloc(priv->drm->dev, sizeof(*meson_plane),
->   				   GFP_KERNEL);
-> @@ -548,12 +549,16 @@ int meson_plane_create(struct meson_drm *priv)
->   	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
->   		format_modifiers = format_modifiers_afbc_g12a;
->   
-> -	drm_universal_plane_init(priv->drm, plane, 0xFF,
-> -				 &meson_plane_funcs,
-> -				 supported_drm_formats,
-> -				 ARRAY_SIZE(supported_drm_formats),
-> -				 format_modifiers,
-> -				 DRM_PLANE_TYPE_PRIMARY, "meson_primary_plane");
-> +	ret = drm_universal_plane_init(priv->drm, plane, 0xFF,
-> +					&meson_plane_funcs,
-> +					supported_drm_formats,
-> +					ARRAY_SIZE(supported_drm_formats),
-> +					format_modifiers,
-> +					DRM_PLANE_TYPE_PRIMARY, "meson_primary_plane");
-> +	if (ret) {
-> +		devm_kfree(priv->drm->dev, meson_plane);
-> +		return ret;
-> +	}
->   
->   	drm_plane_helper_add(plane, &meson_plane_helper_funcs);
->   
+On Wed, Jun 05, 2024 at 05:59:51PM +0000, Joy Chakraborty wrote:
+> @@ -195,10 +195,11 @@ static struct attribute *sernum_attrs[] = {
+>  };
+>  ATTRIBUTE_GROUPS(sernum);
+>  
+> -static int at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
+> +static ssize_t at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
+>  {
+>  	struct at25_data *at25 = priv;
+>  	size_t maxsz = spi_max_transfer_size(at25->spi);
+> +	size_t bytes_written = count;
+>  	const char *buf = val;
+>  	int			status = 0;
+>  	unsigned		buf_size;
+> @@ -313,7 +314,7 @@ static int at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
+>  	mutex_unlock(&at25->lock);
+>  
+>  	kfree(bounce);
+> -	return status;
+> +	return status < 0 ? status : bytes_written;
+>  }
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+So the original bug was that rmem_read() is returning positive values
+on success instead of zero[1].  That started a discussion about partial
+reads which resulted in changing the API to support partial reads[2].
+That patchset broke the build.  This patchset is trying to fix the
+build breakage.
+
+[1] https://lore.kernel.org/all/20240206042408.224138-1-joychakr@google.com/
+[2] https://lore.kernel.org/all/20240510082929.3792559-2-joychakr@google.com/
+
+The bug in rmem_read() is still not fixed.  That needs to be fixed as
+a stand alone patch.  We can discuss re-writing the API separately.
+
+These functions are used internally and exported to the user through
+sysfs via bin_attr_nvmem_read/write().  For internal users partial reads
+should be treated as failure.  What are we supposed to do with a partial
+read?  I don't think anyone has asked for partial reads to be supported
+from sysfs either except Greg was wondering about it while reading the
+code.
+
+Currently, a lot of drivers return -EINVAL for partial read/writes but
+some return success.  It is a bit messy.  But this patchset doesn't
+really improve anything.  In at24_read() we check if it's going to be a
+partial read and return -EINVAL.  Below we report a partial read as a
+full read.  It's just a more complicated way of doing exactly what we
+were doing before.
+
+drivers/misc/eeprom/at25.c
+   198  static int at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
+   199  {
+   200          struct at25_data *at25 = priv;
+   201          size_t maxsz = spi_max_transfer_size(at25->spi);
+New:            size_t bytes_written = count;
+                       ^^^^^^^^^^^^^^^^^^^^^
+This is not the number of bytes written.
+
+   202          const char *buf = val;
+   203          int                     status = 0;
+   204          unsigned                buf_size;
+   205          u8                      *bounce;
+   206  
+   207          if (unlikely(off >= at25->chip.byte_len))
+   208                  return -EFBIG;
+   209          if ((off + count) > at25->chip.byte_len)
+   210                  count = at25->chip.byte_len - off;
+                        ^^^^^
+This is.
+
+   211          if (unlikely(!count))
+   212                  return -EINVAL;
+   213  
+   214          /* Temp buffer starts with command and address */
+   215          buf_size = at25->chip.page_size;
+   216          if (buf_size > io_limit)
+   217                  buf_size = io_limit;
+   218          bounce = kmalloc(buf_size + at25->addrlen + 1, GFP_KERNEL);
+   219          if (!bounce)
+   220                  return -ENOMEM;
+   221  
+
+regards,
+dan carpenter
 
 _______________________________________________
 linux-amlogic mailing list
