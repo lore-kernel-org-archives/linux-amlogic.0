@@ -4,100 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A383C27C52
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 08:49:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF493C27C52
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 09:06:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JSAf/sbdQETCA/yRUyekku5efdQ3E7/cffy5JaFGsLI=; b=2nDkSEMLRK7JAL
-	aC8xTgPjpzf8r5vekTVNJ3lbZBdsLgoa2Ye5HsaxXU7cYVlQrJ+GRrwntNv+1H0Hn6LkAux3xp40E
-	ALo4DjtDvF0nYQBs+rrTVTZ1eZ5wWafkRSvkzt0NKdJq1aA/c5/5gGDt8/NXHoon3nvQkPRtcTTtj
-	y3J7//uBOwJMfNEuLvm91LcOYuZlBR1DmYO0rWIk0CzqzBOrDAsglQs5ccUS5PzXD6CjPXVI0qblY
-	vmy0rZFW//2tKeaFDbQtXMtiZc7KuxsjyPdlDrrreV5P2MY+5R+jll7JKncNDfQ+boAYc05qibX+2
-	qd6kGSGItVv5hnnQrPjQ==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=9jojyNST4Vf4EpEthCsOzkjCVwti/P2g2waWnGopA6k=; b=JHoLle6eOoZnZ3
+	q4J5NOeabKlGE9hZXW1bk9UHwXxJojl/o90w6CuqEGcsPs70nuO7htt79H+0jBMmBH3xtThdhn2sV
+	xYZicDFhSV1Y6uVkWLuG/8LH3Y9GKUVdIsi5Hh0qlBSIgEzzYAgzhohTq2pCTyOHMaD/aTpnconvj
+	p0hqQCJ9ov/YH5c1XrXEm3uxKp71WvRFFSOY0mrcU0HbipMj+el/hjIWPoth0mx/YuqSUHBIxc13/
+	pClrs+2RNEB8QtCGGiFlQuKzVX/OnQeOAZ1co49ku6OUydyx/kq5NoYhQI5pQb9K1g3+FFElVeWLm
+	7Ed6pEugP9fgnS1oyx1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF8oQ-00000008vFq-1Sag;
-	Thu, 06 Jun 2024 08:49:34 +0000
-Received: from mail-lf1-x134.google.com ([2a00:1450:4864:20::134])
+	id 1sF94m-0000000918q-3NWX;
+	Thu, 06 Jun 2024 09:06:28 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF8nM-00000008uMy-0WNG
-	for linux-amlogic@lists.infradead.org;
-	Thu, 06 Jun 2024 08:48:38 +0000
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-52b912198a6so863290e87.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 01:48:27 -0700 (PDT)
+	id 1sF94i-0000000915B-0gSR;
+	Thu, 06 Jun 2024 09:06:25 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-42155e7084cso7680995e9.2;
+        Thu, 06 Jun 2024 02:06:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717663706; x=1718268506; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pUKn7nRoMeLL5mqRvKldIOdmuSCawvGpeoUFhl6OTCA=;
-        b=T3ew1f0W2JsVbl4KysuMGxJZwndM8FhsrIDFFLCoCOV8CJAA928eOpzHrBggx5BaZe
-         hMQUiQRdt9d0Sfc0sJsVmaUcikO4r82mZl9IeYdYKAGT3YBeBcz+iX+TI6liyDbN3Bz1
-         tGk4thQTdw9RvuvsxFmpqOsc3iOAhge8yzZsOY45oA3TsHk+WHwJMBo6QUJobw9mo5t7
-         eu65UigmJtdpijtBkULgB8VFJ8SsJ8Vd0nohAY3X3heqOjEzTIsUm0XCUWb7pILDskEn
-         uKlLukScTzSkl7Zbkp8FqfALqSwN7OK6bpqLSEQ22GmqqE4vXGHEBbSkKuD7NrBK2uBn
-         n8bw==
+        d=gmail.com; s=20230601; t=1717664780; x=1718269580; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4rgFWRbmc/mITagCbJLY2C7AsEpsBUmMdP3ARGdK//c=;
+        b=bvxlFCv1wftWy1q0OEjs2XyXXi6/HvMFbVu1alnV84VOC5xonXtmcRh5BBDGtX9mW/
+         +qmSaAy/hNjmI/Fcu5A5dNbJ85PVEqEeMaXxHtHHceEDYD9dF2DVxAut/9oyet5Z58B7
+         sqvqpY+SneMCXjpGrf2xYCzNd8nXBXh3y5zP620QRzwgWXFrbxJ70e4ZlrGkKnTjA9T4
+         qcLuVkkPhEaLRqDoSCNST/cVALpbeFZ5s054Jr3MipsS2LyjztE/NULmM+4L9HnIkm0S
+         JVAEEYMBqrtNe6VrUYwLmm025ZwHj0MyDnUKqrKPQRfOBmK21cTB3BB/4B2M4z0HZ9pl
+         JQPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717663706; x=1718268506;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pUKn7nRoMeLL5mqRvKldIOdmuSCawvGpeoUFhl6OTCA=;
-        b=UHsWdTlyWPhPEhbZGiM6Z/qiXijp+GyoM5gc9c2x/+FE0N3U1scXEw/8dwNlkTKEy9
-         Td+NLwBncZ+dGvebYT+b78173XBSmnIsD9OCc0ptltFrf9GP8/ovnu6gufRhUGbzqbBB
-         /SYIiQdBVCxNO3Zx1vvzNAYjm9DOHf2BX6/J+YX4iu2xTP9TxVz5ok9KSO+LsNZlN7iv
-         r0glfJ67iIwmGVpU3USmUJ5CHUSp8pFOXZjmxJ5ozU6h7KW8gx+Ml78AxtV06a2PF8dm
-         yeWciD/O8mCgo2pfM4jZTGvS3V7SP2ZkmsewzPErIRtxZ93mVG8YpzgpuLwYePzo0jUc
-         SWKw==
-X-Forwarded-Encrypted: i=1; AJvYcCU11iTUt/lcpaZ9j+agC9XPlTDn4FYFi0D6HVE6fOEJ6PJKPNDm5EZWI015p4w8k2dOyJhXcEAiixOEIkv1jxHyOlWm8c4wPHpYioR7UKgKfVw=
-X-Gm-Message-State: AOJu0Yx1d0UsE6E7ipQ6k2HZdKq/1DdIJW5rSsyamJRtUgBNj+LEjYmh
-	D4MScV02WNaaWz1cd4+ouk34vBbNmTSLeAirYAMktnFQz9N0/s/50ceqTLSJzGA=
-X-Google-Smtp-Source: AGHT+IHrdV+x4TijqSa/FABtkOHGZVw6OnDi1dAynF+1M0R/1Oxx2xSnUnffhNF9+XNMmeVoZm9OrQ==
-X-Received: by 2002:a05:6512:3da8:b0:52b:b4d7:ba55 with SMTP id 2adb3069b0e04-52bb4d7bb5bmr912193e87.29.1717663705942;
-        Thu, 06 Jun 2024 01:48:25 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215c2c690dsm14227445e9.34.2024.06.06.01.48.25
+        d=1e100.net; s=20230601; t=1717664780; x=1718269580;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4rgFWRbmc/mITagCbJLY2C7AsEpsBUmMdP3ARGdK//c=;
+        b=ssaM3nzVx1kfQRaByoS5C/e2lp4TEdziPwYGnS4/W5nh7XKiQbRnvutKJhnXq1sial
+         F4rfY9oFg/q3ypK6GfDjm727U0TixlgstEVJQMS80MQor8xXkujZmabK96NJIiRaDYK8
+         aaEVfMPU/me4yCehVLLwCzdC9g0oepl+GV3iuMet+sxb2U8fAQTTEiS/wsvXQrMEFYDQ
+         2GZ9ehd2acjR/BY8+zNRcK49tVKQkPswjFaoY8iB8Q+6FUgSG7vPXtfS0S4PWgf+oBTL
+         y1+6Fm4VQ8KkSINzY6TrAB/Y76+HBTryyYDqFtCgXOmJggcleOmAarn0oYRKnTeiUvP9
+         7Jfw==
+X-Forwarded-Encrypted: i=1; AJvYcCWoy6KQHUIBZAqH2k+Ej2lmq1ZPIT2luXQbHiK2X8Gk4wXU4rcDb02mHruBS9IPuf5rrNhPX+Q5385A3CMVe8K9R0lYn9QJWfbiql4S/VtSLYc38z9mmXanoy4DLyl3eF6Qefpp03DwwchI3pJqFEVLW6ZocnHHmQ==
+X-Gm-Message-State: AOJu0YyhUxytTSGqvcKQ6PkcOukZP6OeTSMp/5iTTdq045eu3GbYPZf2
+	qaRs4pcsAMiQ8QRQfZw46n/Ec7MAwbpyy/lpEsmrUvlXRCt2GC67
+X-Google-Smtp-Source: AGHT+IEO0mxczR/mD4wLnGOWDtPXarRkHd0Rx/ObbVCaBZXqNJf3Cix3+QyXppwMd8bDvj8jMfKeAw==
+X-Received: by 2002:a05:600c:1e0b:b0:421:5a37:d45e with SMTP id 5b1f17b1804b1-4215a37d578mr23685335e9.37.1717664779758;
+        Thu, 06 Jun 2024 02:06:19 -0700 (PDT)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215814f141sm48483655e9.42.2024.06.06.02.06.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 01:48:25 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 06 Jun 2024 10:48:19 +0200
-Subject: [PATCH 12/12] arm64: dts: amlogic: gxbb-odroidc2: fix invalid
- reset-gpio property
+        Thu, 06 Jun 2024 02:06:19 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: meson: radxa-zero2: add pwm-fan support
+Date: Thu,  6 Jun 2024 09:06:15 +0000
+Message-Id: <20240606090615.3946433-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Message-Id: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-12-62e812729541@linaro.org>
-References: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-0-62e812729541@linaro.org>
-In-Reply-To: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-0-62e812729541@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=866;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=CB2bPtaDpU75ktGs22gfMyRNjffoEcH2n3mjNBAk7PQ=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmYXfO/q9TsnRTODhpmyAtqQzWilWXGX5QAleIeFCi
- DdjYcruJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZmF3zgAKCRB33NvayMhJ0UsFD/
- 972tFQmlu+yOj3Y3cb41aRStMfvlb1KNBydlDb4519AfovBO9UKgEg2eC9x0DxUYuocvuaqshslDMu
- 8Jl48g6wGafXwyIuemsdnD5bdnKFrJnSgztIo/j010AMW2FrNTOHm30iN0HkTB9Jzv2eZyvhTSXmZM
- mlxpjEmqTRRhiyhSJbFjio3EqeGnaf79jtlqEq/cx9voSEOxsNDPo21Ru3+H0Le1mIWs350NhJzVzf
- UHUZQmFk/d5Nwy+k8iab+mCWwk2/OvVEtnPROWR2xDj5xxorBA5qwGMqofLtRTBLvZu1/hfBplDJpy
- taK5Fc6sNCBVvw2L3lt4jZ4NdbkEzzTCl5/pawmpls13eIBzKPcKS8oclR86HbkxIubZoZN4YiKsaj
- 1QPPDrPJdKvFqUzfJLA+zosKqFEJkTfEfA5U/sWRBY+2fJXZf1XAeZBl62cWAL0P/Bez22+1bLTtsj
- G89uXpy2VhYLqEv6eMlYmoWfWsTF1tfZEBno75A5KLWczU7IFPJ7t+GcDH0do3wZjeL+RBF1O96SxH
- vvpvBnec20o1WZs+DWereAy8ZUeLZI8KOAJdeedPPeTMGATc9rqMufHW4+949yUW/IasisYiCLk+gn
- gan55yYYfRzcbVROlstDGHRL8OAlgGP/Yce3Usl5+SJO9AppT+agJHTwgDRg==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240606_014828_419900_D5C23C6D 
-X-CRM114-Status: UNSURE (   9.86  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240606_020624_225788_13563D11 
+X-CRM114-Status: GOOD (  10.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,33 +92,72 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: Yuntian Zhang <yt@radxa.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This fixes the following:
-hub@1: 'reset-gpio' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+The A311D on Zero2 needs active cooling and the board includes a header to
+connect a simple fan. Add pwm-fan support with basic thermal properties so
+the fan runs when connected.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Suggested-by: Yuntian Zhang <yt@radxa.com>
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes since v1: [0]
+- Drop min/max state to comply with bindings
+- Drop ddr_thermal node
+- Add cpu_thermal trips
+- Use cooling map2 to avoid clashing with dtsi inherited maps
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index d4e5c960d4cd..cafbd5f5b913 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -411,6 +411,6 @@ hub@1 {
- 		compatible = "usb5e3,610";
- 		reg = <1>;
- 		vdd-supply = <&p5v0>;
--		reset-gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_LOW>;
-+		reset-gpios = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_LOW>;
+[0] https://patchwork.kernel.org/project/linux-amlogic/patch/20231028075445.3515664-1-christianshewitt@gmail.com/
+
+ .../dts/amlogic/meson-g12b-radxa-zero2.dts    | 24 +++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
+index 890f5bfebb03..8445701100d0 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
+@@ -33,6 +33,13 @@ memory@0 {
+ 		reg = <0x0 0x0 0x0 0x80000000>;
  	};
+ 
++	fan0: pwm-fan {
++		compatible = "pwm-fan";
++		#cooling-cells = <2>;
++		cooling-levels = <0 64 128 192 255>;
++		pwms = <&pwm_AO_ab 0 40000 0>;
++	};
++
+ 	gpio-keys-polled {
+ 		compatible = "gpio-keys-polled";
+ 		poll-interval = <100>;
+@@ -286,6 +293,23 @@ &cpu103 {
+ 	clock-latency = <50000>;
  };
-
+ 
++&cpu_thermal {
++	trips {
++		cpu_active: cpu-active {
++			temperature = <70000>; /* millicelsius */
++			hysteresis = <2000>; /* millicelsius */
++			type = "active";
++		};
++	};
++
++	cooling-maps {
++		map2 {
++			trip = <&cpu_active>;
++			cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++		};
++	};
++};
++
+ &frddr_a {
+ 	status = "okay";
+ };
 -- 
 2.34.1
 
