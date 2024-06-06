@@ -4,87 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9671DC27C52
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 09:21:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B8B5C25B75
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 09:23:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oPck38rSLOOPt8IWlT1+Yndb3sXMiYbjF9uyyEu3JVs=; b=fqa9a466MTkWZ8
-	LvlgCXTbWTJS1sWG7PegD/cItILUu7Nfg+p27+hRot6RRBPJs1tzhf9xPbDkbmqugy25FmkDZxYCl
-	H8z8IgJZWdMhoZxg6FDmPjJ0q3amktl7pyGXHYPlyt/nXgAIu35Rs43Ds6Z8HVC4qNOIh0UJPDogS
-	QpK1u1UtD4bRxgbM8hWD5U6a1dM9s+vQAp/tMCeE7oKwIrQzaNyhnK/WhIVOxzRbTfWwIAKmEUEp0
-	2Hd3YgiYquHUpB1hYTQbux3bL87tXjgvZtfhlQESS3V+55ZHMT9Z1iIWGTtIhmjwpqq+TJCe4+eEs
-	CRAHwDkUZaa87huxhUHg==;
+	List-Owner; bh=/2+MsEGTrBSaMUfOY+ny9lVGnGffdbaOdOlRvpxU/r4=; b=dcIP9uxBA2/Dtp
+	ignijxaKfs7yKrDEjUhw5DOZzhJhzPSB3ibQPQ8mBxoOS3zOIDr+CJ/gUs6RaHUezDWCzNY6a6/om
+	q9aq8XyTwQg/nd5NIz99xFdqUSjY2YH5VYT2BOUDWBatshi7bFTQzlE/uZ7HM9xU8828fkVLm3YEF
+	uVsTeMKVTorSAHLuK0XiA2V4D4udo8aEoW81izzjAT2JOoagiB6g741lqrIS04B0qdjJ2q75QWKSJ
+	fwgqqzbmVni3O4Xb9x351orO6UStzBjbJubfYiPTNFgPyVhq0SmLtMyCuS3HKu1HtbidHiy7QZ4hD
+	zVZQGylH1eFp0E97mURA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF9Jh-000000096ZY-1qRQ;
-	Thu, 06 Jun 2024 09:21:53 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1sF9L2-000000097Cp-3VNP;
+	Thu, 06 Jun 2024 09:23:16 +0000
+Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF9Jb-000000096Te-0MKi
+	id 1sF9Ky-0000000975h-3SQ0
 	for linux-amlogic@lists.infradead.org;
-	Thu, 06 Jun 2024 09:21:49 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4215c65dca2so5062625e9.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 02:21:46 -0700 (PDT)
+	Thu, 06 Jun 2024 09:23:14 +0000
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-a68ee841138so81467766b.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 02:23:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717665705; x=1718270505; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+        d=google.com; s=20230601; t=1717665785; x=1718270585; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1IamIVnH7h3ptzY7s1SJQ3/raS/vygxAsXmJzN5Us3c=;
-        b=Mammi7Kt4IdEeayQxojoIg9M8fRq31Dqm00DaHy/rGOJJ7upY0f+LLeuUkjv/7nuN7
-         SCqX3BdQcRtRJKcHt0mKTSphtiHYJWPLX7B+rRAJpEEGolrbohKVKkxpm8n+a4rAK9v4
-         dOf0TuTr6hOMP/T04vRs0OwNRQNHCQMurqnxx3DScaiVacM3v9hrneRWqWUiMsmcm9dM
-         A6cjqYGOe1Cp03zoCli/k4pTg8bq+SNBg6vHp3eHZqcXO+z+hupsDTntcARRoMF8IhZE
-         bdvcSbUqt4pvl2yHlnOb7w8ADIItf0HvacX251mE8ZIHSGpiXuS+gGja9kW4wJeZxlpF
-         Uy+A==
+        bh=Xdo3ldNDeMyIM6Kx3VweI5RQmky1PUGTcMckmPYOvUE=;
+        b=hbfW5XDSAGMW8sjJj7b5vGhZqsBSmHgnI6YZz75V0vyN83+k1CIigPSKR4SaZ+YoHs
+         7+Bn2/U2OUt4Cbo122xgLK3UpGFMszd11iLyt3BLHdZVe93HrG3iUtRmy7LcU5DaEqRP
+         42ysjFamEh11uC+HsSxBcNuaC+iICIoCKFNz957Bss9eKaGU/4x/TuAJdQfoZtdgqZgn
+         QwsfHtY6A0Lg5aUw8s4+Zya9lVGY9LRFU6aHWR8u6S1U7ggr1Rnwr1OyW/97ukHCPyhw
+         X6iM/jROKp90m0Sgy5+/9+WijE7xzhGuF1owqDI+67u4JvkPab1RBi3rfqKx5cBUGU9X
+         Aorw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717665705; x=1718270505;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1717665785; x=1718270585;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1IamIVnH7h3ptzY7s1SJQ3/raS/vygxAsXmJzN5Us3c=;
-        b=l5Us+mH+ZnV28wCaou+ApQDZh2yCHvIFtkHqLfUc3joTLdm2viYQFdyBHrg5OEdYkp
-         0AaJyUD6dZb9Php9G6hXUt5XJ8mw6CfMf7Vz/4C5FrWE2SbueaAWeMrIsLBxpA3vMBID
-         5pmQyRCmtPWysqJxYlR506P/QJEUofdXo6zKVowStL3BmQ7YPeztVwjj1TgZXmmFbYkY
-         5sNB97D1+49vDmTP7jjp70hYdajG3jq5u1bW2HNckxvAyPP7Yzq7aReN/wEcM9IqL1iZ
-         mgARv2Q5KVUKTQBvH2IEs8USQBDii4xbmuXjRfc00dAmBpfsZDfWdMVI+s+U8UVCCssd
-         b6pw==
-X-Forwarded-Encrypted: i=1; AJvYcCUu7bQIkY7rqWjMFBt3jjtIkXAGFauN75pAbN1KgPUFO/ODKjyx/LKW5ntPqkt/TQusztzQuGnBGLxGdSNfyGwkbYCdX8zjwAPzWas2ekOYOR0=
-X-Gm-Message-State: AOJu0Yx3FyZYUacA6bxrSjztH0utr9298FBGDfBptTsN/R1XmxezajQX
-	D2EWSI+kdstaBBg8Zjtq+hH45l2yNA+DnILVPC5ieO74U6HPaK5yi9AJLNSZgls=
-X-Google-Smtp-Source: AGHT+IEwTtsEYTmIGHFyaEV/Mt03vYK3X47FVxjZeEawQNkUUPRQKYSrAJkIvTiPl44uc76qhsDGzA==
-X-Received: by 2002:a05:600c:a43:b0:41c:8754:8796 with SMTP id 5b1f17b1804b1-4215632e1cfmr43304245e9.30.1717665705057;
-        Thu, 06 Jun 2024 02:21:45 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d4a582sm1033012f8f.35.2024.06.06.02.21.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 02:21:44 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-pm@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20240529-a4_secpowerdomain-v2-0-47502fc0eaf3@amlogic.com>
-References: <20240529-a4_secpowerdomain-v2-0-47502fc0eaf3@amlogic.com>
-Subject: Re: (subset) [PATCH v2 0/3] Power: A4: add power domain driver
-Message-Id: <171766570412.3938980.5083031830854767858.b4-ty@linaro.org>
-Date: Thu, 06 Jun 2024 11:21:44 +0200
+        bh=Xdo3ldNDeMyIM6Kx3VweI5RQmky1PUGTcMckmPYOvUE=;
+        b=OZZDO20n5j2KZkzIQeAflQGamYE1E871HkfOC+aaclSpUh+mVQxIUGOLheP1DgQ4iQ
+         cNj6fh0Kw3SyvbY2vPVLw2+WB/g4eD3wVAYZ8HdZp8v48pR2UbjUCP2Ve1SfWsbOKEKd
+         ehKUrtAsL3Eu4+TKCo02ohxF46YSP1hFsMNbxgMJVzosWMSl8chZtyYDGFq79ZWhRxx6
+         RZYGWAinZq01GXrEAZrR/YMOBVMY6DopR8ihMz/XJlkiX49QLskLY/Wv6yzqB1i1W01w
+         niOKkTiwjmsNOqaP+eDa9gI84sTDHLNyETwyQ512FdhASB1VJYLp025KIfhmXG+QjPTV
+         7bSg==
+X-Forwarded-Encrypted: i=1; AJvYcCWRyjmyKnUKML9sAE9MREmnPzsPw/lx5SYk3h12g0mkQqiAQ9Cd0eKX7sm+pUrsG8zuo4/Ok69TAZTX1K0qRhhyC8oBfHNkSwauAyVRh6DVbsM=
+X-Gm-Message-State: AOJu0YylOXpdWQIvSCR4Wh4brLzjoqam81IuKjwldSuPxYEoKt+52Jyz
+	Zgvnl/8QDNrV7LdNRnRb7Cd6ThVu0N8gdQUikHFIfGmCZbb5mDe2EXiBmFj/SH31kNf6oN+4UHd
+	KrKWmEoPy8pWYepV8oYjnH3LX1o2AREY0qPgB
+X-Google-Smtp-Source: AGHT+IEbpprl6blPk8T2xU2kaYzhaNrmYq2+TvX42xRzC/TSvUdDQXwO9kRI4X6UmxZu4UT9hOygjZqZt2phPUhxZ0w=
+X-Received: by 2002:a17:906:4694:b0:a5a:2d30:b8c1 with SMTP id
+ a640c23a62f3a-a699f680d76mr317202766b.14.1717665784784; Thu, 06 Jun 2024
+ 02:23:04 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: b4 0.13.0
+References: <20240605175953.2613260-1-joychakr@google.com> <20240605175953.2613260-2-joychakr@google.com>
+ <b2ccaf40-fe04-490f-a625-4c502c038627@roeck-us.net>
+In-Reply-To: <b2ccaf40-fe04-490f-a625-4c502c038627@roeck-us.net>
+From: Joy Chakraborty <joychakr@google.com>
+Date: Thu, 6 Jun 2024 14:52:51 +0530
+Message-ID: <CAOSNQF3bw4+-SPEVf9wwsrt0L-6VNK0NWuDKW6AhX701+OKjsg@mail.gmail.com>
+Subject: Re: [PATCH v1 01/17] hwmon: pmbus: adm1266: Change nvmem
+ reg_read/write return type
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Bingbu Cao <bingbu.cao@intel.com>, Zhihao Cheng <chengzhihao1@huawei.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-hwmon@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	linux-media@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-mtd@lists.infradead.org, 
+	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org, manugautam@google.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240606_022147_247785_A83E5A85 
-X-CRM114-Status: UNSURE (   9.87  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240606_022312_903492_48653BDC 
+X-CRM114-Status: GOOD (  24.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,49 +98,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On Wed, 29 May 2024 11:10:32 +0800, Xianwei Zhao wrote:
-> Add power controller driver support for Amlogic A4 SoC.
-> 
-> 
-
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.11/arm64-dt)
-
-[3/3] arm64: dts: amlogic: a4: add power domain controller node
-      https://git.kernel.org/amlogic/c/c830ead0d16131de93d2020369ede4d670a4123b
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.11/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVGh1LCBKdW4gNiwgMjAyNCBhdCAyOjU54oCvQU0gR3VlbnRlciBSb2VjayA8bGludXhAcm9l
+Y2stdXMubmV0PiB3cm90ZToKPgo+IE9uIDYvNS8yNCAxMDo1OSwgSm95IENoYWtyYWJvcnR5IHdy
+b3RlOgo+ID4gQ2hhbmdlIG52bWVtIHJlYWQvd3JpdGUgZnVuY3Rpb24gZGVmaW5pdGlvbiByZXR1
+cm4gdHlwZSB0byBzc2l6ZV90Lgo+ID4KPiA+IFNpZ25lZC1vZmYtYnk6IEpveSBDaGFrcmFib3J0
+eSA8am95Y2hha3JAZ29vZ2xlLmNvbT4KPiA+IC0tLQo+ID4gICBkcml2ZXJzL2h3bW9uL3BtYnVz
+L2FkbTEyNjYuYyB8IDQgKystLQo+ID4gICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCsp
+LCAyIGRlbGV0aW9ucygtKQo+ID4KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2h3bW9uL3BtYnVz
+L2FkbTEyNjYuYyBiL2RyaXZlcnMvaHdtb24vcG1idXMvYWRtMTI2Ni5jCj4gPiBpbmRleCAyYzRk
+OTRjYzg3MjkuLjdlYWFiNWE3YjA0YyAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvaHdtb24vcG1i
+dXMvYWRtMTI2Ni5jCj4gPiArKysgYi9kcml2ZXJzL2h3bW9uL3BtYnVzL2FkbTEyNjYuYwo+ID4g
+QEAgLTM3NSw3ICszNzUsNyBAQCBzdGF0aWMgaW50IGFkbTEyNjZfbnZtZW1fcmVhZF9ibGFja2Jv
+eChzdHJ1Y3QgYWRtMTI2Nl9kYXRhICpkYXRhLCB1OCAqcmVhZF9idWZmKQo+ID4gICAgICAgcmV0
+dXJuIDA7Cj4gPiAgIH0KPiA+Cj4gPiAtc3RhdGljIGludCBhZG0xMjY2X252bWVtX3JlYWQodm9p
+ZCAqcHJpdiwgdW5zaWduZWQgaW50IG9mZnNldCwgdm9pZCAqdmFsLCBzaXplX3QgYnl0ZXMpCj4g
+PiArc3RhdGljIHNzaXplX3QgYWRtMTI2Nl9udm1lbV9yZWFkKHZvaWQgKnByaXYsIHVuc2lnbmVk
+IGludCBvZmZzZXQsIHZvaWQgKnZhbCwgc2l6ZV90IGJ5dGVzKQo+ID4gICB7Cj4gPiAgICAgICBz
+dHJ1Y3QgYWRtMTI2Nl9kYXRhICpkYXRhID0gcHJpdjsKPiA+ICAgICAgIGludCByZXQ7Cj4gPiBA
+QCAtMzk1LDcgKzM5NSw3IEBAIHN0YXRpYyBpbnQgYWRtMTI2Nl9udm1lbV9yZWFkKHZvaWQgKnBy
+aXYsIHVuc2lnbmVkIGludCBvZmZzZXQsIHZvaWQgKnZhbCwgc2l6ZV90Cj4gPgo+ID4gICAgICAg
+bWVtY3B5KHZhbCwgZGF0YS0+ZGV2X21lbSArIG9mZnNldCwgYnl0ZXMpOwo+ID4KPiA+IC0gICAg
+IHJldHVybiAwOwo+ID4gKyAgICAgcmV0dXJuIGJ5dGVzOwo+ID4gICB9Cj4gPgo+ID4gICBzdGF0
+aWMgaW50IGFkbTEyNjZfY29uZmlnX252bWVtKHN0cnVjdCBhZG0xMjY2X2RhdGEgKmRhdGEpCj4K
+PiBUaGUgc2VyaWVzIGRvZXNuJ3QgZXhwbGFpbiB3aGF0IGEgZHJpdmVyIGlzIHN1cHBvc2VkIHRv
+IGRvIGlmIGl0Cj4gb25seSB0cmFuc2ZlcnMgcGFydCBvZiB0aGUgZGF0YSBidXQgbm90IGFsbCBv
+ZiBpdCBkdWUgdG8gYW4gZXJyb3IsCj4gb3IgYmVjYXVzZSB0aGUgcmVxdWVzdCBleGNlZWRlZCB0
+aGUgc2l6ZSBvZiB0aGUgbWVkaWEuCj4KVGhpcyBwYXRjaCBzZXJpZXMgaXMgYWN0dWFsbHkgYSBm
+b2xsb3cgdXAgb24KaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjQwMjA2MDQyNDA4LjIy
+NDEzOC0xLWpveWNoYWtyQGdvb2dsZS5jb20vCndoaWNoIGhhcyBub3cgYmVlbiByZXZlcnRlZCAu
+IEkgc2hhbGwgdHJ5IHRvIGNvbGxhdGUgaXQgYW5kIHNlbmQgaXQKYWdhaW4gd2l0aCBhIGJldHRl
+ciBleHBsYW5hdGlvbi4KCj4gRm9yIGV4YW1wbGUsIHRoaXMgZHJpdmVyIHN0aWxsIHJldHVybnMg
+YW4gZXJyb3IgY29kZSBpZiBpdCBzdWNjZXNzZnVsbHkKPiB0cmFuc2ZlcnJlZCBzb21lIGRhdGEg
+YnV0IG5vdCBhbGwgb2YgaXQsIG9yIGlmIG1vcmUgZGF0YSB3YXMgcmVxdWVzdGVkCj4gdGhhbiBp
+cyBhdmFpbGFibGUuCj4KPiBJIGRpZG4ndCBjaGVjayBvdGhlciBkcml2ZXJzLCBidXQgSSB3b3Vs
+ZCBhc3N1bWUgdGhhdCBtYW55IG9mIHRoZW0KPiBoYXZlIHRoZSBzYW1lIG9yIGEgc2ltaWxhciBw
+cm9ibGVtLgo+Cj4gR3VlbnRlcgo+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxp
+c3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9saW51eC1hbWxvZ2ljCg==
