@@ -4,86 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55E14C27C55
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 09:54:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D96DEC25B75
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2024 10:11:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Dzm60Bm2gFOV9vM9H4KAx3JrriEagBhIV0v+QtV8Wfs=; b=V3MStR/pzi2lmM
-	Dz57f55+5+CY53JbQ3qtvSA41SqFIU60CTcZ9lprjd8+WtTodWFaCOeDhy/wLTsTw96DOMa86VtW1
-	GgW7tJpL/I8/hbYBVmrRXxlRACu3iNgiQpde7bkUJlT6vqHTZWxmG3JT4sRK03YJco5wQIToLMRdk
-	bNlH4BGKOCsb+mOl9rMhTLgx3T4ydylFoebC5Ke4XA0Kc7dS8mMM8PMZrhk01X0iajz84jRKjuBGJ
-	W+OrAxMZKcUfZiFbnatY0A5k6HCtSf1CBzMeoaMdybZNopKT5g0XU/OyLZ+MuiTmblV/aRIWn8doq
-	R2VAqCxpWUlAmmSBkHig==;
+	List-Owner; bh=aC2mfxwwFcp0X9HFtdcjPQ56Kh1VO6NApdWXrSFUZhk=; b=fMGkgY3T3LTtKc
+	KJ66mpxAE52TDtintBuNlem7Jjylr1u4CXqcW+0ohAMvNeUz+5lnlOPbIqSqCguFeJjAY/XELTzTl
+	kAnSsPOF97JTX3PXYIti7d1azzbLMeBkVIO0776eBJ3lly8lXH0OichYKnejeONM3Un5r+AkYtKAx
+	QCB/b4x/v8KAEKKBckIeCZx4Ja3dHzGSMEL63yby8qX+MyIcsGd8OqWADqYpEpik8su2lvM7zYm6u
+	8Y/XJCrGcIHPtq7dcVi2QCZcouDJOiv0CDKaRt0aKSs0bMt/ucnd5iUErE4cPkr+bMeuqpmfVkWXX
+	UnwNn3HN4IaNDmr+8Y1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF9pK-00000009IEN-1qDN;
-	Thu, 06 Jun 2024 09:54:34 +0000
-Received: from mail-lf1-x12f.google.com ([2a00:1450:4864:20::12f])
+	id 1sFA5O-00000009Kri-1Sow;
+	Thu, 06 Jun 2024 10:11:10 +0000
+Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sF9pF-00000009IBx-14uh;
-	Thu, 06 Jun 2024 09:54:30 +0000
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-52b88335dd7so932121e87.1;
-        Thu, 06 Jun 2024 02:54:28 -0700 (PDT)
+	id 1sFA5K-00000009KpU-0MLI
+	for linux-amlogic@lists.infradead.org;
+	Thu, 06 Jun 2024 10:11:07 +0000
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-579fa270e53so1020895a12.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2024 03:11:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717667667; x=1718272467; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Whn2w+VTi4qPZ5FGXEXha21o8nVB5Tk2U6db+I1W52s=;
-        b=SBjNpqW6qzkQW5KhgYylfR18Ut/BBwyI091F8QjCKyPgz+311t5P2dqlI+iyHJynvt
-         5d6VmRkDFdwfCnvffuGYczOiHCMq7IdrIGEi+hxOJDDC9CG5/3O7stINK4gloLWM+DgL
-         cUefNg819PCwmvgMn+Y4QdR9U1lxm8imu8ZwTum73CJ9sTvxWw8XXxYjF5cHZrRo6q38
-         TNf6HERm1LF3xVYYZGZsFPj4TircDo7tl4H4kczHTtWTT3w6c/BcKLrBw4mBxD49iCVA
-         S25BXw/3uD2bvjGxt+BgKo4vbw1vW9gHq9h6Zt0B6Sxd5ZKvUlV7toEiulhaArf8wIGR
-         lcKw==
+        d=linaro.org; s=google; t=1717668664; x=1718273464; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=aSSVkWNzaMpCFwtFKNictH+j9mKED2uTD+OcWRnyLEc=;
+        b=b/Y5w7Z5WqhZb8+F6AogwYHtpwrIHSw12/j1NWKKKHW9PYI2oxMIBCx8ychQxjvEim
+         loJhTwoXlIIifKA+Ne7tfmqDvUfc7G49tPUApsAPLQ/qSRHOpHi0R/8FBX5A+3Bstj7t
+         QdI5p3UfIgLnI5xS/3eoaXiZDPTbqPbUNoh6MyugZ1Ijiat2RCvRcVvEBbf4hWal3WbU
+         hlQiQCBcJ2589jIdsM3ONyvhap4oKyyl2v2FwwForpIEofMXnlfjwHZJVVQqRqF2tQrf
+         TtdYAfL4SdamiVQsX+He87dEwE4FzetZCIRfmakR9L10bFk7KpDFftNqBKlquEE9hHBr
+         qyhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717667667; x=1718272467;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Whn2w+VTi4qPZ5FGXEXha21o8nVB5Tk2U6db+I1W52s=;
-        b=uzGu3bknOAhvZB4W7vZJyHyct0smj4h0HhQ7BvIkBHonNDFmwl6SI+SzRADx754dO4
-         k/UxFxR2bosq7ceVUS+9XRV5sSqr4NcbRpRwDyn/dotiyrCzBCrAzj3cXNKo2WN2IZ/j
-         Ls91IZUB2JldSirnXgxF+0FMTNFDDYGhCCrUh2nYh4aMgQPNbK5aS8B8rmC3YzMLzl9G
-         O87C84yXBREf3PRB0mbrqFRCMV8BdvtcU0P8s7xiEb2VOpLbtw3p8Tun46ZEUMCoZZVS
-         F+WuwB6A33qcZRlA9Ab8U4+fT14vlj5LJK9/Ku3QGQbG2ENvm9eNv4qorOjs9FMK4QUc
-         wZrA==
-X-Forwarded-Encrypted: i=1; AJvYcCVUF+pZMG+nT6UgWdXLUpii9Rj4eNwuq1AKxKB6BB88rElrcBdk7HpNVpgkxfjrT4WjJFmwXCw/JTGo24oMjA22pE4+AfrL+yzzPSEL6ZGv+hGdvl2seLQccTKfgKTI8tofTbCDiC0DBObhSTTCulGCW5ahsNkI4A==
-X-Gm-Message-State: AOJu0Yz+vi3MqRkZu8oJAhbrv7Q5irDJFE0ewsX0T8566VSw5ZGprIua
-	/wrwuXwJpAexMXp9cJDItiFAufFStWF3wCHk+HC9VmANJy3oLglI
-X-Google-Smtp-Source: AGHT+IFZhf67e4fW0zgYeBIiAIwklUJsAE33gFJ9wJ7BeLDDaR/lfu9ABqO+rTIRLE9sjC8E8IyQuA==
-X-Received: by 2002:ac2:499d:0:b0:51c:bd90:e60b with SMTP id 2adb3069b0e04-52bab4c854dmr3056595e87.25.1717667667390;
-        Thu, 06 Jun 2024 02:54:27 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42158148ffasm51454325e9.38.2024.06.06.02.54.24
+        d=1e100.net; s=20230601; t=1717668664; x=1718273464;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aSSVkWNzaMpCFwtFKNictH+j9mKED2uTD+OcWRnyLEc=;
+        b=CWIoRNirf7ImtIbHBOP44IEqoGsWJTdn3KgunxPOiOwX5KfgxFrG/JcUjSMxbFTaKu
+         2Y+Ev5gkNNcboTJWbA6Pa1jZgKu8O2Q931tll723GV/hot15MYMmWe6Qa6Oprljt6w1O
+         u7NNtUubegVu+naoOlP6A/AYlblEHzKyw1rSlT2QAR2qHYoxFquDnGvOZbbboq57QP2O
+         PNg66iXO1YttxVaZ2ke4HqnSBXiQmKjLHoyoPlFhTvNjq1fU1vcTtTSnL8vboQ4IuDX6
+         7vlx2/fe/8S6RKMF76p4ABqXNJkkj4/XYo2DsvT+itwNcQcnMFDfRv2r6Umh6Hdu/Qvi
+         Xo+A==
+X-Forwarded-Encrypted: i=1; AJvYcCWC4wQc0S8P9jRxFaFgjSKMbp0xUwtkPMHEgK/U4rA27PhGZ85SLMwJjphUAJv1o9/yN0ZoPD2Z8VAS70cQDvDMD7j+INAsWtQ/1PIyEprmsLY=
+X-Gm-Message-State: AOJu0Yxg/+UMM6Yev5wBOUltbauTvY5bh2kmckvkdD/V13ZPSBNmzGNW
+	wvyr3QJzrhm9rTgNpRiH4yVVTc7qH6IgkBnzcdAX5yXvFvF0Nn+B6LvACyPHXaw=
+X-Google-Smtp-Source: AGHT+IHgvRJe1RUkX2wfx8nHAOigl0CQ6MgWP7QQ3TJu55eCj7i7cFlbxalhn3Ifzf+AU3sxSjybWA==
+X-Received: by 2002:a17:906:3544:b0:a6c:71d2:3311 with SMTP id a640c23a62f3a-a6c71d23352mr224386166b.65.1717668664006;
+        Thu, 06 Jun 2024 03:11:04 -0700 (PDT)
+Received: from localhost ([102.222.70.76])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c84aa8351sm49462166b.142.2024.06.06.03.11.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 02:54:26 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
+        Thu, 06 Jun 2024 03:11:03 -0700 (PDT)
+Date: Thu, 6 Jun 2024 13:10:58 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Joy Chakraborty <joychakr@google.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Bingbu Cao <bingbu.cao@intel.com>,
+	Zhihao Cheng <chengzhihao1@huawei.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-mtd@lists.infradead.org, linux-rtc@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: meson: add support for OSMC Vero 4K
-Date: Thu,  6 Jun 2024 09:54:19 +0000
-Message-Id: <20240606095419.3950015-2-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240606095419.3950015-1-christianshewitt@gmail.com>
-References: <20240606095419.3950015-1-christianshewitt@gmail.com>
+	linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org,
+	manugautam@google.com
+Subject: Re: [PATCH v1 07/17] misc: eeprom: at25: Change nvmem reg_read/write
+ return type
+Message-ID: <2b979aa4-3a63-4010-9670-294ce7624e18@moroto.mountain>
+References: <20240605175953.2613260-1-joychakr@google.com>
+ <20240605175953.2613260-8-joychakr@google.com>
+ <f98a1d8f-e936-4798-8447-c642e8fe11d5@moroto.mountain>
+ <CAOSNQF0Qj2CnRDWAGM8Y1wyEdgWP04RDJx1TKO-Ge4nUH=qxoQ@mail.gmail.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CAOSNQF0Qj2CnRDWAGM8Y1wyEdgWP04RDJx1TKO-Ge4nUH=qxoQ@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240606_025429_335580_A0DED3F2 
-X-CRM114-Status: GOOD (  14.44  )
+X-CRM114-CacheID: sfid-20240606_031106_182997_27A28250 
+X-CRM114-Status: GOOD (  32.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,258 +111,66 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The OSMC Vero 4K device is based on the Amlogic S905X (P212)
-reference design with the following specifications:
+On Thu, Jun 06, 2024 at 03:12:03PM +0530, Joy Chakraborty wrote:
+> > These functions are used internally and exported to the user through
+> > sysfs via bin_attr_nvmem_read/write().  For internal users partial reads
+> > should be treated as failure.  What are we supposed to do with a partial
+> > read?  I don't think anyone has asked for partial reads to be supported
+> > from sysfs either except Greg was wondering about it while reading the
+> > code.
+> >
+> > Currently, a lot of drivers return -EINVAL for partial read/writes but
+> > some return success.  It is a bit messy.  But this patchset doesn't
+> > really improve anything.  In at24_read() we check if it's going to be a
+> > partial read and return -EINVAL.  Below we report a partial read as a
+> > full read.  It's just a more complicated way of doing exactly what we
+> > were doing before.
+> 
+> Currently what drivers return is up to their interpretation of int
+> return type, there are a few drivers which also return the number of
+> bytes written/read already like
+> drivers/misc/mchp_pci1xxxx/mchp_pci1xxxx_otpe2p.c .
 
-- 2GB DDR4 RAM
-- 16GB eMMC
-- HDMI 2.1 video
-- S/PDIF optical output
-- AV output
-- 10/100 Ethernet
-- AP6255 Wireless (802.11 a/b/g/n/ac, BT 4.2)
-- 2x USB 2.0 ports (1x OTG)
-- IR receiver (internal)
-- IR extender port (external)
-- 1x micro SD card slot
-- 1x Power LED (red)
-- 1x Reset button (in AV jack)
+Returning non-zero is a bug.  It won't break bin_attr_nvmem_read/write()
+but it will break other places like nvmem_access_with_keepouts(),
+__nvmem_cell_read() and nvmem_cell_prepare_write_buffer() where all
+non-zero returns from nvmem_reg_read() are treated as an error.
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   7 +
- .../dts/amlogic/meson-gxl-s905x-vero4k.dts    | 202 ++++++++++++++++++
- 2 files changed, 209 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts
+> The objective of the patch was to handle partial reads and errors at
+> the nvmem core and instead of leaving it up to each nvmem provider by
+> providing a better return value to nvmem providers.
+> 
+> Regarding drivers/misc/eeprom/at25.c which you pointed below, that is
+> a problem in my code change. I missed that count was modified later on
+> and should initialize bytes_written to the new value of count, will
+> fix that when I come up with the new patch.
+> 
+> I agree that it does not improve anything for a lot of nvmem providers
+> for example the ones which call into other reg_map_read/write apis
+> which do not return the number of bytes read/written but it does help
+> us do better error handling at the nvmem core layer for nvmem
+> providers who can return the valid number of bytes read/written.
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 4addcae2c54e..78941ddd3136 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -55,6 +55,13 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-phicomm-n1.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-sml5442tw.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-vero4k-plus.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-hwacom-amazetv.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-khadas-vim.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc-v2.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-vero4k.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-jethome-jethub-j80.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-p281.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-tx3-mini.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts
-new file mode 100644
-index 000000000000..b325cd75a792
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts
-@@ -0,0 +1,202 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2024 Christian Hewitt <christianshewitt@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-gxl-s905x-p212.dtsi"
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/sound/meson-aiu.h>
-+
-+/ {
-+	compatible = "osmc,vero4k", "amlogic,s905x", "amlogic,meson-gxl";
-+	model = "OSMC Vero 4K";
-+
-+	reserved-memory {
-+		/* 32 MiB reserved for ARM Trusted Firmware (BL32) */
-+		secmon_reserved_bl32: secmon@5300000 {
-+			reg = <0x0 0x05300000 0x0 0x2000000>;
-+			no-map;
-+		};
-+	};
-+
-+	gpio-keys-polled {
-+		compatible = "gpio-keys-polled";
-+		poll-interval = <20>;
-+
-+		button {
-+			label = "power";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-standby {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_POWER;
-+			gpios = <&gpio GPIODV_24 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+			panic-indicator;
-+		};
-+	};
-+
-+	dio2133: analog-amplifier {
-+		compatible = "simple-audio-amplifier";
-+		sound-name-prefix = "AU2";
-+		VCC-supply = <&hdmi_5v>;
-+		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	spdif_dit: audio-codec-0 {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+		sound-name-prefix = "DIT";
-+	};
-+
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	sound {
-+		compatible = "amlogic,gx-sound-card";
-+		model = "VERO4K";
-+		audio-aux-devs = <&dio2133>;
-+		audio-widgets = "Line", "Lineout";
-+		audio-routing = "AU2 INL", "ACODEC LOLP",
-+				"AU2 INR", "ACODEC LORP",
-+				"AU2 INL", "ACODEC LOLN",
-+				"AU2 INR", "ACODEC LORN",
-+				"Lineout", "AU2 OUTL",
-+				"Lineout", "AU2 OUTR";
-+
-+		dai-link-0 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
-+			};
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
-+
-+			codec-0 {
-+				sound-dai = <&spdif_dit>;
-+			};
-+		};
-+
-+		dai-link-4 {
-+			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+
-+		dai-link-5 {
-+			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&acodec>;
-+			};
-+		};
-+	};
-+};
-+
-+&acodec {
-+	AVDD-supply = <&vddio_ao18>;
-+	status = "okay";
-+};
-+
-+&aiu {
-+	status = "okay";
-+	pinctrl-0 = <&spdif_out_h_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&cec_AO {
-+	status = "okay";
-+	pinctrl-0 = <&ao_cec_pins>;
-+	pinctrl-names = "default";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&clkc {
-+	assigned-clocks = <&clkc CLKID_MPLL0>,
-+			  <&clkc CLKID_MPLL1>,
-+			  <&clkc CLKID_MPLL2>;
-+	assigned-clock-parents = <0>, <0>, <0>;
-+	assigned-clock-rates = <294912000>,
-+			       <270950400>,
-+			       <393216000>;
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+&ethmac {
-+	phy-mode = "rmii";
-+	phy-handle = <&internal_phy>;
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&hdmi_5v>;
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&internal_phy {
-+	pinctrl-0 = <&eth_link_led_pins>, <&eth_act_led_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+/* This UART is brought out to the DB9 connector */
-+&uart_AO {
-+	status = "okay";
-+};
--- 
-2.34.1
+If we're going to support partial writes, then it needs to be done all
+the way.  We need to audit functions like at24_read() and remove the
+-EINVAL lines.
+
+   440          if (off + count > at24->byte_len)
+   441                  return -EINVAL;
+
+It should be:
+
+	if (off + count > at24->byte_len)
+		count = at24->byte_len - off;
+
+Some drivers handle writing zero bytes as -EINVAL and some return 0.
+Those changes could be done before we change the API.
+
+You updated nvmem_access_with_keepouts() to handle negative returns but
+not zero returns so it could lead to a forever loop.
+
+regards,
+dan carpenter
 
 
 _______________________________________________
