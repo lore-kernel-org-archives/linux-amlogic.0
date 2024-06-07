@@ -4,74 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17B1AC27C53
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2024 08:07:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71EE0C27C53
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2024 08:07:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
 	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=OjquJhDc+Eb95zY+mkMSpSoOMoJpv9/eZ0gs0NP/8mM=; b=yHnHdOM3zmZ9asaUQ9grHTbtRt
-	W21YdbYPNM3zxyMZLhgDC3gWuyl5SzO5GFGRm1rw+wWuDrUcU6o6/evq5XgkC08LPLyVfVg/5BELs
-	Ers4N5WXzKa1xq7vUL0EK11KWyqe11YW8iuH5b7niTPDTThye0ou+pUsR5vFfL/lULEvsEMs29+4D
-	BcACmq5vbwurZ74uD/nj3zB1u0hbSLgxOal91g/Z7UJK2u7CCUdVHS2REQivdc5V4ysSWOJb4rVGq
-	Kho/su+kKqblA8g3hHJ9zzaqWhQFFrITUdFX6SjZJ2hhPOrimJp+Ryq2kgLoiqX57YngIcMKwX8d6
-	4gYZpNsQ==;
+	bh=5UD18iqakktLX9CTIU3CYxJGhcaty/yWuefuNsgnVc4=; b=PO0XjmtJ2RhWRGrod5hQ2yAOn4
+	DC/mYmHmNqL+60eGqA1HsqwqfiX78zEGP6v8Lx/h4EsMJAwl7HJT+8wzqQtjWDwgWlQPiXZYJXjx0
+	WGSdrHPpDAlZbgmKYBl1g9NQGVTCyxg3c+QaoU7YumwfxSxgwCd9IjrD9lLiZFTArQhlN/pKa3ZQE
+	L7Q0nQ/Bu1Z8bh413LmNwz2yR2ZjCv0Uhh2thEw1Yjno4En7fRQyJ8exX7lH6Y1C0gKH15UwlWo0r
+	Nc3+WUcrwjDCVALvnt4V50xyxSfzUpY2hhBjOpt5lPpB+onPqLyV969GVL/gbQthth/6ILtY/ciZc
+	ttDNcmUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFUck-0000000D3pd-1nWp;
-	Fri, 07 Jun 2024 08:06:58 +0000
-Received: from mail-lj1-x230.google.com ([2a00:1450:4864:20::230])
+	id 1sFUdU-0000000D45e-3eir;
+	Fri, 07 Jun 2024 08:07:44 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFUch-0000000D3nv-0RFJ
+	id 1sFUdS-0000000D44h-1EaB
 	for linux-amlogic@lists.infradead.org;
-	Fri, 07 Jun 2024 08:06:56 +0000
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2eae2d4da7bso2965531fa.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 07 Jun 2024 01:06:50 -0700 (PDT)
+	Fri, 07 Jun 2024 08:07:43 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-35e1fcd0c0fso1884582f8f.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 07 Jun 2024 01:07:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717747609; x=1718352409; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1717747661; x=1718352461; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=cs2er2WfjzPxLxlW6i654REXwOLP4BuIdcUwIYww4wQ=;
-        b=LZCbNDTOVt3CqQFInQB76gUroyH8KsiornrsNDv+CkS8tHYSqmSneYaQtaC047HEJa
-         u9xJMUy7+Q+MWNEaR7+zvNWoP8KlF7IG+QB1FEHG2ULq12Tj14lnSlpkjJuQwi1fQgg7
-         cxSxwDXFMAsg/IqdqbN9taqhxvHVTFvpxhu9/HS+ih+LsFocn0dQR+MEfJpJxKI16U8i
-         pdKj9AYMDFzKb58B7auIE0oKJpyHDhmwU8u13rZGJIpFlMwu66GRS98zE89Zmi9g55mm
-         F7To6tKXQP38tCeMXRU50zmdzDqvS+UL2Rx7/3phzDz1kT71Z5wkCJGizGikHJ7tUycB
-         APOw==
+        bh=zm7TFPva0bErQOP/68vGfRmjP0R/5JymFuac9fbRPVw=;
+        b=gJNNq/Dywjvn7aGzp5LWQNDvQ/EDXb1mgsh4yH6gTnI3MpQwkv+ZwOMIWmyluzSHh4
+         +WXx7Jtq0ID0zJbolzt2uBDz37NVI2469ZmvQEQtGap34zyqxoRuSI8cdw2s+JKOWFBk
+         nhVZ9yQ9fzes4WdKeCo200DtnGG94dwJYdEamWH7k7NZ8Qax5hxUxrONX2Tc0pgdPR36
+         T1fo8pagTQlRJKB20r6yJLTg1ovmEEFDL5scJeGhEvxy1X4oNqcoesdKz/mFR20z6Gtm
+         oMDkC/i9DHBI5U8Xo7On7GJrP8x0m/G95h1CKhhG7ihUDHn6IUjoAsWiuC6SPcq0uW2X
+         rrsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717747609; x=1718352409;
+        d=1e100.net; s=20230601; t=1717747661; x=1718352461;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=cs2er2WfjzPxLxlW6i654REXwOLP4BuIdcUwIYww4wQ=;
-        b=QkeN7l9YNa+hbGdJQieGCPFPFArgNeWv6mW2wjmHmuKc1e/m4WpgVAAF9/jOQ5RR3/
-         CWgcGFtEJ1gPx6qj7l9nkawdikCPGyhmQulfgWufKOAwMeNyCGroMhfNbBG0HMlwutbm
-         HoyTgi3RdxZay+yASFEHW8N2PPA3BMjW9XGOy0iDj1zG3ZfoIwVYEg9xT84eAeWl8hl2
-         dvzg6EfrJCDwQeCeBBL8n/mE8wJ/lO1rjTEUliU8yKkdGfSV/q2MsVYONbmIloGVHC/E
-         MEiDPyMXBwqZJKYwPtxJk0JRTcXriS17+UUtYKnunxS8QjAMY4n0qPDUxo7xBulBlTHr
-         F+Dg==
-X-Forwarded-Encrypted: i=1; AJvYcCVRYMpen570ykqSfvmL+AL4xXIEA1lYq9bMUZfK/n1vEzdip1EfEQkWJZ0CSFsyXahAXcCGYrw5qFGnSV6oBo6qgR0bkAafh3pwRD5QhdL3dZ0=
-X-Gm-Message-State: AOJu0Yw5V0+7PdQimZchR2qQ271P01xeck0Cm1NQ5nid837s+M4UzUa7
-	o9aykXBi7q9Q8lVT5mgtpCS5OcN9xJZcpIBbRpXPaHx2UzFXTOw6I0LHaJWt2sQ=
-X-Google-Smtp-Source: AGHT+IFwdsXDX9nV84DaEReM9mCQuTf41DFFAGNDMQCJPBSgCBroHrE6WkRcbnx6TaEmBS/QxstGjQ==
-X-Received: by 2002:a2e:7803:0:b0:2e9:77ec:58eb with SMTP id 38308e7fff4ca-2eadce378c4mr14750241fa.17.1717747608691;
-        Fri, 07 Jun 2024 01:06:48 -0700 (PDT)
+        bh=zm7TFPva0bErQOP/68vGfRmjP0R/5JymFuac9fbRPVw=;
+        b=tmt4X6r/YGAANkCFD/RhW1lSrRuV1+wFgmwqXF6R7Gm6bz40KZ6UMt86F3OmULv9jM
+         tj2OhyBkP+Os0fxsASCi5kHVlMa+kYI8FzS71P8njnK6cN82OR09fc3G3msqhAFWEYC8
+         CSx8WeNeqV43rvw+x6IQJYzquqvvtDWWT6EkaMeuTuD2fUteGgf1WmnfdriMKdjriwey
+         ANLgzyHSc20frJLGL/Ly0KCvK3KeZ7if9csEg0tfPD37olLoNvHE1yPU9dNvAXQ1NPhs
+         p0AYvkoxDj2XNtvscYqeeV+z15Tz9XMJuVPMc2+beDqzQgxNgdwIBU9JU7shNJUVFg/l
+         ke+A==
+X-Forwarded-Encrypted: i=1; AJvYcCWyRthaq8oLmGaK76YF+0/I11+tZPFx34aKnPgHBhM+cTbHZ77pay+A3M7ZnKxN46Xa1j0MerMJuFdtCZonTCGvsk0H3gTO1GupvYXaOYbH/9A=
+X-Gm-Message-State: AOJu0Yz8t+fiaj/9je57YT6KIWd2n5KC3oVn9WjjXkmkqOq0tm9Hm+i5
+	Su9ZF751XcbteJppP5gahyNmEbdi9OZw8zkPU40wKgLcTmCUMBQy7K9ENo+JaaY=
+X-Google-Smtp-Source: AGHT+IHqhz5k04ZzyFG1CkhZU4vWzmotulML28MoByYGhj8GH+MxqZaO0+We9+uAJfWY61IYXCGEKQ==
+X-Received: by 2002:a5d:6483:0:b0:354:df59:c9a4 with SMTP id ffacd0b85a97d-35efed08bd4mr1647456f8f.9.1717747660655;
+        Fri, 07 Jun 2024 01:07:40 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404? ([2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421580fe366sm79507285e9.7.2024.06.07.01.06.47
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d297b3sm3443187f8f.11.2024.06.07.01.07.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Jun 2024 01:06:48 -0700 (PDT)
-Message-ID: <a8312367-7baa-4969-a98f-cb9829cc42ea@linaro.org>
-Date: Fri, 7 Jun 2024 10:06:45 +0200
+        Fri, 07 Jun 2024 01:07:40 -0700 (PDT)
+Message-ID: <7b877bc6-9e26-4bae-934a-ceb9663d751d@linaro.org>
+Date: Fri, 7 Jun 2024 10:07:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 3/3] arm64: dts: meson: add initial support for Dreambox
- One/Two
+Subject: Re: [PATCH 2/2] arm64: dts: meson: add support for OSMC Vero 4K
 To: Christian Hewitt <christianshewitt@gmail.com>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -80,8 +79,8 @@ To: Christian Hewitt <christianshewitt@gmail.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240606094513.3949323-1-christianshewitt@gmail.com>
- <20240606094513.3949323-3-christianshewitt@gmail.com>
+References: <20240606095419.3950015-1-christianshewitt@gmail.com>
+ <20240606095419.3950015-2-christianshewitt@gmail.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -108,10 +107,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240606094513.3949323-3-christianshewitt@gmail.com>
+In-Reply-To: <20240606095419.3950015-2-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240607_010655_307110_8CC1D2D3 
-X-CRM114-Status: GOOD (  16.13  )
+X-CRM114-CacheID: sfid-20240607_010742_385505_3F846C24 
+X-CRM114-Status: GOOD (  16.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,267 +128,255 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 06/06/2024 11:45, Christian Hewitt wrote:
-> Dreambox One and Dreambox Two are based on the Amlogic W400 reference
-> board with an S922X chip and the following specs:
+On 06/06/2024 11:54, Christian Hewitt wrote:
+> The OSMC Vero 4K device is based on the Amlogic S905X (P212)
+> reference design with the following specifications:
 > 
-> - 2GB DDR3 RAM
+> - 2GB DDR4 RAM
 > - 16GB eMMC
-> - 10/100/1000 Base-T Ethernet
-> - AP6356 Wireless (802.11 b/g/n/ac, BT 5.0)
 > - HDMI 2.1 video
 > - S/PDIF optical output
-> - 2x DVB-S2/T2
-> - Smartcard Reader Slot
-> - 2x USB 2.0 port (1x micro-USB for service)
-> - 1x USB 3.0 port
-> - IR receiver
-> - 1x Power LED (blue)
-> - 1x Power button (top)
-> - 1x Update/Reset button (underside)
+> - AV output
+> - 10/100 Ethernet
+> - AP6255 Wireless (802.11 a/b/g/n/ac, BT 4.2)
+> - 2x USB 2.0 ports (1x OTG)
+> - IR receiver (internal)
+> - IR extender port (external)
 > - 1x micro SD card slot
-> 
-> Dreambox Two differences:
-> 
-> - 3" Colour LCD display (MIPI-DSI)
-> - Common Interface Slot
+> - 1x Power LED (red)
+> - 1x Reset button (in AV jack)
 > 
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->   arch/arm64/boot/dts/amlogic/Makefile          |   2 +
->   .../dts/amlogic/meson-g12b-dreambox-one.dts   |  17 ++
->   .../dts/amlogic/meson-g12b-dreambox-two.dts   |  20 +++
->   .../boot/dts/amlogic/meson-g12b-dreambox.dtsi | 159 ++++++++++++++++++
->   4 files changed, 198 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dts
->   create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dts
->   create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi
+>   arch/arm64/boot/dts/amlogic/Makefile          |   7 +
+>   .../dts/amlogic/meson-gxl-s905x-vero4k.dts    | 202 ++++++++++++++++++
+>   2 files changed, 209 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts
 > 
 > diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 0746e01b5853..4addcae2c54e 100644
+> index 4addcae2c54e..78941ddd3136 100644
 > --- a/arch/arm64/boot/dts/amlogic/Makefile
 > +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -21,6 +21,8 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3-ts050.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-bananapi-cm4-cm4io.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-bananapi-cm4-mnt-reform2.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-g12b-dreambox-one.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-g12b-dreambox-two.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gsking-x.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dts
+> @@ -55,6 +55,13 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-phicomm-n1.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-sml5442tw.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-vero4k-plus.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-hwacom-amazetv.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-khadas-vim.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc-v2.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-vero4k.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-jethome-jethub-j80.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-p281.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-tx3-mini.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts
 > new file mode 100644
-> index 000000000000..ecfa1c683dde
+> index 000000000000..b325cd75a792
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dts
-> @@ -0,0 +1,17 @@
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts
+> @@ -0,0 +1,202 @@
 > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 > +/*
-> + * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
+> + * Copyright (c) 2024 Christian Hewitt <christianshewitt@gmail.com>
 > + */
 > +
 > +/dts-v1/;
 > +
-> +#include "meson-g12b-dreambox.dtsi"
-> +
-> +/ {
-> +	compatible = "dream,dreambox-one", "amlogic,s922x", "amlogic,g12b";
-> +	model = "Dreambox One";
-> +};
-> +
-> +&sd_emmc_a {
-> +	sd-uhs-sdr12;
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dts
-> new file mode 100644
-> index 000000000000..df0d71983c3d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dts
-> @@ -0,0 +1,20 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-g12b-dreambox.dtsi"
-> +
-> +/ {
-> +	compatible = "dream,dreambox-two", "amlogic,s922x", "amlogic,g12b";
-> +	model = "Dreambox Two";
-> +};
-> +
-> +&sd_emmc_a {
-> +	sd-uhs-sdr12;
-> +	sd-uhs-sdr25;
-> +	sd-uhs-sdr50;
-> +	sd-uhs-sdr104;
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi
-> new file mode 100644
-> index 000000000000..a302b127f32a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi
-> @@ -0,0 +1,159 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2021 Christian Hewitt <christianshewitt@gmail.com>
-> + */
-> +
-> +#include "meson-g12b-w400.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
+> +#include "meson-gxl-s905x-p212.dtsi"
+> +#include <dt-bindings/input/input.h>
 > +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+> +#include <dt-bindings/sound/meson-aiu.h>
 > +
 > +/ {
-> +	cvbs-connector {
-> +		status = "disabled";
+> +	compatible = "osmc,vero4k", "amlogic,s905x", "amlogic,meson-gxl";
+> +	model = "OSMC Vero 4K";
+> +
+> +	reserved-memory {
+> +		/* 32 MiB reserved for ARM Trusted Firmware (BL32) */
+> +		secmon_reserved_bl32: secmon@5300000 {
+> +			reg = <0x0 0x05300000 0x0 0x2000000>;
+> +			no-map;
+> +		};
 > +	};
 > +
-> +	sdio_pwrseq: sdio-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		reset-gpios = <&gpio GPIOA_11 GPIO_ACTIVE_LOW>;
-> +		clocks = <&wifi32k>;
-> +		clock-names = "ext_clock";
+> +	gpio-keys-polled {
+> +		compatible = "gpio-keys-polled";
+> +		poll-interval = <20>;
+> +
+> +		button {
+> +			label = "power";
+> +			linux,code = <KEY_POWER>;
+> +			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
+> +		};
 > +	};
 > +
-> +	spdif_dit: audio-codec-1 {
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-standby {
+> +			color = <LED_COLOR_ID_RED>;
+> +			function = LED_FUNCTION_POWER;
+> +			gpios = <&gpio GPIODV_24 GPIO_ACTIVE_LOW>;
+> +			default-state = "off";
+> +			panic-indicator;
+> +		};
+> +	};
+> +
+> +	dio2133: analog-amplifier {
+> +		compatible = "simple-audio-amplifier";
+> +		sound-name-prefix = "AU2";
+> +		VCC-supply = <&hdmi_5v>;
+> +		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	spdif_dit: audio-codec-0 {
 > +		#sound-dai-cells = <0>;
 > +		compatible = "linux,spdif-dit";
-> +		status = "okay";
 > +		sound-name-prefix = "DIT";
 > +	};
 > +
+> +	cvbs-connector {
+> +		compatible = "composite-video-connector";
+> +
+> +		port {
+> +			cvbs_connector_in: endpoint {
+> +				remote-endpoint = <&cvbs_vdac_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	hdmi-connector {
+> +		compatible = "hdmi-connector";
+> +		type = "a";
+> +
+> +		port {
+> +			hdmi_connector_in: endpoint {
+> +				remote-endpoint = <&hdmi_tx_tmds_out>;
+> +			};
+> +		};
+> +	};
+> +
 > +	sound {
-> +		compatible = "amlogic,axg-sound-card";
-> +		model = "DREAMBOX";
-> +		audio-aux-devs = <&tdmout_b>;
-> +		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-> +				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-> +				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-> +				"TDM_B Playback", "TDMOUT_B OUT",
-> +				"SPDIFOUT_A IN 0", "FRDDR_A OUT 3",
-> +				"SPDIFOUT_A IN 1", "FRDDR_B OUT 3",
-> +				"SPDIFOUT_A IN 2", "FRDDR_C OUT 3";
+> +		compatible = "amlogic,gx-sound-card";
+> +		model = "VERO4K";
+> +		audio-aux-devs = <&dio2133>;
+> +		audio-widgets = "Line", "Lineout";
+> +		audio-routing = "AU2 INL", "ACODEC LOLP",
+> +				"AU2 INR", "ACODEC LORP",
+> +				"AU2 INL", "ACODEC LOLN",
+> +				"AU2 INR", "ACODEC LORN",
+> +				"Lineout", "AU2 OUTL",
+> +				"Lineout", "AU2 OUTR";
 > +
 > +		dai-link-0 {
-> +			sound-dai = <&frddr_a>;
+> +			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
 > +		};
 > +
 > +		dai-link-1 {
-> +			sound-dai = <&frddr_b>;
+> +			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
 > +		};
 > +
 > +		dai-link-2 {
-> +			sound-dai = <&frddr_c>;
-> +		};
-> +
-> +		/* 8ch hdmi interface */
-> +		dai-link-3 {
-> +			sound-dai = <&tdmif_b>;
+> +			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
 > +			dai-format = "i2s";
-> +			dai-tdm-slot-tx-mask-0 = <1 1>;
-> +			dai-tdm-slot-tx-mask-1 = <1 1>;
-> +			dai-tdm-slot-tx-mask-2 = <1 1>;
-> +			dai-tdm-slot-tx-mask-3 = <1 1>;
 > +			mclk-fs = <256>;
 > +
-> +			codec {
-> +				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
+> +			codec-0 {
+> +				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
+> +			};
+> +
+> +			codec-1 {
+> +				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
 > +			};
 > +		};
 > +
-> +		/* spdif hdmi or toslink interface */
-> +		dai-link-4 {
-> +			sound-dai = <&spdifout_a>;
+> +		dai-link-3 {
+> +			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
 > +
 > +			codec-0 {
 > +				sound-dai = <&spdif_dit>;
 > +			};
-> +
-> +			codec-1 {
-> +				sound-dai = <&tohdmitx TOHDMITX_SPDIF_IN_A>;
-> +			};
 > +		};
 > +
-> +		/* spdif hdmi interface */
-> +		dai-link-5 {
-> +			sound-dai = <&spdifout_b>;
+> +		dai-link-4 {
+> +			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
 > +
-> +			codec {
-> +				sound-dai = <&tohdmitx TOHDMITX_SPDIF_IN_B>;
-> +			};
-> +		};
-> +
-> +		/* hdmi glue */
-> +		dai-link-6 {
-> +			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-> +
-> +			codec {
+> +			codec-0 {
 > +				sound-dai = <&hdmi_tx>;
+> +			};
+> +		};
+> +
+> +		dai-link-5 {
+> +			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
+> +
+> +			codec-0 {
+> +				sound-dai = <&acodec>;
 > +			};
 > +		};
 > +	};
 > +};
 > +
-> +&arb {
+> +&acodec {
+> +	AVDD-supply = <&vddio_ao18>;
 > +	status = "okay";
 > +};
 > +
-> +&clkc_audio {
-> +	assigned-clocks = <&clkc CLKID_MPLL2>,
-> +			  <&clkc CLKID_MPLL0>,
-> +			  <&clkc CLKID_MPLL1>;
+> +&aiu {
+> +	status = "okay";
+> +	pinctrl-0 = <&spdif_out_h_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&cec_AO {
+> +	status = "okay";
+> +	pinctrl-0 = <&ao_cec_pins>;
+> +	pinctrl-names = "default";
+> +	hdmi-phandle = <&hdmi_tx>;
+> +};
+> +
+> +&clkc {
+> +	assigned-clocks = <&clkc CLKID_MPLL0>,
+> +			  <&clkc CLKID_MPLL1>,
+> +			  <&clkc CLKID_MPLL2>;
 > +	assigned-clock-parents = <0>, <0>, <0>;
 > +	assigned-clock-rates = <294912000>,
 > +			       <270950400>,
 > +			       <393216000>;
+> +};
 > +
+> +&cvbs_vdac_port {
+> +	cvbs_vdac_out: endpoint {
+> +		remote-endpoint = <&cvbs_connector_in>;
+> +	};
+> +};
+> +
+> +&ethmac {
+> +	phy-mode = "rmii";
+> +	phy-handle = <&internal_phy>;
+> +};
+> +
+> +&hdmi_tx {
 > +	status = "okay";
-> +};
-> +
-> +&frddr_a {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_b {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_c {
-> +	status = "okay";
-> +};
-> +
-> +&ir {
-> +	linux,rc-map-name = "rc-dreambox";
-> +};
-> +
-> +&saradc {
-> +	status = "okay";
-> +	vref-supply = <&vddao_1v8>;
-> +};
-> +
-> +&spdifout_a {
-> +	pinctrl-0 = <&spdif_out_h_pins>;
+> +	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
 > +	pinctrl-names = "default";
-> +	status = "okay";
+> +	hdmi-supply = <&hdmi_5v>;
 > +};
 > +
-> +&spdifout_b {
-> +	status = "okay";
+> +&hdmi_tx_tmds_port {
+> +	hdmi_tx_tmds_out: endpoint {
+> +		remote-endpoint = <&hdmi_connector_in>;
+> +	};
 > +};
 > +
-> +&tdmif_b {
-> +	status = "okay";
+> +&internal_phy {
+> +	pinctrl-0 = <&eth_link_led_pins>, <&eth_act_led_pins>;
+> +	pinctrl-names = "default";
 > +};
 > +
-> +&tdmout_b {
-> +	status = "okay";
-> +};
-> +
-> +&tohdmitx {
+> +/* This UART is brought out to the DB9 connector */
+> +&uart_AO {
 > +	status = "okay";
 > +};
 
