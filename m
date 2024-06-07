@@ -4,39 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F73CC27C53
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2024 14:52:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51270C27C6E
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2024 14:52:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6fH7HwLDxp+kCqFxh1C3RFb/8Q/03jhwYNuRWhM4axA=; b=QmZe/AKH7eAslj
-	LibQnS4z/fkERQik4xrX80PHumn3/tEXNzIy8DTnV11Lq9+12jQUtfY6+bS0DMyykmhbgGae0bB6z
-	TKNqmIyKR+mzkqz4c4cqSaMCQbTC2H0138DWuCAEN/Sd7lK4S+nWky/kulExO6lvXIoxpP7rpTwds
-	n2VIrvZpZIqoa5c/hKvB/ByaKLVRbSJ9MaPc4rkTOvcuv1nDS5LPad2O1BalAHsF+aZskv+WlO+X2
-	M3MNs25FFckyDt5HKa6prgq0d4vsSgPbOpk5bptODTY1M9nI/PH4pu7CUgXubD0Ps5KfVHktEkTM2
-	Vqk4/9kfL34BQQj5CA2w==;
+	List-Owner; bh=Xrtd2ZiURo1WxBC1zD8AhCjm5PfQX81ugL0hf3lLxFY=; b=Etaril6m/9S9vj
+	9S/q1qh3/2FZ2acO2erY1TBjX/JDUjiHfMQ7hNUdMHbHwXi5/vwLux+Xhl8r9zT85ExypTSMqOURY
+	MX9u5sh4xJCG8046AISq8G6Vs62xuy0MeaEYwjV/JupAWbAhZkYQzdkJRi+pqz9mC9j/cjecLOHDu
+	GNLxkByPuArP7ukn6ooPt/1EGk223oaCoYlPb6IyFOKTSB17ltmHEozj5tZTvhBzhyodePxB3jrGX
+	q3+ntHScwodzNGXSC02g9trkGKizWcp8P9naCmsM154krYYDyY0P2Z4L9s1gZOS0+SxbauxxCYgBD
+	po1EWmRR2T9cmhgZ1+Gw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFax8-0000000EWlC-2VXO;
-	Fri, 07 Jun 2024 14:52:26 +0000
+	id 1sFaxB-0000000EWmk-2Jme;
+	Fri, 07 Jun 2024 14:52:29 +0000
 Received: from mx.adeep.su ([185.250.0.168])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFax5-0000000EWjI-2S8T;
-	Fri, 07 Jun 2024 14:52:25 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 65F35105BBC;
-	Fri,  7 Jun 2024 17:52:21 +0300 (MSK)
+	id 1sFax7-0000000EWjz-1maY;
+	Fri, 07 Jun 2024 14:52:27 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D0231105CC8;
+	Fri,  7 Jun 2024 17:52:22 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
-	t=1717771941; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1717771942; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=5khaxnHYfgBWx++I3wa8hd9Z9yMzi3N1PuwxaE8FZq0=;
-	b=XeJ6qHkZAv6+/JzlFBWahb7E8Q2T1lZ1OkfTWW2A3Aa4T2wG02Gm9ubXWtYosJTxlr6DE+
-	tEw07zA2LWf+42VtT9YpCIX2dJIjKvTcXinqf6vWsnCn0v/C/CVeHr2948U4XjJvUprupC
-	80NiAWVbWFX9yqG0GtTQIku7eRG8QQ9klVScTVsY3CTS7mTGt1aWKG9aVwIuTgvg2HFVpo
-	TdwZSRBVV4giH8ae5DJ5zh1uLAIfNygRhADt9+WIIhqW/ApD3MmbZWR6lpF6ws2hbvMZpp
-	cnDznzEp69+5dieB/rgsF2qwEB0SjgfhBInR5Wkm4gwFCOcRt5+xSsoNTIsucQ==
+	bh=WoJ2u2sQQTGBjv0QfHI0WaIyW+EzyfWA149Uae4d4Ho=;
+	b=N8kmv8JttDBGipGqRNUbHdOin47soTp2f4oOGhEcQFPy6k6ssvQ5patBOY8v5vbkLM5mYg
+	n1hu+aB3BgnROdHHEgpQ1d2oNhmtgEiN7sAusFfevKcO27+NV8e+Nzs1K1shzn4PwZFY2F
+	CjDghmVpeLqyqZXhphqc+N7neINerJWaApb5dI83bIQ2RzswD2byWl4jf8qqmBpMH0Xx4W
+	bb8iLp8QjLyDWlCFqIuAkEZaOl19gaifq6XSX+Ovu6FEfUShWbQlyOMXeLx8sppxC30r2f
+	qUZveqMiNSLDc1gaRSOtWO3yJsv+U69xn/rCVAturpVQ+T/PRKO0UFBEmIEP1w==
 From: Viacheslav Bocharov <adeep@lexina.in>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
@@ -49,18 +49,17 @@ Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org
-Subject: [PATCH v1 1/2] dt-bindings: arm: amlogic: add binding for JetHome JetHub D2
-Date: Fri,  7 Jun 2024 17:50:03 +0300
-Message-ID: <20240607145148.2246990-2-adeep@lexina.in>
+Subject: [PATCH v1 2/2] arm64: dts: meson-axg: add support for JetHome JetHub D2 (j200)
+Date: Fri,  7 Jun 2024 17:50:04 +0300
+Message-ID: <20240607145148.2246990-3-adeep@lexina.in>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240607145148.2246990-1-adeep@lexina.in>
 References: <20240607145148.2246990-1-adeep@lexina.in>
 MIME-Version: 1.0
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240607_075223_818265_DB781831 
-X-CRM114-Status: UNSURE (   6.87  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240607_075225_831557_AAE72CB4 
+X-CRM114-Status: GOOD (  15.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,26 +76,662 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-JetHome JetHub D2 is a home automation controller, based on
-Amlogic S905X3 SoC
+JetHome Jethub D2 is a home automation controller with the following
+features:
+  - DIN Rail Mounting
+  - Amlogic S905X3 (ARM Cortex-A55) quad-core
+  - micro-HDMI video out
+  - 4GB LPDDR4
+  - 32GB eMMC flash
+  - 1 x USB 2.0
+  - 1 x 10/100/1000Mbps ethernet
+  - two module slots for radio/wire interface cards
+  - 2 x gpio LEDS
+  - 1 x 1-Wire
+  - 1 x RS-485
+  - 3 x dry contact digital GPIO inputs
+  - 2 x relay GPIO outputs
+  - DC 9-36V power source with battery UPS on board option
 
 Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
 ---
- Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../amlogic/meson-sm1-jethome-jethub-j200.dts | 614 ++++++++++++++++++
+ 2 files changed, 615 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index a374b98080fe..1acfb184aa9e 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -190,6 +190,7 @@ properties:
-               - hardkernel,odroid-c4
-               - hardkernel,odroid-hc4
-               - haochuangyi,h96-max
-+              - jethome,jethub-j200
-               - khadas,vim3l
-               - libretech,aml-s905d3-cc
-               - seirobotics,sei610
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 0f29517da5ec..d007b59497d4 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -79,6 +79,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m2-pro.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m5.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-h96-max.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-sm1-jethome-jethub-j200.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l-ts050.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-s905d3-libretech-cc.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dts
+new file mode 100644
+index 000000000000..1391c921fb8f
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dts
+@@ -0,0 +1,614 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2024 JetHome
++ * Author: Viacheslav Bocharov <adeep@lexina.in>
++ */
++
++/dts-v1/;
++
++#include "meson-sm1.dtsi"
++
++#include <dt-bindings/gpio/meson-g12a-gpio.h>
++#include <dt-bindings/leds/common.h>
++#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
++
++
++/ {
++
++	compatible = "jethome,jethub-j200", "amlogic,sm1";
++	model = "JetHome JetHub D2";
++
++	aliases {
++		serial0 = &uart_AO;
++		ethernet0 = &ethmac;
++		rtc0 = &rtc;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x40000000>;
++	};
++
++	emmc_pwrseq: emmc-pwrseq {
++		compatible = "mmc-pwrseq-emmc";
++		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
++	};
++
++	tflash_vdd: regulator-tflash_vdd {
++		compatible = "regulator-fixed";
++
++		regulator-name = "TFLASH_VDD";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++
++		gpio = <&gpio_ao GPIOAO_3 GPIO_OPEN_DRAIN>;
++		enable-active-high;
++		regulator-always-on;
++	};
++
++	tf_io: gpio-regulator-tf_io {
++		compatible = "regulator-gpio";
++
++		regulator-name = "TF_IO";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vcc_5v>;
++
++		enable-gpios = <&gpio_ao GPIOE_2 GPIO_OPEN_DRAIN>;
++		enable-active-high;
++		regulator-always-on;
++
++		gpios = <&gpio_ao GPIOAO_6 GPIO_OPEN_SOURCE>;
++		gpios-states = <0>;
++
++		states = <3300000 0>,
++			 <1800000 1>;
++	};
++
++	flash_1v8: regulator-flash_1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "FLASH_1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vcc_3v3>;
++		regulator-always-on;
++	};
++
++	main_12v: regulator-main_12v {
++		compatible = "regulator-fixed";
++		regulator-name = "12V";
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++		regulator-always-on;
++	};
++
++	vcc_5v: regulator-vcc_5v {
++		compatible = "regulator-fixed";
++		regulator-name = "5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++		vin-supply = <&main_12v>;
++		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
++		enable-active-high;
++	};
++
++	vcc_1v8: regulator-vcc_1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC_1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vcc_3v3>;
++		regulator-always-on;
++	};
++
++	vcc_3v3: regulator-vcc_3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vddao_3v3>;
++		regulator-always-on;
++	};
++
++	vddcpu: regulator-vddcpu {
++		/*
++		 * MP8756GD Regulator.
++		 */
++		compatible = "pwm-regulator";
++
++		regulator-name = "VDDCPU";
++		regulator-min-microvolt = <721000>;
++		regulator-max-microvolt = <1022000>;
++
++		pwm-supply = <&main_12v>;
++
++		pwms = <&pwm_AO_cd 1 1250 0>;
++		pwm-dutycycle-range = <100 0>;
++
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	usb_pwr_en: regulator-usb_pwr_en {
++		compatible = "regulator-fixed";
++		regulator-name = "USB_PWR_EN";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&vcc_5v>;
++
++		/* Connected to the microUSB port power enable */
++		gpio = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++	vddao_1v8: regulator-vddao_1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDAO_1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vddao_3v3>;
++		regulator-always-on;
++	};
++
++	vddao_3v3: regulator-vddao_3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDAO_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&main_12v>;
++		regulator-always-on;
++	};
++
++	hdmi-connector {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi_connector_in: endpoint {
++				remote-endpoint = <&hdmi_tx_tmds_out>;
++			};
++		};
++	};
++
++	sound {
++		compatible = "amlogic,axg-sound-card";
++		audio-aux-devs = <&tdmout_b>;
++		audio-routing = "TDM_B Playback", "TDMOUT_B OUT";
++
++		assigned-clocks = <&clkc CLKID_MPLL2>,
++				  <&clkc CLKID_MPLL0>,
++				  <&clkc CLKID_MPLL1>;
++		assigned-clock-parents = <0>, <0>, <0>;
++		assigned-clock-rates = <294912000>,
++				       <270950400>,
++				       <393216000>;
++
++		/* 8ch hdmi interface */
++		dai-link-0 {
++			sound-dai = <&tdmif_b>;
++			dai-format = "i2s";
++			dai-tdm-slot-tx-mask-0 = <1 1>;
++			dai-tdm-slot-tx-mask-1 = <1 1>;
++			dai-tdm-slot-tx-mask-2 = <1 1>;
++			dai-tdm-slot-tx-mask-3 = <1 1>;
++			mclk-fs = <256>;
++
++			codec {
++				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
++			};
++		};
++
++		/* hdmi glue */
++		dai-link-1 {
++			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
++
++			codec {
++				sound-dai = <&hdmi_tx>;
++			};
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		led-green {
++			color = <LED_COLOR_ID_GREEN>;
++			function = LED_FUNCTION_STATUS;
++			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_LOW>;
++			linux,default-trigger = "heartbeat";
++			panic-indicator;
++		};
++
++		led-red {
++			color = <LED_COLOR_ID_RED>;
++			function = LED_FUNCTION_POWER;
++			gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++		};
++
++	};
++
++	sound {
++		model = "JETHUB-D2";
++	};
++
++	usb-hub {
++		dr_mode = "host";
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		/* USB 2.0 hub with reset gpio */
++		hub_2_0: hub@1 {
++			compatible = "usb5e3,610";
++			reg = <1>;
++			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
++			vdd-supply = <&vcc_5v>;
++		};
++	};
++
++};
++
++&arb {
++	status = "okay";
++};
++
++&cec_AO {
++	pinctrl-0 = <&cec_ao_a_h_pins>;
++	pinctrl-names = "default";
++	status = "disabled";
++	hdmi-phandle = <&hdmi_tx>;
++};
++
++&cecb_AO {
++	pinctrl-0 = <&cec_ao_b_h_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++	hdmi-phandle = <&hdmi_tx>;
++};
++
++&clkc_audio {
++	status = "okay";
++};
++
++&cpu0 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU_CLK>;
++	clock-latency = <50000>;
++};
++
++&cpu1 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU1_CLK>;
++	clock-latency = <50000>;
++};
++
++&cpu2 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU2_CLK>;
++	clock-latency = <50000>;
++};
++
++&cpu3 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU3_CLK>;
++	clock-latency = <50000>;
++};
++
++&ext_mdio {
++	external_phy: ethernet-phy@0 {
++		/* Realtek RTL8211F (0x001cc916) */
++		reg = <0>;
++		max-speed = <1000>;
++
++		reset-assert-us = <10000>;
++		reset-deassert-us = <80000>;
++		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
++
++		interrupt-parent = <&gpio_intc>;
++		/* MAC_INTR on GPIOZ_14 */
++		interrupts = <IRQID_GPIOZ_14 IRQ_TYPE_LEVEL_LOW>;
++	};
++};
++
++&ethmac {
++	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++	phy-mode = "rgmii";
++	phy-handle = <&external_phy>;
++	amlogic,tx-delay-ns = <2>;
++};
++
++&gpio {
++	gpio-line-names =
++		/* GPIOZ */
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		/* GPIOH */
++		"", "", "", "", "",
++		"LED_RED", /* GPIOH_5 */
++		"I2C_SDA_MODULES", /* GPIOH_6 */
++		"I2C_SCL_MODULES", /* GPIOH_7 */
++		"",
++		/* BOOT */
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		/* GPIOC */
++		"", "", "", "", "", "", "", "",
++		/* GPIOA */
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "",
++		"I2C_SDA_SYSBUS", /* GPIOA_14 */
++		"I2C_SCL_SYSBUS", /* GPIOA_15 */
++		/* GPIOX */
++		"", /* GPIOX_0 */
++		"", /* GPIOX_1 */
++		"", /* GPIOX_2 */
++		"", /* GPIOX_3 */
++		"", /* GPIOX_4 */
++		"",  /* GPIOX_5 */
++		"RS485_TX", /* GPIOX_6 */
++		"RS485_RX", /* GPIOX_7 */
++		"", /* GPIOX_8 */
++		"", /* GPIOX_9 */
++		"", /* GPIOX_10 */
++		"", /* GPIOX_11 */
++		"",  /* GPIOX_12 */
++		"", /* GPIOX_13 */
++		"", /* GPIOX_14 */
++		"", /* GPIOX_15 */
++		"", /* GPIOX_16 */
++		"I2C_SDA_LCDBUS",  /* GPIOX_17 */
++		"I2C_SCL_LCDBUS",  /* GPIOX_18 */
++		""; /* GPIOX_19 */
++};
++
++&gpio_ao {
++	gpio-line-names =
++		/* GPIOAO */
++		"", "", "", "",
++		"MCU_RESET", /* GPIOAO_4 */
++		"POWER_GOOD", /* GPIOAO_5 */
++		"",
++		"MCU_BOOT", /* GPIOAO_7 */
++		"MCU_UART_TX", /* GPIOAO_8 */
++		"MCU_UART_RX", /* GPIOAO_9 */
++		"BUTTON_USR", /* GPIOAO_10 */
++		"LED_GREEN", /* GPIOAO_11 */
++		/* GPIOE */
++		"", "", "";
++};
++
++&hdmi_tx {
++	status = "okay";
++	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
++	pinctrl-names = "default";
++	hdmi-supply = <&vcc_5v>;
++};
++
++&hdmi_tx_tmds_port {
++	hdmi_tx_tmds_out: endpoint {
++		remote-endpoint = <&hdmi_connector_in>;
++	};
++};
++
++&pwm_AO_cd {
++	pinctrl-0 = <&pwm_ao_d_e_pins>; // GPIOE_1
++	pinctrl-names = "default";
++	clocks = <&xtal>;
++	clock-names = "clkin1";
++	status = "okay";
++};
++
++&saradc {
++	status = "okay";
++};
++
++/* SD card */
++&sd_emmc_b {
++	status = "okay";
++	pinctrl-0 = <&sdcard_c_pins>;
++	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
++	pinctrl-names = "default", "clk-gate";
++
++	bus-width = <4>;
++	cap-sd-highspeed;
++	max-frequency = <200000000>;
++	sd-uhs-sdr12;
++	sd-uhs-sdr25;
++	sd-uhs-sdr50;
++	sd-uhs-sdr104;
++	disable-wp;
++
++	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
++	vmmc-supply = <&tflash_vdd>;
++	vqmmc-supply = <&tf_io>;
++};
++
++/* eMMC */
++&sd_emmc_c {
++	status = "okay";
++	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>;
++	pinctrl-1 = <&emmc_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++
++	bus-width = <8>;
++	cap-mmc-highspeed;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++	max-frequency = <200000000>;
++	disable-wp;
++
++	mmc-pwrseq = <&emmc_pwrseq>;
++	vmmc-supply = <&vcc_3v3>;
++	vqmmc-supply = <&flash_1v8>;
++};
++
++&spifc {
++	status = "disabled";
++	pinctrl-0 = <&nor_pins>;
++	pinctrl-names = "default";
++
++	flash@0 {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <104000000>;
++	};
++};
++
++&tdmif_b {
++	status = "okay";
++};
++
++&tdmout_b {
++	status = "okay";
++};
++
++&tohdmitx {
++	status = "okay";
++};
++
++&uart_AO {
++	status = "okay";
++	pinctrl-0 = <&uart_ao_a_pins>;
++	pinctrl-names = "default";
++};
++
++&uart_AO_B {
++	status = "okay";
++	pinctrl-0 = <&uart_ao_b_8_9_pins>;
++	pinctrl-names = "default";
++};
++
++&uart_B {
++	status = "okay";
++	pinctrl-0 = <&uart_b_pins>;
++	pinctrl-names = "default";
++};
++
++
++&usb {
++	status = "okay";
++	vbus-supply = <&usb_pwr_en>;
++};
++
++&usb2_phy0 {
++	phy-supply = <&vcc_5v>;
++};
++
++
++/* I2C for modules */
++&i2c1 {
++	status = "okay";
++	pinctrl-0 = <&i2c1_sda_h6_pins>, <&i2c1_sck_h7_pins>;
++	pinctrl-names = "default";
++
++	/* GPIO expander */
++	u9: gpio@22 {
++		compatible = "nxp,pca9535";
++		reg = <0x22>;
++		gpio-controller;
++		#gpio-cells = <2>;
++
++		gpio-line-names =
++			"RELAY_1", "RELAY_2",
++			"", "",
++			"UXM1_RESET", "UXM1_BOOT",
++			"UXM2_RESET", "UXM2_BOOT",
++			"DIN_1", "DIN_2", "DIN_3",
++			"","","","","";
++	};
++
++	/* 1-wire */
++	w1: onewire@18 {
++		compatible = "maxim,ds2482";
++		reg = <0x18>;
++	};
++
++};
++
++
++/* I2C for lcd/etc */
++&i2c2 {
++	status = "okay";
++	pinctrl-0 = <&i2c2_sda_x_pins>, <&i2c2_sck_x_pins>;
++	pinctrl-names = "default";
++};
++
++/* I2C_EE_M3: I2C for CPU board */
++&i2c3 {
++	status = "okay";
++	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
++	pinctrl-names = "default";
++
++	/* I2C for rtc */
++	rtc: rtc@51 {
++		status = "okay";
++		compatible = "nxp,pcf8563";
++		reg = <0x51>;
++		wakeup-source;
++	};
++
++	/* FRAM on base board */
++	fram: eeprom@52 {
++		compatible = "atmel,24c64";
++		reg = <0x52>;
++		pagesize = <0x20>;
++		label = "fram";
++		address-width = <0x10>;
++		vcc-supply = <&vddao_3v3>;
++	};
++
++	/* EEPROM on CPU board */
++	eepromc: eeprom@54 {
++		compatible = "atmel,24c64";
++		reg = <0x54>;
++		pagesize = <0x20>;
++		label = "eepromc";
++		address-width = <0x10>;
++		vcc-supply = <&vddao_3v3>;
++	};
++
++	/* EEPROM on base board */
++	eeprompd: eeprom@56 {
++		compatible = "atmel,24c64";
++		reg = <0x56>;
++		pagesize = <0x20>;
++		label = "eeprompd";
++		address-width = <0x10>;
++		vcc-supply = <&vddao_3v3>;
++	};
++
++	/* EEPROM on power module */
++	eeprompm: eeprom@57 {
++		compatible = "atmel,24c64";
++		reg = <0x57>;
++		pagesize = <0x20>;
++		label = "eeprompm";
++		address-width = <0x10>;
++		vcc-supply = <&vddao_3v3>;
++	};
++
++	/* temperature sensors */
++	temp1: tmp102@48 {
++		compatible = "ti,tmp102";
++		reg = <0x48>;
++	};
++
++	temp2: tmp102@49 {
++		compatible = "ti,tmp102";
++		reg = <0x49>;
++	};
++
++};
 -- 
 2.45.2
 
