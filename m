@@ -4,90 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A63FC27C53
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2024 08:31:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4576C27C53
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2024 09:16:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Cc:Date:
-	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=od2W4DDgDTJa38GkWZ+M0KlJzu2jOb4/zXnTwnQL08U=; b=IsVr5B5o3ebucg
-	b9rkujmEh8oPGMI3+kRobUYbBRb5zU6m3+2INUBek48jff/hP5jZT9A7Hcx46oioIV/J0/WPC1i1s
-	QBmobNiz8/s9pFDSgCkJoumGDIYgTLecqRuv13V3E0oiJhi8gMacNZ3sFYYH1SKxvQ9cBGI2/s8ef
-	8W/GYIw1zytAVlPKx50XDkoEUFhSUoQxykaPednXJgTMLz/Ho45VxD06zwUAlTgFas4P8IWG0J6+Z
-	V4vu3IRn1KFzpotGBEk5mY+uIAHRUWVPVkGjfWWO6JVsr4eukCadNpzWA1LRRGB2K4XFwYQEQC9aD
-	lFml/yEDh1VU+0byV8ow==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=RcPbQVAI6YIPDMHUFkFHMWN9qZkZUomX9wRg4yt0jOc=; b=BYiXW3WIAYfOdvWO9++BeFGKru
+	26WURPqhSHWt1lBb/QeXt4zyneIsQv+Awgf3Y2w+r1xwlDG6PiZRRTgXWafibt0e5OiX/iv6P3zYs
+	CZBYHB1+7A3Cf52Vzp0Rl7S6ird8rzlej+ugC/TZw7oHJYRgZ8vdEx+1cId2yJyA+Ucsg4+QDQkTB
+	+Ksn4NzSHXDstu3szA4gzx35N08CqIDnc8ZNLWOipdE/Nve3hs2BCZVBRoE+TkGN6oLnmXvh/2Pbc
+	tb1aL6C3GZ9D9QF0GBFSboaHeoG6OftGrf6ecqx7rDM4zdx3agmdfZ5/Ks4df3uomfwxSXU3PRY4b
+	fDcsZnAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFV0O-0000000D87l-3wu0;
-	Fri, 07 Jun 2024 08:31:24 +0000
-Received: from mail-lf1-x135.google.com ([2a00:1450:4864:20::135])
+	id 1sFVi9-0000000DGjo-13UG;
+	Fri, 07 Jun 2024 09:16:37 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFV0L-0000000D87A-2eqK;
-	Fri, 07 Jun 2024 08:31:23 +0000
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-52b87e8ba1eso2555666e87.3;
-        Fri, 07 Jun 2024 01:31:21 -0700 (PDT)
+	id 1sFVi6-0000000DGiQ-03zn
+	for linux-amlogic@lists.infradead.org;
+	Fri, 07 Jun 2024 09:16:35 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-42148c0cb1aso18941585e9.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 07 Jun 2024 02:16:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717749080; x=1718353880; darn=lists.infradead.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7DuO23jZ0yNpZDQlXy4KWuQ3OqB8VX+2cVKHM/HssMw=;
-        b=dLt+KFygXSaJ13rBc8kRm5eN/QDbvdvyeN8S/ES7hASOHt28mw09weK3Dm5ZUvOsC/
-         CRnDcODDFkW4N8RS/nQX566IrM5ZywHVB9KQfBvxL6vfeBQtAte3LdldkG+lTOoLn6A6
-         +vqYQlYp6BNOlJRkzKELqsXOYj+mJ7LHz+FpNRV2ZLwLDZ9N9aG8JP5VPZrvi2kQcCWM
-         e8/+alMEylEpwqtQsxwcWtWLgY1AzjdEOty8fge7hKmEQZDYPaB093sUM46vcPC2dAeq
-         F/IKECddYvwFlqmHv+eQSI91ReWLrMvDOcmebAu1ODrAnOr02QdxTRGeFk/Z1dFsx3lu
-         ENhA==
+        d=linaro.org; s=google; t=1717751790; x=1718356590; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RKhcW2Pv1TQb63OYj0Ad4PZwEbdEXdKfu9Ta+939bwE=;
+        b=GoCq+WPy5ifDXc84V01aqLsma2I+VrrUkXY10R5HIL0y517wPcx2znzSznmQVhpBIM
+         gLpVLmmWEprlpM7cxUPIt2pOcsLnF0eULidvZwV35brSkHQUGBgTVIdhlwUsOL30BlGR
+         qtf102/yfu/I3uqlXJsTDNl68oiI8TD5H65UFKo8ku644G0eaj2SwMQQkK8XcRG5yMFM
+         I46lFZzg5xEcvBJeK6gw4r8kn107sJyPm3SERpWokTCn3wmqWszty/JVhdeMSUTP3PzM
+         L1yOzURjgpKsfrzlI+Rwst9p30S1KFpcQ1Pfhg+x+XVHzDwDPzQPOhKau8bNpSlBq2cJ
+         0UBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717749080; x=1718353880;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7DuO23jZ0yNpZDQlXy4KWuQ3OqB8VX+2cVKHM/HssMw=;
-        b=wWFH+G9WbnSKu3VeRaWZ2sYXO1KpPP/XJuUynIY4WAxms3oH2g4yXmzq6R27EzzQHu
-         4r/pSolHJF7/q0nqVQMmJ8PjiMRlGtTpciBkL08zNst59Am3joVOjKA7dhu0zVJYMAoL
-         1ppGaRcd3jF5u5ZBPhcs2ZNXkZjt0aLcTli/YKEF1Zc+v+m85lwXo0lFCNDIRq+2ZWst
-         GYy/XDQ40o8w8gNgUYBCd2APysQ/0BZLXo7aVuaNIFZpMCbDB5hvZ6o75ZkzuJQYSH3v
-         1bbLCTmcipUznn80Ly9/tPFn1aT7FOURPFqoHSUiPzj3n5hRXbTdGL1am+Zy8gVLYMwo
-         zVXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXxmbCPk5WLCqGY4cmuU+vv3dUvA5UhFCyeEVHfwo/wqKIMIf7TbLM5DYEsgcwzygSvPBVmKVlgoJ7Ha/Gu82g7D5CMSBWuuDsyk71SWsp8n07/HlOgemJbZ6qfMti+5UtWm8JSxUddqydlM5g9M/nbms6iS/82Yw==
-X-Gm-Message-State: AOJu0YzMn2+j/6fPH/3WEX78+h7ToqYqFg857W1R9U4UljnXvi/5xHrX
-	bNQ9vQvZsL9F/EwhvgBUPqLDAQLXq+wy6/DbUzGZTpiPJWKK8kev
-X-Google-Smtp-Source: AGHT+IF35NHJkt0/GZ2wA+6lejpaPF/1YIbi+EiO5wykf6Binanla8DE0xf9gcQLDJuseJaz3OnbDg==
-X-Received: by 2002:a2e:84d7:0:b0:2ea:8308:841b with SMTP id 38308e7fff4ca-2eadce4cf3dmr15806201fa.31.1717749079372;
-        Fri, 07 Jun 2024 01:31:19 -0700 (PDT)
-Received: from smtpclient.apple ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d69867sm3485152f8f.57.2024.06.07.01.31.16
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 07 Jun 2024 01:31:19 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.600.62\))
-Subject: Re: [PATCH 3/3] arm64: dts: meson: add initial support for Dreambox
- One/Two
-From: Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <202406071527.fnfhnkUL-lkp@intel.com>
-Date: Fri, 7 Jun 2024 12:31:04 +0400
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree <devicetree@vger.kernel.org>,
- linux-arm-kernel@lists.infradead.org,
- AML <linux-amlogic@lists.infradead.org>,
- LKML <linux-kernel@vger.kernel.org>,
- oe-kbuild-all@lists.linux.dev
-Message-Id: <FB2C9481-FCA2-496D-B916-E429BB8C0C82@gmail.com>
-References: <20240606094513.3949323-3-christianshewitt@gmail.com>
- <202406071527.fnfhnkUL-lkp@intel.com>
-To: kernel test robot <lkp@intel.com>
-X-Mailer: Apple Mail (2.3774.600.62)
+        d=1e100.net; s=20230601; t=1717751790; x=1718356590;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=RKhcW2Pv1TQb63OYj0Ad4PZwEbdEXdKfu9Ta+939bwE=;
+        b=KUetQ26lSiuf4uM0yusYYscv6CFOCxhMCigr8Q8iRFsTXs5jL8UZPEBj4LjKxTb5E0
+         rBC5TpjLthMy+agistGlww0P68D8WvAdYCoJNKDhedSgyZP98637ROJAodPsTs2LD0G+
+         348luBzod4XaH6DUfxQ3HfSJnuMLLo0AwDyLfmnhc7ygNDmUk5gvosi3dbwukGc0nzhA
+         98XWslDtCabY8/X867aHbabWOwHu3HlKvY8dRJ1CF0FNpJHFT26Jyi8utThrPW5rHDw6
+         KjenS/JjqXwYBdnP38eSKcznODYu/T2N7DGZ311KpoBrg1x60BSNFYG3v7lqYzRi6PFj
+         fLoA==
+X-Forwarded-Encrypted: i=1; AJvYcCXqssvcz6fdKnMYuWVtWARrIsWczQ8FcRqn4gJgxDIXlj4ydts8AbGRSfS9MA7ITok84bEKxM035JL0PgV7FFrwh5bp57QtRxm63mtJR+BGmE4=
+X-Gm-Message-State: AOJu0Yy2lM20GyZMNfHDePsKjfXQEk4WLdHr8K0s5egFVw1YXQZSnmaZ
+	haAbmTUJv5s/JybuyMgQ+AX3lPT0Z9REhhIhDehRrAKHrui21rgdveinfSlQ/WU=
+X-Google-Smtp-Source: AGHT+IH6lSQLjPhb+rH7MhIJCz8VcmYFFOPCXGM2LCapictgRME7AWqPy+I8YzSDVKMGrNP+Ca47Lg==
+X-Received: by 2002:a05:600c:4f4a:b0:421:20aa:6048 with SMTP id 5b1f17b1804b1-42164a20b24mr16134255e9.26.1717751789789;
+        Fri, 07 Jun 2024 02:16:29 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404? ([2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421580fe37csm82143035e9.3.2024.06.07.02.16.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Jun 2024 02:16:29 -0700 (PDT)
+Message-ID: <88119323-bd54-4d2b-bb63-366c5fe77e39@linaro.org>
+Date: Fri, 7 Jun 2024 11:16:28 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 00/12] arm64: meson: bunch of DT fixes, take 4 (final one
+ ??)
+To: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
+ <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-0-62e812729541@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-0-62e812729541@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240607_013121_700813_B05E6EFD 
-X-CRM114-Status: GOOD (  17.63  )
+X-CRM114-CacheID: sfid-20240607_021634_120557_292D707A 
+X-CRM114-Status: GOOD (  12.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,94 +119,117 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: neil.armstrong@linaro.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-PiBPbiA3IEp1biAyMDI0LCBhdCAxMjoxMOKAr1BNLCBrZXJuZWwgdGVzdCByb2JvdCA8bGtwQGlu
-dGVsLmNvbT4gd3JvdGU6Cj4gCj4gSGkgQ2hyaXN0aWFuLAo+IAo+IGtlcm5lbCB0ZXN0IHJvYm90
-IG5vdGljZWQgdGhlIGZvbGxvd2luZyBidWlsZCB3YXJuaW5nczoKPiAKPiBbYXV0byBidWlsZCB0
-ZXN0IFdBUk5JTkcgb24gcm9iaC9mb3ItbmV4dF0KPiBbYWxzbyBidWlsZCB0ZXN0IFdBUk5JTkcg
-b24ga3J6ay9mb3ItbmV4dCBsaW51cy9tYXN0ZXIgdjYuMTAtcmMyIG5leHQtMjAyNDA2MDZdCj4g
-W2Nhbm5vdCBhcHBseSB0byBrcnprLWR0L2Zvci1uZXh0IGtyemstbWVtLWN0cmwvZm9yLW5leHRd
-Cj4gW0lmIHlvdXIgcGF0Y2ggaXMgYXBwbGllZCB0byB0aGUgd3JvbmcgZ2l0IHRyZWUsIGtpbmRs
-eSBkcm9wIHVzIGEgbm90ZS4KPiBBbmQgd2hlbiBzdWJtaXR0aW5nIHBhdGNoLCB3ZSBzdWdnZXN0
-IHRvIHVzZSAnLS1iYXNlJyBhcyBkb2N1bWVudGVkIGluCj4gaHR0cHM6Ly9naXQtc2NtLmNvbS9k
-b2NzL2dpdC1mb3JtYXQtcGF0Y2gjX2Jhc2VfdHJlZV9pbmZvcm1hdGlvbl0KPiAKPiB1cmw6ICAg
-IGh0dHBzOi8vZ2l0aHViLmNvbS9pbnRlbC1sYWItbGtwL2xpbnV4L2NvbW1pdHMvQ2hyaXN0aWFu
-LUhld2l0dC9kdC1iaW5kaW5ncy1hcm0tYW1sb2dpYy1hZGQtc3VwcG9ydC1mb3ItRHJlYW1ib3gt
-T25lLVR3by8yMDI0MDYwNi0xNzU0MjcKPiBiYXNlOiAgIGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcv
-cHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L3JvYmgvbGludXguZ2l0IGZvci1uZXh0Cj4gcGF0Y2gg
-bGluazogICAgaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvci8yMDI0MDYwNjA5NDUxMy4zOTQ5MzIz
-LTMtY2hyaXN0aWFuc2hld2l0dCU0MGdtYWlsLmNvbQo+IHBhdGNoIHN1YmplY3Q6IFtQQVRDSCAz
-LzNdIGFybTY0OiBkdHM6IG1lc29uOiBhZGQgaW5pdGlhbCBzdXBwb3J0IGZvciBEcmVhbWJveCBP
-bmUvVHdvCj4gY29tcGlsZXI6IGNsYW5nIHZlcnNpb24gMTkuMC4wZ2l0IChodHRwczovL2dpdGh1
-Yi5jb20vbGx2bS9sbHZtLXByb2plY3QgZDdkMmQ0ZjUzZmM3OWI0YjU4ZThkOGQwODE1MWI1Nzdj
-MzY5OWQ0YSkKPiBkdHNjaGVtYSB2ZXJzaW9uOiAyMDI0LjYuZGV2MStnODMzMDU0Zgo+IHJlcHJv
-ZHVjZTogKGh0dHBzOi8vZG93bmxvYWQuMDEub3JnLzBkYXktY2kvYXJjaGl2ZS8yMDI0MDYwNy8y
-MDI0MDYwNzE1MjcuZm5maG5rVUwtbGtwQGludGVsLmNvbS9yZXByb2R1Y2UpCj4gCj4gSWYgeW91
-IGZpeCB0aGUgaXNzdWUgaW4gYSBzZXBhcmF0ZSBwYXRjaC9jb21taXQgKGkuZS4gbm90IGp1c3Qg
-YSBuZXcgdmVyc2lvbiBvZgo+IHRoZSBzYW1lIHBhdGNoL2NvbW1pdCksIGtpbmRseSBhZGQgZm9s
-bG93aW5nIHRhZ3MKPiB8IFJlcG9ydGVkLWJ5OiBrZXJuZWwgdGVzdCByb2JvdCA8bGtwQGludGVs
-LmNvbT4KPiB8IENsb3NlczogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvb2Uta2J1aWxkLWFsbC8y
-MDI0MDYwNzE1MjcuZm5maG5rVUwtbGtwQGludGVsLmNvbS8KPiAKPiBkdGNoZWNrIHdhcm5pbmdz
-OiAobmV3IG9uZXMgcHJlZml4ZWQgYnkgPj4pCj4gICBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9n
-aWMvbWVzb24tZzEyLWNvbW1vbi5kdHNpOjI2Ni4zMy0xNTQwLjc6IFdhcm5pbmcgKHVuaXRfYWRk
-cmVzc192c19yZWcpOiAvc29jL2J1c0BmZjYwMDAwMC9idXNAMzQ0MDAvcGluY3RybEA0MDogbm9k
-ZSBoYXMgYSB1bml0IG5hbWUsIGJ1dCBubyByZWcgb3IgcmFuZ2VzIHByb3BlcnR5Cj4gICAgIGFs
-c28gZGVmaW5lZCBhdCBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZzEyLWNvbW1v
-bi5kdHNpOjI2Ni4zMy0xNTQwLjcKPiAgIGFyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNv
-bi1nMTItY29tbW9uLmR0c2k6MjY2LjMzLTE1NDAuNzogV2FybmluZyAoc2ltcGxlX2J1c19yZWcp
-OiAvc29jL2J1c0BmZjYwMDAwMC9idXNAMzQ0MDAvcGluY3RybEA0MDogbWlzc2luZyBvciBlbXB0
-eSByZWcvcmFuZ2VzIHByb3BlcnR5Cj4gICAgIGFsc28gZGVmaW5lZCBhdCBhcmNoL2FybTY0L2Jv
-b3QvZHRzL2FtbG9naWMvbWVzb24tZzEyLWNvbW1vbi5kdHNpOjI2Ni4zMy0xNTQwLjcKPiAgIGFy
-Y2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTItY29tbW9uLmR0c2k6MjIyMC4yMy0y
-MjYwLjY6IFdhcm5pbmcgKGF2b2lkX3VubmVjZXNzYXJ5X2FkZHJfc2l6ZSk6IC9zb2MvYnVzQGZm
-ZDAwMDAwL2RzaUA3MDAwOiB1bm5lY2Vzc2FyeSAjYWRkcmVzcy1jZWxscy8jc2l6ZS1jZWxscyB3
-aXRob3V0ICJyYW5nZXMiIG9yIGNoaWxkICJyZWciIHByb3BlcnR5Cj4gICAgIGFsc28gZGVmaW5l
-ZCBhdCBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZzEyLWNvbW1vbi5kdHNpOjIy
-MjAuMjMtMjI2MC42Cj4+PiBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZzEyYi1k
-cmVhbWJveC1vbmUuZHRiOiAvc29jL2J1c0BmZjYwMDAwMC9idXNANDIwMDAvY2xvY2stY29udHJv
-bGxlckAwOiBmYWlsZWQgdG8gbWF0Y2ggYW55IHNjaGVtYSB3aXRoIGNvbXBhdGlibGU6IFsnYW1s
-b2dpYyxnMTJhLWF1ZGlvLWNsa2MnXQo+ICAgYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21l
-c29uLWcxMmItZHJlYW1ib3gtb25lLmR0YjogL3NvYy9idXNAZmY2MDAwMDAvYnVzQDQyMDAwL2F1
-ZGlvLWNvbnRyb2xsZXJANzQ0OiBmYWlsZWQgdG8gbWF0Y2ggYW55IHNjaGVtYSB3aXRoIGNvbXBh
-dGlibGU6IFsnYW1sb2dpYyxnMTJhLXRvaGRtaXR4J10KPj4+IGFyY2gvYXJtNjQvYm9vdC9kdHMv
-YW1sb2dpYy9tZXNvbi1nMTJiLWRyZWFtYm94LW9uZS5kdGI6IHN5cy1jdHJsQDA6ICcjYWRkcmVz
-cy1jZWxscycsICcjc2l6ZS1jZWxscycsICdyYW5nZXMnIGRvIG5vdCBtYXRjaCBhbnkgb2YgdGhl
-IHJlZ2V4ZXM6ICdwaW5jdHJsLVswLTldKycKPiAgICBmcm9tIHNjaGVtYSAkaWQ6IGh0dHA6Ly9k
-ZXZpY2V0cmVlLm9yZy9zY2hlbWFzL3NvYy9hbWxvZ2ljL2FtbG9naWMsbWVzb24tZ3gtaGhpLXN5
-c2N0cmwueWFtbCMKPiAtLQo+ICAgYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWcx
-Mi1jb21tb24uZHRzaToyNjYuMzMtMTU0MC43OiBXYXJuaW5nICh1bml0X2FkZHJlc3NfdnNfcmVn
-KTogL3NvYy9idXNAZmY2MDAwMDAvYnVzQDM0NDAwL3BpbmN0cmxANDA6IG5vZGUgaGFzIGEgdW5p
-dCBuYW1lLCBidXQgbm8gcmVnIG9yIHJhbmdlcyBwcm9wZXJ0eQo+ICAgICBhbHNvIGRlZmluZWQg
-YXQgYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWcxMi1jb21tb24uZHRzaToyNjYu
-MzMtMTU0MC43Cj4gICBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZzEyLWNvbW1v
-bi5kdHNpOjI2Ni4zMy0xNTQwLjc6IFdhcm5pbmcgKHNpbXBsZV9idXNfcmVnKTogL3NvYy9idXNA
-ZmY2MDAwMDAvYnVzQDM0NDAwL3BpbmN0cmxANDA6IG1pc3Npbmcgb3IgZW1wdHkgcmVnL3Jhbmdl
-cyBwcm9wZXJ0eQo+ICAgICBhbHNvIGRlZmluZWQgYXQgYXJjaC9hcm02NC9ib290L2R0cy9hbWxv
-Z2ljL21lc29uLWcxMi1jb21tb24uZHRzaToyNjYuMzMtMTU0MC43Cj4gICBhcmNoL2FybTY0L2Jv
-b3QvZHRzL2FtbG9naWMvbWVzb24tZzEyLWNvbW1vbi5kdHNpOjIyMjAuMjMtMjI2MC42OiBXYXJu
-aW5nIChhdm9pZF91bm5lY2Vzc2FyeV9hZGRyX3NpemUpOiAvc29jL2J1c0BmZmQwMDAwMC9kc2lA
-NzAwMDogdW5uZWNlc3NhcnkgI2FkZHJlc3MtY2VsbHMvI3NpemUtY2VsbHMgd2l0aG91dCAicmFu
-Z2VzIiBvciBjaGlsZCAicmVnIiBwcm9wZXJ0eQo+ICAgICBhbHNvIGRlZmluZWQgYXQgYXJjaC9h
-cm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWcxMi1jb21tb24uZHRzaToyMjIwLjIzLTIyNjAu
-Ngo+Pj4gYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWcxMmItZHJlYW1ib3gtdHdv
-LmR0YjogL3NvYy9idXNAZmY2MDAwMDAvYnVzQDQyMDAwL2Nsb2NrLWNvbnRyb2xsZXJAMDogZmFp
-bGVkIHRvIG1hdGNoIGFueSBzY2hlbWEgd2l0aCBjb21wYXRpYmxlOiBbJ2FtbG9naWMsZzEyYS1h
-dWRpby1jbGtjJ10KPiAgIGFyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLWRy
-ZWFtYm94LXR3by5kdGI6IC9zb2MvYnVzQGZmNjAwMDAwL2J1c0A0MjAwMC9hdWRpby1jb250cm9s
-bGVyQDc0NDogZmFpbGVkIHRvIG1hdGNoIGFueSBzY2hlbWEgd2l0aCBjb21wYXRpYmxlOiBbJ2Ft
-bG9naWMsZzEyYS10b2hkbWl0eCddCj4+PiBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVz
-b24tZzEyYi1kcmVhbWJveC10d28uZHRiOiBzeXMtY3RybEAwOiAnI2FkZHJlc3MtY2VsbHMnLCAn
-I3NpemUtY2VsbHMnLCAncmFuZ2VzJyBkbyBub3QgbWF0Y2ggYW55IG9mIHRoZSByZWdleGVzOiAn
-cGluY3RybC1bMC05XSsnCj4gICAgZnJvbSBzY2hlbWEgJGlkOiBodHRwOi8vZGV2aWNldHJlZS5v
-cmcvc2NoZW1hcy9zb2MvYW1sb2dpYy9hbWxvZ2ljLG1lc29uLWd4LWhoaS1zeXNjdHJsLnlhbWwj
-CgpOb3RoaW5nIHRvIGZpeC4gVGhlIHBhdGNoIGp1c3QgZGVwZW5kcyBvbiBOZWls4oCZcyBiaW5k
-aW5nIGZpeGVzIGhlcmU6CgpodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGlu
-dXgtYW1sb2dpYy9jb3Zlci8yMDI0MDYwNi10b3BpYy1hbWxvZ2ljLXVwc3RyZWFtLWJpbmRpbmdz
-LWZpeGVzLWR0cy12MS0wLTYyZTgxMjcyOTU0MUBsaW5hcm8ub3JnLwoKQ2hyaXN0aWFuCgoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dp
-YyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9s
-aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On 06/06/2024 10:48, Neil Armstrong wrote:
+> Along with the following:
+> - https://lore.kernel.org/all/20240422-t7-reset-v2-1-cb82271d3296@amlogic.com/
+> - https://lore.kernel.org/all/20240513224552.800153-1-jan.dakinevich@salutedevices.com/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-spifc-v1-1-380f29ba4a16@linaro.org/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-convert-spdif-receiver-v1-1-262465adbac2@linaro.org/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-mmc-v1-1-4acbb8cc2626@linaro.org/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-nvmem-v1-1-ef6f10c86a63@linaro.org/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-phy-v1-1-c819b0ecd8c8@linaro.org/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-rng-v1-1-0a55a7ba55e4@linaro.org/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-audio-widgets-v1-1-65bd7cc2e09b@linaro.org/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-sardac-v1-1-40a8de6baa59@linaro.org/
+> - https://lore.kernel.org/all/20240606-topic-amlogic-upstream-bindings-convert-g12a-tohdmitx-v2-1-70d44fa30790@linaro.org/
+> 
+> this bunch of changes fixes 99% of the remaining dts check errors.
+> 
+> The two remaining bindings conversions for arm64/amlogic are:
+> - ti,tas5707
+> - everest,es7241
+> 
+> I'm too lazy to do them right now, so if someone is interested
+> in doing the conversion, please do it!
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+> Neil Armstrong (12):
+>        arm64: dts: amlogic: meson-g12b-bananapi: remove invalid fan on wrong pwm_cd controller
+>        arm64: dts: amlogic: move ao_pinctrl into aobus
+>        arm64: dts: amlogic: move assigned-clocks* from sound to clkc_audio node
+>        arm64: dts: amlogic: sm1: fix tdm audio-controller clock order
+>        arm64: dts: amlogic: sm1: fix tdm controllers compatible
+>        arm64: dts: amlogic: g12a-u200: drop invalid sound-dai-cells
+>        arm64: dts: amlogic: g12a-u200: add missing AVDD-supply to acodec
+>        arm64: dts: amlogic: axg: fix tdm audio-controller clock order
+>        arm64: dts: amlogic: c3: use correct compatible for gpio_intc node
+>        arm64: dts: amlogic: a1: use correct node name for mmc controller
+>        arm64: dts: amlogic: a1: drop the invalid reset-name for usb@fe004400
+>        arm64: dts: amlogic: gxbb-odroidc2: fix invalid reset-gpio property
+> 
+>   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        |   3 +-
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |   3 +-
+>   arch/arm64/boot/dts/amlogic/meson-axg-s400.dts     |  17 +-
+>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi         |  24 +-
+>   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  | 427 ++++++++++-----------
+>   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts  |  16 +-
+>   .../boot/dts/amlogic/meson-g12a-radxa-zero.dts     |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts  |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts    |  18 +-
+>   arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts |  16 +-
+>   .../dts/amlogic/meson-g12b-bananapi-cm4-cm4io.dts  |  18 +-
+>   .../meson-g12b-bananapi-cm4-mnt-reform2.dts        |  18 +-
+>   .../boot/dts/amlogic/meson-g12b-bananapi.dtsi      |  30 +-
+>   .../arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts |  16 +-
+>   .../boot/dts/amlogic/meson-g12b-gtking-pro.dts     |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts  |  16 +-
+>   .../dts/amlogic/meson-g12b-odroid-go-ultra.dts     |  16 +-
+>   .../boot/dts/amlogic/meson-g12b-odroid-n2.dtsi     |  18 +-
+>   .../boot/dts/amlogic/meson-g12b-odroid-n2l.dts     |  18 +-
+>   .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    |  16 +-
+>   .../boot/dts/amlogic/meson-g12b-ugoos-am6.dts      |  16 +-
+>   .../boot/dts/amlogic/meson-gx-libretech-pc.dtsi    |  17 +-
+>   .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi |  18 +-
+>   arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts |  17 +-
+>   .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts      |  17 +-
+>   .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    |  17 +-
+>   .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |  19 +-
+>   arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts    |  17 +-
+>   arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts    |  17 +-
+>   .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      |  17 +-
+>   .../boot/dts/amlogic/meson-gxbb-wetek-hub.dts      |  17 +-
+>   .../boot/dts/amlogic/meson-gxbb-wetek-play2.dts    |  17 +-
+>   .../dts/amlogic/meson-gxl-s805x-libretech-ac.dts   |  17 +-
+>   .../boot/dts/amlogic/meson-gxl-s805x-p241.dts      |  17 +-
+>   .../dts/amlogic/meson-gxl-s905x-khadas-vim.dts     |  17 +-
+>   .../amlogic/meson-gxl-s905x-libretech-cc-v2.dts    |  17 +-
+>   .../dts/amlogic/meson-gxl-s905x-libretech-cc.dts   |  17 +-
+>   .../boot/dts/amlogic/meson-gxl-s905x-p212.dts      |  17 +-
+>   .../boot/dts/amlogic/meson-gxm-khadas-vim2.dts     |  17 +-
+>   .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |  17 +-
+>   arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts |  17 +-
+>   arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi |  16 +-
+>   .../dts/amlogic/meson-libretech-cottonwood.dtsi    |  16 +-
+>   .../boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts |  16 +-
+>   .../boot/dts/amlogic/meson-sm1-a95xf3-air.dts      |  16 +-
+>   .../boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts |  16 +-
+>   .../boot/dts/amlogic/meson-sm1-bananapi-m5.dts     |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts  |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi  |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts   |  16 +-
+>   .../boot/dts/amlogic/meson-sm1-x96-air-gbit.dts    |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts  |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-sm1.dtsi         |  36 +-
+>   53 files changed, 679 insertions(+), 630 deletions(-)
+> ---
+> base-commit: c3f38fa61af77b49866b006939479069cd451173
+> change-id: 20240606-topic-amlogic-upstream-bindings-fixes-dts-6a572ad54324
+> 
+> Best regards,
+
+I'll postpone applying patch 3 to be sure it's the right solution,
+but the other ones are trivial and I'll apply them now.
+
+Neil
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
