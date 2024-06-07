@@ -4,90 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4ECDBC27C6E
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2024 15:17:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91793C27C53
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2024 15:37:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZwOd7bZ/Qa66JbiKcEPNrEDT1FReqMoQvMMt0xG0I6U=; b=M7g+QvsyVupHYh
-	61OdWINTZksWXx9A/dUcTxOaTsAf9DiZ/tH7F/h+Q1WHBGzVnCKqJyC9FvIsKN5FPPYSyiJOabSMy
-	2wc4+7lQH9ZkVF4cTNPZyn6VSawi2dIE+gbhShAgK/nbEKV38LXpDlng1enxcH1RkVwZShwDZbAmB
-	SIbSQNQO+vE95rypLORSKCkFHLyf9P053qUy1G2ByLpKoZXJ1uWueayRChJFXUSPFC6kUcST/oWdz
-	rdLI0Sap69gM3XQaCB8wgZ+xGa4VpkjDFjUPYZpOR7LNp0IkbYw/F2ROLCfqiKJzHdaMJpt49YntK
-	SlirBjcnqycx3ji3/eOg==;
+	List-Owner; bh=3PtNFgfjbq7l6VFy6Uo4MprBvJLTYora3rcyZzpbjd4=; b=aCWN4lPL1bWL4H
+	yznJD9kEFXdtwa3I9+oa6rwPVNXdo5LYSOhf/cat6Gs3oDqvpVZ9MoEzl47JjKjGMa047egE6qpx0
+	1gx2LSGQZpAZN0J5eCpqL9STKoSDsnmM8dptsDz+X5cmkEJD/qvvpiyMZrp7BCko/sMVWeWnmsto0
+	xm6TA6O4BMQLl9AHsnii9XCL6SsbASpNTZoJxwlZ+4CRv8eqZk55UzGAUarBN6ue/7Zlt6VE7MfH5
+	B9CBtTIcf906ALE1fiXQY0Soed1WQPJo1CubnGLVfh5X2HzZta/stgTDCziXKVdhJJIgekfe4GlDm
+	fRuFZgtsdh45GAENfM5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFbLF-0000000Ef9x-04Hm;
-	Fri, 07 Jun 2024 15:17:21 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1sFbeM-0000000EkDu-2YXH;
+	Fri, 07 Jun 2024 15:37:06 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFaL7-0000000EIfv-0Nu3;
-	Fri, 07 Jun 2024 14:13:11 +0000
-Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 89D13100031;
-	Fri,  7 Jun 2024 17:13:06 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 89D13100031
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1717769586;
-	bh=Rh3JfsszeFzuirlBwoJubdS+Ixn9+e7gJuttUmBiLyg=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=CSlw4+XgVmVY3KUxoWWI3b38s7UaaEjQuP7T/90KxFUoXqHPD9sbGmYbCZsVzJvwP
-	 lBUS6Rfdu6bbsM1OB74xGV6IhuVdEdmUECekdjSOpA7cJNEoNLTxK6O9F6mW8jv4Er
-	 TVN2/O9mYMXZNfAo5MbpHMfVKZtT8SvR5Qh4DiiI4Q9OlqC04zihnUgIBa3uR4/7iy
-	 7WtEXHDVinUjW8PceGDOn0z6W1JpqqvqnFIzVKDnZCGFHbl4HuSNvuKwW1ZYi57WM/
-	 hy5sXqRafjHe3SBpQ+7gGo/klPbA+UqGdGQSZtMjLc//1Y/PFIEYJksyygxKHIjNBg
-	 5RikhzsXt2nYw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri,  7 Jun 2024 17:13:06 +0300 (MSK)
-Received: from user-A520M-DS3H.sberdevices.ru (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 7 Jun 2024 17:13:05 +0300
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
-	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <vadim.fedorenko@linux.dev>
-CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
- Romanov <avromanov@salutedevices.com>
-Subject: [PATCH v8 15/23] drivers: crypto: meson: add support for AXG-series
-Date: Fri, 7 Jun 2024 17:12:34 +0300
-Message-ID: <20240607141242.2616580-16-avromanov@salutedevices.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240607141242.2616580-1-avromanov@salutedevices.com>
-References: <20240607141242.2616580-1-avromanov@salutedevices.com>
+	id 1sFbeH-0000000EkB9-30kh
+	for linux-amlogic@lists.infradead.org;
+	Fri, 07 Jun 2024 15:37:04 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4215afa33b7so20736535e9.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 07 Jun 2024 08:36:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717774617; x=1718379417; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4WFHGyOf2WCg/AHCXQoRe0OOLDlNcvfZjAFHn1msRSw=;
+        b=OZMadpBsN8F9MWDVmJsi94S02rH3wNjOK/2O+lkGiG985Q6msH9Cs5Bpg8SiK6Vf5L
+         2B5MClTYWGT7K/AxEwja2Jjkc/BSlFqTJSCoBw5LleIJ7w38rZ+Sa35NXTBBcTQVxJ2d
+         wRo9zA4hYKwkfHxpXToGJCG19jx6pC3dMiUAWKDkV3wJLFh2pE2zFSF4sNZ/AEaK4lec
+         3MNOee6/VjEFZje79EKqBwWTjD3JBcytGE9YAkMLmGGP6ev2iQphjs/L1e8xb2KOZhau
+         JeolbJVS0n8G5jMDYQQgoD+OGgRMdwwDTXkUjalsMiLx7F9C5Vmr0FMzj8bI1ryf2siZ
+         qmsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717774617; x=1718379417;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4WFHGyOf2WCg/AHCXQoRe0OOLDlNcvfZjAFHn1msRSw=;
+        b=Fqth71DkiAykeMnccBMJqmK8K4+oZe7EPm9qEv+IdSSwnxhmEQMkkx0+eAfdJGQV6X
+         EQsVEtCc9HogOYqc3pfj6iDplqij0iQ3udmlFbyFHrxFHqYSc5yDXaULatLG/AH3DMYR
+         3pfhIGhyfFCqdw7CxZBym33Inl0J5M7stUgDdESwCDCtWDCd+D4MOGKKGyN6kplV05jI
+         hh8YJkjw8eOVQjggUDWmd1inQlLk/o7pYddGKBJ/Py83zRV7/AuyujyCTSJKOCWRjKob
+         SwmXLyjRY6T7SWHCIkVjTEtHgHSN5MVPn6k3LAj+kgtgcpKIsFMDi9GCpshCP5/DjS+T
+         NPHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU3y6Rn5yA/XClnFfqrv+F6j6+264+eefHc904kj4uQV78BLexFvdkpPfB6XokJL1XZEnQL4mGWsUwvRxBAZEhINZyrq2x7CH53XvXKUnM6P6E=
+X-Gm-Message-State: AOJu0Ywhudwuqr0Zm3jDoqzuxXyzP4GUfWRgaSu1ESaBsFjh/s9EIL3o
+	xJ4DHQ/JHjZ1xELiLJzZLtwrSkfeVjxonsF0Lkq1fR2mi9PMwagTS51WWrEVFIY=
+X-Google-Smtp-Source: AGHT+IEDldfKJ9oi/vJP0wgtmawveExjpCYHaZ1+MQjCvlUC+KOjWN7/r5DIQyvHKU1HK5ctc+JgNw==
+X-Received: by 2002:a05:600c:444b:b0:420:29a8:ff5e with SMTP id 5b1f17b1804b1-42164a0c1c9mr25925175e9.19.1717774617356;
+        Fri, 07 Jun 2024 08:36:57 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4215f89aacfsm48862905e9.42.2024.06.07.08.36.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Jun 2024 08:36:56 -0700 (PDT)
+Message-ID: <7cc32596-8af0-43ff-91fd-59264d0a29ac@linaro.org>
+Date: Fri, 7 Jun 2024 16:36:55 +0100
 MIME-Version: 1.0
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 185803 [Jun 07 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/06/07 12:12:00 #25491508
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 07/17] misc: eeprom: at25: Change nvmem reg_read/write
+ return type
+To: Dan Carpenter <dan.carpenter@linaro.org>,
+ Joy Chakraborty <joychakr@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Bingbu Cao <bingbu.cao@intel.com>, Zhihao Cheng <chengzhihao1@huawei.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-mtd@lists.infradead.org, linux-rtc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
+ linux-usb@vger.kernel.org, manugautam@google.com
+References: <20240605175953.2613260-1-joychakr@google.com>
+ <20240605175953.2613260-8-joychakr@google.com>
+ <f98a1d8f-e936-4798-8447-c642e8fe11d5@moroto.mountain>
+Content-Language: en-US
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <f98a1d8f-e936-4798-8447-c642e8fe11d5@moroto.mountain>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240607_071309_724681_0A36D754 
-X-CRM114-Status: GOOD (  11.21  )
+X-CRM114-CacheID: sfid-20240607_083701_823413_81CCB017 
+X-CRM114-Status: GOOD (  10.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,52 +105,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Tested via tcrypt module and with custom tests.
 
-Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
----
- drivers/crypto/amlogic/amlogic-gxl-core.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index 928751a6fc31..4275f467d1c6 100644
---- a/drivers/crypto/amlogic/amlogic-gxl-core.c
-+++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -295,6 +295,15 @@ static const struct meson_pdata meson_g12a_pdata = {
- 	.support_192bit_key = false,
- };
- 
-+static const struct meson_pdata meson_axg_pdata = {
-+	.descs_reg = 0x0,
-+	.status_reg = 0x8,
-+	.setup_desc_cnt = 3,
-+	.hasher_supported = true,
-+	.reverse_keyiv = true,
-+	.support_192bit_key = true,
-+};
-+
- static const struct of_device_id meson_crypto_of_match_table[] = {
- 	{
- 		.compatible = "amlogic,gxl-crypto",
-@@ -304,6 +313,10 @@ static const struct of_device_id meson_crypto_of_match_table[] = {
- 		.compatible = "amlogic,g12a-crypto",
- 		.data = &meson_g12a_pdata,
- 	},
-+	{
-+		.compatible = "amlogic,axg-crypto",
-+		.data = &meson_axg_pdata,
-+	},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, meson_crypto_of_match_table);
--- 
-2.34.1
+On 06/06/2024 09:41, Dan Carpenter wrote:
+> So the original bug was that rmem_read() is returning positive values
+> on success instead of zero[1].  That started a discussion about partial
+> reads which resulted in changing the API to support partial reads[2].
+> That patchset broke the build.  This patchset is trying to fix the
+> build breakage.
+> 
+> [1]https://lore.kernel.org/all/20240206042408.224138-1-joychakr@google.com/
+> [2]https://lore.kernel.org/all/20240510082929.3792559-2-joychakr@google.com/
+> 
+> The bug in rmem_read() is still not fixed.  That needs to be fixed as
+> a stand alone patch.  We can discuss re-writing the API separately.
+I agree with Dan, Lets fix the rmem_read and start working on the API 
+rework in parallel.
 
+Am happy to pick the [1].
+
+
+--srini
 
 _______________________________________________
 linux-amlogic mailing list
