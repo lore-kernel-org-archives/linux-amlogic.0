@@ -4,116 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47ED6C27C53
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2024 16:05:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADD93C27C53
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2024 16:17:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
-	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=9wzKHPuJu22H2qr/Yw3q0c/bwL0iFBzoUCW+cf3Ja9o=; b=FKrSFmNIkgK4SWUAsPM8Aia5d1
-	JyeghMLsRfE14QyZtT3W5YlQFqtK20vjx3GckLHmTTReEZ9JkLiWdwX7lA7BDbi5H4vwyCjghB0N5
-	v6uUUH+oC2KwmwVlBkwCeWRvd9PHx+Dya+c7GhWJirSm/OY4OlH9vTBFdsCPehiVSfCczu6ge67tR
-	zDsIowR0/WfGY9lOA9NmeajleMDUUeYsqzIRdhWGGmxpylr0w619BbGQym36EPGW7PhoO7rT1KTn5
-	xXu8FozBEKw9P12CLWBgTnMiGziG9lMWjxLcaKFxTd+K9RRmaZ1whZMwIG3tGPILCvVzjZ1cqikOz
-	wBxjWa7Q==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=VLypqLn8kuWRMGKErW9t4uR4K33tJj4tLbGqQ15qLkI=; b=ykg1kKTyxhQLzz4GAC5RFLcs12
+	k7Yakb2AA1IMpgePT3WdasmQLnOJAoj7ot5OHfiFhSmng6WctcX9BJurERI0WnRMAjOXEh8v/0LqL
+	jOOLEKV+77RYrzD3QiHaoQaTcQvqR32MD81D2lLxLMJmKaZTTK8kxlpCrCESBzMYBUU5JQ9xepyg0
+	3trTNMadUjlVm+2UydxeY1R8FI1gLubT4mptGzS+Sni3pVnVuyv3mIjoXa6yz8X0/XsquMdsWC1sX
+	KL7FgP15lraDbIVDlFMjIKoiPqVgmf+l2l9FbhuiyGuZMSZOhQD7gBrNQsyRqqED08TSWqTueIyDI
+	8l8qKycQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFc5V-0000000EqPS-2MJ0;
-	Fri, 07 Jun 2024 16:05:09 +0000
-Received: from mail-lf1-x132.google.com ([2a00:1450:4864:20::132])
+	id 1sFcHM-0000000EsSl-3yaA;
+	Fri, 07 Jun 2024 16:17:24 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFc5R-0000000EqMi-2Srx
-	for linux-amlogic@lists.infradead.org;
-	Fri, 07 Jun 2024 16:05:07 +0000
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-52b936c958dso2724354e87.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 07 Jun 2024 09:05:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717776303; x=1718381103; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t+ERCTW4alu+cgTaHP2X1z+HqtWWj2kK39TpxNNGgZs=;
-        b=FOfie+2t6nFuT0WQ7nfqDqsN3LouRdPueFFC9+j9VtAHWYF01KwhkUcMPr/ZqbXSBj
-         ib+cb8Eh+mCzY6mhZb9WFjVYv9Hz9g4oKtWFysAdxMzVwt98JA9UgUp41hjpT3m2Ofgm
-         mEBfAKRBPLvz/bFY89tjSYyifyJN6QvhK3kaWYeqZxE+kIDJFJ9G4qa2V0HT52d0x92d
-         UT6zhPnzpRpv8vgWBoRCkYzDmNa+RXKXQqxEkE+AbnOm1b5wtHD0I49v6QX9d1LjIEeG
-         nAr4dlYE9MK8nS/5uMVgVaTifZMs4jXYniymgB4NnKck3V5OrL/mclQ95EbOPxzIH4la
-         uKJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717776303; x=1718381103;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=t+ERCTW4alu+cgTaHP2X1z+HqtWWj2kK39TpxNNGgZs=;
-        b=wJscV4geZHyELKPdnxh5q5ARVn5KYQoCGn7abqBUMFU5ybglCjoLyLHNBcubnJh1wo
-         XHLZ5qBDh3CDN6lI+J5a4VuisZImw6LFATn7VFcy30NdXnDxT3cg5jJFVNWS9EY9glTJ
-         /UovcvUT/ZnkQMMNQS89cAzOZQJY/P1/XlRBQdG/P50rCwkm/ekCmOFY6aVB0BJAiZm1
-         JbLlqOpMI/gAoGSnW/o7wBBhVvcCJjNdrjNEL1NSLwy3+FlAi1i/rz5xPrLEZUgNpLGt
-         nr38mvR7A0pnOaQ9d1FG99i7uCQGcFB3epOpZVORZ+oBNAEaRypY12DXpBamMGA4FWFI
-         LkUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVVDNwzUBIzOudrmUkCAvRKBoQhpvvSezbOnLPZLjqNtA9s5qB2fX/QNpQSel19lrfYxaPKD5yYuBFrx0XIm8G3/uBRo4LTxQo4aR2Ro8F5fyw=
-X-Gm-Message-State: AOJu0Yy2W5ZABzQdWVvbCRB7g5WwGKyWDs9FoWITOmyqxtWEUsxNRaH4
-	TQ/u6lSGdDIb1wygJeryBK8mjFcSHLZG2xAZ8JTcPIUqF1CEkgQqZBiltB+VIJfrhaHPdkYWSo9
-	9
-X-Google-Smtp-Source: AGHT+IEWSEfsueYptPbIG13f/kiC/uiuC1S6W/HOOZZfTghFpVzLYJTB6ysLPC5s/JDRGDPAkjFu6g==
-X-Received: by 2002:a05:6512:2023:b0:52b:c192:c19c with SMTP id 2adb3069b0e04-52bc192c224mr940395e87.21.1717776303255;
-        Fri, 07 Jun 2024 09:05:03 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404? ([2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215c2c690dsm57967575e9.34.2024.06.07.09.05.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Jun 2024 09:05:02 -0700 (PDT)
-Message-ID: <ac14cfd4-64fb-4b98-b3cc-b29921606bb9@linaro.org>
-Date: Fri, 7 Jun 2024 18:05:01 +0200
+	id 1sFb7r-0000000Eb7o-0wA8;
+	Fri, 07 Jun 2024 15:03:31 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=4gR8xxsDzn89AEBZY9bCk38wSrFhLDr+8xtncFpD6Ok=; b=dyE8T9pcaTyJRbW9lBJov+tgT6
+	iGja7qkt0UM7Ob5p2vB3Ma61hpWU1YfaPfHHDPcZv4Vhfs6r4B0ly2cV4kcCfKS27fAzlAU772Dyu
+	2/5aMs6YZtqahcZLDv+SQWSdszGWRq23TOYLfD79w7pCQDW2QOENjYIDUnoYzsBHD604kwY68UJI9
+	oN/dUrWG1t8+MnCoTB9DQ7JeC8kY38ycIzTRmFvzJn2UBoUbH1cnilxOihDc+Sa4zcief0a+4Pib0
+	LFm0hfDudAsafh8fKS2XFJ9J0+B/zqFJsfGK3Tx/Hw2Bukx2ccJN8s6SzfTDXmTFbPhZUjEzeBKOf
+	CIWcQ4SA==;
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	by casper.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1sFb7o-00000006KzG-0YC3;
+	Fri, 07 Jun 2024 15:03:30 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 89AD0CE1D9C;
+	Fri,  7 Jun 2024 15:03:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B82AC2BBFC;
+	Fri,  7 Jun 2024 15:03:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717772599;
+	bh=4gR8xxsDzn89AEBZY9bCk38wSrFhLDr+8xtncFpD6Ok=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Fu9exxX+roB9Uu+dO21iVZwiT9RXi2Xm2APsNYQVWfSOQUpW347vV20/HOesIN8nr
+	 gUxXZkfix2bjLhBymZDwETKE6xSdYTcpN+aPxNKOL0ymRRs3NClK2AWVvwES2ZXXd5
+	 TSYwH7SwlmBtjDdBiQnJABvsZnNhlbZHD/r1wofzEXS5JASXO9CUob59fc5bNKFVrv
+	 H+LHf1o64yEGLpOzIe/hm/W8CUDEAwG0ihFgbTVdzaVxxU0WICCmhNvsohrATeOomV
+	 Hr+MNtcVT1ZRgcG4EkE+P6zbUez83MoZL7erDBguYktJc4vuph3/nZI3MlqZXcNHNe
+	 EvXXZXJ9kgHaw==
+Date: Fri, 7 Jun 2024 16:03:15 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Viacheslav Bocharov <adeep@lexina.in>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: amlogic: add binding for
+ JetHome JetHub D2
+Message-ID: <20240607-flatfoot-endurance-934bb299c6e4@spud>
+References: <20240607145148.2246990-1-adeep@lexina.in>
+ <20240607145148.2246990-2-adeep@lexina.in>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: media: amlogic,gx-vdec: add the GXLX SoC
- family and update GXL
-To: Christian Hewitt <christianshewitt@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240604051533.3312944-1-christianshewitt@gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240604051533.3312944-1-christianshewitt@gmail.com>
+In-Reply-To: <20240607145148.2246990-2-adeep@lexina.in>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240607_090505_822980_54FCA5C0 
-X-CRM114-Status: GOOD (  11.78  )
+X-CRM114-CacheID: sfid-20240607_160328_430442_949B53DB 
+X-CRM114-Status: UNSURE (   7.19  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,39 +88,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============8154688740087001048=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 04/06/2024 07:15, Christian Hewitt wrote:
-> The GXLX SoC is a GXL variant that omits VP9 codec support. Also add S905W
-> and S905Y as GXL chips and sort the GXL comment.
-> 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->   Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-> index 55930f6107c9..47dce75aeae6 100644
-> --- a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-> +++ b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-> @@ -31,7 +31,8 @@ properties:
->         - items:
->             - enum:
->                 - amlogic,gxbb-vdec # GXBB (S905)
-> -              - amlogic,gxl-vdec # GXL (S905X, S905D)
-> +              - amlogic,gxl-vdec # GXL (S905D, S905W, S905X, S905Y)
-> +              - amlogic,gxlx-vdec # GXLX (S905L)
->                 - amlogic,gxm-vdec # GXM (S912)
->             - const: amlogic,gx-vdec
->         - enum:
 
-Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+--===============8154688740087001048==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="0EFJB7UY3eHZb3HP"
+Content-Disposition: inline
+
+
+--0EFJB7UY3eHZb3HP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Jun 07, 2024 at 05:50:03PM +0300, Viacheslav Bocharov wrote:
+> JetHome JetHub D2 is a home automation controller, based on
+> Amlogic S905X3 SoC
+>=20
+> Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--0EFJB7UY3eHZb3HP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmMhMwAKCRB4tDGHoIJi
+0kABAP4zhbmujaFMgWvXg11gfLRm75AooEjghwdLWFJok+IQAwEAqYc6WFBpNXx+
+8WzQ08DCs3rKN8W5v5fzYs9vukKmPAk=
+=OswS
+-----END PGP SIGNATURE-----
+
+--0EFJB7UY3eHZb3HP--
+
+
+--===============8154688740087001048==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============8154688740087001048==--
+
