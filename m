@@ -4,62 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51270C27C6E
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2024 14:52:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AD6DC27C53
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2024 15:17:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Xrtd2ZiURo1WxBC1zD8AhCjm5PfQX81ugL0hf3lLxFY=; b=Etaril6m/9S9vj
-	9S/q1qh3/2FZ2acO2erY1TBjX/JDUjiHfMQ7hNUdMHbHwXi5/vwLux+Xhl8r9zT85ExypTSMqOURY
-	MX9u5sh4xJCG8046AISq8G6Vs62xuy0MeaEYwjV/JupAWbAhZkYQzdkJRi+pqz9mC9j/cjecLOHDu
-	GNLxkByPuArP7ukn6ooPt/1EGk223oaCoYlPb6IyFOKTSB17ltmHEozj5tZTvhBzhyodePxB3jrGX
-	q3+ntHScwodzNGXSC02g9trkGKizWcp8P9naCmsM154krYYDyY0P2Z4L9s1gZOS0+SxbauxxCYgBD
-	po1EWmRR2T9cmhgZ1+Gw==;
+	List-Owner; bh=fo+w92//zdp1jFrf+xs2j68Cb37Jk9l5eIA3f9CIftM=; b=wua6god88Ogi3/
+	6QTOCMqs8dbUu7rdfGUL0xN9rzagGqQtAAUPGE1uuO0d5hRohDR5k4c/YBnPVGbdd0UWAvkJW6qAB
+	ZXPTXK9omjwn8jHqYxz0A6GVbnVKqfHT7dy8MpT0RQShUgssh/9Aw3Zz4Xd5KU7Xcz/Dv/Fxbd1WG
+	hKIQDZ5gxkyuWRQMbG0jMSPQo02Qw1xmbdmoTsjaLY5y6enjTYf+gs9z3lGd9kRW6D11CujuA+/R3
+	AUxfj4NsjOC6stGLfNCDI8CsFh5xPi43RdqXk8wN7F/BEItt6c68AbKXtMjT+YKH6jr2enHGv33+t
+	NA4gBhWiszg0B81cjOvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFaxB-0000000EWmk-2Jme;
-	Fri, 07 Jun 2024 14:52:29 +0000
-Received: from mx.adeep.su ([185.250.0.168])
+	id 1sFbLE-0000000Ef9s-3BXB;
+	Fri, 07 Jun 2024 15:17:20 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFax7-0000000EWjz-1maY;
-	Fri, 07 Jun 2024 14:52:27 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D0231105CC8;
-	Fri,  7 Jun 2024 17:52:22 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
-	t=1717771942; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=WoJ2u2sQQTGBjv0QfHI0WaIyW+EzyfWA149Uae4d4Ho=;
-	b=N8kmv8JttDBGipGqRNUbHdOin47soTp2f4oOGhEcQFPy6k6ssvQ5patBOY8v5vbkLM5mYg
-	n1hu+aB3BgnROdHHEgpQ1d2oNhmtgEiN7sAusFfevKcO27+NV8e+Nzs1K1shzn4PwZFY2F
-	CjDghmVpeLqyqZXhphqc+N7neINerJWaApb5dI83bIQ2RzswD2byWl4jf8qqmBpMH0Xx4W
-	bb8iLp8QjLyDWlCFqIuAkEZaOl19gaifq6XSX+Ovu6FEfUShWbQlyOMXeLx8sppxC30r2f
-	qUZveqMiNSLDc1gaRSOtWO3yJsv+U69xn/rCVAturpVQ+T/PRKO0UFBEmIEP1w==
-From: Viacheslav Bocharov <adeep@lexina.in>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v1 2/2] arm64: dts: meson-axg: add support for JetHome JetHub D2 (j200)
-Date: Fri,  7 Jun 2024 17:50:04 +0300
-Message-ID: <20240607145148.2246990-3-adeep@lexina.in>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240607145148.2246990-1-adeep@lexina.in>
-References: <20240607145148.2246990-1-adeep@lexina.in>
+	id 1sFaL5-0000000EIfh-05cl;
+	Fri, 07 Jun 2024 14:13:11 +0000
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 2AB62120017;
+	Fri,  7 Jun 2024 17:13:03 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2AB62120017
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1717769583;
+	bh=gATW+cGCj8WliyOwxhSkPq29blD58wlSE1L7x73o++w=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=edt+i3IWjNji/COUFnUrQreVJhjv+z4Y+YnBQEMMIXIx18gdYgtYmJbOeqpJsLKNC
+	 js93eS6iMmKnXEDi50TQ62A/MEYoFLPGb6/USjajqiD/teAUjhDkBd9PSFjJV1+Tl1
+	 owgBZNbrsG36Z1HUuh9QixRSJEUZnY0hjAwn24xb2kq/fHq4F9gO21S/wBKJatSJ9S
+	 bcM5At+l/IVG/lnhWCcW19Rj0YfbXmxXuwbqcgd0LpbxtsCl3odUWfrfA2Bref6BHu
+	 250Y975R7G4CJgi5LjLTPAXvThiV0mveRhZvxM8stZzpSSrg66IQmiV5HuBeQfvKcA
+	 KywFg4nhESfPg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri,  7 Jun 2024 17:13:02 +0300 (MSK)
+Received: from user-A520M-DS3H.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 7 Jun 2024 17:13:02 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
+	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <vadim.fedorenko@linux.dev>
+CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
+ Romanov <avromanov@salutedevices.com>
+Subject: [PATCH v8 09/23] drivers: crypto: meson: process more than MAXDESCS descriptors
+Date: Fri, 7 Jun 2024 17:12:28 +0300
+Message-ID: <20240607141242.2616580-10-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240607141242.2616580-1-avromanov@salutedevices.com>
+References: <20240607141242.2616580-1-avromanov@salutedevices.com>
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185803 [Jun 07 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/06/07 12:12:00 #25491508
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240607_075225_831557_AAE72CB4 
-X-CRM114-Status: GOOD (  15.80  )
+X-CRM114-CacheID: sfid-20240607_071307_652901_39977030 
+X-CRM114-Status: GOOD (  22.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,664 +104,558 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-JetHome Jethub D2 is a home automation controller with the following
-features:
-  - DIN Rail Mounting
-  - Amlogic S905X3 (ARM Cortex-A55) quad-core
-  - micro-HDMI video out
-  - 4GB LPDDR4
-  - 32GB eMMC flash
-  - 1 x USB 2.0
-  - 1 x 10/100/1000Mbps ethernet
-  - two module slots for radio/wire interface cards
-  - 2 x gpio LEDS
-  - 1 x 1-Wire
-  - 1 x RS-485
-  - 3 x dry contact digital GPIO inputs
-  - 2 x relay GPIO outputs
-  - DC 9-36V power source with battery UPS on board option
+1. The old alhorithm was not designed to process a large
+amount of memory, and therefore gave incorrect results.
 
-Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
+2. Not all Amlogic SoC's use 3 KEY/IV descriptors.
+Add keyiv descriptors count parameter to platform data.
+
+Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
 ---
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../amlogic/meson-sm1-jethome-jethub-j200.dts | 614 ++++++++++++++++++
- 2 files changed, 615 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dts
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c | 448 +++++++++++++-------
+ drivers/crypto/amlogic/amlogic-gxl-core.c   |   1 +
+ drivers/crypto/amlogic/amlogic-gxl.h        |   2 +
+ 3 files changed, 286 insertions(+), 165 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 0f29517da5ec..d007b59497d4 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -79,6 +79,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m2-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m5.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-h96-max.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-sm1-jethome-jethub-j200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l-ts050.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-s905d3-libretech-cc.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dts
-new file mode 100644
-index 000000000000..1391c921fb8f
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dts
-@@ -0,0 +1,614 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2024 JetHome
-+ * Author: Viacheslav Bocharov <adeep@lexina.in>
-+ */
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+index c662c4b86e97..0d32d2e3ca3b 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+@@ -17,35 +17,41 @@
+ #include <crypto/internal/skcipher.h>
+ #include "amlogic-gxl.h"
+ 
+-static bool meson_cipher_need_fallback(struct skcipher_request *areq)
++static bool meson_cipher_need_fallback_sg(struct skcipher_request *areq,
++					  struct scatterlist *sg)
+ {
+-	struct scatterlist *src_sg = areq->src;
+-	struct scatterlist *dst_sg = areq->dst;
++	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(areq);
++	unsigned int blocksize = crypto_skcipher_blocksize(tfm);
++	unsigned int cryptlen = areq->cryptlen;
 +
-+/dts-v1/;
++	while (cryptlen) {
++		unsigned int len = min(cryptlen, sg->length);
 +
-+#include "meson-sm1.dtsi"
++		if (!IS_ALIGNED(sg->offset, sizeof(u32)))
++			return true;
++		if (len % blocksize != 0)
++			return true;
 +
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
++		cryptlen -= len;
++		sg = sg_next(sg);
++	}
 +
++	return false;
++}
+ 
++static bool meson_cipher_need_fallback(struct skcipher_request *areq)
++{
+ 	if (areq->cryptlen == 0)
+ 		return true;
+ 
+-	if (sg_nents(src_sg) != sg_nents(dst_sg))
++	if (meson_cipher_need_fallback_sg(areq, areq->src))
+ 		return true;
+ 
+-	/* KEY/IV descriptors use 3 desc */
+-	if (sg_nents(src_sg) > MAXDESC - 3 || sg_nents(dst_sg) > MAXDESC - 3)
+-		return true;
++	if (areq->dst == areq->src)
++		return false;
+ 
+-	while (src_sg && dst_sg) {
+-		if ((src_sg->length % 16) != 0)
+-			return true;
+-		if ((dst_sg->length % 16) != 0)
+-			return true;
+-		if (src_sg->length != dst_sg->length)
+-			return true;
+-		if (!IS_ALIGNED(src_sg->offset, sizeof(u32)))
+-			return true;
+-		if (!IS_ALIGNED(dst_sg->offset, sizeof(u32)))
+-			return true;
+-		src_sg = sg_next(src_sg);
+-		dst_sg = sg_next(dst_sg);
+-	}
++	if (meson_cipher_need_fallback_sg(areq, areq->dst))
++		return true;
+ 
+ 	return false;
+ }
+@@ -76,184 +82,296 @@ static int meson_cipher_do_fallback(struct skcipher_request *areq)
+ 	return err;
+ }
+ 
+-static int meson_cipher(struct skcipher_request *areq)
++struct cipher_ctx {
++	struct {
++		dma_addr_t addr;
++		unsigned int len;
++	} keyiv;
 +
-+/ {
++	struct skcipher_request *areq;
++	struct scatterlist *src_sg;
++	struct scatterlist *dst_sg;
++	void *bkeyiv;
 +
-+	compatible = "jethome,jethub-j200", "amlogic,sm1";
-+	model = "JetHome JetHub D2";
-+
-+	aliases {
-+		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
-+		rtc0 = &rtc;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	tflash_vdd: regulator-tflash_vdd {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "TFLASH_VDD";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&gpio_ao GPIOAO_3 GPIO_OPEN_DRAIN>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	tf_io: gpio-regulator-tf_io {
-+		compatible = "regulator-gpio";
-+
-+		regulator-name = "TF_IO";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_5v>;
-+
-+		enable-gpios = <&gpio_ao GPIOE_2 GPIO_OPEN_DRAIN>;
-+		enable-active-high;
-+		regulator-always-on;
-+
-+		gpios = <&gpio_ao GPIOAO_6 GPIO_OPEN_SOURCE>;
-+		gpios-states = <0>;
-+
-+		states = <3300000 0>,
-+			 <1800000 1>;
-+	};
-+
-+	flash_1v8: regulator-flash_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "FLASH_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	main_12v: regulator-main_12v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "12V";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_5v: regulator-vcc_5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		vin-supply = <&main_12v>;
-+		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
-+		enable-active-high;
-+	};
-+
-+	vcc_1v8: regulator-vcc_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_3v3: regulator-vcc_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vddcpu: regulator-vddcpu {
-+		/*
-+		 * MP8756GD Regulator.
-+		 */
-+		compatible = "pwm-regulator";
-+
-+		regulator-name = "VDDCPU";
-+		regulator-min-microvolt = <721000>;
-+		regulator-max-microvolt = <1022000>;
-+
-+		pwm-supply = <&main_12v>;
-+
-+		pwms = <&pwm_AO_cd 1 1250 0>;
-+		pwm-dutycycle-range = <100 0>;
-+
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	usb_pwr_en: regulator-usb_pwr_en {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_PWR_EN";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v>;
-+
-+		/* Connected to the microUSB port power enable */
-+		gpio = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	vddao_1v8: regulator-vddao_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&main_12v>;
-+		regulator-always-on;
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		audio-aux-devs = <&tdmout_b>;
-+		audio-routing = "TDM_B Playback", "TDMOUT_B OUT";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+
-+		/* 8ch hdmi interface */
-+		dai-link-0 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-1 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-green {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "heartbeat";
-+			panic-indicator;
-+		};
-+
-+		led-red {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_POWER;
-+			gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+
-+	};
-+
-+	sound {
-+		model = "JETHUB-D2";
-+	};
-+
-+	usb-hub {
-+		dr_mode = "host";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* USB 2.0 hub with reset gpio */
-+		hub_2_0: hub@1 {
-+			compatible = "usb5e3,610";
-+			reg = <1>;
-+			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-+			vdd-supply = <&vcc_5v>;
-+		};
-+	};
-+
++	unsigned int src_offset;
++	unsigned int dst_offset;
++	unsigned int cryptlen;
++	unsigned int tloffset;
 +};
 +
-+&arb {
-+	status = "okay";
-+};
++static int meson_map_scatterlist(struct skcipher_request *areq, struct meson_dev *mc)
+ {
+-	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(areq);
+-	struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
+-	struct meson_cipher_req_ctx *rctx = skcipher_request_ctx(areq);
+-	struct meson_dev *mc = op->mc;
+-	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
+-	struct meson_alg_template *algt;
+-	int flow = rctx->flow;
+-	unsigned int todo, eat, len;
+-	struct scatterlist *src_sg = areq->src;
+-	struct scatterlist *dst_sg = areq->dst;
+-	struct meson_desc *desc;
+ 	int nr_sgs, nr_sgd;
+-	int i, err = 0;
+-	unsigned int keyivlen, ivsize, offset, tloffset;
+-	dma_addr_t phykeyiv;
+-	void *backup_iv = NULL, *bkeyiv;
+-	u32 v;
+-
+-	algt = container_of(alg, struct meson_alg_template, alg.skcipher.base);
+-
+-	dev_dbg(mc->dev, "%s %s %u %x IV(%u) key=%u flow=%d\n", __func__,
+-		crypto_tfm_alg_name(areq->base.tfm),
+-		areq->cryptlen,
+-		rctx->op_dir, crypto_skcipher_ivsize(tfm),
+-		op->keylen, flow);
+-
+-#ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
+-	algt->stat_req++;
+-	mc->chanlist[flow].stat_req++;
+-#endif
+-
+-	/*
+-	 * The hardware expect a list of meson_desc structures.
+-	 * The 2 first structures store key
+-	 * The third stores IV
+-	 */
+-	bkeyiv = kzalloc(48, GFP_KERNEL | GFP_DMA);
+-	if (!bkeyiv)
+-		return -ENOMEM;
+-
+-	memcpy(bkeyiv, op->key, op->keylen);
+-	keyivlen = op->keylen;
+-
+-	ivsize = crypto_skcipher_ivsize(tfm);
+-	if (areq->iv && ivsize > 0) {
+-		if (ivsize > areq->cryptlen) {
+-			dev_err(mc->dev, "invalid ivsize=%d vs len=%d\n", ivsize, areq->cryptlen);
+-			err = -EINVAL;
+-			goto theend;
+-		}
+-		memcpy(bkeyiv + 32, areq->iv, ivsize);
+-		keyivlen = 48;
+-		if (rctx->op_dir == MESON_DECRYPT) {
+-			backup_iv = kzalloc(ivsize, GFP_KERNEL);
+-			if (!backup_iv) {
+-				err = -ENOMEM;
+-				goto theend;
+-			}
+-			offset = areq->cryptlen - ivsize;
+-			scatterwalk_map_and_copy(backup_iv, areq->src, offset,
+-						 ivsize, 0);
+-		}
+-	}
+-	if (keyivlen == AES_KEYSIZE_192)
+-		keyivlen = AES_MAX_KEY_SIZE;
+-
+-	phykeyiv = dma_map_single(mc->dev, bkeyiv, keyivlen,
+-				  DMA_TO_DEVICE);
+-	err = dma_mapping_error(mc->dev, phykeyiv);
+-	if (err) {
+-		dev_err(mc->dev, "Cannot DMA MAP KEY IV\n");
+-		goto theend;
+-	}
+-
+-	tloffset = 0;
+-	eat = 0;
+-	i = 0;
+-	while (keyivlen > eat) {
+-		desc = &mc->chanlist[flow].tl[tloffset];
+-		memset(desc, 0, sizeof(struct meson_desc));
+-		todo = min(keyivlen - eat, 16u);
+-		desc->t_src = cpu_to_le32(phykeyiv + i * 16);
+-		desc->t_dst = cpu_to_le32(i * 16);
+-		v = DESC_MODE_KEY | DESC_OWN | 16;
+-		desc->t_status = cpu_to_le32(v);
+-
+-		eat += todo;
+-		i++;
+-		tloffset++;
+-	}
+ 
+ 	if (areq->src == areq->dst) {
+ 		nr_sgs = dma_map_sg(mc->dev, areq->src, sg_nents(areq->src),
+ 				    DMA_BIDIRECTIONAL);
+ 		if (!nr_sgs) {
+ 			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgs);
+-			err = -EINVAL;
+-			goto theend;
++			return -EINVAL;
+ 		}
+-		nr_sgd = nr_sgs;
+ 	} else {
+ 		nr_sgs = dma_map_sg(mc->dev, areq->src, sg_nents(areq->src),
+ 				    DMA_TO_DEVICE);
+-		if (!nr_sgs || nr_sgs > MAXDESC - 3) {
++		if (!nr_sgs) {
+ 			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgs);
+-			err = -EINVAL;
+-			goto theend;
++			return -EINVAL;
+ 		}
 +
-+&cec_AO {
-+	pinctrl-0 = <&cec_ao_a_h_pins>;
-+	pinctrl-names = "default";
-+	status = "disabled";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
+ 		nr_sgd = dma_map_sg(mc->dev, areq->dst, sg_nents(areq->dst),
+ 				    DMA_FROM_DEVICE);
+-		if (!nr_sgd || nr_sgd > MAXDESC - 3) {
++		if (!nr_sgd) {
++			dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_TO_DEVICE);
+ 			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgd);
+-			err = -EINVAL;
+-			goto theend;
++			return -EINVAL;
+ 		}
+ 	}
+ 
+-	src_sg = areq->src;
+-	dst_sg = areq->dst;
+-	len = areq->cryptlen;
+-	while (src_sg) {
+-		desc = &mc->chanlist[flow].tl[tloffset];
+-		memset(desc, 0, sizeof(struct meson_desc));
+-
+-		desc->t_src = cpu_to_le32(sg_dma_address(src_sg));
+-		desc->t_dst = cpu_to_le32(sg_dma_address(dst_sg));
+-		todo = min(len, sg_dma_len(src_sg));
+-		v = op->keymode | DESC_OWN | todo | algt->blockmode;
+-		if (rctx->op_dir)
+-			v |= DESC_ENCRYPTION;
+-		len -= todo;
+-
+-		if (!sg_next(src_sg))
+-			v |= DESC_LAST;
+-		desc->t_status = cpu_to_le32(v);
+-		tloffset++;
+-		src_sg = sg_next(src_sg);
+-		dst_sg = sg_next(dst_sg);
++	return 0;
++}
 +
-+&cecb_AO {
-+	pinctrl-0 = <&cec_ao_b_h_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
++static void meson_unmap_scatterlist(struct skcipher_request *areq, struct meson_dev *mc)
++{
++	if (areq->src == areq->dst) {
++		dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_BIDIRECTIONAL);
++	} else {
++		dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_TO_DEVICE);
++		dma_unmap_sg(mc->dev, areq->dst, sg_nents(areq->dst), DMA_FROM_DEVICE);
+ 	}
++}
+ 
+-	reinit_completion(&mc->chanlist[flow].complete);
+-	meson_dma_start(mc, flow);
++static void meson_setup_keyiv_descs(struct cipher_ctx *ctx)
++{
++	struct meson_cipher_req_ctx *rctx = skcipher_request_ctx(ctx->areq);
++	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(ctx->areq);
++	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
++	struct meson_alg_template *algt = container_of(alg,
++		struct meson_alg_template, alg.skcipher.base);
++	struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
++	struct meson_dev *mc = op->mc;
++	unsigned int ivsize = crypto_skcipher_ivsize(tfm);
++	unsigned int blockmode = algt->blockmode;
++	int i;
 +
-+&clkc_audio {
-+	status = "okay";
-+};
++	if (ctx->tloffset)
++		return;
 +
-+&cpu0 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
++	if (blockmode == DESC_OPMODE_CBC) {
++		memcpy(ctx->bkeyiv + AES_MAX_KEY_SIZE, ctx->areq->iv, ivsize);
++		dma_sync_single_for_device(mc->dev, ctx->keyiv.addr,
++					   ctx->keyiv.len, DMA_TO_DEVICE);
++	}
 +
-+&cpu1 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU1_CLK>;
-+	clock-latency = <50000>;
-+};
++	for (i = 0; i < mc->pdata->setup_desc_cnt; i++) {
++		struct meson_desc *desc =
++			&mc->chanlist[rctx->flow].tl[ctx->tloffset];
++		int offset = i * 16;
 +
-+&cpu2 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU2_CLK>;
-+	clock-latency = <50000>;
-+};
++		desc->t_src = cpu_to_le32(ctx->keyiv.addr + offset);
++		desc->t_dst = cpu_to_le32(offset);
++		desc->t_status = cpu_to_le32(DESC_OWN | DESC_MODE_KEY | ctx->keyiv.len);
 +
-+&cpu3 {
-+	cpu-supply = <&vddcpu>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU3_CLK>;
-+	clock-latency = <50000>;
-+};
++		ctx->tloffset++;
++	}
++}
+ 
+-	err = wait_for_completion_interruptible_timeout(&mc->chanlist[flow].complete,
++static bool meson_setup_data_descs(struct cipher_ctx *ctx)
++{
++	struct meson_cipher_req_ctx *rctx = skcipher_request_ctx(ctx->areq);
++	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(ctx->areq);
++	struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
++	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
++	struct meson_alg_template *algt = container_of(alg,
++						       struct meson_alg_template,
++						       alg.skcipher.base);
++	struct meson_dev *mc = op->mc;
++	struct meson_desc *desc = &mc->chanlist[rctx->flow].tl[ctx->tloffset];
++	unsigned int blocksize = crypto_skcipher_blocksize(tfm);
++	unsigned int blockmode = algt->blockmode;
++	unsigned int maxlen = rounddown(DESC_MAXLEN, blocksize);
++	unsigned int todo;
++	u32 v;
 +
-+&ext_mdio {
-+	external_phy: ethernet-phy@0 {
-+		/* Realtek RTL8211F (0x001cc916) */
-+		reg = <0>;
-+		max-speed = <1000>;
++	ctx->tloffset++;
 +
-+		reset-assert-us = <10000>;
-+		reset-deassert-us = <80000>;
-+		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
++	todo = min(ctx->cryptlen, maxlen);
++	todo = min(todo, ctx->cryptlen);
++	todo = min(todo, sg_dma_len(ctx->src_sg) - ctx->src_offset);
++	todo = min(todo, sg_dma_len(ctx->dst_sg) - ctx->dst_offset);
 +
-+		interrupt-parent = <&gpio_intc>;
-+		/* MAC_INTR on GPIOZ_14 */
-+		interrupts = <IRQID_GPIOZ_14 IRQ_TYPE_LEVEL_LOW>;
++	desc->t_src = cpu_to_le32(sg_dma_address(ctx->src_sg) + ctx->src_offset);
++	desc->t_dst = cpu_to_le32(sg_dma_address(ctx->dst_sg) + ctx->dst_offset);
++
++	ctx->cryptlen -= todo;
++	ctx->src_offset += todo;
++	ctx->dst_offset += todo;
++
++	v = DESC_OWN | blockmode | op->keymode | todo;
++	if (rctx->op_dir == MESON_ENCRYPT)
++		v |= DESC_ENCRYPTION;
++
++	if (!ctx->cryptlen || ctx->tloffset == MAXDESC)
++		v |= DESC_LAST;
++
++	desc->t_status = cpu_to_le32(v);
++
++	return v & DESC_LAST;
++}
++
++static int meson_kick_hardware(struct cipher_ctx *ctx)
++{
++	struct meson_cipher_req_ctx *rctx = skcipher_request_ctx(ctx->areq);
++	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(ctx->areq);
++	struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
++	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
++	struct meson_alg_template *algt = container_of(alg,
++						       struct meson_alg_template,
++						       alg.skcipher.base);
++	struct meson_dev *mc = op->mc;
++	unsigned int ivsize = crypto_skcipher_ivsize(tfm);
++	unsigned int blockmode = algt->blockmode;
++	enum dma_data_direction new_iv_dir;
++	struct scatterlist *sg_head;
++	dma_addr_t new_iv_phys;
++	void *new_iv;
++	int err;
++
++	if (blockmode == DESC_OPMODE_CBC) {
++		struct scatterlist *sg_current;
++		unsigned int offset;
++
++		if (rctx->op_dir == MESON_ENCRYPT) {
++			sg_current = ctx->dst_sg;
++			sg_head = ctx->areq->dst;
++			offset = ctx->dst_offset;
++			new_iv_dir = DMA_FROM_DEVICE;
++		} else {
++			sg_current = ctx->src_sg;
++			sg_head = ctx->areq->src;
++			offset = ctx->src_offset;
++			new_iv_dir = DMA_TO_DEVICE;
++		}
++
++		if (ctx->areq->src == ctx->areq->dst)
++			new_iv_dir = DMA_BIDIRECTIONAL;
++
++		offset -= ivsize;
++		new_iv = sg_virt(sg_current) + offset;
++		new_iv_phys = sg_dma_address(sg_current) + offset;
++	}
++
++	if (blockmode == DESC_OPMODE_CBC &&
++	    rctx->op_dir == MESON_DECRYPT) {
++		dma_sync_sg_for_cpu(mc->dev, sg_head,
++				    sg_nents(sg_head), new_iv_dir);
++		memcpy(ctx->areq->iv, new_iv, ivsize);
++	}
++
++	reinit_completion(&mc->chanlist[rctx->flow].complete);
++	meson_dma_start(mc, rctx->flow);
++	err = wait_for_completion_interruptible_timeout(&mc->chanlist[rctx->flow].complete,
+ 							msecs_to_jiffies(500));
+ 	if (err == 0) {
+-		dev_err(mc->dev, "DMA timeout for flow %d\n", flow);
+-		err = -EINVAL;
++		dev_err(mc->dev, "DMA timeout for flow %d\n", rctx->flow);
++		return -EINVAL;
+ 	} else if (err < 0) {
+ 		dev_err(mc->dev, "Waiting for DMA completion is failed (%d)\n", err);
+-	} else {
+-		/* No error */
+-		err = 0;
++		return err;
+ 	}
+ 
+-	dma_unmap_single(mc->dev, phykeyiv, keyivlen, DMA_TO_DEVICE);
++	if (blockmode == DESC_OPMODE_CBC &&
++	    rctx->op_dir == MESON_ENCRYPT) {
++		dma_sync_sg_for_cpu(mc->dev, sg_head,
++				    sg_nents(sg_head), new_iv_dir);
++		memcpy(ctx->areq->iv, new_iv, ivsize);
++	}
+ 
+-	if (areq->src == areq->dst) {
+-		dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_BIDIRECTIONAL);
+-	} else {
+-		dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_TO_DEVICE);
+-		dma_unmap_sg(mc->dev, areq->dst, sg_nents(areq->dst), DMA_FROM_DEVICE);
++	ctx->tloffset = 0;
++
++	return 0;
++}
++
++static int meson_cipher(struct skcipher_request *areq)
++{
++	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(areq);
++	struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
++	struct meson_cipher_req_ctx *rctx = skcipher_request_ctx(areq);
++	struct meson_dev *mc = op->mc;
++	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
++	struct meson_alg_template *algt;
++	struct cipher_ctx ctx = {
++		.areq = areq,
++		.src_offset = 0,
++		.dst_offset = 0,
++		.src_sg = areq->src,
++		.dst_sg = areq->dst,
++		.cryptlen = areq->cryptlen,
 +	};
-+};
++	int err;
 +
-+&ethmac {
-+	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	phy-mode = "rgmii";
-+	phy-handle = <&external_phy>;
-+	amlogic,tx-delay-ns = <2>;
-+};
++	dev_dbg(mc->dev, "%s %s %u %x IV(%u) key=%u ctx.flow=%d\n", __func__,
++		crypto_tfm_alg_name(areq->base.tfm),
++		areq->cryptlen,
++		rctx->op_dir, crypto_skcipher_ivsize(tfm),
++		op->keylen, rctx->flow);
 +
-+&gpio {
-+	gpio-line-names =
-+		/* GPIOZ */
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		/* GPIOH */
-+		"", "", "", "", "",
-+		"LED_RED", /* GPIOH_5 */
-+		"I2C_SDA_MODULES", /* GPIOH_6 */
-+		"I2C_SCL_MODULES", /* GPIOH_7 */
-+		"",
-+		/* BOOT */
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		/* GPIOC */
-+		"", "", "", "", "", "", "", "",
-+		/* GPIOA */
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "",
-+		"I2C_SDA_SYSBUS", /* GPIOA_14 */
-+		"I2C_SCL_SYSBUS", /* GPIOA_15 */
-+		/* GPIOX */
-+		"", /* GPIOX_0 */
-+		"", /* GPIOX_1 */
-+		"", /* GPIOX_2 */
-+		"", /* GPIOX_3 */
-+		"", /* GPIOX_4 */
-+		"",  /* GPIOX_5 */
-+		"RS485_TX", /* GPIOX_6 */
-+		"RS485_RX", /* GPIOX_7 */
-+		"", /* GPIOX_8 */
-+		"", /* GPIOX_9 */
-+		"", /* GPIOX_10 */
-+		"", /* GPIOX_11 */
-+		"",  /* GPIOX_12 */
-+		"", /* GPIOX_13 */
-+		"", /* GPIOX_14 */
-+		"", /* GPIOX_15 */
-+		"", /* GPIOX_16 */
-+		"I2C_SDA_LCDBUS",  /* GPIOX_17 */
-+		"I2C_SCL_LCDBUS",  /* GPIOX_18 */
-+		""; /* GPIOX_19 */
-+};
++	algt = container_of(alg, struct meson_alg_template, alg.skcipher.base);
 +
-+&gpio_ao {
-+	gpio-line-names =
-+		/* GPIOAO */
-+		"", "", "", "",
-+		"MCU_RESET", /* GPIOAO_4 */
-+		"POWER_GOOD", /* GPIOAO_5 */
-+		"",
-+		"MCU_BOOT", /* GPIOAO_7 */
-+		"MCU_UART_TX", /* GPIOAO_8 */
-+		"MCU_UART_RX", /* GPIOAO_9 */
-+		"BUTTON_USR", /* GPIOAO_10 */
-+		"LED_GREEN", /* GPIOAO_11 */
-+		/* GPIOE */
-+		"", "", "";
-+};
++#ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
++	algt->stat_req++;
++	mc->chanlist[rctx->flow].stat_req++;
++#endif
 +
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&vcc_5v>;
-+};
++	ctx.bkeyiv = kzalloc(48, GFP_KERNEL | GFP_DMA);
++	if (!ctx.bkeyiv)
++		return -ENOMEM;
 +
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
++	memcpy(ctx.bkeyiv, op->key, op->keylen);
++	ctx.keyiv.len = op->keylen;
++	if (ctx.keyiv.len == AES_KEYSIZE_192)
++		ctx.keyiv.len = AES_MAX_KEY_SIZE;
 +
-+&pwm_AO_cd {
-+	pinctrl-0 = <&pwm_ao_d_e_pins>; // GPIOE_1
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin1";
-+	status = "okay";
-+};
++	ctx.keyiv.addr = dma_map_single(mc->dev, ctx.bkeyiv, ctx.keyiv.len,
++					DMA_TO_DEVICE);
++	err = dma_mapping_error(mc->dev, ctx.keyiv.addr);
++	if (err) {
++		dev_err(mc->dev, "Cannot DMA MAP KEY IV\n");
++		goto free_keyiv;
+ 	}
+ 
+-	if (areq->iv && ivsize > 0) {
+-		if (rctx->op_dir == MESON_DECRYPT) {
+-			memcpy(areq->iv, backup_iv, ivsize);
+-		} else {
+-			scatterwalk_map_and_copy(areq->iv, areq->dst,
+-						 areq->cryptlen - ivsize,
+-						 ivsize, 0);
++	err = meson_map_scatterlist(areq, mc);
++	if (err)
++		goto unmap_keyiv;
 +
-+&saradc {
-+	status = "okay";
-+};
++	ctx.tloffset = 0;
 +
-+/* SD card */
-+&sd_emmc_b {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_c_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
-+	pinctrl-names = "default", "clk-gate";
++	while (ctx.cryptlen) {
++		meson_setup_keyiv_descs(&ctx);
 +
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <200000000>;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	disable-wp;
++		if (meson_setup_data_descs(&ctx)) {
++			err = meson_kick_hardware(&ctx);
++			if (err)
++				break;
++		}
 +
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&tflash_vdd>;
-+	vqmmc-supply = <&tf_io>;
-+};
++		if (ctx.src_offset == sg_dma_len(ctx.src_sg)) {
++			ctx.src_offset = 0;
++			ctx.src_sg = sg_next(ctx.src_sg);
++		}
 +
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
++		if (ctx.dst_offset == sg_dma_len(ctx.dst_sg)) {
++			ctx.dst_offset = 0;
++			ctx.dst_sg = sg_next(ctx.dst_sg);
+ 		}
+ 	}
+-theend:
+-	kfree_sensitive(bkeyiv);
+-	kfree_sensitive(backup_iv);
 +
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	max-frequency = <200000000>;
-+	disable-wp;
++	meson_unmap_scatterlist(areq, mc);
 +
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&flash_1v8>;
-+};
++unmap_keyiv:
++	dma_unmap_single(mc->dev, ctx.keyiv.addr, ctx.keyiv.len, DMA_TO_DEVICE);
 +
-+&spifc {
-+	status = "disabled";
-+	pinctrl-0 = <&nor_pins>;
-+	pinctrl-names = "default";
-+
-+	flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <104000000>;
-+	};
-+};
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
-+
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&uart_AO_B {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_b_8_9_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&uart_B {
-+	status = "okay";
-+	pinctrl-0 = <&uart_b_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+
-+&usb {
-+	status = "okay";
-+	vbus-supply = <&usb_pwr_en>;
-+};
-+
-+&usb2_phy0 {
-+	phy-supply = <&vcc_5v>;
-+};
-+
-+
-+/* I2C for modules */
-+&i2c1 {
-+	status = "okay";
-+	pinctrl-0 = <&i2c1_sda_h6_pins>, <&i2c1_sck_h7_pins>;
-+	pinctrl-names = "default";
-+
-+	/* GPIO expander */
-+	u9: gpio@22 {
-+		compatible = "nxp,pca9535";
-+		reg = <0x22>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+			"RELAY_1", "RELAY_2",
-+			"", "",
-+			"UXM1_RESET", "UXM1_BOOT",
-+			"UXM2_RESET", "UXM2_BOOT",
-+			"DIN_1", "DIN_2", "DIN_3",
-+			"","","","","";
-+	};
-+
-+	/* 1-wire */
-+	w1: onewire@18 {
-+		compatible = "maxim,ds2482";
-+		reg = <0x18>;
-+	};
-+
-+};
-+
-+
-+/* I2C for lcd/etc */
-+&i2c2 {
-+	status = "okay";
-+	pinctrl-0 = <&i2c2_sda_x_pins>, <&i2c2_sck_x_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+/* I2C_EE_M3: I2C for CPU board */
-+&i2c3 {
-+	status = "okay";
-+	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-+	pinctrl-names = "default";
-+
-+	/* I2C for rtc */
-+	rtc: rtc@51 {
-+		status = "okay";
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+		wakeup-source;
-+	};
-+
-+	/* FRAM on base board */
-+	fram: eeprom@52 {
-+		compatible = "atmel,24c64";
-+		reg = <0x52>;
-+		pagesize = <0x20>;
-+		label = "fram";
-+		address-width = <0x10>;
-+		vcc-supply = <&vddao_3v3>;
-+	};
-+
-+	/* EEPROM on CPU board */
-+	eepromc: eeprom@54 {
-+		compatible = "atmel,24c64";
-+		reg = <0x54>;
-+		pagesize = <0x20>;
-+		label = "eepromc";
-+		address-width = <0x10>;
-+		vcc-supply = <&vddao_3v3>;
-+	};
-+
-+	/* EEPROM on base board */
-+	eeprompd: eeprom@56 {
-+		compatible = "atmel,24c64";
-+		reg = <0x56>;
-+		pagesize = <0x20>;
-+		label = "eeprompd";
-+		address-width = <0x10>;
-+		vcc-supply = <&vddao_3v3>;
-+	};
-+
-+	/* EEPROM on power module */
-+	eeprompm: eeprom@57 {
-+		compatible = "atmel,24c64";
-+		reg = <0x57>;
-+		pagesize = <0x20>;
-+		label = "eeprompm";
-+		address-width = <0x10>;
-+		vcc-supply = <&vddao_3v3>;
-+	};
-+
-+	/* temperature sensors */
-+	temp1: tmp102@48 {
-+		compatible = "ti,tmp102";
-+		reg = <0x48>;
-+	};
-+
-+	temp2: tmp102@49 {
-+		compatible = "ti,tmp102";
-+		reg = <0x49>;
-+	};
-+
-+};
++free_keyiv:
++	kfree_sensitive(ctx.bkeyiv);
+ 
+ 	return err;
+ }
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+index 98e63e67aa6e..5fea95e9876b 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-core.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+@@ -258,6 +258,7 @@ static void meson_crypto_remove(struct platform_device *pdev)
+ static const struct meson_pdata meson_gxl_pdata = {
+ 	.descs_reg = 0x0,
+ 	.status_reg = 0x4,
++	.setup_desc_cnt = 3,
+ };
+ 
+ static const struct of_device_id meson_crypto_of_match_table[] = {
+diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
+index 1ab3462dea42..f3455babb52a 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl.h
++++ b/drivers/crypto/amlogic/amlogic-gxl.h
+@@ -82,10 +82,12 @@ struct meson_flow {
+  * struct meson_pdata - SoC series dependent data.
+  * @reg_descs:	offset to descriptors register
+  * @reg_status:	offset to status register
++ * @setup_desc_cnt:	number of setup descriptor to configure.
+  */
+ struct meson_pdata {
+ 	u32 descs_reg;
+ 	u32 status_reg;
++	u32 setup_desc_cnt;
+ };
+ 
+ /*
 -- 
-2.45.2
+2.34.1
 
 
 _______________________________________________
