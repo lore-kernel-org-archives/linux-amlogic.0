@@ -4,64 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA000C25B76
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2024 17:33:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27AD3C25B76
+	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2024 17:51:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=l1C0GAZjhKOQegrPsqI33XXweYxjaJqkGiRo6ZIQiBQ=; b=HLJ02b42lpGXeX
-	XlyAiZv2Zxx13uJUTkwMTHHNQLjXryPsh+opSQgjrkEqvWFYRM8wA4Ep7hvYwxLvzDXKvBmA5vLjR
-	6teDktLCj2Inc2jubY40hlCo5plMr7vFK0QQVQbZHX2epZIPHSzx65pSZ5EHe2+6Sc+KxE8HFMTFj
-	hdEk9G+w9aAMdaKNuTHOd7aXatEMI0wrZKiW1NKCuSb2WG2D0/XdtXoIft4S3Wy1CvhQ1aNo1o2Ha
-	XeLKNWr9kTCm9lYuSY1fGrLGSoG3azCrTg27f2sTLMWEspw9nv+dSg0LKwn3oiKjlmTSADOoFknpm
-	j6tORFABs67tFus7rc+Q==;
+	List-Owner; bh=QOqu7KWpqSWOJFWNgR7Y+7C0COgyFhkWRUFPgnHsfek=; b=VL4+MNBxd/G922
+	2H4zkiz7qbELrPAgwgYmYh9hDbUO8iYmsB3BkdjFkgN5uEbjLKHSrar7ypoqg8XcVpvQwRFosd7u6
+	9lCc50PKqqfRFt4m/q6Be7JMtlZfQKpPFyrZZbBHVlylE2Bis560m+BSnHcsrQkblySzIv2hBSAXk
+	ZfzNlldCCgiX9eF6h8EyR9OcWFYes2tfj0nGTCo1HXAspwn6eZfoBYUPTPsk97H6pW3cehgjQGAwQ
+	5XW0Z4hSt9YYnCULdDFMmvXSl8Z2tPiGZ317oxAmX26l07p1dx8JbaGhVTKVPIbYgpBJgyIG1fVdO
+	nX2A13Owwqkf/yJdtI/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFzwf-00000000Tl3-3bit;
-	Sat, 08 Jun 2024 17:33:37 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1sG0E5-00000000UlP-1OiF;
+	Sat, 08 Jun 2024 17:51:37 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFzwc-00000000TkE-27Y0;
-	Sat, 08 Jun 2024 17:33:36 +0000
+	id 1sG0E2-00000000Ukt-1JnX;
+	Sat, 08 Jun 2024 17:51:35 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 5BF7E61A27;
-	Sat,  8 Jun 2024 17:33:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84958C2BD11;
-	Sat,  8 Jun 2024 17:33:27 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 26D7B60AD1;
+	Sat,  8 Jun 2024 17:51:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE518C2BD11;
+	Sat,  8 Jun 2024 17:51:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717868011;
-	bh=Cs9lOa2WavPLN7oqK/3pwGjhjZXspdBdBObW8TWyNJ8=;
+	s=k20201202; t=1717869090;
+	bh=e1fsE7fB4ewFPaZ8JWr2CP9i5TSif1c3QeBzFO8sI1w=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=dI+p40P/rjOMkAAJBImUJkveglA+w5DQrPk3PBPecI+PYeeYOVuj2cv09+kAuVLfR
-	 WVtdWrUF9/M7mqJgtiVi7yWZmGiCLXZt532LhG7Ud/MckSEFdmvHbqGugEzTC7oj5l
-	 1umXp8i3qOnwIKFxidhGt2Tal6fi+qO+1JIrn+DtzpkL+7MMocyTmyeBL6dz2kpQgJ
-	 Zie6vODafE1HGPF9IKEhbGyfpdDGxtK6eWyQ11TDOEE3rEVVe+3eBYG2W5daWgRMhy
-	 viwnAAzeAHTS8lrI4gR86Y8/oRoalYyeXxTNp4QdRLj/ttrVtMDADPiKBeybRJZAwp
-	 ZEtwbMKWq5AFw==
-Date: Sat, 8 Jun 2024 18:33:22 +0100
+	b=fTxP8hL37N96nCLipmzp1T5UNqthOLzfa0wl3ZlHVKHF/l15hlxKLiGIBKHAObd9l
+	 1/IO2wBZ56/Dv3HKkw486Lz6x0Lux4JW5tHlytd/U1ZMveZ3k2xUjtU1rN/Ms6g5mp
+	 G0M4Cyr+mgB6hUqQfIfZhtAB7eUumdUsql6mgLFMi0dcYeyDDMqLjTigfWgSHlgo/y
+	 bbHmucT0RJbEVoOpmNml1Iv1FwUZnRLQguCA6Kv71xQXLZWHMz5cg6OUtk5r/oDfrW
+	 HcjDOkpqpbRjlR+K9dHHa/OmQovecXU19Hiy30LVgFTnZSJ1bBUDDxs/iVxSG9ngwj
+	 YvuKNwX4rKWTg==
+Date: Sat, 8 Jun 2024 18:51:21 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Christian Hewitt <christianshewitt@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin
- Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+To: Conor Dooley <conor@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
  Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: amlogic,meson-saradc: add
- GXLX SoC compatible
-Message-ID: <20240608183322.1274e5e4@jic23-huawei>
-In-Reply-To: <20240604055431.3313961-1-christianshewitt@gmail.com>
-References: <20240604055431.3313961-1-christianshewitt@gmail.com>
+Subject: Re: [PATCH] dt-bindings: iio: adc: amlogic,meson-saradc: add
+ optional power-domains
+Message-ID: <20240608185121.31a40d62@jic23-huawei>
+In-Reply-To: <20240606-clothing-deceit-910ad6aebe1e@spud>
+References: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-sardac-v1-1-40a8de6baa59@linaro.org>
+	<20240605-abdomen-starch-4fd4d7ead431@spud>
+	<1a82eeb8-bb95-4fad-acce-798ba0cda170@linaro.org>
+	<20240606-clothing-deceit-910ad6aebe1e@spud>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240608_103334_651271_78695EE8 
-X-CRM114-Status: GOOD (  14.13  )
+X-CRM114-CacheID: sfid-20240608_105134_479229_8F8431B1 
+X-CRM114-Status: GOOD (  15.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,38 +81,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue,  4 Jun 2024 05:54:30 +0000
-Christian Hewitt <christianshewitt@gmail.com> wrote:
+On Thu, 6 Jun 2024 17:21:17 +0100
+Conor Dooley <conor@kernel.org> wrote:
 
-> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> On Thu, Jun 06, 2024 at 09:54:22AM +0200, Neil Armstrong wrote:
+> > On 05/06/2024 18:58, Conor Dooley wrote:  
+> > > On Wed, Jun 05, 2024 at 11:37:08AM +0200, Neil Armstrong wrote:  
+> > > > On newer SoCs, the SAR ADC hardware can require a power-domain to operate,
+> > > > add it as optional.  
+> > > 
+> > > What about the older socs that don't have power domains, the property is
+> > > now usable there?  
+> > 
+> > Old SoCs doesn't necessarily have an associated power domain, or was handled
+> > by firmware, does it harm if we make it optional for older ones as well ?  
 > 
-> Add support for the GXLX SoC. GXLX is very similar to GXL but has three
-> additional bits in MESON_SAR_ADC_REG12 for the three MPLL clocks.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-FWIW series looks fine to me subject to the precursor series getting
-posted to linux-iio (and hence ending up in the right patchwork!)
+> I mean, really all of these devices have a power domain, even if the DT
+> doesn't describe one as it's hardly gonna work without power, so the
+> commit message just seems odd to me. I don't care enough to ask for a
+> new commit message though.
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Jonathan
-
-> ---
->  .../devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml        | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-> index 7e8328e9ce13..b2fef72267b4 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-> @@ -23,6 +23,7 @@ properties:
->                - amlogic,meson8m2-saradc
->                - amlogic,meson-gxbb-saradc
->                - amlogic,meson-gxl-saradc
-> +              - amlogic,meson-gxlx-saradc
->                - amlogic,meson-gxm-saradc
->                - amlogic,meson-axg-saradc
->                - amlogic,meson-g12a-saradc
-
+Applied
 
 _______________________________________________
 linux-amlogic mailing list
