@@ -4,94 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C856DC27C55
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jun 2024 13:12:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C785BC27C55
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jun 2024 14:21:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pS1Xrb1/cl7DHnRlOiYagnxhkioYkox5oMLI3zjbKJE=; b=w/uW6Y/8pyGGSZ
-	lMVuFUoutyxh1ryWZSskZxIapvktCbtFssldeSUgnp27C34MCkxg8qItRlXTSX7o1QQ4HFsltuRUJ
-	zYmIzGWOL6Hb4HbHWEKlPgHs2DVxF09dOmFmCQkVY5oFS1jENAzEbHTSdY65ddVmops4Jx/d6W4lh
-	SHAuWoujQMsjgbTE040a0voKsrIMlNxasa076y4hz2OdM77tez/Xulf9RY7H+ClGmfn6b4lIKkwGA
-	jD7KGGkQIngNUpA9Tg2DYKQ6PvZbcmhI7W9Z+pmxOZgwbe6TcLYii6QaNg1KylJddiSvPK4sIkIIr
-	obtG9J8Cy3M1eM9pFFPQ==;
+	List-Owner; bh=pUB9WHFLk/3CTiTDjHNqhUE7Fx0xHAo/vQGB5HQg9rU=; b=ixYyfrVo7pFr29
+	QnXCFimNFJf7XFdZSrzvU+ymSpmWd45lLr0lL39Z4mq/klrUylG0HxH33YpZil+5BVWhcC5ewewC6
+	RM5B/sHvVlpRza36+ySq/WO3bayJBcakG6uUFJWANsNrhI+M/9WgbXq7yxDDeD5+nGjzJ81txXvpR
+	Z+wzYmLgDPKIetzuhRYUQzSuBlyr1wy8X95aLTvtlnlk2SnC6W01NYdMWSo6fBSDCqvD3FKsCNPzM
+	wBJGUuHLrdpW4AabuBvZLEDP8HAcSaab2YNGnKy5V3ZhMTEMCZLXYpRZuVYhB63QOK6nePBy7jMOT
+	Ach0zoiaDrOwtsRW1vrQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sGep7-000000058rK-0Ajh;
-	Mon, 10 Jun 2024 13:12:33 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1sGfth-00000005OOa-2MNk;
+	Mon, 10 Jun 2024 14:21:21 +0000
+Received: from mail-yb1-xb2f.google.com ([2607:f8b0:4864:20::b2f])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sGep2-000000058qj-3czt;
-	Mon, 10 Jun 2024 13:12:30 +0000
-Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 5C69A120006;
-	Mon, 10 Jun 2024 16:12:25 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 5C69A120006
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1718025145;
-	bh=IWZrEwuTJkoogvnkxqBjRGrdkBJ1nExW1PH+tGB1JV4=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=cZI00csUWK7nsz5ngl+sFZ+eEfWCnXrncjuMczxN/ArQhIZ7r7L5u4GAAb68huASr
-	 9tjxRx5AIudNcD5P2QwlaOx3m3PZXeheTRpwO/3vkqS+yzq+YylytunwafIr/aGvQh
-	 Paj8M/Q9hJW1wGGO3EdrUV98EdkuVzX5VYj3aKkDcdd+9VtbS1COF244zaYd5ZmCCm
-	 19sBZVIUftbQbZvIcZkkjYnm4h4wgRi1xVacIFSiJx+6SosLbhKSBfxT8UstcPCHBP
-	 y6m0xWqLnJJodoAdKCHaWLA1+L4ihH0LM7olgnHlGdwZTPGG9kqzcZRbvcXC5OVS8m
-	 zLF1TRnQXxIUg==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon, 10 Jun 2024 16:12:25 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 10 Jun
- 2024 16:12:24 +0300
-Date: Mon, 10 Jun 2024 16:12:24 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-CC: <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
-	<sboyd@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
-	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 3/7] clk: meson: a1: pll: support 'syspll'
- general-purpose PLL for CPU clock
-Message-ID: <20240610131224.u7u4ov245igatavj@CAB-WSD-L081021>
-References: <20240515185103.20256-1-ddrokosov@salutedevices.com>
- <20240515185103.20256-4-ddrokosov@salutedevices.com>
- <1jzfrtp12h.fsf@starbuckisacylon.baylibre.com>
+	id 1sGfte-00000005ONd-0Qpm
+	for linux-amlogic@lists.infradead.org;
+	Mon, 10 Jun 2024 14:21:19 +0000
+Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-dfab5f7e749so4460227276.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 10 Jun 2024 07:21:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718029276; x=1718634076; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=609nhEks7Zh1KnZUal4usjWqxEdaNAgYUODDdUetHO8=;
+        b=GN6aBNpd0gijF1Ifq37m8E51E/N45KW5xGF9mNZzVSyXRsGwg/Av3NFr0cJqNQmv/b
+         3cUxN0UsijbZeiCGdSss1OPiDNkKy4z6Fr3XXLHTThoPSz2BLEvicyQkzV2bexbLLkSx
+         Am0n1nize2THzIbsizfn6bhdBG9Hzi7nouRKSItqfevcCh6QvYVepTVu3ENZ8izb36TF
+         i1kumHRnOGkRLObIx3Mw6M2duMHULqfsQWiMvkbU/T8XuE2rY4vdmslj1HosTtT7jOYp
+         mYP8C7vrlqUFMlvkpKraGsJYvwEPnsYhmY4GiZTcOUfcWMC6K0A4UEMsZjWlo8ysZpN2
+         /j4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718029276; x=1718634076;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=609nhEks7Zh1KnZUal4usjWqxEdaNAgYUODDdUetHO8=;
+        b=t4O6t+HAKj/1IPoRbxLM690GRr5qfUovsvqr96RylgLbw7LMPo1m7n8ML3VAz+u+HE
+         RFWixkOEBmmCjGBswT04oSr0aJu5X0qBL/ho985JhHXB3dE4dfoDzwepJuXQwyNg1tJN
+         qNVY2dV+wC2Ia56pffG58JeTNMSaeoo0O3HY6ia7pKK9Bq9uGMNKn9Bt7lKptf3CCm8q
+         CmV2sMvm3vUdDuLP5R+RLu7z/nnsQjfYlWveXuY9u/J6u+XOUCcPyIOj0LdPz4tzCxmu
+         xhG+PF5Wbjvods6iJ9EuStHTIG5/YtaDcXAh0gVyVhuFPpEVIvYkFAQpzYdaovdCEOwj
+         nL6A==
+X-Forwarded-Encrypted: i=1; AJvYcCVG/RLsdYnqq1ypKDPF0vOswbULdqJ7JSOxbFrVuS8nl4/cDVwqYFlW/ktYETyNcTkgb50jcQKAdxxMV7oQKnqz3GX0JBDfGnMDakwE8tCFiCo=
+X-Gm-Message-State: AOJu0Yz5wGpvjNk04ZUaYD+5Ec4zNhMAXX8LXiaS59++GfQDh8Akoom0
+	ceaz5JGCIKT9tvjhAdZwFy7eW1PxWizNksL6LzrvSZTk8kILLhYC92zZigv5JErHt9coX3OeyZg
+	EVF7GTbn4AJIc6bBPbG9iR8LWBrSLcuPBRPKUlQ==
+X-Google-Smtp-Source: AGHT+IHoLwnHudRkBd9FlzoLDTTCeU9TkBRvSaQLs0M46ytBLEBxCuzZWLLsA/eXcLgbGrm/YTtoVzzDIcGtxZj8s10=
+X-Received: by 2002:a25:c744:0:b0:df7:8fdd:1ca9 with SMTP id
+ 3f1490d57ef6-dfaf65f730dmr9276763276.1.1718029276379; Mon, 10 Jun 2024
+ 07:21:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1jzfrtp12h.fsf@starbuckisacylon.baylibre.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 185833 [Jun 10 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/06/10 11:09:00 #25535815
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-mmc-v1-1-4acbb8cc2626@linaro.org>
+In-Reply-To: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-mmc-v1-1-4acbb8cc2626@linaro.org>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 10 Jun 2024 16:20:40 +0200
+Message-ID: <CAPDyKFrNGzNqTfsYF6bwbZy8kJtRTcBJ3Xr99HFumtOGZOpxtw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: meson-gx: add optional power-domains
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240610_061229_280050_B7F86030 
-X-CRM114-Status: GOOD (  27.49  )
+X-CRM114-CacheID: sfid-20240610_072118_170441_C1A0DC65 
+X-CRM114-Status: GOOD (  15.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,149 +93,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jun 10, 2024 at 12:03:02PM +0200, Jerome Brunet wrote:
-> On Wed 15 May 2024 at 21:47, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
-> 
-> > The 'syspll' PLL, also known as the system PLL, is a general and
-> > essential PLL responsible for generating the CPU clock frequency.
-> > With its wide-ranging capabilities, it is designed to accommodate
-> > frequencies within the range of 768MHz to 1536MHz.
-> >
-> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> > ---
-> >  drivers/clk/meson/a1-pll.c | 72 ++++++++++++++++++++++++++++++++++++++
-> >  drivers/clk/meson/a1-pll.h |  6 ++++
-> >  2 files changed, 78 insertions(+)
-> >
-> > diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
-> > index 60b2e53e7e51..286e83199d17 100644
-> > --- a/drivers/clk/meson/a1-pll.c
-> > +++ b/drivers/clk/meson/a1-pll.c
-> > @@ -138,6 +138,76 @@ static struct clk_regmap hifi_pll = {
-> >  	},
-> >  };
-> >  
-> > +static const struct pll_mult_range sys_pll_mult_range = {
-> > +	.min = 32,
-> > +	.max = 64,
-> > +};
-> > +
-> > +static const struct reg_sequence sys_pll_init_regs[] = {
-> > +	{ .reg = ANACTRL_SYSPLL_CTRL1, .def = 0x01800000 },
-> > +	{ .reg = ANACTRL_SYSPLL_CTRL2, .def = 0x00001100 },
-> > +	{ .reg = ANACTRL_SYSPLL_CTRL3, .def = 0x10022300 },
-> > +	{ .reg = ANACTRL_SYSPLL_CTRL4, .def = 0x00300000 },
-> > +	{ .reg = ANACTRL_SYSPLL_CTRL0, .def = 0x01f18432 },
-> 
-> That last entry is clearly an hard coded rate being poked.
-> Drop it please
-> 
+On Wed, 5 Jun 2024 at 11:34, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>
+> On newer SoCs, the MMC controller can require a power-domain to operate,
+> add it as optional.
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Ah, of course, you are totally right. I will remove hard coded rate in
-the next version.
+Applied for next, thanks!
 
-> > +};
-> > +
-> > +static struct clk_regmap sys_pll = {
-> > +	.data = &(struct meson_clk_pll_data){
-> > +		.en = {
-> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> > +			.shift   = 28,
-> > +			.width   = 1,
-> > +		},
-> > +		.m = {
-> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> > +			.shift   = 0,
-> > +			.width   = 8,
-> > +		},
-> > +		.n = {
-> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> > +			.shift   = 10,
-> > +			.width   = 5,
-> > +		},
-> > +		.frac = {
-> > +			.reg_off = ANACTRL_SYSPLL_CTRL1,
-> > +			.shift   = 0,
-> > +			.width   = 19,
-> > +		},
-> > +		.l = {
-> > +			.reg_off = ANACTRL_SYSPLL_STS,
-> > +			.shift   = 31,
-> > +			.width   = 1,
-> > +		},
-> > +		.current_en = {
-> > +			.reg_off = ANACTRL_SYSPLL_CTRL0,
-> > +			.shift   = 26,
-> > +			.width   = 1,
-> > +		},
-> > +		.l_detect = {
-> > +			.reg_off = ANACTRL_SYSPLL_CTRL2,
-> > +			.shift   = 6,
-> > +			.width   = 1,
-> > +		},
-> > +		.range = &sys_pll_mult_range,
-> > +		.init_regs = sys_pll_init_regs,
-> > +		.init_count = ARRAY_SIZE(sys_pll_init_regs),
-> > +		/*
-> > +		 * The sys_pll clock is usually enabled and initialized in the
-> > +		 * bootloader stage. Additionally, the cpu_clk is connected to
-> > +		 * sys_pll. As a result, it is not allowed to initialize the
-> > +		 * cpu_clk again, as doing so would prevent the CPU from
-> > +		 * executing any instructions.
-> > +		 */
-> > +		.flags = CLK_MESON_PLL_NOINIT_ENABLED,
-> > +	},
-> > +	.hw.init = &(struct clk_init_data){
-> > +		.name = "sys_pll",
-> > +		.ops = &meson_clk_pll_ops,
-> > +		.parent_names = (const char *[]){ "syspll_in" },
-> > +		.num_parents = 1,
-> > +	},
-> > +};
-> > +
-> >  static struct clk_fixed_factor fclk_div2_div = {
-> >  	.mult = 1,
-> >  	.div = 2,
-> > @@ -283,6 +353,7 @@ static struct clk_hw *a1_pll_hw_clks[] = {
-> >  	[CLKID_FCLK_DIV5]	= &fclk_div5.hw,
-> >  	[CLKID_FCLK_DIV7]	= &fclk_div7.hw,
-> >  	[CLKID_HIFI_PLL]	= &hifi_pll.hw,
-> > +	[CLKID_SYS_PLL]		= &sys_pll.hw,
-> >  };
-> >  
-> >  static struct clk_regmap *const a1_pll_regmaps[] = {
-> > @@ -293,6 +364,7 @@ static struct clk_regmap *const a1_pll_regmaps[] = {
-> >  	&fclk_div5,
-> >  	&fclk_div7,
-> >  	&hifi_pll,
-> > +	&sys_pll,
-> >  };
-> >  
-> >  static struct regmap_config a1_pll_regmap_cfg = {
-> > diff --git a/drivers/clk/meson/a1-pll.h b/drivers/clk/meson/a1-pll.h
-> > index 4be17b2bf383..666d9b2137e9 100644
-> > --- a/drivers/clk/meson/a1-pll.h
-> > +++ b/drivers/clk/meson/a1-pll.h
-> > @@ -18,6 +18,12 @@
-> >  #define ANACTRL_FIXPLL_CTRL0	0x0
-> >  #define ANACTRL_FIXPLL_CTRL1	0x4
-> >  #define ANACTRL_FIXPLL_STS	0x14
-> > +#define ANACTRL_SYSPLL_CTRL0	0x80
-> > +#define ANACTRL_SYSPLL_CTRL1	0x84
-> > +#define ANACTRL_SYSPLL_CTRL2	0x88
-> > +#define ANACTRL_SYSPLL_CTRL3	0x8c
-> > +#define ANACTRL_SYSPLL_CTRL4	0x90
-> > +#define ANACTRL_SYSPLL_STS	0x94
-> >  #define ANACTRL_HIFIPLL_CTRL0	0xc0
-> >  #define ANACTRL_HIFIPLL_CTRL1	0xc4
-> >  #define ANACTRL_HIFIPLL_CTRL2	0xc8
-> 
-> -- 
-> Jerome
+Kind regards
+Uffe
 
--- 
-Thank you,
-Dmitry
+> ---
+>  Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+> index bc403ae9e5d9..57646575a13f 100644
+> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+> @@ -51,6 +51,9 @@ properties:
+>        set when controller's internal DMA engine cannot access the DRAM memory,
+>        like on the G12A dedicated SDIO controller.
+>
+> +  power-domains:
+> +    maxItems: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+>
+> ---
+> base-commit: c3f38fa61af77b49866b006939479069cd451173
+> change-id: 20240605-topic-amlogic-upstream-bindings-fixes-power-domains-mmc-a94d681d2e69
+>
+> Best regards,
+> --
+> Neil Armstrong <neil.armstrong@linaro.org>
+>
 
 _______________________________________________
 linux-amlogic mailing list
