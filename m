@@ -4,80 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F101C27C55
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jun 2024 10:02:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4AFAC27C55
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jun 2024 10:03:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=anXaHI9W25mtSSxlKlYpWl52NPGnYjsCyhu5G62BTTg=; b=QdcZ4HJnBUMretvWNQqS/oQuqI
-	6vvGY+1lbz7hnBTkuqTl4kRZkFl0QkotOwI7GzRA3y9M99E1In1zP2PXakQvLwkqMUFTc8c8yATUh
-	K5mc7PPyqsMe+AVGj6bbUn2JrZ+0dnk/pG3iTCWY1Cubkl4M5p9P6ra35fOhb+IFYE2Q8F03VZEhe
-	uFCEjay2v7eaCEOZYYXrQqKwke5Xw/McMId77+v60CQdzFrGdJfoL+BvBQqTDpBh03Ikcc/FTc7sQ
-	N5J1fK5CrVxVSJdEEDVe1cwFJyQN9PmaX6hkzIYYFjZnSgUO0gBWC/MvAeBg9Gxvl/6FKVnk/OrQP
-	aX1K8weA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=oJ0iLsp2mCqSz6187UuJqErHZfYShLMaiWwR2AUcHfc=; b=zAScaAN6Il4bRL
+	kNfPG8q5+KkIUS5KSljAKRa0zUiwCaX3+VMA9m1E5BOeXErB/SXNgaTIwEusyZHF5Fbrx2URsPVtF
+	rvOtVdHQieFwrGORag1Rpex3JTsduRsK0+uu6p3iCLvYFGbTxORxOO6vja+5K9saJxJR5/sLpbbI4
+	a2OVntElyqQK61aS5oaOJEHJnj/2Vq0Piz7Va29JmAawIvAEi0Be80zBM3QPfY5A5+sTqm0/5irmX
+	wk4Ma1J+IepRFxI1hRfyTsCcr3d/Otq6cGpnk7Dwis+ARLXA+9vP6ZnAKJdzQhqlyEx+vd2DHj/bJ
+	AryfqVbS+9RLZctBJdlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sGbqX-00000004Xlg-08of;
-	Mon, 10 Jun 2024 10:01:49 +0000
-Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
+	id 1sGbs2-00000004YZX-0WfZ;
+	Mon, 10 Jun 2024 10:03:22 +0000
+Received: from mail-lj1-x235.google.com ([2a00:1450:4864:20::235])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sGbqT-00000004XkA-00Rm
+	id 1sGbro-00000004YPB-064f
 	for linux-amlogic@lists.infradead.org;
-	Mon, 10 Jun 2024 10:01:46 +0000
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-57c6afa1839so1060999a12.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 10 Jun 2024 03:01:44 -0700 (PDT)
+	Mon, 10 Jun 2024 10:03:16 +0000
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2e724bc466fso51962311fa.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 10 Jun 2024 03:03:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1718013703; x=1718618503; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qlO3qdFuRXqKhljshkW+FX9ohtZlehsVLztsRtWfBuY=;
-        b=PSLigESMRqmkSUx23i8RnOugNY4eYfTogvYYOkebtV0owofF4BQjgY2ql+24OfYhdL
-         CYqSoZTGIcM4flp8lEQlVFo1ZqxAGpDZqBnXbEuoTZXSZtvY5hZNMjPm7wu2XX1e0yDj
-         +/zKS23rC12AuwuMDxOM5sDgYPOszs9GnmAaGetw9Q8YQ8sf36d/DAl7C5EWnjkx5Fme
-         m7BUmwFgIuYKvVECfJ3gCb7k7JBawv4zxjv7c7mp86Us/3NLGVdNzhDlQxZMDTnzBdM+
-         lk4npo7adrik1L5f2T3a0lOaN9079t3kMv94f/Kx/masJAwKw/Bp4poWpho9ZH0uR9AF
-         rfhw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1718013784; x=1718618584; darn=lists.infradead.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=b2i7+OYCl1YQYAYWvDNNXE/dtiCXGJ18nePxaYtt3mU=;
+        b=ABOFiDVR6QMj0Ij9cHzuEPrVGmpidhEnFL17AP8gt+FuQLtULSPin8YfgA+vWuKqxZ
+         Zg28sYUXhZeV08c1UH6iy0poM0AcyN7hTyRm3VmFVFPPR5lwbuc7gC5P8x8PF/VgyST8
+         DG64KyBG25/zNkJMrgrbhL5oL9pFDwLpS3HrHqJJRa4hu2mpZtWIbc2X8Ifn5JntgDHr
+         OZJLTC1qnVsVmrHtIdbUurjftQIvBp+Tu843HluSe8ppWqsr7LhQvDd9kiqIbJ48SMbq
+         6jSs8ayB/tigRugX8MbWb+fy3B/zuZ6jW3mT21QlCELffjs5GTjX0IUzzXANAaT1ipgH
+         sTKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718013703; x=1718618503;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qlO3qdFuRXqKhljshkW+FX9ohtZlehsVLztsRtWfBuY=;
-        b=HGm4CCcW9GqnqVXGcbH60ZgKU5r02ybh72kn0wTDLqtZAfoB/RdFUpCrQ7ZVJzXDZk
-         wCdOSKjUmH13IjntEWkZ78ejqZkkXMFrdj3ffbOJssbml9NdDruZ+l5ewHdvcixE+RR1
-         hwzf5Jr+0TFMgZQNbDICEzI516JSTwLtAZHoLkkAzC28rrtF1QsuI2YXDNQ2MNx4A0eu
-         s+wFXHh5f786Py/oJF86EwF6RKTzAtxibGLwwaOzi2qwLctkAm2LCnkwQiXQDrxZDsSx
-         icVCBkYmLmZwCZ6rOUFf7nSmU6nZATon28rwttmhGmoeWGToxCXDBrwqRB6t5FqaaZ6D
-         84TA==
-X-Forwarded-Encrypted: i=1; AJvYcCUHyDDKZPS95nWKzN7nwtfTxR8k3iSxMex2rQuw3Mz5+lxdplQ8Xovi5RS1tDIV9umNtZIKdD1K7V5wjJt5QtvObnyHZZFjYrd/k3imdfMqfUg=
-X-Gm-Message-State: AOJu0YyaIsBbq3EgNttZ9caNbUg7kWDCRfQeH1bpCKpQx6xZVKgM7Czc
-	4SqDHXE9PLyDyS3OBVOQdVkUf7RWVpgbR+DxOUmu2dsEqM5e4eogt3kXgv/lwh0=
-X-Google-Smtp-Source: AGHT+IEQn4kiyQuPDHL0x5+ZXCOUbPh3JXB6pe91ho0VaNjqUpRKHCI1IHTq+6t/iyZMr7K/3OywTw==
-X-Received: by 2002:a50:871e:0:b0:57c:5fc8:c95e with SMTP id 4fb4d7f45d1cf-57c5fc8ca67mr5324103a12.23.1718013702754;
-        Mon, 10 Jun 2024 03:01:42 -0700 (PDT)
-Received: from localhost (p509153eb.dip0.t-ipconnect.de. [80.145.83.235])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57c7156e6c2sm3570941a12.9.2024.06.10.03.01.42
+        d=1e100.net; s=20230601; t=1718013784; x=1718618584;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=b2i7+OYCl1YQYAYWvDNNXE/dtiCXGJ18nePxaYtt3mU=;
+        b=bx2/fKgrwvHsYoTs60sy9Q6rKa6UeoXAdAqm0dWevuOwdw8ZPA95Bju1XwKoBipl2B
+         VT8dKoDHrTigRYTbVYurVHl+LQONTyQRUKAI1UCLIEy0EkVhG0bR8ifWvN65oE/ViUzE
+         5xm5Xz7n2nYPEl0m29h0EnAKh7Xhqvmhbe/qyA8Ru8agmItoCx+hCPuRiusZ4RGC1VLP
+         Wtghp/0R8+1gjnoeUnCx3ncRhnlnXrVyUjDPuuEjrcMIfSRz0e9YvVGV6hY+2jj7PYOp
+         H7IYLlNiPXYba28MQp7M9WRCNlSAEN8ikaGDlM9uAA2loM0YQ2c6pLW+CPE7qFMg1LrN
+         BRwA==
+X-Forwarded-Encrypted: i=1; AJvYcCUOZC4dimGaKVofmHCDeBnE/ShuF75ukswxNGk2PlDjdkfad52aC+p54/nlh3BStlpGTe3rvs0AdU3X85QnciYBO3+P03A4xFPt4maViK3P+/s=
+X-Gm-Message-State: AOJu0YyCe9xaY44vXynHaGuBslvnCpaRIkLUcEDDUgKmI7LXUCh6tDBU
+	7vke3TigpkNzqI2N48eKH5ez2N59w133gr/dCbTKPtYe/x4sB2E0/C1XOpEZ8Yw=
+X-Google-Smtp-Source: AGHT+IHZ73Tpvv2Elpueal4JbazGDNuTQZMcJtVKElUURsboMYpgXqIw1Wja70T0IsIuzDJ+z0958A==
+X-Received: by 2002:a2e:2202:0:b0:2eb:17fe:a14b with SMTP id 38308e7fff4ca-2eb17fea1b8mr52129051fa.3.1718013783395;
+        Mon, 10 Jun 2024 03:03:03 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:afd3:66ee:5486:4249])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4217f633f2asm63744345e9.28.2024.06.10.03.03.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jun 2024 03:01:42 -0700 (PDT)
-Date: Mon, 10 Jun 2024 12:01:41 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, linux-pwm@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Subject: Re: [RFC PATCH v2 3/3] regulator: pwm-regulator: Manage boot-on with
- disabled PWM channels
-Message-ID: <hf24mrplr76xtziztkqiscowkh2f3vmceuarecqcwnr6udggs6@uiof2rvvqq5v>
-References: <20240113224628.377993-1-martin.blumenstingl@googlemail.com>
- <20240113224628.377993-4-martin.blumenstingl@googlemail.com>
+        Mon, 10 Jun 2024 03:03:02 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: <neil.armstrong@linaro.org>,  <mturquette@baylibre.com>,
+  <sboyd@kernel.org>,  <robh+dt@kernel.org>,
+  <krzysztof.kozlowski+dt@linaro.org>,  <khilman@baylibre.com>,
+  <martin.blumenstingl@googlemail.com>,  <jian.hu@amlogic.com>,
+  <kernel@sberdevices.ru>,  <rockosov@gmail.com>,
+  <linux-amlogic@lists.infradead.org>,  <linux-clk@vger.kernel.org>,
+  <devicetree@vger.kernel.org>,  <linux-kernel@vger.kernel.org>,
+  <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 3/7] clk: meson: a1: pll: support 'syspll'
+ general-purpose PLL for CPU clock
+In-Reply-To: <20240515185103.20256-4-ddrokosov@salutedevices.com> (Dmitry
+	Rokosov's message of "Wed, 15 May 2024 21:47:26 +0300")
+References: <20240515185103.20256-1-ddrokosov@salutedevices.com>
+	<20240515185103.20256-4-ddrokosov@salutedevices.com>
+Date: Mon, 10 Jun 2024 12:03:02 +0200
+Message-ID: <1jzfrtp12h.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20240113224628.377993-4-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240610_030145_070887_D2A88450 
-X-CRM114-Status: GOOD (  45.98  )
+X-CRM114-CacheID: sfid-20240610_030308_379231_A95FE6F7 
+X-CRM114-Status: GOOD (  21.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,188 +94,147 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============6841177721733651620=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Wed 15 May 2024 at 21:47, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
 
---===============6841177721733651620==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4hr62idwwdqmqmca"
-Content-Disposition: inline
-
-
---4hr62idwwdqmqmca
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Martin,
-
-while doing some pwm related cleanup, I stumbled over the part of the
-pwm-regulator driver that was added here. This is either wrong or I
-don't understand it.
-
-On Sat, Jan 13, 2024 at 11:46:28PM +0100, Martin Blumenstingl wrote:
-> Odroid-C1 uses a Monolithic Power Systems MP2161 controlled via PWM for
-> the VDDEE voltage supply of the Meson8b SoC. Commit 6b9352f3f8a1 ("pwm:
-> meson: modify and simplify calculation in meson_pwm_get_state") results
-> in my Odroid-C1 crashing with memory corruption in many different places
-> (seemingly at random). It turns out that this is due to a currently not
-> supported corner case.
->=20
-> The VDDEE regulator can generate between 860mV (duty cycle of ~91%) and
-> 1140mV (duty cycle of 0%). We consider it to be enabled by the bootloader
-> (which is why it has the regulator-boot-on flag in .dts) as well as
-> being always-on (which is why it has the regulator-always-on flag in
-> .dts) because the VDDEE voltage is generally required for the Meson8b
-> SoC to work. The public S805 datasheet [0] states on page 17 (where "A5"
-> refers to the Cortex-A5 CPU cores):
->   [...] So if EE domains is shut off, A5 memory is also shut off. That
->   does not matter. Before EE power domain is shut off, A5 should be shut
->   off at first.
->=20
-> It turns out that at least some bootloader versions are keeping the PWM
-> output disabled. This is not a problem due to the specific design of the
-> regulator: when the PWM output is disabled the output pin is pulled LOW,
-> effectively achieving a 0% duty cycle (which in return means that VDDEE
-> voltage is at 1140mV).
->=20
-> The problem comes when the pwm-regulator driver tries to initialize the
-> PWM output. To do so it reads the current state from the hardware, which
-> is:
->   period: 3666ns
->   duty cycle: 3333ns (=3D ~91%)
->   enabled: false
-> Then those values are translated using the continuous voltage range to
-> 860mV.
-
-Maybe pwm_regulator_init_state() needs a similar logic as
-pwm_regulator_get_voltage() and then this patch's changes can (and
-should) go away?
-
-> Later, when the regulator is being enabled (either by the regulator core
-> due to the always-on flag or first consumer - in this case the lima
-> driver for the Mali-450 GPU) the pwm-regulator driver tries to keep the
-> voltage (at 860mV) and just enable the PWM output. This is when things
-> start to go wrong as the typical voltage used for VDDEE is 1100mV.
->=20
-> Commit 6b9352f3f8a1 ("pwm: meson: modify and simplify calculation in
-> meson_pwm_get_state") triggers above condition as before that change
-> period and duty cycle were both at 0. Since the change to the pwm-meson
-> driver is considered correct the solution is to be found in the
-> pwm-regulator driver. Update the duty cycle during driver probe if the
-> regulator is flagged as boot-on so that a call to pwm_regulator_enable()
-> (by the regulator core during initialization of a regulator flagged with
-> boot-on) without any preceding call to pwm_regulator_set_voltage() does
-> not change the output voltage.
->=20
-> [0] https://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126=
-=2Epdf
->=20
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> The 'syspll' PLL, also known as the system PLL, is a general and
+> essential PLL responsible for generating the CPU clock frequency.
+> With its wide-ranging capabilities, it is designed to accommodate
+> frequencies within the range of 768MHz to 1536MHz.
+>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
 > ---
-> Changes from v1 -> v2:
-> - This patch is new and the idea is to keep the voltage regulator
->   description in device-tree as-is (which means: support for 860mV to
->   1140mV). Instead we allow the pwm-regulator driver to preserve the
->   output voltage at boot when enabling the regulator.
-> - note: Mark Brown said in v1 "I'd expect a change in the init_state()
->   function". That function is not updated as it's only relevant for
->   regulators with a voltage table - on Odroid-C1 we have a continuous
->   regulator though.
->=20
->=20
->  drivers/regulator/pwm-regulator.c | 33 +++++++++++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
->=20
-> diff --git a/drivers/regulator/pwm-regulator.c b/drivers/regulator/pwm-re=
-gulator.c
-> index d27b9a7a30c9..60cfcd741c2a 100644
-> --- a/drivers/regulator/pwm-regulator.c
-> +++ b/drivers/regulator/pwm-regulator.c
-> @@ -323,6 +323,32 @@ static int pwm_regulator_init_continuous(struct plat=
-form_device *pdev,
->  	return 0;
->  }
-> =20
-> +static int pwm_regulator_init_boot_on(struct platform_device *pdev,
-> +				      struct pwm_regulator_data *drvdata,
-> +				      const struct regulator_init_data *init_data)
-> +{
-> +	struct pwm_state pstate;
+>  drivers/clk/meson/a1-pll.c | 72 ++++++++++++++++++++++++++++++++++++++
+>  drivers/clk/meson/a1-pll.h |  6 ++++
+>  2 files changed, 78 insertions(+)
+>
+> diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
+> index 60b2e53e7e51..286e83199d17 100644
+> --- a/drivers/clk/meson/a1-pll.c
+> +++ b/drivers/clk/meson/a1-pll.c
+> @@ -138,6 +138,76 @@ static struct clk_regmap hifi_pll = {
+>  	},
+>  };
+>  
+> +static const struct pll_mult_range sys_pll_mult_range = {
+> +	.min = 32,
+> +	.max = 64,
+> +};
 > +
-> +	if (!init_data->constraints.boot_on || drvdata->enb_gpio)
-> +		return 0;
+> +static const struct reg_sequence sys_pll_init_regs[] = {
+> +	{ .reg = ANACTRL_SYSPLL_CTRL1, .def = 0x01800000 },
+> +	{ .reg = ANACTRL_SYSPLL_CTRL2, .def = 0x00001100 },
+> +	{ .reg = ANACTRL_SYSPLL_CTRL3, .def = 0x10022300 },
+> +	{ .reg = ANACTRL_SYSPLL_CTRL4, .def = 0x00300000 },
+> +	{ .reg = ANACTRL_SYSPLL_CTRL0, .def = 0x01f18432 },
+
+That last entry is clearly an hard coded rate being poked.
+Drop it please
+
+> +};
 > +
-> +	pwm_get_state(drvdata->pwm, &pstate);
-> +	if (pstate.enabled)
-> +		return 0;
+> +static struct clk_regmap sys_pll = {
+> +	.data = &(struct meson_clk_pll_data){
+> +		.en = {
+> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 8,
+> +		},
+> +		.n = {
+> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
+> +			.shift   = 10,
+> +			.width   = 5,
+> +		},
+> +		.frac = {
+> +			.reg_off = ANACTRL_SYSPLL_CTRL1,
+> +			.shift   = 0,
+> +			.width   = 19,
+> +		},
+> +		.l = {
+> +			.reg_off = ANACTRL_SYSPLL_STS,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.current_en = {
+> +			.reg_off = ANACTRL_SYSPLL_CTRL0,
+> +			.shift   = 26,
+> +			.width   = 1,
+> +		},
+> +		.l_detect = {
+> +			.reg_off = ANACTRL_SYSPLL_CTRL2,
+> +			.shift   = 6,
+> +			.width   = 1,
+> +		},
+> +		.range = &sys_pll_mult_range,
+> +		.init_regs = sys_pll_init_regs,
+> +		.init_count = ARRAY_SIZE(sys_pll_init_regs),
+> +		/*
+> +		 * The sys_pll clock is usually enabled and initialized in the
+> +		 * bootloader stage. Additionally, the cpu_clk is connected to
+> +		 * sys_pll. As a result, it is not allowed to initialize the
+> +		 * cpu_clk again, as doing so would prevent the CPU from
+> +		 * executing any instructions.
+> +		 */
+> +		.flags = CLK_MESON_PLL_NOINIT_ENABLED,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "sys_pll",
+> +		.ops = &meson_clk_pll_ops,
+> +		.parent_names = (const char *[]){ "syspll_in" },
+> +		.num_parents = 1,
+> +	},
+> +};
 > +
-> +	/*
-> +	 * Update the duty cycle so the output does not change
-> +	 * when the regulator core enables the regulator (and
-> +	 * thus the PWM channel).
-> +	 */
-> +	if (pstate.polarity =3D=3D PWM_POLARITY_INVERSED)
-> +		pstate.duty_cycle =3D pstate.period;
-> +	else
-> +		pstate.duty_cycle =3D 0;
+>  static struct clk_fixed_factor fclk_div2_div = {
+>  	.mult = 1,
+>  	.div = 2,
+> @@ -283,6 +353,7 @@ static struct clk_hw *a1_pll_hw_clks[] = {
+>  	[CLKID_FCLK_DIV5]	= &fclk_div5.hw,
+>  	[CLKID_FCLK_DIV7]	= &fclk_div7.hw,
+>  	[CLKID_HIFI_PLL]	= &hifi_pll.hw,
+> +	[CLKID_SYS_PLL]		= &sys_pll.hw,
+>  };
+>  
+>  static struct clk_regmap *const a1_pll_regmaps[] = {
+> @@ -293,6 +364,7 @@ static struct clk_regmap *const a1_pll_regmaps[] = {
+>  	&fclk_div5,
+>  	&fclk_div7,
+>  	&hifi_pll,
+> +	&sys_pll,
+>  };
+>  
+>  static struct regmap_config a1_pll_regmap_cfg = {
+> diff --git a/drivers/clk/meson/a1-pll.h b/drivers/clk/meson/a1-pll.h
+> index 4be17b2bf383..666d9b2137e9 100644
+> --- a/drivers/clk/meson/a1-pll.h
+> +++ b/drivers/clk/meson/a1-pll.h
+> @@ -18,6 +18,12 @@
+>  #define ANACTRL_FIXPLL_CTRL0	0x0
+>  #define ANACTRL_FIXPLL_CTRL1	0x4
+>  #define ANACTRL_FIXPLL_STS	0x14
+> +#define ANACTRL_SYSPLL_CTRL0	0x80
+> +#define ANACTRL_SYSPLL_CTRL1	0x84
+> +#define ANACTRL_SYSPLL_CTRL2	0x88
+> +#define ANACTRL_SYSPLL_CTRL3	0x8c
+> +#define ANACTRL_SYSPLL_CTRL4	0x90
+> +#define ANACTRL_SYSPLL_STS	0x94
+>  #define ANACTRL_HIFIPLL_CTRL0	0xc0
+>  #define ANACTRL_HIFIPLL_CTRL1	0xc4
+>  #define ANACTRL_HIFIPLL_CTRL2	0xc8
 
-This looks wrong. If you assume that a disabled PWM emits the inactive
-level (which is wrong in general, but the best we can assume, and this
-is already done in pwm_regulator_get_voltage() since patch #2 in this
-series), and you want to call pwm_apply_state() without changing that,
-you need to do pstate.duty_cycle =3D 0 unconditionally.
-
-Looking at arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts's &vddee I
-guess you only tested the pstate.polarity =3D=3D PWM_POLARITY_NORMAL case,
-so didn't suffer from the problem above?!
-
-> +	return pwm_apply_might_sleep(drvdata->pwm, &pstate);
-
-This doesn't necessarily has an effect on the PWM. The HW was disabled
-before and here we have pstate.enabled =3D false, too. So the only
-reliable effect is that pwm_get_state() returns duty_cycle as set above.
-That might be worth to be noted in a comment.
-
-Alternatively (and IMHO nicer) just keep the pwm_state around and don't
-use the (mis) feature of the PWM core that pwm_get_state only returns
-the last set state.
-
-> +}
-
-Best regards
-Uwe
-
---4hr62idwwdqmqmca
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmZmzwAACgkQj4D7WH0S
-/k6jqwf/YKPLdNCMffFnFQXY40SmaMzyxtujekyudUsSX8Pjr7R8h5oN5RZsPyEp
-MUWEal/azCoDBcYFx2lDstfKaJNuEVQVPxkTuVcxvys/JsS0g6H523DSfLLsR/AT
-5Uipi9rdYvpYvL56SL2CGZv0UpANVOSf8bjo1kiTkfpM1Ss/3Xm2ftHxFzlrg78j
-uozemerDpVpuI5RPBTbToPxjTSlp5Vm1KBWTdIffJuHDItMPdr53jWa2qr/sTfNw
-t1sZdVgD2285zBmh0wOdkp9HbR3uDpNnqNtd1PH+v3i4ErOT2soyM760/TQS7Ymd
-lMcfOQXx3rC+3vleHaTwyVcQGKYpSQ==
-=jaEU
------END PGP SIGNATURE-----
-
---4hr62idwwdqmqmca--
-
-
---===============6841177721733651620==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============6841177721733651620==--
-
