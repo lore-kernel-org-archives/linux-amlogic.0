@@ -4,97 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23EE1C27C55
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jun 2024 15:51:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04793C27C55
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jun 2024 16:08:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=j0+1AA5GgTnbN7gsg+trEw8PwYpjeiXURj7jalpea0E=; b=HIyjaGMw18koRJ
-	NXKoQmaOSgVrY4ORkTVU82LBlwH93tmn0Xb6PQkMK1BgmQtSPPW4/IT/QUCiHP7+S5LAqVvpW9tqw
-	PN3FJR2J29PHl45A6BTJPtzyZikJjjDykXT2xq+/LxkQ3tJmdOjPUDrvRRQM27GSoPwkzL8N9T9dw
-	hw3u3+zYZ8HZYu90KeAIIs1YBKLPc8X5sv4I0PLzpCqvnWEYiggJnYUIwpeoXTUY2Wzy5WdaxyRDU
-	/grNfKWySN7mnGLl9IpvQFV+ZgpKGJkF92I4stBknmh7//fR7iFBqij1YUUW3qrpMg+0n31pw81uo
-	F7d6/kMqp2jmzPsmk7Uw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=WWCk9gGXIsvLr6k/+2G/B17Wkvl/BXbF4CMvi7oks6k=; b=WH54RxnviSQXhJKbLipJwlJNe4
+	G71DRMYGrXdLZ66yFvnXyXawKS6T0bUwjVhrMkPBcVjlLoCKxY/HXWcUH+Sm2CWlky9qPPwmFmGyc
+	HG6wkZHDsrtmrcdUDpiYcId4eaPLn+VyzzDjZb5PlYp2lh0RBVd27DfsTkMXVjkZM4AwaG4EquFL+
+	r5iFspW9t3Ir7St8TPQyArITtZYOeZt3JoIwdxZ9BUKTSZQIBkwR4RC6Oa4wJCBVVeKoq8TQrlMM0
+	DAFWJhAUkSTstaXenq+bHvoQpi6jl/JLwpHOKTMFIiYI5MjgokfcR3N6wIpLAisXdgNxlw95btQht
+	FxIxtZtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sGhIs-00000005gaN-2F64;
-	Mon, 10 Jun 2024 15:51:26 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1sGhZ9-00000005ivZ-0dNP;
+	Mon, 10 Jun 2024 16:08:15 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sGhIp-00000005gZt-2ul1;
-	Mon, 10 Jun 2024 15:51:25 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45ADjnBu028814;
-	Mon, 10 Jun 2024 15:51:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Al2ErmL31Onn+8V/GGNbIQAKuae82QEYFcYi/9kRTq4=; b=Zc9pyATQ45fwVXdR
-	wDUC/HD+uBF0uTuCBlx8ZGuPE+TPPRcdwz4NdBt/PSPrShJl4O8cGhjeZIOdc7pS
-	PEE3EjUUgYuNJPEouJXIYZMD8f5q9R/3RmPBR+RRtobGQO8eDCO4b07tP7PeknOz
-	jOsE3XfBTc7QWWE12HBv1flPB3Qky1BGRo/K7+DoVc+qkoUMnzZEu+RSveqbhsAn
-	/z0VVojP8PPqnQLpzCdkWUhfe1jC1cQTodxNvpvULJmlT1Msw9BBQog2NZ8rwOMx
-	c24WT7vIYysV0k6Smi2YcF0emQCzQByY9ye7uPChjyzCgyROmjALAio1BsEp8K4B
-	4aPgUg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ymfh34j70-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Jun 2024 15:51:15 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45AFpEh4031345
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Jun 2024 15:51:14 GMT
-Received: from [10.48.242.196] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 10 Jun
- 2024 08:51:13 -0700
-Message-ID: <964210f1-671f-4ecc-bdb7-3cf53089c327@quicinc.com>
-Date: Mon, 10 Jun 2024 08:51:13 -0700
+	id 1sGhZ7-00000005iux-0e4Q;
+	Mon, 10 Jun 2024 16:08:14 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 40612CE169C;
+	Mon, 10 Jun 2024 16:08:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC714C2BBFC;
+	Mon, 10 Jun 2024 16:08:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718035690;
+	bh=mZTNkAEKgG/q85m1UYU1gPZ6SrEhgB8KcIIymCeQnzA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=f5tw7dn3YElU45yvBOLhN6f5W0SVV/6xBWUrUwA66/yXflEEBhsBqBXNFnIpigCeo
+	 IjBgVRzYgfynaHQTWvZIl9hYCvRpwjSHGdlxu4Y5oBGP1mBPyq+B7fKn5Jh4dtlBnV
+	 ekgy1SH2jC4KSGljAFkQEiBTGwR1VWot782NbKg060i8coBosZTzJHHy6F3Uq/kcQd
+	 D6nu0g/FAhS48IfxJFqlxwBlroDgHH3cuQDfzIj+TMavRGvAfsAkkMiwuUu09qb4WX
+	 cLzuxJdD74AZCyL8hTagUfUbvXSzYYoU98GPFIr2D6QQudTo6H/G8OzpquimiqHBOi
+	 42v7qLnCSy5eQ==
+Date: Mon, 10 Jun 2024 17:08:05 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Viacheslav Bocharov <adeep@lexina.in>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 3/4] dt-bindings: arm: amlogic:
+ amlogic,meson-gx-ao-secure: add secure-monitor property
+Message-ID: <20240610-dropout-compress-6d6a9b749524@spud>
+References: <20240610084032.3096614-1-adeep@lexina.in>
+ <20240610084032.3096614-4-adeep@lexina.in>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 5/5] clk: meson: c3: add c3 clock peripherals
- controller driver
-Content-Language: en-US
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
-        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC: Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet
-	<jbrunet@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen
- Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>, Chuan Liu <chuan.liu@amlogic.com>
-References: <20240522082727.3029656-1-xianwei.zhao@amlogic.com>
- <20240522082727.3029656-6-xianwei.zhao@amlogic.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240522082727.3029656-6-xianwei.zhao@amlogic.com>
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 03jNlSYQ9ip9hAsZZar47xByHwIFSVBS
-X-Proofpoint-GUID: 03jNlSYQ9ip9hAsZZar47xByHwIFSVBS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-10_03,2024-06-10_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0
- suspectscore=0 clxscore=1015 bulkscore=0 phishscore=0 adultscore=0
- mlxscore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406100120
+In-Reply-To: <20240610084032.3096614-4-adeep@lexina.in>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240610_085123_775218_4FAF03BE 
-X-CRM114-Status: UNSURE (   6.57  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240610_090813_393397_8201B23D 
+X-CRM114-Status: GOOD (  14.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,21 +73,87 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0326203523936281792=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 5/22/2024 1:27 AM, Xianwei Zhao wrote:
-> +module_platform_driver(c3_peripherals_driver);
-> +MODULE_AUTHOR("Chuan Liu <chuan.liu@amlogic.com>");
-> +MODULE_LICENSE("GPL");
 
-missing MODULE_DESCRIPTION()
-make W=1 will produce a warning with this file
+--===============0326203523936281792==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="4N+yVIGOhUtFEsY0"
+Content-Disposition: inline
 
+
+--4N+yVIGOhUtFEsY0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Jun 10, 2024 at 11:39:49AM +0300, Viacheslav Bocharov wrote:
+> Add secure-monitor property to schema for meson-gx-socinfo-sm driver.
+
+"bindings are for hardware, not drivers". Why purpose does the "secure
+monitor" serve that the secure firmware needs a reference to it?
+
+Thanks,
+Conor.
+
+>=20
+> Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
+> ---
+>  .../bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml      | 4 ++++
+>  1 file changed, 4 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-=
+gx-ao-secure.yaml b/Documentation/devicetree/bindings/arm/amlogic/amlogic,m=
+eson-gx-ao-secure.yaml
+> index 7dff32f373cb..1128a794ec89 100644
+> --- a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-s=
+ecure.yaml
+> +++ b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-s=
+ecure.yaml
+> @@ -32,6 +32,10 @@ properties:
+>    reg:
+>      maxItems: 1
+> =20
+> +  secure-monitor:
+
+Missing a vendor prefix.
+
+> +    description: phandle to the secure-monitor node
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
+>    amlogic,has-chip-id:
+>      description: |
+>        A firmware register encodes the SoC type, package and revision
+> --=20
+> 2.45.2
+>=20
+
+--4N+yVIGOhUtFEsY0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmck5QAKCRB4tDGHoIJi
+0iydAQD6TLLXFkQ91it+ekcKcRkMfnDbDLyoS4AUCnh1wSh2xQD/RDRupw8OAQo/
+Y2gJUImSqXu3pj/lDI8iyrkwkNT8ygk=
+=wI0y
+-----END PGP SIGNATURE-----
+
+--4N+yVIGOhUtFEsY0--
+
+
+--===============0326203523936281792==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============0326203523936281792==--
+
