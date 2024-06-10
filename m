@@ -4,63 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0253EC27C5F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jun 2024 19:55:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2363AC27C55
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jun 2024 20:10:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
-	In-Reply-To:Cc:To:From:MIME-Version:Date:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=5mAfTetapLVPwJKqMzsdKo4KpvPvv5bNAJXflyNHckI=; b=SVcT+9ua4xzVHjIgWyEqpL9hnA
-	5IiP8PEk/n1+H6fK1BjmkTqqhDMxzDDqa7ciYqCrn5Ywv5ye5B14w68KWKOo+6d7jCh9hfZaomJxg
-	X4YS5wiIxOKYhCid51GrsdBdMpRAkXU03OY8R3BwOW1yvtt8zkRI8eRmWTzzBOZzzHA7LrjmjhQiv
-	DdtL0FXYFnnIKt8KA20e25JdIj1Ig/RcS/L0mTgQzUsRXTKRSBIQXgXTm15wBWcpSO0zyFg2icM4l
-	ZvWuAcX18fG7jR9MQ/Q/2wRCf5J+Cf1EPsfehk8pUSIDZn83mRXZSG1BQkr8G74eSE3yk+B9hEjgx
-	J6CR38lA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=60hiEypM8OcXOMMti0HYB6qKx/0thu2CSgkxW5QDDuY=; b=xwD79xDAqek8zJ
+	wJDSmu+xVlwQ7kqDQBlu8gJZUiZysCRZ9j8Zh6wgJZ6DNmQSjBeLGzY2J+NN5f5p/Jz8oFmu2f0qN
+	fGcvih00UBdpcrXRG+Haxc02/RUGqS5Phz50GWnBGiD2zqJa/rqMZh4sY6JZ82lWrrUyRNUUN/RGR
+	W7saTxGejp6oO2kQzXheswaElEnIWQblTr7E1TduK3uGayN0akvOOLQ6IpK1bTbaeHR/EdBcoB84x
+	2LYdSfA6FdN0bX3yTVme4YsPMR/12QzmlKACLp4VI+yXM6WTAFW1uXYsMPo/KYjAoROosloSAtDsE
+	CPDdQCZFSBLzVNEia+DA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sGl6s-00000006Je9-36B1;
-	Mon, 10 Jun 2024 19:55:18 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1sGlLb-00000006LsQ-33sh;
+	Mon, 10 Jun 2024 20:10:31 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sGl6p-00000006Jd6-1HGi;
-	Mon, 10 Jun 2024 19:55:17 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 3C4E0CE17E2;
-	Mon, 10 Jun 2024 19:55:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5207CC2BBFC;
-	Mon, 10 Jun 2024 19:55:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718049312;
-	bh=ZXno21ruQX7U9aDUjGK6FqcPyvaWK4QVLpAwyNfzCEE=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=nhBaCMGNS+8oSuHkiBunoxU4rsqzW0XmtDCnlK20fkoFpO7rkBYeODA0BBq/A6LSl
-	 Wf7OpAqQwKFvY0IZTYo2QO1UfB4uW675xM/IpqEvTWaChULATQSyHNa08X5QItebKs
-	 GXIzB62HYXI5LvORc9C31gn8I6U0Oqtw8O9m/dp6bcY4pEH+KjpoXEuKVciQiARj6z
-	 Tcl6u/NTe7CUzttQYJndBc+CSNRF1X1l1QcYXnjINKyRP+37YIUDsq3Uyxv4dFOJPz
-	 9THunnSLwyta25WX0LIJHqxrtmkIm/xUyUmZSXwANWikwA2G7rV2zhQfxCIO0yxCDm
-	 g/k4HQnVl7OMg==
-Date: Mon, 10 Jun 2024 13:55:11 -0600
+	id 1sGlLY-00000006LrO-0J1P;
+	Mon, 10 Jun 2024 20:10:30 +0000
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id DDC78120002;
+	Mon, 10 Jun 2024 23:10:21 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru DDC78120002
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1718050221;
+	bh=CyjAD39Adp9YwtacIJu4i0hG6rQt5kSGw9YY6Ugq/9U=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=QuuLqwCxereQliyq65cKfCVAjsgIdKyiQjvZOA4iEWZyIGzvCqXalBYideWIO4VAa
+	 wF2FNblb8PntwV+ncoMago15ud6S3gi1d33ktZ2NpOLt1okDA0T99VQlo/XNmg98ZO
+	 Gq2gWpToFdUkAJi3WkAFY2d1PDTUPPvQexK9Oo1BrksmA4Tk9Y35xcQMksjtJHAQkn
+	 4uCNJL4saexygvckBqYOZ0IVkasb+UtvPe5Z+9tQxaH73GFMTG5JV5h8sg21xJssu8
+	 O0WYwVkQqb+CPvMg9aO2YyZsJPbygBfyxd+khBgZ8Un8JK1jVz+qLJAhN9Kx6RGgv/
+	 gJ40wS8EmnHyA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon, 10 Jun 2024 23:10:21 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
+ (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 10 Jun
+ 2024 23:10:21 +0300
+Date: Mon, 10 Jun 2024 23:10:16 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+CC: <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
+	<sboyd@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
+	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 7/7] clk: meson: a1: add Amlogic A1 CPU clock
+ controller driver
+Message-ID: <20240610201016.3ufzf6oh43sccxqx@CAB-WSD-L081021>
+References: <20240515185103.20256-1-ddrokosov@salutedevices.com>
+ <20240515185103.20256-8-ddrokosov@salutedevices.com>
+ <1jmsntp0wo.fsf@starbuckisacylon.baylibre.com>
+ <20240610130824.dt7matrj4tespizl@CAB-WSD-L081021>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Viacheslav Bocharov <adeep@lexina.in>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, 
- linux-arm-kernel@lists.infradead.org, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20240607145148.2246990-1-adeep@lexina.in>
-References: <20240607145148.2246990-1-adeep@lexina.in>
-Message-Id: <171804879810.2984676.7472745438656826180.robh@kernel.org>
-Subject: Re: [PATCH v1 0/2] arm64: meson: add support for JetHome JetHub D2
+Content-Disposition: inline
+In-Reply-To: <20240610130824.dt7matrj4tespizl@CAB-WSD-L081021>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185845 [Jun 10 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/06/10 15:05:00 #25537858
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240610_125515_736528_BEB8DED9 
-X-CRM114-Status: GOOD (  13.25  )
+X-CRM114-CacheID: sfid-20240610_131028_829206_EECB7833 
+X-CRM114-Status: GOOD (  48.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,103 +109,411 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Fri, 07 Jun 2024 17:50:02 +0300, Viacheslav Bocharov wrote:
-> Add support for new controller.
-> JetHome Jethub D2 (j200) is a home automation controller with the following
-> features:
->   - DIN Rail Mounting
->   - Amlogic S905X3 (ARM Cortex-A55) quad-core
->   - micro-HDMI video out
->   - 4GB LPDDR4
->   - 32GB eMMC flash
->   - 1 x USB 2.0
->   - 1 x 10/100/1000Mbps ethernet
->   - two module slots for radio/wire interface cards
->   - 2 x gpio LEDS
->   - 1 x 1-Wire
->   - 1 x RS-485
->   - 3 x dry contact digital GPIO inputs
->   - 2 x relay GPIO outputs
->   - DC 9-36V power source with battery UPS on board option
+On Mon, Jun 10, 2024 at 04:08:24PM +0300, Dmitry Rokosov wrote:
+> On Mon, Jun 10, 2024 at 12:06:31PM +0200, Jerome Brunet wrote:
+> > On Wed 15 May 2024 at 21:47, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
+> > 
+> > > The CPU clock controller plays a general role in the Amlogic A1 SoC
+> > > family by generating CPU clocks. As an APB slave module, it offers the
+> > > capability to inherit the CPU clock from two sources: the internal fixed
+> > > clock known as 'cpu fixed clock' and the external input provided by the
+> > > A1 PLL clock controller, referred to as 'syspll'.
+> > >
+> > > It is important for the driver to handle cpu_clk rate switching
+> > > effectively by transitioning to the CPU fixed clock to avoid any
+> > > potential execution freezes.
+> > >
+> > > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> > > ---
+> > >  drivers/clk/meson/Kconfig  |  10 ++
+> > >  drivers/clk/meson/Makefile |   1 +
+> > >  drivers/clk/meson/a1-cpu.c | 331 +++++++++++++++++++++++++++++++++++++
+> > >  3 files changed, 342 insertions(+)
+> > >  create mode 100644 drivers/clk/meson/a1-cpu.c
+> > >
+> > > diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> > > index 80c4a18c83d2..148d4495eee3 100644
+> > > --- a/drivers/clk/meson/Kconfig
+> > > +++ b/drivers/clk/meson/Kconfig
+> > > @@ -111,6 +111,16 @@ config COMMON_CLK_AXG_AUDIO
+> > >  	  Support for the audio clock controller on AmLogic A113D devices,
+> > >  	  aka axg, Say Y if you want audio subsystem to work.
+> > >  
+> > > +config COMMON_CLK_A1_CPU
+> > > +	tristate "Amlogic A1 SoC CPU controller support"
+> > > +	depends on ARM64
+> > > +	select COMMON_CLK_MESON_REGMAP
+> > > +	select COMMON_CLK_MESON_CLKC_UTILS
+> > > +	help
+> > > +	  Support for the CPU clock controller on Amlogic A113L based
+> > > +	  device, A1 SoC Family. Say Y if you want A1 CPU clock controller
+> > > +	  to work.
+> > > +
+> > >  config COMMON_CLK_A1_PLL
+> > >  	tristate "Amlogic A1 SoC PLL controller support"
+> > >  	depends on ARM64
+> > > diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+> > > index 4968fc7ad555..2a06eb0303d6 100644
+> > > --- a/drivers/clk/meson/Makefile
+> > > +++ b/drivers/clk/meson/Makefile
+> > > @@ -18,6 +18,7 @@ obj-$(CONFIG_COMMON_CLK_MESON_AUDIO_RSTC) += meson-audio-rstc.o
+> > >  
+> > >  obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
+> > >  obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
+> > > +obj-$(CONFIG_COMMON_CLK_A1_CPU) += a1-cpu.o
+> > >  obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
+> > >  obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
+> > >  obj-$(CONFIG_COMMON_CLK_A1_AUDIO) += a1-audio.o
+> > > diff --git a/drivers/clk/meson/a1-cpu.c b/drivers/clk/meson/a1-cpu.c
+> > > new file mode 100644
+> > > index 000000000000..a9edabeafea9
+> > > --- /dev/null
+> > > +++ b/drivers/clk/meson/a1-cpu.c
+> > > @@ -0,0 +1,331 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +/*
+> > > + * Amlogic A1 SoC family CPU Clock Controller driver.
+> > > + *
+> > > + * Copyright (c) 2024, SaluteDevices. All Rights Reserved.
+> > > + * Author: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> > > + */
+> > > +
+> > > +#include <linux/clk.h>
+> > > +#include <linux/clk-provider.h>
+> > > +#include <linux/mod_devicetable.h>
+> > > +#include <linux/platform_device.h>
+> > > +#include "clk-regmap.h"
+> > > +#include "meson-clkc-utils.h"
+> > > +
+> > > +#include <dt-bindings/clock/amlogic,a1-cpu-clkc.h>
+> > > +
+> > > +/* CPU Clock Controller register offset */
+> > > +#define CPUCTRL_CLK_CTRL0	0x0
+> > > +#define CPUCTRL_CLK_CTRL1	0x4
+> > > +
+> > > +static u32 cpu_fsource_sel_table[] = { 0, 1, 2 };
+> > > +static const struct clk_parent_data cpu_fsource_sel_parents[] = {
+> > > +	{ .fw_name = "xtal" },
+> > > +	{ .fw_name = "fclk_div2" },
+> > > +	{ .fw_name = "fclk_div3" },
+> > > +};
+> > > +
+> > > +static struct clk_regmap cpu_fsource_sel0 = {
+> > > +	.data = &(struct clk_regmap_mux_data) {
+> > > +		.offset = CPUCTRL_CLK_CTRL0,
+> > > +		.mask = 0x3,
+> > > +		.shift = 0,
+> > > +		.table = cpu_fsource_sel_table,
+> > > +	},
+> > > +	.hw.init = &(struct clk_init_data) {
+> > > +		.name = "cpu_fsource_sel0",
+> > > +		.ops = &clk_regmap_mux_ops,
+> > > +		.parent_data = cpu_fsource_sel_parents,
+> > > +		.num_parents = ARRAY_SIZE(cpu_fsource_sel_parents),
+> > > +		.flags = CLK_SET_RATE_PARENT,
+> > 
+> > I don't think setting the rates of controller parents is appropriate
+> > 
+> > > +	},
+> > > +};
+> > > +
+> > > +static struct clk_regmap cpu_fsource_div0 = {
+> > > +	.data = &(struct clk_regmap_div_data) {
+> > > +		.offset = CPUCTRL_CLK_CTRL0,
+> > > +		.shift = 4,
+> > > +		.width = 6,
+> > > +	},
+> > > +	.hw.init = &(struct clk_init_data) {
+> > > +		.name = "cpu_fsource_div0",
+> > > +		.ops = &clk_regmap_divider_ops,
+> > > +		.parent_hws = (const struct clk_hw *[]) {
+> > > +			&cpu_fsource_sel0.hw
+> > > +		},
+> > > +		.num_parents = 1,
+> > > +		.flags = CLK_SET_RATE_PARENT,
+> > > +	},
+> > > +};
+> > > +
+> > > +static struct clk_regmap cpu_fsel0 = {
+> > > +	.data = &(struct clk_regmap_mux_data) {
+> > > +		.offset = CPUCTRL_CLK_CTRL0,
+> > > +		.mask = 0x1,
+> > > +		.shift = 2,
+> > > +	},
+> > > +	.hw.init = &(struct clk_init_data) {
+> > > +		.name = "cpu_fsel0",
+> > > +		.ops = &clk_regmap_mux_ops,
+> > > +		.parent_hws = (const struct clk_hw *[]) {
+> > > +			&cpu_fsource_sel0.hw,
+> > > +			&cpu_fsource_div0.hw,
+> > > +		},
+> > > +		.num_parents = 2,
+> > > +		.flags = CLK_SET_RATE_GATE | CLK_SET_RATE_PARENT,
+> > > +	},
+> > > +};
+> > > +
+> > > +static struct clk_regmap cpu_fsource_sel1 = {
+> > > +	.data = &(struct clk_regmap_mux_data) {
+> > > +		.offset = CPUCTRL_CLK_CTRL0,
+> > > +		.mask = 0x3,
+> > > +		.shift = 16,
+> > > +		.table = cpu_fsource_sel_table,
+> > > +	},
+> > > +	.hw.init = &(struct clk_init_data) {
+> > > +		.name = "cpu_fsource_sel1",
+> > > +		.ops = &clk_regmap_mux_ops,
+> > > +		.parent_data = cpu_fsource_sel_parents,
+> > > +		.num_parents = ARRAY_SIZE(cpu_fsource_sel_parents),
+> > > +		.flags = CLK_SET_RATE_PARENT,
+> > > +	},
+> > > +};
+> > > +
+> > > +static struct clk_regmap cpu_fsource_div1 = {
+> > > +	.data = &(struct clk_regmap_div_data) {
+> > > +		.offset = CPUCTRL_CLK_CTRL0,
+> > > +		.shift = 20,
+> > > +		.width = 6,
+> > > +	},
+> > > +	.hw.init = &(struct clk_init_data) {
+> > > +		.name = "cpu_fsource_div1",
+> > > +		.ops = &clk_regmap_divider_ops,
+> > > +		.parent_hws = (const struct clk_hw *[]) {
+> > > +			&cpu_fsource_sel1.hw
+> > > +		},
+> > > +		.num_parents = 1,
+> > > +		.flags = CLK_SET_RATE_PARENT,
+> > > +	},
+> > > +};
+> > > +
+> > > +static struct clk_regmap cpu_fsel1 = {
+> > > +	.data = &(struct clk_regmap_mux_data) {
+> > > +		.offset = CPUCTRL_CLK_CTRL0,
+> > > +		.mask = 0x1,
+> > > +		.shift = 18,
+> > > +	},
+> > > +	.hw.init = &(struct clk_init_data) {
+> > > +		.name = "cpu_fsel1",
+> > > +		.ops = &clk_regmap_mux_ops,
+> > > +		.parent_hws = (const struct clk_hw *[]) {
+> > > +			&cpu_fsource_sel1.hw,
+> > > +			&cpu_fsource_div1.hw,
+> > > +		},
+> > > +		.num_parents = 2,
+> > > +		.flags = CLK_SET_RATE_GATE | CLK_SET_RATE_PARENT,
+> > > +	},
+> > > +};
+> > > +
+> > > +static struct clk_regmap cpu_fclk = {
+> > > +	.data = &(struct clk_regmap_mux_data) {
+> > > +		.offset = CPUCTRL_CLK_CTRL0,
+> > > +		.mask = 0x1,
+> > > +		.shift = 10,
+> > > +	},
+> > > +	.hw.init = &(struct clk_init_data) {
+> > > +		.name = "cpu_fclk",
+> > > +		.ops = &clk_regmap_mux_ops,
+> > > +		.parent_hws = (const struct clk_hw *[]) {
+> > > +			&cpu_fsel0.hw,
+> > > +			&cpu_fsel1.hw,
+> > > +		},
+> > > +		.num_parents = 2,
+> > > +		.flags = CLK_SET_RATE_PARENT,
+> > > +	},
+> > > +};
+> > > +
+> > > +static struct clk_regmap cpu_clk = {
+> > > +	.data = &(struct clk_regmap_mux_data) {
+> > > +		.offset = CPUCTRL_CLK_CTRL0,
+> > > +		.mask = 0x1,
+> > > +		.shift = 11,
+> > > +	},
+> > > +	.hw.init = &(struct clk_init_data) {
+> > > +		.name = "cpu_clk",
+> > > +		.ops = &clk_regmap_mux_ops,
+> > > +		.parent_data = (const struct clk_parent_data []) {
+> > > +			{ .hw = &cpu_fclk.hw },
+> > > +			{ .fw_name = "sys_pll", },
+> > > +		},
+> > 
+> > You've put CLK_SET_RATE_GATE on fixed clock path but not the SYS_PLL
+> > ... that is odd. IMO there should be a bypass input clock to the sys_pll
+> > with that flag.
+> > 
 > 
-> Viacheslav Bocharov (2):
->   dt-bindings: arm: amlogic: add binding for JetHome JetHub D2
->   arm64: dts: meson-axg: add support for JetHome JetHub D2 (j200)
+> Apologies for any confusion caused. To clarify, are you proposing the
+> idea of creating an additional sys_pll_input clock object with the
+> CLK_SET_RATE_PARENT property, and then using it as the parent clock for
+> cpu_clk?
 > 
->  .../devicetree/bindings/arm/amlogic.yaml      |   1 +
->  arch/arm64/boot/dts/amlogic/Makefile          |   1 +
->  .../amlogic/meson-sm1-jethome-jethub-j200.dts | 614 ++++++++++++++++++
->  3 files changed, 616 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dts
+> > > +		.num_parents = 2,
+> > > +		.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> > > +	},
+> > > +};
+> > > +
+> > > +/* Array of all clocks registered by this provider */
+> > > +static struct clk_hw *a1_cpu_hw_clks[] = {
+> > > +	[CLKID_CPU_FSOURCE_SEL0]	= &cpu_fsource_sel0.hw,
+> > > +	[CLKID_CPU_FSOURCE_DIV0]	= &cpu_fsource_div0.hw,
+> > > +	[CLKID_CPU_FSEL0]		= &cpu_fsel0.hw,
+> > > +	[CLKID_CPU_FSOURCE_SEL1]	= &cpu_fsource_sel1.hw,
+> > > +	[CLKID_CPU_FSOURCE_DIV1]	= &cpu_fsource_div1.hw,
+> > > +	[CLKID_CPU_FSEL1]		= &cpu_fsel1.hw,
+> > > +	[CLKID_CPU_FCLK]		= &cpu_fclk.hw,
+> > > +	[CLKID_CPU_CLK]			= &cpu_clk.hw,
+> > > +};
+> > > +
+> > > +static struct clk_regmap *const a1_cpu_regmaps[] = {
+> > > +	&cpu_fsource_sel0,
+> > > +	&cpu_fsource_div0,
+> > > +	&cpu_fsel0,
+> > > +	&cpu_fsource_sel1,
+> > > +	&cpu_fsource_div1,
+> > > +	&cpu_fsel1,
+> > > +	&cpu_fclk,
+> > > +	&cpu_clk,
+> > > +};
+> > > +
+> > > +static struct regmap_config a1_cpu_regmap_cfg = {
+> > > +	.reg_bits   = 32,
+> > > +	.val_bits   = 32,
+> > > +	.reg_stride = 4,
+> > > +	.max_register = CPUCTRL_CLK_CTRL1,
+> > > +};
+> > > +
+> > > +static struct meson_clk_hw_data a1_cpu_clks = {
+> > > +	.hws = a1_cpu_hw_clks,
+> > > +	.num = ARRAY_SIZE(a1_cpu_hw_clks),
+> > > +};
+> > > +
+> > > +struct a1_sys_pll_nb_data {
+> > > +	struct notifier_block nb;
+> > > +	struct clk_hw *cpu_clk;
+> > > +	struct clk_hw *cpu_fclk;
+> > > +	struct clk *sys_pll;
+> > > +};
+> > 
+> > There are number of things which are wrong with this notifier.
+> > 
+> > First, and foremost, this is a clock controller driver ... it should not
+> > handle cpufreq policy. There is subsystem for that
+> > 
+> > > +
+> > > +static int meson_a1_sys_pll_notifier_cb(struct notifier_block *nb,
+> > > +					unsigned long event, void *data)
+> > > +{
+> > > +	struct a1_sys_pll_nb_data *nbd;
+> > > +	int ret = 0;
+> > > +
+> > > +	nbd = container_of(nb, struct a1_sys_pll_nb_data, nb);
+> > > +
+> > > +	switch (event) {
+> > > +	case PRE_RATE_CHANGE:
+> > > +		/*
+> > > +		 * Clock sys_pll will be changed to feed cpu_clk,
+> > > +		 * configure cpu_clk to use cpu_fclk fixed clock.
+> > > +		 */
+> > > +		ret = clk_hw_set_parent(nbd->cpu_clk, nbd->cpu_fclk);
+> > 
+> > 
+> > This jumps to whatever was the last frequency below 768MHz ... that does
+> > not seems deterministic or safe.
 > 
+> Ah, that's an aspect I hadn't considered. You make a valid point. So,
+> this implies that the g12a clock driver could potentially encounter the
+> same issue, correct?
 > 
-> base-commit: 32f88d65f01bf6f45476d7edbe675e44fb9e1d58
-> --
-> 2.45.2
+> > > +
+> > > +		/* Wait for clock propagation */
+> > > +		if (!ret)
+> > > +			udelay(100);
+> > > +
+> > > +		break;
+> > > +
+> > > +	case POST_RATE_CHANGE:
+> > > +		 /*
+> > > +		  * Clock sys_pll rate has ben calculated,
+> > > +		  * switch back cpu_clk to sys_pll
+> > > +		  */
+> > > +		ret = clk_set_parent(nbd->cpu_clk->clk, nbd->sys_pll);
+> > 
+> > So whenever sys_pll changes, even if was not used by the CPU at that
+> > time, this will change back to the sys_pll. Again, that seems fragile
+> > 
 > 
+> From what I comprehend, only the GEN clock is capable of using sys_pll
+> as its parent clock. The GEN clock seems more comparable to a diagnostic
+> clock, implying that when utilized, it should be done with full
+> awareness and control over its operations.
 > 
+> > > +
+> > > +		/* Wait for clock propagation */
+> > > +		if (!ret)
+> > > +			udelay(100);
+> > > +		break;
+> > > +
+> > > +	default:
+> > > +		pr_warn("Unknown event %lu for sys_pll notifier\n", event);
+> > > +		break;
+> > > +	}
+> > > +
+> > > +	return notifier_from_errno(ret);
+> > > +}
+> > > +
+> > > +static struct a1_sys_pll_nb_data a1_sys_pll_nb_data = {
+> > > +	.nb.notifier_call = meson_a1_sys_pll_notifier_cb,
+> > > +	.cpu_clk = &cpu_clk.hw,
+> > > +	.cpu_fclk = &cpu_fclk.hw,
+> > > +};
+> > > +
+> > > +static int meson_a1_dvfs_setup(struct platform_device *pdev)
+> > > +{
+> > > +	struct device *dev = &pdev->dev;
+> > > +	struct clk *sys_pll;
+> > > +	int ret;
+> > > +
+> > > +	/* Setup clock notifier for sys_pll clk */
+> > > +	sys_pll = devm_clk_get(dev, "sys_pll");
+> > > +	if (IS_ERR(sys_pll))
+> > > +		return dev_err_probe(dev, PTR_ERR(sys_pll),
+> > > +				     "can't get sys_pll as notifier clock\n");
+> > > +
+> > > +	a1_sys_pll_nb_data.sys_pll = sys_pll;
+> > > +	ret = devm_clk_notifier_register(dev, sys_pll,
+> > > +					 &a1_sys_pll_nb_data.nb);
+> > > +	if (ret)
+> > > +		return dev_err_probe(dev, ret,
+> > > +				     "can't register sys_pll notifier\n");
+> > > +
+> > > +	return ret;
+> > > +}
+> > 
+> > I don't think these notifiers are appropriate to handle CPU frequency
+> > change. Cpufreq has a .target_intermediate() callback that seems more
+> > appropriate to switch the CPU to a safe clock while relocking a PLL.
+> > 
+> > You should have a look at it and probably at the imx-cpufreq-dt.c which
+> > improves on cpufreq-dt.c to handle platform quirks
+> > 
 > 
+> I believed that the same approach was employed with the g12a clock,
+> which uses a sys_pll <-> cpu fixed clock transition to ensure stable CPU
+> clocking. Am I overlooking something? Or does the g12a cpu clock
+> maintain a fixed frequency, thus indicating it is not fragile?
+> 
+> [...]
 
+Based on your suggestion, I explored the imx-cpufreq-dt driver and it
+does seem like a more suitable place to implement CPU clock switching.
+Thank you for pointing that out!
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+However, from my understanding, it appears that we also need to redesign
+the g12a clock driver's CPU clock notifier. I would love to hear your
+thoughts on this. It seems like a necessary step to ensure a
+comprehensive solution.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y amlogic/meson-sm1-jethome-jethub-j200.dtb' for 20240607145148.2246990-1-adeep@lexina.in:
-
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: /soc/bus@ff600000/bus@60000/clock-controller@0: failed to match any schema with compatible: ['amlogic,sm1-audio-clkc']
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller@300: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller@340: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller@380: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller@3c0: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: sys-ctrl@0: '#address-cells', '#size-cells', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-0: clock-names:0: 'sclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-0: clock-names:1: 'lrclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-0: clock-names:2: 'mclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-1: clock-names:0: 'sclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-1: clock-names:1: 'lrclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-1: clock-names:2: 'mclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-1: Unevaluated properties are not allowed ('clock-names' was unexpected)
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-2: clock-names:0: 'sclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-2: clock-names:1: 'lrclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-2: clock-names:2: 'mclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: sound: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-sound-card.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: sound: 'anyOf' conditional failed, one must be fixed:
-	'clocks' is a required property
-	'#clock-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
-
-
-
-
-
+-- 
+Thank you,
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
