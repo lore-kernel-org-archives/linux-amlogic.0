@@ -4,112 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95578C25B76
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2024 07:44:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88245C25B76
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2024 09:30:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=9qbavYizoM1jaX5nUJxCJzletIzWAaqFSXAOaQwofvQ=; b=C5jU3iOzmrv9OZeBzHcLofU1Fx
-	qvgEz3RL4XEclnZ8iOsoua/7yx4K8qSl5fXsaPez6BB2mso8cUKXHD/DtKuUHEGu9Qo1hMpblYzga
-	pOCRDkE82PCS62Ou2kTeXoKRORTnbbs6kPXqUD4zgfG5Mg/vjZsqJMaCo3kdfZbMfPIzsmQWCSaoz
-	XWAUmQywvFxJ08SHDNslNqa6tXRmQt2t7CZLFIfCE3V1UR3Agq0mhJRjlVq2lt/BNbsdzHhIRHTkC
-	QnfX1Z3VEaBJuWmVe0ci4ChoaAx4/paqYWObJkRYiLG9919ysJIDe3e5n9lk1MjF5zy07oE/oKC2g
-	M8m1QGdA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=3yUdUIcNm5+RhVk+nb1/knUgYu1vDknV5bC8K0RLZCM=; b=kLPOchEajGYykK
+	JhfqNH9qwW3PRy4xZVAsw3tTAxa98HeHmU+SLMljqqEvL2Ib+rdPbh40M1CDexA7XOGz9HvlQBYkP
+	b/8753B/eaIorHanSJNoDOmrL1fOo3QkQJsls5OMs8zi0yNwQMFHpMfl76jbWpZRiO4b0saLc1LEN
+	icQ7AhiL3jkxyl3c6l/Q6u/e9W5cSCI5gHpNhkk/9OdWM0AbmnWHRYWCqwC01W2wu5+ODNbZtctvM
+	ciIux9EoOx2Pbc/Wh7yUs4RhAtvE0MztdmnqmGyTA0a/J8se5dMSSYv2DCQPzpllImAuN7gJWTXyS
+	K6IPc1mIU1rFDz+/VPFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sGwAo-00000007u8O-1Uw2;
-	Tue, 11 Jun 2024 07:44:06 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1sGxpc-00000008Hvs-1bqF;
+	Tue, 11 Jun 2024 09:30:20 +0000
+Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sGwAi-00000007u43-2wq6
+	id 1sGxpQ-00000008HoL-0mbw
 	for linux-amlogic@lists.infradead.org;
-	Tue, 11 Jun 2024 07:44:02 +0000
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-35f1e35156cso1983548f8f.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 11 Jun 2024 00:44:00 -0700 (PDT)
+	Tue, 11 Jun 2024 09:30:11 +0000
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-57c6011d75dso912478a12.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 11 Jun 2024 02:30:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718091839; x=1718696639; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WsHiHDrwj7KWTlL47RJPPmsPBBAjKyL5RmZO1AaRVKI=;
-        b=l4yWWF1uz3+xbig54Z9AhFxdYk5WtNG7Fu2WfJ3Jf3YeQ8jBuiZELDamKRNlhtB6Xm
-         R5FxC4j1SSiRVHhPF7ypq6IzrspButvEOs1bo8vHQ2DLgbW/0xTgYtZuCPKOtrnc0ytw
-         n2Af07If1w0zzY4DVBYhpkulbs5kq3pg2J11o3eDzaEYMTfM3e/IpWRC/xz8DJJv3abf
-         oAWP4aSX2W8/I3t+abVdfceTlEMGrdLhYBxsLPqH20IUbpT+ExQQ+k2rZPY+SnGhnNZs
-         73nlA4aEUK2itgc6uog/nKuddRDClavtsO7Gc+siLwJAtDetyaizRW/Z0hxzVZKQVxvO
-         XNjQ==
+        d=linaro.org; s=google; t=1718098204; x=1718703004; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PVSFe+LEvHD4J+FTFuddJTwPtiIyyXEmsUsAbuCvKKU=;
+        b=PB80a45dyoslnzsT2XOAqX1vhFlPmcgVC6jpxYdvopX6pnBXgFM0L4WIiQURBTVtCb
+         bcd6Hlvrvwi5Onu8VaLD+NoAhZFXE7h8NnLabr3g6ZdcfESsRVaR8jcaawR7Sb53WzwW
+         RpKURQxk2Phf0YUcYM1t7+Z2FVw5dqdosmK3R5K4ssmGm3lkpkIEdrcsxUotpDAYKHxH
+         4lyX3Bn75nFAhsP+Az50ryt6SKT4zrAPCP9YKanayIvIaAqpNpfsTKppDMuBsh//FIDa
+         aro1hfTZlqiv2PHHTFu1IIp5rIHA2B0Renarf2erqonec83nDldEFTYC70zAixSg8m0D
+         fXVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718091839; x=1718696639;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=WsHiHDrwj7KWTlL47RJPPmsPBBAjKyL5RmZO1AaRVKI=;
-        b=wzuOxm4U9NLYmLvrMFIX7Q8mMyBi3yb9r8ZPAFSPyCzQxFh4sVdynE2vGm70LyPZga
-         +vbLgdZpQEYzbBlTcFPh4BuwMAHVbg4v2yLCzWEqbLaEGaQKE6nlkH8o9Mu43RlG90WK
-         j3Aylbt6WDBAkeb3EhG1aIkUu2itOzIR48sHFiW/D8RgaZjIfW7dl3+EpD8ZFKg2fKoF
-         5xrDDh5fXsM7+4Joj524JaUl0vqrpBp8u1fCifDms0S9B0EeOwSElBvxCGDY9axLp7Hw
-         gvHueYw45KAqbwt/XfjsAMm1cnnR7CIVFmMu1QRjVLqzVYFauBZkjiLsZ6WHUWs1wAkE
-         Q0Zg==
-X-Forwarded-Encrypted: i=1; AJvYcCUCBciGHl5+WDt12gplvh1sZdxLNcqNS3Xb9fvTQRgVEDit4tzs/1wafGUsZIds7cCluE7dEQLDuzhFPDq+Snax7sjaLlZ2t+CUflYK7Q5ebKI=
-X-Gm-Message-State: AOJu0YzQ+01x8WQimkwn8OOVQUBS8s/oraokzJcVTeFzV09+t7YLNo8f
-	dwfIEEk7apz96fHAw9Rv03S1pVNycsiWNToRVONgn6vSd6C3mlQWRWVoxNI+iw8=
-X-Google-Smtp-Source: AGHT+IHVUWQPU0XLKI8clLjC5hscIpVdt5ZDQarh9E7gq2k1Q6gIf/HvwxVroSXFwFVrLN4v0Tr2cg==
-X-Received: by 2002:a05:6000:1291:b0:35f:22d5:da72 with SMTP id ffacd0b85a97d-35f22d5dbbamr3080168f8f.50.1718091838847;
-        Tue, 11 Jun 2024 00:43:58 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5a4:3b2:c750:ef5c? ([2a01:e0a:982:cbb0:5a4:3b2:c750:ef5c])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35f25dc3f07sm4013408f8f.79.2024.06.11.00.43.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jun 2024 00:43:58 -0700 (PDT)
-Message-ID: <c0013295-c7de-4118-99dc-12074002c5fd@linaro.org>
-Date: Tue, 11 Jun 2024 09:43:57 +0200
+        d=1e100.net; s=20230601; t=1718098204; x=1718703004;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PVSFe+LEvHD4J+FTFuddJTwPtiIyyXEmsUsAbuCvKKU=;
+        b=P6NoQmNPxsc8gBipGxZbvoekvqF0rGZY7JqnE03He1NkUWcbETwlh5IycD6PNreJEr
+         wJm4EfGYxqH34KLIMySZccyGYYCAQ1p6zVRZ/Gg/77ZPsm8RuzYA6XOCQr0G9AoA1lJY
+         ClXAelzBa9JHGORQHtw/KnENDVqoiusIaPsFTQAYNvNnNW3UTyoCGScSPAiLZ1VZwxMi
+         jNr/PClWUAjffehrizTXTDJ+ftA/5Ttj/NIqebP68GNsdafQtc56WxxO1UjZcFBN45Vm
+         Hq7uFnxDuZR4y0Q6p6CL4JrwH9Hh+V/O19bqtvi6zlGTO3lZ0g46l3vFLD+PQDRwHII4
+         EyXg==
+X-Forwarded-Encrypted: i=1; AJvYcCVMKOJQc4y9a5RmWd+H9BuyjIa3c5kDfNyKM3RU6Nbonn/JjTOM4pJ2TpVWp35utgnfMwlYXn5qAFvTPWDgkbBjVKz5IRNH+0QeCzELziyDEPI=
+X-Gm-Message-State: AOJu0YyJSbklzWTBlY4LL8TyVB67jaubMP0inNONDYXtFpMXHQfzWELG
+	wBkeoyk7nNNXebFkwpEkTvjk6KMt5C6jOY3T8cL50WeSivaTBE8/dlrXTmFuTXg=
+X-Google-Smtp-Source: AGHT+IFD64ACy4sU3prTnq2ZWsuYEYdfjvT2xIoEoOokPKRXtIEe7kYxR4O5bkXL5aDz3ZYE5z5ZfQ==
+X-Received: by 2002:a17:906:17d9:b0:a6e:fbac:d7b6 with SMTP id a640c23a62f3a-a6efbacd808mr560256166b.21.1718098204489;
+        Tue, 11 Jun 2024 02:30:04 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c806eaa4dsm735715966b.110.2024.06.11.02.30.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jun 2024 02:30:03 -0700 (PDT)
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Julia Lawall <julia.lawall@inria.fr>, 
+ MarileneGarcia <marilene.agarcia@gmail.com>
+Cc: Shuah Khan <skhan@linuxfoundation.org>, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240516022838.8609-1-marilene.agarcia@gmail.com>
+References: <20240516022838.8609-1-marilene.agarcia@gmail.com>
+Subject: Re: [PATCH v2 linux-next] nvmem: meson-efuse: Replacing the use of
+ of_node_put to __free
+Message-Id: <171809820332.51273.7866466244916343148.b4-ty@linaro.org>
+Date: Tue, 11 Jun 2024 10:30:03 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] pmdomain: amlogic: add missing MODULE_DESCRIPTION()
- macros
-To: Jeff Johnson <quic_jjohnson@quicinc.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- kernel-janitors@vger.kernel.org
-References: <20240610-md-drivers-pmdomain-amlogic-v1-1-b49ddb1a8bdf@quicinc.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240610-md-drivers-pmdomain-amlogic-v1-1-b49ddb1a8bdf@quicinc.com>
+X-Mailer: b4 0.12.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240611_004400_798266_C951BF05 
-X-CRM114-Status: GOOD (  15.00  )
+X-CRM114-CacheID: sfid-20240611_023008_315213_7F7D8F79 
+X-CRM114-Status: UNSURE (   7.80  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,71 +96,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 11/06/2024 01:13, Jeff Johnson wrote:
-> On x86, make allmodconfig && make W=1 C=1 reports:
-> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pmdomain/amlogic/meson-gx-pwrc-vpu.o
-> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pmdomain/amlogic/meson-ee-pwrc.o
-> 
-> Add the missing invocation of the MODULE_DESCRIPTION() macro to all
-> files which have a MODULE_LICENSE().
-> 
-> This includes meson-secure-pwrc.c which, although it did not produce a
-> warning with the x86 allmodconfig configuration, may cause this
-> warning with other configurations where CONFIG_MESON_SM is enabled.
-> 
-> Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-> ---
->   drivers/pmdomain/amlogic/meson-ee-pwrc.c     | 1 +
->   drivers/pmdomain/amlogic/meson-gx-pwrc-vpu.c | 1 +
->   drivers/pmdomain/amlogic/meson-secure-pwrc.c | 1 +
->   3 files changed, 3 insertions(+)
-> 
-> diff --git a/drivers/pmdomain/amlogic/meson-ee-pwrc.c b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-> index fcec6eb610e4..fbb2b4103930 100644
-> --- a/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-> +++ b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-> @@ -648,4 +648,5 @@ static struct platform_driver meson_ee_pwrc_driver = {
->   	},
->   };
->   module_platform_driver(meson_ee_pwrc_driver);
-> +MODULE_DESCRIPTION("Amlogic Meson Everything-Else Power Domains driver");
->   MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/pmdomain/amlogic/meson-gx-pwrc-vpu.c b/drivers/pmdomain/amlogic/meson-gx-pwrc-vpu.c
-> index 33df520eab95..6028e91664a4 100644
-> --- a/drivers/pmdomain/amlogic/meson-gx-pwrc-vpu.c
-> +++ b/drivers/pmdomain/amlogic/meson-gx-pwrc-vpu.c
-> @@ -376,4 +376,5 @@ static struct platform_driver meson_gx_pwrc_vpu_driver = {
->   	},
->   };
->   module_platform_driver(meson_gx_pwrc_vpu_driver);
-> +MODULE_DESCRIPTION("Amlogic Meson GX Power Domains driver");
->   MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/pmdomain/amlogic/meson-secure-pwrc.c b/drivers/pmdomain/amlogic/meson-secure-pwrc.c
-> index 4d5bda0d60fc..b50e5678abe3 100644
-> --- a/drivers/pmdomain/amlogic/meson-secure-pwrc.c
-> +++ b/drivers/pmdomain/amlogic/meson-secure-pwrc.c
-> @@ -355,4 +355,5 @@ static struct platform_driver meson_secure_pwrc_driver = {
->   	},
->   };
->   module_platform_driver(meson_secure_pwrc_driver);
-> +MODULE_DESCRIPTION("Amlogic Meson Secure Power Domains driver");
->   MODULE_LICENSE("Dual MIT/GPL");
-> 
-> ---
-> base-commit: 83a7eefedc9b56fe7bfeff13b6c7356688ffa670
-> change-id: 20240610-md-drivers-pmdomain-amlogic-f117930600ea
-> 
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Wed, 15 May 2024 23:28:38 -0300, MarileneGarcia wrote:
+> Use __free for device_node values, and thus drop calls to
+> of_node_put.
+> 
+> The goal is to reduce memory management issues by using this
+> scope-based of_node_put() cleanup to simplify function exit
+> handling. When using __free a resource is allocated within a
+> block, it is automatically freed at the end of the block.
+> 
+> [...]
 
-Thanks,
-Neil
+Applied, thanks!
+
+[1/1] nvmem: meson-efuse: Replacing the use of of_node_put to __free
+      commit: 5e15aa6f07b35fb3d755f7cdffb8acbca62abe74
+
+Best regards,
+-- 
+Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+
 
 _______________________________________________
 linux-amlogic mailing list
