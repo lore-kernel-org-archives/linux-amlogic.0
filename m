@@ -4,76 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2240C27C53
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jun 2024 09:45:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A666AC27C53
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jun 2024 13:56:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=KLTvMGG4zMBzVj9BRqDhMu0flIR8UTarSamx5t/SGXM=; b=OTedjSUTVjDZ9G
-	8n+HWGXH4HPSm2t1+lH+DVsOEPYK3V2gku3aEUxB9OcW7W9o3tZSm8vBOUgOnz3bhkZ6ppfVWCN9D
-	nAwq98sWGF+VPW6I3LiPl0bGjB0Vql32agpnPkj3HlPKOOGO3sqaWBfBOh3oeFC3C2uwbx6W/U97j
-	6+U9orWOkrPu6DGxh1KUeimTdtOGP/zgfzZllLPvsdfSor3KQ704ZGPTz4HoLw4Pvbvt5G3UjKtj/
-	zWbt8XE9yTtxnrPxz7vM2Azz9DBPVgYZKthUVHV4ajR0VqIHaczG02gej4iODxLDzbI3kz0uVLd6Z
-	9hwUW8jVvlkOuyltm6hw==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=gbE1AfPkwghX2Dy1WeOA7G/Qs7CeOixACEo7R9ASFis=; b=GLPI1q4JfzP8+P
+	UcTy2RfjC0L4qHmNQZ3EGBTSshsmjvwL/DN8mGcsgmgeEp11l7q2CXfRKp26Noo18bUXrevxji/LK
+	hnH2ExsN2rMQpgNQ5FiV6ZbjnHjjOQ1yR78RaX5fd1RQtI5KmCYbOXAva/izBIdQ0JIGbwj0WiU+m
+	AIdGF5nd0vfe5BX47l1KZ/blYPyhSRvPVbU8+ZuK5PSE4g0UYglhUojBAxAU837Wuca484N7cKLSD
+	9hielPNYaDVEv+EMY/gGgq5E1wNKxW7nGEh2EKnQ1l0ymmPp19aYrINCh7Yie1JmrJ2mbOUu5nWax
+	kc/Z6EBHKBFmTh8NQ/8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHKXJ-0000000C3ds-1xcT;
-	Wed, 12 Jun 2024 09:44:57 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1sHOSn-0000000CqKx-0QC6;
+	Wed, 12 Jun 2024 13:56:33 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHKXG-0000000C3d7-1Fep;
-	Wed, 12 Jun 2024 09:44:55 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id A731361342;
-	Wed, 12 Jun 2024 09:44:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5C15EC32789;
-	Wed, 12 Jun 2024 09:44:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718185492;
-	bh=ipSLKvscIHjvTT9FXo+JM1SUJKLQb0dy1cZ4uZ3Z7jA=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=LQgXUG9quIv5wypp3e08V2W6wvGCWX+kfLm0SZv7pq0GJq1hJcSQ66g0YbR2FI7i7
-	 rnEfm6wPXplRLsb7cr8rsku0rgPb4t5PnUh3SOjkLIIrabut5C1I+2YTi56U9YW7Sh
-	 Yc+wZrQoKLCk1uE2KM/HyrXdCxzCauypt4uoQQolBYMrhJn1a4Q7TGIW3A0KC+aC6o
-	 NUmdUspwCoAYxwoRbc97zC7hvgjxYxXkhxljB7pp3lptqNm+UBsIvy8ur7uJhSxRjX
-	 XN0h/kzCVUpi5puKqiMy3T0Fz/Ivsi/hZd805FjOCjhtdE8Qe/wwD34+hGXLtBycWE
-	 Nxeg1jnWVy/OQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3CE65C27C53;
-	Wed, 12 Jun 2024 09:44:52 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Wed, 12 Jun 2024 17:44:50 +0800
-Subject: [PATCH] spi: meson-spicc: add spicc loopback mode
+	id 1sHOSi-0000000CqGM-0cV7;
+	Wed, 12 Jun 2024 13:56:30 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45CCD4U1017787;
+	Wed, 12 Jun 2024 13:56:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	n560daCLgpz3ZdOfX2LEmXn4QpxtVUnQWqyqxxLmb8M=; b=jhUWgUj/nwoABnkO
+	ioLPdiZ6IND3JQMUZOn56ktSDoc0nOSyHjZ2Vr2pi5xpPqbE5H+OKIZV4ICeiwH/
+	NEJwMvsGLjV/vAmFeOCZ0sk7gYd6wQRj7+hcMRtnn7ZNMrW623sJsVwSBB3R1q8Y
+	KPbbR4Yp1NT6ubFPe8fPfbjXhIJw2PIcDnGTZJnY42UVZ1pjn6lSsn0T2ajdgDUO
+	eqCkcPyTO76A5m0uuXwrLTmLViyzY9n3Bt32pXdSAy9XMrpf/BHaN9ya1+nsz6Hh
+	tL5fTgh2QGoKAUk2p8vamEV5rTy2Q9EtOLo8v1EPihVneLQy91inpsVWcHq8jhjL
+	e8MXaw==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yqbfq87h5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Jun 2024 13:56:15 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45CDuEs5001427
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Jun 2024 13:56:14 GMT
+Received: from [10.48.243.20] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 12 Jun
+ 2024 06:56:13 -0700
+Message-ID: <0a67ada3-a030-466d-8110-c665940a5785@quicinc.com>
+Date: Wed, 12 Jun 2024 06:56:12 -0700
 MIME-Version: 1.0
-Message-Id: <20240612-spi_lbc-v1-1-d52e8c8011bd@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIABFuaWYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDM0ND3eKCzPicpGRdAwtTy+TUpGRTC4NUJaDqgqLUtMwKsEnRsbW1AOo
- n511ZAAAA
-To: Mark Brown <broonie@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Sunny Luo <sunny.luo@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1718185490; l=1402;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=b+Ry5KyDug4yW2aXOoBaVaLUbknmRYKeqBgQWvQYE0Q=;
- b=scoKl7griElcwsQYJ5MkTT9KMG5KoHWGW0pBIMKlZcXQ0qwTcMxpVklWONNq0cdQQ62ieUpzt
- RN+ICCezNmlD8L7HkC0Z/Dqe3qZrHGu2q7QJievDZcWACky1WpdqNLI
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] soc: add missing MODULE_DESCRIPTION() macros
+Content-Language: en-US
+To: Arnd Bergmann <arnd@arndb.de>,
+        AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome
+ Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha
+ Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team
+	<kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Linus Walleij
+	<linusw@kernel.org>,
+        Imre Kaloz <kaloz@openwrt.org>,
+        Matthias Brugger
+	<matthias.bgg@gmail.com>
+CC: <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <imx@lists.linux.dev>, <linux-mediatek@lists.infradead.org>,
+        <kernel-janitors@vger.kernel.org>
+References: <20240611-md-drivers-soc-v1-1-8f0fc9fff234@quicinc.com>
+ <a314c676-3dbd-46f8-826a-2e59367d30ce@linaro.org>
+ <ea604d75-e571-4d63-a7e2-aa1393588c75@collabora.com>
+ <cfad60ae-3dee-4c03-84c0-734f1fa59ff2@app.fastmail.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <cfad60ae-3dee-4c03-84c0-734f1fa59ff2@app.fastmail.com>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Ftek-8sc2XhAb2_WElZ_ZTVzalQijyoT
+X-Proofpoint-ORIG-GUID: Ftek-8sc2XhAb2_WElZ_ZTVzalQijyoT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-12_07,2024-06-12_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
+ spamscore=0 phishscore=0 suspectscore=0 priorityscore=1501 impostorscore=0
+ lowpriorityscore=0 bulkscore=0 adultscore=0 mlxlogscore=936 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
+ definitions=main-2406120097
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240612_024454_523204_A6061F51 
-X-CRM114-Status: UNSURE (   9.62  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240612_065628_427430_8BDB0422 
+X-CRM114-Status: GOOD (  15.87  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,55 +116,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-
-Add spicc loopback mode for debugging convenience.
-
-Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- drivers/spi/spi-meson-spicc.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-index 8a4a8ba9dfed..8838a98b04c2 100644
---- a/drivers/spi/spi-meson-spicc.c
-+++ b/drivers/spi/spi-meson-spicc.c
-@@ -514,7 +514,9 @@ static int meson_spicc_prepare_message(struct spi_controller *host,
- 	/* Setup no wait cycles by default */
- 	writel_relaxed(0, spicc->base + SPICC_PERIODREG);
- 
--	writel_bits_relaxed(SPICC_LBC_W1, 0, spicc->base + SPICC_TESTREG);
-+	writel_bits_relaxed(SPICC_LBC_W1,
-+			    spi->mode & SPI_LOOP ? SPICC_LBC_W1 : 0,
-+			    spicc->base + SPICC_TESTREG);
- 
- 	return 0;
- }
-@@ -850,7 +852,7 @@ static int meson_spicc_probe(struct platform_device *pdev)
- 
- 	host->num_chipselect = 4;
- 	host->dev.of_node = pdev->dev.of_node;
--	host->mode_bits = SPI_CPHA | SPI_CPOL | SPI_CS_HIGH;
-+	host->mode_bits = SPI_CPHA | SPI_CPOL | SPI_CS_HIGH | SPI_LOOP;
- 	host->bits_per_word_mask = SPI_BPW_MASK(32) |
- 				   SPI_BPW_MASK(24) |
- 				   SPI_BPW_MASK(16) |
-
----
-base-commit: ec0d19f2b59699e2e148091debaa0d9d6af5800a
-change-id: 20240611-spi_lbc-0859cebc580e
-
-Best regards,
--- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
-
+On 6/12/2024 1:18 AM, Arnd Bergmann wrote:
+> On Wed, Jun 12, 2024, at 10:12, AngeloGioacchino Del Regno wrote:
+> 
+>> MediaTek:
+>> Reviewed-by: AngeloGioacchino Del Regno 
+>> <angelogioacchino.delregno@collabora.com>
+>>
+>> ...but I'm not sure how we should apply this? :-)
+>>
+>> Either Arnd takes it directly, or you split it per-soc... and I don't have any
+>> preference anyway.
+>>
+>> (P.S.: Added Arnd to the loop)
+> 
+> I think in this case it makes sense to keep it as a single
+> patch, no need to clutter up the git log with identical
+> one-line changes.
+> 
+> Jeff, can you send this to soc@kernel.org (cc:lakml)
+> once you feel you have enough Acks? That will put it
+> into my patchwork queue.
+> 
+>       Arnd
+Will do, thanks Arnd
 
 
 _______________________________________________
