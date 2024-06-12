@@ -4,85 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0726AC27C65
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2024 18:51:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28E4AC27C53
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jun 2024 05:51:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VUvGMUCKF99XJl3DBCBk0kqLkI0Wi52HmmUwDwQn7+M=; b=1itd6DvgGPCV2r
-	/vY91nT9rpYz/qlKbxAcfaSVQ5bEOSRnXXuNUh2yxrFvLvXBN8BTc0pMGIznflzNUw/xEcEpH7e4B
-	M7lHeTodGDQ+ksgGIc6G6Hk/RbcdUBaf4m+tngUYGCaPnRjOHBdpjzZoGHZCXWlEjLNMFsz0IsKcZ
-	8w3BcQ+DSKtSRv8r2Se4SV/e4lIU9yfMDL7LKI+UalA6xwjiFf7h5PaKbvuSXKrmW8vRDQlLPrnmv
-	x0Bjc2jktDCv+z8TDABIkimt7U62pAKGI+SMnjCSje2YSEUcC3yvgl3MCfWV6O5SMkscFNQ8N/mnd
-	pGODlh2aMgw0p4p0e18A==;
+	List-Archive:List-Unsubscribe:List-Id:CC:To:Message-ID:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=4GD9O72HOqqHqYl2oa3wJiJd9iFiuy/UdkTQQHUAKGI=; b=qNMcrRV2sNyf2/
+	Am8i43DDGWBVK1YHvl1/B72xq/3tuemsT+EP0K/UduHqtfA+uYQlHwIDNwjuNni66qc1bW+pm1s3M
+	NxQgAcS4XYPR0xIdJdcX/I9rOIuIPXbKvLZnsuH7Qd+qugg/qWK95ElHP3EP+Mknby9//LirmNDLr
+	+EI5yecqL7fQnV0z8ud9hJ3YiGDZQd7Nx51bt5Q7m77xGGFSjYn0XvuwRWOdhcYZjO+GygvLWVE/i
+	dOR5qIAg06dvp2JHvGU84LMNHQE28aJN2X0sy7LJwuCP1sc4ryR+UHH189lzmG7bZ4Kj1mym5wxjo
+	vCSJrEww5sNoNJ53WvBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sH6aK-00000009uGI-2xHr;
-	Tue, 11 Jun 2024 18:51:08 +0000
-Received: from mgamail.intel.com ([192.198.163.12])
+	id 1sHGt9-0000000BC8U-0jKm;
+	Wed, 12 Jun 2024 05:51:15 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sH6aG-00000009uEI-36Zk;
-	Tue, 11 Jun 2024 18:51:06 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718131864; x=1749667864;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=RzJp8cb00wWu9a4yoQ4JsrdL7/XwAY9pJKi6QkNRA7I=;
-  b=ja/M6hmVV1KzPYJSDXAeC6vYPxsZRlA61urVMDIVdmvB+mee4NInpO1t
-   YMMJ/FZ8DOox+r76wky2r0dedRUqbENu7VJ57b0D9szXrR/SfUZSPg6ee
-   tASLNqBur3B3FZy0Kk3ViccwzAF1C3pp0vg3PhdxKuHR+cS4oFRH98xR8
-   3ESTMMl4QBKfEUGLlMTYmBnuiO2xtHzfF9NhK/9d7FwVbQ1sQUsaIKrjR
-   xCQV0ekxHEX0fynxOclyFR54YpS62U3DqQ2CBZ0baay6E/IUzP3rMFe45
-   PLjxnc/Rw6eaKOVD72pGpqCb3lljYZvTQXBebyiFCOAdO/ajQ9KbFexEk
-   Q==;
-X-CSE-ConnectionGUID: T1FYVMmnRt6BAZn6NyUrsQ==
-X-CSE-MsgGUID: b4bEHDaZSbCRiXBqRU4haA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="18721242"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; 
-   d="scan'208";a="18721242"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2024 11:51:03 -0700
-X-CSE-ConnectionGUID: qFaEQGGQR0yj92/nkWYFjw==
-X-CSE-MsgGUID: vVT7fhWYSwGUXsLltUGGmQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; 
-   d="scan'208";a="39638525"
-Received: from lkp-server01.sh.intel.com (HELO 628d7d8b9fc6) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 11 Jun 2024 11:50:59 -0700
-Received: from kbuild by 628d7d8b9fc6 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sH6a9-0000nd-1G;
-	Tue, 11 Jun 2024 18:50:57 +0000
-Date: Wed, 12 Jun 2024 02:50:56 +0800
-From: kernel test robot <lkp@intel.com>
-To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: oe-kbuild-all@lists.linux.dev, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH 3/3] arm64: dts: amlogic: a4: add pinctrl node
-Message-ID: <202406120256.PStYu9fX-lkp@intel.com>
-References: <20240611-a4_pinctrl-v1-3-dc487b1977b3@amlogic.com>
+	id 1sHGt6-0000000BC7j-1HKj;
+	Wed, 12 Jun 2024 05:51:13 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45BL0gJK013157;
+	Wed, 12 Jun 2024 05:51:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Asvj8P9d0rg7S+Y9Suvlcx
+	FTOWajvcFsS63XkgAaQcs=; b=gwnI6Xkm+yhcXJUattorbWIJEMMBxOKi+CSvuO
+	x9IxN8RMGhMVMoTy+pdArLvx09skrEfPLaV/khLAcA0zxRGmYMXnzhlkFzbbbTSD
+	zF53fxHQxYsiHstm7nN0M0lwb1gzxBaea5+dhs8zRaFaQNVkXXlbRq/LMG5ObX0F
+	VgGuvXMaSdHCGphTP8KhLnr287iS9cNOKmrdybzG2ycFeAY+U1l/XvBTRDkMCAMB
+	j24h8jdKbBouPDJ164OTN6f1Tz5QuHR8sE6ND5LvY2g1OvGdh7IlkE4LVzgHfp9b
+	bjgtoMQMrBydNNsTSf7ZXFjWGPMxYY0NARloKz0dV7NQrbDA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ypm45aj40-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Jun 2024 05:51:02 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45C5p1uH001793
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Jun 2024 05:51:01 GMT
+Received: from [169.254.0.1] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 11 Jun
+ 2024 22:51:00 -0700
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Date: Tue, 11 Jun 2024 22:50:58 -0700
+Subject: [PATCH] soc: add missing MODULE_DESCRIPTION() macros
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240611-a4_pinctrl-v1-3-dc487b1977b3@amlogic.com>
+Message-ID: <20240611-md-drivers-soc-v1-1-8f0fc9fff234@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAEE3aWYC/x3MTQ6CQAxA4auQrm0yHQmIVzEu5qdKExlMq4SEc
+ HdGl9/ivQ2MVdjg2mygvIjJXCro1EAaQ3kySq4G73zrOiKcMmaVhdXQ5oTUX1yk4Tx0vocavZU
+ fsv6Ht3t1DMYYNZQ0/jYvKd8Vp2AfVtj3A080wx5/AAAA
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman
+	<khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        "Martin
+ Blumenstingl" <martin.blumenstingl@googlemail.com>,
+        Shawn Guo
+	<shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        "Pengutronix
+ Kernel Team" <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Linus Walleij <linusw@kernel.org>,
+        Imre Kaloz <kaloz@openwrt.org>,
+        "Matthias
+ Brugger" <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <imx@lists.linux.dev>, <linux-mediatek@lists.infradead.org>,
+        <kernel-janitors@vger.kernel.org>,
+        Jeff Johnson <quic_jjohnson@quicinc.com>
+X-Mailer: b4 0.13.0
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: hemcyYV9GAtAfb0bwsG1uX_Te_dWyefs
+X-Proofpoint-ORIG-GUID: hemcyYV9GAtAfb0bwsG1uX_Te_dWyefs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-12_02,2024-06-11_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 mlxlogscore=999 phishscore=0 malwarescore=0 suspectscore=0
+ bulkscore=0 spamscore=0 clxscore=1011 priorityscore=1501 adultscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406120040
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240611_115104_828674_78F804FD 
-X-CRM114-Status: UNSURE (   9.81  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240611_225112_606188_14878182 
+X-CRM114-Status: GOOD (  12.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,57 +115,85 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Xianwei,
+With ARCH=x86, make allmodconfig && make W=1 C=1 reports:
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/imx/soc-imx8m.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/ixp4xx/ixp4xx-qmgr.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/ixp4xx/ixp4xx-npe.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/mediatek/mtk-cmdq-helper.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/amlogic/meson-clk-measure.o
 
-kernel test robot noticed the following build warnings:
+Add the missing invocations of the MODULE_DESCRIPTION() macro.
 
-[auto build test WARNING on 87501b7ca0005c533d770d37e0047a60954d986a]
+Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+---
+This is the last of the issues that I see in the soc directory
+---
+ drivers/soc/amlogic/meson-clk-measure.c | 1 +
+ drivers/soc/imx/soc-imx8m.c             | 1 +
+ drivers/soc/ixp4xx/ixp4xx-npe.c         | 1 +
+ drivers/soc/ixp4xx/ixp4xx-qmgr.c        | 1 +
+ drivers/soc/mediatek/mtk-cmdq-helper.c  | 1 +
+ 5 files changed, 5 insertions(+)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Xianwei-Zhao-via-B4-Relay/dt-bindings-pinctrl-Add-support-for-Amlogic-A4-SoCs/20240611-131412
-base:   87501b7ca0005c533d770d37e0047a60954d986a
-patch link:    https://lore.kernel.org/r/20240611-a4_pinctrl-v1-3-dc487b1977b3%40amlogic.com
-patch subject: [PATCH 3/3] arm64: dts: amlogic: a4: add pinctrl node
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20240612/202406120256.PStYu9fX-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240612/202406120256.PStYu9fX-lkp@intel.com/reproduce)
+diff --git a/drivers/soc/amlogic/meson-clk-measure.c b/drivers/soc/amlogic/meson-clk-measure.c
+index 3f3039600357..a6453ffeb753 100644
+--- a/drivers/soc/amlogic/meson-clk-measure.c
++++ b/drivers/soc/amlogic/meson-clk-measure.c
+@@ -688,4 +688,5 @@ static struct platform_driver meson_msr_driver = {
+ 	},
+ };
+ module_platform_driver(meson_msr_driver);
++MODULE_DESCRIPTION("Amlogic Meson SoC Clock Measure driver");
+ MODULE_LICENSE("GPL v2");
+diff --git a/drivers/soc/imx/soc-imx8m.c b/drivers/soc/imx/soc-imx8m.c
+index ec87d9d878f3..fe111bae38c8 100644
+--- a/drivers/soc/imx/soc-imx8m.c
++++ b/drivers/soc/imx/soc-imx8m.c
+@@ -252,4 +252,5 @@ static int __init imx8_soc_init(void)
+ 	return ret;
+ }
+ device_initcall(imx8_soc_init);
++MODULE_DESCRIPTION("NXP i.MX8M SoC driver");
+ MODULE_LICENSE("GPL");
+diff --git a/drivers/soc/ixp4xx/ixp4xx-npe.c b/drivers/soc/ixp4xx/ixp4xx-npe.c
+index 35825ee95dff..34a6f187c220 100644
+--- a/drivers/soc/ixp4xx/ixp4xx-npe.c
++++ b/drivers/soc/ixp4xx/ixp4xx-npe.c
+@@ -764,6 +764,7 @@ static struct platform_driver ixp4xx_npe_driver = {
+ module_platform_driver(ixp4xx_npe_driver);
+ 
+ MODULE_AUTHOR("Krzysztof Halasa");
++MODULE_DESCRIPTION("Intel IXP4xx Network Processor Engine driver");
+ MODULE_LICENSE("GPL v2");
+ MODULE_FIRMWARE(NPE_A_FIRMWARE);
+ MODULE_FIRMWARE(NPE_B_FIRMWARE);
+diff --git a/drivers/soc/ixp4xx/ixp4xx-qmgr.c b/drivers/soc/ixp4xx/ixp4xx-qmgr.c
+index 244ad8d7e80b..cb112f3643e9 100644
+--- a/drivers/soc/ixp4xx/ixp4xx-qmgr.c
++++ b/drivers/soc/ixp4xx/ixp4xx-qmgr.c
+@@ -465,6 +465,7 @@ static struct platform_driver ixp4xx_qmgr_driver = {
+ };
+ module_platform_driver(ixp4xx_qmgr_driver);
+ 
++MODULE_DESCRIPTION("Intel IXP4xx Queue Manager driver");
+ MODULE_LICENSE("GPL v2");
+ MODULE_AUTHOR("Krzysztof Halasa");
+ 
+diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
+index 046522664dc1..dd70d4d2bed7 100644
+--- a/drivers/soc/mediatek/mtk-cmdq-helper.c
++++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
+@@ -526,4 +526,5 @@ int cmdq_pkt_finalize(struct cmdq_pkt *pkt)
+ }
+ EXPORT_SYMBOL(cmdq_pkt_finalize);
+ 
++MODULE_DESCRIPTION("MediaTek Command Queue (CMDQ) driver");
+ MODULE_LICENSE("GPL v2");
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406120256.PStYu9fX-lkp@intel.com/
+---
+base-commit: 83a7eefedc9b56fe7bfeff13b6c7356688ffa670
+change-id: 20240611-md-drivers-soc-1780b1939627
 
-dtcheck warnings: (new ones prefixed by >>)
->> arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi:71.32-85.4: Warning (unit_address_vs_reg): /soc/bus@fe000000/pinctrl@4000: node has a unit name, but no reg or ranges property
->> arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi:52.35-66.5: Warning (unit_address_vs_reg): /soc/pinctrl@fe08e700: node has a unit name, but no reg or ranges property
->> arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi:71.32-85.4: Warning (simple_bus_reg): /soc/bus@fe000000/pinctrl@4000: missing or empty reg/ranges property
->> arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi:52.35-66.5: Warning (simple_bus_reg): /soc/pinctrl@fe08e700: missing or empty reg/ranges property
-
-vim +71 arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-
-  > 52			aobus_pinctrl: pinctrl@fe08e700 {
-    53				compatible = "amlogic,a4-aobus-pinctrl";
-    54				#address-cells = <2>;
-    55				#size-cells = <2>;
-    56				ranges;
-    57	
-    58				ao_gpio: bank@fe08e700 {
-    59					reg = <0x0 0xfe08e700 0x0 0x04>,
-    60					      <0x0 0xfe08e704 0x0 0x60>;
-    61					reg-names = "mux", "gpio";
-    62					gpio-controller;
-    63					#gpio-cells = <2>;
-    64					gpio-ranges = <&aobus_pinctrl 0 0 8>;
-    65				};
-    66			};
-    67		};
-    68	};
-    69	
-    70	&apb {
-  > 71		periphs_pinctrl: pinctrl@4000 {
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
