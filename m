@@ -4,115 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E400C27C77
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jun 2024 07:58:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB0DAC27C75
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jun 2024 08:09:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=h47yxhQz6wX2D61Uhd5zWh5gzVLsW3/CO2RXfNTC2BQ=; b=gt+x601IqACIiQx/yPZaIvcy0W
-	ci8e6arSuMuJegzHH+e5Nd1IsVnyiArMALC1W8rZcyipuPFdaYLsqbmK12TkwuCVygskKpyaV0VOB
-	6Eh3HD1PCe/3r+1FyX41CX7qkul5pTTucM2VVNWVWqSzESZgHE6EXgEucpRR4oZQc/eouJwf2/BNz
-	5VUGQfucsO9DdEOseLQ4nqTvNoEXu5UsL5hK6B3rqppkCOFRANCu7IIYXveifCmRE56I0QqM0G6dT
-	Ec35YwNjsvLekb6ZdzXqk/owprSrdPfYSzW6he5bkiOED0NoWMEd1jIHScZmXqNRz1UPi5i3AjPGD
-	OL43jo+g==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=cuITP7ujHqBAIrtROKf1UDIjkMzKxJiDj6O4DLWRZWc=; b=OoQJhXOPuVSotlwG9QRTqER169
+	WArB11hwBtB/4WmZ0sNhtFAK6wv1V/zDf5qKpeBehC/pmAize4ZTtMVcEPqe2JUC5aTChD+B2F1SC
+	CjJMAIHNI3RgEL9BYepWCx4zh3nTFu2IGzHK15hpMQTZsEZNmpKjvNygRavbzcfKBeBqHmDsdMdZB
+	jE5x7d/VTxr9KYXwHvMGOHZ7YIJWAyu6A1xbI5BDlK1nGfmG3605qUAXHZasirCGZCk4tUvqPRFIN
+	h8IK9ob3be6Eqh1gR/Aro8X8blC2SQ/5enz/ZWGxumU10vdJ8Su3jKb82vpFkMSafsNjjXKC6rVUH
+	nzujwoZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHIs5-0000000BYoK-3uKl;
-	Wed, 12 Jun 2024 07:58:17 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1sHJ2s-0000000BcmE-2EXT;
+	Wed, 12 Jun 2024 08:09:26 +0000
+Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHIs0-0000000BYlm-3xuu
+	id 1sHJ2n-0000000BciP-1wsL
 	for linux-amlogic@lists.infradead.org;
-	Wed, 12 Jun 2024 07:58:15 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-421d32fda86so30118035e9.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 12 Jun 2024 00:58:10 -0700 (PDT)
+	Wed, 12 Jun 2024 08:09:23 +0000
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a6f09b457fdso356468866b.2
+        for <linux-amlogic@lists.infradead.org>; Wed, 12 Jun 2024 01:09:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718179089; x=1718783889; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bcLdFTHsKhxsWZKbXum3q12jRap59Wq5H+bR99icFo4=;
-        b=G92tyQeWa9lIsaQiho/ieI7WEAUeJ5hD/2qDNU45hzLSYq7cFOhTTAtyxCV51dPQ0p
-         WBDh24beCrN9sELf/r2v553ktjVPRUGPL05yZ5iiVzAHW0bh97RFIn9mB8EXVOJFvrVH
-         EbsxMhRU2z+NGvu83NFMACfjyjhfjeA3SRnW91XM4xEm9wfrmXfCie56X2qng3culMY8
-         GX7JAuFI7Iixzm+nJHQXtLTXpAALjzN4nn17G97G42VLnTh+QF8x15BiWZYtWl+NFuFd
-         tpxqwYIkVPOXgyByYfjtPpX9fLto66dSa4+giTuDrVZs+NYuXyVt298dBVrS8KzcMiGG
-         pR1Q==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1718179758; x=1718784558; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=RKb/vtoIHaAuT7eS6tdIIVHB4rHiCLnX6z8pJYSRJNs=;
+        b=Zvu5CDuVYWq/z5rWI92tLQklIRumkzJ4Wf/jF03Sd1n9yO1mGecQ+RMmKCNKRkHMwG
+         eLlAP4YhtseGT7TqwmegBmcHlJKQ6LolkLS/GPDcLIg+H/LqjBF0XzKkx4dYILCuNUR8
+         CFlkw45ZtAAhTxxcdN7a1r8y2phCrKLmPZEEWNxEGiM00WZKz8iF9QSlKmkW2BbV9XbM
+         pNYRtV0auoyDrBDFEkNMENGvFZo6X3cKQ4jubpfyuyVNJqNN+F5htrQcrf9LD/aiPkSK
+         OdLj3IsHuxzXlUvjCsv3DC78GaSVOp97toJqDMcaDTLcWweY/dNMN5np1PhSRGSBwfg8
+         kEvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718179089; x=1718783889;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=bcLdFTHsKhxsWZKbXum3q12jRap59Wq5H+bR99icFo4=;
-        b=kKaz8TlQVzvCYm+h5oaAqjUuzV5m4vZZhALc85NT4YDaAWJvDHFZBAWqCTaUtvnKjT
-         KtmFgobcNAyb46p7znBToGJFFzXwfIWCFDKRVq3k+NP8ZvpbZlvUXNJn0uouXyU6QoAJ
-         Y+AUh1d/7Q7sjpzdmrRyqv7Or7IGA3wVFabtWZ/nfA4HMpN9JuDP1XQZL3OOqjZtnt0c
-         W7cG9JdV8gWGjbIfko94o2Kd4XA4PUuNSNqzM7VDo40cf8FzZTNYITh7F7eW7J8iUq+m
-         wcrh7o09okR5Ajr1VuXNzQQML6jtFQst2Qyl8EJmHeZKLFND0syLeIHcjaxeNJ39mYWv
-         Q8Kw==
-X-Forwarded-Encrypted: i=1; AJvYcCWic7Zgu+kjhwzXyAOefqCDGSXCJu+yfUynMFd2gzKHNod/OhTquOV44kLWyitDPFHV75g6Z1L5zZh0TgNYefoz0o8yP774HSKERvoVUSg9+6s=
-X-Gm-Message-State: AOJu0Yx8noDrlxYiQp89p4ZSW0cdILJ0/wC0W4PbZzImAiz/oklFrcg3
-	nCSJ7UKb7NxDxutB60gKoDZ8pLRxpbeKvPnOg82Vd/bbXEr0kn6yzQNRZfNoCx4=
-X-Google-Smtp-Source: AGHT+IEJGltYyHPm5azIaXZsfp0ocu+v/Cqr2tZqTEenkv7mLVqkDy/oZNxcfiL3PNM4Ugjo8ukmUw==
-X-Received: by 2002:a05:600c:4f0e:b0:422:97d:4403 with SMTP id 5b1f17b1804b1-422866c2684mr12207455e9.31.1718179088584;
-        Wed, 12 Jun 2024 00:58:08 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:30bd:bf21:eed1:8aeb? ([2a01:e0a:982:cbb0:30bd:bf21:eed1:8aeb])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35f26857582sm6538100f8f.77.2024.06.12.00.58.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jun 2024 00:58:08 -0700 (PDT)
-Message-ID: <a314c676-3dbd-46f8-826a-2e59367d30ce@linaro.org>
-Date: Wed, 12 Jun 2024 09:58:05 +0200
+        d=1e100.net; s=20230601; t=1718179758; x=1718784558;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RKb/vtoIHaAuT7eS6tdIIVHB4rHiCLnX6z8pJYSRJNs=;
+        b=ZIurkv36wc1g76XD3uAWuz7rpcezmFtJzsRbLAmy5P8SksFdwTQb2Pki0kZrdXqck5
+         Ar5CAipq0wSFp/reHXfAU04oqEmVSPLrWBoGXSxqGbm+Zk18VagRRxpbiXa1PUhV6F1T
+         JXrHsskdHRXzfDgXywzKOXJlHxAlGSlXbYVkXCq9PwRbkBJosBSmARhZmNkxb0h2vfgF
+         TudB76Jq2XDLXRnE76PCvB4MeXAyYOVo0H2Cr42yWsyTPyNYtf81+o7cQi/yH7Rid1C6
+         eFI3+r6uBcbfnAj+WED37/wOlsD7V0OKWDjHfcqF4Q21gzs8gfJCA+REUcjvySU5x+1p
+         R9xw==
+X-Forwarded-Encrypted: i=1; AJvYcCVTWxOfSo+QDiNCNHOyOgyyWa7VMcWEOLDGxW7dEvnuFEiiuDlfNP6RSXJ683k/8A7D9pTw+6ypZZh9S23D4upyyKN4YJaSOwjrkVoW5NiWefM=
+X-Gm-Message-State: AOJu0YxSyy1jpszMdwOkJGShB+kd6fYkiMGZyaqwIybgOBqWOGT9Xa06
+	jlQyuLby+qwk/q8oill0BH+YsX141QlQn0NL5ufzu9rV1liNguR5iJtkvSwdTA8=
+X-Google-Smtp-Source: AGHT+IEyUqS7xeGpS62654NQBM20ZnTsaBaQtVWFbZpKweR38cT7xpNYg2DKAqfcljsV5Jo8GYnSxQ==
+X-Received: by 2002:a17:906:3c47:b0:a6f:1c38:3370 with SMTP id a640c23a62f3a-a6f47fad6b3mr75793666b.36.1718179757867;
+        Wed, 12 Jun 2024 01:09:17 -0700 (PDT)
+Received: from localhost (p509153eb.dip0.t-ipconnect.de. [80.145.83.235])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f16427842sm439552466b.100.2024.06.12.01.09.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jun 2024 01:09:16 -0700 (PDT)
+Date: Wed, 12 Jun 2024 10:09:15 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Trevor Gamblin <tgamblin@baylibre.com>
+Cc: Lucas Stankus <lucas.p.stankus@gmail.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Dmitry Rokosov <ddrokosov@sberdevices.ru>, 
+	Cosmin Tanislav <cosmin.tanislav@analog.com>, Chen-Yu Tsai <wens@csie.org>, 
+	Hans de Goede <hdegoede@redhat.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Saravanan Sekar <sravanhome@gmail.com>, 
+	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
+	Chunyan Zhang <zhang.lyra@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>, 
+	Crt Mori <cmo@melexis.com>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, linux-amlogic@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [RESEND][PATCH] iio: simplify with regmap_set_bits(),
+ regmap_clear_bits()
+Message-ID: <6grkkioyfqvjy37ztevbs7lbkhc4yfvvomwk7jx5qjmrsdihir@mlluicav2cvs>
+References: <20240611165214.4091591-1-tgamblin@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] soc: add missing MODULE_DESCRIPTION() macros
-To: Jeff Johnson <quic_jjohnson@quicinc.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Linus Walleij <linusw@kernel.org>,
- Imre Kaloz <kaloz@openwrt.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-mediatek@lists.infradead.org, kernel-janitors@vger.kernel.org
-References: <20240611-md-drivers-soc-v1-1-8f0fc9fff234@quicinc.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240611-md-drivers-soc-v1-1-8f0fc9fff234@quicinc.com>
+In-Reply-To: <20240611165214.4091591-1-tgamblin@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240612_005813_060503_49BB4887 
-X-CRM114-Status: GOOD (  14.75  )
+X-CRM114-CacheID: sfid-20240612_010921_735461_7ECA03B7 
+X-CRM114-Status: GOOD (  16.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,98 +103,132 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============3605473572962512149=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 12/06/2024 07:50, Jeff Johnson wrote:
-> With ARCH=x86, make allmodconfig && make W=1 C=1 reports:
-> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/imx/soc-imx8m.o
-> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/ixp4xx/ixp4xx-qmgr.o
-> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/ixp4xx/ixp4xx-npe.o
-> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/mediatek/mtk-cmdq-helper.o
-> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/amlogic/meson-clk-measure.o
-> 
-> Add the missing invocations of the MODULE_DESCRIPTION() macro.
-> 
-> Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-> ---
-> This is the last of the issues that I see in the soc directory
-> ---
->   drivers/soc/amlogic/meson-clk-measure.c | 1 +
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org> # for amlogic/meson-clk-measure.c
+--===============3605473572962512149==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="kp4epuvmx3jkqhoq"
+Content-Disposition: inline
 
->   drivers/soc/imx/soc-imx8m.c             | 1 +
->   drivers/soc/ixp4xx/ixp4xx-npe.c         | 1 +
->   drivers/soc/ixp4xx/ixp4xx-qmgr.c        | 1 +
->   drivers/soc/mediatek/mtk-cmdq-helper.c  | 1 +
->   5 files changed, 5 insertions(+)
-> 
-> diff --git a/drivers/soc/amlogic/meson-clk-measure.c b/drivers/soc/amlogic/meson-clk-measure.c
-> index 3f3039600357..a6453ffeb753 100644
-> --- a/drivers/soc/amlogic/meson-clk-measure.c
-> +++ b/drivers/soc/amlogic/meson-clk-measure.c
-> @@ -688,4 +688,5 @@ static struct platform_driver meson_msr_driver = {
->   	},
->   };
->   module_platform_driver(meson_msr_driver);
-> +MODULE_DESCRIPTION("Amlogic Meson SoC Clock Measure driver");
->   MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/soc/imx/soc-imx8m.c b/drivers/soc/imx/soc-imx8m.c
-> index ec87d9d878f3..fe111bae38c8 100644
-> --- a/drivers/soc/imx/soc-imx8m.c
-> +++ b/drivers/soc/imx/soc-imx8m.c
-> @@ -252,4 +252,5 @@ static int __init imx8_soc_init(void)
->   	return ret;
->   }
->   device_initcall(imx8_soc_init);
-> +MODULE_DESCRIPTION("NXP i.MX8M SoC driver");
->   MODULE_LICENSE("GPL");
-> diff --git a/drivers/soc/ixp4xx/ixp4xx-npe.c b/drivers/soc/ixp4xx/ixp4xx-npe.c
-> index 35825ee95dff..34a6f187c220 100644
-> --- a/drivers/soc/ixp4xx/ixp4xx-npe.c
-> +++ b/drivers/soc/ixp4xx/ixp4xx-npe.c
-> @@ -764,6 +764,7 @@ static struct platform_driver ixp4xx_npe_driver = {
->   module_platform_driver(ixp4xx_npe_driver);
->   
->   MODULE_AUTHOR("Krzysztof Halasa");
-> +MODULE_DESCRIPTION("Intel IXP4xx Network Processor Engine driver");
->   MODULE_LICENSE("GPL v2");
->   MODULE_FIRMWARE(NPE_A_FIRMWARE);
->   MODULE_FIRMWARE(NPE_B_FIRMWARE);
-> diff --git a/drivers/soc/ixp4xx/ixp4xx-qmgr.c b/drivers/soc/ixp4xx/ixp4xx-qmgr.c
-> index 244ad8d7e80b..cb112f3643e9 100644
-> --- a/drivers/soc/ixp4xx/ixp4xx-qmgr.c
-> +++ b/drivers/soc/ixp4xx/ixp4xx-qmgr.c
-> @@ -465,6 +465,7 @@ static struct platform_driver ixp4xx_qmgr_driver = {
->   };
->   module_platform_driver(ixp4xx_qmgr_driver);
->   
-> +MODULE_DESCRIPTION("Intel IXP4xx Queue Manager driver");
->   MODULE_LICENSE("GPL v2");
->   MODULE_AUTHOR("Krzysztof Halasa");
->   
-> diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> index 046522664dc1..dd70d4d2bed7 100644
-> --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
-> +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> @@ -526,4 +526,5 @@ int cmdq_pkt_finalize(struct cmdq_pkt *pkt)
->   }
->   EXPORT_SYMBOL(cmdq_pkt_finalize);
->   
-> +MODULE_DESCRIPTION("MediaTek Command Queue (CMDQ) driver");
->   MODULE_LICENSE("GPL v2");
-> 
+
+--kp4epuvmx3jkqhoq
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Trevor,
+
+On Tue, Jun 11, 2024 at 12:52:06PM -0400, Trevor Gamblin wrote:
+> Simplify the way regmap is accessed in iio drivers.
+>=20
+> Instead of using regmap_update_bits() and passing the mask twice, use
+> regmap_set_bits().
+>=20
+> Instead of using regmap_update_bits() and passing val =3D 0, use
+> regmap_clear_bits().
+>=20
+> Suggested-by: Uwe Kleine-K=F6nig <u.kleine-koenig@baylibre.com>
+> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
 > ---
-> base-commit: 83a7eefedc9b56fe7bfeff13b6c7356688ffa670
-> change-id: 20240611-md-drivers-soc-1780b1939627
-> 
+> CC list got suppressed on first submission, so resending. Sorry about
+> that.
+>=20
+>  drivers/iio/accel/adxl313_core.c              |   4 +-
+>  drivers/iio/accel/adxl313_spi.c               |   4 +-
+>  drivers/iio/accel/fxls8962af-core.c           |  18 ++--
+>  drivers/iio/accel/kxsd9.c                     |   6 +-
+>  drivers/iio/accel/msa311.c                    |   6 +-
+>  drivers/iio/adc/ad4130.c                      |   4 +-
+>  drivers/iio/adc/axp20x_adc.c                  |   5 +-
+>  drivers/iio/adc/axp288_adc.c                  |   4 +-
+>  drivers/iio/adc/bcm_iproc_adc.c               |   8 +-
+>  drivers/iio/adc/berlin2-adc.c                 |  24 ++---
+>  drivers/iio/adc/cpcap-adc.c                   |  44 +++-----
+>  drivers/iio/adc/fsl-imx25-gcq.c               |  16 ++-
+>  drivers/iio/adc/ina2xx-adc.c                  |   3 +-
+>  drivers/iio/adc/intel_mrfld_adc.c             |   4 +-
+>  drivers/iio/adc/meson_saradc.c                | 101 ++++++++----------
+>  drivers/iio/adc/mp2629_adc.c                  |  19 ++--
+>  drivers/iio/adc/qcom-spmi-rradc.c             |  50 +++++----
+>  drivers/iio/adc/rn5t618-adc.c                 |   5 +-
+>  drivers/iio/adc/sc27xx_adc.c                  |  41 ++++---
+>  drivers/iio/adc/stm32-dfsdm-adc.c             |  29 +++--
+>  drivers/iio/dac/ltc2688.c                     |   5 +-
+>  drivers/iio/dac/stm32-dac-core.c              |   5 +-
+>  drivers/iio/gyro/bmg160_core.c                |   4 +-
+>  drivers/iio/gyro/mpu3050-core.c               |  33 +++---
+>  drivers/iio/health/afe4403.c                  |   9 +-
+>  drivers/iio/health/afe4404.c                  |   9 +-
+>  drivers/iio/health/max30100.c                 |   5 +-
+>  drivers/iio/health/max30102.c                 |   5 +-
+>  .../imu/inv_icm42600/inv_icm42600_buffer.c    |  14 ++-
+>  .../iio/imu/inv_icm42600/inv_icm42600_core.c  |   9 +-
+>  .../iio/imu/inv_icm42600/inv_icm42600_i2c.c   |   4 +-
+>  .../iio/imu/inv_icm42600/inv_icm42600_spi.c   |   4 +-
+>  drivers/iio/light/adux1020.c                  |  13 ++-
+>  drivers/iio/light/iqs621-als.c                |   4 +-
+>  drivers/iio/light/isl29018.c                  |   6 +-
+>  drivers/iio/light/st_uvis25_core.c            |   4 +-
+>  drivers/iio/light/veml6030.c                  |   4 +-
+>  drivers/iio/magnetometer/ak8974.c             |  11 +-
+>  drivers/iio/magnetometer/mmc35240.c           |   8 +-
+>  drivers/iio/pressure/bmp280-core.c            |   4 +-
+>  drivers/iio/proximity/sx9324.c                |   5 +-
+>  drivers/iio/proximity/sx9360.c                |   5 +-
+>  drivers/iio/proximity/sx9500.c                |  12 +--
+>  drivers/iio/proximity/sx_common.c             |   9 +-
+>  drivers/iio/temperature/mlx90632.c            |   4 +-
+>  drivers/iio/trigger/stm32-timer-trigger.c     |  34 +++---
+>  46 files changed, 273 insertions(+), 351 deletions(-)
 
+I found five more drivers below drivers/iio that could benefit from such
+a conversion:
+
+ drivers/iio/adc/ad7173.c                      |  2 +-
+ drivers/iio/adc/ti-ads1298.c                  | 13 ++++++-------
+ drivers/iio/imu/inv_mpu6050/inv_mpu_ring.c    |  4 ++--
+ drivers/iio/imu/inv_mpu6050/inv_mpu_trigger.c |  8 ++++----
+ drivers/iio/light/veml6075.c                  |  4 ++--
+ 5 files changed, 15 insertions(+), 16 deletions(-)
+
+But even without addressing these:
+
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@baylibre.com>
+
+Thanks for picking up my suggestion,
+Uwe
+
+--kp4epuvmx3jkqhoq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmZpV6cACgkQj4D7WH0S
+/k5HtQf/VeZ8OLgNz7dXrFmR7AQ9UOUpW7yE/aNJ/0jp+/7SKFUid8kLelq2CIon
+ZVEOQoxGVhsBhSmzwJGvZf6cOMAu4nWRuACbap5soHOv/ycOA3QIKizvIGt1TEEh
+0/VqnqKzkXb9oxxMVSpN3tbFXRuYlvx7+jpdDVoguOBsVI5jeZb+AXseQscpy/nt
+qD1t26pVyaJH3/Rhp0912HRYo6zsvpSCWJ/IssmngcMCXSnCjNUYK8mWeQX+QG47
+rd6Yx/Q79PT6dB778e1LYvrOx5QTfFUe1NjjNJP+SjJH8mHE8CRBLdBXAVQJGfMf
+tXTZy24yn6DSipC1sqLciFOAvQns1A==
+=/peH
+-----END PGP SIGNATURE-----
+
+--kp4epuvmx3jkqhoq--
+
+
+--===============3605473572962512149==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============3605473572962512149==--
+
