@@ -4,110 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E549C27C53
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jun 2024 14:35:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 344B4C27C53
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jun 2024 15:12:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Uc4r9cGgSex98JFMJxRc0Mxv00BOQImydwSkd7kuJaE=; b=qn1DqyD5mSPCrcX5Hzqza5avyi
-	BDHFvQhkmCokgAC1Su/Udgu/OVqV9EjfOpHA0M6eQfX3APbItS1T0DawZRc+XT7TSrOwaqIHhPg6C
-	UWZPkNQjbt8WBfv3V0E342eBzB8tizpAHEqQ0vpJ81F2tJXJpHClfnsFh/11l5w/zlY9Mz+5FAvtt
-	Bq9X/a+cWAcsIb745LHBGpUBpeJpLfisE5ZEvoZimvPK3BawupcJuCqGHGIC9H15l/xvFe9sm3YxW
-	n2LIcDG1j+MlDR+LGrdoMuu385gDtsI6+w4smimU9sRkEIa0BuJ78THFj/AkIfz6LwFvwkeKb5pNt
-	LMwuCmaw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=UFyuBPQUL+KvrzFerCYlJtAz2+2lxZnFAgOw2xav8w0=; b=0TVMHgc+GSe1Jd
+	0VJ5Ximvdj5wYZCatPIx9ep9/Un5loJKcsvjTltyZi/q8T4E40gBIarGGeCRWUmdeDQiOzby+wjuR
+	x8r62TzuG9ynu6gWgX/+IsdYW+PZNI3NwIFQ6l21sG2AnhUfFZSStfHhkXUdYub3a4Y3sNZs1JPW3
+	bWcjszXxrlCBnUTOl6M8ecs0qAm/FqczqywfUvUTeXWZ78GrycXg4zd6tU6inXQj0hztobWPrSOLn
+	5Jopv8qkNoqWk3b/DNdJXSnTqFem6Pdzbc5FxJA7WUgiFjBJauiTiZ//WR8/MyL86x2oK5woG8Fx3
+	e2tFmBE+CIAMhgEyUmRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHP49-0000000CxmL-0M76;
-	Wed, 12 Jun 2024 14:35:09 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1sHPeU-0000000D7bE-0e9f;
+	Wed, 12 Jun 2024 15:12:42 +0000
+Received: from mail-yb1-xb2e.google.com ([2607:f8b0:4864:20::b2e])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHP46-0000000CxlZ-2n0q
+	id 1sHPeP-0000000D7YB-26SH
 	for linux-amlogic@lists.infradead.org;
-	Wed, 12 Jun 2024 14:35:08 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-42278f3aea4so12253085e9.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 12 Jun 2024 07:35:05 -0700 (PDT)
+	Wed, 12 Jun 2024 15:12:39 +0000
+Received: by mail-yb1-xb2e.google.com with SMTP id 3f1490d57ef6-dfde5ae0aaeso1580260276.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 12 Jun 2024 08:12:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718202904; x=1718807704; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0d3nemtLTIlGYr0wQiRJe+hWAQzd6FHXLae79gtynBo=;
-        b=TJLgxbbnJglwffAQUuClYtXypDSbaQBMQUTU6NnF8DFXlV3JDBxt/xjzyLRkpqA6SU
-         9i5DqwjVzwQSVGVS7MrXbsh6thZbciyT0adJDXYkC0MDwzB+WXOgfZPSf+XcrNFZhe+a
-         jzQyZJ2yVvCF4A9/sfsdGRLyyxILQjsGLYaLSZ4S1dorhL1yoDBAcojokSqmgUTjIU5y
-         tFaXHBs2rviXv48vfAjhiYUI5pUH7SFJBZ388ICNNT+Tz0kLdhVTXYfcOW6D1MMI1GY0
-         xzJoSjmfNv1Uwg5A4/CtJdDvxyOygn+DsudM9OjxKNtWSPF4zs1/9o45/2I6kEyT8DIV
-         DiNg==
+        d=linaro.org; s=google; t=1718205156; x=1718809956; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ui0asLPnRQrSAoLGngUgtvhcpdpuHV+OvoZ2KNM3Fig=;
+        b=oQlrlN+iX2iQsTHw+l82Ezw9E1udM6UhPGeOiSCMZWCjj9B53Mgk86ukJET0q1ha6B
+         Qqrs50rOYxLMj5bj/SqxYzRc+b+daWIw8IVNSJIYllFmkltV5ck8YyUEK5O9sruQROva
+         nEFruoRKYcI36LOsp8NMoossvyT3wKabh5AjkmGT5H8i8Z3euia2pU4eucVO385r6mkB
+         b0tRpRJp9FyqjmCu14CK5Ul3N17iUorGJlYuQDd0JGegoeEOAM+kcWlRh/eWQU8uJTRa
+         5RYsDUIVfwR2YPxHmQlMPUE0YFBfWsQtICd6kCVTQZCI/R4fnnNlH4KcItEXL6PpooBa
+         +e1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718202904; x=1718807704;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=0d3nemtLTIlGYr0wQiRJe+hWAQzd6FHXLae79gtynBo=;
-        b=DYZMguFC9eozAAW4YPyfW5lD2LGlhzO+87xztHAsJUNhH5AJ79MgSw6rtTeht3mumy
-         w2JEteDLEBVKhmGAwUBJGRz4Y/Hgo2yp1mxo1wu1eDl8ObcAO0hrUEcFsgk8TElm0noO
-         WBOxK4v1WJI58TdUup2yCkbXyV0X3p3qefxv39oIh/hNTrXm2UeJldSgJPLD/pQPlbm9
-         2Gi1BskAkHiaWNfMH7LGxqlMLAolzBr4vSFNa0WkekkEN4jUz047oJKSp9msksnLU9q+
-         +SH0RRXr+mdht4rCyz6cEBBE4xtljKFWvuZhkHLrqTYSc9DLGumQTcHo2NGNXihi57If
-         onVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW1auJkwJ9i1OHg9iz3JnwxhuYXZ7YJ+T3F4p//RZQoVH8wPhrEtY5X+mN901UAQW0VzW0zx6LsE8zxVVE6O8c47Na7MPX6Ax0TcNMvGqJ6n9c=
-X-Gm-Message-State: AOJu0YzMudj7CAJLR/60l9e64DaSojakyu4zKtD2FZheqzin3an0vB5J
-	Iw2QS9OwIrlAowiBPbV349X/mMHDs+W0byMM5gYeSubV6N67m7KZYO7lJ6N8bWQ=
-X-Google-Smtp-Source: AGHT+IFdR66CEHF3pbbU8fAxsgoAgu2w+lXVGwcwRX1cvGhBLBdMA1CA0IynRV9+5vuANlVWMo80dQ==
-X-Received: by 2002:a05:600c:5487:b0:422:1a82:3ebf with SMTP id 5b1f17b1804b1-422867bec26mr19747255e9.35.1718202904586;
-        Wed, 12 Jun 2024 07:35:04 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:30bd:bf21:eed1:8aeb? ([2a01:e0a:982:cbb0:30bd:bf21:eed1:8aeb])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422874de623sm29220775e9.31.2024.06.12.07.35.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jun 2024 07:35:04 -0700 (PDT)
-Message-ID: <de0672bc-b75b-48a8-aa01-2ed7b89aeff5@linaro.org>
-Date: Wed, 12 Jun 2024 16:35:02 +0200
+        d=1e100.net; s=20230601; t=1718205156; x=1718809956;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ui0asLPnRQrSAoLGngUgtvhcpdpuHV+OvoZ2KNM3Fig=;
+        b=sDS5VywnQ1b/keAMPCE3N7yR8PcI3AEdoPSzPSnE8hOSlz3Y49REiLgOaG/h7kjwYb
+         iilnVJBapo/rtZvOVEunrjVXeJu0IMFnb1qq8MdT0cn5Vprfp+zw3JvZyxsJaMYulcAV
+         7PMvpbuwhYMzKX8oqCoRI3urvhyCR1qEHTapNovvct6PZX0Pb+2vlWFAi9BRAXKBPNIU
+         lUirSpjWr0U0QSFvZRfy+g3WeE9cWPhWUIfk4oKPuFt+gf1BTxMgNCvkzhKsBn7n3plV
+         drDi8kK3pxmj5YH7DCw/seQZnsd1mshVnYJeRu2V02Zx/Qa+Heqtp0LSoh9NtSf9ZlBb
+         N4PQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWvIVItWrH+qwzgOA9z/egJ+r1O0Ol7E5CxyejrXaaqrgW1JjrrOTvR2JStotEfJhB99+oBVPT6zSs58bi+e3PftzJi15/cbyYqsbG8Ive6nBI=
+X-Gm-Message-State: AOJu0YyRE0zv0OPftr+zzQvkhiNyqocPlMz/JsLuNixBJwiLKx2nBRW5
+	ETkBmAe9/lCgtOiTai+Yy1Pk8NlVfw1Yy0sdMSwOi8nRkFASWNYVCLa5iBXAyPuQR46ZfgHDXKT
+	s/HW8RS3cCl0WInBodfS3npvbXpBnaTWuFZj3R0zXXEt9nfgR
+X-Google-Smtp-Source: AGHT+IFWoi12CdmKen6XCavHsYiaGeZ6uNOT7Y113dWDJBAN7YMJe+nUPHOOTDfX1o7vHsPrrRKwh1FWKxulzT69BGo=
+X-Received: by 2002:a25:6a45:0:b0:dfb:538:df1d with SMTP id
+ 3f1490d57ef6-dfe6852d794mr1893187276.43.1718205155725; Wed, 12 Jun 2024
+ 08:12:35 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] spi: meson-spicc: add spicc loopback mode
-To: xianwei.zhao@amlogic.com, Mark Brown <broonie@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- Sunny Luo <sunny.luo@amlogic.com>
-References: <20240612-spi_lbc-v1-1-d52e8c8011bd@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240612-spi_lbc-v1-1-d52e8c8011bd@amlogic.com>
+References: <20240610-md-drivers-pmdomain-amlogic-v1-1-b49ddb1a8bdf@quicinc.com>
+In-Reply-To: <20240610-md-drivers-pmdomain-amlogic-v1-1-b49ddb1a8bdf@quicinc.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 12 Jun 2024 17:11:59 +0200
+Message-ID: <CAPDyKFpJdOGq7VneJfaodo2Jc1jc8pfnoNxCdRW5+T0ofdabtg@mail.gmail.com>
+Subject: Re: [PATCH] pmdomain: amlogic: add missing MODULE_DESCRIPTION() macros
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-pm@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240612_073506_777617_5209EE8D 
-X-CRM114-Status: GOOD (  13.75  )
+X-CRM114-CacheID: sfid-20240612_081237_577279_C074BAAB 
+X-CRM114-Status: GOOD (  16.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,55 +87,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 12/06/2024 11:44, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> 
-> Add spicc loopback mode for debugging convenience.
-> 
-> Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->   drivers/spi/spi-meson-spicc.c | 6 ++++--
->   1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-> index 8a4a8ba9dfed..8838a98b04c2 100644
-> --- a/drivers/spi/spi-meson-spicc.c
-> +++ b/drivers/spi/spi-meson-spicc.c
-> @@ -514,7 +514,9 @@ static int meson_spicc_prepare_message(struct spi_controller *host,
->   	/* Setup no wait cycles by default */
->   	writel_relaxed(0, spicc->base + SPICC_PERIODREG);
->   
-> -	writel_bits_relaxed(SPICC_LBC_W1, 0, spicc->base + SPICC_TESTREG);
-> +	writel_bits_relaxed(SPICC_LBC_W1,
-> +			    spi->mode & SPI_LOOP ? SPICC_LBC_W1 : 0,
-> +			    spicc->base + SPICC_TESTREG);
->   
->   	return 0;
->   }
-> @@ -850,7 +852,7 @@ static int meson_spicc_probe(struct platform_device *pdev)
->   
->   	host->num_chipselect = 4;
->   	host->dev.of_node = pdev->dev.of_node;
-> -	host->mode_bits = SPI_CPHA | SPI_CPOL | SPI_CS_HIGH;
-> +	host->mode_bits = SPI_CPHA | SPI_CPOL | SPI_CS_HIGH | SPI_LOOP;
->   	host->bits_per_word_mask = SPI_BPW_MASK(32) |
->   				   SPI_BPW_MASK(24) |
->   				   SPI_BPW_MASK(16) |
-> 
-> ---
-> base-commit: ec0d19f2b59699e2e148091debaa0d9d6af5800a
-> change-id: 20240611-spi_lbc-0859cebc580e
-> 
-> Best regards,
+On Tue, 11 Jun 2024 at 01:13, Jeff Johnson <quic_jjohnson@quicinc.com> wrote:
+>
+> On x86, make allmodconfig && make W=1 C=1 reports:
+> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pmdomain/amlogic/meson-gx-pwrc-vpu.o
+> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pmdomain/amlogic/meson-ee-pwrc.o
+>
+> Add the missing invocation of the MODULE_DESCRIPTION() macro to all
+> files which have a MODULE_LICENSE().
+>
+> This includes meson-secure-pwrc.c which, although it did not produce a
+> warning with the x86 allmodconfig configuration, may cause this
+> warning with other configurations where CONFIG_MESON_SM is enabled.
+>
+> Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Applied for next, thanks!
+
+Kind regards
+Uffe
+
+
+> ---
+>  drivers/pmdomain/amlogic/meson-ee-pwrc.c     | 1 +
+>  drivers/pmdomain/amlogic/meson-gx-pwrc-vpu.c | 1 +
+>  drivers/pmdomain/amlogic/meson-secure-pwrc.c | 1 +
+>  3 files changed, 3 insertions(+)
+>
+> diff --git a/drivers/pmdomain/amlogic/meson-ee-pwrc.c b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
+> index fcec6eb610e4..fbb2b4103930 100644
+> --- a/drivers/pmdomain/amlogic/meson-ee-pwrc.c
+> +++ b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
+> @@ -648,4 +648,5 @@ static struct platform_driver meson_ee_pwrc_driver = {
+>         },
+>  };
+>  module_platform_driver(meson_ee_pwrc_driver);
+> +MODULE_DESCRIPTION("Amlogic Meson Everything-Else Power Domains driver");
+>  MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/pmdomain/amlogic/meson-gx-pwrc-vpu.c b/drivers/pmdomain/amlogic/meson-gx-pwrc-vpu.c
+> index 33df520eab95..6028e91664a4 100644
+> --- a/drivers/pmdomain/amlogic/meson-gx-pwrc-vpu.c
+> +++ b/drivers/pmdomain/amlogic/meson-gx-pwrc-vpu.c
+> @@ -376,4 +376,5 @@ static struct platform_driver meson_gx_pwrc_vpu_driver = {
+>         },
+>  };
+>  module_platform_driver(meson_gx_pwrc_vpu_driver);
+> +MODULE_DESCRIPTION("Amlogic Meson GX Power Domains driver");
+>  MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/pmdomain/amlogic/meson-secure-pwrc.c b/drivers/pmdomain/amlogic/meson-secure-pwrc.c
+> index 4d5bda0d60fc..b50e5678abe3 100644
+> --- a/drivers/pmdomain/amlogic/meson-secure-pwrc.c
+> +++ b/drivers/pmdomain/amlogic/meson-secure-pwrc.c
+> @@ -355,4 +355,5 @@ static struct platform_driver meson_secure_pwrc_driver = {
+>         },
+>  };
+>  module_platform_driver(meson_secure_pwrc_driver);
+> +MODULE_DESCRIPTION("Amlogic Meson Secure Power Domains driver");
+>  MODULE_LICENSE("Dual MIT/GPL");
+>
+> ---
+> base-commit: 83a7eefedc9b56fe7bfeff13b6c7356688ffa670
+> change-id: 20240610-md-drivers-pmdomain-amlogic-f117930600ea
+>
 
 _______________________________________________
 linux-amlogic mailing list
