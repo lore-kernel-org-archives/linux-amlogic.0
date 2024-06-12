@@ -4,101 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EDF8C27C75
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jun 2024 08:19:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C0D5C27C77
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jun 2024 08:34:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:Date:References:
-	In-Reply-To:Message-Id:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+FyjIxli4f1y+WlfOmBTpXxKGtBLw+ujwjnpfmwcjOo=; b=PQJ4l5dnZtC0EV
-	xU2KYHFGcFDnQskS3gAc2JOULAXOhjhcugARq7Y5G3PH0JUOALCCcYYvYvhvHv2+AnrKMuNlxX3PU
-	Se6CdIEcljqcdeeZveI7rUgOmEMBSZbUrJWF6eCVC37bQul9y47QC/Tv5XbeH/JOw8YDXKReqkt2/
-	u0k7xvRsWDbgqSc3dNgm9VLoBx0XCXwCsLG3DSfANbHRucYDmz5VnsJSzqjmC3E8WPZ3wx3f/DXxR
-	II9yt79RGNXM5fn6sVkihoThpEzRP7HBLikkx2x/NDwnkfopkMer9tPXJ2pNzR2DROs2MoLkDmh4e
-	2EykLmfy6n3a5+qpyfDQ==;
+	List-Owner; bh=LyW+7CNZEHE6ToXPJpOCLeWgzBWZTTOJPcNmiIyp1FI=; b=kX6M2ySOW8qM0S
+	KLbBgC1JwhYPpe58zdSE5eFSWvQPLQ9L1r8PHFMZ4c5zlaNc7LSUoXUZetsfs+PfcoQBE57gKCq1v
+	XdTH6ARgRtwDPVxKM9+bItJKxaGUH9IG7WCcOuw+TwjJ+PUvwRz9xOBjJUr9ULmt9ys7yZaZJYsPC
+	qasvLoRO6wFACycW8+9yqEXzmgH1TKbwQTCNCK8AZF7/GTAg0j0oMemi+xUfA8jlQRCpu4trhP30l
+	PUdAPpFFnijbrnpZlENrhHNmiwFkoBlRUWPaXmbKvWiyC416Dmi65vVXyQFjEkRNv5rL7ZkB0HnnK
+	3lQthkjRQB3mZNiRl73w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHJCS-0000000Bfa0-1DnK;
-	Wed, 12 Jun 2024 08:19:20 +0000
-Received: from fout4-smtp.messagingengine.com ([103.168.172.147])
+	id 1sHJR3-0000000BjbY-1vGJ;
+	Wed, 12 Jun 2024 08:34:25 +0000
+Received: from mail-oa1-x32.google.com ([2001:4860:4864:20::32])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHJCO-0000000BfZI-0Yca;
-	Wed, 12 Jun 2024 08:19:17 +0000
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfout.nyi.internal (Postfix) with ESMTP id 8EFBB1380193;
-	Wed, 12 Jun 2024 04:19:14 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Wed, 12 Jun 2024 04:19:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm1; t=1718180354; x=1718266754; bh=d8ymq7h+Su
-	pUPB1TveszzEzISILgzgA3jwE5Eb5tOo8=; b=cLtineVW9mr/pV8qARMG2jgqOS
-	+5XYZXEOoVSCYDVQdas5V5ZBdf2YV8Ae2k+/bfx5LJBmWNSlh+OD/PB6uaXZqZ1s
-	HqM7g8ErabNRspnQ5XaLsJJIMTk4qDzcn1fxXZc1rLMmGOzrBwv9sERSPA9oZVJd
-	dJYIq+G18nb+nZ6cb0+gVXzUAYWyTaM9q7r+mi093YKkcCSHyARHElKBGoAh6oG1
-	ARAWdmKtLhgi2qPFun7jQJSKdRWfISSeSFnk/dMQ5hBxkvnglD7Wk7lHbkllfccz
-	jm1CId6N41DKpfjjNLvyf64Bfh5zByI+lyffSQYm+vUAx3+SKp3MKRedsIdw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm1; t=1718180354; x=1718266754; bh=d8ymq7h+SupUPB1TveszzEzISILg
-	zgA3jwE5Eb5tOo8=; b=Ep5NWYR1umrudPmeDMu5zJ40VHbQhuNrWLLvsC+AvDGa
-	Ck9he2H8ZwTc6/uvUGegKIv2tFoXhYR9e+TnP1ke5YFTfMJroMsqXBBpzqRlrBia
-	iFM/8hmBILSkGNuM1NI1x0TWb0MeZnagFm0w9+XzKck4c+V+Bik0oCNkDsiMQG2Z
-	N0h5j+Bqy0j1p2EC0pT5OP2MRr7dOh84/TvhpDyaM6zrote36lO4UFZIAbJiJa8M
-	1zPvdIf5yCKhMiuobjI/RW4mb45QndV2UKaFmeYbKcIR/c7O2dA1eyvdY3QCxbMo
-	cRGITwOdyhbL6XgPr77iZ6MU9r9zzezjADrlvQ4oTg==
-X-ME-Sender: <xms:AlppZgyhzFuOFYwRPkvpuRiZVMiS-XWloRkTwKptMs84lMwYsWPx2w>
-    <xme:AlppZkR21xV8qOeULUtzpTHFseQBiudMO_FFYipXMIq_UButUWe2g6weD_C0MR7d4
-    PCrFDq_UpeaehILs9s>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfedugedgtddvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:AlppZiXLDtfOBZktVAvgWTF0ksGBBajqeywK6hU7pK4KVR_NpZtQzw>
-    <xmx:AlppZugoz3yNYqwEzCEGHKewNaDkoVoQ5PDYt7-4D4MYXPI3Mi2pEA>
-    <xmx:AlppZiCfGGV2Q67Gjfk5v1vObUSV_TRM2ODFvniUt5bHjHGuoH3_mQ>
-    <xmx:AlppZvIc2Rx6ZYp0hZvwZI9EhosZMfB1rLtQ6dyuTqbMl2X4fCH39w>
-    <xmx:AlppZq6qYlLxPN7FqNnVAsjF9zzvF184QZ0j8p5vaNoOR26uVR5RX2Xe>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 00598B6008D; Wed, 12 Jun 2024 04:19:13 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-515-g87b2bad5a-fm-20240604.001-g87b2bad5
+	id 1sHJQz-0000000BjaS-3F2Q
+	for linux-amlogic@lists.infradead.org;
+	Wed, 12 Jun 2024 08:34:24 +0000
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-2506fc3a6cfso3105763fac.2
+        for <linux-amlogic@lists.infradead.org>; Wed, 12 Jun 2024 01:34:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=melexis.com; s=google; t=1718181258; x=1718786058; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GRlEpNQ1vOAfspdoLRmjbH1WiL/9+2xtBIbJoKzaPig=;
+        b=dbViAE7rgE6MvU2kZ4P6jQrUdSi1O5MsC8G7iF6CLQT6NdhPqGRoT7s2QGNxMv96F1
+         gq2PLi+6F2j5ZTizAABSnjVn8uqXb/73+rt/TcPlMX6V8jqDnAvSwx0Gu5hdRbpgMLKA
+         U/C9oOjugFBi/+dO++baFzidmfN8UvEs7Ps+ENgmt4QBM5pVNbJnd3lhki4hbPr4ze3N
+         +lpg2XsJrqct3UFFlSNAdmRgR98heKP6VdFQOumZm/pN3v8s/uV+yztNlOt6wFDH2gzw
+         PSoh8LJK+V51iZaD+5WKBexOyV5jnDJ6WEcMo0p9wdCYv6a469MS3HI2YWkx2BJ3+OWX
+         dKcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718181258; x=1718786058;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GRlEpNQ1vOAfspdoLRmjbH1WiL/9+2xtBIbJoKzaPig=;
+        b=RDL4mnGUhv+62O8S0Qs4Hs0WSCbQcl7Q+wUUiglkjKA34QFcwKW/7/zEXi3iWqXya9
+         QqO/FLOfL967i0GtINU44rVmP52CU+zDB+sVLXO+zRZTUu3ITFrYo4TTEKQ7fW3rou+U
+         kOkHLQgmx/VzVdmnY+XLPDAVxS0+USPxRztN20r1t7rVQPKBbK9zPcBylqsQclappLMk
+         YkxxD3g/x1O3z59KCZIT/+Woqa+KBzfVqdbehIAXLYjd0MiBLR161wRg1u5G2Cn2lTfv
+         PI1TDPKJ0NLrsYB6ax9e+iqyaVZHmuhE3DGIj/d9TN7XRLyAUpvL83uiqBRDFAAeqWZt
+         mBaA==
+X-Forwarded-Encrypted: i=1; AJvYcCW2bSDMmGMJtQcx2ksWjMOTWnMxquBgKibA2qSCYddrraeq52GzBr6X2aNysvvWVVUVUWs8Jik/QTWO7oHEBFceqTKIFTBEU0N7/emVxd/dHOY=
+X-Gm-Message-State: AOJu0YyiVtFRY3IrMVSFqhdd5pBa4KT7W1h7Up9jBvK7ktzdTNxQnOWd
+	TFfn13c9UKXrKRgLMFe+C5WHeMl72ooBO1HdIQuzBqcPeuz7C8yVpCuw9KDc12A6u1uWuAvDFKN
+	HrI/f+8TWLwDbvcHgwrmJ3A2j1qPppppy0TCC
+X-Google-Smtp-Source: AGHT+IF2c1FL0fqOMuwGFXItue1Pz8K0VY5CQ9QXgEnYWVlMd7GYFa+wcDzIz9YylVcb2zSif5XgvNLrC8xGpqwxyEQ=
+X-Received: by 2002:a05:6870:b625:b0:250:7973:8092 with SMTP id
+ 586e51a60fabf-25514ef5f86mr1113389fac.56.1718181257361; Wed, 12 Jun 2024
+ 01:34:17 -0700 (PDT)
 MIME-Version: 1.0
-Message-Id: <cfad60ae-3dee-4c03-84c0-734f1fa59ff2@app.fastmail.com>
-In-Reply-To: <ea604d75-e571-4d63-a7e2-aa1393588c75@collabora.com>
-References: <20240611-md-drivers-soc-v1-1-8f0fc9fff234@quicinc.com>
- <a314c676-3dbd-46f8-826a-2e59367d30ce@linaro.org>
- <ea604d75-e571-4d63-a7e2-aa1393588c75@collabora.com>
-Date: Wed, 12 Jun 2024 10:18:53 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>,
- "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Jeff Johnson" <quic_jjohnson@quicinc.com>,
- "Kevin Hilman" <khilman@baylibre.com>,
- "Jerome Brunet" <jbrunet@baylibre.com>,
- "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>,
- "Shawn Guo" <shawnguo@kernel.org>, "Sascha Hauer" <s.hauer@pengutronix.de>,
- "Pengutronix Kernel Team" <kernel@pengutronix.de>,
- "Fabio Estevam" <festevam@gmail.com>, "Linus Walleij" <linusw@kernel.org>,
- "Imre Kaloz" <kaloz@openwrt.org>, "Matthias Brugger" <matthias.bgg@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-mediatek@lists.infradead.org, kernel-janitors@vger.kernel.org
-Subject: Re: [PATCH] soc: add missing MODULE_DESCRIPTION() macros
+References: <20240611165214.4091591-1-tgamblin@baylibre.com>
+In-Reply-To: <20240611165214.4091591-1-tgamblin@baylibre.com>
+From: Crt Mori <cmo@melexis.com>
+Date: Wed, 12 Jun 2024 10:33:40 +0200
+Message-ID: <CAKv63usQDFuz9s06GNTq=3fzYm-OVPAxgxwxTNEw6zw2rYxyig@mail.gmail.com>
+Subject: Re: [RESEND][PATCH] iio: simplify with regmap_set_bits(), regmap_clear_bits()
+To: Trevor Gamblin <tgamblin@baylibre.com>
+Cc: Lucas Stankus <lucas.p.stankus@gmail.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Dmitry Rokosov <ddrokosov@sberdevices.ru>, Cosmin Tanislav <cosmin.tanislav@analog.com>, 
+	Chen-Yu Tsai <wens@csie.org>, Hans de Goede <hdegoede@redhat.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Saravanan Sekar <sravanhome@gmail.com>, 
+	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
+	Chunyan Zhang <zhang.lyra@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, 
+	Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, 
+	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240612_011916_456949_3641EEAE 
-X-CRM114-Status: GOOD (  11.43  )
+X-CRM114-CacheID: sfid-20240612_013422_278940_C8DFC51B 
+X-CRM114-Status: UNSURE (   8.25  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,35 +104,22 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jun 12, 2024, at 10:12, AngeloGioacchino Del Regno wrote:
-
-> MediaTek:
-> Reviewed-by: AngeloGioacchino Del Regno 
-> <angelogioacchino.delregno@collabora.com>
->
-> ...but I'm not sure how we should apply this? :-)
->
-> Either Arnd takes it directly, or you split it per-soc... and I don't have any
-> preference anyway.
->
-> (P.S.: Added Arnd to the loop)
-
-I think in this case it makes sense to keep it as a single
-patch, no need to clutter up the git log with identical
-one-line changes.
-
-Jeff, can you send this to soc@kernel.org (cc:lakml)
-once you feel you have enough Acks? That will put it
-into my patchwork queue.
-
-      Arnd
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Rm9yIG1seDkwNjMyIHBhcnQKQWNrZWQtYnk6IENydCBNb3JpIDxjbW9AbWVsZXhpcy5jb20+CgpU
+aGFua3MgZm9yIHRoZSB1cGRhdGUuCgpPbiBUdWUsIDExIEp1biAyMDI0IGF0IDE4OjUyLCBUcmV2
+b3IgR2FtYmxpbiA8dGdhbWJsaW5AYmF5bGlicmUuY29tPiB3cm90ZToKPgo+IFNpbXBsaWZ5IHRo
+ZSB3YXkgcmVnbWFwIGlzIGFjY2Vzc2VkIGluIGlpbyBkcml2ZXJzLgo+Cj4gSW5zdGVhZCBvZiB1
+c2luZyByZWdtYXBfdXBkYXRlX2JpdHMoKSBhbmQgcGFzc2luZyB0aGUgbWFzayB0d2ljZSwgdXNl
+Cj4gcmVnbWFwX3NldF9iaXRzKCkuCj4KPiBJbnN0ZWFkIG9mIHVzaW5nIHJlZ21hcF91cGRhdGVf
+Yml0cygpIGFuZCBwYXNzaW5nIHZhbCA9IDAsIHVzZQo+IHJlZ21hcF9jbGVhcl9iaXRzKCkuCj4K
+PiBTdWdnZXN0ZWQtYnk6IFV3ZSBLbGVpbmUtS8O2bmlnIDx1LmtsZWluZS1rb2VuaWdAYmF5bGli
+cmUuY29tPgo+IFNpZ25lZC1vZmYtYnk6IFRyZXZvciBHYW1ibGluIDx0Z2FtYmxpbkBiYXlsaWJy
+ZS5jb20+Cj4gLS0tCj4gQ0MgbGlzdCBnb3Qgc3VwcHJlc3NlZCBvbiBmaXJzdCBzdWJtaXNzaW9u
+LCBzbyByZXNlbmRpbmcuIFNvcnJ5IGFib3V0Cj4gdGhhdC4KPgoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
+bGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
+b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
