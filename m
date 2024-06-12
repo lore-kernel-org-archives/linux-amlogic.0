@@ -4,107 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A666AC27C53
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jun 2024 13:56:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E549C27C53
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jun 2024 14:35:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gbE1AfPkwghX2Dy1WeOA7G/Qs7CeOixACEo7R9ASFis=; b=GLPI1q4JfzP8+P
-	UcTy2RfjC0L4qHmNQZ3EGBTSshsmjvwL/DN8mGcsgmgeEp11l7q2CXfRKp26Noo18bUXrevxji/LK
-	hnH2ExsN2rMQpgNQ5FiV6ZbjnHjjOQ1yR78RaX5fd1RQtI5KmCYbOXAva/izBIdQ0JIGbwj0WiU+m
-	AIdGF5nd0vfe5BX47l1KZ/blYPyhSRvPVbU8+ZuK5PSE4g0UYglhUojBAxAU837Wuca484N7cKLSD
-	9hielPNYaDVEv+EMY/gGgq5E1wNKxW7nGEh2EKnQ1l0ymmPp19aYrINCh7Yie1JmrJ2mbOUu5nWax
-	kc/Z6EBHKBFmTh8NQ/8A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Uc4r9cGgSex98JFMJxRc0Mxv00BOQImydwSkd7kuJaE=; b=qn1DqyD5mSPCrcX5Hzqza5avyi
+	BDHFvQhkmCokgAC1Su/Udgu/OVqV9EjfOpHA0M6eQfX3APbItS1T0DawZRc+XT7TSrOwaqIHhPg6C
+	UWZPkNQjbt8WBfv3V0E342eBzB8tizpAHEqQ0vpJ81F2tJXJpHClfnsFh/11l5w/zlY9Mz+5FAvtt
+	Bq9X/a+cWAcsIb745LHBGpUBpeJpLfisE5ZEvoZimvPK3BawupcJuCqGHGIC9H15l/xvFe9sm3YxW
+	n2LIcDG1j+MlDR+LGrdoMuu385gDtsI6+w4smimU9sRkEIa0BuJ78THFj/AkIfz6LwFvwkeKb5pNt
+	LMwuCmaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHOSn-0000000CqKx-0QC6;
-	Wed, 12 Jun 2024 13:56:33 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1sHP49-0000000CxmL-0M76;
+	Wed, 12 Jun 2024 14:35:09 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHOSi-0000000CqGM-0cV7;
-	Wed, 12 Jun 2024 13:56:30 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45CCD4U1017787;
-	Wed, 12 Jun 2024 13:56:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	n560daCLgpz3ZdOfX2LEmXn4QpxtVUnQWqyqxxLmb8M=; b=jhUWgUj/nwoABnkO
-	ioLPdiZ6IND3JQMUZOn56ktSDoc0nOSyHjZ2Vr2pi5xpPqbE5H+OKIZV4ICeiwH/
-	NEJwMvsGLjV/vAmFeOCZ0sk7gYd6wQRj7+hcMRtnn7ZNMrW623sJsVwSBB3R1q8Y
-	KPbbR4Yp1NT6ubFPe8fPfbjXhIJw2PIcDnGTZJnY42UVZ1pjn6lSsn0T2ajdgDUO
-	eqCkcPyTO76A5m0uuXwrLTmLViyzY9n3Bt32pXdSAy9XMrpf/BHaN9ya1+nsz6Hh
-	tL5fTgh2QGoKAUk2p8vamEV5rTy2Q9EtOLo8v1EPihVneLQy91inpsVWcHq8jhjL
-	e8MXaw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yqbfq87h5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Jun 2024 13:56:15 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45CDuEs5001427
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Jun 2024 13:56:14 GMT
-Received: from [10.48.243.20] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 12 Jun
- 2024 06:56:13 -0700
-Message-ID: <0a67ada3-a030-466d-8110-c665940a5785@quicinc.com>
-Date: Wed, 12 Jun 2024 06:56:12 -0700
+	id 1sHP46-0000000CxlZ-2n0q
+	for linux-amlogic@lists.infradead.org;
+	Wed, 12 Jun 2024 14:35:08 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-42278f3aea4so12253085e9.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 12 Jun 2024 07:35:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718202904; x=1718807704; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0d3nemtLTIlGYr0wQiRJe+hWAQzd6FHXLae79gtynBo=;
+        b=TJLgxbbnJglwffAQUuClYtXypDSbaQBMQUTU6NnF8DFXlV3JDBxt/xjzyLRkpqA6SU
+         9i5DqwjVzwQSVGVS7MrXbsh6thZbciyT0adJDXYkC0MDwzB+WXOgfZPSf+XcrNFZhe+a
+         jzQyZJ2yVvCF4A9/sfsdGRLyyxILQjsGLYaLSZ4S1dorhL1yoDBAcojokSqmgUTjIU5y
+         tFaXHBs2rviXv48vfAjhiYUI5pUH7SFJBZ388ICNNT+Tz0kLdhVTXYfcOW6D1MMI1GY0
+         xzJoSjmfNv1Uwg5A4/CtJdDvxyOygn+DsudM9OjxKNtWSPF4zs1/9o45/2I6kEyT8DIV
+         DiNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718202904; x=1718807704;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=0d3nemtLTIlGYr0wQiRJe+hWAQzd6FHXLae79gtynBo=;
+        b=DYZMguFC9eozAAW4YPyfW5lD2LGlhzO+87xztHAsJUNhH5AJ79MgSw6rtTeht3mumy
+         w2JEteDLEBVKhmGAwUBJGRz4Y/Hgo2yp1mxo1wu1eDl8ObcAO0hrUEcFsgk8TElm0noO
+         WBOxK4v1WJI58TdUup2yCkbXyV0X3p3qefxv39oIh/hNTrXm2UeJldSgJPLD/pQPlbm9
+         2Gi1BskAkHiaWNfMH7LGxqlMLAolzBr4vSFNa0WkekkEN4jUz047oJKSp9msksnLU9q+
+         +SH0RRXr+mdht4rCyz6cEBBE4xtljKFWvuZhkHLrqTYSc9DLGumQTcHo2NGNXihi57If
+         onVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW1auJkwJ9i1OHg9iz3JnwxhuYXZ7YJ+T3F4p//RZQoVH8wPhrEtY5X+mN901UAQW0VzW0zx6LsE8zxVVE6O8c47Na7MPX6Ax0TcNMvGqJ6n9c=
+X-Gm-Message-State: AOJu0YzMudj7CAJLR/60l9e64DaSojakyu4zKtD2FZheqzin3an0vB5J
+	Iw2QS9OwIrlAowiBPbV349X/mMHDs+W0byMM5gYeSubV6N67m7KZYO7lJ6N8bWQ=
+X-Google-Smtp-Source: AGHT+IFdR66CEHF3pbbU8fAxsgoAgu2w+lXVGwcwRX1cvGhBLBdMA1CA0IynRV9+5vuANlVWMo80dQ==
+X-Received: by 2002:a05:600c:5487:b0:422:1a82:3ebf with SMTP id 5b1f17b1804b1-422867bec26mr19747255e9.35.1718202904586;
+        Wed, 12 Jun 2024 07:35:04 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:30bd:bf21:eed1:8aeb? ([2a01:e0a:982:cbb0:30bd:bf21:eed1:8aeb])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422874de623sm29220775e9.31.2024.06.12.07.35.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Jun 2024 07:35:04 -0700 (PDT)
+Message-ID: <de0672bc-b75b-48a8-aa01-2ed7b89aeff5@linaro.org>
+Date: Wed, 12 Jun 2024 16:35:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] soc: add missing MODULE_DESCRIPTION() macros
-Content-Language: en-US
-To: Arnd Bergmann <arnd@arndb.de>,
-        AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome
- Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha
- Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team
-	<kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, Linus Walleij
-	<linusw@kernel.org>,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Matthias Brugger
-	<matthias.bgg@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <imx@lists.linux.dev>, <linux-mediatek@lists.infradead.org>,
-        <kernel-janitors@vger.kernel.org>
-References: <20240611-md-drivers-soc-v1-1-8f0fc9fff234@quicinc.com>
- <a314c676-3dbd-46f8-826a-2e59367d30ce@linaro.org>
- <ea604d75-e571-4d63-a7e2-aa1393588c75@collabora.com>
- <cfad60ae-3dee-4c03-84c0-734f1fa59ff2@app.fastmail.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <cfad60ae-3dee-4c03-84c0-734f1fa59ff2@app.fastmail.com>
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Ftek-8sc2XhAb2_WElZ_ZTVzalQijyoT
-X-Proofpoint-ORIG-GUID: Ftek-8sc2XhAb2_WElZ_ZTVzalQijyoT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-12_07,2024-06-12_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
- spamscore=0 phishscore=0 suspectscore=0 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 bulkscore=0 adultscore=0 mlxlogscore=936 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
- definitions=main-2406120097
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] spi: meson-spicc: add spicc loopback mode
+To: xianwei.zhao@amlogic.com, Mark Brown <broonie@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Sunny Luo <sunny.luo@amlogic.com>
+References: <20240612-spi_lbc-v1-1-d52e8c8011bd@amlogic.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240612-spi_lbc-v1-1-d52e8c8011bd@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240612_065628_427430_8BDB0422 
-X-CRM114-Status: GOOD (  15.87  )
+X-CRM114-CacheID: sfid-20240612_073506_777617_5209EE8D 
+X-CRM114-Status: GOOD (  13.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,36 +119,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 6/12/2024 1:18 AM, Arnd Bergmann wrote:
-> On Wed, Jun 12, 2024, at 10:12, AngeloGioacchino Del Regno wrote:
+On 12/06/2024 11:44, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
->> MediaTek:
->> Reviewed-by: AngeloGioacchino Del Regno 
->> <angelogioacchino.delregno@collabora.com>
->>
->> ...but I'm not sure how we should apply this? :-)
->>
->> Either Arnd takes it directly, or you split it per-soc... and I don't have any
->> preference anyway.
->>
->> (P.S.: Added Arnd to the loop)
+> Add spicc loopback mode for debugging convenience.
 > 
-> I think in this case it makes sense to keep it as a single
-> patch, no need to clutter up the git log with identical
-> one-line changes.
+> Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>   drivers/spi/spi-meson-spicc.c | 6 ++++--
+>   1 file changed, 4 insertions(+), 2 deletions(-)
 > 
-> Jeff, can you send this to soc@kernel.org (cc:lakml)
-> once you feel you have enough Acks? That will put it
-> into my patchwork queue.
+> diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
+> index 8a4a8ba9dfed..8838a98b04c2 100644
+> --- a/drivers/spi/spi-meson-spicc.c
+> +++ b/drivers/spi/spi-meson-spicc.c
+> @@ -514,7 +514,9 @@ static int meson_spicc_prepare_message(struct spi_controller *host,
+>   	/* Setup no wait cycles by default */
+>   	writel_relaxed(0, spicc->base + SPICC_PERIODREG);
+>   
+> -	writel_bits_relaxed(SPICC_LBC_W1, 0, spicc->base + SPICC_TESTREG);
+> +	writel_bits_relaxed(SPICC_LBC_W1,
+> +			    spi->mode & SPI_LOOP ? SPICC_LBC_W1 : 0,
+> +			    spicc->base + SPICC_TESTREG);
+>   
+>   	return 0;
+>   }
+> @@ -850,7 +852,7 @@ static int meson_spicc_probe(struct platform_device *pdev)
+>   
+>   	host->num_chipselect = 4;
+>   	host->dev.of_node = pdev->dev.of_node;
+> -	host->mode_bits = SPI_CPHA | SPI_CPOL | SPI_CS_HIGH;
+> +	host->mode_bits = SPI_CPHA | SPI_CPOL | SPI_CS_HIGH | SPI_LOOP;
+>   	host->bits_per_word_mask = SPI_BPW_MASK(32) |
+>   				   SPI_BPW_MASK(24) |
+>   				   SPI_BPW_MASK(16) |
 > 
->       Arnd
-Will do, thanks Arnd
+> ---
+> base-commit: ec0d19f2b59699e2e148091debaa0d9d6af5800a
+> change-id: 20240611-spi_lbc-0859cebc580e
+> 
+> Best regards,
 
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
