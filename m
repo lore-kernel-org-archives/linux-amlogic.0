@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C0B6C41513
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1485FC27C75
 	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2024 11:47:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=DZNOixmwaTntF6Gmwtk5YQEvwhqKxUrVVbtx7kPBLwI=; b=GMzKD5JIPa8DJx
-	N53l41hGMoNiHKUH84XZCmtlkrrRGtD7ckZLCwhUPEI7+2YxEiCV+2ssxeHm6vL4wIs+4jX9Ciqne
-	TY1U0RxIAKH5ThR57szG7HmkhuAUfinCPv9ymRasvc3Zq6j3xm1atmQQo4owMBRojLfVhx1smqTDW
-	GWuiyhjY9TL0HYrClnYX3VvDlBDV4pMA0pDEPT9BaoTUsJpu0Gp7FsM1QIl7R5R3yfe+Rfu5e4ruh
-	Cm1aRmLgHBRlgm0z2FFmbj5eHLgT2rftNxyOERdEjuu3oXtSPVXSrr6Nk+hVMFLxClLIihzS/Grgu
-	BwWp0Nh+QD0MCtT+54Sg==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=m/eySJpoOjA6X/OnBOdAqVGy6Mj2Ft8v4mQeE9UuX6k=; b=dmnz8WzxKMKby9
+	MJnBGKT6BfIPKmTZtT+Mtr8tZ3l0h1gEySEw0zUUEgIJ+m7QutjLLsU4RNRTHxG3gUKXtAPsPJgim
+	7e840GY04rAQqFp2bZZS6CAF5b9eFQULqtf9/Z1bXZG9dpjz2Rvv0Dqy11+u6t4hiJJvmZsFuYTm2
+	JDYhxGktTdg07O5Bo8av8+hVLMJlSzP9+BACKNHvBU9TDn6AQwwzlGZv05Qc70J+Z3/PDWCtYZsnL
+	vg8uygXhLyJQpFFnWnqm0XgI+a6MUSi2NcwCRQfrhZvIXnw13YVa8uRb0YHeY8mH87rkIbU59SO4M
+	lgPPLFwLzSi6axrY0nPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHivI-0000000GMQH-0TEM;
-	Thu, 13 Jun 2024 11:47:20 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1sHivK-0000000GMR5-2Hi0;
+	Thu, 13 Jun 2024 11:47:22 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHivD-0000000GMOU-3iLQ;
-	Thu, 13 Jun 2024 11:47:17 +0000
+	id 1sHivF-0000000GMOZ-20q6;
+	Thu, 13 Jun 2024 11:47:19 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 1CD956185F;
+	by sin.source.kernel.org (Postfix) with ESMTP id 7894DCE2383;
 	Thu, 13 Jun 2024 11:47:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C44EBC32786;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D25FAC4AF1C;
 	Thu, 13 Jun 2024 11:47:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1718279233;
-	bh=T7TWzD+8vHETS7BWE/0HH/nm2zj59fwupPU7gNji60w=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=obikWvyDmDzPeg19DdKwLgtvwzb/Co3u6f5GnVyyMsccUsobCezJVNmXIfZK1MVYm
-	 +qiHPiS1gm0Yf7BGvg/S+lHYfkQHAADiJ76KWGlMvCJoJj37Bz1wQ2c9DSOx4bBzUj
-	 2yb3O7ybOTnoWr/hZcXk2bFihYXQ9TszQWGUvfP9AbKQSzfIO7ydfCdEsFbEQV/+L7
-	 pn9lqSoz0k741WSkkCj/Cm5kof05x+i9OqahYELxVCX8UM4oPi83qySnxuyBV7NKSH
-	 3LAM1PR1wH1yqcnlRgTZDyqXHQOcV2bGxoyzPlglUnD+aRn3EYLXDqTJgydSjIF/yt
-	 +iPBCt8FVB9IA==
+	bh=P9Nv2rPgkyI+rwI9+K/xy5zN9qQW0189/gZkEhjsAc0=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=UWQznOZSzAxaB/69SwoQbOVV1SZMylhjYX8UlpXapkTCYDaYZ2CUe3NrXwekA3b9V
+	 tGmGjRKjnkTMczrAccXJ6Ol/UybrgNCSTwbsApreReTm8dfmDmwQYgvf7X7QPU82gv
+	 sdPYUGNsa0wIO/GSX4jBizVmiOQjXIROlbutwTzsMe+SrcC8z6l/1PcSbT6od3l6qN
+	 XQUiW0vyotvGnXkSsVs6Scowe+UImPZTPpItfwz0sQwgtPmsVYkih2ZDKozVkNVy+I
+	 Q7l4moI/7sI7ddurX1aeTzCW45/cOcNLuM57jCtjFDEHbbnXim0eI8rVfstUub+iQp
+	 5p7f6BDj5rQoQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ACD88C27C75;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BDE9DC27C79;
 	Thu, 13 Jun 2024 11:47:13 +0000 (UTC)
 From: Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>
-Subject: [PATCH v8 0/2] Add support for Amlogic S4 PWM
-Date: Thu, 13 Jun 2024 19:46:34 +0800
-Message-Id: <20240613-s4-pwm-v8-0-b5bd0a768282@amlogic.com>
+Date: Thu, 13 Jun 2024 19:46:35 +0800
+Subject: [PATCH v8 1/2] pwm: meson: Add support for Amlogic S4 PWM
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIABrcamYC/23OTQ6CMBAF4KuYrq0Zxv5QV97DuIB2Kk0EDDWoI
- dzdwgKMunyT+d7MwCJ1gSI7bAbWUR9iaJsU8u2G2apoLsSDS5khoACBgkfBb4+ao9NgTK5sQcT
- S8q0jH55z0emcchXive1ec28vpulPRS84cCJE8t4JcHAs6mt7CXZn25pNJb1cocRsgTJBsCbz0
- hd7tO4Xqk9oFqgSRA1e7UEYj38u6hUqkAvU06s5Yok6c7r8guM4vgEt6maCSQEAAA==
+Message-Id: <20240613-s4-pwm-v8-1-b5bd0a768282@amlogic.com>
+References: <20240613-s4-pwm-v8-0-b5bd0a768282@amlogic.com>
+In-Reply-To: <20240613-s4-pwm-v8-0-b5bd0a768282@amlogic.com>
 To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
@@ -62,23 +60,21 @@ To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
 Cc: linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  devicetree@vger.kernel.org, Kelvin Zhang <kelvin.zhang@amlogic.com>, 
- Junyi Zhao <junyi.zhao@amlogic.com>, 
- George Stark <gnstark@salutedevices.com>
+ Junyi Zhao <junyi.zhao@amlogic.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1718279231; l=1661;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1718279231; l=2242;
  i=kelvin.zhang@amlogic.com; s=20240329; h=from:subject:message-id;
- bh=T7TWzD+8vHETS7BWE/0HH/nm2zj59fwupPU7gNji60w=;
- b=6BkebCfy1cxhNBjMU7JUMIjFTx2FvQuZKQkcIZQSSMDT80mg963Ob1A//ow23qj58oSLHsmf4
- 4axa/XhAwEwAR6gyhqR5rrIc3duQr8O38mflObgm8Gn/ViG+Gsj4h1M
+ bh=dwmGsdqAEwQLKSoMsQIDCvsk9F7mUyX4lQiaMw6xB40=;
+ b=PUnfZ4mzns+rxE0HtGPXEcYGpdRjcKqzUBEqN9+o9pLHDZtrkOzknLMkJy6Pm8l7A8vDYRg7E
+ 16ZoAfi0aG3C8LnJUQ8nrYtr4L3Zsy/ZbWEA+3a4QtgxKIaDCmvSR7w
 X-Developer-Key: i=kelvin.zhang@amlogic.com; a=ed25519;
  pk=pgnle7HTNvnNTcOoGejvtTC7BJT30HUNXfMHRRXSylI=
 X-Endpoint-Received: by B4 Relay for kelvin.zhang@amlogic.com/20240329 with
  auth_id=148
 X-Original-From: Kelvin Zhang <kelvin.zhang@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240613_044716_338265_9FA751C0 
-X-CRM114-Status: UNSURE (   8.38  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240613_044717_933540_C73E3F3D 
+X-CRM114-Status: GOOD (  12.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,49 +92,83 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support for Amlogic S4 PWM, including the driver and DTS.
+From: Junyi Zhao <junyi.zhao@amlogic.com>
 
+Add support for Amlogic S4 PWM.
+
+Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
 Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
 ---
-Changes in v8:
-- Return dev_err_probe() in meson_pwm_init_channels_s4().
-- Check the result of devm_add_action_or_reset().
-- Link to v7: https://lore.kernel.org/r/20240605-s4-pwm-v7-0-e822b271d7b0@amlogic.com
+ drivers/pwm/pwm-meson.c | 39 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
-Changes in v7:
-- Put devm_add_action_or_reset() into the for loop.
-- Remove the error handling of meson_pwm_init_channels_s4().
-- Remove the repeated device node 'pwm-a-pins'.
-- Some minor fixes and improvements.
-- Link to v6: https://lore.kernel.org/r/20240529-s4-pwm-v6-0-270f63049f20@amlogic.com
+diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+index b2f97dfb01bb..98e6c1533312 100644
+--- a/drivers/pwm/pwm-meson.c
++++ b/drivers/pwm/pwm-meson.c
+@@ -460,6 +460,37 @@ static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
+ 	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
+ }
+ 
++static void meson_pwm_s4_put_clk(void *data)
++{
++	struct clk *clk = data;
++
++	clk_put(clk);
++}
++
++static int meson_pwm_init_channels_s4(struct pwm_chip *chip)
++{
++	struct device *dev = pwmchip_parent(chip);
++	struct device_node *np = dev->of_node;
++	struct meson_pwm *meson = to_meson_pwm(chip);
++	int i, ret;
++
++	for (i = 0; i < MESON_NUM_PWMS; i++) {
++		meson->channels[i].clk = of_clk_get(np, i);
++		if (IS_ERR(meson->channels[i].clk))
++			return dev_err_probe(dev,
++					     PTR_ERR(meson->channels[i].clk),
++					     "Failed to get clk\n");
++
++		ret = devm_add_action_or_reset(dev, meson_pwm_s4_put_clk,
++					       meson->channels[i].clk);
++		if (ret)
++			return dev_err_probe(dev, ret,
++					     "Failed to add clk_put action\n");
++	}
++
++	return 0;
++}
++
+ static const struct meson_pwm_data pwm_meson8b_data = {
+ 	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
+ 	.channels_init = meson_pwm_init_channels_meson8b_legacy,
+@@ -498,6 +529,10 @@ static const struct meson_pwm_data pwm_meson8_v2_data = {
+ 	.channels_init = meson_pwm_init_channels_meson8b_v2,
+ };
+ 
++static const struct meson_pwm_data pwm_s4_data = {
++	.channels_init = meson_pwm_init_channels_s4,
++};
++
+ static const struct of_device_id meson_pwm_matches[] = {
+ 	{
+ 		.compatible = "amlogic,meson8-pwm-v2",
+@@ -536,6 +571,10 @@ static const struct of_device_id meson_pwm_matches[] = {
+ 		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
+ 		.data = &pwm_g12a_ao_cd_data
+ 	},
++	{
++		.compatible = "amlogic,meson-s4-pwm",
++		.data = &pwm_s4_data
++	},
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, meson_pwm_matches);
 
-Changes in v6:
-- Rename 'pwm_meson_s4_data' to 'pwm_s4_data'.
-- Rename 'meson_pwm_init_channels_meson_s4' to 'meson_pwm_init_channels_s4'.
-- Adjust the order of the device nodes according to their unit addresses.
-- Some minor improvements.
-- Link to v5: https://lore.kernel.org/r/20240521-s4-pwm-v5-0-0c91f5fa32cd@amlogic.com
-
-Changes in v5:
-- Add devm_add_action_or_reset for free clk when unloading.
-- Replace the underscores of node name with dashes.
-- Link to v4: https://lore.kernel.org/r/20240424-s4-pwm-v4-0-ee22effd40d0@amlogic.com
-
----
-Junyi Zhao (2):
-      pwm: meson: Add support for Amlogic S4 PWM
-      arm64: dts: amlogic: Add Amlogic S4 PWM
-
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 199 ++++++++++++++++++++++++++++++
- drivers/pwm/pwm-meson.c                   |  39 ++++++
- 2 files changed, 238 insertions(+)
----
-base-commit: 9d99040b1bc8dbf385a8aa535e9efcdf94466e19
-change-id: 20240424-s4-pwm-2d709986caee
-
-Best regards,
 -- 
-Kelvin Zhang <kelvin.zhang@amlogic.com>
+2.37.1
 
 
 
