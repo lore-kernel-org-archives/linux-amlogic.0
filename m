@@ -4,68 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75B91C27C6E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2024 16:43:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22870C27C6E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2024 17:08:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=c0bG4UqPq6SEfxNwJKzAc8h5U3YKy0Rr83Q7f1u4O/c=; b=5AinRsqcsEb9y0
-	XDN4Nb10dLjzAWxPAo2+oP2iYRLAfYAvl/suAoD9/k5mG4jOFreVHc/vbFrEQPDz82ZQGW93HrUPH
-	rRTPZnJ1yg6qGk9teIYkUCCmu/eJfrJCGRLYnVRNgZBZAiEmUtNEoirj36iTg0uM8NS4DA/rez3kq
-	AVahfRSEALrEaSLsJFpno0NUWq70P6o/UI0LCZGFq7v0mrh/B9dY1BQPsbSPUa9G097DNyqWOW5rV
-	ehyaXOUZ9VIH7JXv6pzQrro7xjtGEPbasPoa/cq7DzkwQW1ddwYxvRIqnvPHYy3Q9PBcdbnKM7kmD
-	c1QpcYj+nSHYITguHUCQ==;
+	List-Owner; bh=OH8lEohtKFtNgLU9zouO14ByCof+TMlVwpLmUuV7f5Y=; b=SjBmz1+mJAVrNw
+	U2aeOhe2PE/96dOoCcex/tEZSfkR6jN9vas7+q6SA9KfXnzeysB0u1/PJkboDmJQqT1m/+Qa2gyBd
+	JmeFijXXLjBmHHCayahAgRFf82ksBoV0CGTn5gLvVv7RZWRwy4oQQdsQFc+PaQx4wZ4AeFX2FPSRa
+	zuPrkYSt1k6UXVW4MVRejkLnmj60mKi8ffBNSXTd1pyGh/r4xfx3gohpGoEjRnWMrOHq5ipH0Y5Du
+	EIwZP574O3xo5zlAzh7bUxR9dBSIBQIkF35NIkzLCragL4SdOR95d/AC02qWbj3rTnwNWNvwSe15K
+	OpKfsryW7Fde/SD5Zitw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHnXG-0000000HNht-1QI3;
-	Thu, 13 Jun 2024 16:42:50 +0000
+	id 1sHnvy-0000000HSwq-1l4r;
+	Thu, 13 Jun 2024 17:08:22 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHnXC-0000000HNh0-43GY;
-	Thu, 13 Jun 2024 16:42:48 +0000
+	id 1sHnvu-0000000HSwH-34eo;
+	Thu, 13 Jun 2024 17:08:20 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 15E7161C1E;
-	Thu, 13 Jun 2024 16:42:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95BE0C2BBFC;
-	Thu, 13 Jun 2024 16:42:45 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 05B3F61B8C;
+	Thu, 13 Jun 2024 17:08:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EA55C3277B;
+	Thu, 13 Jun 2024 17:08:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718296965;
-	bh=k6RZFuL5RbQMXBfC1QGbjlIe42D9eii5Ww819cD7sCA=;
+	s=k20201202; t=1718298497;
+	bh=/mtpv7oQiB/HDp/WMox9w7Z6Glgw+lsaHSyHSzXTWnw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Kncp641X+UbghLKCtc6JUOvH5mOgzmtoEz/z4YK0RdIZ59bV2tVcBnppQgJB7g00v
-	 i4Qt+uGMjBwLFzx7fAkeb157E4AROuJI7qDYEjm5YCRB/qqM7NM4gFCBJj7BA5VnjP
-	 E2tFErP3LenNAcCr5q0F7sW641LObjwlB617yjTOuM1nNokJcs4HhsJBamqM7EyxKY
-	 WcfEHR3bIWoFqAOg7nDg4s9M4b11HZ77dTcXzFF+1gE4aY2onT15YV/Rcp8P6tQ4yo
-	 KjN8x5hP+GNpgpY9YCN2taV1QCRnSLox7fcvKDApOMcG8tvy+4Lz6u0t59RFrYeUCY
-	 czqPkuBZpIaWg==
-Date: Thu, 13 Jun 2024 10:42:44 -0600
+	b=kji33KUAszF4cmuHylrzAFirU0EPFC5g79J6Z9DPYf+d1UcS5mMwA0fMS7EvkEUiO
+	 rRWaNB2iErp6PePjPgvoD+b2VLVc06h1pPT7BIRbPQYeM1DK1NjZAUDt+/rYGP+PN7
+	 3gL9u2LbjI6hPjo/Kp5gFQ4JqV5CXSttTaU3iPCzk9x3uTAqMfc4DKppjDA+IF88ho
+	 529fdp2nWG0brVsVe2N/wi9CkC3vE0t3wBo9uN06AVakPJ/Jj4Or2welFU3vumKzk6
+	 5f4y7uFW/7vXZvonpkdAUH1s1OWcA3AcDdrr0xri0UkAjLrHM0pmCrTFm4X6Wf/JPw
+	 +/SllKTYDwMOw==
+Date: Thu, 13 Jun 2024 11:08:16 -0600
 From: Rob Herring <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>, Viacheslav <adeep@lexina.in>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 3/4] dt-bindings: arm: amlogic:
- amlogic,meson-gx-ao-secure: add secure-monitor property
-Message-ID: <20240613164244.GA1999034-robh@kernel.org>
-References: <20240610084032.3096614-1-adeep@lexina.in>
- <20240610084032.3096614-4-adeep@lexina.in>
- <20240610-dropout-compress-6d6a9b749524@spud>
- <4866f6d4-2e3c-40c7-a8cb-ba4e422ffef6@lexina.in>
- <20240611-undying-earthy-00236ac251aa@spud>
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: Add support for Amlogic A4 SoCs
+Message-ID: <20240613170816.GA2020944-robh@kernel.org>
+References: <20240611-a4_pinctrl-v1-0-dc487b1977b3@amlogic.com>
+ <20240611-a4_pinctrl-v1-1-dc487b1977b3@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20240611-undying-earthy-00236ac251aa@spud>
+In-Reply-To: <20240611-a4_pinctrl-v1-1-dc487b1977b3@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240613_094247_088156_D75AF2C3 
-X-CRM114-Status: GOOD (  20.73  )
+X-CRM114-CacheID: sfid-20240613_100818_921499_561FAE5E 
+X-CRM114-Status: GOOD (  18.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,43 +80,103 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Jun 11, 2024 at 07:07:28PM +0100, Conor Dooley wrote:
-> On Tue, Jun 11, 2024 at 01:25:11PM +0300, Viacheslav wrote:
-> > Hi!
-> > 
-> > 10/06/2024 19.08, Conor Dooley wrote:
-> > > On Mon, Jun 10, 2024 at 11:39:49AM +0300, Viacheslav Bocharov wrote:
-> > > > Add secure-monitor property to schema for meson-gx-socinfo-sm driver.
-> > > 
-> > > "bindings are for hardware, not drivers". Why purpose does the "secure
-> > > monitor" serve that the secure firmware needs a reference to it?
-> > 
-> > This driver is an extension to the meson-gx-socinfo driver: it supplements
-> > information obtained from the register with information from the
-> > SM_GET_CHIP_ID secure monitor call. Due to the specifics of the module
-> > loading order, we cannot do away with meson-gx-socinfo, as it is used for
-> > platform identification in some drivers. Therefore, the extended information
-> > is formatted as a separate driver, which is loaded after the secure-monitor
-> > driver.
+On Tue, Jun 11, 2024 at 01:10:57PM +0800, Xianwei Zhao wrote:
+> Add the new compatible name for Amlogic A4 pin controller, and add
+> a new dt-binding header file which document the detail pin names.
 > 
-> Please stop talking about drivers, this is a binding which is about
-> hardware. Please provide, in your next version, a commit message that
-> justifies adding this property without talking about driver probing
-> order etc, and instead focuses on what service the "secure monitor"
-> provides etc.
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  .../bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml |  2 +
+>  .../dt-bindings/gpio/amlogic,a4-aobus-pinctrl.h    | 21 +++++
+>  .../dt-bindings/gpio/amlogic,a4-periphs-pinctrl.h  | 93 ++++++++++++++++++++++
+>  3 files changed, 116 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+> index d9e0b2c48e84..f5eefa0fab5b 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+> @@ -15,6 +15,8 @@ allOf:
+>  properties:
+>    compatible:
+>      enum:
+> +      - amlogic,a4-aobus-pinctrl
+> +      - amlogic,a4-periphs-pinctrl
+>        - amlogic,c3-periphs-pinctrl
+>        - amlogic,t7-periphs-pinctrl
+>        - amlogic,meson-a1-periphs-pinctrl
+> diff --git a/include/dt-bindings/gpio/amlogic,a4-aobus-pinctrl.h b/include/dt-bindings/gpio/amlogic,a4-aobus-pinctrl.h
+> new file mode 100644
+> index 000000000000..7c7e746baed5
+> --- /dev/null
+> +++ b/include/dt-bindings/gpio/amlogic,a4-aobus-pinctrl.h
+> @@ -0,0 +1,21 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_AMLOGIC_A4_AOBUS_PINCTRL_H
+> +#define _DT_BINDINGS_AMLOGIC_A4_AOBUS_PINCTRL_H
+> +
+> +/* GPIOAO */
+> +#define GPIOAO_0			0
+> +#define GPIOAO_1			1
+> +#define GPIOAO_2			2
+> +#define GPIOAO_3			3
+> +#define GPIOAO_4			4
+> +#define GPIOAO_5			5
+> +#define GPIOAO_6			6
 
-To put it another way, how many secure monitors does 1 system have? 
+I find defines with the value of the define in the name pretty 
+pointless.
 
-What do you do if the property is not present? You didn't make it 
-required which is good because that would be an ABI break.
+> +
+> +#define GPIO_TEST_N			7
+> +
+> +#endif
+> diff --git a/include/dt-bindings/gpio/amlogic,a4-periphs-pinctrl.h b/include/dt-bindings/gpio/amlogic,a4-periphs-pinctrl.h
+> new file mode 100644
+> index 000000000000..dfabca4b4790
+> --- /dev/null
+> +++ b/include/dt-bindings/gpio/amlogic,a4-periphs-pinctrl.h
+> @@ -0,0 +1,93 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_AMLOGIC_A4_PERIPHS_PINCTRL_H
+> +#define _DT_BINDINGS_AMLOGIC_A4_PERIPHS_PINCTRL_H
+> +
+> +/* GPIOE */
+> +#define GPIOE_0				0
+> +#define GPIOE_1				1
+> +
+> +/* GPIOD */
+> +#define GPIOD_0				2
+> +#define GPIOD_1				3
+> +#define GPIOD_2				4
+> +#define GPIOD_3				5
+> +#define GPIOD_4				6
+> +#define GPIOD_5				7
+> +#define GPIOD_6				8
+> +#define GPIOD_7				9
+> +#define GPIOD_8				10
+> +#define GPIOD_9				11
+> +#define GPIOD_10			12
+> +#define GPIOD_11			13
+> +#define GPIOD_12			14
+> +#define GPIOD_13			15
+> +#define GPIOD_14			16
+> +#define GPIOD_15			17
 
-You only need a link in DT if there are different possible providers or 
-some per consumer information to describe (e.g. an interrupt number or 
-clock ID). You don't have the latter and likely there is only 1 possible 
-provider. 
+I'm not really much of a fan of using defines for GPIOs, but if you do, 
+wouldn't be better to split banks and lines up rather than a global 
+number space. See ASPEED_GPIO() or tegra header.
 
 Rob
-
 
 _______________________________________________
 linux-amlogic mailing list
