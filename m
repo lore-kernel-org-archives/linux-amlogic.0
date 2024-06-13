@@ -4,66 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22870C27C6E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2024 17:08:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1311C27C4F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2024 17:20:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OH8lEohtKFtNgLU9zouO14ByCof+TMlVwpLmUuV7f5Y=; b=SjBmz1+mJAVrNw
-	U2aeOhe2PE/96dOoCcex/tEZSfkR6jN9vas7+q6SA9KfXnzeysB0u1/PJkboDmJQqT1m/+Qa2gyBd
-	JmeFijXXLjBmHHCayahAgRFf82ksBoV0CGTn5gLvVv7RZWRwy4oQQdsQFc+PaQx4wZ4AeFX2FPSRa
-	zuPrkYSt1k6UXVW4MVRejkLnmj60mKi8ffBNSXTd1pyGh/r4xfx3gohpGoEjRnWMrOHq5ipH0Y5Du
-	EIwZP574O3xo5zlAzh7bUxR9dBSIBQIkF35NIkzLCragL4SdOR95d/AC02qWbj3rTnwNWNvwSe15K
-	OpKfsryW7Fde/SD5Zitw==;
+	List-Owner; bh=R3N2wMwvomuo5XppgtoHc0M7RPQWd48EpXcki/gUIO8=; b=iWTa6+ip+7GpyT
+	6l7UmExdxgDEDD7nkiO8RC0by7nBRKB+O9RNbrg+sSWeGt2avMhWJqfTm2XU2cbd9TmSacPaM7pK8
+	HKWpUo15vxV37pARfaDgmczkbdpQor8VgieGTR2ueWq22l6leD1GavmKM8sHkh8lcHJDzrTBgU6bU
+	iXEMYEgZavmy1FqPaJ+D6Pq6+SuyvcqSi9AkG4x8rODcajVK7DvqsPsLdl/naY7BDD3l4tO5vpfb5
+	HTEiOGiP34iSwXcCrE/nN6sAwKSiUxI+gyOaH12gXxHP8VHHXMK1HVYDLKt+EIA63OLt645EiGeVb
+	iePymVzcsXDXBUTnu+5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHnvy-0000000HSwq-1l4r;
-	Thu, 13 Jun 2024 17:08:22 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1sHo7n-0000000HVLI-0vhN;
+	Thu, 13 Jun 2024 17:20:35 +0000
+Received: from frasgout.his.huawei.com ([185.176.79.56])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHnvu-0000000HSwH-34eo;
-	Thu, 13 Jun 2024 17:08:20 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 05B3F61B8C;
-	Thu, 13 Jun 2024 17:08:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EA55C3277B;
-	Thu, 13 Jun 2024 17:08:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718298497;
-	bh=/mtpv7oQiB/HDp/WMox9w7Z6Glgw+lsaHSyHSzXTWnw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kji33KUAszF4cmuHylrzAFirU0EPFC5g79J6Z9DPYf+d1UcS5mMwA0fMS7EvkEUiO
-	 rRWaNB2iErp6PePjPgvoD+b2VLVc06h1pPT7BIRbPQYeM1DK1NjZAUDt+/rYGP+PN7
-	 3gL9u2LbjI6hPjo/Kp5gFQ4JqV5CXSttTaU3iPCzk9x3uTAqMfc4DKppjDA+IF88ho
-	 529fdp2nWG0brVsVe2N/wi9CkC3vE0t3wBo9uN06AVakPJ/Jj4Or2welFU3vumKzk6
-	 5f4y7uFW/7vXZvonpkdAUH1s1OWcA3AcDdrr0xri0UkAjLrHM0pmCrTFm4X6Wf/JPw
-	 +/SllKTYDwMOw==
-Date: Thu, 13 Jun 2024 11:08:16 -0600
-From: Rob Herring <robh@kernel.org>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: Add support for Amlogic A4 SoCs
-Message-ID: <20240613170816.GA2020944-robh@kernel.org>
-References: <20240611-a4_pinctrl-v1-0-dc487b1977b3@amlogic.com>
- <20240611-a4_pinctrl-v1-1-dc487b1977b3@amlogic.com>
+	id 1sHo7j-0000000HVIu-1D2J;
+	Thu, 13 Jun 2024 17:20:33 +0000
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4W0TfD3Fs8z6K91P;
+	Fri, 14 Jun 2024 01:19:00 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 8267F1400CB;
+	Fri, 14 Jun 2024 01:20:23 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 13 Jun
+ 2024 18:20:22 +0100
+Date: Thu, 13 Jun 2024 18:20:21 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Trevor Gamblin <tgamblin@baylibre.com>
+CC: Lucas Stankus <lucas.p.stankus@gmail.com>, Lars-Peter Clausen
+	<lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan
+ Cameron <jic23@kernel.org>, Dmitry Rokosov <ddrokosov@sberdevices.ru>, Cosmin
+ Tanislav <cosmin.tanislav@analog.com>, Chen-Yu Tsai <wens@csie.org>, Hans de
+ Goede <hdegoede@redhat.com>, Ray Jui <rjui@broadcom.com>, Scott Branden
+	<sbranden@broadcom.com>, "Broadcom internal kernel review list"
+	<bcm-kernel-feedback-list@broadcom.com>, "Shawn Guo" <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, "Kevin Hilman" <khilman@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, "Martin Blumenstingl"
+	<martin.blumenstingl@googlemail.com>, Saravanan Sekar <sravanhome@gmail.com>,
+	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
+	<baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+	<alexandre.torgue@foss.st.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+	<nuno.sa@analog.com>, Linus Walleij <linus.walleij@linaro.org>, Jean-Baptiste
+ Maneyrol <jmaneyrol@invensense.com>, Crt Mori <cmo@melexis.com>, Uwe
+ =?ISO-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	<linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <imx@lists.linux.dev>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>
+Subject: Re: [RESEND][PATCH] iio: simplify with regmap_set_bits(),
+ regmap_clear_bits()
+Message-ID: <20240613182021.00005072@Huawei.com>
+In-Reply-To: <20240611165214.4091591-1-tgamblin@baylibre.com>
+References: <20240611165214.4091591-1-tgamblin@baylibre.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240611-a4_pinctrl-v1-1-dc487b1977b3@amlogic.com>
+X-Originating-IP: [10.202.227.76]
+X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240613_100818_921499_561FAE5E 
-X-CRM114-Status: GOOD (  18.74  )
+X-CRM114-CacheID: sfid-20240613_102031_651501_29E43475 
+X-CRM114-Status: GOOD (  15.65  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,108 +87,131 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Jun 11, 2024 at 01:10:57PM +0800, Xianwei Zhao wrote:
-> Add the new compatible name for Amlogic A4 pin controller, and add
-> a new dt-binding header file which document the detail pin names.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  .../bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml |  2 +
->  .../dt-bindings/gpio/amlogic,a4-aobus-pinctrl.h    | 21 +++++
->  .../dt-bindings/gpio/amlogic,a4-periphs-pinctrl.h  | 93 ++++++++++++++++++++++
->  3 files changed, 116 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-> index d9e0b2c48e84..f5eefa0fab5b 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-> @@ -15,6 +15,8 @@ allOf:
->  properties:
->    compatible:
->      enum:
-> +      - amlogic,a4-aobus-pinctrl
-> +      - amlogic,a4-periphs-pinctrl
->        - amlogic,c3-periphs-pinctrl
->        - amlogic,t7-periphs-pinctrl
->        - amlogic,meson-a1-periphs-pinctrl
-> diff --git a/include/dt-bindings/gpio/amlogic,a4-aobus-pinctrl.h b/include/dt-bindings/gpio/amlogic,a4-aobus-pinctrl.h
-> new file mode 100644
-> index 000000000000..7c7e746baed5
-> --- /dev/null
-> +++ b/include/dt-bindings/gpio/amlogic,a4-aobus-pinctrl.h
-> @@ -0,0 +1,21 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-> +/*
-> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_AMLOGIC_A4_AOBUS_PINCTRL_H
-> +#define _DT_BINDINGS_AMLOGIC_A4_AOBUS_PINCTRL_H
-> +
-> +/* GPIOAO */
-> +#define GPIOAO_0			0
-> +#define GPIOAO_1			1
-> +#define GPIOAO_2			2
-> +#define GPIOAO_3			3
-> +#define GPIOAO_4			4
-> +#define GPIOAO_5			5
-> +#define GPIOAO_6			6
+On Tue, 11 Jun 2024 12:52:06 -0400
+Trevor Gamblin <tgamblin@baylibre.com> wrote:
 
-I find defines with the value of the define in the name pretty 
-pointless.
+> Simplify the way regmap is accessed in iio drivers.
+> =
 
-> +
-> +#define GPIO_TEST_N			7
-> +
-> +#endif
-> diff --git a/include/dt-bindings/gpio/amlogic,a4-periphs-pinctrl.h b/include/dt-bindings/gpio/amlogic,a4-periphs-pinctrl.h
-> new file mode 100644
-> index 000000000000..dfabca4b4790
-> --- /dev/null
-> +++ b/include/dt-bindings/gpio/amlogic,a4-periphs-pinctrl.h
-> @@ -0,0 +1,93 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-> +/*
-> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_AMLOGIC_A4_PERIPHS_PINCTRL_H
-> +#define _DT_BINDINGS_AMLOGIC_A4_PERIPHS_PINCTRL_H
-> +
-> +/* GPIOE */
-> +#define GPIOE_0				0
-> +#define GPIOE_1				1
-> +
-> +/* GPIOD */
-> +#define GPIOD_0				2
-> +#define GPIOD_1				3
-> +#define GPIOD_2				4
-> +#define GPIOD_3				5
-> +#define GPIOD_4				6
-> +#define GPIOD_5				7
-> +#define GPIOD_6				8
-> +#define GPIOD_7				9
-> +#define GPIOD_8				10
-> +#define GPIOD_9				11
-> +#define GPIOD_10			12
-> +#define GPIOD_11			13
-> +#define GPIOD_12			14
-> +#define GPIOD_13			15
-> +#define GPIOD_14			16
-> +#define GPIOD_15			17
+> Instead of using regmap_update_bits() and passing the mask twice, use
+> regmap_set_bits().
+> =
 
-I'm not really much of a fan of using defines for GPIOs, but if you do, 
-wouldn't be better to split banks and lines up rather than a global 
-number space. See ASPEED_GPIO() or tegra header.
+> Instead of using regmap_update_bits() and passing val =3D 0, use
+> regmap_clear_bits().
+> =
 
-Rob
+> Suggested-by: Uwe Kleine-K=F6nig <u.kleine-koenig@baylibre.com>
+> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+Looks like a good change in general. However...
+
+The problem with a change like this is it results in
+non trivial backporting if we need to due to a fix in related
+code.
+
+As such, whilst it will obviously generate a lot of patches, I'd
+like this split up into a series so each patch touches only one driver.
+Fine to keep a single patch for the multiple module for a single
+device cases though.
+
+Also some very long lines that need the line breaks put back.
+
+Jonathan
+
+
+> diff --git a/drivers/iio/accel/msa311.c b/drivers/iio/accel/msa311.c
+> index b8ddbfd98f11..40e605c57adb 100644
+> --- a/drivers/iio/accel/msa311.c
+> +++ b/drivers/iio/accel/msa311.c
+> @@ -1034,10 +1034,8 @@ static int msa311_chip_init(struct msa311_priv *ms=
+a311)
+>  				     "failed to unmap map0/map1 interrupts\n");
+>  =
+
+>  	/* Disable all axes by default */
+> -	err =3D regmap_update_bits(msa311->regs, MSA311_ODR_REG,
+> -				 MSA311_GENMASK(F_X_AXIS_DIS) |
+> -				 MSA311_GENMASK(F_Y_AXIS_DIS) |
+> -				 MSA311_GENMASK(F_Z_AXIS_DIS), 0);
+> +	err =3D regmap_clear_bits(msa311->regs, MSA311_ODR_REG,
+> +				MSA311_GENMASK(F_X_AXIS_DIS) | MSA311_GENMASK(F_Y_AXIS_DIS) | MSA311=
+_GENMASK(F_Z_AXIS_DIS));
+Too long
+
+> diff --git a/drivers/iio/adc/cpcap-adc.c b/drivers/iio/adc/cpcap-adc.c
+> index b6c4ef70484e..8fabf748c36b 100644
+> --- a/drivers/iio/adc/cpcap-adc.c
+> +++ b/drivers/iio/adc/cpcap-adc.c
+> @@ -385,9 +385,8 @@ static irqreturn_t cpcap_adc_irq_thread(int irq, void=
+ *data)
+> @@ -424,23 +423,17 @@ static void cpcap_adc_setup_calibrate(struct cpcap_=
+adc *ddata,
+>  	if (error)
+>  		return;
+>  =
+
+> -	error =3D regmap_update_bits(ddata->reg, CPCAP_REG_ADCC2,
+> -				   CPCAP_BIT_ATOX_PS_FACTOR |
+> -				   CPCAP_BIT_ADC_PS_FACTOR1 |
+> -				   CPCAP_BIT_ADC_PS_FACTOR0,
+> -				   0);
+> +	error =3D regmap_clear_bits(ddata->reg, CPCAP_REG_ADCC2,
+> +				  CPCAP_BIT_ATOX_PS_FACTOR | CPCAP_BIT_ADC_PS_FACTOR1 | CPCAP_BIT_AD=
+C_PS_FACTOR0);
+That one is over 100!  =
+
+>  	if (error)
+
+> diff --git a/drivers/iio/gyro/mpu3050-core.c b/drivers/iio/gyro/mpu3050-c=
+ore.c
+> index a791ba3a693a..ff1c81553045 100644
+> --- a/drivers/iio/gyro/mpu3050-core.c
+> +++ b/drivers/iio/gyro/mpu3050-core.c
+
+>  =
+
+> @@ -513,12 +513,8 @@ static irqreturn_t mpu3050_trigger_handler(int irq, =
+void *p)
+>  				 "FIFO overflow! Emptying and resetting FIFO\n");
+>  			fifo_overflow =3D true;
+>  			/* Reset and enable the FIFO */
+> -			ret =3D regmap_update_bits(mpu3050->map,
+> -						 MPU3050_USR_CTRL,
+> -						 MPU3050_USR_CTRL_FIFO_EN |
+> -						 MPU3050_USR_CTRL_FIFO_RST,
+> -						 MPU3050_USR_CTRL_FIFO_EN |
+> -						 MPU3050_USR_CTRL_FIFO_RST);
+> +			ret =3D regmap_set_bits(mpu3050->map, MPU3050_USR_CTRL,
+> +					      MPU3050_USR_CTRL_FIFO_EN | MPU3050_USR_CTRL_FIFO_RST);
+
+Keep the line break to stay under 80 chars.
+
+> @@ -997,11 +991,8 @@ static int mpu3050_drdy_trigger_set_state(struct iio=
+_trigger *trig,
+>  			return ret;
+>  =
+
+>  		/* Reset and enable the FIFO */
+> -		ret =3D regmap_update_bits(mpu3050->map, MPU3050_USR_CTRL,
+> -					 MPU3050_USR_CTRL_FIFO_EN |
+> -					 MPU3050_USR_CTRL_FIFO_RST,
+> -					 MPU3050_USR_CTRL_FIFO_EN |
+> -					 MPU3050_USR_CTRL_FIFO_RST);
+> +		ret =3D regmap_set_bits(mpu3050->map, MPU3050_USR_CTRL,
+> +				      MPU3050_USR_CTRL_FIFO_EN | MPU3050_USR_CTRL_FIFO_RST);
+
+For IIO stuff try and stay under 80 chars unless there is a strong
+readability argument for going longer.  Here there isn't one.
+
+>  		if (ret)
+>  			return ret;
+>  =
+
 
 _______________________________________________
 linux-amlogic mailing list
