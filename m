@@ -4,79 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92823C27C79
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2024 11:47:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C88BC27C75
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2024 12:31:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=F2k63z0v3r2mTQQ46Br84bOHRx/7LCwpwVJ3xSqY6Ug=; b=amcQNh/4aCeWp6
-	jzAO082U8OugNNZ9DDRTlu4zpM6PCgYLocNtQOR7y8v0Elt/JrRnk9UyauvS/QyXJqiFYAmYErhYG
-	oe4IsbG4m0EDqZ45LWLEcTe1orSENfl3nPw4baaxzMw+pOmsdilk/te6KrE9QXqzSVWPTLXH4qPEl
-	txLIacYoMO6ya16OnCgYnjW6kIdnJi9f/c2hXcGJ3dWCRLB00GmbkUbKZ/VG+VWjghYmIsQ/VxfJG
-	gTxVobZ+uQGPKNtBRi6eUGXaVwxqAG3seeP7PAT+vi2ZMg/oyTYUbrnhTR4m+RYKGkr1ScDmLEkZO
-	yK1/hI0MTIi8Cvv/g1IA==;
+	List-Owner; bh=8t2R+kKCWnr0dhm8OBTBh9z04m9mdnvxB+BjsC8mQ4M=; b=LLW7feeSudDGvr
+	Kbyg4Iet6JtnhMjZRBLclDlNChhmhwUKoitJzJ/VkjEjHX8CseKqy4ESI9jPLTE5Evbv4YSdO/bkP
+	IjUq24gytuaqV8qxHGSN4SI1goY/NZ6QKJunSRE3PKecOrQZthV3JRnjsGR+cKgjoY2WbE5vq7gzx
+	1yg2XnVOLxrJHHTieVxBwp20C88vYv4xnKS9MAcG/sLvg3GxBGiy1sYsrcbf0+tsb1zE4CQRgdaK8
+	FO0qE6ytTX6d2fgdUB3M6xu+0P0meRafi9/M29jbE3qk6YzF8/+7yvsxqnZOHjWOSyfXzyS5wX3O7
+	OeX3xinEt9LD/xdsQg5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHivJ-0000000GMQW-11ix;
-	Thu, 13 Jun 2024 11:47:21 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1sHjbQ-0000000GVsg-2jsA;
+	Thu, 13 Jun 2024 12:30:52 +0000
+Received: from mail-pg1-x52e.google.com ([2607:f8b0:4864:20::52e])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHivE-0000000GMOc-1wCI;
-	Thu, 13 Jun 2024 11:47:17 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id DF23A61A53;
-	Thu, 13 Jun 2024 11:47:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E0714C4AF1A;
-	Thu, 13 Jun 2024 11:47:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718279233;
-	bh=xK1M1jTlasgZOXGsoXEJPmHROR4pPhqFZBWaOt1OlV0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Tzs6jRQjCQbydN+DsNykK0D7cFp4l9qXvflkZsHZDYCpeyvHLos83bWj9Fph6oxou
-	 TS26DFCGuAwhbgTAtu8YWIc2O1WueUnBwcyGGBQ24tprNOkbC+nGitYxDUbzfhgEPO
-	 BAZDy1gZJvOyZfSRXOLJW7o+0AsufUBIAyMT+2SAt2nlsPnlTrM2WS5rj4Rfvg/unJ
-	 I7lM9xIx2TBUJeYZZu5VX922mTOoMVR865aC15dqGH8rMFOah/DhsUpJRo9nUieP0p
-	 cnEDTlRLEbXU5JSd4n7nn7VMMiBl+Hi2dlZa+jqwxraeZ2FjgWO+qzPCkAseip28hs
-	 dHeJzkQ3gbmmw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CD882C27C4F;
-	Thu, 13 Jun 2024 11:47:13 +0000 (UTC)
-From: Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>
-Date: Thu, 13 Jun 2024 19:46:36 +0800
-Subject: [PATCH v8 2/2] arm64: dts: amlogic: Add Amlogic S4 PWM
+	id 1sHjbM-0000000GVpy-3AI3;
+	Thu, 13 Jun 2024 12:30:50 +0000
+Received: by mail-pg1-x52e.google.com with SMTP id 41be03b00d2f7-6e41550ae5bso699209a12.3;
+        Thu, 13 Jun 2024 05:30:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718281843; x=1718886643; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dyhnGzVIyoi/gHkvqNPaXXARC68ta1GMz1dJjxYfDu8=;
+        b=C/S1nhNAauf4CnC2kzjP/0UEQjEQJ/0KsU2/3dTKRCY5OIbG4sKbmYh6TriLUThNII
+         +WPOOuW4FzXEgmKw9hPEUeNVx8rpamvLYXrMSfo5OSKswwXslJzeIn7rqgi9hsw4vGMf
+         4aapRbr9hvkqIeUOkJFR+/BPXIJsNNN/+XckIQ56d6kmm1jWM/3vMeo9CrHO1jK+QLCW
+         6oLFLt37niMf4S1mx85mo1Ai34troNnksR+f1GrvieRjwg+t6iw2KORSZ5Cc15E7Uo8t
+         fVoSJt5udLr526EIWmt35suCUSCetzoX556ohDy6UmsT6UXNenh6THUDwA6CZlbV/V/K
+         kHxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718281843; x=1718886643;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dyhnGzVIyoi/gHkvqNPaXXARC68ta1GMz1dJjxYfDu8=;
+        b=PIJWe50hGB9iXwTHuTYZ94/DxdiVCJBmBy9/3V8btgR6N+r8On1GgwmJGSgdc38um9
+         CtxRy+wUfU9odOhG++8EHs0upjsUi5XXxggJ2EBfxRg0yC/JxkmFB++eNDpFi1qazv0x
+         9JfsrEFGT6EnT720VFPKQyAyiCovJkNUw8bL43ZLrqRAgr/DXUfY3kOMzRr1rKK8CjDn
+         mjNDVtPGq3L0MMl3KfAx+ux7r4SakynM1uVjXCy59zDMwEsvdw9Qt7WYCqSX+oBdSb9j
+         eLqGArNOfldlVu6FVLUp4Z1wz38K/m7KeZ8vgs3jCnBwXjeIT8pRFlbTzl6md/x1eMUV
+         x33A==
+X-Forwarded-Encrypted: i=1; AJvYcCW1jMqmxsVEnow18iEekZBy07JOI11HDMnTDJOyCSnlG3rDcuw68qBJHvBWOiDdvmspQ8Ylmx4T7H17oy/HfPfwCXI3xnBiaK/taNSvPwH/DtlfP5HSqeRNxPmk0yhJJtuhqXDaC6XRJigtiGAGCKEVXZByVZXXTw==
+X-Gm-Message-State: AOJu0YwgJn7Aq14pdVPyp3tGHv7VQ5FhWQxPlp88m3QiRxJIEKKsU6E4
+	o2rHWj91UN3ZgcCZoVjTaEy889x0i/J4OEzsPQ7KUKTTKR3wu+NKyNREHg==
+X-Google-Smtp-Source: AGHT+IG6Z9yGmBryZSy9wuMGay0o8aAhEaBmtbG5TCCILeJYBrSp7Dsjp60aC/QXOhsntZ/hKwlaQA==
+X-Received: by 2002:a05:6a20:2444:b0:1b8:a2ca:3b6d with SMTP id adf61e73a8af0-1b8a9c08c68mr5240212637.37.1718281842629;
+        Thu, 13 Jun 2024 05:30:42 -0700 (PDT)
+Received: from localhost.localdomain ([113.30.217.222])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6fedf59299fsm875459a12.55.2024.06.13.05.30.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jun 2024 05:30:42 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Anand Moon <linux.amoon@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v7 2/2] arm64: dts: amlogic: Used onboard usb hub reset on odroid n2
+Date: Thu, 13 Jun 2024 18:00:15 +0530
+Message-ID: <20240613123020.43500-2-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240613123020.43500-1-linux.amoon@gmail.com>
+References: <20240613123020.43500-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
-Message-Id: <20240613-s4-pwm-v8-2-b5bd0a768282@amlogic.com>
-References: <20240613-s4-pwm-v8-0-b5bd0a768282@amlogic.com>
-In-Reply-To: <20240613-s4-pwm-v8-0-b5bd0a768282@amlogic.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Kelvin Zhang <kelvin.zhang@amlogic.com>, 
- Junyi Zhao <junyi.zhao@amlogic.com>, 
- George Stark <gnstark@salutedevices.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1718279231; l=4973;
- i=kelvin.zhang@amlogic.com; s=20240329; h=from:subject:message-id;
- bh=b3/eIOiXNo7aAd/HfKlMYuC241hZLYqtACy0+y3gabc=;
- b=gh92REkQaj/xDfbMhQYjSAUBw4KOC3jBHi4G17K+WRN0ChJJS5RR9EKRZ2sUDwpRU1dfcood4
- N/6B9Vh34kECBI1x4LbrThfqbDeI94yO9HzRvk8C6X4JwkrTdMzdjss
-X-Developer-Key: i=kelvin.zhang@amlogic.com; a=ed25519;
- pk=pgnle7HTNvnNTcOoGejvtTC7BJT30HUNXfMHRRXSylI=
-X-Endpoint-Received: by B4 Relay for kelvin.zhang@amlogic.com/20240329 with
- auth_id=148
-X-Original-From: Kelvin Zhang <kelvin.zhang@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240613_044716_709992_9C8FB0C8 
-X-CRM114-Status: UNSURE (   8.30  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240613_053048_820396_1720EEB6 
+X-CRM114-Status: GOOD (  15.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,245 +96,84 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: kelvin.zhang@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Junyi Zhao <junyi.zhao@amlogic.com>
+On Odroid n2/n2+ previously use gpio-hog to reset the usb hub,
+switch to used on-board usb hub reset to enable the usb hub
+and enable power to hub.
 
-Add device nodes for PWM_AB, PWM_CD, PWM_EF, PWM_GH and PWM_IJ
-along with GPIO PIN configs of each channel.
-
-Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
-Reviewed-by: George Stark <gnstark@salutedevices.com>
-Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 199 ++++++++++++++++++++++++++++++
- 1 file changed, 199 insertions(+)
+v7:none
+V6:none
+V5:none
+V4:none
+V3:none
+V2:none
+V1:none
+---
+ .../dts/amlogic/meson-g12b-odroid-n2.dtsi     | 36 ++++++++++++-------
+ 1 file changed, 24 insertions(+), 12 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index 10896f9df682..b686eacb9662 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -312,6 +312,160 @@ mux {
- 					};
- 				};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index d80dd9a3da31..86eb81112232 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -31,6 +31,30 @@ hub_5v: regulator-hub-5v {
+ 		enable-active-high;
+ 	};
  
-+				pwm_a_pins1: pwm-a-pins1 {
-+					mux {
-+						groups = "pwm_a_d";
-+						function = "pwm_a";
-+					};
-+				};
++	/* USB hub supports both USB 2.0 and USB 3.0 root hub */
++	usb-hub {
++		dr_mode = "host";
++		#address-cells = <1>;
++		#size-cells = <0>;
 +
-+				pwm_a_pins2: pwm-a-pins2 {
-+					mux {
-+						groups = "pwm_a_x";
-+						function = "pwm_a";
-+					};
-+				};
++		/* 2.0 hub on port 1 */
++		hub_2_0: hub@1 {
++			compatible = "usb5e3,610";
++			reg = <1>;
++			peer-hub = <&hub_3_0>;
++			vdd-supply = <&usb_pwr_en>;
++		};
 +
-+				pwm_b_pins1: pwm-b-pins1 {
-+					mux {
-+						groups = "pwm_b_d";
-+						function = "pwm_b";
-+					};
-+				};
++		/* 3.0 hub on port 4 */
++		hub_3_0: hub@2 {
++			compatible = "usb5e3,620";
++			reg = <2>;
++			peer-hub = <&hub_2_0>;
++			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
++			vdd-supply = <&vcc_5v>;
++		};
++	};
 +
-+				pwm_b_pins2: pwm-b-pins2 {
-+					mux {
-+						groups = "pwm_b_x";
-+						function = "pwm_b";
-+					};
-+				};
-+
-+				pwm_c_pins1: pwm-c-pins1 {
-+					mux {
-+						groups = "pwm_c_d";
-+						function = "pwm_c";
-+					};
-+				};
-+
-+				pwm_c_pins2: pwm-c-pins2 {
-+					mux {
-+						groups = "pwm_c_x";
-+						function = "pwm_c";
-+					};
-+				};
-+
-+				pwm_d_pins1: pwm-d-pins1 {
-+					mux {
-+						groups = "pwm_d_d";
-+						function = "pwm_d";
-+					};
-+				};
-+
-+				pwm_d_pins2: pwm-d-pins2 {
-+					mux {
-+						groups = "pwm_d_h";
-+						function = "pwm_d";
-+					};
-+				};
-+
-+				pwm_e_pins1: pwm-e-pins1 {
-+					mux {
-+						groups = "pwm_e_x";
-+						function = "pwm_e";
-+					};
-+				};
-+
-+				pwm_e_pins2: pwm-e-pins2 {
-+					mux {
-+						groups = "pwm_e_z";
-+						function = "pwm_e";
-+					};
-+				};
-+
-+				pwm_f_pins1: pwm-f-pins1 {
-+					mux {
-+						groups = "pwm_f_x";
-+						function = "pwm_f";
-+					};
-+				};
-+
-+				pwm_f_pins2: pwm-f-pins2 {
-+					mux {
-+						groups = "pwm_f_z";
-+						function = "pwm_f";
-+					};
-+				};
-+
-+				pwm_g_pins1: pwm-g-pins1 {
-+					mux {
-+						groups = "pwm_g_d";
-+						function = "pwm_g";
-+					};
-+				};
-+
-+				pwm_g_pins2: pwm-g-pins2 {
-+					mux {
-+						groups = "pwm_g_z";
-+						function = "pwm_g";
-+					};
-+				};
-+
-+				pwm_h_pins: pwm-h-pins {
-+					mux {
-+						groups = "pwm_h";
-+						function = "pwm_h";
-+					};
-+				};
-+
-+				pwm_i_pins1: pwm-i-pins1 {
-+					mux {
-+						groups = "pwm_i_d";
-+						function = "pwm_i";
-+					};
-+				};
-+
-+				pwm_i_pins2: pwm-i-pins2 {
-+					mux {
-+						groups = "pwm_i_h";
-+						function = "pwm_i";
-+					};
-+				};
-+
-+				pwm_j_pins: pwm-j-pins {
-+					mux {
-+						groups = "pwm_j";
-+						function = "pwm_j";
-+					};
-+				};
-+
-+				pwm_a_hiz_pins: pwm-a-hiz-pins {
-+					mux {
-+						groups = "pwm_a_hiz";
-+						function = "pwm_a_hiz";
-+					};
-+				};
-+
-+				pwm_b_hiz_pins: pwm-b-hiz-pins {
-+					mux {
-+						groups = "pwm_b_hiz";
-+						function = "pwm_b_hiz";
-+					};
-+				};
-+
-+				pwm_c_hiz_pins: pwm-c-hiz-pins {
-+					mux {
-+						groups = "pwm_c_hiz";
-+						function = "pwm_c_hiz";
-+					};
-+				};
-+
-+				pwm_g_hiz_pins: pwm-g-hiz-pins {
-+					mux {
-+						groups = "pwm_g_hiz";
-+						function = "pwm_g_hiz";
-+					};
-+				};
-+
- 				spicc0_pins_x: spicc0-pins_x {
- 					mux {
- 						groups = "spi_a_mosi_x",
-@@ -399,6 +553,51 @@ spicc0: spi@50000 {
- 				status = "disabled";
- 			};
+ 	sound {
+ 		compatible = "amlogic,axg-sound-card";
+ 		model = "ODROID-N2";
+@@ -234,18 +258,6 @@ &gpio {
+ 		"PIN_3",  /* GPIOX_17 */
+ 		"PIN_5",  /* GPIOX_18 */
+ 		"PIN_36"; /* GPIOX_19 */
+-	/*
+-	 * WARNING: The USB Hub on the Odroid-N2 needs a reset signal
+-	 * to be turned high in order to be detected by the USB Controller
+-	 * This signal should be handled by a USB specific power sequence
+-	 * in order to reset the Hub when USB bus is powered down.
+-	 */
+-	usb-hub-hog {
+-		gpio-hog;
+-		gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
+-		output-high;
+-		line-name = "usb-hub-reset";
+-	};
+ };
  
-+			pwm_ab: pwm@58000 {
-+				compatible = "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x58000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_A>,
-+					 <&clkc_periphs CLKID_PWM_B>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_cd: pwm@5a000 {
-+				compatible = "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x5a000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_C>,
-+					 <&clkc_periphs CLKID_PWM_D>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_ef: pwm@5c000 {
-+				compatible = "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x5c000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_E>,
-+					 <&clkc_periphs CLKID_PWM_F>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_gh: pwm@5e000 {
-+				compatible = "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x5e000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_G>,
-+					 <&clkc_periphs CLKID_PWM_H>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_ij: pwm@60000 {
-+				compatible = "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x60000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_I>,
-+					 <&clkc_periphs CLKID_PWM_J>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
- 			i2c0: i2c@66000 {
- 				compatible = "amlogic,meson-axg-i2c";
- 				reg = <0x0 0x66000 0x0 0x20>;
-
+ &i2c3 {
 -- 
-2.37.1
-
+2.44.0
 
 
 _______________________________________________
