@@ -4,85 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED36EC27C4F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2024 15:54:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75B91C27C6E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2024 16:43:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=XBC4zeGFiKfvzy+OIAJQQr5j5Cl5JvhvNUWPdIwFOdM=; b=ciTcNpSJrPBjus
-	MTl67wA/hYKryacVTodnVfv2bEg4XMIf58psy23i8Q98VCBGA6fZe6YfcRZYRcjEwI9y0IjyBZvPI
-	2cPcpxSnD1zB0bbDUH3kZ2OjTild22Coag4CxoArXiF9Jex4s8nAY13Sm0E+sDHrFJt3Z0dAqxw4z
-	3XGRRzWBX8aebrmmu2mtkREPn0MEQs+hq8CmFmJ7jowu4rE3rJa6+Z1VzKOs2l32ilu0O9GxByFQY
-	Z7dKTmAl0YyDaIV1qlxzXEwkexnIZt0Qk6FuIT8NIlcSGuEZyOR4lSIc7XgQKJm+R/B3S2B923njT
-	1D+kW9TYEuz6OyBj1E/g==;
+	List-Owner; bh=c0bG4UqPq6SEfxNwJKzAc8h5U3YKy0Rr83Q7f1u4O/c=; b=5AinRsqcsEb9y0
+	XDN4Nb10dLjzAWxPAo2+oP2iYRLAfYAvl/suAoD9/k5mG4jOFreVHc/vbFrEQPDz82ZQGW93HrUPH
+	rRTPZnJ1yg6qGk9teIYkUCCmu/eJfrJCGRLYnVRNgZBZAiEmUtNEoirj36iTg0uM8NS4DA/rez3kq
+	AVahfRSEALrEaSLsJFpno0NUWq70P6o/UI0LCZGFq7v0mrh/B9dY1BQPsbSPUa9G097DNyqWOW5rV
+	ehyaXOUZ9VIH7JXv6pzQrro7xjtGEPbasPoa/cq7DzkwQW1ddwYxvRIqnvPHYy3Q9PBcdbnKM7kmD
+	c1QpcYj+nSHYITguHUCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHmmd-0000000HGET-1zlr;
-	Thu, 13 Jun 2024 15:54:39 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1sHnXG-0000000HNht-1QI3;
+	Thu, 13 Jun 2024 16:42:50 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHmma-0000000HGCy-259Y
-	for linux-amlogic@lists.infradead.org;
-	Thu, 13 Jun 2024 15:54:38 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4217d808034so11684665e9.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 13 Jun 2024 08:54:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1718294072; x=1718898872; darn=lists.infradead.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=d6tXE2AO0lPT2LpEB7LFIA9IGhDPpvidsM8ojyddTgQ=;
-        b=u2XdAxqvpKgsVAMcNA691Z5Y4fzyz21pS1nTdDV6BagFJtkSGDdxfvVfJ0Qc1Ru8gs
-         8YoGVV+gWJEnPdJjgMoEMDPfcfVTq0SPMutkfPW03l0bgyoYlsP82EPnCG/glpiXOQKp
-         GO58ZlFFW/r2WN689UQnXonopBwS3Z7WOLYeO3Nv9t70yUk2vCOWIqXqr7SvGc6iFyCb
-         NbuoUB6XcpCFhDYFIc6fUqI1SKZMn0RNv5dUdfWm5+HfSLjExxklhXKwzLAQe6+Y52k0
-         bnJbxzkDVEVp5RolgZ6jp633D+I/bspv6vQ3mkmbzpIdCMFgHELceWcVUE+jYAk3kngy
-         qDgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718294072; x=1718898872;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d6tXE2AO0lPT2LpEB7LFIA9IGhDPpvidsM8ojyddTgQ=;
-        b=WkyuNXwvOHg5JbKPZjopDEcB3R7BIRgpAu0OaJjIyisfbpbn8GfkWX51iI/XeTZMnB
-         SldBFDuNGrmNj0T9eocW8E3j28ghUB7KlX6+zBYwNBXYYpcefDXbBVQzMCP49bZHuNn2
-         XMmD8MTdLETE49qhZWKFl2+XH63AcQRknmw5Qd7C0oozgOSvyhCHE6IQx3SKwJtZ5l4F
-         E5Zp/sz4kkGQcU42PxO+Aka5YqvkMdbc3HJ0Svo5mdaKdUDfJUSw//GxpMh0xR/pYoKt
-         Ey0cFKJyWNF2QgL4AzU8cKpH4gYiSTgxnXnrkmju3jM2pTzSp6UGFpMQLXQZQHXGRnGG
-         LL9g==
-X-Forwarded-Encrypted: i=1; AJvYcCWDHhcExaFvg7z0d59y6N9WTtat9ZYWlYdtXnN91WLUcZo063LQ7XDUPC9Y0vGbd7B/NLUVeOl5mpJz2EqgwxzA1yerC0y7+ftjcA75STRxdPg=
-X-Gm-Message-State: AOJu0YxqgBGsXlaKFjxeEcxoNuD4e/H11VriPqb320hVic19MA1QCTkW
-	5m6fbqUiCST3WZGvqAGEEmR3VgzBL0Hhh0i4RLvRoo4y7Fye2W1WTQeB/3IVeGE=
-X-Google-Smtp-Source: AGHT+IG1zc8YWNE0EHvhNYi1n4wvzpml1bFEuKoi2CO1pl70ncYnu86I0E00hbaTdU/6tEtLjLTn0g==
-X-Received: by 2002:a05:600c:4689:b0:423:366:ad3d with SMTP id 5b1f17b1804b1-42304827295mr2065555e9.13.1718294072242;
-        Thu, 13 Jun 2024 08:54:32 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:ec82:cd82:409a:270b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422f641a633sm29738235e9.43.2024.06.13.08.54.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jun 2024 08:54:31 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>
-Cc: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-  Neil Armstrong
- <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,  Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,  Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
- Dooley <conor+dt@kernel.org>,  kelvin.zhang@amlogic.com,
-  linux-pwm@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
-  linux-amlogic@lists.infradead.org,  linux-kernel@vger.kernel.org,
-  devicetree@vger.kernel.org,  Junyi Zhao <junyi.zhao@amlogic.com>
-Subject: Re: [PATCH v8 1/2] pwm: meson: Add support for Amlogic S4 PWM
-In-Reply-To: <20240613-s4-pwm-v8-1-b5bd0a768282@amlogic.com> (Kelvin Zhang
-	via's message of "Thu, 13 Jun 2024 19:46:35 +0800")
-References: <20240613-s4-pwm-v8-0-b5bd0a768282@amlogic.com>
-	<20240613-s4-pwm-v8-1-b5bd0a768282@amlogic.com>
-Date: Thu, 13 Jun 2024 17:54:31 +0200
-Message-ID: <1jfrtgj0so.fsf@starbuckisacylon.baylibre.com>
+	id 1sHnXC-0000000HNh0-43GY;
+	Thu, 13 Jun 2024 16:42:48 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 15E7161C1E;
+	Thu, 13 Jun 2024 16:42:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95BE0C2BBFC;
+	Thu, 13 Jun 2024 16:42:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718296965;
+	bh=k6RZFuL5RbQMXBfC1QGbjlIe42D9eii5Ww819cD7sCA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Kncp641X+UbghLKCtc6JUOvH5mOgzmtoEz/z4YK0RdIZ59bV2tVcBnppQgJB7g00v
+	 i4Qt+uGMjBwLFzx7fAkeb157E4AROuJI7qDYEjm5YCRB/qqM7NM4gFCBJj7BA5VnjP
+	 E2tFErP3LenNAcCr5q0F7sW641LObjwlB617yjTOuM1nNokJcs4HhsJBamqM7EyxKY
+	 WcfEHR3bIWoFqAOg7nDg4s9M4b11HZ77dTcXzFF+1gE4aY2onT15YV/Rcp8P6tQ4yo
+	 KjN8x5hP+GNpgpY9YCN2taV1QCRnSLox7fcvKDApOMcG8tvy+4Lz6u0t59RFrYeUCY
+	 czqPkuBZpIaWg==
+Date: Thu, 13 Jun 2024 10:42:44 -0600
+From: Rob Herring <robh@kernel.org>
+To: Conor Dooley <conor@kernel.org>, Viacheslav <adeep@lexina.in>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 3/4] dt-bindings: arm: amlogic:
+ amlogic,meson-gx-ao-secure: add secure-monitor property
+Message-ID: <20240613164244.GA1999034-robh@kernel.org>
+References: <20240610084032.3096614-1-adeep@lexina.in>
+ <20240610084032.3096614-4-adeep@lexina.in>
+ <20240610-dropout-compress-6d6a9b749524@spud>
+ <4866f6d4-2e3c-40c7-a8cb-ba4e422ffef6@lexina.in>
+ <20240611-undying-earthy-00236ac251aa@spud>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20240611-undying-earthy-00236ac251aa@spud>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240613_085436_889907_9A0FB4CD 
-X-CRM114-Status: GOOD (  18.55  )
+X-CRM114-CacheID: sfid-20240613_094247_088156_D75AF2C3 
+X-CRM114-Status: GOOD (  20.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,93 +82,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu 13 Jun 2024 at 19:46, Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org> wrote:
+On Tue, Jun 11, 2024 at 07:07:28PM +0100, Conor Dooley wrote:
+> On Tue, Jun 11, 2024 at 01:25:11PM +0300, Viacheslav wrote:
+> > Hi!
+> > 
+> > 10/06/2024 19.08, Conor Dooley wrote:
+> > > On Mon, Jun 10, 2024 at 11:39:49AM +0300, Viacheslav Bocharov wrote:
+> > > > Add secure-monitor property to schema for meson-gx-socinfo-sm driver.
+> > > 
+> > > "bindings are for hardware, not drivers". Why purpose does the "secure
+> > > monitor" serve that the secure firmware needs a reference to it?
+> > 
+> > This driver is an extension to the meson-gx-socinfo driver: it supplements
+> > information obtained from the register with information from the
+> > SM_GET_CHIP_ID secure monitor call. Due to the specifics of the module
+> > loading order, we cannot do away with meson-gx-socinfo, as it is used for
+> > platform identification in some drivers. Therefore, the extended information
+> > is formatted as a separate driver, which is loaded after the secure-monitor
+> > driver.
+> 
+> Please stop talking about drivers, this is a binding which is about
+> hardware. Please provide, in your next version, a commit message that
+> justifies adding this property without talking about driver probing
+> order etc, and instead focuses on what service the "secure monitor"
+> provides etc.
 
-> From: Junyi Zhao <junyi.zhao@amlogic.com>
->
-> Add support for Amlogic S4 PWM.
->
-> Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
-> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
-> ---
->  drivers/pwm/pwm-meson.c | 39 +++++++++++++++++++++++++++++++++++++++
->  1 file changed, 39 insertions(+)
->
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index b2f97dfb01bb..98e6c1533312 100644
-> --- a/drivers/pwm/pwm-meson.c
-> +++ b/drivers/pwm/pwm-meson.c
-> @@ -460,6 +460,37 @@ static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
->  	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
->  }
->  
-> +static void meson_pwm_s4_put_clk(void *data)
-> +{
-> +	struct clk *clk = data;
-> +
-> +	clk_put(clk);
-> +}
-> +
-> +static int meson_pwm_init_channels_s4(struct pwm_chip *chip)
-> +{
-> +	struct device *dev = pwmchip_parent(chip);
-> +	struct device_node *np = dev->of_node;
-> +	struct meson_pwm *meson = to_meson_pwm(chip);
-> +	int i, ret;
-> +
-> +	for (i = 0; i < MESON_NUM_PWMS; i++) {
-> +		meson->channels[i].clk = of_clk_get(np, i);
-> +		if (IS_ERR(meson->channels[i].clk))
-> +			return dev_err_probe(dev,
-> +					     PTR_ERR(meson->channels[i].clk),
-> +					     "Failed to get clk\n");
+To put it another way, how many secure monitors does 1 system have? 
 
-here it is ok but ..
+What do you do if the property is not present? You didn't make it 
+required which is good because that would be an ABI break.
 
-> +
-> +		ret = devm_add_action_or_reset(dev, meson_pwm_s4_put_clk,
-> +					       meson->channels[i].clk);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "Failed to add clk_put action\n");
+You only need a link in DT if there are different possible providers or 
+some per consumer information to describe (e.g. an interrupt number or 
+clock ID). You don't have the latter and likely there is only 1 possible 
+provider. 
 
-... here, devm_add_action_or_reset cannot defer, so dev_err_probe is not useful.
-dev_err() if you must print something. Just "return ret;" would be fine
-by me
+Rob
 
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static const struct meson_pwm_data pwm_meson8b_data = {
->  	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
->  	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-> @@ -498,6 +529,10 @@ static const struct meson_pwm_data pwm_meson8_v2_data = {
->  	.channels_init = meson_pwm_init_channels_meson8b_v2,
->  };
->  
-> +static const struct meson_pwm_data pwm_s4_data = {
-> +	.channels_init = meson_pwm_init_channels_s4,
-> +};
-> +
->  static const struct of_device_id meson_pwm_matches[] = {
->  	{
->  		.compatible = "amlogic,meson8-pwm-v2",
-> @@ -536,6 +571,10 @@ static const struct of_device_id meson_pwm_matches[] = {
->  		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
->  		.data = &pwm_g12a_ao_cd_data
->  	},
-> +	{
-> +		.compatible = "amlogic,meson-s4-pwm",
-> +		.data = &pwm_s4_data
-> +	},
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, meson_pwm_matches);
-
--- 
-Jerome
 
 _______________________________________________
 linux-amlogic mailing list
