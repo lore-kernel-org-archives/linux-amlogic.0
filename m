@@ -4,110 +4,152 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D227C27C6E
-	for <linux-amlogic@archiver.kernel.org>; Sun, 16 Jun 2024 07:31:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C11E8C27C53
+	for <linux-amlogic@archiver.kernel.org>; Sun, 16 Jun 2024 12:27:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zpjCpjk3T7XX1Fi3wYrCq2JLmmE9P62X7MAYiAIQxtQ=; b=T/VDjp9q1KnC55
-	NEv0iyBu6sqlHzVkwV+kb1PtK1nYpqG3cjtQGGXp8PddTR6ehuZekCH+4T+4hhD6xfaCr/xiFGCi4
-	KLdu3fObPFHpsxojWeYhT1OS6mqnosotyj9xaap0G54iz7h03eaVQRYLu5JZh/vi8fpzVp+ed1Njp
-	e+nWEo7dhUhQsuo5je9D2AkB46i9rwsSW0vGSYfCdO8efgpxuuUwVXSXeWIOjRMad9m7G5CUaMAcZ
-	/EiokbFFl7NkITDuSa5fC2OZ15WSwjjyjlhE9kSevBP0KEUF0KI4+Rl8JCvAjWznG8QSZ7TGGKlDv
-	ki92JvBDYQ7rze0ptHPg==;
+	List-Owner; bh=LJpT9j1FH6L3V+Y4HiaivRxHiVIVUDyAxk5dq1LvVKc=; b=13FXgtmEUTZiA1
+	BsceX5l8u1nQxkqqf1FJbBUF2jLXC5TkjTfpVWLtTHpTGCnVIhYOM59fdBXfEk71yTCK4mmPHQ6S2
+	6b/iuc21yi27eaqiFMf3kafCJ1Xs3uxXj2in9bQijRsqGJW71SuB5Wrkr9poMcqQyPZjPwfv7+bDb
+	mlHYw0n750BQ692cfyDzpDaeGN4QuMWN48+M7XDiJgEowPF2H0aZcfDAG0sL37kgoxAQZHndjXIvx
+	AS/aQl9lc5nTJZE81jH2/BUsm1+TuoB4dMUmJNARtJ59IQ9MbAdlQqTxuNAMXlFTEaLBrwYhub1uS
+	kTN+0kc0li4hkvnbRXqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sIkM7-000000071iM-2wZN;
-	Sun, 16 Jun 2024 07:31:15 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1sIoys-00000007VRL-2F95;
+	Sun, 16 Jun 2024 12:27:34 +0000
+Received: from mail-il1-x134.google.com ([2607:f8b0:4864:20::134])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sIkM4-000000071hB-1zyA;
-	Sun, 16 Jun 2024 07:31:14 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 8D156CE0628;
-	Sun, 16 Jun 2024 07:31:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3BF6C2BBFC;
-	Sun, 16 Jun 2024 07:31:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718523068;
-	bh=NzHHupP56Awo5wdnFHpA+aC/loSGgwA5FG6iFWikcYc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=og7VOUDXOVMxFXrezJaFEvc/knHI3tTUhuDbxQuZJZlL1yOlSXoO3KuWd0Cn+u4ij
-	 gqBpeTuMJ8BU4dd7oArn1XvjrVANbJYkZp8W7dR96vDvPpjdUV6PJUsEw/3PBeGYgM
-	 z4hob/w64g3mlJlSWajkFOjBzkMlnPFPdBW+khntHPa1fx9DfCOI6yWFWZVmT19qSX
-	 Hqv0WVjXxdWJfGh7k3ps5YOTVFV/U5M8uq62CgusHBYZ550k5ZlhpH1QLYl+JUrwo5
-	 EV499oWu4+/z9CffZrEi5ZfXWH2rlXyjIy6Moy5aN3Cr8TUp8snkv678klvGcQ7X2a
-	 Kh5Tiz7wQK2Hg==
-Message-ID: <777a36e8-c02b-4403-ae01-b2933f554da8@kernel.org>
-Date: Sun, 16 Jun 2024 09:31:02 +0200
+	id 1sIoyc-00000007VOO-39Vm;
+	Sun, 16 Jun 2024 12:27:20 +0000
+Received: by mail-il1-x134.google.com with SMTP id e9e14a558f8ab-371cc143f6aso18046295ab.3;
+        Sun, 16 Jun 2024 05:27:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718540835; x=1719145635; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=YF4nZM3lonrBQ/1Um3/o2Oe8OEDraVniga3/lSDMEu4=;
+        b=V0O2KunDmiTj7zuRipUF/K8BIi12TQpXv9I8ODq+9drq7TcMnXXRkji45BFvHgUkWc
+         TJ+XwY7fStPxM5aVslLkHm19JoAY/3Eev2reUqnmB1WNPm6o+jSKOWCQ6ujctI+r4yUZ
+         jamO7y3P3x7n7GhkqC/t32rB5eiOLCIPS2nYI6FQYrlJvMsB06IyO2RC9Yr4vZ88QoiQ
+         4kP3IwwQS+4uyuASdNXDiAq+/hj/q3osQiqGuIkehGMDKoebrW/2h0OEhrCYZOW0Rnxz
+         QlvBi1FsCvmqiK2Oo5lG18cJmEkD70W/2pxZ9HlXzDB3nodsEwTodeaOji/MpXWkIRXW
+         8SWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718540835; x=1719145635;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YF4nZM3lonrBQ/1Um3/o2Oe8OEDraVniga3/lSDMEu4=;
+        b=SYGE0E9e953/pbjTszogjMyWOpEfncyCur6kuJRktfzgGKfkOJoe84yhgBzTL76mew
+         Fo/j1gXI79KLdMN5MCR4JWCR5V9kN/s/VdGCufC/OZ81N1JEZ9meHfi3ePw8ZzYYdJ6S
+         06MUMy85vIDHV70gur1RunShkI6NxcrKhnVB3BpKL23XSPK0842NTsgk3zV2eTKouZZ6
+         6xA5HueAeJ9/vvvQ/1es5zOupYC1Fl7fKiiKXg/P/2WQbMwoxrCvfwF5x4GQGAV8FbYz
+         9vOSpcWUbbpKUxgWV1uK/7SSRq9TOKtdRO5uBIME3YeJGt0vkYGxWxlIzIaXAc/M1GPI
+         +Fkg==
+X-Forwarded-Encrypted: i=1; AJvYcCWks1S7fmYqWwUc+zRgC+GOyYA5bvp1RJZh8J5lVdKoTDjG2UxRoixgaeNoetM1/t5orzFuAyX234G/iaUvRLGkwyx9O3QGaeCqyIol6FpTgLl728WHy8EBoDt+K6O4yQ3Q3fknjfGuv9nj22zAUbHjcSMd/iPDux06vYY8+ItSCgLGh5WffXB8/ivkr9+DSTBKP9r/BcLn3/pkTZl55xhShnfXfuKJWq7g2HWvILLTDRhEfrJDueOtmaIc1AHdS71lJJ9YjjyJmn+zSzVoaPa5+xV4Kn9GCAi+Fy/53lk2YP+uO1sf
+X-Gm-Message-State: AOJu0Yx8vvBpPLkN8DjvCfZcd73VDVorVpqj607CohRCX/rIUHkKFj7H
+	0z4L8o9XkMn7KK3QiiC0Cwb5N0qXB9vVLO1KmwXvdnZhxLzNdkHL
+X-Google-Smtp-Source: AGHT+IH6NX0wZI/VAxPWkEemxzlcqScgPs48/oEvyI4bBXx7KgcXwmtBC8Br+BRvW22CWn8JH7bH8A==
+X-Received: by 2002:a05:6e02:1fca:b0:375:b381:9ad1 with SMTP id e9e14a558f8ab-375e0e14a0bmr81855415ab.6.1718540835274;
+        Sun, 16 Jun 2024 05:27:15 -0700 (PDT)
+Received: from [192.168.1.114] ([196.64.245.53])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6fee3ba442csm4488618a12.85.2024.06.16.05.26.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Jun 2024 05:27:12 -0700 (PDT)
+Message-ID: <aefb86ad-9547-4981-856d-de595da7ca7a@gmail.com>
+Date: Sun, 16 Jun 2024 13:26:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: Add support for Amlogic A4 SoCs
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>, Rob Herring <robh@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+Subject: Re: [PATCH 04/22] dt-bindings: thermal: brcm,avs-ro: reference
+ thermal-sensor schema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Guillaume La Roque <glaroque@baylibre.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Vasily Khoruzhick <anarsoul@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Anson Huang <Anson.Huang@nxp.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Amit Kucheria <amitk@kernel.org>,
+ =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+ Heiko Stuebner <heiko@sntech.de>, Biju Das <biju.das.jz@bp.renesas.com>,
+ Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Pascal Paillet <p.paillet@foss.st.com>, Keerthy <j-keerthy@ti.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ zhanghongchen <zhanghongchen@loongson.cn>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240611-a4_pinctrl-v1-0-dc487b1977b3@amlogic.com>
- <20240611-a4_pinctrl-v1-1-dc487b1977b3@amlogic.com>
- <20240613170816.GA2020944-robh@kernel.org>
- <42752f1c-fa79-450c-bbf8-f55464db14ae@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, imx@lists.linux.dev,
+ linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-rpi-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org>
+ <20240614-dt-bindings-thermal-allof-v1-4-30b25a6ae24e@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <42752f1c-fa79-450c-bbf8-f55464db14ae@amlogic.com>
+From: Florian Fainelli <f.fainelli@gmail.com>
+Autocrypt: addr=f.fainelli@gmail.com; keydata=
+ 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
+ HGuUuzv+GKZ6nsysJw==
+In-Reply-To: <20240614-dt-bindings-thermal-allof-v1-4-30b25a6ae24e@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240616_003112_924173_9EE1DD9A 
-X-CRM114-Status: GOOD (  18.80  )
+X-CRM114-CacheID: sfid-20240616_052718_929362_0EE857EA 
+X-CRM114-Status: UNSURE (   8.38  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,142 +161,23 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 14/06/2024 10:51, Xianwei Zhao wrote:
-> Hi Rob,
->       Thanks for your review.
+
+
+On 6/14/2024 10:46 AM, Krzysztof Kozlowski wrote:
+> Device is a thermal sensor and it requires '#thermal-sensor-cells', so
+> reference the thermal-sensor.yaml to simplify it and bring the
+> common definition of '#thermal-sensor-cells' property.
 > 
-> On 2024/6/14 01:08, Rob Herring wrote:
->> [ EXTERNAL EMAIL ]
->>
->> On Tue, Jun 11, 2024 at 01:10:57PM +0800, Xianwei Zhao wrote:
->>> Add the new compatible name for Amlogic A4 pin controller, and add
->>> a new dt-binding header file which document the detail pin names.
->>>
->>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>> ---
->>>   .../bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml |  2 +
->>>   .../dt-bindings/gpio/amlogic,a4-aobus-pinctrl.h    | 21 +++++
->>>   .../dt-bindings/gpio/amlogic,a4-periphs-pinctrl.h  | 93 ++++++++++++++++++++++
->>>   3 files changed, 116 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
->>> index d9e0b2c48e84..f5eefa0fab5b 100644
->>> --- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
->>> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
->>> @@ -15,6 +15,8 @@ allOf:
->>>   properties:
->>>     compatible:
->>>       enum:
->>> +      - amlogic,a4-aobus-pinctrl
->>> +      - amlogic,a4-periphs-pinctrl
->>>         - amlogic,c3-periphs-pinctrl
->>>         - amlogic,t7-periphs-pinctrl
->>>         - amlogic,meson-a1-periphs-pinctrl
->>> diff --git a/include/dt-bindings/gpio/amlogic,a4-aobus-pinctrl.h b/include/dt-bindings/gpio/amlogic,a4-aobus-pinctrl.h
->>> new file mode 100644
->>> index 000000000000..7c7e746baed5
->>> --- /dev/null
->>> +++ b/include/dt-bindings/gpio/amlogic,a4-aobus-pinctrl.h
->>> @@ -0,0 +1,21 @@
->>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
->>> +/*
->>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->>> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>> + */
->>> +
->>> +#ifndef _DT_BINDINGS_AMLOGIC_A4_AOBUS_PINCTRL_H
->>> +#define _DT_BINDINGS_AMLOGIC_A4_AOBUS_PINCTRL_H
->>> +
->>> +/* GPIOAO */
->>> +#define GPIOAO_0                     0
->>> +#define GPIOAO_1                     1
->>> +#define GPIOAO_2                     2
->>> +#define GPIOAO_3                     3
->>> +#define GPIOAO_4                     4
->>> +#define GPIOAO_5                     5
->>> +#define GPIOAO_6                     6
->>
->> I find defines with the value of the define in the name pretty
->> pointless.
->>
-> In the driver, this macro definition not only uses its value, but also 
-> uses this character, for example as following,
-> 
-> MESON_PIN(GPIOE_0),
-> #define MESON_PIN(x) PINCTRL_PIN(x, #x)
-> 
-> GPIO_GROUP(GPIOE_0),
-> #define GPIO_GROUP(gpio)                                               \
->          {                                                              \
->                  .name = #gpio,                                         \
->                  .pins = (const unsigned int[]){ gpio },                \
->                  .num_pins = 1,                                         \
->                  .data = (const struct meson_pmx_axg_data[]){           \
->                          PMX_DATA(0),                                   \
->                  },                                                     \
->          }
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Still pointless.
-
-> 
->>> +
->>> +#define GPIO_TEST_N                  7
->>> +
->>> +#endif
->>> diff --git a/include/dt-bindings/gpio/amlogic,a4-periphs-pinctrl.h b/include/dt-bindings/gpio/amlogic,a4-periphs-pinctrl.h
->>> new file mode 100644
->>> index 000000000000..dfabca4b4790
->>> --- /dev/null
->>> +++ b/include/dt-bindings/gpio/amlogic,a4-periphs-pinctrl.h
->>> @@ -0,0 +1,93 @@
->>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
->>> +/*
->>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->>> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>> + */
->>> +
->>> +#ifndef _DT_BINDINGS_AMLOGIC_A4_PERIPHS_PINCTRL_H
->>> +#define _DT_BINDINGS_AMLOGIC_A4_PERIPHS_PINCTRL_H
->>> +
->>> +/* GPIOE */
->>> +#define GPIOE_0                              0
->>> +#define GPIOE_1                              1
->>> +
->>> +/* GPIOD */
->>> +#define GPIOD_0                              2
->>> +#define GPIOD_1                              3
->>> +#define GPIOD_2                              4
->>> +#define GPIOD_3                              5
->>> +#define GPIOD_4                              6
->>> +#define GPIOD_5                              7
->>> +#define GPIOD_6                              8
->>> +#define GPIOD_7                              9
->>> +#define GPIOD_8                              10
->>> +#define GPIOD_9                              11
->>> +#define GPIOD_10                     12
->>> +#define GPIOD_11                     13
->>> +#define GPIOD_12                     14
->>> +#define GPIOD_13                     15
->>> +#define GPIOD_14                     16
->>> +#define GPIOD_15                     17
->>
->> I'm not really much of a fan of using defines for GPIOs, but if you do,
->> wouldn't be better to split banks and lines up rather than a global
->> number space. See ASPEED_GPIO() or tegra header.
->> For the same reasons described above.
-> I want to keep the same style as the previous drive.
-
-Which part of Rob's feedback needs more explanation?
-
-
-Best regards,
-Krzysztof
-
+Acked-by: Florian Fainelli <florian.fainelli@broadcom.com>
+-- 
+Florian
 
 _______________________________________________
 linux-amlogic mailing list
