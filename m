@@ -4,81 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E6C4C27C77
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jun 2024 09:00:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDBC2C27C79
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jun 2024 11:13:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TsxLa79FwqTmiAi0kMUGYFjjSoqudSroexYFP9lyI/k=; b=CpROyyiT0XM8sg
-	uHtyImVUPdNoFHY/Pl4ST3gi7rK6qUMmix2zK3IXUVH4aW5vVaAmUvLCnU0dqQEvQv6EvmdDdm+tV
-	T0asdJk4Ek3g3r3Pu/J5TtTGU1OiMEUqGN4gVlA138YN6IfTOvoXorSAPSyBvra65kt5hcW3md4v6
-	tThMRwmd04eiZI+Bp1KqpaIJh7du/PIIo8bPdmV9NwPCZKMnmXSg4IiQbr1FzFPyK9ppmLkWFni+v
-	j2r8/rBGvucqMVVzbDHMir97wIUxZWSAgqfzkmLYNemcxOZER3F6SwWBxVyBTP2D3nbKNX0MCvT7C
-	3lceuzqhfiuk+TyyfILA==;
+	List-Owner; bh=T+6lKGGnjqEjUt6qCgg0rgM+aqamLjvxPv6nCNcGJlk=; b=iaMQ+x3IslAByV
+	/J7Pq5FK79gw1rQy1X7twrapl8f8Sll7Ox+jIjuy1Dw9bSIDNsDRwXp0pbbo+cbZzNIGSTXSNZvBD
+	eQ8CoYg/pAWj440ERFQnX1YomEG0nZzTT2hJBDI0PV1ei5Y1X/B9z42kWLQVjSzqRyJZZGisJ1g4t
+	YjfLVmjjn9bVZRKyBbxzLd6jhAmExlc2fhcfnPygB3jb0D7pC9TTkS4i6Kx0htgQssHOoul8/V31Z
+	aU523fGAWQekjSOBHwvyzNgMuLMw8iTfHvxunP6GopIw9U0ZGDJIYvg5QUWxk0Yqnmrsvv1+8c1HG
+	5bImeRtj4BH48b8wOorA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sJ8Dn-00000009vvN-05bc;
-	Mon, 17 Jun 2024 09:00:15 +0000
-Received: from mail-lf1-x129.google.com ([2a00:1450:4864:20::129])
+	id 1sJAIM-0000000AQar-3Qxr;
+	Mon, 17 Jun 2024 11:13:06 +0000
+Received: from madrid.collaboradmins.com ([2a00:1098:ed:100::25])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sJ8Dj-00000009vsd-0db6
-	for linux-amlogic@lists.infradead.org;
-	Mon, 17 Jun 2024 09:00:13 +0000
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-5295eb47b48so5015398e87.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 17 Jun 2024 02:00:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718614809; x=1719219609; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=V1FSShmentoBvRry0j/39LUajSeLEBqH5nME2N3UuAk=;
-        b=pLixaTe5GHzMSh7EGCIeIdHER9D0Qey/pAGddyTiG4YdbFgrMRLLBWLjUUE9caseRi
-         v2Te1y6CXJOUkghE3oXqN3GSGMcfKY+xAAyb6czH1zxlPr+2/iELYLfjJJHYchysINoz
-         T7yiYSnGO8BeiwPm4TqzcFwikgFkRDjbIZ2ntbxEutpT4gYDbIl90m2wRWGYaUkGq/sS
-         4Q3r88pGmF3x6GXmfxH25feDQZrof4VvsPEfzCsmho1IaOUVRCGSgOWM6/psyA3apo8i
-         A6mo/AR7f2w4aR8bG5DirFk36ZD/3OJ8NWyJlV4wr4kkFXM1BmnHF1krWVZNm3YPaunH
-         3UQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718614809; x=1719219609;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V1FSShmentoBvRry0j/39LUajSeLEBqH5nME2N3UuAk=;
-        b=FNjI5GlucFLJ7r3b64pPa87LKBzeG1HjX2WwPqIFOQ815l9qkFv/kZduv40OltVoI6
-         3vvgI4Tbp5HMGBF75g2kNp28UyFPD0BFP1TUO3I3AB7VJmbqEg1SrqSDbTMbnm4uo2od
-         D9layQ0rAXm/OdG/p/OoI4PdJKK8bgGIo6NgrLltvm2x08ZEkk79xsdpr+nduURzAJSm
-         3ppEDAxWD7yO8ENU+PfMqavam/utoBa6r6JchPcciXl3S11Rb1B5ZxFQEa+f3Og+VcCb
-         p956Fbn8Ven5reGRfPfNXkEO1YhDHgYqi4+Vo9+3a0E8ozbRxTrvQcxsJyl0f1jR+gfp
-         Sh5A==
-X-Forwarded-Encrypted: i=1; AJvYcCVkJgmqCd1EZXOwmXMTO2MzaRMeeheQB3CCp19UvrXwehXAxZ9h8/aECwvM+tBBAamMSVJruCZtvWkOZneyancvXuig3Vu81ZVj5dMHNjduDxg=
-X-Gm-Message-State: AOJu0Yw2yPXlPaYaPvoyGATT5t2GWjXuVuCShuOvQxVtFIwku0isNSJ5
-	5vDjySZXqdqr+24cRXTknBuWBqE13txZI/erOR+q8FBj3TsfndYgXGWjVQtSe0Mr1pIPokNJ6sv
-	bZkJqKtjFPanH0XKb2bzorJrJ5kGHYxgRzDsvxQ==
-X-Google-Smtp-Source: AGHT+IG9zighTs6xvh63BukgGULZA+rm8EHxMlcrHikHKdNririru1xtsssJ0ZWvnvp2q2oJd7kXO4xZ0dX+3hN0oTY=
-X-Received: by 2002:ac2:5a4b:0:b0:52c:884f:5a31 with SMTP id
- 2adb3069b0e04-52ca6e6dc0fmr6141428e87.30.1718614809351; Mon, 17 Jun 2024
- 02:00:09 -0700 (PDT)
+	id 1sJAIJ-0000000AQZj-2Ur0;
+	Mon, 17 Jun 2024 11:13:05 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718622778;
+	bh=/L6WYMxSMfjTIoWr9t9k/aRtdxtiTotpKJC0bwZmths=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TWun6Tz0mrFyu0Doh3GSFs5086lVufoWIuFjkxiKsPZHUQOo5/kxB2MOvTdkHoK4M
+	 l4YUhTOvHS6iKdIwIxJr+SYFYE4R3tSubri3gpAKeg6QauwUwxk8RGrhWTgKsJRkga
+	 WmuEAq1gxUD4FXTikNClu2mpX/GqqqZR9v0VNhWXWVooGlwaZSnITzWYVtrWMAdY/Q
+	 Gc1Sy3KP5c8iVAVzEodL3ey7mM4zKdz2E7c0MAl9n4oWfGTO9aciNFSPuXhlGTSJ4A
+	 mnRmhAVp0wQ90eRATO9s4OC6Pw0gg5PJ3Gn/yeXaoaNP+Ktue2EHgnAsiuTtPDUH6E
+	 goMQ1PX6AMUzA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 42DB93780480;
+	Mon, 17 Jun 2024 11:12:55 +0000 (UTC)
+Message-ID: <33aac6a0-7bdf-48d3-bf79-0f3bf60394f2@collabora.com>
+Date: Mon, 17 Jun 2024 13:12:54 +0200
 MIME-Version: 1.0
-References: <20240610-md-drivers-pinctrl-v1-1-68462e3d960c@quicinc.com>
-In-Reply-To: <20240610-md-drivers-pinctrl-v1-1-68462e3d960c@quicinc.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 17 Jun 2024 10:59:58 +0200
-Message-ID: <CACRpkdY9aRr+OisO3Bs5-p7gtF_PbGh9MbWnyuURXSuMBW34Nw@mail.gmail.com>
-Subject: Re: [PATCH] pinctrl: add missing MODULE_DESCRIPTION() macros
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-gpio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, kernel-janitors@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 21/22] dt-bindings: thermal: simplify few bindings
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Guillaume La Roque <glaroque@baylibre.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Vasily Khoruzhick <anarsoul@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Anson Huang <Anson.Huang@nxp.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Amit Kucheria <amitk@kernel.org>,
+ =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+ Heiko Stuebner <heiko@sntech.de>, Biju Das <biju.das.jz@bp.renesas.com>,
+ Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Pascal Paillet <p.paillet@foss.st.com>, Keerthy <j-keerthy@ti.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ zhanghongchen <zhanghongchen@loongson.cn>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, imx@lists.linux.dev,
+ linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ linux-rpi-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org>
+ <20240614-dt-bindings-thermal-allof-v1-21-30b25a6ae24e@linaro.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240614-dt-bindings-thermal-allof-v1-21-30b25a6ae24e@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240617_020011_218940_EB7D0B6F 
-X-CRM114-Status: GOOD (  10.30  )
+X-CRM114-CacheID: sfid-20240617_041304_229053_7626E746 
+X-CRM114-Status: UNSURE (   5.76  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,29 +107,24 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCBKdW4gMTEsIDIwMjQgYXQgNjoyMeKAr0FNIEplZmYgSm9obnNvbiA8cXVpY19qam9o
-bnNvbkBxdWljaW5jLmNvbT4gd3JvdGU6Cgo+IFdoZW4gQVJDSD14ODYsIG1ha2UgYWxsbW9kY29u
-ZmlnICYmIG1ha2UgVz0xIEM9MSByZXBvcnRzOgo+IFdBUk5JTkc6IG1vZHBvc3Q6IG1pc3Npbmcg
-TU9EVUxFX0RFU0NSSVBUSU9OKCkgaW4gZHJpdmVycy9waW5jdHJsL2JjbS9waW5jdHJsLWJjbTQ5
-MDgubwo+IFdBUk5JTkc6IG1vZHBvc3Q6IG1pc3NpbmcgTU9EVUxFX0RFU0NSSVBUSU9OKCkgaW4g
-ZHJpdmVycy9waW5jdHJsL3BpbmN0cmwtbWNwMjNzMDhfaTJjLm8KPiBXQVJOSU5HOiBtb2Rwb3N0
-OiBtaXNzaW5nIE1PRFVMRV9ERVNDUklQVElPTigpIGluIGRyaXZlcnMvcGluY3RybC9waW5jdHJs
-LW1jcDIzczA4X3NwaS5vCj4gV0FSTklORzogbW9kcG9zdDogbWlzc2luZyBNT0RVTEVfREVTQ1JJ
-UFRJT04oKSBpbiBkcml2ZXJzL3BpbmN0cmwvcGluY3RybC1tY3AyM3MwOC5vCj4gV0FSTklORzog
-bW9kcG9zdDogbWlzc2luZyBNT0RVTEVfREVTQ1JJUFRJT04oKSBpbiBkcml2ZXJzL3BpbmN0cmwv
-bWVzb24vcGluY3RybC1tZXNvbi5vCj4KPiBBZGQgdGhlIG1pc3NpbmcgaW52b2NhdGlvbiBvZiB0
-aGUgTU9EVUxFX0RFU0NSSVBUSU9OKCkgbWFjcm8gdG8gYWxsCj4gZmlsZXMgd2hpY2ggaGF2ZSBh
-IE1PRFVMRV9MSUNFTlNFKCkuCj4KPiBUaGlzIGluY2x1ZGVzIG1hbnkgbWVzb24gZHJpdmVycyB3
-aGljaCwgYWx0aG91Z2ggdGhleSBkaWQgbm90IHByb2R1Y2UKPiBhIHdhcm5pbmcgd2l0aCB0aGUg
-eDg2IGFsbG1vZGNvbmZpZyBjb25maWd1cmF0aW9uLCBtYXkgY2F1c2UgdGhpcwo+IHdhcm5pbmcg
-d2l0aCBBUk0gb3IgQVJNNjQgY29uZmlndXJhdGlvbnMuCj4KPiBTaWduZWQtb2ZmLWJ5OiBKZWZm
-IEpvaG5zb24gPHF1aWNfampvaG5zb25AcXVpY2luYy5jb20+CgpQYXRjaCBhcHBsaWVkLgoKWW91
-cnMsCkxpbnVzIFdhbGxlaWoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMu
-aW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2xpbnV4LWFtbG9naWMK
+Il 14/06/24 11:46, Krzysztof Kozlowski ha scritto:
+> Simplify few bindings which already reference thermal-sensor.yaml schema
+> by dropping unneeded requiring of '#thermal-sensor-cells' and dropping
+> assigned-clocks properties (core schema allows it if 'clocks' are
+> there).
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
