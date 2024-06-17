@@ -4,100 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4569C2BA15
-	for <linux-amlogic@archiver.kernel.org>; Sun, 16 Jun 2024 18:50:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77BB6C27C79
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jun 2024 02:26:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=tBNFrQ0kxLeRkXuebE+qn6ftnnaInQY8T3OVfQZBa0Y=; b=IwnL/rJgdUpnFhSZTaIWgVvn0A
-	sbRG/hZvmUdi6EcC2qLogYQLPD7Fe2PnBsSFMxS9KXDr6R/a0ivtXJpnee0Ot6pgYSRycZ7BPDnmB
-	cgc05MDtaaQsGRvdo1zMiw8Sfzv+tcxTb4RaHSxIcqQSOZi4voZjOriY/NggXIHJmjjl1/d9keojN
-	ERnYdV3fAVAif7zxDoiXpzfbDnmqgtnNIstJhJDPEJI+aoaSPn9br8FiUxVCiGkgT3yZ5I0WJOX6I
-	7h4spgVglvLOzklPZk8Mj9sZOqZDRjK+KxT7OSK22AqIoFjt7p22P3ZdjKn/zuSC+JS5qZmth7nEY
-	WSmPmzyw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=CffUP/33HKrwPK7/ekZT3trSLehE09En1zczCUj76ao=; b=i1QXjyqA7HFjt7
+	LXAiWNjKN69mn4NGFAf1qcSl9gBX29M7BtdcK0Ng1S6Hc/KHrY61G5rp9tqiaRrjFHn2NdrKg1Kgb
+	c7kDyI9ku1OHmf4BbiIkDp8X/uKfLy0z5vFBzKzxJZJY68NBnv6IEzR95zsWRXbWln6wDkFm2MOT1
+	Ozn4UlvUxfQY6cfeZgbZSRVvNRTbcKZQAXQ2ubmX+bVwxvmReTZfC4pc1DaQ1EcljTtRQ1MvpTNkO
+	PTFlClZE+xi/CumN4dVitfzqszBmNYSa1/HgPzTIau/gPnP66eqdSQP4IUVVYIdWuf9UJ0d6eTjqM
+	W4PQNIJLSHTsTD/CicIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sIuww-0000000889V-3qJf;
-	Sun, 16 Jun 2024 18:49:58 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
-	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sIuws-0000000888m-3v7f;
-	Sun, 16 Jun 2024 18:49:56 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id DF6BBCE0ED3;
-	Sun, 16 Jun 2024 18:49:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DF56C2BBFC;
-	Sun, 16 Jun 2024 18:49:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718563790;
-	bh=osjHdpENVIPZkE6xIPy2V4BuG0sO5GBaRhifuE5x2O0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=coDx3fTCDyHCwcx4phLEdKPE4EnO0+r5shya/UDwFe1tr2yNK3DD5+11me8gnjfCo
-	 gcgxjn1nhU11+GPNDlr70AY4FsCrONmAuiz2j8aTXJdQbIHEw7/IF/cnHnan8oigXy
-	 tvq9Y/l6Ls0ceOSLpTlOmbdCRh68+btlPNA2k4EMVCSGTLrHAurqhFLet/O9WE3ewA
-	 ULmnLzGKFayh2LHgHDLw2ANYsfHGD5rv6QbpyeYy91sjm5K5YywxT3CpwHu0T8N3EE
-	 FB5mtdDSfIDYwlg1L/vpD0Dt4nRhV1TbTtB3DeC2Xgpm2Z/P2OyDdyPM5d7b0emAHE
-	 c6dz3vR4/Ppkg==
-Date: Sun, 16 Jun 2024 19:49:38 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Guillaume La Roque <glaroque@baylibre.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Vasily Khoruzhick <anarsoul@gmail.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
+	id 1sJ24j-00000008qsu-439V;
+	Mon, 17 Jun 2024 02:26:29 +0000
+Received: from mail-177131.yeah.net ([123.58.177.131])
+	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1sJ24g-00000008qs5-1AdM;
+	Mon, 17 Jun 2024 02:26:27 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=UzRS40U5/LPPmxXbUV5UdyzySjYYlr6Ws3i6/OCKy5w=;
+	b=YedPxTmONWBUG3jg8Fa85RpOdjBRHELvJNkIcKO6HV7zFcyPodFd9iTXzRBdZr
+	q3yjw7r0GSNceXWKNvlqTW3J/y0BfpkZshwn0qpCfdifBXyiCFjuP4Sd+u9KBWzc
+	ajJhXuE1iuF6yT/T6TZX2REjFPbIcIczTdNw6mjy+eBLQ=
+Received: from dragon (unknown [114.216.76.201])
+	by smtp1 (Coremail) with SMTP id ClUQrADnr0G9nm9mU0AMCA--.39214S3;
+	Mon, 17 Jun 2024 10:26:06 +0800 (CST)
+Date: Mon, 17 Jun 2024 10:26:05 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
 	Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>,
-	Anson Huang <Anson.Huang@nxp.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Amit Kucheria <amitk@kernel.org>,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Pascal Paillet <p.paillet@foss.st.com>, Keerthy <j-keerthy@ti.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	zhanghongchen <zhanghongchen@loongson.cn>,
+	Linus Walleij <linusw@kernel.org>, Imre Kaloz <kaloz@openwrt.org>,
 	Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, imx@lists.linux.dev,
-	linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 00/22] dt-bindings: thermal: few cleanups
-Message-ID: <20240616-immovably-washboard-5eff43888e6f@spud>
-References: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org>
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-mediatek@lists.infradead.org,
+	kernel-janitors@vger.kernel.org
+Subject: Re: [PATCH] soc: add missing MODULE_DESCRIPTION() macros
+Message-ID: <Zm+evaRZ6/6BOvAw@dragon>
+References: <20240611-md-drivers-soc-v1-1-8f0fc9fff234@quicinc.com>
 MIME-Version: 1.0
-In-Reply-To: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org>
+Content-Disposition: inline
+In-Reply-To: <20240611-md-drivers-soc-v1-1-8f0fc9fff234@quicinc.com>
+X-CM-TRANSID: ClUQrADnr0G9nm9mU0AMCA--.39214S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWrZFWkur13tw1UJFyrtryxKrg_yoWkXrcEkr
+	Wkt3yxuw17Jry8Cay5CF1kZF9F9Fn7X3ySqw1jgryrXrW7Zw1UJF4kur43Ga4UZw4xAF1D
+	Ars7Xr1rJFWUZjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8E1v3UUUUU==
+X-Originating-IP: [114.216.76.201]
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDx4BZVnxc0yUrgAAsY
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240616_114955_688958_9A88792E 
-X-CRM114-Status: UNSURE (   8.66  )
+X-CRM114-CacheID: sfid-20240616_192626_620137_B5682AA5 
+X-CRM114-Status: UNSURE (   9.57  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -110,53 +81,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============4342261347006969010=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Tue, Jun 11, 2024 at 10:50:58PM -0700, Jeff Johnson wrote:
+> With ARCH=x86, make allmodconfig && make W=1 C=1 reports:
+> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/imx/soc-imx8m.o
+> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/ixp4xx/ixp4xx-qmgr.o
+> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/ixp4xx/ixp4xx-npe.o
+> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/mediatek/mtk-cmdq-helper.o
+> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/amlogic/meson-clk-measure.o
+> 
+> Add the missing invocations of the MODULE_DESCRIPTION() macro.
+> 
+> Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> ---
+> This is the last of the issues that I see in the soc directory
+> ---
+>  drivers/soc/amlogic/meson-clk-measure.c | 1 +
+>  drivers/soc/imx/soc-imx8m.c             | 1 +
 
---===============4342261347006969010==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="kOA5/bYAEVq+jUn/"
-Content-Disposition: inline
+Acked-by: Shawn Guo <shawnguo@kernel.org>
 
+>  drivers/soc/ixp4xx/ixp4xx-npe.c         | 1 +
+>  drivers/soc/ixp4xx/ixp4xx-qmgr.c        | 1 +
+>  drivers/soc/mediatek/mtk-cmdq-helper.c  | 1 +
+>  5 files changed, 5 insertions(+)
 
---kOA5/bYAEVq+jUn/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Jun 14, 2024 at 11:45:59AM +0200, Krzysztof Kozlowski wrote:
->=20
-> Few cleanups witout practical impact, except maybe the Amlogic schema
-> (bringing required cells).
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---kOA5/bYAEVq+jUn/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZm8zwgAKCRB4tDGHoIJi
-0ttlAQCXZrCE/f+fR0kZEWAkq+YZfRQhwyqkNPYsIPr3O9xqAAD+NmeiOYPzL4/8
-zTg9dNEipYzGNeR396Pg5r09PcUJDQM=
-=AUoM
------END PGP SIGNATURE-----
-
---kOA5/bYAEVq+jUn/--
-
-
---===============4342261347006969010==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============4342261347006969010==--
-
