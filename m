@@ -4,78 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44EAAC2BA15
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jun 2024 16:14:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57123C27C79
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Jun 2024 16:58:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=R6Os9uhCNVroBrcFW0kwXxcflZn9jHGoHm/5HjU9kMw=; b=IPbpUqctciWP+M
-	TfWMNHsY7WE7Aoy6qJmtRDJ3MrOMc+crTs7ALHrFkttxPbJHO+WdhMryIEseO05/WbOaX2I0jHJLT
-	E9lXTHe9q83UKhIUzf9kATJmul7cWiFwYy2LHp0bOcjdjCxJfGWsrKpPXps8QpVVNA42Nxojtoo2u
-	pVifMvS3pmQo5RjCIBGVlZJQyd++G9S10aeCTIsU9csJnC31769bWe3RyNG7jbyjfaqcEVsSW6AUk
-	Q/bCnOwihgWywqLznO7pQNZ3MD2k1Os/DBlSkCnLWwSn3fs7Z+IcFeExSBqEJBq413+z4aLhEnGlu
-	2U89W+eAPaKHC/Is3Utg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=/Qf0JBJ/8MmHFUMKeyc+zvuIy4CyUQIywZdPoX9bc6k=; b=WHAHlX3+HewA1KknaNZqm1Mo0E
+	IGAQI5zVcIivFWN86OGyCeManXqY6U7GsAfqaP/pbk7vtM2TxI8ZLwyR6sep/9UQuk1eCVIkOxVDH
+	rAr2z6cdrptFbr+yQGiyN60FBPDAgqjajrkcMWxSGuLNWxN6mllKbxT24SSch4Mlm6fMpxTnXJqn0
+	BstOMPlbfNYIfjB4UNeFYprTL/UPbRONFD6lFGRTSoxoXV2rJ2Z26ECQgHj/A05ocAASeJft2c+Kw
+	TR32nNGygYHjgwpIf/4h55D+WlyZD2xyVH4mgvDeoTNrU/08Xroe7IPI0lDjqZzBkR3RklZgLkq/p
+	wEa0NEzg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sJEzf-0000000BgBl-3zey;
-	Mon, 17 Jun 2024 16:14:07 +0000
-Received: from frasgout.his.huawei.com ([185.176.79.56])
+	id 1sJFgC-0000000BqqG-0Kgi;
+	Mon, 17 Jun 2024 16:58:04 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sJEzc-0000000BgAA-2tCP;
-	Mon, 17 Jun 2024 16:14:06 +0000
-Received: from mail.maildlp.com (unknown [172.18.186.216])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4W2vzZ4Ym4z67FbS;
-	Tue, 18 Jun 2024 00:12:26 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id A93C6140A90;
-	Tue, 18 Jun 2024 00:13:55 +0800 (CST)
-Received: from localhost (10.203.174.77) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Mon, 17 Jun
- 2024 17:13:54 +0100
-Date: Mon, 17 Jun 2024 17:13:53 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Trevor Gamblin <tgamblin@baylibre.com>
-CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
-	Dmitry Rokosov <ddrokosov@sberdevices.ru>, "Michael Hennerich"
-	<Michael.Hennerich@analog.com>, Cosmin Tanislav <cosmin.tanislav@analog.com>,
-	Chen-Yu Tsai <wens@csie.org>, Hans de Goede <hdegoede@redhat.com>, Ray Jui
-	<rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, Broadcom internal
- kernel review list <bcm-kernel-feedback-list@broadcom.com>, Shawn Guo
-	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Neil
- Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
-	"Jerome Brunet" <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Saravanan Sekar <sravanhome@gmail.com>,
-	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
-	<baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, Maxime
- Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
-	<alexandre.torgue@foss.st.com>, Nuno =?ISO-8859-1?Q?S=E1?=
-	<nuno.sa@analog.com>, Linus Walleij <linus.walleij@linaro.org>, Jean-Baptiste
- Maneyrol <jmaneyrol@invensense.com>, Crt Mori <cmo@melexis.com>,
-	<linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <imx@lists.linux.dev>,
-	<linux-amlogic@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>, Uwe =?ISO-8859-1?Q?Kleine-K=F6n?=
- =?ISO-8859-1?Q?ig?= <u.kleine-koenig@baylibre.com>
-Subject: Re: [PATCH v3 22/41] iio: gyro: mpu3050-core: make use of
- regmap_clear_bits(), regmap_set_bits()
-Message-ID: <20240617171353.00006b1f@Huawei.com>
-In-Reply-To: <20240617-review-v3-22-88d1338c4cca@baylibre.com>
-References: <20240617-review-v3-0-88d1338c4cca@baylibre.com>
-	<20240617-review-v3-22-88d1338c4cca@baylibre.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	id 1sJFg9-0000000BqpO-1qy6;
+	Mon, 17 Jun 2024 16:58:03 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 608A3CE127F;
+	Mon, 17 Jun 2024 16:57:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06D28C2BD10;
+	Mon, 17 Jun 2024 16:57:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718643478;
+	bh=EYhhFEKPUKJ3A9IrkQKwCZDAWmChwoTv2GvWJZl4HTQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ju6HrgnMDQT8HCJ1gUVvsZkxpNmMPkxNK3n1ac+FHNzr28r23Kig+IKENMFY/aoli
+	 sCrEBTKypzLwmzOOTIIQ+dJZ1hNc1oWeFMO8ZDC9sIZ1xs5d4o4htq1Hr5BEYXThIr
+	 MJUPZNtOOzFe+09X+N9PnxFMDSiqPq5nw/V3EV7PtVk5XCTtgGvm+KUr0/4Ra7GtfR
+	 imIYZJIek4IdcKtIEL1CznqlsG6budKqedaqWnzWXO98umXX3H+q/CqeSrRqsyHS3o
+	 JuUlB1M/H7vLhAoi3Dh8Qb9g5rFbtITo1p8GxN8KVLUwAV276fyW9cW0u26TaUn7F/
+	 EzOjz/socuMBA==
+Date: Mon, 17 Jun 2024 17:57:53 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Viacheslav <adeep@lexina.in>
+Cc: Rob Herring <robh@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 3/4] dt-bindings: arm: amlogic:
+ amlogic,meson-gx-ao-secure: add secure-monitor property
+Message-ID: <20240617-sulfate-posture-1619f1cdf090@spud>
+References: <20240610084032.3096614-1-adeep@lexina.in>
+ <20240610084032.3096614-4-adeep@lexina.in>
+ <20240610-dropout-compress-6d6a9b749524@spud>
+ <4866f6d4-2e3c-40c7-a8cb-ba4e422ffef6@lexina.in>
+ <20240611-undying-earthy-00236ac251aa@spud>
+ <20240613164244.GA1999034-robh@kernel.org>
+ <c0d18fef-be65-461e-948f-c25e757199a5@lexina.in>
 MIME-Version: 1.0
-X-Originating-IP: [10.203.174.77]
-X-ClientProxiedBy: lhrpeml100002.china.huawei.com (7.191.160.241) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+In-Reply-To: <c0d18fef-be65-461e-948f-c25e757199a5@lexina.in>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240617_091405_092818_6A86CEC8 
-X-CRM114-Status: GOOD (  15.19  )
+X-CRM114-CacheID: sfid-20240617_095801_971094_6CBBCC30 
+X-CRM114-Status: GOOD (  33.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,134 +79,120 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/mixed; boundary="===============0781287545241443735=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 17 Jun 2024 09:50:02 -0400
-Trevor Gamblin <tgamblin@baylibre.com> wrote:
 
-> Instead of using regmap_update_bits() and passing the mask twice, use
-> regmap_set_bits().
-> =
-
-> Instead of using regmap_update_bits() and passing val =3D 0, use
-> regmap_clear_bits().
-> =
-
-> Suggested-by: Uwe Kleine-K=F6nig <u.kleine-koenig@baylibre.com>
-> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
-> ---
->  drivers/iio/gyro/mpu3050-core.c | 33 ++++++++++++---------------------
->  1 file changed, 12 insertions(+), 21 deletions(-)
-> =
-
-> diff --git a/drivers/iio/gyro/mpu3050-core.c b/drivers/iio/gyro/mpu3050-c=
-ore.c
-> index a791ba3a693a..ff1c81553045 100644
-> --- a/drivers/iio/gyro/mpu3050-core.c
-> +++ b/drivers/iio/gyro/mpu3050-core.c
-> @@ -197,8 +197,8 @@ static int mpu3050_start_sampling(struct mpu3050 *mpu=
-3050)
->  	int i;
->  =
-
->  	/* Reset */
-> -	ret =3D regmap_update_bits(mpu3050->map, MPU3050_PWR_MGM,
-> -				 MPU3050_PWR_MGM_RESET, MPU3050_PWR_MGM_RESET);
-> +	ret =3D regmap_set_bits(mpu3050->map, MPU3050_PWR_MGM,
-> +			      MPU3050_PWR_MGM_RESET);
->  	if (ret)
->  		return ret;
->  =
-
-> @@ -513,12 +513,8 @@ static irqreturn_t mpu3050_trigger_handler(int irq, =
-void *p)
->  				 "FIFO overflow! Emptying and resetting FIFO\n");
->  			fifo_overflow =3D true;
->  			/* Reset and enable the FIFO */
-> -			ret =3D regmap_update_bits(mpu3050->map,
-> -						 MPU3050_USR_CTRL,
-> -						 MPU3050_USR_CTRL_FIFO_EN |
-> -						 MPU3050_USR_CTRL_FIFO_RST,
-> -						 MPU3050_USR_CTRL_FIFO_EN |
-> -						 MPU3050_USR_CTRL_FIFO_RST);
-> +			ret =3D regmap_set_bits(mpu3050->map, MPU3050_USR_CTRL,
-> +					      MPU3050_USR_CTRL_FIFO_EN | MPU3050_USR_CTRL_FIFO_RST);
-
-I'll probably break this line up whilst applying.
-
->  			if (ret) {
->  				dev_info(mpu3050->dev, "error resetting FIFO\n");
->  				goto out_trigger_unlock;
-> @@ -799,10 +795,8 @@ static int mpu3050_hw_init(struct mpu3050 *mpu3050)
->  	u64 otp;
->  =
-
->  	/* Reset */
-> -	ret =3D regmap_update_bits(mpu3050->map,
-> -				 MPU3050_PWR_MGM,
-> -				 MPU3050_PWR_MGM_RESET,
-> -				 MPU3050_PWR_MGM_RESET);
-> +	ret =3D regmap_set_bits(mpu3050->map, MPU3050_PWR_MGM,
-> +			      MPU3050_PWR_MGM_RESET);
->  	if (ret)
->  		return ret;
->  =
-
-> @@ -872,8 +866,8 @@ static int mpu3050_power_up(struct mpu3050 *mpu3050)
->  	msleep(200);
->  =
-
->  	/* Take device out of sleep mode */
-> -	ret =3D regmap_update_bits(mpu3050->map, MPU3050_PWR_MGM,
-> -				 MPU3050_PWR_MGM_SLEEP, 0);
-> +	ret =3D regmap_clear_bits(mpu3050->map, MPU3050_PWR_MGM,
-> +				MPU3050_PWR_MGM_SLEEP);
->  	if (ret) {
->  		regulator_bulk_disable(ARRAY_SIZE(mpu3050->regs), mpu3050->regs);
->  		dev_err(mpu3050->dev, "error setting power mode\n");
-> @@ -895,8 +889,8 @@ static int mpu3050_power_down(struct mpu3050 *mpu3050)
->  	 * then we would be wasting power unless we go to sleep mode
->  	 * first.
->  	 */
-> -	ret =3D regmap_update_bits(mpu3050->map, MPU3050_PWR_MGM,
-> -				 MPU3050_PWR_MGM_SLEEP, MPU3050_PWR_MGM_SLEEP);
-> +	ret =3D regmap_set_bits(mpu3050->map, MPU3050_PWR_MGM,
-> +			      MPU3050_PWR_MGM_SLEEP);
->  	if (ret)
->  		dev_err(mpu3050->dev, "error putting to sleep\n");
->  =
-
-> @@ -997,11 +991,8 @@ static int mpu3050_drdy_trigger_set_state(struct iio=
-_trigger *trig,
->  			return ret;
->  =
-
->  		/* Reset and enable the FIFO */
-> -		ret =3D regmap_update_bits(mpu3050->map, MPU3050_USR_CTRL,
-> -					 MPU3050_USR_CTRL_FIFO_EN |
-> -					 MPU3050_USR_CTRL_FIFO_RST,
-> -					 MPU3050_USR_CTRL_FIFO_EN |
-> -					 MPU3050_USR_CTRL_FIFO_RST);
-> +		ret =3D regmap_set_bits(mpu3050->map, MPU3050_USR_CTRL,
-> +				      MPU3050_USR_CTRL_FIFO_EN | MPU3050_USR_CTRL_FIFO_RST);
-and this one.
-
-Assuming we don't need a v4 for some other reason,
-
-Jonathan
-
->  		if (ret)
->  			return ret;
->  =
-
-> =
+--===============0781287545241443735==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="NNsmTeGnFTom/65N"
+Content-Disposition: inline
 
 
+--NNsmTeGnFTom/65N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Jun 17, 2024 at 11:21:30AM +0300, Viacheslav wrote:
+> Thanks for review.
+>=20
+> 13/06/2024 19.42, Rob Herring wrote:
+> > On Tue, Jun 11, 2024 at 07:07:28PM +0100, Conor Dooley wrote:
+> > > On Tue, Jun 11, 2024 at 01:25:11PM +0300, Viacheslav wrote:
+> > > > Hi!
+> > > >=20
+> > > > 10/06/2024 19.08, Conor Dooley wrote:
+> > > > > On Mon, Jun 10, 2024 at 11:39:49AM +0300, Viacheslav Bocharov wro=
+te:
+> > > > > > Add secure-monitor property to schema for meson-gx-socinfo-sm d=
+river.
+> > > > >=20
+> > > > > "bindings are for hardware, not drivers". Why purpose does the "s=
+ecure
+> > > > > monitor" serve that the secure firmware needs a reference to it?
+> > > >=20
+> > > > This driver is an extension to the meson-gx-socinfo driver: it supp=
+lements
+> > > > information obtained from the register with information from the
+> > > > SM_GET_CHIP_ID secure monitor call. Due to the specifics of the mod=
+ule
+> > > > loading order, we cannot do away with meson-gx-socinfo, as it is us=
+ed for
+> > > > platform identification in some drivers. Therefore, the extended in=
+formation
+> > > > is formatted as a separate driver, which is loaded after the secure=
+-monitor
+> > > > driver.
+> > >=20
+> > > Please stop talking about drivers, this is a binding which is about
+> > > hardware. Please provide, in your next version, a commit message that
+> > > justifies adding this property without talking about driver probing
+> > > order etc, and instead focuses on what service the "secure monitor"
+> > > provides etc.
+> >=20
+> > To put it another way, how many secure monitors does 1 system have?
+>=20
+> One per system in current device tree.
+
+One per system, or one is currently described per system, but more might
+be added later?
+
+> > What do you do if the property is not present? You didn't make it
+> > required which is good because that would be an ABI break.
+>=20
+> We need an indication of the ability to use the secure-monitor to obtain
+> additional information within the soc driver. It seemed to me that using =
+an
+> explicit reference to the secure-monitor is the best choice.
+>=20
+> >=20
+> > You only need a link in DT if there are different possible providers or
+> > some per consumer information to describe (e.g. an interrupt number or
+> > clock ID). You don't have the latter and likely there is only 1 possible
+> > provider.
+>=20
+> Would replacing the reference to sm with an option, for example,
+> use-secure-monitor =3D <1>; look more appropriate in this case?
+
+Perhaps a silly question, but (provided there's only one per system, why
+can't the secure-monitor driver expose a function that you can call to get
+a reference to the system-monitor? I did something similar before with
+a call to in mpfs_sys_controller_get() mpfs_rng_probe(). Granted,
+mpfs-rng is probed from software so it's slightly different to your
+case, but the principle is the same and it's not unheard of for code in
+drivers/soc to expose interfaces to other drivers like this. You can
+just call a function like that, and know whether there's a secure
+monitor, without having to retrofit a DT property.
+
+Thanks,
+Conor.
+
+--NNsmTeGnFTom/65N
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnBrEQAKCRB4tDGHoIJi
+0t04AP9IZpDaZr0ZUw5JP/PZ+mfLbOJbqMfSkCUHR55GfiYSjQEAsopLOy9vwxux
+yt1njFci5qcGHtd4l6xcHFxdHYq+XQ0=
+=0Ywh
+-----END PGP SIGNATURE-----
+
+--NNsmTeGnFTom/65N--
+
+
+--===============0781287545241443735==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============0781287545241443735==--
+
