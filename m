@@ -4,93 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2291C2BA15
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Jun 2024 11:12:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75A6AC27C4F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Jun 2024 17:52:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=c9dth8WZx1b+ouQybnYXcf7JG/cSyCA9edMCNta2AeI=; b=NTLEmV2hZW2+g6
-	hORH7v+dIgbtPRqeA4+vZLIl2JWf9V9LmW3+I104Cuby33Y7PyZHnHelr0pvBah97uqd7dFt8lraD
-	4pHZH9kDbXVcHI4zRUaBDTGVu6tNRjDtVN6lGKb4Az8hKyT6cvQ2w8XO/XuyQlyDhRlRK58qe/mat
-	ONnGQJyXXPZVZNKUDkr9dkn/NtiP5UDEKvnxpLSLS1ydZtI77kMABtuDLXxB06apSDJ7onGmcADH3
-	K9YUZAnkEAo66BgaofjFV1kf2JMbqpOcK0CmdrYHdoWH5k2lfJWSkr+d1ZKTt714n0d1F43vlooAu
-	zLB8YB/YRamYnoIShCsQ==;
+	List-Owner; bh=b2z12K2TXulLVxylG+yw3Ymao8laODarCzWD2IqhiVw=; b=fTJyGy3ntqyHpt
+	mmJNtfK74dlFI2zDloaCFA1XhvXKh69wRgXAZcitdXZAAkV47EG5C/Ak9iXkz3qWHE4SRn8wviRzq
+	aPjKhfETF0PIcj8LBt6Ks6c5sn+VmBRFxc/kMcadLGyvN5nBSmqUEF3OBCfeZzcGHwxYAqlODXwdQ
+	RY/fB9MkSEXDYX95E7M3nknjNoP/42TkYA3/9gEbh4eXZzPK31IKvKQWpu1Ngp/h5661SyipMnE4l
+	+yfNWxtOCf79JXtPtj+umHiRcZA0zYJ80IhG+5SChZHBJHD/TIGb7U19AXtJm15wncqZehyrh79L8
+	23907WIVLKfBFUtR/CqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sJWlX-0000000EYXf-44Xn;
-	Tue, 18 Jun 2024 11:12:43 +0000
-Received: from mail-lf1-x131.google.com ([2a00:1450:4864:20::131])
+	id 1sJd0c-0000000G6UP-07Xj;
+	Tue, 18 Jun 2024 17:52:42 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sJWlS-0000000EYUd-3Iu8
-	for linux-amlogic@lists.infradead.org;
-	Tue, 18 Jun 2024 11:12:41 +0000
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-52c85a7f834so6816751e87.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 18 Jun 2024 04:12:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718709157; x=1719313957; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LytFF4Umh3FGe2BHoZB/hPX8STy/rMVhd/DWw4ViV9Q=;
-        b=mbACC+piwzqg0QMP7xloBAx7aS2NqEl7MaRAsfUBRAWYhx4QgsEblz66HuV0z2buAD
-         1zQBKrXj4fTw2Tf/3iiuOYNEOUuooeORtZCVzLNPydtLdcnvAe1q1/i7UD8sFrZs8Me5
-         F2WTZUzdy2YvTOKgEXzUHSdgb0XvR1YH4xigmcg5STOPNkw0GQkBhWFE/H//Srir668/
-         ZOq92MR/EngC58833dTnr+2ut2EzCo4j30E72fLZgqNA5Sp8RJUEC9AtdSq0JWmdYyDi
-         ZMMbWdxaXcToI0O2k0fPyI+rv3vHavSLDS2gr6UjY+zB2yQge9dNO8sctZTHVj7N22/Q
-         PQuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718709157; x=1719313957;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LytFF4Umh3FGe2BHoZB/hPX8STy/rMVhd/DWw4ViV9Q=;
-        b=sSc0qJCgIM3Q8ukB5hBSv0+CfZ1Xv1Fb9TJuwOFLNwBPTk0lQmnt7JXP2Qc0gDlkTl
-         8Pj8AoMXprUxsxtlOSZ4pm81JwZNH3ZnjEGmCCDyKoNtM1dL3y3WDNos6+xp8oD2dAUF
-         kUkNJO7c4ehIHhg+LMIQ84tFk0FQPM0m9hLMKhxYfmdbNXua+QAs8Gb+4ru5hzZ81ZoB
-         pg7K8AAN/tZi9SFrEBXwa9ncdD4DWeWg0GjzvAgFeU9RmOuikCurVft00GhuvoGY8de7
-         WbRLu3M8gjSdAJGpK+bJw5/vKt69M43soUKN54RoK9NJvuxhvQ8x5IpxffRmCa+2TzSn
-         v62A==
-X-Forwarded-Encrypted: i=1; AJvYcCUCPDxRNExzJluvcPplCxONOiHA+mHAnKuVkzPE19VqS/lyoS3QNxVp7CJscaZ2O5TzVJmOLo6/0qDJNBBL2beRfhpeyqmyw0cRjpzv69sXfXQ=
-X-Gm-Message-State: AOJu0YyubeZapxDXvqxxFWVY4rApYVzHIs34Y8LKr9tnmsawKobYY4Mi
-	d0xgb+5ExpqO+QZ2lhtjCchmlw42mo/tATUMQ4L3tst7/DOHM1rSKfbC0bZ9o7AIRZo0I1NxpEC
-	BXF30g4gu/RkmLfzrfRXsQYCealmvy/PoHeE0qw==
-X-Google-Smtp-Source: AGHT+IFCeIOoRy25rTwUHZ/n6vBdkCPzCkJ8a//pB4Qa6c+3jDe2XeC/62v2ldwWc8Yh5JI+ho23V5WmsKqsRfZrbxc=
-X-Received: by 2002:ac2:5307:0:b0:52c:998a:77ba with SMTP id
- 2adb3069b0e04-52ca6e6e5f2mr6662065e87.36.1718709157060; Tue, 18 Jun 2024
- 04:12:37 -0700 (PDT)
+	id 1sJd0Y-0000000G6TY-01PQ;
+	Tue, 18 Jun 2024 17:52:41 +0000
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 61459100016;
+	Tue, 18 Jun 2024 20:52:29 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 61459100016
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1718733149;
+	bh=5TjeYJIhyXVCbtW4EgmHOFsDZbAMP7EgSVrBNOOHR9g=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=EQtmLmB5bWg+RdiajBbBReyay3nqp9amTcITVHIb67cFVUMJ4A98E4o2rHTid60ki
+	 rie8Nxts2xJbLTDMyQF8HTYYk26uyG1DjGgww1SSuYAs1ii05wWfTqH/D0NNgW7P7f
+	 SAZik9tWWBPOW+6o8gkoOCzK7//aTbf5Z3ljR1LYluQog3za0huJWYtqLBS6baCEEw
+	 MygAPEEM4VjdQDmd59pUasIGcGrITG+An3k4HrryRQhXUlRrfPqW55V2kKIj7rQeid
+	 UBhxfJS6IiUf1bdoIHa8gRVhD5+lkUisRstIo6AEJoCi46IMMSGvpptdb9breuMRM2
+	 yRiXN7HVz1d/g==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 18 Jun 2024 20:52:29 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
+ (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 18 Jun
+ 2024 20:52:28 +0300
+Date: Tue, 18 Jun 2024 20:52:28 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+CC: Kevin Hilman <khilman@baylibre.com>, Arnd Bergmann <arnd@kernel.org>, Arnd
+ Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Igor Prusov
+	<ivprusov@salutedevices.com>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: ad402: move thermal-zones to top
+ node
+Message-ID: <20240618175134.bzw22uthyvw55rfc@CAB-WSD-L081021>
+References: <20240528133215.2266419-1-arnd@kernel.org>
+ <171766520046.3911343.14113541266786791367.b4-ty@linaro.org>
 MIME-Version: 1.0
-References: <20240617-review-v3-0-88d1338c4cca@baylibre.com> <20240617-review-v3-35-88d1338c4cca@baylibre.com>
-In-Reply-To: <20240617-review-v3-35-88d1338c4cca@baylibre.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 18 Jun 2024 13:12:26 +0200
-Message-ID: <CACRpkdYchu+muvbinPpUFvppMMQCFe9zTcApj46ip4PYUGUhVg@mail.gmail.com>
-Subject: Re: [PATCH v3 35/41] iio: pressure: bmp280-core: make use of regmap_clear_bits()
-To: Trevor Gamblin <tgamblin@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Dmitry Rokosov <ddrokosov@sberdevices.ru>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Cosmin Tanislav <cosmin.tanislav@analog.com>, Chen-Yu Tsai <wens@csie.org>, 
-	Hans de Goede <hdegoede@redhat.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Saravanan Sekar <sravanhome@gmail.com>, 
-	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
-	Chunyan Zhang <zhang.lyra@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>, Crt Mori <cmo@melexis.com>, linux-iio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	imx@lists.linux.dev, linux-amlogic@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+Content-Disposition: inline
+In-Reply-To: <171766520046.3911343.14113541266786791367.b4-ty@linaro.org>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185993 [Jun 18 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;git.kernel.org:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/06/18 16:18:00
+X-KSMG-LinksScanning: Clean, bases: 2024/06/18 16:17:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/06/18 16:19:00 #25649051
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240618_041238_967161_D65D699E 
-X-CRM114-Status: UNSURE (   6.96  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240618_105238_908941_745EAD80 
+X-CRM114-Status: GOOD (  20.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,18 +102,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCBKdW4gMTcsIDIwMjQgYXQgMzo1MeKAr1BNIFRyZXZvciBHYW1ibGluIDx0Z2FtYmxp
-bkBiYXlsaWJyZS5jb20+IHdyb3RlOgoKPiBJbnN0ZWFkIG9mIHVzaW5nIHJlZ21hcF91cGRhdGVf
-Yml0cygpIGFuZCBwYXNzaW5nIHZhbCA9IDAsIHVzZQo+IHJlZ21hcF9jbGVhcl9iaXRzKCkuCj4K
-PiBTdWdnZXN0ZWQtYnk6IFV3ZSBLbGVpbmUtS8O2bmlnIDx1LmtsZWluZS1rb2VuaWdAYmF5bGli
-cmUuY29tPgo+IFNpZ25lZC1vZmYtYnk6IFRyZXZvciBHYW1ibGluIDx0Z2FtYmxpbkBiYXlsaWJy
-ZS5jb20+CgpSZXZpZXdlZC1ieTogTGludXMgV2FsbGVpaiA8bGludXMud2FsbGVpakBsaW5hcm8u
-b3JnPgoKWW91cnMsCkxpbnVzIFdhbGxlaWoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9n
-aWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On Thu, Jun 06, 2024 at 11:13:20AM +0200, Neil Armstrong wrote:
+> Hi,
+> 
+> On Tue, 28 May 2024 15:31:59 +0200, Arnd Bergmann wrote:
+> > It appears that this accidentally got added into the spi node, causing
+> > a warning.
+> > 
+> > arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts:119.16-161.4: Warning (spi_bus_reg): /soc/spi@fd000400/thermal-zones: missing or empty reg property
+> > 
+> > 
+> 
+> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.11/arm64-dt)
+> 
+> [1/1] arm64: dts: amlogic: ad402: move thermal-zones to top node
+>       https://git.kernel.org/amlogic/c/6c9b5ba73ca77ef3863cda6560856fdfe7dc237a
+> 
+> These changes has been applied on the intermediate git tree [1].
+> 
+> The v6.11/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+> for inclusion in their intermediate git branches in order to be sent to Linus during
+> the next merge window, or sooner if it's a set of fixes.
+> 
+> In the cases of fixes, those will be merged in the current release candidate
+> kernel and as soon they appear on the Linux master branch they will be
+> backported to the previous Stable and Long-Stable kernels [2].
+> 
+> The intermediate git branches are merged daily in the linux-next tree [3],
+> people are encouraged testing these pre-release kernels and report issues on the
+> relevant mailing-lists.
+> 
+> If problems are discovered on those changes, please submit a signed-off-by revert
+> patch followed by a corrective changeset.
+> 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+> [2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+> [3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+My apologies for any confusion, it seems like these are artifacts from
+the merge process...
+
+-- 
+Thank you,
+Dmitry
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
