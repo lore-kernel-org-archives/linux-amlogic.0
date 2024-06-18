@@ -4,84 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64D03C27C4F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Jun 2024 10:26:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C70BEC2BA15
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Jun 2024 11:09:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Jb8ZiD7RC8o4OmlsVV4dK6Ut8a1Lv35V0vib55GexxE=; b=n6zoaQ3hO2yRzk
-	Q4Ge1xqah1oYe3n6Qr696X00ghk9VQ2DOFA+1RGbOZDx4N3w5KJOJ9M26j2rCj59Zsw+3yVN5oAp3
-	yKniECIwC3aCnvpnZSYfdkXZX6qbbfZ1Qjb120/fNMqjtArGIagb32t/gfUHVgJQur65cnZWBWX9F
-	dX9LQ1bcT+rAHA7yk0wdKrLFU3Dp89iJyYINC0giERBlEDISn/Smr+1Q3gHRmU3JWDL6c9+RYSl1R
-	tlYBa4RxOO0hsUnxC0TJbq1EIOTQoOd651sT5JxcHuBax95qutjTJ4vUKPsw+mGR6hdrN5e3tinTu
-	R0DFy3xLpR79Sp9lY7jA==;
+	List-Owner; bh=E3Y1VwhNZ7YaTtBM/fM3HMEpoeaBtiX6nzSEV09LTsg=; b=IzS9dLRGuG/g4p
+	zRwMbsKMHF+KTvQWOYqPrwB5VOgXlIoyVKu0Qfw5sMlqs/LX7MZa8oV0cy48Da8Qf4K7T0J/1yizT
+	qDjFBQPOTQvF6sxpyF/AmheEE/bbq3lQpOrGU/A5/nD4poMjFFYGR9GMnRAJSTp2IP0FJ2EVJAq1C
+	lzquaCkMF69MXfDMf+tLcy0cCMZlRvWd5TpOQPXMDSZQ5TMnc3BLJtcgG6yXummZjZwNnttSDTO1H
+	Gw7voExeUgbHvRmPjDB5QP8IG+rnXcWdGaClCQ3Sd8lF3aU0FnnETupGX8Xw5p7s0qbOomGEawmm+
+	e+yRV0xrX83F3LY8Cbkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sJW2Z-0000000ELoe-0H0N;
-	Tue, 18 Jun 2024 10:26:15 +0000
-Received: from mail-lj1-x22c.google.com ([2a00:1450:4864:20::22c])
+	id 1sJWiX-0000000EXUL-3uLW;
+	Tue, 18 Jun 2024 11:09:37 +0000
+Received: from mail-lf1-x129.google.com ([2a00:1450:4864:20::129])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sJW2U-0000000ELkl-3Ub5
+	id 1sJWiR-0000000EXRQ-3bc1
 	for linux-amlogic@lists.infradead.org;
-	Tue, 18 Jun 2024 10:26:12 +0000
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2ebeefb9a6eso56316601fa.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 18 Jun 2024 03:26:10 -0700 (PDT)
+	Tue, 18 Jun 2024 11:09:35 +0000
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-52bbf73f334so5064635e87.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 18 Jun 2024 04:09:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718706369; x=1719311169; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1718708970; x=1719313770; darn=lists.infradead.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=klk6lMXdngCdVEKP7J2KBH6LljlLq0Hco77UGKsQj4g=;
-        b=bz1j8/XGUSFyTlIWYEdrVzTNjNP4Iv7F9KevnaHhuZK0SLDN6GJo8tvnqOr3YukBwT
-         f68diMCV3Ad3UUIMuiFUXFBltU3legLpZqDVJiKeN+Xq5KoK2yaTW73uNjcqIAe4ADgY
-         oLUMCtS2zKWETFKl+cJCTp7nwv1EYUNcHCVzkPEdhbEhXju+LmMHxsOFkmSz7PyUNyZ7
-         wsEBbzNbobO5MCxYrQ+cQYEfRC73itufzSDd00Xvm2WrB3o9tv68Mkmh4qoXiWFhjALN
-         CG740Lltz/Qj5MbVEFvvohQmNBaboijfJg24VianwNFjn2L21tqvfZ3IPdGHdZReiaSc
-         jLBQ==
+        bh=RvD7TOS4EE1gHEN7QDkfjxYlgO+IfDmVHOBhN7+7Oyw=;
+        b=JAiB0jiHLgE6uNv9VAlpcWW2+vjGJgoUW9SnazTudXcR+Aq7IfRd5vJxfQDgpAX1gc
+         I2ylpBLZE5YL92rpvgNkJGhVdMGi36jY27PzC23JjU2g0L34T4Bz/WJI+eKCUQOHAp/X
+         +YKgrLPZUJi1DgrWwrlTYRhEu1tGiNs4KUjREiIHkm/meomKqjL6A0hmgQ3hB/7lAC5M
+         wwJQkbFPWwqXvSgirKlM4jPIBUnZeJokimP+/3qxVOTa7ccS2IIsmqp71zFUfOBMRdNO
+         Z0a0MFCVjbhoinlEKlUaUHXmqho8anEleWZbzfUJBwimcO8gaQ+dvMyCOBoRW86Ebpbz
+         6NFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718706369; x=1719311169;
+        d=1e100.net; s=20230601; t=1718708970; x=1719313770;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=klk6lMXdngCdVEKP7J2KBH6LljlLq0Hco77UGKsQj4g=;
-        b=XjH3HxYm4eYWvrtzzK99Ml58GRZcrGAnHqBn7CEAfMibG8TdXns1RFCEsssm7SZ8FZ
-         WoXMrYe+kCuMMs49wbrIEPQuzrk5Po0/UPoVuq4Een6DqXypgq0U7TbI8cbblJ+EWWzj
-         3WcM/xopIfQ+/TFD1ZAU19WquXr54ELneVCXsrOQgczz42IgJ/EVbP2ILperMGlC34lI
-         TGA9uwPqHl7I9ZqkWHf0IcBS1Vgm/LgiFaDEYTRZfv5BVb5AVfpvb6wHcYP0sHwtL2Ut
-         SsdB6ZF2O2Z6/nPdH4/twp5JmpqDDGQWtP6hY9pxfr4N6Og3jpTYYC2uXYosSvxCUM/w
-         QiFg==
-X-Forwarded-Encrypted: i=1; AJvYcCV1OjImnFIjeZkzzHBQlf7jWYv4fdgcy/5vtIxmIiQOnfg8hvggZRhP9H1H8F+3QJPq7G9iIfbVexGImQWDfbsTfj+WCb8wQD9Q+WAZyXlQiiE=
-X-Gm-Message-State: AOJu0YyIN4mVLFFnEb1ru/D1M07v4z5URIw6mmxbv2LAizrMJKPCuXuE
-	outSLG+gvhkwYE9LPyhmL8QOKpiZCBfwtyibIxtFeFDsvpHq8ELHE2TD5NWkpXmIgsLcBeyn77G
-	GQVLiCalMZGgszghZ8M5+bQvgKl2rtfvKOySagw==
-X-Google-Smtp-Source: AGHT+IFVnhzqBoiu9GboooE5iY1zi/XLlllZteuuassl+ZmbxgbyJsQPD3pk6oFTjF6bKUOXQjAi+8CRlASoDk+Kx6o=
-X-Received: by 2002:a19:6912:0:b0:52c:99c9:bef6 with SMTP id
- 2adb3069b0e04-52ca6e5639fmr6700866e87.7.1718706369027; Tue, 18 Jun 2024
- 03:26:09 -0700 (PDT)
+        bh=RvD7TOS4EE1gHEN7QDkfjxYlgO+IfDmVHOBhN7+7Oyw=;
+        b=KU3BWkY3412Ii8qKYI6S873vsCXN1URd20MmvJdNPRiM3YzgU0LNda0G2PoxSmR09a
+         4gl7mEg3V7gSKJAjtOFBSZDTbhh2VYWVoQ486JyY8CnwK+nljVL6c7KEnWDSBaIxcFfJ
+         L7iyarat2kB+3TfQHZYusmGzXuFtJ0MUQi4RMIRHrO7hijW094XyauiTJXtzw5oulWaK
+         ypZmR+TJlGOoi90HWUusCpYBuQqDnUb0Ix5ONp8nnHZ1PI5WIe7rG0eoUAz8Yx65G7NA
+         4N5UaH/i+ranwC3CPSwJcOpVPi0ZiMFAL3yonAwWzyhy1Ucvx/CDreHLc+/AytAsyKXo
+         136Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVM2103iOLahkAFFLK9E2cV6Vmh467VgqaRuT18K8lWnjaCnTJudTH3BHKk+VQdEV85PFF19wTLTvcTRLnx140CE0MaIn6q7p3IT8sEt4unG+U=
+X-Gm-Message-State: AOJu0YzFpuI9e3gFXfFg9GwrHfBvX/M3Szu0oH/nVLjSDJi7A0deRxWn
+	VcYEO2rnXTHbsHCbG+CDDW38It1TlfVGWHUYm3E5+QJK/1wyjjlTTHsiSFIIIAFPJCqeFWTn7M0
+	0nfIq+GpiNtYRtZufl5h+5rRtf39F+RvhcnQ2Yw==
+X-Google-Smtp-Source: AGHT+IGoKxTkRYLabjHUEETT/B3IbExJAmXPzq9+RXs6bzZ+GQ8xGK2jG8c67xHQQUvRR1JIcG5ZA4yr3WPNV/0LYAU=
+X-Received: by 2002:a05:6512:2348:b0:52b:bf9c:7e28 with SMTP id
+ 2adb3069b0e04-52ca6e56012mr10869317e87.14.1718708970136; Tue, 18 Jun 2024
+ 04:09:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <20240611-md-drivers-soc-v1-1-8f0fc9fff234@quicinc.com>
-In-Reply-To: <20240611-md-drivers-soc-v1-1-8f0fc9fff234@quicinc.com>
+References: <20240617-review-v3-0-88d1338c4cca@baylibre.com> <20240617-review-v3-2-88d1338c4cca@baylibre.com>
+In-Reply-To: <20240617-review-v3-2-88d1338c4cca@baylibre.com>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 18 Jun 2024 12:25:57 +0200
-Message-ID: <CACRpkdZdjL7Z7qY5MTtZZRKQBLWHPKoHKKyoy56mKzZfu=WfPA@mail.gmail.com>
-Subject: Re: [PATCH] soc: add missing MODULE_DESCRIPTION() macros
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Shawn Guo <shawnguo@kernel.org>, 
+Date: Tue, 18 Jun 2024 13:09:19 +0200
+Message-ID: <CACRpkdbos8og5=d4MXt4q11tQkhX=dOZdv382f1z2YJV44zidA@mail.gmail.com>
+Subject: Re: [PATCH v3 02/41] iio: accel: kxsd9: Make use of regmap_clear_bits()
+To: Trevor Gamblin <tgamblin@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Dmitry Rokosov <ddrokosov@sberdevices.ru>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Cosmin Tanislav <cosmin.tanislav@analog.com>, Chen-Yu Tsai <wens@csie.org>, 
+	Hans de Goede <hdegoede@redhat.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Shawn Guo <shawnguo@kernel.org>, 
 	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Linus Walleij <linusw@kernel.org>, Imre Kaloz <kaloz@openwrt.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-mediatek@lists.infradead.org, kernel-janitors@vger.kernel.org
+	Fabio Estevam <festevam@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Saravanan Sekar <sravanhome@gmail.com>, 
+	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
+	Chunyan Zhang <zhang.lyra@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>, Crt Mori <cmo@melexis.com>, linux-iio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	imx@lists.linux.dev, linux-amlogic@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240618_032610_902391_9728C10A 
-X-CRM114-Status: UNSURE (   7.77  )
+X-CRM114-CacheID: sfid-20240618_040931_927060_5E0EC03C 
+X-CRM114-Status: UNSURE (   6.99  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,20 +107,13 @@ Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gV2VkLCBKdW4gMTIsIDIwMjQgYXQgNzo1MeKAr0FNIEplZmYgSm9obnNvbiA8cXVpY19qam9o
-bnNvbkBxdWljaW5jLmNvbT4gd3JvdGU6Cgo+IFdpdGggQVJDSD14ODYsIG1ha2UgYWxsbW9kY29u
-ZmlnICYmIG1ha2UgVz0xIEM9MSByZXBvcnRzOgo+IFdBUk5JTkc6IG1vZHBvc3Q6IG1pc3Npbmcg
-TU9EVUxFX0RFU0NSSVBUSU9OKCkgaW4gZHJpdmVycy9zb2MvaW14L3NvYy1pbXg4bS5vCj4gV0FS
-TklORzogbW9kcG9zdDogbWlzc2luZyBNT0RVTEVfREVTQ1JJUFRJT04oKSBpbiBkcml2ZXJzL3Nv
-Yy9peHA0eHgvaXhwNHh4LXFtZ3Iubwo+IFdBUk5JTkc6IG1vZHBvc3Q6IG1pc3NpbmcgTU9EVUxF
-X0RFU0NSSVBUSU9OKCkgaW4gZHJpdmVycy9zb2MvaXhwNHh4L2l4cDR4eC1ucGUubwo+IFdBUk5J
-Tkc6IG1vZHBvc3Q6IG1pc3NpbmcgTU9EVUxFX0RFU0NSSVBUSU9OKCkgaW4gZHJpdmVycy9zb2Mv
-bWVkaWF0ZWsvbXRrLWNtZHEtaGVscGVyLm8KPiBXQVJOSU5HOiBtb2Rwb3N0OiBtaXNzaW5nIE1P
-RFVMRV9ERVNDUklQVElPTigpIGluIGRyaXZlcnMvc29jL2FtbG9naWMvbWVzb24tY2xrLW1lYXN1
-cmUubwo+Cj4gQWRkIHRoZSBtaXNzaW5nIGludm9jYXRpb25zIG9mIHRoZSBNT0RVTEVfREVTQ1JJ
-UFRJT04oKSBtYWNyby4KPgo+IFNpZ25lZC1vZmYtYnk6IEplZmYgSm9obnNvbiA8cXVpY19qam9o
-bnNvbkBxdWljaW5jLmNvbT4KClJldmlld2VkLWJ5OiBMaW51cyBXYWxsZWlqIDxsaW51cy53YWxs
-ZWlqQGxpbmFyby5vcmc+CgpZb3VycywKTGludXMgV2FsbGVpagoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
-bGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
-b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+T24gTW9uLCBKdW4gMTcsIDIwMjQgYXQgMzo0OeKAr1BNIFRyZXZvciBHYW1ibGluIDx0Z2FtYmxp
+bkBiYXlsaWJyZS5jb20+IHdyb3RlOgoKPiBJbnN0ZWFkIG9mIHVzaW5nIHJlZ21hcF91cGRhdGVf
+Yml0cygpIGFuZCBwYXNzaW5nIHZhbCA9IDAsIHVzZQo+IHJlZ21hcF9jbGVhcl9iaXRzKCkuCj4K
+PiBTdWdnZXN0ZWQtYnk6IFV3ZSBLbGVpbmUtS8O2bmlnIDx1LmtsZWluZS1rb2VuaWdAYmF5bGli
+cmUuY29tPgo+IFNpZ25lZC1vZmYtYnk6IFRyZXZvciBHYW1ibGluIDx0Z2FtYmxpbkBiYXlsaWJy
+ZS5jb20+CgpSZXZpZXdlZC1ieTogTGludXMgV2FsbGVpaiA8bGludXMud2FsbGVpakBsaW5hcm8u
+b3JnPgoKWW91cnMsCkxpbnVzIFdhbGxlaWoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9n
+aWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
