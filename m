@@ -4,58 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E79CBC2BA18
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Jun 2024 07:21:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 350D3C2BA18
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Jun 2024 08:19:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8eDiQNndf+a0ohD4w8yH9xsAectDa9aHc3Ibm7pLq6w=; b=KaMatw5eDZaizK
-	s+LkEeemIHoD2XeG9JWlHU677XJP0UDSrRGRoU/WAjhoOQ5NQPFihFko4e9hxGzRMFzTwUuM2NWAF
-	eh+AQOVtTYk13zLJTVMTnWeJGlSAeNRVw7EBwjRCla7+DhmsF0SfMig8+kJ5lCrfo7thoHh0N9Lf7
-	Iay0rJBk/eK504jl7peyiqeyWw7dmkV8TwSa8wVobEEEycCZbZFvVOkv3RTbpAFR/wNunvD0DADAl
-	7zcWN3/8vBkckI10rY4cLZacF17FIEI/BuJSqJ3TyHm8xaSLRo08CKQlr1WfJkF9VKRfg5PXfWwvq
-	LgF2XfVVZeOMSaYyl+HQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:CC:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=FkXTQQsS0e8KH9s7Lxgprx4MeopxvQOmpKSgvnxqosA=; b=F2GkxriowWRXtlDs3zyap7BZL1
+	VSQ60fnMrHIOjQzBp3i5c1L5VNBGa6DixcTI3J9pFuFkTjiuuVHF7nCeQXYl8JVARj+2KCdEOgHaz
+	iCB8tchGZLb9BHug7hfF9ArWQ+DAr9h7zivo/gx4jrKXt8FpEqVbPPtj4CO9bFibES0lQZLjRmiRa
+	1f57BLBLeoImhXSJrK7AdQGnRyXjossf1DDMFh1TNwu832U0p8+66fyIfUk6giDz80LiJly9pMBMp
+	h2ekgBoB5k372BdbQlJWdTtEPh+BEUcdPcYu/RABMgs8UJkaYY6YgX88AzFuBbsic+goGhi5ziH6h
+	CTveVAPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sKC6a-00000003xNc-2lRY;
-	Thu, 20 Jun 2024 07:21:12 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1sKD18-000000047Pu-25W6;
+	Thu, 20 Jun 2024 08:19:38 +0000
+Received: from esa.microchip.iphmx.com ([68.232.154.123])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sKC6U-00000003xLR-0PJt;
-	Thu, 20 Jun 2024 07:21:10 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 8693A620DE;
-	Thu, 20 Jun 2024 07:21:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 612E0C2BD10;
-	Thu, 20 Jun 2024 07:21:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718868065;
-	bh=J8+Hk05DmBH3cAFOjDBdSqmNggIa5BYTAs3OwYWSVrU=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=iNCG6ljYI1mH+uKqwlSXY+SfFJmCKA1PSBTN1mPVHWSTcBHWbpCte6Uvt+YFs2sAR
-	 IlKuteXj47JjNoLM5ao5OHTNd+M1xg9EICALyga5kQ4JKtkzxkruUL5F3vIYOOE3hi
-	 FBkDUHDzxGcyjCVpDotkZ18WX1JCrydo8c5DQn1F5GvgChS1V9IlTM1vqQcuzqHSXp
-	 SXi8joCyH3HtpaQ0EdPpeRZQwwNFqGcL0Ppw/FIfKSXrvjvTMcXJ3a0eyuru2KNdq3
-	 GAIggHgRXw9a/JKWNL1/Q+i+dPf22fmRnNblU22PIhEKvi7ZsWoLqmvDJOJeGyWcmD
-	 m+LcY0eP6GERA==
-Message-ID: <6076512b-2905-4f69-9295-7f11844f397f@kernel.org>
-Date: Thu, 20 Jun 2024 09:20:58 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+	id 1sKD15-000000047PH-1P5N;
+	Thu, 20 Jun 2024 08:19:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1718871575; x=1750407575;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ogti5RvgXrKJYpGa8r9DIIr/6eDafdzHtCOOnJYD6Aw=;
+  b=atDzVursyxszgsYqtUoCNg5ydZJchUEaei8IdMWbizSJwbEmzwoF46QM
+   4XfKl3FLqEkWxbIRB2DgvUlADhwYM5JpvegmZHH22E6V+27B0Z7nEQAI7
+   YSBzK1apYMpskEUjl2hKiKRrX+hTPW3wPhQTHaoHQ0EVI/d8iAACs++Ul
+   R9xlniNB2mW+BmVz58X+H2RPTGQnahieHL3WNGp+Z6m7VQcdR2F5E/xRd
+   cvwXsVpUFPJNpusb16Ye5q8HnF584LZ+Iu3ub9BRWkcQ2JI8cJvT3g55q
+   UX1az/mn+vOBhPqs3ppTZfUNp5l6VKd7lIF4vbvaZtL0R5bGU7mjKG8AK
+   g==;
+X-CSE-ConnectionGUID: TJufhWwaQoyNOaHETkFUAg==
+X-CSE-MsgGUID: VcPZEXqWQmmibClzYtLFKA==
+X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; 
+   d="asc'?scan'208";a="28908925"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Jun 2024 01:19:31 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 20 Jun 2024 01:18:32 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Thu, 20 Jun 2024 01:18:29 -0700
+Date: Thu, 20 Jun 2024 09:18:11 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Viacheslav <adeep@lexina.in>, Rob Herring <robh@kernel.org>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<devicetree@vger.kernel.org>
 Subject: Re: [PATCH v5 3/4] dt-bindings: arm: amlogic:
  amlogic,meson-gx-ao-secure: add secure-monitor property
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Viacheslav <adeep@lexina.in>, Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Message-ID: <20240620-sprinkled-manor-cce42d587578@wendy>
 References: <20240610084032.3096614-1-adeep@lexina.in>
  <20240610084032.3096614-4-adeep@lexina.in>
  <20240610-dropout-compress-6d6a9b749524@spud>
@@ -64,56 +76,11 @@ References: <20240610084032.3096614-1-adeep@lexina.in>
  <20240613164244.GA1999034-robh@kernel.org>
  <c0d18fef-be65-461e-948f-c25e757199a5@lexina.in>
  <20240617-sulfate-posture-1619f1cdf090@spud>
- <3e939ec0-f38b-468b-a897-80be207c1bdd@lexina.in>
- <23a3c09d-1cd7-4da4-8d94-6fb3bacc65b7@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <23a3c09d-1cd7-4da4-8d94-6fb3bacc65b7@kernel.org>
+MIME-Version: 1.0
+In-Reply-To: <20240617-sulfate-posture-1619f1cdf090@spud>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240620_002106_319410_004D6A04 
-X-CRM114-Status: GOOD (  32.50  )
+X-CRM114-CacheID: sfid-20240620_011935_440215_6A4C6F81 
+X-CRM114-Status: GOOD (  37.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,108 +92,123 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============4181825670006459029=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjAvMDYvMjAyNCAwOToxOSwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToKPiBPbiAyMC8w
-Ni8yMDI0IDA5OjE0LCBWaWFjaGVzbGF2IHdyb3RlOgo+Pgo+Pgo+PiAxNy8wNi8yMDI0IDE5LjU3
-LCBDb25vciBEb29sZXkg0L/QuNGI0LXRgjoKPj4+IE9uIE1vbiwgSnVuIDE3LCAyMDI0IGF0IDEx
-OjIxOjMwQU0gKzAzMDAsIFZpYWNoZXNsYXYgd3JvdGU6Cj4+Pj4gVGhhbmtzIGZvciByZXZpZXcu
-Cj4+Pj4KPj4+PiAxMy8wNi8yMDI0IDE5LjQyLCBSb2IgSGVycmluZyB3cm90ZToKPj4+Pj4gT24g
-VHVlLCBKdW4gMTEsIDIwMjQgYXQgMDc6MDc6MjhQTSArMDEwMCwgQ29ub3IgRG9vbGV5IHdyb3Rl
-Ogo+Pj4+Pj4gT24gVHVlLCBKdW4gMTEsIDIwMjQgYXQgMDE6MjU6MTFQTSArMDMwMCwgVmlhY2hl
-c2xhdiB3cm90ZToKPj4+Pj4+PiBIaSEKPj4+Pj4+Pgo+Pj4+Pj4+IDEwLzA2LzIwMjQgMTkuMDgs
-IENvbm9yIERvb2xleSB3cm90ZToKPj4+Pj4+Pj4gT24gTW9uLCBKdW4gMTAsIDIwMjQgYXQgMTE6
-Mzk6NDlBTSArMDMwMCwgVmlhY2hlc2xhdiBCb2NoYXJvdiB3cm90ZToKPj4+Pj4+Pj4+IEFkZCBz
-ZWN1cmUtbW9uaXRvciBwcm9wZXJ0eSB0byBzY2hlbWEgZm9yIG1lc29uLWd4LXNvY2luZm8tc20g
-ZHJpdmVyLgo+Pj4+Pj4+Pgo+Pj4+Pj4+PiAiYmluZGluZ3MgYXJlIGZvciBoYXJkd2FyZSwgbm90
-IGRyaXZlcnMiLiBXaHkgcHVycG9zZSBkb2VzIHRoZSAic2VjdXJlCj4+Pj4+Pj4+IG1vbml0b3Ii
-IHNlcnZlIHRoYXQgdGhlIHNlY3VyZSBmaXJtd2FyZSBuZWVkcyBhIHJlZmVyZW5jZSB0byBpdD8K
-Pj4+Pj4+Pgo+Pj4+Pj4+IFRoaXMgZHJpdmVyIGlzIGFuIGV4dGVuc2lvbiB0byB0aGUgbWVzb24t
-Z3gtc29jaW5mbyBkcml2ZXI6IGl0IHN1cHBsZW1lbnRzCj4+Pj4+Pj4gaW5mb3JtYXRpb24gb2J0
-YWluZWQgZnJvbSB0aGUgcmVnaXN0ZXIgd2l0aCBpbmZvcm1hdGlvbiBmcm9tIHRoZQo+Pj4+Pj4+
-IFNNX0dFVF9DSElQX0lEIHNlY3VyZSBtb25pdG9yIGNhbGwuIER1ZSB0byB0aGUgc3BlY2lmaWNz
-IG9mIHRoZSBtb2R1bGUKPj4+Pj4+PiBsb2FkaW5nIG9yZGVyLCB3ZSBjYW5ub3QgZG8gYXdheSB3
-aXRoIG1lc29uLWd4LXNvY2luZm8sIGFzIGl0IGlzIHVzZWQgZm9yCj4+Pj4+Pj4gcGxhdGZvcm0g
-aWRlbnRpZmljYXRpb24gaW4gc29tZSBkcml2ZXJzLiBUaGVyZWZvcmUsIHRoZSBleHRlbmRlZCBp
-bmZvcm1hdGlvbgo+Pj4+Pj4+IGlzIGZvcm1hdHRlZCBhcyBhIHNlcGFyYXRlIGRyaXZlciwgd2hp
-Y2ggaXMgbG9hZGVkIGFmdGVyIHRoZSBzZWN1cmUtbW9uaXRvcgo+Pj4+Pj4+IGRyaXZlci4KPj4+
-Pj4+Cj4+Pj4+PiBQbGVhc2Ugc3RvcCB0YWxraW5nIGFib3V0IGRyaXZlcnMsIHRoaXMgaXMgYSBi
-aW5kaW5nIHdoaWNoIGlzIGFib3V0Cj4+Pj4+PiBoYXJkd2FyZS4gUGxlYXNlIHByb3ZpZGUsIGlu
-IHlvdXIgbmV4dCB2ZXJzaW9uLCBhIGNvbW1pdCBtZXNzYWdlIHRoYXQKPj4+Pj4+IGp1c3RpZmll
-cyBhZGRpbmcgdGhpcyBwcm9wZXJ0eSB3aXRob3V0IHRhbGtpbmcgYWJvdXQgZHJpdmVyIHByb2Jp
-bmcKPj4+Pj4+IG9yZGVyIGV0YywgYW5kIGluc3RlYWQgZm9jdXNlcyBvbiB3aGF0IHNlcnZpY2Ug
-dGhlICJzZWN1cmUgbW9uaXRvciIKPj4+Pj4+IHByb3ZpZGVzIGV0Yy4KPj4+Pj4KPj4+Pj4gVG8g
-cHV0IGl0IGFub3RoZXIgd2F5LCBob3cgbWFueSBzZWN1cmUgbW9uaXRvcnMgZG9lcyAxIHN5c3Rl
-bSBoYXZlPwo+Pj4+Cj4+Pj4gT25lIHBlciBzeXN0ZW0gaW4gY3VycmVudCBkZXZpY2UgdHJlZS4K
-Pj4+Cj4+PiBPbmUgcGVyIHN5c3RlbSwgb3Igb25lIGlzIGN1cnJlbnRseSBkZXNjcmliZWQgcGVy
-IHN5c3RlbSwgYnV0IG1vcmUgbWlnaHQKPj4+IGJlIGFkZGVkIGxhdGVyPwo+Pgo+PiBpdCB0dXJu
-cyBvdXQgdG8gYmUgb25lIHBlciBzeXN0ZW0uIEl0J3MgZWl0aGVyIHRoZXJlIG9yIGl0J3Mgbm90
-Lgo+Pgo+Pj4KPj4+Pj4gV2hhdCBkbyB5b3UgZG8gaWYgdGhlIHByb3BlcnR5IGlzIG5vdCBwcmVz
-ZW50PyBZb3UgZGlkbid0IG1ha2UgaXQKPj4+Pj4gcmVxdWlyZWQgd2hpY2ggaXMgZ29vZCBiZWNh
-dXNlIHRoYXQgd291bGQgYmUgYW4gQUJJIGJyZWFrLgo+Pj4+Cj4+Pj4gV2UgbmVlZCBhbiBpbmRp
-Y2F0aW9uIG9mIHRoZSBhYmlsaXR5IHRvIHVzZSB0aGUgc2VjdXJlLW1vbml0b3IgdG8gb2J0YWlu
-Cj4+Pj4gYWRkaXRpb25hbCBpbmZvcm1hdGlvbiB3aXRoaW4gdGhlIHNvYyBkcml2ZXIuIEl0IHNl
-ZW1lZCB0byBtZSB0aGF0IHVzaW5nIGFuCj4+Pj4gZXhwbGljaXQgcmVmZXJlbmNlIHRvIHRoZSBz
-ZWN1cmUtbW9uaXRvciBpcyB0aGUgYmVzdCBjaG9pY2UuCj4+Pj4KPj4+Pj4KPj4+Pj4gWW91IG9u
-bHkgbmVlZCBhIGxpbmsgaW4gRFQgaWYgdGhlcmUgYXJlIGRpZmZlcmVudCBwb3NzaWJsZSBwcm92
-aWRlcnMgb3IKPj4+Pj4gc29tZSBwZXIgY29uc3VtZXIgaW5mb3JtYXRpb24gdG8gZGVzY3JpYmUg
-KGUuZy4gYW4gaW50ZXJydXB0IG51bWJlciBvcgo+Pj4+PiBjbG9jayBJRCkuIFlvdSBkb24ndCBo
-YXZlIHRoZSBsYXR0ZXIgYW5kIGxpa2VseSB0aGVyZSBpcyBvbmx5IDEgcG9zc2libGUKPj4+Pj4g
-cHJvdmlkZXIuCj4+Pj4KPj4+PiBXb3VsZCByZXBsYWNpbmcgdGhlIHJlZmVyZW5jZSB0byBzbSB3
-aXRoIGFuIG9wdGlvbiwgZm9yIGV4YW1wbGUsCj4+Pj4gdXNlLXNlY3VyZS1tb25pdG9yID0gPDE+
-OyBsb29rIG1vcmUgYXBwcm9wcmlhdGUgaW4gdGhpcyBjYXNlPwo+Pj4KPj4+IFBlcmhhcHMgYSBz
-aWxseSBxdWVzdGlvbiwgYnV0IChwcm92aWRlZCB0aGVyZSdzIG9ubHkgb25lIHBlciBzeXN0ZW0s
-IHdoeQo+Pj4gY2FuJ3QgdGhlIHNlY3VyZS1tb25pdG9yIGRyaXZlciBleHBvc2UgYSBmdW5jdGlv
-biB0aGF0IHlvdSBjYW4gY2FsbCB0byBnZXQKPj4+IGEgcmVmZXJlbmNlIHRvIHRoZSBzeXN0ZW0t
-bW9uaXRvcj8gSSBkaWQgc29tZXRoaW5nIHNpbWlsYXIgYmVmb3JlIHdpdGgKPj4+IGEgY2FsbCB0
-byBpbiBtcGZzX3N5c19jb250cm9sbGVyX2dldCgpIG1wZnNfcm5nX3Byb2JlKCkuIEdyYW50ZWQs
-Cj4+PiBtcGZzLXJuZyBpcyBwcm9iZWQgZnJvbSBzb2Z0d2FyZSBzbyBpdCdzIHNsaWdodGx5IGRp
-ZmZlcmVudCB0byB5b3VyCj4+PiBjYXNlLCBidXQgdGhlIHByaW5jaXBsZSBpcyB0aGUgc2FtZSBh
-bmQgaXQncyBub3QgdW5oZWFyZCBvZiBmb3IgY29kZSBpbgo+Pj4gZHJpdmVycy9zb2MgdG8gZXhw
-b3NlIGludGVyZmFjZXMgdG8gb3RoZXIgZHJpdmVycyBsaWtlIHRoaXMuIFlvdSBjYW4KPj4+IGp1
-c3QgY2FsbCBhIGZ1bmN0aW9uIGxpa2UgdGhhdCwgYW5kIGtub3cgd2hldGhlciB0aGVyZSdzIGEg
-c2VjdXJlCj4+PiBtb25pdG9yLCB3aXRob3V0IGhhdmluZyB0byByZXRyb2ZpdCBhIERUIHByb3Bl
-cnR5Lgo+Pgo+PiBUaGF0IGNvdWxkIGJlIGFuIG9wdGlvbi4gQnV0IGFnYWluLCBub3RoaW5nIHBy
-ZXZlbnRzIG1lIGZyb20gc2VhcmNoaW5nIAo+PiBmb3IgdGhlIHNlY3VyZS1tb25pdG9yIG5vZGUg
-dGhyb3VnaG91dCB0aGUgZW50aXJlIERUIGFycmF5Lgo+Pgo+PiBUaGUgcXVlc3Rpb24gaXMgbW9y
-ZSBhYm91dCBzb21ldGhpbmcgZWxzZSwgbGV0IG1lIHRyeSB0byBleHBsYWluIGZyb20gCj4+IHRo
-ZSBiZWdpbm5pbmc6Cj4+Cj4+IFdlIGN1cnJlbnRseSBoYXZlIGEgc29jIGRyaXZlciB0aGF0IHVz
-ZXMgb25seSB0aGUgcmVnaXN0ZXIgdG8gZ2V0IGJhc2ljIAo+PiBpbmZvcm1hdGlvbiBhbmQgaXQg
-bXVzdCBiZSBsb2FkZWQgZWFybHkgYmVjYXVzZSBvdGhlciBtb2R1bGVzJyBiZWhhdmlvciAKPj4g
-ZGVwZW5kcyBvbiBpdHMgaW5mb3JtYXRpb24uCj4gCj4gUGxlYXNlIHByb3ZpZGUgbmFtZS9saW5r
-IHRvIHRoZSB1cHN0cmVhbSBzb3VyY2UgY29kZSAoZG93bnN0cmVhbSBkb2VzCj4gbm90IG1hdHRl
-cikuCj4gCj4+IFRoZXJlIGlzIGFuIG9wdGlvbiB0byBzdXBwbGVtZW50IHRoZSByZWdpc3RlciBp
-bmZvcm1hdGlvbiB3aXRoIAo+PiBpbmZvcm1hdGlvbiBmcm9tIHRoZSBzZWN1cmUtbW9uaXRvci4K
-Pj4gRm9yIHRoaXMsIHdlIGhhZCB0byB3cml0ZSBhIG5ldyBkcml2ZXIgdGhhdCB1c2VzIHRoZSBz
-YW1lIHJlZ2lzdGVyIAo+PiBpbmZvcm1hdGlvbiBhcyBhIGZhbGxiYWNrIGJ1dCBjYW4gd2FpdCBm
-b3IgdGhlIHNlY3VyZS1tb25pdG9yIGRyaXZlciB0byAKPj4gbG9hZCBhbmQgYWRkIGl0cyBpbmZv
-cm1hdGlvbiB0byBzb2MuCj4+IEl0IHNlZW1lZCBsb2dpY2FsIHRvIG1lIHRvIGtlZXAgdGhlIERU
-IHN0cnVjdHVyZSB0aGUgc2FtZSBhbmQganVzdCBhZGQgYSAKPj4gcmVmZXJlbmNlIHRvIHRoZSBz
-ZWN1cmUtbW9uaXRvciAob3IgYXMgYSBzZWNvbmQgb3B0aW9uLCBjcmVhdGUgYSAKPj4gdmFyaWFi
-bGUgaW5kaWNhdGluZyBzdXBwb3J0KSBmb3IgdGhvc2UgU29DcyB0aGF0IGhhdmUgYmVlbiB0ZXN0
-ZWQgYW5kIAo+PiBjYW4gcHJvdmlkZSB0aGlzIGluZm9ybWF0aW9uLgo+PiBOb3QgYWxsIEFtbG9n
-aWMgU29DcyBzdXBwb3J0IHRoaXMgY2FsbCwgaW4gc29tZSAobW9zdGx5IG5ld2VyIAo+PiBnZW5l
-cmF0aW9ucyBvZiBTb0NzKSwgdGhpcyBjYWxsIHJldHVybnMgaW5jb3JyZWN0IGluZm9ybWF0aW9u
-IGFuZCB3ZSBhbmQgCj4+IGNvbGxlYWd1ZXMgYXJlIHN0aWxsIGZpZ3VyaW5nIG91dCB3aGF0IGhh
-cyBjaGFuZ2VkLiBCdXQgbW9zdCBlc3RhYmxpc2hlZCAKPj4gcGxhdGZvcm1zIHN1cHBvcnQgdGhp
-cy4KPj4gV2UgY291bGQgYWRkIHRoaXMgaW5mb3JtYXRpb24gcmV0cmlldmFsIHRvIHRoZSBzZWN1
-cmUtbW9uaXRvciBpdHNlbGYsIAo+PiBidXQgdGhhdCB3b3VsZCBiZSBhIGNvbXBsZXRlbHkgZGlm
-ZmVyZW50IHN0b3J5IGFuZCB3b3VsZCBub3QgY29uc3RpdHV0ZSAKPj4gYSBzb2MgZHJpdmVyLgo+
-Pgo+PiBJbiB0aGUgZW5kLCB3ZSBuZWVkIGluZm9ybWF0aW9uIGFib3V0IHRoZSBzdXBwb3J0IG9m
-IHRoZSBzZWN1cmUtbW9uaXRvciAKPj4gY2FsbCBmb3Igb2J0YWluaW5nIGluZm9ybWF0aW9uIGZv
-ciB0aGUgc29jIGRyaXZlci4gSW4gbXkgb3BpbmlvbiwgdGhpcyAKPj4gY2FuIG9ubHkgYmUgZG9u
-ZSBieSBzcGVjaWZ5aW5nIGl0IGluIHRoZSBEVCBpbiBzcGVjaWZpYyBmaWxlcyBmb3IgCj4+IEFt
-bG9naWMgcGxhdGZvcm1zOiBlaXRoZXIgYnkgcmVmZXJlbmNpbmcgdGhlIFNNIG9yIGJ5IGFuIG9w
-dGlvbiB0aGF0IAo+PiBhbGxvd3MgY2hlY2tpbmcgdGhlIFNNLgo+IAo+IFRoYXQncyBub3QgdGhl
-IG9ubHkgb3B0aW9uLiBUaGlzIGlzIFNvQyBzcGVjaWZpYyBzbyBjYW4gYmUgZGVkdWNlZCBmcm9t
-Cj4gdGhlIGNvbXBhdGlibGUgYXMgd2VsbC4gQW5kIHRoaXMgaXMga2luZCBvZiBvYnZpb3VzIGZy
-b20gdGhpcyBwYXRjaHNldAo+IChhY3R1YWxseSBwYXRjaCA0KTogeW91IGFkZCBpdCBwZXIgU29D
-LgoKQlRXLCB0aGF0J3Mgb25lIG1vcmUgRFQgbWFpbnRhaW5lciAoc28gdGhlIHRoaXJkKSB0ZWxs
-aW5nIHlvdSBwcm9wZXJ0eQppcyBub3QgbmVlZGVkIHlldC4gSSB0aGluayB3ZSB1c2VkIGVub3Vn
-aCBvZiBvdXIgdGltZSBoZXJlLgoKQmVzdCByZWdhcmRzLApLcnp5c3p0b2YKCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxp
-bmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
-ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+--===============4181825670006459029==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ZQkocubyAqYBA3MR"
+Content-Disposition: inline
+
+--ZQkocubyAqYBA3MR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Jun 17, 2024 at 05:57:53PM +0100, Conor Dooley wrote:
+> On Mon, Jun 17, 2024 at 11:21:30AM +0300, Viacheslav wrote:
+> > Thanks for review.
+> >=20
+> > 13/06/2024 19.42, Rob Herring wrote:
+> > > On Tue, Jun 11, 2024 at 07:07:28PM +0100, Conor Dooley wrote:
+> > > > On Tue, Jun 11, 2024 at 01:25:11PM +0300, Viacheslav wrote:
+> > > > > Hi!
+> > > > >=20
+> > > > > 10/06/2024 19.08, Conor Dooley wrote:
+> > > > > > On Mon, Jun 10, 2024 at 11:39:49AM +0300, Viacheslav Bocharov w=
+rote:
+> > > > > > > Add secure-monitor property to schema for meson-gx-socinfo-sm=
+ driver.
+> > > > > >=20
+> > > > > > "bindings are for hardware, not drivers". Why purpose does the =
+"secure
+> > > > > > monitor" serve that the secure firmware needs a reference to it?
+> > > > >=20
+> > > > > This driver is an extension to the meson-gx-socinfo driver: it su=
+pplements
+> > > > > information obtained from the register with information from the
+> > > > > SM_GET_CHIP_ID secure monitor call. Due to the specifics of the m=
+odule
+> > > > > loading order, we cannot do away with meson-gx-socinfo, as it is =
+used for
+> > > > > platform identification in some drivers. Therefore, the extended =
+information
+> > > > > is formatted as a separate driver, which is loaded after the secu=
+re-monitor
+> > > > > driver.
+> > > >=20
+> > > > Please stop talking about drivers, this is a binding which is about
+> > > > hardware. Please provide, in your next version, a commit message th=
+at
+> > > > justifies adding this property without talking about driver probing
+> > > > order etc, and instead focuses on what service the "secure monitor"
+> > > > provides etc.
+> > >=20
+> > > To put it another way, how many secure monitors does 1 system have?
+> >=20
+> > One per system in current device tree.
+>=20
+> One per system, or one is currently described per system, but more might
+> be added later?
+>=20
+> > > What do you do if the property is not present? You didn't make it
+> > > required which is good because that would be an ABI break.
+> >=20
+> > We need an indication of the ability to use the secure-monitor to obtain
+> > additional information within the soc driver. It seemed to me that usin=
+g an
+> > explicit reference to the secure-monitor is the best choice.
+> >=20
+> > >=20
+> > > You only need a link in DT if there are different possible providers =
+or
+> > > some per consumer information to describe (e.g. an interrupt number or
+> > > clock ID). You don't have the latter and likely there is only 1 possi=
+ble
+> > > provider.
+> >=20
+> > Would replacing the reference to sm with an option, for example,
+> > use-secure-monitor =3D <1>; look more appropriate in this case?
+>=20
+> Perhaps a silly question, but (provided there's only one per system, why
+> can't the secure-monitor driver expose a function that you can call to get
+> a reference to the system-monitor? I did something similar before with
+> a call to in mpfs_sys_controller_get() mpfs_rng_probe(). Granted,
+> mpfs-rng is probed from software so it's slightly different to your
+> case, but the principle is the same and it's not unheard of for code in
+> drivers/soc to expose interfaces to other drivers like this. You can
+> just call a function like that, and know whether there's a secure
+> monitor, without having to retrofit a DT property.
+
+Another thing, without having a driver expose an API, is calling
+of_find_compatible_node() to find the node. That also doesn't require
+retrofitting properties.
+
+--ZQkocubyAqYBA3MR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnPlwwAKCRB4tDGHoIJi
+0r0uAP0XyqVo9SKftA8ejE3Fu+0lCIC+uQhySWm9eWN0WAAtvQD+POqtfbe5hEQx
+p0IbGE65UCeaR18GC+u0dYXgSIES5ws=
+=G8k+
+-----END PGP SIGNATURE-----
+
+--ZQkocubyAqYBA3MR--
+
+
+--===============4181825670006459029==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4181825670006459029==--
+
