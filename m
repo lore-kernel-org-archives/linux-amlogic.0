@@ -4,84 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 005DCC27C4F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Jun 2024 06:21:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 926B1C2BBCA
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Jun 2024 14:47:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date
+	:From:In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oQzK9DmAceOQJRRXAqnr9Hjze7xugtCZktP5IbDt7kM=; b=OLFsZdujogXi8t
-	OtbO06a7C+ZG0OsWXR9Xpi5+hdFRyCN9+Ue3zVdKjKXTFg5R+fOhcZi1SXFO2yVf/3AbVg8LXvKwf
-	84yPgtyOBBFmsvkyZJnH6KJaCq+wXZC72AVXYnFbdvewIo4mkrw444jrra4T/ju7xIgp5OsxMAHUU
-	OXD0nwOhEzMfcgj4s9VKOeV6yI4e8fNB2t+yigdXBk5NSbAONUZZStGTSWOfYtDCfUbWaXluuy/vZ
-	PASrNDZvsNk+wXZpuaNUJIs3uEsztkMOZMvW6Oi6s2yQmyqk73eOlI3MrfDtfnZBJEaabRr6wcY0J
-	jE6i83dOD4ZreSiJr1Kw==;
+	List-Owner; bh=QkloBgm1mD4xrxcs6e+JByO7l6G8FNhg6qlV20XHvog=; b=udW3IZzIYM/mCo
+	s1uD9uf0B9FlHzeA83yjY68kZ6fsBE6DvY5f77olyT3GIxPUQlXhif39ij9EDaxfdu6vBEZoAw+rr
+	/509fhkv2fti4reCiikAJV2KiqrQZIMQ2j8amfUhxzeb6hGSyZSBPR19wnRnBjgUwtB1i5WWeOGIG
+	u+InBIa9osoKH2FnzvtorgEeVlYsrfBDAnFdvNn7EBHjrhao7TFwzTXHgc+ic2DKQ/oA3sguB/Df0
+	HOCrBsl3BDnwoJtLwC0gvMxrmFgtHsJIlxY0kaMQWm530pbMvYhGGPdCUi0Rc1AGL2etAGm0PjHdR
+	xzBXKXbrtu/wDb53gWKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sKXdn-00000007vvO-3ekJ;
-	Fri, 21 Jun 2024 06:20:55 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1sKfXS-00000009Zlz-1T13;
+	Fri, 21 Jun 2024 14:46:54 +0000
+Received: from mail-lf1-f41.google.com ([209.85.167.41])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sKXdi-00000007vtZ-3sYN
-	for linux-amlogic@lists.infradead.org;
-	Fri, 21 Jun 2024 06:20:53 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-42179dafd6bso16547875e9.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 20 Jun 2024 23:20:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718950849; x=1719555649; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2KHAfx12iBUWCAlcKtyTUwpmghkl7Maz7FDQTyoaU5A=;
-        b=zhAuL3fq57k1W+U24ZpYr9ILmsHqNWCV/9ExsBZNQHRgiZ54wkmFJPkHk0KQqdsYQB
-         nl0+YR5WWpEsMquZz7S+jx5xog5XUUDsZia/hVJr4bCcSp3yClulJqsOsAD4z/nIgCUD
-         swfnmb8jqe6a+n/Xv9DDQ/WdZDfQYiR+H2Jtu8scGCH60+vaC18Ya/lIOH+WUgY9hLHG
-         +kDUSlr+fjRT3O4s+lIIPXL6SlfK14HpbUTo+nh5YiPHVLiQH6DAVqiW8+Ug5CHXpqqv
-         Gx4aJN0xmEKovkwUwKEQqakWihwcHFGdVK3M3/JGzBD18/z33y0qgTG1z8DPtzJBMJMk
-         /nFQ==
+	id 1sKfXO-00000009ZkZ-2mDY;
+	Fri, 21 Jun 2024 14:46:51 +0000
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52c8c0d73d3so2342875e87.1;
+        Fri, 21 Jun 2024 07:46:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718950849; x=1719555649;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2KHAfx12iBUWCAlcKtyTUwpmghkl7Maz7FDQTyoaU5A=;
-        b=SpW6bnz0KmPeObexY9AauDpi7TAlXjkSVK5NBSkVJE64jGS0wtDta8JpSvl4pCyeXh
-         eNNacXO6M8mDuJjOeJlN4O7Gj4GY0qRmhP9MdcZ9HZJ9JdKPKFetyanJT7jIBkrzbada
-         60fDJfM7AxeaEgrep3xqu5o0/o/DstcpC1CDhJne0Zf3edO1ZqtgH+IzT41YkX/YM9Ws
-         BQZapej/HE4/0suVCrYMB4oTfR9b4pbqWU1vpjitnUwbufTpE2t1BlJWS7R+g8u68R/r
-         eElgRE+nOj3fcJYyIHo/NRj43JaQqNZDRdOwAq36yQuMEAllpR2MvsNjXQ8A1/TESNNO
-         hAuw==
-X-Forwarded-Encrypted: i=1; AJvYcCUW+X3QGilcPtTwr1nhRqR3ibTbzXGOAXYs6ofU5pg37GL2cc955R1i5+ipfWJVEQYq2p9wvq5cRQYVn6k0KC5hUINQKLvFk9J5329vXLvVIV0=
-X-Gm-Message-State: AOJu0YxH0y5v3vS4SS9cVcnZAHzWH8SMuv/MMAds4L4+ktiaYaDu3Pow
-	SR+T0a+iimH8q4KqaccC3oUkqVfaluKaXI03H4y4nhMIGgqvFAMhwv3+PO4OXpw=
-X-Google-Smtp-Source: AGHT+IHk82aIQYKYEtQX7Uz1MHYN42vv3RdD9qqs//tlwYYsTyH4qxtVCmWjPGXP/YNoH1n1uKt4Bg==
-X-Received: by 2002:a05:600c:319c:b0:424:71e6:258b with SMTP id 5b1f17b1804b1-42471e6273bmr89995035e9.6.1718950848757;
-        Thu, 20 Jun 2024 23:20:48 -0700 (PDT)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4247d0c547asm50299815e9.22.2024.06.20.23.20.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jun 2024 23:20:48 -0700 (PDT)
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Dan Carpenter <dan.carpenter@linaro.org>, 
- Joy Chakraborty <joychakr@google.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-In-Reply-To: <20240611145524.1022656-1-joychakr@google.com>
-References: <20240611145524.1022656-1-joychakr@google.com>
-Subject: Re: [PATCH] nvmem: meson-efuse: Fix return value of nvmem
- callbacks
-Message-Id: <171895084703.13918.2428522284763807031.b4-ty@linaro.org>
-Date: Fri, 21 Jun 2024 07:20:47 +0100
+        d=1e100.net; s=20230601; t=1718981208; x=1719586008;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yQVb2DeThksBLy1v6heanX+uAjJHYjLCnQz2w0NHRqc=;
+        b=SONWxMCY0CpPtd/53XI8fggROq7G97SP/CtIThwfSjuwCM3HAJiiPDuYTudyiaeMWB
+         EZTeq6s+BaJpGqN3et8d67TPNFr54yyfKebP/1m1DSFtnnr105UPnTjceorD9z/u2Qx4
+         +nIR7PH1CHqNYspvSlH8P55/t7T0O+3/tfkmdiumHR/gr8nldSuFKm71n8RHR5x+MCy1
+         +s/EVfHoMyFUp49MRtWU17+n8efvx53fBCLSprgcGQXNvkEc8Kz6DIsTgh07TdGdYcN3
+         l2G0fGYtjKdV90atDhbWrZGenNQ4vH3XbBl1HzrUi+VA8VH2DxK52NvLpWFEuaLd5OgW
+         NiNw==
+X-Forwarded-Encrypted: i=1; AJvYcCW7qGF+RGd+fLC84UOP/X7GP7XIq2IklMK7Y5rtw33qXOyXLLiajxAXgKayJ/BLUVOcpB2Nxt0Tomxhi09YJnCVaoq5Fd+U3O5AMitsapLCKw8dFJfYKgvXSgpBjfFQSpdXVzToSxkgZEwDD/jQXJt4W0XX/uJKkJ/xF2hhT5rXFXASLrTd22FPmt+3Rbs+F2puaFpI6aV8FN4eY7TpSV/Aj4hxEmgnKkY12qOKI0b8EvJ19mfsY3l4LDdo20EwK+4McjwlQVjgO2sDutynQMdPudKrlcrwbA3giv8BkBQ/mOTKgWhm
+X-Gm-Message-State: AOJu0YzBaaWZrxwWKdHssY86ZApritK1koxRrwJjOFYUpQlaF/CXxeEw
+	vyiOVstzGoEc5RIGse2n7cKAm+G0C7NFRhFAQu9SK+dgcCdwyjamoziTDjCTcR4=
+X-Google-Smtp-Source: AGHT+IG0BfDEc7YKGPEaZcNZxTmBtJ1n8edA/eYhUSzuJPh9Z53SyQMjn0HefRN16V9krce9gMdLXA==
+X-Received: by 2002:ac2:489b:0:b0:52c:8c91:da8d with SMTP id 2adb3069b0e04-52ccaaa8d5cmr4466460e87.66.1718981207731;
+        Fri, 21 Jun 2024 07:46:47 -0700 (PDT)
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com. [209.85.167.43])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cd9f8ffadsm131786e87.114.2024.06.21.07.46.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Jun 2024 07:46:47 -0700 (PDT)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-52cccd44570so2468888e87.2;
+        Fri, 21 Jun 2024 07:46:47 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWEiRpYshyMvnLOook5SmSHw7gm9QpNEtobK+kn2Zaaoossnm/VkmdbK5Gh3ad5b4xyvxJDspyg5YpCe9ICiH5VdTzAetGoyRQfA+U8vV4x9h6T/4WZzLjx6Tx7rw8q4MvKBFYXs9oYMOl9t+d4184StfTikbzQNwA92xEL8le5BO6Bg2J1fsZHgY8/bdCDwPxoxi/e8POUD1GKiHu2hxn8NC9tXlckbOsNXIbob3vfb9nAvTT6PL/tADt3y2wlBUatG97ikFLLwXrrzZp//tsgSHqCpQQhN4dmPHs2ZXgoYUyRLwEt
+X-Received: by 2002:a05:651c:104c:b0:2ec:5073:5816 with SMTP id
+ 38308e7fff4ca-2ec507358edmr10687831fa.31.1718981186574; Fri, 21 Jun 2024
+ 07:46:26 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: b4 0.12.2
+References: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org> <20240614-dt-bindings-thermal-allof-v1-3-30b25a6ae24e@linaro.org>
+In-Reply-To: <20240614-dt-bindings-thermal-allof-v1-3-30b25a6ae24e@linaro.org>
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Fri, 21 Jun 2024 22:46:13 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65T80TH9HUpny8vK2KNrE6aYQHf4x0CAUrxKWih34TdTA@mail.gmail.com>
+Message-ID: <CAGb2v65T80TH9HUpny8vK2KNrE6aYQHf4x0CAUrxKWih34TdTA@mail.gmail.com>
+Subject: Re: [PATCH 03/22] dt-bindings: thermal: allwinner,sun8i-a83t-ths:
+ reference thermal-sensor schema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Guillaume La Roque <glaroque@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Vasily Khoruzhick <anarsoul@gmail.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Anson Huang <Anson.Huang@nxp.com>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Amit Kucheria <amitk@kernel.org>, 
+	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
+	Heiko Stuebner <heiko@sntech.de>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
+	Chunyan Zhang <zhang.lyra@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Pascal Paillet <p.paillet@foss.st.com>, Keerthy <j-keerthy@ti.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+	zhanghongchen <zhanghongchen@loongson.cn>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, linux-pm@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	imx@lists.linux.dev, linux-tegra@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
+	Florian Fainelli <f.fainelli@gmail.com>, linux-rpi-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240620_232050_999877_EBC93C91 
-X-CRM114-Status: UNSURE (   6.76  )
+X-CRM114-CacheID: sfid-20240621_074650_719434_A0BC0E7E 
+X-CRM114-Status: UNSURE (   9.43  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -94,34 +109,20 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: wens@csie.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Tue, 11 Jun 2024 14:55:24 +0000, Joy Chakraborty wrote:
-> Read/write callbacks registered with nvmem core expect 0 to be returned
-> on success and a negative value to be returned on failure.
-> 
-> meson_efuse_read() and meson_efuse_write() call into
-> meson_sm_call_read() and meson_sm_call_write() respectively which return
-> the number of bytes read or written on success as per their api
-> description.
-> 
-> [...]
-
-Applied, thanks!
-
-[1/1] nvmem: meson-efuse: Fix return value of nvmem callbacks
-      commit: c87ba397647e1ad84d2771461a6035a63d388198
-
-Best regards,
--- 
-Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gRnJpLCBKdW4gMTQsIDIwMjQgYXQgNTo0NuKAr1BNIEtyenlzenRvZiBLb3psb3dza2kKPGty
+enlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4gd3JvdGU6Cj4KPiBEZXZpY2UgaXMgYSB0aGVy
+bWFsIHNlbnNvciBhbmQgaXQgcmVxdWlyZXMgJyN0aGVybWFsLXNlbnNvci1jZWxscycsIHNvCj4g
+cmVmZXJlbmNlIHRoZSB0aGVybWFsLXNlbnNvci55YW1sIHRvIHNpbXBsaWZ5IGl0IGFuZCBicmlu
+ZyB0aGUKPiBjb21tb24gZGVmaW5pdGlvbiBvZiAnI3RoZXJtYWwtc2Vuc29yLWNlbGxzJyBwcm9w
+ZXJ0eS4KPgo+IFNpZ25lZC1vZmYtYnk6IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRvZi5r
+b3psb3dza2lAbGluYXJvLm9yZz4KCkFja2VkLWJ5OiBDaGVuLVl1IFRzYWkgPHdlbnNAY3NpZS5v
+cmc+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51
+eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcK
+aHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2lj
+Cg==
