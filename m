@@ -4,88 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C04CCC2BD09
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Jun 2024 13:49:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 306B9C2BD09
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Jun 2024 17:31:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=X/Qr8dou9NLtkj7MIS+kyhS3SryFIMeSAp1i36+Cpxg=; b=JVPhoKg3xa1smN
-	vQdcIGEnkdwLeK0NkpZOPcamcK9rad/xBLr/Leza0EwqvwUl3WgRZcFywFnT718/Owo0urH4mJdbx
-	RGsd3l7jCKDTKNFp7JPcZmuZnq6/W6iO5ymIFDQPbcGtq76ZIjl/6a9ov6YFEPfJsSJUUSDNvVzQl
-	n54l8w5I2/Kz50Tb/E1fpYMAafTru96YWHFGUL9nQGS+kypCdFo53HrzM3AVnvyKj6XNWayb4cXca
-	s4dzjYhucAselVoS5pdogmN55xQtWQZV+DAIQVz4nIfofFviy/HH/EgXwIi2Z7SYoy0z0x3uUGKbV
-	puBWetTD5P7yFxCJZUtw==;
+	List-Owner; bh=iBxvtc0o+udXvRc4PYX0C+F3nsbCFqxVFtYiiBP3wd0=; b=JWcL8AElj8EiJs
+	fqZguS9H3gOUSgW6s6wRuS3MpCK5cxQJlFK5n1zxgZmJADDB88DGPviYd6FR1HnliW/pScfmOSqTt
+	LsnwOUP9fC+4awntd8otXj92UElAre4CUljQQNcp8KmN+ONTofvon2KfZihuQzCOF2L8O8QpcU7PO
+	5H1VbNu47mdVdSSVTzRDQ2Xb4YaogpTG+i+XWXJei1AUUNZUlagSrmLwIRo4ExkNAgiMOIsJntUaf
+	m9yICvnqhj6NqRDr8Dr2KlORJCf6gICou9ofnw+KKFXZoj5qzHdmbEPfK/DwLddsvTOB9gq5Um+Wl
+	NYtkF1ubXVSZopY948Jw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sLk4M-0000000GzTb-327c;
-	Mon, 24 Jun 2024 13:49:18 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1sLnXB-000000006FP-2E4Z;
+	Mon, 24 Jun 2024 17:31:17 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sLk4I-0000000GzRc-4Ahe
+	id 1sLnX8-000000006E8-1vgM
 	for linux-amlogic@lists.infradead.org;
-	Mon, 24 Jun 2024 13:49:17 +0000
-Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 8307E10000D;
-	Mon, 24 Jun 2024 16:49:01 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8307E10000D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1719236941;
-	bh=1nrLHKRDeZOlG7iRG58yx2wRWxXJ1fEP3otaW6bOYCg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=eV82MdePHKY4+5PfujA6iLId+JmoR8/qyNxs8zwwNYP5QLUcHCT/f1NqH4dfgdPKR
-	 kdQB7pf8ZABRgSncq+bkldjgQiSljNaMHIcYX76DMJp3XD17LCdjA7BFKlWxjROXsG
-	 19FQMMLBoxi4OsbDvTLSIjEh7hvefQo6e6E2zRA4VPeDED6lftndzH324OcfvpS2Pc
-	 m64NreJwsgRiBhrRmeP26MWSpHLmGWZvPY0tuXXcumOuSbTSXFzuYRp1jV1Mim+2/m
-	 xgVBdQeSDj43zZePtvj27iudeBm9gANJJKHvl04+xCZYc6w9Lz8FeckF/ks4K1KN7p
-	 f2KjpgdcN0rfQ==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon, 24 Jun 2024 16:49:01 +0300 (MSK)
-Received: from [172.28.192.142] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 24 Jun 2024 16:49:00 +0300
-Message-ID: <f7b13cc0-6155-4b0f-9f63-c35d73c3032f@salutedevices.com>
-Date: Mon, 24 Jun 2024 16:48:08 +0300
+	Mon, 24 Jun 2024 17:31:16 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-42499b98d4cso454805e9.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 24 Jun 2024 10:31:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719250273; x=1719855073; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Nk8NTSSg2UNwZSS0z8KuJvpBdS4vH/E8VAcTr6zFpw4=;
+        b=EJ0770T7bNPTDmhWBl13fFzuAwIHV9w/OcGMIRO0GRCNF+wIrTcUVN+ftum2Wc9jQ9
+         F8TIARtd9KsWXVoptTl2McX5Dfy12mZOYrvCht7HZ/zKLXixwolWkHNmkj5tYOZAAHos
+         w2Z8sou/97Pqq5tmkdhl2zBBz3iXbd8WxuZpBqDShR6BTBpzCwzx2y5W5eYBbOtndYXL
+         JPvQn0zq3Wr8HHdrFQTBs272KLsWeT0rMamAXEkwyH13QGRz99S7aqnJ4ImCWvf+k7M+
+         auCEAm+W0YO/qzqJFVYe1BSJp3ojMDke534Br+57zAgdFs/5vwGvUJp4v9qxduVG8pwB
+         q1Pw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719250273; x=1719855073;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Nk8NTSSg2UNwZSS0z8KuJvpBdS4vH/E8VAcTr6zFpw4=;
+        b=RA7sLIuvxLQLsjHmUU3MukDoLxUakU/BBjDPSf9VWt6gR4L5zENiVnsqgUzR0bTmzI
+         n/5iH28u9pXQHHCevUzEB2LPmwb/kpkYMv1CAJoOEcr7l6l+dcZyLRo76PBdf2zpPHZo
+         /Lg9GkaGslht4vsx1EEJjhUjSQQzrSFL7E/WMbLBBJbtAMdsQMIasCONpNHLXQ8uHj89
+         Cna6gWNC185LuU/8Eo6SDsShdQKL/ob2+WbaVGM2OGflmc/J7u8ni+gPF2wLUvPw4JHB
+         Lnywnjod57QWuK24cYT1vtCmGVEUyHCqJNiCRl/w14mLnwbPCH4p5fhsZFrC4fPp4tQZ
+         jYdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUFx3hVUYHRlA5IRiVDXIO7dWNF32VPdqtGjrk2CJCdS5gm+y/HrYI/Qti2MNJYVMpSTcfw8ObSLElZIdJxDiXbOeMv7jSSO81j0WRoIHqw0LY=
+X-Gm-Message-State: AOJu0YxtwmyUEXXYiUxrumrOmr//kYzLbpYqEbxqBWTIwb5Dyw00tWc/
+	2L2Tiz2NG9J45PVLutAqVfdwGjYgjNYEWC/1rhGa81ivrV870iFQzdZFrisaHU4N1B7jZX6ie4H
+	vq9s=
+X-Google-Smtp-Source: AGHT+IEzdlJ7HFwRpLJJZgautx8tzjBGUtxs5fy5hAahIcqiziqFJibaNlYJW9Zd5bqWuU4GuS++yg==
+X-Received: by 2002:a05:600c:1ca2:b0:424:8e12:9ef3 with SMTP id 5b1f17b1804b1-4248e129f6fmr34103285e9.0.1719250272804;
+        Mon, 24 Jun 2024 10:31:12 -0700 (PDT)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:e4ee:e6f8:8fcc:a63b])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4247d210ff9sm183742385e9.39.2024.06.24.10.31.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jun 2024 10:31:12 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-iio@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH 1/2] dt-bindings: iio: frequency: add clock measure support
+Date: Mon, 24 Jun 2024 19:31:02 +0200
+Message-ID: <20240624173105.909554-2-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240624173105.909554-1-jbrunet@baylibre.com>
+References: <20240624173105.909554-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/9] reset: amlogic: move reset drivers out of CCF
-To: Jerome Brunet <jbrunet@baylibre.com>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Stephen Boyd <sboyd@kernel.org>, Neil Armstrong
-	<neil.armstrong@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-clk@vger.kernel.org>
-References: <20240516150842.705844-1-jbrunet@baylibre.com>
-Content-Language: en-US
-From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-In-Reply-To: <20240516150842.705844-1-jbrunet@baylibre.com>
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 186090 [Jun 24 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/06/24 10:37:00
-X-KSMG-LinksScanning: Clean, bases: 2024/06/24 13:26:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/06/24 08:41:00 #25695455
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240624_064915_573375_24526D04 
-X-CRM114-Status: GOOD (  16.48  )
+X-CRM114-CacheID: sfid-20240624_103114_523832_EE27BF70 
+X-CRM114-Status: GOOD (  12.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,55 +103,84 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Jerome,
+Introduce new bindings for the clock measure IP found Amlogic SoCs.
+These new bindings help bring IIO support to AML clock measure.
 
-Do you have any updates? I'm looking forward to these changes so I can
-continue my work on a1 audio clock controller driver.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
 
-On 5/16/24 18:08, Jerome Brunet wrote:
-> This RFC follows the discussion about having reset driver in the clock tree
-> [1]. Ideally those should reside in the reset part of tree.
-> 
-> Also the code of the amlogic reset driver is very similar between the 2 trees
-> and could use the same driver code.
-> 
-> This RFC moves the reset driver of audio clock controller of the g12 and
-> sm1 SoC family to the reset tree, using the auxiliary bus.
-> 
-> The infrastructure put in place is meant to be generic enough so we may
-> eventually also move the reset drivers in the meson8b and aoclk clock
-> controllers.
-> 
-> [1] https://lore.kernel.org/linux-clk/e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org
-> 
-> Jerome Brunet (9):
->   reset: amlogic: convert driver to regmap
->   reset: amlogic: add driver parameters
->   reset: amlogic: split the device and platform probe
->   reset: amlogic: use reset number instead of register count
->   reset: amlogic: add reset status support
->   reset: amlogic: add toggle reset support
->   reset: amlogic: add auxiliary reset driver support
->   clk: meson: add auxiliary reset helper driver
->   clk: amlogic: axg-audio: use the auxiliary reset driver
-> 
->  drivers/clk/meson/Kconfig                     |   6 +
->  drivers/clk/meson/Makefile                    |   1 +
->  drivers/clk/meson/axg-audio.c                 | 108 +--------
->  drivers/clk/meson/meson-clk-rst-aux.c         |  84 +++++++
->  drivers/clk/meson/meson-clk-rst-aux.h         |  14 ++
->  drivers/reset/Kconfig                         |   1 +
->  drivers/reset/reset-meson.c                   | 210 ++++++++++++++----
->  include/soc/amlogic/meson8b-auxiliary-reset.h |  17 ++
->  8 files changed, 293 insertions(+), 148 deletions(-)
->  create mode 100644 drivers/clk/meson/meson-clk-rst-aux.c
->  create mode 100644 drivers/clk/meson/meson-clk-rst-aux.h
->  create mode 100644 include/soc/amlogic/meson8b-auxiliary-reset.h
-> 
+ NOTE:
+  #1: Splitting the register space looks odd. This is done to help support
+      future SoCs. From meson8 to sm1, duty register comes first, then the
+      reg space. On s4 and c3, duty comes after the reg space.
+  #2: 'reg' may look like a poor choice of name. This comes from the
+       documentation.
+       - MSR_CLK_REGx for the 'reg' space (x being a number)
+       - MSR_CLK_DUTY for the 'duty' space
 
+ .../iio/frequency/amlogic,clk-msr-io.yaml     | 50 +++++++++++++++++++
+ 1 file changed, 50 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/frequency/amlogic,clk-msr-io.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/frequency/amlogic,clk-msr-io.yaml b/Documentation/devicetree/bindings/iio/frequency/amlogic,clk-msr-io.yaml
+new file mode 100644
+index 000000000000..eeb268b4a607
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/frequency/amlogic,clk-msr-io.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/frequency/amlogic,clk-msr-io.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic System Clock Measurer
++
++description:
++  Internal clock rate sensor within Amlogic SoCs
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++properties:
++  compatible:
++    enum:
++      - amlogic,meson8-clk-msr-io
++      - amlogic,gx-clk-msr-io
++      - amlogic,axg-clk-msr-io
++      - amlogic,g12a-clk-msr-io
++      - amlogic,sm1-clk-msr-io
++
++  reg:
++    maxItems: 2
++
++  reg-names:
++    items:
++      - const: reg
++      - const: duty
++
++  "#io-channel-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - reg-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    clk_msr: rate-sensor@18000 {
++      compatible = "amlogic,axg-clk-msr-io";
++      reg = <0x18004 0xc>,
++            <0x18000 0x4>;
++      reg-names = "reg", "duty";
++      #io-channel-cells = <1>;
++    };
 -- 
-Best regards
-Jan Dakinevich
+2.43.0
+
 
 _______________________________________________
 linux-amlogic mailing list
