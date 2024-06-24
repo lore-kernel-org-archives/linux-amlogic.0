@@ -4,84 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 814BCC2BD05
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Jun 2024 09:47:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C04CCC2BD09
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Jun 2024 13:49:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dLdRE3fBci6yCmr+UtjMFTxGv+KLsmN9/W5x8S055Xk=; b=I8Tt072HudE8Am
-	vW7X7JwTD0+Ke5J2DpjCcPr0MiQszH2uPboAx7OLyeNT/+r0NC0BskunJFs1xmvfZksszOYbN6+OB
-	v2nZRaCpsGLS+1klSzbPzTCfQVApxsAG0eX8RL8ueb3NDXYS3s7zF7P14umte8s4n+BZJnSa0McyE
-	bUQz3m3GscHKSgiPvx+2IbbR1xneoRY0htI6S4efCGMcdEQfcHC0bjHiDy054VBohN37czsMgCsTZ
-	CqhBcH+Wzb6X4FjdLpPIl05smPb486A1hWvhMj3edUN4hXt0qWwCLzFv5s/joKLneEDEb28ptGFfw
-	YvS7HCZOhFs2lLj5/9IA==;
+	List-Owner; bh=X/Qr8dou9NLtkj7MIS+kyhS3SryFIMeSAp1i36+Cpxg=; b=JVPhoKg3xa1smN
+	vQdcIGEnkdwLeK0NkpZOPcamcK9rad/xBLr/Leza0EwqvwUl3WgRZcFywFnT718/Owo0urH4mJdbx
+	RGsd3l7jCKDTKNFp7JPcZmuZnq6/W6iO5ymIFDQPbcGtq76ZIjl/6a9ov6YFEPfJsSJUUSDNvVzQl
+	n54l8w5I2/Kz50Tb/E1fpYMAafTru96YWHFGUL9nQGS+kypCdFo53HrzM3AVnvyKj6XNWayb4cXca
+	s4dzjYhucAselVoS5pdogmN55xQtWQZV+DAIQVz4nIfofFviy/HH/EgXwIi2Z7SYoy0z0x3uUGKbV
+	puBWetTD5P7yFxCJZUtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sLgHr-0000000GJ3h-0WlG;
-	Mon, 24 Jun 2024 09:46:59 +0000
-Received: from mail-lj1-x22f.google.com ([2a00:1450:4864:20::22f])
+	id 1sLk4M-0000000GzTb-327c;
+	Mon, 24 Jun 2024 13:49:18 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sLgHo-0000000GJ26-47JN
+	id 1sLk4I-0000000GzRc-4Ahe
 	for linux-amlogic@lists.infradead.org;
-	Mon, 24 Jun 2024 09:46:58 +0000
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2ec17eb4493so55852611fa.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 24 Jun 2024 02:46:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719222414; x=1719827214; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WcNWKnHkeIJRMOmqnabShMaVabM5q9PDRYhoyvuhdTA=;
-        b=qLhSxLJCYhc/vKUOE3h6HLmhV7tAPd32Lv0cKg+qvhKYPJfW/mtAacfs5wUA9C2Jnu
-         +TyD6q0IRW17P6VHR4mKSjjiG76uUQcipAidlos6AurYwqYli4ZXOAv3LQltXtvEQ2gf
-         nG94mDpxrGEJu+gTQS4VTxvX1YwaguzQmUBvbwNkw0CUedsvj4S/8eTinDv6Pw7NS1J0
-         ou90Rw2lhmDc7a9LkXBFbtikv/vvV5B3IqDSdbTvLm1pC/8SmzMnpK1eH8kJB30bcN/B
-         EKuGYB1cQHVUWFvhI0hEynpM3VDnB+l/ukVTPXJ1HBmHbWi7ZJcK4b6Hq0debV+KNLED
-         GisA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719222414; x=1719827214;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WcNWKnHkeIJRMOmqnabShMaVabM5q9PDRYhoyvuhdTA=;
-        b=FnOg9psil+WXqVthSPgYCxLRs6SnFYvj8Lm6JgrKf4466C1a6Jj51Y9sfDfEGgFrBe
-         7Rqnfa+cfqClHBSTQNT5Q6SVCndEWyXWSUxNojCGFWdyhD8CNVqEJRq4Um3LjZPsVh03
-         I/rlllsGlMIacS4ShBmszED+hzWKg8CD604OExPhfm8BtwlNi2UgwLDAFKWexB1WHbW2
-         c8IiPCm5K6Wj8DgIduBB+rjikC1z9Yvzr4Wizm13HYjZJwK511nu21Qd/JTQy9t0vbc9
-         C1qmbO5RWZZ1t+cMbpQ7JXsFpOXuybN08ibk86l3rUgVB/RdxCZIoLQtTHTizzj0btFu
-         ROGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUehZVvSmbGNSovni5TGiMM8Jx3dBKecYbaizjg6SGqDvqkhGmpJVGxcd4/qBXMywSGxLJuWmwFqbWUSiVNfdR0df2uEYRjT+ucdaRewX/7Dn8=
-X-Gm-Message-State: AOJu0YwATOEV9cY8Xz66JqldJlURFa1WQRmFUsITs3DruWk1D96enmfa
-	guCgCXLyGWqMC13mBHjFJsRngBuYmI0xbRWDep/UgZhOvXZWpTopj6jtDbipFwc=
-X-Google-Smtp-Source: AGHT+IHpNq1ix8ySZk4ztfCVIL+kyhyoHsHxl6o2d4h29CU2dII6GfkHgVi26P1w+CJMTNmjxLwS1Q==
-X-Received: by 2002:a05:651c:22f:b0:2ec:1708:4db5 with SMTP id 38308e7fff4ca-2ec5b339debmr25928351fa.51.1719222413972;
-        Mon, 24 Jun 2024 02:46:53 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-366383f65easm9528339f8f.23.2024.06.24.02.46.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jun 2024 02:46:53 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Dmitry Rokosov <ddrokosov@salutedevices.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20240624-topic-amlogic-upstream-bindings-fixes-dts-round-2-v1-1-0a21f456eb8d@linaro.org>
-References: <20240624-topic-amlogic-upstream-bindings-fixes-dts-round-2-v1-1-0a21f456eb8d@linaro.org>
-Subject: Re: [PATCH] arm64: dts: amlogic: ad402: fix thermal zone node name
-Message-Id: <171922241292.3679804.1552417731983704893.b4-ty@linaro.org>
-Date: Mon, 24 Jun 2024 11:46:52 +0200
+	Mon, 24 Jun 2024 13:49:17 +0000
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 8307E10000D;
+	Mon, 24 Jun 2024 16:49:01 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8307E10000D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1719236941;
+	bh=1nrLHKRDeZOlG7iRG58yx2wRWxXJ1fEP3otaW6bOYCg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=eV82MdePHKY4+5PfujA6iLId+JmoR8/qyNxs8zwwNYP5QLUcHCT/f1NqH4dfgdPKR
+	 kdQB7pf8ZABRgSncq+bkldjgQiSljNaMHIcYX76DMJp3XD17LCdjA7BFKlWxjROXsG
+	 19FQMMLBoxi4OsbDvTLSIjEh7hvefQo6e6E2zRA4VPeDED6lftndzH324OcfvpS2Pc
+	 m64NreJwsgRiBhrRmeP26MWSpHLmGWZvPY0tuXXcumOuSbTSXFzuYRp1jV1Mim+2/m
+	 xgVBdQeSDj43zZePtvj27iudeBm9gANJJKHvl04+xCZYc6w9Lz8FeckF/ks4K1KN7p
+	 f2KjpgdcN0rfQ==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon, 24 Jun 2024 16:49:01 +0300 (MSK)
+Received: from [172.28.192.142] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 24 Jun 2024 16:49:00 +0300
+Message-ID: <f7b13cc0-6155-4b0f-9f63-c35d73c3032f@salutedevices.com>
+Date: Mon, 24 Jun 2024 16:48:08 +0300
 MIME-Version: 1.0
-X-Mailer: b4 0.13.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 0/9] reset: amlogic: move reset drivers out of CCF
+To: Jerome Brunet <jbrunet@baylibre.com>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Stephen Boyd <sboyd@kernel.org>, Neil Armstrong
+	<neil.armstrong@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>
+References: <20240516150842.705844-1-jbrunet@baylibre.com>
+Content-Language: en-US
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <20240516150842.705844-1-jbrunet@baylibre.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 186090 [Jun 24 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/06/24 10:37:00
+X-KSMG-LinksScanning: Clean, bases: 2024/06/24 13:26:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/06/24 08:41:00 #25695455
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240624_024657_079058_180C0F93 
-X-CRM114-Status: GOOD (  10.02  )
+X-CRM114-CacheID: sfid-20240624_064915_573375_24526D04 
+X-CRM114-Status: GOOD (  16.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,44 +102,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Jerome,
 
-On Mon, 24 Jun 2024 10:59:36 +0200, Neil Armstrong wrote:
-> Fixes the following:
-> thermal-zones: 'soc_thermal' does not match any of the regexes: '^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$', 'pinctrl-[0-9]+'
->         from schema $id: http://devicetree.org/schemas/thermal/thermal-zones.yaml#
+Do you have any updates? I'm looking forward to these changes so I can
+continue my work on a1 audio clock controller driver.
+
+On 5/16/24 18:08, Jerome Brunet wrote:
+> This RFC follows the discussion about having reset driver in the clock tree
+> [1]. Ideally those should reside in the reset part of tree.
 > 
+> Also the code of the amlogic reset driver is very similar between the 2 trees
+> and could use the same driver code.
 > 
-
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.11/arm64-dt)
-
-[1/1] arm64: dts: amlogic: ad402: fix thermal zone node name
-      https://git.kernel.org/amlogic/c/ca88b172eebfaa923ea752f6eb41ec5c9cb587c5
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.11/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+> This RFC moves the reset driver of audio clock controller of the g12 and
+> sm1 SoC family to the reset tree, using the auxiliary bus.
+> 
+> The infrastructure put in place is meant to be generic enough so we may
+> eventually also move the reset drivers in the meson8b and aoclk clock
+> controllers.
+> 
+> [1] https://lore.kernel.org/linux-clk/e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org
+> 
+> Jerome Brunet (9):
+>   reset: amlogic: convert driver to regmap
+>   reset: amlogic: add driver parameters
+>   reset: amlogic: split the device and platform probe
+>   reset: amlogic: use reset number instead of register count
+>   reset: amlogic: add reset status support
+>   reset: amlogic: add toggle reset support
+>   reset: amlogic: add auxiliary reset driver support
+>   clk: meson: add auxiliary reset helper driver
+>   clk: amlogic: axg-audio: use the auxiliary reset driver
+> 
+>  drivers/clk/meson/Kconfig                     |   6 +
+>  drivers/clk/meson/Makefile                    |   1 +
+>  drivers/clk/meson/axg-audio.c                 | 108 +--------
+>  drivers/clk/meson/meson-clk-rst-aux.c         |  84 +++++++
+>  drivers/clk/meson/meson-clk-rst-aux.h         |  14 ++
+>  drivers/reset/Kconfig                         |   1 +
+>  drivers/reset/reset-meson.c                   | 210 ++++++++++++++----
+>  include/soc/amlogic/meson8b-auxiliary-reset.h |  17 ++
+>  8 files changed, 293 insertions(+), 148 deletions(-)
+>  create mode 100644 drivers/clk/meson/meson-clk-rst-aux.c
+>  create mode 100644 drivers/clk/meson/meson-clk-rst-aux.h
+>  create mode 100644 include/soc/amlogic/meson8b-auxiliary-reset.h
+> 
 
 -- 
-Neil
-
+Best regards
+Jan Dakinevich
 
 _______________________________________________
 linux-amlogic mailing list
