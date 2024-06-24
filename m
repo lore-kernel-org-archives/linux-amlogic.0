@@ -4,79 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E474C27C53
-	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Jun 2024 18:07:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B03FC2D0D1
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Jun 2024 04:10:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:References:MIME-Version:Message-ID:Date
+	:Subject:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hlby7MiwCU8tR7jO7Phj6YgvSv6cXEnAEWsSR0klLYM=; b=jjPsi5qV43OuSi
-	cwXSCMrytlyrGFG+zQR3PcPSLL8rAdISQdFlwuvuJxMHdQ0sq8zHs/sJ+pJBcCjnKLQ3NxEcFDF6n
-	VoxKGTCnUelQj+SshubC8PNZts7ibXC0khCSv4Fi5+iH15559uG12unq38JQAizAyb1UYjNDoJ0wE
-	Jqt5pK0rVnUpSn699ikLO6wWj1k2/J8hUuzdKWnnw3A6hg5AQMxUxcB0fhWaG1RchA7rJ8eCW50w7
-	68JyKOlbZitcqNjMiRV93tnvGTsdJy/FL29by0EFJ/a+DSoMXz7ZwsR+12z7XPONrYSSbnNNDjOjU
-	RcNDl7Q0JcY0nsVwUeng==;
+	List-Owner; bh=a5F69c8jPTPbFmDUA6pC7XYSYsdAI9gORI/H1kh3v8Q=; b=neOKn9kdAfXhcf
+	NSliT5RlImzk0ASxvDaCmlW+MGD2Q8HvS5/buHabqEA2yBlagvacEwB0Caw5GhILPscYVitE5dCF1
+	F6KmGQ+xsKnHbo4PRz+qrRbjMojGC2UjyzcjjKhlM6H91IrRqyCUfuaLHmC4OixS7MFdsHTy8AFcf
+	lWLaewuTtPuXwVIMLxOGsZEzYNK71k4XX+VwyC/36i2XossVFweTabV9IAVvUZTYE6B4NfXxWn1LA
+	evrD1XXdpm+Gwp2h4J3NikTXTEW4MMCXQ+Ro3z6JabUyODSQjQXCX2z78w5IIubYFq+CULUS46Kyg
+	YCJ2Q470WFPvD2A8xPyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sL592-0000000CZad-0fzm;
-	Sat, 22 Jun 2024 18:07:24 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1sLb1z-0000000FT5J-2cVv;
+	Mon, 24 Jun 2024 04:10:15 +0000
+Received: from mailout1.samsung.com ([203.254.224.24])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sL590-0000000CZa9-0Ngo;
-	Sat, 22 Jun 2024 18:07:23 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 00AEB61760;
-	Sat, 22 Jun 2024 18:07:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F603C3277B;
-	Sat, 22 Jun 2024 18:07:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719079640;
-	bh=OtT1Bdv6RV8ExcvkSroMHalr66r6ej9Rmqb6rUMOMI4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=slBSHExp0Uwe7g9gxR6wtZtx9GvEjsaR/9tW7T7D7ThM65vtbu5NwRtXOWZLb/A6Z
-	 x4vzB//x6l8e4m/dKCQqux2wTtNYCkhB0sPnsVA49iVVQpmQ8/6HKwHmZEjeGxQQ66
-	 +En2No/IKyo4TyARnNnRLLs9Nlw+Wx1OIGZR/8G+Zs7XxL5ECp2Dn79Bh9vAwRcAGW
-	 Q8Y8kd5QjhT3h2nHvtxpe7LJn/2WOfoj1p1f/BnDGUBk5Elm13U0NGXZWsbU0pwaet
-	 y4XEQJhRSJfiNLyG4NPQ9Gvmck4nLZjpuik3GoyfpXf0YXq3k6IOE95ZnJLrkxyDjj
-	 eGKmdj2tsObmA==
-Date: Sat, 22 Jun 2024 19:07:06 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>
-Cc: Trevor Gamblin <tgamblin@baylibre.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Dmitry Rokosov <ddrokosov@sberdevices.ru>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Cosmin Tanislav
- <cosmin.tanislav@analog.com>, Chen-Yu Tsai <wens@csie.org>, Hans de Goede
- <hdegoede@redhat.com>, Ray Jui <rjui@broadcom.com>, Scott Branden
- <sbranden@broadcom.com>, Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Saravanan Sekar
- <sravanhome@gmail.com>, Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
- <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Linus Walleij <linus.walleij@linaro.org>, Jean-Baptiste Maneyrol
- <jmaneyrol@invensense.com>, Crt Mori <cmo@melexis.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v3 00/41] iio: simplify with regmap_set_bits(),
- regmap_clear_bits()
-Message-ID: <20240622190706.670224da@jic23-huawei>
-In-Reply-To: <mv3deevgf3pp6ojy3pa4zgc5z74ajroe26sayhzvrbua2dqrdu@enqs7sobbew5>
-References: <20240617-review-v3-0-88d1338c4cca@baylibre.com>
-	<mv3deevgf3pp6ojy3pa4zgc5z74ajroe26sayhzvrbua2dqrdu@enqs7sobbew5>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	id 1sLb1s-0000000FT46-3lub;
+	Mon, 24 Jun 2024 04:10:13 +0000
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20240624041002epoutp017f05577018b2eadddc8b8cb81ec3826f~b1Ut0SVjH1592015920epoutp01L;
+	Mon, 24 Jun 2024 04:10:02 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20240624041002epoutp017f05577018b2eadddc8b8cb81ec3826f~b1Ut0SVjH1592015920epoutp01L
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1719202202;
+	bh=f8MsT2ydR8FVWHQfUu9aV03i/fvtgmg81rTBmx7wZtI=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=KrD5HtQJlXwla8TJO98EzEGmbC6U6iFckhBxukcjB1yovmR3lz02KUcrhstmuFHwP
+	 HlU6mB/4SedvqN4YiOBGO9STneKReT3yuKLSGYAj6kOz4v/+HseOzds5BjWWMSF78Z
+	 UX56cYaK573oQ0K1epKtk2kmiCwRbV6WxQq+ulZM=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+	20240624041002epcas5p32f5ba38ddb47660961e77f59341cfae1~b1Utit_tu2048920489epcas5p3C;
+	Mon, 24 Jun 2024 04:10:02 +0000 (GMT)
+Received: from epcpadp3 (unknown [182.195.40.17]) by epsnrtp1.localdomain
+	(Postfix) with ESMTP id 4W6vcp3M22z4x9Q8; Mon, 24 Jun 2024 04:10:02 +0000
+	(GMT)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20240624040636epcas5p37dc56f380e9e84e273a040775a8e6f6a~b1RtorJGk1881818818epcas5p3e;
+	Mon, 24 Jun 2024 04:06:36 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240624040636epsmtrp207b25ba1110f1c95c77dc40514d58f15~b1Rtmp5HY1015110151epsmtrp2s;
+	Mon, 24 Jun 2024 04:06:36 +0000 (GMT)
+X-AuditID: b6c32a29-72dff700000074f4-8b-6678f0cc0a0d
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	76.5B.29940.CC0F8766; Mon, 24 Jun 2024 13:06:36 +0900 (KST)
+Received: from INBRO002756 (unknown [107.122.12.5]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20240624040628epsmtip2a5b53ed83b9eac43f0d7a7bd0cd4bb48~b1RlznvHY0728807288epsmtip2H;
+	Mon, 24 Jun 2024 04:06:27 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Krzysztof Kozlowski'"
+	<krzysztof.kozlowski@linaro.org>, "'Daniel Lezcano'"
+	<daniel.lezcano@linaro.org>, "'Zhang Rui'" <rui.zhang@intel.com>, "'Lukasz
+ Luba'" <lukasz.luba@arm.com>, "'Rob Herring'" <robh@kernel.org>, "'Conor
+ Dooley'" <conor+dt@kernel.org>, "'Guillaume La Roque'"
+	<glaroque@baylibre.com>, "'Krzysztof Kozlowski'" <krzk+dt@kernel.org>,
+	"'Vasily Khoruzhick'" <anarsoul@gmail.com>, "'Chen-Yu Tsai'"
+	<wens@csie.org>, "'Jernej Skrabec'" <jernej.skrabec@gmail.com>, "'Samuel
+ Holland'" <samuel@sholland.org>, "'Shawn	Guo'" <shawnguo@kernel.org>,
+	"'Sascha Hauer'" <s.hauer@pengutronix.de>, "'Pengutronix Kernel Team'"
+	<kernel@pengutronix.de>, "'Fabio Estevam'" <festevam@gmail.com>, "'Anson
+ Huang'" <Anson.Huang@nxp.com>, "'Thierry Reding'"
+	<thierry.reding@gmail.com>, "'Jonathan Hunter'" <jonathanh@nvidia.com>,
+	"'Dmitry Baryshkov'" <dmitry.baryshkov@linaro.org>, "'Amit Kucheria'"
+	<amitk@kernel.org>, =?utf-8?Q?'Niklas_S=C3=B6derlund'?=
+	<niklas.soderlund@ragnatech.se>, "'Heiko Stuebner'" <heiko@sntech.de>,
+	"'Biju	Das'" <biju.das.jz@bp.renesas.com>, "'Orson Zhai'"
+	<orsonzhai@gmail.com>, "'Baolin Wang'" <baolin.wang@linux.alibaba.com>,
+	"'Chunyan Zhang'" <zhang.lyra@gmail.com>, "'Alexandre Torgue'"
+	<alexandre.torgue@foss.st.com>, "'Pascal Paillet'" <p.paillet@foss.st.com>,
+	"'Keerthy'" <j-keerthy@ti.com>, "'Broadcom internal kernel review list'"
+	<bcm-kernel-feedback-list@broadcom.com>, "'Florian Fainelli'"
+	<florian.fainelli@broadcom.com>, "'Scott Branden'" <sbranden@broadcom.com>,
+	"'zhanghongchen'" <zhanghongchen@loongson.cn>, "'Matthias Brugger'"
+	<matthias.bgg@gmail.com>, "'AngeloGioacchino Del Regno'"
+	<angelogioacchino.delregno@collabora.com>, "'Bjorn Andersson'"
+	<andersson@kernel.org>, "'Geert Uytterhoeven'" <geert+renesas@glider.be>
+Cc: <linux-pm@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-sunxi@lists.linux.dev>, <imx@lists.linux.dev>,
+	<linux-tegra@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+	<linux-renesas-soc@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>, "'Florian Fainelli'"
+	<f.fainelli@gmail.com>, <linux-rpi-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <cpgs@samsung.com>
+In-Reply-To: <003b73f2-3b5d-40b7-a87c-2fc937e81bcd@kernel.org>
+Subject: RE: [PATCH 01/22] dt-bindings: thermal: samsung,exynos: specify
+ cells
+Date: Mon, 24 Jun 2024 09:36:22 +0530
+Message-ID: <1296674576.21719202202469.JavaMail.epsvc@epcpadp3>
 MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGhCdcVAXQc0tvKk5x9QOKQ/J0WewGh/L0BAiWHCW4CgfI42AIboMv/sgabD1A=
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0xbZRjH956ennPogp4VYs8gKiHRZBdgBGKeKcNLNj3ROJfMfcHorFAY
+	chn2DIYzbqyAWjZGOybQMsrVcSsTWi6lBYblsjEHTFEYcpFroYMBAYKWIZXSaPj2ey7/3/N+
+	eCmesITwoCJjz0mkseJob0KA17d5v+jzYCkx/FDH4LNgs2YhaMtPhNROC4L674Lg13IGGlSh
+	YG/uRFCV3oGDxrCGgba5BwOreR9oVp6H/PYePih7bQSsL7STMP77B3C7fpQHebnXERRm5hFg
+	n5jjg2o0lYD7DTIMZvJvI0hRF+FQ8X0jDlb1KAG9vdUkNM/VkVCQuxt0k/1byjvdJPQZbxLQ
+	l/wLgpX0dgR11gUMlsfsPFAObQVyelswSOuf4sONFiMB8lU1AYWyFBJkKQFwN+saH7KXchG0
+	TmfiYG8ykDA1fo2Afxp0OMxMyAlYqJxCMFsrAptRg4PN3ItB6ZiRhLX+Bt4bwGo1WsQuPkol
+	2fLZXJJV/9lNsIaREsRWT1Ty2emMOpJVdvuwjeoRki1usmKsrkJOsMP9TQTbOH6Y1ZdcYmf1
+	KsRelhVhJzxCBEFhkujIBInUL/hTwRmT5QmKqxUk6tqMvCRUTaUhF4qhA5lK/RNeGhJQQtqE
+	mHm7CTkHnsxAjYJ0shtTvjmzzULaghj1Pc7BBO3DGIq/IRxhd3rwGaZqoZR0FDz6Mc7oF8r4
+	Tu1djHk0YSUcERc6mCmxTG6fcKOPM5orU3gaoiicfolZVQU42q70YcYuv086eQ/TpXKsuGxJ
+	DzDTg9P/863COZ7zdV6MbfoW38HuW0rt5lXCuSNirB3tpAK5qXeo1DtU6h0q9Y5IAcIr0F5J
+	HBcTEcP5x/nHSs77cuIYLj42wjf0bIwObX/k/fsMqKFiydeMMAqZEUPxvN1dsy8lhAtdw8Rf
+	XpBIz56WxkdLODPypHBvkatoNj1MSEeIz0miJJI4ifS/KUa5eCRhhfrqbzfHZJHK+RPvkMNe
+	wW5rFxbPH4rZbdwbWfNKl19iYk5UskvJRenAg67VWvnf1Mb73Py8ebm5aS5izTPjdLop2e94
+	q+jzEI61jNBfLRZ2vveR5cdTTzUvrAQykw8DPhw6om/N/ixHsaFYjzYkiF696nXAqPXfCBJM
+	Hc2JbN38GAqUjZ9wsoGTip9VnjfeDfpCZdHuEq5nHFQ8N+y7p9Z0rLKsh91Aj9d6fug72vKb
+	PmXm7eXc6rd08ofxYlNelPGPLCT3R389HbkXUiT9etfJ8s6q0KGiU6a66wgrO/Lam6Uv+17J
+	Lr6zXpC0cvCy9WamsOb1Y+HKn2xpXPzQmCjwojfOnRH77+dJOfG/2JYK7DcEAAA=
+X-CMS-MailID: 20240624040636epcas5p37dc56f380e9e84e273a040775a8e6f6a
+X-Msg-Generator: CA
+CMS-TYPE: 105P
+X-CPGSPASS: Y
+X-Hop-Count: 3
+X-CMS-RootMailID: 20240614094638epcas5p115d52130f45e130652b6f1d946358d19
+References: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org>
+	<CGME20240614094638epcas5p115d52130f45e130652b6f1d946358d19@epcas5p1.samsung.com>
+	<20240614-dt-bindings-thermal-allof-v1-1-30b25a6ae24e@linaro.org>
+	<1891546521.01718433481489.JavaMail.epsvc@epcpadp4>
+	<003b73f2-3b5d-40b7-a87c-2fc937e81bcd@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240622_110722_238253_DCC0E932 
-X-CRM114-Status: GOOD (  16.22  )
+X-CRM114-CacheID: sfid-20240623_211012_087930_F7FE2872 
+X-CRM114-Status: GOOD (  20.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,38 +150,53 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCAxNyBKdW4gMjAyNCAxNzoxNzoyNyArMDIwMApVd2UgS2xlaW5lLUvDtm5pZyA8dS5r
-bGVpbmUta29lbmlnQGJheWxpYnJlLmNvbT4gd3JvdGU6Cgo+IEhlbGxvIFRyZXZvciwKPiAKPiBP
-biBNb24sIEp1biAxNywgMjAyNCBhdCAwOTo0OTo0MEFNIC0wNDAwLCBUcmV2b3IgR2FtYmxpbiB3
-cm90ZToKPiA+IFNpbXBsaWZ5IHRoZSB3YXkgcmVnbWFwIGlzIGFjY2Vzc2VkIGluIGlpbyBkcml2
-ZXJzLgo+ID4gCj4gPiBJbnN0ZWFkIG9mIHVzaW5nIHJlZ21hcF91cGRhdGVfYml0cygpIGFuZCBw
-YXNzaW5nIHRoZSBtYXNrIHR3aWNlLCB1c2UKPiA+IHJlZ21hcF9zZXRfYml0cygpLgo+ID4gCj4g
-PiBJbnN0ZWFkIG9mIHVzaW5nIHJlZ21hcF91cGRhdGVfYml0cygpIGFuZCBwYXNzaW5nIHZhbCA9
-IDAsIHVzZQo+ID4gcmVnbWFwX2NsZWFyX2JpdHMoKS4KPiA+IAo+ID4gVGhlIHNlcmllcyBpcyBt
-YXJrZWQgYXMgdjMsIGJ1dCB0aGUgcHJldmlvdXMgdHdvIHJldmlzaW9ucyB3ZXJlIHNpbmdsZQo+
-ID4gcGF0Y2hlcy4gVGhlcmUgd2FzIGFsc28gYSByZXNlbmQgb2YgdjEgZHVlIHRvIG5vdCBwcm9w
-ZXJseSBDQ2luZyB0aGUKPiA+IG1haWxpbmcgbGlzdHMgb24gdGhlIGZpcnN0IGF0dGVtcHQuIFRy
-YWlsZXJzIHdlcmUgcHVsbGVkIGluIGZyb20gdGhvc2UKPiA+IHdoZXJlIHJlbGV2YW50Lgo+ID4g
-Cj4gPiBMaW5rIHRvIHYyOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1paW8vMjAyNDA2
-MTMxMzM5MjcuMzg1MTM0NC0xLXRnYW1ibGluQGJheWxpYnJlLmNvbS8KPiA+IExpbmsgdG8gdjE6
-IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LWlpby8yMDI0MDYxMTE2NTIxNC40MDkxNTkx
-LTEtdGdhbWJsaW5AYmF5bGlicmUuY29tLwo+ID4gCj4gPiBTdWdnZXN0ZWQtYnk6IFV3ZSBLbGVp
-bmUtS8O2bmlnIDx1LmtsZWluZS1rb2VuaWdAYmF5bGlicmUuY29tPgo+ID4gUmV2aWV3ZWQtYnk6
-IExpbnVzIFdhbGxlaWogPGxpbnVzLndhbGxlaWpAbGluYXJvLm9yZz4KPiA+IFNpZ25lZC1vZmYt
-Ynk6IFRyZXZvciBHYW1ibGluIDx0Z2FtYmxpbkBiYXlsaWJyZS5jb20+ICAKPiAKPiBBY2tlZC1i
-eTogVXdlIEtsZWluZS1Lw7ZuaWcgPHUua2xlaW5lLWtvZW5pZ0BiYXlsaWJyZS5jb20+Cj4gClNl
-cmllcyBhcHBsaWVkIHdpdGggYSBmZXcgd3JhcHBpbmcgdHdlYWtzLgoKQXBwbGllZCB0byB0aGUg
-dG9ncmVnIGJyYW5jaCBvZiBpaW8uZ2l0IGFuZCBwdXNoZWQgb3V0IGFzIHRlc3RpbmcgZm9yIDAt
-ZGF5CnRvIHRha2UgYSBsb29rICsgYmVjYXVzZSBJIG1pZ2h0IHJlYmFzZSB0aGF0IHRyZWUgYWZ0
-ZXIgc29tZSBmaXhlcwptYWtlIGl0IHVwc3RyZWFtIG9uIHdoaWNoIEkgaGF2ZSBvdGhlciBkZXBl
-bmRlbmNpZXMgYW5kIEkgZG9uJ3QgbGlrZSBkb2luZwp0aGF0IG9uY2UgaXQgaXMgaW4gdGhlIHB1
-YmxpYyB2ZXJzaW9uIG9mIHRoZSB0b2dyZWcgYnJhbmNoLgoKVGhhbmtzCgpKb25hdGhhbgoKPiBU
-aGFua3MKPiBVd2UKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJh
-ZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51
-eC1hbWxvZ2ljCg==
+
+
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk@kernel.org>
+> Sent: Saturday, June 15, 2024 3:09 PM
+> To: Alim Akhtar <alim.akhtar@samsung.com>; 'Krzysztof Kozlowski'
+> <krzysztof.kozlowski@linaro.org>; 'Daniel Lezcano'
+[snip]
+> On 14/06/2024 16:29, Alim Akhtar wrote:
+> > Hi Krzysztof,
+> >
+> >> -----Original Message-----
+> >> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> Sent: Friday, June 14, 2024 3:16 PM
+> >> To: Daniel Lezcano <daniel.lezcano@linaro.org
+> > .stormreply.com;
+> >> Subject: [PATCH 01/22] dt-bindings: thermal: samsung,exynos: specify
+> >> cells
+> >>
+> >> All Samsung Exynos SoCs Thermal Management Units have only one
+> >> sensor, so make '#thermal-sensor-cells' fixed at 0.
+> >>
+> > This is not entirely true, there are SoCs which have multiple temp sensors.
+> > It is true that currently only one sensor support is added though.
+> 
+> All supported by mainline. Others do not exist now :)
+> 
+> >
+> > So we can leave this as is or you suggest to make it to support only
+> > one sensor (to match the current DT support), and later (in near
+> > future) change it again to match what HW actually support?
+> 
+> Yes, different devices can have different value (and bindings).
+Ok, this is fine for now.
+
+> Best regards,
+> Krzysztof
+
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
