@@ -4,115 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABA57C2BBCA
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jun 2024 09:55:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE8D4C2BBCA
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jun 2024 11:19:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=51tvX2lO5ny/3/3NnKFlcWlBTm/dECcZuACltkZinNc=; b=lErUz0KiOz4enF9kdARn1l0+Gq
-	rVHvcx56Qc7VwuyVT4y8QKXfpWk+YFIbrt8Wrt738POhRbwPLklkdnSwPmNgcsbdL0+Ml25jNnDxj
-	5bX/tPNZcMVEquTKHgz+3x2+Rw/LJM3mnKbY01DvUM10oTPKj6P8StaSsZ/N+F3MxooBz09X19vX1
-	fb/dM+PpbnLZKnQtorztmpcXtsQaeLN/XR7epHRKttVpeTss/VeT/zPOC9cakKpJv3yfrw5OuVeGy
-	cmJIf6orZ/anzZnmxff5WO3hv7Q1YDcKpAr5vjpfFHIYDUJVdlJSsXo9emFq/P1VKCvYIXq9oau7s
-	3OKfgNIA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=SkBSYVsK129MxZLvugh1ZN1GVNY0J5iy5qSBMmcRXH0=; b=Pz42wF6JhohTN/
+	gmgMyS3iqmgxZahQIgnx/sAJG7OEgyVojU7aozeqvNmC6KzVqpLPGB9LFGuYmIZcWOaDtuTkj2Etg
+	9H+kLkl54JAKWiP9SMqI+jTChuJaVp1H2pB7SvawRd/83E+Wl9fEU92tl2rlAf7T8X8rZ9tl2eKE9
+	ERsGI0fD39cgr+nurobig/k5znQenRZx/7hgtSOXUAX0izGTANhIxAjYBAoIc1d+QZs8s+HrFx/Y7
+	vXIAy470/KeAHjRV6V4dPdyB+/hkE5I9M0Clv8fx/Th+b5VAnpTiD0xTAd8Oz01WG/Q6JrujNTe46
+	0sa7xNZ3CdazVg2n28mQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sM2tW-00000002KRl-2KIJ;
-	Tue, 25 Jun 2024 09:55:22 +0000
-Received: from mail-lj1-x234.google.com ([2a00:1450:4864:20::234])
+	id 1sM4D1-00000002W9K-1wRL;
+	Tue, 25 Jun 2024 11:19:35 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sM2tQ-00000002KQA-1vsZ
+	id 1sM4Cy-00000002W8W-0HUH
 	for linux-amlogic@lists.infradead.org;
-	Tue, 25 Jun 2024 09:55:17 +0000
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2ebec2f11b7so57861311fa.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 25 Jun 2024 02:55:14 -0700 (PDT)
+	Tue, 25 Jun 2024 11:19:34 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-36532d177a0so3515033f8f.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 25 Jun 2024 04:19:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719309313; x=1719914113; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kECwLGxqId1Ov65xGDMi5MpX17DgpZQ+tjYQbJXb13M=;
-        b=zJG0nQwcZzMH+lEBAPPgbAzlGh/I/qH/zvOzXz+UYKQGlaVfgXHYoTliZSalWSsh9d
-         Ruu0mhuV+3/1IusogtRuIB34vga59qwQZ/lnil9uHZyv6rskzrKgn2R/IaPQ5IvFQP01
-         UXn9gYP9F1+kmUVD+YjSI5Ko1WulYkuJSePLLxJKUNoiZmLhNxaQSdFHvByfDLI93oN8
-         S5S/K2tgZJltwZoggGIeerjiT/Dgxui72iP9eReulD7x0fIzNHPgBKf0iguRnDI8ghvb
-         iwT1hW4KFIq2Bi0joz8CyaSyyr/I0p5d8XFn4uSTS8oAZICNUkog1bN8JON2JrLEAdxL
-         s+7A==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719314369; x=1719919169; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xo/YdeJtYas2lqY2ggRIqkSo6l044/lTXCgw0Xo9+1Y=;
+        b=AHUMwzp2pzuI9BX76vsOsSrrQJXnOhB9l7fLBPg0KyixzYj8bFc4xC1ifdHRovmo05
+         59MYLEMIF/R+q8q29I7cUb00uUnFadL9b/kr46A/3+1fexruTZy6QOD4Bl70iYimWLHH
+         5lHi4unKcgmFe4e2Efs8+YT/deI5mGlNOcTqLexruFEZlBidvmoixWHjiLTuSJfkjcWY
+         +CguyXGO1V5lbGuX6Zfj2ZBoH1iGY1tkTfcnRC4yepVr6x5xr+HtnMtjIahfn1oBLZKj
+         7qhmTp2HOPzsQ9sXEIJ9XRbBLwOMgcU/vrByEptuM40Osj+SLiAddPvdNwZ5twkwKvMi
+         q5rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719309313; x=1719914113;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=kECwLGxqId1Ov65xGDMi5MpX17DgpZQ+tjYQbJXb13M=;
-        b=wCU3YMkeOQGkFdluqDMFfGebY8V6LuiC4QGk9CTsfVlPQ9T+Lbaj6ZN7yGWqE4vvtq
-         WsnlanqSW3YvxLLN/IbyTdPJywUT3vGPAvisTkR4bgzL8QGz7A1I5cXfp49lGXzDcslP
-         Nm5tSaBK3LskTx8Ar5uk37XlPEKT8YBpBrlHFtpojw6AWHtGTHdBJoSiNi3QFFiu3Jj+
-         G9ugnYyO3XZWz3x9zb4ZhVKi0KmvydjX6hFO+hdlGGgT0hSO2FXawErQ1T1OvMnfNV8m
-         v0LZmB8gxztkqZm0V6igFxNyKdjUowAKGdZyuolw19LGqSkPxPc4zpIWhUvh7sfzDspL
-         XOKA==
-X-Forwarded-Encrypted: i=1; AJvYcCXN3jr/LsMhwH0apqMuYQbTkYXIl192QYI3eo+9c+LJjxAcgMiY4XY4OYxI7GstbtuXhEnbOaXUnd+HW4LcNKYTk70DtMEEc4jVbT26vu77gW4=
-X-Gm-Message-State: AOJu0YwpR4OuJVuX8sBOvrpHgSJaMuJ+n0mII8MsgXrAKeUN4gYNMNSP
-	KcItUhDnSk3nN6QSSZpEjmpqHbaXc+xuGM6rxWQ1Q0a5OLDZoYZHQxcCSQ8ythU=
-X-Google-Smtp-Source: AGHT+IFMwMhvOphtvO8C5EwWqvnT9WcF0/GsSlyeQT++HVrdddjTsK1XMZKeXdCDezbgFmejez8wQg==
-X-Received: by 2002:a2e:2d12:0:b0:2ec:3180:d4f7 with SMTP id 38308e7fff4ca-2ec5b3460f7mr36941741fa.26.1719309312317;
-        Tue, 25 Jun 2024 02:55:12 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:bd71:2ff1:592d:f52a? ([2a01:e0a:982:cbb0:bd71:2ff1:592d:f52a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424817b53f2sm172394305e9.25.2024.06.25.02.55.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jun 2024 02:55:11 -0700 (PDT)
-Message-ID: <ac0216ae-22c1-459e-829d-80233dd1b586@linaro.org>
-Date: Tue, 25 Jun 2024 11:55:10 +0200
+        d=1e100.net; s=20230601; t=1719314369; x=1719919169;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Xo/YdeJtYas2lqY2ggRIqkSo6l044/lTXCgw0Xo9+1Y=;
+        b=NjP0eu6j1XxIwXMfvmc3vtKOOOtyGwbpychhuvl/O/v4Gl16A/W7KHea501g+VtRuK
+         IDJtZXLiq/Zso3QrOc6NckCU2y1ZoLOHxSJlPmbSh3Hqyqw/JFRvAKFC6PmKgFnJCaag
+         DTlGI2omwPVk7GhEUVoUltKEJW9W+9MQ7IGFmWOrlhDHOvBofuu8iiwEv+6Sl+mN8HCu
+         zUE3ht+RWFHx8xSBJKKtEhXn9Ynv7SjFr2W/UgrFiHAezBy6QUPuLj/2upWtJiX+GEM5
+         Kfy4gImX7KUJlcCBTFAJnjSlsp/2lgEUGult8mnrfSrxQm1TiJjNEvRNfl2Cw7gr5G0N
+         mGow==
+X-Forwarded-Encrypted: i=1; AJvYcCUDbWoO9V3j98h5bt/OsTsteJsPsNnA/Xkh2J+/GGfpEmoshh7ZoltWc+4IWmY4pKTac4sNr2UtZc0wkw44YDJOJWYTa2qYHyoYnN8ipAfZAnw=
+X-Gm-Message-State: AOJu0YyytoLLmqLS0TVsKIrzQEQIfcsriqbxpSHBHEJSrUy3cXEw2MMK
+	hqqrc5EzolzWaegKnYKXFixAOdnlL/Uxj7tRvUUWQ6KlVL7ahM42u8BH+ksj2+Q=
+X-Google-Smtp-Source: AGHT+IHia/dXcMfF56czcOAxmNTQqh1jTWwgjJHeOv+ujGlppvG6UAN+tlaLOohOVx9yKWBwzhmzOQ==
+X-Received: by 2002:a5d:610c:0:b0:35f:261a:dd8f with SMTP id ffacd0b85a97d-366e4ed2eaamr5110021f8f.20.1719314368678;
+        Tue, 25 Jun 2024 04:19:28 -0700 (PDT)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:1b57:b4a1:3d50:32a2])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-366383f6717sm12807366f8f.9.2024.06.25.04.19.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jun 2024 04:19:28 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH] arm64: dts: amlogic: sm1: fix spdif compatibles
+Date: Tue, 25 Jun 2024 13:18:43 +0200
+Message-ID: <20240625111845.928192-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] arm64: dts: amlogic: ad402: fix thermal zone node name
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240624-topic-amlogic-upstream-bindings-fixes-dts-round-2-v1-1-0a21f456eb8d@linaro.org>
- <1ad3429c-0bad-4662-bc9d-b912f88e7b3a@kernel.org>
- <4c4c7840-917e-4d00-b8a4-b97a01ca2e6a@linaro.org>
- <20240625095210.mnwer2d3bc5wkits@CAB-WSD-L081021>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240625095210.mnwer2d3bc5wkits@CAB-WSD-L081021>
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240625_025516_512547_A8A9895B 
-X-CRM114-Status: GOOD (  16.24  )
+X-CRM114-CacheID: sfid-20240625_041932_212250_E844C0BA 
+X-CRM114-Status: GOOD (  10.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,72 +92,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 25/06/2024 11:53, Dmitry Rokosov wrote:
-> Hello Neil and Krzysztof,
-> 
-> Before posting any commit I've running dt_binding_check and dtbs_check.
-> Which target should highlight the errors like mentioned in this fix?
-> Please advise what I'm doing wrong.
-> 
-> My commands:
-> 
-> $ /usr/bin/make ARCH=arm64 INSTALL_MOD_PATH=$ROOT/out/$TARGET/target CROSS_COMPILE="$ROOT/out/$TARGET/host/bin/aarch64-buildroot-linux-gnu-" DEPMOD=$ROOT/out/$TARGET/host/sbin/depmod INSTALL_MOD_STRIP=1 -C $ROOT/out/$TARGET/build/linux-custom dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/example_device.yaml
-> $ /usr/bin/make ARCH=arm64 INSTALL_MOD_PATH=$ROOT/out/$TARGET/target CROSS_COMPILE="$ROOT/out/$TARGET/host/bin/aarch64-buildroot-linux-gnu-" DEPMOD=$ROOT/out/$TARGET/host/sbin/depmod INSTALL_MOD_STRIP=1 -C $ROOT/out/$TARGET/build/linux-custom dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/example_device.yaml
+The spdif input and output of g12 and sm1 are compatible but
+sm1 should use the related compatible since it exists.
 
-Thus should work, but I use:
-make ARCH=arm64 DTBS_CHECK=y $(cd arch/arm64/boot/dts; find amlogic/ -name "*.dts" | sed "s/dts/dtb/")
+Fixes: 86f2159468d5 ("arm64: dts: meson-sm1: add spdifin and pdifout nodes")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-to only check amlogic dtbs.
-
-Neil
-
-> 
-> On Mon, Jun 24, 2024 at 11:45:51AM +0200, Neil Armstrong wrote:
->> On 24/06/2024 11:28, Krzysztof Kozlowski wrote:
->>> On 24/06/2024 10:59, Neil Armstrong wrote:
->>>> Fixes the following:
->>>> thermal-zones: 'soc_thermal' does not match any of the regexes: '^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$', 'pinctrl-[0-9]+'
->>>>           from schema $id: http://devicetree.org/schemas/thermal/thermal-zones.yaml#
->>>>
->>>> Fixes: 593ab951232b ("arm64: dts: amlogic: ad402: setup thermal-zones")
->>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>>> ---
->>>>    arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts | 2 +-
->>>>    1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts b/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
->>>> index 6883471a93b4..0d92f5253b64 100644
->>>> --- a/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
->>>> +++ b/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
->>>> @@ -86,7 +86,7 @@ vddio_1v8: regulator-vddio-1v8 {
->>>>    	};
->>>>    	thermal-zones {
->>>> -		soc_thermal: soc_thermal {
->>>> +		soc_thermal: soc-thermal {
->>>
->>> I was fixing all underscores... but then mentioned above commit
->>> re-introduced them.
->>
->> Sorry about that, I'm removing all dtbs check errors, so I'll be able to spot
->> this before merging anything now !
->>
->>>
->>> Some fixes need to be done more than once to stick. :)
->>>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> >
->>> Best regards,
->>> Krzysztof
->>>
->>
->> Thanks,
->> Neil
-> 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+index d13cf5b4aac7..75c8aa815eff 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+@@ -335,7 +335,7 @@ tdmin_lb: audio-controller@3c0 {
+ 		};
+ 
+ 		spdifin: audio-controller@400 {
+-			compatible = "amlogic,g12a-spdifin",
++			compatible = "amlogic,sm1-spdifin",
+ 				     "amlogic,axg-spdifin";
+ 			reg = <0x0 0x400 0x0 0x30>;
+ 			#sound-dai-cells = <0>;
+@@ -349,7 +349,7 @@ spdifin: audio-controller@400 {
+ 		};
+ 
+ 		spdifout_a: audio-controller@480 {
+-			compatible = "amlogic,g12a-spdifout",
++			compatible = "amlogic,sm1-spdifout",
+ 				     "amlogic,axg-spdifout";
+ 			reg = <0x0 0x480 0x0 0x50>;
+ 			#sound-dai-cells = <0>;
+-- 
+2.43.0
 
 
 _______________________________________________
