@@ -4,109 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 087C4C2BBCA
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jun 2024 05:38:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1C29C2BBCA
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jun 2024 08:32:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dLDCX709hnapaYC8rnknyfAAYhXAP/rlvZKIyYdXaP8=; b=KSO4nwrgNB//ah
-	trI5nlIyyT5UtDAlqd1pwpK9Rlz9N/AYwJsb+RMDYJSvpQ/GQYRlXKB5yUsqt32ITEt8RvJxrM21K
-	5fxdFp/BE9J1Riv/VVedvf21CFtaohk+kS6qWCobTGpPCc4LfV+0YELUIUH8JmqJAHJAbWtZSvG7I
-	QEd41jeY3/x+FanYUhk0WEjlM35TYTeLPxwI7TfUjrUd4fHYrepAmyrhsXsIO8he2pgRmQAakJGUM
-	FJNavbKg4mOZdVhc7GdmupJ5mN/82W+WsX8pSKGKmwP4BxWwW+MUzMqdiDv1jQ3OQ0O63ATWA1vuh
-	ADhbRdwacIGTSDkwln7A==;
+	List-Owner; bh=Ek7Sp5QWHzBPVAXr4geq5J9qRmn+a/havp/8Nn/q+Bg=; b=Klz5KSpIknc58t
+	wIOsWiIRHrmaStb1bp/dFNhEmXfCBLeKDTs/CkCyTOAjk3FBZumkIePa6xf3gmNUSECBgNVNPuHJh
+	nTDHAlLFDZjbL2tCOFrI62DXwkUMVg/96qmuwKAWztrhiFFYF+BcPx/1D/1BzDmht70DYLD4139um
+	2ByahWHHWXdpN9KLO62hkAiE3jb5zrcpM+5hVMYQDQjwG4y+xPVgTbDKGi8DD7QujL84x2H4omoXL
+	1cbnvmC/wsyoZgdABEB1bz74JUpWnjgwVYtapfvzmMus55iuvKGg6Q+GWpvdgL4y1G/lk2k6/W+AV
+	Sejrv6ygGH95Rja8ggIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sLyss-00000001haD-337R;
-	Tue, 25 Jun 2024 05:38:26 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1sM1ao-000000027d8-1atk;
+	Tue, 25 Jun 2024 08:31:58 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sLysq-00000001hZm-1HUQ
+	id 1sM1ak-000000027aj-1sKt
 	for linux-amlogic@lists.infradead.org;
-	Tue, 25 Jun 2024 05:38:25 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id E4BC161195;
-	Tue, 25 Jun 2024 05:38:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4762C32782;
-	Tue, 25 Jun 2024 05:38:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719293902;
-	bh=PIXvaG83heErM7074qUQLCUggIRO1Y3SWMQ7zH1ap/4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=anmfOXvCGrVIRTxs5ebwOoyJHQfd42kiPXp5fDSj7fJo3343EXhj67qDrgMc5yBsv
-	 yEeWTg1RG1Z0Sfubqt1bkD1eCJgpJjTpq12/6S1+FvfK/E1I6/Gg/g1OmTAp5V2Ilz
-	 rMxWGCxEwKsQiNR3OKwFmzt25kswinKVmoXVWaUdAjSyl7EL9T355cBByctWyldVPj
-	 PdJKnUvKnUf05drzB2Y88hBmlmagSCy7eHAzmBY18z6Blaa7mvpbJbWXru569rzb3U
-	 3IeLxOmMVQgi014sVL0qO9yUenlo6JD0jGWv2CN8qjn1pu6aTE9GIGQxLLH7wiNgVN
-	 37v7qZOfxblvg==
-Message-ID: <c10d7bfb-e8f2-471a-8d9d-2f8785068cdb@kernel.org>
-Date: Tue, 25 Jun 2024 07:38:17 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: frequency: add clock measure
- support
-To: Jerome Brunet <jbrunet@baylibre.com>, Jonathan Cameron
- <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-iio@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
+	Tue, 25 Jun 2024 08:31:56 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-36703b0f914so130782f8f.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 25 Jun 2024 01:31:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719304312; x=1719909112; darn=lists.infradead.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6MGiV5QhyBIwfF0R22KIxg/x70JWWD4uGuZLiiLVcCo=;
+        b=rK1KbctjYN/oMAptZszk+ae5mpiUfv884AmeSqN6IK4h0D7sQMLR0Umdq+FUSXPSv3
+         psM4nozXrbfyDv8uXOosCrOO6lk1sf+NsDu9MKACPki9XgxgS8PRs5pEmpQ3T7p+y7wV
+         ONCOQyb5e1AyaGk7PdTPbkbIqsB0LFNh9dbaJvO+q8tGIPouIA2agIE7EAO5RhNWBhO/
+         GU58YMgVn58XSB+/Zfp3oR0SlW0Ve48iIQ18EjjjsyU9KZvb0k3JBZSZL1dh6NrMhP+8
+         WWOpDZ6ELiyrCLd2yDQAeaZmysk/7mOUsOBMYHVFQM3k54KHC1WGGSpXFiRNpVhMw+MS
+         ou8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719304312; x=1719909112;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6MGiV5QhyBIwfF0R22KIxg/x70JWWD4uGuZLiiLVcCo=;
+        b=qAxCApCe5E9UPMxcNvpQSX2W8SUeGxUIkc1NWh9YuLJ9Nk5nluCf58UZVOrIeA8jsT
+         ouOpvigqS+CDUHndIkHSmisImm8Nj2IK1A/+ns/pVEEAz5KCqeUIvjya+IyUUeA+fYvR
+         DzcXN5WaIch/8o8ZCnbFdbn02SIXRjTlxSjOeZvL0BJb8F6mngWEp3nBp55RCJr+KHGt
+         HRELQJ6phw7q9HLQ2Azx/ur9Vd3Oc/oO/3RQp2BRMBg+gyJRSX3d5OS+bYBMYTJ3rkSw
+         5KAh/eaidVy9Rpcftf6ynoOl+217iHnVq8ynQOKoV9ds7Mk3IDaSBIxHB4MvX/+kT3aV
+         Bl5A==
+X-Forwarded-Encrypted: i=1; AJvYcCVq5mGhKlwFFYN8RCV6IRaz/OFQV7FxzROiGi4d3/Wyzpb1XUem8nWH2V44cBWpRQ29ctrwAaJc02PRzpzUUBrR9K8pZsWQnKVPE4/VV9JZesA=
+X-Gm-Message-State: AOJu0Yx1+VAVNYBS8PySVkLJt/aGEQu1Fyi83ODYbDm0CUWNtXWeli5u
+	GWpLwZ37zpgAKyo01LtyXAef4/LKc3cIqAY06GUnlmzAvIGHJog61aau3Z/XyZg=
+X-Google-Smtp-Source: AGHT+IHXVO0K6EtgWIdnjCpVKEK7FGGlTzFiwp9mjcV6PfHRnKrDwThJVhKUFKQBIxHO02PjXcqiXg==
+X-Received: by 2002:a05:6000:1241:b0:366:e09c:56be with SMTP id ffacd0b85a97d-366e325c00amr6885391f8f.6.1719304312228;
+        Tue, 25 Jun 2024 01:31:52 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:1b57:b4a1:3d50:32a2])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-366388c401asm12286172f8f.45.2024.06.25.01.31.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jun 2024 01:31:51 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,  Lars-Peter Clausen
+ <lars@metafoo.de>,  Neil Armstrong <neil.armstrong@linaro.org>,  Kevin
+ Hilman <khilman@baylibre.com>,  linux-kernel@vger.kernel.org,
+  linux-amlogic@lists.infradead.org,  linux-iio@vger.kernel.org,  Rob
+ Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 2/2] iio: frequency: add amlogic clock measure support
+In-Reply-To: <04254d15-2f6e-435d-ba4c-8e2e87766b9b@baylibre.com> (David
+	Lechner's message of "Mon, 24 Jun 2024 17:51:05 -0500")
 References: <20240624173105.909554-1-jbrunet@baylibre.com>
- <20240624173105.909554-2-jbrunet@baylibre.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240624173105.909554-2-jbrunet@baylibre.com>
+	<20240624173105.909554-3-jbrunet@baylibre.com>
+	<04254d15-2f6e-435d-ba4c-8e2e87766b9b@baylibre.com>
+Date: Tue, 25 Jun 2024 10:31:51 +0200
+Message-ID: <1j4j9hift4.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240624_223824_559964_AA49740C 
-X-CRM114-Status: UNSURE (   8.15  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240625_013154_603650_4AD630B0 
+X-CRM114-Status: GOOD (  20.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,36 +97,93 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 24/06/2024 19:31, Jerome Brunet wrote:
-> Introduce new bindings for the clock measure IP found Amlogic SoCs.
-> These new bindings help bring IIO support to AML clock measure.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+On Mon 24 Jun 2024 at 17:51, David Lechner <dlechner@baylibre.com> wrote:
 
-<form letter>
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC. It might happen, that command when run on an older
-kernel, gives you outdated entries. Therefore please be sure you base
-your patches on recent Linux kernel.
+> On 6/24/24 12:31 PM, Jerome Brunet wrote:
+>> Add support for the HW found in most Amlogic SoC dedicated to measure
+>> system clocks.
+>> 
+>
+>
+>
+>> +static int cmsr_read_raw(struct iio_dev *indio_dev,
+>> +			 struct iio_chan_spec const *chan,
+>> +			 int *val, int *val2, long mask)
+>> +{
+>> +	struct amlogic_cmsr *cm = iio_priv(indio_dev);
+>> +
+>> +	guard(mutex)(&cm->lock);
+>> +
+>> +	switch (mask) {
+>> +	case IIO_CHAN_INFO_RAW:
+>> +		*val = cmsr_measure_unlocked(cm, chan->channel);
+>
+> Is this actually returning an alternating voltage magnitutde?
+> Most frequency drivers don't have a raw value, only frequency.
 
-Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-people, so fix your workflow. Tools might also fail if you work on some
-ancient tree (don't, instead use mainline), work on fork of kernel
-(don't, instead use mainline) or you ignore some maintainers (really
-don't). Just use b4 and everything should be fine, although remember
-about `b4 prep --auto-to-cc` if you added new patches to the patchset.
+No it is not the magnitude, it is the clock rate (frequency) indeed.
+Maybe altvoltage was not the right pick for that but nothing obvious
+stands out for Hz measurements
 
-You missed at least devicetree list (maybe more), so this won't be
-tested by automated tooling.
+>
+>> +		if (*val < 0)
+>> +			return *val;
+>> +		return IIO_VAL_INT;
+>> +
+>> +	case IIO_CHAN_INFO_PROCESSED: /* Result in Hz */
+>
+> Shouldn't this be IIO_CHAN_INFO_FREQUENCY?
 
-Please kindly resend and include all necessary To/Cc entries.
-</form letter>
+How would I get raw / processed / scale with IIO_CHAN_INFO_FREQUENCY ?
 
+>
+> Processed is just (raw + offset) * scale which would be a voltage
+> in this case since the channel type is IIO_ALTVOLTAGE.
 
+This is was Processed does here, along with selecting the most
+appropriate scale to perform the measurement.
 
-Best regards,
-Krzysztof
+>
+>> +		*val = cmsr_measure_processed_unlocked(cm, chan->channel, val2);
+>> +		if (*val < 0)
+>> +			return *val;
+>> +		return IIO_VAL_INT_64;
+>> +
+>> +	case IIO_CHAN_INFO_SCALE:
+>
+> What is this attribute being used for?
 
+Hz
+
+>
+> (clearly not used to convert the raw value to millivolts :-) )
+>
+> Maybe IIO_CHAN_INFO_INT_TIME is the right one for this? Although
+> so far, that has only been used with light sensors.
+
+I think you are mixing up channel info and type here.
+I do want the info
+ * IIO_CHAN_INFO_RAW
+ * IIO_CHAN_INFO_PROCESSED
+ * IIO_CHAN_INFO_SCALE
+
+I want those info to represent an alternate voltage frequency in Hz.
+I thought type 'IIO_ALTVOLTAGE' was the right pick for that. Apparently
+it is not. What is the appropriate type then ? Should I add a new one ?
+
+>
+>> +		*val2 = cmsr_get_time_unlocked(cm);
+>> +		*val = 1000000;
+>> +		return IIO_VAL_FRACTIONAL;
+>> +
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +}
+>> +
+
+-- 
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
