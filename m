@@ -4,85 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAA3BC2BBCA
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jun 2024 13:52:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F3D2C3064D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jun 2024 14:50:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VYk7GDb6XqYJ+aHZLGwKi+tyjIL4fEmXEpxx7AIwNAs=; b=XdwM7I2l1w8MDC
-	h3hTnL/PJsUeOyHU2FKf0UnbB7DTRWnR2mZ2szWlF5UBt8XUM6sD1zIDHAxVSKM8VhKqIaEsTcf/s
-	HDVc2bIa+heX/LOkcdtVaZe6w5rq9BXbSL9/WmEu6NtKKFKeBpoM7Lh04b6weOgMTykxysh0HtWGq
-	YKyXxNDKcf/zJiGFFgqh0FgyrRVEbpoktXESE3P96U8BY3+AzVZo85qKnotMuCTc1RlfZ7Pzx10h2
-	40nkQXassrSGUVasc2tbv8CXEzl6qnF2IYKKFOfpRmpdzCp7BR5y+GuMckcwbRG39URLHDlDm4YTm
-	zcRnZErzhn4FEuLaPuLQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=1ClVHVN7PEbXUjetty/l7y/DeL1JGKmg7SmoT5d/mwk=; b=SuKUYVzfLy74DSpUCa9FAzpaio
+	d2ST/PSKfGL1V1BRVi3JeGcE6VOt+HwGKajs/svuBEXyClcT3lMklwEyq3cUL53zd8eHG3JX1aomC
+	l0j3yxZFtWEPdK9iON0YB3UYL5bPL7xITzDzvCYQASe72LBoKv+xfdqtD0//DD7jopjaH3PhRH2gq
+	tLFfVU8fVHV9xdbHqzDfL0/7vnVkBdcC7SbD0Jgi8SkwIxRPsSDZG0Y8h/u8D8PgoHoGdL/NadeUB
+	Nuc64v8BSOSPFDchZrEXtEFR2a9dMrZZMZO5PwZqxojCYUT1imgCkIfTxlNwoHe9PSe1/SkP3uRVB
+	Y+0J2Ysw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sM6aT-000000033oD-29ws;
-	Tue, 25 Jun 2024 13:51:57 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1sM7Uw-00000003FdF-0jJt;
+	Tue, 25 Jun 2024 14:50:18 +0000
+Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sM6aQ-000000033nE-2p0U
+	id 1sM7Ut-00000003Fc8-0Qrc
 	for linux-amlogic@lists.infradead.org;
-	Tue, 25 Jun 2024 13:51:56 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-42108856c33so39015265e9.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 25 Jun 2024 06:51:54 -0700 (PDT)
+	Tue, 25 Jun 2024 14:50:17 +0000
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-a727d9dd367so61295266b.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 25 Jun 2024 07:50:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719323513; x=1719928313; darn=lists.infradead.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=KTXG/FRxZ0m4qvnOPb2W46Bb/zdn6G2YXIXWD74rp1w=;
-        b=oElnPj2oS/ltPo7Q6Oee9bgqVy8/rB9A1xgw45gg3uVG0c5Q8WwO7pT4bMdM/ppFLv
-         l2zhXWDsy3seEPIdtLLOFYsOSwKRWG37RGBNqtRMbD7SRswOkzxGaQZIuRBqS7H8jYhb
-         vcR8WoI5B/pz3j/cAIqmLeyRXcoYKQg1048/0aJrgKpxmJ8KpbzxsOJ8+QVYRFbXc+65
-         aS/oNOeSIoRNQHfk4yLMyM2yW3R+c1PwaWRUvv/NJcAEoUzS8pRWYY6waETP4mxtgwOG
-         Le9ZLbuXkLuIQghHxjl3AyJ6j3goDGIEltdqJpoOc22APocHQlBb6SCXiEmHmPOEkPwr
-         4VeA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719327012; x=1719931812; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=jWqxo3mchFiP1MenyU8LEUTbrCGM0e3VDgqj6/yFdZw=;
+        b=dSDrQsgY4snOqixsqXDmUvkWGxeydjii8/jVYKpfRgE5TjQx9nDOSbT4zJAEl+P5pD
+         0osuOGQfQYrjOYDWrotpRuYK9EGjkFTokDzYm4m7Jiut2LxAM5RlL8jrM88j1aN7ht03
+         RmCIS8/fNmQ5xHmfNSdDMZRSf6r8nMwFCIVtOoT9sCJVz8LqD41vdOTAQMFhuy9yz/Hw
+         cz1EKVurjZhYZXIJqZAwadH+lglXQVW7JLipO8PhzT+1D9N7013nFW2lw976Mr/Ril0q
+         /EZc/Dv0c+LE/15OLJrK3qJuv0Onw7A//iji/rb2tfhwgYxKiC49K32LKPEYSYU5JaXI
+         YqNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719323513; x=1719928313;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KTXG/FRxZ0m4qvnOPb2W46Bb/zdn6G2YXIXWD74rp1w=;
-        b=CyVr9/tGeHS/XKLat1qMgrwhutXWerZTqmr0pUmEb03KKW0THFsjWVOSgUmecadR+V
-         y+f9TmyQY7PmYuF76R6IHOaJy8U7M7ylFLHxXWu3ezEzQWMgBo5YUO6/GBOyD26YF0wr
-         oh4ro6sVp69YqXT6eo7kiQpYBdgiOVdH4DIJ8gCStpUPKbluHFg2Osg3Ii7hV8svqX4M
-         iFN3OUBkqtSna3iRo2HIpZomQsSXAdSxyG/0emc7US150brx9JmlGS7T+tfjb5JZC/20
-         ON661D3T3HmVYnhgokzlzg9ykPgVOadC3fmhll+DYYI5iW0CdCQgxa9LUrroQ6d7tGJ8
-         W8lQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVz9lAyELfazZ+U2fhWh8nW8IEBNEfJC5kFIIpQAObxYAxP6WQ24ai3K9y9AIj/alTTf7oDeDtLefCccAeJaFhy6PoUN8ElMtaX2Ivz7QnoAm4=
-X-Gm-Message-State: AOJu0Yw5RKuoN5ZTNwO8TYoQojdZZijQX3u1+PvrDTgYN5XRb6mBmiI+
-	NtVIRZRg1YeOSv0w9bML5REunB/XsMVjjNi97EtcT+/f13ct2B9yZJHf15SpC8A=
-X-Google-Smtp-Source: AGHT+IEalVLvF2V4HVuOBDYasPTatv9mBYVJq42aJr3idMXc9t+1AfV6Rij0cOM4lR1IMYrnqTV/bQ==
-X-Received: by 2002:a05:600c:56cd:b0:424:8a34:9890 with SMTP id 5b1f17b1804b1-4248a349975mr68512565e9.7.1719323512709;
-        Tue, 25 Jun 2024 06:51:52 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:b30c:4c5e:f49e:ab33])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424abf622cdsm172075e9.28.2024.06.25.06.51.52
+        d=1e100.net; s=20230601; t=1719327012; x=1719931812;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jWqxo3mchFiP1MenyU8LEUTbrCGM0e3VDgqj6/yFdZw=;
+        b=UJSDcMlXrCEKz9yehWxtzirj9wgQGnuTGr6yczDPxHseR7GCGA79yCEFsJhRJw2/eB
+         JmjRo9hHk42YOp4T7Ur452Q8myFumwJpV4TSJr7eBpwN5bb6cDNdesUplasSGkwKOquG
+         +PxBUAdFBHpGvSAFxqyYcp/6icNw3k/dspdQOIskTq96kfE3BodRRdd6FOGcGA16LZlB
+         na74N+0wxZp7sVA2dT4+1sSkDEoywhoqp7RF2GWfmneikuwYco8ks8nVPNq1VhnpFtR3
+         y2kp4wN2Uh/lXU6+5MgyQVaoYN13/ii3iDBW2j0ApFU78qAaBCw5EVUCjFGM0Wl3+a8u
+         RzAA==
+X-Forwarded-Encrypted: i=1; AJvYcCUpwDDItEDjyPY/S8u/ZgLGysGouAjcjez3g4kzW8GcLYGGwLQd9V2NBAkWAqxnOtXu1PwaedIcAryLfyEqHHJrRR+dqkYhTBdicLqDEgj80W4=
+X-Gm-Message-State: AOJu0Yxo2jqprahpadzI3ZedfcDz7sOgkkB2hlx+7nozAzpbzhSBEubJ
+	eScC2lTwu13fyWsNSY4zTsJIx5jLZq+sP13YEAnvYjpqhoiy/VfAtscslbkHGvA=
+X-Google-Smtp-Source: AGHT+IEwnwBd/P6t2ddwhrLb8bvz6kYx+1hLSg0mmfREs2jeseCHj5DRkS89BkTTTiW651tXR4AAuQ==
+X-Received: by 2002:a17:906:70d6:b0:a6f:e8ee:9e3c with SMTP id a640c23a62f3a-a7242c39107mr509610266b.22.1719327012436;
+        Tue, 25 Jun 2024 07:50:12 -0700 (PDT)
+Received: from localhost ([2a02:8071:b783:6940:aab0:97bd:4d50:ddf1])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7120187c22sm373994466b.110.2024.06.25.07.50.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jun 2024 06:51:52 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Jonathan Cameron <jic23@kernel.org>,  Lars-Peter Clausen
- <lars@metafoo.de>,  Kevin Hilman <khilman@baylibre.com>,
-  linux-kernel@vger.kernel.org,  linux-amlogic@lists.infradead.org,
-  linux-iio@vger.kernel.org,  Rob Herring <robh@kernel.org>,  Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
-  linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH 0/2] iio: frequency: add iio support for Amlogic clock
- measure
-In-Reply-To: <c092ec67-e384-411d-8885-665597547523@linaro.org> (Neil
-	Armstrong's message of "Tue, 25 Jun 2024 15:18:11 +0200")
-References: <20240624173105.909554-1-jbrunet@baylibre.com>
-	<52fab9b5-2b44-49c0-8b90-cb2a74eb6633@linaro.org>
-	<1jzfr9gxh4.fsf@starbuckisacylon.baylibre.com>
-	<c092ec67-e384-411d-8885-665597547523@linaro.org>
-Date: Tue, 25 Jun 2024 15:51:51 +0200
-Message-ID: <1jv81xgmfc.fsf@starbuckisacylon.baylibre.com>
+        Tue, 25 Jun 2024 07:50:12 -0700 (PDT)
+Date: Tue, 25 Jun 2024 16:50:10 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Kelvin Zhang <kelvin.zhang@amlogic.com>
+Cc: Junyi Zhao <junyi.zhao@amlogic.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v8 1/2] pwm: meson: Add support for Amlogic S4 PWM
+Message-ID: <coriionza2db7jqz23bcig3zwufktgdbfakixcrlllxrqkomcj@zle67mswm346>
+References: <20240613-s4-pwm-v8-0-b5bd0a768282@amlogic.com>
+ <20240613-s4-pwm-v8-1-b5bd0a768282@amlogic.com>
+ <1jfrtgj0so.fsf@starbuckisacylon.baylibre.com>
+ <tnwdnwiruoty5yd42bmkupgg6hjxib5lblhqcyouoyx5y3zvnq@2d7cnrei24m4>
+ <1jbk44htqr.fsf@starbuckisacylon.baylibre.com>
+ <948ba34a-1e05-45c4-8ba7-66c72bdb6fa5@amlogic.com>
+ <6bzysc3jwugo3epcxsef7uupk536prsc3phlf3m64n3jjwpxus@2uigg44uotuh>
+ <9b457c30-6093-437b-b9af-44c3a768020f@amlogic.com>
 MIME-Version: 1.0
+In-Reply-To: <9b457c30-6093-437b-b9af-44c3a768020f@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240625_065154_850705_DBFA28BC 
-X-CRM114-Status: GOOD (  26.59  )
+X-CRM114-CacheID: sfid-20240625_075015_298602_F52F80A9 
+X-CRM114-Status: GOOD (  22.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,104 +98,85 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============4402072474069848769=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue 25 Jun 2024 at 15:18, Neil Armstrong <neil.armstrong@linaro.org> wrote:
 
-> On 25/06/2024 11:53, Jerome Brunet wrote:
->> On Tue 25 Jun 2024 at 11:38, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->> 
->>> Hi,
->>>
->>> [+cc people from linux-msm]
->>>
->>> On 24/06/2024 19:31, Jerome Brunet wrote:
->>>> Add support for the HW found in most Amlogic SoC dedicated to measure
->>>> system clocks.
->>>> This drivers aims to replace the one found in
->>>> drivers/soc/amlogic/meson-clk-measure.c with following improvements:
->>>> * Access to the measurements through the IIO API:
->>>>     Easier re-use of the results in userspace and other drivers
->>>> * Controllable scale with raw measurements
->>>> * Higher precision with processed measurements
->>>> Jerome Brunet (2):
->>>>     dt-bindings: iio: frequency: add clock measure support
->>>>     iio: frequency: add amlogic clock measure support
->>>>    .../iio/frequency/amlogic,clk-msr-io.yaml     |  50 ++
->>>>    drivers/iio/frequency/Kconfig                 |  15 +
->>>>    drivers/iio/frequency/Makefile                |   1 +
->>>>    drivers/iio/frequency/amlogic-clk-msr-io.c    | 802 ++++++++++++++++++
->>>>    4 files changed, 868 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/iio/frequency/amlogic,clk-msr-io.yaml
->>>>    create mode 100644 drivers/iio/frequency/amlogic-clk-msr-io.c
->>>>
->>>
->>> While I really appreciate the effort, and the code looks cool, the clkmsr is really
->>> a debug tool, and I'm not sure IIO is the right place for such debug tool ?
->> The reason why I went through the trouble of doing an IIO port is
->> because I need that for other purposes than debug. I need to to be able
->> to check a frequency from another driver. I don't see a reason to invent
->> another API when IIO provide a perfectly good one.
->> The HW does measurements. IIO seems like the best place for it.
->> For the record, I need this for a eARC support.
->> eARC has a PLL that locks on incoming stream. eARC registers show wether
->> the PLL is locked or not, but not at which rate. That information is
->> needed in ASoC. Fortunately the eARC PLL is one of measured clock, which
->> is a life saver in that case.
->
-> This is a very interesting use-case, and quite weird nothing is provided
-> on the eARC side.
+--===============4402072474069848769==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="be37srvqrjutjyvd"
+Content-Disposition: inline
 
-Indeed.
 
->
-> So yes it's definitely a valid use-case, but:
-> - we should keep the debugfs interface, perhaps move it in the iio driver ?
+--be37srvqrjutjyvd
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I considered this initially but it would add a lot of boiler plate
-code to provide over debugfs exactly what iio already provides over
-sysfs. As you pointed out, the previous driver only provided debug
-information, the debugfs interface it provided is hardly a
-critical/stable one.
+Hello Kelvin,
 
-> - we should keep a single compatible, so simply update the current bindings with iio cells
+On Tue, Jun 25, 2024 at 05:33:22PM +0800, Kelvin Zhang wrote:
+> On 2024/6/17 22:11, Uwe Kleine-K=F6nig wrote:
+> > On Mon, Jun 17, 2024 at 04:44:13PM +0800, Junyi Zhao wrote:
+> > > > > So yes, please use dev_err_probe() also to handle
+> > > > > devm_add_action_or_reset().
+> > > > My point here is also that devm_add_action_or_reset() can only fail=
+ on
+> > > > memory allocation, like (devm_)kzalloc. Looking around the kernel, =
+we
+> > > > tend to not add messages for that and just return the error code,
+> > > > presumably because those same 'out of memory' messages would prolif=
+erate
+> > > > everywhere.
+> > > Hi Uwe, I didnt get the clear point.
+> > > So, if we need "return ret" directly? or keep "dev_err_probe()" to pr=
+int?
+> > Please keep the dev_err_probe(). There is a problem with that approach
+> > (as Jerome pointed out), but that is about to be addressed in driver
+> > core code.
 
-Using a new compatible allows to split the memory region, making the
-interface between DT and driver a lot easier to implement seemlessly
-between old and new SoCs. Eventually it may allow to implement the duty
-part too.
+FTR, this is done in
+https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/driver-core.git/comm=
+it/?h=3Ddriver-core-next&id=3D2f3cfd2f4b7cf3026fe6b9b2a5320cc18f4c184e
 
-> - for s4 & c3, it's ok to either add a second reg entry in the bindings
+> For this patchset, is there anything that needs improvement?
 
-Doing that for s4 and c3 only would still make a mess of offset handling
-the region because duty prepend the region on old SoC. The goal is to
-have an interface that seemlessly support both old and new SoCs.
+It's on my (not particularily short) todo list to review this patch. I'm
+aware there are several people waiting for that one. I intend to work on
+this one later this week.
 
->
-> Neil
->
->> Everything that was available through the old driver still is, with more
->> precision and more control.
->> 
->>>
->>> There's almost the same interface on qcom SoCs (https://github.com/linux-msm/debugcc) but
->>> they chose to keep it in userspace until we find an appropriate way to expose
->>> this from the kernel the right way.
->>>
->>> If it enabled us to monitor a frequency input for a product use-case, IIO would be
->>> the appropriate interface, but AFAIK it's only internal clocks and thus I'm worried
->>> it's not the best way to expose those clocks.
->>>
->>> Neil
->> 
+Best regards
+Uwe
 
--- 
-Jerome
+--be37srvqrjutjyvd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmZ62R8ACgkQj4D7WH0S
+/k5S+Qf/SNvnQBfAaVksxx8eIEYT2jY0QUITMY+QWmZsieNi/glkSoIaiy+VWXyg
+Pzfhjo4Z+GwYudqoI7gq/mzllhM1I4H2O4poOEw6YXjZxjdAbq2FfBdljtlOzHIn
+W1uQnE6r0UYEPpfMQH4GIZ1VrxhluhAzz7dPcn7Ja71Tqj34pCP7Z2zFI6vXlJHa
+AHEx28lK05wnnWMYqBElrZsEe0Jqj0KfrL9Dc87NNzvA/MAdqqe9MUIt6/8V59D1
+VRpFgVhCGXve2l+TtRvB5gpkRAJ4DaBV9WNxoph8+9Tis+IB5efxsCFXrDR/ym5f
+Xxco7/DhoBatXM8sLd8EYHf73vxhmQ==
+=87Qb
+-----END PGP SIGNATURE-----
+
+--be37srvqrjutjyvd--
+
+
+--===============4402072474069848769==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4402072474069848769==--
+
