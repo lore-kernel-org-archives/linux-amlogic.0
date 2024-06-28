@@ -4,110 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1586C2BBCA
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jun 2024 08:10:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 974CDC2BBCA
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jun 2024 08:12:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=j8CNNx0eCthfoDPL9osTJvAUEKdGMVGB6etxOWuzusM=; b=lUSK51Ig4CIO9aqofB/ZF4b7LZ
-	py0VHfdvZ18R1MfYBnkEIHZkHo+YOzQR9nPgChTkzX0igCFguChogNq0WI/otBvpl708/3pLdTdha
-	FyNC6I5y6UjEYKHuSQz8lf0dTnOF0+rybUD22QqBkCZYuIA02S+W91H01PUy6MeenfY9Ce8hQ6WKt
-	wXXwscJE/kuXe5OrkMhYrTXu4nMOiL891GPCqYmxeOIdAKG5qr0WfmPgJhZa7rzBgd+Z5B/zmWQzc
-	MeJAHQxIXgIfNb0Yp8Tt8LyZpnNCr69QUpPXDzoP34vK9QGkh0lbjEow61/DkLzuZXQMeVr8Rxlc2
-	pf63b4fg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=yvi9/tuvmCc/37Ulis1g6oZ+ONoYX4YjreFAFHNMS6Y=; b=NU/85PZCtpyv8t
+	VXabtVJW93xv6PAu4x3Y9dksla46PUAfxzzcPQBIVZi1B3mmrzJMHvWat1y+AI1Plqod11U9Evk6q
+	KZKqmk6JmwS7w/BYhBHMCXmCYr0L9HuCaD1DvlzM51ggnhuJqIjUkNRzi2hUkqxIJQwJ2VODrWH17
+	h6QkxyJsU3q687BxjDB4rh21ilINkPboZMmFgKO76477SQ47lPdsfGso01asTVNvle8XeAfXJ3GMA
+	2LsUCdCpJ4v6DTvZmXymksF1v03Jz/edrv8BUMHkxrVzQO0Jb7xAZSqgJpc0iGfCTPr8OUPj9LoKI
+	xvRJlg9wdLIPbL7d3YsA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sN6gf-0000000D1Nb-49pw;
-	Fri, 28 Jun 2024 08:10:29 +0000
-Received: from mail-lf1-x130.google.com ([2a00:1450:4864:20::130])
+	id 1sN6iO-0000000D1g8-1SLx;
+	Fri, 28 Jun 2024 08:12:16 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sN6gd-0000000D1N6-1RTR
+	id 1sN6iL-0000000D1fQ-2NjF
 	for linux-amlogic@lists.infradead.org;
-	Fri, 28 Jun 2024 08:10:28 +0000
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-52cdbc20faeso411768e87.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 28 Jun 2024 01:10:26 -0700 (PDT)
+	Fri, 28 Jun 2024 08:12:15 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-421f4d1c057so2603915e9.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 28 Jun 2024 01:12:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719562225; x=1720167025; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Wx6Kfw8qVkhu43FPigNKkiagy9yQK+KD3/V0XMmuLoQ=;
-        b=uWjJABu6WVSnpNtntg0xoCg/syh4K8/HOr2PcT1GSjxOFwP4k1jEI+fT/7IGw+KXIz
-         Ex8R9M0dMADZY32iuuzJR152TeIGgZUgvOkhrHE+HaS8zH2t4OYGpkogMrGky2xkFhZ5
-         evZ6z2MSZLVPHKBGd0uiDpQcF70+De/3xPjcrn46DSBQYB0ginNY0nbVW2m4JSWe+0/f
-         9rGbnoo/UgWDmMu1BalthzTTSsvbcvUV7fY5gybzb3dd9/twO6EJlzdR4zz4s0Wbe1MK
-         lJ13G0aTZSOGBeryDuZbKTihXOALGA+5iyqUWqxXZXrVmZ60UcKxhyJFWYI5pbqNOATF
-         9ssg==
+        d=linaro.org; s=google; t=1719562331; x=1720167131; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Za8GJzSQvEWguBnhsVgMgbxpdx2OWPVe0QVMP4Zex7M=;
+        b=MTLwh8jlh4PWR4RLIR+/IW/F2DCYupN1E/k+1cVtgHMl7N+0mbe7KmtFL/QQL/J3As
+         pvo0cYZY6c4SxR9pt5nRjz+MsMrYYa2Cfj7VmpohjCX1Tlfm7QXsLKzaikZPx0LzXzFM
+         OrGAPUal33eOscqG+yblAW0ec6W6L5wsK79AMef6KIyns3Awzuw8d+tg7wRaTR6O5TYl
+         UcyBAbgivlINaDVHPh4qf5AhidVqQ6w4coeSHUiu9tJxqI29jYy2QiMnOUXoNwflCRkG
+         FDSG13/nYbMfd3YZOV/Yt54To/b20BP3nDWfFX9j7t+wm3KdhLtMZr60joGOTH2ekKun
+         zY+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719562225; x=1720167025;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Wx6Kfw8qVkhu43FPigNKkiagy9yQK+KD3/V0XMmuLoQ=;
-        b=ppCWk6trAQ1rb1PJf6vUCQfFa2pnQPaoQIYVAHGbOPINDp9uHNNwWecGDTQqizRCjs
-         wYyRSQhjliogcFzxG1JJSXVL4UiIbUZmN5dIEcl7JWt4MQE7ecbgAyUw6EZO1Z/fGHUk
-         HSEwInp1/o3JdEM1gbJ5WmlJltYXNRk1F9JOGC6RRYDjX/9UWxL+L7NYRIEM5WKKSqva
-         s1ARNP0bLJwvlw+Ej5IzbCMDLOKKyzlC2FswCQQ+qqRX3kyn8wvV+VKbbQ2DfmUio0kU
-         PaeatJWB/pfdYTI0g+Y3NNaR198vHGEyHMGwJ+H5aUwX6hHhZdfxcYt9uZ3d3pc5HJnO
-         4AYA==
-X-Forwarded-Encrypted: i=1; AJvYcCXxZaE2sj3EY3BEGqKNC+Rqm+sWO7QCyvDLgeAthdTE4Zx5m9HMSebB61V3Ea3QAOjcVvyair2z9LCAmoIfp4hoHwSQT8IPrWF88OPNVi+yaio=
-X-Gm-Message-State: AOJu0YwQBn8FvtVymb2ZSCS/SwmWArhACZqVa92BS5uZjnz9ML7gOfZN
-	iBk4sAHLcB2pEr9TW/Z5nqIcLIck3GoGxY4/ip5J3FWYnFT0LJjCDyDRYcEhgP0=
-X-Google-Smtp-Source: AGHT+IGTO9W7Boht9fioCYhTcSmnpjcrLoWd1bSV6nEc8wC/5NmPCAVlrVj69S7MOt078ZRE7j0ZSA==
-X-Received: by 2002:ac2:43cd:0:b0:52c:cc46:d59 with SMTP id 2adb3069b0e04-52ce1834575mr9162934e87.18.1719562224200;
-        Fri, 28 Jun 2024 01:10:24 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:b17d:324d:ca1:ab31? ([2a01:e0a:982:cbb0:b17d:324d:ca1:ab31])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0cd60dsm1489067f8f.2.2024.06.28.01.10.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jun 2024 01:10:23 -0700 (PDT)
-Message-ID: <16ec9c9a-badb-4626-9227-fb03f0ee3ee6@linaro.org>
-Date: Fri, 28 Jun 2024 10:10:22 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+        d=1e100.net; s=20230601; t=1719562331; x=1720167131;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Za8GJzSQvEWguBnhsVgMgbxpdx2OWPVe0QVMP4Zex7M=;
+        b=r8uCKsJ2c4jRxpEQQWX1OwXKYqcCzo9oEIKdVZbR6ECE+om6xRPWcp7drxVWTs0tQk
+         e5zvHkqdjb+AzieMyxZ1zCmG59tSoBqIegRQ/eyzTuCDH7LjNUOISICLPMy8mHB/vVKC
+         qbFfU/Zbznu/dYhq/SZasV6WfN7oaXejnT6DRGcq5HXJ9SrDPXQdodocBGJc7wpsOZ/W
+         RD4j44w61My9sNT/njebvyDbRugiAqa+XFljsVivm1XNlzxSwCQ5iIRRJaACRA+JJiMq
+         P3FmRhyCpxPzUFVDiMW36Vk0PDd22C9mFYlQCBU+NYD3CX4fjW56PbBwGjIeysujrDb6
+         om9g==
+X-Forwarded-Encrypted: i=1; AJvYcCXr8bM7p6PQy3WdvIvxTswBD1SyDpIPvYQkApXEUQLZ7WEpWwhR8T79u/8U6VpafMmO7iPdXqcOFxxDpbCnncy3xju2qo7ZeXrmUzYq1H6kA9A=
+X-Gm-Message-State: AOJu0Yy4zLemXal51DHyINwLH99LyhLpzya4v05KQinVIdojXTJRKJnm
+	uKdaVCRq+1e5Oi28PzruOFiwbmueAia1nsrnZNQaprhKXoY5AOAxKzMGTXbQov0=
+X-Google-Smtp-Source: AGHT+IH1Ga8ve4A/0au2rmwtSixHp2ho56UaJ52/y9SYN40XIU8gYHAdzQXzwMD6SK6QXmXie5tssQ==
+X-Received: by 2002:a05:600c:56cc:b0:421:7bed:5274 with SMTP id 5b1f17b1804b1-4248b95d0edmr124015215e9.10.1719562331060;
+        Fri, 28 Jun 2024 01:12:11 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256d664052sm12589185e9.27.2024.06.28.01.12.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jun 2024 01:12:10 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 0/2] arm64: dts: amlogic: handle hdmi system clock
 To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org, 
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>
-References: <20240626152733.1350376-1-jbrunet@baylibre.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
 In-Reply-To: <20240626152733.1350376-1-jbrunet@baylibre.com>
+References: <20240626152733.1350376-1-jbrunet@baylibre.com>
+Subject: Re: [PATCH 0/2] arm64: dts: amlogic: handle hdmi system clock
+Message-Id: <171956233006.862799.7789348204436390137.b4-ty@linaro.org>
+Date: Fri, 28 Jun 2024 10:12:10 +0200
+MIME-Version: 1.0
+X-Mailer: b4 0.13.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240628_011027_450405_7E56F48D 
-X-CRM114-Status: UNSURE (   9.23  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240628_011213_665188_5310E2CB 
+X-CRM114-Status: GOOD (  10.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,43 +90,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 Hi,
 
-On 26/06/2024 17:27, Jerome Brunet wrote:
+On Wed, 26 Jun 2024 17:27:29 +0200, Jerome Brunet wrote:
 > This patchset adds the setup of the HDMI system clock for HDMI Tx.
 > 
 > This is another step in cleaning HDMI Tx and its direct usage of HHI
 > register space. Eventually, this will help remove component usage from
 > the Amlogic display drivers.
-
-Thanks,
-
-Beware we will need to keep old DT with new kernel functional for a while,
-do removal of component & HHI in meson_dw_hdmi would need to wait for multiple
-kernel releases.
-
-A migration step would be to add a phandle to hhi right now, so we can drop
-components earlier, then in a second time add a proper PHY and then mark
-the hhi reg as deprecated.
-
-Neil
-
 > 
 > Jerome Brunet (2):
->    arm64: dts: amlogic: gx: correct hdmi clocks
->    arm64: dts: amlogic: setup hdmi system clock
+>   arm64: dts: amlogic: gx: correct hdmi clocks
+>   arm64: dts: amlogic: setup hdmi system clock
 > 
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 5 +++++
->   arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi       | 9 +++++++--
->   arch/arm64/boot/dts/amlogic/meson-gxl.dtsi        | 9 +++++++--
->   3 files changed, 19 insertions(+), 4 deletions(-)
-> 
+> [...]
+
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.11/arm64-dt)
+
+[1/2] arm64: dts: amlogic: gx: correct hdmi clocks
+      https://git.kernel.org/amlogic/c/0602ba0dcd0e76067a0b7543e92b2de3fb231073
+[2/2] arm64: dts: amlogic: setup hdmi system clock
+      https://git.kernel.org/amlogic/c/1443b6ea806dfcdcee6c894784332c9c947ac319
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.11/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
 
 
 _______________________________________________
