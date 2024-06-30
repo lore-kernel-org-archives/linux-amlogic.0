@@ -4,62 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61CE4C27C4F
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Jun 2024 19:40:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3597BC27C4F
+	for <linux-amlogic@archiver.kernel.org>; Sun, 30 Jun 2024 07:21:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dQqjuENakvxQqZcRybjGOFw5gdcqeDH6Cpn9sBj7mNE=; b=rdcc/oBKVL4B9h
-	at82ba8Qaj/RoHsnUMZConUzXTqXdOO7IJJF61V0PkhSpjX1wldbapARppCcRS6aQfnGma1/Rm9M/
-	19IG6omCKTdrBbb9vEYPcNbFakv23mZSK5FumR3Z/kkmeJKZVJymXPS5vZlaFp9ihaUbg0ndelJan
-	duUdSJhCZNAoA4vrssmgqWQl0YyZ7mvQdVuRcFtEqsItjrZyJ0q1nXGjn0N+ndev5yYBuWQeGcXmi
-	IRPUwvnhYLKtwvb+ATJkCs6F8+Vhl8cfpIny8Lb9xJTiJJz+CvzX39zkj50aNorAjIcpRDTgvgfFs
-	u4GdzTYT+CPCyMMFqTbg==;
+	List-Owner; bh=8h/NQkYXd2sTcwpykLepqNUDhwy4D3YpFJgr1EGXxQc=; b=CDHl3NzmLTE2vs
+	5x3RD2+rBG0IcnKk1FYC8cbDKZ5CLJW3G+r2Wl/WBji/JASfRFvAasqqLQL+TT4fXVzad7Kiio8P+
+	HijwGpz6lHtF29MKu+bP4xR/UFuIZH4V8oDrw9Q3YBvqYLJirdU3mTl84YpxuMEQ0wtzWZ2Izwpvs
+	0fgq1uxGtmSlNm8yrSHgJ3kLcyUTTWQ8wUQny5OjRhYbb4pEsPT8AIQmERetHW48Z0dQpbtyMLDBK
+	/u2BraS+DOdrZWGozuU4VEK9zCc8ApzYOE5kHj1VXin6j7UP2Iz1aTkynH5o7JqvHTtKt4gJu4264
+	ZzKDtSuAee2G0K/1s5Iw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sNdwA-0000000GsI2-37mS;
-	Sat, 29 Jun 2024 19:40:42 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1sNos5-0000000HYNM-40aX;
+	Sun, 30 Jun 2024 07:21:13 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sNdw7-0000000GsGu-1zFG
+	id 1sNos0-0000000HYMh-1IYq
 	for linux-amlogic@lists.infradead.org;
-	Sat, 29 Jun 2024 19:40:40 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 33C2760BAF;
-	Sat, 29 Jun 2024 19:40:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87023C2BBFC;
-	Sat, 29 Jun 2024 19:40:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719690033;
-	bh=CLqV4T7POX7Nto6uLWv8qFe9eUAumC1+HgHxGpgT82g=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=f9SUy0kkMsqEqHSodFumADPi9zKq82xLTNMbjGp9otlqPx/Kdwb2rGGiujUwtGHa3
-	 Y0XkNSbfgfMmGt3WtAygWMMGcXVt6+7F28Kl2TWGtz+urvn4BAMdbrbB+fOSVmRAcq
-	 dJKkNYWXFIlsONj9iLuMMJTsz7y3LZCrpAI86z1cVL6/qdTTM7YhYup1VACrTqiC0E
-	 sST4ETm8wpQCruUm+DPEjrm3w/KtkGznaOgQVWfUbjf14UKZYSdKxBBwSH5bejENGk
-	 f01jsaCwRA1Bp8wCNSkPBMUF8Qh2MSbyZvYOX7sui34n/zluR2fimv/4aTphdaZCOg
-	 R11dqUqocCvSw==
-Date: Sat, 29 Jun 2024 20:40:25 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-iio@vger.kernel.org, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+	Sun, 30 Jun 2024 07:21:13 +0000
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-365663f51adso1246693f8f.1
+        for <linux-amlogic@lists.infradead.org>; Sun, 30 Jun 2024 00:21:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719732065; x=1720336865; darn=lists.infradead.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TxIrL1L6dkYcdkFshMmKKgX5WO92izWELbH6RH4L7V8=;
+        b=MYXXLfNpOFfuJpUrQtOjE4ZUGJYlYgy7qSARX6t2AbfNoGKuPG+/VlPJ9sVThtnn15
+         070YKymhFYO0pM8glXfLkxChudiL7AwTM7gYKoFoQlZBFCj7KP0MCjW4IoGUDztj9Ec0
+         5LjA4PcoSMe1c0AJVpfEQKu/UjDsMN3Bi9UmqWUW+NJk8+/CXz+hErUFsiOYvrwH0f+K
+         37g+RUotbiqHzbxw9UrAtukIOOBHIsIprqyQSpkGABj65SZ2hr6VZFhvq4EUm74KC6Cx
+         dx3k+M/y5BpKOWm071s0NtHIoB5Kun4JQMCSM5i7c7eyxBRzXvipobEPS5lqzdgp2zEK
+         3n3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719732065; x=1720336865;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TxIrL1L6dkYcdkFshMmKKgX5WO92izWELbH6RH4L7V8=;
+        b=EvjZvpGhcMLKObHXdWdebqZ8BBGXCOjLgCXxLDXk6b4aK4HX6mmFah+s/rnUzL+YbU
+         dLhWMDNPSjuaO3LQZyhH3DdGN1azjedLQ96Px+i7dA85f8Ku3peQCaSCmV9mpur63wyY
+         taRD0lwvVmpDMLuLq6WxkHIQuwV86EJwBxKti3HIJWZkHYvgTjlrTuJbK/RD2/J9dzQr
+         J959ui2PE65HqmjkKPasfgVfNSS4Sdvxt9sYbPtoGsb/J6MjBPHY/F9nMDI9jkrpBO6x
+         QSPoye3F/njgWpp1Harhc8ar0jhsiD1EnayIUnL1tIw3YjjgcXXsjNPi/bA4x6hKcckF
+         r2nw==
+X-Forwarded-Encrypted: i=1; AJvYcCXN5dg/bDNj/3ch7sH2lSVeExfee1i7gCy9PvtSSyt7ys0q9lYaE39b3yOjGyggM2HM7AZxgjbCrCpHdqbP2GTHIbKsScjGg/SI8xX5x+a9fxw=
+X-Gm-Message-State: AOJu0YxexigNb6+wLDSXcMil9aLmQSte+269qA+4yxCOSEUW+IrgHGHr
+	ITbblcaaIHDU1MUx/rRfWBn/6TxLzHyzGXjscn+MVRfNZ7mq8PTruy1qy0+rCqk=
+X-Google-Smtp-Source: AGHT+IGjjPVzsLMMKXGmALJ6E6SXf2+JbUt31lucblCiZrTTba6Axn63pFlilhVkWVbFmUwGL3yb6A==
+X-Received: by 2002:adf:e985:0:b0:360:9a3f:aa7d with SMTP id ffacd0b85a97d-36775698c7amr1669101f8f.1.1719732064483;
+        Sun, 30 Jun 2024 00:21:04 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:51e2:ba1a:8ad5:52c9])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0fc429sm6693888f8f.68.2024.06.30.00.21.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 30 Jun 2024 00:21:03 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,
+  linux-kernel@vger.kernel.org,  linux-amlogic@lists.infradead.org,
+  linux-iio@vger.kernel.org,  Rob Herring <robh@kernel.org>,  Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>
 Subject: Re: [PATCH 2/2] iio: frequency: add amlogic clock measure support
-Message-ID: <20240629204025.683b1b69@jic23-huawei>
-In-Reply-To: <20240624173105.909554-3-jbrunet@baylibre.com>
+In-Reply-To: <20240629204025.683b1b69@jic23-huawei> (Jonathan Cameron's
+	message of "Sat, 29 Jun 2024 20:40:25 +0100")
 References: <20240624173105.909554-1-jbrunet@baylibre.com>
 	<20240624173105.909554-3-jbrunet@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	<20240629204025.683b1b69@jic23-huawei>
+Date: Sun, 30 Jun 2024 09:21:03 +0200
+Message-ID: <1jwmm6hp5s.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240629_124039_728935_92D7E239 
-X-CRM114-Status: GOOD (  35.74  )
+X-CRM114-CacheID: sfid-20240630_002108_379533_C6B22C1D 
+X-CRM114-Status: GOOD (  23.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,225 +96,100 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 24 Jun 2024 19:31:03 +0200
-Jerome Brunet <jbrunet@baylibre.com> wrote:
+On Sat 29 Jun 2024 at 20:40, Jonathan Cameron <jic23@kernel.org> wrote:
 
-> Add support for the HW found in most Amlogic SoC dedicated to measure
-> system clocks.
-> 
-> This drivers aims to replace the one found in
-> drivers/soc/amlogic/meson-clk-measure.c with following improvements:
-> 
-> * Access to the measurements through the IIO API:
->   Easier re-use of the results in userspace and other drivers
-> * Controllable scale with raw measurements
-> * Higher precision with processed measurements
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Interesting device and the driver is pretty clean.
+> On Mon, 24 Jun 2024 19:31:03 +0200
+> Jerome Brunet <jbrunet@baylibre.com> wrote:
+>
+>> Add support for the HW found in most Amlogic SoC dedicated to measure
+>> system clocks.
+>> 
+>> This drivers aims to replace the one found in
+>> drivers/soc/amlogic/meson-clk-measure.c with following improvements:
+>> 
+>> * Access to the measurements through the IIO API:
+>>   Easier re-use of the results in userspace and other drivers
+>> * Controllable scale with raw measurements
+>> * Higher precision with processed measurements
+>> 
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Interesting device and the driver is pretty clean.
+>
+> Needs a new channel type though as altvoltage is in volts not hz.
+>
+> Various minor comments inline.
+>
+> Thanks,
 
-Needs a new channel type though as altvoltage is in volts not hz.
+Thanks for the feedback Jonathan.
 
-Various minor comments inline.
+Just a couple of things,
 
-Thanks,
+David expressed concerns with having both IIO_CHAN_INFO_RAW and
+IIO_CHAN_INFO_PROCESSED for a channel and we did not reach a conclusion
+on this.
 
-Jonathan
+My idea here is to:
+ * Give full control over the scale to the consumer with
+   IIO_CHAN_INFO_RAW
+ * Give an easy/convenient way to get an Hz result with
+   IIO_CHAN_INFO_PROCESSED. There is a bit more than just 'raw * scale'
+   in the implementation of this info to figure out the most appropriate
+   scale for the measurement. They idea is also to avoid code
+   duplication in consumers.
 
-> +
-> +struct amlogic_cmsr {
-> +	struct regmap *reg;
-> +	struct regmap *duty;
-> +	struct mutex lock;
-Add a comment on the data protected by this lock.  Scope isn't always obvious.
-> +};
+David is definitely more familiar than me with IIO but we did not really
+know how to move forward on this.
 
-> +static struct iio_chan_spec *cmsr_populate_channels(struct device *dev,
-> +						    const char * const *conf)
-> +{
-> +	struct iio_chan_spec *chan;
-> +	int i;
-> +
-> +	chan = devm_kzalloc(dev, sizeof(*chan) * CLK_MSR_MAX, GFP_KERNEL);
-> +	if (!chan)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	for (i = 0; i < CLK_MSR_MAX; i++) {
-> +		chan[i].type = IIO_ALTVOLTAGE;
+Is it OK to have both IIO_CHAN_INFO_RAW and IIO_CHAN_INFO_PROCESSED, or
+should I ditch IIO_CHAN_INFO_RAW ?
 
-As per other branch of the thread.  I think this needs to be a new
-IIO_FREQUENCY channel as the input we care about here is simply frequency,
-not the voltage.
+>
+> Jonathan
 
-> +		chan[i].indexed = 1;
-> +		chan[i].channel = i;
-> +		chan[i].info_mask_separate = (BIT(IIO_CHAN_INFO_RAW) |
-> +					    BIT(IIO_CHAN_INFO_PROCESSED));
+[...]
 
-Drop outer ()
+>> +	indio_dev->name = "amlogic-clk-msr";
+>> +	indio_dev->info = &cmsr_info;
+>> +	indio_dev->modes = INDIO_DIRECT_MODE;
+>> +	indio_dev->num_channels = CLK_MSR_MAX;
+>
+> Superficially looks like the number of channels depends on the compatible.
+> Ideally we shouldn't provide channels to userspace that aren't useful.
 
-> +		chan[i].info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE);
-> +		chan[i].datasheet_name = conf[i];
-> +	}
-> +
-> +	return chan;
-> +}
+Not exactly. All SoCs have 128 inputs, Some may not be connected indeed
+but some are, and the name is just not documented (yet).
 
+>
+> You could search the name arrays to see how far they go, but that is bit ugly.
+> Probably wrap those in a structure with a num_channels parameter as well.
+>
 
-> +static int cmsr_measure_processed_unlocked(struct amlogic_cmsr *cm,
-> +					   unsigned int idx,
-> +					   int *val2)
-> +{
-> +	unsigned int time = CLK_MIN_TIME;
-> +	u64 rate;
-> +	int ret;
-> +
-> +	/*
-> +	 * The challenge here is to provide the best accuracy
-> +	 * while not spending to much time doing it.
-> +	 * - Starting with a short duration risk not detecting
-> +	 *   slow clocks, but it is fast. All 128 can be done in ~8ms
-> +	 * - Starting with a long duration risk overflowing the
-> +	 *   measurement counter and would be way to long, especially
-> +	 *   considering the number of disabled clocks. ~4s for all
-> +	 *   128 worst case.
-> +	 *
-> +	 * This IP measures system clocks so all clock are expected
-> +	 * to be 1kHz < f < 8GHz. We can compromise based on this,
-> +	 * doing it in 3 pass:
-> +	 * #1 Starting if 64us window: detects 30kHz < f < 8GHz
-> +	 *    - Go to #2 if no detection, Go to #3 otherwise
-> +	 * #2 Extend duration to 1024us (f > 1kHz)
-> +	      - Assume f = 0Hz if no detection, Go to #3 otherwise
-> +	 * #3 Clock has been detected, adjust window for best accuracy
-> +	 *
-> +	 * Doing the range detection takes ~1ms per clock, including disabled
-> +	   clocks.
-> +	 * Actual measurement takes at most ~65ms in step #3 for slow clocks,
-> +	 * when the full range the HW is used.
-> +	 */
-> +
-> +	/* Step #1 - quick measurement */
-> +	cmsr_set_time_unlocked(cm, time);
-> +	ret = cmsr_measure_unlocked(cm, idx);
-> +	if (ret < 0)
-> +		return ret;
-> +
+I've been doodling with this idea while writing this
+driver. Technically, there is no problem.
 
-if (ret == 0)
+The legacy driver this one will be replacing used to expose all 128
+inputs. I thought it was more important to have continuity with the
+legacy driver than filtering out possibly useless channels.
 
-> +	else if (ret == 0) {
-> +		/* Step #2 - extend the window if necessary */
-> +		time *= 16;
-> +		cmsr_set_time_unlocked(cm, time);
-> +		ret = cmsr_measure_unlocked(cm, idx);
-> +		if (ret < 0)
-> +			return ret;
-> +
-		if (ret == 0)
+Another benefit of keeping all 128 is that the channel index (both in
+sysfs and more crucially in DT) matches the one in the SoC documentation.
+That makes things easier.
 
-> +		else if (ret == 0) {
-> +			/* Still nothing - assume no clock */
-> +			*val2 = 0;
-> +			return 0;
-> +		}
-> +	}
-> +
-> +	/* Step #3: Adapt scale for better precision */
-> +	time = time * MSR_MEASURED * 3 / (ret * 4); /* 25% margin */
-> +	time = min_t(unsigned int, MSR_TIME_MAX, time);
-> +
-> +	/* Actually measure rate with an optimized scale */
-> +	cmsr_set_time_unlocked(cm, time);
-> +	ret = cmsr_measure_unlocked(cm, idx);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	rate = DIV_ROUND_CLOSEST_ULL(ret * 1000000ULL, time);
-> +	*val2 = rate >> 32ULL;
-> +	return (int)rate;
-> +}
+Would it be acceptable to keep all 128 channels then or do you still
+prefer that I filter out the undocumented ones ?
 
+>> +	indio_dev->channels = cmsr_populate_channels(dev, conf);
+>> +	if (IS_ERR(indio_dev->channels))
+>> +		return PTR_ERR(indio_dev->channels);
+>> +
+>> +	return devm_iio_device_register(dev, indio_dev);
+>> +}
 
+Thanks for you help.
 
-> +static int cmsr_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct amlogic_cmsr *cm;
-> +	const char * const *conf;
-> +	void __iomem *regs;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*cm));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +	platform_set_drvdata(pdev, indio_dev);
-> +	cm = iio_priv(indio_dev);
-> +
-> +	conf = of_device_get_match_data(dev);
-
-We try to avoid of specific calls in IIO drivers.
-device_get_match_data() should work here.
-
-Reason for this is not that it matters in one driver, but that people tend
-to cut and paste device tree stuff and it ends up in drivers where ACPI
-and other firmware types are relevant.
-
-Also I only have remember how one type of firmware property read call works ;)
-
-> +	if (!conf) {
-> +		dev_err(dev, "failed to match device\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	regs = devm_platform_ioremap_resource_byname(pdev, "reg");
-> +	if (IS_ERR(regs))
-> +		return PTR_ERR(regs);
-> +
-> +	cm->reg = devm_regmap_init_mmio(dev, regs, &cmsr_regmap_cfg);
-> +	if (IS_ERR(cm->reg)) {
-> +		dev_err(dev, "failed to init main regmap: %ld\n",
-> +			PTR_ERR(cm->reg));
-> +		return PTR_ERR(cm->reg);
-> +	}
-> +
-> +	regs = devm_platform_ioremap_resource_byname(pdev, "duty");
-> +	if (IS_ERR(regs))
-> +		return PTR_ERR(regs);
-> +
-> +	cm->duty = devm_regmap_init_mmio(dev, regs, &cmsr_regmap_cfg);
-> +	if (IS_ERR(cm->duty)) {
-> +		dev_err(dev, "failed to init duty regmap: %ld\n",
-> +			PTR_ERR(cm->duty));
-> +		return PTR_ERR(cm->duty);
-Preference for dev_err_probe() for all errors in probe() and functions
-that will only be called form probe. There is a nice version that handled PTR_ERR
-under review though so maybe we can come around later and use that once it's available
-
-> +	}
-> +
-> +	mutex_init(&cm->lock);
-> +
-> +	/* Init scale with a sane default */
-> +	cmsr_set_time_unlocked(cm, CLK_MIN_TIME);
-> +
-> +	indio_dev->name = "amlogic-clk-msr";
-> +	indio_dev->info = &cmsr_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->num_channels = CLK_MSR_MAX;
-
-Superficially looks like the number of channels depends on the compatible.
-Ideally we shouldn't provide channels to userspace that aren't useful.
-
-You could search the name arrays to see how far they go, but that is bit ugly.
-Probably wrap those in a structure with a num_channels parameter as well.
-
-> +	indio_dev->channels = cmsr_populate_channels(dev, conf);
-> +	if (IS_ERR(indio_dev->channels))
-> +		return PTR_ERR(indio_dev->channels);
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
+-- 
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
