@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4908AC41513
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Jul 2024 13:01:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12962C30659
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Jul 2024 13:01:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Y+7IGjQxPeKitotfLNdGmKL+weB1GpJ7cZva63RhEIg=; b=ULnQ5SEL7W783x
-	BcPe8sibCJgj2YdDvYVAYEX1NojNfe6+huawZB0HHIW4sQIro19V1XvBk7+uGdF+zZ+rNx8p/e4pL
-	OaAfwuJxS1IKWi+GakOLL4mL7XlODg5VRVkxRsbSplQ3h7oCJHuN3nwjsqKok0WqBnvM/4fJypb1i
-	fbVLvatAGoR4c6NqaUwKNQsxJy2WBGMZ/6hPeM9vkQEloIg1v4HHdNrnWSjFL7pZe99J06L+21R22
-	8HYOcYN+hqHwWHqW2utyjCLxy9Pm0u/jo4xrTxOm5X7lNi4pFL3OiWimQCC6M6kZ1xRo+vd1aFEhg
-	efyvzo2xHcjW7nm1u8gA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=B4FLwqm4CS3VMaT4xt7JBkwnPElZ4NQ2UWVk46TQSLA=; b=PHF2HZPaRjXiWI
+	y4c++IoDVZpMQqxfjIFqUnVtM3eQ5d1T/NLPDHPWBXlwwHNQpnUrykUeRm4UuL6cb+glZcc+oZdnn
+	FHqCU/82BWArI3VfI9AEZBJUk+LaQlTsC7QO/VImtYFsnTkCXSEuEQG9dG3kLsTCFguxhTE06JH/m
+	p+ezbm9VXpfbep27IarVSRezDkgPzBM3HmE9hDCF1zbQgQXcNZ1xyVhOb2z9aPb1OtL6gOvyaBwpe
+	Q5wuWCdvgUT1ZgYgAFP57HywcGcM7sxz+aQSX3YkWYkc57F3Zu1wVSfZG7PxZL6C/E6G25Qr+ELYm
+	uEQOn1bal4im/2ow2a5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOGey-00000003NSV-1gyP;
-	Mon, 01 Jul 2024 13:01:32 +0000
+	id 1sOGfG-00000003Nan-0kXr;
+	Mon, 01 Jul 2024 13:01:50 +0000
 Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOGeu-00000003NOx-2VNU;
+	id 1sOGeu-00000003NOw-2VBZ;
 	Mon, 01 Jul 2024 13:01:31 +0000
 Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id AEBD2100020;
+	by mx1.sberdevices.ru (Postfix) with ESMTP id D6650100022;
 	Mon,  1 Jul 2024 16:01:22 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru AEBD2100020
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru D6650100022
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
 	s=mail; t=1719838882;
-	bh=u8k3tcTnpuTH/PJpX5qayEs3QW/i3kdJlSiuUB2g0ww=;
+	bh=YKLuhlRUJWY+Z1YpibliQ1sqUD8/k5R+n2Wb2mGuY9o=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=UY1il4SOWjSidlDgmgTqG0dbU9WJLinsFAMfLf7lwuXSto4H/3192vEfBpz/7p5lL
-	 nYon/u79o0J5f7/Wsuo8T22tiJrDrCii9GDO8S8t3xxF6GjpQWSwsQByktRSiLAbQR
-	 IdEpNdPOs5SaPka3G5FTBuDgUq46UK03B87kbFwwWuvwlHjbaz8l2fpVX1whRBi00J
-	 +kbGOo8LRTE6KnHimZCvvz575pUhcVd9swPF6CAdJwkBmMipG++oCvv0xrnr2f+7BO
-	 vBpFNt5kFPjq2gnffhNqwmqwPfR5W3K8Na+UtYBkDIvKCoRQVqiGOZNcgxFSI3XvaB
-	 NORGDfdXRA8hw==
+	b=VKTYblCWz9csjBLmmX+oNX3kym9wU9qNefOg8UVEVgoPZ+vkIjeSmK34GLcHD3lTv
+	 EZVx+trHRc8ZtVaEJ4KVwD+MJYA4U7ODESLROd/T+jHPQITxTbfpIMoC3Ib7eL/VlN
+	 7lFif0LtqjVdV0soJz64ejvohqgVebnlrGwk6Y6tTfmDr1+5jSQ5uhoPCiv/NuOwXy
+	 2QX17VC8Yl/AoD4Qq9YnHZeoMtD3Ho8zDFHye3hzSTLBd0GVaA0QMS0VE/U7M846tn
+	 IgpY8bKhRVwJhEvwRGPTCnRlNnIb25l3RkXhfEYlBPpuWjqIKd0juh62rYWN18RJLE
+	 vE05JCJS1O9HA==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
@@ -57,11 +57,13 @@ To: <ukleinek@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
 CC: <linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <kernel@salutedevices.com>, George Stark
-	<gnstark@salutedevices.com>
-Subject: [PATCH 0/2] add support for meson a1 PWM in dts and bindings
-Date: Mon, 1 Jul 2024 16:01:11 +0300
-Message-ID: <20240701130113.433169-1-gnstark@salutedevices.com>
+	<gnstark@salutedevices.com>, Dmitry Rokosov <ddrokosov@salutedevices.com>
+Subject: [PATCH 1/2] dt-bindings: pwm: amlogic: Add new bindings for meson A1 pwm
+Date: Mon, 1 Jul 2024 16:01:12 +0300
+Message-ID: <20240701130113.433169-2-gnstark@salutedevices.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240701130113.433169-1-gnstark@salutedevices.com>
+References: <20240701130113.433169-1-gnstark@salutedevices.com>
 MIME-Version: 1.0
 X-Originating-IP: [100.64.160.123]
 X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
@@ -83,9 +85,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/01 11:44:00 #25786379
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240701_060129_165052_0D5C6FC9 
-X-CRM114-Status: UNSURE (   9.40  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240701_060129_217492_49F01E27 
+X-CRM114-Status: GOOD (  10.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,18 +103,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support for meson a1 PWM in dts and bindings. Due to pwm driver code is fully
-the same for a1 and s4 then a1 compatible defined with s4 as fallback.
+The chip has 3 dual-channel PWM modules PWM_AB, PWM_CD, PWM_EF.
 
-George Stark (2):
-  dt-bindings: pwm: amlogic: Add new bindings for meson A1 pwm
-  arm64: dts: meson: a1: add definitions for meson pwm
+Signed-off-by: George Stark <gnstark@salutedevices.com>
+Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+---
+ Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../devicetree/bindings/pwm/pwm-amlogic.yaml  |   2 +
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 215 ++++++++++++++++++
- 2 files changed, 217 insertions(+)
-
---
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+index 1d71d4f8f328..63c6018b6b7c 100644
+--- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
++++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+@@ -37,6 +37,7 @@ properties:
+       - enum:
+           - amlogic,meson8-pwm-v2
+           - amlogic,meson-s4-pwm
++          - amlogic,meson-a1-pwm, amlogic,meson-s4-pwm
+       - items:
+           - enum:
+               - amlogic,meson8b-pwm-v2
+@@ -126,6 +127,7 @@ allOf:
+           contains:
+             enum:
+               - amlogic,meson-s4-pwm
++              - amlogic,meson-a1-pwm
+     then:
+       properties:
+         clocks:
+-- 
 2.25.1
 
 
