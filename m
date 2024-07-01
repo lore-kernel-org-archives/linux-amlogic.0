@@ -4,103 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CB13C30653
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Jul 2024 08:38:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F992C2BD09
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Jul 2024 09:01:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
-	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=kD4eb4G+6TgOcZrDhXFC2Zq9Rh6S7YYZHDOnEVADiRQ=; b=oSbT0e1jLGnDHC
-	yexWbTXmdssXy5rPLjjnQakM/tjOoQhM7z9zrglJthj8Oy/KZAT6KGFyQ6UaZgaQoGitb+L/Pp64d
-	4CN07Xss6yXqH97akTU4dfTT9jw790LPmrB0LKXeOxwZvI6IiLz9zTqLD4kSDuPKat5qfsRjEpb+7
-	XxdweJTINn1607QZ2/fN3zfzZIq6nXQXAAI9F6EowRG0e5c2aiQ9U6Q851xpjlGJ2oi06ka3zEH4v
-	j1ijSki4iV3KLTjG5W5/fL8GcD8/OSwDMUtBvT1X04JEf49gxyhs4F6rqjbcJNCPJA+xhUlArHHrK
-	7zoJ1V2nH2Ack8KKUBzQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=xR4bf64eL6gRYc0QSyPGBx6mldYdb71qphjUiWxHIno=; b=MNFLaaZ+A1GFK9
+	Mf+sHfmHnmDTyjAGjXPQaR6XZyxAr61gteOE0URB1/IOXlx7x+tuP2oVvrItKfuFUW83N+B2EW1Km
+	zq+DD331BNDeDt5MNt8Nje8yRGfD7e+k64PB4X13J7hv7yuJEnrHnFXUpSNdf92jkiSsBl2SIiiiY
+	EUbDLpew+pOL6BvZZOvpxseZDC4X0dzG4aN9IW99mDfepuVgn6xg7BnBCAcgNjtmQYHw+IsyIF30E
+	9XJY7au7g7cwB9fUjH7pEtL90pumq2RAaOV60hoQ5J/XnvrwtuO/qO2aFcpgV8xQ+Rq/ZMPG3Gu0W
+	AvxdGbXE0/x9gjjFQC5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOCYE-00000002G2D-2t7R;
-	Mon, 01 Jul 2024 08:38:18 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1sOCuz-00000002MwW-1SiI;
+	Mon, 01 Jul 2024 09:01:49 +0000
+Received: from mail-lf1-x135.google.com ([2a00:1450:4864:20::135])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOCY2-00000002Fxq-3maj
+	id 1sOCuv-00000002Muw-2S3L
 	for linux-amlogic@lists.infradead.org;
-	Mon, 01 Jul 2024 08:38:10 +0000
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-367339bd00aso2087290f8f.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 01 Jul 2024 01:38:06 -0700 (PDT)
+	Mon, 01 Jul 2024 09:01:47 +0000
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-52cdbc20faeso3878804e87.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 01 Jul 2024 02:01:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719823085; x=1720427885; darn=lists.infradead.org;
-        h=content-transfer-encoding:organization:autocrypt:content-language
-         :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jxVs/aFlSL+ewuyexawKywQPxcZUDdKkKdHaRAPiuwY=;
-        b=qef7qTTDfcCZ0wUpLDf3qkbe1xiYuD/rc/rG7sBFcz5PQWcWD6e0A9N719FTnHAEMr
-         a0FQYKmVchh8LtzKLuzrWF/rqn/KNtcSNrcV3+yjozTtiK6GYgvJ+6EQfSuyDmMh374X
-         awIRkmkEnLgIe+mCSDaud0kerKvxkfK1kIlZG5ZpxF0kcVmtmTaozG+yiY9yqjacA+sT
-         BZSxYDS4llT51Y/VDxarPgB9CHEzecX1s6o9Zmd1fehoY5j6YgngRKha+tIzZcQzDkOv
-         dU4xbdm5UR/9XEVFoBsBQniFbfNaJIB3lh9yhkkmmHiNZ9wkp+KVLINSKeCWJ5kuscV/
-         v1+Q==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719824502; x=1720429302; darn=lists.infradead.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=E4V4a67sH+Sj9j9mjJSBdp3EdWT5AmAZ/sIsVO2U5Gw=;
+        b=CPQvhOl8UBcB3nM8wn9IUjmUN6qehtOj8AdGZfDUs+nP+id/T6ePB6rq25XD2jpdWT
+         fINyBnDOyUVTd6DaAumRNv+0hlw3TJpqe1TnzqGFxap0YIaukltaSWy37xuPc+16lxnB
+         eWKpHgYVIIBjw69xPF+oNDPKzj3QTWjSuwSKBivDeTrx2HBLnAzSqSKtcMT5q6ccVnx9
+         //o0GRbhYx1oh//+48jdVhNuAurzAW1n5o69RHsehM3BuV9nw+a8011Xauj2OlcqMv9c
+         n9qev03dFo85OAS9JxHkZUAW/SUbDKvlgIDmcCqvZhl39V5KB7p8d7cPxqvyYwG1027r
+         7Mnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719823085; x=1720427885;
-        h=content-transfer-encoding:organization:autocrypt:content-language
-         :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jxVs/aFlSL+ewuyexawKywQPxcZUDdKkKdHaRAPiuwY=;
-        b=wbdUpXE3wnBP0X9RdIC1KJyeSq8coLjNF5wQjiwjAfKn2VYGbY+dkks9vIu1GFLcyB
-         Lyp38E0J7M2qhLO1Z9ggdsst5jgFrOghuHyQhVcIyOz0dOuRYUdEM6UFl5hBSTL1YQYw
-         JLWPonH9Ug+x7RxdsaPqzYomWI2UMHy/epdDrQa2XpKuuqNc6zDeMhEyDPNIWcHxSvoF
-         cbhmbnOQaFkaFS5h/kDUVvchUMw4lEhvnd56SmslCrdKMkMtDQPQjjer5b+9Afjvmz6t
-         k/0CXjuxF8/cm81uyQMlHfACDH8ryk0VtnYlyRyVou6zZe9TNqQg2M0arimYUE1ffVax
-         gxvA==
-X-Gm-Message-State: AOJu0Yyer1On2ITetbijs4MjWH/2U9BW2Mh5wzGLZ8114O0mRc0RE9K8
-	56CCLnHluFUwQ5HS730R0rC6c9IJwBbdZV84W8S14jIuGWZTjrG5ILgMd9QvW0rIGQG/1GuxG0z
-	M8wokWQ==
-X-Google-Smtp-Source: AGHT+IEC+y0QGzsFdQF98bWxNSJQWWcmdbLYujB9UH+gGS0CAQK2LeEtDTr24X4WKIbxypVU1ZvcTQ==
-X-Received: by 2002:a5d:5301:0:b0:367:40e6:46bd with SMTP id ffacd0b85a97d-3677572985bmr2724924f8f.61.1719823084737;
-        Mon, 01 Jul 2024 01:38:04 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:4719:99ea:652b:10d0? ([2a01:e0a:982:cbb0:4719:99ea:652b:10d0])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0d8cd8sm9347934f8f.27.2024.07.01.01.38.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Jul 2024 01:38:04 -0700 (PDT)
-Message-ID: <35093904-c4a8-432d-b010-a994fc1ee536@linaro.org>
-Date: Mon, 1 Jul 2024 10:38:03 +0200
+        d=1e100.net; s=20230601; t=1719824502; x=1720429302;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=E4V4a67sH+Sj9j9mjJSBdp3EdWT5AmAZ/sIsVO2U5Gw=;
+        b=LA9+316gV0yvp5JM1+8wXf1aRwkdMUW890w1Vc4rCnMEYqMDrObFxqG3ILYBt0kXXb
+         QZ3sjlzYKfCkRjLGKSTloo7RJQLN33079ilmo0Pxn0w9CtVqeHNsDIwosE6sI5CVyc9Q
+         WNGMaKxw4QxOGXLmIRYoxF5TrQ1A8Fg6+j7DiE44Qr9GyYwiiI8Y6b1n4cXZNJcJVPUK
+         /QK5iDJLtBDe2T0xaWLSF/V4kJBkDTybFx9QEoxmCd7nE/WWhTMem1p1zCgBSt0YfrDZ
+         GPaifMYQf0gTxAMnanQNgkFUe7Gyz5kbvhyIWJGZOH5+ok4ckGP9g347MxZrZ+WXqbzt
+         3B0g==
+X-Forwarded-Encrypted: i=1; AJvYcCVPI9jY9DdC+qHIml/4AyK+eFRdUDZCjmEy2fXxlliXQ8lu9R9EcuR69kS7tHT9A31rBhgMdALw47TmoVB+zaYZnVGa7yKNNai1adFZb0RmT+M=
+X-Gm-Message-State: AOJu0Yzze6auJdOR6jn7CX9doX2jXVZHErCBQ41iTagOJlgU/e/w17WD
+	NEtVr+F8fmH32vXoLJkVtes2Y3c8TZ8mriG6ZhtkrXCRpuKiwec5r1yoqhme+fE=
+X-Google-Smtp-Source: AGHT+IGQbQF+l6JIu2qBU2qs5wcIrc1fNbnpDVITtS7Qre3SZ8PBndtUb5N/ZdI9xkP9Dwj5YuGUlw==
+X-Received: by 2002:a05:6512:3c99:b0:52c:cccf:85e1 with SMTP id 2adb3069b0e04-52e8273cfc0mr3906453e87.65.1719824502302;
+        Mon, 01 Jul 2024 02:01:42 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:2d2:df21:c0a8:45a2])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256af55cccsm144287685e9.16.2024.07.01.02.01.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Jul 2024 02:01:41 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jonathan Cameron <jic23@kernel.org>,  Lars-Peter Clausen
+ <lars@metafoo.de>,  Kevin Hilman <khilman@baylibre.com>,
+  linux-kernel@vger.kernel.org,  linux-amlogic@lists.infradead.org,
+  linux-iio@vger.kernel.org,  Rob Herring <robh@kernel.org>,  Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
+  linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH 0/2] iio: frequency: add iio support for Amlogic clock
+ measure
+In-Reply-To: <5da26c0e-75a7-4d5a-9eca-f88ecf369996@linaro.org> (Neil
+	Armstrong's message of "Mon, 1 Jul 2024 09:41:01 +0200")
+References: <20240624173105.909554-1-jbrunet@baylibre.com>
+	<52fab9b5-2b44-49c0-8b90-cb2a74eb6633@linaro.org>
+	<1jzfr9gxh4.fsf@starbuckisacylon.baylibre.com>
+	<c092ec67-e384-411d-8885-665597547523@linaro.org>
+	<1jv81xgmfc.fsf@starbuckisacylon.baylibre.com>
+	<5da26c0e-75a7-4d5a-9eca-f88ecf369996@linaro.org>
+Date: Mon, 01 Jul 2024 11:01:41 +0200
+Message-ID: <1jjzi5a3ka.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [GIT PULL] amlogic drivers updates for v6.11
-To: soc@kernel.org, arm@kernel.org
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240701_013806_982680_D80582A7 
-X-CRM114-Status: UNSURE (   6.13  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240701_020145_846433_8ED77107 
+X-CRM114-Status: GOOD (  35.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,49 +96,135 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On Mon 01 Jul 2024 at 09:41, Neil Armstrong <neil.armstrong@linaro.org> wrote:
 
-Here's a couple of new SoC IDs and MODULE_DESCRIPTION() fixuo for meson_sm.
+> On 25/06/2024 15:51, Jerome Brunet wrote:
+>> On Tue 25 Jun 2024 at 15:18, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>> 
+>>> On 25/06/2024 11:53, Jerome Brunet wrote:
+>>>> On Tue 25 Jun 2024 at 11:38, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>>>>
+>>>>> Hi,
+>>>>>
+>>>>> [+cc people from linux-msm]
+>>>>>
+>>>>> On 24/06/2024 19:31, Jerome Brunet wrote:
+>>>>>> Add support for the HW found in most Amlogic SoC dedicated to measure
+>>>>>> system clocks.
+>>>>>> This drivers aims to replace the one found in
+>>>>>> drivers/soc/amlogic/meson-clk-measure.c with following improvements:
+>>>>>> * Access to the measurements through the IIO API:
+>>>>>>      Easier re-use of the results in userspace and other drivers
+>>>>>> * Controllable scale with raw measurements
+>>>>>> * Higher precision with processed measurements
+>>>>>> Jerome Brunet (2):
+>>>>>>      dt-bindings: iio: frequency: add clock measure support
+>>>>>>      iio: frequency: add amlogic clock measure support
+>>>>>>     .../iio/frequency/amlogic,clk-msr-io.yaml     |  50 ++
+>>>>>>     drivers/iio/frequency/Kconfig                 |  15 +
+>>>>>>     drivers/iio/frequency/Makefile                |   1 +
+>>>>>>     drivers/iio/frequency/amlogic-clk-msr-io.c    | 802 ++++++++++++++++++
+>>>>>>     4 files changed, 868 insertions(+)
+>>>>>>     create mode 100644 Documentation/devicetree/bindings/iio/frequency/amlogic,clk-msr-io.yaml
+>>>>>>     create mode 100644 drivers/iio/frequency/amlogic-clk-msr-io.c
+>>>>>>
+>>>>>
+>>>>> While I really appreciate the effort, and the code looks cool, the clkmsr is really
+>>>>> a debug tool, and I'm not sure IIO is the right place for such debug tool ?
+>>>> The reason why I went through the trouble of doing an IIO port is
+>>>> because I need that for other purposes than debug. I need to to be able
+>>>> to check a frequency from another driver. I don't see a reason to invent
+>>>> another API when IIO provide a perfectly good one.
+>>>> The HW does measurements. IIO seems like the best place for it.
+>>>> For the record, I need this for a eARC support.
+>>>> eARC has a PLL that locks on incoming stream. eARC registers show wether
+>>>> the PLL is locked or not, but not at which rate. That information is
+>>>> needed in ASoC. Fortunately the eARC PLL is one of measured clock, which
+>>>> is a life saver in that case.
+>>>
+>>> This is a very interesting use-case, and quite weird nothing is provided
+>>> on the eARC side.
+>> Indeed.
+>> 
+>>>
+>>> So yes it's definitely a valid use-case, but:
+>>> - we should keep the debugfs interface, perhaps move it in the iio driver ?
+>> I considered this initially but it would add a lot of boiler plate
+>> code to provide over debugfs exactly what iio already provides over
+>> sysfs. As you pointed out, the previous driver only provided debug
+>> information, the debugfs interface it provided is hardly a
+>> critical/stable one.
+>
+> I still don't see why it could add so much boilerplate, all the tables and
+> calculation fonction would be shared, only the debugfs clk_msr_show() and
+> clk_msr_summary_show() would be kept, all the rest would be common.
+>
+> I insist, please keep the debugfs interface for debug purposes. You don't
+> want to mess with IIO when you bring up new platforms with bare minimum
+> kernels.
 
-Thanks,
-Neil
+I don't think that is going to change anything. It's not like IIO brings
+any complexity or will be compiled out.
 
-The following changes since commit 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0:
+But since you insist, I'll add it in the next version as a separate patch.
 
-   Linux 6.10-rc1 (2024-05-26 15:20:12 -0700)
+>
+>> 
+>>> - we should keep a single compatible, so simply update the current bindings with iio cells
+>> Using a new compatible allows to split the memory region, making the
+>> interface between DT and driver a lot easier to implement seemlessly
+>> between old and new SoCs. Eventually it may allow to implement the duty
+>> part too.
+>
+> It's a problem for new platforms, you can introduce the split only for the
+> new ones, the impact on code won't high enough to justify new bindings.
+>
 
-are available in the Git repository at:
+What you are requesting will introduce two drivers providing the same
+compatible, unless you plan on removing the old one in a coordinated
+way.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-drivers-for-v6.11
+That's an unncessary churn. The old driver could stay there for a
+while and platform slowly migrate. What you are requesting forcefully
+migrates every consumer, assuming the old driver is compiled out.
 
-for you to fetch changes up to 5375986e16207e573c0493009d25b0c01f44e01d:
+This is an opportunity to more correctly describe the interface.
+It does not break any DT rules, that is enough of a justification IMO.
 
-   firmware: meson_sm: add missing MODULE_DESCRIPTION() macro (2024-06-24 10:08:53 +0200)
+> Neil
+>
+>> 
+>>> - for s4 & c3, it's ok to either add a second reg entry in the bindings
+>> Doing that for s4 and c3 only would still make a mess of offset handling
+>> the region because duty prepend the region on old SoC. The goal is to
+>> have an interface that seemlessly support both old and new SoCs.
+>> 
+>>>
+>>> Neil
+>>>
+>>>> Everything that was available through the old driver still is, with more
+>>>> precision and more control.
+>>>>
+>>>>>
+>>>>> There's almost the same interface on qcom SoCs (https://github.com/linux-msm/debugcc) but
+>>>>> they chose to keep it in userspace until we find an appropriate way to expose
+>>>>> this from the kernel the right way.
+>>>>>
+>>>>> If it enabled us to monitor a frequency input for a product use-case, IIO would be
+>>>>> the appropriate interface, but AFAIK it's only internal clocks and thus I'm worried
+>>>>> it's not the best way to expose those clocks.
+>>>>>
+>>>>> Neil
+>>>>
+>> 
 
-----------------------------------------------------------------
-Amlogic drivers changes for v6.11:
-- Add S905L & A113X SoC IDs
-- add missing MODULE_DESCRIPTION() macro for meson_sm driver
-
-----------------------------------------------------------------
-Christian Hewitt (1):
-       soc: amlogic: meson-gx-socinfo: Add S905L ID
-
-Jeff Johnson (1):
-       firmware: meson_sm: add missing MODULE_DESCRIPTION() macro
-
-Viacheslav Bocharov (1):
-       soc: amlogic: meson-gx-socinfo: add new A113X SoC id
-
-  drivers/firmware/meson/meson_sm.c      | 1 +
-  drivers/soc/amlogic/meson-gx-socinfo.c | 2 ++
-  2 files changed, 3 insertions(+)
+-- 
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
