@@ -4,86 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6CBAC2BD09
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Jul 2024 07:41:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4449FC2BD09
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Jul 2024 08:36:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=uv3kMhiVJ4kDeQU3UWRkOfuPYS0GChKz10Kk3aeMRqQ=; b=XnEGRgwZzA9Yua3uAgFLqTKAhp
-	p4dm6bOtYq2a/yAtDQQG43NBXK+R57O4tv2co/bTtmz4VGY0e76FPyqmoDIgsNae5rXxPzrDAmPtO
-	B2Eu/11CvYfPb/gthgSrmzi0FK+HZPL4FIwN06Mlfs/G5qr7hd9ULYqdNIYk0Se5MuhSYjqIRthiJ
-	g3T76GksZ+ERV4kItaZlYEM/ZmRu2L/pIa6lonT50qD1j5MEJK2HR4svOwCRpq3bDJAk5IXnubF2E
-	QnoIeUADyGqnNuxa0uo2Nyztma6ppsvSc+Xdo63GBYFdxZw/jKeQYYPC95sl98DYsXI2vYAyWoy6Y
-	HrEgFvYQ==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
+	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Cgo+JhmjMsvXIkjqXWcaYL6cNSt73iXn//Nwn0oxZPU=; b=yY3dap8kb8AFbb
+	swh9c6r+koC5wE+SfbrhoabvcvTo+1AxpcE9v21nTuASbYT0o2Xz4044vn7fcWpcch74sA33TCGsq
+	Y5i/NU3N5rCgbeUqUIMHVwfyxbIe/0ebRUn6W+NaWumFx7igahUkoNRsJglmk5VhussC54U4PnwLE
+	HLwVNMNekCdEEJV7T0tj+mn56oUHlPDFd2yhLJzjfoY/arRFpTaz6afpo3Z7O6YqLsGj1rR1OBNf+
+	1EK7yNIm/5sssEeP4wUGtoCHDfUaxAKswTxufgo/a8Cv2bg/KP+MsxHmebJaiF/QLys+/SqrtrbYQ
+	RE3W8+PuINQJlex7yEZA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOBev-000000025IJ-45FQ;
-	Mon, 01 Jul 2024 07:41:09 +0000
-Received: from mail-lj1-x22d.google.com ([2a00:1450:4864:20::22d])
+	id 1sOCWg-00000002Fj7-388y;
+	Mon, 01 Jul 2024 08:36:42 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOBes-000000025Fb-3l5i
+	id 1sOCWd-00000002Fi6-1QqS
 	for linux-amlogic@lists.infradead.org;
-	Mon, 01 Jul 2024 07:41:08 +0000
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2ebe6495aedso27469591fa.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 01 Jul 2024 00:41:06 -0700 (PDT)
+	Mon, 01 Jul 2024 08:36:40 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-42138eadf64so19966005e9.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 01 Jul 2024 01:36:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719819665; x=1720424465; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=luwhpQx8+Zob3V/T6YJ1851XBEZCKognBMDo82oxZaA=;
-        b=wJnSK1igfZ0dBi9YPLgPxebFf1YGlC76YFaoIo44o3auWAggzxyeJIcFZRYkkM70E0
-         uGUUzlJwvO0Tf1CFEhSBG1DsOgRCsYNcD+GWYspV3Uz8c5Mzd2NOivd+kBllBYipzrnN
-         AxNcdXYINZvb4AANNMGYSR+6kD9vuZuINdhIRuCaiC1YACH8XUmsF5oYrTpzQukqow9D
-         nYds9hOGzhttujRyaVfyzBaf+DRI1IehAcLhWsfjkUFNGhuO/SbPIk0Jjt6SaaDEPztN
-         XRouDQRF7++G38J++8awSG8UnkQt+Y2LKhDiCwIRzpq5k2kYjbQDgW7EDvQNMpBo7QTL
-         7WWw==
+        d=linaro.org; s=google; t=1719822998; x=1720427798; darn=lists.infradead.org;
+        h=content-transfer-encoding:organization:autocrypt:content-language
+         :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=43Jk5ICXouubFnaN+i30n+gCprshHo+KzXIWWkI6eis=;
+        b=UMUYKZEscesIdHefeAOE5e+wPQEDTSMEAhMx8Tm+C9gM7Yq5mE8kaAmkjPl0VrA4YQ
+         MnjRGtBOkonLZwyG5M0tNyinUJ+XT78JA/dDM3A1YGq6WPwYX+cKakZ1vgi2TYMTQ7Wq
+         8aSt6+9KEZcLe8htAy5DoOKHDopSv8bGUWoibiQAk2m+oIwFqw2vf0Pdf0Vi3T6ukfpx
+         GJQh7nK3HnQy5qGFSQ87s4G33UbBhjhTs9QNgzsFSrJSUD8D6B0qcXKPTnUEGCDq0d+R
+         Q0KEY7m5t3OSuroVnkIUn1GaWUXzUV1aZsn3gYscOcahk/xgo4kQlsewSSvq4mL2OohO
+         kDbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719819665; x=1720424465;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=luwhpQx8+Zob3V/T6YJ1851XBEZCKognBMDo82oxZaA=;
-        b=IR4SWtx5yh29627Zaro6zVIQgrvK4tnMqTp26coKdBmv0WAar84l8SXEYC31bmu1Jb
-         Y8VybqbEXhUWXZGR1HoYF0Q6ovq6xHt/FtEmyf2g53GP0R3A2YmZpYSCa5CjWF2hOYfe
-         2PAEf3xy+fw+P3rbGJ/upRfGzijwbmIDrog/mOgESKwO1U7dlIRPvM5nzBAAGWFL3HSF
-         mVV4Ah0gHKRRfbTE1HasaE4er5nXWydRkv6BKcOwyCJa/e1ckoXm2fhx0gy28h2hcVmI
-         2Kk/Rd0qDp+aslg2nQLXV8k7mHCgGPOP64aIeFmoDPjXleYBgEut52pt0Hk0wBuC/tvM
-         ZGLg==
-X-Forwarded-Encrypted: i=1; AJvYcCXsxY0NCaCpeLJesPskMHnMetoaVbNNSw61x5vLqR1Sgnuu5zTWYFNqvSEdwColjNdSrofcv3SimTyttqAPeEh3Lt8NszOiQN+jFVx3UAUYwz8=
-X-Gm-Message-State: AOJu0Yx4N8k9TXmW2XEptT28gHCQyDyZnmaaDasB4w709KCfe8iHn6k7
-	erhIDnajCK0NoooBtmAnqnwfx1pzV3btz3FWgfClCWBjCmJl432wyj8j0r3dYpk=
-X-Google-Smtp-Source: AGHT+IEzuhMJAz/Pv97Qfz0wibA0VR4rH3uoXhjLiD7kH/3hRTfrPLFrntMsa8P9YcyF+7GW5WzXcQ==
-X-Received: by 2002:a2e:96c6:0:b0:2ec:5644:8f85 with SMTP id 38308e7fff4ca-2ee5e3b37bdmr32247581fa.27.1719819664229;
-        Mon, 01 Jul 2024 00:41:04 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1719822998; x=1720427798;
+        h=content-transfer-encoding:organization:autocrypt:content-language
+         :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=43Jk5ICXouubFnaN+i30n+gCprshHo+KzXIWWkI6eis=;
+        b=CFco+LSCm0V2H2n2t3HpbQAiOkuOLUJkyxfZXBOyPBNBOME9i9d653q20fUaT4lbds
+         I0frOMm/u4G0fo5UULVcNqfbrylYcN/6rNYUKzbnbPrthob5n0suugdH5R4qTZZlo2nt
+         3hQhGDKlB3mxJI6gr34tYTtgRMQYHWdsCqEeR2WJZkJYBT+4+QVOVRyfJqpUpTmFv/zC
+         Qxf2mJWUfyKsE/S9bf1Y2u/8Boh6JeV0Z2qWFXuqC5mS6gqIlah3S4UnI3i2vmF1C0A0
+         Ps+aRXqDvFhg2c9xYXRicLC2kYGnO/Hp2L3jwIQX6onmwDkIA4dQNgojM+1OFo1kfDhp
+         5c+Q==
+X-Gm-Message-State: AOJu0YwtoC9Arsvf9yS4TlJY5RsaF5Q18c1MDaNxPwd1W2Wi2sZVYs74
+	BIf9dyghnHn3t5eHMJIaRJv+7u1W81gKWXEEvly8dA1S4sj83grC3dHS16k+1j0=
+X-Google-Smtp-Source: AGHT+IGQz8F4xDL3eSbOZj3rv4Jkj+ouvv1UCierzK1/V4cOwMD1ZhKY6BHDa5byKSApNt9TwmFRPw==
+X-Received: by 2002:a05:600c:1582:b0:425:7616:f0b5 with SMTP id 5b1f17b1804b1-4257a02f834mr32985025e9.16.1719822997341;
+        Mon, 01 Jul 2024 01:36:37 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:4719:99ea:652b:10d0? ([2a01:e0a:982:cbb0:4719:99ea:652b:10d0])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256af3cf90sm140024045e9.5.2024.07.01.00.41.03
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675f9dfbdbsm9023940f8f.103.2024.07.01.01.36.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Jul 2024 00:41:03 -0700 (PDT)
-Message-ID: <5da26c0e-75a7-4d5a-9eca-f88ecf369996@linaro.org>
-Date: Mon, 1 Jul 2024 09:41:01 +0200
+        Mon, 01 Jul 2024 01:36:36 -0700 (PDT)
+Message-ID: <7f71e76c-c793-429a-b0ed-7296553a3eff@linaro.org>
+Date: Mon, 1 Jul 2024 10:36:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 0/2] iio: frequency: add iio support for Amlogic clock
- measure
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-iio@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm <linux-arm-msm@vger.kernel.org>
-References: <20240624173105.909554-1-jbrunet@baylibre.com>
- <52fab9b5-2b44-49c0-8b90-cb2a74eb6633@linaro.org>
- <1jzfr9gxh4.fsf@starbuckisacylon.baylibre.com>
- <c092ec67-e384-411d-8885-665597547523@linaro.org>
- <1jv81xgmfc.fsf@starbuckisacylon.baylibre.com>
+Subject: [GIT PULL] amlogic ARM64 DT updates for v6.11
+To: soc@kernel.org, arm@kernel.org
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -110,10 +96,9 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <1jv81xgmfc.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240701_004106_983685_8EBE9F94 
-X-CRM114-Status: GOOD (  31.41  )
+X-CRM114-CacheID: sfid-20240701_013639_429329_186BEFDE 
+X-CRM114-Status: GOOD (  13.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -131,112 +116,128 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 25/06/2024 15:51, Jerome Brunet wrote:
-> On Tue 25 Jun 2024 at 15:18, Neil Armstrong <neil.armstrong@linaro.org> wrote:
-> 
->> On 25/06/2024 11:53, Jerome Brunet wrote:
->>> On Tue 25 Jun 2024 at 11:38, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>>
->>>> Hi,
->>>>
->>>> [+cc people from linux-msm]
->>>>
->>>> On 24/06/2024 19:31, Jerome Brunet wrote:
->>>>> Add support for the HW found in most Amlogic SoC dedicated to measure
->>>>> system clocks.
->>>>> This drivers aims to replace the one found in
->>>>> drivers/soc/amlogic/meson-clk-measure.c with following improvements:
->>>>> * Access to the measurements through the IIO API:
->>>>>      Easier re-use of the results in userspace and other drivers
->>>>> * Controllable scale with raw measurements
->>>>> * Higher precision with processed measurements
->>>>> Jerome Brunet (2):
->>>>>      dt-bindings: iio: frequency: add clock measure support
->>>>>      iio: frequency: add amlogic clock measure support
->>>>>     .../iio/frequency/amlogic,clk-msr-io.yaml     |  50 ++
->>>>>     drivers/iio/frequency/Kconfig                 |  15 +
->>>>>     drivers/iio/frequency/Makefile                |   1 +
->>>>>     drivers/iio/frequency/amlogic-clk-msr-io.c    | 802 ++++++++++++++++++
->>>>>     4 files changed, 868 insertions(+)
->>>>>     create mode 100644 Documentation/devicetree/bindings/iio/frequency/amlogic,clk-msr-io.yaml
->>>>>     create mode 100644 drivers/iio/frequency/amlogic-clk-msr-io.c
->>>>>
->>>>
->>>> While I really appreciate the effort, and the code looks cool, the clkmsr is really
->>>> a debug tool, and I'm not sure IIO is the right place for such debug tool ?
->>> The reason why I went through the trouble of doing an IIO port is
->>> because I need that for other purposes than debug. I need to to be able
->>> to check a frequency from another driver. I don't see a reason to invent
->>> another API when IIO provide a perfectly good one.
->>> The HW does measurements. IIO seems like the best place for it.
->>> For the record, I need this for a eARC support.
->>> eARC has a PLL that locks on incoming stream. eARC registers show wether
->>> the PLL is locked or not, but not at which rate. That information is
->>> needed in ASoC. Fortunately the eARC PLL is one of measured clock, which
->>> is a life saver in that case.
->>
->> This is a very interesting use-case, and quite weird nothing is provided
->> on the eARC side.
-> 
-> Indeed.
-> 
->>
->> So yes it's definitely a valid use-case, but:
->> - we should keep the debugfs interface, perhaps move it in the iio driver ?
-> 
-> I considered this initially but it would add a lot of boiler plate
-> code to provide over debugfs exactly what iio already provides over
-> sysfs. As you pointed out, the previous driver only provided debug
-> information, the debugfs interface it provided is hardly a
-> critical/stable one.
+Hi,
 
-I still don't see why it could add so much boilerplate, all the tables and
-calculation fonction would be shared, only the debugfs clk_msr_show() and
-clk_msr_summary_show() would be kept, all the rest would be common.
+Here's a set of Amlogic ARM64 DT changes for v6.11, with:
+- A bunch of DT fixes to allmost solve all remaining check errors
+- Some SM1/G12 SPDIF & HDMI updates an fixes
+- Amlogic S4 PWM
+- Amlogic A4 Power Domain
+- New boards: OSMC Vero 4K, Dreambox One & Two, GXLX/S905L p271 Reference Boards
 
-I insist, please keep the debugfs interface for debug purposes. You don't
-want to mess with IIO when you bring up new platforms with bare minimum
-kernels.
+The PR is based on -rc2 since I merged Ulf's immutable dt branch for the S4 Power
+Domain DT changes.
 
-> 
->> - we should keep a single compatible, so simply update the current bindings with iio cells
-> 
-> Using a new compatible allows to split the memory region, making the
-> interface between DT and driver a lot easier to implement seemlessly
-> between old and new SoCs. Eventually it may allow to implement the duty
-> part too.
-
-It's a problem for new platforms, you can introduce the split only for the
-new ones, the impact on code won't high enough to justify new bindings.
-
+Thanks,
 Neil
 
-> 
->> - for s4 & c3, it's ok to either add a second reg entry in the bindings
-> 
-> Doing that for s4 and c3 only would still make a mess of offset handling
-> the region because duty prepend the region on old SoC. The goal is to
-> have an interface that seemlessly support both old and new SoCs.
-> 
->>
->> Neil
->>
->>> Everything that was available through the old driver still is, with more
->>> precision and more control.
->>>
->>>>
->>>> There's almost the same interface on qcom SoCs (https://github.com/linux-msm/debugcc) but
->>>> they chose to keep it in userspace until we find an appropriate way to expose
->>>> this from the kernel the right way.
->>>>
->>>> If it enabled us to monitor a frequency input for a product use-case, IIO would be
->>>> the appropriate interface, but AFAIK it's only internal clocks and thus I'm worried
->>>> it's not the best way to expose those clocks.
->>>>
->>>> Neil
->>>
-> 
+The following changes since commit c3f38fa61af77b49866b006939479069cd451173:
 
+   Linux 6.10-rc2 (2024-06-02 15:44:56 -0700)
+
+are available in the Git repository at:
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm64-dt-for-v6.11
+
+for you to fetch changes up to 1443b6ea806dfcdcee6c894784332c9c947ac319:
+
+   arm64: dts: amlogic: setup hdmi system clock (2024-06-28 10:10:42 +0200)
+
+----------------------------------------------------------------
+Amlogic ARM64 DT changes for v6.11:
+- New Boards:
+   - OSMC Vero 4K
+   - Dreambox One & Two
+   - GXLX/S905L p271 Reference Boards
+- Amlogic A4 Power Domain
+- A bunch of DT fixes to allmost solve all remaining check errors
+- Amlogic S4 PWM
+- Fixes for:
+   - SM1 SPDIF compatibles
+   - Bump G12 SPDIF driver strength
+   - Add power domain to HDMI TX
+   - Correct HDMI TX clocks
+
+----------------------------------------------------------------
+Arnd Bergmann (1):
+       arm64: dts: amlogic: ad402: move thermal-zones to top node
+
+Christian Hewitt (8):
+       dt-bindings: arm: amlogic: add GXLX/S905L/p271 reference board
+       arm64: dts: meson: add GXLX/S905L/p271 support
+       arm64: dts: meson: radxa-zero2: add pwm-fan support
+       dt-bindings: arm: amlogic: add OSMC Vero 4K
+       arm64: dts: meson: add support for OSMC Vero 4K
+       dt-bindings: add dream vendor prefix
+       dt-bindings: arm: amlogic: add support for Dreambox One/Two
+       arm64: dts: meson: add initial support for Dreambox One/Two
+
+Dmitry Rokosov (3):
+       arm64: dts: amlogic: a1: add cooling-cells for DVFS feature
+       arm64: dts: amlogic: a1: introduce cpu temperature sensor
+       arm64: dts: amlogic: ad402: setup thermal-zones
+
+Jerome Brunet (5):
+       arm64: dts: amlogic: sm1: fix spdif compatibles
+       arm64: dts: amlogic: g12: bump spdif output drive strength
+       arm64: dts: amlogic: add power domain to hdmitx
+       arm64: dts: amlogic: gx: correct hdmi clocks
+       arm64: dts: amlogic: setup hdmi system clock
+
+Junyi Zhao (1):
+       arm64: dts: amlogic: Add Amlogic S4 PWM
+
+Neil Armstrong (13):
+       Merge branch 'dt' of https://git.kernel.org/pub/scm/linux/kernel/git/ulfh/linux-pm into v6.11/arm64-dt
+       arm64: dts: amlogic: meson-g12b-bananapi: remove invalid fan on wrong pwm_cd controller
+       arm64: dts: amlogic: move ao_pinctrl into aobus
+       arm64: dts: amlogic: sm1: fix tdm audio-controller clock order
+       arm64: dts: amlogic: sm1: fix tdm controllers compatible
+       arm64: dts: amlogic: g12a-u200: drop invalid sound-dai-cells
+       arm64: dts: amlogic: g12a-u200: add missing AVDD-supply to acodec
+       arm64: dts: amlogic: axg: fix tdm audio-controller clock order
+       arm64: dts: amlogic: c3: use correct compatible for gpio_intc node
+       arm64: dts: amlogic: a1: use correct node name for mmc controller
+       arm64: dts: amlogic: a1: drop the invalid reset-name for usb@fe004400
+       arm64: dts: amlogic: gxbb-odroidc2: fix invalid reset-gpio property
+       arm64: dts: amlogic: ad402: fix thermal zone node name
+
+Xianwei Zhao (2):
+       dt-bindings: power: add Amlogic A4 power domains
+       arm64: dts: amlogic: a4: add power domain controller node
+
+  Documentation/devicetree/bindings/arm/amlogic.yaml |  10 +
+  .../bindings/power/amlogic,meson-sec-pwrc.yaml     |   1 +
+  .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+  arch/arm64/boot/dts/amlogic/Makefile               |   4 +
+  arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        |  10 +
+  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        |   3 +-
+  arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts     |  45 +++
+  arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |  16 +-
+  arch/arm64/boot/dts/amlogic/meson-axg.dtsi         |  24 +-
+  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  | 438 +++++++++++----------
+  arch/arm64/boot/dts/amlogic/meson-g12.dtsi         |   4 +
+  arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts    |   2 +-
+  .../boot/dts/amlogic/meson-g12b-bananapi.dtsi      |  14 -
+  .../boot/dts/amlogic/meson-g12b-dreambox-one.dts   |  17 +
+  .../boot/dts/amlogic/meson-g12b-dreambox-two.dts   |  20 +
+  .../boot/dts/amlogic/meson-g12b-dreambox.dtsi      | 154 ++++++++
+  .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    |  24 ++
+  .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |   2 +-
+  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  10 +-
+  .../boot/dts/amlogic/meson-gxl-s905x-vero4k.dts    | 199 ++++++++++
+  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         |  10 +-
+  .../boot/dts/amlogic/meson-gxlx-s905l-p271.dts     |  51 +++
+  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 199 ++++++++++
+  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi         |  44 +--
+  include/dt-bindings/power/amlogic,a4-pwrc.h        |  21 +
+  25 files changed, 1048 insertions(+), 276 deletions(-)
+  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dts
+  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dts
+  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi
+  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts
+  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
+  create mode 100644 include/dt-bindings/power/amlogic,a4-pwrc.h
 
 _______________________________________________
 linux-amlogic mailing list
