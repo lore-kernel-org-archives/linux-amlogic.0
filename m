@@ -4,87 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CC31C3065A
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Jul 2024 16:52:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7CB4C3065B
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Jul 2024 17:20:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=W0DtNIjP7gXTM0hDhH6kltwA5mMx4IU/vmNHn1ZQSp0=; b=ONoDxAPp3aGkK2
-	wxLqDEsbB5UT6AIccYr+xkRO061t/jD/SR/CU9LkxQGxyd1WP29RDBXPgU5f7TFBx+zOjsDJRVkRw
-	/OrXeWA7nQlPlGR7Q1yXFrp9TrKOxOkpwQ1XuEF2z+JsaUpYSQIOr1SKLSiyVZke+u36MMRcQArF7
-	nxbxrQek72SWqsTEI3oYsYN8bTCMnMkGGPohgli2v2hRtTpfglGoBZmY/kJY94TNCE5MCw1p+izmh
-	osuXTr5ob5xlfWrZef+UrkyctkrIASZIWNmDsBTN5rivZ/GO9ksozC8MdsLvKFP4cVBbkfN3IhCDR
-	oCRNtHUXAqdQ1hIArvQw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=jYp/FHNbBsXGZVbanx1hASLlfYRkNMJD7T8dSQeuPTU=; b=UMIKTJobYYfo6m
+	7y7en2zi9fsOGxHKbkKnnTOsGNqxya3ugbDrZA8my8SO3TJo8QqaAqA8e0yIJa5WnAId8rSl85EfA
+	1RKLPETzlf1McNXbilLi0RimrCubJ1ftlfZYTF7Ca7OCOk2TQImLuw6ZTmfcqfXv1J85AhHbFVUaY
+	t7spgZw4sXUVDRL/GxERRqvTSMCO9OoTX9WIx0UZe3gsQSeKuKk7bIQyHLtAYtc9sG6FBQmNxCxUV
+	vbJe6UqEyrb0rL7aOBmOTgKSDF7rTrQlRYWZg8tOogL/0p80s3TtU9FGc2tDNXZ4u3h07/uW3lOfu
+	8258nHn42XuaBxQdktzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOKGS-00000004BZZ-0EJ2;
-	Mon, 01 Jul 2024 16:52:28 +0000
-Received: from mail-lf1-x133.google.com ([2a00:1450:4864:20::133])
+	id 1sOKhc-00000004Hxg-1IGR;
+	Mon, 01 Jul 2024 17:20:32 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOKGF-00000004BWK-2G23
-	for linux-amlogic@lists.infradead.org;
-	Mon, 01 Jul 2024 16:52:16 +0000
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-52e743307a2so3697343e87.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 01 Jul 2024 09:52:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719852733; x=1720457533; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7DLhKao11vlhFu7Ijyxr0/p1XMO5cSa7m3wOhNIHXok=;
-        b=FkL99dv16pLag8TFjFHVVRAAUJD3zl/GeERZ2kMA/b7ySFZPTEU7/FMUpTsyHvSG57
-         NW9QFXeXcZvqXMMDLfkyc7FhaqQaeeG8dYjYcxxRoJrJ05afoOzFXtyErNPPuOZNLgIl
-         2KH75kVjwkHzv44qVeAVhVX7sX8falWQu8CIFKqOG9oi1QL7g1hrCuh32MXeLJMCBbRY
-         yHevvgzqXuTlxgNp85MJOtbnlP3n+bPPoe3tJi0YO1GIeMAhIgVtTJqYh60GY6TNaxdm
-         jtbaCTamQzgufwrzAfoF94sepsKz5yeng4RKIxI8EJ+1BLnU+DY5qPqq76ToiDJ43xJC
-         79lQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719852733; x=1720457533;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7DLhKao11vlhFu7Ijyxr0/p1XMO5cSa7m3wOhNIHXok=;
-        b=fznVME075EpvnyD0sXmqqXtkZQgkvZPvJIgmiYTDZXEoI/ZozMj1vQj0Mp1QOAFrSq
-         wCDJr9AhUC+fTNHoPy3kxZVT0P9RuFquMnOInozaLHhuhKURE13LDVYjNtuqfHWt7876
-         0YC2TF2+5ribKSo3Eclu7o56pMz4VWzwFDbM3OJrufQZKj6eQVqhO9nQYjQbixH7LWTK
-         QCSFQUrTwiRuWkrfhdogpUYYtxwhZe5xWZBFpDkC+aYfKp5AQJYMaX8y+9FPwHod/FnL
-         Ow2nkPR8YRdj6c3+/Cuc5xSUWTQ2e9p9JJGi4ewYM4RoRaRoCrNGSpKHxVNKFxR+CESn
-         uxdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXpBmzUD1PG/F7vM0a31/Qwr7gEdbpa//MTq9ZeGwR1GYN5QnnogeZdF2/WJeZ/QS4f+l9hodzvywxvPihdcmkGWGF74MuPkA9xPwnXRVy3UR0=
-X-Gm-Message-State: AOJu0YzSSd2m530VhfduYz1AAsj/X5LBeVcHfZ8WSTbebgTh8oLxaC0Q
-	eGneSVjfJFKuVqrIXqF2KUl/7p40LD4mKX0OIU2RkTbWS/iqSbl5CkACet/K8mHn/10V+6Dv2Zg
-	/
-X-Google-Smtp-Source: AGHT+IGVBd6ahqPkvFTNsvNE96KHbGOgCNIg9WAbHWQs5hu1T95sXrHepxbEMFbdl7cMP3EZjHaqhg==
-X-Received: by 2002:a05:6512:3409:b0:52c:dd8c:a481 with SMTP id 2adb3069b0e04-52e82747fe1mr5513062e87.59.1719852733550;
-        Mon, 01 Jul 2024 09:52:13 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0e0b7csm10528456f8f.49.2024.07.01.09.52.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Jul 2024 09:52:13 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: amlogic: meson8b-ec100: align GPIO keys node name with bindings
-Date: Mon,  1 Jul 2024 18:52:10 +0200
-Message-ID: <20240701165210.578817-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+	id 1sOKhY-00000004HuO-2qY8;
+	Mon, 01 Jul 2024 17:20:31 +0000
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id B9F1C12000C;
+	Mon,  1 Jul 2024 20:20:24 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru B9F1C12000C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1719854424;
+	bh=MVrEHcT3w02APU44tB6WifIiHTjFlslKUbhO+5L4/wA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=OjvS0KAdRHucfTWybqd5mlVuBALqzpYPe5zNyxAuCiMEjGtU47J9QMAF4+hZrUc+4
+	 +PJseiFkhtdIMU8JXJZvJdTZ5FepXZNdNwiLLvC+DNHmO+9/txib3lmrTtk8ZRh69B
+	 3jd1/GMUVIUm4PaUGMyc/Y1X8ZAvXwqJWFXo6Uvs0Fl+LbnZyohw9eQXPpfbFuWpDD
+	 zicYQ7KOgAEi9GoNAAB0R7oTgu0IJldVaGp4RJ5zeHNyZFf7kwnzq4jPnxgfj8mNkP
+	 fv09zpI59Dg8BnPvlT8sHKBYSUJIPeFEJssYw5qHkPDqVDZr3OIbn3EhBCvm+21Vyc
+	 1lVz3H3zhyWiA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon,  1 Jul 2024 20:20:24 +0300 (MSK)
+Received: from work.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 1 Jul 2024 20:20:23 +0300
+From: George Stark <gnstark@salutedevices.com>
+To: <ukleinek@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+	<hkallweit1@gmail.com>
+CC: <linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <kernel@salutedevices.com>, George Stark
+	<gnstark@salutedevices.com>, Dmitry Rokosov <ddrokosov@salutedevices.com>
+Subject: [PATCH v2 1/3] dt-bindings: pwm: amlogic: Add new bindings for meson A1 PWM
+Date: Mon, 1 Jul 2024 20:20:14 +0300
+Message-ID: <20240701172016.523402-2-gnstark@salutedevices.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240701172016.523402-1-gnstark@salutedevices.com>
+References: <20240701172016.523402-1-gnstark@salutedevices.com>
 MIME-Version: 1.0
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 186247 [Jul 01 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 21 0.3.21 ebee5449fc125b2da45f1a6a6bc2c5c0c3ad0e05, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/01 15:14:00 #25789329
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240701_095215_582254_C7F68EFA 
-X-CRM114-Status: UNSURE (   8.80  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240701_102029_421862_385946DA 
+X-CRM114-Status: GOOD (  10.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,31 +103,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Bindings expect the GPIO keys node names to follow certain pattern, see
-dtbs_check warnings:
+The chip has 3 dual-channel PWM modules PWM_AB, PWM_CD, PWM_EF.
 
-  meson8b-ec100.dtb: gpio-keys: '#address-cells', '#size-cells' do not match any of the regexes: '^(button|event|key|switch|(button|event|key|switch)...
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: George Stark <gnstark@salutedevices.com>
+Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
 ---
- arch/arm/boot/dts/amlogic/meson8b-ec100.dts | 2 --
- 1 file changed, 2 deletions(-)
+ Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm/boot/dts/amlogic/meson8b-ec100.dts b/arch/arm/boot/dts/amlogic/meson8b-ec100.dts
-index 3da47349eaaf..49890eb12781 100644
---- a/arch/arm/boot/dts/amlogic/meson8b-ec100.dts
-+++ b/arch/arm/boot/dts/amlogic/meson8b-ec100.dts
-@@ -34,8 +34,6 @@ emmc_pwrseq: emmc-pwrseq {
- 
- 	gpio-keys {
- 		compatible = "gpio-keys-polled";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		poll-interval = <100>;
- 
- 		pal-switch {
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+index 1d71d4f8f328..da22cb3ed878 100644
+--- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
++++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+@@ -37,6 +37,10 @@ properties:
+       - enum:
+           - amlogic,meson8-pwm-v2
+           - amlogic,meson-s4-pwm
++      - items:
++          - enum:
++              - amlogic,meson-a1-pwm
++          - const: amlogic,meson-s4-pwm
+       - items:
+           - enum:
+               - amlogic,meson8b-pwm-v2
 -- 
-2.43.0
+2.25.1
 
 
 _______________________________________________
