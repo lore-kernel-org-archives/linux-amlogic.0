@@ -4,118 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43CA0C2BD09
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Jul 2024 09:10:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31518C30653
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Jul 2024 13:01:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=6LhIWX4qKg9ZTRtTgPnU5yr8P8pOHvXVnWPOllQWiik=; b=xnUR5Sr9PT2b2jRZMDfzy1JnVh
-	VYX1skPogssC1g7X5tSCLbuiMZ4vpuF8JEJhL8ZsbjLgJmEr4ruZu8yvimrRdJptgQD6cvxsjev7z
-	KkrfwkBlFk0af4c32NCAtrUcHTetSARxFEElmCEARGx9tqLz1TQzZr/btYsiltDPbr3/l3ttPsw4z
-	HpkSmbgyufB3dv58dIvPbvQM514bjewbDme73lfDAzFARQ6lh9uUUsI304EB1+uaIO8PeWFVpzgXd
-	X1c8PO8ZQ9fS7Vr6tybj5DAZHN9hnwpsO6Gjgv9awo2llMT9HjApYcSIJXsErgxzxKPFrPkfX4obA
-	vjlO/GTQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=WpyG/DTWk2e69fIJQC3V3/P2bks+jHqfkuZDSbewXm8=; b=J/3zDx/hykDQ0v
+	6qfoSvNlpnyW5t/MsbOkniM/izFLMS91llCpvP+Xe2UWg5icwvjJaS6d2W7IV/AWB0mFoClDZBSgr
+	+FkdM+A4htMmtr0vkZnK9rx1OgNQH54Pt9o7JC9rpiUF3xyDlE3gqZooscojVbfnvTAameHJv9Bq0
+	c+7aIcRkZ9gxZp83QXSFSI4JOOlzZdbfSfp8Il7/xP3SqxXlDbd1sKwmctM0lAk0IqtLLjUakSWlj
+	4ybH/gdhLNmEUce/oLUqu2r9hP9ShDExruD8sM2tazUtIDmrGC4U3drvQR+6GlnNGIv/zSphspYsV
+	+ex9r8lc28M2oHexy8Xw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOD3c-00000002OWV-0BEN;
-	Mon, 01 Jul 2024 09:10:44 +0000
-Received: from mail-lf1-x12f.google.com ([2a00:1450:4864:20::12f])
+	id 1sOGey-00000003NSb-3LzA;
+	Mon, 01 Jul 2024 13:01:32 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOD3Y-00000002OVv-3lcj
-	for linux-amlogic@lists.infradead.org;
-	Mon, 01 Jul 2024 09:10:42 +0000
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-52cdebf9f53so2753708e87.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 01 Jul 2024 02:10:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719825039; x=1720429839; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WmxwoN5WifjaiLHb4RF2OzomH1ffmSkrRHOoZR2aCx8=;
-        b=pyvIRLVOkSrcg7V58rEK0BVtD4fa2GUPhou6+fXBQBT2YBvY8UOju9IBpQ0hhU3i7c
-         ZEc8TSLAPX83OrIj05yGM6qojEmsae3TtVtD+4pzmg4hPo3g+YKMexO9B7P0et84RqHA
-         TKdSGZNH0ocwUaYcnGUAWeLGBckiIXcHD56nWA2IMOC8O3tmU8bEClfcoBv/g07k+0Ic
-         DJnQGhIIvT0NpLEpFaRSMQncpsDue9HIZw/6sRaq9bmbIftMrIhTijKlRaOQhWYYiKCL
-         N4fzmrgWojDhCyaHyvtvnk7tFnnoIy7FzO4jB/DDYJSbrxDod0vp7NiZ+LBxOx5IiXEj
-         RuOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719825039; x=1720429839;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=WmxwoN5WifjaiLHb4RF2OzomH1ffmSkrRHOoZR2aCx8=;
-        b=pa2us3zxn2xewzuEYpQIjMd3dsrC2SHArDPXpp28enqewwHptZSjQi5TbIwy6A8Vew
-         uWaMRfLkFd1xO7P62d3x+NUzXa54npKtIU3ruksjWS7ww9OP55IGNKwSQqBpWxSzGget
-         GzcbBm68WJllRrWrq5l6y9Xatj2vnI3kkbiWxHs8ihHxhO3ay+oPGJDjPJJyX6uqA4zl
-         9BrSYi2ZVykYsINYyNwySIJ4qy4PAPx5DP/HgNqh3xNnnz+YGKU0pRRU34IgFOVLQnvx
-         ed80yZ6chAnGvtbxpzn48CND1h5Rt2DN6cjntWvJmrCFjFu9PnIjOBZ78Oc4Zf8lrO2P
-         RRNA==
-X-Forwarded-Encrypted: i=1; AJvYcCXMEWyYJaIlP6aOU55zeSPXhmJir+JcHkTVqYio6g/FLmGhTSS4Ic6dvUMpWbflu+7RB580CeeyJGdSAyT2ohtl0IL7McGTIIBm4AIIcNoT5Jg=
-X-Gm-Message-State: AOJu0YwHVkwWBZLMvz4ICsOJxbmrCVBq2lvPPeYm/624FUn+kMxi5+xF
-	U2CurjBt6BR6d/G1NgOfQMqaDUKlIZwA5VzxA/ALxKmk1mFrlKHW92MfLvKVcy4=
-X-Google-Smtp-Source: AGHT+IEU8xp3goGxhTEutzBiuLEdZgqoKoixVNFadzR5iUuvIJM+GQ80X/3pH/R60oEG9o4bMBlLAw==
-X-Received: by 2002:a05:6512:39ca:b0:52c:e312:2082 with SMTP id 2adb3069b0e04-52e826febbamr3646811e87.54.1719825038326;
-        Mon, 01 Jul 2024 02:10:38 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:4719:99ea:652b:10d0? ([2a01:e0a:982:cbb0:4719:99ea:652b:10d0])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0cd687sm9494431f8f.14.2024.07.01.02.10.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Jul 2024 02:10:37 -0700 (PDT)
-Message-ID: <bd1c0c99-e394-4ad2-bc86-a277018b3ec0@linaro.org>
-Date: Mon, 1 Jul 2024 11:10:36 +0200
+	id 1sOGeu-00000003NOy-2V01;
+	Mon, 01 Jul 2024 13:01:31 +0000
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 6EFEC100023;
+	Mon,  1 Jul 2024 16:01:23 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6EFEC100023
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1719838883;
+	bh=WDvsjnCOMqIp/cCpUuumCAjvp9d7iYIJ13Aq9BVxTOE=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=DybD95eXYe/ryPCzwCPZ3puFOhiZSEkLul5NUUmvIu4W+tGO+eq3Vg9CiOaDBeNt/
+	 1d6O2Mq21FPUbluKFok2kQASYYqZKRjPkyXw+T/okpefYaIxpi9e6iROmkxk5MiA2Z
+	 goFuOLEHhCbABzurreNBjz/pVfsdik7B4ByOmEo+qXbtKeH6lzVKRgGvTr/hXhvMCn
+	 pcGhGBQVGQx+TAmigkwpal8y0puLYTr/dOPKvPP7ABZYeQUmJCmn4coDUnY97g6iyk
+	 Alb9AWfHIZb5DIoWkplGurexPVS0VRvmVHjWU7RSAgGnG+3RC+m09wvGkZUu6R7hyU
+	 9Ppv/qwRHf2bQ==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon,  1 Jul 2024 16:01:23 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 1 Jul 2024 16:01:22 +0300
+From: George Stark <gnstark@salutedevices.com>
+To: <ukleinek@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+	<hkallweit1@gmail.com>
+CC: <linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <kernel@salutedevices.com>, George Stark
+	<GNStark@sberdevices.ru>, Dmitry Rokosov <ddrokosov@salutedevices.com>
+Subject: [PATCH 2/2] arm64: dts: meson: a1: add definitions for meson pwm
+Date: Mon, 1 Jul 2024 16:01:13 +0300
+Message-ID: <20240701130113.433169-3-gnstark@salutedevices.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240701130113.433169-1-gnstark@salutedevices.com>
+References: <20240701130113.433169-1-gnstark@salutedevices.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 0/2] iio: frequency: add iio support for Amlogic clock
- measure
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-iio@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm <linux-arm-msm@vger.kernel.org>
-References: <20240624173105.909554-1-jbrunet@baylibre.com>
- <52fab9b5-2b44-49c0-8b90-cb2a74eb6633@linaro.org>
- <1jzfr9gxh4.fsf@starbuckisacylon.baylibre.com>
- <c092ec67-e384-411d-8885-665597547523@linaro.org>
- <1jv81xgmfc.fsf@starbuckisacylon.baylibre.com>
- <5da26c0e-75a7-4d5a-9eca-f88ecf369996@linaro.org>
- <1jjzi5a3ka.fsf@starbuckisacylon.baylibre.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <1jjzi5a3ka.fsf@starbuckisacylon.baylibre.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 186241 [Jul 01 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 21 0.3.21 ebee5449fc125b2da45f1a6a6bc2c5c0c3ad0e05, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/01 11:44:00 #25786379
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240701_021041_002098_FF54E5F4 
-X-CRM114-Status: GOOD (  39.38  )
+X-CRM114-CacheID: sfid-20240701_060129_222554_1BDF739F 
+X-CRM114-Status: GOOD (  11.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,150 +98,267 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 01/07/2024 11:01, Jerome Brunet wrote:
-> On Mon 01 Jul 2024 at 09:41, Neil Armstrong <neil.armstrong@linaro.org> wrote:
-> 
->> On 25/06/2024 15:51, Jerome Brunet wrote:
->>> On Tue 25 Jun 2024 at 15:18, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>>
->>>> On 25/06/2024 11:53, Jerome Brunet wrote:
->>>>> On Tue 25 Jun 2024 at 11:38, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>>>>
->>>>>> Hi,
->>>>>>
->>>>>> [+cc people from linux-msm]
->>>>>>
->>>>>> On 24/06/2024 19:31, Jerome Brunet wrote:
->>>>>>> Add support for the HW found in most Amlogic SoC dedicated to measure
->>>>>>> system clocks.
->>>>>>> This drivers aims to replace the one found in
->>>>>>> drivers/soc/amlogic/meson-clk-measure.c with following improvements:
->>>>>>> * Access to the measurements through the IIO API:
->>>>>>>       Easier re-use of the results in userspace and other drivers
->>>>>>> * Controllable scale with raw measurements
->>>>>>> * Higher precision with processed measurements
->>>>>>> Jerome Brunet (2):
->>>>>>>       dt-bindings: iio: frequency: add clock measure support
->>>>>>>       iio: frequency: add amlogic clock measure support
->>>>>>>      .../iio/frequency/amlogic,clk-msr-io.yaml     |  50 ++
->>>>>>>      drivers/iio/frequency/Kconfig                 |  15 +
->>>>>>>      drivers/iio/frequency/Makefile                |   1 +
->>>>>>>      drivers/iio/frequency/amlogic-clk-msr-io.c    | 802 ++++++++++++++++++
->>>>>>>      4 files changed, 868 insertions(+)
->>>>>>>      create mode 100644 Documentation/devicetree/bindings/iio/frequency/amlogic,clk-msr-io.yaml
->>>>>>>      create mode 100644 drivers/iio/frequency/amlogic-clk-msr-io.c
->>>>>>>
->>>>>>
->>>>>> While I really appreciate the effort, and the code looks cool, the clkmsr is really
->>>>>> a debug tool, and I'm not sure IIO is the right place for such debug tool ?
->>>>> The reason why I went through the trouble of doing an IIO port is
->>>>> because I need that for other purposes than debug. I need to to be able
->>>>> to check a frequency from another driver. I don't see a reason to invent
->>>>> another API when IIO provide a perfectly good one.
->>>>> The HW does measurements. IIO seems like the best place for it.
->>>>> For the record, I need this for a eARC support.
->>>>> eARC has a PLL that locks on incoming stream. eARC registers show wether
->>>>> the PLL is locked or not, but not at which rate. That information is
->>>>> needed in ASoC. Fortunately the eARC PLL is one of measured clock, which
->>>>> is a life saver in that case.
->>>>
->>>> This is a very interesting use-case, and quite weird nothing is provided
->>>> on the eARC side.
->>> Indeed.
->>>
->>>>
->>>> So yes it's definitely a valid use-case, but:
->>>> - we should keep the debugfs interface, perhaps move it in the iio driver ?
->>> I considered this initially but it would add a lot of boiler plate
->>> code to provide over debugfs exactly what iio already provides over
->>> sysfs. As you pointed out, the previous driver only provided debug
->>> information, the debugfs interface it provided is hardly a
->>> critical/stable one.
->>
->> I still don't see why it could add so much boilerplate, all the tables and
->> calculation fonction would be shared, only the debugfs clk_msr_show() and
->> clk_msr_summary_show() would be kept, all the rest would be common.
->>
->> I insist, please keep the debugfs interface for debug purposes. You don't
->> want to mess with IIO when you bring up new platforms with bare minimum
->> kernels.
-> 
-> I don't think that is going to change anything. It's not like IIO brings
-> any complexity or will be compiled out.
-> 
-> But since you insist, I'll add it in the next version as a separate patch.
-> 
->>
->>>
->>>> - we should keep a single compatible, so simply update the current bindings with iio cells
->>> Using a new compatible allows to split the memory region, making the
->>> interface between DT and driver a lot easier to implement seemlessly
->>> between old and new SoCs. Eventually it may allow to implement the duty
->>> part too.
->>
->> It's a problem for new platforms, you can introduce the split only for the
->> new ones, the impact on code won't high enough to justify new bindings.
->>
-> 
-> What you are requesting will introduce two drivers providing the same
-> compatible, unless you plan on removing the old one in a coordinated
-> way.
-> 
-> That's an unncessary churn. The old driver could stay there for a
-> while and platform slowly migrate. What you are requesting forcefully
-> migrates every consumer, assuming the old driver is compiled out.
-> 
-> This is an opportunity to more correctly describe the interface.
-> It does not break any DT rules, that is enough of a justification IMO.
+From: George Stark <GNStark@sberdevices.ru>
 
-DT describes the Hardware, I don't see how the new bindings describes better
-the current hardware... tying the new bindings to a new driver is actually
-against the DT rules, the bindings thing is actually to avoid that.
-For PWM, bindings architecture was clearly wrong, but here, not really.
+The chip has 3 dual-channel PWM modules PWM_AB, PWM_CD, PWM_EF those
+can be connected to various digital I/O pins.
 
-I still don't see the problem of migrating current users to the new driver
-using the current compatible, really, please explain what would be the problem ?
+Each of 6 PWM is driven by individually selected clock parent and
+8-bit divider. The PWM signal is generated using two 16-bit counters.
 
-In any case you'll only need to add the #io-channel-cells to boards that would
-require frequency monitoring for eARC, for all the other boards you'll won't need it.
-So this property can safely be added as optional to the current bindings.
+Signed-off-by: George Stark <GNStark@sberdevices.ru>
+Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 215 ++++++++++++++++++++++
+ 1 file changed, 215 insertions(+)
 
-Neil
-
-> 
->> Neil
->>
->>>
->>>> - for s4 & c3, it's ok to either add a second reg entry in the bindings
->>> Doing that for s4 and c3 only would still make a mess of offset handling
->>> the region because duty prepend the region on old SoC. The goal is to
->>> have an interface that seemlessly support both old and new SoCs.
->>>
->>>>
->>>> Neil
->>>>
->>>>> Everything that was available through the old driver still is, with more
->>>>> precision and more control.
->>>>>
->>>>>>
->>>>>> There's almost the same interface on qcom SoCs (https://github.com/linux-msm/debugcc) but
->>>>>> they chose to keep it in userspace until we find an appropriate way to expose
->>>>>> this from the kernel the right way.
->>>>>>
->>>>>> If it enabled us to monitor a frequency input for a product use-case, IIO would be
->>>>>> the appropriate interface, but AFAIK it's only internal clocks and thus I'm worried
->>>>>> it's not the best way to expose those clocks.
->>>>>>
->>>>>> Neil
->>>>>
->>>
-> 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index 2a69e1e41bdc..d93b10bd156b 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -307,6 +307,188 @@ mux {
+ 					};
+ 				};
+ 
++				pwm_a_pins1: pwm-a-pins1 {
++					mux {
++						groups = "pwm_a_x6";
++						function = "pwm_a";
++					};
++				};
++
++				pwm_a_pins2: pwm-a-pins2 {
++					mux {
++						groups = "pwm_a_x7";
++						function = "pwm_a";
++					};
++				};
++
++				pwm_a_pins3: pwm-a-pins3 {
++					mux {
++						groups = "pwm_a_f10";
++						function = "pwm_a";
++					};
++				};
++
++				pwm_a_pins4: pwm-a-pins4 {
++					mux {
++						groups = "pwm_a_f6";
++						function = "pwm_a";
++					};
++				};
++
++				pwm_a_pins5: pwm-a-pins5 {
++					mux {
++						groups = "pwm_a_a";
++						function = "pwm_a";
++					};
++				};
++
++				pwm_b_pins1: pwm-b-pins1 {
++					mux {
++						groups = "pwm_b_x";
++						function = "pwm_b";
++					};
++				};
++
++				pwm_b_pins2: pwm-b-pins2 {
++					mux {
++						groups = "pwm_b_f";
++						function = "pwm_b";
++					};
++				};
++
++				pwm_b_pins3: pwm-b-pins3 {
++					mux {
++						groups = "pwm_b_a";
++						function = "pwm_b";
++					};
++				};
++
++				pwm_c_pins1: pwm-c-pins1 {
++					mux {
++						groups = "pwm_c_x";
++						function = "pwm_c";
++					};
++				};
++
++				pwm_c_pins2: pwm-c-pins2 {
++					mux {
++						groups = "pwm_c_f3";
++						function = "pwm_c";
++					};
++				};
++
++				pwm_c_pins3: pwm-c-pins3 {
++					mux {
++						groups = "pwm_c_f8";
++						function = "pwm_c";
++					};
++				};
++
++				pwm_c_pins4: pwm-c-pins4 {
++					mux {
++						groups = "pwm_c_a";
++						function = "pwm_c";
++					};
++				};
++
++				pwm_d_pins1: pwm-d-pins1 {
++					mux {
++						groups = "pwm_d_x15";
++						function = "pwm_d";
++					};
++				};
++
++				pwm_d_pins2: pwm-d-pins2 {
++					mux {
++						groups = "pwm_d_x13";
++						function = "pwm_d";
++					};
++				};
++
++				pwm_d_pins3: pwm-d-pins3 {
++					mux {
++						groups = "pwm_d_x10";
++						function = "pwm_d";
++					};
++				};
++
++				pwm_d_pins4: pwm-d-pins4 {
++					mux {
++						groups = "pwm_d_f";
++						function = "pwm_d";
++					};
++				};
++
++				pwm_e_pins1: pwm-e-pins1 {
++					mux {
++						groups = "pwm_e_p";
++						function = "pwm_e";
++					};
++				};
++
++				pwm_e_pins2: pwm-e-pins2 {
++					mux {
++						groups = "pwm_e_x16";
++						function = "pwm_e";
++					};
++				};
++
++				pwm_e_pins3: pwm-e-pins3 {
++					mux {
++						groups = "pwm_e_x14";
++						function = "pwm_e";
++					};
++				};
++
++				pwm_e_pins4: pwm-e-pins4 {
++					mux {
++						groups = "pwm_e_x2";
++						function = "pwm_e";
++					};
++				};
++
++				pwm_e_pins5: pwm-e-pins5 {
++					mux {
++						groups = "pwm_e_f";
++						function = "pwm_e";
++					};
++				};
++
++				pwm_e_pins6: pwm-e-pins6 {
++					mux {
++						groups = "pwm_e_a";
++						function = "pwm_e";
++					};
++				};
++
++				pwm_f_pins1: pwm-f-pins1 {
++					mux {
++						groups = "pwm_f_b";
++						function = "pwm_f";
++					};
++				};
++
++				pwm_f_pins2: pwm-f-pins2 {
++					mux {
++						groups = "pwm_f_x";
++						function = "pwm_f";
++					};
++				};
++
++				pwm_f_pins3: pwm-f-pins3 {
++					mux {
++						groups = "pwm_f_f4";
++						function = "pwm_f";
++					};
++				};
++
++				pwm_f_pins4: pwm-f-pins4 {
++					mux {
++						groups = "pwm_f_f12";
++						function = "pwm_f";
++					};
++				};
++
+ 				sdio_pins: sdio {
+ 					mux0 {
+ 						groups = "sdcard_d0_x",
+@@ -648,6 +830,28 @@ uart_AO_B: serial@2000 {
+ 				status = "disabled";
+ 			};
+ 
++			pwm_ab: pwm@2400 {
++				compatible = "amlogic,meson-a1-pwm",
++					     "amlogic,meson-s4-pwm";
++				reg = <0x0 0x2400 0x0 0x24>;
++				#pwm-cells = <3>;
++				clocks = <&clkc_periphs CLKID_PWM_A>,
++					 <&clkc_periphs CLKID_PWM_B>;
++				power-domains = <&pwrc PWRC_I2C_ID>;
++				status = "disabled";
++			};
++
++			pwm_cd: pwm@2800 {
++				compatible = "amlogic,meson-a1-pwm",
++					     "amlogic,meson-s4-pwm";
++				reg = <0x0 0x2800 0x0 0x24>;
++				#pwm-cells = <3>;
++				clocks = <&clkc_periphs CLKID_PWM_C>,
++					 <&clkc_periphs CLKID_PWM_D>;
++				power-domains = <&pwrc PWRC_I2C_ID>;
++				status = "disabled";
++			};
++
+ 			saradc: adc@2c00 {
+ 				compatible = "amlogic,meson-g12a-saradc",
+ 					"amlogic,meson-saradc";
+@@ -731,6 +935,17 @@ sec_AO: ao-secure@5a20 {
+ 				amlogic,has-chip-id;
+ 			};
+ 
++			pwm_ef: pwm@5400 {
++				compatible = "amlogic,meson-a1-pwm",
++					     "amlogic,meson-s4-pwm";
++				reg = <0x0 0x5400 0x0 0x24>;
++				#pwm-cells = <3>;
++				clocks = <&clkc_periphs CLKID_PWM_E>,
++					 <&clkc_periphs CLKID_PWM_F>;
++				power-domains = <&pwrc PWRC_I2C_ID>;
++				status = "disabled";
++			};
++
+ 			clkc_pll: pll-clock-controller@7c80 {
+ 				compatible = "amlogic,a1-pll-clkc";
+ 				reg = <0 0x7c80 0 0x18c>;
+-- 
+2.25.1
 
 
 _______________________________________________
