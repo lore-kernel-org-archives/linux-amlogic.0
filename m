@@ -4,70 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4449FC2BD09
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Jul 2024 08:36:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CB13C30653
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Jul 2024 08:38:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
 	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Cgo+JhmjMsvXIkjqXWcaYL6cNSt73iXn//Nwn0oxZPU=; b=yY3dap8kb8AFbb
-	swh9c6r+koC5wE+SfbrhoabvcvTo+1AxpcE9v21nTuASbYT0o2Xz4044vn7fcWpcch74sA33TCGsq
-	Y5i/NU3N5rCgbeUqUIMHVwfyxbIe/0ebRUn6W+NaWumFx7igahUkoNRsJglmk5VhussC54U4PnwLE
-	HLwVNMNekCdEEJV7T0tj+mn56oUHlPDFd2yhLJzjfoY/arRFpTaz6afpo3Z7O6YqLsGj1rR1OBNf+
-	1EK7yNIm/5sssEeP4wUGtoCHDfUaxAKswTxufgo/a8Cv2bg/KP+MsxHmebJaiF/QLys+/SqrtrbYQ
-	RE3W8+PuINQJlex7yEZA==;
+	List-Owner; bh=kD4eb4G+6TgOcZrDhXFC2Zq9Rh6S7YYZHDOnEVADiRQ=; b=oSbT0e1jLGnDHC
+	yexWbTXmdssXy5rPLjjnQakM/tjOoQhM7z9zrglJthj8Oy/KZAT6KGFyQ6UaZgaQoGitb+L/Pp64d
+	4CN07Xss6yXqH97akTU4dfTT9jw790LPmrB0LKXeOxwZvI6IiLz9zTqLD4kSDuPKat5qfsRjEpb+7
+	XxdweJTINn1607QZ2/fN3zfzZIq6nXQXAAI9F6EowRG0e5c2aiQ9U6Q851xpjlGJ2oi06ka3zEH4v
+	j1ijSki4iV3KLTjG5W5/fL8GcD8/OSwDMUtBvT1X04JEf49gxyhs4F6rqjbcJNCPJA+xhUlArHHrK
+	7zoJ1V2nH2Ack8KKUBzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOCWg-00000002Fj7-388y;
-	Mon, 01 Jul 2024 08:36:42 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1sOCYE-00000002G2D-2t7R;
+	Mon, 01 Jul 2024 08:38:18 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOCWd-00000002Fi6-1QqS
+	id 1sOCY2-00000002Fxq-3maj
 	for linux-amlogic@lists.infradead.org;
-	Mon, 01 Jul 2024 08:36:40 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-42138eadf64so19966005e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 01 Jul 2024 01:36:39 -0700 (PDT)
+	Mon, 01 Jul 2024 08:38:10 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-367339bd00aso2087290f8f.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 01 Jul 2024 01:38:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719822998; x=1720427798; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1719823085; x=1720427885; darn=lists.infradead.org;
         h=content-transfer-encoding:organization:autocrypt:content-language
          :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=43Jk5ICXouubFnaN+i30n+gCprshHo+KzXIWWkI6eis=;
-        b=UMUYKZEscesIdHefeAOE5e+wPQEDTSMEAhMx8Tm+C9gM7Yq5mE8kaAmkjPl0VrA4YQ
-         MnjRGtBOkonLZwyG5M0tNyinUJ+XT78JA/dDM3A1YGq6WPwYX+cKakZ1vgi2TYMTQ7Wq
-         8aSt6+9KEZcLe8htAy5DoOKHDopSv8bGUWoibiQAk2m+oIwFqw2vf0Pdf0Vi3T6ukfpx
-         GJQh7nK3HnQy5qGFSQ87s4G33UbBhjhTs9QNgzsFSrJSUD8D6B0qcXKPTnUEGCDq0d+R
-         Q0KEY7m5t3OSuroVnkIUn1GaWUXzUV1aZsn3gYscOcahk/xgo4kQlsewSSvq4mL2OohO
-         kDbg==
+        bh=jxVs/aFlSL+ewuyexawKywQPxcZUDdKkKdHaRAPiuwY=;
+        b=qef7qTTDfcCZ0wUpLDf3qkbe1xiYuD/rc/rG7sBFcz5PQWcWD6e0A9N719FTnHAEMr
+         a0FQYKmVchh8LtzKLuzrWF/rqn/KNtcSNrcV3+yjozTtiK6GYgvJ+6EQfSuyDmMh374X
+         awIRkmkEnLgIe+mCSDaud0kerKvxkfK1kIlZG5ZpxF0kcVmtmTaozG+yiY9yqjacA+sT
+         BZSxYDS4llT51Y/VDxarPgB9CHEzecX1s6o9Zmd1fehoY5j6YgngRKha+tIzZcQzDkOv
+         dU4xbdm5UR/9XEVFoBsBQniFbfNaJIB3lh9yhkkmmHiNZ9wkp+KVLINSKeCWJ5kuscV/
+         v1+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719822998; x=1720427798;
+        d=1e100.net; s=20230601; t=1719823085; x=1720427885;
         h=content-transfer-encoding:organization:autocrypt:content-language
          :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=43Jk5ICXouubFnaN+i30n+gCprshHo+KzXIWWkI6eis=;
-        b=CFco+LSCm0V2H2n2t3HpbQAiOkuOLUJkyxfZXBOyPBNBOME9i9d653q20fUaT4lbds
-         I0frOMm/u4G0fo5UULVcNqfbrylYcN/6rNYUKzbnbPrthob5n0suugdH5R4qTZZlo2nt
-         3hQhGDKlB3mxJI6gr34tYTtgRMQYHWdsCqEeR2WJZkJYBT+4+QVOVRyfJqpUpTmFv/zC
-         Qxf2mJWUfyKsE/S9bf1Y2u/8Boh6JeV0Z2qWFXuqC5mS6gqIlah3S4UnI3i2vmF1C0A0
-         Ps+aRXqDvFhg2c9xYXRicLC2kYGnO/Hp2L3jwIQX6onmwDkIA4dQNgojM+1OFo1kfDhp
-         5c+Q==
-X-Gm-Message-State: AOJu0YwtoC9Arsvf9yS4TlJY5RsaF5Q18c1MDaNxPwd1W2Wi2sZVYs74
-	BIf9dyghnHn3t5eHMJIaRJv+7u1W81gKWXEEvly8dA1S4sj83grC3dHS16k+1j0=
-X-Google-Smtp-Source: AGHT+IGQz8F4xDL3eSbOZj3rv4Jkj+ouvv1UCierzK1/V4cOwMD1ZhKY6BHDa5byKSApNt9TwmFRPw==
-X-Received: by 2002:a05:600c:1582:b0:425:7616:f0b5 with SMTP id 5b1f17b1804b1-4257a02f834mr32985025e9.16.1719822997341;
-        Mon, 01 Jul 2024 01:36:37 -0700 (PDT)
+        bh=jxVs/aFlSL+ewuyexawKywQPxcZUDdKkKdHaRAPiuwY=;
+        b=wbdUpXE3wnBP0X9RdIC1KJyeSq8coLjNF5wQjiwjAfKn2VYGbY+dkks9vIu1GFLcyB
+         Lyp38E0J7M2qhLO1Z9ggdsst5jgFrOghuHyQhVcIyOz0dOuRYUdEM6UFl5hBSTL1YQYw
+         JLWPonH9Ug+x7RxdsaPqzYomWI2UMHy/epdDrQa2XpKuuqNc6zDeMhEyDPNIWcHxSvoF
+         cbhmbnOQaFkaFS5h/kDUVvchUMw4lEhvnd56SmslCrdKMkMtDQPQjjer5b+9Afjvmz6t
+         k/0CXjuxF8/cm81uyQMlHfACDH8ryk0VtnYlyRyVou6zZe9TNqQg2M0arimYUE1ffVax
+         gxvA==
+X-Gm-Message-State: AOJu0Yyer1On2ITetbijs4MjWH/2U9BW2Mh5wzGLZ8114O0mRc0RE9K8
+	56CCLnHluFUwQ5HS730R0rC6c9IJwBbdZV84W8S14jIuGWZTjrG5ILgMd9QvW0rIGQG/1GuxG0z
+	M8wokWQ==
+X-Google-Smtp-Source: AGHT+IEC+y0QGzsFdQF98bWxNSJQWWcmdbLYujB9UH+gGS0CAQK2LeEtDTr24X4WKIbxypVU1ZvcTQ==
+X-Received: by 2002:a5d:5301:0:b0:367:40e6:46bd with SMTP id ffacd0b85a97d-3677572985bmr2724924f8f.61.1719823084737;
+        Mon, 01 Jul 2024 01:38:04 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:4719:99ea:652b:10d0? ([2a01:e0a:982:cbb0:4719:99ea:652b:10d0])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675f9dfbdbsm9023940f8f.103.2024.07.01.01.36.36
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0d8cd8sm9347934f8f.27.2024.07.01.01.38.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Jul 2024 01:36:36 -0700 (PDT)
-Message-ID: <7f71e76c-c793-429a-b0ed-7296553a3eff@linaro.org>
-Date: Mon, 1 Jul 2024 10:36:36 +0200
+        Mon, 01 Jul 2024 01:38:04 -0700 (PDT)
+Message-ID: <35093904-c4a8-432d-b010-a994fc1ee536@linaro.org>
+Date: Mon, 1 Jul 2024 10:38:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [GIT PULL] amlogic ARM64 DT updates for v6.11
+Subject: [GIT PULL] amlogic drivers updates for v6.11
 To: soc@kernel.org, arm@kernel.org
 Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Language: en-US, fr
@@ -97,8 +98,9 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240701_013639_429329_186BEFDE 
-X-CRM114-Status: GOOD (  13.22  )
+X-CRM114-CacheID: sfid-20240701_013806_982680_D80582A7 
+X-CRM114-Status: UNSURE (   6.13  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,126 +120,41 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-Here's a set of Amlogic ARM64 DT changes for v6.11, with:
-- A bunch of DT fixes to allmost solve all remaining check errors
-- Some SM1/G12 SPDIF & HDMI updates an fixes
-- Amlogic S4 PWM
-- Amlogic A4 Power Domain
-- New boards: OSMC Vero 4K, Dreambox One & Two, GXLX/S905L p271 Reference Boards
-
-The PR is based on -rc2 since I merged Ulf's immutable dt branch for the S4 Power
-Domain DT changes.
+Here's a couple of new SoC IDs and MODULE_DESCRIPTION() fixuo for meson_sm.
 
 Thanks,
 Neil
 
-The following changes since commit c3f38fa61af77b49866b006939479069cd451173:
+The following changes since commit 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0:
 
-   Linux 6.10-rc2 (2024-06-02 15:44:56 -0700)
+   Linux 6.10-rc1 (2024-05-26 15:20:12 -0700)
 
 are available in the Git repository at:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm64-dt-for-v6.11
+   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-drivers-for-v6.11
 
-for you to fetch changes up to 1443b6ea806dfcdcee6c894784332c9c947ac319:
+for you to fetch changes up to 5375986e16207e573c0493009d25b0c01f44e01d:
 
-   arm64: dts: amlogic: setup hdmi system clock (2024-06-28 10:10:42 +0200)
-
-----------------------------------------------------------------
-Amlogic ARM64 DT changes for v6.11:
-- New Boards:
-   - OSMC Vero 4K
-   - Dreambox One & Two
-   - GXLX/S905L p271 Reference Boards
-- Amlogic A4 Power Domain
-- A bunch of DT fixes to allmost solve all remaining check errors
-- Amlogic S4 PWM
-- Fixes for:
-   - SM1 SPDIF compatibles
-   - Bump G12 SPDIF driver strength
-   - Add power domain to HDMI TX
-   - Correct HDMI TX clocks
+   firmware: meson_sm: add missing MODULE_DESCRIPTION() macro (2024-06-24 10:08:53 +0200)
 
 ----------------------------------------------------------------
-Arnd Bergmann (1):
-       arm64: dts: amlogic: ad402: move thermal-zones to top node
+Amlogic drivers changes for v6.11:
+- Add S905L & A113X SoC IDs
+- add missing MODULE_DESCRIPTION() macro for meson_sm driver
 
-Christian Hewitt (8):
-       dt-bindings: arm: amlogic: add GXLX/S905L/p271 reference board
-       arm64: dts: meson: add GXLX/S905L/p271 support
-       arm64: dts: meson: radxa-zero2: add pwm-fan support
-       dt-bindings: arm: amlogic: add OSMC Vero 4K
-       arm64: dts: meson: add support for OSMC Vero 4K
-       dt-bindings: add dream vendor prefix
-       dt-bindings: arm: amlogic: add support for Dreambox One/Two
-       arm64: dts: meson: add initial support for Dreambox One/Two
+----------------------------------------------------------------
+Christian Hewitt (1):
+       soc: amlogic: meson-gx-socinfo: Add S905L ID
 
-Dmitry Rokosov (3):
-       arm64: dts: amlogic: a1: add cooling-cells for DVFS feature
-       arm64: dts: amlogic: a1: introduce cpu temperature sensor
-       arm64: dts: amlogic: ad402: setup thermal-zones
+Jeff Johnson (1):
+       firmware: meson_sm: add missing MODULE_DESCRIPTION() macro
 
-Jerome Brunet (5):
-       arm64: dts: amlogic: sm1: fix spdif compatibles
-       arm64: dts: amlogic: g12: bump spdif output drive strength
-       arm64: dts: amlogic: add power domain to hdmitx
-       arm64: dts: amlogic: gx: correct hdmi clocks
-       arm64: dts: amlogic: setup hdmi system clock
+Viacheslav Bocharov (1):
+       soc: amlogic: meson-gx-socinfo: add new A113X SoC id
 
-Junyi Zhao (1):
-       arm64: dts: amlogic: Add Amlogic S4 PWM
-
-Neil Armstrong (13):
-       Merge branch 'dt' of https://git.kernel.org/pub/scm/linux/kernel/git/ulfh/linux-pm into v6.11/arm64-dt
-       arm64: dts: amlogic: meson-g12b-bananapi: remove invalid fan on wrong pwm_cd controller
-       arm64: dts: amlogic: move ao_pinctrl into aobus
-       arm64: dts: amlogic: sm1: fix tdm audio-controller clock order
-       arm64: dts: amlogic: sm1: fix tdm controllers compatible
-       arm64: dts: amlogic: g12a-u200: drop invalid sound-dai-cells
-       arm64: dts: amlogic: g12a-u200: add missing AVDD-supply to acodec
-       arm64: dts: amlogic: axg: fix tdm audio-controller clock order
-       arm64: dts: amlogic: c3: use correct compatible for gpio_intc node
-       arm64: dts: amlogic: a1: use correct node name for mmc controller
-       arm64: dts: amlogic: a1: drop the invalid reset-name for usb@fe004400
-       arm64: dts: amlogic: gxbb-odroidc2: fix invalid reset-gpio property
-       arm64: dts: amlogic: ad402: fix thermal zone node name
-
-Xianwei Zhao (2):
-       dt-bindings: power: add Amlogic A4 power domains
-       arm64: dts: amlogic: a4: add power domain controller node
-
-  Documentation/devicetree/bindings/arm/amlogic.yaml |  10 +
-  .../bindings/power/amlogic,meson-sec-pwrc.yaml     |   1 +
-  .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
-  arch/arm64/boot/dts/amlogic/Makefile               |   4 +
-  arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        |  10 +
-  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        |   3 +-
-  arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts     |  45 +++
-  arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |  16 +-
-  arch/arm64/boot/dts/amlogic/meson-axg.dtsi         |  24 +-
-  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  | 438 +++++++++++----------
-  arch/arm64/boot/dts/amlogic/meson-g12.dtsi         |   4 +
-  arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts    |   2 +-
-  .../boot/dts/amlogic/meson-g12b-bananapi.dtsi      |  14 -
-  .../boot/dts/amlogic/meson-g12b-dreambox-one.dts   |  17 +
-  .../boot/dts/amlogic/meson-g12b-dreambox-two.dts   |  20 +
-  .../boot/dts/amlogic/meson-g12b-dreambox.dtsi      | 154 ++++++++
-  .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    |  24 ++
-  .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |   2 +-
-  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  10 +-
-  .../boot/dts/amlogic/meson-gxl-s905x-vero4k.dts    | 199 ++++++++++
-  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         |  10 +-
-  .../boot/dts/amlogic/meson-gxlx-s905l-p271.dts     |  51 +++
-  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 199 ++++++++++
-  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi         |  44 +--
-  include/dt-bindings/power/amlogic,a4-pwrc.h        |  21 +
-  25 files changed, 1048 insertions(+), 276 deletions(-)
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dts
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dts
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
-  create mode 100644 include/dt-bindings/power/amlogic,a4-pwrc.h
+  drivers/firmware/meson/meson_sm.c      | 1 +
+  drivers/soc/amlogic/meson-gx-socinfo.c | 2 ++
+  2 files changed, 3 insertions(+)
 
 _______________________________________________
 linux-amlogic mailing list
