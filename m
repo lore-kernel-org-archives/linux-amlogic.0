@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B141C2BD09
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jul 2024 09:51:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3F73C30653
+	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jul 2024 09:51:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6E3gKJdXEhxQbwhsnlGxLvEGVuqE0CyB8I/2KBe8fj8=; b=EfGF3pb92gCiGn
-	KA4sxxOceV0LGAhrOAtMzwjoIdutR7WoAU2wYAiZZb527S35P8jw9uOa4LbquxXntQH/NEwoanpLT
-	Cv63kiLiyaYfmTGfTql/Z76wQEWkYm2CLWQqixkOgHGHqRUhd3j7rbuKMvpHZUCP0pd5LQS/N7Rn3
-	uuelgFT7YeYAzFp1zO8HsHfSLcT+LIBXEAjPyPmTJ4q/eIOX2zWvFHv4tkTFhA1+kHbasKCesdTim
-	0IaAvJHhpyetSX0r/SRbytOEmkS/2kiTR4tIcSiaEQb6qSb4g0bSWdJ2sjpyEUOqXerRE/HAZOjlM
-	kfvtSTMEiNRmcoz5FUCg==;
+	List-Owner; bh=iNEZxL6kr/r9aA2rSTRZ3yLGv90kl4hbZjCg4HNDMaA=; b=OUFpN/M+UczA1q
+	gMq5TyULut64wQqepbj+orKErROv4Mb4B42z6fYC0/pzhFp4vbB5dFvS7AEwe033arK5P6a9HPlSr
+	gRf0ROFyERWJ99BU20whK7phAO44niMxMfdHasYegiUE7Kma0CW3uIcL02tTQUqKUFrEYmUaK5dQE
+	dyU57Rl8jcisyh5knlw6rDXslX6hvePd9ZyuY7rRm+JUA4JUrBAXpHBOXgsXe14aJMkT8mW9tijs1
+	XOrHJr/b2XUwed5XQoE/EJfJn2EhBIHTd+q3LvwVuleOAlEVxeDGXlchQUQMeK93Ye6GoniCyJe5O
+	jHzXbZrGJZYFzgbCwACw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOweK-00000009cWm-2AdK;
-	Wed, 03 Jul 2024 09:51:40 +0000
-Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
+	id 1sOweW-00000009ce9-0I8U;
+	Wed, 03 Jul 2024 09:51:52 +0000
+Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOwdJ-00000009bvp-18Rh;
-	Wed, 03 Jul 2024 09:50:38 +0000
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-58bac81f341so1721114a12.0;
-        Wed, 03 Jul 2024 02:50:36 -0700 (PDT)
+	id 1sOwdK-00000009bwL-3W5X;
+	Wed, 03 Jul 2024 09:50:40 +0000
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-58b447c519eso2548666a12.3;
+        Wed, 03 Jul 2024 02:50:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720000235; x=1720605035; darn=lists.infradead.org;
+        d=gmail.com; s=20230601; t=1720000237; x=1720605037; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=q5sGY1MHMh4vP9RTlfTXcp30OvUGJ6Up0VGY07imbb4=;
-        b=VKG4P0+E4x5O//EI2iYJVFnjjnMq4zoFOEyEs9PYOJHiYHBru4Tpc7s9lbFICvq5pt
-         x0i9Ws3G6YiZ7P+fe2QK94SHtvIZd54PKrUEsamSflgCcR7uhbhCtkC75GnBxuiKoMoV
-         G/WUUdyB7ellSfHOHpgmcD348FSfQFNMgv18Ug2X2FfRn9jN28U9Rba1KkEaGWJR4DFp
-         EKJe6Su/w88h4PUz/FcKgpoeUa2DDBNA+Fouw/Zo2QgxY/LoSIfdj40Gmg8qvXuL/VqY
-         lczLlII3xxPMi9NqPqFQxOxGptSSD/WIiOxs8oc2d8iE8rLlLC28HVgWj2OIbycHyXoQ
-         cc/Q==
+        bh=k/v+B5h2PH1m+q96jJ+7IvzomlXuROk3OZZLA8dWAec=;
+        b=cJjbjQwh7GwVETxz9Bn24sajoXyKxWt/4pqD8ydQm3qXVCWYQRqE2Nwrl0odXpajSr
+         RuRPdCa4Q1tsBxdnlChRj79XpdjmkgjUqQoOKi73GknkZ9ALQW8/FYSNluxMiq/FnDzC
+         G9GvnOyxn/jxErH0y9jrcetp76koBM45vpNgz9paLyq1k/7470LzhdwiT8UVjslMES5v
+         z8vFBDtq+aqQcheW0AXfWfpTaN/Wzzt7a0E8hF7TwApMQEWGj6drPmj9DjHTa0FqxSf/
+         1AAIcwayPMCBAfaBxG7xNdhrtR1wBBCmE1CunhIlkspaevlwKbcSJ2m36FItmGyw9TN2
+         n8+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720000235; x=1720605035;
+        d=1e100.net; s=20230601; t=1720000237; x=1720605037;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=q5sGY1MHMh4vP9RTlfTXcp30OvUGJ6Up0VGY07imbb4=;
-        b=Pf8Tt5DYBBH3riFrXVMYPCtNiOlJoe5XyLJ2bUxmFVdU+1k2kjsHZu87VUYBe4aX67
-         pPagBFPLPvDCfBf7BpftSJw3WbhYBoR5BtkJg0J1gPGkGFmYZ3Ta9P3sTIhXAJDiknsh
-         WLJGRh9U5WRbaeWW334/eOG3ope+SSdX0yRdx3rZR2RUMJ8QMLyKRpBBcjjnRLqB6Ldh
-         SLRUOKgDTYY4c1fSc5QuNcEyhElXskBaYZBusbDlnSfjE0pQQlD9R36el+Dc8h2xfT0c
-         jCWovB2bufdOm4OQO9Hhrwh4+YOi6r1UaydhKUKodhZ6fGbE9lbhfSUQa1WSbiZAfovy
-         NdPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUACPG2GcgNndcxKTwdB+pWvKUb8BSOZKuwsALoztz6tcg09vsoheiwZPfJq6Jmfu7k5MqKN+gqunQMpcANB1cu8Q5wJLWOrt6DCNBfqG+h+2B+R1s=
-X-Gm-Message-State: AOJu0Yx35ffRNvAw01FKKmCvn0DLCH2DVBFtF7jI30hRgkSFvMHWaqiZ
-	CCyWgcRJW1M065FbAijVhV6DaFSqkhpQp8phpiB2b1EIU+kA81NJ
-X-Google-Smtp-Source: AGHT+IHJvWuVEjeg7jS3YGWzwBblEC1aBEjiRtx7Wx+1gkXGABMGiz68aiczGU0eMJw/KYhEPM88eA==
-X-Received: by 2002:a05:6402:34c5:b0:57d:4cbc:cb59 with SMTP id 4fb4d7f45d1cf-5879f984a22mr7916813a12.25.1720000235436;
-        Wed, 03 Jul 2024 02:50:35 -0700 (PDT)
+        bh=k/v+B5h2PH1m+q96jJ+7IvzomlXuROk3OZZLA8dWAec=;
+        b=t6awz0z6oFR7eCto1n7uJZXemv/A1aMw/iIjjpgcv98rr/dqvr6uRuG+11bl6KUuHR
+         1Xb/YQNR1dEd4aybDW1HwYS5UVLnXERbiUXqmNr54ZNXnQghA7NagnK/ir0iA3tBxYqb
+         2uEhM6ywONp3tLlqEQmSjneEHpVpzitlg/u+2mRUrNynjQTAV9cZ995bqUzY1fRir9i2
+         tRKzVK/M+HpqGDl1YMBNFbPXKQU05ZIEWYq1ABI+ibyDocYzLWA/nHQT70snschaCOJy
+         AL9+m6BG2UUsv4JZMRnoVOOY6Iihh8F27aLVmoiJ5ZbU4mSGFRtqH8s+W5QCllmx5v+l
+         M1Iw==
+X-Forwarded-Encrypted: i=1; AJvYcCX1XNW9a7rpqgfx76w/QTUb7MtAH7/JHtXRgu9CMCxdt+7ZkdzgyRFe4Zpeii/9ft5Cy3R8gRgT7Cd4vLLdw+E0QENCpAnGOGQH0Z/rKEzxdMJTE/Q=
+X-Gm-Message-State: AOJu0Yx2jFJbyHtFK3EpXb0flkM4RSSEvrKSaBL/kp9v91pfAk8TaSBz
+	mIC/u8giVgDW4kqHZaXwp850viz3ihFpKfL6d2+8nBWSHgS6WXPM
+X-Google-Smtp-Source: AGHT+IEIY4dIoxPJludnffZYVCFFdIx0eviJTJj2qywdu4egDu5miCN1B1+FWYpxH8LMM6MLKJZmaQ==
+X-Received: by 2002:a05:6402:35c3:b0:58a:e810:227d with SMTP id 4fb4d7f45d1cf-58ae81f67dfmr3569556a12.21.1720000236940;
+        Wed, 03 Jul 2024 02:50:36 -0700 (PDT)
 Received: from [127.0.1.1] (91-118-163-37.static.upcbusiness.at. [91.118.163.37])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-58b4a97b1f3sm2082130a12.18.2024.07.03.02.50.33
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-58b4a97b1f3sm2082130a12.18.2024.07.03.02.50.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jul 2024 02:50:34 -0700 (PDT)
+        Wed, 03 Jul 2024 02:50:36 -0700 (PDT)
 From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Date: Wed, 03 Jul 2024 11:50:19 +0200
-Subject: [PATCH 06/10] clk: meson: s4: pll: Constify struct regmap_config
+Date: Wed, 03 Jul 2024 11:50:20 +0200
+Subject: [PATCH 07/10] clk: lpc32xx: Constify struct regmap_config
 MIME-Version: 1.0
-Message-Id: <20240703-clk-const-regmap-v1-6-7d15a0671d6f@gmail.com>
+Message-Id: <20240703-clk-const-regmap-v1-7-7d15a0671d6f@gmail.com>
 References: <20240703-clk-const-regmap-v1-0-7d15a0671d6f@gmail.com>
 In-Reply-To: <20240703-clk-const-regmap-v1-0-7d15a0671d6f@gmail.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -82,16 +82,16 @@ Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, linux-sunxi@lists.linux.dev, 
  Javier Carrasco <javier.carrasco.cruz@gmail.com>
 X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1720000225; l=782;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1720000225; l=760;
  i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
- bh=QjI2XZ6DpFgtcs0s52itimxDAtU+za0z6ETKz2I5xKg=;
- b=shXXui07Vv0SxzDWgmKblWiiO/F6QjUD3Gg2XbBPFxNeKr/3DO+TzrHVENvorbTe6ULfqDHDp
- pgzaktXTA0kAf2uTyPcMVNSPw+MBMfrFC59IJ9aaKMY+q4QO4+9Fx/x
+ bh=y/2i9xAdynMCIKKj977aVCl8uDEeFBvS+ERij24gH3E=;
+ b=Mp1Bzj4pQqStVgM8m4kQKFq4aJg6t4Fn7Xr88JURvNcy0mwlGzsq289eVMQClPqQGE4zzTNJQ
+ l76GeFFivBFAiHCY1+doTXdXhw5oYcuQ9gGfIgcLZeBm7FzaG8Rz0MV
 X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
  pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240703_025037_346475_3720962C 
-X-CRM114-Status: GOOD (  11.50  )
+X-CRM114-CacheID: sfid-20240703_025039_003846_71112BB1 
+X-CRM114-Status: GOOD (  11.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,27 +108,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-`clkc_regmap_config` is not modified and can be declared as const to
- move its data to a read-only section.
+`lpc32xx_scb_regmap_config` is not modified and can be declared as const
+to move its data to a read-only section.
 
 Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 ---
- drivers/clk/meson/s4-pll.c | 2 +-
+ drivers/clk/nxp/clk-lpc32xx.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/clk/meson/s4-pll.c b/drivers/clk/meson/s4-pll.c
-index c2afade24f9f..27c10fc499be 100644
---- a/drivers/clk/meson/s4-pll.c
-+++ b/drivers/clk/meson/s4-pll.c
-@@ -799,7 +799,7 @@ static const struct reg_sequence s4_init_regs[] = {
- 	{ .reg = ANACTRL_MPLL_CTRL0,	.def = 0x00000543 },
- };
+diff --git a/drivers/clk/nxp/clk-lpc32xx.c b/drivers/clk/nxp/clk-lpc32xx.c
+index d0f870eff0d6..e00f270bc6aa 100644
+--- a/drivers/clk/nxp/clk-lpc32xx.c
++++ b/drivers/clk/nxp/clk-lpc32xx.c
+@@ -61,7 +61,7 @@
+ #define LPC32XX_USB_CLK_CTRL		0xF4
+ #define LPC32XX_USB_CLK_STS		0xF8
  
--static struct regmap_config clkc_regmap_config = {
-+static const struct regmap_config clkc_regmap_config = {
- 	.reg_bits       = 32,
- 	.val_bits       = 32,
- 	.reg_stride     = 4,
+-static struct regmap_config lpc32xx_scb_regmap_config = {
++static const struct regmap_config lpc32xx_scb_regmap_config = {
+ 	.name = "scb",
+ 	.reg_bits = 32,
+ 	.val_bits = 32,
 
 -- 
 2.40.1
