@@ -4,62 +4,118 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E415BC2BD09
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jul 2024 15:59:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B40E5C30653
+	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jul 2024 20:32:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=q23NXawXs6A/UQSBp4hIEu+fSp3lmBCENjRQzcmbE7c=; b=cirbwZjnVIaTSn
-	+SsnmUWMvM/YlrlYqE7m+i0un3AslfTWkqniPNj1BanRQYB8FjgcHhhi0N0FH2bb8Av2kDhFxjPae
-	P5z9G/ea/Yj2wIGVnwwLmrxIDZBtPdDTvbTynZoNTDwHwT5HOp47v/t7HbKtXwq0up2xLJIaDo3uW
-	OVeSZ9iLQiO26DiR3YR0eUW/j1wTHQEOPV69c250nPNucuE0gI4b6qWkRLoCB2a8e2+K29V97V1oR
-	wLhiiaPA+Vk3h1H2TBjmlx8/m2CgupAQ/2DpC0Ml48Y1CBGaEmAfSJW3DlZ20m9wMyIwd1Snynp8i
-	Pznr1g4vdz5qbP8hrV0A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=usK5z8+pLTCroActr+gNlJd+mhnF6bVfctTuEBz0DHs=; b=2Vf2UlnEew689v
+	V3iE1hT26eNhwcv7PifTeHJV9XAERomfB6bBD3uFzH6p7JJJeUgp9XNq4jCn+4ooZ20o6hVzgWfq7
+	j761QRiQI1xwyV7j43YwKMC07Qxpm5s500Q7+EJJZf1QEvE7xKgCqdEE505LGGxnuTtJz0uZCQz78
+	37qyB1pgoufyZA5HVoECjQKBG3jXfOyDvKDei8agCZxCzW0XXLj8lhPhBf1V4VBqy+NWETT3rcJK4
+	xigOdxfwtkyJ9EhsM4MFGDR0OBG7Zp8CMlJ/QuSU0HeQTAGTc9YYGhiqk6SNZF/jvleKnknOZAJrX
+	S5lp3h3orJK7cqqP8rxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sP2Oc-0000000AltJ-3iYm;
-	Wed, 03 Jul 2024 15:59:50 +0000
-Received: from layka.disroot.org ([178.21.23.139])
+	id 1sP6eC-0000000BOCO-2kK3;
+	Wed, 03 Jul 2024 20:32:12 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sP2Oa-0000000AlrK-1VHv;
-	Wed, 03 Jul 2024 15:59:50 +0000
-X-Virus-Scanned: SPAM Filter at disroot.org
-From: Yao Zi <ziyao@disroot.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1720022382; bh=FNRprOWq8ldQpxWHTTdhVGM9NaiNYj8i5iZmJH/dIhY=;
-	h=From:To:Cc:Subject:Date;
-	b=Q+JBxIpKF4lEYSy9NZ201G1vVCb6o4Nb3wbVRUw10LWkcCnJXVM8GxqHQyW989FME
-	 PI10wJm/FAIJUTlLDpbFvFddyt4TsqHPvrebgRFADHBVTDv6pLiO494v3wSbug9Xpd
-	 /xSFLlzswHlt4jaV3N6jpyQs5VZMoVrYPPEE9Disgs2jtk7e/lSuWs11/qZlkZGs3V
-	 MrOdvcL3NPUIG2t6HrkUaaZWUaFfUVBuckFJhT4jxRg9sBdKvrXDXYjOcK2XXsUzpb
-	 Q2ibE8NtHn7I94XO9JZdYmExIuixmdKD5ieHLsQD/A4GR3qUYF6hxYGkEH8dpRxbVC
-	 geNOweXQvDlkQ==
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Maxime Jourdan <mjourdan@baylibre.com>
-Cc: dri-devel@lists.freedesktop.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Yao Zi <ziyao@disroot.org>
-Subject: [PATCH] drm/meson: fix canvas release in bind function
-Date: Wed,  3 Jul 2024 15:58:27 +0000
-Message-ID: <20240703155826.10385-2-ziyao@disroot.org>
+	id 1sP6e6-0000000BOAD-3hW5
+	for linux-amlogic@lists.infradead.org;
+	Wed, 03 Jul 2024 20:32:09 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-425814992aeso26759255e9.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 03 Jul 2024 13:32:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720038725; x=1720643525; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=soNpQ58Fz2hm7V5JZ9ZEYAVAikWNhIPt2irm4De+WfA=;
+        b=VUPLfXfLi2x9TdZcv+xc2xmRr32lMecykgWzJaKW+HS9jCTj1PYGMeVCaE/dSvLrje
+         uBMknvNMltqRmydCHWjaSWVakE5GSB1V1zWsldS+LnoydMfT80s5SRwDbA+RefxiILsR
+         C00MXAxG14ouGJB9UGh9Ux/DVnTvc165RjAISpCDFZ7FquCg9aBE3Qo3PiAkOJ+AYIEG
+         xCmiKFK7/RmQc5t71dzMaRsSslbvEh0gDHCt65lMVX6MGuTipafSsGLVe0Jq1pedwD1/
+         EQU1wXJ4QrVTnRzam/ADUosrOl3e1wyF/M3IV9HEoEnCiEYJF4MbCm2qv9xNf5xaL2IF
+         RvWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720038725; x=1720643525;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=soNpQ58Fz2hm7V5JZ9ZEYAVAikWNhIPt2irm4De+WfA=;
+        b=NDrkBxlrsLccZC7/om87eV9AkJpW++0fuYDusiDOu4mFdX6q5krIWE0cTkDrEiICk6
+         Ml0Tuz0mVOzFFOCn1QKPmro6Gol2WRRS9o7nbuk9cARafzvNEb71j/30Up+7tttMV7eV
+         4NNPE7/MxAwoNZro8L5FfYBeKhkqADiipsnU2JZFNr2qiF7Py7cLzkd7DvH4Zt0EmQZ/
+         PWxvhWTLWiicth7bH5mgyLP7/Ho8eCh9I9H0CVvJ5JJQ0/AuP8e7ym1iImGNJ4LxA4V5
+         vQOntMR3kZocgcG8S0IMnHI3JakirxPxjS8XukoLzHqzFpOrn/IzK5vKO7ZeS5ZloyvE
+         2Wwg==
+X-Forwarded-Encrypted: i=1; AJvYcCUuUD+g2lZiMiEfGzS3cNXVmZTlBa9GmHFRg7o02JqcFBy4PiwHnK7NXvORgIbHI87e0zut3xfRj99qu0+j5iVNuYtkwv4uL96lzumjkf5ndoA=
+X-Gm-Message-State: AOJu0YyfY80g6Zu74kzY998NnpgXz1D18Qob75TyUD6uz/pcMZZh+ckD
+	BgAczB7Bdh4s3Po2/gYvKTRj1BpTsg0CcqgxJd9i9+LT8Y12iu1VsZmU4gAitqw=
+X-Google-Smtp-Source: AGHT+IEQBwm7OCqJ0C1+sLPedSZoAnvYatAaOS5AYpVWYgjgIYzIeidjLFDv/zxc1QKpmoxHnzRP3w==
+X-Received: by 2002:a05:600c:4f52:b0:424:aa64:e9b3 with SMTP id 5b1f17b1804b1-4257a02b701mr80619975e9.29.1720038724401;
+        Wed, 03 Jul 2024 13:32:04 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:10a5:e010:6751:db24:f67e:fa2e? ([2a05:6e02:10a5:e010:6751:db24:f67e:fa2e])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-426487c1c66sm1528905e9.0.2024.07.03.13.32.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Jul 2024 13:32:03 -0700 (PDT)
+Message-ID: <922ef023-4375-4a89-af1e-bd9bcf90f750@baylibre.com>
+Date: Wed, 3 Jul 2024 22:31:59 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/22] dt-bindings: thermal: amlogic: reference
+ thermal-sensor schema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Vasily Khoruzhick <anarsoul@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Anson Huang <Anson.Huang@nxp.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Amit Kucheria <amitk@kernel.org>,
+ =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+ Heiko Stuebner <heiko@sntech.de>, Biju Das <biju.das.jz@bp.renesas.com>,
+ Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Pascal Paillet <p.paillet@foss.st.com>, Keerthy <j-keerthy@ti.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ zhanghongchen <zhanghongchen@loongson.cn>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, imx@lists.linux.dev,
+ linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ linux-rpi-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org>
+ <20240614-dt-bindings-thermal-allof-v1-2-30b25a6ae24e@linaro.org>
+Content-Language: en-US
+From: Guillaume LA ROQUE <glaroque@baylibre.com>
+In-Reply-To: <20240614-dt-bindings-thermal-allof-v1-2-30b25a6ae24e@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240703_085948_860121_B4583C25 
-X-CRM114-Status: UNSURE (   9.14  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240703_133207_125387_99C04D3E 
+X-CRM114-Status: GOOD (  14.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,105 +127,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Allocated canvases may not be released on the error exit path of
-meson_drv_bind_master(), leading to resource leaking. Rewrite exit path
-to release canvases on error.
-
-Fixes: 2bf6b5b0e374 ("drm/meson: exclusively use the canvas provider module")
-Signed-off-by: Yao Zi <ziyao@disroot.org>
----
- drivers/gpu/drm/meson/meson_drv.c | 37 +++++++++++++++----------------
- 1 file changed, 18 insertions(+), 19 deletions(-)
-
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index 17a5cca007e2..4bd0baa2a4f5 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -250,29 +250,20 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 	if (ret)
- 		goto free_drm;
- 	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_vd1_0);
--	if (ret) {
--		meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
--		goto free_drm;
--	}
-+	if (ret)
-+		goto free_canvas_osd1;
- 	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_vd1_1);
--	if (ret) {
--		meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
--		meson_canvas_free(priv->canvas, priv->canvas_id_vd1_0);
--		goto free_drm;
--	}
-+	if (ret)
-+		goto free_canvas_vd1_0;
- 	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_vd1_2);
--	if (ret) {
--		meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
--		meson_canvas_free(priv->canvas, priv->canvas_id_vd1_0);
--		meson_canvas_free(priv->canvas, priv->canvas_id_vd1_1);
--		goto free_drm;
--	}
-+	if (ret)
-+		goto free_canvas_vd1_1;
- 
- 	priv->vsync_irq = platform_get_irq(pdev, 0);
- 
- 	ret = drm_vblank_init(drm, 1);
- 	if (ret)
--		goto free_drm;
-+		goto free_canvas_vd1_2;
- 
- 	/* Assign limits per soc revision/package */
- 	for (i = 0 ; i < ARRAY_SIZE(meson_drm_soc_attrs) ; ++i) {
-@@ -288,11 +279,11 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 	 */
- 	ret = drm_aperture_remove_framebuffers(&meson_driver);
- 	if (ret)
--		goto free_drm;
-+		goto free_canvas_vd1_2;
- 
- 	ret = drmm_mode_config_init(drm);
- 	if (ret)
--		goto free_drm;
-+		goto free_canvas_vd1_2;
- 	drm->mode_config.max_width = 3840;
- 	drm->mode_config.max_height = 2160;
- 	drm->mode_config.funcs = &meson_mode_config_funcs;
-@@ -307,7 +298,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 	if (priv->afbcd.ops) {
- 		ret = priv->afbcd.ops->init(priv);
- 		if (ret)
--			goto free_drm;
-+			goto free_canvas_vd1_2;
- 	}
- 
- 	/* Encoder Initialization */
-@@ -371,6 +362,14 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- exit_afbcd:
- 	if (priv->afbcd.ops)
- 		priv->afbcd.ops->exit(priv);
-+free_canvas_vd1_2:
-+	meson_canvas_free(priv->canvas, priv->canvas_id_vd1_2);
-+free_canvas_vd1_1:
-+	meson_canvas_free(priv->canvas, priv->canvas_id_vd1_1);
-+free_canvas_vd1_0:
-+	meson_canvas_free(priv->canvas, priv->canvas_id_vd1_0);
-+free_canvas_osd1:
-+	meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
- free_drm:
- 	drm_dev_put(drm);
- 
--- 
-2.45.2
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+TGUgMTQvMDYvMjAyNCDDoCAxMTo0NiwgS3J6eXN6dG9mIEtvemxvd3NraSBhIMOpY3JpdMKgOgo+
+IERldmljZSBpcyBhIHRoZXJtYWwgc2Vuc29yIGFuZCBhbGwgaW4tdHJlZSBEVFMgcHJvdmlkZQo+
+ICcjdGhlcm1hbC1zZW5zb3ItY2VsbHMnLCBzbyByZWZlcmVuY2UgdGhlIHRoZXJtYWwtc2Vuc29y
+LnlhbWwgdG8KPiBzaW1wbGlmeSBpdCwgYnJpbmcgdGhlIGNvbW1vbiBkZWZpbml0aW9uIG9mICcj
+dGhlcm1hbC1zZW5zb3ItY2VsbHMnCj4gcHJvcGVydHkgYW5kIHJlcXVpcmUgaXQuCj4KPiBTaWdu
+ZWQtb2ZmLWJ5OiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFy
+by5vcmc+Cj4gLS0tCj4gICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdGhlcm1h
+bC9hbWxvZ2ljLHRoZXJtYWwueWFtbCB8IDQgKysrLQo+ICAgMSBmaWxlIGNoYW5nZWQsIDMgaW5z
+ZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+Cj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy90aGVybWFsL2FtbG9naWMsdGhlcm1hbC55YW1sIGIvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3RoZXJtYWwvYW1sb2dpYyx0aGVybWFsLnlhbWwK
+PiBpbmRleCAwMWZjY2RmYzQxNzguLmU1MmZjNDBlMjE1ZCAxMDA2NDQKPiAtLS0gYS9Eb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdGhlcm1hbC9hbWxvZ2ljLHRoZXJtYWwueWFtbAo+
+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy90aGVybWFsL2FtbG9naWMs
+dGhlcm1hbC55YW1sCj4gQEAgLTExLDYgKzExLDggQEAgbWFpbnRhaW5lcnM6Cj4gICAKPiAgIGRl
+c2NyaXB0aW9uOiBCaW5kaW5nIGZvciBBbWxvZ2ljIFRoZXJtYWwKPiAgIAo+ICskcmVmOiB0aGVy
+bWFsLXNlbnNvci55YW1sIwo+ICsKPiAgIHByb3BlcnRpZXM6Cj4gICAgIGNvbXBhdGlibGU6Cj4g
+ICAgICAgb25lT2Y6Cj4gQEAgLTQ0LDcgKzQ2LDcgQEAgcmVxdWlyZWQ6Cj4gICAgIC0gY2xvY2tz
+Cj4gICAgIC0gYW1sb2dpYyxhby1zZWN1cmUKPiAgIAo+IC1hZGRpdGlvbmFsUHJvcGVydGllczog
+ZmFsc2UKPiArdW5ldmFsdWF0ZWRQcm9wZXJ0aWVzOiBmYWxzZQo+ICAgCj4gICBleGFtcGxlczoK
+PiAgICAgLSB8Cj4KUmV2aWV3ZWQtYnk6IEd1aWxsYXVtZSBMQSBST1FVRSA8Z2xhcm9xdWVAYmF5
+bGlicmUuY29tPgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
+ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
+LWFtbG9naWMK
