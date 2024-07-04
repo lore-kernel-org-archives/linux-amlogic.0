@@ -4,118 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B40E5C30653
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jul 2024 20:32:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24C5FC30653
+	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Jul 2024 06:09:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=usK5z8+pLTCroActr+gNlJd+mhnF6bVfctTuEBz0DHs=; b=2Vf2UlnEew689v
-	V3iE1hT26eNhwcv7PifTeHJV9XAERomfB6bBD3uFzH6p7JJJeUgp9XNq4jCn+4ooZ20o6hVzgWfq7
-	j761QRiQI1xwyV7j43YwKMC07Qxpm5s500Q7+EJJZf1QEvE7xKgCqdEE505LGGxnuTtJz0uZCQz78
-	37qyB1pgoufyZA5HVoECjQKBG3jXfOyDvKDei8agCZxCzW0XXLj8lhPhBf1V4VBqy+NWETT3rcJK4
-	xigOdxfwtkyJ9EhsM4MFGDR0OBG7Zp8CMlJ/QuSU0HeQTAGTc9YYGhiqk6SNZF/jvleKnknOZAJrX
-	S5lp3h3orJK7cqqP8rxA==;
+	List-Owner; bh=NyeeooukyV5zw/cWb13M6214SUGRADx+HTSCInLZSq4=; b=j33/A9JhJijs41
+	488YHbNDDgudVvuXKEEOh0w0JD++C1jQhu2+RhvbL2KXdK0k5wzrSbgYLWjCW2Qc/BVz0Lr1kq0Hx
+	Vdg/Qy/xqeCqYtF+KS5FFNS0yXeqMB1KRxJYJ6XXjzQtawneQ0gTFXkeBYBvsfa6kzCK4T13r01Kl
+	/mCimVkPa5JQ8iJ2z5dnQbtRFRqIfcGcRkE6PDSQaQ15XjqyvnlwL/t2DtpujCxXaio4rxZs1bdr9
+	Rv2lPuf7kt/a66o2ioozAtUlNEzkBcw1PpDW7nq4gDid1zhYetn4hugMLJpobIsn+uLzW6wlmRvSH
+	mbnvPcPKGRoTNugX5TfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sP6eC-0000000BOCO-2kK3;
-	Wed, 03 Jul 2024 20:32:12 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1sPFeh-0000000CIOm-1D95;
+	Thu, 04 Jul 2024 06:09:19 +0000
+Received: from mgamail.intel.com ([198.175.65.11])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sP6e6-0000000BOAD-3hW5
-	for linux-amlogic@lists.infradead.org;
-	Wed, 03 Jul 2024 20:32:09 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-425814992aeso26759255e9.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 03 Jul 2024 13:32:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720038725; x=1720643525; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=soNpQ58Fz2hm7V5JZ9ZEYAVAikWNhIPt2irm4De+WfA=;
-        b=VUPLfXfLi2x9TdZcv+xc2xmRr32lMecykgWzJaKW+HS9jCTj1PYGMeVCaE/dSvLrje
-         uBMknvNMltqRmydCHWjaSWVakE5GSB1V1zWsldS+LnoydMfT80s5SRwDbA+RefxiILsR
-         C00MXAxG14ouGJB9UGh9Ux/DVnTvc165RjAISpCDFZ7FquCg9aBE3Qo3PiAkOJ+AYIEG
-         xCmiKFK7/RmQc5t71dzMaRsSslbvEh0gDHCt65lMVX6MGuTipafSsGLVe0Jq1pedwD1/
-         EQU1wXJ4QrVTnRzam/ADUosrOl3e1wyF/M3IV9HEoEnCiEYJF4MbCm2qv9xNf5xaL2IF
-         RvWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720038725; x=1720643525;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=soNpQ58Fz2hm7V5JZ9ZEYAVAikWNhIPt2irm4De+WfA=;
-        b=NDrkBxlrsLccZC7/om87eV9AkJpW++0fuYDusiDOu4mFdX6q5krIWE0cTkDrEiICk6
-         Ml0Tuz0mVOzFFOCn1QKPmro6Gol2WRRS9o7nbuk9cARafzvNEb71j/30Up+7tttMV7eV
-         4NNPE7/MxAwoNZro8L5FfYBeKhkqADiipsnU2JZFNr2qiF7Py7cLzkd7DvH4Zt0EmQZ/
-         PWxvhWTLWiicth7bH5mgyLP7/Ho8eCh9I9H0CVvJ5JJQ0/AuP8e7ym1iImGNJ4LxA4V5
-         vQOntMR3kZocgcG8S0IMnHI3JakirxPxjS8XukoLzHqzFpOrn/IzK5vKO7ZeS5ZloyvE
-         2Wwg==
-X-Forwarded-Encrypted: i=1; AJvYcCUuUD+g2lZiMiEfGzS3cNXVmZTlBa9GmHFRg7o02JqcFBy4PiwHnK7NXvORgIbHI87e0zut3xfRj99qu0+j5iVNuYtkwv4uL96lzumjkf5ndoA=
-X-Gm-Message-State: AOJu0YyfY80g6Zu74kzY998NnpgXz1D18Qob75TyUD6uz/pcMZZh+ckD
-	BgAczB7Bdh4s3Po2/gYvKTRj1BpTsg0CcqgxJd9i9+LT8Y12iu1VsZmU4gAitqw=
-X-Google-Smtp-Source: AGHT+IEQBwm7OCqJ0C1+sLPedSZoAnvYatAaOS5AYpVWYgjgIYzIeidjLFDv/zxc1QKpmoxHnzRP3w==
-X-Received: by 2002:a05:600c:4f52:b0:424:aa64:e9b3 with SMTP id 5b1f17b1804b1-4257a02b701mr80619975e9.29.1720038724401;
-        Wed, 03 Jul 2024 13:32:04 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:10a5:e010:6751:db24:f67e:fa2e? ([2a05:6e02:10a5:e010:6751:db24:f67e:fa2e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-426487c1c66sm1528905e9.0.2024.07.03.13.32.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Jul 2024 13:32:03 -0700 (PDT)
-Message-ID: <922ef023-4375-4a89-af1e-bd9bcf90f750@baylibre.com>
-Date: Wed, 3 Jul 2024 22:31:59 +0200
+	id 1sPFee-0000000CIOJ-03DV;
+	Thu, 04 Jul 2024 06:09:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1720073356; x=1751609356;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pPrL20troWYfB5rDidUUA+6ppOXIvBHM99wUfpYq0BI=;
+  b=O/6ba1mnkovGe/T/tk1ruLvv0g5D2NLAiHrGH3B21n85DEBSA7go7jT2
+   R2qJQKDYKiZWvoMRBBlvtZ5KOp/1pSLPLuDGb4L/VXCKui0waFdHnfZYB
+   G6Kx4+24i0IFja/GS/7KsvCyVm1zcM8+v/CFGjL6jw/7u4No4uWrZWBGy
+   BDjrCIWNN11uBsCG3Kgq+ByxIDdnQOmxyVh7ugIoSMnMxGGmAc9D1hXjF
+   WbN40j/x6a9ruQB+S+MtyLU+7oGmaRHdQlRDAAtWMc0hEkfuPatVRQ+NO
+   5Ur2M8PfgJzkLCnLHCkcG8iMmc4uZ81a9TgPpLSLQgzlyMhDE83ZYyymy
+   Q==;
+X-CSE-ConnectionGUID: g5mdpv9OSvSCRFhQtydxaQ==
+X-CSE-MsgGUID: lboGAGtuQNWHaAZYGcJ9+w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11122"; a="27933683"
+X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; 
+   d="scan'208";a="27933683"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jul 2024 23:09:14 -0700
+X-CSE-ConnectionGUID: ujL1ThuaT6u4B5IK+EvfHA==
+X-CSE-MsgGUID: ru0SIWscSZqNM0pMdSelDQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; 
+   d="scan'208";a="51356292"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by orviesa003.jf.intel.com with ESMTP; 03 Jul 2024 23:09:11 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sPFeW-000QdQ-0r;
+	Thu, 04 Jul 2024 06:09:08 +0000
+Date: Thu, 4 Jul 2024 14:08:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: zelong dong <zelong.dong@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh@kernel.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	kelvin.zhang@amlogic.com, Zelong Dong <zelong.dong@amlogic.com>
+Subject: Re: [PATCH 1/3] dt-bindings: reset: Add compatible and DT bindings
+ for Amlogic A4/A5 Reset Controller
+Message-ID: <202407041333.QnHEnGRY-lkp@intel.com>
+References: <20240703061610.37217-2-zelong.dong@amlogic.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/22] dt-bindings: thermal: amlogic: reference
- thermal-sensor schema
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Vasily Khoruzhick <anarsoul@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Anson Huang <Anson.Huang@nxp.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Amit Kucheria <amitk@kernel.org>,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
- Heiko Stuebner <heiko@sntech.de>, Biju Das <biju.das.jz@bp.renesas.com>,
- Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
- <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Pascal Paillet <p.paillet@foss.st.com>, Keerthy <j-keerthy@ti.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>,
- zhanghongchen <zhanghongchen@loongson.cn>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-sunxi@lists.linux.dev, imx@lists.linux.dev,
- linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com,
- Florian Fainelli <f.fainelli@gmail.com>,
- linux-rpi-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org>
- <20240614-dt-bindings-thermal-allof-v1-2-30b25a6ae24e@linaro.org>
-Content-Language: en-US
-From: Guillaume LA ROQUE <glaroque@baylibre.com>
-In-Reply-To: <20240614-dt-bindings-thermal-allof-v1-2-30b25a6ae24e@linaro.org>
+Content-Disposition: inline
+In-Reply-To: <20240703061610.37217-2-zelong.dong@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240703_133207_125387_99C04D3E 
-X-CRM114-Status: GOOD (  14.28  )
+X-CRM114-CacheID: sfid-20240703_230916_149571_261BED6D 
+X-CRM114-Status: GOOD (  10.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,33 +91,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-TGUgMTQvMDYvMjAyNCDDoCAxMTo0NiwgS3J6eXN6dG9mIEtvemxvd3NraSBhIMOpY3JpdMKgOgo+
-IERldmljZSBpcyBhIHRoZXJtYWwgc2Vuc29yIGFuZCBhbGwgaW4tdHJlZSBEVFMgcHJvdmlkZQo+
-ICcjdGhlcm1hbC1zZW5zb3ItY2VsbHMnLCBzbyByZWZlcmVuY2UgdGhlIHRoZXJtYWwtc2Vuc29y
-LnlhbWwgdG8KPiBzaW1wbGlmeSBpdCwgYnJpbmcgdGhlIGNvbW1vbiBkZWZpbml0aW9uIG9mICcj
-dGhlcm1hbC1zZW5zb3ItY2VsbHMnCj4gcHJvcGVydHkgYW5kIHJlcXVpcmUgaXQuCj4KPiBTaWdu
-ZWQtb2ZmLWJ5OiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFy
-by5vcmc+Cj4gLS0tCj4gICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdGhlcm1h
-bC9hbWxvZ2ljLHRoZXJtYWwueWFtbCB8IDQgKysrLQo+ICAgMSBmaWxlIGNoYW5nZWQsIDMgaW5z
-ZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+Cj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy90aGVybWFsL2FtbG9naWMsdGhlcm1hbC55YW1sIGIvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3RoZXJtYWwvYW1sb2dpYyx0aGVybWFsLnlhbWwK
-PiBpbmRleCAwMWZjY2RmYzQxNzguLmU1MmZjNDBlMjE1ZCAxMDA2NDQKPiAtLS0gYS9Eb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdGhlcm1hbC9hbWxvZ2ljLHRoZXJtYWwueWFtbAo+
-ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy90aGVybWFsL2FtbG9naWMs
-dGhlcm1hbC55YW1sCj4gQEAgLTExLDYgKzExLDggQEAgbWFpbnRhaW5lcnM6Cj4gICAKPiAgIGRl
-c2NyaXB0aW9uOiBCaW5kaW5nIGZvciBBbWxvZ2ljIFRoZXJtYWwKPiAgIAo+ICskcmVmOiB0aGVy
-bWFsLXNlbnNvci55YW1sIwo+ICsKPiAgIHByb3BlcnRpZXM6Cj4gICAgIGNvbXBhdGlibGU6Cj4g
-ICAgICAgb25lT2Y6Cj4gQEAgLTQ0LDcgKzQ2LDcgQEAgcmVxdWlyZWQ6Cj4gICAgIC0gY2xvY2tz
-Cj4gICAgIC0gYW1sb2dpYyxhby1zZWN1cmUKPiAgIAo+IC1hZGRpdGlvbmFsUHJvcGVydGllczog
-ZmFsc2UKPiArdW5ldmFsdWF0ZWRQcm9wZXJ0aWVzOiBmYWxzZQo+ICAgCj4gICBleGFtcGxlczoK
-PiAgICAgLSB8Cj4KUmV2aWV3ZWQtYnk6IEd1aWxsYXVtZSBMQSBST1FVRSA8Z2xhcm9xdWVAYmF5
-bGlicmUuY29tPgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
-ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
-LWFtbG9naWMK
+Hi zelong,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on next-20240703]
+[also build test WARNING on linus/master v6.10-rc6]
+[cannot apply to robh/for-next pza/reset/next pza/imx-drm/next v6.10-rc6 v6.10-rc5 v6.10-rc4]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/zelong-dong/dt-bindings-reset-Add-compatible-and-DT-bindings-for-Amlogic-A4-A5-Reset-Controller/20240703-184517
+base:   next-20240703
+patch link:    https://lore.kernel.org/r/20240703061610.37217-2-zelong.dong%40amlogic.com
+patch subject: [PATCH 1/3] dt-bindings: reset: Add compatible and DT bindings for Amlogic A4/A5 Reset Controller
+config: arm64-randconfig-051-20240704 (https://download.01.org/0day-ci/archive/20240704/202407041333.QnHEnGRY-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.2.0
+dtschema version: 2024.6.dev3+g650bf2d
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240704/202407041333.QnHEnGRY-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202407041333.QnHEnGRY-lkp@intel.com/
+
+dtcheck warnings: (new ones prefixed by >>)
+   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi:97.34-111.6: Warning (unit_address_vs_reg): /soc/bus@fe000000/pinctrl@4000: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi:97.34-111.6: Warning (simple_bus_reg): /soc/bus@fe000000/pinctrl@4000: missing or empty reg/ranges property
+>> arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dtb: reset-controller@2000: compatible: 'oneOf' conditional failed, one must be fixed:
+   	['amlogic,c3-reset'] is too short
+   	'amlogic,c3-reset' is not one of ['amlogic,meson8b-reset', 'amlogic,meson-gxbb-reset', 'amlogic,meson-axg-reset', 'amlogic,meson-a1-reset', 'amlogic,meson-s4-reset', 'amlogic,t7-reset']
+   	from schema $id: http://devicetree.org/schemas/reset/amlogic,meson-reset.yaml#
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
