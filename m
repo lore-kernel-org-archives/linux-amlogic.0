@@ -4,83 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5538AC30653
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Jul 2024 10:16:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03413C30658
+	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Jul 2024 05:39:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=121ETzQID3BxFUkkZazcYCAdCB0DXIRP2ByTbbM5fZ4=; b=p++M+l3yBK/QO6
-	rbX5XjGbz7xwRYfgGX6Tx7fgGLi8HLKirKSCkLcWXJz23T6PkmG34/Ibpe1ZHmbYxtQBVD12DECPE
-	ND8sdezUczhCkGssHoX9bKWSnm9PRrdo9D47GFk+fvXk1EBG4OmAjdltXDDn+MAnRd/v55H6+p4E8
-	O3BELdK8sndf50NY8yvlP81eHznXasLrjNJegvh2bJo3v1wQBDP0Ejwq3gKAG7L4z2T54F98GKa/9
-	VLxaGjn6rv+qBF9Xh+JWLijtx4EiJ9PU3vaj8iccMIWWR/5X0LCRTI3n1mWQY7DE73UDanS4eNwgH
-	G1l1qC/Lm8+/b/cAm7LA==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=nu7zXYUoiFOv/LOnpdeHVsYvSUuUl1km3X3QWxZ96bE=; b=Bow1SyKLBseofO
+	7deUj6E13+H+O13o/+PmQwVIqcCGwjy0EyNbUE7cDY9nTinn9wDZcIHOmAwldCi9Ay4G55UVJ8+aD
+	MiWNX2EGSR1N7UL1kA9gdD7TV+LGH/aUztvv3Ow4c+TSGdaqK56pf68VH1A7Zsh6b1czfJKLCaXVh
+	DaZ4OK476KeIM6zqaosWXQj+Dw1RlW+pSGuIsrtv3pet3D78JYSRfp9Hyaoh0GC6+wMRMsrJVRwmD
+	RYk7x2171hAVWnNu9L3yQtOtLcCLHAhSo+2BrG6n0cVJXjg4/bFxj3Fm7qRljK6KyUcd2SXRqWlqe
+	QyYWNRvWP7s/QuCl4QGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sPJVP-0000000CqcU-2Ynm;
-	Thu, 04 Jul 2024 10:15:59 +0000
-Received: from mail-lj1-x235.google.com ([2a00:1450:4864:20::235])
+	id 1sPbfI-0000000EwxN-2q3H;
+	Fri, 05 Jul 2024 05:39:24 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sPJVM-0000000CqZb-1VBN
-	for linux-amlogic@lists.infradead.org;
-	Thu, 04 Jul 2024 10:15:58 +0000
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2ec1ac1aed2so4742051fa.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 04 Jul 2024 03:15:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720088154; x=1720692954; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1nvqcTE+d+I6/PYlZYlUrN3ZSE7/0dbyWuREcOgf8aA=;
-        b=yssXao/9N/62IS2GE2PymOgwEmR+G5PRGX8P2WXhWRfG2yHxe+D7CPqwSHGs5cIc89
-         SvmWWSdeuJPK/xmIJ+AozrnO8lTIrbXYqpS3e1HhlRhz2HQ2RJXh79HbC/9lLxmxwb7s
-         deDldg0M3xDIOZ2iSWLfL9qU6GkNe2MipTWHZ3JEInC76bX2Mj7C1o+six+it4//IdmU
-         CUypFsAPwTGvDerwNlstU947VqaMiVa0bqyiI1/swl6XlH1otJxTg4w38L2nD/9cCD0N
-         Zg3d5VXjSsefxNV9AjCNSxqeuyMVv/xBzc7i/Ttx2ihL6eOuSoOhQSQ9UFEdB5ElOBXC
-         ZA8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720088154; x=1720692954;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1nvqcTE+d+I6/PYlZYlUrN3ZSE7/0dbyWuREcOgf8aA=;
-        b=grafT9V8NLJRtwvsDZ4WWWquCK3DslADqh4NHdX7y9eNHReOAqCG/nInPmBEiF7aiB
-         JHT1KVzzRGFcJPC8vshDx23hvhDCfMkJPkk9ql1UtnZ8cmy+gyPADHJb47wT73/gHH/0
-         CeHNMI8lMwX/PMsy/MQnNP0DV5jPKpycO2tuZajMWJryb8fFM++ncgRV1e+gTX0fTt1t
-         VdM1osPkNrZ7q42v4ro/pvrUCjAJ1W3KaGCr9v2Pp64VfvR/u2hDCen/uUnAV2ibR/XM
-         JId/uzhlihhCj9PVl5GmHUNCvdL/3kBn5vCz4eWVMS0YrDjExZVletfn6EcX07LBBQaQ
-         KrwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUINtcLFcExAZ4N9FmFufWhxJllVxiqF+ZkqMA/54Y+xaHfFpzjjfntPw/EzrVe1IRhtTzm2nAEFkGmQ9t8WQyMhf3GFf8XaLAO/1Hy7241shk=
-X-Gm-Message-State: AOJu0Yz5w+NwJDfu25JYGD6cAD2kLI6nSES1Ca3iR9h3m63kmp1416qR
-	K448KEBjrZ8l8wl+ZPqHEzusqrHOGz/PaQuL1UPb8yHFPVlLYb80KHqRRom82Qs=
-X-Google-Smtp-Source: AGHT+IFjFbE6dWkiueh16FP2N9UOEw13MN12/uduae8Rfkcs3JR/7QPB7Yfqddj+KjB9xdjW8KZcuw==
-X-Received: by 2002:a2e:98c3:0:b0:2ec:5200:a935 with SMTP id 38308e7fff4ca-2ee8edc2d45mr8049801fa.40.1720088154177;
-        Thu, 04 Jul 2024 03:15:54 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ee5168cf1fsm22523201fa.116.2024.07.04.03.15.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Jul 2024 03:15:53 -0700 (PDT)
-Date: Thu, 4 Jul 2024 13:15:52 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Vignesh Raman <vignesh.raman@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
-	helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch, robdclark@gmail.com, 
-	guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com, mcanal@igalia.com, 
-	linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
-	intel-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] drm/ci: uprev IGT
-Message-ID: <ojnz5hjfht6gwouphvmvizb2udlz2wvwnsj4vgosp3chrhsmcv@c7cxscdyxtsn>
-References: <20240704092202.75551-1-vignesh.raman@collabora.com>
+	id 1sPbfF-0000000Ewwi-1lMY;
+	Fri, 05 Jul 2024 05:39:23 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 06B73CE3B9D;
+	Fri,  5 Jul 2024 05:39:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 482DDC116B1;
+	Fri,  5 Jul 2024 05:39:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720157958;
+	bh=uWZCkCjV+hnk1B6n5lQV/kXhkjKQELbDfh6oD26HfVk=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=RW64z9J4X28IQEA7rlzB5UPGUrlt3b4Kta0WQVwzXJP61zJTdyF18hTDJxsUxds93
+	 sRsxmHZPaLnLHcbCpX8mezCAVf6korY7xqv6n76nIKD9177hcR6Ax8RHx0CHNhsXxP
+	 LfKpXdnWkODFJ7kQJ2Ip7XZe+jmbW7a2wM7juSfFL8YfLcss7ressmGjxUSstdosEs
+	 1jsa07MEs/MH8ZO4MrMehof9hIKKqFFF3j6KYpF4dk5m1aYHLd8W4WC1+9mH/YexDr
+	 VO1ENqkrs8NH9gbw25RjRkwTq7TeDztjwezP97m+DamgOalW3r26bYbbNpjEJqC2if
+	 44dFavc4gZOEA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 32236C30658;
+	Fri,  5 Jul 2024 05:39:18 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Fri, 05 Jul 2024 13:39:16 +0800
+Subject: [PATCH] arm64: dts: amlogic: enable some device nodes for S4
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240704092202.75551-1-vignesh.raman@collabora.com>
+Message-Id: <20240705-s4_node-v1-1-646ca7ac4f09@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAASHh2YC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDcwNT3WKT+Lz8lFRdC0NDg1RjIwuzZINkJaDqgqLUtMwKsEnRsbW1AFr
+ upDBZAAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1720157957; l=8347;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=oOXiLAS6NgZVltA8CaP7tgFApq2iE/PP2b1hmtBEKsc=;
+ b=ojBitIhspXSh/e49vFYC2RuSwK0zX/2weeZJP/9U/z9YgcT14mWW8A4uUqywE6nueYWq613rr
+ zAdaIyEmOXDAt5YEu9EU52I19omzh7g4tsHL+wYFxNPTfsLFB5V4Qa2
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240704_031556_444982_B83832AA 
-X-CRM114-Status: GOOD (  15.94  )
+X-CRM114-CacheID: sfid-20240704_223921_862426_22E6F924 
+X-CRM114-Status: UNSURE (   9.43  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,102 +86,353 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jul 04, 2024 at 02:52:02PM GMT, Vignesh Raman wrote:
-> Uprev IGT to the latest version, which includes a fix for the
-> writeback tests issue on MSM devices. Enable debugging for
-> igt-runner to log output such as 'Begin test' and 'End test'.
-> This will help identify which test causes system freeze or hangs.
-> Update xfails and add metadata header for each flake test.
-> 
-> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> ---
-> 
-> v1:
->   - https://gitlab.freedesktop.org/vigneshraman/linux/-/pipelines/1216850
-> 
-> ---
->  drivers/gpu/drm/ci/gitlab-ci.yml              |   2 +-
->  drivers/gpu/drm/ci/igt_runner.sh              |   1 +
->  .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt |   1 +
->  .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |  14 +-
->  .../gpu/drm/ci/xfails/amdgpu-stoney-skips.txt |   4 +-
->  drivers/gpu/drm/ci/xfails/i915-amly-fails.txt |  12 +-
->  .../gpu/drm/ci/xfails/i915-amly-flakes.txt    |  41 ++++-
->  drivers/gpu/drm/ci/xfails/i915-amly-skips.txt |   5 +-
->  drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt |   2 +-
->  drivers/gpu/drm/ci/xfails/i915-apl-skips.txt  |   4 +-
->  drivers/gpu/drm/ci/xfails/i915-cml-fails.txt  |  14 +-
->  drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt |   9 +-
->  drivers/gpu/drm/ci/xfails/i915-cml-skips.txt  |   5 +-
->  drivers/gpu/drm/ci/xfails/i915-glk-fails.txt  |  24 +--
->  drivers/gpu/drm/ci/xfails/i915-glk-flakes.txt |   8 +-
->  drivers/gpu/drm/ci/xfails/i915-glk-skips.txt  |   4 +-
->  drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt  |   2 +
->  drivers/gpu/drm/ci/xfails/i915-kbl-flakes.txt |   2 +-
->  drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt  |   4 +-
->  drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt  |  25 +--
->  drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt  |   4 +-
->  drivers/gpu/drm/ci/xfails/i915-whl-fails.txt  |  17 +-
->  drivers/gpu/drm/ci/xfails/i915-whl-flakes.txt |   2 +-
->  drivers/gpu/drm/ci/xfails/i915-whl-skips.txt  |   5 +-
->  .../drm/ci/xfails/mediatek-mt8173-fails.txt   |   9 +-
->  .../drm/ci/xfails/mediatek-mt8173-flakes.txt  |  32 +++-
->  .../drm/ci/xfails/mediatek-mt8173-skips.txt   |   4 +-
->  .../drm/ci/xfails/mediatek-mt8183-fails.txt   |   2 +-
->  .../drm/ci/xfails/mediatek-mt8183-skips.txt   |   2 +-
->  .../gpu/drm/ci/xfails/meson-g12b-fails.txt    |   2 +-
->  .../gpu/drm/ci/xfails/meson-g12b-skips.txt    |   2 +-
->  .../gpu/drm/ci/xfails/msm-apq8016-fails.txt   |   5 +-
->  .../gpu/drm/ci/xfails/msm-apq8016-skips.txt   |   2 +-
->  .../gpu/drm/ci/xfails/msm-apq8096-flakes.txt  |   2 +-
->  .../gpu/drm/ci/xfails/msm-apq8096-skips.txt   |   4 +-
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # msm tests
+Enable some device nodes for AQ222 base S4, including
+SD, regulator and ethnernet node.
 
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 146 +++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 128 ++++++++++++++++++
+ 2 files changed, 274 insertions(+)
 
->  .../msm-sc7180-trogdor-kingoftown-fails.txt   | 145 ------------------
->  .../msm-sc7180-trogdor-kingoftown-flakes.txt  |  18 ++-
->  .../msm-sc7180-trogdor-kingoftown-skips.txt   |   5 +-
->  ...sm-sc7180-trogdor-lazor-limozeen-fails.txt | 145 ------------------
->  ...m-sc7180-trogdor-lazor-limozeen-flakes.txt |  11 +-
->  ...sm-sc7180-trogdor-lazor-limozeen-skips.txt |   2 +-
->  .../gpu/drm/ci/xfails/msm-sdm845-flakes.txt   | 105 ++++++++++++-
->  .../gpu/drm/ci/xfails/msm-sdm845-skips.txt    |   4 +-
->  .../drm/ci/xfails/rockchip-rk3288-fails.txt   |   2 +-
->  .../drm/ci/xfails/rockchip-rk3288-skips.txt   |   2 +-
->  .../drm/ci/xfails/rockchip-rk3399-fails.txt   |   2 +-
->  .../drm/ci/xfails/rockchip-rk3399-flakes.txt  |   4 +-
->  .../drm/ci/xfails/rockchip-rk3399-skips.txt   |   2 +-
->  .../drm/ci/xfails/virtio_gpu-none-fails.txt   |  64 ++++++++
->  .../drm/ci/xfails/virtio_gpu-none-skips.txt   |   4 +-
->  drivers/gpu/drm/ci/xfails/vkms-none-fails.txt |   4 -
->  .../gpu/drm/ci/xfails/vkms-none-flakes.txt    |  21 +++
->  drivers/gpu/drm/ci/xfails/vkms-none-skips.txt | 105 ++++++++++++-
->  53 files changed, 527 insertions(+), 395 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/ci/gitlab-ci.yml b/drivers/gpu/drm/ci/gitlab-ci.yml
-> index 80fb0f57ae46..b09976c3d2c2 100644
-> --- a/drivers/gpu/drm/ci/gitlab-ci.yml
-> +++ b/drivers/gpu/drm/ci/gitlab-ci.yml
-> @@ -5,7 +5,7 @@ variables:
->    UPSTREAM_REPO: git://anongit.freedesktop.org/drm/drm
->    TARGET_BRANCH: drm-next
->  
-> -  IGT_VERSION: 0df7b9b97f9da0e364f5ee30fe331004b8c86b56
-> +  IGT_VERSION: f13702b8e4e847c56da3ef6f0969065d686049c5
->  
->    DEQP_RUNNER_GIT_URL: https://gitlab.freedesktop.org/anholt/deqp-runner.git
->    DEQP_RUNNER_GIT_TAG: v0.15.0
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+index 983caddc409c..2ab685d9bd1d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+@@ -34,6 +34,112 @@ secmon_reserved: secmon@5000000 {
+ 			no-map;
+ 		};
+ 	};
++
++	sdio_32k: sdio-32k {
++		compatible = "pwm-clock";
++		#clock-cells = <0>;
++		clock-frequency = <32768>;
++		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
++	};
++
++	sdio_pwrseq: sdio-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
++		clocks = <&sdio_32k>;
++		clock-names = "ext_clock";
++	};
++
++	main_12v: regulator-main-12v {
++		compatible = "regulator-fixed";
++		regulator-name = "12V";
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++		regulator-always-on;
++	};
++
++	vddao_3v3: regulator-vddao-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDAO_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&main_12v>;
++		regulator-always-on;
++	};
++
++	vddio_ao1v8: regulator-vddio-ao1v8 {
++	       compatible = "regulator-fixed";
++	       regulator-name = "VDDIO_AO1V8";
++	       regulator-min-microvolt = <1800000>;
++	       regulator-max-microvolt = <1800000>;
++	       vin-supply = <&vddao_3v3>;
++	       regulator-always-on;
++	};
++
++	/* SY8120B1ABC DC/DC Regulator. */
++	vddcpu: regulator-vddcpu {
++		compatible = "pwm-regulator";
++
++		regulator-name = "VDDCPU";
++		regulator-min-microvolt = <689000>;
++		regulator-max-microvolt = <1049000>;
++
++		vin-supply = <&main_12v>;
++
++		pwms = <&pwm_ij 1 1500 0>;
++		pwm-dutycycle-range = <100 0>;
++
++		regulator-boot-on;
++		regulator-always-on;
++		/* Voltage Duty-Cycle */
++		voltage-table = <1049000 0>,
++				<1039000 3>,
++				<1029000 6>,
++				<1019000 9>,
++				<1009000 12>,
++				<999000 14>,
++				<989000 17>,
++				<979000 20>,
++				<969000 23>,
++				<959000 26>,
++				<949000 29>,
++				<939000 31>,
++				<929000 34>,
++				<919000 37>,
++				<909000 40>,
++				<899000 43>,
++				<889000 45>,
++				<879000 48>,
++				<869000 51>,
++				<859000 54>,
++				<849000 56>,
++				<839000 59>,
++				<829000 62>,
++				<819000 65>,
++				<809000 68>,
++				<799000 70>,
++				<789000 73>,
++				<779000 76>,
++				<769000 79>,
++				<759000 81>,
++				<749000 84>,
++				<739000 87>,
++				<729000 89>,
++				<719000 92>,
++				<709000 95>,
++				<699000 98>,
++				<689000 100>;
++		status = "okay";
++	};
++};
++
++&pwm_ef {
++	status = "okay";
++	pinctrl-0 = <&pwm_e_pins1>;
++	pinctrl-names = "default";
++};
++
++&pwm_ij {
++	status = "okay";
+ };
+ 
+ &uart_b {
+@@ -46,6 +152,40 @@ &ir {
+ 	pinctrl-names = "default";
+ };
+ 
++&sdio {
++	pinctrl-0 = <&sdio_pins>;
++	pinctrl-1 = <&sdio_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++	#address-cells = <1>;
++	#size-cells = <0>;
++	bus-width = <4>;
++	cap-sd-highspeed;
++	sd-uhs-sdr50;
++	sd-uhs-sdr104;
++	max-frequency = <200000000>;
++	non-removable;
++	disable-wp;
++	no-sd;
++	no-mmc;
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&vddio_ao1v8>;
++};
++
++&sd {
++	status = "okay";
++	pinctrl-0 = <&sdcard_pins>;
++	pinctrl-1 = <&sdcard_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++	bus-width = <4>;
++	cap-sd-highspeed;
++	max-frequency = <200000000>;
++	disable-wp;
++
++	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&vddao_3v3>;
++};
++
+ &nand {
+ 	status = "okay";
+ 	#address-cells = <1>;
+@@ -90,3 +230,9 @@ &spicc0 {
+ 	pinctrl-0 = <&spicc0_pins_x>;
+ 	cs-gpios = <&gpio GPIOX_10 GPIO_ACTIVE_LOW>;
+ };
++
++&ethmac {
++	status = "okay";
++	phy-handle = <&internal_ephy>;
++	phy-mode = "rmii";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+index b686eacb9662..c11c947fa18c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+@@ -10,6 +10,7 @@
+ #include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
+ #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
+ #include <dt-bindings/power/meson-s4-power.h>
++#include <dt-bindings/reset/amlogic,meson-s4-reset.h>
+ 
+ / {
+ 	cpus {
+@@ -466,6 +467,93 @@ mux {
+ 					};
+ 				};
+ 
++				sdcard_pins: sdcard-pins {
++					mux {
++						groups = "sdcard_d0_c",
++							 "sdcard_d1_c",
++							 "sdcard_d2_c",
++							 "sdcard_d3_c",
++							 "sdcard_clk_c",
++							 "sdcard_cmd_c";
++						function = "sdcard";
++						bias-pull-up;
++						drive-strength-microamp = <4000>;
++					};
++				};
++
++				sdcard_clk_gate_pins: sdcard-clk-gate-pins {
++					mux {
++						groups = "GPIOC_4";
++						function = "gpio_periphs";
++						bias-pull-down;
++						drive-strength-microamp = <4000>;
++					};
++				};
++
++				emmc_pins: emmc-pins {
++					mux-0 {
++						groups = "emmc_nand_d0",
++							 "emmc_nand_d1",
++							 "emmc_nand_d2",
++							 "emmc_nand_d3",
++							 "emmc_nand_d4",
++							 "emmc_nand_d5",
++							 "emmc_nand_d6",
++							 "emmc_nand_d7",
++							 "emmc_cmd";
++						function = "emmc";
++						bias-pull-up;
++						drive-strength-microamp = <4000>;
++					};
++					mux-1 {
++						groups = "emmc_clk";
++						function = "emmc";
++						bias-pull-up;
++						drive-strength-microamp = <4000>;
++					};
++				};
++
++				emmc_ds_pins: emmc-ds-pins {
++					mux {
++						groups = "emmc_nand_ds";
++						function = "emmc";
++						bias-pull-down;
++						drive-strength-microamp = <4000>;
++					};
++				};
++
++				emmc_clk_gate_pins: emmc-clk-gate-pins {
++					mux {
++						groups = "GPIOB_8";
++						function = "gpio_periphs";
++						bias-pull-down;
++						drive-strength-microamp = <4000>;
++					};
++				};
++
++				sdio_pins: sdio-pins {
++					mux {
++						groups = "sdio_d0",
++							 "sdio_d1",
++							 "sdio_d2",
++							 "sdio_d3",
++							 "sdio_clk",
++							 "sdio_cmd";
++						function = "sdio";
++						bias-pull-up;
++						drive-strength-microamp = <4000>;
++					};
++				};
++
++				sdio_clk_gate_pins: sdio-clk-gate-pins {
++					mux {
++						groups = "GPIOX_4";
++						function = "gpio_periphs";
++						bias-pull-down;
++						drive-strength-microamp = <4000>;
++					};
++				};
++
+ 				spicc0_pins_x: spicc0-pins_x {
+ 					mux {
+ 						groups = "spi_a_mosi_x",
+@@ -712,5 +800,45 @@ mdio0: mdio {
+ 				compatible = "snps,dwmac-mdio";
+ 			};
+ 		};
++
++		sdio: mmc@fe088000 {
++			compatible = "amlogic,meson-axg-mmc";
++			reg = <0x0 0xfe088000 0x0 0x800>;
++			interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&clkc_periphs CLKID_SDEMMC_A>,
++				 <&xtal>,
++				 <&clkc_pll CLKID_FCLK_DIV2>;
++			clock-names = "core", "clkin0", "clkin1";
++			resets = <&reset RESET_SD_EMMC_A>;
++			cap-sdio-irq;
++			keep-power-in-suspend;
++			status = "disabled";
++		};
++
++		sd: mmc@fe08a000 {
++			compatible = "amlogic,meson-axg-mmc";
++			reg = <0x0 0xfe08a000 0x0 0x800>;
++			interrupts = <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>;
++			clocks = <&clkc_periphs CLKID_SDEMMC_B>,
++				 <&clkc_periphs CLKID_SD_EMMC_B>,
++				 <&clkc_pll CLKID_FCLK_DIV2>;
++			clock-names = "core", "clkin0", "clkin1";
++			resets = <&reset RESET_SD_EMMC_B>;
++			status = "disabled";
++		};
++
++		emmc: mmc@fe08c000 {
++			compatible = "amlogic,meson-axg-mmc";
++			reg = <0x0 0xfe08c000 0x0 0x800>;
++			interrupts = <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>;
++			clocks = <&clkc_periphs CLKID_NAND>,
++				 <&xtal>,
++				 <&clkc_pll CLKID_FCLK_DIV2>;
++			clock-names = "core", "clkin0", "clkin1";
++			resets = <&reset RESET_NAND_EMMC>;
++			no-sdio;
++			no-sd;
++			status = "disabled";
++		};
+ 	};
+ };
 
+---
+base-commit: 338c92a5d1956f1841f84b86923087676d1d0cea
+change-id: 20240705-s4_node-8110e3286c0c
 
+Best regards,
 -- 
-With best wishes
-Dmitry
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
