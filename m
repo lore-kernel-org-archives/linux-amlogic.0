@@ -4,84 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86CA0C3DA42
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jul 2024 14:15:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B49DC3DA42
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jul 2024 15:37:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ve9c3R4Y9f8GsWK+6agyjbj93GEPeCZjeomK+PBqxs0=; b=ZjQYtPko1caPQQ
-	gD6BtJVdvAkLI0nPT3qPPNUUNcNCFcrlZEaUZ27LIo2pc2agcSeqNlZII45BbKvtEhEWSG3mtd/Zk
-	5lCKNgNBqo5IZu3ykpV6YtnSCLM10rcyKxNaDdREUz0FtpcxK1nD3+0pNWZ9cUPoUttc2ZcijW03Q
-	GxfMvROXSSl17U/6QOVlMJLfs+IoYtWkW+tqIYe83Rd4u1iXOfTlS2DE8y5+YVqyPvz8huMtLCmLr
-	CciXpPP2RBXNt+BrH/yUOUTsk3JWVyDAegCNXxZF6VXlRGXyB5hXEzD1skR4uaJiaFJQMKoPOD/dY
-	lSFUCCbkBY2ELU7KOxzg==;
+	List-Owner; bh=JsxlfOrF4OyHvueh+M5nlcqComiQ8wt7TjrGXASsaZ4=; b=K1SFEyyT/ESEFo
+	qUS4dbmh6s8v+KrWbh1I3SPc3wxh9Rhm4kcv7fgKwxlsN/9li9fJL9T6luw2G+Uxsd8cstsFeypsJ
+	XdbFidHG4LNfncLhx6QkOvHj/Xy0QrRcq+YiptEVkvAsIm0JPah2APKT6xUyGhcoVgJ0UDQb8jKzs
+	2/2zzzpDQ2JZx/QLA20Ix8wDl7sBCZG+eOBvNQsZjXkAzdYbjKtRm0BSd5kvWGzZzwoXh6c4ZZee7
+	JA97K1K/BdiYplwWi1fLrYyl2soRESTfxSAeCqGcl1Yrgpjcm8M0uQWNR9AXCpQ6JCVZ4/TPAGlhk
+	6QoP0+cfrl+YDFgbsAKg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sQp9F-000000041wh-1JJl;
-	Mon, 08 Jul 2024 14:15:21 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1sQqQt-00000004FZA-3DPr;
+	Mon, 08 Jul 2024 15:37:39 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sQo9B-00000003sff-2zaQ
-	for linux-amlogic@lists.infradead.org;
-	Mon, 08 Jul 2024 13:11:15 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4255fc43f1cso26453095e9.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 08 Jul 2024 06:11:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720444271; x=1721049071; darn=lists.infradead.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HuWHS7n4JKE4Zhnq2fHCrq3JBbmX9LHIbWotNtCmupg=;
-        b=hCOl1Fu6qGdQKrbnNglRGS8csMzW9TBEEEjTtPydZsvOgR4VU8x68L3HHFNRVl0tlZ
-         7jU75C4YDE+2uvigqCViDh8KlLoPtlOuNtsFJmKkk/vtQnafNFiO2crUz27t5yB47r1I
-         4ua6ObIyEkPEUzEOIEmmRTmsJATAxUq+axit5K68WD8dBJtD5Dfe0u0CkmLtg+HST9i8
-         e22qUNsJGdMOgshacd4UQ01L8ya4zcTA3K3JyR0iIuqAEEhCDegLBYcB+iGg5ehRsLrO
-         ALbdbeCr37IdBthsa9KwXPc2xSTja0QaBc8czNgOOwNvLoqRIakRYDbf61JMI6ROg3oD
-         UShw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720444271; x=1721049071;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HuWHS7n4JKE4Zhnq2fHCrq3JBbmX9LHIbWotNtCmupg=;
-        b=NHKgBvYjHs4TEo75fio3zzy+lS2gOpi2JT3i5p5Ai6tJLIE12tBPuVjja52YIybSTP
-         0MvfuTA6mc+FRjkToDcmTCsTLN4limr9APPxF4YUzTA+WBcnkoxUc9dXFatLXSjEZFue
-         jgHnhRzmsr3ssZqqfjTLL2CFe1HZp8BAqxod78UAQIkIoG3anIpjAcIolfi8prKPnwj+
-         94TBf32Lw1jznHWaczI67AOJVKQ5Dcbj0oXAgsMPnwjQvq1N/N/TBBuL2QXaz1FQWtPV
-         g9lzNS5Ss2os4tDVhyErzkqsLhlBhCO/aatbH5pADwdaNXa3Qs+xvM4wAdF2I4NgxcC1
-         QaVw==
-X-Forwarded-Encrypted: i=1; AJvYcCUpOsG7F71UeigRXX/lZoUoALe65fMKKyH7DxSJl2BH00jd4Hw8NTrcl1jB/zUYiVMUXS0akYPusBJM5ZLVp8BlA+hq493b3KYbwnSeex0DMuc=
-X-Gm-Message-State: AOJu0YwsnVDaR2kjyewHE6PMpey0PK0v51cpQDuihdkZ1o/jkeNu5lL4
-	SbHnByeZ4/kP1QFCNUkD9qCSP7yIRv7ov7dbr9TBvav9Gvuid5wUXm4rRCkuY0U=
-X-Google-Smtp-Source: AGHT+IG3y3s2abTIzMduavSusGk41h4eUyyiMJrCpnEXNNbVBBrdn+KPAsoARDJOB2DmaMtozMzthw==
-X-Received: by 2002:a05:600c:4da3:b0:426:6eac:8314 with SMTP id 5b1f17b1804b1-4266eac83bfmr5970605e9.1.1720444270774;
-        Mon, 08 Jul 2024 06:11:10 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:5158:f510:c35c:9d0b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4264a21cb57sm163660395e9.21.2024.07.08.06.11.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jul 2024 06:11:10 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: George Stark <gnstark@salutedevices.com>
-Cc: <ukleinek@kernel.org>,  <robh@kernel.org>,  <krzk+dt@kernel.org>,
-  <conor+dt@kernel.org>,  <neil.armstrong@linaro.org>,
-  <khilman@baylibre.com>,  <martin.blumenstingl@googlemail.com>,
-  <hkallweit1@gmail.com>,  <linux-pwm@vger.kernel.org>,
-  <devicetree@vger.kernel.org>,  <linux-amlogic@lists.infradead.org>,
-  <linux-arm-kernel@lists.infradead.org>,  <linux-kernel@vger.kernel.org>,
-  <kernel@salutedevices.com>,  Dmitry Rokosov <ddrokosov@salutedevices.com>
+	id 1sQqQp-00000004FWm-3cFJ;
+	Mon, 08 Jul 2024 15:37:38 +0000
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 10192120005;
+	Mon,  8 Jul 2024 18:37:22 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 10192120005
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1720453042;
+	bh=Bo/6XCu3DzX8pb2DXto2aIjlWq7K1MB2e/LDCsAwPr0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=v1VQQhwlvdIQcefu+5VOdf7ahVdnlEg1GJcsptyzWz02GK5Bj4V/Zer5Fv6yXQOK7
+	 02NUnd2qSIJ+LT1tBtFr8Bh6ksotDPwLM9ttqdDOcG/OKEkx4rAkqR/cishfu7iDFy
+	 /XczqEpgrlTs+mTlk4aecTuT/Z5STeoIn7pN2Gh5tKCXcCvMBe02X9ZZ5Y/ODo2TYV
+	 QK2568OIt1RZrrQ0GisIHSAc1vU7/uWbdTjT8fRaPU5oe0RSJZ5b4FDLxFOB3g2UJU
+	 /XZb/XMcGqSyn/c9MZBvd42O0gTRaNGvD3UC1aP1M9f2qot/IWtd1t4+j0hixdeEVK
+	 aI3aFVmir5bdg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon,  8 Jul 2024 18:37:21 +0300 (MSK)
+Received: from [172.28.64.179] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 8 Jul 2024 18:37:21 +0300
+Message-ID: <4ec6b50e-b915-4e18-a8a5-97ca7ab9e4ce@salutedevices.com>
+Date: Mon, 8 Jul 2024 18:37:21 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v3 1/2] dt-bindings: pwm: amlogic: Add new bindings for
  meson A1 PWM
-In-Reply-To: <20240702123425.584610-2-gnstark@salutedevices.com> (George
-	Stark's message of "Tue, 2 Jul 2024 15:34:24 +0300")
+To: Jerome Brunet <jbrunet@baylibre.com>
+CC: <ukleinek@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <hkallweit1@gmail.com>,
+	<linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <kernel@salutedevices.com>, Dmitry Rokosov
+	<ddrokosov@salutedevices.com>
 References: <20240702123425.584610-1-gnstark@salutedevices.com>
-	<20240702123425.584610-2-gnstark@salutedevices.com>
-Date: Mon, 08 Jul 2024 15:11:09 +0200
-Message-ID: <1j8qychvv6.fsf@starbuckisacylon.baylibre.com>
-MIME-Version: 1.0
+ <20240702123425.584610-2-gnstark@salutedevices.com>
+ <1j8qychvv6.fsf@starbuckisacylon.baylibre.com>
+Content-Language: en-US
+From: George Stark <gnstark@salutedevices.com>
+In-Reply-To: <1j8qychvv6.fsf@starbuckisacylon.baylibre.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 186376 [Jul 08 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 23 0.3.23 8881c50ebb08f9085352475be251cf18bb0fcfdd, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;100.64.160.123:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/07/08 12:56:00
+X-KSMG-LinksScanning: Clean, bases: 2024/07/08 14:31:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/08 12:25:00 #25908179
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240708_061113_898377_BBB457BD 
-X-CRM114-Status: GOOD (  13.46  )
+X-CRM114-CacheID: sfid-20240708_083736_592889_4B3CB8B8 
+X-CRM114-Status: GOOD (  15.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,73 +102,78 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue 02 Jul 2024 at 15:34, George Stark <gnstark@salutedevices.com> wrote:
+Hello Jerome
 
-> The chip has 3 dual-channel PWM modules PWM_AB, PWM_CD, PWM_EF.
->
-> Signed-off-by: George Stark <gnstark@salutedevices.com>
-> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> ---
->  .../devicetree/bindings/pwm/pwm-amlogic.yaml    | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> index 1d71d4f8f328..e021cf59421a 100644
-> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> @@ -37,6 +37,10 @@ properties:
->        - enum:
->            - amlogic,meson8-pwm-v2
->            - amlogic,meson-s4-pwm
-> +      - items:
-> +          - enum:
-> +              - amlogic,meson-a1-pwm
-> +          - const: amlogic,meson-s4-pwm
->        - items:
->            - enum:
->                - amlogic,meson8b-pwm-v2
-> @@ -56,6 +60,9 @@ properties:
->      minItems: 1
->      maxItems: 2
->  
-> +  power-domains:
-> +    maxItems: 1
-> +
+Thanks for the review
 
-The change is not only introducing a1 compatibility but also allowing a
-power-domain for the other SoC, even if optional.
+On 7/8/24 16:11, Jerome Brunet wrote:
+> On Tue 02 Jul 2024 at 15:34, George Stark <gnstark@salutedevices.com> wrote:
+> 
+>> The chip has 3 dual-channel PWM modules PWM_AB, PWM_CD, PWM_EF.
+>>
+>> Signed-off-by: George Stark <gnstark@salutedevices.com>
+>> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+>> ---
+>>   .../devicetree/bindings/pwm/pwm-amlogic.yaml    | 17 +++++++++++++++++
+>>   1 file changed, 17 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>> index 1d71d4f8f328..e021cf59421a 100644
+>> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
 
-If that is intended, it should be stated in the description and probably
-a separate change.
+...
 
->    "#pwm-cells":
->      const: 3
->  
-> @@ -136,6 +143,16 @@ allOf:
->        required:
->          - clocks
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - amlogic,meson-a1-pwm
-> +    then:
-> +      required:
-> +        - power-domains
-> +
->  additionalProperties: false
->  
->  examples:
+> 
+> The change is not only introducing a1 compatibility but also allowing a
+> power-domain for the other SoC, even if optional.
+> 
+> If that is intended, it should be stated in the description and probably
+> a separate change.
+
+AFAIK the only SoC with a separate PD for PWM is A1 (currently). I added 
+PD to bindings by an independent change in series #2 [1] but Rob
+proposed it should be squashed into compatible patch. The only thing 
+missed in series #2 was the conditional schema making PD required for A1.
+
+I personally would prefer to add PD as a separate change.
+I'll give it a try.
+
+[1] 
+https://lore.kernel.org/lkml/20240701172016.523402-1-gnstark@salutedevices.com/T/#m0e004fc0d22e205aa3bf6bdd0284d251f26eb0f3
+
+
+> 
+>>     "#pwm-cells":
+>>       const: 3
+>>   
+>> @@ -136,6 +143,16 @@ allOf:
+>>         required:
+>>           - clocks
+>>   
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - amlogic,meson-a1-pwm
+>> +    then:
+>> +      required:
+>> +        - power-domains
+>> +
+>>   additionalProperties: false
+>>   
+>>   examples:
+> 
 
 -- 
-Jerome
+Best regards
+George
 
 _______________________________________________
 linux-amlogic mailing list
