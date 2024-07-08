@@ -4,93 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B49DC3DA42
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jul 2024 15:37:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5B51C3271E
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jul 2024 15:52:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JsxlfOrF4OyHvueh+M5nlcqComiQ8wt7TjrGXASsaZ4=; b=K1SFEyyT/ESEFo
-	qUS4dbmh6s8v+KrWbh1I3SPc3wxh9Rhm4kcv7fgKwxlsN/9li9fJL9T6luw2G+Uxsd8cstsFeypsJ
-	XdbFidHG4LNfncLhx6QkOvHj/Xy0QrRcq+YiptEVkvAsIm0JPah2APKT6xUyGhcoVgJ0UDQb8jKzs
-	2/2zzzpDQ2JZx/QLA20Ix8wDl7sBCZG+eOBvNQsZjXkAzdYbjKtRm0BSd5kvWGzZzwoXh6c4ZZee7
-	JA97K1K/BdiYplwWi1fLrYyl2soRESTfxSAeCqGcl1Yrgpjcm8M0uQWNR9AXCpQ6JCVZ4/TPAGlhk
-	6QoP0+cfrl+YDFgbsAKg==;
+	List-Owner; bh=sXSBy9B3d+MMVs0FOHaHKPQa4MCGzkij42BemuCJoTc=; b=Q/p11jgEKO38BH
+	kgnKXyfq1hQ7LwH4tWHgoVDRKBXTy5VN0QrnQp2ujo0u/1/vBycLld8iNy6LMQcT78Q3nw77NfSLE
+	OHOpLtwzLNNO3QSWVPCD9DXPbwxd8Qev4XTmIFCKhPULEbkA0ArKICGfNXqdpOkZPmpThL08F5tvA
+	pbe7jP0Q90PPdsKNJT7Gr/gmIVZAPYbImFfmFUzpwG4W0tACfBj3sgK2osm+LvcSVwJroTi+IMrkI
+	0l36xrBdKnNi9fFscMkY0HRCkwVQonUnr50RRw7kGEZ+fB8qryT3XZ7P4MlctiqHDU/CAIoItTh/U
+	ZJ0OFjda5HPVeH4bFSjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sQqQt-00000004FZA-3DPr;
-	Mon, 08 Jul 2024 15:37:39 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1sQqf4-00000004IQp-07Go;
+	Mon, 08 Jul 2024 15:52:18 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sQqQp-00000004FWm-3cFJ;
-	Mon, 08 Jul 2024 15:37:38 +0000
-Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 10192120005;
-	Mon,  8 Jul 2024 18:37:22 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 10192120005
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1720453042;
-	bh=Bo/6XCu3DzX8pb2DXto2aIjlWq7K1MB2e/LDCsAwPr0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=v1VQQhwlvdIQcefu+5VOdf7ahVdnlEg1GJcsptyzWz02GK5Bj4V/Zer5Fv6yXQOK7
-	 02NUnd2qSIJ+LT1tBtFr8Bh6ksotDPwLM9ttqdDOcG/OKEkx4rAkqR/cishfu7iDFy
-	 /XczqEpgrlTs+mTlk4aecTuT/Z5STeoIn7pN2Gh5tKCXcCvMBe02X9ZZ5Y/ODo2TYV
-	 QK2568OIt1RZrrQ0GisIHSAc1vU7/uWbdTjT8fRaPU5oe0RSJZ5b4FDLxFOB3g2UJU
-	 /XZb/XMcGqSyn/c9MZBvd42O0gTRaNGvD3UC1aP1M9f2qot/IWtd1t4+j0hixdeEVK
-	 aI3aFVmir5bdg==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon,  8 Jul 2024 18:37:21 +0300 (MSK)
-Received: from [172.28.64.179] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 8 Jul 2024 18:37:21 +0300
-Message-ID: <4ec6b50e-b915-4e18-a8a5-97ca7ab9e4ce@salutedevices.com>
-Date: Mon, 8 Jul 2024 18:37:21 +0300
+	id 1sQqf0-00000004IPp-3Hz1;
+	Mon, 08 Jul 2024 15:52:16 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 97A76CE0DFA;
+	Mon,  8 Jul 2024 15:52:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A8FBC4AF0C;
+	Mon,  8 Jul 2024 15:52:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720453930;
+	bh=BQg4ZdFzDwwDN7evDXN3MBq4j4BMw5MqDlE19xZONW0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fCI4ytXTNkR9PaCDa+HL4hGXYk74jmyFJjyEHZ8b1Nl99+m+jrKjckKYKxgVDab/g
+	 O/fiJ8kHbHNmkQtvW/1YECiEhHcZl4nIXtEa1SG2Jw3rBYlGB7nHb/eeDakJFJSRh9
+	 cagcXBekLdu7wSQ+F55DedMIGn5xuSofvYxA9/M8sQwX6iymHci/kS7+jnvvl+YBOL
+	 1q5fRoJBM1v6WW0Aa7tjAM+YwSufIL0U4XEABU2+kboVBYEU6FmUBAxB3Fh4TUBKKe
+	 8IsCtTlLtEDbRL3HTGHf4ZLR/hrJwXW103Twy7Eo/50gsfzeQpntlrBbY33X8itaRh
+	 YwU4bSmcmT72w==
+Date: Mon, 8 Jul 2024 09:52:09 -0600
+From: Rob Herring <robh@kernel.org>
+To: zelong dong <zelong.dong@amlogic.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	kelvin.zhang@amlogic.com
+Subject: Re: [PATCH 1/3] dt-bindings: reset: Add compatible and DT bindings
+ for Amlogic A4/A5 Reset Controller
+Message-ID: <20240708155209.GA3239782-robh@kernel.org>
+References: <20240703061610.37217-1-zelong.dong@amlogic.com>
+ <20240703061610.37217-2-zelong.dong@amlogic.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: pwm: amlogic: Add new bindings for
- meson A1 PWM
-To: Jerome Brunet <jbrunet@baylibre.com>
-CC: <ukleinek@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <hkallweit1@gmail.com>,
-	<linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <kernel@salutedevices.com>, Dmitry Rokosov
-	<ddrokosov@salutedevices.com>
-References: <20240702123425.584610-1-gnstark@salutedevices.com>
- <20240702123425.584610-2-gnstark@salutedevices.com>
- <1j8qychvv6.fsf@starbuckisacylon.baylibre.com>
-Content-Language: en-US
-From: George Stark <gnstark@salutedevices.com>
-In-Reply-To: <1j8qychvv6.fsf@starbuckisacylon.baylibre.com>
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 186376 [Jul 08 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 23 0.3.23 8881c50ebb08f9085352475be251cf18bb0fcfdd, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;100.64.160.123:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/07/08 12:56:00
-X-KSMG-LinksScanning: Clean, bases: 2024/07/08 14:31:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/08 12:25:00 #25908179
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Disposition: inline
+In-Reply-To: <20240703061610.37217-2-zelong.dong@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240708_083736_592889_4B3CB8B8 
-X-CRM114-Status: GOOD (  15.17  )
+X-CRM114-CacheID: sfid-20240708_085215_019752_13D30A5A 
+X-CRM114-Status: GOOD (  12.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,78 +75,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Jerome
-
-Thanks for the review
-
-On 7/8/24 16:11, Jerome Brunet wrote:
-> On Tue 02 Jul 2024 at 15:34, George Stark <gnstark@salutedevices.com> wrote:
+On Wed, Jul 03, 2024 at 02:16:08PM +0800, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
 > 
->> The chip has 3 dual-channel PWM modules PWM_AB, PWM_CD, PWM_EF.
->>
->> Signed-off-by: George Stark <gnstark@salutedevices.com>
->> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
->> ---
->>   .../devicetree/bindings/pwm/pwm-amlogic.yaml    | 17 +++++++++++++++++
->>   1 file changed, 17 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->> index 1d71d4f8f328..e021cf59421a 100644
->> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-
-...
-
+> Add new compatible and DT bindings for Amlogic A4/A5 Reset Controller
 > 
-> The change is not only introducing a1 compatibility but also allowing a
-> power-domain for the other SoC, even if optional.
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> ---
+>  .../bindings/reset/amlogic,meson-reset.yaml   | 22 +++++++++++++------
+>  1 file changed, 15 insertions(+), 7 deletions(-)
 > 
-> If that is intended, it should be stated in the description and probably
-> a separate change.
+> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> index f0c6c0df0ce3..80345af81d5a 100644
+> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> @@ -12,13 +12,21 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
+> -      - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
+> -      - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
+> -      - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
+> -      - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
+> -      - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
+> +    oneOf:
+> +      - items:
 
-AFAIK the only SoC with a separate PD for PWM is A1 (currently). I added 
-PD to bindings by an independent change in series #2 [1] but Rob
-proposed it should be squashed into compatible patch. The only thing 
-missed in series #2 was the conditional schema making PD required for A1.
+Don't need items here.
 
-I personally would prefer to add PD as a separate change.
-I'll give it a try.
+> +          - enum:
+> +              - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
+> +              - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
+> +              - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
+> +              - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
+> +              - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
+> +              - amlogic,t7-reset
 
-[1] 
-https://lore.kernel.org/lkml/20240701172016.523402-1-gnstark@salutedevices.com/T/#m0e004fc0d22e205aa3bf6bdd0284d251f26eb0f3
+What's t7?
 
-
+> +      - items:
+> +          - enum:
+> +              - amlogic,a4-reset
+> +              - amlogic,a5-reset
+> +              - amlogic,c3-reset
+> +          - const: amlogic,meson-s4-reset
+>  
+>    reg:
+>      maxItems: 1
+> -- 
+> 2.35.1
 > 
->>     "#pwm-cells":
->>       const: 3
->>   
->> @@ -136,6 +143,16 @@ allOf:
->>         required:
->>           - clocks
->>   
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - amlogic,meson-a1-pwm
->> +    then:
->> +      required:
->> +        - power-domains
->> +
->>   additionalProperties: false
->>   
->>   examples:
-> 
-
--- 
-Best regards
-George
 
 _______________________________________________
 linux-amlogic mailing list
