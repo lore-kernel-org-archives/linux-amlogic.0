@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48792C3271E
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jul 2024 19:52:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C435C3DA41
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jul 2024 19:52:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kUc0+sIDKGrDkMGom3/+Xxwa90JMbLoGBd3ZA+nuPSU=; b=4nolBLrCvnKQ/0
-	Wofq401jiTjWViN/9xUHnGTvSlW1aQACZ2jjoFjwkg/HJ1FPhT0ETE0SiFHbh1VCALb1xI136QsHb
-	0NIm0xKOyCjuGR3AmMciggYtruGUe8hJwJAJahTD+B32OSYEluWcPfu2WlY/mAbO5wvNyQ1hxC2zx
-	8SerQs0Bag2FhtXCaQhtskugDpvPSRfi+08LjswY8m7YXjCGgrYB5F4klpEELUWWw1TidrVG5r7mY
-	5PaGyfWCNfQCSNf488kb5Zc/u8Nmu0FPkvi0hnwW+Y/KbE9wv+aI4uYvJuXSZwP9eXzffHy9HqyLT
-	QpDxWoAmL9AQHFnPQQew==;
+	List-Owner; bh=dxebpu00JOSsB0nYu42JDSJUZ6uNetm/Yae+Vch7yDY=; b=Lzyi4kOqS3rjkX
+	XfyT+oIwnX2MlDAQp1BZfXKykT21+PJ7Xswg1Fa8rADnZ89SPcXuJWW7A1XgCcuEU6oym2fE/0uvT
+	iCk2qqQJJ+2Vd61b9Q1uB2bKSeh/j8OZx/ZaT2gYHcphXk88n+vC3BJPs7LFVghoY6sWq4VmVobcK
+	R7Ofj44puPAYi+FTbkVvl0Qpuw+14Cf13MSNnwJYiXBzskUwCAqp7N6aw+DPSoE7rfvl4LFCZeOUW
+	bQ3/GncbmyZ0FReVQSI4U3TGmXHZokqDCmNiOpiInge6Tar3jRVj4oOrjL5TBRGeBat1m29O2O9RP
+	t5ejKjsba6/dTFoqjNyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sQuP1-00000004tMB-35l6;
-	Mon, 08 Jul 2024 19:51:59 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1sQuPY-00000004tVn-3L2a;
+	Mon, 08 Jul 2024 19:52:32 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sQuOy-00000004tLg-3Sut;
-	Mon, 08 Jul 2024 19:51:58 +0000
+	id 1sQuPU-00000004tUm-2mY4;
+	Mon, 08 Jul 2024 19:52:30 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 3CEDFCE0CE0;
-	Mon,  8 Jul 2024 19:51:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDD8FC116B1;
-	Mon,  8 Jul 2024 19:51:47 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id D5516CE0BBB;
+	Mon,  8 Jul 2024 19:52:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8F5AC116B1;
+	Mon,  8 Jul 2024 19:52:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720468313;
-	bh=tRdwL7MF07YdbCfg+yIRy3ZKvX6dkEv4gnX59kc9Bqw=;
+	s=k20201202; t=1720468346;
+	bh=D8cLFnUe7SaLV9LIrCSiNMfzBFWw1gFQoqk10wrY/w8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UnlfPFF828SnGrlHVPsorunF++V4mAPlbz/klQ0+K/vJilE9BnG25c18BHfU4yUEA
-	 oZojOD2l0Qo4czPoRkxHAdLtRjVdGbtNZrpVbpjJnDXa9D8GCB0Es6Xp9b8Oq3jInS
-	 Jv06vcYleEsA/54WFyPLOvWnTsyR8P6llLduChghxaCYQu7d/oE3+fJglMbvD8csvf
-	 yYXdT5fTJ4kPhALj2SUpx3g+QwrbsV+T5eDmfwYzAOrJ50h7Cf4Bh0S9HEAHtSPmI0
-	 QhzGFrRhuM8Sfh7Zqydxy3PcXyj560TqkqSBcyxtoKlgFO1LiHiUvcWOe3eIaid1h4
-	 KlOlH6/g4/RPg==
-Message-ID: <6add148f-efe7-4444-82b3-20b1198c6d07@kernel.org>
-Date: Mon, 8 Jul 2024 21:51:44 +0200
+	b=HfTqsvL94QYErPs+LW8TDh73NTOS+/K8BUmejyX/WZrXX1pePOo7M0kKtIEi9sE7i
+	 I+PVndLsFQDFePiiHLymPBCQNbxjUD9qPVRK3tkGFB+YW7KIxod6BdOriDDgVGaZ84
+	 UosneYVty8ohNlw8f8S/kZ0Q/4Cap9cz7RNdQXY4c+uIOLa3kApiyltYgmQtpAOOOK
+	 ucMDQPeCXh9zvXjH47meIaziZv4ubgXQkU8l+MMXfplWXb9mUw0FsnGai9Hc5RaezS
+	 lOAwx84olP/aZJSbDv214DqIkp8OmAzdTMqVCA6LgHBoZudIR3WLu5OoZ1LO5jcoMP
+	 MPUiLk9w4m/Ug==
+Message-ID: <bcaa8435-43fd-47c1-bee3-433cdf128eb5@kernel.org>
+Date: Mon, 8 Jul 2024 21:52:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: spi: amlogic,a1-spifc: make
- power-domains required
+Subject: Re: [PATCH 3/4] dt-bindings: thermal: amlogic,thermal: add
+ power-domains
 To: George Stark <gnstark@salutedevices.com>, robh@kernel.org,
  krzk+dt@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org,
  khilman@baylibre.com, jbrunet@baylibre.com,
@@ -59,7 +59,7 @@ Cc: linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, kernel@salutedevices.com
 References: <20240708194808.1819185-1-gnstark@salutedevices.com>
- <20240708194808.1819185-2-gnstark@salutedevices.com>
+ <20240708194808.1819185-4-gnstark@salutedevices.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,10 +105,10 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240708194808.1819185-2-gnstark@salutedevices.com>
+In-Reply-To: <20240708194808.1819185-4-gnstark@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240708_125157_256503_87DBF8ED 
-X-CRM114-Status: UNSURE (   4.82  )
+X-CRM114-CacheID: sfid-20240708_125229_225562_1CA50044 
+X-CRM114-Status: UNSURE (   5.78  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -127,14 +127,14 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 08/07/2024 21:48, George Stark wrote:
-> SPI Flash Controller has dedicated power domain so make the
-> corresponding property required.
+> On newer SoCs, the thermal hardware can require a power domain to
+> operate so add corresponding property as optional by default and as
+> required for Meson A1 due to it's temperature sensor has dedicated
+> power domain.
+> 
 
-That's an ABI break. Being part of power domain does not necessarily
-mean it must be required, so your commit msg lacks rationale. Especially
-on the ABI part.
-
-
+That's again ABI break with a reason "there is power domain", so not
+really sufficient.
 
 Best regards,
 Krzysztof
