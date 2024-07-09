@@ -4,81 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 878ECC2BD09
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Jul 2024 09:08:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40775C3DA41
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Jul 2024 09:08:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=TRKiR+aQ0DDKF+qcoxSsR9LcpHQGGc9F/vF4w/Bq3oc=; b=R/X7whuy3yAEES09lIJrom8Nf5
-	h4dOzvzjVhBrsdDcZTRWvUjR3FNqE4YLorxJR1mm4qdsNdMt4vCHLqaQRa9HKD392Ti7eiZViCHgJ
-	sxo1l+BduTpYCzuYMLvEhx75gxJ55BMWJivQ+PUgOp0cp9ml55mzMkhpz63yYTvkNZiUz+7hFm3YK
-	Ggdxtx/UXJwp4lBegHQ2qW7tMtvRATGFy3Yq302is9m2m2Zk7pV6kl2vGfG0nt53VDMh1c4BNK+Z7
-	yTIMl619GbnWKUJB+9+9ZiAq9vWoUvSVMvC+a3yxrsBSmjbcjKkRP2F7EGpFrIaPGlYTNo9nf3VpA
-	wUcicLQg==;
+	bh=Pk4bz/aoOQB0LVsphGiv0Zc5CWiQyeKCzyqGzsgpZG8=; b=bdJOH5EmcvtI36OwxoU/6p8xTX
+	ekZkdbD2ZJ1OCF+M9NxSjyxdvacTO2OTlRoHv5zfIrjyab5s2vuO5CI2yZ0/xA8MlTL23kyYQ99Wf
+	6YyPEuGX3FnZ6LPn8zzMN0kD8v9yFwjs9e2TkQyOOwzcaLafXAN8RWuIkHS4SbxlGN+GgCblIRodZ
+	EK0Lzs0LOmZuGpnVJFgGuuTBlMXNR5TTZCuNGndUNuL0Clm/EoRHYzxte2CWZSVqyfEia/BrOxbUI
+	XbHtJD+JLWECyZGe5AjVu5zXRz+1FbV6ZdVnv/EEvQOWlIxTJdotR0qTaHdGAHYNnmlecT8Bedtb4
+	/b8FOfIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sR6pv-00000006Xpj-2auQ;
-	Tue, 09 Jul 2024 09:08:35 +0000
-Received: from mail-lj1-x22d.google.com ([2a00:1450:4864:20::22d])
+	id 1sR6qD-00000006XvG-2bmt;
+	Tue, 09 Jul 2024 09:08:53 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sR6pt-00000006Xoq-050h
+	id 1sR6qA-00000006Xt7-0jkH
 	for linux-amlogic@lists.infradead.org;
-	Tue, 09 Jul 2024 09:08:34 +0000
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2ee910d6a8bso43334751fa.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 09 Jul 2024 02:08:32 -0700 (PDT)
+	Tue, 09 Jul 2024 09:08:51 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-424ad289949so35398615e9.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 09 Jul 2024 02:08:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720516111; x=1721120911; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1720516128; x=1721120928; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=CmdthfUB0lCia3+pjHR/TlqzyKmsnOAaiH7zcFhwtHw=;
-        b=Dp4X/79S4U07PqUFpTBGAoPFJW+1zpKKcGEZPg3lC4ASD2UMdN1P1ACIMcJBPOGgKQ
-         IDpTCshwaTarsq1SQE3pRzjWYOyAywTq3Hf8C+dvlwaPlkTaKzRGYzjmvvvPPqo+Pz/p
-         TTuP51jmzAUNlzXCFiTdpVJ6btIm4itXq94IGcV6nl74f7JdjXV2eyzCRS6seCfu0+UP
-         L0QiyogFGnFrw86j3ZSE/HtEbQ9/zAfC5S2W2UlWBEBb2MbVNndIz+B4YJ5DJLI+/h65
-         sYoLG4Z2PNaxi+GlRIGogwivxxVy0XuJeZPlXK++LiE7mP2OVertEvO8F4MnzJCTqyLB
-         hwIA==
+        bh=5ANmKzDOIKVmKZHKX18dtZ0Xwvo3oCJHasWzFPD4tQ0=;
+        b=KRlG6UXddd7vTDOpdamEf3GvOIg+/+VlOksYhcAtm9n0fH+D1kXNyCYr9eIVvYp9RV
+         DJIPYGnHso5wbJorGZe+IDjnJPJKXbcrKYRYU6yG7dTAK3yCCfZ/MP8PkZZDEclrHi2N
+         jCpAMdruXV3cLBlUta/D88IEnEA1DTkoZVM14pFgCZLUC0dqRexxqyQj/U6VhZrZwuBK
+         /IAIcgMzO/4SQdtInUZI9UH/KBWoObQfbUdXHDW2nyNpn4o2fDt+gz0UjNlQZ2aXHB2o
+         OXkDtRE18PNzNMcZwUuw0IrsyaR3va1lzqzn1Hd2BSSYLN0JZsZj4rX0IdGldFQe9NmI
+         l44A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720516111; x=1721120911;
+        d=1e100.net; s=20230601; t=1720516128; x=1721120928;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=CmdthfUB0lCia3+pjHR/TlqzyKmsnOAaiH7zcFhwtHw=;
-        b=u9tNCSpe/gIOYLWhrp+2qfXOkAOt0XSMoHib4rT1I7SDMCFk72+xXwT7j/ei89wLmN
-         CLH1cXaZR1+1f9r9DzL/MmvNN2JWWSidX1YCdnxLS9xnqEXW3+rXz5IKsO1vIzKYpkVL
-         Y8KEP77YkYBZ5Ki/qq3zVaLTC3nQYLWL3hM2IhRBLkih5Vmf9XriXc0J2gg0oGYC8IBN
-         crDJbdSNxPeAmfCcJu0hoaXt6Ovn152lSM001u7xyUHi2aOYYcf/JcNFK1SndzduL+Bc
-         zMsRP+60wGSX9MuKvWuBCq0BnCrkUp4OMgwmYo7lNhxWLKkobd7yO/RDB2lv2aoVzeFb
-         H8Tg==
-X-Forwarded-Encrypted: i=1; AJvYcCUW7P+WAMV8tKLYAT/in2Xgth84fU+yp9WQLJVpdfYrOpeYDVjYMjeUjhTvuTuIHaE7rceCnmy6Aw064DAstfHDWhlENY2BXKgb1GH8/BIlmGg=
-X-Gm-Message-State: AOJu0YzSvj3GL42DpyvU3SyFEpMt99IaJ+WHeXO2xv2pm46fLdYBi9mU
-	/QjFPqfdY1wXw3bmhVVScdH3ukz+Zg9Me3X9JKxD5N0bFXjTNgqBROHqLGzd1nU=
-X-Google-Smtp-Source: AGHT+IEtJIiE86xhBgxBKeQv7zMaRRuPXmv/jRIb3QypyrUCqGULk6d0VIimsfliwDU5MxU0qIHW4A==
-X-Received: by 2002:a2e:9903:0:b0:2ec:5fe1:c762 with SMTP id 38308e7fff4ca-2eeb3197c6fmr12601331fa.46.1720516110918;
-        Tue, 09 Jul 2024 02:08:30 -0700 (PDT)
+        bh=5ANmKzDOIKVmKZHKX18dtZ0Xwvo3oCJHasWzFPD4tQ0=;
+        b=QjU/z6w8ezrLxkipP8hGDZhyNEl0mAvCrDq0I31OuJZl0mBB4Cq3uPHHUCLmFEQWqj
+         mXglTWxkcaHKX6J9kby7UyXJbIyqRLIqwFyl/q6jBf+6sfFi+qlDx7MziI9VyuJ0OuNL
+         qYv6bFtayEgCuX9UUFphE7bCWCpl7qpQC3nv1KqD5kimB6gSaii8Ru/LgPy5jFu5CVWP
+         VFh033T7/S6f9j1em6thGpl4Hn1nJ/vr9u94dJQwFUsw4XIYEL+Cc22K9rt+VrUyxZWh
+         RsuFP46AEPoY4uYQ0HcSBwEX15hp6LBH3LOg6OBvXMxWZVLCTybtspUdeD7fQXoOgbzC
+         UHfg==
+X-Forwarded-Encrypted: i=1; AJvYcCX2E6tC/pyhvc/t6//ceBLnd9tH/vxh01Jo2dw4xD3r7MpF+4jnsYjpaFvswdy+PWm+gyGQYqws8VaEUGEtvcaAobJ9yKyF3EdWOBOC7m/NMVc=
+X-Gm-Message-State: AOJu0YwAMDHGyH5rXgtuHuad0KCXoXJji0YiPa6zC/I0EuaC0kEuwAPm
+	7+Ycc6LtvgezPnJ9BpqGZEaFJ5pAih1jPOUnuOqaRTvWM2q7b4wzF2Ru8MNT/GbU52Fbdhyl7+y
+	4D04=
+X-Google-Smtp-Source: AGHT+IE8dGfgukDFvsdorYHZw//51MvpbEXXLFPm2ybjz9IBphbGLeUpfAWThkn7OBaAt18C73eG9A==
+X-Received: by 2002:a7b:c446:0:b0:426:5ddf:fd22 with SMTP id 5b1f17b1804b1-426705ce962mr12407445e9.6.1720516128261;
+        Tue, 09 Jul 2024 02:08:48 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:cad:2140:b12a:8461:5e2a:dfe? ([2a01:e0a:cad:2140:b12a:8461:5e2a:dfe])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4266f74462esm30643605e9.48.2024.07.09.02.08.28
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42663f049e5sm98687965e9.35.2024.07.09.02.08.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jul 2024 02:08:30 -0700 (PDT)
-Message-ID: <f4a17dbc-07f3-4335-8e0c-ec64e2f80727@linaro.org>
-Date: Tue, 9 Jul 2024 11:08:27 +0200
+        Tue, 09 Jul 2024 02:08:47 -0700 (PDT)
+Message-ID: <3ad982d1-6626-4618-b815-cbee1f4f4901@linaro.org>
+Date: Tue, 9 Jul 2024 11:08:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] arm64: dts: amlogic: enable some device nodes for S4
-To: xianwei.zhao@amlogic.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+Subject: Re: [PATCH] pmdomain: amlogic: Constify struct
+ meson_secure_pwrc_domain_desc
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240705-s4_node-v1-1-646ca7ac4f09@amlogic.com>
+Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+References: <871d6b708de8bb42e1fabd8a601dc9a9a217cf00.1719863475.git.christophe.jaillet@wanadoo.fr>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -105,10 +107,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240705-s4_node-v1-1-646ca7ac4f09@amlogic.com>
+In-Reply-To: <871d6b708de8bb42e1fabd8a601dc9a9a217cf00.1719863475.git.christophe.jaillet@wanadoo.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240709_020833_128364_54D2D9DA 
-X-CRM114-Status: GOOD (  14.83  )
+X-CRM114-CacheID: sfid-20240709_020850_291858_FFE4F2D1 
+X-CRM114-Status: GOOD (  20.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,352 +128,97 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 05/07/2024 07:39, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On 01/07/2024 21:53, Christophe JAILLET wrote:
+> 'struct meson_secure_pwrc_domain_desc' is not modified in this driver.
 > 
-> Enable some device nodes for AQ222 base S4, including
-> SD, regulator and ethnernet node.
+> Constifying this structure moves some data to a read-only section, so
+> increase overall security.
 > 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> On a x86_64, with allmodconfig, as an example:
+> Before:
+> ======
+>     text	   data	    bss	    dec	    hex	filename
+>     4909	   4072	      0	   8981	   2315	drivers/pmdomain/amlogic/meson-secure-pwrc.o
+> 
+> After:
+> =====
+>     text	   data	    bss	    dec	    hex	filename
+>     8605	    392	      0	   8997	   2325	drivers/pmdomain/amlogic/meson-secure-pwrc.o
+> 
+> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 > ---
->   .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 146 +++++++++++++++++++++
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 128 ++++++++++++++++++
->   2 files changed, 274 insertions(+)
+> Compile tested-only.
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> index 983caddc409c..2ab685d9bd1d 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> @@ -34,6 +34,112 @@ secmon_reserved: secmon@5000000 {
->   			no-map;
->   		};
->   	};
-> +
-> +	sdio_32k: sdio-32k {
-> +		compatible = "pwm-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <32768>;
-> +		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-> +	};
-> +
-> +	sdio_pwrseq: sdio-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-> +		clocks = <&sdio_32k>;
-> +		clock-names = "ext_clock";
-> +	};
-> +
-> +	main_12v: regulator-main-12v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "12V";
-> +		regulator-min-microvolt = <12000000>;
-> +		regulator-max-microvolt = <12000000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vddao_3v3: regulator-vddao-3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDDAO_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&main_12v>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vddio_ao1v8: regulator-vddio-ao1v8 {
-> +	       compatible = "regulator-fixed";
-> +	       regulator-name = "VDDIO_AO1V8";
-> +	       regulator-min-microvolt = <1800000>;
-> +	       regulator-max-microvolt = <1800000>;
-> +	       vin-supply = <&vddao_3v3>;
-> +	       regulator-always-on;
-> +	};
-> +
-> +	/* SY8120B1ABC DC/DC Regulator. */
-> +	vddcpu: regulator-vddcpu {
-> +		compatible = "pwm-regulator";
-> +
-> +		regulator-name = "VDDCPU";
-> +		regulator-min-microvolt = <689000>;
-> +		regulator-max-microvolt = <1049000>;
-> +
-> +		vin-supply = <&main_12v>;
-> +
-> +		pwms = <&pwm_ij 1 1500 0>;
-> +		pwm-dutycycle-range = <100 0>;
-> +
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +		/* Voltage Duty-Cycle */
-> +		voltage-table = <1049000 0>,
-> +				<1039000 3>,
-> +				<1029000 6>,
-> +				<1019000 9>,
-> +				<1009000 12>,
-> +				<999000 14>,
-> +				<989000 17>,
-> +				<979000 20>,
-> +				<969000 23>,
-> +				<959000 26>,
-> +				<949000 29>,
-> +				<939000 31>,
-> +				<929000 34>,
-> +				<919000 37>,
-> +				<909000 40>,
-> +				<899000 43>,
-> +				<889000 45>,
-> +				<879000 48>,
-> +				<869000 51>,
-> +				<859000 54>,
-> +				<849000 56>,
-> +				<839000 59>,
-> +				<829000 62>,
-> +				<819000 65>,
-> +				<809000 68>,
-> +				<799000 70>,
-> +				<789000 73>,
-> +				<779000 76>,
-> +				<769000 79>,
-> +				<759000 81>,
-> +				<749000 84>,
-> +				<739000 87>,
-> +				<729000 89>,
-> +				<719000 92>,
-> +				<709000 95>,
-> +				<699000 98>,
-> +				<689000 100>;
-> +		status = "okay";
-
-You can drop status=okay here
-
-> +	};
-> +};
-> +
-> +&pwm_ef {
-> +	status = "okay";
-> +	pinctrl-0 = <&pwm_e_pins1>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&pwm_ij {
-> +	status = "okay";
->   };
->   
->   &uart_b {
-> @@ -46,6 +152,40 @@ &ir {
->   	pinctrl-names = "default";
->   };
->   
-> +&sdio {
-> +	pinctrl-0 = <&sdio_pins>;
-> +	pinctrl-1 = <&sdio_clk_gate_pins>;
-> +	pinctrl-names = "default", "clk-gate";
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	sd-uhs-sdr50;
-> +	sd-uhs-sdr104;
-> +	max-frequency = <200000000>;
-> +	non-removable;
-> +	disable-wp;
-> +	no-sd;
-> +	no-mmc;
-> +	vmmc-supply = <&vddao_3v3>;
-> +	vqmmc-supply = <&vddio_ao1v8>;
-> +};
-> +
-> +&sd {
-> +	status = "okay";
-> +	pinctrl-0 = <&sdcard_pins>;
-> +	pinctrl-1 = <&sdcard_clk_gate_pins>;
-> +	pinctrl-names = "default", "clk-gate";
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	max-frequency = <200000000>;
-> +	disable-wp;
-> +
-> +	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-> +	vmmc-supply = <&vddao_3v3>;
-> +	vqmmc-supply = <&vddao_3v3>;
-> +};
-> +
->   &nand {
->   	status = "okay";
->   	#address-cells = <1>;
-> @@ -90,3 +230,9 @@ &spicc0 {
->   	pinctrl-0 = <&spicc0_pins_x>;
->   	cs-gpios = <&gpio GPIOX_10 GPIO_ACTIVE_LOW>;
->   };
-> +
-> +&ethmac {
-> +	status = "okay";
-> +	phy-handle = <&internal_ephy>;
-> +	phy-mode = "rmii";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> index b686eacb9662..c11c947fa18c 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -10,6 +10,7 @@
->   #include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
->   #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
->   #include <dt-bindings/power/meson-s4-power.h>
-> +#include <dt-bindings/reset/amlogic,meson-s4-reset.h>
->   
->   / {
->   	cpus {
-> @@ -466,6 +467,93 @@ mux {
->   					};
->   				};
->   
-> +				sdcard_pins: sdcard-pins {
-> +					mux {
-> +						groups = "sdcard_d0_c",
-> +							 "sdcard_d1_c",
-> +							 "sdcard_d2_c",
-> +							 "sdcard_d3_c",
-> +							 "sdcard_clk_c",
-> +							 "sdcard_cmd_c";
-> +						function = "sdcard";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <4000>;
-> +					};
-> +				};
-> +
-> +				sdcard_clk_gate_pins: sdcard-clk-gate-pins {
-> +					mux {
-> +						groups = "GPIOC_4";
-> +						function = "gpio_periphs";
-> +						bias-pull-down;
-> +						drive-strength-microamp = <4000>;
-> +					};
-> +				};
-> +
-> +				emmc_pins: emmc-pins {
-> +					mux-0 {
-> +						groups = "emmc_nand_d0",
-> +							 "emmc_nand_d1",
-> +							 "emmc_nand_d2",
-> +							 "emmc_nand_d3",
-> +							 "emmc_nand_d4",
-> +							 "emmc_nand_d5",
-> +							 "emmc_nand_d6",
-> +							 "emmc_nand_d7",
-> +							 "emmc_cmd";
-> +						function = "emmc";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <4000>;
-> +					};
-> +					mux-1 {
-> +						groups = "emmc_clk";
-> +						function = "emmc";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <4000>;
-> +					};
-> +				};
-> +
-> +				emmc_ds_pins: emmc-ds-pins {
-> +					mux {
-> +						groups = "emmc_nand_ds";
-> +						function = "emmc";
-> +						bias-pull-down;
-> +						drive-strength-microamp = <4000>;
-> +					};
-> +				};
-> +
-> +				emmc_clk_gate_pins: emmc-clk-gate-pins {
-> +					mux {
-> +						groups = "GPIOB_8";
-> +						function = "gpio_periphs";
-> +						bias-pull-down;
-> +						drive-strength-microamp = <4000>;
-> +					};
-> +				};
-> +
-> +				sdio_pins: sdio-pins {
-> +					mux {
-> +						groups = "sdio_d0",
-> +							 "sdio_d1",
-> +							 "sdio_d2",
-> +							 "sdio_d3",
-> +							 "sdio_clk",
-> +							 "sdio_cmd";
-> +						function = "sdio";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <4000>;
-> +					};
-> +				};
-> +
-> +				sdio_clk_gate_pins: sdio-clk-gate-pins {
-> +					mux {
-> +						groups = "GPIOX_4";
-> +						function = "gpio_periphs";
-> +						bias-pull-down;
-> +						drive-strength-microamp = <4000>;
-> +					};
-> +				};
-> +
->   				spicc0_pins_x: spicc0-pins_x {
->   					mux {
->   						groups = "spi_a_mosi_x",
-> @@ -712,5 +800,45 @@ mdio0: mdio {
->   				compatible = "snps,dwmac-mdio";
->   			};
->   		};
-> +
-> +		sdio: mmc@fe088000 {
-> +			compatible = "amlogic,meson-axg-mmc";
-> +			reg = <0x0 0xfe088000 0x0 0x800>;
-> +			interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clkc_periphs CLKID_SDEMMC_A>,
-> +				 <&xtal>,
-> +				 <&clkc_pll CLKID_FCLK_DIV2>;
-> +			clock-names = "core", "clkin0", "clkin1";
-> +			resets = <&reset RESET_SD_EMMC_A>;
-> +			cap-sdio-irq;
-> +			keep-power-in-suspend;
-> +			status = "disabled";
-> +		};
-> +
-> +		sd: mmc@fe08a000 {
-> +			compatible = "amlogic,meson-axg-mmc";
-> +			reg = <0x0 0xfe08a000 0x0 0x800>;
-> +			interrupts = <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>;
-> +			clocks = <&clkc_periphs CLKID_SDEMMC_B>,
-> +				 <&clkc_periphs CLKID_SD_EMMC_B>,
-> +				 <&clkc_pll CLKID_FCLK_DIV2>;
-> +			clock-names = "core", "clkin0", "clkin1";
-> +			resets = <&reset RESET_SD_EMMC_B>;
-> +			status = "disabled";
-> +		};
-> +
-> +		emmc: mmc@fe08c000 {
-> +			compatible = "amlogic,meson-axg-mmc";
-> +			reg = <0x0 0xfe08c000 0x0 0x800>;
-> +			interrupts = <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>;
-> +			clocks = <&clkc_periphs CLKID_NAND>,
-> +				 <&xtal>,
-> +				 <&clkc_pll CLKID_FCLK_DIV2>;
-> +			clock-names = "core", "clkin0", "clkin1";
-> +			resets = <&reset RESET_NAND_EMMC>;
-> +			no-sdio;
-> +			no-sd;
-> +			status = "disabled";
-> +		};
->   	};
->   };
+> The .is_off() function is *always* set as pwrc_secure_is_off(), so it could
+> make sense to remove this function pointer and call pwrc_secure_is_off()
+> directly when needed.
+> This would save some memory and useless indirection.
 > 
+> I leave it as-is because it is maybe here for future use.
 > ---
-> base-commit: 338c92a5d1956f1841f84b86923087676d1d0cea
-> change-id: 20240705-s4_node-8110e3286c0c
+>   drivers/pmdomain/amlogic/meson-secure-pwrc.c | 12 ++++++------
+>   1 file changed, 6 insertions(+), 6 deletions(-)
 > 
-> Best regards,
-
-With that fixed:
+> diff --git a/drivers/pmdomain/amlogic/meson-secure-pwrc.c b/drivers/pmdomain/amlogic/meson-secure-pwrc.c
+> index df5567418226..62857482f874 100644
+> --- a/drivers/pmdomain/amlogic/meson-secure-pwrc.c
+> +++ b/drivers/pmdomain/amlogic/meson-secure-pwrc.c
+> @@ -46,7 +46,7 @@ struct meson_secure_pwrc_domain_desc {
+>   
+>   struct meson_secure_pwrc_domain_data {
+>   	unsigned int count;
+> -	struct meson_secure_pwrc_domain_desc *domains;
+> +	const struct meson_secure_pwrc_domain_desc *domains;
+>   };
+>   
+>   static bool pwrc_secure_is_off(struct meson_secure_pwrc_domain *pwrc_domain)
+> @@ -110,7 +110,7 @@ static int meson_secure_pwrc_on(struct generic_pm_domain *domain)
+>   	.parent = __parent,			\
+>   }
+>   
+> -static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
+> +static const struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
+>   	SEC_PD(DSPA,	0),
+>   	SEC_PD(DSPB,	0),
+>   	/* UART should keep working in ATF after suspend and before resume */
+> @@ -137,7 +137,7 @@ static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
+>   	SEC_PD(RSA,	0),
+>   };
+>   
+> -static struct meson_secure_pwrc_domain_desc a4_pwrc_domains[] = {
+> +static const struct meson_secure_pwrc_domain_desc a4_pwrc_domains[] = {
+>   	SEC_PD(A4_AUDIO,	0),
+>   	SEC_PD(A4_SDIOA,	0),
+>   	SEC_PD(A4_EMMC,	0),
+> @@ -155,7 +155,7 @@ static struct meson_secure_pwrc_domain_desc a4_pwrc_domains[] = {
+>   	SEC_PD(A4_AO_IR,	GENPD_FLAG_ALWAYS_ON),
+>   };
+>   
+> -static struct meson_secure_pwrc_domain_desc c3_pwrc_domains[] = {
+> +static const struct meson_secure_pwrc_domain_desc c3_pwrc_domains[] = {
+>   	SEC_PD(C3_NNA,		0),
+>   	SEC_PD(C3_AUDIO,	0),
+>   	SEC_PD(C3_SDIOA,	0),
+> @@ -172,7 +172,7 @@ static struct meson_secure_pwrc_domain_desc c3_pwrc_domains[] = {
+>   	SEC_PD(C3_VCODEC,	0),
+>   };
+>   
+> -static struct meson_secure_pwrc_domain_desc s4_pwrc_domains[] = {
+> +static const struct meson_secure_pwrc_domain_desc s4_pwrc_domains[] = {
+>   	SEC_PD(S4_DOS_HEVC,	0),
+>   	SEC_PD(S4_DOS_VDEC,	0),
+>   	SEC_PD(S4_VPU_HDMI,	0),
+> @@ -184,7 +184,7 @@ static struct meson_secure_pwrc_domain_desc s4_pwrc_domains[] = {
+>   	SEC_PD(S4_AUDIO,	0),
+>   };
+>   
+> -static struct meson_secure_pwrc_domain_desc t7_pwrc_domains[] = {
+> +static const struct meson_secure_pwrc_domain_desc t7_pwrc_domains[] = {
+>   	SEC_PD(T7_DSPA,		0),
+>   	SEC_PD(T7_DSPB,		0),
+>   	TOP_PD(T7_DOS_HCODEC,	0, PWRC_T7_NIC3_ID),
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
 
 _______________________________________________
 linux-amlogic mailing list
