@@ -4,67 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F1B8C3271E
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jul 2024 21:48:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90F05C3DA42
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Jul 2024 08:20:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
-	In-Reply-To:Cc:To:From:MIME-Version:Date:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=BiFRwa5V1JulBk1ZqMo1wHRXcYZCWey/sqsrKNORpUs=; b=YCgW1moFfBmQZC9CH/lNBsh+A5
-	mHqR6jzI3N98Vt4p4vdmu58wxBnFYSYndu4WDLHNhNmbVYlF65syOah9KCuV8HpnShWYinYEZx24L
-	/oce82KRiXnmOjJ/bMA7NIXknz631uTIyoZ9zfpF4om4hx1RYRO/9IVlZ31Xlt2WHu5VR/YOzkGhY
-	4wcggxSYrV1ONYFYfcodBXyhVl7H/JyiP2hcg6mNqZa7IkNU/z2PDnRLhACzPo9BATFe0FGNw0Ms2
-	wXH7az4t6tS87zdU7L2m+ItDU1NyIlMJwt2fT3/GJr7AEgFAK21hlQBhYz5pajSlahV7piUsOkGq+
-	IitHsppA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=3Oqqi0mBdInyuRy4k0vyKRLLo2KR/WFilT0wE+ZnHQA=; b=DZsSJpcbSl64As
+	IfrJE4yIlfrznyShL0pOk/gZ7VXm3mHPAclP47SfM4g8kGoxvUHBAcLdle8Ew475GOcyeJQ8XqCdX
+	Lfu8QUQKvGspGTSqqRh+LtF/IoAe4FJWZ9hSYgB5/xGwm4P5ry6gW76oBtG/wLQ3Y4tU3Kq4QENpt
+	XN42WhrlKydmrP0yy/tsANeYzbR/jKS9IhLLZaBr3gAcrFXbywgiNLUquiEWAXIhbbKr+YHD9WEN5
+	o5zHSU4oriF1TKHuzAxbTByn4DaKlQv+lilwfvOlLAPuDGWSTnkPkj65qkrtLDdcWEq2ARixkAAi7
+	1bMkvDovODPvZ284xM3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sQwDd-0000000581T-0x6O;
-	Mon, 08 Jul 2024 21:48:21 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1sR65T-00000006N1K-3kTQ;
+	Tue, 09 Jul 2024 08:20:35 +0000
+Received: from mail.creationavenue.pl ([217.61.16.184])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sQwDa-000000057zl-1Flo;
-	Mon, 08 Jul 2024 21:48:19 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id D1F6061171;
-	Mon,  8 Jul 2024 21:48:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38DE5C116B1;
-	Mon,  8 Jul 2024 21:48:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720475296;
-	bh=58cUh743dQOrMkAUwZvw9ESyA3J+L2orhwmh8ALge1A=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=JaNN1c8OyAPkwuzPpGIQ/dJzBrA9gLBtTF4untiSSorTgPz52kCpG4m1ivgICujV2
-	 zM1bzIa0L1B5/vJO4UaGIN752t4mvj+bPijrEp71z1L899ue+oLozt3jVnLwu87ae6
-	 crxn9bmpoZ/4V0nlKCCuSQaAvwihC5vuPzQqdbRSaSynIxcwdZmTV7KH7jpgrOEr8h
-	 w+6JbSqIaELHULuaW6s5VK8qS51sCawyWsHQk7c9x8ukTHoL/wDIkpl2yaaeu0R+Sx
-	 +jLDMOjWI9wpI80zGP/dOyAr/6/Bv4W2Kf9M5720JBH1WGJKYcUbUO5KzyP81ku4eU
-	 PEvjHwpjPiOdw==
-Date: Mon, 08 Jul 2024 15:48:15 -0600
+	id 1sR65R-00000006N0A-3rxA
+	for linux-amlogic@lists.infradead.org;
+	Tue, 09 Jul 2024 08:20:35 +0000
+Received: by mail.creationavenue.pl (Postfix, from userid 1002)
+	id B5AB284E5D; Tue,  9 Jul 2024 10:17:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=creationavenue.pl;
+	s=mail; t=1720513053;
+	bh=ChscJKp3Om3FoG8SjFzTAmp7diEPSUZN/W3lUPFw6JM=;
+	h=Date:From:To:Subject:From;
+	b=nkcJlZ+3cKf6Ma2F0kt9a0hw9BNzSNth24JdAi99y4fARB1tnyWwUneS66TmYp6YQ
+	 my/lJIOleSG4Kq1snaYdKyXzOuQzOkrkr3IDZkXsefZXoOBXnLR8FxEScgenUaUFz8
+	 70XUjz8QnPZ3+p1NnFnXWmvK+Eym6EJiyx/Mpd29dAL03ivpudJW+YNyjwPDEaf/Me
+	 NY3vJAjk3eEEmnHksWSItAdUnEpQLYna42SDZORNrkbmMMrMSS9dRs+7lWhSygHvvq
+	 pX7Vwu0/DCRV0trKVVp7k/6WvvRAZmtdNZLpilviY+4243YRP3tmPWC/mXTDrg7z5X
+	 uS+b8aPte6JDQ==
+Received: by mail.creationavenue.pl for <linux-amlogic@lists.infradead.org>; Tue,  9 Jul 2024 08:15:57 GMT
+Message-ID: <20240709084501-0.1.4o.mibp.0.kci0rorkqv@creationavenue.pl>
+Date: Tue,  9 Jul 2024 08:15:57 GMT
+From: "Karol Winiarski" <karol.winiarski@creationavenue.pl>
+To: <linux-amlogic@lists.infradead.org>
+Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
+X-Mailer: mail.creationavenue.pl
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: George Stark <gnstark@salutedevices.com>
-Cc: rafael@kernel.org, krzk+dt@kernel.org, hkallweit1@gmail.com, 
- b.galvani@gmail.com, lukasz.luba@arm.com, conor+dt@kernel.org, 
- rui.zhang@intel.com, broonie@kernel.org, devicetree@vger.kernel.org, 
- linux-pm@vger.kernel.org, neil.armstrong@linaro.org, 
- daniel.lezcano@linaro.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, khilman@baylibre.com, 
- mmkurbanov@sberdevices.ru, linux-spi@vger.kernel.org, 
- martin.blumenstingl@googlemail.com, linux-i2c@vger.kernel.org, 
- jbrunet@baylibre.com, glaroque@baylibre.com, 
- linux-amlogic@lists.infradead.org, kernel@salutedevices.com
-In-Reply-To: <20240708194808.1819185-2-gnstark@salutedevices.com>
-References: <20240708194808.1819185-1-gnstark@salutedevices.com>
- <20240708194808.1819185-2-gnstark@salutedevices.com>
-Message-Id: <172047529524.3973694.1825285851935530574.robh@kernel.org>
-Subject: Re: [PATCH 1/4] dt-bindings: spi: amlogic,a1-spifc: make
- power-domains required
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240708_144818_427775_76C73813 
-X-CRM114-Status: UNSURE (   9.89  )
+X-CRM114-CacheID: sfid-20240709_012034_107988_FA57C44E 
+X-CRM114-Status: UNSURE (   0.03  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -77,49 +62,19 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Mon, 08 Jul 2024 22:48:05 +0300, George Stark wrote:
-> SPI Flash Controller has dedicated power domain so make the
-> corresponding property required.
-> 
-> Signed-off-by: George Stark <gnstark@salutedevices.com>
-> ---
->  Documentation/devicetree/bindings/spi/amlogic,a1-spifc.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/amlogic,a1-spifc.example.dtb: spi@fd000400: Unevaluated properties are not allowed ('power-domains' was unexpected)
-	from schema $id: http://devicetree.org/schemas/spi/amlogic,a1-spifc.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240708194808.1819185-2-gnstark@salutedevices.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RHppZcWEIGRvYnJ5LAoKemFwb3puYcWCZW0gc2nEmSB6IFBhxYRzdHdhIG9mZXJ0xIUgaSB6IHBy
+enlqZW1ub8WbY2nEhSBwcnp5em5hasSZLCDFvGUgcHJ6eWNpxIVnYSB1d2FnxJkgaSB6YWNoxJlj
+YSBkbyBkYWxzenljaCByb3ptw7N3LiAKClBvbXnFm2xhxYJlbSwgxbxlIG1vxbxlIG3Ds2fFgmJ5
+bSBtaWXEhyBzd8OzaiB3a8WCYWQgdyBQYcWEc3R3YSByb3p3w7NqIGkgcG9tw7NjIGRvdHJ6ZcSH
+IHogdMSFIG9mZXJ0xIUgZG8gd2nEmWtzemVnbyBncm9uYSBvZGJpb3Jjw7N3LiBQb3p5Y2pvbnVq
+xJkgc3Ryb255IHd3dywgZHppxJlraSBjemVtdSBnZW5lcnVqxIUgxZt3aWV0bnkgcnVjaCB3IHNp
+ZWNpLgoKTW/FvGVteSBwb3Jvem1hd2lhxIcgdyBuYWpibGnFvHN6eW0gY3phc2llPwoKClBvemRy
+YXdpYW0KS2Fyb2wgV2luaWFyc2tpCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxp
+c3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9saW51eC1hbWxvZ2ljCg==
