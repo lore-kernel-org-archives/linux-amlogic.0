@@ -4,83 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92E08C2BD09
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Jul 2024 09:06:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 878ECC2BD09
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Jul 2024 09:08:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=G/lCJ7H9vxRhnHEG80Cz7hi78lW6l/4w4rSyzaCnb90=; b=DVTH21wjMSXZdhlN5YlVzfFNnt
-	3fVLTWKUOxHZXh+n/H3AvIqXo13cg01orcvdAHGi69KQfMQWqeWAlgbIIe82wzW1zOzbh9SnRWSRW
-	URTxjtBe3FEWthOR4jrnbnDyRugLexn8TjZ15BrwRd3mtRjJbCCvF6RaUj4MCBpJqJUrnxYD8G+HF
-	0FCmkBRFBi+FOXQDn2PZyAGO7JzGw8bmvYBtm54OyVcd+WScx8KhBY8J18STHuH2tqWfQLz6mqYo5
-	wZYgAfyltaXkTgitatSB4pSk0BlTR5lIUCdBfRQycWoLOuYV9W810IJUxFQysJunTWE3ZMidTN16a
-	BUdfZ+AQ==;
+	bh=TRKiR+aQ0DDKF+qcoxSsR9LcpHQGGc9F/vF4w/Bq3oc=; b=R/X7whuy3yAEES09lIJrom8Nf5
+	h4dOzvzjVhBrsdDcZTRWvUjR3FNqE4YLorxJR1mm4qdsNdMt4vCHLqaQRa9HKD392Ti7eiZViCHgJ
+	sxo1l+BduTpYCzuYMLvEhx75gxJ55BMWJivQ+PUgOp0cp9ml55mzMkhpz63yYTvkNZiUz+7hFm3YK
+	Ggdxtx/UXJwp4lBegHQ2qW7tMtvRATGFy3Yq302is9m2m2Zk7pV6kl2vGfG0nt53VDMh1c4BNK+Z7
+	yTIMl619GbnWKUJB+9+9ZiAq9vWoUvSVMvC+a3yxrsBSmjbcjKkRP2F7EGpFrIaPGlYTNo9nf3VpA
+	wUcicLQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sR6o6-00000006XQZ-2qGp;
-	Tue, 09 Jul 2024 09:06:42 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1sR6pv-00000006Xpj-2auQ;
+	Tue, 09 Jul 2024 09:08:35 +0000
+Received: from mail-lj1-x22d.google.com ([2a00:1450:4864:20::22d])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sR6nc-00000006XG6-2kET
+	id 1sR6pt-00000006Xoq-050h
 	for linux-amlogic@lists.infradead.org;
-	Tue, 09 Jul 2024 09:06:15 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4266fcb311cso5614365e9.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 09 Jul 2024 02:06:12 -0700 (PDT)
+	Tue, 09 Jul 2024 09:08:34 +0000
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2ee910d6a8bso43334751fa.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 09 Jul 2024 02:08:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720515971; x=1721120771; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1720516111; x=1721120911; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ogVyAEL2M7qNO4z7J1sOc6hAQrvMRSpw0p21RysLKwM=;
-        b=ty4j534s6au65b8hE7KIV7yy8E5Fqx1eDgyNN08Jj9hhux/WnbVzpqq9h/6QlcCXow
-         FeK3eh5VTWkUSPIlO7M8eaTTwiTtYwNLCPig+gwplXWbxZ+VGZ+cDxL3jwheHEW7fB/n
-         /So4aiYRy2tqnkVukMbJNxPK698JyzYzdZxxqujpSz3jSTimJuvJkMCISpq9vhjeTMy1
-         w1PRtkeQO14m16DXkJDoLR3P/Nw03xiQLLgOJG9UINbvvkglgovnAaE1cbM76eg64uI5
-         ktXSAMLRBHTE2YNyYtLgocVpMdDXiPnLdNcI8771cBbwBUO6iP/CEBfXTIRXhoVd/GUt
-         45WQ==
+        bh=CmdthfUB0lCia3+pjHR/TlqzyKmsnOAaiH7zcFhwtHw=;
+        b=Dp4X/79S4U07PqUFpTBGAoPFJW+1zpKKcGEZPg3lC4ASD2UMdN1P1ACIMcJBPOGgKQ
+         IDpTCshwaTarsq1SQE3pRzjWYOyAywTq3Hf8C+dvlwaPlkTaKzRGYzjmvvvPPqo+Pz/p
+         TTuP51jmzAUNlzXCFiTdpVJ6btIm4itXq94IGcV6nl74f7JdjXV2eyzCRS6seCfu0+UP
+         L0QiyogFGnFrw86j3ZSE/HtEbQ9/zAfC5S2W2UlWBEBb2MbVNndIz+B4YJ5DJLI+/h65
+         sYoLG4Z2PNaxi+GlRIGogwivxxVy0XuJeZPlXK++LiE7mP2OVertEvO8F4MnzJCTqyLB
+         hwIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720515971; x=1721120771;
+        d=1e100.net; s=20230601; t=1720516111; x=1721120911;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=ogVyAEL2M7qNO4z7J1sOc6hAQrvMRSpw0p21RysLKwM=;
-        b=Y7hcjdupWrqoEqVnD+xUf+Hy653CK/RwuH1FFflrfdXwWNxRBwKJ6ygkHK+PkskgbN
-         AhRiKVl4WV+prFS47xovDmDyRyJzhbN/5FGlwLU6tGJAP56IgiwEVNHORxEDUIaHSVNy
-         UQff6mtLeLua86N3e23iq8C3VjAnXx3Qj3CESmxRiAyc4DV68TFDJFE2QyTN7oB6U8a+
-         O7O7NE43BOh9szd3kEyFZlQrvHahq2iCpPhXAcamHSh+jahmg/v8AWuTcYmeoDwuCNzQ
-         gWjUEjXZdOvwc2tbCLJIWtPufc8JTA64CkoGCL49eJz345PkksGAU1ogWrv/oL8WKJq2
-         mesQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWN05RRkNKpD1cFtcDPo0exMb7raI22vDeuuOPwp7eqS2inSXwyW/RQdGS6K4TiHdWKoNofZjuNEA5UL6aq3hkLxFZKY43IomFvjlD1/02SVQI=
-X-Gm-Message-State: AOJu0Yx1tooOjvwnuSsgqX9FpuX0IoKk4avAdj/VffqjVVZBg72MMTW7
-	EMwou0TVZIONM2MN5U9PYXU8eMujxmIHcGnUQ1zI4PI2thCDcgB0ENHRHmsngrc=
-X-Google-Smtp-Source: AGHT+IELZi7jgatav2Id3lIgfAyc3Rzsc/KAgDHVke/qVTBlLbN2DDJ60OTJQsnSr7D68SFLsEWQlg==
-X-Received: by 2002:a05:600c:2e04:b0:426:59ad:bbb3 with SMTP id 5b1f17b1804b1-426708f1f54mr11303105e9.32.1720515970731;
-        Tue, 09 Jul 2024 02:06:10 -0700 (PDT)
+        bh=CmdthfUB0lCia3+pjHR/TlqzyKmsnOAaiH7zcFhwtHw=;
+        b=u9tNCSpe/gIOYLWhrp+2qfXOkAOt0XSMoHib4rT1I7SDMCFk72+xXwT7j/ei89wLmN
+         CLH1cXaZR1+1f9r9DzL/MmvNN2JWWSidX1YCdnxLS9xnqEXW3+rXz5IKsO1vIzKYpkVL
+         Y8KEP77YkYBZ5Ki/qq3zVaLTC3nQYLWL3hM2IhRBLkih5Vmf9XriXc0J2gg0oGYC8IBN
+         crDJbdSNxPeAmfCcJu0hoaXt6Ovn152lSM001u7xyUHi2aOYYcf/JcNFK1SndzduL+Bc
+         zMsRP+60wGSX9MuKvWuBCq0BnCrkUp4OMgwmYo7lNhxWLKkobd7yO/RDB2lv2aoVzeFb
+         H8Tg==
+X-Forwarded-Encrypted: i=1; AJvYcCUW7P+WAMV8tKLYAT/in2Xgth84fU+yp9WQLJVpdfYrOpeYDVjYMjeUjhTvuTuIHaE7rceCnmy6Aw064DAstfHDWhlENY2BXKgb1GH8/BIlmGg=
+X-Gm-Message-State: AOJu0YzSvj3GL42DpyvU3SyFEpMt99IaJ+WHeXO2xv2pm46fLdYBi9mU
+	/QjFPqfdY1wXw3bmhVVScdH3ukz+Zg9Me3X9JKxD5N0bFXjTNgqBROHqLGzd1nU=
+X-Google-Smtp-Source: AGHT+IEtJIiE86xhBgxBKeQv7zMaRRuPXmv/jRIb3QypyrUCqGULk6d0VIimsfliwDU5MxU0qIHW4A==
+X-Received: by 2002:a2e:9903:0:b0:2ec:5fe1:c762 with SMTP id 38308e7fff4ca-2eeb3197c6fmr12601331fa.46.1720516110918;
+        Tue, 09 Jul 2024 02:08:30 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:cad:2140:b12a:8461:5e2a:dfe? ([2a01:e0a:cad:2140:b12a:8461:5e2a:dfe])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cdfa079asm1926309f8f.68.2024.07.09.02.06.09
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4266f74462esm30643605e9.48.2024.07.09.02.08.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jul 2024 02:06:10 -0700 (PDT)
-Message-ID: <15016b7c-f333-4a38-8780-79bbc9ed1b0f@linaro.org>
-Date: Tue, 9 Jul 2024 11:06:08 +0200
+        Tue, 09 Jul 2024 02:08:30 -0700 (PDT)
+Message-ID: <f4a17dbc-07f3-4335-8e0c-ec64e2f80727@linaro.org>
+Date: Tue, 9 Jul 2024 11:08:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] drm/meson: fix canvas release in bind function
-To: Yao Zi <ziyao@disroot.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Maxime Jourdan <mjourdan@baylibre.com>
-Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240703155826.10385-2-ziyao@disroot.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: enable some device nodes for S4
+To: xianwei.zhao@amlogic.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240705-s4_node-v1-1-646ca7ac4f09@amlogic.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -107,10 +105,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240703155826.10385-2-ziyao@disroot.org>
+In-Reply-To: <20240705-s4_node-v1-1-646ca7ac4f09@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240709_020612_901639_9952125A 
-X-CRM114-Status: GOOD (  15.04  )
+X-CRM114-CacheID: sfid-20240709_020833_128364_54D2D9DA 
+X-CRM114-Status: GOOD (  14.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,98 +126,349 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 03/07/2024 17:58, Yao Zi wrote:
-> Allocated canvases may not be released on the error exit path of
-> meson_drv_bind_master(), leading to resource leaking. Rewrite exit path
-> to release canvases on error.
+On 05/07/2024 07:39, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> Fixes: 2bf6b5b0e374 ("drm/meson: exclusively use the canvas provider module")
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> Enable some device nodes for AQ222 base S4, including
+> SD, regulator and ethnernet node.
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->   drivers/gpu/drm/meson/meson_drv.c | 37 +++++++++++++++----------------
->   1 file changed, 18 insertions(+), 19 deletions(-)
+>   .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 146 +++++++++++++++++++++
+>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 128 ++++++++++++++++++
+>   2 files changed, 274 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-> index 17a5cca007e2..4bd0baa2a4f5 100644
-> --- a/drivers/gpu/drm/meson/meson_drv.c
-> +++ b/drivers/gpu/drm/meson/meson_drv.c
-> @@ -250,29 +250,20 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
->   	if (ret)
->   		goto free_drm;
->   	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_vd1_0);
-> -	if (ret) {
-> -		meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
-> -		goto free_drm;
-> -	}
-> +	if (ret)
-> +		goto free_canvas_osd1;
->   	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_vd1_1);
-> -	if (ret) {
-> -		meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
-> -		meson_canvas_free(priv->canvas, priv->canvas_id_vd1_0);
-> -		goto free_drm;
-> -	}
-> +	if (ret)
-> +		goto free_canvas_vd1_0;
->   	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_vd1_2);
-> -	if (ret) {
-> -		meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
-> -		meson_canvas_free(priv->canvas, priv->canvas_id_vd1_0);
-> -		meson_canvas_free(priv->canvas, priv->canvas_id_vd1_1);
-> -		goto free_drm;
-> -	}
-> +	if (ret)
-> +		goto free_canvas_vd1_1;
->   
->   	priv->vsync_irq = platform_get_irq(pdev, 0);
->   
->   	ret = drm_vblank_init(drm, 1);
->   	if (ret)
-> -		goto free_drm;
-> +		goto free_canvas_vd1_2;
->   
->   	/* Assign limits per soc revision/package */
->   	for (i = 0 ; i < ARRAY_SIZE(meson_drm_soc_attrs) ; ++i) {
-> @@ -288,11 +279,11 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
->   	 */
->   	ret = drm_aperture_remove_framebuffers(&meson_driver);
->   	if (ret)
-> -		goto free_drm;
-> +		goto free_canvas_vd1_2;
->   
->   	ret = drmm_mode_config_init(drm);
->   	if (ret)
-> -		goto free_drm;
-> +		goto free_canvas_vd1_2;
->   	drm->mode_config.max_width = 3840;
->   	drm->mode_config.max_height = 2160;
->   	drm->mode_config.funcs = &meson_mode_config_funcs;
-> @@ -307,7 +298,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
->   	if (priv->afbcd.ops) {
->   		ret = priv->afbcd.ops->init(priv);
->   		if (ret)
-> -			goto free_drm;
-> +			goto free_canvas_vd1_2;
->   	}
->   
->   	/* Encoder Initialization */
-> @@ -371,6 +362,14 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
->   exit_afbcd:
->   	if (priv->afbcd.ops)
->   		priv->afbcd.ops->exit(priv);
-> +free_canvas_vd1_2:
-> +	meson_canvas_free(priv->canvas, priv->canvas_id_vd1_2);
-> +free_canvas_vd1_1:
-> +	meson_canvas_free(priv->canvas, priv->canvas_id_vd1_1);
-> +free_canvas_vd1_0:
-> +	meson_canvas_free(priv->canvas, priv->canvas_id_vd1_0);
-> +free_canvas_osd1:
-> +	meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
->   free_drm:
->   	drm_dev_put(drm);
->   
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+> index 983caddc409c..2ab685d9bd1d 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+> @@ -34,6 +34,112 @@ secmon_reserved: secmon@5000000 {
+>   			no-map;
+>   		};
+>   	};
+> +
+> +	sdio_32k: sdio-32k {
+> +		compatible = "pwm-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <32768>;
+> +		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
+> +	};
+> +
+> +	sdio_pwrseq: sdio-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
+> +		clocks = <&sdio_32k>;
+> +		clock-names = "ext_clock";
+> +	};
+> +
+> +	main_12v: regulator-main-12v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "12V";
+> +		regulator-min-microvolt = <12000000>;
+> +		regulator-max-microvolt = <12000000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddao_3v3: regulator-vddao-3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDAO_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&main_12v>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddio_ao1v8: regulator-vddio-ao1v8 {
+> +	       compatible = "regulator-fixed";
+> +	       regulator-name = "VDDIO_AO1V8";
+> +	       regulator-min-microvolt = <1800000>;
+> +	       regulator-max-microvolt = <1800000>;
+> +	       vin-supply = <&vddao_3v3>;
+> +	       regulator-always-on;
+> +	};
+> +
+> +	/* SY8120B1ABC DC/DC Regulator. */
+> +	vddcpu: regulator-vddcpu {
+> +		compatible = "pwm-regulator";
+> +
+> +		regulator-name = "VDDCPU";
+> +		regulator-min-microvolt = <689000>;
+> +		regulator-max-microvolt = <1049000>;
+> +
+> +		vin-supply = <&main_12v>;
+> +
+> +		pwms = <&pwm_ij 1 1500 0>;
+> +		pwm-dutycycle-range = <100 0>;
+> +
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +		/* Voltage Duty-Cycle */
+> +		voltage-table = <1049000 0>,
+> +				<1039000 3>,
+> +				<1029000 6>,
+> +				<1019000 9>,
+> +				<1009000 12>,
+> +				<999000 14>,
+> +				<989000 17>,
+> +				<979000 20>,
+> +				<969000 23>,
+> +				<959000 26>,
+> +				<949000 29>,
+> +				<939000 31>,
+> +				<929000 34>,
+> +				<919000 37>,
+> +				<909000 40>,
+> +				<899000 43>,
+> +				<889000 45>,
+> +				<879000 48>,
+> +				<869000 51>,
+> +				<859000 54>,
+> +				<849000 56>,
+> +				<839000 59>,
+> +				<829000 62>,
+> +				<819000 65>,
+> +				<809000 68>,
+> +				<799000 70>,
+> +				<789000 73>,
+> +				<779000 76>,
+> +				<769000 79>,
+> +				<759000 81>,
+> +				<749000 84>,
+> +				<739000 87>,
+> +				<729000 89>,
+> +				<719000 92>,
+> +				<709000 95>,
+> +				<699000 98>,
+> +				<689000 100>;
+> +		status = "okay";
 
-This would deserve a devm_meson_canvas_alloc(), but as-is:
+You can drop status=okay here
+
+> +	};
+> +};
+> +
+> +&pwm_ef {
+> +	status = "okay";
+> +	pinctrl-0 = <&pwm_e_pins1>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&pwm_ij {
+> +	status = "okay";
+>   };
+>   
+>   &uart_b {
+> @@ -46,6 +152,40 @@ &ir {
+>   	pinctrl-names = "default";
+>   };
+>   
+> +&sdio {
+> +	pinctrl-0 = <&sdio_pins>;
+> +	pinctrl-1 = <&sdio_clk_gate_pins>;
+> +	pinctrl-names = "default", "clk-gate";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	sd-uhs-sdr50;
+> +	sd-uhs-sdr104;
+> +	max-frequency = <200000000>;
+> +	non-removable;
+> +	disable-wp;
+> +	no-sd;
+> +	no-mmc;
+> +	vmmc-supply = <&vddao_3v3>;
+> +	vqmmc-supply = <&vddio_ao1v8>;
+> +};
+> +
+> +&sd {
+> +	status = "okay";
+> +	pinctrl-0 = <&sdcard_pins>;
+> +	pinctrl-1 = <&sdcard_clk_gate_pins>;
+> +	pinctrl-names = "default", "clk-gate";
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	max-frequency = <200000000>;
+> +	disable-wp;
+> +
+> +	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
+> +	vmmc-supply = <&vddao_3v3>;
+> +	vqmmc-supply = <&vddao_3v3>;
+> +};
+> +
+>   &nand {
+>   	status = "okay";
+>   	#address-cells = <1>;
+> @@ -90,3 +230,9 @@ &spicc0 {
+>   	pinctrl-0 = <&spicc0_pins_x>;
+>   	cs-gpios = <&gpio GPIOX_10 GPIO_ACTIVE_LOW>;
+>   };
+> +
+> +&ethmac {
+> +	status = "okay";
+> +	phy-handle = <&internal_ephy>;
+> +	phy-mode = "rmii";
+> +};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> index b686eacb9662..c11c947fa18c 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> @@ -10,6 +10,7 @@
+>   #include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
+>   #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
+>   #include <dt-bindings/power/meson-s4-power.h>
+> +#include <dt-bindings/reset/amlogic,meson-s4-reset.h>
+>   
+>   / {
+>   	cpus {
+> @@ -466,6 +467,93 @@ mux {
+>   					};
+>   				};
+>   
+> +				sdcard_pins: sdcard-pins {
+> +					mux {
+> +						groups = "sdcard_d0_c",
+> +							 "sdcard_d1_c",
+> +							 "sdcard_d2_c",
+> +							 "sdcard_d3_c",
+> +							 "sdcard_clk_c",
+> +							 "sdcard_cmd_c";
+> +						function = "sdcard";
+> +						bias-pull-up;
+> +						drive-strength-microamp = <4000>;
+> +					};
+> +				};
+> +
+> +				sdcard_clk_gate_pins: sdcard-clk-gate-pins {
+> +					mux {
+> +						groups = "GPIOC_4";
+> +						function = "gpio_periphs";
+> +						bias-pull-down;
+> +						drive-strength-microamp = <4000>;
+> +					};
+> +				};
+> +
+> +				emmc_pins: emmc-pins {
+> +					mux-0 {
+> +						groups = "emmc_nand_d0",
+> +							 "emmc_nand_d1",
+> +							 "emmc_nand_d2",
+> +							 "emmc_nand_d3",
+> +							 "emmc_nand_d4",
+> +							 "emmc_nand_d5",
+> +							 "emmc_nand_d6",
+> +							 "emmc_nand_d7",
+> +							 "emmc_cmd";
+> +						function = "emmc";
+> +						bias-pull-up;
+> +						drive-strength-microamp = <4000>;
+> +					};
+> +					mux-1 {
+> +						groups = "emmc_clk";
+> +						function = "emmc";
+> +						bias-pull-up;
+> +						drive-strength-microamp = <4000>;
+> +					};
+> +				};
+> +
+> +				emmc_ds_pins: emmc-ds-pins {
+> +					mux {
+> +						groups = "emmc_nand_ds";
+> +						function = "emmc";
+> +						bias-pull-down;
+> +						drive-strength-microamp = <4000>;
+> +					};
+> +				};
+> +
+> +				emmc_clk_gate_pins: emmc-clk-gate-pins {
+> +					mux {
+> +						groups = "GPIOB_8";
+> +						function = "gpio_periphs";
+> +						bias-pull-down;
+> +						drive-strength-microamp = <4000>;
+> +					};
+> +				};
+> +
+> +				sdio_pins: sdio-pins {
+> +					mux {
+> +						groups = "sdio_d0",
+> +							 "sdio_d1",
+> +							 "sdio_d2",
+> +							 "sdio_d3",
+> +							 "sdio_clk",
+> +							 "sdio_cmd";
+> +						function = "sdio";
+> +						bias-pull-up;
+> +						drive-strength-microamp = <4000>;
+> +					};
+> +				};
+> +
+> +				sdio_clk_gate_pins: sdio-clk-gate-pins {
+> +					mux {
+> +						groups = "GPIOX_4";
+> +						function = "gpio_periphs";
+> +						bias-pull-down;
+> +						drive-strength-microamp = <4000>;
+> +					};
+> +				};
+> +
+>   				spicc0_pins_x: spicc0-pins_x {
+>   					mux {
+>   						groups = "spi_a_mosi_x",
+> @@ -712,5 +800,45 @@ mdio0: mdio {
+>   				compatible = "snps,dwmac-mdio";
+>   			};
+>   		};
+> +
+> +		sdio: mmc@fe088000 {
+> +			compatible = "amlogic,meson-axg-mmc";
+> +			reg = <0x0 0xfe088000 0x0 0x800>;
+> +			interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&clkc_periphs CLKID_SDEMMC_A>,
+> +				 <&xtal>,
+> +				 <&clkc_pll CLKID_FCLK_DIV2>;
+> +			clock-names = "core", "clkin0", "clkin1";
+> +			resets = <&reset RESET_SD_EMMC_A>;
+> +			cap-sdio-irq;
+> +			keep-power-in-suspend;
+> +			status = "disabled";
+> +		};
+> +
+> +		sd: mmc@fe08a000 {
+> +			compatible = "amlogic,meson-axg-mmc";
+> +			reg = <0x0 0xfe08a000 0x0 0x800>;
+> +			interrupts = <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>;
+> +			clocks = <&clkc_periphs CLKID_SDEMMC_B>,
+> +				 <&clkc_periphs CLKID_SD_EMMC_B>,
+> +				 <&clkc_pll CLKID_FCLK_DIV2>;
+> +			clock-names = "core", "clkin0", "clkin1";
+> +			resets = <&reset RESET_SD_EMMC_B>;
+> +			status = "disabled";
+> +		};
+> +
+> +		emmc: mmc@fe08c000 {
+> +			compatible = "amlogic,meson-axg-mmc";
+> +			reg = <0x0 0xfe08c000 0x0 0x800>;
+> +			interrupts = <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>;
+> +			clocks = <&clkc_periphs CLKID_NAND>,
+> +				 <&xtal>,
+> +				 <&clkc_pll CLKID_FCLK_DIV2>;
+> +			clock-names = "core", "clkin0", "clkin1";
+> +			resets = <&reset RESET_NAND_EMMC>;
+> +			no-sdio;
+> +			no-sd;
+> +			status = "disabled";
+> +		};
+>   	};
+>   };
+> 
+> ---
+> base-commit: 338c92a5d1956f1841f84b86923087676d1d0cea
+> change-id: 20240705-s4_node-8110e3286c0c
+> 
+> Best regards,
+
+With that fixed:
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
