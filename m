@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C3C2C3DA41
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jul 2024 22:32:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CCD0C3DA41
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jul 2024 22:32:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JFrV8nAj0sEXclzpV7KyKNOcXXJwwIiFFHNwNx2nYmo=; b=J8b0QA8caTi29Y
-	V9i7xIllp4n77Ubyr6mKfXnI7vjAMy/IGtU1iRWg0TIRrOEC7jQrW9XwzFj1dHX46Fs0pOLzkKRJJ
-	7br1OgF48h1PfAvAAaJU+VeqwX7N4WQUdlRfwEA6Dk0m7lolfa6lKcsOtybpapeXe8IkqgAba667P
-	yYe/rzolFxDrje38TVrDytNv5HusIbjE05avunm16g5fZV0Ynh0cF6fyaAZIf5myY/lyUnhIkcQhY
-	oREs2TlRUOMceGfxn/CNefg+XAOLlcadNiG4XhJBDuWSu4nDYJJHwVYk1N7S4tLskdz7xzUaog8IF
-	ETB1LnRUbUgSLOyimObQ==;
+	List-Owner; bh=dAFbwwNARekbLXYyIczbQARAZeUn6PDXSF3uc65xIjo=; b=UandC2VM0C5rhI
+	BluAXrqBSkiipSU2SswJwlO2I50ixQPFj+pkPhq4uaklENfeuKo3jfswm3oEzzAXRWZvhcfq97hSU
+	FIPxkI1Hy1JOGCZjNg3QIio674nEOB8CevSwhIaiNSRo93ZO+Fa+9N4W9qMieQTQuYs7HpQMB7IDQ
+	WxvULHFM5brE7tIKYTaHgIM/1nMYsmizf2pnDVlFde4yLUTIIKJQyVNu7y8Jb8uyR9W2DH3tpnfa5
+	uI3R/Wwv+R1PAX9BxE5nljSrd8v0Zx81Uaa9/dEGRjiqGqlOk+8kJHH2vIFZlp5Otlh8WN6JjRTjF
+	5aR3PHOeyc2YibnxWp2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sRfrS-0000000BwwV-2mXR;
-	Wed, 10 Jul 2024 22:32:30 +0000
+	id 1sRfrh-0000000Bx0l-0yXL;
+	Wed, 10 Jul 2024 22:32:45 +0000
 Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sRfrO-0000000Bwus-3vHY;
+	id 1sRfrO-0000000Bwut-3vM1;
 	Wed, 10 Jul 2024 22:32:29 +0000
 Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 4D4F9100029;
+	by mx1.sberdevices.ru (Postfix) with ESMTP id D91E110002F;
 	Thu, 11 Jul 2024 01:32:22 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4D4F9100029
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru D91E110002F
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
 	s=mail; t=1720650742;
-	bh=ln9wX7yvXW/OQnGFsQF3yqKcqupzlBpLXXCYFm54FjM=;
+	bh=hfI/ofSEp+yYAlRKoLDJJ07qjeCsQBjJxdJc5MY1PJc=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=JgDAXpSBIujl/6Aw050WAts4mHV0Gf+2ui43qNShClvUadvRY2SjY6D1pcV8+49mB
-	 OZy1ee2CGkjOXY3ziGWdfJJFA7DJ7qDHfHFOJg40sVBFP66+m+leS1EuTvKj0cO9nO
-	 DlB6OssLi7fI9Mae5+XON5aveVHs7yLIUs6ds5Fq29zrWOXkJojGzmTWBe7misIGbp
-	 y8/62+cO3oCSK7kPl5KQL0Wu9nj+gAgJGiwyGsxciLSExaq1UP92icmKVWCijMVoVd
-	 mERGvZfKEc4Jzo8WN+9XKzT1r9VUvrh+hMMxbSDSU6793sUJE9523skkVqpHX821mm
-	 1B5QDcBaib8Ng==
+	b=Rk3h/63JlkS9lq9+Ix0C2KPOAKT8iUx3ok3tdG1d06r0bER+7Jng3VRUuBwf+5vn8
+	 R/xgm3Fr9F7lbzZFdgQ7t/T+mTngHHV90a9hm7af0z+8BMuUOuTrxJpT8qDTEZGDgV
+	 PvVi69DcVitV2yPvdvJ2sk4Fhje47AL21Rp0jZL5/T7nt1WjmWgYsUuFhxkqpEt1XM
+	 sB4u36oiQko56Oc5qPdjoXxoC48QSRk52PJro5mbccyYlhwHXkjeaCDH2A5NALrWRb
+	 I3t3PQ5PhZXbOWohUvcYdmLVctwY0KvSY9lupbLoMvtkqraUEVaMO5G+2vVP55PhfN
+	 7zGndYRTUfUXw==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
@@ -48,7 +48,7 @@ Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.1
 Received: from work.sberdevices.ru (100.64.160.123) by
  p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 11 Jul 2024 01:32:21 +0300
+ 15.2.1118.40; Thu, 11 Jul 2024 01:32:22 +0300
 From: George Stark <gnstark@salutedevices.com>
 To: <andi.shyti@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
 	<conor+dt@kernel.org>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
@@ -60,9 +60,9 @@ CC: <linux-i2c@vger.kernel.org>, <linux-pm@vger.kernel.org>,
 	<devicetree@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
 	<kernel@salutedevices.com>, George Stark <gnstark@salutedevices.com>
-Subject: [PATCH v2 1/3] dt-bindings: i2c: amlogic,meson6-i2c: add optional power-domains
-Date: Thu, 11 Jul 2024 01:32:12 +0300
-Message-ID: <20240710223214.2348418-2-gnstark@salutedevices.com>
+Subject: [PATCH v2 3/3] arm64: dts: meson: a1: bind power domain to temperature sensor
+Date: Thu, 11 Jul 2024 01:32:14 +0300
+Message-ID: <20240710223214.2348418-4-gnstark@salutedevices.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240710223214.2348418-1-gnstark@salutedevices.com>
 References: <20240710223214.2348418-1-gnstark@salutedevices.com>
@@ -87,8 +87,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/10 21:42:00 #25942395
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240710_153227_653069_942AD474 
-X-CRM114-Status: GOOD (  10.61  )
+X-CRM114-CacheID: sfid-20240710_153227_653028_79DC643F 
+X-CRM114-Status: GOOD (  10.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,31 +105,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On newer SoCs, the I2C hardware can require a power domain to operate.
-Since the same compatible is used for older and newer SoCs make
-power-domains property optional.
+Meson A1 temperature sensor has dedicated power domain so bind it
+to the device node.
 
 Signed-off-by: George Stark <gnstark@salutedevices.com>
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml b/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
-index 26bed558c6b8..c4cc8af18280 100644
---- a/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
-@@ -30,6 +30,9 @@ properties:
-   clocks:
-     minItems: 1
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index dd5695963caa..86d77f51c25c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -919,6 +919,7 @@ cpu_temp: temperature-sensor@4c00 {
+ 				assigned-clock-rates = <500000>;
+ 				#thermal-sensor-cells = <0>;
+ 				amlogic,ao-secure = <&sec_AO>;
++				power-domains = <&pwrc PWRC_I2C_ID>;
+ 			};
  
-+  power-domains:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
+ 			hwrng: rng@5118 {
 -- 
 2.25.1
 
