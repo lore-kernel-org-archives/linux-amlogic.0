@@ -4,87 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F964C3DA42
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jul 2024 12:41:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77DBEC3DA42
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jul 2024 16:23:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nzlJckRYCNEV82iT63WdJkssjmo9pmLtGdO9wx59dfM=; b=yyMlBuSaHzz8RR
-	F26gZHxHJYYZdadI0QBAZ9b2jpzXzjcmP8CjXU1hZO++v3P3CdvZgIoPjDTkgjYH0higNbGdUkVO6
-	lnWj+Jctyp7PWSAFvutHoZQ7azM7N5SYF4DAS0e2c3kbukrSmu6KMbcvEdZig+0/qzYkIv0qXWt4W
-	MHUhw0QGNtD9VJ7nYBQsT4NYJede1ftrn+iY/yJi03hJASU65ug8PJE3HA1XhoVIMA0c6wbfaNC40
-	6L8/cUX2YGM2zvAhOapY8IxMGt93Zj/7HXe8RKSiAwBO0rTdOPonBppEMRWCM8GTf8XRExUAfqjeA
-	bf3sdbEkROigEmtOXe0Q==;
+	List-Owner; bh=TwkkcYXs9R1sDxNuefIDx5tJCNEWjUQo/yIFnq/Ata8=; b=1vca52dnhcbG+l
+	aGrMoaXT2oRpoEJdR0CF0yXNYISxay9Y733ZU7GTrBDsya1px8OkiEBp/YUCO7S5H50P1mIWiR+dj
+	WJITxNlISRO7Ij5CvgkbjXdWoFmRegjxFqvqoXKyGCj+YCCkF3xFOq81EeBMIYVoP7B5YkyAIe1ip
+	DAuy63m39VpEN+RR1jN2bBciC+epP2bbJbOotKMOeaigJ7orO8kwBlXyQO6NGj2ng2wBmtLC5H2uo
+	WEfke5hA8mT6kAVURmgYPm8GYXvroKDOeHT1/XajWkY5/lTDd3NYd8MuiUOMUr6ZP023bHYu2N7q0
+	/i5/svz05N7Uec/yFLig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sRWdO-0000000AWO9-3a36;
-	Wed, 10 Jul 2024 12:41:22 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1sRa6A-0000000B8F5-2INW;
+	Wed, 10 Jul 2024 16:23:18 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sRWd7-0000000AWHa-0YKy
-	for linux-amlogic@lists.infradead.org;
-	Wed, 10 Jul 2024 12:41:07 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-426526d30aaso35442605e9.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 10 Jul 2024 05:41:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720615263; x=1721220063; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MQLVDFNoFuKRZg7eJdxMfqN4N8nKsyXTgSDfnf3uLGM=;
-        b=CkmN/lR0LFd62Az2AgFmxrWg/cmSGPhNoHGrbUnqHptqp2EvRJJGGk7dayH0Kx48/A
-         ec+b8zzUrVNoo6gllJc/vuGrbHSBZDmYgpwCEVQbNiJYNcON6k4vUPrWPDMEEOjnh9qU
-         BTQaGMOwaJjgS7blTp0a/YKV7PZoypy0zCuz9kPCIXisTzfMCGLKPHho0/iLoshC7gZF
-         HA82hUIMuRgrL/rRJV6A5ylriAACKw8oD8f6XssSLH4+KhJ4VDMJB1rI4tZNvzCLlRNT
-         305mgrqYJFdYjPtvSiEwYGLIwyupOqeDpDZ/HKwYG54GgKYzILZzS00noN9T+SgRRkQh
-         xnCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720615263; x=1721220063;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MQLVDFNoFuKRZg7eJdxMfqN4N8nKsyXTgSDfnf3uLGM=;
-        b=p8rXuRw5qbx+IXtFIaPvj3jdV5zVyIk3c7drNaGJXCbj3C5lPRWsu4zSHrxrvkfPnE
-         Z7b2CfbargqyfAUC+VwawfMfIKt7i9bcgyzJJa5EPwjVppmvXqSwfIi3NeWznbm4/6gL
-         HjNWvKJl0zsbHUMsJ/kOO8gZgZoFi2Zu0umeI6wtnhb43bh3emLEhlabasTOytyLYbIk
-         GOhBGu4dtBm5ghQXFAMa4MEjnknijjP3AuEO0kBeoKGZOaYW6HmX0I9vMtHo9xJhzocx
-         SyMja08dBiIKHLoHlIFWJYtZ3/9pf9Gd0tPXhs8pQCZ7Vvj70QdvLjHv/GaWzHlKN9HY
-         lSuQ==
-X-Gm-Message-State: AOJu0Ywb6dIPJt3YUg7t1CMyi2WcJ8zE6xeBw6tLJTedmWJ0EOVUhtSe
-	Hlkn0VfCH1tXNNP9IdUW7y+CGTMv6dAfiYYSuGK6ZoQx8l2Qeian810+lAUgYY0=
-X-Google-Smtp-Source: AGHT+IGT5ilXJSn/KNzsrB9+RCqhsbkJiqU3dqpEBIzoFB+Fcmer/Kih8Fhroy2GBRX27ac1gAp6gw==
-X-Received: by 2002:a05:600c:6c51:b0:426:51e8:5192 with SMTP id 5b1f17b1804b1-426709fac0bmr30666695e9.41.1720615262749;
-        Wed, 10 Jul 2024 05:41:02 -0700 (PDT)
-Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:f3cc:df72:f495:3b49])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-367cde890f6sm5214025f8f.53.2024.07.10.05.41.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jul 2024 05:41:02 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Vladimir Zapolskiy <vz@mleia.com>, Bjorn Andersson <andersson@kernel.org>, 
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Michal Simek <michal.simek@amd.com>, 
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-sunxi@lists.linux.dev
-In-Reply-To: <20240703-clk-const-regmap-v1-0-7d15a0671d6f@gmail.com>
-References: <20240703-clk-const-regmap-v1-0-7d15a0671d6f@gmail.com>
-Subject: Re: (subset) [PATCH 00/10] clk: constify struct regmap_config
-Message-Id: <172061526145.2117005.2499091095196670705.b4-ty@baylibre.com>
-Date: Wed, 10 Jul 2024 14:41:01 +0200
+	id 1sRa66-0000000B8Cy-2iY0;
+	Wed, 10 Jul 2024 16:23:17 +0000
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id DEEE8120007;
+	Wed, 10 Jul 2024 19:23:05 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru DEEE8120007
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1720628585;
+	bh=UxMw2H1wG2rrssfdT9EsTgjW0YQUtwZBVo4IjBGhuDU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=Le+UP53VKWyjsNKvjJgUKyOymUoG36MmvHSPk7PRogpzaDrQZ43vsoGUjivZamoCQ
+	 t20QV3BJ719mrKod+eijBV7UyKY2IzEDIgvYNapM48kA7OhT3TT+nyY0h2ug2GZ4Pk
+	 vVXEtk1pH+EqgoPWyUYo/6PvYl5ArD73LPFqTbN8YkWnCtkRQM1BkS1tzN1QQf1PJ/
+	 VFDzj948BE4228CQUmv/uSH27ePYiouFerz1TRrA7qc/gCGslu3DyDZxkxVoaOKFlC
+	 rAGqkSE/uExLF2C7Gf/R/bOZpYRUCe0wVeNHKX144o+EhwHqUTnHgJIcw2L7R7ccUk
+	 zbMW5tqCqvgFA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 10 Jul 2024 19:23:05 +0300 (MSK)
+Received: from [192.168.1.143] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 10 Jul 2024 19:23:05 +0300
+Message-ID: <3667b7d5-2cca-458b-bdaf-a69cac0309ce@salutedevices.com>
+Date: Wed, 10 Jul 2024 19:23:04 +0300
 MIME-Version: 1.0
-X-Mailer: b4 0.14.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: spi: amlogic,a1-spifc: make
+ power-domains required
+To: Krzysztof Kozlowski <krzk@kernel.org>, <robh@kernel.org>,
+	<neil.armstrong@linaro.org>
+CC: <linux-i2c@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+	<krzk+dt@kernel.org>, <hkallweit1@gmail.com>, <glaroque@baylibre.com>,
+	<khilman@baylibre.com>, <broonie@kernel.org>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <linux-pm@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<lukasz.luba@arm.com>, <b.galvani@gmail.com>, <mmkurbanov@sberdevices.ru>,
+	<rui.zhang@intel.com>, <rafael@kernel.org>, <daniel.lezcano@linaro.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<kernel@salutedevices.com>, <conor+dt@kernel.org>
+References: <20240708194808.1819185-1-gnstark@salutedevices.com>
+ <20240708194808.1819185-2-gnstark@salutedevices.com>
+ <6add148f-efe7-4444-82b3-20b1198c6d07@kernel.org>
+Content-Language: en-US
+From: George Stark <gnstark@salutedevices.com>
+In-Reply-To: <6add148f-efe7-4444-82b3-20b1198c6d07@kernel.org>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 186445 [Jul 10 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 24 0.3.24 186c4d603b899ccfd4883d230c53f273b80e467f, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/10 14:21:00 #25942305
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240710_054105_325879_ACE0EFE6 
-X-CRM114-Status: UNSURE (   3.98  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240710_092315_411563_4E87D607 
+X-CRM114-Status: GOOD (  11.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,30 +105,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Applied to clk-meson (clk-meson-next), thanks!
+Hello Krzysztof, Neil, Rob
 
-[01/10] clk: meson: a1: peripherals: Constify struct regmap_config
-        https://github.com/BayLibre/clk-meson/commit/4a7665b885b6
-[02/10] clk: meson: a1: pll: Constify struct regmap_config
-        https://github.com/BayLibre/clk-meson/commit/5c6ffe3537d5
-[03/10] clk: meson: c3: peripherals: Constify struct regmap_config
-        https://github.com/BayLibre/clk-meson/commit/af3e4505e6bc
-[04/10] clk: meson: c3: pll: Constify struct regmap_config
-        https://github.com/BayLibre/clk-meson/commit/11c7c1b94059
-[05/10] clk: meson: s4: peripherals: Constify struct regmap_config
-        https://github.com/BayLibre/clk-meson/commit/02cc1df92d75
-[06/10] clk: meson: s4: pll: Constify struct regmap_config
-        https://github.com/BayLibre/clk-meson/commit/3d0e8b6edd6b
+Thanks for your reviews.
 
-Best regards,
---
-Jerome
+I'd just like to clarify things a little on that matter. On A1 most of
+periphery has either dedicated power domain (ir, spifc, spi, cpu etc) or
+several peripheries share single PD e.g. pwm, temp sensor, i2c, adc
+share PD 12. Appropriate PD must be turned on before the periphery is
+touched and be on while periphery is used. Experiments confirm it. So
+power-domains property in dts nodes is really required. It makes kernel
+to control PDs when bound periphery is used.
 
+If I understand bindings thing correctly we should make power-domains
+property required in bindings too in that case, at least for those
+peripheries which has *a1* compatibles (some peripheries use compatible
+from older SoCs without PDs).
+
+What you think?
+
+On 7/8/24 22:51, Krzysztof Kozlowski wrote:
+> On 08/07/2024 21:48, George Stark wrote:
+>> SPI Flash Controller has dedicated power domain so make the
+>> corresponding property required.
+> 
+> That's an ABI break. Being part of power domain does not necessarily
+> mean it must be required, so your commit msg lacks rationale. Especially
+> on the ABI part.
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+Best regards
+George
 
 _______________________________________________
 linux-amlogic mailing list
