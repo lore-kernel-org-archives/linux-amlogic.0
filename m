@@ -4,119 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62597C3DA41
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jul 2024 16:39:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31CA9C3DA41
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jul 2024 16:53:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=rg1aEhVBMrwHSzDHEDxHnhbNfdmS3svMMQgZWPv8bEE=; b=NAF7R4rJGKkcoK0vjN7wUGSFWM
-	zLSrkYEzjBZ+ZNelJDTyoisJ6hQKhx5r3GadNXUD6LsldZbjAv7gQZyiI5O9+GD5KRLhKCVYp8PYS
-	eg+p5vZTTok4XemIuFj0osgJ46m0iFkKCv+Ko0tS6iB2HSxYjcavfGLULmpx4VCVbkIAMTbrlzKyc
-	7boSbxXwAm0CW5FvXLbNgtZWJnuyuyZ+8+rfsWdI4WzMJ9xNz5u+HG9ReCuPqpzGAKvRF0j6NVVPH
-	YDI8CcvnoZljp8Y66qwGGxhAEkuQfvtkUY6DnzkHjk6ahlre4PccT7S+syP7gd2d/ACuhCrOoyx1l
-	e81QAhIg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date
+	:From:In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=2d/YhKFcdCCR66D7093cTk0v5OfTbjU6s7K5prOUEAc=; b=nd2hjJ/lwkw/05
+	iP5r2GZcDTEY7/vZ3b+Y/LGf2qgLx9mgwy0cX7JE/1kFLTTYIar5gAJv3+CDE641uPMzC2EOShPQh
+	kE0TNVeDbP+o5NInViFaaTXGT1jTbOJjtMLzq2BzpEcEwztLY5lFH6qBALBMinH7I82Vm6TsyELIa
+	qag9H4Tz1n77EmpRxZyTMzE1R8BqErLm+My5EBuddo18oj07wJfWx5jUSQKAZRVj3ta7TVCTQg6Mz
+	m36vyhVaHBkhNiV7d8lpb7a9pW7k6jlLEDuyQHt7AC6KVTXixYT271KXWz2wTXnvLep8LGJSuQg7I
+	cW4l7qRfWyF75VUqJnAQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sRaLJ-0000000BC5t-3rBi;
-	Wed, 10 Jul 2024 16:38:57 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1sRaZd-0000000BET8-3KNd;
+	Wed, 10 Jul 2024 16:53:45 +0000
+Received: from mail-lf1-f42.google.com ([209.85.167.42])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sRaL2-0000000BC2N-34MS
-	for linux-amlogic@lists.infradead.org;
-	Wed, 10 Jul 2024 16:38:42 +0000
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-367990aaef3so4378733f8f.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 10 Jul 2024 09:38:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720629518; x=1721234318; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AvGP3/2u4f5ZMtfChWtgDNo/AniA/bJwsSpquHCsSUo=;
-        b=H7xkBbCxuwokVXE2jbsqtRO2vi11UNlk4EMfo9Cxy7AHi+8pdllSYOVJQ9i+HmCKZn
-         5qv0MvEaXIsy6dLaUzFYK8m00VNO/rjhksvmyKn+ZTWWFtptbb3Y2nczMa2wOyQrG9Xi
-         lBeffCjrWXLQBA6f8TrwBo5CS1RIFJ3D3StKJrNJSvbNd5kCI4EtU8cdHPrsHuoqX873
-         2LogurBFcf6ZWzTQoJxVGio/C2OkXqJXlcl003qDKb3LCwThXx38B0U3ZaUvwKdElBfc
-         J2GstOBb/1Q4vbC05eHGZ/qETV4jJ/uDPIChBVHh383CbTj0Mm8Ybs0t4pXqgcmf9mz9
-         51OQ==
+	id 1sRaZa-0000000BESE-3evC;
+	Wed, 10 Jul 2024 16:53:44 +0000
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52ea5dc3c79so8505689e87.1;
+        Wed, 10 Jul 2024 09:53:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720629518; x=1721234318;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=AvGP3/2u4f5ZMtfChWtgDNo/AniA/bJwsSpquHCsSUo=;
-        b=VksW6Uy/T0DjHxI4g56dgDqexVp3NAsJnV3mppGNSQTdtxSYhXT7XuTNI+IbjNcUCL
-         tsPmslduPxNI3TPW2wJp7VICci/c5paNaZZ8RMfSG8KfrYEL/VzDwZ0qiCgT7rTCHjKJ
-         s7WcoQEtasQq7cXuS1RqjZFpXIhaHN9qw4imIb1sUpgXssHSaa5cKd6TA0EQxX10skPl
-         PLR/x6AXEsOVbXVnJ/2XB/aTKXXkPh7BSBPUQ7JLLLY4RnYrnVdEJpcqpdfcASYRXNQZ
-         V5Lufu6UtaWjJFEWIEAe1cB8MlsnTKx6uY/+21lELoFn4q+BwxyEQMG65kmAlEJe5xue
-         uURg==
-X-Forwarded-Encrypted: i=1; AJvYcCX5/vHjsnugdsnYfe8dhaunlIdvCgmhE8aCJzN4a0dRpIyEHnRv2mnJIh08ihOoMiuEmvhGiw8NBsD1HyQU6LD+W/EBshOtOFhJE/I2OSBAOPo=
-X-Gm-Message-State: AOJu0YzOXlPR/ItfRbAlSVz7/vtCnkimd1E82oCmQ2MNWztHYp9xvodE
-	LdWv0iDkavYCmjw9Ycl7H7/LHGgVHhuvOavxYYSNtPHWL3id8Re0qRWtuTyyU2o=
-X-Google-Smtp-Source: AGHT+IH8cJ5hwT0TYoHdbx0fNaJwAeHXme01NPT2sNru05zKfBy3aVJqAuLdty9e6Fr/3eMVzKSnZg==
-X-Received: by 2002:a5d:64c4:0:b0:367:9614:fb9f with SMTP id ffacd0b85a97d-367cea46f7dmr5982534f8f.2.1720629518070;
-        Wed, 10 Jul 2024 09:38:38 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:cad:2140:7e2c:a18f:a783:5c6c? ([2a01:e0a:cad:2140:7e2c:a18f:a783:5c6c])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cde84907sm5769245f8f.43.2024.07.10.09.38.34
+        d=1e100.net; s=20230601; t=1720630419; x=1721235219;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XpiULvgBKLSjZABIaTgqmq90IKC/N4ETs7/rDViqHSU=;
+        b=gD8/UQI70RlS3/qBF8UdEfE/ycDbkQl2qmKjVHMO5RvomsdTnl6ZuECQccsxq9d9ZV
+         bKG5HPXMtr09y0h2dEuzqVrDkgWxDDxWyIodUQQ69S30KZUC/GzdjtUaY3wCAazbCI5j
+         5d1gNpwuw+7ct3sfFHYXhyapLPDbbDYvjjwIAxi7uJcfSP+jGMLqSWmAn6F2qy3MnWis
+         flbTzQEmUxAHLvFmQhCWNN6/J1GdUz6sl5uMkWmmXhbfgseHy6VK6uX45jEOBi7jojPk
+         eoaXK2xKcu2XcSNICwy0x3yQDUDmqtAbu5GRU26UXUONG1JSnj1sAzgQDpPE0LZBgjN6
+         42Lw==
+X-Forwarded-Encrypted: i=1; AJvYcCVPjHVln5wJlo/kn0y/EneZ0ThsxS4VGlMT0rJl1HfdgkWkqI8GEYr7FbG0m/rPI0MBfRxuUMEfvUC78U1QpkoxP6XY9fGyM2eL7Rw+8eC0FZEr1FJ2nk9/2sJnpSIqKTpLNDrRjQa5MS8xbziDKY+DtM5Jk8sMoQ==
+X-Gm-Message-State: AOJu0YzQMJvp1hWFN0nOWh3j3whLvI1FX+sxe1oUPhpdWuN1r4RVa7u0
+	Z05GNHQ2nznPZ6yoUS3WLeBfsZ/ka+AXqavUX8B35i1rjEV8vMUl0fhIk7hPeV0=
+X-Google-Smtp-Source: AGHT+IHOxtvONVZ6XSgaP5sfMBRwEmkjSZR9a8QQ39Fcehh2UbCMcYD00saiUPBJ1Rx2cI8rxbrLZA==
+X-Received: by 2002:a05:6512:31cb:b0:52c:df9b:cf1a with SMTP id 2adb3069b0e04-52eb99d6e12mr4701744e87.66.1720630419228;
+        Wed, 10 Jul 2024 09:53:39 -0700 (PDT)
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com. [209.85.208.178])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ebe0d48aasm406342e87.179.2024.07.10.09.53.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jul 2024 09:38:37 -0700 (PDT)
-Message-ID: <fde4a6be-6c6b-4275-a320-85e43f62bddd@linaro.org>
-Date: Wed, 10 Jul 2024 18:38:33 +0200
+        Wed, 10 Jul 2024 09:53:38 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2eeb1ba0468so32466951fa.0;
+        Wed, 10 Jul 2024 09:53:38 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWiuz643+YOJz4HyEypn8v+5Me5T/bUEN30tf1ze1zcsQJ5DEkn0BafLfIS3GZAKdBGL1PIQMikGo7SS8eQOx8eUdWAH3eorF9S9n4NMeRNXpUB61cMWYOt7T5e/ljOMd2cb1OpuP9j5/+KJfIQYHvB6A7c16Lnrg==
+X-Received: by 2002:a2e:9016:0:b0:2ee:7a3e:4721 with SMTP id
+ 38308e7fff4ca-2eeb318a3b2mr39735341fa.39.1720630418140; Wed, 10 Jul 2024
+ 09:53:38 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/4] dt-bindings: spi: amlogic,a1-spifc: make
- power-domains required
-To: George Stark <gnstark@salutedevices.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, robh@kernel.org
-Cc: linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org, krzk+dt@kernel.org,
- hkallweit1@gmail.com, glaroque@baylibre.com, khilman@baylibre.com,
- broonie@kernel.org, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- lukasz.luba@arm.com, b.galvani@gmail.com, mmkurbanov@sberdevices.ru,
- rui.zhang@intel.com, rafael@kernel.org, daniel.lezcano@linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- kernel@salutedevices.com, conor+dt@kernel.org
-References: <20240708194808.1819185-1-gnstark@salutedevices.com>
- <20240708194808.1819185-2-gnstark@salutedevices.com>
- <6add148f-efe7-4444-82b3-20b1198c6d07@kernel.org>
- <3667b7d5-2cca-458b-bdaf-a69cac0309ce@salutedevices.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <3667b7d5-2cca-458b-bdaf-a69cac0309ce@salutedevices.com>
+References: <20240703-clk-const-regmap-v1-0-7d15a0671d6f@gmail.com>
+ <20240703-clk-const-regmap-v1-9-7d15a0671d6f@gmail.com> <20240703121750.0dc2eb3a@donnerap.manchester.arm.com>
+In-Reply-To: <20240703121750.0dc2eb3a@donnerap.manchester.arm.com>
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Thu, 11 Jul 2024 00:53:25 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66ox-vu2T=CnBkV70k5E=aVBGm6Sg4pcK5kYB+t9uSvxA@mail.gmail.com>
+Message-ID: <CAGb2v66ox-vu2T=CnBkV70k5E=aVBGm6Sg4pcK5kYB+t9uSvxA@mail.gmail.com>
+Subject: Re: [PATCH 09/10] clk: sunxi-ng r40: Constify struct regmap_config
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Andre Przywara <andre.przywara@arm.com>, 
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Kevin Hilman <khilman@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Vladimir Zapolskiy <vz@mleia.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Michal Simek <michal.simek@amd.com>, 
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-sunxi@lists.linux.dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240710_093840_813371_747E3F2D 
-X-CRM114-Status: GOOD (  17.64  )
+X-CRM114-CacheID: sfid-20240710_095342_933375_F8DFD22D 
+X-CRM114-Status: GOOD (  19.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,66 +90,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: wens@csie.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/07/2024 18:23, George Stark wrote:
-> Hello Krzysztof, Neil, Rob
-> 
-> Thanks for your reviews.
-> 
-> I'd just like to clarify things a little on that matter. On A1 most of
-> periphery has either dedicated power domain (ir, spifc, spi, cpu etc) or
-> several peripheries share single PD e.g. pwm, temp sensor, i2c, adc
-> share PD 12. Appropriate PD must be turned on before the periphery is
-> touched and be on while periphery is used. Experiments confirm it. So
-> power-domains property in dts nodes is really required. It makes kernel
-> to control PDs when bound periphery is used.
-> 
-> If I understand bindings thing correctly we should make power-domains
-> property required in bindings too in that case, at least for those
-> peripheries which has *a1* compatibles (some peripheries use compatible
-> from older SoCs without PDs).
-> 
-> What you think?
-
-Yes, but if the compatible has already been defined without a required
-power-domain, then it's too late to mark it as required since it's an ABI
-break.
-
-So next time a new compatible is added, it's the appropriate time to mark
-it as required.
-
-But in any case it's not a big deal because if the power-domain is not
-specified it won't work, like if you use wrong register address or the
-wrong interrupt line.
-
-The fact power-domain can be specified is enough.
-
-Neil
-
-> 
-> On 7/8/24 22:51, Krzysztof Kozlowski wrote:
->> On 08/07/2024 21:48, George Stark wrote:
->>> SPI Flash Controller has dedicated power domain so make the
->>> corresponding property required.
->>
->> That's an ABI break. Being part of power domain does not necessarily
->> mean it must be required, so your commit msg lacks rationale. Especially
->> on the ABI part.
->>
->>
->>
->> Best regards,
->> Krzysztof
->>
-> 
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gV2VkLCBKdWwgMywgMjAyNCBhdCA3OjE54oCvUE0gQW5kcmUgUHJ6eXdhcmEgPGFuZHJlLnBy
+enl3YXJhQGFybS5jb20+IHdyb3RlOgo+Cj4gT24gV2VkLCAwMyBKdWwgMjAyNCAxMTo1MDoyMiAr
+MDIwMAo+IEphdmllciBDYXJyYXNjbyA8amF2aWVyLmNhcnJhc2NvLmNydXpAZ21haWwuY29tPiB3
+cm90ZToKPgo+ID4gYHN1bjhpX3I0MF9jY3VfcmVnbWFwX2NvbmZpZ2AgaXMgbm90IG1vZGlmaWVk
+IGFuZCBjYW4gYmUgZGVjbGFyZWQgYXMKPiA+IGNvbnN0IHRvIG1vdmUgaXRzIGRhdGEgdG8gYSBy
+ZWFkLW9ubHkgc2VjdGlvbi4KPiA+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBKYXZpZXIgQ2FycmFzY28g
+PGphdmllci5jYXJyYXNjby5jcnV6QGdtYWlsLmNvbT4KPgo+IExvb2tzIGFscmlnaHQsIHdlIGlu
+ZGVlZCBkb24ndCBjaGFuZ2UgaXQsIGFuZCB0aGUgb25seSB1c2VyIHRha2VzIGEgY29uc3QKPiBw
+b2ludGVyLiBBbHNvIHRoZSBjb21waWxlciBzZWVtcyBoYXBweS4KPgo+IFJldmlld2VkLWJ5OiBB
+bmRyZSBQcnp5d2FyYSA8YW5kcmUucHJ6eXdhcmFAYXJtLmNvbT4KCkFja2VkLWJ5OiBDaGVuLVl1
+IFRzYWkgPHdlbnNAY3NpZS5vcmc+CgpTdGVwaGVuLCBjYW4geW91IG1lcmdlIHRoaXMgb25lIGRp
+cmVjdGx5PyBJdCBkb2Vzbid0IGxvb2sgbGlrZSB3ZSdsbApoYXZlIGFueSBtb3JlIHN0dWZmIHRv
+IHNlbmQgZm9yIHRoaXMgY3ljbGUuCgpDaGVuWXUKCgo+IENoZWVycywKPiBBbmRyZQo+Cj4gPiAt
+LS0KPiA+ICBkcml2ZXJzL2Nsay9zdW54aS1uZy9jY3Utc3VuOGktcjQwLmMgfCAyICstCj4gPiAg
+MSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCj4gPgo+ID4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvY2xrL3N1bnhpLW5nL2NjdS1zdW44aS1yNDAuYyBiL2RyaXZlcnMv
+Y2xrL3N1bnhpLW5nL2NjdS1zdW44aS1yNDAuYwo+ID4gaW5kZXggOTg0YWQzZjc2YjE4Li4yZjUx
+Y2VhYjgwMTYgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2Nsay9zdW54aS1uZy9jY3Utc3VuOGkt
+cjQwLmMKPiA+ICsrKyBiL2RyaXZlcnMvY2xrL3N1bnhpLW5nL2NjdS1zdW44aS1yNDAuYwo+ID4g
+QEAgLTEyOTIsNyArMTI5Miw3IEBAIHN0YXRpYyBib29sIHN1bjhpX3I0MF9jY3VfcmVnbWFwX2Fj
+Y2Vzc2libGVfcmVnKHN0cnVjdCBkZXZpY2UgKmRldiwKPiA+ICAgICAgIHJldHVybiBmYWxzZTsK
+PiA+ICB9Cj4gPgo+ID4gLXN0YXRpYyBzdHJ1Y3QgcmVnbWFwX2NvbmZpZyBzdW44aV9yNDBfY2N1
+X3JlZ21hcF9jb25maWcgPSB7Cj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCByZWdtYXBfY29uZmln
+IHN1bjhpX3I0MF9jY3VfcmVnbWFwX2NvbmZpZyA9IHsKPiA+ICAgICAgIC5yZWdfYml0cyAgICAg
+ICA9IDMyLAo+ID4gICAgICAgLnZhbF9iaXRzICAgICAgID0gMzIsCj4gPiAgICAgICAucmVnX3N0
+cmlkZSAgICAgPSA0LAo+ID4KPgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0
+cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbGludXgtYW1sb2dpYwo=
