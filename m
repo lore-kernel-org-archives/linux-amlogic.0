@@ -4,96 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77DBEC3DA42
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jul 2024 16:23:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5FCEC41513
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jul 2024 16:25:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TwkkcYXs9R1sDxNuefIDx5tJCNEWjUQo/yIFnq/Ata8=; b=1vca52dnhcbG+l
-	aGrMoaXT2oRpoEJdR0CF0yXNYISxay9Y733ZU7GTrBDsya1px8OkiEBp/YUCO7S5H50P1mIWiR+dj
-	WJITxNlISRO7Ij5CvgkbjXdWoFmRegjxFqvqoXKyGCj+YCCkF3xFOq81EeBMIYVoP7B5YkyAIe1ip
-	DAuy63m39VpEN+RR1jN2bBciC+epP2bbJbOotKMOeaigJ7orO8kwBlXyQO6NGj2ng2wBmtLC5H2uo
-	WEfke5hA8mT6kAVURmgYPm8GYXvroKDOeHT1/XajWkY5/lTDd3NYd8MuiUOMUr6ZP023bHYu2N7q0
-	/i5/svz05N7Uec/yFLig==;
+	List-Owner; bh=VMJHHFpxrO3hZdl3wNAdI9B83+fEBWhFpfG4hOCLcMg=; b=J/4+uKDikllW/n
+	UsuqhZduZz7fgJzgY+DC/BbCD7pxt87KKWn/hkO292ATz6ut+SwbU5nZ8oatvRGlVQUDDBup55zlL
+	h9yw1ir+pH0nq8I0WnJhjp144GWBmRLNYJMFtXG2DFL6xSL545UzX7ibCFJS61YHVV5e45uP4+u+E
+	sBtG/In5nllOj+zaVZ/bHPI8wFdiADeDdte/NLyKFFEkLn7tfwuzHoaGl8Q3P+8yGFQ2ulRE2utRB
+	a/4t33p3XqCuUuPVgc5FpF9r71cwU0/V4A4WZ7jGcXsAUy4yIfSfI9EqabH3VwuCuAkxeyAHQwEZQ
+	Ucb8v2eT1XoXrMjPunCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sRa6A-0000000B8F5-2INW;
-	Wed, 10 Jul 2024 16:23:18 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1sRa8W-0000000B8gx-0g4a;
+	Wed, 10 Jul 2024 16:25:44 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sRa66-0000000B8Cy-2iY0;
-	Wed, 10 Jul 2024 16:23:17 +0000
-Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id DEEE8120007;
-	Wed, 10 Jul 2024 19:23:05 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru DEEE8120007
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1720628585;
-	bh=UxMw2H1wG2rrssfdT9EsTgjW0YQUtwZBVo4IjBGhuDU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=Le+UP53VKWyjsNKvjJgUKyOymUoG36MmvHSPk7PRogpzaDrQZ43vsoGUjivZamoCQ
-	 t20QV3BJ719mrKod+eijBV7UyKY2IzEDIgvYNapM48kA7OhT3TT+nyY0h2ug2GZ4Pk
-	 vVXEtk1pH+EqgoPWyUYo/6PvYl5ArD73LPFqTbN8YkWnCtkRQM1BkS1tzN1QQf1PJ/
-	 VFDzj948BE4228CQUmv/uSH27ePYiouFerz1TRrA7qc/gCGslu3DyDZxkxVoaOKFlC
-	 rAGqkSE/uExLF2C7Gf/R/bOZpYRUCe0wVeNHKX144o+EhwHqUTnHgJIcw2L7R7ccUk
-	 zbMW5tqCqvgFA==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 10 Jul 2024 19:23:05 +0300 (MSK)
-Received: from [192.168.1.143] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 10 Jul 2024 19:23:05 +0300
-Message-ID: <3667b7d5-2cca-458b-bdaf-a69cac0309ce@salutedevices.com>
-Date: Wed, 10 Jul 2024 19:23:04 +0300
+	id 1sRa8T-0000000B8f3-2RU1
+	for linux-amlogic@lists.infradead.org;
+	Wed, 10 Jul 2024 16:25:43 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4266f535e82so16033125e9.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 10 Jul 2024 09:25:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720628740; x=1721233540; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cy32ICucHSRFg8Zvj0U3F+/oAcafvm3gP5oJRBTbz3s=;
+        b=RX6ICOEQzzyARUNGJ3W0rHqrL+z3TNFTnNkCKvmiN/bbznHBFNNmSCus56P2/C44eM
+         q+KzsZoYZlMw7El1O004db6bxUGSbKPPtQgWdE3r1tFKXneedK+7pIIYdop8P1LjCyjM
+         gPlXWAkALSskX8wY/61JbqpIVdKBE0QRVZy6VQPYvzoeeUos+KH8nd2GzhTASxQJxefm
+         bbtME5H58cCcAaoQzMZMFu7Xg2GVyt6CokK7mJek8L3hC0ouzocbLjmWmN/l6TSj+8mI
+         1R1CcKV8dhE7qfux06/Y1rQMsaV0sWo/zzOz/AVNk7stqGvy2KPwVbdPwcBVdjSL02UR
+         fXjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720628740; x=1721233540;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cy32ICucHSRFg8Zvj0U3F+/oAcafvm3gP5oJRBTbz3s=;
+        b=UGVZ3+1NrTAWegMW1oKKHyX4KdYx9I4T2EteAVXK7/5D0P9d5wODlbtoYM4BLnIjie
+         nPyL5NZkYU1q4gv9hvYGJavr8PsOqMGssqaWaEr8rZOz/g4HhTgVrVxcI21ymDEapX9u
+         vMZ58mqhpJRuWjB+ywOiQUT5N6OfZ8Bln5YYUDT+TPW36UiucnjuhstpZM1CRjfW1RH/
+         YfviXE7IWQPnWP9VS9qRykbiDP5GTni89i1rthqaF/x9gAj7Fo2+lv7zf4EfXI11bURj
+         iHNHH0u1Cy2UvaqHZkoJ+ibEyiF3AljY+fvtG4RchE6Fs6mNi9L31jRKvEJ2ei79Yv3S
+         w2Cg==
+X-Forwarded-Encrypted: i=1; AJvYcCWpx7w7QesnlZ5+EPjkcY6/dm4os3j+ROTy5wD8mdayQ9wCQwdU7n4pDSNfjfrwwllDJ/sXM9iUR0CRBwmmEIPpOvhfJJmw3vCqqVKPvs2EoOw=
+X-Gm-Message-State: AOJu0YwV/+qi7kcinHoP9gfdq3EOlZAojVhc4llfUMAgWMAZ2I55KA6t
+	E2/QPFwS4iJ3u3iqkdteHpgDaM67RqoSD8LygoKo2jMN2xQCxaP4yvOERh8F2Xo=
+X-Google-Smtp-Source: AGHT+IEuVqr7vAPRyxsPi49PFNqWl5DSKnIEvhUozJ1PVrnSPX2EIlRX+Aqw6wjznRQ9Dov91P/Otw==
+X-Received: by 2002:a05:600c:896:b0:426:5216:3254 with SMTP id 5b1f17b1804b1-426708f1eebmr46095795e9.32.1720628739886;
+        Wed, 10 Jul 2024 09:25:39 -0700 (PDT)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:1c99:6356:8466:36cf])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4266f6e09e5sm88693815e9.5.2024.07.10.09.25.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jul 2024 09:25:39 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Jan Dakinevich <jan.dakinevich@salutedevices.com>,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH 3/8] reset: amlogic: split the device and platform probe
+Date: Wed, 10 Jul 2024 18:25:12 +0200
+Message-ID: <20240710162526.2341399-4-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240710162526.2341399-1-jbrunet@baylibre.com>
+References: <20240710162526.2341399-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: spi: amlogic,a1-spifc: make
- power-domains required
-To: Krzysztof Kozlowski <krzk@kernel.org>, <robh@kernel.org>,
-	<neil.armstrong@linaro.org>
-CC: <linux-i2c@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-	<krzk+dt@kernel.org>, <hkallweit1@gmail.com>, <glaroque@baylibre.com>,
-	<khilman@baylibre.com>, <broonie@kernel.org>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <linux-pm@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<lukasz.luba@arm.com>, <b.galvani@gmail.com>, <mmkurbanov@sberdevices.ru>,
-	<rui.zhang@intel.com>, <rafael@kernel.org>, <daniel.lezcano@linaro.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@salutedevices.com>, <conor+dt@kernel.org>
-References: <20240708194808.1819185-1-gnstark@salutedevices.com>
- <20240708194808.1819185-2-gnstark@salutedevices.com>
- <6add148f-efe7-4444-82b3-20b1198c6d07@kernel.org>
-Content-Language: en-US
-From: George Stark <gnstark@salutedevices.com>
-In-Reply-To: <6add148f-efe7-4444-82b3-20b1198c6d07@kernel.org>
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 186445 [Jul 10 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 24 0.3.24 186c4d603b899ccfd4883d230c53f273b80e467f, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/10 14:21:00 #25942305
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240710_092315_411563_4E87D607 
-X-CRM114-Status: GOOD (  11.94  )
+X-CRM114-CacheID: sfid-20240710_092541_688846_75DC1DFD 
+X-CRM114-Status: GOOD (  14.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,48 +94,117 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Krzysztof, Neil, Rob
+To prepare the addition of the auxiliary device support, split
+out the device probe from the probe of the platform device.
 
-Thanks for your reviews.
+The device probe will be common to both the platform and auxiliary
+driver.
 
-I'd just like to clarify things a little on that matter. On A1 most of
-periphery has either dedicated power domain (ir, spifc, spi, cpu etc) or
-several peripheries share single PD e.g. pwm, temp sensor, i2c, adc
-share PD 12. Appropriate PD must be turned on before the periphery is
-touched and be on while periphery is used. Experiments confirm it. So
-power-domains property in dts nodes is really required. It makes kernel
-to control PDs when bound periphery is used.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/reset/reset-meson.c | 55 +++++++++++++++++++++++--------------
+ 1 file changed, 34 insertions(+), 21 deletions(-)
 
-If I understand bindings thing correctly we should make power-domains
-property required in bindings too in that case, at least for those
-peripheries which has *a1* compatibles (some peripheries use compatible
-from older SoCs without PDs).
-
-What you think?
-
-On 7/8/24 22:51, Krzysztof Kozlowski wrote:
-> On 08/07/2024 21:48, George Stark wrote:
->> SPI Flash Controller has dedicated power domain so make the
->> corresponding property required.
-> 
-> That's an ABI break. Being part of power domain does not necessarily
-> mean it must be required, so your commit msg lacks rationale. Especially
-> on the ABI part.
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-
+diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
+index 59126c9f194a..fec55321b52b 100644
+--- a/drivers/reset/reset-meson.c
++++ b/drivers/reset/reset-meson.c
+@@ -87,6 +87,27 @@ static const struct reset_control_ops meson_reset_ops = {
+ 	.deassert	= meson_reset_deassert,
+ };
+ 
++static int meson_reset_probe(struct device *dev, struct regmap *map,
++			     const struct meson_reset_param *param)
++{
++	unsigned int stride = regmap_get_reg_stride(map);
++	struct meson_reset *data;
++
++	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++
++	data->param = param;
++	data->map = map;
++	data->rcdev.owner = dev->driver->owner;
++	data->rcdev.nr_resets = param->reg_count * BITS_PER_BYTE
++		* stride;
++	data->rcdev.ops = &meson_reset_ops;
++	data->rcdev.of_node = dev->of_node;
++
++	return devm_reset_controller_register(dev, &data->rcdev);
++}
++
+ static const struct meson_reset_param meson8b_param = {
+ 	.reg_count	= 8,
+ 	.reset_offset	= 0x0,
+@@ -125,46 +146,38 @@ static const struct regmap_config regmap_config = {
+ 	.reg_stride = 4,
+ };
+ 
+-static int meson_reset_probe(struct platform_device *pdev)
++static int meson_reset_pltf_probe(struct platform_device *pdev)
+ {
++
++	const struct meson_reset_param *param;
+ 	struct device *dev = &pdev->dev;
+-	struct meson_reset *data;
++	struct regmap *map;
+ 	void __iomem *base;
+ 
+-	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+-	if (!data)
+-		return -ENOMEM;
+-
+ 	base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(base))
+ 		return PTR_ERR(base);
+ 
+-	data->param = of_device_get_match_data(dev);
+-	if (!data->param)
++	param = of_device_get_match_data(dev);
++	if (!param)
+ 		return -ENODEV;
+ 
+-	data->map = devm_regmap_init_mmio(dev, base, &regmap_config);
+-	if (IS_ERR(data->map))
+-		return dev_err_probe(dev, PTR_ERR(data->map),
++	map = devm_regmap_init_mmio(dev, base, &regmap_config);
++	if (IS_ERR(map))
++		return dev_err_probe(dev, PTR_ERR(map),
+ 				     "can't init regmap mmio region\n");
+ 
+-	data->rcdev.owner = THIS_MODULE;
+-	data->rcdev.nr_resets = data->param->reg_count * BITS_PER_BYTE
+-		* regmap_config.reg_stride;
+-	data->rcdev.ops = &meson_reset_ops;
+-	data->rcdev.of_node = dev->of_node;
+-
+-	return devm_reset_controller_register(dev, &data->rcdev);
++	return meson_reset_probe(dev, map, param);
+ }
+ 
+-static struct platform_driver meson_reset_driver = {
+-	.probe	= meson_reset_probe,
++static struct platform_driver meson_reset_pltf_driver = {
++	.probe	= meson_reset_pltf_probe,
+ 	.driver = {
+ 		.name		= "meson_reset",
+ 		.of_match_table	= meson_reset_dt_ids,
+ 	},
+ };
+-module_platform_driver(meson_reset_driver);
++module_platform_driver(meson_reset_pltf_driver);
+ 
+ MODULE_DESCRIPTION("Amlogic Meson Reset Controller driver");
+ MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
 -- 
-Best regards
-George
+2.43.0
+
 
 _______________________________________________
 linux-amlogic mailing list
