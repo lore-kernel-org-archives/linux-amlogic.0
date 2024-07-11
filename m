@@ -4,81 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16286C3DA47
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jul 2024 08:41:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A59ECC3DA47
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jul 2024 08:53:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xhO8Pv3ikMA/koO5CP1CYGU0VH/aN/mo3ZLz2j+g71E=; b=PF6q7TERyJU+Ed
-	QadzIHlop/hAROInHxJeLfv5P+eOvfugGj1JQ8HGYScu148+dluZFN7WAf8rmZoZs56JSPVBZgyYr
-	T6VlJe9JJZELNGzqr1r1BZeS2vxHwpM51QobxZ2SOJW/fteFOkchnj9rHCxfU6TnyQIDo0LEPUck9
-	LP5xc7/XL85RoIl1/bSTHTdWkXIsJI8whloV5qKKT1frn3eEhdw7deEixVXh4zDl8ZReHOewE5T6O
-	7oFsC68bX3XJIwM0iYQfYbfJs7BAjoBqMz0IMgU5aczp+oI5nZDc/MRYQhdwnBtCU9cAlco+dvPbo
-	YfdYLQqoSwIsFWXIbm0w==;
+	List-Owner; bh=uq1v20pB/vdExWWMGbsrdJTn3kEOlH91LAp0H31W6zk=; b=Gi6nDeoiYIvoYm
+	rGA115CXSDkiilcid+dqoHH5l8AdRWZwEp731CF1787aQ38AOAIctsOdofU5te1TNjdfdIpF5bsom
+	+qpPby9aDF2QbFzwcNf9obOWxiB9MYfLknkrVXcjQ+nuFOREkU21W+ISyexqTgmSsSPkoHZTgJLzY
+	3KkQ0oj720wJOJo8603oZ4TFPxDrQkPLarwzPC5iO31i/0ducIa2/c4nqJyd8wB4u0foETIIInVdw
+	IoqNQX5mqtfr0zcZLEWA619A/9eojVUVnYOfNQumSAsdcrjc7s5/oBg61psv+LqEaNIOktxORuVUm
+	bDtvEpPsmLXFbGVMhDNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sRpMX-0000000DENq-0HN1;
-	Thu, 11 Jul 2024 08:41:13 +0000
-Received: from mail-lf1-x132.google.com ([2a00:1450:4864:20::132])
+	id 1sRpYH-0000000DG89-45WK;
+	Thu, 11 Jul 2024 08:53:21 +0000
+Received: from smtpbgjp3.qq.com ([54.92.39.34])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sRpMT-0000000DEN9-3ZKK
+	id 1sRpYE-0000000DG6h-39TW
 	for linux-amlogic@lists.infradead.org;
-	Thu, 11 Jul 2024 08:41:11 +0000
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-52e9a920e73so673090e87.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 11 Jul 2024 01:41:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720687268; x=1721292068; darn=lists.infradead.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=F4hJMe1Yb9yi4VSSBc6ZDJo7fdcuCbEK9DIjftRMu7s=;
-        b=sUubCdhQuY3wME7geYDqp+5ORPQBi2HJUnM5F2/2GUFRWb2kChSepCc/7zjwAIi4j8
-         iM4sPLg/B1D9x0+UrBP4X9JwEekjVv+baOOK/msJOyLCJKYVPrUQ89dEGuPjqlL8X2PX
-         4sCIrYfxxkC1Lq0SIs3TCnNojcoR/FFdDBbJ3O4MmnsiC58p/5g+uvVNvtS2EBYnzufW
-         o/Ipq+VgGCxkFrSbDTgKZnnS13wuGfuBH1ja8r6x2eiAEBZFmAy77hZodx8GW4hFJkyI
-         snw+5z9rvMCeYv8nbqlDl/tRZIuncLF50cbD+YJsBDoirA+Hu/sn69I/Oh1ciIKYYbjD
-         FI/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720687268; x=1721292068;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F4hJMe1Yb9yi4VSSBc6ZDJo7fdcuCbEK9DIjftRMu7s=;
-        b=QaE2WlQZOZOBnsH8/2BT/hitNUn3tu+VFnzK92xyDNk0mPUxurMD0NsgQsalbXakDB
-         1EWmU9AEqaSYv8uLcVADKb20ckzSE1TIZK63Lpe8FwVHkvPlSoDVw046QNHTZFWHSe2J
-         HjzGlwcR2h8BHFDvnLaIk/rhvGDe5Rd6p5zosBxvacB3BmA1rwc82FFDh6dDgISIMgFB
-         bhed8zHXEWVGRqoLKqa2flkbz7//VojJDNYlUpjvergmsLg7389GABEUlrk74mvCYOxi
-         a54NgkzYOVSHMd7+X+bOCRC7kKcg4CRNkePM7EZUUEAieTTTLRqaKTov40xuDPnPC/bH
-         fAMA==
-X-Forwarded-Encrypted: i=1; AJvYcCVFowGriGepJBtVouauSo4hckFUxVnMZM3agNgrTVQpGLEyRrWJGnsGk3/dvUL33+zJDp5hzU1D8XF1ONnxZ8ZKn8K2Oj+iL5h5vPu+YgPKdVI=
-X-Gm-Message-State: AOJu0YzUKmVg1ylD/MJyOjI1OMz1tuNtK0Tie2p7rXiuKOPn6sLIMenp
-	6fk9ctWznaoEzW5MoeGaWzx71WvijYXIKAA0dK3MGZBEODAFsqSJ7qoM2gp02nk=
-X-Google-Smtp-Source: AGHT+IEJO/nqHAjigZAZduBXhYWRYVbv9hRi6m8XTEKnVPN3/RPTQHv6P0+rtwA6HcT8K1XGWUuONA==
-X-Received: by 2002:ac2:5f6d:0:b0:52d:b182:9664 with SMTP id 2adb3069b0e04-52eb99d7698mr3637237e87.69.1720687267614;
-        Thu, 11 Jul 2024 01:41:07 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:a9e9:c71a:10d8:7f63])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427272c4371sm73269515e9.22.2024.07.11.01.41.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jul 2024 01:41:07 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Philipp Zabel
- <p.zabel@pengutronix.de>,  Jan Dakinevich
- <jan.dakinevich@salutedevices.com>,  linux-kernel@vger.kernel.org,
-  linux-amlogic@lists.infradead.org,  linux-clk@vger.kernel.org
-Subject: Re: [PATCH 5/8] reset: amlogic: add reset status support
-In-Reply-To: <c34a2d1613da179a27123be95eaf4ddf.sboyd@kernel.org> (Stephen
-	Boyd's message of "Wed, 10 Jul 2024 15:40:16 -0700")
-References: <20240710162526.2341399-1-jbrunet@baylibre.com>
-	<20240710162526.2341399-6-jbrunet@baylibre.com>
-	<c34a2d1613da179a27123be95eaf4ddf.sboyd@kernel.org>
-Date: Thu, 11 Jul 2024 10:41:06 +0200
-Message-ID: <1jzfqogw2l.fsf@starbuckisacylon.baylibre.com>
+	Thu, 11 Jul 2024 08:53:20 +0000
+X-QQ-mid: bizesmtpsz10t1720687928tuqqho
+X-QQ-Originating-IP: E4fZjx0lwKjVA+66NREMxLTii2Uo+tFD1SBVSKoINNo=
+Received: from [192.168.159.131] ( [106.150.157.243])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 11 Jul 2024 16:52:06 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 4651650904875580075
+Message-ID: <895267B189BD693F+7a2f3db5-2e67-4905-b085-5726b56bbbab@radxa.com>
+Date: Thu, 11 Jul 2024 17:52:05 +0900
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: amlogic: change product name for Radxa
+ ZERO 2 (Pro)
+To: Krzysztof Kozlowski <krzk@kernel.org>, neil.armstrong@linaro.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+References: <20240711034035.3921122-1-naoki@radxa.com>
+ <20240711034035.3921122-2-naoki@radxa.com>
+ <1fece7cc-fa01-4bea-ac73-a975e042c669@kernel.org>
+ <DFED8CF3B42049F8+44664265-ab1e-4d45-833c-41c370e4360b@radxa.com>
+ <0036cb62-7621-4458-9011-cae56208eefc@kernel.org>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <0036cb62-7621-4458-9011-cae56208eefc@kernel.org>
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtpsz:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240711_014109_910864_95F4AE9E 
-X-CRM114-Status: GOOD (  14.99  )
+X-CRM114-CacheID: sfid-20240711_015319_107090_9BFE50B7 
+X-CRM114-Status: UNSURE (   6.05  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,65 +71,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed 10 Jul 2024 at 15:40, Stephen Boyd <sboyd@kernel.org> wrote:
+Hi
 
-> Quoting Jerome Brunet (2024-07-10 09:25:14)
->> Add a callback to check the status of the level reset, as done in
->> the reset driver of the audio clock controller.
->
-> Why? Presumably so that this driver has equivalent functionality to the
-> reset code in the audio clk controller?
+On 7/11/24 16:45, Krzysztof Kozlowski wrote:
+> On 11/07/2024 08:58, FUKAUMI Naoki wrote:
+>>>>    
+>>>>    / {
+>>>> -	compatible = "radxa,zero2", "amlogic,a311d", "amlogic,g12b";
+>>>> -	model = "Radxa Zero2";
+>>>> +	compatible = "radxa,zero-2pro", "amlogic,a311d", "amlogic,g12b";
+>>>
+>>> Keep old compatible.
+>>
+>> which is better?
+>>
+>> compatible = "radxa,zero2", "amlogic,a311d", "amlogic,g12b"; (no change)
+>>    or
+>> compatible = "radxa,zero-2pro", "radxa,zero2", "amlogic,a311d",
+>> "amlogic,g12b"; (keep old one)
+> 
+> I propose not to change anything, at least based on your
+> explanations/rationale.
 
-I thought the description was saying so. I'll be more explicit in v2
+I see, I don't touch anything which already exists.
+then, can I add new "Radxa ZERO 2 Pro" product?
 
->
->> 
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->>  drivers/reset/reset-meson.c | 18 ++++++++++++++++++
->>  1 file changed, 18 insertions(+)
->> 
->> diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
->> index 3e0447366ba6..65ba9190cb53 100644
->> --- a/drivers/reset/reset-meson.c
->> +++ b/drivers/reset/reset-meson.c
->> @@ -69,6 +69,23 @@ static int meson_reset_level(struct reset_controller_dev *rcdev,
->>                                   BIT(bit), assert ? BIT(bit) : 0);
->>  }
->>  
->> +static int meson_reset_status(struct reset_controller_dev *rcdev,
->> +                             unsigned long id)
->> +{
->> +       struct meson_reset *data =
->> +               container_of(rcdev, struct meson_reset, rcdev);
->
-> Nitpick: One line.
->
->> +       unsigned int val, offset, bit;
->> +
->> +       meson_reset_offset_and_bit(data, id, &offset, &bit);
->> +       offset += data->param->level_offset;
->> +
->> +       regmap_read(data->map, offset, &val);
->> +       val = !!(BIT(bit) & val);
->> +
->> +
->
-> Nitpick: Drop the extra newline?
->
->> +       return val ^ data->param->level_low_reset;
->> +}
->> +
->>  static int meson_reset_assert(struct reset_controller_dev *rcdev,
->>                               unsigned long id)
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
 
--- 
-Jerome
+> Best regards,
+> Krzysztof
+> 
+> 
 
 _______________________________________________
 linux-amlogic mailing list
