@@ -4,53 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE261C3DA47
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jul 2024 08:12:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16286C3DA47
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jul 2024 08:41:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=kOPIgEhKp5dQXcF9gCAHDX5W8xQW87C7V5YEKa/832w=; b=nIifqlWdYTAbI/
-	2K+zbTYCB4jvViO5l3LdXmn108TyBm7VI98swPLc1KUAJOqHxNqg40Vpj1xGegqPFwGGgH35SYMOt
-	OHxnv5PGte478+M7avdScsHIGdefzPlvk+PPWqxydDbUjiUwXjHy9pZrtZR+Swi3ru1fSnCPCzG3i
-	mTnoslOqnxQ2sHfqUXE8bM8J7Jyc30HLbwBrFSQnWQ+ULnSzAcfhh4LhHNzEGJ3ZJF9Yv/Au4XBXM
-	XAeemqbrKxyURPstIADysR6k2H02R99Pw4knK+RGZqCaI8yiVb0UHHLseajaU8ZcparF7MOH6xgnR
-	ZWWqLhfx8J7Y6hidn1Gw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=xhO8Pv3ikMA/koO5CP1CYGU0VH/aN/mo3ZLz2j+g71E=; b=PF6q7TERyJU+Ed
+	QadzIHlop/hAROInHxJeLfv5P+eOvfugGj1JQ8HGYScu148+dluZFN7WAf8rmZoZs56JSPVBZgyYr
+	T6VlJe9JJZELNGzqr1r1BZeS2vxHwpM51QobxZ2SOJW/fteFOkchnj9rHCxfU6TnyQIDo0LEPUck9
+	LP5xc7/XL85RoIl1/bSTHTdWkXIsJI8whloV5qKKT1frn3eEhdw7deEixVXh4zDl8ZReHOewE5T6O
+	7oFsC68bX3XJIwM0iYQfYbfJs7BAjoBqMz0IMgU5aczp+oI5nZDc/MRYQhdwnBtCU9cAlco+dvPbo
+	YfdYLQqoSwIsFWXIbm0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sRouC-0000000D80D-1mqJ;
-	Thu, 11 Jul 2024 08:11:56 +0000
-Received: from mail.brighttrade.pl ([217.61.16.186])
+	id 1sRpMX-0000000DENq-0HN1;
+	Thu, 11 Jul 2024 08:41:13 +0000
+Received: from mail-lf1-x132.google.com ([2a00:1450:4864:20::132])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sRou8-0000000D7y0-0Sbp
+	id 1sRpMT-0000000DEN9-3ZKK
 	for linux-amlogic@lists.infradead.org;
-	Thu, 11 Jul 2024 08:11:54 +0000
-Received: by mail.brighttrade.pl (Postfix, from userid 1002)
-	id CFAAD83991; Thu, 11 Jul 2024 10:10:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=brighttrade.pl;
-	s=mail; t=1720685457;
-	bh=ScLLIv22FPvQjBaBdaqJtjlkSh+AbT2GCazIm57lmoM=;
-	h=Date:From:To:Subject:From;
-	b=pSasQPrtvMd0FrS33GwfP3xVZTN9Hi7E/PCxepmB6I8gu5b2fN574VkeILv1ekBN+
-	 3oVZDWXECz7OW0Shkx1Hah4/mAB1pC781J9el1LRliX6P22vDYh/JgKh20ido0kFgw
-	 4xdjIY8D2SwsURpsiaoLB3rHr7l8zpAEI9K2+2dwWr/zaDPSqdNisHfedthLOakg+E
-	 rAcSQqy1NTAK9RFKjj0XUSL+ZQxzfOEdRBmKbcOVoFm8tUAHWOHeLrmUOBQ7XEsxme
-	 1XyI6Gwe3HEwdh6kRQJkqBiwmhMUGyqqiQ7JMEePWywFbVXKWfO0PIpgfwEtp6d1J3
-	 G19j5cW3FFLYQ==
-Received: by mail.brighttrade.pl for <linux-amlogic@lists.infradead.org>; Thu, 11 Jul 2024 08:10:22 GMT
-Message-ID: <20240711084500-0.1.1b.3gb2.0.ztporp5n02@brighttrade.pl>
-Date: Thu, 11 Jul 2024 08:10:22 GMT
-From: "Wiktor Jonis" <wiktor.jonis@brighttrade.pl>
-To: <linux-amlogic@lists.infradead.org>
-Subject: =?UTF-8?Q?Dostawa_komputer=C3=B3w_?=
-X-Mailer: mail.brighttrade.pl
+	Thu, 11 Jul 2024 08:41:11 +0000
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-52e9a920e73so673090e87.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 11 Jul 2024 01:41:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720687268; x=1721292068; darn=lists.infradead.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=F4hJMe1Yb9yi4VSSBc6ZDJo7fdcuCbEK9DIjftRMu7s=;
+        b=sUubCdhQuY3wME7geYDqp+5ORPQBi2HJUnM5F2/2GUFRWb2kChSepCc/7zjwAIi4j8
+         iM4sPLg/B1D9x0+UrBP4X9JwEekjVv+baOOK/msJOyLCJKYVPrUQ89dEGuPjqlL8X2PX
+         4sCIrYfxxkC1Lq0SIs3TCnNojcoR/FFdDBbJ3O4MmnsiC58p/5g+uvVNvtS2EBYnzufW
+         o/Ipq+VgGCxkFrSbDTgKZnnS13wuGfuBH1ja8r6x2eiAEBZFmAy77hZodx8GW4hFJkyI
+         snw+5z9rvMCeYv8nbqlDl/tRZIuncLF50cbD+YJsBDoirA+Hu/sn69I/Oh1ciIKYYbjD
+         FI/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720687268; x=1721292068;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=F4hJMe1Yb9yi4VSSBc6ZDJo7fdcuCbEK9DIjftRMu7s=;
+        b=QaE2WlQZOZOBnsH8/2BT/hitNUn3tu+VFnzK92xyDNk0mPUxurMD0NsgQsalbXakDB
+         1EWmU9AEqaSYv8uLcVADKb20ckzSE1TIZK63Lpe8FwVHkvPlSoDVw046QNHTZFWHSe2J
+         HjzGlwcR2h8BHFDvnLaIk/rhvGDe5Rd6p5zosBxvacB3BmA1rwc82FFDh6dDgISIMgFB
+         bhed8zHXEWVGRqoLKqa2flkbz7//VojJDNYlUpjvergmsLg7389GABEUlrk74mvCYOxi
+         a54NgkzYOVSHMd7+X+bOCRC7kKcg4CRNkePM7EZUUEAieTTTLRqaKTov40xuDPnPC/bH
+         fAMA==
+X-Forwarded-Encrypted: i=1; AJvYcCVFowGriGepJBtVouauSo4hckFUxVnMZM3agNgrTVQpGLEyRrWJGnsGk3/dvUL33+zJDp5hzU1D8XF1ONnxZ8ZKn8K2Oj+iL5h5vPu+YgPKdVI=
+X-Gm-Message-State: AOJu0YzUKmVg1ylD/MJyOjI1OMz1tuNtK0Tie2p7rXiuKOPn6sLIMenp
+	6fk9ctWznaoEzW5MoeGaWzx71WvijYXIKAA0dK3MGZBEODAFsqSJ7qoM2gp02nk=
+X-Google-Smtp-Source: AGHT+IEJO/nqHAjigZAZduBXhYWRYVbv9hRi6m8XTEKnVPN3/RPTQHv6P0+rtwA6HcT8K1XGWUuONA==
+X-Received: by 2002:ac2:5f6d:0:b0:52d:b182:9664 with SMTP id 2adb3069b0e04-52eb99d7698mr3637237e87.69.1720687267614;
+        Thu, 11 Jul 2024 01:41:07 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:a9e9:c71a:10d8:7f63])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427272c4371sm73269515e9.22.2024.07.11.01.41.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jul 2024 01:41:07 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Philipp Zabel
+ <p.zabel@pengutronix.de>,  Jan Dakinevich
+ <jan.dakinevich@salutedevices.com>,  linux-kernel@vger.kernel.org,
+  linux-amlogic@lists.infradead.org,  linux-clk@vger.kernel.org
+Subject: Re: [PATCH 5/8] reset: amlogic: add reset status support
+In-Reply-To: <c34a2d1613da179a27123be95eaf4ddf.sboyd@kernel.org> (Stephen
+	Boyd's message of "Wed, 10 Jul 2024 15:40:16 -0700")
+References: <20240710162526.2341399-1-jbrunet@baylibre.com>
+	<20240710162526.2341399-6-jbrunet@baylibre.com>
+	<c34a2d1613da179a27123be95eaf4ddf.sboyd@kernel.org>
+Date: Thu, 11 Jul 2024 10:41:06 +0200
+Message-ID: <1jzfqogw2l.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240711_011152_842008_592A78FE 
-X-CRM114-Status: UNSURE (  -0.16  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240711_014109_910864_95F4AE9E 
+X-CRM114-Status: GOOD (  14.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,27 +90,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RHppZcWEIGRvYnJ5LAoKbWFtIHByenlqZW1ub8WbxIcgcHJ6ZWRzdGF3acSHIG9mZXJ0xJkgbmFz
-emVqIGZpcm15LCBrdMOzcmEgc3BlY2phbGl6dWplIHNpxJkgdyBkb3N0YXJjemFuaXUga29tcGxl
-dG55Y2ggc3Rhbm93aXNrIGtvbXB1dGVyb3d5Y2ggd3JheiB6IG9wcm9ncmFtb3dhbmllbSBvcmF6
-IHBlxYJueW0gd3NwYXJjaWVtIHNlcndpc293eW0uCgpEemnEmWtpIG5hc3p5bSBrb21wbGVrc293
-eW0gcm96d2nEhXphbmlvbSBJVCwgemFwZXduaWFteSBQYcWEc3R3dSBzcHJ6xJl0IG5hand5xbxz
-emVqIGpha2/Fm2NpLCBnb3Rvd3kgZG8gbmF0eWNobWlhc3Rvd2VnbyB1xbx5Y2lhLCBjbyBwb3p3
-YWxhIG5hIGVmZWt0eXduxIUgaSBiZXpwcm9ibGVtb3fEhSBwcmFjxJkuCgpOYXN6ZSBwcm9kdWt0
-eSBwb2Nob2R6xIUgb2QgcmVub21vd2FueWNoIHByb2R1Y2VudMOzdywgY28gZ3dhcmFudHVqZSBp
-Y2ggdHJ3YcWCb8WbxIcgaSB3eXNva8SFIHd5ZGFqbm/Fm8SHLgoKSmVzdGXFm215IHByemVrb25h
-bmksIMW8ZSBuYXN6ZSByb3p3acSFemFuaWEgSVQgbW9nxIUgcHJ6eWN6eW5pxIcgc2nEmSBkbyB6
-d2nEmWtzemVuaWEgZWZla3R5d25vxZtjaSBpIGtvbWZvcnR1IHByYWN5IHcgUGHFhHN0d2EgZmly
-bWllLiBDaMSZdG5pZSBwcnplZHN0YXdpxJkgc3pjemVnw7PFgm93ZSBpbmZvcm1hY2plIG5hIHRl
-bWF0IG5hc3plaiBvZmVydHkgaSBvbcOzd2nEmSBtb8W8bGl3b8WbY2kgd3Nww7PFgnByYWN5LgoK
-Q3p5IGJ5xYJhYnkgbW/FvGxpd2/Fm8SHIHVtw7N3aWVuaWEgc2nEmSBuYSByb3ptb3fEmSB0ZWxl
-Zm9uaWN6bsSFIGx1YiBzcG90a2FuaWUsIGFieSBzemN6ZWfDs8WCb3dvIHByemVkeXNrdXRvd2HE
-hyBuYXN6ZSBwcm9wb3p5Y2plPwoKClBvemRyYXdpYW0KV2lrdG9yIEpvbmlzCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxp
-bmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
-ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Wed 10 Jul 2024 at 15:40, Stephen Boyd <sboyd@kernel.org> wrote:
+
+> Quoting Jerome Brunet (2024-07-10 09:25:14)
+>> Add a callback to check the status of the level reset, as done in
+>> the reset driver of the audio clock controller.
+>
+> Why? Presumably so that this driver has equivalent functionality to the
+> reset code in the audio clk controller?
+
+I thought the description was saying so. I'll be more explicit in v2
+
+>
+>> 
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>> ---
+>>  drivers/reset/reset-meson.c | 18 ++++++++++++++++++
+>>  1 file changed, 18 insertions(+)
+>> 
+>> diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
+>> index 3e0447366ba6..65ba9190cb53 100644
+>> --- a/drivers/reset/reset-meson.c
+>> +++ b/drivers/reset/reset-meson.c
+>> @@ -69,6 +69,23 @@ static int meson_reset_level(struct reset_controller_dev *rcdev,
+>>                                   BIT(bit), assert ? BIT(bit) : 0);
+>>  }
+>>  
+>> +static int meson_reset_status(struct reset_controller_dev *rcdev,
+>> +                             unsigned long id)
+>> +{
+>> +       struct meson_reset *data =
+>> +               container_of(rcdev, struct meson_reset, rcdev);
+>
+> Nitpick: One line.
+>
+>> +       unsigned int val, offset, bit;
+>> +
+>> +       meson_reset_offset_and_bit(data, id, &offset, &bit);
+>> +       offset += data->param->level_offset;
+>> +
+>> +       regmap_read(data->map, offset, &val);
+>> +       val = !!(BIT(bit) & val);
+>> +
+>> +
+>
+> Nitpick: Drop the extra newline?
+>
+>> +       return val ^ data->param->level_low_reset;
+>> +}
+>> +
+>>  static int meson_reset_assert(struct reset_controller_dev *rcdev,
+>>                               unsigned long id)
+
+-- 
+Jerome
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
