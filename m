@@ -4,106 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 926F6C2BD09
-	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Jul 2024 07:53:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A509C2BD09
+	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Jul 2024 08:05:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Oz3ewlVRgBx66vQBnOx/JL/ojALz4bCiCOIBnoKbybY=; b=UY2Sc6A12hE8TY
-	VsxVT9sWdNt2QfgqC2PKvYEX5W0vtZJ+rRd+lEEEP7EoS6f43wyu2+SQM2wfGf/syYXGRcJlSdpt5
-	oP4tdn1FyjzrNYAwOH1gKPeOIzJP9jt4Y001WOG0iZxvNfMAnVGgsRB3dpNZKau3ZKFbJ6WZAhxha
-	gABzp3G0Cj/FAgrbi9nK8NxDSKnKhs2g9ak5SoQ3WfL/yjad07tM96JAQp6qFZZ2OLaQFC50iIEIE
-	AgnN+Bgsg2eFd83QRUcX6xWbzyZ+o7h7m270mY7r6/4pw694LX5BjTtcDd5s87JaXkoY8WVIUPBIE
-	Ozq8xXV5x1AJgy+GXQMQ==;
+	List-Owner; bh=QAXKh+2JWugv4uSPPZ0DAbFIM+aGxt+9VCCCr358A40=; b=lO0l9HI8oC8T2n
+	I08YgpJMGv6gFUZnDqx4DR0qg93IU5NwLUETYFJj7e9wfTMcJNux+iH+UVe8PAuBQcxmUkyADhIs3
+	nsLtT7q4z+BrOShV7PiTrBqasDXbD3xWqUgqg7xtwcG/YKx2VoFt7Czn91bKArzTIJHKGHs2MA7qe
+	vDtVrhwXEP7+Z5BZmzK8IQSxaE+MI5wWUerADZEzaSgZbthD9PSl+PrWpw+hp+AHBIuxwQbvfl9or
+	WE4XPX1zPhfrkvSMzFe1fCkJMn/cBQb2t6+DCJgleGNkPDEMLB2AFcHEV1C39b2brERopqWyabmMz
+	QceDeTx8ZakOC8hoJ/+A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sSB5O-0000000Goal-2Oml;
-	Fri, 12 Jul 2024 07:52:58 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1sSBHV-0000000GqGP-2LCo;
+	Fri, 12 Jul 2024 08:05:29 +0000
+Received: from smtpbg156.qq.com ([15.184.82.18])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sSB5L-0000000GoZK-0Ye6
+	id 1sSBHQ-0000000GqF5-3w41
 	for linux-amlogic@lists.infradead.org;
-	Fri, 12 Jul 2024 07:52:57 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 5AC92CE1767;
-	Fri, 12 Jul 2024 07:52:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9FF1C3277B;
-	Fri, 12 Jul 2024 07:52:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720770772;
-	bh=l/ZxZT4ezf8rEL+Vsox4YpF3uh/dG8CumhNw96tEy44=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jy2bkS2Yk3HnjBii+xcLqbGX8rqGDe24QTJSUAFP5ZBBJ4NjZnoB8xEsuqY0YHBA4
-	 kMhfgbDZJUyMXdLmF9i6x3J3DREMP7ryW2wiHpgEQidp9ST1OO1RY5n5i1lBuuiK2+
-	 iM/MiIH6tG42oy1uH4UuKzn4VF7IC8JdSMDDxkezrx60s4RHBTfS2qvITcF1xugrLr
-	 ybAjklbo1NM/ZBkks7gf+qLhu5Oegtz5gVAdNLnf5nm+gwXef6cpv+V9XydanKbNee
-	 W8uhEBKxaqm1Lyo072VtD8rl7wd49UXhFV5WAdc0FtyWbb42l+bUfSs8c7XgwbK11P
-	 iVtexKgSohhPw==
-Message-ID: <c008b62f-9bf2-4f1e-ad9d-b934721a6bd0@kernel.org>
-Date: Fri, 12 Jul 2024 09:52:47 +0200
+	Fri, 12 Jul 2024 08:05:27 +0000
+X-QQ-mid: bizesmtpsz10t1720771461tzwli0
+X-QQ-Originating-IP: U25Ln5tkiuUt138GSqd1mm4npz0kzR4zil7EUz9M3so=
+Received: from [192.168.159.131] ( [106.150.157.243])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 12 Jul 2024 16:04:19 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 18202029709574962704
+Message-ID: <FA45EFF197FE5160+55491767-a64b-4520-8320-1b1a4308b75f@radxa.com>
+Date: Fri, 12 Jul 2024 17:04:17 +0900
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: amlogic: add support for Radxa ZERO 2
- Pro
-To: FUKAUMI Naoki <naoki@radxa.com>, neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: amlogic: add support for Radxa
+ ZERO 2 Pro
+To: Krzysztof Kozlowski <krzk@kernel.org>, neil.armstrong@linaro.org
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  khilman@baylibre.com, jbrunet@baylibre.com,
  martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
  linux-amlogic@lists.infradead.org
 References: <20240711202013.26573-1-naoki@radxa.com>
- <20240711202013.26573-2-naoki@radxa.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <cb18f4bc-ed81-4a4c-8545-94a2950af0b2@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240711202013.26573-2-naoki@radxa.com>
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <cb18f4bc-ed81-4a4c-8545-94a2950af0b2@kernel.org>
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtpsz:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240712_005255_561250_6CF3FD41 
-X-CRM114-Status: UNSURE (   6.46  )
+X-CRM114-CacheID: sfid-20240712_010525_606379_C9494FB1 
+X-CRM114-Status: UNSURE (   8.96  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -116,42 +68,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 11/07/2024 22:20, FUKAUMI Naoki wrote:
-> Radxa ZERO 2 Pro is a ultra tiny high performance SBC[1] using the
-> Amlogic A311D chip that ships in a number of eMMC configurations:
-> 
-> - Amlogic A311D SoC
-> - Quad A73 + Dual A53 CPU
-> - Mali G52-MP4 GPU
-> - NPU (5 TOPs)
-> - 4GB LPDDR4 RAM
-> - 32/64/128GB eMMC
-> - micro SD Card slot
-> - Wi-Fi 5 and BT 5.0
-> - 1x USB 2.0 Type-C port (OTG)
-> - 1x USB 3.0 Type-C port (Host)
-> - Micro HDMI 2.0
-> - MIPI DSI
-> - MIPI CSI
-> - 40 Pin GPIO header
-> 
-> [1] https://radxa.com/products/zeros/zero2pro
-> 
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> 
-> Changes in v2:
-> - fix dtb build error
+Hi,
 
-Same problem.
+On 7/12/24 16:52, Krzysztof Kozlowski wrote:
+> On 11/07/2024 22:20, FUKAUMI Naoki wrote:
+>> Radxa ZERO 2 Pro is a ultra tiny high performance SBC[1] using the
+>> Amlogic A311D chip.
+>>
+>> [1] https://radxa.com/products/zeros/zero2pro
+>>
+>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>>
+>> Changes in v2:
+>> - none
+> 
+> That's not a correct commit msg. Apply it and you will see... Also,
+> won't pass SoB or checkpatch tests. Missing ---.
 
-Best regards,
-Krzysztof
+oh, I see. thank you very much!
 
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+>> ---
+>>   Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+>> index 0647851ae1f5..66745b4f5eca 100644
+>> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+>> @@ -157,6 +157,7 @@ properties:
+>>                 - bananapi,bpi-m2s
+>>                 - khadas,vim3
+>>                 - libretech,aml-a311d-cc
+>> +              - radxa,zero-2pro
+>>                 - radxa,zero2
+>>             - const: amlogic,a311d
+>>             - const: amlogic,g12b
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
 
 _______________________________________________
 linux-amlogic mailing list
