@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40AFDC2BD09
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jul 2024 05:13:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB628C2BD09
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jul 2024 05:13:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0vjRc8eKZjduAwW0sJ2S37Bsc84ba9em/2JP40iT9YE=; b=ESjl3igrhKYVai
-	SqMGLQ3ZoR57SOOQYTJzcuxafdI9opM64BgvugfXjiikcezSJwg1rvEkiBxG7P3tNkR6K/5e1sBY5
-	TKY73HPiZu176oFTEGfiPX4HsTCfMQ/P1R0AMN9qPydytz2rctfR13ypwy0B8IryPt/ZYbabDqtqB
-	AJm7tLQlxPjeolCtOU/lC8hfJUu+CtvTwWb8xyaH8qMf0+/FW0RSF8jTS9+odY0JQjirnMF7f/Ob/
-	pksxfb9A/t/bx57QwMOheLjBBKMag5Xgj/bDsMk7UxwlCgNimCAo40anTBEvDBXrbR4TPw2Lhry/J
-	9f4TEYIKlGGL1f0CQLbQ==;
+	List-Owner; bh=MWmkHFG4aks0HfpT4opVSHfTKWlxueG9bygAPem29ig=; b=M37yLcVeHoN2Ym
+	tHeI9m84hg4fEMUtwgpLxANbgg8BhUxcUE+i+2puW8ezUI7NyvjkTCFXSJgljPCMzcqU1EsYhlIZG
+	YAPfp2TaDrc9alkg8fqog5ZX/IBDsAcGhN9RnDaIlDKdRYZqVyzcoF5BAkPERXWi3qryGEedUEbSM
+	oS+3+u+Vpf4ZITgB/kHCrEx78mcYTx9M0gp2mcLvHzIgDKl4tfL/LIEju2cVqMJb2VFpdUh3Ykmt7
+	NZbwSLKgwG/Fwd+JoSkHtpn/80KMFoupZouiVzxLfX6q0B7qyI6cmiwZ7GmmiwoEMgsJLla5GeGK4
+	pwuVBlQ3vAajvZ4n7zEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sTE1N-00000005ssN-0BY2;
-	Mon, 15 Jul 2024 05:13:09 +0000
+	id 1sTE1d-00000005swT-2FmV;
+	Mon, 15 Jul 2024 05:13:25 +0000
 Received: from [58.32.228.46] (helo=mail-sh.amlogic.com)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sTE16-00000005sjB-04LU;
-	Mon, 15 Jul 2024 05:12:53 +0000
+	id 1sTE17-00000005sjB-2bx9;
+	Mon, 15 Jul 2024 05:12:54 +0000
 Received: from droid10-sz.amlogic.com (10.28.11.69) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.39; Mon, 15 Jul 2024
- 13:12:20 +0800
+ 13:12:22 +0800
 From: zelong dong <zelong.dong@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, Philipp Zabel
 	<p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>, Rob Herring
@@ -38,18 +38,17 @@ To: Neil Armstrong <neil.armstrong@linaro.org>, Philipp Zabel
 CC: <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
 	<kelvin.zhang@amlogic.com>, Zelong Dong <zelong.dong@amlogic.com>
-Subject: [PATCH v2 1/3] dt-bindings: reset: Add compatible for Amlogic A4/A5 Reset Controller
-Date: Mon, 15 Jul 2024 13:12:15 +0800
-Message-ID: <20240715051217.5286-2-zelong.dong@amlogic.com>
+Subject: [PATCH v2 2/3] arm64: dts: amlogic: Add Amlogic A4 reset controller
+Date: Mon, 15 Jul 2024 13:12:16 +0800
+Message-ID: <20240715051217.5286-3-zelong.dong@amlogic.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20240715051217.5286-1-zelong.dong@amlogic.com>
 References: <20240715051217.5286-1-zelong.dong@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.28.11.69]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240714_221252_078949_7E6C9C13 
-X-CRM114-Status: UNSURE (   6.55  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240714_221253_685773_3599C249 
+X-CRM114-Status: GOOD (  12.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,45 +67,141 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Zelong Dong <zelong.dong@amlogic.com>
 
-Add new compatible for Amlogic A4/A5 Reset Controller
+Add the device node and related header file for Amlogic
+A4 reset controller. The count and offset for A4 Soc
+RESET registers are same as S4 Soc.
 
 Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
 ---
- .../bindings/reset/amlogic,meson-reset.yaml   | 21 ++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+ .../arm64/boot/dts/amlogic/amlogic-a4-reset.h | 93 +++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi   | 10 ++
+ 2 files changed, 103 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h
 
-diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-index f0c6c0df0ce3..11bfe484a5d3 100644
---- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-+++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-@@ -12,13 +12,20 @@ maintainers:
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h b/arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h
+new file mode 100644
+index 000000000000..f6a4c90bab3c
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h
+@@ -0,0 +1,93 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
++/*
++ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
++ */
++
++#ifndef __DTS_AMLOGIC_A4_RESET_H
++#define __DTS_AMLOGIC_A4_RESET_H
++
++/* RESET0 */
++/*						0-3 */
++#define RESET_USB				4
++/*						5-6*/
++#define RESET_U2PHY22				7
++#define RESET_USBPHY20				8
++#define RESET_U2PHY21				9
++#define RESET_USB2DRD				10
++#define RESET_U2H				11
++#define RESET_LED_CTRL				12
++/*						13-31 */
++
++/* RESET1 */
++#define RESET_AUDIO				32
++#define RESET_AUDIO_VAD				33
++/*						34*/
++#define RESET_DDR_APB				35
++#define RESET_DDR				36
++#define RESET_VOUT_VENC				37
++#define RESET_VOUT				38
++/*						39-47 */
++#define RESET_ETHERNET				48
++/*						49-63 */
++
++/* RESET2 */
++#define RESET_DEVICE_MMC_ARB			64
++#define RESET_IRCTRL				65
++/*						66*/
++#define RESET_TS_PLL				67
++/*						68-72*/
++#define RESET_SPICC_0				73
++#define RESET_SPICC_1				74
++/*						75-79*/
++#define RESET_MSR_CLK				80
++/*						81*/
++#define RESET_SAR_ADC				82
++/*						83-87*/
++#define RESET_ACODEC				88
++/*						89-90*/
++#define RESET_WATCHDOG				91
++/*						92-95*/
++
++/* RESET3 */
++/*						96-127 */
++
++/* RESET4 */
++/*						128-131 */
++#define RESET_PWM_AB				132
++#define RESET_PWM_CD				133
++#define RESET_PWM_EF				134
++#define RESET_PWM_GH				135
++/*						136-137*/
++#define RESET_UART_A				138
++#define RESET_UART_B				139
++/*						140*/
++#define RESET_UART_D				141
++#define RESET_UART_E				142
++/*						143-144*/
++#define RESET_I2C_M_A				145
++#define RESET_I2C_M_B				146
++#define RESET_I2C_M_C				147
++#define RESET_I2C_M_D				148
++/*						149-151*/
++#define RESET_SDEMMC_A				152
++/*						153*/
++#define RESET_SDEMMC_C				154
++/*						155-159*/
++
++/* RESET5 */
++/*						160-175*/
++#define RESET_BRG_AO_NIC_SYS			176
++/*						177*/
++#define RESET_BRG_AO_NIC_MAIN			178
++#define RESET_BRG_AO_NIC_AUDIO			179
++/*						180-183*/
++#define RESET_BRG_AO_NIC_ALL			184
++/*						185*/
++#define RESET_BRG_NIC_SDIO			186
++#define RESET_BRG_NIC_EMMC			187
++#define RESET_BRG_NIC_DSU			188
++#define RESET_BRG_NIC_CLK81			189
++#define RESET_BRG_NIC_MAIN			190
++#define RESET_BRG_NIC_ALL			191
++
++#endif
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+index de10e7aebf21..3fd1c52fb55b 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+@@ -4,6 +4,7 @@
+  */
  
- properties:
-   compatible:
--    enum:
--      - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
--      - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
--      - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
--      - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
--      - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
--      - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
-+    oneOf:
-+      - items:
-+          - enum:
-+              - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
-+              - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
-+              - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
-+              - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
-+              - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
-+              - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
-+      - items:
-+          - enum:
-+              - amlogic,a4-reset
-+              - amlogic,a5-reset
-+          - const: amlogic,meson-s4-reset
- 
-   reg:
-     maxItems: 1
+ #include "amlogic-a4-common.dtsi"
++#include "amlogic-a4-reset.h"
+ #include <dt-bindings/power/amlogic,a4-pwrc.h>
+ / {
+ 	cpus {
+@@ -48,3 +49,12 @@ pwrc: power-controller {
+ 		};
+ 	};
+ };
++
++&apb {
++	reset: reset-controller@2000 {
++		compatible = "amlogic,a4-reset",
++			     "amlogic,meson-s4-reset";
++		reg = <0x0 0x2000 0x0 0x98>;
++		#reset-cells = <1>;
++	};
++};
 -- 
 2.35.1
 
