@@ -4,57 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CA9BC3DA4B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jul 2024 19:30:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD496C3DA4B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jul 2024 22:46:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
-	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CQ6cnbVdfVxOgeDVkAuV6u8i1gzRF5shSH4irnLaR1k=; b=HpTrEXKhSWlIfy
-	m/XuYd+cfvX+1W5eqycd76wI6yJN8FyWafCohdWBEMLB+bOTxKR1LE5QHflVHkrktX+f2NVePz9hy
-	g1EHOa5GTDGT48YW3zQ4tn+DXci/HcvdVqEXc5/kZih7iq0XEJY/dDIVFUxKEx3JkZhdKdtJ/yHxV
-	nIbarhOuJN8XPzzfBPF16AbOtUHZnURcJy96JOIfYhPX22u1pIVU7NtfaiEegTTOZVR+16/+CQ71r
-	gG+wZ+2XdWMyNLP9QzKnlON6tuofu5aMYqhcDIuI8jHW/UchmJvRzZ6gdZDpht59kxgbKTKp5CoUJ
-	QXyw/c1BYR2ilEtgipLg==;
+	List-Owner; bh=tkyFBF35cdmpRGuPXfOkXLmwsNQyzAe3GPnjWfkeR0s=; b=GS3QtTOXGYX6Y0
+	gUTCkuhzhWpvrS3O5drAcgsM0prZdiDb6XgpBF+hApWQ4v8sLP5u4+S1gz00073o+3Q1ybKEYDe2C
+	SztL6tHI8o4zGqGqwB5cWjQS9+QAS0cddrW2DW4QvPxSTw6LssbdfGc6P97fJ1KqV5xwHSVC4WAEq
+	a3BBj+3hjqmiltbU9r6sMlNalcZTFZG3KA5nO0JOcT3/p5ye+HWUhDdUO2ic7xpgMTkctwI61ECtC
+	bXux3zNgernoEcK7x07Dsnx8yQhHlaH7Vwu3HiJLUv8wzf4V/TMrZpgmVaVcaFXto1DtZEfVhfqBR
+	WsgXhh0zcHMfWWMQ8zVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sTRP3-000000089qP-24x6;
-	Mon, 15 Jul 2024 19:30:29 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1sTUSx-00000008cjr-2m2a;
+	Mon, 15 Jul 2024 22:46:43 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sTRP0-000000089pk-0KHa
+	id 1sTUSt-00000008ciR-1fOm
 	for linux-amlogic@lists.infradead.org;
-	Mon, 15 Jul 2024 19:30:28 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 7C71FCE10BF;
-	Mon, 15 Jul 2024 19:30:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1AEEC4AF0A;
-	Mon, 15 Jul 2024 19:30:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721071823;
-	bh=tGsUF26rthjSBOBNFtY5VI/KJK9SJct6xyHxzeNGIcE=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=vERtmmL1W5S/u1Jf/veSawCHamOAtTMmNGMq1V1sKzAqWs3SE+8G7gPVxQkKheRLX
-	 MJDS+voZwuGaRu4KMYt36b8VCdF3j9V2RSxY7ZN0KEW4+QYDWKI9N58rnaulSrNyoZ
-	 r6tdoyTR6sM84yArcvrbwRQ9JC2GnG9bEqDvkEZSb0qOGEQo9T59bxxVHLZLYvhsMA
-	 kWh07SW1LzwKCS9TQwqRZHBVckNPGaainWN59/4mHIEb1mOfLHVSLAakB4RmLtNppd
-	 epWZmJEru0uTD7FKwuz2Rn7B6hnk/h3v/VX7XmLRmgdFJHqYZfGuwOGC1Jn3+L7ZXb
-	 GwUVZjy8yFocA==
-Message-ID: <7db2d8ae07a9ef1a226dfd08a3f88f8a.sboyd@kernel.org>
+	Mon, 15 Jul 2024 22:46:42 +0000
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id DA91B100006;
+	Tue, 16 Jul 2024 01:46:26 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru DA91B100006
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1721083586;
+	bh=1JJIEhrCtyAs2dCw9KVsU1KYY5XyTbExctYubMHysNk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=HJAh5Y2ux5AR0Am+g2l1lpDcNUNFWH0TyqKuunqfgVPwJU8N70jP8dpxi4oj8/R7M
+	 m/8SYYBxH6+HSeb1H8xcldxkqKLF22likxwo+kGx+rE/feZV0df8cqAt0gTVCj7Ny8
+	 X+0Qt0wUFgPTSaiL2FwLTPohAifKXxVxLbza6Mg1upbOENeri7So2r7AvJiiJljZ8y
+	 8eeOrvvu+Sn5ofQmmwz/l7GTXFl/nxorjVrNsI7RXmQ7ynB/KnrL0kkDUDpOhyARtk
+	 n4xFzEpnrN0ZnjGJ+2whdfilCAOwDLEHK+9XMPqmHRpR8b0AFMkDdOGnJcmfBSu6b/
+	 EQpTILOn5brRg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 16 Jul 2024 01:46:26 +0300 (MSK)
+Received: from [172.28.128.6] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 16 Jul 2024 01:46:26 +0300
+Message-ID: <51f8fff1-30e7-456c-918b-c63603d7c159@salutedevices.com>
+Date: Tue, 16 Jul 2024 01:45:17 +0300
 MIME-Version: 1.0
-In-Reply-To: <1jv81cgv4z.fsf@starbuckisacylon.baylibre.com>
-References: <20240710162526.2341399-1-jbrunet@baylibre.com> <20240710162526.2341399-8-jbrunet@baylibre.com> <88d1dbd92e922ad002367d8dac67d0eb.sboyd@kernel.org> <1jv81cgv4z.fsf@starbuckisacylon.baylibre.com>
-Subject: Re: [PATCH 7/8] reset: amlogic: add auxiliary reset driver support
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, Jan Dakinevich <jan.dakinevich@salutedevices.com>, linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org
-To: Jerome Brunet <jbrunet@baylibre.com>
-Date: Mon, 15 Jul 2024 12:30:21 -0700
-User-Agent: alot/0.10
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/8] reset: amlogic: move audio reset drivers out of CCF
+To: Jerome Brunet <jbrunet@baylibre.com>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Stephen Boyd <sboyd@kernel.org>, Neil Armstrong
+	<neil.armstrong@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>
+References: <20240710162526.2341399-1-jbrunet@baylibre.com>
+Content-Language: en-US
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <20240710162526.2341399-1-jbrunet@baylibre.com>
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 186528 [Jul 16 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 24 0.3.24 186c4d603b899ccfd4883d230c53f273b80e467f, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2;salutedevices.com:7.1.1;lore.kernel.org:7.1.1;sberdevices.ru:5.0.1,7.1.1, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/07/15 22:06:00
+X-KSMG-LinksScanning: Clean, bases: 2024/07/15 22:06:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/15 21:24:00 #26011023
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240715_123026_495414_06FCE04E 
-X-CRM114-Status: GOOD (  28.12  )
+X-CRM114-CacheID: sfid-20240715_154639_982784_EFC7317C 
+X-CRM114-Status: GOOD (  17.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,93 +102,52 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jerome Brunet (2024-07-11 02:01:16)
-> On Wed 10 Jul 2024 at 15:49, Stephen Boyd <sboyd@kernel.org> wrote:
-> 
-> > Quoting Jerome Brunet (2024-07-10 09:25:16)
-> >> diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
-> >> index e34a10b15593..5cc767d50e8f 100644
-> >> --- a/drivers/reset/reset-meson.c
-> >> +++ b/drivers/reset/reset-meson.c
-> > [...]
-> >> +
-> >> +int devm_meson_rst_aux_register(struct device *dev,
-> >> +                               struct regmap *map,
-> >> +                               const char *adev_name)
-> >> +{
-> >> +       struct meson_reset_adev *raux;
-> >> +       struct auxiliary_device *adev;
-> >> +       int ret;
-> >> +
-> >> +       raux = kzalloc(sizeof(*raux), GFP_KERNEL);
-> >> +       if (!raux)
-> >> +               return -ENOMEM;
-> >> +
-> >> +       ret = ida_alloc(&meson_rst_aux_ida, GFP_KERNEL);
-> >
-> > Do we expect more than one device with the same name? I wonder if the
-> > IDA can be skipped.
-> 
-> I've wondered about that too.
-> 
-> I don't think it is the case right now but I'm not 100% sure.
-> Since I spent time thinking about it, I thought it would just be safer (and
-> relatively cheap) to put in and enough annoying debugging the
-> expectation does not hold true.
-> 
-> I don't have a strong opinion on this. What do you prefer ?
+Jerome, I have tested the series on SM1 SoC (Amlogic AC200 ref board).
+As far as I can tell, it works as it should
 
-I don't have a strong opinion either so it's fine to leave it there.
 
-> >> diff --git a/include/soc/amlogic/meson-auxiliary-reset.h b/include/soc/amlogic/meson-auxiliary-reset.h
-> >> new file mode 100644
-> >> index 000000000000..8fdb02b18d8c
-> >> --- /dev/null
-> >> +++ b/include/soc/amlogic/meson-auxiliary-reset.h
-> >> @@ -0,0 +1,23 @@
-> >> +/* SPDX-License-Identifier: GPL-2.0 */
-> >> +#ifndef __SOC_AMLOGIC_MESON_AUX_RESET_H
-> >> +#define __SOC_AMLOGIC_MESON_AUX_RESET_H
-> >> +
-> >> +#include <linux/err.h>
-> >> +
-> >> +struct device;
-> >> +struct regmap;
-> >> +
-> >> +#ifdef CONFIG_RESET_MESON
-> >> +int devm_meson_rst_aux_register(struct device *dev,
-> >> +                               struct regmap *map,
-> >> +                               const char *adev_name);
-> >> +#else
-> >> +static inline int devm_meson_rst_aux_register(struct device *dev,
-> >> +                                             struct regmap *map,
-> >> +                                             const char *adev_name)
-> >> +{
-> >> +       return -EOPNOTSUPP;
-> >
-> > Shouldn't this be 'return 0' so that the clk driver doesn't have to care
-> > about the config?
+On 7/10/24 19:25, Jerome Brunet wrote:
+> This patchset follows the discussion about having reset driver in the
+> clock tree [1]. Ideally those should reside in the reset part of tree.
 > 
-> I don't think the system (in general) would be able function without the reset
-> driver, so the question is rather phylosophical.
+> Also the code of the amlogic reset driver is very similar between the 2
+> trees and could use the same driver code.
 > 
-> Let's say it could, if this returns 0, consumers of the reset controller
-> will defer indefinitely ... which is always a bit more difficult to sort
-> out.
+> This patchset moves the reset driver of audio clock controller of the
+> g12 and sm1 SoC family to the reset tree, using the auxiliary bus.
 > 
-> If it returns an error, the problem is pretty obvious, helping people
-> solve it quickly.
+> The infrastructure put in place is meant to be generic enough so we may
+> eventually also move the reset drivers in the meson8b and aoclk clock
+> controllers.
 > 
-> Also the actual device we trying to register provides clocks and reset.
-> It is not like the reset is an optional part we don't care about.
+> Change since RFC [2]:
+>  * Move the aux registration helper out of clock too.
 > 
-> On this instance it starts from clock, but it could have been the other
-> way around. Both are equally important.
+> [1] https://lore.kernel.org/linux-clk/e3a85852b911fdf16dd9ae158f42b3ef.sboyd@kernel.org
+> [2] https://lore.kernel.org/linux-clk/20240516150842.705844-1-jbrunet@baylibre.com
 > 
-> I'd prefer if it returns an error when the registration can't even start.
+> Jerome Brunet (8):
+>   reset: amlogic: convert driver to regmap
+>   reset: amlogic: add driver parameters
+>   reset: amlogic: split the device and platform probe
+>   reset: amlogic: use reset number instead of register count
+>   reset: amlogic: add reset status support
+>   reset: amlogic: add toggle reset support
+>   reset: amlogic: add auxiliary reset driver support
+>   clk: amlogic: axg-audio: use the auxiliary reset driver
+> 
+>  drivers/clk/meson/Kconfig                   |   1 +
+>  drivers/clk/meson/axg-audio.c               | 109 +-------
+>  drivers/reset/Kconfig                       |   1 +
+>  drivers/reset/reset-meson.c                 | 285 ++++++++++++++++----
+>  include/soc/amlogic/meson-auxiliary-reset.h |  23 ++
+>  5 files changed, 271 insertions(+), 148 deletions(-)
+>  create mode 100644 include/soc/amlogic/meson-auxiliary-reset.h
 > 
 
-Ok. Fair enough.
+-- 
+Best regards
+Jan Dakinevich
 
 _______________________________________________
 linux-amlogic mailing list
