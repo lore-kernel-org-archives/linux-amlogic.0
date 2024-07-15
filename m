@@ -4,71 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EF49C3DA55
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jul 2024 06:33:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6916BC41513
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jul 2024 06:33:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0/FIXcSHkLAOzLPA1VsCzG1sPnR/nWK8ygwOWQbg2Sg=; b=OwzrAqsHnyVcIf
-	4FxuqQL1HTHSqcg1Vep53AVBoiv9/8dBbr6UAqI8FacHVgzGDsF6BPuxk29uNwwMTLyXZ0gMb+KXz
-	oiSJXmN5f7ufPjFIWN3iaGapiS9UE5i0CwilFkRoB+Im7FXE8dV9euO9wfWRKBsXO7lXuOggAwGg9
-	v38dGBgzncYI6+gx7FKqOltCXo2M6G05g8Ti61K3I67AIEe612QrjmjbP7lJsjXqNVCcP+G/CfPXF
-	td0yI8W3Ogj/xKBhPCePokBRfMeByGMz5QHrMVxNOOtbTIBLEZ5D21OiMXJwzZ2vku9dv4njK+RzA
-	pPGxo3HJakEwfhvqBiSA==;
+	List-Owner; bh=IshsbZq2BTuNwBbzXMtY95YXABlslbAh+l5DE2B9Fl4=; b=QXW+/7kN54Y95F
+	iqtVkwS05qBKamYp9mzdwA6I2zn3+Zw+1x3M+aO5FkZS8NHS1qCLMpz4Vfv0Kjq5+caK7Ge50o3+I
+	rahKfO3uDz0+Q18AF1CmhThoEDWnULxJyqauvuCDFhLgbAS8OY8Pk2RC3WvM05FQkUq780UE0Hzth
+	36vihbRWbcp22DjKeSC69EseI0F1rRWU71tjT/fkWsoUj2s3ve3XD8UHuKWVVh8dtlIO/rcOlvYqa
+	9wKnrCwTbpnqrhnbAL5oBhhiH109LJrAtN6hm3RzPTZMlGJn59fdS/EyRAlZSOO+UE0ppDsBvTzgd
+	KJ22wQ0eI5JzpiJ9d8rw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sTFH9-000000062ce-0VC4;
-	Mon, 15 Jul 2024 06:33:31 +0000
-Received: from mail-lf1-x12c.google.com ([2a00:1450:4864:20::12c])
+	id 1sTFH3-000000062Wk-0JAO;
+	Mon, 15 Jul 2024 06:33:25 +0000
+Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sTFGw-000000062QR-0vFB
+	id 1sTFGv-000000062PR-12Q2
 	for linux-amlogic@lists.infradead.org;
-	Mon, 15 Jul 2024 06:33:22 +0000
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-52ea929ea56so7226986e87.0
-        for <linux-amlogic@lists.infradead.org>; Sun, 14 Jul 2024 23:33:17 -0700 (PDT)
+	Mon, 15 Jul 2024 06:33:20 +0000
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-52ea2ce7abaso6773632e87.0
+        for <linux-amlogic@lists.infradead.org>; Sun, 14 Jul 2024 23:33:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721025196; x=1721629996; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1721025195; x=1721629995; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=7hD96SukkfsNyjNTVedgkKQiaViidlloIggj4cO+Fh4=;
-        b=xPlhsy1t0zAuwXqCg46G6m6QX2H2/zWZoiWZQ3Pok3sDcqghvk/AaAL8eQiv9CLoBC
-         dLHRynwep9aciOwGw1OPLh/JwYg5RMZjfhi86V60V8qUe8uV8gKrfD0kHOIHM9tHrQpp
-         u3Fh32LK80YpglLa/mcmHo82U0LQ5MjpRiy6tydZ92EfgBcT2Trji2Dz0akYVXe7UwEE
-         VJGq5pvh9I11jr/zDIBcf1Ps2J7Bo5QPoXDwbkoPSHZpP9akLmijiXvfPFgNOsdSJm+J
-         ZeB4MiA07GD9gD+O4CcAv8MBNNfpGfaSbGZnhxcn+IrBKWsyHBmLOlAYaRQbFf8pUNcz
-         Rztg==
+        bh=zW4Dkbs/DpuJ5jOJGFiWuBbUi352hxlJAviTa72dXa8=;
+        b=tSEba18etUf7RwdslVsPLrT8nLgy2oyXgxXxBI+FwiTLOvOFMwcQV/YwX77MGF9KmM
+         O0vrp5T8whblU2Wn9Mas96BtRtLMOEWc7uq69vz9gvcUzwki3Z2jfV+HKq969I1sYram
+         p9KsiT7uzm0ZJCOKF3uHHVTsDn7btqEG0Pfqr/xiQ35UC4YZHHztLbwGusNuroXdta3E
+         PW3cux2fm5KDiTwFY6r0disKzwe4XCcjHrQQOB2TdLZNT/P3w85mntT9exjNOOEOBEN5
+         eg6B7Oamafz44mAK0fYEXfrCBJA8jIIhezJtL7iNdIZBX+afAqPHntl228ZOH7isEprW
+         JLqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721025196; x=1721629996;
+        d=1e100.net; s=20230601; t=1721025195; x=1721629995;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=7hD96SukkfsNyjNTVedgkKQiaViidlloIggj4cO+Fh4=;
-        b=Kx7OxROXxoDygDH7S0eJBzX8Sq7394egczducjDpQ18J66oYkp/AMGenjbj2Z/vg8H
-         3aJZieEGzn21LUwW6oydZ5GwQtR+O884oWE/EffQaFRroOlB4RvjH3IO/j94ZXDi4eLS
-         dRyVk1Wcoj13DEl1fz2WPxudockbsfXTaFapU0e7NU84YPxrKyf515486l5qQ6HxLUQy
-         N/Z2+7pvyxqQ+qNlTdzmGbMBKjNMFaVAQiGGm1hAnO1DyU2CwGTbyIcPu/gOE3oiZBf5
-         FHKRD0NP6BYRFkSS/DE9m9Khd6mL54vAguUJQnUCPyluCk/2XnG8iLVsefwAFv4ernuz
-         67qw==
-X-Forwarded-Encrypted: i=1; AJvYcCV8EzYT42DFuxuM3tLKEgLnBPJFkWUinwkir/YM2Gba5b1rrhD5ZeoktNva+QbYkORQnToniQhNsX1maqS9Qe0skHyK+4P/JALZOzqs+gM5qEk=
-X-Gm-Message-State: AOJu0YxRsLHKdmzq9e1Go1vQ5Q6z3kgDf2F7XxBDKYArauXJM0z/EaAZ
-	1O4SBz5/rUOu2165D/He4ESkoftoRUPAfLVVg7dp7OWvAAGND4YJXCV6F6IioB4=
-X-Google-Smtp-Source: AGHT+IFX0QH8GNKb6vSmUPAoENVWks4aXQTHoSfQhbwYfR/OvyXjXMYla/ZB9rPLdfgjOmPqGKpO/g==
-X-Received: by 2002:ac2:5544:0:b0:52e:751a:a172 with SMTP id 2adb3069b0e04-52eb99d288dmr13038205e87.49.1721025196342;
-        Sun, 14 Jul 2024 23:33:16 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ed24e188esm743543e87.47.2024.07.14.23.33.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        bh=zW4Dkbs/DpuJ5jOJGFiWuBbUi352hxlJAviTa72dXa8=;
+        b=iaqmNfjQrVBxrcFn4pIABW61JqfiL/e9GI9fGNp0Frg97kOAK+ouM68HrRPu6Qg+6m
+         ESGKigFKd0s2d6wYHV4RBoFs/KevLIwhFAHT7UzsHZetNsqc2XCWDnPLcZ3y8JrkQFF9
+         pR4EF+pVGZzjZtolfCGSS26vIIvs7vobhUthcYyiuK6NJ69N+3gEPtmW3pikVnl55H9S
+         S/Jxs3aLitp+mR24UEetgxv7GlumHXVc4/uBnZ/+ZU/PrkKCoXdKeAUQvHuN3ziIws80
+         0/8tReZpAj32oFpqzCWyF7Zc8/v1toRpCckgvUCdcRsbmPY710qb+CUAiDbxNKpVrVKQ
+         IK5g==
+X-Forwarded-Encrypted: i=1; AJvYcCVwZeudUpRquIYNHZgCGfbOxUsSfvhX8QuITuf/Xmb+J5am74Zq8oyqrlVv5FGO1wEdxo0w7Jp2f/EvRQsfud6/kjK5E6hxlmASX95Nfl14Uow=
+X-Gm-Message-State: AOJu0Yy3KsSRGn76sTxlcc9vYUvW4t1P/1Zxo9A2eand3QVpstjPF7Yp
+	5k2vi+/jDpMCgvmTKmeF0NnjiMs0VvOQBCvxvXqWU3hrKRdzYYvLAm2DzlNGAM0=
+X-Google-Smtp-Source: AGHT+IHT4xz2WdhLKgSzBOFGajWmbSWMHs5k5m2atVJlXqSvlJsy3hyS+kPlM6QSPNXfSrtWv1LNGg==
+X-Received: by 2002:ac2:41da:0:b0:52c:90b6:170f with SMTP id 2adb3069b0e04-52eb99a0e7emr11020892e87.29.1721025195187;
         Sun, 14 Jul 2024 23:33:15 -0700 (PDT)
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ed24e188esm743543e87.47.2024.07.14.23.33.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Jul 2024 23:33:14 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 15 Jul 2024 09:33:02 +0300
-Subject: [PATCH v4 2/5] drm/drm_property: require DRM_MODE_PROP_IMMUTABLE
- for single-value props
+Date: Mon, 15 Jul 2024 09:33:01 +0300
+Subject: [PATCH v4 1/5] drm/display: stop depending on DRM_DISPLAY_HELPER
 MIME-Version: 1.0
-Message-Id: <20240715-drm-bridge-connector-fix-hdmi-reset-v4-2-61e6417cfd99@linaro.org>
+Message-Id: <20240715-drm-bridge-connector-fix-hdmi-reset-v4-1-61e6417cfd99@linaro.org>
 References: <20240715-drm-bridge-connector-fix-hdmi-reset-v4-0-61e6417cfd99@linaro.org>
 In-Reply-To: <20240715-drm-bridge-connector-fix-hdmi-reset-v4-0-61e6417cfd99@linaro.org>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -114,21 +113,21 @@ Cc: Rob Clark <robdclark@gmail.com>,
  linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
  linux-tegra@vger.kernel.org
 X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1070;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2696;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=ElUTEfRFQUeTMBsWyzbhEyDMF5jl1RThHLUf4PWNs3U=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmlMKovm5l+7A24sivlmJ0R0FXE9iAwNjDSrOKP
- WDSbfR6q0WJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZpTCqAAKCRCLPIo+Aiko
- 1e+8CACEJovL304bl9alKdbKAOnfEF/R08MCNCfeoeQl2+qtgfzhmRdNpjupcxELHKcsWM+QIMF
- y5SHMmA5MDdtTOnk1pk9JWqRfeB2hUSWYs3LYMmYEQy7Tz+BYPrK4ScYeUHR6+qj0oCHUZHBpWe
- jB29sogURM+xEeh1n0770SS5O7ZxzrOm+Hxi3UAo62YKLxcXGsWm6Lyx/3MtlyAPTJKZzM3T3ko
- biVZKcN3GeHZhA4YojTOl5G8riLQxBO1BmRwBev3679IUvrG/ciHfbmLdysd4FqK1H0pZF5YX4Y
- mYOPUHKTFUgJ8Z2ftC0dD6tj00ePMiHdUlm/pBEnIMFwUVaU
+ bh=eQJ3hRch4PVpnxcgcIs2vVrHHBN8kCt55Lg1+zlGYoo=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmlMKouj4z7T/shiz6BaAt6p7GIaGUsCT7QSQ3+
+ htjgKfZW+aJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZpTCqAAKCRCLPIo+Aiko
+ 1fbaB/9HucxwZ9XXPDZRoDro66r9wo860mrSEB1fXkutEFrGC+zz13rgdDbGHIAnd9uv8iJQ+eZ
+ FnHusEklODaV6JVOBxry88xtNubs2YKCDCryw4tsCNUJYHXtqBVrqFKiiEgV1fVPr24ZnOES7Px
+ Ef31DsPrCnhXzvJAcgn+EE6UnjT0qx1Dz+nQGStxm+6YqKFaq65IMQDATwngmZiTJO6wMQzT85Y
+ E0pyIkvXXAP2khDqrLtpUkroiEy+rITOfqGW43AggLIZgaaB3hI8mzpqjQor1sFYzMyqCtn11OD
+ 0TKL0KUECMJb2hfkYtMQg3IX8xjnSc79S3gqxbWQwws7xLIS
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240714_233318_340652_B29B8CA9 
-X-CRM114-Status: GOOD (  10.22  )
+X-CRM114-CacheID: sfid-20240714_233317_384878_D4B0B46B 
+X-CRM114-Status: GOOD (  11.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -145,31 +144,97 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Document that DRM_MODE_PROP_IMMUTABLE must be set for the properties
-that are immutable by definition - e.g. ranges with min == max or enums
-with a single value. This matches the behaviour of the IGT tests, see
-kms_properties.c / validate_range_prop(), validate_enum_prop(),
-validate_bitmask_prop().
+Kconfig symbols should not declare dependency on DRM_DISPLAY_HELPER.
+Move all parts of DRM_DISPLAY_HELPER to an if DRM_DISPLAY_HELPER block.
 
+It is not possible to make those symbols select DRM_DISPLAY_HELPER
+because of the link issues when a part of the helper is selected to be
+built-in, while other part is selected to be as module. In such a case
+the modular part doesn't get built at all, leading to undefined symbols.
+
+The only viable alternative is to split drm_display_helper.ko into
+several small modules, each of them having their own dependencies.
+
+Suggested-by: Maxime Ripard <mripard@kernel.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- include/drm/drm_property.h | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/display/Kconfig | 19 ++++++++-----------
+ 1 file changed, 8 insertions(+), 11 deletions(-)
 
-diff --git a/include/drm/drm_property.h b/include/drm/drm_property.h
-index 082f29156b3e..d78ec42de42f 100644
---- a/include/drm/drm_property.h
-+++ b/include/drm/drm_property.h
-@@ -162,6 +162,9 @@ struct drm_property {
- 	 *     userspace, e.g. the EDID, or the connector path property on DP
- 	 *     MST sinks. Kernel can update the value of an immutable property
- 	 *     by calling drm_object_property_set_value().
-+	 *     This flag MUST be set for all properties that have only a
-+	 *     single value (e.g. min == max or if enum has only a single
-+	 *     value).
- 	 */
- 	uint32_t flags;
+diff --git a/drivers/gpu/drm/display/Kconfig b/drivers/gpu/drm/display/Kconfig
+index a2e42014ffe0..9c2da1e48b75 100644
+--- a/drivers/gpu/drm/display/Kconfig
++++ b/drivers/gpu/drm/display/Kconfig
+@@ -1,19 +1,20 @@
+ # SPDX-License-Identifier: MIT
  
++config DRM_DISPLAY_DP_AUX_BUS
++	tristate
++	depends on DRM
++	depends on OF || COMPILE_TEST
++
+ config DRM_DISPLAY_HELPER
+ 	tristate
+ 	depends on DRM
+ 	help
+ 	  DRM helpers for display adapters.
+ 
+-config DRM_DISPLAY_DP_AUX_BUS
+-	tristate
+-	depends on DRM
+-	depends on OF || COMPILE_TEST
++if DRM_DISPLAY_HELPER
+ 
+ config DRM_DISPLAY_DP_AUX_CEC
+ 	bool "Enable DisplayPort CEC-Tunneling-over-AUX HDMI support"
+-	depends on DRM && DRM_DISPLAY_HELPER
+ 	select DRM_DISPLAY_DP_HELPER
+ 	select CEC_CORE
+ 	help
+@@ -25,7 +26,6 @@ config DRM_DISPLAY_DP_AUX_CEC
+ 
+ config DRM_DISPLAY_DP_AUX_CHARDEV
+ 	bool "DRM DP AUX Interface"
+-	depends on DRM && DRM_DISPLAY_HELPER
+ 	select DRM_DISPLAY_DP_HELPER
+ 	help
+ 	  Choose this option to enable a /dev/drm_dp_auxN node that allows to
+@@ -34,7 +34,6 @@ config DRM_DISPLAY_DP_AUX_CHARDEV
+ 
+ config DRM_DISPLAY_DP_HELPER
+ 	bool
+-	depends on DRM_DISPLAY_HELPER
+ 	help
+ 	  DRM display helpers for DisplayPort.
+ 
+@@ -61,25 +60,23 @@ config DRM_DISPLAY_DP_TUNNEL_STATE_DEBUG
+ 
+ config DRM_DISPLAY_DSC_HELPER
+ 	bool
+-	depends on DRM_DISPLAY_HELPER
+ 	help
+ 	  DRM display helpers for VESA DSC (used by DSI and DisplayPort).
+ 
+ config DRM_DISPLAY_HDCP_HELPER
+ 	bool
+-	depends on DRM_DISPLAY_HELPER
+ 	help
+ 	  DRM display helpers for HDCP.
+ 
+ config DRM_DISPLAY_HDMI_HELPER
+ 	bool
+-	depends on DRM_DISPLAY_HELPER
+ 	help
+ 	  DRM display helpers for HDMI.
+ 
+ config DRM_DISPLAY_HDMI_STATE_HELPER
+ 	bool
+-	depends on DRM_DISPLAY_HELPER
+ 	select DRM_DISPLAY_HDMI_HELPER
+ 	help
+ 	  DRM KMS state helpers for HDMI.
++
++endif # DRM_DISPLAY_HELPER
 
 -- 
 2.39.2
