@@ -4,70 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6916BC41513
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jul 2024 06:33:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15F25C3DA45
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jul 2024 06:33:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IshsbZq2BTuNwBbzXMtY95YXABlslbAh+l5DE2B9Fl4=; b=QXW+/7kN54Y95F
-	iqtVkwS05qBKamYp9mzdwA6I2zn3+Zw+1x3M+aO5FkZS8NHS1qCLMpz4Vfv0Kjq5+caK7Ge50o3+I
-	rahKfO3uDz0+Q18AF1CmhThoEDWnULxJyqauvuCDFhLgbAS8OY8Pk2RC3WvM05FQkUq780UE0Hzth
-	36vihbRWbcp22DjKeSC69EseI0F1rRWU71tjT/fkWsoUj2s3ve3XD8UHuKWVVh8dtlIO/rcOlvYqa
-	9wKnrCwTbpnqrhnbAL5oBhhiH109LJrAtN6hm3RzPTZMlGJn59fdS/EyRAlZSOO+UE0ppDsBvTzgd
-	KJ22wQ0eI5JzpiJ9d8rw==;
+	List-Owner; bh=JXCtKBA2KQ7o72J82BspQsUt+lwsscow7NtfUcGPZIU=; b=Uu/oxJY/OJgVLa
+	SxAqPbopU8WYyh8NbKqtKZTVHsXXSssD44rIWV6Q/PJSdoecYYY4PXmp7i4A9vlwza8JwBx5Ys7rw
+	ghSVn1E26jKtnj/dJ+bTzs9YQct2D3RIseRpt6FeYBtNuUtKCPlICNQjRwVYrCb48Jr8Fz1UipSbY
+	45z8ktXSunRVRfu0f0kEOWWyI2wB552lNts9wF/RbCrj61WrGHwTRj8lVUQ31U2wA908IKK6X2wab
+	GE0LwmhxaeK2eLjJpx/5pZ9NOR1xhydWuRGR69sL/tSnhoKL1J3HMp4zTxcyrmawXzs2jqFjcd7u3
+	gKW2p4ezb0NRknoUwfAQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sTFH3-000000062Wk-0JAO;
-	Mon, 15 Jul 2024 06:33:25 +0000
-Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
+	id 1sTFHP-000000062rS-0IYz;
+	Mon, 15 Jul 2024 06:33:47 +0000
+Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sTFGv-000000062PR-12Q2
+	id 1sTFGx-000000062RP-0a5v
 	for linux-amlogic@lists.infradead.org;
-	Mon, 15 Jul 2024 06:33:20 +0000
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-52ea2ce7abaso6773632e87.0
-        for <linux-amlogic@lists.infradead.org>; Sun, 14 Jul 2024 23:33:16 -0700 (PDT)
+	Mon, 15 Jul 2024 06:33:24 +0000
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-52e9a920e73so4389181e87.2
+        for <linux-amlogic@lists.infradead.org>; Sun, 14 Jul 2024 23:33:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721025195; x=1721629995; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1721025197; x=1721629997; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zW4Dkbs/DpuJ5jOJGFiWuBbUi352hxlJAviTa72dXa8=;
-        b=tSEba18etUf7RwdslVsPLrT8nLgy2oyXgxXxBI+FwiTLOvOFMwcQV/YwX77MGF9KmM
-         O0vrp5T8whblU2Wn9Mas96BtRtLMOEWc7uq69vz9gvcUzwki3Z2jfV+HKq969I1sYram
-         p9KsiT7uzm0ZJCOKF3uHHVTsDn7btqEG0Pfqr/xiQ35UC4YZHHztLbwGusNuroXdta3E
-         PW3cux2fm5KDiTwFY6r0disKzwe4XCcjHrQQOB2TdLZNT/P3w85mntT9exjNOOEOBEN5
-         eg6B7Oamafz44mAK0fYEXfrCBJA8jIIhezJtL7iNdIZBX+afAqPHntl228ZOH7isEprW
-         JLqQ==
+        bh=hbJUOmvW24quAtGM4HEWCKTnos6XbtfhPM+nK5+e2Tw=;
+        b=nFf2SiAULzqa4KuU4LQDMwN4V+eZsgQYcYt75Sqlcye+U9YYIGs3IMfOO0H2acKq2D
+         hkUHIrCgDwuE+peMB3BHd3LSzMKt8qd987XvFgdp/lRZZPa0fPFMy5ZHtmmC2t/Uht7T
+         SjQXk9z8U+whGo/8peegE7HubwKcB2rS4t8oc6sSbWs2jmq76cR9NXWJTW4tFnDtkIOZ
+         m9Zx27i6sfTkETZmL0Bd2uTyP0furSwYvPoobl4VaePEaciAHY3b+Ntb1LhllqNvtbvQ
+         0IrGV5qDbKodTz5yedZFrl3PJNAK2J9g6Mkn0LZtWoLyeeSUMuUdNy9KSPQAWteMzhYp
+         kKAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721025195; x=1721629995;
+        d=1e100.net; s=20230601; t=1721025197; x=1721629997;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zW4Dkbs/DpuJ5jOJGFiWuBbUi352hxlJAviTa72dXa8=;
-        b=iaqmNfjQrVBxrcFn4pIABW61JqfiL/e9GI9fGNp0Frg97kOAK+ouM68HrRPu6Qg+6m
-         ESGKigFKd0s2d6wYHV4RBoFs/KevLIwhFAHT7UzsHZetNsqc2XCWDnPLcZ3y8JrkQFF9
-         pR4EF+pVGZzjZtolfCGSS26vIIvs7vobhUthcYyiuK6NJ69N+3gEPtmW3pikVnl55H9S
-         S/Jxs3aLitp+mR24UEetgxv7GlumHXVc4/uBnZ/+ZU/PrkKCoXdKeAUQvHuN3ziIws80
-         0/8tReZpAj32oFpqzCWyF7Zc8/v1toRpCckgvUCdcRsbmPY710qb+CUAiDbxNKpVrVKQ
-         IK5g==
-X-Forwarded-Encrypted: i=1; AJvYcCVwZeudUpRquIYNHZgCGfbOxUsSfvhX8QuITuf/Xmb+J5am74Zq8oyqrlVv5FGO1wEdxo0w7Jp2f/EvRQsfud6/kjK5E6hxlmASX95Nfl14Uow=
-X-Gm-Message-State: AOJu0Yy3KsSRGn76sTxlcc9vYUvW4t1P/1Zxo9A2eand3QVpstjPF7Yp
-	5k2vi+/jDpMCgvmTKmeF0NnjiMs0VvOQBCvxvXqWU3hrKRdzYYvLAm2DzlNGAM0=
-X-Google-Smtp-Source: AGHT+IHT4xz2WdhLKgSzBOFGajWmbSWMHs5k5m2atVJlXqSvlJsy3hyS+kPlM6QSPNXfSrtWv1LNGg==
-X-Received: by 2002:ac2:41da:0:b0:52c:90b6:170f with SMTP id 2adb3069b0e04-52eb99a0e7emr11020892e87.29.1721025195187;
-        Sun, 14 Jul 2024 23:33:15 -0700 (PDT)
+        bh=hbJUOmvW24quAtGM4HEWCKTnos6XbtfhPM+nK5+e2Tw=;
+        b=N5FcTzMlRc3RbL2Gn7VKnq71iJDd7b04mhUfF2HsyQYJX7uaEVHxYC3MGuJJQn6GQD
+         BO8yGHSqCurSr8hRi/kKevuAM3uY/CxtiFq4AJMxPM3vPZZ0ANSpOpISjkKvxQxQ4c2L
+         hpQSq3o1aCS6sEyjtjLfPFV/kOUX+7v5bPS8NfIVQ6oAvPL+qGAsGMEY4VkYSJxA+duE
+         ISMLuHYRVQS+VY//FY5J6b+I9BCsoVKdISG7wAXkRv7Csumj6Pjcdk3Z5DMqdZImeTu9
+         9lOYfP8rVhh6Fh+P5v4ls4knrsu/G8fPQVTP41J3ahobDPcSRs1qU0TStdtmuZcx1KIz
+         4fcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU76PLBW8s1ZS/bOSrYfO+EMBB92sIRBAOXZILBdRfs8lElkGZsL/pKjoCBEaEF4mntV0/ySaFjBQ4iG5bb3oSM5KI4G0l3RIHoUvbMvfrz+70=
+X-Gm-Message-State: AOJu0YySy+G76p9tfOPcNc2agv+MLC/U1XCGID5jeNw1eF3WU63ijSBd
+	HN0d2QAkRf2nJD6TxvOVHC4naEBfPWHRsYXWA/dwT5sY7NJgXUa4iEdh33Eqy5E=
+X-Google-Smtp-Source: AGHT+IF+V86J6/2ZIQK/CmixClQVdJF7hjnWLmCjjdRBB6FFYX5j0s7A+kP4jnSIFrfgBCt8vnJuQA==
+X-Received: by 2002:a19:f706:0:b0:52c:c9d3:a30c with SMTP id 2adb3069b0e04-52eb99a0639mr9397218e87.29.1721025197267;
+        Sun, 14 Jul 2024 23:33:17 -0700 (PDT)
 Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ed24e188esm743543e87.47.2024.07.14.23.33.14
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ed24e188esm743543e87.47.2024.07.14.23.33.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Jul 2024 23:33:14 -0700 (PDT)
+        Sun, 14 Jul 2024 23:33:16 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 15 Jul 2024 09:33:01 +0300
-Subject: [PATCH v4 1/5] drm/display: stop depending on DRM_DISPLAY_HELPER
+Date: Mon, 15 Jul 2024 09:33:03 +0300
+Subject: [PATCH v4 3/5] drm/connector: automatically set immutable flag for
+ max_bpc property
 MIME-Version: 1.0
-Message-Id: <20240715-drm-bridge-connector-fix-hdmi-reset-v4-1-61e6417cfd99@linaro.org>
+Message-Id: <20240715-drm-bridge-connector-fix-hdmi-reset-v4-3-61e6417cfd99@linaro.org>
 References: <20240715-drm-bridge-connector-fix-hdmi-reset-v4-0-61e6417cfd99@linaro.org>
 In-Reply-To: <20240715-drm-bridge-connector-fix-hdmi-reset-v4-0-61e6417cfd99@linaro.org>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -113,21 +114,21 @@ Cc: Rob Clark <robdclark@gmail.com>,
  linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
  linux-tegra@vger.kernel.org
 X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2696;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1164;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=eQJ3hRch4PVpnxcgcIs2vVrHHBN8kCt55Lg1+zlGYoo=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmlMKouj4z7T/shiz6BaAt6p7GIaGUsCT7QSQ3+
- htjgKfZW+aJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZpTCqAAKCRCLPIo+Aiko
- 1fbaB/9HucxwZ9XXPDZRoDro66r9wo860mrSEB1fXkutEFrGC+zz13rgdDbGHIAnd9uv8iJQ+eZ
- FnHusEklODaV6JVOBxry88xtNubs2YKCDCryw4tsCNUJYHXtqBVrqFKiiEgV1fVPr24ZnOES7Px
- Ef31DsPrCnhXzvJAcgn+EE6UnjT0qx1Dz+nQGStxm+6YqKFaq65IMQDATwngmZiTJO6wMQzT85Y
- E0pyIkvXXAP2khDqrLtpUkroiEy+rITOfqGW43AggLIZgaaB3hI8mzpqjQor1sFYzMyqCtn11OD
- 0TKL0KUECMJb2hfkYtMQg3IX8xjnSc79S3gqxbWQwws7xLIS
+ bh=Ogj1qgSBFy5LiaMGrph8HSRVcootU6FeEO747BTFj9E=;
+ b=owGbwMvMwMXYbdNlx6SpcZXxtFoSQ9qUQysu/J/Xl5n/9o/EfmHLmdY1x3fJXa8q/t5631Izp
+ 6VP4f30TkZjFgZGLgZZMUUWn4KWqTGbksM+7JhaDzOIlQlkCgMXpwBMRPg8B8NKPS4j53+nGRhP
+ VBcpNN70edCVY/lnJcPcZSbfTc/NZDjqy6J4IKKOJ5lRyqf+pLljwNWcn8dbq5ta/jC3fL5Surt
+ 8VnHwiZ8ube0uSdOfHZtUofj4yj2FJZ909eR959nxx9g9rdtcmORwy69fzvGuf/mlJ9ITLxRdKU
+ /VyNt9e8HWnyJSNaJvsvvjVOZ/8xJcrea+Le6pdpiL04no7ZG5l+apXb1wf90jpyWPt1z035Z38
+ UmCspiUQ5HjJzXNXLbKp8oVKQ0yzQwbTWba5eanp9nPFBKUKtof79uV/nmO00QFK+krh9kFBW1Z
+ lM+2PipLcPhrUlgXZKBucDBt5ZLW8y+WpX08IzaNs3cFAA==
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240714_233317_384878_D4B0B46B 
-X-CRM114-Status: GOOD (  11.32  )
+X-CRM114-CacheID: sfid-20240714_233319_470393_306318D4 
+X-CRM114-Status: GOOD (  11.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,97 +145,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Kconfig symbols should not declare dependency on DRM_DISPLAY_HELPER.
-Move all parts of DRM_DISPLAY_HELPER to an if DRM_DISPLAY_HELPER block.
+With the introduction of the HDMI Connector framework the driver might
+end up creating the max_bpc property with min = max = 8. IGT insists
+that such properties carry the 'immutable' flag. Automatically set the
+flag if the driver asks for the max_bpc property with min == max.
 
-It is not possible to make those symbols select DRM_DISPLAY_HELPER
-because of the link issues when a part of the helper is selected to be
-built-in, while other part is selected to be as module. In such a case
-the modular part doesn't get built at all, leading to undefined symbols.
-
-The only viable alternative is to split drm_display_helper.ko into
-several small modules, each of them having their own dependencies.
-
-Suggested-by: Maxime Ripard <mripard@kernel.org>
+Fixes: aadb3e16b8f3 ("drm/connector: hdmi: Add output BPC to the connector state")
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/gpu/drm/display/Kconfig | 19 ++++++++-----------
- 1 file changed, 8 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/drm_connector.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/display/Kconfig b/drivers/gpu/drm/display/Kconfig
-index a2e42014ffe0..9c2da1e48b75 100644
---- a/drivers/gpu/drm/display/Kconfig
-+++ b/drivers/gpu/drm/display/Kconfig
-@@ -1,19 +1,20 @@
- # SPDX-License-Identifier: MIT
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index ab6ab7ff7ea8..33847fd63628 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -2610,7 +2610,12 @@ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
  
-+config DRM_DISPLAY_DP_AUX_BUS
-+	tristate
-+	depends on DRM
-+	depends on OF || COMPILE_TEST
+ 	prop = connector->max_bpc_property;
+ 	if (!prop) {
+-		prop = drm_property_create_range(dev, 0, "max bpc", min, max);
++		u32 flags = 0;
 +
- config DRM_DISPLAY_HELPER
- 	tristate
- 	depends on DRM
- 	help
- 	  DRM helpers for display adapters.
- 
--config DRM_DISPLAY_DP_AUX_BUS
--	tristate
--	depends on DRM
--	depends on OF || COMPILE_TEST
-+if DRM_DISPLAY_HELPER
- 
- config DRM_DISPLAY_DP_AUX_CEC
- 	bool "Enable DisplayPort CEC-Tunneling-over-AUX HDMI support"
--	depends on DRM && DRM_DISPLAY_HELPER
- 	select DRM_DISPLAY_DP_HELPER
- 	select CEC_CORE
- 	help
-@@ -25,7 +26,6 @@ config DRM_DISPLAY_DP_AUX_CEC
- 
- config DRM_DISPLAY_DP_AUX_CHARDEV
- 	bool "DRM DP AUX Interface"
--	depends on DRM && DRM_DISPLAY_HELPER
- 	select DRM_DISPLAY_DP_HELPER
- 	help
- 	  Choose this option to enable a /dev/drm_dp_auxN node that allows to
-@@ -34,7 +34,6 @@ config DRM_DISPLAY_DP_AUX_CHARDEV
- 
- config DRM_DISPLAY_DP_HELPER
- 	bool
--	depends on DRM_DISPLAY_HELPER
- 	help
- 	  DRM display helpers for DisplayPort.
- 
-@@ -61,25 +60,23 @@ config DRM_DISPLAY_DP_TUNNEL_STATE_DEBUG
- 
- config DRM_DISPLAY_DSC_HELPER
- 	bool
--	depends on DRM_DISPLAY_HELPER
- 	help
- 	  DRM display helpers for VESA DSC (used by DSI and DisplayPort).
- 
- config DRM_DISPLAY_HDCP_HELPER
- 	bool
--	depends on DRM_DISPLAY_HELPER
- 	help
- 	  DRM display helpers for HDCP.
- 
- config DRM_DISPLAY_HDMI_HELPER
- 	bool
--	depends on DRM_DISPLAY_HELPER
- 	help
- 	  DRM display helpers for HDMI.
- 
- config DRM_DISPLAY_HDMI_STATE_HELPER
- 	bool
--	depends on DRM_DISPLAY_HELPER
- 	select DRM_DISPLAY_HDMI_HELPER
- 	help
- 	  DRM KMS state helpers for HDMI.
++		if (min == max)
++			flags |= DRM_MODE_PROP_IMMUTABLE;
 +
-+endif # DRM_DISPLAY_HELPER
++		prop = drm_property_create_range(dev, flags, "max bpc", min, max);
+ 		if (!prop)
+ 			return -ENOMEM;
+ 
 
 -- 
 2.39.2
