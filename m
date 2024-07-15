@@ -4,95 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08C23C3DA4B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jul 2024 12:11:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3136DC3DA4A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jul 2024 16:13:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Gul7FcHdSMF3QJArqbKmMu1FmqnNWSm3gVRfE3j500c=; b=A5g2HhJ73q4pLp
-	IJEqQL9DOo5JfLsD+BselmicjBsDGCqEpI98JUZ0ozrrBH+KnH5R2aLIcvS3wqm858CZJpvivV/LX
-	XvO2DpMd5cyye8QfXkwqAZJKBUZhSiIP577MVb+UBD9nEztX8RLszhxCxNIFJ69doDRi/Z2zUbjTq
-	0ZfLhPx18N+ZLdvQMC9UMHNC2h4cfR/z/g5KZccz+FsEfYBoM+hkFkcWBuU0/nkzgijCHp59asXpt
-	NLn2VhdvzIDIRZIIVJ0aVoezy4yTzT48wUo5wJhO81XdkWeOihO58qanji6Qn467OhA7+9s0pRNZz
-	GjoTMYIL8Pbirmc0f1OA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=oSi+A5/z4CoAUxGNYzbewjeovEXVDoHzJF/if7UryHg=; b=d8rzJuaMHw2F05eBjbehDWwXys
+	v0f+TWgpY6Hia0CaIDEYQ8aYR7KK3wDmgo/2e0Abx6VfjVuIp3Dw2nBxVrtLDpourR3kwxWm3+539
+	bP3i0TAh6XnJZCURD6FABsq3C80v1pZ3lXAL/UHjbOYjg6ALdre/OMyf3OSrx9iKb7EqEdjZ3hjkW
+	VRoi/3iirxERoJiOmeN9OSVz7yvKzgvQt4MgVRSwj7K7c/+QtX6SUwxjc9OrZAurEZsLCHOKvh2e3
+	Gs1UWtTrff8GXyq6N6MoFvlMqDTO4wKe4S4TePULjtJ79+rJXNmX2JZJHq33CXRihRcGpSLYeMYi+
+	KSmG475A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sTKY9-00000006yEc-3026;
-	Mon, 15 Jul 2024 12:11:25 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1sTOKR-00000007hFi-3l4b;
+	Mon, 15 Jul 2024 16:13:31 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sTKXT-00000006xuM-0QRe;
-	Mon, 15 Jul 2024 12:10:44 +0000
-Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id E51D8120006;
-	Mon, 15 Jul 2024 15:10:38 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru E51D8120006
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1721045438;
-	bh=fi1IQpHZDvlWQpXfAPzXTTqWvujhfPCIqbFuSJVBLoc=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=EcJXTAI4Q5I7lfVV3gaO0aomYs3DIQxEnUyhiLFsGhcf7LZR4D5oVp998E9jCBhqw
-	 7QEXB039VBTJYnbTJ1AZXFuD9lKpajCZ0/aLuDTZ9+KQM4mYumH3NVSiUUHWZysk6u
-	 55P7MnE3/DBu6VjS/B8CH4RAby3vj+DBjNfwkDQF/Hy5SvPOQQji5Hq3yL2FglUJdV
-	 INWixKkCpg/9SYb/IewX+ttgFtvP8CbjaqtV7ZRJEte4TL5fK5uTR26oBVYmmK6cBz
-	 I69UorV4O4Jlbvly9Yb2VdYJPhowHJKH2Uz3NfCIvhrBSWv+RIVzDvms83hp74JpI9
-	 plPr0jJ/QYM2g==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon, 15 Jul 2024 15:10:38 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 15 Jul
- 2024 15:10:38 +0300
-Date: Mon, 15 Jul 2024 15:10:37 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-CC: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
-	<jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Stephen
- Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, Vladimir Zapolskiy
-	<vz@mleia.com>, Bjorn Andersson <andersson@kernel.org>, Chen-Yu Tsai
-	<wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
-	<samuel@sholland.org>, Michal Simek <michal.simek@amd.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-msm@vger.kernel.org>, <linux-sunxi@lists.linux.dev>
-Subject: Re: [DMARC error][DKIM error] [PATCH 02/10] clk: meson: a1: pll:
- Constify struct regmap_config
-Message-ID: <20240715121037.hekmgg4sxdomi3b7@CAB-WSD-L081021>
-References: <20240703-clk-const-regmap-v1-0-7d15a0671d6f@gmail.com>
- <20240703-clk-const-regmap-v1-2-7d15a0671d6f@gmail.com>
+	id 1sTOHt-00000007g7u-02qJ;
+	Mon, 15 Jul 2024 16:10:54 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 78DD4611A8;
+	Mon, 15 Jul 2024 16:10:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7987C32782;
+	Mon, 15 Jul 2024 16:10:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721059852;
+	bh=PAt/9RGpGz5K/aBEqlPzaGzWnvBVjbcdM/9lPF7RxC8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AExAI/PtfzbH4lbUzmoVjy0AU2GYM2r1404RPLKoEC5mPRh9jid8V7JQUUI2hoxkM
+	 Ia6ddKvr0D/1cV10wLLRzctyqxaiiUIdoaNQP83NcphzbPklIBE90UmyrNNWltgzlN
+	 nfB8+hdryeYovM8egb0Mcb+Hye0DK1KbFGd4uy4FugVEaAQ6RxEAmJP55nYgKTf+W9
+	 9otnzy8AbpaScv6WUCnSEKANE4AbqeadWUVbjgpkFUnDeC1TunFmP1oZOnd7oCS+fS
+	 ac/+LbBL3DWgVQ5x6tXBzyMG/ERm0CUjjdaHnnTOLulneGFvNzCWaMj8qErEIQoe0Z
+	 jK75/9WsvmwGg==
+Date: Mon, 15 Jul 2024 17:10:47 +0100
+From: Conor Dooley <conor@kernel.org>
+To: xianwei.zhao@amlogic.com
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: arm: amlogic: meson-gx-ao-secure:
+ support more SoCs.
+Message-ID: <20240715-override-blustery-e6763fddf3c4@spud>
+References: <20240715-soc_info-v2-0-3836c8cc27a5@amlogic.com>
+ <20240715-soc_info-v2-1-3836c8cc27a5@amlogic.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240703-clk-const-regmap-v1-2-7d15a0671d6f@gmail.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 186522 [Jul 15 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 24 0.3.24 186c4d603b899ccfd4883d230c53f273b80e467f, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;lists.infradead.org:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/07/15 09:24:00
-X-KSMG-LinksScanning: Clean, bases: 2024/07/15 09:25:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/15 05:41:00 #25996221
-X-KSMG-AntiVirus-Status: Clean, skipped
+In-Reply-To: <20240715-soc_info-v2-1-3836c8cc27a5@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240715_051043_498370_DFB2FEE2 
-X-CRM114-Status: GOOD (  18.90  )
+X-CRM114-CacheID: sfid-20240715_091053_468502_D7919C66 
+X-CRM114-Status: GOOD (  13.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,51 +75,102 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1926737881618068697=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jul 03, 2024 at 11:50:15AM +0200, Javier Carrasco wrote:
-> `a1_pll_regmap_cfg` is not modified and can be declared as const to
->  move its data to a read-only section.
-> 
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
-Reviewed-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+--===============1926737881618068697==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="2RXs66YUzlqAnmaH"
+Content-Disposition: inline
 
+
+--2RXs66YUzlqAnmaH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Jul 15, 2024 at 04:59:19PM +0800, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>=20
+> Add dt-binding document for ao-secure of Amlogic SoCs(S4,C3,T7,A4).
+
+That's not really accurate - no document is added here.
+Otherwise,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+cheers,
+Conor.
+
+>=20
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->  drivers/clk/meson/a1-pll.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
-> index a16e537d139a..4d0a6305b07f 100644
-> --- a/drivers/clk/meson/a1-pll.c
-> +++ b/drivers/clk/meson/a1-pll.c
-> @@ -295,7 +295,7 @@ static struct clk_regmap *const a1_pll_regmaps[] = {
->  	&hifi_pll,
->  };
->  
-> -static struct regmap_config a1_pll_regmap_cfg = {
-> +static const struct regmap_config a1_pll_regmap_cfg = {
->  	.reg_bits   = 32,
->  	.val_bits   = 32,
->  	.reg_stride = 4,
-> 
-> -- 
-> 2.40.1
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>  .../bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml | 16 ++++++++++=
+++----
+>  1 file changed, 12 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-=
+gx-ao-secure.yaml b/Documentation/devicetree/bindings/arm/amlogic/amlogic,m=
+eson-gx-ao-secure.yaml
+> index 7dff32f373cb..b4f6695a6015 100644
+> --- a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-s=
+ecure.yaml
+> +++ b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-s=
+ecure.yaml
+> @@ -25,10 +25,18 @@ select:
+> =20
+>  properties:
+>    compatible:
+> -    items:
+> -      - const: amlogic,meson-gx-ao-secure
+> -      - const: syscon
+> -
+> +    oneOf:
+> +      - items:
+> +          - const: amlogic,meson-gx-ao-secure
+> +          - const: syscon
+> +      - items:
+> +          - enum:
+> +              - amlogic,a4-ao-secure
+> +              - amlogic,c3-ao-secure
+> +              - amlogic,s4-ao-secure
+> +              - amlogic,t7-ao-secure
+> +          - const: amlogic,meson-gx-ao-secure
+> +          - const: syscon
+>    reg:
+>      maxItems: 1
+> =20
+>=20
+> --=20
+> 2.37.1
+>=20
+>=20
 
--- 
-Thank you,
-Dmitry
+--2RXs66YUzlqAnmaH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpVKBwAKCRB4tDGHoIJi
+0uO/AP962MqOigrXH0P1+IKy+IgUZlDyAU/Muhh+aiiFTfnLUAEApruA3hfW1ktM
+vBVcabNKjmHd1AIJnBXisYtn45QqJQU=
+=KCrM
+-----END PGP SIGNATURE-----
+
+--2RXs66YUzlqAnmaH--
+
+
+--===============1926737881618068697==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============1926737881618068697==--
+
