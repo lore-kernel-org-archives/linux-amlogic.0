@@ -4,82 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49336C3DA59
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jul 2024 09:43:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03498C3DA49
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jul 2024 12:17:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=XSMAKitD0oXwfW+HbqgowcEcXcoghSbccSOCGmmqRrQ=; b=1Sboa/XogqdXOYxIaQksxjd2q9
-	SU31iXkQSwFgijTeyfgzS1Kml/1tSjpkDKFpkjg1sfvawvF7WMSSSeB8dCAflppqPQq5liuPcBBrY
-	xDV64waV5wdOEbWUfBNmuMuHD+2zta+UJUABzrXum6T+zL3oP4/xCMreKTyv+U8myZLFTufLCT4jO
-	FLoPFpbfsAh5lWpSjJD42L39S/D90/1Z2uaHgPo9lcauxvgn3+fIV4ywkIahtkcg3CBnLa1z3cWqd
-	lgrbMphC44WAwsJcMOLA6Y5OiZVKuNIanI9CJ7mvQXDY+imreah9WyVhjTGxvCp3LSMm4zdFu5L0M
-	n0SvFvQg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=4/hWSWCckfuq6kxCF4AEY2zsITlQQHLPoUJyNHKNQLE=; b=rI8afOUw7sU29S
+	jl4+UOjH24Rq6uoc7rTjvDHkEbeaHauKBmAMFot5n38NprmW+KArhbPlB2WyR+cpPY8pbGNjmONKN
+	rXbR9ix8H0pAmQZhkMdYnjxc+ICxN4SW5gJFmQNfM+oJAWb7NJ9ZzPnvr4y7X/jOrcc8qVSsYOiaE
+	lS8iN0TXetLJ+LJK31F977BJ8V6G08N7Xsof/2mzmbP6CPPLBuIb2G/R5g8UOl2PgGJAsS07JgBot
+	9m/Ld368ctO8nLpIVWTZ9cciiCm5BAJwsjtlZm0jUpL+v7z1yQS1DSxWaKqRvwKTITcIvli2iFX7X
+	+WSYFH6fxMvrwIDaDdmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sTeis-00000009vKf-1psE;
-	Tue, 16 Jul 2024 09:43:50 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1sTh7f-0000000ANy2-1OZ9;
+	Tue, 16 Jul 2024 12:17:35 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sTeiq-00000009vJS-11uB;
-	Tue, 16 Jul 2024 09:43:49 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 593B060304;
-	Tue, 16 Jul 2024 09:43:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82C0DC116B1;
-	Tue, 16 Jul 2024 09:43:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721123027;
-	bh=cb2kMyUZz+09TPxC7XSnOt+aHqAq3RB1JfOHowI1lTM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FqcYY9TUYD+gO1X/TCX0AUvnR4331B3UHqHC1W0kpktTNHpNsjf3Dp4YhLrqN9TkH
-	 PnBMqFqjM2H5F6O8v93th0cgBhzqMFZNFBaF5MbxY2qlckU6RkhM9Je0AqwhEO/lpb
-	 p2AhLDbcTzNI+wGb39KK8K573p/4ttCA92iEqW7F1Si7UanKBNm4uyCS+9w5vKkYl5
-	 9nTZi2UQhaDPrj3pnDIHA2AZLRLMdGunPZSIfJgKGE2KIYq7D6tQKaOdcFimxp0nLp
-	 As1I1B8WZsCguk8p+p3nnPMM7Uh1tBqwSjIArMzLbPk6uRAtouQYKRFi2nQRMG+pj4
-	 esxa//Keq3dSQ==
-Date: Tue, 16 Jul 2024 11:43:44 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Dave Stevenson <dave.stevenson@raspberrypi.com>, 
-	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, Lucas Stach <l.stach@pengutronix.de>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Paul Cercueil <paul@crapouillou.net>, Anitha Chrisanthus <anitha.chrisanthus@intel.com>, 
-	Edmund Dea <edmund.j.dea@intel.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Sandy Huang <hjc@rock-chips.com>, Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, 
-	Andy Yan <andy.yan@rock-chips.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	Mikko Perttunen <mperttunen@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Jyri Sarha <jyri.sarha@iki.fi>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, dri-devel@lists.freedesktop.org, igt-dev@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v4 3/5] drm/connector: automatically set immutable flag
- for max_bpc property
-Message-ID: <20240716-majestic-vermilion-hornet-fd1cfb@houat>
-References: <20240715-drm-bridge-connector-fix-hdmi-reset-v4-0-61e6417cfd99@linaro.org>
- <20240715-drm-bridge-connector-fix-hdmi-reset-v4-3-61e6417cfd99@linaro.org>
+	id 1sTh7b-0000000ANwj-0NqH
+	for linux-amlogic@lists.infradead.org;
+	Tue, 16 Jul 2024 12:17:33 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-42679f33fefso37041675e9.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 16 Jul 2024 05:17:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1721132249; x=1721737049; darn=lists.infradead.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FCyvorohijdRKm4vXZWOZPoWQcguYD1LDURxXWUj1WE=;
+        b=GrTaC3efnG14Ho0Ayook09DBfuTO5JUjSY4yTpvrOTHmUQxFXpu3MZJj1Eoi/VRHrO
+         8XBScsCwsWKgIkOOlbTTPajNIY/LXNl7k3XETY33BF54frA08G53EFAIA7qzn3Ml3gJ8
+         6rA8g+u041lNrBkwbFh8HnW0ivC7zYVrva7WxbseOeG8VlMOtQYdkz68vPVar3MlkNEl
+         gJ6iaBCfj2Q60XQ5IhDTonB12PFZS9/9HII3sEk4UTUXDhRkU6z+n/DbtE4NTHN0DgEp
+         fZpst1aKBxtigcb5OM6Yr8Hu4qjFwYxJdiz6rKORmjDiHyW4XWAqsmzkycVKeyTyKK8J
+         nG/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721132249; x=1721737049;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FCyvorohijdRKm4vXZWOZPoWQcguYD1LDURxXWUj1WE=;
+        b=l/o6Vej4aTiU0+adnS1t/lETM6AvGQlK3hK7HnGMpQOB0ESwlylZjDUT2lQ/LlOEIN
+         HcTaw1iYXutm75sIn78jqbncgKGuxD4+xFYexMfqWhjz5FFWO1L5zzdIv5c2xr4nNNGv
+         bbeZV/IvECPR4t2yXoP09vZVVRTb58vkisXSHn9SsgHCGEyPmK7oiGhgY7ZaeZ58jUqd
+         uOr+yM6/+NEHl54m1WhZ/O0E0KZ9bC3OctXseNqDCaKNylRVTDGBGJOVH5b7xKiQRBU9
+         NskM97MKrbgZRvBfx318lAGisACojRbSBJh2uCEuMpt6Dvgn9zvhx9iQAImsJI0aznFW
+         kw+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXtu7YtZXoE9xOPbOAYRxWUish5Jt8bCZczwbAde+U6Jxx7Z/Ql7ij7koeeCGR+rdvgrhA3vDoOojkfV7khXyibaywBvFhPDO5m+sJ9TtXUxt4=
+X-Gm-Message-State: AOJu0Ywwl4XnlLhNgIw362e6iF2gTsupV4enA3UrUk0pwxQn2ltmupEv
+	18efBtwBuLKG3herC3i+WZw6B+McvYxM4Bv3Etiq3ZuG+kgSKvfgVo4MfZKydhA=
+X-Google-Smtp-Source: AGHT+IH4yigp1gkjcQxeAeOLYjio+1QZ5295mCJAsZNF/cho9G7FBybV0wRa9cSEe7GhaXwmooof4Q==
+X-Received: by 2002:a05:600c:46c9:b0:425:69b7:3361 with SMTP id 5b1f17b1804b1-427ba696a81mr12199525e9.18.1721132249171;
+        Tue, 16 Jul 2024 05:17:29 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:e816:4889:4177:9f12])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4279f2cc27asm159281425e9.34.2024.07.16.05.17.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Jul 2024 05:17:28 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>,  Stephen Boyd
+ <sboyd@kernel.org>,  Neil Armstrong <neil.armstrong@linaro.org>,
+  <linux-kernel@vger.kernel.org>,  <linux-amlogic@lists.infradead.org>,
+  <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH 3/8] reset: amlogic: split the device and platform probe
+In-Reply-To: <66ef4ff5-b472-44ee-a4fc-a68ceacea159@salutedevices.com> (Jan
+	Dakinevich's message of "Tue, 16 Jul 2024 01:48:18 +0300")
+References: <20240710162526.2341399-1-jbrunet@baylibre.com>
+	<20240710162526.2341399-4-jbrunet@baylibre.com>
+	<66ef4ff5-b472-44ee-a4fc-a68ceacea159@salutedevices.com>
+Date: Tue, 16 Jul 2024 14:17:27 +0200
+Message-ID: <1j34o9pm3s.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20240715-drm-bridge-connector-fix-hdmi-reset-v4-3-61e6417cfd99@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240716_024348_491984_D2C938EB 
-X-CRM114-Status: GOOD (  11.63  )
+X-CRM114-CacheID: sfid-20240716_051731_262838_0F5C3424 
+X-CRM114-Status: GOOD (  18.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,63 +90,135 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============4630785738254147657=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Tue 16 Jul 2024 at 01:48, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
 
---===============4630785738254147657==
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="fdsfmxhl5wgvjiuk"
-Content-Disposition: inline
+> On 7/10/24 19:25, Jerome Brunet wrote:
+>> To prepare the addition of the auxiliary device support, split
+>> out the device probe from the probe of the platform device.
+>> 
+>> The device probe will be common to both the platform and auxiliary
+>> driver.
+>> 
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>> ---
+>>  drivers/reset/reset-meson.c | 55 +++++++++++++++++++++++--------------
+>>  1 file changed, 34 insertions(+), 21 deletions(-)
+>> 
+>> diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
+>> index 59126c9f194a..fec55321b52b 100644
+>> --- a/drivers/reset/reset-meson.c
+>> +++ b/drivers/reset/reset-meson.c
+>> @@ -87,6 +87,27 @@ static const struct reset_control_ops meson_reset_ops = {
+>>  	.deassert	= meson_reset_deassert,
+>>  };
+>>  
+>> +static int meson_reset_probe(struct device *dev, struct regmap *map,
+>> +			     const struct meson_reset_param *param)
+>> +{
+>> +	unsigned int stride = regmap_get_reg_stride(map);
+>> +	struct meson_reset *data;
+>> +
+>> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+>> +	if (!data)
+>> +		return -ENOMEM;
+>> +
+>> +	data->param = param;
+>> +	data->map = map;
+>> +	data->rcdev.owner = dev->driver->owner;
+>> +	data->rcdev.nr_resets = param->reg_count * BITS_PER_BYTE
+>> +		* stride;
+>> +	data->rcdev.ops = &meson_reset_ops;
+>> +	data->rcdev.of_node = dev->of_node;
+>
+> It will be good to add here something like this. Later it would help in
+> reset debugging.
+>
+> data->rcdev.dev = dev;
 
+That is not the purpose of this change.
+I'm merely re-organizing exiting code, not changing it.
 
---fdsfmxhl5wgvjiuk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Plus, if you refering to rcdev_name(), we already populate
+rcdev->of_node, so a name is provided.
 
-On Mon, Jul 15, 2024 at 09:33:03AM GMT, Dmitry Baryshkov wrote:
-> With the introduction of the HDMI Connector framework the driver might
-> end up creating the max_bpc property with min =3D max =3D 8. IGT insists
-> that such properties carry the 'immutable' flag. Automatically set the
-> flag if the driver asks for the max_bpc property with min =3D=3D max.
->=20
-> Fixes: aadb3e16b8f3 ("drm/connector: hdmi: Add output BPC to the connecto=
-r state")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>
+>> +
+>> +	return devm_reset_controller_register(dev, &data->rcdev);
+>> +}
+>> +
+>>  static const struct meson_reset_param meson8b_param = {
+>>  	.reg_count	= 8,
+>>  	.reset_offset	= 0x0,
+>> @@ -125,46 +146,38 @@ static const struct regmap_config regmap_config = {
+>>  	.reg_stride = 4,
+>>  };
+>>  
+>> -static int meson_reset_probe(struct platform_device *pdev)
+>> +static int meson_reset_pltf_probe(struct platform_device *pdev)
+>>  {
+>> +
+>> +	const struct meson_reset_param *param;
+>>  	struct device *dev = &pdev->dev;
+>> -	struct meson_reset *data;
+>> +	struct regmap *map;
+>>  	void __iomem *base;
+>>  
+>> -	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+>> -	if (!data)
+>> -		return -ENOMEM;
+>> -
+>>  	base = devm_platform_ioremap_resource(pdev, 0);
+>>  	if (IS_ERR(base))
+>>  		return PTR_ERR(base);
+>>  
+>> -	data->param = of_device_get_match_data(dev);
+>> -	if (!data->param)
+>> +	param = of_device_get_match_data(dev);
+>> +	if (!param)
+>>  		return -ENODEV;
+>>  
+>> -	data->map = devm_regmap_init_mmio(dev, base, &regmap_config);
+>> -	if (IS_ERR(data->map))
+>> -		return dev_err_probe(dev, PTR_ERR(data->map),
+>> +	map = devm_regmap_init_mmio(dev, base, &regmap_config);
+>> +	if (IS_ERR(map))
+>> +		return dev_err_probe(dev, PTR_ERR(map),
+>>  				     "can't init regmap mmio region\n");
+>>  
+>> -	data->rcdev.owner = THIS_MODULE;
+>> -	data->rcdev.nr_resets = data->param->reg_count * BITS_PER_BYTE
+>> -		* regmap_config.reg_stride;
+>> -	data->rcdev.ops = &meson_reset_ops;
+>> -	data->rcdev.of_node = dev->of_node;
+>> -
+>> -	return devm_reset_controller_register(dev, &data->rcdev);
+>> +	return meson_reset_probe(dev, map, param);
+>>  }
+>>  
+>> -static struct platform_driver meson_reset_driver = {
+>> -	.probe	= meson_reset_probe,
+>> +static struct platform_driver meson_reset_pltf_driver = {
+>> +	.probe	= meson_reset_pltf_probe,
+>>  	.driver = {
+>>  		.name		= "meson_reset",
+>>  		.of_match_table	= meson_reset_dt_ids,
+>>  	},
+>>  };
+>> -module_platform_driver(meson_reset_driver);
+>> +module_platform_driver(meson_reset_pltf_driver);
+>>  
+>>  MODULE_DESCRIPTION("Amlogic Meson Reset Controller driver");
+>>  MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
 
-Assuming that someone on the uapi sides agrees to patch 3:
-
-Acked-by: Maxime Ripard <mripard@kernel.org>
-
-Maxime
-
---fdsfmxhl5wgvjiuk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZpZA0AAKCRAnX84Zoj2+
-dtNdAX9Ax2E/pR1JgBzBrUF/uMPOl1sAEeevA2aoMOeQhKfGs2BZhGJ77abapFvP
-xuT5sK8Bfjqe28CP8kHlRvXG2ER2YP8NG+nrxaw4u1WdmauMPDTJzHoGi2MW4dkH
-Czrtx7ncfw==
-=AL/r
------END PGP SIGNATURE-----
-
---fdsfmxhl5wgvjiuk--
-
-
---===============4630785738254147657==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============4630785738254147657==--
-
