@@ -4,81 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EAC6C3DA5D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Jul 2024 07:20:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74C96C3DA5D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Jul 2024 08:08:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=MY15hKSD/jGONwSTX4AQXGaF3DPQ3HrjUVgWeqkJg38=; b=gMVGOZK4+WTl1sNacrp93C+xW7
-	FuADRILi9bmNqY16ez8DEvuyMSl/oJe9TacjlDTjNYMUu1E1BpsSTZZKKL4LDCtLgIWjFxAw1selF
-	JQBrScncTUGtz+LU/+jwPceG9aFU24yFoOvjWk6QsGeJLKTtxBAzHjaOMwgV0608fWZl7CGdyO1W1
-	eoHpl7SLh/jrL69C/TstRwc04cv9hK60+h3Lgk91aHPJ5Axare9iaDOBmSlRZnKfsc+qa8IL3b1Xj
-	Ui8ywEaU11Vg0h/5r7DTeo7UaO7HcaTN502avn6YYoQ+qRm7LQlt8XOphiLSyVplzjClNhwn0Ejut
-	N6KC4Xbw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=GWMpgCG+4LCoAzg8sgMqV2OXKeZvhIVf9MKtO6tcxp0=; b=ciCta96rnoMBj3
+	fLUfxIQm7Z7eE9LiuaotXu6HgPdEMegNjtvjpjvNhLwAcM+8PKRMmxfYfAFRDTSMMRmovZMi8z+TE
+	pWynaGbeNkATc2dxJ5n17YYE4PJ8vGkMRE4RBlDHQcOctq3n91wUdP6tym9g5c9HDwwR3/Q+ukKXW
+	UlOAcDyvu7jCZN+5ZYcL9Qnjls7/JLc8EJTXBNNx5Z7yWOSytyKqaQfpqGcLUKJminPOMWg+Y75vj
+	vOtiupE4Gx1qM4AD/eoeB/eseXcoG5ipmvlVq5cEz+FDjqTpB7PQcZbxCPNFyEE+43RQe5IatAj38
+	+SGEeN+decYmGKzHSgpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sUhv7-00000001u8K-0Kqp;
-	Fri, 19 Jul 2024 07:20:49 +0000
-Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
+	id 1sUif5-000000020DX-2r7Q;
+	Fri, 19 Jul 2024 08:08:19 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sUhv4-00000001u6a-0OH0
-	for linux-amlogic@lists.infradead.org;
-	Fri, 19 Jul 2024 07:20:48 +0000
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-5a3458bf989so228707a12.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 19 Jul 2024 00:20:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1721373644; x=1721978444; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=snCOMfSAIZ7BN7SEbXap79VN++oHgdcE3AI+lBWfejI=;
-        b=GcaaMwkmymU5wNMLz78ZmXDhH/VlCy4IZrKV5Mxa1nfG9FweJH3bkKF0OfXYl1vHzH
-         77Mw2RBpohuMzqCTGk61q6a8srYQLXkAXNUbDYfOqE2aWhn3zkX0L08jgsSwpEcl1jip
-         52jDvRYnZ+EzX8wONyNSGU6/9gOGucsQLGhpjEW7/doBz9kv8m9KZBa1VeJlqU3VYy49
-         54gNWFGpDHjEXdsCRVJa+TyCu4k2bChFzBQ0MA0HuUdJ8wHXyUPFZf900nuBj97dkkQc
-         ZOipDgYCWx+ZH9Qd5uK0Wea4kueNevXlwMJI2CE0kNrFUnZFSmLtqic+XoB3QI4imAGM
-         1BmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721373644; x=1721978444;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=snCOMfSAIZ7BN7SEbXap79VN++oHgdcE3AI+lBWfejI=;
-        b=CW4lrukLjFibv/nygUgfmCRtyDg14cp+fU5vLaGPkliRzPj4HgwN0JE4V2Kv2oXuP/
-         LVu+iPElBnHa5kWxFrIRaj0Eh37QilAAItwtG1FOLXIZGUST1EEEJYbD/7ZszJSspOOs
-         jdfyHW6CyqmwIL/V6I/55BEkQZ8JzI5ZYZhkSWx35ZWpWWsMPQotZzEaEEjpTvcwLMga
-         J1pKb0b57U/xTMqulmsso8OhaxbNuftvxFNFq739dqZ/UgE3hlZWb24AsRxGpWo5PYbi
-         udgIFa4ZrZkGrW7YgvUE02AFB1/1lnmr9GC0yBYSgG6vLl/X0QFlCqXkg0pFOA4d6re2
-         RbCg==
-X-Forwarded-Encrypted: i=1; AJvYcCVUUvJHMkxHdKQNuci7MZncsl303HkVOaT1Fc1rn6v0ni1xY4RhpES0XPuvtLWWjN/7Nbd/r+AAFKh6sDm4eFRyl4K78dqyLt8NjQ8d5xnHrP4=
-X-Gm-Message-State: AOJu0Yx0fcGU81AeLdyuto9C4zkM/18oeRrMTlQJ0eTVjpKqndQxCOTS
-	s9Oey9/+hS5/DvtTcRImXNnlIpruhrEwQ6Zhxokn+9UodkhXCiZJzlgP8nRi53Y=
-X-Google-Smtp-Source: AGHT+IHSnMJiPqKXQFc7TqXz25zzG8NVyoXNnDQ32Bkv6V9d4Cr9qVr7e/wI2y2FwvE11QdoZJJXTA==
-X-Received: by 2002:a50:d682:0:b0:57d:46f4:7df5 with SMTP id 4fb4d7f45d1cf-5a05bfaa613mr3897320a12.23.1721373644032;
-        Fri, 19 Jul 2024 00:20:44 -0700 (PDT)
-Received: from localhost (p50915eb1.dip0.t-ipconnect.de. [80.145.94.177])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5a30c7d30a0sm669323a12.83.2024.07.19.00.20.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jul 2024 00:20:43 -0700 (PDT)
-Date: Fri, 19 Jul 2024 09:20:42 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: George Stark <gnstark@salutedevices.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	neil.armstrong@linaro.org, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	martin.blumenstingl@googlemail.com, jbrunet@baylibre.com, khilman@baylibre.com, 
-	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, kernel@salutedevices.com, hkallweit1@gmail.com
-Subject: Re: [PATCH v4 0/3] pwm: meson: add pwm support for A1
-Message-ID: <bp3hbxl6zs6lwomfdj6edhq35pde3gr5i2qizgdf2varke2eai@weeodo6gacd7>
-References: <20240710234116.2370655-1-gnstark@salutedevices.com>
- <52e2e211-a0b7-47b1-a451-34c304028097@salutedevices.com>
+	id 1sUif0-0000000209U-0twK;
+	Fri, 19 Jul 2024 08:08:15 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 28A1E61C4B;
+	Fri, 19 Jul 2024 08:08:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3E0A5C4AF0F;
+	Fri, 19 Jul 2024 08:08:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721376492;
+	bh=MFLhWRcBfYxauByXZrf0VrJqa/KVcPGuygAHknweNJ0=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=pGW/HZEB6v+b1+/BoEpHoWOoPbOiaSAAMNDg13uF+D0tLJ/qwU4JNizpH/YcibP/Y
+	 X08iEjjRxY3EZKReEOmHwPzXQkU56/XnYSRRR95TU6vy/3iO34JEaK+w5/SPvrAyX1
+	 Jo44MdMt5dsjEbmuxHVCzAoS7sMSDZVhC4YC2GKcNWCNFOq5hQmO7417SH4IoqjB26
+	 svYUs8nG8xuWfKq4m/SersAAO/KAP2wO69VDV1yRDdv7Regu2vDmKNbNHUtfJXEz5H
+	 S7eEYGn89y0RmZ8yHgjPm4JCA5Hf+JIFZKPo5ZoYnDDuB1peOA/vPRr26Wbbxnm2Rq
+	 mCYvxsrM5dKew==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A008C3DA7F;
+	Fri, 19 Jul 2024 08:08:12 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Fri, 19 Jul 2024 16:08:11 +0800
+Subject: [PATCH v3 3/6] arm64: dts: amlogic: s4: add ao secure node
 MIME-Version: 1.0
-In-Reply-To: <52e2e211-a0b7-47b1-a451-34c304028097@salutedevices.com>
+Message-Id: <20240719-soc_info-v3-3-020a3b687c0c@amlogic.com>
+References: <20240719-soc_info-v3-0-020a3b687c0c@amlogic.com>
+In-Reply-To: <20240719-soc_info-v3-0-020a3b687c0c@amlogic.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1721376490; l=1081;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=2wGt7OXk2HOANrWvEqv6pT1XbsycF6rOAmNwlp+ubQ8=;
+ b=AZ/jc5KW8nrVKD8rlevj0lLWi6qLN62wIsNHLnBTTxvqIv6EKAmZs+Q3jxikXSpcHR6yPwnH/
+ 89Vj09Zk9FgCz6e/OI8/gSmKanHX9rto/LBt2EyGbMyE3kP0XSb3CzK
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240719_002046_142231_C399BE90 
-X-CRM114-Status: GOOD (  10.45  )
+X-CRM114-CacheID: sfid-20240719_010814_370581_5DE22C1D 
+X-CRM114-Status: UNSURE (   7.67  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,62 +85,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7908304845380189668=="
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
---===============7908304845380189668==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="a4mrqcrkf7uvtgvq"
-Content-Disposition: inline
+Add node for board info registers, which allows getting SoC family and
+board revision.
 
+For example, with MESON_GX_SOCINFO config enabled we can get the
+following information for board with Amlogic S4 SoC:
+soc soc0: Amlogic S4 (S805X2) Revision 37:a (2:1) Detecte
 
---a4mrqcrkf7uvtgvq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Hello George,
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+index c11c947fa18c..957577d986c0 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+@@ -763,6 +763,14 @@ reset: reset-controller@2000 {
+ 				#reset-cells = <1>;
+ 			};
+ 
++			sec_ao: ao-secure@10220 {
++				compatible = "amlogic,s4-ao-secure",
++					     "amlogic,meson-gx-ao-secure",
++					     "syscon";
++				reg = <0x0 0x10220 0x0 0x140>;
++				amlogic,has-chip-id;
++			};
++
+ 			ir: ir@84040 {
+ 				compatible = "amlogic,meson-s4-ir";
+ 				reg = <0x0 0x84040 0x0 0x30>;
 
-On Thu, Jul 18, 2024 at 04:09:04PM +0300, George Stark wrote:
-> Excuse me, should I fix/improve anything on this series?
-
-The known issue with this series is just that it's one of several patch
-series that I didn't come around to review yet. I tackle them one at a
-time, usually in a FIFO order as listed on
-https://patchwork.ozlabs.org/project/linux-pwm/list/ .
-
-Best regards
-Uwe
-
---a4mrqcrkf7uvtgvq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmaaE8cACgkQj4D7WH0S
-/k6nDgf8D5F2Na4nH6HLwiqFon8plnLTpbHNktSH8KoKVdGii8LxI9VwSaFm625x
-7TRIUvuD6Ss2nW8Wyy5XN+Jj7GjFT4l2A6YOTtbPYqpnAKryKUPmu5QPFLE/UrH6
-HqoABIBLJsFFFFLHN8DSJm6EwHOLyfqmhtYt3ReQLYvu9flXIht4E+JCUnZSrxRM
-dw1WSK1yJBMhDcnIMcFZ48C+ymj4t3bzImEt8mjoExdlFC/sUzsZr2853Dme9QJk
-Gqi3tjsgTHFBMq1CpjXdJNBTnQaqRECKVvrEntWW66s8ocdF4Q5Ib3M8TeOY2WLg
-EpCoY/o9x4O2xTSQ0Y0C7kRbNln1rw==
-=tWvy
------END PGP SIGNATURE-----
-
---a4mrqcrkf7uvtgvq--
+-- 
+2.37.1
 
 
---===============7908304845380189668==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7908304845380189668==--
-
