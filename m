@@ -4,75 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 810A0C3DA5D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Jul 2024 08:10:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A274EC3DA59
+	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Jul 2024 09:40:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=h3IrXC4nIdyWig0XjWHtmwQiyIwQrRKHOtgprVVAyOE=; b=lIumOmzCW7QK0L
-	JZ1pSMWVzdzIW/Q8CvRsZI9rVugEhu0c3SVvoKWpQMXHK90hTmCr04ip1aP9lNyBF24NuKJ/pDTb7
-	d31LeJd4XqK5seYo3n8NwUq9U7LZVdkLdEL62B4J93Z0BBgsS7NMWndACEcWFdPwxIzl2eWtej+XV
-	urtpGQuV8Za+HCz/C2JYqLpZLmKsj0z2582uOZLTz6OwAFaO67LMdjxdb2HlOx79NRWep8gEiWRw1
-	VGJZILQ+zC5eBBXpzN5Wl/SGCBnf1pREaHi2SC3rOPcCzDIMSb+ZAIcGCsVh1HgGGm3PH+P9rEIHP
-	6aZLJ6l3MyNdR5fhSQew==;
+	List-Owner; bh=iLPESRr1i/N2UK9LlPcRIrz972IND79k8XaNNQ98t7o=; b=G/N5alRXY4oaSp
+	D2kQ8vceALMMqIXYZgkEEIhg/hii0bEBEO5XOS/DwCUq/N/sJN0S+Ocow9kYKtE2kAFuFSjtSTk/u
+	muC/uQRSipnYd51fADDttShuAkAU2/YeSUD5ZMC6sDtbRBQHXOu+uWc2eGkJCXs47Z1yhDUjLiH7B
+	7HcSL3m9MiZaHrXRtJ21aShv0Dy+LTnpggn+QmpEDuvXz122fmunToKGP0Tqq31lyWzba1nFY3bkm
+	U9Goak+FfI/p8dyMyhv5xnCItGhGf2lTBaTWXwLjxLfj8cDdnduTh8AtQ97TwcyYFtCpAZ6w9b36C
+	9Fyn9IhPZkFNYKRGqpoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sUigm-000000020yk-2Lwr;
-	Fri, 19 Jul 2024 08:10:04 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1sUk5g-00000002Gex-3F9l;
+	Fri, 19 Jul 2024 09:39:52 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sUif0-0000000209a-44fE;
-	Fri, 19 Jul 2024 08:08:20 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 3CC56CE1B20;
-	Fri, 19 Jul 2024 08:08:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3467CC4AF0A;
-	Fri, 19 Jul 2024 08:08:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721376492;
-	bh=/O2nGpJcr16vRLvgrd+SZjmwJdnjJPrOC4NvECf8nUM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=bdIEBzLGNTJ0ytCVXwZIjbOF9+JFMb90xZW98gbCg17YINisWbMFQa3pfHIJTHleT
-	 LPOqUIkOGWPoJtZvBxbvHGFuge7AAyIj12BeUvaLQ0YbI2aDF9rvlGtIJtRsCqe/IA
-	 Arkd+iQO13Zfzfx/kCHKHoxM2oYHVa9UIZW6rB+IWsgmYK90HxRwroxVSc8QwLZISK
-	 dJJeIvcka5dZWZXIhK12Bvl8UUhqkqZKKvt7pzV3LGR5zFuCTBFIlERt90yBkpN3cH
-	 IQlmo1Gcf/HrT20sJJCm9/KHfk2WgcB949G7ApG3RcjqM6ayN9YzGxBSnq7aO9446K
-	 lsFgrW3CBTWDA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1B059C3DA5D;
-	Fri, 19 Jul 2024 08:08:12 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 19 Jul 2024 16:08:10 +0800
-Subject: [PATCH v3 2/6] soc: amlogic: meson-gx-socinfo: add new SoCs id
+	id 1sUk5c-00000002Gbl-0ref
+	for linux-amlogic@lists.infradead.org;
+	Fri, 19 Jul 2024 09:39:50 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-42122ac2f38so7454455e9.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 19 Jul 2024 02:39:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1721381986; x=1721986786; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ok8qT5sg/ukyA77onQiJddqngdYN/iGCzJwgTQrvtPQ=;
+        b=yfh3lTQLAfIf457+linquTsO7UI6GpSYC/Cs8Dc8oF4ABw7ejYZIHx9WowsTb9N1C4
+         EVge9oiTb118AIvTEpE8jcH0Ik6BinKeb/t5cHo05sY0BMWitVkEExRYXf2tqfGn31WF
+         1m8tXVxOBpeAcJfg+J77TS9KjPeiWLELk+Oz0Uxb1MBaoA2xD4Ddx9eTyXSRwW1lESU2
+         rYkbCdX6QI4qAmGLYBIU2pJqeDomkF49fe/XhzlJFnzvcJyZmGweIss1ItDN3QWk6SbC
+         NqGSqpY7q5Ny9I1l1Eh/XOJ256rrXftk0DAFUcZt6+jiVasnVlK3R77Irkmnet16E6IW
+         lC9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721381986; x=1721986786;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ok8qT5sg/ukyA77onQiJddqngdYN/iGCzJwgTQrvtPQ=;
+        b=WIPVxu3RZK3oBFbbv1gw1MifCSyRtIs2OQO4yKxR2QFNf3W+McviGz8HcXyvj0mORc
+         mJE4FucXEefy4JiTSZFjwfxQTM2O2Rfyh5+Vv1U8lAIFwWU+x3adhR8/xQ9pXOXZNvpV
+         iHkRAR1qvR53z2j0auqyB1/IYwEMUMHI2B/FSGoN2yeLZqgt1Vt5fm9x89ZbZBsmYOc8
+         cEoUTV9kRxJQe5YVVdZ+cfQ7/DdAa014pcV0mXjQkDEYjSqhq2K3K6QuP144wAVrV4X/
+         1j3JhJc2BDUVUr9JPBL7cVSjVn4+B4Z0DGIHZVeVEnDG40e+f4q2//CYmMfEhNJueTfb
+         cYxA==
+X-Forwarded-Encrypted: i=1; AJvYcCWRCQJUbUYA7ZpRL2oNnrvVQtorLpNUYmmZPkUBgHweghxhroh0LOI/EudUbPNVUkME6bLN/xH5yRqZbAMD2v93aq5oHYlcGRLbnEnTxQT0hMc=
+X-Gm-Message-State: AOJu0YxssZNRWqV4ZVboOssLOb55LBTPQ/2mrovefgwKRJkE8LvSlCje
+	XZSjpxJ8xt39myCDsXca3eCUdERTDbz54VpXzjAA1XzrqADMxxorC2hzljgSpYI=
+X-Google-Smtp-Source: AGHT+IFRBg62WuWS0T4N15ozxDHT5px+Wx0AGbkCxcIEYMBTBgmOQqIY2DCIWNCIKkRjdhVXnuc1yg==
+X-Received: by 2002:a05:600c:3110:b0:424:71f7:77f2 with SMTP id 5b1f17b1804b1-427d2ad9f96mr23848925e9.16.1721381986549;
+        Fri, 19 Jul 2024 02:39:46 -0700 (PDT)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:5ac4:5655:4dfe:ce97])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3687868bc91sm1100956f8f.45.2024.07.19.02.39.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Jul 2024 02:39:46 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH 1/3] dt-bindings: clock: axg-audio: add earcrx clock ids
+Date: Fri, 19 Jul 2024 11:39:30 +0200
+Message-ID: <20240719093934.3985139-2-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240719093934.3985139-1-jbrunet@baylibre.com>
+References: <20240719093934.3985139-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
-Message-Id: <20240719-soc_info-v3-2-020a3b687c0c@amlogic.com>
-References: <20240719-soc_info-v3-0-020a3b687c0c@amlogic.com>
-In-Reply-To: <20240719-soc_info-v3-0-020a3b687c0c@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1721376490; l=1182;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=zRWWsMnyYjBcl83+I2nHF9NZDOoGs2C4FOAOFivyI1k=;
- b=2N3VqoSg90YHKRwkRLAuCyMLMMD4AtkI2P8zYR5Mxi8W0Kbw8U+ctTMenOiDH9TOh2XHWlVH/
- 0EzzzrNYT0zD1VOsz+8/XcyUI0Qwn9riN54CXGVaOuKayNLqu1/hbEi
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240719_010815_212876_1A2C6210 
-X-CRM114-Status: UNSURE (   7.92  )
+X-CRM114-CacheID: sfid-20240719_023948_261540_9AA98BD8 
+X-CRM114-Status: UNSURE (   8.19  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,54 +97,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Add clock IDs for the eARC Rx device found on sm1 SoCs
 
-Add new definition for Amlogi SoCs, include S4, C3, T7, A4, A5.
-
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/soc/amlogic/meson-gx-socinfo.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ include/dt-bindings/clock/axg-audio-clkc.h | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
-index 8809a948201a..7549f1644e5e 100644
---- a/drivers/soc/amlogic/meson-gx-socinfo.c
-+++ b/drivers/soc/amlogic/meson-gx-socinfo.c
-@@ -41,6 +41,11 @@ static const struct meson_gx_soc_id {
- 	{ "G12B", 0x29 },
- 	{ "SM1", 0x2b },
- 	{ "A1", 0x2c },
-+	{ "T7", 0x36 },
-+	{ "S4", 0x37 },
-+	{ "A5", 0x3c },
-+	{ "C3", 0x3d },
-+	{ "A4", 0x40 },
- };
+diff --git a/include/dt-bindings/clock/axg-audio-clkc.h b/include/dt-bindings/clock/axg-audio-clkc.h
+index 08c82c22fa5f..607f23b83fa7 100644
+--- a/include/dt-bindings/clock/axg-audio-clkc.h
++++ b/include/dt-bindings/clock/axg-audio-clkc.h
+@@ -155,5 +155,12 @@
+ #define AUD_CLKID_SYSCLK_B_DIV		175
+ #define AUD_CLKID_SYSCLK_A_EN		176
+ #define AUD_CLKID_SYSCLK_B_EN		177
++#define AUD_CLKID_EARCRX		178
++#define AUD_CLKID_EARCRX_CMDC_SEL	179
++#define AUD_CLKID_EARCRX_CMDC_DIV	180
++#define AUD_CLKID_EARCRX_CMDC		181
++#define AUD_CLKID_EARCRX_DMAC_SEL	182
++#define AUD_CLKID_EARCRX_DMAC_DIV	183
++#define AUD_CLKID_EARCRX_DMAC		184
  
- static const struct meson_gx_package_id {
-@@ -76,6 +81,11 @@ static const struct meson_gx_package_id {
- 	{ "S905X3", 0x2b, 0x10, 0x3f },
- 	{ "S905D3", 0x2b, 0x30, 0x3f },
- 	{ "A113L", 0x2c, 0x0, 0xf8 },
-+	{ "S805X2", 0x37, 0x2, 0xf },
-+	{ "C308L", 0x3d, 0x1, 0xf },
-+	{ "A311D2", 0x36, 0x1, 0xf },
-+	{ "A113X2", 0x3c, 0x1, 0xf },
-+	{ "A113L2", 0x40, 0x1, 0xf },
- };
- 
- static inline unsigned int socinfo_to_major(u32 socinfo)
-
+ #endif /* __AXG_AUDIO_CLKC_BINDINGS_H */
 -- 
-2.37.1
-
+2.43.0
 
 
 _______________________________________________
