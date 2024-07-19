@@ -4,64 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E39BC3DA59
-	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Jul 2024 10:46:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19833C3DA64
+	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Jul 2024 10:46:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=FeV3qg0AUCgo2+eLFBy34+fcR+2jPv4S6HcjF/Fa+yg=; b=O3QkEEBafhYEmD
-	z4LF80ZoGdg5DmCRTtTyYcxUNTEdeG72YoQeY0ySiHsxRgJFwijW4JZKmF7ojABMtesfeKpwOkYiY
-	MFv3x/ck4oE0/Tq2LftvEfRHXoGVpXprZZb1SD08oyHlK+Yu4DU/eQ0tyAQOB8TGZ1c2nALtuFKmP
-	xwtBkilqZ4pZr/2XTronm5tAiieyVEMDKcnLtni4aC/H7p1g3vprmZUJxBZw6wZfVsAK1iHrw96kL
-	wg/diIh3xIvrCxdcsGSIKLy0/zk4qbbA89GR7Robnzrxk7WEXe2YP1dxJdEiI/omEJPwnLn6wrAKx
-	PLinvWj03WjEwHO5T6NQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=TlXYWy6800QzvBQ3XyaxKxYLu0FjcoNsurSJaNw6zqU=; b=dj26YIl6W0wEL0
+	pyA9TBlouIm+HkdKm1Kc1GvCudIRCVNc0wx8IciuDTCerc2uTnw1sKA/65T1/6la87RpTmzbjHk4f
+	r2Uju81RWQLyu57zuC148cJcir1jARoDCdzFDOOzDLiRZHQnKO3sypB9bXJKy/LMyVI5uvcXmW0zd
+	BJTTqXxpo6jKjChlmsQWXnS/LkqyzXfPICewjnOnj/RkzjUgv1+ej3ES8mQc42RWigWGJrDFWzHMt
+	rtXiQgz79egm7+F+UDWIVUkQuzRqpoJWamv/85fPOl/LedvQnGwq8IK77QbH/PucGA5oZnZrkUEO9
+	apaL7784dKyL9mTluJGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sUl7a-00000002QW2-1I5h;
+	id 1sUl7a-00000002QWA-2gBG;
 	Fri, 19 Jul 2024 10:45:54 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sUk5b-00000002Gbf-39A2
+	id 1sUk5c-00000002Gc1-3H2t
 	for linux-amlogic@lists.infradead.org;
-	Fri, 19 Jul 2024 09:39:49 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-42797289c8bso10798385e9.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 19 Jul 2024 02:39:46 -0700 (PDT)
+	Fri, 19 Jul 2024 09:39:50 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-367ab76d5e1so380787f8f.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 19 Jul 2024 02:39:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1721381986; x=1721986786; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rEbHlu47gMjntr/0lWZ1HMtnTqXHStCt809hwXsuo8g=;
-        b=mWzzCUnysNHPTUu1leFyBEtPIprW4/pcVWNAPzPlbr8/dIgTiC8uOOpFMGFMRc5ciH
-         +zIfkJJf0mCvite2qByDxoDVtj+/3zc3uCG9WLxsvryTT1F0+bCyAm0z4HHM+mwZxT1q
-         Z+cCHPAPzD6FLf+aswxxIDcp8IaMJ8mTai5Iwk9kEUlb3lK66vmo0KLPoJW+26oc+GxL
-         +CS3HLP+3t4vJcnhtJzOruWOCyytzc/wY88OKUZbypV7yfwTOXkl1QeFd/3QBJTSPW/B
-         BvBx7l616ni6QjL/7WFnononGdvAkOAfYhfhTg8uG6UnTchWlHB3IDQWxBzBnIqhHvsj
-         th/A==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1721381987; x=1721986787; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4Jh83wOtVueGX1PE60SDgHxPA51mTtiJu8dK1JiG1H8=;
+        b=NqOKgKD/qJFlWoxvsAZG0ATW472fC5GQsJ35dYztiBu5P1Id1UJm+VZmpzliNhuUVg
+         YZwJlVyD84JDqPHhByTMyD3ashH4z1SSNqykXKuDPr0xmFqUIm5aUOU2c2Pc6TsbiuLd
+         RaMYQ5QA4RG8sLn7n9cBaZ9T3A/5Aj27EDthkI9yk73dQCTfyivJhRjX3p4rWzztKJl5
+         gt4ibbah9gpAKehkTP7pM8zYkg0PbhHTUSJCc9hYZ3SrhY2UjhD+XLfRSb4RZL6EJ8YW
+         ToK2wZ29ozLJBSwn9IvwV/wwP92hzmQiHs7jboR2VaMj+2cUMLyR1MNhUmT1YAD2FBYs
+         xexA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721381986; x=1721986786;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rEbHlu47gMjntr/0lWZ1HMtnTqXHStCt809hwXsuo8g=;
-        b=Jj4x9KEbkfy+ZBlUzwuNNd/E4wr0GZdy8HilArCSWK1fgjhctAPgVZLGweuMfNI8oP
-         2j7bUwXgAs72YDBynTunkLZa5DgouJS+oMw9v8b7WiEeif52TkU9sU10IuFSXTp4/nRM
-         zraE86KgmKyJtPsZ3cbY/n1J/Cv98MR1DIGtDgYYSQOMRDVvhRzxzhZcDQ4JW5PNHzfR
-         BIPU0iJ5Pk/ZQuPveo//MXfH8NEaqmMWMoEpX3ifC2ycXLxunPMYf7p2UXVijEQCWZxc
-         uhlGYz2oH1mF0P4xPz7Xz6eFVdaHHYNAdEXfgAraULvNw6qFkWhr/h4hz2sGzq3nd2B7
-         erlA==
-X-Forwarded-Encrypted: i=1; AJvYcCUxdXODufI+UaCIxJwqsHpTINFIEQofgvZgAVMj5J4t/8+BQfiU4jsxIZ87u8nuUEnsrcrG5PVLMX2YdrLG0DYqDLqIf26PHr6IWMPsxoGV9aE=
-X-Gm-Message-State: AOJu0YzrqIjDAl7inn73jvupwjXr4VQoHWA90LUjUEisWPUjk+Qrxb6m
-	C9plP+MvJDlC/kvnr7E6/6DsbH7SWibWJQXQPVVkF3kmo6RGqzPdOJJiVdJDp2w=
-X-Google-Smtp-Source: AGHT+IH4BxZr7nNiWWbM+lEJPkijyLd0iYBXu9qVNkbqOH0Fb5f61iPqIYleOo5sy/iDP8q/46Z88A==
-X-Received: by 2002:adf:a112:0:b0:368:71e9:4ee3 with SMTP id ffacd0b85a97d-36871e94f3dmr1106799f8f.18.1721381985670;
-        Fri, 19 Jul 2024 02:39:45 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1721381987; x=1721986787;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4Jh83wOtVueGX1PE60SDgHxPA51mTtiJu8dK1JiG1H8=;
+        b=L5MAEPPy2ev+D59Y/oUG5gTvuoAavZvX76Jj/DbZH935R0qt3AutZEJ2zWeXSA13Go
+         SaXodusEHlkoL4kF9vKLTm2aSKGS4kYSemPfDM7kTWakIJ1tt/jt/WJ7Jl10dkYbWzna
+         rFswjj5KlC4WbB1fBVLO9nq8o6Gvbr0iaEJy4ncHYGyD6Lyofkqab5hoFj7ZekJSvLgj
+         gggKJavtfsNrdEm0PR0/sigjTqX4JcF3semUO2zL3gYsdp6Z0lzRlDZHGsKNZDDlrQdD
+         HRDKee87srgiw0MhZCI1F2cE6pCSOmw5lXIAB1l9z2gg3Q1rN0w6k/rfm7v/MIT23NUL
+         +Jyw==
+X-Forwarded-Encrypted: i=1; AJvYcCXjlpq/PJ9gUMfBzQlT3gpBRy+KNUGRYLUEZNHi+r+TJBfHPEQQAp600DBjA1JJTpyYpN6uLdIAL+Nzk1/LD9UZACm9jjn2jEnBZdXJ4c7I+co=
+X-Gm-Message-State: AOJu0Yx/Gjz5bpvWmS/FqLhGhuCWyRxjhoH/4nJxkRtY/opmOwIgtlSs
+	X7zbaO6UIAl8PnZUcdcbKBkBRIEIMnh6mzG3wRsE+nkRx0/hQVWB0teS35cRcwNygvNktjR21yF
+	wugc=
+X-Google-Smtp-Source: AGHT+IGoIHykh7qghcwtZ6qPH84GebsqiBiwyg8/MutBl/iiTMSTkOqe8DvSeJARQHPKgBnAI06U+w==
+X-Received: by 2002:a5d:6485:0:b0:368:31c7:19dd with SMTP id ffacd0b85a97d-36831c72ab3mr5458249f8f.5.1721381987400;
+        Fri, 19 Jul 2024 02:39:47 -0700 (PDT)
 Received: from toaster.lan ([2a01:e0a:3c5:5fb1:5ac4:5655:4dfe:ce97])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3687868bc91sm1100956f8f.45.2024.07.19.02.39.44
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3687868bc91sm1100956f8f.45.2024.07.19.02.39.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jul 2024 02:39:45 -0700 (PDT)
+        Fri, 19 Jul 2024 02:39:47 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Stephen Boyd <sboyd@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>
@@ -73,16 +75,17 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH 0/3] clk: meson: sm1: add earcrx clocks
-Date: Fri, 19 Jul 2024 11:39:29 +0200
-Message-ID: <20240719093934.3985139-1-jbrunet@baylibre.com>
+Subject: [PATCH 2/3] clk: meson: axg-audio: setup regmap max_register based on the SoC
+Date: Fri, 19 Jul 2024 11:39:31 +0200
+Message-ID: <20240719093934.3985139-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240719093934.3985139-1-jbrunet@baylibre.com>
+References: <20240719093934.3985139-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240719_023947_903800_ED28F068 
-X-CRM114-Status: UNSURE (   6.37  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240719_023948_842096_4BFEF26A 
+X-CRM114-Status: GOOD (  14.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,21 +102,74 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patchset adds the eARC-Rx clocks on sm1 SoCs.
+The register region of axg-audio tends to grow with the addition of
+new supported SoC. Mapping slightly more has not been causing problem
+so far but it is not viable to continue like this long term.
 
-This pushes the maximum register of the axg-audio controller up
-again so a SoC parameter is inserted to handle that correctly.
+Setup the max register based on what is necessary on the related SoC.
 
-Jerome Brunet (3):
-  dt-bindings: clock: axg-audio: add earcrx clock ids
-  clk: meson: axg-audio: setup regmap max_register based on the SoC
-  clk: meson: axg-audio: add sm1 earcrx clocks
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/axg-audio.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
- drivers/clk/meson/axg-audio.c              | 38 ++++++++++++++++++++--
- drivers/clk/meson/axg-audio.h              |  2 ++
- include/dt-bindings/clock/axg-audio-clkc.h |  7 ++++
- 3 files changed, 45 insertions(+), 2 deletions(-)
-
+diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
+index e03a5bf899c0..2426f3dbb7a2 100644
+--- a/drivers/clk/meson/axg-audio.c
++++ b/drivers/clk/meson/axg-audio.c
+@@ -1726,11 +1726,10 @@ static const struct reset_control_ops axg_audio_rstc_ops = {
+ 	.status = axg_audio_reset_status,
+ };
+ 
+-static const struct regmap_config axg_audio_regmap_cfg = {
++static struct regmap_config axg_audio_regmap_cfg = {
+ 	.reg_bits	= 32,
+ 	.val_bits	= 32,
+ 	.reg_stride	= 4,
+-	.max_register	= AUDIO_CLK_SPDIFOUT_B_CTRL,
+ };
+ 
+ struct audioclk_data {
+@@ -1739,6 +1738,7 @@ struct audioclk_data {
+ 	struct meson_clk_hw_data hw_clks;
+ 	unsigned int reset_offset;
+ 	unsigned int reset_num;
++	unsigned int max_register;
+ };
+ 
+ static int axg_audio_clkc_probe(struct platform_device *pdev)
+@@ -1760,6 +1760,7 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
+ 	if (IS_ERR(regs))
+ 		return PTR_ERR(regs);
+ 
++	axg_audio_regmap_cfg.max_register = data->max_register;
+ 	map = devm_regmap_init_mmio(dev, regs, &axg_audio_regmap_cfg);
+ 	if (IS_ERR(map)) {
+ 		dev_err(dev, "failed to init regmap: %ld\n", PTR_ERR(map));
+@@ -1828,6 +1829,7 @@ static const struct audioclk_data axg_audioclk_data = {
+ 		.hws = axg_audio_hw_clks,
+ 		.num = ARRAY_SIZE(axg_audio_hw_clks),
+ 	},
++	.max_register = AUDIO_CLK_PDMIN_CTRL1,
+ };
+ 
+ static const struct audioclk_data g12a_audioclk_data = {
+@@ -1839,6 +1841,7 @@ static const struct audioclk_data g12a_audioclk_data = {
+ 	},
+ 	.reset_offset = AUDIO_SW_RESET,
+ 	.reset_num = 26,
++	.max_register = AUDIO_CLK_SPDIFOUT_B_CTRL,
+ };
+ 
+ static const struct audioclk_data sm1_audioclk_data = {
+@@ -1850,6 +1853,7 @@ static const struct audioclk_data sm1_audioclk_data = {
+ 	},
+ 	.reset_offset = AUDIO_SM1_SW_RESET0,
+ 	.reset_num = 39,
++	.max_register = AUDIO_CLK_SPDIFOUT_B_CTRL,
+ };
+ 
+ static const struct of_device_id clkc_match_table[] = {
 -- 
 2.43.0
 
