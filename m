@@ -4,73 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94CA0C3DA63
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Jul 2024 07:18:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B667AC3DA64
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Jul 2024 07:18:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=/xS5fmez6UEmNecmeNvDzQi022Ta3z0ZyzIVbVB0p4E=; b=aTZDYT7tc68eDFzUSXPFDfrOuV
-	YZd6kTdEJd5SUUtvBa2BNuUGrnjOBcP9CsoOv2p/wzCd+DkpU1BI+EkGi/ZRlwb2uQd4b+yVg5EXc
-	SC6/QJh4jXDkgrJWz1hT9Wlh3fL81oQ0Hc7FkTldPzuOpVVHL1SlPb+FT17mJUrSEPFYoSk8QHc6l
-	7+1uNj//hWw8DvxNeZZkAlswCrANBEVpc+CA7UFQyoHpddefv5yjXjsFufGdPygV+V/WKnsr4zQpm
-	w1sREtHZaDbg+j8YD/5MH2jCis0O24SZ29uOXbYW6Annb96qUaNICtckf0vvcipDL5uJCholwBJSp
-	Jtk3ar1g==;
+	bh=vOqETByMxmyiFlZeH5JSlVNu1xzi9WrCvhfcAGdmUzk=; b=bOMYcGtsFAMlZsR7Ja2XrQa/0J
+	QEMjpHWlsXllC9aBROSj9kvuDqs0rB9KcMOYs4e/0otVtdQAAy2raG72I/p7f13UOSbeEIOu+J910
+	AY9F+wcRGkFQF8DD8bZFu3LlQBczLDpBGw37MHHIQqY22cury558joBbw+Sfe2Sl3TOQzayeBgmRl
+	zoPGxMeDRd4aChAi+svTj47XrFJJJl2JrZsKDItKJpdC/Uearq9zdTL1u7pifyAxoT9pdVQjjUoVe
+	ToEqlPwOXc3Y6vf5M5s2sW+0Ku3EqRePe9yet2J6L1PZ5wcW02SBuw+4EnkZEXD+288eMfpfK565x
+	T1Ym+kig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sW9nF-0000000Bh0N-1Tre;
+	id 1sW9nF-0000000Bh0x-40w3;
 	Tue, 23 Jul 2024 07:18:41 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sW9mZ-0000000Bgl1-3EkU
+	id 1sW9mf-0000000BgmJ-1a2U
 	for linux-amlogic@lists.infradead.org;
-	Tue, 23 Jul 2024 07:18:01 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4266fd395eeso36879215e9.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 23 Jul 2024 00:17:58 -0700 (PDT)
+	Tue, 23 Jul 2024 07:18:06 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4267300145eso44492085e9.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 23 Jul 2024 00:18:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721719077; x=1722323877; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1721719083; x=1722323883; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=SEzKhKkmBYXTdhjYaBlSuqId8UatDTOuzDSqNIi2wrM=;
-        b=Vr6UgCEyEAsOapxkNyh8dDV9FKqEVtrVZDsR9oFTc+uhdN95kE+0DX6oGYjzX9Lcph
-         7+gjKRuNpQW9u87SA8AcqM0J0LY20m1hM4PhgtiTr1Nydf81qXLXXzj9U3JELebzk8tt
-         Vj5IYUwdR+jwjB8UHane5o4G9XEdhYgHoE7x9jVO6SLJtapp4mPck7Ujdq0nQBbXJyJ7
-         TjkQkUKASck2ogcUQl25Ii9JxJnEtyg5Uf2ub/0bZW/BCe0Bm//GiCqfz1+RrL/oj2rd
-         t6198oayDUcpUF3k8O6vefxKeNnf+j5NkVb10k5uf4RMPo31A2Ahbgk3WhtbaZ29DAS0
-         LdaA==
+        bh=mcxIzNk1NcysMQw3Lkhzk9zPofUtDz/QMRqmXV8AkAM=;
+        b=c3lH3+2W8PdBteszYWGVY0PNnL72f0i+gQ6nRv/1HkaNA4y3F7F8lux8KdbgjVfeV5
+         3NHvWPmkXyHgiz4ymu4ZIinGNrwvepRvl6GIbE9vBGxKZEnDfb6Bp1w3yUa3cXB/XWK+
+         EvU5IOn4HTh1XzOstNfpw11Qw2fk7dh+85j4cqY5Ebmy3MC/PP57olPdM2rJpRzxVSpL
+         ayIOQr8xPMwpoGk9WE1WGnmAYdNGlYH72gf2nD/5WZVi2k7u7ZM3Z2WQ8cDmLwRIaLam
+         hyZsV3trgjUBLR8q0M963moljpTIY6Zu6FSriTCcc3rYDWelCAFKLySxsivLfDJDmD/Z
+         LJcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721719077; x=1722323877;
+        d=1e100.net; s=20230601; t=1721719083; x=1722323883;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=SEzKhKkmBYXTdhjYaBlSuqId8UatDTOuzDSqNIi2wrM=;
-        b=uOlokEO2WRMUkOmoN7vlXC+ruQBKs4UcRs17XdHkY5o/23zUqtS8EBfuc6sPVCkXaW
-         LhBU9DrFI/A3TO1oEcajOSlOoC4QPEOz4MfJyttgOh84QtU5u3ZSaC/GNSyH1b7gAuz4
-         bpH/F4JR4uCG6oYH5egYjGhDSCrA3ypiYfFTZwTK5zeu24vQ2BzvaSLmzUbkwYTB1qib
-         VAXnOWtPllwls1ifVmu4oQg6e9U3jsAXsYqSiG2D0LX52kQ1ZKIMFjdxfoB71uZUAlbY
-         viwGKmiIwoRrTn1s11n+LJX10oiljgpRM7xIoGLB/xnTgdoMKBiVH9Z6UqtFAk5TXbp8
-         5KYA==
-X-Forwarded-Encrypted: i=1; AJvYcCXBdcHsIzfQzDBsL7OYqBQAxVywXFvmMaIifFr47jnbIlkByTzYQaHG2IWjIcT7FmhK8MdkEBvqQ3OVPjz2CCqVmuMx4d3KqmKBgJC1n3cg6TQ=
-X-Gm-Message-State: AOJu0YxotWEHIDvIL36m8uOtbgEXOn83u60m9VcUTld8tOAcf1oQ6Xy0
-	9ojRfZm/v+0FZgMixg5l6c+3glEyumj8FEY8wmiOpIsnReLYJvUeLhii/zn9KBQ=
-X-Google-Smtp-Source: AGHT+IG5n+S9PIM/0u5fM2WVXGS+r2GwBeka2nKCjJ0cyEzqu/DQBNvtsgFCLCrhKI64ABkCE5H93A==
-X-Received: by 2002:a05:600c:3547:b0:426:6c70:dd9c with SMTP id 5b1f17b1804b1-427dc58f1f3mr60943655e9.31.1721719077311;
-        Tue, 23 Jul 2024 00:17:57 -0700 (PDT)
+        bh=mcxIzNk1NcysMQw3Lkhzk9zPofUtDz/QMRqmXV8AkAM=;
+        b=cYDI+Ragz1FpJ8HMFGUg2fdNPJQUUWxaCSUljpHj1hPOvug5ehoIA/VR1e0lIoZxPT
+         AzM+/7oGU3zdO5LJs0lKBysUQpYAjy2i+ohFcS1A4g1XCGK8idnIL80NN+i+AyAXN8Gm
+         m1o4k4kizMeo1WkvZ1UL4xlOM7+Hqm9WiCEwz7jJ3SvPzH83w3id/PdriI07owCuDLMY
+         LpOJKSuLhGSJKX2/uvo3vaOObksJGvHNiGjAQqYObn7e6Eu1QzrkjOA6EGRTJsxLHvIB
+         H+Ali8t4oSNwC83htNSpPC1kT4iLPngCq5fm5RYuJRk5FoPmmfsNIgZvmfawdaVBPnB/
+         Agzw==
+X-Forwarded-Encrypted: i=1; AJvYcCW4Yfnx2tsJeX6hS9LLBKpEtiLcFr7u1nsNxibdk8HaTPqzbvY9hCT1UaxMoSG75D0iK6l8yu+dYRKcFKSyujQgJpR/OSIoMtcI94LMGFBqtGo=
+X-Gm-Message-State: AOJu0YwnednguwDzBonbZ1Kj1Q487EQPd9+EgBBQfTUwIneTAUSyERSZ
+	k/JIxAmIDVlLt/CBletOcLHyp/iohQNPJ2c/lVdt2obaZuiQIFjamg5JKfmwtyBNXmYMz7zE+z1
+	Y
+X-Google-Smtp-Source: AGHT+IFFdTHuWg+LUsVr7z6qMgnlrrvqaYVs4iJtYB5jKxSr1QnXFxYn2sbe1HLkfWcOBQKhAJQEVg==
+X-Received: by 2002:a05:600c:4509:b0:426:6e9a:7a1e with SMTP id 5b1f17b1804b1-427dc56b84fmr68985125e9.35.1721719083049;
+        Tue, 23 Jul 2024 00:18:03 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:f9d3:b429:5f14:dc9c? ([2a01:e0a:982:cbb0:f9d3:b429:5f14:dc9c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427d6936e1esm158776455e9.44.2024.07.23.00.17.56
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427d6936e1esm158776455e9.44.2024.07.23.00.18.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jul 2024 00:17:56 -0700 (PDT)
-Message-ID: <e5dc20d1-3cd7-41ee-955d-f7ba4d80c607@linaro.org>
-Date: Tue, 23 Jul 2024 09:17:55 +0200
+        Tue, 23 Jul 2024 00:18:02 -0700 (PDT)
+Message-ID: <615b5cbf-48bd-464b-9d75-a3d9c5566819@linaro.org>
+Date: Tue, 23 Jul 2024 09:18:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 4/6] arm64: dts: amlogic: c3: add ao secure node
+Subject: Re: [PATCH v3 5/6] arm64: dts: amlogic: t7: add ao secure node
 To: xianwei.zhao@amlogic.com, Kevin Hilman <khilman@baylibre.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
@@ -79,7 +80,7 @@ To: xianwei.zhao@amlogic.com, Kevin Hilman <khilman@baylibre.com>,
 Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20240719-soc_info-v3-0-020a3b687c0c@amlogic.com>
- <20240719-soc_info-v3-4-020a3b687c0c@amlogic.com>
+ <20240719-soc_info-v3-5-020a3b687c0c@amlogic.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -106,10 +107,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240719-soc_info-v3-4-020a3b687c0c@amlogic.com>
+In-Reply-To: <20240719-soc_info-v3-5-020a3b687c0c@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240723_001759_870102_CE74AE91 
-X-CRM114-Status: GOOD (  12.66  )
+X-CRM114-CacheID: sfid-20240723_001805_454357_30D4B6ED 
+X-CRM114-Status: GOOD (  12.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -134,32 +135,33 @@ On 19/07/2024 10:08, Xianwei Zhao via B4 Relay wrote:
 > board revision.
 > 
 > For example, with MESON_GX_SOCINFO config enabled we can get the
-> following information for board with Amlogic C3 SoC:
-> soc soc0: Amlogic C3 (C308L) Revision 3d:a (1:1) Detected
+> following information for board with Amlogic T7 SoC:
+> soc soc0: Amlogic T7 (A311D2) Revision 36:c (1:1) Detected.
 > 
 > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 7 +++++++
->   1 file changed, 7 insertions(+)
+>   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 8 ++++++++
+>   1 file changed, 8 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> index f8fb060c49ae..c913dd409e64 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> @@ -129,6 +129,13 @@ uart_b: serial@7a000 {
->   				clock-names = "xtal", "pclk", "baud";
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> index c23efc6c7ac0..ec743cad57db 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> @@ -194,6 +194,14 @@ uart_a: serial@78000 {
+>   				interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
+>   				status = "disabled";
 >   			};
->   
+> +
 > +			sec_ao: ao-secure@10220 {
-> +				compatible = "amlogic,c3-ao-secure",
+> +				compatible = "amlogic,t7-ao-secure",
 > +					     "amlogic,meson-gx-ao-secure",
 > +					     "syscon";
 > +				reg = <0x0 0x10220 0x0 0x140>;
 > +				amlogic,has-chip-id;
 > +			};
 >   		};
+>   
 >   	};
->   };
 > 
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
