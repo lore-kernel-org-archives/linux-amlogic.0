@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BA80C3DA49
-	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jul 2024 10:07:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AA90C3DA61
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2024 06:28:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Z+0DDGZ4j3Pkp0zcXplnl0ReNf4lYxMXWAV9WeCNwIA=; b=Dpvx8KLOqmfsDO
-	Stph7+wZkhQ4ZQYjift9VESeAKtfbq0FN4xtijn9Qun2jDdazT0j0fW700FwueWxSrhDRRfm0Ibro
-	mrxSogWm3gRD0Oi3LO2OV5D+PtnREBaHg6+2/PLUcbC0p9gCrKlt8o8dmna2F3/rvnCkqfnhS77d8
-	bs6gqemKrmAj0JHRxiKN4WtZy1n3508fMe5P5WzebEAC5t5bTlkzMoVP6LTslT01pt4u3qCnoTh9D
-	Mu688JBL2PoxmLw7gpzAMPlEUMzTf1UcfeNfSrjxzv0EvuzQyTozeIjSXpWBhDctlKNJJuAypJo0x
-	FNHjsnIQJtDWVoNPeH0Q==;
+	List-Owner; bh=L88rB2wo5t1pXaRzBKS6hLkgRJ0y2ABaxcgm4jJH7cU=; b=ToveRHVplfE79Z
+	LRFRxIk3m6ENXtjQ71mMfIGz+4l0v8M+hh+RKh3lCgKHJGa0J6zbUA7ocoDIWBuV4owjRQixmM8zr
+	OqI9mxV5uCV+UcYh1XyQP5Gbri9a/yLtQCZ32Mb6w9hEw7Ah/mzg/m+x+pXSA7FtaFhwmAV3I72uq
+	h5e9zRkRF9G1L9s5VsX2jtCC3Wmw8ZnUnMvpg01yUWac/c4cj5kyFxCHpOL9JhyW0Puy9LDFAbhQA
+	5Z5UzTlkuda20Y6y2nCew780EjlsgY7WXi22C7Bautf1ThVrzNxCN5nOJO3+OLgtrl5cBGzYFfVxI
+	mFvNkVSfrBjl5TYoEsQA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sXHrG-00000003Wk7-3FNG;
-	Fri, 26 Jul 2024 10:07:30 +0000
-Received: from madrid.collaboradmins.com ([46.235.227.194])
+	id 1sYJre-0000000A9z4-3vDT;
+	Mon, 29 Jul 2024 06:28:10 +0000
+Received: from madrid.collaboradmins.com ([2a00:1098:ed:100::25])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sXHrD-00000003WjW-3z4M;
-	Fri, 26 Jul 2024 10:07:29 +0000
+	id 1sYJrV-0000000A9vF-40WJ;
+	Mon, 29 Jul 2024 06:28:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1721988446;
-	bh=d6RAV3x+NFkqdpVb86ATPZjPs7X0Voj8XsmWJrljTJQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=2qaNsi32srLc1IjeuNAQNW4FjclHKcJH4eubhhwDHttyzpfCRX3fuKY8K1JZA4wRg
-	 qogbBjsOP/IcSAc+mhEhRKEq5yPYhI5Z3DquDZEvgK/meNnW0FWCtEfoSPJtFOXk/6
-	 h/FT9qKMqz4eugPJB7gNJcRPdk06dnUPwMrD0YpFH/v/H+Qq+n/oemyeRGS0O/ic71
-	 Ws1DmQ0emOCjrewj54u9q7/mOz+4QOBd3uUzpeSZAJq8a3pesHJxh5TyK4Q4k6VG2h
-	 B1ydv39K73z/eS+wlRe/+I8/uSBemdxr2Hyw1Qdo4FwO2OM3ircAJ7aeb3LsRj7KDY
-	 Rgj+XcRkrX8BQ==
+	s=mail; t=1722234477;
+	bh=c2Gb33yB6AGUPL7oB/bVbgijksIJQN8Vp6pPt6OQkXg=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=tDoLvKKUFH90Zfy4QS9BC3Q8oXlzM1iVsd4bWvx+NrYo5aa8ZvMRU2X2Dgo1TCwOl
+	 BrHmLD8BRYw0WHcQcvtoe7SXbJgoEM2gZDOsQMvKuE+mB3sZZsunKwZAsNrxb5oToT
+	 xp/gqCD456E+Fmlcab15zjZvWCR/uqFji4qV0cXAHOl+V/sCCyeth2nJFCBliEedPH
+	 NghPSHqqMnUCfBz8fN0tYaRTOtrQs0DC2iyAzuc/vYlHVifRpsbyapUvaFI8Qg0yLX
+	 iYBqqMx7MOF2v1kVu41W33xUHRkYViJbxDucAPR9b3K9TXQZ8mdwQGk8pv1vnhtDkv
+	 zRe6Pf/5xmm2Q==
 Received: from [100.66.96.193] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: vignesh)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 696E03780BDB;
-	Fri, 26 Jul 2024 10:07:23 +0000 (UTC)
-Message-ID: <27bd3884-51d8-454f-9ddc-6b5765fd744b@collabora.com>
-Date: Fri, 26 Jul 2024 15:37:20 +0530
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 51D4D37813E1;
+	Mon, 29 Jul 2024 06:27:54 +0000 (UTC)
+Message-ID: <c790e122-c656-4f2c-8f1d-6e405fc70233@collabora.com>
+Date: Mon, 29 Jul 2024 11:57:52 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v8 5/5] drm/ci: rockchip: add tests for rockchip display
  driver
-Content-Language: en-US
+From: Vignesh Raman <vignesh.raman@collabora.com>
 To: Daniel Stone <daniel@fooishbar.org>
 Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
  helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
@@ -60,11 +60,12 @@ Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
 References: <20240724101015.523535-1-vignesh.raman@collabora.com>
  <20240724101015.523535-6-vignesh.raman@collabora.com>
  <CAPj87rMJUSRJ9G1uv-w5a_4qqS0R1dDaUEofoJf=ehbMszdfOw@mail.gmail.com>
-From: Vignesh Raman <vignesh.raman@collabora.com>
-In-Reply-To: <CAPj87rMJUSRJ9G1uv-w5a_4qqS0R1dDaUEofoJf=ehbMszdfOw@mail.gmail.com>
+ <27bd3884-51d8-454f-9ddc-6b5765fd744b@collabora.com>
+Content-Language: en-US
+In-Reply-To: <27bd3884-51d8-454f-9ddc-6b5765fd744b@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240726_030728_159167_352D7C6B 
-X-CRM114-Status: GOOD (  25.08  )
+X-CRM114-CacheID: sfid-20240728_232802_195582_4E8C9784 
+X-CRM114-Status: GOOD (  23.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,111 +77,93 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Daniel,
-
-On 26/07/24 13:06, Daniel Stone wrote:
-> Hi Vignesh,
-> 
-> On Wed, 24 Jul 2024 at 11:12, Vignesh Raman <vignesh.raman@collabora.com> wrote:
->> For rockchip rk3288 and rk3399, the display driver is rockchip
->> and gpu driver is panfrost. Currently, in drm-ci for rockchip
->> rk3288 and rk3399, only the gpu driver is tested. Refactor
->> the existing rockchip jobs to test both display and gpu driver
->> and update xfails.
-> 
-> Could you also please add RK3588 in a new series (no need to hold this
-> one up), with Rockchip KMS and Panthor GPU? You can use the
-> rk3588-rock5-b device type in LAVA.
-
-Sure. I Will add and send it in a new series.
-
-> 
->> diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt
->> index cf3a747f7cec..826cca5efbff 100644
->> --- a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt
->> +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt
-> 
-> This is in the wrong patch?
-
-Yes, this needs to be dropped. Thanks for pointing that out.
-
-> 
->> +++ b/drivers/gpu/drm/ci/xfails/panfrost-rk3288-skips.txt
->> @@ -0,0 +1,71 @@
->> +# Suspend to RAM seems to be broken on this machine
->> +.*suspend.*
->> +
->> +# Too unstable, machine ends up hanging after lots of Oopses
->> +kms_cursor_legacy.*
->> +
->> +# Started hanging the machine on Linux 5.19-rc2:
->> +#
->> +# [IGT] kms_plane_lowres: executing
->> +# [IGT] kms_plane_lowres: starting subtest pipe-F-tiling-y
->> +# [IGT] kms_plane_lowres: exiting, ret=77
-> 
-> ret 77 is a pure skip here, as you'd expect from a pipe F test,
-> because Rockchip doesn't have six CRTCs.
-> 
->> +# Console: switching to colour frame buffer device 170x48
->> +# rockchip-drm display-subsystem: [drm] *ERROR* flip_done timed out
->> +# rockchip-drm display-subsystem: [drm] *ERROR* [CRTC:35:crtc-0] commit wait timed out
->> +# BUG: spinlock bad magic on CPU#3, kms_plane_lowre/482
->> +# 8<--- cut here ---
->> +# Unable to handle kernel paging request at virtual address 7812078e
->> +# [7812078e] *pgd=00000000
->> +# Internal error: Oops: 5 [#1] SMP ARM
->> +# Modules linked in:
->> +# CPU: 3 PID: 482 Comm: kms_plane_lowre Tainted: G        W         5.19.0-rc2-323596-g00535de92171 #1
->> +# Hardware name: Rockchip (Device Tree)
->> +# Process kms_plane_lowre (pid: 482, stack limit = 0x1193ac2b)
->> +#  spin_dump from do_raw_spin_lock+0xa4/0xe8
->> +#  do_raw_spin_lock from wait_for_completion_timeout+0x2c/0x120
->> +#  wait_for_completion_timeout from drm_crtc_commit_wait+0x18/0x7c
->> +#  drm_crtc_commit_wait from drm_atomic_helper_wait_for_dependencies+0x44/0x168
->> +#  drm_atomic_helper_wait_for_dependencies from commit_tail+0x34/0x180
->> +#  commit_tail from drm_atomic_helper_commit+0x164/0x18c
->> +#  drm_atomic_helper_commit from drm_atomic_commit+0xac/0xe4
->> +#  drm_atomic_commit from drm_client_modeset_commit_atomic+0x23c/0x284
->> +#  drm_client_modeset_commit_atomic from drm_client_modeset_commit_locked+0x60/0x1c8
->> +#  drm_client_modeset_commit_locked from drm_client_modeset_commit+0x24/0x40
->> +#  drm_client_modeset_commit from drm_fbdev_client_restore+0x58/0x94
->> +#  drm_fbdev_client_restore from drm_client_dev_restore+0x70/0xbc
->> +#  drm_client_dev_restore from drm_release+0xf4/0x114
->> +#  drm_release from __fput+0x74/0x240
->> +#  __fput from task_work_run+0x84/0xb4
->> +#  task_work_run from do_exit+0x34c/0xa20
->> +#  do_exit from do_group_exit+0x34/0x98
-> 
-> So this is pointing to the error being that, when a client exits, the
-> kernel attempts to restore fbdev and then it's broken. Pinning
-> pipe-F-tiling-y as specifically responsible for this seems quite odd
-> to me, given that it doesn't do anything but only skips. Is that maybe
-> just because it's the last test running in the kms_plane_lowres group
-> before it exits? Or does it occur more wildly on other test groups?
-
-This was skipped for Linux 5.19-rc2. I will remove from skips and will 
-check the behavior.
-
-> 
->> +tools_test@tools_test,Fail
-> 
-> I keep noticing this failing everywhere. What's up with that? Have you
-> reported these logs to the igt list?
-
-I will check this issue and report to igt developers.
-
-Thanks.
-
-Regards,
-Vignesh
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgRGFuaWVsLAoKT24gMjYvMDcvMjQgMTU6MzcsIFZpZ25lc2ggUmFtYW4gd3JvdGU6Cj4gSGkg
+RGFuaWVsLAo+IAo+IE9uIDI2LzA3LzI0IDEzOjA2LCBEYW5pZWwgU3RvbmUgd3JvdGU6Cj4+IEhp
+IFZpZ25lc2gsCj4+Cj4+IE9uIFdlZCwgMjQgSnVsIDIwMjQgYXQgMTE6MTIsIFZpZ25lc2ggUmFt
+YW4gCj4+IDx2aWduZXNoLnJhbWFuQGNvbGxhYm9yYS5jb20+IHdyb3RlOgo+Pj4gRm9yIHJvY2tj
+aGlwIHJrMzI4OCBhbmQgcmszMzk5LCB0aGUgZGlzcGxheSBkcml2ZXIgaXMgcm9ja2NoaXAKPj4+
+IGFuZCBncHUgZHJpdmVyIGlzIHBhbmZyb3N0LiBDdXJyZW50bHksIGluIGRybS1jaSBmb3Igcm9j
+a2NoaXAKPj4+IHJrMzI4OCBhbmQgcmszMzk5LCBvbmx5IHRoZSBncHUgZHJpdmVyIGlzIHRlc3Rl
+ZC4gUmVmYWN0b3IKPj4+IHRoZSBleGlzdGluZyByb2NrY2hpcCBqb2JzIHRvIHRlc3QgYm90aCBk
+aXNwbGF5IGFuZCBncHUgZHJpdmVyCj4+PiBhbmQgdXBkYXRlIHhmYWlscy4KPj4KPj4gQ291bGQg
+eW91IGFsc28gcGxlYXNlIGFkZCBSSzM1ODggaW4gYSBuZXcgc2VyaWVzIChubyBuZWVkIHRvIGhv
+bGQgdGhpcwo+PiBvbmUgdXApLCB3aXRoIFJvY2tjaGlwIEtNUyBhbmQgUGFudGhvciBHUFU/IFlv
+dSBjYW4gdXNlIHRoZQo+PiByazM1ODgtcm9jazUtYiBkZXZpY2UgdHlwZSBpbiBMQVZBLgo+IAo+
+IFN1cmUuIEkgV2lsbCBhZGQgYW5kIHNlbmQgaXQgaW4gYSBuZXcgc2VyaWVzLgo+IAo+Pgo+Pj4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9jaS94ZmFpbHMvbWVkaWF0ZWstbXQ4MTgzLWZh
+aWxzLnR4dCAKPj4+IGIvZHJpdmVycy9ncHUvZHJtL2NpL3hmYWlscy9tZWRpYXRlay1tdDgxODMt
+ZmFpbHMudHh0Cj4+PiBpbmRleCBjZjNhNzQ3ZjdjZWMuLjgyNmNjYTVlZmJmZiAxMDA2NDQKPj4+
+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9jaS94ZmFpbHMvbWVkaWF0ZWstbXQ4MTgzLWZhaWxzLnR4
+dAo+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2NpL3hmYWlscy9tZWRpYXRlay1tdDgxODMtZmFp
+bHMudHh0Cj4+Cj4+IFRoaXMgaXMgaW4gdGhlIHdyb25nIHBhdGNoPwo+IAo+IFllcywgdGhpcyBu
+ZWVkcyB0byBiZSBkcm9wcGVkLiBUaGFua3MgZm9yIHBvaW50aW5nIHRoYXQgb3V0Lgo+IAo+Pgo+
+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2NpL3hmYWlscy9wYW5mcm9zdC1yazMyODgtc2tpcHMu
+dHh0Cj4+PiBAQCAtMCwwICsxLDcxIEBACj4+PiArIyBTdXNwZW5kIHRvIFJBTSBzZWVtcyB0byBi
+ZSBicm9rZW4gb24gdGhpcyBtYWNoaW5lCj4+PiArLipzdXNwZW5kLioKPj4+ICsKPj4+ICsjIFRv
+byB1bnN0YWJsZSwgbWFjaGluZSBlbmRzIHVwIGhhbmdpbmcgYWZ0ZXIgbG90cyBvZiBPb3BzZXMK
+Pj4+ICtrbXNfY3Vyc29yX2xlZ2FjeS4qCj4+PiArCj4+PiArIyBTdGFydGVkIGhhbmdpbmcgdGhl
+IG1hY2hpbmUgb24gTGludXggNS4xOS1yYzI6Cj4+PiArIwo+Pj4gKyMgW0lHVF0ga21zX3BsYW5l
+X2xvd3JlczogZXhlY3V0aW5nCj4+PiArIyBbSUdUXSBrbXNfcGxhbmVfbG93cmVzOiBzdGFydGlu
+ZyBzdWJ0ZXN0IHBpcGUtRi10aWxpbmcteQo+Pj4gKyMgW0lHVF0ga21zX3BsYW5lX2xvd3Jlczog
+ZXhpdGluZywgcmV0PTc3Cj4+Cj4+IHJldCA3NyBpcyBhIHB1cmUgc2tpcCBoZXJlLCBhcyB5b3Un
+ZCBleHBlY3QgZnJvbSBhIHBpcGUgRiB0ZXN0LAo+PiBiZWNhdXNlIFJvY2tjaGlwIGRvZXNuJ3Qg
+aGF2ZSBzaXggQ1JUQ3MuCj4+Cj4+PiArIyBDb25zb2xlOiBzd2l0Y2hpbmcgdG8gY29sb3VyIGZy
+YW1lIGJ1ZmZlciBkZXZpY2UgMTcweDQ4Cj4+PiArIyByb2NrY2hpcC1kcm0gZGlzcGxheS1zdWJz
+eXN0ZW06IFtkcm1dICpFUlJPUiogZmxpcF9kb25lIHRpbWVkIG91dAo+Pj4gKyMgcm9ja2NoaXAt
+ZHJtIGRpc3BsYXktc3Vic3lzdGVtOiBbZHJtXSAqRVJST1IqIFtDUlRDOjM1OmNydGMtMF0gCj4+
+PiBjb21taXQgd2FpdCB0aW1lZCBvdXQKPj4+ICsjIEJVRzogc3BpbmxvY2sgYmFkIG1hZ2ljIG9u
+IENQVSMzLCBrbXNfcGxhbmVfbG93cmUvNDgyCj4+PiArIyA4PC0tLSBjdXQgaGVyZSAtLS0KPj4+
+ICsjIFVuYWJsZSB0byBoYW5kbGUga2VybmVsIHBhZ2luZyByZXF1ZXN0IGF0IHZpcnR1YWwgYWRk
+cmVzcyA3ODEyMDc4ZQo+Pj4gKyMgWzc4MTIwNzhlXSAqcGdkPTAwMDAwMDAwCj4+PiArIyBJbnRl
+cm5hbCBlcnJvcjogT29wczogNSBbIzFdIFNNUCBBUk0KPj4+ICsjIE1vZHVsZXMgbGlua2VkIGlu
+Ogo+Pj4gKyMgQ1BVOiAzIFBJRDogNDgyIENvbW06IGttc19wbGFuZV9sb3dyZSBUYWludGVkOiBH
+wqDCoMKgwqDCoMKgwqAgVyAgICAgICAgIAo+Pj4gNS4xOS4wLXJjMi0zMjM1OTYtZzAwNTM1ZGU5
+MjE3MSAjMQo+Pj4gKyMgSGFyZHdhcmUgbmFtZTogUm9ja2NoaXAgKERldmljZSBUcmVlKQo+Pj4g
+KyMgUHJvY2VzcyBrbXNfcGxhbmVfbG93cmUgKHBpZDogNDgyLCBzdGFjayBsaW1pdCA9IDB4MTE5
+M2FjMmIpCj4+PiArI8KgIHNwaW5fZHVtcCBmcm9tIGRvX3Jhd19zcGluX2xvY2srMHhhNC8weGU4
+Cj4+PiArI8KgIGRvX3Jhd19zcGluX2xvY2sgZnJvbSB3YWl0X2Zvcl9jb21wbGV0aW9uX3RpbWVv
+dXQrMHgyYy8weDEyMAo+Pj4gKyPCoCB3YWl0X2Zvcl9jb21wbGV0aW9uX3RpbWVvdXQgZnJvbSBk
+cm1fY3J0Y19jb21taXRfd2FpdCsweDE4LzB4N2MKPj4+ICsjwqAgZHJtX2NydGNfY29tbWl0X3dh
+aXQgZnJvbSAKPj4+IGRybV9hdG9taWNfaGVscGVyX3dhaXRfZm9yX2RlcGVuZGVuY2llcysweDQ0
+LzB4MTY4Cj4+PiArI8KgIGRybV9hdG9taWNfaGVscGVyX3dhaXRfZm9yX2RlcGVuZGVuY2llcyBm
+cm9tIGNvbW1pdF90YWlsKzB4MzQvMHgxODAKPj4+ICsjwqAgY29tbWl0X3RhaWwgZnJvbSBkcm1f
+YXRvbWljX2hlbHBlcl9jb21taXQrMHgxNjQvMHgxOGMKPj4+ICsjwqAgZHJtX2F0b21pY19oZWxw
+ZXJfY29tbWl0IGZyb20gZHJtX2F0b21pY19jb21taXQrMHhhYy8weGU0Cj4+PiArI8KgIGRybV9h
+dG9taWNfY29tbWl0IGZyb20gZHJtX2NsaWVudF9tb2Rlc2V0X2NvbW1pdF9hdG9taWMrMHgyM2Mv
+MHgyODQKPj4+ICsjwqAgZHJtX2NsaWVudF9tb2Rlc2V0X2NvbW1pdF9hdG9taWMgZnJvbSAKPj4+
+IGRybV9jbGllbnRfbW9kZXNldF9jb21taXRfbG9ja2VkKzB4NjAvMHgxYzgKPj4+ICsjwqAgZHJt
+X2NsaWVudF9tb2Rlc2V0X2NvbW1pdF9sb2NrZWQgZnJvbSAKPj4+IGRybV9jbGllbnRfbW9kZXNl
+dF9jb21taXQrMHgyNC8weDQwCj4+PiArI8KgIGRybV9jbGllbnRfbW9kZXNldF9jb21taXQgZnJv
+bSBkcm1fZmJkZXZfY2xpZW50X3Jlc3RvcmUrMHg1OC8weDk0Cj4+PiArI8KgIGRybV9mYmRldl9j
+bGllbnRfcmVzdG9yZSBmcm9tIGRybV9jbGllbnRfZGV2X3Jlc3RvcmUrMHg3MC8weGJjCj4+PiAr
+I8KgIGRybV9jbGllbnRfZGV2X3Jlc3RvcmUgZnJvbSBkcm1fcmVsZWFzZSsweGY0LzB4MTE0Cj4+
+PiArI8KgIGRybV9yZWxlYXNlIGZyb20gX19mcHV0KzB4NzQvMHgyNDAKPj4+ICsjwqAgX19mcHV0
+IGZyb20gdGFza193b3JrX3J1bisweDg0LzB4YjQKPj4+ICsjwqAgdGFza193b3JrX3J1biBmcm9t
+IGRvX2V4aXQrMHgzNGMvMHhhMjAKPj4+ICsjwqAgZG9fZXhpdCBmcm9tIGRvX2dyb3VwX2V4aXQr
+MHgzNC8weDk4Cj4+Cj4+IFNvIHRoaXMgaXMgcG9pbnRpbmcgdG8gdGhlIGVycm9yIGJlaW5nIHRo
+YXQsIHdoZW4gYSBjbGllbnQgZXhpdHMsIHRoZQo+PiBrZXJuZWwgYXR0ZW1wdHMgdG8gcmVzdG9y
+ZSBmYmRldiBhbmQgdGhlbiBpdCdzIGJyb2tlbi4gUGlubmluZwo+PiBwaXBlLUYtdGlsaW5nLXkg
+YXMgc3BlY2lmaWNhbGx5IHJlc3BvbnNpYmxlIGZvciB0aGlzIHNlZW1zIHF1aXRlIG9kZAo+PiB0
+byBtZSwgZ2l2ZW4gdGhhdCBpdCBkb2Vzbid0IGRvIGFueXRoaW5nIGJ1dCBvbmx5IHNraXBzLiBJ
+cyB0aGF0IG1heWJlCj4+IGp1c3QgYmVjYXVzZSBpdCdzIHRoZSBsYXN0IHRlc3QgcnVubmluZyBp
+biB0aGUga21zX3BsYW5lX2xvd3JlcyBncm91cAo+PiBiZWZvcmUgaXQgZXhpdHM/IE9yIGRvZXMg
+aXQgb2NjdXIgbW9yZSB3aWxkbHkgb24gb3RoZXIgdGVzdCBncm91cHM/Cj4gCj4gVGhpcyB3YXMg
+c2tpcHBlZCBmb3IgTGludXggNS4xOS1yYzIuIEkgd2lsbCByZW1vdmUgZnJvbSBza2lwcyBhbmQg
+d2lsbCAKPiBjaGVjayB0aGUgYmVoYXZpb3IuCgpUaGlzIGlzIGZvciBwYW5mcm9zdCBkcml2ZXIg
+KHJrMzI4OCkuIEFsbCBrbXMgdGVzdHMgYXJlIHNraXBwZWQgZm9yIApncHUtb25seSBkcml2ZXIu
+IFdpbGwgcmVtb3ZlIHRoZSBvdGhlciBrbXMgdGVzdHMgaW4gdGhpcyBmaWxlIGFzIHdlIGhhdmUK
+c2VwYXJhdGUgc2tpcHMgZmlsZSBmb3Igcm9ja2NoaXAgZHJpdmVyIG5vdy4KCj4+Cj4+PiArdG9v
+bHNfdGVzdEB0b29sc190ZXN0LEZhaWwKPj4KPj4gSSBrZWVwIG5vdGljaW5nIHRoaXMgZmFpbGlu
+ZyBldmVyeXdoZXJlLiBXaGF0J3MgdXAgd2l0aCB0aGF0PyBIYXZlIHlvdQo+PiByZXBvcnRlZCB0
+aGVzZSBsb2dzIHRvIHRoZSBpZ3QgbGlzdD8KPiAKPiBJIHdpbGwgY2hlY2sgdGhpcyBpc3N1ZSBh
+bmQgcmVwb3J0IHRvIGlndCBkZXZlbG9wZXJzLgoKdG9vbHNfdGVzdCBpcyBhIHdyYXBwZXIgZm9y
+IHJ1bm5pbmcgdG9vbHMvaW50ZWxfcmVnIGFuZCAKdG9vbHMvaW50ZWxfbDNfcGFyaXR5LiBTbyBz
+a2lwIHRoZXNlIHRlc3RzIG9uIG5vbi1pbnRlbCBwbGF0Zm9ybXMuCgoKUmVnYXJkcywKVmlnbmVz
+aAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgt
+YW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0
+dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
