@@ -4,66 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C24EC3DA7E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F245C52D1F
 	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Jul 2024 12:50:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OhVwfoDlOJ3734Aunr/bOlGohPcDoXs5eT+3H3+kIT4=; b=DAcU3DTbdIz3Cv
-	FDjmo8XJxfgk7ARLH44GaLt9dLJUdQH7mvmzdAQ3YLB5IuueQqfoBrYWSUDOPjNTUxaNQLTG0+xAz
-	THgt5pjnavBfeGogncUJ3u8cGthJZKprCu5h7wnJOAvnn6TfGP2XW1HJ6+DzP8QIiCg9W/eeeTN2C
-	BvG4o1zqg/4nyPcKzAqDY2zJlSHssTwtl/QzG2vREsXYbzijRy3lgPghRSifW+v69Sl2VGcJc2spm
-	0qZFY07WHQQLXK//KgiyyiYUxooVU5AOKCPkiNxUUhL0BqP8cVz+jNWojph+QcZS77Fz83d24Cswm
-	PyHy21jrFfFsn81GqLbQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=oK/ZPItUMcYiJBs3viCDCLPi76KjjEacTi6qM5Keyjs=; b=LoP+TlBUFbSA52
+	3LdampHCfIPmA3w/zXJbLvL7RYjvSu82ajNuMVAfARtKvNIQ2XZoQmOV55rjddyttVEyUN+3ZAZ1T
+	/IydzRRcVkXXzIe1SVsCjTjhpuAnEuY+Zex9nhU5r5JZI0fKR84+2DtgartGV6ESUeWJy5oZXz+vU
+	lpzxz3IaHuhSHHK9LEvRZm8EIlf9QuEgkgTbJJhdExa7h8aVLq/N8KQUV98DltdQs7TZau+1QZAPz
+	S/x7ILb4pscm919Jp+CKb707wMDLZovARvji9Ku8C/+R7oCNA0j5S1Q0rCrGAojejLtzJaCFqurff
+	RfMMX5ZyFeS0JBOD36Uw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sYmJQ-0000000F9ya-1aFZ;
-	Tue, 30 Jul 2024 12:50:44 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
-	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sYmJK-0000000F9t8-0n0k
-	for linux-amlogic@lists.infradead.org;
+	id 1sYmJM-0000000F9vh-3eeW;
 	Tue, 30 Jul 2024 12:50:40 +0000
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-3684eb5be64so2294681f8f.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 30 Jul 2024 05:50:37 -0700 (PDT)
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1sYmJI-0000000F9sb-2vhW
+	for linux-amlogic@lists.infradead.org;
+	Tue, 30 Jul 2024 12:50:38 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4280ee5f1e3so26815555e9.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 30 Jul 2024 05:50:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722343836; x=1722948636; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KCAbjMiMPWRMzpCKATzPFm7RQ4gOtOLIXraRazPtH00=;
-        b=MmpSVMc3ClWL06XmTtQmUQZoseohw9P6TtbZTf0IFRlEzcTv42PWb9m13Xid23fCWn
-         Pip+6qOWHKzqvkxemVgFUUCrPUbQtPRbSXFcuae0Wvg+d6W6DZMMLQy04uGBxG+WxuH+
-         yPFBhRoTWAACSEq2KFHKBpT7KtZJt2Hty6lwEZ/IG51YgZqGL0Fots03HkKDy/CXTucI
-         RYgRyBgSTLwSaH/HOVeY9mPJb3J+9H8MBhjK89J7GscWsqmGH28uK8aPvswxaWJ+ygC+
-         ApLp/t3asAWNH8ei4nLvVU2AUBO9efz98aGavaZ3YY4t3GjPKLoeYVNKK5I9fTe/qGg2
-         fLfw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722343834; x=1722948634; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z4fILNbTnV4ZUaEZHGGwWYZeuafakFEBk9A0Y4htmCY=;
+        b=1g328Thh7qnGqNvdG45Bo9RSkoZcj5I28QGlyn6L3n7EXpX5jYoPoYwet86vYLLEVw
+         ig13R8dt/5BA1oHqDoJjcbPNn/PWNqb2aQF2p1l4eY0siEbnhjH9g9CYPvUUlc+8QGMD
+         FWWXCep9D7GZsqkUamvU4GPuRTvumw+t9ULbSMTuhlU3Mx6lTaUx4t6OYOPfDYYkrzZN
+         RW2S4sQTIGq2hDyRUkVme0i9uwiCAXwwNicxtgwmYIT8uhsy1XnyfaSb0Qk5Tr7DKQ2X
+         6w2+8z8WlAU5iACInZYNBbh7P2EeJsYPy/SQm5qUvJZBQNIyU4MArjfiSmyUmsn3mTnT
+         8wZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722343836; x=1722948636;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KCAbjMiMPWRMzpCKATzPFm7RQ4gOtOLIXraRazPtH00=;
-        b=fG9ETSsoUsGb3zAxmd0TgJApABH4dS3+oRD4Z9S7buorpPShHTP0IACOns1lMG9DvH
-         b8iQ9Y11zj0h0DzoyJR2HQkDbtHX1gBntHA/s1aVJHCzYGukXXDdvlh5c4SoZM7a/fYV
-         dt1OXMuR98ap2KPFBKk7uTXdgXqc+PjaymKmo6KWk6dIfDuRG9y/k52P3Eakdv5pHBn1
-         hP+Wv1a/3oHrbUgZaEwYLbagrzESKXohBtK0tlIMNhuhFnwBCG9FEsCut+Ioufml+AZp
-         i1uHE45GNfx6XbzFLnI0QBt//Ygcatb/agpjgSF2cs8u1rV3NtFLI2WLmyRj87OHzYXE
-         lhkw==
-X-Forwarded-Encrypted: i=1; AJvYcCVsyKNuzZ+iRipljYXQjvQrsFJ+YHL6RwUFAQ34R2NPdCYSVCJOyOZtxfSBa0rtn2hEReHrpysBx/QTERw8rubspQe4J24R0GUSTw9gAW8oPU4=
-X-Gm-Message-State: AOJu0YywnL3VlXWSE7qG1WLaYvJYHzaSLKGQabdZe8jxWjWMBBr+l3yI
-	qScpiVaGw5LdTg1SS8w4LJeSMeRVCD6zKnWsEn01WYieaNtwsnF7sbQgsJlIuUuV2qjlzOk+fht
-	xaZmgTA==
-X-Google-Smtp-Source: AGHT+IFrBziZT/58Vb7K/FmVwcAvFVRM7tFnePkyMs/HqsXtRR+PlZ++CrVSk74QOczD1bWAn9/67Q==
-X-Received: by 2002:a05:6000:11c7:b0:367:8a9e:6bed with SMTP id ffacd0b85a97d-36b5d0baf47mr7921610f8f.61.1722343836141;
-        Tue, 30 Jul 2024 05:50:36 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1722343834; x=1722948634;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Z4fILNbTnV4ZUaEZHGGwWYZeuafakFEBk9A0Y4htmCY=;
+        b=cjo56M9+NG4WGtJO0Xl7TJJSl0p1u2D5je+54fPOlDAZR8n8WBQbuBrUkVgKhHztw9
+         G2DjZxgZGvvlW50hC1Vs1OGQ81FQmoYx1LJ8ne0wualA2/7QKGXjSoAk1dLdXkJyAiPc
+         kiGzxPcBSuSPbY+b2wR+tvTOp7O7H7co4M5Iv431bX+btQ/Iy/qnTmc9Q3jk8/1GvVmR
+         BbA8Xy5wCgkoq9wRRTUXeBbQInoOTcyuylNno4TBXsGiPsex+9kgUfEm+aKXUPjZg5gA
+         v8iXNYZBhsGJhyp2KF46M/LIhjE6DEeZPkiy6pFJE6bTznnzb3KY4mEkPv/u21/fOHGV
+         4KUA==
+X-Forwarded-Encrypted: i=1; AJvYcCWjwcYD8jvG8SZrttd5ngIj6vGdFJbPg5G1XNntSH3dcxSV+1LsdM1T3DMESk0MUboKmaXBjBM4FLlN/76gm46+oDxZU+0naEUWhbTSTA6pV0Q=
+X-Gm-Message-State: AOJu0YzLim1eZMGwyE8bJn662d3fNQXwtBT5Jx5Gi/Twwg9DO8VNwuhB
+	h0+SgGNstzAuBnFMoKslXLMI+oH5QwokVQWL+wOEeM753E8Ax1Z00J8bQM3m8Pw=
+X-Google-Smtp-Source: AGHT+IGPWSWAb+fvyUmPtwRvrlH6PC4ifMEhNzFkX9yIiubcqRcDAdw6bR9TYsXHuvl/XIZUdNlSDw==
+X-Received: by 2002:a05:600c:3547:b0:426:6773:17 with SMTP id 5b1f17b1804b1-42811e12d26mr72308275e9.30.1722343834506;
+        Tue, 30 Jul 2024 05:50:34 -0700 (PDT)
 Received: from toaster.lan ([2a01:e0a:3c5:5fb1:291e:4a48:358e:6f49])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-42805730e68sm216521405e9.9.2024.07.30.05.50.35
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-42805730e68sm216521405e9.9.2024.07.30.05.50.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jul 2024 05:50:35 -0700 (PDT)
+        Tue, 30 Jul 2024 05:50:34 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -77,17 +75,15 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	dri-devel@lists.freedesktop.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/9] drm/meson: vclk: drop hdmi system clock setup
-Date: Tue, 30 Jul 2024 14:50:12 +0200
-Message-ID: <20240730125023.710237-3-jbrunet@baylibre.com>
+Subject: [PATCH 0/9] drm/meson: dw-hdmi: clean-up
+Date: Tue, 30 Jul 2024 14:50:10 +0200
+Message-ID: <20240730125023.710237-1-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240730125023.710237-1-jbrunet@baylibre.com>
-References: <20240730125023.710237-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240730_055038_245773_13D24E22 
-X-CRM114-Status: GOOD (  10.93  )
+X-CRM114-CacheID: sfid-20240730_055036_763682_FACBA461 
+X-CRM114-Status: GOOD (  13.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,37 +100,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Poking the HHI syscon is a way to setup clocks behind CCF's back.
-Also, 2 drm code paths, the encoder and the hdmi-phy, are racing to do the
-same setup of the HDMI system clock.
+This patchset is a clean up of the Amlogic HDMI phy driver.
 
-This clock is used is used by the HDMI phy and should not be set by the
-encoder, so drop those HHI pokes from vclk.
+It is part of an effort to remove the use HHI syscon from the driver
+and properly use frameworks, such as PD and clocks, instead of going
+for an incorrectly global register region.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/gpu/drm/meson/meson_vclk.c | 8 --------
- 1 file changed, 8 deletions(-)
+When this is done, it should be easier to remove the usage of the
+component API from the Amlogic display drivers.
 
-diff --git a/drivers/gpu/drm/meson/meson_vclk.c b/drivers/gpu/drm/meson/meson_vclk.c
-index 2a942dc6a6dc..bf5cc5d92346 100644
---- a/drivers/gpu/drm/meson/meson_vclk.c
-+++ b/drivers/gpu/drm/meson/meson_vclk.c
-@@ -813,14 +813,6 @@ static void meson_vclk_set(struct meson_drm *priv, unsigned int pll_base_freq,
- {
- 	unsigned int m = 0, frac = 0;
- 
--	/* Set HDMI-TX sys clock */
--	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL,
--			   CTS_HDMI_SYS_SEL_MASK, 0);
--	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL,
--			   CTS_HDMI_SYS_DIV_MASK, 0);
--	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL,
--			   CTS_HDMI_SYS_EN, CTS_HDMI_SYS_EN);
--
- 	/* Set HDMI PLL rate */
- 	if (!od1 && !od2 && !od3) {
- 		meson_hdmi_pll_generic_set(priv, pll_base_freq);
+To be clear, this patchset does not go this far yet. It stops
+short of making any controversial DT changes. To decouple the HDMI
+phy driver and main DRM driver, allowing the PHY to get hold of its
+registers, I believe a DT ABI break is inevitable. Ideally the
+register region of the PHY within the HHI should provided, not the
+whole HHI. That's pain for another day ...
+
+The last 2 patches should not be applied yet. They depend on DT
+changes which recently got applied. Time is needed for the DT changes
+to sink in u-boot and distros, to avoid breaking platforms which don't
+take DT from the kernel. These 2 patches are provided as a note that
+this should happen eventually.
+
+Jerome Brunet (9):
+  drm/meson: hdmi: move encoder settings out of phy driver
+  drm/meson: vclk: drop hdmi system clock setup
+  drm/meson: dw-hdmi: use generic clock helpers
+  drm/meson: dw-hdmi: fix incorrect comment in suspend
+  drm/meson: dw-hdmi: split resets out of hw init.
+  drm/meson: dw-hdmi: convert to regmap
+  drm/meson: dw-hdmi: use matched data
+  drm/meson: dw-hdmi: don't write power controller registers
+  drm/meson: dw-hdmi: drop hdmi system clock setup
+
+ drivers/gpu/drm/meson/meson_dw_hdmi.c      | 746 ++++++++++-----------
+ drivers/gpu/drm/meson/meson_dw_hdmi.h      |  49 +-
+ drivers/gpu/drm/meson/meson_encoder_hdmi.c |  16 +
+ drivers/gpu/drm/meson/meson_vclk.c         |   8 -
+ 4 files changed, 389 insertions(+), 430 deletions(-)
+
 -- 
 2.43.0
 
